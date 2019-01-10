@@ -7,26 +7,18 @@ assignees: ''
 
 ---
 
-**Describe the bug**
-A clear and concise description of what the bug is.
+# Prerequisites
+Please answer the following questions for yourself before submitting an issue. 
+**This is just a checklist, please delete this section after **
+- [ ] I checked to make sure that this issue has not already been filed
+- [ ] I reproduced the issue in the latest version of acl-ui (master)
+- [ ] Please label as, low / medium / high priority
 
-**To Reproduce**
-Steps to reproduce the behavior:
-1. Go to '...'
-2. Click on '....'
-3. Scroll down to '....'
-4. See error
+# Expected Behavior
+Please describe the behavior you are expecting to happen.
 
-**Expected behavior**
-A clear and concise description of what you expected to happen.
+# Current Behavior
+What is the current behavior?
 
-**Screenshots**
-If applicable, add screenshots to help explain your problem.
-
-**Desktop (please complete the following information):**
- - OS: [e.g. iOS]
- - Browser [e.g. chrome, safari]
- - Version [e.g. 22]
-
-**Additional context**
-Add any other context about the problem here.
+# Screenshots / Gifs / Codepens
+Include media to help illustrate the issue. Gifs help a lot!
