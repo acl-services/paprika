@@ -1,24 +1,29 @@
 ---
-name: Bug report
+name: Bug report 🐛
 about: Create a report to help us improve
 title: ''
-labels: "bug \U0001F41E"
+labels: "Bug 🐛"
 assignees: ''
 
 ---
-
-# Prerequisites
-Please answer the following questions for yourself before submitting an issue. 
-**This is just a checklist, please delete this section after **
-- [ ] I checked to make sure that this issue has not already been filed
-- [ ] I reproduced the issue in the latest version of acl-ui (master)
+# Bug Report
+## Prerequisites
+**This is just a checklist, please delete this section after**
+Please answer the following questions for yourself before submitting a bug report.
+- [ ] I checked to make sure that this bug has not already been filed
+- [ ] I reproduced the bug in the latest version of paprika
 - [ ] Please label as, low / medium / high priority
 
-# Expected Behavior
-Please describe the behavior you are expecting to happen.
+*Please fill in as much detail as possible below*
 
-# Current Behavior
-What is the current behavior?
+## Expected behavior
+*Please describe the behavior you are expecting to happen.*
 
-# Screenshots / Gifs / Codepens
-Include media to help illustrate the issue. Gifs help a lot!
+## Current behavior
+*What is the current behavior?*
+
+## Screenshots / Gifs / Codepens
+*Include media to help illustrate the bug. Gifs help a lot!*
+
+## Additional context
+*Please provide any more additional details to illustrate the bug*
