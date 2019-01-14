@@ -1,0 +1,16 @@
+{
+  "env": {
+    "development": {
+      "presets": ["env", "react", "stage-2"],
+      "plugins": ["styled-components", "transform-runtime"]
+    },
+    "production": {
+      "presets": ["env", "react", "stage-2"],
+      "plugins": ["styled-components", "transform-runtime"]
+    },
+    "test": {
+      "presets": ["env", "react", "stage-2"],
+      "plugins": ["styled-components", "transform-runtime"]
+    }
+  }
+}

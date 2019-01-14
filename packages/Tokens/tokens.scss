@@ -1,0 +1,157 @@
+
+//color
+$color--black: #3f3d3c;
+$color--black-lighten-10: #575757;
+$color--black-lighten-20: #717171;
+$color--black-lighten-30: #8a8a8a;
+$color--black-lighten-40: #a4a4a4;
+$color--black-lighten-50: #bdbdbd;
+$color--black-lighten-60: #d7d7d7;
+$color--black-lighten-70: #f0f0f0;
+$color--black-lighten-80: #f7f7f7;
+$color--black-lighten-90: #fcfcfc;
+$color--blue: #2666ab;
+$color--blue-darken-10: #0c437e;
+$color--blue-lighten-10: #5987b8;
+$color--blue-lighten-20: #85b3e5;
+$color--blue-lighten-30: #94c6fd;
+$color--blue-lighten-40: #cce1f5;
+$color--blue-lighten-50: #e6f0fa;
+$color--creme: #e6e3df;
+$color--creme-darken-30: #989694;
+$color--creme-darken-20: #b1b0ae;
+$color--creme-darken-10: #cdcac5;
+$color--creme-lighten-5: #f1f0ed;
+$color--creme-lighten-10: #fcfcfc;
+$color--green: #42996d;
+$color--green-darken-10: #337554;
+$color--green-darken-20: #23523a;
+$color--green-lighten-10: #5db187;
+$color--green-lighten-20: #80c1a0;
+$color--green-lighten-30: #a2d2ba;
+$color--green-lighten-40: #c4e3d3;
+$color--green-lighten-50: #e7f3ed;
+$color--off-white: #f0f0f0;
+$color--orange: #de4d33;
+$color--orange-darken-10: #bf371f;
+$color--orange-darken-20: #932b18;
+$color--orange-darken-30: #671e11;
+$color--orange-lighten-10: #e07764;
+$color--orange-lighten-20: #e99c8e;
+$color--orange-lighten-30: #f1c1b9;
+$color--orange-lighten-40: #fae7e3;
+$color--purple: #53529f;
+$color--purple-darken-10: #41417d;
+$color--purple-darken-20: #302f5c;
+$color--purple-lighten-10: #7575af;
+$color--purple-lighten-20: #9695c2;
+$color--purple-lighten-30: #b6b5d5;
+$color--purple-lighten-40: #d6d6e7;
+$color--purple-lighten-50: #f6f6fa;
+$color--purple-lighten-60: #f6f6fa;
+$color--white: #ffffff;
+$color--yellow: #eaba51;
+$color--yellow-darken-10: #e5a823;
+$color--yellow-darken-20: #be8a17;
+$color--yellow-darken-30: #916911;
+$color--yellow-darken-40: #63480c;
+$color--yellow-lighten-10: #eccb82;
+$color--yellow-lighten-20: #f3ddae;
+$color--yellow-lighten-30: #f9f0db;
+$color--chart-color-01: #cd3c44;
+$color--chart-color-02: #cb8133;
+$color--chart-color-03: #eaba51;
+$color--chart-color-04: #79a551;
+$color--chart-color-05: #299a7a;
+$color--chart-color-06: #8c6d68;
+$color--chart-color-07: #ec848f;
+$color--chart-color-08: #b9668f;
+$color--chart-color-09: #53529f;
+$color--chart-color-10: #2b82bf;
+$color--chart-color-11: #7ec0cc;
+$color--chart-color-12: #d1cbc2;
+
+
+//placeholder
+$placeholder--color: #8a8a8a;
+$placeholder--font-style: italic;
+
+
+//highlight
+
+//active
+
+//no-border
+$highlight--active--no-border--box-shadow: 0 0 0 2px rgba(0,124,247,0.3);
+$highlight--active--no-border--border-color: #2666ab;
+
+
+//with-border
+$highlight--active--with-border--box-shadow: 0 0 0 1px #2666ab,0 0 0 3px rgba(0,124,247,0.3);
+
+
+
+
+//text-color
+$text-color--default: #3f3d3c;
+$text-color--subtle: #717171;
+$text-color--link: #2666ab;
+$text-color--link-hover: #2666ab;
+$text-color--icon: #717171;
+
+
+//font-family
+$font-family--default: "Lato", "Helvetica Neue", Helvetica, Arial, sans-serif !default;
+$font-family--jp: "Lato", "Helvetica Neue", Helvetica, Arial, sans-serif, "Hiragino Kaku Gothic Pro", "ヒラギノ角ゴ Pro W3", "ＭＳ Ｐゴシック", "MS PGothic";
+$font-family--kr: "Lato", "Helvetica Neue", Helvetica, Arial, sans-serif, "Malgun Gothic";
+$font-family--zh: "Helvetica Neue", Helvetica, Arial, sans-serif, 黑體-繁, "Heiti TC", 儷黑Pro, "LiHei Pro", PMingLiu, 宋体, SimSun;
+
+
+//table
+
+//header
+$table--header--background-color: #edebe8;
+
+
+//row
+$table--row--background-color: white;
+
+
+//row-even
+$table--row-even--background-color: #f5f5f5;
+
+
+
+//modal
+
+//backdrop
+$modal--backdrop--background-color: rgba(63,61,60,0.5);
+
+
+
+//border
+$border--radius: 3px;
+$border--color: #d7d7d7;
+$border--hover-color: #a4a4a4;
+$border--color-transition: border-color 0.2s;
+
+
+//button
+$button--border-radius: 4px;
+
+
+//card
+$card--border-radius: 6px;
+
+
+//background-color
+$background-color--level0: #f7f7f7;
+
+
+//font-size
+$font-size--default: 16px;
+
+$space: 8px;
+$space-sm: 4px;
+$space-lg: 12px;
+$shadow: rgba(0,0,0,0.07) 0px 1px 5px,rgba(0,0,0,0.1) 0px 7px 17px;

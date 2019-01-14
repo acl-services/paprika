@@ -1,0 +1,40 @@
+@import "~acl-ui/helpers/css/index";
+
+.spicy-logs {
+  .log-header {
+    display: flex;
+    align-items: center;
+
+    .log-all-versions-button {
+      display: inline-block;
+    }
+
+    .log-version {
+      display: inline-block;
+      margin: 0;
+      padding: 0;
+      font-size: font-scale(1);
+      color: $purple;
+    }
+  }
+
+  .log-list {
+    margin-top: $space * 3;
+    padding-left: $space;
+    position: relative;
+    padding-bottom: $space;
+  }
+
+  .log-item {
+    font-size: font-scale();
+    line-height: 1.2;
+    padding-bottom: $space;
+
+    &:before {
+      content: "• ";
+      position: relative;
+      left: 0;
+      top: 0;
+    }
+  }
+}

@@ -1,0 +1,108 @@
+---
+isVisible: true
+name: "Tokens"
+---
+| Name | Value | Example
+|:--|:--|:--|
+| $color--black | #3f3d3c | <div style='background-color: #3f3d3c; height: 25px; width: 50px; border-radius: 3px;'></div> | 
+| $color--black-lighten-10 | #575757 | <div style='background-color: #575757; height: 25px; width: 50px; border-radius: 3px;'></div> | 
+| $color--black-lighten-20 | #717171 | <div style='background-color: #717171; height: 25px; width: 50px; border-radius: 3px;'></div> | 
+| $color--black-lighten-30 | #8a8a8a | <div style='background-color: #8a8a8a; height: 25px; width: 50px; border-radius: 3px;'></div> | 
+| $color--black-lighten-40 | #a4a4a4 | <div style='background-color: #a4a4a4; height: 25px; width: 50px; border-radius: 3px;'></div> | 
+| $color--black-lighten-50 | #bdbdbd | <div style='background-color: #bdbdbd; height: 25px; width: 50px; border-radius: 3px;'></div> | 
+| $color--black-lighten-60 | #d7d7d7 | <div style='background-color: #d7d7d7; height: 25px; width: 50px; border-radius: 3px;'></div> | 
+| $color--black-lighten-70 | #f0f0f0 | <div style='background-color: #f0f0f0; height: 25px; width: 50px; border-radius: 3px;'></div> | 
+| $color--black-lighten-80 | #f7f7f7 | <div style='background-color: #f7f7f7; height: 25px; width: 50px; border-radius: 3px;'></div> | 
+| $color--black-lighten-90 | #fcfcfc | <div style='background-color: #fcfcfc; height: 25px; width: 50px; border-radius: 3px;'></div> | 
+| $color--blue | #2666ab | <div style='background-color: #2666ab; height: 25px; width: 50px; border-radius: 3px;'></div> | 
+| $color--blue-darken-10 | #0c437e | <div style='background-color: #0c437e; height: 25px; width: 50px; border-radius: 3px;'></div> | 
+| $color--blue-lighten-10 | #5987b8 | <div style='background-color: #5987b8; height: 25px; width: 50px; border-radius: 3px;'></div> | 
+| $color--blue-lighten-20 | #85b3e5 | <div style='background-color: #85b3e5; height: 25px; width: 50px; border-radius: 3px;'></div> | 
+| $color--blue-lighten-30 | #94c6fd | <div style='background-color: #94c6fd; height: 25px; width: 50px; border-radius: 3px;'></div> | 
+| $color--blue-lighten-40 | #cce1f5 | <div style='background-color: #cce1f5; height: 25px; width: 50px; border-radius: 3px;'></div> | 
+| $color--blue-lighten-50 | #e6f0fa | <div style='background-color: #e6f0fa; height: 25px; width: 50px; border-radius: 3px;'></div> | 
+| $color--creme | #e6e3df | <div style='background-color: #e6e3df; height: 25px; width: 50px; border-radius: 3px;'></div> | 
+| $color--creme-darken-30 | #989694 | <div style='background-color: #989694; height: 25px; width: 50px; border-radius: 3px;'></div> | 
+| $color--creme-darken-20 | #b1b0ae | <div style='background-color: #b1b0ae; height: 25px; width: 50px; border-radius: 3px;'></div> | 
+| $color--creme-darken-10 | #cdcac5 | <div style='background-color: #cdcac5; height: 25px; width: 50px; border-radius: 3px;'></div> | 
+| $color--creme-lighten-5 | #f1f0ed | <div style='background-color: #f1f0ed; height: 25px; width: 50px; border-radius: 3px;'></div> | 
+| $color--creme-lighten-10 | #fcfcfc | <div style='background-color: #fcfcfc; height: 25px; width: 50px; border-radius: 3px;'></div> | 
+| $color--green | #42996d | <div style='background-color: #42996d; height: 25px; width: 50px; border-radius: 3px;'></div> | 
+| $color--green-darken-10 | #337554 | <div style='background-color: #337554; height: 25px; width: 50px; border-radius: 3px;'></div> | 
+| $color--green-darken-20 | #23523a | <div style='background-color: #23523a; height: 25px; width: 50px; border-radius: 3px;'></div> | 
+| $color--green-lighten-10 | #5db187 | <div style='background-color: #5db187; height: 25px; width: 50px; border-radius: 3px;'></div> | 
+| $color--green-lighten-20 | #80c1a0 | <div style='background-color: #80c1a0; height: 25px; width: 50px; border-radius: 3px;'></div> | 
+| $color--green-lighten-30 | #a2d2ba | <div style='background-color: #a2d2ba; height: 25px; width: 50px; border-radius: 3px;'></div> | 
+| $color--green-lighten-40 | #c4e3d3 | <div style='background-color: #c4e3d3; height: 25px; width: 50px; border-radius: 3px;'></div> | 
+| $color--green-lighten-50 | #e7f3ed | <div style='background-color: #e7f3ed; height: 25px; width: 50px; border-radius: 3px;'></div> | 
+| $color--off-white | #f0f0f0 | <div style='background-color: #f0f0f0; height: 25px; width: 50px; border-radius: 3px;'></div> | 
+| $color--orange | #de4d33 | <div style='background-color: #de4d33; height: 25px; width: 50px; border-radius: 3px;'></div> | 
+| $color--orange-darken-10 | #bf371f | <div style='background-color: #bf371f; height: 25px; width: 50px; border-radius: 3px;'></div> | 
+| $color--orange-darken-20 | #932b18 | <div style='background-color: #932b18; height: 25px; width: 50px; border-radius: 3px;'></div> | 
+| $color--orange-darken-30 | #671e11 | <div style='background-color: #671e11; height: 25px; width: 50px; border-radius: 3px;'></div> | 
+| $color--orange-lighten-10 | #e07764 | <div style='background-color: #e07764; height: 25px; width: 50px; border-radius: 3px;'></div> | 
+| $color--orange-lighten-20 | #e99c8e | <div style='background-color: #e99c8e; height: 25px; width: 50px; border-radius: 3px;'></div> | 
+| $color--orange-lighten-30 | #f1c1b9 | <div style='background-color: #f1c1b9; height: 25px; width: 50px; border-radius: 3px;'></div> | 
+| $color--orange-lighten-40 | #fae7e3 | <div style='background-color: #fae7e3; height: 25px; width: 50px; border-radius: 3px;'></div> | 
+| $color--purple | #53529f | <div style='background-color: #53529f; height: 25px; width: 50px; border-radius: 3px;'></div> | 
+| $color--purple-darken-10 | #41417d | <div style='background-color: #41417d; height: 25px; width: 50px; border-radius: 3px;'></div> | 
+| $color--purple-darken-20 | #302f5c | <div style='background-color: #302f5c; height: 25px; width: 50px; border-radius: 3px;'></div> | 
+| $color--purple-lighten-10 | #7575af | <div style='background-color: #7575af; height: 25px; width: 50px; border-radius: 3px;'></div> | 
+| $color--purple-lighten-20 | #9695c2 | <div style='background-color: #9695c2; height: 25px; width: 50px; border-radius: 3px;'></div> | 
+| $color--purple-lighten-30 | #b6b5d5 | <div style='background-color: #b6b5d5; height: 25px; width: 50px; border-radius: 3px;'></div> | 
+| $color--purple-lighten-40 | #d6d6e7 | <div style='background-color: #d6d6e7; height: 25px; width: 50px; border-radius: 3px;'></div> | 
+| $color--purple-lighten-50 | #f6f6fa | <div style='background-color: #f6f6fa; height: 25px; width: 50px; border-radius: 3px;'></div> | 
+| $color--purple-lighten-60 | #f6f6fa | <div style='background-color: #f6f6fa; height: 25px; width: 50px; border-radius: 3px;'></div> | 
+| $color--white | #ffffff | <div style='background-color: #ffffff; height: 25px; width: 50px; border-radius: 3px;'></div> | 
+| $color--yellow | #eaba51 | <div style='background-color: #eaba51; height: 25px; width: 50px; border-radius: 3px;'></div> | 
+| $color--yellow-darken-10 | #e5a823 | <div style='background-color: #e5a823; height: 25px; width: 50px; border-radius: 3px;'></div> | 
+| $color--yellow-darken-20 | #be8a17 | <div style='background-color: #be8a17; height: 25px; width: 50px; border-radius: 3px;'></div> | 
+| $color--yellow-darken-30 | #916911 | <div style='background-color: #916911; height: 25px; width: 50px; border-radius: 3px;'></div> | 
+| $color--yellow-darken-40 | #63480c | <div style='background-color: #63480c; height: 25px; width: 50px; border-radius: 3px;'></div> | 
+| $color--yellow-lighten-10 | #eccb82 | <div style='background-color: #eccb82; height: 25px; width: 50px; border-radius: 3px;'></div> | 
+| $color--yellow-lighten-20 | #f3ddae | <div style='background-color: #f3ddae; height: 25px; width: 50px; border-radius: 3px;'></div> | 
+| $color--yellow-lighten-30 | #f9f0db | <div style='background-color: #f9f0db; height: 25px; width: 50px; border-radius: 3px;'></div> | 
+| $color--chart-color-01 | #cd3c44 | <div style='background-color: #cd3c44; height: 25px; width: 50px; border-radius: 3px;'></div> | 
+| $color--chart-color-02 | #cb8133 | <div style='background-color: #cb8133; height: 25px; width: 50px; border-radius: 3px;'></div> | 
+| $color--chart-color-03 | #eaba51 | <div style='background-color: #eaba51; height: 25px; width: 50px; border-radius: 3px;'></div> | 
+| $color--chart-color-04 | #79a551 | <div style='background-color: #79a551; height: 25px; width: 50px; border-radius: 3px;'></div> | 
+| $color--chart-color-05 | #299a7a | <div style='background-color: #299a7a; height: 25px; width: 50px; border-radius: 3px;'></div> | 
+| $color--chart-color-06 | #8c6d68 | <div style='background-color: #8c6d68; height: 25px; width: 50px; border-radius: 3px;'></div> | 
+| $color--chart-color-07 | #ec848f | <div style='background-color: #ec848f; height: 25px; width: 50px; border-radius: 3px;'></div> | 
+| $color--chart-color-08 | #b9668f | <div style='background-color: #b9668f; height: 25px; width: 50px; border-radius: 3px;'></div> | 
+| $color--chart-color-09 | #53529f | <div style='background-color: #53529f; height: 25px; width: 50px; border-radius: 3px;'></div> | 
+| $color--chart-color-10 | #2b82bf | <div style='background-color: #2b82bf; height: 25px; width: 50px; border-radius: 3px;'></div> | 
+| $color--chart-color-11 | #7ec0cc | <div style='background-color: #7ec0cc; height: 25px; width: 50px; border-radius: 3px;'></div> | 
+| $color--chart-color-12 | #d1cbc2 | <div style='background-color: #d1cbc2; height: 25px; width: 50px; border-radius: 3px;'></div> | 
+| $placeholder--color | #8a8a8a | <div style='background-color: #8a8a8a; height: 25px; width: 50px; border-radius: 3px;'></div> | 
+| $placeholder--font-style | italic |  | 
+| $highlight--active--no-border--box-shadow | 0 0 0 2px rgba(0,124,247,0.3) |  | 
+| $highlight--active--no-border--border-color | #2666ab | <div style='background-color: #2666ab; height: 25px; width: 50px; border-radius: 3px;'></div> | 
+| $highlight--active--with-border--box-shadow | 0 0 0 1px #2666ab,0 0 0 3px rgba(0,124,247,0.3) |  | 
+| $text-color--default | #3f3d3c | <div style='background-color: #3f3d3c; height: 25px; width: 50px; border-radius: 3px;'></div> | 
+| $text-color--subtle | #717171 | <div style='background-color: #717171; height: 25px; width: 50px; border-radius: 3px;'></div> | 
+| $text-color--link | #2666ab | <div style='background-color: #2666ab; height: 25px; width: 50px; border-radius: 3px;'></div> | 
+| $text-color--link-hover | #2666ab | <div style='background-color: #2666ab; height: 25px; width: 50px; border-radius: 3px;'></div> | 
+| $text-color--icon | #717171 | <div style='background-color: #717171; height: 25px; width: 50px; border-radius: 3px;'></div> | 
+| $font-family--default | "Lato", "Helvetica Neue", Helvetica, Arial, sans-serif !default |  | 
+| $font-family--jp | "Lato", "Helvetica Neue", Helvetica, Arial, sans-serif, "Hiragino Kaku Gothic Pro", "ヒラギノ角ゴ Pro W3", "ＭＳ Ｐゴシック", "MS PGothic" |  | 
+| $font-family--kr | "Lato", "Helvetica Neue", Helvetica, Arial, sans-serif, "Malgun Gothic" |  | 
+| $font-family--zh | "Helvetica Neue", Helvetica, Arial, sans-serif, 黑體-繁, "Heiti TC", 儷黑Pro, "LiHei Pro", PMingLiu, 宋体, SimSun |  | 
+| $table--header--background-color | #edebe8 | <div style='background-color: #edebe8; height: 25px; width: 50px; border-radius: 3px;'></div> | 
+| $table--row--background-color | white |  | 
+| $table--row-even--background-color | #f5f5f5 | <div style='background-color: #f5f5f5; height: 25px; width: 50px; border-radius: 3px;'></div> | 
+| $modal--backdrop--background-color | rgba(63,61,60,0.5) |  | 
+| $border--radius | 3px |  | 
+| $border--color | #d7d7d7 | <div style='background-color: #d7d7d7; height: 25px; width: 50px; border-radius: 3px;'></div> | 
+| $border--hover-color | #a4a4a4 | <div style='background-color: #a4a4a4; height: 25px; width: 50px; border-radius: 3px;'></div> | 
+| $border--color-transition | border-color 0.2s |  | 
+| $button--border-radius | 4px |  | 
+| $card--border-radius | 6px |  | 
+| $background-color--level0 | #f7f7f7 | <div style='background-color: #f7f7f7; height: 25px; width: 50px; border-radius: 3px;'></div> | 
+| $font-size--default | 16px |  | 
+| $space | 8px |  | 
+| $space-sm | 4px |  | 
+| $space-lg | 12px |  | 
+| $shadow | rgba(0,0,0,0.07) 0px 1px 5px,rgba(0,0,0,0.1) 0px 7px 17px |  | 
+
+_Page auto-generated by ACL-UI_

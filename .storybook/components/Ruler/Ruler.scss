@@ -1,0 +1,40 @@
+@import "~acl-ui/helpers/css/index";
+
+.storybook-ruler-container {
+  width: 100%;
+  position: relative;
+}
+
+.storybook-ruler {
+  left: 50%;
+  position: absolute;
+  top: -$space / 2;
+  transform: translateX(-50%);
+}
+
+.storybook-ruler-measure-label {
+  display: inline-block;
+  font-size: font-scale(-1);
+  left: 50%;
+  line-height: 1.7;
+  pointer-events: none;
+  position: absolute;
+  text-align: center;
+  top: -$space / 2;
+  transform: translateX(-50%);
+}
+
+.storybook-ruler-measure {
+  border: 1px solid $border--color;
+  color: $color--black;
+  font-size: font-scale(-1);
+  font-weight: 300;
+  height: 24px;
+  left: 50%;
+  position: absolute;
+  text-align: center;
+
+  &:hover {
+    background: $background-color--level0;
+  }
+}
