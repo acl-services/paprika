@@ -1,8 +1,8 @@
 {
-  "name": "@acl-ui/tokens",
+  "name": "@paprika/tokens",
   "version": "0.0.1",
   "description": "Design tokens generated as scss + js",
-  "author": "@acl-ui",
+  "author": "@paprika",
   "license": "MIT",
   "main": "index.js",
   "repository": {
