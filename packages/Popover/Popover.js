@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import { func, node, bool, string, number, oneOf, oneOfType } from "prop-types";
 import throttle from "lodash.throttle";
-import tokens from "@acl-ui/tokens";
+import tokens from "@paprika/tokens";
 import isInsideBoundaries from "./helpers/isInsideBoundaries";
 import {
   getContentCoordinates,

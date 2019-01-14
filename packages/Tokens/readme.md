@@ -1,8 +1,8 @@
 # installation
 
-`> npm install @acl-ui/tokens`
+`> npm install @paprika/tokens`
 or
-`> yarn add @acl-ui/tokens`
+`> yarn add @paprika/tokens`
 
 # How to use it
 
@@ -18,4 +18,4 @@ based on the tokens.yaml file.
 
 # Read more
 
-[documentation]: https://design.acl.com//@acl-ui/tokens
+[documentation]: https://design.acl.com//@paprika/tokens

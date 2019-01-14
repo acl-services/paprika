@@ -7,7 +7,7 @@
   "main": "index.js",
   "repository": {
     "type": "git",
-    "url": "https://github.com/acl-services/acl-ui/tree/master/packages/tokens"
+    "url": "https://github.com/acl-services/paprika/tree/master/packages/tokens"
   },
   "publishConfig": {
     "access": "public"

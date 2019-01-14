@@ -1,7 +1,7 @@
 import React from "react";
 import ReactDOM from "react-dom";
 import { number } from "prop-types";
-import tokens from "@acl-ui/tokens";
+import tokens from "@paprika/tokens";
 import { TipStyled } from "./Tip.styles";
 import { PopoverContext } from "../../Popover";
 

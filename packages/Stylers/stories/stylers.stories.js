@@ -1,8 +1,8 @@
 import React from "react";
 import { storiesOf } from "@storybook/react";
 import styled from "styled-components";
-import tokens from "@acl-ui/tokens";
-import stylers from "@acl-ui/stylers";
+import tokens from "@paprika/tokens";
+import stylers from "@paprika/stylers";
 
 const Box = styled.div`
   border: 1px solid ${tokens.border.color};

@@ -1,4 +1,4 @@
-import tokens from "@acl-ui/tokens";
+import tokens from "@paprika/tokens";
 
 //
 // Layout

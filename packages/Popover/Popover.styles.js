@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import stylers from "@acl-ui/stylers";
+import stylers from "@paprika/stylers";
 
 // constants for this component (and subcomponents)
 export const consts = {

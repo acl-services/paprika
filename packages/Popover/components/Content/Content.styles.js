@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import stylers from "@acl-ui/stylers";
+import stylers from "@paprika/stylers";
 import { consts } from "../../Popover.styles";
 
 export const ContentStyled = styled.div`

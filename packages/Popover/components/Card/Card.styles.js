@@ -1,6 +1,6 @@
 import styled from "styled-components";
-import tokens from "@acl-ui/tokens";
-import stylers from "@acl-ui/stylers";
+import tokens from "@paprika/tokens";
+import stylers from "@paprika/stylers";
 
 const defaultStyles = `
   background-color: ${tokens.color.white};

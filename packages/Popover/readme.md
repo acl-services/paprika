@@ -1,14 +1,14 @@
 # Install
 
-> npm install @acl-ui/popover
+> npm install @paprika/popover
 > or
-> yarn add @acl-ui/popover
+> yarn add @paprika/popover
 
 # How to use it
 
 ```js
 import React from 'react';
-import Popover from '@acl-ui/popover';
+import Popover from '@paprika/popover';
 
 then use <Popover {...props} />
 ```
@@ -121,4 +121,4 @@ oneOf([
 
 # Read more
 
-[documentation]: https://design.acl.com/@acl-ui/popover
+[documentation]: https://design.acl.com/@paprika/popover
