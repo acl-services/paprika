@@ -1,13 +1,13 @@
 {
-  "name": "@acl-ui/stylers",
+  "name": "@paprika/stylers",
   "version": "0.0.1",
   "description": "Helpers and includes for styled-components",
-  "author": "@acl-ui",
+  "author": "@paprika",
   "license": "MIT",
   "main": "index.js",
   "repository": {
     "type": "git",
-    "url": "https://github.com/acl-services/acl-ui/tree/master/packages/stylers"
+    "url": "https://github.com/acl-services/paprika/tree/master/packages/stylers"
   },
   "publishConfig": {
     "access": "public"
