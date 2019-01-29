@@ -25,7 +25,7 @@ class DesignTokenBuilder {
       return YAML.load(this.YAML_FILE);
     } catch (e) {
       this.outputError("Invalid YAML file.  Paste it into www.yamllint.com to see errors");
-      process.exit();
+      process.exit(1);
     }
     return null;
   }
