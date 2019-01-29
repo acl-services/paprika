@@ -8,7 +8,7 @@ class WindowHandles extends Component {
     this.element = props.story();
     this.childProps = {
       ref: ref => (this.ref = ref),
-      key: true,
+      key: true
     };
     this.initialize();
   }
@@ -20,12 +20,12 @@ class WindowHandles extends Component {
         this.childProps.key = !this.childProps.key;
         this.initialize();
         this.forceUpdate();
-      },
+      }
     };
 
     if (Object.prototype.hasOwnProperty.call(window, "Cypress")) {
       window.Cypress.cy.windowHandles = {
-        [this.element.type.name]: this.windowProps,
+        [this.element.type.name]: this.windowProps
       };
     } else {
       window[this.element.type.name] = this.windowProps;
@@ -39,7 +39,8 @@ class WindowHandles extends Component {
 
   isPropUndefinedOrDefault = key =>
     !this.element.props[key] ||
-    (this.element.type.defaultProps && this.element.props[key] === this.element.type.defaultProps[key]);
+    (this.element.type.defaultProps &&
+      this.element.props[key] === this.element.type.defaultProps[key]);
 
   render() {
     return <this.element.type {...this.element.props} {...this.childProps} />;
@@ -48,7 +49,7 @@ class WindowHandles extends Component {
 
 WindowHandles.propTypes = {
   story: func.isRequired,
-  config: object.isRequired,
+  config: object.isRequired
 };
 
 export class Input {
@@ -59,7 +60,8 @@ export class Input {
   apply(wrapper, key) {
     // eslint-disable-next-line
     wrapper.childProps[key] =
-      wrapper.isPropUndefinedOrDefault(key) && typeof this.initialValue !== "undefined" // eslint-disable-line
+      wrapper.isPropUndefinedOrDefault(key) &&
+      typeof this.initialValue !== "undefined" // eslint-disable-line
         ? this.initialValue
         : wrapper.element.props[key];
     Object.defineProperty(wrapper.windowProps, key, {
@@ -67,7 +69,7 @@ export class Input {
       set: value => {
         wrapper.childProps[key] = value; // eslint-disable-line
         wrapper.windowProps.update();
-      },
+      }
     });
   }
 }
@@ -91,4 +93,6 @@ export class Callback {
   }
 }
 
-export default config => story => <WindowHandles story={story} config={{ ...config }} />;
+export default config => story => (
+  <WindowHandles story={story} config={{ ...config }} />
+);

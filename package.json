@@ -10,7 +10,7 @@
     "package": "./scripts/package/index.js",
     "storybook": "start-storybook -p 9009 -c .storybook",
     "storybook:build": "build-storybook -c .storybook -o storybook-dist",
-    "test": "npm run test:a11y",
+    "test": "yarn test:a11y",
     "test:a11y": "NODE_PATH=. jest --config .jest-a11y.config.json"
   },
   "private": true,
