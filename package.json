@@ -16,7 +16,7 @@
     "packages/*"
   ],
   "author": "",
-  "license": "ISC",
+  "license": "MIT",
   "dependencies": {
     "babel-runtime": "^6.26.0"
   },
