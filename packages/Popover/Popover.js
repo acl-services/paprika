@@ -135,23 +135,12 @@ export default class Popover extends Component {
     }
   }
 
-  componentDidUpdate(previousProps) {
-    debugger;
+  componentDidUpdate(prevProps) {
     if (this.isOpen() && !this.hasListeners) {
       this.addListeners();
     }
 
-    if (this.isOpen() && previousProps !== this.props) this.setPosition();
-  }
-
-  // componentDidCatch is failing with the linter
-  // eslint-disable-next-line
-  componentDidCatch(error, info) {
-    // Display fallback UI
-    this.setState({ hasError: true });
-
-    // NOTE: we might want to log this in somewhere maybe
-    // have a service for this? maybe new relic?
+    if (this.isOpen() && prevProps !== this.props) this.setPosition();
   }
 
   componentWillUnmount() {
