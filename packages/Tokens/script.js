@@ -33,7 +33,7 @@ class DesignTokenBuilder {
   writeToFile(filePath, string) {
     fs.writeFile(filePath, string, (err) => {
       if (err) {
-        return console.log(`Error saving [${filePath}]: ${err}`);
+        console.log(`Error saving [${filePath}]: ${err}`);
       }
     });
   }
