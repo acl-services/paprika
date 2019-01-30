@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import memoizeOne from "memoize-one";
 import { func, node, bool, string, number, oneOf, oneOfType } from "prop-types";
 import throttle from "lodash.throttle";
 import tokens from "@paprika/tokens";
@@ -17,9 +18,9 @@ import Tip from "./components/Tip/Tip";
 import PopoverStyled from "./Popover.styles";
 
 // ACCESSIBILITY
-// NOTE: When closing the popover interaction seems to be better to focus the trigger button
-//       only when the close method is the ESC key, when clicking outside don't feel a fluid action
-//       to assign focus to the button again
+// NOTE: When closing the popover seems to be better to focus the trigger button
+//       only when the close method is the ESC key, when clicking outside doesn't feel a fluid action
+//       assigning the focus to the button again
 
 export const PopoverContext = React.createContext();
 
@@ -91,11 +92,10 @@ export default class Popover extends Component {
     this.$tip = null; // this ref comes from a callback of the <Tip /> component
 
     const portalNode = document.createElement("div");
-    portalNode.setAttribute("data-component-name", "PopoverPortal");
+    portalNode.setAttribute("data-paprika-type", "Popover");
     this.$portal = document.body.appendChild(portalNode);
 
     this.state = {
-      hasError: false,
       isOpen: this.props.defaultIsOpen || false,
       tip: {
         x: 0,
@@ -125,13 +125,46 @@ export default class Popover extends Component {
     }
   }
 
+  getContextValues = memoizeOne(
+    (
+      content,
+      maxWidth,
+      width,
+      isDark,
+      isEager,
+      isOpen,
+      portalElement,
+      refContent,
+      refTip,
+      tip
+    ) => ({
+      content: {
+        ...content,
+        maxWidth, // maybe we should code a minimum maxWidth?
+        width
+      },
+      isDark,
+      isEager,
+      isOpen,
+      onClick: this.handleClick,
+      onClose: this.handleClose,
+      onDelayedClose: this.handleDelayedClose,
+      onDelayedOpen: this.handleDelayedOpen,
+      onOpen: this.handleOpen,
+      portalElement,
+      refContent,
+      refTip,
+      tip
+    })
+  );
+
   componentDidMount() {
     // about setState for Popovers and Tooltips in ComponentDidMount
     // https://reactjs.org/docs/react-component.html#componentdidmount
 
     if (this.isOpen()) {
       this.addListeners();
-      this.setPosition();
+      this.setVisibilityAndPosition();
     }
   }
 
@@ -140,7 +173,8 @@ export default class Popover extends Component {
       this.addListeners();
     }
 
-    if (this.isOpen() && prevProps !== this.props) this.setPosition();
+    if (this.isOpen() && prevProps !== this.props)
+      this.setVisibilityAndPosition();
   }
 
   componentWillUnmount() {
@@ -169,32 +203,33 @@ export default class Popover extends Component {
     return contentWidth;
   }
 
-  setPositionState(isOpening = false) {
+  updateVisibilityAndPositionState(isOpening = false) {
     const { content, tip } = this.getCoordinates();
 
     const newState = {
       content,
       tip
     };
+
     if (isOpening) newState.isOpen = true;
 
     this.setState(newState);
   }
 
-  setPosition(isOpening = false) {
+  setVisibilityAndPosition(isOpening = false) {
     // dynamically setting a fixed width before positioning avoids issues at the
     // right edge of the screen
     if (isOpening && ["top", "bottom"].includes(this.props.align)) {
       const newWidth = this.getContentWidth();
       if (newWidth !== this.state.width) {
         this.setState({ width: newWidth }, () => {
-          this.setPositionState(isOpening);
+          this.updateVisibilityAndPositionState(isOpening);
         });
         return;
       }
     }
 
-    this.setPositionState(isOpening);
+    this.updateVisibilityAndPositionState(isOpening);
   }
 
   isOpen() {
@@ -256,7 +291,7 @@ export default class Popover extends Component {
         this.close();
         return;
       }
-      this.setPosition();
+      this.setVisibilityAndPosition();
     }
   }, throttleDelay);
 
@@ -302,7 +337,7 @@ export default class Popover extends Component {
   open() {
     this.$trigger = document.activeElement;
 
-    this.setPosition(true);
+    this.setVisibilityAndPosition(true);
   }
 
   close() {
@@ -330,68 +365,62 @@ export default class Popover extends Component {
   };
 
   addListeners() {
-    window.addEventListener("keyup", this.handleKeyUp, false);
-    window.addEventListener("resize", this.handleReposition, false);
-    window.addEventListener("scroll", this.handleReposition, false);
-    if (this.props.getScrollContainer !== null) {
-      this.props
-        .getScrollContainer()
-        .addEventListener("scroll", this.handleReposition, false);
+    if (this.$content) {
+      document.addEventListener("keyup", this.handleKeyUp, false);
+      document.addEventListener("resize", this.handleReposition, false);
+      document.addEventListener("scroll", this.handleReposition, false);
+
+      if (this.props.getScrollContainer !== null) {
+        this.props
+          .getScrollContainer()
+          .addEventListener("scroll", this.handleReposition, false);
+      }
+
+      this.$content.addEventListener(
+        "transitionend",
+        this.handleTransitionEnd,
+        false
+      );
+
+      this.hasListeners = true;
     }
-    this.$content.addEventListener(
-      "transitionend",
-      this.handleTransitionEnd,
-      false
-    );
-    this.hasListeners = true;
   }
 
   removeListeners() {
-    window.removeEventListener("resize", this.handleReposition);
-    if (this.props.getScrollContainer === null) {
-      window.removeEventListener("scroll", this.handleReposition);
-    } else {
-      this.props
-        .getScrollContainer()
-        .removeEventListener("scroll", this.handleReposition);
+    if (this.$content) {
+      document.removeEventListener("resize", this.handleReposition);
+
+      if (this.props.getScrollContainer === null) {
+        document.removeEventListener("scroll", this.handleReposition);
+      } else {
+        this.props
+          .getScrollContainer()
+          .removeEventListener("scroll", this.handleReposition);
+      }
+
+      document.removeEventListener("keyup", this.handleKeyUp);
+
+      this.$content.removeEventListener(
+        "transitionend",
+        this.handleTransitionEnd
+      );
+      this.hasListeners = false;
     }
-    window.removeEventListener("keyup", this.handleKeyUp);
-    this.$content.removeEventListener(
-      "transitionend",
-      this.handleTransitionEnd
-    );
-    this.hasListeners = false;
   }
 
   render() {
-    if (this.state.hasError) {
-      // NOTE: how we displayed an error on the React tree?
-      // we might need a bubbly or something for this?
-      // do we throw Error? suggestions?
-    }
-
-    // NOTE: please help me review if this will have the wrong
-    // effect as you can red in the caveat section of context API
-    // https://reactjs.org/docs/context.html#caveats
-    const contextValue = {
-      content: {
-        ...this.state.content,
-        maxWidth: this.props.maxWidth, // maybe we should code a minimum maxWidth?
-        width: this.state.width
-      },
-      isDark: this.props.isDark,
-      isEager: this.props.isEager,
-      isOpen: this.isOpen(),
-      onClick: this.handleClick,
-      onClose: this.handleClose,
-      onDelayedClose: this.handleDelayedClose,
-      onDelayedOpen: this.handleDelayedOpen,
-      onOpen: this.handleOpen,
-      portalElement: this.$portal,
-      refContent: this.refContent,
-      refTip: this.refTip,
-      tip: this.state.tip
-    };
+    const contextValue = this.getContextValues(
+      this.state.content,
+      this.props.maxWidth,
+      this.state.width,
+      this.props.isDark,
+      this.props.isEager,
+      this.isOpen(),
+      this.$portal,
+      this.refContent,
+      this.refTip,
+      this.state.tip
+    );
 
     return (
       <PopoverContext.Provider value={contextValue}>
