@@ -52,7 +52,7 @@ then use <Popover {...props} />
 
 // Advance case with providing boundingClientRect
 <Popover>
-<Popover.Element rect={() => (some.getboundingClientRect())} />
+<Popover.Element rect={() => (some.getBoundingClientRect())} />
 <Popover.Content isOpen={} />
 </Popover>
 
