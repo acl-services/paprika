@@ -1,0 +1,22 @@
+{
+  "name": "@paprika/tokens",
+  "version": "0.0.1",
+  "description": "Design tokens generated as scss + js",
+  "author": "@paprika",
+  "license": "MIT",
+  "main": "index.js",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/acl-services/paprika/tree/master/packages/tokens"
+  },
+  "publishConfig": {
+    "access": "public"
+  },
+  "scripts": {
+    "start": "node ./script.js"
+  },
+  "dependencies": {
+    "node-sass": "^4.9.2",
+    "yamljs": "^0.3.0"
+  }
+}
