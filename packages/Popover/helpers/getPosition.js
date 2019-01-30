@@ -7,7 +7,7 @@ const rotate = {
   left: 90,
 };
 
-const edgePadding = parseInt(tokens.space, 10);
+const edgePadding = Number.parseInt(tokens.space, 10);
 
 const getAdjustedContentCoordinates = ({ x, y, contentRect, targetRect, scrollRect, align, offset }) => {
   const viewport = {
