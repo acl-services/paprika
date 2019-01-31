@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import { select, text, number } from "@storybook/addon-knobs";
 import { func } from "prop-types";
 import styled from "styled-components";
-import { CenteredStory } from "../Popover.stories.styles";
+import { CenteredStory } from "../../../../.storybook/assets/styles/common.styles";
 import Popover from "../../Popover";
 
 const PopoverContainer = styled.div`
