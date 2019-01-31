@@ -4,7 +4,6 @@
   "description": "Design tokens generated as scss + js",
   "author": "@paprika",
   "license": "MIT",
-  "main": "index.js",
   "repository": {
     "type": "git",
     "url": "https://github.com/acl-services/paprika/tree/master/packages/tokens"
