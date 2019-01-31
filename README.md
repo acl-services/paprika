@@ -1,6 +1,6 @@
 # paprika
 
-![paprika-logo-square](https://user-images.githubusercontent.com/19418590/52077989-06e3aa00-2547-11e9-9914-d6b92727d6fd.png)
+![paprika logo square](https://user-images.githubusercontent.com/10501940/52079448-7018ec80-254a-11e9-9a49-cc3158769dfb.png)
 
 ## Basic installation
 
