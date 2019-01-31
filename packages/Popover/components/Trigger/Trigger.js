@@ -1,12 +1,8 @@
 import React, { Component } from "react";
 import { node, func, oneOfType } from "prop-types";
-import styled from "styled-components";
-import { PopoverContext } from "../../Popover";
+import RawButton from "@paprika/rawbutton";
 
-// TODO: migrate actual <RawButton> component
-const RawButton = styled.div`
-  display: inline-block;
-`;
+import { PopoverContext } from "../../Popover";
 
 const propTypes = {
   children: oneOfType([func, node]).isRequired,
@@ -38,11 +34,11 @@ export default class Trigger extends Component {
             /* eslint-disable jsx-a11y/mouse-events-have-key-events */
             return isEager ? (
               <RawButton
-                data-qa-anchor="popover-trigger"
+                qaAnchor="paprika-popover--trigger"
                 onMouseOver={handler}
                 onMouseOut={handler}
                 onFocus={handler}
-                tabIndex={0}
+                onBlur={handler}
               >
                 {this.props.children}
               </RawButton>
