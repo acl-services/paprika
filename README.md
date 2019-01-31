@@ -28,4 +28,4 @@ $ yarn storybook
 
 ## run test
 
-To be implemented #19
+To be implemented [#19](https://github.com/acl-services/paprika/issues/19)
