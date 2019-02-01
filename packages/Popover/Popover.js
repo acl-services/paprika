@@ -4,10 +4,7 @@ import { func, node, bool, string, number, oneOf, oneOfType } from "prop-types";
 import throttle from "lodash.throttle";
 import tokens from "@paprika/tokens";
 import isInsideBoundaries from "./helpers/isInsideBoundaries";
-import {
-  getContentCoordinates,
-  getTipCoordinates
-} from "./helpers/getPosition";
+import { getContentCoordinates, getTipCoordinates } from "./helpers/getPosition";
 import { isActiveElementPopover } from "./helpers/isActiveElementPopover";
 
 import Content from "./components/Content/Content";
@@ -66,7 +63,7 @@ const propTypes = {
   getPositioningElement: func,
 
   /** Function that provides the scrolling DOM element that contains the popover. */
-  getScrollContainer: func
+  getScrollContainer: func,
 };
 
 const defaultProps = {
@@ -79,7 +76,7 @@ const defaultProps = {
   onClose: null,
   offset: parseInt(tokens.spaceLg, 10),
   getPositioningElement: null,
-  getScrollContainer: null
+  getScrollContainer: null,
 };
 
 export default class Popover extends Component {
@@ -99,13 +96,13 @@ export default class Popover extends Component {
       isOpen: this.props.defaultIsOpen || false,
       tip: {
         x: 0,
-        y: 0
+        y: 0,
       },
       content: {
         x: 0,
-        y: 0
+        y: 0,
       },
-      width: "auto"
+      width: "auto",
     };
 
     // NOTE: should we created a link explaining more deeply this kind of errors?
@@ -119,29 +116,16 @@ export default class Popover extends Component {
     }
 
     if (props.isOpen !== null && props.onClose === null) {
-      console.error(
-        "This Popover is controlled by its isOpen prop but no onClose prop was provided."
-      );
+      console.error("This Popover is controlled by its isOpen prop but no onClose prop was provided.");
     }
   }
 
   getContextValues = memoizeOne(
-    (
-      content,
-      maxWidth,
-      width,
-      isDark,
-      isEager,
-      isOpen,
-      portalElement,
-      refContent,
-      refTip,
-      tip
-    ) => ({
+    (content, maxWidth, width, isDark, isEager, isOpen, portalElement, refContent, refTip, tip) => ({
       content: {
         ...content,
         maxWidth, // maybe we should code a minimum maxWidth?
-        width
+        width,
       },
       isDark,
       isEager,
@@ -154,7 +138,7 @@ export default class Popover extends Component {
       portalElement,
       refContent,
       refTip,
-      tip
+      tip,
     })
   );
 
@@ -173,8 +157,7 @@ export default class Popover extends Component {
       this.addListeners();
     }
 
-    if (this.isOpen() && prevProps !== this.props)
-      this.setVisibilityAndPosition();
+    if (this.isOpen() && prevProps !== this.props) this.setVisibilityAndPosition();
   }
 
   componentWillUnmount() {
@@ -208,7 +191,7 @@ export default class Popover extends Component {
 
     const newState = {
       content,
-      tip
+      tip,
     };
 
     if (isOpening) newState.isOpen = true;
@@ -247,12 +230,9 @@ export default class Popover extends Component {
     const contentCoords = getContentCoordinates({
       rect: this.$content.getBoundingClientRect(),
       targetRect,
-      scrollRect:
-        getScrollContainer !== null
-          ? getScrollContainer().getBoundingClientRect()
-          : null,
+      scrollRect: getScrollContainer !== null ? getScrollContainer().getBoundingClientRect() : null,
       align,
-      offset: this.props.offset
+      offset: this.props.offset,
     });
 
     let tipCoords = { x: null, y: null, rotate: null };
@@ -263,13 +243,13 @@ export default class Popover extends Component {
         targetRect,
         contentRect: this.$content.getBoundingClientRect(),
         contentCoords,
-        align
+        align,
       });
     }
 
     return {
       tip: tipCoords,
-      content: contentCoords
+      content: contentCoords,
     };
   };
 
@@ -278,14 +258,12 @@ export default class Popover extends Component {
   handleReposition = throttle(() => {
     if (this.isOpen()) {
       const scrollContainer =
-        this.props.getScrollContainer === null
-          ? document.documentElement
-          : this.props.getScrollContainer();
+        this.props.getScrollContainer === null ? document.documentElement : this.props.getScrollContainer();
       if (
         !isInsideBoundaries({
           $container: scrollContainer,
           $element: this.$popover.current,
-          align: this.props.align
+          align: this.props.align,
         })
       ) {
         this.close();
@@ -371,16 +349,10 @@ export default class Popover extends Component {
       document.addEventListener("scroll", this.handleReposition, false);
 
       if (this.props.getScrollContainer !== null) {
-        this.props
-          .getScrollContainer()
-          .addEventListener("scroll", this.handleReposition, false);
+        this.props.getScrollContainer().addEventListener("scroll", this.handleReposition, false);
       }
 
-      this.$content.addEventListener(
-        "transitionend",
-        this.handleTransitionEnd,
-        false
-      );
+      this.$content.addEventListener("transitionend", this.handleTransitionEnd, false);
 
       this.hasListeners = true;
     }
@@ -393,17 +365,12 @@ export default class Popover extends Component {
       if (this.props.getScrollContainer === null) {
         document.removeEventListener("scroll", this.handleReposition);
       } else {
-        this.props
-          .getScrollContainer()
-          .removeEventListener("scroll", this.handleReposition);
+        this.props.getScrollContainer().removeEventListener("scroll", this.handleReposition);
       }
 
       document.removeEventListener("keyup", this.handleKeyUp);
 
-      this.$content.removeEventListener(
-        "transitionend",
-        this.handleTransitionEnd
-      );
+      this.$content.removeEventListener("transitionend", this.handleTransitionEnd);
       this.hasListeners = false;
     }
   }
@@ -424,9 +391,7 @@ export default class Popover extends Component {
 
     return (
       <PopoverContext.Provider value={contextValue}>
-        <PopoverStyled innerRef={this.$popover}>
-          {this.props.children}
-        </PopoverStyled>
+        <PopoverStyled innerRef={this.$popover}>{this.props.children}</PopoverStyled>
       </PopoverContext.Provider>
     );
   }

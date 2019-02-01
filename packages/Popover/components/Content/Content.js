@@ -62,6 +62,12 @@ export default class Content extends Component {
 
           const handler = this.handleMouseEvent(isEager, onDelayedClose, onDelayedOpen);
 
+          /* eslint-disable jsx-a11y/mouse-events-have-key-events */
+          /*
+            NOTE: we are missing onFocus, which affect the use of the keyboard
+            accessibility, I'm adding a issue https://github.com/acl-services/paprika/issues/33
+            so we can address this later.
+          */
           return ReactDOM.createPortal(
             <ContentStyled
               aria-hidden={!isOpen}

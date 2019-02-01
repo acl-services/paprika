@@ -31,7 +31,7 @@ class DesignTokenBuilder {
   }
 
   writeToFile(filePath, string) {
-    fs.writeFile(filePath, string, (err) => {
+    fs.writeFile(filePath, string, err => {
       if (err) {
         console.log(`Error saving [${filePath}]: ${err}`);
       }
@@ -100,7 +100,7 @@ class DesignTokenBuilder {
     let markdownString = "";
     markdownString += "---\n";
     markdownString += "isVisible: true\n";
-    markdownString += "name: \"Tokens\"\n";
+    markdownString += 'name: "Tokens"\n';
     markdownString += "---\n";
     markdownString += "| Name | Value | Example\n";
     markdownString += "|:--|:--|:--|\n";
@@ -124,6 +124,7 @@ class DesignTokenBuilder {
         if (!this.yamlVariables[match]) {
           this.outputError(`The variable [${match}] was referenced in the YAML file before it was defined`);
         }
+        /* eslint-disable-next-line */
         str = str.replace(re, this.yamlVariables[match]);
       });
     }
@@ -170,6 +171,7 @@ class DesignTokenBuilder {
   // Make it camel case, remove hyphens, remove leading `$`
   // E.g. convert `$black-lighten-10` to `blackLighten10`
   cleanUpKey(str) {
+    /* eslint-disable-next-line */
     str = str.replace(/-([a-z0-9])/gi, (s, group1) => group1.toUpperCase());
 
     return str.charAt(0) === "$" ? str.substr(1) : str;

@@ -7,19 +7,19 @@ module.exports = {
       {
         test: /\.js$/,
         loaders: ["babel-loader?cacheDirectory"],
-        exclude: /node_modules/
+        exclude: /node_modules/,
       },
       {
         test: /\.scss$/,
         loaders: ["style-loader", "css-loader", "sass-loader"],
-        include: path.resolve(__dirname, "../")
-      }
-    ]
+        include: path.resolve(__dirname, "../"),
+      },
+    ],
   },
   resolve: {
     alias: {
       tokens: path.resolve("./packages/Tokens/"),
-      storybook: path.resolve("./.storybook/")
-    }
-  }
+      storybook: path.resolve("./.storybook/"),
+    },
+  },
 };
