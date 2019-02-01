@@ -295,6 +295,14 @@ export default class Popover extends Component {
     else this.open();
   };
 
+  refTip = ref => {
+    this.$tip = ref;
+  };
+
+  refContent = ref => {
+    this.$content = ref;
+  };
+
   open() {
     this.$trigger = document.activeElement;
 
@@ -316,14 +324,6 @@ export default class Popover extends Component {
       this.removeListeners();
     }
   }
-
-  refTip = ref => {
-    this.$tip = ref;
-  };
-
-  refContent = ref => {
-    this.$content = ref;
-  };
 
   isOpen() {
     return this.props.isOpen !== null ? this.props.isOpen : this.state.isOpen;
