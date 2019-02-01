@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import { select } from "@storybook/addon-knobs";
 import styled from "styled-components";
-import { CenteredStory } from "../../../../.storybook/assets/styles/common.styles";
+import { CenteredStory } from "storybook/assets/styles/common.styles";
 import Popover from "../../Popover";
 
 const PositioningElementStyled = styled.div`

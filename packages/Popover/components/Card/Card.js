@@ -1,5 +1,5 @@
 import React from "react";
-import { node } from "prop-types";
+import PropTypes from "prop-types";
 import { PopoverContext } from "../../Popover";
 import CardStyled from "./Card.styles";
 
@@ -12,7 +12,7 @@ const Card = ({ children }) => (
 Card.displayName = "Popover.Card";
 
 Card.propTypes = {
-  children: node.isRequired,
+  children: PropTypes.node.isRequired,
 };
 
 export default Card;

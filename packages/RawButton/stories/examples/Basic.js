@@ -1,6 +1,6 @@
 import React from "react";
 import { action } from "@storybook/react";
-import { Story } from "../../../../.storybook/assets/styles/common.styles";
+import { Story } from "storybook/assets/styles/common.styles";
 import RawButton from "../../RawButton";
 
 const btnRef = React.createRef();
@@ -15,7 +15,7 @@ const PopoverStory = () => (
     <p>Freegan squid pug heirloom letterpress pork belly, readymade you probably haven’t heard of them.</p>
     <p>
       <RawButton
-        ariaText="ceci n'est pas un button"
+        ariaText="ceci n'est pas un bouton"
         onClick={clickHandler(btnRef)}
         buttonRef={btnRef}
         qaAnchor="test-button"

@@ -1,14 +1,14 @@
 import React, { Component } from "react";
-import { node, func, oneOfType } from "prop-types";
-import RawButton from "@paprika/rawbutton";
+import PropTypes from "prop-types";
+import RawButton from "@paprika/raw-button";
 
 import { PopoverContext } from "../../Popover";
 
 const propTypes = {
-  children: oneOfType([func, node]).isRequired,
+  children: PropTypes.oneOfType([PropTypes.func, PropTypes.node]).isRequired,
 };
 
-export default class Trigger extends Component {
+class Trigger extends Component {
   handleTriggerEvent = (isEager, isOpen, onClick, onDelayedClose, onDelayedOpen, onOpen) => event => {
     if (isEager && (event.type === "mouseover" || event.type === "focus")) {
       if (event.type === "mouseover") {
@@ -34,7 +34,7 @@ export default class Trigger extends Component {
             /* eslint-disable jsx-a11y/mouse-events-have-key-events */
             return isEager ? (
               <RawButton
-                qaAnchor="paprika-popover--trigger"
+                data-qa-anchor="paprika-popover--trigger"
                 onMouseOver={handler}
                 onMouseOut={handler}
                 onFocus={handler}
@@ -43,7 +43,7 @@ export default class Trigger extends Component {
                 {this.props.children}
               </RawButton>
             ) : (
-              <RawButton data-qa-anchor="popover-trigger" onClick={handler} tabIndex={0} role="button">
+              <RawButton data-qa-anchor="paprika-popover--trigger" onClick={handler}>
                 {this.props.children}
               </RawButton>
             );
@@ -59,3 +59,5 @@ export default class Trigger extends Component {
 Trigger.displayName = "Popover.Trigger";
 
 Trigger.propTypes = propTypes;
+
+export default Trigger;

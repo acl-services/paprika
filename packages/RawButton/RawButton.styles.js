@@ -19,7 +19,7 @@ const RawButtonStyled = styled.span`
     outline: none;
   }
 
-  ${props => (props.isDisabled ? disabledStyles : null)};
+  ${props => props.isDisabled && disabledStyles};
 `;
 
 export default RawButtonStyled;

@@ -15,7 +15,7 @@
   "dependencies": {
     "@paprika/tokens": "^0.0.1",
     "lodash.throttle": "^4.1.1",
-    "prop-types": "^15.6.2"
+    "prop-types": "^16.4.0"
   },
   "peerDependencies": {
     "react": "^16.4.0",

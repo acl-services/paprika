@@ -13,21 +13,20 @@
  */
 
 import React from "react";
-import { string, number, bool, func, node, shape, instanceOf } from "prop-types";
+import PropTypes from "prop-types";
 
 import RawButtonStyled from "./RawButton.styles";
 
 const propTypes = {
-  ariaText: string,
-  buttonRef: shape({ current: instanceOf(Element) }),
-  canPropagate: bool,
-  children: node.isRequired,
-  className: string,
-  isDisabled: bool,
-  onClick: func,
-  qaAnchor: string,
-  tabIndex: number,
-  role: string,
+  ariaText: PropTypes.string,
+  buttonRef: PropTypes.shape({ current: PropTypes.instanceOf(Element) }),
+  canPropagate: PropTypes.bool,
+  children: PropTypes.node.isRequired,
+  className: PropTypes.string,
+  isDisabled: PropTypes.bool,
+  onClick: PropTypes.func,
+  tabIndex: PropTypes.number,
+  role: PropTypes.string,
 };
 
 const defaultProps = {
@@ -37,15 +36,18 @@ const defaultProps = {
   className: null,
   isDisabled: false,
   onClick: () => {},
-  qaAnchor: null,
   role: "button",
   tabIndex: 0,
 };
 
-export default class RawButton extends React.Component {
+class RawButton extends React.Component {
   constructor(props) {
     super(props);
-    this.$rawButton = props.buttonRef || React.createRef();
+    this.setRef(props);
+  }
+
+  componentDidUpdate() {
+    this.setRef(this.props);
   }
 
   componentDidMount() {
@@ -62,10 +64,14 @@ export default class RawButton extends React.Component {
     }
   }
 
+  setRef(props) {
+    this.$rawButton = props.buttonRef || React.createRef();
+  }
+
   handleKeyDown = event => {
     if (
       // Prevent scrolling the page with a spacerbar keypress
-      (event.key === " " && event.target.tagName !== "INPUT") ||
+      (event.key === " " && event.target.tagName.toLowerCase() !== "input") ||
       // Prevent submitting forms in IE/Edge with and enter keypress
       event.key === "Enter"
     ) {
@@ -77,11 +83,13 @@ export default class RawButton extends React.Component {
     if (
       // Prevent scrolling the page with a spacerbar keypress
       event.key === " " &&
-      event.target.tagName !== "INPUT"
+      event.target.tagName.toLowerCase() !== "input"
     ) {
       event.preventDefault();
     }
-    if (this.props.isDisabled || (!this.props.canPropagate && event.target !== this.$rawButton.current)) return;
+    if (this.props.isDisabled || (!this.props.canPropagate && event.target !== this.$rawButton.current)) {
+      return;
+    }
     if (event.key === " " || event.key === "Enter") {
       this.props.onClick(event);
     }
@@ -94,14 +102,14 @@ export default class RawButton extends React.Component {
 
   render() {
     // eslint-disable-next-line no-unused-vars
-    const { qaAnchor, ariaText, buttonRef, canPropagate, children, isDisabled, tabIndex, ...moreProps } = this.props;
+    const { ariaText, buttonRef, canPropagate, children, isDisabled, tabIndex, ...moreProps } = this.props;
     if (ariaText) moreProps["aria-label"] = ariaText;
 
     return (
       <RawButtonStyled
         {...moreProps}
         aria-disabled={isDisabled}
-        data-qa-anchor={`paprika-raw-button ${qaAnchor}`}
+        data-paprika-type="RawButton"
         innerRef={this.$rawButton}
         isDisabled={isDisabled}
         onClick={this.handleClick}
@@ -117,3 +125,5 @@ RawButton.displayName = "RawButton";
 
 RawButton.propTypes = propTypes;
 RawButton.defaultProps = defaultProps;
+
+export default RawButton;
