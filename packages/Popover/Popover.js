@@ -186,19 +186,6 @@ export default class Popover extends Component {
     return contentWidth;
   }
 
-  updateVisibilityAndPositionState(isOpening = false) {
-    const { content, tip } = this.getCoordinates();
-
-    const newState = {
-      content,
-      tip,
-    };
-
-    if (isOpening) newState.isOpen = true;
-
-    this.setState(newState);
-  }
-
   setVisibilityAndPosition(isOpening = false) {
     // dynamically setting a fixed width before positioning avoids issues at the
     // right edge of the screen
@@ -213,10 +200,6 @@ export default class Popover extends Component {
     }
 
     this.updateVisibilityAndPositionState(isOpening);
-  }
-
-  isOpen() {
-    return this.props.isOpen !== null ? this.props.isOpen : this.state.isOpen;
   }
 
   getCoordinates = () => {
@@ -341,6 +324,23 @@ export default class Popover extends Component {
   refContent = ref => {
     this.$content = ref;
   };
+
+  isOpen() {
+    return this.props.isOpen !== null ? this.props.isOpen : this.state.isOpen;
+  }
+
+  updateVisibilityAndPositionState(isOpening = false) {
+    const { content, tip } = this.getCoordinates();
+
+    const newState = {
+      content,
+      tip,
+    };
+
+    if (isOpening) newState.isOpen = true;
+
+    this.setState(newState);
+  }
 
   addListeners() {
     if (this.$content) {

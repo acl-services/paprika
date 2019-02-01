@@ -15,6 +15,10 @@ class WindowHandles extends Component {
     this.initialize();
   }
 
+  isPropUndefinedOrDefault = key =>
+    !this.element.props[key] ||
+    (this.element.type.defaultProps && this.element.props[key] === this.element.type.defaultProps[key]);
+
   initialize() {
     this.windowProps = {
       update: () => this.forceUpdate(),
@@ -38,10 +42,6 @@ class WindowHandles extends Component {
       this.props.config[key].apply(this, key);
     }
   }
-
-  isPropUndefinedOrDefault = key =>
-    !this.element.props[key] ||
-    (this.element.type.defaultProps && this.element.props[key] === this.element.type.defaultProps[key]);
 
   render() {
     return <this.element.type {...this.element.props} {...this.childProps} />;
