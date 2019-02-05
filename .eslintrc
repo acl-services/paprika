@@ -6,7 +6,7 @@
     "jest": true,
     "cypress/globals": true
   },
-  "extends": ["airbnb", "prettier", "eslint-config-prettier"],
+  "extends": ["airbnb", "prettier"],
   "parser": "babel-eslint",
   "parserOptions": {
     "ecmaVersion": 7,
