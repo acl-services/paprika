@@ -16,7 +16,7 @@
     "precommit:validate": "yarn lint && yarn test && yarn test:a11y && yarn prettier -- --list-different",
     "precommit": "yarn precommit:validate"
   },
-  "engine": {
+  "engines": {
     "yarn": ">=1.12.3"
   },
   "private": true,
