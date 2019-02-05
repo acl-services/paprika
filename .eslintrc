@@ -16,7 +16,7 @@
       "experimentalObjectRestSpread": true
     }
   },
-  "plugins": ["react", "cypress"],
+  "plugins": ["cypress"],
   "rules": {
     "import/no-named-default": "off",
     "camelcase": "off",
