@@ -14,6 +14,10 @@ module.exports = {
         loaders: ["style-loader", "css-loader", "sass-loader"],
         include: path.resolve(__dirname, "../"),
       },
+      {
+        test: /\.(jpe?g|png|gif|svg|eot|svg|ttf|woff|woff2)$/i,
+        loader: "file-loader",
+      },
     ],
   },
   resolve: {

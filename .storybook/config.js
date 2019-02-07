@@ -9,6 +9,8 @@ import "./assets/css/storybook.scss";
 const axe = require("react-axe");
 axe(React, ReactDOM, 10000, axeConfig);
 
+require("./welcome.story.js");
+
 const req = require.context("../packages", true, /\.stories\.js$/);
 configure(() => {
   req.keys().forEach(filename => req(filename));
