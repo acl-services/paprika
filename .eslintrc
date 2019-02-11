@@ -1,11 +1,4 @@
 {
-  "env": {
-    "es6": true,
-    "browser": true,
-    "node": true,
-    "jest": true,
-    "cypress/globals": true
-  },
   "extends": ["airbnb", "prettier"],
   "parser": "babel-eslint",
   "parserOptions": {
@@ -18,16 +11,13 @@
   },
   "plugins": ["cypress"],
   "rules": {
-    "import/no-named-default": "off",
     "camelcase": "off",
-    "import/no-extraneous-dependencies": "off",
     "react/jsx-filename-extension": [1, { "extensions": [".js"] }],
     "new-cap": "off",
     "consistent-return": "off",
     "import/no-unresolved": "off",
     "jsx-a11y/label-has-for": "off",
     "jsx-a11y/href-no-hash": "off",
-    "array-callback-return": "off",
     "no-underscore-dangle": "off",
     "no-plusplus": "off",
     "class-methods-use-this": "off",

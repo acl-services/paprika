@@ -10,11 +10,11 @@
     "storybook:build": "build-storybook -c .storybook -o storybook-dist",
     "test": "yarn test:a11y",
     "test:a11y": "NODE_PATH=. jest --config .jest-a11y.config.json",
-    "lint": "eslint packages --fix",
+    "lint": "eslint packages",
+    "lint:fix": "yarn lint --fix",
     "prettier:format": "yarn prettier -- --write",
     "prettier": "prettier \"**/*.+(js|json|yml|css|scss|md|mdx)\"",
-    "precommit:validate": "yarn lint && yarn test && yarn test:a11y && yarn prettier -- --list-different",
-    "precommit": "yarn precommit:validate"
+    "prepush": "yarn lint && yarn test && yarn test:a11y && yarn prettier -- --list-different"
   },
   "engines": {
     "yarn": ">=1.12.3"
@@ -62,5 +62,5 @@
     "style-loader": "^0.21.0",
     "styled-components": "^3.3.3"
   },
-  "version": "1.13.0"
+  "version": "1.0.0"
 }

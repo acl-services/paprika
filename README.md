@@ -39,13 +39,9 @@ To be implemented [#19](https://github.com/acl-services/paprika/issues/19)
 yarn v1.12.3 (which contains yarn audit command) or update via:
 
 ```sh
-$ yarn global add yarn
+$ brew install yarn
 ```
 
 ### node version
 
-v9.10.0 which is required by `eslint`
-
-```sh
-$ nvm use 9.10.0
-```
+v10.0.0 which is required by `eslint`
