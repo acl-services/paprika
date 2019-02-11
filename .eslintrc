@@ -1,4 +1,10 @@
 {
+  "env": {
+    "es6": true,
+    "browser": true,
+    "jest": true,
+    "cypress/globals": true
+  },
   "extends": ["airbnb", "prettier"],
   "parser": "babel-eslint",
   "parserOptions": {
