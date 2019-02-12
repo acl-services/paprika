@@ -1,3 +1,4 @@
+/* eslint-disable jsx-a11y/mouse-events-have-key-events */
 import React, { Component } from "react";
 import styled from "styled-components";
 import { CenteredStory } from "../Popover.stories.styles";
@@ -43,7 +44,9 @@ export default class PopoverStory extends Component {
             <Popover.Trigger>
               {handler => (
                 <Icon onMouseOver={handler} onMouseOut={handler} onFocus={handler} tabIndex={0}>
-                  ℹ️
+                  <span role="img" aria-label="info">
+                    ℹ️
+                  </span>
                 </Icon>
               )}
             </Popover.Trigger>
@@ -58,7 +61,7 @@ export default class PopoverStory extends Component {
           <h5>Node – &lt;a&gt; link</h5>
           <Popover>
             <Popover.Trigger>
-              <a href="javascript:void(0)">More info</a>
+              <a href="http://www.acl.com">More info</a>
             </Popover.Trigger>
             <Popover.Content>
               <Popover.Tip />
@@ -73,7 +76,11 @@ export default class PopoverStory extends Component {
           </h5>
           <Popover isEager isDark>
             <Popover.Trigger>
-              <Icon>💡 info</Icon>
+              <Icon>
+                <span role="img" aria-label="bulb light">
+                  💡 info
+                </span>
+              </Icon>
             </Popover.Trigger>
             <Popover.Content>
               <Popover.Tip />

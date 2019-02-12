@@ -46,7 +46,11 @@ storiesOf("Stylers", module).add("Include Examples", () => (
     <h4>
       <code>stylers.visuallyHidden</code>
     </h4>
-    <InvisibleBox>👻</InvisibleBox>
+    <InvisibleBox>
+      <span role="img" aria-label="ghost">
+        👻
+      </span>
+    </InvisibleBox>
 
     <h4>
       <code>stylers.placeholders</code>

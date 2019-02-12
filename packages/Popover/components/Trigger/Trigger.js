@@ -34,6 +34,8 @@ export default class Trigger extends Component {
           const handler = this.handleTriggerEvent(isEager, isOpen, onClick, onDelayedClose, onDelayedOpen, onOpen);
 
           if (typeof this.props.children !== "function") {
+            /* issue https://github.com/acl-services/paprika/issues/33 */
+            /* eslint-disable jsx-a11y/mouse-events-have-key-events */
             return isEager ? (
               <RawButton
                 data-qa-anchor="popover-trigger"
@@ -45,12 +47,7 @@ export default class Trigger extends Component {
                 {this.props.children}
               </RawButton>
             ) : (
-              <RawButton
-                data-qa-anchor="popover-trigger"
-                onClick={handler}
-                tabIndex={0}
-                role="button"
-              >
+              <RawButton data-qa-anchor="popover-trigger" onClick={handler} tabIndex={0} role="button">
                 {this.props.children}
               </RawButton>
             );

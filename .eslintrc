@@ -1,0 +1,37 @@
+{
+  "env": {
+    "es6": true,
+    "browser": true,
+    "jest": true,
+    "cypress/globals": true
+  },
+  "extends": ["airbnb", "prettier"],
+  "parser": "babel-eslint",
+  "parserOptions": {
+    "ecmaVersion": 7,
+    "sourceType": "module",
+    "ecmaFeatures": {
+      "jsx": true,
+      "experimentalObjectRestSpread": true
+    }
+  },
+  "plugins": ["cypress"],
+  "rules": {
+    "camelcase": "off",
+    "class-methods-use-this": "off",
+    "consistent-return": "off",
+    "import/no-extraneous-dependencies": "off",
+    "import/no-unresolved": "off",
+    "import/prefer-default-export": "off",
+    "jsx-a11y/href-no-hash": "off",
+    "jsx-a11y/label-has-for": "off",
+    "new-cap": "off",
+    "no-plusplus": "off",
+    "no-underscore-dangle": "off",
+    "prefer-destructuring": "off",
+    "react/destructuring-assignment": "off",
+    "react/jsx-filename-extension": [1, { "extensions": [".js"] }],
+    "react/jsx-one-expression-per-line": "off",
+    "react/prefer-stateless-function": "off"
+  }
+}

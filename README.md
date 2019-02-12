@@ -31,3 +31,17 @@ $ yarn storybook
 ## run test
 
 To be implemented [#19](https://github.com/acl-services/paprika/issues/19)
+
+## minimum requirements
+
+### yarn version
+
+yarn v1.12.3 (which contains yarn audit command) or update via:
+
+```sh
+$ brew install yarn
+```
+
+### node version
+
+v10.0.0 which is required by `eslint`

@@ -6,15 +6,20 @@ import tokens from "@paprika/tokens";
 
 const fontScaleRatio = 1.125; // 8:9 - Major second
 
+// prettier-ignore
 export const fontSize = (scale = 0) => `
-  font-size: ${Math.round(Number.parseInt(tokens.fontSize.default, 10) * Math.pow(fontScaleRatio, scale))}px;
+  font-size: ${Math.round(
+    Number.parseInt(tokens.fontSize.default, 10) * (fontScaleRatio ** scale)
+  )}px;
 `;
 
 const leadingBase = 1.4;
 const leadingScaleRatio = 1.125;
 
+// prettier-ignore
 export const lineHeight = (scale = 0) => `
-  line-height: ${Math.round(leadingBase * Math.pow(leadingScaleRatio, scale) * 10) / 10};
+  line-height: ${Math.round(leadingBase * (leadingScaleRatio ** scale) * 10) /
+    10};
 `;
 
 //

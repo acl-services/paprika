@@ -1,13 +1,13 @@
 import React from "react";
 import { storiesOf } from "@storybook/react";
-import Popover from "../Popover";
 import windowHandles, { Input } from "@paprika/testingHelpers/windowHandles/";
+import Popover from "../Popover";
 
 storiesOf("Popover/Automation Tests/Cypress", module)
   .addDecorator(
     windowHandles({
       align: new Input(),
-      isEager: new Input()
+      isEager: new Input(),
     })
   )
   .add("Basic Popover Test", () => (

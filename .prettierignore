@@ -1,0 +1,6 @@
+#Git
+.git
+.github
+
+#Node modules
+node_modules

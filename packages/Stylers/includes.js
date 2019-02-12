@@ -48,6 +48,10 @@ export const visuallyHidden = `
 
 // Forms
 
+export const disabledPlaceholder = `
+color: ${tokens.color.blackLighten60};
+`;
+
 export const placeholder = `
   color: ${tokens.placeholder.color};
   font-style: ${tokens.placeholder.fontStyle};
@@ -57,10 +61,6 @@ export const placeholder = `
   }
 
   
-`;
-
-export const disabledPlaceholder = `
-  color: ${tokens.color.blackLighten60};
 `;
 
 export const placeholders = `

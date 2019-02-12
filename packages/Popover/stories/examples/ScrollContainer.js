@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { select, text, number } from "@storybook/addon-knobs";
+import { select, text, number, func } from "@storybook/addon-knobs";
 import styled from "styled-components";
 import { CenteredStory } from "../Popover.stories.styles";
 import Popover from "../../Popover";
@@ -52,6 +52,10 @@ const PopoverBox = ({ getScrollContainer }) => (
     </Popover>
   </PopoverContainer>
 );
+
+PopoverBox.propTypes = {
+  getScrollContainer: func.isRequired,
+};
 
 export default class PopoverStory extends Component {
   render() {
