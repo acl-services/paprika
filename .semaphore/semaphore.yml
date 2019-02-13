@@ -1,17 +1,18 @@
 version: v1.0
-name: First pipeline example
+name: Paprika Semaphore 2.0 CI
 agent:
   machine:
     type: e1-standard-2
     os_image: ubuntu1804
+
 blocks:
-  - name: 🎩 Install dependencies
-    tasks:
+  - name: Yarn Install
+    task:
       jobs:
-        - name: "yarn and cache"
-          commands:
-            - checkout
-            - cache restore node-modules-$SEMAPHORE_GIT_BRANCH-$(checksum yarn.lock),node-modules-$SEMAPHORE_GIT_BRANCH,node-modules-master
-            - yarn install
-            - cache store node-modules-$SEMAPHORE_GIT_BRANCH-$(checksum yarn.lock) node_modules
-            - npx lerna bootstrap
+      - name: "yarn and cache"
+        commands:
+          - checkout
+          - cache restore node-modules-$SEMAPHORE_GIT_BRANCH-$(checksum yarn.lock),node-modules-$SEMAPHORE_GIT_BRANCH,node-modules-master
+          - yarn install
+          - cache store node-modules-$SEMAPHORE_GIT_BRANCH-$(checksum yarn.lock) node_modules
+          - npx lerna bootstrap
