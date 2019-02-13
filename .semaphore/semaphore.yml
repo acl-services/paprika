@@ -4,7 +4,6 @@ agent:
   machine:
     type: e1-standard-2
     os_image: ubuntu1804
-
 blocks:
   - name: 🎩 Install dependencies
     tasks:
@@ -19,6 +18,10 @@ blocks:
 
   - name: "🐯 Format"
     task:
+      prologue:
+        commands:
+          - checkout
+          - cache restore node-modules-$SEMAPHORE_GIT_BRANCH-$(checksum yarn.lock),node-modules-$SEMAPHORE_GIT_BRANCH,node-modules-master
       jobs:
         - name: Lint && prettier
           commands:
@@ -26,6 +29,10 @@ blocks:
 
   - name: "♿️ Accessibility"
     task:
+      prologue:
+        commands:
+          - checkout
+          - cache restore node-modules-$SEMAPHORE_GIT_BRANCH-$(checksum yarn.lock),node-modules-$SEMAPHORE_GIT_BRANCH,node-modules-master
       jobs:
         - name: Axe test
           commands:
@@ -33,6 +40,10 @@ blocks:
 
   - name: "⛰ E2E Testing"
     task:
+      prologue:
+        commands:
+          - checkout
+          - cache restore node-modules-$SEMAPHORE_GIT_BRANCH-$(checksum yarn.lock),node-modules-$SEMAPHORE_GIT_BRANCH,node-modules-master
       jobs:
         - name: Cypress
           commands:
@@ -40,6 +51,10 @@ blocks:
 
   - name: "⚡️ Integration/Unit Testing"
     task:
+      prologue:
+        commands:
+          - checkout
+          - cache restore node-modules-$SEMAPHORE_GIT_BRANCH-$(checksum yarn.lock),node-modules-$SEMAPHORE_GIT_BRANCH,node-modules-master
       jobs:
         - name: ✈️ JEST
           commands:
