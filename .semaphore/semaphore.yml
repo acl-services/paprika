@@ -14,9 +14,9 @@ blocks:
           - checkout
           - cache restore node-modules-$SEMAPHORE_GIT_BRANCH
           - yarn install --frozen-lockfile
+          - npx lerna bootstrap
           - cache store node-modules-$SEMAPHORE_GIT_BRANCH node_modules
           - cache store cypress-$SEMAPHORE_GIT_BRANCH ~/.cache/Cypress
-          - npx lerna bootstrap
 
   - name: "🐯 Format"
     task:
@@ -62,5 +62,4 @@ blocks:
       jobs:
         - name: Cypress
           commands:
-            - npx lerna bootstrap
             - yarn cypress:ci
