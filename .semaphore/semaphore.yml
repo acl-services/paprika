@@ -48,6 +48,7 @@ blocks:
       jobs:
         - name: Cypress
           commands:
+            - yarn add cypress -W -D
             - yarn cypress:ci
 
   - name: "⚡️ Integration/Unit Testing"
