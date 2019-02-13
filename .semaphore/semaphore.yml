@@ -62,4 +62,5 @@ blocks:
       jobs:
         - name: Cypress
           commands:
+            - npx lerna bootstrap
             - yarn cypress:ci
