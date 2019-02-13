@@ -6,6 +6,16 @@ agent:
     os_image: ubuntu1804
 
 blocks:
+  - name: "⛰ E2E Testing"
+    task:
+      jobs:
+        - name: Cypress
+          commands:
+            - checkout
+            - yarn install
+            - npx lerna bootstrap
+            - yarn cypress:ci
+  
   - name: "🎩 Yarn"
     task:
       jobs:
@@ -49,12 +59,3 @@ blocks:
         - name: JEST
           commands:
             - yarn jest
-
-  - name: "⛰ E2E Testing"
-    task:
-      jobs:
-        - name: Cypress
-          commands:
-            - yarn install
-            - npx lerna bootstrap
-            - yarn cypress:ci
