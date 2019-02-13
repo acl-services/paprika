@@ -6,10 +6,10 @@ agent:
     os_image: ubuntu1804
 
 blocks:
-  - name: Yarn Install
+  - name: "🎩 Yarn"
     task:
       jobs:
-      - name: "yarn and cache"
+      - name: "Yarn & caching"
         commands:
           - checkout
           - cache restore node-modules-$SEMAPHORE_GIT_BRANCH-$(checksum yarn.lock),node-modules-$SEMAPHORE_GIT_BRANCH,node-modules-master
@@ -27,3 +27,36 @@ blocks:
         - name: Lint && prettier
           commands:
             - yarn lint && yarn prettier -- --list-different
+
+  - name: "♿️ Accessibility"
+    task:
+      prologue:
+        commands:
+          - checkout
+          - cache restore node-modules-$SEMAPHORE_GIT_BRANCH-$(checksum yarn.lock),node-modules-$SEMAPHORE_GIT_BRANCH,node-modules-master
+      jobs:
+        - name: Axe test
+          commands:
+            - yarn test:a11y
+
+  - name: "⛰ E2E Testing"
+    task:
+      prologue:
+        commands:
+          - checkout
+          - cache restore node-modules-$SEMAPHORE_GIT_BRANCH-$(checksum yarn.lock),node-modules-$SEMAPHORE_GIT_BRANCH,node-modules-master
+      jobs:
+        - name: Cypress
+          commands:
+            - yarn cypress:ci
+
+  - name: "⚡️ Integration/Unit Testing"
+    task:
+      prologue:
+        commands:
+          - checkout
+          - cache restore node-modules-$SEMAPHORE_GIT_BRANCH-$(checksum yarn.lock),node-modules-$SEMAPHORE_GIT_BRANCH,node-modules-master
+      jobs:
+        - name: JEST
+          commands:
+            - yarn jest
