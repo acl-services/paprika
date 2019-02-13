@@ -1,5 +1,6 @@
 import React, { Component } from "react";
-import { select, text, number, func } from "@storybook/addon-knobs";
+import { select, text, number } from "@storybook/addon-knobs";
+import { func } from "prop-types";
 import styled from "styled-components";
 import { CenteredStory } from "../Popover.stories.styles";
 import Popover from "../../Popover";
@@ -29,8 +30,8 @@ const TrailerBox = styled.div`
 
 const sampleText = {
   short: "Hipsum",
-  long: `Lorem ipsum lumbersexual hot chicken austin readymade messenger bag aesthetic meh twee you probably havent 
-    heard of them 3 wolf moon listicle. Normcore ramps gastropub fanny pack pabst. Hashtag roof party pour-over food 
+  long: `Lorem ipsum lumbersexual hot chicken austin readymade messenger bag aesthetic meh twee you probably havent
+    heard of them 3 wolf moon listicle. Normcore ramps gastropub fanny pack pabst. Hashtag roof party pour-over food
     truck, crucifix try-hard godard biodiesel next level snackwave disrupt flexitarian.`,
 };
 
