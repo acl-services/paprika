@@ -47,9 +47,9 @@ blocks:
           - cache restore node-modules-$SEMAPHORE_GIT_BRANCH-$(checksum yarn.lock),node-modules-$SEMAPHORE_GIT_BRANCH,node-modules-master
       jobs:
         - name: JEST
-        commands:
+          commands:
             - yarn jest
-            
+
   - name: "⛰ E2E Testing"
     task:
       jobs:
