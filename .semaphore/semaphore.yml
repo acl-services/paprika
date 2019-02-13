@@ -12,9 +12,10 @@ blocks:
       - name: "Yarn & caching"
         commands:
           - checkout
-          - cache restore node-modules-$SEMAPHORE_GIT_BRANCH-$(checksum yarn.lock),node-modules-$SEMAPHORE_GIT_BRANCH,node-modules-master
+          - cache restore node-modules-$SEMAPHORE_GIT_BRANCH
           - yarn install --frozen-lockfile
-          - cache store node-modules-$SEMAPHORE_GIT_BRANCH-$(checksum yarn.lock) node_modules
+          - cache store node-modules-$SEMAPHORE_GIT_BRANCH node_modules
+          - cache store cypress-$SEMAPHORE_GIT_BRANCH ~/.cache/Cypress
           - npx lerna bootstrap
 
   - name: "🐯 Format"
@@ -22,7 +23,7 @@ blocks:
       prologue:
         commands:
           - checkout
-          - cache restore node-modules-$SEMAPHORE_GIT_BRANCH-$(checksum yarn.lock),node-modules-$SEMAPHORE_GIT_BRANCH,node-modules-master
+          - cache restore node-modules-$SEMAPHORE_GIT_BRANCH
       jobs:
         - name: Lint && prettier
           commands:
@@ -33,30 +34,33 @@ blocks:
       prologue:
         commands:
           - checkout
-          - cache restore node-modules-$SEMAPHORE_GIT_BRANCH-$(checksum yarn.lock),node-modules-$SEMAPHORE_GIT_BRANCH,node-modules-master
+          - cache restore node-modules-$SEMAPHORE_GIT_BRANCH
       jobs:
         - name: Axe test
           commands:
             - yarn test:a11y
 
-  - name: "⚡️ Integration/Unit Testing"
+  - name: "⚡️ Integration/Unit"
     task:
       prologue:
         commands:
           - checkout
-          - cache restore node-modules-$SEMAPHORE_GIT_BRANCH-$(checksum yarn.lock),node-modules-$SEMAPHORE_GIT_BRANCH,node-modules-master
+          - cache restore node-modules-$SEMAPHORE_GIT_BRANCH
       jobs:
         - name: JEST
           commands:
             - yarn jest
 
-  - name: "⛰ E2E Testing"
+  - name: "⛰ E2E"
     task:
+      prologue:
+        commands:
+          - checkout
+          - sudo apt-get -y install xvfb libgtk2.0-0 libnotify-dev libgconf-2-4 libnss3 libxss1 libasound2
+          - cache restore node-modules-$SEMAPHORE_GIT_BRANCH
+          - cache restore cypress-$SEMAPHORE_GIT_BRANCH
       jobs:
         - name: Cypress
           commands:
-            - checkout
-            - sudo apt-get -y install xvfb libgtk2.0-0 libnotify-dev libgconf-2-4 libnss3 libxss1 libasound2
-            - yarn install --frozen-lockfile
             - npx lerna bootstrap
             - yarn cypress:ci
