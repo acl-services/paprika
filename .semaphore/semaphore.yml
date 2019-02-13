@@ -6,17 +6,6 @@ agent:
     os_image: ubuntu1804
 
 blocks:
-  - name: "⛰ E2E Testing"
-    task:
-      jobs:
-        - name: Cypress
-          commands:
-            - checkout
-            - sudo apt-get -y install xvfb libgtk2.0-0 libnotify-dev libgconf-2-4 libnss3 libxss1 libasound2
-            - yarn install --frozen-lockfile
-            - npx lerna bootstrap
-            - yarn cypress:ci
-
   - name: "🎩 Yarn"
     task:
       jobs:
@@ -24,7 +13,7 @@ blocks:
         commands:
           - checkout
           - cache restore node-modules-$SEMAPHORE_GIT_BRANCH-$(checksum yarn.lock),node-modules-$SEMAPHORE_GIT_BRANCH,node-modules-master
-          - yarn install
+          - yarn install --frozen-lockfile
           - cache store node-modules-$SEMAPHORE_GIT_BRANCH-$(checksum yarn.lock) node_modules
           - npx lerna bootstrap
 
@@ -60,3 +49,14 @@ blocks:
         - name: JEST
           commands:
             - yarn jest
+
+  - name: "⛰ E2E Testing"
+    task:
+      jobs:
+        - name: Cypress
+          commands:
+            - checkout
+            - sudo apt-get -y install xvfb libgtk2.0-0 libnotify-dev libgconf-2-4 libnss3 libxss1 libasound2
+            - yarn install --frozen-lockfile
+            - npx lerna bootstrap
+            - yarn cypress:ci
