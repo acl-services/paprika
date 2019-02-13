@@ -39,18 +39,6 @@ blocks:
           commands:
             - yarn test:a11y
 
-  - name: "⛰ E2E Testing"
-    task:
-      prologue:
-        commands:
-          - checkout
-          - cache restore node-modules-$SEMAPHORE_GIT_BRANCH-$(checksum yarn.lock),node-modules-$SEMAPHORE_GIT_BRANCH,node-modules-master
-      jobs:
-        - name: Cypress
-          commands:
-            - yarn add cypress -W -D
-            - yarn cypress:ci
-
   - name: "⚡️ Integration/Unit Testing"
     task:
       prologue:
@@ -59,5 +47,14 @@ blocks:
           - cache restore node-modules-$SEMAPHORE_GIT_BRANCH-$(checksum yarn.lock),node-modules-$SEMAPHORE_GIT_BRANCH,node-modules-master
       jobs:
         - name: JEST
-          commands:
+        commands:
             - yarn jest
+            
+  - name: "⛰ E2E Testing"
+    task:
+      jobs:
+        - name: Cypress
+          commands:
+            - yarn install
+            - npx lerna bootstrap
+            - yarn cypress:ci
