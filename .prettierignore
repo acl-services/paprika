@@ -2,5 +2,9 @@
 .git
 .github
 
+
 #Node modules
 node_modules
+
+#CI
+semaphore.yml
