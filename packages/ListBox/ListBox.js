@@ -1,233 +1,208 @@
+/**
+ TODO:
+ - height of the popover
+ - isDisabled property
+ - destructure ...moreProps
+ -
+* */
+
 import React from "react";
-import PropTypes from "prop-types";
-import Box from "./components/Box";
-import Content from "./components/Content";
+import Popover from "@paprika/popover";
+import { string, number, bool, node, func } from "prop-types";
+import Option from "./components/Option";
 import Filter from "./components/Filter";
-import List from "./components/List";
-import NoResults from "./components/NoResults";
-import Options from "./components/Options";
-import Popover from "./components/Popover";
-import Trigger from "./components/Trigger";
+import Group from "./components/Group";
+
+import {
+  PopoverStyled,
+  ListBoxTriggerStyled,
+  ListBoxContainerStyled,
+  ListBoxStyled,
+  ListBoxOptionStyled,
+  ListBoxOptionDividerStyled,
+  TriggerArrowStyled,
+} from "./ListBox.styles";
 import useListBox from "./useListBox";
-import handleImperative from "./imperative";
-import * as effects from "./effects";
 
-export const propTypes = {
-  /** Child of type <ListBox.Option /> */
-  children: PropTypes.node,
-
-  /** Turn on the input filter for the options */
-  hasFilter: PropTypes.bool,
-
-  /** Turn on/off the clear button at the right side of the Trigger */
-  hasClearButton: PropTypes.bool,
-
-  /** Indicate which is the height for the options container */
-  height: PropTypes.number,
-
-  /** [Advance] instead of marking the option as checked/unchecked will toggle the option between visible and hidden */
-  hideOptionOnSelected: PropTypes.bool,
-
-  /** Disable the entire ListBox */
-  isDisabled: PropTypes.bool,
-
-  /** Let the user to select multiple options at same time */
-  isMulti: PropTypes.bool,
-
-  /** This options will display the listbox without the Popover */
-  isInline: PropTypes.bool,
-
-  /** When true the ListBox will try to focus to the options container asap the
-  popover is open */
-  isPopoverEager: PropTypes.bool,
-
-  /** Indicates if the popover is visible */
-  isPopoverOpen: PropTypes.bool,
-
-  /** Message to be display once the filtering process doesn't find a match */
-  hasNotResultsMessage: PropTypes.node,
-
-  /** Callback returning the current selected index on the ListBox and more arguments */
-  onChange: PropTypes.func,
-
-  /** Callback ocurring after the user click the [x] clear button on the Trigger area */
-  onClickClear: PropTypes.func,
-
-  /** Callback announcing which option has been marked as selected */
-  onSelected: PropTypes.func,
-
-  /** Callback announcing which option has been marked as deselected */
-  onDeselected: PropTypes.func,
-
-  /** Callback happening once the Popover has close */
-  onClose: PropTypes.func,
-
-  /** Defaults label to display when the ListBox has not option selected */
-  placeholder: PropTypes.string,
-
-  /** [Advance] Override the 'scroll' target element for popover default is document.body  */
-  getScrollContainer: PropTypes.func,
-
-  /** [Advance] When composing the component will prevent to close the ListBox when
-      the user interact with the Trigger container */
-  preventOnBlurForTriggerListBox: PropTypes.bool,
-
-  /** [Advance] Allows to take over the render method for the label inside of the Trigger Component */
-  renderTrigger: PropTypes.func,
-
-  /** [Advance] Allows to take over the render method for the Checker.
-      When `isMulti` prop is active, the default type of checker is a checkbox, in case you don't
-      want to render a checkbox you can return null ex. renderCheckbox={() =>  null} */
-  renderCheckbox: PropTypes.func,
-
-  /** Overrides the filter function and delegate the responsibility to the developer */
-  filter: PropTypes.func,
-
-  /** z-index for the popover */
-  zIndex: PropTypes.number,
+const propTypes = {
+  children: node,
+  hasFilter: bool,
+  hasGroupFilter: bool,
+  isHidden: bool,
+  isMulti: bool,
+  isPopoverOpen: bool,
+  placeholder: string,
+  renderLabel: func,
+  height: number,
 };
 
-export const defaultProps = {
+const defaultProps = {
   children: null,
-  filter: null,
-  getScrollContainer: null,
-  hasClearButton: false,
   hasFilter: false,
-  hasNotResultsMessage: "Your search did not match any options.",
-  height: 200,
-  hideOptionOnSelected: false,
-  isDisabled: false,
-  isInline: false,
+  hasGroupFilter: false,
+  isHidden: false,
   isMulti: false,
-  isPopoverEager: true,
-  isPopoverOpen: null,
-  onChange: () => {},
-  onClickClear: null,
-  onClose: () => {},
-  onDeselected: () => {},
-  onSelected: () => {},
-  placeholder: "Select one of the options",
-  preventOnBlurForTriggerListBox: false,
-  renderCheckbox: undefined,
-  renderTrigger: null,
-  zIndex: 1,
+  isPopoverOpen: false,
+  placeholder: "select one of the options",
+  renderLabel: null,
+  height: 200,
 };
 
-export function ListBox(props) {
-  const [state, dispatch] = useListBox();
-  const { children, hasNotResultsMessage, height, onClickClear, placeholder, renderTrigger } = props;
-  const [footer, setFooter] = React.useState(null);
-
-  const handleFooterFound = footer => {
-    if (!state.hasFooter) {
-      dispatch({
-        type: useListBox.types.setHasFooter,
-        payload: true,
-      });
-    }
-
-    setFooter(footer);
-  };
-
-  return (
-    <React.Fragment>
-      <Trigger onClickClear={onClickClear} renderTrigger={renderTrigger} placeholder={placeholder} />
-      <Content>
-        <Box>
-          <Filter filter={props.filter} />
-          <List height={height}>
-            <Options onFooterFound={handleFooterFound}>{children}</Options>
-          </List>
-          <NoResults label={hasNotResultsMessage} />
-          {<div ref={state.refFooterContainer}>{footer}</div> || null}
-        </Box>
-      </Content>
-    </React.Fragment>
-  );
-}
-
-ListBox.propTypes = {
-  ...propTypes,
-  children: PropTypes.node.isRequired,
-  filter: PropTypes.func,
-  hasNotResultsMessage: PropTypes.string.isRequired,
-  height: PropTypes.number.isRequired,
-  onClickClear: PropTypes.func,
-  placeholder: PropTypes.string.isRequired,
-  renderTrigger: PropTypes.func,
-};
-
-ListBox.defaultProps = {
-  filter: null,
-  onClickClear: null,
-  renderTrigger: null,
-};
-
-const ListBoxContainer = React.forwardRef((props, ref) => {
-  const [state, dispatch] = useListBox();
-  // IMPERATIVE API
-  const imperativeHandle = handleImperative(state, dispatch);
-  React.useImperativeHandle(ref, imperativeHandle);
-
-  // EFFECTS
-  const handleEffectHeightChange = effects.handleEffectHeightChange(props, state, dispatch);
-  const handleEffectIsDisabledChange = effects.handleEffectIsDisabledChange(props, dispatch);
-  const handleEffectIsPopOverOpen = effects.handleEffectIsPopOverOpen(state, dispatch);
-  const handleEffectListBoxScrolled = effects.handleEffectListBoxScrolled(state);
-  const handleEffectListBoxWidth = effects.handleEffectListBoxWidth(state, dispatch);
-  const handleEffectChildren = effects.handleEffectChildren(props, state, dispatch);
-
-  React.useEffect(handleEffectHeightChange, [props.height]);
-  React.useEffect(handleEffectIsDisabledChange, [props.isDisabled]);
-  React.useLayoutEffect(handleEffectIsPopOverOpen, [state.isPopoverOpen]);
-  React.useEffect(handleEffectListBoxWidth, [state.refTriggerContainer.current]);
-  React.useLayoutEffect(handleEffectListBoxScrolled, [state.activeOption]);
-  React.useLayoutEffect(handleEffectChildren, [props.children]);
-
+export default function ListBox(props) {
   const {
     children,
-    filter,
     hasFilter,
-    hasNotResultsMessage,
-    height,
-    isInline,
+    hasGroupFilter,
+    isHidden,
     isMulti,
-    isPopoverEager,
     isPopoverOpen,
-    onChange,
-    onClickClear,
-    onDeselected,
-    onSelected,
     placeholder,
-    renderCheckbox,
-    renderTrigger,
+    renderLabel,
+    height,
     ...moreProps
   } = props;
 
-  const ListBoxProps = {
-    children,
-    filter,
-    hasNotResultsMessage,
-    height,
-    onClickClear,
-    onDeselected,
-    onSelected,
-    placeholder,
-    renderTrigger,
+  const $refListBox = React.createRef();
+  const $refListBoxContainer = React.createRef();
+  const $refListBoxTrigger = React.createRef();
+  const $refListBoxTriggerContainer = React.createRef();
+  const $refListBoxFilterInput = React.createRef();
+  const listBoxHeight = $refListBox.current ? $refListBox.current.offsetHeight : 0;
+  const listBoxOptions = props.children;
+
+  const {
+    getDOMAttributesForListBox,
+    getDOMAttributesForListBoxButton,
+    getDOMAttributesForListBoxContainer,
+    getDOMAttributesForListBoxOption,
+    getListboxLabel,
+    handleBlur,
+    handleClickListBoxButton,
+    handleClickListBoxIsMultiAccept,
+    handleClickListBoxIsMultiCancel,
+    handleClickListBoxOption,
+    handleKeyDownListBoxContainer,
+    isOptionSelected,
+    isOptionVisible,
+    set,
+    state,
+  } = useListBox({
+    $refListBoxTrigger,
+    $refListBoxContainer,
+    $refListBoxTriggerContainer,
+    $refListBoxFilterInput,
+    $refListBox,
+    hasFilter: props.hasFilter,
+    isMulti: props.isMulti,
+    listBoxOptions,
+    placeholder: props.placeholder,
+    isPopoverOpen: props.isPopoverOpen,
+    renderLabel: props.renderLabel,
+  });
+
+  const { options: stateOptions, isPopoverOpen: stateIsPopoverOpen, hasNoResults: stateHasNoResults } = state;
+  const optionsArray = Object.keys(stateOptions);
+  let lastGroupTitle = null;
+
+  const renderLabelProps = {
+    getDOMAttributesForListBoxButton,
+    handleClickListBoxButton,
+    handleKeyDownListBoxContainer,
+    placeholder: props.placeholder,
+    ref: $refListBoxTrigger,
   };
-
-  if (isInline) {
-    return <ListBox {...ListBoxProps}>{children}</ListBox>;
-  }
-
   return (
-    <Popover {...moreProps} isEager={isPopoverEager}>
-      <ListBox {...ListBoxProps}>{children}</ListBox>
-    </Popover>
+    <PopoverStyled {...moreProps} offset={0} maxWidth={state.triggerWidth} isOpen={stateIsPopoverOpen}>
+      <ListBoxTriggerStyled ref={$refListBoxTriggerContainer}>
+        {props.renderLabel ? (
+          props.renderLabel(renderLabelProps, state, set)
+        ) : (
+          <button
+            type="button"
+            onClick={handleClickListBoxButton}
+            ref={$refListBoxTrigger}
+            onKeyDown={handleKeyDownListBoxContainer}
+          >
+            {getListboxLabel()}
+          </button>
+        )}
+        <TriggerArrowStyled isOpen={isPopoverOpen} dangerouslySetInnerHTML={{ __html: "&#x25BC;" }} />
+      </ListBoxTriggerStyled>
+
+      <Popover.Content
+        onBlur={handleBlur}
+        ref={$refListBoxContainer}
+        {...getDOMAttributesForListBoxContainer()}
+        listBoxHeight={listBoxHeight}
+        onKeyDown={handleKeyDownListBoxContainer}
+      >
+        <ListBoxContainerStyled triggerWidth={state.triggerWidth}>
+          {props.hasFilter && isPopoverOpen && (
+            <Filter
+              ref={$refListBoxFilterInput}
+              set={set}
+              state={state}
+              options={stateOptions}
+              hasGroupFilter={props.hasGroupFilter}
+            />
+          )}
+          <ListBoxStyled
+            hasNoResults={stateHasNoResults}
+            height={height}
+            ref={$refListBox}
+            {...getDOMAttributesForListBox()}
+          >
+            {optionsArray.map(key => {
+              let needsGroupTitle = false;
+              if (stateOptions[key].groupTitle && lastGroupTitle !== stateOptions[key].groupTitle) {
+                needsGroupTitle = true;
+                lastGroupTitle = stateOptions[key].groupTitle;
+              }
+
+              return (
+                <React.Fragment key={key}>
+                  {needsGroupTitle && !stateHasNoResults ? (
+                    <ListBoxOptionDividerStyled aria-hidden="true">
+                      {stateOptions[key].groupTitle}
+                    </ListBoxOptionDividerStyled>
+                  ) : null}
+                  {isOptionVisible(key)() ? (
+                    <ListBoxOptionStyled
+                      {...getDOMAttributesForListBoxOption(stateOptions[key].index)()}
+                      id={stateOptions[key].id}
+                      isActive={state.activeOption === stateOptions[key].index}
+                      isSelected={isOptionSelected(stateOptions[key].index)()}
+                      key={stateOptions[key].id}
+                      onClick={handleClickListBoxOption(stateOptions[key].index)}
+                      role="option"
+                    >
+                      {stateOptions[key].content}
+                    </ListBoxOptionStyled>
+                  ) : null}
+                </React.Fragment>
+              );
+            })}
+          </ListBoxStyled>
+          {isPopoverOpen && stateHasNoResults && (
+            <ListBoxOptionStyled>There is not results for your filter</ListBoxOptionStyled>
+          )}
+          {props.isMulti && isPopoverOpen && (
+            <div>
+              <button type="button" onClick={handleClickListBoxIsMultiCancel}>
+                Cancel
+              </button>
+              <button type="button" onClick={handleClickListBoxIsMultiAccept}>
+                Accept
+              </button>
+            </div>
+          )}
+        </ListBoxContainerStyled>
+      </Popover.Content>
+    </PopoverStyled>
   );
-});
+}
 
-ListBoxContainer.propTypes = propTypes;
-ListBoxContainer.defaultProps = defaultProps;
-
-export default ListBoxContainer;
+ListBox.propTypes = propTypes;
+ListBox.defaultProps = defaultProps;
+ListBox.Option = Option;
+ListBox.Group = Group;
