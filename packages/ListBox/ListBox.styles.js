@@ -79,7 +79,7 @@ export const ListBoxStyled = styled.ul`
   overflow: auto;
   ${props => {
     return `
-        height: ${props.hasNoResults} ? 0 : ${props.height}px
+        max-height: ${props.height}px
       `;
   }}
 `;

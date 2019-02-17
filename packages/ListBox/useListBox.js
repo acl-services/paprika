@@ -176,12 +176,12 @@ export default function useListBox({
     set({ ...state, activeOption: nextActiveIndex });
   }
 
-  function setSingleSelectOption(nextSelectedIndex, isPopoverOpen = true) {
+  function setSingleSelectOption(nextSelectedIndex, _isPopoverOpen = true) {
     set(_state => ({
       ..._state,
       activeOption: nextSelectedIndex,
       selectedOptions: [nextSelectedIndex],
-      isPopoverOpen,
+      isPopoverOpen: _isPopoverOpen,
     }));
   }
 

@@ -3,7 +3,7 @@
  - height of the popover
  - isDisabled property
  - destructure ...moreProps
- -
+ - implementing blank option
 * */
 
 import React from "react";
@@ -67,7 +67,6 @@ export default function ListBox(props) {
   const $refListBoxTrigger = React.createRef();
   const $refListBoxTriggerContainer = React.createRef();
   const $refListBoxFilterInput = React.createRef();
-  const listBoxHeight = $refListBox.current ? $refListBox.current.offsetHeight : 0;
   const listBoxOptions = props.children;
 
   const {
@@ -133,7 +132,6 @@ export default function ListBox(props) {
         onBlur={handleBlur}
         ref={$refListBoxContainer}
         {...getDOMAttributesForListBoxContainer()}
-        listBoxHeight={listBoxHeight}
         onKeyDown={handleKeyDownListBoxContainer}
       >
         <ListBoxContainerStyled triggerWidth={state.triggerWidth}>
