@@ -8,15 +8,23 @@ import { ContentStyled } from "./Content.styles";
 
 const propTypes = {
   children: PropTypes.node.isRequired,
+  onBlur: PropTypes.func,
   zIndex: PropTypes.number,
 };
 
 const defaultProps = {
+  onBlur: () => {},
   zIndex: 1,
 };
 
-class Content extends React.Component {
-  handleMouseEvent = (isEager, onDelayedClose, onDelayedOpen) => event => {
+const Content = React.forwardRef((props, ref) => {
+  const { onBlur, children, zIndex, ...moreProps } = props;
+  // TODO: extract this to Storybook story somehow so supporting numbers as strings is not required
+  function isNumber(n) {
+    return RegExp(/^[0-9]+$/).test(n);
+  }
+
+  const handleMouseEvent = (isEager, onDelayedClose, onDelayedOpen) => event => {
     if (!isEager) return;
     if (event.type === "mouseover") {
       onDelayedOpen();
@@ -25,7 +33,7 @@ class Content extends React.Component {
     }
   };
 
-  handleBlur = onClose => event => {
+  const handleBlur = onClose => event => {
     // onblur canceling onclick the following happens when:
     // Clicking twice the trigger button (open, close), will fire an onclick and onblur event
     // creating a race condition nullyfing the onClick and keeping the popover open
@@ -41,59 +49,64 @@ class Content extends React.Component {
     setTimeout(() => {
       if (!isElementContainsFocus(currentTarget)) {
         onClose();
+        onBlur();
       }
     }, parseInt(PopoverConstants.transition, 10));
   };
 
-  // TODO: extract this to Storybook story somehow so supporting numbers as strings is not required
-  isNumber = n => RegExp(/^[0-9]+$/).test(n);
+  const {
+    content,
+    isEager,
+    isOpen,
+    onClose,
+    onDelayedClose,
+    onDelayedOpen,
+    portalElement,
+    refContent,
+  } = React.useContext(PopoverContext);
 
-  render() {
-    return (
-      <PopoverContext.Consumer>
-        {({ content, isEager, isOpen, onClose, onDelayedClose, onDelayedOpen, portalElement, refContent }) => {
-          const contentStyles = {
-            left: content.x,
-            maxWidth: this.isNumber(content.maxWidth) ? `${content.maxWidth}px` : content.maxWidth,
-            top: content.y,
-            width: content.width,
-          };
+  const handleRef = _ref => {
+    refContent(_ref);
+    if (ref) {
+      // https://github.com/reactjs/rfcs/blob/master/text/0017-new-create-ref.md#basic-example
+      ref.current = _ref; // eslint-disable-line
+    }
+  };
 
-          const handler = this.handleMouseEvent(isEager, onDelayedClose, onDelayedOpen);
+  const contentStyles = {
+    left: content.x,
+    maxWidth: isNumber(content.maxWidth) ? `${content.maxWidth}px` : content.maxWidth,
+    top: content.y,
+    width: content.width,
+  };
 
-          /* eslint-disable jsx-a11y/mouse-events-have-key-events */
-          /*
-            NOTE: we are missing onFocus, which affect the use of the keyboard
-            accessibility, I'm adding a issue https://github.com/acl-services/paprika/issues/33
-            so we can address this later.
-          */
-          return ReactDOM.createPortal(
-            <ContentStyled
-              aria-hidden={!isOpen}
-              data-component-name="PopoverContent"
-              data-qa-anchor="popover-content"
-              ref={refContent}
-              isOpen={isOpen}
-              onBlur={this.handleBlur(onClose)}
-              onMouseOut={handler}
-              onMouseOver={handler}
-              style={contentStyles}
-              tabIndex={isOpen ? 0 : -1}
-              zIndex={this.props.zIndex}
-            >
-              {this.props.children}
-            </ContentStyled>,
-            portalElement
-          );
-        }}
-      </PopoverContext.Consumer>
-    );
-  }
-}
+  const handler = handleMouseEvent(isEager, onDelayedClose, onDelayedOpen);
+
+  /* eslint-disable jsx-a11y/mouse-events-have-key-events */
+  return ReactDOM.createPortal(
+    <ContentStyled
+      {...moreProps}
+      aria-hidden={!isOpen}
+      data-component-name="PopoverContent"
+      data-qa-anchor="popover-content"
+      ref={handleRef}
+      isOpen={isOpen}
+      onBlur={handleBlur(onClose)}
+      onMouseOut={handler}
+      onMouseOver={handler}
+      style={contentStyles}
+      tabIndex={isOpen ? 0 : -1}
+      zIndex={zIndex}
+    >
+      {children}
+    </ContentStyled>,
+    portalElement
+  );
+});
+/* eslint-enable jsx-a11y/mouse-events-have-key-events */
 
 Content.displayName = "Popover.Content";
 
 Content.propTypes = propTypes;
 Content.defaultProps = defaultProps;
-
 export default Content;

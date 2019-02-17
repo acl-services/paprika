@@ -113,7 +113,7 @@ export default function ListBox(props) {
   };
   return (
     <PopoverStyled {...moreProps} offset={0} maxWidth={state.triggerWidth} isOpen={stateIsPopoverOpen}>
-      <ListBoxTriggerStyled innerRef={$refListBoxTriggerContainer}>
+      <ListBoxTriggerStyled ref={$refListBoxTriggerContainer}>
         {props.renderLabel ? (
           props.renderLabel(renderLabelProps, state, set)
         ) : (
@@ -131,10 +131,7 @@ export default function ListBox(props) {
 
       <Popover.Content
         onBlur={handleBlur}
-        innerRef={ref => {
-          // https://github.com/reactjs/rfcs/blob/master/text/0017-new-create-ref.md#basic-example
-          $refListBoxContainer.current = ref;
-        }}
+        ref={$refListBoxContainer}
         {...getDOMAttributesForListBoxContainer()}
         listBoxHeight={listBoxHeight}
         onKeyDown={handleKeyDownListBoxContainer}
@@ -152,7 +149,7 @@ export default function ListBox(props) {
           <ListBoxStyled
             hasNoResults={stateHasNoResults}
             height={height}
-            innerRef={$refListBox}
+            ref={$refListBox}
             {...getDOMAttributesForListBox()}
           >
             {optionsArray.map(key => {

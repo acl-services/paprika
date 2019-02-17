@@ -17,6 +17,7 @@
   },
   "plugins": ["cypress"],
   "rules": {
+    "no-shadow": "off",
     "camelcase": "off",
     "class-methods-use-this": "off",
     "consistent-return": "off",

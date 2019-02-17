@@ -381,12 +381,27 @@ class Popover extends React.Component {
   }
 
   render() {
+    const {
+      align,
+      children,
+      isDark,
+      isEager,
+      isOpen,
+      defaultIsOpen,
+      maxWidth,
+      onClose,
+      offset,
+      getPositioningElement,
+      getScrollContainer,
+      ...moreProps
+    } = this.props;
+
     const contextValue = this.getContextValues(
       this.state.content,
-      this.props.maxWidth,
+      maxWidth,
       this.state.width,
-      this.props.isDark,
-      this.props.isEager,
+      isDark,
+      isEager,
       this.isOpen(),
       this.$portal,
       this.refContent,
@@ -397,7 +412,9 @@ class Popover extends React.Component {
 
     return (
       <PopoverContext.Provider value={contextValue}>
-        <PopoverStyled ref={this.$popover}>{this.props.children}</PopoverStyled>
+        <PopoverStyled {...moreProps} ref={this.$popover}>
+          {this.props.children}
+        </PopoverStyled>
       </PopoverContext.Provider>
     );
   }

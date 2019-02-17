@@ -174,7 +174,7 @@ const Filter = React.forwardRef((props, ref) => {
     <FilterContainerStyled>
       <FilterSearchIconStyled />
       <FilterInputStyled
-        innerRef={ref}
+        ref={ref}
         type="text"
         onChange={handleChangeFilter}
         onKeyDown={handleKeyDown}
