@@ -407,7 +407,6 @@ class Popover extends React.Component {
       offset,
       getPositioningElement,
       getScrollContainer,
-      zIndex,
       ...moreProps
     } = this.props;
 

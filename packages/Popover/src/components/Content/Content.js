@@ -9,14 +9,16 @@ import { ContentStyled } from "./Content.styles";
 const propTypes = {
   children: PropTypes.node.isRequired,
   onBlur: PropTypes.func,
+  zIndex: PropTypes.number,
 };
 
 const defaultProps = {
   onBlur: () => {},
+  zIndex: 1,
 };
 
 const Content = React.forwardRef((props, ref) => {
-  const { onBlur, children, ...moreProps } = props;
+  const { onBlur, children, zIndex, ...moreProps } = props;
   // TODO: extract this to Storybook story somehow so supporting numbers as strings is not required
   function isNumber(n) {
     return RegExp(/^[0-9]+$/).test(n);
