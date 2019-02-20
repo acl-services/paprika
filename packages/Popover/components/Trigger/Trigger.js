@@ -34,7 +34,7 @@ class Trigger extends Component {
             /* eslint-disable jsx-a11y/mouse-events-have-key-events */
             return isEager ? (
               <RawButton
-                data-qa-anchor="paprika-popover--trigger"
+                data-qa-anchor="popover-trigger"
                 onMouseOver={handler}
                 onMouseOut={handler}
                 onFocus={handler}
@@ -43,7 +43,7 @@ class Trigger extends Component {
                 {this.props.children}
               </RawButton>
             ) : (
-              <RawButton data-qa-anchor="paprika-popover--trigger" onClick={handler}>
+              <RawButton data-qa-anchor="popover-trigger" onClick={handler}>
                 {this.props.children}
               </RawButton>
             );

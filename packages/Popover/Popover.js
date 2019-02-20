@@ -89,7 +89,7 @@ class Popover extends Component {
     this.$tip = null; // this ref comes from a callback of the <Tip /> component
 
     const portalNode = document.createElement("div");
-    portalNode.setAttribute("data-paprika-type", "Popover");
+    // portalNode.setAttribute("data-paprika-type", "Popover");
     this.$portal = document.body.appendChild(portalNode);
 
     this.state = {
