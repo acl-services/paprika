@@ -13,6 +13,7 @@
     "access": "public"
   },
   "dependencies": {
+    "@paprika/stylers": "^0.0.1",
     "@paprika/tokens": "^0.0.1",
     "lodash.throttle": "^4.1.1",
     "prop-types": "^15.7.2"

@@ -3,8 +3,8 @@ import stylers from "@paprika/stylers";
 import { consts } from "../../Popover.styles";
 
 export const ContentStyled = styled.div`
+  console.log('greaaat!')
   ${stylers.resetStyles};
-
   opacity: ${props => (props.isOpen ? 1 : 0)};
   position: fixed;
   transition: opacity ${consts.transition} ease, visibility ${consts.transition} ease;

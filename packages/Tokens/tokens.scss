@@ -1,3 +1,4 @@
+
 //color
 $color--black: #3f3d3c;
 $color--black-lighten-10: #575757;
@@ -70,20 +71,26 @@ $color--chart-color-10: #2b82bf;
 $color--chart-color-11: #7ec0cc;
 $color--chart-color-12: #d1cbc2;
 
+
 //placeholder
 $placeholder--color: #8a8a8a;
 $placeholder--font-style: italic;
+
 
 //highlight
 
 //active
 
 //no-border
-$highlight--active--no-border--box-shadow: 0 0 0 2px rgba(0, 124, 247, 0.3);
+$highlight--active--no-border--box-shadow: 0 0 0 2px rgba(0,124,247,0.3);
 $highlight--active--no-border--border-color: #2666ab;
 
+
 //with-border
-$highlight--active--with-border--box-shadow: 0 0 0 1px #2666ab, 0 0 0 3px rgba(0, 124, 247, 0.3);
+$highlight--active--with-border--box-shadow: 0 0 0 1px #2666ab,0 0 0 3px rgba(0,124,247,0.3);
+
+
+
 
 //text-color
 $text-color--default: #3f3d3c;
@@ -92,29 +99,35 @@ $text-color--link: #2666ab;
 $text-color--link-hover: #2666ab;
 $text-color--icon: #717171;
 
+
 //font-family
 $font-family--default: "Lato", "Helvetica Neue", Helvetica, Arial, sans-serif !default;
-$font-family--jp: "Lato", "Helvetica Neue", Helvetica, Arial, sans-serif, "Hiragino Kaku Gothic Pro",
-  "ヒラギノ角ゴ Pro W3", "ＭＳ Ｐゴシック", "MS PGothic";
+$font-family--jp: "Lato", "Helvetica Neue", Helvetica, Arial, sans-serif, "Hiragino Kaku Gothic Pro", "ヒラギノ角ゴ Pro W3", "ＭＳ Ｐゴシック", "MS PGothic";
 $font-family--kr: "Lato", "Helvetica Neue", Helvetica, Arial, sans-serif, "Malgun Gothic";
-$font-family--zh: "Helvetica Neue", Helvetica, Arial, sans-serif, 黑體-繁, "Heiti TC", 儷黑Pro, "LiHei Pro", PMingLiu,
-  宋体, SimSun;
+$font-family--zh: "Helvetica Neue", Helvetica, Arial, sans-serif, 黑體-繁, "Heiti TC", 儷黑Pro, "LiHei Pro", PMingLiu, 宋体, SimSun;
+
 
 //table
 
 //header
 $table--header--background-color: #edebe8;
 
+
 //row
 $table--row--background-color: white;
+
 
 //row-even
 $table--row-even--background-color: #f5f5f5;
 
+
+
 //modal
 
 //backdrop
-$modal--backdrop--background-color: rgba(63, 61, 60, 0.5);
+$modal--backdrop--background-color: rgba(63,61,60,0.5);
+
+
 
 //border
 $border--radius: 3px;
@@ -122,14 +135,18 @@ $border--color: #d7d7d7;
 $border--hover-color: #a4a4a4;
 $border--color-transition: border-color 0.2s;
 
+
 //button
 $button--border-radius: 4px;
+
 
 //card
 $card--border-radius: 6px;
 
+
 //background-color
 $background-color--level0: #f7f7f7;
+
 
 //font-size
 $font-size--default: 16px;
@@ -137,4 +154,4 @@ $font-size--default: 16px;
 $space: 8px;
 $space-sm: 4px;
 $space-lg: 12px;
-$shadow: rgba(0, 0, 0, 0.07) 0px 1px 5px, rgba(0, 0, 0, 0.1) 0px 7px 17px;
+$shadow: rgba(0,0,0,0.07) 0px 1px 5px,rgba(0,0,0,0.1) 0px 7px 17px;
