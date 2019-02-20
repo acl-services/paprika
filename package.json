@@ -17,6 +17,7 @@
     "storybook:build": "build-storybook -c .storybook -o storybook-dist",
     "storybook": "start-storybook -p 9009 -c .storybook",
     "jest": "jest",
+    "a11y": "echo 'Axe will run on this command'",
     "tokens": "cd packages/tokens && yarn start"
   },
   "engines": {
