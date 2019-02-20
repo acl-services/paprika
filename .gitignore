@@ -25,9 +25,3 @@ node_modules/
 
 # docz
 .docz
-
-# Tokens autogenerate files
-packages/Tokens/tokens.json
-packages/Tokens/tokens.scss
-packages/Tokens/tokens.yaml
-packages/Tokens/tokens.js
