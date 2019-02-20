@@ -13,7 +13,7 @@
   },
   "dependencies": {
     "@paprika/tokens": "^0.0.1",
-    "prop-types": "^16.4.0"
+    "prop-types": "^15.7.2"
   },
   "peerDependencies": {
     "react": "^16.4.0",
