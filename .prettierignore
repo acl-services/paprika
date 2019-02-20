@@ -2,9 +2,9 @@
 .git
 .github
 
-
 #Node modules
 node_modules
+/**/node_modules
 
 #CI
 semaphore.yml
@@ -13,3 +13,6 @@ semaphore.yml
 packages/Tokens/tokens.json
 packages/Tokens/tokens.scss
 packages/Tokens/tokens.yaml
+
+# Documentation
+/**/.docz
