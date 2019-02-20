@@ -8,10 +8,9 @@
     "type": "git",
     "url": "https://github.com/acl-services/paprika/tree/master/packages/stylers"
   },
-  "devDependencies": {
-    "@emotion/cache": "^10.0.0",
-    "@emotion/core": "^10.0.6",
-    "@emotion/styled-base": "^10.0.5"
+  "scripts": {
+    "docz:build": "docz build",
+    "docz:dev": "docz dev"
   },
   "resolutions": {
     "ansi-styles": "^3.2.0"
@@ -20,6 +19,11 @@
     "access": "public"
   },
   "dependencies": {
+    "react": "^16.8.2",
+    "react-dom": "^16.8.2",
+    "@emotion/cache": "^10.0.0",
+    "@emotion/core": "^10.0.6",
+    "@emotion/styled-base": "^10.0.5",
     "docz": "^0.13.7",
     "docz-theme-default": "^0.13.7"
   }

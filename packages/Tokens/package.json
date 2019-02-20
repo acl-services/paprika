@@ -18,5 +18,8 @@
   "dependencies": {
     "node-sass": "^4.9.2",
     "yamljs": "^0.3.0"
+  },
+  "devDependencies": {
+    "@babel/runtime-corejs2": "^7.3.1"
   }
 }

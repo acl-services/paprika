@@ -1,5 +1,5 @@
 export default {
-  src: "../",
+  src: "../packages",
   public: "/assets",
   files: "**/*.mdx",
   title: "Paprika",

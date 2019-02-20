@@ -21,7 +21,7 @@ const Tip = props => (
 
       return ReactDOM.createPortal(
         <TipStyled
-          innerRef={refTip}
+          ref={refTip}
           isOpen={isOpen}
           rotate={tip.rotate}
           style={{ left: tip.x, top: tip.y }}
