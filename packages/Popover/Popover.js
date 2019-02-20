@@ -186,19 +186,6 @@ class Popover extends Component {
     return contentWidth;
   }
 
-  updateVisibilityAndPositionState(isOpening = false) {
-    const { content, tip } = this.getCoordinates();
-
-    const newState = {
-      content,
-      tip,
-    };
-
-    if (isOpening) newState.isOpen = true;
-
-    this.setState(newState);
-  }
-
   setVisibilityAndPosition(isOpening = false) {
     // dynamically setting a fixed width before positioning avoids issues at the
     // right edge of the screen
@@ -250,7 +237,7 @@ class Popover extends Component {
   };
 
   // eslint is forcing to put handleReposition before ComponentDidMount
-  // eslint-disable-next-line
+  // eslint-disable-next-line react/sort-comp
   handleReposition = throttle(() => {
     if (this.isOpen()) {
       const scrollContainer =
