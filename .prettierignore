@@ -13,6 +13,8 @@ semaphore.yml
 packages/Tokens/tokens.json
 packages/Tokens/tokens.scss
 packages/Tokens/tokens.yaml
+packages/Tokens/tokens.js
+packages/Tokens/tokens.mdx
 
 # Documentation
 /**/.docz
