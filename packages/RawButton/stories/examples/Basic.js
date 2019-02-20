@@ -18,7 +18,7 @@ const PopoverStory = () => (
         ariaText="ceci n'est pas un bouton"
         onClick={clickHandler(btnRef)}
         buttonRef={btnRef}
-        qaAnchor="test-button"
+        qa-test-anchor="test-button"
       >
         Raw button
       </RawButton>
@@ -28,6 +28,8 @@ const PopoverStory = () => (
         Disabled button
       </RawButton>
     </p>
+    {Array(36).fill(<br />)}
+    ...fin.
   </Story>
 );
 

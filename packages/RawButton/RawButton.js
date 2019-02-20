@@ -1,17 +1,3 @@
-/* eslint-disable jsx-a11y/no-static-element-interactions */
-/* eslint-disable jsx-a11y/click-events-have-key-events */
-/* es-lint is disabled for these specific reasons:
-  1. Click-events-have-key-events: we are not using React synthetic events because we can't
-    deal with the event.stopPropagation of the spacebar and prevent scrolling the page when the user
-    presses the space bar.
-  2. no-static-element-interactions: It's highly recommended to not use DIV or SPAN for interactive
-    elements but in this very specific case we are trying to isolate and mimic the button role
-    for icon buttons, arrow icons, carets, and any other elements that are interactive but
-    not a button. We are doing this because using a <button /> normally inherents css styling
-    from frameworks such as bootstrap or foundation, so in this way we always have a
-    fresh button with no style attached.
- */
-
 import React from "react";
 import PropTypes from "prop-types";
 
@@ -32,7 +18,7 @@ const propTypes = {
 const defaultProps = {
   ariaText: null,
   buttonRef: null,
-  canPropagate: false,
+  canPropagate: true,
   className: null,
   isDisabled: false,
   onClick: () => {},
@@ -50,20 +36,6 @@ class RawButton extends React.Component {
     this.setRef(this.props);
   }
 
-  componentDidMount() {
-    if (this.$rawButton) {
-      this.$rawButton.current.addEventListener("keydown", this.handleKeyDown);
-      this.$rawButton.current.addEventListener("keyup", this.handleKeyUp);
-    }
-  }
-
-  componentWillUnmount() {
-    if (this.$rawButton) {
-      this.$rawButton.current.removeEventListener("keydown", this.handleKeyDown);
-      this.$rawButton.current.removeEventListener("keyup", this.handleKeyUp);
-    }
-  }
-
   setRef(props) {
     this.$rawButton = props.buttonRef || React.createRef();
   }
@@ -71,7 +43,7 @@ class RawButton extends React.Component {
   handleKeyDown = event => {
     if (
       // Prevent scrolling the page with a spacerbar keypress
-      (event.key === " " && event.target.tagName.toLowerCase() !== "input") ||
+      event.key === " " ||
       // Prevent submitting forms in IE/Edge with and enter keypress
       event.key === "Enter"
     ) {
@@ -80,13 +52,6 @@ class RawButton extends React.Component {
   };
 
   handleKeyUp = event => {
-    if (
-      // Prevent scrolling the page with a spacerbar keypress
-      event.key === " " &&
-      event.target.tagName.toLowerCase() !== "input"
-    ) {
-      event.preventDefault();
-    }
     if (this.props.isDisabled || (!this.props.canPropagate && event.target !== this.$rawButton.current)) {
       return;
     }
@@ -101,19 +66,19 @@ class RawButton extends React.Component {
   };
 
   render() {
-    // eslint-disable-next-line no-unused-vars
     const { ariaText, buttonRef, canPropagate, children, isDisabled, tabIndex, ...moreProps } = this.props;
     if (ariaText) moreProps["aria-label"] = ariaText;
 
     return (
       <RawButtonStyled
-        {...moreProps}
         aria-disabled={isDisabled}
-        data-paprika-type="RawButton"
         innerRef={this.$rawButton}
         isDisabled={isDisabled}
         onClick={this.handleClick}
+        onKeyDown={this.handleKeyDown}
+        onKeyUp={this.handleKeyUp}
         tabIndex={isDisabled ? -1 : tabIndex}
+        {...moreProps}
       >
         {children}
       </RawButtonStyled>
