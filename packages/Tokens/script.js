@@ -96,6 +96,7 @@ class DesignTokenBuilder {
     let markdownString = `
 ---
 name: "Tokens"
+route: /tokens
 ---
 
 import TokenSquare from "./TokenSquare"

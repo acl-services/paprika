@@ -11,13 +11,12 @@
     "lint:fix": "yarn lint --fix",
     "lint": "eslint packages",
     "package": "./scripts/package/index.js",
-    "prepush": "yarn lint && yarn test && yarn test:a11y && yarn prettier -- --list-different",
+    "prepush": "yarn lint && yarn jest && yarn prettier -- --list-different",
     "prettier:format": "yarn prettier -- --write",
     "prettier": "prettier \"**/*.+(js|json|yml|css|scss|md|mdx)\"",
     "storybook:build": "build-storybook -c .storybook -o storybook-dist",
     "storybook": "start-storybook -p 9009 -c .storybook",
-    "test:a11y": "NODE_PATH=. jest --config .jest-a11y.config.json",
-    "test": "yarn test:a11y",
+    "jest": "jest",
     "tokens": "cd packages/tokens && yarn start"
   },
   "engines": {
