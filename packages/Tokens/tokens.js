@@ -10,17 +10,20 @@ const tokens = {
     "blackLighten70": "#f0f0f0",
     "blackLighten80": "#f7f7f7",
     "blackLighten90": "#fcfcfc",
-    "blue": "#2666ab",
-    "blueDarken10": "#0c437e",
-    "blueLighten10": "#5987b8",
-    "blueLighten20": "#85b3e5",
-    "blueLighten30": "#94c6fd",
-    "blueLighten40": "#cce1f5",
-    "blueLighten50": "#e6f0fa",
+    "blackDisabled": "#a4a4a4",
+    "blackPure": "#000000",
+    "blue": "#276cf5",
+    "blueDarken20": "#004a94",
+    "blueDarken10": "#0063c5",
+    "blueLighten10": "#3396f9",
+    "blueLighten20": "#66b0fa",
+    "blueLighten30": "#99cbfc",
+    "blueLighten40": "#cce5fd",
+    "blueLighten50": "#e5f1fe",
     "creme": "#e6e3df",
-    "cremeDarken30": "#989694",
-    "cremeDarken20": "#b1b0ae",
-    "cremeDarken10": "#cdcac5",
+    "cremeDarken30": "#a39889",
+    "cremeDarken20": "#b9b1a6",
+    "cremeDarken10": "#d0cac2",
     "cremeLighten5": "#f1f0ed",
     "cremeLighten10": "#fcfcfc",
     "green": "#42996d",
@@ -40,6 +43,8 @@ const tokens = {
     "orangeLighten20": "#e99c8e",
     "orangeLighten30": "#f1c1b9",
     "orangeLighten40": "#fae7e3",
+    "orangeDisabled": "#e99c8e",
+    "orangeHighlight": "#e1624b",
     "purple": "#53529f",
     "purpleDarken10": "#41417d",
     "purpleDarken20": "#302f5c",
@@ -48,7 +53,6 @@ const tokens = {
     "purpleLighten30": "#b6b5d5",
     "purpleLighten40": "#d6d6e7",
     "purpleLighten50": "#f6f6fa",
-    "purpleLighten60": "#f6f6fa",
     "white": "#ffffff",
     "yellow": "#eaba51",
     "yellowDarken10": "#e5a823",
@@ -72,29 +76,31 @@ const tokens = {
     "chartColor12": "#d1cbc2"
   },
   "placeholder": {
-    "color": "#8a8a8a",
+    "color": "#717171",
     "fontStyle": "italic"
   },
   "highlight": {
     "active": {
       "noBorder": {
-        "boxShadow": "0 0 0 2px rgba(0,124,247,0.3)",
-        "borderColor": "#2666ab"
+        "boxShadow": "0 0 0 2px #99cbfc",
+        "insetBoxShadow": "inset 0 0 0 2px #99cbfc",
+        "borderColor": "#276cf5"
       },
       "withBorder": {
-        "boxShadow": "0 0 0 1px #2666ab,0 0 0 3px rgba(0,124,247,0.3)"
+        "boxShadow": "0 0 0 1px #276cf5, 0 0 0 3px #99cbfc",
+        "insetBoxShadow": "inset 0 0 0 1px #276cf5, inset 0 0 0 3px #99cbfc"
       }
     }
   },
   "textColor": {
     "default": "#3f3d3c",
     "subtle": "#717171",
-    "link": "#2666ab",
-    "linkHover": "#2666ab",
+    "link": "#0063c5",
+    "linkHover": "#004a94",
     "icon": "#717171"
   },
   "fontFamily": {
-    "default": "\"Lato\", \"Helvetica Neue\", Helvetica, Arial, sans-serif !default",
+    "default": "\"Lato\", \"Helvetica Neue\", Helvetica, Arial, sans-serif",
     "jp": "\"Lato\", \"Helvetica Neue\", Helvetica, Arial, sans-serif, \"Hiragino Kaku Gothic Pro\", \"ヒラギノ角ゴ Pro W3\", \"ＭＳ Ｐゴシック\", \"MS PGothic\"",
     "kr": "\"Lato\", \"Helvetica Neue\", Helvetica, Arial, sans-serif, \"Malgun Gothic\"",
     "zh": "\"Helvetica Neue\", Helvetica, Arial, sans-serif, 黑體-繁, \"Heiti TC\", 儷黑Pro, \"LiHei Pro\", PMingLiu, 宋体, SimSun"
@@ -113,7 +119,8 @@ const tokens = {
   "modal": {
     "backdrop": {
       "backgroundColor": "rgba(63,61,60,0.5)"
-    }
+    },
+    "shadow": "0 8px 12px -4px rgba(63,61,60,0.2),0 1px 3px 0 rgba(63,61,60,0.1)"
   },
   "border": {
     "radius": "3px",
@@ -127,6 +134,10 @@ const tokens = {
   "card": {
     "borderRadius": "6px"
   },
+  "popover": {
+    "borderRadius": "6px",
+    "shadow": "0 2px 4px rgba(0,0,0,0.1)"
+  },
   "backgroundColor": {
     "level0": "#f7f7f7"
   },
@@ -136,6 +147,6 @@ const tokens = {
   "space": "8px",
   "spaceSm": "4px",
   "spaceLg": "12px",
-  "shadow": "rgba(0,0,0,0.07) 0px 1px 5px,rgba(0,0,0,0.1) 0px 7px 17px"
+  "shadow": "0px 1px 5px rgba(0,0,0,0.07),0px 7px 17px rgba(0,0,0,0.1)"
 };
 export default tokens;
