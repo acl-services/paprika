@@ -4,7 +4,7 @@ import PropTypes from "prop-types";
 class _Translate extends Component {
   static propTypes = {
     k: PropTypes.string.isRequired,
-    options: PropTypes.object,
+    options: PropTypes.object, // eslint-disable-line react/forbid-prop-types
   };
 
   static defaultProps = {

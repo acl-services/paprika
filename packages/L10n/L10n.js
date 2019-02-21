@@ -2,11 +2,11 @@ import React, { Component } from "react";
 import { func, node, string, object } from "prop-types";
 import { i18n, defaultLocale } from ".";
 
-class L10n extends Component {
+export default class L10n extends Component {
   static propTypes = {
     locale: string,
     children: node.isRequired,
-    locales: object,
+    locales: object, // eslint-disable-line react/forbid-prop-types
   };
 
   static defaultProps = {
@@ -34,5 +34,3 @@ class L10n extends Component {
     return this.props.children;
   }
 }
-
-export default L10n;
