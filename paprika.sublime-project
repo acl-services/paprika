@@ -1,0 +1,21 @@
+{
+  "folders":
+  [
+    {
+    "path": "."
+    }
+  ],
+  "settings": {
+    "js_prettier": {
+      "debug": true,
+      "prettier_cli_path": "~/.nvm/versions/node/v7.0.0/bin/prettier",
+      "auto_format_on_save": true,
+      "auto_format_on_save_excludes": [
+      ],
+      "additional_cli_args": {
+        "--config": "./.prettierrc",
+        "--config-precedence": "prefer-file"
+      }
+    }
+  }
+}
