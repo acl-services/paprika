@@ -8,7 +8,7 @@ class DesignTokenBuilder {
     this.JSON_FILE = "./tokens.json";
     this.JS_FILE = "./tokens.js";
     this.SCSS_FILE = "./tokens.scss";
-    this.MARKDOWN_FILE = "./tokens.md";
+    this.MARKDOWN_FILE = "./tokens.mdx";
     this.yamlObject = this.loadYamlFile();
     this.yamlVariables = [];
   }
@@ -75,10 +75,7 @@ class DesignTokenBuilder {
   }
 
   getMarkdownLine(prepend, key, value) {
-    const exampleHtml =
-      value.charAt(0) === "#"
-        ? `<div style='background-color: ${value}; height: 25px; width: 50px; border-radius: 3px;'></div>`
-        : "";
+    const exampleHtml = value.charAt(0) === "#" ? `<TokenSquare color="${value}" />` : "";
 
     return `| $${prepend}${key} | ${value} | ${exampleHtml} | \n`;
   }
@@ -96,14 +93,19 @@ class DesignTokenBuilder {
 
   convertYamlToMarkdown() {
     console.log("...generating documentation");
+    let markdownString = `
+---
+name: "Tokens"
+route: /tokens
+---
 
-    let markdownString = "";
-    markdownString += "---\n";
-    markdownString += "isVisible: true\n";
-    markdownString += 'name: "Tokens"\n';
-    markdownString += "---\n";
-    markdownString += "| Name | Value | Example\n";
-    markdownString += "|:--|:--|:--|\n";
+import TokenSquare from "./TokenSquare"
+
+# Tokens table
+
+| Name | Value | Example
+|:--|:--|:--|
+    `;
 
     Object.keys(this.yamlObject).forEach(key => {
       markdownString += this.getMarkdownLines("", key, this.yamlObject[key]);

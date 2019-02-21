@@ -1,16 +1,16 @@
 {
   "env": {
     "development": {
-      "presets": ["env", "react", "stage-2"],
-      "plugins": ["styled-components", "transform-runtime"]
+      "presets": ["@babel/preset-env", "@babel/preset-react"],
+      "plugins": ["styled-components", "@babel/plugin-transform-runtime", "@babel/plugin-proposal-class-properties"]
     },
     "production": {
-      "presets": ["env", "react", "stage-2"],
-      "plugins": ["styled-components", "transform-runtime"]
+      "presets": ["@babel/preset-env", "@babel/preset-react"],
+      "plugins": ["styled-components", "@babel/plugin-transform-runtime", "@babel/plugin-proposal-class-properties"]
     },
     "test": {
-      "presets": ["env", "react", "stage-2"],
-      "plugins": ["styled-components", "transform-runtime"]
+      "presets": ["@babel/preset-env", "@babel/preset-react"],
+      "plugins": ["styled-components", "@babel/plugin-transform-runtime", "@babel/plugin-proposal-class-properties"]
     }
   }
 }

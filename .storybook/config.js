@@ -3,7 +3,7 @@ import ReactDOM from "react-dom";
 import { configure, setAddon } from "@storybook/react";
 import axeConfig from "./axeConfig";
 
-import "./reset.css";
+import "./reset.scss";
 import "./assets/css/storybook.scss"; // TODO: replace with styled-components
 
 const axe = require("react-axe");

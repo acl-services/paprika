@@ -72,7 +72,7 @@ class RawButton extends React.Component {
     return (
       <RawButtonStyled
         aria-disabled={isDisabled}
-        innerRef={this.$rawButton}
+        ref={this.$rawButton}
         isDisabled={isDisabled}
         onClick={this.handleClick}
         onKeyDown={this.handleKeyDown}

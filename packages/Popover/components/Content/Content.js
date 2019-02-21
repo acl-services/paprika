@@ -73,7 +73,7 @@ class Content extends Component {
               aria-hidden={!isOpen}
               data-component-name="PopoverContent"
               data-qa-anchor="popover-content"
-              innerRef={refContent}
+              ref={refContent}
               isOpen={isOpen}
               onBlur={this.handleBlur(onClose)}
               onMouseOut={handler}

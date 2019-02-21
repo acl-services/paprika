@@ -1,0 +1,30 @@
+---
+name: Popover
+menu: Components
+route: /popover
+---
+
+import { Playground, PropsTable } from "docz";
+import Popover from "./Popover";
+
+# Popover
+
+## Properties
+
+<PropsTable of={Popover} />
+
+## Basic
+
+<Playground>
+  <Popover>
+    <Popover.Trigger>
+      <button type="button">Open Popover</button>
+    </Popover.Trigger>
+    <Popover.Content>
+      <Popover.Tip />
+      <Popover.Card>The quick brown fox jumps over the lazy dog</Popover.Card>
+    </Popover.Content>
+  </Popover>
+</Playground>
+
+Basic example of Popover

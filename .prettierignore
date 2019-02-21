@@ -2,9 +2,19 @@
 .git
 .github
 
-
 #Node modules
 node_modules
+/**/node_modules
 
 #CI
 semaphore.yml
+
+# Tokens autogenerate files
+packages/Tokens/tokens.json
+packages/Tokens/tokens.scss
+packages/Tokens/tokens.yaml
+packages/Tokens/tokens.js
+packages/Tokens/tokens.mdx
+
+# Documentation
+/**/.docz

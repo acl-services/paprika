@@ -13,16 +13,16 @@
     "access": "public"
   },
   "dependencies": {
+    "@babel/runtime-corejs2": "^7.3.1",
+    "@paprika/stylers": "^0.0.1",
     "@paprika/tokens": "^0.0.1",
     "lodash.throttle": "^4.1.1",
-    "prop-types": "^15.7.2"
+    "prop-types": "^15.7.2",
+    "memoize-one": "^5.0.0"
   },
   "peerDependencies": {
     "react": "^16.4.0",
     "react-dom": "^16.4.2",
     "styled-components": "^3.2.6"
-  },
-  "devDependencies": {
-    "memoize-one": "^5.0.0"
   }
 }

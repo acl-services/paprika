@@ -391,7 +391,7 @@ class Popover extends Component {
 
     return (
       <PopoverContext.Provider value={contextValue}>
-        <PopoverStyled innerRef={this.$popover}>{this.props.children}</PopoverStyled>
+        <PopoverStyled ref={this.$popover}>{this.props.children}</PopoverStyled>
       </PopoverContext.Provider>
     );
   }

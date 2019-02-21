@@ -5,12 +5,7 @@ module.exports = {
   module: {
     rules: [
       {
-        test: /\.js$/,
-        loaders: ["babel-loader?cacheDirectory"],
-        exclude: /node_modules/,
-      },
-      {
-        test: /\.s?css$/,
+        test: /\.scss$/,
         loaders: ["style-loader", "css-loader", "sass-loader"],
         include: path.resolve(__dirname, "../"),
       },
