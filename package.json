@@ -12,7 +12,6 @@
     "lint:fix": "yarn lint --fix",
     "lint": "eslint packages",
     "package": "./scripts/package/index.js",
-    "prepush": "yarn lint && yarn jest && yarn prettier -- --list-different",
     "prettier:format": "yarn prettier -- --write",
     "prettier": "prettier \"**/*.+(js|json|yml|css|scss|md|mdx)\"",
     "storybook:build": "build-storybook -c .storybook -o storybook-dist",
@@ -69,5 +68,10 @@
     "sinon": "^7.2.4",
     "style-loader": "^0.23.1",
     "styled-components": "^4.1.3"
+  },
+  "husky": {
+    "hooks": {
+      "pre-push": "yarn lint && yarn jest && yarn prettier -- --list-different"
+    }
   }
 }
