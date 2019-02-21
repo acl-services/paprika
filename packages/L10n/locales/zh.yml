@@ -1,0 +1,56 @@
+zh:
+  translation:
+    moreInformation: 更多信息
+    close: 关闭
+    uploader:
+      overlay:
+        title: 拖放
+        subtitle: 您的文件到此
+      form:
+        dragAndDrop: 拖放
+        or: 或
+        chooseFiles: 选择文件
+        from: 从您的电脑
+      errors:
+        file_size: 超出最大 {{size}} 的文件限制。
+        file_type: "{{type}}是不正确的文件类型。"
+      status:
+        idle: 闲置
+        processing: 正在处理
+        uploading: 上传中
+        success: 成功
+        cancel: 取消
+        error: 错误
+    actions:
+      delete: 删除
+      apply: 应用
+      cancel: 取消
+    dateInput:
+      choose: 选择日期
+      clear: 清除日期
+    daterange:
+      last_7_days: 过去 7 天
+      last_30_days: 过去 30 天
+      this_month: 本月
+      last_month: 上月
+      start_date: 开始日期
+      end_date: 结束日期
+    comment:
+      delete: 删除评论
+    pagination:
+      intro: 分页，当前在第 {{currentPage}} 页
+      page: 页 {{pageNumber}}
+      ellipsis: 更多页面
+      prev: 上一页
+      next: 下一页
+    formElement:
+      optional: （可选）
+      required: （必须）
+    prevNextArrowButton:
+      arrowup: 上
+      arrowdown: 下
+      escape: Esc 键
+    externalLink:
+      view: 查看
+    collapsible:
+      ariaText: 可折叠部分
