@@ -1,21 +1,21 @@
 import React, { Component } from "react";
 import ReactDOM from "react-dom";
-import { number, node } from "prop-types";
+import PropTypes from "prop-types";
 import isCurrentTargetFocused from "../../helpers/isCurrentTargetFocused";
 import { PopoverContext } from "../../Popover";
 import { consts as PopoverConstants } from "../../Popover.styles";
 import { ContentStyled } from "./Content.styles";
 
 const propTypes = {
-  children: node.isRequired,
-  zIndex: number,
+  children: PropTypes.node.isRequired,
+  zIndex: PropTypes.number,
 };
 
 const defaultProps = {
   zIndex: 1,
 };
 
-export default class Content extends Component {
+class Content extends Component {
   handleMouseEvent = (isEager, onDelayedClose, onDelayedOpen) => event => {
     if (!isEager) return;
     if (event.type === "mouseover") {
@@ -96,3 +96,5 @@ Content.displayName = "Popover.Content";
 
 Content.propTypes = propTypes;
 Content.defaultProps = defaultProps;
+
+export default Content;

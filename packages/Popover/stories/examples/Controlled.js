@@ -1,6 +1,7 @@
 import React, { Component } from "react";
+import { CenteredStory } from "storybook/assets/styles/common.styles";
+
 import Popover from "../../Popover";
-import { CenteredStory } from "../Popover.stories.styles";
 
 export default class PopoverStory extends Component {
   state = {

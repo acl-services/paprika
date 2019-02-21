@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import memoizeOne from "memoize-one";
-import { func, node, bool, string, number, oneOf, oneOfType } from "prop-types";
+import PropTypes from "prop-types";
 import throttle from "lodash.throttle";
 import tokens from "@paprika/tokens";
 import isInsideBoundaries from "./helpers/isInsideBoundaries";
@@ -33,37 +33,37 @@ const throttleDelay = 20;
 
 const propTypes = {
   /** Where the popover content is positioned relative to the trigger or getPositioningElement. */
-  align: oneOf(["top", "right", "bottom", "left"]),
+  align: PropTypes.oneOf(["top", "right", "bottom", "left"]),
 
   /** Content of the popover */
-  children: node.isRequired,
+  children: PropTypes.node.isRequired,
 
   /** Displays as a "tooltip" style with white text on black background. */
-  isDark: bool,
+  isDark: PropTypes.bool,
 
   /** Activated by mouseOver / focus instead of onClick. */
-  isEager: bool,
+  isEager: PropTypes.bool,
 
   /** How "controlled" popovers are shown / hidden. */
-  isOpen: bool,
+  isOpen: PropTypes.bool,
 
   /** How "uncontrolled" popovers can be rendered open by default. */
-  defaultIsOpen: bool,
+  defaultIsOpen: PropTypes.bool,
 
   /** Maximum width of popover content. Use of a number will imply px units and is recommended. */
-  maxWidth: oneOfType([string, number]),
+  maxWidth: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
 
   /** Callback to fire when user closes popover. */
-  onClose: func,
+  onClose: PropTypes.func,
 
   /** Distance, in px, between popover content edge and trigger / getPositioningElement. */
-  offset: number,
+  offset: PropTypes.number,
 
   /** Function that provides DOM element to use as target for positioning the popover. */
-  getPositioningElement: func,
+  getPositioningElement: PropTypes.func,
 
   /** Function that provides the scrolling DOM element that contains the popover. */
-  getScrollContainer: func,
+  getScrollContainer: PropTypes.func,
 };
 
 const defaultProps = {
@@ -79,7 +79,7 @@ const defaultProps = {
   getScrollContainer: null,
 };
 
-export default class Popover extends Component {
+class Popover extends Component {
   constructor(props) {
     super(props);
 
@@ -89,7 +89,7 @@ export default class Popover extends Component {
     this.$tip = null; // this ref comes from a callback of the <Tip /> component
 
     const portalNode = document.createElement("div");
-    portalNode.setAttribute("data-paprika-type", "Popover");
+    // portalNode.setAttribute("data-paprika-type", "Popover");
     this.$portal = document.body.appendChild(portalNode);
 
     this.state = {
@@ -237,7 +237,7 @@ export default class Popover extends Component {
   };
 
   // eslint is forcing to put handleReposition before ComponentDidMount
-  // eslint-disable-next-line
+  // eslint-disable-next-line react/sort-comp
   handleReposition = throttle(() => {
     if (this.isOpen()) {
       const scrollContainer =
@@ -406,3 +406,5 @@ Popover.Trigger = Trigger;
 Popover.Content = Content;
 Popover.Card = Card;
 Popover.Tip = Tip;
+
+export default Popover;

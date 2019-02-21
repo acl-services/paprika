@@ -1,9 +1,17 @@
 import React from "react";
 import ReactDOM from "react-dom";
-import { number } from "prop-types";
+import PropTypes from "prop-types";
 import tokens from "@paprika/tokens";
 import { TipStyled } from "./Tip.styles";
 import { PopoverContext } from "../../Popover";
+
+const propTypes = {
+  zIndex: PropTypes.number,
+};
+
+const defaultProps = {
+  zIndex: 2,
+};
 
 const Tip = props => (
   <PopoverContext.Consumer>
@@ -32,12 +40,7 @@ const Tip = props => (
 
 Tip.displayName = "Popover.Tip";
 
-Tip.propTypes = {
-  zIndex: number,
-};
-
-Tip.defaultProps = {
-  zIndex: 2,
-};
+Tip.propTypes = propTypes;
+Tip.defaultProps = defaultProps;
 
 export default Tip;
