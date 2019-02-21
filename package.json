@@ -84,5 +84,9 @@
       "jest-dom/extend-expect",
       "react-testing-library/cleanup-after-each"
     ]
+  },
+  "dependencies": {
+    "json-loader": "^0.5.7",
+    "yaml-loader": "^0.5.0"
   }
 }

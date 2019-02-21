@@ -1,9 +1,9 @@
 import i18next from "i18next";
-import acluiLocales from "./locales/";
+import acluiLocales from "./locales";
 
 export const defaultLocale = "en";
 
-export default (locales) => {
+export const i18n = (locales) => {
   const i18nConfig = {
     lng: defaultLocale,
     fallbackLng: defaultLocale,

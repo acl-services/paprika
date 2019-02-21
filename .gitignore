@@ -25,3 +25,6 @@ node_modules/
 
 # docz
 .docz
+
+# Sublime workspace configuration
+paprika.sublime-workspace

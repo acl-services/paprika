@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import PropTypes from "prop-types";
 
-class Translate extends Component {
+class _Translate extends Component {
   static propTypes = {
     k: PropTypes.string.isRequired,
     options: PropTypes.object,
@@ -25,4 +25,6 @@ class Translate extends Component {
   }
 }
 
-export default Translate;
+export default _Translate;
+
+export const Translate = new _Translate();
