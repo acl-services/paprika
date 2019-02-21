@@ -3,7 +3,7 @@ import acluiLocales from "./locales";
 
 export const defaultLocale = "en";
 
-export const i18n = (locales) => {
+export const i18n = locales => {
   const i18nConfig = {
     lng: defaultLocale,
     fallbackLng: defaultLocale,
@@ -17,4 +17,4 @@ export const i18n = (locales) => {
   });
 
   return newInstance;
-}
+};

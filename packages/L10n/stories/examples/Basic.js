@@ -15,7 +15,6 @@ const FakeComponent = (props, context) => {
 
 FakeComponent.contextTypes = contextTypes;
 
-
 const L10nStory = () => (
   <Story>
     <L10n locales={Locales} locale={select("locale", ["de", "en", "es", "fr"], "en")}>
