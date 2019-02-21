@@ -28,7 +28,11 @@ const PopoverStory = () => (
         Disabled button
       </RawButton>
     </p>
-    {[...Array.key()].map(index => (
+    {[
+      ...Array(34)
+        .fill()
+        .keys(),
+    ].map(index => (
       <br key={index} />
     ))}
     ...fin.
