@@ -1,7 +1,6 @@
 import React from "react";
 import Popover from "@paprika/popover";
 import RawButton from "@paprika/raw-button";
-import Button from "@paprika/button";
 import { string, number, bool, node, func } from "prop-types";
 import Option from "./components/Option";
 import Filter from "./components/Filter";
