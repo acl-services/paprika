@@ -23,10 +23,10 @@ import L10n, { L10nContext } from "../../L10n";
 //
 // If they dont wrap it in an L10n, need it to default to en
 
-function SampleComponentThatUsesAPaprikaComponent(props) {
+function SampleComponentThatUsesAPaprikaComponent() {
   const i18n = useContext(L10nContext);
   const translatedText = i18n.t("moreInformation");
-  return <button>{translatedText}</button>; // this simulates a paprika component
+  return <button type="button">{translatedText}</button>; // this simulates a paprika component
   // return <Collapsible />; // this component has aria text in the defined language; test on it.
 }
 
