@@ -1,5 +1,5 @@
 import i18next from "i18next";
-import acluiLocales from "./locales";
+import paprikaLocales from "./locales";
 
 export const defaultLocale = "en";
 
@@ -8,7 +8,7 @@ export const i18n = locales => {
     lng: defaultLocale,
     fallbackLng: defaultLocale,
     lowerCaseLng: true,
-    resources: locales || acluiLocales,
+    resources: locales || paprikaLocales,
   };
 
   const newInstance = i18next.createInstance(i18nConfig, err => {
