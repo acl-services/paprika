@@ -20,6 +20,7 @@ const defaultProps = {
 export default function MyFakeConsumerApp(props) {
   return (
     <L10n locale={props.locale}>
+      Change the knob and watch the button&apos;s language change:&nbsp;
       <SomeAclUiComponentThatUsesLocalization />
     </L10n>
   );
