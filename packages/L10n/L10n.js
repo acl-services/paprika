@@ -1,36 +1,11 @@
-import React, { Component } from "react";
-import { func, node, string, object } from "prop-types";
-import { i18n, defaultLocale } from ".";
+import React from "react";
+import { i18n } from ".";
+import Locales from "./locales";
 
-export default class L10n extends Component {
-  static propTypes = {
-    locale: string,
-    children: node.isRequired,
-    locales: object, // eslint-disable-line react/forbid-prop-types
-  };
+export const L10nContext = React.createContext();
 
-  static defaultProps = {
-    locale: defaultLocale,
-    locales: null,
-  };
-
-  static childContextTypes = {
-    locale: string.isRequired,
-    t: func.isRequired,
-  };
-
-  getChildContext() {
-    const _i18n = i18n(this.props.locales);
-
-    return {
-      locale: this.props.locale,
-      t: _i18n.getFixedT(this.props.locale),
-    };
-  }
-
-  render() {
-    // TODO: use a React.fragment here once React has been upgraded
-    if (this.props.children.length) return <span>{this.props.children}</span>;
-    return this.props.children;
-  }
+export default function L10n(props) {
+  const _i18n = i18n(Locales);
+  _i18n.changeLanguage(props.locale);
+  return <L10nContext.Provider value={_i18n}>{props.children}</L10nContext.Provider>;
 }

@@ -1,26 +1,39 @@
-import React from "react";
-import { func } from "prop-types";
-import { select } from "@storybook/addon-knobs";
-import { Story } from "storybook/assets/styles/common.styles";
-import L10n from "../../L10n";
-import Locales from "../../locales";
+import React, { useContext } from "react";
+import L10n, { L10nContext } from "../../L10n";
 
-const contextTypes = {
-  t: func,
-};
+// When someone wants to use a paprika component (like the <Collapsible>) they'd do it like this:
+//
+// import Collapsible from "@paprika/collapsible";
+//
+// <h4>My app</h4>
+// <Collapsible />
+//
+//
+// but if they want it to be in a language other than english, they have to do:
+//
+// import Collapsible from "@paprika/collapsible";
+// import L10n from "@paprika/L10n";
+//
+// <h4>My app</h4>
+// <L10n locale="fr">
+//   <Collapsible />
+// </L10n>
+//
+//
+//
+// If they dont wrap it in an L10n, need it to default to en
 
-const FakeComponent = (props, context) => {
-  return `Change the knob and watch this change: ${context.t("moreInformation")}`;
-};
+function SampleComponentThatUsesAPaprikaComponent(props) {
+  const i18n = useContext(L10nContext);
+  const translatedText = i18n.t("moreInformation");
+  return <button>{translatedText}</button>; // this simulates a paprika component
+  // return <Collapsible />; // this component has aria text in the defined language; test on it.
+}
 
-FakeComponent.contextTypes = contextTypes;
-
-const L10nStory = () => (
-  <Story>
-    <L10n locales={Locales} locale={select("locale", ["de", "en", "es", "fr"], "en")}>
-      <FakeComponent />
+export default function MyNewComponent(props) {
+  return (
+    <L10n locale="fr">
+      <SampleComponentThatUsesAPaprikaComponent {...props} />
     </L10n>
-  </Story>
-);
-
-export default L10nStory;
+  );
+}
