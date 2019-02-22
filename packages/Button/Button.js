@@ -2,7 +2,7 @@ import React from "react";
 import PropTypes from "prop-types";
 import { shirtSize } from "../helpers/customPropTypes";
 
-import ButtonStyled from "./Button.styles";
+import { ButtonStyled, RawButtonStyled } from "./Button.styles";
 
 const propTypes = {
   ariaText: PropTypes.string,
@@ -57,21 +57,26 @@ class Button extends React.Component {
   };
 
   render() {
-    const { ariaText, buttonRef, canPropagate, children, isDisabled, tabIndex, ...moreProps } = this.props;
+    const { ariaText, buttonRef, canPropagate, children, isDisabled, isSemantic, tabIndex, ...moreProps } = this.props;
     if (ariaText) moreProps["aria-label"] = ariaText;
 
-    return (
-      <ButtonStyled
-        disabled={isDisabled}
-        isDisabled={isDisabled}
-        onClick={this.handleClick}
-        ref={this.$button}
-        tabIndex={isDisabled ? -1 : tabIndex}
-        {...moreProps}
-      >
-        {children}
-      </ButtonStyled>
-    );
+    const buttonProps = {
+      isDisabled,
+      onClick: this.handleClick,
+      ref: this.$button,
+      tabIndex,
+      ...moreProps,
+    };
+
+    if (isSemantic) {
+      buttonProps.disabled = isDisabled;
+    } else {
+      buttonProps.tabIndex = isDisabled ? -1 : tabIndex;
+    }
+
+    const ButtonTag = isSemantic ? ButtonStyled : RawButtonStyled;
+
+    return <ButtonTag {...buttonProps}>{children}</ButtonTag>;
   }
 }
 

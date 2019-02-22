@@ -1,15 +1,16 @@
 import styled from "styled-components";
 import tokens from "@paprika/tokens";
 import stylers from "@paprika/stylers";
+import RawButton from "@paprika/raw-button";
 
 // Common
 
 const commonStyles = `
   align-items: center;
   appearance: none;
-  -moz-appearance: none;
-  -webkit-appearance: none;
   border-radius: ${tokens.button.borderRadius};
+  border-style: solid;
+  border-width: 1px;
   box-sizing: border-box;
   cursor: pointer;
   display: inline-flex;
@@ -39,8 +40,6 @@ const commonPostStyles = `
 `;
 
 const skeuomorphicStyles = `
-  border-style: solid;
-  border-width: 1px;
   box-shadow: 0 1px 2px 0 rgba(0,0,0, 0.1); 
   cursor: pointer;
   transition-duration: 0.2s;
@@ -214,21 +213,27 @@ const fullWidthStyles = `
 `;
 
 //
-// Export
+// Composition
 //
 
-const ButtonStyled = styled.button`
+const composedStyles = props => `
   ${commonStyles}
 
-  ${props => sizeStyles[props.size]}
-  ${props => typeStyles[props.type]}
+  ${sizeStyles[props.size]}
+  ${typeStyles[props.type]}
 
   ${commonPostStyles}
-  
-  ${props => props.isFullWidth && fullWidthStyles}
-  ${props => props.isActive && activeStyles}
-  ${props => props.isDisabled && disabledStyles}
-  ${props => (["minor", "link"].includes(props.type) && props.isDisabled ? disabledTextStyles : null)}
+
+  ${props.isFullWidth ? fullWidthStyles : ""}
+  ${props.isActive ? activeStyles : ""}
+  ${props.isDisabled ? disabledStyles : ""}
+  ${["minor", "link"].includes(props.type) && props.isDisabled ? disabledTextStyles : ""}
 `;
 
-export default ButtonStyled;
+export const ButtonStyled = styled.button`
+  ${props => composedStyles(props)}
+`;
+
+export const RawButtonStyled = styled(RawButton)`
+  ${props => composedStyles(props)}
+`;

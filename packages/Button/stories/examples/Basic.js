@@ -1,6 +1,7 @@
 import React from "react";
 import { action } from "@storybook/addon-actions";
-import { Story } from "storybook/assets/styles/common.styles";
+import { Rule } from "storybook/assets/styles/common.styles";
+import { ButtonStory } from "../Button.stories.styles";
 import Button from "../../Button";
 
 const btnRef = React.createRef();
@@ -15,8 +16,28 @@ const clickHandler = ref => () => {
 };
 
 const PopoverStory = () => (
-  <Story>
-    <p>Freegan squid pug heirloom letterpress pork belly, readymade you probably haven’t heard of them.</p>
+  <ButtonStory>
+    <p>
+      <Button ariaText="ceci n'est pas un bouton" buttonRef={btnRef} onClick={clickHandler(btnRef)}>
+        default button
+      </Button>
+
+      <Button onClick={clickHandler(btnRef2)} buttonRef={btnRef2} isDisabled>
+        disabled button
+      </Button>
+    </p>
+    <Rule />
+    <p>
+      <Button isFullWidth onClick={clickHandler()}>
+        full width
+      </Button>
+    </p>
+    <p>
+      <Button onClick={clickHandler()}>
+        long button lumbersexual authentic <br /> vegan vaporware scenester humblebrag
+      </Button>
+    </p>
+    <Rule />
     <p>
       <Button size="xsmall" onClick={clickHandler()}>
         xsmall
@@ -32,6 +53,7 @@ const PopoverStory = () => (
         xlarge
       </Button>
     </p>
+    <Rule />
     <p>
       <Button onClick={clickHandler()}>default</Button>
       <Button type="primary" onClick={clickHandler()}>
@@ -53,15 +75,16 @@ const PopoverStory = () => (
         link
       </Button>
     </p>
-    <hr />
+    <Rule />
     <p>
-      <Button ariaText="ceci n'est pas un bouton" buttonRef={btnRef} onClick={clickHandler(btnRef)}>
-        Long button lumbersexual authentic <br /> vegan vaporware scenester humblebrag
+      <Button isSemantic={false} size="large" type="primary" isActive onClick={clickHandler()}>
+        raw large active primary
       </Button>
-    </p>
-    <p>
-      <Button onClick={clickHandler(btnRef2)} buttonRef={btnRef2} isDisabled>
-        Disabled button
+      <Button isSemantic={false} isDisabled onClick={clickHandler()}>
+        raw default disabled
+      </Button>
+      <Button isSemantic={false} type="link" size="small" onClick={clickHandler()}>
+        raw small link
       </Button>
     </p>
     {[
@@ -72,7 +95,7 @@ const PopoverStory = () => (
       <br key={index} />
     ))}
     ...fin.
-  </Story>
+  </ButtonStory>
 );
 
 export default PopoverStory;
