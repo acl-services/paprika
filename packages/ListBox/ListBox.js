@@ -118,7 +118,7 @@ export default function ListBox(props) {
             {getListboxLabel()}
           </button>
         )}
-        <TriggerArrowStyled isOpen={isPopoverOpen} dangerouslySetInnerHTML={{ __html: "&#x25BC;" }} />
+        <TriggerArrowStyled isOpen={stateIsPopoverOpen} dangerouslySetInnerHTML={{ __html: "&#x25BC;" }} />
       </ListBoxTriggerStyled>
 
       <Popover.Content

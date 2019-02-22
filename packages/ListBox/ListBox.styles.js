@@ -71,7 +71,6 @@ export const ListBoxStyled = styled.ul`
   list-style: none;
   margin: 0;
   padding: 0;
-  scroll-behavior: smooth;
   li {
     box-sizing: border-box;
   }
