@@ -1,11 +1,3 @@
-/**
- TODO:
- - height of the popover
- - isDisabled property
- - destructure ...moreProps
- - implementing blank option
-* */
-
 import React from "react";
 import Popover from "@paprika/popover";
 import { string, number, bool, node, func } from "prop-types";
