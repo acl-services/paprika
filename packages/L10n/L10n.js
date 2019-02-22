@@ -1,6 +1,6 @@
 import React from "react";
 import { node, string } from "prop-types";
-import { i18n } from ".";
+import { i18n } from "./i18n";
 import Locales from "./locales";
 
 export const L10nContext = React.createContext();
