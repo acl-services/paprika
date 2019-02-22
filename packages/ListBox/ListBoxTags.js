@@ -7,7 +7,7 @@ import Tags from "./components/Tags";
 
 const propTypes = {
   children: node.isRequired,
-  placeholder: string,
+  placeholder: string, // eslint-disable-line
 };
 
 export default function ListBoxWithTags(props) {

@@ -2,10 +2,10 @@ import React from "react";
 import { string, node } from "prop-types";
 
 const propTypes = {
-  idPrefix: string,
+  idPrefix: string, // eslint-disable-line
   children: node.isRequired,
-  label: string,
-  value: string,
+  label: string, // eslint-disable-line
+  value: string, // eslint-disable-line
 };
 
 const defaultProps = {

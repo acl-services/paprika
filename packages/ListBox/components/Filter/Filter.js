@@ -85,6 +85,7 @@ const Filter = React.forwardRef((props, ref) => {
         if (g === group) {
           groups.splice(index, 1);
         }
+        return index;
       });
 
       const filteredOptions = optionsKeys

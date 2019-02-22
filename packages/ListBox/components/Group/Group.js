@@ -5,7 +5,7 @@ const componentType = "ListBox.Group";
 
 const propTypes = {
   children: node.isRequired,
-  title: string.isRequired,
+  title: string.isRequired, // eslint-disable-line
 };
 
 export default function Group(props) {
