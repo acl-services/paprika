@@ -1,5 +1,6 @@
 import styled from "styled-components";
 import Popover from "@paprika/popover";
+import RawButtonStyled from "@paprika/raw-button/RawButton.styles";
 
 const blueSelected = "#e5f1fe";
 
@@ -10,7 +11,8 @@ export const PopoverStyled = styled(Popover)`
 
 export const TriggerArrowStyled = styled.span`
   position: absolute;
-  top: 10px;
+  top: 50%;
+  margin-top: -6px;
   right: 12px;
   font-size: 11px;
   color: #333;
@@ -28,23 +30,21 @@ export const TriggerArrowStyled = styled.span`
 
 export const ListBoxTriggerStyled = styled.div`
   position: relative;
-  button {
-    text-align: left;
-    appearance: none; /* replace this with RawButton */
+
+  ${RawButtonStyled} {
+    align-items: center;
     background-color: #ffffff;
     border-radius: 3px;
-    border: 0;
     border: 1px solid #d7d7d7;
     color: #3f3d3c;
-    display: block;
+    display: flex;
     font-size: 14px;
-    height: 32px;
+    padding: 8px;
     overflow: hidden;
-    padding: 0 24px 0 12px;
     position: relative;
+    text-align: left;
     text-overflow: ellipsis;
     transition: border-color 0.2s;
-    vertical-align: bottom;
     white-space: nowrap;
     width: 100%;
   }

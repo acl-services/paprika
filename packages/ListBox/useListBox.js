@@ -262,6 +262,7 @@ export default function useListBox({
   };
 
   const handleKeyDownListBoxContainer = event => {
+    event.stopPropagation();
     switch (event.key) {
       case "ArrowUp":
         handleArrowKeyUp(event);
@@ -288,6 +289,8 @@ export default function useListBox({
           } else {
             close();
           }
+        } else {
+          set(_state => ({ ..._state, isPopoverOpen: true }));
         }
         break;
 
@@ -326,7 +329,7 @@ export default function useListBox({
         // focus to whatever content on the popover
         // unsure how to handle this without settimout
         // 200ms seems really stable for stealing the
-        // focus to the <Popover.Content />
+        // focus from the <Popover.Content />
         setTimeout(() => {
           if (filterInput) {
             filterInput.focus();

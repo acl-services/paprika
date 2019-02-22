@@ -1,5 +1,7 @@
 import React from "react";
 import Popover from "@paprika/popover";
+import RawButton from "@paprika/raw-button";
+import Button from "@paprika/button";
 import { string, number, bool, node, func } from "prop-types";
 import Option from "./components/Option";
 import Filter from "./components/Filter";
@@ -109,14 +111,15 @@ export default function ListBox(props) {
         {props.renderLabel ? (
           props.renderLabel(renderLabelProps, state, set)
         ) : (
-          <button
+          <RawButton
             type="button"
             onClick={handleClickListBoxButton}
             ref={$refListBoxTrigger}
             onKeyDown={handleKeyDownListBoxContainer}
+            onKeyUp={() => {}}
           >
             {getListboxLabel()}
-          </button>
+          </RawButton>
         )}
         <TriggerArrowStyled isOpen={stateIsPopoverOpen} dangerouslySetInnerHTML={{ __html: "&#x25BC;" }} />
       </ListBoxTriggerStyled>
