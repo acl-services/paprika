@@ -46,7 +46,7 @@ function addPadding(storyFn) {
 storiesOf("ListBox", module)
   .addDecorator(addPadding)
   .addDecorator(addPadding)
-  .add("Is single selection", () => (
+  .add("Single select", () => (
     <ListBox>
       <ListBox.Option>Punisher</ListBox.Option>
       <ListBox.Option>Catwoman</ListBox.Option>
@@ -60,7 +60,7 @@ storiesOf("ListBox", module)
 
 storiesOf("ListBox", module)
   .addDecorator(addPadding)
-  .add("Is multiple selection with Label CHILDREN prop in the selection", () => (
+  .add("Use the CHILDREN node for displaying the selected option", () => (
     <ListBox isMulti>
       <ListBox.Option>
         <span role="img" aria-label="unicorn">
@@ -89,7 +89,7 @@ storiesOf("ListBox", module)
       </ListBox.Option>
     </ListBox>
   ))
-  .add("Is multiple selection with LABEL prop in the selection", () => (
+  .add("Use label prop for displaying the selected option", () => (
     <ListBox isMulti>
       <ListBox.Option label="unicorn">
         <span role="img" aria-label="unicorn">
@@ -121,7 +121,7 @@ storiesOf("ListBox", module)
 
 storiesOf("ListBox", module)
   .addDecorator(addPadding)
-  .add("Is single selection with Filter", () => (
+  .add("Is single selec && hasFilter", () => (
     <ListBox hasFilter>
       <ListBox.Option>unicorn</ListBox.Option>
       <ListBox.Option>Cat in love</ListBox.Option>
@@ -133,11 +133,11 @@ storiesOf("ListBox", module)
 
 storiesOf("ListBox", module)
   .addDecorator(addPadding)
-  .add("Is single selection with DYNAMIC adding options", () => <OptionsDynamicallyAdding />);
+  .add("Is a controlled ListBox", () => <OptionsDynamicallyAdding />);
 
 storiesOf("ListBox", module)
   .addDecorator(addPadding)
-  .add("Is single selection with Groups", () => (
+  .add("Is single select with Groups && hasFilter", () => (
     <ListBox hasFilter>
       <ListBox.Group title="antiheroes">
         <ListBox.Option>Punisher</ListBox.Option>
@@ -173,7 +173,7 @@ storiesOf("ListBox", module)
 
 storiesOf("ListBox", module)
   .addDecorator(addPadding)
-  .add("Is multi selection with Groups", () => (
+  .add("HasFilter && isMulti", () => (
     <ListBox hasFilter isMulti>
       <ListBox.Group title="antiheroes">
         <ListBox.Option>Punisher</ListBox.Option>
@@ -209,7 +209,7 @@ storiesOf("ListBox", module)
 
 storiesOf("ListBox", module)
   .addDecorator(addPadding)
-  .add("Is multi selection with Groups Filter", () => (
+  .add("HasGroupFilter && Filter && isMulti", () => (
     <ListBox hasFilter hasGroupFilter isMulti isPopoverOpen>
       <ListBox.Group title="antiheroes">
         <ListBox.Option>Punisher</ListBox.Option>
@@ -243,7 +243,7 @@ storiesOf("ListBox", module)
     </ListBox>
   ));
 
-storiesOf("ListBoxWithTags", module).add("Is single selection with Tags Input", () => (
+storiesOf("ListBox", module).add("Is a Listbox with tags", () => (
   <ListBoxTags hasFilter>
     <ListBoxTags.Option>Punisher</ListBoxTags.Option>
     <ListBoxTags.Option>Catwoman</ListBoxTags.Option>

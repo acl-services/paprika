@@ -110,6 +110,7 @@ export default function ListBox(props) {
     placeholder: props.placeholder,
     ref: $refListBoxTrigger,
   };
+
   return (
     <PopoverStyled {...moreProps} offset={0} maxWidth={state.triggerWidth} isOpen={stateIsPopoverOpen}>
       <ListBoxTriggerStyled ref={$refListBoxTriggerContainer}>
@@ -135,7 +136,7 @@ export default function ListBox(props) {
         onKeyDown={handleKeyDownListBoxContainer}
       >
         <ListBoxContainerStyled triggerWidth={state.triggerWidth}>
-          {props.hasFilter && isPopoverOpen && (
+          {hasFilter && stateIsPopoverOpen && (
             <Filter
               ref={$refListBoxFilterInput}
               set={set}

@@ -410,7 +410,7 @@ export default function useListBox({
         if (state.activeOption === 0) {
           offsetTop = 0;
         }
-        $refListBox.current.scrollTo(0, offsetTop - 12);
+        $refListBox.current.scrollTo(0, offsetTop - 10);
       }
     }
   }, [state.activeOption]);
