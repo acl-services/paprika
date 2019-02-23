@@ -9,7 +9,7 @@ const propTypes = {
 };
 
 const defaultProps = {
-  idPrefix: "",
+  idPrefix: "paprika",
   label: null,
   value: null,
 };
@@ -19,7 +19,5 @@ export default function Option(props) {
 }
 
 Option.componentType = "ListBox.Option";
-
 Option.propTypes = propTypes;
-
 Option.defaultProps = defaultProps;

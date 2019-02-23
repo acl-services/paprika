@@ -1,5 +1,5 @@
-import React, { useState, useEffect, useMemo } from "react";
-import { getDataOptions, getDataGroups } from "./helpers/listBoxData";
+import { useState, useEffect, useMemo } from "react";
+import { getDataOptions, getDataGroups } from "./functions/listBoxData";
 
 export default function useListBox({
   $refListBoxTrigger,
@@ -10,11 +10,9 @@ export default function useListBox({
   hasFilter,
   isMulti,
   listBoxOptions,
-  placeholder,
   isPopoverOpen,
 }) {
   const memoizedOptions = useMemo(() => getDataOptions(listBoxOptions, [listBoxOptions]));
-
   const memoizedGroups = useMemo(() => getDataGroups(listBoxOptions, [listBoxOptions]));
 
   /**
@@ -42,72 +40,6 @@ export default function useListBox({
   });
 
   const optionsKeys = Object.keys(state.options);
-
-  function getDOMAttributesForListBoxContainer() {
-    return { tabIndex: "-1" };
-  }
-
-  function getDOMAttributesForListBox() {
-    return {
-      "aria-activedescendant": state.options[state.activeOption].id,
-      "aria-labelledby": "listbox-value",
-      id: "popup-picker",
-      role: "listbox",
-    };
-  }
-
-  const getDOMAttributesForListBoxOption = index => () => {
-    return index === state.activeOption
-      ? {
-          "aria-selected": "true",
-        }
-      : "";
-  };
-
-  function getDOMAttributesForListBoxButton() {
-    return {
-      "aria-haspopup": "popup-picker",
-      "aria-labelledby": "ccc listBox-button",
-      id: "listBox-button",
-      type: "button",
-    };
-  }
-
-  function getListboxLabelForMulti() {
-    const optionsLength = state.selectedOptions.length;
-    if (state.options[state.activeOption].hasLabel) {
-      const label = state.selectedOptions.map(item => ` ${state.options[item].label}`);
-
-      const quantity = optionsLength > 1 ? `(${optionsLength})` : "";
-      return `${quantity} ${label}`;
-    }
-    const label = state.selectedOptions.map(item => state.options[item].label);
-
-    return optionsLength > 1 ? (
-      <React.Fragment>
-        <span>({optionsLength})</span>
-        {label}
-      </React.Fragment>
-    ) : (
-      <React.Fragment>{label}</React.Fragment>
-    );
-  }
-
-  function getListboxLabel() {
-    if (state.options[state.activeOption].value === "") {
-      return placeholder;
-    }
-
-    if (!state.selectedOptions.length) {
-      return placeholder;
-    }
-
-    if (isMulti) {
-      return getListboxLabelForMulti();
-    }
-
-    return state.options[state.activeOption].label;
-  }
 
   function close() {
     set({
@@ -387,11 +319,6 @@ export default function useListBox({
   }, [$refListBoxTriggerContainer.current]);
 
   return {
-    getDOMAttributesForListBox,
-    getDOMAttributesForListBoxButton,
-    getDOMAttributesForListBoxContainer,
-    getDOMAttributesForListBoxOption,
-    getListboxLabel,
     handleBlur,
     handleClickListBoxButton,
     handleClickListBoxIsMultiAccept,

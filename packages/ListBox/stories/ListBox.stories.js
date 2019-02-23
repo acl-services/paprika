@@ -45,7 +45,6 @@ function addPadding(storyFn) {
 
 storiesOf("ListBox", module)
   .addDecorator(addPadding)
-  .addDecorator(addPadding)
   .add("Single select", () => (
     <ListBox>
       <ListBox.Option>Punisher</ListBox.Option>
@@ -84,7 +83,7 @@ storiesOf("ListBox", module)
       </ListBox.Option>
       <ListBox.Option>
         <span role="img" aria-label="cammel">
-          🐪 Cammel{" "}
+          🐪 Cammel
         </span>
       </ListBox.Option>
     </ListBox>
@@ -114,6 +113,35 @@ storiesOf("ListBox", module)
       <ListBox.Option label="Cammel">
         <span role="img" aria-label="cammel">
           🐪 Cammel{" "}
+        </span>
+      </ListBox.Option>
+    </ListBox>
+  ))
+  .add("Has footer", () => (
+    <ListBox isMulti hasFooter>
+      <ListBox.Option>
+        <span role="img" aria-label="unicorn">
+          🦄 unicorn
+        </span>
+      </ListBox.Option>
+      <ListBox.Option>
+        <span role="img" aria-label="cat">
+          😻 Cat in love
+        </span>
+      </ListBox.Option>
+      <ListBox.Option>
+        <span role="img" aria-label="mountain">
+          🏔 Cypress
+        </span>
+      </ListBox.Option>
+      <ListBox.Option>
+        <span role="img" aria-label="rainbow">
+          🌈 Rainbow
+        </span>
+      </ListBox.Option>
+      <ListBox.Option>
+        <span role="img" aria-label="cammel">
+          🐪 Cammel
         </span>
       </ListBox.Option>
     </ListBox>

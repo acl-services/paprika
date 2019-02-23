@@ -55,6 +55,8 @@ export function Groups(props) {
 }
 
 const Filter = React.forwardRef((props, ref) => {
+  const { set, state } = props;
+
   const [textSearch, setTextSearch] = useState(props.defaultTextSearch);
   const [groupsFiltered, setGroupFilter] = useState([]);
 
@@ -63,7 +65,6 @@ const Filter = React.forwardRef((props, ref) => {
 
     const isChecked = event.target.checked;
     const groups = groupsFiltered.slice();
-    const { set, state } = props;
     const optionsKeys = Object.keys(state.options);
 
     if (isChecked) {
@@ -169,27 +170,33 @@ const Filter = React.forwardRef((props, ref) => {
     }
   };
 
-  return props.renderFilter ? (
-    props.renderFilter(props)
-  ) : (
-    <FilterContainerStyled>
-      <FilterSearchIconStyled />
-      <FilterInputStyled
-        ref={ref}
-        type="text"
-        onChange={handleChangeFilter}
-        onKeyDown={handleKeyDown}
-        value={textSearch}
-        placeholder={props.placeholder}
-      />
-      <Groups
-        hasGroupFilter={props.hasGroupFilter}
-        groups={props.state.groups}
-        groupsFiltered={groupsFiltered}
-        onToggleGroup={toggleGroupFilterChecked}
-      />
-    </FilterContainerStyled>
-  );
+  if (state.hasFilter && state.isPopoverOpen) {
+    if (props.renderFilter) {
+      return props.renderFilter(props);
+    }
+
+    return (
+      <FilterContainerStyled>
+        <FilterSearchIconStyled />
+        <FilterInputStyled
+          ref={ref}
+          type="text"
+          onChange={handleChangeFilter}
+          onKeyDown={handleKeyDown}
+          value={textSearch}
+          placeholder={props.placeholder}
+        />
+        <Groups
+          hasGroupFilter={props.hasGroupFilter}
+          groups={props.state.groups}
+          groupsFiltered={groupsFiltered}
+          onToggleGroup={toggleGroupFilterChecked}
+        />
+      </FilterContainerStyled>
+    );
+  }
+
+  return null;
 });
 
 Filter.propTypes = propTypes;

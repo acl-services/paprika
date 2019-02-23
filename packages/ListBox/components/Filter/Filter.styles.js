@@ -2,6 +2,7 @@ import styled from "styled-components";
 
 export const FilterContainerStyled = styled.div`
   position: relative;
+  padding: 8px 8px 0 8px;
 `;
 
 export const FilterInputStyled = styled.input`
@@ -39,8 +40,8 @@ export const FilterGroupFilterLabel = styled.label`
 `;
 
 export const FilterSearchIconStyled = styled.div`
-  top: 14px;
-  left: 10px;
+  top: calc(50% - 5px);
+  left: 16px;
   color: #000;
   position: absolute;
   width: 12px;

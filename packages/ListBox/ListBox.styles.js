@@ -56,7 +56,7 @@ export const ListBoxContainerStyled = styled.div`
   border-radius: 3px;
   border: 1px solid #d7d7d7;
   box-shadow: 0px 1px 5px rgba(0, 0, 0, 0.07), 0px 7px 17px rgba(0, 0, 0, 0.1);
-  padding: 4px;
+  padding: 0;
 
   ${props => {
     const width = props.triggerWidth ? `width: ${props.triggerWidth}px` : "";
@@ -70,7 +70,8 @@ export const ListBoxStyled = styled.ul`
   box-sizing: border-box;
   list-style: none;
   margin: 0;
-  padding: 0;
+  padding: 0 8px 8px 8px;
+
   li {
     box-sizing: border-box;
   }

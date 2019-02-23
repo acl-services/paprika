@@ -117,10 +117,6 @@ class Popover extends React.Component {
         isOpen prop is also provided.`
       );
     }
-
-    if (props.isOpen !== null && props.onClose === null) {
-      console.error("This Popover is controlled by its isOpen prop but no onClose prop was provided.");
-    }
   }
 
   getContextValues = memoizeOne(
