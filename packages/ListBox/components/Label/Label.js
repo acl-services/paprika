@@ -6,7 +6,7 @@ const propTypes = {
   isMulti: PropTypes.bool,
   options: PropTypes.object,
   placeholder: PropTypes.string,
-  selectedOptions: PropTypes.arrayOf(PropTypes.object),
+  selectedOptions: PropTypes.oneOfType([PropTypes.arrayOf(PropTypes.object), PropTypes.arrayOf(PropTypes.number)]),
 };
 
 export default function Label(props) {

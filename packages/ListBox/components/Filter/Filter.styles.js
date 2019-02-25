@@ -40,7 +40,7 @@ export const FilterGroupFilterLabel = styled.label`
 `;
 
 export const FilterSearchIconStyled = styled.div`
-  top: calc(50% - 5px);
+  top: 21px;
   left: 16px;
   color: #000;
   position: absolute;

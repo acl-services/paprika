@@ -24,6 +24,12 @@ const defaultProps = {
 };
 
 export default function Trigger(props) {
+  const [state, dispatch] = useStore();
+
+  function handleArrowKeyUp(event) {}
+
+  function handleArrowKeyDown(event) {}
+
   const {
     renderLabel,
     onClickTrigger,
@@ -36,8 +42,6 @@ export default function Trigger(props) {
     isMulti,
     placeholder,
   } = props;
-
-  const [state, dispatch] = useStore();
 
   const { isDisabled } = state;
 

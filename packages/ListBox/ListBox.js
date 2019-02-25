@@ -1,15 +1,17 @@
 import React from "react";
-import Popover from "@paprika/popover";
 import PropTypes from "prop-types";
+import Provider from "./store/Provider";
+import Content from "./components/Content";
+import Filter from "./components/Filter";
+import Footer from "./components/Footer";
+import Group from "./components/Group";
+import NoResults from "./components/NoResults";
 import Option from "./components/Option";
 import Options from "./components/Options";
-import Filter from "./components/Filter";
+import Popover from "./components/Popover";
 import Trigger from "./components/Trigger";
-import Group from "./components/Group";
-import Footer from "./components/Footer";
-import NoResults from "./components/NoResults";
-import Provider from "./store/Provider";
-import useStore from "./store/useStore";
+import Box from "./components/Box";
+import List from "./components/List";
 
 import {
   getDOMAttributesForListBoxContainer,
@@ -62,11 +64,11 @@ export default function ListBox(props) {
     ...moreProps
   } = props;
 
-  const $refListBox = React.createRef();
-  const $refListBoxContainer = React.createRef();
-  const $refListBoxTrigger = React.createRef();
-  const $refListBoxTriggerContainer = React.createRef();
-  const $refListBoxFilterInput = React.createRef();
+  const $refListBox = React.useRef();
+  const $refListBoxContainer = React.useRef();
+  const $refListBoxTrigger = React.useRef();
+  const $refListBoxTriggerContainer = React.useRef();
+  const $refListBoxFilterInput = React.useRef();
   const listBoxOptions = props.children;
 
   const {
@@ -112,7 +114,7 @@ export default function ListBox(props) {
       refFilterInput={$refListBoxFilterInput}
       refListBox={$refListBox}
     >
-      <PopoverStyled {...moreProps} offset={0} maxWidth={state.triggerWidth} isOpen={stateIsPopoverOpen}>
+      <Popover {...moreProps} state={state}>
         <Trigger
           renderLabel={renderLabel}
           onClickTrigger={handleClickListBoxButton}
@@ -125,13 +127,8 @@ export default function ListBox(props) {
           isMulti={props.isMulti}
           placeholder={props.placeholder}
         />
-        <Popover.Content
-          onBlur={handleBlur}
-          ref={$refListBoxContainer}
-          {...getDOMAttributesForListBoxContainer()}
-          onKeyDown={handleKeyDownListBoxContainer}
-        >
-          <ListBoxContainerStyled triggerWidth={state.triggerWidth}>
+        <Content onBlur={handleBlur} ref={$refListBoxContainer} onKeyDown={handleKeyDownListBoxContainer}>
+          <Box state={state}>
             <Filter
               ref={$refListBoxFilterInput}
               set={set}
@@ -139,14 +136,9 @@ export default function ListBox(props) {
               options={stateOptions}
               hasGroupFilter={props.hasGroupFilter}
             />
-            <ListBoxStyled
-              hasNoResults={stateHasNoResults}
-              height={height}
-              ref={$refListBox}
-              {...getDOMAttributesForListBox(state)}
-            >
+            <List state={state} height={height} ref={$refListBox}>
               <Options state={state} onClickOption={handleClickListBoxOption} />
-            </ListBoxStyled>
+            </List>
             <NoResults noResultsMessage={props.noResultsMessage} state={state} />
             <Footer
               state={state}
@@ -155,9 +147,9 @@ export default function ListBox(props) {
               onClickAccept={handleClickListBoxIsMultiAccept}
               onClickClear={() => {}}
             />
-          </ListBoxContainerStyled>
-        </Popover.Content>
-      </PopoverStyled>
+          </Box>
+        </Content>
+      </Popover>
     </Provider>
   );
 }
