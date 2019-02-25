@@ -1,5 +1,6 @@
 import { useState, useEffect, useMemo } from "react";
-import { getDataOptions, getDataGroups } from "./functions/listBoxData";
+import { getDataOptions, getDataGroups } from "./helpers/dataStructures";
+import { getNextOptionActiveIndex } from "./helpers/options";
 
 export default function useListBox({
   $refListBoxTrigger,
@@ -38,8 +39,6 @@ export default function useListBox({
     triggerWidth: 0,
     isPopoverOpen,
   });
-
-  const optionsKeys = Object.keys(state.options);
 
   function close() {
     set({
@@ -104,67 +103,12 @@ export default function useListBox({
     close();
   };
 
-  const isOptionVisible = key => () => {
-    const keyInt = Number.parseInt(key, 10);
-    if (state.hasNoResults) {
-      return false;
-    }
-
-    if (state.options[keyInt].isHidden) {
-      return false;
-    }
-
-    return !state.filteredOptions.length || state.filteredOptions.includes(keyInt);
-  };
-
-  function getIndexPosition(ascending = true) {
-    if (state.hasNoResults) {
-      return null;
-    }
-
-    const { activeOption, filteredOptions, options } = state;
-    let index = null;
-
-    let keepIterating = true;
-    let i = activeOption;
-
-    while (keepIterating) {
-      if (ascending) {
-        if (filteredOptions.length === 1) {
-          keepIterating = false;
-          return filteredOptions[0];
-        }
-
-        if ((filteredOptions.length && i + 1 > options.length) || i + 1 > optionsKeys.length - 1) {
-          keepIterating = false;
-          return null;
-        }
-
-        i++;
-      } else {
-        if ((filteredOptions.length && i - 1 < 0) || i - 1 < 0) {
-          keepIterating = false;
-          return null;
-        }
-
-        i--;
-      }
-
-      if (isOptionVisible(i)()) {
-        index = i;
-        keepIterating = false;
-      }
-    }
-
-    return index || 0;
-  }
-
   function getPreviousOption() {
-    return getIndexPosition(false);
+    return getNextOptionActiveIndex(state, false);
   }
 
   function getNextOption() {
-    return getIndexPosition();
+    return getNextOptionActiveIndex(state);
   }
 
   const handleArrowKeyUp = event => {
@@ -247,8 +191,6 @@ export default function useListBox({
     });
   };
 
-  const isOptionSelected = index => () => state.selectedOptions.includes(index);
-
   useEffect(() => {
     const filterInput = $refListBoxFilterInput.current;
     const optionsContainer = $refListBoxContainer.current;
@@ -325,8 +267,6 @@ export default function useListBox({
     handleClickListBoxIsMultiCancel,
     handleClickListBoxOption,
     handleKeyDownListBoxContainer,
-    isOptionSelected,
-    isOptionVisible,
     set,
     state,
   };

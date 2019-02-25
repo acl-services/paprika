@@ -283,3 +283,15 @@ storiesOf("ListBox", module).add("Is a Listbox with tags", () => (
     <ListBoxTags.Option>Wolverine</ListBoxTags.Option>
   </ListBoxTags>
 ));
+
+storiesOf("ListBox", module)
+  .addDecorator(addPadding)
+  .add("Is single selec && isDisabled", () => (
+    <ListBox isDisabled isPopoverOpen>
+      <ListBox.Option>unicorn</ListBox.Option>
+      <ListBox.Option>Cat in love</ListBox.Option>
+      <ListBox.Option>Cypress</ListBox.Option>
+      <ListBox.Option>Rainbow</ListBox.Option>
+      <ListBox.Option>Cammel</ListBox.Option>
+    </ListBox>
+  ));

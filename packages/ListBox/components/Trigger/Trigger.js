@@ -2,7 +2,9 @@ import React from "react";
 import PropTypes from "prop-types";
 import RawButton from "@paprika/raw-button";
 import Label from "../Label";
-import { ListBoxTriggerStyled, TriggerArrowStyled } from "../../ListBox.styles";
+import { ListBoxTriggerStyled, TriggerArrowStyled } from "./Trigger.styles";
+import useStore from "../../store/useStore";
+import * as actionTypes from "../../store/actionTypes";
 
 const propTypes = {
   isMulti: PropTypes.bool.isRequired,
@@ -29,34 +31,52 @@ export default function Trigger(props) {
     refTriggerContainer,
     refTrigger,
     renderLabelProps,
-    state,
+    state: stateProps,
     set,
     isMulti,
     placeholder,
   } = props;
 
+  const [state, dispatch] = useStore();
+
+  const { isDisabled } = state;
+
+  const handleClick = () => {
+    if (isDisabled) {
+      return;
+    }
+
+    dispatch({ type: actionTypes.togglePopover });
+    onClickTrigger();
+  };
+
   return (
-    <ListBoxTriggerStyled ref={refTriggerContainer}>
+    <ListBoxTriggerStyled isDisabled={isDisabled} ref={refTriggerContainer}>
       {renderLabel ? (
-        renderLabel(renderLabelProps, state, set)
+        renderLabel(renderLabelProps, stateProps, set)
       ) : (
         <RawButton
           type="button"
-          onClick={onClickTrigger}
+          onClick={handleClick}
           ref={refTrigger}
           onKeyDown={onKeyDownTrigger}
           onKeyUp={() => {}}
+          isDisabled={isDisabled}
         >
           <Label
-            activeOption={state.options[state.activeOption]}
+            activeOption={stateProps.options[stateProps.activeOption]}
             isMulti={isMulti}
-            options={state.options}
+            options={stateProps.options}
             placeholder={placeholder}
-            selectedOptions={state.selectedOptions}
+            selectedOptions={stateProps.selectedOptions}
           />
         </RawButton>
       )}
-      <TriggerArrowStyled isOpen={state.isPopoverOpen} dangerouslySetInnerHTML={{ __html: "&#x25BC;" }} />
+      <TriggerArrowStyled
+        isDisabled={isDisabled}
+        isOpen={stateProps.isPopoverOpen}
+        dangerouslySetInnerHTML={{ __html: "&#x25BC;" }}
+      />
     </ListBoxTriggerStyled>
   );
 }

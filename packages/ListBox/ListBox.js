@@ -8,12 +8,14 @@ import Trigger from "./components/Trigger";
 import Group from "./components/Group";
 import Footer from "./components/Footer";
 import NoResults from "./components/NoResults";
+import Provider from "./store/Provider";
+import useStore from "./store/useStore";
 
 import {
   getDOMAttributesForListBoxContainer,
   getDOMAttributesForListBox,
   getDOMAttributesForListBoxButton,
-} from "./functions/DOMAttributes";
+} from "./helpers/DOMAttributes";
 
 import { PopoverStyled, ListBoxContainerStyled, ListBoxStyled } from "./ListBox.styles";
 import useListBox from "./useListBox";
@@ -29,6 +31,7 @@ const propTypes = {
   noResultsMessage: PropTypes.node,
   placeholder: PropTypes.string,
   renderLabel: PropTypes.func,
+  isDisabled: PropTypes.bool,
 };
 
 const defaultProps = {
@@ -42,6 +45,7 @@ const defaultProps = {
   noResultsMessage: "There is not results for your filter",
   placeholder: "select one of the options",
   renderLabel: null,
+  isDisabled: false,
 };
 
 export default function ListBox(props) {
@@ -72,8 +76,6 @@ export default function ListBox(props) {
     handleClickListBoxIsMultiCancel,
     handleClickListBoxOption,
     handleKeyDownListBoxContainer,
-    isOptionSelected,
-    isOptionVisible,
     set,
     state,
   } = useListBox({
@@ -101,57 +103,62 @@ export default function ListBox(props) {
   };
 
   return (
-    <PopoverStyled {...moreProps} offset={0} maxWidth={state.triggerWidth} isOpen={stateIsPopoverOpen}>
-      <Trigger
-        renderLabel={renderLabel}
-        onClickTrigger={handleClickListBoxButton}
-        onKeyDownTrigger={handleKeyDownListBoxContainer}
-        refTriggerContainer={$refListBoxTriggerContainer}
-        refTrigger={$refListBoxTrigger}
-        renderLabelProps={renderLabelProps}
-        state={state}
-        set={set}
-        isMulti={props.isMulti}
-        placeholder={props.placeholder}
-      />
-      <Popover.Content
-        onBlur={handleBlur}
-        ref={$refListBoxContainer}
-        {...getDOMAttributesForListBoxContainer()}
-        onKeyDown={handleKeyDownListBoxContainer}
-      >
-        <ListBoxContainerStyled triggerWidth={state.triggerWidth}>
-          <Filter
-            ref={$refListBoxFilterInput}
-            set={set}
-            state={state}
-            options={stateOptions}
-            hasGroupFilter={props.hasGroupFilter}
-          />
-          <ListBoxStyled
-            hasNoResults={stateHasNoResults}
-            height={height}
-            ref={$refListBox}
-            {...getDOMAttributesForListBox(state)}
-          >
-            <Options
+    <Provider
+      {...props}
+      options={props.children}
+      refTrigger={$refListBoxTrigger}
+      refListBoxContainer={$refListBoxContainer}
+      refTriggerContainer={$refListBoxTriggerContainer}
+      refFilterInput={$refListBoxFilterInput}
+      refListBox={$refListBox}
+    >
+      <PopoverStyled {...moreProps} offset={0} maxWidth={state.triggerWidth} isOpen={stateIsPopoverOpen}>
+        <Trigger
+          renderLabel={renderLabel}
+          onClickTrigger={handleClickListBoxButton}
+          onKeyDownTrigger={handleKeyDownListBoxContainer}
+          refTriggerContainer={$refListBoxTriggerContainer}
+          refTrigger={$refListBoxTrigger}
+          renderLabelProps={renderLabelProps}
+          state={state}
+          set={set}
+          isMulti={props.isMulti}
+          placeholder={props.placeholder}
+        />
+        <Popover.Content
+          onBlur={handleBlur}
+          ref={$refListBoxContainer}
+          {...getDOMAttributesForListBoxContainer()}
+          onKeyDown={handleKeyDownListBoxContainer}
+        >
+          <ListBoxContainerStyled triggerWidth={state.triggerWidth}>
+            <Filter
+              ref={$refListBoxFilterInput}
+              set={set}
               state={state}
-              isOptionVisible={isOptionVisible}
-              isOptionSelected={isOptionSelected}
-              onClickOption={handleClickListBoxOption}
+              options={stateOptions}
+              hasGroupFilter={props.hasGroupFilter}
             />
-          </ListBoxStyled>
-          <NoResults noResultsMessage={props.noResultsMessage} state={state} />
-          <Footer
-            state={state}
-            hasFooter={props.hasFooter}
-            onClickCancel={handleClickListBoxIsMultiCancel}
-            onClickAccept={handleClickListBoxIsMultiAccept}
-            onClickClear={() => {}}
-          />
-        </ListBoxContainerStyled>
-      </Popover.Content>
-    </PopoverStyled>
+            <ListBoxStyled
+              hasNoResults={stateHasNoResults}
+              height={height}
+              ref={$refListBox}
+              {...getDOMAttributesForListBox(state)}
+            >
+              <Options state={state} onClickOption={handleClickListBoxOption} />
+            </ListBoxStyled>
+            <NoResults noResultsMessage={props.noResultsMessage} state={state} />
+            <Footer
+              state={state}
+              hasFooter={props.hasFooter}
+              onClickCancel={handleClickListBoxIsMultiCancel}
+              onClickAccept={handleClickListBoxIsMultiAccept}
+              onClickClear={() => {}}
+            />
+          </ListBoxContainerStyled>
+        </Popover.Content>
+      </PopoverStyled>
+    </Provider>
   );
 }
 

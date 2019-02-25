@@ -1,17 +1,16 @@
 import React from "react";
 import PropTypes from "prop-types";
 import { ListBoxOptionStyled, ListBoxOptionDividerStyled } from "../../ListBox.styles";
-import { getDOMAttributesForListBoxOption } from "../../functions/DOMAttributes";
+import { getDOMAttributesForListBoxOption } from "../../helpers/DOMAttributes";
+import { isOptionVisible, isOptionSelected } from "../../helpers/options";
 
 const propTypes = {
   state: PropTypes.any,
-  isOptionVisible: PropTypes.func.isRequired,
-  isOptionSelected: PropTypes.func.isRequired,
   onClickOption: PropTypes.func.isRequired,
 };
 
 export default function Options(props) {
-  const { state, isOptionVisible, isOptionSelected, onClickOption } = props;
+  const { state, onClickOption } = props;
   const optionsArray = Object.keys(state.options);
   let lastGroupTitle = null;
 
@@ -27,12 +26,12 @@ export default function Options(props) {
         {shouldHaveGroupTitle && !state.hasNoResults ? (
           <ListBoxOptionDividerStyled aria-hidden="true">{state.options[key].groupTitle}</ListBoxOptionDividerStyled>
         ) : null}
-        {isOptionVisible(key)() ? (
+        {isOptionVisible(state, key) ? (
           <ListBoxOptionStyled
             {...getDOMAttributesForListBoxOption(state.options[key].index, state)()}
             id={state.options[key].id}
             isActive={state.activeOption === state.options[key].index}
-            isSelected={isOptionSelected(state.options[key].index)()}
+            isSelected={isOptionSelected(state, state.options[key].index)}
             key={state.options[key].id}
             onClick={onClickOption(state.options[key].index)}
             role="option"
