@@ -1,6 +1,12 @@
 import * as actionTypes from "./actionTypes";
 
 export default function reducer(state, { type, payload }) {
+  console.log("%c action:", "background: white; color: green");
+  console.log(`type: ${type}`);
+  console.log("%c payload:", "background: white; color: blue");
+  console.log(`payload:, ${payload || "---"}`);
+  console.log("%c state:", "background: white; color: purple");
+  console.log("state:", state);
   // - export const closePopover = "close popover";
   // export const openPopover = "open popover";
   // - export const setActiveOption = "set active option";
@@ -17,6 +23,12 @@ export default function reducer(state, { type, payload }) {
         isPopoverOpen: false,
       };
 
+    case actionTypes.openPopover:
+      return {
+        ...state,
+        isPopoverOpen: true,
+      };
+
     case actionTypes.togglePopover:
       return {
         ...state,
@@ -24,7 +36,7 @@ export default function reducer(state, { type, payload }) {
       };
 
     case actionTypes.setActiveOption:
-      return { ...state, activeOption: payload.activeOption };
+      return { ...state, activeOption: payload.activeOptionIndex };
 
     case actionTypes.setOptionOnSingleSelection:
       return {
@@ -49,6 +61,37 @@ export default function reducer(state, { type, payload }) {
         isPopoverOpen: true,
         activeOption: payload.activeOptionIndex,
         selectedOptions: selectedOptionsArray,
+      };
+    }
+
+    case actionTypes.applyGroupFilter: {
+      return {
+        ...state,
+        filteredOptions: payload.addFilteredOptions,
+        activeOption: 0,
+      };
+    }
+
+    case actionTypes.applyFilter: {
+      return {
+        ...state,
+        filteredOptions: payload.filteredOptions,
+        hasNoResults: payload.hasNoResults,
+        activeOption: 0,
+      };
+    }
+
+    case actionTypes.setTriggerWidth: {
+      return {
+        ...state,
+        triggerWidth: payload,
+      };
+    }
+
+    case actionTypes.setHasPopupOpened: {
+      return {
+        ...state,
+        hasPopupOpened: payload,
       };
     }
 

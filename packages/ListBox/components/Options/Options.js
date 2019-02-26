@@ -1,18 +1,27 @@
 import React from "react";
-import PropTypes from "prop-types";
 import { ListBoxOptionStyled, ListBoxOptionDividerStyled } from "../../ListBox.styles";
 import { getDOMAttributesForListBoxOption } from "../../helpers/DOMAttributes";
 import { isOptionVisible, isOptionSelected } from "../../helpers/options";
+import * as actionTypes from "../../store/actionTypes";
+import useStore from "../../store/useStore";
 
-const propTypes = {
-  state: PropTypes.any,
-  onClickOption: PropTypes.func.isRequired,
-};
-
-export default function Options(props) {
-  const { state, onClickOption } = props;
+export default function Options() {
+  const [state, dispatch] = useStore();
+  // const { state, onClickOption } = props;
   const optionsArray = Object.keys(state.options);
   let lastGroupTitle = null;
+
+  const handleClickOption = index => () => {
+    if (state.isMulti) {
+      dispatch({ type: actionTypes.setActiveOption, payload: { activeOptionIndex: index, isPopoverOpen: true } });
+      return;
+    }
+
+    dispatch({
+      type: actionTypes.setOptionOnSingleSelection,
+      payload: { activeOptionIndex: index, isPopoverOpen: false },
+    });
+  };
 
   return optionsArray.map(key => {
     let shouldHaveGroupTitle = false;
@@ -33,7 +42,7 @@ export default function Options(props) {
             isActive={state.activeOption === state.options[key].index}
             isSelected={isOptionSelected(state, state.options[key].index)}
             key={state.options[key].id}
-            onClick={onClickOption(state.options[key].index)}
+            onClick={handleClickOption(state.options[key].index)}
             role="option"
           >
             {state.options[key].content}
@@ -43,5 +52,3 @@ export default function Options(props) {
     );
   });
 }
-
-Options.propTypes = propTypes;

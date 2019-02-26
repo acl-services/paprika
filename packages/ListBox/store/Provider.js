@@ -45,6 +45,7 @@ export const StoreContext = React.createContext();
 export default function Provider(props) {
   const [state, dispatch] = React.useReducer(reducer, { ...props }, initializeState);
   const value = { state, dispatch };
+
   return <StoreContext.Provider value={value}>{props.children}</StoreContext.Provider>;
 }
 

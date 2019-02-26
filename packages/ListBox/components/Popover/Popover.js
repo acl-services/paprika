@@ -1,16 +1,17 @@
 import React from "react";
 import PropTypes from "prop-types";
 import { PopoverStyled } from "../../ListBox.styles";
+import useStore from "../../store/useStore";
 
 const propTypes = {
-  state: PropTypes.any,
   children: PropTypes.node.isRequired,
-  isOpen: PropTypes.any,
 };
 const defaultProps = {};
 
 export default function Popover(props) {
-  const { state, children } = props;
+  const [state] = useStore();
+
+  const { children } = props;
   return (
     <PopoverStyled {...props} offset={0} maxWidth={state.triggerWidth} isOpen={state.isPopoverOpen}>
       {children}

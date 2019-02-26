@@ -5,3 +5,7 @@ export const setOptionOnMultipleSelection = "set the selected option on multiple
 export const setOptionOnSingleSelection = "set select option on single select";
 export const toggleDisabled = "toggle disabled";
 export const togglePopover = "toggle popover";
+export const applyGroupFilter = "apply a filter to a complete group";
+export const applyFilter = "filtered an option from the list";
+export const setTriggerWidth = "set trigger's width";
+export const setHasPopupOpened = "set if the popover has opened or not";

@@ -1,5 +1,8 @@
 import React, { useState } from "react";
 import { number, bool, object, node, func, string, shape, oneOf } from "prop-types";
+import useStore from "../../store/useStore";
+import * as actionTypes from "../../store/actionTypes";
+
 import {
   FilterContainerStyled,
   FilterGroupFilterLabel,
@@ -55,10 +58,11 @@ export function Groups(props) {
 }
 
 const Filter = React.forwardRef((props, ref) => {
-  const { set, state } = props;
+  const { set } = props;
+  const [state, dispatch] = useStore();
 
-  const [textSearch, setTextSearch] = useState(props.defaultTextSearch);
-  const [groupsFiltered, setGroupFilter] = useState([]);
+  const [textSearch, setTextSearch] = React.useState(props.defaultTextSearch);
+  const [groupsFiltered, setGroupFilter] = React.useState([]);
 
   const toggleGroupFilterChecked = group => event => {
     event.stopPropagation();
@@ -148,11 +152,12 @@ const Filter = React.forwardRef((props, ref) => {
 
     setTextSearch(textSearchValue);
 
-    props.set({
-      ...props.state,
-      filteredOptions,
-      hasNoResults: textSearchValue && filteredOptions.length === 0,
-      activeOption: 0,
+    dispatch({
+      type: actionTypes.applyFilter,
+      payload: {
+        filteredOptions,
+        hasNoResults: textSearchValue && filteredOptions.length === 0,
+      },
     });
   };
 

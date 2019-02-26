@@ -1,16 +1,15 @@
 import React from "react";
 import PropTypes from "prop-types";
+import useStore from "../../store/useStore";
 
 const propTypes = {
-  activeOption: PropTypes.object,
-  isMulti: PropTypes.bool,
-  options: PropTypes.object,
   placeholder: PropTypes.string,
-  selectedOptions: PropTypes.oneOfType([PropTypes.arrayOf(PropTypes.object), PropTypes.arrayOf(PropTypes.number)]),
 };
 
 export default function Label(props) {
-  const { selectedOptions, isMulti, placeholder, options, activeOption } = props;
+  const [state] = useStore();
+  const { placeholder } = props;
+  const { selectedOptions, isMulti, options, activeOption } = state;
 
   function getListboxLabelForMulti() {
     const optionsLength = selectedOptions.length;
@@ -32,19 +31,20 @@ export default function Label(props) {
     );
   }
 
-  if (activeOption.value === "") {
-    return placeholder;
+  if (activeOption) {
+    if (isMulti && selectedOptions.length) {
+      return getListboxLabelForMulti();
+    }
+
+    const option = options[activeOption];
+    if (option.value === "") {
+      return placeholder;
+    }
+
+    return option.label;
   }
 
-  if (!selectedOptions.length) {
-    return placeholder;
-  }
-
-  if (isMulti) {
-    return getListboxLabelForMulti();
-  }
-
-  return activeOption.label;
+  return placeholder;
 }
 
 Label.propTypes = propTypes;
