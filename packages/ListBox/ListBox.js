@@ -13,15 +13,6 @@ import Trigger from "./components/Trigger";
 import Box from "./components/Box";
 import List from "./components/List";
 
-import {
-  getDOMAttributesForListBoxContainer,
-  getDOMAttributesForListBox,
-  getDOMAttributesForListBoxButton,
-} from "./helpers/DOMAttributes";
-
-import { PopoverStyled, ListBoxContainerStyled, ListBoxStyled } from "./ListBox.styles";
-import useListBox from "./useListBox";
-
 const propTypes = {
   children: PropTypes.node,
   hasFilter: PropTypes.bool,
@@ -64,89 +55,37 @@ export default function ListBox(props) {
     ...moreProps
   } = props;
 
-  const $refListBox = React.useRef();
-  const $refListBoxContainer = React.useRef();
-  const $refListBoxTrigger = React.useRef();
-  const $refListBoxTriggerContainer = React.useRef();
-  const $refListBoxFilterInput = React.useRef();
-  const listBoxOptions = props.children;
-
-  const {
-    handleBlur,
-    handleClickListBoxButton,
-    handleClickListBoxIsMultiAccept,
-    handleClickListBoxIsMultiCancel,
-    handleClickListBoxOption,
-    handleKeyDownListBoxContainer,
-    set,
-    state,
-  } = useListBox({
-    $refListBoxTrigger,
-    $refListBoxContainer,
-    $refListBoxTriggerContainer,
-    $refListBoxFilterInput,
-    $refListBox,
-    hasFilter: props.hasFilter,
-    isMulti: props.isMulti,
-    listBoxOptions,
-    placeholder: props.placeholder,
-    isPopoverOpen: props.isPopoverOpen,
-    renderLabel: props.renderLabel,
-  });
-
-  const { options: stateOptions, isPopoverOpen: stateIsPopoverOpen, hasNoResults: stateHasNoResults } = state;
-
-  const renderLabelProps = {
-    getDOMAttributesForListBoxButton,
-    handleClickListBoxButton,
-    handleKeyDownListBoxContainer,
-    placeholder: props.placeholder,
-    ref: $refListBoxTrigger,
-  };
+  const refListBox = React.useRef();
+  const refListBoxContainer = React.useRef();
+  const refTrigger = React.useRef();
+  const refTriggerContainer = React.useRef();
+  const refFilterInput = React.useRef();
 
   return (
     <Provider
       {...props}
       options={props.children}
-      refTrigger={$refListBoxTrigger}
-      refListBoxContainer={$refListBoxContainer}
-      refTriggerContainer={$refListBoxTriggerContainer}
-      refFilterInput={$refListBoxFilterInput}
-      refListBox={$refListBox}
+      refTrigger={refTrigger}
+      refListBoxContainer={refListBoxContainer}
+      refTriggerContainer={refTriggerContainer}
+      refFilterInput={refFilterInput}
+      refListBox={refListBox}
     >
-      <Popover {...moreProps} state={state}>
+      <Popover {...moreProps}>
         <Trigger
           renderLabel={renderLabel}
-          onClickTrigger={handleClickListBoxButton}
-          onKeyDownTrigger={handleKeyDownListBoxContainer}
-          refTriggerContainer={$refListBoxTriggerContainer}
-          refTrigger={$refListBoxTrigger}
-          renderLabelProps={renderLabelProps}
-          state={state}
-          set={set}
-          isMulti={props.isMulti}
+          refTriggerContainer={refTriggerContainer}
+          refTrigger={refTrigger}
           placeholder={props.placeholder}
         />
-        <Content onBlur={handleBlur} ref={$refListBoxContainer} onKeyDown={handleKeyDownListBoxContainer}>
-          <Box state={state}>
-            <Filter
-              ref={$refListBoxFilterInput}
-              set={set}
-              state={state}
-              options={stateOptions}
-              hasGroupFilter={props.hasGroupFilter}
-            />
-            <List state={state} height={height} ref={$refListBox}>
-              <Options state={state} onClickOption={handleClickListBoxOption} />
+        <Content ref={refListBoxContainer}>
+          <Box>
+            <Filter ref={refFilterInput} hasGroupFilter={props.hasGroupFilter} />
+            <List height={height} ref={refListBox}>
+              <Options />
             </List>
-            <NoResults noResultsMessage={props.noResultsMessage} state={state} />
-            <Footer
-              state={state}
-              hasFooter={props.hasFooter}
-              onClickCancel={handleClickListBoxIsMultiCancel}
-              onClickAccept={handleClickListBoxIsMultiAccept}
-              onClickClear={() => {}}
-            />
+            <NoResults noResultsMessage={props.noResultsMessage} />
+            <Footer hasFooter={props.hasFooter} onClickClear={() => {}} />
           </Box>
         </Content>
       </Popover>

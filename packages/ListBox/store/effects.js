@@ -3,6 +3,7 @@ import * as actionTypes from "./actionTypes";
 export const handleEffectIsPopOver = (state, dispatch) => () => {
   const filterInput = state.refFilterInput.current;
   const listBoxContainer = state.refListBoxContainer.current;
+  const trigger = state.refTrigger.current;
   if (state.isPopoverOpen) {
     if (state.hasFilter) {
       // this is compiting with the focus of the
@@ -26,6 +27,9 @@ export const handleEffectIsPopOver = (state, dispatch) => () => {
     dispatch({ type: actionTypes.setHasPopupOpened, payload: true });
   } else if (state.hasPopupOpened) {
     listBoxContainer.focus();
+    if (!state.isPopoverOpen) {
+      trigger.focus();
+    }
   }
 };
 

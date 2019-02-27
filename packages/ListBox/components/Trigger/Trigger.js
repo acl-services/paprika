@@ -3,19 +3,15 @@ import PropTypes from "prop-types";
 import RawButton from "@paprika/raw-button";
 import Label from "../Label";
 import handleKeyboardKeys from "../../helpers/handleKeyboardKeys";
-import { ListBoxTriggerStyled, TriggerArrowStyled } from "./Trigger.styles";
 import useStore from "../../store/useStore";
 import * as actionTypes from "../../store/actionTypes";
 
+import { ListBoxTriggerStyled, TriggerArrowStyled } from "./Trigger.styles";
+import { getDOMAttributesForListBoxButton } from "../../helpers/DOMAttributes";
+
 const propTypes = {
-  isMulti: PropTypes.bool.isRequired,
   placeholder: PropTypes.string.isRequired,
-  refTrigger: PropTypes.shape({ current: PropTypes.instanceOf(Element) }).isRequired,
-  refTriggerContainer: PropTypes.shape({ current: PropTypes.instanceOf(Element) }).isRequired,
   renderLabel: PropTypes.func,
-  renderLabelProps: PropTypes.any,
-  set: PropTypes.any,
-  state: PropTypes.any,
 };
 
 const defaultProps = {
@@ -24,18 +20,9 @@ const defaultProps = {
 
 export default function Trigger(props) {
   const [state, dispatch] = useStore();
-  const {
-    renderLabel,
-    refTriggerContainer,
-    refTrigger,
-    renderLabelProps,
-    state: stateProps,
-    set,
-    isMulti,
-    placeholder,
-  } = props;
+  const { renderLabel, placeholder } = props;
 
-  const { isDisabled } = state;
+  const { isDisabled, refTriggerContainer, refTrigger, isMulti } = state;
 
   const handleClick = () => {
     if (isDisabled) {
@@ -49,7 +36,11 @@ export default function Trigger(props) {
   return (
     <ListBoxTriggerStyled isDisabled={isDisabled} ref={refTriggerContainer}>
       {renderLabel ? (
-        renderLabel(renderLabelProps, stateProps, set)
+        renderLabel(state, dispatch, {
+          getDOMAttributesForListBoxButton,
+          ref: state.refTrigger,
+          placeholder: props.placeholder,
+        })
       ) : (
         <RawButton
           type="button"

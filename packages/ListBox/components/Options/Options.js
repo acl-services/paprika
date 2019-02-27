@@ -13,13 +13,16 @@ export default function Options() {
 
   const handleClickOption = index => () => {
     if (state.isMulti) {
-      dispatch({ type: actionTypes.setActiveOption, payload: { activeOptionIndex: index, isPopoverOpen: true } });
+      dispatch({
+        type: actionTypes.setActiveOption,
+        payload: { activeOptionIndex: index, isPopoverOpen: true, shouldListBoxContentScroll: false },
+      });
       return;
     }
 
     dispatch({
       type: actionTypes.setOptionOnSingleSelection,
-      payload: { activeOptionIndex: index, isPopoverOpen: false },
+      payload: { activeOptionIndex: index, isPopoverOpen: false, shouldListBoxContentScroll: false },
     });
   };
 

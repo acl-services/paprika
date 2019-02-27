@@ -17,15 +17,16 @@ import React from "react";
 import Proptypes from "prop-types";
 import reducer from "./reducer";
 
-import { getDataOptions, getDataGroups } from "../helpers/dataStructures";
+import { getDataOptions, getDataGroups } from "../helpers/dataStructure";
 
 function initializeState(props) {
-  const options = getDataOptions(props.options);
-  const groups = getDataGroups(props.options);
+  const options = getDataOptions(props.options, props.isMulti);
+  const groups = getDataGroups(props.options, props.isMulti);
 
   return {
     ...props,
-    activeOption: 0,
+    shouldListBoxContentScroll: true,
+    activeOption: null,
     filteredOptions: [],
     groups,
     hasNoResults: false,

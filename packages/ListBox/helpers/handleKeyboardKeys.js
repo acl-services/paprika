@@ -2,7 +2,13 @@ import { getNextOptionActiveIndex } from "./options";
 import * as actionTypes from "../store/actionTypes";
 
 const handleKeyboardKeys = (state, dispatch) => event => {
-  function handleArrowKeys({ isArrowDown = null } = {}) {
+  function handleArrowKeys({ isArrowDown = null } = {}, event) {
+    if (!state.isPopoverOpen) {
+      dispatch({ type: actionTypes.openPopover });
+      return;
+    }
+
+    event.preventDefault();
     const next = isArrowDown ? getNextOptionActiveIndex(state) : getNextOptionActiveIndex(state, false);
     if (next !== null) {
       if (state.isMulti) {
@@ -19,13 +25,11 @@ const handleKeyboardKeys = (state, dispatch) => event => {
 
   switch (event.key) {
     case "ArrowUp":
-      event.preventDefault();
-      handleArrowKeys({ isArrowDown: false });
+      handleArrowKeys({ isArrowDown: false }, event);
       break;
 
     case "ArrowDown":
-      event.preventDefault();
-      handleArrowKeys({ isArrowDown: true });
+      handleArrowKeys({ isArrowDown: true }, event);
       break;
 
     case "Escape":
@@ -39,7 +43,10 @@ const handleKeyboardKeys = (state, dispatch) => event => {
       event.preventDefault();
       if (state.isPopoverOpen) {
         if (state.isMulti) {
-          dispatch({ type: actionTypes.setOptionOnMultipleSelection, payload: state.activeOption });
+          dispatch({
+            type: actionTypes.setOptionOnMultipleSelection,
+            payload: { activeOptionIndex: state.activeOption },
+          });
         } else {
           dispatch({ type: actionTypes.closePopover });
         }

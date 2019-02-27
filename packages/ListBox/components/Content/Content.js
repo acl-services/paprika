@@ -8,8 +8,6 @@ import useStore from "../../store/useStore";
 
 const propTypes = {
   children: PropTypes.node.isRequired,
-  onBlur: PropTypes.any,
-  onKeyDown: PropTypes.any,
 };
 const defaultProps = {};
 

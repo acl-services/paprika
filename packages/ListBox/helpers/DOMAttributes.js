@@ -3,8 +3,11 @@ export function getDOMAttributesForListBoxContainer() {
 }
 
 export function getDOMAttributesForListBox(state) {
+  // NOTE: replace this with L10n component
+  const activedescendant = state.activeOption === null ? "none" : state.options[state.activeOption].id;
+
   return {
-    "aria-activedescendant": state.options[state.activeOption].id,
+    "aria-activedescendant": activedescendant,
     "aria-labelledby": "listbox-value",
     id: "popup-picker",
     role: "listbox",

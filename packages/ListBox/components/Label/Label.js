@@ -31,7 +31,7 @@ export default function Label(props) {
     );
   }
 
-  if (activeOption) {
+  if (activeOption !== null) {
     if (isMulti && selectedOptions.length) {
       return getListboxLabelForMulti();
     }

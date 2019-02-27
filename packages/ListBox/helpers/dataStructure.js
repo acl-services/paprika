@@ -33,14 +33,15 @@ export function getDataOptions(children) {
     }
   });
 
-  // TODO: Work on the blank/empty option
-  // options[0] = {
-  //   id: `$empty__${uuidv4()}`,
-  //   index: 0,
-  //   hasLabel: true,
-  //   label: <span>&nbsp;</span>,
-  //   content: <span>&nbsp;</span>,
-  //   value: '',
+  // if (!isMulti) {
+  //   options[0] = {
+  //     id: `$empty__${uuidv4()}`,
+  //     index: 0,
+  //     hasLabel: true,
+  //     label: "__paprika__empty__void__option__",
+  //     content: <span>&nbsp;</span>,
+  //     value: "",
+  //   };
   // }
 
   return options;

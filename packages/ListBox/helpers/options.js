@@ -20,6 +20,10 @@ export function getNextOptionActiveIndex(state, isAscending = true) {
     return null;
   }
 
+  if (state.activeOption === null) {
+    return 0;
+  }
+
   const optionsKeys = Object.keys(state.options);
   const { activeOption, filteredOptions, options } = state;
   let index = null;

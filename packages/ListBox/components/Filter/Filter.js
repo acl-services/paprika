@@ -1,5 +1,5 @@
-import React, { useState } from "react";
-import { number, bool, object, node, func, string, shape, oneOf } from "prop-types";
+import React from "react";
+import { bool, func, string } from "prop-types";
 import useStore from "../../store/useStore";
 import * as actionTypes from "../../store/actionTypes";
 
@@ -14,25 +14,14 @@ const propTypes = {
   defaultTextSearch: string,
   filter: func,
   hasGroupFilter: bool,
-  options: shape({
-    content: node,
-    hasLabel: string,
-    id: string,
-    index: number,
-    label: oneOf([string, node]),
-    value: oneOf([string, number, object]),
-  }),
   placeholder: string,
   renderFilter: func,
-  set: func.isRequired,
-  state: object.isRequired, // eslint-disable-line
 };
 
 const defaultProps = {
   defaultTextSearch: "",
   renderFilter: null,
   filter: null,
-  options: [],
   placeholder: "Filter...",
   hasGroupFilter: false,
 };
@@ -58,7 +47,6 @@ export function Groups(props) {
 }
 
 const Filter = React.forwardRef((props, ref) => {
-  const { set } = props;
   const [state, dispatch] = useStore();
 
   const [textSearch, setTextSearch] = React.useState(props.defaultTextSearch);
@@ -112,24 +100,25 @@ const Filter = React.forwardRef((props, ref) => {
   }
 
   function filter(textSearchValue) {
-    const keys = Object.keys(props.options);
+    const { options } = state;
+    const keys = Object.keys(options);
     if (keys.length) {
       if (props.filter) {
-        return props.filter(textSearchValue, props.options);
+        return props.filter(textSearchValue, options);
       }
 
       const filteredOptions = keys.filter(key => {
-        const hasLabel = typeof props.options[key].content === "string" || props.options[key].label || null;
+        const hasLabel = typeof options[key].content === "string" || options[key].label || null;
 
         if (hasLabel) {
-          const label = props.options[key].content === "string" || props.options[key].label;
+          const label = options[key].content === "string" || options[key].label;
 
           const filterRegExp = new RegExp(escapeRegExp(textSearchValue), "gi");
           return label.match(filterRegExp);
         }
 
         throw new Error(
-          `Textsearch: ${textSearchValue} during ${props.options[key]}.
+          `Textsearch: ${textSearchValue} during ${options[key]}.
           ListBox.Filter  filter: <ListBox.Option /> need to have
           a string as a children or please provide a label prop
           <ListBox.Option label='yourOptionDescription' />.`
@@ -193,7 +182,7 @@ const Filter = React.forwardRef((props, ref) => {
         />
         <Groups
           hasGroupFilter={props.hasGroupFilter}
-          groups={props.state.groups}
+          groups={state.groups}
           groupsFiltered={groupsFiltered}
           onToggleGroup={toggleGroupFilterChecked}
         />

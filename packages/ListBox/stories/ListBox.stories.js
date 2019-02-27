@@ -46,15 +46,17 @@ function addPadding(storyFn) {
 storiesOf("ListBox", module)
   .addDecorator(addPadding)
   .add("Single select", () => (
-    <ListBox>
-      <ListBox.Option>Punisher</ListBox.Option>
-      <ListBox.Option>Catwoman</ListBox.Option>
-      <ListBox.Option>Venom</ListBox.Option>
-      <ListBox.Option>Thunderbolts</ListBox.Option>
-      <ListBox.Option>Deadpool</ListBox.Option>
-      <ListBox.Option>Spawn</ListBox.Option>
-      <ListBox.Option>Wolverine</ListBox.Option>
-    </ListBox>
+    <React.Fragment>
+      <ListBox>
+        <ListBox.Option>Punisher</ListBox.Option>
+        <ListBox.Option>Catwoman</ListBox.Option>
+        <ListBox.Option>Venom</ListBox.Option>
+        <ListBox.Option>Thunderbolts</ListBox.Option>
+        <ListBox.Option>Deadpool</ListBox.Option>
+        <ListBox.Option>Spawn</ListBox.Option>
+        <ListBox.Option>Wolverine</ListBox.Option>
+      </ListBox>
+    </React.Fragment>
   ));
 
 storiesOf("ListBox", module)

@@ -36,7 +36,7 @@ export default function reducer(state, { type, payload }) {
       };
 
     case actionTypes.setActiveOption:
-      return { ...state, activeOption: payload.activeOptionIndex };
+      return { ...state, activeOption: payload.activeOptionIndex, isPopoverOpen: payload.isPopoverOpen };
 
     case actionTypes.setOptionOnSingleSelection:
       return {
