@@ -4,6 +4,7 @@ import { getDOMAttributesForListBoxOption } from "../../helpers/DOMAttributes";
 import { isOptionVisible, isOptionSelected } from "../../helpers/options";
 import * as actionTypes from "../../store/actionTypes";
 import useStore from "../../store/useStore";
+import Checker from "../Checker";
 
 export default function Options() {
   const [state, dispatch] = useStore();
@@ -48,6 +49,10 @@ export default function Options() {
             onClick={handleClickOption(state.options[key].index)}
             role="option"
           >
+            <Checker
+              isChecked={isOptionSelected(state, state.options[key].index)}
+              renderChecker={state.renderChecker}
+            />
             {state.options[key].content}
           </ListBoxOptionStyled>
         ) : null}

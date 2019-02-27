@@ -25,6 +25,7 @@ const propTypes = {
   placeholder: PropTypes.string,
   renderLabel: PropTypes.func,
   isDisabled: PropTypes.bool,
+  typeOfChecker: PropTypes.oneOf(["checkbox", "plus-sign"]),
 };
 
 const defaultProps = {
@@ -39,6 +40,7 @@ const defaultProps = {
   placeholder: "select one of the options",
   renderLabel: null,
   isDisabled: false,
+  typeOfChecker: null,
 };
 
 export default function ListBox(props) {
@@ -52,6 +54,7 @@ export default function ListBox(props) {
     renderLabel,
     height,
     hasFooter,
+    typeOfChecker,
     ...moreProps
   } = props;
 

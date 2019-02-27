@@ -25,6 +25,8 @@ function initializeState(props) {
 
   return {
     ...props,
+    height: props.height,
+    renderChecker: props.renderChecker,
     shouldListBoxContentScroll: true,
     activeOption: null,
     filteredOptions: [],
