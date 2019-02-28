@@ -7,7 +7,7 @@ const propTypes = {
 };
 
 export default function Checkbox(props) {
-  return <CheckboxStyled type="checkbox" tabIndex={-1} checked={props.isChecked} />;
+  return <CheckboxStyled type="checkbox" tabIndex={-1} checked={props.isChecked} onChange={() => {}} />;
 }
 
 Checkbox.propTypes = propTypes;

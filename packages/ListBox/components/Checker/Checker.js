@@ -3,12 +3,26 @@ import PropTypes from "prop-types";
 import Checkbox from "./Checkbox/Checkbox";
 
 const propTypes = {
-  renderChecker: PropTypes.oneOfType([PropTypes.string, PropTypes.func]).isRequired,
   isChecked: PropTypes.bool.isRequired,
+  isOptionActionGroup: PropTypes.bool,
+  renderChecker: PropTypes.oneOfType([PropTypes.string, PropTypes.func]),
+};
+
+const defaultProps = {
+  isOptionActionGroup: false,
+  renderChecker: null,
 };
 
 export default function Checkers(props) {
-  const { isChecked } = props;
+  const { isOptionActionGroup, isChecked } = props;
+  if (isOptionActionGroup) {
+    if (typeof props.renderChecker === "function") {
+      return props.renderChecker(isChecked);
+    }
+
+    return <Checkbox isChecked={isChecked} />;
+  }
+
   if (typeof props.renderChecker === "function") {
     return props.renderChecker(isChecked);
   }
@@ -21,3 +35,4 @@ export default function Checkers(props) {
 }
 
 Checkers.propTypes = propTypes;
+Checkers.defaultProps = defaultProps;

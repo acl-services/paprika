@@ -12,19 +12,30 @@ export default function Options() {
   const optionsArray = Object.keys(state.options);
   let lastGroupTitle = null;
 
-  const handleClickOption = index => () => {
+  const handleClickOption = key => () => {
+    const { options } = state;
+    const option = options[key];
+    const index = option.index;
+    const isOptionActionGroup = option.isOptionActionGroup;
+
     if (state.isMulti) {
       dispatch({
         type: actionTypes.setActiveOption,
         payload: { activeOptionIndex: index, isPopoverOpen: true, shouldListBoxContentScroll: false },
       });
-      return;
+    } else {
+      dispatch({
+        type: actionTypes.setOptionOnSingleSelection,
+        payload: { activeOptionIndex: index, isPopoverOpen: false, shouldListBoxContentScroll: false },
+      });
     }
 
-    dispatch({
-      type: actionTypes.setOptionOnSingleSelection,
-      payload: { activeOptionIndex: index, isPopoverOpen: false, shouldListBoxContentScroll: false },
-    });
+    if (isOptionActionGroup) {
+      dispatch({
+        type: actionTypes.toggleSelectOptionsByGroup,
+        payload: { index, group: option.value },
+      });
+    }
   };
 
   return optionsArray.map(key => {
@@ -46,10 +57,11 @@ export default function Options() {
             isActive={state.activeOption === state.options[key].index}
             isSelected={isOptionSelected(state, state.options[key].index)}
             key={state.options[key].id}
-            onClick={handleClickOption(state.options[key].index)}
+            onClick={handleClickOption(key)}
             role="option"
           >
             <Checker
+              isOptionActionGroup={state.options[key].isOptionActionGroup}
               isChecked={isOptionSelected(state, state.options[key].index)}
               renderChecker={state.renderChecker}
             />

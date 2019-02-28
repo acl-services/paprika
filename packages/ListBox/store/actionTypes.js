@@ -9,3 +9,4 @@ export const applyGroupFilter = "apply a filter to a complete group";
 export const applyFilter = "filtered an option from the list";
 export const setTriggerWidth = "set trigger's width";
 export const setHasPopupOpened = "set if the popover has opened or not";
+export const toggleSelectOptionsByGroup = "select multiple option depending a group selected";

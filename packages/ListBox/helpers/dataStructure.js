@@ -1,7 +1,8 @@
 import React from "react";
 import uuidv4 from "uuid/v4";
+import ListBox from "../ListBox";
 
-function createOption({ index, child, title = null }) {
+function createOption({ index, child, title = null, isOptionActionGroup = false }) {
   const { children, idPrefix, label, value } = child.props;
 
   return {
@@ -10,15 +11,27 @@ function createOption({ index, child, title = null }) {
     hasLabel: label,
     id: `${idPrefix}__${uuidv4()}`,
     index,
+    isOptionActionGroup,
     isHidden: child.props.isHidden,
     label: label || child.props.children,
     value: value || children,
   };
 }
 
-export function getDataOptions(children) {
+export function getDataOptions(children, groups) {
   const options = {};
   let index = 0;
+
+  if (groups.length) {
+    groups.forEach(group => {
+      options[index] = createOption({
+        index,
+        child: <ListBox.Option>{group}</ListBox.Option>,
+        isOptionActionGroup: true,
+      });
+      index += 1;
+    });
+  }
 
   React.Children.toArray(children).forEach(child => {
     if (child.type.componentType === "ListBox.Group") {

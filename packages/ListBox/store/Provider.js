@@ -20,8 +20,8 @@ import reducer from "./reducer";
 import { getDataOptions, getDataGroups } from "../helpers/dataStructure";
 
 function initializeState(props) {
-  const options = getDataOptions(props.options, props.isMulti);
-  const groups = getDataGroups(props.options, props.isMulti);
+  const groups = getDataGroups(props.options);
+  const options = getDataOptions(props.options, groups);
 
   return {
     ...props,

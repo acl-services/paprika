@@ -95,6 +95,28 @@ export default function reducer(state, { type, payload }) {
       };
     }
 
+    case actionTypes.toggleSelectOptionsByGroup: {
+      const isSelected = state.selectedOptions.includes(payload.index);
+      let optionsToSelect = [];
+
+      if (isSelected) {
+        optionsToSelect = Object.keys(state.options)
+          .filter(key => state.options[key].groupTitle === payload.group || state.options[key].label === payload.group)
+          .map(index => Number.parseInt(index, 10));
+      } else {
+        optionsToSelect = state.selectedOptions
+          .filter(
+            index => state.options[index].groupTitle !== payload.group || state.options[index].label === payload.group
+          )
+          .map(index => Number.parseInt(index, 10));
+      }
+
+      return {
+        ...state,
+        selectedOptions: optionsToSelect,
+      };
+    }
+
     default:
       return state;
   }

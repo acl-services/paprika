@@ -13,7 +13,6 @@ import {
 const propTypes = {
   defaultTextSearch: string,
   filter: func,
-  hasGroupFilter: bool,
   placeholder: string,
   renderFilter: func,
 };
@@ -23,76 +22,12 @@ const defaultProps = {
   renderFilter: null,
   filter: null,
   placeholder: "Filter...",
-  hasGroupFilter: false,
 };
-
-export function Groups(props) {
-  if (props.hasGroupFilter && props.groups.length) {
-    return props.groups.map((group, index) => {
-      const key = `${group}${index}`;
-      return (
-        <FilterGroupFilterLabel key={key} htmlFor={key}>
-          <input
-            id={key}
-            onChange={props.onToggleGroup(group)}
-            type="checkbox"
-            checked={props.groupsFiltered.includes(group)}
-          />
-          <span>{group}</span>
-        </FilterGroupFilterLabel>
-      );
-    });
-  }
-  return null;
-}
 
 const Filter = React.forwardRef((props, ref) => {
   const [state, dispatch] = useStore();
 
   const [textSearch, setTextSearch] = React.useState(props.defaultTextSearch);
-  const [groupsFiltered, setGroupFilter] = React.useState([]);
-
-  const toggleGroupFilterChecked = group => event => {
-    event.stopPropagation();
-
-    const isChecked = event.target.checked;
-    const groups = groupsFiltered.slice();
-    const optionsKeys = Object.keys(state.options);
-
-    if (isChecked) {
-      groups.push(group);
-
-      const filteredOptions = optionsKeys
-        .filter(key => groups.includes(state.options[key].groupTitle))
-        .map(key => Number.parseInt(key, 10));
-
-      if (filteredOptions.length) {
-        set({
-          ...state,
-          filteredOptions,
-          activeOption: 0,
-        });
-      }
-    } else {
-      groups.some((g, index) => {
-        if (g === group) {
-          groups.splice(index, 1);
-        }
-        return index;
-      });
-
-      const filteredOptions = optionsKeys
-        .filter(key => groups.includes(state.options[key].groupTitle))
-        .map(key => Number.parseInt(key, 10));
-
-      set({
-        ...state,
-        filteredOptions,
-        activeOption: 0,
-      });
-    }
-    setGroupFilter(groups);
-  };
 
   // this might be better using _.escapeRegExp by lodash. But good enough for now
   function escapeRegExp(str) {
@@ -179,12 +114,6 @@ const Filter = React.forwardRef((props, ref) => {
           onKeyDown={handleKeyDown}
           value={textSearch}
           placeholder={props.placeholder}
-        />
-        <Groups
-          hasGroupFilter={props.hasGroupFilter}
-          groups={state.groups}
-          groupsFiltered={groupsFiltered}
-          onToggleGroup={toggleGroupFilterChecked}
         />
       </FilterContainerStyled>
     );
