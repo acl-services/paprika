@@ -12,18 +12,29 @@ export default function Label(props) {
   const { selectedOptions, isMulti, options, activeOption } = state;
 
   function getListboxLabelForMulti() {
-    const optionsLength = selectedOptions.length;
-    if (activeOption.hasLabel) {
-      const label = selectedOptions.map(item => ` ${options[item].label}`);
+    const optionsLength = selectedOptions.filter(index => !options[index].isOptionActionGroup).length;
 
-      const quantity = optionsLength > 1 ? `(${optionsLength})` : "";
-      return `${quantity} ${label}`;
-    }
-    const label = selectedOptions.map(item => options[item].label);
+    const label = selectedOptions
+      .map(index => {
+        const option = options[index];
+        if (typeof option.content === "string") {
+          return option.content;
+        }
+
+        if (option.label) {
+          return option.label;
+        }
+
+        throw Error(
+          `The trigger label on the ListBox needs that either <ListBox.Option> children are typeof string
+          or a label prop is add to the <ListBox.Option label='my description'> component`
+        );
+      })
+      .join(", ");
 
     return optionsLength > 1 ? (
       <React.Fragment>
-        <span>({optionsLength})</span>
+        <span>({optionsLength})&nbsp;</span>
         {label}
       </React.Fragment>
     ) : (

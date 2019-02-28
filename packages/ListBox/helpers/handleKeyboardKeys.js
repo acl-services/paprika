@@ -2,6 +2,10 @@ import { getNextOptionActiveIndex } from "./options";
 import * as actionTypes from "../store/actionTypes";
 
 const handleKeyboardKeys = (state, dispatch) => event => {
+  if (state.isDisabled) {
+    return;
+  }
+
   function handleArrowKeys({ isArrowDown = null } = {}, event) {
     if (!state.isPopoverOpen) {
       dispatch({ type: actionTypes.openPopover });

@@ -14,6 +14,9 @@ const defaultProps = {};
 const Content = React.forwardRef((props, ref) => {
   const [state, dispatch] = useStore();
   const handleBlur = () => {
+    if (state.isDisabled) {
+      return;
+    }
     // requestAnimationFrame give time to process
     // the element that has received the click event
     // via document.activeElement instead of returning

@@ -1,5 +1,5 @@
 import React from "react";
-import { ListBoxOptionStyled, ListBoxOptionDividerStyled } from "../../ListBox.styles";
+import { OptionStyled, OptionDividerStyled } from "./Options.styles";
 import { getDOMAttributesForListBoxOption } from "../../helpers/DOMAttributes";
 import { isOptionVisible, isOptionSelected } from "../../helpers/options";
 import * as actionTypes from "../../store/actionTypes";
@@ -13,6 +13,10 @@ export default function Options() {
   let lastGroupTitle = null;
 
   const handleClickOption = key => () => {
+    if (state.isDisabled) {
+      return;
+    }
+
     const { options } = state;
     const option = options[key];
     const index = option.index;
@@ -48,10 +52,10 @@ export default function Options() {
     return (
       <React.Fragment key={key}>
         {shouldHaveGroupTitle && !state.hasNoResults ? (
-          <ListBoxOptionDividerStyled aria-hidden="true">{state.options[key].groupTitle}</ListBoxOptionDividerStyled>
+          <OptionDividerStyled aria-hidden="true">{state.options[key].groupTitle}</OptionDividerStyled>
         ) : null}
         {isOptionVisible(state, key) ? (
-          <ListBoxOptionStyled
+          <OptionStyled
             {...getDOMAttributesForListBoxOption(state.options[key].index, state)()}
             id={state.options[key].id}
             isActive={state.activeOption === state.options[key].index}
@@ -59,6 +63,7 @@ export default function Options() {
             key={state.options[key].id}
             onClick={handleClickOption(key)}
             role="option"
+            isDisabled={state.isDisabled}
           >
             <Checker
               isOptionActionGroup={state.options[key].isOptionActionGroup}
@@ -66,7 +71,7 @@ export default function Options() {
               renderChecker={state.renderChecker}
             />
             {state.options[key].content}
-          </ListBoxOptionStyled>
+          </OptionStyled>
         ) : null}
       </React.Fragment>
     );

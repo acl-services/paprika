@@ -11,10 +11,11 @@ export const ListBoxTriggerStyled = styled.div`
     border-radius: 3px;
     border: 1px solid #d7d7d7;
     color: #3f3d3c;
-    display: flex;
+    display: block;
     font-size: 14px;
-    padding: 8px;
     overflow: hidden;
+    padding-right: 32px;
+    padding: 8px;
     position: relative;
     text-align: left;
     text-overflow: ellipsis;
@@ -33,19 +34,22 @@ export const ListBoxTriggerStyled = styled.div`
 `;
 
 export const TriggerArrowStyled = styled.span`
-  position: absolute;
-  top: 50%;
-  margin-top: -6px;
-  right: 12px;
-  font-size: 11px;
-  color: #333;
-  pointer-events: none;
-  transition: all 0.4s ease;
-
   ${props => {
+    if (props.hasRenderLabel) {
+      return "display: none";
+    }
+
     const isDisabled = props.isDisabled ? `color: ${tokens.color.blackLighten60};` : "";
     const rotate = props.isOpen ? `transform: rotate(180deg);` : `transform: rotate(0);`;
+
     return `
+      position: absolute;
+      top: 50%;
+      margin-top: -6px;
+      right: 12px;
+      font-size: 11px;
+      color: #333;
+      pointer-events: none;
       transition: all 0.4s ease;
       ${rotate}
       ${isDisabled}

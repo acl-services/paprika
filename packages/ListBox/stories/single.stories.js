@@ -18,6 +18,20 @@ storiesOf("ListBox / single", module).add("Basic", () => (
   </Frame>
 ));
 
+storiesOf("ListBox / single", module).add("Basic is disabled", () => (
+  <Frame>
+    <ListBox isDisabled>
+      <ListBox.Option>Punisher</ListBox.Option>
+      <ListBox.Option>Catwoman</ListBox.Option>
+      <ListBox.Option>Venom</ListBox.Option>
+      <ListBox.Option>Thunderbolts</ListBox.Option>
+      <ListBox.Option>Deadpool</ListBox.Option>
+      <ListBox.Option>Spawn</ListBox.Option>
+      <ListBox.Option>Wolverine</ListBox.Option>
+    </ListBox>
+  </Frame>
+));
+
 storiesOf("ListBox / single", module).add("With Filter", () => (
   <Frame>
     <ListBox hasFilter>
@@ -42,6 +56,36 @@ storiesOf("ListBox / single", module).add("With Filter and nodes as children", (
           </ImageOption>
         </ListBox.Option>
       ))}
+    </ListBox>
+  </Frame>
+));
+
+storiesOf("ListBox / single", module).add("With Trigger as button", () => (
+  <Frame>
+    <ListBox
+      renderLabel={(state, dispatch, { getDOMAttributesForListBoxButton }) => (
+        <button
+          onClick={() => {
+            dispatch({ type: "OPEN_POPOVER" });
+          }}
+          type="button"
+          {...getDOMAttributesForListBoxButton}
+          ref={state.refTrigger}
+        >
+          <span role="img" aria-label="rocket">
+            🚀
+          </span>
+          Toggle Listbox
+        </button>
+      )}
+    >
+      <ListBox.Option>Punisher</ListBox.Option>
+      <ListBox.Option>Catwoman</ListBox.Option>
+      <ListBox.Option>Venom</ListBox.Option>
+      <ListBox.Option>Thunderbolts</ListBox.Option>
+      <ListBox.Option>Deadpool</ListBox.Option>
+      <ListBox.Option>Spawn</ListBox.Option>
+      <ListBox.Option>Wolverine</ListBox.Option>
     </ListBox>
   </Frame>
 ));

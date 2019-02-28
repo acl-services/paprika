@@ -18,6 +18,34 @@ storiesOf("ListBox / multi", module).add("Basic", () => (
   </Frame>
 ));
 
+storiesOf("ListBox / multi", module).add("Basic is disabled", () => (
+  <Frame>
+    <ListBox isMulti isDisabled>
+      <ListBox.Option>Punisher</ListBox.Option>
+      <ListBox.Option>Catwoman</ListBox.Option>
+      <ListBox.Option>Venom</ListBox.Option>
+      <ListBox.Option>Thunderbolts</ListBox.Option>
+      <ListBox.Option>Deadpool</ListBox.Option>
+      <ListBox.Option>Spawn</ListBox.Option>
+      <ListBox.Option>Wolverine</ListBox.Option>
+    </ListBox>
+  </Frame>
+));
+
+storiesOf("ListBox / multi", module).add("Basic is disabled while open", () => (
+  <Frame>
+    <ListBox isMulti isDisabled isPopoverOpen>
+      <ListBox.Option>Punisher</ListBox.Option>
+      <ListBox.Option>Catwoman</ListBox.Option>
+      <ListBox.Option>Venom</ListBox.Option>
+      <ListBox.Option>Thunderbolts</ListBox.Option>
+      <ListBox.Option>Deadpool</ListBox.Option>
+      <ListBox.Option>Spawn</ListBox.Option>
+      <ListBox.Option>Wolverine</ListBox.Option>
+    </ListBox>
+  </Frame>
+));
+
 storiesOf("ListBox / multi", module).add("With Filter", () => (
   <Frame>
     <ListBox isMulti hasFilter>

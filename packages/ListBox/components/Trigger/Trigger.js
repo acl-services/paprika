@@ -30,17 +30,12 @@ export default function Trigger(props) {
     }
 
     dispatch({ type: actionTypes.togglePopover });
-    // onClickTrigger();
   };
 
   return (
     <ListBoxTriggerStyled isDisabled={isDisabled} ref={refTriggerContainer}>
       {renderLabel ? (
-        renderLabel(state, dispatch, {
-          getDOMAttributesForListBoxButton,
-          ref: state.refTrigger,
-          placeholder: props.placeholder,
-        })
+        renderLabel(state, dispatch, { getDOMAttributesForListBoxButton })
       ) : (
         <RawButton
           type="button"
@@ -60,6 +55,7 @@ export default function Trigger(props) {
         </RawButton>
       )}
       <TriggerArrowStyled
+        hasRenderLabel={renderLabel}
         isDisabled={isDisabled}
         isOpen={state.isPopoverOpen}
         dangerouslySetInnerHTML={{ __html: "&#x25BC;" }}
