@@ -36,7 +36,7 @@ const defaultProps = {
   height: 200,
   isMulti: false,
   isPopoverOpen: false,
-  noResultsMessage: "There is not results for your filter",
+  noResultsMessage: "There are not results for your filter",
   placeholder: "select one of the options",
   renderLabel: null,
   isDisabled: false,

@@ -1,20 +1,6 @@
 import * as actionTypes from "./actionTypes";
 
 export default function reducer(state, { type, payload }) {
-  console.log("%c action:", "background: white; color: green");
-  console.log(`type: ${type}`);
-  console.log("%c payload:", "background: white; color: blue");
-  console.log(`payload:, ${payload || "---"}`);
-  console.log("%c state:", "background: white; color: purple");
-  console.log("state:", state);
-  // - export const closePopover = "close popover";
-  // export const openPopover = "open popover";
-  // - export const setActiveOption = "set active option";
-  // - export const setOptionOnMultipleSelection = "set the selected option on multiple select";
-  // - export const setOptionOnSingleSelection = "set select option on single select";
-  // export const toggleDisabled = "toggle disabled";
-  // export const togglePopover = "toggle popover";
-
   switch (type) {
     case actionTypes.closePopover:
       return {
@@ -36,7 +22,12 @@ export default function reducer(state, { type, payload }) {
       };
 
     case actionTypes.setActiveOption:
-      return { ...state, activeOption: payload.activeOptionIndex, isPopoverOpen: payload.isPopoverOpen };
+      return {
+        ...state,
+        activeOption: payload.activeOptionIndex,
+        isPopoverOpen: payload.isPopoverOpen,
+        shouldListBoxContentScroll: true,
+      };
 
     case actionTypes.setOptionOnSingleSelection:
       return {
@@ -44,6 +35,7 @@ export default function reducer(state, { type, payload }) {
         activeOption: payload.activeOptionIndex,
         selectedOptions: [payload.activeOptionIndex],
         isPopoverOpen: payload.isPopoverOpen,
+        shouldListBoxContentScroll: true,
       };
 
     case actionTypes.setOptionOnMultipleSelection: {
@@ -61,6 +53,7 @@ export default function reducer(state, { type, payload }) {
         isPopoverOpen: true,
         activeOption: payload.activeOptionIndex,
         selectedOptions: selectedOptionsArray,
+        shouldListBoxContentScroll: false,
       };
     }
 
@@ -101,13 +94,15 @@ export default function reducer(state, { type, payload }) {
 
       if (isSelected) {
         optionsToSelect = Object.keys(state.options)
-          .filter(key => state.options[key].groupTitle === payload.group || state.options[key].label === payload.group)
+          .filter(key => state.options[key].groupTitle === payload.group)
           .map(index => Number.parseInt(index, 10));
+
+        if (state.selectedOptions.length) {
+          optionsToSelect = [...state.selectedOptions.slice(), ...optionsToSelect];
+        }
       } else {
         optionsToSelect = state.selectedOptions
-          .filter(
-            index => state.options[index].groupTitle !== payload.group || state.options[index].label === payload.group
-          )
+          .filter(index => state.options[index].groupTitle !== payload.group)
           .map(index => Number.parseInt(index, 10));
       }
 

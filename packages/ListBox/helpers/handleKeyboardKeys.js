@@ -12,14 +12,24 @@ const handleKeyboardKeys = (state, dispatch) => event => {
     const next = isArrowDown ? getNextOptionActiveIndex(state) : getNextOptionActiveIndex(state, false);
     if (next !== null) {
       if (state.isMulti) {
-        dispatch({ type: actionTypes.setActiveOption, payload: { activeOptionIndex: next, isPopoverOpen: true } });
-        return;
+        dispatch({
+          type: actionTypes.setActiveOption,
+          payload: { activeOptionIndex: next, isPopoverOpen: true },
+        });
+      } else {
+        dispatch({
+          type: actionTypes.setOptionOnSingleSelection,
+          payload: { activeOptionIndex: next, isPopoverOpen: true },
+        });
       }
 
-      dispatch({
-        type: actionTypes.setOptionOnSingleSelection,
-        payload: { activeOptionIndex: next, isPopoverOpen: true },
-      });
+      const option = state.options[next];
+      if (option.isOptionActionGroup) {
+        dispatch({
+          type: actionTypes.toggleSelectOptionsByGroup,
+          payload: { index: next, group: option.value },
+        });
+      }
     }
   }
 
@@ -45,8 +55,16 @@ const handleKeyboardKeys = (state, dispatch) => event => {
         if (state.isMulti) {
           dispatch({
             type: actionTypes.setOptionOnMultipleSelection,
-            payload: { activeOptionIndex: state.activeOption },
+            payload: { activeOptionIndex: state.activeOption, isPopoverOpen: true, shouldListBoxContentScroll: false },
           });
+
+          const option = state.options[state.activeOption];
+          if (option.isOptionActionGroup) {
+            dispatch({
+              type: actionTypes.toggleSelectOptionsByGroup,
+              payload: { index: option.index, group: option.value },
+            });
+          }
         } else {
           dispatch({ type: actionTypes.closePopover });
         }

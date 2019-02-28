@@ -36,8 +36,10 @@ export const ListBoxStyled = styled.ul`
 
   overflow: auto;
   ${props => {
+    const paddingNoResults = props.hasNoResults ? "padding: 0" : "";
     return `
         max-height: ${props.height}px
+        ${paddingNoResults}
       `;
   }}
 `;

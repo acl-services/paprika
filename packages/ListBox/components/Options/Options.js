@@ -20,13 +20,13 @@ export default function Options() {
 
     if (state.isMulti) {
       dispatch({
-        type: actionTypes.setActiveOption,
+        type: actionTypes.setOptionOnMultipleSelection,
         payload: { activeOptionIndex: index, isPopoverOpen: true, shouldListBoxContentScroll: false },
       });
     } else {
       dispatch({
         type: actionTypes.setOptionOnSingleSelection,
-        payload: { activeOptionIndex: index, isPopoverOpen: false, shouldListBoxContentScroll: false },
+        payload: { activeOptionIndex: index, isPopoverOpen: false },
       });
     }
 
