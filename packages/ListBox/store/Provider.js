@@ -16,6 +16,7 @@
 import React from "react";
 import Proptypes from "prop-types";
 import reducer from "./reducer";
+import * as actionTypes from "./actionTypes";
 
 import { getDataOptions, getDataGroups } from "../helpers/dataStructure";
 
@@ -25,16 +26,17 @@ function initializeState(props) {
 
   return {
     ...props,
-    height: props.height,
-    renderChecker: props.renderChecker,
-    shouldListBoxContentScroll: true,
     activeOption: null,
     filteredOptions: [],
     groups,
     hasNoResults: false,
     hasPopupOpened: false,
+    height: props.height,
     options,
+    preventOnBlur: false,
+    renderChecker: props.renderChecker,
     selectedOptions: [],
+    shouldListBoxContentScroll: true,
     triggerWidth: 0,
   };
 }
@@ -48,6 +50,16 @@ export const StoreContext = React.createContext();
 export default function Provider(props) {
   const [state, dispatch] = React.useReducer(reducer, { ...props }, initializeState);
   const value = { state, dispatch };
+
+  React.useEffect(() => {
+    if (state.hasPopupOpened) {
+      const groups = getDataGroups(props.options);
+      dispatch({
+        type: actionTypes.updateOptions,
+        payload: getDataOptions(props.options, groups),
+      });
+    }
+  }, props.options); // eslint-disable-line
 
   return <StoreContext.Provider value={value}>{props.children}</StoreContext.Provider>;
 }

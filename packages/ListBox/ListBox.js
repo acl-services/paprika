@@ -21,7 +21,7 @@ const propTypes = {
   height: PropTypes.number,
   isMulti: PropTypes.bool,
   isPopoverOpen: PropTypes.bool,
-  noResultsMessage: PropTypes.node,
+  label: PropTypes.node,
   placeholder: PropTypes.string,
   renderLabel: PropTypes.func,
   isDisabled: PropTypes.bool,
@@ -36,7 +36,7 @@ const defaultProps = {
   height: 200,
   isMulti: false,
   isPopoverOpen: false,
-  noResultsMessage: "There are not results for your filter",
+  label: "There are not results for your filter",
   placeholder: "select one of the options",
   renderLabel: null,
   isDisabled: false,
@@ -87,7 +87,7 @@ export default function ListBox(props) {
             <List height={height} ref={refListBox}>
               <Options />
             </List>
-            <NoResults noResultsMessage={props.noResultsMessage} />
+            <NoResults label={props.label} />
             <Footer hasFooter={props.hasFooter} onClickClear={() => {}} />
           </Box>
         </Content>

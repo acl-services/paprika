@@ -69,7 +69,7 @@ storiesOf("ListBox / single", module).add("With Trigger as button", () => (
             dispatch({ type: "OPEN_POPOVER" });
           }}
           type="button"
-          {...getDOMAttributesForListBoxButton}
+          {...getDOMAttributesForListBoxButton()}
           ref={state.refTrigger}
         >
           <span role="img" aria-label="rocket">

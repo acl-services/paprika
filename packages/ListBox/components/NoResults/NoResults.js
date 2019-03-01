@@ -4,14 +4,14 @@ import useStore from "../../store/useStore";
 import NoResultsStyled from "./NoResults.styles";
 
 const propTypes = {
-  noResultsMessage: PropTypes.node.isRequired,
+  label: PropTypes.node.isRequired,
 };
 
 export default function NoResults(props) {
-  const { noResultsMessage } = props;
+  const { label } = props;
   const [state] = useStore();
   if (state.isPopoverOpen && state.hasNoResults) {
-    return <NoResultsStyled>{noResultsMessage}</NoResultsStyled>;
+    return <NoResultsStyled>{label}</NoResultsStyled>;
   }
 
   return null;

@@ -5,7 +5,7 @@ import tokens from "@paprika/tokens";
 export const ListBoxTriggerStyled = styled.div`
   position: relative;
 
-  ${RawButtonStyled} {
+  & > ${RawButtonStyled} {
     align-items: center;
     background-color: #ffffff;
     border-radius: 3px;

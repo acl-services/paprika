@@ -112,6 +112,48 @@ export default function reducer(state, { type, payload }) {
       };
     }
 
+    case actionTypes.updateOptions: {
+      return {
+        ...state,
+        options: payload,
+      };
+    }
+
+    case actionTypes.unselectOptions: {
+      return {
+        ...state,
+        selectedOptions: state.selectedOptions.filter(index => !payload.includes(index)),
+      };
+    }
+
+    case actionTypes.hideOptions: {
+      const optionsClone = { ...state.options };
+      Object.keys(optionsClone).forEach(key => {
+        if (payload.includes(Number.parseInt(key, 10))) {
+          optionsClone[key].isHidden = true;
+        }
+      });
+
+      return {
+        ...state,
+        options: optionsClone,
+      };
+    }
+
+    case actionTypes.unhideOptions: {
+      const optionsClone = { ...state.options };
+      Object.keys(optionsClone).forEach(key => {
+        if (payload.includes(Number.parseInt(key, 10))) {
+          optionsClone[key].isHidden = false;
+        }
+      });
+
+      return {
+        ...state,
+        options: optionsClone,
+      };
+    }
+
     default:
       return state;
   }
