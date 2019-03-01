@@ -21,7 +21,7 @@ export const Small = styled.small`
 `;
 
 export const Rule = styled.hr`
-  border: 1px solid ${tokens.border.color};
-  border-width: 0 0 1px 0;
+  border: none;
+  border-bottom: 1px solid ${tokens.border.color};
   margin: ${stylers.spacer(4)} 0;
 `;

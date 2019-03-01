@@ -80,6 +80,8 @@ const disabledStyles = `
 `;
 
 const disabledTextStyles = `
+  ${disabledStyles}
+
   &, &:hover {
     background: none;
     border-color: transparent;
@@ -115,7 +117,7 @@ sizeStyles.xlarge = sizeStyles.large;
 
 // Types
 
-const typeStyles = {
+const typeStyles = props => ({
   default: `
     ${skeuomorphicStyles}
 
@@ -128,6 +130,8 @@ const typeStyles = {
       background: ${tokens.color.blackLighten70};
       border-color: ${tokens.border.hoverColor};
     }
+
+    ${props.isDisabled ? disabledStyles : ''}
   `,
   primary: `
     ${skeuomorphicStyles}
@@ -141,6 +145,8 @@ const typeStyles = {
       background: ${tokens.color.green};
       border-color: ${tokens.border.greenDarken10};
     }
+
+    ${props.isDisabled ? disabledStyles : ''}
   `,
   secondary: `
     ${skeuomorphicStyles}
@@ -154,6 +160,8 @@ const typeStyles = {
       background: ${tokens.color.purple};
       border-color: ${tokens.border.purpleDarken10};
     }
+
+    ${props.isDisabled ? disabledStyles : ''}
   `,
   destructive: `
     ${skeuomorphicStyles}
@@ -167,6 +175,8 @@ const typeStyles = {
       background: ${tokens.color.orange};
       border-color: ${tokens.border.orangeDarken10};
     }
+
+    ${props.isDisabled ? disabledStyles : ''}
   `,
   flat: `
     ${skeuomorphicStyles}
@@ -180,6 +190,8 @@ const typeStyles = {
       background: ${tokens.color.blackLighten70};
       border-color: ${tokens.border.hoverColor};
     }
+
+    ${props.isDisabled ? disabledStyles : ''}
   `,
   minor: `
     ${textButtonStyles}
@@ -187,6 +199,8 @@ const typeStyles = {
     &:hover {
       text-decoration: underline;
     }
+
+    ${props.isDisabled ? disabledTextStyles : ''}
   `,
   link: `
     ${textButtonStyles}
@@ -202,8 +216,10 @@ const typeStyles = {
     &:active {
       color: ${tokens.color.blue};
     }
+
+    ${props.isDisabled ? disabledTextStyles : ''}
   `,
-};
+});
 
 // Modifiers
 
@@ -220,15 +236,15 @@ const composedStyles = props => `
   ${commonStyles}
 
   ${sizeStyles[props.size]}
-  ${typeStyles[props.type]}
+  ${typeStyles(props)[props.type]}
 
   ${commonPostStyles}
 
   ${props.isFullWidth ? fullWidthStyles : ""}
   ${props.isActive ? activeStyles : ""}
-  ${props.isDisabled ? disabledStyles : ""}
-  ${["minor", "link"].includes(props.type) && props.isDisabled ? disabledTextStyles : ""}
 `;
+  // ${props.isDisabled ? disabledStyles : ""}
+  // ${["minor", "link"].includes(props.type) && props.isDisabled ? disabledTextStyles : ""}
 
 export const ButtonStyled = styled.button`
   ${props => composedStyles(props)}
