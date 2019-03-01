@@ -1,20 +1,15 @@
 import React from "react";
-import { bool, func, string } from "prop-types";
+import PropTypes from "prop-types";
 import useStore from "../../store/useStore";
 import * as actionTypes from "../../store/actionTypes";
 
-import {
-  FilterContainerStyled,
-  FilterGroupFilterLabel,
-  FilterInputStyled,
-  FilterSearchIconStyled,
-} from "./Filter.styles";
+import { FilterContainerStyled, FilterInputStyled, FilterSearchIconStyled } from "./Filter.styles";
 
 const propTypes = {
-  defaultTextSearch: string,
-  filter: func,
-  placeholder: string,
-  renderFilter: func,
+  defaultTextSearch: PropTypes.string,
+  filter: PropTypes.func,
+  placeholder: PropTypes.string,
+  renderFilter: PropTypes.func,
 };
 
 const defaultProps = {
