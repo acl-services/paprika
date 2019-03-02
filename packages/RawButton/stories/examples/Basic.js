@@ -1,5 +1,5 @@
 import React from "react";
-import { action } from "@storybook/react";
+import { action } from "@storybook/addon-actions";
 import { Story } from "storybook/assets/styles/common.styles";
 import RawButton from "../../RawButton";
 
@@ -7,24 +7,30 @@ const btnRef = React.createRef();
 const btnRef2 = React.createRef();
 
 const clickHandler = ref => () => {
-  action(`Clicked on <${ref.current.nodeName.toLowerCase()}> ("${ref.current.innerText}")`)();
+  if (ref) {
+    action(`Clicked on <${ref.current.nodeName.toLowerCase()}> ("${ref.current.innerText}")`)();
+  } else {
+    action("Clicked a button")();
+  }
 };
 
 const PopoverStory = () => (
   <Story>
-    <p>Freegan squid pug heirloom letterpress pork belly, readymade you probably haven’t heard of them.</p>
     <p>
       <RawButton
         ariaText="ceci n'est pas un bouton"
         onClick={clickHandler(btnRef)}
-        buttonRef={btnRef}
         qa-test-anchor="test-button"
+        ref={btnRef}
       >
         Raw button
       </RawButton>
     </p>
     <p>
-      <RawButton onClick={clickHandler(btnRef2)} buttonRef={btnRef2} isDisabled>
+      <RawButton onClick={clickHandler()}>No ref button</RawButton>
+    </p>
+    <p>
+      <RawButton isDisabled onClick={clickHandler(btnRef2)} ref={btnRef2}>
         Disabled button
       </RawButton>
     </p>
