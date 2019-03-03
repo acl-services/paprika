@@ -1,21 +1,5 @@
 import * as actionTypes from "./actionTypes";
 
-function waitForFocusFilterRef(ref) {
-  return new Promise(resolve => {
-    function checkForRef() {
-      if (ref.current) {
-        debugger;
-        resolve(ref);
-        return;
-      }
-
-      checkForRef();
-    }
-
-    checkForRef();
-  });
-}
-
 export const handleEffectIsPopOverOpen = (state, dispatch) => () => {
   const filterInput = state.refFilterInput.current;
   const listBoxContainer = state.refListBoxContainer.current;
