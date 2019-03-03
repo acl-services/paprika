@@ -16,6 +16,7 @@ export const ListBoxTriggerStyled = styled.div`
     overflow: hidden;
     padding-right: 32px;
     padding: 8px;
+    padding-right: 24px;
     position: relative;
     text-align: left;
     text-overflow: ellipsis;

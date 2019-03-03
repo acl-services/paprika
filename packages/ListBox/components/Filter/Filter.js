@@ -19,7 +19,7 @@ const defaultProps = {
   placeholder: "Filter...",
 };
 
-const Filter = React.forwardRef((props, ref) => {
+export default function Filter(props) {
   const [state, dispatch] = useStore();
 
   const [textSearch, setTextSearch] = React.useState(props.defaultTextSearch);
@@ -103,7 +103,7 @@ const Filter = React.forwardRef((props, ref) => {
       <FilterContainerStyled>
         <FilterSearchIconStyled />
         <FilterInputStyled
-          ref={ref}
+          ref={state.refFilterInput}
           type="text"
           onChange={handleChangeFilter}
           onKeyDown={handleKeyDown}
@@ -115,9 +115,7 @@ const Filter = React.forwardRef((props, ref) => {
   }
 
   return null;
-});
-
-export default Filter;
+}
 
 Filter.propTypes = propTypes;
 Filter.defaultProps = defaultProps;

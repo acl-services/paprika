@@ -1,6 +1,22 @@
 import * as actionTypes from "./actionTypes";
 
-export const handleEffectIsPopOver = (state, dispatch) => () => {
+function waitForFocusFilterRef(ref) {
+  return new Promise(resolve => {
+    function checkForRef() {
+      if (ref.current) {
+        debugger;
+        resolve(ref);
+        return;
+      }
+
+      checkForRef();
+    }
+
+    checkForRef();
+  });
+}
+
+export const handleEffectIsPopOverOpen = (state, dispatch) => () => {
   const filterInput = state.refFilterInput.current;
   const listBoxContainer = state.refListBoxContainer.current;
   const trigger = state.refTrigger.current;
@@ -11,13 +27,9 @@ export const handleEffectIsPopOver = (state, dispatch) => () => {
       // focus on the <Popover.Content> which works
       // ok when you automatically wants to grant
       // focus to whatever content on the popover
-      // unsure how to handle this without settimout
-      // 200ms seems really stable for stealing the
-      // focus from the <Popover.Content />
+      // unsure how to properly handle this.
       setTimeout(() => {
-        if (filterInput) {
-          filterInput.focus();
-        }
+        filterInput.focus();
       }, 200);
     } else {
       listBoxContainer.focus();
