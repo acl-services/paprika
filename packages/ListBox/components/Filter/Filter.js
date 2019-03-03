@@ -117,8 +117,7 @@ const Filter = React.forwardRef((props, ref) => {
   return null;
 });
 
-Filter.propTypes = propTypes;
-
-Filter.defaultProps = defaultProps;
-
 export default Filter;
+
+Filter.propTypes = propTypes;
+Filter.defaultProps = defaultProps;

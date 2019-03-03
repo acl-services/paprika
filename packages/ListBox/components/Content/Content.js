@@ -11,8 +11,9 @@ const propTypes = {
 };
 const defaultProps = {};
 
-const Content = React.forwardRef((props, ref) => {
+export default function Content(props) {
   const [state, dispatch] = useStore();
+  const { refListBoxContainer } = state;
   const handleBlur = () => {
     if (state.isDisabled) {
       return;
@@ -24,9 +25,9 @@ const Content = React.forwardRef((props, ref) => {
     // the body element automatically
     window.requestAnimationFrame(() => {
       if (
-        state.refListBoxContainer &&
-        state.refListBoxContainer.current &&
-        !state.refListBoxContainer.current.contains(document.activeElement)
+        refListBoxContainer &&
+        refListBoxContainer.current &&
+        !refListBoxContainer.current.contains(document.activeElement)
       ) {
         dispatch({ type: actionTypes.closePopover });
       }
@@ -36,16 +37,14 @@ const Content = React.forwardRef((props, ref) => {
   return (
     <Popover.Content
       onBlur={handleBlur}
-      ref={ref}
+      ref={refListBoxContainer}
       {...getDOMAttributesForListBoxContainer()}
       onKeyDown={handleKeyboardKeys(state, dispatch)}
     >
       {props.children}
     </Popover.Content>
   );
-});
-
-export default Content;
+}
 
 Content.propTypes = propTypes;
 Content.defaultProps = defaultProps;

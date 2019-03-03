@@ -1,72 +1,96 @@
 import React from "react";
-import { string, node } from "prop-types";
-import ListBox from "./ListBox";
+import ListBox, { propTypes, defaultProps } from "./ListBox";
 import Option from "./components/Option";
 import Group from "./components/Group";
 import TagButton from "./components/TagButton";
 import { TagStyled } from "./components/TagButton/Tag.styles";
+import Provider from "./store/Provider";
+import useStore from "./store/useStore";
 
 import * as actionTypes from "./store/actionTypes";
 
-const propTypes = {
-  children: node.isRequired,
-  placeholder: string, // eslint-disable-line
-};
+function ListBoxWithTags(props) {
+  const [state, dispatch] = useStore();
+  const [activeTag, setActiveTag] = React.useState(null);
 
-export default function ListBoxWithTags(props) {
-  function renderLabel(state, dispatch, { getDOMAttributesForListBoxButton }) {
-    const handleDeleteTag = key => event => {
-      event.stopPropagation();
-      dispatch({
-        type: actionTypes.unselectOptions,
-        payload: [key],
-      });
+  const handleDeleteTag = key => event => {
+    event.stopPropagation();
+    dispatch({
+      type: actionTypes.unselectOptions,
+      payload: [key],
+    });
+  };
 
-      dispatch({
-        type: actionTypes.unhideOptions,
-        payload: [key],
-      });
-    };
+  const handleKeyDown = event => {
+    if (state.selectedOptions.length) {
+      if (event.key === "ArrowLeft" || event.key === "ArrowRight") {
+        if (activeTag === null) {
+          setActiveTag(state.selectedOptions[0]);
+          return;
+        }
 
-    React.useEffect(() => {
-      if (state.selectedOptions.length) {
-        dispatch({
-          type: actionTypes.hideOptions,
-          payload: state.selectedOptions,
-        });
+        const index = state.selectedOptions.indexOf(activeTag);
+        const currentActiveIndex = event.key === "ArrowLeft" ? index - 1 : index + 1;
+        const nextIndex = (currentActiveIndex + state.selectedOptions.length) % state.selectedOptions.length;
+        setActiveTag(state.selectedOptions[nextIndex]);
       }
-    }, [state.selectedOptions]);
 
-    function Tags() {
-      return state.selectedOptions
-        .map(key => {
-          if (state.selectedOptions.includes(state.options[key].index)) {
-            const label = state.options[key].label;
-            return (
-              <TagStyled key={label} onRemove={handleDeleteTag(key)} isDisabled={state.isDisabled} label={label} />
-            );
-          }
-          return null;
-        })
-        .map(tag => tag);
+      if (event.key === "Backspace") {
+        if (activeTag === null) {
+          setActiveTag(state.selectedOptions[state.selectedOptions.length - 1]);
+          return;
+        }
+
+        if (state.selectedOptions.length - 1 >= 0) {
+          dispatch({ type: actionTypes.unselectOptions, payload: [activeTag] });
+          setActiveTag(state.selectedOptions[state.selectedOptions.length - 1]);
+        } else {
+          setActiveTag(null);
+        }
+      }
     }
+  };
 
-    return (
-      <TagButton state={state} dispatch={dispatch} getDOMAttributesForListBoxButton={getDOMAttributesForListBoxButton}>
-        {state.selectedOptions.length ? <Tags /> : state.placeholder}
-      </TagButton>
-    );
+  function Tags() {
+    return state.selectedOptions
+      .map(key => {
+        if (state.selectedOptions.includes(state.options[key].index)) {
+          const label = state.options[key].label;
+          return (
+            <TagStyled
+              isTagActive={activeTag === Number.parseInt(key, 10)}
+              key={label}
+              onRemove={handleDeleteTag(key)}
+              isDisabled={state.isDisabled}
+              label={label}
+            />
+          );
+        }
+        return null;
+      })
+      .map(tag => tag);
+  }
+
+  function renderLabel() {
+    return <TagButton>{state.selectedOptions.length ? <Tags /> : state.placeholder}</TagButton>;
   }
 
   return (
-    <React.Fragment>
-      <ListBox isPopoverOpen {...props} isMulti renderLabel={renderLabel}>
-        {props.children}
-      </ListBox>
-    </React.Fragment>
+    <ListBox onKeyDown={handleKeyDown} isPopoverOpen {...props} renderLabel={renderLabel}>
+      {props.children} {/* eslint-disable-line */}
+    </ListBox>
   );
 }
 
-ListBoxWithTags.propTypes = propTypes;
-ListBoxWithTags.Option = Option;
-ListBoxWithTags.Group = Group;
+export default function ListBoxWithTagsWithProvider(props) {
+  return (
+    <Provider {...props} isMulti options={props.children}>
+      <ListBoxWithTags {...props} />
+    </Provider>
+  );
+}
+
+ListBoxWithTagsWithProvider.propTypes = propTypes;
+ListBoxWithTagsWithProvider.defaultProps = defaultProps;
+ListBoxWithTagsWithProvider.Option = Option;
+ListBoxWithTagsWithProvider.Group = Group;

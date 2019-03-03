@@ -1,7 +1,7 @@
 import React from "react";
 import { storiesOf } from "@storybook/react";
 import { Frame, ImageOption } from "./stories.styles";
-import ListBox from "../ListBox";
+import ListBox from "..";
 import { images } from "./fixtures/images";
 
 storiesOf("ListBox / single", module).add("Basic", () => (

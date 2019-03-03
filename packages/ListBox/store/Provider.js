@@ -48,7 +48,17 @@ const propTypes = {
 export const StoreContext = React.createContext();
 
 export default function Provider(props) {
-  const [state, dispatch] = React.useReducer(reducer, { ...props }, initializeState);
+  const refFilterInput = React.useRef();
+  const refListBox = React.useRef();
+  const refListBoxContainer = React.useRef();
+  const refTrigger = React.useRef();
+  const refTriggerContainer = React.useRef();
+
+  const [state, dispatch] = React.useReducer(
+    reducer,
+    { ...props, refFilterInput, refListBox, refListBoxContainer, refTrigger, refTriggerContainer },
+    initializeState
+  );
   const value = { state, dispatch };
 
   React.useEffect(() => {

@@ -9,17 +9,21 @@ const propTypes = {
   children: PropTypes.node.isRequired,
 };
 
-const List = React.forwardRef((props, ref) => {
+export default function List(props) {
   const { children, height } = props;
   const [state] = useStore();
+  const { refListBox } = state;
 
   return (
-    <ListBoxStyled hasNoResults={state.hasNoResults} height={height} ref={ref} {...getDOMAttributesForListBox(state)}>
+    <ListBoxStyled
+      hasNoResults={state.hasNoResults}
+      height={height}
+      ref={refListBox}
+      {...getDOMAttributesForListBox(state)}
+    >
       {children}
     </ListBoxStyled>
   );
-});
-
-export default List;
+}
 
 List.propTypes = propTypes;

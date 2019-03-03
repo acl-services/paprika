@@ -120,6 +120,10 @@ export default function reducer(state, { type, payload }) {
     }
 
     case actionTypes.unselectOptions: {
+      if (!Array.isArray(payload)) {
+        throw Error("unselectOptions action expect an array as a payload");
+      }
+
       return {
         ...state,
         selectedOptions: state.selectedOptions.filter(index => !payload.includes(index)),
@@ -141,6 +145,10 @@ export default function reducer(state, { type, payload }) {
     }
 
     case actionTypes.unhideOptions: {
+      if (!Array.isArray(payload)) {
+        throw Error("unhideOptions action expect an array as a payload");
+      }
+
       const optionsClone = { ...state.options };
       Object.keys(optionsClone).forEach(key => {
         if (payload.includes(Number.parseInt(key, 10))) {
