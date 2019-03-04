@@ -6,24 +6,26 @@ import { TagStyled, TagBodyStyled, TagBodyTextStyled } from "./Tag.styles";
 
 const propTypes = {
   className: PropTypes.string,
+  hasTitle: PropTypes.bool,
   isDark: PropTypes.bool,
   isDisabled: PropTypes.bool,
   isReadOnly: PropTypes.bool,
-  hasTitle: PropTypes.bool,
   label: PropTypes.string.isRequired,
   onRemove: PropTypes.func,
   size: PropTypes.oneOf(["x-small", "small", "medium", "large"]),
+  tabIndexRemoveButton: PropTypes.number,
   width: PropTypes.number,
 };
 
 const defaultProps = {
   className: null,
+  hasTitle: false,
   isDark: false,
   isDisabled: false,
   isReadOnly: false,
-  hasTitle: false,
   onRemove: () => {},
   size: "medium",
+  tabIndexRemoveButton: 0,
   width: null,
 };
 
@@ -47,6 +49,7 @@ class Tag extends React.Component {
       onRemove,
       size,
       width,
+      tabIndexRemoveButton,
       ...moreProps
     } = this.props; // eslint-disable-line
 
@@ -78,6 +81,7 @@ class Tag extends React.Component {
               onClick={onRemove}
               size={size}
               type="minor"
+              tabIndex={tabIndexRemoveButton}
             >
               &times;
             </RawButton>

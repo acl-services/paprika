@@ -24,6 +24,14 @@ export default function Content(props) {
     // via document.activeElement instead of returning
     // the body element automatically
     window.requestAnimationFrame(() => {
+      // this allowed elements outside of the popover container to keep operating
+      // without forcing to close the popover after the onblur event.
+      // the downside of this is that now the element outside should implemented
+      // the onblur event to close when the user click tab or click on the document.body
+      if (document.activeElement.dataset.paprikaPrevent === "onBlur") {
+        return;
+      }
+
       if (
         refListBoxContainer &&
         refListBoxContainer.current &&
