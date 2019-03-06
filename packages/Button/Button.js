@@ -1,7 +1,6 @@
 import React from "react";
 import PropTypes from "prop-types";
 import { shirtSize } from "../helpers/customPropTypes";
-
 import { ButtonStyled, RawButtonStyled } from "./Button.styles";
 
 const propTypes = {
@@ -9,7 +8,6 @@ const propTypes = {
   buttonRef: PropTypes.shape({ current: PropTypes.instanceOf(Element) }),
   canPropagate: PropTypes.bool,
   children: PropTypes.node.isRequired,
-  className: PropTypes.string,
   isActive: PropTypes.bool,
   isDisabled: PropTypes.bool,
   isFullWidth: PropTypes.bool,
@@ -25,7 +23,6 @@ const defaultProps = {
   ariaText: null,
   buttonRef: null,
   canPropagate: true,
-  className: null,
   isActive: false,
   isDisabled: false,
   isFullWidth: false,
@@ -81,7 +78,6 @@ class Button extends React.Component {
 }
 
 Button.displayName = "Button";
-
 Button.propTypes = propTypes;
 Button.defaultProps = defaultProps;
 

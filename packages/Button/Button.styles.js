@@ -21,26 +21,22 @@ const commonStyles = `
   text-align: center;
   vertical-align: middle;
 
-  &:active {
-    transform: scale(0.98);
-  }
-`;
-
-const commonPostStyles = `
-  &:focus {
+ &:focus {
     box-shadow: ${tokens.highlight.active.noBorder.boxShadow};
     border-color: ${tokens.highlight.active.noBorder.borderColor};
     outline: none;
   }
 
+
   &:active {
-    box-shadow: ${tokens.highlight.active.noBorder.boxShadow}, inset 0 1px 1px 0 rgba(0,0,0, 0.1),
-      inset 0 1px 4px 0 rgba(0,0,0, 0.3);
+    box-shadow: ${tokens.highlight.active.noBorder.boxShadow}, inset 0 1px 1px 0 rgba(0, 0, 0, 0.1),
+      inset 0 1px 4px 0 rgba(0, 0, 0, 0.3);
+    transform: scale(0.98);
   }
 `;
 
 const skeuomorphicStyles = `
-  box-shadow: 0 1px 2px 0 rgba(0,0,0, 0.1); 
+  box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.1); 
   cursor: pointer;
   transition-duration: 0.2s;
   transition-property: border;
@@ -48,7 +44,7 @@ const skeuomorphicStyles = `
 
 const coloredButtonStyles = `
   color: ${tokens.color.white};
-  text-shadow: 0 1px 1px rgba(0,0,0, 0.2); // TODO: add mixin for transparent hex colours
+  text-shadow: 0 1px 1px rgba(0, 0, 0, 0.2); // TODO: add mixin for transparent hex colours
 `;
 
 const textButtonStyles = `
@@ -131,7 +127,7 @@ const typeStyles = props => ({
       border-color: ${tokens.border.hoverColor};
     }
 
-    ${props.isDisabled ? disabledStyles : ''}
+    ${props.isDisabled ? disabledStyles : ""}
   `,
   primary: `
     ${skeuomorphicStyles}
@@ -146,7 +142,7 @@ const typeStyles = props => ({
       border-color: ${tokens.border.greenDarken10};
     }
 
-    ${props.isDisabled ? disabledStyles : ''}
+    ${props.isDisabled ? disabledStyles : ""}
   `,
   secondary: `
     ${skeuomorphicStyles}
@@ -161,7 +157,7 @@ const typeStyles = props => ({
       border-color: ${tokens.border.purpleDarken10};
     }
 
-    ${props.isDisabled ? disabledStyles : ''}
+    ${props.isDisabled ? disabledStyles : ""}
   `,
   destructive: `
     ${skeuomorphicStyles}
@@ -176,7 +172,7 @@ const typeStyles = props => ({
       border-color: ${tokens.border.orangeDarken10};
     }
 
-    ${props.isDisabled ? disabledStyles : ''}
+    ${props.isDisabled ? disabledStyles : ""}
   `,
   flat: `
     ${skeuomorphicStyles}
@@ -191,7 +187,7 @@ const typeStyles = props => ({
       border-color: ${tokens.border.hoverColor};
     }
 
-    ${props.isDisabled ? disabledStyles : ''}
+    ${props.isDisabled ? disabledStyles : ""}
   `,
   minor: `
     ${textButtonStyles}
@@ -200,7 +196,7 @@ const typeStyles = props => ({
       text-decoration: underline;
     }
 
-    ${props.isDisabled ? disabledTextStyles : ''}
+    ${props.isDisabled ? disabledTextStyles : ""}
   `,
   link: `
     ${textButtonStyles}
@@ -217,7 +213,7 @@ const typeStyles = props => ({
       color: ${tokens.color.blue};
     }
 
-    ${props.isDisabled ? disabledTextStyles : ''}
+    ${props.isDisabled ? disabledTextStyles : ""}
   `,
 });
 
@@ -234,22 +230,16 @@ const fullWidthStyles = `
 
 const composedStyles = props => `
   ${commonStyles}
-
   ${sizeStyles[props.size]}
   ${typeStyles(props)[props.type]}
-
-  ${commonPostStyles}
-
   ${props.isFullWidth ? fullWidthStyles : ""}
   ${props.isActive ? activeStyles : ""}
 `;
-  // ${props.isDisabled ? disabledStyles : ""}
-  // ${["minor", "link"].includes(props.type) && props.isDisabled ? disabledTextStyles : ""}
 
 export const ButtonStyled = styled.button`
-  ${props => composedStyles(props)}
+  ${composedStyles}
 `;
 
 export const RawButtonStyled = styled(RawButton)`
-  ${props => composedStyles(props)}
+  ${composedStyles}
 `;
