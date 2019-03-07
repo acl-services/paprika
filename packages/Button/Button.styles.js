@@ -111,9 +111,9 @@ const sizeStyles = {
 sizeStyles.xsmall = sizeStyles.small;
 sizeStyles.xlarge = sizeStyles.large;
 
-// Types
+// Kinds
 
-const typeStyles = props => ({
+const kindStyles = props => ({
   default: `
     ${skeuomorphicStyles}
 
@@ -231,7 +231,7 @@ const fullWidthStyles = `
 const composedStyles = props => `
   ${commonStyles}
   ${sizeStyles[props.size]}
-  ${typeStyles(props)[props.type]}
+  ${kindStyles(props)[props.kind]}
   ${props.isFullWidth ? fullWidthStyles : ""}
   ${props.isActive ? activeStyles : ""}
 `;

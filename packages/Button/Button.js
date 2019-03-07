@@ -12,11 +12,12 @@ const propTypes = {
   isDisabled: PropTypes.bool,
   isFullWidth: PropTypes.bool,
   isSemantic: PropTypes.bool,
+  isSubmit: PropTypes.bool,
+  kind: PropTypes.oneOf(["default", "primary", "secondary", "destructive", "flat", "minor", "link"]),
   onClick: PropTypes.func,
   role: PropTypes.string,
   size: PropTypes.oneOf(ShirtSizes.DEFAULT),
   tabIndex: PropTypes.number,
-  type: PropTypes.oneOf(["default", "primary", "secondary", "destructive", "flat", "minor", "link"]),
 };
 
 const defaultProps = {
@@ -27,11 +28,12 @@ const defaultProps = {
   isDisabled: false,
   isFullWidth: false,
   isSemantic: true,
+  isSubmit: false,
+  kind: "default",
   onClick: () => {},
   role: "button",
   size: "medium",
   tabIndex: 0,
-  type: "default",
 };
 
 class Button extends React.Component {
@@ -54,7 +56,17 @@ class Button extends React.Component {
   };
 
   render() {
-    const { ariaText, buttonRef, canPropagate, children, isDisabled, isSemantic, tabIndex, ...moreProps } = this.props;
+    const {
+      ariaText,
+      buttonRef,
+      canPropagate,
+      children,
+      isDisabled,
+      isSemantic,
+      isSubmit,
+      tabIndex,
+      ...moreProps
+    } = this.props;
     if (ariaText) moreProps["aria-label"] = ariaText;
 
     const buttonProps = {
@@ -67,6 +79,7 @@ class Button extends React.Component {
 
     if (isSemantic) {
       buttonProps.disabled = isDisabled;
+      buttonProps.type = isSubmit ? "submit" : "button";
     } else {
       buttonProps.tabIndex = isDisabled ? -1 : tabIndex;
     }

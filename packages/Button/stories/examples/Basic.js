@@ -28,13 +28,18 @@ const PopoverStory = () => (
     </p>
     <Rule />
     <p>
-      <Button isFullWidth onClick={clickHandler()}>
-        full width
+      <Button isSubmit onClick={clickHandler()}>
+        submit
       </Button>
     </p>
     <p>
       <Button onClick={clickHandler()}>
         long button lumbersexual authentic <br /> vegan vaporware scenester humblebrag
+      </Button>
+    </p>
+    <p>
+      <Button isFullWidth onClick={clickHandler()}>
+        full width
       </Button>
     </p>
     <Rule />
@@ -50,34 +55,34 @@ const PopoverStory = () => (
     <Rule />
     <p>
       <Button onClick={clickHandler()}>default</Button>
-      <Button type="primary" onClick={clickHandler()}>
+      <Button kind="primary" onClick={clickHandler()}>
         primary
       </Button>
-      <Button type="secondary" onClick={clickHandler()}>
+      <Button kind="secondary" onClick={clickHandler()}>
         secondary
       </Button>
-      <Button type="destructive" onClick={clickHandler()}>
+      <Button kind="destructive" onClick={clickHandler()}>
         destructive
       </Button>
-      <Button type="flat" onClick={clickHandler()}>
+      <Button kind="flat" onClick={clickHandler()}>
         flat
       </Button>
-      <Button type="minor" onClick={clickHandler()}>
+      <Button kind="minor" onClick={clickHandler()}>
         minor
       </Button>
-      <Button type="link" onClick={clickHandler()}>
+      <Button kind="link" onClick={clickHandler()}>
         link
       </Button>
     </p>
     <Rule />
     <p>
-      <Button isSemantic={false} size="large" type="primary" isActive onClick={clickHandler()}>
+      <Button isSemantic={false} size="large" kind="primary" isActive onClick={clickHandler()}>
         raw large active primary
       </Button>
       <Button isSemantic={false} isDisabled onClick={clickHandler()}>
         raw default disabled
       </Button>
-      <Button isSemantic={false} type="link" size="small" onClick={clickHandler()}>
+      <Button isSemantic={false} kind="link" size="small" onClick={clickHandler()}>
         raw small link
       </Button>
     </p>
