@@ -24,11 +24,11 @@ const PopoverStory = () => (
   <Story>
     <p>
       <RawButton onClick={clickHandler(getBtn)} ref={setRef}>
-        Old school button
+        Old school ref
       </RawButton>
     </p>
     <p>
-      <RawButton onClick={clickHandler()}>No ref button</RawButton>
+      <RawButton onClick={clickHandler()}>No ref</RawButton>
     </p>
   </Story>
 );

@@ -24,26 +24,26 @@ const defaultProps = {
 };
 
 const RawButton = React.forwardRef((props, ref) => {
-  let rawButtonNode;
-  let rawButtonRef;
-
-  if (!ref) {
-    rawButtonRef = React.createRef();
-    rawButtonNode = rawButtonRef.current;
-  } else if (typeof ref === "object") {
-    rawButtonNode = ref.current;
-  }
-
-  const provideRef =
-    typeof ref === "function"
-      ? node => {
-          rawButtonNode = node;
-          ref(node);
-        }
-      : ref || rawButtonRef;
+  let rawButtonNode = null;
+  const hasNewSchoolRef = !!(ref && typeof ref === "object");
+  const hasOldSchoolRef = typeof ref === "function";
+  const rawButtonRef = hasNewSchoolRef ? ref : React.createRef();
 
   const { ariaText, canPropagate, children, isDisabled, onClick, tabIndex, ...moreProps } = props;
   if (ariaText) moreProps["aria-label"] = ariaText;
+
+  const setOldSchoolRef = node => {
+    rawButtonNode = node;
+    ref(node);
+  };
+
+  const provideRef = hasOldSchoolRef ? setOldSchoolRef : ref || rawButtonRef;
+
+  React.useEffect(() => {
+    if (!ref || hasNewSchoolRef) {
+      rawButtonNode = rawButtonRef.current;
+    }
+  }, []);
 
   const handleClick = event => {
     if (!canPropagate) event.stopPropagation();
@@ -62,10 +62,10 @@ const RawButton = React.forwardRef((props, ref) => {
   };
 
   const handleKeyUp = event => {
-    if (isDisabled || (!canPropagate && event.target !== rawButtonNode)) {
-      return;
-    }
-    if (event.key === " " || event.key === "Enter") {
+    const shouldHandle = canPropagate || event.target === rawButtonNode;
+    const isTriggerKey = [" ", "Enter"].includes(event.key);
+
+    if (!isDisabled && shouldHandle && isTriggerKey) {
       onClick(event);
     }
   };
