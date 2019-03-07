@@ -1,18 +1,14 @@
 // NOTE: Maybe this should be provided as a consumable package?
 
-const sizes = ["xsmall", "small", "medium", "large", "xlarge"];
-
-export const shirtSize = (props, propName, component) => {
-  if (sizes.indexOf(props[propName]) < 0) {
-    return new Error(
-      `Invalid prop '${propName}' of value '${
-        props[propName]
-      }' supplied to '${component}', expected one of [${sizes.toString()}].`
-    );
-  }
-
-  return null;
+export const ShirtSizes = {
+  XSMALL: "xsmall",
+  SMALL: "small",
+  MEDIUM: "medium",
+  LARGE: "large",
+  XLARGE: "xlarge",
 };
+ShirtSizes.DEFAULT = [ShirtSizes.SMALL, ShirtSizes.MEDIUM, ShirtSizes.LARGE];
+ShirtSizes.ALL = Object.values(ShirtSizes);
 
 export const deprecated = name => (props, propName, component) => {
   if (props[propName] !== undefined) {

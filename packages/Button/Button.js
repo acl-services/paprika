@@ -1,6 +1,6 @@
 import React from "react";
 import PropTypes from "prop-types";
-import { shirtSize } from "../helpers/customPropTypes";
+import { ShirtSizes } from "../helpers/customPropTypes";
 import { ButtonStyled, RawButtonStyled } from "./Button.styles";
 
 const propTypes = {
@@ -14,7 +14,7 @@ const propTypes = {
   isSemantic: PropTypes.bool,
   onClick: PropTypes.func,
   role: PropTypes.string,
-  size: shirtSize,
+  size: PropTypes.oneOf(ShirtSizes.DEFAULT),
   tabIndex: PropTypes.number,
   type: PropTypes.oneOf(["default", "primary", "secondary", "destructive", "flat", "minor", "link"]),
 };

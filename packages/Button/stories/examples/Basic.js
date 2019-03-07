@@ -39,18 +39,12 @@ const PopoverStory = () => (
     </p>
     <Rule />
     <p>
-      <Button size="xsmall" onClick={clickHandler()}>
-        xsmall
-      </Button>
       <Button size="small" onClick={clickHandler()}>
         small
       </Button>
       <Button onClick={clickHandler()}>medium</Button>
       <Button size="large" onClick={clickHandler()}>
         large
-      </Button>
-      <Button size="xlarge" onClick={clickHandler()}>
-        xlarge
       </Button>
     </p>
     <Rule />
