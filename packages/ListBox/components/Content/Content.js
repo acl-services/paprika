@@ -28,9 +28,7 @@ export default function Content(props) {
       // without forcing to close the popover after the onblur event.
       // the downside of this is that now the element outside should implemented
       // the onblur event to close when the user click tab or click on the document.body
-      if (document.activeElement.dataset.paprikaPrevent === "onBlur") {
-        return;
-      }
+      if (state.preventOnBlurOnTrigger) return;
 
       if (
         refListBoxContainer &&

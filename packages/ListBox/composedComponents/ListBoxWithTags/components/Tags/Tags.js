@@ -1,15 +1,13 @@
 import React from "react";
 import PropTypes from "prop-types";
 import Tag from "../Tag";
-import TagInput from "../TagInput";
+import Filter from "../Filter";
 import useStore from "../../../../store/useStore";
 import * as actionTypes from "../../../../store/actionTypes";
 
 const propTypes = {
   activeTag: PropTypes.number,
-  hasTagInput: PropTypes.bool.isRequired,
-  placeholderForTagInput: PropTypes.string.isRequired,
-  refTagInput: PropTypes.object.isRequired, // eslint-disable-line
+  hasCustomTags: PropTypes.bool.isRequired,
 };
 
 const defaultProps = {
@@ -20,7 +18,6 @@ export default function Tags(props) {
   const [state, dispatch] = useStore();
 
   const handleDeleteTag = key => event => {
-    event.stopPropagation();
     dispatch({
       type: actionTypes.unselectOptions,
       payload: [key],
@@ -37,7 +34,6 @@ export default function Tags(props) {
         onRemove={handleDeleteTag(key)}
         isDisabled={state.isDisabled}
         label={label}
-        tabIndexRemoveButton={-1}
       />
     );
   });
@@ -45,7 +41,7 @@ export default function Tags(props) {
   return (
     <React.Fragment>
       {tagsMap}
-      {props.hasTagInput ? <TagInput placeholder={props.placeholderForTagInput} ref={props.refTagInput} /> : null}
+      {props.hasCustomTags ? <Filter placeholder={state.placeholder} /> : null}
     </React.Fragment>
   );
 }

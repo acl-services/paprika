@@ -1,6 +1,10 @@
 import * as actionTypes from "./actionTypes";
 
 export const handleEffectIsPopOverOpen = (state, dispatch) => () => {
+  if (!state.isPopoverEager) {
+    return;
+  }
+
   const filterInput = state.refFilterInput.current;
   const listBoxContainer = state.refListBoxContainer.current;
   const trigger = state.refTrigger.current;

@@ -1,12 +1,14 @@
 import React from "react";
-import { string, node } from "prop-types";
+import PropTypes from "prop-types";
 
+/* eslint-disable react/no-unused-prop-types */
 const propTypes = {
-  idPrefix: string, // eslint-disable-line
-  children: node.isRequired,
-  label: string, // eslint-disable-line
-  value: string, // eslint-disable-line
+  idPrefix: PropTypes.string,
+  children: PropTypes.node.isRequired,
+  label: PropTypes.string,
+  value: PropTypes.string,
 };
+/* eslint-enable react/no-unused-prop-types */
 
 const defaultProps = {
   idPrefix: "paprika",

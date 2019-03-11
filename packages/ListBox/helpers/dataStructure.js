@@ -11,8 +11,8 @@ function createOption({ index, child, title = null, isOptionActionGroup = false 
     hasLabel: label,
     id: `${idPrefix}__${uuidv4()}`,
     index,
-    isOptionActionGroup,
     isHidden: child.props.isHidden,
+    isOptionActionGroup,
     label: label || child.props.children,
     value: value || children,
   };

@@ -5,7 +5,7 @@ const TriggerStyled = styled(RawButton)`
   && {
     display: flex;
     flex-flow: wrap;
-    padding: 8px;
+    padding: 4px;
   }
 `;
 

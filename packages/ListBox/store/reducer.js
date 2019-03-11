@@ -29,23 +29,28 @@ export default function reducer(state, { type, payload }) {
         shouldListBoxContentScroll: true,
       };
 
-    case actionTypes.setOptionOnSingleSelection:
+    case actionTypes.setOptionOnSingleSelection: {
+      state.onChange(payload.activeOptionIndex, state.options);
+
       return {
         ...state,
         activeOption: payload.activeOptionIndex,
         selectedOptions: [payload.activeOptionIndex],
         isPopoverOpen: payload.isPopoverOpen,
         shouldListBoxContentScroll: true,
+        lastActiveOptionIndexAffected: [payload.activeOptionIndex],
       };
-
+    }
     case actionTypes.setOptionOnMultipleSelection: {
       const selectedOptionsArray = state.selectedOptions.slice();
 
       if (selectedOptionsArray.includes(payload.activeOptionIndex)) {
         const index = selectedOptionsArray.indexOf(payload.activeOptionIndex);
         selectedOptionsArray.splice(index, 1);
+        state.onChange(selectedOptionsArray, state.options, payload.activeOptionIndex, "removed");
       } else {
         selectedOptionsArray.push(payload.activeOptionIndex);
+        state.onChange(selectedOptionsArray, state.options, payload.activeOptionIndex, "added");
       }
 
       return {
@@ -54,6 +59,7 @@ export default function reducer(state, { type, payload }) {
         activeOption: payload.activeOptionIndex,
         selectedOptions: selectedOptionsArray,
         shouldListBoxContentScroll: false,
+        lastActiveOptionIndexAffected: [payload.activeOptionIndex],
       };
     }
 
@@ -127,15 +133,18 @@ export default function reducer(state, { type, payload }) {
       return {
         ...state,
         selectedOptions: state.selectedOptions.filter(index => !payload.includes(index)),
+        lastActiveOptionIndexAffected: payload,
       };
     }
 
     case actionTypes.hideOptions: {
+      if (!Array.isArray(payload)) {
+        throw Error("hideOptions action expect an array as a payload");
+      }
+
       const optionsClone = { ...state.options };
-      Object.keys(optionsClone).forEach(key => {
-        if (payload.includes(Number.parseInt(key, 10))) {
-          optionsClone[key].isHidden = true;
-        }
+      payload.forEach(index => {
+        optionsClone[index].isHidden = true;
       });
 
       return {
@@ -150,10 +159,8 @@ export default function reducer(state, { type, payload }) {
       }
 
       const optionsClone = { ...state.options };
-      Object.keys(optionsClone).forEach(key => {
-        if (payload.includes(Number.parseInt(key, 10))) {
-          optionsClone[key].isHidden = false;
-        }
+      payload.forEach(index => {
+        optionsClone[index].isHidden = false;
       });
 
       return {

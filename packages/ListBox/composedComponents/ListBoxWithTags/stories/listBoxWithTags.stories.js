@@ -32,7 +32,7 @@ storiesOf("ListBox / with tags", module).add("ListBox With Tags and filter", () 
 
 storiesOf("ListBox / with tags", module).add("ListBox With Tags filter and input for custom tags", () => (
   <React.Fragment>
-    <ListBoxWithTags hasFilter hasTagInput placeholder="Select an anti-heroes or add your own 👩‍🎤">
+    <ListBoxWithTags hasFilter hasCustomTags placeholder="Select an anti-heroes or add your own 👩‍🎤">
       <ListBoxWithTags.Option>Punisher</ListBoxWithTags.Option>
       <ListBoxWithTags.Option>Catwoman</ListBoxWithTags.Option>
       <ListBoxWithTags.Option>Venom</ListBoxWithTags.Option>
@@ -40,6 +40,16 @@ storiesOf("ListBox / with tags", module).add("ListBox With Tags filter and input
       <ListBoxWithTags.Option>Deadpool</ListBoxWithTags.Option>
       <ListBoxWithTags.Option>Spawn</ListBoxWithTags.Option>
       <ListBoxWithTags.Option>Wolverine</ListBoxWithTags.Option>
+    </ListBoxWithTags>
+  </React.Fragment>
+));
+
+storiesOf("ListBox / with tags", module).add("ListBox With Some Tags filter and input for custom tags", () => (
+  <React.Fragment>
+    <ListBoxWithTags hasFilter hasCustomTags placeholder="Select an anti-heroes or add your own 👩‍🎤">
+      {[...Array(100).keys()].map(index => (
+        <ListBoxWithTags.Option key={index}>{`Paprika_${index}`}</ListBoxWithTags.Option>
+      ))}
     </ListBoxWithTags>
   </React.Fragment>
 ));

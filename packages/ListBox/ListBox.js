@@ -16,13 +16,16 @@ export const propTypes = {
   hasFooter: PropTypes.bool,
   hasGroupFilter: PropTypes.bool,
   height: PropTypes.number,
+  isDisabled: PropTypes.bool,
   isMulti: PropTypes.bool,
+  isPopoverEager: PropTypes.bool,
   isPopoverOpen: PropTypes.bool,
   label: PropTypes.node,
+  onChange: PropTypes.func,
   placeholder: PropTypes.string,
+  preventOnBlurOnTrigger: PropTypes.bool,
   renderLabel: PropTypes.func,
-  isDisabled: PropTypes.bool,
-  typeOfChecker: PropTypes.oneOf(["checkbox", "plus-sign"]),
+  typeOfChecker: PropTypes.oneOf(["checkbox"]),
 };
 
 export const defaultProps = {
@@ -31,12 +34,15 @@ export const defaultProps = {
   hasFooter: false,
   hasGroupFilter: false,
   height: 200,
+  isDisabled: false,
   isMulti: false,
+  isPopoverEager: true,
   isPopoverOpen: false,
   label: "There are not results for your filter",
+  onChange: () => {},
   placeholder: "select one of the options",
+  preventOnBlurOnTrigger: false,
   renderLabel: null,
-  isDisabled: false,
   typeOfChecker: null,
 };
 
@@ -52,11 +58,13 @@ export default function ListBox(props) {
     height,
     hasFooter,
     typeOfChecker,
+    isPopoverEager,
+    onChange,
     ...moreProps
   } = props;
 
   return (
-    <Popover {...moreProps}>
+    <Popover {...moreProps} isEager={isPopoverEager}>
       <Trigger renderLabel={renderLabel} placeholder={props.placeholder} />
       <Content>
         <Box>

@@ -8,15 +8,19 @@ import { FilterContainerStyled, FilterInputStyled, FilterSearchIconStyled } from
 const propTypes = {
   defaultTextSearch: PropTypes.string,
   filter: PropTypes.func,
+  forceShowFilter: PropTypes.bool,
+  hasSearchIcon: PropTypes.bool,
   placeholder: PropTypes.string,
   renderFilter: PropTypes.func,
 };
 
 const defaultProps = {
   defaultTextSearch: "",
-  renderFilter: null,
   filter: null,
+  forceShowFilter: false,
+  hasSearchIcon: true,
   placeholder: "Filter...",
+  renderFilter: null,
 };
 
 export default function Filter(props) {
@@ -94,21 +98,23 @@ export default function Filter(props) {
     }
   };
 
-  if (state.hasFilter && state.isPopoverOpen) {
-    if (props.renderFilter) {
+  if (props.forceShowFilter || (state.hasFilter && state.isPopoverOpen)) {
+    const { renderFilter, placeholder, ...moreProps } = props;
+    if (renderFilter) {
       return props.renderFilter(props);
     }
 
     return (
       <FilterContainerStyled>
-        <FilterSearchIconStyled />
+        {props.hasSearchIcon ? <FilterSearchIconStyled /> : null}
         <FilterInputStyled
           ref={state.refFilterInput}
           type="text"
           onChange={handleChangeFilter}
           onKeyDown={handleKeyDown}
           value={textSearch}
-          placeholder={props.placeholder}
+          placeholder={placeholder}
+          {...moreProps}
         />
       </FilterContainerStyled>
     );

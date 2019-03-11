@@ -27,7 +27,7 @@ export default function Label(props) {
 
         throw Error(
           `The trigger label on the ListBox needs that either <ListBox.Option> children are typeof string
-          or a label prop is add to the <ListBox.Option label='my description'> component`
+        or a label prop is add to the <ListBox.Option label='my description'> component`
         );
       })
       .join(", ");
@@ -42,20 +42,20 @@ export default function Label(props) {
     );
   }
 
-  if (activeOption !== null) {
-    if (isMulti && selectedOptions.length) {
-      return getListboxLabelForMulti();
-    }
+  if (activeOption === null || selectedOptions.length === 0) {
+    return placeholder;
+  }
 
-    const option = options[activeOption];
-    if (option.value === "") {
-      return placeholder;
-    }
+  if (isMulti && selectedOptions.length) {
+    return getListboxLabelForMulti();
+  }
 
+  const option = options[activeOption];
+  if (option.label) {
     return option.label;
   }
 
-  return placeholder;
+  return option.content;
 }
 
 Label.propTypes = propTypes;

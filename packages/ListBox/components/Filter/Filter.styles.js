@@ -2,7 +2,6 @@ import styled from "styled-components";
 
 export const FilterContainerStyled = styled.div`
   position: relative;
-  padding: 8px 8px 0 8px;
 `;
 
 export const FilterInputStyled = styled.input`
@@ -13,10 +12,10 @@ export const FilterInputStyled = styled.input`
   font-size: 14px;
   height: 32px;
   margin-bottom: 0;
-  margin: 4px 0 8px 0;
+  margin: 8px;
   outline: none;
   padding-left: 28px;
-  width: 100%;
+  width: calc(100% - 16px);
 
   &:focus {
     background-color: #ffffff;
@@ -40,8 +39,8 @@ export const FilterGroupFilterLabel = styled.label`
 `;
 
 export const FilterSearchIconStyled = styled.div`
-  top: 21px;
-  left: 16px;
+  top: 17px;
+  left: 17px;
   color: #000;
   position: absolute;
   width: 12px;
