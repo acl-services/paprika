@@ -46,9 +46,14 @@ export const FilterGroupFilterLabel = styled.label`
 `;
 
 export const FilterSearchIconStyled = styled.div`
+<<<<<<< HEAD:packages/ListBox/src/components/Filter/Filter.styles.js
   border-radius: 100%;
   border: solid 2px #bdbdbd;
   box-sizing: border-box;
+=======
+  top: 17px;
+  left: 17px;
+>>>>>>> UX-434 🦄🐴 Adding ListBoxWithTag support:packages/ListBox/components/Filter/Filter.styles.js
   color: #000;
   height: 12px;
   left: 17px;

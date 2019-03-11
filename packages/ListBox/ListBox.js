@@ -42,8 +42,10 @@ const defaultProps = {
   hasGroupFilter: false,
   isHidden: false,
   isMulti: false,
+  isPopoverEager: true,
   isPopoverOpen: false,
   placeholder: "select one of the options",
+  preventOnBlurOnTrigger: false,
   renderLabel: null,
   height: 200,
 };

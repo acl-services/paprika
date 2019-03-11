@@ -27,7 +27,6 @@ const propTypes = {
 
 const defaultProps = {
   defaultTextSearch: "",
-  renderFilter: null,
   filter: null,
   options: [],
   placeholder: "Filter...",
