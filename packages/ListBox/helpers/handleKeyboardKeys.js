@@ -26,14 +26,6 @@ const handleKeyboardKeys = (state, dispatch) => event => {
           payload: { activeOptionIndex: next, isPopoverOpen: true },
         });
       }
-
-      const option = state.options[next];
-      if (option.isOptionActionGroup) {
-        dispatch({
-          type: actionTypes.toggleSelectOptionsByGroup,
-          payload: { index: next, group: option.value },
-        });
-      }
     }
   }
 
@@ -57,16 +49,20 @@ const handleKeyboardKeys = (state, dispatch) => event => {
       event.preventDefault();
       if (state.isPopoverOpen) {
         if (state.isMulti) {
-          dispatch({
-            type: actionTypes.setOptionOnMultipleSelection,
-            payload: { activeOptionIndex: state.activeOption, isPopoverOpen: true, shouldListBoxContentScroll: false },
-          });
-
           const option = state.options[state.activeOption];
           if (option.isOptionActionGroup) {
             dispatch({
               type: actionTypes.toggleSelectOptionsByGroup,
               payload: { index: option.index, group: option.value },
+            });
+          } else {
+            dispatch({
+              type: actionTypes.setOptionOnMultipleSelection,
+              payload: {
+                activeOptionIndex: state.activeOption,
+                isPopoverOpen: true,
+                shouldListBoxContentScroll: false,
+              },
             });
           }
         } else {

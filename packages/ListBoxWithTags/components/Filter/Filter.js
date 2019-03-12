@@ -1,9 +1,9 @@
 import React from "react";
 import PropTypes from "prop-types";
+import useStore from "@paprika/listbox/store/useStore";
+import * as actionTypes from "@paprika/listbox/store/actionTypes";
+import handleKeyboardKeys from "@paprika/listbox/helpers/handleKeyboardKeys";
 import FilterStyled from "./Filter.styles";
-import useStore from "../../../../store/useStore";
-import * as actionTypes from "../../../../store/actionTypes";
-import handleKeyboardKeys from "../../../../helpers/handleKeyboardKeys";
 
 const propTypes = {
   placeholder: PropTypes.string.isRequired,

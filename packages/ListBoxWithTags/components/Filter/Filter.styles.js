@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import Filter from "../../../../components/Filter";
+import Filter from "@paprika/listbox/components/Filter";
 
 const FilterStyled = styled(Filter)`
   border: 1px solid transparent;

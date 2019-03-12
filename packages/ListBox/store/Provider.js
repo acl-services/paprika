@@ -1,28 +1,17 @@
-// - [x] height of the popover
-// - [1/2] isDisabled property
-//    - on isDisabled be sure all interaction like keyup keydown don't trigger any interaction
-// - [] destructuring ...moreProps
-// - [] implementing blank option
-// - [] testing
-// - [] code cleaning
-// - [] style cleaning
-// - [] documentation
-// - [] Bugs
-//   - [] When selecting the last option and pressing enter on the accept button
-//        the option toggle their selection
-//   - [] while navigating with the keyboard if you are in the last option
-//        and close the listbox, clicking arrow key, not longer open the
-//        listbox though, click up will do it.
 import React from "react";
 import Proptypes from "prop-types";
 import reducer from "./reducer";
-import * as actionTypes from "./actionTypes";
+import * as effects from "./effects";
 
 import { getDataOptions, getDataGroups } from "../helpers/dataStructure";
 
 function initializeState(props) {
   const groups = getDataGroups(props.options);
   const options = getDataOptions(props.options, groups);
+
+  const selectedOptions = Object.keys(options)
+    .filter(key => options[key].isSelected)
+    .map(key => Number.parseInt(key, 10));
 
   return {
     ...props,
@@ -36,7 +25,7 @@ function initializeState(props) {
     options,
     preventOnBlurOnTrigger: props.preventOnBlurOnTrigger,
     renderChecker: props.renderChecker,
-    selectedOptions: [],
+    selectedOptions,
     shouldListBoxContentScroll: true,
     triggerWidth: 0,
   };
@@ -62,15 +51,10 @@ export default function Provider(props) {
   );
   const value = { state, dispatch };
 
-  React.useEffect(() => {
-    if (state.hasPopupOpened) {
-      const groups = getDataGroups(props.options);
-      dispatch({
-        type: actionTypes.updateOptions,
-        payload: getDataOptions(props.options, groups),
-      });
-    }
-  }, props.options); // eslint-disable-line
+  React.useEffect(
+    effects.handleEffectChildrenChange({ props, state, dispatch, getDataGroups, getDataOptions }),
+    [props.options] // eslint-disable-line
+  );
 
   return <StoreContext.Provider value={value}>{props.children}</StoreContext.Provider>;
 }

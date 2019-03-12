@@ -1,8 +1,8 @@
 import React from "react";
 import { storiesOf } from "@storybook/react";
-import ListBoxWithTags from "../ListBoxWithTags";
+import ListBoxWithTags from "../index";
 
-storiesOf("ListBox / with tags", module).add("ListBox With Tags", () => (
+storiesOf("ListBoxWithTags", module).add("ListBox With Tags", () => (
   <React.Fragment>
     <ListBoxWithTags placeholder="Select your 🤩 anti-heroes">
       <ListBoxWithTags.Option>Punisher</ListBoxWithTags.Option>
@@ -16,7 +16,7 @@ storiesOf("ListBox / with tags", module).add("ListBox With Tags", () => (
   </React.Fragment>
 ));
 
-storiesOf("ListBox / with tags", module).add("ListBox With Tags and filter", () => (
+storiesOf("ListBoxWithTags", module).add("ListBox With Tags and filter", () => (
   <React.Fragment>
     <ListBoxWithTags hasFilter placeholder="Select your 🤩 anti-heroes">
       <ListBoxWithTags.Option>Punisher</ListBoxWithTags.Option>
@@ -30,7 +30,7 @@ storiesOf("ListBox / with tags", module).add("ListBox With Tags and filter", () 
   </React.Fragment>
 ));
 
-storiesOf("ListBox / with tags", module).add("ListBox With Tags filter and input for custom tags", () => (
+storiesOf("ListBoxWithTags", module).add("ListBox With Tags filter and input for custom tags", () => (
   <React.Fragment>
     <ListBoxWithTags hasFilter hasCustomTags placeholder="Select an anti-heroes or add your own 👩‍🎤">
       <ListBoxWithTags.Option>Punisher</ListBoxWithTags.Option>
@@ -44,7 +44,7 @@ storiesOf("ListBox / with tags", module).add("ListBox With Tags filter and input
   </React.Fragment>
 ));
 
-storiesOf("ListBox / with tags", module).add("ListBox With Some Tags filter and input for custom tags", () => (
+storiesOf("ListBoxWithTags", module).add("ListBox With Some Tags filter and input for custom tags", () => (
   <React.Fragment>
     <ListBoxWithTags hasFilter hasCustomTags placeholder="Select an anti-heroes or add your own 👩‍🎤">
       {[...Array(100).keys()].map(index => (

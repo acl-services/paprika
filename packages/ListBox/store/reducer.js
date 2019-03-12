@@ -96,25 +96,37 @@ export default function reducer(state, { type, payload }) {
 
     case actionTypes.toggleSelectOptionsByGroup: {
       const isSelected = state.selectedOptions.includes(payload.index);
-      let optionsToSelect = [];
+      let selectedOptions = [];
 
       if (isSelected) {
-        optionsToSelect = Object.keys(state.options)
+        selectedOptions = state.selectedOptions.slice(0);
+
+        selectedOptions = selectedOptions
+          .filter(index => state.options[index].groupTitle !== payload.group)
+          .map(index => Number.parseInt(index, 10));
+
+        const indexGroupToRemove = selectedOptions.indexOf(payload.index);
+        selectedOptions.splice(indexGroupToRemove, 1);
+
+        state.onChange(selectedOptions, state.options, payload.index, "removed");
+      } else {
+        selectedOptions = Object.keys(state.options)
           .filter(key => state.options[key].groupTitle === payload.group)
           .map(index => Number.parseInt(index, 10));
 
+        state.onChange(selectedOptions, state.options, payload.index, "added");
+
+        selectedOptions.push(payload.index);
+
         if (state.selectedOptions.length) {
-          optionsToSelect = [...state.selectedOptions.slice(), ...optionsToSelect];
+          selectedOptions = [...state.selectedOptions.slice(), ...selectedOptions];
         }
-      } else {
-        optionsToSelect = state.selectedOptions
-          .filter(index => state.options[index].groupTitle !== payload.group)
-          .map(index => Number.parseInt(index, 10));
       }
 
       return {
         ...state,
-        selectedOptions: optionsToSelect,
+        activeOption: payload.index,
+        selectedOptions,
       };
     }
 

@@ -2,7 +2,9 @@
   "name": "@paprika/listbox",
   "version": "0.0.1",
   "description": "",
-  "main": "index.js",
+  "publishConfig": {
+    "access": "public"
+  },
   "dependencies": {
     "@paprika/popover": "^0.0.1",
     "@paprika/tokens": "^0.0.1",
@@ -19,9 +21,6 @@
   "repository": {
     "type": "git",
     "url": "https://github.com/acl-services/paprika/tree/master/packages/listbox"
-  },
-  "publishConfig": {
-    "access": "public"
   },
   "author": "@paprika",
   "license": "MIT"

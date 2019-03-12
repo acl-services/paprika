@@ -17,12 +17,24 @@ export default function Options() {
       return;
     }
 
-    const { options } = state;
+    const { options, hasFilter, isMulti, refFilterInput } = state;
     const option = options[key];
     const index = option.index;
     const isOptionActionGroup = option.isOptionActionGroup;
 
-    if (state.isMulti) {
+    if (hasFilter && isMulti) {
+      refFilterInput.current.focus();
+    }
+
+    if (isOptionActionGroup && isMulti) {
+      dispatch({
+        type: actionTypes.toggleSelectOptionsByGroup,
+        payload: { index, group: option.value },
+      });
+      return;
+    }
+
+    if (isMulti) {
       dispatch({
         type: actionTypes.setOptionOnMultipleSelection,
         payload: { activeOptionIndex: index, isPopoverOpen: true, shouldListBoxContentScroll: false },
@@ -33,44 +45,39 @@ export default function Options() {
         payload: { activeOptionIndex: index, isPopoverOpen: false },
       });
     }
-
-    if (isOptionActionGroup) {
-      dispatch({
-        type: actionTypes.toggleSelectOptionsByGroup,
-        payload: { index, group: option.value },
-      });
-    }
   };
+
+  const { options, hasNoResults, activeOption, isDisabled, renderChecker } = state;
 
   return optionsArray.map(key => {
     let shouldHaveGroupTitle = false;
-    if (state.options[key].groupTitle && lastGroupTitle !== state.options[key].groupTitle) {
+    if (options[key].groupTitle && lastGroupTitle !== options[key].groupTitle) {
       shouldHaveGroupTitle = true;
-      lastGroupTitle = state.options[key].groupTitle;
+      lastGroupTitle = options[key].groupTitle;
     }
 
     return (
       <React.Fragment key={key}>
-        {shouldHaveGroupTitle && !state.hasNoResults ? (
-          <OptionDividerStyled aria-hidden="true">{state.options[key].groupTitle}</OptionDividerStyled>
+        {shouldHaveGroupTitle && !hasNoResults ? (
+          <OptionDividerStyled aria-hidden="true">{options[key].groupTitle}</OptionDividerStyled>
         ) : null}
         {isOptionVisible(state, key) ? (
           <OptionStyled
-            {...getDOMAttributesForListBoxOption(state.options[key].index, state)()}
-            id={state.options[key].id}
-            isActive={state.activeOption === state.options[key].index}
-            isSelected={isOptionSelected(state, state.options[key].index)}
-            key={state.options[key].id}
+            {...getDOMAttributesForListBoxOption(options[key].index, state)()}
+            id={options[key].id}
+            isActive={activeOption === options[key].index}
+            isSelected={isOptionSelected(state, options[key].index)}
+            key={options[key].id}
             onClick={handleClickOption(key)}
             role="option"
-            isDisabled={state.isDisabled}
+            isDisabled={isDisabled}
           >
             <Checker
-              isOptionActionGroup={state.options[key].isOptionActionGroup}
-              isChecked={isOptionSelected(state, state.options[key].index)}
-              renderChecker={state.renderChecker}
+              isOptionActionGroup={options[key].isOptionActionGroup}
+              isChecked={isOptionSelected(state, options[key].index)}
+              renderChecker={renderChecker}
             />
-            {state.options[key].content}
+            {options[key].content}
           </OptionStyled>
         ) : null}
       </React.Fragment>

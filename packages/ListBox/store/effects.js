@@ -51,7 +51,7 @@ export const handleEffectListBoxWidth = (state, dispatch) => () => {
   };
 };
 
-export const handleEffectOnListBoxScrolled = state => () => {
+export const handleEffectListBoxScrolled = state => () => {
   if (state.isPopoverOpen && state.options[state.activeOption] && state.shouldListBoxContentScroll) {
     const parentOffsetTop = state.refListBox.current.offsetTop;
     const $option = document.getElementById(state.options[state.activeOption].id);
@@ -63,5 +63,15 @@ export const handleEffectOnListBoxScrolled = state => () => {
       }
       state.refListBox.current.scrollTo(0, offsetTop - 10);
     }
+  }
+};
+
+export const handleEffectChildrenChange = ({ props, state, dispatch, getDataGroups, getDataOptions }) => () => {
+  if (state.hasPopupOpened) {
+    const groups = getDataGroups(props.options);
+    dispatch({
+      type: actionTypes.updateOptions,
+      payload: getDataOptions(props.options, groups),
+    });
   }
 };

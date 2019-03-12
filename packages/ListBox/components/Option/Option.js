@@ -3,8 +3,9 @@ import PropTypes from "prop-types";
 
 /* eslint-disable react/no-unused-prop-types */
 const propTypes = {
-  idPrefix: PropTypes.string,
   children: PropTypes.node.isRequired,
+  idPrefix: PropTypes.string,
+  isSelected: PropTypes.bool,
   label: PropTypes.string,
   value: PropTypes.string,
 };
@@ -12,6 +13,7 @@ const propTypes = {
 
 const defaultProps = {
   idPrefix: "paprika",
+  isSelected: false,
   label: null,
   value: null,
 };

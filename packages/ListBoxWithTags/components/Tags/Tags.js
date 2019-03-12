@@ -1,9 +1,9 @@
 import React from "react";
 import PropTypes from "prop-types";
+import useStore from "@paprika/Listbox/store/useStore";
+import * as actionTypes from "@paprika/Listbox/store/actionTypes";
 import Tag from "../Tag";
 import Filter from "../Filter";
-import useStore from "../../../../store/useStore";
-import * as actionTypes from "../../../../store/actionTypes";
 
 const propTypes = {
   activeTag: PropTypes.number,
@@ -17,7 +17,7 @@ const defaultProps = {
 export default function Tags(props) {
   const [state, dispatch] = useStore();
 
-  const handleDeleteTag = key => event => {
+  const handleDeleteTag = key => () => {
     dispatch({
       type: actionTypes.unselectOptions,
       payload: [key],
