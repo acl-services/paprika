@@ -26,6 +26,7 @@ export const propTypes = {
   preventOnBlurOnTrigger: PropTypes.bool,
   renderLabel: PropTypes.func,
   typeOfChecker: PropTypes.oneOf(["checkbox"]),
+  zIndex: PropTypes.number,
 };
 
 export const defaultProps = {
@@ -44,27 +45,29 @@ export const defaultProps = {
   preventOnBlurOnTrigger: false,
   renderLabel: null,
   typeOfChecker: null,
+  zIndex: null,
 };
 
 export default function ListBox(props) {
   const {
     children,
     hasFilter,
-    hasGroupFilter,
-    isMulti,
-    isPopoverOpen,
-    placeholder,
-    renderLabel,
-    height,
     hasFooter,
-    typeOfChecker,
+    hasGroupFilter,
+    height,
+    isMulti,
     isPopoverEager,
+    isPopoverOpen,
     onChange,
+    placeholder,
+    zIndex,
+    renderLabel,
+    typeOfChecker,
     ...moreProps
   } = props;
 
   return (
-    <Popover {...moreProps} isEager={isPopoverEager}>
+    <Popover {...moreProps} zIndex={zIndex} isEager={isPopoverEager}>
       <Trigger renderLabel={renderLabel} placeholder={props.placeholder} />
       <Content>
         <Box>

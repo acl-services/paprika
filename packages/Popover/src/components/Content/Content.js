@@ -9,16 +9,14 @@ import { ContentStyled } from "./Content.styles";
 const propTypes = {
   children: PropTypes.node.isRequired,
   onBlur: PropTypes.func,
-  zIndex: PropTypes.number,
 };
 
 const defaultProps = {
   onBlur: () => {},
-  zIndex: 1,
 };
 
 const Content = React.forwardRef((props, ref) => {
-  const { onBlur, children, zIndex, ...moreProps } = props;
+  const { onBlur, children, ...moreProps } = props;
   // TODO: extract this to Storybook story somehow so supporting numbers as strings is not required
   function isNumber(n) {
     return RegExp(/^[0-9]+$/).test(n);
@@ -81,7 +79,6 @@ const Content = React.forwardRef((props, ref) => {
   };
 
   const handler = handleMouseEvent(isEager, onDelayedClose, onDelayedOpen);
-
   /* eslint-disable jsx-a11y/mouse-events-have-key-events */
   return ReactDOM.createPortal(
     <ContentStyled
@@ -96,7 +93,7 @@ const Content = React.forwardRef((props, ref) => {
       onMouseOver={handler}
       style={contentStyles}
       tabIndex={isOpen ? 0 : -1}
-      zIndex={zIndex}
+      zIndex={content.zIndex}
     >
       {children}
     </ContentStyled>,

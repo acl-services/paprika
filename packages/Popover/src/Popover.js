@@ -66,6 +66,9 @@ const propTypes = {
 
   /** If this value is true, focus will stay at the trigger when showing popover, and only can be closed when clicking outside or pressing escape key . Default is false. */
   shouldKeepFocus: PropTypes.bool,
+
+  /** Number setting the z-index for the popover content */
+  zIndex: PropTypes.number,
 };
 
 const defaultProps = {
@@ -80,6 +83,7 @@ const defaultProps = {
   getPositioningElement: null,
   getScrollContainer: null,
   shouldKeepFocus: false,
+  zIndex: 1,
 };
 
 class Popover extends React.Component {
@@ -120,11 +124,25 @@ class Popover extends React.Component {
   }
 
   getContextValues = memoizeOne(
-    (content, maxWidth, width, isDark, isEager, isOpen, portalElement, refContent, refTip, shouldKeepFocus, tip) => ({
+    (
+      content,
+      maxWidth,
+      width,
+      isDark,
+      isEager,
+      isOpen,
+      portalElement,
+      refContent,
+      refTip,
+      shouldKeepFocus,
+      tip,
+      zIndex
+    ) => ({
       content: {
         ...content,
         maxWidth, // maybe we should code a minimum maxWidth?
         width,
+        zIndex,
       },
       isDark,
       isEager,
@@ -240,8 +258,7 @@ class Popover extends React.Component {
   // eslint-disable-next-line react/sort-comp
   handleReposition = throttle(() => {
     if (this.isOpen()) {
-      const scrollContainer =
-        this.props.getScrollContainer === null ? document.documentElement : this.props.getScrollContainer();
+      const scrollContainer = this.props.getScrollContainer === null ? document.body : this.props.getScrollContainer();
       if (
         !isInsideBoundaries({
           $container: scrollContainer,
@@ -252,6 +269,7 @@ class Popover extends React.Component {
         this.close();
         return;
       }
+
       this.setVisibilityAndPosition();
     }
   }, throttleDelay);
@@ -389,6 +407,7 @@ class Popover extends React.Component {
       offset,
       getPositioningElement,
       getScrollContainer,
+      zIndex,
       ...moreProps
     } = this.props;
 
@@ -403,7 +422,8 @@ class Popover extends React.Component {
       this.refContent,
       this.refTip,
       this.props.shouldKeepFocus,
-      this.state.tip
+      this.state.tip,
+      zIndex
     );
 
     return (

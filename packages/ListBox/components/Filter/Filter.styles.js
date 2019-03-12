@@ -9,6 +9,7 @@ export const FilterInputStyled = styled.input`
   border-radius: 3px;
   border: 1px solid #d7d7d7;
   box-shadow: none;
+  box-sizing: border-box;
   font-size: 14px;
   height: 32px;
   margin-bottom: 0;
@@ -39,15 +40,18 @@ export const FilterGroupFilterLabel = styled.label`
 `;
 
 export const FilterSearchIconStyled = styled.div`
-  top: 17px;
-  left: 17px;
-  color: #000;
-  position: absolute;
-  width: 12px;
-  height: 12px;
-  border: solid 2px #bdbdbd;
   border-radius: 100%;
+  border: solid 2px #bdbdbd;
+  box-sizing: border-box;
+  color: #000;
+  height: 12px;
+  left: 17px;
+  margin: 0;
+  padding: 0;
+  position: absolute;
+  top: 17px;
   transform: rotate(-45deg);
+  width: 12px;
 
   &:before {
     content: "";
