@@ -6,22 +6,20 @@ import useStore from "../../store/useStore";
 const propTypes = {
   index: PropTypes.number.isRequired,
   isChecked: PropTypes.bool.isRequired,
-  isOptionActionGroup: PropTypes.bool,
   renderChecker: PropTypes.oneOfType([PropTypes.string, PropTypes.func]),
 };
 
 const defaultProps = {
-  isOptionActionGroup: false,
   renderChecker: null,
 };
 
 export default function Checkers(props) {
   const [state, dispatch] = useStore();
-  const { index, isOptionActionGroup, isChecked, renderChecker } = props;
+  const { index, isChecked, renderChecker } = props;
 
   if (typeof renderChecker === "function") {
     if (renderChecker) {
-      return props.renderChecker(isChecked, index, state, dispatch, isOptionActionGroup);
+      return props.renderChecker(isChecked, index, state, dispatch);
     }
 
     return null;

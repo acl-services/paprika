@@ -15,6 +15,10 @@ export function isOptionVisible(state, key) {
   return !state.filteredOptions.length || state.filteredOptions.includes(keyInt);
 }
 
+function isDisabled(state, key) {
+  return state.options[key].isDisabled;
+}
+
 export function getNextOptionActiveIndex(state, isAscending = true) {
   if (state.hasNoResults) {
     return null;
@@ -53,7 +57,7 @@ export function getNextOptionActiveIndex(state, isAscending = true) {
       key--;
     }
 
-    if (isOptionVisible(state, key)) {
+    if (isOptionVisible(state, key) && !isDisabled(state, key)) {
       index = key;
       keepIterating = false;
     }

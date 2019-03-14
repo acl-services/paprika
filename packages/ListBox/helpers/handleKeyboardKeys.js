@@ -46,30 +46,36 @@ const handleKeyboardKeys = (state, dispatch) => event => {
 
     case "Enter":
     case " ":
-      event.preventDefault();
-      if (state.isPopoverOpen) {
-        if (state.isMulti) {
-          const option = state.options[state.activeOption];
-          if (option.isOptionActionGroup) {
-            dispatch({
-              type: actionTypes.toggleSelectOptionsByGroup,
-              payload: { index: option.index, group: option.value },
-            });
+      {
+        const option = state.options[state.activeOption];
+        if (option.isDisabled) {
+          return;
+        }
+
+        event.preventDefault();
+        if (state.isPopoverOpen) {
+          if (state.isMulti) {
+            if (option.isOptionActionGroup) {
+              dispatch({
+                type: actionTypes.toggleSelectOptionsByGroup,
+                payload: { index: option.index, group: option.value },
+              });
+            } else {
+              dispatch({
+                type: actionTypes.setOptionOnMultipleSelection,
+                payload: {
+                  activeOptionIndex: state.activeOption,
+                  isPopoverOpen: true,
+                  shouldListBoxContentScroll: false,
+                },
+              });
+            }
           } else {
-            dispatch({
-              type: actionTypes.setOptionOnMultipleSelection,
-              payload: {
-                activeOptionIndex: state.activeOption,
-                isPopoverOpen: true,
-                shouldListBoxContentScroll: false,
-              },
-            });
+            dispatch({ type: actionTypes.closePopover });
           }
         } else {
-          dispatch({ type: actionTypes.closePopover });
+          dispatch({ type: actionTypes.openPopover });
         }
-      } else {
-        dispatch({ type: actionTypes.openPopover });
       }
       break;
 

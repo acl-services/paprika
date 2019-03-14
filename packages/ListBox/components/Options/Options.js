@@ -13,7 +13,7 @@ export default function Options() {
   let lastGroupTitle = null;
 
   const handleClickOption = key => () => {
-    if (state.isDisabled) {
+    if (state.isDisabled || state.options[key].isDisabled) {
       return;
     }
 
@@ -70,11 +70,10 @@ export default function Options() {
             key={options[key].id}
             onClick={handleClickOption(key)}
             role="option"
-            isDisabled={isDisabled}
+            isDisabled={isDisabled || options[key].isDisabled}
           >
             <Checker
-              index={key}
-              isOptionActionGroup={options[key].isOptionActionGroup}
+              index={Number.parseInt(key, 10)}
               isChecked={isOptionSelected(state, options[key].index)}
               renderChecker={renderChecker}
             />

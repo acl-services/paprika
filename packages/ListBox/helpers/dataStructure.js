@@ -3,7 +3,7 @@ import uuidv4 from "uuid/v4";
 import ListBox from "@paprika/listbox";
 
 function createOption({ index, child, title = null, isOptionActionGroup = false }) {
-  const { children, label, value, isHidden, isSelected } = child.props;
+  const { children, label, value, isHidden, isSelected, isDisabled } = child.props;
 
   return {
     content: children,
@@ -14,8 +14,9 @@ function createOption({ index, child, title = null, isOptionActionGroup = false 
     isHidden,
     isOptionActionGroup,
     isSelected,
+    isDisabled,
     label: label || children,
-    value: value || children,
+    value: value || undefined,
   };
 }
 

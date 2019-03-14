@@ -3,6 +3,7 @@ import { storiesOf } from "@storybook/react";
 import { Frame, ImageOption } from "./stories.styles";
 import ListBox from "..";
 import { images } from "./fixtures/images";
+import CustomCheckers from "./examples/customCheckers";
 
 storiesOf("ListBox / single", module).add("Basic", () => (
   <Frame>
@@ -138,15 +139,31 @@ storiesOf("ListBox / single", module).add("With Custom renderLabel as button", (
 
 storiesOf("ListBox / single", module).add("With Checkbox as pre built-in option", () => (
   <Frame>
-    <ListBox hasFilter renderChecker="checkbox">
-      <ListBox.Option>Punisher</ListBox.Option>
-      <ListBox.Option>Catwoman</ListBox.Option>
+    <p>Default option checker when is single select</p>
+    <ListBox>
+      <ListBox.Option>Spiderman</ListBox.Option>
       <ListBox.Option>Venom</ListBox.Option>
-      <ListBox.Option>Thunderbolts</ListBox.Option>
-      <ListBox.Option>Deadpool</ListBox.Option>
-      <ListBox.Option>Spawn</ListBox.Option>
-      <ListBox.Option>Wolverine</ListBox.Option>
+      <ListBox.Option>Carnage</ListBox.Option>
     </ListBox>
+    <p>Default option checker when is multi select</p>
+    <ListBox isMulti>
+      <ListBox.Option>Spiderman</ListBox.Option>
+      <ListBox.Option>Venom</ListBox.Option>
+      <ListBox.Option>Carnage</ListBox.Option>
+    </ListBox>
+    <p>To remove the checkbox simply return a falsy value on the renderChecker methdod</p>
+    <ListBox
+      isMulti
+      renderChecker={() => null}
+      zIndex={10000}
+      getScrollContainer={() => document.querySelector("#root > div")}
+    >
+      <ListBox.Option>Spiderman</ListBox.Option>
+      <ListBox.Option>Venom</ListBox.Option>
+      <ListBox.Option>Carnage</ListBox.Option>
+    </ListBox>
+    <p>You have access to the current state of the option so you could have a third state</p>
+    <CustomCheckers />
   </Frame>
 ));
 

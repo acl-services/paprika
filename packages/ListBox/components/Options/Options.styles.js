@@ -12,7 +12,7 @@ export const OptionStyled = styled.li`
   &:hover {
     ${props => {
       const isSelected = props.isSelected ? `background: ${blueSelected}` : `background: #f0f0f0`;
-      const isDisabled = props.isDisabled ? "background: none;" : "";
+      const isDisabled = props.isDisabled ? "background: none; cursor: not-allowed;" : "";
 
       return `
         ${isSelected}
@@ -23,7 +23,6 @@ export const OptionStyled = styled.li`
 
   ${props => {
     const isDisabled = props.isDisabled ? `color: ${tokens.color.blackLighten60};` : "";
-
     const isActived = props.isActive
       ? `
         border-width: 3px;

@@ -14,6 +14,7 @@ import GroupProps from "./components/Group";
 import { Playground, PropsTable } from "docz";
 import { images } from "./stories/fixtures/images";
 import { ImageOption } from "./stories/stories.styles";
+import CustomCheckers from "./stories/examples/customCheckers";
 
 ---
 
@@ -212,20 +213,25 @@ import ListBox from "@paprika/listbox";
 
 ---
 
-### Single select with pre-built checkers
-
-The default
+### Single select renderChecker prop
 
 <Playground>
+  <p>Default option checker when is single select</p>
+  <ListBox>
+    <ListBox.Option>Spiderman</ListBox.Option>
+    <ListBox.Option>Venom</ListBox.Option>
+    <ListBox.Option>Carnage</ListBox.Option>
+  </ListBox>
+  <p>Default option checker when isMulti</p>
   <ListBox isMulti zIndex={10000} getScrollContainer={() => document.querySelector("#root > div")}>
     <ListBox.Option>Spiderman</ListBox.Option>
     <ListBox.Option>Venom</ListBox.Option>
     <ListBox.Option>Carnage</ListBox.Option>
   </ListBox>
-  <hr />
+  <p>To remove the checkbox simply return a falsy value on the renderChecker method</p>
   <ListBox
     isMulti
-    renderChecker={() => null}
+    renderChecker={(isChecked, state, dispatch, index) => null}
     zIndex={10000}
     getScrollContainer={() => document.querySelector("#root > div")}
   >
@@ -233,14 +239,45 @@ The default
     <ListBox.Option>Venom</ListBox.Option>
     <ListBox.Option>Carnage</ListBox.Option>
   </ListBox>
-  <hr />
+  <p>Rendering checker depending of the state</p>
+  <CustomCheckers />
 </Playground>
 
 <!-- prettier-ignore -->
 ```js
 import ListBox from "@paprika/listbox";
 
-<ListBox isMulti>
+// default if is single select
+<ListBox>
+  <ListBox.Option>Spiderman</ListBox.Option>
+  <ListBox.Option>Venom</ListBox.Option>
+  <ListBox.Option>Carnage</ListBox.Option>
+</ListBox>
+// default if is multi select
+<ListBox>
+  <ListBox.Option>Spiderman</ListBox.Option>
+  <ListBox.Option>Venom</ListBox.Option>
+  <ListBox.Option>Carnage</ListBox.Option>
+</ListBox>
+
+// removing checker
+<ListBox renderChecker={() => null}>
+  <ListBox.Option>Spiderman</ListBox.Option>
+  <ListBox.Option isDisabled>Venom</ListBox.Option>
+  <ListBox.Option>Carnage</ListBox.Option>
+</ListBox>
+
+
+// custom checker with state
+<ListBox
+  isMulti
+  renderChecker={(isChecked, index, state) => {
+    if (state.options[index].isDisabled) {
+      return `🔒`;
+    }
+    return isChecked ? "😇" : "😢";
+  }}
+>
   <ListBox.Option>Spiderman</ListBox.Option>
   <ListBox.Option>Venom</ListBox.Option>
   <ListBox.Option>Carnage</ListBox.Option>

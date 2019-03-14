@@ -9,16 +9,20 @@ const propTypes = {
   /** Describe if the option is selected or not */
   isSelected: PropTypes.bool,
 
+  /** Describe if the option is enable or not */
+  isDisabled: PropTypes.bool,
+
   /** When the children are not a String, label should need to be add so the filter can work  */
   label: PropTypes.string,
 
-  /** Value the describe your option  */
+  /** Value of your option this can be any data structure  */
   value: PropTypes.any, // eslint-disable-line
 };
 /* eslint-enable react/no-unused-prop-types */
 
 const defaultProps = {
   isSelected: false,
+  isDisabled: false,
   label: null,
   value: null,
 };
