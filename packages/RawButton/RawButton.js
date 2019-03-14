@@ -1,11 +1,9 @@
 import React from "react";
 import PropTypes from "prop-types";
-
 import RawButtonStyled from "./RawButton.styles";
 
 const propTypes = {
   ariaText: PropTypes.string,
-  buttonRef: PropTypes.shape({ current: PropTypes.instanceOf(Element) }),
   canPropagate: PropTypes.bool,
   children: PropTypes.node.isRequired,
   className: PropTypes.string,
@@ -17,7 +15,6 @@ const propTypes = {
 
 const defaultProps = {
   ariaText: null,
-  buttonRef: null,
   canPropagate: true,
   className: null,
   isDisabled: false,
@@ -26,21 +23,24 @@ const defaultProps = {
   tabIndex: 0,
 };
 
-class RawButton extends React.Component {
-  constructor(props) {
-    super(props);
-    this.setRef(props);
-  }
+const RawButton = React.forwardRef((props, ref) => {
+  const { ariaText, canPropagate, children, isDisabled, onClick, tabIndex, ...moreProps } = props;
+  if (ariaText) moreProps["aria-label"] = ariaText;
 
-  componentDidUpdate() {
-    this.setRef(this.props);
-  }
+  const rawButtonRef = React.useRef(null);
 
-  setRef(props) {
-    this.$rawButton = props.buttonRef || React.createRef();
-  }
+  React.useImperativeHandle(ref, () => ({
+    focus: () => {
+      rawButtonRef.current.focus();
+    },
+  }));
 
-  handleKeyDown = event => {
+  const handleClick = event => {
+    if (!canPropagate) event.stopPropagation();
+    if (!isDisabled) onClick(event);
+  };
+
+  const handleKeyDown = event => {
     if (
       // Prevent scrolling the page with a spacerbar keypress
       event.key === " " ||
@@ -51,43 +51,32 @@ class RawButton extends React.Component {
     }
   };
 
-  handleKeyUp = event => {
-    if (this.props.isDisabled || (!this.props.canPropagate && event.target !== this.$rawButton.current)) {
-      return;
-    }
-    if (event.key === " " || event.key === "Enter") {
-      this.props.onClick(event);
+  const handleKeyUp = event => {
+    const shouldHandle = canPropagate || event.target === rawButtonRef.current;
+    const isTriggerKey = event.key === " " || event.key === "Enter";
+
+    if (!isDisabled && shouldHandle && isTriggerKey) {
+      onClick(event);
     }
   };
 
-  handleClick = event => {
-    if (!this.props.canPropagate) event.stopPropagation();
-    if (!this.props.isDisabled) this.props.onClick(event);
-  };
-
-  render() {
-    const { ariaText, buttonRef, canPropagate, children, isDisabled, tabIndex, ...moreProps } = this.props;
-    if (ariaText) moreProps["aria-label"] = ariaText;
-
-    return (
-      <RawButtonStyled
-        aria-disabled={isDisabled}
-        ref={this.$rawButton}
-        isDisabled={isDisabled}
-        onClick={this.handleClick}
-        onKeyDown={this.handleKeyDown}
-        onKeyUp={this.handleKeyUp}
-        tabIndex={isDisabled ? -1 : tabIndex}
-        {...moreProps}
-      >
-        {children}
-      </RawButtonStyled>
-    );
-  }
-}
+  return (
+    <RawButtonStyled
+      aria-disabled={isDisabled}
+      isDisabled={isDisabled}
+      onClick={handleClick}
+      onKeyDown={handleKeyDown}
+      onKeyUp={handleKeyUp}
+      ref={rawButtonRef}
+      tabIndex={isDisabled ? -1 : tabIndex}
+      {...moreProps}
+    >
+      {children}
+    </RawButtonStyled>
+  );
+});
 
 RawButton.displayName = "RawButton";
-
 RawButton.propTypes = propTypes;
 RawButton.defaultProps = defaultProps;
 

@@ -1,4 +1,5 @@
 import styled from "styled-components";
+import tokens from "@paprika/tokens";
 import stylers from "@paprika/stylers";
 
 // Common Storybook story styles
@@ -13,4 +14,8 @@ export const CenteredStory = styled.div`
   height: 100vh;
   justify-content: center;
   width: 100%;
+`;
+
+export const Small = styled.small`
+  color: ${tokens.color.blackLighten40};
 `;

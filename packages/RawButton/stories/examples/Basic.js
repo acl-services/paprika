@@ -1,42 +1,49 @@
 import React from "react";
-import { action } from "@storybook/react";
-import { Story } from "storybook/assets/styles/common.styles";
+import { action } from "@storybook/addon-actions";
+import { Story, Small } from "storybook/assets/styles/common.styles";
 import RawButton from "../../RawButton";
 
-const btnRef = React.createRef();
-const btnRef2 = React.createRef();
+function clickHandler() {
+  action("Clicked a button")();
+}
 
-const clickHandler = ref => () => {
-  action(`Clicked on <${ref.current.nodeName.toLowerCase()}> ("${ref.current.innerText}")`)();
+const PopoverStory = () => {
+  const buttonRef = React.createRef();
+
+  setTimeout(() => {
+    buttonRef.current.focus();
+  }, 1000);
+
+  return (
+    <Story>
+      <p>
+        <RawButton
+          ariaText="ceci n'est pas un bouton"
+          onClick={clickHandler}
+          qa-test-anchor="test-button"
+          ref={buttonRef}
+        >
+          Raw button
+        </RawButton>
+      </p>
+      <p>
+        <Small>This raw button will capture the focus after 1 second.</Small>
+      </p>
+      <hr />
+      <p>
+        <RawButton isDisabled onClick={clickHandler}>
+          Disabled button
+        </RawButton>
+      </p>
+      <p>
+        <Small>This raw button is disabled.</Small>
+      </p>
+      {[...Array(34).keys()].map(index => (
+        <br key={index} />
+      ))}
+      ...fin.
+    </Story>
+  );
 };
-
-const PopoverStory = () => (
-  <Story>
-    <p>Freegan squid pug heirloom letterpress pork belly, readymade you probably haven’t heard of them.</p>
-    <p>
-      <RawButton
-        ariaText="ceci n'est pas un bouton"
-        onClick={clickHandler(btnRef)}
-        buttonRef={btnRef}
-        qa-test-anchor="test-button"
-      >
-        Raw button
-      </RawButton>
-    </p>
-    <p>
-      <RawButton onClick={clickHandler(btnRef2)} buttonRef={btnRef2} isDisabled>
-        Disabled button
-      </RawButton>
-    </p>
-    {[
-      ...Array(34)
-        .fill()
-        .keys(),
-    ].map(index => (
-      <br key={index} />
-    ))}
-    ...fin.
-  </Story>
-);
 
 export default PopoverStory;
