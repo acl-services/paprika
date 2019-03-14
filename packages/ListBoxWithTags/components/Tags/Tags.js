@@ -1,7 +1,7 @@
 import React from "react";
 import PropTypes from "prop-types";
-import useStore from "@paprika/Listbox/store/useStore";
-import * as actionTypes from "@paprika/Listbox/store/actionTypes";
+import useStore from "@paprika/listbox/store/useStore";
+import * as actionTypes from "@paprika/listbox/store/actionTypes";
 import Tag from "../Tag";
 import Filter from "../Filter";
 

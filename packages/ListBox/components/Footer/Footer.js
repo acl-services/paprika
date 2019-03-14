@@ -1,5 +1,5 @@
 import React from "react";
-import Button from "@paprika/Button";
+import Button from "@paprika/button";
 import PropTypes from "prop-types";
 import { FooterContainerStyled } from "./Footer.styles";
 import useStore from "../../store/useStore";

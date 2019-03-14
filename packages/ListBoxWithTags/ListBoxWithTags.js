@@ -2,11 +2,11 @@ import React from "react";
 import PropTypes from "prop-types";
 // Listbox
 import ListBox, { propTypes as listBoxPropTypes, defaultProps as listBoxdefaultProps } from "@paprika/Listbox/ListBox";
-import Option from "@paprika/Listbox/components/Option";
-import Group from "@paprika/Listbox/components/Group";
-import Provider from "@paprika/Listbox/store/Provider";
-import useStore from "@paprika/Listbox/store/useStore";
-import * as actionTypes from "@paprika/Listbox/store/actionTypes";
+import Option from "@paprika/listbox/components/Option";
+import Group from "@paprika/listbox/components/Group";
+import Provider from "@paprika/listbox/store/Provider";
+import useStore from "@paprika/listbox/store/useStore";
+import * as actionTypes from "@paprika/listbox/store/actionTypes";
 
 // Custom Componeent for ListBoxWithTags
 import Tags from "./components/Tags";
