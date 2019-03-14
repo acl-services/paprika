@@ -14,14 +14,9 @@ const PopoverStory = () => {
     buttonRef = node;
   };
 
-const clickHandler = getRef => () => {
-  if (getRef) {
-    const $ref = getRef();
-    action(`Clicked on <${$ref.nodeName.toLowerCase()}> ("${$ref.innerText}")`)();
-  } else {
-    action("Clicked a button")();
-  }
-};
+  setTimeout(() => {
+    buttonRef.focus();
+  }, 1000);
 
   return (
     <Story>
