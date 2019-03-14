@@ -14,9 +14,14 @@ const ExampleStory = () => {
     buttonRef = node;
   };
 
-  setTimeout(() => {
-    buttonRef.focus();
-  }, 1000);
+  React.useEffect(() => {
+    const focusTimer = setTimeout(() => {
+      buttonRef.focus();
+    }, 1000);
+    return () => {
+      clearTimeout(focusTimer);
+    };
+  });
 
   return (
     <Story>

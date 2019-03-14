@@ -10,9 +10,14 @@ function clickHandler() {
 const ExampleStory = () => {
   const buttonRef = React.createRef();
 
-  setTimeout(() => {
-    buttonRef.current.focus();
-  }, 1000);
+  React.useEffect(() => {
+    const focusTimer = setTimeout(() => {
+      buttonRef.current.focus();
+    }, 1000);
+    return () => {
+      clearTimeout(focusTimer);
+    };
+  });
 
   return (
     <Story>
