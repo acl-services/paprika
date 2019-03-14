@@ -38,11 +38,7 @@ const PopoverStory = () => {
       <p>
         <Small>This raw button is disabled.</Small>
       </p>
-      {[
-        ...Array(34)
-          .fill()
-          .keys(),
-      ].map(index => (
+      {[...Array(34).keys()].map(index => (
         <br key={index} />
       ))}
       ...fin.
