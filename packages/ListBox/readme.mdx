@@ -1,0 +1,622 @@
+---
+name: ListBox
+menu: Components
+route: /listbox
+---
+
+<!------------------- IMPORTS ------------------>
+
+import ListBox from "./index";
+import ListBoxProps from "./ListBox";
+import OptionProps from "./components/Option";
+import GroupProps from "./components/Group";
+
+import { Playground, PropsTable } from "docz";
+import { images } from "./stories/fixtures/images";
+import { ImageOption } from "./stories/stories.styles";
+
+---
+
+# ListBox
+
+## Intro
+
+The main purpose for this _PR_ is request feedback about the ListBox (formerly multi select) _API_, so please try to avoid to dig too much on implementation details or styles details unless you have something that must have to be call out,
+
+My interest is in learning if this API will helps our developers to save time when implementing
+this component in their daily as well if they can compose it. From design point of view I'm interesting to
+hear if the keyboard interaction is correct or we need to fix some specific behaviours.
+
+After getting the feedback I will close this PR, and create a new one where we will focus on reviewing the code, merge and after that focus on styling, screen reader and testing.
+
+Thank you 🙏
+
+_`NOTE:`_ Due the amount of code I have written, I have decide to stop coding and asked for feedback
+before continuing, the following features haven't been include but will be for the final release.
+
+- Disable individual options
+- Lazy loading, this can be achieve with the current implementation just will take longer to implemented
+- Footer for multiselect is done but not presence is this examples needs more polish.
+- ListBoxWithTags `[←]` and `[→]` keys navigation, though you can use `[delete]` for remove the items.
+- React window to load thousand of items, currently if you load 100 items the component behave smoothly.
+- While keyboard interaction has been implemented, screen reader support has not.
+- (Designers) We are missing a loading state mockup either when the ListBox is close or open
+- (Designers) We are missing a error state mockup either when the ListBox is close or open
+- (Designers) Maybe thinking an state for placeholder for the UI one that describe the multiselect before been load? ala facebook [load states library](https://github.com/danilowoz/react-content-loader)
+
+## API
+
+The first thing to notices, is that I have change the name from Multiselect to ListBox, which is a more appropriate name, this is not a Combobox, because sometimes the ListBox can include or not a filter feature, as well the filter and the trigger are not combined, this is the reason why ListBox is more accurate.
+
+Other thing that I tried while implementing this ListBox is to mimic the html `<select />` element behaviour. For instance `<ListBox />` has an option component `<ListBox.Option />` which allowed the developer to compose the listbox like would do it using the html one.
+
+Worth noting the `onChange` event returns the selected index number on the single selection, while on the multiple selection will return an array of indexes.
+
+A basic example would look like:
+
+```js
+// value is optional
+// label is optional if the children is a string, otherwise need a label so the filter can works
+// content will be the JSX content of the Option
+
+const handleChange = (index, options) => {
+  options[index].value;
+  options[index].label;
+  options[index].content;
+};
+
+<ListBox onChange={handleChange}>
+  <ListBox.Option value="optional1" label="Option 1">
+    Option 1
+  </ListBox.Option>
+  <ListBox.Option value="optional2" label="Option 2">
+    Option 2
+  </ListBox.Option>
+</ListBox>;
+```
+
+## Accessibility
+
+### Keyboard accessibility
+
+All ListBoxes are keyboard accessible, the following are features automatically include it:
+
+- As soon the Listbox is open the user can start interacting with the `[↑]` and `[↓]` keys to navigate to different options.
+- If the Listbox includes a filter will eagerly try to focus on the Filter, the `[↑]` and `[↓]` will continue working without losing focus on the filter.
+- The user can `[tab]` or `[shift+tab]` like if the ListBox was a regular button.
+- `[esc]` or clicking outside of the ListBox will close it
+- Clicking `[space]` or `⏎` will select the option on the _single select_ or _toggle_ it in the `multi select` version.
+- When the filter is active the user _CAN'T_ make use of the `[space]` key, because would conflicts with the filter input. This last behaviour is similar to [this example on the wai-aria site](https://www.w3.org/TR/wai-aria-practices/examples/combobox/aria1.1pattern/grid-combo.html).
+
+### Screen reader accessibility
+
+Currently there is not support for the screen reader. There are couple challenges to solve before achiving this. As example the Screen reader expected that the options on the markup exists while the page is render so if the ListBox popover is in close status and not in the presence of the DOM. The _screenreader_ will not be able to read the options.
+
+This specific feature needs some research and work.
+
+## Props
+
+### ListBox
+
+<PropsTable of={ListBoxProps} />
+
+### ListBox.Option
+
+<PropsTable of={OptionProps} />
+
+### ListBox.Group
+
+<PropsTable of={GroupProps} />
+
+---
+
+## Single select
+
+### Single select basic
+
+<Playground>
+  <ListBox zIndex={10000} getScrollContainer={() => document.querySelector("#root > div")}>
+    <ListBox.Option>Spiderman</ListBox.Option>
+    <ListBox.Option>Venom</ListBox.Option>
+    <ListBox.Option>Carnage</ListBox.Option>
+  </ListBox>
+</Playground>
+
+<!-- prettier-ignore -->
+#### Code
+
+```js
+import ListBox from "@paprika/listbox";
+
+<ListBox>
+  <ListBox.Option>Spiderman</ListBox.Option>
+  <ListBox.Option>Venom</ListBox.Option>
+  <ListBox.Option>Carnage</ListBox.Option>
+</ListBox>;
+```
+
+---
+
+### Single select with options selected
+
+<Playground>
+  <ListBox zIndex={10000} getScrollContainer={() => document.querySelector("#root > div")}>
+    <ListBox.Option>Spiderman</ListBox.Option>
+    <ListBox.Option isSelected>Venom</ListBox.Option>
+    <ListBox.Option>Carnage</ListBox.Option>
+  </ListBox>
+</Playground>
+
+#### Code
+
+<!-- prettier-ignore -->
+```js
+import ListBox from "@paprika/listbox";
+
+<ListBox>
+  <ListBox.Option>Spiderman</ListBox.Option>
+  <ListBox.Option isSelected>Venom</ListBox.Option>
+  <ListBox.Option>Carnage</ListBox.Option>
+</ListBox>
+```
+
+---
+
+### Single select with filter
+
+<Playground>
+  <ListBox hasFilter zIndex={10000} getScrollContainer={() => document.querySelector("#root > div")}>
+    <ListBox.Option>Spiderman</ListBox.Option>
+    <ListBox.Option>Venom</ListBox.Option>
+    <ListBox.Option>Carnage</ListBox.Option>
+  </ListBox>
+</Playground>
+
+#### Code
+
+<!-- prettier-ignore -->
+```js
+import ListBox from "@paprika/listbox";
+
+<ListBox hasFilter>
+  <ListBox.Option>Spiderman</ListBox.Option>
+  <ListBox.Option>Venom</ListBox.Option>
+  <ListBox.Option>Carnage</ListBox.Option>
+</ListBox>
+```
+
+---
+
+### Single select is disabled
+
+<Playground>
+  <ListBox isDisabled hasFilter zIndex={10000} getScrollContainer={() => document.querySelector("#root > div")}>
+    <ListBox.Option>Spiderman</ListBox.Option>
+    <ListBox.Option>Venom</ListBox.Option>
+    <ListBox.Option>Carnage</ListBox.Option>
+  </ListBox>
+</Playground>
+
+#### Code
+
+<!-- prettier-ignore -->
+```js
+import ListBox from "@paprika/listbox";
+
+<ListBox hasFilter isDisabled>
+  <ListBox.Option>Spiderman</ListBox.Option>
+  <ListBox.Option>Venom</ListBox.Option>
+  <ListBox.Option>Carnage</ListBox.Option>
+</ListBox>
+```
+
+---
+
+### Single select with pre-built checkers
+
+`wip` The listbox accepts a renderProp property which allowed the listbox to render its own checkers,
+I think the checkbox is widely use that would make sense to have a prebuilt option for it, thought I'm
+not sure if we should merge it with the renderChecker option, suggestion are need.
+
+<Playground>
+  <ListBox renderChecker="checkbox" zIndex={10000} getScrollContainer={() => document.querySelector("#root > div")}>
+    <ListBox.Option>Spiderman</ListBox.Option>
+    <ListBox.Option>Venom</ListBox.Option>
+    <ListBox.Option>Carnage</ListBox.Option>
+  </ListBox>
+</Playground>
+
+<!-- prettier-ignore -->
+```js
+import ListBox from "@paprika/listbox";
+
+<ListBox renderChecker="checkbox">
+  <ListBox.Option>Spiderman</ListBox.Option>
+  <ListBox.Option>Venom</ListBox.Option>
+  <ListBox.Option>Carnage</ListBox.Option>
+</ListBox>
+```
+
+---
+
+### Single select with custom checkers
+
+<ListBox
+  renderChecker={isChecked => {
+    return isChecked ? "✅" : "🙅‍";
+  }}
+  zIndex={10000}
+  getScrollContainer={() => document.querySelector("#root > div")}
+>
+  <ListBox.Option>Spiderman</ListBox.Option>
+  <ListBox.Option>Venom</ListBox.Option>
+  <ListBox.Option>Carnage</ListBox.Option>
+</ListBox>
+
+#### Code
+
+<!-- prettier-ignore -->
+```js
+import ListBox from "@paprika/listbox";
+
+<ListBox renderChecker="checkbox">
+  <ListBox.Option>Spiderman</ListBox.Option>
+  <ListBox.Option>Venom</ListBox.Option>
+  <ListBox.Option>Carnage</ListBox.Option>
+</ListBox>
+```
+
+---
+
+### Single select with custom nodes
+
+The following example let you created ListBoxes with custom children, in this case images, you can
+add a `label` prop on the `<ListBox.Option />` so the filter component can keep working
+
+<Playground>
+  <ListBox height={300} hasFilter zIndex={10000} getScrollContainer={() => document.querySelector("#root > div")}>
+    {images.map(image => (
+      <ListBox.Option label={image.label} key={image}>
+        <ImageOption>
+          <img alt={image.label} src={image.src} />
+        </ImageOption>
+      </ListBox.Option>
+    ))}
+  </ListBox>
+</Playground>
+
+#### Code
+
+<!-- prettier-ignore -->
+```js
+import ListBox from "@paprika/listbox";
+
+<ListBox hasFilter isDisabled>
+  {images.map(image => (
+    <ListBox.Option label={image.label}>
+      <img alt={image.label} src={image.src} />
+    </ListBox.Option>
+  ))}
+</ListBox>
+```
+
+---
+
+### Single select with groups
+
+<ListBox hasFilter zIndex={10000} getScrollContainer={() => document.querySelector("#root > div")}>
+  <ListBox.Group title="antiheroes">
+    <ListBox.Option isSelected>Punisher</ListBox.Option>
+    <ListBox.Option>Catwoman</ListBox.Option>
+    <ListBox.Option>Venom</ListBox.Option>
+    <ListBox.Option>Thunderbolts</ListBox.Option>
+    <ListBox.Option>Suicide Squad</ListBox.Option>
+    <ListBox.Option>Deadpool</ListBox.Option>
+    <ListBox.Option>Spawn</ListBox.Option>
+    <ListBox.Option>Wolverine</ListBox.Option>
+  </ListBox.Group>
+  <ListBox.Group title="villians">
+    <ListBox.Option>The Joker</ListBox.Option>
+    <ListBox.Option>Darth Vader</ListBox.Option>
+    <ListBox.Option isSelected>Hannibal Lecter</ListBox.Option>
+    <ListBox.Option isSelected>Lord Voldemort</ListBox.Option>
+    <ListBox.Option>Freddy Krueger</ListBox.Option>
+    <ListBox.Option>Palpatine</ListBox.Option>
+    <ListBox.Option>Agent Smith</ListBox.Option>
+  </ListBox.Group>
+  <ListBox.Group title="heroes">
+    <ListBox.Option>Black Panther</ListBox.Option>
+    <ListBox.Option>Wonder Woman</ListBox.Option>
+    <ListBox.Option>Spiderman</ListBox.Option>
+    <ListBox.Option>The Incredibles</ListBox.Option>
+    <ListBox.Option>Thor</ListBox.Option>
+    <ListBox.Option>Batman</ListBox.Option>
+    <ListBox.Option>Iron Man</ListBox.Option>
+    <ListBox.Option>Doctor Strange</ListBox.Option>
+  </ListBox.Group>
+</ListBox>
+
+#### Code
+
+```js
+import ListBox from "@paprika/listbox";
+
+<ListBox hasFilter>
+  <ListBox.Group title="antiheroes">
+    <ListBox.Option isSelected>Punisher</ListBox.Option>
+    <ListBox.Option>Catwoman</ListBox.Option>
+    <ListBox.Option isSelected>Venom</ListBox.Option>
+    <ListBox.Option>Thunderbolts</ListBox.Option>
+    <ListBox.Option>Suicide Squad</ListBox.Option>
+    <ListBox.Option>Deadpool</ListBox.Option>
+    <ListBox.Option>Spawn</ListBox.Option>
+    <ListBox.Option>Wolverine</ListBox.Option>
+  </ListBox.Group>
+  <ListBox.Group title="villians">
+    <ListBox.Option>The Joker</ListBox.Option>
+    <ListBox.Option>Darth Vader</ListBox.Option>
+    <ListBox.Option isSelected>Hannibal Lecter</ListBox.Option>
+    <ListBox.Option isSelected>Lord Voldemort</ListBox.Option>
+    <ListBox.Option>Freddy Krueger</ListBox.Option>
+    <ListBox.Option isSelected>Palpatine</ListBox.Option>
+    <ListBox.Option isSelected>Agent Smith</ListBox.Option>
+  </ListBox.Group>
+  <ListBox.Group title="heroes">
+    <ListBox.Option>Black Panther</ListBox.Option>
+    <ListBox.Option>Wonder Woman</ListBox.Option>
+    <ListBox.Option>Spiderman</ListBox.Option>
+    <ListBox.Option>The Incredibles</ListBox.Option>
+    <ListBox.Option>Thor</ListBox.Option>
+    <ListBox.Option isSelected>Batman</ListBox.Option>
+    <ListBox.Option isSelected>Iron Man</ListBox.Option>
+    <ListBox.Option>Doctor Strange</ListBox.Option>
+  </ListBox.Group>
+</ListBox>;
+```
+
+---
+
+## Multi select
+
+The Multiselect behaves in the same way as the single select and have the same
+props.
+
+To make the `<ListBox />` behave as a multi select, the developer needs to pass the _prop_
+isMulti `<ListBox isMulti />`.
+
+One of the biggest differences between the Multi and Single ListBox is the way the `onChange`
+property behaves. While the single select always return the selected index plus the options.
+
+The Multi ListBox will return an array of selected index, the options currently in the ListBox, plus
+two more parameter, the index of the latest clicked item and if the item was added or removed from the
+selection.
+
+In code:
+
+```js
+const handleChange = (arrayOfIndexes, options, lastIndexAffected, typeOfEvent) => {
+  arrayOfIndexes; // the selected items
+  options; // an hash object with the options
+  lastIndexAffected; // the last index that the user interacted with.
+  typeOfEvent; // can be "added" or "removed"
+};
+
+<ListBox isMulti onChange={handleChange}>
+  <ListBox.Option>Option 1</ListBox.Option>
+  <ListBox.Option>Option 2</ListBox.Option>
+</ListBox>;
+```
+
+---
+
+### Multi select basic
+
+<Playground>
+  <ListBox isMulti zIndex={10000} getScrollContainer={() => document.querySelector("#root > div")}>
+    <ListBox.Option>Punisher</ListBox.Option>
+    <ListBox.Option>Catwoman</ListBox.Option>
+    <ListBox.Option>Venom</ListBox.Option>
+    <ListBox.Option>Thunderbolts</ListBox.Option>
+    <ListBox.Option>Deadpool</ListBox.Option>
+    <ListBox.Option>Spawn</ListBox.Option>
+    <ListBox.Option>Wolverine</ListBox.Option>
+  </ListBox>
+</Playground>
+
+#### Code
+
+```js
+<ListBox isMulti>
+  <ListBox.Option>Punisher</ListBox.Option>
+  <ListBox.Option>Catwoman</ListBox.Option>
+  <ListBox.Option>Venom</ListBox.Option>
+  <ListBox.Option>Thunderbolts</ListBox.Option>
+  <ListBox.Option>Deadpool</ListBox.Option>
+  <ListBox.Option>Spawn</ListBox.Option>
+  <ListBox.Option>Wolverine</ListBox.Option>
+</ListBox>
+```
+
+---
+
+### Multiselect with preselect options
+
+<Playground>
+  <ListBox isMulti zIndex={10000} getScrollContainer={() => document.querySelector("#root > div")}>
+    <ListBox.Option>Punisher</ListBox.Option>
+    <ListBox.Option>Catwoman</ListBox.Option>
+    <ListBox.Option isSelected>Venom</ListBox.Option>
+    <ListBox.Option isSelected>Thunderbolts</ListBox.Option>
+    <ListBox.Option isSelected>Deadpool</ListBox.Option>
+    <ListBox.Option>Spawn</ListBox.Option>
+    <ListBox.Option>Wolverine</ListBox.Option>
+  </ListBox>
+</Playground>
+
+#### Code
+
+```js
+<ListBox isMulti>
+  <ListBox.Option>Punisher</ListBox.Option>
+  <ListBox.Option>Catwoman</ListBox.Option>
+  <ListBox.Option isSelected>Venom</ListBox.Option>
+  <ListBox.Option isSelected>Thunderbolts</ListBox.Option>
+  <ListBox.Option isSelected>Deadpool</ListBox.Option>
+  <ListBox.Option>Spawn</ListBox.Option>
+  <ListBox.Option>Wolverine</ListBox.Option>
+</ListBox>
+```
+
+---
+
+### Multiselect with groups
+
+Unlike the single select, the multi select with groups automatically adds options that let the
+user select a whole group with one click
+
+<Playground>
+  <ListBox isMulti zIndex={10000} getScrollContainer={() => document.querySelector("#root > div")}>
+    <ListBox.Group title="antiheroes">
+      <ListBox.Option>Punisher</ListBox.Option>
+      <ListBox.Option>Catwoman</ListBox.Option>
+      <ListBox.Option>Venom</ListBox.Option>
+      <ListBox.Option>Thunderbolts</ListBox.Option>
+      <ListBox.Option>Suicide Squad</ListBox.Option>
+      <ListBox.Option>Deadpool</ListBox.Option>
+      <ListBox.Option>Spawn</ListBox.Option>
+      <ListBox.Option>Wolverine</ListBox.Option>
+    </ListBox.Group>
+    <ListBox.Group title="villians">
+      <ListBox.Option>The Joker</ListBox.Option>
+      <ListBox.Option>Darth Vader</ListBox.Option>
+      <ListBox.Option>Hannibal Lecter</ListBox.Option>
+      <ListBox.Option>Lord Voldemort</ListBox.Option>
+      <ListBox.Option>Freddy Krueger</ListBox.Option>
+      <ListBox.Option>Palpatine</ListBox.Option>
+      <ListBox.Option>Agent Smith</ListBox.Option>
+    </ListBox.Group>
+    <ListBox.Group title="heroes">
+      <ListBox.Option>Black Panther</ListBox.Option>
+      <ListBox.Option>Wonder Woman</ListBox.Option>
+      <ListBox.Option>Spiderman</ListBox.Option>
+      <ListBox.Option>The Incredibles</ListBox.Option>
+      <ListBox.Option>Thor</ListBox.Option>
+      <ListBox.Option>Batman</ListBox.Option>
+      <ListBox.Option>Iron Man</ListBox.Option>
+      <ListBox.Option>Doctor Strange</ListBox.Option>
+    </ListBox.Group>
+  </ListBox>
+</Playground>
+
+#### Code
+
+```js
+<ListBox isMulti>
+  <ListBox.Group title="antiheroes">
+    <ListBox.Option>Punisher</ListBox.Option>
+    <ListBox.Option>Catwoman</ListBox.Option>
+    <ListBox.Option>Venom</ListBox.Option>
+    <ListBox.Option>Thunderbolts</ListBox.Option>
+    <ListBox.Option>Suicide Squad</ListBox.Option>
+    <ListBox.Option>Deadpool</ListBox.Option>
+    <ListBox.Option>Spawn</ListBox.Option>
+    <ListBox.Option>Wolverine</ListBox.Option>
+  </ListBox.Group>
+  <ListBox.Group title="villians">
+    <ListBox.Option>The Joker</ListBox.Option>
+    <ListBox.Option>Darth Vader</ListBox.Option>
+    <ListBox.Option>Hannibal Lecter</ListBox.Option>
+    <ListBox.Option>Lord Voldemort</ListBox.Option>
+    <ListBox.Option>Freddy Krueger</ListBox.Option>
+    <ListBox.Option>Palpatine</ListBox.Option>
+    <ListBox.Option>Agent Smith</ListBox.Option>
+  </ListBox.Group>
+  <ListBox.Group title="heroes">
+    <ListBox.Option>Black Panther</ListBox.Option>
+    <ListBox.Option>Wonder Woman</ListBox.Option>
+    <ListBox.Option>Spiderman</ListBox.Option>
+    <ListBox.Option>The Incredibles</ListBox.Option>
+    <ListBox.Option>Thor</ListBox.Option>
+    <ListBox.Option>Batman</ListBox.Option>
+    <ListBox.Option>Iron Man</ListBox.Option>
+    <ListBox.Option>Doctor Strange</ListBox.Option>
+  </ListBox.Group>
+</ListBox>
+```
+
+---
+
+### Multiselect with groups and filter
+
+Unlike the single select, the multi select with groups automatically adds options that let the
+user select a whole group with one click
+
+<Playground>
+  <ListBox isMulti hasFilter zIndex={10000} getScrollContainer={() => document.querySelector("#root > div")}>
+    <ListBox.Group title="antiheroes">
+      <ListBox.Option>Punisher</ListBox.Option>
+      <ListBox.Option>Catwoman</ListBox.Option>
+      <ListBox.Option>Venom</ListBox.Option>
+      <ListBox.Option>Thunderbolts</ListBox.Option>
+      <ListBox.Option>Suicide Squad</ListBox.Option>
+      <ListBox.Option>Deadpool</ListBox.Option>
+      <ListBox.Option>Spawn</ListBox.Option>
+      <ListBox.Option>Wolverine</ListBox.Option>
+    </ListBox.Group>
+    <ListBox.Group title="villians">
+      <ListBox.Option>The Joker</ListBox.Option>
+      <ListBox.Option>Darth Vader</ListBox.Option>
+      <ListBox.Option>Hannibal Lecter</ListBox.Option>
+      <ListBox.Option>Lord Voldemort</ListBox.Option>
+      <ListBox.Option>Freddy Krueger</ListBox.Option>
+      <ListBox.Option>Palpatine</ListBox.Option>
+      <ListBox.Option>Agent Smith</ListBox.Option>
+    </ListBox.Group>
+    <ListBox.Group title="heroes">
+      <ListBox.Option>Black Panther</ListBox.Option>
+      <ListBox.Option>Wonder Woman</ListBox.Option>
+      <ListBox.Option>Spiderman</ListBox.Option>
+      <ListBox.Option>The Incredibles</ListBox.Option>
+      <ListBox.Option>Thor</ListBox.Option>
+      <ListBox.Option>Batman</ListBox.Option>
+      <ListBox.Option>Iron Man</ListBox.Option>
+      <ListBox.Option>Doctor Strange</ListBox.Option>
+    </ListBox.Group>
+  </ListBox>
+</Playground>
+
+#### Code
+
+```js
+<ListBox isMulti hasFilter>
+  <ListBox.Group title="antiheroes">
+    <ListBox.Option>Punisher</ListBox.Option>
+    <ListBox.Option>Catwoman</ListBox.Option>
+    <ListBox.Option>Venom</ListBox.Option>
+    <ListBox.Option>Thunderbolts</ListBox.Option>
+    <ListBox.Option>Suicide Squad</ListBox.Option>
+    <ListBox.Option>Deadpool</ListBox.Option>
+    <ListBox.Option>Spawn</ListBox.Option>
+    <ListBox.Option>Wolverine</ListBox.Option>
+  </ListBox.Group>
+  <ListBox.Group title="villians">
+    <ListBox.Option>The Joker</ListBox.Option>
+    <ListBox.Option>Darth Vader</ListBox.Option>
+    <ListBox.Option>Hannibal Lecter</ListBox.Option>
+    <ListBox.Option>Lord Voldemort</ListBox.Option>
+    <ListBox.Option>Freddy Krueger</ListBox.Option>
+    <ListBox.Option>Palpatine</ListBox.Option>
+    <ListBox.Option>Agent Smith</ListBox.Option>
+  </ListBox.Group>
+  <ListBox.Group title="heroes">
+    <ListBox.Option>Black Panther</ListBox.Option>
+    <ListBox.Option>Wonder Woman</ListBox.Option>
+    <ListBox.Option>Spiderman</ListBox.Option>
+    <ListBox.Option>The Incredibles</ListBox.Option>
+    <ListBox.Option>Thor</ListBox.Option>
+    <ListBox.Option>Batman</ListBox.Option>
+    <ListBox.Option>Iron Man</ListBox.Option>
+    <ListBox.Option>Doctor Strange</ListBox.Option>
+  </ListBox.Group>
+</ListBox>
+```

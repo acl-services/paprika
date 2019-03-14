@@ -3,16 +3,21 @@ import PropTypes from "prop-types";
 
 /* eslint-disable react/no-unused-prop-types */
 const propTypes = {
+  /** String, number or JSX content */
   children: PropTypes.node.isRequired,
-  idPrefix: PropTypes.string,
+
+  /** Describe if the option is selected or not */
   isSelected: PropTypes.bool,
+
+  /** When the children are not a String, label should need to be add so the filter can work  */
   label: PropTypes.string,
-  value: PropTypes.string,
+
+  /** Value the describe your option  */
+  value: PropTypes.any, // eslint-disable-line
 };
 /* eslint-enable react/no-unused-prop-types */
 
 const defaultProps = {
-  idPrefix: "paprika",
   isSelected: false,
   label: null,
   value: null,

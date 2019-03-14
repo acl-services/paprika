@@ -63,14 +63,6 @@ export default function reducer(state, { type, payload }) {
       };
     }
 
-    case actionTypes.applyGroupFilter: {
-      return {
-        ...state,
-        filteredOptions: payload.addFilteredOptions,
-        activeOption: 0,
-      };
-    }
-
     case actionTypes.applyFilter: {
       return {
         ...state,
@@ -126,7 +118,7 @@ export default function reducer(state, { type, payload }) {
       return {
         ...state,
         activeOption: payload.index,
-        selectedOptions,
+        selectedOptions: [...new Set(selectedOptions)], // remove duplicated
       };
     }
 

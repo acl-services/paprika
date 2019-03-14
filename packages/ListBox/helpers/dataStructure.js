@@ -3,13 +3,13 @@ import uuidv4 from "uuid/v4";
 import ListBox from "@paprika/listbox";
 
 function createOption({ index, child, title = null, isOptionActionGroup = false }) {
-  const { children, idPrefix, label, value, isHidden, isSelected } = child.props;
+  const { children, label, value, isHidden, isSelected } = child.props;
 
   return {
     content: children,
     groupTitle: title,
     hasLabel: label,
-    id: `${idPrefix}__${uuidv4()}`,
+    id: uuidv4(),
     index,
     isHidden,
     isOptionActionGroup,
@@ -19,11 +19,12 @@ function createOption({ index, child, title = null, isOptionActionGroup = false 
   };
 }
 
-export function getDataOptions(children, groups) {
+export function getDataOptions(children, groups, isMulti) {
   const options = {};
   let index = 0;
 
-  if (groups.length) {
+  // shouldn't be muliple selection filter on a single select listbox
+  if (groups.length && isMulti) {
     groups.forEach(group => {
       options[index] = createOption({
         index,

@@ -7,7 +7,7 @@ import { getDataOptions, getDataGroups } from "../helpers/dataStructure";
 
 function initializeState(props) {
   const groups = getDataGroups(props.options);
-  const options = getDataOptions(props.options, groups);
+  const options = getDataOptions(props.options, groups, props.isMulti);
 
   const selectedOptions = Object.keys(options)
     .filter(key => options[key].isSelected)

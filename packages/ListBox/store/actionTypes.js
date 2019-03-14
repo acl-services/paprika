@@ -1,5 +1,4 @@
 export const applyFilter = "APPLY_FILTER";
-export const applyGroupFilter = "APPLY_GROUP_FILTER";
 export const closePopover = "CLOSE_POPOVER";
 export const openPopover = "OPEN_POPOVER";
 export const setActiveOption = "SET_ACTION_OPTION";

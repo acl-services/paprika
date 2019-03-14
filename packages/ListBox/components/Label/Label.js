@@ -9,7 +9,7 @@ const propTypes = {
 export default function Label(props) {
   const [state] = useStore();
   const { placeholder } = props;
-  const { selectedOptions, isMulti, options, activeOption } = state;
+  const { selectedOptions, isMulti, options } = state;
 
   function getListboxLabelForMulti() {
     const optionsLength = selectedOptions.filter(index => !options[index].isOptionActionGroup).length;
@@ -42,20 +42,20 @@ export default function Label(props) {
     );
   }
 
-  if (activeOption === null || selectedOptions.length === 0) {
-    return placeholder;
-  }
-
   if (isMulti && selectedOptions.length) {
     return getListboxLabelForMulti();
   }
 
-  const option = options[activeOption];
-  if (option.label) {
-    return option.label;
+  if (selectedOptions.length) {
+    const option = options[selectedOptions[0]];
+    if (option.label) {
+      return option.label;
+    }
+
+    return option.content;
   }
 
-  return option.content;
+  return placeholder;
 }
 
 Label.propTypes = propTypes;
