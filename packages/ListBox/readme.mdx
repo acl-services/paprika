@@ -214,23 +214,44 @@ import ListBox from "@paprika/listbox";
 
 ### Single select with pre-built checkers
 
-`wip` The listbox accepts a renderProp property which allowed the listbox to render its own checkers,
-I think the checkbox is widely use that would make sense to have a prebuilt option for it, thought I'm
-not sure if we should merge it with the renderChecker option, suggestion are need.
+The default
 
 <Playground>
-  <ListBox renderChecker="checkbox" zIndex={10000} getScrollContainer={() => document.querySelector("#root > div")}>
+  <ListBox isMulti zIndex={10000} getScrollContainer={() => document.querySelector("#root > div")}>
     <ListBox.Option>Spiderman</ListBox.Option>
     <ListBox.Option>Venom</ListBox.Option>
     <ListBox.Option>Carnage</ListBox.Option>
   </ListBox>
+  <hr />
+  <ListBox
+    isMulti
+    renderChecker={() => null}
+    zIndex={10000}
+    getScrollContainer={() => document.querySelector("#root > div")}
+  >
+    <ListBox.Option>Spiderman</ListBox.Option>
+    <ListBox.Option>Venom</ListBox.Option>
+    <ListBox.Option>Carnage</ListBox.Option>
+  </ListBox>
+  <hr />
 </Playground>
 
 <!-- prettier-ignore -->
 ```js
 import ListBox from "@paprika/listbox";
 
-<ListBox renderChecker="checkbox">
+<ListBox isMulti>
+  <ListBox.Option>Spiderman</ListBox.Option>
+  <ListBox.Option>Venom</ListBox.Option>
+  <ListBox.Option>Carnage</ListBox.Option>
+</ListBox>
+```
+
+<!-- prettier-ignore -->
+```js
+import ListBox from "@paprika/listbox";
+
+<ListBox isMulti renderChecker={() =>  null}>
   <ListBox.Option>Spiderman</ListBox.Option>
   <ListBox.Option>Venom</ListBox.Option>
   <ListBox.Option>Carnage</ListBox.Option>
@@ -241,17 +262,19 @@ import ListBox from "@paprika/listbox";
 
 ### Single select with custom checkers
 
-<ListBox
-  renderChecker={isChecked => {
-    return isChecked ? "✅" : "🙅‍";
-  }}
-  zIndex={10000}
-  getScrollContainer={() => document.querySelector("#root > div")}
->
-  <ListBox.Option>Spiderman</ListBox.Option>
-  <ListBox.Option>Venom</ListBox.Option>
-  <ListBox.Option>Carnage</ListBox.Option>
-</ListBox>
+<Playground>
+  <ListBox
+    renderChecker={isChecked => {
+      return isChecked ? "✅" : "🙅‍";
+    }}
+    zIndex={10000}
+    getScrollContainer={() => document.querySelector("#root > div")}
+  >
+    <ListBox.Option>Spiderman</ListBox.Option>
+    <ListBox.Option>Venom</ListBox.Option>
+    <ListBox.Option>Carnage</ListBox.Option>
+  </ListBox>
+</Playground>
 
 #### Code
 

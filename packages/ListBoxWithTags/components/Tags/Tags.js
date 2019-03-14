@@ -40,7 +40,7 @@ export default function Tags(props) {
 
   return (
     <React.Fragment>
-      {tagsMap}
+      {state.selectedOptions.length ? tagsMap : null}
       {props.hasCustomTags ? <Filter placeholder={state.placeholder} /> : null}
     </React.Fragment>
   );

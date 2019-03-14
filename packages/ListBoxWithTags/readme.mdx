@@ -1,0 +1,135 @@
+---
+name: ListBoxWithTags
+menu: Components
+route: /listboxwithtags
+---
+
+<!------------------- IMPORTS ------------------>
+
+import ListBoxWithTags from "./index";
+import ListBoxProps from "@paprika/listbox/ListBox";
+import OptionProps from "@paprika/listbox/components/Option";
+import GroupProps from "@paprika/listbox/components/Group";
+
+import { Playground, PropsTable } from "docz";
+
+---
+
+# ListBoxWithTags
+
+## Intro
+
+This component compose the ListBox component which means that can be use in a
+similar way. Both of them expose the Option and Group component from `<Listbox />`
+so if you already known how to use the ListBox you know as well how to use this one.
+
+## Api
+
+The Api for the `<ListBoxWithTags />` is exactly the same one as the `<Listbox />` one, except for
+two more properties which are `hasTagInput` and `placeholderForTagInput`, you can read more about it
+on the PropsTable description.
+
+Also this component will forward automatically extra properties as `zIndex` and `getScrollContainer` which
+are handy for the `<Popover />` component.
+
+A basic use with code:
+
+```js
+<ListBoxWithTags>
+  <ListBoxWithTags.Option>Option 1</ListBoxWithTags.Option>
+  <ListBoxWithTags.Option>Option 2</ListBoxWithTags.Option>
+  <ListBoxWithTags.Option>Option 3</ListBoxWithTags.Option>
+</ListBoxWithTags/>
+```
+
+## Accessibility
+
+_Note_ keyboard interaction on progress
+
+The `<ListBoxWithTags />` inherent all the Accessibility goodies from the `<ListBox />` and adds
+the ability to delete selected tags using the `[delete]` key. Let the user navigates between selected
+tags as well using `[←]` and `[→]` keys.
+And if the tag input is turn on, will keep the focus on the input letting the user search or add a new options in cases don't exists under the current selections.
+
+## Props
+
+### ListBoxWithTags
+
+<PropsTable of={ListBoxWithTags} />
+
+<PropsTable of={ListBoxProps} />
+
+### ListBoxWithTags.Option
+
+<PropsTable of={OptionProps} />
+
+### ListBoxWithTags.Group
+
+<PropsTable of={GroupProps} />
+
+## ListBoxWithTags
+
+### Basic
+
+<Playground>
+  <ListBoxWithTags
+    placeholder="Select your 🤩 anti-heroes"
+    zIndex={10000}
+    getScrollContainer={() => document.querySelector("#root > div")}
+  >
+    <ListBoxWithTags.Option>Punisher</ListBoxWithTags.Option>
+    <ListBoxWithTags.Option>Catwoman</ListBoxWithTags.Option>
+    <ListBoxWithTags.Option>Venom</ListBoxWithTags.Option>
+    <ListBoxWithTags.Option>Thunderbolts</ListBoxWithTags.Option>
+    <ListBoxWithTags.Option>Deadpool</ListBoxWithTags.Option>
+    <ListBoxWithTags.Option>Spawn</ListBoxWithTags.Option>
+    <ListBoxWithTags.Option>Wolverine</ListBoxWithTags.Option>
+  </ListBoxWithTags>
+</Playground>
+
+#### Code
+
+```js
+<ListBoxWithTags placeholder="Select your 🤩 anti-heroes">
+  <ListBoxWithTags.Option>Punisher</ListBoxWithTags.Option>
+  <ListBoxWithTags.Option>Catwoman</ListBoxWithTags.Option>
+  <ListBoxWithTags.Option>Venom</ListBoxWithTags.Option>
+  <ListBoxWithTags.Option>Thunderbolts</ListBoxWithTags.Option>
+  <ListBoxWithTags.Option>Deadpool</ListBoxWithTags.Option>
+  <ListBoxWithTags.Option>Spawn</ListBoxWithTags.Option>
+  <ListBoxWithTags.Option>Wolverine</ListBoxWithTags.Option>
+</ListBoxWithTags>
+```
+
+### With custom tags
+
+<Playground>
+  <ListBoxWithTags
+    placeholder="Select your 🤩 anti-heroes"
+    zIndex={10000}
+    getScrollContainer={() => document.querySelector("#root > div")}
+    hasCustomTags
+  >
+    <ListBoxWithTags.Option>Punisher</ListBoxWithTags.Option>
+    <ListBoxWithTags.Option>Catwoman</ListBoxWithTags.Option>
+    <ListBoxWithTags.Option>Venom</ListBoxWithTags.Option>
+    <ListBoxWithTags.Option>Thunderbolts</ListBoxWithTags.Option>
+    <ListBoxWithTags.Option>Deadpool</ListBoxWithTags.Option>
+    <ListBoxWithTags.Option>Spawn</ListBoxWithTags.Option>
+    <ListBoxWithTags.Option>Wolverine</ListBoxWithTags.Option>
+  </ListBoxWithTags>
+</Playground>
+
+#### Code
+
+```js
+<ListBoxWithTags hasCustomTags placeholder="Select your 🤩 anti-heroes">
+  <ListBoxWithTags.Option>Punisher</ListBoxWithTags.Option>
+  <ListBoxWithTags.Option>Catwoman</ListBoxWithTags.Option>
+  <ListBoxWithTags.Option>Venom</ListBoxWithTags.Option>
+  <ListBoxWithTags.Option>Thunderbolts</ListBoxWithTags.Option>
+  <ListBoxWithTags.Option>Deadpool</ListBoxWithTags.Option>
+  <ListBoxWithTags.Option>Spawn</ListBoxWithTags.Option>
+  <ListBoxWithTags.Option>Wolverine</ListBoxWithTags.Option>
+</ListBoxWithTags>
+```

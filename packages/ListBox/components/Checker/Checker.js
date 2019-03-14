@@ -1,8 +1,10 @@
 import React from "react";
 import PropTypes from "prop-types";
 import Checkbox from "./Checkbox/Checkbox";
+import useStore from "../../store/useStore";
 
 const propTypes = {
+  index: PropTypes.number.isRequired,
   isChecked: PropTypes.bool.isRequired,
   isOptionActionGroup: PropTypes.bool,
   renderChecker: PropTypes.oneOfType([PropTypes.string, PropTypes.func]),
@@ -14,21 +16,19 @@ const defaultProps = {
 };
 
 export default function Checkers(props) {
-  const { isOptionActionGroup, isChecked } = props;
-  if (isOptionActionGroup) {
-    if (typeof props.renderChecker === "function") {
-      return props.renderChecker(isChecked);
+  const [state, dispatch] = useStore();
+  const { index, isOptionActionGroup, isChecked, renderChecker } = props;
+
+  if (typeof renderChecker === "function") {
+    if (renderChecker) {
+      return props.renderChecker(isChecked, index, state, dispatch, isOptionActionGroup);
     }
 
+    return null;
+  }
+
+  if (state.isMulti) {
     return <Checkbox isChecked={isChecked} />;
-  }
-
-  if (typeof props.renderChecker === "function") {
-    return props.renderChecker(isChecked);
-  }
-
-  if (typeof props.renderChecker === "string" && props.renderChecker === "checkbox") {
-    return props.renderChecker === "checkbox" ? <Checkbox isChecked={isChecked} /> : null;
   }
 
   return null;

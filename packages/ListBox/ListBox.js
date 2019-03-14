@@ -37,7 +37,7 @@ export const propTypes = {
   isPopoverOpen: PropTypes.bool,
 
   /** Message to display when the filter don't find a match */
-  filterLabelHasNoResults: PropTypes.node,
+  hasNotResultsMessage: PropTypes.node,
 
   /** Callback returning the current selected index on the ListBox */
   onChange: PropTypes.func,
@@ -55,15 +55,17 @@ export const propTypes = {
   /** [Advance] Allows to take over the render method for the label inside of the Trigger Component */
   renderLabel: PropTypes.func,
 
-  /** [Advance] Allows to take over the render method for the Checker. 'Unsure about the correct name' */
-  typeOfChecker: PropTypes.oneOf(["checkbox"]),
+  /** [Advance] Allows to take over the render method for the Checker.
+      When `isMulti` prop is active, the default type of checker is a checkbox, in case you don't
+      want to render a checkbox you can return null ex. renderChecker={() =>  null} */
+  renderChecker: PropTypes.func,
 
   /** z-index for the popover */
   zIndex: PropTypes.number,
 };
 
 export const defaultProps = {
-  filterLabelHasNoResults: "Your filter did not return any option",
+  hasNotResultsMessage: "Your filter did not return any option",
   getScrollContainer: null,
   hasFilter: false,
   hasFooter: false,
@@ -76,7 +78,7 @@ export const defaultProps = {
   placeholder: "select one of the options",
   preventOnBlurOnTrigger: false,
   renderLabel: null,
-  typeOfChecker: null,
+  renderChecker: undefined,
   zIndex: null,
 };
 
@@ -89,11 +91,11 @@ export default function ListBox(props) {
     isMulti,
     isPopoverEager,
     isPopoverOpen,
-    filterLabelHasNoResults,
+    hasNotResultsMessage,
     onChange,
     placeholder,
     renderLabel,
-    typeOfChecker,
+    renderChecker,
     ...moreProps
   } = props;
 
@@ -106,7 +108,7 @@ export default function ListBox(props) {
           <List height={height}>
             <Options />
           </List>
-          <NoResults label={filterLabelHasNoResults} />
+          <NoResults label={hasNotResultsMessage} />
           <Footer hasFooter={hasFooter} onClickClear={() => {}} />
         </Box>
       </Content>

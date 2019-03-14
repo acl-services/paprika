@@ -12,13 +12,13 @@ import Tags from "./components/Tags";
 import Trigger from "./components/Trigger";
 
 const propTypes = {
-  hasTagInput: PropTypes.bool,
+  hasCustomTags: PropTypes.bool,
   placeholderForTagInput: PropTypes.string,
   ...listBoxPropTypes,
 };
 
 const defaultProps = {
-  hasTagInput: false,
+  hasCustomTags: false,
   placeholderForTagInput: "New option ...",
   ...listBoxdefaultProps,
 };
@@ -108,23 +108,20 @@ function ListBoxWithTags(props) {
     /* eslint-disable react/prop-types */
     return (
       <Trigger>
-        {state.selectedOptions.length ? (
-          <Tags
-            activeTag={activeTag}
-            hasTagInput={props.hasTagInput}
-            placeholderForTagInput={props.placeholderForTagInput}
-            refTagInput={refTagInput}
-          />
-        ) : (
-          state.placeholder
-        )}
+        <Tags
+          activeTag={activeTag}
+          hasCustomTags={props.hasCustomTags}
+          placeholderForTagInput={props.placeholderForTagInput}
+          refTagInput={refTagInput}
+        />
+        {!state.selectedOptions.length && !props.hasCustomTags ? state.placeholder : null}
       </Trigger>
     );
     /* eslint-enable react/prop-types */
   }
 
   return (
-    <ListBox onKeyDown={handleKeyDown} {...props} renderLabel={renderLabel}>
+    <ListBox onKeyDown={handleKeyDown} {...props} renderLabel={renderLabel} preventOnBlurOnTrigger>
       {props.children} {/* eslint-disable-line */}
     </ListBox>
   );

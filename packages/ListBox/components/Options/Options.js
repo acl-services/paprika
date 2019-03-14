@@ -73,6 +73,7 @@ export default function Options() {
             isDisabled={isDisabled}
           >
             <Checker
+              index={key}
               isOptionActionGroup={options[key].isOptionActionGroup}
               isChecked={isOptionSelected(state, options[key].index)}
               renderChecker={renderChecker}
