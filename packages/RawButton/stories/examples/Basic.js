@@ -17,13 +17,17 @@ const PopoverStory = () => {
   return (
     <Story>
       <p>
+        <RawButton onClick={clickHandler}>Raw button</RawButton>
+      </p>
+      <p>
         <RawButton
           ariaText="ceci n'est pas un bouton"
+          hasInsetFocusStyle
           onClick={clickHandler}
-          qa-test-anchor="test-button"
+          data-qa-anchor="test-button"
           ref={buttonRef}
         >
-          Raw button
+          Has Inset Focus Style
         </RawButton>
       </p>
       <p>
