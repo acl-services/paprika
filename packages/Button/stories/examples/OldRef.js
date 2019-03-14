@@ -1,7 +1,7 @@
 import React from "react";
 import { action } from "@storybook/addon-actions";
 import { Story, Small } from "storybook/assets/styles/common.styles";
-import RawButton from "../../RawButton";
+import Button from "../../Button";
 
 function clickHandler() {
   action("Clicked a button")();
@@ -26,12 +26,12 @@ const ExampleStory = () => {
   return (
     <Story>
       <p>
-        <RawButton onClick={clickHandler} ref={setRef}>
-          RawButton with callback ref
-        </RawButton>
+        <Button onClick={clickHandler} ref={setRef}>
+          Button with callback ref
+        </Button>
       </p>
       <p>
-        <Small>This RawButton will capture the focus after 1 second.</Small>
+        <Small>This Button will capture the focus after 1 second.</Small>
       </p>
     </Story>
   );

@@ -3,10 +3,11 @@ import PropTypes from "prop-types";
 import RawButtonStyled from "./RawButton.styles";
 
 const propTypes = {
-  ariaText: PropTypes.string,
+  a11yText: PropTypes.string,
   canPropagate: PropTypes.bool,
   children: PropTypes.node.isRequired,
   className: PropTypes.string,
+  hasInsetFocusStyle: PropTypes.bool,
   isDisabled: PropTypes.bool,
   onClick: PropTypes.func,
   tabIndex: PropTypes.number,
@@ -14,18 +15,19 @@ const propTypes = {
 };
 
 const defaultProps = {
-  ariaText: null,
+  a11yText: null,
   canPropagate: true,
   className: null,
   isDisabled: false,
+  hasInsetFocusStyle: false,
   onClick: () => {},
   role: "button",
   tabIndex: 0,
 };
 
 const RawButton = React.forwardRef((props, ref) => {
-  const { ariaText, canPropagate, children, isDisabled, onClick, tabIndex, ...moreProps } = props;
-  if (ariaText) moreProps["aria-label"] = ariaText;
+  const { a11yText, canPropagate, children, isDisabled, onClick, tabIndex, ...moreProps } = props;
+  if (a11yText) moreProps["aria-label"] = a11yText;
 
   const rawButtonRef = React.useRef(null);
 

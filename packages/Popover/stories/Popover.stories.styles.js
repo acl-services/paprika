@@ -1,6 +1,6 @@
 import styled from "styled-components";
 
-// Common Popover styles
+// Common Popover story styles
 
 export const CenteredStory = styled.div`
   align-items: center;

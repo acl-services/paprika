@@ -20,17 +20,20 @@ import TokenSquare from "./TokenSquare"
 | $color--black-lighten-70 | #f0f0f0 | <TokenSquare color="#f0f0f0" /> | 
 | $color--black-lighten-80 | #f7f7f7 | <TokenSquare color="#f7f7f7" /> | 
 | $color--black-lighten-90 | #fcfcfc | <TokenSquare color="#fcfcfc" /> | 
-| $color--blue | #2666ab | <TokenSquare color="#2666ab" /> | 
-| $color--blue-darken-10 | #0c437e | <TokenSquare color="#0c437e" /> | 
-| $color--blue-lighten-10 | #5987b8 | <TokenSquare color="#5987b8" /> | 
-| $color--blue-lighten-20 | #85b3e5 | <TokenSquare color="#85b3e5" /> | 
-| $color--blue-lighten-30 | #94c6fd | <TokenSquare color="#94c6fd" /> | 
-| $color--blue-lighten-40 | #cce1f5 | <TokenSquare color="#cce1f5" /> | 
-| $color--blue-lighten-50 | #e6f0fa | <TokenSquare color="#e6f0fa" /> | 
+| $color--black-disabled | #a4a4a4 | <TokenSquare color="#a4a4a4" /> | 
+| $color--black-pure | #000000 | <TokenSquare color="#000000" /> | 
+| $color--blue | #276cf5 | <TokenSquare color="#276cf5" /> | 
+| $color--blue-darken-20 | #004a94 | <TokenSquare color="#004a94" /> | 
+| $color--blue-darken-10 | #0063c5 | <TokenSquare color="#0063c5" /> | 
+| $color--blue-lighten-10 | #3396f9 | <TokenSquare color="#3396f9" /> | 
+| $color--blue-lighten-20 | #66b0fa | <TokenSquare color="#66b0fa" /> | 
+| $color--blue-lighten-30 | #99cbfc | <TokenSquare color="#99cbfc" /> | 
+| $color--blue-lighten-40 | #cce5fd | <TokenSquare color="#cce5fd" /> | 
+| $color--blue-lighten-50 | #e5f1fe | <TokenSquare color="#e5f1fe" /> | 
 | $color--creme | #e6e3df | <TokenSquare color="#e6e3df" /> | 
-| $color--creme-darken-30 | #989694 | <TokenSquare color="#989694" /> | 
-| $color--creme-darken-20 | #b1b0ae | <TokenSquare color="#b1b0ae" /> | 
-| $color--creme-darken-10 | #cdcac5 | <TokenSquare color="#cdcac5" /> | 
+| $color--creme-darken-30 | #a39889 | <TokenSquare color="#a39889" /> | 
+| $color--creme-darken-20 | #b9b1a6 | <TokenSquare color="#b9b1a6" /> | 
+| $color--creme-darken-10 | #d0cac2 | <TokenSquare color="#d0cac2" /> | 
 | $color--creme-lighten-5 | #f1f0ed | <TokenSquare color="#f1f0ed" /> | 
 | $color--creme-lighten-10 | #fcfcfc | <TokenSquare color="#fcfcfc" /> | 
 | $color--green | #42996d | <TokenSquare color="#42996d" /> | 
@@ -50,6 +53,8 @@ import TokenSquare from "./TokenSquare"
 | $color--orange-lighten-20 | #e99c8e | <TokenSquare color="#e99c8e" /> | 
 | $color--orange-lighten-30 | #f1c1b9 | <TokenSquare color="#f1c1b9" /> | 
 | $color--orange-lighten-40 | #fae7e3 | <TokenSquare color="#fae7e3" /> | 
+| $color--orange-disabled | #e99c8e | <TokenSquare color="#e99c8e" /> | 
+| $color--orange-highlight | #e1624b | <TokenSquare color="#e1624b" /> | 
 | $color--purple | #53529f | <TokenSquare color="#53529f" /> | 
 | $color--purple-darken-10 | #41417d | <TokenSquare color="#41417d" /> | 
 | $color--purple-darken-20 | #302f5c | <TokenSquare color="#302f5c" /> | 
@@ -58,7 +63,6 @@ import TokenSquare from "./TokenSquare"
 | $color--purple-lighten-30 | #b6b5d5 | <TokenSquare color="#b6b5d5" /> | 
 | $color--purple-lighten-40 | #d6d6e7 | <TokenSquare color="#d6d6e7" /> | 
 | $color--purple-lighten-50 | #f6f6fa | <TokenSquare color="#f6f6fa" /> | 
-| $color--purple-lighten-60 | #f6f6fa | <TokenSquare color="#f6f6fa" /> | 
 | $color--white | #ffffff | <TokenSquare color="#ffffff" /> | 
 | $color--yellow | #eaba51 | <TokenSquare color="#eaba51" /> | 
 | $color--yellow-darken-10 | #e5a823 | <TokenSquare color="#e5a823" /> | 
@@ -80,17 +84,19 @@ import TokenSquare from "./TokenSquare"
 | $color--chart-color-10 | #2b82bf | <TokenSquare color="#2b82bf" /> | 
 | $color--chart-color-11 | #7ec0cc | <TokenSquare color="#7ec0cc" /> | 
 | $color--chart-color-12 | #d1cbc2 | <TokenSquare color="#d1cbc2" /> | 
-| $placeholder--color | #8a8a8a | <TokenSquare color="#8a8a8a" /> | 
+| $placeholder--color | #717171 | <TokenSquare color="#717171" /> | 
 | $placeholder--font-style | italic |  | 
-| $highlight--active--no-border--box-shadow | 0 0 0 2px rgba(0,124,247,0.3) |  | 
-| $highlight--active--no-border--border-color | #2666ab | <TokenSquare color="#2666ab" /> | 
-| $highlight--active--with-border--box-shadow | 0 0 0 1px #2666ab,0 0 0 3px rgba(0,124,247,0.3) |  | 
+| $highlight--active--no-border--box-shadow | 0 0 0 2px #99cbfc |  | 
+| $highlight--active--no-border--inset-box-shadow | inset 0 0 0 2px #99cbfc |  | 
+| $highlight--active--no-border--border-color | #276cf5 | <TokenSquare color="#276cf5" /> | 
+| $highlight--active--with-border--box-shadow | 0 0 0 1px #276cf5, 0 0 0 3px #99cbfc |  | 
+| $highlight--active--with-border--inset-box-shadow | inset 0 0 0 1px #276cf5, inset 0 0 0 3px #99cbfc |  | 
 | $text-color--default | #3f3d3c | <TokenSquare color="#3f3d3c" /> | 
 | $text-color--subtle | #717171 | <TokenSquare color="#717171" /> | 
-| $text-color--link | #2666ab | <TokenSquare color="#2666ab" /> | 
-| $text-color--link-hover | #2666ab | <TokenSquare color="#2666ab" /> | 
+| $text-color--link | #0063c5 | <TokenSquare color="#0063c5" /> | 
+| $text-color--link-hover | #004a94 | <TokenSquare color="#004a94" /> | 
 | $text-color--icon | #717171 | <TokenSquare color="#717171" /> | 
-| $font-family--default | "Lato", "Helvetica Neue", Helvetica, Arial, sans-serif !default |  | 
+| $font-family--default | "Lato", "Helvetica Neue", Helvetica, Arial, sans-serif |  | 
 | $font-family--jp | "Lato", "Helvetica Neue", Helvetica, Arial, sans-serif, "Hiragino Kaku Gothic Pro", "ヒラギノ角ゴ Pro W3", "ＭＳ Ｐゴシック", "MS PGothic" |  | 
 | $font-family--kr | "Lato", "Helvetica Neue", Helvetica, Arial, sans-serif, "Malgun Gothic" |  | 
 | $font-family--zh | "Helvetica Neue", Helvetica, Arial, sans-serif, 黑體-繁, "Heiti TC", 儷黑Pro, "LiHei Pro", PMingLiu, 宋体, SimSun |  | 
@@ -98,17 +104,20 @@ import TokenSquare from "./TokenSquare"
 | $table--row--background-color | white |  | 
 | $table--row-even--background-color | #f5f5f5 | <TokenSquare color="#f5f5f5" /> | 
 | $modal--backdrop--background-color | rgba(63,61,60,0.5) |  | 
+| $modal--shadow | 0 8px 12px -4px rgba(63,61,60,0.2),0 1px 3px 0 rgba(63,61,60,0.1) |  | 
 | $border--radius | 3px |  | 
 | $border--color | #d7d7d7 | <TokenSquare color="#d7d7d7" /> | 
 | $border--hover-color | #a4a4a4 | <TokenSquare color="#a4a4a4" /> | 
 | $border--color-transition | border-color 0.2s |  | 
 | $button--border-radius | 4px |  | 
 | $card--border-radius | 6px |  | 
+| $popover--border-radius | 6px |  | 
+| $popover--shadow | 0 2px 4px rgba(0,0,0,0.1) |  | 
 | $background-color--level0 | #f7f7f7 | <TokenSquare color="#f7f7f7" /> | 
 | $font-size--default | 16px |  | 
 | $space | 8px |  | 
 | $space-sm | 4px |  | 
 | $space-lg | 12px |  | 
-| $shadow | rgba(0,0,0,0.07) 0px 1px 5px,rgba(0,0,0,0.1) 0px 7px 17px |  | 
+| $shadow | 0px 1px 5px rgba(0,0,0,0.07),0px 7px 17px rgba(0,0,0,0.1) |  | 
 
 _Page auto-generated by paprika_

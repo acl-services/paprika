@@ -121,7 +121,7 @@ import TokenSquare from "./TokenSquare"
     const matches = str.match(/\$[\w'-]+/gi);
     if (matches) {
       matches.forEach(match => {
-        const re = new RegExp(match.replace("$", "\\$"), "gi");
+        const re = new RegExp(match.replace("$", "\\$"), "i");
 
         if (!this.yamlVariables[match]) {
           this.outputError(`The variable [${match}] was referenced in the YAML file before it was defined`);

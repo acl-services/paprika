@@ -19,3 +19,9 @@ export const CenteredStory = styled.div`
 export const Small = styled.small`
   color: ${tokens.color.blackLighten40};
 `;
+
+export const Rule = styled.hr`
+  border: none;
+  border-bottom: 1px solid ${tokens.border.color};
+  margin: ${stylers.spacer(4)} 0;
+`;

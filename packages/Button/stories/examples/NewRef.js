@@ -1,22 +1,18 @@
 import React from "react";
 import { action } from "@storybook/addon-actions";
 import { Story, Small } from "storybook/assets/styles/common.styles";
-import RawButton from "../../RawButton";
+import Button from "../../Button";
 
 function clickHandler() {
   action("Clicked a button")();
 }
 
 const ExampleStory = () => {
-  let buttonRef;
-
-  const setRef = node => {
-    buttonRef = node;
-  };
+  const buttonRef = React.createRef();
 
   React.useEffect(() => {
     const focusTimer = setTimeout(() => {
-      buttonRef.focus();
+      buttonRef.current.focus();
     }, 1000);
     return () => {
       clearTimeout(focusTimer);
@@ -26,12 +22,12 @@ const ExampleStory = () => {
   return (
     <Story>
       <p>
-        <RawButton onClick={clickHandler} ref={setRef}>
-          RawButton with callback ref
-        </RawButton>
+        <Button onClick={clickHandler} ref={buttonRef}>
+          Button
+        </Button>
       </p>
       <p>
-        <Small>This RawButton will capture the focus after 1 second.</Small>
+        <Small>This Button will capture the focus after 1 second.</Small>
       </p>
     </Story>
   );

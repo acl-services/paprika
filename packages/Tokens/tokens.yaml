@@ -9,19 +9,22 @@ color:
   black-lighten-70: desaturate(lighten($color--black, 70), 5)
   black-lighten-80: '#f7f7f7'
   black-lighten-90: '#fcfcfc'
+  black-disabled: $color--black-lighten-40
+  black-pure: '#000000'
   #
-  blue: '#2666ab'
-  blue-darken-10: '#0c437e'
-  blue-lighten-10: '#5987b8'
-  blue-lighten-20: '#85b3e5'
-  blue-lighten-30: '#94c6fd'
-  blue-lighten-40: '#cce1f5'
-  blue-lighten-50: '#e6f0fa'
+  blue: '#276cf5'
+  blue-darken-20: '#004a94'
+  blue-darken-10: '#0063c5'
+  blue-lighten-10: '#3396f9'
+  blue-lighten-20: '#66b0fa'
+  blue-lighten-30: '#99cbfc'
+  blue-lighten-40: '#cce5fd'
+  blue-lighten-50: '#e5f1fe'
   #
   creme: '#e6e3df'
-  creme-darken-30: desaturate(darken($color--creme, 30), 10)
-  creme-darken-20: desaturate(darken($color--creme, 20), 10)
-  creme-darken-10: desaturate(darken($color--creme, 10), 5)
+  creme-darken-30: darken($color--creme, 30)
+  creme-darken-20: darken($color--creme, 20)
+  creme-darken-10: darken($color--creme, 10)
   creme-lighten-5: lighten($color--creme, 5)
   creme-lighten-10: lighten($color--creme, 10)
   #
@@ -44,6 +47,8 @@ color:
   orange-lighten-20: desaturate(lighten($color--orange, 20), 5)
   orange-lighten-30: desaturate(lighten($color--orange, 30), 5)
   orange-lighten-40: desaturate(lighten($color--orange, 40), 5)
+  orange-disabled: $color--orange-lighten-20
+  orange-highlight: '#e1624b'
   #
   purple: '#53529f'
   purple-darken-10: darken($color--purple, 10)
@@ -53,7 +58,6 @@ color:
   purple-lighten-30: desaturate(lighten($color--purple, 30), 5)
   purple-lighten-40: desaturate(lighten($color--purple, 40), 5)
   purple-lighten-50: desaturate(lighten($color--purple, 50), 5)
-  purple-lighten-60: desaturate(lighten($color--purple, 50), 5)
   #
   white: '#ffffff'
   #
@@ -80,26 +84,28 @@ color:
   chart-color-12: '#d1cbc2'
 #
 placeholder:
-  color: $color--black-lighten-30
+  color: $color--black-lighten-20
   font-style: italic
 #
 highlight:
   active:
     no-border:
-      box-shadow: 0 0 0 2px rgba(0, 124, 247, 0.3)
+      box-shadow: 0 0 0 2px $color--blue-lighten-30
+      inset-box-shadow: inset 0 0 0 2px $color--blue-lighten-30
       border-color: $color--blue
     with-border:
-      box-shadow: 0 0 0 1px $color--blue, 0 0 0 3px rgba(0, 124, 247, 0.3)
+      box-shadow: 0 0 0 1px $color--blue, 0 0 0 3px $color--blue-lighten-30
+      inset-box-shadow: inset 0 0 0 1px $color--blue, inset 0 0 0 3px $color--blue-lighten-30
 #
 text-color:
   default: $color--black
   subtle: $color--black-lighten-20
-  link: $color--blue
-  link-hover: $color--blue
+  link: $color--blue-darken-10
+  link-hover: $color--blue-darken-20
   icon: $color--black-lighten-20
 #
 font-family:
-  default: '"Lato", "Helvetica Neue", Helvetica, Arial, sans-serif !default'
+  default: '"Lato", "Helvetica Neue", Helvetica, Arial, sans-serif'
   jp: '"Lato", "Helvetica Neue", Helvetica, Arial, sans-serif, "Hiragino Kaku Gothic Pro", "ヒラギノ角ゴ Pro W3", "ＭＳ Ｐゴシック", "MS PGothic"'
   kr: '"Lato", "Helvetica Neue", Helvetica, Arial, sans-serif, "Malgun Gothic"'
   zh: '"Helvetica Neue", Helvetica, Arial, sans-serif, 黑體-繁, "Heiti TC", 儷黑Pro, "LiHei Pro", PMingLiu, 宋体, SimSun'
@@ -115,6 +121,7 @@ table:
 modal:
   backdrop:
     background-color: rgba($color--black, 0.5)
+  shadow: 0 8px 12px -4px rgba(63, 61, 60, 0.2), 0 1px 3px 0 rgba(63, 61, 60, 0.1)
 #
 border:
   radius: 3px
@@ -128,6 +135,10 @@ button:
 card:
   border-radius: ($border--radius * 2)
 #
+popover:
+  border-radius: $card--border-radius
+  shadow: 0 2px 4px rgba(0, 0, 0, 0.1)
+#
 background-color:
   level0: $color--black-lighten-80
 #
@@ -138,4 +149,4 @@ space: 8px
 space-sm: 4px
 space-lg: 12px
 #
-shadow: rgba(0, 0, 0, 0.07) 0px 1px 5px, rgba(0, 0, 0, 0.1) 0px 7px 17px
+shadow: 0px 1px 5px rgba(0, 0, 0, 0.07), 0px 7px 17px rgba(0, 0, 0, 0.1)
