@@ -16,7 +16,7 @@ const sampleText = {
     truck, crucifix try-hard godard biodiesel next level snackwave disrupt flexitarian.`,
 };
 
-export default class PopoverStory extends Component {
+export default class ExampleStory extends Component {
   render() {
     return (
       <CenteredStory>

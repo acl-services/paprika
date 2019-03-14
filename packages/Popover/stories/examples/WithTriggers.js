@@ -15,7 +15,7 @@ const Gap = styled.div`
   height: 50px;
 `;
 
-export default class PopoverStory extends Component {
+export default class ExampleStory extends Component {
   render() {
     return (
       <CenteredStory>

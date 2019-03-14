@@ -1,13 +1,13 @@
 import React from "react";
 import { action } from "@storybook/addon-actions";
-import { Story, Small } from "storybook/assets/styles/common.styles";
+import { Story, Small, Rule } from "storybook/assets/styles/common.styles";
 import RawButton from "../../RawButton";
 
 function clickHandler() {
   action("Clicked a button")();
 }
 
-const PopoverStory = () => {
+const ExampleStory = () => {
   const buttonRef = React.createRef();
 
   setTimeout(() => {
@@ -17,8 +17,9 @@ const PopoverStory = () => {
   return (
     <Story>
       <p>
-        <RawButton onClick={clickHandler}>Raw button</RawButton>
+        <RawButton onClick={clickHandler}>RawButton</RawButton>
       </p>
+      <Rule />
       <p>
         <RawButton
           a11yText="ceci n'est pas un bouton"
@@ -27,20 +28,17 @@ const PopoverStory = () => {
           data-qa-anchor="test-button"
           ref={buttonRef}
         >
-          Has Inset Focus Style
+          RawButton with test props
         </RawButton>
       </p>
       <p>
-        <Small>This raw button will capture the focus after 1 second.</Small>
+        <Small>This RawButton will capture the focus after 1 second.</Small>
       </p>
-      <hr />
+      <Rule />
       <p>
         <RawButton isDisabled onClick={clickHandler}>
-          Disabled button
+          Disabled RawButton
         </RawButton>
-      </p>
-      <p>
-        <Small>This raw button is disabled.</Small>
       </p>
       {[...Array(34).keys()].map(index => (
         <br key={index} />
@@ -50,4 +48,4 @@ const PopoverStory = () => {
   );
 };
 
-export default PopoverStory;
+export default ExampleStory;

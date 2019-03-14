@@ -3,7 +3,7 @@ import { CenteredStory } from "storybook/assets/styles/common.styles";
 
 import Popover from "../../Popover";
 
-export default class PopoverStory extends Component {
+export default class ExampleStory extends Component {
   state = {
     isOpen: false,
   };

@@ -58,7 +58,7 @@ PopoverBox.propTypes = {
   getScrollContainer: func.isRequired,
 };
 
-export default class PopoverStory extends Component {
+export default class ExampleStory extends Component {
   render() {
     return (
       <React.Fragment>

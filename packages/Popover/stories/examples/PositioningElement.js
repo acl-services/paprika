@@ -25,7 +25,7 @@ const PositioningElementStyled = styled.div`
 
 const getPositioningElement = () => document.querySelector("#another-div");
 
-export default class PopoverStory extends Component {
+export default class ExampleStory extends Component {
   render() {
     return (
       <CenteredStory>
