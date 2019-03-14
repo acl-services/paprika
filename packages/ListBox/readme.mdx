@@ -304,37 +304,39 @@ import ListBox from "@paprika/listbox";
 
 ### Single select with groups
 
-<ListBox hasFilter zIndex={10000} getScrollContainer={() => document.querySelector("#root > div")}>
-  <ListBox.Group title="antiheroes">
-    <ListBox.Option isSelected>Punisher</ListBox.Option>
-    <ListBox.Option>Catwoman</ListBox.Option>
-    <ListBox.Option>Venom</ListBox.Option>
-    <ListBox.Option>Thunderbolts</ListBox.Option>
-    <ListBox.Option>Suicide Squad</ListBox.Option>
-    <ListBox.Option>Deadpool</ListBox.Option>
-    <ListBox.Option>Spawn</ListBox.Option>
-    <ListBox.Option>Wolverine</ListBox.Option>
-  </ListBox.Group>
-  <ListBox.Group title="villians">
-    <ListBox.Option>The Joker</ListBox.Option>
-    <ListBox.Option>Darth Vader</ListBox.Option>
-    <ListBox.Option isSelected>Hannibal Lecter</ListBox.Option>
-    <ListBox.Option isSelected>Lord Voldemort</ListBox.Option>
-    <ListBox.Option>Freddy Krueger</ListBox.Option>
-    <ListBox.Option>Palpatine</ListBox.Option>
-    <ListBox.Option>Agent Smith</ListBox.Option>
-  </ListBox.Group>
-  <ListBox.Group title="heroes">
-    <ListBox.Option>Black Panther</ListBox.Option>
-    <ListBox.Option>Wonder Woman</ListBox.Option>
-    <ListBox.Option>Spiderman</ListBox.Option>
-    <ListBox.Option>The Incredibles</ListBox.Option>
-    <ListBox.Option>Thor</ListBox.Option>
-    <ListBox.Option>Batman</ListBox.Option>
-    <ListBox.Option>Iron Man</ListBox.Option>
-    <ListBox.Option>Doctor Strange</ListBox.Option>
-  </ListBox.Group>
-</ListBox>
+<Playground>
+  <ListBox hasFilter zIndex={10000} getScrollContainer={() => document.querySelector("#root > div")}>
+    <ListBox.Group title="antiheroes">
+      <ListBox.Option isSelected>Punisher</ListBox.Option>
+      <ListBox.Option>Catwoman</ListBox.Option>
+      <ListBox.Option>Venom</ListBox.Option>
+      <ListBox.Option>Thunderbolts</ListBox.Option>
+      <ListBox.Option>Suicide Squad</ListBox.Option>
+      <ListBox.Option>Deadpool</ListBox.Option>
+      <ListBox.Option>Spawn</ListBox.Option>
+      <ListBox.Option>Wolverine</ListBox.Option>
+    </ListBox.Group>
+    <ListBox.Group title="villians">
+      <ListBox.Option>The Joker</ListBox.Option>
+      <ListBox.Option>Darth Vader</ListBox.Option>
+      <ListBox.Option isSelected>Hannibal Lecter</ListBox.Option>
+      <ListBox.Option isSelected>Lord Voldemort</ListBox.Option>
+      <ListBox.Option>Freddy Krueger</ListBox.Option>
+      <ListBox.Option>Palpatine</ListBox.Option>
+      <ListBox.Option>Agent Smith</ListBox.Option>
+    </ListBox.Group>
+    <ListBox.Group title="heroes">
+      <ListBox.Option>Black Panther</ListBox.Option>
+      <ListBox.Option>Wonder Woman</ListBox.Option>
+      <ListBox.Option>Spiderman</ListBox.Option>
+      <ListBox.Option>The Incredibles</ListBox.Option>
+      <ListBox.Option>Thor</ListBox.Option>
+      <ListBox.Option>Batman</ListBox.Option>
+      <ListBox.Option>Iron Man</ListBox.Option>
+      <ListBox.Option>Doctor Strange</ListBox.Option>
+    </ListBox.Group>
+  </ListBox>
+</Playground>
 
 #### Code
 
@@ -385,10 +387,9 @@ To make the `<ListBox />` behave as a multi select, the developer needs to pass 
 isMulti `<ListBox isMulti />`.
 
 One of the biggest differences between the Multi and Single ListBox is the way the `onChange`
-property behaves. While the single select always return the selected index plus the options.
-
-The Multi ListBox will return an array of selected index, the options currently in the ListBox, plus
-two more parameter, the index of the latest clicked item and if the item was added or removed from the
+property behaves. While the single select always return the selected index plus the options. The Multi ListBox
+will return an array of selected indexes (the options currently in the ListBox) plus two more parameter,
+the index of the latest clicked item and if the option was added or removed from the
 selection.
 
 In code:
