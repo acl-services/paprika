@@ -1,15 +1,18 @@
 import React from "react";
 import { action } from "@storybook/addon-actions";
-import { Story } from "storybook/assets/styles/common.styles";
+import { Story, Small } from "storybook/assets/styles/common.styles";
 import RawButton from "../../RawButton";
 
-let $btn;
+function clickHandler() {
+  action("Clicked a button")();
+}
 
-const getBtn = () => $btn;
+const PopoverStory = () => {
+  let buttonRef;
 
-const setRef = node => {
-  $btn = node;
-};
+  const setRef = node => {
+    buttonRef = node;
+  };
 
 const clickHandler = getRef => () => {
   if (getRef) {
@@ -20,17 +23,18 @@ const clickHandler = getRef => () => {
   }
 };
 
-const PopoverStory = () => (
-  <Story>
-    <p>
-      <RawButton onClick={clickHandler(getBtn)} ref={setRef}>
-        Old school ref
-      </RawButton>
-    </p>
-    <p>
-      <RawButton onClick={clickHandler()}>No ref</RawButton>
-    </p>
-  </Story>
-);
+  return (
+    <Story>
+      <p>
+        <RawButton onClick={clickHandler} ref={setRef}>
+          Old school ref
+        </RawButton>
+      </p>
+      <p>
+        <Small>This raw button will capture the focus after 1 second.</Small>
+      </p>
+    </Story>
+  );
+};
 
 export default PopoverStory;

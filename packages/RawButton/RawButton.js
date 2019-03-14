@@ -1,6 +1,5 @@
 import React from "react";
 import PropTypes from "prop-types";
-import { useForwardAnyRef } from "../helpers/customHooks";
 import RawButtonStyled from "./RawButton.styles";
 
 const propTypes = {
@@ -28,8 +27,13 @@ const RawButton = React.forwardRef((props, ref) => {
   const { ariaText, canPropagate, children, isDisabled, onClick, tabIndex, ...moreProps } = props;
   if (ariaText) moreProps["aria-label"] = ariaText;
 
-  const rawButtonRef = ref ? React.useRef() : React.createRef();
-  useForwardAnyRef(rawButtonRef, ref);
+  const rawButtonRef = React.useRef();
+
+  React.useImperativeHandle(ref, () => ({
+    focus: () => {
+      rawButtonRef.current.focus();
+    },
+  }));
 
   const handleClick = event => {
     if (!canPropagate) event.stopPropagation();
