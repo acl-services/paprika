@@ -27,7 +27,7 @@ const RawButton = React.forwardRef((props, ref) => {
   const { ariaText, canPropagate, children, isDisabled, onClick, tabIndex, ...moreProps } = props;
   if (ariaText) moreProps["aria-label"] = ariaText;
 
-  const rawButtonRef = React.useRef();
+  const rawButtonRef = React.useRef(null);
 
   React.useImperativeHandle(ref, () => ({
     focus: () => {
