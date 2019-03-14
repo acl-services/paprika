@@ -21,7 +21,7 @@ const PopoverStory = () => {
       </p>
       <p>
         <RawButton
-          ariaText="ceci n'est pas un bouton"
+          a11yText="ceci n'est pas un bouton"
           hasInsetFocusStyle
           onClick={clickHandler}
           data-qa-anchor="test-button"

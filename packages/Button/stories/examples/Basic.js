@@ -18,7 +18,7 @@ const clickHandler = ref => () => {
 const PopoverStory = () => (
   <ButtonStory>
     <p>
-      <Button ariaText="ceci n'est pas un bouton" buttonRef={btnRef} onClick={clickHandler(btnRef)}>
+      <Button a11yText="ceci n'est pas un bouton" buttonRef={btnRef} onClick={clickHandler(btnRef)}>
         default button
       </Button>
 

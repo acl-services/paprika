@@ -4,7 +4,7 @@ import { ShirtSizes } from "../helpers/customPropTypes";
 import { ButtonStyled, RawButtonStyled } from "./Button.styles";
 
 const propTypes = {
-  ariaText: PropTypes.string,
+  a11yText: PropTypes.string,
   buttonRef: PropTypes.shape({ current: PropTypes.instanceOf(Element) }),
   canPropagate: PropTypes.bool,
   children: PropTypes.node.isRequired,
@@ -21,7 +21,7 @@ const propTypes = {
 };
 
 const defaultProps = {
-  ariaText: null,
+  a11yText: null,
   buttonRef: null,
   canPropagate: true,
   isActive: false,
@@ -57,7 +57,7 @@ class Button extends React.Component {
 
   render() {
     const {
-      ariaText,
+      a11yText,
       buttonRef,
       canPropagate,
       children,
@@ -67,7 +67,7 @@ class Button extends React.Component {
       tabIndex,
       ...moreProps
     } = this.props;
-    if (ariaText) moreProps["aria-label"] = ariaText;
+    if (a11yText) moreProps["aria-label"] = a11yText;
 
     const buttonProps = {
       isDisabled,
