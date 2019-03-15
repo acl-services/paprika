@@ -36,7 +36,7 @@ export const ListBoxTriggerStyled = styled.div`
 
 export const TriggerArrowStyled = styled.span`
   ${props => {
-    if (props.hasRenderLabel) {
+    if (props.hasRenderLabel || props.isInlineDisplay) {
       return "display: none";
     }
 

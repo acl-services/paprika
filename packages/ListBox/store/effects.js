@@ -20,6 +20,8 @@ export const handleEffectIsPopOverOpen = (state, dispatch) => () => {
         filterInput.focus();
       }, 200);
     } else {
+      if (state.isInlineDisplay) return;
+
       listBoxContainer.focus();
     }
 

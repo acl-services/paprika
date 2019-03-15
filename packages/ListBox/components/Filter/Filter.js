@@ -98,7 +98,7 @@ export default function Filter(props) {
     }
   };
 
-  if (props.forceShowFilter || (state.hasFilter && state.isPopoverOpen)) {
+  if (props.forceShowFilter || (state.isInlineDisplay && state.hasFilter) || (state.hasFilter && state.isPopoverOpen)) {
     const { renderFilter, placeholder, ...moreProps } = props;
     if (renderFilter) {
       return props.renderFilter(props);

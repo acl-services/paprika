@@ -1,5 +1,6 @@
 import React from "react";
 import { storiesOf } from "@storybook/react";
+import Button from "@paprika/Button";
 import { Frame, ImageOption } from "./stories.styles";
 import ListBox from "..";
 import { images } from "./fixtures/images";
@@ -8,6 +9,20 @@ import CustomCheckers from "./examples/customCheckers";
 storiesOf("ListBox / single", module).add("Basic", () => (
   <Frame>
     <ListBox>
+      <ListBox.Option>Punisher</ListBox.Option>
+      <ListBox.Option>Catwoman</ListBox.Option>
+      <ListBox.Option>Venom</ListBox.Option>
+      <ListBox.Option>Thunderbolts</ListBox.Option>
+      <ListBox.Option>Deadpool</ListBox.Option>
+      <ListBox.Option>Spawn</ListBox.Option>
+      <ListBox.Option>Wolverine</ListBox.Option>
+    </ListBox>
+  </Frame>
+));
+
+storiesOf("ListBox / single", module).add("Basic inline display", () => (
+  <Frame>
+    <ListBox isInlineDisplay>
       <ListBox.Option>Punisher</ListBox.Option>
       <ListBox.Option>Catwoman</ListBox.Option>
       <ListBox.Option>Venom</ListBox.Option>
@@ -47,9 +62,37 @@ storiesOf("ListBox / single", module).add("Basic is disabled", () => (
   </Frame>
 ));
 
+storiesOf("ListBox / single", module).add("Basic is inline disable", () => (
+  <Frame>
+    <ListBox isDisabled isInlineDisplay>
+      <ListBox.Option>Punisher</ListBox.Option>
+      <ListBox.Option>Catwoman</ListBox.Option>
+      <ListBox.Option>Venom</ListBox.Option>
+      <ListBox.Option>Thunderbolts</ListBox.Option>
+      <ListBox.Option>Deadpool</ListBox.Option>
+      <ListBox.Option>Spawn</ListBox.Option>
+      <ListBox.Option>Wolverine</ListBox.Option>
+    </ListBox>
+  </Frame>
+));
+
 storiesOf("ListBox / single", module).add("With Filter", () => (
   <Frame>
     <ListBox hasFilter>
+      <ListBox.Option>Punisher</ListBox.Option>
+      <ListBox.Option>Catwoman</ListBox.Option>
+      <ListBox.Option>Venom</ListBox.Option>
+      <ListBox.Option>Thunderbolts</ListBox.Option>
+      <ListBox.Option>Deadpool</ListBox.Option>
+      <ListBox.Option>Spawn</ListBox.Option>
+      <ListBox.Option>Wolverine</ListBox.Option>
+    </ListBox>
+  </Frame>
+));
+
+storiesOf("ListBox / single", module).add("With Filter inline", () => (
+  <Frame>
+    <ListBox hasFilter isInlineDisplay>
       <ListBox.Option>Punisher</ListBox.Option>
       <ListBox.Option>Catwoman</ListBox.Option>
       <ListBox.Option>Venom</ListBox.Option>
@@ -104,6 +147,22 @@ storiesOf("ListBox / single", module).add("With Filter and nodes as children", (
         </ListBox.Option>
       ))}
     </ListBox>
+  </Frame>
+));
+
+storiesOf("ListBox / single", module).add("With Filter and nodes as children and inline", () => (
+  <Frame>
+    <ListBox hasFilter isInlineDisplay height={320}>
+      {images.map(image => (
+        <ListBox.Option label={image.label}>
+          <ImageOption>
+            <img alt={image.label} src={image.src} />
+          </ImageOption>
+        </ListBox.Option>
+      ))}
+    </ListBox>
+    <br />
+    <Button>Post your fav Hero</Button>
   </Frame>
 ));
 

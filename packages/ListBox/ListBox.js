@@ -29,6 +29,9 @@ export const propTypes = {
   /** Let the user to select multiple options at same time */
   isMulti: PropTypes.bool,
 
+  /** This options will display the listbox without the Popover */
+  isInlineDisplay: PropTypes.bool,
+
   /** When true the ListBox will try to focus to the options container asap the
   popover is open */
   isPopoverEager: PropTypes.bool,
@@ -80,6 +83,38 @@ export const defaultProps = {
   renderLabel: null,
   renderChecker: undefined,
   zIndex: null,
+  isInlineDisplay: false,
+};
+
+export function ListBoxSkeleton(props) {
+  const { renderLabel, placeholder, height, hasNotResultsMessage, hasFooter } = props;
+  return (
+    <React.Fragment>
+      <Trigger renderLabel={renderLabel} placeholder={placeholder} />
+      <Content>
+        <Box>
+          <Filter />
+          <List height={height}>
+            <Options />
+          </List>
+          <NoResults label={hasNotResultsMessage} />
+          <Footer hasFooter={hasFooter} onClickClear={() => {}} />
+        </Box>
+      </Content>
+    </React.Fragment>
+  );
+}
+
+ListBoxSkeleton.propTypes = {
+  renderLabel: PropTypes.func,
+  placeholder: PropTypes.string.isRequired,
+  height: PropTypes.number.isRequired,
+  hasNotResultsMessage: PropTypes.string.isRequired,
+  hasFooter: PropTypes.bool.isRequired,
+};
+
+ListBoxSkeleton.defaultProps = {
+  renderLabel: null,
 };
 
 export default function ListBox(props) {
@@ -96,22 +131,25 @@ export default function ListBox(props) {
     placeholder,
     renderLabel,
     renderChecker,
+    isInlineDisplay,
     ...moreProps
   } = props;
 
+  const listBoxRawProps = {
+    renderLabel,
+    placeholder,
+    height,
+    hasNotResultsMessage,
+    hasFooter,
+  };
+
+  if (isInlineDisplay) {
+    return <ListBoxSkeleton {...listBoxRawProps} />;
+  }
+
   return (
     <Popover {...moreProps} isEager={isPopoverEager}>
-      <Trigger renderLabel={renderLabel} placeholder={props.placeholder} />
-      <Content>
-        <Box>
-          <Filter />
-          <List height={height}>
-            <Options />
-          </List>
-          <NoResults label={hasNotResultsMessage} />
-          <Footer hasFooter={hasFooter} onClickClear={() => {}} />
-        </Box>
-      </Content>
+      <ListBoxSkeleton {...listBoxRawProps} />
     </Popover>
   );
 }

@@ -47,6 +47,8 @@ const handleKeyboardKeys = (state, dispatch) => event => {
     case "Enter":
     case " ":
       {
+        if (state.activeOption === null && state.isInlineDisplay) return;
+
         const option = state.options[state.activeOption];
         if (option.isDisabled) {
           return;

@@ -58,6 +58,7 @@ export default function Trigger(props) {
         hasRenderLabel={renderLabel}
         isDisabled={isDisabled}
         isOpen={state.isPopoverOpen}
+        isInlineDisplay={state.isInlineDisplay}
         dangerouslySetInnerHTML={{ __html: "&#x25BC;" }}
       />
     </ListBoxTriggerStyled>

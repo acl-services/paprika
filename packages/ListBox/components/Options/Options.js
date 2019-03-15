@@ -12,7 +12,7 @@ export default function Options() {
   const optionsArray = Object.keys(state.options);
   let lastGroupTitle = null;
 
-  const handleClickOption = key => () => {
+  const handleClickOption = key => event => {
     if (state.isDisabled || state.options[key].isDisabled) {
       return;
     }
@@ -21,6 +21,14 @@ export default function Options() {
     const option = options[key];
     const index = option.index;
     const isOptionActionGroup = option.isOptionActionGroup;
+
+    if (
+      state.refListBox.current.contains(event.target) &&
+      document.activeElement === document.body &&
+      !state.hasFilter
+    ) {
+      state.refListBoxContainer.current.focus();
+    }
 
     if (hasFilter && isMulti) {
       refFilterInput.current.focus();

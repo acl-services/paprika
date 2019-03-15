@@ -7,6 +7,7 @@ export default function useStore() {
 
   React.useEffect(effects.handleEffectIsPopOverOpen(state, dispatch), [state.isPopoverOpen]);
   React.useEffect(effects.handleEffectListBoxWidth(state, dispatch), [state.refTriggerContainer.current]);
-  React.useEffect(effects.handleEffectListBoxScrolled(state), [state.activeOption]);
+  React.useLayoutEffect(effects.handleEffectListBoxScrolled(state), [state.activeOption]);
+
   return [state, dispatch];
 }

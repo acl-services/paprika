@@ -21,6 +21,7 @@ function initializeState(props) {
     hasNoResults: false,
     hasPopupOpened: false,
     height: props.height,
+    isInlineDisplay: props.isInlineDisplay,
     lastActiveOptionIndexAffected: null,
     options,
     preventOnBlurOnTrigger: props.preventOnBlurOnTrigger,
