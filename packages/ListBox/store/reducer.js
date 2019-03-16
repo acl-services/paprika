@@ -173,6 +173,20 @@ export default function reducer(state, { type, payload }) {
       };
     }
 
+    case actionTypes.clear: {
+      return {
+        ...state,
+        selectedOptions: [],
+      };
+    }
+
+    case actionTypes.reset: {
+      return {
+        ...state.originalState,
+        originalState: state.originalState,
+      };
+    }
+
     default:
       return state;
   }

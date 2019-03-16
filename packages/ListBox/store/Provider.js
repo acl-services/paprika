@@ -13,7 +13,7 @@ function initializeState(props) {
     .filter(key => options[key].isSelected)
     .map(key => Number.parseInt(key, 10));
 
-  return {
+  const initialState = {
     ...props,
     activeOption: null,
     filteredOptions: [],
@@ -30,6 +30,8 @@ function initializeState(props) {
     shouldListBoxContentScroll: true,
     triggerWidth: 0,
   };
+
+  return { ...initialState, originalState: initialState };
 }
 
 const propTypes = {

@@ -9,6 +9,8 @@ import Popover from "./components/Popover";
 import Trigger from "./components/Trigger";
 import Box from "./components/Box";
 import List from "./components/List";
+import useStore from "./store/useStore";
+import * as actionTypes from "./store/actionTypes";
 
 export const propTypes = {
   /** Child of type <ListBox.Option /> */
@@ -117,7 +119,23 @@ ListBoxSkeleton.defaultProps = {
   renderLabel: null,
 };
 
-export default function ListBox(props) {
+const ListBox = React.forwardRef((props, ref) => {
+  const [state, dispatch] = useStore();
+
+  React.useImperativeHandle(ref, () => ({
+    clear: () => {
+      dispatch({ type: actionTypes.clear });
+    },
+    reset: () => {
+      dispatch({ type: actionTypes.reset });
+    },
+    focus: () => {
+      state.refTrigger.current.focus();
+    },
+    selected: state.selectedOptions,
+    options: state.options,
+  }));
+
   const {
     children,
     hasFilter,
@@ -152,7 +170,9 @@ export default function ListBox(props) {
       <ListBoxSkeleton {...listBoxRawProps} />
     </Popover>
   );
-}
+});
+
+export default ListBox;
 
 ListBox.propTypes = propTypes;
 ListBox.defaultProps = defaultProps;

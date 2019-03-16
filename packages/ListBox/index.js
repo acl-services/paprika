@@ -19,13 +19,15 @@ import Provider from "./store/Provider";
 import Group from "./components/Group";
 import Option from "./components/Option";
 
-export default function ListBox(props) {
+const ListBox = React.forwardRef((props, ref) => {
   return (
     <Provider {...props} options={props.children}>
-      <ListBoxComponent {...props} />
+      <ListBoxComponent {...props} ref={ref} />
     </Provider>
   );
-}
+});
+
+export default ListBox;
 
 ListBox.propTypes = propTypes;
 ListBox.defaultProps = defaultProps;

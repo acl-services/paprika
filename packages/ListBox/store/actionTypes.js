@@ -13,3 +13,5 @@ export const updateOptions = "UPDATE_OPTIONS";
 export const unselectOptions = "UNSELECT_OPTION";
 export const hideOptions = "HIDE_OPTION";
 export const unhideOptions = "UNHIDE_OPTION";
+export const clear = "CLEAR";
+export const reset = "RESET";
