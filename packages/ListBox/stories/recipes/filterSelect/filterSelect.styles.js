@@ -22,11 +22,10 @@ export const TdFilter = styled(Td)`
 export const FiltersStyled = styled.div`
   display: flex;
   margin-bottom: 12px;
+  align-items: center;
 
-  > div {
-    margin-right: 2px;
-  }
-  > div:last-chid {
-    margin-right: 0;
+  > div,
+  > [role="button"] {
+    margin-right: 8px;
   }
 `;

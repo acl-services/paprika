@@ -1,4 +1,5 @@
 import * as actionTypes from "./actionTypes";
+import handleChange from "../helpers/handleChange";
 
 export default function reducer(state, { type, payload }) {
   switch (type) {
@@ -30,7 +31,8 @@ export default function reducer(state, { type, payload }) {
       };
 
     case actionTypes.setOptionOnSingleSelection: {
-      state.onChange(payload.activeOptionIndex, state.options);
+      handleChange(state, payload);
+      // state.onChange(payload.activeOptionIndex, state.options);
 
       return {
         ...state,
@@ -41,16 +43,19 @@ export default function reducer(state, { type, payload }) {
         lastActiveOptionIndexAffected: [payload.activeOptionIndex],
       };
     }
+
     case actionTypes.setOptionOnMultipleSelection: {
       const selectedOptionsArray = state.selectedOptions.slice();
 
       if (selectedOptionsArray.includes(payload.activeOptionIndex)) {
         const index = selectedOptionsArray.indexOf(payload.activeOptionIndex);
         selectedOptionsArray.splice(index, 1);
-        state.onChange(selectedOptionsArray, state.options, payload.activeOptionIndex, "removed");
+        handleChange(state, payload, selectedOptionsArray, "removed");
+        // state.onChange(selectedOptionsArray, state.options, payload.activeOptionIndex, "removed");
       } else {
         selectedOptionsArray.push(payload.activeOptionIndex);
-        state.onChange(selectedOptionsArray, state.options, payload.activeOptionIndex, "added");
+        handleChange(state, payload, selectedOptionsArray, "added");
+        // state.onChange(selectedOptionsArray, state.options, payload.activeOptionIndex, "added");
       }
 
       return {
@@ -88,37 +93,39 @@ export default function reducer(state, { type, payload }) {
 
     case actionTypes.toggleSelectOptionsByGroup: {
       const isSelected = state.selectedOptions.includes(payload.index);
-      let selectedOptions = [];
+      let selectedOptionsArray = [];
 
       if (isSelected) {
-        selectedOptions = state.selectedOptions.slice(0);
+        selectedOptionsArray = state.selectedOptions.slice(0);
 
-        selectedOptions = selectedOptions
+        selectedOptionsArray = selectedOptionsArray
           .filter(index => state.options[index].groupTitle !== payload.group)
           .map(index => Number.parseInt(index, 10));
 
-        const indexGroupToRemove = selectedOptions.indexOf(payload.index);
-        selectedOptions.splice(indexGroupToRemove, 1);
+        const indexGroupToRemove = selectedOptionsArray.indexOf(payload.index);
+        selectedOptionsArray.splice(indexGroupToRemove, 1);
 
-        state.onChange(selectedOptions, state.options, payload.index, "removed");
+        // state.onChange(selectedOptionsArray, state.options, payload.index, "removed");
+        handleChange(state, payload, selectedOptionsArray, "removed");
       } else {
-        selectedOptions = Object.keys(state.options)
+        selectedOptionsArray = Object.keys(state.options)
           .filter(key => state.options[key].groupTitle === payload.group)
           .map(index => Number.parseInt(index, 10));
 
-        state.onChange(selectedOptions, state.options, payload.index, "added");
+        // state.onChange(selectedOptionsArray, state.options, payload.index, "added");
+        handleChange(state, payload, selectedOptionsArray, "added");
 
-        selectedOptions.push(payload.index);
+        selectedOptionsArray.push(payload.index);
 
         if (state.selectedOptions.length) {
-          selectedOptions = [...state.selectedOptions.slice(), ...selectedOptions];
+          selectedOptionsArray = [...state.selectedOptions.slice(), ...selectedOptionsArray];
         }
       }
 
       return {
         ...state,
         activeOption: payload.index,
-        selectedOptions: [...new Set(selectedOptions)], // remove duplicated
+        selectedOptions: [...new Set(selectedOptionsArray)], // remove duplicated
       };
     }
 
@@ -174,6 +181,7 @@ export default function reducer(state, { type, payload }) {
     }
 
     case actionTypes.clear: {
+      handleChange(state, { activeOptionIndex: 0 }, [], "clear");
       return {
         ...state,
         selectedOptions: [],
@@ -181,6 +189,12 @@ export default function reducer(state, { type, payload }) {
     }
 
     case actionTypes.reset: {
+      handleChange(
+        state.originalState,
+        { activeOptionIndex: state.originalState.activeOption },
+        state.originalState.selectedOptions,
+        "reset"
+      );
       return {
         ...state.originalState,
         originalState: state.originalState,

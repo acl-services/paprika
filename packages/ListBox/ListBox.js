@@ -84,7 +84,7 @@ export const defaultProps = {
   preventOnBlurOnTrigger: false,
   renderLabel: null,
   renderChecker: undefined,
-  zIndex: null,
+  zIndex: 1,
   isInlineDisplay: false,
 };
 
@@ -132,7 +132,7 @@ const ListBox = React.forwardRef((props, ref) => {
     focus: () => {
       state.refTrigger.current.focus();
     },
-    selected: state.selectedOptions,
+    selected: state.isMulti ? state.selectedOptions : state.selectedOptions[0],
     options: state.options,
   }));
 

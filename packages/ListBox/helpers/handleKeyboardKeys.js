@@ -47,9 +47,19 @@ const handleKeyboardKeys = (state, dispatch) => event => {
     case "Enter":
     case " ":
       {
-        if (state.activeOption === null && state.isInlineDisplay) return;
+        if (state.activeOption === null) {
+          if (state.isInlineDisplay) {
+            return;
+          }
+
+          if (state.isMulti) {
+            dispatch({ type: actionTypes.togglePopover });
+            return;
+          }
+        }
 
         const option = state.options[state.activeOption];
+
         if (option.isDisabled) {
           return;
         }

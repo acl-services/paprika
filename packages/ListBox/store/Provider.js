@@ -1,6 +1,7 @@
 import React from "react";
 import Proptypes from "prop-types";
 import reducer from "./reducer";
+import handleChange from "../helpers/handleChange";
 import * as effects from "./effects";
 
 import { getDataOptions, getDataGroups } from "../helpers/dataStructure";
@@ -13,9 +14,14 @@ function initializeState(props) {
     .filter(key => options[key].isSelected)
     .map(key => Number.parseInt(key, 10));
 
+  let activeOption = null;
+  if (selectedOptions.length && !props.isMulti) {
+    activeOption = selectedOptions[0];
+  }
+
   const initialState = {
     ...props,
-    activeOption: null,
+    activeOption,
     filteredOptions: [],
     groups,
     hasNoResults: false,
@@ -31,7 +37,9 @@ function initializeState(props) {
     triggerWidth: 0,
   };
 
-  return { ...initialState, originalState: initialState };
+  handleChange(initialState, { activeOptionIndex: initialState.activeOption }, initialState.selectedOptions, "load");
+
+  return { ...initialState, originalState: { ...initialState } };
 }
 
 const propTypes = {
