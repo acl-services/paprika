@@ -17,7 +17,7 @@ export const inlineBlockStyle = `
 `;
 
 //
-// Text
+// Typography
 //
 
 export const truncateText = `
@@ -58,16 +58,10 @@ export const placeholder = `
 
   .is-disabled &, &[disabled] {
     ${disabledPlaceholder};
-  }
-
-  
+  }  
 `;
 
 export const placeholders = `
-  .is-readonly &, &.is-readonly, &[readonly] {
-    color: ${tokens.color.black};
-  }
-
   &::placeholder {
     ${placeholder};
   }
