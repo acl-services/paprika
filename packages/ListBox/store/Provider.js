@@ -4,11 +4,13 @@ import reducer from "./reducer";
 import handleChange from "../helpers/handleChange";
 import * as effects from "./effects";
 
-import { getDataOptions, getDataGroups } from "../helpers/dataStructure";
+import { getDataOptions, getDataGroups, getFooter } from "../helpers/dataStructure";
 
 function initializeState(props) {
-  const groups = getDataGroups(props.options);
-  const options = getDataOptions(props.options, groups, props.isMulti);
+  const { childrenListBoxOptions, preventOnBlurOnTrigger, isInlineDisplay, height } = props;
+  const groups = getDataGroups(childrenListBoxOptions);
+  const options = getDataOptions(childrenListBoxOptions, groups, props.isMulti);
+  const footer = getFooter(childrenListBoxOptions);
 
   const selectedOptions = Object.keys(options)
     .filter(key => options[key].isSelected)
@@ -23,21 +25,22 @@ function initializeState(props) {
     ...props,
     activeOption,
     filteredOptions: [],
+    footer,
     groups,
     hasNoResults: false,
     hasPopupOpened: false,
-    height: props.height,
-    isInlineDisplay: props.isInlineDisplay,
+    height,
+    isInlineDisplay,
     lastActiveOptionIndexAffected: null,
     options,
-    preventOnBlurOnTrigger: props.preventOnBlurOnTrigger,
+    preventOnBlurOnTrigger,
     renderChecker: props.renderChecker,
     selectedOptions,
     shouldListBoxContentScroll: true,
     triggerWidth: 0,
   };
 
-  handleChange(initialState, { activeOptionIndex: initialState.activeOption }, initialState.selectedOptions, "load");
+  handleChange(initialState, { activeOptionIndex: activeOption }, selectedOptions, "load");
 
   return { ...initialState, originalState: { ...initialState } };
 }
@@ -49,22 +52,33 @@ const propTypes = {
 export const StoreContext = React.createContext();
 
 export default function Provider(props) {
-  const refFilterInput = React.useRef();
-  const refListBox = React.useRef();
-  const refListBoxContainer = React.useRef();
-  const refTrigger = React.useRef();
-  const refTriggerContainer = React.useRef();
+  const refFilterInput = React.useRef(null);
+  const refListBox = React.useRef(null);
+  const refListBoxContainer = React.useRef(null);
+  const refTrigger = React.useRef(null);
+  const refTriggerContainer = React.useRef(null);
 
   const [state, dispatch] = React.useReducer(
     reducer,
     { ...props, refFilterInput, refListBox, refListBoxContainer, refTrigger, refTriggerContainer },
     initializeState
   );
+
   const value = { state, dispatch };
 
   React.useEffect(
-    effects.handleEffectChildrenChange({ props, state, dispatch, getDataGroups, getDataOptions }),
-    [props.options] // eslint-disable-line
+    effects.handleEffectChildrenLengthChange({ props, dispatch, getDataGroups, getDataOptions }),
+    [props.childrenListBoxOptions.length] // eslint-disable-line
+  );
+
+  React.useEffect(
+    effects.handleEffectHeightChange({ props, dispatch }),
+    [props.height] // eslint-disable-line
+  );
+
+  React.useEffect(
+    effects.handleEffectIsDisabledChange({ dispatch }),
+    [props.isDisabled] // eslint-disable-line
   );
 
   return <StoreContext.Provider value={value}>{props.children}</StoreContext.Provider>;

@@ -5,6 +5,8 @@ export const handleEffectIsPopOverOpen = (state, dispatch) => () => {
     return;
   }
 
+  if (!state.refListBoxContainer.current) return;
+
   const filterInput = state.refFilterInput.current;
   const listBoxContainer = state.refListBoxContainer.current;
   const trigger = state.refTrigger.current;
@@ -54,6 +56,8 @@ export const handleEffectListBoxWidth = (state, dispatch) => () => {
 };
 
 export const handleEffectListBoxScrolled = state => () => {
+  if (!state.refListBox.current) return;
+
   if (state.isPopoverOpen && state.options[state.activeOption] && state.shouldListBoxContentScroll) {
     const parentOffsetTop = state.refListBox.current.offsetTop;
     const $option = document.getElementById(state.options[state.activeOption].id);
@@ -68,12 +72,23 @@ export const handleEffectListBoxScrolled = state => () => {
   }
 };
 
-export const handleEffectChildrenChange = ({ props, state, dispatch, getDataGroups, getDataOptions }) => () => {
-  if (state.hasPopupOpened) {
-    const groups = getDataGroups(props.options);
-    dispatch({
-      type: actionTypes.updateOptions,
-      payload: getDataOptions(props.options, groups),
-    });
-  }
+export const handleEffectChildrenLengthChange = ({ props, dispatch, getDataGroups, getDataOptions }) => () => {
+  const groups = getDataGroups(props.childrenListBoxOptions);
+  dispatch({
+    type: actionTypes.updateOptions,
+    payload: getDataOptions(props.childrenListBoxOptions, groups),
+  });
+};
+
+export const handleEffectHeightChange = ({ props, dispatch }) => () => {
+  dispatch({
+    type: actionTypes.setHeight,
+    payload: props.height,
+  });
+};
+
+export const handleEffectIsDisabledChange = ({ dispatch }) => () => {
+  dispatch({
+    type: actionTypes.toggleDisabled,
+  });
 };

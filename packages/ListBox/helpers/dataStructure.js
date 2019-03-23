@@ -3,10 +3,12 @@ import uuidv4 from "uuid/v4";
 import ListBox from "@paprika/listbox";
 
 function createOption({ index, child, title = null, isOptionActionGroup = false }) {
-  const { children, label, value, isHidden, isSelected, isDisabled } = child.props;
+  const { label, value, isHidden, isSelected, isDisabled } = child.props;
+
+  // const childClone = React.cloneElement(child, { ...child.props, _index: index });
 
   return {
-    content: children,
+    content: child,
     groupTitle: title,
     hasLabel: label,
     id: uuidv4(),
@@ -15,7 +17,7 @@ function createOption({ index, child, title = null, isOptionActionGroup = false 
     isOptionActionGroup,
     isSelected,
     isDisabled,
-    label: label || children,
+    label: label || child,
     value: value || undefined,
   };
 }
@@ -43,7 +45,7 @@ export function getDataOptions(children, groups, isMulti) {
         options[index] = createOption({ index, child: _child, title });
         index += 1;
       });
-    } else {
+    } else if (child.type.componentType === "ListBox.Option") {
       options[index] = createOption({ index, child });
       index += 1;
     }
@@ -60,4 +62,19 @@ export function getDataGroups(children) {
     }
   });
   return groups;
+}
+
+export function getFooter(children) {
+  const footer = React.Children.toArray(children).filter(child => {
+    if (child.type.componentType === "ListBox.Footer") {
+      return child.type;
+    }
+    return false;
+  });
+
+  if (footer.length) {
+    return footer[0];
+  }
+
+  return null;
 }

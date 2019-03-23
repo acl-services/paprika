@@ -3,6 +3,7 @@ import { storiesOf } from "@storybook/react";
 import { withKnobs } from "@storybook/addon-knobs";
 
 import Basic from "./examples/Basic";
+import Simple from "./examples/Simple";
 import Controlled from "./examples/Controlled";
 import WithTriggers from "./examples/WithTriggers";
 import PositioningElement from "./examples/PositioningElement";

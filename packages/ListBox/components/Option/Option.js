@@ -1,6 +1,5 @@
 import React from "react";
 import PropTypes from "prop-types";
-
 /* eslint-disable react/no-unused-prop-types */
 const propTypes = {
   /** String, number or JSX content */

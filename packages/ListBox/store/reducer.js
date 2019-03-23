@@ -201,6 +201,24 @@ export default function reducer(state, { type, payload }) {
       };
     }
 
+    case actionTypes.setHeight: {
+      return {
+        height: payload,
+        ...state,
+      };
+    }
+
+    case actionTypes.toggleOptionDisabled: {
+      // const { index, isDisabled } = payload;
+      // const cloneOptions = state.options.slice(0);
+      // cloneOptions[index].isDisabled = !isDisabled;
+      // return {
+      //   options: cloneOptions,
+      //   ...state,
+      // };
+      break;
+    }
+
     default:
       return state;
   }

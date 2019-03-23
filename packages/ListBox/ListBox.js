@@ -2,7 +2,6 @@ import React from "react";
 import PropTypes from "prop-types";
 import Content from "./components/Content";
 import Filter from "./components/Filter";
-import Footer from "./components/Footer";
 import NoResults from "./components/NoResults";
 import Options from "./components/Options";
 import Popover from "./components/Popover";
@@ -10,6 +9,7 @@ import Trigger from "./components/Trigger";
 import Box from "./components/Box";
 import List from "./components/List";
 import useStore from "./store/useStore";
+import { getDataOptions, getDataGroups, getFooter } from "./helpers/dataStructure";
 import * as actionTypes from "./store/actionTypes";
 
 export const propTypes = {
@@ -18,9 +18,6 @@ export const propTypes = {
 
   /** Turn on the input filter for the options */
   hasFilter: PropTypes.bool,
-
-  /** Turn on a footer to confirm the selection */
-  hasFooter: PropTypes.bool,
 
   /** Indicate which is the height for the options container */
   height: PropTypes.number,
@@ -73,7 +70,6 @@ export const defaultProps = {
   hasNotResultsMessage: "Your filter did not return any option",
   getScrollContainer: null,
   hasFilter: false,
-  hasFooter: false,
   height: 200,
   isDisabled: false,
   isMulti: false,
@@ -89,7 +85,14 @@ export const defaultProps = {
 };
 
 export function ListBoxSkeleton(props) {
-  const { renderLabel, placeholder, height, hasNotResultsMessage, hasFooter } = props;
+  const {
+    renderLabel,
+    placeholder,
+    height,
+    hasNotResultsMessage,
+    footer, // eslint-disable-line
+  } = props;
+
   return (
     <React.Fragment>
       <Trigger renderLabel={renderLabel} placeholder={placeholder} />
@@ -99,8 +102,8 @@ export function ListBoxSkeleton(props) {
           <List height={height}>
             <Options />
           </List>
+          {footer}
           <NoResults label={hasNotResultsMessage} />
-          <Footer hasFooter={hasFooter} onClickClear={() => {}} />
         </Box>
       </Content>
     </React.Fragment>
@@ -108,11 +111,11 @@ export function ListBoxSkeleton(props) {
 }
 
 ListBoxSkeleton.propTypes = {
-  renderLabel: PropTypes.func,
-  placeholder: PropTypes.string.isRequired,
-  height: PropTypes.number.isRequired,
+  children: PropTypes.node.isRequired,
   hasNotResultsMessage: PropTypes.string.isRequired,
-  hasFooter: PropTypes.bool.isRequired,
+  height: PropTypes.number.isRequired,
+  placeholder: PropTypes.string.isRequired,
+  renderLabel: PropTypes.func,
 };
 
 ListBoxSkeleton.defaultProps = {
@@ -136,10 +139,20 @@ const ListBox = React.forwardRef((props, ref) => {
     options: state.options,
   }));
 
+  React.useEffect(() => {
+    const { children } = props;
+    const groups = getDataGroups(children);
+    const options = getDataOptions(children, groups, props.isMulti);
+
+    dispatch({
+      type: actionTypes.updateOptions,
+      payload: options,
+    });
+  }, [props.children]);
+
   const {
     children,
     hasFilter,
-    hasFooter,
     height,
     isMulti,
     isPopoverEager,
@@ -153,21 +166,21 @@ const ListBox = React.forwardRef((props, ref) => {
     ...moreProps
   } = props;
 
-  const listBoxRawProps = {
-    renderLabel,
-    placeholder,
-    height,
+  const listBoxSkeletonProps = {
+    children,
     hasNotResultsMessage,
-    hasFooter,
+    height,
+    placeholder,
+    renderLabel,
   };
 
   if (isInlineDisplay) {
-    return <ListBoxSkeleton {...listBoxRawProps} />;
+    return <ListBoxSkeleton {...listBoxSkeletonProps} footer={state.footer} />;
   }
 
   return (
     <Popover {...moreProps} isEager={isPopoverEager}>
-      <ListBoxSkeleton {...listBoxRawProps} />
+      <ListBoxSkeleton {...listBoxSkeletonProps} footer={state.footer} />
     </Popover>
   );
 });

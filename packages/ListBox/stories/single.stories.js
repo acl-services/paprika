@@ -76,6 +76,20 @@ storiesOf("ListBox / single", module).add("Basic is inline disable", () => (
   </Frame>
 ));
 
+storiesOf("ListBox / single", module).add("Basic option disabled", () => (
+  <Frame>
+    <ListBox isInlineDisplay>
+      <ListBox.Option>Punisher</ListBox.Option>
+      <ListBox.Option>Catwoman</ListBox.Option>
+      <ListBox.Option isDisabled>Venom</ListBox.Option>
+      <ListBox.Option>Thunderbolts</ListBox.Option>
+      <ListBox.Option isDisabled>Deadpool</ListBox.Option>
+      <ListBox.Option>Spawn</ListBox.Option>
+      <ListBox.Option>Wolverine</ListBox.Option>
+    </ListBox>
+  </Frame>
+));
+
 storiesOf("ListBox / single", module).add("With Filter", () => (
   <Frame>
     <ListBox hasFilter>

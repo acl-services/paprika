@@ -76,7 +76,7 @@ storiesOf("ListBox / multi", module).add("With Filter", () => (
 
 storiesOf("ListBox / multi", module).add("With Filter and nodes as children", () => (
   <Frame>
-    <ListBox isMulti hasFilter height={300}>
+    <ListBox isMulti hasFilter height={300} renderChecker={() => null}>
       {images.map(image => (
         <ListBox.Option label={image.label}>
           <ImageOption>

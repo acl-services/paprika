@@ -53,7 +53,8 @@ const filterItems = ({ price, colors, qty }) => item => {
   const qtyRule = qty === null ? true : qty.label === "greater than 100" ? item.qty > 100 : item.qty < 100;
 
   const colorsArray = colors === null ? [] : colors.map(color => color.label);
-  const colorRule = colors === null ? true : colorsArray.some(color => color === item.color);
+
+  const colorRule = colors === null ? true : colorsArray.includes(item.color);
 
   return priceRule && qtyRule && colorRule;
 };
