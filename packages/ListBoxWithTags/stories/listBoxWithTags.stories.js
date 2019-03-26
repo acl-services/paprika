@@ -2,7 +2,7 @@ import React from "react";
 import { storiesOf } from "@storybook/react";
 import ListBoxWithTags from "../index";
 
-storiesOf("ListBoxWithTags", module).add("ListBox With Tags", () => (
+storiesOf("ListBoxWithTags", module).add("Basic", () => (
   <React.Fragment>
     <ListBoxWithTags placeholder="Select your 🤩 anti-heroes">
       <ListBoxWithTags.Option>Punisher</ListBoxWithTags.Option>

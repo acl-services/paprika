@@ -5,10 +5,8 @@ import ListBox from "@paprika/listbox";
 function createOption({ index, child, title = null, isOptionActionGroup = false }) {
   const { label, value, isHidden, isSelected, isDisabled } = child.props;
 
-  const childClone = React.cloneElement(child, { ...child.props, _index: index });
-
   return {
-    content: childClone,
+    content: child,
     groupTitle: title,
     hasLabel: label,
     id: uuidv4(),
@@ -23,6 +21,8 @@ function createOption({ index, child, title = null, isOptionActionGroup = false 
 }
 
 export function getDataOptions(children, groups, isMulti) {
+  if (!children) throw Error("Listbox.Options is a required prop, please check you are passing correctly the data");
+
   const options = {};
   let index = 0;
 
@@ -39,13 +39,13 @@ export function getDataOptions(children, groups, isMulti) {
   }
 
   React.Children.toArray(children).forEach(child => {
-    if (child.type.componentType === "ListBox.Group") {
+    if (child.type && child.type.componentType === "ListBox.Group") {
       const title = child.props.title;
       React.Children.toArray(child.props.children).forEach(_child => {
         options[index] = createOption({ index, child: _child, title });
         index += 1;
       });
-    } else if (child.type.componentType === "ListBox.Option") {
+    } else if (child.type && child.type.componentType === "ListBox.Option") {
       options[index] = createOption({ index, child });
       index += 1;
     }
@@ -55,12 +55,17 @@ export function getDataOptions(children, groups, isMulti) {
 }
 
 export function getDataGroups(children) {
-  const groups = [];
-  React.Children.toArray(children).forEach(child => {
+  if (!children) throw Error("Listbox.Options is a required prop, please check you are passing correctly the data");
+
+  const map = React.Children.map;
+  const groups = map(child => {
     if (child.type.componentType === "ListBox.Group") {
-      groups.push(child.props.title);
+      return child.props.title;
     }
-  });
+
+    return null;
+  }).filter(chunk => chunk);
+
   return groups;
 }
 

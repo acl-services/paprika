@@ -175,8 +175,6 @@ storiesOf("ListBox / single", module).add("With Filter and nodes as children and
         </ListBox.Option>
       ))}
     </ListBox>
-    <br />
-    <Button>Post your fav Hero</Button>
   </Frame>
 ));
 
