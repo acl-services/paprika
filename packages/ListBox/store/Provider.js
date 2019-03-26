@@ -2,7 +2,6 @@ import React from "react";
 import Proptypes from "prop-types";
 import reducer from "./reducer";
 import handleChange from "../helpers/handleChange";
-import * as effects from "../effects";
 
 import { getDataOptions, getDataGroups, getFooter } from "../helpers/dataStructure";
 
