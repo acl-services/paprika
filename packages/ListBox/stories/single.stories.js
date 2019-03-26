@@ -1,6 +1,5 @@
 import React from "react";
 import { storiesOf } from "@storybook/react";
-import Button from "@paprika/Button";
 import { Frame, ImageOption } from "./stories.styles";
 import ListBox from "..";
 import { images } from "./fixtures/images";
