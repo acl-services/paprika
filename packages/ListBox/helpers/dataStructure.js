@@ -6,6 +6,7 @@ function createOption({ index, child, title = null, isOptionActionGroup = false 
   const { label, value, isHidden, isSelected, isDisabled } = child.props;
 
   const childClone = React.cloneElement(child, { ...child.props, _index: index });
+
   return {
     content: childClone,
     groupTitle: title,
@@ -16,7 +17,7 @@ function createOption({ index, child, title = null, isOptionActionGroup = false 
     isOptionActionGroup,
     isSelected,
     isDisabled,
-    label: label || child,
+    label: label || child.props.children, // we will try to extract the label from the children if doesn't have label
     value: value || undefined,
   };
 }

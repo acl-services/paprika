@@ -9,8 +9,8 @@ import Trigger from "./components/Trigger";
 import Box from "./components/Box";
 import List from "./components/List";
 import useStore from "./store/useStore";
+import handleImperative from "./imperative";
 import * as effects from "./effects";
-import * as actionTypes from "./store/actionTypes";
 
 export const propTypes = {
   /** Child of type <ListBox.Option /> */
@@ -84,7 +84,7 @@ export const defaultProps = {
   isInlineDisplay: false,
 };
 
-export function ListBoxSkeleton(props) {
+export function ListBoxStructure(props) {
   const {
     renderLabel,
     placeholder,
@@ -110,34 +110,24 @@ export function ListBoxSkeleton(props) {
   );
 }
 
-ListBoxSkeleton.propTypes = {
+ListBoxStructure.propTypes = {
   hasNotResultsMessage: PropTypes.string.isRequired,
   height: PropTypes.number.isRequired,
   placeholder: PropTypes.string.isRequired,
   renderLabel: PropTypes.func,
 };
 
-ListBoxSkeleton.defaultProps = {
+ListBoxStructure.defaultProps = {
   renderLabel: null,
 };
 
 const ListBox = React.forwardRef((props, ref) => {
   const [state, dispatch] = useStore();
 
-  React.useImperativeHandle(ref, () => ({
-    clear: () => {
-      dispatch({ type: actionTypes.clear });
-    },
-    reset: () => {
-      dispatch({ type: actionTypes.reset });
-    },
-    focus: () => {
-      state.refTrigger.current.focus();
-    },
-    selected: state.isMulti ? state.selectedOptions : state.selectedOptions[0],
-    options: state.options,
-  }));
+  // IMPERATIVE API
+  React.useImperativeHandle(ref, handleImperative(state, dispatch));
 
+  // EFFECTS
   React.useEffect(effects.handleEffectChildrenChange(dispatch, props.isMulti, props.children), [props.children]);
   React.useEffect(effects.handleEffectHeightChange(props, dispatch), [props.height]);
   React.useEffect(effects.handleEffectIsDisabledChange(dispatch), [props.isDisabled]);
@@ -161,7 +151,7 @@ const ListBox = React.forwardRef((props, ref) => {
     ...moreProps
   } = props;
 
-  const listBoxSkeletonProps = {
+  const ListBoxStructureProps = {
     children,
     hasNotResultsMessage,
     height,
@@ -170,12 +160,12 @@ const ListBox = React.forwardRef((props, ref) => {
   };
 
   if (isInlineDisplay) {
-    return <ListBoxSkeleton {...listBoxSkeletonProps} footer={state.footer} />;
+    return <ListBoxStructure {...ListBoxStructureProps} footer={state.footer} />;
   }
 
   return (
     <Popover {...moreProps} isEager={isPopoverEager}>
-      <ListBoxSkeleton {...listBoxSkeletonProps} footer={state.footer} />
+      <ListBoxStructure {...ListBoxStructureProps} footer={state.footer} />
     </Popover>
   );
 });
