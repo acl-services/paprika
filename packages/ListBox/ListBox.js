@@ -9,7 +9,7 @@ import Trigger from "./components/Trigger";
 import Box from "./components/Box";
 import List from "./components/List";
 import useStore from "./store/useStore";
-import { getDataOptions, getDataGroups, getFooter } from "./helpers/dataStructure";
+import * as effects from "./effects";
 import * as actionTypes from "./store/actionTypes";
 
 export const propTypes = {
@@ -111,7 +111,6 @@ export function ListBoxSkeleton(props) {
 }
 
 ListBoxSkeleton.propTypes = {
-  children: PropTypes.node.isRequired,
   hasNotResultsMessage: PropTypes.string.isRequired,
   height: PropTypes.number.isRequired,
   placeholder: PropTypes.string.isRequired,
@@ -139,16 +138,12 @@ const ListBox = React.forwardRef((props, ref) => {
     options: state.options,
   }));
 
-  React.useEffect(() => {
-    const { children } = props;
-    const groups = getDataGroups(children);
-    const options = getDataOptions(children, groups, props.isMulti);
-
-    dispatch({
-      type: actionTypes.updateOptions,
-      payload: options,
-    });
-  }, [props.children]);
+  React.useEffect(effects.handleEffectChildrenChange(dispatch, props.isMulti, props.children), [props.children]);
+  React.useEffect(effects.handleEffectHeightChange(props, dispatch), [props.height]);
+  React.useEffect(effects.handleEffectIsDisabledChange(dispatch), [props.isDisabled]);
+  React.useEffect(effects.handleEffectIsPopOverOpen(state, dispatch), [state.isPopoverOpen]);
+  React.useEffect(effects.handleEffectListBoxWidth(state, dispatch), [state.refTriggerContainer.current]);
+  React.useLayoutEffect(effects.handleEffectListBoxScrolled(state), [state.activeOption]);
 
   const {
     children,

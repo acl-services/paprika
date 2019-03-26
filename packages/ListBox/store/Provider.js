@@ -2,7 +2,7 @@ import React from "react";
 import Proptypes from "prop-types";
 import reducer from "./reducer";
 import handleChange from "../helpers/handleChange";
-import * as effects from "./effects";
+import * as effects from "../effects";
 
 import { getDataOptions, getDataGroups, getFooter } from "../helpers/dataStructure";
 
@@ -65,21 +65,6 @@ export default function Provider(props) {
   );
 
   const value = { state, dispatch };
-
-  React.useEffect(
-    effects.handleEffectChildrenLengthChange({ props, dispatch, getDataGroups, getDataOptions }),
-    [props.childrenListBoxOptions.length] // eslint-disable-line
-  );
-
-  React.useEffect(
-    effects.handleEffectHeightChange({ props, dispatch }),
-    [props.height] // eslint-disable-line
-  );
-
-  React.useEffect(
-    effects.handleEffectIsDisabledChange({ dispatch }),
-    [props.isDisabled] // eslint-disable-line
-  );
 
   return <StoreContext.Provider value={value}>{props.children}</StoreContext.Provider>;
 }

@@ -21,7 +21,11 @@ export default function Simple() {
       <br />
       <Popover isDark isEager>
         <Popover.Trigger>
-          <Button>🤔</Button>
+          <Button>
+            <span role="img" aria-label="unicorn">
+              🦄
+            </span>
+          </Button>
         </Popover.Trigger>
         <Popover.Content>
           <Popover.Tip />

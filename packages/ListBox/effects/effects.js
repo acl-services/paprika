@@ -1,4 +1,15 @@
-import * as actionTypes from "./actionTypes";
+import * as actionTypes from "../store/actionTypes";
+import { getDataOptions, getDataGroups } from "../helpers/dataStructure";
+
+export const handleEffectChildrenChange = (dispatch, isMulti, children) => () => {
+  const groups = getDataGroups(children);
+  const options = getDataOptions(children, groups, isMulti);
+
+  dispatch({
+    type: actionTypes.updateOptions,
+    payload: options,
+  });
+};
 
 export const handleEffectIsPopOverOpen = (state, dispatch) => () => {
   if (!state.isPopoverEager) {
@@ -80,14 +91,14 @@ export const handleEffectChildrenLengthChange = ({ props, dispatch, getDataGroup
   });
 };
 
-export const handleEffectHeightChange = ({ props, dispatch }) => () => {
+export const handleEffectHeightChange = (props, dispatch) => () => {
   dispatch({
     type: actionTypes.setHeight,
     payload: props.height,
   });
 };
 
-export const handleEffectIsDisabledChange = ({ dispatch }) => () => {
+export const handleEffectIsDisabledChange = dispatch => () => {
   dispatch({
     type: actionTypes.toggleDisabled,
   });

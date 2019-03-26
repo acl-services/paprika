@@ -15,45 +15,56 @@ const options = [
   { key: 9, isDisabled: false, isHidden: false, label: "yellow", value: 1 },
 ];
 
-export default function Add() {
+export default function Option() {
   const [optionsState, setOptionsState] = React.useState(options);
 
-  const handleToogleDisableSecondOptions = () => {
+  const handleToogleNameFirstOption = () => {
+    const clone = optionsState.slice(0);
+    clone[0].label = clone[0].label === "🐉🦄 Flufircon" ? "unicorn" : "🐉🦄 Flufircon";
+    setOptionsState(clone);
+  };
+
+  const handleToogleDisableSecondOption = () => {
     const clone = optionsState.slice(0);
     clone[1].isDisabled = !clone[1].isDisabled;
+    setOptionsState(clone);
+  };
+
+  const handleToogleHideThirdOption = () => {
+    const clone = optionsState.slice(0);
+    clone[2].isHidden = !clone[2].isHidden;
     setOptionsState(clone);
   };
 
   return (
     <fieldset>
       <legend>Toggle properties</legend>
-      <Button size="small" onClick={handleToogleDisableSecondOptions}>
+      <Button size="small" onClick={handleToogleNameFirstOption}>
+        Change label of first options to Flufircon
+      </Button>
+      <br />
+      <br />
+      <Button size="small" onClick={handleToogleDisableSecondOption}>
         Toogle disable second options
       </Button>
       <br />
       <br />
-      <Button size="small" onClick={() => {}}>
+      <Button size="small" onClick={handleToogleHideThirdOption}>
         Toogle hidden third options
-      </Button>
-      <br />
-      <br />
-      <Button size="small" onClick={() => {}}>
-        Change label of first options to Flufircon
       </Button>
       <br />
       <br />
       <ListBox isInlineDisplay>
         {optionsState.map(option => {
-          console.log("isDisabled>>>", option.isDisabled);
           return (
             <ListBox.Option
               value={option.value}
               label={option.label}
               isDisabled={option.isDisabled}
-              isHidden={options.isHidden}
+              isHidden={option.isHidden}
               key={option.key}
             >
-              For {option.label} value is {option.value}
+              {option.label}
             </ListBox.Option>
           );
         })}

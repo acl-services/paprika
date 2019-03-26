@@ -5,10 +5,9 @@ import ListBox from "@paprika/listbox";
 function createOption({ index, child, title = null, isOptionActionGroup = false }) {
   const { label, value, isHidden, isSelected, isDisabled } = child.props;
 
-  // const childClone = React.cloneElement(child, { ...child.props, _index: index });
-
+  const childClone = React.cloneElement(child, { ...child.props, _index: index });
   return {
-    content: child,
+    content: childClone,
     groupTitle: title,
     hasLabel: label,
     id: uuidv4(),
