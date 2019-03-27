@@ -5,7 +5,6 @@ import Option from "@paprika/listbox/components/Option";
 import Group from "@paprika/listbox/components/Group";
 import Provider from "@paprika/listbox/store/Provider";
 import useListBox from "@paprika/listbox/store/useListBox";
-import * as actionTypes from "@paprika/listbox/store/actionTypes";
 import handleKeyboardKeys from "./helpers/handleKeyboardKeys";
 
 // Custom Componeent for ListBoxWithTags
