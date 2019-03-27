@@ -30,12 +30,18 @@ export default function reducer(state, { type, payload }) {
         shouldListBoxContentScroll: true,
       };
 
-    case actionTypes.setOptionOnSingleSelection: {
+    case actionTypes.toggleSingleSelection: {
       handleChange(state, payload);
-      // state.onChange(payload.activeOptionIndex, state.options);
+
+      let options = null;
+      if (state.hideOptionOnSelected) {
+        options = { ...state.options };
+        options[payload.activeOptionIndex].isHidden = true;
+      }
 
       return {
         ...state,
+        ...options,
         activeOption: payload.activeOptionIndex,
         selectedOptions: [payload.activeOptionIndex],
         isPopoverOpen: payload.isPopoverOpen,
@@ -44,22 +50,30 @@ export default function reducer(state, { type, payload }) {
       };
     }
 
-    case actionTypes.setOptionOnMultipleSelection: {
+    case actionTypes.toggleMultipleSelection: {
       const selectedOptionsArray = state.selectedOptions.slice();
+
+      // handle hide the option
 
       if (selectedOptionsArray.includes(payload.activeOptionIndex)) {
         const index = selectedOptionsArray.indexOf(payload.activeOptionIndex);
         selectedOptionsArray.splice(index, 1);
         handleChange(state, payload, selectedOptionsArray, "removed");
-        // state.onChange(selectedOptionsArray, state.options, payload.activeOptionIndex, "removed");
       } else {
         selectedOptionsArray.push(payload.activeOptionIndex);
+
         handleChange(state, payload, selectedOptionsArray, "added");
-        // state.onChange(selectedOptionsArray, state.options, payload.activeOptionIndex, "added");
+      }
+
+      let options = null;
+      if (state.hideOptionOnSelected) {
+        options = { ...state.options };
+        options[payload.activeOptionIndex].isHidden = true;
       }
 
       return {
         ...state,
+        ...options,
         isPopoverOpen: true,
         activeOption: payload.activeOptionIndex,
         selectedOptions: selectedOptionsArray,
@@ -105,14 +119,12 @@ export default function reducer(state, { type, payload }) {
         const indexGroupToRemove = selectedOptionsArray.indexOf(payload.index);
         selectedOptionsArray.splice(indexGroupToRemove, 1);
 
-        // state.onChange(selectedOptionsArray, state.options, payload.index, "removed");
         handleChange(state, payload, selectedOptionsArray, "removed");
       } else {
         selectedOptionsArray = Object.keys(state.options)
           .filter(key => state.options[key].groupTitle === payload.group)
           .map(index => Number.parseInt(index, 10));
 
-        // state.onChange(selectedOptionsArray, state.options, payload.index, "added");
         handleChange(state, payload, selectedOptionsArray, "added");
 
         selectedOptionsArray.push(payload.index);
@@ -141,8 +153,17 @@ export default function reducer(state, { type, payload }) {
         throw Error("unselectOptions action expect an array as a payload");
       }
 
+      let options = null;
+      if (state.hideOptionOnSelected) {
+        options = { ...state.options };
+        payload.forEach(index => {
+          options[index].isHidden = false;
+        });
+      }
+
       return {
         ...state,
+        ...options,
         selectedOptions: state.selectedOptions.filter(index => !payload.includes(index)),
         lastActiveOptionIndexAffected: payload,
       };
@@ -206,17 +227,6 @@ export default function reducer(state, { type, payload }) {
         height: payload,
         ...state,
       };
-    }
-
-    case actionTypes.toggleOptionDisabled: {
-      // const { index, isDisabled } = payload;
-      // const cloneOptions = state.options.slice(0);
-      // cloneOptions[index].isDisabled = !isDisabled;
-      // return {
-      //   options: cloneOptions,
-      //   ...state,
-      // };
-      break;
     }
 
     default:

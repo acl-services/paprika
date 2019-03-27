@@ -1,13 +1,13 @@
 import React from "react";
 import PropTypes from "prop-types";
-import useStore from "../../store/useStore";
+import useListBox from "../../store/useListBox";
 
 const propTypes = {
   placeholder: PropTypes.string,
 };
 
 export default function Label(props) {
-  const [state] = useStore();
+  const [state] = useListBox();
   const { placeholder } = props;
   const { selectedOptions, isMulti, options } = state;
 

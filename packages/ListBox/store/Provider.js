@@ -1,16 +1,26 @@
 import React from "react";
-import Proptypes from "prop-types";
+import PropTypes from "prop-types";
 import reducer from "./reducer";
 import handleChange from "../helpers/handleChange";
 
 import { getDataOptions, getDataGroups, getFooter } from "../helpers/dataStructure";
 
+export const StoreContext = React.createContext();
+
 function initializeState(props) {
-  const { childrenListBoxOptions, preventOnBlurOnTrigger, isInlineDisplay, height } = props;
+  const {
+    childrenListBoxOptions,
+    preventOnBlurOnTrigger,
+    isInlineDisplay,
+    height,
+    hideOptionOnSelected,
+    onChange,
+  } = props;
+
+  // initialize state for options and groups
   const groups = getDataGroups(childrenListBoxOptions);
   const options = getDataOptions(childrenListBoxOptions, groups, props.isMulti);
   const footer = getFooter(childrenListBoxOptions);
-
   const selectedOptions = Object.keys(options)
     .filter(key => options[key].isSelected)
     .map(key => Number.parseInt(key, 10));
@@ -29,8 +39,10 @@ function initializeState(props) {
     hasNoResults: false,
     hasPopupOpened: false,
     height,
+    hideOptionOnSelected,
     isInlineDisplay,
     lastActiveOptionIndexAffected: null,
+    onChange,
     options,
     preventOnBlurOnTrigger,
     renderChecker: props.renderChecker,
@@ -45,10 +57,8 @@ function initializeState(props) {
 }
 
 const propTypes = {
-  children: Proptypes.node.isRequired,
+  children: PropTypes.node.isRequired,
 };
-
-export const StoreContext = React.createContext();
 
 export default function Provider(props) {
   const refFilterInput = React.useRef(null);

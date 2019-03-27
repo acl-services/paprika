@@ -8,7 +8,7 @@ import Popover from "./components/Popover";
 import Trigger from "./components/Trigger";
 import Box from "./components/Box";
 import List from "./components/List";
-import useStore from "./store/useStore";
+import useListBox from "./store/useListBox";
 import handleImperative from "./imperative";
 import * as effects from "./effects";
 
@@ -21,6 +21,12 @@ export const propTypes = {
 
   /** Indicate which is the height for the options container */
   height: PropTypes.number,
+
+  /** [Advance] instead of marking the option as checked/unchecked will toggle the option between visible and hidden
+      this is monstly useful at the moment of composing the listbox into a more complex component, see ListBoxWithTags
+      as example
+  */
+  hideOptionOnSelected: PropTypes.bool,
 
   /** Disable the entire ListBox */
   isDisabled: PropTypes.bool,
@@ -67,21 +73,22 @@ export const propTypes = {
 };
 
 export const defaultProps = {
-  hasNotResultsMessage: "Your filter did not return any option",
   getScrollContainer: null,
   hasFilter: false,
+  hasNotResultsMessage: "Your filter did not return any option",
   height: 200,
+  hideOptionOnSelected: false,
   isDisabled: false,
+  isInlineDisplay: false,
   isMulti: false,
   isPopoverEager: true,
   isPopoverOpen: false,
   onChange: () => {},
   placeholder: "select one of the options",
   preventOnBlurOnTrigger: false,
-  renderLabel: null,
   renderChecker: undefined,
+  renderLabel: null,
   zIndex: 1,
-  isInlineDisplay: false,
 };
 
 export function ListBoxStructure(props) {
@@ -122,13 +129,13 @@ ListBoxStructure.defaultProps = {
 };
 
 const ListBox = React.forwardRef((props, ref) => {
-  const [state, dispatch] = useStore();
+  const [state, dispatch] = useListBox();
 
   // IMPERATIVE API
-  React.useImperativeHandle(ref, handleImperative(state, dispatch));
+  const imperativeHandle = handleImperative(state, dispatch);
+  React.useImperativeHandle(ref, imperativeHandle);
 
   // EFFECTS
-
   const handleEffectChildrenChange = effects.handleEffectChildrenChange(dispatch, props.isMulti, props.children);
   const handleEffectHeightChange = effects.handleEffectHeightChange(props, dispatch);
   const handleEffectIsDisabledChange = effects.handleEffectIsDisabledChange(dispatch);

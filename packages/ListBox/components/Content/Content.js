@@ -5,7 +5,7 @@ import { ContentInlineStyled } from "./Content.styles";
 import { getDOMAttributesForListBoxContainer } from "../../helpers/DOMAttributes";
 import handleKeyboardKeys from "../../helpers/handleKeyboardKeys";
 import * as actionTypes from "../../store/actionTypes";
-import useStore from "../../store/useStore";
+import useListBox from "../../store/useListBox";
 
 const propTypes = {
   children: PropTypes.node.isRequired,
@@ -41,7 +41,7 @@ const handleBlur = (state, dispatch) => () => {
 };
 
 export default function Content(props) {
-  const [state, dispatch] = useStore();
+  const [state, dispatch] = useListBox();
   const { refListBoxContainer } = state;
 
   if (state.isInlineDisplay) {

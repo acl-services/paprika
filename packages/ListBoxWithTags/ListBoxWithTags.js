@@ -4,27 +4,31 @@ import ListBox, { propTypes as listBoxPropTypes, defaultProps as listBoxdefaultP
 import Option from "@paprika/listbox/components/Option";
 import Group from "@paprika/listbox/components/Group";
 import Provider from "@paprika/listbox/store/Provider";
-import useStore from "@paprika/listbox/store/useStore";
+import useListBox from "@paprika/listbox/store/useListBox";
+import * as actionTypes from "@paprika/listbox/store/actionTypes";
 import handleKeyboardKeys from "./helpers/handleKeyboardKeys";
+
 // Custom Componeent for ListBoxWithTags
 import Tags from "./components/Tags";
 import Trigger from "./components/Trigger";
 
 const propTypes = {
+  ...listBoxPropTypes,
   hasCustomTags: PropTypes.bool,
   placeholderForTagInput: PropTypes.string,
-  ...listBoxPropTypes,
+  hideOptionOnSelected: PropTypes.bool,
 };
 
 const defaultProps = {
+  ...listBoxdefaultProps,
   hasCustomTags: false,
   placeholderForTagInput: "New option ...",
-  ...listBoxdefaultProps,
+  hideOptionOnSelected: true,
 };
 
 function ListBoxWithTags(props) {
   const refTagInput = React.useRef();
-  const [state, dispatch] = useStore();
+  const [state, dispatch] = useListBox();
   const [activeTag, setActiveTag] = React.useState(null);
 
   const renderLabel = () => {

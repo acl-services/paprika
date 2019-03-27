@@ -1,6 +1,6 @@
 import React from "react";
 import PropTypes from "prop-types";
-import useStore from "@paprika/listbox/store/useStore";
+import useListBox from "@paprika/listbox/store/useListBox";
 import * as actionTypes from "@paprika/listbox/store/actionTypes";
 import { getDOMAttributesForListBoxButton } from "@paprika/listbox/helpers/DOMAttributes";
 import TriggerStyled from "./Trigger.styles";
@@ -10,7 +10,7 @@ const propTypes = {
 };
 
 export default function Trigger(props) {
-  const [state, dispatch] = useStore();
+  const [state, dispatch] = useListBox();
   const handleClick = () => {
     dispatch({ type: actionTypes.openPopover });
   };

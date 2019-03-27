@@ -2,7 +2,7 @@ import React from "react";
 import Button from "@paprika/button";
 import PropTypes from "prop-types";
 import { FooterContainerStyled } from "./Footer.styles";
-import useStore from "../../store/useStore";
+import useListBox from "../../store/useListBox";
 
 const propTypes = {
   isAcceptVisible: PropTypes.bool,
@@ -29,7 +29,7 @@ const defaultProps = {
 };
 
 export default function Footer(props) {
-  const [state] = useStore();
+  const [state] = useListBox();
 
   const {
     onClickCancel,

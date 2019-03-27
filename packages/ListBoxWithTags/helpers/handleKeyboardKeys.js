@@ -46,10 +46,10 @@ const handleKeyboardKeys = ({ state, dispatch, activeTag, setActiveTag, refTagIn
 
       if (
         (refTagInput.current && index === 0 && event.key === "ArrowLeft") ||
-        (index === state.selectedOptions.length - 1 && event.key === "ArrowRight")
+        (refTagInput.current && index === state.selectedOptions.length - 1 && event.key === "ArrowRight")
       ) {
-        setActiveTag(-1);
         refTagInput.current.focus();
+        setActiveTag(-1);
         return;
       }
 
@@ -57,7 +57,6 @@ const handleKeyboardKeys = ({ state, dispatch, activeTag, setActiveTag, refTagIn
       const nextIndex = (currentActiveIndex + state.selectedOptions.length) % state.selectedOptions.length;
 
       setActiveTag(state.selectedOptions[nextIndex]);
-      // state.refListBoxContainer.current.focus();
     }
 
     if (event.key === "Backspace") {

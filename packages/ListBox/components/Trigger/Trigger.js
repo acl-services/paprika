@@ -3,7 +3,7 @@ import PropTypes from "prop-types";
 import RawButton from "@paprika/raw-button";
 import Label from "../Label";
 import handleKeyboardKeys from "../../helpers/handleKeyboardKeys";
-import useStore from "../../store/useStore";
+import useListBox from "../../store/useListBox";
 import * as actionTypes from "../../store/actionTypes";
 
 import { ListBoxTriggerStyled, TriggerArrowStyled } from "./Trigger.styles";
@@ -19,7 +19,7 @@ const defaultProps = {
 };
 
 export default function Trigger(props) {
-  const [state, dispatch] = useStore();
+  const [state, dispatch] = useListBox();
   const { renderLabel, placeholder } = props;
 
   const { isDisabled, refTriggerContainer, refTrigger, isMulti } = state;

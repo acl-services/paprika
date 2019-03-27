@@ -1,7 +1,7 @@
 import React from "react";
 import PropTypes from "prop-types";
 import Checkbox from "./Checkbox/Checkbox";
-import useStore from "../../store/useStore";
+import useListBox from "../../store/useListBox";
 
 const propTypes = {
   index: PropTypes.number.isRequired,
@@ -14,7 +14,7 @@ const defaultProps = {
 };
 
 export default function Checkers(props) {
-  const [state, dispatch] = useStore();
+  const [state, dispatch] = useListBox();
   const { index, isChecked, renderChecker } = props;
 
   if (typeof renderChecker === "function") {

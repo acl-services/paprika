@@ -22,7 +22,7 @@ const handleKeyboardKeys = (state, dispatch) => event => {
         });
       } else {
         dispatch({
-          type: actionTypes.setOptionOnSingleSelection,
+          type: actionTypes.toggleSingleSelection,
           payload: { activeOptionIndex: next, isPopoverOpen: true },
         });
       }
@@ -65,6 +65,7 @@ const handleKeyboardKeys = (state, dispatch) => event => {
         }
 
         event.preventDefault();
+
         if (state.isPopoverOpen) {
           if (state.isMulti) {
             if (option.isOptionActionGroup) {
@@ -74,7 +75,7 @@ const handleKeyboardKeys = (state, dispatch) => event => {
               });
             } else {
               dispatch({
-                type: actionTypes.setOptionOnMultipleSelection,
+                type: actionTypes.toggleMultipleSelection,
                 payload: {
                   activeOptionIndex: state.activeOption,
                   isPopoverOpen: true,

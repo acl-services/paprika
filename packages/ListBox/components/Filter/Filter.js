@@ -1,6 +1,6 @@
 import React from "react";
 import PropTypes from "prop-types";
-import useStore from "../../store/useStore";
+import useListBox from "../../store/useListBox";
 import * as actionTypes from "../../store/actionTypes";
 
 import { FilterContainerStyled, FilterInputStyled, FilterSearchIconStyled } from "./Filter.styles";
@@ -24,7 +24,7 @@ const defaultProps = {
 };
 
 export default function Filter(props) {
-  const [state, dispatch] = useStore();
+  const [state, dispatch] = useListBox();
 
   const [textSearch, setTextSearch] = React.useState(props.defaultTextSearch);
 

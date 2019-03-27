@@ -3,11 +3,11 @@ import { OptionStyled, OptionDividerStyled } from "./Options.styles";
 import { getDOMAttributesForListBoxOption } from "../../helpers/DOMAttributes";
 import { isOptionVisible, isOptionSelected } from "../../helpers/options";
 import * as actionTypes from "../../store/actionTypes";
-import useStore from "../../store/useStore";
+import useListBox from "../../store/useListBox";
 import Checker from "../Checker";
 
 export default function Options() {
-  const [state, dispatch] = useStore();
+  const [state, dispatch] = useListBox();
 
   const optionsArray = Object.keys(state.options);
   let lastGroupTitle = null;
@@ -44,12 +44,12 @@ export default function Options() {
 
     if (isMulti) {
       dispatch({
-        type: actionTypes.setOptionOnMultipleSelection,
+        type: actionTypes.toggleMultipleSelection,
         payload: { activeOptionIndex: index, isPopoverOpen: true, shouldListBoxContentScroll: false },
       });
     } else {
       dispatch({
-        type: actionTypes.setOptionOnSingleSelection,
+        type: actionTypes.toggleSingleSelection,
         payload: { activeOptionIndex: index, isPopoverOpen: false },
       });
     }

@@ -1,6 +1,6 @@
 import React from "react";
 import PropTypes from "prop-types";
-import useStore from "@paprika/listbox/store/useStore";
+import useListBox from "@paprika/listbox/store/useListBox";
 import * as actionTypes from "@paprika/listbox/store/actionTypes";
 import handleKeyboardKeys from "@paprika/listbox/helpers/handleKeyboardKeys";
 import FilterStyled from "./Filter.styles";
@@ -15,7 +15,7 @@ const defaultProps = {
 
 export default function TagInput(props) {
   // const [inputText, setInputText] = React.useState(props.defaultTagInputText);
-  const [state, dispatch] = useStore();
+  const [state, dispatch] = useListBox();
   // const handleChange = event => {
   //   setInputText(event.target.value);
   // };

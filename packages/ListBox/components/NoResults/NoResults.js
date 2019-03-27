@@ -1,6 +1,6 @@
 import React from "react";
 import PropTypes from "prop-types";
-import useStore from "../../store/useStore";
+import useListBox from "../../store/useListBox";
 import NoResultsStyled from "./NoResults.styles";
 
 const propTypes = {
@@ -9,7 +9,7 @@ const propTypes = {
 
 export default function NoResults(props) {
   const { label } = props;
-  const [state] = useStore();
+  const [state] = useListBox();
   if (state.isPopoverOpen && state.hasNoResults) {
     return <NoResultsStyled>{label}</NoResultsStyled>;
   }

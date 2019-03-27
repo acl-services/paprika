@@ -1,7 +1,7 @@
 import React from "react";
 import PropTypes from "prop-types";
 import { ListBoxStyled } from "../../ListBox.styles";
-import useStore from "../../store/useStore";
+import useListBox from "../../store/useListBox";
 import { getDOMAttributesForListBox } from "../../helpers/DOMAttributes";
 
 const propTypes = {
@@ -11,7 +11,7 @@ const propTypes = {
 
 export default function List(props) {
   const { children, height } = props;
-  const [state] = useStore();
+  const [state] = useListBox();
   const { refListBox } = state;
 
   return (

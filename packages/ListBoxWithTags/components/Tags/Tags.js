@@ -1,6 +1,6 @@
 import React from "react";
 import PropTypes from "prop-types";
-import useStore from "@paprika/listbox/store/useStore";
+import useListBox from "@paprika/listbox/store/useListBox";
 import * as actionTypes from "@paprika/listbox/store/actionTypes";
 import Tag from "../Tag";
 import Filter from "../Filter";
@@ -15,7 +15,7 @@ const defaultProps = {
 };
 
 export default function Tags(props) {
-  const [state, dispatch] = useStore();
+  const [state, dispatch] = useListBox();
 
   const handleDeleteTag = key => () => {
     dispatch({
