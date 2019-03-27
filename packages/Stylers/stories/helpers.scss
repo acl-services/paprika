@@ -1,0 +1,79 @@
+@import "@paprika/tokens/tokens.scss";
+@import "@paprika/stylers/helpers.scss";
+
+.story--stylers {
+  .truncated-box {
+    @include truncate-text;
+  }
+
+  .untruncated-box {
+    @include no-truncate-text;
+  }
+
+  .invisible-box {
+    @include is-visually-hidden;
+  }
+
+  input {
+    @include placeholders;
+  }
+
+  .font-scale > span {
+    display: inline-flex;
+    flex-direction: column;
+    line-height: 1;
+
+    > span {
+      padding: 0 $space;
+      text-align: center;
+
+      &:last-child {
+        opacity: 0.7;
+        font-size: font-scale(-5);
+      }
+    }
+  }
+
+  @for $i from -5 through 7 {
+    .font-scale-#{$i} {
+      font-size: font-scale($i);
+    }
+  }
+
+  [class*="line-height"] code {
+    opacity: 0.7;
+  }
+
+  @for $i from -3 through 3 {
+    .line-height-#{$i} {
+      line-height: line-height-scale($i);
+    }
+  }
+
+  .z {
+    $offset: 30px;
+
+    position: relative;
+    height: $space * 15;
+
+    > span {
+      position: absolute;
+      width: $space * 6;
+      height: $space * 6;
+      margin: $space 0 0 $space;
+      background: rgba($color--black-lighten-40, 0.9);
+      border: 1px solid $color--black-lighten-20;
+      color: $color--white;
+      line-height: $space * 6;
+      text-align: center;
+
+      @for $i from 0 through 7 {
+        &:nth-child(#{$i + 1}) {
+          left: $offset * $i;
+          top: $offset / 4 * $i;
+          z-index: z($i);
+        }
+      }
+    }
+  }
+}
