@@ -70,6 +70,15 @@ color:
   yellow-lighten-20: desaturate(lighten($color--yellow, 20), 5)
   yellow-lighten-30: desaturate(lighten($color--yellow, 30), 5)
   #
+  gold: '#f0a117'
+  #
+  silver: '#cfcfcf'
+  #
+  eggplant: '#2e143d'
+  eggplant-lighten-10: '#4b2164'
+  eggplant-lighten-20: '#682e8b'
+  eggplant-lighten-30: '#853AB1'
+  #
   chart-color-01: '#cd3c44'
   chart-color-02: '#cb8133'
   chart-color-03: '#eaba51'
