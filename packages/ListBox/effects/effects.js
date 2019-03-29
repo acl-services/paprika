@@ -1,7 +1,7 @@
 import * as actionTypes from "../store/actionTypes";
 import { getDataOptions, getDataGroups } from "../helpers/dataStructure";
 
-export const handleEffectChildrenChange = (dispatch, isMulti, children) => () => {
+function updateChildren(dispatch, isMulti, children) {
   const groups = getDataGroups(children);
   const options = getDataOptions(children, groups, isMulti);
 
@@ -9,6 +9,10 @@ export const handleEffectChildrenChange = (dispatch, isMulti, children) => () =>
     type: actionTypes.updateOptions,
     payload: options,
   });
+}
+
+export const handleEffectChildren = (dispatch, isMulti, children) => () => {
+  updateChildren(dispatch, isMulti, children);
 };
 
 export const handleEffectIsPopOverOpen = (state, dispatch) => () => {
@@ -81,14 +85,6 @@ export const handleEffectListBoxScrolled = state => () => {
       state.refListBox.current.scrollTo(0, offsetTop - 10);
     }
   }
-};
-
-export const handleEffectChildrenLengthChange = ({ props, dispatch, getDataGroups, getDataOptions }) => () => {
-  const groups = getDataGroups(props.childrenListBoxOptions);
-  dispatch({
-    type: actionTypes.updateOptions,
-    payload: getDataOptions(props.childrenListBoxOptions, groups),
-  });
 };
 
 export const handleEffectHeightChange = (props, dispatch) => () => {

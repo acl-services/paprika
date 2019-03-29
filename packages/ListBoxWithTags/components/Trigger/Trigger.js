@@ -6,12 +6,16 @@ import { getDOMAttributesForListBoxButton } from "@paprika/listbox/helpers/DOMAt
 import TriggerStyled from "./Trigger.styles";
 
 const propTypes = {
+  hasCustomTags: PropTypes.bool.isRequired,
   children: PropTypes.node.isRequired,
 };
 
 export default function Trigger(props) {
   const [state, dispatch] = useListBox();
   const handleClick = () => {
+    if (props.hasCustomTags) {
+      state.refFilterInput.current.focus();
+    }
     dispatch({ type: actionTypes.openPopover });
   };
 

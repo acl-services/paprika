@@ -6,138 +6,99 @@ import handleKeyboardKeys from "@paprika/listbox/helpers/handleKeyboardKeys";
 import FilterStyled from "./Filter.styles";
 
 const propTypes = {
-  placeholder: PropTypes.string.isRequired,
   defaultTagInputText: PropTypes.string,
+  placeholder: PropTypes.string.isRequired,
+  setActiveTag: PropTypes.func.isRequired,
+  onAddCustomTag: PropTypes.func.isRequired,
 };
+
 const defaultProps = {
   defaultTagInputText: "",
 };
 
 export default function TagInput(props) {
-  // const [inputText, setInputText] = React.useState(props.defaultTagInputText);
   const [state, dispatch] = useListBox();
-  // const handleChange = event => {
-  //   setInputText(event.target.value);
-  // };
+  const [filterText, setFilterText] = React.useState(props.defaultTagInputText);
+  function openPopover() {
+    dispatch({
+      type: actionTypes.openPopover,
+    });
+  }
+
+  function closePopover() {
+    dispatch({ type: actionTypes.closePopover });
+  }
 
   const handleClick = event => {
     if (!state.isPopoverOpen) {
-      dispatch({ type: actionTypes.openPopover });
+      openPopover();
     }
     event.stopPropagation();
   };
 
   // this allowed the user navigate between the tags with [←] [→] left and right arrows
 
-  const handleKeyDown = event => {
-    handleKeyboardKeys(state, dispatch)(event);
-
-    if (event.key === "Tab" && document.activeElement === state.refFilterInput.current) {
-      dispatch({ type: actionTypes.closePopover });
+  const handlePressEnterKey = event => {
+    if (event.target.value) {
+      props.onAddCustomTag(state, event.target.value);
+      setFilterText("");
     }
-    // Avoid propagation of the cursor
-    // at the start or at end of the input when the user click Arrow Up or Down
-    // Also prevent to firing the space bar or enter key while filtering
-    // if (event.key === "Backspace") {
-    //   event.stopPropagation();
-    // }
+  };
 
-    //   event.preventDefault();
-    //   event.stopPropagation();
-    // }
+  const handleKeyDown = event => {
+    if (!state.isPopoverOpen) {
+      openPopover();
+    }
 
-    // if (event.key === " ") {
-    //   event.stopPropagation();
-    // }
-    //
+    if (event.key === "Enter") {
+      if (state.hasNoResults) {
+        handlePressEnterKey(event);
+        return;
+      }
+    }
 
-    // /////////////////////////////////
+    if (event.key === " ") {
+      event.stopPropagation();
+      return;
+    }
 
-    // if (event.key === "ArrowUp" || event.key === "ArrowDown") {
-    //   setActiveTag(null);
-    //   if (!state.refFilterInput.current) {
-    //     dispatch({ type: actionTypes.openPopover });
-    //     return;
-    //   }
-    //
-    //   state.refFilterInput.current.focus();
-    //
-    //   if (state.refFilterInput.current && (state.activeOption === 0 && event.key === "ArrowUp")) {
-    //     state.refFilterInput.current.focus();
-    //     setActiveTag(-1);
-    //   }
-    // }
+    if (event.key === "Backspace" && event.target.value.length) {
+      event.stopPropagation();
+    }
 
-    // if (state.selectedOptions.length) {
-    //   if (event.key === "ArrowLeft" || event.key === "ArrowRight") {
-    //     if (state.refFilterInput.current === document.activeElement) {
-    //       state.refFilterInput.current.focus();
-    //       setActiveTag(-1);
-    //       return;
-    //     }
-    //
-    //     if (activeTag === null) {
-    //       setActiveTag(state.selectedOptions[0]);
-    //
-    //       return;
-    //     }
-    //
-    //     // this means the focus is on the TagInput
-    //     if (activeTag === -1) {
-    //       if (event.key === "ArrowLeft") {
-    //         setActiveTag(state.selectedOptions[state.selectedOptions.length - 1]);
-    //       } else {
-    //         setActiveTag(0);
-    //       }
-    //       state.refListBoxContainer.current.focus();
-    //       return;
-    //     }
-    //
-    //     const index = state.selectedOptions.indexOf(activeTag);
-    //
-    //     if (
-    //       (state.refFilterInput.current && index === 0 && event.key === "ArrowLeft") ||
-    //       (index === state.selectedOptions.length - 1 && event.key === "ArrowRight")
-    //     ) {
-    //       setActiveTag(-1);
-    //       state.refFilterInput.current.focus();
-    //       return;
-    //     }
-    //
-    //     const currentActiveIndex = event.key === "ArrowLeft" ? index - 1 : index + 1;
-    //     const nextIndex = (currentActiveIndex + state.selectedOptions.length) % state.selectedOptions.length;
-    //
-    //     setActiveTag(state.selectedOptions[nextIndex]);
-    //     // state.refListBoxContainer.current.focus();
-    //   }
-    //
-    //   if (event.key === "Backspace") {
-    //     if (activeTag === null) {
-    //       setActiveTag(state.selectedOptions[state.selectedOptions.length - 1]);
-    //       return;
-    //     }
-    //
-    //     if (state.selectedOptions.length - 1 >= 0) {
-    //       dispatch({ type: actionTypes.unselectOptions, payload: [activeTag] });
-    //       setActiveTag(state.selectedOptions[state.selectedOptions.length - 1]);
-    //     } else {
-    //       setActiveTag(null);
-    //     }
-    //   }
-    // }
+    if ((event.key === "ArrowLeft" || event.key === "ArrowRight") && event.target.value.length) {
+      event.stopPropagation();
+    }
+
+    if (event.key === "Tab") {
+      closePopover();
+    }
+
+    handleKeyboardKeys(state, dispatch)(event);
   };
 
   const handleBlur = () => {
     window.requestAnimationFrame(() => {
-      if (
-        !state.refTriggerContainer.current.contains(document.activeElement) &&
-        state.refTriggerContainer.current !== document.activeElement &&
-        !state.refListBoxContainer.current.contains(document.activeElement)
-      ) {
-        dispatch({ type: actionTypes.closePopover });
+      if (document.activeElement !== state.refListBoxContainer.current) {
+        closePopover();
+        props.setActiveTag(null);
       }
     });
   };
+
+  const handleFilterChange = event => {
+    if (event.target.value.length) {
+      props.setActiveTag(null);
+    }
+
+    setFilterText(event.target.value);
+  };
+
+  React.useLayoutEffect(() => {
+    if (state.isPopoverOpen) {
+      state.refFilterInput.current.focus();
+    }
+  }, [state.selectedOptions]);
 
   return (
     <FilterStyled
@@ -145,8 +106,9 @@ export default function TagInput(props) {
       onKeyDown={handleKeyDown}
       onBlur={handleBlur}
       onClick={handleClick}
+      onChangeFilter={handleFilterChange}
       forceShowFilter
-      defaultTextSearch={props.defaultTagInputText}
+      value={filterText}
       hasSearchIcon={false}
     />
   );

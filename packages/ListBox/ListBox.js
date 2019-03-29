@@ -136,14 +136,14 @@ const ListBox = React.forwardRef((props, ref) => {
   React.useImperativeHandle(ref, imperativeHandle);
 
   // EFFECTS
-  const handleEffectChildrenChange = effects.handleEffectChildrenChange(dispatch, props.isMulti, props.children);
+  const handleEffectChildren = effects.handleEffectChildren(dispatch, props.isMulti, props.children);
   const handleEffectHeightChange = effects.handleEffectHeightChange(props, dispatch);
   const handleEffectIsDisabledChange = effects.handleEffectIsDisabledChange(dispatch);
   const handleEffectIsPopOverOpen = effects.handleEffectIsPopOverOpen(state, dispatch);
   const handleEffectListBoxWidth = effects.handleEffectListBoxWidth(state, dispatch);
   const handleEffectListBoxScrolled = effects.handleEffectListBoxScrolled(state);
 
-  React.useEffect(handleEffectChildrenChange, [props.children]);
+  React.useEffect(handleEffectChildren, [props.children]);
   React.useEffect(handleEffectHeightChange, [props.height]);
   React.useEffect(handleEffectIsDisabledChange, [props.isDisabled]);
   React.useEffect(handleEffectIsPopOverOpen, [state.isPopoverOpen]);

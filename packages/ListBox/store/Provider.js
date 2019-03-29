@@ -19,7 +19,7 @@ function initializeState(props) {
 
   // initialize state for options and groups
   const groups = getDataGroups(childrenListBoxOptions);
-  const options = getDataOptions(childrenListBoxOptions, groups, props.isMulti);
+  const options = getDataOptions(childrenListBoxOptions, groups, props.isMulti, hideOptionOnSelected);
   const footer = getFooter(childrenListBoxOptions);
   const selectedOptions = Object.keys(options)
     .filter(key => options[key].isSelected)
@@ -36,6 +36,7 @@ function initializeState(props) {
     filteredOptions: [],
     footer,
     groups,
+    hasFilter: props.hasFilter,
     hasNoResults: false,
     hasPopupOpened: false,
     height,

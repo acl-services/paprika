@@ -1,41 +1,57 @@
 import React from "react";
 import PropTypes from "prop-types";
 import useListBox from "../../store/useListBox";
+import { isOptionVisible } from "../../helpers/options";
 import * as actionTypes from "../../store/actionTypes";
 
 import { FilterContainerStyled, FilterInputStyled, FilterSearchIconStyled } from "./Filter.styles";
 
 const propTypes = {
-  defaultTextSearch: PropTypes.string,
   filter: PropTypes.func,
   forceShowFilter: PropTypes.bool,
+  onKeyDown: PropTypes.func,
   hasSearchIcon: PropTypes.bool,
+  onChangeFilter: PropTypes.func,
   placeholder: PropTypes.string,
   renderFilter: PropTypes.func,
+  value: PropTypes.string,
 };
 
 const defaultProps = {
-  defaultTextSearch: "",
   filter: null,
   forceShowFilter: false,
+  onKeyDown: null,
   hasSearchIcon: true,
+  onChangeFilter: null,
   placeholder: "Filter...",
   renderFilter: null,
+  value: null,
 };
 
 export default function Filter(props) {
   const [state, dispatch] = useListBox();
 
-  const [textSearch, setTextSearch] = React.useState(props.defaultTextSearch);
+  const [textSearch, setTextSearch] = React.useState(props.value);
 
   // this might be better using _.escapeRegExp by lodash. But good enough for now
   function escapeRegExp(str) {
     return str.replace(/[.*+?^${}()|[\]\\]/g, "\\$&"); // $& means the whole matched string
   }
 
+  function applyFilter({ filteredOptions, hasNoResults }) {
+    dispatch({
+      type: actionTypes.applyFilter,
+      payload: {
+        filteredOptions,
+        hasNoResults,
+      },
+    });
+  }
+
   function filter(textSearchValue) {
     const { options } = state;
     const keys = Object.keys(options);
+
     if (keys.length) {
       if (props.filter) {
         return props.filter(textSearchValue, options);
@@ -63,7 +79,7 @@ export default function Filter(props) {
         return [];
       }
 
-      return filteredOptions.map(key => Number.parseInt(key, 10));
+      return filteredOptions.map(key => Number.parseInt(key, 10)).filter(keyInt => isOptionVisible(state, keyInt));
     }
 
     return [];
@@ -71,17 +87,16 @@ export default function Filter(props) {
 
   const handleChangeFilter = event => {
     const textSearchValue = event.target.value;
+
+    if (props.onChangeFilter) {
+      props.onChangeFilter(event);
+    } else {
+      setTextSearch(textSearchValue);
+    }
+
     const filteredOptions = filter(textSearchValue);
-
-    setTextSearch(textSearchValue);
-
-    dispatch({
-      type: actionTypes.applyFilter,
-      payload: {
-        filteredOptions,
-        hasNoResults: textSearchValue && filteredOptions.length === 0,
-      },
-    });
+    const hasNoResults = textSearchValue && filteredOptions.length === 0;
+    applyFilter({ filteredOptions, hasNoResults });
   };
 
   const handleKeyDown = event => {
@@ -98,8 +113,14 @@ export default function Filter(props) {
     }
   };
 
+  React.useEffect(() => {
+    if (!props.value) {
+      applyFilter({ filteredOptions: [], hasNoResults: false });
+    }
+  }, [props.value]);
+
   if (props.forceShowFilter || (state.isInlineDisplay && state.hasFilter) || (state.hasFilter && state.isPopoverOpen)) {
-    const { renderFilter, placeholder, ...moreProps } = props;
+    const { renderFilter, placeholder, value, onChangeFilter, ...moreProps } = props;
     if (renderFilter) {
       return props.renderFilter(props);
     }
@@ -111,8 +132,8 @@ export default function Filter(props) {
           ref={state.refFilterInput}
           type="text"
           onChange={handleChangeFilter}
-          onKeyDown={handleKeyDown}
-          value={textSearch}
+          onKeyDown={props.onKeyDown || handleKeyDown}
+          value={value || textSearch}
           placeholder={placeholder}
           {...moreProps}
         />

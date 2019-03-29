@@ -1,5 +1,6 @@
 import * as actionTypes from "./actionTypes";
 import handleChange from "../helpers/handleChange";
+import { getNextOptionActiveIndexLooping } from "../helpers/options";
 
 export default function reducer(state, { type, payload }) {
   switch (type) {
@@ -42,7 +43,7 @@ export default function reducer(state, { type, payload }) {
       return {
         ...state,
         ...options,
-        activeOption: payload.activeOptionIndex,
+        activeOption: state.hideOptionOnSelected ? getNextOptionActiveIndexLooping(state) : payload.activeOptionIndex,
         selectedOptions: [payload.activeOptionIndex],
         isPopoverOpen: payload.isPopoverOpen,
         shouldListBoxContentScroll: true,
@@ -54,7 +55,6 @@ export default function reducer(state, { type, payload }) {
       const selectedOptionsArray = state.selectedOptions.slice();
 
       // handle hide the option
-
       if (selectedOptionsArray.includes(payload.activeOptionIndex)) {
         const index = selectedOptionsArray.indexOf(payload.activeOptionIndex);
         selectedOptionsArray.splice(index, 1);
@@ -75,7 +75,7 @@ export default function reducer(state, { type, payload }) {
         ...state,
         ...options,
         isPopoverOpen: true,
-        activeOption: payload.activeOptionIndex,
+        activeOption: state.hideOptionOnSelected ? getNextOptionActiveIndexLooping(state) : payload.activeOptionIndex,
         selectedOptions: selectedOptionsArray,
         shouldListBoxContentScroll: false,
         lastActiveOptionIndexAffected: [payload.activeOptionIndex],
@@ -83,11 +83,20 @@ export default function reducer(state, { type, payload }) {
     }
 
     case actionTypes.applyFilter: {
+      let activeOption = null;
+      if (payload.filteredOptions.length === 1) {
+        activeOption = payload.filteredOptions[0];
+      }
+
+      if (payload.filteredOptions.length > 1) {
+        activeOption = getNextOptionActiveIndexLooping(state);
+      }
+
       return {
         ...state,
         filteredOptions: payload.filteredOptions,
         hasNoResults: payload.hasNoResults,
-        activeOption: 0,
+        activeOption,
       };
     }
 
@@ -142,9 +151,15 @@ export default function reducer(state, { type, payload }) {
     }
 
     case actionTypes.updateOptions: {
+      const options = payload;
+      const selectedOptions = Object.keys(options)
+        .filter(key => options[key].isSelected)
+        .map(key => Number.parseInt(key, 10));
+
       return {
         ...state,
-        options: payload,
+        options,
+        selectedOptions,
       };
     }
 

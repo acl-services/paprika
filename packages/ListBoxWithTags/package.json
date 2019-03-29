@@ -8,6 +8,7 @@
     "@paprika/button": "^0.0.1",
     "@paprika/raw-button": "^0.0.1",
     "@paprika/tag": "^0.0.1",
+    "@paprika/stylers": "^0.0.1",
     "prop-types": "15.5.7"
   },
   "peerDependencies": {

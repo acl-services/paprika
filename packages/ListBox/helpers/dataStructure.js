@@ -2,7 +2,7 @@ import React from "react";
 import uuidv4 from "uuid/v4";
 import ListBox from "@paprika/listbox";
 
-function createOption({ index, child, title = null, isOptionActionGroup = false }) {
+export function createOption({ index, child, title = null, isOptionActionGroup = false }) {
   const { label, value, isHidden, isSelected, isDisabled } = child.props;
 
   return {

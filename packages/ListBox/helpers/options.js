@@ -4,6 +4,11 @@ export function isOptionSelected(state, index) {
 
 export function isOptionVisible(state, key) {
   const keyInt = Number.parseInt(key, 10);
+
+  if (state.hideOptionOnSelected && state.selectedOptions.includes(keyInt)) {
+    return false;
+  }
+
   if (state.hasNoResults) {
     return false;
   }
@@ -29,6 +34,7 @@ export function getNextOptionActiveIndex(state, isAscending = true) {
   }
 
   const optionsKeys = Object.keys(state.options);
+
   const { activeOption, filteredOptions, options } = state;
   let index = null;
 
@@ -64,4 +70,13 @@ export function getNextOptionActiveIndex(state, isAscending = true) {
   }
 
   return index || 0;
+}
+
+export function getNextOptionActiveIndexLooping(state) {
+  let activeIndex = getNextOptionActiveIndex(state);
+  if (!activeIndex) {
+    activeIndex = getNextOptionActiveIndex(state, false);
+  }
+
+  return activeIndex;
 }

@@ -1,9 +1,12 @@
 import React from "react";
 import { storiesOf } from "@storybook/react";
+import styled from "styled-components";
+import Tag from "@paprika/tag";
+import { Frame } from "./stories.styles";
 import ListBoxWithTags from "../index";
 
 storiesOf("ListBoxWithTags", module).add("Basic", () => (
-  <React.Fragment>
+  <Frame>
     <ListBoxWithTags placeholder="Select your 🤩 anti-heroes">
       <ListBoxWithTags.Option>Punisher</ListBoxWithTags.Option>
       <ListBoxWithTags.Option>Catwoman</ListBoxWithTags.Option>
@@ -13,11 +16,11 @@ storiesOf("ListBoxWithTags", module).add("Basic", () => (
       <ListBoxWithTags.Option>Spawn</ListBoxWithTags.Option>
       <ListBoxWithTags.Option>Wolverine</ListBoxWithTags.Option>
     </ListBoxWithTags>
-  </React.Fragment>
+  </Frame>
 ));
 
 storiesOf("ListBoxWithTags", module).add("ListBox With Tags and filter", () => (
-  <React.Fragment>
+  <Frame>
     <ListBoxWithTags hasFilter placeholder="Select your 🤩 anti-heroes">
       <ListBoxWithTags.Option>Punisher</ListBoxWithTags.Option>
       <ListBoxWithTags.Option>Catwoman</ListBoxWithTags.Option>
@@ -27,12 +30,59 @@ storiesOf("ListBoxWithTags", module).add("ListBox With Tags and filter", () => (
       <ListBoxWithTags.Option>Spawn</ListBoxWithTags.Option>
       <ListBoxWithTags.Option>Wolverine</ListBoxWithTags.Option>
     </ListBoxWithTags>
-  </React.Fragment>
+  </Frame>
 ));
 
 storiesOf("ListBoxWithTags", module).add("ListBox With Tags filter and input for custom tags", () => (
-  <React.Fragment>
+  <Frame>
     <ListBoxWithTags hasFilter hasCustomTags placeholder="Select an anti-heroes or add your own 👩‍🎤">
+      <ListBoxWithTags.Option>Punisher</ListBoxWithTags.Option>
+      <ListBoxWithTags.Option>Catwoman</ListBoxWithTags.Option>
+      <ListBoxWithTags.Option isSelected>Venom</ListBoxWithTags.Option>
+      <ListBoxWithTags.Option>Thunderbolts</ListBoxWithTags.Option>
+      <ListBoxWithTags.Option isSelected>Deadpool</ListBoxWithTags.Option>
+      <ListBoxWithTags.Option>Spawn</ListBoxWithTags.Option>
+      <ListBoxWithTags.Option>Wolverine</ListBoxWithTags.Option>
+    </ListBoxWithTags>
+  </Frame>
+));
+
+const TagStyled = styled(Tag)`
+  margin: 2px;
+  background: #f60;
+  color: #fff;
+  box-sizing: border-box;
+  position: relative;
+
+  &:hover {
+    background: rebeccapurple;
+  }
+
+  [role="button"] {
+    border: 1px solid white;
+    padding: 8px;
+    border-radius: 4px;
+    top: 12px;
+  }
+
+  ${props => {
+    const hasFocusStyle = props.isTagActive ? `border: 3px solid #F90` : "";
+    return `
+      && {${hasFocusStyle}}
+    `;
+  }}
+`;
+
+storiesOf("ListBoxWithTags", module).add("ListBox With renderTag", () => (
+  <Frame>
+    <ListBoxWithTags
+      hasFilter
+      hasCustomTags
+      renderTag={(option, props) => {
+        return <TagStyled {...props}>{option.label}</TagStyled>;
+      }}
+      placeholder="Select an anti-heroes or add your own 👩‍🎤"
+    >
       <ListBoxWithTags.Option>Punisher</ListBoxWithTags.Option>
       <ListBoxWithTags.Option>Catwoman</ListBoxWithTags.Option>
       <ListBoxWithTags.Option>Venom</ListBoxWithTags.Option>
@@ -41,15 +91,5 @@ storiesOf("ListBoxWithTags", module).add("ListBox With Tags filter and input for
       <ListBoxWithTags.Option>Spawn</ListBoxWithTags.Option>
       <ListBoxWithTags.Option>Wolverine</ListBoxWithTags.Option>
     </ListBoxWithTags>
-  </React.Fragment>
-));
-
-storiesOf("ListBoxWithTags", module).add("ListBox With Some Tags filter and input for custom tags", () => (
-  <React.Fragment>
-    <ListBoxWithTags hasFilter hasCustomTags placeholder="Select an anti-heroes or add your own 👩‍🎤">
-      {[...Array(100).keys()].map(index => (
-        <ListBoxWithTags.Option key={index}>{`Paprika_${index}`}</ListBoxWithTags.Option>
-      ))}
-    </ListBoxWithTags>
-  </React.Fragment>
+  </Frame>
 ));

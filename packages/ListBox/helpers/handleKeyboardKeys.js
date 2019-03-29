@@ -52,6 +52,10 @@ const handleKeyboardKeys = (state, dispatch) => event => {
             return;
           }
 
+          if (state.hasNoResults) {
+            return;
+          }
+
           if (state.isMulti) {
             dispatch({ type: actionTypes.togglePopover });
             return;
