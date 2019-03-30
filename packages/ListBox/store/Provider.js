@@ -9,12 +9,14 @@ export const StoreContext = React.createContext();
 
 function initializeState(props) {
   const {
+    children,
     childrenListBoxOptions,
     preventOnBlurOnTrigger,
     isInlineDisplay,
     height,
     hideOptionOnSelected,
     onChange,
+    ...moreProps
   } = props;
 
   // initialize state for options and groups
@@ -31,7 +33,7 @@ function initializeState(props) {
   }
 
   const initialState = {
-    ...props,
+    ...moreProps,
     activeOption,
     filteredOptions: [],
     footer,

@@ -23,13 +23,14 @@ export default function reducer(state, { type, payload }) {
         isPopoverOpen: !state.isPopoverOpen,
       };
 
-    case actionTypes.setActiveOption:
+    case actionTypes.setActiveOption: {
       return {
         ...state,
         activeOption: payload.activeOptionIndex,
         isPopoverOpen: payload.isPopoverOpen,
         shouldListBoxContentScroll: true,
       };
+    }
 
     case actionTypes.toggleSingleSelection: {
       handleChange(state, payload);

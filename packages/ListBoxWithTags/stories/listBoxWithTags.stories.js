@@ -93,3 +93,21 @@ storiesOf("ListBoxWithTags", module).add("ListBox With renderTag", () => (
     </ListBoxWithTags>
   </Frame>
 ));
+
+// Groups in ListBoxWithTags are not fully support it, unless you do it by controlled options
+storiesOf("ListBoxWithTags", module).add("ListBox With Groups", () => (
+  <Frame>
+    <ListBoxWithTags hasCustomTags>
+      <ListBoxWithTags.Group title="Good guys">
+        <ListBoxWithTags.Option>Punisher</ListBoxWithTags.Option>
+        <ListBoxWithTags.Option>Catwoman</ListBoxWithTags.Option>
+        <ListBoxWithTags.Option>Venom</ListBoxWithTags.Option>
+      </ListBoxWithTags.Group>
+      <ListBoxWithTags.Group title="Bad guys">
+        <ListBoxWithTags.Option>Thunderbolts</ListBoxWithTags.Option>
+        <ListBoxWithTags.Option>Deadpool</ListBoxWithTags.Option>
+        <ListBoxWithTags.Option>Spawn</ListBoxWithTags.Option>
+      </ListBoxWithTags.Group>
+    </ListBoxWithTags>
+  </Frame>
+));

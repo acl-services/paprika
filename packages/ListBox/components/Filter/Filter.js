@@ -2,6 +2,7 @@ import React from "react";
 import PropTypes from "prop-types";
 import useListBox from "../../store/useListBox";
 import { isOptionVisible } from "../../helpers/options";
+import * as effects from "./effects";
 import * as actionTypes from "../../store/actionTypes";
 
 import { FilterContainerStyled, FilterInputStyled, FilterSearchIconStyled } from "./Filter.styles";
@@ -113,11 +114,28 @@ export default function Filter(props) {
     }
   };
 
-  React.useEffect(() => {
-    if (!props.value) {
-      applyFilter({ filteredOptions: [], hasNoResults: false });
-    }
-  }, [props.value]);
+  const handleBlur = () => {
+    window.requestAnimationFrame(() => {
+      if (document.activeElement !== state.refListBoxContainer.current) {
+        // this will reset the activeOption and close the Popover
+        dispatch({
+          type: actionTypes.setActiveOption,
+          payload: {
+            activeOptionIndex: null,
+            isPopoverOpen: false,
+          },
+        });
+      }
+    });
+  };
+
+  const handleEffectValue = effects.handleEffectValue(props, applyFilter);
+  const handleEffectIsPopOverOpen = effects.handleEffectIsPopOverOpen(state, setTextSearch);
+  const handleEffectTextSearch = effects.handleEffectTextSearch(textSearch, applyFilter);
+
+  React.useEffect(handleEffectValue, [props.value]);
+  React.useEffect(handleEffectIsPopOverOpen, [state.isPopoverOpen]);
+  React.useEffect(handleEffectTextSearch, [textSearch]);
 
   if (props.forceShowFilter || (state.isInlineDisplay && state.hasFilter) || (state.hasFilter && state.isPopoverOpen)) {
     const { renderFilter, placeholder, value, onChangeFilter, ...moreProps } = props;
@@ -133,7 +151,8 @@ export default function Filter(props) {
           type="text"
           onChange={handleChangeFilter}
           onKeyDown={props.onKeyDown || handleKeyDown}
-          value={value || textSearch}
+          onBlur={handleBlur}
+          value={value || textSearch || ""}
           placeholder={placeholder}
           {...moreProps}
         />

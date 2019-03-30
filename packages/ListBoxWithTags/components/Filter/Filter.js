@@ -97,6 +97,7 @@ export default function TagInput(props) {
   React.useLayoutEffect(() => {
     if (state.isPopoverOpen) {
       state.refFilterInput.current.focus();
+      setFilterText("");
     }
   }, [state.selectedOptions]);
 

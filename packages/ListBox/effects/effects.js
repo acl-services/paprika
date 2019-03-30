@@ -99,3 +99,9 @@ export const handleEffectIsDisabledChange = dispatch => () => {
     type: actionTypes.toggleDisabled,
   });
 };
+
+export const handleEffectSelectedOptions = (state, dispatch) => () => {
+  if (state.selectedOptions.length === Object.keys(state.options).length) {
+    dispatch({ type: actionTypes.closePopover });
+  }
+};

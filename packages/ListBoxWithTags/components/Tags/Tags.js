@@ -22,7 +22,10 @@ export default function Tags(props) {
   const [state, dispatch] = useListBox();
 
   const handleDeleteTag = key => () => {
-    state.refFilterInput.current.focus();
+    if (state.refFilterInput.current) {
+      state.refFilterInput.current.focus();
+    }
+
     dispatch({
       type: actionTypes.unselectOptions,
       payload: [key],

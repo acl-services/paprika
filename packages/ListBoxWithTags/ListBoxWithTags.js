@@ -15,6 +15,7 @@ import Trigger from "./components/Trigger";
 const propTypes = {
   ...listBoxPropTypes,
   hasCustomTags: PropTypes.bool,
+  allowCustomTagDuplication: PropTypes.bool,
   hideOptionOnSelected: PropTypes.bool,
   placeholderForTagInput: PropTypes.string,
   renderTag: PropTypes.func,
@@ -23,6 +24,7 @@ const propTypes = {
 const defaultProps = {
   ...listBoxdefaultProps,
   hasCustomTags: false,
+  allowsCustomTagDuplication: false,
   hideOptionOnSelected: true,
   placeholderForTagInput: "New option ...",
   renderTag: null,
@@ -59,7 +61,7 @@ function ListBoxWithTags(props) {
 export default function ListBoxWithTagsWithProvider(props) {
   const [options, setOptions] = React.useState(props.children);
 
-  const handleAddCustomTag = (state, value) => {
+  const setStateOptions = (state, value) => {
     const options = Object.keys(state.options).map(key => {
       const option = state.options[key];
       return React.cloneElement(option.content, {
@@ -74,8 +76,28 @@ export default function ListBoxWithTagsWithProvider(props) {
         {value}
       </Option>
     );
-
     setOptions([...options, option]);
+  };
+
+  const hasDuplication = (state, value) =>
+    Object.keys(state.options).some(key => {
+      const option = state.options[key];
+      const text = typeof option.content === "string" ? option.content : option.label;
+
+      return text === value;
+    });
+
+  const handleAddCustomTag = (state, value) => {
+    if (props.allowsCustomTagDuplication) {
+      setStateOptions(state, value);
+      return;
+    }
+
+    if (hasDuplication(state, value)) {
+      return;
+    }
+
+    setStateOptions(state, value);
   };
 
   return (
