@@ -19,6 +19,9 @@ export const propTypes = {
   /** Turn on the input filter for the options */
   hasFilter: PropTypes.bool,
 
+  /** Turn the clear button at the right side of the Trigger */
+  hasClearButton: PropTypes.bool,
+
   /** Indicate which is the height for the options container */
   height: PropTypes.number,
 
@@ -41,19 +44,19 @@ export const propTypes = {
   popover is open */
   isPopoverEager: PropTypes.bool,
 
-  /** Indicates if the popover displaying the options is visible */
+  /** Indicates if the popover is visible */
   isPopoverOpen: PropTypes.bool,
 
-  /** Message to display when the filter don't find a match */
+  /** Message to be display once the filtering process doesn't find a match */
   hasNotResultsMessage: PropTypes.node,
 
-  /** Callback returning the current selected index on the ListBox */
+  /** Callback returning the current selected index on the ListBox and more arguments */
   onChange: PropTypes.func,
 
   /** Defaults label to display when the ListBox has not option selected */
   placeholder: PropTypes.string,
 
-  /** [Advance] Override the 'scroll' handler event for popover  */
+  /** [Advance] Override the 'scroll' target element for popover default is document.body  */
   getScrollContainer: PropTypes.func,
 
   /** [Advance] When composing the component will prevent to close the ListBox when
@@ -61,7 +64,7 @@ export const propTypes = {
   preventOnBlurOnTrigger: PropTypes.bool,
 
   /** [Advance] Allows to take over the render method for the label inside of the Trigger Component */
-  renderLabel: PropTypes.func,
+  renderTrigger: PropTypes.func,
 
   /** [Advance] Allows to take over the render method for the Checker.
       When `isMulti` prop is active, the default type of checker is a checkbox, in case you don't
@@ -74,8 +77,9 @@ export const propTypes = {
 
 export const defaultProps = {
   getScrollContainer: null,
+  hasClearButton: false,
   hasFilter: false,
-  hasNotResultsMessage: "Your filter did not return any option",
+  hasNotResultsMessage: "Your search did not match any options.",
   height: 200,
   hideOptionOnSelected: false,
   isDisabled: false,
@@ -84,16 +88,16 @@ export const defaultProps = {
   isPopoverEager: true,
   isPopoverOpen: false,
   onChange: () => {},
-  placeholder: "select one of the options",
+  placeholder: "Select one of the options",
   preventOnBlurOnTrigger: false,
   renderChecker: undefined,
-  renderLabel: null,
+  renderTrigger: null,
   zIndex: 1,
 };
 
 export function ListBoxStructure(props) {
   const {
-    renderLabel,
+    renderTrigger,
     placeholder,
     height,
     hasNotResultsMessage,
@@ -102,7 +106,7 @@ export function ListBoxStructure(props) {
 
   return (
     <React.Fragment>
-      <Trigger renderLabel={renderLabel} placeholder={placeholder} />
+      <Trigger renderTrigger={renderTrigger} placeholder={placeholder} />
       <Content>
         <Box>
           <Filter />
@@ -121,11 +125,11 @@ ListBoxStructure.propTypes = {
   hasNotResultsMessage: PropTypes.string.isRequired,
   height: PropTypes.number.isRequired,
   placeholder: PropTypes.string.isRequired,
-  renderLabel: PropTypes.func,
+  renderTrigger: PropTypes.func,
 };
 
 ListBoxStructure.defaultProps = {
-  renderLabel: null,
+  renderTrigger: null,
 };
 
 const ListBox = React.forwardRef((props, ref) => {
@@ -162,7 +166,7 @@ const ListBox = React.forwardRef((props, ref) => {
     hasNotResultsMessage,
     onChange,
     placeholder,
-    renderLabel,
+    renderTrigger,
     renderChecker,
     isInlineDisplay,
     ...moreProps
@@ -173,7 +177,7 @@ const ListBox = React.forwardRef((props, ref) => {
     hasNotResultsMessage,
     height,
     placeholder,
-    renderLabel,
+    renderTrigger,
   };
 
   if (isInlineDisplay) {

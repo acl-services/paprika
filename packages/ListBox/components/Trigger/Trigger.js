@@ -6,21 +6,26 @@ import handleKeyboardKeys from "../../helpers/handleKeyboardKeys";
 import useListBox from "../../store/useListBox";
 import * as actionTypes from "../../store/actionTypes";
 
-import { ListBoxTriggerStyled, TriggerArrowStyled } from "./Trigger.styles";
+import {
+  ListBoxTriggerStyled,
+  TriggerArrowStyled,
+  ButtonClearStyled,
+  TriggerActionIconsContainer,
+} from "./Trigger.styles";
 import { getDOMAttributesForListBoxButton } from "../../helpers/DOMAttributes";
 
 const propTypes = {
   placeholder: PropTypes.string.isRequired,
-  renderLabel: PropTypes.func,
+  renderTrigger: PropTypes.func,
 };
 
 const defaultProps = {
-  renderLabel: null,
+  renderTrigger: null,
 };
 
 export default function Trigger(props) {
   const [state, dispatch] = useListBox();
-  const { renderLabel, placeholder } = props;
+  const { renderTrigger, placeholder } = props;
 
   const { isDisabled, refTriggerContainer, refTrigger, isMulti } = state;
 
@@ -32,10 +37,18 @@ export default function Trigger(props) {
     dispatch({ type: actionTypes.togglePopover });
   };
 
+  const handleClickClear = () => {
+    if (isDisabled) {
+      return;
+    }
+
+    dispatch({ type: actionTypes.clear });
+  };
+
   return (
     <ListBoxTriggerStyled isDisabled={isDisabled} ref={refTriggerContainer}>
-      {renderLabel ? (
-        renderLabel(state, dispatch, { getDOMAttributesForListBoxButton })
+      {renderTrigger ? (
+        renderTrigger(state, dispatch, { getDOMAttributesForListBoxButton })
       ) : (
         <RawButton
           type="button"
@@ -54,13 +67,23 @@ export default function Trigger(props) {
           />
         </RawButton>
       )}
-      <TriggerArrowStyled
-        hasRenderLabel={renderLabel}
-        isDisabled={isDisabled}
-        isOpen={state.isPopoverOpen}
-        isInlineDisplay={state.isInlineDisplay}
-        dangerouslySetInnerHTML={{ __html: "&#x25BC;" }}
-      />
+      <TriggerActionIconsContainer>
+        <ButtonClearStyled
+          hasRenderTrigger={renderTrigger}
+          hasSelectedOptions={state.selectedOptions.length}
+          isDisabled={isDisabled}
+          onClick={handleClickClear}
+        >
+          <span dangerouslySetInnerHTML={{ __html: "&times;" }} />
+        </ButtonClearStyled>
+        <TriggerArrowStyled
+          hasRenderTrigger={renderTrigger}
+          isDisabled={isDisabled}
+          isOpen={state.isPopoverOpen}
+          isInlineDisplay={state.isInlineDisplay}
+          dangerouslySetInnerHTML={{ __html: "&#x25BC;" }}
+        />
+      </TriggerActionIconsContainer>
     </ListBoxTriggerStyled>
   );
 }

@@ -103,6 +103,20 @@ storiesOf("ListBox / single", module).add("With Filter", () => (
   </Frame>
 ));
 
+storiesOf("ListBox / single", module).add("Has clear button", () => (
+  <Frame>
+    <ListBox hasClearButton>
+      <ListBox.Option>Punisher</ListBox.Option>
+      <ListBox.Option>Catwoman</ListBox.Option>
+      <ListBox.Option>Venom</ListBox.Option>
+      <ListBox.Option>Thunderbolts</ListBox.Option>
+      <ListBox.Option>Deadpool</ListBox.Option>
+      <ListBox.Option>Spawn</ListBox.Option>
+      <ListBox.Option>Wolverine</ListBox.Option>
+    </ListBox>
+  </Frame>
+));
+
 storiesOf("ListBox / single", module).add("With Filter inline", () => (
   <Frame>
     <ListBox hasFilter isInlineDisplay>
@@ -177,10 +191,10 @@ storiesOf("ListBox / single", module).add("With Filter and nodes as children and
   </Frame>
 ));
 
-storiesOf("ListBox / single", module).add("With Custom renderLabel as button", () => (
+storiesOf("ListBox / single", module).add("With Custom renderTrigger as button", () => (
   <Frame>
     <ListBox
-      renderLabel={(state, dispatch, { getDOMAttributesForListBoxButton }) => (
+      renderTrigger={(state, dispatch, { getDOMAttributesForListBoxButton }) => (
         <button
           onClick={() => {
             dispatch({ type: "OPEN_POPOVER" });

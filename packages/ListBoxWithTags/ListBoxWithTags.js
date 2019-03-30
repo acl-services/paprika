@@ -35,7 +35,7 @@ function ListBoxWithTags(props) {
   const [state, dispatch] = useListBox();
   const [activeTag, setActiveTag] = React.useState(null);
 
-  const renderLabel = () => {
+  const renderTrigger = () => {
     return (
       <Trigger hasCustomTags={props.hasCustomTags}>
         <Tags
@@ -54,7 +54,7 @@ function ListBoxWithTags(props) {
   const handleKeyDown = handleKeyboardKeys({ state, dispatch, activeTag, setActiveTag });
 
   const { onAddCustomTag, ...moreProps } = props; // eslint
-  return <ListBox onKeyDown={handleKeyDown} {...moreProps} renderLabel={renderLabel} isPopoverEager={false} />;
+  return <ListBox onKeyDown={handleKeyDown} {...moreProps} renderTrigger={renderTrigger} isPopoverEager={false} />;
 }
 /* eslint-enable react/prop-types */
 
