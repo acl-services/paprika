@@ -1,6 +1,6 @@
 import React from "react";
 import PropTypes from "prop-types";
-import { ListBoxContainerStyled } from "../../ListBox.styles";
+import { BoxContainerStyled } from "./Box.styles";
 import useListBox from "../../store/useListBox";
 
 const propTypes = {
@@ -15,7 +15,11 @@ export default function Box(props) {
     return null;
   }
 
-  return <ListBoxContainerStyled triggerWidth={state.triggerWidth}>{props.children}</ListBoxContainerStyled>;
+  return (
+    <BoxContainerStyled isInlineDisplay={state.isInlineDisplay} triggerWidth={state.triggerWidth}>
+      {props.children}
+    </BoxContainerStyled>
+  );
 }
 
 Box.propTypes = propTypes;

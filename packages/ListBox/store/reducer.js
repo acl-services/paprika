@@ -221,6 +221,7 @@ export default function reducer(state, { type, payload }) {
       handleChange(state, { activeOptionIndex: 0 }, [], "clear");
       return {
         ...state,
+        activeOption: null,
         selectedOptions: [],
       };
     }

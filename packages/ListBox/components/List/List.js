@@ -1,6 +1,6 @@
 import React from "react";
 import PropTypes from "prop-types";
-import { ListBoxStyled } from "../../ListBox.styles";
+import ListStyled from "./List.styles";
 import useListBox from "../../store/useListBox";
 import { getDOMAttributesForListBox } from "../../helpers/DOMAttributes";
 
@@ -15,14 +15,14 @@ export default function List(props) {
   const { refListBox } = state;
 
   return (
-    <ListBoxStyled
+    <ListStyled
+      {...getDOMAttributesForListBox(state)}
       hasNoResults={state.hasNoResults}
       height={height}
       ref={refListBox}
-      {...getDOMAttributesForListBox(state)}
     >
       {children}
-    </ListBoxStyled>
+    </ListStyled>
   );
 }
 

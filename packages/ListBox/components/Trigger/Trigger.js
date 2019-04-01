@@ -46,7 +46,7 @@ export default function Trigger(props) {
   };
 
   return (
-    <ListBoxTriggerStyled isDisabled={isDisabled} ref={refTriggerContainer}>
+    <ListBoxTriggerStyled isInlineDisplay={state.isInlineDisplay} isDisabled={isDisabled} ref={refTriggerContainer}>
       {renderTrigger ? (
         renderTrigger(state, dispatch, { getDOMAttributesForListBoxButton })
       ) : (
