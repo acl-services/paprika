@@ -1,7 +1,5 @@
-import styled from "styled-components";
 import tokens from "@paprika/tokens";
 import stylers from "@paprika/stylers";
-import RawButton from "@paprika/raw-button";
 
 // Common
 
@@ -225,7 +223,7 @@ const fullWidthStyles = `
 // Composition
 //
 
-const composedStyles = props => `
+const buttonStyles = props => `
   ${commonStyles}
   ${sizeStyles[props.size]}
   ${kindStyles(props)[props.kind]}
@@ -233,10 +231,4 @@ const composedStyles = props => `
   ${props.isActive ? activeStyles : ""}
 `;
 
-export const ButtonStyled = styled.button`
-  ${composedStyles}
-`;
-
-export const RawButtonStyled = styled(RawButton)`
-  ${composedStyles}
-`;
+export default buttonStyles;
