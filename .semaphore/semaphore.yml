@@ -18,7 +18,7 @@ blocks:
           - cache store node-modules-$SEMAPHORE_GIT_BRANCH node_modules
           - cache store cypress-$SEMAPHORE_GIT_BRANCH ~/.cache/Cypress
 
-  - name: "🐯 Format"
+  - name: "💅 Format"
     task:
       prologue:
         commands:
@@ -64,3 +64,15 @@ blocks:
           commands:
             - npx lerna bootstrap
             - yarn cypress:ci
+
+  - name: "🔎 Visual Regression"
+    task:
+      prologue:
+        commands:
+          - checkout
+          - cache restore node-modules-$SEMAPHORE_GIT_BRANCH
+      jobs:
+        - name: Screener
+          commands:
+            - yarn storybook:build
+            - yarn storybook:screener

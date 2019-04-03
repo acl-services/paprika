@@ -21,12 +21,11 @@ const commonStyles = `
   text-align: center;
   vertical-align: middle;
 
- &:focus {
+  &:focus {
     box-shadow: ${tokens.highlight.active.noBorder.boxShadow};
     border-color: ${tokens.highlight.active.noBorder.borderColor};
     outline: none;
   }
-
 
   &:active {
     box-shadow: ${tokens.highlight.active.noBorder.boxShadow}, inset 0 1px 1px 0 rgba(0, 0, 0, 0.1),
@@ -108,8 +107,6 @@ const sizeStyles = {
     padding: 9px ${stylers.spacer(2)};
   `,
 };
-sizeStyles.xsmall = sizeStyles.small;
-sizeStyles.xlarge = sizeStyles.large;
 
 // Kinds
 
