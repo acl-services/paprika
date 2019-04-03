@@ -3,7 +3,7 @@ import uuidv4 from "uuid/v4";
 import ListBox from "@paprika/listbox";
 
 export function createOption({ index, child, title = null, isOptionActionGroup = false }) {
-  const { label, value, isHidden, isSelected, isDisabled } = child.props;
+  const { label, value, isHidden, isSelected, isDisabled, onClick, isInteractive, renderChecker } = child.props;
 
   return {
     content: child,
@@ -11,11 +11,14 @@ export function createOption({ index, child, title = null, isOptionActionGroup =
     hasLabel: label,
     id: uuidv4(),
     index,
+    isDisabled,
     isHidden,
+    isInteractive,
     isOptionActionGroup,
     isSelected,
-    isDisabled,
     label: label || child.props.children, // we will try to extract the label from the children if doesn't have label
+    onClick,
+    renderChecker,
     value: value || undefined,
   };
 }

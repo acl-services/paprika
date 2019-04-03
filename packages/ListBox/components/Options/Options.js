@@ -1,5 +1,5 @@
 import React from "react";
-import { OptionStyled, OptionDividerStyled } from "./Options.styles";
+import { OptionStyled, OptionDividerStyled } from "../Option/Option.styles";
 import { getDOMAttributesForListBoxOption } from "../../helpers/DOMAttributes";
 import { isOptionVisible, isOptionSelected } from "../../helpers/options";
 import * as actionTypes from "../../store/actionTypes";
@@ -21,6 +21,13 @@ export default function Options() {
     const option = options[key];
     const index = option.index;
     const isOptionActionGroup = option.isOptionActionGroup;
+
+    if (option.onClick) {
+      const result = option.onClick(key, options);
+      if (typeof result === "boolean" && result === false) {
+        return;
+      }
+    }
 
     if (
       state.refListBox.current.contains(event.target) &&
@@ -83,9 +90,15 @@ export default function Options() {
             <Checker
               index={Number.parseInt(key, 10)}
               isChecked={isOptionSelected(state, options[key].index)}
-              renderChecker={renderChecker}
+              renderChecker={options[key].renderChecker || renderChecker}
             />
-            {options[key].content}
+            {typeof options[key].content.props.children === "function" ? (
+              <React.Fragment>
+                {options[key].content.props.children(isOptionSelected(state, options[key].index))}
+              </React.Fragment>
+            ) : (
+              options[key].content
+            )}
           </OptionStyled>
         ) : null}
       </React.Fragment>

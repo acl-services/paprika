@@ -116,6 +116,11 @@ export default function Filter(props) {
 
   const handleBlur = () => {
     window.requestAnimationFrame(() => {
+      if (state.Footer) {
+        // if has footer the responsible of closing is the Footer no the onblur event
+        return;
+      }
+
       if (document.activeElement !== state.refListBoxContainer.current) {
         // this will reset the activeOption and close the Popover
         dispatch({

@@ -33,7 +33,10 @@ export default function reducer(state, { type, payload }) {
     }
 
     case actionTypes.toggleSingleSelection: {
-      handleChange(state, payload);
+      let isPopoverOpen = payload.isPopoverOpen;
+      if (state.Footer) {
+        isPopoverOpen = true;
+      }
 
       let options = null;
       if (state.hideOptionOnSelected) {
@@ -41,12 +44,14 @@ export default function reducer(state, { type, payload }) {
         options[payload.activeOptionIndex].isHidden = true;
       }
 
+      handleChange(state, payload);
+
       return {
         ...state,
         ...options,
         activeOption: state.hideOptionOnSelected ? getNextOptionActiveIndexLooping(state) : payload.activeOptionIndex,
         selectedOptions: [payload.activeOptionIndex],
-        isPopoverOpen: payload.isPopoverOpen,
+        isPopoverOpen,
         shouldListBoxContentScroll: true,
         lastActiveOptionIndexAffected: [payload.activeOptionIndex],
       };
@@ -222,6 +227,7 @@ export default function reducer(state, { type, payload }) {
       return {
         ...state,
         activeOption: null,
+        isPopoverOpen: true,
         selectedOptions: [],
       };
     }
@@ -236,6 +242,22 @@ export default function reducer(state, { type, payload }) {
       return {
         ...state.originalState,
         originalState: state.originalState,
+      };
+    }
+
+    case actionTypes.accept: {
+      return {
+        ...state,
+        lastKnownSelectedOptions: state.selectedOptions.slice(0),
+        isPopoverOpen: false,
+      };
+    }
+
+    case actionTypes.cancel: {
+      return {
+        ...state,
+        selectedOptions: state.lastKnownSelectedOptions.slice(0),
+        isPopoverOpen: false,
       };
     }
 

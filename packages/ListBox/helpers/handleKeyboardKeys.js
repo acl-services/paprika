@@ -47,6 +47,8 @@ const handleKeyboardKeys = (state, dispatch) => event => {
     case "Enter":
     case " ":
       {
+        event.preventDefault();
+
         if (state.activeOption === null) {
           if (state.isInlineDisplay) {
             return;
@@ -67,8 +69,6 @@ const handleKeyboardKeys = (state, dispatch) => event => {
         if (option.isDisabled) {
           return;
         }
-
-        event.preventDefault();
 
         if (state.isPopoverOpen) {
           if (state.isMulti) {

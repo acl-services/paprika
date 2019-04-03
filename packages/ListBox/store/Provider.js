@@ -9,20 +9,27 @@ export const StoreContext = React.createContext();
 
 function initializeState(props) {
   const {
-    children,
+    placeholder,
     childrenListBoxOptions,
-    preventOnBlurOnTrigger,
-    isInlineDisplay,
     height,
     hideOptionOnSelected,
+    isDisabled,
+    isInlineDisplay,
+    isMulti,
+    isPopoverEager,
     onChange,
-    ...moreProps
+    preventOnBlurOnTrigger,
+    refFilterInput,
+    refListBox,
+    refListBoxContainer,
+    refTrigger,
+    refTriggerContainer,
   } = props;
 
   // initialize state for options and groups
   const groups = getDataGroups(childrenListBoxOptions);
   const options = getDataOptions(childrenListBoxOptions, groups, props.isMulti, hideOptionOnSelected);
-  const footer = getFooter(childrenListBoxOptions);
+  const Footer = getFooter(childrenListBoxOptions);
   const selectedOptions = Object.keys(options)
     .filter(key => options[key].isSelected)
     .map(key => Number.parseInt(key, 10));
@@ -33,21 +40,29 @@ function initializeState(props) {
   }
 
   const initialState = {
-    ...moreProps,
     activeOption,
     filteredOptions: [],
-    footer,
+    Footer,
     groups,
     hasFilter: props.hasFilter,
     hasNoResults: false,
     hasPopupOpened: false,
     height,
     hideOptionOnSelected,
+    isDisabled,
     isInlineDisplay,
+    isMulti,
+    isPopoverEager,
     lastActiveOptionIndexAffected: null,
     onChange,
     options,
+    placeholder,
     preventOnBlurOnTrigger,
+    refFilterInput,
+    refListBox,
+    refListBoxContainer,
+    refTrigger,
+    refTriggerContainer,
     renderChecker: props.renderChecker,
     selectedOptions,
     shouldListBoxContentScroll: true,
@@ -55,8 +70,11 @@ function initializeState(props) {
   };
 
   handleChange(initialState, { activeOptionIndex: activeOption }, selectedOptions, "load");
-
-  return { ...initialState, originalState: { ...initialState } };
+  return {
+    ...initialState,
+    originalState: { ...initialState },
+    lastKnownSelectedOptions: initialState.selectedOptions.slice(0),
+  };
 }
 
 const propTypes = {

@@ -2,6 +2,7 @@ import React from "react";
 import PropTypes from "prop-types";
 import ListBox, { propTypes as listBoxPropTypes, defaultProps as listBoxdefaultProps } from "@paprika/listbox/ListBox";
 import Option from "@paprika/listbox/components/Option";
+import Footer from "@paprika/listbox/components/Footer";
 import Group from "@paprika/listbox/components/Group";
 import Provider from "@paprika/listbox/store/Provider";
 
@@ -119,3 +120,4 @@ ListBoxWithTagsWithProvider.propTypes = propTypes;
 ListBoxWithTagsWithProvider.defaultProps = defaultProps;
 ListBoxWithTagsWithProvider.Option = Option;
 ListBoxWithTagsWithProvider.Group = Group;
+ListBoxWithTagsWithProvider.Footer = Footer;

@@ -29,7 +29,7 @@ export function getNextOptionActiveIndex(state, isAscending = true) {
     return null;
   }
 
-  if (state.activeOption === null) {
+  if (state.activeOption === null && state.options[0].isInteractive) {
     return 0;
   }
 
@@ -63,7 +63,7 @@ export function getNextOptionActiveIndex(state, isAscending = true) {
       key--;
     }
 
-    if (isOptionVisible(state, key) && !isDisabled(state, key)) {
+    if (isOptionVisible(state, key) && !isDisabled(state, key) && state.options[key].isInteractive) {
       index = key;
       keepIterating = false;
     }

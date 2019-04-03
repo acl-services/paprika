@@ -33,6 +33,21 @@ storiesOf("ListBoxWithTags", module).add("ListBox With Tags and filter", () => (
   </Frame>
 ));
 
+storiesOf("ListBoxWithTags", module).add("ListBox With Tags and Footer", () => (
+  <Frame>
+    <ListBoxWithTags hasFilter placeholder="Select your 🤩 anti-heroes">
+      <ListBoxWithTags.Option>Punisher</ListBoxWithTags.Option>
+      <ListBoxWithTags.Option>Catwoman</ListBoxWithTags.Option>
+      <ListBoxWithTags.Option>Venom</ListBoxWithTags.Option>
+      <ListBoxWithTags.Option>Thunderbolts</ListBoxWithTags.Option>
+      <ListBoxWithTags.Option>Deadpool</ListBoxWithTags.Option>
+      <ListBoxWithTags.Option>Spawn</ListBoxWithTags.Option>
+      <ListBoxWithTags.Option>Wolverine</ListBoxWithTags.Option>
+      <ListBoxWithTags.Footer />
+    </ListBoxWithTags>
+  </Frame>
+));
+
 storiesOf("ListBoxWithTags", module).add("ListBox With Tags filter and input for custom tags", () => (
   <Frame>
     <ListBoxWithTags hasFilter hasCustomTags placeholder="Select an anti-heroes or add your own 👩‍🎤">

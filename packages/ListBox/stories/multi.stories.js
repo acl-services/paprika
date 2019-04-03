@@ -1,5 +1,6 @@
 import React from "react";
 import { storiesOf } from "@storybook/react";
+import styled from "styled-components";
 import { Frame, ImageOption } from "./stories.styles";
 import ListBox from "..";
 import { images } from "./fixtures/images";
@@ -116,6 +117,27 @@ storiesOf("ListBox / multi", module).add("With Checkbox as pre built-in option",
   </Frame>
 ));
 
+storiesOf("ListBox / multi", module).add("Footer", () => (
+  <Frame>
+    <ListBox isMulti hasFilter>
+      <ListBox.Option>Punisher</ListBox.Option>
+      <ListBox.Option>Catwoman</ListBox.Option>
+      <ListBox.Option>Venom</ListBox.Option>
+      <ListBox.Option>Thunderbolts</ListBox.Option>
+      <ListBox.Option>Deadpool</ListBox.Option>
+      <ListBox.Option>Spawn</ListBox.Option>
+      <ListBox.Option>Wolverine</ListBox.Option>
+      <ListBox.Footer
+        onClickAccept={(indexes, options) => {
+          console.log(indexes);
+          console.log(options);
+          debugger;
+        }}
+      />
+    </ListBox>
+  </Frame>
+));
+
 storiesOf("ListBox / multi", module).add("With Custom Checkers", () => (
   <Frame>
     <ListBox
@@ -168,6 +190,82 @@ storiesOf("ListBox / multi", module).add("With Groups", () => (
         <ListBox.Option>Iron Man</ListBox.Option>
         <ListBox.Option>Doctor Strange</ListBox.Option>
       </ListBox.Group>
+    </ListBox>
+  </Frame>
+));
+
+const RootStyled = styled.span`
+  text-align: left;
+  font-weight: bold;
+  font-size: 16px;
+`;
+
+const ParentStyled = styled.span`
+  text-align: left;
+  font-weight: 300;
+  padding-left: 16px;
+  font-size: 14px;
+`;
+
+const LeafStyled = styled.span`
+  padding-left: 32px;
+  position: relative;
+
+  &:before {
+    border-bottom: 1px solid #ccc;
+    content: "";
+    height: 1px;
+    position: absolute;
+    width: 8px;
+    top: 6px;
+    left: 20px;
+  }
+
+  &:after {
+    border-left: 1px solid #ccc;
+    content: "";
+    height: 8px;
+    position: absolute;
+    width: 1px;
+    top: 0;
+    left: 20px;
+    display: block;
+  }
+`;
+
+storiesOf("ListBox / multi", module).add("With Custom Styles", () => (
+  <Frame>
+    <ListBox isMulti renderChecker={() => null}>
+      <ListBox.Option isInteractive={false} label="antiheroes">
+        <RootStyled as="span">Marvel Universe</RootStyled>
+      </ListBox.Option>
+      <ListBox.Option isInteractive={false} renderChecker={() => null} label="antiheroes">
+        <ParentStyled as="span">AntiHeroes</ParentStyled>
+      </ListBox.Option>
+      <ListBox.Option label="renderProp">
+        {isChecked => <LeafStyled>{isChecked ? "😇" : "🙅‍"} Render Prop</LeafStyled>}
+      </ListBox.Option>
+      <ListBox.Option>
+        <LeafStyled>Catwoman</LeafStyled>
+      </ListBox.Option>
+      <ListBox.Option>
+        <LeafStyled>Venom</LeafStyled>
+      </ListBox.Option>
+      <ListBox.Option>
+        <LeafStyled>Thunderbolts</LeafStyled>
+      </ListBox.Option>
+      <ListBox.Option>
+        <LeafStyled>Suicide Squad</LeafStyled>
+      </ListBox.Option>
+      <ListBox.Option>
+        <LeafStyled>Deadpool</LeafStyled>
+      </ListBox.Option>
+      <ListBox.Option>
+        <LeafStyled>Spawn</LeafStyled>
+      </ListBox.Option>
+      <ListBox.Option>
+        <LeafStyled>Wolverine</LeafStyled>
+      </ListBox.Option>
     </ListBox>
   </Frame>
 ));

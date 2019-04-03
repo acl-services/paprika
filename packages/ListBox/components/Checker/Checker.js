@@ -18,11 +18,7 @@ export default function Checkers(props) {
   const { index, isChecked, renderChecker } = props;
 
   if (typeof renderChecker === "function") {
-    if (renderChecker) {
-      return props.renderChecker(isChecked, index, state, dispatch);
-    }
-
-    return null;
+    return props.renderChecker(isChecked, index, state, dispatch);
   }
 
   if (state.isMulti) {

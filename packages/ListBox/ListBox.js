@@ -96,14 +96,8 @@ export const defaultProps = {
 };
 
 export function ListBoxStructure(props) {
-  const {
-    renderTrigger,
-    placeholder,
-    height,
-    hasNotResultsMessage,
-    footer, // eslint-disable-line
-  } = props;
-
+  const { renderTrigger, placeholder, height, hasNotResultsMessage } = props;
+  const [state] = useListBox();
   return (
     <React.Fragment>
       <Trigger renderTrigger={renderTrigger} placeholder={placeholder} />
@@ -113,8 +107,8 @@ export function ListBoxStructure(props) {
           <List height={height}>
             <Options />
           </List>
-          {footer}
           <NoResults label={hasNotResultsMessage} />
+          {state.Footer}
         </Box>
       </Content>
     </React.Fragment>
@@ -151,7 +145,7 @@ const ListBox = React.forwardRef((props, ref) => {
   React.useEffect(handleEffectChildren, [props.children]);
   React.useEffect(handleEffectHeightChange, [props.height]);
   React.useEffect(handleEffectIsDisabledChange, [props.isDisabled]);
-  React.useEffect(handleEffectIsPopOverOpen, [state.isPopoverOpen]);
+  React.useLayoutEffect(handleEffectIsPopOverOpen, [state.isPopoverOpen]);
   React.useEffect(handleEffectListBoxWidth, [state.refTriggerContainer.current]);
   React.useEffect(handleEffectSelectedOptions, [state.selectedOptions]);
   React.useLayoutEffect(handleEffectListBoxScrolled, [state.activeOption]);
@@ -181,12 +175,12 @@ const ListBox = React.forwardRef((props, ref) => {
   };
 
   if (isInlineDisplay) {
-    return <ListBoxStructure {...ListBoxStructureProps} footer={state.footer} />;
+    return <ListBoxStructure {...ListBoxStructureProps} />;
   }
 
   return (
     <Popover {...moreProps} isEager={isPopoverEager}>
-      <ListBoxStructure {...ListBoxStructureProps} footer={state.footer} />
+      <ListBoxStructure {...ListBoxStructureProps} />
     </Popover>
   );
 });

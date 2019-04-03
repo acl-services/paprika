@@ -27,12 +27,12 @@ export const handleEffectIsPopOverOpen = (state, dispatch) => () => {
   const trigger = state.refTrigger.current;
   if (state.isPopoverOpen) {
     if (state.hasFilter) {
-      // this is compiting with the focus of the
+      // this is racing with the focus of the
       // Popover, the popover will try to put the
       // focus on the <Popover.Content> which works
       // ok when you automatically wants to grant
       // focus to whatever content on the popover
-      // unsure how to properly handle this.
+      // unsure how to handle this properly.
       setTimeout(() => {
         filterInput.focus();
       }, 200);

@@ -4,13 +4,13 @@ function handleChangeSingle(state, payload, selectedOptionsArray) {
   state.onChange(activeOptionIndex, state.options);
 }
 
-function handleChangleMulti(state, payload, selectedOptionsArray, eventType) {
+function handleChangeMulti(state, payload, selectedOptionsArray, eventType) {
   state.onChange(selectedOptionsArray, state.options, payload.activeOptionIndex, eventType);
 }
 
 export default function handleChange(state, payload, selectedOptionsArray, eventType) {
   if (state.isMulti) {
-    handleChangleMulti(state, payload, selectedOptionsArray, eventType);
+    handleChangeMulti(state, payload, selectedOptionsArray, eventType);
     return;
   }
 

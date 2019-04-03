@@ -1,4 +1,6 @@
+export const accept = "ACCEPT";
 export const applyFilter = "APPLY_FILTER";
+export const cancel = "CANCEL";
 export const clear = "CLEAR";
 export const closePopover = "CLOSE_POPOVER";
 export const hideOptions = "HIDE_OPTION";

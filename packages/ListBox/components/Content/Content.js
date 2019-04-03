@@ -36,6 +36,10 @@ const handleBlur = (state, dispatch) => () => {
       !refListBoxContainer.current.contains(document.activeElement)
     ) {
       dispatch({ type: actionTypes.closePopover });
+
+      if (state.Footer) {
+        dispatch({ type: actionTypes.cancel });
+      }
     }
   });
 };
