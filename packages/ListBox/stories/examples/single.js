@@ -220,7 +220,6 @@ export const Footer = () => (
       <ListBox.Footer
         onClickAccept={(index, options) => {
           if (index) {
-            debugger;
             console.log(options[index]);
           }
         }}

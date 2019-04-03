@@ -131,7 +131,6 @@ storiesOf("ListBox / multi", module).add("Footer", () => (
         onClickAccept={(indexes, options) => {
           console.log(indexes);
           console.log(options);
-          debugger;
         }}
       />
     </ListBox>

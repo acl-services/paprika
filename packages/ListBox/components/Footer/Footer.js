@@ -83,7 +83,6 @@ export default function Footer(props) {
   } = props;
 
   const handleClickAccept = event => {
-    debugger;
     event.stopPropagation();
 
     const result = onClickAccept(...[...getSelectedOptions(state), ...args]);
