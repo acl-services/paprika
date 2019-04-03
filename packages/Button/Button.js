@@ -1,7 +1,10 @@
+/* eslint-disable react/button-has-type */
+
 import React from "react";
 import PropTypes from "prop-types";
+import RawButton from "@paprika/raw-button";
 import { ShirtSizes } from "../helpers/customPropTypes";
-import { ButtonStyled, RawButtonStyled } from "./Button.styles";
+import ButtonStyles from "./Button.styles";
 
 const propTypes = {
   a11yText: PropTypes.string,
@@ -66,9 +69,15 @@ const Button = React.forwardRef((props, ref) => {
     buttonProps.tabIndex = isDisabled ? -1 : tabIndex;
   }
 
-  const ButtonTag = isSemantic ? ButtonStyled : RawButtonStyled;
-
-  return <ButtonTag {...buttonProps}>{children}</ButtonTag>;
+  return isSemantic ? (
+    <button css={ButtonStyles} {...buttonProps}>
+      {children}
+    </button>
+  ) : (
+    <RawButton css={ButtonStyles} {...buttonProps}>
+      {children}
+    </RawButton>
+  );
 });
 
 Button.displayName = "Button";

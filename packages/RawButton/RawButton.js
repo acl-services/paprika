@@ -1,6 +1,8 @@
+/* eslint-disable jsx-a11y/no-static-element-interactions */
+
 import React from "react";
 import PropTypes from "prop-types";
-import RawButtonStyled from "./RawButton.styles";
+import RawButtonStyles from "./RawButton.styles";
 
 const propTypes = {
   a11yText: PropTypes.string,
@@ -63,8 +65,9 @@ const RawButton = React.forwardRef((props, ref) => {
   };
 
   return (
-    <RawButtonStyled
+    <span
       aria-disabled={isDisabled}
+      css={RawButtonStyles}
       isDisabled={isDisabled}
       onClick={handleClick}
       onKeyDown={handleKeyDown}
@@ -74,7 +77,7 @@ const RawButton = React.forwardRef((props, ref) => {
       {...moreProps}
     >
       {children}
-    </RawButtonStyled>
+    </span>
   );
 });
 
