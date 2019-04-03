@@ -223,7 +223,7 @@ const fullWidthStyles = `
 // Composition
 //
 
-const ButtonStyles = props => `
+const buttonStyles = props => `
   ${commonStyles}
   ${sizeStyles[props.size]}
   ${kindStyles(props)[props.kind]}
@@ -231,4 +231,4 @@ const ButtonStyles = props => `
   ${props.isActive ? activeStyles : ""}
 `;
 
-export default ButtonStyles;
+export default buttonStyles;

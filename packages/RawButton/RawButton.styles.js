@@ -19,11 +19,11 @@ const disabledStyles = `
   }
 `;
 
-const RawButtonStyles = props => `
+const rawButtonStyles = props => `
   ${stylers.inlineBlockStyle};
   cursor: pointer;
   ${focusStyles(props.hasInsetFocusStyle)};
   ${props.isDisabled && disabledStyles};
 `;
 
-export default RawButtonStyles;
+export default rawButtonStyles;

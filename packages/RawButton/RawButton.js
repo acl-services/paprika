@@ -2,7 +2,7 @@
 
 import React from "react";
 import PropTypes from "prop-types";
-import RawButtonStyles from "./RawButton.styles";
+import rawButtonStyles from "./RawButton.styles";
 
 const propTypes = {
   a11yText: PropTypes.string,
@@ -67,7 +67,7 @@ const RawButton = React.forwardRef((props, ref) => {
   return (
     <span
       aria-disabled={isDisabled}
-      css={RawButtonStyles}
+      css={rawButtonStyles}
       isDisabled={isDisabled}
       onClick={handleClick}
       onKeyDown={handleKeyDown}

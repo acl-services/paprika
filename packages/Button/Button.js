@@ -4,7 +4,7 @@ import React from "react";
 import PropTypes from "prop-types";
 import RawButton from "@paprika/raw-button";
 import { ShirtSizes } from "../helpers/customPropTypes";
-import ButtonStyles from "./Button.styles";
+import buttonStyles from "./Button.styles";
 
 const propTypes = {
   a11yText: PropTypes.string,
@@ -70,11 +70,11 @@ const Button = React.forwardRef((props, ref) => {
   }
 
   return isSemantic ? (
-    <button css={ButtonStyles} {...buttonProps}>
+    <button css={buttonStyles} {...buttonProps}>
       {children}
     </button>
   ) : (
-    <RawButton css={ButtonStyles} {...buttonProps}>
+    <RawButton css={buttonStyles} {...buttonProps}>
       {children}
     </RawButton>
   );
