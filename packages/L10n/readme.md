@@ -23,3 +23,14 @@ import Collapsible from "@paprika/collapsible";
   ...
 </L10n>
 ```
+
+or if they just want to use English (and the component supports it) they can skip the L10n part:
+
+```
+<React.Fragment>
+  ...
+  <h4>My app</h4>
+  <Collapsible />
+  ...
+</React.Fragment>
+```
