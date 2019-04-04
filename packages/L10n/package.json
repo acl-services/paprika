@@ -15,9 +15,7 @@
     "@babel/runtime-corejs2": "^7.3.1",
     "@paprika/tokens": "^0.0.1",
     "i18next": "^15.0.4",
-    "json-loader": "^0.5.7",
-    "prop-types": "^15.7.2",
-    "yaml-loader": "^0.5.0"
+    "prop-types": "^15.7.2"
   },
   "peerDependencies": {
     "react": "^16.8.2",
