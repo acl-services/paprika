@@ -49,7 +49,7 @@ blocks:
           # - yarn install                                  works
           # - cache restore jest-$SEMAPHORE_GIT_BRANCH      does not work
           # - yarn install --frozen-lockfile                works
-          - yarn add jest-dom
+          # - yarn add jest-dom                             works
       jobs:
         - name: JEST
           commands:
