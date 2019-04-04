@@ -8,7 +8,7 @@
   "settings": {
     "js_prettier": {
       "debug": true,
-      "prettier_cli_path": "~/.nvm/versions/node/v7.0.0/bin/prettier",
+      "prettier_cli_path": "./node_modules/.bin/prettier",
       "auto_format_on_save": true,
       "auto_format_on_save_excludes": [
       ],

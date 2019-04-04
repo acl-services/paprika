@@ -39,7 +39,7 @@ ja:
       delete: コメントを削除
     pagination:
       intro: 改ページ位置の自動修正、現在は {{currentPage}} ページ
-      page: '{{pageNumber}} ページ'
+      page: "{{pageNumber}} ページ"
       ellipsis: その他のページ
       prev: 前ページ
       next: 次ページ
