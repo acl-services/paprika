@@ -82,24 +82,24 @@ storiesOf("Input", module)
     <div className="story-body story--forms">
       <h3>
         <small>
-          <code>type="text"</code>
+          <code>type=&quot;text&quot;</code>
         </small>
       </h3>
       <Input type="text" value="p@$$w0rD" />
       <br />
       <h3>
         <small>
-          <code>type="password"</code>
+          <code>type=&quot;password&quot;</code>
         </small>
       </h3>
       <Input type="password" value="p@$$w0rD" />
       <br />
       <h3>
         <small>
-          <code>type="number"</code>
+          <code>type=&quot;number&quot;</code>
         </small>
       </h3>
-      Don't do this. Use the &lt;InputNumber&gt; component.
+      Don&apos;t do this. Use the &lt;InputNumber&gt; component.
     </div>
   ))
   .add("With Ref", () => {
