@@ -17,7 +17,6 @@ blocks:
           - npx lerna bootstrap
           - cache store node-modules-$SEMAPHORE_GIT_BRANCH node_modules
           - cache store cypress-$SEMAPHORE_GIT_BRANCH ~/.cache/Cypress
-          - cache store jest-$SEMAPHORE_GIT_BRANCH ~/.cache/Jest
 
   - name: "💅 Format"
     task:
@@ -47,7 +46,9 @@ blocks:
         commands:
           - checkout
           - cache restore node-modules-$SEMAPHORE_GIT_BRANCH
-          - cache restore jest-$SEMAPHORE_GIT_BRANCH
+          # - cache restore jest-$SEMAPHORE_GIT_BRANCH
+          - yarn install --frozen-lockfile
+          # - yarn add jest-dom
       jobs:
         - name: JEST
           commands:
