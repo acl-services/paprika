@@ -1,7 +1,7 @@
 import React from "react";
 import { storiesOf } from "@storybook/react";
 import { withKnobs } from "@storybook/addon-knobs";
-import A11yStory from "./examples/A11yStory";
+import A11yStory from "./examples/test/A11y";
 import HeadingLevelsStory from "./examples/HeadingLevels";
 import HeadingStylesStory from "./examples/HeadingStyles";
 import ScreenerStory from "./examples/test/Screener";
