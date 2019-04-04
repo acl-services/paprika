@@ -11,7 +11,7 @@ export const getI18nObject = (locale = "en") => {
   };
 };
 
-export default function getI18n() {
+export default function useI18n() {
   const _i18n = useContext(L10nContext);
   return _i18n || getI18nObject();
 }

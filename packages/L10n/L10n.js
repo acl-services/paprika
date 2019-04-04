@@ -1,6 +1,6 @@
 import React, { useMemo } from "react";
 import { node, string } from "prop-types";
-import { getI18nObject } from "./getI18n";
+import { getI18nObject } from "./useI18n";
 import Locales from "./locales";
 
 export const L10nContext = React.createContext();
