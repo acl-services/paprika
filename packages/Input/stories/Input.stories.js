@@ -3,6 +3,7 @@ import { storiesOf } from "@storybook/react";
 import Input from "./examples/Basic";
 
 storiesOf("Input", module)
+  .add("Basic", () => <Input />)
   .add("Sizes", () => (
     <div className="story-body story--forms">
       <h3>
