@@ -12,7 +12,7 @@ const propTypes = {
   caption: PropTypes.string,
 
   /** customPropTypes shirtSize */
-  size: ShirtSizes,
+  size: PropTypes.oneOf(ShirtSizes.DEFAULT),
 };
 
 const defaultProps = {
