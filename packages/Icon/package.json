@@ -1,0 +1,28 @@
+{
+  "name": "@paprika/icon",
+  "version": "0.0.1",
+  "description": "Icon component",
+  "author": "@paprika",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/acl-services/paprika/tree/master/packages/icon"
+  },
+  "publishConfig": {
+    "access": "public"
+  },
+  "scripts": {
+    "svgr": "npx @svgr/cli -d components svg --icon --svg-props 'css={`color:${props.color}; width:${props.size}; height:${props.size}; vertical-align:text-top;`}' --svg-props 'width={props.size} height={props.size}' --replace-attr-values '#767676=currentColor' --replace-attr-values '#757575=currentColor' --replace-attr-values '#444=currentColor'"
+  },
+  "dependencies": {
+    "@babel/runtime-corejs2": "^7.3.1",
+    "@paprika/tokens": "^0.0.1",
+    "@svgr/cli": "^4.1.0",
+    "prop-types": "^15.7.2"
+  },
+  "peerDependencies": {
+    "react": "^16.4.0",
+    "react-dom": "^16.4.2",
+    "styled-components": "^4.2.0"
+  }
+}
