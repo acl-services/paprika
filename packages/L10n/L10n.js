@@ -1,4 +1,4 @@
-import React from "react";
+import React, {useMemo} from "react";
 import { node, string } from "prop-types";
 import { i18n } from "./i18n";
 import Locales from "./locales";
@@ -15,9 +15,14 @@ const defaultProps = {
 };
 
 export default function L10n(props) {
-  const _i18n = i18n(Locales);
-  _i18n.changeLanguage(props.locale);
-  return <L10nContext.Provider value={_i18n}>{props.children}</L10nContext.Provider>;
+  const value = useMemo(() => {
+    const _i18n = i18n(Locales);
+    return {
+      locale: props.locale,
+      t: _i18n.getFixedT(props.locale),
+    };
+  }, [props.locale, Locales]);
+  return <L10nContext.Provider value={value}>{props.children}</L10nContext.Provider>;
 }
 
 L10n.propTypes = propTypes;
