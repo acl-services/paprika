@@ -1,11 +1,11 @@
 import React from "react";
-import SomePaprikaComponentThatUsesLocalization from "./SomePaprikaComponentThatUsesLocalization";
+import SomePaprikaComponent from "./SomePaprikaComponent";
 
 export default function FakeAppWithoutContext() {
   return (
     <React.Fragment>
       <h1>Hello World</h1>
-      <SomePaprikaComponentThatUsesLocalization />
+      <SomePaprikaComponent />
     </React.Fragment>
   );
 }
