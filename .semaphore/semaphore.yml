@@ -17,6 +17,7 @@ blocks:
           - npx lerna bootstrap
           - cache store node-modules-$SEMAPHORE_GIT_BRANCH node_modules
           - cache store cypress-$SEMAPHORE_GIT_BRANCH ~/.cache/Cypress
+          - cache store jest-$SEMAPHORE_GIT_BRANCH ~/.cache/Jest
 
   - name: "💅 Format"
     task:
@@ -45,7 +46,8 @@ blocks:
       prologue:
         commands:
           - checkout
-          - yarn install
+          - cache restore node-modules-$SEMAPHORE_GIT_BRANCH
+          - cache restore jest-$SEMAPHORE_GIT_BRANCH
       jobs:
         - name: JEST
           commands:
