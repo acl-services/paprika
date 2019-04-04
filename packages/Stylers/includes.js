@@ -58,7 +58,7 @@ export const placeholder = `
 
   .is-disabled &, &[disabled] {
     ${disabledPlaceholder};
-  }  
+  }
 `;
 
 export const placeholders = `
@@ -108,3 +108,32 @@ export const placeholders = `
     opacity: 1;
   }
 `;
+
+export const formFaded = `{
+  .is-disabled & {
+    opacity: 0.5;
+  }
+}`;
+
+export const formDisabled = `{
+  &.is-disabled,
+  &[disabled] {
+    background-color: ${tokens.color.white};
+    border-color: ${tokens.color.blackLighten70};
+    color: ${tokens.color.blackLighten60};
+    cursor: not-allowed;
+
+    @content;
+  }
+}`;
+
+export const formReadonly = `{
+  background-color: ${tokens.color.blackLighten70};
+  box-shadow: none;
+  color: ${tokens.color.black};
+
+  &,
+  &:focus {
+    border-color: ${tokens.color.blackLighten60};
+  }
+}`;
