@@ -1,8 +1,8 @@
 import React from "react";
 import { Story } from "storybook/assets/styles/common.styles";
-import Heading from "../../Heading";
+import Heading from "../../../Heading";
 
-const ExampleStory = () => {
+const ScreenerStory = () => {
   return (
     <Story>
       <Heading level={1} displayLevel={6}>
@@ -23,8 +23,17 @@ const ExampleStory = () => {
       <Heading level={6} displayLevel={1}>
         Heading Six
       </Heading>
+      <Heading level={1} isLight>
+        Heading One with isLight
+      </Heading>
+      <Heading level={1} hasDivider>
+        Heading One
+      </Heading>
+      <Heading level={1} hasUnderline>
+        Heading One
+      </Heading>
     </Story>
   );
 };
 
-export default ExampleStory;
+export default ScreenerStory;

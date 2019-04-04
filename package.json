@@ -17,6 +17,7 @@
     "storybook": "start-storybook -p 9009 -c .storybook",
     "storybook:build": "build-storybook -c .storybook -o storybook-dist",
     "storybook:screener": "screener-storybook --conf screener.config.js",
+    "jest:watch": "yarn jest --watch",
     "jest": "jest --passWithNoTests",
     "a11y": "echo 'Axe will run on this command'",
     "tokens": "cd packages/tokens && yarn start"

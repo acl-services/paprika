@@ -50,7 +50,7 @@ const defaultProps = {
   isSemantic: true,
 };
 
-const safeValue = n => (n < 1 || isNaN(n) ? 6 : Math.min(n, 6));
+const safeValue = n => (n < 1 || Number.isNaN(n) ? 6 : Math.min(n, 6));
 
 class Heading extends React.Component {
   getElementProps(safeDisplayLevel, safeLevel) {
