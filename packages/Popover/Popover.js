@@ -64,6 +64,9 @@ const propTypes = {
 
   /** Function that provides the scrolling DOM element that contains the popover. */
   getScrollContainer: PropTypes.func,
+
+  /** Should automatically focus on the popover content when it's open, default is true */
+  shouldAutoFocus: PropTypes.bool,
 };
 
 const defaultProps = {
@@ -77,6 +80,7 @@ const defaultProps = {
   offset: parseInt(tokens.spaceLg, 10),
   getPositioningElement: null,
   getScrollContainer: null,
+  shouldAutoFocus: true,
 };
 
 class Popover extends Component {
@@ -263,6 +267,7 @@ class Popover extends Component {
   };
 
   handleTransitionEnd = event => {
+    if (!this.props.shouldAutoFocus) return;
     // NOTE: do this should make more that only focus the content div? should as well
     //       find the first focusable element like button, input, etc?
     //       can focus automatically
