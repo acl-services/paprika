@@ -26,23 +26,23 @@ const SpinnerStyles = () => `
   overflow: hidden;
 }
 
-  &.spinner--small .spinner__visual{
-    border-width: 2px;
-    height: ${stylers.spacer(3)};
-    width: ${stylers.spacer(3)};
-  }
+&.spinner--small .spinner__visual{
+  border-width: 2px;
+  height: ${stylers.spacer(3)};
+  width: ${stylers.spacer(3)};
+}
 
-  &.spinner--medium .spinner__visual{
-    border-width: 3px;
-    height: ${stylers.spacer(6)};
-    width: ${stylers.spacer(6)};
-  }
+&.spinner--medium .spinner__visual{
+  border-width: 3px;
+  height: ${stylers.spacer(6)};
+  width: ${stylers.spacer(6)};
+}
 
-  &.spinner--large .spinner__visual{
-    border-width: 4px;
-    height: ${stylers.spacer(9)};
-    width: ${stylers.spacer(9)};
-  }
+&.spinner--large .spinner__visual{
+  border-width: 4px;
+  height: ${stylers.spacer(9)};
+  width: ${stylers.spacer(9)};
+}
 
 .spinner__caption {
   color: ${tokens.color.blackLighten20};

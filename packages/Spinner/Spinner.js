@@ -26,23 +26,19 @@ const spinnerSize = {
   large: "spinner--large",
   medium: "spinner--medium",
   small: "spinner--small",
-
-  // deprecated values
-  default: "spinner--medium",
-  tiny: "spinner--small",
 };
 
 const Spinner = ({ ariaText, className, caption, size, ...moreProps }) => {
-  const rootClasses = classNames("spinner", className, spinnerSize[size]);
+  const rootClasses = classNames(className, spinnerSize[size]);
 
-  const bestAria = () => ariaText || caption || "Loading"; // TODO: l10n
+  const bestAria = ariaText || caption || "Loading"; // TODO: l10n
 
   return (
-    <div className={rootClasses} data-qa-anchor="spinner" {...moreProps} css={SpinnerStyles}>
+    <div className={rootClasses} css={SpinnerStyles} {...moreProps}>
       <div className="spinner__visual" />
       <div className="spinner__caption">{caption}</div>
       <div className="spinner__aria-alert" role="alert" aria-live="polite">
-        {bestAria()}
+        {bestAria}
       </div>
     </div>
   );
