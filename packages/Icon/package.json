@@ -12,7 +12,7 @@
     "access": "public"
   },
   "scripts": {
-    "svgr": "npx @svgr/cli -d components svg --icon --svg-props 'css={`color:${props.color}; width:${props.size}; height:${props.size}; vertical-align:text-top;`}' --svg-props 'width={props.size} height={props.size}' --replace-attr-values '#767676=currentColor' --replace-attr-values '#757575=currentColor' --replace-attr-values '#444=currentColor'"
+    "svgr": "npx @svgr/cli -d components svg --icon --svg-props 'css={`color:${props.color}; width:${props.size}; height:${props.size}; vertical-align:text-top;`}' --svg-props 'width={props.size} height={props.size}' --replace-attr-values '#767676=currentColor' --replace-attr-values '#757575=currentColor' --replace-attr-values '#444=currentColor' && npx create-index ./components"
   },
   "dependencies": {
     "@babel/runtime-corejs2": "^7.3.1",
@@ -24,5 +24,8 @@
     "react": "^16.4.0",
     "react-dom": "^16.4.2",
     "styled-components": "^4.2.0"
+  },
+  "devDependencies": {
+    "create-index": "^2.4.0"
   }
 }
