@@ -1,3 +1,4 @@
+/* eslint-disable jsx-a11y/click-events-have-key-events */
 import React, { Component } from "react";
 import PropTypes from "prop-types";
 import momentPropTypes from "react-moment-proptypes";
@@ -57,11 +58,12 @@ class CalendarController extends Component {
     this.setState({ showShortcutPanel: false });
   };
 
-  renderMonthHeaderElement = ({ month, onMonthSelect, onYearSelect }) => (
+  renderMonthHeaderElement = ({ month }) => (
     // <Button className="aclui-calendar-shortcut-tigger" onClick={this.handleClickMonthHeader} isDropdown type="flat">
     //   {month.format("MMMM YYYY")}
     // </Button>
     // TODO: Replace by button with icon
+    // eslint-disable-next-line react/button-has-type
     <button>{month.format("MMMM YYYY")}</button>
   );
 
@@ -77,6 +79,7 @@ class CalendarController extends Component {
 
   renderDayContents = day => (
     // TODO: Replace by raw button
+    // eslint-disable-next-line jsx-a11y/no-static-element-interactions
     <span
       className="aclui-calendar-day-mask"
       onClick={e => {
