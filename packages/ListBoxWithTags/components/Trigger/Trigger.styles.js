@@ -1,7 +1,11 @@
-import styled from "styled-components";
-import RawButton from "@paprika/raw-button";
+import RawButtonStyled from "@paprika/raw-button/RawButton.styles";
 
-const TriggerStyled = styled(RawButton)`
+const triggerStyles = `
+  ${RawButtonStyled}
+
+  border: 1px solid #d7d7d7;
+  border-radius: 3px;
+
   && {
     box-sizing: border-box;
     display: flex;
@@ -10,4 +14,4 @@ const TriggerStyled = styled(RawButton)`
   }
 `;
 
-export default TriggerStyled;
+export default triggerStyles;

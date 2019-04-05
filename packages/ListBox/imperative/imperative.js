@@ -2,8 +2,8 @@ import * as actionTypes from "../store/actionTypes";
 
 const handleImperative = (state, dispatch) => () => {
   return {
-    clear: () => {
-      dispatch({ type: actionTypes.clear });
+    clear: (isPopoverOpen = false) => {
+      dispatch({ type: actionTypes.clear, payload: { isPopoverOpen } });
     },
     reset: () => {
       dispatch({ type: actionTypes.reset });

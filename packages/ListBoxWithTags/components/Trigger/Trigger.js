@@ -1,9 +1,10 @@
 import React from "react";
 import PropTypes from "prop-types";
+import RawButton from "@paprika/raw-button";
 import useListBox from "@paprika/listbox/store/useListBox";
 import * as actionTypes from "@paprika/listbox/store/actionTypes";
 import { getDOMAttributesForListBoxButton } from "@paprika/listbox/helpers/DOMAttributes";
-import TriggerStyled from "./Trigger.styles";
+import triggerStyles from "./Trigger.styles";
 
 const propTypes = {
   hasCustomTags: PropTypes.bool.isRequired,
@@ -20,9 +21,9 @@ export default function Trigger(props) {
   };
 
   return (
-    <TriggerStyled onClick={handleClick} {...getDOMAttributesForListBoxButton()} ref={state.refTrigger}>
+    <RawButton css={triggerStyles} onClick={handleClick} {...getDOMAttributesForListBoxButton()} ref={state.refTrigger}>
       {props.children}
-    </TriggerStyled>
+    </RawButton>
   );
 }
 

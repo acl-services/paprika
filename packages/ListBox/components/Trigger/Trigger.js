@@ -9,7 +9,7 @@ import * as actionTypes from "../../store/actionTypes";
 import {
   ListBoxTriggerStyled,
   TriggerArrowStyled,
-  ButtonClearStyled,
+  buttonClearStyles,
   TriggerActionIconsContainer,
 } from "./Trigger.styles";
 import { getDOMAttributesForListBoxButton } from "../../helpers/DOMAttributes";
@@ -42,7 +42,7 @@ export default function Trigger(props) {
       return;
     }
 
-    dispatch({ type: actionTypes.clear });
+    dispatch({ type: actionTypes.clear, payload: { isPopoverOpen: false } });
   };
 
   return (
@@ -57,6 +57,7 @@ export default function Trigger(props) {
           onKeyDown={handleKeyboardKeys(state, dispatch)}
           onKeyUp={() => {}}
           isDisabled={isDisabled}
+          data-raw-button="trigger"
         >
           <Label
             activeOption={state.options[state.activeOption]}
@@ -68,14 +69,15 @@ export default function Trigger(props) {
         </RawButton>
       )}
       <TriggerActionIconsContainer>
-        <ButtonClearStyled
+        <RawButton
           hasRenderTrigger={renderTrigger}
           hasSelectedOptions={state.selectedOptions.length}
           isDisabled={isDisabled}
           onClick={handleClickClear}
+          css={buttonClearStyles}
         >
           <span dangerouslySetInnerHTML={{ __html: "&times;" }} />
-        </ButtonClearStyled>
+        </RawButton>
         <TriggerArrowStyled
           hasRenderTrigger={renderTrigger}
           isDisabled={isDisabled}

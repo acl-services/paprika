@@ -109,7 +109,7 @@ export default function Footer(props) {
     if (typeof result === "boolean" && result === false) {
       return;
     }
-    dispatch({ type: actionTypes.clear });
+    dispatch({ type: actionTypes.clear, payload: { isPopoverOpen: true } });
   };
 
   if (state.Footer) {

@@ -227,7 +227,7 @@ export default function reducer(state, { type, payload }) {
       return {
         ...state,
         activeOption: null,
-        isPopoverOpen: true,
+        isPopoverOpen: payload.isPopoverOpen,
         selectedOptions: [],
       };
     }

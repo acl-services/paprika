@@ -5,7 +5,8 @@ import tokens from "@paprika/tokens";
 export const ListBoxTriggerStyled = styled.div`
   position: relative;
 
-  & > ${RawButtonStyled} {
+  & > [data-raw-button="trigger"] {
+    border: 1px solid red;
     padding: 8px; /* Define Trigger's height */
     align-items: center;
     background-color: #ffffff;
@@ -50,17 +51,19 @@ export const TriggerActionIconsContainer = styled.div`
   pointer-events: none;
 `;
 
-export const ButtonClearStyled = styled(RawButtonStyled)`
+export const buttonClearStyles = `
+  ${RawButtonStyled}
   && {
     align-items: center;
     border: 0;
     display: flex;
     height: 100%;
     padding: 0;
+    padding-left: 8px;
     pointer-events: visible;
     position: relative;
     top: 1px;
-    width: 24px;
+    width: 32px;
 
     && span {
       background: #9c9c9c;
