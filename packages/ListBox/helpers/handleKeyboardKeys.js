@@ -49,6 +49,8 @@ const handleKeyboardKeys = (state, dispatch) => event => {
       {
         event.preventDefault();
 
+        debugger;
+
         if (state.activeOption === null) {
           if (state.isInlineDisplay) {
             return;

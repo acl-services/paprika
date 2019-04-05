@@ -1,4 +1,5 @@
 import styled from "styled-components";
+import RawButton from "@paprika/raw-button";
 import RawButtonStyled from "@paprika/raw-button/RawButton.styles";
 import tokens from "@paprika/tokens";
 
@@ -51,7 +52,7 @@ export const TriggerActionIconsContainer = styled.div`
   pointer-events: none;
 `;
 
-export const buttonClearStyles = `
+export const RawButtonClearButtonStyled = styled(RawButton)`
   ${RawButtonStyled}
   && {
     align-items: center;
@@ -86,6 +87,10 @@ export const buttonClearStyles = `
     }
 
     ${props => {
+      if (props.hasFooter && props.isPopoverOpen) {
+        return "display: none";
+      }
+
       if (props.hasRenderTrigger || !props.hasSelectedOptions) {
         return "display: none";
       }

@@ -61,7 +61,7 @@ function getSelectedOptions(state) {
   return getSelectedOptionSingle(state);
 }
 
-export default function Footer(props) {
+const Footer = React.forwardRef((props, ref) => {
   const [state, dispatch] = useListBox();
 
   const args = [state.options, state, dispatch];
@@ -114,7 +114,7 @@ export default function Footer(props) {
 
   if (state.Footer) {
     return (
-      <FooterContainerStyled>
+      <FooterContainerStyled ref={ref}>
         <div>
           {isAcceptVisible && (
             <Button kind={kindAccept} size={size} onClick={handleClickAccept}>
@@ -139,7 +139,7 @@ export default function Footer(props) {
   }
 
   return null;
-}
+});
 
 Footer.componentType = "ListBox.Footer";
 Footer.propTypes = propTypes;
