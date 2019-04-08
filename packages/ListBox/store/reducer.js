@@ -1,29 +1,29 @@
-import * as actionTypes from "./actionTypes";
+import useListBox from "./useListBox";
 import handleChange from "../helpers/handleChange";
 import { getNextOptionActiveIndexLooping } from "../helpers/options";
 
 export default function reducer(state, { type, payload }) {
   switch (type) {
-    case actionTypes.closePopover:
+    case useListBox.types.closePopover:
       return {
         ...state,
         filteredOptions: [],
         isPopoverOpen: false,
       };
 
-    case actionTypes.openPopover:
+    case useListBox.types.openPopover:
       return {
         ...state,
         isPopoverOpen: true,
       };
 
-    case actionTypes.togglePopover:
+    case useListBox.types.togglePopover:
       return {
         ...state,
         isPopoverOpen: !state.isPopoverOpen,
       };
 
-    case actionTypes.setActiveOption: {
+    case useListBox.types.setActiveOption: {
       return {
         ...state,
         activeOption: payload.activeOptionIndex,
@@ -32,7 +32,7 @@ export default function reducer(state, { type, payload }) {
       };
     }
 
-    case actionTypes.toggleSingleSelection: {
+    case useListBox.types.toggleSingleSelection: {
       let isPopoverOpen = payload.isPopoverOpen;
       if (state.Footer) {
         isPopoverOpen = true;
@@ -57,7 +57,7 @@ export default function reducer(state, { type, payload }) {
       };
     }
 
-    case actionTypes.toggleMultipleSelection: {
+    case useListBox.types.toggleMultipleSelection: {
       const selectedOptionsArray = state.selectedOptions.slice();
 
       // handle hide options
@@ -87,7 +87,7 @@ export default function reducer(state, { type, payload }) {
       };
     }
 
-    case actionTypes.applyFilter: {
+    case useListBox.types.applyFilter: {
       let activeOption = null;
       if (payload.filteredOptions.length === 1) {
         activeOption = payload.filteredOptions[0];
@@ -105,21 +105,21 @@ export default function reducer(state, { type, payload }) {
       };
     }
 
-    case actionTypes.setTriggerWidth: {
+    case useListBox.types.setTriggerWidth: {
       return {
         ...state,
         triggerWidth: payload,
       };
     }
 
-    case actionTypes.setHasPopupOpened: {
+    case useListBox.types.setHasPopupOpened: {
       return {
         ...state,
         hasPopupOpened: payload,
       };
     }
 
-    case actionTypes.toggleSelectOptionsByGroup: {
+    case useListBox.types.toggleSelectOptionsByGroup: {
       const isSelected = state.selectedOptions.includes(payload.index);
       let selectedOptionsArray = [];
 
@@ -155,7 +155,7 @@ export default function reducer(state, { type, payload }) {
       };
     }
 
-    case actionTypes.updateOptions: {
+    case useListBox.types.updateOptions: {
       const options = payload;
       const selectedOptions = Object.keys(options)
         .filter(key => options[key].isSelected)
@@ -168,7 +168,7 @@ export default function reducer(state, { type, payload }) {
       };
     }
 
-    case actionTypes.unselectOptions: {
+    case useListBox.types.unselectOptions: {
       if (!Array.isArray(payload)) {
         throw Error("unselectOptions action expect an array as a payload");
       }
@@ -189,7 +189,7 @@ export default function reducer(state, { type, payload }) {
       };
     }
 
-    case actionTypes.hideOptions: {
+    case useListBox.types.hideOptions: {
       if (!Array.isArray(payload)) {
         throw Error("hideOptions action expect an array as a payload");
       }
@@ -205,7 +205,7 @@ export default function reducer(state, { type, payload }) {
       };
     }
 
-    case actionTypes.unhideOptions: {
+    case useListBox.types.unhideOptions: {
       if (!Array.isArray(payload)) {
         throw Error("unhideOptions action expect an array as a payload");
       }
@@ -221,7 +221,7 @@ export default function reducer(state, { type, payload }) {
       };
     }
 
-    case actionTypes.clear: {
+    case useListBox.types.clear: {
       handleChange(state, { activeOptionIndex: 0 }, [], "clear");
       return {
         ...state,
@@ -231,7 +231,7 @@ export default function reducer(state, { type, payload }) {
       };
     }
 
-    case actionTypes.reset: {
+    case useListBox.types.reset: {
       handleChange(
         state.originalState,
         { activeOptionIndex: state.originalState.activeOption },
@@ -246,7 +246,7 @@ export default function reducer(state, { type, payload }) {
       };
     }
 
-    case actionTypes.accept: {
+    case useListBox.types.accept: {
       return {
         ...state,
         lastKnownSelectedOptions: state.selectedOptions.slice(0),
@@ -254,7 +254,7 @@ export default function reducer(state, { type, payload }) {
       };
     }
 
-    case actionTypes.cancel: {
+    case useListBox.types.cancel: {
       return {
         ...state,
         selectedOptions: state.lastKnownSelectedOptions.slice(0),
@@ -262,10 +262,17 @@ export default function reducer(state, { type, payload }) {
       };
     }
 
-    case actionTypes.setHeight: {
+    case useListBox.types.setHeight: {
       return {
-        height: payload,
         ...state,
+        height: payload,
+      };
+    }
+
+    case useListBox.types.setHasFooter: {
+      return {
+        ...state,
+        hasFooter: payload,
       };
     }
 

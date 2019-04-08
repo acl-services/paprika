@@ -4,7 +4,8 @@ export default function Options(props) {
   let index = -1;
 
   return React.Children.map(props.children, child => {
-    if (child.type && child.type.componentType === "ListBox.Group") {
+    const { componentType } = child.type;
+    if (child.type && componentType === "ListBox.Group") {
       const title = child.props.title;
       const groupName = child.props.groupName || title;
       return React.Children.map(child.props.children, _child => {
@@ -13,7 +14,12 @@ export default function Options(props) {
       });
     }
 
-    if (child.type && child.type.componentType === "ListBox.Option") {
+    if (child.type && componentType === "ListBox.Footer") {
+      props.onFooterFound(child);
+      return null;
+    }
+
+    if (child.type && componentType === "ListBox.Option") {
       index += 1;
       return React.cloneElement(child, { ...child.props, index });
     }

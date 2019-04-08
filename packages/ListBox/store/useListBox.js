@@ -65,3 +65,6 @@ useListBox.types = types;
 // - [] add story with pre created filters for groups
 // - [] where should onChange be fired on the reducer? in what file?
 // - [] add useEffect for props on children :P since I removed the effect for tracking children changes
+// - [] replace actionTypes import for useListBox.types.
+
+// CURRENT keep working on footer has footer and make it block any other action unless the buttons are clicked

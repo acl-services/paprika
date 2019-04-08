@@ -7,6 +7,7 @@ export const hideOptions = "HIDE_OPTION";
 export const openPopover = "OPEN_POPOVER";
 export const reset = "RESET";
 export const setActiveOption = "SET_ACTION_OPTION";
+export const setHasFooter = "SET_HAS_FOOTER";
 export const setHasPopupOpened = "SET_HAS_POPUP_OPENED";
 export const setHeight = "SET_HEIGHT";
 export const setTriggerWidth = "SET_TRIGGER_WIDTH";

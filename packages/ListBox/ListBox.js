@@ -97,7 +97,11 @@ export const defaultProps = {
 
 export function ListBox(props) {
   const { renderTrigger, placeholder, height, hasNotResultsMessage, children } = props;
-  const [state] = useListBox();
+  const [Footer, setFooter] = React.useState(null);
+
+  const handleFooterFound = Footer => {
+    setFooter(Footer);
+  };
 
   return (
     <React.Fragment>
@@ -106,10 +110,10 @@ export function ListBox(props) {
         <Box>
           <Filter />
           <List height={height}>
-            <Options>{children}</Options>
+            <Options onFooterFound={handleFooterFound}>{children}</Options>
           </List>
           <NoResults label={hasNotResultsMessage} />
-          {state.Footer}
+          {Footer || null}
         </Box>
       </Content>
     </React.Fragment>
