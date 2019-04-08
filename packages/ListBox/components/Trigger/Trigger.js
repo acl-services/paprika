@@ -75,7 +75,7 @@ export default function Trigger(props) {
           isDisabled={isDisabled}
           onClick={handleClickClear}
           isPopoverOpen={state.isPopoverOpen}
-          hasFooter={state.Footer}
+          hasFooter={state.hasFooter}
           testy="testy"
         >
           <span dangerouslySetInnerHTML={{ __html: "&times;" }} />

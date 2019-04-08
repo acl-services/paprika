@@ -37,7 +37,7 @@ const handleBlur = (state, dispatch) => () => {
     ) {
       dispatch({ type: actionTypes.closePopover });
 
-      if (state.Footer) {
+      if (state.hasFooter) {
         dispatch({ type: actionTypes.cancel });
       }
     }

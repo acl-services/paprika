@@ -103,7 +103,7 @@ export default function Filter(props) {
 
   const handleBlur = () => {
     window.requestAnimationFrame(() => {
-      if (state.Footer) {
+      if (state.hasFooter) {
         // if has footer the responsible of closing is the Footer no the onblur event
         return;
       }

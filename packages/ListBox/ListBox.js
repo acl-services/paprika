@@ -96,10 +96,18 @@ export const defaultProps = {
 };
 
 export function ListBox(props) {
+  const [state, dispatch] = useListBox();
   const { renderTrigger, placeholder, height, hasNotResultsMessage, children } = props;
   const [Footer, setFooter] = React.useState(null);
 
   const handleFooterFound = Footer => {
+    if (!state.hasFooter) {
+      dispatch({
+        type: useListBox.types.setHasFooter,
+        payload: true,
+      });
+    }
+
     setFooter(Footer);
   };
 

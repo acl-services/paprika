@@ -9,7 +9,6 @@ export const StoreContext = React.createContext();
 
 function initializeState(props) {
   const {
-    placeholder,
     childrenOptions,
     height,
     hideOptionOnSelected,
@@ -18,6 +17,7 @@ function initializeState(props) {
     isMulti,
     isPopoverEager,
     onChange,
+    placeholder,
     preventOnBlurOnTrigger,
     refFilterInput,
     refListBox,
@@ -85,11 +85,10 @@ export default function Provider(props) {
   const refListBoxContainer = React.useRef(null);
   const refTrigger = React.useRef(null);
   const refTriggerContainer = React.useRef(null);
-  const refFooterContainer = React.useRef(null);
 
   const [state, dispatch] = React.useReducer(
     reducer,
-    { ...props, refFooterContainer, refFilterInput, refListBox, refListBoxContainer, refTrigger, refTriggerContainer },
+    { ...props, refFilterInput, refListBox, refListBoxContainer, refTrigger, refTriggerContainer },
     initializeState
   );
 

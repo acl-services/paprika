@@ -34,7 +34,7 @@ export default function reducer(state, { type, payload }) {
 
     case useListBox.types.toggleSingleSelection: {
       let isPopoverOpen = payload.isPopoverOpen;
-      if (state.Footer) {
+      if (state.hasFooter) {
         isPopoverOpen = true;
       }
 
