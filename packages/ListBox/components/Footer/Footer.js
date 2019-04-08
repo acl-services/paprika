@@ -112,34 +112,32 @@ const Footer = React.forwardRef((props, ref) => {
     dispatch({ type: actionTypes.clear, payload: { isPopoverOpen: true } });
   };
 
-  if (state.Footer) {
-    return (
-      <FooterContainerStyled ref={ref}>
-        <div>
-          {isAcceptVisible && (
-            <Button kind={kindAccept} size={size} onClick={handleClickAccept}>
-              {labelAccept}
-            </Button>
-          )}
-          {isCancelVisible && (
-            <Button kind={kindCancel} size={size} onClick={handleClickCancel}>
-              {labelCancel}
-            </Button>
-          )}
-        </div>
-        <div>
-          {isClearVisible && (
-            <Button kind={kindClear} size={size} onClick={handleClickClear}>
-              {labelClear}
-            </Button>
-          )}
-        </div>
-      </FooterContainerStyled>
-    );
-  }
-
-  return null;
+  return (
+    <FooterContainerStyled ref={ref}>
+      <div>
+        {isAcceptVisible && (
+          <Button kind={kindAccept} size={size} onClick={handleClickAccept}>
+            {labelAccept}
+          </Button>
+        )}
+        {isCancelVisible && (
+          <Button kind={kindCancel} size={size} onClick={handleClickCancel}>
+            {labelCancel}
+          </Button>
+        )}
+      </div>
+      <div>
+        {isClearVisible && (
+          <Button kind={kindClear} size={size} onClick={handleClickClear}>
+            {labelClear}
+          </Button>
+        )}
+      </div>
+    </FooterContainerStyled>
+  );
 });
+
+export default Footer;
 
 Footer.componentType = "ListBox.Footer";
 Footer.propTypes = propTypes;

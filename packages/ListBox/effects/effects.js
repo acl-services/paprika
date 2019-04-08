@@ -1,18 +1,13 @@
 import * as actionTypes from "../store/actionTypes";
-import { getDataOptions, getDataGroups } from "../helpers/dataStructure";
+import { getDataOptions } from "../helpers/dataStructure";
 
-function updateChildren(dispatch, isMulti, children) {
-  const groups = getDataGroups(children);
-  const options = getDataOptions(children, groups, isMulti);
+export const handleEffectChildren = (dispatch, children) => () => {
+  const options = getDataOptions(children);
 
   dispatch({
     type: actionTypes.updateOptions,
     payload: options,
   });
-}
-
-export const handleEffectChildren = (dispatch, isMulti, children) => () => {
-  updateChildren(dispatch, isMulti, children);
 };
 
 export const handleEffectIsPopOverOpen = (state, dispatch) => () => {

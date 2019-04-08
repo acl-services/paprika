@@ -1,8 +1,7 @@
 import React from "react";
 import uuidv4 from "uuid/v4";
-import ListBox from "@paprika/listbox";
 
-export function createOption({ index, child, title = null, isOptionActionGroup = false }) {
+export function createOption({ index, child, title = null }) {
   const { label, value, isHidden, isSelected, isDisabled, onClick, isInteractive, renderChecker } = child.props;
 
   return {
@@ -14,7 +13,6 @@ export function createOption({ index, child, title = null, isOptionActionGroup =
     isDisabled,
     isHidden,
     isInteractive,
-    isOptionActionGroup,
     isSelected,
     label: label || child.props.children, // we will try to extract the label from the children if doesn't have label
     onClick,
@@ -23,23 +21,11 @@ export function createOption({ index, child, title = null, isOptionActionGroup =
   };
 }
 
-export function getDataOptions(children, groups, isMulti) {
+export function getDataOptions(children) {
   if (!children) throw Error("Listbox.Options is a required prop, please check you are passing correctly the data");
 
   const options = {};
   let index = 0;
-
-  // shouldn't be muliple selection filter on a single select listbox
-  if (groups.length && isMulti) {
-    groups.forEach(group => {
-      options[index] = createOption({
-        index,
-        child: <ListBox.Option>{group}</ListBox.Option>,
-        isOptionActionGroup: true,
-      });
-      index += 1;
-    });
-  }
 
   React.Children.toArray(children).forEach(child => {
     if (child.type && child.type.componentType === "ListBox.Group") {
@@ -70,19 +56,4 @@ export function getDataGroups(children) {
   }).filter(chunk => chunk);
 
   return groups;
-}
-
-export function getFooter(children) {
-  const footer = React.Children.toArray(children).filter(child => {
-    if (child.type.componentType === "ListBox.Footer") {
-      return child.type;
-    }
-    return false;
-  });
-
-  if (footer.length) {
-    return footer[0];
-  }
-
-  return null;
 }

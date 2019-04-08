@@ -1,6 +1,7 @@
 import React from "react";
 import PropTypes from "prop-types";
 import useListBox from "../../store/useListBox";
+import labelStyles from "./Label.styles";
 
 const propTypes = {
   placeholder: PropTypes.string,
@@ -33,12 +34,12 @@ export default function Label(props) {
       .join(", ");
 
     return optionsLength > 1 ? (
-      <React.Fragment>
+      <span css={labelStyles}>
         <span>({optionsLength})&nbsp;</span>
         {label}
-      </React.Fragment>
+      </span>
     ) : (
-      <React.Fragment>{label}</React.Fragment>
+      <span css={labelStyles}>{label}</span>
     );
   }
 

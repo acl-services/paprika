@@ -1,7 +1,6 @@
 import React from "react";
 import PropTypes from "prop-types";
 import useListBox from "../../store/useListBox";
-import { isOptionVisible } from "../../helpers/options";
 import * as effects from "./effects";
 import * as actionTypes from "../../store/actionTypes";
 
@@ -80,7 +79,9 @@ export default function Filter(props) {
         return [];
       }
 
-      return filteredOptions.map(key => Number.parseInt(key, 10)).filter(keyInt => isOptionVisible(state, keyInt));
+      return filteredOptions
+        .map(key => Number.parseInt(key, 10))
+        .filter(keyInt => !state.selectedOptions.includes(keyInt));
     }
 
     return [];
@@ -98,20 +99,6 @@ export default function Filter(props) {
     const filteredOptions = filter(textSearchValue);
     const hasNoResults = textSearchValue && filteredOptions.length === 0;
     applyFilter({ filteredOptions, hasNoResults });
-  };
-
-  const handleKeyDown = event => {
-    // Avoid propagation of the cursor
-    // at the start or at end of the input when the user click Arrow Up or Down
-    // Also prevent to firing the space bar or enter key while filtering
-
-    if (event.key === "ArrowUp" || event.key === "ArrowDown") {
-      event.preventDefault();
-    }
-
-    if (event.key === " ") {
-      event.stopPropagation();
-    }
   };
 
   const handleBlur = () => {
@@ -155,7 +142,7 @@ export default function Filter(props) {
           ref={state.refFilterInput}
           type="text"
           onChange={handleChangeFilter}
-          onKeyDown={props.onKeyDown || handleKeyDown}
+          onKeyDown={props.onKeyDown}
           onBlur={handleBlur}
           value={value || textSearch || ""}
           placeholder={placeholder}

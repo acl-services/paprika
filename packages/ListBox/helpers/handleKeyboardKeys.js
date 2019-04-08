@@ -48,9 +48,6 @@ const handleKeyboardKeys = (state, dispatch) => event => {
     case " ":
       {
         event.preventDefault();
-
-        debugger;
-
         if (state.activeOption === null) {
           if (state.isInlineDisplay) {
             return;
@@ -68,7 +65,7 @@ const handleKeyboardKeys = (state, dispatch) => event => {
 
         const option = state.options[state.activeOption];
 
-        if (option.isDisabled) {
+        if (option && option.isDisabled) {
           return;
         }
 

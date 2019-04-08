@@ -14,12 +14,18 @@ export function getDOMAttributesForListBox(state) {
   };
 }
 
-export const getDOMAttributesForListBoxOption = (index, state) => () => {
-  return index === state.activeOption
-    ? {
-        "aria-selected": "true",
-      }
-    : "";
+// TODO Remove after refactor of Option and Options render
+// export const getDOMAttributesForListBoxOption = (index, state) => () => {
+//   return index === state.activeOption
+//     ? {
+//         "aria-selected": "true",
+//       }
+//     : "";
+// };
+
+export const getA11yAttributesForOption = isSelected => {
+  const a11yIsSelected = { "aria-selected": `${isSelected ? "true" : "false"}` };
+  return { role: "option", ...a11yIsSelected };
 };
 
 export function getDOMAttributesForListBoxButton() {

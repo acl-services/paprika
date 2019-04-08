@@ -95,9 +95,10 @@ export const defaultProps = {
   zIndex: 1,
 };
 
-export function ListBoxStructure(props) {
-  const { renderTrigger, placeholder, height, hasNotResultsMessage } = props;
+export function ListBox(props) {
+  const { renderTrigger, placeholder, height, hasNotResultsMessage, children } = props;
   const [state] = useListBox();
+
   return (
     <React.Fragment>
       <Trigger renderTrigger={renderTrigger} placeholder={placeholder} />
@@ -105,7 +106,7 @@ export function ListBoxStructure(props) {
         <Box>
           <Filter />
           <List height={height}>
-            <Options />
+            <Options>{children}</Options>
           </List>
           <NoResults label={hasNotResultsMessage} />
           {state.Footer}
@@ -115,18 +116,19 @@ export function ListBoxStructure(props) {
   );
 }
 
-ListBoxStructure.propTypes = {
+ListBox.propTypes = {
   hasNotResultsMessage: PropTypes.string.isRequired,
   height: PropTypes.number.isRequired,
   placeholder: PropTypes.string.isRequired,
   renderTrigger: PropTypes.func,
+  children: PropTypes.node.isRequired,
 };
 
-ListBoxStructure.defaultProps = {
+ListBox.defaultProps = {
   renderTrigger: null,
 };
 
-const ListBox = React.forwardRef((props, ref) => {
+const ListBoxContainer = React.forwardRef((props, ref) => {
   const [state, dispatch] = useListBox();
 
   // IMPERATIVE API
@@ -134,7 +136,6 @@ const ListBox = React.forwardRef((props, ref) => {
   React.useImperativeHandle(ref, imperativeHandle);
 
   // EFFECTS
-  const handleEffectChildren = effects.handleEffectChildren(dispatch, props.isMulti, props.children);
   const handleEffectHeightChange = effects.handleEffectHeightChange(props, dispatch);
   const handleEffectIsDisabledChange = effects.handleEffectIsDisabledChange(dispatch);
   const handleEffectIsPopOverOpen = effects.handleEffectIsPopOverOpen(state, dispatch);
@@ -142,7 +143,6 @@ const ListBox = React.forwardRef((props, ref) => {
   const handleEffectListBoxWidth = effects.handleEffectListBoxWidth(state, dispatch);
   const handleEffectSelectedOptions = effects.handleEffectSelectedOptions(state, dispatch);
 
-  React.useEffect(handleEffectChildren, [props.children]);
   React.useEffect(handleEffectHeightChange, [props.height]);
   React.useEffect(handleEffectIsDisabledChange, [props.isDisabled]);
   React.useLayoutEffect(handleEffectIsPopOverOpen, [state.isPopoverOpen]);
@@ -166,7 +166,7 @@ const ListBox = React.forwardRef((props, ref) => {
     ...moreProps
   } = props;
 
-  const ListBoxStructureProps = {
+  const ListBoxProps = {
     children,
     hasNotResultsMessage,
     height,
@@ -175,17 +175,17 @@ const ListBox = React.forwardRef((props, ref) => {
   };
 
   if (isInlineDisplay) {
-    return <ListBoxStructure {...ListBoxStructureProps} />;
+    return <ListBox {...ListBoxProps}>{children}</ListBox>;
   }
 
   return (
     <Popover {...moreProps} isEager={isPopoverEager}>
-      <ListBoxStructure {...ListBoxStructureProps} />
+      <ListBox {...ListBoxProps}>{children}</ListBox>
     </Popover>
   );
 });
 
-export default ListBox;
+export default ListBoxContainer;
 
-ListBox.propTypes = propTypes;
-ListBox.defaultProps = defaultProps;
+ListBoxContainer.propTypes = propTypes;
+ListBoxContainer.defaultProps = defaultProps;

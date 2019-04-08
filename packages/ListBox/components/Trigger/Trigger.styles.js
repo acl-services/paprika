@@ -7,7 +7,6 @@ export const ListBoxTriggerStyled = styled.div`
   position: relative;
 
   & > [data-raw-button="trigger"] {
-    border: 1px solid red;
     padding: 8px; /* Define Trigger's height */
     align-items: center;
     background-color: #ffffff;
@@ -16,12 +15,9 @@ export const ListBoxTriggerStyled = styled.div`
     color: #3f3d3c;
     display: block;
     font-size: 14px;
-    overflow: hidden;
     position: relative;
     text-align: left;
-    text-overflow: ellipsis;
     transition: border-color 0.2s;
-    white-space: nowrap;
     width: 100%;
 
     ${props => {

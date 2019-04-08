@@ -106,7 +106,7 @@ export default function ListBoxWithTagsWithProvider(props) {
       {...props}
       hasFilter={props.hasCustomTags ? false : props.hasFilter || true}
       isMulti
-      childrenListBoxOptions={options}
+      childrenOptions={options}
       preventOnBlurOnTrigger
     >
       <ListBoxWithTags {...props} onAddCustomTag={handleAddCustomTag}>

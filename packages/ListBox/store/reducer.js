@@ -60,21 +60,20 @@ export default function reducer(state, { type, payload }) {
     case actionTypes.toggleMultipleSelection: {
       const selectedOptionsArray = state.selectedOptions.slice();
 
-      // handle hide the option
+      // handle hide options
+      let options = null;
+      if (state.hideOptionOnSelected) {
+        options = { ...state.options };
+        options[payload.activeOptionIndex].isHidden = true;
+      }
+
       if (selectedOptionsArray.includes(payload.activeOptionIndex)) {
         const index = selectedOptionsArray.indexOf(payload.activeOptionIndex);
         selectedOptionsArray.splice(index, 1);
         handleChange(state, payload, selectedOptionsArray, "removed");
       } else {
         selectedOptionsArray.push(payload.activeOptionIndex);
-
         handleChange(state, payload, selectedOptionsArray, "added");
-      }
-
-      let options = null;
-      if (state.hideOptionOnSelected) {
-        options = { ...state.options };
-        options[payload.activeOptionIndex].isHidden = true;
       }
 
       return {
@@ -239,8 +238,10 @@ export default function reducer(state, { type, payload }) {
         state.originalState.selectedOptions,
         "reset"
       );
+
       return {
         ...state.originalState,
+        isPopoverOpen: false,
         originalState: state.originalState,
       };
     }

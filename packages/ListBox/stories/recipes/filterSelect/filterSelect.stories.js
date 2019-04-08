@@ -36,9 +36,9 @@ const FilterQty = React.forwardRef((props, ref) => {
 
 const FilterColor = React.forwardRef((props, ref) => {
   return (
-    <ListBox ref={ref} onChange={props.onChange} isMulti placeholder="Color">
+    <ListBox isMulti ref={ref} onChange={props.onChange} placeholder="Color">
       {[...new Set(items.map(item => item.color))].map(item => (
-        <ListBox.Option value={item} key={item}>
+        <ListBox.Option value={item} label={item} key={item}>
           {item}
         </ListBox.Option>
       ))}
@@ -68,13 +68,13 @@ function Table() {
   const [filterPriceValue, setFilterPriceValue] = React.useState(null);
   const [filterQtyValue, setFilterQtyValue] = React.useState(null);
 
-  const handleChangeFilterColor = (indices, options) => {
-    if (indices.length === 0) {
+  const handleChangeFilterColor = (indexes, options) => {
+    if (indexes.length === 0) {
       setFilterColorValue(null);
       return;
     }
 
-    const values = indices.map(index => options[index]);
+    const values = indexes.map(index => options[index]);
     setFilterColorValue(values);
   };
 

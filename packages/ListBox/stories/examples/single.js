@@ -1,3 +1,4 @@
+/* eslint-disable react/no-array-index-key */
 import React from "react";
 import { Frame, ImageOption } from "../stories.styles";
 import ListBox from "../..";
@@ -13,6 +14,9 @@ export const Basic = () => (
       <ListBox.Option>Deadpool</ListBox.Option>
       <ListBox.Option>Spawn</ListBox.Option>
       <ListBox.Option>Wolverine</ListBox.Option>
+      <ListBox.Option>Black Widow</ListBox.Option>
+      <ListBox.Option>Hawkeye</ListBox.Option>
+      <ListBox.Option>Scarlet Witch</ListBox.Option>
     </ListBox>
   </Frame>
 );
@@ -137,6 +141,20 @@ export const BasicIsDisabled = () => (
   </Frame>
 );
 
+export const BasicPreselectedOption = () => (
+  <Frame>
+    <ListBox>
+      <ListBox.Option>Punisher</ListBox.Option>
+      <ListBox.Option>Catwoman</ListBox.Option>
+      <ListBox.Option>Venom</ListBox.Option>
+      <ListBox.Option>Thunderbolts</ListBox.Option>
+      <ListBox.Option isSelected>Deadpool</ListBox.Option>
+      <ListBox.Option>Spawn</ListBox.Option>
+      <ListBox.Option>Wolverine</ListBox.Option>
+    </ListBox>
+  </Frame>
+);
+
 export const BasicIsInlineDisable = () => (
   <Frame>
     <ListBox isDisabled isInlineDisplay>
@@ -245,8 +263,8 @@ export const WithFilterAndNodesAsChildren = () => (
 export const FilterCustomChildrenInline = () => (
   <Frame>
     <ListBox hasFilter isInlineDisplay height={320}>
-      {images.map(image => (
-        <ListBox.Option label={image.label}>
+      {images.map((image, index) => (
+        <ListBox.Option key={index} label={image.label}>
           <ImageOption>
             <img alt={image.label} src={image.src} />
           </ImageOption>

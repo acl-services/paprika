@@ -1,22 +1,22 @@
 import React from "react";
-import ListBoxComponent, { propTypes, defaultProps } from "./ListBox";
+import ListBox, { propTypes, defaultProps } from "./ListBox";
 import Provider from "./store/Provider";
 import Group from "./components/Group";
 import Option from "./components/Option";
 import Footer from "./components/Footer";
 
-const ListBox = React.forwardRef((props, ref) => {
+const ListBoxWithProvider = React.forwardRef((props, ref) => {
   return (
-    <Provider {...props} childrenListBoxOptions={props.children}>
-      <ListBoxComponent {...props} ref={ref} />
+    <Provider {...props} childrenOptions={props.children}>
+      <ListBox {...props} ref={ref} />
     </Provider>
   );
 });
 
-export default ListBox;
+export default ListBoxWithProvider;
 
-ListBox.propTypes = propTypes;
-ListBox.defaultProps = defaultProps;
-ListBox.Option = Option;
-ListBox.Group = Group;
-ListBox.Footer = Footer;
+ListBoxWithProvider.propTypes = propTypes;
+ListBoxWithProvider.defaultProps = defaultProps;
+ListBoxWithProvider.Option = Option;
+ListBoxWithProvider.Group = Group;
+ListBoxWithProvider.Footer = Footer;

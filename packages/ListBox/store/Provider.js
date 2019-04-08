@@ -3,14 +3,14 @@ import PropTypes from "prop-types";
 import reducer from "./reducer";
 import handleChange from "../helpers/handleChange";
 
-import { getDataOptions, getDataGroups, getFooter } from "../helpers/dataStructure";
+import { getDataOptions } from "../helpers/dataStructure";
 
 export const StoreContext = React.createContext();
 
 function initializeState(props) {
   const {
     placeholder,
-    childrenListBoxOptions,
+    childrenOptions,
     height,
     hideOptionOnSelected,
     isDisabled,
@@ -27,9 +27,8 @@ function initializeState(props) {
   } = props;
 
   // initialize state for options and groups
-  const groups = getDataGroups(childrenListBoxOptions);
-  const options = getDataOptions(childrenListBoxOptions, groups, props.isMulti, hideOptionOnSelected);
-  const Footer = getFooter(childrenListBoxOptions);
+  const options = getDataOptions(childrenOptions);
+  // const Footer = getFooter(childrenOptions);
   const selectedOptions = Object.keys(options)
     .filter(key => options[key].isSelected)
     .map(key => Number.parseInt(key, 10));
@@ -42,8 +41,8 @@ function initializeState(props) {
   const initialState = {
     activeOption,
     filteredOptions: [],
-    Footer,
-    groups,
+    // Footer,
+    // groups,
     hasFilter: props.hasFilter,
     hasNoResults: false,
     hasPopupOpened: false,
