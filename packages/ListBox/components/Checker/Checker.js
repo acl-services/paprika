@@ -1,7 +1,7 @@
 import React from "react";
 import PropTypes from "prop-types";
 import Checkbox from "./Checkbox/Checkbox";
-import useListBox from "../../store/useListBox";
+import useListBox from "../../useListBox";
 
 const propTypes = {
   index: PropTypes.number.isRequired,

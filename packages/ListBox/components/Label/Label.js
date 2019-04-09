@@ -1,6 +1,6 @@
 import React from "react";
 import PropTypes from "prop-types";
-import useListBox from "../../store/useListBox";
+import useListBox from "../../useListBox";
 import labelStyles from "./Label.styles";
 
 const propTypes = {

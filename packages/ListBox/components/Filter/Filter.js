@@ -1,6 +1,6 @@
 import React from "react";
 import PropTypes from "prop-types";
-import useListBox from "../../store/useListBox";
+import useListBox from "../../useListBox";
 import * as effects from "./effects";
 
 import { FilterContainerStyled, FilterInputStyled, FilterSearchIconStyled } from "./Filter.styles";

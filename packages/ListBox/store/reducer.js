@@ -1,4 +1,4 @@
-import useListBox from "./useListBox";
+import useListBox from "../useListBox";
 import handleChange from "../helpers/handleChange";
 import { getNextOptionActiveIndexLooping } from "../helpers/options";
 

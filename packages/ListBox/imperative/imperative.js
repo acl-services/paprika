@@ -1,4 +1,4 @@
-import useListBox from "../store/useListBox";
+import useListBox from "../useListBox";
 
 const handleImperative = (state, dispatch) => () => {
   return {

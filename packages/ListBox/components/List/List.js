@@ -1,7 +1,7 @@
 import React from "react";
 import PropTypes from "prop-types";
 import ListStyled from "./List.styles";
-import useListBox from "../../store/useListBox";
+import useListBox from "../../useListBox";
 import { getDOMAttributesForListBox } from "../../helpers/DOMAttributes";
 
 const propTypes = {

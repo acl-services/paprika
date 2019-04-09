@@ -4,7 +4,7 @@ import Popover from "@paprika/popover";
 import { ContentInlineStyled } from "./Content.styles";
 import { getDOMAttributesForListBoxContainer } from "../../helpers/DOMAttributes";
 import handleKeyboardKeys from "../../helpers/handleKeyboardKeys";
-import useListBox from "../../store/useListBox";
+import useListBox from "../../useListBox";
 
 const propTypes = {
   children: PropTypes.node.isRequired,

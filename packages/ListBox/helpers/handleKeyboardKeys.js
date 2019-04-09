@@ -1,5 +1,5 @@
 import { getNextOptionActiveIndex } from "./options";
-import useListBox from "../store/useListBox";
+import useListBox from "../useListBox";
 
 const handleKeyboardKeys = (state, dispatch) => event => {
   if (state.isDisabled) {

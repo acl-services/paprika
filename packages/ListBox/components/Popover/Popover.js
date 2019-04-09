@@ -1,7 +1,7 @@
 import React from "react";
 import PropTypes from "prop-types";
 import PopoverStyled from "./Popover.styles";
-import useListBox from "../../store/useListBox";
+import useListBox from "../../useListBox";
 
 const propTypes = {
   children: PropTypes.node.isRequired,

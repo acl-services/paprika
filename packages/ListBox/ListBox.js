@@ -8,7 +8,7 @@ import Popover from "./components/Popover";
 import Trigger from "./components/Trigger";
 import Box from "./components/Box";
 import List from "./components/List";
-import useListBox from "./store/useListBox";
+import useListBox from "./useListBox";
 import handleImperative from "./imperative";
 import * as effects from "./effects";
 

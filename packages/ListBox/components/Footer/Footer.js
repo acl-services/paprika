@@ -2,7 +2,7 @@ import React from "react";
 import Button from "@paprika/button";
 import PropTypes from "prop-types";
 import { FooterContainerStyled } from "./Footer.styles";
-import useListBox from "../../store/useListBox";
+import useListBox from "../../useListBox";
 
 const propTypes = {
   isAcceptVisible: PropTypes.bool,

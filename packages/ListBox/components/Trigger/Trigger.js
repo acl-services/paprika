@@ -3,7 +3,7 @@ import PropTypes from "prop-types";
 import RawButton from "@paprika/raw-button";
 import Label from "../Label";
 import handleKeyboardKeys from "../../helpers/handleKeyboardKeys";
-import useListBox from "../../store/useListBox";
+import useListBox from "../../useListBox";
 
 import {
   ListBoxTriggerStyled,

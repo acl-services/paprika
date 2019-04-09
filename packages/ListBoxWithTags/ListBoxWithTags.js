@@ -6,7 +6,7 @@ import Footer from "@paprika/listbox/components/Footer";
 import Group from "@paprika/listbox/components/Group";
 import Provider from "@paprika/listbox/store/Provider";
 
-import useListBox from "@paprika/listbox/store/useListBox";
+import useListBox from "@paprika/listbox/useListBox";
 import handleKeyboardKeys from "./helpers/handleKeyboardKeys";
 
 // Custom Componeent for ListBoxWithTags

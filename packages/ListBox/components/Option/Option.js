@@ -1,6 +1,6 @@
 import React from "react";
 import PropTypes from "prop-types";
-import useListBox from "../../store/useListBox";
+import useListBox from "../../useListBox";
 import { getA11yAttributesForOption } from "../../helpers/DOMAttributes";
 import { isOptionVisible, isOptionSelected } from "../../helpers/options";
 import { OptionStyled, OptionDividerStyled } from "./Option.styles";

@@ -1,6 +1,6 @@
 import React from "react";
 import PropTypes from "prop-types";
-import useListBox from "@paprika/listbox/store/useListBox";
+import useListBox from "@paprika/listbox/useListBox";
 import Tag from "../Tag";
 import Filter from "../Filter";
 

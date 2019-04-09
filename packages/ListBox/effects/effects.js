@@ -1,4 +1,4 @@
-import useListBox from "../store/useListBox";
+import useListBox from "../useListBox";
 import { getDataOptions } from "../helpers/dataStructure";
 
 export const handleEffectChildren = (dispatch, children) => () => {
