@@ -2,14 +2,23 @@ import React from "react";
 import uuidv4 from "uuid/v4";
 
 export function createOption({ index, child, groupId = null, groupLabel = null }) {
-  const { label, value, isHidden, isSelected, isDisabled, onClick, preventDefaultOnSelect, renderChecker } = child.props;
+  const {
+    label,
+    value,
+    isHidden,
+    isSelected,
+    isDisabled,
+    onClick,
+    preventDefaultOnSelect,
+    renderChecker,
+  } = child.props;
 
   return {
     content: child,
     groupId,
     groupLabel,
     hasLabel: label,
-    id: uuidv4(),
+    id: `opt_${uuidv4()}`,
     index,
     isDisabled,
     isHidden,
