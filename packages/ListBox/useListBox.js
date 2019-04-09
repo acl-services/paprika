@@ -71,5 +71,9 @@ useListBox.types = types;
 // - [] fix bug when click on delete tag popover close automatically
 // - [] organize stories under example directory on single/multi/recipes
 // - [] custom render Footer property for Footer component
+// - [x] move useListBox to the root away from store folder
+// - [] limited the state properties pass on options, currently I'm sending the whole options coming from states
+// - [] clean onClick and onKey Enter/Space events
+// - [] change isInteractive for preventDefaultOnSelect
 
 // CURRENT keep working on footer has footer and make it block any other action unless the buttons are clicked

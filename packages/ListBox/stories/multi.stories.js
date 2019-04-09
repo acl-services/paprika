@@ -160,7 +160,7 @@ storiesOf("ListBox / multi", module).add("With Custom Checkers", () => (
 storiesOf("ListBox / multi", module).add("With Groups", () => (
   <Frame>
     <ListBox isMulti>
-      <ListBox.Group title="antiheroes">
+      <ListBox.Group groupId="antiheroes" label="Anti-heroes">
         <ListBox.Option>Punisher</ListBox.Option>
         <ListBox.Option>Catwoman</ListBox.Option>
         <ListBox.Option>Venom</ListBox.Option>
@@ -170,7 +170,7 @@ storiesOf("ListBox / multi", module).add("With Groups", () => (
         <ListBox.Option>Spawn</ListBox.Option>
         <ListBox.Option>Wolverine</ListBox.Option>
       </ListBox.Group>
-      <ListBox.Group title="villians">
+      <ListBox.Group groupId="villians" label="Villians">
         <ListBox.Option>The Joker</ListBox.Option>
         <ListBox.Option>Darth Vader</ListBox.Option>
         <ListBox.Option>Hannibal Lecter</ListBox.Option>
@@ -179,7 +179,7 @@ storiesOf("ListBox / multi", module).add("With Groups", () => (
         <ListBox.Option>Palpatine</ListBox.Option>
         <ListBox.Option>Agent Smith</ListBox.Option>
       </ListBox.Group>
-      <ListBox.Group title="heroes">
+      <ListBox.Group groupId="heroes" label="Heroes">
         <ListBox.Option>Black Panther</ListBox.Option>
         <ListBox.Option>Wonder Woman</ListBox.Option>
         <ListBox.Option>Spiderman</ListBox.Option>
@@ -235,10 +235,10 @@ const LeafStyled = styled.span`
 storiesOf("ListBox / multi", module).add("With Custom Styles", () => (
   <Frame>
     <ListBox isMulti renderChecker={() => null}>
-      <ListBox.Option isInteractive={false} label="antiheroes">
+      <ListBox.Option preventDefaultOnSelect label="antiheroes">
         <RootStyled as="span">Marvel Universe</RootStyled>
       </ListBox.Option>
-      <ListBox.Option isInteractive={false} renderChecker={() => null} label="antiheroes">
+      <ListBox.Option preventDefaultOnSelect renderChecker={() => null} label="antiheroes">
         <ParentStyled as="span">AntiHeroes</ParentStyled>
       </ListBox.Option>
       <ListBox.Option label="renderProp">
@@ -272,7 +272,7 @@ storiesOf("ListBox / multi", module).add("With Custom Styles", () => (
 storiesOf("ListBox / multi", module).add("With Groups and have selection by groups", () => (
   <Frame>
     <ListBox isMulti>
-      <ListBox.Group title="antiheroes">
+      <ListBox.Group label="antiheroes">
         <ListBox.Option>Punisher</ListBox.Option>
         <ListBox.Option>Catwoman</ListBox.Option>
         <ListBox.Option>Venom</ListBox.Option>
@@ -282,7 +282,7 @@ storiesOf("ListBox / multi", module).add("With Groups and have selection by grou
         <ListBox.Option>Spawn</ListBox.Option>
         <ListBox.Option>Wolverine</ListBox.Option>
       </ListBox.Group>
-      <ListBox.Group title="villians">
+      <ListBox.Group label="villians">
         <ListBox.Option>The Joker</ListBox.Option>
         <ListBox.Option>Darth Vader</ListBox.Option>
         <ListBox.Option>Hannibal Lecter</ListBox.Option>
@@ -291,7 +291,7 @@ storiesOf("ListBox / multi", module).add("With Groups and have selection by grou
         <ListBox.Option>Palpatine</ListBox.Option>
         <ListBox.Option>Agent Smith</ListBox.Option>
       </ListBox.Group>
-      <ListBox.Group title="heroes">
+      <ListBox.Group label="heroes">
         <ListBox.Option>Black Panther</ListBox.Option>
         <ListBox.Option>Wonder Woman</ListBox.Option>
         <ListBox.Option>Spiderman</ListBox.Option>
@@ -308,7 +308,7 @@ storiesOf("ListBox / multi", module).add("With Groups and have selection by grou
 storiesOf("ListBox / multi", module).add("With Groups and have preselected options", () => (
   <Frame>
     <ListBox isMulti>
-      <ListBox.Group title="antiheroes">
+      <ListBox.Group label="antiheroes">
         <ListBox.Option isSelected>Punisher</ListBox.Option>
         <ListBox.Option>Catwoman</ListBox.Option>
         <ListBox.Option isSelected>Venom</ListBox.Option>
@@ -318,7 +318,7 @@ storiesOf("ListBox / multi", module).add("With Groups and have preselected optio
         <ListBox.Option>Spawn</ListBox.Option>
         <ListBox.Option>Wolverine</ListBox.Option>
       </ListBox.Group>
-      <ListBox.Group title="villians">
+      <ListBox.Group label="villians">
         <ListBox.Option>The Joker</ListBox.Option>
         <ListBox.Option>Darth Vader</ListBox.Option>
         <ListBox.Option>Hannibal Lecter</ListBox.Option>
@@ -327,7 +327,7 @@ storiesOf("ListBox / multi", module).add("With Groups and have preselected optio
         <ListBox.Option>Palpatine</ListBox.Option>
         <ListBox.Option>Agent Smith</ListBox.Option>
       </ListBox.Group>
-      <ListBox.Group title="heroes">
+      <ListBox.Group label="heroes">
         <ListBox.Option>Black Panther</ListBox.Option>
         <ListBox.Option>Wonder Woman</ListBox.Option>
         <ListBox.Option>Spiderman</ListBox.Option>

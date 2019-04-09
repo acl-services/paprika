@@ -1,6 +1,6 @@
 import useListBox from "../useListBox";
 import handleChange from "../helpers/handleChange";
-import { getNextOptionActiveIndexLooping } from "../helpers/options";
+import { getNextOptionActiveIndexLooping } from "../components/Options/helpers";
 
 export default function reducer(state, { type, payload }) {
   switch (type) {

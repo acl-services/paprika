@@ -113,12 +113,12 @@ storiesOf("ListBoxWithTags", module).add("ListBox With renderTag", () => (
 storiesOf("ListBoxWithTags", module).add("ListBox With Groups", () => (
   <Frame>
     <ListBoxWithTags hasCustomTags>
-      <ListBoxWithTags.Group title="Good guys">
+      <ListBoxWithTags.Group id="goodGuys" label="Good guys">
         <ListBoxWithTags.Option>Punisher</ListBoxWithTags.Option>
         <ListBoxWithTags.Option>Catwoman</ListBoxWithTags.Option>
         <ListBoxWithTags.Option>Venom</ListBoxWithTags.Option>
       </ListBoxWithTags.Group>
-      <ListBoxWithTags.Group title="Bad guys">
+      <ListBoxWithTags.Group id="badGuys" label="Bad guys">
         <ListBoxWithTags.Option>Thunderbolts</ListBoxWithTags.Option>
         <ListBoxWithTags.Option>Deadpool</ListBoxWithTags.Option>
         <ListBoxWithTags.Option>Spawn</ListBoxWithTags.Option>

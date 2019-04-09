@@ -366,7 +366,7 @@ import ListBox from "@paprika/listbox";
 
 <Playground>
   <ListBox hasFilter zIndex={10000} getScrollContainer={() => document.querySelector("#root > div")}>
-    <ListBox.Group title="antiheroes">
+    <ListBox.Group label="antiheroes">
       <ListBox.Option isSelected>Punisher</ListBox.Option>
       <ListBox.Option>Catwoman</ListBox.Option>
       <ListBox.Option>Venom</ListBox.Option>
@@ -376,7 +376,7 @@ import ListBox from "@paprika/listbox";
       <ListBox.Option>Spawn</ListBox.Option>
       <ListBox.Option>Wolverine</ListBox.Option>
     </ListBox.Group>
-    <ListBox.Group title="villians">
+    <ListBox.Group label="villians">
       <ListBox.Option>The Joker</ListBox.Option>
       <ListBox.Option>Darth Vader</ListBox.Option>
       <ListBox.Option isSelected>Hannibal Lecter</ListBox.Option>
@@ -385,7 +385,7 @@ import ListBox from "@paprika/listbox";
       <ListBox.Option>Palpatine</ListBox.Option>
       <ListBox.Option>Agent Smith</ListBox.Option>
     </ListBox.Group>
-    <ListBox.Group title="heroes">
+    <ListBox.Group label="heroes">
       <ListBox.Option>Black Panther</ListBox.Option>
       <ListBox.Option>Wonder Woman</ListBox.Option>
       <ListBox.Option>Spiderman</ListBox.Option>
@@ -404,7 +404,7 @@ import ListBox from "@paprika/listbox";
 import ListBox from "@paprika/listbox";
 
 <ListBox hasFilter>
-  <ListBox.Group title="antiheroes">
+  <ListBox.Group label="antiheroes">
     <ListBox.Option isSelected>Punisher</ListBox.Option>
     <ListBox.Option>Catwoman</ListBox.Option>
     <ListBox.Option isSelected>Venom</ListBox.Option>
@@ -414,7 +414,7 @@ import ListBox from "@paprika/listbox";
     <ListBox.Option>Spawn</ListBox.Option>
     <ListBox.Option>Wolverine</ListBox.Option>
   </ListBox.Group>
-  <ListBox.Group title="villians">
+  <ListBox.Group label="villians">
     <ListBox.Option>The Joker</ListBox.Option>
     <ListBox.Option>Darth Vader</ListBox.Option>
     <ListBox.Option isSelected>Hannibal Lecter</ListBox.Option>
@@ -423,7 +423,7 @@ import ListBox from "@paprika/listbox";
     <ListBox.Option isSelected>Palpatine</ListBox.Option>
     <ListBox.Option isSelected>Agent Smith</ListBox.Option>
   </ListBox.Group>
-  <ListBox.Group title="heroes">
+  <ListBox.Group label="heroes">
     <ListBox.Option>Black Panther</ListBox.Option>
     <ListBox.Option>Wonder Woman</ListBox.Option>
     <ListBox.Option>Spiderman</ListBox.Option>
@@ -537,7 +537,7 @@ user select a whole group with one click
 
 <Playground>
   <ListBox isMulti zIndex={10000} getScrollContainer={() => document.querySelector("#root > div")}>
-    <ListBox.Group title="antiheroes">
+    <ListBox.Group label="antiheroes">
       <ListBox.Option>Punisher</ListBox.Option>
       <ListBox.Option>Catwoman</ListBox.Option>
       <ListBox.Option>Venom</ListBox.Option>
@@ -547,7 +547,7 @@ user select a whole group with one click
       <ListBox.Option>Spawn</ListBox.Option>
       <ListBox.Option>Wolverine</ListBox.Option>
     </ListBox.Group>
-    <ListBox.Group title="villians">
+    <ListBox.Group label="villians">
       <ListBox.Option>The Joker</ListBox.Option>
       <ListBox.Option>Darth Vader</ListBox.Option>
       <ListBox.Option>Hannibal Lecter</ListBox.Option>
@@ -556,7 +556,7 @@ user select a whole group with one click
       <ListBox.Option>Palpatine</ListBox.Option>
       <ListBox.Option>Agent Smith</ListBox.Option>
     </ListBox.Group>
-    <ListBox.Group title="heroes">
+    <ListBox.Group label="heroes">
       <ListBox.Option>Black Panther</ListBox.Option>
       <ListBox.Option>Wonder Woman</ListBox.Option>
       <ListBox.Option>Spiderman</ListBox.Option>
@@ -573,7 +573,7 @@ user select a whole group with one click
 
 ```js
 <ListBox isMulti>
-  <ListBox.Group title="antiheroes">
+  <ListBox.Group label="antiheroes">
     <ListBox.Option>Punisher</ListBox.Option>
     <ListBox.Option>Catwoman</ListBox.Option>
     <ListBox.Option>Venom</ListBox.Option>
@@ -583,7 +583,7 @@ user select a whole group with one click
     <ListBox.Option>Spawn</ListBox.Option>
     <ListBox.Option>Wolverine</ListBox.Option>
   </ListBox.Group>
-  <ListBox.Group title="villians">
+  <ListBox.Group label="villians">
     <ListBox.Option>The Joker</ListBox.Option>
     <ListBox.Option>Darth Vader</ListBox.Option>
     <ListBox.Option>Hannibal Lecter</ListBox.Option>
@@ -592,7 +592,7 @@ user select a whole group with one click
     <ListBox.Option>Palpatine</ListBox.Option>
     <ListBox.Option>Agent Smith</ListBox.Option>
   </ListBox.Group>
-  <ListBox.Group title="heroes">
+  <ListBox.Group label="heroes">
     <ListBox.Option>Black Panther</ListBox.Option>
     <ListBox.Option>Wonder Woman</ListBox.Option>
     <ListBox.Option>Spiderman</ListBox.Option>
@@ -614,7 +614,7 @@ user select a whole group with one click
 
 <Playground>
   <ListBox isMulti hasFilter zIndex={10000} getScrollContainer={() => document.querySelector("#root > div")}>
-    <ListBox.Group title="antiheroes">
+    <ListBox.Group label="antiheroes">
       <ListBox.Option>Punisher</ListBox.Option>
       <ListBox.Option>Catwoman</ListBox.Option>
       <ListBox.Option>Venom</ListBox.Option>
@@ -624,7 +624,7 @@ user select a whole group with one click
       <ListBox.Option>Spawn</ListBox.Option>
       <ListBox.Option>Wolverine</ListBox.Option>
     </ListBox.Group>
-    <ListBox.Group title="villians">
+    <ListBox.Group label="villians">
       <ListBox.Option>The Joker</ListBox.Option>
       <ListBox.Option>Darth Vader</ListBox.Option>
       <ListBox.Option>Hannibal Lecter</ListBox.Option>
@@ -633,7 +633,7 @@ user select a whole group with one click
       <ListBox.Option>Palpatine</ListBox.Option>
       <ListBox.Option>Agent Smith</ListBox.Option>
     </ListBox.Group>
-    <ListBox.Group title="heroes">
+    <ListBox.Group label="heroes">
       <ListBox.Option>Black Panther</ListBox.Option>
       <ListBox.Option>Wonder Woman</ListBox.Option>
       <ListBox.Option>Spiderman</ListBox.Option>
@@ -650,7 +650,7 @@ user select a whole group with one click
 
 ```js
 <ListBox isMulti hasFilter>
-  <ListBox.Group title="antiheroes">
+  <ListBox.Group label="antiheroes">
     <ListBox.Option>Punisher</ListBox.Option>
     <ListBox.Option>Catwoman</ListBox.Option>
     <ListBox.Option>Venom</ListBox.Option>
@@ -660,7 +660,7 @@ user select a whole group with one click
     <ListBox.Option>Spawn</ListBox.Option>
     <ListBox.Option>Wolverine</ListBox.Option>
   </ListBox.Group>
-  <ListBox.Group title="villians">
+  <ListBox.Group label="villians">
     <ListBox.Option>The Joker</ListBox.Option>
     <ListBox.Option>Darth Vader</ListBox.Option>
     <ListBox.Option>Hannibal Lecter</ListBox.Option>
@@ -669,7 +669,7 @@ user select a whole group with one click
     <ListBox.Option>Palpatine</ListBox.Option>
     <ListBox.Option>Agent Smith</ListBox.Option>
   </ListBox.Group>
-  <ListBox.Group title="heroes">
+  <ListBox.Group label="heroes">
     <ListBox.Option>Black Panther</ListBox.Option>
     <ListBox.Option>Wonder Woman</ListBox.Option>
     <ListBox.Option>Spiderman</ListBox.Option>

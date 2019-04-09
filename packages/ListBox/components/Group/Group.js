@@ -1,13 +1,16 @@
+/* eslint-disable react/no-unused-prop-types */
 import React from "react";
-import { string, node } from "prop-types";
+import PropTypes from "prop-types";
 
 const componentType = "ListBox.Group";
 
 const propTypes = {
   /** A type of <ListBox.Option /> */
-  children: node.isRequired,
-  /** Describe the title for the Group requires to be a string */
-  title: string.isRequired, // eslint-disable-line
+  children: PropTypes.node.isRequired,
+  /** Assign a group name to each of the options wrapped by the component */
+  groupId: PropTypes.string.isRequired,
+  /** Display the label for the Group */
+  label: PropTypes.node.isRequired, // eslint-disable-line
 };
 
 export default function Group(props) {

@@ -20,7 +20,12 @@ export default function Trigger(props) {
   };
 
   return (
-    <RawButton css={triggerStyles} onClick={handleClick} {...getDOMAttributesForListBoxButton()} ref={state.refTrigger}>
+    <RawButton
+      css={triggerStyles}
+      onClick={handleClick}
+      {...getDOMAttributesForListBoxButton(state)}
+      ref={state.refTrigger}
+    >
       {props.children}
     </RawButton>
   );

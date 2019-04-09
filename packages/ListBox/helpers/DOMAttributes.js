@@ -1,3 +1,7 @@
+import uuidv4 from "uuid/v4";
+
+const listBoxId = `listBoxId_${uuidv4()}`;
+
 export function getDOMAttributesForListBoxContainer() {
   return { tabIndex: "-1" };
 }
@@ -9,19 +13,10 @@ export function getDOMAttributesForListBox(state) {
   return {
     "aria-activedescendant": activedescendant,
     "aria-labelledby": "listbox-value",
-    id: "popup-picker",
+    id: listBoxId,
     role: "listbox",
   };
 }
-
-// TODO Remove after refactor of Option and Options render
-// export const getDOMAttributesForListBoxOption = (index, state) => () => {
-//   return index === state.activeOption
-//     ? {
-//         "aria-selected": "true",
-//       }
-//     : "";
-// };
 
 export const getA11yAttributesForOption = isSelected => {
   const a11yIsSelected = { "aria-selected": `${isSelected ? "true" : "false"}` };
@@ -32,7 +27,7 @@ export function getDOMAttributesForListBoxButton() {
   return {
     "aria-haspopup": "popup-picker",
     "aria-labelledby": "ccc listBox-button",
-    id: "listBox-button",
+    id: listBoxId,
     type: "button",
   };
 }

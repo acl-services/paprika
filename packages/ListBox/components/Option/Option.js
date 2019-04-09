@@ -2,7 +2,7 @@ import React from "react";
 import PropTypes from "prop-types";
 import useListBox from "../../useListBox";
 import { getA11yAttributesForOption } from "../../helpers/DOMAttributes";
-import { isOptionVisible, isOptionSelected } from "../../helpers/options";
+import { isOptionVisible, isOptionSelected, handleClickOption } from "../Options/helpers";
 import { OptionStyled, OptionDividerStyled } from "./Option.styles";
 import Checker from "../Checker";
 
@@ -24,7 +24,7 @@ const propTypes = {
       this is helpful when you want to add an option that help visually to trasmit the
       UI message better.
   */
-  isInteractive: PropTypes.bool,
+  preventDefaultOnSelect: PropTypes.bool,
 
   /** When the children are not a String, label should need to be add so the filter can work  */
   label: PropTypes.string,
@@ -43,7 +43,7 @@ const propTypes = {
 const defaultProps = {
   isDisabled: false,
   isHidden: false,
-  isInteractive: true,
+  preventDefaultOnSelect: false,
   isSelected: false,
   label: null,
   onClick: null,
@@ -51,69 +51,23 @@ const defaultProps = {
   value: null,
 };
 
-let lastGroupTitle = null;
+let lastGroupId = null;
 
 export default function Option(props) {
   const [state, dispatch] = useListBox();
   const { hasNoResults, activeOption, isDisabled, renderChecker } = state;
-  const { index, groupName } = props; // eslint-disable-line
+  const { index, groupId, label } = props; // eslint-disable-line
 
   let shouldHaveGroupTitle = false;
-  if (groupName && lastGroupTitle !== groupName) {
+  if (groupId && lastGroupId !== groupId) {
     shouldHaveGroupTitle = true;
-    lastGroupTitle = groupName;
+    lastGroupId = groupId;
   }
 
-  let GroupName = null;
+  let GroupComponent = null;
   if (shouldHaveGroupTitle && !hasNoResults) {
-    GroupName = <OptionDividerStyled aria-hidden="true">{groupName}</OptionDividerStyled>;
+    GroupComponent = <OptionDividerStyled aria-hidden="true">{label}</OptionDividerStyled>;
   }
-
-  const handleClickOption = event => {
-    const key = props.index; // eslint-disable-line
-    const { options, hasFilter, isMulti, refFilterInput } = state;
-    const option = options[key];
-    const isOptionActionGroup = option.isOptionActionGroup;
-
-    if (state.isDisabled || props.isDisabled) {
-      return;
-    }
-
-    if (props.onClick) {
-      const result = props.onClick(key, options);
-      if (typeof result === "boolean" && result === false) {
-        return;
-      }
-    }
-
-    if (state.refListBox.current.contains(event.target) && document.activeElement === document.body && !hasFilter) {
-      state.refListBoxContainer.current.focus();
-    }
-
-    if (hasFilter && isMulti) {
-      refFilterInput.current.focus();
-    }
-
-    if (isOptionActionGroup && isMulti) {
-      dispatch({
-        type: useListBox.types.toggleSelectOptionsByGroup,
-        payload: { index, group: option.value },
-      });
-      return;
-    }
-
-    if (isMulti) {
-      dispatch({
-        type: useListBox.types.toggleMultipleSelection,
-        payload: { activeOptionIndex: index, isPopoverOpen: true, shouldListBoxContentScroll: false },
-      });
-    } else {
-      dispatch({
-        type: useListBox.types.toggleSingleSelection,
-        payload: { activeOptionIndex: index, isPopoverOpen: false },
-      });
-    }
-  };
 
   if (!isOptionVisible(state, index)) {
     return null;
@@ -121,15 +75,16 @@ export default function Option(props) {
 
   return (
     <React.Fragment>
-      {GroupName}
+      {GroupComponent}
       <OptionStyled
         {...getA11yAttributesForOption(state.options[index].isSelected)}
+        hasPreventDefaultOnSelect={props.preventDefaultOnSelect}
         id={state.options[index].id}
         isActive={activeOption === index}
+        isDisabled={isDisabled || props.isDisabled}
         isSelected={isOptionSelected(state, index)}
         key={index}
-        onClick={handleClickOption}
-        isDisabled={isDisabled || props.isDisabled}
+        onClick={handleClickOption({ props, state, dispatch })}
       >
         <Checker
           index={Number.parseInt(index, 10)}

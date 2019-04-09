@@ -6,11 +6,11 @@ export default function Options(props) {
   return React.Children.map(props.children, child => {
     const { componentType } = child.type;
     if (child.type && componentType === "ListBox.Group") {
-      const title = child.props.title;
-      const groupName = child.props.groupName || title;
+      const label = child.props.label;
+      const groupId = child.props.groupId;
       return React.Children.map(child.props.children, _child => {
         index += 1;
-        return React.cloneElement(_child, { ..._child.props, index, groupName });
+        return React.cloneElement(_child, { ..._child.props, groupId: _child.props.groupId || groupId, label, index });
       });
     }
 

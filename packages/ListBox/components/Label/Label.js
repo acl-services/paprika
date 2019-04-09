@@ -13,7 +13,7 @@ export default function Label(props) {
   const { selectedOptions, isMulti, options } = state;
 
   function getListboxLabelForMulti() {
-    const optionsLength = selectedOptions.filter(index => !options[index].isOptionActionGroup).length;
+    const optionsLength = selectedOptions.length;
 
     const label = selectedOptions
       .map(index => {

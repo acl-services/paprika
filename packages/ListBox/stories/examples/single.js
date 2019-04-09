@@ -34,7 +34,6 @@ export const BasicOptionOnClick = () => (
       <ListBox.Option
         onClick={(index, options) => {
           alert(`This will not be selected  ${options[index].label}`);
-          return false;
         }}
       >
         Catwoman
@@ -371,7 +370,7 @@ export const WithCustomCheckers = () => (
 export const WithGroups = () => (
   <Frame>
     <ListBox>
-      <ListBox.Group title="antiheroes">
+      <ListBox.Group groupId="antiheroes" label="Anti-Heroes">
         <ListBox.Option>Punisher</ListBox.Option>
         <ListBox.Option>Catwoman</ListBox.Option>
         <ListBox.Option>Venom</ListBox.Option>
@@ -381,7 +380,7 @@ export const WithGroups = () => (
         <ListBox.Option>Spawn</ListBox.Option>
         <ListBox.Option>Wolverine</ListBox.Option>
       </ListBox.Group>
-      <ListBox.Group title="villians">
+      <ListBox.Group groupId="villians" label="Villians">
         <ListBox.Option>The Joker</ListBox.Option>
         <ListBox.Option>Darth Vader</ListBox.Option>
         <ListBox.Option>Hannibal Lecter</ListBox.Option>
@@ -390,7 +389,7 @@ export const WithGroups = () => (
         <ListBox.Option>Palpatine</ListBox.Option>
         <ListBox.Option>Agent Smith</ListBox.Option>
       </ListBox.Group>
-      <ListBox.Group title="heroes">
+      <ListBox.Group groupId="heroes" label="Heroes">
         <ListBox.Option>Black Panther</ListBox.Option>
         <ListBox.Option>Wonder Woman</ListBox.Option>
         <ListBox.Option>Spiderman</ListBox.Option>
