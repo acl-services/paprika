@@ -1,7 +1,6 @@
 import React from "react";
 import PropTypes from "prop-types";
 import useListBox from "@paprika/listbox/store/useListBox";
-import * as actionTypes from "@paprika/listbox/store/actionTypes";
 import Tag from "../Tag";
 import Filter from "../Filter";
 
@@ -27,7 +26,7 @@ export default function Tags(props) {
     }
 
     dispatch({
-      type: actionTypes.unselectOptions,
+      type: useListBox.types.unselectOptions,
       payload: [key],
     });
   };

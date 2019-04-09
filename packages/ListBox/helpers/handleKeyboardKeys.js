@@ -1,5 +1,5 @@
 import { getNextOptionActiveIndex } from "./options";
-import * as actionTypes from "../store/actionTypes";
+import useListBox from "../store/useListBox";
 
 const handleKeyboardKeys = (state, dispatch) => event => {
   if (state.isDisabled) {
@@ -8,7 +8,7 @@ const handleKeyboardKeys = (state, dispatch) => event => {
 
   function handleArrowKeys({ isArrowDown = null } = {}, event) {
     if (!state.isPopoverOpen) {
-      dispatch({ type: actionTypes.openPopover });
+      dispatch({ type: useListBox.types.openPopover });
       return;
     }
 
@@ -17,12 +17,12 @@ const handleKeyboardKeys = (state, dispatch) => event => {
     if (next !== null) {
       if (state.isMulti) {
         dispatch({
-          type: actionTypes.setActiveOption,
+          type: useListBox.types.setActiveOption,
           payload: { activeOptionIndex: next, isPopoverOpen: true },
         });
       } else {
         dispatch({
-          type: actionTypes.toggleSingleSelection,
+          type: useListBox.types.toggleSingleSelection,
           payload: { activeOptionIndex: next, isPopoverOpen: true },
         });
       }
@@ -40,7 +40,7 @@ const handleKeyboardKeys = (state, dispatch) => event => {
 
     case "Escape":
       if (state.isPopoverOpen) {
-        dispatch({ type: actionTypes.closePopover });
+        dispatch({ type: useListBox.types.closePopover });
       }
       break;
 
@@ -58,7 +58,7 @@ const handleKeyboardKeys = (state, dispatch) => event => {
           }
 
           if (state.isMulti) {
-            dispatch({ type: actionTypes.togglePopover });
+            dispatch({ type: useListBox.types.togglePopover });
             return;
           }
         }
@@ -73,12 +73,12 @@ const handleKeyboardKeys = (state, dispatch) => event => {
           if (state.isMulti) {
             if (option.isOptionActionGroup) {
               dispatch({
-                type: actionTypes.toggleSelectOptionsByGroup,
+                type: useListBox.types.toggleSelectOptionsByGroup,
                 payload: { index: option.index, group: option.value },
               });
             } else {
               dispatch({
-                type: actionTypes.toggleMultipleSelection,
+                type: useListBox.types.toggleMultipleSelection,
                 payload: {
                   activeOptionIndex: state.activeOption,
                   isPopoverOpen: true,
@@ -87,10 +87,10 @@ const handleKeyboardKeys = (state, dispatch) => event => {
               });
             }
           } else {
-            dispatch({ type: actionTypes.closePopover });
+            dispatch({ type: useListBox.types.closePopover });
           }
         } else {
-          dispatch({ type: actionTypes.openPopover });
+          dispatch({ type: useListBox.types.openPopover });
         }
       }
       break;

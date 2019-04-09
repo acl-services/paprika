@@ -1,7 +1,6 @@
 import React from "react";
 import PropTypes from "prop-types";
 import useListBox from "@paprika/listbox/store/useListBox";
-import * as actionTypes from "@paprika/listbox/store/actionTypes";
 import handleKeyboardKeys from "@paprika/listbox/helpers/handleKeyboardKeys";
 import FilterStyled from "./Filter.styles";
 
@@ -21,12 +20,12 @@ export default function TagInput(props) {
   const [filterText, setFilterText] = React.useState(props.defaultTagInputText);
   function openPopover() {
     dispatch({
-      type: actionTypes.openPopover,
+      type: useListBox.types.openPopover,
     });
   }
 
   function closePopover() {
-    dispatch({ type: actionTypes.closePopover });
+    dispatch({ type: useListBox.types.closePopover });
   }
 
   const handleClick = event => {

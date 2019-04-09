@@ -1,12 +1,12 @@
-import * as actionTypes from "../store/actionTypes";
+import useListBox from "../store/useListBox";
 
 const handleImperative = (state, dispatch) => () => {
   return {
     clear: (isPopoverOpen = false) => {
-      dispatch({ type: actionTypes.clear, payload: { isPopoverOpen } });
+      dispatch({ type: useListBox.types.clear, payload: { isPopoverOpen } });
     },
     reset: () => {
-      dispatch({ type: actionTypes.reset });
+      dispatch({ type: useListBox.types.reset });
     },
     focus: () => {
       state.refTrigger.current.focus();

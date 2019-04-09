@@ -4,7 +4,6 @@ import RawButton from "@paprika/raw-button";
 import Label from "../Label";
 import handleKeyboardKeys from "../../helpers/handleKeyboardKeys";
 import useListBox from "../../store/useListBox";
-import * as actionTypes from "../../store/actionTypes";
 
 import {
   ListBoxTriggerStyled,
@@ -34,7 +33,7 @@ export default function Trigger(props) {
       return;
     }
 
-    dispatch({ type: actionTypes.togglePopover });
+    dispatch({ type: useListBox.types.togglePopover });
   };
 
   const handleClickClear = () => {
@@ -42,7 +41,7 @@ export default function Trigger(props) {
       return;
     }
 
-    dispatch({ type: actionTypes.clear, payload: { isPopoverOpen: false } });
+    dispatch({ type: useListBox.types.clear, payload: { isPopoverOpen: false } });
   };
 
   return (

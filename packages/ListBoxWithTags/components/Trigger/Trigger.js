@@ -2,7 +2,6 @@ import React from "react";
 import PropTypes from "prop-types";
 import RawButton from "@paprika/raw-button";
 import useListBox from "@paprika/listbox/store/useListBox";
-import * as actionTypes from "@paprika/listbox/store/actionTypes";
 import { getDOMAttributesForListBoxButton } from "@paprika/listbox/helpers/DOMAttributes";
 import triggerStyles from "./Trigger.styles";
 
@@ -17,7 +16,7 @@ export default function Trigger(props) {
     if (props.hasCustomTags) {
       state.refFilterInput.current.focus();
     }
-    dispatch({ type: actionTypes.openPopover });
+    dispatch({ type: useListBox.types.openPopover });
   };
 
   return (

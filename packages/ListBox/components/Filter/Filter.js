@@ -2,7 +2,6 @@ import React from "react";
 import PropTypes from "prop-types";
 import useListBox from "../../store/useListBox";
 import * as effects from "./effects";
-import * as actionTypes from "../../store/actionTypes";
 
 import { FilterContainerStyled, FilterInputStyled, FilterSearchIconStyled } from "./Filter.styles";
 
@@ -40,7 +39,7 @@ export default function Filter(props) {
 
   function applyFilter({ filteredOptions, hasNoResults }) {
     dispatch({
-      type: actionTypes.applyFilter,
+      type: useListBox.types.applyFilter,
       payload: {
         filteredOptions,
         hasNoResults,
@@ -111,7 +110,7 @@ export default function Filter(props) {
       if (document.activeElement !== state.refListBoxContainer.current) {
         // this will reset the activeOption and close the Popover
         dispatch({
-          type: actionTypes.setActiveOption,
+          type: useListBox.types.setActiveOption,
           payload: {
             activeOptionIndex: null,
             isPopoverOpen: false,

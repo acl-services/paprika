@@ -1,11 +1,11 @@
-import * as actionTypes from "@paprika/listbox/store/actionTypes";
+import useListBox from "@paprika/listbox/store/useListBox";
 
 // this allowed the user navigate between the tags with [←] [→] left and right arrows
 const handleKeyboardKeys = ({ state, dispatch, activeTag, setActiveTag }) => event => {
   if (event.key === "ArrowUp" || event.key === "ArrowDown") {
     setActiveTag(null);
     if (!state.refFilterInput.current) {
-      dispatch({ type: actionTypes.openPopover });
+      dispatch({ type: useListBox.types.openPopover });
       return;
     }
 
@@ -33,7 +33,7 @@ const handleKeyboardKeys = ({ state, dispatch, activeTag, setActiveTag }) => eve
       }
 
       if (state.selectedOptions.length - 1 >= 0) {
-        dispatch({ type: actionTypes.unselectOptions, payload: [activeTag] });
+        dispatch({ type: useListBox.types.unselectOptions, payload: [activeTag] });
         setActiveTag(state.selectedOptions[state.selectedOptions.length - 1]);
       } else {
         setActiveTag(null);

@@ -1,11 +1,11 @@
-import * as actionTypes from "../store/actionTypes";
+import useListBox from "../store/useListBox";
 import { getDataOptions } from "../helpers/dataStructure";
 
 export const handleEffectChildren = (dispatch, children) => () => {
   const options = getDataOptions(children);
 
   dispatch({
-    type: actionTypes.updateOptions,
+    type: useListBox.types.updateOptions,
     payload: options,
   });
 };
@@ -37,8 +37,8 @@ export const handleEffectIsPopOverOpen = (state, dispatch) => () => {
       listBoxContainer.focus();
     }
 
-    dispatch({ type: actionTypes.setTriggerWidth, payload: state.refTriggerContainer.current.offsetWidth });
-    dispatch({ type: actionTypes.setHasPopupOpened, payload: true });
+    dispatch({ type: useListBox.types.setTriggerWidth, payload: state.refTriggerContainer.current.offsetWidth });
+    dispatch({ type: useListBox.types.setHasPopupOpened, payload: true });
   } else if (state.hasPopupOpened) {
     listBoxContainer.focus();
     if (!state.isPopoverOpen) {
@@ -51,11 +51,11 @@ export const handleEffectListBoxWidth = (state, dispatch) => () => {
   const $triggerContainer = state.refTriggerContainer.current;
 
   if ($triggerContainer) {
-    dispatch({ type: actionTypes.setTriggerWidth, payload: $triggerContainer.offsetWidth });
+    dispatch({ type: useListBox.types.setTriggerWidth, payload: $triggerContainer.offsetWidth });
   }
 
   const handleResize = () => {
-    dispatch({ type: actionTypes.setTriggerWidth, payload: $triggerContainer.offsetWidth });
+    dispatch({ type: useListBox.types.setTriggerWidth, payload: $triggerContainer.offsetWidth });
   };
 
   window.addEventListener("resize", handleResize);
@@ -84,19 +84,19 @@ export const handleEffectListBoxScrolled = state => () => {
 
 export const handleEffectHeightChange = (props, dispatch) => () => {
   dispatch({
-    type: actionTypes.setHeight,
+    type: useListBox.types.setHeight,
     payload: props.height,
   });
 };
 
 export const handleEffectIsDisabledChange = dispatch => () => {
   dispatch({
-    type: actionTypes.toggleDisabled,
+    type: useListBox.types.toggleDisabled,
   });
 };
 
 export const handleEffectSelectedOptions = (state, dispatch) => () => {
   if (state.selectedOptions.length === Object.keys(state.options).length) {
-    dispatch({ type: actionTypes.closePopover });
+    dispatch({ type: useListBox.types.closePopover });
   }
 };

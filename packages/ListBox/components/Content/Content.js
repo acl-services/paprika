@@ -4,7 +4,6 @@ import Popover from "@paprika/popover";
 import { ContentInlineStyled } from "./Content.styles";
 import { getDOMAttributesForListBoxContainer } from "../../helpers/DOMAttributes";
 import handleKeyboardKeys from "../../helpers/handleKeyboardKeys";
-import * as actionTypes from "../../store/actionTypes";
 import useListBox from "../../store/useListBox";
 
 const propTypes = {
@@ -35,10 +34,10 @@ const handleBlur = (state, dispatch) => () => {
       refListBoxContainer.current &&
       !refListBoxContainer.current.contains(document.activeElement)
     ) {
-      dispatch({ type: actionTypes.closePopover });
+      dispatch({ type: useListBox.types.closePopover });
 
       if (state.hasFooter) {
-        dispatch({ type: actionTypes.cancel });
+        dispatch({ type: useListBox.types.cancel });
       }
     }
   });

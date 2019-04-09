@@ -58,13 +58,18 @@ useListBox.types = types;
 
 // TODO:
 // - [] clean state since I removed the rendering process from state to props
+// - [] clean and use best practice for the reducer, implmente Kent dods approach for reducer
 // - [] document the double render of the state and the options, how we can do it better
-// - [] add support for the footer again
+// - [x] add support for the footer again
 // - [] write example with lazy loading
 // - [] document support for multi selects
 // - [] add story with pre created filters for groups
 // - [] where should onChange be fired on the reducer? in what file?
-// - [] add useEffect for props on children :P since I removed the effect for tracking children changes
-// - [] replace actionTypes import for useListBox.types.
+// - [] add useEffect for individual <Option /> :P since I removed the effect for tracking children changes
+// - [x] replace actionTypes import for useListBox.types.
+// - [] handle support for adding new children to the ListBox.
+// - [] fix bug when click on delete tag popover close automatically
+// - [] organize stories under example directory on single/multi/recipes
+// - [] custom render Footer property for Footer component
 
 // CURRENT keep working on footer has footer and make it block any other action unless the buttons are clicked

@@ -2,7 +2,6 @@ import React from "react";
 import Button from "@paprika/button";
 import PropTypes from "prop-types";
 import { FooterContainerStyled } from "./Footer.styles";
-import * as actionTypes from "../../store/actionTypes";
 import useListBox from "../../store/useListBox";
 
 const propTypes = {
@@ -90,7 +89,7 @@ const Footer = React.forwardRef((props, ref) => {
       return;
     }
 
-    dispatch({ type: actionTypes.accept });
+    dispatch({ type: useListBox.types.accept });
   };
 
   const handleClickCancel = event => {
@@ -100,7 +99,7 @@ const Footer = React.forwardRef((props, ref) => {
     if (typeof result === "boolean" && result === false) {
       return;
     }
-    dispatch({ type: actionTypes.cancel });
+    dispatch({ type: useListBox.types.cancel });
   };
 
   const handleClickClear = event => {
@@ -109,7 +108,7 @@ const Footer = React.forwardRef((props, ref) => {
     if (typeof result === "boolean" && result === false) {
       return;
     }
-    dispatch({ type: actionTypes.clear, payload: { isPopoverOpen: true } });
+    dispatch({ type: useListBox.types.clear, payload: { isPopoverOpen: true } });
   };
 
   return (
