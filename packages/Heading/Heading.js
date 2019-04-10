@@ -1,41 +1,42 @@
 import React from "react";
-import { bool, string, func, node, oneOf } from "prop-types";
+import PropTypes from "prop-types";
 import classNames from "classnames";
 import headingStyles from "./Heading.styles";
 
 const propTypes = {
   /** Optional aria text if it should be more descriptive than what is rendered */
-  a11yText: string,
+  a11yText: PropTypes.string,
 
   /** Heading content is required */
-  children: node.isRequired,
+  children: PropTypes.node.isRequired,
 
   /** Optional custom class name */
-  className: string,
+  className: PropTypes.string,
 
   /** Optional display level(1-6) affects styles only */
-  displayLevel: oneOf([1, 2, 3, 4, 5, 6]),
+  displayLevel: PropTypes.oneOf([1, 2, 3, 4, 5, 6]),
 
   /** Ref function that returns DOM node for heading */
-  domRef: func,
+  // TODO: Replace with a focus() method via useImperativeHandle()
+  domRef: PropTypes.func,
 
   /** Horizontal divider style */
-  hasDivider: bool,
+  hasDivider: PropTypes.bool,
 
   /** Underline style */
-  hasUnderline: bool,
+  hasUnderline: PropTypes.bool,
 
   /** Optional, visually hide the header */
-  isHidden: bool,
+  isHidden: PropTypes.bool,
 
   /** Optional, renders the children at a lighter font weight */
-  isLight: bool,
+  isLight: PropTypes.bool,
 
   /** Optional, using <div> to avoid styles override by global css. */
-  isSemantic: bool,
+  isSemantic: PropTypes.bool,
 
   /** Heading level(1-6) is required. */
-  level: oneOf([1, 2, 3, 4, 5, 6]).isRequired,
+  level: PropTypes.oneOf([1, 2, 3, 4, 5, 6]).isRequired,
 };
 
 const defaultProps = {

@@ -1,12 +1,12 @@
 import React from "react";
-import { Story } from "storybook/assets/styles/common.styles";
+import { Story, Rule } from "storybook/assets/styles/common.styles";
 import Heading from "../../Heading";
 
 const HeadingLevelsStory = () => {
   return (
     <Story>
       <h5>&lt;Heading&gt; with paragraph</h5>
-      <Heading level={1} ariaText="The First Heading">
+      <Heading level={1} a11yText="The First Heading">
         Heading One – Man Braid Selfies
       </Heading>
       <p>
@@ -38,9 +38,9 @@ const HeadingLevelsStory = () => {
         Post-ironic single-origin coffee pickled af 3 wolf moon adaptogen lomo normcore aesthetic. Godard seitan
         asymmetrical lumbersexual try-hard bushwick 90s raw denim.
       </p>
-      <hr />
+      <Rule />
       <h5>&lt;Heading&gt; with display level</h5>
-      <br />
+      <Rule />
       <Heading level={1} displayLevel={6}>
         Heading One
       </Heading>
@@ -59,7 +59,7 @@ const HeadingLevelsStory = () => {
       <Heading level={6} displayLevel={1}>
         Heading Six
       </Heading>
-      <hr />
+      <Rule />
       <h5>&lt;Heading&gt; with isLight</h5>
       <br />
       <Heading level={1} isLight>
@@ -81,9 +81,9 @@ const HeadingLevelsStory = () => {
         Heading Six with isLight
       </Heading>
       <br />
-      <hr />
+      <Rule />
       <h5>&lt;Heading&gt; with invalid level</h5>
-      <hr />
+      <Rule />
       <Heading level={-5}>Heading -5</Heading>
       <Heading level={9}>Heading 9</Heading>
     </Story>

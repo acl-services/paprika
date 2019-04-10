@@ -20,6 +20,9 @@ const A11yStory = () => {
       <Heading level={1} hasUnderline>
         Heading One
       </Heading>
+      <Heading level={1} isSemantic={false}>
+        Heading One
+      </Heading>
     </Story>
   );
 };

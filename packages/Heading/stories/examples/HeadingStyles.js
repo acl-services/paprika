@@ -1,5 +1,5 @@
 import React from "react";
-import { Story } from "storybook/assets/styles/common.styles";
+import { Story, Rule } from "storybook/assets/styles/common.styles";
 import Heading from "../../Heading";
 
 const HeadingStylesStory = () => {
@@ -25,7 +25,7 @@ const HeadingStylesStory = () => {
         Heading Six
       </Heading>
       <br />
-      <hr />
+      <Rule />
       <h5>&lt;Heading&gt; with underline</h5>
       <Heading level={1} hasUnderline>
         Heading One

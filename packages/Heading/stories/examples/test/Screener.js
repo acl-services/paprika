@@ -23,7 +23,7 @@ const ScreenerStory = () => {
       <Heading level={6} displayLevel={1}>
         Heading Six
       </Heading>
-      <Heading level={1} isLight>
+      <Heading level={4} isLight>
         Heading One with isLight
       </Heading>
       <Heading level={1} hasDivider>
