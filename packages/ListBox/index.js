@@ -8,10 +8,14 @@ import Provider from "./store/Provider";
 
 const ListBoxWithProvider = React.forwardRef((props, ref) => {
   const { children, ...moreProps } = props;
-  const childrenWithGroupSelectors = [
-    ...groupSelectors({ children, hasGroupSelection: props.hasGroupSelection }),
-    ...children,
-  ];
+
+  const ch = children !== null && React.Fragment === children.type ? children.props.children : children;
+
+  debugger;
+
+  const childrenWithGroupSelectors = props.children
+    ? [...groupSelectors({ children, hasGroupSelection: props.hasGroupSelection }), ...ch]
+    : [];
 
   return (
     <Provider {...moreProps} childrenOptions={childrenWithGroupSelectors}>

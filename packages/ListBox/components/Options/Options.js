@@ -3,6 +3,8 @@ import React from "react";
 export default function Options(props) {
   let index = -1;
 
+  if (!props.children) return null;
+
   return React.Children.map(props.children, child => {
     const { componentType = null } = child.type;
     if (child.type && componentType === "ListBox.Group") {

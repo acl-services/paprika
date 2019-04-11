@@ -5,6 +5,8 @@ export function isOptionSelected(state, index) {
 }
 
 export function isOptionVisible(state, key) {
+  if (!Object.keys(state.options).length) return;
+
   const keyInt = Number.parseInt(key, 10);
 
   if (state.hideOptionOnSelected && state.selectedOptions.includes(keyInt)) {

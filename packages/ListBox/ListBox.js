@@ -14,7 +14,7 @@ import * as effects from "./effects";
 
 export const propTypes = {
   /** Child of type <ListBox.Option /> */
-  children: PropTypes.node.isRequired,
+  children: PropTypes.node,
 
   /** Turn on the input filter for the options */
   hasFilter: PropTypes.bool,
@@ -79,6 +79,7 @@ export const propTypes = {
 };
 
 export const defaultProps = {
+  children: null,
   getScrollContainer: null,
   hasClearButton: false,
   hasFilter: false,
@@ -153,11 +154,12 @@ const ListBoxContainer = React.forwardRef((props, ref) => {
 
   // EFFECTS
   const handleEffectHeightChange = effects.handleEffectHeightChange(props, dispatch);
-  const handleEffectIsDisabledChange = effects.handleEffectIsDisabledChange(dispatch);
+  const handleEffectIsDisabledChange = effects.handleEffectIsDisabledChange(props, dispatch);
   const handleEffectIsPopOverOpen = effects.handleEffectIsPopOverOpen(state, dispatch);
   const handleEffectListBoxScrolled = effects.handleEffectListBoxScrolled(state);
   const handleEffectListBoxWidth = effects.handleEffectListBoxWidth(state, dispatch);
   const handleEffectSelectedOptions = effects.handleEffectSelectedOptions(state, dispatch);
+  const handleEffectChildrenLength = effects.handleEffectChildrenLength(props, state, dispatch);
 
   React.useEffect(handleEffectHeightChange, [props.height]);
   React.useEffect(handleEffectIsDisabledChange, [props.isDisabled]);
@@ -165,6 +167,7 @@ const ListBoxContainer = React.forwardRef((props, ref) => {
   React.useEffect(handleEffectListBoxWidth, [state.refTriggerContainer.current]);
   React.useEffect(handleEffectSelectedOptions, [state.selectedOptions]);
   React.useLayoutEffect(handleEffectListBoxScrolled, [state.activeOption]);
+  React.useLayoutEffect(handleEffectChildrenLength, [props.children.length]);
 
   const {
     children,

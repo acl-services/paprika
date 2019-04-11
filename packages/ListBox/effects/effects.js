@@ -1,13 +1,16 @@
+import React from "react";
 import useListBox from "../useListBox";
 import { getDataOptions } from "../helpers/dataStructure";
 
-export const handleEffectChildren = (dispatch, children) => () => {
-  const options = getDataOptions(children);
+export const handleEffectChildrenLength = (props, state, dispatch) => () => {
+  if (props.children && React.Children.toArray(props.children).length) {
+    const options = getDataOptions(props.children);
 
-  dispatch({
-    type: useListBox.types.updateOptions,
-    payload: options,
-  });
+    dispatch({
+      type: useListBox.types.updateOptions,
+      payload: options,
+    });
+  }
 };
 
 export const handleEffectIsPopOverOpen = (state, dispatch) => () => {
@@ -89,9 +92,10 @@ export const handleEffectHeightChange = (props, dispatch) => () => {
   });
 };
 
-export const handleEffectIsDisabledChange = dispatch => () => {
+export const handleEffectIsDisabledChange = (props, dispatch) => () => {
   dispatch({
-    type: useListBox.types.toggleDisabled,
+    type: useListBox.types.setIsDisabled,
+    payload: props.isDisabled,
   });
 };
 

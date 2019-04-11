@@ -35,6 +35,7 @@ export function createOption({ index, child, groupLabel = null, groupId = null }
 
 export function getDataOptions(children) {
   if (!children) throw Error("Listbox.Options is a required prop, please check you are passing correctly the data");
+  if (!children.length) return [];
 
   const options = {};
   let index = 0;

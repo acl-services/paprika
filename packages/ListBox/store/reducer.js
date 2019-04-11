@@ -162,14 +162,14 @@ export default function reducer(state, { type, payload }) {
     }
 
     case useListBox.types.updateOptions: {
-      const options = payload;
-      const selectedOptions = Object.keys(options)
-        .filter(key => options[key].isSelected)
+      const selectedOptions = Object.keys(payload)
+        .filter(key => payload[key].isSelected)
         .map(key => Number.parseInt(key, 10));
 
+      debugger;
       return {
         ...state,
-        options,
+        options: payload,
         selectedOptions,
       };
     }
@@ -279,6 +279,13 @@ export default function reducer(state, { type, payload }) {
       return {
         ...state,
         hasFooter: payload,
+      };
+    }
+
+    case useListBox.types.setIsDisabled: {
+      return {
+        ...state,
+        isDisabled: payload,
       };
     }
 
