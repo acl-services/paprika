@@ -1,3 +1,5 @@
+/* eslint-disable no-console */
+
 const fs = require("fs");
 const path = require("path");
 const { promisify } = require("util");
@@ -12,9 +14,7 @@ const excludeFiles = [".DS_Store"];
 function toPascalCase(str) {
   return str
     .match(/[a-z]+/gi)
-    .map(function(word) {
-      return word.charAt(0).toUpperCase() + word.substr(1).toLowerCase();
-    })
+    .map(word => word.charAt(0).toUpperCase() + word.substr(1).toLowerCase())
     .join("");
 }
 
@@ -24,9 +24,9 @@ function toPascalCase(str) {
   const names = list
     .filter(file => !excludeFiles.includes(file))
     .map(file => toPascalCase(path.basename(file, ".svg")));
-  const exports = names.map(name => `export { default as ${name} } from './components/${name}.js';`);
+  const exports = names.map(name => `export { default as ${name} } from "./components/${name}.js";`);
 
-  await writeFile(path.join(source, destination), exports.join("\n"))
+  await writeFile(path.join(source, destination), `${exports.join("\n")}\n`)
     .then(() => {
       console.log("\n✅ Wrote index.js.\n");
     })
