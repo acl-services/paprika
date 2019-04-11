@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 53 (72520) - https://sketchapp.com -->
+    <title>Exclamation-Circle</title>
+    <desc>Created with Sketch.</desc>
+    <defs>
+        <path d="M12,17.5125 C11.2755,17.5125 10.6875,16.9245 10.6875,16.2 C10.6875,15.4755 11.2755,14.8875 12,14.8875 C12.7245,14.8875 13.3125,15.4755 13.3125,16.2 C13.3125,16.9245 12.7245,17.5125 12,17.5125 L12,17.5125 Z M10.95,5.7 L13.05,5.7 L13.05,13.05 L10.95,13.05 L10.95,5.7 Z M12,1.5 C6.2103,1.5 1.5,6.2103 1.5,12 C1.5,17.79075 6.2103,22.5 12,22.5 C17.7897,22.5 22.5,17.79075 22.5,12 C22.5,6.2103 17.7897,1.5 12,1.5 L12,1.5 Z" id="path-1"></path>
+    </defs>
+    <g id="Exclamation-Circle" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <mask id="mask-2" fill="white">
+            <use xlink:href="#path-1"></use>
+        </mask>
+        <use id="🌈-Color" fill="#717171" xlink:href="#path-1"></use>
+    </g>
+</svg>

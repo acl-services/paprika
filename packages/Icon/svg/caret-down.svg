@@ -1,1 +1,16 @@
-<svg width="480" height="480" viewBox="0 0 480 480" xmlns="http://www.w3.org/2000/svg"><title>063.caret-down__arrow-down__beaker-down</title><path d="M261.975 305.156A30.019 30.019 0 0 1 239.75 315a30.019 30.019 0 0 1-22.225-9.844c-28.21-31.07-76.62-84.388-105.12-115.773a15.055 15.055 0 0 1-2.621-16.2 15.02 15.02 0 0 1 13.734-8.952h232.464a15.02 15.02 0 0 1 13.734 8.953 15.055 15.055 0 0 1-2.622 16.199L261.975 305.156z" fill="#757575" fill-rule="evenodd"/></svg>
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 53 (72520) - https://sketchapp.com -->
+    <title>Caret-Down</title>
+    <desc>Created with Sketch.</desc>
+    <defs>
+        <path d="M8.71049382,10.8695078 C8.39698025,11.1541753 8.21827,11.5576358 8.21827,11.98077 C8.21827,12.4039042 8.39698025,12.8073647 8.71049382,13.0920322 C10.2639272,14.5025295 12.9298451,16.9230672 14.4991421,18.3479819 C14.7193535,18.5478724 15.0369269,18.5993093 15.3090898,18.4790897 C15.5811774,18.3587949 15.75673,18.089596 15.75673,17.7923883 L15.75673,6.16915167 C15.75673,5.87194403 15.5811774,5.60274509 15.3090898,5.48245034 C15.0369269,5.36223067 14.7193535,5.41366757 14.4991421,5.6135581 C12.9298451,7.03847276 10.2639272,9.45901048 8.71049382,10.8695078 Z" id="path-1"></path>
+    </defs>
+    <g id="Caret-Down" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="legacy"></g>
+        <mask id="mask-2" fill="white">
+            <use xlink:href="#path-1"></use>
+        </mask>
+        <use id="🌈-Color" fill="#717171" transform="translate(11.987500, 11.980770) scale(1, -1) rotate(90.000000) translate(-11.987500, -11.980770) " xlink:href="#path-1"></use>
+    </g>
+</svg>
