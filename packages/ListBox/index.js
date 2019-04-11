@@ -11,8 +11,6 @@ const ListBoxWithProvider = React.forwardRef((props, ref) => {
 
   const ch = children !== null && React.Fragment === children.type ? children.props.children : children;
 
-  debugger;
-
   const childrenWithGroupSelectors = props.children
     ? [...groupSelectors({ children, hasGroupSelection: props.hasGroupSelection }), ...ch]
     : [];

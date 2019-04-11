@@ -166,7 +166,6 @@ export default function reducer(state, { type, payload }) {
         .filter(key => payload[key].isSelected)
         .map(key => Number.parseInt(key, 10));
 
-      debugger;
       return {
         ...state,
         options: payload,

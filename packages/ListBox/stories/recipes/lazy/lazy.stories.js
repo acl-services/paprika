@@ -1,21 +1,20 @@
 /* eslint-disable react/no-multi-comp, react/prop-types */
 import React from "react";
 import { storiesOf } from "@storybook/react";
-import Button from "@paprika/button";
+// import Button from "@paprika/button";
 import { Frame } from "../../stories.styles";
 import ListBox from "../../../index";
 import fixture from "./lazy.fixture";
 
-// spider
-
-async function fetchAPI(term) {
-  const url = "https://gateway.marvel.com:443/v1/public/characters?nameStartsWith=";
-  // low risk to share api key for now, I can invalidate it later and extracted it to an env variable
-  const apiKey = "&apikey=ac7726775d7f6e56add4f57ed5cd9a6b";
-  const stream = await fetch(`${url}${term}${apiKey}`);
-  const data = await stream.json();
-  return data;
-}
+//
+// async function fetchAPI(term) {
+//   const url = "https://gateway.marvel.com:443/v1/public/characters?nameStartsWith=";
+//   // low risk to share api key for now, I can invalidate it later and extracted it to an env variable
+//   const apiKey = "&apikey=ac7726775d7f6e56add4f57ed5cd9a6b";
+//   const stream = await fetch(`${url}${term}${apiKey}`);
+//   const data = await stream.json();
+//   return data;
+// }
 
 function LazyListBox() {
   const [characters, setCharacters] = React.useState([]);
