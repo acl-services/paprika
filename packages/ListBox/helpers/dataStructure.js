@@ -1,16 +1,17 @@
 import React from "react";
 import uuidv4 from "uuid/v4";
 
-export function createOption({ index, child, groupId = null, groupLabel = null }) {
+export function createOption({ index, child, groupLabel = null, groupId = null }) {
   const {
-    label,
-    value,
+    isDisabled,
+    isGroupSelector,
     isHidden,
     isSelected,
-    isDisabled,
+    label,
     onClick,
     preventDefaultOnSelect,
     renderChecker,
+    value,
   } = child.props;
 
   return {
@@ -21,11 +22,12 @@ export function createOption({ index, child, groupId = null, groupLabel = null }
     id: `opt_${uuidv4()}`,
     index,
     isDisabled,
+    isGroupSelector,
     isHidden,
-    preventDefaultOnSelect,
     isSelected,
     label: label || child.props.children, // we will try to extract the label from the children if doesn't have label
     onClick,
+    preventDefaultOnSelect,
     renderChecker,
     value: value || undefined,
   };
@@ -43,13 +45,21 @@ export function getDataOptions(children) {
       const groupId = child.props.groupId;
 
       React.Children.toArray(child.props.children).forEach(_child => {
-        options[index] = createOption({ index, child: _child, groupLabel, groupId: _child.props.groupId || groupId });
+        options[index] = createOption({
+          index,
+          child: _child,
+          groupLabel,
+          groupId: _child.props.groupId || groupId,
+          isGroupSelector: _child.props.isGroupSelector,
+        });
         index += 1;
       });
     } else if (child.type && child.type.componentType === "ListBox.Option") {
-      options[index] = createOption({ index, child });
+      options[index] = createOption({ index, child, groupId: child.props.groupId });
       index += 1;
     }
+
+    return child;
   });
 
   return options;

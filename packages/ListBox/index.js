@@ -1,14 +1,23 @@
 import React from "react";
 import ListBox, { propTypes, defaultProps } from "./ListBox";
-import Provider from "./store/Provider";
+import Footer from "./components/Footer";
 import Group from "./components/Group";
 import Option from "./components/Option";
-import Footer from "./components/Footer";
+import groupSelectors from "./components/GroupSelectors";
+import Provider from "./store/Provider";
 
 const ListBoxWithProvider = React.forwardRef((props, ref) => {
+  const { children, ...moreProps } = props;
+  const childrenWithGroupSelectors = [
+    ...groupSelectors({ children, hasGroupSelection: props.hasGroupSelection }),
+    ...children,
+  ];
+
   return (
-    <Provider {...props} childrenOptions={props.children}>
-      <ListBox {...props} ref={ref} />
+    <Provider {...moreProps} childrenOptions={childrenWithGroupSelectors}>
+      <ListBox {...moreProps} ref={ref}>
+        {childrenWithGroupSelectors}
+      </ListBox>
     </Provider>
   );
 });

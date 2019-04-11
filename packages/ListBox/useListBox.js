@@ -57,6 +57,7 @@ useListBox.types = types;
 // )}
 
 // TODO:
+// - [] GroupFilter
 // - [] clean state since I removed the rendering process from state to props
 // - [] clean and use best practice for the reducer, implmente Kent dods approach for reducer
 // - [] document the double render of the state and the options, how we can do it better
@@ -75,5 +76,5 @@ useListBox.types = types;
 // - [] limited the state properties pass on options, currently I'm sending the whole options coming from states
 // - [] clean onClick and onKey Enter/Space events
 // - [] change isInteractive for preventDefaultOnSelect
-
+// - [] clean file DOMAttributes.js
 // CURRENT keep working on footer has footer and make it block any other action unless the buttons are clicked

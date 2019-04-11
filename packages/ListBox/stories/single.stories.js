@@ -21,4 +21,5 @@ storiesOf("ListBox / single", module).add("Checkboxes", () => <Ex.Checkboxes />)
 storiesOf("ListBox / single", module).add("Custom renderTrigger", () => <Ex.CustomRenderTrigger />);
 storiesOf("ListBox / single", module).add("Has clear button", () => <Ex.HasClearButton />);
 storiesOf("ListBox / single", module).add("Custom Checkers", () => <Ex.WithCustomCheckers />);
+storiesOf("ListBox / single", module).add("With Group Selection", () => <Ex.WithGroupSelection />);
 // storiesOf("ListBox / single", module).add("Youtube Search", () => <Ex.YoutubeSearch />);

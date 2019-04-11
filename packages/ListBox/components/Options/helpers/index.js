@@ -31,7 +31,7 @@ export function getNextOptionActiveIndex(state, isAscending = true) {
     return null;
   }
 
-  if (state.activeOption === null && !state.options[0].preventDefaultOnSelect) {
+  if (state.activeOption === null) {
     return 0;
   }
 
@@ -106,12 +106,37 @@ export function handleArrowKeys({ event, state, dispatch, isArrowDown = null }) 
   }
 }
 
+function handleClickGroupSelector(state, dispatch, groupId) {
+  if (state.selectedGroupSelectors.includes(groupId)) {
+    dispatch({
+      type: useListBox.types.deselectByGroup,
+      payload: groupId,
+    });
+
+    return;
+  }
+
+  dispatch({
+    type: useListBox.types.selectByGroup,
+    payload: groupId,
+  });
+}
+
 export const handleClickOption = ({ props, state, dispatch }) => event => {
   const { index } = props; // eslint-disable-line
   const { options, hasFilter, isMulti, refFilterInput } = state;
+  const argsOnClick = [event, index, state.options, state, dispatch];
+  const option = options[index];
+  if (state.isDisabled || option.preventDefaultOnSelect || option.isDisabled) {
+    if (props.onClick) {
+      props.onClick(...argsOnClick);
+    }
 
-  if (state.isDisabled || options[index].preventDefaultOnSelect || options[index].isDisabled) {
     return;
+  }
+
+  if (option.isGroupSelector) {
+    handleClickGroupSelector(state, dispatch, option.groupId);
   }
 
   if (state.refListBox.current.contains(event.target) && document.activeElement === document.body && !hasFilter) {
@@ -125,22 +150,24 @@ export const handleClickOption = ({ props, state, dispatch }) => event => {
   if (props.onClick) {
     // no sure if this is the state they want
     // since haven't run the entire cycle befor executing it
-    props.onClick(state.activeOption, state.options, dispatch);
+    props.onClick(...argsOnClick);
   }
 
-  if (isMulti) {
+  if (!option.isGroupSelector) {
+    if (isMulti) {
+      dispatch({
+        type: useListBox.types.toggleMultipleSelection,
+        payload: { activeOptionIndex: index, isPopoverOpen: true, shouldListBoxContentScroll: false },
+      });
+
+      return;
+    }
+
     dispatch({
-      type: useListBox.types.toggleMultipleSelection,
-      payload: { activeOptionIndex: index, isPopoverOpen: true, shouldListBoxContentScroll: false },
+      type: useListBox.types.toggleSingleSelection,
+      payload: { activeOptionIndex: index, isPopoverOpen: false },
     });
-
-    return;
   }
-
-  dispatch({
-    type: useListBox.types.toggleSingleSelection,
-    payload: { activeOptionIndex: index, isPopoverOpen: false },
-  });
 };
 
 export function handleEnterOrSpace({ event, state, dispatch }) {
@@ -149,6 +176,12 @@ export function handleEnterOrSpace({ event, state, dispatch }) {
   const option = state.options[state.activeOption];
 
   if (option && (option.isDisabled || option.preventDefaultOnSelect)) {
+    if (state.options[state.activeOption].onClick) {
+      // no sure if this is the state they want
+      // since haven't run the entire cycle befor executing it
+      state.options[state.activeOption].onClick(event, state.activeOption, state.options, state, dispatch);
+    }
+
     return;
   }
 
@@ -171,7 +204,12 @@ export function handleEnterOrSpace({ event, state, dispatch }) {
     if (state.options[state.activeOption].onClick) {
       // no sure if this is the state they want
       // since haven't run the entire cycle befor executing it
-      state.options[state.activeOption].onClick(state.activeOption, state.options, dispatch);
+      state.options[state.activeOption].onClick(state.activeOption, state.options, state, dispatch);
+    }
+
+    if (option.isGroupSelector) {
+      handleClickGroupSelector(state, dispatch, option.groupId);
+      return;
     }
 
     if (state.isMulti) {
@@ -183,9 +221,12 @@ export function handleEnterOrSpace({ event, state, dispatch }) {
           shouldListBoxContentScroll: false,
         },
       });
-    } else {
-      dispatch({ type: useListBox.types.closePopover });
+      return;
     }
+
+    // for single select the option is set when the user interact with up and down arrows
+    // no need to notify which option is selected just close the popover
+    dispatch({ type: useListBox.types.closePopover });
   } else {
     dispatch({ type: useListBox.types.openPopover });
   }

@@ -20,3 +20,5 @@ export const toggleSingleSelection = "TOGGLE_SINGLE_SELECTION";
 export const unhideOptions = "UNHIDE_OPTION";
 export const unselectOptions = "UNSELECT_OPTION";
 export const updateOptions = "UPDATE_OPTIONS";
+export const selectByGroup = "SELECT_BY_GROUP";
+export const deselectByGroup = "DESELECT_BY_GROUP";

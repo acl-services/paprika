@@ -119,39 +119,45 @@ export default function reducer(state, { type, payload }) {
       };
     }
 
-    case useListBox.types.toggleSelectOptionsByGroup: {
-      const isSelected = state.selectedOptions.includes(payload.index);
-      let selectedOptionsArray = [];
+    case useListBox.types.selectByGroup: {
+      const groupId = payload;
+      const selectedOptionsArray = Object.keys(state.options)
+        .filter(key => state.options[key].groupId === groupId && !state.options[key].isGroupSelector)
+        .map(key => Number.parseInt(key, 10));
 
-      if (isSelected) {
-        selectedOptionsArray = state.selectedOptions.slice(0);
+      const selectedOptionsMerged = [...selectedOptionsArray, ...state.selectedOptions];
 
-        selectedOptionsArray = selectedOptionsArray
-          .filter(index => state.options[index].groupTitle !== payload.group)
-          .map(index => Number.parseInt(index, 10));
-
-        const indexGroupToRemove = selectedOptionsArray.indexOf(payload.index);
-        selectedOptionsArray.splice(indexGroupToRemove, 1);
-
-        handleChange(state, payload, selectedOptionsArray, "removed");
-      } else {
-        selectedOptionsArray = Object.keys(state.options)
-          .filter(key => state.options[key].groupTitle === payload.group)
-          .map(index => Number.parseInt(index, 10));
-
-        handleChange(state, payload, selectedOptionsArray, "added");
-
-        selectedOptionsArray.push(payload.index);
-
-        if (state.selectedOptions.length) {
-          selectedOptionsArray = [...state.selectedOptions.slice(), ...selectedOptionsArray];
-        }
-      }
+      handleChange(state, payload, selectedOptionsArray, "add:bulk");
 
       return {
         ...state,
-        activeOption: payload.index,
-        selectedOptions: [...new Set(selectedOptionsArray)], // remove duplicated
+        selectedGroupSelectors: [...new Set([...state.selectedGroupSelectors, groupId])],
+        selectedOptions: [...new Set(selectedOptionsMerged)], // remove duplicated
+      };
+    }
+
+    case useListBox.types.deselectByGroup: {
+      const groupId = payload;
+      const optionsToRemove = Object.keys(state.options)
+        .filter(key => state.options[key].groupId === groupId && !state.options[key].isGroupSelector)
+        .map(key => Number.parseInt(key, 10));
+
+      const selectedOptionsArray = state.selectedOptions.slice(0);
+      optionsToRemove.forEach(index => {
+        const indexOf = selectedOptionsArray.indexOf(index);
+        selectedOptionsArray.splice(indexOf, 1);
+      });
+
+      const indexOfGroupSelected = state.selectedGroupSelectors.indexOf(groupId);
+      const selectedGroupSelectorsClone = state.selectedGroupSelectors.slice(0);
+      selectedGroupSelectorsClone.splice(indexOfGroupSelected, 1);
+
+      handleChange(state, payload, selectedOptionsArray, "remove:bulk");
+
+      return {
+        ...state,
+        selectedGroupSelectors: selectedGroupSelectorsClone,
+        selectedOptions: selectedOptionsArray, // remove duplicated
       };
     }
 

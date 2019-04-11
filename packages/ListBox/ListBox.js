@@ -1,13 +1,13 @@
 import React from "react";
 import PropTypes from "prop-types";
+import Box from "./components/Box";
 import Content from "./components/Content";
 import Filter from "./components/Filter";
+import List from "./components/List";
 import NoResults from "./components/NoResults";
 import Options from "./components/Options";
 import Popover from "./components/Popover";
 import Trigger from "./components/Trigger";
-import Box from "./components/Box";
-import List from "./components/List";
 import useListBox from "./useListBox";
 import handleImperative from "./imperative";
 import * as effects from "./effects";
@@ -21,6 +21,9 @@ export const propTypes = {
 
   /** Turn the clear button at the right side of the Trigger */
   hasClearButton: PropTypes.bool,
+
+  /** Activate a list of options which allow the user to select the entire group click a checkbox */
+  hasGroupSelection: PropTypes.bool,
 
   /** Indicate which is the height for the options container */
   height: PropTypes.number,
@@ -79,6 +82,7 @@ export const defaultProps = {
   getScrollContainer: null,
   hasClearButton: false,
   hasFilter: false,
+  hasGroupSelection: false,
   hasNotResultsMessage: "Your search did not match any options.",
   height: 200,
   hideOptionOnSelected: false,

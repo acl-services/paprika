@@ -4,10 +4,11 @@ export default function Options(props) {
   let index = -1;
 
   return React.Children.map(props.children, child => {
-    const { componentType } = child.type;
+    const { componentType = null } = child.type;
     if (child.type && componentType === "ListBox.Group") {
       const label = child.props.label;
       const groupId = child.props.groupId;
+
       return React.Children.map(child.props.children, _child => {
         index += 1;
         return React.cloneElement(_child, { ..._child.props, groupId: _child.props.groupId || groupId, label, index });
