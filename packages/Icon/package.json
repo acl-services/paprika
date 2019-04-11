@@ -12,7 +12,7 @@
     "access": "public"
   },
   "scripts": {
-    "svgr": "npx @svgr/cli -d components svg --icon --svg-props 'css={`color:${props.color}; width:${props.size}; height:${props.size}; vertical-align:text-top;`}' --svg-props 'width={props.size} height={props.size}' --replace-attr-values '#767676=currentColor' --replace-attr-values '#757575=currentColor' --replace-attr-values '#444=currentColor' && node ./script.js"
+    "svgr": "npx @svgr/cli -d . svg"
   },
   "dependencies": {
     "@babel/runtime-corejs2": "^7.3.1",

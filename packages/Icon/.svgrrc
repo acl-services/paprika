@@ -1,0 +1,15 @@
+{
+  "icon": true,
+  "replaceAttrValues": { 
+    "#717171": "currentColor"
+  },
+  "svgProps": {
+    "css": "{`
+      color: ${props.color}; 
+      width: ${props.size}; 
+      height: ${props.size}; 
+      vertical-align: text-top;
+    `}"
+  }, 
+  "titleProp": true
+}

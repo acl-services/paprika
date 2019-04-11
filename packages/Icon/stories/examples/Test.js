@@ -3,15 +3,12 @@ import { Story } from "storybook/assets/styles/common.styles";
 import tokens from "@paprika/tokens";
 import stylers from "@paprika/stylers";
 
-import {
-  Add as AddIcon,
-  CaretDown as DownIcon,
-  CaretUp as UpIcon,
-  Refresh as RefreshIcon,
-  Search as SearchIcon,
-  Times as CloseIcon,
-  Trashbin as TrashIcon,
-} from "@paprika/icon";
+import AddIcon from "@paprika/Icon/Add";
+import CloseIcon from "@paprika/Icon/Times";
+import RefreshIcon from "@paprika/Icon/Refresh";
+import SearchIcon from "@paprika/Icon/Search";
+import TrashIcon from "@paprika/Icon/Trashbin";
+import Arrow from "@paprika/Icon/ArrowRight";
 
 const ExampleStory = () => (
   <Story
@@ -37,6 +34,7 @@ const ExampleStory = () => (
       vinegar polaroid unicorn&nbsp;
       <TrashIcon
         aria-label="rubbish"
+        title="garbage"
         role="presentation"
         size={stylers.spacer(7)}
         width={stylers.spacer(2)}
@@ -45,7 +43,7 @@ const ExampleStory = () => (
           verticalAlign: "middle",
         }}
       />
-      , photo booth small batch poke. <UpIcon /> <DownIcon />
+      , photo booth small batch poke. <Arrow />
     </p>
   </Story>
 );
