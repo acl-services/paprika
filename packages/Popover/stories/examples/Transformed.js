@@ -1,4 +1,4 @@
-import React, { Component } from "react";
+import React from "react";
 import styled from "styled-components";
 import { CenteredStory } from "storybook/assets/styles/common.styles";
 import Popover from "../../Popover";
@@ -10,7 +10,7 @@ const TransformedStory = styled(CenteredStory)`
   height: 50vh;
 `;
 
-export default class ExampleStory extends Component {
+export default class ExampleStory extends React.Component {
   render() {
     return (
       <TransformedStory>

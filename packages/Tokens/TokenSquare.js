@@ -1,8 +1,8 @@
 import React from "react";
-import { string } from "prop-types";
+import PropTypes from "prop-types";
 
 const propTypes = {
-  color: string.isRequired,
+  color: PropTypes.string.isRequired,
 };
 
 export default function TokenSquare(props) {
