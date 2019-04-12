@@ -1,8 +1,8 @@
-import React, { Component } from "react";
-import { func, object } from "prop-types";
+import React from "react";
+import PropTypes from "prop-types";
 import sinon from "sinon";
 
-class WindowHandles extends Component {
+class WindowHandles extends React.Component {
   constructor(props) {
     super(props);
     this.element = props.story();
@@ -49,9 +49,9 @@ class WindowHandles extends Component {
 }
 
 WindowHandles.propTypes = {
-  story: func.isRequired,
+  story: PropTypes.func.isRequired,
   // eslint-disable-next-line
-  config: object.isRequired,
+  config: PropTypes.object.isRequired,
 };
 
 export class Input {

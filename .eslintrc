@@ -27,6 +27,13 @@
     "jsx-a11y/label-has-for": "off",
     "new-cap": "off",
     "no-plusplus": "off",
+    "no-restricted-syntax": ["error", {
+      "selector": "ImportDeclaration[source.value=\"prop-types\"] :matches(ImportSpecifier, ImportNamespaceSpecifier)",
+      "message": "Prefer `import PropTypes from \"prop-types\";`"
+    }, {
+      "selector": "ImportDeclaration[source.value=\"react\"] :matches(ImportSpecifier, ImportNamespaceSpecifier)",
+      "message": "Prefer accessing properties of `React` import, e.g. `React.Component`"
+    }],
     "no-underscore-dangle": "off",
     "prefer-destructuring": "off",
     "react/destructuring-assignment": "off",

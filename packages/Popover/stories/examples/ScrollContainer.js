@@ -1,6 +1,6 @@
-import React, { Component } from "react";
+import React from "react";
 import { select, text, number } from "@storybook/addon-knobs";
-import { func } from "prop-types";
+import PropTypes from "prop-types";
 import styled from "styled-components";
 import { CenteredStory } from "storybook/assets/styles/common.styles";
 import Popover from "../../Popover";
@@ -55,10 +55,10 @@ const PopoverBox = ({ getScrollContainer }) => (
 );
 
 PopoverBox.propTypes = {
-  getScrollContainer: func.isRequired,
+  getScrollContainer: PropTypes.func.isRequired,
 };
 
-export default class ExampleStory extends Component {
+export default class ExampleStory extends React.Component {
   render() {
     return (
       <React.Fragment>

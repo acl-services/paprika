@@ -1,4 +1,4 @@
-import React, { Component } from "react";
+import React from "react";
 import { select } from "@storybook/addon-knobs";
 import styled from "styled-components";
 import { CenteredStory } from "storybook/assets/styles/common.styles";
@@ -25,7 +25,7 @@ const PositioningElementStyled = styled.div`
 
 const getPositioningElement = () => document.querySelector("#another-div");
 
-export default class ExampleStory extends Component {
+export default class ExampleStory extends React.Component {
   render() {
     return (
       <CenteredStory>

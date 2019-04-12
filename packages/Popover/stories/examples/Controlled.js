@@ -1,9 +1,9 @@
-import React, { Component } from "react";
+import React from "react";
 import { CenteredStory } from "storybook/assets/styles/common.styles";
 
 import Popover from "../../Popover";
 
-export default class ExampleStory extends Component {
+export default class ExampleStory extends React.Component {
   state = {
     isOpen: false,
   };
