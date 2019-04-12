@@ -3,12 +3,12 @@ import { Story } from "storybook/assets/styles/common.styles";
 import tokens from "@paprika/tokens";
 import stylers from "@paprika/stylers";
 
-import AddIcon from "@paprika/Icon/Add";
-import CloseIcon from "@paprika/Icon/Times";
-import RefreshIcon from "@paprika/Icon/Refresh";
-import SearchIcon from "@paprika/Icon/Search";
-import TrashIcon from "@paprika/Icon/Trashbin";
-import Arrow from "@paprika/Icon/ArrowRight";
+import AddIcon from "@paprika/icon/Add";
+import CloseIcon from "@paprika/icon/Times";
+import RefreshIcon from "@paprika/icon/Refresh";
+import SearchIcon from "@paprika/icon/Search";
+import TrashIcon from "@paprika/icon/Trashbin";
+import Arrow from "@paprika/icon/ArrowRight";
 
 const ExampleStory = () => (
   <Story
