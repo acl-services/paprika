@@ -1,4 +1,5 @@
 import styled from "styled-components";
+import tokens from "@paprika/tokens";
 
 export const FilterContainerStyled = styled.div`
   position: relative;
@@ -23,6 +24,12 @@ export const FilterInputStyled = styled.input`
     border-color: #276cf5;
     box-shadow: 0 0 0 2px #99cbfc;
   }
+
+  ${props => {
+    return props.isDisabled
+      ? ` color: ${tokens.color.blackLighten60}; background: ${tokens.color.blackLighten60};`
+      : "";
+  }}
 `;
 
 export const FilterGroupFilterLabel = styled.label`

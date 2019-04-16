@@ -85,6 +85,8 @@ export default function Filter(props) {
   const handleChangeFilter = event => {
     const textSearchValue = event.target.value;
 
+    if (state.isDisabled) return;
+
     if (props.filter) {
       setTextSearch(textSearchValue);
       return props.filter({ search: textSearchValue, state, dispatch });
@@ -139,13 +141,14 @@ export default function Filter(props) {
       <FilterContainerStyled>
         {props.hasSearchIcon ? <FilterSearchIconStyled /> : null}
         <FilterInputStyled
-          ref={state.refFilterInput}
-          type="text"
+          isDisabled={state.isDisabled}
+          onBlur={handleBlur}
           onChange={handleChangeFilter}
           onKeyDown={props.onKeyDown}
-          onBlur={handleBlur}
-          value={value || textSearch || ""}
           placeholder={placeholder}
+          ref={state.refFilterInput}
+          type="text"
+          value={value || textSearch || ""}
           {...moreProps}
         />
       </FilterContainerStyled>
