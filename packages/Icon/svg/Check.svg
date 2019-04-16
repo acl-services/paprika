@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 53 (72520) - https://sketchapp.com -->
+    <title>Check</title>
+    <desc>Created with Sketch.</desc>
+    <defs>
+        <path d="M22.5,5.69529883 L11.1381794,19.7349164 L11.0669112,19.8159316 C10.9376853,19.943795 10.8002845,20.0546799 10.6375206,20.1377912 C10.2174577,20.3519101 9.71218745,20.364906 9.28174876,20.1725868 C9.11489744,20.0979648 8.97194191,19.9943116 8.8363228,19.8731557 L1.5,12.8533469 L3.67367869,10.5815695 L9.78460847,16.4288075 L20.0700704,3.7 C20.880012,4.36509961 21.6899536,5.03019922 22.5,5.69529883 L22.5,5.69529883 Z" id="path-1"></path>
+    </defs>
+    <g id="Check" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <mask id="mask-2" fill="white">
+            <use xlink:href="#path-1"></use>
+        </mask>
+        <use id="🌈-Color" fill="#717171" xlink:href="#path-1"></use>
+    </g>
+</svg>
