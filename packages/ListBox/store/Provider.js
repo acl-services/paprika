@@ -2,8 +2,7 @@ import React from "react";
 import PropTypes from "prop-types";
 import reducer from "./reducer";
 import handleChange from "../helpers/handleChange";
-
-import { getDataOptions } from "../helpers/dataStructure";
+import { getDataOptions } from "../components/Option/helpers/optionState";
 
 export const StoreContext = React.createContext();
 

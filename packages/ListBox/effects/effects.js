@@ -1,16 +1,13 @@
-import React from "react";
 import useListBox from "../useListBox";
-import { getDataOptions } from "../helpers/dataStructure";
+import { getDataOptions } from "../components/Option/helpers/optionState";
 
 export const handleEffectChildrenLength = (props, state, dispatch) => () => {
-  if (props.children && React.Children.toArray(props.children).length) {
-    const options = getDataOptions(props.children);
+  const options = getDataOptions(props.children);
 
-    dispatch({
-      type: useListBox.types.updateOptions,
-      payload: options,
-    });
-  }
+  dispatch({
+    type: useListBox.types.updateOptions,
+    payload: options,
+  });
 };
 
 export const handleEffectIsPopOverOpen = (state, dispatch) => () => {
@@ -68,6 +65,9 @@ export const handleEffectListBoxWidth = (state, dispatch) => () => {
   };
 };
 
+// This function is a candiate to use a memo in someway is used to scroll the window depending
+// of the scrolling, not sure if this will conflict with react window.
+
 export const handleEffectListBoxScrolled = state => () => {
   if (!state.refListBox.current) return;
 
@@ -80,16 +80,19 @@ export const handleEffectListBoxScrolled = state => () => {
       if (state.activeOption === 0) {
         offsetTop = 0;
       }
+
       state.refListBox.current.scrollTo(0, offsetTop - 10);
     }
   }
 };
 
-export const handleEffectHeightChange = (props, dispatch) => () => {
-  dispatch({
-    type: useListBox.types.setHeight,
-    payload: props.height,
-  });
+export const handleEffectHeightChange = (props, state, dispatch) => () => {
+  if (props.height !== state.height) {
+    dispatch({
+      type: useListBox.types.setHeight,
+      payload: props.height,
+    });
+  }
 };
 
 export const handleEffectIsDisabledChange = (props, dispatch) => () => {

@@ -150,13 +150,14 @@ ListBox.propTypes = {
   filter: PropTypes.func,
   hasNotResultsMessage: PropTypes.string.isRequired,
   height: PropTypes.number.isRequired,
-  onClickClear: PropTypes.func.isRequired,
+  onClickClear: PropTypes.func,
   placeholder: PropTypes.string.isRequired,
   renderTrigger: PropTypes.func,
 };
 
 ListBox.defaultProps = {
   filter: null,
+  onClickClear: null,
   renderTrigger: null,
 };
 
@@ -167,7 +168,7 @@ const ListBoxContainer = React.forwardRef((props, ref) => {
   React.useImperativeHandle(ref, imperativeHandle);
 
   // EFFECTS
-  const handleEffectHeightChange = effects.handleEffectHeightChange(props, dispatch);
+  const handleEffectHeightChange = effects.handleEffectHeightChange(props, state, dispatch);
   const handleEffectIsDisabledChange = effects.handleEffectIsDisabledChange(props, dispatch);
   const handleEffectIsPopOverOpen = effects.handleEffectIsPopOverOpen(state, dispatch);
   const handleEffectListBoxScrolled = effects.handleEffectListBoxScrolled(state);
@@ -197,6 +198,7 @@ const ListBoxContainer = React.forwardRef((props, ref) => {
     placeholder,
     renderChecker,
     renderTrigger,
+    onClickClear,
     ...moreProps
   } = props;
 
@@ -205,6 +207,7 @@ const ListBoxContainer = React.forwardRef((props, ref) => {
     filter,
     hasNotResultsMessage,
     height,
+    onClickClear,
     placeholder,
     renderTrigger,
   };
