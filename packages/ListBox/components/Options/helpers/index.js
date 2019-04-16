@@ -9,6 +9,10 @@ export function isOptionVisible(state, key) {
 
   const keyInt = Number.parseInt(key, 10);
 
+  if (typeof state.options[keyInt] === "undefined") {
+    return true;
+  }
+
   if (state.hideOptionOnSelected && state.selectedOptions.includes(keyInt)) {
     return false;
   }
@@ -29,21 +33,18 @@ function isDisabled(state, key) {
 }
 
 export function getNextOptionActiveIndex(state, isAscending = true) {
-  if (state.hasNoResults) {
-    return null;
-  }
+  if (state.hasNoResults) return null;
 
-  if (state.activeOption === null) {
-    return 0;
-  }
-
-  const optionsKeys = Object.keys(state.options);
+  if (state.activeOption === null) return 0;
 
   const { activeOption, filteredOptions, options } = state;
-  let index = null;
+  const optionsKeys = Object.keys(state.options);
+  let key = state.options[activeOption].index;
 
+  if (typeof key === "undefined") return null;
+
+  let index = null;
   let keepIterating = true;
-  let key = activeOption;
 
   while (keepIterating) {
     if (isAscending) {

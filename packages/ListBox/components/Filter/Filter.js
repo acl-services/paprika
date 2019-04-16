@@ -52,10 +52,6 @@ export default function Filter(props) {
     const keys = Object.keys(options);
 
     if (keys.length) {
-      if (props.filter) {
-        return props.filter(textSearchValue, options);
-      }
-
       const filteredOptions = keys.filter(key => {
         const hasLabel = typeof options[key].content === "string" || options[key].label || null;
 
@@ -88,6 +84,11 @@ export default function Filter(props) {
 
   const handleChangeFilter = event => {
     const textSearchValue = event.target.value;
+
+    if (props.filter) {
+      setTextSearch(textSearchValue);
+      return props.filter({ search: textSearchValue, state, dispatch });
+    }
 
     if (props.onChangeFilter) {
       props.onChangeFilter(event);
@@ -129,7 +130,7 @@ export default function Filter(props) {
   React.useEffect(handleEffectTextSearch, [textSearch]);
 
   if (props.forceShowFilter || (state.isInlineDisplay && state.hasFilter) || (state.hasFilter && state.isPopoverOpen)) {
-    const { renderFilter, placeholder, value, onChangeFilter, ...moreProps } = props;
+    const { renderFilter, placeholder, value, onChangeFilter, filter, ...moreProps } = props;
     if (renderFilter) {
       return props.renderFilter(props);
     }

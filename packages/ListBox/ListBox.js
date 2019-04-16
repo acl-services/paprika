@@ -56,6 +56,12 @@ export const propTypes = {
   /** Callback returning the current selected index on the ListBox and more arguments */
   onChange: PropTypes.func,
 
+  /** Callback ocurring after the user click the [x] clear button on the Trigger area */
+  onClickClear: PropTypes.func,
+
+  /** Callback happening once the Popover has close */
+  onClose: PropTypes.func,
+
   /** Defaults label to display when the ListBox has not option selected */
   placeholder: PropTypes.string,
 
@@ -74,12 +80,16 @@ export const propTypes = {
       want to render a checkbox you can return null ex. renderChecker={() =>  null} */
   renderChecker: PropTypes.func,
 
+  /** Overrides the filter function and delegate the responsibility to the developer */
+  filter: PropTypes.func,
+
   /** z-index for the popover */
   zIndex: PropTypes.number,
 };
 
 export const defaultProps = {
   children: null,
+  filter: null,
   getScrollContainer: null,
   hasClearButton: false,
   hasFilter: false,
@@ -93,6 +103,8 @@ export const defaultProps = {
   isPopoverEager: true,
   isPopoverOpen: false,
   onChange: () => {},
+  onClickClear: null,
+  onClose: () => {},
   placeholder: "Select one of the options",
   preventOnBlurOnTrigger: false,
   renderChecker: undefined,
@@ -102,7 +114,7 @@ export const defaultProps = {
 
 export function ListBox(props) {
   const [state, dispatch] = useListBox();
-  const { renderTrigger, placeholder, height, hasNotResultsMessage, children } = props;
+  const { children, hasNotResultsMessage, height, onClickClear, placeholder, renderTrigger } = props;
   const [Footer, setFooter] = React.useState(null);
 
   const handleFooterFound = Footer => {
@@ -118,10 +130,10 @@ export function ListBox(props) {
 
   return (
     <React.Fragment>
-      <Trigger renderTrigger={renderTrigger} placeholder={placeholder} />
+      <Trigger onClickClear={onClickClear} renderTrigger={renderTrigger} placeholder={placeholder} />
       <Content>
         <Box>
-          <Filter />
+          <Filter filter={props.filter} />
           <List height={height}>
             <Options onFooterFound={handleFooterFound}>{children}</Options>
           </List>
@@ -134,20 +146,22 @@ export function ListBox(props) {
 }
 
 ListBox.propTypes = {
+  children: PropTypes.node.isRequired,
+  filter: PropTypes.func,
   hasNotResultsMessage: PropTypes.string.isRequired,
   height: PropTypes.number.isRequired,
+  onClickClear: PropTypes.func.isRequired,
   placeholder: PropTypes.string.isRequired,
   renderTrigger: PropTypes.func,
-  children: PropTypes.node.isRequired,
 };
 
 ListBox.defaultProps = {
+  filter: null,
   renderTrigger: null,
 };
 
 const ListBoxContainer = React.forwardRef((props, ref) => {
   const [state, dispatch] = useListBox();
-
   // IMPERATIVE API
   const imperativeHandle = handleImperative(state, dispatch);
   React.useImperativeHandle(ref, imperativeHandle);
@@ -167,26 +181,28 @@ const ListBoxContainer = React.forwardRef((props, ref) => {
   React.useEffect(handleEffectListBoxWidth, [state.refTriggerContainer.current]);
   React.useEffect(handleEffectSelectedOptions, [state.selectedOptions]);
   React.useLayoutEffect(handleEffectListBoxScrolled, [state.activeOption]);
-  React.useLayoutEffect(handleEffectChildrenLength, [props.children.length]);
+  React.useLayoutEffect(handleEffectChildrenLength, [props.children]);
 
   const {
     children,
+    filter,
     hasFilter,
+    hasNotResultsMessage,
     height,
+    isInlineDisplay,
     isMulti,
     isPopoverEager,
     isPopoverOpen,
-    hasNotResultsMessage,
     onChange,
     placeholder,
-    renderTrigger,
     renderChecker,
-    isInlineDisplay,
+    renderTrigger,
     ...moreProps
   } = props;
 
   const ListBoxProps = {
     children,
+    filter,
     hasNotResultsMessage,
     height,
     placeholder,

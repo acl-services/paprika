@@ -33,7 +33,7 @@ export const handleEffectIsPopOverOpen = (state, dispatch) => () => {
       // unsure how to handle this properly.
       setTimeout(() => {
         filterInput.focus();
-      }, 200);
+      }, 300);
     } else {
       if (state.isInlineDisplay) return;
 

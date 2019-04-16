@@ -8,6 +8,7 @@ const propTypes = {
   isAcceptVisible: PropTypes.bool,
   isCancelVisible: PropTypes.bool,
   isClearVisible: PropTypes.bool,
+  isDisabled: PropTypes.bool,
   kindAccept: PropTypes.string,
   kindCancel: PropTypes.string,
   kindClear: PropTypes.string,
@@ -24,12 +25,13 @@ const defaultProps = {
   isAcceptVisible: true,
   isCancelVisible: true,
   isClearVisible: true,
-  labelAccept: "Accept",
-  labelCancel: "Cancel",
-  labelClear: "Clear",
+  isDisabled: false,
   kindAccept: "primary",
   kindCancel: "minor",
   kindClear: "minor",
+  labelAccept: "Accept",
+  labelCancel: "Cancel",
+  labelClear: "Clear",
   onClickAccept: () => {
     return true;
   },
@@ -111,23 +113,25 @@ const Footer = React.forwardRef((props, ref) => {
     dispatch({ type: useListBox.types.clear, payload: { isPopoverOpen: true } });
   };
 
+  const { isDisabled } = props;
+
   return (
     <FooterContainerStyled ref={ref}>
       <div>
         {isAcceptVisible && (
-          <Button kind={kindAccept} size={size} onClick={handleClickAccept}>
+          <Button isDisabled={isDisabled} kind={kindAccept} size={size} onClick={handleClickAccept}>
             {labelAccept}
           </Button>
         )}
         {isCancelVisible && (
-          <Button kind={kindCancel} size={size} onClick={handleClickCancel}>
+          <Button isDisabled={isDisabled} kind={kindCancel} size={size} onClick={handleClickCancel}>
             {labelCancel}
           </Button>
         )}
       </div>
       <div>
         {isClearVisible && (
-          <Button kind={kindClear} size={size} onClick={handleClickClear}>
+          <Button isDisabled={isDisabled} kind={kindClear} size={size} onClick={handleClickClear}>
             {labelClear}
           </Button>
         )}

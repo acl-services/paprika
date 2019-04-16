@@ -16,10 +16,12 @@ import { getDOMAttributesForListBoxButton } from "../../helpers/DOMAttributes";
 const propTypes = {
   placeholder: PropTypes.string.isRequired,
   renderTrigger: PropTypes.func,
+  onClickClear: PropTypes.func,
 };
 
 const defaultProps = {
   renderTrigger: null,
+  onClickClear: null,
 };
 
 export default function Trigger(props) {
@@ -38,6 +40,11 @@ export default function Trigger(props) {
 
   const handleClickClear = () => {
     if (isDisabled) {
+      return;
+    }
+
+    if (props.onClickClear) {
+      props.onClickClear(state, dispatch);
       return;
     }
 

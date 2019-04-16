@@ -1,11 +1,16 @@
-function handleChangeSingle(state, payload, selectedOptionsArray) {
+function handleChangeSingle(state, payload, selectedOptionsArray, eventType) {
   const activeOptionIndex =
     selectedOptionsArray && selectedOptionsArray.length === 0 ? null : payload.activeOptionIndex;
-  state.onChange(activeOptionIndex, state.options);
+  state.onChange({ index: activeOptionIndex, options: state.options, type: eventType });
 }
 
 function handleChangeMulti(state, payload, selectedOptionsArray, eventType) {
-  state.onChange(selectedOptionsArray, state.options, payload.activeOptionIndex, eventType);
+  state.onChange({
+    selected: selectedOptionsArray,
+    options: state.options,
+    index: payload.activeOptionIndex,
+    type: eventType,
+  });
 }
 
 export default function handleChange(state, payload, selectedOptionsArray, eventType) {
@@ -14,5 +19,5 @@ export default function handleChange(state, payload, selectedOptionsArray, event
     return;
   }
 
-  handleChangeSingle(state, payload, selectedOptionsArray);
+  handleChangeSingle(state, payload, selectedOptionsArray, eventType);
 }

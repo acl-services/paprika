@@ -8,7 +8,15 @@ export function getDOMAttributesForListBoxContainer() {
 
 export function getDOMAttributesForListBox(state) {
   // NOTE: replace this with L10n component
-  const activedescendant = state.activeOption === null ? "none" : state.options[state.activeOption].id;
+  let activedescendant = "none";
+  const { activeOption } = state;
+
+  if (activeOption && activeOption < Object.keys(state.options).length) {
+    const { id } = state.options[activeOption];
+    if (id) {
+      activedescendant = id;
+    }
+  }
 
   return {
     "aria-activedescendant": activedescendant,

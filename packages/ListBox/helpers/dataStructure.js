@@ -65,18 +65,3 @@ export function getDataOptions(children) {
 
   return options;
 }
-
-export function getDataGroups(children) {
-  if (!children) throw Error("Listbox.Options is a required prop, please check you are passing correctly the data");
-
-  const map = React.Children.map;
-  const groups = map(child => {
-    if (child.type.componentType === "ListBox.Group") {
-      return child.props.title;
-    }
-
-    return null;
-  }).filter(chunk => chunk);
-
-  return groups;
-}

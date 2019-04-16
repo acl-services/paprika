@@ -7,10 +7,18 @@ const propTypes = {
   placeholder: PropTypes.string,
 };
 
+let lastKnownLabel = "";
+
 export default function Label(props) {
-  const [state] = useListBox();
   const { placeholder } = props;
+  const [state] = useListBox();
   const { selectedOptions, isMulti, options } = state;
+
+  if (!isMulti && selectedOptions.length && state.options[selectedOptions[0]].preventDefaultOnSelect) {
+    if (!lastKnownLabel) return placeholder;
+
+    return lastKnownLabel;
+  }
 
   function getListboxLabelForMulti() {
     const optionsLength = selectedOptions.length;
@@ -33,14 +41,17 @@ export default function Label(props) {
       })
       .join(", ");
 
-    return optionsLength > 1 ? (
-      <span css={labelStyles}>
-        <span>({optionsLength})&nbsp;</span>
-        {label}
-      </span>
-    ) : (
-      <span css={labelStyles}>{label}</span>
-    );
+    const lastKnownLabel =
+      optionsLength > 1 ? (
+        <span css={labelStyles}>
+          <span>({optionsLength})&nbsp;</span>
+          {label}
+        </span>
+      ) : (
+        <span css={labelStyles}>{label}</span>
+      );
+
+    return lastKnownLabel;
   }
 
   if (isMulti && selectedOptions.length) {
@@ -50,13 +61,23 @@ export default function Label(props) {
   if (selectedOptions.length) {
     const option = options[selectedOptions[0]];
     if (option.label) {
-      return option.label;
+      lastKnownLabel = option.label;
+      return lastKnownLabel;
     }
 
+    if (typeof options.content === "string") {
+      lastKnownLabel = option.content;
+      return lastKnownLabel;
+    }
+
+    console.log(
+      "Warning: Your Option required a label prop, <ListBox.Option label='your label' /><MyCoolContent /></ListBox.Option>"
+    );
     return option.content;
   }
 
-  return placeholder;
+  lastKnownLabel = placeholder;
+  return lastKnownLabel;
 }
 
 Label.propTypes = propTypes;

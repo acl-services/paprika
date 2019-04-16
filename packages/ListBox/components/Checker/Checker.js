@@ -7,10 +7,12 @@ const propTypes = {
   index: PropTypes.number.isRequired,
   isChecked: PropTypes.bool.isRequired,
   renderChecker: PropTypes.oneOfType([PropTypes.string, PropTypes.func]),
+  hasPreventDefaultOnSelect: PropTypes.bool,
 };
 
 const defaultProps = {
   renderChecker: null,
+  hasPreventDefaultOnSelect: false,
 };
 
 export default function Checkers(props) {
@@ -19,6 +21,10 @@ export default function Checkers(props) {
 
   if (typeof renderChecker === "function") {
     return props.renderChecker(isChecked, index, state, dispatch);
+  }
+
+  if (props.hasPreventDefaultOnSelect) {
+    return null;
   }
 
   if (state.isMulti) {

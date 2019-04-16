@@ -58,15 +58,19 @@ export default function Option(props) {
   const { hasNoResults, activeOption, isDisabled, renderChecker } = state;
   const { index, groupId, label, isGroupSelector } = props; // eslint-disable-line
 
+  if (typeof state.options[index] === "undefined") {
+    return null;
+  }
+
   let shouldHaveGroupTitle = false;
   if (groupId && lastGroupId !== groupId) {
     shouldHaveGroupTitle = true;
     lastGroupId = groupId;
   }
 
-  let GroupComponent = null;
+  let GroupDividerComponent = null;
   if (shouldHaveGroupTitle && !isGroupSelector && !hasNoResults) {
-    GroupComponent = <OptionDividerStyled aria-hidden="true">{label}</OptionDividerStyled>;
+    GroupDividerComponent = <OptionDividerStyled aria-hidden="true">{label}</OptionDividerStyled>;
   }
 
   if (!isOptionVisible(state, index)) {
@@ -75,7 +79,7 @@ export default function Option(props) {
 
   return (
     <React.Fragment>
-      {GroupComponent}
+      {GroupDividerComponent}
       <OptionStyled
         {...getA11yAttributesForOption(state.options[index].isSelected)}
         hasPreventDefaultOnSelect={props.preventDefaultOnSelect}
@@ -90,6 +94,7 @@ export default function Option(props) {
           index={Number.parseInt(index, 10)}
           isChecked={isOptionSelected(state, index)}
           renderChecker={props.renderChecker || renderChecker}
+          hasPreventDefaultOnSelect={props.preventDefaultOnSelect}
         />
         {typeof props.children === "function" ? props.children() : props.children}
       </OptionStyled>

@@ -44,7 +44,11 @@ export default function reducer(state, { type, payload }) {
         options[payload.activeOptionIndex].isHidden = true;
       }
 
-      handleChange(state, payload);
+      const hasPreventDefaultOnSelect = state.options[payload.activeOptionIndex].preventDefaultOnSelect;
+
+      if (!hasPreventDefaultOnSelect) {
+        handleChange(state, payload);
+      }
 
       return {
         ...state,
@@ -122,7 +126,12 @@ export default function reducer(state, { type, payload }) {
     case useListBox.types.selectByGroup: {
       const groupId = payload;
       const selectedOptionsArray = Object.keys(state.options)
-        .filter(key => state.options[key].groupId === groupId && !state.options[key].isGroupSelector)
+        .filter(
+          key =>
+            state.options[key].groupId === groupId &&
+            !state.options[key].isGroupSelector &&
+            !state.options[key].preventDefaultOnSelect
+        )
         .map(key => Number.parseInt(key, 10));
 
       const selectedOptionsMerged = [...selectedOptionsArray, ...state.selectedOptions];

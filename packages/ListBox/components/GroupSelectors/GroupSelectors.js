@@ -4,22 +4,6 @@ import Option from "../Option";
 export default function GroupSelectors(props) {
   let groupChildren = [];
 
-  // const handleClick = groupId => (event, index, options, state, dispatch) => {
-  //   if (state.selectedGroupSelectors.includes(groupId)) {
-  //     dispatch({
-  //       type: useListBox.types.deselectByGroup,
-  //       payload: groupId,
-  //     });
-  //
-  //     return;
-  //   }
-  //
-  //   dispatch({
-  //     type: useListBox.types.selectByGroup,
-  //     payload: groupId,
-  //   });
-  // };
-
   if (props.hasGroupSelection) {
     const groupSelectors = React.Children.toArray(props.children).filter(
       option => option.type.componentType === "ListBox.Group"
@@ -27,9 +11,14 @@ export default function GroupSelectors(props) {
 
     if (groupSelectors.length) {
       groupChildren = groupSelectors.map(({ props }) => {
+        let labelSelector = props.label;
+        if (props.labelSelector) {
+          labelSelector = props.labelSelector;
+        }
+
         return (
           <Option key={props.groupId} isGroupSelector groupId={props.groupId} renderChecker={() => null}>
-            {props.label}
+            {labelSelector}
           </Option>
         );
       });
