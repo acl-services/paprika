@@ -1,3 +1,5 @@
+import useListBox from "../useListBox";
+
 function cleanOptionProperties(options) {
   return Object.keys(options).map(key => {
     // properties to be share with the consumer
@@ -29,8 +31,8 @@ function getSelectedOptionsMulti(state) {
 
 export default function callbackParameters(state, dispatch) {
   if (state.isMulti) {
-    return { ...getSelectedOptionsMulti(state), dispatch };
+    return { ...getSelectedOptionsMulti(state), dispatch, types: useListBox.types };
   }
 
-  return [...getSelectedOptionSingle(state), dispatch];
+  return [...getSelectedOptionSingle(state), dispatch, useListBox.types];
 }

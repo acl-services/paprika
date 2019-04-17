@@ -57,13 +57,6 @@ export default function Option(props) {
   const [state, dispatch] = useListBox();
   const { hasNoResults, activeOption, isDisabled, renderCheckbox } = state;
   const { index, groupId, label, isGroupSelector } = props; // eslint-disable-line
-  //
-  // React.useEffect(() => {
-  //   debugger;
-  //   if (Object.keys(state.options).length && props.isHidden !== state.options[index].isHidden) {
-  //     debugger;
-  //   }
-  // }, [props.isHidden]);
 
   if (typeof state.options[index] === "undefined") {
     return null;

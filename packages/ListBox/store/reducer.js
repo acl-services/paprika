@@ -240,7 +240,7 @@ export default function reducer(state, { type, payload }) {
       return {
         ...state,
         activeOption: null,
-        isPopoverOpen: payload.isPopoverOpen,
+        isPopoverOpen: (payload && payload.isPopoverOpen) || false,
         selectedOptions: [],
       };
     }

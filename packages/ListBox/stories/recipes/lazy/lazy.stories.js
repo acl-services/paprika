@@ -62,7 +62,7 @@ function reducer(state, { type, payload }) {
     }
 
     case actionTypes.addSelectedCharacters: {
-      return { ...state, selectedCharacters: [...new Set([...state.selectedCharacters, ...payload])] };
+      return { ...state, selectedCharacters: [...state.selectedCharacters, ...payload] };
     }
 
     case actionTypes.updateActiveApiPage: {
@@ -162,7 +162,7 @@ function LazyListBox() {
   };
 
   const handleClickAccept = args => {
-    const { selected, options } = args;
+    const { selected, options, dispatch: dispatchListBox, types } = args;
     const selectedIds = selected.map(id => {
       return options[id].value.id;
     });
@@ -175,6 +175,10 @@ function LazyListBox() {
     dispatch({
       type: actionTypes.setSearch,
       payload: "",
+    });
+
+    dispatchListBox({
+      type: types.clear,
     });
   };
 
@@ -344,6 +348,7 @@ function LazyListBox() {
 
   return (
     <Frame>
+      {state.selectedCharacters.length ? <Results ids={state.selectedCharacters} /> : null}
       <ListBox
         filter={handleFilter}
         hasFilter
@@ -359,7 +364,6 @@ function LazyListBox() {
         {state.searchedCharacters && state.search !== "" ? renderSearchedOptions() : null}
         {state.characters.length && state.search === "" ? renderOptions() : null}
       </ListBox>
-      {state.selectedCharacters.length ? <Results ids={state.selectedCharacters} /> : null}
     </Frame>
   );
 }

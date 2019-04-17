@@ -101,9 +101,3 @@ export const handleEffectIsDisabledChange = (props, dispatch) => () => {
     payload: props.isDisabled,
   });
 };
-
-export const handleEffectSelectedOptions = (state, dispatch) => () => {
-  if (state.selectedOptions.length === Object.keys(state.options).length) {
-    dispatch({ type: useListBox.types.closePopover });
-  }
-};
