@@ -9,14 +9,16 @@ export const StoreContext = React.createContext();
 function initializeState(props) {
   const {
     childrenOptions,
+    hasGroupSelection,
     height,
     hideOptionOnSelected,
-    hasGroupSelection,
     isDisabled,
     isInlineDisplay,
     isMulti,
     isPopoverEager,
     onChange,
+    onDeselected,
+    onSelected,
     placeholder,
     preventOnBlurOnTrigger,
     refFilterInput,
@@ -54,6 +56,8 @@ function initializeState(props) {
     isPopoverEager,
     lastActiveOptionIndexAffected: null,
     onChange,
+    onDeselected,
+    onSelected,
     options,
     placeholder,
     preventOnBlurOnTrigger,
@@ -62,7 +66,7 @@ function initializeState(props) {
     refListBoxContainer,
     refTrigger,
     refTriggerContainer,
-    renderChecker: props.renderChecker,
+    renderCheckbox: props.renderCheckbox,
     selectedGroupSelectors: [],
     selectedOptions,
     shouldListBoxContentScroll: true,
@@ -70,6 +74,7 @@ function initializeState(props) {
   };
 
   handleChange(initialState, { activeOptionIndex: activeOption }, selectedOptions, "load");
+
   return {
     ...initialState,
     originalState: { ...initialState },

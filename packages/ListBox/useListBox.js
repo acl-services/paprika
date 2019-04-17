@@ -32,7 +32,7 @@ useListBox.types = types;
 // refListBoxContainer,
 // refTrigger,
 // refTriggerContainer,
-// renderChecker: props.renderChecker,          ====> 👩‍💻 renderCheckmark
+// renderCheckbox: props.renderCheckbox,          ====> 👩‍💻 renderCheckmark
 // selectedOptions,                             ====> selectedOptions | addSelectOption | removeSelectOption
 // shouldListBoxContentScroll: true,            ====> 👩‍💻 shouldContentScroll
 // triggerWidth: 0,                             ====>
@@ -80,3 +80,4 @@ useListBox.types = types;
 // - [] clean file DOMAttributes.js
 // - [] change the name dataStructure.js to something related to optionStateStructure, move it to another folder
 // - [] make onClose event work and remove where the popover is close withour a dispatch
+// - [] fix footer event issue tab and press enter

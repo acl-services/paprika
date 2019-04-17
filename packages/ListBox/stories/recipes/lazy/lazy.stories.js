@@ -38,6 +38,8 @@ async function fetchAPI(term, offset = null, limit = 20) {
   return data;
 }
 
+const charactersCache = {};
+
 const actionTypes = {
   addSearchedCharacters: "addSearchedCharacters",
   addCharacters: "addCharacters",
@@ -60,7 +62,7 @@ function reducer(state, { type, payload }) {
     }
 
     case actionTypes.addSelectedCharacters: {
-      return { ...state, selectedCharacters: payload };
+      return { ...state, selectedCharacters: [...new Set([...state.selectedCharacters, ...payload])] };
     }
 
     case actionTypes.updateActiveApiPage: {
@@ -84,6 +86,57 @@ function reducer(state, { type, payload }) {
   }
 }
 
+function Results(props) {
+  return (
+    <div css="margin-top: 32px; display: grid; grid-template-columns: 160px 160px 160px 160px; grid-gap: 10px;">
+      {props.ids.map(id => (
+        <div
+          key={id}
+          css="width: 100%; height: 210px; border-radius: 3px; border: 1px solid #CCC; padding: 4px; margin-right: 4px;"
+        >
+          <div
+            css={`
+              width: 100%;
+              height: 100%;
+              overflow: hidden;
+              background: url(${charactersCache[id].thumbnail.path}.${charactersCache[id].thumbnail.extension});
+              background-size: cover;
+            `}
+          />
+          <span
+            css="
+              display: inline-block;
+              color: #fff;
+              width: 100%;
+              padding: 4px;
+              font-size: 14px;
+              position: relative;
+              top: -32px;
+              background: rgba(0, 0, 0, 0.8);
+            "
+          >
+            {charactersCache[id].name}
+          </span>
+        </div>
+      ))}
+    </div>
+  );
+}
+
+function MarvelOption(props) {
+  const { result } = props;
+  return (
+    <React.Fragment>
+      <img
+        alt={result.name}
+        css="width: 24px; height: 24px;"
+        src={`${result.thumbnail.path}.${result.thumbnail.extension}`}
+      />
+      {result.name}
+    </React.Fragment>
+  );
+}
+
 function LazyListBox() {
   const [state, dispatch] = React.useReducer(reducer, {
     activeApiPage: [{ offset: 0, limit }, { offset: 0, limit }, { offset: 0, limit }],
@@ -97,12 +150,31 @@ function LazyListBox() {
 
   const groups = ["n", "z", "s"];
 
-  const handleOnChange = ({ selected, options }) => {
-    const selectedIds = selected.map(index => options[index].value);
+  const handleChange = ({ selected, options }) => {
+    if (!selected.length) return;
+
+    selected.forEach(index => {
+      const id = options[index].value.id;
+      if (!Object.prototype.hasOwnProperty.call(charactersCache, id)) {
+        charactersCache[id] = { ...options[index].value };
+      }
+    });
+  };
+
+  const handleClickAccept = args => {
+    const { selected, options } = args;
+    const selectedIds = selected.map(id => {
+      return options[id].value.id;
+    });
 
     dispatch({
       type: actionTypes.addSelectedCharacters,
       payload: selectedIds,
+    });
+
+    dispatch({
+      type: actionTypes.setSearch,
+      payload: "",
     });
   };
 
@@ -201,15 +273,15 @@ function LazyListBox() {
   }
 
   function renderFooter() {
-    return <ListBox.Footer isDisabled={state.isDisabled} />;
+    return <ListBox.Footer onClickAccept={handleClickAccept} isDisabled={state.isDisabled} />;
   }
 
   function renderOptions() {
     const characterOptions = state.characters.map(character => {
       return character.data.results.map(result => {
         return (
-          <ListBox.Option value={result.id} key={result.id} isSelected={state.selectedCharacters.includes(result.id)}>
-            {result.name}
+          <ListBox.Option value={result} key={result.id} isHidden={state.selectedCharacters.includes(result.id)}>
+            <MarvelOption result={result} />
           </ListBox.Option>
         );
       });
@@ -242,8 +314,8 @@ function LazyListBox() {
 
     const Options = state.searchedCharacters.data.results.map(result => {
       return (
-        <ListBox.Option value={result.id} key={result.id} isSelected={state.selectedCharacters.includes(result.id)}>
-          {result.name}
+        <ListBox.Option value={result} key={result.id} isHidden={state.selectedCharacters.includes(result.id)}>
+          <MarvelOption result={result} />
         </ListBox.Option>
       );
     });
@@ -273,19 +345,21 @@ function LazyListBox() {
   return (
     <Frame>
       <ListBox
-        onChange={handleOnChange}
-        isMulti
-        height={350}
-        placeholder="Marvel API"
-        isDisabled={state.isDisabled}
-        hasFilter
         filter={handleFilter}
+        hasFilter
+        height={350}
+        isDisabled={state.isDisabled}
+        isMulti
+        onChange={handleChange}
+        placeholder="Marvel API"
+        renderCheckbox={() => null}
         renderTrigger={renderTrigger}
       >
         {state.isLoading ? <ListBox.Option preventDefaultOnSelect>Fetching data ...</ListBox.Option> : null}
         {state.searchedCharacters && state.search !== "" ? renderSearchedOptions() : null}
         {state.characters.length && state.search === "" ? renderOptions() : null}
       </ListBox>
+      {state.selectedCharacters.length ? <Results ids={state.selectedCharacters} /> : null}
     </Frame>
   );
 }

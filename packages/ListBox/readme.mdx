@@ -213,7 +213,7 @@ import ListBox from "@paprika/listbox";
 
 ---
 
-### Single select renderChecker prop
+### Single select renderCheckbox prop
 
 <Playground>
   <p>Default option checker when is single select</p>
@@ -228,10 +228,10 @@ import ListBox from "@paprika/listbox";
     <ListBox.Option>Venom</ListBox.Option>
     <ListBox.Option>Carnage</ListBox.Option>
   </ListBox>
-  <p>To remove the checkbox simply return a falsy value on the renderChecker method</p>
+  <p>To remove the checkbox simply return a falsy value on the renderCheckbox method</p>
   <ListBox
     isMulti
-    renderChecker={(isChecked, state, dispatch, index) => null}
+    renderCheckbox={(isChecked, state, dispatch, index) => null}
     zIndex={10000}
     getScrollContainer={() => document.querySelector("#root > div")}
   >
@@ -261,7 +261,7 @@ import ListBox from "@paprika/listbox";
 </ListBox>
 
 // removing checker
-<ListBox renderChecker={() => null}>
+<ListBox renderCheckbox={() => null}>
   <ListBox.Option>Spiderman</ListBox.Option>
   <ListBox.Option isDisabled>Venom</ListBox.Option>
   <ListBox.Option>Carnage</ListBox.Option>
@@ -271,7 +271,7 @@ import ListBox from "@paprika/listbox";
 // custom checker with state
 <ListBox
   isMulti
-  renderChecker={(isChecked, index, state) => {
+  renderCheckbox={(isChecked, index, state) => {
     if (state.options[index].isDisabled) {
       return `🔒`;
     }
@@ -288,7 +288,7 @@ import ListBox from "@paprika/listbox";
 ```js
 import ListBox from "@paprika/listbox";
 
-<ListBox isMulti renderChecker={() =>  null}>
+<ListBox isMulti renderCheckbox={() =>  null}>
   <ListBox.Option>Spiderman</ListBox.Option>
   <ListBox.Option>Venom</ListBox.Option>
   <ListBox.Option>Carnage</ListBox.Option>
@@ -301,7 +301,7 @@ import ListBox from "@paprika/listbox";
 
 <Playground>
   <ListBox
-    renderChecker={isChecked => {
+    renderCheckbox={isChecked => {
       return isChecked ? "✅" : "🙅‍";
     }}
     zIndex={10000}
@@ -319,7 +319,7 @@ import ListBox from "@paprika/listbox";
 ```js
 import ListBox from "@paprika/listbox";
 
-<ListBox renderChecker="checkbox">
+<ListBox renderCheckbox="checkbox">
   <ListBox.Option>Spiderman</ListBox.Option>
   <ListBox.Option>Venom</ListBox.Option>
   <ListBox.Option>Carnage</ListBox.Option>

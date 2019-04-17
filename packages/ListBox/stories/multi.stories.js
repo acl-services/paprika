@@ -77,7 +77,7 @@ storiesOf("ListBox / multi", module).add("With Filter", () => (
 
 storiesOf("ListBox / multi", module).add("With Filter and nodes as children", () => (
   <Frame>
-    <ListBox isMulti hasFilter height={300} renderChecker={() => null}>
+    <ListBox isMulti hasFilter height={300} renderCheckbox={() => null}>
       {images.map(image => (
         <ListBox.Option label={image.label}>
           <ImageOption>
@@ -91,7 +91,7 @@ storiesOf("ListBox / multi", module).add("With Filter and nodes as children", ()
 
 storiesOf("ListBox / multi", module).add("With Filter and nodes as children and isInlineDisplay", () => (
   <Frame>
-    <ListBox isMulti hasFilter isInlineDisplay height={300} renderChecker={() => null}>
+    <ListBox isMulti hasFilter isInlineDisplay height={300} renderCheckbox={() => null}>
       {images.map(image => (
         <ListBox.Option label={image.label}>
           <ImageOption>
@@ -105,7 +105,7 @@ storiesOf("ListBox / multi", module).add("With Filter and nodes as children and 
 
 storiesOf("ListBox / multi", module).add("With Checkbox as pre built-in option", () => (
   <Frame>
-    <ListBox isMulti hasFilter renderChecker="checkbox">
+    <ListBox isMulti hasFilter renderCheckbox="checkbox">
       <ListBox.Option>Punisher</ListBox.Option>
       <ListBox.Option>Catwoman</ListBox.Option>
       <ListBox.Option>Venom</ListBox.Option>
@@ -142,7 +142,7 @@ storiesOf("ListBox / multi", module).add("With Custom Checkers", () => (
     <ListBox
       isMulti
       hasFilter
-      renderChecker={isChecked => {
+      renderCheckbox={isChecked => {
         return isChecked ? "✅" : "🙅‍";
       }}
     >
@@ -234,11 +234,11 @@ const LeafStyled = styled.span`
 
 storiesOf("ListBox / multi", module).add("With Custom Styles", () => (
   <Frame>
-    <ListBox isMulti renderChecker={() => null}>
+    <ListBox isMulti renderCheckbox={() => null}>
       <ListBox.Option preventDefaultOnSelect label="antiheroes">
         <RootStyled as="span">Marvel Universe</RootStyled>
       </ListBox.Option>
-      <ListBox.Option preventDefaultOnSelect renderChecker={() => null} label="antiheroes">
+      <ListBox.Option preventDefaultOnSelect renderCheckbox={() => null} label="antiheroes">
         <ParentStyled as="span">AntiHeroes</ParentStyled>
       </ListBox.Option>
       <ListBox.Option label="renderProp">

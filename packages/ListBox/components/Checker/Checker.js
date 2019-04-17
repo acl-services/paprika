@@ -6,21 +6,21 @@ import useListBox from "../../useListBox";
 const propTypes = {
   index: PropTypes.number.isRequired,
   isChecked: PropTypes.bool.isRequired,
-  renderChecker: PropTypes.oneOfType([PropTypes.string, PropTypes.func]),
+  renderCheckbox: PropTypes.oneOfType([PropTypes.string, PropTypes.func]),
   hasPreventDefaultOnSelect: PropTypes.bool,
 };
 
 const defaultProps = {
-  renderChecker: null,
+  renderCheckbox: null,
   hasPreventDefaultOnSelect: false,
 };
 
 export default function Checkers(props) {
   const [state, dispatch] = useListBox();
-  const { index, isChecked, renderChecker } = props;
+  const { index, isChecked, renderCheckbox } = props;
 
-  if (typeof renderChecker === "function") {
-    return props.renderChecker(isChecked, index, state, dispatch);
+  if (typeof renderCheckbox === "function") {
+    return props.renderCheckbox(isChecked, index, state, dispatch);
   }
 
   if (props.hasPreventDefaultOnSelect) {

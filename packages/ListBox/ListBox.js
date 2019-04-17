@@ -59,6 +59,12 @@ export const propTypes = {
   /** Callback ocurring after the user click the [x] clear button on the Trigger area */
   onClickClear: PropTypes.func,
 
+  /** Callback announcing which option has been marked as selected */
+  onSelected: PropTypes.func,
+
+  /** Callback announcing which option has been marked as deselected */
+  onDeselected: PropTypes.func,
+
   /** Callback happening once the Popover has close */
   onClose: PropTypes.func,
 
@@ -77,8 +83,8 @@ export const propTypes = {
 
   /** [Advance] Allows to take over the render method for the Checker.
       When `isMulti` prop is active, the default type of checker is a checkbox, in case you don't
-      want to render a checkbox you can return null ex. renderChecker={() =>  null} */
-  renderChecker: PropTypes.func,
+      want to render a checkbox you can return null ex. renderCheckbox={() =>  null} */
+  renderCheckbox: PropTypes.func,
 
   /** Overrides the filter function and delegate the responsibility to the developer */
   filter: PropTypes.func,
@@ -105,9 +111,11 @@ export const defaultProps = {
   onChange: () => {},
   onClickClear: null,
   onClose: () => {},
+  onDeselected: () => {},
+  onSelected: () => {},
   placeholder: "Select one of the options",
   preventOnBlurOnTrigger: false,
-  renderChecker: undefined,
+  renderCheckbox: undefined,
   renderTrigger: null,
   zIndex: 1,
 };
@@ -195,10 +203,12 @@ const ListBoxContainer = React.forwardRef((props, ref) => {
     isPopoverEager,
     isPopoverOpen,
     onChange,
-    placeholder,
-    renderChecker,
-    renderTrigger,
     onClickClear,
+    onDeselected,
+    onSelected,
+    placeholder,
+    renderCheckbox,
+    renderTrigger,
     ...moreProps
   } = props;
 
@@ -208,6 +218,8 @@ const ListBoxContainer = React.forwardRef((props, ref) => {
     hasNotResultsMessage,
     height,
     onClickClear,
+    onDeselected,
+    onSelected,
     placeholder,
     renderTrigger,
   };

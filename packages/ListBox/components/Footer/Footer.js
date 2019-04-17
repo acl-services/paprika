@@ -3,6 +3,7 @@ import Button from "@paprika/button";
 import PropTypes from "prop-types";
 import { FooterContainerStyled } from "./Footer.styles";
 import useListBox from "../../useListBox";
+import callbackParameters from "../../helpers/callbackParameters";
 
 const propTypes = {
   isAcceptVisible: PropTypes.bool,
@@ -44,28 +45,8 @@ const defaultProps = {
   size: "small",
 };
 
-function getSelectedOptionSingle(state) {
-  const activeOptionIndex =
-    state.selectedOptions && state.selectedOptions.length === 0 ? null : state.selectedOptions[0];
-  return [activeOptionIndex, state.options];
-}
-
-function getSelectedOptionsMulti(state) {
-  return [state.selectedOptions, state.options, state.activeOptionIndex];
-}
-
-function getSelectedOptions(state) {
-  if (state.isMulti) {
-    return getSelectedOptionsMulti(state);
-  }
-
-  return getSelectedOptionSingle(state);
-}
-
 const Footer = React.forwardRef((props, ref) => {
   const [state, dispatch] = useListBox();
-
-  const args = [state.options, state, dispatch];
 
   const {
     onClickCancel,
@@ -86,7 +67,7 @@ const Footer = React.forwardRef((props, ref) => {
   const handleClickAccept = event => {
     event.stopPropagation();
 
-    const result = onClickAccept(...[...getSelectedOptions(state), ...args]);
+    const result = onClickAccept(callbackParameters(state, dispatch));
     if (typeof result === "boolean" && result === false) {
       return;
     }
@@ -97,7 +78,7 @@ const Footer = React.forwardRef((props, ref) => {
   const handleClickCancel = event => {
     event.stopPropagation();
 
-    const result = onClickCancel(...[...getSelectedOptions(state), ...args]);
+    const result = onClickCancel(callbackParameters(state, dispatch));
     if (typeof result === "boolean" && result === false) {
       return;
     }
@@ -106,7 +87,7 @@ const Footer = React.forwardRef((props, ref) => {
 
   const handleClickClear = event => {
     event.stopPropagation();
-    const result = onClickClear(...[...getSelectedOptions(state), ...args]);
+    const result = onClickClear(callbackParameters(state, dispatch));
     if (typeof result === "boolean" && result === false) {
       return;
     }

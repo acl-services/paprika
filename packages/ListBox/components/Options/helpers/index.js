@@ -39,9 +39,12 @@ export function getNextOptionActiveIndex(state, isAscending = true) {
 
   const { activeOption, filteredOptions, options } = state;
   const optionsKeys = Object.keys(state.options);
-  let key = state.options[activeOption].index;
 
-  if (typeof key === "undefined") return null;
+  if (activeOption > Object.keys(options).length) {
+    return 0;
+  }
+
+  let key = state.options[activeOption].index;
 
   let index = null;
   let keepIterating = true;

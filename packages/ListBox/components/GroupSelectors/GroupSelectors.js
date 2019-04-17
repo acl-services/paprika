@@ -17,7 +17,7 @@ export default function GroupSelectors(props) {
         }
 
         return (
-          <Option key={props.groupId} isGroupSelector groupId={props.groupId} renderChecker={() => null}>
+          <Option key={props.groupId} isGroupSelector groupId={props.groupId} renderCheckbox={() => null}>
             {labelSelector}
           </Option>
         );

@@ -36,7 +36,7 @@ const propTypes = {
   value: PropTypes.any, // eslint-disable-line
 
   /** Let you render your own checker for a specific option  */
-  renderChecker: PropTypes.func,
+  renderCheckbox: PropTypes.func,
 };
 /* eslint-enable react/no-unused-prop-types */
 
@@ -47,7 +47,7 @@ const defaultProps = {
   isSelected: false,
   label: null,
   onClick: null,
-  renderChecker: null,
+  renderCheckbox: null,
   value: null,
 };
 
@@ -55,8 +55,15 @@ let lastGroupId = null;
 
 export default function Option(props) {
   const [state, dispatch] = useListBox();
-  const { hasNoResults, activeOption, isDisabled, renderChecker } = state;
+  const { hasNoResults, activeOption, isDisabled, renderCheckbox } = state;
   const { index, groupId, label, isGroupSelector } = props; // eslint-disable-line
+  //
+  // React.useEffect(() => {
+  //   debugger;
+  //   if (Object.keys(state.options).length && props.isHidden !== state.options[index].isHidden) {
+  //     debugger;
+  //   }
+  // }, [props.isHidden]);
 
   if (typeof state.options[index] === "undefined") {
     return null;
@@ -93,7 +100,7 @@ export default function Option(props) {
         <Checker
           index={Number.parseInt(index, 10)}
           isChecked={isOptionSelected(state, index)}
-          renderChecker={props.renderChecker || renderChecker}
+          renderCheckbox={props.renderCheckbox || renderCheckbox}
           hasPreventDefaultOnSelect={props.preventDefaultOnSelect}
         />
         {typeof props.children === "function" ? props.children() : props.children}

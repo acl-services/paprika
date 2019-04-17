@@ -10,7 +10,7 @@ export function createOption({ index, child, groupLabel = null, groupId = null }
     label,
     onClick,
     preventDefaultOnSelect,
-    renderChecker,
+    renderCheckbox,
     value,
   } = child.props;
 
@@ -28,7 +28,7 @@ export function createOption({ index, child, groupLabel = null, groupId = null }
     label: label || child.props.children, // we will try to extract the label from the children if doesn't have label
     onClick,
     preventDefaultOnSelect,
-    renderChecker,
+    renderCheckbox,
     value: value || undefined,
   };
 }

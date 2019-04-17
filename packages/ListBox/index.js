@@ -10,7 +10,7 @@ const ListBoxWithProvider = React.forwardRef((props, ref) => {
   const { children, ...moreProps } = props;
 
   /*
-  AssureS the structure of the children is one of the following:
+  Assures the structure of the children is one of the following:
 
   <ListBox.Group>
     <ListBox.Option />
@@ -33,11 +33,9 @@ const ListBoxWithProvider = React.forwardRef((props, ref) => {
     ]
     */
 
-  const extractedChildren = React.Children.toArray(children)
-    .filter(child => child)
-    .map(child => {
-      return child !== null && React.Fragment === child.type ? child.props.children : child;
-    });
+  const extractedChildren = React.Children.map(children, child => {
+    return child !== null && React.Fragment === child.type ? child.props.children : child;
+  });
 
   const childrenWithGroupSelectors = props.children
     ? [

@@ -317,10 +317,10 @@ export const Checkboxes = () => (
       <ListBox.Option>Venom</ListBox.Option>
       <ListBox.Option>Carnage</ListBox.Option>
     </ListBox>
-    <p>To remove the checkbox simply return a falsy value on the renderChecker methdod</p>
+    <p>To remove the checkbox simply return a falsy value on the renderCheckbox methdod</p>
     <ListBox
       isMulti
-      renderChecker={() => null}
+      renderCheckbox={() => null}
       zIndex={10000}
       getScrollContainer={() => document.querySelector("#root > div")}
     >
@@ -331,7 +331,7 @@ export const Checkboxes = () => (
     <p>You have access to the current state of the option so you could have a third state</p>
     <ListBox
       isMulti
-      renderChecker={(isChecked, index, state) => {
+      renderCheckbox={(isChecked, index, state) => {
         if (state.options[index].isDisabled) {
           return `🔒`;
         }
@@ -352,7 +352,7 @@ export const WithCustomCheckers = () => (
   <Frame>
     <ListBox
       hasFilter
-      renderChecker={isChecked => {
+      renderCheckbox={isChecked => {
         return isChecked ? "✅" : "🙅‍";
       }}
     >
