@@ -1,4 +1,3 @@
-/* eslint-disable react/no-multi-comp, react/prop-types */
 import React from "react";
 import { storiesOf } from "@storybook/react";
 import Button from "@paprika/button";
@@ -25,8 +24,9 @@ const debounce = function(func, wait, immediate) {
     if (callNow) func.apply(context, args);
   };
 };
-
 /* eslint-enable */
+
+/* eslint-disable react/no-multi-comp, react/prop-types */
 
 async function fetchAPI(term, offset = null, limit = 20) {
   const url = "https://gateway.marvel.com:443/v1/public/characters?nameStartsWith=";
