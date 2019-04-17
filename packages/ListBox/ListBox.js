@@ -123,9 +123,9 @@ export const defaultProps = {
 export function ListBox(props) {
   const [state, dispatch] = useListBox();
   const { children, hasNotResultsMessage, height, onClickClear, placeholder, renderTrigger } = props;
-  const [Footer, setFooter] = React.useState(null);
+  const [footer, setFooter] = React.useState(null);
 
-  const handleFooterFound = Footer => {
+  const handleFooterFound = footer => {
     if (!state.hasFooter) {
       dispatch({
         type: useListBox.types.setHasFooter,
@@ -133,7 +133,7 @@ export function ListBox(props) {
       });
     }
 
-    setFooter(Footer);
+    setFooter(footer);
   };
 
   return (
@@ -146,7 +146,7 @@ export function ListBox(props) {
             <Options onFooterFound={handleFooterFound}>{children}</Options>
           </List>
           <NoResults label={hasNotResultsMessage} />
-          {Footer || null}
+          {<div ref={state.refFooterContainer}>{footer}</div> || null}
         </Box>
       </Content>
     </React.Fragment>

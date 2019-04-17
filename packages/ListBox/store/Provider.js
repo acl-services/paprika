@@ -22,6 +22,7 @@ function initializeState(props) {
     placeholder,
     preventOnBlurOnTrigger,
     refFilterInput,
+    refFooterContainer,
     refListBox,
     refListBoxContainer,
     refTrigger,
@@ -62,6 +63,7 @@ function initializeState(props) {
     placeholder,
     preventOnBlurOnTrigger,
     refFilterInput,
+    refFooterContainer,
     refListBox,
     refListBoxContainer,
     refTrigger,
@@ -88,6 +90,7 @@ const propTypes = {
 
 export default function Provider(props) {
   const refFilterInput = React.useRef(null);
+  const refFooterContainer = React.useRef(null);
   const refListBox = React.useRef(null);
   const refListBoxContainer = React.useRef(null);
   const refTrigger = React.useRef(null);
@@ -95,7 +98,15 @@ export default function Provider(props) {
 
   const [state, dispatch] = React.useReducer(
     reducer,
-    { ...props, refFilterInput, refListBox, refListBoxContainer, refTrigger, refTriggerContainer },
+    {
+      ...props,
+      refFilterInput,
+      refFooterContainer,
+      refListBox,
+      refListBoxContainer,
+      refTrigger,
+      refTriggerContainer,
+    },
     initializeState
   );
 

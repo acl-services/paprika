@@ -88,7 +88,7 @@ function reducer(state, { type, payload }) {
 
 function Results(props) {
   return (
-    <div css="margin-top: 32px; display: grid; grid-template-columns: 160px 160px 160px 160px; grid-gap: 10px;">
+    <div css="margin-bottom: 32px; display: grid; grid-template-columns: 18vw 18vw 18vw 18vw 18vw; grid-gap: 10px;">
       {props.ids.map(id => (
         <div
           key={id}
@@ -111,7 +111,7 @@ function Results(props) {
               padding: 4px;
               font-size: 14px;
               position: relative;
-              top: -32px;
+              top: -40px;
               background: rgba(0, 0, 0, 0.8);
             "
           >
