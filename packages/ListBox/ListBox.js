@@ -38,7 +38,7 @@ export const propTypes = {
   isMulti: PropTypes.bool,
 
   /** This options will display the listbox without the Popover */
-  isInlineDisplay: PropTypes.bool,
+  isInline: PropTypes.bool,
 
   /** When true the ListBox will try to focus to the options container asap the
   popover is open */
@@ -100,7 +100,7 @@ export const defaultProps = {
   height: 200,
   hideOptionOnSelected: false,
   isDisabled: false,
-  isInlineDisplay: false,
+  isInline: false,
   isMulti: false,
   isPopoverEager: true,
   isPopoverOpen: false,
@@ -192,7 +192,7 @@ const ListBoxContainer = React.forwardRef((props, ref) => {
     hasFilter,
     hasNotResultsMessage,
     height,
-    isInlineDisplay,
+    isInline,
     isMulti,
     isPopoverEager,
     isPopoverOpen,
@@ -218,7 +218,7 @@ const ListBoxContainer = React.forwardRef((props, ref) => {
     renderTrigger,
   };
 
-  if (isInlineDisplay) {
+  if (isInline) {
     return <ListBox {...ListBoxProps}>{children}</ListBox>;
   }
 

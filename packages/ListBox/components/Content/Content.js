@@ -47,7 +47,7 @@ export default function Content(props) {
   const [state, dispatch] = useListBox();
   const { refListBoxContainer } = state;
 
-  if (state.isInlineDisplay) {
+  if (state.isInline) {
     return (
       <ContentInlineStyled
         {...getDOMAttributesForListBoxContainer()}

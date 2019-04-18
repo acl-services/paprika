@@ -19,22 +19,6 @@ useListBox.types = types;
 // height,                                     ====> ✅ height | state
 // hideOptionOnSelected,                       ====> ✅👩‍💻 hiddenOptions: [] <- should an array | addHiddentOption | removeHiddenOption
 // isDisabled,                                 ====> ✅ isDisabled
-// isInlineDisplay,                            ====> 👩‍💻 isInline
-// isMulti,                                    ====> isMulti
-// isPopoverEager,                             ====> "isPopoverEager"
-// onChange,                                   ====> onChange
-// options,                                    ====> options
-// placeholder,                                ====> placeholder
-// preventOnBlurForTriggerListBox,             ====> 👩‍💻 preventOnBlurForTriggerListBox
-// refFilterInput,
-// refListBox,
-// refListBoxContainer,
-// refTrigger,
-// refTriggerContainer,
-// renderCheckbox: props.renderCheckbox,        ====> 👩‍💻 renderCheckmark
-// selectedOptions,                             ====> selectedOptions | addSelectOption | removeSelectOption
-// shouldListBoxContentScroll: true,            ====> 👩‍💻 shouldContentScroll
-// triggerWidth: 0,                             ====>
 
 // const ListBox = (props) => {return (
 //   <ListBox>

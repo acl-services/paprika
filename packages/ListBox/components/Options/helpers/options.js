@@ -220,7 +220,7 @@ export function handleEnterOrSpace({ event, state, dispatch }) {
   }
 
   if (state.activeOption === null) {
-    if (state.isInlineDisplay) {
+    if (state.isInline) {
       return;
     }
 

@@ -16,7 +16,7 @@ export default function Box(props) {
   }
 
   return (
-    <BoxContainerStyled isInlineDisplay={state.isInlineDisplay} triggerWidth={state.triggerWidth}>
+    <BoxContainerStyled isInline={state.isInline} triggerWidth={state.triggerWidth}>
       {props.children}
     </BoxContainerStyled>
   );

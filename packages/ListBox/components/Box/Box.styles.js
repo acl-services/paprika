@@ -1,6 +1,6 @@
 import styled from "styled-components";
 
-const isInlineDisplayCSS = `
+const isInlineCSS = `
   box-shadow: 0 0 0;
   border-top-left-radius: 0;
   border-top-right-radius: 0;
@@ -16,11 +16,11 @@ export const BoxContainerStyled = styled.div`
   padding: 0;
 
   ${props => {
-    const isInlineDisplay = props.isInlineDisplay ? isInlineDisplayCSS : "";
+    const isInline = props.isInline ? isInlineCSS : "";
     const width = props.triggerWidth ? `width: ${props.triggerWidth}px;` : "";
     return `
     ${width}
-    ${isInlineDisplay}
+    ${isInline}
     `;
   }}
 `;

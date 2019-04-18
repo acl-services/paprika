@@ -54,7 +54,7 @@ export default function Option() {
       </Button>
       <br />
       <br />
-      <ListBox isInlineDisplay>
+      <ListBox isInline>
         {optionsState.map(option => {
           return (
             <ListBox.Option

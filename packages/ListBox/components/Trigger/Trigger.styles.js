@@ -22,7 +22,7 @@ export const ListBoxTriggerStyled = styled.div`
 
     ${props => {
       const isDisabled = props.isDisabled ? `color: ${tokens.color.blackLighten60};` : "";
-      const isInlineDisplay = props.isInlineDisplay
+      const isInline = props.isInline
         ? `
           border-bottom-left-radius: 0;
           border-bottom-right-radius: 0;
@@ -31,7 +31,7 @@ export const ListBoxTriggerStyled = styled.div`
 
       return `
         ${isDisabled}
-        ${isInlineDisplay}
+        ${isInline}
       `;
     }}
   }
@@ -110,7 +110,7 @@ export const RawButtonClearButtonStyled = styled(RawButton)`
 
 export const TriggerArrowStyled = styled.span`
   ${props => {
-    if (props.hasRenderTrigger || props.isInlineDisplay) {
+    if (props.hasRenderTrigger || props.isInline) {
       return "display: none";
     }
 

@@ -27,7 +27,7 @@ export default function Add() {
       </Button>
       <br />
       {options.length ? (
-        <ListBox isInlineDisplay>
+        <ListBox isInline>
           {options.map(option => (
             <ListBox.Option key={option}>{option}</ListBox.Option>
           ))}

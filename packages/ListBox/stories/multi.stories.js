@@ -89,9 +89,9 @@ storiesOf("ListBox / multi", module).add("With Filter and nodes as children", ()
   </Frame>
 ));
 
-storiesOf("ListBox / multi", module).add("With Filter and nodes as children and isInlineDisplay", () => (
+storiesOf("ListBox / multi", module).add("With Filter and nodes as children and isInline", () => (
   <Frame>
-    <ListBox isMulti hasFilter isInlineDisplay height={300} renderCheckbox={() => null}>
+    <ListBox isMulti hasFilter isInline height={300} renderCheckbox={() => null}>
       {images.map(image => (
         <ListBox.Option label={image.label}>
           <ImageOption>

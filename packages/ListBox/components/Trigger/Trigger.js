@@ -54,7 +54,7 @@ export default function Trigger(props) {
   };
 
   return (
-    <ListBoxTriggerStyled isInlineDisplay={state.isInlineDisplay} isDisabled={isDisabled} ref={refTriggerContainer}>
+    <ListBoxTriggerStyled isInline={state.isInline} isDisabled={isDisabled} ref={refTriggerContainer}>
       {renderTrigger ? (
         renderTrigger(state, dispatch, { getDOMAttributesForListBoxButton })
       ) : (
@@ -92,7 +92,7 @@ export default function Trigger(props) {
           hasRenderTrigger={renderTrigger}
           isDisabled={isDisabled}
           isOpen={state.isPopoverOpen}
-          isInlineDisplay={state.isInlineDisplay}
+          isInline={state.isInline}
           dangerouslySetInnerHTML={{ __html: "&#x25BC;" }}
         />
       </TriggerActionIconsContainer>

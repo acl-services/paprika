@@ -97,7 +97,7 @@ export const BasicOptionOnClick = () => (
 
 export const BasicInlineDisplay = () => (
   <Frame>
-    <ListBox isInlineDisplay>
+    <ListBox isInline>
       <ListBox.Option>Punisher</ListBox.Option>
       <ListBox.Option>Catwoman</ListBox.Option>
       <ListBox.Option>Venom</ListBox.Option>
@@ -174,7 +174,7 @@ export const BasicPreselectedOption = () => (
 
 export const BasicIsInlineDisable = () => (
   <Frame>
-    <ListBox isDisabled isInlineDisplay>
+    <ListBox isDisabled isInline>
       <ListBox.Option>Punisher</ListBox.Option>
       <ListBox.Option>Catwoman</ListBox.Option>
       <ListBox.Option>Venom</ListBox.Option>
@@ -188,7 +188,7 @@ export const BasicIsInlineDisable = () => (
 
 export const BasicOptionDisabled = () => (
   <Frame>
-    <ListBox isInlineDisplay>
+    <ListBox isInline>
       <ListBox.Option>Punisher</ListBox.Option>
       <ListBox.Option>Catwoman</ListBox.Option>
       <ListBox.Option isDisabled>Venom</ListBox.Option>
@@ -230,7 +230,7 @@ export const HasClearButton = () => (
 
 export const WithFilterInline = () => (
   <Frame>
-    <ListBox hasFilter isInlineDisplay>
+    <ListBox hasFilter isInline>
       <ListBox.Option>Punisher</ListBox.Option>
       <ListBox.Option>Catwoman</ListBox.Option>
       <ListBox.Option>Venom</ListBox.Option>
@@ -279,7 +279,7 @@ export const WithFilterAndNodesAsChildren = () => (
 
 export const FilterCustomChildrenInline = () => (
   <Frame>
-    <ListBox hasFilter isInlineDisplay height={320}>
+    <ListBox hasFilter isInline height={320}>
       {images.map((image, index) => (
         <ListBox.Option key={index} label={image.label}>
           <ImageOption>

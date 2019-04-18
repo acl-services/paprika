@@ -131,7 +131,7 @@ export default function Filter(props) {
   React.useEffect(handleEffectIsPopOverOpen, [state.isPopoverOpen]);
   React.useEffect(handleEffectTextSearch, [textSearch]);
 
-  if (props.forceShowFilter || (state.isInlineDisplay && state.hasFilter) || (state.hasFilter && state.isPopoverOpen)) {
+  if (props.forceShowFilter || (state.isInline && state.hasFilter) || (state.hasFilter && state.isPopoverOpen)) {
     const { renderFilter, placeholder, value, onChangeFilter, filter, ...moreProps } = props;
     if (renderFilter) {
       return props.renderFilter(props);
