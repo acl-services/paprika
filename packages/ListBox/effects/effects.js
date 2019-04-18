@@ -74,7 +74,7 @@ export const handleEffectListBoxWidth = (state, dispatch) => () => {
 export const handleEffectListBoxScrolled = state => () => {
   if (!state.refListBox.current) return;
 
-  if (state.isPopoverOpen && state.options[state.activeOption] && state.shouldListBoxContentScroll) {
+  if (state.isPopoverOpen && state.options[state.activeOption] && state.shouldContentScroll) {
     const parentOffsetTop = state.refListBox.current.offsetTop;
     const $option = document.getElementById(state.options[state.activeOption].id);
     if ($option) {

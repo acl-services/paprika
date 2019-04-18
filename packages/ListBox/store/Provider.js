@@ -67,7 +67,7 @@ function initializeState(props) {
     refTriggerContainer,
     renderCheckbox: props.renderCheckbox,
     selectedOptions,
-    shouldListBoxContentScroll: true,
+    shouldContentScroll: true,
     triggerWidth: 0,
   };
 

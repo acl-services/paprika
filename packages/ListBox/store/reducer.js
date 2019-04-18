@@ -27,7 +27,7 @@ export default function reducer(state, { type, payload }) {
         ...state,
         activeOption: payload.activeOptionIndex,
         isPopoverOpen: payload.isPopoverOpen,
-        shouldListBoxContentScroll: true,
+        shouldContentScroll: true,
       };
     }
 
@@ -49,7 +49,7 @@ export default function reducer(state, { type, payload }) {
         activeOption: state.hideOptionOnSelected ? getNextOptionActiveIndexLooping(state) : payload.activeOptionIndex,
         selectedOptions: [payload.activeOptionIndex],
         isPopoverOpen,
-        shouldListBoxContentScroll: true,
+        shouldContentScroll: true,
       };
     }
 
@@ -60,7 +60,7 @@ export default function reducer(state, { type, payload }) {
         isPopoverOpen: true,
         options: payload.options,
         selectedOptions: payload.selectedOptions,
-        shouldListBoxContentScroll: false,
+        shouldContentScroll: false,
       };
     }
 
