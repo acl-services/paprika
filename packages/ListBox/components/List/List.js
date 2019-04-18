@@ -17,7 +17,7 @@ export default function List(props) {
   return (
     <ListStyled
       {...getDOMAttributesForListBox(state)}
-      hasNoResults={state.hasNoResults}
+      noResultsFound={state.noResultsFound}
       height={height}
       ref={refListBox}
     >

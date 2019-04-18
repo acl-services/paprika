@@ -77,7 +77,7 @@ export default function reducer(state, { type, payload }) {
       return {
         ...state,
         filteredOptions: payload.filteredOptions,
-        hasNoResults: payload.hasNoResults,
+        noResultsFound: payload.noResultsFound,
         activeOption,
       };
     }

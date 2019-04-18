@@ -50,7 +50,7 @@ export default function TagInput(props) {
     }
 
     if (event.key === "Enter") {
-      if (state.hasNoResults) {
+      if (state.noResultsFound) {
         handlePressEnterKey(event);
         return;
       }

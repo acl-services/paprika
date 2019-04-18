@@ -55,7 +55,7 @@ let lastGroupId = null;
 
 export default function Option(props) {
   const [state, dispatch] = useListBox();
-  const { hasNoResults, activeOption, isDisabled, renderCheckbox } = state;
+  const { noResultsFound, activeOption, isDisabled, renderCheckbox } = state;
   const { index, groupId, label } = props; // eslint-disable-line
 
   if (typeof state.options[index] === "undefined") {
@@ -69,7 +69,7 @@ export default function Option(props) {
   }
 
   let GroupDividerComponent = null;
-  if (shouldHaveGroupTitle && !hasNoResults) {
+  if (shouldHaveGroupTitle && !noResultsFound) {
     GroupDividerComponent = <OptionDividerStyled aria-hidden="true">{label}</OptionDividerStyled>;
   }
 

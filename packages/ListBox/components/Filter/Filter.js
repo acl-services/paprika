@@ -37,12 +37,12 @@ export default function Filter(props) {
     return str.replace(/[.*+?^${}()|[\]\\]/g, "\\$&"); // $& means the whole matched string
   }
 
-  function applyFilter({ filteredOptions, hasNoResults }) {
+  function applyFilter({ filteredOptions, noResultsFound }) {
     dispatch({
       type: useListBox.types.applyFilter,
       payload: {
         filteredOptions,
-        hasNoResults,
+        noResultsFound,
       },
     });
   }
@@ -99,8 +99,8 @@ export default function Filter(props) {
     }
 
     const filteredOptions = filter(textSearchValue);
-    const hasNoResults = textSearchValue && filteredOptions.length === 0;
-    applyFilter({ filteredOptions, hasNoResults });
+    const noResultsFound = textSearchValue && filteredOptions.length === 0;
+    applyFilter({ filteredOptions, noResultsFound });
   };
 
   const handleBlur = () => {

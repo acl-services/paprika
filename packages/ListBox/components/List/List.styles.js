@@ -12,7 +12,7 @@ const ListStyled = styled.ul`
 
   overflow: auto;
   ${props => {
-    const paddingNoResults = props.hasNoResults ? "padding: 0" : "";
+    const paddingNoResults = props.noResultsFound ? "padding: 0" : "";
     return `
         max-height: ${props.height}px
         ${paddingNoResults}

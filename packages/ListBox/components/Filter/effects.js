@@ -1,6 +1,6 @@
 export const handleEffectValue = (props, applyFilter) => () => {
   if (!props.value) {
-    applyFilter({ filteredOptions: [], hasNoResults: false });
+    applyFilter({ filteredOptions: [], noResultsFound: false });
   }
 };
 
@@ -12,6 +12,6 @@ export const handleEffectIsPopOverOpen = (state, setTextSearch) => () => {
 
 export const handleEffectTextSearch = (textSearch, applyFilter) => () => {
   if (!textSearch) {
-    applyFilter({ filteredOptions: [], hasNoResults: false });
+    applyFilter({ filteredOptions: [], noResultsFound: false });
   }
 };

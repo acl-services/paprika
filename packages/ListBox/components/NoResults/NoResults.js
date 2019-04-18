@@ -10,7 +10,7 @@ const propTypes = {
 export default function NoResults(props) {
   const { label } = props;
   const [state] = useListBox();
-  if (state.isPopoverOpen && state.hasNoResults) {
+  if (state.isPopoverOpen && state.noResultsFound) {
     return <NoResultsStyled>{label}</NoResultsStyled>;
   }
 

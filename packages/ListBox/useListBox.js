@@ -49,6 +49,7 @@ useListBox.types = types;
 // - [] document the double render of the state and the options, how we can do it better?
 // - [] isPending/isIdle state would need to be work on
 // - [] tokens cleaning process
+// - [] implemented the reset button on Filter Select story
 // - [x] make all callback use applyCallback method from helpers
 // - [x] ~where should onChange be fired on the reducer? in what file?~ this occurs where the event happens using applyCallback.js method
 // - [x] GroupFilter

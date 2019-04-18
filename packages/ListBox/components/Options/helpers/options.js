@@ -64,7 +64,7 @@ export function isOptionVisible(state, key) {
     return false;
   }
 
-  if (state.hasNoResults) {
+  if (state.noResultsFound) {
     return false;
   }
 
@@ -80,7 +80,7 @@ function isDisabled(state, key) {
 }
 
 export function getNextOptionActiveIndex(state, isAscending = true) {
-  if (state.hasNoResults) return null;
+  if (state.noResultsFound) return null;
 
   if (state.activeOption === null) return 0;
 
@@ -224,7 +224,7 @@ export function handleEnterOrSpace({ event, state, dispatch }) {
       return;
     }
 
-    if (state.hasNoResults) {
+    if (state.noResultsFound) {
       return;
     }
 

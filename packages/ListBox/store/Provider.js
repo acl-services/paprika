@@ -45,7 +45,7 @@ function initializeState(props) {
     filteredOptions: [],
     hasFilter: props.hasFilter,
     hasFooter: false,
-    hasNoResults: false,
+    noResultsFound: false,
     hasPopupOpened: false,
     height,
     hideOptionOnSelected,
