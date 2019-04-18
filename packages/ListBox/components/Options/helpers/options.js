@@ -1,4 +1,51 @@
 import useListBox from "../../../useListBox";
+import applyCallback from "../../../helpers/applyCallback";
+
+function selectSingleOption({ activeOptionIndex, isPopoverOpen, state, dispatch }) {
+  const hasPreventDefaultOnSelect = state.options[activeOptionIndex].preventDefaultOnSelect;
+
+  if (!hasPreventDefaultOnSelect) {
+    applyCallback(state, dispatch, state.onChange);
+  }
+
+  dispatch({
+    type: useListBox.types.selectSingleOption,
+    payload: { activeOptionIndex, isPopoverOpen },
+  });
+}
+
+function selectMultipleOption({ activeOptionIndex, state, dispatch }) {
+  const selectedOptionsArray = state.selectedOptions.slice();
+
+  // handle hide options
+  let options = null;
+  if (state.hideOptionOnSelected) {
+    options = { ...state.options };
+    options[activeOptionIndex].isHidden = true;
+  } else {
+    options = state.options;
+  }
+
+  if (selectedOptionsArray.includes(activeOptionIndex)) {
+    const index = selectedOptionsArray.indexOf(activeOptionIndex);
+    selectedOptionsArray.splice(index, 1);
+  } else {
+    selectedOptionsArray.push(activeOptionIndex);
+  }
+
+  const payload = {
+    activeOptionIndex,
+    options,
+    selectedOptions: selectedOptionsArray,
+  };
+
+  applyCallback({ ...state, ...payload }, dispatch, state.onChange);
+
+  dispatch({
+    type: useListBox.types.selectMultipleOption,
+    payload,
+  });
+}
 
 export function isOptionSelected(state, index) {
   return state.selectedOptions.includes(index);
@@ -104,45 +151,22 @@ export function handleArrowKeys({ event, state, dispatch, isArrowDown = null }) 
         payload: { activeOptionIndex: next, isPopoverOpen: true },
       });
     } else {
-      dispatch({
-        type: useListBox.types.toggleSingleSelection,
-        payload: { activeOptionIndex: next, isPopoverOpen: true },
-      });
+      selectSingleOption({ activeOptionIndex: next, isPopoverOpen: true, state, dispatch });
     }
   }
-}
-
-function handleClickGroupSelector(state, dispatch, groupId) {
-  if (state.selectedGroupSelectors.includes(groupId)) {
-    dispatch({
-      type: useListBox.types.deselectByGroup,
-      payload: groupId,
-    });
-
-    return;
-  }
-
-  dispatch({
-    type: useListBox.types.selectByGroup,
-    payload: groupId,
-  });
 }
 
 export const handleClickOption = ({ props, state, dispatch }) => event => {
   const { index } = props; // eslint-disable-line
   const { options, hasFilter, isMulti, refFilterInput } = state;
-  const argsOnClick = [event, index, state.options, state, dispatch];
+
   const option = options[index];
   if (state.isDisabled || option.preventDefaultOnSelect || option.isDisabled) {
     if (props.onClick) {
-      props.onClick(...argsOnClick);
+      applyCallback(state, dispatch, props.onClick, event);
     }
 
     return;
-  }
-
-  if (option.isGroupSelector) {
-    handleClickGroupSelector(state, dispatch, option.groupId);
   }
 
   if (state.refListBox.current.contains(event.target) && document.activeElement === document.body && !hasFilter) {
@@ -156,24 +180,20 @@ export const handleClickOption = ({ props, state, dispatch }) => event => {
   if (props.onClick) {
     // no sure if this is the state they want
     // since haven't run the entire cycle befor executing it
-    props.onClick(...argsOnClick);
+    applyCallback(state, dispatch, props.onClick, event);
   }
 
-  if (!option.isGroupSelector) {
-    if (isMulti) {
-      dispatch({
-        type: useListBox.types.toggleMultipleSelection,
-        payload: { activeOptionIndex: index, isPopoverOpen: true, shouldListBoxContentScroll: false },
-      });
-
-      return;
-    }
-
-    dispatch({
-      type: useListBox.types.toggleSingleSelection,
-      payload: { activeOptionIndex: index, isPopoverOpen: false },
+  if (isMulti) {
+    selectMultipleOption({
+      activeOptionIndex: index,
+      state,
+      dispatch,
     });
+
+    return;
   }
+
+  selectSingleOption({ activeOptionIndex: index, isPopoverOpen: false, state, dispatch });
 };
 
 export function handleEnterOrSpace({ event, state, dispatch }) {
@@ -221,19 +241,11 @@ export function handleEnterOrSpace({ event, state, dispatch }) {
       state.options[state.activeOption].onClick(state.activeOption, state.options, state, dispatch);
     }
 
-    if (option.isGroupSelector) {
-      handleClickGroupSelector(state, dispatch, option.groupId);
-      return;
-    }
-
     if (state.isMulti) {
-      dispatch({
-        type: useListBox.types.toggleMultipleSelection,
-        payload: {
-          activeOptionIndex: state.activeOption,
-          isPopoverOpen: true,
-          shouldListBoxContentScroll: false,
-        },
+      selectMultipleOption({
+        activeOptionIndex: state.activeOption,
+        state,
+        dispatch,
       });
       return;
     }

@@ -22,7 +22,6 @@ useListBox.types = types;
 // isInlineDisplay,                            ====> 👩‍💻 isInline
 // isMulti,                                    ====> isMulti
 // isPopoverEager,                             ====> "isPopoverEager"
-// lastActiveOptionIndexAffected: null,        ====> 🙅
 // onChange,                                   ====> onChange
 // options,                                    ====> options
 // placeholder,                                ====> placeholder
@@ -62,7 +61,7 @@ useListBox.types = types;
 // - [] clean and use best practice for the reducer, implmente Kent dods approach for reducer
 // - [] document the double render of the state and the options, how we can do it better?
 // - [x] add support for the footer again
-// - [] write example with lazy loading
+// - [x] write example with lazy loading
 // - [] document support for multi selects
 // - [~] add story with pre created filters for groups // this is not current support it at any level in the platform
 // - [~] where should onChange be fired on the reducer? in what file?
@@ -78,9 +77,9 @@ useListBox.types = types;
 // - [x] clean onClick and onKey Enter/Space events
 // - [x] change isInteractive for preventDefaultOnSelect
 // - [] clean file DOMAttributes.js
-// - [] change the name dataStructure.js to something related to optionStateStructure, move it to another folder
-// - [] make onClose event work and remove where the popover is close withour a dispatch
+// - [x] change the name dataStructure.js to something related to optionStateStructure, move it to another folder
+// - [] make onClose event work and remove where the popover is close without a dispatch
 // - [] fix footer event issue tab and press enter
 // - [] isPending/isIdle state would need to be work on
-// - [] make all callback use callbackParameters method from helpers
+// - [] make all callback use applyCallback method from helpers
 // - [] when clicking esc should reset to the lastKnownSelectedOptions in Single and Multi currently is just closing

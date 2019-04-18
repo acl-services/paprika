@@ -3,7 +3,7 @@ import Button from "@paprika/button";
 import PropTypes from "prop-types";
 import { FooterContainerStyled } from "./Footer.styles";
 import useListBox from "../../useListBox";
-import callbackParameters from "../../helpers/callbackParameters";
+import applyCallback from "../../helpers/applyCallback";
 
 const propTypes = {
   isAcceptVisible: PropTypes.bool,
@@ -67,30 +67,20 @@ const Footer = React.forwardRef((props, ref) => {
   const handleClickAccept = event => {
     event.stopPropagation();
 
-    const result = onClickAccept(callbackParameters(state, dispatch));
-    if (typeof result === "boolean" && result === false) {
-      return;
-    }
-
+    applyCallback(state, dispatch, onClickAccept);
     dispatch({ type: useListBox.types.accept });
   };
 
   const handleClickCancel = event => {
     event.stopPropagation();
 
-    const result = onClickCancel(callbackParameters(state, dispatch));
-    if (typeof result === "boolean" && result === false) {
-      return;
-    }
+    applyCallback(state, dispatch, onClickCancel);
     dispatch({ type: useListBox.types.cancel });
   };
 
   const handleClickClear = event => {
     event.stopPropagation();
-    const result = onClickClear(callbackParameters(state, dispatch));
-    if (typeof result === "boolean" && result === false) {
-      return;
-    }
+    applyCallback({ ...state, selectedOptions: [], activeOption: null }, dispatch, state.onChange);
     dispatch({ type: useListBox.types.clear, payload: { isPopoverOpen: true } });
   };
 

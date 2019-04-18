@@ -1,4 +1,4 @@
-import { handleEnterOrSpace, handleArrowKeys } from "../components/Options/helpers";
+import { handleEnterOrSpace, handleArrowKeys } from "../components/Options/helpers/options";
 import useListBox from "../useListBox";
 
 const handleKeyboardKeys = (state, dispatch) => event => {

@@ -1,13 +1,16 @@
+import React from "react";
 import useListBox from "../useListBox";
 import { getDataOptions } from "../components/Option/helpers/optionState";
 
-export const handleEffectChildrenLength = (props, state, dispatch) => () => {
-  const options = getDataOptions(props.children);
+export const handleEffectChildren = (props, state, dispatch) => () => {
+  if (Object.keys(state.options).length !== React.Children.count(props.children)) {
+    const options = getDataOptions(props.children);
 
-  dispatch({
-    type: useListBox.types.updateOptions,
-    payload: options,
-  });
+    dispatch({
+      type: useListBox.types.updateOptions,
+      payload: options,
+    });
+  }
 };
 
 export const handleEffectIsPopOverOpen = (state, dispatch) => () => {

@@ -1,6 +1,5 @@
 import useListBox from "../useListBox";
-import handleChange from "../helpers/handleChange";
-import { getNextOptionActiveIndexLooping } from "../components/Options/helpers";
+import { getNextOptionActiveIndexLooping } from "../components/Options/helpers/options";
 
 export default function reducer(state, { type, payload }) {
   switch (type) {
@@ -32,7 +31,7 @@ export default function reducer(state, { type, payload }) {
       };
     }
 
-    case useListBox.types.toggleSingleSelection: {
+    case useListBox.types.selectSingleOption: {
       let isPopoverOpen = payload.isPopoverOpen;
       if (state.hasFooter) {
         isPopoverOpen = true;
@@ -44,12 +43,6 @@ export default function reducer(state, { type, payload }) {
         options[payload.activeOptionIndex].isHidden = true;
       }
 
-      const hasPreventDefaultOnSelect = state.options[payload.activeOptionIndex].preventDefaultOnSelect;
-
-      if (!hasPreventDefaultOnSelect) {
-        handleChange(state, payload);
-      }
-
       return {
         ...state,
         ...options,
@@ -57,37 +50,17 @@ export default function reducer(state, { type, payload }) {
         selectedOptions: [payload.activeOptionIndex],
         isPopoverOpen,
         shouldListBoxContentScroll: true,
-        lastActiveOptionIndexAffected: [payload.activeOptionIndex],
       };
     }
 
-    case useListBox.types.toggleMultipleSelection: {
-      const selectedOptionsArray = state.selectedOptions.slice();
-
-      // handle hide options
-      let options = null;
-      if (state.hideOptionOnSelected) {
-        options = { ...state.options };
-        options[payload.activeOptionIndex].isHidden = true;
-      }
-
-      if (selectedOptionsArray.includes(payload.activeOptionIndex)) {
-        const index = selectedOptionsArray.indexOf(payload.activeOptionIndex);
-        selectedOptionsArray.splice(index, 1);
-        handleChange(state, payload, selectedOptionsArray, "removed");
-      } else {
-        selectedOptionsArray.push(payload.activeOptionIndex);
-        handleChange(state, payload, selectedOptionsArray, "added");
-      }
-
+    case useListBox.types.selectMultipleOption: {
       return {
         ...state,
-        ...options,
-        isPopoverOpen: true,
         activeOption: state.hideOptionOnSelected ? getNextOptionActiveIndexLooping(state) : payload.activeOptionIndex,
-        selectedOptions: selectedOptionsArray,
+        isPopoverOpen: true,
+        options: payload.options,
+        selectedOptions: payload.selectedOptions,
         shouldListBoxContentScroll: false,
-        lastActiveOptionIndexAffected: [payload.activeOptionIndex],
       };
     }
 
@@ -123,53 +96,6 @@ export default function reducer(state, { type, payload }) {
       };
     }
 
-    case useListBox.types.selectByGroup: {
-      const groupId = payload;
-      const selectedOptionsArray = Object.keys(state.options)
-        .filter(
-          key =>
-            state.options[key].groupId === groupId &&
-            !state.options[key].isGroupSelector &&
-            !state.options[key].preventDefaultOnSelect
-        )
-        .map(key => Number.parseInt(key, 10));
-
-      const selectedOptionsMerged = [...selectedOptionsArray, ...state.selectedOptions];
-
-      handleChange(state, payload, selectedOptionsArray, "add:bulk");
-
-      return {
-        ...state,
-        selectedGroupSelectors: [...new Set([...state.selectedGroupSelectors, groupId])],
-        selectedOptions: [...new Set(selectedOptionsMerged)], // remove duplicated
-      };
-    }
-
-    case useListBox.types.deselectByGroup: {
-      const groupId = payload;
-      const optionsToRemove = Object.keys(state.options)
-        .filter(key => state.options[key].groupId === groupId && !state.options[key].isGroupSelector)
-        .map(key => Number.parseInt(key, 10));
-
-      const selectedOptionsArray = state.selectedOptions.slice(0);
-      optionsToRemove.forEach(index => {
-        const indexOf = selectedOptionsArray.indexOf(index);
-        selectedOptionsArray.splice(indexOf, 1);
-      });
-
-      const indexOfGroupSelected = state.selectedGroupSelectors.indexOf(groupId);
-      const selectedGroupSelectorsClone = state.selectedGroupSelectors.slice(0);
-      selectedGroupSelectorsClone.splice(indexOfGroupSelected, 1);
-
-      handleChange(state, payload, selectedOptionsArray, "remove:bulk");
-
-      return {
-        ...state,
-        selectedGroupSelectors: selectedGroupSelectorsClone,
-        selectedOptions: selectedOptionsArray, // remove duplicated
-      };
-    }
-
     case useListBox.types.updateOptions: {
       const selectedOptions = Object.keys(payload)
         .filter(key => payload[key].isSelected)
@@ -199,7 +125,6 @@ export default function reducer(state, { type, payload }) {
         ...state,
         ...options,
         selectedOptions: state.selectedOptions.filter(index => !payload.includes(index)),
-        lastActiveOptionIndexAffected: payload,
       };
     }
 
@@ -236,7 +161,6 @@ export default function reducer(state, { type, payload }) {
     }
 
     case useListBox.types.clear: {
-      handleChange(state, { activeOptionIndex: 0 }, [], "clear");
       return {
         ...state,
         activeOption: null,
@@ -246,13 +170,6 @@ export default function reducer(state, { type, payload }) {
     }
 
     case useListBox.types.reset: {
-      handleChange(
-        state.originalState,
-        { activeOptionIndex: state.originalState.activeOption },
-        state.originalState.selectedOptions,
-        "reset"
-      );
-
       return {
         ...state.originalState,
         isPopoverOpen: false,

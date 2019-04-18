@@ -22,9 +22,6 @@ export const propTypes = {
   /** Turn the clear button at the right side of the Trigger */
   hasClearButton: PropTypes.bool,
 
-  /** Activate a list of options which allow the user to select the entire group click a checkbox */
-  hasGroupSelection: PropTypes.bool,
-
   /** Indicate which is the height for the options container */
   height: PropTypes.number,
 
@@ -99,7 +96,6 @@ export const defaultProps = {
   getScrollContainer: null,
   hasClearButton: false,
   hasFilter: false,
-  hasGroupSelection: false,
   hasNotResultsMessage: "Your search did not match any options.",
   height: 200,
   hideOptionOnSelected: false,
@@ -181,14 +177,14 @@ const ListBoxContainer = React.forwardRef((props, ref) => {
   const handleEffectIsPopOverOpen = effects.handleEffectIsPopOverOpen(state, dispatch);
   const handleEffectListBoxScrolled = effects.handleEffectListBoxScrolled(state);
   const handleEffectListBoxWidth = effects.handleEffectListBoxWidth(state, dispatch);
-  const handleEffectChildrenLength = effects.handleEffectChildrenLength(props, state, dispatch);
+  const handleEffectChildren = effects.handleEffectChildren(props, state, dispatch);
 
   React.useEffect(handleEffectHeightChange, [props.height]);
   React.useEffect(handleEffectIsDisabledChange, [props.isDisabled]);
   React.useLayoutEffect(handleEffectIsPopOverOpen, [state.isPopoverOpen]);
   React.useEffect(handleEffectListBoxWidth, [state.refTriggerContainer.current]);
   React.useLayoutEffect(handleEffectListBoxScrolled, [state.activeOption]);
-  React.useLayoutEffect(handleEffectChildrenLength, [props.children]);
+  React.useLayoutEffect(handleEffectChildren, [props.children]);
 
   const {
     children,

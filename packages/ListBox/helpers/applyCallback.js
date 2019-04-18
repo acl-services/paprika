@@ -29,10 +29,16 @@ function getSelectedOptionsMulti(state) {
   };
 }
 
-export default function callbackParameters(state, dispatch) {
-  if (state.isMulti) {
-    return { ...getSelectedOptionsMulti(state), dispatch, types: useListBox.types };
+export default function applyCallback(state, dispatch, callback, event = null) {
+  const { eventType = null } = state;
+
+  if (event) {
+    return callback(event, ...[...getSelectedOptionSingle(state), dispatch, useListBox.types, eventType]);
   }
 
-  return [...getSelectedOptionSingle(state), dispatch, useListBox.types];
+  if (state.isMulti) {
+    return callback({ ...getSelectedOptionsMulti(state), dispatch, types: useListBox.types, eventType });
+  }
+
+  return callback(...[...getSelectedOptionSingle(state), dispatch, useListBox.types, eventType]);
 }

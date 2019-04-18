@@ -12,8 +12,8 @@ const items = [
   { name: "Venom", color: "black", price: 345, qty: 12 },
   { name: "Thunderbolts", color: "yellow", price: 2800, qty: 21 },
   { name: "Deadpool", color: "red", price: 1320, qty: 121 },
-  { name: "Spawn", color: "red and black", price: 109, qty: 342 },
-  { name: "Wolverine", color: "yellow and blue", price: 499, qty: 1231 },
+  { name: "Spawn", color: "black", price: 109, qty: 342 },
+  { name: "Wolverine", color: "blue", price: 499, qty: 1231 },
 ];
 
 const FilterPrice = React.forwardRef((props, ref) => {
@@ -68,13 +68,13 @@ function Table() {
   const [filterPriceValue, setFilterPriceValue] = React.useState(null);
   const [filterQtyValue, setFilterQtyValue] = React.useState(null);
 
-  const handleChangeFilterColor = (indexes, options) => {
-    if (indexes.length === 0) {
+  const handleChangeFilterColor = ({ selected, options }) => {
+    if (selected.length === 0) {
       setFilterColorValue(null);
       return;
     }
 
-    const values = indexes.map(index => options[index]);
+    const values = selected.map(index => options[index]);
     setFilterColorValue(values);
   };
 

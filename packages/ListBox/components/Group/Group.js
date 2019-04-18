@@ -11,12 +11,6 @@ const propTypes = {
   groupId: PropTypes.string.isRequired,
   /** Display the label for the Group */
   label: PropTypes.node.isRequired, // eslint-disable-line
-  /** Display this label next to a checkbox in case your listBox prop `hasGroupSelection` is on */
-  labelSelector: PropTypes.node, // eslint-disable-line
-};
-
-const defaultProps = {
-  labelSelector: null,
 };
 
 export default function Group(props) {
@@ -25,4 +19,3 @@ export default function Group(props) {
 
 Group.componentType = componentType;
 Group.propTypes = propTypes;
-Group.defaultProps = defaultProps;

@@ -3,7 +3,6 @@ import ListBox, { propTypes, defaultProps } from "./ListBox";
 import Footer from "./components/Footer";
 import Group from "./components/Group";
 import Option from "./components/Option";
-import groupSelectors from "./components/GroupSelectors";
 import Provider from "./store/Provider";
 
 const ListBoxWithProvider = React.forwardRef((props, ref) => {
@@ -37,20 +36,10 @@ const ListBoxWithProvider = React.forwardRef((props, ref) => {
     return child !== null && React.Fragment === child.type ? child.props.children : child;
   });
 
-  const childrenWithGroupSelectors = props.children
-    ? [
-        ...groupSelectors({
-          children: extractedChildren,
-          hasGroupSelection: props.hasGroupSelection,
-        }),
-        ...extractedChildren,
-      ]
-    : [];
-
   return (
-    <Provider {...moreProps} childrenOptions={childrenWithGroupSelectors}>
+    <Provider {...moreProps} childrenOptions={extractedChildren}>
       <ListBox {...moreProps} ref={ref}>
-        {childrenWithGroupSelectors}
+        {extractedChildren}
       </ListBox>
     </Provider>
   );

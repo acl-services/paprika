@@ -4,7 +4,6 @@ import uuidv4 from "uuid/v4";
 export function createOption({ index, child, groupLabel = null, groupId = null }) {
   const {
     isDisabled,
-    isGroupSelector,
     isHidden,
     isSelected,
     label,
@@ -22,7 +21,6 @@ export function createOption({ index, child, groupLabel = null, groupId = null }
     id: `opt_${uuidv4()}`,
     index,
     isDisabled,
-    isGroupSelector,
     isHidden,
     isSelected,
     label: label || child.props.children, // we will try to extract the label from the children if doesn't have label
@@ -51,7 +49,6 @@ export function getDataOptions(children) {
           child: _child,
           groupLabel,
           groupId: _child.props.groupId || groupId,
-          isGroupSelector: _child.props.isGroupSelector,
         });
         index += 1;
       });

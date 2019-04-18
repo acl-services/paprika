@@ -2,7 +2,7 @@ import React from "react";
 import PropTypes from "prop-types";
 import useListBox from "../../useListBox";
 import { getA11yAttributesForOption } from "../../helpers/DOMAttributes";
-import { isOptionVisible, isOptionSelected, handleClickOption } from "../Options/helpers";
+import { isOptionVisible, isOptionSelected, handleClickOption } from "../Options/helpers/options";
 import { OptionStyled, OptionDividerStyled } from "./Option.styles";
 import Checker from "../Checker";
 
@@ -56,7 +56,7 @@ let lastGroupId = null;
 export default function Option(props) {
   const [state, dispatch] = useListBox();
   const { hasNoResults, activeOption, isDisabled, renderCheckbox } = state;
-  const { index, groupId, label, isGroupSelector } = props; // eslint-disable-line
+  const { index, groupId, label } = props; // eslint-disable-line
 
   if (typeof state.options[index] === "undefined") {
     return null;
@@ -69,7 +69,7 @@ export default function Option(props) {
   }
 
   let GroupDividerComponent = null;
-  if (shouldHaveGroupTitle && !isGroupSelector && !hasNoResults) {
+  if (shouldHaveGroupTitle && !hasNoResults) {
     GroupDividerComponent = <OptionDividerStyled aria-hidden="true">{label}</OptionDividerStyled>;
   }
 

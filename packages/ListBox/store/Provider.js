@@ -1,7 +1,7 @@
 import React from "react";
 import PropTypes from "prop-types";
 import reducer from "./reducer";
-import handleChange from "../helpers/handleChange";
+import applyCallback from "../helpers/applyCallback";
 import { getDataOptions } from "../components/Option/helpers/optionState";
 
 export const StoreContext = React.createContext();
@@ -9,7 +9,6 @@ export const StoreContext = React.createContext();
 function initializeState(props) {
   const {
     childrenOptions,
-    hasGroupSelection,
     height,
     hideOptionOnSelected,
     isDisabled,
@@ -46,7 +45,6 @@ function initializeState(props) {
     filteredOptions: [],
     hasFilter: props.hasFilter,
     hasFooter: false,
-    hasGroupSelection,
     hasNoResults: false,
     hasPopupOpened: false,
     height,
@@ -55,7 +53,6 @@ function initializeState(props) {
     isInlineDisplay,
     isMulti,
     isPopoverEager,
-    lastActiveOptionIndexAffected: null,
     onChange,
     onDeselected,
     onSelected,
@@ -69,13 +66,12 @@ function initializeState(props) {
     refTrigger,
     refTriggerContainer,
     renderCheckbox: props.renderCheckbox,
-    selectedGroupSelectors: [],
     selectedOptions,
     shouldListBoxContentScroll: true,
     triggerWidth: 0,
   };
 
-  handleChange(initialState, { activeOptionIndex: activeOption }, selectedOptions, "load");
+  applyCallback({ ...initialState, eventType: "listbox:loaded" }, null, onChange);
 
   return {
     ...initialState,
