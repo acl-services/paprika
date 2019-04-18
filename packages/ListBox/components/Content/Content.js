@@ -23,6 +23,11 @@ const handleBlur = (state, dispatch) => () => {
   // via document.activeElement instead of returning
   // the body element automatically
   window.requestAnimationFrame(() => {
+    // the trigger should handle the close and open not the onBlur event
+    if (state.refTriggerContainer.current.contains(document.activeElement)) {
+      return;
+    }
+
     // this allowed elements outside of the popover container to keep operating
     // without forcing to close the popover after the onblur event.
     // the downside of this is that now the element outside should implemented

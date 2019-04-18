@@ -116,7 +116,6 @@ export default function Filter(props) {
           type: useListBox.types.setActiveOption,
           payload: {
             activeOptionIndex: null,
-            isPopoverOpen: false,
           },
         });
       }

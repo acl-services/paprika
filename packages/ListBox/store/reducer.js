@@ -26,7 +26,6 @@ export default function reducer(state, { type, payload }) {
       return {
         ...state,
         activeOption: payload.activeOptionIndex,
-        isPopoverOpen: payload.isPopoverOpen,
         shouldContentScroll: true,
       };
     }

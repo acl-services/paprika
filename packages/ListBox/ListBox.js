@@ -103,7 +103,7 @@ export const defaultProps = {
   isInline: false,
   isMulti: false,
   isPopoverEager: true,
-  isPopoverOpen: false,
+  isPopoverOpen: null,
   onChange: () => {},
   onClickClear: null,
   onClose: () => {},
