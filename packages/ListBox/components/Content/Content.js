@@ -27,7 +27,7 @@ const handleBlur = (state, dispatch) => () => {
     // without forcing to close the popover after the onblur event.
     // the downside of this is that now the element outside should implemented
     // the onblur event to close when the user click tab or click on the document.body
-    if (state.preventOnBlurOnTrigger) return;
+    if (state.preventOnBlurForTriggerListBox) return;
 
     if (
       refListBoxContainer &&

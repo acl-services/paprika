@@ -31,7 +31,7 @@ useListBox.types = types;
 // refListBoxContainer,
 // refTrigger,
 // refTriggerContainer,
-// renderCheckbox: props.renderCheckbox,          ====> 👩‍💻 renderCheckmark
+// renderCheckbox: props.renderCheckbox,        ====> 👩‍💻 renderCheckmark
 // selectedOptions,                             ====> selectedOptions | addSelectOption | removeSelectOption
 // shouldListBoxContentScroll: true,            ====> 👩‍💻 shouldContentScroll
 // triggerWidth: 0,                             ====>
@@ -56,30 +56,34 @@ useListBox.types = types;
 // )}
 
 // TODO:
-// - [x] GroupFilter
+// - [] documentation support for multi selects
+// - [] bug can't select first filter element on lazy load story
+// - [] bug when click on delete tag popover close automatically
+// - [] organize stories under example directory on single/multi/recipes
 // - [] clean state since I removed the rendering process from state to props
 // - [] clean and use best practice for the reducer, implmente Kent dods approach for reducer
 // - [] document the double render of the state and the options, how we can do it better?
+// - [] isPending/isIdle state would need to be work on
+// - [] tokens cleaning process
+// - [x] make all callback use applyCallback method from helpers
+// - [x] ~where should onChange be fired on the reducer? in what file?~ this occurs where the event happens using applyCallback.js method
+// - [x] GroupFilter
 // - [x] add support for the footer again
 // - [x] write example with lazy loading
-// - [] document support for multi selects
-// - [~] add story with pre created filters for groups // this is not current support it at any level in the platform
-// - [~] where should onChange be fired on the reducer? in what file?
-// - [-] add useEffect for individual <Option /> :P since I removed the effect for tracking children changes
-// - [x] replace actionTypes import for useListBox.types.
-// - [x] handle support for adding new children to the ListBox.
-// - [] fix bug when click on delete tag popover close automatically
-// - [] organize stories under example directory on single/multi/recipes
-// - [] custom render Footer property for Footer component
+// - [x] fix footer event issue tab and press enter
 // - [x] move useListBox to the root away from store folder
 // - [x] limited the state properties pass on options, currently I'm sending the whole options coming from states
-//    - [] might be too expensive to sanitize option by option :/ but might be easier as well
+//    - [x] might be too expensive to sanitize option by option :/ but might be easier as well
 // - [x] clean onClick and onKey Enter/Space events
 // - [x] change isInteractive for preventDefaultOnSelect
-// - [] clean file DOMAttributes.js
 // - [x] change the name dataStructure.js to something related to optionStateStructure, move it to another folder
-// - [] make onClose event work and remove where the popover is close without a dispatch
-// - [] fix footer event issue tab and press enter
-// - [] isPending/isIdle state would need to be work on
-// - [] make all callback use applyCallback method from helpers
-// - [] when clicking esc should reset to the lastKnownSelectedOptions in Single and Multi currently is just closing
+// - [x] replace actionTypes import for useListBox.types.
+// - [x] handle support for adding new children to the ListBox.
+// - [~] - won't do this version - when clicking esc should reset to the lastKnownSelectedOptions in Single and Multi currently is just closing
+// - [~] - won't do this version - renderFooter for Footer component
+// - [~] - won't do this version - react window implementation won't do this version
+// - [~] - won't do this version - pixel perfect style implementation won't do this version
+// - [~] - won't do this version - DOMAttributes.js cleaning will do next version with screen reader a11y clean file
+// - [/] create onClose onAdd onRemove there are not need right now
+// - [/] add story with filters groups // this has been removed from the code since is not use in the ecosystem
+// - [/] - wont do - add useEffect for individual <Option /> :P since I removed the effect for tracking children changes

@@ -73,7 +73,7 @@ export const propTypes = {
 
   /** [Advance] When composing the component will prevent to close the ListBox when
       the user interact with the Trigger container */
-  preventOnBlurOnTrigger: PropTypes.bool,
+  preventOnBlurForTriggerListBox: PropTypes.bool,
 
   /** [Advance] Allows to take over the render method for the label inside of the Trigger Component */
   renderTrigger: PropTypes.func,
@@ -110,7 +110,7 @@ export const defaultProps = {
   onDeselected: () => {},
   onSelected: () => {},
   placeholder: "Select one of the options",
-  preventOnBlurOnTrigger: false,
+  preventOnBlurForTriggerListBox: false,
   renderCheckbox: undefined,
   renderTrigger: null,
   zIndex: 1,
