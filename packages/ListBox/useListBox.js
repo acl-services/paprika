@@ -11,10 +11,6 @@ useListBox.types = types;
 
 // activeOption,                               ====> ✅ highlightedOption | state
 // filteredOptions: [],                        ====> ✅👩‍💻 filteredOptions | addFilterOption, removeFilterOption | state
-// Footer,                                     ====> 🙅‍ this is a prop
-// groups,                                     ====> 🙅 this is a prop
-// hasFilter: props.hasFilter,                 ====> ✅ hasFilter | state
-// hasNoResults: false,                        ====> ✅ hasFilteredResults | state
 // hasPopupOpened: false,                      ====> ✅ isMounted | state
 // height,                                     ====> ✅ height | state
 // hideOptionOnSelected,                       ====> ✅👩‍💻 hiddenOptions: [] <- should an array | addHiddentOption | removeHiddenOption
@@ -43,6 +39,7 @@ useListBox.types = types;
 // - [] documentation support for multi selects
 // - [] bug can't select first filter element on lazy load story
 // - [] bug when click on delete tag popover close automatically
+// - [] bug isInline the Trigger component shouldn't allowed to have focus
 // - [] organize stories under example directory on single/multi/recipes
 // - [] clean state since I removed the rendering process from state to props
 // - [] clean and use best practice for the reducer, implmente Kent dods approach for reducer

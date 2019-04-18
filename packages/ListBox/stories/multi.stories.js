@@ -93,7 +93,7 @@ storiesOf("ListBox / multi", module).add("With Filter and nodes as children and 
   <Frame>
     <ListBox isMulti hasFilter isInline height={300} renderCheckbox={() => null}>
       {images.map(image => (
-        <ListBox.Option label={image.label}>
+        <ListBox.Option key={image.src} label={image.label}>
           <ImageOption>
             <img alt={image.label} src={image.src} />
           </ImageOption>

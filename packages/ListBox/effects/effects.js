@@ -44,7 +44,7 @@ export const handleEffectIsPopOverOpen = (state, dispatch) => () => {
     dispatch({ type: useListBox.types.setHasPopupOpened, payload: true });
   } else if (state.hasPopupOpened) {
     listBoxContainer.focus();
-    if (!state.isPopoverOpen) {
+    if (!state.isInline && !state.isPopoverOpen) {
       trigger.focus();
     }
   }

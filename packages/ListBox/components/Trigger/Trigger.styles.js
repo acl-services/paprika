@@ -3,38 +3,44 @@ import RawButton from "@paprika/raw-button";
 import RawButtonStyled from "@paprika/raw-button/RawButton.styles";
 import tokens from "@paprika/tokens";
 
+const triggerStyles = `
+padding: 8px; /* Define Trigger's height */
+align-items: center;
+background-color: #ffffff;
+border: 1px solid #d7d7d7;
+border-radius: 3px;
+color: #3f3d3c;
+display: block;
+font-size: 14px;
+position: relative;
+text-align: left;
+transition: border-color 0.2s;
+width: 100%;
+`;
+
+const triggerStylesProps = () => props => {
+  const isDisabled = props.isDisabled ? `color: ${tokens.color.blackLighten60};` : "";
+  const isInline = props.isInline
+    ? `
+      border-bottom-left-radius: 0;
+      border-bottom-right-radius: 0;
+      ${isDisabled}
+    `
+    : `
+      & > [data-raw-button="trigger"] {
+        ${isDisabled}
+      }
+    `;
+
+  return `
+  ${triggerStyles}
+  ${isInline}
+  `;
+};
+
 export const ListBoxTriggerStyled = styled.div`
   position: relative;
-
-  & > [data-raw-button="trigger"] {
-    padding: 8px; /* Define Trigger's height */
-    align-items: center;
-    background-color: #ffffff;
-    border: 1px solid #d7d7d7;
-    border-radius: 3px;
-    color: #3f3d3c;
-    display: block;
-    font-size: 14px;
-    position: relative;
-    text-align: left;
-    transition: border-color 0.2s;
-    width: 100%;
-
-    ${props => {
-      const isDisabled = props.isDisabled ? `color: ${tokens.color.blackLighten60};` : "";
-      const isInline = props.isInline
-        ? `
-          border-bottom-left-radius: 0;
-          border-bottom-right-radius: 0;
-        `
-        : "";
-
-      return `
-        ${isDisabled}
-        ${isInline}
-      `;
-    }}
-  }
+  ${triggerStylesProps()}
 `;
 
 export const TriggerActionIconsContainer = styled.div`

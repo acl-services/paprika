@@ -109,41 +109,6 @@ export const BasicInlineDisplay = () => (
   </Frame>
 );
 
-// /* global gapi */
-// function YtSearch() {
-//   const [isGapiLoaded, setGapiLoaded] = React.useState(false);
-//   function initGapi() {
-//     const gapiScript = document.createElement("script");
-//     gapiScript.src = "https://apis.google.com/js/api.js?onload=onGapiLoad";
-//
-//     function onAuthApiLoad() {
-//       gapi.auth.init();
-//     }
-//
-//     window.onGapiLoad = function onGapiLoad() {
-//       gapi.load("auth", { callback: onAuthApiLoad });
-//     };
-//     document.body.appendChild(gapiScript);
-//   }
-//
-//   React.useEffect(() => {
-//     initGapi();
-//     setGapiLoaded(true);
-//   });
-//
-//   if (isGapiLoaded) {
-//     return "hi";
-//   }
-//
-//   return "Loading...";
-// }
-//
-// export const YoutubeSearch = () => (
-//   <Frame>
-//     <YtSearch />
-//   </Frame>
-// );
-
 export const BasicIsDisabled = () => (
   <Frame>
     <ListBox isDisabled>
@@ -267,7 +232,7 @@ export const WithFilterAndNodesAsChildren = () => (
   <Frame>
     <ListBox hasFilter height={300}>
       {images.map(image => (
-        <ListBox.Option label={image.label}>
+        <ListBox.Option key={image.src} label={image.label}>
           <ImageOption>
             <img alt={image.label} src={image.src} />
           </ImageOption>
@@ -280,8 +245,8 @@ export const WithFilterAndNodesAsChildren = () => (
 export const FilterCustomChildrenInline = () => (
   <Frame>
     <ListBox hasFilter isInline height={320}>
-      {images.map((image, index) => (
-        <ListBox.Option key={index} label={image.label}>
+      {images.map(image => (
+        <ListBox.Option key={image.src} label={image.label}>
           <ImageOption>
             <img alt={image.label} src={image.src} />
           </ImageOption>

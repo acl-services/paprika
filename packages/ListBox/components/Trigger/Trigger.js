@@ -53,29 +53,39 @@ export default function Trigger(props) {
     dispatch({ type: useListBox.types.clear, payload: { isPopoverOpen: false } });
   };
 
+  function renderLabel() {
+    return state.isInline ? (
+      <Label
+        activeOption={state.options[state.activeOption]}
+        isMulti={isMulti}
+        options={state.options}
+        placeholder={placeholder}
+        selectedOptions={state.selectedOptions}
+      />
+    ) : (
+      <RawButton
+        type="button"
+        onClick={handleClick}
+        ref={refTrigger}
+        onKeyDown={handleKeyboardKeys(state, dispatch)}
+        onKeyUp={() => {}}
+        isDisabled={isDisabled}
+        data-raw-button="trigger"
+      >
+        <Label
+          activeOption={state.options[state.activeOption]}
+          isMulti={isMulti}
+          options={state.options}
+          placeholder={placeholder}
+          selectedOptions={state.selectedOptions}
+        />
+      </RawButton>
+    );
+  }
+
   return (
     <ListBoxTriggerStyled isInline={state.isInline} isDisabled={isDisabled} ref={refTriggerContainer}>
-      {renderTrigger ? (
-        renderTrigger(state, dispatch, { getDOMAttributesForListBoxButton })
-      ) : (
-        <RawButton
-          type="button"
-          onClick={handleClick}
-          ref={refTrigger}
-          onKeyDown={handleKeyboardKeys(state, dispatch)}
-          onKeyUp={() => {}}
-          isDisabled={isDisabled}
-          data-raw-button="trigger"
-        >
-          <Label
-            activeOption={state.options[state.activeOption]}
-            isMulti={isMulti}
-            options={state.options}
-            placeholder={placeholder}
-            selectedOptions={state.selectedOptions}
-          />
-        </RawButton>
-      )}
+      {renderTrigger ? renderTrigger(state, dispatch, { getDOMAttributesForListBoxButton }) : renderLabel()}
       <TriggerActionIconsContainer>
         <RawButtonClearButtonStyled
           hasRenderTrigger={renderTrigger}
