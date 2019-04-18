@@ -20,22 +20,19 @@ width: 100%;
 
 const triggerStylesProps = () => props => {
   const isDisabled = props.isDisabled ? `color: ${tokens.color.blackLighten60};` : "";
-  const isInline = props.isInline
+  return props.isInline
     ? `
+      ${triggerStyles}
       border-bottom-left-radius: 0;
       border-bottom-right-radius: 0;
       ${isDisabled}
     `
     : `
       & > [data-raw-button="trigger"] {
+        ${triggerStyles}
         ${isDisabled}
       }
     `;
-
-  return `
-  ${triggerStyles}
-  ${isInline}
-  `;
 };
 
 export const ListBoxTriggerStyled = styled.div`
