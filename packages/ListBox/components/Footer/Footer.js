@@ -33,15 +33,9 @@ const defaultProps = {
   labelAccept: "Accept",
   labelCancel: "Cancel",
   labelClear: "Clear",
-  onClickAccept: () => {
-    return true;
-  },
-  onClickCancel: () => {
-    return true;
-  },
-  onClickClear: () => {
-    return true;
-  },
+  onClickAccept: null,
+  onClickCancel: null,
+  onClickClear: null,
   size: "small",
 };
 
@@ -80,7 +74,9 @@ const Footer = React.forwardRef((props, ref) => {
 
   const handleClickClear = event => {
     event.stopPropagation();
+
     applyCallback({ ...state, selectedOptions: [], activeOption: null }, dispatch, state.onChange);
+    applyCallback({ ...state, selectedOptions: [], activeOption: null }, dispatch, onClickClear);
     dispatch({ type: useListBox.types.clear, payload: { isPopoverOpen: true } });
   };
 
