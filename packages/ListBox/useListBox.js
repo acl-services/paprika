@@ -37,7 +37,7 @@ useListBox.types = types;
 
 // TODO:
 // - [] documentation support for multi selects
-// - [] bug can't select first filter element on lazy load story
+// - [] bug can't select first filtered element when there is only 1 result on lazy loading story
 // - [] bug when click on delete tag popover close automatically
 // - [] bug isInline the Trigger component shouldn't allowed to have focus
 // - [] organize stories under example directory on single/multi/recipes
@@ -47,7 +47,7 @@ useListBox.types = types;
 // - [] isPending/isIdle state would need to be work on
 // - [] tokens cleaning process
 // - [] implemented the reset button on Filter Select story
-// - [] bug when closing a listbox with filter there is a flickering effect
+// - [x] bug when closing a listbox with filter there is a flickering effect
 // - [x] make all callback use applyCallback method from helpers
 // - [x] ~where should onChange be fired on the reducer? in what file?~ this occurs where the event happens using applyCallback.js method
 // - [x] GroupFilter

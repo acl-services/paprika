@@ -80,14 +80,17 @@ function isDisabled(state, key) {
 }
 
 export function getNextOptionActiveIndex(state, isAscending = true) {
-  if (state.noResultsFound) return null;
-
-  if (state.activeOption === null) return 0;
-
   const { activeOption, filteredOptions, options } = state;
   const optionsKeys = Object.keys(state.options);
 
-  if (activeOption > Object.keys(options).length) {
+  if (state.noResultsFound) return null;
+  if (state.activeOption === null) return 0;
+
+  if (optionsKeys.length === 1) {
+    return 0;
+  }
+
+  if (optionsKeys.length - 1 < activeOption) {
     return 0;
   }
 
@@ -161,7 +164,7 @@ export const handleClickOption = ({ props, state, dispatch }) => event => {
   const { options, hasFilter, isMulti, refFilterInput } = state;
 
   const option = options[index];
-  if (state.isDisabled || option.preventDefaultOnSelect || option.isDisabled) {
+  if (state.isDisabled || option.preventDefaultOnSelect) {
     if (props.onClick) {
       applyCallback(state, dispatch, props.onClick, event);
     }

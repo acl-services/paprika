@@ -51,8 +51,6 @@ const defaultProps = {
   value: null,
 };
 
-let lastGroupId = null;
-
 export default function Option(props) {
   const [state, dispatch] = useListBox();
   const { noResultsFound, activeOption, isDisabled, renderCheckbox } = state;
@@ -63,9 +61,11 @@ export default function Option(props) {
   }
 
   let shouldHaveGroupTitle = false;
-  if (groupId && lastGroupId !== groupId) {
+
+  // this is an internal prop not necesary to declare on the available props
+  // eslint-disable-next-line
+  if (props.isNewGroup) {
     shouldHaveGroupTitle = true;
-    lastGroupId = groupId;
   }
 
   let GroupDividerComponent = null;

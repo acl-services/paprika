@@ -9,14 +9,30 @@ export default function Options(props) {
     if (child.type && componentType === "ListBox.Group") {
       const label = child.props.label;
       const groupId = child.props.groupId;
+      let lastKnownGroupId = null;
+      let isNewGroup = null;
 
       return React.Children.map(child.props.children, _child => {
         if (!_child) {
           return;
         }
+
         index += 1;
 
-        return React.cloneElement(_child, { ..._child.props, groupId: _child.props.groupId || groupId, label, index });
+        if (!lastKnownGroupId) {
+          isNewGroup = true;
+          lastKnownGroupId = groupId;
+        } else {
+          isNewGroup = false;
+        }
+
+        return React.cloneElement(_child, {
+          ..._child.props,
+          groupId,
+          label,
+          index,
+          isNewGroup,
+        });
       });
     }
 
