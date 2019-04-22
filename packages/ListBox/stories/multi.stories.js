@@ -272,7 +272,7 @@ storiesOf("ListBox / multi", module).add("With Custom Styles", () => (
 storiesOf("ListBox / multi", module).add("With Groups and have selection by groups", () => (
   <Frame>
     <ListBox isMulti>
-      <ListBox.Group label="antiheroes">
+      <ListBox.Group groupId="antiheroes" label="👺 antiheroes">
         <ListBox.Option>Punisher</ListBox.Option>
         <ListBox.Option>Catwoman</ListBox.Option>
         <ListBox.Option>Venom</ListBox.Option>
@@ -282,7 +282,7 @@ storiesOf("ListBox / multi", module).add("With Groups and have selection by grou
         <ListBox.Option>Spawn</ListBox.Option>
         <ListBox.Option>Wolverine</ListBox.Option>
       </ListBox.Group>
-      <ListBox.Group label="villians">
+      <ListBox.Group groupId="villians" label="🔪 Villians">
         <ListBox.Option>The Joker</ListBox.Option>
         <ListBox.Option>Darth Vader</ListBox.Option>
         <ListBox.Option>Hannibal Lecter</ListBox.Option>
@@ -291,7 +291,7 @@ storiesOf("ListBox / multi", module).add("With Groups and have selection by grou
         <ListBox.Option>Palpatine</ListBox.Option>
         <ListBox.Option>Agent Smith</ListBox.Option>
       </ListBox.Group>
-      <ListBox.Group label="heroes">
+      <ListBox.Group groupId="heroes" label="👩‍🎤 heroes">
         <ListBox.Option>Black Panther</ListBox.Option>
         <ListBox.Option>Wonder Woman</ListBox.Option>
         <ListBox.Option>Spiderman</ListBox.Option>

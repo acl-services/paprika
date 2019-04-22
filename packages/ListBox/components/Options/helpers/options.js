@@ -200,11 +200,10 @@ export const handleClickOption = ({ props, state, dispatch }) => event => {
 };
 
 export function handleEnterOrSpace({ event, state, dispatch }) {
-  const isActiveOptionNull = state.activeOption === null;
-  const hasSpaceKeyOnFilter = state.hasFilter && event.key === " " && event.target.value !== "";
+  const pressedSpaceKeyWhileHavingFilter = state.hasFilter && event.key === " " && event.target.value !== "";
   const isEventOnFooter = state.refFooterContainer.current.contains(event.target);
 
-  if (isActiveOptionNull || hasSpaceKeyOnFilter || isEventOnFooter) {
+  if (pressedSpaceKeyWhileHavingFilter || isEventOnFooter) {
     return;
   }
 

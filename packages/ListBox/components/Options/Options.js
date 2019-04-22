@@ -11,6 +11,9 @@ export default function Options(props) {
       const groupId = child.props.groupId;
       let lastKnownGroupId = null;
       let isNewGroup = null;
+      if (!groupId) {
+        console.error("You need to assign a Group Id to your group. <ListBox.Group GroupId='unique group key' />");
+      }
 
       return React.Children.map(child.props.children, _child => {
         if (!_child) {

@@ -48,7 +48,7 @@ export function getDataOptions(children) {
           index,
           child: _child,
           groupLabel,
-          groupId: _child.props.groupId || groupId,
+          groupId,
         });
         index += 1;
       });

@@ -360,7 +360,9 @@ function LazyListBox() {
         renderCheckbox={() => null}
         renderTrigger={renderTrigger}
       >
-        {state.isLoading ? <ListBox.Option preventDefaultOnSelect>Fetching data ...</ListBox.Option> : null}
+        <ListBox.Option preventDefaultOnSelect isHidden={!state.isLoading}>
+          Fetching data ...
+        </ListBox.Option>
         {state.searchedCharacters && state.search !== "" ? renderSearchedOptions() : null}
         {state.characters.length && state.search === "" ? renderOptions() : null}
       </ListBox>
