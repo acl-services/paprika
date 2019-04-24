@@ -1,9 +1,12 @@
 import tokens from "@paprika/tokens";
 import stylers from "@paprika/stylers";
+import { css, keyframes } from "styled-components";
 
 // Common
 
 const commonStyles = `
+  ${stylers.lineHeight(-1)};
+
   align-items: center;
   appearance: none;
   border-radius: ${tokens.button.borderRadius};
@@ -15,7 +18,6 @@ const commonStyles = `
   font-family: ${tokens.fontFamily.default};
   font-weight: bold;
   justify-content: center;
-  line-height: 1.2;
   text-align: center;
   vertical-align: middle;
 
@@ -53,7 +55,7 @@ const textButtonStyles = `
 
 const disabledStyles = `
   box-shadow: none;
-  color: ${tokens.color.blackLighten40};
+  color: ${tokens.color.blackDisabled};
   cursor: not-allowed;
   text-decoration: none;
   text-shadow: none;
@@ -104,6 +106,30 @@ const sizeStyles = {
     min-height: ${stylers.spacer(5)};
     padding: 9px ${stylers.spacer(2)};
   `,
+};
+
+const squareSizes = {
+  small: `
+    ${stylers.fontSize(-3)};
+    height: ${stylers.spacer(3)}; 
+    line-height: ${stylers.spacer(3)};  
+    padding: 0; 
+    width: ${stylers.spacer(3)}; 
+  }`,
+  medium: `
+    ${stylers.fontSize(1)};
+    height: ${stylers.spacer(4)}; 
+    line-height: ${stylers.spacer(4)};  
+    padding: 0; 
+    width: ${stylers.spacer(4)}; 
+  }`,
+  large: `
+    ${stylers.fontSize(3)};
+    height: ${stylers.spacer(5)}; 
+    line-height: ${stylers.spacer(5)};  
+    padding: 0; 
+    width: ${stylers.spacer(5)}; 
+  }`,
 };
 
 // Kinds
@@ -219,6 +245,20 @@ const fullWidthStyles = `
   width: 100%;
 `;
 
+// Square Buttons
+
+const squareButtonStyles = `
+  transition: background-color 0.2s ease-out;
+  
+  &:hover {
+    background-color: rgba(0, 0, 0, 0.1); // TODO: use $black with an rgba() function
+  }
+
+  &:active {
+    background-color: rgba(0, 0, 0, 0.2); // TODO: use $black with an rgba() function
+  }
+`;
+
 //
 // Composition
 //
@@ -226,9 +266,59 @@ const fullWidthStyles = `
 const buttonStyles = props => `
   ${commonStyles}
   ${sizeStyles[props.size]}
+  ${props.isSquare ? squareSizes[props.size] + squareButtonStyles : ""}
   ${kindStyles(props)[props.kind]}
   ${props.isFullWidth ? fullWidthStyles : ""}
   ${props.isActive ? activeStyles : ""}
 `;
 
 export default buttonStyles;
+
+//
+// Icons
+//
+
+const spinKeyframes = keyframes`
+    0% {
+      -webkit-transform: rotate(0deg);
+      transform: rotate(0deg);
+    }
+    100% {
+      -webkit-transform: rotate(360deg);
+      transform: rotate(360deg);
+    }
+`;
+
+const iconColors = {
+  default: tokens.textColor.icon,
+  primary: tokens.color.white,
+  secondary: tokens.color.white,
+  destructive: tokens.color.white,
+  flat: tokens.textColor.icon,
+  minor: tokens.textColor.icon,
+  link: tokens.textColor.icon,
+};
+
+function getIconColor(props) {
+  if (props.isDisabled) return tokens.color.blackDisabled;
+  if (!props.isSquare) return iconColors[props.kind];
+}
+
+export const iconStyles = props => css`
+  color: ${getIconColor(props)};
+  display: inline-block;
+
+  svg {
+    vertical-align: -0.12em; // ( lineHeight(-1) - 1 ) / 2
+  }
+
+  ${!props.isSquare ? `margin: 0 ${tokens.spaceSm} 0 0;` : ""};
+
+  ${props.isPending
+    ? css`
+        animation: ${spinKeyframes} 2s infinite linear;
+      `
+    : ""}
+
+  ${props.isDropdown ? `margin:0 0 0 ${tokens.spaceSm};` : ""}
+`;

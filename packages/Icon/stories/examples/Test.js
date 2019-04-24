@@ -8,7 +8,7 @@ import CloseIcon from "@paprika/icon/Times";
 import RefreshIcon from "@paprika/icon/Refresh";
 import SearchIcon from "@paprika/icon/Search";
 import TrashIcon from "@paprika/icon/Trashbin";
-import Arrow from "@paprika/icon/ArrowRight";
+import ArrowIcon from "@paprika/icon/ArrowRight";
 
 const ExampleStory = () => (
   <Story
@@ -43,7 +43,7 @@ const ExampleStory = () => (
           verticalAlign: "middle",
         }}
       />
-      , photo booth small batch poke. <Arrow />
+      , photo booth small batch poke. <ArrowIcon />
     </p>
   </Story>
 );

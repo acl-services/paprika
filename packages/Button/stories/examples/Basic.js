@@ -1,7 +1,10 @@
 import React from "react";
 import { action } from "@storybook/addon-actions";
 import { Rule } from "storybook/assets/styles/common.styles";
+import PlusIcon from "@paprika/icon/Add";
+import CloseIcon from "@paprika/icon/Times";
 import { ButtonStory } from "../Button.stories.styles";
+
 import Button from "../../Button";
 
 function clickHandler() {
@@ -76,6 +79,55 @@ const ExampleStory = () => (
       </Button>
       <Button isSemantic={false} kind="link" size="small" onClick={clickHandler}>
         raw small link
+      </Button>
+    </p>
+    <Rule />
+    <p>
+      <Button onClick={clickHandler} icon={<CloseIcon />} isSquare size="small" />
+      <Button onClick={clickHandler} icon={<CloseIcon />} isSquare />
+      <Button onClick={clickHandler} icon={<CloseIcon />} isSquare size="large" />
+      <Button onClick={clickHandler} icon={<CloseIcon />} isSquare kind="flat" />
+      <Button onClick={clickHandler} icon={<CloseIcon />} isSquare kind="minor">
+        MINOR
+      </Button>
+    </p>
+    <Rule />
+    <p>
+      <Button onClick={clickHandler} icon={<PlusIcon />} size="small">
+        with icon
+      </Button>
+      <Button onClick={clickHandler} icon={<PlusIcon />}>
+        with icon
+      </Button>
+      <Button onClick={clickHandler} icon={<PlusIcon />} size="large">
+        with icon
+      </Button>
+    </p>
+    <Rule />
+    <p>
+      <Button onClick={clickHandler} icon={<PlusIcon />} kind="minor">
+        with icon
+      </Button>
+      <Button onClick={clickHandler} icon={<PlusIcon />} kind="link">
+        with icon
+      </Button>
+      <Button onClick={clickHandler} icon={<PlusIcon />} kind="flat">
+        with icon
+      </Button>
+      <Button onClick={clickHandler} icon={<PlusIcon />} kind="primary">
+        with icon
+      </Button>
+      <Button onClick={clickHandler} icon={<PlusIcon />} kind="primary" isDisabled>
+        with icon
+      </Button>
+    </p>
+    <Rule />
+    <p>
+      <Button onClick={clickHandler} icon={<PlusIcon />} isPending>
+        Pending...
+      </Button>
+      <Button onClick={clickHandler} icon={<PlusIcon />} isDropdown>
+        Menu
       </Button>
     </p>
     {[...Array(34).keys()].map(index => (
