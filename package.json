@@ -11,6 +11,7 @@
     "lint:fix": "yarn lint --fix",
     "lint": "eslint packages",
     "package": "./scripts/package/index.js",
+    "postinstall": "cd documentation && yarn",
     "prettier:format": "yarn prettier -- --write",
     "prettier": "prettier \"**/*.+(js|json|yml|css|scss|md|mdx)\"",
     "storybook": "start-storybook -p 9009 -c .storybook",
