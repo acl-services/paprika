@@ -1,7 +1,7 @@
 import React from "react";
 import { action } from "@storybook/addon-actions";
 import { Story, Small } from "storybook/assets/styles/common.styles";
-import Button from "../..";
+import { CloseButton } from "../..";
 
 function clickHandler() {
   action("Clicked a button")();
@@ -22,12 +22,10 @@ const ExampleStory = () => {
   return (
     <Story>
       <p>
-        <Button onClick={clickHandler} ref={buttonRef}>
-          Button
-        </Button>
+        <CloseButton onClick={clickHandler} ref={buttonRef} />
       </p>
       <p>
-        <Small>This Button will capture the focus after 1 second.</Small>
+        <Small>This CloseButton will capture the focus after 1 second.</Small>
       </p>
     </Story>
   );

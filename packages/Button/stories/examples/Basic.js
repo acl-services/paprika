@@ -1,11 +1,17 @@
 import React from "react";
 import { action } from "@storybook/addon-actions";
+import styled from "styled-components";
 import { Rule } from "storybook/assets/styles/common.styles";
 import PlusIcon from "@paprika/icon/Add";
-import CloseIcon from "@paprika/icon/Times";
+import InfoIcon from "@paprika/icon/InfoCircle";
 import { ButtonStory } from "../Button.stories.styles";
+import Button, { CloseButton } from "../..";
 
-import Button from "../../Button";
+const DarkBackground = styled.div`
+  background: #000;
+  display: inline-block;
+  padding: 8px;
+`;
 
 function clickHandler() {
   action("Clicked a button")();
@@ -83,11 +89,11 @@ const ExampleStory = () => (
     </p>
     <Rule />
     <p>
-      <Button onClick={clickHandler} icon={<CloseIcon />} isSquare size="small" />
-      <Button onClick={clickHandler} icon={<CloseIcon />} isSquare />
-      <Button onClick={clickHandler} icon={<CloseIcon />} isSquare size="large" />
-      <Button onClick={clickHandler} icon={<CloseIcon />} isSquare kind="flat" />
-      <Button onClick={clickHandler} icon={<CloseIcon />} isSquare kind="minor">
+      <Button onClick={clickHandler} icon={<InfoIcon />} isSquare size="small" />
+      <Button onClick={clickHandler} icon={<InfoIcon />} isSquare />
+      <Button onClick={clickHandler} icon={<InfoIcon />} isSquare size="large" />
+      <Button onClick={clickHandler} icon={<InfoIcon />} isSquare kind="flat" />
+      <Button onClick={clickHandler} icon={<InfoIcon />} isSquare kind="minor">
         MINOR
       </Button>
     </p>
@@ -130,6 +136,15 @@ const ExampleStory = () => (
         Menu
       </Button>
     </p>
+    <Rule />
+    <p>
+      <CloseButton onClick={clickHandler} size="small" />
+      <CloseButton onClick={clickHandler} />
+      <CloseButton onClick={clickHandler} size="large" />
+    </p>
+    <DarkBackground>
+      <CloseButton onClick={clickHandler} isDark />
+    </DarkBackground>
     {[...Array(34).keys()].map(index => (
       <br key={index} />
     ))}
