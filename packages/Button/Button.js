@@ -9,7 +9,7 @@ import buttonStyles, { iconStyles } from "./Button.styles";
 const propTypes = {
   a11yText: PropTypes.string,
   canPropagate: PropTypes.bool,
-  children: PropTypes.node.isRequired,
+  children: PropTypes.node,
   icon: PropTypes.node,
   isActive: PropTypes.bool,
   isDisabled: PropTypes.bool,
@@ -29,6 +29,7 @@ const propTypes = {
 const defaultProps = {
   a11yText: null,
   canPropagate: true,
+  children: null,
   icon: null,
   isActive: false,
   isDisabled: false,
@@ -66,6 +67,7 @@ const Button = React.forwardRef((props, ref) => {
     isSubmit,
     kind,
     onClick,
+    role,
     tabIndex,
     ...moreProps
   } = props;
@@ -96,8 +98,10 @@ const Button = React.forwardRef((props, ref) => {
   if (isSemantic) {
     buttonProps.disabled = isDisabled;
     buttonProps.type = isSubmit ? "submit" : "button";
+    if (role !== "button") buttonProps.role = role;
   } else {
     buttonProps.tabIndex = isDisabled ? -1 : tabIndex;
+    buttonProps.role = role;
   }
 
   const iconProps = {
