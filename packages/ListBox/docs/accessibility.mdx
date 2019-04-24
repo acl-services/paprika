@@ -1,0 +1,24 @@
+---
+name: accessibility
+route: "/listbox/accessibility"
+menu: "Listbox"
+---
+
+# Accessibility
+
+## Keyboard accessibility
+
+All ListBoxes are keyboard accessible, the following are features automatically include it:
+
+- As soon the Listbox is open the user can start interacting with the `[↑]` arrow up and `[↓]` arrow down keys to navigate to different options.
+- If the Listbox includes a filter will eagerly try to focus on the Filter, the `[↑]` and `[↓]` will continue working without losing focus on the filter.
+- The user can `[tab]` or `[shift+tab]` like if the ListBox was a regular button.
+- `[esc]` or clicking outside of the ListBox will close it
+- Clicking `[space]` or `⏎` will select the option on the _single select_ or _toggle_ it in the `multi select` version.
+- When the filter is active the user _CAN'T_ make use of the `[space]` key, because would conflicts with the filter input. This last behaviour is similar to [this example on the wai-aria site](https://www.w3.org/TR/wai-aria-practices/examples/combobox/aria1.1pattern/grid-combo.html).
+
+## Screen reader accessibility
+
+Currently there is not support for the screen reader. There are couple challenges to solve before achiving this. As example the Screen reader expected that the options on the markup exists while the page is render so if the ListBox popover is in close status and not in the presence of the DOM. The _screenreader_ will not be able to read the options.
+
+This specific feature needs some research and work.
