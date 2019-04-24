@@ -20,38 +20,37 @@ const SpinnerStyles = () => `
   border-left-color: ${tokens.color.purple};
   border-radius: 50%;
   border-style: solid;
-  font-size: rem-calc(${stylers.fontSize(-2)});
   margin-left: auto;
   margin-right: auto;
   overflow: hidden;
 }
 
-&.spinner--small .spinner__visual{
+&.spinner--small .spinner__visual {
   border-width: 2px;
   height: ${stylers.spacer(3)};
   width: ${stylers.spacer(3)};
 }
 
-&.spinner--medium .spinner__visual{
+&.spinner--medium .spinner__visual {
   border-width: 3px;
   height: ${stylers.spacer(6)};
   width: ${stylers.spacer(6)};
 }
 
-&.spinner--large .spinner__visual{
+&.spinner--large .spinner__visual {
   border-width: 4px;
   height: ${stylers.spacer(9)};
   width: ${stylers.spacer(9)};
 }
 
 .spinner__caption {
+  ${stylers.lineHeight(-2)}
+  ${stylers.truncateText}
   color: ${tokens.color.blackLighten20};
   font-weight: normal;
-  ${stylers.lineHeight(-2)}
   margin: ${tokens.space} auto 0 auto;
   overflow: hidden;
   text-align: center;
-  text-overflow: ellipsis;
 }
 
 &.spinner--small .spinner__caption {

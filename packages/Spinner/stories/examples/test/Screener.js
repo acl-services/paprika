@@ -5,8 +5,8 @@ import Spinner from "../../../Spinner";
 const A11yStory = () => {
   return (
     <Story>
-      <Spinner size="small" />
       <Spinner />
+      <Spinner size="small" />
       <Spinner caption="Spinner Snowman" size="large" />
     </Story>
   );

@@ -6,7 +6,7 @@ import Spinner from "../../Spinner";
 
 const ExampleStory = () => {
   const spinnerProps = {
-    ariaText: text("ariaText"),
+    a11yText: text("a11yText"),
     caption: text("caption", "Spinning..."),
     size: select("Sizes", ["small", "medium", "large"], "medium"),
   };

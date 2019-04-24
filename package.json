@@ -83,8 +83,5 @@
       "jest-dom/extend-expect",
       "react-testing-library/cleanup-after-each"
     ]
-  },
-  "dependencies": {
-    "classnames": "^2.2.6"
   }
 }

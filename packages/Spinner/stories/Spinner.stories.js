@@ -7,7 +7,7 @@ import ScreenerStory from "./examples/test/Screener";
 
 storiesOf("Spinner", module)
   .addDecorator(withKnobs)
-  .add("Simple", () => <Basic />);
+  .add("Showcase", () => <Basic />);
 
 storiesOf("Spinner/Automation Tests/Screener", module).add("Basic", () => {
   return <ScreenerStory />;

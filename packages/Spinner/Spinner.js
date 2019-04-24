@@ -1,5 +1,3 @@
-/* eslint-disable jsx-a11y/no-static-element-interactions */
-
 import React from "react";
 import PropTypes from "prop-types";
 import classNames from "classnames";
@@ -7,16 +5,14 @@ import { ShirtSizes } from "../helpers/customPropTypes";
 import SpinnerStyles from "./Spinner.styles";
 
 const propTypes = {
-  ariaText: PropTypes.string,
+  a11yText: PropTypes.string,
   className: PropTypes.string,
   caption: PropTypes.string,
-
-  /** customPropTypes shirtSize */
   size: PropTypes.oneOf(ShirtSizes.DEFAULT),
 };
 
 const defaultProps = {
-  ariaText: null,
+  a11yText: null,
   className: null,
   caption: null,
   size: "medium",
@@ -28,10 +24,10 @@ const spinnerSize = {
   small: "spinner--small",
 };
 
-const Spinner = ({ ariaText, className, caption, size, ...moreProps }) => {
+const Spinner = ({ a11yText, className, caption, size, ...moreProps }) => {
   const rootClasses = classNames(className, spinnerSize[size]);
 
-  const bestAria = ariaText || caption || "Loading"; // TODO: l10n
+  const bestAria = a11yText || caption || "Loading"; // TODO: l10n
 
   return (
     <div className={rootClasses} css={SpinnerStyles} {...moreProps}>

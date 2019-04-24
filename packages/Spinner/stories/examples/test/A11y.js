@@ -5,10 +5,10 @@ import Spinner from "../../../Spinner";
 const A11yStory = () => {
   return (
     <Story>
-      <Spinner caption="Hey Spinner" />
-      <Spinner ariaText="Hey Spinner" />
       <Spinner />
-      <Spinner ariaText="Hey Spinner" caption="Spin the Spinner" />
+      <Spinner caption="Hey Spinner" />
+      <Spinner a11yText="Hey Spinner" />
+      <Spinner a11yText="Hey Spinner" caption="Spin the Spinner" />
     </Story>
   );
 };
