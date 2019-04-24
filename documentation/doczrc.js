@@ -10,7 +10,34 @@ export default {
   },
   themeConfig: {
     colors: {
+      primary: "#785CBA",
+      gray: "#110717",
       background: "linear-gradient(-180deg,#FAFAFB 0,#EFEFF1 438px)",
     },
+    styles: {
+      body: `
+        @import url('https://fonts.googleapis.com/css?family=IBM+Plex+Sans:300,400,500,600');
+        font-family: 'IBM Plex Sans', sans;
+        font-size: 16px;
+        line-height: 1.6;
+
+        ul {
+          padding: 16px;
+
+          li {
+            line-height: 1.4;
+            margin-bottom: 8px;
+          }
+        }
+
+      `,
+    },
   },
+  menu: [
+    "Getting started",
+    {
+      name: "Listbox",
+      menu: ["single selection", "multiple selection", "examples"],
+    },
+  ],
 };

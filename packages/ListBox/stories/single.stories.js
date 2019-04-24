@@ -1,24 +1,24 @@
 import React from "react";
 import { storiesOf } from "@storybook/react";
-import * as Ex from "./examples/single";
+import * as Single from "./examples/single";
 
-storiesOf("ListBox / single", module).add("Basic", () => <Ex.Basic />);
-storiesOf("ListBox / single", module).add("Basic with empty option", () => <Ex.BasicWithEmptyOption />);
-storiesOf("ListBox / single", module).add("Basic Inline Display", () => <Ex.BasicInlineDisplay />);
-storiesOf("ListBox / single", module).add("Basic is disabled", () => <Ex.BasicIsDisabled />);
-storiesOf("ListBox / single", module).add("Basic is inline disable", () => <Ex.BasicIsInlineDisable />);
-storiesOf("ListBox / single", module).add("Basic option disabled", () => <Ex.BasicOptionDisabled />);
-storiesOf("ListBox / single", module).add("Basic with preselected option", () => <Ex.BasicPreselectedOption />);
-storiesOf("ListBox / single", module).add("Basic with option onClick", () => <Ex.BasicOptionOnClick />);
+storiesOf("ListBox / single", module).add("Basic", () => <Single.Basic />);
+storiesOf("ListBox / single", module).add("Basic with empty option", () => <Single.BasicWithEmptyOption />);
+storiesOf("ListBox / single", module).add("Basic Inline Display", () => <Single.BasicInlineDisplay />);
+storiesOf("ListBox / single", module).add("Basic is disabled", () => <Single.BasicIsDisabled />);
+storiesOf("ListBox / single", module).add("Basic is inline disable", () => <Single.BasicIsInlineDisable />);
+storiesOf("ListBox / single", module).add("Basic option disabled", () => <Single.BasicOptionDisabled />);
+storiesOf("ListBox / single", module).add("Basic with preselected option", () => <Single.BasicPreselectedOption />);
+storiesOf("ListBox / single", module).add("Basic with option onClick", () => <Single.BasicOptionOnClick />);
 
-storiesOf("ListBox / single", module).add("Filter", () => <Ex.WithFilter />);
-storiesOf("ListBox / single", module).add("Filter inline", () => <Ex.WithFilterInline />);
-storiesOf("ListBox / single", module).add("Filter custom nodes inline", () => <Ex.FilterCustomChildrenInline />);
-storiesOf("ListBox / single", module).add("Filter custom nodes", () => <Ex.WithFilterAndNodesAsChildren />);
+storiesOf("ListBox / single", module).add("Filter", () => <Single.WithFilter />);
+storiesOf("ListBox / single", module).add("Filter inline", () => <Single.WithFilterInline />);
+storiesOf("ListBox / single", module).add("Filter custom nodes inline", () => <Single.FilterCustomChildrenInline />);
+storiesOf("ListBox / single", module).add("Filter custom nodes", () => <Single.WithFilterAndNodesAsChildren />);
 
-storiesOf("ListBox / single", module).add("Groups", () => <Ex.WithGroups />);
-storiesOf("ListBox / single", module).add("Footer", () => <Ex.Footer />);
-storiesOf("ListBox / single", module).add("Checkboxes", () => <Ex.Checkboxes />);
-storiesOf("ListBox / single", module).add("Custom renderTrigger", () => <Ex.CustomRenderTrigger />);
-storiesOf("ListBox / single", module).add("Has clear button", () => <Ex.HasClearButton />);
-storiesOf("ListBox / single", module).add("Custom Checkers", () => <Ex.WithCustomCheckers />);
+storiesOf("ListBox / single", module).add("Groups", () => <Single.WithGroups />);
+storiesOf("ListBox / single", module).add("Footer", () => <Single.Footer />);
+storiesOf("ListBox / single", module).add("Checkboxes", () => <Single.Checkboxes />);
+storiesOf("ListBox / single", module).add("Custom renderTrigger", () => <Single.CustomRenderTrigger />);
+storiesOf("ListBox / single", module).add("Has clear button", () => <Single.HasClearButton />);
+storiesOf("ListBox / single", module).add("Custom Checkers", () => <Single.WithCustomCheckers />);

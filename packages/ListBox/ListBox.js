@@ -19,16 +19,13 @@ export const propTypes = {
   /** Turn on the input filter for the options */
   hasFilter: PropTypes.bool,
 
-  /** Turn the clear button at the right side of the Trigger */
+  /** Turn on/off the clear button at the right side of the Trigger */
   hasClearButton: PropTypes.bool,
 
   /** Indicate which is the height for the options container */
   height: PropTypes.number,
 
-  /** [Advance] instead of marking the option as checked/unchecked will toggle the option between visible and hidden
-      this is monstly useful at the moment of composing the listbox into a more complex component, see ListBoxWithTags
-      as example
-  */
+  /** [Advance] instead of marking the option as checked/unchecked will toggle the option between visible and hidden */
   hideOptionOnSelected: PropTypes.bool,
 
   /** Disable the entire ListBox */
@@ -150,6 +147,7 @@ export function ListBox(props) {
 }
 
 ListBox.propTypes = {
+  ...propTypes,
   children: PropTypes.node.isRequired,
   filter: PropTypes.func,
   hasNotResultsMessage: PropTypes.string.isRequired,
@@ -229,7 +227,7 @@ const ListBoxContainer = React.forwardRef((props, ref) => {
   );
 });
 
-export default ListBoxContainer;
-
 ListBoxContainer.propTypes = propTypes;
 ListBoxContainer.defaultProps = defaultProps;
+
+export default ListBoxContainer;

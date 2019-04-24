@@ -1,9 +1,8 @@
 /* eslint-disable react/no-multi-comp, react/prop-types */
+
 import React from "react";
-import { storiesOf } from "@storybook/react";
 import Button from "@paprika/button";
 import { Td, Th, FiltersStyled, TdFilter } from "./filterSelect.styles";
-import { Frame } from "../../stories.styles";
 import ListBox from "../../../index";
 
 const items = [
@@ -59,7 +58,7 @@ const filterItems = ({ price, colors, qty }) => item => {
   return priceRule && qtyRule && colorRule;
 };
 
-function Table() {
+export default function FilterSelect() {
   const refFilterColor = React.useRef(null);
   const refFilterPrice = React.useRef(null);
   const refFilterQty = React.useRef(null);
@@ -134,9 +133,3 @@ function Table() {
     </React.Fragment>
   );
 }
-
-storiesOf("ListBox / recipes", module).add("Filter select", () => (
-  <Frame>
-    <Table />
-  </Frame>
-));

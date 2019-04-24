@@ -1,143 +1,19 @@
+/* eslint-disable react/no-multi-comp, react/prop-types */
 import React from "react";
-import { storiesOf } from "@storybook/react";
 import Button from "@paprika/button";
 import { Frame } from "../../stories.styles";
 import ListBox from "../../../index";
 import fixture from "./lazy.fixture";
+import MarvelOption from "./MarvelOption";
+import Results from "./Results";
+
+import { debounce, fetchAPI, reducer, actionTypes } from "./helpers";
 
 const limit = 20;
 
-/* eslint-disable */
-// from lodash
-const debounce = function(func, wait, immediate) {
-  var timeout;
-  return function() {
-    var context = this,
-      args = arguments;
-    var later = function() {
-      timeout = null;
-      if (!immediate) func.apply(context, args);
-    };
-    var callNow = immediate && !timeout;
-    clearTimeout(timeout);
-    timeout = setTimeout(later, wait);
-    if (callNow) func.apply(context, args);
-  };
-};
-/* eslint-enable */
-
-/* eslint-disable react/no-multi-comp, react/prop-types */
-
-async function fetchAPI(term, offset = null, limit = 20) {
-  const url = "https://gateway.marvel.com:443/v1/public/characters?nameStartsWith=";
-  const offsetParameter = offset ? `&offset=${offset * limit}` : "";
-  // low risk to share api key for now, I can invalidate it later and extracted it to an env variable
-  const apiKey = "&apikey=ac7726775d7f6e56add4f57ed5cd9a6b";
-  const stream = await fetch(`${url}${term}${offsetParameter}${apiKey}`);
-  const data = await stream.json();
-  return data;
-}
-
 const charactersCache = {};
 
-const actionTypes = {
-  addSearchedCharacters: "addSearchedCharacters",
-  addCharacters: "addCharacters",
-  addSelectedCharacters: "addSelectedCharacters",
-  updateActiveApiPage: "updateActiveApiPage",
-  isDisabled: "isDisabled",
-  setSearch: "setSearch",
-  setSearchedCharacters: "setSearchedCharacters",
-  isLoading: "isLoading",
-};
-
-function reducer(state, { type, payload }) {
-  switch (type) {
-    case actionTypes.addCharacters: {
-      return { ...state, characters: payload };
-    }
-
-    case actionTypes.isDisabled: {
-      return { ...state, isDisabled: payload };
-    }
-
-    case actionTypes.addSelectedCharacters: {
-      return { ...state, selectedCharacters: [...state.selectedCharacters, ...payload] };
-    }
-
-    case actionTypes.updateActiveApiPage: {
-      return { ...state, activeApiPage: payload };
-    }
-
-    case actionTypes.setSearch: {
-      return { ...state, search: payload };
-    }
-
-    case actionTypes.setSearchedCharacters: {
-      return { ...state, searchedCharacters: payload };
-    }
-
-    case actionTypes.isLoading: {
-      return { ...state, isLoading: payload };
-    }
-
-    default:
-      return state;
-  }
-}
-
-function Results(props) {
-  return (
-    <div css="margin-bottom: 32px; display: grid; grid-template-columns: 18vw 18vw 18vw 18vw 18vw; grid-gap: 10px;">
-      {props.ids.map(id => (
-        <div
-          key={id}
-          css="width: 100%; height: 210px; border-radius: 3px; border: 1px solid #CCC; padding: 4px; margin-right: 4px;"
-        >
-          <div
-            css={`
-              width: 100%;
-              height: 100%;
-              overflow: hidden;
-              background: url(${charactersCache[id].thumbnail.path}.${charactersCache[id].thumbnail.extension});
-              background-size: cover;
-            `}
-          />
-          <span
-            css="
-              display: inline-block;
-              color: #fff;
-              width: 100%;
-              padding: 4px;
-              font-size: 14px;
-              position: relative;
-              top: -40px;
-              background: rgba(0, 0, 0, 0.8);
-            "
-          >
-            {charactersCache[id].name}
-          </span>
-        </div>
-      ))}
-    </div>
-  );
-}
-
-function MarvelOption(props) {
-  const { result } = props;
-  return (
-    <React.Fragment>
-      <img
-        alt={result.name}
-        css="width: 24px; height: 24px;"
-        src={`${result.thumbnail.path}.${result.thumbnail.extension}`}
-      />
-      {result.name}
-    </React.Fragment>
-  );
-}
-
-function LazyListBox() {
+export default function LazyListBox() {
   const [state, dispatch] = React.useReducer(reducer, {
     activeApiPage: [{ offset: 0, limit }, { offset: 0, limit }, { offset: 0, limit }],
     characters: [],
@@ -194,6 +70,7 @@ function LazyListBox() {
 
     const offset = state.activeApiPage[index].offset + 1;
     const limit = state.activeApiPage[index].limit;
+
     fetchAPI(groups[index], offset, limit).then(response => {
       const resultsClone = [...state.characters[index].data.results, ...response.data.results];
       response.data.results = resultsClone;
@@ -348,7 +225,9 @@ function LazyListBox() {
 
   return (
     <Frame>
-      {state.selectedCharacters.length ? <Results ids={state.selectedCharacters} /> : null}
+      {state.selectedCharacters.length ? (
+        <Results charactersCache={charactersCache} ids={state.selectedCharacters} />
+      ) : null}
       <ListBox
         filter={handleFilter}
         hasFilter
@@ -369,5 +248,3 @@ function LazyListBox() {
     </Frame>
   );
 }
-
-storiesOf("ListBox / recipes", module).add("Lazy ListBox", () => <LazyListBox />);

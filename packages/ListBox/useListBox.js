@@ -36,8 +36,6 @@ useListBox.types = types;
 // )}
 
 // TODO:
-// - [x] bug can't select first filtered element when there is only 1 result on lazy loading story
-// - [x] bug isInline the Trigger component shouldn't allowed to have focus
 // - [] bug when click on delete tag popover close automatically
 // - [] clean and use best practice for the reducer, implmente Kent dods approach for reducer
 // - [] clean state since I removed the rendering process from state to props
@@ -46,7 +44,9 @@ useListBox.types = types;
 // - [] implemented the reset button on Filter Select story
 // - [] isPending/isIdle state would need to be work on
 // - [] organize stories under example directory on single/multi/recipes
+// - [] remember to document the structure is important to avoid bugs like hte one of selecting first item on lazy listbox
 // - [] tokens cleaning process
+// - [] bug when is option disabled shouldnt be selected
 // - [/] - wont do - add useEffect for individual <Option /> :P since I removed the effect for tracking children changes
 // - [/] add story with filters groups // this has been removed from the code since is not use in the ecosystem
 // - [/] create onClose onAdd onRemove there are not need right now
@@ -57,6 +57,8 @@ useListBox.types = types;
 // - [~] - won't do this version - when clicking esc should reset to the lastKnownSelectedOptions in Single and Multi currently is just closing
 // - [x] ~where should onChange be fired on the reducer? in what file?~ this occurs where the event happens using applyCallback.js method
 // - [x] add support for the footer again
+// - [x] bug can't select first filtered element when there is only 1 result on lazy loading story
+// - [x] bug isInline the Trigger component shouldn't allowed to have focus
 // - [x] bug no rendering groupName on dynamic appending groups with children
 // - [x] bug when closing a listbox with filter there is a flickering effect
 // - [x] change isInteractive for preventDefaultOnSelect
