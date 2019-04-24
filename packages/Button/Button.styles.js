@@ -5,9 +5,9 @@ import { css, keyframes } from "styled-components";
 // Common
 
 const commonStyles = `
+  ${stylers.alignMiddle}
   ${stylers.lineHeight(-1)};
-
-  align-items: center;
+  
   appearance: none;
   border-radius: ${tokens.button.borderRadius};
   border-style: solid;
@@ -17,7 +17,6 @@ const commonStyles = `
   display: inline-flex;
   font-family: ${tokens.fontFamily.default};
   font-weight: bold;
-  justify-content: center;
   text-align: center;
   vertical-align: middle;
 
@@ -43,7 +42,7 @@ const skeuomorphicStyles = `
 
 const coloredButtonStyles = `
   color: ${tokens.color.white};
-  text-shadow: 0 1px 1px rgba(0, 0, 0, 0.2); // TODO: add mixin for transparent hex colours
+  text-shadow: 0 1px 1px ${stylers.alpha(tokens.color.blackPure, 0.2)};
 `;
 
 const textButtonStyles = `
@@ -251,11 +250,11 @@ const squareButtonStyles = `
   transition: background-color 0.2s ease-out;
   
   &:hover {
-    background-color: rgba(0, 0, 0, 0.1); // TODO: use $black with an rgba() function
+    background-color: ${stylers.alpha(tokens.color.black, 0.1)}; 
   }
 
   &:active {
-    background-color: rgba(0, 0, 0, 0.2); // TODO: use $black with an rgba() function
+    background-color: ${stylers.alpha(tokens.color.black, 0.2)};
   }
 `;
 
@@ -309,7 +308,7 @@ export const iconStyles = props => css`
   display: inline-block;
 
   svg {
-    vertical-align: -0.12em; // ( lineHeight(-1) - 1 ) / 2
+    vertical-align: -${(stylers.lineHeightValue(-1) - 1) / 2}em;
   }
 
   ${!props.isSquare ? `margin: 0 ${tokens.spaceSm} 0 0;` : ""};

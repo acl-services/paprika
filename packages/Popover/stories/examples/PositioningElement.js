@@ -1,27 +1,27 @@
 import React from "react";
 import { select } from "@storybook/addon-knobs";
 import styled from "styled-components";
+import tokens from "@paprika/tokens";
+import stylers from "@paprika/stylers";
 import { CenteredStory } from "storybook/assets/styles/common.styles";
 import Button from "@paprika/button";
 import Popover from "../../Popover";
 
 const PositioningElementStyled = styled.div`
+  ${stylers.alignMiddle}
+  ${stylers.fontSize(3)}
+
   width: 150px;
   height: 150px;
-  border: 2px dashed purple;
-  margin: 32px 0 0 120px;
+  margin: 30px 0 0 120px;
 
-  color: purple;
-  padding: 16px;
-  text-align: center;
-  font-size: 20px;
-  letter-spacing: 0.05em;
+  border: 2px dashed ${tokens.color.purpleLighten30};
+  padding: ${stylers.spacer(2)};
+
+  color: ${tokens.color.purple};
   font-weight: 100;
-
-  // TODO: vertical center mixin?
-  align-items: center;
-  display: flex;
-  justify-content: center;
+  letter-spacing: 0.05em;
+  text-align: center;
 `;
 
 const getPositioningElement = () => document.querySelector("#another-div");

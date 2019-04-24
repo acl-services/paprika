@@ -6,20 +6,19 @@ import tokens from "@paprika/tokens";
 
 const fontScaleRatio = 1.125; // 8:9 - Major second
 
-// prettier-ignore
+const fontSizeValue = (scale = 0) => Math.round(Number.parseInt(tokens.fontSize.default, 10) * fontScaleRatio ** scale);
+
 export const fontSize = (scale = 0) => `
-  font-size: ${Math.round(
-    Number.parseInt(tokens.fontSize.default, 10) * (fontScaleRatio ** scale)
-  )}px;
+  font-size: ${fontSizeValue(scale)}px;
 `;
 
 const leadingBase = 1.4;
 const leadingScaleRatio = 1.125;
 
-// prettier-ignore
+export const lineHeightValue = (scale = 0) => Math.round(leadingBase * leadingScaleRatio ** scale * 100) / 100;
+
 export const lineHeight = (scale = 0) => `
-  line-height: ${Math.round(leadingBase * (leadingScaleRatio ** scale) * 100) /
-    100};
+  line-height: ${lineHeightValue(scale)};
 `;
 
 //
@@ -33,3 +32,18 @@ export const z = level => {
 
   return validLevels.includes(level) ? `z-index: ${level};` : `z-index: 1;`;
 };
+
+//
+// Color
+//
+
+export function rgb(hex) {
+  const result = /^#?([a-f\d]{2})([a-f\d]{2})([a-f\d]{2})$/i.exec(hex);
+  if (!result) return null;
+
+  return [parseInt(result[1], 16), parseInt(result[2], 16), parseInt(result[3], 16)];
+}
+
+export function alpha(colorValue, alphaValue = 1) {
+  return `rgba(${rgb(colorValue)}, ${alphaValue})`;
+}

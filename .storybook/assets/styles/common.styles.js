@@ -9,6 +9,7 @@ export const Story = styled.div`
 `;
 
 export const CenteredStory = styled.div`
+  ${stylers.alignMiddle}
   align-items: center;
   display: flex;
   height: 100vh;
