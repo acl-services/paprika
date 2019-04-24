@@ -47,6 +47,8 @@
     "babel-plugin-styled-components": "^1.10.0",
     "css-loader": "^2.1.0",
     "cypress": "^3.1.5",
+    "docz": "^1.0.4",
+    "docz-theme-default": "^1.0.4",
     "eslint": "^5.3.0",
     "eslint-config-airbnb": "^17.1.0",
     "eslint-config-prettier": "^4.0.0",
