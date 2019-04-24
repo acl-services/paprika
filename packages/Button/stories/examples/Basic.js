@@ -5,7 +5,7 @@ import { Rule } from "storybook/assets/styles/common.styles";
 import PlusIcon from "@paprika/icon/Add";
 import InfoIcon from "@paprika/icon/InfoCircle";
 import { ButtonStory } from "../Button.stories.styles";
-import Button, { CloseButton } from "../..";
+import Button from "../..";
 
 const DarkBackground = styled.div`
   background: #000;
@@ -138,12 +138,12 @@ const ExampleStory = () => (
     </p>
     <Rule />
     <p>
-      <CloseButton onClick={clickHandler} size="small" />
-      <CloseButton onClick={clickHandler} />
-      <CloseButton onClick={clickHandler} size="large" />
+      <Button.Close onClick={clickHandler} size="small" />
+      <Button.Close onClick={clickHandler} />
+      <Button.Close onClick={clickHandler} size="large" />
     </p>
     <DarkBackground>
-      <CloseButton onClick={clickHandler} isDark />
+      <Button.Close onClick={clickHandler} isDark />
     </DarkBackground>
     {[...Array(34).keys()].map(index => (
       <br key={index} />

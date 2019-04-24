@@ -23,6 +23,7 @@ const CloseButton = React.forwardRef((props, ref) => {
   return <Button css={closeButtonStyles} {...props} {...buttonProps} ref={ref} />;
 });
 
+CloseButton.displayName = "CloseButton";
 CloseButton.propTypes = propTypes;
 CloseButton.defaultProps = defaultProps;
 
