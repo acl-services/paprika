@@ -31,7 +31,7 @@ storiesOf("Stylers", module)
       </UntruncatedBox>
 
       <h4>
-        <code>stylers.visuallyHidden()</code>
+        <code>stylers.visuallyHidden</code>
       </h4>
       <InvisibleBox>
         <span role="img" aria-label="ghost">
