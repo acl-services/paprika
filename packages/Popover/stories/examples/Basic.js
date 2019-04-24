@@ -2,6 +2,7 @@ import React from "react";
 import { text, number, select } from "@storybook/addon-knobs";
 import styled from "styled-components";
 import { CenteredStory } from "storybook/assets/styles/common.styles";
+import Button from "@paprika/button";
 import Popover from "../../Popover";
 
 const Gap = styled.div`
@@ -26,7 +27,7 @@ export default class ExampleStory extends React.Component {
           offset={number("offset", 12)}
         >
           <Popover.Trigger>
-            <button type="button">Open Popover</button>
+            <Button>Open Popover</Button>
           </Popover.Trigger>
           <Popover.Content>
             <Popover.Tip />
@@ -44,7 +45,7 @@ export default class ExampleStory extends React.Component {
           offset={number("offset", 12)}
         >
           <Popover.Trigger>
-            <button type="button">Open Tooltip</button>
+            <Button kind="minor">Open Tooltip</Button>
           </Popover.Trigger>
           <Popover.Content>
             <Popover.Tip />

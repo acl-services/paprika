@@ -2,6 +2,7 @@ import React from "react";
 import { select } from "@storybook/addon-knobs";
 import styled from "styled-components";
 import { CenteredStory } from "storybook/assets/styles/common.styles";
+import Button from "@paprika/button";
 import Popover from "../../Popover";
 
 const PositioningElementStyled = styled.div`
@@ -17,7 +18,7 @@ const PositioningElementStyled = styled.div`
   letter-spacing: 0.05em;
   font-weight: 100;
 
-  // vertical center mixin?
+  // TODO: vertical center mixin?
   align-items: center;
   display: flex;
   justify-content: center;
@@ -35,7 +36,7 @@ export default class ExampleStory extends React.Component {
             getPositioningElement={getPositioningElement}
           >
             <Popover.Trigger>
-              <button type="button">Open Popover</button>
+              <Button>Open Popover</Button>
             </Popover.Trigger>
             <Popover.Content>
               <Popover.Tip />
