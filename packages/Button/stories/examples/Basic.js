@@ -6,7 +6,7 @@ import tokens from "@paprika/tokens";
 import PlusIcon from "@paprika/icon/Add";
 import InfoIcon from "@paprika/icon/InfoCircle";
 import { ButtonStory } from "../Button.stories.styles";
-import Button from "../..";
+import Button from "../../src";
 
 const DarkBackground = styled.span`
   background: ${tokens.color.black};

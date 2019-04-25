@@ -3,6 +3,7 @@
   "version": "0.0.1",
   "description": "Popover / Tooltip component",
   "author": "@paprika",
+  "main": "lib/index.js",
   "license": "MIT",
   "repository": {
     "type": "git",

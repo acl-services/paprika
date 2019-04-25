@@ -4,7 +4,7 @@ import styled from "styled-components";
 import { CenteredStory } from "storybook/assets/styles/common.styles";
 import Icon from "@paprika/icon/InfoCircle";
 import Button from "@paprika/button";
-import Popover from "../../Popover";
+import Popover from "../../src";
 
 const Gap = styled.div`
   height: 50px;

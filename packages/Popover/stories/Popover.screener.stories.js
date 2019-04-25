@@ -1,7 +1,7 @@
 import React from "react";
 import { storiesOf } from "@storybook/react";
 
-import Popover from "../Popover";
+import Popover from "../src";
 
 const gapStyles = `height: 120px;`;
 const shortContent = "Popover content";

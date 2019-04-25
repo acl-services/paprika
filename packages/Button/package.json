@@ -3,6 +3,7 @@
   "version": "0.0.1",
   "description": "Button component",
   "author": "@paprika",
+  "main": "lib/index.js",
   "license": "MIT",
   "repository": {
     "type": "git",
@@ -17,6 +18,7 @@
     "@paprika/raw-button": "^0.0.1",
     "@paprika/stylers": "^0.0.1",
     "@paprika/tokens": "^0.0.1",
+    "@paprika/helpers": "^0.0.1",
     "prop-types": "^15.7.2"
   },
   "peerDependencies": {
