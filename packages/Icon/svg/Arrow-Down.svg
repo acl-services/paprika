@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 53 (72520) - https://sketchapp.com -->
+    <title>Arrow-Down</title>
+    <desc>Created with Sketch.</desc>
+    <defs>
+        <path d="M10.5143467,17.2928515 C11.3348832,18.1132828 12.6651168,18.1132828 13.4856533,17.2928515 C16.3813248,14.3970753 22.5,8.27850596 22.5,8.27850596 L20.2714937,6.05 L12.0000525,14.3215452 L3.72850626,6.05 L1.5,8.27850596 C1.5,8.27850596 7.61867518,14.3970753 10.5143467,17.2928515 L10.5143467,17.2928515 Z" id="path-1"></path>
+    </defs>
+    <g id="Arrow-Down" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <mask id="mask-2" fill="white">
+            <use xlink:href="#path-1"></use>
+        </mask>
+        <use id="🌈-Color" fill="#717171" xlink:href="#path-1"></use>
+    </g>
+</svg>

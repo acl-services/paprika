@@ -1,4 +1,4 @@
-import React, { Component } from "react";
+import React from "react";
 import { text, number, select } from "@storybook/addon-knobs";
 import styled from "styled-components";
 import { CenteredStory } from "storybook/assets/styles/common.styles";
@@ -11,12 +11,12 @@ const Gap = styled.div`
 
 const sampleText = {
   short: "Lorem Hipsum",
-  long: `Lorem ipsum lumbersexual hot chicken austin readymade messenger bag aesthetic meh twee you probably havent 
-    heard of them 3 wolf moon listicle. Normcore ramps gastropub fanny pack pabst. Hashtag roof party pour-over food 
+  long: `Lorem ipsum lumbersexual hot chicken austin readymade messenger bag aesthetic meh twee you probably havent
+    heard of them 3 wolf moon listicle. Normcore ramps gastropub fanny pack pabst. Hashtag roof party pour-over food
     truck, crucifix try-hard godard biodiesel next level snackwave disrupt flexitarian.`,
 };
 
-export default class ExampleStory extends Component {
+export default class ExampleStory extends React.Component {
   render() {
     return (
       <CenteredStory>

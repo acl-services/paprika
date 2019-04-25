@@ -1,4 +1,4 @@
-import React, { Component } from "react";
+import React from "react";
 import ReactDOM from "react-dom";
 import PropTypes from "prop-types";
 import isCurrentTargetFocused from "../../helpers/isCurrentTargetFocused";
@@ -15,7 +15,7 @@ const defaultProps = {
   zIndex: 1,
 };
 
-class Content extends Component {
+class Content extends React.Component {
   handleMouseEvent = (isEager, onDelayedClose, onDelayedOpen) => event => {
     if (!isEager) return;
     if (event.type === "mouseover") {

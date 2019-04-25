@@ -1,4 +1,4 @@
-import React, { Component } from "react";
+import React from "react";
 import memoizeOne from "memoize-one";
 import PropTypes from "prop-types";
 import throttle from "lodash.throttle";
@@ -83,7 +83,7 @@ const defaultProps = {
   shouldAutoFocus: true,
 };
 
-class Popover extends Component {
+class Popover extends React.Component {
   constructor(props) {
     super(props);
 
