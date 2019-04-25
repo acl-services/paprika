@@ -1,7 +1,7 @@
 import tokens from "@paprika/tokens";
 import stylers from "@paprika/stylers";
 
-const selectStyles = props => `
+const selectStyles = () => `
 .aclui-form-select__aria-label {
   ${stylers.visuallyHidden}
 }
