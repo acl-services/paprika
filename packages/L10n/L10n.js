@@ -21,3 +21,4 @@ export default function L10n(props) {
 
 L10n.propTypes = propTypes;
 L10n.defaultProps = defaultProps;
+L10n.displayName = "L10n";
