@@ -86,7 +86,7 @@ class Textarea extends React.Component {
     if (a11yText) moreProps["aria-label"] = a11yText;
 
     const rootClasses = classNames(
-      `aclui-form-textarea--${size}`,
+      `form-textarea--${size}`,
       { "is-disabled": isDisabled },
       { "is-readonly": isReadOnly },
       className
@@ -95,7 +95,7 @@ class Textarea extends React.Component {
     return (
       <div className={rootClasses} css={textareaStyles}>
         <textarea
-          className="aclui-form-textarea__textarea"
+          className="form-textarea__textarea"
           disabled={isDisabled}
           readOnly={isReadOnly}
           ref={this.setRef}

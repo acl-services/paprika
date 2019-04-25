@@ -4,24 +4,24 @@ import stylers from "@paprika/stylers";
 const textareaStyles = () => `
   position: relative;
 
-  &.aclui-form-textarea--small .aclui-form-textarea__textarea {
+  &.form-textarea--small .form-textarea__textarea {
     ${stylers.fontSize(-2)};
   }
 
-  &.aclui-form-textarea--medium .aclui-form-textarea__textarea {
+  &.form-textarea--medium .form-textarea__textarea {
     ${stylers.fontSize(-1)};
   }
 
-  &.aclui-form-textarea--large .aclui-form-textarea__textarea {
+  &.form-textarea--large .form-textarea__textarea {
     ${stylers.fontSize()};
   }
 
-  &.is-readonly .aclui-form-textarea__textarea {
+  &.is-readonly .form-textarea__textarea {
     ${stylers.formReadOnly};
     cursor: text;
   }
 
-  .aclui-form-textarea__textarea {
+  .form-textarea__textarea {
     ${stylers.placeholders};
     ${stylers.formDisabled};
 
@@ -42,7 +42,7 @@ const textareaStyles = () => `
       border-color: ${tokens.color.blackLighten30};
     }
 
-    &.aclui-form-element--has-error {
+    &.form-element--has-error {
       border-color: ${tokens.color.orange};
     }
 
@@ -54,7 +54,7 @@ const textareaStyles = () => `
     }
   }
 
-  .aclui-form-textarea__aria-label {
+  .form-textarea__aria-label {
     ${stylers.visuallyHidden}
   }
 `;
