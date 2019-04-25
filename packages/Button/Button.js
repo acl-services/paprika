@@ -44,12 +44,20 @@ const defaultProps = {
   tabIndex: 0,
 };
 
+const buttonPropTypes = {
+  children: PropTypes.node,
+};
+
+const buttonDefaultProps = {
+  children: null,
+};
+
 const ButtonIcon = props =>
-  props.children && (
+  props.children ? (
     <span css={iconStyles} {...props} className="button__icon">
       {props.children}
     </span>
-  );
+  ) : null;
 
 const Button = React.forwardRef((props, ref) => {
   const {
@@ -117,6 +125,9 @@ const Button = React.forwardRef((props, ref) => {
     </span>
   );
 });
+
+ButtonIcon.propTypes = buttonPropTypes;
+ButtonIcon.defaultProps = buttonDefaultProps;
 
 Button.displayName = "Button";
 Button.propTypes = propTypes;
