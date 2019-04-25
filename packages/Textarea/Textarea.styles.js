@@ -3,17 +3,27 @@ import stylers from "@paprika/stylers";
 
 const textareaStyles = () => `
   position: relative;
-  &:hover:not(.is-disabled):not(.is-readonly):not([disabled]) {
-    border-color: ${tokens.color.blackLighten30};
+
+  &.aclui-form-textarea--small .aclui-form-textarea__textarea {
+    ${stylers.fontSize(-2)};
   }
 
-  &.is-readonly {
+  &.aclui-form-textarea--medium .aclui-form-textarea__textarea {
+    ${stylers.fontSize(-1)};
+  }
+
+  &.aclui-form-textarea--large .aclui-form-textarea__textarea {
+    ${stylers.fontSize()};
+  }
+
+  &.is-readonly .aclui-form-textarea__textarea {
+    ${stylers.formReadOnly};
     cursor: text;
   }
 
   .aclui-form-textarea__textarea {
-    // @include placeholders;
-    // @include form-disabled;
+    ${stylers.placeholders};
+    ${stylers.formDisabled};
 
     background-color: ${tokens.color.white};
     border: 1px solid ${tokens.border.color};
@@ -28,7 +38,11 @@ const textareaStyles = () => `
     resize: none;
     width: 100%;
 
-    .aclui-form-element--has-error & {
+    &:hover:not(.is-disabled):not(.is-readonly):not([disabled]) {
+      border-color: ${tokens.color.blackLighten30};
+    }
+
+    &.aclui-form-element--has-error {
       border-color: ${tokens.color.orange};
     }
 
@@ -37,24 +51,6 @@ const textareaStyles = () => `
       border-color: ${tokens.highlight.active.noBorder.borderColor};
       box-shadow: ${tokens.highlight.active.noBorder.boxShadow};
       outline: none;
-    }
-
-    // Sizes
-    .aclui-form-textarea--small & {
-      font-size: ${stylers.fontSize(-2)};
-    }
-
-    .aclui-form-textarea--medium & {
-      font-size: ${stylers.fontSize(-1)};
-    }
-
-    .aclui-form-textarea--large & {
-      font-size: ${stylers.fontSize()};
-    }
-
-    .is-readonly & {
-      // @include form-readonly;
-      cursor: text;
     }
   }
 

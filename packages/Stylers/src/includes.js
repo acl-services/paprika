@@ -114,3 +114,24 @@ export const placeholders = `
     opacity: 1;
   }
 `;
+
+export const formDisabled = `{
+  &.is-disabled,
+  &[disabled] {
+    background-color: ${tokens.color.white};
+    border-color: ${tokens.color.blackLighten70};
+    color: ${tokens.color.blackLighten60};
+    cursor: not-allowed;
+  }
+}`;
+
+export const formReadOnly = `{
+  background-color: ${tokens.color.blackLighten70};
+  box-shadow: none;
+  color: ${tokens.color.black};
+  
+  &,
+  &:focus {
+    border-color: ${tokens.color.blackLighten60};
+  }
+}`;

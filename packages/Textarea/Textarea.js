@@ -5,7 +5,7 @@ import { ShirtSizes } from "../helpers/customPropTypes";
 import textareaStyles from "./Textarea.styles";
 
 const propTypes = {
-  ariaLabel: PropTypes.string,
+  a11yText: PropTypes.string,
   canExpand: PropTypes.bool,
   className: PropTypes.string,
   inputRef: PropTypes.func,
@@ -18,7 +18,7 @@ const propTypes = {
 };
 
 const defaultProps = {
-  ariaLabel: null,
+  a11yText: null,
   canExpand: true,
   className: null,
   inputRef: () => {},
@@ -71,7 +71,7 @@ class Textarea extends React.Component {
 
   render() {
     const {
-      ariaLabel,
+      a11yText,
       className,
       canExpand,
       inputRef,
@@ -83,10 +83,9 @@ class Textarea extends React.Component {
       ...moreProps
     } = this.props;
 
-    if (ariaLabel) moreProps["aria-label"] = ariaLabel;
+    if (a11yText) moreProps["aria-label"] = a11yText;
 
     const rootClasses = classNames(
-      "aclui-form-textarea",
       `aclui-form-textarea--${size}`,
       { "is-disabled": isDisabled },
       { "is-readonly": isReadOnly },

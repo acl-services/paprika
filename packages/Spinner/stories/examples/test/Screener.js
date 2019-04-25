@@ -2,7 +2,7 @@ import React from "react";
 import { Story } from "storybook/assets/styles/common.styles";
 import Spinner from "../../../src";
 
-const A11yStory = () => {
+const ScreenerStory = () => {
   return (
     <Story>
       <Spinner size="small" />
@@ -12,4 +12,4 @@ const A11yStory = () => {
   );
 };
 
-export default A11yStory;
+export default ScreenerStory;
