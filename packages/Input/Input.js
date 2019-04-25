@@ -1,27 +1,28 @@
 import React from "react";
-import { string, bool, node, func, oneOf } from "prop-types";
+import PropTypes from "prop-types";
 import classNames from "classnames";
-import { shirtSize } from "./helpers/customPropTypes";
+import TimesIcon from "@paprika/icon/Times";
+import { ShirtSizes } from "../helpers/customPropTypes";
 import RawButton from "../RawButton";
 import InputStyles from "./Input.styles";
 
 const propTypes = {
-  ariaLabel: string,
-  className: string,
-  hasClearButton: bool,
-  icon: node,
-  inputRef: func,
-  isDisabled: bool,
-  isReadOnly: bool,
-  onChange: func.isRequired,
-  onClear: func,
-  size: shirtSize,
-  type: oneOf(["number", "password", "text"]),
-  value: string,
+  a11yText: PropTypes.string,
+  className: PropTypes.string,
+  hasClearButton: PropTypes.bool,
+  icon: PropTypes.node,
+  inputRef: PropTypes.func,
+  isDisabled: PropTypes.bool,
+  isReadOnly: PropTypes.bool,
+  onChange: PropTypes.func.isRequired,
+  onClear: PropTypes.func,
+  size: PropTypes.oneOf(ShirtSizes.DEFAULT),
+  type: PropTypes.oneOf(["number", "password", "text"]),
+  value: PropTypes.string,
 };
 
 const defaultProps = {
-  ariaLabel: null,
+  a11yText: null,
   className: null,
   hasClearButton: false,
   icon: null,
@@ -45,14 +46,14 @@ class Input extends React.Component {
     const { hasClearButton, isDisabled, isReadOnly, value } = this.props;
     if (!hasClearButton || isDisabled || isReadOnly || !value) return null;
 
+    /* TODO: use the iconButton component instead of RawButton when added to paprika */
     return (
       <RawButton
-        ariaLabel="Clear Input" // TODO: add L10n
+        a11yText="Clear Input" // TODO: add L10n
         className="form-input__clear"
         onClick={this.inputClearHandler}
       >
-        ⓧ {/* TODO: readd once icon component added to paprika */}
-        {/* <Icon type="times-circle" size={14} color={tokens.color.blackLighten50} /> */}
+        <TimesIcon />
       </RawButton>
     );
   };
@@ -64,21 +65,19 @@ class Input extends React.Component {
 
   render() {
     const {
-      ariaLabel,
+      a11yText,
       className,
-      hasClearButton,
       icon,
-      inputRef,
+      inputRef, // TODO: use useImperativeHandle()
       isDisabled,
       isReadOnly,
-      onClear,
       size,
-      type,
-      value,
+      hasClearButton,
+      onClear,
       ...moreProps
     } = this.props;
 
-    if (ariaLabel) moreProps["aria-label"] = ariaLabel;
+    if (a11yText) moreProps["aria-label"] = a11yText;
 
     const rootClasses = classNames(
       `form-input--${size}`,
@@ -88,6 +87,7 @@ class Input extends React.Component {
       className
     );
 
+    console.log(InputStyles);
     return (
       <div css={InputStyles} className={rootClasses}>
         {this.renderIcon()}
@@ -96,8 +96,6 @@ class Input extends React.Component {
           disabled={isDisabled}
           readOnly={isReadOnly}
           ref={inputRef}
-          type={type}
-          value={value || ""}
           {...moreProps}
         />
         {this.renderClear()}

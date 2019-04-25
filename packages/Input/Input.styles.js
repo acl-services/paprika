@@ -2,20 +2,35 @@ import tokens from "@paprika/tokens";
 import stylers from "@paprika/stylers";
 
 const inputStyles = () => `
+
 position: relative;
+
+&.form-input--has-icon .form-input__input {
+  padding-left: ${stylers.spacer(3)};
+}
+
+// Sizes
+
+&.form-input--small input.form-input__input {
+  ${stylers.fontSize(-2)}
+  height: ${stylers.spacer(3)};
+}
+
+&.form-input--medium input.form-input__input {
+  ${stylers.fontSize(-1)}
+  height: ${stylers.spacer(4)};
+}
+
+&.form-input--large input.form-input__input {
+  ${stylers.fontSize()}
+  height: ${stylers.spacer(5)};
+}
+
 .form-input__input {
   box-sizing: border-box;
   display: block;
   line-height: normal;
   width: 100%;
-
-  .form-input--has-icon & {
-    padding-left: ${stylers.spacer(3)};
-  }
-
-  .form-element--has-error & {
-    border-color: ${tokens.orange};
-  }
 
   &:focus {
     box-shadow: ${tokens.highlight.active.noBorder.boxShadow};
@@ -31,7 +46,7 @@ position: relative;
 input.form-input__input {
   ${stylers.placeholders}
   ${stylers.formDisabled}
-  background-color: ${tokens.white};
+  background-color: ${tokens.color.white};
   border: 1px solid ${tokens.border.color};
   border-radius: ${tokens.border.radius};
   box-shadow: none;
@@ -40,30 +55,13 @@ input.form-input__input {
   padding: 0 ${stylers.spacer(3)} 0 ${tokens.space};
   transition: box-shadow 0.2s, color 0.2s;
 
-  // Sizes
-
-  .form-input--small & {
-    font-size: ${stylers.fontSize(-2)};
-    height: ${stylers.spacer(3)};
-  }
-
-  .form-input--medium & {
-    font-size: ${stylers.fontSize(-1)};
-    height: ${stylers.spacer(4)};
-  }
-
-  .form-input--large & {
-    font-size: ${stylers.fontSize()};
-    height: ${stylers.spacer(5)};
-  }
-
   &:focus {
     background-color: ${tokens.color.white};
     border-color: ${tokens.highlight.active.noBorder.borderColor};
   }
 
   .is-readonly &[readonly] {
-    @include form-readonly;
+    ${stylers.formReadonly}
     cursor: text;
   }
 }
@@ -72,7 +70,7 @@ input.form-input__input {
 .form-input__clear {
   ${stylers.formFaded}
 
-  padding: 0 ${stylers.spacer(0.5)};
+  padding: 0 ${tokens.spaceSm};
   position: absolute;
   top: 50%;
   transform: translateY(-50%);

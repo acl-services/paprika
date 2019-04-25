@@ -1,29 +1,15 @@
+/* eslint-disable react/prop-types */
 import React from "react";
-import { string } from "prop-types";
 import Input from "../../Input";
 
-const propTypes = {
-  value: string,
-};
+const BasicExampleStory = props => {
+  const [value, setValue] = React.useState(props.value || "");
 
-const defaultProps = {
-  value: "",
-};
-
-class ExampleStory extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      value: props.value,
-    };
-  }
-
-  render = () => (
-    <Input {...this.props} onChange={e => this.setState({ value: e.target.value })} value={this.state.value} />
+  return (
+    <div>
+      <Input {...props} onChange={e => setValue(e.target.value)} value={value} />
+    </div>
   );
-}
+};
 
-ExampleStory.propTypes = propTypes;
-ExampleStory.defaultProps = defaultProps;
-
-export default ExampleStory;
+export default BasicExampleStory;
