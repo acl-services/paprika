@@ -6,6 +6,10 @@ import stylers from "@paprika/stylers";
 
 export const Story = styled.div`
   padding: ${stylers.spacer(3)};
+
+  h1 {
+    margin-top: 0;
+  }
 `;
 
 export const CenteredStory = styled.div`
@@ -17,12 +21,17 @@ export const CenteredStory = styled.div`
   width: 100%;
 `;
 
-export const Small = styled.small`
-  color: ${tokens.color.blackLighten40};
-`;
-
 export const Rule = styled.hr`
   border: none;
   border-bottom: 1px solid ${tokens.border.color};
   margin: ${stylers.spacer(4)} 0;
+`;
+
+export const Small = styled.small`
+  color: ${tokens.color.blackLighten40};
+`;
+
+export const Tagline = styled.div`
+  color: ${tokens.textColor.subtle};
+  font-style: italic;
 `;

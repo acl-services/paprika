@@ -105,7 +105,6 @@ const Button = React.forwardRef((props, ref) => {
   }
 
   const iconProps = {
-    isPending,
     isDisabled,
     isSquare,
     kind,
@@ -113,9 +112,13 @@ const Button = React.forwardRef((props, ref) => {
 
   return (
     <div css={buttonStyles} {...buttonProps} as={isSemantic ? "button" : RawButton}>
-      <ButtonIcon {...iconProps}>{isPending ? <RefreshIcon /> : icon}</ButtonIcon>
+      <ButtonIcon {...iconProps} isPending={isPending}>
+        {isPending ? <RefreshIcon /> : icon}
+      </ButtonIcon>
       {!isSquare && children}
-      <ButtonIcon {...iconProps}>{isDropdown && <DownIcon />}</ButtonIcon>
+      <ButtonIcon {...iconProps} isDropdown>
+        {!isSquare && isDropdown && <DownIcon />}
+      </ButtonIcon>
     </div>
   );
 });

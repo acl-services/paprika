@@ -1,7 +1,8 @@
 import React from "react";
 import { action } from "@storybook/addon-actions";
 import { boolean, select, text } from "@storybook/addon-knobs";
-import { Story, Rule } from "storybook/assets/styles/common.styles";
+import { Story, Rule, Tagline } from "storybook/assets/styles/common.styles";
+import Heading from "@paprika/heading";
 import AddIcon from "@paprika/icon/Add";
 import TimesIcon from "@paprika/icon/Times";
 import InfoIcon from "@paprika/icon/InfoCircle";
@@ -20,20 +21,25 @@ const iconSelections = {
 };
 
 const ExampleStory = () => {
-  const selectedIcon = select("icon", Object.keys(iconSelections), null);
+  const labelKnob = text("label", "Take Action");
+  const sizeKnob = select("size", ShirtSizes.DEFAULT, "medium");
+  const kindKnob = select(
+    "type",
+    ["default", "primary", "secondary", "flat", "destructive", "minor", "link"],
+    "default"
+  );
+  const iconKnob = select("icon", Object.keys(iconSelections), null);
 
   return (
     <Story>
-      <h2>Showcase</h2>
-      <p>
-        <em>
-          Use the <strong>knobs</strong> to tinker with the <strong>props</strong>.
-        </em>
-      </p>
+      <Heading level={1} displayLevel={2} isLight>
+        Showcase
+      </Heading>
+      <Tagline>Use the knobs to tinker with the props.</Tagline>
       <Rule />
       <Button
         a11yText={text("a11yText", "")}
-        icon={iconSelections[selectedIcon]}
+        icon={iconSelections[iconKnob]}
         isActive={boolean("isActive", false)}
         isDisabled={boolean("isDisabled", false)}
         isDropdown={boolean("isDropdown", false)}
@@ -42,11 +48,11 @@ const ExampleStory = () => {
         isSemantic={boolean("isSemantic", true)}
         isSquare={boolean("isSquare", false)}
         isSubmit={boolean("isSubmit", false)}
-        kind={select("type", ["default", "primary", "secondary", "flat", "destructive", "minor", "link"], "default")}
+        kind={kindKnob}
         onClick={clickHandler}
-        size={select("size", ShirtSizes.DEFAULT, "medium")}
+        size={sizeKnob}
       >
-        {text("label", "Take Action")}
+        {labelKnob}
       </Button>
     </Story>
   );

@@ -98,7 +98,7 @@ const sizeStyles = {
   medium: `
     ${stylers.fontSize(-1)};
     min-height: ${stylers.spacer(4)};
-    padding: 7px ${tokens.spaceLg};
+    padding: 6.5px ${tokens.spaceLg};
   `,
   large: `
     ${stylers.fontSize()};
@@ -267,7 +267,7 @@ const buttonStyles = props => `
   ${sizeStyles[props.size]}
   ${props.isSquare ? squareSizes[props.size] + squareButtonStyles : ""}
   ${kindStyles(props)[props.kind]}
-  ${props.isFullWidth ? fullWidthStyles : ""}
+  ${props.isFullWidth && !props.isSquare ? fullWidthStyles : ""}
   ${props.isActive ? activeStyles : ""}
 `;
 
