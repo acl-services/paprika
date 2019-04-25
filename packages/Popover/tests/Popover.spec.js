@@ -3,7 +3,7 @@ import { render, fireEvent } from "react-testing-library";
 import Popover from "../Popover";
 
 describe("Popover", () => {
-  it("should work", () => {
+  it("should open when clicked", () => {
     const { getByText } = render(
       <Popover>
         <Popover.Trigger>Open</Popover.Trigger>

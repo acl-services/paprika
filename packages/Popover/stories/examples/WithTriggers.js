@@ -1,5 +1,5 @@
 /* eslint-disable jsx-a11y/mouse-events-have-key-events */
-import React, { Component } from "react";
+import React from "react";
 import styled from "styled-components";
 import { CenteredStory } from "storybook/assets/styles/common.styles";
 import Popover from "../../Popover";
@@ -15,7 +15,7 @@ const Gap = styled.div`
   height: 50px;
 `;
 
-export default class ExampleStory extends Component {
+export default class ExampleStory extends React.Component {
   render() {
     return (
       <CenteredStory>

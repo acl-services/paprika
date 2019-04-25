@@ -1,4 +1,4 @@
-import React, { Component } from "react";
+import React from "react";
 import PropTypes from "prop-types";
 import RawButton from "@paprika/raw-button";
 
@@ -8,7 +8,7 @@ const propTypes = {
   children: PropTypes.oneOfType([PropTypes.func, PropTypes.node]).isRequired,
 };
 
-class Trigger extends Component {
+class Trigger extends React.Component {
   handleTriggerEvent = (isEager, isOpen, onClick, onDelayedClose, onDelayedOpen, onOpen) => event => {
     if (isEager && (event.type === "mouseover" || event.type === "focus")) {
       if (event.type === "mouseover") {
