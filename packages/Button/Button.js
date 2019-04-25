@@ -17,7 +17,6 @@ const propTypes = {
   isFullWidth: PropTypes.bool,
   isPending: PropTypes.bool,
   isSemantic: PropTypes.bool,
-  isSquare: PropTypes.bool,
   isSubmit: PropTypes.bool,
   kind: PropTypes.oneOf(["default", "primary", "secondary", "destructive", "flat", "minor", "link"]),
   onClick: PropTypes.func,
@@ -37,7 +36,6 @@ const defaultProps = {
   isFullWidth: false,
   isPending: false,
   isSemantic: true,
-  isSquare: false,
   isSubmit: false,
   kind: "default",
   onClick: () => {},
@@ -48,7 +46,7 @@ const defaultProps = {
 
 const ButtonIcon = props =>
   props.children && (
-    <span css={iconStyles} {...props}>
+    <span css={iconStyles} {...props} className="button__icon">
       {props.children}
     </span>
   );
@@ -63,7 +61,6 @@ const Button = React.forwardRef((props, ref) => {
     isDropdown,
     isPending,
     isSemantic,
-    isSquare,
     isSubmit,
     kind,
     onClick,
@@ -88,7 +85,6 @@ const Button = React.forwardRef((props, ref) => {
 
   const buttonProps = {
     isDisabled,
-    isSquare,
     kind,
     onClick: handleClick,
     ref: buttonRef,
@@ -106,7 +102,6 @@ const Button = React.forwardRef((props, ref) => {
 
   const iconProps = {
     isDisabled,
-    isSquare,
     kind,
   };
 
@@ -115,9 +110,9 @@ const Button = React.forwardRef((props, ref) => {
       <ButtonIcon {...iconProps} isPending={isPending}>
         {isPending ? <RefreshIcon /> : icon}
       </ButtonIcon>
-      {!isSquare && children}
+      {children}
       <ButtonIcon {...iconProps} isDropdown>
-        {!isSquare && isDropdown && <DownIcon />}
+        {isDropdown && <DownIcon />}
       </ButtonIcon>
     </span>
   );

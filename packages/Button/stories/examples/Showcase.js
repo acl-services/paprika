@@ -46,7 +46,6 @@ const ExampleStory = () => {
         isFullWidth={boolean("isFullWidth", false)}
         isPending={boolean("isPending", false)}
         isSemantic={boolean("isSemantic", true)}
-        isSquare={boolean("isSquare", false)}
         isSubmit={boolean("isSubmit", false)}
         kind={kindKnob}
         onClick={clickHandler}

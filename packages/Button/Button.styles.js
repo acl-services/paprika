@@ -107,30 +107,6 @@ const sizeStyles = {
   `,
 };
 
-const squareSizes = {
-  small: `
-    ${stylers.fontSize(-3)};
-    height: ${stylers.spacer(3)}; 
-    line-height: ${stylers.spacer(3)};  
-    padding: 0; 
-    width: ${stylers.spacer(3)}; 
-  }`,
-  medium: `
-    ${stylers.fontSize(1)};
-    height: ${stylers.spacer(4)}; 
-    line-height: ${stylers.spacer(4)};  
-    padding: 0; 
-    width: ${stylers.spacer(4)}; 
-  }`,
-  large: `
-    ${stylers.fontSize(3)};
-    height: ${stylers.spacer(5)}; 
-    line-height: ${stylers.spacer(5)};  
-    padding: 0; 
-    width: ${stylers.spacer(5)}; 
-  }`,
-};
-
 // Kinds
 
 const kindStyles = props => ({
@@ -244,20 +220,6 @@ const fullWidthStyles = `
   width: 100%;
 `;
 
-// Square Buttons
-
-const squareButtonStyles = `
-  transition: background-color 0.2s ease-out;
-  
-  &:hover {
-    background-color: ${stylers.alpha(tokens.color.black, 0.1)}; 
-  }
-
-  &:active {
-    background-color: ${stylers.alpha(tokens.color.black, 0.2)};
-  }
-`;
-
 //
 // Composition
 //
@@ -265,7 +227,6 @@ const squareButtonStyles = `
 const buttonStyles = props => `
   ${commonStyles}
   ${sizeStyles[props.size]}
-  ${props.isSquare ? squareSizes[props.size] + squareButtonStyles : ""}
   ${kindStyles(props)[props.kind]}
   ${props.isFullWidth && !props.isSquare ? fullWidthStyles : ""}
   ${props.isActive ? activeStyles : ""}
@@ -278,14 +239,14 @@ export default buttonStyles;
 //
 
 const spinKeyframes = keyframes`
-    0% {
-      -webkit-transform: rotate(0deg);
-      transform: rotate(0deg);
-    }
-    100% {
-      -webkit-transform: rotate(360deg);
-      transform: rotate(360deg);
-    }
+  0% {
+    -webkit-transform: rotate(0deg);
+    transform: rotate(0deg);
+  }
+  100% {
+    -webkit-transform: rotate(360deg);
+    transform: rotate(360deg);
+  }
 `;
 
 const iconColors = {
@@ -300,18 +261,17 @@ const iconColors = {
 
 function getIconColor(props) {
   if (props.isDisabled) return tokens.color.blackDisabled;
-  if (!props.isSquare) return iconColors[props.kind];
+  return iconColors[props.kind];
 }
 
 export const iconStyles = props => css`
   color: ${getIconColor(props)};
   display: inline-block;
+  margin: 0 ${tokens.spaceSm} 0 0;
 
   svg {
     vertical-align: -${(stylers.lineHeightValue(-1) - 1) / 2}em;
   }
-
-  ${!props.isSquare ? `margin: 0 ${tokens.spaceSm} 0 0;` : ""};
 
   ${props.isPending
     ? css`

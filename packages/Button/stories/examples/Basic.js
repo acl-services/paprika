@@ -8,10 +8,11 @@ import InfoIcon from "@paprika/icon/InfoCircle";
 import { ButtonStory } from "../Button.stories.styles";
 import Button from "../..";
 
-const DarkBackground = styled.div`
+const DarkBackground = styled.span`
   background: ${tokens.color.black};
   display: inline-block;
   padding: ${tokens.space};
+  margin-left: ${tokens.space};
 `;
 
 function clickHandler() {
@@ -90,13 +91,14 @@ const ExampleStory = () => (
     </p>
     <Rule />
     <p>
-      <Button onClick={clickHandler} icon={<InfoIcon />} isSquare size="small" />
-      <Button onClick={clickHandler} icon={<InfoIcon />} isSquare />
-      <Button onClick={clickHandler} icon={<InfoIcon />} isSquare size="large" />
-      <Button onClick={clickHandler} icon={<InfoIcon />} isSquare kind="flat" />
-      <Button onClick={clickHandler} icon={<InfoIcon />} isSquare kind="minor">
-        MINOR
-      </Button>
+      <Button.Icon onClick={clickHandler} icon={<InfoIcon />} size="small" />
+      <Button.Icon onClick={clickHandler} icon={<InfoIcon />} />
+      <Button.Icon onClick={clickHandler} icon={<InfoIcon />} size="large" />
+      <Button.Icon onClick={clickHandler} icon={<InfoIcon />} kind="flat" />
+      <Button.Icon onClick={clickHandler} icon={<InfoIcon />} kind="minor" />
+      <Button.Icon onClick={clickHandler} icon="🦙" kind="secondary" size="small">
+        LLAMA
+      </Button.Icon>
     </p>
     <Rule />
     <p>
@@ -142,10 +144,10 @@ const ExampleStory = () => (
       <Button.Close onClick={clickHandler} size="small" />
       <Button.Close onClick={clickHandler} />
       <Button.Close onClick={clickHandler} size="large" />
+      <DarkBackground>
+        <Button.Close onClick={clickHandler} isDark a11yText="dark close" />
+      </DarkBackground>
     </p>
-    <DarkBackground>
-      <Button.Close onClick={clickHandler} isDark />
-    </DarkBackground>
     {[...Array(34).keys()].map(index => (
       <br key={index} />
     ))}
