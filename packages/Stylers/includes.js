@@ -127,7 +127,7 @@ export const formDisabled = `{
   }
 }`;
 
-export const formReadonly = `{
+export const formReadOnly = `{
   background-color: ${tokens.color.blackLighten70};
   box-shadow: none;
   color: ${tokens.color.black};

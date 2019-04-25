@@ -61,7 +61,7 @@ input.form-input__input {
   }
 
   .is-readonly &[readonly] {
-    ${stylers.formReadonly}
+    ${stylers.formReadOnly}
     cursor: text;
   }
 }
