@@ -14,4 +14,4 @@ storiesOf("Button", module)
   .add("Basic", () => <Basic />)
   .add("Ref", () => <NewRef />)
   .add("Old Ref", () => <OldRef />)
-  .add("CloseButton Ref", () => <CloseButtonRef />);
+  .add("Button.Close Ref", () => <CloseButtonRef />);

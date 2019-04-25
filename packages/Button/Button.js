@@ -111,7 +111,7 @@ const Button = React.forwardRef((props, ref) => {
   };
 
   return (
-    <div css={buttonStyles} {...buttonProps} as={isSemantic ? "button" : RawButton}>
+    <span css={buttonStyles} {...buttonProps} as={isSemantic ? "button" : RawButton}>
       <ButtonIcon {...iconProps} isPending={isPending}>
         {isPending ? <RefreshIcon /> : icon}
       </ButtonIcon>
@@ -119,7 +119,7 @@ const Button = React.forwardRef((props, ref) => {
       <ButtonIcon {...iconProps} isDropdown>
         {!isSquare && isDropdown && <DownIcon />}
       </ButtonIcon>
-    </div>
+    </span>
   );
 });
 

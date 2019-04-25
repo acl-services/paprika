@@ -2,15 +2,16 @@ import React from "react";
 import { action } from "@storybook/addon-actions";
 import styled from "styled-components";
 import { Rule } from "storybook/assets/styles/common.styles";
+import tokens from "@paprika/tokens";
 import PlusIcon from "@paprika/icon/Add";
 import InfoIcon from "@paprika/icon/InfoCircle";
 import { ButtonStory } from "../Button.stories.styles";
 import Button from "../..";
 
 const DarkBackground = styled.div`
-  background: #000;
+  background: ${tokens.color.black};
   display: inline-block;
-  padding: 8px;
+  padding: ${tokens.space};
 `;
 
 function clickHandler() {
