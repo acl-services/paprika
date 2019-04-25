@@ -1,13 +1,13 @@
-import React, { useMemo } from "react";
-import { node, string } from "prop-types";
+import React from "react";
+import PropTypes from "prop-types";
 import { getI18nObject } from "./useI18n";
 import Locales from "./locales";
 
 export const L10nContext = React.createContext();
 
 const propTypes = {
-  locale: string,
-  children: node.isRequired,
+  locale: PropTypes.string,
+  children: PropTypes.node.isRequired,
 };
 
 const defaultProps = {
@@ -15,7 +15,7 @@ const defaultProps = {
 };
 
 export default function L10n(props) {
-  const value = useMemo(() => getI18nObject(props.locale), [props.locale, Locales]);
+  const value = React.useMemo(() => getI18nObject(props.locale), [props.locale, Locales]);
   return <L10nContext.Provider value={value}>{props.children}</L10nContext.Provider>;
 }
 

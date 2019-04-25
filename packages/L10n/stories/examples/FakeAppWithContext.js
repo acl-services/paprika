@@ -1,10 +1,10 @@
 import React from "react";
-import { string } from "prop-types";
+import PropTypes from "prop-types";
 import L10n from "../../L10n";
 import SomePaprikaComponent from "./SomePaprikaComponent";
 
 const propTypes = {
-  locale: string.isRequired,
+  locale: PropTypes.string.isRequired,
 };
 
 export default function FakeAppWithContext(props) {

@@ -1,4 +1,4 @@
-import { useContext } from "react";
+import React from "react";
 import { L10nContext } from "./L10n";
 import { i18n } from "./i18n";
 import Locales from "./locales";
@@ -12,6 +12,6 @@ export const getI18nObject = (locale = "en") => {
 };
 
 export default function useI18n() {
-  const _i18n = useContext(L10nContext);
+  const _i18n = React.useContext(L10nContext);
   return _i18n || getI18nObject();
 }
