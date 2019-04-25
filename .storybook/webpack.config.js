@@ -13,10 +13,6 @@ module.exports = {
         test: /\.(jpe?g|png|gif|svg|eot|svg|ttf|woff|woff2)$/i,
         loader: "file-loader",
       },
-      {
-        test: /\.yml$/,
-        loaders: ["json-loader", "yaml-loader"],
-      },
     ],
   },
   resolve: {
