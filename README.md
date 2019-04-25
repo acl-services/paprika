@@ -32,6 +32,12 @@ $ yarn storybook
 
 To be implemented [#19](https://github.com/acl-services/paprika/issues/19)
 
+## run docz
+
+```sh
+$ yarn docz:dev
+```
+
 ## minimum requirements
 
 ### yarn version
