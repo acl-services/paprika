@@ -35,15 +35,15 @@ const defaultProps = {
   value: "",
 };
 
-class Input extends React.Component {
-  inputClearHandler = e => {
+const Input = props => {
+  const inputClearHandler = e => {
     e.target.value = "";
-    this.props.onChange(e);
-    this.props.onClear();
+    props.onChange(e);
+    props.onClear();
   };
 
-  renderClear = () => {
-    const { hasClearButton, isDisabled, isReadOnly, value } = this.props;
+  const renderClear = () => {
+    const { hasClearButton, isDisabled, isReadOnly, value } = props;
     if (!hasClearButton || isDisabled || isReadOnly || !value) return null;
 
     /* TODO: use the iconButton component instead of RawButton when added to paprika */
@@ -51,58 +51,49 @@ class Input extends React.Component {
       <RawButton
         a11yText="Clear Input" // TODO: add L10n
         className="form-input__clear"
-        onClick={this.inputClearHandler}
+        onClick={inputClearHandler}
       >
         <TimesIcon />
       </RawButton>
     );
   };
 
-  renderIcon = () => {
-    if (!this.props.icon) return null;
-    return <span className="form-input__icon">{this.props.icon}</span>;
+  const renderIcon = () => {
+    if (!props.icon) return null;
+    return <span className="form-input__icon">{props.icon}</span>;
   };
 
-  render() {
-    const {
-      a11yText,
-      className,
-      icon,
-      inputRef, // TODO: use useImperativeHandle()
-      isDisabled,
-      isReadOnly,
-      size,
-      hasClearButton,
-      onClear,
-      ...moreProps
-    } = this.props;
+  const {
+    a11yText,
+    className,
+    icon,
+    inputRef, // TODO: use useImperativeHandle()
+    isDisabled,
+    isReadOnly,
+    size,
+    hasClearButton,
+    onClear,
+    ...moreProps
+  } = props;
 
-    if (a11yText) moreProps["aria-label"] = a11yText;
+  if (a11yText) moreProps["aria-label"] = a11yText;
 
-    const rootClasses = classNames(
-      `form-input--${size}`,
-      { "form-input--has-icon": icon },
-      { "is-disabled": isDisabled },
-      { "is-readonly": isReadOnly },
-      className
-    );
+  const rootClasses = classNames(
+    `form-input--${size}`,
+    { "form-input--has-icon": icon },
+    { "is-disabled": isDisabled },
+    { "is-readonly": isReadOnly },
+    className
+  );
 
-    console.log(InputStyles);
-    return (
-      <div css={InputStyles} className={rootClasses}>
-        {this.renderIcon()}
-        <input
-          className="form-input__input"
-          disabled={isDisabled}
-          readOnly={isReadOnly}
-          ref={inputRef}
-          {...moreProps}
-        />
-        {this.renderClear()}
-      </div>
-    );
-  }
-}
+  return (
+    <div css={InputStyles} className={rootClasses}>
+      {renderIcon()}
+      <input className="form-input__input" disabled={isDisabled} readOnly={isReadOnly} ref={inputRef} {...moreProps} />
+      {renderClear()}
+    </div>
+  );
+};
 
 Input.displayName = "Input";
 Input.propTypes = propTypes;
