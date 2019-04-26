@@ -1,15 +1,20 @@
 import React from "react";
 import { storiesOf } from "@storybook/react";
+import { withKnobs } from "@storybook/addon-knobs";
+import { InputStory } from "./Input.stories.styles";
+
 import InputExample from "./examples/InputExample";
+import ShowcaseStory from "./examples/Showcase";
 import SizesStory from "./examples/Sizes";
 import WithContentStory from "./examples/WithContent";
 import WithIconStory from "./examples/WithIcon";
 import WithDisabledReadOnlyStory from "./examples/WithDisabledReadOnly";
 import TypesStory from "./examples/Types";
 import WithRef from "./examples/WithRef";
-import { InputStory } from "./Input.stories.styles";
 
 storiesOf("Input", module)
+  .addDecorator(withKnobs)
+  .add("Showcase", () => <ShowcaseStory />)
   .add("Sizes", () => <SizesStory />)
   .add("With content", () => <WithContentStory />)
   .add("With decorative icon", () => <WithIconStory />)
