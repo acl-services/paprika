@@ -10,7 +10,6 @@ import WithRef from "./examples/WithRef";
 import { InputStory } from "./Input.stories.styles";
 
 storiesOf("Input", module)
-  .add("Basic", () => <BasicStory />)
   .add("Sizes", () => <SizesStory />)
   .add("With content", () => <WithContentStory />)
   .add("With decorative icon", () => <WithIconStory />)

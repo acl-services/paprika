@@ -68,6 +68,7 @@ input.form-input__input {
 
 .form-input__icon,
 .form-input__clear {
+  color: ${tokens.textColor.icon};
   ${stylers.formFaded}
 
   padding: 0 ${tokens.spaceSm};

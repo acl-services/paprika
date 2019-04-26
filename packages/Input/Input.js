@@ -1,10 +1,10 @@
 import React from "react";
 import PropTypes from "prop-types";
 import classNames from "classnames";
-import TimesIcon from "@paprika/icon/Times";
+import TimesCircleIcon from "@paprika/icon/TimesCircle";
+import RawButton from "@paprika/RawButton";
 import { ShirtSizes } from "../helpers/customPropTypes";
-import RawButton from "../RawButton";
-import InputStyles from "./Input.styles";
+import inputStyles from "./Input.styles";
 
 const propTypes = {
   a11yText: PropTypes.string,
@@ -46,14 +46,14 @@ const Input = props => {
     const { hasClearButton, isDisabled, isReadOnly, value } = props;
     if (!hasClearButton || isDisabled || isReadOnly || !value) return null;
 
-    /* TODO: use the iconButton component instead of RawButton when added to paprika */
+    // TODO: use the <Button.Icon kind="minor"> component, coming right up...
     return (
       <RawButton
         a11yText="Clear Input" // TODO: add L10n
         className="form-input__clear"
         onClick={inputClearHandler}
       >
-        <TimesIcon />
+        <TimesCircleIcon />
       </RawButton>
     );
   };
@@ -87,7 +87,7 @@ const Input = props => {
   );
 
   return (
-    <div css={InputStyles} className={rootClasses}>
+    <div css={inputStyles} className={rootClasses}>
       {renderIcon()}
       <input className="form-input__input" disabled={isDisabled} readOnly={isReadOnly} ref={inputRef} {...moreProps} />
       {renderClear()}
