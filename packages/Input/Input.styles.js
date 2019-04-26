@@ -54,26 +54,36 @@ const inputStyles = () => `
 
   .form-input__icon,
   .form-input__clear {
+    ${stylers.z(1)};
     color: ${tokens.textColor.icon};
-    padding: 0 ${tokens.spaceSm};
     position: absolute;
     top: 50%;
     transform: translateY(-50%);
-    z-index: ${stylers.z(1)};
   }
 
   .form-input__icon {
-    left: 3px;
+    left: 2px;
+    padding: 0 ${tokens.spaceSm};
+
+    svg {
+      vertical-align: middle;
+    }
   }
 
   .form-input__clear {
     border-radius: ${tokens.border.radius};
-    right: 3px;
+    color: ${tokens.color.blackLighten50};
+    right: ${tokens.spaceSm};
+    transition: color 0.2s ease-out;
 
     &:hover {
-      i::before { /// fixme
-        color: ${tokens.color.blackLighten30};
-      }
+      color: ${tokens.color.blackLighten30};
+      background-color: transparent;
+    }
+    
+    &:active {
+      color: ${tokens.color.black};
+      transition: none;
     }
   }
 

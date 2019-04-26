@@ -2,7 +2,7 @@ import React from "react";
 import PropTypes from "prop-types";
 import classNames from "classnames";
 import TimesCircleIcon from "@paprika/icon/TimesCircle";
-import RawButton from "@paprika/raw-button";
+import Button from "@paprika/button";
 import { ShirtSizes } from "../helpers/customPropTypes";
 import inputStyles from "./Input.styles";
 
@@ -46,15 +46,16 @@ const Input = props => {
     const { hasClearButton, isDisabled, isReadOnly, value } = props;
     if (!hasClearButton || isDisabled || isReadOnly || !value) return null;
 
-    // TODO: use the <Button.Icon kind="minor"> component, coming right up...
     return (
-      <RawButton
+      <Button.Icon
         a11yText="Clear Input" // TODO: add L10n
         className="form-input__clear"
+        kind="minor"
+        size="small"
         onClick={inputClearHandler}
       >
         <TimesCircleIcon />
-      </RawButton>
+      </Button.Icon>
     );
   };
 
