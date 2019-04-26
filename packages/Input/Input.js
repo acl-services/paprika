@@ -81,8 +81,8 @@ const Input = props => {
   const rootClasses = classNames(
     `form-input--${size}`,
     { "form-input--has-icon": icon },
-    { "is-disabled": isDisabled },
-    { "is-readonly": isReadOnly },
+    { "form-input--is-disabled": isDisabled },
+    { "form-input--is-readonly": isReadOnly },
     className
   );
 
