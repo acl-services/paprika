@@ -37,7 +37,6 @@ class WindowHandles extends React.Component {
       window[this.element.type.name] = this.windowProps;
     }
 
-    // eslint-disable-next-line
     for (const key of Object.keys(this.props.config)) {
       this.props.config[key].apply(this, key);
     }
@@ -62,7 +61,7 @@ export class Input {
   apply(wrapper, key) {
     // eslint-disable-next-line
     wrapper.childProps[key] =
-      wrapper.isPropUndefinedOrDefault(key) && typeof this.initialValue !== "undefined" // eslint-disable-line
+      wrapper.isPropUndefinedOrDefault(key) && typeof this.initialValue !== "undefined"
         ? this.initialValue
         : wrapper.element.props[key];
     Object.defineProperty(wrapper.windowProps, key, {

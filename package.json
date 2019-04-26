@@ -10,7 +10,7 @@
     "docz:dev": "cd documentation && yarn docz:dev",
     "jest:watch": "yarn jest --watch",
     "lint:fix": "yarn lint --fix",
-    "lint": "eslint packages",
+    "lint": "eslint packages --report-unused-disable-directives",
     "postinstall": "cd documentation && yarn",
     "prepare": "lerna run pretranspile && yarn transpile",
     "prettier:format": "yarn prettier -- --write",
