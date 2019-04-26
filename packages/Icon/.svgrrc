@@ -9,7 +9,8 @@
       width: ${props.size}; 
       height: ${props.size}; 
       vertical-align: text-top;
-    `}"
+    `}",
+    focusable: false
   }, 
   "titleProp": true
 }

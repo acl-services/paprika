@@ -32,6 +32,12 @@ $ yarn storybook
 
 To be implemented [#19](https://github.com/acl-services/paprika/issues/19)
 
+## run docz
+
+```sh
+$ yarn docz:dev
+```
+
 ## minimum requirements
 
 ### yarn version
@@ -45,3 +51,11 @@ $ brew install yarn
 ### node version
 
 v10.0.0 which is required by `eslint`
+
+## Build <L10n> Translations
+
+The L10n component uses only JavaScript functions -- no YAML parsing is needed. To accomplish this, the `prepublish` build step [will] converts the .yml files to .js files. If you'd like to run this translation manually, run:
+
+```sh
+$ yarn translate
+```

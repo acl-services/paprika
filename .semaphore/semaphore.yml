@@ -46,6 +46,7 @@ blocks:
         commands:
           - checkout
           - cache restore node-modules-$SEMAPHORE_GIT_BRANCH
+          - yarn install
       jobs:
         - name: JEST
           commands:

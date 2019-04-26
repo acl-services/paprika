@@ -2,14 +2,9 @@
 import React from "react";
 import styled from "styled-components";
 import { CenteredStory } from "storybook/assets/styles/common.styles";
+import Icon from "@paprika/icon/InfoCircle";
+import Button from "@paprika/button";
 import Popover from "../../Popover";
-
-const Icon = styled.span`
-  display: inline-block;
-  line-height: 1;
-  font-size: 24px;
-  cursor: help;
-`;
 
 const Gap = styled.div`
   height: 50px;
@@ -20,13 +15,15 @@ export default class ExampleStory extends React.Component {
     return (
       <CenteredStory>
         <div>
-          <h5>Render prop – &lt;button&gt;</h5>
+          <h5>
+            Render prop: <code>&lt;Button&gt;</code>
+          </h5>
           <Popover>
             <Popover.Trigger>
               {handler => (
-                <button type="button" onClick={handler}>
+                <Button onClick={handler} icon={<Icon />}>
                   More info
-                </button>
+                </Button>
               )}
             </Popover.Trigger>
             <Popover.Content>
@@ -34,20 +31,21 @@ export default class ExampleStory extends React.Component {
               <Popover.Card>Lorem ipsum single-origin kombucha butcher gentrify foraged flannel.</Popover.Card>
             </Popover.Content>
           </Popover>
-
           <Gap />
-
           <h5>
-            Render prop – &lt;Icon&gt; (fake) <code>isEager</code>
+            Render prop: <code>&lt;Icon&gt;</code> / <code>isEager</code>
           </h5>
           <Popover isEager>
             <Popover.Trigger>
               {handler => (
-                <Icon onMouseOver={handler} onMouseOut={handler} onFocus={handler} tabIndex={0}>
-                  <span role="img" aria-label="info">
-                    ℹ️
-                  </span>
-                </Icon>
+                <Icon
+                  onMouseOver={handler}
+                  onMouseOut={handler}
+                  onFocus={handler}
+                  tabIndex={0}
+                  role="img"
+                  aria-label="info"
+                />
               )}
             </Popover.Trigger>
             <Popover.Content>
@@ -55,10 +53,9 @@ export default class ExampleStory extends React.Component {
               <Popover.Card>Lorem ipsum single-origin kombucha butcher gentrify foraged flannel.</Popover.Card>
             </Popover.Content>
           </Popover>
-
+          &nbsp;More info
           <Gap />
-
-          <h5>Node – &lt;a&gt; link</h5>
+          <h5>Node: &lt;a&gt; link</h5>
           <Popover>
             <Popover.Trigger>
               <a href="http://www.acl.com">More info</a>
@@ -68,19 +65,15 @@ export default class ExampleStory extends React.Component {
               <Popover.Card>Lorem ipsum single-origin kombucha butcher gentrify foraged flannel.</Popover.Card>
             </Popover.Content>
           </Popover>
-
           <Gap />
-
           <h5>
-            Node – <code>isEager isDark</code>
+            Node: <code>isEager isDark</code>
           </h5>
           <Popover isEager isDark>
             <Popover.Trigger>
-              <Icon>
-                <span role="img" aria-label="bulb light">
-                  💡 info
-                </span>
-              </Icon>
+              <span role="img" aria-label="bulb light">
+                💡
+              </span>
             </Popover.Trigger>
             <Popover.Content>
               <Popover.Tip />

@@ -40,5 +40,11 @@
     "react/jsx-filename-extension": [1, { "extensions": [".js"] }],
     "react/jsx-one-expression-per-line": "off",
     "react/prefer-stateless-function": "off"
-  }
+  },
+  "overrides": [
+    {
+      "files": [ "packages/**/stories/**/*.js" ],
+      "rules": { "react/prop-types": "off" }
+    },
+  ]
 }

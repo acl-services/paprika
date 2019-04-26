@@ -1,8 +1,19 @@
 import React from "react";
 import { action } from "@storybook/addon-actions";
+import styled from "styled-components";
 import { Rule } from "storybook/assets/styles/common.styles";
+import tokens from "@paprika/tokens";
+import PlusIcon from "@paprika/icon/Add";
+import InfoIcon from "@paprika/icon/InfoCircle";
 import { ButtonStory } from "../Button.stories.styles";
-import Button from "../../Button";
+import Button from "../..";
+
+const DarkBackground = styled.span`
+  background: ${tokens.color.black};
+  display: inline-block;
+  padding: ${tokens.space};
+  margin-left: ${tokens.space};
+`;
 
 function clickHandler() {
   action("Clicked a button")();
@@ -77,6 +88,75 @@ const ExampleStory = () => (
       <Button isSemantic={false} kind="link" size="small" onClick={clickHandler}>
         raw small link
       </Button>
+    </p>
+    <Rule />
+    <p>
+      <Button.Icon onClick={clickHandler} size="small">
+        <InfoIcon />
+      </Button.Icon>
+      <Button.Icon onClick={clickHandler}>
+        <InfoIcon />
+      </Button.Icon>
+      <Button.Icon onClick={clickHandler} size="large">
+        <InfoIcon />
+      </Button.Icon>
+      <Button.Icon onClick={clickHandler} kind="flat">
+        <InfoIcon />
+      </Button.Icon>
+      <Button.Icon onClick={clickHandler} kind="minor">
+        <InfoIcon />
+      </Button.Icon>
+      <Button.Icon onClick={clickHandler} icon="🐐" kind="secondary" size="small">
+        {"🦙"}
+      </Button.Icon>
+    </p>
+    <Rule />
+    <p>
+      <Button onClick={clickHandler} icon={<PlusIcon />} size="small">
+        with icon
+      </Button>
+      <Button onClick={clickHandler} icon={<PlusIcon />}>
+        with icon
+      </Button>
+      <Button onClick={clickHandler} icon={<PlusIcon />} size="large">
+        with icon
+      </Button>
+    </p>
+    <Rule />
+    <p>
+      <Button onClick={clickHandler} icon={<PlusIcon />} kind="minor">
+        with icon
+      </Button>
+      <Button onClick={clickHandler} icon={<PlusIcon />} kind="link">
+        with icon
+      </Button>
+      <Button onClick={clickHandler} icon={<PlusIcon />} kind="flat">
+        with icon
+      </Button>
+      <Button onClick={clickHandler} icon={<PlusIcon />} kind="primary">
+        with icon
+      </Button>
+      <Button onClick={clickHandler} icon={<PlusIcon />} kind="primary" isDisabled>
+        with icon
+      </Button>
+    </p>
+    <Rule />
+    <p>
+      <Button onClick={clickHandler} icon={<PlusIcon />} isPending>
+        Pending...
+      </Button>
+      <Button onClick={clickHandler} icon={<PlusIcon />} isDropdown>
+        Menu
+      </Button>
+    </p>
+    <Rule />
+    <p>
+      <Button.Close onClick={clickHandler} size="small" />
+      <Button.Close onClick={clickHandler} />
+      <Button.Close onClick={clickHandler} size="large" />
+      <DarkBackground>
+        <Button.Close onClick={clickHandler} isDark a11yText="dark close" />
+      </DarkBackground>
     </p>
     {[...Array(34).keys()].map(index => (
       <br key={index} />

@@ -1,0 +1,56 @@
+ja:
+  translation:
+    moreInformation: 詳しい情報
+    close: クローズ
+    uploader:
+      overlay:
+        title: ドラッグ アンド ドロップ
+        subtitle: ファイルをここに
+      form:
+        dragAndDrop: ドラッグ アンド ドロップ
+        or: または
+        chooseFiles: コンピューターからファイルを選択
+        from: コンピューターから
+      errors:
+        file_size: ファイル サイズの最大である {{size}} を超過しています。
+        file_type: "{{type}} は誤ったファイルの種類です。"
+      status:
+        idle: アイドル状態
+        processing: 処理中
+        uploading: アップロード中
+        success: 成功
+        cancel: キャンセル
+        error: エラー
+    actions:
+      delete: 削除
+      apply: 適用
+      cancel: キャンセル
+    dateInput:
+      choose: 日付の選択
+      clear: 日付のクリア
+    daterange:
+      last_7_days: 過去 7 日間
+      last_30_days: 過去 30 日間
+      this_month: 今月
+      last_month: 先月
+      start_date: 開始日
+      end_date: 終了日
+    comment:
+      delete: コメントを削除
+    pagination:
+      intro: 改ページ位置の自動修正、現在は {{currentPage}} ページ
+      page: "{{pageNumber}} ページ"
+      ellipsis: その他のページ
+      prev: 前ページ
+      next: 次ページ
+    formElement:
+      optional: (省略可能)
+      required: (必須)
+    prevNextArrowButton:
+      arrowup: 上
+      arrowdown: 下
+      escape: エスケープ
+    externalLink:
+      view: 表示
+    collapsible:
+      ariaText: 縮小可能セクション

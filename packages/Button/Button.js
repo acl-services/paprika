@@ -1,18 +1,21 @@
-/* eslint-disable react/button-has-type */
-
 import React from "react";
 import PropTypes from "prop-types";
 import RawButton from "@paprika/raw-button";
+import RefreshIcon from "@paprika/icon/Refresh";
+import DownIcon from "@paprika/icon/CaretDown";
 import { ShirtSizes } from "../helpers/customPropTypes";
-import buttonStyles from "./Button.styles";
+import buttonStyles, { iconStyles } from "./Button.styles";
 
 const propTypes = {
   a11yText: PropTypes.string,
   canPropagate: PropTypes.bool,
-  children: PropTypes.node.isRequired,
+  children: PropTypes.node,
+  icon: PropTypes.node,
   isActive: PropTypes.bool,
   isDisabled: PropTypes.bool,
+  isDropdown: PropTypes.bool,
   isFullWidth: PropTypes.bool,
+  isPending: PropTypes.bool,
   isSemantic: PropTypes.bool,
   isSubmit: PropTypes.bool,
   kind: PropTypes.oneOf(["default", "primary", "secondary", "destructive", "flat", "minor", "link"]),
@@ -25,9 +28,13 @@ const propTypes = {
 const defaultProps = {
   a11yText: null,
   canPropagate: true,
+  children: null,
+  icon: null,
   isActive: false,
   isDisabled: false,
+  isDropdown: false,
   isFullWidth: false,
+  isPending: false,
   isSemantic: true,
   isSubmit: false,
   kind: "default",
@@ -37,8 +44,38 @@ const defaultProps = {
   tabIndex: 0,
 };
 
+const buttonPropTypes = {
+  children: PropTypes.node,
+};
+
+const buttonDefaultProps = {
+  children: null,
+};
+
+const ButtonIcon = props =>
+  props.children ? (
+    <span css={iconStyles} {...props} className="button__icon">
+      {props.children}
+    </span>
+  ) : null;
+
 const Button = React.forwardRef((props, ref) => {
-  const { a11yText, canPropagate, children, isDisabled, isSemantic, isSubmit, onClick, tabIndex, ...moreProps } = props;
+  const {
+    a11yText,
+    canPropagate,
+    children,
+    icon,
+    isDisabled,
+    isDropdown,
+    isPending,
+    isSemantic,
+    isSubmit,
+    kind,
+    onClick,
+    role,
+    tabIndex,
+    ...moreProps
+  } = props;
   if (a11yText) moreProps["aria-label"] = a11yText;
 
   const buttonRef = React.useRef(null);
@@ -56,29 +93,41 @@ const Button = React.forwardRef((props, ref) => {
 
   const buttonProps = {
     isDisabled,
+    kind,
     onClick: handleClick,
     ref: buttonRef,
     tabIndex,
     ...moreProps,
   };
-
   if (isSemantic) {
     buttonProps.disabled = isDisabled;
     buttonProps.type = isSubmit ? "submit" : "button";
+    if (role !== "button") buttonProps.role = role;
   } else {
     buttonProps.tabIndex = isDisabled ? -1 : tabIndex;
+    buttonProps.role = role;
   }
 
-  return isSemantic ? (
-    <button css={buttonStyles} {...buttonProps}>
+  const iconProps = {
+    isDisabled,
+    kind,
+  };
+
+  return (
+    <span css={buttonStyles} {...buttonProps} as={isSemantic ? "button" : RawButton}>
+      <ButtonIcon {...iconProps} isPending={isPending}>
+        {isPending ? <RefreshIcon /> : icon}
+      </ButtonIcon>
       {children}
-    </button>
-  ) : (
-    <RawButton css={buttonStyles} {...buttonProps}>
-      {children}
-    </RawButton>
+      <ButtonIcon {...iconProps} isDropdown>
+        {isDropdown && <DownIcon />}
+      </ButtonIcon>
+    </span>
   );
 });
+
+ButtonIcon.propTypes = buttonPropTypes;
+ButtonIcon.defaultProps = buttonDefaultProps;
 
 Button.displayName = "Button";
 Button.propTypes = propTypes;

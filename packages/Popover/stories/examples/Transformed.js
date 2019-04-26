@@ -1,6 +1,7 @@
 import React from "react";
 import styled from "styled-components";
 import { CenteredStory } from "storybook/assets/styles/common.styles";
+import Button from "@paprika/button";
 import Popover from "../../Popover";
 
 const TransformedStory = styled(CenteredStory)`
@@ -16,7 +17,7 @@ export default class ExampleStory extends React.Component {
       <TransformedStory>
         <Popover>
           <Popover.Trigger>
-            <button type="button">Open Popover</button>
+            <Button kind="secondary">Open Popover</Button>
           </Popover.Trigger>
           <Popover.Content>
             <Popover.Tip />

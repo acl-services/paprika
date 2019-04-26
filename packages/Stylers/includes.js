@@ -16,6 +16,12 @@ export const inlineBlockStyle = `
   padding: 0;
 `;
 
+export const alignMiddle = `
+  align-items: center;
+  display: flex;
+  justify-content: center;
+`;
+
 //
 // Typography
 //
