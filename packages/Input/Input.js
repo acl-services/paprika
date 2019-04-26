@@ -2,7 +2,7 @@ import React from "react";
 import PropTypes from "prop-types";
 import classNames from "classnames";
 import TimesCircleIcon from "@paprika/icon/TimesCircle";
-import RawButton from "@paprika/RawButton";
+import RawButton from "@paprika/raw-button";
 import { ShirtSizes } from "../helpers/customPropTypes";
 import inputStyles from "./Input.styles";
 
