@@ -21,7 +21,7 @@
     "storybook:screener": "screener-storybook --conf screener.config.js",
     "storybook": "start-storybook -p 9009 -c .storybook",
     "test:a11y": "echo 'Axe will run on this command'",
-    "test:registrymock": "run-p -l registrymock:start registrymock:publish",
+    "registrymock": "run-p -l registrymock:start registrymock:publish",
     "test": "jest --passWithNoTests",
     "transpile": "lerna exec --parallel -- babel --root-mode upward src --out-dir lib --source-maps --copy-files"
   },
