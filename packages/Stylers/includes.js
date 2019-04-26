@@ -109,7 +109,7 @@ export const placeholders = `
   }
 `;
 
-export const formDisabled = `{
+export const formDisabled = content => `{
   &.is-disabled,
   &[disabled] {
     background-color: ${tokens.color.white};
@@ -117,7 +117,7 @@ export const formDisabled = `{
     color: ${tokens.color.blackLighten60};
     cursor: not-allowed;
 
-    @content;
+    ${content}
   }
 }`;
 
