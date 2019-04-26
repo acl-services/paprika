@@ -80,7 +80,7 @@ const inputStyles = () => `
       color: ${tokens.color.blackLighten30};
       background-color: transparent;
     }
-    
+
     &:active {
       color: ${tokens.color.black};
       transition: none;
@@ -111,6 +111,12 @@ const inputStyles = () => `
     input.form-input__input {
       ${stylers.readOnlyFormStyles}
     }
+  }
+
+  // Error
+
+  &.form-input--has-error input.form-input__input {
+    ${stylers.errorFormStyles}
   }
 `;
 

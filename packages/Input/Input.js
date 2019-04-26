@@ -10,6 +10,7 @@ const propTypes = {
   a11yText: PropTypes.string,
   className: PropTypes.string,
   hasClearButton: PropTypes.bool,
+  hasError: PropTypes.bool,
   icon: PropTypes.node,
   inputRef: PropTypes.func,
   isDisabled: PropTypes.bool,
@@ -25,6 +26,7 @@ const defaultProps = {
   a11yText: null,
   className: null,
   hasClearButton: false,
+  hasError: false,
   icon: null,
   inputRef: () => {},
   isDisabled: false,
@@ -84,6 +86,7 @@ const Input = props => {
     { "form-input--has-icon": icon },
     { "form-input--is-disabled": isDisabled },
     { "form-input--is-readonly": isReadOnly },
+    { "form-input--has-error": moreProps.hasError },
     className
   );
 

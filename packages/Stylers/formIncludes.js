@@ -18,3 +18,7 @@ export const readOnlyFormStyles = `
     border-color: ${tokens.color.blackLighten60};
   }
 `;
+
+export const errorFormStyles = `
+  border-color: ${tokens.color.orange};
+`;
