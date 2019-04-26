@@ -3,7 +3,7 @@ import { text, number, select } from "@storybook/addon-knobs";
 import styled from "styled-components";
 import { CenteredStory } from "storybook/assets/styles/common.styles";
 import Button from "@paprika/button";
-import Popover from "../../Popover";
+import Popover from "../../src";
 
 const Gap = styled.div`
   display: inline-block;

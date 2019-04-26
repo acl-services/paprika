@@ -1,9 +1,8 @@
 /* eslint-disable no-console */
-
 const fs = require("fs");
 const jsYaml = require("js-yaml");
 
-const path = "packages/L10n";
+const path = "src";
 const yamlsPath = `${path}/locales`;
 const translationsPath = `${path}/locales-js`;
 const yamlExtension = "yml";
@@ -20,6 +19,7 @@ const removeTranslationFiles = () => {
   });
 };
 
+console.log("🦁 Preparing L10n Locales");
 const isYamlFile = file => file.split(".")[1] === yamlExtension;
 
 const createTranslationFile = yamlFileName => {
@@ -35,7 +35,9 @@ export default locales;`;
 const generateTranslationFiles = () => {
   fs.readdir(yamlsPath, (err, files) => {
     if (err) {
-      return console.error("Couldnt scan directory");
+      console.log(err);
+      console.error("Couldn't scan directory");
+      process.exit(1);
     }
 
     files.forEach(file => {

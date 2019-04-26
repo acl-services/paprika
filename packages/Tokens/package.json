@@ -3,8 +3,8 @@
   "version": "0.0.1",
   "description": "Design tokens generated as scss + js",
   "author": "@paprika",
+  "main": "lib/index.js",
   "license": "MIT",
-  "main": "index.js",
   "repository": {
     "type": "git",
     "url": "https://github.com/acl-services/paprika/tree/master/packages/tokens"
@@ -13,7 +13,7 @@
     "access": "public"
   },
   "scripts": {
-    "start": "node ./script.js"
+    "pretranspile": "node processTokens.js"
   },
   "dependencies": {
     "node-sass": "^4.9.2",

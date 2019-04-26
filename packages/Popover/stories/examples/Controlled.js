@@ -1,7 +1,7 @@
 import React from "react";
 import { CenteredStory } from "storybook/assets/styles/common.styles";
 import Button from "@paprika/button";
-import Popover from "../../Popover";
+import Popover from "../../src";
 
 export default class ExampleStory extends React.Component {
   state = {

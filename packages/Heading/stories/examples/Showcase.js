@@ -1,7 +1,7 @@
 import React from "react";
 import { Story } from "storybook/assets/styles/common.styles";
 import { boolean, select, text } from "@storybook/addon-knobs";
-import Heading from "../../Heading";
+import Heading from "../../src";
 
 const ShowcaseStory = () => {
   const content = text("content", "Authentic Heading Succulents");

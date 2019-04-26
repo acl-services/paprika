@@ -1,6 +1,6 @@
 import React from "react";
 import { render } from "react-testing-library";
-import Spinner from "../Spinner";
+import Spinner from "../src";
 
 describe("Spinner", () => {
   it("should render caption", () => {

@@ -5,7 +5,7 @@ import tokens from "@paprika/tokens";
 import stylers from "@paprika/stylers";
 import { CenteredStory } from "storybook/assets/styles/common.styles";
 import Button from "@paprika/button";
-import Popover from "../../Popover";
+import Popover from "../../src";
 
 const PositioningElementStyled = styled.div`
   ${stylers.alignMiddle}
