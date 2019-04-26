@@ -13,11 +13,11 @@ node_modules
 semaphore.yml
 
 # Tokens autogenerate files
-packages/Tokens/tokens.json
-packages/Tokens/tokens.scss
-packages/Tokens/tokens.yaml
-packages/Tokens/tokens.js
-packages/Tokens/tokens.mdx
+packages/Tokens/src/tokens.json
+packages/Tokens/src/tokens.scss
+packages/Tokens/src/tokens.yaml
+packages/Tokens/src/tokens.js
+packages/Tokens/src/tokens.mdx
 
 # Documentation
 /**/.docz
