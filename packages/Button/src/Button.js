@@ -1,8 +1,8 @@
 import React from "react";
 import PropTypes from "prop-types";
 import RawButton from "@paprika/raw-button";
-import RefreshIcon from "@paprika/icon/Refresh";
-import DownIcon from "@paprika/icon/CaretDown";
+import RefreshIcon from "@paprika/icon/lib/Refresh";
+import DownIcon from "@paprika/icon/lib/CaretDown";
 import { ShirtSizes } from "@paprika/helpers/lib/customPropTypes";
 import buttonStyles, { iconStyles } from "./Button.styles";
 

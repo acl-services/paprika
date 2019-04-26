@@ -3,8 +3,8 @@ import { action } from "@storybook/addon-actions";
 import styled from "styled-components";
 import { Rule } from "storybook/assets/styles/common.styles";
 import tokens from "@paprika/tokens";
-import PlusIcon from "@paprika/icon/Add";
-import InfoIcon from "@paprika/icon/InfoCircle";
+import PlusIcon from "@paprika/icon/lib/Add";
+import InfoIcon from "@paprika/icon/lib/InfoCircle";
 import { ButtonStory } from "../Button.stories.styles";
 import Button from "../../src";
 

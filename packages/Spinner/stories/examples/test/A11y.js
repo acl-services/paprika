@@ -1,6 +1,6 @@
 import React from "react";
 import { Story } from "storybook/assets/styles/common.styles";
-import Spinner from "../../../Spinner";
+import Spinner from "../../../src";
 
 const A11yStory = () => {
   return (

@@ -1,5 +1,5 @@
 import React from "react";
-import L10n from "../../L10n";
+import L10n from "../../src";
 import SomePaprikaComponent from "./SomePaprikaComponent";
 
 export default function FakeAppWithContext(props) {
