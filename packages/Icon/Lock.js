@@ -11,6 +11,7 @@ const SvgLock = ({ title, ...props }) => (
       height: ${props.size};
       vertical-align: text-top;
     `}
+    focusable={false}
     {...props}
   >
     <title>{title}</title>

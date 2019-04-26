@@ -1,14 +1,14 @@
 import React from "react";
 import { action } from "@storybook/addon-actions";
 import { Story, Small } from "storybook/assets/styles/common.styles";
-import Button from "../../Button";
+import Button from "../..";
 
 function clickHandler() {
   action("Clicked a button")();
 }
 
 const ExampleStory = () => {
-  const buttonRef = React.createRef();
+  const buttonRef = React.useRef(null);
 
   React.useEffect(() => {
     const focusTimer = setTimeout(() => {
@@ -17,7 +17,7 @@ const ExampleStory = () => {
     return () => {
       clearTimeout(focusTimer);
     };
-  });
+  }, []);
 
   return (
     <Story>

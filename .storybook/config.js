@@ -4,7 +4,6 @@ import { configure, setAddon } from "@storybook/react";
 import axeConfig from "./axeConfig";
 
 import "./reset.scss";
-import "./assets/css/storybook.scss"; // TODO: replace with styled-components
 
 const axe = require("react-axe");
 axe(React, ReactDOM, 10000, axeConfig);

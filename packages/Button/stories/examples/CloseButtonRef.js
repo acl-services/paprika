@@ -8,30 +8,24 @@ function clickHandler() {
 }
 
 const ExampleStory = () => {
-  let buttonRef;
-
-  const setRef = node => {
-    buttonRef = node;
-  };
+  const buttonRef = React.useRef(null);
 
   React.useEffect(() => {
     const focusTimer = setTimeout(() => {
-      buttonRef.focus();
+      buttonRef.current.focus();
     }, 1000);
     return () => {
       clearTimeout(focusTimer);
     };
-  });
+  }, []);
 
   return (
     <Story>
       <p>
-        <Button onClick={clickHandler} ref={setRef}>
-          Button with callback ref
-        </Button>
+        <Button.Close onClick={clickHandler} ref={buttonRef} />
       </p>
       <p>
-        <Small>This Button will capture the focus after 1 second.</Small>
+        <Small>This CloseButton will capture the focus after 1 second.</Small>
       </p>
     </Story>
   );

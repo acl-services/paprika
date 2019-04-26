@@ -1,10 +1,13 @@
 import tokens from "@paprika/tokens";
 import stylers from "@paprika/stylers";
+import { css, keyframes } from "styled-components";
 
 // Common
 
 const commonStyles = `
-  align-items: center;
+  ${stylers.alignMiddle}
+  ${stylers.lineHeight(-1)};
+  
   appearance: none;
   border-radius: ${tokens.button.borderRadius};
   border-style: solid;
@@ -14,8 +17,6 @@ const commonStyles = `
   display: inline-flex;
   font-family: ${tokens.fontFamily.default};
   font-weight: bold;
-  justify-content: center;
-  line-height: 1.2;
   text-align: center;
   vertical-align: middle;
 
@@ -41,7 +42,7 @@ const skeuomorphicStyles = `
 
 const coloredButtonStyles = `
   color: ${tokens.color.white};
-  text-shadow: 0 1px 1px rgba(0, 0, 0, 0.2); // TODO: add mixin for transparent hex colours
+  text-shadow: 0 1px 1px ${stylers.alpha(tokens.color.blackPure, 0.2)};
 `;
 
 const textButtonStyles = `
@@ -53,7 +54,7 @@ const textButtonStyles = `
 
 const disabledStyles = `
   box-shadow: none;
-  color: ${tokens.color.blackLighten40};
+  color: ${tokens.color.blackDisabled};
   cursor: not-allowed;
   text-decoration: none;
   text-shadow: none;
@@ -97,7 +98,7 @@ const sizeStyles = {
   medium: `
     ${stylers.fontSize(-1)};
     min-height: ${stylers.spacer(4)};
-    padding: 7px ${tokens.spaceLg};
+    padding: 6.5px ${tokens.spaceLg};
   `,
   large: `
     ${stylers.fontSize()};
@@ -227,8 +228,56 @@ const buttonStyles = props => `
   ${commonStyles}
   ${sizeStyles[props.size]}
   ${kindStyles(props)[props.kind]}
-  ${props.isFullWidth ? fullWidthStyles : ""}
+  ${props.isFullWidth && !props.isSquare ? fullWidthStyles : ""}
   ${props.isActive ? activeStyles : ""}
 `;
 
 export default buttonStyles;
+
+//
+// Icons
+//
+
+const spinKeyframes = keyframes`
+  0% {
+    -webkit-transform: rotate(0deg);
+    transform: rotate(0deg);
+  }
+  100% {
+    -webkit-transform: rotate(360deg);
+    transform: rotate(360deg);
+  }
+`;
+
+const iconColors = {
+  default: tokens.textColor.icon,
+  primary: tokens.color.white,
+  secondary: tokens.color.white,
+  destructive: tokens.color.white,
+  flat: tokens.textColor.icon,
+  minor: tokens.textColor.icon,
+  link: tokens.textColor.icon,
+};
+
+function getIconColor(props) {
+  if (props.isDisabled) return tokens.color.blackDisabled;
+  return iconColors[props.kind];
+}
+
+export const iconStyles = props => css`
+  color: ${getIconColor(props)};
+  display: inline-block;
+  margin: 0 ${tokens.spaceSm} 0 0;
+
+  svg {
+    vertical-align: -${(stylers.lineHeightValue(-1) - 1) / 2}em;
+  }
+
+  ${props.isPending
+    ? css`
+        animation: ${spinKeyframes} 2s infinite linear;
+      `
+    : ""}
+
+  ${props.isDropdown ? `margin:0 0 0 ${tokens.spaceSm};` : ""}
+`;
