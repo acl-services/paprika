@@ -2,7 +2,6 @@
   "name": "@paprika/paprika",
   "description": "",
   "scripts": {
-    "a11y": "echo 'Axe will run on this command'",
     "cypress:ci": "run-p --race storybook cypress:run",
     "cypress:dev": "run-p --race storybook cypress:open",
     "cypress:open": "cypress open",
@@ -10,21 +9,22 @@
     "docz:build": "cd documentation && yarn docz:build",
     "docz:dev": "cd documentation && yarn docz:dev",
     "jest:watch": "yarn jest --watch",
-    "jest": "jest --passWithNoTests",
-    "lerna:babelifying": "lerna exec --parallel -- babel --root-mode upward src --out-dir lib --source-maps --copy-files",
-    "verdaccio:publish": "lerna publish --registry http://localhost:4873",
     "lint:fix": "yarn lint --fix",
     "lint": "eslint packages",
-    "package": "./scripts/package/index.js",
     "postinstall": "cd documentation && yarn",
-    "prepare": "yarn translate && yarn lerna:babelifying",
+    "prepare": "lerna run pretranspile && yarn transpile",
     "prettier:format": "yarn prettier -- --write",
     "prettier": "prettier \"**/*.+(js|json|yml|css|scss|md|mdx)\"",
+    "registrymock:publish": "lerna publish --no-git-tag-version --no-push --registry http://localhost:4873",
+    "registrymock:start": "verdaccio",
     "storybook:build": "build-storybook -c .storybook -o storybook-dist",
     "storybook:screener": "screener-storybook --conf screener.config.js",
     "storybook": "start-storybook -p 9009 -c .storybook",
+    "test:a11y": "echo 'Axe will run on this command'",
+    "test:registrymock": "run-p -l registrymock:start registrymock:publish",
+    "test": "jest --passWithNoTests",
     "tokens": "cd packages/tokens && yarn start",
-    "translate": "node packages/L10n/src/build-translations.js"
+    "transpile": "lerna exec --parallel -- babel --root-mode upward src --out-dir lib --source-maps --copy-files"
   },
   "engines": {
     "yarn": ">=1.12.3"
@@ -51,7 +51,6 @@
     "babel-eslint": "^10.0.0",
     "babel-loader": "^8.0.5",
     "babel-plugin-styled-components": "^1.10.0",
-    "cross-env": "^5.2.0",
     "css-loader": "^2.1.0",
     "cypress": "^3.1.5",
     "eslint": "^5.16.0",
@@ -79,7 +78,8 @@
     "screener-storybook": "^0.17.6",
     "sinon": "^7.2.4",
     "style-loader": "^0.23.1",
-    "styled-components": "^4.2.0"
+    "styled-components": "^4.2.0",
+    "verdaccio": "^3.11.6"
   },
   "husky": {
     "hooks": {

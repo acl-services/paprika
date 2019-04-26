@@ -2,7 +2,7 @@
 const fs = require("fs");
 const jsYaml = require("js-yaml");
 
-const path = "packages/L10n/src";
+const path = "src";
 const yamlsPath = `${path}/locales`;
 const translationsPath = `${path}/locales-js`;
 const yamlExtension = "yml";
@@ -36,7 +36,7 @@ const generateTranslationFiles = () => {
   fs.readdir(yamlsPath, (err, files) => {
     if (err) {
       console.log(err);
-      console.error("Couldnt scan directory");
+      console.error("Couldn't scan directory");
       process.exit(1);
     }
 
