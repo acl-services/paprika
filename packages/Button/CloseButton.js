@@ -17,12 +17,15 @@ const defaultProps = {
 const CloseButton = React.forwardRef((props, ref) => {
   const buttonProps = {
     a11yText: props.a11yText || "close", // TODO: use L10n
-    icon: <CloseIcon />,
     isDark: props.isDark,
     kind: "minor",
   };
 
-  return <IconButton css={closeButtonStyles} {...props} {...buttonProps} ref={ref} />;
+  return (
+    <IconButton css={closeButtonStyles} {...props} {...buttonProps} ref={ref}>
+      <CloseIcon />
+    </IconButton>
+  );
 });
 
 CloseButton.displayName = "CloseButton";

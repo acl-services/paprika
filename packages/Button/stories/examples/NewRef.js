@@ -8,7 +8,7 @@ function clickHandler() {
 }
 
 const ExampleStory = () => {
-  const buttonRef = React.createRef();
+  const buttonRef = React.useRef(null);
 
   React.useEffect(() => {
     const focusTimer = setTimeout(() => {
@@ -17,7 +17,7 @@ const ExampleStory = () => {
     return () => {
       clearTimeout(focusTimer);
     };
-  });
+  }, []);
 
   return (
     <Story>

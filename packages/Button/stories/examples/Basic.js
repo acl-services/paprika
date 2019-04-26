@@ -91,13 +91,23 @@ const ExampleStory = () => (
     </p>
     <Rule />
     <p>
-      <Button.Icon onClick={clickHandler} icon={<InfoIcon />} size="small" />
-      <Button.Icon onClick={clickHandler} icon={<InfoIcon />} />
-      <Button.Icon onClick={clickHandler} icon={<InfoIcon />} size="large" />
-      <Button.Icon onClick={clickHandler} icon={<InfoIcon />} kind="flat" />
-      <Button.Icon onClick={clickHandler} icon={<InfoIcon />} kind="minor" />
-      <Button.Icon onClick={clickHandler} icon="🦙" kind="secondary" size="small">
-        LLAMA
+      <Button.Icon onClick={clickHandler} size="small">
+        <InfoIcon />
+      </Button.Icon>
+      <Button.Icon onClick={clickHandler}>
+        <InfoIcon />
+      </Button.Icon>
+      <Button.Icon onClick={clickHandler} size="large">
+        <InfoIcon />
+      </Button.Icon>
+      <Button.Icon onClick={clickHandler} kind="flat">
+        <InfoIcon />
+      </Button.Icon>
+      <Button.Icon onClick={clickHandler} kind="minor">
+        <InfoIcon />
+      </Button.Icon>
+      <Button.Icon onClick={clickHandler} icon="🐐" kind="secondary" size="small">
+        {"🦙"}
       </Button.Icon>
     </p>
     <Rule />
