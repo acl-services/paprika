@@ -1,6 +1,6 @@
 import React from "react";
 import { storiesOf } from "@storybook/react";
-import BasicStory from "./examples/Basic";
+import InputExample from "./examples/InputExample";
 import SizesStory from "./examples/Sizes";
 import WithContentStory from "./examples/WithContent";
 import WithIconStory from "./examples/WithIcon";
@@ -17,14 +17,14 @@ storiesOf("Input", module)
   .add("Types", () => <TypesStory />)
   .add("With Ref", () => <WithRef />);
 
-storiesOf("Input/Automation Tests/Screener", module).add("basic", () => (
+storiesOf("Input/Automation Tests/Screener", module).add("InputExample", () => (
   <InputStory>
-    <BasicStory placeholder="First Name" size="large" />
+    <InputExample placeholder="First Name" size="large" />
   </InputStory>
 ));
 
 storiesOf("Input/Automation Tests/Accessibility", module).add("Default", () => (
   <InputStory>
-    <BasicStory placeholder="First Name" size="large" onChange={() => {}} />
+    <InputExample placeholder="First Name" size="large" onChange={() => {}} />
   </InputStory>
 ));

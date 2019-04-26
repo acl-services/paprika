@@ -1,6 +1,6 @@
 import React from "react";
 import SearchIcon from "@paprika/icon/Search";
-import BasicStory from "./Basic";
+import InputExample from "./InputExample";
 import { InputStory } from "../Input.stories.styles";
 
 const WithIconStory = () => {
@@ -11,7 +11,7 @@ const WithIconStory = () => {
           <code>icon</code>
         </small>
       </h3>
-      <BasicStory icon={<SearchIcon />} placeholder="Search" />
+      <InputExample icon={<SearchIcon />} placeholder="Search" />
     </InputStory>
   );
 };

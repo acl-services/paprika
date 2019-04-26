@@ -1,5 +1,5 @@
 import React from "react";
-import BasicStory from "./Basic";
+import InputExample from "./InputExample";
 import { InputStory } from "../Input.stories.styles";
 
 const TypesExampleStory = () => {
@@ -10,14 +10,14 @@ const TypesExampleStory = () => {
           <code>type=&quot;text&quot;</code>
         </small>
       </h3>
-      <BasicStory type="text" value="p@$$w0rD" />
+      <InputExample type="text" value="p@$$w0rD" />
       <br />
       <h3>
         <small>
           <code>type=&quot;password&quot;</code>
         </small>
       </h3>
-      <BasicStory type="password" value="p@$$w0rD" />
+      <InputExample type="password" value="p@$$w0rD" />
       <br />
       <h3>
         <small>

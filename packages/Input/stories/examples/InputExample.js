@@ -2,7 +2,7 @@
 import React from "react";
 import Input from "../../Input";
 
-const BasicExampleStory = props => {
+const InputExample = props => {
   const [value, setValue] = React.useState(props.value || "");
 
   return (
@@ -12,4 +12,4 @@ const BasicExampleStory = props => {
   );
 };
 
-export default BasicExampleStory;
+export default InputExample;

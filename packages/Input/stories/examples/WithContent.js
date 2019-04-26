@@ -1,18 +1,18 @@
 import React from "react";
-import BasicStory from "./Basic";
+import InputExample from "./InputExample";
 import { InputStory } from "../Input.stories.styles";
 
 const WithContentExampleStory = () => {
   return (
     <InputStory>
-      <BasicStory value="Sam Bennett" a11yText="Sam Bennett" />
+      <InputExample value="Sam Bennett" a11yText="Sam Bennett" />
       <br />
       <h3>
         <small>
           <code>hasClearButton</code>
         </small>
       </h3>
-      <BasicStory value="Sam Bennett" a11yText="Sam Bennett" hasClearButton />
+      <InputExample value="Sam Bennett" a11yText="Sam Bennett" hasClearButton />
     </InputStory>
   );
 };

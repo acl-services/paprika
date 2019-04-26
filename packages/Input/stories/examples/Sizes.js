@@ -1,5 +1,5 @@
 import React from "react";
-import BasicStory from "./Basic";
+import InputExample from "./InputExample";
 import { InputStory } from "../Input.stories.styles";
 
 const SizesExampleStory = () => {
@@ -10,21 +10,21 @@ const SizesExampleStory = () => {
           <code>size = small</code>
         </small>
       </h3>
-      <BasicStory placeholder="First Name" size="small" />
+      <InputExample placeholder="First Name" size="small" />
       <br />
       <h3>
         <small>
           <code>size = medium</code> (default)
         </small>
       </h3>
-      <BasicStory placeholder="First Name" />
+      <InputExample placeholder="First Name" />
       <br />
       <h3>
         <small>
           <code>size = large</code>
         </small>
       </h3>
-      <BasicStory placeholder="First Name" size="large" />
+      <InputExample placeholder="First Name" size="large" />
     </InputStory>
   );
 };
