@@ -31,7 +31,6 @@ class Trigger extends React.Component {
 
           if (typeof this.props.children !== "function") {
             /* issue https://github.com/acl-services/paprika/issues/33 */
-            /* eslint-disable jsx-a11y/mouse-events-have-key-events */
             return isEager ? (
               <RawButton
                 data-qa-anchor="popover-trigger"
