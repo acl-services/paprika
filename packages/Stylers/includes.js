@@ -109,12 +109,6 @@ export const placeholders = `
   }
 `;
 
-export const formFaded = `{
-  .is-disabled & {
-    opacity: 0.5;
-  }
-}`;
-
 export const formDisabled = `{
   &.is-disabled,
   &[disabled] {

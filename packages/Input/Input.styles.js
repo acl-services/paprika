@@ -5,7 +5,7 @@ const inputStyles = () => `
 
 position: relative;
 
-&.form-input--has-icon .form-input__input {
+&.form-input--has-icon input.form-input__input {
   padding-left: ${stylers.spacer(3)};
 }
 
@@ -69,8 +69,6 @@ input.form-input__input {
 .form-input__icon,
 .form-input__clear {
   color: ${tokens.textColor.icon};
-  ${stylers.formFaded}
-
   padding: 0 ${tokens.spaceSm};
   position: absolute;
   top: 50%;
