@@ -23,7 +23,6 @@
     "test:a11y": "echo 'Axe will run on this command'",
     "test:registrymock": "run-p -l registrymock:start registrymock:publish",
     "test": "jest --passWithNoTests",
-    "tokens": "cd packages/tokens && yarn start",
     "transpile": "lerna exec --parallel -- babel --root-mode upward src --out-dir lib --source-maps --copy-files"
   },
   "engines": {

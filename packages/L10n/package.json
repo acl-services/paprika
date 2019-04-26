@@ -1,6 +1,6 @@
 {
   "name": "@paprika/l10n",
-  "version": "0.0.1",
+  "version": "0.1.0",
   "description": "L10n component",
   "author": "@paprika",
   "main": "lib/index.js",
@@ -12,9 +12,11 @@
   "publishConfig": {
     "access": "public"
   },
+  "scripts": {
+    "pretranspile": "node build-translations.js"
+  },
   "dependencies": {
     "@babel/runtime-corejs2": "^7.3.1",
-    "@paprika/tokens": "^0.0.1",
     "i18next": "^15.0.4",
     "prop-types": "^15.7.2"
   },
