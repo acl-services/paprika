@@ -19,6 +19,9 @@ packages/Tokens/src/tokens.yaml
 packages/Tokens/src/tokens.js
 packages/Tokens/src/tokens.mdx
 
+# Locales
+locales-js
+
 # Documentation
 /**/.docz
 
