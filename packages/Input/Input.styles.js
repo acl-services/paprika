@@ -1,7 +1,25 @@
 import tokens from "@paprika/tokens";
 import stylers from "@paprika/stylers";
 
-const inputStyles = () => `
+const iconStyles = {
+  small: `
+    ${stylers.fontSize(-2)}
+    margin-left: 3px;
+    padding: 0 ${tokens.spaceSm};
+  `,
+  medium: `
+    ${stylers.fontSize()}
+    margin-left: 2px;
+    padding: 0 ${tokens.spaceSm};
+  `,
+  large: `
+    ${stylers.fontSize(2)}
+    margin-left: ${tokens.spaceSm};
+    padding: 0 ${tokens.spaceSm};
+  `,
+};
+
+const inputStyles = props => `
   line-height: 1;
   position: relative;
   
@@ -62,8 +80,7 @@ const inputStyles = () => `
   }
 
   .form-input__icon {
-    left: 2px;
-    padding: 0 ${tokens.spaceSm};
+    ${iconStyles[props.size]};
 
     svg {
       vertical-align: middle;
@@ -88,7 +105,7 @@ const inputStyles = () => `
   }
 
   &.form-input--has-icon input.form-input__input {
-    padding-left: ${stylers.spacer(3)};
+    padding-left: ${props.size === "large" ? stylers.spacer(4) : stylers.spacer(3)};
   }
 
   // Disabled

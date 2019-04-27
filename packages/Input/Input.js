@@ -45,15 +45,15 @@ const Input = props => {
   };
 
   const renderClear = () => {
-    const { hasClearButton, isDisabled, isReadOnly, value } = props;
+    const { hasClearButton, isDisabled, isReadOnly, size, value } = props;
     if (!hasClearButton || isDisabled || isReadOnly || !value) return null;
-
+    const iconSize = size === "large" ? "medium" : "small";
     return (
       <Button.Icon
         a11yText="Clear Input" // TODO: add L10n
         className="form-input__clear"
         kind="minor"
-        size="small"
+        size={iconSize}
         onClick={inputClearHandler}
       >
         <TimesCircleIcon />
@@ -73,11 +73,16 @@ const Input = props => {
     inputRef, // TODO: use useImperativeHandle()
     isDisabled,
     isReadOnly,
-    size,
     hasClearButton,
+    hasError,
     onClear,
+    size,
     ...moreProps
   } = props;
+
+  const styleProps = {
+    size: props.size,
+  };
 
   if (a11yText) moreProps["aria-label"] = a11yText;
 
@@ -86,12 +91,12 @@ const Input = props => {
     { "form-input--has-icon": icon },
     { "form-input--is-disabled": isDisabled },
     { "form-input--is-readonly": isReadOnly },
-    { "form-input--has-error": moreProps.hasError },
+    { "form-input--has-error": hasError },
     className
   );
 
   return (
-    <div css={inputStyles} className={rootClasses}>
+    <div css={inputStyles} {...styleProps} className={rootClasses}>
       {renderIcon()}
       <input className="form-input__input" disabled={isDisabled} readOnly={isReadOnly} ref={inputRef} {...moreProps} />
       {renderClear()}
