@@ -150,7 +150,7 @@ class DatePicker extends React.Component {
           <div ref={this.calendarRef}>
             <CalendarController
               date={date}
-              focused={this.state.isCalendarFocused}
+              isFocused={this.state.isCalendarFocused}
               onSelect={this.handleSelect}
               onFocusChange={this.handleCalendarFocusChange}
             />

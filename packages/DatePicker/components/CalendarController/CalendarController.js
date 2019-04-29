@@ -1,5 +1,3 @@
-/* eslint-disable react/no-multi-comp */
-/* eslint-disable jsx-a11y/click-events-have-key-events */
 import React from "react";
 import PropTypes from "prop-types";
 import momentPropTypes from "react-moment-proptypes";
@@ -23,10 +21,13 @@ const propTypes = {
 
   /** Callback to fire when user select date */
   onSelect: PropTypes.func.isRequired,
+
+  isFocused: PropTypes.bool,
 };
 
 const defaultProps = {
   date: null,
+  isFocused: false,
 };
 
 class CalendarController extends React.Component {
@@ -132,7 +133,7 @@ class CalendarController extends React.Component {
           onFocusChange={this.props.onFocusChange}
           onPrevMonthClick={this.handleClickPrevMonth}
           onNextMonthClick={this.handleClickNextMonth}
-          focused={this.props.focused}
+          focused={this.props.isFocused}
           isFocused={this.props.isFocused}
           date={this.props.date}
           renderMonthElement={this.renderMonthHeaderElement}
