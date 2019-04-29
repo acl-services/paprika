@@ -3,7 +3,8 @@ import { select, text, number } from "@storybook/addon-knobs";
 import PropTypes from "prop-types";
 import styled from "styled-components";
 import { CenteredStory } from "storybook/assets/styles/common.styles";
-import Popover from "../../Popover";
+import Button from "@paprika/button";
+import Popover from "../../src";
 
 const PopoverContainer = styled.div`
   width: 240%;
@@ -44,7 +45,7 @@ const PopoverBox = ({ getScrollContainer }) => (
       getScrollContainer={getScrollContainer}
     >
       <Popover.Trigger>
-        <button type="button">Open Popover</button>
+        <Button>Open Popover</Button>
       </Popover.Trigger>
       <Popover.Content>
         <Popover.Tip />

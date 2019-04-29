@@ -1,7 +1,7 @@
 import React from "react";
 import { storiesOf } from "@storybook/react";
-import windowHandles, { Input } from "@paprika/testingHelpers/windowHandles/";
-import Popover from "../Popover";
+import windowHandles, { Input } from "@paprika/testing-helpers/lib/windowHandles/";
+import Popover from "../src";
 
 storiesOf("Popover/Automation Tests/Cypress", module)
   .addDecorator(

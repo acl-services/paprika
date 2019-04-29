@@ -13,11 +13,9 @@ export const WelcomePage = styled.div`
 `;
 
 export const WelcomeBody = styled.div`
-  align-items: center;
-  display: flex;
+  ${stylers.alignMiddle}
   flex-direction: column;
   height: 30%;
-  justify-content: center;
   padding: ${stylers.spacer(6)} ${stylers.spacer(3)}
   text-align: center;
   width: 100%;

@@ -3,12 +3,12 @@ import { Story } from "storybook/assets/styles/common.styles";
 import tokens from "@paprika/tokens";
 import stylers from "@paprika/stylers";
 
-import AddIcon from "@paprika/icon/Add";
-import CloseIcon from "@paprika/icon/Times";
-import RefreshIcon from "@paprika/icon/Refresh";
-import SearchIcon from "@paprika/icon/Search";
-import TrashIcon from "@paprika/icon/Trashbin";
-import Arrow from "@paprika/icon/ArrowRight";
+import AddIcon from "@paprika/icon/lib/Add";
+import CloseIcon from "@paprika/icon/lib/Times";
+import RefreshIcon from "@paprika/icon/lib/Refresh";
+import SearchIcon from "@paprika/icon/lib/Search";
+import TrashIcon from "@paprika/icon/lib/Trashbin";
+import ArrowIcon from "@paprika/icon/lib/ArrowRight";
 
 const ExampleStory = () => (
   <Story
@@ -43,7 +43,7 @@ const ExampleStory = () => (
           verticalAlign: "middle",
         }}
       />
-      , photo booth small batch poke. <Arrow />
+      , photo booth small batch poke. <ArrowIcon />
     </p>
   </Story>
 );

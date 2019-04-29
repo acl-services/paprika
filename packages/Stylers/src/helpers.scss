@@ -1,0 +1,173 @@
+@import "@paprika/tokens/lib/tokens.scss";
+
+//
+// FUNCTION Helpers
+//
+
+// Utilities
+
+@function pow($base, $exponent) {
+  $unit: $base * 0 + 1;
+  $base: $base / $unit;
+  $value: $base;
+
+  // No non-intergers allowed
+  @if round($exponent) != $exponent {
+    @warn "Unfortunately, you can't use non-integer exponents.";
+  }
+
+  @if $exponent > 0 {
+    @for $i from 1 to $exponent {
+      $value: $value * $base;
+    }
+  } @else {
+    @for $i from (-1 + 1) to (abs($exponent) + 1) {
+      $value: $value / $base;
+    }
+  }
+
+  @return $value * $unit;
+}
+
+// Typography
+
+$font-scale-base: 16px;
+$font-scale-ratio: 1.125;
+
+// Return a font-size value from on a modular scale
+@function font-scale($scale: 0) {
+  @return round($font-scale-base * pow($font-scale-ratio, $scale));
+}
+
+$leading-scale-base: 1.4;
+$leading-scale-ratio: 1.125;
+
+// Return a line-height value from on a modular scale
+@function line-height-scale($scale: 0) {
+  @return round($leading-scale-base * (pow($leading-scale-ratio, $scale) * 100)) / 100;
+}
+
+// Layout
+
+// Restricts z-index values to a standard scale
+@function z($layerName) {
+  $map: (
+    auto: auto,
+    initial: initial,
+    inherit: inherit,
+    -1: -1,
+    0: 0,
+    1: 1,
+    2: 2,
+    3: 3,
+    4: 4,
+    5: 5,
+    6: 6,
+    7: 7,
+  );
+
+  @if map-has-key($map, $layerName) {
+    @return map-get($map, $layerName);
+  }
+
+  @warn 'There is no item "#{$layerName}" in this list; choose one of: #{$map}';
+  @return 1;
+}
+
+//
+// MIXIN Helpers
+//
+
+// Typography
+
+// Prevents line-breaks and truncates with ...
+@mixin truncate-text() {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+// Undoes @truncate-text
+@mixin no-truncate-text() {
+  overflow: visible;
+  text-overflow: clip;
+  white-space: normal;
+}
+
+// Accessibility
+
+// Makes an element visually hidden, but accessible for screen readers
+@mixin is-visually-hidden() {
+  border: 0 !important;
+  clip: rect(1px, 1px, 1px, 1px);
+  clip: rect(1px 1px 1px 1px); /* IE6, IE7 */
+  height: 1px !important;
+  overflow: hidden;
+  padding: 0 !important;
+  position: absolute !important;
+  width: 1px !important;
+}
+
+// Forms
+
+@mixin placeholder() {
+  color: $placeholder--color;
+  font-style: $placeholder--font-style;
+
+  .is-disabled &,
+  &[disabled] {
+    @include disabled-placeholder();
+  }
+}
+
+@mixin disabled-placeholder() {
+  color: $color--black-lighten-60;
+}
+
+@mixin placeholders() {
+  &::placeholder {
+    @include placeholder();
+  }
+
+  &::-webkit-input-placeholder {
+    @include placeholder();
+  }
+
+  // opacity: 1 is added to fix firefox placeholder text color issue
+  // https://stackoverflow.com/q/19621306/196038
+  &::-moz-placeholder {
+    @include placeholder();
+    opacity: 1;
+  }
+
+  &:-ms-input-placeholder {
+    @include placeholder();
+  }
+
+  &:-moz-placeholder {
+    @include placeholder();
+    opacity: 1;
+  }
+
+  &[disabled]::placeholder {
+    @include disabled-placeholder();
+  }
+
+  &[disabled]::-webkit-input-placeholder {
+    @include disabled-placeholder();
+  }
+
+  &[disabled]::-moz-placeholder {
+    @include disabled-placeholder();
+    opacity: 1;
+  }
+
+  &[disabled]:-ms-input-placeholder {
+    @include disabled-placeholder();
+  }
+
+  &[disabled]:-moz-placeholder {
+    @include disabled-placeholder();
+    opacity: 1;
+  }
+}
