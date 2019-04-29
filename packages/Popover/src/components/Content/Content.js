@@ -1,7 +1,7 @@
 import React from "react";
 import ReactDOM from "react-dom";
 import PropTypes from "prop-types";
-import isCurrentTargetFocused from "../../helpers/isCurrentTargetFocused";
+import isElementContainsFocus from "../../helpers/isElementContainsFocus";
 import { PopoverContext } from "../../Popover";
 import { consts as PopoverConstants } from "../../Popover.styles";
 import { ContentStyled } from "./Content.styles";
@@ -39,7 +39,7 @@ class Content extends React.Component {
 
     const currentTarget = event.currentTarget;
     setTimeout(() => {
-      if (!isCurrentTargetFocused({ currentTarget, activeElement: document.activeElement })) {
+      if (!isElementContainsFocus(currentTarget)) {
         onClose();
       }
     }, parseInt(PopoverConstants.transition, 10));

@@ -65,7 +65,7 @@ const propTypes = {
   /** Function that provides the scrolling DOM element that contains the popover. */
   getScrollContainer: PropTypes.func,
 
-  /** If this value is true, popver content will be automatically focused when showing, and click on popover trigger will trigger onClose function. Default is true. */
+  /** If this value is true, focus will move to the popover content when showing it. Default is true. */
   shouldAutoFocus: PropTypes.bool,
 };
 
