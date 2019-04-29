@@ -13,12 +13,16 @@
   },
   "dependencies": {
     "@babel/runtime-corejs2": "^7.3.1",
+    "@paprika/icon": "^0.0.1",
     "@paprika/popover": "^0.0.1",
     "@paprika/tokens": "^0.0.1",
+    "aphrodite": "^2.3.1",
     "moment": "^2.24.0",
     "prop-types": "^15.7.2",
     "react-dates": "^20.1.0",
-    "react-moment-proptypes": "^1.6.0"
+    "react-moment-proptypes": "^1.6.0",
+    "react-with-styles": "^3.2.1",
+    "react-with-styles-interface-aphrodite": "^5.0.1"
   },
   "peerDependencies": {
     "react": "^16.8.4",

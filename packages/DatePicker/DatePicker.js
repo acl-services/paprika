@@ -1,11 +1,13 @@
-import React, { Component } from "react";
+import React from "react";
 import PropTypes from "prop-types";
 import momentPropTypes from "react-moment-proptypes";
 import moment from "moment";
-import Popover from "@paprika/Popover";
+import Popover from "@paprika/popover";
 import CalendarController from "./components/CalendarController/CalendarController";
 
 // import DatePickerStyled from "./DatePicker.styles";
+
+const dateFormatForConfirmation = "MMMM DD, YYYY";
 
 const propTypes = {
   /** Selected date in moment object */
@@ -33,7 +35,7 @@ const defaultProps = {
   placeholder: "",
 };
 
-class DatePicker extends Component {
+class DatePicker extends React.Component {
   constructor(props) {
     super(props);
 
@@ -41,6 +43,7 @@ class DatePicker extends Component {
       showCalendar: false,
       date: props.date,
       inputtedString: props.date ? moment(props.date).format(props.format) : "",
+      isCalendarFocused: false,
     };
 
     this.popoverRef = React.createRef();
@@ -55,12 +58,30 @@ class DatePicker extends Component {
   };
 
   handleFocusInput = () => {
-    this.showCalendar();
+    this.setState(state => {
+      return {
+        inputtedString: state.date.format(this.props.format),
+        isCalendarFocused: false,
+      };
+    });
   };
 
   handleInputChange = e => {
     this.setState({
       inputtedString: e.target.value,
+      isCalendarFocused: false,
+    });
+  };
+
+  handleInputBlur = () => {
+    window.requestAnimationFrame(() => {
+      if (
+        this.calendarRef.current !== document.activeElement &&
+        !this.calendarRef.current.contains(document.activeElement)
+      ) {
+        this.handleInputConfirm();
+        this.hideCalendar();
+      }
     });
   };
 
@@ -74,20 +95,21 @@ class DatePicker extends Component {
       });
     }
 
-    if (newDate.isValid()) {
+    if (newDate.isValid() && !moment(newDate).isSame(this.props.date, "day")) {
       this.setState(() => {
         return {
           date: newDate,
-          inputtedString: newDate.format(this.props.format),
+          inputtedString: newDate.format(dateFormatForConfirmation),
         };
       });
     }
-
-    this.calendarRef.current.forceUpdate();
   };
 
-  handleShouldClose = () => {
-    // console.log(this.popoverRef);
+  handleKeyUp = event => {
+    if (event.key === "Enter") {
+      this.handleInputConfirm();
+      this.hideCalendar();
+    }
   };
 
   showCalendar = () => {
@@ -95,26 +117,44 @@ class DatePicker extends Component {
   };
 
   hideCalendar = () => {
-    if (this.state.showCalendar) this.setState({ showCalendar: false });
+    if (this.state.showCalendar) this.setState({ showCalendar: false, isCalendarFocused: false });
+  };
+
+  handleCalendarFocusChange = () => {
+    this.setState({ isCalendarFocused: true });
+  };
+
+  handleClick = () => {
+    this.showCalendar();
   };
 
   render() {
     const { date, showCalendar, inputtedString } = this.state;
 
     return (
-      <Popover isOpen={showCalendar} offset={0} onClose={this.handleShouldClose} shouldAutoFocus={false}>
+      <Popover isOpen={showCalendar} offset={0} onClose={this.hideCalendar} shouldAutoFocus={false}>
         <input
           disabled={this.props.isDisabled}
           readOnly={this.props.isReadOnly}
+          onClick={this.handleClick}
           onChange={this.handleInputChange}
-          onFocus={this.showCalendar}
-          onBlur={this.handleInputConfirm}
+          onFocus={this.handleFocusInput}
+          onBlur={this.handleInputBlur}
+          onKeyUp={this.handleKeyUp}
           placeholder={this.props.placeholder}
           type="text"
           value={inputtedString}
         />
+
         <Popover.Content>
-          <CalendarController ref={this.calendarRef} date={date} onSelect={this.handleSelect} />
+          <div ref={this.calendarRef}>
+            <CalendarController
+              date={date}
+              focused={this.state.isCalendarFocused}
+              onSelect={this.handleSelect}
+              onFocusChange={this.handleCalendarFocusChange}
+            />
+          </div>
         </Popover.Content>
       </Popover>
     );

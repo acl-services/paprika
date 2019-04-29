@@ -47,33 +47,8 @@ const CalendarStyled = styled.div`
       height: 100%;
     }
 
-    .aclui-calendar-day-trigger {
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      width: 30px;
-      height: 27px;
-      border-radius: ${tokens.border.radius};
-      color: ${tokens.color.black};
-
-      &:hover {
-        border: 1px solid ${tokens.border.color};
-        font-weight: bold;
-      }
-      &:focus {
-      }
-      &:active {
-      }
-    }
-
     &.CalendarDay__selected {
       background-color: ${tokens.color.white};
-    }
-
-    &.CalendarDay__selected .aclui-calendar-day-trigger {
-      background-color: #cde5fc;
-      border: 0;
-      font-weight: bold;
     }
 
     &.CalendarDay__outside {
@@ -85,13 +60,31 @@ const CalendarStyled = styled.div`
     }
   }
 
+  .DayPickerNavigation_button {
+    border-radius: ${tokens.border.radius};
+    position: absolute;
+    top: 10px;
+    display: block;
+    padding: ${tokens.spaceSm};
+    width: 22px;
+    height: 22px;
+
+    &:first-child {
+      left: ${tokens.space};
+    }
+
+    &:last-child {
+      right: ${tokens.space};
+    }
+  }
+
   .DayPickerNavigation_button__horizontalDefault {
     top: 3px;
   }
 
-  .DayPickerNavigation_button:focus .aclui-calendar-nav-button {
-    box-shadow: ${tokens.highlight.active.noBorder.boxShadow};
-    border-color: ${tokens.highlight.active.noBorder.borderColor};
+  .DayPickerNavigation_button:focus,
+  .DayPickerNavigation_button:active {
+    box-shadow: ${tokens.highlight.active.withBorder.boxShadow};
     outline: none;
   }
 
@@ -101,5 +94,37 @@ const CalendarStyled = styled.div`
     margin-top: ${getNumber(tokens.space) * 4}px;
   }
 `;
+
+export const DayTriggerStyle = props => {
+  const SelectedStyle = `
+    background-color: #cde5fc;
+    font-weight: bold;
+
+    &:hover {
+      border: 0;
+    }
+  `;
+
+  return `
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 30px;
+    height: 27px;
+    border-radius: ${tokens.border.radius};
+    color: ${tokens.color.black};
+
+    &:hover {
+      border: 1px solid ${tokens.border.color};
+      font-weight: bold;
+    }
+    &:focus {
+    }
+    &:active {
+    }
+
+    ${props.isSelected ? SelectedStyle : ""}
+  `;
+};
 
 export default CalendarStyled;

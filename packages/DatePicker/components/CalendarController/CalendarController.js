@@ -1,5 +1,6 @@
+/* eslint-disable react/no-multi-comp */
 /* eslint-disable jsx-a11y/click-events-have-key-events */
-import React, { Component } from "react";
+import React from "react";
 import PropTypes from "prop-types";
 import momentPropTypes from "react-moment-proptypes";
 import moment from "moment";
@@ -8,11 +9,17 @@ import "react-dates/initialize";
 import { DayPickerSingleDateController as SDPController } from "react-dates";
 import "react-dates/lib/css/_datepicker.css";
 
-import CalendarStyled from "./CalendarController.styles";
+import Button from "@paprika/button";
+import ArrowRight from "@paprika/icon/ArrowRight";
+import ArrowDown from "@paprika/icon/ArrowDown";
+
+import CalendarStyled, { DayTriggerStyle } from "./CalendarController.styles";
 
 const propTypes = {
   /** Selected date in moment object */
   date: momentPropTypes.momentObj,
+
+  onFocusChange: PropTypes.func.isRequired,
 
   /** Callback to fire when user select date */
   onSelect: PropTypes.func.isRequired,
@@ -22,25 +29,24 @@ const defaultProps = {
   date: null,
 };
 
-class CalendarController extends Component {
+class CalendarController extends React.Component {
   constructor(props) {
     super(props);
 
     this.state = {
       showShortcutPanel: false,
-      focusOnCalendar: false,
     };
 
     // TODO: Update this with L10n component
     moment.locale("jp");
+
+    this.nextButtonRef = React.createRef();
+    this.prevButtonRef = React.createRef();
   }
 
-  onFocusChange = () => {
-    // Force the focused states to always be truthy so that date is always selectable
-    this.setState({ focusOnCalendar: true });
+  getInitialVisibleMonth = () => {
+    return this.props.date.isValid() ? this.props.date : moment();
   };
-
-  getInitialVisibleMonth = () => (this.props.date.isValid() ? this.props.date : moment());
 
   handleClickMonthHeader = () => {
     this.setState({ showShortcutPanel: true });
@@ -58,39 +64,55 @@ class CalendarController extends Component {
     this.setState({ showShortcutPanel: false });
   };
 
+  handleClickNavigation = buttonRef => {
+    if (buttonRef.current.parentNode.tabIndex !== 0) {
+      // eslint-disable-next-line no-param-reassign
+      buttonRef.current.parentNode.tabIndex = 0;
+    }
+    buttonRef.current.parentNode.focus();
+  };
+
+  handleClickNextMonth = () => {
+    this.handleClickNavigation(this.nextButtonRef);
+  };
+
+  handleClickPrevMonth = () => {
+    this.handleClickNavigation(this.prevButtonRef);
+  };
+
   renderMonthHeaderElement = ({ month }) => (
-    // <Button className="aclui-calendar-shortcut-tigger" onClick={this.handleClickMonthHeader} isDropdown type="flat">
-    //   {month.format("MMMM YYYY")}
-    // </Button>
-    // TODO: Replace by button with icon
-    // eslint-disable-next-line react/button-has-type
-    <button>{month.format("MMMM YYYY")}</button>
+    <Button onClick={this.handleClickMonthHeader} kind="flat" isDropdown isDisabled>
+      {month.format("MMMM YYYY")}
+    </Button>
   );
 
-  // renderNavButton = direction => (
-  //   <Icon
-  //     className={`aclui-calendar-nav-button aclui-calendar-nav-button--${direction}`}
-  //     canPropagate
-  //     color={tokens.textColor.icon}
-  //     size={14}
-  //     type={`arrow-${direction}`}
-  //   />
-  // );
+  renderArrowLeft() {
+    return (
+      <span ref={this.prevButtonRef}>
+        <ArrowDown role="presentation" size="14px" />
+      </span>
+    );
+  }
 
-  renderDayContents = day => (
-    // TODO: Replace by raw button
-    // eslint-disable-next-line jsx-a11y/no-static-element-interactions
-    <span
-      className="aclui-calendar-day-mask"
-      onClick={e => {
-        if (e.target.classList.contains("aclui-calendar-day-mask")) {
-          e.stopPropagation();
-        }
-      }}
-    >
-      <span className="aclui-calendar-day-trigger">{day.format("D")}</span>
-    </span>
-  );
+  renderArrowRight() {
+    return (
+      <span ref={this.nextButtonRef}>
+        <ArrowRight role="presentation" size="14px" />
+      </span>
+    );
+  }
+
+  renderDayContents = day => {
+    return (
+      <span
+        css={DayTriggerStyle}
+        className="aclui-calendar-day-trigger"
+        isSelected={moment(day).isSame(this.props.date, "day")}
+      >
+        {day.format("D")}
+      </span>
+    );
+  };
 
   render() {
     // if (this.state.showShortcutPanel) return <ShortcutPanel onCancel={this.handleShortcutPanelCancel} />;
@@ -103,14 +125,15 @@ class CalendarController extends Component {
           enableOutsideDays
           hideKeyboardShortcutsPanel
           initialVisibleMonth={this.getInitialVisibleMonth}
-          // navPrev={this.renderNavButton("left")}
-          // navNext={this.renderNavButton("right")}
+          navPrev={this.renderArrowLeft()}
+          navNext={this.renderArrowRight()}
           numberOfMonths={1}
           onDateChange={this.handleDateChange}
-          onFocusChange={this.onFocusChange}
+          onFocusChange={this.props.onFocusChange}
           onPrevMonthClick={this.handleClickPrevMonth}
           onNextMonthClick={this.handleClickNextMonth}
-          focused={this.state.focusOnCalendar}
+          focused={this.props.focused}
+          isFocused={this.props.isFocused}
           date={this.props.date}
           renderMonthElement={this.renderMonthHeaderElement}
           transitionDuration={0}
