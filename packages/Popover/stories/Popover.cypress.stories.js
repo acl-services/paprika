@@ -15,7 +15,10 @@ storiesOf("Popover/Automation Tests/Cypress", module)
       <Popover.Trigger>Open Popover</Popover.Trigger>
       <Popover.Content>
         <Popover.Tip />
-        <Popover.Card>Popover content.</Popover.Card>
+        <Popover.Card>
+          Popover content.
+          <button type="button">Button inside</button>
+        </Popover.Card>
       </Popover.Content>
     </Popover>
   ));

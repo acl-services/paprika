@@ -37,10 +37,9 @@ class Content extends React.Component {
     // Use timeout to delay examination of activeElement until after blur/focus
     // events have been processed.
 
-    // sythetic asyn event react https://reactjs.org/docs/events.html#event-pooling
-    event.persist();
+    const currentTarget = event.currentTarget;
     setTimeout(() => {
-      if (!isCurrentTargetFocused(event)) {
+      if (!isCurrentTargetFocused({ currentTarget, activeElement: document.activeElement })) {
         onClose();
       }
     }, parseInt(PopoverConstants.transition, 10));

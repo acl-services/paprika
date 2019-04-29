@@ -64,6 +64,9 @@ const propTypes = {
 
   /** Function that provides the scrolling DOM element that contains the popover. */
   getScrollContainer: PropTypes.func,
+
+  /** If this value is true, popver content will be automatically focused when showing, and click on popover trigger will trigger onClose function. Default is true. */
+  shouldAutoFocus: PropTypes.bool,
 };
 
 const defaultProps = {
@@ -77,6 +80,7 @@ const defaultProps = {
   offset: parseInt(tokens.spaceLg, 10),
   getPositioningElement: null,
   getScrollContainer: null,
+  shouldAutoFocus: true,
 };
 
 class Popover extends React.Component {
@@ -267,7 +271,7 @@ class Popover extends React.Component {
     //       find the first focusable element like button, input, etc?
     //       can focus automatically
     //       should we set focus into the popover content automatically?
-    if (this.isOpen() && event.propertyName === "visibility") {
+    if (this.props.shouldAutoFocus && this.isOpen() && event.propertyName === "visibility") {
       event.target.focus();
     }
   };
