@@ -1,7 +1,7 @@
 import React from "react";
 import { action } from "@storybook/addon-actions";
 import { Story, Small, Rule } from "storybook/assets/styles/common.styles";
-import RawButton from "../../RawButton";
+import RawButton from "../../src";
 
 function clickHandler() {
   action("Clicked a button")();

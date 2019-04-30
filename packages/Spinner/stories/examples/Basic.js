@@ -2,7 +2,7 @@ import React from "react";
 import { Story } from "storybook/assets/styles/common.styles";
 import { select, text } from "@storybook/addon-knobs";
 
-import Spinner from "../../Spinner";
+import Spinner from "../../src";
 
 const ExampleStory = () => {
   const spinnerProps = {

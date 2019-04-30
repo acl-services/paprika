@@ -38,7 +38,7 @@ blocks:
       jobs:
         - name: Axe test
           commands:
-            - yarn a11y
+            - yarn test:a11y
 
   - name: "⚡️ Integration/Unit"
     task:
@@ -50,7 +50,7 @@ blocks:
       jobs:
         - name: JEST
           commands:
-            - yarn jest
+            - yarn test
 
   - name: "⛰ E2E"
     task:

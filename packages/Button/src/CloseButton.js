@@ -1,6 +1,6 @@
 import React from "react";
 import PropTypes from "prop-types";
-import CloseIcon from "@paprika/icon/Times";
+import CloseIcon from "@paprika/icon/lib/Times";
 import closeButtonStyles from "./CloseButton.styles";
 import IconButton from "./IconButton";
 

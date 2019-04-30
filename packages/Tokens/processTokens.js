@@ -6,11 +6,11 @@ const sass = require("node-sass");
 
 class DesignTokenBuilder {
   constructor() {
-    this.YAML_FILE = "./tokens.yaml";
-    this.JSON_FILE = "./tokens.json";
-    this.JS_FILE = "./tokens.js";
-    this.SCSS_FILE = "./tokens.scss";
-    this.MARKDOWN_FILE = "./tokens.mdx";
+    this.YAML_FILE = "./src/tokens.yaml";
+    this.JSON_FILE = "./src/tokens.json";
+    this.JS_FILE = "./src/tokens.js";
+    this.SCSS_FILE = "./src/tokens.scss";
+    this.MARKDOWN_FILE = "./src/tokens.mdx";
     this.yamlObject = this.loadYamlFile();
     this.yamlVariables = [];
   }
@@ -93,7 +93,7 @@ class DesignTokenBuilder {
     return this.getMarkdownLine(prepend, key, value);
   }
 
-  convertYamlToMarkdown() {
+  convertYamlToMDX() {
     console.log("...generating documentation");
     let markdownString = `
 ---
@@ -223,9 +223,10 @@ import TokenSquare from "./TokenSquare"
     this.convertYamlToJson();
     this.convertYamlToJs();
     this.convertYamlToScss();
-    this.convertYamlToMarkdown();
+    this.convertYamlToMDX();
   }
 }
 
 const dtb = new DesignTokenBuilder();
 dtb.run();
+console.log("🌈 Processing tokens...");

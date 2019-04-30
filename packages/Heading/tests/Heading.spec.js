@@ -1,6 +1,6 @@
 import React from "react";
 import { render } from "react-testing-library";
-import Heading from "../Heading";
+import Heading from "../src";
 
 describe("Heading", () => {
   it("should render content", () => {

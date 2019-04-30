@@ -1,6 +1,6 @@
 import React from "react";
 import { render, fireEvent } from "react-testing-library";
-import Popover from "../Popover";
+import Popover from "../src";
 
 describe("Popover", () => {
   it("should open when clicked", () => {
