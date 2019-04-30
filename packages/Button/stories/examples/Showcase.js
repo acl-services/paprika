@@ -6,7 +6,7 @@ import Heading from "@paprika/heading";
 import AddIcon from "@paprika/icon/lib/Add";
 import TimesIcon from "@paprika/icon/lib/Times";
 import InfoIcon from "@paprika/icon/lib/InfoCircle";
-import { ShirtSizes } from "@paprika/helpers/lib/customPropTypes";
+import { ShirtSizes } from "../../../helpers/src/customPropTypes";
 import Button from "../..";
 
 function clickHandler() {

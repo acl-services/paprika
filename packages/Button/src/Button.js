@@ -3,7 +3,7 @@ import PropTypes from "prop-types";
 import RawButton from "@paprika/raw-button";
 import RefreshIcon from "@paprika/icon/lib/Refresh";
 import DownIcon from "@paprika/icon/lib/CaretDown";
-import { ShirtSizes } from "@paprika/helpers/lib/customPropTypes";
+import { ShirtSizes } from "../../helpers/src/customPropTypes";
 import buttonStyles, { iconStyles } from "./Button.styles";
 
 const propTypes = {
