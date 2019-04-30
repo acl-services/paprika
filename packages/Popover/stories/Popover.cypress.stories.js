@@ -1,6 +1,6 @@
 import React from "react";
 import { storiesOf } from "@storybook/react";
-import windowHandles, { Input } from "../../testingHelpers/src/windowHandles";
+import windowHandles, { Input } from "../../../testingHelpers/src/windowHandles";
 import Popover from "../src";
 
 storiesOf("Popover/Automation Tests/Cypress", module)
