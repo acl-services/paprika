@@ -1,6 +1,5 @@
-/* eslint-disable react/prop-types */
 import React from "react";
-import Input from "../../Input";
+import Input from "../../src";
 
 const InputExample = props => {
   const [value, setValue] = React.useState(props.value || "");

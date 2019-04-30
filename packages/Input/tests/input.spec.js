@@ -1,6 +1,6 @@
 import React from "react";
 import { render } from "react-testing-library";
-import Input from "../Input";
+import Input from "../src";
 
 describe("Input", () => {
   it("should be visible", () => {

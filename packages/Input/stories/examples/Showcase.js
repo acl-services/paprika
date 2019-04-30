@@ -2,11 +2,10 @@ import React from "react";
 import { boolean, select, text } from "@storybook/addon-knobs";
 import { Rule, Tagline } from "storybook/assets/styles/common.styles";
 
-import SearchIcon from "@paprika/icon/Search";
-import InfoIcon from "@paprika/icon/InfoCircle";
+import { ShirtSizes } from "@paprika/helpers/lib/customPropTypes";
+import SearchIcon from "@paprika/icon/lib/Search";
+import InfoIcon from "@paprika/icon/lib/InfoCircle";
 import Heading from "@paprika/heading";
-
-import { ShirtSizes } from "../../../helpers/customPropTypes";
 
 import InputExample from "./InputExample";
 import { InputStory } from "../Input.stories.styles";

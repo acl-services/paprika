@@ -1,5 +1,5 @@
 import React from "react";
-import SearchIcon from "@paprika/icon/Search";
+import SearchIcon from "@paprika/icon/lib/Search";
 import InputExample from "./InputExample";
 import { InputStory } from "../Input.stories.styles";
 
