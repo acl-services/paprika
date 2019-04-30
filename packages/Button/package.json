@@ -1,6 +1,6 @@
 {
   "name": "@paprika/button",
-  "version": "0.0.1",
+  "version": "0.1.0",
   "description": "Button component",
   "author": "@paprika",
   "main": "lib/index.js",
@@ -14,11 +14,11 @@
   },
   "dependencies": {
     "@babel/runtime-corejs2": "^7.3.1",
-    "@paprika/icon": "^0.0.1",
-    "@paprika/raw-button": "^0.0.1",
-    "@paprika/stylers": "^0.0.1",
-    "@paprika/tokens": "^0.0.1",
-    "@paprika/helpers": "^0.0.1",
+    "@paprika/helpers": "^0.1.0",
+    "@paprika/icon": "^0.1.0",
+    "@paprika/raw-button": "^0.1.0",
+    "@paprika/stylers": "^0.1.0",
+    "@paprika/tokens": "^0.1.0",
     "prop-types": "^15.7.2"
   },
   "peerDependencies": {

@@ -1,6 +1,6 @@
 {
   "name": "@paprika/spinner",
-  "version": "0.0.1",
+  "version": "0.1.0",
   "description": "Spinner component",
   "author": "@paprika",
   "main": "lib/index.js",
@@ -14,8 +14,8 @@
   },
   "dependencies": {
     "@babel/runtime-corejs2": "^7.3.1",
-    "@paprika/tokens": "^0.0.1",
-    "@paprika/helpers": "^0.0.1",
+    "@paprika/helpers": "^0.1.0",
+    "@paprika/tokens": "^0.1.0",
     "classnames": "^2.2.6",
     "prop-types": "^15.7.2"
   },

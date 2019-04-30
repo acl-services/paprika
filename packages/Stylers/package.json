@@ -1,6 +1,6 @@
 {
   "name": "@paprika/stylers",
-  "version": "0.0.1",
+  "version": "0.1.0",
   "description": "Helpers and includes for styled-components",
   "author": "@paprika",
   "main": "lib/index.js",
