@@ -2,7 +2,7 @@
 import React from "react";
 import Button from "@paprika/button";
 import { Frame } from "../../stories.styles";
-import ListBox from "../../../index";
+import ListBox from "../../../src";
 import fixture from "./lazy.fixture";
 import MarvelOption from "./MarvelOption";
 import Results from "./Results";

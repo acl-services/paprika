@@ -1,4 +1,4 @@
-import RawButtonStyled from "@paprika/raw-button/RawButton.styles";
+import RawButtonStyled from "@paprika/raw-button/lib/RawButton.styles";
 
 const triggerStyles = `
   ${RawButtonStyled}

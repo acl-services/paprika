@@ -1,7 +1,7 @@
 /* eslint-disable react/no-multi-comp, react/prop-types */
 import React from "react";
 import Button from "@paprika/button";
-import ListBox from "../../../../index";
+import ListBox from "../../../../src";
 
 const options = [
   { key: 1, isDisabled: false, isHidden: false, label: "unicorn", value: 1 },

@@ -1,7 +1,7 @@
 /* eslint-disable react/no-array-index-key */
 import React from "react";
 import { ImageOption } from "../stories.styles";
-import ListBox from "../..";
+import ListBox from "../../src";
 import { images } from "../fixtures/images";
 
 export const Basic = () => (

@@ -1,4 +1,4 @@
-import useListBox from "@paprika/listbox/useListBox";
+import useListBox from "@paprika/listbox/lib/useListBox";
 
 // this allowed the user navigate between the tags with [←] [→] left and right arrows
 const handleKeyboardKeys = ({ state, dispatch, activeTag, setActiveTag }) => event => {

@@ -3,7 +3,7 @@
 import React from "react";
 import Button from "@paprika/button";
 import { Td, Th, FiltersStyled, TdFilter } from "./filterSelect.styles";
-import ListBox from "../../../index";
+import ListBox from "../../../src";
 
 const items = [
   { name: "Punisher", color: "blue", price: 2300, qty: 15 },

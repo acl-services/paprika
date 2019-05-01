@@ -2,13 +2,14 @@
   "name": "@paprika/listBoxWithTags",
   "version": "0.0.1",
   "description": "",
+  "main": "lib/index.js",
   "dependencies": {
     "@paprika/listbox": "^0.0.1",
-    "@paprika/tokens": "^0.0.1",
-    "@paprika/button": "^0.0.1",
-    "@paprika/raw-button": "^0.0.1",
+    "@paprika/tokens": "^0.1.0",
+    "@paprika/button": "^0.1.0",
+    "@paprika/raw-button": "^0.1.0",
     "@paprika/tag": "^0.0.1",
-    "@paprika/stylers": "^0.0.1",
+    "@paprika/stylers": "^0.1.0",
     "prop-types": "15.5.7"
   },
   "peerDependencies": {

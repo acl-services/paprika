@@ -1,12 +1,15 @@
 import React from "react";
 import PropTypes from "prop-types";
-import ListBox, { propTypes as listBoxPropTypes, defaultProps as listBoxdefaultProps } from "@paprika/listbox/ListBox";
-import Option from "@paprika/listbox/components/Option";
-import Footer from "@paprika/listbox/components/Footer";
-import Group from "@paprika/listbox/components/Group";
-import Provider from "@paprika/listbox/store/Provider";
+import ListBox, {
+  propTypes as listBoxPropTypes,
+  defaultProps as listBoxdefaultProps,
+} from "@paprika/listbox/lib/ListBox";
+import Option from "@paprika/listbox/lib/components/Option";
+import Footer from "@paprika/listbox/lib/components/Footer";
+import Group from "@paprika/listbox/lib/components/Group";
+import Provider from "@paprika/listbox/lib/store/Provider";
 
-import useListBox from "@paprika/listbox/useListBox";
+import useListBox from "@paprika/listbox/lib/useListBox";
 import handleKeyboardKeys from "./helpers/handleKeyboardKeys";
 
 // Custom Componeent for ListBoxWithTags

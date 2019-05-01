@@ -2,15 +2,12 @@
   "name": "@paprika/listbox",
   "version": "0.0.1",
   "description": "",
-  "publishConfig": {
-    "access": "public"
-  },
+  "main": "lib/index.js",
   "dependencies": {
-    "@paprika/popover": "^0.0.1",
-    "@paprika/tokens": "^0.0.1",
-    "@paprika/button": "^0.0.1",
-    "@paprika/raw-button": "^0.0.1",
-    "@paprika/tag": "^0.0.1",
+    "@paprika/popover": "^0.1.0",
+    "@paprika/tokens": "^0.1.0",
+    "@paprika/button": "^0.1.0",
+    "@paprika/raw-button": "^0.1.0",
     "prop-types": "15.5.7",
     "uuid": "^3.3.2"
   },
@@ -21,6 +18,9 @@
   "repository": {
     "type": "git",
     "url": "https://github.com/acl-services/paprika/tree/master/packages/listbox"
+  },
+  "publishConfig": {
+    "access": "public"
   },
   "author": "@paprika",
   "license": "MIT"

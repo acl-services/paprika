@@ -4,6 +4,7 @@
   "description": "Tag component",
   "author": "@paprika",
   "license": "MIT",
+  "main": "lib/index.js",
   "repository": {
     "type": "git",
     "url": "https://github.com/acl-services/paprika/tree/master/packages/tag"
@@ -13,9 +14,9 @@
   },
   "dependencies": {
     "@babel/runtime-corejs2": "^7.3.1",
-    "@paprika/raw-button": "^0.0.1",
-    "@paprika/stylers": "^0.0.1",
-    "@paprika/tokens": "^0.0.1",
+    "@paprika/raw-button": "^0.1.0",
+    "@paprika/stylers": "^0.1.0",
+    "@paprika/tokens": "^0.1.0",
     "classnames": "^2.2.6",
     "prop-types": "^15.7.2"
   },

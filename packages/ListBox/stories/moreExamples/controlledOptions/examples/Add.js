@@ -1,7 +1,7 @@
 /* eslint-disable react/no-multi-comp, react/prop-types */
 import React from "react";
 import Button from "@paprika/button";
-import ListBox from "../../../../index";
+import ListBox from "../../../../src";
 
 export default function Add() {
   const [options, setOptions] = React.useState([]);

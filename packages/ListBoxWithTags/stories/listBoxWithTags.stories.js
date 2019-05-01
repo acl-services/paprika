@@ -3,7 +3,7 @@ import { storiesOf } from "@storybook/react";
 import styled from "styled-components";
 import Tag from "@paprika/tag";
 import { Frame } from "./stories.styles";
-import ListBoxWithTags from "../index";
+import ListBoxWithTags from "../src";
 
 storiesOf("ListBoxWithTags", module).add("Basic", () => (
   <Frame>

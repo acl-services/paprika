@@ -1,6 +1,6 @@
 import React from "react";
 import Button from "@paprika/button";
-import Popover from "../../Popover";
+import Popover from "../../src";
 
 const text =
   "Lucas ipsum dolor sit amet ackbar darth antilles tatooine yavin maul chewbacca hutt jabba naboo. Mothma moff darth skywalker. Padmé hutt solo mandalore solo chewbacca bothan. Grievous luke baba hutt. ";

@@ -1,6 +1,6 @@
 import styled from "styled-components";
 import RawButton from "@paprika/raw-button";
-import RawButtonStyled from "@paprika/raw-button/RawButton.styles";
+import RawButtonStyled from "@paprika/raw-button/lib/RawButton.styles";
 import tokens from "@paprika/tokens";
 
 const triggerStyles = `

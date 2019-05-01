@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import Filter from "@paprika/listbox/components/Filter";
+import Filter from "@paprika/listbox/lib/components/Filter";
 
 const FilterStyled = styled(Filter)`
   width: 100%;

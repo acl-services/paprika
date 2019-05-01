@@ -1,8 +1,8 @@
 import React from "react";
 import PropTypes from "prop-types";
 import RawButton from "@paprika/raw-button";
-import useListBox from "@paprika/listbox/useListBox";
-import { getDOMAttributesForListBoxButton } from "@paprika/listbox/helpers/DOMAttributes";
+import useListBox from "@paprika/listbox/lib/useListBox";
+import { getDOMAttributesForListBoxButton } from "@paprika/listbox/lib/helpers/DOMAttributes";
 import triggerStyles from "./Trigger.styles";
 
 const propTypes = {

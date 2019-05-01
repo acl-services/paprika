@@ -160,6 +160,10 @@ export function handleArrowKeys({ event, state, dispatch, isArrowDown = null }) 
 }
 
 export const handleClickOption = ({ props, state, dispatch }) => event => {
+  if (props.isDisabled) {
+    return;
+  }
+
   const { index } = props; // eslint-disable-line
   const { options, hasFilter, isMulti, refFilterInput } = state;
 

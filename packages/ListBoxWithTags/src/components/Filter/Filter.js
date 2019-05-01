@@ -1,7 +1,7 @@
 import React from "react";
 import PropTypes from "prop-types";
-import useListBox from "@paprika/listbox/useListBox";
-import handleKeyboardKeys from "@paprika/listbox/helpers/handleKeyboardKeys";
+import useListBox from "@paprika/listbox/lib/useListBox";
+import handleKeyboardKeys from "@paprika/listbox/lib/helpers/handleKeyboardKeys";
 import FilterStyled from "./Filter.styles";
 
 const propTypes = {

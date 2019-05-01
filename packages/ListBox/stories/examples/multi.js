@@ -1,7 +1,7 @@
 import React from "react";
 import styled from "styled-components";
 import { ImageOption } from "../stories.styles";
-import ListBox from "../..";
+import ListBox from "../../src";
 import { images } from "../fixtures/images";
 
 export const Basic = () => (

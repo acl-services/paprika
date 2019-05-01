@@ -7,9 +7,9 @@ route: /listboxwithtags
 <!------------------- IMPORTS ------------------>
 
 import ListBoxWithTags from "./index";
-import ListBoxProps from "@paprika/listbox/ListBox";
-import OptionProps from "@paprika/listbox/components/Option";
-import GroupProps from "@paprika/listbox/components/Group";
+import ListBoxProps from "@paprika/listbox/lib/ListBox";
+import OptionProps from "@paprika/listbox/lib/components/Option";
+import GroupProps from "@paprika/listbox/lib/components/Group";
 
 import { Playground, PropsTable } from "docz";
 
