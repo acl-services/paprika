@@ -1,4 +1,3 @@
-/* eslint-disable react/no-array-index-key */
 import React from "react";
 import { ImageOption } from "../stories.styles";
 import ListBox from "../../src";

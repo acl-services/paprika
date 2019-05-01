@@ -6,7 +6,6 @@ import { isOptionVisible, isOptionSelected, handleClickOption } from "../Options
 import { OptionStyled, OptionDividerStyled } from "./Option.styles";
 import Checker from "../Checker";
 
-/* eslint-disable react/no-unused-prop-types */
 const propTypes = {
   /** String, number or JSX content */
   children: PropTypes.node.isRequired,
@@ -38,7 +37,6 @@ const propTypes = {
   /** Let you render your own checker for a specific option  */
   renderCheckbox: PropTypes.func,
 };
-/* eslint-enable react/no-unused-prop-types */
 
 const defaultProps = {
   isDisabled: false,

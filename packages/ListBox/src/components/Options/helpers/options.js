@@ -164,7 +164,7 @@ export const handleClickOption = ({ props, state, dispatch }) => event => {
     return;
   }
 
-  const { index } = props; // eslint-disable-line
+  const { index } = props;
   const { options, hasFilter, isMulti, refFilterInput } = state;
 
   const option = options[index];

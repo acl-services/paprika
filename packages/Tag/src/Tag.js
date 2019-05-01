@@ -48,7 +48,7 @@ class Tag extends React.Component {
       size,
       width,
       ...moreProps
-    } = this.props; // eslint-disable-line
+    } = this.props;
 
     const rootClasses = classNames(
       "paprika-tag",
