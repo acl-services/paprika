@@ -1,4 +1,3 @@
-/* eslint-disable react/no-multi-comp, react/prop-types */
 import React from "react";
 import { storiesOf } from "@storybook/react";
 import { Frame } from "../../stories.styles";

@@ -1,4 +1,3 @@
-/* eslint-disable react/no-multi-comp, react/prop-types */
 import React from "react";
 import Button from "@paprika/button";
 import ListBox from "../../../../src";
