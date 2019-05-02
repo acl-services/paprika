@@ -1,14 +1,12 @@
 import React from "react";
 import { boolean, select, text } from "@storybook/addon-knobs";
 import { Rule, Tagline } from "storybook/assets/styles/common.styles";
-
 import { ShirtSizes } from "@paprika/helpers/lib/customPropTypes";
 import SearchIcon from "@paprika/icon/lib/Search";
 import InfoIcon from "@paprika/icon/lib/InfoCircle";
-import Heading from "@paprika/heading";
-
-import InputExample from "./InputExample";
+import Heading from "../../../Heading/src";
 import { InputStory } from "../Input.stories.styles";
+import InputExample from "./InputExample";
 
 const iconSelections = {
   none: null,
@@ -26,7 +24,6 @@ const ExampleStory = () => {
       </Heading>
       <Tagline>Use the knobs to tinker with the props.</Tagline>
       <Rule />
-
       <InputExample
         a11yText={text("a11yText", "")}
         hasClearButton={boolean("hasClearButton", false)}
