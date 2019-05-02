@@ -2,11 +2,11 @@ import React from "react";
 import { action } from "@storybook/addon-actions";
 import { boolean, select, text } from "@storybook/addon-knobs";
 import { Story, Rule, Tagline } from "storybook/assets/styles/common.styles";
-import AddIcon from "@paprika/icon/lib/Add";
-import TimesIcon from "@paprika/icon/lib/Times";
-import InfoIcon from "@paprika/icon/lib/InfoCircle";
-import { ShirtSizes } from "@paprika/helpers/lib/customPropTypes";
-import Heading from "../../../Heading/src";
+import { ShirtSizes } from "helpers/src/customPropTypes";
+import AddIcon from "packages/Icon/src/Add";
+import TimesIcon from "packages/Icon/src/Times";
+import InfoIcon from "packages/Icon/src/InfoCircle";
+import Heading from "packages/Heading";
 import Button from "../..";
 
 function clickHandler() {

@@ -2,7 +2,6 @@ import React from "react";
 import { storiesOf } from "@storybook/react";
 import { withKnobs } from "@storybook/addon-knobs";
 import { InputStory } from "./Input.stories.styles";
-
 import InputExample from "./examples/InputExample";
 import ShowcaseStory from "./examples/Showcase";
 import SizesStory from "./examples/Sizes";

@@ -1,10 +1,10 @@
 import React from "react";
 import { select } from "@storybook/addon-knobs";
 import styled from "styled-components";
-import tokens from "@paprika/tokens";
-import stylers from "@paprika/stylers";
+import tokens from "tokens";
+import stylers from "stylers";
 import { CenteredStory } from "storybook/assets/styles/common.styles";
-import Button from "@paprika/button";
+import Button from "packages/Button";
 import Popover from "../../src";
 
 const PositioningElementStyled = styled.div`

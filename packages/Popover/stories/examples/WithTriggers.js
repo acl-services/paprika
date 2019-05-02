@@ -2,8 +2,8 @@
 import React from "react";
 import styled from "styled-components";
 import { CenteredStory } from "storybook/assets/styles/common.styles";
-import Icon from "@paprika/icon/lib/InfoCircle";
-import Button from "@paprika/button";
+import Icon from "packages/Icon/src/InfoCircle";
+import Button from "packages/Button";
 import Popover from "../../src";
 
 const Gap = styled.div`

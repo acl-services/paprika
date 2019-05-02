@@ -1,6 +1,6 @@
 import styled from "styled-components";
-import tokens from "@paprika/tokens";
-import stylers from "@paprika/stylers";
+import tokens from "tokens";
+import stylers from "stylers";
 
 export const Box = styled.div`
   border: 1px solid ${tokens.border.color};
