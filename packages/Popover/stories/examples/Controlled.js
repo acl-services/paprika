@@ -1,6 +1,6 @@
 import React from "react";
 import { CenteredStory } from "storybook/assets/styles/common.styles";
-import Button from "packages/Button";
+import Button from "packages/Button/src";
 import Popover from "../../src";
 
 export default class ExampleStory extends React.Component {

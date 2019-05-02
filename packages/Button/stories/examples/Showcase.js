@@ -6,7 +6,7 @@ import { ShirtSizes } from "helpers/src/customPropTypes";
 import AddIcon from "packages/Icon/src/Add";
 import TimesIcon from "packages/Icon/src/Times";
 import InfoIcon from "packages/Icon/src/InfoCircle";
-import Heading from "packages/Heading";
+import Heading from "packages/Heading/src";
 import Button from "../../src";
 
 function clickHandler() {
