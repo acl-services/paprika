@@ -7,7 +7,7 @@ import AddIcon from "packages/Icon/src/Add";
 import TimesIcon from "packages/Icon/src/Times";
 import InfoIcon from "packages/Icon/src/InfoCircle";
 import Heading from "packages/Heading";
-import Button from "../..";
+import Button from "../../src";
 
 function clickHandler() {
   action("Clicked a button")();
