@@ -21,6 +21,9 @@
     "classnames": "^2.2.6",
     "prop-types": "^15.7.2"
   },
+  "devDependencies": {
+    "@paprika/heading": "^0.1.0",
+  },
   "peerDependencies": {
     "react": "^16.4.0",
     "react-dom": "^16.4.2",
