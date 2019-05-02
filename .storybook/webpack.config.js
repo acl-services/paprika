@@ -20,8 +20,8 @@ module.exports = {
       helpers: path.resolve("./packages/helpers/"),
       packages: path.resolve("./packages/"),
       storybook: path.resolve("./.storybook/"),
-      stylers: path.resolve("./packages/Stylers/"),
-      tokens: path.resolve("./packages/Tokens/"),
+      stylers: path.resolve("./packages/Stylers/src/"),
+      tokens: path.resolve("./packages/Tokens/src/"),
     },
   },
 };
