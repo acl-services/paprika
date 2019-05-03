@@ -52,12 +52,30 @@ $ yarn storybook
 
 ### run test
 
-To be implemented [#19](https://github.com/acl-services/paprika/issues/19)
+We use [jest](https://jestjs.io/docs/en/expect) and [react-testing-library](https://github.com/testing-library/react-testing-library) as one of our tools for testing.
+
+```sh
+  yarn test
+```
+
+or
+
+For debugging your jest test via chrome, just run the command below, [more info](https://artsy.github.io/blog/2018/08/24/How-to-debug-jest-tests/)
+
+```sh
+  yarn test:debug
+```
 
 ### run docz
 
 ```sh
 $ yarn docz:dev
+```
+
+for building it
+
+```sh
+$ yarn docz:build
 ```
 
 ### minimum requirements

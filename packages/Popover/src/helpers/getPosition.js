@@ -29,8 +29,8 @@ const getAdjustedContentCoordinates = ({ x, y, contentRect, targetRect, scrollRe
   const overflowsViewportTop = y < boundary.top;
   const overflowsViewportBottom = y + contentRect.height > boundary.bottom;
 
-  let newX = x;
-  let newY = y;
+  let newX = Number.isNaN(x) ? 0 : x;
+  let newY = Number.isNaN(y) ? 0 : y;
 
   if (overflowsViewportLeft && !isOnRightSide) {
     newX = alignVert ? boundary.left + edgePadding : (newX = targetRect.x + targetRect.width + offset);
