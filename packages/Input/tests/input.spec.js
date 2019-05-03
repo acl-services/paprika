@@ -4,7 +4,7 @@ import Input from "../src";
 
 describe("Input", () => {
   it("should be visible", () => {
-    const { container } = render(<Input placeholder="First Name" size="large" />);
+    const { container } = render(<Input onChange={() => {}} placeholder="First Name" size="large" />);
     expect(container.firstChild.classList.contains("form-input--large")).toBe(true);
   });
 });
