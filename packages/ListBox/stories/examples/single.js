@@ -86,10 +86,18 @@ export const OptionProp = () => (
   <ListBox>
     <ListBox.Option label="hero">Punisher</ListBox.Option>
     <ListBox.Option value="hero">Catwoman</ListBox.Option>
-    <ListBox.Option preventDefaultOnSelect>Venom</ListBox.Option>
+    <ListBox.Option>Venom</ListBox.Option>
     <ListBox.Option>Thunderbolts</ListBox.Option>
     <ListBox.Option>Deadpool</ListBox.Option>
     <ListBox.Option>Spawn</ListBox.Option>
     <ListBox.Option>Wolverine</ListBox.Option>
+  </ListBox>
+);
+
+export const WithPreventDefaultOnSelect = () => (
+  <ListBox>
+    <ListBox.Option preventDefaultOnSelect>Punisher</ListBox.Option>
+    <ListBox.Option preventDefaultOnSelect>Catwoman</ListBox.Option>
+    <ListBox.Option preventDefaultOnSelect>Venom</ListBox.Option>
   </ListBox>
 );

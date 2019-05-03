@@ -84,7 +84,7 @@ describe("ListBox.Option single select", () => {
   it("should show value of label prop in trigger", () => {
     const planetV = <img alt="planetvenus" data-qa-anchor="planetvenus" src="#" />;
     const planetJ = <img alt="planetjupiter" src="#" />;
-    const { debug, getByTestId, getByText } = render(
+    const { getByTestId, getByText } = render(
       <ListBox hasFilter>
         <ListBox.Option label="venus">{planetV}</ListBox.Option>
         <ListBox.Option label="jupiter">{planetJ}</ListBox.Option>
@@ -94,19 +94,26 @@ describe("ListBox.Option single select", () => {
     fireEvent.click(getByTestId("trigger"));
     fireEvent.click(getByTestId("planetvenus"));
     expect(getByTestId("trigger")).toHaveTextContent(/venus/i);
-    debug();
+  });
+
+  it("should prevent default selection ability", () => {
+    const { debug, getByText, openSelect, selectVenus, getByTestId, container } = renderComponent({
+      preventDefaultOnSelect: true,
+    });
+
+    openSelect();
+    selectVenus();
+    expect(getByTestId("trigger")).toHaveTextContent(/select one of/i);
   });
 
   // filter doesnt work, cant test filter by label
   // it("should filter by label prop", () => {
   //   const planetV = <img alt="venus" src="#" />;
-  //   const planetJ = "jup";
+  //   const planetJ = <img alt="planetjupiter" src="#" />;
   //   const { debug, getByTestId } = render(
   //     <ListBox>
-  //       <ListBox.Option value={planetV}>venus</ListBox.Option>
-  //       <ListBox.Option value={planetJ}>jupiter</ListBox.Option>
-  //       <ListBox.Option value="notaplanet">pluto</ListBox.Option>
-  //       <ListBox.Option label="home">earth</ListBox.Option>
+  //       <ListBox.Option label="venus">{planetV}</ListBox.Option>
+  //       <ListBox.Option label="jupiter">{planetJ}</ListBox.Option>
   //     </ListBox>
   //   );
   //
