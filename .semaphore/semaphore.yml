@@ -75,5 +75,6 @@ blocks:
       jobs:
         - name: Screener
           commands:
+            - yarn install
             - yarn storybook:build
             - yarn storybook:screener
