@@ -76,5 +76,6 @@ blocks:
         - name: Screener
           commands:
             - yarn install
+            - npx lerna bootstrap
             - yarn storybook:build
             - yarn storybook:screener

@@ -1,6 +1,6 @@
 import styled from "styled-components";
 import { Story } from "storybook/assets/styles/common.styles";
-import tokens from "tokens";
+import tokens from "@paprika/tokens";
 
 // Common Button story styles
 

@@ -3,7 +3,7 @@ import { select, text, number } from "@storybook/addon-knobs";
 import PropTypes from "prop-types";
 import styled from "styled-components";
 import { CenteredStory } from "storybook/assets/styles/common.styles";
-import Button from "packages/Button/src";
+import Button from "@paprika/button";
 import Popover from "../../src";
 
 const PopoverContainer = styled.div`

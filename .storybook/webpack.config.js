@@ -17,11 +17,7 @@ module.exports = {
   },
   resolve: {
     alias: {
-      helpers: path.resolve("./packages/helpers/"),
-      packages: path.resolve("./packages/"),
       storybook: path.resolve("./.storybook/"),
-      stylers: path.resolve("./packages/Stylers/src/"),
-      tokens: path.resolve("./packages/Tokens/src/"),
     },
   },
 };

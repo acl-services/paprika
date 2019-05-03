@@ -2,9 +2,9 @@ import React from "react";
 import { action } from "@storybook/addon-actions";
 import styled from "styled-components";
 import { Rule } from "storybook/assets/styles/common.styles";
-import tokens from "tokens";
-import PlusIcon from "packages/Icon/src/Add";
-import InfoIcon from "packages/Icon/src/InfoCircle";
+import tokens from "@paprika/tokens";
+import PlusIcon from "@paprika/icon/lib/Add";
+import InfoIcon from "@paprika/icon/lib/InfoCircle";
 import { ButtonStory } from "../Button.stories.styles";
 import Button from "../../src";
 

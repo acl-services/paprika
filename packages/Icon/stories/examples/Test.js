@@ -1,14 +1,14 @@
 import React from "react";
 import { Story } from "storybook/assets/styles/common.styles";
-import tokens from "tokens";
-import stylers from "stylers";
+import tokens from "@paprika/tokens";
+import stylers from "@paprika/stylers";
 
-import AddIcon from "packages/Icon/src/Add";
-import CloseIcon from "packages/Icon/src/Times";
-import RefreshIcon from "packages/Icon/src/Refresh";
-import SearchIcon from "packages/Icon/src/Search";
-import TrashIcon from "packages/Icon/src/Trashbin";
-import ArrowIcon from "packages/Icon/src/ArrowRight";
+import AddIcon from "@paprika/icon/lib/Add";
+import CloseIcon from "@paprika/icon/lib/Times";
+import RefreshIcon from "@paprika/icon/lib/Refresh";
+import SearchIcon from "@paprika/icon/lib/Search";
+import TrashIcon from "@paprika/icon/lib/Trashbin";
+import ArrowIcon from "@paprika/icon/lib/ArrowRight";
 
 const ExampleStory = () => (
   <Story
