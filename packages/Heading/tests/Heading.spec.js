@@ -10,9 +10,15 @@ describe("Heading", () => {
   });
 
   it("should provide a safe level value if given value is out of bounds", () => {
+    const temp = console.error;
+    // avoid the error Proptype error console.error when Heading level is > 6
+    console.error = () => {};
+
     const { container } = render(<Heading level={99}>Nice</Heading>);
 
     expect(container.querySelector("h6")).toBeInTheDocument();
+    // restoring console error
+    console.error = temp;
   });
 
   it("should render div element if isSemantic is false", () => {
