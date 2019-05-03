@@ -3,23 +3,23 @@ import stylers from "@paprika/stylers";
 
 const iconButtonSizes = {
   small: `
-    ${stylers.fontSize(-3)};
+    ${stylers.fontSize(-2)};
     height: ${stylers.spacer(3)}; 
-    line-height: ${stylers.spacer(3)};  
+    line-height: ${stylers.spacer(3) - 2};  
     padding: 0; 
     width: ${stylers.spacer(3)}; 
   }`,
   medium: `
     ${stylers.fontSize(1)};
     height: ${stylers.spacer(4)}; 
-    line-height: ${stylers.spacer(4)};  
+    line-height: ${stylers.spacer(4) - 2};  
     padding: 0; 
     width: ${stylers.spacer(4)}; 
   }`,
   large: `
     ${stylers.fontSize(3)};
     height: ${stylers.spacer(5)}; 
-    line-height: ${stylers.spacer(5)};  
+    line-height: ${stylers.spacer(5) - 2};  
     padding: 0; 
     width: ${stylers.spacer(5)}; 
   }`,

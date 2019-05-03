@@ -17,7 +17,6 @@ module.exports = {
   },
   resolve: {
     alias: {
-      tokens: path.resolve("./packages/Tokens/"),
       storybook: path.resolve("./.storybook/"),
     },
   },

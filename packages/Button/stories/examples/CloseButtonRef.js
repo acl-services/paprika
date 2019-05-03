@@ -1,7 +1,7 @@
 import React from "react";
 import { action } from "@storybook/addon-actions";
 import { Story, Small } from "storybook/assets/styles/common.styles";
-import Button from "../..";
+import Button from "../../src";
 
 function clickHandler() {
   action("Clicked a button")();

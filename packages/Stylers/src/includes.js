@@ -64,7 +64,7 @@ export const placeholder = `
 
   .is-disabled &, &[disabled] {
     ${disabledPlaceholder};
-  }  
+  }
 `;
 
 export const placeholders = `
