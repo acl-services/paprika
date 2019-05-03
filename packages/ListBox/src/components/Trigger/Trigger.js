@@ -130,6 +130,7 @@ export default function Trigger(props) {
         {state.selectedOptions.length && hasClearButton ? (
           <RawButtonClearButtonStyled
             hasRenderTrigger={hasRenderTrigger}
+            data-qa-anchor="clear-button"
             isDisabled={isDisabled}
             onClick={handleClickClear}
             isOpen={state.isOpen}
