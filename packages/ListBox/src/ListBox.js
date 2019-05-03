@@ -83,6 +83,9 @@ export const propTypes = {
   /** Overrides the filter function and delegate the responsibility to the developer */
   filter: PropTypes.func,
 
+  /** When is true will not display selected options on the results list after inputing a string for the filter */
+  filterExcludeSelectedOptions: PropTypes.func,
+
   /** z-index for the popover */
   zIndex: PropTypes.number,
 };
@@ -90,6 +93,7 @@ export const propTypes = {
 export const defaultProps = {
   children: null,
   filter: null,
+  filterExcludeSelectedOptions: false,
   getScrollContainer: null,
   hasClearButton: false,
   hasFilter: false,
@@ -134,7 +138,7 @@ export function ListBox(props) {
       <Trigger onClickClear={onClickClear} renderTrigger={renderTrigger} placeholder={placeholder} />
       <Content>
         <Box>
-          <Filter filter={props.filter} />
+          <Filter filterExcludeSelectedOptions={props.filterExcludeSelectedOptions} filter={props.filter} />
           <List height={height}>
             <Options onFooterFound={handleFooterFound}>{children}</Options>
           </List>
@@ -201,6 +205,7 @@ const ListBoxContainer = React.forwardRef((props, ref) => {
     placeholder,
     renderCheckbox,
     renderTrigger,
+    filterExcludeSelectedOptions,
     ...moreProps
   } = props;
 
@@ -214,6 +219,7 @@ const ListBoxContainer = React.forwardRef((props, ref) => {
     onSelected,
     placeholder,
     renderTrigger,
+    filterExcludeSelectedOptions,
   };
 
   if (isInline) {

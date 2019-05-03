@@ -7,10 +7,11 @@ import { FilterContainerStyled, FilterInputStyled, FilterSearchIconStyled } from
 
 const propTypes = {
   filter: PropTypes.func,
+  filterExcludeSelectedOptions: PropTypes.bool,
   forceShowFilter: PropTypes.bool,
-  onKeyDown: PropTypes.func,
   hasSearchIcon: PropTypes.bool,
   onChangeFilter: PropTypes.func,
+  onKeyDown: PropTypes.func,
   placeholder: PropTypes.string,
   renderFilter: PropTypes.func,
   value: PropTypes.string,
@@ -18,10 +19,11 @@ const propTypes = {
 
 const defaultProps = {
   filter: null,
+  filterExcludeSelectedOptions: false,
   forceShowFilter: false,
-  onKeyDown: null,
   hasSearchIcon: true,
   onChangeFilter: null,
+  onKeyDown: null,
   placeholder: "Filter...",
   renderFilter: null,
   value: null,
@@ -74,9 +76,13 @@ export default function Filter(props) {
         return [];
       }
 
-      return filteredOptions
-        .map(key => Number.parseInt(key, 10))
-        .filter(keyInt => !state.selectedOptions.includes(keyInt));
+      if (props.filterExcludeSelectedOptions) {
+        return filteredOptions
+          .map(key => Number.parseInt(key, 10))
+          .filter(keyInt => !state.selectedOptions.includes(keyInt));
+      }
+
+      return filteredOptions.map(key => Number.parseInt(key, 10));
     }
 
     return [];
