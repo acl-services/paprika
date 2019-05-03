@@ -1,8 +1,6 @@
 import React from "react";
-import { configure } from "react-testing-library";
-
-import { render, fireEvent } from "react-testing-library";
-import ListBox from "../../../";
+import { render, fireEvent, configure } from "react-testing-library";
+import ListBox from "../../../src";
 
 configure({ testIdAttribute: "data-qa-anchor" });
 
@@ -241,7 +239,7 @@ describe("Listbox single select", () => {
   // FAILS
   // TypeError: state.refListBox.current.scrollTo is not a function
   // it("should display filtered options by 'v' input", () => {
-  //   const { getByTestId, openSelect, debug } = renderComponent({
+  //   const { getByTestId, openSelect, debug, getByText } = renderComponent({
   //     hasFilter: true,
   //   });
   //
@@ -265,7 +263,7 @@ describe("Listbox single select", () => {
   //   //expect(queryByTestId("clear-button")).not.toBeInTheDocument();
   //   openSelect();
   //   selectVenus();
-  //   debug();
+  //   //debug();
   //   expect(getByTestId("clear-button")).not.toBeVisible();
   // });
 });

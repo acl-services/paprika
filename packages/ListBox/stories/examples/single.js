@@ -222,32 +222,3 @@ export const WithCustomFilter = () => (
     </ListBox.Group>
   </ListBox>
 );
-
-export const WithOnClick = () => (
-  <ListBox isMulti>
-    <ListBox.Option
-      preventDefaultOnSelect
-      onClick={() => {
-        alert("bla bal");
-      }}
-    >
-      Punisher
-    </ListBox.Option>
-    <ListBox.Option>Catwoman</ListBox.Option>
-    <ListBox.Option>Venom</ListBox.Option>
-  </ListBox>
-);
-
-export const WithOnSelected = () => (
-  <ListBox
-    isMulti
-    zIndex={10000}
-    onDeselected={() => {
-      alert("yeet");
-    }}
-  >
-    <ListBox.Option>Punisher</ListBox.Option>
-    <ListBox.Option>Catwoman</ListBox.Option>
-    <ListBox.Option>Venom</ListBox.Option>
-  </ListBox>
-);
