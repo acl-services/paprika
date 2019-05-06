@@ -4,7 +4,7 @@ import ListBox from "../../..";
 
 configure({ testIdAttribute: "data-qa-anchor" });
 
-function renderComponent() {
+function renderComponent(props = {}) {
   const rendered = render(
     <ListBox>
       <ListBox.Group groupId="bigplanets" label="Big-Planets">
@@ -41,7 +41,6 @@ describe("ListBox.Group single select", () => {
 
     openSelect();
     fireEvent.click(getByText(/big-planets/i));
-    fireEvent.click(getByText(/small-planets/i));
     expect(getByTestId("trigger")).toHaveTextContent(/Select one of/i);
   });
 });

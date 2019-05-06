@@ -53,16 +53,16 @@ describe("ListBox.Option", () => {
     expect(getByTestId("trigger")).toHaveTextContent(/venus/i);
   });
 
-  // it("calls onClick on selection", () => {
-  //   const onClickFunc = jest.fn();
-  //   const { openSelect, selectVenus } = renderComponent({
-  //     onClick: onClickFunc,
-  //   });
-  //
-  //   openSelect();
-  //   selectVenus();
-  //   expect(onClickFunc).toHaveBeenCalled();
-  // });
+  it("calls onClick on selection", () => {
+    const onClickFunc = jest.fn();
+    const { getByTestId, openSelect, selectVenus } = renderComponent({
+      onClick: onClickFunc,
+    });
+
+    openSelect();
+    selectVenus();
+    expect(onClickFunc).toHaveBeenCalled();
+  });
 
   it("should have custom checker", () => {
     const onRenderingCheckbox = jest.fn(isChecked => {
@@ -73,16 +73,16 @@ describe("ListBox.Option", () => {
     });
 
     openSelect();
-    expect(getByText(/🙅‍venus/i)).toBeInTheDocument();
+    expect(getByText(/🙅‍venus/i)).toBeInTheDocument;
     expect(queryByText(/🙅‍jupiter/i)).toBeNull();
     selectVenus();
-    expect(getByText(/✅venus/i)).toBeInTheDocument();
+    expect(getByText(/✅venus/i)).toBeInTheDocument;
   });
 
   it("should show value of label prop in trigger", () => {
-    const planetV = <img alt="planetvenus" src="#" />;
+    const planetV = <img alt="planetvenus" data-qa-anchor="planetvenus" src="#" />;
     const planetJ = <img alt="planetjupiter" src="#" />;
-    const { getByTestId, getByAltText } = render(
+    const { getByTestId, getByText } = render(
       <ListBox hasFilter>
         <ListBox.Option label="venus">{planetV}</ListBox.Option>
         <ListBox.Option label="jupiter">{planetJ}</ListBox.Option>
@@ -90,12 +90,12 @@ describe("ListBox.Option", () => {
     );
 
     fireEvent.click(getByTestId("trigger"));
-    fireEvent.click(getByAltText("planetvenus"));
+    fireEvent.click(getByTestId("planetvenus"));
     expect(getByTestId("trigger")).toHaveTextContent(/venus/i);
   });
 
   it("should prevent default selection ability", () => {
-    const { openSelect, selectVenus, getByTestId } = renderComponent({
+    const { debug, getByText, openSelect, selectVenus, getByTestId, container } = renderComponent({
       preventDefaultOnSelect: true,
     });
 
