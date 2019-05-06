@@ -222,3 +222,51 @@ export const WithCustomFilter = () => (
     </ListBox.Group>
   </ListBox>
 );
+
+export const OptionProp = () => (
+  <ListBox>
+    <ListBox.Option label="hero">Punisher</ListBox.Option>
+    <ListBox.Option value="hero">Catwoman</ListBox.Option>
+    <ListBox.Option>Venom</ListBox.Option>
+    <ListBox.Option>Thunderbolts</ListBox.Option>
+    <ListBox.Option>Deadpool</ListBox.Option>
+    <ListBox.Option>Spawn</ListBox.Option>
+    <ListBox.Option>Wolverine</ListBox.Option>
+  </ListBox>
+);
+
+export const WithPreventDefaultOnSelect = () => (
+  <ListBox>
+    <ListBox.Option preventDefaultOnSelect>Punisher</ListBox.Option>
+    <ListBox.Option preventDefaultOnSelect>Catwoman</ListBox.Option>
+    <ListBox.Option preventDefaultOnSelect>Venom</ListBox.Option>
+  </ListBox>
+);
+
+export const WithContainerScroll = () => (
+  <React.Fragment>
+    <div style={{ height: 900 }}>p</div>
+    <ListBox getScrollContainer={() => document.querySelector("#root > div")}>
+      <ListBox.Option>Punisher</ListBox.Option>
+      <ListBox.Option>Catwoman</ListBox.Option>
+      <ListBox.Option>Venom</ListBox.Option>
+      <ListBox.Option>Thunderbolts</ListBox.Option>
+      <ListBox.Option>Deadpool</ListBox.Option>
+      <ListBox.Option>Spawn</ListBox.Option>
+      <ListBox.Option>Wolverine</ListBox.Option>
+    </ListBox>
+    <div style={{ height: 1000 }}>p</div>
+  </React.Fragment>
+);
+
+export const WithPreventTriggerBlur = () => (
+  <ListBox preventOnBlurForTriggerListBox={true}>
+    <ListBox.Option>Punisher</ListBox.Option>
+    <ListBox.Option>Catwoman</ListBox.Option>
+    <ListBox.Option>Venom</ListBox.Option>
+    <ListBox.Option>Thunderbolts</ListBox.Option>
+    <ListBox.Option>Deadpool</ListBox.Option>
+    <ListBox.Option>Spawn</ListBox.Option>
+    <ListBox.Option>Wolverine</ListBox.Option>
+  </ListBox>
+);
