@@ -5,7 +5,10 @@ import closeButtonStyles from "./CloseButton.styles";
 import IconButton from "./IconButton";
 
 const propTypes = {
+  /** Descriptive a11y text for assistive technologies. By default, text from children node will be used. */
   a11yText: PropTypes.string,
+
+  /** If the close button will be rendered on a dark background and will use inverted colours. */
   isDark: PropTypes.bool,
 };
 
