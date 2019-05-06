@@ -25,10 +25,10 @@ describe("RawButton", () => {
   it("should render with default props", () => {
     const { getByText, getByRole, container } = renderComponent();
 
-    expect(getByText(/happy button/i)).toBeVisible();
-    expect(getByRole("button")).toBeVisible();
-    expect(container.querySelector('[tabindex="0"]')).toBeVisible();
-    expect(container.querySelector('[aria-disabled="false"]')).toBeVisible();
+    expect(getByText(/happy button/i)).toBeInTheDocument();
+    expect(getByRole("button")).toBeInTheDocument();
+    expect(container.querySelector('[tabindex="0"]')).toBeInTheDocument();
+    expect(container.querySelector('[aria-disabled="false"]')).toBeInTheDocument();
   });
 
   it("should render with custom props", () => {
@@ -41,11 +41,11 @@ describe("RawButton", () => {
     };
     const { getByRole, container } = renderComponent(customProps);
 
-    expect(container.querySelector('[aria-label="include me"]')).toBeVisible();
-    expect(container.querySelector('[class*="shiny-button"]')).toBeVisible();
-    expect(container.querySelector('[aria-disabled="true"]')).toBeVisible();
-    expect(getByRole("listitem")).toBeVisible();
-    expect(container.querySelector('[tabindex="-1"]')).toBeVisible();
+    expect(container.querySelector('[aria-label="include me"]')).toBeInTheDocument();
+    expect(container.querySelector('[class*="shiny-button"]')).toBeInTheDocument();
+    expect(container.querySelector('[aria-disabled="true"]')).toBeInTheDocument();
+    expect(getByRole("listitem")).toBeInTheDocument();
+    expect(container.querySelector('[tabindex="-1"]')).toBeInTheDocument();
   });
 
   it("should fire onClick callback when clicked", () => {
