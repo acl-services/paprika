@@ -55,7 +55,7 @@ describe("ListBox.Option", () => {
 
   it("calls onClick on selection", () => {
     const onClickFunc = jest.fn();
-    const { getByTestId, openSelect, selectVenus } = renderComponent({
+    const { openSelect, selectVenus } = renderComponent({
       onClick: onClickFunc,
     });
 
@@ -80,9 +80,9 @@ describe("ListBox.Option", () => {
   });
 
   it("should show value of label prop in trigger", () => {
-    const planetV = <img alt="planetvenus" data-qa-anchor="planetvenus" src="#" />;
+    const planetV = <img alt="planetvenus" src="#" />;
     const planetJ = <img alt="planetjupiter" src="#" />;
-    const { getByTestId, getByText } = render(
+    const { getByTestId, getByAltText, getByText } = render(
       <ListBox hasFilter>
         <ListBox.Option label="venus">{planetV}</ListBox.Option>
         <ListBox.Option label="jupiter">{planetJ}</ListBox.Option>
@@ -90,12 +90,12 @@ describe("ListBox.Option", () => {
     );
 
     fireEvent.click(getByTestId("trigger"));
-    fireEvent.click(getByTestId("planetvenus"));
+    fireEvent.click(getByAltText("planetvenus"));
     expect(getByTestId("trigger")).toHaveTextContent(/venus/i);
   });
 
   it("should prevent default selection ability", () => {
-    const { debug, getByText, openSelect, selectVenus, getByTestId, container } = renderComponent({
+    const { openSelect, selectVenus, getByTestId } = renderComponent({
       preventDefaultOnSelect: true,
     });
 
