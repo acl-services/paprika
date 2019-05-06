@@ -41,6 +41,7 @@ describe("ListBox.Group single select", () => {
 
     openSelect();
     fireEvent.click(getByText(/big-planets/i));
+    fireEvent.click(getByText(/small-planets/i));
     expect(getByTestId("trigger")).toHaveTextContent(/Select one of/i);
   });
 });

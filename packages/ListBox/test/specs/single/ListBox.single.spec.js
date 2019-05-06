@@ -160,16 +160,16 @@ describe("Listbox single select", () => {
   // onChange gets called on unmount - soo being called atleast once before selecting any option.
   // value returned from selecting options is undefined
   it("calls onChange", () => {
-    // const onOptionClick = args => {
-    //   console.log(`-----------${args}`);
-    // };
-    const onOptionClick = jest.fn();
+    const onOptionClick = args => {
+      console.log(`-----------${args}`);
+    };
+
     const { openSelect, selectVenus, getByText } = renderComponent({
       onChange: onOptionClick,
     });
 
     openSelect();
-    selectVenus();
+    // selectVenus();
     openSelect();
     fireEvent.click(getByText(/jupiter/i));
     console.log("Helloo", onOptionClick.mock);
@@ -235,6 +235,19 @@ describe("Listbox single select", () => {
     expect(getByText(/🙅‍venus/i)).toBeInTheDocument();
     expect(getByText(/✅jupiter/i)).toBeInTheDocument();
   });
+
+  // FAILS
+  // TypeError: state.refListBox.current.scrollTo is not a function
+  // it("should display filtered options by 'v' input", () => {
+  //   const { getByTestId, openSelect, debug } = renderComponent({
+  //     hasFilter: true,
+  //   });
+  //
+  //   openSelect();
+  //   expect(getByTestId("list-filter")).toBeInTheDocument();
+  //   fireEvent.change(getByTestId("list-filter-input"), { target: { value: "j" } });
+  //   expect(getByText(/venus/i)).toBeInTheDocument();
+  // });
 
   // FAILS
   // clear button still renders and still visible
