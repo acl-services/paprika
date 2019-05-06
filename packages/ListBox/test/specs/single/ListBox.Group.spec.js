@@ -30,9 +30,17 @@ function renderComponent(props = {}) {
 
 describe("ListBox.Group single select", () => {
   it("should display group names in dropdown", () => {
-    const { openSelect, selectVenus, getByText, getByTestId, debug } = renderComponent();
+    const { getByText } = renderComponent();
 
     expect(getByText(/big-planets/i));
     expect(getByText(/small-planets/i));
+  });
+
+  it("should not select group names", () => {
+    const { openSelect, getByText, getByTestId } = renderComponent();
+
+    openSelect();
+    fireEvent.click(getByText(/big-planets/i));
+    expect(getByTestId("trigger")).toHaveTextContent(/Select one of/i);
   });
 });

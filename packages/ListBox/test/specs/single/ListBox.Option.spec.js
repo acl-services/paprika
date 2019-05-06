@@ -1,8 +1,6 @@
 import React from "react";
-import { configure } from "react-testing-library";
-
-import { render, fireEvent } from "react-testing-library";
-import ListBox from "../../../";
+import { configure, render, fireEvent } from "react-testing-library";
+import ListBox from "../../..";
 
 configure({ testIdAttribute: "data-qa-anchor" });
 
@@ -24,7 +22,7 @@ function renderComponent(props = {}) {
   };
 }
 
-describe("ListBox.Option single select", () => {
+describe("ListBox.Option", () => {
   it("should be disabled", () => {
     const { openSelect, selectVenus, getByText, getByTestId } = renderComponent({
       isDisabled: true,
@@ -55,7 +53,7 @@ describe("ListBox.Option single select", () => {
     expect(getByTestId("trigger")).toHaveTextContent(/venus/i);
   });
 
-  it("calls onClick on selecting option", () => {
+  it("calls onClick on selection", () => {
     const onClickFunc = jest.fn();
     const { getByTestId, openSelect, selectVenus } = renderComponent({
       onClick: onClickFunc,
