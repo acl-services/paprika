@@ -22,7 +22,7 @@ function renderComponent(props = {}) {
 }
 
 describe("RawButton", () => {
-  it("should render with default props", () => {
+  it("Renders with default props", () => {
     const { getByText, getByRole, container } = renderComponent();
 
     expect(getByText(/happy button/i)).toBeInTheDocument();
@@ -31,22 +31,22 @@ describe("RawButton", () => {
     expect(container.querySelector('[aria-disabled="false"]')).toBeInTheDocument();
   });
 
-  it("should render with custom props", () => {
+  it("Renders with custom props", () => {
     const customProps = {
-      a11yText: "include me",
+      a11yText: "button which is happy",
       isDisabled: true,
       role: "listitem",
       tabIndex: -1,
     };
-    const { getByRole, container } = renderComponent(customProps);
+    const { getByLabelText, getByRole, container } = renderComponent(customProps);
 
-    expect(container.querySelector('[aria-label="include me"]')).toBeInTheDocument();
+    expect(getByLabelText("button which is happy")).toBeInTheDocument();
     expect(container.querySelector('[aria-disabled="true"]')).toBeInTheDocument();
     expect(getByRole("listitem")).toBeInTheDocument();
     expect(container.querySelector('[tabindex="-1"]')).toBeInTheDocument();
   });
 
-  it("should fire onClick callback when clicked", () => {
+  it("Fires onClick callback when clicked", () => {
     const onClick = jest.fn();
     const { getByText } = renderComponent({ onClick });
     fireEvent.click(getByText(/happy button/i));
@@ -54,7 +54,7 @@ describe("RawButton", () => {
     expect(onClick).toHaveBeenCalled();
   });
 
-  it("should fire onClick callback when keypressed", () => {
+  it("Fires onClick callback when keypressed", () => {
     const onClick = jest.fn();
     const { getByText } = renderComponent({ onClick });
     const buttonElement = getByText(/happy button/i);
@@ -64,7 +64,7 @@ describe("RawButton", () => {
     expect(onClick).toHaveBeenCalledTimes(2);
   });
 
-  it("should not fire onClick callback when disabled", () => {
+  it("Does not fire onClick callback when disabled", () => {
     const onClick = jest.fn();
     const { getByText } = renderComponent({ onClick, isDisabled: true });
     const buttonElement = getByText(/happy button/i);
@@ -75,7 +75,7 @@ describe("RawButton", () => {
     expect(onClick).not.toHaveBeenCalled();
   });
 
-  it("should propagate click events by default", () => {
+  it("Propagates click events by default", () => {
     const onClick = jest.fn();
     const bubbledClick = jest.fn();
     const { getByText } = render(
@@ -89,7 +89,7 @@ describe("RawButton", () => {
     expect(bubbledClick).toHaveBeenCalled();
   });
 
-  it("should not propagate click events when canPropagate=false", () => {
+  it("Does not propagate click events when canPropagate=false", () => {
     const onClick = jest.fn();
     const bubbledClick = jest.fn();
     const { getByText } = render(
@@ -105,7 +105,7 @@ describe("RawButton", () => {
     expect(bubbledClick).not.toHaveBeenCalled();
   });
 
-  it("should be focussable via ref", () => {
+  it("Is focussable via ref", () => {
     const buttonRef = React.createRef();
     renderComponent({ ref: buttonRef });
     buttonRef.current.focus();
@@ -113,7 +113,7 @@ describe("RawButton", () => {
     expect(document.activeElement.getAttribute("role")).toEqual("button");
   });
 
-  it("should be focussable via callback ref", () => {
+  it("Is focussable via callback ref", () => {
     let buttonRef;
     const setRef = component => {
       buttonRef = component;
