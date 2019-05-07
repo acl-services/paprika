@@ -1,0 +1,40 @@
+---
+name: examples
+route: "/listbox/examples"
+menu: "Listbox"
+---
+
+# More examples
+
+## onChange Signature
+
+The listbox will return the selected option's index or an array of
+selected option's indexes depending if it's single or multiple selection.
+
+Single select case:
+
+```js
+<ListBox onChange={
+  (selectedIndex, options, eventType) => {
+    const optionSelected = options[selectedIndex];
+    const value = optionSelected.value;
+    const label = optionSelected.label;
+  }}
+>
+```
+
+Multiple select case:
+
+```js
+<ListBox isMulti onChange={
+  (selectedIndexesArray, options, indexSelected, eventType) => {
+      const values = selectedIndexesArray.map(option => {
+        return option.value;
+      })
+
+      // or
+      const recentlyAddedValue = options[indexSelected].value;
+    }
+  }
+>
+```

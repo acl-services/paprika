@@ -1,11 +1,11 @@
 import useListBox from "../../../useListBox";
-import applyCallback from "../../../helpers/applyCallback";
+import applyOnChange from "../../../helpers/applyOnChange";
 
 function selectSingleOption({ activeOptionIndex, isPopoverOpen, state, dispatch }) {
   const hasPreventDefaultOnSelect = state.options[activeOptionIndex].preventDefaultOnSelect;
 
   if (!hasPreventDefaultOnSelect) {
-    applyCallback(state, dispatch, state.onChange);
+    applyOnChange({ ...state, eventType: "listbox:option-selected" }, dispatch, state.onChange);
   }
 
   dispatch({
@@ -39,7 +39,7 @@ function selectMultipleOption({ activeOptionIndex, state, dispatch }) {
     selectedOptions: selectedOptionsArray,
   };
 
-  applyCallback({ ...state, ...payload }, dispatch, state.onChange);
+  applyOnChange({ ...state, ...payload, eventType: "listbox:option-selected" }, dispatch, state.onChange);
 
   dispatch({
     type: useListBox.types.selectMultipleOption,
@@ -167,13 +167,15 @@ export const handleClickOption = ({ props, state, dispatch }) => event => {
   const { index } = props;
   const { options, hasFilter, isMulti, refFilterInput } = state;
 
-  const option = options[index];
-  if (state.isDisabled || option.preventDefaultOnSelect) {
-    if (props.onClick) {
-      applyCallback(state, dispatch, props.onClick, event);
-    }
-
+  if (state.isDisabled) {
     return;
+  }
+
+  if (options[index].preventDefaultOnSelect) {
+    // this will not selected the option, but will report that was clicked it.
+    if (props.onClick) {
+      applyOnChange({ ...state, eventType: "listbox:click:prevent-default" }, dispatch, props.onClick, event);
+    }
   }
 
   if (state.refListBox.current.contains(event.target) && document.activeElement === document.body && !hasFilter) {
@@ -182,12 +184,6 @@ export const handleClickOption = ({ props, state, dispatch }) => event => {
 
   if (hasFilter && isMulti) {
     refFilterInput.current.focus();
-  }
-
-  if (props.onClick) {
-    // no sure if this is the state they want
-    // since haven't run the entire cycle befor executing it
-    applyCallback(state, dispatch, props.onClick, event);
   }
 
   if (isMulti) {

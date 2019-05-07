@@ -1,7 +1,6 @@
 import React from "react";
 import PropTypes from "prop-types";
 import reducer from "./reducer";
-import applyCallback from "../helpers/applyCallback";
 import { getDataOptions } from "../components/Option/helpers/optionState";
 
 export const StoreContext = React.createContext();
@@ -73,8 +72,6 @@ function initializeState(props) {
     shouldContentScroll: true,
     triggerWidth: 0,
   };
-
-  applyCallback({ ...initialState, eventType: "listbox:loaded" }, null, onChange);
 
   return {
     ...initialState,

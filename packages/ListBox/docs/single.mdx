@@ -1,0 +1,108 @@
+---
+name: single selection
+route: "/listbox/single"
+menu: "Listbox"
+---
+
+<!------------------- IMPORTS ------------------>
+
+import ListBox from "../src";
+import { Playground, PropsTable } from "docz";
+
+## Getting started
+
+```sh
+  npm install @paprika/listbox
+```
+
+or
+
+```sh
+  yarn add @paprika/listbox
+```
+
+## Basic examples
+
+### Simple single select
+
+<Playground>
+  <ListBox zIndex={10000} getScrollContainer={() => document.querySelector("#root > div")}>
+    <ListBox.Option>Spiderman</ListBox.Option>
+    <ListBox.Option>Venom</ListBox.Option>
+    <ListBox.Option>Carnage</ListBox.Option>
+  </ListBox>
+</Playground>
+
+```js
+<ListBox>
+  <ListBox.Option>Spiderman</ListBox.Option>
+  <ListBox.Option>Venom</ListBox.Option>
+  <ListBox.Option>Carnage</ListBox.Option>
+</ListBox>
+```
+
+### Single select with filter
+
+<Playground>
+  <ListBox zIndex={10000} hasFilter getScrollContainer={() => document.querySelector("#root > div")}>
+    <ListBox.Option>Spiderman</ListBox.Option>
+    <ListBox.Option>Venom</ListBox.Option>
+    <ListBox.Option>Carnage</ListBox.Option>
+    <ListBox.Option>Doctor Octopus</ListBox.Option>
+    <ListBox.Option>Batman</ListBox.Option>
+    <ListBox.Option>Joker</ListBox.Option>
+    <ListBox.Option>Scarecrow</ListBox.Option>
+    <ListBox.Option>Two-Face</ListBox.Option>
+  </ListBox>
+</Playground>
+
+```js
+<Playground>
+  <ListBox hasFilter>
+    <ListBox.Option>Spiderman</ListBox.Option>
+    <ListBox.Option>Venom</ListBox.Option>
+    <ListBox.Option>Carnage</ListBox.Option>
+    <ListBox.Option>Doctor Octopus</ListBox.Option>
+    <ListBox.Option>Batman</ListBox.Option>
+    <ListBox.Option>Joker</ListBox.Option>
+    <ListBox.Option>Scarecrow</ListBox.Option>
+    <ListBox.Option>Two-Face</ListBox.Option>
+  </ListBox>
+</Playground>
+```
+
+### Single select with Groups
+
+<Playground>
+  <ListBox zIndex={10000} getScrollContainer={() => document.querySelector("#root > div")}>
+    <ListBox.Group groupId="spidermanUniverse" label="Spiderman Universe">
+      <ListBox.Option>Spiderman</ListBox.Option>
+      <ListBox.Option>Venom</ListBox.Option>
+      <ListBox.Option>Carnage</ListBox.Option>
+      <ListBox.Option>Doctor Octopus</ListBox.Option>
+    </ListBox.Group>
+    <ListBox.Group groupId="batmanUniverse" label="Batman Universe">
+      <ListBox.Option>Batman</ListBox.Option>
+      <ListBox.Option>Joker</ListBox.Option>
+      <ListBox.Option>Scarecrow</ListBox.Option>
+      <ListBox.Option>Two-Face</ListBox.Option>
+    </ListBox.Group>
+  </ListBox>
+</Playground>
+
+```js
+<ListBox>
+  <ListBox.Group groupId="spidermanUniverse" label="Spiderman Universe">
+    <ListBox.Option>Spiderman</ListBox.Option>
+    <ListBox.Option>Venom</ListBox.Option>
+    <ListBox.Option>Carnage</ListBox.Option>
+    <ListBox.Option>Doctor Octopus</ListBox.Option>
+  </Listbox.Group>
+  <ListBox.Group groupId="batmanUniverse" label="Batman Universe">
+    <ListBox.Option>Batman</ListBox.Option>
+    <ListBox.Option>Joker</ListBox.Option>
+    <ListBox.Option>Scarecrow</ListBox.Option>
+    <ListBox.Option>Two-Face</ListBox.Option>
+  </ListBox.Group>
+</ListBox>
+```

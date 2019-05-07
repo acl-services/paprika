@@ -25,7 +25,7 @@ export default function LazyListBox() {
 
   const groups = ["n", "z", "s"];
 
-  const handleChange = ({ selected, options }) => {
+  const handleChange = (selected, options) => {
     if (!selected.length) return;
 
     selected.forEach(index => {
@@ -36,11 +36,12 @@ export default function LazyListBox() {
     });
   };
 
-  const handleClickAccept = args => {
-    const { selected, options, dispatch: dispatchListBox, types } = args;
+  const handleClickAccept = (selected, options, selectedIndex, more) => {
     const selectedIds = selected.map(id => {
       return options[id].value.id;
     });
+
+    const { dispatch: dispatchListBox, actionTypes: actionTypesListBox } = more;
 
     dispatch({
       type: actionTypes.addSelectedCharacters,
@@ -53,7 +54,7 @@ export default function LazyListBox() {
     });
 
     dispatchListBox({
-      type: types.clear,
+      type: actionTypesListBox.clear,
     });
   };
 

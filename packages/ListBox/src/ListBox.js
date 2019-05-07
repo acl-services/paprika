@@ -93,7 +93,7 @@ export const propTypes = {
 export const defaultProps = {
   children: null,
   filter: null,
-  filterExcludeSelectedOptions: false,
+  filterExcludeSelectedOptions: null,
   getScrollContainer: null,
   hasClearButton: false,
   hasFilter: false,

@@ -19,7 +19,7 @@ const FilterPrice = React.forwardRef((props, ref) => {
   return (
     <ListBox ref={ref} onChange={props.onChange} placeholder="Price">
       <ListBox.Option>greater than 500</ListBox.Option>
-      <ListBox.Option isSelected>lower than 500</ListBox.Option>
+      <ListBox.Option>lower than 500</ListBox.Option>
     </ListBox>
   );
 });
@@ -28,7 +28,7 @@ const FilterQty = React.forwardRef((props, ref) => {
   return (
     <ListBox ref={ref} onChange={props.onChange} placeholder="Quantity">
       <ListBox.Option>greater than 100</ListBox.Option>
-      <ListBox.Option isSelected>less than 100</ListBox.Option>
+      <ListBox.Option>less than 100</ListBox.Option>
     </ListBox>
   );
 });
@@ -67,7 +67,7 @@ export default function FilterSelect() {
   const [filterPriceValue, setFilterPriceValue] = React.useState(null);
   const [filterQtyValue, setFilterQtyValue] = React.useState(null);
 
-  const handleChangeFilterColor = ({ selected, options }) => {
+  const handleChangeFilterColor = (selected, options) => {
     if (selected.length === 0) {
       setFilterColorValue(null);
       return;
@@ -93,12 +93,6 @@ export default function FilterSelect() {
     refFilterQty.current.clear();
   };
 
-  const handleClickReset = () => {
-    refFilterColor.current.reset();
-    refFilterPrice.current.reset();
-    refFilterQty.current.reset();
-  };
-
   return (
     <React.Fragment>
       <FiltersStyled>
@@ -106,7 +100,6 @@ export default function FilterSelect() {
         <FilterPrice onChange={handleChangeFilterPrice} ref={refFilterPrice} />
         <FilterQty onChange={handleChangeFilterQty} ref={refFilterQty} />
         <Button onClick={handleClickClear}>Clear</Button>
-        <Button onClick={handleClickReset}>Reset</Button>
       </FiltersStyled>
       <table style={{ width: "100%", textAlign: "left", border: "1px solid #CCC", borderCollapse: "collapse" }}>
         <thead>

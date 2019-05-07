@@ -3,7 +3,7 @@ import Button from "@paprika/button";
 import PropTypes from "prop-types";
 import { FooterContainerStyled } from "./Footer.styles";
 import useListBox from "../../useListBox";
-import applyCallback from "../../helpers/applyCallback";
+import applyOnChange from "../../helpers/applyOnChange";
 
 const propTypes = {
   isAcceptVisible: PropTypes.bool,
@@ -60,23 +60,29 @@ const Footer = React.forwardRef((props, ref) => {
 
   const handleClickAccept = event => {
     event.stopPropagation();
-
-    applyCallback(state, dispatch, onClickAccept);
+    applyOnChange({ ...state, eventType: "listbox:footer:accept" }, dispatch, onClickAccept);
     dispatch({ type: useListBox.types.accept });
   };
 
   const handleClickCancel = event => {
     event.stopPropagation();
-
-    applyCallback(state, dispatch, onClickCancel);
+    applyOnChange({ ...state, eventType: "listbox:footer:cancel" }, dispatch, onClickCancel);
     dispatch({ type: useListBox.types.cancel });
   };
 
   const handleClickClear = event => {
     event.stopPropagation();
 
-    applyCallback({ ...state, selectedOptions: [], activeOption: null }, dispatch, state.onChange);
-    applyCallback({ ...state, selectedOptions: [], activeOption: null }, dispatch, onClickClear);
+    const options = {
+      ...state,
+      selectedOptions: [],
+      activeOption: null,
+      eventType: "listbox:footer:clear",
+    };
+
+    applyOnChange(options, dispatch, state.onChange);
+    applyOnChange(options, dispatch, onClickClear);
+
     dispatch({ type: useListBox.types.clear, payload: { isPopoverOpen: true } });
   };
 

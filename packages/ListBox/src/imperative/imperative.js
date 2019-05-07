@@ -1,11 +1,15 @@
 import useListBox from "../useListBox";
-import applyCallback from "../helpers/applyCallback";
+import applyOnChange from "../helpers/applyOnChange";
 
 const handleImperative = (state, dispatch) => () => {
   return {
     clear: (isPopoverOpen = false) => {
       dispatch({ type: useListBox.types.clear, payload: { isPopoverOpen } });
-      applyCallback({ ...state, selectedOptions: [], activeOption: null }, dispatch, state.onChange);
+      applyOnChange(
+        { ...state, selectedOptions: [], activeOption: null, eventType: "listbox:imperative" },
+        dispatch,
+        state.onChange
+      );
     },
     reset: () => {
       dispatch({ type: useListBox.types.reset });

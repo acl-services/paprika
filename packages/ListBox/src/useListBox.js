@@ -55,7 +55,7 @@ useListBox.types = types;
 // - [~] - won't do this version - react window implementation won't do this version
 // - [~] - won't do this version - renderFooter for Footer component
 // - [~] - won't do this version - when clicking esc should reset to the lastKnownSelectedOptions in Single and Multi currently is just closing
-// - [x] ~where should onChange be fired on the reducer? in what file?~ this occurs where the event happens using applyCallback.js method
+// - [x] ~where should onChange be fired on the reducer? in what file?~ this occurs where the event happens using applyOnChange.js method
 // - [x] add support for the footer again
 // - [x] bug can't select first filtered element when there is only 1 result on lazy loading story
 // - [x] bug isInline the Trigger component shouldn't allowed to have focus
@@ -68,7 +68,7 @@ useListBox.types = types;
 // - [x] GroupFilter
 // - [x] handle support for adding new children to the ListBox.
 // - [x] limited the state properties pass on options, currently I'm sending the whole options coming from states
-// - [x] make all callback use applyCallback method from helpers
+// - [x] make all callback use applyOnChange method from helpers
 // - [x] might be too expensive to sanitize option by option :/ but might be easier as well
 // - [x] move useListBox to the root away from store folder
 // - [x] replace actionTypes import for useListBox.types.

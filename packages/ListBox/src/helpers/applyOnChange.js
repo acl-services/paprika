@@ -22,23 +22,17 @@ function getSelectedOptionSingle(state) {
 }
 
 function getSelectedOptionsMulti(state) {
-  return {
-    selected: state.selectedOptions,
-    options: cleanOptionProperties(state.options),
-    index: state.activeOptionIndex,
-  };
+  return [state.selectedOptions, cleanOptionProperties(state.options), state.activeOptionIndex];
 }
 
-export default function applyCallback(state, dispatch, callback, event = null) {
+export default function applyOnChange(state, dispatch, callback, event = null) {
   const { eventType = null } = state;
-
-  if (event) {
-    return callback(event, ...[...getSelectedOptionSingle(state), dispatch, useListBox.types, eventType]);
-  }
+  const actionTypes = useListBox.types;
 
   if (state.isMulti) {
-    return callback({ ...getSelectedOptionsMulti(state), dispatch, types: useListBox.types, eventType });
+    callback.apply(null, [...getSelectedOptionsMulti(state), { dispatch, actionTypes, eventType, event }]);
+    return;
   }
 
-  return callback(...[...getSelectedOptionSingle(state), dispatch, useListBox.types, eventType]);
+  return callback.apply(null, [...getSelectedOptionSingle(state), { dispatch, actionTypes, eventType, event }]);
 }
