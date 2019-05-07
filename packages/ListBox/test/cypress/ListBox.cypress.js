@@ -79,10 +79,15 @@ describe("ListBox single select popover with getScrollContainer", () => {
 
 // describe("ListBox single select custom filter", () => {
 //   beforeEach(() => {
-//
+//     cy.visitStorybook("ListBox / single", "Has scroll connected to element");
 //   });
 //
-//   it("should scroll with trigger", () => {
+//   it.only("should have scroll of target element", () => {
+//     toggleDropdown();
+//     cy.get("[data-qa-anchor='popover-content']").should("be.visible");
+//     cy.scrollTo(500, 0);
+//     cy.wait(800);
+//     cy.scrollTo(0, 500);
 //   });
 // });
 

@@ -237,16 +237,19 @@ export const OptionProp = () => (
 
 export const WithPreventDefaultOnSelect = () => (
   <ListBox>
-    <ListBox.Option preventDefaultOnSelect>Punisher</ListBox.Option>
-    <ListBox.Option preventDefaultOnSelect>Catwoman</ListBox.Option>
-    <ListBox.Option preventDefaultOnSelect>Venom</ListBox.Option>
+    <ListBox.Option>Punisher</ListBox.Option>
+    <ListBox.Option>Catwoman</ListBox.Option>
+    <ListBox.Option>Venom</ListBox.Option>
+    <ListBox.Option preventDefaultOnSelect>
+      <em>Show More</em>
+    </ListBox.Option>
   </ListBox>
 );
 
 export const WithContainerScroll = () => (
   <React.Fragment>
-    <div style={{ height: 900 }}>p</div>
-    <ListBox getScrollContainer={() => document.querySelector("#root > div")}>
+    <div style={{ height: 400 }} />
+    <ListBox>
       <ListBox.Option>Punisher</ListBox.Option>
       <ListBox.Option>Catwoman</ListBox.Option>
       <ListBox.Option>Venom</ListBox.Option>
@@ -255,7 +258,7 @@ export const WithContainerScroll = () => (
       <ListBox.Option>Spawn</ListBox.Option>
       <ListBox.Option>Wolverine</ListBox.Option>
     </ListBox>
-    <div style={{ height: 1000 }}>p</div>
+    <div style={{ height: 1000 }} />
   </React.Fragment>
 );
 
