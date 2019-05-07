@@ -34,7 +34,6 @@ describe("RawButton", () => {
   it("should render with custom props", () => {
     const customProps = {
       a11yText: "include me",
-      className: "shiny-button",
       isDisabled: true,
       role: "listitem",
       tabIndex: -1,
@@ -42,7 +41,6 @@ describe("RawButton", () => {
     const { getByRole, container } = renderComponent(customProps);
 
     expect(container.querySelector('[aria-label="include me"]')).toBeInTheDocument();
-    expect(container.querySelector('[class*="shiny-button"]')).toBeInTheDocument();
     expect(container.querySelector('[aria-disabled="true"]')).toBeInTheDocument();
     expect(getByRole("listitem")).toBeInTheDocument();
     expect(container.querySelector('[tabindex="-1"]')).toBeInTheDocument();
