@@ -169,7 +169,7 @@ describe("Listbox single select", () => {
     });
 
     openSelect();
-    // selectVenus();
+    selectVenus();
     openSelect();
     fireEvent.click(getByText(/jupiter/i));
     console.log("Helloo", onOptionClick.mock);
