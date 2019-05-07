@@ -49,7 +49,6 @@ export default function Trigger(props) {
       return;
     }
 
-    debugger;
     applyOnChange(
       { ...state, selectedOptions: [], activeOption: null, eventType: "listbox:clear" },
       dispatch,
