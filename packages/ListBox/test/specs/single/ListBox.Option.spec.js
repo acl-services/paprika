@@ -73,16 +73,16 @@ describe("ListBox.Option", () => {
     });
 
     openSelect();
-    expect(getByText(/🙅‍venus/i)).toBeInTheDocument;
+    expect(getByText(/🙅‍venus/i)).toBeInTheDocument();
     expect(queryByText(/🙅‍jupiter/i)).toBeNull();
     selectVenus();
-    expect(getByText(/✅venus/i)).toBeInTheDocument;
+    expect(getByText(/✅venus/i)).toBeInTheDocument();
   });
 
   it("should show value of label prop in trigger", () => {
     const planetV = <img alt="planetvenus" src="#" />;
     const planetJ = <img alt="planetjupiter" src="#" />;
-    const { getByTestId, getByAltText, getByText } = render(
+    const { getByTestId, getByAltText } = render(
       <ListBox hasFilter>
         <ListBox.Option label="venus">{planetV}</ListBox.Option>
         <ListBox.Option label="jupiter">{planetJ}</ListBox.Option>

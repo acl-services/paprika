@@ -119,7 +119,7 @@ export const WithContainerScroll = () => (
 );
 
 export const WithPreventTriggerBlur = () => (
-  <ListBox preventOnBlurForTriggerListBox={true}>
+  <ListBox preventOnBlurForTriggerListBox>
     <ListBox.Option>Punisher</ListBox.Option>
     <ListBox.Option>Catwoman</ListBox.Option>
     <ListBox.Option>Venom</ListBox.Option>

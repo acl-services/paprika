@@ -4,7 +4,7 @@ import ListBox from "../../..";
 
 configure({ testIdAttribute: "data-qa-anchor" });
 
-function renderComponent(props = {}) {
+function renderComponent() {
   const rendered = render(
     <ListBox>
       <ListBox.Group groupId="bigplanets" label="Big-Planets">
