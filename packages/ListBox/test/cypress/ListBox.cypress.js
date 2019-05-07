@@ -63,13 +63,14 @@ describe("ListBox single select filter", () => {
 
 // describe("ListBox single select with getScrollContainer prop", () => {
 //   beforeEach(() => {
-//     //cy.visit("http://localhost:9009/iframe.html?selectedKind=ListBox%20%2F%20single&selectedStory=Basic");
-//     cy.visitStorybook("ListBox%20%2F%20single", "Has%20scroll%20connected%20to%20element");
+//     cy.visitStorybook("ListBox / single", "Has scroll connected to element");
 //   });
 //
-//   it("should have scroll of target element", () => {
+//   it.only("should have scroll of target element", () => {
 //     toggleDropdown();
 //     cy.get("[data-qa-anchor='popover-content']").should("be.visible");
+//     cy.scrollTo(500, 0);
+//     cy.wait(800);
 //     cy.scrollTo(0, 500);
 //   });
 // });
