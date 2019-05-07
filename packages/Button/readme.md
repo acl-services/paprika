@@ -8,7 +8,7 @@ It is rendered as a `<button>` element by default, but can also be rendered as a
 
 ### Installation
 
-`> npm install @paprika/button`
+`> npm install --save @paprika/button`
 or
 `> yarn add @paprika/button`
 

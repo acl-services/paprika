@@ -6,7 +6,7 @@ For accessibility, the `role="button"`, `tabIndex="0"`, and `aria-disabled="fals
 
 ### Installation
 
-`> npm install @paprika/raw-button`
+`> npm install --save @paprika/raw-button`
 or
 `> yarn add @paprika/raw-button`
 
