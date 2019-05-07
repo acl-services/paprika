@@ -270,3 +270,23 @@ export const WithPreventTriggerBlur = () => (
     <ListBox.Option>Wolverine</ListBox.Option>
   </ListBox>
 );
+
+export const WithOnChange = () => (
+  <ListBox
+    onChange={(i, options, evntype) => {
+      console.log("hello", i, options, evntype);
+    }}
+  >
+    <ListBox.Option value="punish">Punisher</ListBox.Option>
+    <ListBox.Option value="cat">Catwoman</ListBox.Option>
+    <ListBox.Option value="spidey">Venom</ListBox.Option>
+  </ListBox>
+);
+
+export const WithZIndexAttribute = () => (
+  <ListBox zIndex={10000}>
+    <ListBox.Option value="punish">Punisher</ListBox.Option>
+    <ListBox.Option value="cat">Catwoman</ListBox.Option>
+    <ListBox.Option value="spidey">Venom</ListBox.Option>
+  </ListBox>
+);

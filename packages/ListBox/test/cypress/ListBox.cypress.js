@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 import selectors from "../helpers/selectors";
 
 function toggleDropdown() {
@@ -11,12 +10,22 @@ describe("ListBox single select", () => {
     toggleDropdown();
   });
 
-  it("should selected option and clear it", () => {
+  it("should select option and clear it", () => {
     cy.contains("Punisher").click();
-    getListBoxTrigger().should("contain", "Punisher");
-    getClearButton().click();
-    getListBoxTrigger().should("contain", "Select one of the options");
-    getClearButton().should("not.be.visible");
+    cy.get(selectors.trigger).should("contain", "Punisher");
+    cy.get(selectors.clearButton).click();
+    cy.get(selectors.trigger).should("contain", "Select one of the options");
+    cy.get(selectors.clearButton).should("not.be.visible");
+  });
+});
+
+describe("ListBox single select zIndex", () => {
+  it("should have custom number of 10000", () => {
+    cy.visitStorybook("ListBox / single", "Has custom zIndex");
+    toggleDropdown();
+    cy.get(selectors.popover)
+      .should("have.css", "z-index")
+      .and("match", /10000/);
   });
 });
 
@@ -27,26 +36,29 @@ describe("ListBox single select filter", () => {
   });
 
   it("should show correct amount of filter options", () => {
-    getFilterInput().type("wo");
-    getPopoverList()
+    cy.get(selectors.filterInput).type("wo");
+    cy.get(selectors.popoverList)
       .children()
       .should("have.length", 2);
   });
 
-  it("filters and selects option", () => {
-    getFilterInput().type("Ven");
-    getPopoverContent()
+  it("should filter and select an option", () => {
+    cy.get(selectors.filterInput).type("Ven");
+    cy.get(selectors.popover)
       .contains(/venom/i)
       .click();
+    cy.get(selectors.trigger).should("contain", "Venom");
   });
 
-  // it.only("should show all options after erasing filtered input", () => {
-  //   getFilterInput().type("wo");
-  //   getFilterInput().type("{backspace}", "{backspace}");
-  //   getPopoverList()
-  //     .children()
-  //     .should("have.length", 10);
-  // });
+  it("should show all options after erasing filtered input", () => {
+    cy.get(selectors.filterInput).type("wo");
+    cy.get(selectors.filterInput)
+      .type("{backspace}")
+      .type("{backspace}");
+    cy.get(selectors.popoverList)
+      .children()
+      .should("have.length", 7);
+  });
 });
 
 describe("ListBox single select popover with getScrollContainer", () => {

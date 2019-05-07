@@ -160,10 +160,10 @@ describe("Listbox single select", () => {
   // onChange gets called on unmount - soo being called atleast once before selecting any option.
   // value returned from selecting options is undefined
   it("calls onChange", () => {
-    const onOptionClick = args => {
-      console.log(`-----------${args}`);
-    };
-
+    // const onOptionClick = args => {
+    //   console.log(`-----------${args}`);
+    // };
+    const onOptionClick = jest.fn();
     const { openSelect, selectVenus, getByText } = renderComponent({
       onChange: onOptionClick,
     });
