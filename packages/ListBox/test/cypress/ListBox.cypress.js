@@ -61,16 +61,19 @@ describe("ListBox single select filter", () => {
   });
 });
 
-// describe("ListBox single select with getScrollContainer prop", () => {
-//   beforeEach(() => {
-//     cy.visitStorybook("ListBox / single", "Has scroll connected to element");
-//   });
-//
-//   it.only("should have scroll of target element", () => {
-//     toggleDropdown();
-//     cy.get("[data-qa-anchor='popover-content']").should("be.visible");
-//     cy.scrollTo(500, 0);
-//     cy.wait(800);
-//     cy.scrollTo(0, 500);
-//   });
-// });
+describe("ListBox single select popover", () => {
+  beforeEach(() => {
+    cy.visitStorybook("ListBox / single", "Has scroll connected to element");
+  });
+
+  it.only("should scroll with trigger", () => {
+    toggleDropdown();
+    cy.wait(1000);
+    cy.scrollTo("top");
+    cy.get(selectors.popover)
+      .should("be.visible")
+      .should("have.css", "top")
+      // 466 was taken from cypress expectation
+      .and("match", /466/);
+  });
+});
