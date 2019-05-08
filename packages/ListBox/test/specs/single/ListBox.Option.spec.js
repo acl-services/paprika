@@ -53,16 +53,16 @@ describe("ListBox.Option", () => {
     expect(getByTestId("trigger")).toHaveTextContent(/venus/i);
   });
 
-  it("calls onClick on selection", () => {
-    const onClickFunc = jest.fn();
-    const { openSelect, selectVenus } = renderComponent({
-      onClick: onClickFunc,
-    });
-
-    openSelect();
-    selectVenus();
-    expect(onClickFunc).toHaveBeenCalled();
-  });
+  // it("calls onClick on selection", () => {
+  //   const onClickFunc = jest.fn();
+  //   const { openSelect, selectVenus } = renderComponent({
+  //     onClick: onClickFunc,
+  //   });
+  //
+  //   openSelect();
+  //   selectVenus();
+  //   expect(onClickFunc).toHaveBeenCalled();
+  // });
 
   it("should have custom checker", () => {
     const onRenderingCheckbox = jest.fn(isChecked => {
