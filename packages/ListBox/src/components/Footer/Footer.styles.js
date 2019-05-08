@@ -8,7 +8,7 @@ export const FooterContainerStyled = styled.div`
   width: calc(100% - 16px);
 
   & > div {
-    width: 50%;
+    width: calc(50% - 8px);
     [role="button"] {
       margin-right: 8px;
     }
