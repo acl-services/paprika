@@ -46,6 +46,19 @@ export const HasNotClearButton = () => (
   </ListBox>
 );
 
+export const WithFilterInline = () => (
+  <ListBox hasFilter isInline>
+    <ListBox.Option>Punisher</ListBox.Option>
+    <ListBox.Option>Catwoman</ListBox.Option>
+    <ListBox.Option>Venom</ListBox.Option>
+    <ListBox.Option>Thunderbolts</ListBox.Option>
+    <ListBox.Option>Deadpool</ListBox.Option>
+    <ListBox.Option>Spawn</ListBox.Option>
+    <ListBox.Option>Wolverine</ListBox.Option>
+  </ListBox>
+);
+
+// ->
 export const Footer = () => (
   <ListBox>
     {characters.heroes}
@@ -106,7 +119,6 @@ export const WithPreventDefaultOnSelect = () => (
 );
 
 export const WithContainerScroll = () => (
-  // <ListBox getScrollContainer={() => document.querySelector("#root > div")}>
   <React.Fragment>
     <p style={{ height: 400 }} />
     <ListBox>

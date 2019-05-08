@@ -61,13 +61,13 @@ describe("ListBox single select filter", () => {
   });
 });
 
-describe("ListBox single select popover", () => {
+describe("ListBox single select popover with getScrollContainer", () => {
   beforeEach(() => {
     cy.visitStorybook("ListBox / single", "Has scroll connected to element");
+    toggleDropdown();
   });
 
-  it.only("should scroll with trigger", () => {
-    toggleDropdown();
+  it("should scroll with trigger", () => {
     cy.wait(1000);
     cy.scrollTo("top");
     cy.get(selectors.popover)
@@ -77,3 +77,12 @@ describe("ListBox single select popover", () => {
       .and("match", /466/);
   });
 });
+
+// describe("ListBox single select custom filter", () => {
+//   beforeEach(() => {
+//
+//   });
+//
+//   it("should scroll with trigger", () => {
+//   });
+// });
