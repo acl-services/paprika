@@ -39,15 +39,15 @@ export const BasicOptionDisabled = () => (
   </ListBox>
 );
 
-export const HasNotClearButton = () => (
+export const HasNoClearButton = () => (
   <ListBox>
     <ListBox.Popover hasClearButton={false} />
     {characters.heroes}
   </ListBox>
 );
 
-export const WithFilterInline = () => (
-  <ListBox hasFilter isInline>
+export const WithFilter = () => (
+  <ListBox hasFilter>
     <ListBox.Option>Punisher</ListBox.Option>
     <ListBox.Option>Catwoman</ListBox.Option>
     <ListBox.Option>Venom</ListBox.Option>
@@ -247,7 +247,6 @@ export const WithPreventDefaultOnSelect = () => (
 );
 
 export const WithContainerScroll = () => (
-  // <ListBox getScrollContainer={() => document.querySelector("#root > div")}>
   <React.Fragment>
     <p style={{ height: 400 }} />
     <ListBox>
