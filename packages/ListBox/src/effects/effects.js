@@ -104,3 +104,9 @@ export const handleEffectIsDisabledChange = (props, dispatch) => () => {
     payload: props.isDisabled,
   });
 };
+
+export const handleEffectOptionSelected = (state, dispatch) => () => {
+  if (state.onChangeFn) {
+    state.onChangeFn(state, dispatch);
+  }
+};

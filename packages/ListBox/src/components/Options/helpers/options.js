@@ -1,49 +1,24 @@
 import useListBox from "../../../useListBox";
 import applyOnChange from "../../../helpers/applyOnChange";
 
-function selectSingleOption({ activeOptionIndex, isPopoverOpen, state, dispatch }) {
+function getOnChangeFn(state, activeOptionIndex) {
   const hasPreventDefaultOnSelect = state.options[activeOptionIndex].preventDefaultOnSelect;
+  return hasPreventDefaultOnSelect
+    ? applyOnChange() // this will return a noop function
+    : applyOnChange(state.onChange, "listbox:option-selected");
+}
 
-  if (!hasPreventDefaultOnSelect) {
-    applyOnChange({ ...state, eventType: "listbox:option-selected" }, dispatch, state.onChange);
-  }
-
+function selectSingleOption({ activeOptionIndex, isPopoverOpen, state, dispatch }) {
   dispatch({
     type: useListBox.types.selectSingleOption,
-    payload: { activeOptionIndex, isPopoverOpen },
+    payload: { activeOptionIndex, isPopoverOpen, onChangeFn: getOnChangeFn(state, activeOptionIndex) },
   });
 }
 
 function selectMultipleOption({ activeOptionIndex, state, dispatch }) {
-  const selectedOptionsArray = state.selectedOptions.slice();
-
-  // handle hide options
-  let options = null;
-  if (state.hideOptionOnSelected) {
-    options = { ...state.options };
-    options[activeOptionIndex].isHidden = true;
-  } else {
-    options = state.options;
-  }
-
-  if (selectedOptionsArray.includes(activeOptionIndex)) {
-    const index = selectedOptionsArray.indexOf(activeOptionIndex);
-    selectedOptionsArray.splice(index, 1);
-  } else {
-    selectedOptionsArray.push(activeOptionIndex);
-  }
-
-  const payload = {
-    activeOptionIndex,
-    options,
-    selectedOptions: selectedOptionsArray,
-  };
-
-  applyOnChange({ ...state, ...payload, eventType: "listbox:option-selected" }, dispatch, state.onChange);
-
   dispatch({
     type: useListBox.types.selectMultipleOption,
-    payload,
+    payload: { activeOptionIndex, onChangeFn: getOnChangeFn(state, activeOptionIndex) },
   });
 }
 
@@ -171,19 +146,20 @@ export const handleClickOption = ({ props, state, dispatch }) => event => {
     return;
   }
 
-  if (options[index].preventDefaultOnSelect) {
-    // this will not selected the option, but will report that was clicked it.
-    if (props.onClick) {
-      applyOnChange({ ...state, eventType: "listbox:click:prevent-default" }, dispatch, props.onClick, event);
-    }
-  }
-
   if (state.refListBox.current.contains(event.target) && document.activeElement === document.body && !hasFilter) {
     state.refListBoxContainer.current.focus();
   }
 
   if (hasFilter && isMulti) {
     refFilterInput.current.focus();
+  }
+
+  if (options[index].preventDefaultOnSelect) {
+    if (props.onClick) {
+      // this will not selected the option, but will report that was clicked it.
+      // since this action will not affect the state we can report it right back.
+      applyOnChange(props.onClick, "listbox:click:prevent-default", event)(state, dispatch);
+    }
   }
 
   if (isMulti) {

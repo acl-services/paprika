@@ -25,14 +25,15 @@ function getSelectedOptionsMulti(state) {
   return [state.selectedOptions, cleanOptionProperties(state.options), state.activeOptionIndex];
 }
 
-export default function applyOnChange(state, dispatch, callback, event = null) {
-  const { eventType = null } = state;
+const applyOnChange = (onChangeCallBack = () => {}, eventType = "", event) => (state, dispatch) => {
   const actionTypes = useListBox.types;
 
   if (state.isMulti) {
-    callback.apply(null, [...getSelectedOptionsMulti(state), { dispatch, actionTypes, eventType, event }]);
+    onChangeCallBack.apply(null, [...getSelectedOptionsMulti(state), { dispatch, actionTypes, eventType, event }]);
     return;
   }
 
-  return callback.apply(null, [...getSelectedOptionSingle(state), { dispatch, actionTypes, eventType, event }]);
-}
+  return onChangeCallBack.apply(null, [...getSelectedOptionSingle(state), { dispatch, actionTypes, eventType, event }]);
+};
+
+export default applyOnChange;

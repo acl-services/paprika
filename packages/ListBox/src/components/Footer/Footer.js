@@ -40,12 +40,9 @@ const defaultProps = {
 };
 
 const Footer = React.forwardRef((props, ref) => {
-  const [state, dispatch] = useListBox();
+  const [, dispatch] = useListBox();
 
   const {
-    onClickCancel,
-    onClickAccept,
-    onClickClear,
     labelCancel,
     labelAccept,
     labelClear,
@@ -60,30 +57,36 @@ const Footer = React.forwardRef((props, ref) => {
 
   const handleClickAccept = event => {
     event.stopPropagation();
-    applyOnChange({ ...state, eventType: "listbox:footer:accept" }, dispatch, onClickAccept);
-    dispatch({ type: useListBox.types.accept });
+
+    dispatch({
+      type: useListBox.types.accept,
+      payload: { onChangeFn: applyOnChange(props.onClickAccept, "listbox:footer:accept") },
+    });
   };
 
   const handleClickCancel = event => {
     event.stopPropagation();
-    applyOnChange({ ...state, eventType: "listbox:footer:cancel" }, dispatch, onClickCancel);
-    dispatch({ type: useListBox.types.cancel });
+    const onChangeFn = props.onClickCancel
+      ? applyOnChange(props.onClickCancel, "listbox:footer:cancel")
+      : applyOnChange();
+
+    dispatch({
+      type: useListBox.types.cancel,
+      payload: { onChangeFn },
+    });
   };
 
   const handleClickClear = event => {
     event.stopPropagation();
+    const onChangeFn = props.onClickClear ? applyOnChange(props.onClickClear, "listbox:footer:clear") : applyOnChange();
 
-    const options = {
-      ...state,
-      selectedOptions: [],
-      activeOption: null,
-      eventType: "listbox:footer:clear",
-    };
-
-    applyOnChange(options, dispatch, state.onChange);
-    applyOnChange(options, dispatch, onClickClear);
-
-    dispatch({ type: useListBox.types.clear, payload: { isPopoverOpen: true } });
+    dispatch({
+      type: useListBox.types.clear,
+      payload: {
+        isPopoverOpen: true,
+        onChangeFn,
+      },
+    });
   };
 
   const { isDisabled } = props;

@@ -45,20 +45,41 @@ export default function reducer(state, { type, payload }) {
       return {
         ...state,
         ...options,
+        onChangeFn: payload.onChangeFn,
         activeOption: state.hideOptionOnSelected ? getNextOptionActiveIndexLooping(state) : payload.activeOptionIndex,
-        selectedOptions: [payload.activeOptionIndex],
         isPopoverOpen,
+        selectedOptions: [payload.activeOptionIndex],
         shouldContentScroll: true,
       };
     }
 
     case useListBox.types.selectMultipleOption: {
+      const selectedOptionsArray = state.selectedOptions.slice();
+      const { activeOptionIndex } = payload;
+
+      // handle hide options
+      let options = null;
+      if (state.hideOptionOnSelected) {
+        options = { ...state.options };
+        options[activeOptionIndex].isHidden = true;
+      } else {
+        options = state.options;
+      }
+
+      if (selectedOptionsArray.includes(activeOptionIndex)) {
+        const index = selectedOptionsArray.indexOf(activeOptionIndex);
+        selectedOptionsArray.splice(index, 1);
+      } else {
+        selectedOptionsArray.push(activeOptionIndex);
+      }
+
       return {
         ...state,
-        activeOption: state.hideOptionOnSelected ? getNextOptionActiveIndexLooping(state) : payload.activeOptionIndex,
+        activeOption: state.hideOptionOnSelected ? getNextOptionActiveIndexLooping(state) : activeOptionIndex,
         isPopoverOpen: true,
-        options: payload.options,
-        selectedOptions: payload.selectedOptions,
+        onChangeFn: payload.onChangeFn,
+        options,
+        selectedOptions: selectedOptionsArray,
         shouldContentScroll: false,
       };
     }
@@ -164,6 +185,7 @@ export default function reducer(state, { type, payload }) {
         ...state,
         activeOption: null,
         isPopoverOpen: (payload && payload.isPopoverOpen) || false,
+        onChangeFn: payload && payload.onChangeFn ? payload.onChangeFn : null,
         selectedOptions: [],
       };
     }
@@ -172,23 +194,28 @@ export default function reducer(state, { type, payload }) {
       return {
         ...state.originalState,
         isPopoverOpen: false,
+        onChangeFn: payload && payload.onChangeFn ? payload.onChangeFn : null,
         originalState: state.originalState,
       };
     }
 
     case useListBox.types.accept: {
+      const selectedOptions = state.selectedOptions.slice(0);
       return {
         ...state,
-        lastKnownSelectedOptions: state.selectedOptions.slice(0),
         isPopoverOpen: false,
+        selectedOptions,
+        lastKnownSelectedOptions: selectedOptions,
+        onChangeFn: payload.onChangeFn,
       };
     }
 
     case useListBox.types.cancel: {
       return {
         ...state,
-        selectedOptions: state.lastKnownSelectedOptions.slice(0),
         isPopoverOpen: false,
+        onChangeFn: payload && payload.onChangeFn ? payload.onChangeFn : null,
+        selectedOptions: state.lastKnownSelectedOptions.slice(0),
       };
     }
 

@@ -49,12 +49,13 @@ export default function Trigger(props) {
       return;
     }
 
-    applyOnChange(
-      { ...state, selectedOptions: [], activeOption: null, eventType: "listbox:clear" },
-      dispatch,
-      state.onChange
-    );
-    dispatch({ type: useListBox.types.clear, payload: { isPopoverOpen: false } });
+    dispatch({
+      type: useListBox.types.clear,
+      payload: {
+        isPopoverOpen: false,
+        onChangeFn: applyOnChange(state.onChange, "listbox:clear"),
+      },
+    });
   };
 
   function renderLabel() {

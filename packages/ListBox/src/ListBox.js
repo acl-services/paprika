@@ -174,19 +174,21 @@ const ListBoxContainer = React.forwardRef((props, ref) => {
   React.useImperativeHandle(ref, imperativeHandle);
 
   // EFFECTS
+  const handleEffectChildren = effects.handleEffectChildren(props, state, dispatch);
   const handleEffectHeightChange = effects.handleEffectHeightChange(props, state, dispatch);
   const handleEffectIsDisabledChange = effects.handleEffectIsDisabledChange(props, dispatch);
   const handleEffectIsPopOverOpen = effects.handleEffectIsPopOverOpen(state, dispatch);
   const handleEffectListBoxScrolled = effects.handleEffectListBoxScrolled(state);
   const handleEffectListBoxWidth = effects.handleEffectListBoxWidth(state, dispatch);
-  const handleEffectChildren = effects.handleEffectChildren(props, state, dispatch);
+  const handleEffectOptionSelected = effects.handleEffectOptionSelected(state, dispatch);
 
   React.useEffect(handleEffectHeightChange, [props.height]);
   React.useEffect(handleEffectIsDisabledChange, [props.isDisabled]);
-  React.useLayoutEffect(handleEffectIsPopOverOpen, [state.isPopoverOpen]);
   React.useEffect(handleEffectListBoxWidth, [state.refTriggerContainer.current]);
-  React.useLayoutEffect(handleEffectListBoxScrolled, [state.activeOption]);
+  React.useEffect(handleEffectOptionSelected, [state.selectedOptions]);
   React.useLayoutEffect(handleEffectChildren, [props.children]);
+  React.useLayoutEffect(handleEffectIsPopOverOpen, [state.isPopoverOpen]);
+  React.useLayoutEffect(handleEffectListBoxScrolled, [state.activeOption]);
 
   const {
     children,
