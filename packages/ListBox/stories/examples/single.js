@@ -160,8 +160,8 @@ export const WithFilter = () => (
   </ListBox>
 );
 
-export const HasClearButton = () => (
-  <ListBox hasClearButton>
+export const HasNotClearButton = () => (
+  <ListBox hasClearButton={false}>
     <ListBox.Option>Punisher</ListBox.Option>
     <ListBox.Option>Catwoman</ListBox.Option>
     <ListBox.Option>Venom</ListBox.Option>

@@ -95,7 +95,7 @@ export const defaultProps = {
   filter: null,
   filterExcludeSelectedOptions: null,
   getScrollContainer: null,
-  hasClearButton: false,
+  hasClearButton: true,
   hasFilter: false,
   hasNotResultsMessage: "Your search did not match any options.",
   height: 200,
@@ -135,7 +135,12 @@ export function ListBox(props) {
 
   return (
     <React.Fragment>
-      <Trigger onClickClear={onClickClear} renderTrigger={renderTrigger} placeholder={placeholder} />
+      <Trigger
+        hasClearButton={props.hasClearButton}
+        onClickClear={onClickClear}
+        renderTrigger={renderTrigger}
+        placeholder={placeholder}
+      />
       <Content>
         <Box>
           <Filter filterExcludeSelectedOptions={props.filterExcludeSelectedOptions} filter={props.filter} />
@@ -154,6 +159,7 @@ ListBox.propTypes = {
   ...propTypes,
   children: PropTypes.node.isRequired,
   filter: PropTypes.func,
+  hasClearButton: PropTypes.bool,
   hasNotResultsMessage: PropTypes.string.isRequired,
   height: PropTypes.number.isRequired,
   onClickClear: PropTypes.func,
@@ -165,6 +171,7 @@ ListBox.defaultProps = {
   filter: null,
   onClickClear: null,
   renderTrigger: null,
+  hasClearButton: true,
 };
 
 const ListBoxContainer = React.forwardRef((props, ref) => {
@@ -193,6 +200,8 @@ const ListBoxContainer = React.forwardRef((props, ref) => {
   const {
     children,
     filter,
+    filterExcludeSelectedOptions,
+    hasClearButton,
     hasFilter,
     hasNotResultsMessage,
     height,
@@ -207,13 +216,14 @@ const ListBoxContainer = React.forwardRef((props, ref) => {
     placeholder,
     renderCheckbox,
     renderTrigger,
-    filterExcludeSelectedOptions,
     ...moreProps
   } = props;
 
   const ListBoxProps = {
     children,
     filter,
+    filterExcludeSelectedOptions,
+    hasClearButton,
     hasNotResultsMessage,
     height,
     onClickClear,
@@ -221,7 +231,6 @@ const ListBoxContainer = React.forwardRef((props, ref) => {
     onSelected,
     placeholder,
     renderTrigger,
-    filterExcludeSelectedOptions,
   };
 
   if (isInline) {

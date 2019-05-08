@@ -15,9 +15,10 @@ import {
 import { getDOMAttributesForListBoxButton } from "../../helpers/DOMAttributes";
 
 const propTypes = {
+  hasClearButton: PropTypes.bool.isRequired,
+  onClickClear: PropTypes.func,
   placeholder: PropTypes.string.isRequired,
   renderTrigger: PropTypes.func,
-  onClickClear: PropTypes.func,
 };
 
 const defaultProps = {
@@ -27,7 +28,7 @@ const defaultProps = {
 
 export default function Trigger(props) {
   const [state, dispatch] = useListBox();
-  const { renderTrigger, placeholder } = props;
+  const { renderTrigger, placeholder, hasClearButton } = props;
 
   const { isDisabled, refTriggerContainer, refTrigger, isMulti } = state;
 
@@ -92,17 +93,19 @@ export default function Trigger(props) {
     <ListBoxTriggerStyled isInline={state.isInline} isDisabled={isDisabled} ref={refTriggerContainer}>
       {renderTrigger ? renderTrigger(state, dispatch, { getDOMAttributesForListBoxButton }) : renderLabel()}
       <TriggerActionIconsContainer>
-        <RawButtonClearButtonStyled
-          hasRenderTrigger={renderTrigger}
-          hasSelectedOptions={state.selectedOptions.length}
-          isDisabled={isDisabled}
-          onClick={handleClickClear}
-          isPopoverOpen={state.isPopoverOpen}
-          hasFooter={state.hasFooter}
-          testy="testy"
-        >
-          <span dangerouslySetInnerHTML={{ __html: "&times;" }} />
-        </RawButtonClearButtonStyled>
+        {hasClearButton ? (
+          <RawButtonClearButtonStyled
+            hasRenderTrigger={renderTrigger}
+            hasSelectedOptions={state.selectedOptions.length}
+            isDisabled={isDisabled}
+            onClick={handleClickClear}
+            isPopoverOpen={state.isPopoverOpen}
+            hasFooter={state.hasFooter}
+            testy="testy"
+          >
+            <span dangerouslySetInnerHTML={{ __html: "&times;" }} />
+          </RawButtonClearButtonStyled>
+        ) : null}
         <TriggerArrowStyled
           hasRenderTrigger={renderTrigger}
           isDisabled={isDisabled}
