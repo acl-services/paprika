@@ -247,8 +247,9 @@ export const WithPreventDefaultOnSelect = () => (
 );
 
 export const WithContainerScroll = () => (
+  // <ListBox getScrollContainer={() => document.querySelector("#root > div")}>
   <React.Fragment>
-    <div style={{ height: 400 }} />
+    <p style={{ height: 400 }} />
     <ListBox>
       <ListBox.Option>Punisher</ListBox.Option>
       <ListBox.Option>Catwoman</ListBox.Option>
@@ -257,8 +258,11 @@ export const WithContainerScroll = () => (
       <ListBox.Option>Deadpool</ListBox.Option>
       <ListBox.Option>Spawn</ListBox.Option>
       <ListBox.Option>Wolverine</ListBox.Option>
+      <ListBox.Option>QuickSilver</ListBox.Option>
+      <ListBox.Option>Ironman</ListBox.Option>
+      <ListBox.Option>Spiderman</ListBox.Option>
     </ListBox>
-    <div style={{ height: 1000 }} />
+    <p style={{ height: 1000 }} />
   </React.Fragment>
 );
 
