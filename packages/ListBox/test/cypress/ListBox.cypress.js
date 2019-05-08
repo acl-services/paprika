@@ -35,24 +35,19 @@ describe("ListBox single select filter", () => {
     toggleDropdown();
   });
 
-  it("should show correct amount of filter options", () => {
+  it("should show correct amount of options and select one", () => {
     cy.get(selectors.filterInput).type("wo");
     cy.get(selectors.popoverList)
       .children()
-      .should("have.length", 2);
-  });
-
-  it("should filter and select an option", () => {
-    cy.get(selectors.filterInput).type("Ven");
-    cy.get(selectors.popover)
-      .contains(/venom/i)
+      .should("have.length", 2)
+      .contains(/catwoman/i)
       .click();
-    cy.get(selectors.trigger).should("contain", "Venom");
+    cy.get(selectors.trigger).should("contain", "Catwoman");
   });
 
   it("should show all options after erasing filtered input", () => {
-    cy.get(selectors.filterInput).type("wo");
     cy.get(selectors.filterInput)
+      .type("wo")
       .type("{backspace}")
       .type("{backspace}");
     cy.get(selectors.popoverList)
@@ -67,7 +62,7 @@ describe("ListBox single select label filter", () => {
     toggleDropdown();
   });
 
-  it.only("should filter by option label", () => {
+  it("should filter by option label", () => {
     cy.get(selectors.filterInput).type("ba");
     cy.get(selectors.popoverList)
       .children()
@@ -82,9 +77,7 @@ describe("ListBox single select popover with getScrollContainer", () => {
     toggleDropdown();
   });
 
-  it("should scroll with trigger", () => {
-    // should not use wait
-    cy.wait(1000);
+  it.only("should scroll with trigger", () => {
     cy.scrollTo("top");
     cy.get(selectors.popover)
       .should("be.visible")
