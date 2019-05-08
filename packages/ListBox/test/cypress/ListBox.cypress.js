@@ -61,6 +61,21 @@ describe("ListBox single select filter", () => {
   });
 });
 
+describe("ListBox single select label filter", () => {
+  beforeEach(() => {
+    cy.visitStorybook("ListBox / single", "Filter custom nodes");
+    toggleDropdown();
+  });
+
+  it.only("should filter by option label", () => {
+    cy.get(selectors.filterInput).type("ba");
+    cy.get(selectors.popoverList)
+      .children()
+      .should("have.length", 1)
+      .click();
+  });
+});
+
 describe("ListBox single select popover with getScrollContainer", () => {
   beforeEach(() => {
     cy.visitStorybook("ListBox / single", "Has scroll connected to element");
@@ -68,6 +83,7 @@ describe("ListBox single select popover with getScrollContainer", () => {
   });
 
   it("should scroll with trigger", () => {
+    // should not use wait
     cy.wait(1000);
     cy.scrollTo("top");
     cy.get(selectors.popover)

@@ -163,8 +163,16 @@ export const WithOnChange = () => (
 
 export const WithZIndexAttribute = () => (
   <ListBox zIndex={10000}>
-    <ListBox.Option value="punish">Punisher</ListBox.Option>
-    <ListBox.Option value="cat">Catwoman</ListBox.Option>
-    <ListBox.Option value="spidey">Venom</ListBox.Option>
+    <ListBox.Option>Punisher</ListBox.Option>
+    <ListBox.Option>Catwoman</ListBox.Option>
+    <ListBox.Option>Venom</ListBox.Option>
+  </ListBox>
+);
+
+export const WithCustomFilter = () => (
+  <ListBox hasFilter>
+    <ListBox.Option label="boy">Punisher</ListBox.Option>
+    <ListBox.Option label="girl">Catwoman</ListBox.Option>
+    <ListBox.Option label="girl">WonderWoman</ListBox.Option>
   </ListBox>
 );
