@@ -41,12 +41,13 @@ useListBox.types = types;
 // - [] clean state since I removed the rendering process from state to props
 // - [] document the double render of the state and the options, how we can do it better?
 // - [] documentation support for multi selects
-// - [] implemented the reset button on Filter Select story
 // - [] isPending/isIdle state would need to be work on
-// - [] organize stories under example directory on single/multi/recipes
 // - [] remember to document the structure is important to avoid bugs like hte one of selecting first item on lazy listbox
 // - [] tokens cleaning process
-// - [] bug when is option disabled shouldnt be selected
+// - [] bug on esc should dispatch cancel
+// - [~] implemented the reset button on Filter Select story
+// - [x] organize stories under example directory on single/multi/recipes
+// - [x] bug when is option disabled shouldnt be selected
 // - [/] - wont do - add useEffect for individual <Option /> :P since I removed the effect for tracking children changes
 // - [/] add story with filters groups // this has been removed from the code since is not use in the ecosystem
 // - [/] create onClose onAdd onRemove there are not need right now

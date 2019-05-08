@@ -3,7 +3,7 @@ import useListBox from "../useListBox";
 import { getDataOptions } from "../components/Option/helpers/optionState";
 
 export const handleEffectChildren = (props, state, dispatch) => () => {
-  if (Object.keys(state.options).length !== React.Children.count(props.children)) {
+  if (Object.keys(state.options).length + state.hasFooter !== React.Children.count(props.children)) {
     const options = getDataOptions(props.children);
 
     dispatch({

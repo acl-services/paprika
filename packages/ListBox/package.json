@@ -4,10 +4,10 @@
   "description": "",
   "main": "lib/index.js",
   "dependencies": {
-    "@paprika/popover": "^0.1.0",
-    "@paprika/tokens": "^0.1.0",
     "@paprika/button": "^0.1.0",
+    "@paprika/popover": "^0.1.0",
     "@paprika/raw-button": "^0.1.0",
+    "@paprika/tokens": "^0.1.0",
     "prop-types": "15.5.7",
     "uuid": "^3.3.2"
   },
@@ -23,5 +23,8 @@
     "access": "public"
   },
   "author": "@paprika",
-  "license": "MIT"
+  "license": "MIT",
+  "devDependencies": {
+    "react-json-tree": "^0.11.2"
+  }
 }

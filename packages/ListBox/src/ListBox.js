@@ -84,7 +84,7 @@ export const propTypes = {
   filter: PropTypes.func,
 
   /** When is true will not display selected options on the results list after inputing a string for the filter */
-  filterExcludeSelectedOptions: PropTypes.func,
+  filterExcludeSelectedOptions: PropTypes.bool,
 
   /** z-index for the popover */
   zIndex: PropTypes.number,

@@ -201,6 +201,7 @@ export default function reducer(state, { type, payload }) {
 
     case useListBox.types.accept: {
       const selectedOptions = state.selectedOptions.slice(0);
+
       return {
         ...state,
         isPopoverOpen: false,
@@ -237,6 +238,13 @@ export default function reducer(state, { type, payload }) {
       return {
         ...state,
         isDisabled: payload,
+      };
+    }
+
+    case useListBox.types.cleanOnChangeFn: {
+      return {
+        ...state,
+        onChangeFn: null,
       };
     }
 

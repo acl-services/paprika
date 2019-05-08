@@ -7,7 +7,7 @@ export const FooterContainerStyled = styled.div`
   justify-content: flex-start;
   width: 100%;
   & > div {
-    width: 50%;
+    width: calc(50% - 8px);
     [role="button"] {
       margin-right: 8px;
     }
