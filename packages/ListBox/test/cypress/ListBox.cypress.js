@@ -77,7 +77,7 @@ describe("ListBox single select popover with getScrollContainer", () => {
     toggleDropdown();
   });
 
-  it.only("should scroll with trigger", () => {
+  it("should scroll with trigger", () => {
     cy.scrollTo("top");
     cy.get(selectors.popover)
       .should("be.visible")
@@ -95,3 +95,24 @@ describe("ListBox single select popover with getScrollContainer", () => {
 //   it("should scroll with trigger", () => {
 //   });
 // });
+
+describe("ListBox Multi select filter", () => {
+  beforeEach(() => {
+    cy.visitStorybook("ListBox / multi", "With Filter");
+    toggleDropdown();
+  });
+
+  it.only("should filter, select, deselect and close trigger", () => {
+    cy.get(selectors.filterInput).type("w");
+    cy.get(selectors.popoverList)
+      .children()
+      .should("have.length", 3)
+      .contains(/spawn/i)
+      .click();
+    cy.contains(/wolverine/i).click();
+    cy.contains(/catwoman/i).click();
+    cy.contains("li", /spawn/i).click();
+    cy.get("body").click();
+    cy.get(selectors.trigger).should("contain", "Wolverine, Catwoman");
+  });
+});

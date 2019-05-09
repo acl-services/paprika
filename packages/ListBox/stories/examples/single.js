@@ -180,12 +180,16 @@ export const WithCustomFilter = () => (
       const filteredGroupArr = listboxOptionsToFilter.filter(function(d) {
         return d.groupLabel.toLowerCase().includes(filterInp.toLowerCase());
       });
-      const labelFilterdOptions = filteredGroupArr.map(x => x.label);
+      const labelFilterdOptions = filteredGroupArr.map((obj, i) => (
+        <ListBox.Option key={i}>{obj.label}</ListBox.Option>
+      ));
 
       console.log(labelFilterdOptions);
+
+      return <ListBox>labelFilterdOptions</ListBox>;
     }}
   >
-    <ListBox.Group groupId="villians" label="Villians">
+    <ListBox.Group groupId="villans" label="Villans">
       <ListBox.Option>The Joker</ListBox.Option>
       <ListBox.Option>Darth Vader</ListBox.Option>
       <ListBox.Option>Hannibal Lecter</ListBox.Option>
