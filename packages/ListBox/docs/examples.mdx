@@ -9,6 +9,7 @@ menu: "Listbox"
 import Signature from "../stories/moreExamples/onChange/OnChange";
 import Lazy from "../stories/moreExamples/lazy/Lazy";
 import FilterSelect from "../stories/moreExamples/filterSelect/FilterSelect";
+import CustomOnClick from "../stories/moreExamples/customOnClick/CustomOnClick";
 import { WithFilterAndNodesAsChildrenAndIsInline, WithCustomCheckers } from "../stories/examples/multi";
 import { Playground } from "docz";
 
@@ -53,4 +54,12 @@ Is possible to render you own checkbox mark using the renderCheckbox prop in the
 
 <Playground>
   <WithCustomCheckers />
+</Playground>
+
+## Custom ListBox.Option `onClick`
+
+Using `preventDefaultOnSelect` and `onClick` props, you can extend the behaviour of the options.
+
+<Playground>
+  <CustomOnClick />
 </Playground>

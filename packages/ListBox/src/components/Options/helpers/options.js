@@ -1,11 +1,8 @@
 import useListBox from "../../../useListBox";
 import applyOnChange from "../../../helpers/applyOnChange";
 
-function getOnChangeFn(state, activeOptionIndex) {
-  const hasPreventDefaultOnSelect = state.options[activeOptionIndex].preventDefaultOnSelect;
-  return hasPreventDefaultOnSelect
-    ? applyOnChange() // this will return a noop function
-    : applyOnChange(state.onChange, "listbox:option-selected");
+function getOnChangeFn(state) {
+  applyOnChange(state.onChange, "listbox:option-selected");
 }
 
 function selectSingleOption({ activeOptionIndex, isPopoverOpen, state, dispatch }) {
@@ -135,10 +132,6 @@ export function handleArrowKeys({ event, state, dispatch, isArrowDown = null }) 
 }
 
 export const handleClickOption = ({ props, state, dispatch }) => event => {
-  if (props.isDisabled) {
-    return;
-  }
-
   const { index } = props;
   const { options, hasFilter, isMulti, refFilterInput } = state;
 
@@ -154,12 +147,14 @@ export const handleClickOption = ({ props, state, dispatch }) => event => {
     refFilterInput.current.focus();
   }
 
-  if (options[index].preventDefaultOnSelect) {
-    if (props.onClick) {
-      // this will not selected the option, but will report that was clicked it.
-      // since this action will not affect the state we can report it right back.
-      applyOnChange(props.onClick, "listbox:click:prevent-default", event)(state, dispatch);
+  if (props.onClick) {
+    if (options[index].preventDefaultOnSelect) {
+      // this will not selected the option though will report that was clicked it.
+      state.options[index].onClick();
+      return;
     }
+
+    state.options[index].onClick();
   }
 
   if (isMulti) {
