@@ -301,6 +301,8 @@ export const WithCustomFilter = () => (
   <ListBox
     hasFilter
     filter={e => {
+      console.log("here", e);
+
       const filterInp = e.search;
 
       const listboxOptionsToFilter = Object.values(e.state.options);
