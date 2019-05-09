@@ -39,7 +39,7 @@ const defaultProps = {
   size: "small",
 };
 
-const Footer = React.forwardRef((props, ref) => {
+export function FooterComponent(props, ref) {
   const [, dispatch] = useListBox();
 
   const {
@@ -114,10 +114,19 @@ const Footer = React.forwardRef((props, ref) => {
       </div>
     </FooterContainerStyled>
   );
-});
+}
 
-export default Footer;
+const Footer = React.forwardRef(FooterComponent);
 
-Footer.componentType = "ListBox.Footer";
 Footer.propTypes = propTypes;
 Footer.defaultProps = defaultProps;
+
+// forwardRef component are struggling with react-docgen
+// https://github.com/pedronauck/docz/issues/334 once we move to Storybook doc we might be able to
+// remove this
+FooterComponent.propTypes = propTypes;
+FooterComponent.defaultProps = defaultProps;
+
+Footer.componentType = "ListBox.Footer";
+
+export default Footer;

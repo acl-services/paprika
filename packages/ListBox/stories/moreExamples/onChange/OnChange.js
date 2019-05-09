@@ -11,13 +11,15 @@ const ParametersExample = ({ state, signature }) => {
       <span css="font-size: 14px; color: #333">Single select onChange signature:</span>
       <hr />
       <code>{signature}</code>
+      <br />
+      <br />
       {state ? <RJT data={state} /> : null}
     </div>
   );
 };
 
-const signatureSingleStr = `onChange(index, [options], { dispatch, actionTypes, eventType, event? })`;
-const signatureMultipleStr = `onChange([indexes], [options], indexSelected, { dispatch, actionTypes, eventType, event? })`;
+const signatureSingleStr = `onChange(index, [options], { dispatch, actionTypes, eventType })`;
+const signatureMultipleStr = `onChange([indexes], [options], indexSelected, { dispatch, actionTypes, eventType })`;
 
 export default function OnChange() {
   const [singleState, setSingleState] = React.useState(null);

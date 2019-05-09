@@ -19,16 +19,18 @@ const propTypes = {
   onClickClear: PropTypes.func,
   placeholder: PropTypes.string.isRequired,
   renderTrigger: PropTypes.func,
+  onFooterClickAccept: PropTypes.func,
 };
 
 const defaultProps = {
   renderTrigger: null,
   onClickClear: null,
+  onFooterClickAccept: null,
 };
 
 export default function Trigger(props) {
   const [state, dispatch] = useListBox();
-  const { renderTrigger, placeholder, hasClearButton } = props;
+  const { renderTrigger, placeholder, hasClearButton, onFooterClickAccept } = props;
 
   const { isDisabled, refTriggerContainer, refTrigger, isMulti } = state;
 
@@ -47,6 +49,17 @@ export default function Trigger(props) {
 
     if (props.onClickClear) {
       props.onClickClear(state, dispatch);
+      return;
+    }
+
+    if (state.hasFooter) {
+      dispatch({
+        type: useListBox.types.clear,
+        payload: {
+          isPopoverOpen: false,
+          onChangeFn: applyOnChange(onFooterClickAccept, "listbox:footer:clear"),
+        },
+      });
       return;
     }
 

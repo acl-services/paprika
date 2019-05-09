@@ -1,5 +1,5 @@
 ---
-name: single selection
+name: Single
 route: "/listbox/single"
 menu: "Listbox"
 ---
@@ -21,9 +21,9 @@ or
   yarn add @paprika/listbox
 ```
 
-## Basic examples
+## Examples
 
-### Simple single select
+### Basic
 
 <Playground>
   <ListBox zIndex={10000} getScrollContainer={() => document.querySelector("#root > div")}>
@@ -41,7 +41,37 @@ or
 </ListBox>
 ```
 
-### Single select with filter
+### With Footer
+
+<Playground>
+  <ListBox zIndex={10000} getScrollContainer={() => document.querySelector("#root > div")}>
+    <ListBox.Option>Spiderman</ListBox.Option>
+    <ListBox.Option>Venom</ListBox.Option>
+    <ListBox.Option>Carnage</ListBox.Option>
+    <ListBox.Option>Doctor Octopus</ListBox.Option>
+    <ListBox.Option>Batman</ListBox.Option>
+    <ListBox.Option>Joker</ListBox.Option>
+    <ListBox.Option>Scarecrow</ListBox.Option>
+    <ListBox.Option>Two-Face</ListBox.Option>
+    <ListBox.Footer />
+  </ListBox>
+</Playground>
+
+```js
+<ListBox>
+  <ListBox.Option>Spiderman</ListBox.Option>
+  <ListBox.Option>Venom</ListBox.Option>
+  <ListBox.Option>Carnage</ListBox.Option>
+  <ListBox.Option>Doctor Octopus</ListBox.Option>
+  <ListBox.Option>Batman</ListBox.Option>
+  <ListBox.Option>Joker</ListBox.Option>
+  <ListBox.Option>Scarecrow</ListBox.Option>
+  <ListBox.Option>Two-Face</ListBox.Option>
+  <ListBox.Footer />
+</ListBox>
+```
+
+### With filter
 
 <Playground>
   <ListBox zIndex={10000} hasFilter getScrollContainer={() => document.querySelector("#root > div")}>
@@ -71,7 +101,7 @@ or
 </Playground>
 ```
 
-### Single select with Groups
+### With Groups
 
 <Playground>
   <ListBox zIndex={10000} getScrollContainer={() => document.querySelector("#root > div")}>

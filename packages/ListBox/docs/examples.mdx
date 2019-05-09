@@ -1,40 +1,19 @@
 ---
-name: examples
+name: Examples
 route: "/listbox/examples"
 menu: "Listbox"
 ---
 
-# More examples
+<!------------------- IMPORTS ------------------>
 
-## onChange Signature
+import Signature from "../stories/moreExamples/onChange/OnChange";
+import { Playground } from "docz";
 
-The listbox will return the selected option's index or an array of
-selected option's indexes depending if it's single or multiple selection.
+## Signature
 
-Single select case:
+The onChange and onClickAccept when using a Footer share the same signature, this two
+callback let the ListBox to share the current selected options.
 
-```js
-<ListBox onChange={
-  (selectedIndex, options, eventType) => {
-    const optionSelected = options[selectedIndex];
-    const value = optionSelected.value;
-    const label = optionSelected.label;
-  }}
->
-```
-
-Multiple select case:
-
-```js
-<ListBox isMulti onChange={
-  (selectedIndexesArray, options, indexSelected, eventType) => {
-      const values = selectedIndexesArray.map(option => {
-        return option.value;
-      })
-
-      // or
-      const recentlyAddedValue = options[indexSelected].value;
-    }
-  }
->
-```
+<Playground>
+  <Signature />
+</Playground>

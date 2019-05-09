@@ -5,9 +5,10 @@ export const FooterContainerStyled = styled.div`
   border-top: 1px solid #d7d7d7;
   padding: 8px;
   justify-content: flex-start;
-  width: 100%;
+  width: calc(100% - 16px);
+
   & > div {
-    width: calc(50% - 8px);
+    width: 50%;
     [role="button"] {
       margin-right: 8px;
     }

@@ -1,5 +1,5 @@
 ---
-name: props
+name: Props
 route: "/listbox/props"
 menu: "Listbox"
 ---
@@ -10,10 +10,13 @@ import ListBox from "../src";
 import { ListBox as ListBoxProps } from "../src/ListBox";
 import OptionProps from "../src/components/Option";
 import GroupProps from "../src/components/Group";
+import { FooterComponent } from "../src/components/Footer/Footer";
 import * as Single from "../stories/examples/single";
 import { PropsTable } from "docz";
 
 # Props
+
+---
 
 ## ListBox
 
@@ -30,3 +33,9 @@ import { PropsTable } from "docz";
 ## ListBox.Group
 
 <PropsTable of={GroupProps} />
+
+---
+
+## ListBox.Footer
+
+<PropsTable of={FooterComponent} />

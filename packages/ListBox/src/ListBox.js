@@ -47,7 +47,7 @@ export const propTypes = {
   /** Message to be display once the filtering process doesn't find a match */
   hasNotResultsMessage: PropTypes.node,
 
-  /** Callback returning the current selected index on the ListBox and more arguments */
+  /** Callback returning the current selection on the ListBox */
   onChange: PropTypes.func,
 
   /** Callback ocurring after the user click the [x] clear button on the Trigger area */
@@ -140,6 +140,7 @@ export function ListBox(props) {
         onClickClear={onClickClear}
         renderTrigger={renderTrigger}
         placeholder={placeholder}
+        onFooterClickAccept={footer ? footer.props.onClickAccept : null}
       />
       <Content>
         <Box>
