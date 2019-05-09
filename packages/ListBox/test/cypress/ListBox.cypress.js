@@ -102,7 +102,7 @@ describe("ListBox single select popover with getScrollContainer", () => {
 //   });
 // });
 
-describe("ListBox Multi select filter", () => {
+describe("ListBox multi select filter", () => {
   beforeEach(() => {
     cy.visitStorybook("ListBox / multi", "With Filter");
     toggleDropdown();
@@ -120,5 +120,50 @@ describe("ListBox Multi select filter", () => {
     cy.contains("li", /spawn/i).click();
     cy.get("body").click();
     cy.get(selectors.trigger).should("contain", "Wolverine, Catwoman");
+  });
+});
+
+describe("ListBox multi select hideOptionOnSelected", () => {
+  beforeEach(() => {
+    cy.visitStorybook("ListBox / multi", "With hide option on selection");
+    toggleDropdown();
+  });
+
+  it.only("should hide selected options", () => {
+    cy.get(selectors.popoverList)
+      .children()
+      .should("have.length", 7)
+      .contains(/spawn/i)
+      .click();
+    cy.contains(/wolverine/i).click();
+    cy.contains(/deadpool/i).click();
+    cy.get(selectors.popoverList)
+      .children()
+      .should("have.length", 4);
+  });
+});
+
+describe("ListBox multi select hide selections on filter", () => {
+  beforeEach(() => {
+    cy.visitStorybook("ListBox / multi", "Has filter exclude selected options");
+    toggleDropdown();
+  });
+
+  it.only("should not show selected options in popover when filtering", () => {
+    cy.get(selectors.filterInput).type("wo");
+    cy.get(selectors.popoverList)
+      .children()
+      .should("have.length", 3);
+    cy.get(selectors.filterInput)
+      .type("{backspace}")
+      .type("{backspace}");
+    cy.get(selectors.popoverList)
+      .contains(/catwoman/i)
+      .click();
+    cy.contains(/wolverine/i).click();
+    cy.get(selectors.filterInput).type("wo");
+    cy.get(selectors.popoverList)
+      .children()
+      .should("have.length", 1);
   });
 });

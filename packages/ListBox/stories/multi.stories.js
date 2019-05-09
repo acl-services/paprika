@@ -220,3 +220,7 @@ storiesOf("ListBox / multi", module).add("With Groups and have preselected optio
     </ListBox>
   </Frame>
 ));
+storiesOf("ListBox / multi", module).add("With hide option on selection", () => <Multi.WithHideOnSelected />);
+storiesOf("ListBox / multi", module).add("Has filter exclude selected options", () => (
+  <Multi.WithHideFilteredOptions />
+));
