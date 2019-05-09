@@ -17,6 +17,12 @@ describe("ListBox single select", () => {
     cy.get(selectors.trigger).should("contain", "Select one of the options");
     cy.get(selectors.clearButton).should("not.be.visible");
   });
+
+  it("should scroll in popover and select option", () => {
+    cy.get(selectors.popoverList).scrollTo("bottom");
+    cy.contains("Hawkeye").click();
+    cy.get(selectors.trigger).should("contain", "Hawkeye");
+  });
 });
 
 describe("ListBox single select zIndex", () => {
