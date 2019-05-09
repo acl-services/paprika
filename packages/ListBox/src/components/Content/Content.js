@@ -24,7 +24,7 @@ const handleBlur = (state, dispatch) => () => {
   // the body element automatically
   window.requestAnimationFrame(() => {
     // the trigger should handle the close and open not the onBlur event
-    if (state.refTriggerContainer.current.contains(document.activeElement)) {
+    if (state.refTriggerContainer.current && state.refTriggerContainer.current.contains(document.activeElement)) {
       return;
     }
 

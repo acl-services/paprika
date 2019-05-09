@@ -1,7 +1,8 @@
 export const images = [
   {
-    label: "Batman",
-    src: "https://images-na.ssl-images-amazon.com/images/I/41mH%2BlM7cmL._SX466_.jpg",
+    label: "Iron Man",
+    src:
+      "https://vignette.wikia.nocookie.net/lego-marvelsuperheroes/images/6/67/Iron_Man.png/revision/latest/scale-to-width-down/350?cb=20180724193550",
   },
   {
     label: "Spiderman",
@@ -17,11 +18,12 @@ export const images = [
     src: "http://i.ebayimg.com/00/s/NTAwWDQ1Mg==/z/0FYAAOxyRhBS-qzb/$_3.JPG?set_id=2",
   },
   {
-    label: "Spawn",
-    src: "http://www.clonebricks.com/wp-content/uploads/2017/03/026-lego-spawn-custom-minifigure.jpg",
-  },
-  {
     label: "wolverine",
     src: "https://vignette.wikia.nocookie.net/lego/images/d/d5/Wolverine_Classic.png/revision/latest?cb=20151230001543",
+  },
+  {
+    label: "Ant-man",
+    src:
+      "https://vignette.wikia.nocookie.net/lego-marvelsuperheroes/images/4/4a/Ant-Man.png/revision/latest?cb=20131011194045",
   },
 ];

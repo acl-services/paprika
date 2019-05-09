@@ -1,5 +1,18 @@
 import useListBox from "../useListBox";
 
+function cleanActionTypes() {
+  const actionTypes = useListBox.types;
+  return {
+    clear: actionTypes.clear,
+    closePopover: actionTypes.closePopover,
+    openPopover: actionTypes.openPopover,
+    reset: actionTypes.reset,
+    togglePopover: actionTypes.togglePopover,
+    unhideOptions: actionTypes.unhideOptions,
+    unselectOptions: actionTypes.unselectOptions,
+  };
+}
+
 function cleanOptionProperties(options) {
   return Object.keys(options).map(key => {
     // properties to be share with the consumer
@@ -32,15 +45,19 @@ const applyOnChange = (onChangeCallBack = () => {}, eventType = "", event) => (s
     return;
   }
 
-  const actionTypes = useListBox.types;
-
   if (state.isMulti) {
-    onChangeCallBack.apply(null, [...getSelectedOptionsMulti(state), { dispatch, actionTypes, eventType, event }]);
+    onChangeCallBack.apply(null, [
+      ...getSelectedOptionsMulti(state),
+      { dispatch, actionTypes: cleanActionTypes(), eventType, ...event },
+    ]);
     dispatch({ type: useListBox.types.cleanOnChangeFn });
     return;
   }
 
-  onChangeCallBack.apply(null, [...getSelectedOptionSingle(state), { dispatch, actionTypes, eventType, event }]);
+  onChangeCallBack.apply(null, [
+    ...getSelectedOptionSingle(state),
+    { dispatch, actionTypes: cleanActionTypes(), eventType, ...event },
+  ]);
   dispatch({ type: useListBox.types.cleanOnChangeFn });
 };
 

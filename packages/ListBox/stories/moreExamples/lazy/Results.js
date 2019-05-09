@@ -2,7 +2,7 @@ import React from "react";
 
 export default function Results(props) {
   return (
-    <div css="margin-bottom: 32px; display: grid; grid-template-columns: 18vw 18vw 18vw 18vw 18vw; grid-gap: 10px;">
+    <div css="margin-bottom: 32px; display: grid; grid-template-columns: 16vw 16vw 16vw; grid-gap: 32px;">
       {props.ids.map(id => (
         <div
           key={id}
@@ -21,7 +21,7 @@ export default function Results(props) {
             css="
               display: inline-block;
               color: #fff;
-              width: 100%;
+              width:calc(100% - 8px);
               padding: 4px;
               font-size: 14px;
               position: relative;

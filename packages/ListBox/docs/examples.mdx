@@ -7,7 +7,18 @@ menu: "Listbox"
 <!------------------- IMPORTS ------------------>
 
 import Signature from "../stories/moreExamples/onChange/OnChange";
+import Lazy from "../stories/moreExamples/lazy/Lazy";
+import { WithFilterAndNodesAsChildrenAndIsInline } from "../stories/examples/multi";
 import { Playground } from "docz";
+
+## Lazy Loading
+
+Building a Lazy Loading ListBox on top of the current Component is possible, the following
+showcase a ListBox with multiple selection that connects and interact with the Marvel API.
+
+<Playground>
+  <Lazy />
+</Playground>
 
 ## Signature
 
@@ -16,4 +27,13 @@ callback let the ListBox to share the current selected options.
 
 <Playground>
   <Signature />
+</Playground>
+
+## Custom children
+
+The `ListBox.Option` component is flexible enough to allow custom options. In this example
+you can see a inline ListBox with custom chilren and filter.
+
+<Playground>
+  <WithFilterAndNodesAsChildrenAndIsInline />
 </Playground>

@@ -1,6 +1,5 @@
 import React from "react";
 import Button from "@paprika/button";
-import { Frame } from "../../stories.styles";
 import ListBox from "../../../src";
 import fixture from "./lazy.fixture";
 import MarvelOption from "./MarvelOption";
@@ -72,27 +71,31 @@ export default function LazyListBox() {
     const limit = state.activeApiPage[index].limit;
 
     fetchAPI(groups[index], offset, limit).then(response => {
-      const resultsClone = [...state.characters[index].data.results, ...response.data.results];
-      response.data.results = resultsClone;
-      const charactersClone = state.characters.slice(0);
-      charactersClone[index] = response;
+      if (response && response.data) {
+        const resultsClone = [...state.characters[index].data.results, ...response.data.results];
+        response.data.results = resultsClone;
+        const charactersClone = state.characters.slice(0);
+        charactersClone[index] = response;
 
-      dispatch({
-        type: actionTypes.addCharacters,
-        payload: charactersClone,
-      });
+        dispatch({
+          type: actionTypes.addCharacters,
+          payload: charactersClone,
+        });
 
-      dispatch({
-        type: actionTypes.isDisabled,
-        payload: false,
-      });
+        dispatch({
+          type: actionTypes.isDisabled,
+          payload: false,
+        });
 
-      const cloneArray = [...state.activeApiPage];
-      cloneArray[index] = { offset, limit };
-      dispatch({
-        type: actionTypes.updateActiveApiPage,
-        payload: cloneArray,
-      });
+        const cloneArray = [...state.activeApiPage];
+        cloneArray[index] = { offset, limit };
+        dispatch({
+          type: actionTypes.updateActiveApiPage,
+          payload: cloneArray,
+        });
+      } else {
+        console.error("something went wrong with the Marvel API");
+      }
     });
   };
 
@@ -224,7 +227,7 @@ export default function LazyListBox() {
   );
 
   return (
-    <Frame>
+    <React.Fragment>
       {state.selectedCharacters.length ? (
         <Results charactersCache={charactersCache} ids={state.selectedCharacters} />
       ) : null}
@@ -245,6 +248,6 @@ export default function LazyListBox() {
         {state.searchedCharacters && state.search !== "" ? renderSearchedOptions() : null}
         {state.characters.length && state.search === "" ? renderOptions() : null}
       </ListBox>
-    </Frame>
+    </React.Fragment>
   );
 }

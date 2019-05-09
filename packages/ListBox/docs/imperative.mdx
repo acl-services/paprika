@@ -1,0 +1,46 @@
+---
+name: Imperative API
+route: "/listbox/imperative"
+menu: "Listbox"
+---
+
+# Imperative API
+
+The ListBox component provides an imperative API via the ref property. The return instance from the
+ListBox ref gives limited access to some properties and methods
+
+Ex.
+
+```js
+
+function MyCustomListBox(props) {
+  const ref = React.useRef(null);
+
+  React.useEffect(() => {
+    // you can access the imperative API
+
+    // clear: any value on the ListBox
+    // ref.current.clear()
+
+    // reset: the ListBox to their original value
+    // ref.current.reset()
+
+    // focus: will transfer the focus to the ListBox
+    // ref.current.focus()
+
+    // selected: return the current selected options in the ListBox
+    // ref.current.selected()
+
+    // options: return the current options in the ListBox
+    // ref.current.options()
+  }, [])
+
+  return (
+    <ListBox ref={ref}>
+      <ListBox.Option>Option 1<ListBox.Option>
+      <ListBox.Option>Option 2<ListBox.Option>
+    </ListBox>
+  )
+}
+
+```
