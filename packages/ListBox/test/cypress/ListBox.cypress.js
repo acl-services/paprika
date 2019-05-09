@@ -17,6 +17,12 @@ describe("ListBox single select", () => {
     cy.get(selectors.trigger).should("contain", "Select one of the options");
     cy.get(selectors.clearButton).should("not.be.visible");
   });
+
+  it("should scroll in popover and select option", () => {
+    cy.get(selectors.popoverList).scrollTo("bottom");
+    cy.contains("Hawkeye").click();
+    cy.get(selectors.trigger).should("contain", "Hawkeye");
+  });
 });
 
 describe("ListBox single select zIndex", () => {
@@ -102,7 +108,7 @@ describe("ListBox Multi select filter", () => {
     toggleDropdown();
   });
 
-  it.only("should filter, select, deselect and close trigger", () => {
+  it("should filter, select, deselect and close trigger", () => {
     cy.get(selectors.filterInput).type("w");
     cy.get(selectors.popoverList)
       .children()

@@ -121,7 +121,7 @@ export const WithPreventDefaultOnSelect = () => (
 export const WithContainerScroll = () => (
   <React.Fragment>
     <p style={{ height: 400 }} />
-    <ListBox>
+    <ListBox getScrollContainer={() => document.querySelector("#root > div")}>
       <ListBox.Option>Punisher</ListBox.Option>
       <ListBox.Option>Catwoman</ListBox.Option>
       <ListBox.Option>Venom</ListBox.Option>
@@ -182,13 +182,13 @@ export const WithCustomFilter = () => (
       const filteredGroupArr = listboxOptionsToFilter.filter(function(d) {
         return d.groupLabel.toLowerCase().includes(filterInp.toLowerCase());
       });
-      const labelFilterdOptions = filteredGroupArr.map((obj, i) => (
-        <ListBox.Option key={i}>{obj.label}</ListBox.Option>
+      const labelFilteredOptions = filteredGroupArr.map(obj => (
+        <ListBox.Option key={obj.id}>{obj.label}</ListBox.Option>
       ));
 
-      console.log(labelFilterdOptions);
+      console.log(labelFilteredOptions);
 
-      return <ListBox>labelFilterdOptions</ListBox>;
+      return <ListBox>labelFilteredOptions</ListBox>;
     }}
   >
     <ListBox.Group groupId="villans" label="Villans">
@@ -223,6 +223,20 @@ export const WithOnClick = () => (
     >
       Punisher
     </ListBox.Option>
+    <ListBox.Option>Catwoman</ListBox.Option>
+    <ListBox.Option>Venom</ListBox.Option>
+  </ListBox>
+);
+
+export const WithOnSelected = () => (
+  <ListBox
+    isMulti
+    zIndex={10000}
+    onDeselected={() => {
+      alert("yeet");
+    }}
+  >
+    <ListBox.Option>Punisher</ListBox.Option>
     <ListBox.Option>Catwoman</ListBox.Option>
     <ListBox.Option>Venom</ListBox.Option>
   </ListBox>
