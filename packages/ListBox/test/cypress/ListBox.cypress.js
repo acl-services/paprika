@@ -129,7 +129,7 @@ describe("ListBox multi select hideOptionOnSelected", () => {
     toggleDropdown();
   });
 
-  it.only("should hide selected options", () => {
+  it("should hide selected options", () => {
     cy.get(selectors.popoverList)
       .children()
       .should("have.length", 7)
