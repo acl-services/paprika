@@ -107,7 +107,7 @@ describe("ListBox single select popover with getScrollContainer", () => {
 //   });
 // });
 
-describe("ListBox Multi select filter", () => {
+describe("ListBox multi select filter", () => {
   beforeEach(() => {
     cy.visitStorybook("ListBox / multi", "With Filter");
     toggleDropdown();

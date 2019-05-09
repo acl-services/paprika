@@ -122,3 +122,28 @@ export const WithHideFilteredOptions = () => (
     <ListBox.Option>Wonder Woman</ListBox.Option>
   </ListBox>
 );
+
+export const WithHideOnSelected = () => (
+  <ListBox isMulti hideOptionOnSelected>
+    <ListBox.Option>Punisher</ListBox.Option>
+    <ListBox.Option>Catwoman</ListBox.Option>
+    <ListBox.Option>Venom</ListBox.Option>
+    <ListBox.Option>Thunderbolts</ListBox.Option>
+    <ListBox.Option>Deadpool</ListBox.Option>
+    <ListBox.Option>Spawn</ListBox.Option>
+    <ListBox.Option>Wolverine</ListBox.Option>
+  </ListBox>
+);
+
+export const WithHideFilteredOptions = () => (
+  <ListBox isMulti hasFilter filterExcludeSelectedOptions>
+    <ListBox.Option>Punisher</ListBox.Option>
+    <ListBox.Option>Catwoman</ListBox.Option>
+    <ListBox.Option>Venom</ListBox.Option>
+    <ListBox.Option>Wolverine</ListBox.Option>
+    <ListBox.Option>Thor</ListBox.Option>
+    <ListBox.Option>Batman</ListBox.Option>
+    <ListBox.Option>Superman</ListBox.Option>
+    <ListBox.Option>Wonder Woman</ListBox.Option>
+  </ListBox>
+);
