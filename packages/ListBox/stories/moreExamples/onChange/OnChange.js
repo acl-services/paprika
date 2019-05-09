@@ -7,13 +7,15 @@ const defaultProps = {};
 
 const ParametersExample = ({ state, signature }) => {
   return (
-    <div css="padding: 16px; border: 1px solid #CCC; margin-bottom: 16px; border-radius: 3px;">
+    <div css="padding: 8px; border: 1px solid #CCC; margin-bottom: 8px; border-radius: 3px;">
       <span css="font-size: 14px; color: #333">Single select onChange signature:</span>
       <hr />
-      <code>{signature}</code>
+      <code css="font-size: 13px; color: #785CBA; padding: 8px; font-weight: 600; border-radius: 3px; background: #EEE; border: 1px solid #CCC;">
+        {signature}
+      </code>
       <br />
       <br />
-      {state ? <RJT data={state} /> : null}
+      {state ? <RJT hideRoot data={state} /> : null}
     </div>
   );
 };

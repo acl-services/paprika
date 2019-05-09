@@ -41,7 +41,7 @@ export default {
     "Getting started",
     {
       name: "Listbox",
-      menu: ["Intro", "Single", "Multiple", "Props", "Accessibility", "Examples"],
+      menu: ["Intro", "Single", "Multiple", "Props", "Accessibility", "Imperative API", "More examples"],
     },
   ],
 };

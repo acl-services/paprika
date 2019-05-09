@@ -1,5 +1,5 @@
 ---
-name: Examples
+name: More examples
 route: "/listbox/examples"
 menu: "Listbox"
 ---
@@ -8,7 +8,8 @@ menu: "Listbox"
 
 import Signature from "../stories/moreExamples/onChange/OnChange";
 import Lazy from "../stories/moreExamples/lazy/Lazy";
-import { WithFilterAndNodesAsChildrenAndIsInline } from "../stories/examples/multi";
+import FilterSelect from "../stories/moreExamples/filterSelect/FilterSelect";
+import { WithFilterAndNodesAsChildrenAndIsInline, WithCustomCheckers } from "../stories/examples/multi";
 import { Playground } from "docz";
 
 ## Lazy Loading
@@ -20,10 +21,10 @@ showcase a ListBox with multiple selection that connects and interact with the M
   <Lazy />
 </Playground>
 
-## Signature
+## ListBox `onChange` Signature
 
-The onChange and onClickAccept when using a Footer share the same signature, this two
-callback let the ListBox to share the current selected options.
+The onChange and onClickAccept (ListBox.Footer) have the same signature. Play with the examples
+to see the returned values for those callbacks.
 
 <Playground>
   <Signature />
@@ -36,4 +37,20 @@ you can see a inline ListBox with custom chilren and filter.
 
 <Playground>
   <WithFilterAndNodesAsChildrenAndIsInline />
+</Playground>
+
+## Imperative API
+
+This example make uses of the Imperative API to reset all filters at the same time.
+
+<Playground>
+  <FilterSelect />
+</Playground>
+
+## Custom Checkbox mark
+
+Is possible to render you own checkbox mark using the renderCheckbox prop in the ListBox.
+
+<Playground>
+  <WithCustomCheckers />
 </Playground>
