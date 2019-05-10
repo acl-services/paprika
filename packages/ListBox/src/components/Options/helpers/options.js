@@ -2,7 +2,7 @@ import useListBox from "../../../useListBox";
 import applyOnChange from "../../../helpers/applyOnChange";
 
 function getOnChangeFn(state) {
-  applyOnChange(state.onChange, "listbox:option-selected");
+  return applyOnChange(state.onChange, "listbox:option-selected");
 }
 
 function selectSingleOption({ activeOptionIndex, isPopoverOpen, state, dispatch }) {
@@ -149,12 +149,12 @@ export const handleClickOption = ({ props, state, dispatch }) => event => {
 
   if (props.onClick) {
     if (options[index].preventDefaultOnSelect) {
-      // this will not selected the option though will report that was clicked it.
-      state.options[index].onClick();
+      // this will not selected the option, but will report that was clicked it.
+      // since this action will not affect the state we can report it right back.
+      props.onClick();
       return;
     }
-
-    state.options[index].onClick();
+    props.onClick();
   }
 
   if (isMulti) {
