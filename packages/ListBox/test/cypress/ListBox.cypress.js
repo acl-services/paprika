@@ -69,7 +69,7 @@ describe("ListBox single select label filter", () => {
   });
 
   it("should filter by option label", () => {
-    cy.get(selectors.filterInput).type("ba");
+    cy.get(selectors.filterInput).type("sp");
     cy.get(selectors.popoverList)
       .children()
       .should("have.length", 1)
@@ -78,6 +78,7 @@ describe("ListBox single select label filter", () => {
 });
 
 describe("ListBox single select popover with getScrollContainer", () => {
+  // can't create a failing test
   beforeEach(() => {
     cy.visitStorybook("ListBox / single", "Has scroll connected to element");
     toggleDropdown();
@@ -88,7 +89,7 @@ describe("ListBox single select popover with getScrollContainer", () => {
     cy.get(selectors.popover)
       .should("be.visible")
       .should("have.css", "top")
-      // 466 was taken from cypress expectation
+      // 466 was taken from cypress expectation of where popover should be after scroll
       .and("match", /466/);
   });
 });
@@ -154,12 +155,14 @@ describe("ListBox multi select hide selections on filter", () => {
     toggleDropdown();
   });
 
-  it.only("should not show selected options in popover when filtering", () => {
+  it("should not show selected options in popover when filtering", () => {
     cy.get(selectors.filterInput).type("wo");
     cy.get(selectors.popoverList)
       .children()
       .should("have.length", 3);
-    cy.get(selectors.filterInput).type("{backspace} {backspace}");
+    cy.get(selectors.filterInput)
+      .type("{backspace}")
+      .type("{backspace}");
     cy.get(selectors.popoverList)
       .contains(/catwoman/i)
       .click();
@@ -168,5 +171,64 @@ describe("ListBox multi select hide selections on filter", () => {
     cy.get(selectors.popoverList)
       .children()
       .should("have.length", 1);
+  });
+});
+
+describe("ListBox filterSelect from moreExamples", () => {
+  beforeEach(() => {
+    cy.visitStorybook("ListBox / more examples", "Filter select");
+  });
+
+  it("should show correct options in list and trigger when color filtering", () => {
+    cy.get(selectors.trigger)
+      .contains(/color/i)
+      .click();
+    cy.get(selectors.popoverList)
+      .contains(/red/i)
+      .click();
+    cy.get(selectors.popoverList)
+      .contains(/yellow/i)
+      .click();
+    cy.get("body").click();
+    cy.get(selectors.trigger)
+      .find("span")
+      .should("contain", "red, yellow");
+    cy.get(selectors.filterSelectTableList)
+      .children()
+      .should("have.length", 2)
+      .and("contain", "Deadpool")
+      .and("contain", "Thunderbolts");
+  });
+
+  it("should show correct options in list and trigger when price filtering", () => {
+    cy.get(selectors.trigger)
+      .contains(/price/i)
+      .click();
+    cy.get(selectors.popoverList)
+      .contains(/lower than 500/i)
+      .click();
+    cy.get(selectors.trigger).should("contain", "lower than 500");
+    cy.get(selectors.filterSelectTableList)
+      .children()
+      .should("have.length", 3)
+      .and("contain", "345")
+      .and("contain", "109")
+      .and("contain", "499");
+  });
+
+  it("should show correct options in list and trigger when quantity filtering", () => {
+    cy.get(selectors.trigger)
+      .contains(/quantity/i)
+      .click();
+    cy.get(selectors.popoverList)
+      .contains(/greater than 100/i)
+      .click();
+    cy.get(selectors.trigger).should("contain", "greater than 100");
+    cy.get(selectors.filterSelectTableList)
+      .children()
+      .should("have.length", 3)
+      .and("contain", "121")
+      .and("contain", "342")
+      .and("contain", "1231");
   });
 });

@@ -118,7 +118,7 @@ function Table() {
             <Th scope="col">Qty</Th>
           </tr>
         </thead>
-        <tbody>
+        <tbody data-qa-anchor="table-list">
           {items
             .filter(filterItems({ price: filterPriceValue, colors: filterColorValue, qty: filterQtyValue }))
             .map(item => (

@@ -309,6 +309,14 @@ export const WithCustomFilter = () => (
           .map(key => Number.parseInt(key, 10));
       }
 
+      if (search === "H") {
+        return Object.keys(state.options)
+          .filter(key => {
+            return state.options[key].groupLabel.startsWith("H");
+          })
+          .map(key => Number.parseInt(key, 10));
+      }
+
       return [];
       // console.log("here", e);
       //
