@@ -34,15 +34,20 @@ describe("RawButton", () => {
   it("Renders with custom props", () => {
     const customProps = {
       a11yText: "button which is happy",
-      isDisabled: true,
       role: "listitem",
       tabIndex: -1,
     };
     const { getByLabelText, getByRole, container } = renderComponent(customProps);
 
     expect(getByLabelText("button which is happy")).toBeInTheDocument();
-    expect(container.querySelector('[aria-disabled="true"]')).toBeInTheDocument();
     expect(getByRole("listitem")).toBeInTheDocument();
+    expect(container.querySelector('[tabindex="-1"]')).toBeInTheDocument();
+  });
+
+  it("Renders properly with isDisabled=true", () => {
+    const { container } = renderComponent({ isDisabled: true });
+
+    expect(container.querySelector('[aria-disabled="true"]')).toBeInTheDocument();
     expect(container.querySelector('[tabindex="-1"]')).toBeInTheDocument();
   });
 
