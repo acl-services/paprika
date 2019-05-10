@@ -4,6 +4,7 @@
   "description": "",
   "main": "lib/index.js",
   "dependencies": {
+    "@babel/runtime-corejs2": "^7.3.1",
     "@paprika/button": "^0.1.0",
     "@paprika/popover": "^0.1.0",
     "@paprika/raw-button": "^0.1.0",
