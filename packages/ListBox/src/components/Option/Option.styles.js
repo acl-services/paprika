@@ -12,7 +12,7 @@ export const OptionStyled = styled.li`
   &:hover {
     ${props => {
       const isSelected = props.isSelected ? `background: ${blueSelected}` : `background: #f0f0f0`;
-      const isDisabled = props.isDisabled ? "background: none; cursor: not-allowed;" : "";
+      const isDisabled = props.isDisabled ? "background: transparent; cursor: not-allowed; border: 0;" : "";
       const hasPreventDefaultOnSelect = props.hasPreventDefaultOnSelect ? "background: transparent;" : "";
 
       return `
@@ -24,7 +24,9 @@ export const OptionStyled = styled.li`
   }
 
   ${props => {
-    const isDisabled = props.isDisabled ? `color: ${tokens.color.blackLighten60};` : "";
+    const isDisabled = props.isDisabled
+      ? `color: ${tokens.color.blackLighten60}; border: 0; background: transparent;`
+      : "";
 
     const isActived = props.isActive
       ? `
