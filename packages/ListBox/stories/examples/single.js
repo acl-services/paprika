@@ -300,45 +300,58 @@ export const WithZIndexAttribute = () => (
 export const WithCustomFilter = () => (
   <ListBox
     hasFilter
-    filter={e => {
-      console.log("here", e);
+    filter={({ search, state }) => {
+      if (search === "V") {
+        return Object.keys(state.options)
+          .filter(key => {
+            return state.options[key].groupLabel.startsWith("V");
+          })
+          .map(key => Number.parseInt(key, 10));
+      }
 
-      const filterInp = e.search;
-
-      const listboxOptionsToFilter = Object.values(e.state.options);
-
-      const filteredGroupArr = listboxOptionsToFilter.filter(function(d) {
-        return d.groupLabel.toLowerCase().includes(filterInp.toLowerCase());
-      });
-      const labelFilteredOptions = filteredGroupArr.map(obj => (
-        <ListBox.Option key={obj.id}>{obj.label}</ListBox.Option>
-      ));
-
-      console.log(labelFilteredOptions);
-
-      return <ListBox>labelFilteredOptions</ListBox>;
+      return [];
+      // console.log("here", e);
+      //
+      // const filterInp = e.search;
+      //
+      // const listboxOptionsToFilter = Object.values(e.state.options);
+      //
+      // const filteredGroupArr = listboxOptionsToFilter.filter(function(d) {
+      //   return d.groupLabel.toLowerCase().includes(filterInp.toLowerCase());
+      // });
+      //
+      // const labelFilteredOptions = filteredGroupArr.map(obj => (
+      //   <ListBox.Option key={obj.id}>{obj.label}</ListBox.Option>
+      // ));
+      //
+      // console.log(labelFilteredOptions);
+      //
+      // return <ListBox>labelFilteredOptions</ListBox>;
     }}
-  >
-    <ListBox.Group groupId="villans" label="Villans">
-      <ListBox.Option>The Joker</ListBox.Option>
-      <ListBox.Option>Darth Vader</ListBox.Option>
-      <ListBox.Option>Hannibal Lecter</ListBox.Option>
-      <ListBox.Option>Lord Voldemort</ListBox.Option>
-      <ListBox.Option>Freddy Krueger</ListBox.Option>
-      <ListBox.Option>Palpatine</ListBox.Option>
-      <ListBox.Option>Agent Smith</ListBox.Option>
-    </ListBox.Group>
-    <ListBox.Group groupId="heroes" label="Heroes">
-      <ListBox.Option>Black Panther</ListBox.Option>
-      <ListBox.Option>Wonder Woman</ListBox.Option>
-      <ListBox.Option>Spiderman</ListBox.Option>
-      <ListBox.Option>The Incredibles</ListBox.Option>
-      <ListBox.Option>Thor</ListBox.Option>
-      <ListBox.Option>Batman</ListBox.Option>
-      <ListBox.Option>Iron Man</ListBox.Option>
-      <ListBox.Option>Doctor Strange</ListBox.Option>
-    </ListBox.Group>
-  </ListBox>
+    children={
+      <React.Fragment>
+        <ListBox.Group groupId="villians" label="Villians">
+          <ListBox.Option>The Joker</ListBox.Option>
+          <ListBox.Option>Darth Vader</ListBox.Option>
+          <ListBox.Option>Hannibal Lecter</ListBox.Option>
+          <ListBox.Option>Lord Voldemort</ListBox.Option>
+          <ListBox.Option>Freddy Krueger</ListBox.Option>
+          <ListBox.Option>Palpatine</ListBox.Option>
+          <ListBox.Option>Agent Smith</ListBox.Option>
+        </ListBox.Group>
+        <ListBox.Group groupId="heroes" label="Heroes">
+          <ListBox.Option>Black Panther</ListBox.Option>
+          <ListBox.Option>Wonder Woman</ListBox.Option>
+          <ListBox.Option>Spiderman</ListBox.Option>
+          <ListBox.Option>The Incredibles</ListBox.Option>
+          <ListBox.Option>Thor</ListBox.Option>
+          <ListBox.Option>Batman</ListBox.Option>
+          <ListBox.Option>Iron Man</ListBox.Option>
+          <ListBox.Option>Doctor Strange</ListBox.Option>
+        </ListBox.Group>
+      </React.Fragment>
+    }
+  />
 );
 
 export const WithOnClick = () => (
