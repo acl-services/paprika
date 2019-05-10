@@ -53,15 +53,6 @@ export const propTypes = {
   /** Callback ocurring after the user click the [x] clear button on the Trigger area */
   onClickClear: PropTypes.func,
 
-  /** Callback announcing which option has been marked as selected */
-  onSelected: PropTypes.func,
-
-  /** Callback announcing which option has been marked as deselected */
-  onDeselected: PropTypes.func,
-
-  /** Callback happening once the Popover has close */
-  onClose: PropTypes.func,
-
   /** Defaults label to display when the ListBox has not option selected */
   placeholder: PropTypes.string,
 
