@@ -154,9 +154,7 @@ describe("ListBox multi select hide selections on filter", () => {
     cy.get(selectors.popoverList)
       .children()
       .should("have.length", 3);
-    cy.get(selectors.filterInput)
-      .type("{backspace}")
-      .type("{backspace}");
+    cy.get(selectors.filterInput).type("{backspace} {backspace}");
     cy.get(selectors.popoverList)
       .contains(/catwoman/i)
       .click();
