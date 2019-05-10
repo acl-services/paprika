@@ -5,6 +5,7 @@ export default {
   title: "Paprika",
   port: 4000,
   description: "Paprika library",
+  hashRouter: true,
   htmlContext: {
     favicon: "assests/favicon.ico",
   },
