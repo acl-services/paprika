@@ -14,11 +14,16 @@ function individualFilterSelect(trig, triggerAssert, listLength, ...listAsserts)
   cy.get(selectors.trigger).should("contain", triggerAssert);
   cy.get(selectors.filterSelectTableList)
     .children()
-    // .should("have.length", listLength);
-    .should(y => {
-      expect(y).to.have.length(listLength);
-      listAsserts.map(x => `expect(y).to.contain(${x})`);
+    .should(children => {
+      expect(children).to.have.length(listLength);
+      listAsserts.map(anAssertion => `expect(y).to.contain(${anAssertion})`);
     });
+}
+
+function shouldHaveListLengthOf(num) {
+  cy.get(selectors.filterSelectTableList)
+    .children()
+    .should("have.length", num);
 }
 
 describe("ListBox single select", () => {
@@ -225,12 +230,25 @@ describe("ListBox filterSelect from moreExamples", () => {
     individualFilterSelect(/quantity/i, "greater than 100", 3, 121, 342, 1231);
   });
 
-  it("should clear active filters", () => {
+  it("should clear price and quantity filters", () => {
     individualFilterSelect(/quantity/i, "less than 100", 4, 15, 34, 12, 21);
     individualFilterSelect(/price/i, "greater than 500", 3, 2300, 1500, 2800);
     cy.get(selectors.filtersClearButton).click();
-    cy.get(selectors.filterSelectTableList)
-      .children()
-      .should("have.length", 7);
+    shouldHaveListLengthOf(7);
+  });
+
+  it("should filter with no list results and clear filters to show all list items", () => {
+    individualFilterSelect(/quantity/i, "less than 100", 4, 15, 34, 12, 21);
+    individualFilterSelect(/price/i, "greater than 500", 3, 2300, 1500, 2800);
+    cy.get(selectors.trigger)
+      .contains(/color/i)
+      .click();
+    cy.get(selectors.popoverList)
+      .contains(/red/i)
+      .click();
+    cy.get("body").click();
+    shouldHaveListLengthOf(0);
+    cy.get(selectors.filtersClearButton).click();
+    shouldHaveListLengthOf(7);
   });
 });
