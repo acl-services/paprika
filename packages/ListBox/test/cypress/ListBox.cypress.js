@@ -85,12 +85,9 @@ describe("ListBox single select filter", () => {
 });
 
 describe("ListBox single select label filter", () => {
-  beforeEach(() => {
+  it("should filter by option label", () => {
     cy.visitStorybook("ListBox / single", "Filter custom nodes");
     toggleDropdown();
-  });
-
-  it("should filter by option label", () => {
     cy.get(selectors.filterInput).type("sp");
     cy.get(selectors.popoverList)
       .children()
@@ -101,12 +98,9 @@ describe("ListBox single select label filter", () => {
 
 describe("ListBox single select popover with getScrollContainer", () => {
   // can't create a failing test
-  beforeEach(() => {
+  it("should scroll with trigger", () => {
     cy.visitStorybook("ListBox / single", "Has scroll connected to element");
     toggleDropdown();
-  });
-
-  it("should scroll with trigger", () => {
     cy.scrollTo("top");
     cy.get(selectors.popover)
       .should("be.visible")
@@ -117,12 +111,9 @@ describe("ListBox single select popover with getScrollContainer", () => {
 });
 
 describe("ListBox single select custom filter", () => {
-  beforeEach(() => {
+  it("should filter with correct group options or show no results", () => {
     cy.visitStorybook("ListBox / single", "Has custom filter");
     toggleDropdown();
-  });
-
-  it("should filter with correct group options or show no results", () => {
     cy.get(selectors.filterInput).type("V");
     cy.get(selectors.popoverList)
       .children()
@@ -140,12 +131,9 @@ describe("ListBox single select custom filter", () => {
 });
 
 describe("ListBox multi select filter", () => {
-  beforeEach(() => {
+  it("should filter, select, deselect and close trigger", () => {
     cy.visitStorybook("ListBox / multi", "With Filter");
     toggleDropdown();
-  });
-
-  it("should filter, select, deselect and close trigger", () => {
     cy.get(selectors.filterInput).type("w");
     cy.get(selectors.popoverList)
       .children()
@@ -161,12 +149,9 @@ describe("ListBox multi select filter", () => {
 });
 
 describe("ListBox multi select hideOptionOnSelected", () => {
-  beforeEach(() => {
+  it("should hide selected options", () => {
     cy.visitStorybook("ListBox / multi", "With hide option on selection");
     toggleDropdown();
-  });
-
-  it("should hide selected options", () => {
     cy.get(selectors.popoverList)
       .children()
       .should("have.length", 7)
@@ -181,12 +166,9 @@ describe("ListBox multi select hideOptionOnSelected", () => {
 });
 
 describe("ListBox multi select hide selections on filter", () => {
-  beforeEach(() => {
+  it("should not show selected options in popover when filtering", () => {
     cy.visitStorybook("ListBox / multi", "Has filter exclude selected options");
     toggleDropdown();
-  });
-
-  it("should not show selected options in popover when filtering", () => {
     cy.get(selectors.filterInput).type("wo");
     cy.get(selectors.popoverList)
       .children()
@@ -246,7 +228,7 @@ describe("ListBox filterSelect from moreExamples", () => {
     shouldHaveListLengthOf(7);
   });
 
-  it.only("should filter with no list results and clear filters to show all list items", () => {
+  it("should filter with no list results and clear filters to show all list items", () => {
     individualFilterSelect(/quantity/i, "greater than 100", 3, 121, 342, 1231);
     individualFilterSelect(/price/i, "greater than 500", 1, 1320);
     cy.get(selectors.trigger)
