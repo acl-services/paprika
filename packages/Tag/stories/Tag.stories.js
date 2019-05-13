@@ -2,36 +2,6 @@ import React from "react";
 import { storiesOf } from "@storybook/react";
 import Tag from "../src";
 
-//
-// Showcase
-//
-
-// storiesOf("Tag", module)
-//   .addDecorator(withKnobs)
-//   .add(() => {
-//     const tagProps = {
-//       isDark: boolean("isDark", false),
-//       isDisabled: boolean("isDisabled", false),
-//       isReadOnly: boolean("isReadOnly", false),
-//       onRemove: action("Remove Click"),
-//       label: text("label", "Local Vaporware"),
-//       size: select("size", ["small", "medium", "large"], "medium"),
-//       width: number("width"),
-//     };
-//
-//     return (
-//       <div>
-//         <h1>Tag</h1>
-//         <hr />
-//         <Tag {...tagProps} />
-//       </div>
-//     );
-//   });
-
-//
-// Examples
-//
-
 storiesOf("Tag / Examples", module).add("With all options", () => (
   <div className="story-body">
     <small>
