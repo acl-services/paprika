@@ -116,19 +116,28 @@ describe("ListBox single select popover with getScrollContainer", () => {
   });
 });
 
-// describe("ListBox single select custom filter", () => {
-//   beforeEach(() => {
-//     cy.visitStorybook("ListBox / single", "Has scroll connected to element");
-//   });
-//
-//   it.only("should have scroll of target element", () => {
-//     toggleDropdown();
-//     cy.get("[data-qa-anchor='popover-content']").should("be.visible");
-//     cy.scrollTo(500, 0);
-//     cy.wait(800);
-//     cy.scrollTo(0, 500);
-//   });
-// });
+describe("ListBox single select custom filter", () => {
+  beforeEach(() => {
+    cy.visitStorybook("ListBox / single", "Has custom filter");
+    toggleDropdown();
+  });
+
+  it.only("should filter with correct group options or show no results", () => {
+    cy.get(selectors.filterInput).type("V");
+    cy.get(selectors.popoverList)
+      .children()
+      .should("have.length", 8);
+    cy.get(selectors.filterInput).type("{backspace}H");
+    cy.get(selectors.popoverList)
+      .children()
+      .should("have.length", 9);
+    cy.get(selectors.filterInput).type("{backspace}L");
+    cy.get(selectors.popoverList)
+      .children()
+      .should("have.length", 0);
+    cy.get(selectors.popover).should("contain", "Your search did not match any options.");
+  });
+});
 
 describe("ListBox multi select filter", () => {
   beforeEach(() => {
