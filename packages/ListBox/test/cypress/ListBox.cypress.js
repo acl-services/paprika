@@ -218,40 +218,16 @@ describe("ListBox filterSelect from moreExamples", () => {
   });
 
   it("should show correct options in list and trigger when price filtering", () => {
-    cy.get(selectors.trigger)
-      .contains(/price/i)
-      .click();
-    cy.get(selectors.popoverList)
-      .contains(/lower than 500/i)
-      .click();
-    cy.get(selectors.trigger).should("contain", "lower than 500");
-    cy.get(selectors.filterSelectTableList)
-      .children()
-      .should("have.length", 3)
-      .and("contain", "345")
-      .and("contain", "109")
-      .and("contain", "499");
+    individualFilterSelect(/price/i, "lower than 500", 3, 345, 109, 499);
   });
 
   it("should show correct options in list and trigger when quantity filtering", () => {
-    cy.get(selectors.trigger)
-      .contains(/quantity/i)
-      .click();
-    cy.get(selectors.popoverList)
-      .contains(/greater than 100/i)
-      .click();
-    cy.get(selectors.trigger).should("contain", "greater than 100");
-    cy.get(selectors.filterSelectTableList)
-      .children()
-      .should("have.length", 3)
-      .and("contain", "121")
-      .and("contain", "342")
-      .and("contain", "1231");
+    individualFilterSelect(/quantity/i, "greater than 100", 3, 121, 342, 1231);
   });
 
-  it.only("should clear active filters", () => {
-    individualFilterSelect("Quantity", "less than 100", 4, 15, 34, 12, 21);
-    individualFilterSelect("Price", "greater than 500", 3, 2300, 1500, 2800);
+  it("should clear active filters", () => {
+    individualFilterSelect(/quantity/i, "less than 100", 4, 15, 34, 12, 21);
+    individualFilterSelect(/price/i, "greater than 500", 3, 2300, 1500, 2800);
     cy.get(selectors.filtersClearButton).click();
     cy.get(selectors.filterSelectTableList)
       .children()
