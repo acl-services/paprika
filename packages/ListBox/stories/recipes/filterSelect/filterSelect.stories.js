@@ -1,10 +1,9 @@
-/* eslint-disable react/no-multi-comp, react/prop-types */
+/* eslint-disable react/no-multi-comp */
+
 import React from "react";
-import { storiesOf } from "@storybook/react";
 import Button from "@paprika/button";
 import { Td, Th, FiltersStyled, TdFilter } from "./filterSelect.styles";
-import { Frame } from "../../stories.styles";
-import ListBox from "../../../index";
+import ListBox from "../../../src";
 
 const items = [
   { name: "Punisher", color: "blue", price: 2300, qty: 15 },
@@ -12,15 +11,15 @@ const items = [
   { name: "Venom", color: "black", price: 345, qty: 12 },
   { name: "Thunderbolts", color: "yellow", price: 2800, qty: 21 },
   { name: "Deadpool", color: "red", price: 1320, qty: 121 },
-  { name: "Spawn", color: "red and black", price: 109, qty: 342 },
-  { name: "Wolverine", color: "yellow and blue", price: 499, qty: 1231 },
+  { name: "Spawn", color: "black", price: 109, qty: 342 },
+  { name: "Wolverine", color: "blue", price: 499, qty: 1231 },
 ];
 
 const FilterPrice = React.forwardRef((props, ref) => {
   return (
     <ListBox ref={ref} onChange={props.onChange} placeholder="Price">
       <ListBox.Option>greater than 500</ListBox.Option>
-      <ListBox.Option isSelected>lower than 500</ListBox.Option>
+      <ListBox.Option>lower than 500</ListBox.Option>
     </ListBox>
   );
 });
@@ -29,16 +28,16 @@ const FilterQty = React.forwardRef((props, ref) => {
   return (
     <ListBox ref={ref} onChange={props.onChange} placeholder="Quantity">
       <ListBox.Option>greater than 100</ListBox.Option>
-      <ListBox.Option isSelected>less than 100</ListBox.Option>
+      <ListBox.Option>less than 100</ListBox.Option>
     </ListBox>
   );
 });
 
 const FilterColor = React.forwardRef((props, ref) => {
   return (
-    <ListBox ref={ref} onChange={props.onChange} isMulti placeholder="Color">
+    <ListBox isMulti ref={ref} onChange={props.onChange} placeholder="Color">
       {[...new Set(items.map(item => item.color))].map(item => (
-        <ListBox.Option value={item} key={item}>
+        <ListBox.Option value={item} label={item} key={item}>
           {item}
         </ListBox.Option>
       ))}
@@ -59,7 +58,7 @@ const filterItems = ({ price, colors, qty }) => item => {
   return priceRule && qtyRule && colorRule;
 };
 
-function Table() {
+export default function FilterSelect() {
   const refFilterColor = React.useRef(null);
   const refFilterPrice = React.useRef(null);
   const refFilterQty = React.useRef(null);
@@ -68,13 +67,13 @@ function Table() {
   const [filterPriceValue, setFilterPriceValue] = React.useState(null);
   const [filterQtyValue, setFilterQtyValue] = React.useState(null);
 
-  const handleChangeFilterColor = (indices, options) => {
-    if (indices.length === 0) {
+  const handleChangeFilterColor = (selected, options) => {
+    if (selected.length === 0) {
       setFilterColorValue(null);
       return;
     }
 
-    const values = indices.map(index => options[index]);
+    const values = selected.map(index => options[index]);
     setFilterColorValue(values);
   };
 
@@ -94,20 +93,15 @@ function Table() {
     refFilterQty.current.clear();
   };
 
-  const handleClickReset = () => {
-    refFilterColor.current.reset();
-    refFilterPrice.current.reset();
-    refFilterQty.current.reset();
-  };
-
   return (
     <React.Fragment>
       <FiltersStyled>
         <FilterColor onChange={handleChangeFilterColor} ref={refFilterColor} />
         <FilterPrice onChange={handleChangeFilterPrice} ref={refFilterPrice} />
         <FilterQty onChange={handleChangeFilterQty} ref={refFilterQty} />
-        <Button onClick={handleClickClear}>Clear</Button>
-        <Button onClick={handleClickReset}>Reset</Button>
+        <Button data-qa-anchor="clear-filters-button" onClick={handleClickClear}>
+          Clear
+        </Button>
       </FiltersStyled>
       <table style={{ width: "100%", textAlign: "left", border: "1px solid #CCC", borderCollapse: "collapse" }}>
         <thead>
@@ -134,9 +128,3 @@ function Table() {
     </React.Fragment>
   );
 }
-
-storiesOf("ListBox / recipes", module).add("Filter select", () => (
-  <Frame>
-    <Table />
-  </Frame>
-));

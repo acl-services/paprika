@@ -4,6 +4,23 @@ function toggleDropdown() {
   cy.get(selectors.trigger).click();
 }
 
+function individualFilterSelect(trig, triggerAssert, listLength, ...listAsserts) {
+  cy.get(selectors.trigger)
+    .contains(trig)
+    .click();
+  cy.get(selectors.popoverList)
+    .contains(triggerAssert)
+    .click();
+  cy.get(selectors.trigger).should("contain", triggerAssert);
+  cy.get(selectors.filterSelectTableList)
+    .children()
+    // .should("have.length", listLength);
+    .should(y => {
+      expect(y).to.have.length(listLength);
+      listAsserts.map(x => `expect(y).to.contain(${x})`);
+    });
+}
+
 describe("ListBox single select", () => {
   beforeEach(() => {
     cy.visitStorybook("ListBox / single", "Basic");
@@ -230,5 +247,14 @@ describe("ListBox filterSelect from moreExamples", () => {
       .and("contain", "121")
       .and("contain", "342")
       .and("contain", "1231");
+  });
+
+  it.only("should clear active filters", () => {
+    individualFilterSelect("Quantity", "less than 100", 4, 15, 34, 12, 21);
+    individualFilterSelect("Price", "greater than 500", 3, 2300, 1500, 2800);
+    cy.get(selectors.filtersClearButton).click();
+    cy.get(selectors.filterSelectTableList)
+      .children()
+      .should("have.length", 7);
   });
 });

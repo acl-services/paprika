@@ -5,6 +5,7 @@ const selectors = {
   clearButton: "[data-qa-anchor='clear-button']",
   trigger: "[data-qa-anchor='trigger']",
   filterSelectTableList: "[data-qa-anchor='table-list']",
+  filtersClearButton: "[data-qa-anchor='clear-filters-button']",
 };
 
 export default selectors;
