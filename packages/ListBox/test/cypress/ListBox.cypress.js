@@ -16,7 +16,7 @@ function individualFilterSelect(trig, triggerAssert, listLength, ...listAsserts)
     .children()
     .should(children => {
       expect(children).to.have.length(listLength);
-      listAsserts.map(anAssertion => `expect(y).to.contain(${anAssertion})`);
+      listAsserts.map(anAssertion => expect(children).to.contain(anAssertion));
     });
 }
 
@@ -122,7 +122,7 @@ describe("ListBox single select custom filter", () => {
     toggleDropdown();
   });
 
-  it.only("should filter with correct group options or show no results", () => {
+  it("should filter with correct group options or show no results", () => {
     cy.get(selectors.filterInput).type("V");
     cy.get(selectors.popoverList)
       .children()
@@ -246,14 +246,14 @@ describe("ListBox filterSelect from moreExamples", () => {
     shouldHaveListLengthOf(7);
   });
 
-  it("should filter with no list results and clear filters to show all list items", () => {
-    individualFilterSelect(/quantity/i, "less than 100", 4, 15, 34, 12, 21);
-    individualFilterSelect(/price/i, "greater than 500", 3, 2300, 1500, 2800);
+  it.only("should filter with no list results and clear filters to show all list items", () => {
+    individualFilterSelect(/quantity/i, "greater than 100", 3, 121, 342, 1231);
+    individualFilterSelect(/price/i, "greater than 500", 1, 1320);
     cy.get(selectors.trigger)
       .contains(/color/i)
       .click();
     cy.get(selectors.popoverList)
-      .contains(/red/i)
+      .contains(/black/i)
       .click();
     cy.get("body").click();
     shouldHaveListLengthOf(0);
