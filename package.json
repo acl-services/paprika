@@ -101,5 +101,8 @@
       "jest-dom/extend-expect",
       "react-testing-library/cleanup-after-each"
     ]
+  },
+  "dependencies": {
+    "@babel/runtime-corejs2": "^7.4.4"
   }
 }
