@@ -1,16 +1,12 @@
-import selectors from "../helpers/selectors";
-
-function toggleDropDown() {
-  cy.contains("Marvel API").click();
-}
+import { selectors, toggleLazyDropDown } from "../helpers/selectors";
 
 describe("Lazy ListBox", () => {
   beforeEach(() => {
     cy.visitStorybook("ListBox / more examples", "Lazy ListBox");
-    toggleDropDown();
+    toggleLazyDropDown();
   });
 
-  it("should select three options and see three images", () => {
+  it.only("should select three options and see three images", () => {
     cy.get("#root")
       .children()
       .should("have.length", 1);
@@ -28,7 +24,7 @@ describe("Lazy ListBox", () => {
       .and("contain", "Sauron");
   });
 
-  it.only("should select options and clear selections", () => {
+  it("should select options and clear selections", () => {
     cy.contains("Namora").click();
     // cy.contains("Nebula")
     //   .should("have.css", "font-weight")
