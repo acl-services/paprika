@@ -1,4 +1,5 @@
-import { selectors, toggleLazyDropDown } from "../helpers/selectors";
+import selectors from "../helpers/selectors";
+import { toggleLazyDropDown } from "../helpers/toggleHelpers";
 
 describe("Lazy ListBox", () => {
   beforeEach(() => {
