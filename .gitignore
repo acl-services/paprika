@@ -26,5 +26,8 @@ node_modules/
 # dotenv environment variables file
 .env
 
-# docz
+# docz build
 .docz
+
+# storybook build
+storybook-dist
