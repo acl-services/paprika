@@ -65,16 +65,16 @@ describe("Lazy ListBox", () => {
   });
 });
 
-// describe("Lazy ListBox fetch", () => {
-//   it("should load marvel characters when pressing show more", () => {
-//     cy.visitStorybook("ListBox / more examples", "Lazy ListBox");
-//     openLazyDropDown();
-//     cy.contains("Show more (20 / 45)").click();
-//     cy.server();
-//     cy.route("https://gateway.marvel.com:443/v1/public/characters?nameStartsWith=").as("getMoreMarvelCharacters");
-//     cy.wait("@getMoreMarvelCharacters");
-//     cy.get(selectors.popoverList)
-//       .children()
-//       .should("have.length", 55);
-//   });
-// });
+describe("Lazy ListBox fetch", () => {
+  it("should load marvel characters when pressing show more", () => {
+    cy.visitStorybook("ListBox / more examples", "Lazy ListBox");
+    openLazyDropDown();
+    cy.contains("Show more (20 / 45)").click();
+    // need to find alternative to cy.wait(2000)
+    cy.wait(1000);
+    cy.get(selectors.popoverList)
+      .children()
+      // .should("have.length", 55);
+      .should("have.length", 75);
+  });
+});
