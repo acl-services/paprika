@@ -1,6 +1,5 @@
 import selectors from "../helpers/selectors";
 import { toggleDropdown } from "../helpers/toggleHelpers";
-import { shouldHaveListLengthOf, individualFilterSelect } from "../helpers/filterSelectHelpers";
 
 describe("ListBox single select", () => {
   beforeEach(() => {
@@ -164,6 +163,28 @@ describe("ListBox multi select hide selections on filter", () => {
 });
 
 describe("ListBox filterSelect from moreExamples", () => {
+  function shouldHaveListLengthOf(num) {
+    cy.get(selectors.filterSelectTableList)
+      .children()
+      .should("have.length", num);
+  }
+
+  function individualFilterSelect(trig, triggerAssert, listLength, ...listAsserts) {
+    cy.get(selectors.trigger)
+      .contains(trig)
+      .click();
+    cy.get(selectors.popoverList)
+      .contains(triggerAssert)
+      .click();
+    cy.get(selectors.trigger).should("contain", triggerAssert);
+    cy.get(selectors.filterSelectTableList)
+      .children()
+      .should(children => {
+        expect(children).to.have.length(listLength);
+        listAsserts.map(anAssertion => expect(children).to.contain(anAssertion));
+      });
+  }
+
   beforeEach(() => {
     cy.visitStorybook("ListBox / more examples", "Filter select");
   });

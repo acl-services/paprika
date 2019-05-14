@@ -1,6 +1,6 @@
 import selectors from "./selectors";
 
-export function toggleLazyDropDown() {
+export function openLazyDropDown() {
   cy.contains("Marvel API").click();
 }
 
