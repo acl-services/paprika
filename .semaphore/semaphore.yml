@@ -15,8 +15,11 @@ blocks:
           - cache restore node-modules-$SEMAPHORE_GIT_BRANCH
           - yarn install --frozen-lockfile
           - npx lerna bootstrap
+          - yarn storybook:build
+
           - cache store node-modules-$SEMAPHORE_GIT_BRANCH node_modules
           - cache store cypress-$SEMAPHORE_GIT_BRANCH ~/.cache/Cypress
+          - cache store storybook-dist-$SEMAPHORE_GIT_BRANCH storybook-dist
 
   - name: "💅 Format"
     task:
@@ -78,3 +81,19 @@ blocks:
             - npx lerna bootstrap
             - yarn storybook:build
             - yarn storybook:screener
+
+  - name: "Storybook Upload"
+    task:
+      secrets:
+        - name: "SemaphoreStorybook"
+      prologue:
+        commands:
+          - checkout
+          - cache restore storybook-dist-$SEMAPHORE_GIT_BRANCH
+      jobs:
+        - name: Storybook
+          commands:
+          - yarn docz:build
+          - STORYBOOK_LOCATION="storybooks.highbond-s1.com/${SEMAPHORE_PROJECT_NAME}/${SEMAPHORE_GIT_BRANCH}"
+          - aws s3 sync ~/$SEMAPHORE_PROJECT_NAME/storybook-dist/ s3://$STORYBOOK_LOCATION/ --acl public-read --delete
+          - echo "The storybook for this branch can be found at the URL $STORYBOOK_LOCATION"
