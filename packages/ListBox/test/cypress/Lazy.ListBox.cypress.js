@@ -26,7 +26,7 @@ describe("Lazy ListBox", () => {
   });
 
   // Test fails caused from error from application code, not cypress
-  // it("should filter and show correct options", () => {
+  // it.only("should filter and show correct options", () => {
   //   cy.get(selectors.filterInput).type("z");
   //   cy.get(selectors.popoverList)
   //     .children()
@@ -66,15 +66,36 @@ describe("Lazy ListBox", () => {
 });
 
 describe("Lazy ListBox fetch", () => {
-  it("should load marvel characters when pressing show more", () => {
+  beforeEach(() => {
     cy.visitStorybook("ListBox / more examples", "Lazy ListBox");
     openLazyDropDown();
-    cy.contains("Show more (20 / 45)").click();
-    // need to find alternative to cy.wait(2000)
-    cy.wait(1000);
-    cy.get(selectors.popoverList)
-      .children()
-      // .should("have.length", 55);
-      .should("have.length", 75);
   });
+
+  // test doesnt wait until finish loading for assertion
+  it("should load marvel characters when pressing show more", () => {
+    cy.contains("Show more (20 / 45)").click();
+    // cy.wait(1000);
+    cy.get(selectors.popoverList)
+      .should("be.visible")
+      .then(() => {
+        cy.get(selectors.popoverList)
+          .children()
+          // .should("have.length", 55);
+          .and("have.length", 75);
+      })
+      .should("contain", "Show more (40 / 45)");
+  });
+
+  // it.only("should load all 196 characters staring with 's'", () => {
+  //   let num = 20;
+  //   function clickMore() {
+  //     if (num < 196) {
+  //       cy.contains(`Show more (${num} / 196)`).click();
+  //       num += 20;
+  //     }
+  //     clickMore();
+  //   }
+  //   cy.get(selectors.popoverList).scrollTo("bottom");
+  //   clickMore();
+  // });
 });
