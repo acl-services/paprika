@@ -93,7 +93,8 @@ blocks:
       jobs:
         - name: Storybook
           commands:
+          - npx lerna bootstrap
           - yarn docz:build
           - STORYBOOK_LOCATION="storybooks.highbond-s1.com/${SEMAPHORE_PROJECT_NAME}/${SEMAPHORE_GIT_BRANCH}"
-          - aws s3 sync ~/$SEMAPHORE_PROJECT_NAME/storybook-dist/ s3://$STORYBOOK_LOCATION/ --acl public-read --delete
+          - aws s3 sync storybook-dist/ s3://$STORYBOOK_LOCATION/ --acl public-read --delete
           - echo "The storybook for this branch can be found at the URL $STORYBOOK_LOCATION"
