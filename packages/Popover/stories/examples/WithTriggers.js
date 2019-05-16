@@ -33,7 +33,7 @@ export default class ExampleStory extends React.Component {
           </Popover>
           <Gap />
           <h5>
-            Render prop: <code>&lt;input&gt;</code> with <code>shouldKeepFocus</code>
+            Render prop: <code>&lt;input&gt;</code> / <code>shouldKeepFocus</code>
           </h5>
           <Popover shouldKeepFocus>
             <Popover.Trigger>{handler => <input onClick={handler} onBlur={handler} />}</Popover.Trigger>
