@@ -1,7 +1,7 @@
 import React from "react";
 import ReactDOM from "react-dom";
 import PropTypes from "prop-types";
-import isCurrentTargetFocused from "../../helpers/isCurrentTargetFocused";
+import isElementContainsFocus from "../../helpers/isElementContainsFocus";
 import { PopoverContext } from "../../Popover";
 import { consts as PopoverConstants } from "../../Popover.styles";
 import { ContentStyled } from "./Content.styles";
@@ -37,10 +37,9 @@ class Content extends React.Component {
     // Use timeout to delay examination of activeElement until after blur/focus
     // events have been processed.
 
-    // sythetic asyn event react https://reactjs.org/docs/events.html#event-pooling
-    event.persist();
+    const currentTarget = event.currentTarget;
     setTimeout(() => {
-      if (!isCurrentTargetFocused(event)) {
+      if (!isElementContainsFocus(currentTarget)) {
         onClose();
       }
     }, parseInt(PopoverConstants.transition, 10));

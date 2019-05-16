@@ -33,6 +33,17 @@ export default class ExampleStory extends React.Component {
           </Popover>
           <Gap />
           <h5>
+            Render prop: <code>&lt;input&gt;</code> / <code>shouldKeepFocus</code>
+          </h5>
+          <Popover shouldKeepFocus>
+            <Popover.Trigger>{handler => <input onClick={handler} onBlur={handler} />}</Popover.Trigger>
+            <Popover.Content>
+              <Popover.Tip />
+              <Popover.Card>Lorem ipsum single-origin kombucha butcher gentrify foraged flannel.</Popover.Card>
+            </Popover.Content>
+          </Popover>
+          <Gap />
+          <h5>
             Render prop: <code>&lt;Icon&gt;</code> / <code>isEager</code>
           </h5>
           <Popover isEager>
@@ -80,6 +91,20 @@ export default class ExampleStory extends React.Component {
               <Popover.Card>Lorem ipsum single-origin kombucha.</Popover.Card>
             </Popover.Content>
           </Popover>
+          <Gap />
+          <h5>
+            Node: <code>shouldAutoFocus</code>
+          </h5>
+          <Popover shouldKeepFocus>
+            <Popover.Trigger>
+              <input />
+            </Popover.Trigger>
+            <Popover.Content>
+              <Popover.Tip />
+              <Popover.Card>Lorem ipsum single-origin kombucha.</Popover.Card>
+            </Popover.Content>
+          </Popover>
+          <Gap />
         </div>
       </CenteredStory>
     );
