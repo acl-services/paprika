@@ -106,9 +106,12 @@ describe("ListBox single select custom filter", () => {
 });
 
 describe("ListBox multi select filter", () => {
-  it("should filter, select, deselect and close trigger", () => {
+  beforeEach(() => {
     cy.visitStorybook("ListBox / multi", "With Filter");
     toggleDropdown();
+  });
+
+  it("should filter, select, deselect and close trigger", () => {
     cy.get(selectors.filterInput).type("w");
     cy.get(selectors.popoverList)
       .children()
@@ -119,7 +122,22 @@ describe("ListBox multi select filter", () => {
     cy.contains(/catwoman/i).click();
     cy.contains("li", /spawn/i).click();
     cy.get("body").click();
-    cy.get(selectors.trigger).should("contain", "Wolverine, Catwoman");
+    cy.get(selectors.trigger)
+      .should("contain", "(2)")
+      .and("contain", "Wolverine, Catwoman");
+  });
+
+  it("should filter then use arrow and enter keys to select", () => {
+    cy.get(selectors.filterInput).type("t");
+    cy.get(selectors.filterInput)
+      .type("{downarrow}")
+      .type("{enter}")
+      .type("{downarrow}")
+      .type("{enter}");
+    cy.get("body").click();
+    cy.get(selectors.trigger)
+      .should("contain", "(2)")
+      .and("contain", "Catwoman, Thunderbolts");
   });
 });
 

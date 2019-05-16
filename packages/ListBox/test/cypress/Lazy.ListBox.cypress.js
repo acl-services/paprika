@@ -1,5 +1,7 @@
 import selectors from "../helpers/selectors";
 import { openLazyDropDown } from "../helpers/toggleHelpers";
+import fixture from "../../stories/moreExamples/lazy/lazy.fixture";
+import showMoreNCharacters from "../../stories/moreExamples/lazy/showMoreN.fixture";
 
 describe("Lazy ListBox", () => {
   beforeEach(() => {
@@ -85,17 +87,16 @@ describe("Lazy ListBox fetch", () => {
       })
       .should("contain", "Show more (40 / 45)");
   });
-
-  // it.only("should load all 196 characters staring with 's'", () => {
-  //   let num = 20;
-  //   function clickMore() {
-  //     if (num < 196) {
-  //       cy.contains(`Show more (${num} / 196)`).click();
-  //       num += 20;
-  //     }
-  //     clickMore();
-  //   }
-  //   cy.get(selectors.popoverList).scrollTo("bottom");
-  //   clickMore();
-  // });
 });
+
+// describe("Lazy ListBox", () => {
+//   it.only("should grab data for show more", () => {
+//     cy.server();
+//     cy.route("GET", "/api/lazy.fixture", fixture);
+//     cy.visitStorybook("ListBox / more examples", "Lazy ListBox");
+//     openLazyDropDown();
+//     cy.get(selectors.popoverList)
+//       .children()
+//       .should("have.length", 55);
+//   });
+// });
