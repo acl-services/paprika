@@ -3,13 +3,14 @@ import PropTypes from "prop-types";
 import RawButton from "@paprika/raw-button";
 
 import { PopoverContext } from "../../Popover";
+import { isActiveElementPopover } from "../../helpers/isActiveElementPopover";
 
 const propTypes = {
   children: PropTypes.oneOfType([PropTypes.func, PropTypes.node]).isRequired,
 };
 
 class Trigger extends React.Component {
-  handleTriggerEvent = (isEager, isOpen, onClick, onDelayedClose, onDelayedOpen, onOpen) => event => {
+  handleTriggerEvent = (isEager, onClick, onClose, onDelayedClose, onDelayedOpen, onOpen, shouldKeepFocus) => event => {
     if (isEager && (event.type === "mouseover" || event.type === "focus")) {
       if (event.type === "mouseover") {
         onDelayedOpen();
@@ -18,6 +19,10 @@ class Trigger extends React.Component {
       }
     } else if (isEager && event.type === "mouseout") {
       onDelayedClose();
+    } else if (shouldKeepFocus && event.type === "blur") {
+      window.requestAnimationFrame(() => {
+        if (!isActiveElementPopover()) onClose();
+      });
     } else if (event.type === "click") {
       onClick();
     }
@@ -26,8 +31,16 @@ class Trigger extends React.Component {
   render() {
     return (
       <PopoverContext.Consumer>
-        {({ isEager, isOpen, onClick, onDelayedClose, onDelayedOpen, onOpen }) => {
-          const handler = this.handleTriggerEvent(isEager, isOpen, onClick, onDelayedClose, onDelayedOpen, onOpen);
+        {({ isEager, onClick, onClose, onDelayedClose, onDelayedOpen, onOpen, shouldKeepFocus }) => {
+          const handler = this.handleTriggerEvent(
+            isEager,
+            onClick,
+            onClose,
+            onDelayedClose,
+            onDelayedOpen,
+            onOpen,
+            shouldKeepFocus
+          );
 
           if (typeof this.props.children !== "function") {
             /* issue https://github.com/acl-services/paprika/issues/33 */
@@ -42,7 +55,7 @@ class Trigger extends React.Component {
                 {this.props.children}
               </RawButton>
             ) : (
-              <RawButton data-qa-anchor="popover-trigger" onClick={handler}>
+              <RawButton data-qa-anchor="popover-trigger" onClick={handler} onBlur={shouldKeepFocus ? handler : null}>
                 {this.props.children}
               </RawButton>
             );

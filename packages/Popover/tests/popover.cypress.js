@@ -20,7 +20,7 @@ describe("Popover", () => {
     cy.get(selectors.popover).should("be.not.visible");
   });
 
-  it("should still be visible when click inside", () => {
+  it("should be visible when clicked inside popover", () => {
     cy.get(selectors.popoverTrigger).click();
     cy.get(selectors.popover).should("be.visible");
     cy.get(selectors.popover)

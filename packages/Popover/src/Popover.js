@@ -65,8 +65,8 @@ const propTypes = {
   /** Function that provides the scrolling DOM element that contains the popover. */
   getScrollContainer: PropTypes.func,
 
-  /** If this value is true, focus will move to the popover content when showing it. Default is true. */
-  shouldAutoFocus: PropTypes.bool,
+  /** If this value is true, focus will stay at the trigger when showing popover, and only can be closed when clicking outside or pressing escape key . Default is false. */
+  shouldKeepFocus: PropTypes.bool,
 };
 
 const defaultProps = {
@@ -80,7 +80,7 @@ const defaultProps = {
   offset: parseInt(tokens.spaceLg, 10),
   getPositioningElement: null,
   getScrollContainer: null,
-  shouldAutoFocus: true,
+  shouldKeepFocus: false,
 };
 
 class Popover extends React.Component {
@@ -125,7 +125,7 @@ class Popover extends React.Component {
   }
 
   getContextValues = memoizeOne(
-    (content, maxWidth, width, isDark, isEager, isOpen, portalElement, refContent, refTip, tip) => ({
+    (content, maxWidth, width, isDark, isEager, isOpen, portalElement, refContent, refTip, shouldKeepFocus, tip) => ({
       content: {
         ...content,
         maxWidth, // maybe we should code a minimum maxWidth?
@@ -142,6 +142,7 @@ class Popover extends React.Component {
       portalElement,
       refContent,
       refTip,
+      shouldKeepFocus,
       tip,
     })
   );
@@ -263,6 +264,7 @@ class Popover extends React.Component {
   handleKeyUp = event => {
     if (event.key === "Escape") {
       this.close();
+      this.$trigger.focus();
     }
   };
 
@@ -271,7 +273,7 @@ class Popover extends React.Component {
     //       find the first focusable element like button, input, etc?
     //       can focus automatically
     //       should we set focus into the popover content automatically?
-    if (this.props.shouldAutoFocus && this.isOpen() && event.propertyName === "visibility") {
+    if (!this.props.shouldKeepFocus && this.isOpen() && event.propertyName === "visibility") {
       event.target.focus();
     }
   };
@@ -295,7 +297,7 @@ class Popover extends React.Component {
   };
 
   handleClick = () => {
-    if (this.isOpen()) this.close();
+    if (this.isOpen() && !this.props.shouldKeepFocus) this.close();
     else this.open();
   };
 
@@ -322,7 +324,7 @@ class Popover extends React.Component {
 
       // NOTE: If we don't prevent the focusing back to the trigger while using focus and mouseover prop
       //       will created a bug looping over opening and closing constantly.
-      if (!this.props.isEager && this.$trigger && !isActiveElementPopover()) {
+      if (!this.props.shouldKeepFocus && !this.props.isEager && this.$trigger && !isActiveElementPopover()) {
         this.$trigger.focus();
       }
       this.removeListeners();
@@ -390,6 +392,7 @@ class Popover extends React.Component {
       this.$portal,
       this.refContent,
       this.refTip,
+      this.props.shouldKeepFocus,
       this.state.tip
     );
 
