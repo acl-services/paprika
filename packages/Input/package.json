@@ -1,13 +1,13 @@
 {
-  "name": "@paprika/raw-button",
-  "version": "0.1.0",
-  "description": "Raw button component",
+  "name": "@paprika/input",
+  "version": "0.0.1",
+  "description": "Input component",
   "author": "@paprika",
-  "main": "lib/index.js",
   "license": "MIT",
+  "main": "lib/index.js",
   "repository": {
     "type": "git",
-    "url": "https://github.com/acl-services/paprika/tree/master/packages/rawbutton"
+    "url": "https://github.com/acl-services/paprika/tree/master/packages/input"
   },
   "publishConfig": {
     "access": "public"
@@ -16,6 +16,9 @@
     "@babel/runtime-corejs2": "^7.3.1",
     "@paprika/stylers": "^0.1.0",
     "@paprika/tokens": "^0.1.0",
+    "@paprika/icon": "^0.1.0",
+    "@paprika/raw-button": "^0.1.0",
+    "classnames": "^2.2.6",
     "prop-types": "^15.7.2"
   },
   "peerDependencies": {

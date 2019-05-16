@@ -1,6 +1,6 @@
 {
   "name": "@paprika/heading",
-  "version": "0.0.1",
+  "version": "0.1.0",
   "description": "Heading component",
   "author": "@paprika",
   "license": "MIT",
@@ -14,7 +14,7 @@
   },
   "dependencies": {
     "@babel/runtime-corejs2": "^7.3.1",
-    "@paprika/tokens": "^0.0.1",
+    "@paprika/tokens": "^0.1.0",
     "class-names": "^1.0.0",
     "prop-types": "^15.7.2"
   },

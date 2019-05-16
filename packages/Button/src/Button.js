@@ -7,21 +7,52 @@ import { ShirtSizes } from "@paprika/helpers/lib/customPropTypes";
 import buttonStyles, { iconStyles } from "./Button.styles";
 
 const propTypes = {
+  /** Descriptive a11y text for assistive technologies. By default, text from children node will be used. */
   a11yText: PropTypes.string,
+
+  /** If click events are allowed to propagate up the DOM tree. */
   canPropagate: PropTypes.bool,
+
+  /** Body content of the button. */
   children: PropTypes.node,
+
+  /** An icon to be included to the left of children content. */
   icon: PropTypes.node,
+
+  /** If the button is in an "active" or "selected" state. */
   isActive: PropTypes.bool,
+
+  /** If the button is disabled. */
   isDisabled: PropTypes.bool,
+
+  /** If the button includes a down arrow to the right of children content. */
   isDropdown: PropTypes.bool,
+
+  /** If the width of the button should span it's parent container (100%). */
   isFullWidth: PropTypes.bool,
+
+  /** If the button should render in a pending state (with a spinner icon). */
   isPending: PropTypes.bool,
+
+  /** If it will be rendered as a <button> element. If false, a <span> will be rendered via an accessible <RawButton>. */
   isSemantic: PropTypes.bool,
+
+  /** If the type attribute should "submit", instead of the default "button". */
   isSubmit: PropTypes.bool,
+
+  /** The visual style of the button. */
   kind: PropTypes.oneOf(["default", "primary", "secondary", "destructive", "flat", "minor", "link"]),
+
+  /** Callback to be executed when the button is clicked or activated by keyboard. Typically required. */
   onClick: PropTypes.func,
+
+  /** Value for role attribute to override the default of "button". */
   role: PropTypes.string,
+
+  /** Size of the button (font size, min-height, padding, etc). */
   size: PropTypes.oneOf(ShirtSizes.DEFAULT),
+
+  /** Value for tabindex attribute to override the default of 0. */
   tabIndex: PropTypes.number,
 };
 

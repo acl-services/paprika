@@ -2,12 +2,12 @@ import React from "react";
 import { action } from "@storybook/addon-actions";
 import { boolean, select, text } from "@storybook/addon-knobs";
 import { Story, Rule, Tagline } from "storybook/assets/styles/common.styles";
-import Heading from "@paprika/heading";
+import { ShirtSizes } from "@paprika/helpers/lib/customPropTypes";
 import AddIcon from "@paprika/icon/lib/Add";
 import TimesIcon from "@paprika/icon/lib/Times";
 import InfoIcon from "@paprika/icon/lib/InfoCircle";
-import { ShirtSizes } from "@paprika/helpers/lib/customPropTypes";
-import Button from "../..";
+import Heading from "@paprika/heading";
+import Button from "../../src";
 
 function clickHandler() {
   action("Clicked a button")();

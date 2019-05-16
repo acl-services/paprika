@@ -1,9 +1,9 @@
 import React from "react";
 import { select } from "@storybook/addon-knobs";
 import styled from "styled-components";
+import { CenteredStory } from "storybook/assets/styles/common.styles";
 import tokens from "@paprika/tokens";
 import stylers from "@paprika/stylers";
-import { CenteredStory } from "storybook/assets/styles/common.styles";
 import Button from "@paprika/button";
 import Popover from "../../src";
 
