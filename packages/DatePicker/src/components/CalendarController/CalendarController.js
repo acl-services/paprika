@@ -8,8 +8,8 @@ import { DayPickerSingleDateController as SDPController } from "react-dates";
 import "react-dates/lib/css/_datepicker.css";
 
 import Button from "@paprika/button";
-import ArrowRight from "@paprika/icon/ArrowRight";
-import ArrowDown from "@paprika/icon/ArrowDown";
+import ArrowRight from "@paprika/icon/lib/ArrowRight";
+import ArrowDown from "@paprika/icon/lib/ArrowDown";
 
 import CalendarStyled, { DayTriggerStyle } from "./CalendarController.styles";
 

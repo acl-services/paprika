@@ -1,8 +1,12 @@
 import React from "react";
 import PropTypes from "prop-types";
-import momentPropTypes from "react-moment-proptypes";
 import moment from "moment";
+import momentPropTypes from "react-moment-proptypes";
+
+import CalendarIcon from "@paprika/icon/lib/Calendar";
+import Input from "@paprika/input";
 import Popover from "@paprika/popover";
+
 import CalendarController from "./components/CalendarController/CalendarController";
 
 // import DatePickerStyled from "./DatePicker.styles";
@@ -15,6 +19,9 @@ const propTypes = {
 
   /** Date format, will show in the input */
   format: PropTypes.string,
+
+  /** Clear button on the side, default is false */
+  hasClearButton: PropTypes.bool,
 
   /** Should be disabled or not, default is false */
   isDisabled: PropTypes.bool,
@@ -29,6 +36,7 @@ const propTypes = {
 const defaultProps = {
   date: null,
   format: "YYYY-MM-DD",
+  hasClearButton: false,
   isDisabled: false,
   isReadOnly: false,
   // TODO: Replace it to translations when has L10n
@@ -49,7 +57,7 @@ class DatePicker extends React.Component {
     this.popoverRef = React.createRef();
     this.calendarRef = React.createRef();
 
-    moment.locale("en");
+    // moment.locale();
   }
 
   handleSelect = date => {
@@ -132,19 +140,45 @@ class DatePicker extends React.Component {
     const { date, showCalendar, inputtedString } = this.state;
 
     return (
-      <Popover isOpen={showCalendar} offset={0} onClose={this.hideCalendar} shouldAutoFocus={false}>
-        <input
-          disabled={this.props.isDisabled}
-          readOnly={this.props.isReadOnly}
-          onClick={this.handleClick}
-          onChange={this.handleInputChange}
-          onFocus={this.handleFocusInput}
+      <Popover isOpen={showCalendar} offset={0} onClose={this.hideCalendar} shouldKeepFocus>
+        <Input
+          a11yText={""}
+          className={""}
+          hasClearButton={this.props.hasClearButton}
+          icon={<CalendarIcon />}
+          isDisabled={this.props.isDisabled}
+          isReadOnly={this.props.isReadOnly}
           onBlur={this.handleInputBlur}
+          onChange={this.handleInputChange}
+          onClick={this.handleClick}
+          onClear={() => {}}
+          onFocus={this.handleFocusInput}
           onKeyUp={this.handleKeyUp}
           placeholder={this.props.placeholder}
-          type="text"
+          size={this.props.size}
           value={inputtedString}
         />
+        {/* <Popover.Trigger>
+          {handler => (
+            <Input
+              a11yText={""}
+              className={""}
+              hasClearButton={this.props.hasClearButton}
+              icon={<CalendarIcon />}
+              isDisabled={this.props.isDisabled}
+              isReadOnly={this.props.isReadOnly}
+              onBlur={handler}
+              onChange={this.handleInputChange}
+              onClick={handler}
+              onClear={() => {}}
+              onFocus={this.handleFocusInput}
+              onKeyUp={this.handleKeyUp}
+              placeholder={this.props.placeholder}
+              size={this.props.size}
+              value={inputtedString}
+            />
+          )}
+        </Popover.Trigger> */}
 
         <Popover.Content>
           <div ref={this.calendarRef}>
