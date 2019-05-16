@@ -1,7 +1,7 @@
 import React from "react";
 import PropTypes from "prop-types";
 import classNames from "classnames";
-import { ShirtSizes } from "../helpers/customPropTypes";
+import { ShirtSizes } from "@paprika/helpers/lib/customPropTypes";
 import textareaStyles from "./Textarea.styles";
 
 const propTypes = {
