@@ -34,7 +34,7 @@ const commonStyles = `
 `;
 
 const skeuomorphicStyles = `
-  box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.1); 
+  box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.1);
   cursor: pointer;
   transition-duration: 0.2s;
   transition-property: border;

@@ -75,5 +75,6 @@ blocks:
       jobs:
         - name: Screener
           commands:
+            - npx lerna bootstrap
             - yarn storybook:build
             - yarn storybook:screener

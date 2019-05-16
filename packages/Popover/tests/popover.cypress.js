@@ -20,6 +20,15 @@ describe("Popover", () => {
     cy.get(selectors.popover).should("be.not.visible");
   });
 
+  it("should be visible when clicked inside popover", () => {
+    cy.get(selectors.popoverTrigger).click();
+    cy.get(selectors.popover).should("be.visible");
+    cy.get(selectors.popover)
+      .contains(/button inside/i)
+      .click();
+    cy.get(selectors.popover).should("be.visible");
+  });
+
   describe("Popover isEager", () => {
     beforeEach(() => {
       cy.visitStorybook(basePopoverKind, "Basic Popover Test");

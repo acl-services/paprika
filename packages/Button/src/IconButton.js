@@ -4,6 +4,7 @@ import iconButtonStyles from "./IconButton.styles";
 import Button from ".";
 
 const IconPropTypes = {
+  /** Body content of the button (an icon). */
   children: PropTypes.node.isRequired,
 };
 
