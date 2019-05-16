@@ -1,7 +1,5 @@
 import selectors from "../helpers/selectors";
 import { openLazyDropDown } from "../helpers/toggleHelpers";
-import fixture from "../../stories/moreExamples/lazy/lazy.fixture";
-import showMoreNCharacters from "../../stories/moreExamples/lazy/showMoreN.fixture";
 
 describe("Lazy ListBox", () => {
   beforeEach(() => {
