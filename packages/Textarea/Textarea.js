@@ -8,11 +8,11 @@ const propTypes = {
   a11yText: PropTypes.string,
   canExpand: PropTypes.bool,
   className: PropTypes.string,
+  hasError: PropTypes.bool,
   inputRef: PropTypes.func,
   isDisabled: PropTypes.bool,
   isReadOnly: PropTypes.bool,
   maxHeight: PropTypes.string,
-  resizeTimeout: PropTypes.number,
   size: PropTypes.oneOf(ShirtSizes.DEFAULT),
   value: PropTypes.string.isRequired,
 };
@@ -21,11 +21,11 @@ const defaultProps = {
   a11yText: null,
   canExpand: true,
   className: null,
+  hasError: false,
   inputRef: () => {},
   isDisabled: false,
   isReadOnly: false,
   maxHeight: "300px",
-  resizeTimeout: 66,
   size: "medium",
 };
 
@@ -33,19 +33,20 @@ class Textarea extends React.Component {
   componentDidMount() {
     if (this.props.canExpand) {
       this.resize();
-      window.addEventListener("resize", this.windowResizeHandler);
+      window.addEventListener("resize", this.resize);
     }
   }
 
-  componentWillReceiveProps(nextProps) {
-    if (nextProps.canExpand && this.props.value !== nextProps.value) {
-      this.resize();
+  componentDidUpdate(prevProps) {
+    if (this.props.canExpand) {
+      if (prevProps.canExpand && this.props.value !== prevProps.value) {
+        this.resize();
+      }
     }
   }
 
   componentWillUnmount() {
-    this.delayedResize = null;
-    window.removeEventListener("resize", this.windowResizeHandler);
+    window.removeEventListener("resize", this.resize);
   }
 
   setRef = node => {
@@ -60,25 +61,16 @@ class Textarea extends React.Component {
     }
   };
 
-  windowResizeHandler = () => {
-    if (!this.delayedResize) {
-      this.delayedResize = setTimeout(() => {
-        this.delayedResize = null;
-        this.resize();
-      }, this.props.resizeTimeout);
-    }
-  };
-
   render() {
     const {
       a11yText,
       className,
       canExpand,
+      hasError,
       inputRef,
       isDisabled,
       isReadOnly,
       maxHeight,
-      resizeTimeout,
       size,
       ...moreProps
     } = this.props;
@@ -87,8 +79,9 @@ class Textarea extends React.Component {
 
     const rootClasses = classNames(
       `form-textarea--${size}`,
-      { "is-disabled": isDisabled },
-      { "is-readonly": isReadOnly },
+      { "form-textarea--is-disabled": isDisabled },
+      { "form-textarea--is-readonly": isReadOnly },
+      { "form-textarea--has-error": hasError },
       className
     );
 

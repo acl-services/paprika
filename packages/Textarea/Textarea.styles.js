@@ -4,26 +4,8 @@ import stylers from "@paprika/stylers";
 const textareaStyles = () => `
   position: relative;
 
-  &.form-textarea--small .form-textarea__textarea {
-    ${stylers.fontSize(-2)};
-  }
-
-  &.form-textarea--medium .form-textarea__textarea {
-    ${stylers.fontSize(-1)};
-  }
-
-  &.form-textarea--large .form-textarea__textarea {
-    ${stylers.fontSize()};
-  }
-
-  &.is-readonly .form-textarea__textarea {
-    ${stylers.formReadOnly};
-    cursor: text;
-  }
-
   .form-textarea__textarea {
     ${stylers.placeholders};
-    ${stylers.formDisabled};
 
     background-color: ${tokens.color.white};
     border: 1px solid ${tokens.border.color};
@@ -56,6 +38,45 @@ const textareaStyles = () => `
 
   .form-textarea__aria-label {
     ${stylers.visuallyHidden}
+  }
+  
+  // Sizes
+
+  &.form-textarea--small .form-textarea__textarea {
+    ${stylers.fontSize(-2)};
+  }
+
+  &.form-textarea--medium .form-textarea__textarea {
+    ${stylers.fontSize(-1)};
+  }
+
+  &.form-textarea--large .form-textarea__textarea {
+    ${stylers.fontSize()};
+  }
+
+  // Read Only
+
+  &.form-textarea--is-readonly .form-textarea__textarea {
+    ${stylers.readOnlyFormStyles};
+    cursor: text;
+  }
+
+  // Disabled
+
+  &.form-textarea--is-disabled, &[disabled] {
+    textarea.form-textarea__textarea {
+      ${stylers.disabledFormStyles}
+    }
+
+    .form-textarea__icon {
+      color: ${tokens.color.blackLighten60};
+    }
+  }
+
+  // Error
+
+  &.form-textarea--has-error textarea.form-textarea__textarea {
+    ${stylers.errorFormStyles}
   }
 `;
 
