@@ -1,5 +1,5 @@
 import React from "react";
-import Textarea from "../../Textarea";
+import Textarea from "../../src/Textarea";
 
 const TextareaExample = props => {
   const [value, setValue] = React.useState(props.value || "");

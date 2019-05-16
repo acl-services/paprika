@@ -1,6 +1,6 @@
 import React from "react";
 import { Story } from "storybook/assets/styles/common.styles";
-import Textarea from "../../../Textarea";
+import Textarea from "../../../src/Textarea";
 
 const A11yStory = () => {
   return (

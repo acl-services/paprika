@@ -1,6 +1,6 @@
 import React from "react";
 import { render } from "react-testing-library";
-import Textarea from "../Textarea";
+import Textarea from "../src/Textarea";
 
 describe("Textarea", () => {
   it("should be visible", () => {

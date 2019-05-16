@@ -1,7 +1,7 @@
 import React from "react";
 import { Story } from "storybook/assets/styles/common.styles";
 import Heading from "../../../Heading";
-import Textarea from "../../Textarea";
+import Textarea from "../../src/Textarea";
 
 const Sizes = () => {
   return (

@@ -39,7 +39,7 @@ const textareaStyles = () => `
   .form-textarea__aria-label {
     ${stylers.visuallyHidden}
   }
-  
+
   // Sizes
 
   &.form-textarea--small .form-textarea__textarea {

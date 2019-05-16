@@ -1,9 +1,12 @@
 import React from "react";
 import { Story } from "storybook/assets/styles/common.styles";
 import { boolean, select, text } from "@storybook/addon-knobs";
+import { ShirtSizes } from "@paprika/helpers/lib/customPropTypes";
 import TextareaExample from "./TextareaExample";
 
 const ShowcaseStory = () => {
+  const sizeKnob = select("size", ShirtSizes.DEFAULT, "medium");
+
   const textareaProps = {
     a11yText: text("a11yText"),
     canExpand: boolean("canExpand", true),
@@ -12,7 +15,7 @@ const ShowcaseStory = () => {
     isReadOnly: boolean("isReadOnly", false),
     maxHeight: text("maxHeight"),
     placeholder: text("placeholder", "This is a default placeholder..."),
-    size: select("size", ["small", "medium", "large"], "medium"),
+    size: sizeKnob,
   };
 
   return (
