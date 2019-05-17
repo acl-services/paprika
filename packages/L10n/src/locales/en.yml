@@ -28,6 +28,7 @@ en:
     dateInput:
       choose: Choose a Date
       clear: Clear Date
+      confirmation_format: MMMM DD, YYYY
     daterange:
       last_7_days: Last 7 Days
       last_30_days: Last 30 Days

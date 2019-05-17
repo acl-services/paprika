@@ -10,6 +10,8 @@ import { ShirtSizes } from "@paprika/helpers/lib/customPropTypes";
 
 import CalendarController from "./components/CalendarController/CalendarController";
 
+import { CalendarStyles } from "./DatePicker.styles";
+
 const dateFormatForConfirmation = "MMMM DD, YYYY";
 
 const propTypes = {
@@ -24,9 +26,6 @@ const propTypes = {
 
   /** Date format, will show in the input. */
   format: PropTypes.string,
-
-  /** Clear button on the side, default is false. */
-  hasClearButton: PropTypes.bool,
 
   /** Should be disabled or not, default is false. */
   isDisabled: PropTypes.bool,
@@ -49,7 +48,6 @@ const defaultProps = {
   className: null,
   date: null,
   format: "YYYY-MM-DD",
-  hasClearButton: true,
   isDisabled: false,
   isReadOnly: false,
   placeholder: "",
@@ -61,29 +59,24 @@ class DatePicker extends React.Component {
     super(props);
 
     this.state = {
-      showCalendar: false,
+      confirmationResult: "",
+      hasError: false,
       inputtedString: props.date ? moment(props.date).format(props.format) : "",
+      showCalendar: false,
     };
 
-    this.popoverRef = React.createRef();
     this.calendarRef = React.createRef();
-
-    moment.locale("jp");
   }
 
   handleSelect = date => {
-    this.setState({ inputtedString: moment(date).format(this.props.format) });
+    this.setState({ hasError: false, inputtedString: moment(date).format(this.props.format) });
     this.hideCalendar();
     this.handleChange(date);
   };
 
   handleFocusInput = () => {
-    this.setState(() => {
-      const userFormatDate = this.props.date ? this.props.date.format(this.props.format) : "";
-
-      return {
-        inputtedString: userFormatDate,
-      };
+    this.setState({
+      confirmationResult: "",
     });
   };
 
@@ -106,21 +99,29 @@ class DatePicker extends React.Component {
   };
 
   handleInputConfirm = () => {
-    const newDate = moment(this.state.inputtedString);
-
     if (!this.state.inputtedString) {
       this.handleReset();
+      return;
     }
 
-    if (newDate.isValid() && !moment(newDate).isSame(this.props.date, "day")) {
+    const newDate = moment(this.state.inputtedString);
+
+    if (newDate.isValid()) {
+      if (moment(newDate).isSame(this.props.date, "day")) return;
+
+      const confirmationResult = newDate.format(dateFormatForConfirmation);
       this.setState(() => {
         return {
-          inputtedString: newDate.format(dateFormatForConfirmation),
+          confirmationResult,
+          hasError: false,
+          // inputtedString: confirmationResult,
         };
       });
       this.handleChange(newDate);
     } else {
-      // todo error out
+      this.setState({
+        hasError: true,
+      });
     }
   };
 
@@ -143,17 +144,13 @@ class DatePicker extends React.Component {
     this.showCalendar();
   };
 
-  handleClickClear = () => {
-    this.hideCalendar();
-    this.handleReset();
-  };
-
   handleChange(newDate) {
     if (this.props.date !== newDate) this.props.onChange(newDate);
   }
 
   handleReset() {
     this.setState({
+      hasError: false,
       inputtedString: "",
     });
     this.handleChange(null);
@@ -163,27 +160,26 @@ class DatePicker extends React.Component {
     const { showCalendar, inputtedString } = this.state;
 
     return (
-      <Popover isOpen={showCalendar} offset={0} onClose={this.hideCalendar} shouldKeepFocus>
+      <Popover isOpen={showCalendar} offset={8} onClose={this.hideCalendar} shouldKeepFocus>
         <Input
           a11yText={this.props.a11yText}
           className={this.props.className}
-          hasClearButton={this.props.hasClearButton}
+          hasError={this.state.hasError}
           icon={<CalendarIcon />}
           isDisabled={this.props.isDisabled}
           isReadOnly={this.props.isReadOnly}
           onBlur={this.handleInputBlur}
           onChange={this.handleInputChange}
           onClick={this.handleClick}
-          onClear={this.handleClickClear}
           onFocus={this.handleFocusInput}
           onKeyUp={this.handleKeyUp}
           placeholder={this.props.placeholder}
           size={this.props.size}
-          value={inputtedString}
+          value={this.state.confirmationResult || inputtedString}
         />
 
         <Popover.Content>
-          <div ref={this.calendarRef}>
+          <div css={CalendarStyles} ref={this.calendarRef}>
             <CalendarController date={this.props.date} onSelect={this.handleSelect} />
           </div>
         </Popover.Content>

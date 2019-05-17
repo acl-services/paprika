@@ -28,9 +28,6 @@ class CalendarController extends React.Component {
   constructor(props) {
     super(props);
 
-    // TODO: Update this with L10n component
-    moment.locale("en");
-
     this.nextButtonRef = React.createRef();
     this.prevButtonRef = React.createRef();
   }

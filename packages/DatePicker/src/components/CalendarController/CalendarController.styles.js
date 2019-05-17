@@ -129,10 +129,6 @@ export const DayTriggerStyle = props => {
       background: ${tokens.color.blackLighten70};
       font-weight: bold;
     }
-    &:focus {
-    }
-    &:active {
-    }
 
     ${props.isSelected ? SelectedStyle : ""}
     ${props.isToday ? TodayStyle : ""}

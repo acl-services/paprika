@@ -264,7 +264,7 @@ class Popover extends React.Component {
   handleKeyUp = event => {
     if (event.key === "Escape") {
       this.close();
-      this.$trigger.focus();
+      if (this.$trigger) this.$trigger.focus();
     }
   };
 

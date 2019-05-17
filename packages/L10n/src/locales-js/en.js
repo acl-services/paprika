@@ -35,7 +35,8 @@ const locales = {
       },
       "dateInput": {
         "choose": "Choose a Date",
-        "clear": "Clear Date"
+        "clear": "Clear Date",
+        "confirmation_format": "MMMM DD, YYYY"
       },
       "daterange": {
         "last_7_days": "Last 7 Days",
