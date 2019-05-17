@@ -15,9 +15,6 @@ export const propTypes = {
   /** Child of type <ListBox.Option /> */
   children: PropTypes.node,
 
-  /** Turn on the input filter for the options */
-  hasFilter: PropTypes.bool,
-
   /** Turn on/off the clear button at the right side of the Trigger */
   hasClearButton: PropTypes.bool,
 
@@ -70,23 +67,14 @@ export const propTypes = {
       want to render a checkbox you can return null ex. renderCheckbox={() =>  null} */
   renderCheckbox: PropTypes.func,
 
-  /** Overrides the filter function and delegate the responsibility to the developer */
-  filter: PropTypes.func,
-
-  /** When is true will not display selected options on the results list after inputing a string for the filter */
-  filterExcludeSelectedOptions: PropTypes.bool,
-
   /** z-index for the popover */
   zIndex: PropTypes.number,
 };
 
 export const defaultProps = {
   children: null,
-  filter: null,
-  filterExcludeSelectedOptions: null,
   getScrollContainer: null,
   hasClearButton: true,
-  hasFilter: false,
   hasNotResultsMessage: "Your search did not match any options.",
   height: 200,
   hideOptionOnSelected: false,
@@ -198,10 +186,7 @@ const ListBoxContainer = React.forwardRef((props, ref) => {
 
   const {
     children,
-    filter,
-    filterExcludeSelectedOptions,
     hasClearButton,
-    hasFilter,
     hasNotResultsMessage,
     height,
     isInline,
@@ -218,8 +203,6 @@ const ListBoxContainer = React.forwardRef((props, ref) => {
 
   const ListBoxProps = {
     children,
-    filter,
-    filterExcludeSelectedOptions,
     hasClearButton,
     hasNotResultsMessage,
     height,
