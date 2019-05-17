@@ -2,6 +2,18 @@ import selectors from "../helpers/selectors";
 import { openLazyDropDown } from "../helpers/toggleHelpers";
 
 describe("Lazy ListBox", () => {
+  function shouldShowMore(beforeShowMore, assertedLength, afterShowMore) {
+    cy.contains(beforeShowMore).click();
+    cy.get(selectors.popoverList)
+    .should("be.visible")
+    .then(() => {
+      cy.get(selectors.popoverList)
+      .children()
+      .and("have.length", assertedLength);
+    })
+    .should("contain", afterShowMore);
+  }
+
   beforeEach(() => {
     cy.visitStorybook("ListBox / more examples", "Lazy ListBox");
     openLazyDropDown();
@@ -63,38 +75,12 @@ describe("Lazy ListBox", () => {
       .should("have.css", "font-weight")
       .and("contain", "400");
   });
-});
 
-describe("Lazy ListBox fetch", () => {
-  beforeEach(() => {
-    cy.visitStorybook("ListBox / more examples", "Lazy ListBox");
-    openLazyDropDown();
-  });
-
-  // test doesnt wait until finish loading for assertion
   it("should load marvel characters when pressing show more", () => {
-    cy.contains("Show more (20 / 45)").click();
-    // cy.wait(1000);
-    cy.get(selectors.popoverList)
-      .should("be.visible")
-      .then(() => {
-        cy.get(selectors.popoverList)
-          .children()
-          // .should("have.length", 55);
-          .and("have.length", 75);
-      })
-      .should("contain", "Show more (40 / 45)");
+    cy.get(selectors.popoverList).should("not.contain", "Nightcrawler").and("not.contain", "Sentinel")
+    shouldShowMore("Show more (20 / 45)", 75, "Show more (40 / 45)")
+    cy.get(selectors.popoverList).scrollTo("bottom");
+    shouldShowMore("Show more (20 / 196)", 95, "Show more (40 / 196)")
+    cy.get(selectors.popoverList).should("contain", "Nightcrawler").and("contain", "Sentinel")
   });
 });
-
-// describe("Lazy ListBox", () => {
-//   it.only("should grab data for show more", () => {
-//     cy.server();
-//     cy.route("GET", "/api/lazy.fixture", fixture);
-//     cy.visitStorybook("ListBox / more examples", "Lazy ListBox");
-//     openLazyDropDown();
-//     cy.get(selectors.popoverList)
-//       .children()
-//       .should("have.length", 55);
-//   });
-// });
