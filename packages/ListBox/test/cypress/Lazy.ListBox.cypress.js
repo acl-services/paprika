@@ -1,19 +1,25 @@
 import selectors from "../helpers/selectors";
 import { openLazyDropDown } from "../helpers/toggleHelpers";
 
-describe("Lazy ListBox", () => {
-  function shouldShowMore(beforeShowMore, assertedLength, afterShowMore) {
-    cy.contains(beforeShowMore).click();
+function shouldShowMore(beforeShowMore, assertedLength, afterShowMore) {
+  cy.contains(beforeShowMore).click();
+  cy.get(selectors.popoverList)
+  .should("be.visible")
+  .then(() => {
     cy.get(selectors.popoverList)
-    .should("be.visible")
-    .then(() => {
-      cy.get(selectors.popoverList)
-      .children()
-      .and("have.length", assertedLength);
-    })
-    .should("contain", afterShowMore);
-  }
+    .children()
+    .and("have.length", assertedLength);
+  })
+  .should("contain", afterShowMore);
+}
 
+function checkIfSelected(marvelChar, fontWeight) {
+  cy.contains(marvelChar)
+    .should("have.css", "font-weight")
+    .and("contain", fontWeight);
+}
+
+describe("Lazy ListBox", () => {
   beforeEach(() => {
     cy.visitStorybook("ListBox / more examples", "Lazy ListBox");
     openLazyDropDown();
@@ -67,13 +73,9 @@ describe("Lazy ListBox", () => {
 
   it("should select options and clear selections", () => {
     cy.contains("Nebula").click();
-    cy.contains("Nebula")
-      .should("have.css", "font-weight")
-      .and("contain", "600");
+    checkIfSelected("Nebula", "600")
     cy.contains("Clear").click();
-    cy.contains("Nebula")
-      .should("have.css", "font-weight")
-      .and("contain", "400");
+    checkIfSelected("Nebula", "400")
   });
 
   it("should load marvel characters when pressing show more", () => {
