@@ -1,6 +1,6 @@
 import React from "react";
 import PropTypes from "prop-types";
-import { PopoverContext } from "../../Popover";
+import PopoverContext from "../../PopoverContext";
 import CardStyled from "./Card.styles";
 
 const Card = ({ children }) => (

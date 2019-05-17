@@ -1,9 +1,8 @@
 import React from "react";
 import PropTypes from "prop-types";
 import RawButton from "@paprika/raw-button";
-
-import { PopoverContext } from "../../Popover";
 import { isActiveElementPopover } from "../../helpers/isActiveElementPopover";
+import PopoverContext from "../../PopoverContext";
 
 const propTypes = {
   children: PropTypes.oneOfType([PropTypes.func, PropTypes.node]).isRequired,

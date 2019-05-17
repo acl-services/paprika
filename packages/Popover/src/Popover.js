@@ -7,6 +7,7 @@ import isInsideBoundaries from "./helpers/isInsideBoundaries";
 import { getContentCoordinates, getTipCoordinates } from "./helpers/getPosition";
 import { isActiveElementPopover } from "./helpers/isActiveElementPopover";
 
+import PopoverContext from "./PopoverContext";
 import Content from "./components/Content/Content";
 import Card from "./components/Card/Card";
 import Trigger from "./components/Trigger/Trigger";
@@ -18,8 +19,6 @@ import PopoverStyled from "./Popover.styles";
 // NOTE: When closing the popover seems to be better to focus the trigger button
 //       only when the close method is the ESC key, when clicking outside doesn't feel a fluid action
 //       assigning the focus to the button again
-
-export const PopoverContext = React.createContext();
 
 const openDelay = 350;
 const closeDelay = 150;
