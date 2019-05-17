@@ -4,13 +4,13 @@ import { openLazyDropDown } from "../helpers/toggleHelpers";
 function shouldShowMore(beforeShowMore, assertedLength, afterShowMore) {
   cy.contains(beforeShowMore).click();
   cy.get(selectors.popoverList)
-  .should("be.visible")
-  .then(() => {
-    cy.get(selectors.popoverList)
-    .children()
-    .and("have.length", assertedLength);
-  })
-  .should("contain", afterShowMore);
+    .should("be.visible")
+    .then(() => {
+      cy.get(selectors.popoverList)
+        .children()
+        .and("have.length", assertedLength);
+    })
+    .should("contain", afterShowMore);
 }
 
 function checkIfSelected(marvelChar, fontWeight) {
@@ -43,7 +43,7 @@ describe("Lazy ListBox", () => {
       .and("contain", "Sauron");
   });
 
-  // Test fails caused from error from application code, not cypress
+  // Test fails caused from error in application code, not cypress
   // it.only("should filter and show correct options", () => {
   //   cy.get(selectors.filterInput).type("z");
   //   cy.get(selectors.popoverList)
@@ -73,16 +73,20 @@ describe("Lazy ListBox", () => {
 
   it("should select options and clear selections", () => {
     cy.contains("Nebula").click();
-    checkIfSelected("Nebula", "600")
+    checkIfSelected("Nebula", "600");
     cy.contains("Clear").click();
-    checkIfSelected("Nebula", "400")
+    checkIfSelected("Nebula", "400");
   });
 
   it("should load marvel characters when pressing show more", () => {
-    cy.get(selectors.popoverList).should("not.contain", "Nightcrawler").and("not.contain", "Sentinel")
-    shouldShowMore("Show more (20 / 45)", 75, "Show more (40 / 45)")
+    cy.get(selectors.popoverList)
+      .should("not.contain", "Nightcrawler")
+      .and("not.contain", "Sentinel");
+    shouldShowMore("Show more (20 / 45)", 75, "Show more (40 / 45)");
     cy.get(selectors.popoverList).scrollTo("bottom");
-    shouldShowMore("Show more (20 / 196)", 95, "Show more (40 / 196)")
-    cy.get(selectors.popoverList).should("contain", "Nightcrawler").and("contain", "Sentinel")
+    shouldShowMore("Show more (20 / 196)", 95, "Show more (40 / 196)");
+    cy.get(selectors.popoverList)
+      .should("contain", "Nightcrawler")
+      .and("contain", "Sentinel");
   });
 });
