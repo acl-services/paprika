@@ -53,4 +53,4 @@ ListBoxWithProvider.defaultProps = defaultProps;
 ListBoxWithProvider.Option = Option;
 ListBoxWithProvider.Group = Group;
 ListBoxWithProvider.Footer = Footer;
-ListBoxWithProvider.Filter = Filter; // eslint-disable-line
+ListBoxWithProvider.Filter = Filter;
