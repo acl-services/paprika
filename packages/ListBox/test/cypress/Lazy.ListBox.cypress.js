@@ -43,7 +43,7 @@ describe("Lazy ListBox", () => {
       .and("contain", "Sauron");
   });
 
-  // Test fails caused from error in application code, not cypress
+  // fails caused from error in application code, not cypress
   // it.only("should filter and show correct options", () => {
   //   cy.get(selectors.filterInput).type("z");
   //   cy.get(selectors.popoverList)
@@ -77,6 +77,17 @@ describe("Lazy ListBox", () => {
     cy.contains("Clear").click();
     checkIfSelected("Nebula", "400");
   });
+
+  // fails
+  // it("should select, click renderTrigger, then close popover", () => {
+  //   cy.get(selectors.popover).should("be.visible");
+  //   cy.contains("Namorita").click();
+  //   cy.contains("Natasha Romanoff").click();
+  //   cy.contains("Marvel API").click();
+  //   cy.contains("Marvel API").click();
+  //   cy.get("body").click("bottom");
+  //   cy.get(selectors.popover).should("not.be.visible");
+  // });
 
   it("should load marvel characters when pressing show more", () => {
     cy.get(selectors.popoverList)
