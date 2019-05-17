@@ -84,6 +84,13 @@ export default function reducer(state, { type, payload }) {
       };
     }
 
+    case useListBox.types.hasFilter: {
+      return {
+        ...state,
+        hasFilter: payload,
+      };
+    }
+
     case useListBox.types.applyFilter: {
       let activeOption = null;
       if (payload.filteredOptions.length === 1) {

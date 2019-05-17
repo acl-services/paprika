@@ -6,10 +6,7 @@ storiesOf("ListBox / multi", module).add("Basic", () => <Multi.Basic />);
 storiesOf("ListBox / multi", module).add("Basic with preselected options", () => <Multi.BasicWithPreselectedOptions />);
 storiesOf("ListBox / multi", module).add("Basic is disabled", () => <Multi.BasicIsDisabled />);
 storiesOf("ListBox / multi", module).add("Basic is disabled while open", () => <Multi.BasicIsDisabledWhileOpen />);
-storiesOf("ListBox / multi", module).add("With Filter", () => <Multi.WithFilter />);
-storiesOf("ListBox / multi", module).add("With Filter and nodes as children", () => (
-  <Multi.WithFilterAndNodesAsChildren />
-));
+
 storiesOf("ListBox / multi", module).add("With Filter and nodes as children and isInline", () => (
   <Multi.WithFilterAndNodesAsChildrenAndIsInline />
 ));

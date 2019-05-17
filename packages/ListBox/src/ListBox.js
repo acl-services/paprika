@@ -2,7 +2,6 @@ import React from "react";
 import PropTypes from "prop-types";
 import Box from "./components/Box";
 import Content from "./components/Content";
-import Filter from "./components/Filter";
 import List from "./components/List";
 import NoResults from "./components/NoResults";
 import Options from "./components/Options";
@@ -121,6 +120,19 @@ export function ListBox(props) {
     setFooter(footer);
   };
 
+  let ChildOfTypeFilter = null;
+  const ChildrenOfTyeOption = [];
+
+  React.Children.toArray(children).forEach(child => {
+    switch (child.type.componentType) {
+      case "ListBox.Filter":
+        ChildOfTypeFilter = child;
+        break;
+      default:
+        ChildrenOfTyeOption.push(child);
+    }
+  });
+
   return (
     <React.Fragment>
       <Trigger
@@ -132,9 +144,9 @@ export function ListBox(props) {
       />
       <Content>
         <Box>
-          <Filter filterExcludeSelectedOptions={props.filterExcludeSelectedOptions} filter={props.filter} />
+          {ChildOfTypeFilter || null}
           <List height={height}>
-            <Options onFooterFound={handleFooterFound}>{children}</Options>
+            <Options onFooterFound={handleFooterFound}>{ChildrenOfTyeOption}</Options>
           </List>
           <NoResults label={hasNotResultsMessage} />
           {<div ref={state.refFooterContainer}>{footer}</div> || null}
@@ -147,7 +159,6 @@ export function ListBox(props) {
 ListBox.propTypes = {
   ...propTypes,
   children: PropTypes.node.isRequired,
-  filter: PropTypes.func,
   hasClearButton: PropTypes.bool,
   hasNotResultsMessage: PropTypes.string.isRequired,
   height: PropTypes.number.isRequired,
@@ -157,7 +168,6 @@ ListBox.propTypes = {
 };
 
 ListBox.defaultProps = {
-  filter: null,
   onClickClear: null,
   renderTrigger: null,
   hasClearButton: true,

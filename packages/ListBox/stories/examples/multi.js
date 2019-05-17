@@ -1,8 +1,6 @@
 import React from "react";
 import styled from "styled-components";
-import { ImageOption } from "../stories.styles";
 import ListBox from "../../src";
-import { images } from "../fixtures/images";
 
 export const Basic = () => (
   <ListBox isMulti>
@@ -52,44 +50,8 @@ export const BasicIsDisabledWhileOpen = () => (
   </ListBox>
 );
 
-export const WithFilter = () => (
-  <ListBox isMulti hasFilter>
-    <ListBox.Option>Punisher</ListBox.Option>
-    <ListBox.Option>Catwoman</ListBox.Option>
-    <ListBox.Option>Venom</ListBox.Option>
-    <ListBox.Option>Thunderbolts</ListBox.Option>
-    <ListBox.Option>Deadpool</ListBox.Option>
-    <ListBox.Option>Spawn</ListBox.Option>
-    <ListBox.Option>Wolverine</ListBox.Option>
-  </ListBox>
-);
-
-export const WithFilterAndNodesAsChildren = () => (
-  <ListBox isMulti hasFilter height={300} renderCheckbox={() => null}>
-    {images.map(image => (
-      <ListBox.Option key={image.src} label={image.label}>
-        <ImageOption>
-          <img alt={image.label} src={image.src} />
-        </ImageOption>
-      </ListBox.Option>
-    ))}
-  </ListBox>
-);
-
-export const WithFilterAndNodesAsChildrenAndIsInline = () => (
-  <ListBox isMulti hasFilter isInline height={300} renderCheckbox={() => null}>
-    {images.map(image => (
-      <ListBox.Option key={image.src} label={image.label}>
-        <ImageOption>
-          <img alt={image.label} src={image.src} />
-        </ImageOption>
-      </ListBox.Option>
-    ))}
-  </ListBox>
-);
-
 export const WithCheckboxAsPreBuiltInOption = () => (
-  <ListBox isMulti hasFilter renderCheckbox="checkbox">
+  <ListBox isMulti renderCheckbox="checkbox">
     <ListBox.Option>Punisher</ListBox.Option>
     <ListBox.Option>Catwoman</ListBox.Option>
     <ListBox.Option>Venom</ListBox.Option>
@@ -101,7 +63,7 @@ export const WithCheckboxAsPreBuiltInOption = () => (
 );
 
 export const Footer = () => (
-  <ListBox isMulti hasFilter>
+  <ListBox isMulti>
     <ListBox.Option>Punisher</ListBox.Option>
     <ListBox.Option>Catwoman</ListBox.Option>
     <ListBox.Option>Venom</ListBox.Option>
@@ -121,7 +83,6 @@ export const Footer = () => (
 export const WithCustomCheckers = () => (
   <ListBox
     isMulti
-    hasFilter
     renderCheckbox={isChecked => {
       return isChecked ? "✅" : "🙅‍";
     }}

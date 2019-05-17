@@ -148,18 +148,6 @@ export const BasicOptionDisabled = () => (
   </ListBox>
 );
 
-export const WithFilter = () => (
-  <ListBox hasFilter>
-    <ListBox.Option>Punisher</ListBox.Option>
-    <ListBox.Option>Catwoman</ListBox.Option>
-    <ListBox.Option>Venom</ListBox.Option>
-    <ListBox.Option>Thunderbolts</ListBox.Option>
-    <ListBox.Option>Deadpool</ListBox.Option>
-    <ListBox.Option>Spawn</ListBox.Option>
-    <ListBox.Option>Wolverine</ListBox.Option>
-  </ListBox>
-);
-
 export const HasNotClearButton = () => (
   <ListBox hasClearButton={false}>
     <ListBox.Option>Punisher</ListBox.Option>
@@ -172,20 +160,8 @@ export const HasNotClearButton = () => (
   </ListBox>
 );
 
-export const WithFilterInline = () => (
-  <ListBox hasFilter isInline>
-    <ListBox.Option>Punisher</ListBox.Option>
-    <ListBox.Option>Catwoman</ListBox.Option>
-    <ListBox.Option>Venom</ListBox.Option>
-    <ListBox.Option>Thunderbolts</ListBox.Option>
-    <ListBox.Option>Deadpool</ListBox.Option>
-    <ListBox.Option>Spawn</ListBox.Option>
-    <ListBox.Option>Wolverine</ListBox.Option>
-  </ListBox>
-);
-
 export const Footer = () => (
-  <ListBox hasFilter>
+  <ListBox>
     <ListBox.Option>Punisher</ListBox.Option>
     <ListBox.Option>Catwoman</ListBox.Option>
     <ListBox.Option>Venom</ListBox.Option>
@@ -203,20 +179,8 @@ export const Footer = () => (
   </ListBox>
 );
 
-export const WithFilterAndNodesAsChildren = () => (
-  <ListBox hasFilter height={300}>
-    {images.map(image => (
-      <ListBox.Option key={image.src} label={image.label}>
-        <ImageOption>
-          <img alt={image.label} src={image.src} />
-        </ImageOption>
-      </ListBox.Option>
-    ))}
-  </ListBox>
-);
-
 export const FilterCustomChildrenInline = () => (
-  <ListBox hasFilter isInline height={320}>
+  <ListBox isInline height={320}>
     {images.map(image => (
       <ListBox.Option key={image.src} label={image.label}>
         <ImageOption>
@@ -302,7 +266,6 @@ export const Checkboxes = () => (
 
 export const WithCustomCheckers = () => (
   <ListBox
-    hasFilter
     renderCheckbox={isChecked => {
       return isChecked ? "✅" : "🙅‍";
     }}

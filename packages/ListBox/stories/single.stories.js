@@ -15,11 +15,6 @@ storiesOf("ListBox / single", module).add("Checkboxes", () => <Single.Checkboxes
 storiesOf("ListBox / single", module).add("Custom Checkers", () => <Single.WithCustomCheckers />);
 storiesOf("ListBox / single", module).add("Custom renderTrigger", () => <Single.CustomRenderTrigger />);
 
-storiesOf("ListBox / single", module).add("Filter custom nodes inline", () => <Single.FilterCustomChildrenInline />);
-storiesOf("ListBox / single", module).add("Filter custom nodes", () => <Single.WithFilterAndNodesAsChildren />);
-storiesOf("ListBox / single", module).add("Filter inline", () => <Single.WithFilterInline />);
-storiesOf("ListBox / single", module).add("Filter", () => <Single.WithFilter />);
-
 storiesOf("ListBox / single", module).add("Footer", () => <Single.Footer />);
 storiesOf("ListBox / single", module).add("Groups", () => <Single.WithGroups />);
 storiesOf("ListBox / single", module).add("Has not clear button", () => <Single.HasNotClearButton />);

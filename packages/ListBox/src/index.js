@@ -3,6 +3,7 @@ import ListBox, { propTypes, defaultProps } from "./ListBox";
 import Footer from "./components/Footer";
 import Group from "./components/Group";
 import Option from "./components/Option";
+import Filter from "./components/Filter";
 import Provider from "./store/Provider";
 
 const ListBoxWithProvider = React.forwardRef((props, ref) => {
@@ -52,3 +53,4 @@ ListBoxWithProvider.defaultProps = defaultProps;
 ListBoxWithProvider.Option = Option;
 ListBoxWithProvider.Group = Group;
 ListBoxWithProvider.Footer = Footer;
+ListBoxWithProvider.Filter = Filter; // eslint-disable-line

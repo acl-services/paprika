@@ -15,3 +15,10 @@ export const handleEffectTextSearch = (textSearch, applyFilter) => () => {
     applyFilter({ filteredOptions: [], noResultsFound: false });
   }
 };
+
+export const handleEffectHasFilter = (dispatch, type) => () => {
+  dispatch({
+    type,
+    payload: true,
+  });
+};
