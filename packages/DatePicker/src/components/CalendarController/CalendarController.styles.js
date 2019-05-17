@@ -7,6 +7,11 @@ function getNumber(token) {
 }
 
 const CalendarStyled = styled.div`
+  * {
+    box-sizing: border-box;
+    font-family: ${tokens.fontFamily.default};
+  }
+
   .DayPicker_transitionContainer__horizontal {
     transition: none;
   }
@@ -21,8 +26,9 @@ const CalendarStyled = styled.div`
 
   .CalendarMonth_caption {
     background-color: ${tokens.color.blackLighten80};
-    height: ${getNumber(tokens.space) * 4 + getNumber(tokens.space) + 1}px;
-    padding: ${tokens.spaceSm} 0;
+    height: ${getNumber(tokens.space) * 4 + getNumber(tokens.space)}px;
+    line-height: ${getNumber(tokens.space) * 4 + getNumber(tokens.space)}px;
+    padding: 0;
     margin-bottom: ${tokens.spaceLg};
     margin-left: -9px;
     margin-right: -10px;
@@ -54,7 +60,7 @@ const CalendarStyled = styled.div`
     &.CalendarDay__outside {
       pointer-events: none;
 
-      .aclui-calendar-day-trigger {
+      .aclui-calendar-day-content {
         color: ${tokens.color.blackDisabled};
       }
     }
@@ -68,6 +74,7 @@ const CalendarStyled = styled.div`
     padding: ${tokens.spaceSm};
     width: 22px;
     height: 22px;
+    box-sizing: border-box;
 
     &:first-child {
       left: ${tokens.space};
@@ -104,10 +111,14 @@ export const DayTriggerStyle = props => {
       border: 0;
     }
   `;
+  const TodayStyle = `
+    border: 1px solid ${tokens.border.color};
+  `;
 
   return `
     display: inline-flex;
     align-items: center;
+    box-sizing: border-box;
     justify-content: center;
     width: 30px;
     height: 27px;
@@ -115,7 +126,7 @@ export const DayTriggerStyle = props => {
     color: ${tokens.color.black};
 
     &:hover {
-      border: 1px solid ${tokens.border.color};
+      background: ${tokens.color.blackLighten70};
       font-weight: bold;
     }
     &:focus {
@@ -124,7 +135,12 @@ export const DayTriggerStyle = props => {
     }
 
     ${props.isSelected ? SelectedStyle : ""}
+    ${props.isToday ? TodayStyle : ""}
   `;
 };
+
+export const CalendarHeaderStyled = styled.span`
+  font-size: ${stylers.spacer(2)};
+`;
 
 export default CalendarStyled;
