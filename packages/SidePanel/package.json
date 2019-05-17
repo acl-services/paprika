@@ -1,0 +1,29 @@
+{
+  "name": "@paprika/SidePanel",
+  "version": "0.1.0",
+  "description": "Button component",
+  "author": "@paprika",
+  "main": "lib/index.js",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/acl-services/paprika/tree/master/packages/SidePanel"
+  },
+  "publishConfig": {
+    "access": "public"
+  },
+  "dependencies": {
+    "@babel/runtime-corejs2": "^7.3.1",
+    "@paprika/helpers": "^0.1.0",
+    "@paprika/icon": "^0.1.0",
+    "@paprika/raw-button": "^0.1.0",
+    "@paprika/stylers": "^0.1.0",
+    "@paprika/tokens": "^0.1.0",
+    "prop-types": "^15.7.2"
+  },
+  "peerDependencies": {
+    "react": "^16.8.4",
+    "react-dom": "^16.8.4",
+    "styled-components": "^4.2.0"
+  }
+}

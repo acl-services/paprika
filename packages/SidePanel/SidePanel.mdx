@@ -1,0 +1,62 @@
+---
+name: SidePanel
+menu: Components
+route: /sidepanel
+---
+
+import { PropsTable } from "docz";
+import SidePanel from "./src/SidePanel";
+import Header from "./src/components/Header";
+import Content from "./src/components/Content";
+import Footer from "./src/components/Footer";
+
+# SidePanel
+
+## Props
+
+### SidePanel
+
+<PropsTable of={SidePanel} />
+
+### SidePanel.Header
+
+<PropsTable of={Header} />
+
+### SidePanel.Content
+
+<PropsTable of={Content} />
+
+### SidePanel.Footer
+
+<PropsTable of={Footer} />
+
+## Basic
+
+```js
+<SidePanel onClose={() => {}} isOpen isInline direction="left||right">
+  <SidePanel.Trigger>
+    <button type="button">Open SidePanel</button>
+  </SidePanel.Trigger>
+  <SidePanel.Header hasCloseButton>Title</SidePanel.Header>
+  <SidePanel.Content>The content goes here</SidePanel.Content>
+  <SidePanel.Footer onClickAccept onClickCancel>
+    The content goes here
+  </SidePanel.Footer>
+  <SidePanel.SideChild>Secondary SidePanel</SidePanel.SideChild>
+  <SidePanel.SideChild>Third SidePanel</SidePanel.SideChild>
+</SidePanel>
+```
+
+```js
+<SidePanel onClose={() => {}} isOpen isInline direction="left||right">
+  <SidePanel.Header hasCloseButton>Title</SidePanel.Header>
+  <SidePanel.Content>The content goes here</SidePanel.Content>
+  <SidePanel.Footer>
+    {(dispatch, actionTypes) => {
+      return <YourFooter />;
+    }}
+  </SidePanel.Footer>
+  <SidePanel.SideChild>Secondary SidePanel</SidePanel.SideChild>
+  <SidePanel.SideChild>Third SidePanel</SidePanel.SideChild>
+</SidePanel>
+```
