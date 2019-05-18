@@ -1,10 +1,10 @@
 import selectors from "./helpers/selectors";
 
-const basePopoverKind = "Popover/Automation Tests/Cypress";
+const basePopoverStory = "popover-automation-tests-cypress";
 
 describe("Popover", () => {
   beforeEach(() => {
-    cy.visitStorybook(basePopoverKind, "Basic Popover Test");
+    cy.visitStorybook(`${basePopoverStory}--basic-popover-test`);
     cy.get(selectors.popover).should("be.not.visible");
   });
 
@@ -31,7 +31,7 @@ describe("Popover", () => {
 
   describe("Popover isEager", () => {
     beforeEach(() => {
-      cy.visitStorybook(basePopoverKind, "Basic Popover Test");
+      cy.visitStorybook(`${basePopoverStory}--basic-popover-test`);
       cy.get(selectors.popover).should("be.not.visible");
     });
 
