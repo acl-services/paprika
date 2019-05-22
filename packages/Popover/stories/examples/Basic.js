@@ -17,42 +17,36 @@ const sampleText = {
     truck, crucifix try-hard godard biodiesel next level snackwave disrupt flexitarian.`,
 };
 
-export default class ExampleStory extends React.Component {
-  render() {
-    return (
-      <CenteredStory>
-        <Popover
-          align={select("align", ["bottom", "top", "right", "left"], "bottom")}
-          maxWidth={text("maxWidth", "320")}
-          offset={number("offset", 12)}
-        >
-          <Popover.Trigger>
-            <Button>Open Popover</Button>
-          </Popover.Trigger>
-          <Popover.Content>
-            <Popover.Tip />
-            <Popover.Card>{sampleText.long}</Popover.Card>
-          </Popover.Content>
-        </Popover>
+export const basicProps = () => ({
+  align: select("align", ["bottom", "top", "right", "left"], "bottom"),
+  maxWidth: text("maxWidth", "320"),
+  offset: number("offset", 12),
+});
 
-        <Gap />
+const ExampleStory = props => (
+  <CenteredStory>
+    <Popover {...props}>
+      <Popover.Trigger>
+        <Button>Open Popover</Button>
+      </Popover.Trigger>
+      <Popover.Content>
+        <Popover.Tip />
+        <Popover.Card>{sampleText.long}</Popover.Card>
+      </Popover.Content>
+    </Popover>
 
-        <Popover
-          align={select("align", ["bottom", "top", "right", "left"], "bottom")}
-          isDark
-          isEager
-          maxWidth={text("maxWidth", "320")}
-          offset={number("offset", 12)}
-        >
-          <Popover.Trigger>
-            <Button kind="minor">Open Tooltip</Button>
-          </Popover.Trigger>
-          <Popover.Content>
-            <Popover.Tip />
-            <Popover.Card>{sampleText.short}</Popover.Card>
-          </Popover.Content>
-        </Popover>
-      </CenteredStory>
-    );
-  }
-}
+    <Gap />
+
+    <Popover {...props} isDark isEager>
+      <Popover.Trigger>
+        <Button kind="minor">Open Tooltip</Button>
+      </Popover.Trigger>
+      <Popover.Content>
+        <Popover.Tip />
+        <Popover.Card>{sampleText.short}</Popover.Card>
+      </Popover.Content>
+    </Popover>
+  </CenteredStory>
+);
+
+export default ExampleStory;

@@ -11,20 +11,18 @@ const TransformedStory = styled(CenteredStory)`
   height: 50vh;
 `;
 
-export default class ExampleStory extends React.Component {
-  render() {
-    return (
-      <TransformedStory>
-        <Popover>
-          <Popover.Trigger>
-            <Button kind="secondary">Open Popover</Button>
-          </Popover.Trigger>
-          <Popover.Content>
-            <Popover.Tip />
-            <Popover.Card>This popover renders inside a &lt;div&gt; with a CSS transform applied to it.</Popover.Card>
-          </Popover.Content>
-        </Popover>
-      </TransformedStory>
-    );
-  }
-}
+const ExampleStory = () => (
+  <TransformedStory>
+    <Popover>
+      <Popover.Trigger>
+        <Button kind="secondary">Open Popover</Button>
+      </Popover.Trigger>
+      <Popover.Content>
+        <Popover.Tip />
+        <Popover.Card>This popover renders inside a &lt;div&gt; with a CSS transform applied to it.</Popover.Card>
+      </Popover.Content>
+    </Popover>
+  </TransformedStory>
+);
+
+export default ExampleStory;

@@ -20,41 +20,31 @@ const iconSelections = {
   info: <InfoIcon />,
 };
 
-const ExampleStory = () => {
-  const labelKnob = text("label", "Take Action");
-  const sizeKnob = select("size", ShirtSizes.DEFAULT, "medium");
-  const kindKnob = select(
-    "type",
-    ["default", "primary", "secondary", "flat", "destructive", "minor", "link"],
-    "default"
-  );
-  const iconKnob = select("icon", Object.keys(iconSelections), null);
+export const showcaseProps = () => ({
+  children: text("label", "Take Action"),
+  size: select("size", ShirtSizes.DEFAULT, "medium"),
+  kind: select("type", ["default", "primary", "secondary", "flat", "destructive", "minor", "link"], "default"),
+  onClick: clickHandler,
+  icon: iconSelections[select("icon", Object.keys(iconSelections), null)],
+  isActive: boolean("isActive", false),
+  isDisabled: boolean("isDisabled", false),
+  isDropdown: boolean("isDropdown", false),
+  isFullWidth: boolean("isFullWidth", false),
+  isPending: boolean("isPending", false),
+  isSubmit: boolean("isSubmit", false),
+  isSemantic: boolean("isSemantic", true),
+  a11yText: text("a11yText", ""),
+});
 
-  return (
-    <Story>
-      <Heading level={1} displayLevel={2} isLight>
-        Showcase
-      </Heading>
-      <Tagline>Use the knobs to tinker with the props.</Tagline>
-      <Rule />
-      <Button
-        a11yText={text("a11yText", "")}
-        icon={iconSelections[iconKnob]}
-        isActive={boolean("isActive", false)}
-        isDisabled={boolean("isDisabled", false)}
-        isDropdown={boolean("isDropdown", false)}
-        isFullWidth={boolean("isFullWidth", false)}
-        isPending={boolean("isPending", false)}
-        isSemantic={boolean("isSemantic", true)}
-        isSubmit={boolean("isSubmit", false)}
-        kind={kindKnob}
-        onClick={clickHandler}
-        size={sizeKnob}
-      >
-        {labelKnob}
-      </Button>
-    </Story>
-  );
-};
+const ExampleStory = props => (
+  <Story>
+    <Heading level={1} displayLevel={2} isLight>
+      Showcase
+    </Heading>
+    <Tagline>Use the knobs to tinker with the props.</Tagline>
+    <Rule />
+    <Button {...props}>{props.children}</Button>
+  </Story>
+);
 
 export default ExampleStory;

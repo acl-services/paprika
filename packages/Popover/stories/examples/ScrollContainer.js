@@ -1,6 +1,6 @@
 import React from "react";
-import { select, text, number } from "@storybook/addon-knobs";
 import PropTypes from "prop-types";
+import { select } from "@storybook/addon-knobs";
 import styled from "styled-components";
 import { CenteredStory } from "storybook/assets/styles/common.styles";
 import Button from "@paprika/button";
@@ -36,40 +36,37 @@ const sampleText = {
     truck, crucifix try-hard godard biodiesel next level snackwave disrupt flexitarian.`,
 };
 
-const PopoverBox = ({ getScrollContainer }) => (
-  <PopoverContainer>
-    <Popover
-      align={select("align", ["bottom", "top", "right", "left"], "bottom")}
-      maxWidth={text("maxWidth", "320px")}
-      offset={number("offset", 12)}
-      getScrollContainer={getScrollContainer}
-    >
-      <Popover.Trigger>
-        <Button>Open Popover</Button>
-      </Popover.Trigger>
-      <Popover.Content>
-        <Popover.Tip />
-        <Popover.Card>{sampleText[select("content", ["short", "long"], "long")]}</Popover.Card>
-      </Popover.Content>
-    </Popover>
-  </PopoverContainer>
-);
+export const sampleTextProp = () => ({ sampleTextKnob: select("content", ["short", "long"], "long") });
 
+const PopoverBox = props => {
+  const { sampleTextKnob, ...moreProps } = props;
+  return (
+    <PopoverContainer>
+      <Popover {...moreProps}>
+        <Popover.Trigger>
+          <Button>Open Popover</Button>
+        </Popover.Trigger>
+        <Popover.Content>
+          <Popover.Tip />
+          <Popover.Card>{sampleText[sampleTextKnob]}</Popover.Card>
+        </Popover.Content>
+      </Popover>
+    </PopoverContainer>
+  );
+};
 PopoverBox.propTypes = {
   getScrollContainer: PropTypes.func.isRequired,
 };
 
-export default class ExampleStory extends React.Component {
-  render() {
-    return (
-      <React.Fragment>
-        <CenteredStory>
-          <ScrollBox id="scroll-container">
-            <PopoverBox getScrollContainer={() => document.querySelector("#scroll-container")} />
-          </ScrollBox>
-        </CenteredStory>
-        <TrailerBox>Fin.</TrailerBox>
-      </React.Fragment>
-    );
-  }
-}
+const ExampleStory = props => (
+  <React.Fragment>
+    <CenteredStory>
+      <ScrollBox id="scroll-container">
+        <PopoverBox {...props} getScrollContainer={() => document.querySelector("#scroll-container")} />
+      </ScrollBox>
+    </CenteredStory>
+    <TrailerBox>Fin.</TrailerBox>
+  </React.Fragment>
+);
+
+export default ExampleStory;

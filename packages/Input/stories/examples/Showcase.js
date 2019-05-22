@@ -14,29 +14,27 @@ const iconSelections = {
   info: <InfoIcon />,
 };
 
-const ExampleStory = () => {
-  const sizeKnob = select("size", ShirtSizes.DEFAULT, "medium");
+export const showcaseProps = () => ({
+  size: select("size", ShirtSizes.DEFAULT, "medium"),
+  placeholder: text("placeholder", "Enter some text"),
+  icon: iconSelections[select("icon", Object.keys(iconSelections), null)],
+  hasClearButton: boolean("hasClearButton", false),
+  isDisabled: boolean("isDisabled", false),
+  isReadOnly: boolean("isReadOnly", false),
+  hasError: boolean("hasError", false),
+  type: select("type", ["password", "text"], "text"),
+  a11yText: text("a11yText", ""),
+});
 
-  return (
-    <InputStory>
-      <Heading level={1} displayLevel={2} isLight>
-        Showcase
-      </Heading>
-      <Tagline>Use the knobs to tinker with the props.</Tagline>
-      <Rule />
-      <InputExample
-        a11yText={text("a11yText", "")}
-        hasClearButton={boolean("hasClearButton", false)}
-        hasError={boolean("hasError", false)}
-        icon={iconSelections[select("icon", Object.keys(iconSelections), null)]}
-        isDisabled={boolean("isDisabled", false)}
-        isReadOnly={boolean("isReadOnly", false)}
-        placeholder={text("placeholder", "Enter some text")}
-        size={sizeKnob}
-        type={select("type", ["password", "text"], "text")}
-      />
-    </InputStory>
-  );
-};
+const ExampleStory = props => (
+  <InputStory>
+    <Heading level={1} displayLevel={2} isLight>
+      Showcase
+    </Heading>
+    <Tagline>Use the knobs to tinker with the props.</Tagline>
+    <Rule />
+    <InputExample {...props} />
+  </InputStory>
+);
 
 export default ExampleStory;
