@@ -5,7 +5,7 @@
     "cypress:ci": "run-p --race storybook cypress:run",
     "cypress:dev": "run-p --race storybook cypress:open",
     "cypress:open": "cypress open",
-    "cypress:run": "cypress run --browser chrome",
+    "cypress:run": "wait-on http://localhost:9009 && cypress run --browser chrome",
     "docz:build": "cd documentation && yarn docz:build",
     "docz:dev": "cd documentation && yarn docz:dev",
     "jest:watch": "yarn jest --watch",
@@ -89,7 +89,8 @@
     "sinon": "^7.2.4",
     "style-loader": "^0.23.1",
     "styled-components": "^4.2.0",
-    "verdaccio": "^3.11.6"
+    "verdaccio": "^3.11.6",
+    "wait-on": "^3.2.0"
   },
   "husky": {
     "hooks": {
