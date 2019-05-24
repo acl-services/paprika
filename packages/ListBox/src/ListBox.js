@@ -33,12 +33,8 @@ export const propTypes = {
   /** This options will display the listbox without the Popover */
   isInline: PropTypes.bool,
 
-  /** When true the ListBox will try to focus to the options container asap the
-  popover is open */
-  isPopoverEager: PropTypes.bool,
-
   /** Indicates if the popover is visible */
-  isPopoverOpen: PropTypes.bool,
+  isOpen: PropTypes.bool,
 
   /** Message to be display once the filtering process doesn't find a match */
   hasNotResultsMessage: PropTypes.node,
@@ -52,9 +48,6 @@ export const propTypes = {
   /** Defaults label to display when the ListBox has not option selected */
   placeholder: PropTypes.string,
 
-  /** [Advance] Override the 'scroll' target element for popover default is document.body  */
-  getScrollContainer: PropTypes.func,
-
   /** [Advance] When composing the component will prevent to close the ListBox when
       the user interact with the Trigger container */
   preventOnBlurForTriggerListBox: PropTypes.bool,
@@ -66,14 +59,10 @@ export const propTypes = {
       When `isMulti` prop is active, the default type of checker is a checkbox, in case you don't
       want to render a checkbox you can return null ex. renderCheckbox={() =>  null} */
   renderCheckbox: PropTypes.func,
-
-  /** z-index for the popover */
-  zIndex: PropTypes.number,
 };
 
 export const defaultProps = {
   children: null,
-  getScrollContainer: null,
   hasClearButton: true,
   hasNotResultsMessage: "Your search did not match any options.",
   height: 200,
@@ -81,15 +70,13 @@ export const defaultProps = {
   isDisabled: false,
   isInline: false,
   isMulti: false,
-  isPopoverEager: true,
-  isPopoverOpen: null,
+  isOpen: null,
   onChange: () => {},
   onClickClear: null,
   placeholder: "Select one of the options",
   preventOnBlurForTriggerListBox: false,
   renderCheckbox: undefined,
   renderTrigger: null,
-  zIndex: 1,
 };
 
 export function ListBox(props) {
@@ -108,19 +95,6 @@ export function ListBox(props) {
     setFooter(footer);
   };
 
-  let ChildOfTypeFilter = null;
-  const ChildrenOfTyeOption = [];
-
-  React.Children.toArray(children).forEach(child => {
-    switch (child.type.componentType) {
-      case "ListBox.Filter":
-        ChildOfTypeFilter = child;
-        break;
-      default:
-        ChildrenOfTyeOption.push(child);
-    }
-  });
-
   return (
     <React.Fragment>
       <Trigger
@@ -132,9 +106,9 @@ export function ListBox(props) {
       />
       <Content>
         <Box>
-          {ChildOfTypeFilter || null}
+          {props.Filter || null}
           <List height={height}>
-            <Options onFooterFound={handleFooterFound}>{ChildrenOfTyeOption}</Options>
+            <Options onFooterFound={handleFooterFound}>{children}</Options>
           </List>
           <NoResults label={hasNotResultsMessage} />
           {<div ref={state.refFooterContainer}>{footer}</div> || null}
@@ -181,7 +155,7 @@ const ListBoxContainer = React.forwardRef((props, ref) => {
   React.useEffect(handleEffectListBoxWidth, [state.refTriggerContainer.current]);
   React.useEffect(handleEffectOptionSelected, [state.selectedOptions]);
   React.useLayoutEffect(handleEffectChildren, [props.children]);
-  React.useLayoutEffect(handleEffectIsPopOverOpen, [state.isPopoverOpen]);
+  React.useLayoutEffect(handleEffectIsPopOverOpen, [state.isOpen]);
   React.useLayoutEffect(handleEffectListBoxScrolled, [state.activeOption]);
 
   const {
@@ -190,15 +164,11 @@ const ListBoxContainer = React.forwardRef((props, ref) => {
     hasNotResultsMessage,
     height,
     isInline,
-    isMulti,
-    isPopoverEager,
-    isPopoverOpen,
-    onChange,
     onClickClear,
     placeholder,
-    renderCheckbox,
     renderTrigger,
-    ...moreProps
+    Filter, // eslint-disable-line
+    Popover: PopoverWithProps, // eslint-disable-line
   } = props;
 
   const ListBoxProps = {
@@ -209,17 +179,24 @@ const ListBoxContainer = React.forwardRef((props, ref) => {
     onClickClear,
     placeholder,
     renderTrigger,
+    Filter,
   };
 
+  const listBox = <ListBox {...ListBoxProps}>{children}</ListBox>;
+
   if (isInline) {
-    return <ListBox {...ListBoxProps}>{children}</ListBox>;
+    return listBox;
   }
 
-  return (
-    <Popover {...moreProps} isEager={isPopoverEager}>
-      <ListBox {...ListBoxProps}>{children}</ListBox>
-    </Popover>
-  );
+  if (PopoverWithProps) {
+    const PopoverClone = React.cloneElement(PopoverWithProps, {
+      ...PopoverWithProps.props,
+      children: listBox,
+    });
+    return PopoverClone;
+  }
+
+  return <Popover>{listBox}</Popover>;
 });
 
 ListBoxContainer.propTypes = propTypes;

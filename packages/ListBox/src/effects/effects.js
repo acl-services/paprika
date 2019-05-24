@@ -14,16 +14,15 @@ export const handleEffectChildren = (props, state, dispatch) => () => {
 };
 
 export const handleEffectIsPopOverOpen = (state, dispatch) => () => {
-  if (!state.isPopoverEager) {
-    return;
-  }
+  if (state.isInline) return;
+  if (!state.isPopoverEager) return;
 
   if (!state.refListBoxContainer.current) return;
 
   const filterInput = state.refFilterInput.current;
   const listBoxContainer = state.refListBoxContainer.current;
   const trigger = state.refTrigger.current;
-  if (state.isPopoverOpen) {
+  if (state.isOpen) {
     if (state.hasFilter) {
       // this is racing with the focus of the
       // Popover, the popover will try to put the
@@ -34,17 +33,13 @@ export const handleEffectIsPopOverOpen = (state, dispatch) => () => {
       setTimeout(() => {
         filterInput.focus();
       }, 300);
-    } else {
-      if (state.isInline) return;
-
-      listBoxContainer.focus();
     }
 
     dispatch({ type: useListBox.types.setTriggerWidth, payload: state.refTriggerContainer.current.offsetWidth });
     dispatch({ type: useListBox.types.setHasPopupOpened, payload: true });
   } else if (state.hasPopupOpened) {
     listBoxContainer.focus();
-    if (!state.isInline && !state.isPopoverOpen) {
+    if (!state.isInline && !state.isOpen) {
       trigger.focus();
     }
   }
@@ -74,7 +69,7 @@ export const handleEffectListBoxWidth = (state, dispatch) => () => {
 export const handleEffectListBoxScrolled = state => () => {
   if (!state.refListBox.current) return;
 
-  if (state.isPopoverOpen && state.options[state.activeOption] && state.shouldContentScroll) {
+  if (state.isOpen && state.options[state.activeOption] && state.shouldContentScroll) {
     const parentOffsetTop = state.refListBox.current.offsetTop;
     const $option = document.getElementById(state.options[state.activeOption].id);
     if ($option) {

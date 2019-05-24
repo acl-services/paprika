@@ -86,7 +86,7 @@ export const RawButtonClearButtonStyled = styled(RawButton)`
     }
 
     ${props => {
-      if (props.hasFooter && props.isPopoverOpen) {
+      if (props.hasFooter && props.isOpen) {
         return "display: none";
       }
 

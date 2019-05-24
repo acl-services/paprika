@@ -26,7 +26,8 @@ or
 ### Basic
 
 <Playground>
-  <ListBox zIndex={10000} getScrollContainer={() => document.querySelector("#root > div")}>
+  <ListBox>
+    <ListBox.Popover zIndex={10000} />
     <ListBox.Option>Spiderman</ListBox.Option>
     <ListBox.Option>Venom</ListBox.Option>
     <ListBox.Option>Carnage</ListBox.Option>

@@ -78,11 +78,11 @@ export default function Filter(props) {
   const handleEffectHasFilter = effects.handleEffectHasFilter(dispatch, useListBox.types.hasFilter);
 
   React.useEffect(handleEffectValue, [props.value]);
-  React.useEffect(handleEffectIsPopOverOpen, [state.isPopoverOpen]);
+  React.useEffect(handleEffectIsPopOverOpen, [state.isOpen]);
   React.useEffect(handleEffectTextSearch, [textSearch]);
   React.useEffect(handleEffectHasFilter, []);
 
-  if (state.isInline || state.isPopoverOpen) {
+  if (state.isInline || state.isOpen) {
     const { renderFilter, placeholder, value, onChangeFilter, filter, ...moreProps } = props;
     if (renderFilter) {
       return props.renderFilter(props);

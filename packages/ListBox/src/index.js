@@ -1,9 +1,11 @@
 import React from "react";
 import ListBox, { propTypes, defaultProps } from "./ListBox";
+import { GetTypeOfChildren } from "./helpers/GetTypeOfChildren";
 import Footer from "./components/Footer";
 import Group from "./components/Group";
 import Option from "./components/Option";
 import Filter from "./components/Filter";
+import Popover from "./components/Popover";
 import Provider from "./store/Provider";
 
 const ListBoxWithProvider = React.forwardRef((props, ref) => {
@@ -37,10 +39,12 @@ const ListBoxWithProvider = React.forwardRef((props, ref) => {
     return child !== null && React.Fragment === child.type ? child.props.children : child;
   });
 
+  const { Options, Filter, Popover } = GetTypeOfChildren(extractedChildren);
+
   return (
-    <Provider {...moreProps} childrenOptions={extractedChildren}>
-      <ListBox {...moreProps} ref={ref}>
-        {extractedChildren}
+    <Provider {...moreProps} childrenOptions={Options}>
+      <ListBox {...moreProps} Filter={Filter} Popover={Popover} ref={ref}>
+        {Options}
       </ListBox>
     </Provider>
   );
@@ -54,3 +58,4 @@ ListBoxWithProvider.Option = Option;
 ListBoxWithProvider.Group = Group;
 ListBoxWithProvider.Footer = Footer;
 ListBoxWithProvider.Filter = Filter;
+ListBoxWithProvider.Popover = Popover;

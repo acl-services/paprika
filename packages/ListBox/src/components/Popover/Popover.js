@@ -15,7 +15,14 @@ export default function Popover(props) {
   const { children, zIndex } = props;
 
   return (
-    <PopoverStyled {...props} zIndex={zIndex} offset={0} maxWidth={state.triggerWidth} isOpen={state.isPopoverOpen}>
+    <PopoverStyled
+      {...props}
+      isOpen={state.isOpen}
+      maxWidth={state.triggerWidth}
+      offset={0}
+      shouldKeepFocus
+      zIndex={zIndex}
+    >
       {children}
     </PopoverStyled>
   );
@@ -23,3 +30,4 @@ export default function Popover(props) {
 
 Popover.propTypes = propTypes;
 Popover.defaultProps = defaultProps;
+Popover.componentType = "ListBox.Popover";

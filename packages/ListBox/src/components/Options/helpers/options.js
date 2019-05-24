@@ -5,10 +5,10 @@ function getOnChangeFn(state) {
   return applyOnChange(state.onChange, "listbox:option-selected");
 }
 
-function selectSingleOption({ activeOptionIndex, isPopoverOpen, state, dispatch }) {
+function selectSingleOption({ activeOptionIndex, isOpen, state, dispatch }) {
   dispatch({
     type: useListBox.types.selectSingleOption,
-    payload: { activeOptionIndex, isPopoverOpen, onChangeFn: getOnChangeFn(state, activeOptionIndex) },
+    payload: { activeOptionIndex, isOpen, onChangeFn: getOnChangeFn(state, activeOptionIndex) },
   });
 }
 
@@ -112,7 +112,7 @@ export function getNextOptionActiveIndexLooping(state) {
 }
 
 export function handleArrowKeys({ event, state, dispatch, isArrowDown = null }) {
-  if (!state.isPopoverOpen) {
+  if (!state.isOpen) {
     dispatch({ type: useListBox.types.openPopover });
     return;
   }
@@ -123,10 +123,10 @@ export function handleArrowKeys({ event, state, dispatch, isArrowDown = null }) 
     if (state.isMulti) {
       dispatch({
         type: useListBox.types.setActiveOption,
-        payload: { activeOptionIndex: next, isPopoverOpen: true },
+        payload: { activeOptionIndex: next, isOpen: true },
       });
     } else {
-      selectSingleOption({ activeOptionIndex: next, isPopoverOpen: true, state, dispatch });
+      selectSingleOption({ activeOptionIndex: next, isOpen: true, state, dispatch });
     }
   }
 }
@@ -167,7 +167,7 @@ export const handleClickOption = ({ props, state, dispatch }) => event => {
     return;
   }
 
-  selectSingleOption({ activeOptionIndex: index, isPopoverOpen: false, state, dispatch });
+  selectSingleOption({ activeOptionIndex: index, isOpen: false, state, dispatch });
 };
 
 export function handleEnterOrSpace({ event, state, dispatch }) {
@@ -207,7 +207,7 @@ export function handleEnterOrSpace({ event, state, dispatch }) {
     }
   }
 
-  if (state.isPopoverOpen) {
+  if (state.isOpen) {
     if (state.options[state.activeOption].onClick) {
       // no sure if this is the state they want
       // since haven't run the entire cycle befor executing it

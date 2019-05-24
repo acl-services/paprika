@@ -7,9 +7,6 @@ storiesOf("ListBox / multi", module).add("Basic with preselected options", () =>
 storiesOf("ListBox / multi", module).add("Basic is disabled", () => <Multi.BasicIsDisabled />);
 storiesOf("ListBox / multi", module).add("Basic is disabled while open", () => <Multi.BasicIsDisabledWhileOpen />);
 
-storiesOf("ListBox / multi", module).add("With Filter and nodes as children and isInline", () => (
-  <Multi.WithFilterAndNodesAsChildrenAndIsInline />
-));
 storiesOf("ListBox / multi", module).add("With Checkbox as pre built-in option", () => (
   <Multi.WithCheckboxAsPreBuiltInOption />
 ));

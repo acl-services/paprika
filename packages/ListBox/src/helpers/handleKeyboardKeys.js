@@ -16,7 +16,7 @@ const handleKeyboardKeys = (state, dispatch) => event => {
       break;
 
     case "Escape":
-      if (state.isPopoverOpen) {
+      if (state.isOpen) {
         dispatch({ type: useListBox.types.cancel });
       }
       break;

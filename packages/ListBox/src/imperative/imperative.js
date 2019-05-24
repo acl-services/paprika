@@ -3,11 +3,11 @@ import applyOnChange from "../helpers/applyOnChange";
 
 const handleImperative = (state, dispatch) => () => {
   return {
-    clear: (isPopoverOpen = false) => {
+    clear: (isOpen = false) => {
       dispatch({
         type: useListBox.types.clear,
         payload: {
-          isPopoverOpen,
+          isOpen,
           onChangeFn: applyOnChange(state.onChange, "listbox:imperative:clear"),
         },
       });

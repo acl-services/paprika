@@ -5,7 +5,7 @@ export const handleEffectValue = (props, applyFilter) => () => {
 };
 
 export const handleEffectIsPopOverOpen = (state, setTextSearch) => () => {
-  if (!state.isPopoverOpen) {
+  if (!state.isOpen) {
     setTextSearch("");
   }
 };

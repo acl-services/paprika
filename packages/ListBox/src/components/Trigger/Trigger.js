@@ -56,7 +56,7 @@ export default function Trigger(props) {
       dispatch({
         type: useListBox.types.clear,
         payload: {
-          isPopoverOpen: false,
+          isOpen: false,
           onChangeFn: applyOnChange(onFooterClickAccept, "listbox:footer:clear"),
         },
       });
@@ -66,7 +66,7 @@ export default function Trigger(props) {
     dispatch({
       type: useListBox.types.clear,
       payload: {
-        isPopoverOpen: false,
+        isOpen: false,
         onChangeFn: applyOnChange(state.onChange, "listbox:clear"),
       },
     });
@@ -112,7 +112,7 @@ export default function Trigger(props) {
             hasSelectedOptions={state.selectedOptions.length}
             isDisabled={isDisabled}
             onClick={handleClickClear}
-            isPopoverOpen={state.isPopoverOpen}
+            isOpen={state.isOpen}
             hasFooter={state.hasFooter}
             testy="testy"
           >
@@ -122,7 +122,7 @@ export default function Trigger(props) {
         <TriggerArrowStyled
           hasRenderTrigger={renderTrigger}
           isDisabled={isDisabled}
-          isOpen={state.isPopoverOpen}
+          isOpen={state.isOpen}
           isInline={state.isInline}
           dangerouslySetInnerHTML={{ __html: "&#x25BC;" }}
         />

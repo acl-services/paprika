@@ -83,7 +83,7 @@ export function FooterComponent(props, ref) {
     dispatch({
       type: useListBox.types.clear,
       payload: {
-        isPopoverOpen: true,
+        isOpen: true,
         onChangeFn,
       },
     });

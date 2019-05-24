@@ -25,7 +25,7 @@ function initializeState(props) {
     height, // shouldn't be here
     hideOptionOnSelected, // shouldn't be here
     isPopoverEager, // shouldn't be here
-    isPopoverOpen, // shouldn't be here
+    isOpen, // shouldn't be here
     placeholder, // shouldn't be here
     preventOnBlurForTriggerListBox, // 🤔
     refFilterInput, // shouldn't be here
@@ -54,7 +54,7 @@ function initializeState(props) {
     isInline,
     isMulti,
     isPopoverEager,
-    isPopoverOpen,
+    isOpen,
     noResultsFound: false,
     onChange,
     options,

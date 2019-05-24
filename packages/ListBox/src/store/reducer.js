@@ -7,19 +7,19 @@ export default function reducer(state, { type, payload }) {
       return {
         ...state,
         filteredOptions: [],
-        isPopoverOpen: false,
+        isOpen: false,
       };
 
     case useListBox.types.openPopover:
       return {
         ...state,
-        isPopoverOpen: true,
+        isOpen: true,
       };
 
     case useListBox.types.togglePopover:
       return {
         ...state,
-        isPopoverOpen: !state.isPopoverOpen,
+        isOpen: !state.isOpen,
       };
 
     case useListBox.types.setActiveOption: {
@@ -31,9 +31,9 @@ export default function reducer(state, { type, payload }) {
     }
 
     case useListBox.types.selectSingleOption: {
-      let isPopoverOpen = payload.isPopoverOpen;
+      let isOpen = payload.isOpen;
       if (state.hasFooter) {
-        isPopoverOpen = true;
+        isOpen = true;
       }
 
       let options = null;
@@ -47,7 +47,7 @@ export default function reducer(state, { type, payload }) {
         ...options,
         onChangeFn: payload.onChangeFn,
         activeOption: state.hideOptionOnSelected ? getNextOptionActiveIndexLooping(state) : payload.activeOptionIndex,
-        isPopoverOpen,
+        isOpen,
         selectedOptions: [payload.activeOptionIndex],
         shouldContentScroll: true,
       };
@@ -76,7 +76,7 @@ export default function reducer(state, { type, payload }) {
       return {
         ...state,
         activeOption: state.hideOptionOnSelected ? getNextOptionActiveIndexLooping(state) : activeOptionIndex,
-        isPopoverOpen: true,
+        isOpen: true,
         onChangeFn: payload.onChangeFn,
         options,
         selectedOptions: selectedOptionsArray,
@@ -191,7 +191,7 @@ export default function reducer(state, { type, payload }) {
       return {
         ...state,
         activeOption: null,
-        isPopoverOpen: (payload && payload.isPopoverOpen) || false,
+        isOpen: (payload && payload.isOpen) || false,
         onChangeFn: payload && payload.onChangeFn ? payload.onChangeFn : null,
         selectedOptions: [],
       };
@@ -200,7 +200,7 @@ export default function reducer(state, { type, payload }) {
     case useListBox.types.reset: {
       return {
         ...state.originalState,
-        isPopoverOpen: false,
+        isOpen: false,
         onChangeFn: payload && payload.onChangeFn ? payload.onChangeFn : null,
         originalState: state.originalState,
       };
@@ -211,7 +211,7 @@ export default function reducer(state, { type, payload }) {
 
       return {
         ...state,
-        isPopoverOpen: false,
+        isOpen: false,
         selectedOptions,
         lastKnownSelectedOptions: selectedOptions,
         onChangeFn: payload.onChangeFn,
@@ -221,7 +221,7 @@ export default function reducer(state, { type, payload }) {
     case useListBox.types.cancel: {
       return {
         ...state,
-        isPopoverOpen: false,
+        isOpen: false,
         onChangeFn: payload && payload.onChangeFn ? payload.onChangeFn : null,
         selectedOptions: state.lastKnownSelectedOptions.slice(0),
       };
