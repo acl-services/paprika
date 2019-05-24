@@ -15,15 +15,6 @@ export const propTypes = {
   /** Child of type <ListBox.Option /> */
   children: PropTypes.node,
 
-  /** Turn on/off the clear button at the right side of the Trigger */
-  hasClearButton: PropTypes.bool,
-
-  /** Indicate which is the height for the options container */
-  height: PropTypes.number,
-
-  /** [Advance] instead of marking the option as checked/unchecked will toggle the option between visible and hidden */
-  hideOptionOnSelected: PropTypes.bool,
-
   /** Disable the entire ListBox */
   isDisabled: PropTypes.bool,
 
@@ -36,17 +27,26 @@ export const propTypes = {
   /** Indicates if the popover is visible */
   isOpen: PropTypes.bool,
 
-  /** Message to be display once the filtering process doesn't find a match */
-  hasNotResultsMessage: PropTypes.node,
-
   /** Callback returning the current selection on the ListBox */
   onChange: PropTypes.func,
 
-  /** Callback ocurring after the user click the [x] clear button on the Trigger area */
-  onClickClear: PropTypes.func,
-
   /** Defaults label to display when the ListBox has not option selected */
   placeholder: PropTypes.string,
+
+  /** Indicate which is the height for the options container */
+  height: PropTypes.number,
+
+  /** Turn on/off the clear button at the right side of the Trigger */
+  hasClearButton: PropTypes.bool,
+
+  /** [Advance] instead of marking the option as checked/unchecked will toggle the option between visible and hidden */
+  hideOptionOnSelected: PropTypes.bool,
+
+  /** Message to be display once the filtering process doesn't find a match */
+  hasNotResultsMessage: PropTypes.node,
+
+  /** Callback ocurring after the user click the [x] clear button on the Trigger area */
+  onClickClear: PropTypes.func,
 
   /** [Advance] When composing the component will prevent to close the ListBox when
       the user interact with the Trigger container */
@@ -143,14 +143,12 @@ const ListBoxContainer = React.forwardRef((props, ref) => {
 
   // EFFECTS
   const handleEffectChildren = effects.handleEffectChildren(props, state, dispatch);
-  const handleEffectHeightChange = effects.handleEffectHeightChange(props, state, dispatch);
   const handleEffectIsDisabledChange = effects.handleEffectIsDisabledChange(props, dispatch);
   const handleEffectIsPopOverOpen = effects.handleEffectIsPopOverOpen(state, dispatch);
   const handleEffectListBoxScrolled = effects.handleEffectListBoxScrolled(state);
   const handleEffectListBoxWidth = effects.handleEffectListBoxWidth(state, dispatch);
   const handleEffectOptionSelected = effects.handleEffectOptionSelected(state, dispatch);
 
-  React.useEffect(handleEffectHeightChange, [props.height]);
   React.useEffect(handleEffectIsDisabledChange, [props.isDisabled]);
   React.useEffect(handleEffectListBoxWidth, [state.refTriggerContainer.current]);
   React.useEffect(handleEffectOptionSelected, [state.selectedOptions]);

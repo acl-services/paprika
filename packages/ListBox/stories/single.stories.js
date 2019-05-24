@@ -8,12 +8,12 @@ storiesOf("ListBox / single", module).add("Basic is disabled", () => <Single.Bas
 storiesOf("ListBox / single", module).add("Basic is inline disable", () => <Single.BasicIsInlineDisable />);
 storiesOf("ListBox / single", module).add("Basic option disabled", () => <Single.BasicOptionDisabled />);
 storiesOf("ListBox / single", module).add("Basic with empty option", () => <Single.BasicWithEmptyOption />);
-storiesOf("ListBox / single", module).add("Basic with option onClick", () => <Single.BasicOptionOnClick />);
 storiesOf("ListBox / single", module).add("Basic with preselected option", () => <Single.BasicPreselectedOption />);
 
 storiesOf("ListBox / single", module).add("Checkboxes", () => <Single.Checkboxes />);
 storiesOf("ListBox / single", module).add("Custom Checkers", () => <Single.WithCustomCheckers />);
 storiesOf("ListBox / single", module).add("Custom renderTrigger", () => <Single.CustomRenderTrigger />);
+storiesOf("ListBox / single", module).add("Custom Children", () => <Single.CustomChildrenInline />);
 
 storiesOf("ListBox / single", module).add("Footer", () => <Single.Footer />);
 storiesOf("ListBox / single", module).add("Groups", () => <Single.WithGroups />);

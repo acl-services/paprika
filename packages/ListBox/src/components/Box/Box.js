@@ -6,6 +6,7 @@ import useListBox from "../../useListBox";
 const propTypes = {
   children: PropTypes.node.isRequired,
 };
+
 const defaultProps = {};
 
 export default function Box(props) {

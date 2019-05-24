@@ -3,172 +3,62 @@ import { ImageOption } from "../stories.styles";
 import ListBox from "../../src";
 import { images } from "../fixtures/images";
 
-export const Basic = () => (
-  <ListBox>
-    <ListBox.Option>Punisher</ListBox.Option>
-    <ListBox.Option>Catwoman</ListBox.Option>
-    <ListBox.Option>Venom</ListBox.Option>
-    <ListBox.Option>Thunderbolts</ListBox.Option>
-    <ListBox.Option>Deadpool</ListBox.Option>
-    <ListBox.Option>Spawn</ListBox.Option>
-    <ListBox.Option>Wolverine</ListBox.Option>
-    <ListBox.Option>Black Widow</ListBox.Option>
-    <ListBox.Option>Hawkeye</ListBox.Option>
-    <ListBox.Option>Scarlet Witch</ListBox.Option>
-  </ListBox>
-);
+const options = [
+  "Punisher",
+  "Catwoman",
+  "Venom",
+  "Thunderbolts",
+  "Deadpool",
+  "Spawn",
+  "Wolverine",
+  "Black Widow",
+  "Hawkeye",
+  "Scarlet Witch, ",
+];
+
+function renderOptions() {
+  return options.map(option => <ListBox.Option key={option}>{option}</ListBox.Option>);
+}
+
+export const Basic = () => <ListBox>{renderOptions()}</ListBox>;
 
 export const BasicWithEmptyOption = () => (
   <ListBox>
     <ListBox.Option label="">&nbsp;</ListBox.Option>
-    <ListBox.Option>Punisher</ListBox.Option>
-    <ListBox.Option>Catwoman</ListBox.Option>
-    <ListBox.Option>Venom</ListBox.Option>
-    <ListBox.Option>Thunderbolts</ListBox.Option>
-    <ListBox.Option>Deadpool</ListBox.Option>
-    <ListBox.Option>Spawn</ListBox.Option>
-    <ListBox.Option>Wolverine</ListBox.Option>
-    <ListBox.Option>Black Widow</ListBox.Option>
-    <ListBox.Option>Hawkeye</ListBox.Option>
-    <ListBox.Option>Scarlet Witch</ListBox.Option>
+    {renderOptions()}
   </ListBox>
 );
 
-export const BasicOptionOnClick = () => (
-  <ListBox>
-    <ListBox.Option
-      onClick={(index, options) => {
-        alert(options[index].label);
-      }}
-    >
-      Punisher
-    </ListBox.Option>
-    <ListBox.Option
-      onClick={(index, options) => {
-        alert(`This will not be selected  ${options[index].label}`);
-      }}
-    >
-      Catwoman
-    </ListBox.Option>
-    <ListBox.Option
-      onClick={(index, options) => {
-        alert(options[index].label);
-      }}
-    >
-      Venom
-    </ListBox.Option>
-    <ListBox.Option
-      onClick={(index, options) => {
-        alert(options[index].label);
-      }}
-    >
-      Thunderbolts
-    </ListBox.Option>
-    <ListBox.Option
-      onClick={(index, options) => {
-        alert(options[index].label);
-      }}
-    >
-      Deadpool
-    </ListBox.Option>
-    <ListBox.Option
-      onClick={(index, options) => {
-        alert(options[index].label);
-      }}
-    >
-      Spawn
-    </ListBox.Option>
-    <ListBox.Option
-      onClick={(index, options) => {
-        alert(options[index].label);
-      }}
-    >
-      Wolverine
-    </ListBox.Option>
-  </ListBox>
-);
+export const BasicInlineDisplay = () => <ListBox isInline>{renderOptions()}</ListBox>;
 
-export const BasicInlineDisplay = () => (
-  <ListBox isInline>
-    <ListBox.Option>Punisher</ListBox.Option>
-    <ListBox.Option>Catwoman</ListBox.Option>
-    <ListBox.Option>Venom</ListBox.Option>
-    <ListBox.Option>Thunderbolts</ListBox.Option>
-    <ListBox.Option>Deadpool</ListBox.Option>
-    <ListBox.Option>Spawn</ListBox.Option>
-    <ListBox.Option>Wolverine</ListBox.Option>
-  </ListBox>
-);
-
-export const BasicIsDisabled = () => (
-  <ListBox isDisabled>
-    <ListBox.Option>Punisher</ListBox.Option>
-    <ListBox.Option>Catwoman</ListBox.Option>
-    <ListBox.Option>Venom</ListBox.Option>
-    <ListBox.Option>Thunderbolts</ListBox.Option>
-    <ListBox.Option>Deadpool</ListBox.Option>
-    <ListBox.Option>Spawn</ListBox.Option>
-    <ListBox.Option>Wolverine</ListBox.Option>
-  </ListBox>
-);
+export const BasicIsDisabled = () => <ListBox isDisabled>{renderOptions()}</ListBox>;
 
 export const BasicPreselectedOption = () => (
   <ListBox>
-    <ListBox.Option>Punisher</ListBox.Option>
-    <ListBox.Option>Catwoman</ListBox.Option>
-    <ListBox.Option>Venom</ListBox.Option>
-    <ListBox.Option>Thunderbolts</ListBox.Option>
-    <ListBox.Option isSelected>Deadpool</ListBox.Option>
-    <ListBox.Option>Spawn</ListBox.Option>
-    <ListBox.Option>Wolverine</ListBox.Option>
+    <ListBox.Option isSelected>Loki</ListBox.Option>
+    {renderOptions()}
   </ListBox>
 );
 
 export const BasicIsInlineDisable = () => (
   <ListBox isDisabled isInline>
-    <ListBox.Option>Punisher</ListBox.Option>
-    <ListBox.Option>Catwoman</ListBox.Option>
-    <ListBox.Option>Venom</ListBox.Option>
-    <ListBox.Option>Thunderbolts</ListBox.Option>
-    <ListBox.Option>Deadpool</ListBox.Option>
-    <ListBox.Option>Spawn</ListBox.Option>
-    <ListBox.Option>Wolverine</ListBox.Option>
+    {renderOptions()}
   </ListBox>
 );
 
 export const BasicOptionDisabled = () => (
   <ListBox isInline>
-    <ListBox.Option>Punisher</ListBox.Option>
-    <ListBox.Option>Catwoman</ListBox.Option>
-    <ListBox.Option isDisabled>Venom</ListBox.Option>
-    <ListBox.Option>Thunderbolts</ListBox.Option>
-    <ListBox.Option isDisabled>Deadpool</ListBox.Option>
-    <ListBox.Option>Spawn</ListBox.Option>
-    <ListBox.Option>Wolverine</ListBox.Option>
+    {renderOptions()}
+    <ListBox.Option isDisabled>Loki</ListBox.Option>
+    <ListBox.Option isDisabled>Odin</ListBox.Option>
   </ListBox>
 );
 
-export const HasNotClearButton = () => (
-  <ListBox hasClearButton={false}>
-    <ListBox.Option>Punisher</ListBox.Option>
-    <ListBox.Option>Catwoman</ListBox.Option>
-    <ListBox.Option>Venom</ListBox.Option>
-    <ListBox.Option>Thunderbolts</ListBox.Option>
-    <ListBox.Option>Deadpool</ListBox.Option>
-    <ListBox.Option>Spawn</ListBox.Option>
-    <ListBox.Option>Wolverine</ListBox.Option>
-  </ListBox>
-);
+export const HasNotClearButton = () => <ListBox hasClearButton={false}>{renderOptions()}</ListBox>;
 
 export const Footer = () => (
   <ListBox>
-    <ListBox.Option>Punisher</ListBox.Option>
-    <ListBox.Option>Catwoman</ListBox.Option>
-    <ListBox.Option>Venom</ListBox.Option>
-    <ListBox.Option>Thunderbolts</ListBox.Option>
-    <ListBox.Option>Deadpool</ListBox.Option>
-    <ListBox.Option>Spawn</ListBox.Option>
-    <ListBox.Option>Wolverine</ListBox.Option>
+    {renderOptions()}
     <ListBox.Footer
       onClickAccept={(index, options) => {
         if (index) {
@@ -179,8 +69,8 @@ export const Footer = () => (
   </ListBox>
 );
 
-export const FilterCustomChildrenInline = () => (
-  <ListBox isInline height={320}>
+export const CustomChildrenInline = () => (
+  <ListBox height={320}>
     {images.map(image => (
       <ListBox.Option key={image.src} label={image.label}>
         <ImageOption>
@@ -209,13 +99,7 @@ export const CustomRenderTrigger = () => (
       </button>
     )}
   >
-    <ListBox.Option>Punisher</ListBox.Option>
-    <ListBox.Option>Catwoman</ListBox.Option>
-    <ListBox.Option>Venom</ListBox.Option>
-    <ListBox.Option>Thunderbolts</ListBox.Option>
-    <ListBox.Option>Deadpool</ListBox.Option>
-    <ListBox.Option>Spawn</ListBox.Option>
-    <ListBox.Option>Wolverine</ListBox.Option>
+    {renderOptions()}
   </ListBox>
 );
 
@@ -270,13 +154,7 @@ export const WithCustomCheckers = () => (
       return isChecked ? "✅" : "🙅‍";
     }}
   >
-    <ListBox.Option>Punisher</ListBox.Option>
-    <ListBox.Option>Catwoman</ListBox.Option>
-    <ListBox.Option>Venom</ListBox.Option>
-    <ListBox.Option>Thunderbolts</ListBox.Option>
-    <ListBox.Option>Deadpool</ListBox.Option>
-    <ListBox.Option>Spawn</ListBox.Option>
-    <ListBox.Option>Wolverine</ListBox.Option>
+    {renderOptions()}
   </ListBox>
 );
 
