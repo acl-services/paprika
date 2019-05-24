@@ -15,10 +15,10 @@ const PositioningElementStyled = styled.div`
   height: 150px;
   margin: 30px 0 0 120px;
 
-  border: 2px dashed ${tokens.color.galvanizeLighten30};
+  border: 2px dashed ${tokens.color.purpleLighten30};
   padding: ${stylers.spacer(2)};
 
-  color: ${tokens.color.galvanize};
+  color: ${tokens.color.purple};
   font-weight: 100;
   letter-spacing: 0.05em;
   text-align: center;

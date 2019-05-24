@@ -17,7 +17,7 @@ const SpinnerStyles = () => `
 .spinner__visual {
   animation: spin 1.2s infinite linear;
   border-color: rgba(0, 0, 0, 0.1);
-  border-left-color: ${tokens.color.galvanize};
+  border-left-color: ${tokens.color.purple};
   border-radius: 50%;
   border-style: solid;
   margin-left: auto;
