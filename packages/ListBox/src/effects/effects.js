@@ -84,15 +84,6 @@ export const handleEffectListBoxScrolled = state => () => {
   }
 };
 
-export const handleEffectHeightChange = (props, state, dispatch) => () => {
-  if (props.height !== state.height) {
-    dispatch({
-      type: useListBox.types.setHeight,
-      payload: props.height,
-    });
-  }
-};
-
 export const handleEffectIsDisabledChange = (props, dispatch) => () => {
   dispatch({
     type: useListBox.types.setIsDisabled,
