@@ -287,6 +287,7 @@ class Popover extends React.Component {
     //       can focus automatically
     //       should we set focus into the popover content automatically?
     if (!this.props.shouldKeepFocus && this.isOpen() && event.propertyName === "visibility") {
+      debugger;
       event.target.focus();
     }
   };
