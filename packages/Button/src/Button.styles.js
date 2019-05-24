@@ -144,13 +144,13 @@ const kindStyles = props => ({
     ${skeuomorphicStyles}
     ${coloredButtonStyles}
 
-    background-image: linear-gradient(${tokens.color.purpleLighten10}, ${tokens.color.purple});
-    background-color: ${tokens.color.purpleLighten10};
-    border-color: ${tokens.color.purple};
+    background-image: linear-gradient(${tokens.color.galvanizeLighten10}, ${tokens.color.galvanize});
+    background-color: ${tokens.color.galvanizeLighten10};
+    border-color: ${tokens.color.galvanize};
     
     &:hover {
-      background: ${tokens.color.purple};
-      border-color: ${tokens.border.purpleDarken10};
+      background: ${tokens.color.galvanize};
+      border-color: ${tokens.border.galvanizeDarken10};
     }
 
     ${props.isDisabled ? disabledStyles : ""}

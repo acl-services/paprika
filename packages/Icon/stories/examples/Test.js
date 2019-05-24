@@ -14,7 +14,7 @@ const ExampleStory = () => (
   <Story
     css={`
       font-size: ${stylers.spacer(4)};
-      color: ${tokens.color.purple};
+      color: ${tokens.color.galvanize};
       ${stylers.lineHeight(2)};
 
       svg:hover {

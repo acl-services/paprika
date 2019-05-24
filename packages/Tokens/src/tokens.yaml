@@ -50,14 +50,14 @@ color:
   orange-disabled: $color--orange-lighten-20
   orange-highlight: '#e1624b'
   #
-  purple: '#53529f'
-  purple-darken-10: darken($color--purple, 10)
-  purple-darken-20: darken($color--purple, 20)
-  purple-lighten-10: desaturate(lighten($color--purple, 10), 5)
-  purple-lighten-20: desaturate(lighten($color--purple, 20), 5)
-  purple-lighten-30: desaturate(lighten($color--purple, 30), 5)
-  purple-lighten-40: desaturate(lighten($color--purple, 40), 5)
-  purple-lighten-50: desaturate(lighten($color--purple, 50), 5)
+  galvanize: '#785cba'
+  galvanize-darken-10: darken($color--galvanize, 10)
+  galvanize-darken-20: darken($color--galvanize, 20)
+  galvanize-lighten-10: desaturate(lighten($color--galvanize, 10), 5)
+  galvanize-lighten-20: desaturate(lighten($color--galvanize, 20), 5)
+  galvanize-lighten-30: desaturate(lighten($color--galvanize, 30), 5)
+  galvanize-lighten-40: desaturate(lighten($color--galvanize, 40), 5)
+  galvanize-lighten-44: desaturate(lighten($color--galvanize, 44), 5)
   #
   white: '#ffffff'
   #
@@ -87,7 +87,7 @@ color:
   chart-color-06: '#8c6d68'
   chart-color-07: '#ec848f'
   chart-color-08: '#b9668f'
-  chart-color-09: '#53529f'
+  chart-color-09: '#785cba'
   chart-color-10: '#2b82bf'
   chart-color-11: '#7ec0cc'
   chart-color-12: '#d1cbc2'
