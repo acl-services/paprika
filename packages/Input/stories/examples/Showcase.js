@@ -14,7 +14,7 @@ const iconSelections = {
   info: <InfoIcon />,
 };
 
-export const showcaseProps = () => ({
+const inputProps = () => ({
   size: select("size", ShirtSizes.DEFAULT, "medium"),
   placeholder: text("placeholder", "Enter some text"),
   icon: iconSelections[select("icon", Object.keys(iconSelections), null)],
@@ -37,4 +37,4 @@ const ExampleStory = props => (
   </InputStory>
 );
 
-export default ExampleStory;
+export default () => <ExampleStory {...inputProps()} />;

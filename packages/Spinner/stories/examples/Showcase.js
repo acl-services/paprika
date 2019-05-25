@@ -5,7 +5,7 @@ import { ShirtSizes } from "@paprika/helpers/lib/customPropTypes";
 import Heading from "@paprika/heading";
 import Spinner from "../../src";
 
-export const showcaseProps = () => ({
+const spinnerProps = () => ({
   size: select("size", ShirtSizes.DEFAULT, "medium"),
   caption: text("caption", "Spinning..."),
   a11yText: text("a11yText", ""),
@@ -22,4 +22,4 @@ const ExampleStory = props => (
   </Story>
 );
 
-export default ExampleStory;
+export default () => <ExampleStory {...spinnerProps()} />;

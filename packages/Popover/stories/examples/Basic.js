@@ -17,7 +17,7 @@ const sampleText = {
     truck, crucifix try-hard godard biodiesel next level snackwave disrupt flexitarian.`,
 };
 
-export const basicProps = () => ({
+export const popoverProps = () => ({
   align: select("align", ["bottom", "top", "right", "left"], "bottom"),
   maxWidth: text("maxWidth", "320"),
   offset: number("offset", 12),
@@ -49,4 +49,4 @@ const ExampleStory = props => (
   </CenteredStory>
 );
 
-export default ExampleStory;
+export default () => <ExampleStory {...popoverProps()} />;

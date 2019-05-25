@@ -26,7 +26,7 @@ const PositioningElementStyled = styled.div`
 
 const getPositioningElement = () => document.querySelector("#another-div");
 
-export const positioningProps = () => ({
+const popoverProps = () => ({
   align: select("align", ["bottom", "top", "right", "left"], "bottom"),
 });
 
@@ -46,4 +46,5 @@ const ExampleStory = props => (
     </div>
   </CenteredStory>
 );
-export default ExampleStory;
+
+export default () => <ExampleStory {...popoverProps()} />;

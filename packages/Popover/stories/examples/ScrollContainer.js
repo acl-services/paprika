@@ -4,6 +4,7 @@ import { select } from "@storybook/addon-knobs";
 import styled from "styled-components";
 import { CenteredStory } from "storybook/assets/styles/common.styles";
 import Button from "@paprika/button";
+import { popoverProps as basicProps } from "./Basic";
 import Popover from "../../src";
 
 const PopoverContainer = styled.div`
@@ -29,17 +30,20 @@ const TrailerBox = styled.div`
   padding: 16px;
 `;
 
-const sampleText = {
+const sampleTexts = {
   short: "Hipsum",
   long: `Lorem ipsum lumbersexual hot chicken austin readymade messenger bag aesthetic meh twee you probably havent
     heard of them 3 wolf moon listicle. Normcore ramps gastropub fanny pack pabst. Hashtag roof party pour-over food
     truck, crucifix try-hard godard biodiesel next level snackwave disrupt flexitarian.`,
 };
 
-export const sampleTextProp = () => ({ sampleTextKnob: select("content", ["short", "long"], "long") });
+const popoverProps = () => ({
+  ...basicProps(),
+  sampleText: sampleTexts[select("content", ["short", "long"], "long")],
+});
 
 const PopoverBox = props => {
-  const { sampleTextKnob, ...moreProps } = props;
+  const { sampleText, ...moreProps } = props;
   return (
     <PopoverContainer>
       <Popover {...moreProps}>
@@ -48,7 +52,7 @@ const PopoverBox = props => {
         </Popover.Trigger>
         <Popover.Content>
           <Popover.Tip />
-          <Popover.Card>{sampleText[sampleTextKnob]}</Popover.Card>
+          <Popover.Card>{sampleText}</Popover.Card>
         </Popover.Content>
       </Popover>
     </PopoverContainer>
@@ -69,4 +73,4 @@ const ExampleStory = props => (
   </React.Fragment>
 );
 
-export default ExampleStory;
+export default () => <ExampleStory {...popoverProps()} />;

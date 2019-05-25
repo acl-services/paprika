@@ -3,7 +3,7 @@ import { Story } from "storybook/assets/styles/common.styles";
 import { boolean, select, text } from "@storybook/addon-knobs";
 import Heading from "../../src";
 
-export const showcaseProps = () => ({
+const headingProps = () => ({
   children: text("content", "Authentic Heading Succulents"),
   level: select("level", [1, 2, 3, 4, 5, 6], 1),
   displayLevel: select("displayLevel", [1, 2, 3, 4, 5, 6], 1),
@@ -17,7 +17,7 @@ export const showcaseProps = () => ({
 
 const ShowcaseStory = props => (
   <Story>
-    <Heading {...props}>{props.children}</Heading>
+    <Heading {...props} />
     <p>
       Lorem ipsum dolor amet pop-up sartorial artisan keytar leggings bespoke chia swag flexitarian pabst yr godard
       williamsburg. Marfa lomo four loko hoodie. Hella gastropub irony bitters succulents truffaut godard tbh street
@@ -27,4 +27,4 @@ const ShowcaseStory = props => (
   </Story>
 );
 
-export default ShowcaseStory;
+export default () => <ShowcaseStory {...headingProps()} />;

@@ -20,7 +20,7 @@ const iconSelections = {
   info: <InfoIcon />,
 };
 
-export const showcaseProps = () => ({
+const buttonProps = () => ({
   children: text("label", "Take Action"),
   size: select("size", ShirtSizes.DEFAULT, "medium"),
   kind: select("type", ["default", "primary", "secondary", "flat", "destructive", "minor", "link"], "default"),
@@ -43,8 +43,8 @@ const ExampleStory = props => (
     </Heading>
     <Tagline>Use the knobs to tinker with the props.</Tagline>
     <Rule />
-    <Button {...props}>{props.children}</Button>
+    <Button {...props} />
   </Story>
 );
 
-export default ExampleStory;
+export default () => <ExampleStory {...buttonProps()} />;
