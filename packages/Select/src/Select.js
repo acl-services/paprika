@@ -55,9 +55,9 @@ const Select = props => {
   }
 
   const rootClasses = classNames(
-    "aclui-form-select",
-    `aclui-form-select--${size}`,
-    { "aclui-form-select--placeholder": !value && placeholder },
+    "form-select",
+    `form-select--${size}`,
+    { "form-select--placeholder": !value && placeholder },
     { "is-disabled": isDisabled },
     { "is-readonly": isReadOnly },
     className
@@ -66,7 +66,7 @@ const Select = props => {
   return (
     <div css={selectStyles} className={rootClasses}>
       <select
-        className="aclui-form-select__select"
+        className="form-select__select"
         disabled={isDisabled || isReadOnly}
         ref={inputRef}
         value={value}
