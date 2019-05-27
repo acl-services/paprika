@@ -1,8 +1,8 @@
 import React from "react";
 import { Story } from "storybook/assets/styles/common.styles";
-import Select from "../../src/Select"
+import Select from "../../src/Select";
 
-export const Basic = () =>{
+export const Basic = () => {
   return (
     <Story>
       <Select placeholder="Select an option">
@@ -10,21 +10,23 @@ export const Basic = () =>{
         <option value="Pepsi">Coke</option>
       </Select>
     </Story>
-  )
-}
+  );
+};
 
-export const WithSelectedOption = () =>{
+export const WithSelectedOption = () => {
   return (
     <Story>
       <Select placeholder="Select an option">
-        <option value="Coke" selected>Pepsi</option>
+        <option value="Coke" selected>
+          Pepsi
+        </option>
         <option value="Pepsi">Coke</option>
       </Select>
     </Story>
-  )
-}
+  );
+};
 
-export const DisableSelect = () =>{
+export const DisableSelect = () => {
   return (
     <Story>
       <Select placeholder="Select an option" isDisabled>
@@ -32,10 +34,10 @@ export const DisableSelect = () =>{
         <option value="Pepsi">Coke</option>
       </Select>
     </Story>
-  )
-}
+  );
+};
 
-export const ReadOnlySelect = () =>{
+export const ReadOnlySelect = () => {
   return (
     <Story>
       <Select placeholder="Select an option" isReadOnly>
@@ -43,5 +45,5 @@ export const ReadOnlySelect = () =>{
         <option value="Pepsi">Coke</option>
       </Select>
     </Story>
-  )
-}
+  );
+};
