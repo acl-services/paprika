@@ -5,9 +5,12 @@ import useListBox from "../../useListBox";
 
 const propTypes = {
   children: PropTypes.node.isRequired,
-  zIndex: PropTypes.number.isRequired,
+  zIndex: PropTypes.number,
 };
-const defaultProps = {};
+
+const defaultProps = {
+  zIndex: 100,
+};
 
 export default function Popover(props) {
   const [state] = useListBox();
@@ -15,14 +18,7 @@ export default function Popover(props) {
   const { children, zIndex } = props;
 
   return (
-    <PopoverStyled
-      {...props}
-      isOpen={state.isOpen}
-      maxWidth={state.triggerWidth}
-      offset={0}
-      shouldKeepFocus
-      zIndex={zIndex}
-    >
+    <PopoverStyled {...props} isOpen={state.isOpen} maxWidth={state.triggerWidth} offset={0} zIndex={zIndex}>
       {children}
     </PopoverStyled>
   );

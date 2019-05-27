@@ -4,7 +4,11 @@ import RawButton from "@paprika/raw-button";
 import Label from "../Label";
 import handleKeyboardKeys from "../../helpers/handleKeyboardKeys";
 import useListBox from "../../useListBox";
-import applyOnChange from "../../helpers/applyOnChange";
+import applyOnChange, {
+  cleanActionTypes,
+  getSelectedOptionSingle,
+  getSelectedOptionsMulti,
+} from "../../helpers/applyOnChange";
 
 import {
   ListBoxTriggerStyled,
@@ -15,22 +19,24 @@ import {
 import { getDOMAttributesForListBoxButton } from "../../helpers/DOMAttributes";
 
 const propTypes = {
-  hasClearButton: PropTypes.bool.isRequired,
+  children: PropTypes.oneOfType([PropTypes.node, PropTypes.func]),
+  hasClearButton: PropTypes.bool,
   onClickClear: PropTypes.func,
-  placeholder: PropTypes.string.isRequired,
-  renderTrigger: PropTypes.func,
   onFooterClickAccept: PropTypes.func,
+  placeholder: PropTypes.string,
 };
 
 const defaultProps = {
-  renderTrigger: null,
+  children: <React.Fragment />,
+  hasClearButton: true,
   onClickClear: null,
   onFooterClickAccept: null,
+  placeholder: "Select...",
 };
 
 export default function Trigger(props) {
   const [state, dispatch] = useListBox();
-  const { renderTrigger, placeholder, hasClearButton, onFooterClickAccept } = props;
+  const { placeholder, hasClearButton, onFooterClickAccept } = props;
 
   const { isDisabled, refTriggerContainer, refTrigger, isMulti } = state;
 
@@ -102,25 +108,37 @@ export default function Trigger(props) {
     );
   }
 
+  const hasRenderTrigger = typeof props.children === "function";
+
+  let renderChildrenProps = null;
+  if (hasRenderTrigger) {
+    renderChildrenProps = React.useMemo(() => {
+      return props.children(state.isMulti ? getSelectedOptionsMulti(state) : getSelectedOptionSingle(state), dispatch, {
+        propsForTrigger: getDOMAttributesForListBoxButton,
+        types: cleanActionTypes(useListBox.types),
+        refTrigger: state.refTrigger,
+      });
+    }, [props.children]);
+  }
+
   return (
     <ListBoxTriggerStyled isInline={state.isInline} isDisabled={isDisabled} ref={refTriggerContainer}>
-      {renderTrigger ? renderTrigger(state, dispatch, { getDOMAttributesForListBoxButton }) : renderLabel()}
+      {hasRenderTrigger ? renderChildrenProps : renderLabel()}
       <TriggerActionIconsContainer>
         {hasClearButton ? (
           <RawButtonClearButtonStyled
-            hasRenderTrigger={renderTrigger}
+            hasRenderTrigger={hasRenderTrigger}
             hasSelectedOptions={state.selectedOptions.length}
             isDisabled={isDisabled}
             onClick={handleClickClear}
             isOpen={state.isOpen}
             hasFooter={state.hasFooter}
-            testy="testy"
           >
             <span dangerouslySetInnerHTML={{ __html: "&times;" }} />
           </RawButtonClearButtonStyled>
         ) : null}
         <TriggerArrowStyled
-          hasRenderTrigger={renderTrigger}
+          hasRenderTrigger={hasRenderTrigger}
           isDisabled={isDisabled}
           isOpen={state.isOpen}
           isInline={state.isInline}
@@ -133,3 +151,4 @@ export default function Trigger(props) {
 
 Trigger.propTypes = propTypes;
 Trigger.defaultProps = defaultProps;
+Trigger.componentType = "ListBox.Trigger";

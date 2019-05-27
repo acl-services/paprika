@@ -81,28 +81,6 @@ export const CustomChildrenInline = () => (
   </ListBox>
 );
 
-export const CustomRenderTrigger = () => (
-  <ListBox
-    renderTrigger={(state, dispatch, { getDOMAttributesForListBoxButton }) => (
-      <button
-        onClick={() => {
-          dispatch({ type: "OPEN_POPOVER" });
-        }}
-        type="button"
-        {...getDOMAttributesForListBoxButton()}
-        ref={state.refTrigger}
-      >
-        <span role="img" aria-label="rocket">
-          🚀
-        </span>
-        Toggle Listbox
-      </button>
-    )}
-  >
-    {renderOptions()}
-  </ListBox>
-);
-
 export const Checkboxes = () => (
   <React.Fragment>
     <p>Default option checker when is single select</p>

@@ -214,12 +214,12 @@ export default function LazyListBox() {
     );
   }
 
-  const renderTrigger = (state, dispatch, { getDOMAttributesForListBoxButton }) => (
+  const renderTrigger = (state, dispatch, { types, refTrigger, propsForTrigger }) => (
     <Button
-      {...getDOMAttributesForListBoxButton()}
-      ref={state.refTrigger}
+      {...propsForTrigger()}
+      ref={refTrigger}
       onClick={() => {
-        dispatch({ type: "OPEN_POPOVER" });
+        dispatch({ type: types.togglePopover });
       }}
     >
       Marvel API
@@ -239,9 +239,8 @@ export default function LazyListBox() {
         isMulti
         onChange={handleChange}
         placeholder="Marvel API"
-        renderCheckbox={() => null}
-        renderTrigger={renderTrigger}
       >
+        <ListBox.Trigger>{renderTrigger}</ListBox.Trigger>
         <ListBox.Option preventDefaultOnSelect isHidden={!state.isLoading}>
           Fetching data ...
         </ListBox.Option>

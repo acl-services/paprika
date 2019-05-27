@@ -437,10 +437,8 @@ class Popover extends React.Component {
 }
 
 Popover.displayName = "Popover";
-
 Popover.propTypes = propTypes;
 Popover.defaultProps = defaultProps;
-
 Popover.Trigger = Trigger;
 Popover.Content = Content;
 Popover.Card = Card;

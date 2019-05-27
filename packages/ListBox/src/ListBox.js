@@ -36,34 +36,24 @@ export const propTypes = {
   /** Indicate which is the height for the options container */
   height: PropTypes.number,
 
-  /** Turn on/off the clear button at the right side of the Trigger */
-  hasClearButton: PropTypes.bool,
+  /** Message to be display once the filtering process doesn't find a match */
+  hasNotResultsMessage: PropTypes.node,
+
+  /** [Advance] Allows to take over the render method for the Checker.
+  When `isMulti` prop is active, the default type of checker is a checkbox, in case you don't
+  want to render a checkbox you can return null ex. renderCheckbox={() =>  null} */
+  renderCheckbox: PropTypes.func,
 
   /** [Advance] instead of marking the option as checked/unchecked will toggle the option between visible and hidden */
   hideOptionOnSelected: PropTypes.bool,
 
-  /** Message to be display once the filtering process doesn't find a match */
-  hasNotResultsMessage: PropTypes.node,
-
-  /** Callback ocurring after the user click the [x] clear button on the Trigger area */
-  onClickClear: PropTypes.func,
-
   /** [Advance] When composing the component will prevent to close the ListBox when
       the user interact with the Trigger container */
   preventOnBlurForTriggerListBox: PropTypes.bool,
-
-  /** [Advance] Allows to take over the render method for the label inside of the Trigger Component */
-  renderTrigger: PropTypes.func,
-
-  /** [Advance] Allows to take over the render method for the Checker.
-      When `isMulti` prop is active, the default type of checker is a checkbox, in case you don't
-      want to render a checkbox you can return null ex. renderCheckbox={() =>  null} */
-  renderCheckbox: PropTypes.func,
 };
 
 export const defaultProps = {
   children: null,
-  hasClearButton: true,
   hasNotResultsMessage: "Your search did not match any options.",
   height: 200,
   hideOptionOnSelected: false,
@@ -72,16 +62,14 @@ export const defaultProps = {
   isMulti: false,
   isOpen: null,
   onChange: () => {},
-  onClickClear: null,
-  placeholder: "Select one of the options",
+  placeholder: "Select...",
   preventOnBlurForTriggerListBox: false,
   renderCheckbox: undefined,
-  renderTrigger: null,
 };
 
 export function ListBox(props) {
   const [state, dispatch] = useListBox();
-  const { children, hasNotResultsMessage, height, onClickClear, placeholder, renderTrigger } = props;
+  const { children, hasNotResultsMessage, height, placeholder, Trigger: TriggerProps } = props;
   const [footer, setFooter] = React.useState(null);
 
   const handleFooterFound = footer => {
@@ -95,15 +83,22 @@ export function ListBox(props) {
     setFooter(footer);
   };
 
+  const triggerProps = {
+    hasClearButton: true,
+    onClickClear: () => {},
+    placeholder,
+    onFooterClickAccept: footer ? footer.props.onClickAccept : null,
+  };
+
+  const trigger = TriggerProps ? (
+    React.cloneElement(TriggerProps, { ...triggerProps, ...TriggerProps.props })
+  ) : (
+    <Trigger {...triggerProps} />
+  );
+
   return (
     <React.Fragment>
-      <Trigger
-        hasClearButton={props.hasClearButton}
-        onClickClear={onClickClear}
-        renderTrigger={renderTrigger}
-        placeholder={placeholder}
-        onFooterClickAccept={footer ? footer.props.onClickAccept : null}
-      />
+      {trigger}
       <Content>
         <Box>
           {props.Filter || null}
@@ -121,19 +116,12 @@ export function ListBox(props) {
 ListBox.propTypes = {
   ...propTypes,
   children: PropTypes.node.isRequired,
-  hasClearButton: PropTypes.bool,
   hasNotResultsMessage: PropTypes.string.isRequired,
   height: PropTypes.number.isRequired,
-  onClickClear: PropTypes.func,
   placeholder: PropTypes.string.isRequired,
-  renderTrigger: PropTypes.func,
 };
 
-ListBox.defaultProps = {
-  onClickClear: null,
-  renderTrigger: null,
-  hasClearButton: true,
-};
+ListBox.defaultProps = {};
 
 const ListBoxContainer = React.forwardRef((props, ref) => {
   const [state, dispatch] = useListBox();
@@ -158,26 +146,22 @@ const ListBoxContainer = React.forwardRef((props, ref) => {
 
   const {
     children,
-    hasClearButton,
     hasNotResultsMessage,
     height,
     isInline,
-    onClickClear,
     placeholder,
-    renderTrigger,
     Filter, // eslint-disable-line
+    Trigger, // eslint-disable-line
     Popover: PopoverWithProps, // eslint-disable-line
   } = props;
 
   const ListBoxProps = {
     children,
-    hasClearButton,
     hasNotResultsMessage,
     height,
-    onClickClear,
     placeholder,
-    renderTrigger,
     Filter,
+    Trigger,
   };
 
   const listBox = <ListBox {...ListBoxProps}>{children}</ListBox>;

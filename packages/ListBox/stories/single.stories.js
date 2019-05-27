@@ -12,7 +12,6 @@ storiesOf("ListBox / single", module).add("Basic with preselected option", () =>
 
 storiesOf("ListBox / single", module).add("Checkboxes", () => <Single.Checkboxes />);
 storiesOf("ListBox / single", module).add("Custom Checkers", () => <Single.WithCustomCheckers />);
-storiesOf("ListBox / single", module).add("Custom renderTrigger", () => <Single.CustomRenderTrigger />);
 storiesOf("ListBox / single", module).add("Custom Children", () => <Single.CustomChildrenInline />);
 
 storiesOf("ListBox / single", module).add("Footer", () => <Single.Footer />);
