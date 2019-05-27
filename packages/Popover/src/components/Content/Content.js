@@ -2,7 +2,7 @@ import React from "react";
 import ReactDOM from "react-dom";
 import PropTypes from "prop-types";
 import isElementContainsFocus from "../../helpers/isElementContainsFocus";
-import { PopoverContext } from "../../Popover";
+import PopoverContext from "../../PopoverContext";
 import { consts as PopoverConstants } from "../../Popover.styles";
 import { ContentStyled } from "./Content.styles";
 

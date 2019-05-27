@@ -1,5 +1,5 @@
 import React from "react";
-import { L10nContext } from "./L10n";
+import L10nContext from "./L10nContext";
 import { i18n } from "./i18n";
 import Locales from "./locales";
 

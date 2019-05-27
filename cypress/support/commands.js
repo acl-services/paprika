@@ -6,6 +6,6 @@
 //
 //
 // -- This is a parent command --
-Cypress.Commands.add("visitStorybook", (kind, story) => {
-  cy.visit(`http://localhost:9009/iframe.html?selectedKind=${kind}&selectedStory=${story}`);
+Cypress.Commands.add("visitStorybook", story => {
+  cy.visit(`http://localhost:9009/iframe.html?id=${story}`);
 });

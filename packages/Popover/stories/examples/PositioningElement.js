@@ -26,26 +26,25 @@ const PositioningElementStyled = styled.div`
 
 const getPositioningElement = () => document.querySelector("#another-div");
 
-export default class ExampleStory extends React.Component {
-  render() {
-    return (
-      <CenteredStory>
-        <div>
-          <Popover
-            align={select("align", ["bottom", "top", "right", "left"], "bottom")}
-            getPositioningElement={getPositioningElement}
-          >
-            <Popover.Trigger>
-              <Button>Open Popover</Button>
-            </Popover.Trigger>
-            <Popover.Content>
-              <Popover.Tip />
-              <Popover.Card>Positioned by getPositioningElement</Popover.Card>
-            </Popover.Content>
-          </Popover>
-          <PositioningElementStyled id="another-div">Positioning Element</PositioningElementStyled>
-        </div>
-      </CenteredStory>
-    );
-  }
-}
+const popoverProps = () => ({
+  align: select("align", ["bottom", "top", "right", "left"], "bottom"),
+});
+
+const ExampleStory = props => (
+  <CenteredStory>
+    <div>
+      <Popover {...props} getPositioningElement={getPositioningElement}>
+        <Popover.Trigger>
+          <Button>Open Popover</Button>
+        </Popover.Trigger>
+        <Popover.Content>
+          <Popover.Tip />
+          <Popover.Card>Positioned by getPositioningElement</Popover.Card>
+        </Popover.Content>
+      </Popover>
+      <PositioningElementStyled id="another-div">Positioning Element</PositioningElementStyled>
+    </div>
+  </CenteredStory>
+);
+
+export default () => <ExampleStory {...popoverProps()} />;

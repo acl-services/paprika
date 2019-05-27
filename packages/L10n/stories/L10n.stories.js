@@ -7,6 +7,6 @@ import FakeAppWithoutContext from "./examples/FakeAppWithoutContext";
 storiesOf("L10n", module)
   .addDecorator(withKnobs)
   .add("FakeAppWithContext", () => (
-    <FakeAppWithContext locale={select("locale", ["en", "de", "fr", "es", "pt", "pl", "ja", "zh"], "en")} />
+    <FakeAppWithContext locale={select("locale", ["en", "de", "fr", "es", "pt", "pl", "ja", "zh"], "de")} />
   ))
   .add("FakeAppWithoutContext", () => <FakeAppWithoutContext />);

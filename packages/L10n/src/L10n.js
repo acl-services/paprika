@@ -1,9 +1,8 @@
 import React from "react";
 import PropTypes from "prop-types";
-import { getI18nObject } from "./useI18n";
 import Locales from "./locales";
-
-export const L10nContext = React.createContext();
+import { getI18nObject } from "./useI18n";
+import L10nContext from "./L10nContext";
 
 const propTypes = {
   locale: PropTypes.string,

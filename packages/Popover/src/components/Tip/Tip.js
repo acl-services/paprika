@@ -2,8 +2,8 @@ import React from "react";
 import ReactDOM from "react-dom";
 import PropTypes from "prop-types";
 import tokens from "@paprika/tokens";
+import PopoverContext from "../../PopoverContext";
 import { TipStyled } from "./Tip.styles";
-import { PopoverContext } from "../../Popover";
 
 const propTypes = {
   zIndex: PropTypes.number,
