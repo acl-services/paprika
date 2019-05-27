@@ -3,6 +3,7 @@ import React from "react";
 export function GetTypeOfChildren(children) {
   let Filter = null;
   let Popover = null;
+  let Trigger = null;
   const Options = [];
 
   React.Children.toArray(children).forEach(child => {
@@ -13,6 +14,9 @@ export function GetTypeOfChildren(children) {
       case "ListBox.Popover":
         Popover = child;
         break;
+      case "ListBox.Trigger":
+        Trigger = child;
+        break;
       default:
         Options.push(child);
     }
@@ -20,7 +24,8 @@ export function GetTypeOfChildren(children) {
 
   return {
     Filter,
-    Popover,
     Options,
+    Popover,
+    Trigger,
   };
 }

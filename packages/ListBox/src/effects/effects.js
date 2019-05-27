@@ -2,6 +2,11 @@ import React from "react";
 import useListBox from "../useListBox";
 import { getDataOptions } from "../components/Option/helpers/optionState";
 
+// we should export a hook from the popover so we get notify when the popover state for isOpen change meanwhile:
+function waitForPopoverAnimation(func) {
+  setTimeout(func, 300);
+}
+
 export const handleEffectChildren = (props, state, dispatch) => () => {
   if (Object.keys(state.options).length + state.hasFooter !== React.Children.count(props.children)) {
     const options = getDataOptions(props.children);
@@ -15,8 +20,6 @@ export const handleEffectChildren = (props, state, dispatch) => () => {
 
 export const handleEffectIsPopOverOpen = (state, dispatch) => () => {
   if (state.isInline) return;
-  if (!state.isPopoverEager) return;
-
   if (!state.refListBoxContainer.current) return;
 
   const filterInput = state.refFilterInput.current;
@@ -24,20 +27,18 @@ export const handleEffectIsPopOverOpen = (state, dispatch) => () => {
   const trigger = state.refTrigger.current;
   if (state.isOpen) {
     if (state.hasFilter) {
-      // this is racing with the focus of the
-      // Popover, the popover will try to put the
-      // focus on the <Popover.Content> which works
-      // ok when you automatically wants to grant
-      // focus to whatever content on the popover
-      // unsure how to handle this properly.
-      setTimeout(() => {
-        filterInput.focus();
-      }, 300);
+      waitForPopoverAnimation(() => filterInput.focus());
+      return;
     }
 
     dispatch({ type: useListBox.types.setTriggerWidth, payload: state.refTriggerContainer.current.offsetWidth });
     dispatch({ type: useListBox.types.setHasPopupOpened, payload: true });
-  } else if (state.hasPopupOpened) {
+
+    waitForPopoverAnimation(() => listBoxContainer.focus());
+    return;
+  }
+
+  if (state.hasPopupOpened) {
     listBoxContainer.focus();
     if (!state.isInline && !state.isOpen) {
       trigger.focus();
