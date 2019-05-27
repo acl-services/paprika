@@ -12,10 +12,6 @@ const defaultProps = {};
 export default function Box(props) {
   const [state] = useListBox();
 
-  if (state.selectedOptions.length === Object.keys(state.options).length && state.hideOptionOnSelected) {
-    return null;
-  }
-
   return (
     <BoxContainerStyled isInline={state.isInline} triggerWidth={state.triggerWidth}>
       {props.children}

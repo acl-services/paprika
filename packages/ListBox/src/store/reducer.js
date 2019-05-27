@@ -36,17 +36,10 @@ export default function reducer(state, { type, payload }) {
         isOpen = true;
       }
 
-      let options = null;
-      if (state.hideOptionOnSelected) {
-        options = { ...state.options };
-        options[payload.activeOptionIndex].isHidden = true;
-      }
-
       return {
         ...state,
-        ...options,
         onChangeFn: payload.onChangeFn,
-        activeOption: state.hideOptionOnSelected ? getNextOptionActiveIndexLooping(state) : payload.activeOptionIndex,
+        activeOption: payload.activeOptionIndex,
         isOpen,
         selectedOptions: [payload.activeOptionIndex],
         shouldContentScroll: true,
@@ -57,15 +50,6 @@ export default function reducer(state, { type, payload }) {
       const selectedOptionsArray = state.selectedOptions.slice();
       const { activeOptionIndex } = payload;
 
-      // handle hide options
-      let options = null;
-      if (state.hideOptionOnSelected) {
-        options = { ...state.options };
-        options[activeOptionIndex].isHidden = true;
-      } else {
-        options = state.options;
-      }
-
       if (selectedOptionsArray.includes(activeOptionIndex)) {
         const index = selectedOptionsArray.indexOf(activeOptionIndex);
         selectedOptionsArray.splice(index, 1);
@@ -75,10 +59,9 @@ export default function reducer(state, { type, payload }) {
 
       return {
         ...state,
-        activeOption: state.hideOptionOnSelected ? getNextOptionActiveIndexLooping(state) : activeOptionIndex,
+        activeOption: activeOptionIndex,
         isOpen: true,
         onChangeFn: payload.onChangeFn,
-        options,
         selectedOptions: selectedOptionsArray,
         shouldContentScroll: false,
       };
@@ -140,17 +123,8 @@ export default function reducer(state, { type, payload }) {
         throw Error("unselectOptions action expect an array as a payload");
       }
 
-      let options = null;
-      if (state.hideOptionOnSelected) {
-        options = { ...state.options };
-        payload.forEach(index => {
-          options[index].isHidden = false;
-        });
-      }
-
       return {
         ...state,
-        ...options,
         selectedOptions: state.selectedOptions.filter(index => !payload.includes(index)),
       };
     }

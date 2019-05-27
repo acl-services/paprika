@@ -7,28 +7,20 @@ export const StoreContext = React.createContext();
 
 function initializeState(props) {
   const {
-    childrenOptions, // 🙅‍
-
-    isDisabled, // ✅
-    isInline, // ✅
-    isMulti, // ✅
-    onChange, // ✅
-
-    refFooterContainer, // ✅
-    refListBox, // ✅
-    refListBoxContainer, // ✅
-    refTrigger, // ✅
-    refTriggerContainer, // ✅
-
-    // ///// to be removed
-
-    height, // shouldn't be here
-    hideOptionOnSelected, // shouldn't be here
-    isPopoverEager, // shouldn't be here
-    isOpen, // shouldn't be here
-    placeholder, // shouldn't be here
-    preventOnBlurForTriggerListBox, // 🤔
-    refFilterInput, // shouldn't be here
+    childrenOptions,
+    height,
+    isDisabled,
+    isInline,
+    isMulti,
+    isOpen,
+    onChange,
+    placeholder,
+    refFilterInput,
+    refFooterContainer,
+    refListBox,
+    refListBoxContainer,
+    refTrigger,
+    refTriggerContainer,
   } = props;
 
   // initialize state for options and groups
@@ -49,17 +41,14 @@ function initializeState(props) {
     hasFooter: false,
     hasPopupOpened: false,
     height,
-    hideOptionOnSelected,
     isDisabled,
     isInline,
     isMulti,
-    isPopoverEager,
     isOpen,
     noResultsFound: false,
     onChange,
     options,
     placeholder,
-    preventOnBlurForTriggerListBox,
     refFilterInput,
     refFooterContainer,
     refListBox,

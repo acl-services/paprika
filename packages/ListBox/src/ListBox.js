@@ -43,27 +43,18 @@ export const propTypes = {
   When `isMulti` prop is active, the default type of checker is a checkbox, in case you don't
   want to render a checkbox you can return null ex. renderCheckbox={() =>  null} */
   renderCheckbox: PropTypes.func,
-
-  /** [Advance] instead of marking the option as checked/unchecked will toggle the option between visible and hidden */
-  hideOptionOnSelected: PropTypes.bool,
-
-  /** [Advance] When composing the component will prevent to close the ListBox when
-      the user interact with the Trigger container */
-  preventOnBlurForTriggerListBox: PropTypes.bool,
 };
 
 export const defaultProps = {
   children: null,
   hasNotResultsMessage: "Your search did not match any options.",
   height: 200,
-  hideOptionOnSelected: false,
   isDisabled: false,
   isInline: false,
   isMulti: false,
   isOpen: null,
   onChange: () => {},
   placeholder: "Select...",
-  preventOnBlurForTriggerListBox: false,
   renderCheckbox: undefined,
 };
 

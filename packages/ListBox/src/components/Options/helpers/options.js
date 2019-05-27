@@ -32,10 +32,6 @@ export function isOptionVisible(state, key) {
     return true;
   }
 
-  if (state.hideOptionOnSelected && state.selectedOptions.includes(keyInt)) {
-    return false;
-  }
-
   if (state.noResultsFound) {
     return false;
   }
