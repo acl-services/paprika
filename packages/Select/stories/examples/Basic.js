@@ -1,7 +1,5 @@
 import React from "react";
 import { Story } from "storybook/assets/styles/common.styles";
-
-
 import Select from "../../src/Select"
 
 export const Basic = () =>{
