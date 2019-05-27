@@ -1,7 +1,7 @@
 import React from "react";
 import classNames from "classnames";
 import PropTypes from "prop-types";
-import { ShirtSizes } from "../helpers/src/customPropTypes";
+import { ShirtSizes } from "../../helpers/src/customPropTypes";
 import selectStyles from "./Select.styles";
 
 const propTypes = {
