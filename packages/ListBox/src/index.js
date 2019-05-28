@@ -6,6 +6,7 @@ import Footer from "./components/Footer";
 import Group from "./components/Group";
 import Option from "./components/Option";
 import Popover from "./components/Popover";
+import RawItem from "./components/RawItem";
 import Trigger from "./components/Trigger";
 import Provider from "./store/Provider";
 
@@ -60,4 +61,5 @@ ListBoxWithProvider.Footer = Footer;
 ListBoxWithProvider.Group = Group;
 ListBoxWithProvider.Option = Option;
 ListBoxWithProvider.Popover = Popover;
+ListBoxWithProvider.RawItem = RawItem;
 ListBoxWithProvider.Trigger = Trigger;

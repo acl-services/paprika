@@ -130,7 +130,7 @@ export function handleArrowKeys({ event, state, dispatch, isArrowDown = null }) 
 export const handleClickOption = ({ props, state, dispatch }) => event => {
   const { index } = props;
   const { options, hasFilter, isMulti, refFilterInput } = state;
-
+  const hasPreventDefaultOnSelect = options[index].preventDefaultOnSelect;
   if (state.isDisabled) {
     return;
   }
@@ -143,14 +143,20 @@ export const handleClickOption = ({ props, state, dispatch }) => event => {
     refFilterInput.current.focus();
   }
 
-  if (props.onClick) {
-    if (options[index].preventDefaultOnSelect) {
+  if (props.onClick || hasPreventDefaultOnSelect) {
+    const onClick = props.onClick ? props.onClick : () => {};
+    if (!props.onClick) {
+      console.warn("<ListBox.RawItem /> expected to include an onClick event.");
+    }
+
+    if (hasPreventDefaultOnSelect) {
       // this will not selected the option, but will report that was clicked it.
       // since this action will not affect the state we can report it right back.
-      props.onClick();
+
+      onClick();
       return;
     }
-    props.onClick();
+    onClick();
   }
 
   if (isMulti) {

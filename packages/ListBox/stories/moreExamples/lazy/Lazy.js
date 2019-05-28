@@ -150,9 +150,9 @@ export default function LazyListBox() {
     const total = state.characters[index].data.total;
 
     return offset <= total ? (
-      <ListBox.Option preventDefaultOnSelect onClick={handleClickLoadMore(index)}>
+      <ListBox.RawItem key={`RawItem_${index}`} onClick={handleClickLoadMore(index)}>
         Show more ({offset} / {total}) ...
-      </ListBox.Option>
+      </ListBox.RawItem>
     ) : null;
   }
 
@@ -241,9 +241,7 @@ export default function LazyListBox() {
         placeholder="Marvel API"
       >
         <ListBox.Trigger>{renderTrigger}</ListBox.Trigger>
-        <ListBox.Option preventDefaultOnSelect isHidden={!state.isLoading}>
-          Fetching data ...
-        </ListBox.Option>
+        <ListBox.RawItem isHidden={!state.isLoading}>Fetching data ...</ListBox.RawItem>
         {state.searchedCharacters && state.search !== "" ? renderSearchedOptions() : null}
         {state.characters.length && state.search === "" ? renderOptions() : null}
       </ListBox>

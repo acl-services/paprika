@@ -52,7 +52,10 @@ export function getDataOptions(children) {
         });
         index += 1;
       });
-    } else if (child.type && child.type.componentType === "ListBox.Option") {
+    } else if (
+      child.type &&
+      (child.type.componentType === "ListBox.Option" || child.type.componentType === "ListBox.RawItem")
+    ) {
       options[index] = createOption({ index, child, groupId: child.props.groupId });
       index += 1;
     }

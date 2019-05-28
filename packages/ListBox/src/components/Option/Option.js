@@ -19,12 +19,6 @@ const propTypes = {
   /** Describe if the option is hidden or not */
   isHidden: PropTypes.bool,
 
-  /** Describe if the option will be accept click or any other keyboard interaction
-      this is helpful when you want to add an option that help visually to trasmit the
-      UI message better.
-  */
-  preventDefaultOnSelect: PropTypes.bool,
-
   /** When the children are not a String, label should need to be add so the filter can work  */
   label: PropTypes.string,
 
@@ -41,7 +35,8 @@ const propTypes = {
 const defaultProps = {
   isDisabled: false,
   isHidden: false,
-  preventDefaultOnSelect: false,
+  // internal prop, which shouldn't be documented
+  preventDefaultOnSelect: false, // eslint-disable-line
   isSelected: false,
   label: null,
   onClick: null,
@@ -75,6 +70,7 @@ export default function Option(props) {
     return null;
   }
 
+  /* eslint-disable react/prop-types */
   return (
     <React.Fragment>
       {GroupDividerComponent}
@@ -98,6 +94,7 @@ export default function Option(props) {
       </OptionStyled>
     </React.Fragment>
   );
+  /* eslint-enable react/prop-types */
 }
 
 Option.componentType = "ListBox.Option";

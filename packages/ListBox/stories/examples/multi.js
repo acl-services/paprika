@@ -172,15 +172,13 @@ const LeafStyled = styled.span`
 
 export const WithCustomStyles = () => (
   <ListBox isMulti renderCheckbox={() => null}>
-    <ListBox.Option preventDefaultOnSelect label="antiheroes">
+    <ListBox.RawItem>
       <RootStyled as="span">Marvel Universe</RootStyled>
-    </ListBox.Option>
-    <ListBox.Option preventDefaultOnSelect renderCheckbox={() => null} label="antiheroes">
+    </ListBox.RawItem>
+    <ListBox.RawItem>
       <ParentStyled as="span">AntiHeroes</ParentStyled>
-    </ListBox.Option>
-    <ListBox.Option label="renderProp">
-      {isChecked => <LeafStyled>{isChecked ? "😇" : "🙅‍"} Render Prop</LeafStyled>}
-    </ListBox.Option>
+    </ListBox.RawItem>
+    <ListBox.Option>{isChecked => <LeafStyled>{isChecked ? "😇" : "🙅‍"} Render Prop</LeafStyled>}</ListBox.Option>
     <ListBox.Option>
       <LeafStyled>Catwoman</LeafStyled>
     </ListBox.Option>
