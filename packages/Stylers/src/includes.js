@@ -62,7 +62,7 @@ export const placeholder = `
   color: ${tokens.placeholder.color};
   font-style: ${tokens.placeholder.fontStyle};
 
-  .is-disabled &, &[disabled] {
+  &[disabled] {
     ${disabledPlaceholder};
   }
 `;
@@ -114,19 +114,3 @@ export const placeholders = `
     opacity: 1;
   }
 `;
-
-export const selectArrow = (color = tokens.color.black) => `
-  background-image: url("data:image/svg+xml;charset=utf8,%3Csvg color='${color}' width='18' height='32' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath fill='currentColor' d='M18.286 12.571q0 0.464-0.339 0.804l-8 8q-0.339 0.339-0.804 0.339t-0.804-0.339l-8-8q-0.339-0.339-0.339-0.804t0.339-0.804 0.804-0.339h16q0.464 0 0.804 0.339t0.339 0.804z'%3E%3C/path%3E%3C/svg%3E") !important;
-`;
-
-export const formDisabled = content => `{
-  &.is-disabled,
-  &[disabled] {
-    background-color: ${tokens.color.white};
-    border-color: ${tokens.color.blackLighten70};
-    color: ${tokens.color.blackLighten60};
-    cursor: not-allowed;
-
-    ${content}
-  }
-}`;

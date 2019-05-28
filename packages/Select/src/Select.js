@@ -8,6 +8,7 @@ const propTypes = {
   a11yText: PropTypes.string,
   className: PropTypes.string,
   children: PropTypes.node.isRequired,
+  hasError: PropTypes.bool,
   inputRef: PropTypes.func,
   isDisabled: PropTypes.bool,
   isReadOnly: PropTypes.bool,
@@ -19,6 +20,7 @@ const propTypes = {
 const defaultProps = {
   a11yText: null,
   className: null,
+  hasError: false,
   inputRef: () => {},
   isDisabled: false,
   isReadOnly: false,
@@ -41,6 +43,7 @@ const Select = props => {
     a11yText,
     className,
     children,
+    hasError,
     inputRef,
     isDisabled,
     isReadOnly,
@@ -58,8 +61,9 @@ const Select = props => {
     "form-select",
     `form-select--${size}`,
     { "form-select--placeholder": !value && placeholder },
-    { "is-disabled": isDisabled },
-    { "is-readonly": isReadOnly },
+    { "form-select--is-disabled": isDisabled },
+    { "form-select--is-readonly": isReadOnly },
+    { "form-select--has-error": hasError },
     className
   );
 

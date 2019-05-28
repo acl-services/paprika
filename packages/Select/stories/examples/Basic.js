@@ -1,6 +1,6 @@
 import React from "react";
 import { Story } from "storybook/assets/styles/common.styles";
-import Select from "../../src/Select";
+import Select from "./SelectWithState";
 
 export const Basic = () => {
   return (
@@ -40,7 +40,7 @@ export const DisableSelect = () => {
 export const ReadOnlySelect = () => {
   return (
     <Story>
-      <Select placeholder="Select an option" isReadOnly>
+      <Select placeholder="Select an option" isReadOnly hasError>
         <option value="Coke">Pepsi</option>
         <option value="Pepsi">Coke</option>
       </Select>
