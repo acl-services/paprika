@@ -10,7 +10,6 @@ storiesOf("ListBox / single", module).add("Basic option disabled", () => <Single
 storiesOf("ListBox / single", module).add("Basic with empty option", () => <Single.BasicWithEmptyOption />);
 storiesOf("ListBox / single", module).add("Basic with preselected option", () => <Single.BasicPreselectedOption />);
 
-storiesOf("ListBox / single", module).add("Checkboxes", () => <Single.Checkboxes />);
 storiesOf("ListBox / single", module).add("Custom Checkers", () => <Single.WithCustomCheckers />);
 storiesOf("ListBox / single", module).add("Custom Children", () => <Single.CustomChildrenInline />);
 

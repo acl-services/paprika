@@ -3,7 +3,7 @@ import PropTypes from "prop-types";
 import useListBox from "../../useListBox";
 import { getA11yAttributesForOption } from "../../helpers/DOMAttributes";
 import { isOptionVisible, isOptionSelected, handleClickOption } from "../Options/helpers/options";
-import { OptionStyled, OptionDividerStyled } from "./Option.styles";
+import { OptionStyled } from "./Option.styles";
 import Checker from "../Checker";
 
 const propTypes = {
@@ -46,24 +46,11 @@ const defaultProps = {
 
 export default function Option(props) {
   const [state, dispatch] = useListBox();
-  const { noResultsFound, activeOption, isDisabled, renderCheckbox } = state;
+  const { activeOption, isDisabled, renderCheckbox } = state;
   const { index, groupId, label } = props; // eslint-disable-line
 
   if (typeof state.options[index] === "undefined") {
     return null;
-  }
-
-  let shouldHaveGroupTitle = false;
-
-  // this is an internal prop not necesary to declare on the available props
-  // eslint-disable-next-line
-  if (props.isNewGroup) {
-    shouldHaveGroupTitle = true;
-  }
-
-  let GroupDividerComponent = null;
-  if (shouldHaveGroupTitle && !noResultsFound) {
-    GroupDividerComponent = <OptionDividerStyled aria-hidden="true">{label}</OptionDividerStyled>;
   }
 
   if (!isOptionVisible(state, index)) {
@@ -73,7 +60,6 @@ export default function Option(props) {
   /* eslint-disable react/prop-types */
   return (
     <React.Fragment>
-      {GroupDividerComponent}
       <OptionStyled
         {...getA11yAttributesForOption(state.options[index].isSelected)}
         hasPreventDefaultOnSelect={props.preventDefaultOnSelect}

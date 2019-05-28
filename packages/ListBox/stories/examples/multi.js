@@ -1,76 +1,40 @@
 import React from "react";
 import styled from "styled-components";
 import ListBox from "../../src";
+import * as characters from "../fixtures/characters";
 
-export const Basic = () => (
-  <ListBox isMulti>
-    <ListBox.Option>Punisher</ListBox.Option>
-    <ListBox.Option>Catwoman</ListBox.Option>
-    <ListBox.Option>Venom</ListBox.Option>
-    <ListBox.Option>Thunderbolts</ListBox.Option>
-    <ListBox.Option>Deadpool</ListBox.Option>
-    <ListBox.Option>Spawn</ListBox.Option>
-    <ListBox.Option>Wolverine</ListBox.Option>
-  </ListBox>
-);
+export const Basic = () => <ListBox isMulti>{characters.heroes}</ListBox>;
 
 export const BasicWithPreselectedOptions = () => (
-  <ListBox isMulti isPopoverOpen>
-    <ListBox.Option>Punisher</ListBox.Option>
-    <ListBox.Option>Catwoman</ListBox.Option>
+  <ListBox isMulti isOpen>
     <ListBox.Option isSelected>Venom</ListBox.Option>
     <ListBox.Option isSelected>Thunderbolts</ListBox.Option>
-    <ListBox.Option>Deadpool</ListBox.Option>
-    <ListBox.Option>Spawn</ListBox.Option>
+    {characters.villians}
     <ListBox.Option isSelected>Wolverine</ListBox.Option>
   </ListBox>
 );
 
 export const BasicIsDisabled = () => (
   <ListBox isMulti isDisabled>
-    <ListBox.Option>Punisher</ListBox.Option>
-    <ListBox.Option>Catwoman</ListBox.Option>
-    <ListBox.Option>Venom</ListBox.Option>
-    <ListBox.Option>Thunderbolts</ListBox.Option>
-    <ListBox.Option>Deadpool</ListBox.Option>
-    <ListBox.Option>Spawn</ListBox.Option>
-    <ListBox.Option>Wolverine</ListBox.Option>
+    {characters.antiHeroes}
   </ListBox>
 );
 
 export const BasicIsDisabledWhileOpen = () => (
-  <ListBox isMulti isDisabled isPopoverOpen>
-    <ListBox.Option>Punisher</ListBox.Option>
-    <ListBox.Option>Catwoman</ListBox.Option>
-    <ListBox.Option>Venom</ListBox.Option>
-    <ListBox.Option>Thunderbolts</ListBox.Option>
-    <ListBox.Option>Deadpool</ListBox.Option>
-    <ListBox.Option>Spawn</ListBox.Option>
-    <ListBox.Option>Wolverine</ListBox.Option>
+  <ListBox isMulti isDisabled isOpen>
+    {characters.antiHeroes}
   </ListBox>
 );
 
 export const WithCheckboxAsPreBuiltInOption = () => (
   <ListBox isMulti renderCheckbox="checkbox">
-    <ListBox.Option>Punisher</ListBox.Option>
-    <ListBox.Option>Catwoman</ListBox.Option>
-    <ListBox.Option>Venom</ListBox.Option>
-    <ListBox.Option>Thunderbolts</ListBox.Option>
-    <ListBox.Option>Deadpool</ListBox.Option>
-    <ListBox.Option>Spawn</ListBox.Option>
-    <ListBox.Option>Wolverine</ListBox.Option>
+    {characters.heroes}
   </ListBox>
 );
 
 export const Footer = () => (
   <ListBox isMulti>
-    <ListBox.Option>Punisher</ListBox.Option>
-    <ListBox.Option>Catwoman</ListBox.Option>
-    <ListBox.Option>Venom</ListBox.Option>
-    <ListBox.Option>Thunderbolts</ListBox.Option>
-    <ListBox.Option>Deadpool</ListBox.Option>
-    <ListBox.Option>Spawn</ListBox.Option>
-    <ListBox.Option>Wolverine</ListBox.Option>
+    {characters.antiHeroes}
     <ListBox.Footer
       onClickAccept={(indexes, options) => {
         console.log(indexes);
@@ -87,47 +51,20 @@ export const WithCustomCheckers = () => (
       return isChecked ? "✅" : "🙅‍";
     }}
   >
-    <ListBox.Option>Punisher</ListBox.Option>
-    <ListBox.Option>Catwoman</ListBox.Option>
-    <ListBox.Option>Venom</ListBox.Option>
-    <ListBox.Option>Thunderbolts</ListBox.Option>
-    <ListBox.Option>Deadpool</ListBox.Option>
-    <ListBox.Option>Spawn</ListBox.Option>
-    <ListBox.Option>Wolverine</ListBox.Option>
+    {characters.antiHeroes}
   </ListBox>
 );
 
 export const WithGroups = () => (
   <ListBox isMulti>
-    <ListBox.Group groupId="antiheroes" label="Anti-heroes">
-      <ListBox.Option>Punisher</ListBox.Option>
-      <ListBox.Option>Catwoman</ListBox.Option>
-      <ListBox.Option>Venom</ListBox.Option>
-      <ListBox.Option>Thunderbolts</ListBox.Option>
-      <ListBox.Option>Suicide Squad</ListBox.Option>
-      <ListBox.Option>Deadpool</ListBox.Option>
-      <ListBox.Option>Spawn</ListBox.Option>
-      <ListBox.Option>Wolverine</ListBox.Option>
-    </ListBox.Group>
-    <ListBox.Group groupId="villians" label="Villians">
-      <ListBox.Option>The Joker</ListBox.Option>
-      <ListBox.Option>Darth Vader</ListBox.Option>
-      <ListBox.Option>Hannibal Lecter</ListBox.Option>
-      <ListBox.Option>Lord Voldemort</ListBox.Option>
-      <ListBox.Option>Freddy Krueger</ListBox.Option>
-      <ListBox.Option>Palpatine</ListBox.Option>
-      <ListBox.Option>Agent Smith</ListBox.Option>
-    </ListBox.Group>
-    <ListBox.Group groupId="heroes" label="Heroes">
-      <ListBox.Option>Black Panther</ListBox.Option>
-      <ListBox.Option>Wonder Woman</ListBox.Option>
-      <ListBox.Option>Spiderman</ListBox.Option>
-      <ListBox.Option>The Incredibles</ListBox.Option>
-      <ListBox.Option>Thor</ListBox.Option>
-      <ListBox.Option>Batman</ListBox.Option>
-      <ListBox.Option>Iron Man</ListBox.Option>
-      <ListBox.Option>Doctor Strange</ListBox.Option>
-    </ListBox.Group>
+    <ListBox.Divider>Anti-heroes III</ListBox.Divider>
+    {characters.antiHeroes}
+
+    <ListBox.Divider>Villians</ListBox.Divider>
+    {characters.villians}
+
+    <ListBox.Divider>Heroes</ListBox.Divider>
+    {characters.heroes}
   </ListBox>
 );
 
@@ -205,68 +142,29 @@ export const WithCustomStyles = () => (
 
 export const WithGroupsAndHaveSelectionByGroups = () => (
   <ListBox isMulti>
-    <ListBox.Group groupId="antiheroes" label="👺 antiheroes">
-      <ListBox.Option>Punisher</ListBox.Option>
-      <ListBox.Option>Catwoman</ListBox.Option>
-      <ListBox.Option>Venom</ListBox.Option>
-      <ListBox.Option>Thunderbolts</ListBox.Option>
-      <ListBox.Option>Suicide Squad</ListBox.Option>
-      <ListBox.Option>Deadpool</ListBox.Option>
-      <ListBox.Option>Spawn</ListBox.Option>
-      <ListBox.Option>Wolverine</ListBox.Option>
-    </ListBox.Group>
-    <ListBox.Group groupId="villians" label="🔪 Villians">
-      <ListBox.Option>The Joker</ListBox.Option>
-      <ListBox.Option>Darth Vader</ListBox.Option>
-      <ListBox.Option>Hannibal Lecter</ListBox.Option>
-      <ListBox.Option>Lord Voldemort</ListBox.Option>
-      <ListBox.Option>Freddy Krueger</ListBox.Option>
-      <ListBox.Option>Palpatine</ListBox.Option>
-      <ListBox.Option>Agent Smith</ListBox.Option>
-    </ListBox.Group>
-    <ListBox.Group groupId="heroes" label="👩‍🎤 heroes">
-      <ListBox.Option>Black Panther</ListBox.Option>
-      <ListBox.Option>Wonder Woman</ListBox.Option>
-      <ListBox.Option>Spiderman</ListBox.Option>
-      <ListBox.Option>The Incredibles</ListBox.Option>
-      <ListBox.Option>Thor</ListBox.Option>
-      <ListBox.Option>Batman</ListBox.Option>
-      <ListBox.Option>Iron Man</ListBox.Option>
-      <ListBox.Option>Doctor Strange</ListBox.Option>
-    </ListBox.Group>
+    <ListBox.Divider>Antiheroes</ListBox.Divider>
+    {characters.antiHeroes}
+
+    <ListBox.Divider>Villians</ListBox.Divider>
+    {characters.villians}
+
+    <ListBox.Divider>Heroes</ListBox.Divider>
+    {characters.heroes}
   </ListBox>
 );
 
 export const WithGroupsAndHavePreselectedOptions = () => (
-  <ListBox isMulti>
-    <ListBox.Group label="antiheroes">
-      <ListBox.Option isSelected>Punisher</ListBox.Option>
-      <ListBox.Option>Catwoman</ListBox.Option>
-      <ListBox.Option isSelected>Venom</ListBox.Option>
-      <ListBox.Option>Thunderbolts</ListBox.Option>
-      <ListBox.Option>Suicide Squad</ListBox.Option>
-      <ListBox.Option>Deadpool</ListBox.Option>
-      <ListBox.Option>Spawn</ListBox.Option>
-      <ListBox.Option>Wolverine</ListBox.Option>
-    </ListBox.Group>
-    <ListBox.Group label="villians">
-      <ListBox.Option>The Joker</ListBox.Option>
-      <ListBox.Option>Darth Vader</ListBox.Option>
-      <ListBox.Option>Hannibal Lecter</ListBox.Option>
-      <ListBox.Option>Lord Voldemort</ListBox.Option>
-      <ListBox.Option isSelected>Freddy Krueger</ListBox.Option>
-      <ListBox.Option>Palpatine</ListBox.Option>
-      <ListBox.Option>Agent Smith</ListBox.Option>
-    </ListBox.Group>
-    <ListBox.Group label="heroes">
-      <ListBox.Option>Black Panther</ListBox.Option>
-      <ListBox.Option>Wonder Woman</ListBox.Option>
-      <ListBox.Option>Spiderman</ListBox.Option>
-      <ListBox.Option isSelected>The Incredibles</ListBox.Option>
-      <ListBox.Option>Thor</ListBox.Option>
-      <ListBox.Option>Batman</ListBox.Option>
-      <ListBox.Option>Iron Man</ListBox.Option>
-      <ListBox.Option>Doctor Strange</ListBox.Option>
-    </ListBox.Group>
+  <ListBox isMulti isOpen>
+    <ListBox.Divider>Antiheroes</ListBox.Divider>
+    <ListBox.Option isSelected>Michael Corleone</ListBox.Option>
+    {characters.antiHeroes}
+    <ListBox.Option isSelected>Mad Max</ListBox.Option>
+
+    <ListBox.Divider>Villians</ListBox.Divider>
+    {characters.villians}
+
+    <ListBox.Divider>Heroes</ListBox.Divider>
+    <ListBox.Option isSelected>Aquaman</ListBox.Option>
+    {characters.heroes}
   </ListBox>
 );

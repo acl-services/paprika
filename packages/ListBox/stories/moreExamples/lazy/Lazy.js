@@ -173,18 +173,15 @@ export default function LazyListBox() {
 
     return (
       <React.Fragment>
-        <ListBox.Group groupId="group_n" key="group_n" label="𝓝">
-          {characterOptions[0]}
-          {renderLoadMore(0)}
-        </ListBox.Group>
-        <ListBox.Group groupId="group_z" key="group_z" label="𝓩">
-          {characterOptions[1]}
-          {renderLoadMore(1)}
-        </ListBox.Group>
-        <ListBox.Group groupId="group_s" key="group_s" label="𝓢">
-          {characterOptions[2]}
-          {renderLoadMore(2)}
-        </ListBox.Group>
+        <ListBox.Divider>𝓝</ListBox.Divider>
+        {characterOptions[0]}
+        {renderLoadMore(0)}
+        <ListBox.Divider>𝓩</ListBox.Divider>
+        {characterOptions[1]}
+        {renderLoadMore(1)}
+        <ListBox.Divider>𝓢</ListBox.Divider>
+        {characterOptions[2]}
+        {renderLoadMore(2)}
         {renderFooter()}
       </React.Fragment>
     );
@@ -206,9 +203,8 @@ export default function LazyListBox() {
 
     return (
       <React.Fragment>
-        <ListBox.Group groupId="group_results" label="Results">
-          {Options}
-        </ListBox.Group>
+        <ListBox.Divider>Results</ListBox.Divider>
+        {Options}
         {renderFooter()}
       </React.Fragment>
     );
