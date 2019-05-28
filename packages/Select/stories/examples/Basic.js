@@ -16,10 +16,8 @@ export const Basic = () => {
 export const WithSelectedOption = () => {
   return (
     <Story>
-      <Select placeholder="Select an option">
-        <option value="Coke" selected>
-          Pepsi
-        </option>
+      <Select placeholder="Select an option" value="Coke">
+        <option value="Coke">Pepsi</option>
         <option value="Pepsi">Coke</option>
       </Select>
     </Story>
