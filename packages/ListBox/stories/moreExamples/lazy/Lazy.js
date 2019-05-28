@@ -173,13 +173,13 @@ export default function LazyListBox() {
 
     return (
       <React.Fragment>
-        <ListBox.Divider>𝓝</ListBox.Divider>
+        <ListBox.Divider key="divider_1">Divider 1</ListBox.Divider>
         {characterOptions[0]}
         {renderLoadMore(0)}
-        <ListBox.Divider>𝓩</ListBox.Divider>
+        <ListBox.Divider key="divider_2">Divider 2</ListBox.Divider>
         {characterOptions[1]}
         {renderLoadMore(1)}
-        <ListBox.Divider>𝓢</ListBox.Divider>
+        <ListBox.Divider key="divider_3">Divider 3</ListBox.Divider>
         {characterOptions[2]}
         {renderLoadMore(2)}
         {renderFooter()}

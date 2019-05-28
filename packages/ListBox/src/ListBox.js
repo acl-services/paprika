@@ -62,7 +62,7 @@ export const defaultProps = {
 };
 
 export function ListBox(props) {
-  const [, dispatch] = useListBox();
+  const [state, dispatch] = useListBox();
   const { children, hasNotResultsMessage, height, placeholder, Trigger: TriggerProps, Footer, Filter } = props;
 
   const handleEffectHasFooter = effects.handleEffectHasFooter(Footer, dispatch);
@@ -91,7 +91,7 @@ export function ListBox(props) {
             <Options>{children}</Options>
           </List>
           <NoResults label={hasNotResultsMessage} />
-          {Footer}
+          {Footer ? React.cloneElement(Footer, { ref: state.refFooterContainer }) : null}
         </Box>
       </Content>
     </React.Fragment>
