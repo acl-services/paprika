@@ -13,6 +13,7 @@ export default function reducer(state, { type, payload }) {
     case useListBox.types.openPopover:
       return {
         ...state,
+        activeOption: state.selectedOptions.length ? state.selectedOptions[state.selectedOptions.length - 1] : null,
         isOpen: true,
       };
 

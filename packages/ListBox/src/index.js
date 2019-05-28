@@ -41,11 +41,11 @@ const ListBoxWithProvider = React.forwardRef((props, ref) => {
     return child !== null && React.Fragment === child.type ? child.props.children : child;
   });
 
-  const { Filter, Options, Popover, Trigger } = GetTypeOfChildren(extractedChildren);
+  const { Filter, Footer, Options, Popover, Trigger } = GetTypeOfChildren(extractedChildren);
 
   return (
     <Provider {...moreProps} childrenOptions={Options}>
-      <ListBox {...moreProps} Trigger={Trigger} Filter={Filter} Popover={Popover} ref={ref}>
+      <ListBox {...moreProps} Filter={Filter} Footer={Footer} Popover={Popover} Trigger={Trigger} ref={ref}>
         {Options}
       </ListBox>
     </Provider>

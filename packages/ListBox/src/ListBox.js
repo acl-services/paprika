@@ -47,6 +47,8 @@ export const propTypes = {
 
 export const defaultProps = {
   children: null,
+  Filter: null, // eslint-disable-line
+  Footer: null, // eslint-disable-line
   hasNotResultsMessage: "Your search did not match any options.",
   height: 200,
   isDisabled: false,
@@ -56,29 +58,21 @@ export const defaultProps = {
   onChange: () => {},
   placeholder: "Select...",
   renderCheckbox: undefined,
+  Trigger: null, // eslint-disable-line
 };
 
 export function ListBox(props) {
-  const [state, dispatch] = useListBox();
-  const { children, hasNotResultsMessage, height, placeholder, Trigger: TriggerProps } = props;
-  const [footer, setFooter] = React.useState(null);
+  const [, dispatch] = useListBox();
+  const { children, hasNotResultsMessage, height, placeholder, Trigger: TriggerProps, Footer, Filter } = props;
 
-  const handleFooterFound = footer => {
-    if (!state.hasFooter) {
-      dispatch({
-        type: useListBox.types.setHasFooter,
-        payload: true,
-      });
-    }
-
-    setFooter(footer);
-  };
+  const handleEffectHasFooter = effects.handleEffectHasFooter(Footer, dispatch);
+  React.useEffect(handleEffectHasFooter, []);
 
   const triggerProps = {
     hasClearButton: true,
     onClickClear: () => {},
     placeholder,
-    onFooterClickAccept: footer ? footer.props.onClickAccept : null,
+    onFooterClickAccept: Footer ? Footer.props.onClickAccept : null,
   };
 
   const trigger = TriggerProps ? (
@@ -92,12 +86,12 @@ export function ListBox(props) {
       {trigger}
       <Content>
         <Box>
-          {props.Filter || null}
+          {Filter}
           <List height={height}>
-            <Options onFooterFound={handleFooterFound}>{children}</Options>
+            <Options>{children}</Options>
           </List>
           <NoResults label={hasNotResultsMessage} />
-          {<div ref={state.refFooterContainer}>{footer}</div> || null}
+          {Footer}
         </Box>
       </Content>
     </React.Fragment>
@@ -116,6 +110,7 @@ ListBox.defaultProps = {};
 
 const ListBoxContainer = React.forwardRef((props, ref) => {
   const [state, dispatch] = useListBox();
+
   // IMPERATIVE API
   const imperativeHandle = handleImperative(state, dispatch);
   React.useImperativeHandle(ref, imperativeHandle);
@@ -131,7 +126,7 @@ const ListBoxContainer = React.forwardRef((props, ref) => {
   React.useEffect(handleEffectIsDisabledChange, [props.isDisabled]);
   React.useEffect(handleEffectListBoxWidth, [state.refTriggerContainer.current]);
   React.useEffect(handleEffectOptionSelected, [state.selectedOptions]);
-  React.useLayoutEffect(handleEffectChildren, [props.children]);
+  React.useEffect(handleEffectChildren, [props.children]);
   React.useLayoutEffect(handleEffectIsPopOverOpen, [state.isOpen]);
   React.useLayoutEffect(handleEffectListBoxScrolled, [state.activeOption]);
 
@@ -143,15 +138,17 @@ const ListBoxContainer = React.forwardRef((props, ref) => {
     placeholder,
     Filter, // eslint-disable-line
     Trigger, // eslint-disable-line
+    Footer, // eslint-disable-line
     Popover: PopoverWithProps, // eslint-disable-line
   } = props;
 
   const ListBoxProps = {
     children,
+    Filter,
+    Footer,
     hasNotResultsMessage,
     height,
     placeholder,
-    Filter,
     Trigger,
   };
 

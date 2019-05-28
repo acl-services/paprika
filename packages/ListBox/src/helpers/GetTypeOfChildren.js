@@ -2,6 +2,7 @@ import React from "react";
 
 export function GetTypeOfChildren(children) {
   let Filter = null;
+  let Footer = null;
   let Popover = null;
   let Trigger = null;
   const Options = [];
@@ -10,6 +11,9 @@ export function GetTypeOfChildren(children) {
     switch (child.type.componentType) {
       case "ListBox.Filter":
         Filter = child;
+        break;
+      case "ListBox.Footer":
+        Footer = child;
         break;
       case "ListBox.Popover":
         Popover = child;
@@ -24,6 +28,7 @@ export function GetTypeOfChildren(children) {
 
   return {
     Filter,
+    Footer,
     Options,
     Popover,
     Trigger,

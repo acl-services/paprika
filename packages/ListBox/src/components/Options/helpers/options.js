@@ -52,6 +52,7 @@ export function getNextOptionActiveIndex(state, isAscending = true) {
   const optionsKeys = Object.keys(state.options);
 
   if (state.noResultsFound) return null;
+
   if (state.activeOption === null) return 0;
 
   if (optionsKeys.length === 1) {
@@ -174,7 +175,10 @@ export const handleClickOption = ({ props, state, dispatch }) => event => {
 
 export function handleEnterOrSpace({ event, state, dispatch }) {
   const pressedSpaceKeyWhileHavingFilter = state.hasFilter && event.key === " " && event.target.value !== "";
-  const isEventOnFooter = state.refFooterContainer.current.contains(event.target);
+
+  const isEventOnFooter = state.refFooterContainer.current
+    ? state.refFooterContainer.current.contains(event.target)
+    : false;
 
   if (pressedSpaceKeyWhileHavingFilter || isEventOnFooter) {
     return;
@@ -211,9 +215,7 @@ export function handleEnterOrSpace({ event, state, dispatch }) {
 
   if (state.isOpen) {
     if (state.options[state.activeOption].onClick) {
-      // no sure if this is the state they want
-      // since haven't run the entire cycle befor executing it
-      state.options[state.activeOption].onClick(state.activeOption, state.options, state, dispatch);
+      state.options[state.activeOption].onClick();
     }
 
     if (state.isMulti) {
@@ -228,6 +230,7 @@ export function handleEnterOrSpace({ event, state, dispatch }) {
     // for single select the option is set when the user interact with up and down arrows
     // no need to notify which option is selected just close the popover
     dispatch({ type: useListBox.types.closePopover });
+    state.refTrigger.current.focus();
   } else {
     dispatch({ type: useListBox.types.openPopover });
   }

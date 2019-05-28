@@ -39,11 +39,6 @@ export default function Options(props) {
       });
     }
 
-    if (child.type && componentType === "ListBox.Footer") {
-      props.onFooterFound(child);
-      return null;
-    }
-
     if (child.type && (componentType === "ListBox.Option" || componentType === "ListBox.RawItem")) {
       index += 1;
       return React.cloneElement(child, { ...child.props, index });

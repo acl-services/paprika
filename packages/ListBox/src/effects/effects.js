@@ -97,3 +97,12 @@ export const handleEffectOptionSelected = (state, dispatch) => () => {
     state.onChangeFn(state, dispatch);
   }
 };
+
+export const handleEffectHasFooter = (Footer, dispatch) => () => {
+  if (Footer) {
+    dispatch({
+      type: useListBox.types.setHasFooter,
+      payload: true,
+    });
+  }
+};

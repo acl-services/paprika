@@ -4,18 +4,23 @@ import RawButtonStyled from "@paprika/raw-button/lib/RawButton.styles";
 import tokens from "@paprika/tokens";
 
 const triggerStyles = `
-padding: 8px; /* Define Trigger's height */
-align-items: center;
-background-color: #ffffff;
-border: 1px solid #d7d7d7;
-border-radius: 3px;
-color: #3f3d3c;
-display: block;
-font-size: 14px;
-position: relative;
-text-align: left;
-transition: border-color 0.2s;
-width: 100%;
+  padding: 8px; /* Define Trigger's height */
+  align-items: center;
+  background-color: #ffffff;
+  border: 1px solid #d7d7d7;
+  border-radius: 3px;
+  color: #3f3d3c;
+  display: block;
+  font-size: 14px;
+  position: relative;
+  text-align: left;
+  transition: border-color 0.2s;
+  width: 100%;
+
+  /* RawButton span */
+  & > span{
+    width: calc(100% - 48px);
+  }
 `;
 
 const triggerStylesProps = () => props => {
