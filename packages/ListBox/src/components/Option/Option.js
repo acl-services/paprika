@@ -4,7 +4,6 @@ import useListBox from "../../useListBox";
 import { getA11yAttributesForOption } from "../../helpers/DOMAttributes";
 import { isOptionVisible, isOptionSelected, handleClickOption } from "../Options/helpers/options";
 import { OptionStyled } from "./Option.styles";
-import Checker from "../Checker";
 
 const propTypes = {
   /** String, number or JSX content */
@@ -27,9 +26,6 @@ const propTypes = {
 
   /** Value of your option this can be any data structure  */
   value: PropTypes.any, // eslint-disable-line
-
-  /** Let you render your own checker for a specific option  */
-  renderCheckbox: PropTypes.func,
 };
 
 const defaultProps = {
@@ -40,13 +36,12 @@ const defaultProps = {
   isSelected: false,
   label: null,
   onClick: null,
-  renderCheckbox: null,
   value: null,
 };
 
 export default function Option(props) {
   const [state, dispatch] = useListBox();
-  const { activeOption, isDisabled, renderCheckbox } = state;
+  const { activeOption, isDisabled: isDisabledState } = state;
   const { index, groupId, label } = props; // eslint-disable-line
 
   if (typeof state.options[index] === "undefined") {
@@ -58,25 +53,22 @@ export default function Option(props) {
   }
 
   /* eslint-disable react/prop-types */
+  const isSelected = isOptionSelected(state, index);
+  const isDisabled = isDisabledState || props.isDisabled;
+  const id = state.options[index].id;
   return (
     <React.Fragment>
       <OptionStyled
         {...getA11yAttributesForOption(state.options[index].isSelected)}
         hasPreventDefaultOnSelect={props.preventDefaultOnSelect}
-        id={state.options[index].id}
+        id={id}
         isActive={activeOption === index}
-        isDisabled={isDisabled || props.isDisabled}
-        isSelected={isOptionSelected(state, index)}
+        isDisabled={isDisabled}
+        isSelected={isSelected}
         key={index}
         onClick={handleClickOption({ props, state, dispatch })}
       >
-        <Checker
-          index={Number.parseInt(index, 10)}
-          isChecked={isOptionSelected(state, index)}
-          renderCheckbox={props.renderCheckbox || renderCheckbox}
-          hasPreventDefaultOnSelect={props.preventDefaultOnSelect}
-        />
-        {typeof props.children === "function" ? props.children() : props.children}
+        {typeof props.children === "function" ? props.children({ isSelected, isDisabled, id }) : props.children}
       </OptionStyled>
     </React.Fragment>
   );

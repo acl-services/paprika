@@ -1,5 +1,4 @@
 import React from "react";
-import styled from "styled-components";
 import ListBox from "../../src";
 import * as characters from "../fixtures/characters";
 
@@ -26,9 +25,22 @@ export const BasicIsDisabledWhileOpen = () => (
   </ListBox>
 );
 
-export const WithCheckboxAsPreBuiltInOption = () => (
-  <ListBox isMulti renderCheckbox="checkbox">
-    {characters.heroes}
+function OptionCustomCheckbox(props) {
+  return (
+    <span>
+      <input tabIndex="-1" type="checkbox" checked={props.isSelected} />
+      {props.character}
+    </span>
+  );
+}
+
+export const WithCustomCheckboxes = () => (
+  <ListBox isMulti>
+    {characters.villians.map(Option => (
+      <ListBox.Option label={Option.props.children}>
+        {({ isSelected }) => <OptionCustomCheckbox isSelected={isSelected} character={Option.props.children} />}
+      </ListBox.Option>
+    ))}
   </ListBox>
 );
 
@@ -44,17 +56,6 @@ export const Footer = () => (
   </ListBox>
 );
 
-export const WithCustomCheckers = () => (
-  <ListBox
-    isMulti
-    renderCheckbox={isChecked => {
-      return isChecked ? "✅" : "🙅‍";
-    }}
-  >
-    {characters.antiHeroes}
-  </ListBox>
-);
-
 export const WithGroups = () => (
   <ListBox isMulti>
     <ListBox.Divider>Anti-heroes III</ListBox.Divider>
@@ -65,78 +66,6 @@ export const WithGroups = () => (
 
     <ListBox.Divider>Heroes</ListBox.Divider>
     {characters.heroes}
-  </ListBox>
-);
-
-const RootStyled = styled.span`
-  text-align: left;
-  font-weight: bold;
-  font-size: 16px;
-`;
-
-const ParentStyled = styled.span`
-  text-align: left;
-  font-weight: 300;
-  padding-left: 16px;
-  font-size: 14px;
-`;
-
-const LeafStyled = styled.span`
-  padding-left: 32px;
-  position: relative;
-
-  &:before {
-    border-bottom: 1px solid #ccc;
-    content: "";
-    height: 1px;
-    position: absolute;
-    width: 8px;
-    top: 6px;
-    left: 20px;
-  }
-
-  &:after {
-    border-left: 1px solid #ccc;
-    content: "";
-    height: 8px;
-    position: absolute;
-    width: 1px;
-    top: 0;
-    left: 20px;
-    display: block;
-  }
-`;
-
-export const WithCustomStyles = () => (
-  <ListBox isMulti renderCheckbox={() => null}>
-    <ListBox.RawItem>
-      <RootStyled as="span">Marvel Universe</RootStyled>
-    </ListBox.RawItem>
-    <ListBox.RawItem>
-      <ParentStyled as="span">AntiHeroes</ParentStyled>
-    </ListBox.RawItem>
-    <ListBox.Option>{isChecked => <LeafStyled>{isChecked ? "😇" : "🙅‍"} Render Prop</LeafStyled>}</ListBox.Option>
-    <ListBox.Option>
-      <LeafStyled>Catwoman</LeafStyled>
-    </ListBox.Option>
-    <ListBox.Option>
-      <LeafStyled>Venom</LeafStyled>
-    </ListBox.Option>
-    <ListBox.Option>
-      <LeafStyled>Thunderbolts</LeafStyled>
-    </ListBox.Option>
-    <ListBox.Option>
-      <LeafStyled>Suicide Squad</LeafStyled>
-    </ListBox.Option>
-    <ListBox.Option>
-      <LeafStyled>Deadpool</LeafStyled>
-    </ListBox.Option>
-    <ListBox.Option>
-      <LeafStyled>Spawn</LeafStyled>
-    </ListBox.Option>
-    <ListBox.Option>
-      <LeafStyled>Wolverine</LeafStyled>
-    </ListBox.Option>
   </ListBox>
 );
 

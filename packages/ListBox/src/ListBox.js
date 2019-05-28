@@ -38,11 +38,6 @@ export const propTypes = {
 
   /** Message to be display once the filtering process doesn't find a match */
   hasNotResultsMessage: PropTypes.node,
-
-  /** [Advance] Allows to take over the render method for the Checker.
-  When `isMulti` prop is active, the default type of checker is a checkbox, in case you don't
-  want to render a checkbox you can return null ex. renderCheckbox={() =>  null} */
-  renderCheckbox: PropTypes.func,
 };
 
 export const defaultProps = {
@@ -57,7 +52,6 @@ export const defaultProps = {
   isOpen: null,
   onChange: () => {},
   placeholder: "Select...",
-  renderCheckbox: undefined,
   Trigger: null, // eslint-disable-line
 };
 

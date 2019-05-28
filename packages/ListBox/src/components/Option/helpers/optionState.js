@@ -2,16 +2,7 @@ import React from "react";
 import uuidv4 from "uuid/v4";
 
 export function createOption({ index, child, groupLabel = null, groupId = null }) {
-  const {
-    isDisabled,
-    isHidden,
-    isSelected,
-    label,
-    onClick,
-    preventDefaultOnSelect,
-    renderCheckbox,
-    value,
-  } = child.props;
+  const { isDisabled, isHidden, isSelected, label, onClick, preventDefaultOnSelect, value } = child.props;
 
   return {
     content: child,
@@ -26,7 +17,6 @@ export function createOption({ index, child, groupLabel = null, groupId = null }
     label: label || child.props.children, // we will try to extract the label from the children if doesn't have label
     onClick,
     preventDefaultOnSelect,
-    renderCheckbox,
     value: value || undefined,
   };
 }
