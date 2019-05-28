@@ -2,21 +2,13 @@ import tokens from "@paprika/tokens";
 import stylers from "@paprika/stylers";
 
 const selectStyles = () => `
-.form-select__aria-label {
-  ${stylers.visuallyHidden}
-}
 
-.form-select {
   position: relative;
-  &:hover:not(.is-disabled):not(.is-readonly):not([disabled]) {
-    border-color: ${tokens.color.blackLighten30};
-  }
-}
+
+
 
 .form-select__select {
   ${stylers.selectArrow()}
-  ${stylers.formDisabled(stylers.selectArrow(tokens.color.blackLighten30))}
-
   background-color: ${tokens.color.white};
   background-position: right 11px center;
   background-repeat: no-repeat;
@@ -36,21 +28,8 @@ const selectStyles = () => `
   -webkit-appearance: none;
   -moz-appearance: none;
 
-  // Sizes
-
-  &.form-select--small  {
-    ${stylers.fontSize(-2)}
-    height: ${stylers.spacer(3)};
-  }
-
-  &.form-select--medium  {
-    ${stylers.fontSize(-1)}
-    height: ${stylers.spacer(4)};
-  }
-
-  &.form-select--large  {
-    ${stylers.fontSize()}
-    height: ${stylers.spacer(5)};
+  &:hover:not(.is-disabled):not(.is-readonly):not([disabled]) {
+    border-color: ${tokens.color.blackLighten30};
   }
 
   &.form-element--has-error  {
@@ -73,10 +52,28 @@ const selectStyles = () => `
     @include placeholder;
   }
 
-  &.form-select--placeholder.is-readonly &[disabled] {
+  &.form-select--placeholder .is-readonly &[disabled] {
     color: ${tokens.color.black};
   }
 }
+
+// Sizes
+
+&.form-select--small .form-select__select {
+  ${stylers.fontSize(-2)}
+  height: ${stylers.spacer(3)};
+}
+
+&.form-select--medium .form-select__select {
+  ${stylers.fontSize(-1)}
+  height: ${stylers.spacer(4)};
+}
+
+&.form-select--large .form-select__select {
+  ${stylers.fontSize()}
+  height: ${stylers.spacer(5)};
+}
+
 
 `;
 
