@@ -1,7 +1,7 @@
 import React from "react";
 import PropTypes from "prop-types";
 import iconButtonStyles from "./IconButton.styles";
-import Button from ".";
+import Button from "./Button";
 
 const IconPropTypes = {
   /** Body content of the button (an icon). */

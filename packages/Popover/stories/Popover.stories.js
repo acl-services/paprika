@@ -11,10 +11,10 @@ import Transformed from "./examples/Transformed";
 
 storiesOf("Popover", module)
   .addDecorator(withKnobs)
-  .add("Basic", () => <Basic />)
+  .add("Basic", Basic)
   .add("Controlled", () => <Controlled />)
   .add("With Trigger Components", () => <WithTriggers />)
-  .add("With Positioning Element", () => <PositioningElement />)
-  .add("With Scroll Container", () => <ScrollContainer />);
+  .add("With Positioning Element", PositioningElement)
+  .add("With Scroll Container", ScrollContainer);
 
 storiesOf("Popover/Dev", module).add("Has container with a CSS transform", () => <Transformed />);

@@ -1,10 +1,11 @@
 import selectors from "./helpers/selectors";
 
-const basePopoverKind = "Popover/Automation Tests/Cypress";
+const basePopoverStory = "popover-automation-tests-cypress";
+const basicPopoverStory = "basic-popover-test";
 
 describe("Popover", () => {
   beforeEach(() => {
-    cy.visitStorybook(basePopoverKind, "Basic Popover Test");
+    cy.visitStorybook(`${basePopoverStory}--${basicPopoverStory}`);
     cy.get(selectors.popover).should("be.not.visible");
   });
 
@@ -31,20 +32,16 @@ describe("Popover", () => {
 
   describe("Popover isEager", () => {
     beforeEach(() => {
-      cy.visitStorybook(basePopoverKind, "Basic Popover Test");
-      cy.get(selectors.popover).should("be.not.visible");
+      const { Popover } = cy.windowHandles;
+      Popover.isEager = true;
     });
 
     it("should be visible when trigger is hovered", () => {
-      const { Popover } = cy.windowHandles;
-      Popover.isEager = true;
       cy.get(selectors.popoverTrigger).trigger("mouseover");
       cy.get(selectors.popover).should("be.visible");
     });
 
     it("should be visible when trigger is hovered and content is hovered after", () => {
-      const { Popover } = cy.windowHandles;
-      Popover.isEager = true;
       cy.get(selectors.popoverTrigger).trigger("mouseover");
       cy.get(selectors.popover).trigger("mouseover");
       cy.get(selectors.popover).should("be.visible");
