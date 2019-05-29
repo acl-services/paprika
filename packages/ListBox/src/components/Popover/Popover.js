@@ -4,7 +4,7 @@ import PopoverStyled from "./Popover.styles";
 import useListBox from "../../useListBox";
 
 const propTypes = {
-  children: PropTypes.node,
+  children: PropTypes.node, // eslint-disable-line
   zIndex: PropTypes.number,
 };
 
