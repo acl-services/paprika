@@ -47,7 +47,12 @@ export const BasicOptionDisabled = () => (
 );
 
 // ->
-export const HasNotClearButton = () => <ListBox hasClearButton={false}>{characters.heroes}</ListBox>;
+export const HasNotClearButton = () => (
+  <ListBox>
+    <ListBox.Popover hasClearButton={false} />
+    {characters.heroes}
+  </ListBox>
+);
 
 // ->
 export const Footer = () => (
