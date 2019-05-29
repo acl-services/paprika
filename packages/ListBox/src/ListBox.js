@@ -64,7 +64,7 @@ export function ListBox(props) {
 
   const triggerProps = {
     hasClearButton: true,
-    onClickClear: () => {},
+    onClickClear: null,
     placeholder,
     onFooterClickAccept: Footer ? Footer.props.onClickAccept : null,
   };
