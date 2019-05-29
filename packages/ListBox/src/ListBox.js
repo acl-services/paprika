@@ -111,7 +111,7 @@ const ListBoxContainer = React.forwardRef((props, ref) => {
     Popover: PopoverWithProps, // eslint-disable-line
   } = props;
 
-  const shouldTriggerKeepFocus = Popover && Popover.props.shouldKeepFocus;
+  const shouldTriggerKeepFocus = PopoverWithProps && PopoverWithProps.props.shouldKeepFocus;
 
   // IMPERATIVE API
   const imperativeHandle = handleImperative(state, dispatch);
