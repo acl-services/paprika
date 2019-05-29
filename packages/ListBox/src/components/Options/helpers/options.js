@@ -132,7 +132,7 @@ export const handleClickOption = ({ props, state, dispatch }) => event => {
   const { index } = props;
   const { options, hasFilter, isMulti, refFilterInput } = state;
   const hasPreventDefaultOnSelect = options[index].preventDefaultOnSelect;
-  if (state.isDisabled) {
+  if (state.isDisabled || props.isDisabled) {
     return;
   }
 
