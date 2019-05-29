@@ -1,7 +1,7 @@
 import React from "react";
 import Button from "@paprika/button";
 import ListBox from "../../../src";
-import fixture from "./lazy.fixture";
+import fixture from "../../fixtures/lazy.fixture";
 import MarvelOption from "./MarvelOption";
 import Results from "./Results";
 
@@ -150,9 +150,9 @@ export default function LazyListBox() {
     const total = state.characters[index].data.total;
 
     return offset <= total ? (
-      <ListBox.Option preventDefaultOnSelect onClick={handleClickLoadMore(index)}>
+      <ListBox.RawItem key={`RawItem_${index}`} onClick={handleClickLoadMore(index)}>
         Show more ({offset} / {total}) ...
-      </ListBox.Option>
+      </ListBox.RawItem>
     ) : null;
   }
 
@@ -173,18 +173,15 @@ export default function LazyListBox() {
 
     return (
       <React.Fragment>
-        <ListBox.Group groupId="group_n" key="group_n" label="𝓝">
-          {characterOptions[0]}
-          {renderLoadMore(0)}
-        </ListBox.Group>
-        <ListBox.Group groupId="group_z" key="group_z" label="𝓩">
-          {characterOptions[1]}
-          {renderLoadMore(1)}
-        </ListBox.Group>
-        <ListBox.Group groupId="group_s" key="group_s" label="𝓢">
-          {characterOptions[2]}
-          {renderLoadMore(2)}
-        </ListBox.Group>
+        <ListBox.Divider key="divider_1">Divider 1</ListBox.Divider>
+        {characterOptions[0]}
+        {renderLoadMore(0)}
+        <ListBox.Divider key="divider_2">Divider 2</ListBox.Divider>
+        {characterOptions[1]}
+        {renderLoadMore(1)}
+        <ListBox.Divider key="divider_3">Divider 3</ListBox.Divider>
+        {characterOptions[2]}
+        {renderLoadMore(2)}
         {renderFooter()}
       </React.Fragment>
     );
@@ -206,9 +203,8 @@ export default function LazyListBox() {
 
     return (
       <React.Fragment>
-        <ListBox.Group groupId="group_results" label="Results">
-          {Options}
-        </ListBox.Group>
+        <ListBox.Divider>Results</ListBox.Divider>
+        {Options}
         {renderFooter()}
       </React.Fragment>
     );
@@ -231,19 +227,10 @@ export default function LazyListBox() {
       {state.selectedCharacters.length ? (
         <Results charactersCache={charactersCache} ids={state.selectedCharacters} />
       ) : null}
-      <ListBox
-        filter={handleFilter}
-        hasFilter
-        height={350}
-        isDisabled={state.isDisabled}
-        isMulti
-        onChange={handleChange}
-        placeholder="Marvel API"
-      >
+      <ListBox height={350} isDisabled={state.isDisabled} isMulti onChange={handleChange} placeholder="Marvel API">
+        <ListBox.Filter filter={handleFilter} />
         <ListBox.Trigger>{renderTrigger}</ListBox.Trigger>
-        <ListBox.Option preventDefaultOnSelect isHidden={!state.isLoading}>
-          Fetching data ...
-        </ListBox.Option>
+        <ListBox.RawItem isHidden={!state.isLoading}>Fetching data ...</ListBox.RawItem>
         {state.searchedCharacters && state.search !== "" ? renderSearchedOptions() : null}
         {state.characters.length && state.search === "" ? renderOptions() : null}
       </ListBox>

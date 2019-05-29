@@ -1,6 +1,6 @@
 import React from "react";
 import { configure, render, fireEvent } from "react-testing-library";
-import ListBox from "../../..";
+import ListBox from "../../../src";
 
 configure({ testIdAttribute: "data-qa-anchor" });
 
@@ -29,9 +29,9 @@ describe("ListBox.Option", () => {
     });
 
     openSelect();
-    expect(getByText(/Select one of/i)).toBeInTheDocument();
+    expect(getByText(/Select/i)).toBeInTheDocument();
     selectVenus();
-    expect(getByTestId("trigger")).toHaveTextContent(/Select one of/i);
+    expect(getByTestId("trigger")).toHaveTextContent(/Select/i);
     expect(getByTestId("trigger")).not.toHaveTextContent(/venus/i);
   });
 
