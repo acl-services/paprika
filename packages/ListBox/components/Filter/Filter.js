@@ -1,197 +1,112 @@
-import React, { useState } from "react";
-import { number, bool, object, node, func, string, shape, oneOf } from "prop-types";
-import {
-  FilterContainerStyled,
-  FilterGroupFilterLabel,
-  FilterInputStyled,
-  FilterSearchIconStyled,
-} from "./Filter.styles";
+import React from "react";
+import PropTypes from "prop-types";
+import useListBox from "../../useListBox";
+import * as effects from "./effects";
+import { filter, applyFilter } from "./helpers";
+import { FilterContainerStyled, FilterInputStyled, FilterSearchIconStyled } from "./Filter.styles";
 
 const propTypes = {
-  defaultTextSearch: string,
-  filter: func,
-  hasGroupFilter: bool,
-  options: shape({
-    content: node,
-    hasLabel: string,
-    id: string,
-    index: number,
-    label: oneOf([string, node]),
-    value: oneOf([string, number, object]),
-  }),
-  placeholder: string,
-  renderFilter: func,
-  set: func.isRequired,
-  state: object.isRequired, // eslint-disable-line
+  filter: PropTypes.func,
+  hasSearchIcon: PropTypes.bool,
+  onChangeFilter: PropTypes.func,
+  onKeyDown: PropTypes.func,
+  placeholder: PropTypes.string,
+  renderFilter: PropTypes.func,
+  value: PropTypes.string,
 };
 
 const defaultProps = {
-  defaultTextSearch: "",
   filter: null,
-  options: [],
+  hasSearchIcon: true,
+  onChangeFilter: null,
+  onKeyDown: null,
   placeholder: "Filter...",
-  hasGroupFilter: false,
+  renderFilter: null,
+  value: null,
 };
 
-export function Groups(props) {
-  if (props.hasGroupFilter && props.groups.length) {
-    return props.groups.map((group, index) => {
-      const key = `${group}${index}`;
-      return (
-        <FilterGroupFilterLabel key={key} htmlFor={key}>
-          <input
-            id={key}
-            onChange={props.onToggleGroup(group)}
-            type="checkbox"
-            checked={props.groupsFiltered.includes(group)}
-          />
-          <span>{group}</span>
-        </FilterGroupFilterLabel>
-      );
-    });
-  }
-  return null;
-}
-
-const Filter = React.forwardRef((props, ref) => {
-  const [textSearch, setTextSearch] = useState(props.defaultTextSearch);
-  const [groupsFiltered, setGroupFilter] = useState([]);
-
-  const toggleGroupFilterChecked = group => event => {
-    event.stopPropagation();
-
-    const isChecked = event.target.checked;
-    const groups = groupsFiltered.slice();
-    const { set, state } = props;
-    const optionsKeys = Object.keys(state.options);
-
-    if (isChecked) {
-      groups.push(group);
-
-      const filteredOptions = optionsKeys
-        .filter(key => groups.includes(state.options[key].groupTitle))
-        .map(key => Number.parseInt(key, 10));
-
-      if (filteredOptions.length) {
-        set({
-          ...state,
-          filteredOptions,
-          activeOption: 0,
-        });
-      }
-    } else {
-      groups.some((g, index) => {
-        if (g === group) {
-          groups.splice(index, 1);
-        }
-      });
-
-      const filteredOptions = optionsKeys
-        .filter(key => groups.includes(state.options[key].groupTitle))
-        .map(key => Number.parseInt(key, 10));
-
-      set({
-        ...state,
-        filteredOptions,
-        activeOption: 0,
-      });
-    }
-    setGroupFilter(groups);
-  };
-
-  // this might be better using _.escapeRegExp by lodash. But good enough for now
-  function escapeRegExp(str) {
-    return str.replace(/[.*+?^${}()|[\]\\]/g, "\\$&"); // $& means the whole matched string
-  }
-
-  function filter(textSearchValue) {
-    const keys = Object.keys(props.options);
-    if (keys.length) {
-      if (props.filter) {
-        return props.filter(textSearchValue, props.options);
-      }
-
-      const filteredOptions = keys.filter(key => {
-        const hasLabel = typeof props.options[key].content === "string" || props.options[key].label || null;
-
-        if (hasLabel) {
-          const label = props.options[key].content === "string" || props.options[key].label;
-
-          const filterRegExp = new RegExp(escapeRegExp(textSearchValue), "gi");
-          return label.match(filterRegExp);
-        }
-
-        throw new Error(
-          `Textsearch: ${textSearchValue} during ${props.options[key]}.
-          ListBox.Filter  filter: <ListBox.Option /> need to have
-          a string as a children or please provide a label prop
-          <ListBox.Option label='yourOptionDescription' />.`
-        );
-      });
-
-      if (!filteredOptions.length) {
-        return [];
-      }
-
-      return filteredOptions.map(key => Number.parseInt(key, 10));
-    }
-
-    return [];
-  }
+export default function Filter(props) {
+  const [state, dispatch] = useListBox();
+  const [textSearch, setTextSearch] = React.useState(props.value);
+  const applyFilterType = useListBox.types.applyFilter;
 
   const handleChangeFilter = event => {
     const textSearchValue = event.target.value;
-    const filteredOptions = filter(textSearchValue);
 
-    setTextSearch(textSearchValue);
+    if (state.isDisabled) return;
 
-    props.set({
-      ...props.state,
-      filteredOptions,
-      hasNoResults: textSearchValue && filteredOptions.length === 0,
-      activeOption: 0,
+    if (props.filter) {
+      setTextSearch(textSearchValue);
+      return props.filter({ search: textSearchValue, state, dispatch });
+    }
+
+    if (props.onChangeFilter) {
+      props.onChangeFilter(event);
+    } else {
+      setTextSearch(textSearchValue);
+    }
+
+    const filteredOptions = filter({ props, state, textSearchValue });
+    const noResultsFound = textSearchValue && filteredOptions.length === 0;
+    applyFilter(dispatch, applyFilterType)(filteredOptions, noResultsFound);
+  };
+
+  const handleBlur = () => {
+    window.requestAnimationFrame(() => {
+      if (state.hasFooter) {
+        // if has footer the responsible of closing is the Footer no the onblur event
+        return;
+      }
+
+      if (document.activeElement !== state.refListBoxContainer.current) {
+        // this will reset the activeOption and close the Popover
+        dispatch({
+          type: useListBox.types.setActiveOption,
+          payload: {
+            activeOptionIndex: null,
+          },
+        });
+      }
     });
   };
 
-  const handleKeyDown = event => {
-    // Avoid propagation of the cursor
-    // at the start or at end of the input when the user click Arrow Up or Down
-    // Also prevent to firing the space bar or enter key while filtering
+  const handleEffectValue = effects.handleEffectValue(props, applyFilter(dispatch, applyFilterType));
+  const handleEffectIsPopOverOpen = effects.handleEffectIsPopOverOpen(state, setTextSearch);
+  const handleEffectTextSearch = effects.handleEffectTextSearch(textSearch, applyFilter(dispatch, applyFilterType));
+  const handleEffectHasFilter = effects.handleEffectHasFilter(dispatch, useListBox.types.hasFilter);
 
-    if (event.key === "ArrowUp" || event.key === "ArrowDown") {
-      event.preventDefault();
+  React.useEffect(handleEffectValue, [props.value]);
+  React.useEffect(handleEffectIsPopOverOpen, [state.isOpen]);
+  React.useEffect(handleEffectTextSearch, [textSearch]);
+  React.useEffect(handleEffectHasFilter, []);
+
+  if (state.isInline || state.isOpen) {
+    const { renderFilter, placeholder, value, onChangeFilter, filter, ...moreProps } = props;
+    if (renderFilter) {
+      return props.renderFilter(props);
     }
 
-    if (event.key === " ") {
-      event.stopPropagation();
-    }
-  };
+    return (
+      <FilterContainerStyled>
+        {props.hasSearchIcon ? <FilterSearchIconStyled /> : null}
+        <FilterInputStyled
+          isDisabled={state.isDisabled}
+          onBlur={handleBlur}
+          onChange={handleChangeFilter}
+          onKeyDown={props.onKeyDown}
+          placeholder={placeholder}
+          ref={state.refFilterInput}
+          type="text"
+          value={value || textSearch || ""}
+          {...moreProps}
+        />
+      </FilterContainerStyled>
+    );
+  }
 
-  return props.renderFilter ? (
-    props.renderFilter(props)
-  ) : (
-    <FilterContainerStyled>
-      <FilterSearchIconStyled />
-      <FilterInputStyled
-        ref={ref}
-        type="text"
-        onChange={handleChangeFilter}
-        onKeyDown={handleKeyDown}
-        value={textSearch}
-        placeholder={props.placeholder}
-      />
-      <Groups
-        hasGroupFilter={props.hasGroupFilter}
-        groups={props.state.groups}
-        groupsFiltered={groupsFiltered}
-        onToggleGroup={toggleGroupFilterChecked}
-      />
-    </FilterContainerStyled>
-  );
-});
+  return null;
+}
 
 Filter.propTypes = propTypes;
-
 Filter.defaultProps = defaultProps;
-
-export default Filter;
+Filter.componentType = "ListBox.Filter";

@@ -1,148 +1,169 @@
-/**
- TODO:
- - height of the popover
- - isDisabled property
- - destructure ...moreProps
- -
-* */
-
 import React from "react";
-import Popover from "@paprika/popover";
-import { string, number, bool, node, func } from "prop-types";
-import Option from "./components/Option";
-import Filter from "./components/Filter";
-import Group from "./components/Group";
-
-import {
-  PopoverStyled,
-  ListBoxTriggerStyled,
-  ListBoxContainerStyled,
-  ListBoxStyled,
-  ListBoxOptionStyled,
-  ListBoxOptionDividerStyled,
-  TriggerArrowStyled,
-} from "./ListBox.styles";
+import PropTypes from "prop-types";
+import Box from "./components/Box";
+import Content from "./components/Content";
+import List from "./components/List";
+import NoResults from "./components/NoResults";
+import Options from "./components/Options";
+import Popover from "./components/Popover";
+import Trigger from "./components/Trigger";
 import useListBox from "./useListBox";
+import handleImperative from "./imperative";
+import * as effects from "./effects";
 
 export const propTypes = {
+  /** Child of type <ListBox.Option /> */
   children: PropTypes.node,
-  hasFilter: PropTypes.bool,
-  hasFooter: PropTypes.bool,
-  hasGroupFilter: PropTypes.bool,
-  height: PropTypes.number,
+
+  /** Disable the entire ListBox */
   isDisabled: PropTypes.bool,
+
+  /** Let the user to select multiple options at same time */
   isMulti: PropTypes.bool,
-  isPopoverEager: PropTypes.bool,
-  isPopoverOpen: PropTypes.bool,
-  label: PropTypes.node,
+
+  /** This options will display the listbox without the Popover */
+  isInline: PropTypes.bool,
+
+  /** Indicates if the popover is visible */
+  isOpen: PropTypes.bool,
+
+  /** Callback returning the current selection on the ListBox */
   onChange: PropTypes.func,
+
+  /** Defaults label to display when the ListBox has not option selected */
   placeholder: PropTypes.string,
-  preventOnBlurOnTrigger: PropTypes.bool,
-  renderLabel: PropTypes.func,
-  typeOfChecker: PropTypes.oneOf(["checkbox"]),
-  zIndex: PropTypes.number,
+
+  /** Indicate which is the height for the options container */
+  height: PropTypes.number,
+
+  /** Message to be display once the filtering process doesn't find a match */
+  hasNotResultsMessage: PropTypes.node,
 };
 
-const defaultProps = {
+export const defaultProps = {
   children: null,
-  hasFilter: false,
-  hasGroupFilter: false,
-  isHidden: false,
+  Filter: null, // eslint-disable-line
+  Footer: null, // eslint-disable-line
+  hasNotResultsMessage: "Your search did not match any options.",
+  height: 200,
+  isDisabled: false,
+  isInline: false,
   isMulti: false,
-  isPopoverEager: true,
-  isPopoverOpen: false,
-  placeholder: "select one of the options",
-  preventOnBlurOnTrigger: false,
-  renderLabel: null,
-  typeOfChecker: null,
-  zIndex: null,
+  isOpen: null,
+  onChange: () => {},
+  placeholder: "Select...",
+  Trigger: null, // eslint-disable-line
 };
 
-export default function ListBox(props) {
-  const {
-    children,
-    hasFilter,
-    hasFooter,
-    hasGroupFilter,
-    height,
-    isMulti,
-    isPopoverEager,
-    isPopoverOpen,
-    onChange,
+export function ListBox(props) {
+  const [state, dispatch] = useListBox();
+  const { children, hasNotResultsMessage, height, placeholder, Trigger: TriggerProps, Footer, Filter } = props;
+
+  const handleEffectHasFooter = effects.handleEffectHasFooter(Footer, dispatch);
+  React.useEffect(handleEffectHasFooter, []);
+
+  const triggerProps = {
+    hasClearButton: true,
+    onClickClear: () => {},
     placeholder,
-    zIndex,
-    renderLabel,
-    typeOfChecker,
-    ...moreProps
-  } = props;
-
-  const $refListBox = React.createRef();
-  const $refListBoxContainer = React.createRef();
-  const $refListBoxTrigger = React.createRef();
-  const $refListBoxTriggerContainer = React.createRef();
-  const $refListBoxFilterInput = React.createRef();
-  const listBoxHeight = $refListBox.current ? $refListBox.current.offsetHeight : 0;
-  const listBoxOptions = props.children;
-
-  const {
-    getDOMAttributesForListBox,
-    getDOMAttributesForListBoxButton,
-    getDOMAttributesForListBoxContainer,
-    getDOMAttributesForListBoxOption,
-    getListboxLabel,
-    handleBlur,
-    handleClickListBoxButton,
-    handleClickListBoxIsMultiAccept,
-    handleClickListBoxIsMultiCancel,
-    handleClickListBoxOption,
-    handleKeyDownListBoxContainer,
-    isOptionSelected,
-    isOptionVisible,
-    set,
-    state,
-  } = useListBox({
-    $refListBoxTrigger,
-    $refListBoxContainer,
-    $refListBoxTriggerContainer,
-    $refListBoxFilterInput,
-    $refListBox,
-    hasFilter: props.hasFilter,
-    isMulti: props.isMulti,
-    listBoxOptions,
-    placeholder: props.placeholder,
-    isPopoverOpen: props.isPopoverOpen,
-    renderLabel: props.renderLabel,
-  });
-
-  const { options: stateOptions, isPopoverOpen: stateIsPopoverOpen, hasNoResults: stateHasNoResults } = state;
-  const optionsArray = Object.keys(stateOptions);
-  const lastGroupTitle = null;
-
-  const renderLabelProps = {
-    getDOMAttributesForListBoxButton,
-    handleClickListBoxButton,
-    handleKeyDownListBoxContainer,
-    placeholder: props.placeholder,
-    ref: $refListBoxTrigger,
+    onFooterClickAccept: Footer ? Footer.props.onClickAccept : null,
   };
+
+  const trigger = TriggerProps ? (
+    React.cloneElement(TriggerProps, { ...triggerProps, ...TriggerProps.props })
+  ) : (
+    <Trigger {...triggerProps} />
+  );
+
   return (
-    <Popover {...moreProps} zIndex={zIndex} isEager={isPopoverEager}>
-      <Trigger renderLabel={renderLabel} placeholder={props.placeholder} />
+    <React.Fragment>
+      {trigger}
       <Content>
         <Box>
-          <Filter hasGroupFilter={props.hasGroupFilter} />
+          {Filter}
           <List height={height}>
-            <Options />
+            <Options>{children}</Options>
           </List>
-          <NoResults label={props.label} />
-          <Footer hasFooter={props.hasFooter} onClickClear={() => {}} />
+          <NoResults label={hasNotResultsMessage} />
+          {Footer ? React.cloneElement(Footer, { ref: state.refFooterContainer }) : null}
         </Box>
       </Content>
-    </Popover>
+    </React.Fragment>
   );
 }
 
-ListBox.propTypes = propTypes;
-ListBox.defaultProps = defaultProps;
-ListBox.Option = Option;
-ListBox.Group = Group;
+ListBox.propTypes = {
+  ...propTypes,
+  children: PropTypes.node.isRequired,
+  hasNotResultsMessage: PropTypes.string.isRequired,
+  height: PropTypes.number.isRequired,
+  placeholder: PropTypes.string.isRequired,
+};
+
+ListBox.defaultProps = {};
+
+const ListBoxContainer = React.forwardRef((props, ref) => {
+  const [state, dispatch] = useListBox();
+
+  // IMPERATIVE API
+  const imperativeHandle = handleImperative(state, dispatch);
+  React.useImperativeHandle(ref, imperativeHandle);
+
+  // EFFECTS
+  const handleEffectChildren = effects.handleEffectChildren(props, state, dispatch);
+  const handleEffectIsDisabledChange = effects.handleEffectIsDisabledChange(props, dispatch);
+  const handleEffectIsPopOverOpen = effects.handleEffectIsPopOverOpen(state, dispatch);
+  const handleEffectListBoxScrolled = effects.handleEffectListBoxScrolled(state);
+  const handleEffectListBoxWidth = effects.handleEffectListBoxWidth(state, dispatch);
+  const handleEffectOptionSelected = effects.handleEffectOptionSelected(state, dispatch);
+
+  React.useEffect(handleEffectIsDisabledChange, [props.isDisabled]);
+  React.useEffect(handleEffectListBoxWidth, [state.refTriggerContainer.current]);
+  React.useEffect(handleEffectOptionSelected, [state.selectedOptions]);
+  React.useEffect(handleEffectChildren, [props.children]);
+  React.useLayoutEffect(handleEffectIsPopOverOpen, [state.isOpen]);
+  React.useLayoutEffect(handleEffectListBoxScrolled, [state.activeOption]);
+
+  const {
+    children,
+    hasNotResultsMessage,
+    height,
+    isInline,
+    placeholder,
+    Filter, // eslint-disable-line
+    Trigger, // eslint-disable-line
+    Footer, // eslint-disable-line
+    Popover: PopoverWithProps, // eslint-disable-line
+  } = props;
+
+  const ListBoxProps = {
+    children,
+    Filter,
+    Footer,
+    hasNotResultsMessage,
+    height,
+    placeholder,
+    Trigger,
+  };
+
+  const listBox = <ListBox {...ListBoxProps}>{children}</ListBox>;
+
+  if (isInline) {
+    return listBox;
+  }
+
+  if (PopoverWithProps) {
+    const PopoverClone = React.cloneElement(PopoverWithProps, {
+      ...PopoverWithProps.props,
+      children: listBox,
+    });
+    return PopoverClone;
+  }
+
+  return <Popover>{listBox}</Popover>;
+});
+
+ListBoxContainer.propTypes = propTypes;
+ListBoxContainer.defaultProps = defaultProps;
+
+export default ListBoxContainer;
