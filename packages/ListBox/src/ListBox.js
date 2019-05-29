@@ -100,25 +100,6 @@ ListBox.defaultProps = {};
 const ListBoxContainer = React.forwardRef((props, ref) => {
   const [state, dispatch] = useListBox();
 
-  // IMPERATIVE API
-  const imperativeHandle = handleImperative(state, dispatch);
-  React.useImperativeHandle(ref, imperativeHandle);
-
-  // EFFECTS
-  const handleEffectChildren = effects.handleEffectChildren(props, state, dispatch);
-  const handleEffectIsDisabledChange = effects.handleEffectIsDisabledChange(props, dispatch);
-  const handleEffectIsPopOverOpen = effects.handleEffectIsPopOverOpen(state, dispatch);
-  const handleEffectListBoxScrolled = effects.handleEffectListBoxScrolled(state);
-  const handleEffectListBoxWidth = effects.handleEffectListBoxWidth(state, dispatch);
-  const handleEffectOptionSelected = effects.handleEffectOptionSelected(state, dispatch);
-
-  React.useEffect(handleEffectIsDisabledChange, [props.isDisabled]);
-  React.useEffect(handleEffectListBoxWidth, [state.refTriggerContainer.current]);
-  React.useEffect(handleEffectOptionSelected, [state.selectedOptions]);
-  React.useEffect(handleEffectChildren, [props.children]);
-  React.useLayoutEffect(handleEffectIsPopOverOpen, [state.isOpen]);
-  React.useLayoutEffect(handleEffectListBoxScrolled, [state.activeOption]);
-
   const {
     children,
     height,
@@ -129,6 +110,27 @@ const ListBoxContainer = React.forwardRef((props, ref) => {
     Footer, // eslint-disable-line
     Popover: PopoverWithProps, // eslint-disable-line
   } = props;
+
+  const shouldTriggerKeepFocus = Popover && Popover.props.shouldKeepFocus;
+
+  // IMPERATIVE API
+  const imperativeHandle = handleImperative(state, dispatch);
+  React.useImperativeHandle(ref, imperativeHandle);
+
+  // EFFECTS
+  const handleEffectChildren = effects.handleEffectChildren(props, state, dispatch);
+  const handleEffectIsDisabledChange = effects.handleEffectIsDisabledChange(props, dispatch);
+  const handleEffectIsPopOverOpen = effects.handleEffectIsPopOverOpen(state, dispatch, shouldTriggerKeepFocus);
+  const handleEffectListBoxScrolled = effects.handleEffectListBoxScrolled(state);
+  const handleEffectListBoxWidth = effects.handleEffectListBoxWidth(state, dispatch);
+  const handleEffectOptionSelected = effects.handleEffectOptionSelected(state, dispatch);
+
+  React.useEffect(handleEffectIsDisabledChange, [props.isDisabled]);
+  React.useEffect(handleEffectListBoxWidth, [state.refTriggerContainer.current]);
+  React.useEffect(handleEffectOptionSelected, [state.selectedOptions]);
+  React.useEffect(handleEffectChildren, [props.children]);
+  React.useLayoutEffect(handleEffectIsPopOverOpen, [state.isOpen]);
+  React.useLayoutEffect(handleEffectListBoxScrolled, [state.activeOption]);
 
   const ListBoxProps = {
     children,

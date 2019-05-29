@@ -18,7 +18,7 @@ export const handleEffectChildren = (props, state, dispatch) => () => {
   }
 };
 
-export const handleEffectIsPopOverOpen = (state, dispatch) => () => {
+export const handleEffectIsPopOverOpen = (state, dispatch, shouldKeepTriggerFocus) => () => {
   if (state.isInline) return;
   if (!state.refListBoxContainer.current) return;
 
@@ -26,7 +26,7 @@ export const handleEffectIsPopOverOpen = (state, dispatch) => () => {
   const listBoxContainer = state.refListBoxContainer.current;
   const trigger = state.refTrigger.current;
   if (state.isOpen) {
-    if (state.hasFilter) {
+    if (state.hasFilter && !shouldKeepTriggerFocus) {
       waitForPopoverAnimation(() => filterInput.focus());
       return;
     }
@@ -34,7 +34,9 @@ export const handleEffectIsPopOverOpen = (state, dispatch) => () => {
     dispatch({ type: useListBox.types.setTriggerWidth, payload: state.refTriggerContainer.current.offsetWidth });
     dispatch({ type: useListBox.types.setHasPopupOpened, payload: true });
 
-    waitForPopoverAnimation(() => listBoxContainer.focus());
+    if (!shouldKeepTriggerFocus) {
+      waitForPopoverAnimation(() => listBoxContainer.focus());
+    }
     return;
   }
 
