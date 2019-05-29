@@ -33,9 +33,13 @@ export const BasicIsInlineDisable = () => (
 
 export const BasicOptionDisabled = () => (
   <ListBox isInline>
+    <ListBox.Option key="loki" isDisabled>
+      Loki
+    </ListBox.Option>
+    <ListBox.Option key="odin" isDisabled>
+      Odin
+    </ListBox.Option>
     {characters.heroes}
-    <ListBox.Option isDisabled>Loki</ListBox.Option>
-    <ListBox.Option isDisabled>Odin</ListBox.Option>
   </ListBox>
 );
 
@@ -46,19 +50,6 @@ export const HasNoClearButton = () => (
   </ListBox>
 );
 
-export const WithFilter = () => (
-  <ListBox hasFilter>
-    <ListBox.Option>Punisher</ListBox.Option>
-    <ListBox.Option>Catwoman</ListBox.Option>
-    <ListBox.Option>Venom</ListBox.Option>
-    <ListBox.Option>Thunderbolts</ListBox.Option>
-    <ListBox.Option>Deadpool</ListBox.Option>
-    <ListBox.Option>Spawn</ListBox.Option>
-    <ListBox.Option>Wolverine</ListBox.Option>
-  </ListBox>
-);
-
-// ->
 export const Footer = () => (
   <ListBox>
     {characters.heroes}
@@ -92,18 +83,6 @@ export const WithGroups = () => (
     {characters.villians}
     <ListBox.Divider>Heroes</ListBox.Divider>
     {characters.heroes}
-  </ListBox>
-);
-
-export const OptionProp = () => (
-  <ListBox>
-    <ListBox.Option label="hero">Punisher</ListBox.Option>
-    <ListBox.Option value="hero">Catwoman</ListBox.Option>
-    <ListBox.Option>Venom</ListBox.Option>
-    <ListBox.Option>Thunderbolts</ListBox.Option>
-    <ListBox.Option>Deadpool</ListBox.Option>
-    <ListBox.Option>Spawn</ListBox.Option>
-    <ListBox.Option>Wolverine</ListBox.Option>
   </ListBox>
 );
 

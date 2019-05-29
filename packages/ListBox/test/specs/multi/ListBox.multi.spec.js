@@ -20,7 +20,7 @@ function renderComponent(props = {}, children = childrenContent) {
   return {
     ...rendered,
     openSelect: () => {
-      fireEvent.click(rendered.getByTestId("trigger"));
+      fireEvent.click(rendered.getByText(/select/i));
     },
     closeSelect: () => {
       fireEvent.click(rendered.getByText(/select/i));
@@ -285,7 +285,7 @@ describe("Listbox multi select", () => {
     function createOptions() {
       return ["option1", "option2", "option3"].map(option => {
         return (
-          <ListBox.Option>
+          <ListBox.Option key={option}>
             {({ isSelected }) => {
               return isSelected ? `✅ ${option}` : `🙅 ${option}‍`;
             }}

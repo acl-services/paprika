@@ -53,37 +53,23 @@ describe("ListBox.Option", () => {
     expect(getByTestId("trigger")).toHaveTextContent(/venus/i);
   });
 
-  // it("calls onClick on selection", () => {
-  //   const onClickFunc = jest.fn();
-  //   const { openSelect, selectVenus } = renderComponent({
-  //     onClick: onClickFunc,
-  //   });
-  //
-  //   openSelect();
-  //   selectVenus();
-  //   expect(onClickFunc).toHaveBeenCalled();
-  // });
-
-  it("should have custom checker", () => {
-    const onRenderingCheckbox = jest.fn(isChecked => {
-      return isChecked ? "✅" : "🙅‍";
-    });
-    const { getByText, openSelect, selectVenus, queryByText } = renderComponent({
-      renderCheckbox: onRenderingCheckbox,
+  it("calls onClick on selection", () => {
+    const onClickFunc = jest.fn();
+    const { openSelect, selectVenus } = renderComponent({
+      onClick: onClickFunc,
     });
 
     openSelect();
-    expect(getByText(/🙅‍venus/i)).toBeInTheDocument();
-    expect(queryByText(/🙅‍jupiter/i)).toBeNull();
     selectVenus();
-    expect(getByText(/✅venus/i)).toBeInTheDocument();
+    expect(onClickFunc).toHaveBeenCalled();
   });
 
   it("should show value of label prop in trigger", () => {
     const planetV = <img alt="planetvenus" src="#" />;
     const planetJ = <img alt="planetjupiter" src="#" />;
     const { getByTestId, getByAltText } = render(
-      <ListBox hasFilter>
+      <ListBox>
+        <ListBox.Filter />
         <ListBox.Option label="venus">{planetV}</ListBox.Option>
         <ListBox.Option label="jupiter">{planetJ}</ListBox.Option>
       </ListBox>
@@ -101,22 +87,20 @@ describe("ListBox.Option", () => {
 
     openSelect();
     selectVenus();
-    expect(getByTestId("trigger")).toHaveTextContent(/select one of/i);
+    expect(getByTestId("trigger")).toHaveTextContent(/select/i);
   });
 
-  // filter doesnt work, cant test filter by label
-  // it("should filter by label prop", () => {
-  //   const planetV = <img alt="venus" src="#" />;
-  //   const planetJ = <img alt="planetjupiter" src="#" />;
-  //   const { debug, getByTestId } = render(
-  //     <ListBox>
-  //       <ListBox.Option label="venus">{planetV}</ListBox.Option>
-  //       <ListBox.Option label="jupiter">{planetJ}</ListBox.Option>
-  //     </ListBox>
-  //   );
-  //
-  //   //fireEvent.click(getByTestId("trigger"));
-  //   //fireEvent.change(getByTestId("list-filter-input"), { target: { value: "v" } });
-  //   debug();
-  // });
+  it("should prevent default selection ability using <ListBox.RawItem />", () => {
+    const { getByText, getByTestId } = render(
+      <ListBox>
+        <ListBox.RawItem>Venus</ListBox.RawItem>
+        <ListBox.RawItem>Jupiter</ListBox.RawItem>
+      </ListBox>
+    );
+
+    fireEvent.click(getByTestId("trigger"));
+    fireEvent.click(getByText(/venus/i));
+
+    expect(getByTestId("trigger")).toHaveTextContent(/select/i);
+  });
 });
