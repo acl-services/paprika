@@ -85,7 +85,6 @@ export default function Trigger(props) {
         options={state.options}
         placeholder={placeholder}
         selectedOptions={state.selectedOptions}
-        data-qa-anchor="trigger"
       />
     ) : (
       <RawButton
