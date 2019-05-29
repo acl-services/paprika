@@ -4,7 +4,7 @@ import PopoverStyled from "./Popover.styles";
 import useListBox from "../../useListBox";
 
 const propTypes = {
-  children: PropTypes.node.isRequired,
+  children: PropTypes.node,
   zIndex: PropTypes.number,
 };
 

@@ -7,7 +7,7 @@ import { OptionStyled } from "./Option.styles";
 
 const propTypes = {
   /** String, number or JSX content */
-  children: PropTypes.node.isRequired,
+  children: PropTypes.oneOfType([PropTypes.node, PropTypes.func]).isRequired,
 
   /** Describe if the option is selected or not */
   isSelected: PropTypes.bool,
