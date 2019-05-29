@@ -9,6 +9,7 @@ const propTypes = {
   filter: PropTypes.func,
   filterExcludeSelectedOptions: PropTypes.bool,
   hasSearchIcon: PropTypes.bool,
+  noResultsMessage: PropTypes.string,
   onChangeFilter: PropTypes.func,
   onKeyDown: PropTypes.func,
   placeholder: PropTypes.string,
@@ -23,6 +24,7 @@ const defaultProps = {
   onChangeFilter: null,
   onKeyDown: null,
   placeholder: "Filter...",
+  noResultsMessage: "Your search did not match any options.",
   renderFilter: null,
   value: null,
 };

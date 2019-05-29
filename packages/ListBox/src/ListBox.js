@@ -35,16 +35,12 @@ export const propTypes = {
 
   /** Indicate which is the height for the options container */
   height: PropTypes.number,
-
-  /** Message to be display once the filtering process doesn't find a match */
-  hasNotResultsMessage: PropTypes.node,
 };
 
 export const defaultProps = {
   children: null,
   Filter: null, // eslint-disable-line
   Footer: null, // eslint-disable-line
-  hasNotResultsMessage: "Your search did not match any options.",
   height: 200,
   isDisabled: false,
   isInline: false,
@@ -57,7 +53,7 @@ export const defaultProps = {
 
 export function ListBox(props) {
   const [state, dispatch] = useListBox();
-  const { children, hasNotResultsMessage, height, placeholder, Trigger: TriggerProps, Footer, Filter } = props;
+  const { children, height, placeholder, Trigger: TriggerProps, Footer, Filter } = props;
 
   const handleEffectHasFooter = effects.handleEffectHasFooter(Footer, dispatch);
   React.useEffect(handleEffectHasFooter, []);
@@ -84,7 +80,7 @@ export function ListBox(props) {
           <List height={height}>
             <Options>{children}</Options>
           </List>
-          <NoResults label={hasNotResultsMessage} />
+          {Filter ? <NoResults label={Filter.props.noResultsMessage} /> : null}
           {Footer ? React.cloneElement(Footer, { ref: state.refFooterContainer }) : null}
         </Box>
       </Content>
@@ -95,7 +91,6 @@ export function ListBox(props) {
 ListBox.propTypes = {
   ...propTypes,
   children: PropTypes.node.isRequired,
-  hasNotResultsMessage: PropTypes.string.isRequired,
   height: PropTypes.number.isRequired,
   placeholder: PropTypes.string.isRequired,
 };
@@ -126,7 +121,6 @@ const ListBoxContainer = React.forwardRef((props, ref) => {
 
   const {
     children,
-    hasNotResultsMessage,
     height,
     isInline,
     placeholder,
@@ -140,7 +134,6 @@ const ListBoxContainer = React.forwardRef((props, ref) => {
     children,
     Filter,
     Footer,
-    hasNotResultsMessage,
     height,
     placeholder,
     Trigger,
