@@ -5,8 +5,10 @@ import { images } from "../fixtures/images";
 
 import * as characters from "../fixtures/characters";
 
+// ->
 export const Basic = () => <ListBox>{characters.heroes}</ListBox>;
 
+// ->
 export const BasicWithEmptyOption = () => (
   <ListBox>
     <ListBox.Option label="">&nbsp;</ListBox.Option>
@@ -14,10 +16,13 @@ export const BasicWithEmptyOption = () => (
   </ListBox>
 );
 
+// ->
 export const BasicInlineDisplay = () => <ListBox isInline>{characters.heroes}</ListBox>;
 
+// ->
 export const BasicIsDisabled = () => <ListBox isDisabled>{characters.heroes}</ListBox>;
 
+// ->
 export const BasicPreselectedOption = () => (
   <ListBox>
     <ListBox.Option isSelected>Loki</ListBox.Option>
@@ -25,12 +30,14 @@ export const BasicPreselectedOption = () => (
   </ListBox>
 );
 
+// ->
 export const BasicIsInlineDisable = () => (
   <ListBox isDisabled isInline>
     {characters.heroes}
   </ListBox>
 );
 
+// ->
 export const BasicOptionDisabled = () => (
   <ListBox isInline>
     {characters.heroes}
@@ -39,8 +46,10 @@ export const BasicOptionDisabled = () => (
   </ListBox>
 );
 
+// ->
 export const HasNotClearButton = () => <ListBox hasClearButton={false}>{characters.heroes}</ListBox>;
 
+// ->
 export const Footer = () => (
   <ListBox>
     {characters.heroes}
@@ -54,6 +63,7 @@ export const Footer = () => (
   </ListBox>
 );
 
+// ->
 export const CustomChildrenInline = () => (
   <ListBox height={320}>
     {images.map(image => (
@@ -66,16 +76,7 @@ export const CustomChildrenInline = () => (
   </ListBox>
 );
 
-export const WithCustomCheckers = () => (
-  <ListBox
-    renderCheckbox={isChecked => {
-      return isChecked ? "✅" : "🙅‍";
-    }}
-  >
-    {characters.heroes}
-  </ListBox>
-);
-
+// ->
 export const WithGroups = () => (
   <ListBox>
     <ListBox.Divider>Anti-Heroes</ListBox.Divider>
