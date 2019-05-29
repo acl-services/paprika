@@ -146,9 +146,6 @@ export const handleClickOption = ({ props, state, dispatch }) => event => {
 
   if (props.onClick || hasPreventDefaultOnSelect) {
     const onClick = props.onClick ? props.onClick : () => {};
-    if (!props.onClick) {
-      console.warn("<ListBox.RawItem /> expected to include an onClick event.");
-    }
 
     if (hasPreventDefaultOnSelect) {
       // this will not selected the option, but will report that was clicked it.
