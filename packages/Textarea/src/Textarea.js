@@ -38,10 +38,8 @@ class Textarea extends React.Component {
   }
 
   componentDidUpdate(prevProps) {
-    if (this.props.canExpand) {
-      if (prevProps.canExpand && this.props.value !== prevProps.value) {
-        this.resize();
-      }
+    if (this.props.canExpand && this.props.value !== prevProps.value) {
+      this.resize();
     }
   }
 
