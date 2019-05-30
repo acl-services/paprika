@@ -35,13 +35,19 @@ export default function Filter(props) {
   const applyFilterType = useListBox.types.applyFilter;
 
   const handleChangeFilter = event => {
+    function hasNoResults(textSearchValue, filteredOptions) {
+      return textSearchValue && (filteredOptions && filteredOptions.length === 0);
+    }
+
     const textSearchValue = event.target.value;
 
     if (state.isDisabled) return;
 
     if (props.filter) {
       setTextSearch(textSearchValue);
-      return props.filter({ search: textSearchValue, state, dispatch });
+      const filteredOptions = props.filter({ search: textSearchValue, state, dispatch });
+      applyFilter({ filteredOptions, noResultsFound: hasNoResults(textSearchValue, filteredOptions) });
+      return;
     }
 
     if (props.onChangeFilter) {
@@ -51,7 +57,7 @@ export default function Filter(props) {
     }
 
     const filteredOptions = filter({ props, state, textSearchValue });
-    const noResultsFound = textSearchValue && (filteredOptions && filteredOptions.length === 0);
+    const noResultsFound = hasNoResults(textSearchValue, filteredOptions);
     applyFilter(dispatch, applyFilterType)(filteredOptions, noResultsFound);
   };
 
@@ -91,9 +97,10 @@ export default function Filter(props) {
     }
 
     return (
-      <FilterContainerStyled>
+      <FilterContainerStyled data-qa-anchor="list-filter">
         {props.hasSearchIcon ? <FilterSearchIconStyled /> : null}
         <FilterInputStyled
+          data-qa-anchor="list-filter-input"
           isDisabled={state.isDisabled}
           onBlur={handleBlur}
           onChange={handleChangeFilter}
