@@ -51,7 +51,7 @@ export default function Filter(props) {
     }
 
     const filteredOptions = filter({ props, state, textSearchValue });
-    const noResultsFound = textSearchValue && filteredOptions.length === 0;
+    const noResultsFound = textSearchValue && (filteredOptions && filteredOptions.length === 0);
     applyFilter(dispatch, applyFilterType)(filteredOptions, noResultsFound);
   };
 
