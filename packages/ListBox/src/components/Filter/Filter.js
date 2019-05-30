@@ -45,8 +45,12 @@ export default function Filter(props) {
 
     if (props.filter) {
       setTextSearch(textSearchValue);
-      const filteredOptions = props.filter({ search: textSearchValue, state, dispatch });
-      applyFilter({ filteredOptions, noResultsFound: hasNoResults(textSearchValue, filteredOptions) });
+      const indexes = Object.keys(state.options).map(key => Number.parseInt(key, 10));
+      props.filter({ search: textSearchValue, indexes, options: state.options }).then(response => {
+        const filteredOptions = response;
+        const noResultsFound = hasNoResults(textSearchValue, filteredOptions);
+        applyFilter(dispatch, applyFilterType)(filteredOptions, noResultsFound);
+      });
       return;
     }
 

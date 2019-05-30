@@ -3,7 +3,7 @@ function escapeRegExp(str) {
   return str.replace(/[.*+?^${}()|[\]\\]/g, "\\$&"); // $& means the whole matched string
 }
 
-export const filter = ({ props, state, textSearchValue }) => {
+export const filter = ({ state, textSearchValue }) => {
   const { options } = state;
   const keys = Object.keys(options);
 
@@ -28,12 +28,6 @@ export const filter = ({ props, state, textSearchValue }) => {
 
     if (!filteredOptions.length) {
       return [];
-    }
-
-    if (props.filterExcludeSelectedOptions) {
-      return filteredOptions
-        .map(key => Number.parseInt(key, 10))
-        .filter(keyInt => !state.selectedOptions.includes(keyInt));
     }
 
     return filteredOptions.map(key => Number.parseInt(key, 10));
