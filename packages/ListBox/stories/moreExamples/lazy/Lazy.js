@@ -227,15 +227,8 @@ export default function LazyListBox() {
       {state.selectedCharacters.length ? (
         <Results charactersCache={charactersCache} ids={state.selectedCharacters} />
       ) : null}
-      <ListBox
-        filter={handleFilter}
-        hasFilter
-        height={350}
-        isDisabled={state.isDisabled}
-        isMulti
-        onChange={handleChange}
-        placeholder="Marvel API"
-      >
+      <ListBox height={350} isDisabled={state.isDisabled} isMulti onChange={handleChange} placeholder="Marvel API">
+        <ListBox.Filter filter={handleFilter} />
         <ListBox.Trigger>{renderTrigger}</ListBox.Trigger>
         <ListBox.RawItem isHidden={!state.isLoading}>Fetching data ...</ListBox.RawItem>
         {state.searchedCharacters && state.search !== "" ? renderSearchedOptions() : null}
