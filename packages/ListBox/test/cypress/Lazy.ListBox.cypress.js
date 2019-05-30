@@ -43,23 +43,21 @@ describe("Lazy ListBox", () => {
       .and("contain", "Sauron");
   });
 
-  // fails caused from error in application code, not cypress
-  // it.only("should filter and show correct options", () => {
-  //   cy.get(selectors.filterInput).type("z");
-  //   cy.get(selectors.popoverList)
-  //     .children()
-  //     .should("have.lenth", 10);
-  // });
+  it("should filter and show correct options", () => {
+    cy.get(selectors.filterInput).type("z");
+    cy.get(selectors.popoverList)
+      .children()
+      .should("have.length", 11); // 10 items results plus the divider
+  });
 
-  // fails due to same issue above
-  // it("should show correct amount when backspacing filter", () => {
-  //   cy.get(selectors.filterInput)
-  //     .type("o")
-  //     .type("{backspace}");
-  //   cy.get(selectors.popoverList)
-  //     .children()
-  //     .should("have.lenth", 55);
-  // });
+  it("should show correct amount when backspacing filter", () => {
+    cy.get(selectors.filterInput)
+      .type("o")
+      .type("{backspace}");
+    cy.get(selectors.popoverList)
+      .children()
+      .should("have.length", 55);
+  });
 
   it("should select options, and close popover while not show images when pressing cancel", () => {
     cy.contains("Namora").click();
@@ -79,15 +77,13 @@ describe("Lazy ListBox", () => {
   });
 
   // fails
-  // it("should select, click renderTrigger, then close popover", () => {
-  //   cy.get(selectors.popover).should("be.visible");
-  //   cy.contains("Namorita").click();
-  //   cy.contains("Natasha Romanoff").click();
-  //   cy.contains("Marvel API").click();
-  //   cy.contains("Marvel API").click();
-  //   cy.get("body").click("bottom");
-  //   cy.get(selectors.popover).should("not.be.visible");
-  // });
+  it("should select, click renderTrigger, then close popover", () => {
+    cy.get(selectors.popover).should("be.visible");
+    cy.contains("Namorita").click();
+    cy.contains("Natasha Romanoff").click();
+    cy.contains("Marvel API").click({ force: true });
+    cy.get(selectors.popover).should("not.be.visible");
+  });
 
   it("should load marvel characters when pressing show more", () => {
     cy.get(selectors.popoverList)

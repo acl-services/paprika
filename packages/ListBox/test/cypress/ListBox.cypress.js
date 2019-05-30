@@ -8,23 +8,28 @@ describe("ListBox single select", () => {
   });
 
   it("should select option and clear it", () => {
-    cy.contains("Punisher").click();
-    cy.get(selectors.trigger).should("contain", "Punisher");
+    const character = "Spiderman";
+    cy.contains(character).click();
+    cy.get(selectors.trigger).should("contain", character);
     cy.get(selectors.clearButton).click();
-    cy.get(selectors.trigger).should("contain", "Select one of the options");
+
+    cy.get(selectors.trigger).should("contain", "Select...");
     cy.get(selectors.clearButton).should("not.be.visible");
   });
 
   it("should scroll in popover and select option", () => {
+    const character = "Doctor Strange";
     cy.get(selectors.popoverList).scrollTo("bottom");
-    cy.contains("Hawkeye").click();
-    cy.get(selectors.trigger).should("contain", "Hawkeye");
+    cy.contains(character)
+      .should("be.visible")
+      .click();
+    cy.get(selectors.trigger).should("contain", character);
   });
 });
 
 describe("ListBox single select zIndex", () => {
   it("should have custom number of 10000", () => {
-    cy.visitStorybook("ListBox / single", "Has custom zIndex");
+    cy.visitStorybook("ListBox / cypress", "Has custom zIndex");
     toggleDropdown();
     cy.get(selectors.popover)
       .should("have.css", "z-index")
@@ -34,7 +39,7 @@ describe("ListBox single select zIndex", () => {
 
 describe("ListBox single select filter", () => {
   beforeEach(() => {
-    cy.visitStorybook("ListBox / single", "Filter");
+    cy.visitStorybook("ListBox / ListBox.Filter", "Basic Filter");
     toggleDropdown();
   });
 
@@ -61,7 +66,7 @@ describe("ListBox single select filter", () => {
 
 describe("ListBox single select label filter", () => {
   it("should filter by option label", () => {
-    cy.visitStorybook("ListBox / single", "Filter custom nodes");
+    cy.visitStorybook("ListBox / ListBox.Filter", "Custom Children Filter");
     toggleDropdown();
     cy.get(selectors.filterInput).type("sp");
     cy.get(selectors.popoverList)
@@ -86,18 +91,18 @@ describe("ListBox single select popover with getScrollContainer", () => {
 });
 
 describe("ListBox single select custom filter", () => {
-  it("should filter with correct group options or show no results", () => {
-    cy.visitStorybook("ListBox / single", "Has custom filter");
+  it.only("should filter with correct group options or show no results", () => {
+    cy.visitStorybook("ListBox / ListBox.Filter", "Custom Filter");
     toggleDropdown();
-    cy.get(selectors.filterInput).type("V");
+    cy.get(selectors.filterInput).type("P");
     cy.get(selectors.popoverList)
       .children()
-      .should("have.length", 8);
-    cy.get(selectors.filterInput).type("{backspace}H");
+      .should("have.length", 2);
+    cy.get(selectors.filterInput).type("{backspace}");
     cy.get(selectors.popoverList)
       .children()
-      .should("have.length", 9);
-    cy.get(selectors.filterInput).type("{backspace}L");
+      .should("have.length", 7);
+    cy.get(selectors.filterInput).type("{backspace}ZZZ");
     cy.get(selectors.popoverList)
       .children()
       .should("have.length", 0);

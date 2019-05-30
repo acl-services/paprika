@@ -5,12 +5,20 @@ import { images } from "../fixtures/images";
 
 import * as characters from "../fixtures/characters";
 
-export const Basic = () => <ListBox>{characters.heroes}</ListBox>;
+export const Basic = () => (
+  <ListBox>
+    {characters.villians}
+    {characters.antiheroes}
+    {characters.heroes}
+  </ListBox>
+);
 
 export const BasicWithEmptyOption = () => (
   <ListBox>
     <ListBox.Option label="">&nbsp;</ListBox.Option>
     {characters.heroes}
+    {characters.villians}
+    {characters.antiheroes}
   </ListBox>
 );
 
