@@ -151,7 +151,7 @@ describe("Listbox single select", () => {
 
     fireEvent.click(getByText(/Select/));
     fireEvent.change(getByTestId("list-filter-input"), { target: { value: "g" } });
-    expect(getByTestId("no-result-filter")).toBeInTheDocument();
+    expect(getByTestId("no-results")).toBeInTheDocument();
     expect(getByText("No match")).toBeInTheDocument();
   });
 
