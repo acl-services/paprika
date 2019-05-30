@@ -46,11 +46,17 @@ export default function Filter(props) {
     if (props.filter) {
       setTextSearch(textSearchValue);
       const indexes = Object.keys(state.options).map(key => Number.parseInt(key, 10));
-      props.filter({ search: textSearchValue, indexes, options: state.options }).then(response => {
-        const filteredOptions = response;
-        const noResultsFound = hasNoResults(textSearchValue, filteredOptions);
-        applyFilter(dispatch, applyFilterType)(filteredOptions, noResultsFound);
-      });
+
+      if (Object.prototype.hasOwnProperty.call(props.filter, "then")) {
+        // detecting if it's a promise
+        props.filter({ search: textSearchValue, indexes, options: state.options }).then(response => {
+          const filteredOptions = response;
+          const noResultsFound = hasNoResults(textSearchValue, filteredOptions);
+          applyFilter(dispatch, applyFilterType)(filteredOptions, noResultsFound);
+        });
+      } else {
+        props.filter({ search: textSearchValue });
+      }
       return;
     }
 
