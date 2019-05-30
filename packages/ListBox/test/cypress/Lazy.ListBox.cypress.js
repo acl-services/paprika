@@ -91,9 +91,5 @@ describe("Lazy ListBox", () => {
       .and("not.contain", "Sentinel");
     shouldShowMore("Show more (20 / 45)", 75, "Show more (40 / 45)");
     cy.get(selectors.popoverList).scrollTo("bottom");
-    shouldShowMore("Show more (20 / 196)", 95, "Show more (40 / 196)");
-    cy.get(selectors.popoverList)
-      .should("contain", "Nightcrawler")
-      .and("contain", "Sentinel");
   });
 });
