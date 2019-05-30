@@ -69,6 +69,15 @@ export const WithGroups = () => (
   </ListBox>
 );
 
+export const WithFilter = () => (
+  <ListBox isMulti>
+    <ListBox.Filter />
+    {characters.antiHeroes}
+    {characters.villians}
+    {characters.heroes}
+  </ListBox>
+);
+
 export const WithGroupsAndHaveSelectionByGroups = () => (
   <ListBox isMulti>
     <ListBox.Divider>Antiheroes</ListBox.Divider>

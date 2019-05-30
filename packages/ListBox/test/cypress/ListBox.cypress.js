@@ -29,7 +29,7 @@ describe("ListBox single select", () => {
 
 describe("ListBox single select zIndex", () => {
   it("should have custom number of 10000", () => {
-    cy.visitStorybook("ListBox / cypress", "Has custom zIndex");
+    cy.visitStorybook("ListBox / single", "Custom z-index");
     toggleDropdown();
     cy.get(selectors.popover)
       .should("have.css", "z-index")
@@ -91,7 +91,7 @@ describe("ListBox single select popover with getScrollContainer", () => {
 });
 
 describe("ListBox single select custom filter", () => {
-  it.only("should filter with correct group options or show no results", () => {
+  it("should filter with correct group options or show no results", () => {
     cy.visitStorybook("ListBox / ListBox.Filter", "Custom Filter");
     toggleDropdown();
     cy.get(selectors.filterInput).type("P");
@@ -103,10 +103,11 @@ describe("ListBox single select custom filter", () => {
       .children()
       .should("have.length", 7);
     cy.get(selectors.filterInput).type("{backspace}ZZZ");
-    cy.get(selectors.popoverList)
-      .children()
-      .should("have.length", 0);
-    cy.get(selectors.popover).should("contain", "Your search did not match any options.");
+    cy.get(selectors.popoverList).then($e => {
+      expect($e.find("ul").children().length).to.be.equal(0);
+    });
+
+    cy.get(selectors.noResults).should("contain", "Your search did not match any options.");
   });
 });
 
@@ -120,13 +121,16 @@ describe("ListBox multi select filter", () => {
     cy.get(selectors.filterInput).type("w");
     cy.get(selectors.popoverList)
       .children()
-      .should("have.length", 3)
+      .should("have.length", 4)
       .contains(/spawn/i)
       .click();
+
     cy.contains(/wolverine/i).click();
     cy.contains(/catwoman/i).click();
     cy.contains("li", /spawn/i).click();
-    cy.get("body").click();
+
+    cy.get("body").click({ force: true });
+
     cy.get(selectors.trigger)
       .should("contain", "(2)")
       .and("contain", "Wolverine, Catwoman");
@@ -143,45 +147,6 @@ describe("ListBox multi select filter", () => {
     cy.get(selectors.trigger)
       .should("contain", "(2)")
       .and("contain", "Catwoman, Thunderbolts");
-  });
-});
-
-describe("ListBox multi select hideOptionOnSelected", () => {
-  it("should hide selected options", () => {
-    cy.visitStorybook("ListBox / multi", "With hide option on selection");
-    toggleDropdown();
-    cy.get(selectors.popoverList)
-      .children()
-      .should("have.length", 7)
-      .contains(/spawn/i)
-      .click();
-    cy.contains(/wolverine/i).click();
-    cy.contains(/deadpool/i).click();
-    cy.get(selectors.popoverList)
-      .children()
-      .should("have.length", 4);
-  });
-});
-
-describe("ListBox multi select hide selections on filter", () => {
-  it("should not show selected options in popover when filtering", () => {
-    cy.visitStorybook("ListBox / multi", "Has filter exclude selected options");
-    toggleDropdown();
-    cy.get(selectors.filterInput).type("wo");
-    cy.get(selectors.popoverList)
-      .children()
-      .should("have.length", 3);
-    cy.get(selectors.filterInput)
-      .type("{backspace}")
-      .type("{backspace}");
-    cy.get(selectors.popoverList)
-      .contains(/catwoman/i)
-      .click();
-    cy.contains(/wolverine/i).click();
-    cy.get(selectors.filterInput).type("wo");
-    cy.get(selectors.popoverList)
-      .children()
-      .should("have.length", 1);
   });
 });
 

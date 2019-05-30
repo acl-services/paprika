@@ -110,3 +110,10 @@ export const WithContainerScroll = () => (
     <p style={{ height: 1000 }} />
   </React.Fragment>
 );
+
+export const WithCustomZIndex = () => (
+  <ListBox>
+    <ListBox.Popover zIndex={10000}>Anti-Heroes</ListBox.Popover>
+    {characters.antiheroes}
+  </ListBox>
+);
