@@ -47,7 +47,7 @@ export default function Filter(props) {
       setTextSearch(textSearchValue);
 
       const result = props.filter({ search: textSearchValue });
-      if (result.then) {
+      if (result && result.then) {
         // detecting if it's a promise
         result.then(response => {
           const filteredOptions = response;
