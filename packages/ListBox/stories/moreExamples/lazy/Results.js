@@ -1,34 +1,49 @@
-/* eslint-disable react/no-multi-comp, react/prop-types */
 import React from "react";
 
 export default function Results(props) {
   return (
-    <div css="margin-bottom: 32px; display: grid; grid-template-columns: 18vw 18vw 18vw 18vw 18vw; grid-gap: 10px;">
+    <div
+      style={{
+        "grid-gap": "32px",
+        "grid-template-columns": "16vw 16vw 16vw",
+        display: "grid",
+        marginBottom: "32px",
+      }}
+    >
       {props.ids.map(id => (
         <div
           key={id}
-          css="width: 100%; height: 210px; border-radius: 3px; border: 1px solid #CCC; padding: 4px; margin-right: 4px;"
+          style={{
+            border: "1px solid #CCC",
+            borderRadius: "3px",
+            height: "210px",
+            marginRight: "4px",
+            padding: "4px",
+            width: "100%",
+          }}
         >
           <div
-            css={`
-              width: 100%;
-              height: 100%;
-              overflow: hidden;
-              background: url(${props.charactersCache[id].thumbnail.path}.${props.charactersCache[id].thumbnail.extension});
-              background-size: cover;
-            `}
+            style={{
+              background: `url(${props.charactersCache[id].thumbnail.path}.${
+                props.charactersCache[id].thumbnail.extension
+              })`,
+              backgroundSize: "cover",
+              height: "100%",
+              overflow: "hidden",
+              width: "100%",
+            }}
           />
           <span
-            css="
-              display: inline-block;
-              color: #fff;
-              width: 100%;
-              padding: 4px;
-              font-size: 14px;
-              position: relative;
-              top: -40px;
-              background: rgba(0, 0, 0, 0.8);
-            "
+            style={{
+              background: "rgba(0, 0, 0, 0.8)",
+              color: "#fff",
+              display: "inline-block",
+              fontSize: "14px",
+              padding: "4px",
+              position: "relative",
+              top: "-40px",
+              width: "calc(100% - 8px)",
+            }}
           >
             {props.charactersCache[id].name}
           </span>

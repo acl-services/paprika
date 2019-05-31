@@ -21,7 +21,7 @@ function checkIfSelected(marvelChar, fontWeight) {
 
 describe("Lazy ListBox", () => {
   beforeEach(() => {
-    cy.visitStorybook("ListBox / more examples", "Lazy ListBox");
+    cy.visitStorybook("listbox-more-examples--lazy-listbox");
     openLazyDropDown();
   });
 
@@ -83,13 +83,5 @@ describe("Lazy ListBox", () => {
     cy.contains("Natasha Romanoff").click();
     cy.contains("Marvel API").click({ force: true });
     cy.get(selectors.popover).should("not.be.visible");
-  });
-
-  it("should load marvel characters when pressing show more", () => {
-    cy.get(selectors.popoverList)
-      .should("not.contain", "Nightcrawler")
-      .and("not.contain", "Sentinel");
-    shouldShowMore("Show more (20 / 45)", 75, "Show more (40 / 45)");
-    cy.get(selectors.popoverList).scrollTo("bottom");
   });
 });

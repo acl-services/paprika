@@ -1,4 +1,3 @@
-/* eslint-disable react/no-multi-comp, react/prop-types */
 import React from "react";
 
 export default function MarvelOption(props) {
@@ -7,7 +6,7 @@ export default function MarvelOption(props) {
     <React.Fragment>
       <img
         alt={result.name}
-        css="width: 24px; height: 24px;"
+        style={{ width: "24px", height: "24px" }}
         src={`${result.thumbnail.path}.${result.thumbnail.extension}`}
       />
       {result.name}

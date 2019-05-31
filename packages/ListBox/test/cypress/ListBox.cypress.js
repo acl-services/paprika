@@ -3,7 +3,7 @@ import { toggleDropdown } from "../helpers/toggleHelpers";
 
 describe("ListBox single select", () => {
   beforeEach(() => {
-    cy.visitStorybook("ListBox / single", "Basic");
+    cy.visitStorybook("listbox-single--basic");
     toggleDropdown();
   });
 
@@ -29,7 +29,7 @@ describe("ListBox single select", () => {
 
 describe("ListBox single select zIndex", () => {
   it("should have custom number of 10000", () => {
-    cy.visitStorybook("ListBox / single", "Custom z-index");
+    cy.visitStorybook("listbox-single--custom-z-index");
     toggleDropdown();
     cy.get(selectors.popover)
       .should("have.css", "z-index")
@@ -39,7 +39,7 @@ describe("ListBox single select zIndex", () => {
 
 describe("ListBox single select filter", () => {
   beforeEach(() => {
-    cy.visitStorybook("ListBox / ListBox.Filter", "Basic Filter");
+    cy.visitStorybook("listbox-listbox-filter--basic-filter");
     toggleDropdown();
   });
 
@@ -66,7 +66,7 @@ describe("ListBox single select filter", () => {
 
 describe("ListBox single select label filter", () => {
   it("should filter by option label", () => {
-    cy.visitStorybook("ListBox / ListBox.Filter", "Custom Children Filter");
+    cy.visitStorybook("listbox-listbox-filter--custom-children-filter");
     toggleDropdown();
     cy.get(selectors.filterInput).type("sp");
     cy.get(selectors.popoverList)
@@ -79,7 +79,7 @@ describe("ListBox single select label filter", () => {
 describe("ListBox single select popover with getScrollContainer", () => {
   // can't create a failing test
   it("should scroll with trigger", () => {
-    cy.visitStorybook("ListBox / single", "Has scroll connected to element");
+    cy.visitStorybook("listbox-single--has-scroll-connected-to-element");
     toggleDropdown();
     cy.scrollTo("top");
     cy.get(selectors.popover)
@@ -92,7 +92,7 @@ describe("ListBox single select popover with getScrollContainer", () => {
 
 describe("ListBox single select custom filter", () => {
   it("should filter with correct group options or show no results", () => {
-    cy.visitStorybook("ListBox / ListBox.Filter", "Custom Filter");
+    cy.visitStorybook("listbox-listbox-filter--custom-filter");
     toggleDropdown();
     cy.get(selectors.filterInput).type("P");
     cy.get(selectors.popoverList)
@@ -113,7 +113,7 @@ describe("ListBox single select custom filter", () => {
 
 describe("ListBox multi select filter", () => {
   beforeEach(() => {
-    cy.visitStorybook("ListBox / multi", "With Filter");
+    cy.visitStorybook("listbox-multi--with-filter");
     toggleDropdown();
   });
 
@@ -174,7 +174,7 @@ describe("ListBox filterSelect from moreExamples", () => {
   }
 
   beforeEach(() => {
-    cy.visitStorybook("ListBox / more examples", "Filter select");
+    cy.visitStorybook("listbox-more-examples--filter-select");
   });
 
   it("should show correct options in list and trigger when color filtering", () => {
