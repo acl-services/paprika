@@ -1,18 +1,6 @@
 import selectors from "../helpers/selectors";
 import { openLazyDropDown } from "../helpers/toggleHelpers";
 
-function shouldShowMore(beforeShowMore, assertedLength, afterShowMore) {
-  cy.contains(beforeShowMore).click();
-  cy.get(selectors.popoverList)
-    .should("be.visible")
-    .then(() => {
-      cy.get(selectors.popoverList)
-        .children()
-        .and("have.length", assertedLength);
-    })
-    .should("contain", afterShowMore);
-}
-
 function checkIfSelected(marvelChar, fontWeight) {
   cy.contains(marvelChar)
     .should("have.css", "font-weight")
