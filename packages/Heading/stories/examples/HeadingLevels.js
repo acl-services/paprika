@@ -80,12 +80,6 @@ const HeadingLevelsStory = () => {
       <Heading level={6} isLight>
         Heading Six with isLight
       </Heading>
-      <br />
-      <Rule />
-      <h5>&lt;Heading&gt; with invalid level</h5>
-      <Rule />
-      <Heading level={-5}>Heading -5</Heading>
-      <Heading level={9}>Heading 9</Heading>
     </Story>
   );
 };

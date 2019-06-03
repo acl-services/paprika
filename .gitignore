@@ -31,3 +31,9 @@ node_modules/
 
 # storybook build
 storybook-dist
+
+# Tokens
+packages/Tokens/src/tokens.js 
+packages/Tokens/src/tokens.json
+packages/Tokens/src/tokens.mdx
+packages/Tokens/src/tokens.scss

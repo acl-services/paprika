@@ -19,6 +19,7 @@
     "@paprika/raw-button": "^0.1.0",
     "@paprika/stylers": "^0.1.0",
     "@paprika/tokens": "^0.1.0",
+    "focus-trap-react": "^6.0.0",
     "prop-types": "^15.7.2"
   },
   "peerDependencies": {

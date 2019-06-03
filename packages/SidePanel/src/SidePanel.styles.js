@@ -1,29 +1,50 @@
 import { css, keyframes } from "styled-components";
 
-const slideIn = () => keyframes`
-    from {
-      opacity: 0;
-      transform: translateX(-500);
-    }
+function slideIn(width) {
+  return keyframes`
+  from {
+    opacity: 0;
+    right: -${width};
+  }
 
-    to {
-      opacity: 1;
-      transform: translateX(0);
-    }
-`;
+  to {
+    opacity: 1;
+    right: 0;
+  }
+  `;
+}
 
-export const container = css`
+function slideOut(width) {
+  return keyframes`
+  from {
+    opacity: 1;
+    right: 0;
+  }
+
+  to {
+    opacity: 0;
+    right: -${width};
+  }
+  `;
+}
+
+export const sidePanelStyles = css`
+  background: #fff;
   box-sizing: border-box;
-  border: 1px solid red;
-  position: absolute;
   height: 100%;
+  position: fixed;
+  top: 0;
 
   ${props => {
-    return `
-      animation: ${slideIn} ease 0.5;
-      right: ${props.offsetRigth}px;
-      width: ${props.width};
-      height: calc(100vh-${props.offsetY});
+    const width = Number.isNaN(Number(props.width)) ? props.width : `${props.width}px`;
+    const animation = props.isOpen ? slideIn(width) : slideOut(width);
+
+    return css`
+      animation: ${animation} 0.5s ease;
+      right: 0;
+      width: ${width};
+      z-index: ${props.zIndex};
+      ${props.isOpen ? "opacity: 1" : "opacity: 0"};
     `;
   }}
 `;
