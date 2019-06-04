@@ -41,12 +41,24 @@ const SidePanelStory = () => {
 
 storiesOf("SidePanel", module).add("Basic", () => <SidePanelStory />);
 
-storiesOf("SidePanel", module).add("Header", () => (
+storiesOf("SidePanel", module).add("SidePanel.Header", () => (
   <SidePanel isOpen>
     <SidePanel.Header>
       <Heading level={2}>With Header</Heading>
     </SidePanel.Header>
     <input type="text" />
     <button type="button">button</button>
+  </SidePanel>
+));
+
+storiesOf("SidePanel", module).add("SidePanel.Content", () => (
+  <SidePanel isOpen>
+    <SidePanel.Header>
+      <Heading level={2}>With Header</Heading>
+    </SidePanel.Header>
+    <SidePanel.Content>
+      <input type="text" />
+      <button type="button">button</button>
+    </SidePanel.Content>
   </SidePanel>
 ));

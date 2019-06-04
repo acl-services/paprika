@@ -16,8 +16,8 @@ export default function Header(props) {
   return (
     <div css={headerCSS}>
       <div>{props.children}</div>
-      <div className="close-button-container">
-        <Button.Close isDark isSemantic={false} />
+      <div>
+        <Button.Close isSemantic={false} size="small" />
       </div>
     </div>
   );

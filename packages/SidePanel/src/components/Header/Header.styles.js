@@ -1,20 +1,26 @@
+import { fontSize } from "@paprika/stylers/lib/helpers";
 import tokens from "@paprika/tokens/lib/tokens";
 import { css } from "styled-components";
 
 const space = Number.parseInt(tokens.space, 10);
 export const headerCSS = css`
-  align-item: center;
-  background: ${tokens.color.purple};
-  border: 1px solid transparent;
+  background: ${tokens.color.white};
+  border-bottom: 1px solid ${tokens.border.color};
   box-sizing: border-box;
-  color: ${tokens.color.white};
+  color: ${tokens.color.black};
   display: flex;
   justify-content: space-between;
-  padding-left: ${space}px;
-  padding-right: ${space}px;
+  padding: 12px ${space}px; // creates a 48px height
   width: 100%;
+  align-items: center;
 
-  .close-button-container {
-    align-self: center;
+  .heading--level-1,
+  .heading--level-2,
+  .heading--level-3,
+  .heading--level-4,
+  .heading--level-5 {
+    ${fontSize()};
+    font-weight: 400;
+    margin: 0;
   }
 `;

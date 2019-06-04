@@ -29,13 +29,13 @@ function slideOut(width) {
   `;
 }
 
-export const sidePanelStyles = css`
+export const dialogStyles = css`
   background: #fff;
   box-shadow: ${tokens.modal.shadow};
   box-sizing: border-box;
   height: 100%;
-  position: fixed;
   top: 0;
+  position: fixed;
 
   ${props => {
     const width = Number.isNaN(Number(props.width)) ? props.width : `${props.width}px`;
