@@ -1,4 +1,5 @@
 import { css, keyframes } from "styled-components";
+import tokens from "@paprika/tokens/lib/tokens";
 
 function slideIn(width) {
   return keyframes`
@@ -30,6 +31,7 @@ function slideOut(width) {
 
 export const sidePanelStyles = css`
   background: #fff;
+  box-shadow: ${tokens.modal.shadow};
   box-sizing: border-box;
   height: 100%;
   position: fixed;

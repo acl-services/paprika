@@ -5,16 +5,11 @@ import FocusTrap from "focus-trap-react/dist/focus-trap-react";
 import { sidePanelStyles } from "./SidePanel.styles";
 import Overlay from "./components/Overlay";
 import Trigger from "./components/Trigger";
+import Header from "./components/Header";
 
 const propTypes = {
   /** The content for the SidePanel. */
   children: PropTypes.node.isRequired,
-
-  /**
-   * Modify the side for displaying the SidePanel [left, right] Default is right
-   * @string One of the keys in the Object slideDirection
-   */
-  slideDirection: PropTypes.oneOf(["left", "right"]),
 
   /** The width of the open panel. */
   width: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
@@ -49,12 +44,17 @@ const defaultProps = {
 function extractChildren(children) {
   let SidePanelOverlay = null;
   let SidePanelTrigger = null;
+  let SidePanelHeader = null;
+
   const rest = [];
   React.Children.toArray(children).forEach(child => {
     if (child.type) {
       switch (child.type.componentType) {
         case "SidePanel.Overlay":
           SidePanelOverlay = child;
+          break;
+        case "SidePanel.Header":
+          SidePanelHeader = child;
           break;
         case "SidePanel.Trigger":
           SidePanelTrigger = child;
@@ -65,7 +65,7 @@ function extractChildren(children) {
     }
   });
 
-  return { Trigger: SidePanelTrigger, Overlay: SidePanelOverlay, children: rest };
+  return { Trigger: SidePanelTrigger, Overlay: SidePanelOverlay, Header: SidePanelHeader, children: rest };
 }
 
 function SidePanel(props) {
@@ -75,7 +75,9 @@ function SidePanel(props) {
   const refTrigger = React.useRef(null);
   const refSidePanel = React.useRef(null);
 
-  const { Trigger: TriggerExtracted, Overlay: OverlayExtracted, children } = extractChildren(props.children);
+  const { Trigger: TriggerExtracted, Overlay: OverlayExtracted, Header: HeaderExtracted, children } = extractChildren(
+    props.children
+  );
 
   const handleEscKey = event => {
     if (event.key === "Escape") {
@@ -125,6 +127,7 @@ function SidePanel(props) {
             {...moreProps}
             css={sidePanelStyles}
           >
+            {HeaderExtracted}
             {children}
           </div>
         </FocusTrap>
@@ -134,12 +137,14 @@ function SidePanel(props) {
       )
     : null;
 
-  return [React.cloneElement(TriggerExtracted, { ref: refTrigger }), sidePanel];
+  const trigger = TriggerExtracted ? React.cloneElement(TriggerExtracted, { ref: refTrigger }) : null;
+  return [trigger, sidePanel];
 }
 
 SidePanel.propTypes = propTypes;
 SidePanel.defaultProps = defaultProps;
 SidePanel.Overlay = Overlay;
 SidePanel.Trigger = Trigger;
+SidePanel.Header = Header;
 
 export default SidePanel;

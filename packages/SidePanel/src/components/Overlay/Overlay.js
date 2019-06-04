@@ -1,6 +1,7 @@
 import React from "react";
 import PropTypes from "prop-types";
 import RawButton from "@paprika/raw-button";
+import { visuallyHidden } from "@paprika/stylers/lib/includes";
 import { overlayCSS } from "./Overlay.styles";
 
 const propTypes = {
@@ -36,9 +37,11 @@ export default function Overlay(props) {
     }
   };
 
+  const vh = visuallyHidden;
+
   return (
-    <RawButton {...moreProps} onClick={handleClick} css={overlayCSS}>
-      Close
+    <RawButton as="div" {...moreProps} onClick={handleClick} css={overlayCSS}>
+      <span css={vh}>Close</span>
     </RawButton>
   );
 }

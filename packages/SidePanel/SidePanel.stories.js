@@ -1,5 +1,7 @@
 import React from "react";
 import { storiesOf } from "@storybook/react";
+import Heading from "@paprika/Heading";
+
 import SidePanel from "./src";
 
 const SidePanelStory = () => {
@@ -38,3 +40,13 @@ const SidePanelStory = () => {
 };
 
 storiesOf("SidePanel", module).add("Basic", () => <SidePanelStory />);
+
+storiesOf("SidePanel", module).add("Header", () => (
+  <SidePanel isOpen>
+    <SidePanel.Header>
+      <Heading level={2}>With Header</Heading>
+    </SidePanel.Header>
+    <input type="text" />
+    <button type="button">button</button>
+  </SidePanel>
+));
