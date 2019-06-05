@@ -34,8 +34,9 @@ export const dialogStyles = css`
   box-shadow: ${tokens.modal.shadow};
   box-sizing: border-box;
   height: 100%;
-  top: 0;
+  overflow: auto;
   position: fixed;
+  top: 0;
 
   ${props => {
     const width = Number.isNaN(Number(props.width)) ? props.width : `${props.width}px`;

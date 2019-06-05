@@ -26,9 +26,6 @@ const propTypes = {
   /** Callback for onClose event */
   onClose: PropTypes.func,
 
-  /** Will render the sidepanel as a column instead of using a portal */
-  isInline: PropTypes.bool,
-
   /**
    * Control the visibility of the side panel. This prop makes the side panel
    */
@@ -42,7 +39,6 @@ const propTypes = {
 };
 
 const defaultProps = {
-  isInline: false,
   offsetY: 0,
   onClose: () => {},
   onEscKey: null,
@@ -52,16 +48,24 @@ const defaultProps = {
 };
 
 function SidePanel(props) {
+  // Props
+  const { onClose, onOpen, onEscKey, width, ...moreProps } = props;
+
+  // Hooks
   const [isSidePanelMounted, setMount] = React.useState(props.isOpen);
   const offsetScroll = useOffsetScroll(props.offsetY);
-  const { onClose, onOpen, onEscKey, isInline, width, ...moreProps } = props;
+
+  // Refs
   const refTrigger = React.useRef(null);
   const refSidePanel = React.useRef(null);
+  const refHeader = React.useRef(null);
 
+  // Extracts
   const { Trigger: TriggerExtracted, Overlay: OverlayExtracted, Header: HeaderExtracted, children } = extractChildren(
     props.children
   );
 
+  // Handlers
   const handleEscKey = event => {
     if (event.key === "Escape") {
       if (!props.isOpen) {
@@ -71,17 +75,6 @@ function SidePanel(props) {
       }
     }
   };
-
-  React.useEffect(() => {
-    document.addEventListener("keydown", handleEscKey, false);
-    if (props.isOpen) {
-      setMount(true);
-    }
-
-    return () => {
-      document.removeEventListener("keyUp", handleEscKey);
-    };
-  }, [props.isOpen]);
 
   const handleAnimationEnd = () => {
     if (!props.isOpen) {
@@ -96,21 +89,39 @@ function SidePanel(props) {
 
     onOpen();
   };
+  // Effects
+  React.useEffect(() => {
+    document.addEventListener("keydown", handleEscKey, false);
+    if (props.isOpen) {
+      setMount(true);
+    }
+
+    return () => {
+      document.removeEventListener("keyUp", handleEscKey);
+    };
+  }, [props.isOpen]);
+
+  const focusTrapOptions = {
+    fallbackFocus: () => {
+      return refHeader.current;
+    },
+    clickOutsideDeactivates: true,
+  };
 
   let sidePanel = null;
 
   if (isSidePanelMounted) {
     sidePanel = ReactDOM.createPortal(
       <React.Fragment>
-        <FocusTrap focusTrapOptions={{ clickOutsideDeactivates: true }}>
+        <FocusTrap focusTrapOptions={focusTrapOptions}>
           <Dialog
             handleAnimationEnd={handleAnimationEnd}
             width={width}
             ref={refSidePanel}
-            isInline={isInline}
             header={HeaderExtracted}
             {...moreProps}
             offsetY={offsetScroll}
+            refHeader={refHeader}
           >
             {children}
           </Dialog>

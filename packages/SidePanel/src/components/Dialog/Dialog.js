@@ -5,10 +5,10 @@ import { dialogStyles } from "./Dialog.styles";
 const propTypes = {
   handleAnimationEnd: PropTypes.func.isRequired,
   width: PropTypes.oneOfType([PropTypes.string, PropTypes.number]).isRequired,
-  isInline: PropTypes.bool.isRequired,
   header: PropTypes.node,
   children: PropTypes.node.isRequired,
   offsetY: PropTypes.number,
+  refHeader: PropTypes.shape({ current: PropTypes.instanceOf(Element) }).isRequired,
 };
 
 const defaultProps = {
@@ -17,13 +17,12 @@ const defaultProps = {
 };
 
 const Dialog = React.forwardRef((props, ref) => {
-  const { header, children, handleAnimationEnd, width, isInline, ...moreProps } = props;
+  const { header, refHeader, children, handleAnimationEnd, width, ...moreProps } = props;
 
   return (
     <div
       aria-modal="true"
       css={dialogStyles}
-      isInline={isInline}
       offsetY={props.offsetY}
       onAnimationEnd={handleAnimationEnd}
       ref={ref}
@@ -31,7 +30,7 @@ const Dialog = React.forwardRef((props, ref) => {
       width={width}
       {...moreProps}
     >
-      {header}
+      {header ? React.cloneElement(header, { ...header.props, ref: refHeader }) : null}
       {children}
     </div>
   );
