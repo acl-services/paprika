@@ -42,6 +42,7 @@ export const dialogStyles = css`
     const animation = props.isOpen ? slideIn(width) : slideOut(width);
 
     return css`
+      top: ${props.offsetY}px;
       animation: ${animation} 0.5s ease;
       right: 0;
       width: ${width};

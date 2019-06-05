@@ -12,6 +12,7 @@ const SidePanelStory = () => {
 
   return (
     <React.Fragment>
+      hello lets open a sidepanel
       <SidePanel isOpen={isOpen}>
         <SidePanel.Trigger onClick={toggle}>{isOpen ? "close" : "open"}</SidePanel.Trigger>
         <SidePanel.Overlay onClick={toggle} />
@@ -61,4 +62,41 @@ storiesOf("SidePanel", module).add("SidePanel.Content", () => (
       <button type="button">button</button>
     </SidePanel.Content>
   </SidePanel>
+));
+
+storiesOf("SidePanel", module).add("SidePanel offsetY", () => (
+  <React.Fragment>
+    <div style={{ width: "100%", height: "40px", background: "#4B2164" }} />
+    <SidePanel isOpen offsetY={40}>
+      <SidePanel.Header>
+        <Heading level={2}>With Header</Heading>
+      </SidePanel.Header>
+      <SidePanel.Content>
+        <input type="text" />
+        <button type="button">button</button>
+      </SidePanel.Content>
+    </SidePanel>
+  </React.Fragment>
+));
+
+function Line() {
+  return <div style={{ width: "100%", margin: "4px", height: "25px", background: "#EEE" }} />;
+}
+
+storiesOf("SidePanel", module).add("SidePanel Scroll Sticky", () => (
+  <React.Fragment>
+    <div style={{ width: "100%", height: "40px", background: "#4B2164" }} />
+    {[...Object.keys(Array(100).fill(null))].map(() => (
+      <Line />
+    ))}
+    <SidePanel isOpen offsetY={40}>
+      <SidePanel.Header>
+        <Heading level={2}>With Header</Heading>
+      </SidePanel.Header>
+      <SidePanel.Content>
+        <input type="text" />
+        <button type="button">button</button>
+      </SidePanel.Content>
+    </SidePanel>
+  </React.Fragment>
 ));

@@ -8,24 +8,28 @@ const propTypes = {
   isInline: PropTypes.bool.isRequired,
   header: PropTypes.node,
   children: PropTypes.node.isRequired,
+  offsetY: PropTypes.number,
 };
 
 const defaultProps = {
   header: null,
+  offsetY: 0,
 };
 
 const Dialog = React.forwardRef((props, ref) => {
   const { header, children, handleAnimationEnd, width, isInline, ...moreProps } = props;
+
   return (
     <div
-      role="dialog"
       aria-modal="true"
-      ref={ref}
-      onAnimationEnd={handleAnimationEnd}
-      width={width}
-      isInline={isInline}
-      {...moreProps}
       css={dialogStyles}
+      isInline={isInline}
+      offsetY={props.offsetY}
+      onAnimationEnd={handleAnimationEnd}
+      ref={ref}
+      role="dialog"
+      width={width}
+      {...moreProps}
     >
       {header}
       {children}
