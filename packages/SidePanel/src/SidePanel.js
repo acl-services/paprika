@@ -100,8 +100,6 @@ function SidePanel(props) {
   let sidePanel = null;
 
   if (isSidePanelMounted) {
-    console.log("offsetScroll", offsetScroll);
-
     sidePanel = ReactDOM.createPortal(
       <React.Fragment>
         <FocusTrap focusTrapOptions={{ clickOutsideDeactivates: true }}>
@@ -117,7 +115,7 @@ function SidePanel(props) {
             {children}
           </Dialog>
         </FocusTrap>
-        {OverlayExtracted}
+        {OverlayExtracted ? React.cloneElement(OverlayExtracted, { ...OverlayExtracted.props, onClose }) : null}
       </React.Fragment>,
       document.body
     );

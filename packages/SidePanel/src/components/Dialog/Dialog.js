@@ -4,7 +4,7 @@ import { dialogStyles } from "./Dialog.styles";
 
 const propTypes = {
   handleAnimationEnd: PropTypes.func.isRequired,
-  width: PropTypes.number.isRequired,
+  width: PropTypes.oneOfType([PropTypes.string, PropTypes.number]).isRequired,
   isInline: PropTypes.bool.isRequired,
   header: PropTypes.node,
   children: PropTypes.node.isRequired,

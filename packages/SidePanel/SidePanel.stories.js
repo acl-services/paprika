@@ -6,20 +6,23 @@ import SidePanel from "./src";
 
 const SidePanelStory = () => {
   const [isOpen, setIsOpen] = React.useState(true);
-  const toggle = () => {
-    setIsOpen(state => !state);
+  const open = () => {
+    setIsOpen(true);
+  };
+
+  const close = () => {
+    setIsOpen(false);
   };
 
   return (
     <React.Fragment>
       hello lets open a sidepanel
-      <SidePanel isOpen={isOpen}>
-        <SidePanel.Trigger onClick={toggle}>{isOpen ? "close" : "open"}</SidePanel.Trigger>
-        <SidePanel.Overlay onClick={toggle} />
-        <button type="button" onClick={toggle}>
-          close
-        </button>
-
+      <SidePanel isOpen={isOpen} onClose={close}>
+        <SidePanel.Trigger onClick={open}>{isOpen ? "close" : "open"}</SidePanel.Trigger>
+        <SidePanel.Header onCloseClick={close}>
+          <Heading level={2}>SidePajusnel header</Heading>
+        </SidePanel.Header>
+        <SidePanel.Overlay />
         <label htmlFor="name">
           name: <input id="name" type="text" />
         </label>
@@ -80,7 +83,7 @@ storiesOf("SidePanel", module).add("SidePanel offsetY", () => (
 ));
 
 function Line() {
-  return <div style={{ width: "100%", margin: "4px", height: "25px", background: "#EEE" }} />;
+  return <div style={{ width: "100%", margin: "12px", height: "25px", background: "#EEE" }} />;
 }
 
 storiesOf("SidePanel", module).add("SidePanel Scroll Sticky", () => (

@@ -6,19 +6,19 @@ import { headerCSS } from "./Header.styles";
 
 const propTypes = {
   children: PropTypes.node.isRequired,
-  // onCloseClick: PropTypes.func,
-  // zIndex: PropTypes.number,
+  onCloseClick: PropTypes.func,
 };
 
-const defaultProps = {};
+const defaultProps = {
+  onCloseClick: null,
+};
 
 export default function Header(props) {
+  const { onCloseClick, ...moreProps } = props;
   return (
-    <div css={headerCSS}>
+    <div css={headerCSS} {...moreProps}>
       <div>{props.children}</div>
-      <div>
-        <Button.Close isSemantic={false} size="small" />
-      </div>
+      <div>{onCloseClick ? <Button.Close onClick={onCloseClick} isSemantic={false} size="small" /> : null}</div>
     </div>
   );
 }

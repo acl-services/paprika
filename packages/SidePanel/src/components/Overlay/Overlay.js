@@ -9,13 +9,13 @@ const propTypes = {
    * Will accept the click event on outside of the sidepanel when losing focus
    * @boolean
    */
-  // hasOutsideClick: PropTypes.bool,
+  hasOutsideClick: PropTypes.bool,
 
   /** Disable the scroll of the body when SidePanel is open. */
   // disabledBodyScroll: PropTypes.bool,
 
   background: PropTypes.string,
-  onClick: PropTypes.func,
+  onClose: PropTypes.func,
   opacity: PropTypes.string,
   /** Control the z position of the sidepanel overlay */
   zIndex: PropTypes.number,
@@ -24,16 +24,17 @@ const propTypes = {
 const defaultProps = {
   background: "#000",
   opacity: "0.2",
-  onClick: null,
+  onClose: null,
   zIndex: 99,
+  hasOutsideClick: true,
 };
 
 export default function Overlay(props) {
-  const { onClick, ...moreProps } = props;
+  const { onClose, hasOutsideClick, ...moreProps } = props;
 
   const handleClick = () => {
-    if (onClick) {
-      onClick();
+    if (hasOutsideClick) {
+      onClose();
     }
   };
 
