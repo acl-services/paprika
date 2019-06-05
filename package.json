@@ -102,7 +102,7 @@
   },
   "husky": {
     "hooks": {
-      "pre-push": "yarn lint && yarn jest && yarn prettier -- --list-different"
+      "pre-push": "yarn lint && yarn jest && yarn prettier --list-different"
     }
   },
   "jest": {
