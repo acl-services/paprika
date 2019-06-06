@@ -1,7 +1,7 @@
 /* eslint-disable react/prop-types */
 import React from "react";
 import { storiesOf } from "@storybook/react";
-import Heading from "@paprika/Heading";
+import Heading from "@paprika/heading";
 
 import Button from "@paprika/button";
 
