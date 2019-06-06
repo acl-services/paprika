@@ -1,7 +1,7 @@
 import React from "react";
 import ReactDOM from "react-dom";
 import { addParameters, configure } from "@storybook/react";
-import paprikaTheme from './paprikaTheme';
+import paprikaTheme from "./paprikaTheme";
 import axeConfig from "./axeConfig";
 
 import "./reset.scss";
@@ -9,7 +9,7 @@ import "./reset.scss";
 addParameters({
   options: {
     theme: paprikaTheme,
-  }
+  },
 });
 
 const axe = require("react-axe");

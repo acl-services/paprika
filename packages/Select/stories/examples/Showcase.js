@@ -5,11 +5,10 @@ import { ShirtSizes } from "@paprika/helpers/lib/customPropTypes";
 import Heading from "@paprika/heading";
 import SelectExample from "./SelectExample";
 
-
 const selectChildren = () => {
-  const label = 'children';
-  const defaultValue = ['Pepsi', 'Coke', 'Diet Coke', 'Canada Dry'];
-  const separator = ', ';
+  const label = "children";
+  const defaultValue = ["Pepsi", "Coke", "Diet Coke", "Canada Dry"];
+  const separator = ", ";
   const options = array(label, defaultValue, separator);
 
   return options.map(optionLabel => <option value={optionLabel}>{optionLabel}</option>);

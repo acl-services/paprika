@@ -1,5 +1,5 @@
-import { create } from '@storybook/theming';
+import { create } from "@storybook/theming";
 
 export default create({
-  brandTitle: 'Paprika Storybook',
+  brandTitle: "Paprika Storybook",
 });
