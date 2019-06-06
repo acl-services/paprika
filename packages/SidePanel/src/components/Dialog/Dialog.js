@@ -9,15 +9,17 @@ const propTypes = {
   children: PropTypes.node.isRequired,
   offsetY: PropTypes.number,
   refHeader: PropTypes.shape({ current: PropTypes.instanceOf(Element) }).isRequired,
+  isInline: PropTypes.bool,
 };
 
 const defaultProps = {
   header: null,
   offsetY: 0,
+  isInline: false,
 };
 
 const Dialog = React.forwardRef((props, ref) => {
-  const { header, refHeader, children, handleAnimationEnd, width, ...moreProps } = props;
+  const { header, refHeader, children, handleAnimationEnd, width, isInline, ...moreProps } = props;
 
   return (
     <div
@@ -28,6 +30,7 @@ const Dialog = React.forwardRef((props, ref) => {
       ref={ref}
       role="dialog"
       width={width}
+      isInline={isInline}
       {...moreProps}
     >
       {header ? React.cloneElement(header, { ...header.props, ref: refHeader }) : null}

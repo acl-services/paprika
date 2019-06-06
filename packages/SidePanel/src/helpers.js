@@ -1,28 +1,27 @@
 import React from "react";
 
-export function extractChildren(children) {
-  let SidePanelOverlay = null;
-  let SidePanelTrigger = null;
-  let SidePanelHeader = null;
+export function extractChildren(children, types) {
+  const _children = [];
+  const components = {};
+  if (Array.isArray(types)) {
+    React.Children.toArray(children).forEach(child => {
+      if (types.includes(child.type.componentType)) {
+        if (Object.prototype.hasOwnProperty.call(components, child.type.componentType)) {
+          const childs = Array.isArray(components[child.type.componentType])
+            ? [child, ...components[child.type.componentType]]
+            : [child, components[child.type.componentType]];
 
-  const rest = [];
-  React.Children.toArray(children).forEach(child => {
-    if (child.type) {
-      switch (child.type.componentType) {
-        case "SidePanel.Overlay":
-          SidePanelOverlay = child;
-          break;
-        case "SidePanel.Header":
-          SidePanelHeader = child;
-          break;
-        case "SidePanel.Trigger":
-          SidePanelTrigger = child;
-          break;
-        default:
-          rest.push(child);
+          components[child.type.componentType] = childs;
+        } else {
+          components[child.type.componentType] = child;
+        }
+      } else {
+        _children.push(child);
       }
-    }
-  });
+    });
 
-  return { Trigger: SidePanelTrigger, Overlay: SidePanelOverlay, Header: SidePanelHeader, children: rest };
+    return { ...components, children: _children };
+  }
+
+  throw new Error("extractChildren types parameter must be an Array");
 }

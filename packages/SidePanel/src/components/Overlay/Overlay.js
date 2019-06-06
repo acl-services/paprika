@@ -15,7 +15,7 @@ const propTypes = {
   // disabledBodyScroll: PropTypes.bool,
 
   background: PropTypes.string,
-  onClose: PropTypes.func,
+  onClick: PropTypes.func,
   opacity: PropTypes.string,
   /** Control the z position of the sidepanel overlay */
   zIndex: PropTypes.number,
@@ -24,17 +24,17 @@ const propTypes = {
 const defaultProps = {
   background: "#000",
   opacity: "0.2",
-  onClose: null,
+  onClick: null,
   zIndex: 99,
   hasOutsideClick: true,
 };
 
 export default function Overlay(props) {
-  const { onClose, hasOutsideClick, ...moreProps } = props;
+  const { onClick, hasOutsideClick, ...moreProps } = props;
 
   const handleClick = () => {
     if (hasOutsideClick) {
-      onClose();
+      onClick();
     }
   };
 

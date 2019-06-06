@@ -9,8 +9,13 @@ const propTypes = {
 const defaultProps = {};
 
 const Trigger = React.forwardRef((props, ref) => {
+  // IMPORTANT this button can't be semantic, doing it will create a bug
+  // for the user while interacting with the keyboard. As soon as the SidePanel
+  // opens the keyUp event of the <button /> will fire triggering the close button which is the first
+  // focusable element and will close it. Creating a weird LOOP EFFECT,
+  // making imposible to open the SidePanel
   return (
-    <Button ref={ref} {...props}>
+    <Button ref={ref} {...props} isSemantic={false}>
       {props.children}
     </Button>
   );

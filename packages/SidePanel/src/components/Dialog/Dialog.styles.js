@@ -6,11 +6,13 @@ function slideIn(width) {
   from {
     opacity: 0;
     right: -${width};
+    transform: trasnlateX(100%);
   }
 
   to {
     opacity: 1;
     right: 0;
+    transform: trasnlateX(0);
   }
   `;
 }
@@ -19,12 +21,14 @@ function slideOut(width) {
   return keyframes`
   from {
     opacity: 1;
-    right: 0;
+    right: 0; // position fixed behaviour
+    transform: trasnlateX(0); // inline position relative behaviour
   }
 
   to {
     opacity: 0;
-    right: -${width};
+    right: -${width}; // position fixed behaviour
+    transform: translateX(100%); // inline position relative behaviour
   }
   `;
 }
@@ -35,7 +39,6 @@ export const dialogStyles = css`
   box-sizing: border-box;
   height: 100%;
   overflow: auto;
-  position: fixed;
   top: 0;
 
   ${props => {
@@ -44,10 +47,11 @@ export const dialogStyles = css`
 
     return css`
       top: ${props.offsetY}px;
-      animation: ${animation} 0.5s ease;
+      animation: ${animation} 0.7s ease;
       right: 0;
       width: ${width};
       z-index: ${props.zIndex};
+      ${props.isInline ? "position:relative;" : "position: fixed;"}
       ${props.isOpen ? "opacity: 1" : "opacity: 0"};
     `;
   }}
