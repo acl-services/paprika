@@ -1,6 +1,17 @@
 import { css, keyframes } from "styled-components";
 import tokens from "@paprika/tokens/lib/tokens";
 
+const space = Number.parseInt(tokens.space, 10);
+
+const gapChildPanel = space * 7;
+const childPanel = `
+    border-top: 1px solid ${tokens.border.color};
+    height:calc(100% - ${gapChildPanel + 80}px);
+    margin-top: ${gapChildPanel}px;
+    border-top-left-radius: ${space / 2}px;
+    border-bottom-left-radius: ${space / 2}px;
+  `;
+
 function slideIn(width) {
   return keyframes`
   from {
@@ -45,6 +56,11 @@ export const dialogStyles = css`
     const width = Number.isNaN(Number(props.width)) ? props.width : `${props.width}px`;
     const animation = props.isOpen ? slideIn(width) : slideOut(width);
 
+    let childSidePanel = "";
+    if (props.kind === "child") {
+      childSidePanel = childPanel;
+    }
+
     return css`
       top: ${props.offsetY}px;
       animation: ${animation} 0.7s ease;
@@ -53,6 +69,7 @@ export const dialogStyles = css`
       z-index: ${props.zIndex};
       ${props.isInline ? "position:relative;" : "position: fixed;"}
       ${props.isOpen ? "opacity: 1" : "opacity: 0"};
+      ${childSidePanel}
     `;
   }}
 `;

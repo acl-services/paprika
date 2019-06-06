@@ -149,7 +149,7 @@ const SidePanelStoryGroup = props => {
             </SidePanel.Content>
           </SidePanel>
         ) : null}
-        <SidePanel width={400} isOpen={spChild}>
+        <SidePanel kind={props.hasExtraSidePanel ? "child" : "default"} width={400} isOpen={spChild}>
           <SidePanel.Header
             onCloseClick={() => {
               setSpChild(false);
@@ -259,8 +259,11 @@ storiesOf("SidePanel", module).add("SidePanel Header kind primary", () => (
 ));
 
 storiesOf("SidePanel", module).add("SidePanel Group", () => <SidePanelStoryGroup />);
+
 storiesOf("SidePanel", module).add("SidePanel Groups Sticky", () => <SidePanelStoryGroup hasNav offsetY={40} />);
+
 storiesOf("SidePanel", module).add("SidePanel Group with overlay", () => <SidePanelStoryGroup hasOverlayForStory />);
+
 storiesOf("SidePanel", module).add("SidePanel Groups Sticky with overlay", () => (
   <SidePanelStoryGroup hasOverlayForStory hasNav offsetY={40} />
 ));
@@ -271,4 +274,79 @@ storiesOf("SidePanel", module).add("SidePanel Groups Sticky with extra child", (
 
 storiesOf("SidePanel", module).add("SidePanel Groups interactive", () => (
   <SidePanelStoryGroup hasNav hasExtraSidePanel hasFilterIcons offsetY={40} />
+));
+
+storiesOf("SidePanel", module).add("SidePanelGroup With Child", () => (
+  <SidePanelGroup>
+    <SidePanel isOpen width={300}>
+      <SidePanel.Header onCloseClick={() => {}} kind="primary">
+        <Heading level={2}>With Header</Heading>
+      </SidePanel.Header>
+    </SidePanel>
+    <SidePanel isOpen width={300} kind="child">
+      <SidePanel.Header onCloseClick={() => {}}>
+        <Heading level={2}>With Header</Heading>
+      </SidePanel.Header>
+    </SidePanel>
+    <SidePanel isOpen width={300}>
+      <SidePanel.Header onCloseClick={() => {}} kind="primary">
+        <Heading level={2}>With Header</Heading>
+      </SidePanel.Header>
+    </SidePanel>
+    <SidePanel isOpen width={300} kind="child">
+      <SidePanel.Header onCloseClick={() => {}}>
+        <Heading level={2}>With Header</Heading>
+      </SidePanel.Header>
+    </SidePanel>
+  </SidePanelGroup>
+));
+
+storiesOf("SidePanel", module).add("SidePanelGroup With Child", () => (
+  <SidePanelGroup>
+    <SidePanel isOpen width={300}>
+      <SidePanel.Header onCloseClick={() => {}} kind="primary">
+        <Heading level={2}>With Header</Heading>
+      </SidePanel.Header>
+    </SidePanel>
+    <SidePanel isOpen width={300} kind="child">
+      <SidePanel.Header onCloseClick={() => {}}>
+        <Heading level={2}>With Header</Heading>
+      </SidePanel.Header>
+    </SidePanel>
+    <SidePanel isOpen width={300}>
+      <SidePanel.Header onCloseClick={() => {}} kind="primary">
+        <Heading level={2}>With Header</Heading>
+      </SidePanel.Header>
+    </SidePanel>
+    <SidePanel isOpen width={300} kind="child">
+      <SidePanel.Header onCloseClick={() => {}}>
+        <Heading level={2}>With Header</Heading>
+      </SidePanel.Header>
+    </SidePanel>
+  </SidePanelGroup>
+));
+
+storiesOf("SidePanel", module).add("SidePanelGroup With Child", () => (
+  <SidePanelGroup>
+    <SidePanel isOpen width={300}>
+      <SidePanel.Header onCloseClick={() => {}} kind="primary">
+        <Heading level={2}>With Header</Heading>
+      </SidePanel.Header>
+    </SidePanel>
+    <SidePanel isOpen width={300}>
+      <SidePanel.Header onCloseClick={() => {}}>
+        <Heading level={2}>With Header</Heading>
+      </SidePanel.Header>
+    </SidePanel>
+    <SidePanel isOpen width={300}>
+      <SidePanel.Header onCloseClick={() => {}} kind="primary">
+        <Heading level={2}>With Header</Heading>
+      </SidePanel.Header>
+    </SidePanel>
+    <SidePanel isOpen width={300}>
+      <SidePanel.Header onCloseClick={() => {}}>
+        <Heading level={2}>With Header</Heading>
+      </SidePanel.Header>
+    </SidePanel>
+  </SidePanelGroup>
 ));
