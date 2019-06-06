@@ -40,7 +40,7 @@ export default function Group(props) {
             ...sidePanel.props,
             isInline: true,
             key: `SidePanel_${index}`, // eslint-disable-line
-            id: `SidePanel_${index}`, // eslint-disable-line
+            id: `SidePanel_${index}`,
           })
         )}
       </div>
