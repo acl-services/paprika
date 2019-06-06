@@ -8,7 +8,7 @@ import ScreenerStory from "./examples/test/Screener";
 
 storiesOf("Textarea", module)
   .addDecorator(withKnobs)
-  .add("Showcase", () => <ShowcaseStory />)
+  .add("Showcase", ShowcaseStory)
   .add("Sizes", () => <Sizes />);
 
 storiesOf("Textarea/Automation Tests/Screener", module).add("Basic", () => {
