@@ -22,10 +22,10 @@ const iconStyles = {
 const inputStyles = props => `
   line-height: 1;
   position: relative;
-  
+
   input.form-input__input {
     ${stylers.placeholders}
-    
+
     background-color: ${tokens.color.white};
     border: 1px solid ${tokens.border.color};
     border-radius: ${tokens.border.radius};
@@ -33,7 +33,6 @@ const inputStyles = props => `
     box-sizing: border-box;
     color: ${tokens.color.black};
     display: block;
-    line-height: 1;
     margin: 0;
     padding: 0 ${stylers.spacer(3)} 0 ${tokens.space};
     transition: box-shadow 0.2s, color 0.2s;
