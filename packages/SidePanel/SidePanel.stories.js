@@ -37,15 +37,13 @@ const SidePanelStory = props => {
 
   return (
     <React.Fragment>
-      <SidePanel isOpen={isOpen} offsetY={props.offsetY}>
-        <SidePanel.Overlay onClick={close} />
+      <SidePanel isOpen={isOpen} onClose={close} offsetY={props.offsetY}>
+        <SidePanel.Overlay />
         <SidePanel.Trigger onClick={open}>{isOpen ? "close" : "open"}</SidePanel.Trigger>
-        <SidePanel.Header kind={props.kind} onCloseClick={close}>
+        <SidePanel.Header kind={props.kind}>
           <Heading level={2}>Header</Heading>
         </SidePanel.Header>
-        <SidePanel.Content>
-          <TextLine repeat={100} />
-        </SidePanel.Content>
+        Content
       </SidePanel>
     </React.Fragment>
   );
@@ -138,15 +136,13 @@ const SidePanelStoryGroup = props => {
             >
               <Heading level={2}>Parent 2</Heading>
             </SidePanel.Header>
-            <SidePanel.Content>
-              <Button
-                onClick={() => {
-                  setSpChild(state => !state);
-                }}
-              >
-                Toggle Child
-              </Button>
-            </SidePanel.Content>
+            <Button
+              onClick={() => {
+                setSpChild(state => !state);
+              }}
+            >
+              Toggle Child
+            </Button>
           </SidePanel>
         ) : null}
         <SidePanel kind={props.hasExtraSidePanel ? "child" : "default"} width={400} isOpen={spChild}>
@@ -163,7 +159,7 @@ const SidePanelStoryGroup = props => {
   );
 };
 
-storiesOf("SidePanel", module).add("Basic", () => <SidePanelStory />);
+storiesOf("SidePanel", module).add("Basic", () => <SidePanel isOpen>minimalistic</SidePanel>);
 
 storiesOf("SidePanel", module).add("Primary", () => <SidePanelStory kind="primary" />);
 
@@ -192,24 +188,23 @@ storiesOf("SidePanel", module).add("SidePanel Primary Sticky", () => (
 ));
 
 storiesOf("SidePanel", module).add("SidePanel.Header", () => (
-  <SidePanel isOpen>
+  <SidePanel
+    onClose={() => {
+      alert("onClose");
+    }}
+    isOpen
+  >
     <SidePanel.Header>
       <Heading level={2}>With Header</Heading>
     </SidePanel.Header>
-    <input type="text" />
-    <button type="button">button</button>
   </SidePanel>
 ));
 
-storiesOf("SidePanel", module).add("SidePanel.Content", () => (
+storiesOf("SidePanel", module).add("SidePanel.Header without close button", () => (
   <SidePanel isOpen>
-    <SidePanel.Header>
+    <SidePanel.Header hasCloseButton={false}>
       <Heading level={2}>With Header</Heading>
     </SidePanel.Header>
-    <SidePanel.Content>
-      <input type="text" />
-      <button type="button">button</button>
-    </SidePanel.Content>
   </SidePanel>
 ));
 
@@ -220,10 +215,8 @@ storiesOf("SidePanel", module).add("SidePanel offsetY", () => (
       <SidePanel.Header>
         <Heading level={2}>With Header</Heading>
       </SidePanel.Header>
-      <SidePanel.Content>
-        <input type="text" />
-        <button type="button">button</button>
-      </SidePanel.Content>
+      <input type="text" />
+      <button type="button">button</button>
     </SidePanel>
   </React.Fragment>
 ));
@@ -242,10 +235,8 @@ storiesOf("SidePanel", module).add("SidePanel Scroll Sticky", () => (
       <SidePanel.Header>
         <Heading level={2}>With Header</Heading>
       </SidePanel.Header>
-      <SidePanel.Content>
-        <input type="text" />
-        <button type="button">button</button>
-      </SidePanel.Content>
+      <input type="text" />
+      <button type="button">button</button>
     </SidePanel>
   </React.Fragment>
 ));
@@ -301,7 +292,7 @@ storiesOf("SidePanel", module).add("SidePanelGroup With Child", () => (
   </SidePanelGroup>
 ));
 
-storiesOf("SidePanel", module).add("SidePanelGroup With Child", () => (
+storiesOf("SidePanel", module).add("<SidePanelGroup  /> kind child", () => (
   <SidePanelGroup>
     <SidePanel isOpen width={300}>
       <SidePanel.Header onCloseClick={() => {}} kind="primary">
@@ -326,27 +317,48 @@ storiesOf("SidePanel", module).add("SidePanelGroup With Child", () => (
   </SidePanelGroup>
 ));
 
-storiesOf("SidePanel", module).add("SidePanelGroup With Child", () => (
-  <SidePanelGroup>
-    <SidePanel isOpen width={300}>
-      <SidePanel.Header onCloseClick={() => {}} kind="primary">
+storiesOf("SidePanel", module).add("<SidePanel onClose={} />", () => (
+  <React.Fragment>
+    <SidePanel
+      onClose={() => {
+        alert("onClose");
+      }}
+      isOpen
+    >
+      <SidePanel.Overlay />
+      <SidePanel.Header>
         <Heading level={2}>With Header</Heading>
       </SidePanel.Header>
     </SidePanel>
-    <SidePanel isOpen width={300}>
-      <SidePanel.Header onCloseClick={() => {}}>
-        <Heading level={2}>With Header</Heading>
-      </SidePanel.Header>
-    </SidePanel>
-    <SidePanel isOpen width={300}>
-      <SidePanel.Header onCloseClick={() => {}} kind="primary">
-        <Heading level={2}>With Header</Heading>
-      </SidePanel.Header>
-    </SidePanel>
-    <SidePanel isOpen width={300}>
-      <SidePanel.Header onCloseClick={() => {}}>
-        <Heading level={2}>With Header</Heading>
-      </SidePanel.Header>
-    </SidePanel>
-  </SidePanelGroup>
+    <TextLine repeat={100} />
+  </React.Fragment>
 ));
+
+const SidePanelOnAfter = () => {
+  const [isOpen, setIsOpen] = React.useState(true);
+
+  return (
+    <React.Fragment>
+      <SidePanel
+        isOpen={isOpen}
+        onAfterOpen={() => {
+          alert("after opened callback executed");
+        }}
+        onAfterClose={() => {
+          alert("after close callback executed");
+        }}
+        onClose={() => {
+          setIsOpen(false);
+        }}
+      >
+        <SidePanel.Overlay />
+        <SidePanel.Header>
+          <Heading level={2}>With Header</Heading>
+        </SidePanel.Header>
+      </SidePanel>
+      <TextLine repeat={100} />
+    </React.Fragment>
+  );
+};
+
+storiesOf("SidePanel", module).add("<SidePanel onAfterOpen={} onAfterClose={} />", () => <SidePanelOnAfter />);

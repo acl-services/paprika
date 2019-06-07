@@ -73,3 +73,7 @@ export const dialogStyles = css`
     `;
   }}
 `;
+
+export const dialogContentStyles = `
+  padding: ${space * 2}px;
+`;

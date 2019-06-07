@@ -1,15 +1,17 @@
 import React from "react";
 import PropTypes from "prop-types";
-import { dialogStyles } from "./Dialog.styles";
+import { dialogStyles, dialogContentStyles } from "./Dialog.styles";
 
 const propTypes = {
-  handleAnimationEnd: PropTypes.func.isRequired,
-  width: PropTypes.oneOfType([PropTypes.string, PropTypes.number]).isRequired,
-  header: PropTypes.node,
   children: PropTypes.node.isRequired,
-  offsetY: PropTypes.number,
-  refHeader: PropTypes.shape({ current: PropTypes.instanceOf(Element) }).isRequired,
+  handleAnimationEnd: PropTypes.func.isRequired,
+  header: PropTypes.node,
   isInline: PropTypes.bool,
+  offsetY: PropTypes.number,
+  onClose: PropTypes.func.isRequired,
+  refHeader: PropTypes.shape({ current: PropTypes.instanceOf(Element) }).isRequired,
+  refSidePanelContent: PropTypes.shape({ current: PropTypes.instanceOf(Element) }).isRequired,
+  width: PropTypes.oneOfType([PropTypes.string, PropTypes.number]).isRequired,
 };
 
 const defaultProps = {
@@ -19,22 +21,34 @@ const defaultProps = {
 };
 
 const Dialog = React.forwardRef((props, ref) => {
-  const { header, refHeader, children, handleAnimationEnd, width, isInline, ...moreProps } = props;
-
+  const {
+    children,
+    handleAnimationEnd,
+    header,
+    isInline,
+    onClose,
+    refHeader,
+    refSidePanelContent,
+    width,
+    ...moreProps
+  } = props;
   return (
     <div
+      tabIndex="-1"
       aria-modal="true"
       css={dialogStyles}
       offsetY={props.offsetY}
       onAnimationEnd={handleAnimationEnd}
-      ref={ref}
       role="dialog"
       width={width}
       isInline={isInline}
+      ref={ref}
       {...moreProps}
     >
-      {header ? React.cloneElement(header, { ...header.props, ref: refHeader }) : null}
-      {children}
+      {header ? React.cloneElement(header, { ...header.props, ref: refHeader, onClose }) : null}
+      <div css={dialogContentStyles} tabIndex="-1" ref={refSidePanelContent}>
+        {children}
+      </div>
     </div>
   );
 });

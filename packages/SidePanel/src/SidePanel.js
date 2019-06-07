@@ -6,7 +6,6 @@ import Overlay from "./components/Overlay";
 import Trigger from "./components/Trigger";
 import Header from "./components/Header";
 import Dialog from "./components/Dialog";
-import Content from "./components/Content";
 import { extractChildren } from "./helpers";
 import useOffsetScroll from "./hooks/useOffsetScroll";
 
@@ -17,14 +16,14 @@ const propTypes = {
   /** The width of the open panel. */
   width: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
 
-  /** Click event for "Escape" key */
-  onEscKey: PropTypes.func,
+  /** Callback triggered when the side panel needs to be close */
+  onClose: PropTypes.func,
 
   /** Callback once the sidepanel has been opened event */
-  onOpened: PropTypes.func,
+  onAfterOpen: PropTypes.func,
 
   /** Callback once the sidepanel has been closed event */
-  onClosed: PropTypes.func,
+  onAfterClose: PropTypes.func,
 
   /** Control the visibility of the side panel. This prop makes the side panel */
   isOpen: PropTypes.bool.isRequired,
@@ -35,24 +34,28 @@ const propTypes = {
   /** Control y offset of the sidepanel */
   offsetY: PropTypes.number,
 
-  /** Apply a different format to the parent to look like a descendant child of a Parent SidePanel */
+  /** Apply a different format to the parent to look like a descendant child or like a regular SidePanel */
   kind: PropTypes.oneOf(["default", "child"]),
+
+  /** Disable the scroll of the overlay when SidePanel is open. */
+  scrollablePageBody: PropTypes.bool,
 };
 
 const defaultProps = {
   isInline: false, // this is an internal prop use by SidePanelGroup (Group.js)
   kind: "default",
   offsetY: 0,
-  onClosed: () => {},
-  onEscKey: null,
-  onOpened: () => {},
+  onAfterClose: () => {},
+  onClose: null,
+  onAfterOpen: () => {},
   width: "33%",
   zIndex: 100,
+  scrollablePageBody: false,
 };
 
 function SidePanel(props) {
   // Props
-  const { onClosed, onOpened, onEscKey, width, isInline, kind, ...moreProps } = props;
+  const { onAfterClose, onAfterOpen, onClose, width, isInline, kind, ...moreProps } = props;
 
   // Hooks
   const [isSidePanelMounted, setMount] = React.useState(props.isOpen);
@@ -60,7 +63,7 @@ function SidePanel(props) {
 
   // Refs
   const refTrigger = React.useRef(null);
-  const refSidePanel = React.useRef(null);
+  const refSidePanelContent = React.useRef(null);
   const refHeader = React.useRef(null);
 
   // Extracts
@@ -80,10 +83,8 @@ function SidePanel(props) {
   // Handlers
   const handleEscKey = event => {
     if (event.key === "Escape") {
-      if (!props.isOpen) {
-        if (onEscKey) {
-          onEscKey();
-        }
+      if (props.isOpen && onClose) {
+        onClose();
       }
     }
   };
@@ -91,7 +92,7 @@ function SidePanel(props) {
   const handleAnimationEnd = () => {
     if (!props.isOpen) {
       setMount(false);
-      onClosed();
+      onAfterClose();
 
       if (TriggerExtracted) {
         refTrigger.current.focus();
@@ -99,26 +100,28 @@ function SidePanel(props) {
       return;
     }
 
-    onOpened();
+    onAfterOpen();
   };
 
   // Effects
   React.useEffect(() => {
     document.addEventListener("keydown", handleEscKey, false);
+
     if (props.isOpen) {
       setMount(true);
     }
 
     return () => {
-      document.removeEventListener("keyUp", handleEscKey);
+      document.removeEventListener("keydown", handleEscKey);
     };
   }, [props.isOpen]);
 
   const extendedFocusTrapOptions = FocusTrapExtracted ? FocusTrapExtracted.props : {};
+  const fallbackFocus = () => {
+    return refHeader.current || refSidePanelContent.current;
+  };
   const focusTrapOptions = {
-    fallbackFocus: () => {
-      return refHeader.current;
-    },
+    fallbackFocus,
     clickOutsideDeactivates: true,
     ...extendedFocusTrapOptions,
   };
@@ -129,25 +132,27 @@ function SidePanel(props) {
     const dialog = (
       <Dialog
         handleAnimationEnd={handleAnimationEnd}
-        width={width}
-        ref={refSidePanel}
         header={HeaderExtracted}
-        {...moreProps}
-        offsetY={offsetScroll}
-        refHeader={refHeader}
-        isInline={isInline}
+        onClose={onClose}
+        refSidePanelContent={refSidePanelContent}
+        width={width}
         kind={kind}
+        isInline={isInline}
+        refHeader={refHeader}
+        offsetY={offsetScroll}
+        {...moreProps}
       >
         {children}
       </Dialog>
     );
+
     if (isInline) {
       sidePanel = dialog;
     } else {
       sidePanel = ReactDOM.createPortal(
         <React.Fragment>
           <FocusTrap focusTrapOptions={focusTrapOptions}>{dialog}</FocusTrap>
-          {OverlayExtracted}
+          {OverlayExtracted ? React.cloneElement(OverlayExtracted, { onClose }) : null}
         </React.Fragment>,
         document.body
       );
@@ -155,6 +160,7 @@ function SidePanel(props) {
   }
 
   const trigger = TriggerExtracted ? React.cloneElement(TriggerExtracted, { ref: refTrigger }) : null;
+
   return [trigger, sidePanel];
 }
 
@@ -163,7 +169,6 @@ SidePanel.defaultProps = defaultProps;
 SidePanel.Overlay = Overlay;
 SidePanel.Trigger = Trigger;
 SidePanel.Header = Header;
-SidePanel.Content = Content;
 SidePanel.componentType = "SidePanel";
 
 export default SidePanel;
