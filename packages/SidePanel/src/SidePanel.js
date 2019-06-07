@@ -55,7 +55,7 @@ const defaultProps = {
 
 function SidePanel(props) {
   // Props
-  const { onAfterClose, onAfterOpen, onClose, width, isInline, kind, ...moreProps } = props;
+  const { onAfterClose, onAfterOpen, onClose, width, isInline, kind, offsetY, ...moreProps } = props;
 
   // Hooks
   const [isSidePanelMounted, setMount] = React.useState(props.isOpen);

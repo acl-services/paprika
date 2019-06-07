@@ -37,7 +37,13 @@ const Header = React.forwardRef((props, ref) => {
       <div tabIndex="-1">{props.children}</div>
       <div>
         {hasCloseButton ? (
-          <Button.Close onClick={onClose} {...darkBackgroundProps(kind)} isSemantic={false} size="small" />
+          <Button.Close
+            data-qa-anchor="sidepanel-header-close"
+            isSemantic={false}
+            onClick={onClose}
+            {...darkBackgroundProps(kind)}
+            size="small"
+          />
         ) : null}
       </div>
     </div>

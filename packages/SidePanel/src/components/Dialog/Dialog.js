@@ -8,7 +8,7 @@ const propTypes = {
   header: PropTypes.node,
   isInline: PropTypes.bool,
   offsetY: PropTypes.number,
-  onClose: PropTypes.func.isRequired,
+  onClose: PropTypes.func,
   refHeader: PropTypes.shape({ current: PropTypes.instanceOf(Element) }).isRequired,
   refSidePanelContent: PropTypes.shape({ current: PropTypes.instanceOf(Element) }).isRequired,
   width: PropTypes.oneOfType([PropTypes.string, PropTypes.number]).isRequired,
@@ -18,6 +18,7 @@ const defaultProps = {
   header: null,
   offsetY: 0,
   isInline: false,
+  onClose: () => {},
 };
 
 const Dialog = React.forwardRef((props, ref) => {
@@ -30,19 +31,21 @@ const Dialog = React.forwardRef((props, ref) => {
     refHeader,
     refSidePanelContent,
     width,
+    offsetY,
     ...moreProps
   } = props;
+
   return (
     <div
       tabIndex="-1"
       aria-modal="true"
       css={dialogStyles}
-      offsetY={props.offsetY}
       onAnimationEnd={handleAnimationEnd}
       role="dialog"
       width={width}
       isInline={isInline}
       ref={ref}
+      offsetY={props.offsetY}
       {...moreProps}
     >
       {header ? React.cloneElement(header, { ...header.props, ref: refHeader, onClose }) : null}

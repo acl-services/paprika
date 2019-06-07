@@ -5,7 +5,6 @@ const space = Number.parseInt(tokens.space, 10);
 
 const gapChildPanel = space * 7;
 const childPanel = `
-    border-top: 1px solid ${tokens.border.color};
     height:calc(100% - ${gapChildPanel + 80}px);
     margin-top: ${gapChildPanel}px;
     border-top-left-radius: ${space / 2}px;

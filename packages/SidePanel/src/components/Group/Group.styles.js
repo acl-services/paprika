@@ -8,7 +8,6 @@ export const GroupCSS = css`
   position: fixed;
   right: 0;
   ${props => {
-    console.log(props.offsetY);
     return `
       top: ${props.offsetY}px;
     `;
