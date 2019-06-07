@@ -62,7 +62,7 @@ export const placeholder = `
   color: ${tokens.placeholder.color};
   font-style: ${tokens.placeholder.fontStyle};
 
-  .is-disabled &, &[disabled] {
+  &[disabled] {
     ${disabledPlaceholder};
   }
 `;

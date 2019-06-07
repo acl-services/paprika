@@ -1,9 +1,16 @@
 import React from "react";
 import ReactDOM from "react-dom";
-import { configure, setAddon } from "@storybook/react";
+import { addParameters, configure } from "@storybook/react";
+import paprikaTheme from "./paprikaTheme";
 import axeConfig from "./axeConfig";
 
 import "./reset.scss";
+
+addParameters({
+  options: {
+    theme: paprikaTheme,
+  },
+});
 
 const axe = require("react-axe");
 axe(React, ReactDOM, 10000, axeConfig);

@@ -1,12 +1,12 @@
 {
-  "name": "@paprika/textarea",
+  "name": "@paprika/select",
   "version": "0.1.0",
-  "description": "Textarea component",
+  "description": "Select component",
   "author": "@paprika",
   "license": "MIT",
   "repository": {
     "type": "git",
-    "url": "https://github.com/acl-services/paprika/tree/master/packages/textarea"
+    "url": "https://github.com/acl-services/paprika/tree/master/packages/select"
   },
   "publishConfig": {
     "access": "public"
@@ -15,7 +15,6 @@
     "@babel/runtime-corejs2": "^7.3.1",
     "@paprika/stylers": "^0.1.0",
     "@paprika/tokens": "^0.1.0",
-    "classnames": "^2.2.6",
     "prop-types": "^15.7.2"
   },
   "peerDependencies": {
