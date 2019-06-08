@@ -122,3 +122,14 @@ const SidePanelStoryGroup = () => {
 
 storiesOf("SidePanel", module).add("Basic", () => <SidePanelStory />);
 storiesOf("SidePanel", module).add("Multiple Sidepanels", () => <SidePanelStoryGroup />);
+storiesOf("SidePanel", module).add("Sidepanel hasScrollablePageBody false", () => (
+  <React.Fragment>
+    <TextLine repeat={100} />
+    <SidePanel onClose={() => {}} hasScrollablePageBody={false} isOpen>
+      <SidePanel.Overlay />
+      <SidePanel.Header>
+        <Heading level={2}>Child of Parent 2</Heading>
+      </SidePanel.Header>
+    </SidePanel>
+  </React.Fragment>
+));

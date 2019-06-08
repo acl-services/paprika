@@ -38,7 +38,7 @@ const propTypes = {
   kind: PropTypes.oneOf(["default", "child"]),
 
   /** Disable the scroll of the overlay when SidePanel is open. */
-  scrollablePageBody: PropTypes.bool,
+  hasScrollablePageBody: PropTypes.bool,
 };
 
 const defaultProps = {
@@ -50,7 +50,7 @@ const defaultProps = {
   onAfterOpen: () => {},
   width: "33%",
   zIndex: 100,
-  scrollablePageBody: false,
+  hasScrollablePageBody: false,
 };
 
 function SidePanel(props) {
@@ -116,10 +116,17 @@ function SidePanel(props) {
     };
   }, [props.isOpen]);
 
+  React.useEffect(() => {
+    if (!props.hasScrollablePageBody) {
+      document.body.style.overflow = "hidden";
+    }
+  }, []);
+
   const extendedFocusTrapOptions = FocusTrapExtracted ? FocusTrapExtracted.props : {};
   const fallbackFocus = () => {
     return refHeader.current || refSidePanelContent.current;
   };
+
   const focusTrapOptions = {
     fallbackFocus,
     clickOutsideDeactivates: true,
