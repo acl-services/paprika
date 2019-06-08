@@ -38,7 +38,7 @@ const propTypes = {
   kind: PropTypes.oneOf(["default", "child"]),
 
   /** Disable the scroll of the overlay when SidePanel is open. */
-  hasScrollablePageBody: PropTypes.bool,
+  hasScrollableBodyPage: PropTypes.bool,
 };
 
 const defaultProps = {
@@ -50,7 +50,7 @@ const defaultProps = {
   onAfterOpen: () => {},
   width: "33%",
   zIndex: 100,
-  hasScrollablePageBody: false,
+  hasScrollableBodyPage: false,
 };
 
 function SidePanel(props) {
@@ -117,7 +117,7 @@ function SidePanel(props) {
   }, [props.isOpen]);
 
   React.useEffect(() => {
-    if (!props.hasScrollablePageBody) {
+    if (!props.hasScrollableBodyPage) {
       document.body.style.overflow = "hidden";
     }
   }, []);
