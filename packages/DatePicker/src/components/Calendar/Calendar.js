@@ -1,7 +1,7 @@
 import React from "react";
 import PropTypes from "prop-types";
-import momentPropTypes from "react-moment-proptypes";
 import moment from "moment";
+import momentPropTypes from "react-moment-proptypes";
 
 import "react-dates/initialize";
 import { DayPickerSingleDateController as SDPController } from "react-dates";
@@ -26,8 +26,12 @@ const defaultProps = {
 };
 
 function Calendar(props) {
-  const { date, onSelect } = props;
   const I18n = useI18n();
+
+  // Props
+  const { date, onSelect } = props;
+
+  // Ref
   const nextButtonRef = React.useRef(null);
   const prevButtonRef = React.useRef(null);
 

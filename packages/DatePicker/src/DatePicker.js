@@ -43,15 +43,20 @@ const defaultProps = {
 
 function DatePicker(props) {
   const I18n = useI18n();
-  const dateFormatForConfirmation = I18n.t("dateInput.confirmation_format");
+
+  // Props
   const { children, date, format, isDisabled, isReadOnly, onChange } = props;
+
+  // State
   const [confirmationResult, setConfirmationResult] = React.useState("");
   const [hasError, setHasError] = React.useState(false);
   const [inputtedString, setInputtedString] = React.useState(date ? moment(date).format(format) : "");
   const [shouldShowCalendar, setShouldShowCalendar] = React.useState(false);
-  const extendedInputProps = getExtendedInputProps(children);
 
+  // Ref
   const calendarRef = React.useRef(null);
+
+  const extendedInputProps = getExtendedInputProps(children);
 
   function showCalendar() {
     if (!shouldShowCalendar) setShouldShowCalendar(true);
@@ -97,7 +102,7 @@ function DatePicker(props) {
     if (newDate.isValid()) {
       if (moment(newDate).isSame(date, "day")) return;
 
-      setConfirmationResult(newDate.format(dateFormatForConfirmation));
+      setConfirmationResult(newDate.format(I18n.t("dateInput.confirmation_format")));
       setHasError(false);
       handleChange(newDate);
     } else {
