@@ -7,12 +7,11 @@ import CalendarIcon from "@paprika/icon/lib/Calendar";
 import Input from "@paprika/input";
 import Popover from "@paprika/popover";
 import { ShirtSizes } from "@paprika/helpers/lib/customPropTypes";
+import useI18n from "@paprika/L10n/lib/useI18n";
 
 import CalendarController from "./components/CalendarController/CalendarController";
 
 import { CalendarStyles } from "./DatePicker.styles";
-
-const dateFormatForConfirmation = "MMMM DD, YYYY";
 
 const propTypes = {
   /** a11yText on the input. */
@@ -54,138 +53,114 @@ const defaultProps = {
   size: "medium",
 };
 
-class DatePicker extends React.Component {
-  constructor(props) {
-    super(props);
+function DatePicker(props) {
+  const I18n = useI18n();
+  const dateFormatForConfirmation = I18n.t("dateInput.confirmation_format");
+  const [confirmationResult, setConfirmationResult] = React.useState("");
+  const [hasError, setHasError] = React.useState(false);
+  const [inputtedString, setInputtedString] = React.useState(props.date ? moment(props.date).format(props.format) : "");
+  const [shouldShowCalendar, setShouldShowCalendar] = React.useState(false);
 
-    this.state = {
-      confirmationResult: "",
-      hasError: false,
-      inputtedString: props.date ? moment(props.date).format(props.format) : "",
-      showCalendar: false,
-    };
+  const calendarRef = React.createRef();
 
-    this.calendarRef = React.createRef();
+  function showCalendar() {
+    if (!shouldShowCalendar) setShouldShowCalendar(true);
   }
 
-  handleSelect = date => {
-    this.setState({ hasError: false, inputtedString: moment(date).format(this.props.format) });
-    this.hideCalendar();
-    this.handleChange(date);
-  };
+  function hideCalendar() {
+    if (shouldShowCalendar) setShouldShowCalendar(false);
+  }
 
-  handleFocusInput = () => {
-    this.setState({
-      confirmationResult: "",
-    });
-  };
+  function handleChange(newDate) {
+    if (props.date !== newDate) props.onChange(newDate);
+  }
 
-  handleInputChange = e => {
-    this.setState({
-      inputtedString: e.target.value,
-    });
-  };
+  function handleReset() {
+    setHasError(false);
+    setInputtedString("");
+    handleChange(null);
+  }
 
-  handleInputBlur = () => {
-    window.requestAnimationFrame(() => {
-      if (
-        this.calendarRef.current !== document.activeElement &&
-        !this.calendarRef.current.contains(document.activeElement)
-      ) {
-        this.handleInputConfirm();
-        this.hideCalendar();
-      }
-    });
-  };
+  function handleSelect(date) {
+    setHasError(false);
+    setInputtedString(moment(date).format(props.format));
+    hideCalendar();
+    handleChange(date);
+  }
 
-  handleInputConfirm = () => {
-    if (!this.state.inputtedString) {
-      this.handleReset();
+  function handleFocusInput() {
+    setConfirmationResult("");
+  }
+
+  function handleInputChange(e) {
+    setInputtedString(e.target.value);
+  }
+
+  function handleInputConfirm() {
+    if (!inputtedString) {
+      handleReset();
       return;
     }
 
-    const newDate = moment(this.state.inputtedString);
+    const newDate = moment(inputtedString);
 
     if (newDate.isValid()) {
-      if (moment(newDate).isSame(this.props.date, "day")) return;
+      if (moment(newDate).isSame(props.date, "day")) return;
 
-      const confirmationResult = newDate.format(dateFormatForConfirmation);
-      this.setState(() => {
-        return {
-          confirmationResult,
-          hasError: false,
-          // inputtedString: confirmationResult,
-        };
-      });
-      this.handleChange(newDate);
+      setConfirmationResult(newDate.format(dateFormatForConfirmation));
+      setHasError(false);
+      handleChange(newDate);
     } else {
-      this.setState({
-        hasError: true,
-      });
+      setHasError(true);
     }
-  };
-
-  handleKeyUp = event => {
-    if (event.key === "Enter") {
-      this.handleInputConfirm();
-      this.hideCalendar();
-    }
-  };
-
-  showCalendar = () => {
-    if (!this.state.showCalendar) this.setState({ showCalendar: true });
-  };
-
-  hideCalendar = () => {
-    if (this.state.showCalendar) this.setState({ showCalendar: false });
-  };
-
-  handleClick = () => {
-    this.showCalendar();
-  };
-
-  handleChange(newDate) {
-    if (this.props.date !== newDate) this.props.onChange(newDate);
   }
 
-  handleReset() {
-    this.setState({
-      hasError: false,
-      inputtedString: "",
+  function handleInputBlur() {
+    window.requestAnimationFrame(() => {
+      if (calendarRef.current !== document.activeElement && !calendarRef.current.contains(document.activeElement)) {
+        handleInputConfirm();
+        hideCalendar();
+      }
     });
-    this.handleChange(null);
   }
 
-  render() {
-    const { showCalendar, inputtedString } = this.state;
-
-    return (
-      <Popover isOpen={showCalendar} offset={8} onClose={this.hideCalendar} shouldKeepFocus>
-        <Input
-          a11yText={this.props.a11yText}
-          className={this.props.className}
-          hasError={this.state.hasError}
-          icon={<CalendarIcon />}
-          isDisabled={this.props.isDisabled}
-          isReadOnly={this.props.isReadOnly}
-          onBlur={this.handleInputBlur}
-          onChange={this.handleInputChange}
-          onClick={this.handleClick}
-          onFocus={this.handleFocusInput}
-          onKeyUp={this.handleKeyUp}
-          placeholder={this.props.placeholder}
-          size={this.props.size}
-          value={this.state.confirmationResult || inputtedString}
-        />
-
-        <Popover.Content>
-          <div css={CalendarStyles} ref={this.calendarRef}>
-            <CalendarController date={this.props.date} onSelect={this.handleSelect} />
-          </div>
-        </Popover.Content>
-      </Popover>
-    );
+  function handleKeyUp(event) {
+    if (event.key === "Enter") {
+      handleInputConfirm();
+      hideCalendar();
+    }
   }
+
+  function handleClick() {
+    showCalendar();
+  }
+
+  return (
+    <Popover isOpen={shouldShowCalendar} offset={8} onClose={hideCalendar} shouldKeepFocus>
+      <Input
+        a11yText={props.a11yText}
+        className={props.className}
+        hasError={hasError}
+        icon={<CalendarIcon />}
+        isDisabled={props.isDisabled}
+        isReadOnly={props.isReadOnly}
+        onBlur={handleInputBlur}
+        onChange={handleInputChange}
+        onClick={handleClick}
+        onFocus={handleFocusInput}
+        onKeyUp={handleKeyUp}
+        placeholder={props.placeholder}
+        size={props.size}
+        value={confirmationResult || inputtedString}
+      />
+
+      <Popover.Content>
+        <div css={CalendarStyles} ref={calendarRef}>
+          <CalendarController date={props.date} onSelect={handleSelect} />
+        </div>
+      </Popover.Content>
+    </Popover>
+  );
 }
 
 DatePicker.displayName = "DatePicker";

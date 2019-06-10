@@ -10,7 +10,6 @@ function Example(props) {
 
   function handleChange(newDate) {
     setDate(newDate);
-    console.log(newDate ? newDate.format("YYYY-MM-DD") : null);
   }
 
   return (
