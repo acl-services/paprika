@@ -6,19 +6,16 @@ import momentPropTypes from "react-moment-proptypes";
 import CalendarIcon from "@paprika/icon/lib/Calendar";
 import Input from "@paprika/input";
 import Popover from "@paprika/popover";
-import { ShirtSizes } from "@paprika/helpers/lib/customPropTypes";
 import useI18n from "@paprika/l10n/lib/useI18n";
 
 import Calendar from "./components/Calendar/Calendar";
+import DateInput from "./components/DateInput/DateInput";
 
 import { CalendarStyles } from "./DatePicker.styles";
+import { getExtendedInputProps } from "./helpers";
 
 const propTypes = {
-  /** a11yText on the input. */
-  a11yText: PropTypes.string,
-
-  /** Class name of the date input. */
-  className: PropTypes.string,
+  children: PropTypes.node,
 
   /** Selected date in moment object. */
   date: momentPropTypes.momentObj,
@@ -34,32 +31,25 @@ const propTypes = {
 
   /** Callback when date is selected or input. */
   onChange: PropTypes.func.isRequired,
-
-  /** Placeholder of input. */
-  placeholder: PropTypes.string,
-
-  /** Size of input. */
-  size: PropTypes.oneOf(ShirtSizes.DEFAULT),
 };
 
 const defaultProps = {
-  a11yText: null,
-  className: null,
+  children: null,
   date: null,
   format: "YYYY-MM-DD",
   isDisabled: false,
   isReadOnly: false,
-  placeholder: "",
-  size: "medium",
 };
 
 function DatePicker(props) {
   const I18n = useI18n();
   const dateFormatForConfirmation = I18n.t("dateInput.confirmation_format");
+  const { children, date, format, isDisabled, isReadOnly, onChange } = props;
   const [confirmationResult, setConfirmationResult] = React.useState("");
   const [hasError, setHasError] = React.useState(false);
-  const [inputtedString, setInputtedString] = React.useState(props.date ? moment(props.date).format(props.format) : "");
+  const [inputtedString, setInputtedString] = React.useState(date ? moment(date).format(format) : "");
   const [shouldShowCalendar, setShouldShowCalendar] = React.useState(false);
+  const extendedInputProps = getExtendedInputProps(children);
 
   const calendarRef = React.useRef(null);
 
@@ -72,7 +62,7 @@ function DatePicker(props) {
   }
 
   function handleChange(newDate) {
-    if (props.date !== newDate) props.onChange(newDate);
+    if (date !== newDate) onChange(newDate);
   }
 
   function handleReset() {
@@ -81,11 +71,11 @@ function DatePicker(props) {
     handleChange(null);
   }
 
-  function handleSelect(date) {
+  function handleSelect(seletedDate) {
     setHasError(false);
-    setInputtedString(moment(date).format(props.format));
+    setInputtedString(moment(seletedDate).format(format));
     hideCalendar();
-    handleChange(date);
+    handleChange(seletedDate);
   }
 
   function handleFocusInput() {
@@ -105,7 +95,7 @@ function DatePicker(props) {
     const newDate = moment(inputtedString);
 
     if (newDate.isValid()) {
-      if (moment(newDate).isSame(props.date, "day")) return;
+      if (moment(newDate).isSame(date, "day")) return;
 
       setConfirmationResult(newDate.format(dateFormatForConfirmation));
       setHasError(false);
@@ -132,31 +122,28 @@ function DatePicker(props) {
   }
 
   function handleClick() {
-    showCalendar();
+    if (!isReadOnly) showCalendar();
   }
 
   return (
     <Popover isOpen={shouldShowCalendar} offset={8} onClose={hideCalendar} shouldKeepFocus>
       <Input
-        a11yText={props.a11yText}
-        className={props.className}
         hasError={hasError}
         icon={<CalendarIcon />}
-        isDisabled={props.isDisabled}
-        isReadOnly={props.isReadOnly}
+        isDisabled={isDisabled}
+        isReadOnly={isReadOnly}
         onBlur={handleInputBlur}
         onChange={handleInputChange}
         onClick={handleClick}
         onFocus={handleFocusInput}
         onKeyUp={handleKeyUp}
-        placeholder={props.placeholder}
-        size={props.size}
         value={confirmationResult || inputtedString}
+        {...extendedInputProps}
       />
 
       <Popover.Content>
         <div css={CalendarStyles} ref={calendarRef}>
-          <Calendar date={props.date} onSelect={handleSelect} />
+          <Calendar date={date} onSelect={handleSelect} />
         </div>
       </Popover.Content>
     </Popover>
@@ -169,5 +156,6 @@ DatePicker.propTypes = propTypes;
 DatePicker.defaultProps = defaultProps;
 
 DatePicker.Calendar = Calendar;
+DatePicker.Input = DateInput;
 
 export default DatePicker;

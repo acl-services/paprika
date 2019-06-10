@@ -26,12 +26,13 @@ const defaultProps = {
 };
 
 function Calendar(props) {
+  const { date, onSelect } = props;
   const I18n = useI18n();
   const nextButtonRef = React.useRef(null);
   const prevButtonRef = React.useRef(null);
 
   function getInitialVisibleMonth() {
-    return props.date && props.date.isValid() ? props.date : moment();
+    return date && date.isValid() ? date : moment();
   }
 
   function handleClickNavigation(buttonRef) {
@@ -76,7 +77,7 @@ function Calendar(props) {
       <span
         css={DayTriggerStyle}
         className="aclui-calendar-day-content"
-        isSelected={moment(day).isSame(props.date, "day")}
+        isSelected={moment(day).isSame(date, "day")}
         isToday={moment(day).isSame(moment(), "day")}
       >
         {day.format("D")}
@@ -87,7 +88,7 @@ function Calendar(props) {
   return (
     <CalendarStyled>
       <SDPController
-        key={props.date}
+        key={date}
         daySize={30}
         enableOutsideDays
         hideKeyboardShortcutsPanel
@@ -95,10 +96,10 @@ function Calendar(props) {
         navPrev={renderArrowLeft()}
         navNext={renderArrowRight()}
         numberOfMonths={1}
-        onDateChange={props.onSelect}
+        onDateChange={onSelect}
         onPrevMonthClick={handleClickPrevMonth}
         onNextMonthClick={handleClickNextMonth}
-        date={props.date}
+        date={date}
         focused
         renderMonthElement={renderMonthHeaderElement}
         transitionDuration={0}

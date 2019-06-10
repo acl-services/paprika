@@ -1,6 +1,6 @@
 import React from "react";
 import moment from "moment";
-import L10n from "@paprika/L10n";
+import L10n from "@paprika/l10n";
 import DatePicker from "../src/DatePicker";
 
 function Example(props) {
