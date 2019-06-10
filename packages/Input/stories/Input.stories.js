@@ -3,6 +3,7 @@ import { storiesOf } from "@storybook/react";
 import { withKnobs } from "@storybook/addon-knobs";
 import { InputStory } from "./Input.stories.styles";
 import InputExample from "./examples/InputExample";
+
 import ShowcaseStory from "./examples/Showcase";
 import SizesStory from "./examples/Sizes";
 import WithContentStory from "./examples/WithContent";
@@ -13,7 +14,7 @@ import WithRef from "./examples/WithRef";
 
 storiesOf("Input", module)
   .addDecorator(withKnobs)
-  .add("Showcase", () => <ShowcaseStory />)
+  .add("Showcase", ShowcaseStory)
   .add("Sizes", () => <SizesStory />)
   .add("With content", () => <WithContentStory />)
   .add("With decorative icon", () => <WithIconStory />)

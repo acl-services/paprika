@@ -10,7 +10,7 @@ import CloseButtonRef from "./examples/CloseButtonRef";
 
 storiesOf("Button", module)
   .addDecorator(withKnobs)
-  .add("Showcase", () => <Showcase />)
+  .add("Showcase", Showcase)
   .add("Basic", () => <Basic />)
   .add("Ref", () => <NewRef />)
   .add("Old Ref", () => <OldRef />)
