@@ -24,95 +24,87 @@ const defaultProps = {
   date: null,
 };
 
-class CalendarController extends React.Component {
-  constructor(props) {
-    super(props);
+function CalendarController(props) {
+  const nextButtonRef = React.createRef();
+  const prevButtonRef = React.createRef();
 
-    this.nextButtonRef = React.createRef();
-    this.prevButtonRef = React.createRef();
+  function getInitialVisibleMonth() {
+    return props.date && props.date.isValid() ? props.date : moment();
   }
 
-  getInitialVisibleMonth = () => {
-    return this.props.date && this.props.date.isValid() ? this.props.date : moment();
-  };
-
-  handleDateChange = date => {
-    this.props.onSelect(date);
-  };
-
-  handleClickNavigation = buttonRef => {
+  function handleClickNavigation(buttonRef) {
     if (buttonRef.current.parentNode.tabIndex !== 0) {
       // eslint-disable-next-line no-param-reassign
       buttonRef.current.parentNode.tabIndex = 0;
     }
     buttonRef.current.parentNode.focus();
-  };
+  }
 
-  handleClickNextMonth = () => {
-    this.handleClickNavigation(this.nextButtonRef);
-  };
+  function handleClickNextMonth() {
+    handleClickNavigation(nextButtonRef);
+  }
 
-  handleClickPrevMonth = () => {
-    this.handleClickNavigation(this.prevButtonRef);
-  };
+  function handleClickPrevMonth() {
+    handleClickNavigation(prevButtonRef);
+  }
 
-  renderMonthHeaderElement = ({ month }) => <CalendarHeaderStyled>{month.format("MMMM YYYY")}</CalendarHeaderStyled>;
+  function renderMonthHeaderElement({ month }) {
+    return <CalendarHeaderStyled>{month.format("MMMM YYYY")}</CalendarHeaderStyled>; // todo l10n
+  }
 
-  renderArrowLeft() {
+  function renderArrowLeft() {
     return (
-      <span ref={this.prevButtonRef}>
+      <span ref={prevButtonRef}>
         <ArrowDown role="presentation" size="14px" />
       </span>
     );
   }
 
-  renderArrowRight() {
+  function renderArrowRight() {
     return (
-      <span ref={this.nextButtonRef}>
+      <span ref={nextButtonRef}>
         <ArrowRight role="presentation" size="14px" />
       </span>
     );
   }
 
-  renderDayContents = day => {
+  function renderDayContents(day) {
     return (
       <span
         css={DayTriggerStyle}
         className="aclui-calendar-day-content"
-        isSelected={moment(day).isSame(this.props.date, "day")}
+        isSelected={moment(day).isSame(props.date, "day")}
         isToday={moment(day).isSame(moment(), "day")}
       >
         {day.format("D")}
       </span>
     );
-  };
-
-  render() {
-    return (
-      <CalendarStyled>
-        <SDPController
-          key={this.props.date}
-          daySize={30}
-          enableOutsideDays
-          hideKeyboardShortcutsPanel
-          initialVisibleMonth={this.getInitialVisibleMonth}
-          navPrev={this.renderArrowLeft()}
-          navNext={this.renderArrowRight()}
-          numberOfMonths={1}
-          onDateChange={this.handleDateChange}
-          onPrevMonthClick={this.handleClickPrevMonth}
-          onNextMonthClick={this.handleClickNextMonth}
-          date={this.props.date}
-          focused
-          renderMonthElement={this.renderMonthHeaderElement}
-          transitionDuration={0}
-          horizontalMonthPadding={0}
-          renderDayContents={this.renderDayContents}
-          verticalBorderSpacing={0}
-        />
-      </CalendarStyled>
-    );
   }
+
+  return (
+    <CalendarStyled>
+      <SDPController
+        key={props.date}
+        daySize={30}
+        enableOutsideDays
+        hideKeyboardShortcutsPanel
+        initialVisibleMonth={getInitialVisibleMonth}
+        navPrev={renderArrowLeft()}
+        navNext={renderArrowRight()}
+        numberOfMonths={1}
+        onDateChange={props.onSelect}
+        onPrevMonthClick={handleClickPrevMonth}
+        onNextMonthClick={handleClickNextMonth}
+        date={props.date}
+        focused
+        renderMonthElement={renderMonthHeaderElement}
+        transitionDuration={0}
+        horizontalMonthPadding={0}
+        renderDayContents={renderDayContents}
+        verticalBorderSpacing={0}
+      />
+    </CalendarStyled>
+  );
 }
 
 CalendarController.displayName = "CalendarController";
