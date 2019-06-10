@@ -35,6 +35,7 @@ const locales = {
       },
       "dateInput": {
         "choose": "Choose a Date",
+        "calendar_header_format": "MMMM YYYY",
         "clear": "Clear Date",
         "confirmation_format": "MMMM DD, YYYY"
       },

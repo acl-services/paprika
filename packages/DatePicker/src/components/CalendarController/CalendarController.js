@@ -9,6 +9,7 @@ import "react-dates/lib/css/_datepicker.css";
 
 import ArrowRight from "@paprika/icon/lib/ArrowRight";
 import ArrowDown from "@paprika/icon/lib/ArrowDown";
+import useI18n from "@paprika/l10n/lib/useI18n";
 
 import CalendarStyled, { DayTriggerStyle, CalendarHeaderStyled } from "./CalendarController.styles";
 
@@ -25,6 +26,7 @@ const defaultProps = {
 };
 
 function CalendarController(props) {
+  const I18n = useI18n();
   const nextButtonRef = React.createRef();
   const prevButtonRef = React.createRef();
 
@@ -49,7 +51,7 @@ function CalendarController(props) {
   }
 
   function renderMonthHeaderElement({ month }) {
-    return <CalendarHeaderStyled>{month.format("MMMM YYYY")}</CalendarHeaderStyled>; // todo l10n
+    return <CalendarHeaderStyled>{month.format(I18n.t("dateInput.calendar_header_format"))}</CalendarHeaderStyled>;
   }
 
   function renderArrowLeft() {

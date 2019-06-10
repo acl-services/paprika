@@ -7,7 +7,7 @@ import CalendarIcon from "@paprika/icon/lib/Calendar";
 import Input from "@paprika/input";
 import Popover from "@paprika/popover";
 import { ShirtSizes } from "@paprika/helpers/lib/customPropTypes";
-import useI18n from "@paprika/L10n/lib/useI18n";
+import useI18n from "@paprika/l10n/lib/useI18n";
 
 import CalendarController from "./components/CalendarController/CalendarController";
 
