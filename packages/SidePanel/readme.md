@@ -1,75 +1,59 @@
-_The SidePanel is a Controlled Component_
+# SidePanel
 
 ## Props:
 
 ```js
-/**
- children: PropTypes.node.isRequired,
- slideDirection: PropTypes.oneOf(["left", "right"]),
- width: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
- onEscKey: PropTypes.func,
- onOpen: PropTypes.func, // call onAnimationEnd
- onClose: PropTypes.func, // call onAnimationEnd
- isOpen: PropTypes.bool.isRequired,
- zIndex: PropTypes.number,
-*/
+const propTypes = {
+  /** The content for the SidePanel. */
+  children: PropTypes.node.isRequired,
+
+  /** The width of the open panel. */
+  width: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
+
+  /** Callback triggered when the side panel needs to be close */
+  onClose: PropTypes.func,
+
+  /** Callback once the sidepanel has been opened event */
+  onAfterOpen: PropTypes.func,
+
+  /** Callback once the sidepanel has been closed event */
+  onAfterClose: PropTypes.func,
+
+  /** Control the visibility of the side panel. This prop makes the side panel */
+  isOpen: PropTypes.bool.isRequired,
+
+  /** Control the z position of the sidepanel */
+  zIndex: PropTypes.number,
+
+  /** Control y offset of the sidepanel */
+  offsetY: PropTypes.number,
+
+  /** Modify the look of the SidePanel */
+  kind: PropTypes.oneOf(["default", "child"]),
+
+  /** Disable scroll overflow on document.body when SidePanel is open. */
+  disableBodyOverflow: PropTypes.bool,
+};
 ```
+
+## Components
 
 The sidepanel has the following component you can use to compose it:
 
 ```js
-
-<SidePanel.Content />
-<SidePanel.Footer />
 <SidePanel.Header />
+<SidePanel.Footer />
 <SidePanel.Overlay />
-<SidePanel.Trigger>[node]</SidePanel.Trigger>
-
+<SidePanel.FocusTrap />
+<SidePanel.Trigger />
 ```
 
-By default the SidePanel render whatever you pass as children, but will filter
-`{ Header, Footer, Overlay and Trigger }` to properly render those components accordingly
-their optimal position, as example the Trigger will be render as inline since is expected that
-99% of the cases will be a Button, while the Overlay and the SidePanel in general will be
-render in a `React.Portal`. Header and Footer will be at the top and bottom respectively.
-
----
-
-## Some ex.
+Ex.
 
 ```js
 <SidePanel isOpen={isOpen} onEscKey={handleEvent}>
-  <SidePanel.Header onCloseClick={handleEvent}>Hello!</SidePanel.Header>
-  [...some_content]
-  <SidePanel.Footer onClickAccept={handleAccept}>
-</SidePanel>
-```
-
-### With header, content and Overlay
-
-```js
-<SidePanel isOpen={isOpen} onEscKey={handleEvent}>
-  <SidePanel.Header onCloseClick={handleEvent}>Hello!</SidePanel.Header>
+  <SidePanel.Header onCloseClick={handleEvent} />
   <SidePanel.Overlay onClick={handleEvent} />
-  <SidePanel.Content>[...your_stuff]</SidePanel.Content>
+  [...your_content...]
 </SidePanel>
 ```
-
-### With header and sticky footer
-
-```js
-<SidePanel isOpen={isOpen} onEscKey={handleEvent}>
-  <SidePanel.Header onCloseClick={handleEvent}>Hello!</SidePanel.Header>
-  <SidePanel.Overlay onClick={handleEvent} />
-  [...your_stuff]
-  <SidePanel.Footer isSticky onClickAccept={handleAccept} />
-</SidePanel>
-```
-
-## Accessibility
-
-- Focus to the first focusable element accordingly to [wai](https://www.w3.org/TR/wai-aria-practices-1.1/#dialog_modal)
-  > - In all circumstances, focus moves to an element contained in the dialog.
-  > - Unless a condition where doing otherwise is advisable, focus is initially set on the first focusable element.
-- The focus is trap under the sidepanel until is dismissed, I'm using [focus-trap-react](https://github.com/davidtheclark/focus-trap-react)
-- wai `role=modal`
