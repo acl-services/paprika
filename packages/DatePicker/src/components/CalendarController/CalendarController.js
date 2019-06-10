@@ -27,8 +27,8 @@ const defaultProps = {
 
 function CalendarController(props) {
   const I18n = useI18n();
-  const nextButtonRef = React.createRef();
-  const prevButtonRef = React.createRef();
+  const nextButtonRef = React.useRef(null);
+  const prevButtonRef = React.useRef(null);
 
   function getInitialVisibleMonth() {
     return props.date && props.date.isValid() ? props.date : moment();

@@ -61,7 +61,7 @@ function DatePicker(props) {
   const [inputtedString, setInputtedString] = React.useState(props.date ? moment(props.date).format(props.format) : "");
   const [shouldShowCalendar, setShouldShowCalendar] = React.useState(false);
 
-  const calendarRef = React.createRef();
+  const calendarRef = React.useRef(null);
 
   function showCalendar() {
     if (!shouldShowCalendar) setShouldShowCalendar(true);
@@ -167,5 +167,7 @@ DatePicker.displayName = "DatePicker";
 
 DatePicker.propTypes = propTypes;
 DatePicker.defaultProps = defaultProps;
+
+DatePicker.CalendarController = CalendarController;
 
 export default DatePicker;
