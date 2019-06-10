@@ -21,6 +21,13 @@ describe("<SidePanel />", () => {
     });
   });
 
+  it("should SidePanel.FocusTrap have a different initial focus", () => {
+    cy.visitStorybook("sidepanel-focustrap--sidepanel-focustrap");
+    const input = cy.getByTestId("sidepanel.focustrap.input");
+    const testString = "hello world";
+    input.type(testString).should("have.value", testString);
+  });
+
   it("should be possible to interact with multiple sidepanels in a group", () => {
     cy.visitStorybook("sidepanel--multiple-sidepanels");
 

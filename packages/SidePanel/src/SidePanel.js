@@ -1,12 +1,13 @@
 import React from "react";
 import ReactDOM from "react-dom";
 import PropTypes from "prop-types";
-import FocusTrap from "focus-trap-react/dist/focus-trap-react";
+import { default as FocusTrapLibrary } from "focus-trap-react/dist/focus-trap-react"; // eslint-disable-line
 import Dialog from "./components/Dialog";
 import Footer from "./components/Footer";
 import Header from "./components/Header";
 import Overlay from "./components/Overlay";
 import Trigger from "./components/Trigger";
+import FocusTrap from "./components/FocusTrap";
 import { extractChildren } from "./helpers";
 import useOffsetScroll from "./hooks/useOffsetScroll";
 
@@ -35,10 +36,10 @@ const propTypes = {
   /** Control y offset of the sidepanel */
   offsetY: PropTypes.number,
 
-  /** Apply a different format to the parent to look like a descendant child or like a regular SidePanel */
+  /** Modify the look of the SidePanel */
   kind: PropTypes.oneOf(["default", "child"]),
 
-  /** Disable the scroll of the overlay when SidePanel is open. */
+  /** Disable scroll overflow on document.body when SidePanel is open. */
   disableBodyOverflow: PropTypes.bool,
 };
 
@@ -165,9 +166,9 @@ function SidePanel(props) {
     } else {
       sidePanel = ReactDOM.createPortal(
         <React.Fragment>
-          <FocusTrap focusTrapOptions={focusTrapOptions}>
+          <FocusTrapLibrary focusTrapOptions={focusTrapOptions}>
             <div>{dialog}</div>
-          </FocusTrap>
+          </FocusTrapLibrary>
           {OverlayExtracted ? React.cloneElement(OverlayExtracted, { onClose }) : null}
         </React.Fragment>,
         document.body
@@ -186,6 +187,7 @@ SidePanel.Footer = Footer;
 SidePanel.Header = Header;
 SidePanel.Overlay = Overlay;
 SidePanel.Trigger = Trigger;
+SidePanel.FocusTrap = FocusTrap;
 SidePanel.componentType = "SidePanel";
 
 export default SidePanel;
