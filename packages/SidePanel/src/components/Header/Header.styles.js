@@ -18,6 +18,10 @@ export const headerCSS = css`
   width: 100%;
   align-items: center;
 
+  &:focus {
+    outline: 0;
+  }
+
   .heading--level-1,
   .heading--level-2,
   .heading--level-3,

@@ -4,6 +4,7 @@ import { dialogStyles, dialogContentStyles } from "./Dialog.styles";
 
 const propTypes = {
   children: PropTypes.node.isRequired,
+  footer: PropTypes.node,
   handleAnimationEnd: PropTypes.func.isRequired,
   header: PropTypes.node,
   isInline: PropTypes.bool,
@@ -15,23 +16,27 @@ const propTypes = {
 };
 
 const defaultProps = {
+  footer: null,
   header: null,
-  offsetY: 0,
   isInline: false,
+  offsetY: 0,
   onClose: () => {},
 };
 
-const Dialog = React.forwardRef((props, ref) => {
+function Dialog(props) {
+  const refSidePanel = React.useRef(null);
+
   const {
     children,
+    footer,
     handleAnimationEnd,
     header,
     isInline,
+    offsetY,
     onClose,
     refHeader,
     refSidePanelContent,
     width,
-    offsetY,
     ...moreProps
   } = props;
 
@@ -44,17 +49,23 @@ const Dialog = React.forwardRef((props, ref) => {
       role="dialog"
       width={width}
       isInline={isInline}
-      ref={ref}
       offsetY={props.offsetY}
+      ref={refSidePanel}
       {...moreProps}
     >
       {header ? React.cloneElement(header, { ...header.props, ref: refHeader, onClose }) : null}
-      <div css={dialogContentStyles} tabIndex="-1" ref={refSidePanelContent}>
+      <div
+        css={dialogContentStyles}
+        isSticky={footer ? footer.props.isSticky : null}
+        tabIndex="-1"
+        ref={refSidePanelContent}
+      >
         {children}
       </div>
+      {footer ? React.cloneElement(footer, { refSidePanel, width, ...footer.props }) : null}
     </div>
   );
-});
+}
 
 export default Dialog;
 

@@ -2,10 +2,11 @@ import React from "react";
 import ReactDOM from "react-dom";
 import PropTypes from "prop-types";
 import FocusTrap from "focus-trap-react/dist/focus-trap-react";
+import Dialog from "./components/Dialog";
+import Footer from "./components/Footer";
+import Header from "./components/Header";
 import Overlay from "./components/Overlay";
 import Trigger from "./components/Trigger";
-import Header from "./components/Header";
-import Dialog from "./components/Dialog";
 import { extractChildren } from "./helpers";
 import useOffsetScroll from "./hooks/useOffsetScroll";
 
@@ -38,7 +39,7 @@ const propTypes = {
   kind: PropTypes.oneOf(["default", "child"]),
 
   /** Disable the scroll of the overlay when SidePanel is open. */
-  hasScrollableBodyPage: PropTypes.bool,
+  disableBodyOverflow: PropTypes.bool,
 };
 
 const defaultProps = {
@@ -50,7 +51,7 @@ const defaultProps = {
   onAfterOpen: () => {},
   width: "33%",
   zIndex: 100,
-  hasScrollableBodyPage: false,
+  disableBodyOverflow: true,
 };
 
 function SidePanel(props) {
@@ -68,16 +69,18 @@ function SidePanel(props) {
 
   // Extracts
   const {
-    "SidePanel.Trigger": TriggerExtracted,
-    "SidePanel.Overlay": OverlayExtracted,
-    "SidePanel.Header": HeaderExtracted,
     "SidePanel.FocusTrap": FocusTrapExtracted,
+    "SidePanel.Footer": FooterExtracted,
+    "SidePanel.Header": HeaderExtracted,
+    "SidePanel.Overlay": OverlayExtracted,
+    "SidePanel.Trigger": TriggerExtracted,
     children,
   } = extractChildren(props.children, [
-    "SidePanel.Trigger",
-    "SidePanel.Overlay",
-    "SidePanel.Header",
     "SidePanel.FocusTrap",
+    "SidePanel.Footer",
+    "SidePanel.Header",
+    "SidePanel.Overlay",
+    "SidePanel.Trigger",
   ]);
 
   // Handlers
@@ -117,9 +120,12 @@ function SidePanel(props) {
   }, [props.isOpen]);
 
   React.useEffect(() => {
-    if (!props.hasScrollableBodyPage) {
+    if (props.disableBodyOverflow) {
       document.body.style.overflow = "hidden";
+      return;
     }
+
+    document.body.style.overflow = "auto";
   }, []);
 
   const extendedFocusTrapOptions = FocusTrapExtracted ? FocusTrapExtracted.props : {};
@@ -140,6 +146,7 @@ function SidePanel(props) {
       <Dialog
         handleAnimationEnd={handleAnimationEnd}
         header={HeaderExtracted}
+        footer={FooterExtracted}
         onClose={onClose}
         refSidePanelContent={refSidePanelContent}
         width={width}
@@ -158,7 +165,9 @@ function SidePanel(props) {
     } else {
       sidePanel = ReactDOM.createPortal(
         <React.Fragment>
-          <FocusTrap focusTrapOptions={focusTrapOptions}>{dialog}</FocusTrap>
+          <FocusTrap focusTrapOptions={focusTrapOptions}>
+            <div>{dialog}</div>
+          </FocusTrap>
           {OverlayExtracted ? React.cloneElement(OverlayExtracted, { onClose }) : null}
         </React.Fragment>,
         document.body
@@ -173,9 +182,10 @@ function SidePanel(props) {
 
 SidePanel.propTypes = propTypes;
 SidePanel.defaultProps = defaultProps;
+SidePanel.Footer = Footer;
+SidePanel.Header = Header;
 SidePanel.Overlay = Overlay;
 SidePanel.Trigger = Trigger;
-SidePanel.Header = Header;
 SidePanel.componentType = "SidePanel";
 
 export default SidePanel;

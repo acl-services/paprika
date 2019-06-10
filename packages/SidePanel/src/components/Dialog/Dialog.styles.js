@@ -11,7 +11,7 @@ const childPanel = `
     border-bottom-left-radius: ${space / 2}px;
   `;
 
-function slideIn(width) {
+export function slideIn(width) {
   return keyframes`
   from {
     opacity: 0;
@@ -27,7 +27,7 @@ function slideIn(width) {
   `;
 }
 
-function slideOut(width) {
+export function slideOut(width) {
   return keyframes`
   from {
     opacity: 1;
@@ -51,11 +51,15 @@ export const dialogStyles = css`
   overflow: auto;
   top: 0;
 
+  &:focus {
+    outline: 0;
+  }
+
   ${props => {
     const width = Number.isNaN(Number(props.width)) ? props.width : `${props.width}px`;
     const animation = props.isOpen ? slideIn(width) : slideOut(width);
-
     let childSidePanel = "";
+
     if (props.kind === "child") {
       childSidePanel = childPanel;
     }
@@ -75,4 +79,5 @@ export const dialogStyles = css`
 
 export const dialogContentStyles = `
   padding: ${space * 2}px;
+  const stickyCSS = props.isSticky ? "margin-bottom: 164px; border:1px solid red;" : "";
 `;

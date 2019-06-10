@@ -122,11 +122,10 @@ const SidePanelStoryGroup = () => {
 
 storiesOf("SidePanel", module).add("Basic", () => <SidePanelStory />);
 storiesOf("SidePanel", module).add("Multiple Sidepanels", () => <SidePanelStoryGroup />);
-storiesOf("SidePanel", module).add("Sidepanel hasScrollablePageBody false", () => (
+storiesOf("SidePanel", module).add("Basic with body scrollable", () => (
   <React.Fragment>
     <TextLine repeat={100} />
-    <SidePanel onClose={() => {}} hasScrollablePageBody={false} isOpen>
-      <SidePanel.Overlay />
+    <SidePanel disableBodyOverflow={false} onClose={() => {}} isOpen>
       <SidePanel.Header>
         <Heading level={2}>Child of Parent 2</Heading>
       </SidePanel.Header>
