@@ -50,7 +50,8 @@ function CalendarController(props) {
     handleClickNavigation(prevButtonRef);
   }
 
-  function renderMonthHeaderElement({ month }) {
+  function renderMonthHeaderElement(date) {
+    const { month } = date;
     return <CalendarHeaderStyled>{month.format(I18n.t("dateInput.calendar_header_format"))}</CalendarHeaderStyled>;
   }
 
