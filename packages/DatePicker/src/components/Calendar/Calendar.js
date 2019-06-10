@@ -7,11 +7,11 @@ import "react-dates/initialize";
 import { DayPickerSingleDateController as SDPController } from "react-dates";
 import "react-dates/lib/css/_datepicker.css";
 
+import ArrowLeft from "@paprika/icon/lib/ArrowLeft";
 import ArrowRight from "@paprika/icon/lib/ArrowRight";
-import ArrowDown from "@paprika/icon/lib/ArrowDown";
 import useI18n from "@paprika/l10n/lib/useI18n";
 
-import CalendarStyled, { DayTriggerStyle, CalendarHeaderStyled } from "./CalendarController.styles";
+import CalendarStyled, { DayTriggerStyle, CalendarHeaderStyled } from "./Calendar.styles";
 
 const propTypes = {
   /** Selected date in moment object */
@@ -25,7 +25,7 @@ const defaultProps = {
   date: null,
 };
 
-function CalendarController(props) {
+function Calendar(props) {
   const I18n = useI18n();
   const nextButtonRef = React.useRef(null);
   const prevButtonRef = React.useRef(null);
@@ -50,15 +50,15 @@ function CalendarController(props) {
     handleClickNavigation(prevButtonRef);
   }
 
-  function renderMonthHeaderElement(date) {
-    const { month } = date;
+  // eslint-disable-next-line react/prop-types
+  function renderMonthHeaderElement({ month }) {
     return <CalendarHeaderStyled>{month.format(I18n.t("dateInput.calendar_header_format"))}</CalendarHeaderStyled>;
   }
 
   function renderArrowLeft() {
     return (
       <span ref={prevButtonRef}>
-        <ArrowDown role="presentation" size="14px" />
+        <ArrowLeft role="presentation" size="14px" />
       </span>
     );
   }
@@ -110,9 +110,9 @@ function CalendarController(props) {
   );
 }
 
-CalendarController.displayName = "CalendarController";
+Calendar.displayName = "Calendar";
 
-CalendarController.propTypes = propTypes;
-CalendarController.defaultProps = defaultProps;
+Calendar.propTypes = propTypes;
+Calendar.defaultProps = defaultProps;
 
-export default CalendarController;
+export default Calendar;

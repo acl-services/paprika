@@ -9,7 +9,7 @@ import Popover from "@paprika/popover";
 import { ShirtSizes } from "@paprika/helpers/lib/customPropTypes";
 import useI18n from "@paprika/l10n/lib/useI18n";
 
-import CalendarController from "./components/CalendarController/CalendarController";
+import Calendar from "./components/Calendar/Calendar";
 
 import { CalendarStyles } from "./DatePicker.styles";
 
@@ -17,13 +17,13 @@ const propTypes = {
   /** a11yText on the input. */
   a11yText: PropTypes.string,
 
-  /** Class name of the input. */
+  /** Class name of the date input. */
   className: PropTypes.string,
 
   /** Selected date in moment object. */
   date: momentPropTypes.momentObj,
 
-  /** Date format, will show in the input. */
+  /** Date format, will show in the date input. */
   format: PropTypes.string,
 
   /** Should be disabled or not, default is false. */
@@ -156,7 +156,7 @@ function DatePicker(props) {
 
       <Popover.Content>
         <div css={CalendarStyles} ref={calendarRef}>
-          <CalendarController date={props.date} onSelect={handleSelect} />
+          <Calendar date={props.date} onSelect={handleSelect} />
         </div>
       </Popover.Content>
     </Popover>
@@ -168,6 +168,6 @@ DatePicker.displayName = "DatePicker";
 DatePicker.propTypes = propTypes;
 DatePicker.defaultProps = defaultProps;
 
-DatePicker.CalendarController = CalendarController;
+DatePicker.Calendar = Calendar;
 
 export default DatePicker;
