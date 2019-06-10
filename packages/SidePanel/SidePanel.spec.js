@@ -1,6 +1,8 @@
 import React from "react";
-import { render as renderReactTestingLibrary, fireEvent } from "react-testing-library";
+import { render as renderReactTestingLibrary, configure, fireEvent } from "react-testing-library";
 import SidePanel from "./src";
+
+configure({ testIdAttribute: "data-qa-anchor" });
 
 const noop = () => {};
 
@@ -83,6 +85,18 @@ describe("SidePanel", () => {
       fireEvent.click(getByRole(/button/i));
 
       expect(fn).toHaveBeenCalled();
+    });
+  });
+
+  describe("SidePanel.Footer", () => {
+    it("should included footer", () => {
+      const fn = jest.fn();
+      const { getByTestId } = render({
+        onClose: fn,
+        children: <SidePanel.Footer data-qa-anchor="sidepanel.footer" />,
+      });
+
+      expect(getByTestId("sidepanel.footer")).toBeVisible();
     });
   });
 });

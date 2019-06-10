@@ -20,6 +20,20 @@ storiesOf("SidePanel / cypress", module).add("SidePanel Default Sticky", () => (
   </React.Fragment>
 ));
 
+storiesOf("SidePanel / cypress", module).add("SidePanel Footer Sticky", () => (
+  <React.Fragment>
+    <Nav />
+    <p>
+      <SidePanel isOpen>
+        <TextLine repeat={100} />
+        <SidePanel.Footer data-qa-anchor="sidepanel.footer" isSticky>
+          Footer
+        </SidePanel.Footer>
+      </SidePanel>
+    </p>
+  </React.Fragment>
+));
+
 const SidePanelOnAfter = () => {
   const [isOpen, setIsOpen] = React.useState(true);
   return (

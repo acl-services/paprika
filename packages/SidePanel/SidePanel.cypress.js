@@ -14,6 +14,13 @@ describe("<SidePanel />", () => {
     });
   });
 
+  it("should include footer in sticky mode", () => {
+    cy.visitStorybook("sidepanel-cypress--sidepanel-footer-sticky");
+    cy.getByTestId("sidepanel.footer").then($element => {
+      expect($element.css("bottom")).to.be.equal("0px");
+    });
+  });
+
   it("should be possible to interact with multiple sidepanels in a group", () => {
     cy.visitStorybook("sidepanel--multiple-sidepanels");
 
@@ -47,7 +54,7 @@ describe("<SidePanel />", () => {
   });
 
   let count = 1;
-  it.only("should call onAfterOpen and onAfterClose", () => {
+  it("should call onAfterOpen and onAfterClose", () => {
     cy.visitStorybook("sidepanel-cypress--sidepanel-onafteropen-onafterclose").then(() => {
       cy.on("window:alert", str => {
         if (count === 1) {

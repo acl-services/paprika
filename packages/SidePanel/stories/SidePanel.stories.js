@@ -18,8 +18,6 @@ const SidePanelStory = props => {
   return (
     <React.Fragment>
       <Nav />
-      <Button onClick={open}>open</Button>
-      <TextLine repeat={100} />
       <SidePanel isOpen={isOpen} onClose={close} offsetY={40}>
         <SidePanel.Overlay />
         <SidePanel.Trigger onClick={open}>{isOpen ? "close" : "open"}</SidePanel.Trigger>
@@ -28,6 +26,7 @@ const SidePanelStory = props => {
         </SidePanel.Header>
         <TextLine repeat={100} />
       </SidePanel>
+      <TextLine repeat={100} />
     </React.Fragment>
   );
 };

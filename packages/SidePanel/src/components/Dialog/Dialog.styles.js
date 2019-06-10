@@ -77,7 +77,9 @@ export const dialogStyles = css`
   }}
 `;
 
-export const dialogContentStyles = `
+export const dialogContentStyles = css`
   padding: ${space * 2}px;
-  const stickyCSS = props.isSticky ? "margin-bottom: 164px; border:1px solid red;" : "";
+  ${props => {
+    return props.isSticky ? `margin-bottom: ${props.footerHeight}px;` : "";
+  }}
 `;

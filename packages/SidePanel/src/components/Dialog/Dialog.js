@@ -57,6 +57,7 @@ function Dialog(props) {
       <div
         css={dialogContentStyles}
         isSticky={footer ? footer.props.isSticky : null}
+        footerHeight={footer ? footer.props.height : null}
         tabIndex="-1"
         ref={refSidePanelContent}
       >
