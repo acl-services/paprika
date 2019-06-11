@@ -55,17 +55,12 @@ export function getNextOptionActiveIndex(state, isAscending = true) {
 
   if (state.activeOption === null) return 0;
 
-  if (optionsKeys.length === 1) {
-    return 0;
-  }
+  if (optionsKeys.length === 1) return 0;
 
-  if (optionsKeys.length - 1 < activeOption) {
-    return 0;
-  }
+  if (optionsKeys.length - 1 < activeOption) return 0;
 
   let key = state.options[activeOption].index;
 
-  let index = null;
   let keepIterating = true;
 
   while (keepIterating) {
@@ -91,21 +86,13 @@ export function getNextOptionActiveIndex(state, isAscending = true) {
     }
 
     if (isOptionVisible(state, key) && !isDisabled(state, key)) {
-      index = key;
-      keepIterating = false;
+      return key;
     }
   }
-
-  return index || 0;
 }
 
 export function getNextOptionActiveIndexLooping(state) {
-  let activeIndex = getNextOptionActiveIndex(state);
-  if (!activeIndex) {
-    activeIndex = getNextOptionActiveIndex(state, false);
-  }
-
-  return activeIndex;
+  return getNextOptionActiveIndex(state) || getNextOptionActiveIndex(state, false);
 }
 
 export function handleArrowKeys({ event, state, dispatch, isArrowDown = null }) {
@@ -115,7 +102,7 @@ export function handleArrowKeys({ event, state, dispatch, isArrowDown = null }) 
   }
 
   event.preventDefault();
-  const next = isArrowDown ? getNextOptionActiveIndex(state) : getNextOptionActiveIndex(state, false);
+  const next = getNextOptionActiveIndex(state, isArrowDown);
   if (next !== null) {
     if (state.isMulti) {
       dispatch({
@@ -136,7 +123,10 @@ export const handleClickOption = ({ props, state, dispatch }) => event => {
     return;
   }
 
-  if (state.refListBox.current.contains(event.target) && document.activeElement === document.body && !hasFilter) {
+  const focusListBoxContentIfHasNotFilter =
+    state.refListBox.current.contains(event.target) && document.activeElement === document.body && !hasFilter;
+
+  if (focusListBoxContentIfHasNotFilter) {
     state.refListBoxContainer.current.focus();
   }
 
