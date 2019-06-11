@@ -8,11 +8,11 @@ import Input from "@paprika/input";
 import Popover from "@paprika/popover";
 import useI18n from "@paprika/l10n/lib/useI18n";
 
-import Calendar from "./components/Calendar/Calendar";
-import DateInput from "./components/DateInput/DateInput";
+import Calendar from "./components/Calendar";
+import DateInput from "./components/DateInput";
 
 import { CalendarStyles } from "./DatePicker.styles";
-import { getExtendedInputProps } from "./helpers";
+import { extractChildrenProps } from "./helpers";
 
 const propTypes = {
   children: PropTypes.node,
@@ -56,7 +56,7 @@ function DatePicker(props) {
   // Ref
   const calendarRef = React.useRef(null);
 
-  const extendedInputProps = getExtendedInputProps(children);
+  const extendedInputProps = extractChildrenProps(children);
 
   function showCalendar() {
     if (!shouldShowCalendar) setShouldShowCalendar(true);
@@ -147,7 +147,7 @@ function DatePicker(props) {
       />
 
       <Popover.Content>
-        <div css={CalendarStyles} ref={calendarRef}>
+        <div css={CalendarStyles} data-qa-anchor="datepicker-calendar" ref={calendarRef}>
           <Calendar date={date} onSelect={handleSelect} />
         </div>
       </Popover.Content>

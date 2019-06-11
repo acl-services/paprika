@@ -47,12 +47,6 @@ const CalendarStyled = styled.div`
       border: none;
     }
 
-    .aclui-calendar-day-mask {
-      display: block;
-      width: 100%;
-      height: 100%;
-    }
-
     &.CalendarDay__selected {
       background-color: ${tokens.color.white};
     }
@@ -60,7 +54,7 @@ const CalendarStyled = styled.div`
     &.CalendarDay__outside {
       pointer-events: none;
 
-      .aclui-calendar-day-content {
+      > span {
         color: ${tokens.color.blackDisabled};
       }
     }
@@ -113,6 +107,7 @@ export const DayTriggerStyle = props => {
   `;
   const TodayStyle = `
     border: 1px solid ${tokens.border.color};
+    font-weight: bold;
   `;
 
   return `

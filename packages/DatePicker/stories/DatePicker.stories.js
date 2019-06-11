@@ -1,4 +1,5 @@
 import React from "react";
+import moment from "moment";
 import { storiesOf } from "@storybook/react";
 import L10n from "@paprika/l10n";
 import Example from "./DatePickerExample";
@@ -7,12 +8,11 @@ import DatePicker from "../src/DatePicker";
 storiesOf("DatePicker", module)
   .add("DatePicker", () => <Example locale="en" />)
   .add("DatePicker with locale", () => <Example locale="ja" />)
+  .add("DatePicker with initialDate", () => <Example initialDate={moment("2019-01-01")} />)
   .add("DatePicker with DatePicker.Input", () => (
-    <L10n>
-      <DatePicker className="custom-class-name" format="MM/DD/YYYY" onChange={() => {}}>
-        <DatePicker.Input placeholder="custom placeholder" />
-      </DatePicker>
-    </L10n>
+    <Example format="YYYY-MM-DD">
+      <DatePicker.Input className="custom-class-name" placeholder="custom placeholder" />
+    </Example>
   ))
   .add("Calendar", () => (
     <L10n>

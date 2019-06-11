@@ -62,7 +62,7 @@ function Calendar(props) {
 
   function renderArrowLeft() {
     return (
-      <span ref={prevButtonRef}>
+      <span ref={prevButtonRef} data-qa-anchor="datepicker-prev-month">
         <ArrowLeft role="presentation" size="14px" />
       </span>
     );
@@ -70,7 +70,7 @@ function Calendar(props) {
 
   function renderArrowRight() {
     return (
-      <span ref={nextButtonRef}>
+      <span ref={nextButtonRef} data-qa-anchor="datepicker-next-month">
         <ArrowRight role="presentation" size="14px" />
       </span>
     );
@@ -80,7 +80,6 @@ function Calendar(props) {
     return (
       <span
         css={DayTriggerStyle}
-        className="aclui-calendar-day-content"
         isSelected={moment(day).isSame(date, "day")}
         isToday={moment(day).isSame(moment(), "day")}
       >

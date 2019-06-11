@@ -4,9 +4,10 @@ import L10n from "@paprika/l10n";
 import DatePicker from "../src/DatePicker";
 
 function Example(props) {
-  if (props.locale) moment.locale(props.locale);
+  const { initialDate, children, locale, ...moreProps } = props;
+  const [date, setDate] = React.useState(initialDate || null);
 
-  const [date, setDate] = React.useState(moment());
+  moment.locale(locale || "en");
 
   function handleChange(newDate) {
     setDate(newDate);
@@ -14,7 +15,9 @@ function Example(props) {
 
   return (
     <L10n locale={props.locale}>
-      <DatePicker date={date} format="MM/DD/YYYY" onChange={handleChange} />
+      <DatePicker date={date} format="MM/DD/YYYY" onChange={handleChange} {...moreProps}>
+        {children}
+      </DatePicker>
     </L10n>
   );
 }

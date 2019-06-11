@@ -1,6 +1,6 @@
 import React from "react";
 
-export function getExtendedInputProps(children) {
+export function extractChildrenProps(children) {
   let overrides;
 
   React.Children.forEach(children, child => {
