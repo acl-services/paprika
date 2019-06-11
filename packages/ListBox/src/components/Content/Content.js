@@ -1,7 +1,6 @@
 import React from "react";
 import PropTypes from "prop-types";
 import Popover from "@paprika/popover";
-import { ContentInlineStyled } from "./Content.styles";
 import { getDOMAttributesForListBoxContainer } from "../../helpers/DOMAttributes";
 import handleKeyboardKeys from "../../helpers/handleKeyboardKeys";
 import useListBox from "../../useListBox";
@@ -46,17 +45,20 @@ export default function Content(props) {
   const [state, dispatch] = useListBox();
   const { refListBoxContainer } = state;
 
+  /* NOTE no idea what ROLE should be this div when the ListBox is INLINE */
+  /* eslint-disable jsx-a11y/no-static-element-interactions */
   if (state.isInline) {
     return (
-      <ContentInlineStyled
-        {...getDOMAttributesForListBoxContainer()}
+      <div
+        {...getDOMAttributesForListBoxContainer({ isInline: true })}
         onKeyDown={handleKeyboardKeys(state, dispatch)}
         ref={refListBoxContainer}
       >
         {props.children}
-      </ContentInlineStyled>
+      </div>
     );
   }
+  /* eslint-enable jsx-a11y/no-static-element-interactions */
 
   return (
     <Popover.Content

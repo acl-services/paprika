@@ -2,8 +2,9 @@ import uuidv4 from "uuid/v4";
 
 const listBoxId = `listBoxId_${uuidv4()}`;
 
-export function getDOMAttributesForListBoxContainer() {
-  return { tabIndex: "-1" };
+export function getDOMAttributesForListBoxContainer({ isInline = false } = {}) {
+  const tabIndex = isInline ? "0" : "-1";
+  return { tabIndex };
 }
 
 export function getDOMAttributesForListBox(state) {
