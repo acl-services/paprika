@@ -1,5 +1,4 @@
 import moment from "moment";
-import Input from "@paprika/input";
 
 describe("<DatePicker />", () => {
   const today = moment();
