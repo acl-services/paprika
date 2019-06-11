@@ -7,17 +7,31 @@ const defaultProps = {};
 
 const ParametersExample = ({ state, signature }) => {
   return (
-    <div css="padding: 16px; border: 1px solid #CCC; margin-bottom: 16px; border-radius: 3px;">
-      <span css="font-size: 14px; color: #333">Single select onChange signature:</span>
+    <div style={{ padding: "8px", border: "1px solid #CCC", "margin-bottom": "8px", "border-radius": "3px" }}>
+      <span style={{ "font-size": "14px", color: " #333" }}>Single select onChange signature:</span>
       <hr />
-      <code>{signature}</code>
-      {state ? <RJT data={state} /> : null}
+      <code
+        style={{
+          "font-size": "13px",
+          color: "#785CBA",
+          padding: "8px",
+          "font-weight": "600",
+          "border-radius": "3px",
+          background: "#EEE",
+          border: "1px solid #CCC",
+        }}
+      >
+        {signature}
+      </code>
+      <br />
+      <br />
+      {state ? <RJT hideRoot data={state} /> : null}
     </div>
   );
 };
 
-const signatureSingleStr = `onChange(index, [options], { dispatch, actionTypes, eventType, event? })`;
-const signatureMultipleStr = `onChange([indexes], [options], indexSelected, { dispatch, actionTypes, eventType, event? })`;
+const signatureSingleStr = `onChange(index, [options], { dispatch, actionTypes, eventType })`;
+const signatureMultipleStr = `onChange([indexes], [options], indexSelected, { dispatch, actionTypes, eventType })`;
 
 export default function OnChange() {
   const [singleState, setSingleState] = React.useState(null);
@@ -43,7 +57,7 @@ export default function OnChange() {
 
   return (
     <React.Fragment>
-      <div css="padding: 16px;">
+      <div style={{ padding: "16px" }}>
         <h2>Single selection</h2>
         <ParametersExample state={singleState} signature={signatureSingleStr} />
         <ListBox onChange={handleSingleChange}>
@@ -63,7 +77,7 @@ export default function OnChange() {
         </ListBox>
       </div>
       <hr />
-      <div css="padding: 16px;">
+      <div style={{ padding: "16px" }}>
         <h2>Multiple selection with footer</h2>
         <ParametersExample state={multipleState} signature={signatureMultipleStr} />
         <ListBox isMulti onChange={handleMultipleChange}>

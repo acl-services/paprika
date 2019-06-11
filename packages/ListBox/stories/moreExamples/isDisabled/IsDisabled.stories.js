@@ -1,10 +1,10 @@
 import React from "react";
 import { storiesOf } from "@storybook/react";
 import { Frame } from "../../stories.styles";
-import FilterSelect from "./FilterSelect";
+import IsDisabled from "./IsDisabled";
 
-storiesOf("ListBox / more examples", module).add("Filter select", () => (
+storiesOf("ListBox / more examples", module).add("Is disabled", () => (
   <Frame>
-    <FilterSelect />
+    <IsDisabled />
   </Frame>
 ));

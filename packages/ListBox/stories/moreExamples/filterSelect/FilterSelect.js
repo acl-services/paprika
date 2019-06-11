@@ -1,9 +1,7 @@
-/* eslint-disable react/no-multi-comp, react/prop-types */
-
 import React from "react";
 import Button from "@paprika/button";
 import { Td, Th, FiltersStyled, TdFilter } from "./filterSelect.styles";
-import ListBox from "../../../index";
+import ListBox from "../../../src";
 
 const items = [
   { name: "Punisher", color: "blue", price: 2300, qty: 15 },
@@ -19,7 +17,7 @@ const FilterPrice = React.forwardRef((props, ref) => {
   return (
     <ListBox ref={ref} onChange={props.onChange} placeholder="Price">
       <ListBox.Option>greater than 500</ListBox.Option>
-      <ListBox.Option isSelected>lower than 500</ListBox.Option>
+      <ListBox.Option>lower than 500</ListBox.Option>
     </ListBox>
   );
 });
@@ -28,7 +26,7 @@ const FilterQty = React.forwardRef((props, ref) => {
   return (
     <ListBox ref={ref} onChange={props.onChange} placeholder="Quantity">
       <ListBox.Option>greater than 100</ListBox.Option>
-      <ListBox.Option isSelected>less than 100</ListBox.Option>
+      <ListBox.Option>less than 100</ListBox.Option>
     </ListBox>
   );
 });
@@ -67,7 +65,7 @@ export default function FilterSelect() {
   const [filterPriceValue, setFilterPriceValue] = React.useState(null);
   const [filterQtyValue, setFilterQtyValue] = React.useState(null);
 
-  const handleChangeFilterColor = ({ selected, options }) => {
+  const handleChangeFilterColor = (selected, options) => {
     if (selected.length === 0) {
       setFilterColorValue(null);
       return;
@@ -93,20 +91,15 @@ export default function FilterSelect() {
     refFilterQty.current.clear();
   };
 
-  const handleClickReset = () => {
-    refFilterColor.current.reset();
-    refFilterPrice.current.reset();
-    refFilterQty.current.reset();
-  };
-
   return (
     <React.Fragment>
       <FiltersStyled>
         <FilterColor onChange={handleChangeFilterColor} ref={refFilterColor} />
         <FilterPrice onChange={handleChangeFilterPrice} ref={refFilterPrice} />
         <FilterQty onChange={handleChangeFilterQty} ref={refFilterQty} />
-        <Button onClick={handleClickClear}>Clear</Button>
-        <Button onClick={handleClickReset}>Reset</Button>
+        <Button data-qa-anchor="clear-filters-button" onClick={handleClickClear}>
+          Clear
+        </Button>
       </FiltersStyled>
       <table style={{ width: "100%", textAlign: "left", border: "1px solid #CCC", borderCollapse: "collapse" }}>
         <thead>
@@ -117,7 +110,7 @@ export default function FilterSelect() {
             <Th scope="col">Qty</Th>
           </tr>
         </thead>
-        <tbody>
+        <tbody data-qa-anchor="table-list">
           {items
             .filter(filterItems({ price: filterPriceValue, colors: filterColorValue, qty: filterQtyValue }))
             .map(item => (
