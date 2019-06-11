@@ -30,7 +30,6 @@
     "jsx-a11y/label-has-for": "off",
     "new-cap": "off",
     "no-plusplus": "off",
-    "no-shadow": "off",
     "no-console": "off",
     "no-restricted-syntax": [
       "error",
