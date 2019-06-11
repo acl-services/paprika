@@ -3,7 +3,7 @@ import { storiesOf } from "@storybook/react";
 
 import Popover from "../src";
 
-const gapStyles = `height: 120px;`;
+const gapStyles = { height: "120px" };
 const shortContent = "Popover content";
 const longContent =
   "Lorem ipsum fixie raw denim scenester plaid sustainable lumbersexual, single-origin coffee. Live-edge yr tote bag vaporware slow-carb farm-to-table ethical af humblebrag.";
@@ -17,7 +17,7 @@ storiesOf("Popover/Automation Tests/Screener", module).add("basic", () => (
         <Popover.Card>{shortContent}</Popover.Card>
       </Popover.Content>
     </Popover>
-    <div css={gapStyles} />
+    <div style={gapStyles} />
     <Popover isOpen isDark>
       <Popover.Trigger>Open Popover</Popover.Trigger>
       <Popover.Content>
@@ -25,7 +25,7 @@ storiesOf("Popover/Automation Tests/Screener", module).add("basic", () => (
         <Popover.Card>{shortContent}</Popover.Card>
       </Popover.Content>
     </Popover>
-    <div css="text-align: right;">
+    <div style={{ textAlign: "right" }}>
       <Popover isOpen>
         <Popover.Trigger>Open Popover</Popover.Trigger>
         <Popover.Content>
@@ -33,7 +33,7 @@ storiesOf("Popover/Automation Tests/Screener", module).add("basic", () => (
           <Popover.Card>{longContent}</Popover.Card>
         </Popover.Content>
       </Popover>
-      <div css={gapStyles} />
+      <div style={gapStyles} />
       <Popover isOpen isDark>
         <Popover.Trigger>Open Popover</Popover.Trigger>
         <Popover.Content>

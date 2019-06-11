@@ -10,6 +10,7 @@ const propTypes = {
 };
 
 export default function Label(props) {
+  debugger;
   const { placeholder } = props;
   const [state] = useListBox();
   const { selectedOptions, isMulti, options } = state;

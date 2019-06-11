@@ -9,7 +9,6 @@ storiesOf("ListBox / multi", module).add("Basic is disabled while open", () => <
 storiesOf("ListBox / multi", module).add("With Custom Checkboxes", () => <Multi.WithCustomCheckboxes />);
 storiesOf("ListBox / multi", module).add("Footer", () => <Multi.Footer />);
 storiesOf("ListBox / multi", module).add("With Groups", () => <Multi.WithGroups />);
-storiesOf("ListBox / multi", module).add("With Groups", () => <Multi.WithGroups />);
 storiesOf("ListBox / multi", module).add("With Filter", () => <Multi.WithFilter />);
 storiesOf("ListBox / multi", module).add("With Groups and have preselected options", () => (
   <Multi.WithGroupsAndHavePreselectedOptions />

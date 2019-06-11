@@ -10,12 +10,10 @@ storiesOf("ListBox / single", module).add("Basic option disabled", () => <Single
 storiesOf("ListBox / single", module).add("Basic with empty option", () => <Single.BasicWithEmptyOption />);
 storiesOf("ListBox / single", module).add("Basic with preselected option", () => <Single.BasicPreselectedOption />);
 
-storiesOf("ListBox / single", module).add("Custom Checkers", () => <Single.WithCustomCheckers />);
 storiesOf("ListBox / single", module).add("Custom Children", () => <Single.CustomChildrenInline />);
 storiesOf("ListBox / single", module).add("Custom z-index", () => <Single.WithCustomZIndex />);
 
 storiesOf("ListBox / single", module).add("Footer", () => <Single.Footer />);
 storiesOf("ListBox / single", module).add("Has no clear button", () => <Single.HasNoClearButton />);
-storiesOf("ListBox / single", module).add("Has label and value option prop", () => <Single.OptionProp />);
 storiesOf("ListBox / single", module).add("Has prevent default on select", () => <Single.WithPreventDefaultOnSelect />);
 storiesOf("ListBox / single", module).add("Has scroll connected to element", () => <Single.WithContainerScroll />);
