@@ -131,7 +131,7 @@ export default function Trigger(props) {
     >
       {hasRenderTrigger ? renderChildrenProps : renderLabel()}
       <TriggerActionIconsContainer>
-        {hasClearButton || state.selectedOptions.length ? (
+        {state.selectedOptions.length && hasClearButton ? (
           <RawButtonClearButtonStyled
             hasRenderTrigger={hasRenderTrigger}
             isDisabled={isDisabled}
