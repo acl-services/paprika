@@ -12,7 +12,6 @@ import Provider from "./store/Provider";
 
 const ListBoxWithProvider = React.forwardRef((props, ref) => {
   const { children, ...moreProps } = props;
-
   /*
   Assures the structure of the children is one of the following:
 
@@ -38,16 +37,10 @@ const ListBoxWithProvider = React.forwardRef((props, ref) => {
   const {
     "ListBox.Filter": filter,
     "ListBox.Footer": footer,
-    "ListBox.Option": options,
     "ListBox.Popover": popover,
     "ListBox.Trigger": trigger,
-  } = extractChildren(_children, [
-    "ListBox.Filter",
-    "ListBox.Footer",
-    "ListBox.Option",
-    "ListBox.Popover",
-    "ListBox.Trigger",
-  ]);
+    children: options,
+  } = extractChildren(_children, ["ListBox.Filter", "ListBox.Footer", "ListBox.Popover", "ListBox.Trigger"]);
 
   return (
     <Provider {...moreProps} childrenOptions={options}>
