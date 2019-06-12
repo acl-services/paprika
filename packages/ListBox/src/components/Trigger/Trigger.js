@@ -122,9 +122,6 @@ export default function Trigger(props) {
   }
 
   return (
-<<<<<<< Updated upstream
-    <ListBoxTriggerStyled isInline={state.isInline} isDisabled={isDisabled} ref={refTriggerContainer}>
-=======
     <ListBoxTriggerStyled
       data-qa-anchor="trigger"
       isInline={state.isInline}
@@ -132,7 +129,6 @@ export default function Trigger(props) {
       ref={refTriggerContainer}
       {...getDOMAttributesForListBoxButton(state.idListBox)()}
     >
->>>>>>> Stashed changes
       {hasRenderTrigger ? renderChildrenProps : renderLabel()}
       <TriggerActionIconsContainer>
         {hasClearButton || state.selectedOptions.length ? (
