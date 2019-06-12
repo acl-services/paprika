@@ -15,7 +15,7 @@ function Example(props) {
 
   return (
     <L10n locale={props.locale}>
-      <DatePicker date={date} format="MM/DD/YYYY" onChange={handleChange} {...moreProps}>
+      <DatePicker date={date} onChange={handleChange} {...moreProps}>
         {children}
       </DatePicker>
     </L10n>

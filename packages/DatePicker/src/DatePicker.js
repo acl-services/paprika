@@ -36,7 +36,7 @@ const propTypes = {
 const defaultProps = {
   children: null,
   date: null,
-  format: "YYYY-MM-DD",
+  format: "DD/MM/YYYY",
   isDisabled: false,
   isReadOnly: false,
 };
@@ -55,6 +55,12 @@ function DatePicker(props) {
 
   // Ref
   const calendarRef = React.useRef(null);
+
+  // Effect
+  React.useEffect(() => {
+    setInputtedString(date ? moment(date).format(format) : "");
+    setConfirmationResult("");
+  }, [date]);
 
   const extendedInputProps = extractChildrenProps(children);
 
@@ -147,7 +153,7 @@ function DatePicker(props) {
       />
 
       <Popover.Content>
-        <div css={CalendarStyles} data-qa-anchor="datepicker-calendar" ref={calendarRef}>
+        <div css={CalendarStyles} data-qa-anchor="datepicker.calendar" ref={calendarRef}>
           <Calendar date={date} onSelect={handleSelect} />
         </div>
       </Popover.Content>

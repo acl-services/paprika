@@ -2,11 +2,15 @@ import styled from "styled-components";
 import tokens from "@paprika/tokens";
 import stylers from "@paprika/stylers";
 
+import CalendarBaseStyle from "./CalendarBase.styles";
+
 function getNumber(token) {
   return token.slice(0, -2) / 1;
 }
 
 const CalendarStyled = styled.div`
+  ${CalendarBaseStyle}
+
   * {
     box-sizing: border-box;
     font-family: ${tokens.fontFamily.default};

@@ -5,7 +5,6 @@ import momentPropTypes from "react-moment-proptypes";
 
 import "react-dates/initialize";
 import { DayPickerSingleDateController as SDPController } from "react-dates";
-import "react-dates/lib/css/_datepicker.css";
 
 import ArrowLeft from "@paprika/icon/lib/ArrowLeft";
 import ArrowRight from "@paprika/icon/lib/ArrowRight";

@@ -5,6 +5,6 @@ import DatePicker from "../src/DatePicker";
 
 storiesOf("DatePicker / cypress", module).add("DatePicker test", () => (
   <Example locale="en">
-    <DatePicker.Input data-qa-anchor="datepicker-input" />
+    <DatePicker.Input data-qa-anchor="datepicker.input" />
   </Example>
 ));
