@@ -34,7 +34,7 @@ const triggerStylesProps = () => props => {
       ${isDisabled}
     `
     : `
-      & > [data-raw-button="trigger"] {
+      & > [data-qa-anchor='listbox-trigger'] {
         ${triggerStyles}
         ${isDisabled}
       }
@@ -96,7 +96,7 @@ export const RawButtonClearButtonStyled = styled(RawButton)`
         return "display: none";
       }
 
-      if (props.hasRenderTrigger || !props.hasSelectedOptions) {
+      if (props.hasRenderTrigger) {
         return "display: none";
       }
 

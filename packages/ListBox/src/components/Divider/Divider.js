@@ -7,11 +7,7 @@ const propTypes = {
 };
 
 export default function Divider(props) {
-  return (
-    <li css={dividerCSS} aria-hidden="true">
-      {props.children}
-    </li>
-  );
+  return <li css={dividerCSS}>{props.children}</li>;
 }
 
 Divider.propTypes = propTypes;

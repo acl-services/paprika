@@ -22,7 +22,7 @@ const propTypes = {
   children: PropTypes.oneOfType([PropTypes.node, PropTypes.func]),
   hasClearButton: PropTypes.bool,
   onClickClear: PropTypes.func,
-  onFooterClickAccept: PropTypes.func,
+  onClickFooterAccept: PropTypes.func,
   placeholder: PropTypes.string,
 };
 
@@ -30,13 +30,13 @@ const defaultProps = {
   children: <React.Fragment />,
   hasClearButton: true,
   onClickClear: null,
-  onFooterClickAccept: null,
+  onClickFooterAccept: null,
   placeholder: "Select...",
 };
 
 export default function Trigger(props) {
   const [state, dispatch] = useListBox();
-  const { placeholder, hasClearButton, onFooterClickAccept } = props;
+  const { placeholder, hasClearButton, onClickFooterAccept } = props;
 
   const { isDisabled, refTriggerContainer, refTrigger, isMulti } = state;
 
@@ -63,7 +63,7 @@ export default function Trigger(props) {
         type: useListBox.types.clear,
         payload: {
           isOpen: false,
-          onChangeFn: applyOnChange(onFooterClickAccept, "listbox:footer:clear"),
+          onChangeFn: applyOnChange(onClickFooterAccept, "listbox:footer:clear"),
         },
       });
       return;
@@ -95,7 +95,7 @@ export default function Trigger(props) {
         onKeyDown={handleKeyboardKeys(state, dispatch)}
         onKeyUp={() => {}}
         isDisabled={isDisabled}
-        data-raw-button="trigger"
+        data-qa-anchor="listbox-trigger"
       >
         <Label
           activeOption={state.options[state.activeOption]}
@@ -114,7 +114,7 @@ export default function Trigger(props) {
   if (hasRenderTrigger) {
     renderChildrenProps = React.useMemo(() => {
       return props.children(state.isMulti ? getSelectedOptionsMulti(state) : getSelectedOptionSingle(state), dispatch, {
-        propsForTrigger: getDOMAttributesForListBoxButton,
+        propsForTrigger: getDOMAttributesForListBoxButton(state.idListBox),
         types: cleanActionTypes(useListBox.types),
         refTrigger: state.refTrigger,
       });
@@ -122,13 +122,22 @@ export default function Trigger(props) {
   }
 
   return (
+<<<<<<< Updated upstream
     <ListBoxTriggerStyled isInline={state.isInline} isDisabled={isDisabled} ref={refTriggerContainer}>
+=======
+    <ListBoxTriggerStyled
+      data-qa-anchor="trigger"
+      isInline={state.isInline}
+      isDisabled={isDisabled}
+      ref={refTriggerContainer}
+      {...getDOMAttributesForListBoxButton(state.idListBox)()}
+    >
+>>>>>>> Stashed changes
       {hasRenderTrigger ? renderChildrenProps : renderLabel()}
       <TriggerActionIconsContainer>
-        {hasClearButton ? (
+        {hasClearButton || state.selectedOptions.length ? (
           <RawButtonClearButtonStyled
             hasRenderTrigger={hasRenderTrigger}
-            hasSelectedOptions={state.selectedOptions.length}
             isDisabled={isDisabled}
             onClick={handleClickClear}
             isOpen={state.isOpen}

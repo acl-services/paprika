@@ -1,14 +1,9 @@
-import uuidv4 from "uuid/v4";
-
-const listBoxId = `listBoxId_${uuidv4()}`;
-
 export function getDOMAttributesForListBoxContainer({ isInline = false } = {}) {
   const tabIndex = isInline ? "0" : "-1";
   return { tabIndex };
 }
 
 export function getDOMAttributesForListBox(state) {
-  // NOTE: replace this with L10n component
   let activedescendant = "none";
   const { activeOption } = state;
 
@@ -18,11 +13,12 @@ export function getDOMAttributesForListBox(state) {
       activedescendant = id;
     }
   }
+  const idListBox = state.idListBox;
 
   return {
     "aria-activedescendant": activedescendant,
-    "aria-labelledby": "listbox-value",
-    id: listBoxId,
+    "aria-labelledby": `${idListBox}__button`,
+    id: idListBox,
     role: "listbox",
   };
 }
@@ -32,11 +28,11 @@ export const getA11yAttributesForOption = isSelected => {
   return { role: "option", ...a11yIsSelected };
 };
 
-export function getDOMAttributesForListBoxButton() {
-  return {
-    "aria-haspopup": "popup-picker",
-    "aria-labelledby": "ccc listBox-button",
-    id: listBoxId,
-    type: "button",
+export function getDOMAttributesForListBoxButton(idListBox) {
+  return function innerFunction() {
+    return {
+      id: `${idListBox}__button`,
+      type: "button",
+    };
   };
 }

@@ -1,5 +1,6 @@
 import React from "react";
 import PropTypes from "prop-types";
+import uuidv4 from "uuid/v4";
 import reducer from "./reducer";
 import { getDataOptions } from "../components/Option/helpers/optionState";
 
@@ -36,6 +37,7 @@ function initializeState(props) {
   }
 
   const initialState = {
+    idListBox: `listBoxId_${uuidv4()}`,
     activeOption,
     filteredOptions: [],
     hasFooter: false,
