@@ -38,13 +38,13 @@ const ListBoxWithProvider = React.forwardRef((props, ref) => {
   const {
     "ListBox.Filter": filter,
     "ListBox.Footer": footer,
-    "ListBox.Options": options,
+    "ListBox.Option": options,
     "ListBox.Popover": popover,
     "ListBox.Trigger": trigger,
   } = extractChildren(_children, [
     "ListBox.Filter",
     "ListBox.Footer",
-    "ListBox.Options",
+    "ListBox.Option",
     "ListBox.Popover",
     "ListBox.Trigger",
   ]);
