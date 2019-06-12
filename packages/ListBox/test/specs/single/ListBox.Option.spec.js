@@ -14,7 +14,7 @@ function renderComponent(props = {}) {
   return {
     ...rendered,
     openSelect: () => {
-      fireEvent.click(rendered.getByTestId("trigger"));
+      fireEvent.click(rendered.getByTestId("listbox-trigger"));
     },
     selectVenus: () => {
       fireEvent.click(rendered.getByText(/venus/i));
@@ -31,8 +31,8 @@ describe("ListBox.Option", () => {
     openSelect();
     expect(getByText(/Select/i)).toBeInTheDocument();
     selectVenus();
-    expect(getByTestId("trigger")).toHaveTextContent(/Select/i);
-    expect(getByTestId("trigger")).not.toHaveTextContent(/venus/i);
+    expect(getByTestId("listbox-trigger")).toHaveTextContent(/Select/i);
+    expect(getByTestId("listbox-trigger")).not.toHaveTextContent(/venus/i);
   });
 
   it("should be hidden", () => {
@@ -50,7 +50,7 @@ describe("ListBox.Option", () => {
       isSelected: true,
     });
 
-    expect(getByTestId("trigger")).toHaveTextContent(/venus/i);
+    expect(getByTestId("listbox-trigger")).toHaveTextContent(/venus/i);
   });
 
   it("calls onClick on selection", () => {
@@ -75,9 +75,9 @@ describe("ListBox.Option", () => {
       </ListBox>
     );
 
-    fireEvent.click(getByTestId("trigger"));
+    fireEvent.click(getByTestId("listbox-trigger"));
     fireEvent.click(getByAltText("planetvenus"));
-    expect(getByTestId("trigger")).toHaveTextContent(/venus/i);
+    expect(getByTestId("listbox-trigger")).toHaveTextContent(/venus/i);
   });
 
   it("should prevent default selection ability", () => {
@@ -87,7 +87,7 @@ describe("ListBox.Option", () => {
 
     openSelect();
     selectVenus();
-    expect(getByTestId("trigger")).toHaveTextContent(/select/i);
+    expect(getByTestId("listbox-trigger")).toHaveTextContent(/select/i);
   });
 
   it("should prevent default selection ability using <ListBox.RawItem />", () => {
@@ -98,9 +98,9 @@ describe("ListBox.Option", () => {
       </ListBox>
     );
 
-    fireEvent.click(getByTestId("trigger"));
+    fireEvent.click(getByTestId("listbox-trigger"));
     fireEvent.click(getByText(/venus/i));
 
-    expect(getByTestId("trigger")).toHaveTextContent(/select/i);
+    expect(getByTestId("listbox-trigger")).toHaveTextContent(/select/i);
   });
 });

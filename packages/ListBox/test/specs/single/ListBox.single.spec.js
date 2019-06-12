@@ -58,19 +58,19 @@ describe("Listbox single select", () => {
 
     openSelect();
     selectVenus();
-    expect(getByTestId("trigger")).toHaveTextContent(/venus/i);
+    expect(getByTestId("listbox-trigger")).toHaveTextContent(/venus/i);
     expect(getByTestId("clear-button")).toBeVisible();
   });
 
   it("should clear selected option when x is clicked", () => {
-    const { getByTestId, openSelect, selectVenus } = renderComponent();
+    const { queryByTestId, getByTestId, openSelect, selectVenus } = renderComponent();
 
     openSelect();
     selectVenus();
     fireEvent.click(getByTestId("clear-button"));
-    expect(getByTestId("clear-button")).not.toBeVisible();
-    expect(getByTestId("trigger")).not.toHaveTextContent(/venus/i);
-    expect(getByTestId("trigger")).toHaveTextContent(/select/i);
+    expect(queryByTestId("clear-button")).toBeNull();
+    expect(getByTestId("listbox-trigger")).not.toHaveTextContent(/venus/i);
+    expect(getByTestId("listbox-trigger")).toHaveTextContent(/select/i);
   });
 
   it("should have a filter in dropdown", () => {

@@ -68,21 +68,21 @@ describe("Listbox multi select", () => {
     selectVenus();
     expectDropdownIsNotHidden();
     selectJupiter();
-    expect(getByTestId("trigger")).toHaveTextContent(/venus, jupiter/i);
+    expect(getByTestId("listbox-trigger")).toHaveTextContent(/venus, jupiter/i);
   });
 
   it("should clear selected options when x is clicked", () => {
-    const { getByTestId, openSelect, selectVenus, selectJupiter } = renderComponent();
+    const { queryByTestId, getByTestId, openSelect, selectVenus, selectJupiter } = renderComponent();
 
     openSelect();
     selectVenus();
     selectJupiter();
-    expect(getByTestId("trigger")).toHaveTextContent(/venus, jupiter/i);
+    expect(getByTestId("listbox-trigger")).toHaveTextContent(/venus, jupiter/i);
     expect(getByTestId("clear-button")).toBeVisible();
     fireEvent.click(getByTestId("clear-button"));
-    expect(getByTestId("clear-button")).not.toBeVisible();
-    expect(getByTestId("trigger")).not.toHaveTextContent(/venus, jupiter/i);
-    expect(getByTestId("trigger")).toHaveTextContent(/select/i);
+    expect(queryByTestId("clear-button")).toBeNull();
+    expect(getByTestId("listbox-trigger")).not.toHaveTextContent(/venus, jupiter/i);
+    expect(getByTestId("listbox-trigger")).toHaveTextContent(/select/i);
   });
 
   it("should have a filter in dropdown", () => {
@@ -296,7 +296,7 @@ describe("Listbox multi select", () => {
 
     const { getByText, getByTestId } = renderComponent({}, createOptions());
 
-    fireEvent.click(getByTestId("trigger"));
+    fireEvent.click(getByTestId("listbox-trigger"));
 
     fireEvent.click(getByText(/option2/i));
     expect(getByText(/✅ option2/i)).toBeInTheDocument();

@@ -18,7 +18,7 @@ function renderComponent() {
   return {
     ...rendered,
     openSelect: () => {
-      fireEvent.click(rendered.getByTestId("trigger"));
+      fireEvent.click(rendered.getByTestId("listbox-trigger"));
     },
     selectVenus: () => {
       fireEvent.click(rendered.getByText(/venus/i));
@@ -40,6 +40,6 @@ describe("ListBox.Group single select", () => {
     openSelect();
     fireEvent.click(getByText(/big-planets/i));
     fireEvent.click(getByText(/small-planets/i));
-    expect(getByTestId("trigger")).toHaveTextContent(/Select/i);
+    expect(getByTestId("listbox-trigger")).toHaveTextContent(/Select/i);
   });
 });
