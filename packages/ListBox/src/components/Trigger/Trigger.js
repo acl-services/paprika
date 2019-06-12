@@ -36,9 +36,8 @@ const defaultProps = {
 
 export default function Trigger(props) {
   const [state, dispatch] = useListBox();
-  const { placeholder, hasClearButton, onClickFooterAccept } = props;
-
-  const { isDisabled, refTriggerContainer, refTrigger, isMulti } = state;
+  const { placeholder, hasClearButton, onClickFooterAccept, children } = props;
+  const { isDisabled, refTriggerContainer, refTrigger, isMulti, idListBox } = state;
 
   const handleClick = () => {
     if (isDisabled) {
@@ -108,18 +107,16 @@ export default function Trigger(props) {
     );
   }
 
-  const hasRenderTrigger = typeof props.children === "function";
+  const hasRenderTrigger = typeof children === "function";
 
   let renderChildrenProps = null;
-  if (hasRenderTrigger) {
-    renderChildrenProps = React.useMemo(() => {
-      return props.children(state.isMulti ? getSelectedOptionsMulti(state) : getSelectedOptionSingle(state), dispatch, {
-        propsForTrigger: getDOMAttributesForListBoxButton(state.idListBox),
-        types: sanitizeActionTypes(useListBox.types),
-        refTrigger: state.refTrigger,
-      });
-    }, [props.children]);
-  }
+  renderChildrenProps = React.useMemo(() => {
+    return children(isMulti ? getSelectedOptionsMulti(state) : getSelectedOptionSingle(state), dispatch, {
+      propsForTrigger: getDOMAttributesForListBoxButton(idListBox),
+      types: sanitizeActionTypes(useListBox.types),
+      refTrigger,
+    });
+  }, [children, isMulti, state, dispatch, idListBox, refTrigger]);
 
   return (
     <ListBoxTriggerStyled

@@ -28,7 +28,7 @@ export default function Label(props) {
     }
 
     setLabel(placeholder);
-  }, [selectedOptions]);
+  }, [isMulti, options, placeholder, selectedOptions]);
 
   return label;
 }

@@ -15,7 +15,7 @@
       "experimentalObjectRestSpread": true
     }
   },
-  "plugins": ["cypress"],
+  "plugins": ["cypress", "react-hooks"],
   "rules": {
     "camelcase": "off",
     "class-methods-use-this": "off",
@@ -48,7 +48,9 @@
     "react/jsx-filename-extension": [1, { "extensions": [".js"] }],
     "react/jsx-one-expression-per-line": "off",
     "react/no-multi-comp": "off",
-    "react/prefer-stateless-function": "off"
+    "react/prefer-stateless-function": "off",
+    "react-hooks/rules-of-hooks": "error",
+    "react-hooks/exhaustive-deps": "warn"
   },
   "overrides": [
     {
