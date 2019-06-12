@@ -39,8 +39,8 @@ export const propTypes = {
 
 export const defaultProps = {
   children: null,
-  Filter: null, // eslint-disable-line
-  Footer: null, // eslint-disable-line
+  filter: null, // eslint-disable-line
+  footer: null, // eslint-disable-line
   height: 200,
   isDisabled: false,
   isInline: false,
@@ -48,27 +48,27 @@ export const defaultProps = {
   isOpen: null,
   onChange: () => {},
   placeholder: "Select...",
-  Trigger: null, // eslint-disable-line
+  trigger: null, // eslint-disable-line
 };
 
 export function ListBox(props) {
   const [state, dispatch] = useListBox();
-  const { children, height, placeholder, Trigger: TriggerProps, Footer, Filter } = props;
+  const { children, height, placeholder, trigger: _trigger, footer, filter } = props;
 
-  const handleEffectHasFooter = effects.handleEffectHasFooter(Footer, dispatch);
+  const handleEffectHasFooter = effects.handleEffectHasFooter(footer, dispatch);
   React.useEffect(handleEffectHasFooter, []);
 
-  const triggerProps = {
+  const _triggerProps = {
     hasClearButton: true,
     onClickClear: null,
     placeholder,
-    onFooterClickAccept: Footer ? Footer.props.onClickAccept : null,
+    onFooterClickAccept: footer ? footer.props.onClickAccept : null,
   };
 
-  const trigger = TriggerProps ? (
-    React.cloneElement(TriggerProps, { ...triggerProps, ...TriggerProps.props })
+  const trigger = _trigger ? (
+    React.cloneElement(_trigger, { ..._triggerProps, ..._trigger.props })
   ) : (
-    <Trigger {...triggerProps} />
+    <Trigger {..._triggerProps} />
   );
 
   return (
@@ -76,12 +76,12 @@ export function ListBox(props) {
       {trigger}
       <Content>
         <Box>
-          {Filter}
+          {filter}
           <List height={height}>
             <Options>{children}</Options>
           </List>
-          {Filter ? <NoResults label={Filter.props.noResultsMessage} /> : null}
-          {Footer ? React.cloneElement(Footer, { ref: state.refFooterContainer }) : null}
+          {filter ? <NoResults label={filter.props.noResultsMessage} /> : null}
+          {footer ? React.cloneElement(footer, { ref: state.refFooterContainer }) : null}
         </Box>
       </Content>
     </React.Fragment>
@@ -105,7 +105,7 @@ const ListBoxContainer = React.forwardRef((props, ref) => {
     height,
     isInline,
     placeholder,
-    Filter, // eslint-disable-line
+    filter, // eslint-disable-line
     Trigger, // eslint-disable-line
     Footer, // eslint-disable-line
     Popover: PopoverWithProps, // eslint-disable-line
@@ -134,7 +134,7 @@ const ListBoxContainer = React.forwardRef((props, ref) => {
 
   const ListBoxProps = {
     children,
-    Filter,
+    filter,
     Footer,
     height,
     placeholder,
