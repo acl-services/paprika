@@ -9,7 +9,15 @@ import Popover from "./components/Popover";
 import Trigger from "./components/Trigger";
 import useListBox from "./useListBox";
 import handleImperative from "./imperative";
-import * as effects from "./effects";
+import {
+  useChildrenLengthChange,
+  handleEffectIsDisabledChange,
+  handleEffectIsPopOverOpen,
+  handleEffectListBoxScrolled,
+  handleEffectListBoxWidth,
+  handleEffectOptionSelected,
+  handleEffectHasFooter,
+} from "./hooks";
 
 export const propTypes = {
   /** Child of type <ListBox.Option /> */
@@ -55,10 +63,10 @@ export function ListBox(props) {
   const [state, dispatch] = useListBox();
   const { children, height, placeholder, trigger: _trigger, footer, filter } = props;
 
-  const handleEffectHasFooter = effects.handleEffectHasFooter(footer, dispatch);
-  React.useEffect(handleEffectHasFooter, []);
+  const _handleEffectHasFooter = handleEffectHasFooter(footer, dispatch);
+  React.useEffect(_handleEffectHasFooter, []);
 
-  const _triggerProps = {
+  const propsForTrigger = {
     hasClearButton: true,
     onClickClear: null,
     placeholder,
@@ -66,9 +74,9 @@ export function ListBox(props) {
   };
 
   const trigger = _trigger ? (
-    React.cloneElement(_trigger, { ..._triggerProps, ..._trigger.props })
+    React.cloneElement(_trigger, { ...propsForTrigger, ..._trigger.props })
   ) : (
-    <Trigger {..._triggerProps} />
+    <Trigger {...propsForTrigger} />
   );
 
   return (
@@ -106,50 +114,52 @@ const ListBoxContainer = React.forwardRef((props, ref) => {
     isInline,
     placeholder,
     filter, // eslint-disable-line
-    Trigger, // eslint-disable-line
-    Footer, // eslint-disable-line
-    Popover: PopoverWithProps, // eslint-disable-line
+    trigger, // eslint-disable-line
+    footer, // eslint-disable-line
+    popover, // eslint-disable-line
   } = props;
 
-  const shouldTriggerKeepFocus = PopoverWithProps && PopoverWithProps.props.shouldKeepFocus;
+  const shouldTriggerKeepFocus = popover && popover.props.shouldKeepFocus;
 
   // IMPERATIVE API
   const imperativeHandle = handleImperative(state, dispatch);
   React.useImperativeHandle(ref, imperativeHandle);
 
   // EFFECTS
-  const handleEffectChildren = effects.handleEffectChildren(props, state, dispatch);
-  const handleEffectIsDisabledChange = effects.handleEffectIsDisabledChange(props, dispatch);
-  const handleEffectIsPopOverOpen = effects.handleEffectIsPopOverOpen(state, dispatch, shouldTriggerKeepFocus);
-  const handleEffectListBoxScrolled = effects.handleEffectListBoxScrolled(state);
-  const handleEffectListBoxWidth = effects.handleEffectListBoxWidth(state, dispatch);
-  const handleEffectOptionSelected = effects.handleEffectOptionSelected(state, dispatch);
+  // const handleEffectChildren = hooks.handleEffectChildren(props, state, dispatch);
+  useChildrenLengthChange(children);
 
-  React.useEffect(handleEffectIsDisabledChange, [props.isDisabled]);
-  React.useEffect(handleEffectListBoxWidth, [state.refTriggerContainer.current]);
-  React.useEffect(handleEffectOptionSelected, [state.selectedOptions]);
-  React.useEffect(handleEffectChildren, [props.children]);
-  React.useLayoutEffect(handleEffectIsPopOverOpen, [state.isOpen]);
-  React.useLayoutEffect(handleEffectListBoxScrolled, [state.activeOption]);
+  const _handleEffectIsDisabledChange = handleEffectIsDisabledChange(props, dispatch);
+  const _handleEffectIsPopOverOpen = handleEffectIsPopOverOpen(state, dispatch, shouldTriggerKeepFocus);
+  const _handleEffectListBoxScrolled = handleEffectListBoxScrolled(state);
+  const _handleEffectListBoxWidth = handleEffectListBoxWidth(state, dispatch);
+  const _handleEffectOptionSelected = handleEffectOptionSelected(state, dispatch);
 
-  const ListBoxProps = {
+  React.useEffect(_handleEffectIsDisabledChange, [props.isDisabled]);
+  React.useEffect(_handleEffectListBoxWidth, [state.refTriggerContainer.current]);
+  React.useEffect(_handleEffectOptionSelected, [state.selectedOptions]);
+  // React.useEffect(handleEffectChildren, [props.children]);
+  React.useLayoutEffect(_handleEffectIsPopOverOpen, [state.isOpen]);
+  React.useLayoutEffect(_handleEffectListBoxScrolled, [state.activeOption]);
+
+  const propsForListBox = {
     children,
     filter,
-    Footer,
+    footer,
     height,
     placeholder,
-    Trigger,
+    trigger,
   };
 
-  const listBox = <ListBox {...ListBoxProps}>{children}</ListBox>;
+  const listBox = <ListBox {...propsForListBox}>{children}</ListBox>;
 
   if (isInline) {
     return listBox;
   }
 
-  if (PopoverWithProps) {
-    const PopoverClone = React.cloneElement(PopoverWithProps, {
-      ...PopoverWithProps.props,
+  if (popover) {
+    const PopoverClone = React.cloneElement(popover, {
+      ...popover.props,
       children: listBox,
     });
     return PopoverClone;

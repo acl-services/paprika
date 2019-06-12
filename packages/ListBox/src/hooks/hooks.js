@@ -7,16 +7,30 @@ function waitForPopoverAnimation(func) {
   setTimeout(func, 300);
 }
 
-export const handleEffectChildren = (props, state, dispatch) => () => {
-  if (Object.keys(state.options).length + state.hasFooter !== React.Children.count(props.children)) {
-    const options = getDataOptions(props.children);
+export function useChildrenLengthChange(children) {
+  React.useEffect(() => {
+    const [state, dispatch] = useListBox();
+    if (Object.keys(state.options).length + state.hasFooter !== React.Children.count(children)) {
+      const options = getDataOptions(children);
 
-    dispatch({
-      type: useListBox.types.updateOptions,
-      payload: options,
-    });
-  }
-};
+      dispatch({
+        type: useListBox.types.updateOptions,
+        payload: options,
+      });
+    }
+  }, [children]);
+}
+
+// export const handleEffectChildren = (props, state, dispatch) => () => {
+//   if (Object.keys(state.options).length + state.hasFooter !== React.Children.count(props.children)) {
+//     const options = getDataOptions(props.children);
+//
+//     dispatch({
+//       type: useListBox.types.updateOptions,
+//       payload: options,
+//     });
+//   }
+// };
 
 export const handleEffectIsPopOverOpen = (state, dispatch, shouldKeepTriggerFocus) => () => {
   if (state.isInline) return;
