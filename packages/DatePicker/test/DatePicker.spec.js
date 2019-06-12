@@ -42,14 +42,14 @@ describe("DatePicker", () => {
   it("should display initial date", () => {
     const { getByTestId } = render({ date: moment("2019-01-02") });
 
-    expect(getByTestId("datepicker.input").value).toEqual("02/01/2019");
+    expect(getByTestId("datepicker.input").value).toEqual("01/02/2019");
   });
 
   it("should update date if props updated", () => {
     const { getByTestId, rerender } = render({ date: moment("2019-01-02") });
 
-    rerender({ date: moment("2019-02-01") });
+    rerender({ date: moment("2019-03-01") });
 
-    expect(getByTestId("datepicker.input").value).toEqual("01/02/2019");
+    expect(getByTestId("datepicker.input").value).toEqual("03/01/2019");
   });
 });

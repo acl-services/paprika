@@ -36,7 +36,7 @@ const propTypes = {
 const defaultProps = {
   children: null,
   date: null,
-  format: "DD/MM/YYYY",
+  format: "MM/DD/YYYY",
   isDisabled: false,
   isReadOnly: false,
 };
@@ -59,7 +59,6 @@ function DatePicker(props) {
   // Effect
   React.useEffect(() => {
     setInputtedString(date ? moment(date).format(format) : "");
-    setConfirmationResult("");
   }, [date]);
 
   const extendedInputProps = extractChildrenProps(children);
