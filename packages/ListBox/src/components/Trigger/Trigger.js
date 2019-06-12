@@ -4,11 +4,11 @@ import RawButton from "@paprika/raw-button";
 import Label from "../Label";
 import handleKeyboardKeys from "../../helpers/handleKeyboardKeys";
 import useListBox from "../../useListBox";
-import applyOnChange, {
-  cleanActionTypes,
+import invokeOnChange, {
+  sanitizeActionTypes,
   getSelectedOptionSingle,
   getSelectedOptionsMulti,
-} from "../../helpers/applyOnChange";
+} from "../../helpers/invokeOnChange";
 
 import {
   ListBoxTriggerStyled,
@@ -63,7 +63,7 @@ export default function Trigger(props) {
         type: useListBox.types.clear,
         payload: {
           isOpen: false,
-          onChangeFn: applyOnChange(onClickFooterAccept, "listbox:footer:clear"),
+          onChangeFn: invokeOnChange(onClickFooterAccept, "listbox:footer:clear"),
         },
       });
       return;
@@ -73,7 +73,7 @@ export default function Trigger(props) {
       type: useListBox.types.clear,
       payload: {
         isOpen: false,
-        onChangeFn: applyOnChange(state.onChange, "listbox:clear"),
+        onChangeFn: invokeOnChange(state.onChange, "listbox:clear"),
       },
     });
   };
@@ -115,7 +115,7 @@ export default function Trigger(props) {
     renderChildrenProps = React.useMemo(() => {
       return props.children(state.isMulti ? getSelectedOptionsMulti(state) : getSelectedOptionSingle(state), dispatch, {
         propsForTrigger: getDOMAttributesForListBoxButton(state.idListBox),
-        types: cleanActionTypes(useListBox.types),
+        types: sanitizeActionTypes(useListBox.types),
         refTrigger: state.refTrigger,
       });
     }, [props.children]);

@@ -1,8 +1,8 @@
 import useListBox from "../../../useListBox";
-import applyOnChange from "../../../helpers/applyOnChange";
+import invokeOnChange from "../../../helpers/invokeOnChange";
 
 function getOnChangeFn(state) {
-  return applyOnChange(state.onChange, "listbox:option-selected");
+  return invokeOnChange(state.onChange, "listbox:option-selected");
 }
 
 function selectSingleOption({ activeOptionIndex, isOpen, state, dispatch }) {

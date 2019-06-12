@@ -1,6 +1,6 @@
 import useListBox from "../useListBox";
 
-export function cleanActionTypes() {
+export function sanitizeActionTypes() {
   const actionTypes = useListBox.types;
   return {
     clear: actionTypes.clear,
@@ -23,27 +23,27 @@ export function getSelectedOptionsMulti(state) {
   return [state.selectedOptions, state.options, state.activeOption];
 }
 
-const applyOnChange = (onChangeCallBack = () => {}, eventType = "", event) => (state, dispatch) => {
-  if (!onChangeCallBack) {
+const invokeOnChange = (onChangeCallback = () => {}, eventType = "", event) => (state, dispatch) => {
+  if (!onChangeCallback) {
     // This could mean that the consumer might decide to use onClickAccept in the footer without a onChange or
     // added a footer without onClickAccept.
     return;
   }
 
   if (state.isMulti) {
-    onChangeCallBack.apply(null, [
+    onChangeCallback.apply(null, [
       ...getSelectedOptionsMulti(state),
-      { dispatch, actionTypes: cleanActionTypes(), eventType, ...event },
+      { dispatch, actionTypes: sanitizeActionTypes(), eventType, ...event },
     ]);
     dispatch({ type: useListBox.types.cleanOnChangeFn });
     return;
   }
 
-  onChangeCallBack.apply(null, [
+  onChangeCallback.apply(null, [
     ...getSelectedOptionSingle(state),
-    { dispatch, actionTypes: cleanActionTypes(), eventType, ...event },
+    { dispatch, actionTypes: sanitizeActionTypes(), eventType, ...event },
   ]);
   dispatch({ type: useListBox.types.cleanOnChangeFn });
 };
 
-export default applyOnChange;
+export default invokeOnChange;

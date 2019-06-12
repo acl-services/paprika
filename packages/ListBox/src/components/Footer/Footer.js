@@ -3,7 +3,7 @@ import Button from "@paprika/button";
 import PropTypes from "prop-types";
 import { FooterContainerStyled } from "./Footer.styles";
 import useListBox from "../../useListBox";
-import applyOnChange from "../../helpers/applyOnChange";
+import invokeOnChange from "../../helpers/invokeOnChange";
 
 const propTypes = {
   isAcceptVisible: PropTypes.bool,
@@ -60,15 +60,15 @@ export function FooterComponent(props, ref) {
 
     dispatch({
       type: useListBox.types.accept,
-      payload: { onChangeFn: applyOnChange(props.onClickAccept, "listbox:footer:accept") },
+      payload: { onChangeFn: invokeOnChange(props.onClickAccept, "listbox:footer:accept") },
     });
   };
 
   const handleClickCancel = event => {
     event.stopPropagation();
     const onChangeFn = props.onClickCancel
-      ? applyOnChange(props.onClickCancel, "listbox:footer:cancel")
-      : applyOnChange();
+      ? invokeOnChange(props.onClickCancel, "listbox:footer:cancel")
+      : invokeOnChange();
 
     dispatch({
       type: useListBox.types.cancel,
@@ -78,7 +78,7 @@ export function FooterComponent(props, ref) {
 
   const handleClickClear = event => {
     event.stopPropagation();
-    const onChangeFn = props.onClickClear ? applyOnChange(props.onClickClear, "listbox:footer:clear") : applyOnChange();
+    const onChangeFn = props.onClickClear ? invokeOnChange(props.onClickClear, "listbox:footer:clear") : invokeOnChange();
 
     dispatch({
       type: useListBox.types.clear,

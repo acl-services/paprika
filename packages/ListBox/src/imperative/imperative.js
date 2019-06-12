@@ -1,5 +1,5 @@
 import useListBox from "../useListBox";
-import applyOnChange from "../helpers/applyOnChange";
+import invokeOnChange from "../helpers/invokeOnChange";
 
 const handleImperative = (state, dispatch) => () => {
   return {
@@ -8,14 +8,14 @@ const handleImperative = (state, dispatch) => () => {
         type: useListBox.types.clear,
         payload: {
           isOpen,
-          onChangeFn: applyOnChange(state.onChange, "listbox:imperative:clear"),
+          onChangeFn: invokeOnChange(state.onChange, "listbox:imperative:clear"),
         },
       });
     },
     reset: () => {
       dispatch({
         type: useListBox.types.reset,
-        payload: { onChangeFn: applyOnChange(state.onChange, "listbox:imperative:reset") },
+        payload: { onChangeFn: invokeOnChange(state.onChange, "listbox:imperative:reset") },
       });
     },
     focus: () => {
