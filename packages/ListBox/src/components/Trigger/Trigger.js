@@ -111,12 +111,14 @@ export default function Trigger(props) {
 
   let renderChildrenProps = null;
   renderChildrenProps = React.useMemo(() => {
-    return children(isMulti ? getSelectedOptionsMulti(state) : getSelectedOptionSingle(state), dispatch, {
-      propsForTrigger: getDOMAttributesForListBoxButton(idListBox),
-      types: sanitizeActionTypes(useListBox.types),
-      refTrigger,
-    });
-  }, [children, isMulti, state, dispatch, idListBox, refTrigger]);
+    if (hasRenderTrigger) {
+      return children(isMulti ? getSelectedOptionsMulti(state) : getSelectedOptionSingle(state), dispatch, {
+        propsForTrigger: getDOMAttributesForListBoxButton(idListBox),
+        types: sanitizeActionTypes(useListBox.types),
+        refTrigger,
+      });
+    }
+  }, [hasRenderTrigger, children, isMulti, state, dispatch, idListBox, refTrigger]);
 
   return (
     <ListBoxTriggerStyled
