@@ -78,7 +78,9 @@ export function FooterComponent(props, ref) {
 
   const handleClickClear = event => {
     event.stopPropagation();
-    const onChangeFn = props.onClickClear ? invokeOnChange(props.onClickClear, "listbox:footer:clear") : invokeOnChange();
+    const onChangeFn = props.onClickClear
+      ? invokeOnChange(props.onClickClear, "listbox:footer:clear")
+      : invokeOnChange();
 
     dispatch({
       type: useListBox.types.clear,
