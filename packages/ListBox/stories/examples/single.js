@@ -8,7 +8,7 @@ import * as characters from "../fixtures/characters";
 export const Basic = () => (
   <ListBox>
     {characters.villians}
-    {characters.antiheroes}
+    {characters.antiHeroes}
     {characters.heroes}
   </ListBox>
 );
@@ -18,7 +18,7 @@ export const BasicWithEmptyOption = () => (
     <ListBox.Option label="">&nbsp;</ListBox.Option>
     {characters.heroes}
     {characters.villians}
-    {characters.antiheroes}
+    {characters.antiHeroes}
   </ListBox>
 );
 
@@ -86,7 +86,7 @@ export const CustomChildrenInline = () => (
 export const WithGroups = () => (
   <ListBox>
     <ListBox.Divider>Anti-Heroes</ListBox.Divider>
-    {characters.antiheroes}
+    {characters.antiHeroes}
     <ListBox.Divider>Villians</ListBox.Divider>
     {characters.villians}
     <ListBox.Divider>Heroes</ListBox.Divider>
@@ -114,6 +114,6 @@ export const WithContainerScroll = () => (
 export const WithCustomZIndex = () => (
   <ListBox>
     <ListBox.Popover zIndex={10000}>Anti-Heroes</ListBox.Popover>
-    {characters.antiheroes}
+    {characters.antiHeroes}
   </ListBox>
 );
