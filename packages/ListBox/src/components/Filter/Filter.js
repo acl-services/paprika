@@ -27,18 +27,17 @@ const defaultProps = {
   value: null,
 };
 
+function hasNoResults(textSearchValue, filteredOptions) {
+  return textSearchValue && (filteredOptions && filteredOptions.length === 0);
+}
+
 export default function Filter(props) {
   const [state, dispatch] = useListBox();
   const [textSearch, setTextSearch] = React.useState(props.value);
   const applyFilterType = useListBox.types.applyFilter;
 
   const handleChangeFilter = event => {
-    function hasNoResults(textSearchValue, filteredOptions) {
-      return textSearchValue && (filteredOptions && filteredOptions.length === 0);
-    }
-
     const textSearchValue = event.target.value;
-
     if (state.isDisabled) return;
 
     if (props.filter) {
