@@ -7,7 +7,6 @@ import { FilterContainerStyled, FilterInputStyled, FilterSearchIconStyled } from
 
 const propTypes = {
   filter: PropTypes.func,
-  filterExcludeSelectedOptions: PropTypes.bool,
   hasSearchIcon: PropTypes.bool,
   noResultsMessage: PropTypes.string,
   onChangeFilter: PropTypes.func,
@@ -19,7 +18,6 @@ const propTypes = {
 
 const defaultProps = {
   filter: null,
-  filterExcludeSelectedOptions: false,
   hasSearchIcon: true,
   onChangeFilter: null,
   onKeyDown: null,
