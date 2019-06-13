@@ -5,6 +5,7 @@ describe("<DatePicker />", () => {
   const targetDate = moment(today)
     .add(1, "month")
     .date(1);
+
   it("should display calendar after clicking input", () => {
     cy.visitStorybook("datepicker-cypress--datepicker-test");
     cy.get('[data-qa-anchor="datepicker.input"]').should("not.have.value");
@@ -23,6 +24,11 @@ describe("<DatePicker />", () => {
     cy.get(`[aria-label="${targetDate.format("dddd, MMMM D, YYYY")}"]`)
       .last()
       .click({ force: true });
+    cy.get('[data-qa-anchor="datepicker.input"]').should("have.value", targetDate.format("MMMM DD, YYYY"));
+  });
+
+  it("should reset format after focus again", () => {
+    cy.get('[data-qa-anchor="datepicker.input"]').click();
     cy.get('[data-qa-anchor="datepicker.input"]').should("have.value", targetDate.format("MM/DD/YYYY"));
   });
 
