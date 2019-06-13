@@ -4,10 +4,6 @@ import stylers from "@paprika/stylers";
 
 import CalendarBaseStyle from "./CalendarBase.styles";
 
-function getNumber(token) {
-  return token.slice(0, -2) / 1;
-}
-
 const CalendarStyled = styled.div`
   ${CalendarBaseStyle}
 
@@ -30,8 +26,8 @@ const CalendarStyled = styled.div`
 
   .CalendarMonth_caption {
     background-color: ${tokens.color.blackLighten80};
-    height: ${getNumber(tokens.space) * 4 + getNumber(tokens.space)}px;
-    line-height: ${getNumber(tokens.space) * 4 + getNumber(tokens.space)}px;
+    height: ${stylers.spacer(5)};
+    line-height: ${stylers.spacer(5)};
     padding: 0;
     margin-bottom: ${tokens.spaceLg};
     margin-left: -9px;
@@ -96,7 +92,7 @@ const CalendarStyled = styled.div`
   .CalendarMonth_table {
     border: 0;
     margin-bottom: 0;
-    margin-top: ${getNumber(tokens.space) * 4}px;
+    margin-top: ${stylers.spacer(4)};
   }
 `;
 
@@ -135,7 +131,7 @@ export const DayTriggerStyle = props => {
 };
 
 export const CalendarHeaderStyled = styled.span`
-  font-size: ${stylers.spacer(2)};
+  ${stylers.fontSize()}
 `;
 
 export default CalendarStyled;
