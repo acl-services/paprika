@@ -16,11 +16,11 @@ export const BoxContainerStyled = styled.div`
   padding: 0;
 
   ${props => {
-    const isInline = props.isInline ? isInlineCSS : "";
-    const width = props.triggerWidth ? `width: ${props.triggerWidth}px;` : "";
+    const inlineCSS = props.isInline ? isInlineCSS : "";
+    const widthCSS = props.triggerWidth ? `width: ${props.triggerWidth}px;` : "";
     return `
-    ${width}
-    ${isInline}
+    ${widthCSS}
+    ${inlineCSS}
     `;
   }}
 `;

@@ -7,8 +7,6 @@ const propTypes = {
   children: PropTypes.node.isRequired,
 };
 
-const defaultProps = {};
-
 export default function Box(props) {
   const [state] = useListBox();
 
@@ -20,4 +18,3 @@ export default function Box(props) {
 }
 
 Box.propTypes = propTypes;
-Box.defaultProps = defaultProps;
