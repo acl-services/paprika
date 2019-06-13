@@ -16,25 +16,33 @@ const propTypes = {
   /** Selected date in moment object */
   date: momentPropTypes.momentObj,
 
+  /** Possible date might be selected in moment object */
+  possibleDate: momentPropTypes.momentObj,
+
   /** Callback to fire when user select date */
   onSelect: PropTypes.func.isRequired,
 };
 
 const defaultProps = {
   date: null,
+  possibleDate: null,
 };
 
 function Calendar(props) {
+  // TODO: nice to have MIN_DATE & MAX_DATE customizable
+  const MIN_DATE = moment.utc("0000-01-01", "YYYY-MM-DD");
+  const MAX_DATE = moment.utc("9999-12-31", "YYYY-MM-DD");
   const I18n = useI18n();
 
   // Props
-  const { date, onSelect } = props;
+  const { date, possibleDate, onSelect } = props;
 
   // Ref
   const nextButtonRef = React.useRef(null);
   const prevButtonRef = React.useRef(null);
 
   function getInitialVisibleMonth() {
+    if (possibleDate && possibleDate.isValid()) return possibleDate;
     return date && date.isValid() ? date : moment();
   }
 
@@ -52,6 +60,10 @@ function Calendar(props) {
 
   function handleClickPrevMonth() {
     handleClickNavigation(prevButtonRef);
+  }
+
+  function isOutsideSupportedRange(day) {
+    return day.isBefore(MIN_DATE, "day") || day.isAfter(MAX_DATE, "day");
   }
 
   // eslint-disable-next-line react/prop-types
@@ -90,30 +102,31 @@ function Calendar(props) {
   return (
     <CalendarStyled>
       <SDPController
-        key={date}
-        daySize={30}
-        enableOutsideDays
-        hideKeyboardShortcutsPanel
-        initialVisibleMonth={getInitialVisibleMonth}
-        navPrev={renderArrowLeft()}
-        navNext={renderArrowRight()}
-        numberOfMonths={1}
-        onDateChange={onSelect}
-        onPrevMonthClick={handleClickPrevMonth}
-        onNextMonthClick={handleClickNextMonth}
+        key={possibleDate || date}
         date={date}
+        onDateChange={onSelect}
         focused
+        isOutsideRange={isOutsideSupportedRange}
         renderMonthElement={renderMonthHeaderElement}
+        enableOutsideDays
+        numberOfMonths={1}
+        initialVisibleMonth={getInitialVisibleMonth}
+        hideKeyboardShortcutsPanel
+        daySize={30}
+        verticalBorderSpacing={0}
         transitionDuration={0}
         horizontalMonthPadding={0}
+        navPrev={renderArrowLeft()}
+        navNext={renderArrowRight()}
+        onPrevMonthClick={handleClickPrevMonth}
+        onNextMonthClick={handleClickNextMonth}
         renderDayContents={renderDayContents}
-        verticalBorderSpacing={0}
       />
     </CalendarStyled>
   );
 }
 
-Calendar.displayName = "Calendar";
+Calendar.displayName = "DatePicker.Calendar";
 
 Calendar.propTypes = propTypes;
 Calendar.defaultProps = defaultProps;

@@ -12,7 +12,7 @@ import Calendar from "./components/Calendar";
 import DateInput from "./components/DateInput";
 
 import { CalendarStyles } from "./DatePicker.styles";
-import { extractChildrenProps } from "./helpers";
+import { extractChildrenProps, useDebounce } from "./helpers";
 
 const propTypes = {
   children: PropTypes.node,
@@ -50,18 +50,29 @@ function DatePicker(props) {
   // State
   const [confirmationResult, setConfirmationResult] = React.useState("");
   const [hasError, setHasError] = React.useState(false);
-  const [inputtedString, setInputtedString] = React.useState(date ? moment(date).format(format) : "");
+  const [inputtedString, setInputtedString] = React.useState(date ? moment.utc(date).format(format) : "");
+  const [possibleDate, setPossibleDate] = React.useState(null);
   const [shouldShowCalendar, setShouldShowCalendar] = React.useState(false);
 
   // Ref
   const calendarRef = React.useRef(null);
+  const inputRef = React.useRef(null);
 
   // Effect
   React.useEffect(() => {
-    setInputtedString(date ? moment(date).format(format) : "");
+    setInputtedString(date ? moment.utc(date).format(format) : "");
   }, [date]);
 
+  const debouncedPossibleDate = useDebounce(possibleDate, 800);
   const extendedInputProps = extractChildrenProps(children);
+
+  function parseInput() {
+    let newDate = moment.utc(inputtedString, format);
+
+    if (!newDate.isValid()) newDate = moment.utc(inputtedString);
+
+    return newDate;
+  }
 
   function showCalendar() {
     if (!shouldShowCalendar) setShouldShowCalendar(true);
@@ -83,7 +94,7 @@ function DatePicker(props) {
 
   function handleSelect(seletedDate) {
     setHasError(false);
-    setInputtedString(moment(seletedDate).format(format));
+    setConfirmationResult(seletedDate.format(I18n.t("dateInput.confirmation_format")));
     hideCalendar();
     handleChange(seletedDate);
   }
@@ -97,19 +108,19 @@ function DatePicker(props) {
   }
 
   function handleInputConfirm() {
+    inputRef.current.blur();
+
     if (!inputtedString) {
       handleReset();
       return;
     }
 
-    const newDate = moment(inputtedString);
+    const newDate = parseInput();
 
     if (newDate.isValid()) {
-      if (moment(newDate).isSame(date, "day")) return;
-
-      setConfirmationResult(newDate.format(I18n.t("dateInput.confirmation_format")));
       setHasError(false);
-      handleChange(newDate);
+      setConfirmationResult(newDate.format(I18n.t("dateInput.confirmation_format")));
+      if (!moment(newDate).isSame(date, "day")) handleChange(newDate);
     } else {
       setHasError(true);
     }
@@ -128,6 +139,11 @@ function DatePicker(props) {
     if (event.key === "Enter") {
       handleInputConfirm();
       hideCalendar();
+    } else {
+      const updatedPossibleDate = parseInput();
+
+      if (updatedPossibleDate.isSame(possibleDate, "year") && updatedPossibleDate.isSame(possibleDate, "month")) return;
+      setPossibleDate(updatedPossibleDate);
     }
   }
 
@@ -147,13 +163,14 @@ function DatePicker(props) {
         onClick={handleClick}
         onFocus={handleFocusInput}
         onKeyUp={handleKeyUp}
+        inputRef={inputRef}
         value={confirmationResult || inputtedString}
         {...extendedInputProps}
       />
 
       <Popover.Content>
         <div css={CalendarStyles} data-qa-anchor="datepicker.calendar" ref={calendarRef}>
-          <Calendar date={date} onSelect={handleSelect} />
+          <Calendar date={date} possibleDate={debouncedPossibleDate} onSelect={handleSelect} />
         </div>
       </Popover.Content>
     </Popover>

@@ -58,6 +58,14 @@ const CalendarStyled = styled.div`
         color: ${tokens.color.blackDisabled};
       }
     }
+
+    &.CalendarDay__blocked_out_of_range {
+      pointer-events: none;
+
+      > span {
+        color: ${tokens.color.blackDisabled};
+      }
+    }
   }
 
   .DayPickerNavigation_button {
