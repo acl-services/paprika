@@ -35,7 +35,7 @@ describe("Lazy ListBox", () => {
     cy.get(selectors.filterInput).type("z");
     cy.get(selectors.popoverList)
       .children()
-      .should("have.length", 11); // 10 items results plus the divider
+      .should("have.length", 12);
   });
 
   it("should show correct amount when backspacing filter", () => {

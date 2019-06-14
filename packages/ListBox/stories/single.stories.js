@@ -4,6 +4,7 @@ import * as Single from "./examples/single";
 
 storiesOf("ListBox / single", module).add("Basic", () => <Single.Basic />);
 storiesOf("ListBox / single", module).add("Basic Inline Display", () => <Single.BasicInlineDisplay />);
+storiesOf("ListBox / single", module).add("Basic Dividers", () => <Single.Dividers />);
 storiesOf("ListBox / single", module).add("Basic is disabled", () => <Single.BasicIsDisabled />);
 storiesOf("ListBox / single", module).add("Basic is inline disable", () => <Single.BasicIsInlineDisable />);
 storiesOf("ListBox / single", module).add("Basic option disabled", () => <Single.BasicOptionDisabled />);

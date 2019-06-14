@@ -22,6 +22,17 @@ export const BasicWithEmptyOption = () => (
   </ListBox>
 );
 
+export const Dividers = () => (
+  <ListBox>
+    <ListBox.Divider>Villians</ListBox.Divider>
+    {characters.villians}
+    <ListBox.Divider>Anti Heroes</ListBox.Divider>
+    {characters.antiHeroes}
+    <ListBox.Divider>Heroes</ListBox.Divider>
+    {characters.heroes}
+  </ListBox>
+);
+
 export const BasicInlineDisplay = () => <ListBox isInline>{characters.heroes}</ListBox>;
 
 export const BasicIsDisabled = () => <ListBox isDisabled>{characters.heroes}</ListBox>;

@@ -120,10 +120,6 @@ export default function Trigger(props) {
 
   return (
     <ListBoxTriggerStyled
-<<<<<<< HEAD
-=======
-      data-qa-anchor="listbox-trigger"
->>>>>>> UX-434 🦄🐴 added data-qa-anchors/option prop tests
       isInline={state.isInline}
       isDisabled={isDisabled}
       ref={refTriggerContainer}

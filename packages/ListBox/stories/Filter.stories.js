@@ -30,7 +30,7 @@ storiesOf("ListBox / ListBox.Filter", module).add("Custom Filter", () => (
       Type <strong>O</strong> or <strong>P</strong> to filter specific options. P will filter indexes [1,4] and O will
       do the same with [0, 3]
     </p>
-    <ListBox isInline>
+    <ListBox>
       <ListBox.Filter
         key="filter"
         filter={({ search }) =>
