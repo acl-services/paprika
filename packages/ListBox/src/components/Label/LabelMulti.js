@@ -20,7 +20,7 @@ function getFormattedLabel(selectedOptions, options) {
         return option.label;
       }
 
-      throw Error(
+      throw new Error(
         `The trigger label on the ListBox needs that either <ListBox.Option> children are typeof string
       or a label prop is add to the <ListBox.Option label='my description'> component`
       );

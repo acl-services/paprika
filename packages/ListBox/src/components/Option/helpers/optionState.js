@@ -2,7 +2,7 @@ import React from "react";
 import uuidv4 from "uuid/v4";
 import { isWhiteListed } from "../../Options/helpers/options";
 
-export function createOption({ index, child, groupLabel = null, groupId = null }) {
+function createOption({ index, child, groupLabel = null, groupId = null }) {
   const { isDisabled, isHidden, isSelected, label, onClick, preventDefaultOnSelect, value } = child.props;
 
   return {
@@ -23,7 +23,7 @@ export function createOption({ index, child, groupLabel = null, groupId = null }
 }
 
 export function getDataOptions(children) {
-  if (!children) throw Error("Listbox.Options is a required prop, please check you are passing correctly the data");
+  if (!children) throw new Error("Listbox.Options is a required prop, please check you are passing correctly the data");
   if (!children.length) return [];
 
   const options = {};

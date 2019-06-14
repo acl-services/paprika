@@ -57,20 +57,18 @@ export default function Option(props) {
   const isDisabled = isDisabledState || props.isDisabled;
   const id = state.options[index].id;
   return (
-    <React.Fragment>
-      <OptionStyled
-        {...getA11yAttributesForOption(state.options[index].isSelected)}
-        hasPreventDefaultOnSelect={props.preventDefaultOnSelect}
-        id={id}
-        isActive={activeOption === index}
-        isDisabled={isDisabled}
-        isSelected={isSelected}
-        key={index}
-        onClick={handleClickOption({ props, state, dispatch })}
-      >
-        {typeof props.children === "function" ? props.children({ isSelected, isDisabled, id }) : props.children}
-      </OptionStyled>
-    </React.Fragment>
+    <OptionStyled
+      {...getA11yAttributesForOption(state.options[index].isSelected)}
+      hasPreventDefaultOnSelect={props.preventDefaultOnSelect}
+      id={id}
+      isActive={activeOption === index}
+      isDisabled={isDisabled}
+      isSelected={isSelected}
+      key={index}
+      onClick={handleClickOption({ props, state, dispatch })}
+    >
+      {typeof props.children === "function" ? props.children({ isSelected, isDisabled, id }) : props.children}
+    </OptionStyled>
   );
   /* eslint-enable react/prop-types */
 }

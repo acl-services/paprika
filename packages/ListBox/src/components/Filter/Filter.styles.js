@@ -13,7 +13,6 @@ export const FilterInputStyled = styled.input`
   box-sizing: border-box;
   font-size: 14px;
   height: 32px;
-  margin-bottom: 0;
   margin: 8px;
   outline: none;
   padding-left: 28px;

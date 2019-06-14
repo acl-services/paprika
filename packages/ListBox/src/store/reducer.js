@@ -121,7 +121,7 @@ export default function reducer(state, { type, payload }) {
 
     case useListBox.types.unselectOptions: {
       if (!Array.isArray(payload)) {
-        throw Error("unselectOptions action expect an array as a payload");
+        throw new Error("unselectOptions action expect an array as a payload");
       }
 
       return {
@@ -132,7 +132,7 @@ export default function reducer(state, { type, payload }) {
 
     case useListBox.types.hideOptions: {
       if (!Array.isArray(payload)) {
-        throw Error("hideOptions action expect an array as a payload");
+        throw new Error("hideOptions action expect an array as a payload");
       }
 
       const optionsClone = { ...state.options };
