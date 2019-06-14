@@ -1,4 +1,5 @@
 import React from "react";
+import { isWhiteListed } from "./helpers";
 
 export default function Options(props) {
   let index = -1;
@@ -6,7 +7,7 @@ export default function Options(props) {
   return React.Children.map(props.children, child => {
     const { componentType = null } = child.type;
 
-    if (child.type && (componentType === "ListBox.Option" || componentType === "ListBox.RawItem")) {
+    if (child.type && isWhiteListed(componentType)) {
       index += 1;
       return React.cloneElement(child, { ...child.props, index });
     }

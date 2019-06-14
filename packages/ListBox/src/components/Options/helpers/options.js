@@ -53,13 +53,11 @@ export function getNextOptionActiveIndex(state, isAscending = true) {
 
   if (state.noResultsFound) return null;
 
-  if (state.activeOption === null) return 0;
-
   if (optionsKeys.length === 1) return 0;
 
   if (optionsKeys.length - 1 < activeOption) return 0;
 
-  let key = state.options[activeOption].index;
+  let key = state.activeOption === null ? -1 : state.options[activeOption].index;
 
   let keepIterating = true;
 
@@ -70,7 +68,7 @@ export function getNextOptionActiveIndex(state, isAscending = true) {
         return filteredOptions[0];
       }
 
-      if ((filteredOptions.length && key + 1 > options.length) || key + 1 > optionsKeys.length - 1) {
+      if (key > -1 && ((filteredOptions.length && key + 1 > options.length) || key + 1 > optionsKeys.length - 1)) {
         keepIterating = false;
         return null;
       }
@@ -221,4 +219,10 @@ export function handleEnterOrSpace({ event, state, dispatch }) {
   } else {
     dispatch({ type: useListBox.types.openPopover });
   }
+}
+
+export function isWhiteListed(componentType) {
+  return (
+    componentType === "ListBox.Option" || componentType === "ListBox.RawItem" || componentType === "ListBox.Divider"
+  );
 }

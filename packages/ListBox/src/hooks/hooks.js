@@ -10,7 +10,7 @@ function waitForPopoverAnimation(func) {
 export function useChildrenLengthChange(children) {
   const [state, dispatch] = useListBox();
   React.useEffect(() => {
-    if (Object.keys(state.options).length + state.hasFooter !== React.Children.count(children)) {
+    if (Object.keys(state.options).length !== React.Children.count(children)) {
       const options = getDataOptions(children);
 
       dispatch({

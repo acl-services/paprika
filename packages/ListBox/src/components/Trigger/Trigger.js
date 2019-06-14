@@ -122,7 +122,6 @@ export default function Trigger(props) {
 
   return (
     <ListBoxTriggerStyled
-      data-qa-anchor="trigger"
       isInline={state.isInline}
       isDisabled={isDisabled}
       ref={refTriggerContainer}

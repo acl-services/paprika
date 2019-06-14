@@ -1,5 +1,6 @@
 import React from "react";
 import uuidv4 from "uuid/v4";
+import { isWhiteListed } from "../../Options/helpers";
 
 export function createOption({ index, child, groupLabel = null, groupId = null }) {
   const { isDisabled, isHidden, isSelected, label, onClick, preventDefaultOnSelect, value } = child.props;
@@ -29,10 +30,7 @@ export function getDataOptions(children) {
   let index = 0;
 
   React.Children.toArray(children).forEach(child => {
-    if (
-      child.type &&
-      (child.type.componentType === "ListBox.Option" || child.type.componentType === "ListBox.RawItem")
-    ) {
+    if (child.type && isWhiteListed(child.type.componentType)) {
       options[index] = createOption({ index, child, groupId: child.props.groupId });
       index += 1;
     }
