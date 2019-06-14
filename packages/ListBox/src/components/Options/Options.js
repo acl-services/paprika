@@ -1,5 +1,5 @@
 import React from "react";
-import { isWhiteListed } from "./helpers";
+import { isWhiteListed } from "./helpers/options";
 
 export default function Options(props) {
   let index = -1;

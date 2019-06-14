@@ -122,6 +122,10 @@ export default function Trigger(props) {
 
   return (
     <ListBoxTriggerStyled
+<<<<<<< Updated upstream
+=======
+      data-qa-anchor="listbox-trigger"
+>>>>>>> Stashed changes
       isInline={state.isInline}
       isDisabled={isDisabled}
       ref={refTriggerContainer}
@@ -131,6 +135,10 @@ export default function Trigger(props) {
       <TriggerActionIconsContainer>
         {state.selectedOptions.length && hasClearButton ? (
           <RawButtonClearButtonStyled
+<<<<<<< Updated upstream
+=======
+            data-qa-anchor="clear-button"
+>>>>>>> Stashed changes
             hasRenderTrigger={hasRenderTrigger}
             isDisabled={isDisabled}
             onClick={handleClickClear}
