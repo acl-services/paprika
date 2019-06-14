@@ -7,12 +7,14 @@ import CalendarIcon from "@paprika/icon/lib/Calendar";
 import Input from "@paprika/input";
 import Popover from "@paprika/popover";
 import useI18n from "@paprika/l10n/lib/useI18n";
+import useDebounce from "@paprika/helpers/lib/hooks/useDebounce";
+import isElementContainsFocus from "@paprika/helpers/lib/dom/isElementContainsFocus";
 
 import Calendar from "./components/Calendar";
 import DateInput from "./components/DateInput";
 
 import { CalendarStyles } from "./DatePicker.styles";
-import { extractChildrenProps, useDebounce } from "./helpers";
+import { extractChildrenProps } from "./helpers";
 
 const propTypes = {
   children: PropTypes.node,
@@ -20,8 +22,8 @@ const propTypes = {
   /** Selected date in moment object. */
   date: momentPropTypes.momentObj,
 
-  /** Date format, will show in the date input. */
-  format: PropTypes.string,
+  /** Date format used while entering and parsing user input */
+  dataFormat: PropTypes.string,
 
   /** Should be disabled or not, default is false. */
   isDisabled: PropTypes.bool,
@@ -36,7 +38,7 @@ const propTypes = {
 const defaultProps = {
   children: null,
   date: null,
-  format: "MM/DD/YYYY",
+  dataFormat: "MM/DD/YYYY",
   isDisabled: false,
   isReadOnly: false,
 };
@@ -45,12 +47,12 @@ function DatePicker(props) {
   const I18n = useI18n();
 
   // Props
-  const { children, date, format, isDisabled, isReadOnly, onChange } = props;
+  const { children, date, dataFormat, isDisabled, isReadOnly, onChange } = props;
 
   // State
   const [confirmationResult, setConfirmationResult] = React.useState("");
   const [hasError, setHasError] = React.useState(false);
-  const [inputtedString, setInputtedString] = React.useState(date ? moment.utc(date).format(format) : "");
+  const [inputtedString, setInputtedString] = React.useState(date ? moment.utc(date).format(dataFormat) : "");
   const [possibleDate, setPossibleDate] = React.useState(null);
   const [shouldShowCalendar, setShouldShowCalendar] = React.useState(false);
 
@@ -60,14 +62,14 @@ function DatePicker(props) {
 
   // Effect
   React.useEffect(() => {
-    setInputtedString(date ? moment.utc(date).format(format) : "");
+    setInputtedString(date ? moment.utc(date).format(dataFormat) : "");
   }, [date]);
 
   const debouncedPossibleDate = useDebounce(possibleDate, 800);
   const extendedInputProps = extractChildrenProps(children);
 
   function parseInput() {
-    let newDate = moment.utc(inputtedString, format);
+    let newDate = moment.utc(inputtedString, dataFormat);
 
     if (!newDate.isValid()) newDate = moment.utc(inputtedString);
 
@@ -84,6 +86,14 @@ function DatePicker(props) {
 
   function handleChange(newDate) {
     if (date !== newDate) onChange(newDate);
+  }
+
+  function handleClosePopover() {
+    window.requestAnimationFrame(() => {
+      if (!isElementContainsFocus(calendarRef.current) && !isElementContainsFocus(inputRef.current)) {
+        hideCalendar();
+      }
+    });
   }
 
   function handleReset() {
@@ -128,7 +138,7 @@ function DatePicker(props) {
 
   function handleInputBlur() {
     window.requestAnimationFrame(() => {
-      if (calendarRef.current !== document.activeElement && !calendarRef.current.contains(document.activeElement)) {
+      if (!isElementContainsFocus(calendarRef.current)) {
         handleInputConfirm();
         hideCalendar();
       }
@@ -152,7 +162,7 @@ function DatePicker(props) {
   }
 
   return (
-    <Popover isOpen={shouldShowCalendar} offset={8} onClose={hideCalendar} shouldKeepFocus>
+    <Popover isOpen={shouldShowCalendar} offset={8} onClose={handleClosePopover} shouldKeepFocus>
       <Input
         hasError={hasError}
         icon={<CalendarIcon />}
