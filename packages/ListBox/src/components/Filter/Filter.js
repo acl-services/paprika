@@ -1,7 +1,6 @@
 import React from "react";
 import PropTypes from "prop-types";
 import useListBox from "../../useListBox";
-import * as effects from "./effects";
 import { filter, applyFilter } from "./helpers";
 import { FilterContainerStyled, FilterInputStyled, FilterSearchIconStyled } from "./Filter.styles";
 
@@ -85,15 +84,30 @@ export default function Filter(props) {
     });
   };
 
-  const handleEffectValue = effects.handleEffectValue(props, applyFilter(dispatch, applyFilterType));
-  const handleEffectIsPopOverOpen = effects.handleEffectIsPopOverOpen(state, setTextSearch);
-  const handleEffectTextSearch = effects.handleEffectTextSearch(textSearch, applyFilter(dispatch, applyFilterType));
-  const handleEffectHasFilter = effects.handleEffectHasFilter(dispatch, useListBox.types.hasFilter);
+  React.useEffect(() => {
+    if (!props.value) {
+      applyFilter({ filteredOptions: [], noResultsFound: false });
+    }
+  }, [props.value]);
 
-  React.useEffect(handleEffectValue, [props.value]);
-  React.useEffect(handleEffectIsPopOverOpen, [state.isOpen]);
-  React.useEffect(handleEffectTextSearch, [textSearch]);
-  React.useEffect(handleEffectHasFilter, []);
+  React.useEffect(() => {
+    if (!state.isOpen) {
+      setTextSearch("");
+    }
+  }, [state.isOpen]);
+
+  React.useEffect(() => {
+    if (!textSearch) {
+      applyFilter({ filteredOptions: [], noResultsFound: false });
+    }
+  }, [textSearch]);
+
+  React.useEffect(() => {
+    dispatch({
+      type: useListBox.types.hasFilter,
+      payload: true,
+    });
+  }, [dispatch]);
 
   if (state.isInline || state.isOpen) {
     const { renderFilter, placeholder, value, onChangeFilter, filter, ...moreProps } = props;
