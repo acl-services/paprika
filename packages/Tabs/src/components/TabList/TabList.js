@@ -1,7 +1,6 @@
 import React from "react";
 import PropTypes from "prop-types";
 import TabsContext from "../../TabsContext";
-
 import tabsListStyles from "./TabsList.styles";
 
 const propTypes = {
@@ -13,16 +12,18 @@ const TabList = ({ children }) => {
 
   const childrenWithProps = React.Children.map(children, (tab, index) => {
     const isSelected = context.activeIndex === index;
-
+    
+    context.setNumberOfTabs(React.Children.count(children));
+    
     return React.cloneElement(tab, {
       isSelected,
       onClick: e => context.handleTabClick(e, index),
-      onKeyDownArrows: context.handleKeyDown,
+      onKeyDownArrows: e => context.handleKeyDown(e)
     });
   });
 
   return (
-    <div css={tabsListStyles} role="tablist">
+    <div css={tabsListStyles} role="tablist" ref={ref => context.setTabListRef(ref)}>
       {childrenWithProps}
     </div>
   );

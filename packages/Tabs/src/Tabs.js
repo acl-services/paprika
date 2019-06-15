@@ -12,6 +12,12 @@ const propTypes = {
 
 const Tabs = props => {
   const [activeIndex, setActiveIndex] = React.useState(null);
+  const [numberOfTabs, setNumberOfTabs] = React.useState(null);
+  let tabListRef = null;
+
+  const setTabListRef = (ref) => {
+    tabListRef = ref;
+  };
 
   const handleTabClick = (event, index) => {
     event.preventDefault();
@@ -21,15 +27,16 @@ const Tabs = props => {
   };
 
   const handleKeyDown = index => {
-    const totalTabs = 1;
     let tabIndex = index;
+    const totalTabs = numberOfTabs;
 
     if (index < 0) {
       tabIndex = 1;
-    } else if (index > totalTabs) {
+    } else if (index >= totalTabs) {
       tabIndex = 0;
     }
 
+    tabListRef.querySelectorAll('.tab')[tabIndex].focus();
     setActiveIndex(tabIndex);
   };
 
@@ -37,6 +44,8 @@ const Tabs = props => {
     activeIndex,
     handleTabClick,
     handleKeyDown,
+    setNumberOfTabs,
+    setTabListRef,
   };
 
   return <TabsContext.Provider value={stuff}>{props.children}</TabsContext.Provider>;

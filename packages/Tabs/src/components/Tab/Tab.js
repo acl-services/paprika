@@ -1,7 +1,7 @@
 import React from "react";
 import PropTypes from "prop-types";
 import classNames from "classnames";
-
+import RawButton from "@paprika/raw-button";
 import TabsContext from "../../TabsContext";
 import tabStyles from "./Tab.styles";
 
@@ -48,7 +48,7 @@ const Tab = props => {
   const tabIndex = props.isDisabled ? -1 : 0;
 
   return (
-    <span
+    <RawButton
       aria-selected={props.isSelected}
       css={tabStyles}
       className={cn}
@@ -58,7 +58,7 @@ const Tab = props => {
       tabIndex={tabIndex}
     >
       {props.label}
-    </span>
+    </RawButton>
   );
 };
 
