@@ -27,7 +27,9 @@ en:
       cancel: Cancel
     dateInput:
       choose: Choose a Date
+      calendar_header_format: MMMM YYYY
       clear: Clear Date
+      confirmation_format: MMMM DD, YYYY
     daterange:
       last_7_days: Last 7 Days
       last_30_days: Last 30 Days
