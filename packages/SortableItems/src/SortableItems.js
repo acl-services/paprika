@@ -70,16 +70,16 @@ const SortableItems = React.forwardRef((props, ref) => {
                     key={child.props["data-drag-id"]}
                     index={index}
                   >
-                    {(provided, snapshot) => {
+                    {(_provided, _snapshot) => {
                       return (
                         <div
-                          {...provided.draggableProps}
-                          ref={provided.innerRef}
-                          isDragging={snapshot.isDragging}
+                          {..._provided.draggableProps}
+                          ref={_provided.innerRef}
+                          isDragging={_snapshot.isDragging}
                           css={draggableStyles}
                         >
                           {props.hasIndexes && <div css={draggableIndexStyles}>{index}</div>}
-                          <div {...provided.dragHandleProps} css={draggableHandleStyles}>
+                          <div {..._provided.dragHandleProps} css={draggableHandleStyles}>
                             <Icon />
                           </div>
                           <div css={draggableBodyStyles}>{child}</div>
