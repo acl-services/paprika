@@ -1,37 +1,56 @@
 import React from "react";
 import PropTypes from "prop-types";
-// import TimesCircleIcon from "@paprika/icon/lib/TimesCircle";
+import uuidv4 from "uuid/v4";
+import Icon from "@paprika/icon/lib/DragHandle";
 
 import { DragDropContext, Droppable, Draggable } from "react-beautiful-dnd";
 
-import sortableItemsStyles from "./SortableItems.styles";
+import sortableItemsStyles, {
+  draggableStyles,
+  draggableIndexStyles,
+  draggableHandleStyles,
+  draggableBodyStyles,
+} from "./SortableItems.styles";
 
 const propTypes = {
   children: PropTypes.node,
   hasIndexes: PropTypes.bool,
+  onChange: PropTypes.func,
 };
 
 const defaultProps = {
   children: null,
   hasIndexes: true,
+  onChange: () => {},
 };
 
-const SortableItems = props => {
-  let childs = React.Children.map(props.children, (child, index) => {
-    return React.cloneElement(child, { ...child.props, id: index });
+function augmentChildren(children) {
+  return React.Children.toArray(children).map((child, index) => {
+    return React.cloneElement(child, { ...child.props, "data-drag-id": index });
   });
+}
+
+const SortableItems = React.forwardRef((props, ref) => {
+  const [sortedChildren, setSortedChildren] = React.useState(augmentChildren(props.children));
 
   const handleDragEnd = result => {
     const { source, destination } = result;
-    if (destination && source.index !== destination.index) {
-      const moved = childs.splice(source.index, 1);
-      childs.splice(destination.index, 0, moved);
-    }
+    if (!destination || source.index === destination.index) return;
+
+    const moved = sortedChildren.splice(source.index, 1);
+    sortedChildren.splice(destination.index, 0, ...moved);
+    props.onChange(sortedChildren);
   };
+
+  React.useImperativeHandle(ref, () => ({
+    update: sortedItems => {
+      setSortedChildren(augmentChildren(sortedItems));
+    },
+  }));
 
   return (
     <DragDropContext onDragEnd={handleDragEnd}>
-      <Droppable droppableId="droppable-0">
+      <Droppable droppableId={`droppable-${uuidv4()}`}>
         {(provided, snapshot) => (
           <div
             {...provided.droppableProps}
@@ -39,71 +58,46 @@ const SortableItems = props => {
             isDraggingOver={snapshot.isDraggingOver}
             css={sortableItemsStyles}
           >
-            {childs &&
-              React.Children.map(childs, (child, index) => {
+            {sortedChildren &&
+              sortedChildren.length &&
+              sortedChildren.map((child, index) => {
+                //
+                // <Sortable.Item>
+                //
                 return (
-                  <Draggable draggableId={`draggable-${child.props.id}`} key={child.props.id} index={index}>
+                  <Draggable
+                    draggableId={`draggable-${child.props["data-drag-id"]}`}
+                    key={child.props["data-drag-id"]}
+                    index={index}
+                  >
                     {(provided, snapshot) => {
                       return (
                         <div
                           {...provided.draggableProps}
                           ref={provided.innerRef}
                           isDragging={snapshot.isDragging}
-                          css={props => `
-                            display: flex;
-                            background: #ddd;
-                            border: 1px solid #bbb;
-                            height: 32px;
-                            line-height: 30px;
-                            margin: 0 0 10px 0;
-                            &:last-child {
-                              margin-bottom: 0;
-                            }
-                            ${
-                              props.isDragging
-                                ? "border-color: #888; box-shadow: 0 2px 4px rgba(150,150,150,0.5);"
-                                : null
-                            }
-                          `}
+                          css={draggableStyles}
                         >
-                          {props.hasIndexes && (
-                            <span
-                              css={`
-                                background: #aaa;
-                                padding: 0 10px;
-                              `}
-                            >
-                              {index}
-                            </span>
-                          )}
-                          <span
-                            {...provided.dragHandleProps}
-                            css={`
-                              background: #ccc;
-                              padding: 0 10px;
-                            `}
-                          >
-                            :::
-                          </span>
-                          <span
-                            css={`
-                              padding: 0 5px;
-                            `}
-                          >
-                            {child}
-                          </span>
+                          {props.hasIndexes && <div css={draggableIndexStyles}>{index}</div>}
+                          <div {...provided.dragHandleProps} css={draggableHandleStyles}>
+                            <Icon />
+                          </div>
+                          <div css={draggableBodyStyles}>{child}</div>
                         </div>
                       );
                     }}
                   </Draggable>
                 );
+                //
+                // </Sortable.Item>
+                //
               })}
           </div>
         )}
       </Droppable>
     </DragDropContext>
   );
-};
+});
 
 SortableItems.displayName = "SortableItems";
 SortableItems.propTypes = propTypes;
