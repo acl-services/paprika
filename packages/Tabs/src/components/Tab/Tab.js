@@ -27,22 +27,9 @@ const defaultProps = {
 
 const Tab = props => {
   const context = React.useContext(TabsContext);
-  const {
-    className,
-    isDisabled,
-    isSelected,
-    label,
-    linkUrl,
-    onClick,
-    onKeyDownArrows,
-  } = props;
+  const { className, isDisabled, isSelected, label, linkUrl, onClick, onKeyDownArrows, ...moreProps } = props;
 
-  const cn = classNames(
-    "tab",
-    { "tab--is-active": isSelected },
-    { "tab--is-disabled": isDisabled },
-    className
-  );
+  const cn = classNames("tab", { "tab--is-active": isSelected }, { "tab--is-disabled": isDisabled }, className);
 
   const handleKeyDown = event => {
     const leftArrowKey = 37;
@@ -67,6 +54,7 @@ const Tab = props => {
         onKeyDown={handleKeyDown}
         role="tab"
         tabIndex={tabIndex}
+        {...moreProps}
       >
         {label}
       </a>

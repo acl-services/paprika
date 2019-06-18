@@ -15,7 +15,7 @@ const Tabs = props => {
   const [numberOfTabs, setNumberOfTabs] = React.useState(null);
   let tabListRef = null;
 
-  const setTabListRef = (ref) => {
+  const setTabListRef = ref => {
     tabListRef = ref;
   };
 
@@ -36,7 +36,7 @@ const Tabs = props => {
       tabIndex = 0;
     }
 
-    tabListRef.querySelectorAll('.tab')[tabIndex].focus();
+    tabListRef.querySelectorAll(".tab")[tabIndex].focus();
     setActiveIndex(tabIndex);
   };
 

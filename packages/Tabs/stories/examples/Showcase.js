@@ -9,7 +9,7 @@ const renderTabs = () => {
   const defaultValue = ["Pepsi", "Coke", "Diet Coke", "Canada Dry"];
   const separator = ", ";
   const tabs = array(label, defaultValue, separator);
-  
+
   return tabs.map(tabLabel => <Tabs.Tab label={tabLabel} />);
 };
 

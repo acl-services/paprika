@@ -16,7 +16,12 @@ storiesOf("Tabs", module)
           <Tabs.Tab label="World" />
         </Tabs.List>
         <Tabs.Panels>
-          <Tabs.Panel>Lorem ipsum dolor amet pop-up sartorial artisan keytar leggings bespoke chia swag flexitarian pabst yr godard williamsburg. Marfa lomo four loko hoodie. Hella gastropub irony bitters succulents truffaut godard tbh street art. Occupy bicycle rights fingerstache pinterest, af gluten-free health goth put a bird on it 90s stumptownedison bulb pug hella. Small batch dreamcatcher mumblecore.</Tabs.Panel>
+          <Tabs.Panel>
+            Lorem ipsum dolor amet pop-up sartorial artisan keytar leggings bespoke chia swag flexitarian pabst yr
+            godard williamsburg. Marfa lomo four loko hoodie. Hella gastropub irony bitters succulents truffaut godard
+            tbh street art. Occupy bicycle rights fingerstache pinterest, af gluten-free health goth put a bird on it
+            90s stumptownedison bulb pug hella. Small batch dreamcatcher mumblecore.
+          </Tabs.Panel>
           <Tabs.Panel>World</Tabs.Panel>
         </Tabs.Panels>
       </Tabs>
@@ -27,7 +32,12 @@ storiesOf("Tabs", module)
       <Tabs>
         <Tabs.List>
           <Tabs.Tab label="Google" linkUrl="https://google.com" />
-          <Tabs.Tab label="Galvanize" linkUrl="https://wegalvanize.com" />
+          <Tabs.Tab
+            label="Galvanize new tab"
+            linkUrl="https://wegalvanize.com"
+            target="_blank"
+            rel="noopener noreferrer"
+          />
         </Tabs.List>
       </Tabs>
     </Story>
