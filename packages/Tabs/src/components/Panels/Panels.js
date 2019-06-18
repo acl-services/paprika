@@ -6,7 +6,7 @@ const propTypes = {
   children: PropTypes.node.isRequired,
 };
 
-const PanelList = ({ children }) => {
+const Panels = ({ children }) => {
   const context = React.useContext(TabsContext);
 
   const childrenWithProps = React.Children.map(children, (panel, index) => {
@@ -20,6 +20,6 @@ const PanelList = ({ children }) => {
   return <div>{childrenWithProps}</div>;
 };
 
-PanelList.displayName = "Tabs.PanelList";
-PanelList.propTypes = propTypes;
-export default PanelList;
+Panels.displayName = "Tabs.Panels";
+Panels.propTypes = propTypes;
+export default Panels;

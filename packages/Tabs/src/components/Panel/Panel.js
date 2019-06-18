@@ -1,6 +1,8 @@
 import React from "react";
 import PropTypes from "prop-types";
 
+import panelStyles from "./Panel.styles";
+
 const propTypes = {
   children: PropTypes.node,
   isSelected: PropTypes.bool,
@@ -19,7 +21,7 @@ const Panel = props => {
   }
 
   return (
-    <div {...moreProps} role="tabpanel">
+    <div {...moreProps} css={panelStyles} role="tabpanel">
       {children}
     </div>
   );

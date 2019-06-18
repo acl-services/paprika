@@ -2,9 +2,9 @@ import React from "react";
 import PropTypes from "prop-types";
 import TabsContext from "./TabsContext";
 import Panel from "./components/Panel/Panel";
-import PanelList from "./components/PanelList/PanelList";
+import Panels from "./components/Panels/Panels";
 import Tab from "./components/Tab/Tab";
-import TabList from "./components/TabList/TabList";
+import List from "./components/List/List";
 
 const propTypes = {
   children: PropTypes.node.isRequired,
@@ -31,7 +31,7 @@ const Tabs = props => {
     const totalTabs = numberOfTabs;
 
     if (index < 0) {
-      tabIndex = 1;
+      tabIndex = numberOfTabs - 1;
     } else if (index >= totalTabs) {
       tabIndex = 0;
     }
@@ -53,9 +53,9 @@ const Tabs = props => {
 
 Tabs.displayName = "Tabs";
 Tabs.Panel = Panel;
-Tabs.PanelList = PanelList;
+Tabs.Panels = Panels;
 Tabs.Tab = Tab;
-Tabs.TabList = TabList;
+Tabs.List = List;
 Tabs.propTypes = propTypes;
 
 export default Tabs;

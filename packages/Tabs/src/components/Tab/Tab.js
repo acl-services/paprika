@@ -10,6 +10,7 @@ const propTypes = {
   label: PropTypes.node,
   isSelected: PropTypes.bool,
   isDisabled: PropTypes.bool,
+  linkUrl: PropTypes.string,
   onClick: PropTypes.func,
   onKeyDownArrows: PropTypes.func,
 };
@@ -19,18 +20,28 @@ const defaultProps = {
   isSelected: false,
   isDisabled: false,
   label: null,
+  linkUrl: null,
   onClick: () => {},
   onKeyDownArrows: () => {},
 };
 
 const Tab = props => {
   const context = React.useContext(TabsContext);
+  const {
+    className,
+    isDisabled,
+    isSelected,
+    label,
+    linkUrl,
+    onClick,
+    onKeyDownArrows,
+  } = props;
 
   const cn = classNames(
     "tab",
-    { "tab--is-active": props.isSelected },
-    { "tab--is-disabled": props.isDisabled },
-    props.className
+    { "tab--is-active": isSelected },
+    { "tab--is-disabled": isDisabled },
+    className
   );
 
   const handleKeyDown = event => {
@@ -38,26 +49,41 @@ const Tab = props => {
     const rightArrowKey = 39;
 
     if (event.which === leftArrowKey) {
-      props.onKeyDownArrows(context.activeIndex - 1);
+      onKeyDownArrows(context.activeIndex - 1);
     } else if (event.which === rightArrowKey) {
-      props.onKeyDownArrows(context.activeIndex + 1);
+      onKeyDownArrows(context.activeIndex + 1);
     }
   };
 
-  const onClick = props.isDisabled ? () => {} : props.onClick;
-  const tabIndex = props.isDisabled ? -1 : 0;
+  const handleClick = isDisabled ? () => {} : onClick;
+  const tabIndex = isDisabled ? -1 : 0;
+
+  if (linkUrl) {
+    return (
+      <a
+        css={tabStyles}
+        className={classNames("tab-link", cn)}
+        href={linkUrl}
+        onKeyDown={handleKeyDown}
+        role="tab"
+        tabIndex={tabIndex}
+      >
+        {label}
+      </a>
+    );
+  }
 
   return (
     <RawButton
-      aria-selected={props.isSelected}
+      aria-selected={isSelected}
       css={tabStyles}
       className={cn}
-      onClick={e => onClick(e, context.activeIndex)}
+      onClick={e => handleClick(e, context.activeIndex)}
       onKeyDown={handleKeyDown}
       role="tab"
       tabIndex={tabIndex}
     >
-      {props.label}
+      {label}
     </RawButton>
   );
 };

@@ -11,14 +11,24 @@ storiesOf("Tabs", module)
   .add("Tab", () => (
     <Story>
       <Tabs>
-        <Tabs.TabList>
+        <Tabs.List>
           <Tabs.Tab label="Hello" />
           <Tabs.Tab label="World" />
-        </Tabs.TabList>
-        <Tabs.PanelList>
-          <Tabs.Panel>Hello</Tabs.Panel>
+        </Tabs.List>
+        <Tabs.Panels>
+          <Tabs.Panel>Lorem ipsum dolor amet pop-up sartorial artisan keytar leggings bespoke chia swag flexitarian pabst yr godard williamsburg. Marfa lomo four loko hoodie. Hella gastropub irony bitters succulents truffaut godard tbh street art. Occupy bicycle rights fingerstache pinterest, af gluten-free health goth put a bird on it 90s stumptownedison bulb pug hella. Small batch dreamcatcher mumblecore.</Tabs.Panel>
           <Tabs.Panel>World</Tabs.Panel>
-        </Tabs.PanelList>
+        </Tabs.Panels>
+      </Tabs>
+    </Story>
+  ))
+  .add("Tab Links", () => (
+    <Story>
+      <Tabs>
+        <Tabs.List>
+          <Tabs.Tab label="Google" linkUrl="https://google.com" />
+          <Tabs.Tab label="Galvanize" linkUrl="https://wegalvanize.com" />
+        </Tabs.List>
       </Tabs>
     </Story>
   ));
