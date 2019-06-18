@@ -4,7 +4,7 @@ import React from "react";
 import ReactDOM from "react-dom";
 import PropTypes from "prop-types";
 import { ariaLabelStyles, contentStyles, modalStyles, frameStyles, overlayStyles } from "./Modal.styles";
-import { ShirtSizes } from "../helpers/customPropTypes";
+import { ShirtSizes } from "@paprika/helpers/lib/customPropTypes";
 import classNames from "classnames";
 
 const propTypes = {

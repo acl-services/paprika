@@ -1,6 +1,6 @@
 import tokens from "@paprika/tokens";
 import stylers from "@paprika/stylers";
-import { ShirtSizes } from "../helpers/customPropTypes";
+import { ShirtSizes } from "@paprika/helpers/lib/customPropTypes";
 
 const computeModalWidth = width => {
   switch(width) {
