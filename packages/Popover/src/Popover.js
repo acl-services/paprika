@@ -66,6 +66,9 @@ const propTypes = {
 
   /** If this value is true, focus will stay at the trigger when showing popover, and only can be closed when clicking outside or pressing escape key . Default is false. */
   shouldKeepFocus: PropTypes.bool,
+
+  /** Number setting the z-index for the popover content */
+  zIndex: PropTypes.number,
 };
 
 const defaultProps = {
@@ -80,6 +83,7 @@ const defaultProps = {
   getPositioningElement: null,
   getScrollContainer: null,
   shouldKeepFocus: false,
+  zIndex: 1,
 };
 
 class Popover extends React.Component {
@@ -117,18 +121,28 @@ class Popover extends React.Component {
         isOpen prop is also provided.`
       );
     }
-
-    if (props.isOpen !== null && props.onClose === null) {
-      console.error("This Popover is controlled by its isOpen prop but no onClose prop was provided.");
-    }
   }
 
   getContextValues = memoizeOne(
-    (content, maxWidth, width, isDark, isEager, isOpen, portalElement, refContent, refTip, shouldKeepFocus, tip) => ({
+    (
+      content,
+      maxWidth,
+      width,
+      isDark,
+      isEager,
+      isOpen,
+      portalElement,
+      refContent,
+      refTip,
+      shouldKeepFocus,
+      tip,
+      zIndex
+    ) => ({
       content: {
         ...content,
         maxWidth, // maybe we should code a minimum maxWidth?
         width,
+        zIndex,
       },
       isDark,
       isEager,
@@ -244,8 +258,7 @@ class Popover extends React.Component {
   // eslint-disable-next-line react/sort-comp
   handleReposition = throttle(() => {
     if (this.isOpen()) {
-      const scrollContainer =
-        this.props.getScrollContainer === null ? document.documentElement : this.props.getScrollContainer();
+      const scrollContainer = this.props.getScrollContainer === null ? document.body : this.props.getScrollContainer();
       if (
         !isInsideBoundaries({
           $container: scrollContainer,
@@ -256,6 +269,7 @@ class Popover extends React.Component {
         this.close();
         return;
       }
+
       this.setVisibilityAndPosition();
     }
   }, throttleDelay);
@@ -381,33 +395,50 @@ class Popover extends React.Component {
   }
 
   render() {
+    const {
+      align,
+      children,
+      isDark,
+      isEager,
+      isOpen,
+      defaultIsOpen,
+      maxWidth,
+      onClose,
+      offset,
+      getPositioningElement,
+      getScrollContainer,
+      zIndex,
+      ...moreProps
+    } = this.props;
+
     const contextValue = this.getContextValues(
       this.state.content,
-      this.props.maxWidth,
+      maxWidth,
       this.state.width,
-      this.props.isDark,
-      this.props.isEager,
+      isDark,
+      isEager,
       this.isOpen(),
       this.$portal,
       this.refContent,
       this.refTip,
       this.props.shouldKeepFocus,
-      this.state.tip
+      this.state.tip,
+      zIndex
     );
 
     return (
       <PopoverContext.Provider value={contextValue}>
-        <PopoverStyled ref={this.$popover}>{this.props.children}</PopoverStyled>
+        <PopoverStyled {...moreProps} ref={this.$popover}>
+          {this.props.children}
+        </PopoverStyled>
       </PopoverContext.Provider>
     );
   }
 }
 
 Popover.displayName = "Popover";
-
 Popover.propTypes = propTypes;
 Popover.defaultProps = defaultProps;
-
 Popover.Trigger = Trigger;
 Popover.Content = Content;
 Popover.Card = Card;

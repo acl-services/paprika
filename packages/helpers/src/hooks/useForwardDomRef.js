@@ -12,7 +12,7 @@ export default function useForwardDomRef(ref, parentRef) {
       // eslint-disable-next-line no-param-reassign
       parentRef.current = ref.current;
     }
-  }, [ref.current]);
+  }, [parentRef, ref]);
 
   return () => {
     if (typeof parentRef === "function") {
