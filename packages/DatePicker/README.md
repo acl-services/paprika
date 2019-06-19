@@ -31,13 +31,12 @@ import DatePicker from "@paprika/date-picker";
 ### Props
 
 - `children`
-- `date` Moment object
 - `dataFormat`
+- `date` Moment object
+- `humanFormat`
 - `isDisabled`
 - `isReadOnly`
 - `onChange` (Required)
-
-#### DatePicker.Calendar
 
 #### DatePicker.Input
 

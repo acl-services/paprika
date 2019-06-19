@@ -95,6 +95,7 @@ function DatePicker(props) {
 
   function hideCalendar() {
     if (shouldShowCalendar) setShouldShowCalendar(false);
+    inputRef.current.blur();
   }
 
   function handleChange(newDate) {
@@ -125,7 +126,7 @@ function DatePicker(props) {
   }
 
   function handleFocusInput() {
-    setConfirmationResult("");
+    if (!isReadOnly) setConfirmationResult("");
   }
 
   function handleInputChange(e) {
@@ -133,7 +134,7 @@ function DatePicker(props) {
   }
 
   function handleInputConfirm() {
-    inputRef.current.blur();
+    hideCalendar();
 
     if (!inputtedString) {
       handleReset();
@@ -155,7 +156,6 @@ function DatePicker(props) {
     window.requestAnimationFrame(() => {
       if (!isElementContainsFocus(calendarRef.current)) {
         handleInputConfirm();
-        hideCalendar();
       }
     });
   }
@@ -163,6 +163,7 @@ function DatePicker(props) {
   function handleKeyUp(event) {
     if (event.key === "Enter") {
       handleInputConfirm();
+    } else if (event.key === "Escape") {
       hideCalendar();
     } else {
       const updatedPossibleDate = parseInput();

@@ -10,7 +10,7 @@ export const ContainerStyled = styled.div`
   color: ${tokens.color.black};
   font-family: ${tokens.fontFamily.default};
   ${stylers.fontSize(-1)}
-  height: 241px;
+  height: 245px;
   overflow: hidden;
   position: relative;
   width: 257px;
@@ -32,7 +32,7 @@ export const ContainerStyled = styled.div`
     justify-content: space-between;
     margin: 0;
     overflow: hidden;
-    padding: 2px ${tokens.spaceLg};
+    padding: 5px ${tokens.spaceLg} ${tokens.spaceSm} ${tokens.spaceLg};
   }
 `;
 
@@ -90,38 +90,44 @@ export const ActionBarStyled = styled.div`
   position: absolute;
   width: 100%;
 
-  > button {
+  > [type="button"] {
     flex-shrink: 0;
+
+    &:last-child {
+      margin-left: ${tokens.spaceSm};
+    }
   }
 `;
 
 export const OptionWrapperStyled = styled.div`
-  margin-right: 12px;
+  margin-bottom: 1px;
+  margin-right: ${tokens.spaceLg};
 
-  input {
+  input[type="radio"] {
     display: block;
     height: 0;
+    margin: 0;
     visibility: hidden;
     width: 0;
   }
+`;
 
-  label {
-    align-items: center;
-    border-radius: ${tokens.border.radius};
-    cursor: pointer;
-    display: flex;
-    height: 22px;
-    justify-content: center;
-    width: 46px;
+export const LabelStyled = styled.label`
+  align-items: center;
+  border-radius: ${tokens.border.radius};
+  cursor: pointer;
+  display: flex;
+  height: 22px;
+  justify-content: center;
+  width: 46px;
 
-    &:hover {
-      ${HoveredItemStyles}
-    }
-
-    ${({ isSelected }) =>
-      isSelected &&
-      css`
-        ${SelectedItemStyles}
-      `}
+  &:hover {
+    ${HoveredItemStyles}
   }
+
+  ${({ isSelected }) =>
+    isSelected &&
+    css`
+      ${SelectedItemStyles}
+    `}
 `;

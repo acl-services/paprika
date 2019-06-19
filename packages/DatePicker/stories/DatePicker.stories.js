@@ -1,27 +1,37 @@
 import React from "react";
 import moment from "moment";
+import { boolean, select, text, withKnobs } from "@storybook/addon-knobs";
+
 import { storiesOf } from "@storybook/react";
-import L10n from "@paprika/l10n";
+
 import Example from "./DatePickerExample";
 import DatePicker from "../src/DatePicker";
-import ShortCutPanel from "../src/components/ShortcutPanel";
 
 storiesOf("DatePicker", module)
+  .addDecorator(withKnobs)
+  .add("DatePicker showcase", () => {
+    const datePickerProps = () => ({
+      dataFormat: select("dataFormat", ["MM/DD/YYYY", "DD/MM/YYYY", "YYYY-MM-DD"], "MM/DD/YYYY"),
+      humanFormat: select("humanFormat", ["MMMM DD, YYYY", "YYYY-MM-DD"], "MMMM DD, YYYY"),
+      isDisabled: boolean("isDisabled", false),
+      isReadOnly: boolean("isReadOnly", false),
+    });
+
+    const inputProps = () => ({
+      size: select("size", ["small", "medium", "large"], "medium"),
+      placeholder: text("placeholder", ""),
+    });
+    return (
+      <Example locale="en" {...datePickerProps()}>
+        <DatePicker.Input {...inputProps()} />
+      </Example>
+    );
+  })
   .add("DatePicker", () => <Example locale="en" />)
-  .add("DatePicker with locale", () => <Example locale="ja" />)
+  .add("DatePicker with locale", () => <Example locale="zh" />)
   .add("DatePicker with initialDate", () => <Example initialDate={moment("2019-01-01")} />)
   .add("DatePicker with DatePicker.Input", () => (
-    <Example format="YYYY-MM-DD">
+    <Example>
       <DatePicker.Input className="custom-class-name" placeholder="custom placeholder" />
     </Example>
-  ))
-  .add("Calendar", () => (
-    <L10n>
-      <DatePicker.Calendar />
-    </L10n>
-  ))
-  .add("Shortcut panel", () => (
-    <L10n>
-      <ShortCutPanel date={moment()} />
-    </L10n>
   ));

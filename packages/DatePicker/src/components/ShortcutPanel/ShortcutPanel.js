@@ -13,6 +13,7 @@ import {
   ActionBarStyled,
   ColumnHeaderStyled,
   ContainerStyled,
+  LabelStyled,
   MonthListStyled,
   OptionWrapperStyled,
   PanelContentStyled,
@@ -63,7 +64,7 @@ function ShortcutPanel(props) {
 
   function renderMonthList() {
     return moment.monthsShort().map((month, monthIndex) => (
-      <OptionWrapperStyled key={month} isSelected={monthIndex === selectedMonth}>
+      <OptionWrapperStyled key={month}>
         <input
           type="radio"
           name="month"
@@ -72,7 +73,9 @@ function ShortcutPanel(props) {
           defaultChecked={monthIndex === selectedMonth}
           onChange={handleChange}
         />
-        <label htmlFor={monthIndex}>{month}</label>
+        <LabelStyled htmlFor={monthIndex} isSelected={monthIndex === selectedMonth}>
+          {month}
+        </LabelStyled>
       </OptionWrapperStyled>
     ));
   }
@@ -88,7 +91,7 @@ function ShortcutPanel(props) {
     }
 
     return list.map(year => (
-      <OptionWrapperStyled key={year} isSelected={year === selectedyear}>
+      <OptionWrapperStyled key={year}>
         <input
           type="radio"
           name="year"
@@ -97,7 +100,9 @@ function ShortcutPanel(props) {
           defaultChecked={year === selectedyear}
           onChange={handleChange}
         />
-        <label htmlFor={year}>{year}</label>
+        <LabelStyled htmlFor={year} isSelected={year === selectedyear}>
+          {year}
+        </LabelStyled>
       </OptionWrapperStyled>
     ));
   }
