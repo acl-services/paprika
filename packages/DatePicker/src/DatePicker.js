@@ -75,6 +75,7 @@ function DatePicker(props) {
   // Effect
   React.useEffect(() => {
     setInputtedString(date ? moment.utc(date).format(dataFormat) : "");
+    setConfirmationResult(date ? moment.utc(date).format(humanFormat) : "");
   }, [date]);
 
   const debouncedPossibleDate = useDebounce(possibleDate, 300);
@@ -103,6 +104,8 @@ function DatePicker(props) {
   function handleClosePopover() {
     setTimeout(() => {
       if (!isElementContainsFocus(calendarRef.current) && !isElementContainsFocus(inputRef.current)) {
+        setConfirmationResult(date ? moment.utc(date).format(humanFormat) : "");
+        setInputtedString(date ? moment.utc(date).format(dataFormat) : "");
         hideCalendar();
       }
     }, 0);
