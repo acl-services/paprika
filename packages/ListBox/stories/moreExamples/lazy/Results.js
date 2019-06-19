@@ -24,9 +24,7 @@ export default function Results(props) {
         >
           <div
             style={{
-              background: `url(${props.charactersCache[id].thumbnail.path}.${
-                props.charactersCache[id].thumbnail.extension
-              })`,
+              background: `url(${props.charactersCache[id].thumbnail.path}.${props.charactersCache[id].thumbnail.extension})`,
               backgroundSize: "cover",
               height: "100%",
               overflow: "hidden",
