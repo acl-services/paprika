@@ -12,6 +12,7 @@ const propTypes = {
   isDisabled: PropTypes.bool,
   linkUrl: PropTypes.string,
   onClick: PropTypes.func,
+  onKeyDown: PropTypes.func,
   onKeyDownArrows: PropTypes.func,
 };
 
@@ -23,11 +24,12 @@ const defaultProps = {
   linkUrl: null,
   onClick: () => {},
   onKeyDownArrows: () => {},
+  onKeyDown: () => {},
 };
 
 const Tab = props => {
   const context = React.useContext(TabsContext);
-  const { className, isDisabled, isSelected, label, linkUrl, onClick, onKeyDownArrows, ...moreProps } = props;
+  const { className, isDisabled, isSelected, label, linkUrl, onClick, onKeyDown, onKeyDownArrows, ...moreProps } = props;
 
   const cn = classNames("tab", { "tab--is-active": isSelected }, { "tab--is-disabled": isDisabled }, className);
 
@@ -40,6 +42,8 @@ const Tab = props => {
     } else if (event.which === rightArrowKey) {
       onKeyDownArrows(context.activeIndex + 1);
     }
+
+    onKeyDown(event);
   };
 
   const handleClick = isDisabled ? () => {} : onClick;

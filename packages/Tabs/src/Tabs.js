@@ -8,6 +8,11 @@ import List from "./components/List/List";
 
 const propTypes = {
   children: PropTypes.node.isRequired,
+  isDisabled: PropTypes.bool,
+};
+
+const defaultProps = {
+  isDisabled: false,  
 };
 
 const Tabs = props => {
@@ -33,6 +38,13 @@ const Tabs = props => {
   const handleKeyDown = index => {
     let tabIndex = index;
     const totalTabs = numberOfTabs;
+
+    // const tabList = React.Children.toArray(props.children)[0];
+    // const currentTab = tabList.props.children[tabIndex];
+
+    // if (currentTab.props.isDisabled) {
+    //   tabIndex += 1;
+    // }
 
     if (index < 0) {
       tabIndex = numberOfTabs - 1;
@@ -61,5 +73,6 @@ Tabs.Panels = Panels;
 Tabs.Tab = Tab;
 Tabs.List = List;
 Tabs.propTypes = propTypes;
+Tabs.defaultProps = defaultProps;
 
 export default Tabs;

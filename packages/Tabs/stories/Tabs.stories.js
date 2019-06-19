@@ -13,7 +13,9 @@ storiesOf("Tabs", module)
       <Tabs>
         <Tabs.List>
           <Tabs.Tab label="Hello" />
+          <Tabs.Tab isDisabled label="Disabled 1" />
           <Tabs.Tab label="World" />
+          <Tabs.Tab isDisabled label="Disabled 2" />
         </Tabs.List>
         <Tabs.Panels>
           <Tabs.Panel>
@@ -22,7 +24,9 @@ storiesOf("Tabs", module)
             tbh street art. Occupy bicycle rights fingerstache pinterest, af gluten-free health goth put a bird on it
             90s stumptownedison bulb pug hella. Small batch dreamcatcher mumblecore.
           </Tabs.Panel>
+          <Tabs.Panel>isDisabled Content 1</Tabs.Panel>
           <Tabs.Panel>World</Tabs.Panel>
+          <Tabs.Panel>isDisabled Content 2</Tabs.Panel>
         </Tabs.Panels>
       </Tabs>
     </Story>
