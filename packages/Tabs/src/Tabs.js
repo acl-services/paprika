@@ -15,6 +15,10 @@ const Tabs = props => {
   const [numberOfTabs, setNumberOfTabs] = React.useState(null);
   let tabListRef = null;
 
+  React.useEffect(() => {
+    console.log(activeIndex);
+  });
+
   const setTabListRef = ref => {
     tabListRef = ref;
   };
@@ -40,7 +44,7 @@ const Tabs = props => {
     setActiveIndex(tabIndex);
   };
 
-  const stuff = {
+  const contextValue = {
     activeIndex,
     handleTabClick,
     handleKeyDown,
@@ -48,7 +52,7 @@ const Tabs = props => {
     setTabListRef,
   };
 
-  return <TabsContext.Provider value={stuff}>{props.children}</TabsContext.Provider>;
+  return <TabsContext.Provider value={contextValue}>{props.children}</TabsContext.Provider>;
 };
 
 Tabs.displayName = "Tabs";
