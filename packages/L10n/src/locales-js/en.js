@@ -33,11 +33,11 @@ const locales = {
         "apply": "Apply",
         "cancel": "Cancel"
       },
-      "dateInput": {
-        "choose": "Choose a Date",
+      "datePicker": {
         "calendar_header_format": "MMMM YYYY",
-        "clear": "Clear Date",
-        "confirmation_format": "MMMM DD, YYYY"
+        "confirmation_format": "MMMM DD, YYYY",
+        "month": "Month",
+        "year": "Year"
       },
       "daterange": {
         "last_7_days": "Last 7 Days",

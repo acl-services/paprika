@@ -19,11 +19,14 @@ import { extractChildrenProps } from "./helpers";
 const propTypes = {
   children: PropTypes.node,
 
+  /** Date format used while entering and parsing user input. */
+  dataFormat: PropTypes.string,
+
   /** Selected date in moment object. */
   date: momentPropTypes.momentObj,
 
-  /** Date format used while entering and parsing user input */
-  dataFormat: PropTypes.string,
+  /** Date format used while displaying date. It should be human-friendly and spelled out. */
+  humanFormat: PropTypes.string,
 
   /** Should be disabled or not, default is false. */
   isDisabled: PropTypes.bool,
@@ -37,8 +40,9 @@ const propTypes = {
 
 const defaultProps = {
   children: null,
-  date: null,
   dataFormat: "MM/DD/YYYY",
+  date: null,
+  humanFormat: undefined,
   isDisabled: false,
   isReadOnly: false,
 };
@@ -47,10 +51,18 @@ function DatePicker(props) {
   const I18n = useI18n();
 
   // Props
-  const { children, date, dataFormat, isDisabled, isReadOnly, onChange } = props;
+  const {
+    children,
+    dataFormat,
+    date,
+    humanFormat = I18n.t("datePicker.confirmation_format"),
+    isDisabled,
+    isReadOnly,
+    onChange,
+  } = props;
 
   // State
-  const [confirmationResult, setConfirmationResult] = React.useState("");
+  const [confirmationResult, setConfirmationResult] = React.useState(date ? moment.utc(date).format(humanFormat) : "");
   const [hasError, setHasError] = React.useState(false);
   const [inputtedString, setInputtedString] = React.useState(date ? moment.utc(date).format(dataFormat) : "");
   const [possibleDate, setPossibleDate] = React.useState(null);
@@ -65,7 +77,7 @@ function DatePicker(props) {
     setInputtedString(date ? moment.utc(date).format(dataFormat) : "");
   }, [date]);
 
-  const debouncedPossibleDate = useDebounce(possibleDate, 800);
+  const debouncedPossibleDate = useDebounce(possibleDate, 300);
   const extendedInputProps = extractChildrenProps(children);
 
   function parseInput() {
@@ -89,11 +101,11 @@ function DatePicker(props) {
   }
 
   function handleClosePopover() {
-    window.requestAnimationFrame(() => {
+    setTimeout(() => {
       if (!isElementContainsFocus(calendarRef.current) && !isElementContainsFocus(inputRef.current)) {
         hideCalendar();
       }
-    });
+    }, 0);
   }
 
   function handleReset() {
@@ -104,7 +116,7 @@ function DatePicker(props) {
 
   function handleSelect(seletedDate) {
     setHasError(false);
-    setConfirmationResult(seletedDate.format(I18n.t("dateInput.confirmation_format")));
+    setConfirmationResult(seletedDate.format(humanFormat));
     hideCalendar();
     handleChange(seletedDate);
   }
@@ -129,7 +141,7 @@ function DatePicker(props) {
 
     if (newDate.isValid()) {
       setHasError(false);
-      setConfirmationResult(newDate.format(I18n.t("dateInput.confirmation_format")));
+      setConfirmationResult(newDate.format(humanFormat));
       if (!moment(newDate).isSame(date, "day")) handleChange(newDate);
     } else {
       setHasError(true);
@@ -180,7 +192,12 @@ function DatePicker(props) {
 
       <Popover.Content>
         <div css={CalendarStyles} data-qa-anchor="datepicker.calendar" ref={calendarRef}>
-          <Calendar date={date} possibleDate={debouncedPossibleDate} onSelect={handleSelect} />
+          <Calendar
+            date={date}
+            possibleDate={debouncedPossibleDate}
+            onSelect={handleSelect}
+            isOpen={shouldShowCalendar}
+          />
         </div>
       </Popover.Content>
     </Popover>

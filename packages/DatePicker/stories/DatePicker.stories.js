@@ -4,6 +4,7 @@ import { storiesOf } from "@storybook/react";
 import L10n from "@paprika/l10n";
 import Example from "./DatePickerExample";
 import DatePicker from "../src/DatePicker";
+import ShortCutPanel from "../src/components/ShortcutPanel";
 
 storiesOf("DatePicker", module)
   .add("DatePicker", () => <Example locale="en" />)
@@ -17,5 +18,10 @@ storiesOf("DatePicker", module)
   .add("Calendar", () => (
     <L10n>
       <DatePicker.Calendar />
+    </L10n>
+  ))
+  .add("Shortcut panel", () => (
+    <L10n>
+      <ShortCutPanel date={moment()} />
     </L10n>
   ));

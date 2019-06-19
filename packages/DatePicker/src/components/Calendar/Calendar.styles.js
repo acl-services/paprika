@@ -1,8 +1,30 @@
 import styled from "styled-components";
 import tokens from "@paprika/tokens";
 import stylers from "@paprika/stylers";
+import Button from "@paprika/button";
 
 import CalendarBaseStyle from "./CalendarBase.styles";
+import { HoveredItemStyles, SelectedItemStyles } from "../../shared.styles";
+
+const IconButtonStyles = `
+  transition: background-color 0.2s ease-out;
+  
+
+  &:hover {
+    background-color: ${stylers.alpha(tokens.color.black, 0.1)}; 
+    border-color: ${tokens.border.hoverColor};
+  }
+
+  &:focus,
+  &:active {
+    box-shadow: ${tokens.highlight.active.withBorder.boxShadow};
+    outline: none;
+  }
+
+  &:active {
+    background-color: ${stylers.alpha(tokens.color.black, 0.2)};
+  }
+`;
 
 const CalendarStyled = styled.div`
   ${CalendarBaseStyle}
@@ -10,6 +32,10 @@ const CalendarStyled = styled.div`
   * {
     box-sizing: border-box;
     font-family: ${tokens.fontFamily.default};
+  }
+
+  &:focus {
+    outline: none;
   }
 
   .DayPicker_transitionContainer__horizontal {
@@ -25,8 +51,11 @@ const CalendarStyled = styled.div`
   }
 
   .CalendarMonth_caption {
+    align-items: center;
     background-color: ${tokens.color.blackLighten80};
+    display: flex;
     height: ${stylers.spacer(5)};
+    justify-content: center;
     line-height: ${stylers.spacer(5)};
     padding: 0;
     margin-bottom: ${tokens.spaceLg};
@@ -40,11 +69,26 @@ const CalendarStyled = styled.div`
     padding: 0;
     vertical-align: middle;
 
-    &:hover,
-    &:focus,
-    &:active {
+    &:hover {
       background-color: ${tokens.color.white};
       border: none;
+    }
+
+    &:focus {
+      outline: none;
+
+      > span {
+        box-shadow: ${tokens.highlight.active.noBorder.boxShadow};
+        border: 1px solid ${tokens.highlight.active.noBorder.borderColor};
+      }
+    }
+
+    &:active {
+      > span {
+        box-shadow: ${tokens.highlight.active.noBorder.boxShadow}, inset 0 1px 1px 0 rgba(0, 0, 0, 0.1),
+          inset 0 1px 4px 0 rgba(0, 0, 0, 0.3);
+        transform: scale(0.98);
+      }
     }
 
     &.CalendarDay__selected {
@@ -69,14 +113,15 @@ const CalendarStyled = styled.div`
   }
 
   .DayPickerNavigation_button {
+    align-items: center;
     border-radius: ${tokens.border.radius};
-    position: absolute;
-    top: 10px;
-    display: block;
+    display: flex;
+    height: ${stylers.spacer(3)};
+    justify-content: center;
+    width: ${stylers.spacer(3)};
     padding: ${tokens.spaceSm};
-    width: 22px;
-    height: 22px;
-    box-sizing: border-box;
+    position: absolute;
+    top: ${tokens.space};
 
     &:first-child {
       left: ${tokens.space};
@@ -85,16 +130,12 @@ const CalendarStyled = styled.div`
     &:last-child {
       right: ${tokens.space};
     }
+
+    ${IconButtonStyles}
   }
 
   .DayPickerNavigation_button__horizontalDefault {
     top: 3px;
-  }
-
-  .DayPickerNavigation_button:focus,
-  .DayPickerNavigation_button:active {
-    box-shadow: ${tokens.highlight.active.withBorder.boxShadow};
-    outline: none;
   }
 
   .CalendarMonth_table {
@@ -104,10 +145,13 @@ const CalendarStyled = styled.div`
   }
 `;
 
+export const MonthHeaderButtonStyled = styled(Button)`
+  font-weight: normal;
+`;
+
 export const DayTriggerStyle = props => {
   const SelectedStyle = `
-    background-color: #cde5fc;
-    font-weight: bold;
+    ${SelectedItemStyles}
 
     &:hover {
       border: 0;
@@ -119,18 +163,18 @@ export const DayTriggerStyle = props => {
   `;
 
   return `
-    display: inline-flex;
     align-items: center;
-    box-sizing: border-box;
-    justify-content: center;
-    width: 30px;
-    height: 27px;
     border-radius: ${tokens.border.radius};
+    box-sizing: border-box;
     color: ${tokens.color.black};
+    display: inline-flex;
+    height: 27px;
+    justify-content: center;
+    width: 33px;
+
 
     &:hover {
-      background: ${tokens.color.blackLighten70};
-      font-weight: bold;
+      ${HoveredItemStyles}
     }
 
     ${props.isSelected ? SelectedStyle : ""}
@@ -138,8 +182,10 @@ export const DayTriggerStyle = props => {
   `;
 };
 
-export const CalendarHeaderStyled = styled.span`
-  ${stylers.fontSize()}
+export const ArrowIconStyles = `
+  > svg {
+    display: block;
+  }
 `;
 
 export default CalendarStyled;
