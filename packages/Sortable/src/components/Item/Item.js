@@ -30,10 +30,10 @@ const Item = ({ child, index }) => {
             isDragging={snapshot.isDragging}
             ref={provided.innerRef}
           >
-            {hasIndexes && <div css={itemIndexStyles}>{index}</div>}
             <div css={itemHandleStyles} {...{}}>
               <HandleIcon />
             </div>
+            {hasIndexes && <div css={itemIndexStyles}>{index + 1}</div>}
             <div css={itemBodyStyles} {...{}}>
               {child}
             </div>
@@ -49,7 +49,7 @@ const Item = ({ child, index }) => {
   );
 };
 
-Item.displayName = "SortableItem";
+Item.displayName = "Item";
 Item.propTypes = propTypes;
 
 export default Item;

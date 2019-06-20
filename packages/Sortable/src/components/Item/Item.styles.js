@@ -14,8 +14,7 @@ export const itemStyles = props => `
   border-radius: ${tokens.border.radius};
   display: flex;
   list-style: none;
-  margin: 0 0 ${stylers.spacer(2)} 0;
-  padding: 2px;
+  padding: ${tokens.space} ${tokens.spaceSm} ${tokens.space} 2px;
 
   &:last-child {
     margin-bottom: 0;
@@ -29,8 +28,19 @@ export const itemStyles = props => `
   ${props.isDragging ? draggingStyles : null}
 `;
 
+export const itemHandleStyles = `
+  ${stylers.fontSize(3)};
+  align-items: center;
+  color: ${tokens.textColor.icon};
+  display: flex;
+  line-height: 1;
+  padding: 0 ${tokens.spaceSm} 0 0;
+`;
+
 export const itemIndexStyles = `
   ${stylers.fontSize()};
+  flex-shrink: 0;
+  align-self: center;
   background: ${tokens.color.blackLighten40};
   border-radius: ${tokens.border.radius};
   color: ${tokens.color.white};
@@ -38,20 +48,13 @@ export const itemIndexStyles = `
   line-height: ${stylers.spacer(4)};
   min-width: 1.5em; 
   padding: 0 2px;
+  margin: 0 ${tokens.space} 0 0;
   text-align: center;
-
-`;
-
-export const itemHandleStyles = `
-${stylers.fontSize(3)};
-  align-items: center;
-  color: ${tokens.textColor.icon};
-  display: flex;
-  line-height: 1;
-  padding: 0 ${tokens.spaceSm};
 `;
 
 export const itemBodyStyles = `
+  align-items: center;
+  display: flex;
   flex-grow: 1;
 `;
 

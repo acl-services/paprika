@@ -1,13 +1,13 @@
 {
-  "name": "@paprika/sortable-items",
-  "version": "0.0.1",
-  "description": "Sortable items component",
+  "name": "@paprika/sortable",
+  "version": "0.1.0",
+  "description": "Sortable component",
   "author": "@paprika",
   "license": "MIT",
   "main": "lib/index.js",
   "repository": {
     "type": "git",
-    "url": "https://github.com/acl-services/paprika/tree/master/packages/sortable-items"
+    "url": "https://github.com/acl-services/paprika/tree/master/packages/sortable"
   },
   "publishConfig": {
     "access": "public"
