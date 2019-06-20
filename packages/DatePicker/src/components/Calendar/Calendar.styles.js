@@ -6,6 +6,12 @@ import Button from "@paprika/button";
 import CalendarBaseStyle from "./CalendarBase.styles";
 import { HoveredItemStyles, SelectedItemStyles } from "../../shared.styles";
 
+export const ArrowIconStyles = `
+  > svg {
+    display: block;
+  }
+`;
+
 const IconButtonStyles = `
   transition: background-color 0.2s ease-out;
   
@@ -145,10 +151,6 @@ const CalendarStyled = styled.div`
   }
 `;
 
-export const MonthHeaderButtonStyled = styled(Button)`
-  font-weight: normal;
-`;
-
 export const DayTriggerStyle = props => {
   const SelectedStyle = `
     ${SelectedItemStyles}
@@ -182,10 +184,8 @@ export const DayTriggerStyle = props => {
   `;
 };
 
-export const ArrowIconStyles = `
-  > svg {
-    display: block;
-  }
+export const MonthHeaderButtonStyled = styled(Button)`
+  font-weight: normal;
 `;
 
 export default CalendarStyled;

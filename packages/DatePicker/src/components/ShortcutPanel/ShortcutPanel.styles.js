@@ -3,6 +3,46 @@ import tokens from "@paprika/tokens";
 import stylers from "@paprika/stylers";
 import { HoveredItemStyles, SelectedItemStyles } from "../../shared.styles";
 
+export const ActionBarStyled = styled.div`
+  align-items: center;
+  background: ${tokens.color.blackLighten80};
+  bottom: 0;
+  border-top: 1px solid ${tokens.border.color};
+  box-sizing: border-box;
+  display: flex;
+  height: ${stylers.spacer(5)};
+  padding-left: ${tokens.spaceLg};
+  position: absolute;
+  width: 100%;
+
+  > [type="button"] {
+    flex-shrink: 0;
+
+    &:last-child {
+      margin-left: ${tokens.spaceSm};
+    }
+  }
+`;
+
+export const ColumnHeaderStyled = styled.div`
+  align-items: center;
+  background: ${tokens.color.blackLighten80};
+  border-bottom: 1px solid ${tokens.border.color};
+  display: flex;
+  flex-shrink: 0;
+  font-weight: bold;
+  height: ${stylers.spacer(5)};
+  justify-content: center;
+  padding: ${tokens.space};
+
+  ${({ isYear }) =>
+    isYear &&
+    css`
+      border-left: 1px solid ${tokens.border.color};
+      justify-content: space-between;
+    `}
+`;
+
 export const ContainerStyled = styled.div`
   border: 1px solid ${tokens.border.color};
   border-radius: ${tokens.border.radius};
@@ -36,82 +76,6 @@ export const ContainerStyled = styled.div`
   }
 `;
 
-export const ColumnHeaderStyled = styled.div`
-  align-items: center;
-  background: ${tokens.color.blackLighten80};
-  border-bottom: 1px solid ${tokens.border.color};
-  display: flex;
-  flex-shrink: 0;
-  font-weight: bold;
-  height: ${stylers.spacer(5)};
-  justify-content: center;
-  padding: ${tokens.space};
-
-  ${({ isYear }) =>
-    isYear &&
-    css`
-      border-left: 1px solid ${tokens.border.color};
-      justify-content: space-between;
-    `}
-`;
-
-export const PanelContentStyled = styled.div`
-  display: flex;
-  height: calc(100% - ${stylers.spacer(5)});
-`;
-
-export const ListStyles = css`
-  display: flex;
-  flex-direction: column;
-  width: 50%;
-`;
-
-export const MonthListStyled = styled.div`
-  ${ListStyles}
-`;
-
-export const YearListStyled = styled.div`
-  ${ListStyles}
-
-  > div[role="group"] {
-    border-left: 1px solid ${tokens.border.color};
-  }
-`;
-
-export const ActionBarStyled = styled.div`
-  align-items: center;
-  background: ${tokens.color.blackLighten80};
-  bottom: 0;
-  border-top: 1px solid ${tokens.border.color};
-  box-sizing: border-box;
-  display: flex;
-  height: ${stylers.spacer(5)};
-  padding-left: ${tokens.spaceLg};
-  position: absolute;
-  width: 100%;
-
-  > [type="button"] {
-    flex-shrink: 0;
-
-    &:last-child {
-      margin-left: ${tokens.spaceSm};
-    }
-  }
-`;
-
-export const OptionWrapperStyled = styled.div`
-  margin-bottom: 1px;
-  margin-right: ${tokens.spaceLg};
-
-  input[type="radio"] {
-    display: block;
-    height: 0;
-    margin: 0;
-    visibility: hidden;
-    width: 0;
-  }
-`;
-
 export const LabelStyled = styled.label`
   align-items: center;
   border-radius: ${tokens.border.radius};
@@ -130,4 +94,40 @@ export const LabelStyled = styled.label`
     css`
       ${SelectedItemStyles}
     `}
+`;
+
+export const ListStyles = css`
+  display: flex;
+  flex-direction: column;
+  width: 50%;
+`;
+
+export const MonthListStyled = styled.div`
+  ${ListStyles}
+`;
+
+export const OptionWrapperStyled = styled.div`
+  margin-bottom: 1px;
+  margin-right: ${tokens.spaceLg};
+
+  input[type="radio"] {
+    display: block;
+    height: 0;
+    margin: 0;
+    visibility: hidden;
+    width: 0;
+  }
+`;
+
+export const PanelContentStyled = styled.div`
+  display: flex;
+  height: calc(100% - ${stylers.spacer(5)});
+`;
+
+export const YearListStyled = styled.div`
+  ${ListStyles}
+
+  > div[role="group"] {
+    border-left: 1px solid ${tokens.border.color};
+  }
 `;

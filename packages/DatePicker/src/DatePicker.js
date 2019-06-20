@@ -61,10 +61,14 @@ function DatePicker(props) {
     onChange,
   } = props;
 
+  function formatDateProp(format) {
+    return date && date.isValid() ? moment.utc(date).format(format) : "";
+  }
+
   // State
-  const [confirmationResult, setConfirmationResult] = React.useState(date ? moment.utc(date).format(humanFormat) : "");
+  const [confirmationResult, setConfirmationResult] = React.useState(formatDateProp(humanFormat));
   const [hasError, setHasError] = React.useState(false);
-  const [inputtedString, setInputtedString] = React.useState(date ? moment.utc(date).format(dataFormat) : "");
+  const [inputtedString, setInputtedString] = React.useState(formatDateProp(dataFormat));
   const [possibleDate, setPossibleDate] = React.useState(null);
   const [shouldShowCalendar, setShouldShowCalendar] = React.useState(false);
 
@@ -74,12 +78,21 @@ function DatePicker(props) {
 
   // Effect
   React.useEffect(() => {
-    setInputtedString(date ? moment.utc(date).format(dataFormat) : "");
-    setConfirmationResult(date ? moment.utc(date).format(humanFormat) : "");
+    setInputtedString(formatDateProp(dataFormat));
+    setConfirmationResult(formatDateProp(humanFormat));
   }, [date]);
 
   const debouncedPossibleDate = useDebounce(possibleDate, 300);
   const extendedInputProps = extractChildrenProps(children);
+
+  function hideCalendar() {
+    if (shouldShowCalendar) setShouldShowCalendar(false);
+    inputRef.current.blur();
+  }
+
+  function showCalendar() {
+    if (!shouldShowCalendar) setShouldShowCalendar(true);
+  }
 
   function parseInput() {
     let newDate = moment.utc(inputtedString, dataFormat);
@@ -89,48 +102,32 @@ function DatePicker(props) {
     return newDate;
   }
 
-  function showCalendar() {
-    if (!shouldShowCalendar) setShouldShowCalendar(true);
-  }
-
-  function hideCalendar() {
-    if (shouldShowCalendar) setShouldShowCalendar(false);
-    inputRef.current.blur();
-  }
-
   function handleChange(newDate) {
     if (date !== newDate) onChange(newDate);
+  }
+
+  function handleClick() {
+    if (!isReadOnly) showCalendar();
   }
 
   function handleClosePopover() {
     setTimeout(() => {
       if (!isElementContainsFocus(calendarRef.current) && !isElementContainsFocus(inputRef.current)) {
-        setConfirmationResult(date ? moment.utc(date).format(humanFormat) : "");
-        setInputtedString(date ? moment.utc(date).format(dataFormat) : "");
+        setConfirmationResult(formatDateProp(humanFormat));
+        setInputtedString(formatDateProp(dataFormat));
         hideCalendar();
       }
     }, 10);
-  }
-
-  function handleReset() {
-    setHasError(false);
-    setInputtedString("");
-    handleChange(null);
-  }
-
-  function handleSelect(seletedDate) {
-    setHasError(false);
-    setConfirmationResult(seletedDate.format(humanFormat));
-    hideCalendar();
-    handleChange(seletedDate);
   }
 
   function handleFocusInput() {
     if (!isReadOnly) setConfirmationResult("");
   }
 
-  function handleInputChange(e) {
-    setInputtedString(e.target.value);
+  function handleReset() {
+    setHasError(false);
+    setInputtedString("");
+    handleChange(null);
   }
 
   function handleInputConfirm() {
@@ -160,6 +157,10 @@ function DatePicker(props) {
     });
   }
 
+  function handleInputChange(e) {
+    setInputtedString(e.target.value);
+  }
+
   function handleKeyUp(event) {
     if (event.key === "Enter") {
       handleInputConfirm();
@@ -173,8 +174,11 @@ function DatePicker(props) {
     }
   }
 
-  function handleClick() {
-    if (!isReadOnly) showCalendar();
+  function handleSelect(seletedDate) {
+    setHasError(false);
+    setConfirmationResult(seletedDate.format(humanFormat));
+    hideCalendar();
+    handleChange(seletedDate);
   }
 
   return (
@@ -213,7 +217,6 @@ DatePicker.displayName = "DatePicker";
 DatePicker.propTypes = propTypes;
 DatePicker.defaultProps = defaultProps;
 
-DatePicker.Calendar = Calendar;
 DatePicker.Input = DateInput;
 
 export default DatePicker;
