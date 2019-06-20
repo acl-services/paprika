@@ -19,7 +19,7 @@ const iconStyles = {
   `,
 };
 
-const inputStyles = props => `
+const inputStyles = ({ hasClearButton, size }) => `
   line-height: 1;
   position: relative;
 
@@ -34,7 +34,8 @@ const inputStyles = props => `
     color: ${tokens.color.black};
     display: block;
     margin: 0;
-    padding: 0 ${stylers.spacer(3)} 0 ${tokens.space};
+    padding: 0 0 0 ${tokens.space};
+    padding-right: ${hasClearButton ? stylers.spacer(3) : tokens.space};
     transition: box-shadow 0.2s, color 0.2s;
     width: 100%;
 
@@ -79,7 +80,7 @@ const inputStyles = props => `
   }
 
   .form-input__icon {
-    ${iconStyles[props.size]};
+    ${iconStyles[size]};
 
     svg {
       vertical-align: middle;
@@ -104,7 +105,7 @@ const inputStyles = props => `
   }
 
   &.form-input--has-icon input.form-input__input {
-    padding-left: ${props.size === "large" ? stylers.spacer(4) : stylers.spacer(3)};
+    padding-left: ${size === "large" ? stylers.spacer(4) : stylers.spacer(3)};
   }
 
   // Disabled
