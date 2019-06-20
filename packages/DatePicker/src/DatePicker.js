@@ -109,7 +109,7 @@ function DatePicker(props) {
         setInputtedString(date ? moment.utc(date).format(dataFormat) : "");
         hideCalendar();
       }
-    }, 0);
+    }, 10);
   }
 
   function handleReset() {

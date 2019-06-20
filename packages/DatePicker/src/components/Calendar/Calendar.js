@@ -113,12 +113,13 @@ function Calendar(props) {
   function renderMonthHeaderElement({ month }) {
     return (
       <MonthHeaderButtonStyled
+        isDropdown
+        kind="flat"
         onClick={() => {
           handleClickHeader(month);
         }}
-        isDropdown
-        kind="flat"
         tabIndex={-1}
+        data-qa-anchor="datepicker.calendar.header"
       >
         {month.format(I18n.t("datePicker.calendar_header_format"))}
       </MonthHeaderButtonStyled>

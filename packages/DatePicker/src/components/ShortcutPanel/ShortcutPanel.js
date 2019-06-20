@@ -116,7 +116,7 @@ function ShortcutPanel(props) {
   }
 
   return (
-    <ContainerStyled tabIndex={-1} ref={panelRef}>
+    <ContainerStyled tabIndex={-1} ref={panelRef} data-qa-anchor="datepicker.calendar.shortcut">
       <PanelContentStyled>
         <MonthListStyled>
           <ColumnHeaderStyled>{I18n.t("datePicker.month")}</ColumnHeaderStyled>
