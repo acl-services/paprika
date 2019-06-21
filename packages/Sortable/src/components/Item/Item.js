@@ -1,7 +1,7 @@
 import React from "react";
 import PropTypes from "prop-types";
-import HandleIcon from "@paprika/icon/lib/DragHandle";
 import { Draggable } from "react-beautiful-dnd";
+import HandleIcon from "@paprika/icon/lib/DragHandle";
 import Button from "@paprika/button";
 import { itemStyles, itemIndexStyles, itemHandleStyles, itemBodyStyles, itemCloseStyles } from "./Item.styles";
 
@@ -12,8 +12,9 @@ const propTypes = {
   onRemove: PropTypes.func,
 };
 
-const Item = ({ child, index }) => {
-  const { hasIndexes, onRemove } = React.useContext(SortableContext);
+const defaultProps = {
+  onRemove: null,
+};
 
 const Item = ({ children, index, hasNumbers, onRemove }) => {
   const handleRemove = () => {
@@ -32,15 +33,13 @@ const Item = ({ children, index, hasNumbers, onRemove }) => {
             isDragging={snapshot.isDragging}
             ref={provided.innerRef}
           >
-            <div css={itemHandleStyles} {...{}}>
+            <div css={itemHandleStyles}>
               <HandleIcon />
             </div>
             {hasNumbers && <div css={itemIndexStyles}>{index + 1}</div>}
-            <div css={itemBodyStyles} {...{}}>
-              {children}
-            </div>
+            <div css={itemBodyStyles}>{children}</div>
             {onRemove && (
-              <div css={itemCloseStyles} {...{}}>
+              <div css={itemCloseStyles}>
                 <Button.Close onClick={handleRemove} size="small" />
               </div>
             )}

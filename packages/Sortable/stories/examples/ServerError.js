@@ -61,7 +61,7 @@ const Example = () => {
   return (
     <Story css={storyStyles}>
       {failure && (
-        <div css={failStyles} {...{}}>
+        <div css={failStyles}>
           <span aria-hidden>❗️</span> Fake server error, please try again.
         </div>
       )}
