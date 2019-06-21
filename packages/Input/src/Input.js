@@ -12,7 +12,7 @@ const propTypes = {
   hasClearButton: PropTypes.bool,
   hasError: PropTypes.bool,
   icon: PropTypes.node,
-  inputRef: PropTypes.func,
+  inputRef: PropTypes.oneOfType([PropTypes.func, PropTypes.shape({ current: PropTypes.instanceOf(Element) })]),
   isDisabled: PropTypes.bool,
   isReadOnly: PropTypes.bool,
   onChange: PropTypes.func.isRequired,

@@ -22,22 +22,17 @@ import {
 
 const propTypes = {
   date: momentPropTypes.momentObj.isRequired,
+  isOpen: PropTypes.bool.isRequired,
   onCancel: PropTypes.func.isRequired,
   onConfirm: PropTypes.func.isRequired,
 };
 
 function ShortcutPanel(props) {
-  const { date, onCancel, onConfirm } = props;
+  const { date, isOpen, onCancel, onConfirm } = props;
   const [pageIndex, setPageIndex] = React.useState(0);
   const [selectedMonth, setSelectedMonth] = React.useState(date.month());
   const [selectedyear, setSelectedYear] = React.useState(date.year());
   const I18n = useI18n();
-
-  const panelRef = React.useRef(null);
-
-  React.useEffect(() => {
-    panelRef.current.focus();
-  }, [date]);
 
   function handleChange(event) {
     const name = event.target.name;
@@ -116,7 +111,7 @@ function ShortcutPanel(props) {
   }
 
   return (
-    <ContainerStyled tabIndex={-1} ref={panelRef} data-qa-anchor="datepicker.calendar.shortcut">
+    <ContainerStyled data-qa-anchor="datepicker.calendar.shortcut" isOpen={isOpen}>
       <PanelContentStyled>
         <MonthListStyled>
           <ColumnHeaderStyled>{I18n.t("datePicker.month")}</ColumnHeaderStyled>
@@ -136,10 +131,10 @@ function ShortcutPanel(props) {
         </YearListStyled>
       </PanelContentStyled>
       <ActionBarStyled>
-        <Button kind="primary" onClick={handleConfirm} size="small">
+        <Button kind="primary" onClick={handleConfirm} size="small" data-qa-anchor="datepicker.calendar.apply">
           {I18n.t("actions.apply")}
         </Button>
-        <Button kind="minor" onClick={onCancel} size="small">
+        <Button kind="minor" onClick={onCancel} size="small" data-qa-anchor="datepicker.calendar.cancel">
           {I18n.t("actions.cancel")}
         </Button>
       </ActionBarStyled>

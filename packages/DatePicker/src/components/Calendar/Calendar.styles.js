@@ -35,6 +35,14 @@ const IconButtonStyles = `
 const CalendarStyled = styled.div`
   ${CalendarBaseStyle}
 
+  ${({ shouldHidden }) =>
+    shouldHidden &&
+    `
+    width: 0;
+    height: 0;
+    overflow: hidden;
+  `}
+
   * {
     box-sizing: border-box;
     font-family: ${tokens.fontFamily.default};
@@ -148,6 +156,12 @@ const CalendarStyled = styled.div`
     border: 0;
     margin-bottom: 0;
     margin-top: ${stylers.spacer(4)};
+  }
+`;
+
+export const CalendarWrapperStyled = styled.div`
+  &:focus {
+    outline: none;
   }
 `;
 

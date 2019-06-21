@@ -8,9 +8,10 @@ describe("<DatePicker />", () => {
 
   it("should display calendar after clicking input", () => {
     cy.visitStorybook("datepicker-cypress--datepicker-test");
-    cy.get('[data-qa-anchor="datepicker.input"]').should("not.have.value");
-    cy.get('[data-qa-anchor="datepicker.input"]').click();
-    cy.get('[data-qa-anchor="datepicker.calendar"]').should("be.visible");
+    cy.getByTestId("datepicker.input").should("not.have.value");
+    cy.getByTestId("datepicker.input").click();
+    cy.getByTestId("datepicker.input").should("be.focused");
+    cy.getByTestId("datepicker.calendar").should("be.visible");
   });
 
   it("should show today's date in different styles", () => {
@@ -18,37 +19,61 @@ describe("<DatePicker />", () => {
   });
 
   it("should change date after selected", () => {
-    cy.get('[data-qa-anchor="datepicker-next-month"]').click();
-    cy.get('[data-qa-anchor="datepicker-next-month"]').click();
-    cy.get('[data-qa-anchor="datepicker-prev-month"]').click();
+    cy.getByTestId("datepicker-next-month").click();
+    cy.getByTestId("datepicker-next-month").click();
+    cy.getByTestId("datepicker-prev-month").click();
     cy.get(`[aria-label="${targetDate.format("dddd, MMMM D, YYYY")}"]`)
       .last()
       .click({ force: true });
-    cy.get('[data-qa-anchor="datepicker.input"]').should("have.value", targetDate.format("MMMM DD, YYYY"));
+    cy.getByTestId("datepicker.input").should("have.value", targetDate.format("MMMM DD, YYYY"));
   });
 
   it("should reset format after focus again", () => {
-    cy.get('[data-qa-anchor="datepicker.input"]').click();
-    cy.get('[data-qa-anchor="datepicker.input"]').should("have.value", targetDate.format("MM/DD/YYYY"));
+    cy.getByTestId("datepicker.input").click();
+    cy.getByTestId("datepicker.input").should("have.value", targetDate.format("MM/DD/YYYY"));
+  });
+
+  it("should open shortcut panel when clicking on header", () => {
+    cy.getByTestId("datepicker.calendar.header")
+      .contains(targetDate.format("MMMM YYYY"))
+      .click();
+    cy.getByTestId("datepicker.calendar.shortcut").should("be.visible");
+  });
+
+  it("should jump to target month after apply shortcut", () => {
+    cy.get('label[for="0"]').click();
+    cy.get('label[for="2018"]').click();
+    cy.getByTestId("datepicker.calendar.apply").click();
+    cy.getByTestId("datepicker.calendar.header")
+      .contains("January 2018")
+      .should("be.visible");
   });
 
   it("should clear data after delete all input", () => {
-    cy.get('[data-qa-anchor="datepicker.input"]').clear();
+    cy.getByTestId("datepicker.input").clear();
     cy.get("body").click();
-    cy.get('[data-qa-anchor="datepicker.input"]').should("not.have.value");
+    cy.getByTestId("datepicker.input").should("not.have.value");
   });
 
-  it("should set date after typing by keyboard", () => {
-    cy.get('[data-qa-anchor="datepicker.input"]').type("1/2/2019");
+  it("should set date on blur", () => {
+    cy.clock();
+    cy.getByTestId("datepicker.input").type("5/6/2001");
+
+    cy.tick(500);
+    cy.getByTestId("datepicker.calendar.header")
+      .contains("May 2001")
+      .should("be.visible");
+
     cy.get("body").click();
-    cy.get('[data-qa-anchor="datepicker.input"]').should("have.value", "January 02, 2019");
+    cy.tick(500);
+    cy.getByTestId("datepicker.input").should("have.value", "May 06, 2001");
   });
 
   it("should show error state if it cannot parse the typing string", () => {
-    cy.get('[data-qa-anchor="datepicker.input"]').clear();
-    cy.get('[data-qa-anchor="datepicker.input"]').type("abc");
+    cy.getByTestId("datepicker.input").clear();
+    cy.getByTestId("datepicker.input").type("abc");
     cy.get("body").click();
-    cy.get('[data-qa-anchor="datepicker.input"]')
+    cy.getByTestId("datepicker.input")
       .parent()
       .should("have.class", "form-input--has-error");
   });

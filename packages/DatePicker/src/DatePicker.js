@@ -111,13 +111,13 @@ function DatePicker(props) {
   }
 
   function handleClosePopover() {
-    setTimeout(() => {
-      if (!isElementContainsFocus(calendarRef.current) && !isElementContainsFocus(inputRef.current)) {
+    if (!isElementContainsFocus(calendarRef.current) && !isElementContainsFocus(inputRef.current)) {
+      if (!hasError) {
         setConfirmationResult(formatDateProp(humanFormat));
         setInputtedString(formatDateProp(dataFormat));
-        hideCalendar();
       }
-    }, 10);
+      hideCalendar();
+    }
   }
 
   function handleFocusInput() {
@@ -141,10 +141,11 @@ function DatePicker(props) {
     const newDate = parseInput();
 
     if (newDate.isValid()) {
-      setHasError(false);
       setConfirmationResult(newDate.format(humanFormat));
+      setHasError(false);
       if (!moment(newDate).isSame(date, "day")) handleChange(newDate);
     } else {
+      setConfirmationResult("");
       setHasError(true);
     }
   }
@@ -172,6 +173,10 @@ function DatePicker(props) {
       if (updatedPossibleDate.isSame(possibleDate, "year") && updatedPossibleDate.isSame(possibleDate, "month")) return;
       setPossibleDate(updatedPossibleDate);
     }
+  }
+
+  function handleResetPossibleDate() {
+    setPossibleDate(null);
   }
 
   function handleSelect(seletedDate) {
@@ -203,6 +208,7 @@ function DatePicker(props) {
           <Calendar
             date={date}
             possibleDate={debouncedPossibleDate}
+            resetPossibleDate={handleResetPossibleDate}
             onSelect={handleSelect}
             isOpen={shouldShowCalendar}
           />
