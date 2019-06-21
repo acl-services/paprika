@@ -33,7 +33,7 @@ const Select = props => {
     const { placeholder } = props;
     if (!placeholder) return null;
     return (
-      <option disabled value="" key="placeholder">
+      <option disabled selected value="" key="placeholder">
         {placeholder}
       </option>
     );
@@ -73,7 +73,7 @@ const Select = props => {
         className="form-select__select"
         disabled={isDisabled || isReadOnly}
         ref={inputRef}
-        value={value || placeholder}
+        value={value}
         {...moreProps}
       >
         {renderPlaceholder()}
