@@ -6,22 +6,21 @@ import SidePanel, { SidePanelGroup } from "../src";
 import { Nav, TextLine } from "./helpers";
 
 const SidePanelStory = props => {
+  const { disableBodyOverflow, hasOverlay } = props;
   const [isOpen, setIsOpen] = React.useState(true);
-  const open = () => {
-    setIsOpen(true);
-  };
-
-  const close = () => {
-    setIsOpen(false);
+  const toggle = () => {
+    setIsOpen(state => !state);
   };
 
   return (
     <React.Fragment>
       <Nav />
-      <SidePanel isOpen={isOpen} onClose={close} offsetY={40}>
-        <SidePanel.Overlay />
-        <SidePanel.Trigger onClick={open}>{isOpen ? "close" : "open"}</SidePanel.Trigger>
-        <SidePanel.Header kind={props.kind}>
+      <SidePanel disableBodyOverflow={disableBodyOverflow} isOpen={isOpen} onClose={toggle} offsetY={40}>
+        {hasOverlay ? <SidePanel.Overlay /> : null}
+        <SidePanel.Trigger kind="primary" onClick={toggle}>
+          {isOpen ? "close" : "open"}
+        </SidePanel.Trigger>
+        <SidePanel.Header>
           <Heading level={2}>Header</Heading>
         </SidePanel.Header>
         <TextLine repeat={100} />
@@ -29,6 +28,11 @@ const SidePanelStory = props => {
       <TextLine repeat={100} />
     </React.Fragment>
   );
+};
+
+SidePanelStory.defaultProps = {
+  disableBodyOverflow: true,
+  hasOverlay: true,
 };
 
 const SidePanelStoryGroup = () => {
@@ -120,6 +124,9 @@ const SidePanelStoryGroup = () => {
 };
 
 storiesOf("SidePanel", module).add("Basic", () => <SidePanelStory />);
+storiesOf("SidePanel", module).add("Basic without overlay", () => (
+  <SidePanelStory disableBodyOverflow={false} hasOverlay={false} />
+));
 storiesOf("SidePanel", module).add("Multiple Sidepanels", () => <SidePanelStoryGroup />);
 storiesOf("SidePanel", module).add("Basic with body scrollable", () => (
   <React.Fragment>

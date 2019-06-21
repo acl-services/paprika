@@ -4,40 +4,36 @@ import tokens from "@paprika/tokens/lib/tokens";
 const space = Number.parseInt(tokens.space, 10);
 
 const gapChildPanel = space * 7;
-const childPanel = `
-    height:calc(100% - ${gapChildPanel + 80}px);
-    margin-top: ${gapChildPanel}px;
-    border-top-left-radius: ${space / 2}px;
-    border-bottom-left-radius: ${space / 2}px;
-  `;
+const childPanel = css`
+  border-bottom-left-radius: ${space / 2}px;
+  border-top-left-radius: ${space / 2}px;
+  height: calc(100% - ${gapChildPanel + 80}px);
+  margin-top: ${gapChildPanel}px;
+`;
 
-export function slideIn(width) {
+export function slideIn() {
   return keyframes`
   from {
     opacity: 0;
-    right: -${width};
-    transform: trasnlateX(100%);
+    transform: translateX(100%);
   }
 
   to {
     opacity: 1;
-    right: 0;
-    transform: trasnlateX(0);
+    transform: translateX(0);
   }
   `;
 }
 
-export function slideOut(width) {
+export function slideOut() {
   return keyframes`
   from {
     opacity: 1;
-    right: 0; // position fixed behaviour
-    transform: trasnlateX(0); // inline position relative behaviour
+    transform: translateX(0); // inline position relative behaviour
   }
 
   to {
     opacity: 0;
-    right: -${width}; // position fixed behaviour
     transform: translateX(100%); // inline position relative behaviour
   }
   `;
@@ -57,7 +53,7 @@ export const dialogStyles = css`
 
   ${props => {
     const width = Number.isNaN(Number(props.width)) ? props.width : `${props.width}px`;
-    const animation = props.isOpen ? slideIn(width) : slideOut(width);
+    const animation = props.isOpen ? slideIn() : slideOut();
     let childSidePanel = "";
 
     if (props.kind === "child") {
@@ -65,12 +61,12 @@ export const dialogStyles = css`
     }
 
     return css`
-      top: ${props.offsetY}px;
       animation: ${animation} 0.7s ease;
       right: 0;
+      top: ${props.offsetY}px;
       width: ${width};
       z-index: ${props.zIndex};
-      ${props.isInline ? "position:relative;" : "position: fixed;"}
+      ${props.isInline ? "position: relative;" : "position: fixed;"}
       ${props.isOpen ? "opacity: 1" : "opacity: 0"};
       ${childSidePanel}
     `;

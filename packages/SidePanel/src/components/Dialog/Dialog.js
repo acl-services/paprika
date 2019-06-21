@@ -5,10 +5,10 @@ import { dialogStyles, dialogContentStyles } from "./Dialog.styles";
 const propTypes = {
   children: PropTypes.node.isRequired,
   footer: PropTypes.node,
-  handleAnimationEnd: PropTypes.func.isRequired,
   header: PropTypes.node,
   isInline: PropTypes.bool,
   offsetY: PropTypes.number,
+  onAnimationEnd: PropTypes.func.isRequired,
   onClose: PropTypes.func,
   refHeader: PropTypes.shape({ current: PropTypes.instanceOf(Element) }).isRequired,
   refSidePanelContent: PropTypes.shape({ current: PropTypes.instanceOf(Element) }).isRequired,
@@ -29,7 +29,7 @@ function Dialog(props) {
   const {
     children,
     footer,
-    handleAnimationEnd,
+    onAnimationEnd,
     header,
     isInline,
     offsetY,
@@ -45,7 +45,7 @@ function Dialog(props) {
       tabIndex="-1"
       aria-modal="true"
       css={dialogStyles}
-      onAnimationEnd={handleAnimationEnd}
+      onAnimationEnd={onAnimationEnd}
       role="dialog"
       width={width}
       isInline={isInline}

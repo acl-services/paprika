@@ -44,7 +44,8 @@ const propTypes = {
 };
 
 const defaultProps = {
-  isInline: false, // this is an internal prop use by SidePanelGroup (Group.js)
+  // this is an internal prop use by SidePanelGroup (Group.js)
+  isInline: false, // eslint-disable-line
   kind: "default",
   offsetY: 0,
   onAfterClose: () => {},
@@ -57,7 +58,16 @@ const defaultProps = {
 
 function SidePanel(props) {
   // Props
-  const { onAfterClose, onAfterOpen, onClose, width, isInline, kind, offsetY, ...moreProps } = props;
+  const {
+    onAfterClose,
+    onAfterOpen,
+    onClose,
+    width,
+    isInline, // eslint-disable-line
+    kind,
+    offsetY,
+    ...moreProps
+  } = props;
 
   // Hooks
   const [isSidePanelMounted, setMount] = React.useState(props.isOpen);
@@ -70,11 +80,11 @@ function SidePanel(props) {
 
   // Extracts
   const {
-    "SidePanel.FocusTrap": FocusTrapExtracted,
-    "SidePanel.Footer": FooterExtracted,
-    "SidePanel.Header": HeaderExtracted,
-    "SidePanel.Overlay": OverlayExtracted,
-    "SidePanel.Trigger": TriggerExtracted,
+    "SidePanel.FocusTrap": focusTrapExtracted,
+    "SidePanel.Footer": footerExtracted,
+    "SidePanel.Header": headerExtracted,
+    "SidePanel.Overlay": overlayExtracted,
+    "SidePanel.Trigger": triggerExtracted,
     children,
   } = extractChildren(props.children, [
     "SidePanel.FocusTrap",
@@ -98,7 +108,7 @@ function SidePanel(props) {
       setMount(false);
       onAfterClose();
 
-      if (TriggerExtracted) {
+      if (triggerExtracted) {
         refTrigger.current.focus();
       }
       return;
@@ -118,7 +128,7 @@ function SidePanel(props) {
     return () => {
       document.removeEventListener("keydown", handleEscKey);
     };
-  }, [props.isOpen]);
+  }, [handleEscKey, props.isOpen]);
 
   React.useEffect(() => {
     if (props.disableBodyOverflow) {
@@ -127,9 +137,9 @@ function SidePanel(props) {
     }
 
     document.body.style.overflow = "auto";
-  }, []);
+  }, [props.disableBodyOverflow]);
 
-  const extendedFocusTrapOptions = FocusTrapExtracted ? FocusTrapExtracted.props : {};
+  const extendedFocusTrapOptions = focusTrapExtracted ? focusTrapExtracted.props : {};
   const fallbackFocus = () => {
     return refHeader.current || refSidePanelContent.current;
   };
@@ -145,9 +155,9 @@ function SidePanel(props) {
   if (isSidePanelMounted) {
     const dialog = (
       <Dialog
-        handleAnimationEnd={handleAnimationEnd}
-        header={HeaderExtracted}
-        footer={FooterExtracted}
+        onAnimationEnd={handleAnimationEnd}
+        header={headerExtracted}
+        footer={footerExtracted}
         onClose={onClose}
         refSidePanelContent={refSidePanelContent}
         width={width}
@@ -169,16 +179,21 @@ function SidePanel(props) {
           <FocusTrapLibrary focusTrapOptions={focusTrapOptions}>
             <div>{dialog}</div>
           </FocusTrapLibrary>
-          {OverlayExtracted ? React.cloneElement(OverlayExtracted, { onClose }) : null}
+          {overlayExtracted ? React.cloneElement(overlayExtracted, { onClose }) : null}
         </React.Fragment>,
         document.body
       );
     }
   }
 
-  const trigger = TriggerExtracted ? React.cloneElement(TriggerExtracted, { ref: refTrigger }) : null;
+  const trigger = triggerExtracted ? React.cloneElement(triggerExtracted, { ref: refTrigger }) : null;
 
-  return [trigger, sidePanel];
+  return (
+    <React.Fragment>
+      {trigger}
+      {sidePanel}
+    </React.Fragment>
+  );
 }
 
 SidePanel.propTypes = propTypes;

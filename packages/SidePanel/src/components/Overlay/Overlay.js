@@ -12,7 +12,6 @@ const propTypes = {
   background: PropTypes.string,
   hasOutsideClick: PropTypes.bool,
   onClose: PropTypes.func,
-  opacity: PropTypes.string,
   /** Control the z position of the sidepanel overlay */
   zIndex: PropTypes.number,
 };
@@ -21,7 +20,6 @@ const defaultProps = {
   background: "#000",
   hasOutsideClick: true,
   onClose: null,
-  opacity: "0.2",
   zIndex: 99,
 };
 
@@ -36,7 +34,7 @@ export default function Overlay(props) {
   const vh = visuallyHidden;
 
   return (
-    <RawButton as="div" {...moreProps} onClick={handleClick} css={overlayCSS}>
+    <RawButton {...moreProps} onClick={handleClick} css={overlayCSS}>
       <span css={vh}>Close</span>
     </RawButton>
   );
