@@ -57,17 +57,21 @@ function Calendar(props) {
   const prevButtonRef = React.useRef(null);
   const calendarRef = React.useRef(null);
 
+  function keepFocus() {
+    if (calendarRef.current) calendarRef.current.focus();
+  }
+
   // Effect
   React.useEffect(() => {
     if (!isOpen) {
       setShouldShowShortcut(false);
       setCurrentMonth(null);
     }
-    calendarRef.current && calendarRef.current.focus();
+    keepFocus();
   }, [isOpen]);
 
   React.useEffect(() => {
-    calendarRef.current && calendarRef.current.focus();
+    keepFocus();
   }, [currentMonth, date]);
 
   function getInitialVisibleMonth() {
@@ -92,14 +96,14 @@ function Calendar(props) {
 
   function handleCancelShortcut() {
     setShouldShowShortcut(false);
-    calendarRef.current && calendarRef.current.focus();
+    keepFocus();
   }
 
   function handleConfirmShortcut({ month, year }) {
     setCurrentMonth(moment.utc([year, month]));
     resetPossibleDate();
     setShouldShowShortcut(false);
-    calendarRef.current && calendarRef.current.focus();
+    keepFocus();
   }
 
   function handleClickNavigation(buttonRef) {
