@@ -10,6 +10,8 @@ import Trigger from "./components/Trigger";
 import FocusTrap from "./components/FocusTrap";
 import { extractChildren } from "./helpers";
 import useOffsetScroll from "./hooks/useOffsetScroll";
+import useBodyOverflow from "./hooks/useBodyOverflow";
+import useEscapeKey from "./hooks/useEscapeKey";
 
 const propTypes = {
   /** The content for the SidePanel. */
@@ -66,12 +68,15 @@ function SidePanel(props) {
     isInline, // eslint-disable-line
     kind,
     offsetY,
+    isOpen,
     ...moreProps
   } = props;
 
   // Hooks
-  const [isSidePanelMounted, setMount] = React.useState(props.isOpen);
-  const offsetScroll = useOffsetScroll(props.offsetY);
+  const [isSidePanelMounted, setMount] = React.useState(isOpen);
+  const offsetScroll = useOffsetScroll(offsetY);
+  useBodyOverflow(props.disableBodyOverflow);
+  useEscapeKey(isOpen, onClose);
 
   // Refs
   const refTrigger = React.useRef(null);
@@ -95,7 +100,7 @@ function SidePanel(props) {
   ]);
 
   const handleAnimationEnd = () => {
-    if (!props.isOpen) {
+    if (!isOpen) {
       setMount(false);
       onAfterClose();
 
@@ -109,33 +114,10 @@ function SidePanel(props) {
   };
 
   React.useEffect(() => {
-    function handleEscKey(event) {
-      if (event.key === "Escape") {
-        if (props.isOpen && onClose) {
-          onClose();
-        }
-      }
-    }
-
-    document.addEventListener("keydown", handleEscKey, false);
-
-    if (props.isOpen) {
+    if (isOpen) {
       setMount(true);
     }
-
-    return () => {
-      document.removeEventListener("keydown", handleEscKey);
-    };
-  }, [onClose, props.isOpen]);
-
-  React.useEffect(() => {
-    if (props.disableBodyOverflow) {
-      document.body.style.overflow = "hidden";
-      return;
-    }
-
-    document.body.style.overflow = "auto";
-  }, [props.disableBodyOverflow]);
+  }, [isOpen]);
 
   const extendedFocusTrapOptions = focusTrapExtracted ? focusTrapExtracted.props : {};
   const fallbackFocus = () => {
