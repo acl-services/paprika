@@ -12,22 +12,22 @@ const useOffsetScrollFooter = (height, ref) => {
     setOffsetY(-top);
   }, 350);
 
-  const handleScrolling = () => {
-    setOpacity(0);
-    handleOffset();
-  };
-
   React.useEffect(() => {
+    function handleScrolling() {
+      setOpacity(0);
+      handleOffset();
+    }
+
+    const refElement = ref.current;
+
     if (ref.current) {
       ref.current.addEventListener("scroll", handleScrolling, false);
     }
 
     return () => {
-      if (ref.current) {
-        ref.current.removeEventListener("scroll", handleScrolling, false);
-      }
+      refElement.removeEventListener("scroll", handleScrolling, false);
     };
-  }, [handleScrolling, ref]);
+  }, [handleOffset, ref]);
 
   return { offsetY, opacity };
 };

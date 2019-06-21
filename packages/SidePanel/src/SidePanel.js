@@ -94,15 +94,6 @@ function SidePanel(props) {
     "SidePanel.Trigger",
   ]);
 
-  // Handlers
-  const handleEscKey = event => {
-    if (event.key === "Escape") {
-      if (props.isOpen && onClose) {
-        onClose();
-      }
-    }
-  };
-
   const handleAnimationEnd = () => {
     if (!props.isOpen) {
       setMount(false);
@@ -117,8 +108,15 @@ function SidePanel(props) {
     onAfterOpen();
   };
 
-  // Effects
   React.useEffect(() => {
+    function handleEscKey(event) {
+      if (event.key === "Escape") {
+        if (props.isOpen && onClose) {
+          onClose();
+        }
+      }
+    }
+
     document.addEventListener("keydown", handleEscKey, false);
 
     if (props.isOpen) {
@@ -128,7 +126,7 @@ function SidePanel(props) {
     return () => {
       document.removeEventListener("keydown", handleEscKey);
     };
-  }, [handleEscKey, props.isOpen]);
+  }, [onClose, props.isOpen]);
 
   React.useEffect(() => {
     if (props.disableBodyOverflow) {
