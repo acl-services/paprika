@@ -52,19 +52,4 @@ describe("DatePicker", () => {
 
     expect(getByTestId("datepicker.input").value).toEqual("March 01, 2019");
   });
-
-  it("should show shortcut panel when click on month header", () => {
-    const { getByTestId, getByText, queryByTestId, queryByText } = render({ date: moment("2019-01-02") });
-
-    fireEvent.click(getByTestId("datepicker.input"));
-    expect(queryByText(/February 2018/i)).not.toBeInTheDocument();
-    fireEvent.click(getByTestId("datepicker.calendar.header"));
-    expect(getByTestId("datepicker.calendar.shortcut")).toBeInTheDocument();
-
-    fireEvent.click(getByText(/Feb/i));
-    fireEvent.click(getByText(/2018/i));
-    fireEvent.click(getByText(/Apply/i));
-    expect(queryByTestId("datepicker.calendar.shortcut")).not.toBeInTheDocument();
-    expect(queryByText(/February 2018/i)).toBeInTheDocument();
-  });
 });
