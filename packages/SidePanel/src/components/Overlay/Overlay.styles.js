@@ -4,9 +4,9 @@ import { css } from "styled-components";
 export const overlayCSS = css`
   background-color: ${tokens.modal.backdrop.backgroundColor};
   box-sizing: content-box;
-  width: 100%;
+  display: block;
   height: 100%;
   position: fixed;
-  display: block;
   top: 0;
+  width: 100%;
 `;

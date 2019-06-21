@@ -17,7 +17,7 @@ const useOffsetScroll = offsetY => {
     return () => {
       window.removeEventListener("scroll", handleScroll);
     };
-  }, []);
+  }, [handleScroll]);
 
   return offsetScroll;
 };

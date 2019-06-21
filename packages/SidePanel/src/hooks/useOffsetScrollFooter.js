@@ -27,7 +27,7 @@ const useOffsetScrollFooter = (height, ref) => {
         ref.current.removeEventListener("scroll", handleScrolling, false);
       }
     };
-  }, [ref.current]);
+  }, [handleScrolling, ref]);
 
   return { offsetY, opacity };
 };
