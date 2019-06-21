@@ -1,6 +1,6 @@
 import { css } from "styled-components";
 
-export const GroupCSS = css`
+export const groupCSS = css`
   box-sizing: border-box;
   display: flex;
   height: 100%;

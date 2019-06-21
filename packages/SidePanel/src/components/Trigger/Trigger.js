@@ -9,7 +9,7 @@ const propTypes = {
 const defaultProps = {};
 
 const Trigger = React.forwardRef((props, ref) => {
-  return <Button ref={ref} {...props} />;
+  return <Button ref={ref} {...props} isSemantic={false} />;
 });
 
 Trigger.propTypes = propTypes;

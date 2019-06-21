@@ -3,7 +3,7 @@ import PropTypes from "prop-types";
 import ReactDOM from "react-dom";
 import { extractChildren } from "../../helpers";
 import Overlay from "../Overlay";
-import { GroupCSS } from "./Group.styles";
+import { groupCSS } from "./Group.styles";
 import useOffsetScroll from "../../hooks/useOffsetScroll";
 
 const propTypes = {
@@ -34,7 +34,7 @@ export default function Group(props) {
   return ReactDOM.createPortal(
     <React.Fragment>
       {OverlayExtracted}
-      <div css={GroupCSS} {...moreProps} offsetY={offsetScroll}>
+      <div css={groupCSS} {...moreProps} offsetY={offsetScroll}>
         {sidePanels.map(sidePanel => React.cloneElement(sidePanel, { isInline: true }))}
       </div>
     </React.Fragment>,
