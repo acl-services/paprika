@@ -3,23 +3,25 @@ import PropTypes from "prop-types";
 import HandleIcon from "@paprika/icon/lib/DragHandle";
 import { Draggable } from "react-beautiful-dnd";
 import Button from "@paprika/button";
-import SortableContext from "../../SortableContext";
 import { itemStyles, itemIndexStyles, itemHandleStyles, itemBodyStyles, itemCloseStyles } from "./Item.styles";
 
 const propTypes = {
-  child: PropTypes.node.isRequired,
+  children: PropTypes.node.isRequired,
+  hasNumbers: PropTypes.bool.isRequired,
   index: PropTypes.number.isRequired,
+  onRemove: PropTypes.func,
 };
 
 const Item = ({ child, index }) => {
   const { hasIndexes, onRemove } = React.useContext(SortableContext);
 
-  function handleRemove() {
+const Item = ({ children, index, hasNumbers, onRemove }) => {
+  const handleRemove = () => {
     onRemove(index);
-  }
+  };
 
   return (
-    <Draggable draggableId={`draggable-${child.props["data-drag-id"]}`} index={index}>
+    <Draggable draggableId={`draggable-${children.props["data-drag-id"]}`} index={index}>
       {(provided, snapshot) => {
         return (
           <li
@@ -33,9 +35,9 @@ const Item = ({ child, index }) => {
             <div css={itemHandleStyles} {...{}}>
               <HandleIcon />
             </div>
-            {hasIndexes && <div css={itemIndexStyles}>{index + 1}</div>}
+            {hasNumbers && <div css={itemIndexStyles}>{index + 1}</div>}
             <div css={itemBodyStyles} {...{}}>
-              {child}
+              {children}
             </div>
             {onRemove && (
               <div css={itemCloseStyles} {...{}}>
@@ -51,5 +53,6 @@ const Item = ({ child, index }) => {
 
 Item.displayName = "Item";
 Item.propTypes = propTypes;
+Item.defaultProps = defaultProps;
 
 export default Item;

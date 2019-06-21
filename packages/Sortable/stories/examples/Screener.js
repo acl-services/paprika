@@ -11,13 +11,12 @@ const Example = () => {
       </Sortable>
       <Rule />
       <Sortable onChange={() => {}} onRemove={() => {}}>
-        <div>One </div>
-        <div>Two Two Two Two Two Two Two Two Two Two Two Two Two Two Two Two</div>
-        <div>Three Three Three Three Three Three Three Three Three Three Three Three Three Three Three</div>
-        <div>
-          Four Four Four Four Four Four Four Four Four Four Four Four Four Four Four Four Four Four Four Four Four Four
-          Four Four Four Four Four Four
-        </div>
+        {[
+          "One",
+          "Two Two Two Two Two Two Two Two Two Two Two Two Two Two Two Two",
+          "Three Three Three Three Three Three Three Three Three Three Three Three Three Three Three",
+          "Four Four Four Four Four Four Four Four Four Four Four Four Four Four Four Four Four Four Four Four Four Four Four Four Four Four Four Four",
+        ]}
       </Sortable>
       <Rule />
       <Sortable onChange={() => {}} onRemove={() => {}}>
@@ -26,7 +25,7 @@ const Example = () => {
       <Rule />
       <Sortable onChange={() => {}}>{helpers.inputChildren(4)}</Sortable>
       <Rule />
-      <Sortable onChange={() => {}} hasIndexes={false}>
+      <Sortable onChange={() => {}} hasNumbers={false}>
         {helpers.inputChildren(4)}
       </Sortable>
     </Story>

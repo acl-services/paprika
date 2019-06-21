@@ -10,7 +10,7 @@ const draggingStyles = `
   }
 `;
 
-export const itemStyles = props => `
+export const itemStyles = ({ isDragging }) => `
   border-radius: ${tokens.border.radius};
   display: flex;
   list-style: none;
@@ -25,7 +25,7 @@ export const itemStyles = props => `
     box-shadow: ${tokens.highlight.active.withBorder.boxShadow};
   }
   
-  ${props.isDragging ? draggingStyles : null}
+  ${isDragging ? draggingStyles : null}
 `;
 
 export const itemHandleStyles = `

@@ -2,32 +2,37 @@ import React from "react";
 import PropTypes from "prop-types";
 import uuidv4 from "uuid/v4";
 import { DragDropContext, Droppable } from "react-beautiful-dnd";
-import SortableContext from "./SortableContext";
 import Item from "./components/Item/Item";
 import sortableStyles from "./Sortable.styles";
 
 const propTypes = {
   children: PropTypes.node,
-  hasIndexes: PropTypes.bool,
+  hasNumbers: PropTypes.bool,
   onChange: PropTypes.func.isRequired,
   onRemove: PropTypes.func,
 };
 
 const defaultProps = {
   children: null,
-  hasIndexes: true,
+  hasNumbers: true,
   onRemove: null,
 };
 
 function augmentChildren(children) {
-  return React.Children.map(children, (child, index) => {
-    return child.type
-      ? React.cloneElement(child, { ...child.props, "data-drag-id": index })
-      : React.createElement("span", { ...child.props, "data-drag-id": index }, child);
-  });
+  return (
+    React.Children.map(children, (child, index) => {
+      return child.type ? (
+        React.cloneElement(child, { "data-drag-id": index })
+      ) : (
+        <span {...child.props} data-drag-id={index}>
+          {child}
+        </span>
+      );
+    }) || []
+  );
 }
 
-const Sortable = ({ children, onChange, hasIndexes, onRemove }) => {
+const Sortable = ({ children, onChange, hasNumbers, onRemove }) => {
   const augmentedChildren = augmentChildren(children);
 
   const handleDragEnd = result => {
@@ -39,27 +44,26 @@ const Sortable = ({ children, onChange, hasIndexes, onRemove }) => {
   };
 
   return (
-    <SortableContext.Provider value={{ hasIndexes, onRemove }}>
-      <DragDropContext onDragEnd={handleDragEnd}>
-        <Droppable droppableId={`droppable-${uuidv4()}`}>
-          {(provided, snapshot) => (
-            <ul
-              {...provided.droppableProps}
-              css={sortableStyles}
-              data-is-dragging-over={snapshot.isDraggingOver ? true : undefined}
-              isDraggingOver={snapshot.isDraggingOver}
-              ref={provided.innerRef}
-            >
-              {augmentedChildren &&
-                augmentedChildren.length > 0 &&
-                augmentedChildren.map((child, index) => (
-                  <Item child={child} key={child.props["data-drag-id"]} index={index} />
-                ))}
-            </ul>
-          )}
-        </Droppable>
-      </DragDropContext>
-    </SortableContext.Provider>
+    <DragDropContext onDragEnd={handleDragEnd}>
+      <Droppable droppableId={`droppable-${uuidv4()}`}>
+        {(provided, snapshot) => (
+          <ul
+            {...provided.droppableProps}
+            css={sortableStyles}
+            data-is-dragging-over={snapshot.isDraggingOver ? true : undefined}
+            isDraggingOver={snapshot.isDraggingOver}
+            ref={provided.innerRef}
+          >
+            {augmentedChildren.length > 0 &&
+              augmentedChildren.map((child, index) => (
+                <Item key={child.props["data-drag-id"]} index={index} hasNumbers={hasNumbers} onRemove={onRemove}>
+                  {child}
+                </Item>
+              ))}
+          </ul>
+        )}
+      </Droppable>
+    </DragDropContext>
   );
 };
 

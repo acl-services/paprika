@@ -15,7 +15,7 @@ const childrenSelections = {
 const sortableKnobs = () => {
   const knobs = {
     children: childrenSelections[select("children", Object.keys(childrenSelections), "basic")],
-    hasIndexes: boolean("hasIndexes", true),
+    hasNumbers: boolean("hasNumbers", true),
   };
   if (!boolean("onRemove", true)) knobs.onRemove = null;
 

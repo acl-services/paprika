@@ -4,7 +4,7 @@ import Input from "../../Input/stories/examples/InputExample";
 import Select from "../../Select/stories/examples/SelectExample";
 
 export const storyStyles = `
-  max-width: 360px
+  max-width: 360px;
 `;
 
 const hipsums = [
