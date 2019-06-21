@@ -1,3 +1,4 @@
+import { css } from "styled-components";
 import tokens from "@paprika/tokens";
 import stylers from "@paprika/stylers";
 
@@ -10,7 +11,7 @@ const draggingStyles = `
   }
 `;
 
-export const itemStyles = ({ isDragging }) => `
+export const itemStyles = css`
   border-radius: ${tokens.border.radius};
   display: flex;
   list-style: none;
@@ -24,8 +25,8 @@ export const itemStyles = ({ isDragging }) => `
     outline: none;
     box-shadow: ${tokens.highlight.active.withBorder.boxShadow};
   }
-  
-  ${isDragging ? draggingStyles : null}
+
+  ${({ isDragging }) => (isDragging ? draggingStyles : null)}
 `;
 
 export const itemHandleStyles = `
