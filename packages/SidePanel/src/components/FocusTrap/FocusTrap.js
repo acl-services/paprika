@@ -1,3 +1,5 @@
+/* eslint-disable react/no-unused-prop-types */
+import React from "react";
 import PropTypes from "prop-types";
 import { default as FocusTrapLibrary } from "focus-trap-react/dist/focus-trap-react"; // eslint-disable-line
 
@@ -23,13 +25,15 @@ const propTypes = {
 
   /** Default: true. If false, when the trap is deactivated, focus will not return to the element that had focus before activation. */
   returnFocusOnDeactivate: PropTypes.bool,
+
+  children: PropTypes.node.isRequired,
 };
 
 const defaultProps = FocusTrapLibrary.defaultProps;
 
 // shell component for enhancing UXDeveloper
-export default function FocusTrap() {
-  return null;
+export default function FocusTrap(props) {
+  return <FocusTrapLibrary>{props.children}</FocusTrapLibrary>;
 }
 
 FocusTrap.propTypes = propTypes;

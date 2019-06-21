@@ -1,7 +1,6 @@
 import React from "react";
 import ReactDOM from "react-dom";
 import PropTypes from "prop-types";
-import { default as FocusTrapLibrary } from "focus-trap-react/dist/focus-trap-react"; // eslint-disable-line
 import Dialog from "./components/Dialog";
 import Footer from "./components/Footer";
 import Header from "./components/Header";
@@ -157,9 +156,9 @@ function SidePanel(props) {
     } else {
       sidePanel = ReactDOM.createPortal(
         <React.Fragment>
-          <FocusTrapLibrary focusTrapOptions={focusTrapOptions}>
+          <FocusTrap focusTrapOptions={focusTrapOptions}>
             <div>{dialog}</div>
-          </FocusTrapLibrary>
+          </FocusTrap>
           {overlayExtracted ? React.cloneElement(overlayExtracted, { onClose }) : null}
         </React.Fragment>,
         document.body
