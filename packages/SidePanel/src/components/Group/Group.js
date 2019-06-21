@@ -31,7 +31,7 @@ export default function Group(props) {
     return null;
   }
 
-  const sidePanelsGroup = ReactDOM.createPortal(
+  return ReactDOM.createPortal(
     <React.Fragment>
       {OverlayExtracted}
       <div css={GroupCSS} {...moreProps} offsetY={offsetScroll}>
@@ -40,8 +40,6 @@ export default function Group(props) {
     </React.Fragment>,
     document.body
   );
-
-  return [sidePanelsGroup];
 }
 
 Group.propTypes = propTypes;
