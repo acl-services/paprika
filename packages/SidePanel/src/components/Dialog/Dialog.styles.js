@@ -11,13 +11,12 @@ const childPanel = css`
   margin-top: ${gapChildPanel}px;
 `;
 
-export function slideIn() {
+function slideIn() {
   return keyframes`
   from {
     opacity: 0;
     transform: translateX(100%);
   }
-
   to {
     opacity: 1;
     transform: translateX(0);
@@ -25,16 +24,15 @@ export function slideIn() {
   `;
 }
 
-export function slideOut() {
+function slideOut() {
   return keyframes`
   from {
     opacity: 1;
-    transform: translateX(0); // inline position relative behaviour
+    transform: translateX(0);
   }
-
   to {
     opacity: 0;
-    transform: translateX(100%); // inline position relative behaviour
+    transform: translateX(100%);
   }
   `;
 }

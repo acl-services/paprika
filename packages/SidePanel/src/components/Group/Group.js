@@ -35,12 +35,7 @@ export default function Group(props) {
     <React.Fragment>
       {OverlayExtracted}
       <div css={GroupCSS} {...moreProps} offsetY={offsetScroll}>
-        {sidePanels.map(sidePanel =>
-          React.cloneElement(sidePanel, {
-            ...sidePanel.props,
-            isInline: true,
-          })
-        )}
+        {sidePanels.map(sidePanel => React.cloneElement(sidePanel, { isInline: true }))}
       </div>
     </React.Fragment>,
     document.body

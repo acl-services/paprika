@@ -73,10 +73,10 @@ function SidePanel(props) {
   } = props;
 
   // Hooks
-  const [isSidePanelVisible, setIsSidePanelVisible] = React.useState(isOpen);
+  const [isSidePanelVisible, setIsSidePanelVisible] = React.useState(props.isOpen);
   const offsetScroll = useOffsetScroll(offsetY);
   useBodyOverflow(props.disableBodyOverflow);
-  useEscapeKey(isOpen, onClose);
+  useEscapeKey(props.isOpen, onClose);
 
   // Refs
   const refTrigger = React.useRef(null);
@@ -100,7 +100,7 @@ function SidePanel(props) {
   ]);
 
   const handleAnimationEnd = () => {
-    if (!isOpen) {
+    if (!props.isOpen) {
       setIsSidePanelVisible(false);
       onAfterClose();
 
@@ -114,10 +114,10 @@ function SidePanel(props) {
   };
 
   React.useEffect(() => {
-    if (isOpen) {
+    if (props.isOpen) {
       setIsSidePanelVisible(true);
     }
-  }, [isOpen]);
+  }, [props.isOpen]);
 
   const extendedFocusTrapOptions = focusTrapExtracted ? focusTrapExtracted.props : {};
   const fallbackFocus = () => {
@@ -145,6 +145,7 @@ function SidePanel(props) {
         isInline={isInline}
         refHeader={refHeader}
         offsetY={offsetScroll}
+        isOpen={isOpen}
         {...moreProps}
       >
         {children}

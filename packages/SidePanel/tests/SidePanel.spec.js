@@ -20,7 +20,7 @@ describe("SidePanel", () => {
     const { getByText } = render({
       children: "some content",
     });
-    expect(getByText(/some content/i)).toBeInTheDocument();
+    expect(getByText(/some content/i)).toBeVisible();
   });
 
   it("should triggered onClose when pressing ESC key", () => {
@@ -41,7 +41,7 @@ describe("SidePanel", () => {
         children: <SidePanel.Header>Header</SidePanel.Header>,
       });
 
-      expect(getByText(/Header/i)).toBeInTheDocument();
+      expect(getByText(/Header/i)).toBeVisible();
     });
 
     it("should have header and a close button", () => {
@@ -49,7 +49,7 @@ describe("SidePanel", () => {
         children: <SidePanel.Header>Header</SidePanel.Header>,
       });
 
-      expect(getByRole(/button/i)).toBeInTheDocument();
+      expect(getByRole(/button/i)).toBeVisible();
     });
 
     it("should have header and not a close button", () => {
@@ -96,7 +96,7 @@ describe("SidePanel", () => {
         children: <SidePanel.Footer data-qa-anchor="sidepanel.footer" />,
       });
 
-      expect(getByTestId("sidepanel.footer")).toBeInTheDocument();
+      expect(getByTestId("sidepanel.footer")).toBeVisible();
     });
   });
 });
