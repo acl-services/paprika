@@ -1,6 +1,6 @@
 import React from "react";
 import moment from "moment";
-import { render as renderReactTestingLibrary, configure, fireEvent } from "react-testing-library";
+import { render as renderReactTestingLibrary, configure } from "react-testing-library";
 import L10n from "@paprika/l10n";
 import DatePicker from "../src";
 
