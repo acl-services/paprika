@@ -1,57 +1,20 @@
-import React from "react";
-import PropTypes from "prop-types";
-import { Draggable } from "react-beautiful-dnd";
-import HandleIcon from "@paprika/icon/lib/DragHandle";
-import Button from "@paprika/button";
-import { itemStyles, itemIndexStyles, itemHandleStyles, itemBodyStyles, itemCloseStyles } from "./Item.styles";
+// import React from "react";
+// import PropTypes from "prop-types";
 
-const propTypes = {
-  children: PropTypes.node.isRequired,
-  hasNumbers: PropTypes.bool.isRequired,
-  index: PropTypes.number.isRequired,
-  onRemove: PropTypes.func,
+// const propTypes = {
+// };
+
+// const defaultProps = {
+// };
+
+const Item = props => {
+  return props.children;
 };
 
-const defaultProps = {
-  onRemove: null,
-};
+// SortableItem.displayName = "SortableItem";
+// SortableItem.propTypes = propTypes;
+// SortableItem.defaultProps = defaultProps;
 
-const Item = ({ children, index, hasNumbers, onRemove }) => {
-  const handleRemove = () => {
-    onRemove(index);
-  };
-
-  return (
-    <Draggable draggableId={`draggable-${children.props["data-drag-id"]}`} index={index}>
-      {(provided, snapshot) => {
-        return (
-          <li
-            {...provided.draggableProps}
-            {...provided.dragHandleProps}
-            css={itemStyles}
-            data-is-dragging={snapshot.isDragging ? true : undefined}
-            isDragging={snapshot.isDragging}
-            ref={provided.innerRef}
-          >
-            <div css={itemHandleStyles}>
-              <HandleIcon />
-            </div>
-            {hasNumbers && <div css={itemIndexStyles}>{index + 1}</div>}
-            <div css={itemBodyStyles}>{children}</div>
-            {onRemove && (
-              <div css={itemCloseStyles}>
-                <Button.Close onClick={handleRemove} size="small" />
-              </div>
-            )}
-          </li>
-        );
-      }}
-    </Draggable>
-  );
-};
-
-Item.displayName = "Item";
-Item.propTypes = propTypes;
-Item.defaultProps = defaultProps;
+Item.displayName = "Sortable.Item";
 
 export default Item;

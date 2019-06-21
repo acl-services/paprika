@@ -1,5 +1,6 @@
 import React from "react";
 import styled from "styled-components";
+import Sortable from "../src";
 import Input from "../../Input/stories/examples/InputExample";
 import Select from "../../Select/stories/examples/SelectExample";
 
@@ -18,7 +19,17 @@ const hipsums = [
   "Sustainable succulents",
 ];
 
-const selectOptions = [<option value="Dr">Dr</option>, <option value="Mr">Mr</option>, <option value="Ms">Ms</option>];
+const selectOptions = [
+  <option key="1" value="Dr">
+    Dr
+  </option>,
+  <option key="2" value="Mr">
+    Mr
+  </option>,
+  <option key="3" value="Ms">
+    Ms
+  </option>,
+];
 
 const MultiBox = styled.div`
   display: flex;
@@ -41,7 +52,7 @@ export function basicChildren(numChildren) {
   const children = [];
 
   for (let index = 1; index <= numChildren; index++) {
-    children.push(<div key={index}>{hipsums[index % hipsums.length]}</div>);
+    children.push(<Sortable.Item key={index}>{hipsums[index % hipsums.length]}</Sortable.Item>);
   }
 
   return children;
@@ -52,7 +63,7 @@ export function longChildren(numChildren) {
 
   for (let index = 1; index <= numChildren; index++) {
     children.push(
-      <div key={index}>
+      <Sortable.Item key={index}>
         {hipsums[index % hipsums.length]}
         &nbsp;
         {hipsums[(index + 2) % hipsums.length]}
@@ -62,7 +73,7 @@ export function longChildren(numChildren) {
         {hipsums[(index + 5) % hipsums.length]}
         &nbsp;
         {hipsums[(index + 7) % hipsums.length]}
-      </div>
+      </Sortable.Item>
     );
   }
 
@@ -74,13 +85,14 @@ export function inputChildren(numChildren) {
 
   for (let index = 1; index <= numChildren; index++) {
     children.push(
-      <Input
-        key={index}
-        value={hipsums[index % hipsums.length]}
-        css={`
-          width: 100%;
-        `}
-      />
+      <Sortable.Item key={index}>
+        <Input
+          value={hipsums[index % hipsums.length]}
+          css={`
+            width: 100%;
+          `}
+        />
+      </Sortable.Item>
     );
   }
 
@@ -92,10 +104,12 @@ export function multipleChildren(numChildren) {
 
   for (let index = 1; index <= numChildren; index++) {
     children.push(
-      <MultiBox key={index}>
-        <Select>{selectOptions}</Select>
-        <Input value={hipsums[index % hipsums.length]} hasClearButton />
-      </MultiBox>
+      <Sortable.Item key={index}>
+        <MultiBox>
+          <Select>{selectOptions}</Select>
+          <Input value={hipsums[index % hipsums.length]} hasClearButton />
+        </MultiBox>
+      </Sortable.Item>
     );
   }
 

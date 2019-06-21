@@ -14,8 +14,14 @@ const failStyles = `
   font-size: 14px;
 `;
 
-const fakeServerLatency = 300;
-const initChildren = [<div key="1">One</div>, <div key="2">Two</div>, <div key="3">Three</div>];
+const fakeServerLatency = 1300;
+const initData = [
+  { id: 1, value: "One" },
+  { id: 2, value: "Two" },
+  { id: 3, value: "Three" },
+  { id: 4, value: "Four" },
+];
+const initChildren = initData.map(item => <Sortable.Item key={item.id}>{item.value}</Sortable.Item>);
 
 function formattedChildren(children) {
   return children.map(child => child.props.children).toString();
@@ -27,7 +33,7 @@ const Example = () => {
     () => () => {
       clearTimeout(apiFaker);
     },
-    []
+    [apiFaker]
   );
 
   const [children, setChildren] = React.useState(initChildren);

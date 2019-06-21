@@ -7,9 +7,9 @@ const Example = () => {
   return (
     <Story css={storyStyles}>
       <Sortable onChange={() => {}} onRemove={() => {}}>
-        <div>Item One</div>
-        <div>Item Two</div>
-        <div>Item Three</div>
+        <Sortable.Item>Item One</Sortable.Item>
+        <Sortable.Item>Item Two</Sortable.Item>
+        <Sortable.Item>Item Three</Sortable.Item>
       </Sortable>
     </Story>
   );
