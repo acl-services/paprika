@@ -3,6 +3,7 @@ import PropTypes from "prop-types";
 import { Draggable } from "react-beautiful-dnd";
 import HandleIcon from "@paprika/icon/lib/DragHandle";
 import Button from "@paprika/button";
+import useI18n from "@paprika/l10n/lib/useI18n";
 import { itemStyles, itemIndexStyles, itemHandleStyles, itemBodyStyles, itemCloseStyles } from "./SortableItem.styles";
 
 const propTypes = {
@@ -17,6 +18,8 @@ const defaultProps = {
 };
 
 const SortableItem = ({ children, index, hasNumbers, onRemove }) => {
+  const I18n = useI18n();
+
   const handleRemove = () => {
     onRemove(index);
   };
@@ -32,6 +35,7 @@ const SortableItem = ({ children, index, hasNumbers, onRemove }) => {
             data-is-dragging={snapshot.isDragging ? true : undefined}
             isDragging={snapshot.isDragging}
             ref={provided.innerRef}
+            aria-roledescription={I18n.t("sortable.aria_description")}
           >
             <div css={itemHandleStyles}>
               <HandleIcon />
