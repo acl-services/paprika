@@ -23,7 +23,7 @@ export default function Footer(props) {
     ...moreProps
   } = props;
 
-  const { offsetY, opacity } = useOffsetScrollFooter(height, refSidePanel);
+  const { offsetY, opacity } = useOffsetScrollFooter(height, refSidePanel.current);
 
   let style = {};
   if (isSticky) {

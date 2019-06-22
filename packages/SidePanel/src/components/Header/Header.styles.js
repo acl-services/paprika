@@ -32,9 +32,5 @@ export const headerCSS = css`
     margin: 0;
   }
 
-  ${props => {
-    return `
-      ${kind[props.kind]};
-    `;
-  }}
+  ${props => kind[props.kind]}
 `;

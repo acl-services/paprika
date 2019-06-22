@@ -10,11 +10,10 @@ export const footerCSS = css`
   display: flex;
   height: 48px;
   padding: 0;
-  position: relative;
   right: 0;
   transition: opacity 0.3s ease-in;
   width: 100%;
   ${props => {
-    return props.isSticky ? "position: absolute;" : "";
+    return props.isSticky ? "position: absolute;" : "position: relative;";
   }}
 `;

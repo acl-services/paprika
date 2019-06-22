@@ -20,8 +20,8 @@ const useOffsetScrollFooter = (height, ref) => {
 
     const refElement = ref.current;
 
-    if (ref.current) {
-      ref.current.addEventListener("scroll", handleScrolling, false);
+    if (ref) {
+      ref.addEventListener("scroll", handleScrolling, false);
     }
 
     return () => {
