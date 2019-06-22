@@ -22,7 +22,7 @@ export default function Group(props) {
     "SidePanel.Overlay",
   ]);
   if (!Array.isArray(sidePanels)) {
-    throw new Error("SidePanelGroup is intented to be use with two or more SidePanels");
+    throw new Error("<SidePanel.Group /> is intented to be use with two or more SidePanels");
   }
 
   const offsetScroll = useOffsetScroll(props.offsetY);

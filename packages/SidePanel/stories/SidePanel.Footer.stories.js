@@ -12,7 +12,7 @@ storiesOf("SidePanel / Footer", module).add("SidePanel.Footer", () => (
 
 storiesOf("SidePanel / Footer", module).add("SidePanel.Footer isSticky", () => (
   <SidePanel isOpen>
-    <SidePanel.Header>HEader</SidePanel.Header>
+    <SidePanel.Header>Header</SidePanel.Header>
     <TextLine repeat={100} />
     <SidePanel.Footer isSticky>Footer isSticky</SidePanel.Footer>
   </SidePanel>

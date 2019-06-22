@@ -6,6 +6,7 @@ import Footer from "./components/Footer";
 import Header from "./components/Header";
 import Overlay from "./components/Overlay";
 import Trigger from "./components/Trigger";
+import Group from "./components/Group";
 import FocusTrap from "./components/FocusTrap";
 import { extractChildren } from "./helpers";
 import useOffsetScroll from "./hooks/useOffsetScroll";
@@ -45,7 +46,7 @@ const propTypes = {
 };
 
 const defaultProps = {
-  // this is an internal prop use by SidePanelGroup (Group.js)
+  // this is an internal prop use by <SidePanel.Group /> (Group.js)
   isInline: false, // eslint-disable-line
   kind: "default",
   offsetY: 0,
@@ -176,13 +177,14 @@ function SidePanel(props) {
   );
 }
 
-SidePanel.propTypes = propTypes;
 SidePanel.defaultProps = defaultProps;
+SidePanel.FocusTrap = FocusTrap;
 SidePanel.Footer = Footer;
+SidePanel.Group = Group;
 SidePanel.Header = Header;
 SidePanel.Overlay = Overlay;
+SidePanel.propTypes = propTypes;
 SidePanel.Trigger = Trigger;
-SidePanel.FocusTrap = FocusTrap;
 SidePanel.componentType = "SidePanel";
 
 export default SidePanel;

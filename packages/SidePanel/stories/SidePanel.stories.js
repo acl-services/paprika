@@ -2,7 +2,7 @@ import React from "react";
 import { storiesOf } from "@storybook/react";
 import Heading from "@paprika/heading";
 import Button from "@paprika/button";
-import SidePanel, { SidePanelGroup } from "../src";
+import SidePanel from "../src";
 import { Nav, TextLine } from "./helpers";
 
 const SidePanelStory = props => {
@@ -85,7 +85,7 @@ const SidePanelStoryGroup = () => {
           <TextLine repeat={100} />
         </div>
       </div>
-      <SidePanelGroup offsetY={40}>
+      <SidePanel.Group offsetY={40}>
         <SidePanel data-qa-anchor="sidepanel1" width={400} onClose={handleParent1} isOpen={spParent1}>
           <SidePanel.Header kind="primary">
             <Heading level={2}>Parent 1</Heading>
@@ -118,7 +118,7 @@ const SidePanelStoryGroup = () => {
           </SidePanel.Header>
           <TextLine repeat={100} />
         </SidePanel>
-      </SidePanelGroup>
+      </SidePanel.Group>
     </React.Fragment>
   );
 };

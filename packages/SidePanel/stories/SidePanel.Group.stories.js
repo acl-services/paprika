@@ -1,15 +1,15 @@
 import React from "react";
 import { storiesOf } from "@storybook/react";
 import Heading from "@paprika/heading";
-import SidePanel, { SidePanelGroup } from "../src";
+import SidePanel from "../src";
 import { Nav, TextLine } from "./helpers";
 
 function onClose() {
   alert("callback onClose");
 }
 
-storiesOf("SidePanel / SidePanelGroup", module).add("SidePanelGroup", () => (
-  <SidePanelGroup>
+storiesOf("SidePanel / SidePanel.Group", module).add("SidePanel.Group", () => (
+  <SidePanel.Group>
     <SidePanel onClose={onClose} isOpen width={350}>
       <SidePanel.Header>
         <Heading level={2}>With Header</Heading>
@@ -30,11 +30,11 @@ storiesOf("SidePanel / SidePanelGroup", module).add("SidePanelGroup", () => (
       </SidePanel.Header>
       <SidePanel.Overlay />
     </SidePanel>
-  </SidePanelGroup>
+  </SidePanel.Group>
 ));
 
-storiesOf("SidePanel / SidePanelGroup", module).add("SidePanelGroup has offsetY", () => (
-  <SidePanelGroup offsetY={40}>
+storiesOf("SidePanel / SidePanel.Group", module).add("SidePanel.Group has offsetY", () => (
+  <SidePanel.Group offsetY={40}>
     <Nav />
     <TextLine repeat={100} />
     <SidePanel onClose={onClose} isOpen width={400}>
@@ -49,15 +49,15 @@ storiesOf("SidePanel / SidePanelGroup", module).add("SidePanelGroup has offsetY"
       </SidePanel.Header>
       <SidePanel.Overlay />
     </SidePanel>
-  </SidePanelGroup>
+  </SidePanel.Group>
 ));
 
-storiesOf("SidePanel / SidePanelGroup", module).add("SidePanelGroup has offsetY and Overlay", () => (
+storiesOf("SidePanel / SidePanel.Group", module).add("SidePanel.Group has offsetY and Overlay", () => (
   <React.Fragment>
     <Nav />
     <TextLine repeat={100} />
-    <SidePanelGroup offsetY={40}>
-      <SidePanelGroup.Overlay />
+    <SidePanel.Group offsetY={40}>
+      <SidePanel.Group.Overlay />
       <SidePanel onClose={onClose} isOpen width={300}>
         <SidePanel.Header>
           <Heading level={2}>With Header</Heading>
@@ -76,6 +76,6 @@ storiesOf("SidePanel / SidePanelGroup", module).add("SidePanelGroup has offsetY 
         </SidePanel.Header>
         <SidePanel.Overlay />
       </SidePanel>
-    </SidePanelGroup>
+    </SidePanel.Group>
   </React.Fragment>
 ));

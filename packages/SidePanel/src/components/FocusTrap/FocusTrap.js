@@ -33,7 +33,9 @@ const defaultProps = FocusTrapLibrary.defaultProps;
 
 // shell component for enhancing UXDeveloper
 export default function FocusTrap(props) {
-  return <FocusTrapLibrary>{props.children}</FocusTrapLibrary>;
+  // internal use
+  const { focusTrapOptions } = props; // eslint-disable-line
+  return <FocusTrapLibrary focusTrapOptions={focusTrapOptions}>{props.children}</FocusTrapLibrary>;
 }
 
 FocusTrap.propTypes = propTypes;
