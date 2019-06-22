@@ -25,7 +25,7 @@ const SortableItem = ({ children, index, hasNumbers, onRemove }) => {
   };
 
   return (
-    <Draggable draggableId={`draggable-${children.props.dragId}`} index={index}>
+    <Draggable draggableId={`draggable-${children.props.sortId}`} index={index}>
       {(provided, snapshot) => {
         return (
           <li

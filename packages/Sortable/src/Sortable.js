@@ -20,20 +20,14 @@ const defaultProps = {
   onRemove: null,
 };
 
-function processChildren(children) {
-  return (
-    React.Children.toArray(children)
-      .filter(child => child.type.displayName === "Sortable.Item")
-      .map((child, index) => {
-        return React.cloneElement(child, { dragId: index });
-      }) || []
-  );
+function filterChildren(children) {
+  return React.Children.toArray(children).filter(child => child.type.displayName === "Sortable.Item");
 }
 
 const Sortable = ({ children, onChange, hasNumbers, onRemove }) => {
   const I18n = useI18n();
 
-  const augmentedChildren = processChildren(children);
+  const validChildren = filterChildren(children);
 
   const handleDragStart = (start, provided) => {
     const { source } = start;
@@ -78,9 +72,9 @@ const Sortable = ({ children, onChange, hasNumbers, onRemove }) => {
             isDraggingOver={snapshot.isDraggingOver}
             ref={provided.innerRef}
           >
-            {augmentedChildren.length > 0 &&
-              augmentedChildren.map((child, index) => (
-                <SortableItem key={child.props.dragId} index={index} hasNumbers={hasNumbers} onRemove={onRemove}>
+            {validChildren.length > 0 &&
+              validChildren.map((child, index) => (
+                <SortableItem key={child.props.sortId} index={index} hasNumbers={hasNumbers} onRemove={onRemove}>
                   {child}
                 </SortableItem>
               ))}

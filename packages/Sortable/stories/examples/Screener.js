@@ -12,12 +12,12 @@ const Example = () => {
       <Rule />
       <Sortable onChange={() => {}} onRemove={() => {}}>
         <div>Zero</div>
-        <Sortable.Item>One</Sortable.Item>
-        <Sortable.Item>Two Two Two Two Two Two Two Two Two Two Two Two Two Two Two Two</Sortable.Item>
-        <Sortable.Item>
+        <Sortable.Item sortId="1">One</Sortable.Item>
+        <Sortable.Item sortId="2">Two Two Two Two Two Two Two Two Two Two Two Two Two Two Two Two</Sortable.Item>
+        <Sortable.Item sortId="3">
           Three Three Three Three Three Three Three Three Three Three Three Three Three Three Three
         </Sortable.Item>
-        <Sortable.Item>
+        <Sortable.Item sortId="4">
           Four Four Four Four Four Four Four Four Four Four Four Four Four Four Four Four Four Four Four Four Four Four
           Four Four Four Four Four Four
         </Sortable.Item>

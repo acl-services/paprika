@@ -15,13 +15,19 @@ const failStyles = `
 `;
 
 const fakeServerLatency = 1300;
+
 const initData = [
   { id: 1, value: "One" },
   { id: 2, value: "Two" },
   { id: 3, value: "Three" },
   { id: 4, value: "Four" },
 ];
-const initChildren = initData.map(item => <Sortable.Item key={item.id}>{item.value}</Sortable.Item>);
+
+const initChildren = initData.map(item => (
+  <Sortable.Item key={item.id} sortId={item.id}>
+    {item.value}
+  </Sortable.Item>
+));
 
 function formattedChildren(children) {
   return children.map(child => child.props.children).toString();

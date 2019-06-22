@@ -52,7 +52,11 @@ export function basicChildren(numChildren) {
   const children = [];
 
   for (let index = 1; index <= numChildren; index++) {
-    children.push(<Sortable.Item key={index}>{hipsums[index % hipsums.length]}</Sortable.Item>);
+    children.push(
+      <Sortable.Item key={index} sortId={index}>
+        {hipsums[index % hipsums.length]}
+      </Sortable.Item>
+    );
   }
 
   return children;
@@ -63,7 +67,7 @@ export function longChildren(numChildren) {
 
   for (let index = 1; index <= numChildren; index++) {
     children.push(
-      <Sortable.Item key={index}>
+      <Sortable.Item key={index} sortId={index}>
         {hipsums[index % hipsums.length]}
         &nbsp;
         {hipsums[(index + 2) % hipsums.length]}
@@ -85,7 +89,7 @@ export function inputChildren(numChildren) {
 
   for (let index = 1; index <= numChildren; index++) {
     children.push(
-      <Sortable.Item key={index}>
+      <Sortable.Item key={index} sortId={index}>
         <Input
           value={hipsums[index % hipsums.length]}
           css={`
@@ -104,7 +108,7 @@ export function multipleChildren(numChildren) {
 
   for (let index = 1; index <= numChildren; index++) {
     children.push(
-      <Sortable.Item key={index}>
+      <Sortable.Item key={index} sortId={index}>
         <MultiBox>
           <Select>{selectOptions}</Select>
           <Input value={hipsums[index % hipsums.length]} hasClearButton />
