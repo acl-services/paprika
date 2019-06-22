@@ -1,20 +1,10 @@
-// import React from "react";
-// import PropTypes from "prop-types";
+import PropTypes from "prop-types";
 
-// const propTypes = {
-// };
-
-// const defaultProps = {
-// };
-
-const Item = props => {
-  return props.children;
-};
-
-// SortableItem.displayName = "SortableItem";
-// SortableItem.propTypes = propTypes;
-// SortableItem.defaultProps = defaultProps;
+const Item = ({ children }) => children;
 
 Item.displayName = "Sortable.Item";
+Item.PropTypes = {
+  children: PropTypes.node.isRequired,
+};
 
 export default Item;
