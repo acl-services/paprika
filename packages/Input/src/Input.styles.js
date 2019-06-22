@@ -1,3 +1,4 @@
+import { css } from "styled-components";
 import tokens from "@paprika/tokens";
 import stylers from "@paprika/stylers";
 
@@ -19,7 +20,7 @@ const iconStyles = {
   `,
 };
 
-const inputStyles = ({ hasClearButton, size }) => `
+const inputStyles = css`
   line-height: 1;
   position: relative;
 
@@ -35,7 +36,7 @@ const inputStyles = ({ hasClearButton, size }) => `
     display: block;
     margin: 0;
     padding: 0 0 0 ${tokens.space};
-    padding-right: ${hasClearButton ? stylers.spacer(3) : tokens.space};
+    padding-right: ${({ hasClearButton }) => (hasClearButton ? stylers.spacer(3) : tokens.space)};
     transition: box-shadow 0.2s, color 0.2s;
     width: 100%;
 
@@ -80,7 +81,7 @@ const inputStyles = ({ hasClearButton, size }) => `
   }
 
   .form-input__icon {
-    ${iconStyles[size]};
+    ${({ size }) => iconStyles[size]};
 
     svg {
       vertical-align: middle;
@@ -105,7 +106,7 @@ const inputStyles = ({ hasClearButton, size }) => `
   }
 
   &.form-input--has-icon input.form-input__input {
-    padding-left: ${size === "large" ? stylers.spacer(4) : stylers.spacer(3)};
+    padding-left: ${({ size }) => (size === "large" ? stylers.spacer(4) : stylers.spacer(3))};
   }
 
   // Disabled
