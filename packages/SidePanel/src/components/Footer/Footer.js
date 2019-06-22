@@ -4,6 +4,7 @@ import { footerCSS } from "./Footer.styles";
 import useOffsetScrollFooter from "../../hooks/useOffsetScrollFooter";
 
 const propTypes = {
+  children: PropTypes.node.isRequired,
   height: PropTypes.number,
   isSticky: PropTypes.bool,
 };
@@ -17,6 +18,7 @@ export default function Footer(props) {
   const {
     height,
     isSticky,
+    children,
     refSidePanel, // eslint-disable-line
     ...moreProps
   } = props;
@@ -29,7 +31,7 @@ export default function Footer(props) {
   }
   return (
     <div css={footerCSS} style={style} isSticky={isSticky} {...moreProps}>
-      Footer
+      {children}
     </div>
   );
 }
