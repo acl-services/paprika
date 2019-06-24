@@ -10,7 +10,6 @@ describe("<DatePicker />", () => {
     cy.visitStorybook("datepicker-cypress--datepicker-test");
     cy.getByTestId("datepicker.input").should("not.have.value");
     cy.getByTestId("datepicker.input").click();
-    cy.getByTestId("datepicker.input").should("be.focused");
     cy.getByTestId("datepicker.calendar").should("be.visible");
   });
 
