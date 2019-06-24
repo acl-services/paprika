@@ -82,13 +82,7 @@ describe("<DatePicker />", () => {
 
   it("should show error state if it cannot parse the typing string", () => {
     cy.clock();
-    cy.getByTestId("datepicker.input").click();
-
-    cy.tick(500);
-    cy.getByTestId("datepicker.input")
-      .type("abc")
-      .should("have.value", "abc");
-    cy.get("body").click();
+    cy.getByTestId("datepicker.input").type("abc{enter}");
 
     cy.tick(5000);
     cy.getByTestId("datepicker.input")
