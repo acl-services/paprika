@@ -27,6 +27,7 @@ blocks:
       jobs:
         - name: Lint && prettier
           commands:
+            - yarn add eslint-plugin-react-hooks -D -W
             - yarn lint && yarn prettier -- --list-different
 
   - name: "♿️ Accessibility"

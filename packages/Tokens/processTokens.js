@@ -1,5 +1,3 @@
-/* eslint-disable no-console */
-
 const YAML = require("yamljs");
 const fs = require("fs");
 const sass = require("node-sass");
