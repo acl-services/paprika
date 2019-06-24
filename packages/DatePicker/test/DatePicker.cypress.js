@@ -69,7 +69,7 @@ describe("<DatePicker />", () => {
     cy.tick(500);
     cy.getByTestId("datepicker.input").type("5/6/2001");
 
-    cy.tick(500);
+    cy.tick(5000);
     cy.getByTestId("datepicker.calendar.header")
       .contains("May 2001")
       .should("be.visible");
@@ -90,7 +90,7 @@ describe("<DatePicker />", () => {
       .should("have.value", "abc");
     cy.get("body").click();
 
-    cy.tick(500);
+    cy.tick(5000);
     cy.getByTestId("datepicker.input")
       .parent()
       .should("have.class", "form-input--has-error");
