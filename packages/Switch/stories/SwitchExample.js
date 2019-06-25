@@ -9,11 +9,7 @@ function Example(props) {
     setIsChecked(!isChecked);
   }
 
-  return (
-    <L10n>
-      <Switch isChecked={isChecked} onChange={handleChange} {...props} />
-    </L10n>
-  );
+  return <Switch isChecked={isChecked} onChange={handleChange} {...props} />;
 }
 
 export default Example;
