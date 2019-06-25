@@ -41,12 +41,12 @@ storiesOf("Switch", module)
     return (
       <Story>
         <h4>
-          <code>isDisabled value={false}</code>
+          <code>isDisabled value=false</code>
         </h4>
         <Example isDisabled value={false} />
         <p />
         <h4>
-          <code>isDisabled value={true}</code>
+          <code>isDisabled value=true</code>
         </h4>
         <Example isDisabled value />
       </Story>
