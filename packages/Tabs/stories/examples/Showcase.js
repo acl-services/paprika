@@ -1,5 +1,5 @@
 import React from "react";
-import { array } from "@storybook/addon-knobs";
+import { array, boolean } from "@storybook/addon-knobs";
 import { Story, Rule, Tagline } from "storybook/assets/styles/common.styles";
 import Heading from "@paprika/heading";
 import Tabs from "../../src";
@@ -15,6 +15,7 @@ const renderTabs = () => {
 
 const tabProps = () => ({
   children: renderTabs(),
+  isDisabled: boolean("isDisabled", false),
 });
 
 const ExampleStory = props => (

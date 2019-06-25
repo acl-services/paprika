@@ -8,11 +8,11 @@ import List from "./components/List/List";
 
 const propTypes = {
   children: PropTypes.node.isRequired,
-  isDisabled: PropTypes.bool,
+  isDisabled: PropTypes.node,
 };
 
 const defaultProps = {
-  isDisabled: false,  
+  isDisabled: false,
 };
 
 const Tabs = props => {
@@ -20,10 +20,8 @@ const Tabs = props => {
   const [numberOfTabs, setNumberOfTabs] = React.useState(null);
   let tabListRef = null;
 
-  React.useEffect(() => {
-    console.log(activeIndex);
-  });
-
+  const { isDisabled } = props;
+  
   const setTabListRef = ref => {
     tabListRef = ref;
   };
@@ -60,6 +58,7 @@ const Tabs = props => {
     activeIndex,
     handleTabClick,
     handleKeyDown,
+    isDisabled,
     setNumberOfTabs,
     setTabListRef,
   };

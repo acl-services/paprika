@@ -29,9 +29,12 @@ const defaultProps = {
 
 const Tab = props => {
   const context = React.useContext(TabsContext);
-  const { className, isDisabled, isSelected, label, linkUrl, onClick, onKeyDown, onKeyDownArrows, ...moreProps } = props;
 
-  const cn = classNames("tab", { "tab--is-active": isSelected }, { "tab--is-disabled": isDisabled }, className);
+  const { className, isDisabled, isSelected, label, linkUrl, onClick, onKeyDown, onKeyDownArrows, ...moreProps } = props;
+  
+  const _isDisabled = context.isDisabled || props.isDisabled;
+
+  const cn = classNames("tab", { "tab--is-active": isSelected }, { "tab--is-disabled": _isDisabled }, className);
 
   const handleKeyDown = event => {
     const leftArrowKey = 37;
@@ -46,8 +49,8 @@ const Tab = props => {
     onKeyDown(event);
   };
 
-  const handleClick = isDisabled ? () => {} : onClick;
-  const tabIndex = isDisabled ? -1 : 0;
+  const handleClick = _isDisabled ? () => {} : onClick;
+  const tabIndex = _isDisabled ? -1 : 0;
 
   if (linkUrl) {
     return (
