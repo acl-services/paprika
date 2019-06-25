@@ -89,6 +89,8 @@ const SwitchStyles = ({ isDisabled, size }) => `
     box-sizing: border-box;
   }
 
+  ${UnderlaySizeStyles[size]}
+
   ${UnderlayStyled} {
     ${UnderlaySizeStyles[size]}
   }
@@ -115,8 +117,9 @@ const SwitchStyles = ({ isDisabled, size }) => `
     }
   }
 
-  ${isDisabled &&
-    `
+  ${
+    isDisabled
+      ? `
       ${UnderlayStyled} {
         box-shadow: none;
       }
@@ -147,7 +150,9 @@ const SwitchStyles = ({ isDisabled, size }) => `
           background-color: ${tokens.color.blackLighten60};
         }
       }
-    `}
+    `
+      : ""
+  }
 `;
 
 export default SwitchStyles;
