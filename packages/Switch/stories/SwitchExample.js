@@ -3,15 +3,15 @@ import L10n from "@paprika/l10n";
 import Switch from "../src/Switch";
 
 function Example(props) {
-  const [value, setValue] = React.useState(true);
+  const [isChecked, setIsChecked] = React.useState(true);
 
   function handleChange() {
-    setValue(!value);
+    setIsChecked(!isChecked);
   }
 
   return (
     <L10n>
-      <Switch value={value} onChange={handleChange} {...props} />
+      <Switch isChecked={isChecked} onChange={handleChange} {...props} />
     </L10n>
   );
 }

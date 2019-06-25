@@ -1,57 +1,58 @@
 import React from "react";
 import PropTypes from "prop-types";
 import { ShirtSizes } from "@paprika/helpers/lib/customPropTypes";
+import RawButton from "@paprika/raw-button";
 
-import SwitchStyled, { KnobStyled, UnderlayStyled } from "./Switch.styles";
+import SwitchStyles, { KnobStyled, UnderlayStyled } from "./Switch.styles";
 
 const propTypes = {
-  /** Descriptive a11y text for assistive technologies. By default, text from children node will be used. */
+  /** Descriptive a11y text for assistive technologies. Typically required. */
   a11yText: PropTypes.string,
 
   /** If click events are allowed to propagate up the DOM tree. */
   canPropagate: PropTypes.bool,
 
-  /** If the button is disabled. */
+  /** If the switch is on. */
+  isChecked: PropTypes.bool,
+
+  /** If the switch is disabled. */
   isDisabled: PropTypes.bool,
 
   /** Callback to be executed when the switch is toggled on or off. Typically required. */
   onChange: PropTypes.func,
 
   /** Size of the switch. */
-  size: ShirtSizes,
-
-  /** Status of switch. */
-  value: PropTypes.bool,
+  size: PropTypes.oneOf(ShirtSizes.DEFAULT),
 };
 
 const defaultProps = {
   a11yText: null,
   canPropagate: true,
+  isChecked: false,
   isDisabled: false,
   onChange: () => {},
   size: "medium",
-  value: true,
 };
 
 function Switch(props) {
-  const { a11yText, canPropagate, isDisabled, size, onChange, value, ...moreProps } = props;
+  const { a11yText, canPropagate, isChecked, isDisabled, size, onChange, ...moreProps } = props;
 
   return (
-    <SwitchStyled
+    <RawButton
+      css={SwitchStyles}
       role="switch"
       a11yText={a11yText}
-      aria-checked={value}
+      aria-checked={isChecked}
       canPropagate={canPropagate}
       isDisabled={isDisabled}
-      isSwitchedOn={value}
       onClick={onChange}
       size={size}
       {...moreProps}
     >
-      <UnderlayStyled isSwitchedOn={value} isDisabled={isDisabled} size={size}>
-        <KnobStyled isDisabled={isDisabled} size={size} />
+      <UnderlayStyled>
+        <KnobStyled />
       </UnderlayStyled>
-    </SwitchStyled>
+    </RawButton>
   );
 }
 

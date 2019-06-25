@@ -1,7 +1,18 @@
-import styled, { css } from "styled-components";
+import styled from "styled-components";
 import tokens from "@paprika/tokens";
 import stylers from "@paprika/stylers";
-import RawButton from "@paprika/raw-button";
+
+const KnobPositionStyles = {
+  small: `
+    transform: translateX(12px);
+  `,
+  medium: `
+    transform: translate(20px, 0);
+  `,
+  large: `
+    transform: translate(28px);
+  `,
+};
 
 const KnobSizeStyles = {
   small: `
@@ -36,38 +47,14 @@ const UnderlaySizeStyles = {
     width: 28px;
   `,
   medium: `
-  height:  ${stylers.spacer(3)};
-  width: 44px;
+    height:  ${stylers.spacer(3)};
+    width: 44px;
   `,
   large: `
-  height:${stylers.spacer(4)};
-  width: 60px;
+    height:${stylers.spacer(4)};
+    width: 60px;
   `,
 };
-
-const KnobPositionStyles = {
-  small: `
-  transform: translateX(12px);
-  `,
-  medium: `
-    transform: translate(20px, 0);
-  `,
-  large: `
-  transform: translate(28px);
-  `,
-};
-
-const DisabledKnobStyles = `
-  box-shadow: none;
-  &::after {
-    content: "";
-    display: block;
-    left: 50%;
-    position: absolute;
-    width: 2px;
-    transform: rotate(45deg) translateX(-50%);
-  }
-`;
 
 export const KnobStyled = styled.span`
   background-color: ${tokens.color.white};
@@ -78,8 +65,6 @@ export const KnobStyled = styled.span`
   position: absolute;
   top: 2px;
   transition: transform 0.25s ease;
-
-  ${({ size }) => KnobSizeStyles[size]}
 `;
 
 export const UnderlayStyled = styled.span`
@@ -94,11 +79,9 @@ export const UnderlayStyled = styled.span`
   -webkit-user-select: none;
   -ms-user-select: none;
   vertical-align: middle;
-
-  ${({ size }) => UnderlaySizeStyles[size]}
 `;
 
-const SwitchStyled = styled(RawButton)`
+const SwitchStyles = ({ isDisabled, size }) => `
   position: relative;
 
   &,
@@ -106,7 +89,13 @@ const SwitchStyled = styled(RawButton)`
     box-sizing: border-box;
   }
 
-  ${({ size }) => UnderlaySizeStyles[size]}
+  ${UnderlayStyled} {
+    ${UnderlaySizeStyles[size]}
+  }
+
+  ${KnobStyled} {
+    ${KnobSizeStyles[size]}
+  }
 
   &:focus {
     box-shadow: none;
@@ -122,46 +111,43 @@ const SwitchStyled = styled(RawButton)`
     }
 
     ${KnobStyled} {
-      ${({ size }) => KnobPositionStyles[size]}
+      ${KnobPositionStyles[size]}
     }
   }
 
-  &[aria-checked="false"] {
-  }
-
-  ${({ isDisabled }) =>
-    isDisabled &&
-    css`
+  ${isDisabled &&
+    `
       ${UnderlayStyled} {
         box-shadow: none;
       }
 
-      &[aria-checked="true"] {
-        ${UnderlayStyled} {
-          background-color: ${tokens.color.greenLighten30};
-        }
+      ${KnobStyled} {
+        box-shadow: none;
 
-        ${KnobStyled} {
-          ${DisabledKnobStyles}
-          &::after {
-            background-color: ${tokens.color.greenLighten30};
-          }
+        &::after {
+          content: "";
+          display: block;
+          left: 50%;
+          position: absolute;
+          width: 2px;
+          transform: rotate(45deg) translateX(-50%);
+        }
+      }
+
+      &[aria-checked="true"] {
+        ${UnderlayStyled},
+        ${KnobStyled}::after {
+          background-color: ${tokens.color.greenLighten30};
         }
       }
 
       &[aria-checked="false"] {
-        ${UnderlayStyled} {
+        ${UnderlayStyled},
+        ${KnobStyled}::after {
           background-color: ${tokens.color.blackLighten60};
-        }
-
-        ${KnobStyled} {
-          ${DisabledKnobStyles}
-          &::after {
-            background-color: ${tokens.color.blackLighten60};
-          }
         }
       }
     `}
 `;
 
-export default SwitchStyled;
+export default SwitchStyles;
