@@ -4,7 +4,7 @@ import { Story, Rule } from "storybook/assets/styles/common.styles";
 import { Box } from "./stylers.stories.styles";
 import "./helpers.scss";
 
-storiesOf("Stylers", module)
+storiesOf("Core | Stylers", module)
   .add("Sass Mixins", () => (
     <Story className="story--stylers">
       <h1>Mixin Examples</h1>

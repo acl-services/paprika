@@ -12,7 +12,7 @@ import WithDisabledReadOnlyStory from "./examples/WithDisabledReadOnly";
 import TypesStory from "./examples/Types";
 import WithRef from "./examples/WithRef";
 
-storiesOf("Input", module)
+storiesOf("Forms|Input", module)
   .addDecorator(withKnobs)
   .add("Showcase", ShowcaseStory)
   .add("Sizes", () => <SizesStory />)
@@ -22,13 +22,13 @@ storiesOf("Input", module)
   .add("Types", () => <TypesStory />)
   .add("With Ref", () => <WithRef />);
 
-storiesOf("Input/Automation Tests/Screener", module).add("InputExample", () => (
+storiesOf("Forms|Input/Automation Tests/Screener", module).add("InputExample", () => (
   <InputStory>
     <InputExample placeholder="First Name" size="large" />
   </InputStory>
 ));
 
-storiesOf("Input/Automation Tests/Accessibility", module).add("Default", () => (
+storiesOf("Forms|Input/Automation Tests/Accessibility", module).add("Default", () => (
   <InputStory>
     <InputExample placeholder="First Name" size="large" onChange={() => {}} />
   </InputStory>

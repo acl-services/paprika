@@ -1,5 +1,3 @@
-![Paprika logo](https://user-images.githubusercontent.com/10501940/52080175-07327400-254c-11e9-9748-7a00f93a13a8.png)
-
 # Paprika
 
 ## Getting started
@@ -99,3 +97,5 @@ The L10n component uses only JavaScript functions -- no YAML parsing is needed. 
 ```sh
 $ yarn translate
 ```
+
+![](https://media.giphy.com/media/xUPGcg7PQADzQe2SeQ/giphy.gif)

@@ -14,7 +14,7 @@ import {
   ZStep,
 } from "./stylers.stories.styles";
 
-storiesOf("Stylers", module)
+storiesOf("Core | Stylers", module)
   .add("JS Include Examples", () => (
     <Story>
       <h1>Includes</h1>

@@ -1,8 +1,11 @@
 import React from "react";
 import ReactDOM from "react-dom";
-import { addParameters, configure } from "@storybook/react";
+import { addParameters, configure, addDecorator } from "@storybook/react";
 import paprikaTheme from "./paprikaTheme";
 import axeConfig from "./axeConfig";
+import { withA11y } from "@storybook/addon-a11y";
+
+addDecorator(withA11y);
 
 import "./reset.scss";
 
@@ -12,12 +15,19 @@ addParameters({
   },
 });
 
-const axe = require("react-axe");
-axe(React, ReactDOM, 10000, axeConfig);
+// const axe = require("react-axe");
+// axe(React, ReactDOM, 10000, axeConfig);
 
-require("./welcome.story");
+const meFirst = ["/Button/", "/RawButton/", "/Popover/", "/Stylers/"];
 
 const req = require.context("../packages", true, /\.stories\.js$/);
+const stack = req.keys();
+
+const ordered = meFirst.flatMap(comp => stack.filter(filename => filename.match(comp)));
+const rest = stack.filter(filename => !ordered.includes(filename));
+
+require("./welcome.story");
 configure(() => {
-  req.keys().forEach(filename => req(filename));
+  ordered.forEach(filename => req(filename));
+  rest.forEach(filename => req(filename));
 }, module);

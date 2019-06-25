@@ -6,7 +6,7 @@ import ScreenerStory from "./examples/test/Screener";
 import ShowcaseStory from "./examples/Showcase";
 import * as Select from "./examples/Basic";
 
-storiesOf("Select", module)
+storiesOf("Forms | Select", module)
   .addDecorator(withKnobs)
   .add("Showcase", ShowcaseStory)
   .add("With Selected Option", () => <Select.WithSelectedOption />)
