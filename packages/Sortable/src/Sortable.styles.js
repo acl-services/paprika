@@ -1,5 +1,8 @@
-const sortableStyles = `
-  &, * {
+import { css } from "styled-components";
+
+const sortableStyles = css`
+  &,
+  * {
     box-sizing: border-box;
   }
 
