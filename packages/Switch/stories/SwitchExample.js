@@ -1,5 +1,4 @@
 import React from "react";
-import L10n from "@paprika/l10n";
 import Switch from "../src/Switch";
 
 function Example(props) {
