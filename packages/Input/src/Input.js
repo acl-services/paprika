@@ -81,12 +81,14 @@ const Input = props => {
   } = props;
 
   const styleProps = {
-    size: props.size,
+    size,
+    hasClearButton,
   };
 
   if (a11yText) moreProps["aria-label"] = a11yText;
 
   const rootClasses = classNames(
+    "form-input",
     `form-input--${size}`,
     { "form-input--has-icon": icon },
     { "form-input--is-disabled": isDisabled },
