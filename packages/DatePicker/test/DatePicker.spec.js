@@ -23,7 +23,7 @@ function render(props = {}) {
     rerender: updatedProps => {
       rerender(
         <L10n>
-          <DatePicker {...updatedProps}>
+          <DatePicker onChange={handleChange} {...moreProps} {...updatedProps}>
             <DatePicker.Input data-qa-anchor="datepicker.input" />
           </DatePicker>
         </L10n>
