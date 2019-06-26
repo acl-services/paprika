@@ -44,7 +44,7 @@ function Dialog(props) {
 
   return (
     <div
-      aria-modal="true"
+      aria-modal={isInline ? null : "true"}
       css={dialogStyles}
       isInline={isInline}
       isOpen={isOpen}

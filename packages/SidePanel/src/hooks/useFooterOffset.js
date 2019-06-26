@@ -1,7 +1,7 @@
 import React from "react";
 import debounce from "lodash.debounce";
 
-const useOffsetScrollFooter = (height, ref = null) => {
+const useFooterOffset = (height, ref = null, isSticky) => {
   const [offsetY, setOffsetY] = React.useState(0);
   const [opacity, setOpacity] = React.useState(1);
 
@@ -18,18 +18,23 @@ const useOffsetScrollFooter = (height, ref = null) => {
       handleOffset();
     }
 
-    if (ref) {
-      ref.addEventListener("scroll", handleScrolling, false);
+    if (ref.current) {
+      ref.current.addEventListener("scroll", handleScrolling, false);
     }
 
     return () => {
-      if (ref) {
-        ref.removeEventListener("scroll", handleScrolling, false);
+      if (ref.current) {
+        ref.current.removeEventListener("scroll", handleScrolling, false);
       }
     };
   }, [handleOffset, ref]);
 
-  return { offsetY, opacity };
+  let style = {};
+  if (isSticky) {
+    style = { bottom: `${offsetY}px`, opacity };
+  }
+
+  return { style, isSticky };
 };
 
-export default useOffsetScrollFooter;
+export default useFooterOffset;

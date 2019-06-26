@@ -1,7 +1,7 @@
 import React from "react";
 import PropTypes from "prop-types";
 import { footerCSS } from "./Footer.styles";
-import useOffsetScrollFooter from "../../hooks/useOffsetScrollFooter";
+import { useFooterOffset } from "../../hooks";
 
 const propTypes = {
   children: PropTypes.node.isRequired,
@@ -23,14 +23,10 @@ export default function Footer(props) {
     ...moreProps
   } = props;
 
-  const { offsetY, opacity } = useOffsetScrollFooter(height, refSidePanel.current);
+  const footerOffset = useFooterOffset(height, refSidePanel, isSticky);
 
-  let style = {};
-  if (isSticky) {
-    style = { bottom: `${offsetY}px`, opacity };
-  }
   return (
-    <div css={footerCSS} style={style} isSticky={isSticky} {...moreProps}>
+    <div css={footerCSS} {...footerOffset} {...moreProps}>
       {children}
     </div>
   );
