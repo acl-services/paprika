@@ -69,7 +69,7 @@ function SidePanel(props) {
   } = props;
 
   // Hooks
-  const [isSidePanelVisible, setIsSidePanelVisible] = React.useState(props.isOpen);
+  const [isVisible, setIsVisible] = React.useState(props.isOpen);
   const offsetScroll = useOffsetScroll(offsetY);
   useEscapeKey(props.isOpen, onClose);
 
@@ -99,7 +99,7 @@ function SidePanel(props) {
 
   const handleAnimationEnd = () => {
     if (!props.isOpen) {
-      setIsSidePanelVisible(false);
+      setIsVisible(false);
       onAfterClose();
 
       if (triggerExtracted) {
@@ -113,7 +113,7 @@ function SidePanel(props) {
 
   React.useEffect(() => {
     if (props.isOpen) {
-      setIsSidePanelVisible(true);
+      setIsVisible(true);
     }
   }, [props.isOpen]);
 
@@ -130,7 +130,7 @@ function SidePanel(props) {
 
   let sidePanel = null;
 
-  if (isSidePanelVisible) {
+  if (isVisible) {
     const dialog = (
       <Dialog
         onAnimationEnd={handleAnimationEnd}

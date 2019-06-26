@@ -93,7 +93,7 @@ describe("SidePanel", () => {
       const fn = jest.fn();
       const { getByTestId } = render({
         onClose: fn,
-        children: <SidePanel.Footer data-qa-anchor="sidepanel.footer" />,
+        children: <SidePanel.Footer data-qa-anchor="sidepanel.footer">Footer</SidePanel.Footer>,
       });
 
       expect(getByTestId("sidepanel.footer")).toBeVisible();
