@@ -19,7 +19,7 @@ const defaultProps = {
   size: "medium",
 };
 
-// shell component for enhancing UXDeveloper
+// shell component for enhancing development experience
 function DateInput() {
   return null;
 }

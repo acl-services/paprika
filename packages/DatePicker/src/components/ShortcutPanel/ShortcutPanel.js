@@ -10,25 +10,25 @@ import tokens from "@paprika/tokens";
 import useI18n from "@paprika/l10n/lib/useI18n";
 
 import {
-  ActionBarStyled,
-  ColumnHeaderStyled,
-  ContainerStyled,
-  LabelStyled,
-  MonthListStyled,
-  OptionWrapperStyled,
-  PanelContentStyled,
-  YearListStyled,
+  actionBarStyles,
+  columnHeaderStyles,
+  containerStyles,
+  labelStyles,
+  listStyles,
+  optionWrapperStyles,
+  panelContentStyles,
+  yearListStyles,
 } from "./ShortcutPanel.styles";
 
 const propTypes = {
   date: momentPropTypes.momentObj.isRequired,
-  isOpen: PropTypes.bool.isRequired,
+  isVisible: PropTypes.bool.isRequired,
   onCancel: PropTypes.func.isRequired,
   onConfirm: PropTypes.func.isRequired,
 };
 
 function ShortcutPanel(props) {
-  const { date, isOpen, onCancel, onConfirm } = props;
+  const { date, isVisible, onCancel, onConfirm } = props;
   const [pageIndex, setPageIndex] = React.useState(0);
   const [selectedMonth, setSelectedMonth] = React.useState(date.month());
   const [selectedyear, setSelectedYear] = React.useState(date.year());
@@ -59,7 +59,7 @@ function ShortcutPanel(props) {
 
   function renderMonthList() {
     return moment.monthsShort().map((month, monthIndex) => (
-      <OptionWrapperStyled key={month}>
+      <div css={optionWrapperStyles} key={month}>
         <input
           type="radio"
           name="month"
@@ -68,10 +68,10 @@ function ShortcutPanel(props) {
           defaultChecked={monthIndex === selectedMonth}
           onChange={handleChange}
         />
-        <LabelStyled htmlFor={monthIndex} isSelected={monthIndex === selectedMonth}>
+        <label css={labelStyles} htmlFor={monthIndex} isSelected={monthIndex === selectedMonth}>
           {month}
-        </LabelStyled>
-      </OptionWrapperStyled>
+        </label>
+      </div>
     ));
   }
 
@@ -86,7 +86,7 @@ function ShortcutPanel(props) {
     }
 
     return list.map(year => (
-      <OptionWrapperStyled key={year}>
+      <div css={optionWrapperStyles} key={year}>
         <input
           type="radio"
           name="year"
@@ -95,10 +95,10 @@ function ShortcutPanel(props) {
           defaultChecked={year === selectedyear}
           onChange={handleChange}
         />
-        <LabelStyled htmlFor={year} isSelected={year === selectedyear}>
+        <label css={labelStyles} htmlFor={year} isSelected={year === selectedyear}>
           {year}
-        </LabelStyled>
-      </OptionWrapperStyled>
+        </label>
+      </div>
     ));
   }
 
@@ -111,14 +111,14 @@ function ShortcutPanel(props) {
   }
 
   return (
-    <ContainerStyled data-qa-anchor="datepicker.calendar.shortcut" isOpen={isOpen}>
-      <PanelContentStyled>
-        <MonthListStyled>
-          <ColumnHeaderStyled>{I18n.t("datePicker.month")}</ColumnHeaderStyled>
+    <div css={containerStyles} data-qa-anchor="datepicker.calendar.shortcut" isVisible={isVisible}>
+      <div css={panelContentStyles}>
+        <div css={listStyles}>
+          <div css={columnHeaderStyles}>{I18n.t("datePicker.month")}</div>
           <div role="group">{renderMonthList()}</div>
-        </MonthListStyled>
-        <YearListStyled>
-          <ColumnHeaderStyled isYear>
+        </div>
+        <div css={yearListStyles}>
+          <div css={columnHeaderStyles} isYear>
             <Button.Icon onClick={handleClickPrev} kind="minor" size="small">
               <ArrowLeft color={tokens.textColor.icon} />
             </Button.Icon>
@@ -126,19 +126,19 @@ function ShortcutPanel(props) {
             <Button.Icon onClick={handleClickNext} kind="minor" size="small">
               <ArrowRight color={tokens.textColor.icon} />
             </Button.Icon>
-          </ColumnHeaderStyled>
+          </div>
           <div role="group">{renderYearList()}</div>
-        </YearListStyled>
-      </PanelContentStyled>
-      <ActionBarStyled>
+        </div>
+      </div>
+      <div css={actionBarStyles}>
         <Button kind="primary" onClick={handleConfirm} size="small" data-qa-anchor="datepicker.calendar.apply">
           {I18n.t("actions.apply")}
         </Button>
         <Button kind="minor" onClick={onCancel} size="small" data-qa-anchor="datepicker.calendar.cancel">
           {I18n.t("actions.cancel")}
         </Button>
-      </ActionBarStyled>
-    </ContainerStyled>
+      </div>
+    </div>
   );
 }
 

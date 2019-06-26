@@ -1,23 +1,24 @@
-import styled from "styled-components";
+import { css } from "styled-components";
+
 import tokens from "@paprika/tokens";
 import stylers from "@paprika/stylers";
-import Button from "@paprika/button";
 
-import CalendarBaseStyle from "./CalendarBase.styles";
-import { HoveredItemStyles, SelectedItemStyles } from "../../shared.styles";
+import calendarBaseStyles from "./CalendarBase.styles";
+import { hoveredItemStyles, selectedItemStyles, visuallyHiddenStyles } from "../../shared.styles";
 
-export const ArrowIconStyles = `
-  > svg {
+export const arrowIconStyles = css`
+  > svg[role="presentation"] {
+    ${stylers.fontSize(-1)}
+
     display: block;
   }
 `;
 
-const IconButtonStyles = `
+const iconButtonStyles = css`
   transition: background-color 0.2s ease-out;
-  
 
   &:hover {
-    background-color: ${stylers.alpha(tokens.color.black, 0.1)}; 
+    background-color: ${stylers.alpha(tokens.color.black, 0.1)};
     border-color: ${tokens.border.hoverColor};
   }
 
@@ -32,25 +33,14 @@ const IconButtonStyles = `
   }
 `;
 
-const CalendarStyled = styled.div`
-  ${CalendarBaseStyle}
-
-  ${({ shouldHidden }) =>
-    shouldHidden &&
-    `
-    width: 0;
-    height: 0;
-    overflow: hidden;
-  `}
-
-  * {
-    box-sizing: border-box;
-    font-family: ${tokens.fontFamily.default};
-  }
+const calendarStyles = css`
+  ${calendarBaseStyles}
 
   &:focus {
     outline: none;
   }
+
+  ${({ isVisible }) => !isVisible && visuallyHiddenStyles}
 
   .DayPicker_transitionContainer__horizontal {
     transition: none;
@@ -127,15 +117,17 @@ const CalendarStyled = styled.div`
   }
 
   .DayPickerNavigation_button {
+    ${iconButtonStyles}
+
     align-items: center;
     border-radius: ${tokens.border.radius};
     display: flex;
     height: ${stylers.spacer(3)};
     justify-content: center;
-    width: ${stylers.spacer(3)};
     padding: ${tokens.spaceSm};
     position: absolute;
     top: ${tokens.space};
+    width: ${stylers.spacer(3)};
 
     &:first-child {
       left: ${tokens.space};
@@ -144,8 +136,6 @@ const CalendarStyled = styled.div`
     &:last-child {
       right: ${tokens.space};
     }
-
-    ${IconButtonStyles}
   }
 
   .DayPickerNavigation_button__horizontalDefault {
@@ -159,47 +149,50 @@ const CalendarStyled = styled.div`
   }
 `;
 
-export const CalendarWrapperStyled = styled.div`
+export const calendarWrapperStyles = css`
+  &,
+  * {
+    box-sizing: border-box;
+  }
+
   &:focus {
     outline: none;
   }
 `;
 
-export const DayTriggerStyle = props => {
-  const SelectedStyle = `
-    ${SelectedItemStyles}
+const dayTriggerSelectedStyle = css`
+  ${selectedItemStyles}
 
-    &:hover {
-      border: 0;
-    }
-  `;
-  const TodayStyle = `
-    border: 1px solid ${tokens.border.color};
-    font-weight: bold;
-  `;
+  &:hover {
+    border: 0;
+  }
+`;
 
-  return `
-    align-items: center;
-    border-radius: ${tokens.border.radius};
-    box-sizing: border-box;
-    color: ${tokens.color.black};
-    display: inline-flex;
-    height: 27px;
-    justify-content: center;
-    width: 33px;
+const dayTriggerTodayStyle = css`
+  border: 1px solid ${tokens.border.color};
+  font-weight: bold;
+`;
 
+export const dayTriggerStyles = css`
+  align-items: center;
+  border-radius: ${tokens.border.radius};
+  box-sizing: border-box;
+  color: ${tokens.color.black};
+  display: inline-flex;
+  height: 27px;
+  justify-content: center;
+  width: 33px;
 
-    &:hover {
-      ${HoveredItemStyles}
-    }
+  &:hover {
+    ${hoveredItemStyles}
+  }
 
-    ${props.isSelected ? SelectedStyle : ""}
-    ${props.isToday ? TodayStyle : ""}
-  `;
-};
+  ${({ isSelected }) => (isSelected ? dayTriggerSelectedStyle : null)}
+  ${({ isToday }) => (isToday ? dayTriggerTodayStyle : null)}
+`;
 
-export const MonthHeaderButtonStyled = styled(Button)`
+export const monthHeaderButtonStyles = css`
   font-weight: normal;
 `;
 
-export default CalendarStyled;
+export default calendarStyles;

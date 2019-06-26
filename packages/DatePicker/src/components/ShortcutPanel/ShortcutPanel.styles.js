@@ -1,9 +1,11 @@
-import styled, { css } from "styled-components";
+import { css } from "styled-components";
+
 import tokens from "@paprika/tokens";
 import stylers from "@paprika/stylers";
-import { HoveredItemStyles, SelectedItemStyles } from "../../shared.styles";
 
-export const ActionBarStyled = styled.div`
+import { hoveredItemStyles, selectedItemStyles, visuallyHiddenStyles } from "../../shared.styles";
+
+export const actionBarStyles = css`
   align-items: center;
   background: ${tokens.color.blackLighten80};
   bottom: 0;
@@ -24,7 +26,12 @@ export const ActionBarStyled = styled.div`
   }
 `;
 
-export const ColumnHeaderStyled = styled.div`
+const yearColumnHeaderStyles = css`
+  border-left: 1px solid ${tokens.border.color};
+  justify-content: space-between;
+`;
+
+export const columnHeaderStyles = css`
   align-items: center;
   background: ${tokens.color.blackLighten80};
   border-bottom: 1px solid ${tokens.border.color};
@@ -35,36 +42,26 @@ export const ColumnHeaderStyled = styled.div`
   justify-content: center;
   padding: ${tokens.space};
 
-  ${({ isYear }) =>
-    isYear &&
-    css`
-      border-left: 1px solid ${tokens.border.color};
-      justify-content: space-between;
-    `}
+  ${({ isYear }) => (isYear ? yearColumnHeaderStyles : null)}
 `;
 
-export const ContainerStyled = styled.div`
+export const containerStyles = css`
+  ${stylers.fontSize(-1)};
+
   border: 1px solid ${tokens.border.color};
   border-radius: ${tokens.border.radius};
   box-sizing: border-box;
   color: ${tokens.color.black};
-  font-family: ${tokens.fontFamily.default};
-  ${stylers.fontSize(-1)}
   height: 245px;
   overflow: hidden;
   position: relative;
   width: 257px;
 
-  ${({ isOpen }) =>
-    !isOpen &&
-    `
-      width: 0;
-      height: 0;
-  `}
-
   &:focus {
     outline: none;
   }
+
+  ${props => !props.isVisible && visuallyHiddenStyles}
 
   * {
     box-sizing: border-box;
@@ -83,7 +80,7 @@ export const ContainerStyled = styled.div`
   }
 `;
 
-export const LabelStyled = styled.label`
+export const labelStyles = css`
   align-items: center;
   border-radius: ${tokens.border.radius};
   cursor: pointer;
@@ -93,27 +90,19 @@ export const LabelStyled = styled.label`
   width: 46px;
 
   &:hover {
-    ${HoveredItemStyles}
+    ${hoveredItemStyles}
   }
 
-  ${({ isSelected }) =>
-    isSelected &&
-    css`
-      ${SelectedItemStyles}
-    `}
+  ${({ isSelected }) => (isSelected ? selectedItemStyles : null)}
 `;
 
-export const ListStyles = css`
+export const listStyles = css`
   display: flex;
   flex-direction: column;
   width: 50%;
 `;
 
-export const MonthListStyled = styled.div`
-  ${ListStyles}
-`;
-
-export const OptionWrapperStyled = styled.div`
+export const optionWrapperStyles = css`
   margin-bottom: 1px;
   margin-right: ${tokens.spaceLg};
 
@@ -126,13 +115,13 @@ export const OptionWrapperStyled = styled.div`
   }
 `;
 
-export const PanelContentStyled = styled.div`
+export const panelContentStyles = css`
   display: flex;
   height: calc(100% - ${stylers.spacer(5)});
 `;
 
-export const YearListStyled = styled.div`
-  ${ListStyles}
+export const yearListStyles = css`
+  ${listStyles}
 
   > div[role="group"] {
     border-left: 1px solid ${tokens.border.color};

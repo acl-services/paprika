@@ -12,9 +12,10 @@ import isElementContainsFocus from "@paprika/helpers/lib/dom/isElementContainsFo
 
 import Calendar from "./components/Calendar";
 import DateInput from "./components/DateInput";
-
-import { CalendarStyles } from "./DatePicker.styles";
+import DatePickerPopover from "./components/DatePickerPopover";
 import { extractChildrenProps } from "./helpers";
+
+import { calendarPopoverStyles } from "./DatePicker.styles";
 
 const propTypes = {
   children: PropTypes.node,
@@ -25,7 +26,7 @@ const propTypes = {
   /** Selected date in moment object. */
   date: momentPropTypes.momentObj,
 
-  /** Date format used while displaying date. It should be human-friendly and spelled out. */
+  /** Date format used while displaying date. It should be human-friendly and spelled out, default is MMMM DD,YYYY */
   humanFormat: PropTypes.string,
 
   /** Should be disabled or not, default is false. */
@@ -42,7 +43,7 @@ const defaultProps = {
   children: null,
   dataFormat: "MM/DD/YYYY",
   date: null,
-  humanFormat: undefined,
+  humanFormat: null,
   isDisabled: false,
   isReadOnly: false,
 };
@@ -51,18 +52,10 @@ function DatePicker(props) {
   const I18n = useI18n();
 
   // Props
-  const {
-    children,
-    dataFormat,
-    date,
-    humanFormat = I18n.t("datePicker.confirmation_format"),
-    isDisabled,
-    isReadOnly,
-    onChange,
-  } = props;
+  const { children, dataFormat, date, humanFormat, isDisabled, isReadOnly, onChange } = props;
 
   function formatDateProp(format) {
-    return date && date.isValid() ? moment.utc(date).format(format) : "";
+    return date && date.isValid() ? moment.utc(date).format(format || I18n.t("datePicker.confirmation_format")) : "";
   }
 
   // State
@@ -83,7 +76,8 @@ function DatePicker(props) {
   }, [date]);
 
   const debouncedPossibleDate = useDebounce(possibleDate, 300);
-  const extendedInputProps = extractChildrenProps(children);
+  const extendedInputProps = extractChildrenProps(children, DateInput);
+  const extendedPopoverProps = extractChildrenProps(children, DatePickerPopover);
 
   function hideCalendar() {
     if (shouldShowCalendar) setShouldShowCalendar(false);
@@ -165,8 +159,6 @@ function DatePicker(props) {
   function handleKeyUp(event) {
     if (event.key === "Enter") {
       handleInputConfirm();
-    } else if (event.key === "Escape") {
-      hideCalendar();
     } else {
       const updatedPossibleDate = parseInput();
 
@@ -175,19 +167,32 @@ function DatePicker(props) {
     }
   }
 
+  function handleKeyUpOnEscape(event) {
+    if (event.key === "Escape") {
+      hideCalendar();
+    }
+  }
+
   function handleResetPossibleDate() {
     setPossibleDate(null);
   }
 
-  function handleSelect(seletedDate) {
+  function handleSelect(selectedDate) {
     setHasError(false);
-    setConfirmationResult(seletedDate.format(humanFormat));
+    setConfirmationResult(selectedDate.format(humanFormat));
     hideCalendar();
-    handleChange(seletedDate);
+    handleChange(selectedDate);
   }
 
   return (
-    <Popover isOpen={shouldShowCalendar} offset={8} onClose={handleClosePopover} shouldKeepFocus>
+    <Popover
+      offset={8}
+      {...extendedPopoverProps}
+      isOpen={shouldShowCalendar}
+      onClose={handleClosePopover}
+      onKeyUp={handleKeyUpOnEscape}
+      shouldKeepFocus
+    >
       <Input
         hasError={hasError}
         icon={<CalendarIcon />}
@@ -204,13 +209,13 @@ function DatePicker(props) {
       />
 
       <Popover.Content>
-        <div css={CalendarStyles} data-qa-anchor="datepicker.calendar" ref={calendarRef}>
+        <div css={calendarPopoverStyles} data-qa-anchor="datepicker.calendar" ref={calendarRef}>
           <Calendar
             date={date}
+            isVisible={shouldShowCalendar}
+            onSelect={handleSelect}
             possibleDate={debouncedPossibleDate}
             resetPossibleDate={handleResetPossibleDate}
-            onSelect={handleSelect}
-            isOpen={shouldShowCalendar}
           />
         </div>
       </Popover.Content>
@@ -224,5 +229,6 @@ DatePicker.propTypes = propTypes;
 DatePicker.defaultProps = defaultProps;
 
 DatePicker.Input = DateInput;
+DatePicker.Popover = DatePickerPopover;
 
 export default DatePicker;
