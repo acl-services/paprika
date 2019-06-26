@@ -3,7 +3,7 @@ import PropTypes from "prop-types";
 import { ShirtSizes } from "@paprika/helpers/lib/customPropTypes";
 import RawButton from "@paprika/raw-button";
 
-import SwitchStyles, { KnobStyled, UnderlayStyled } from "./Switch.styles";
+import switchStyles, { KnobStyled, UnderlayStyled } from "./Switch.styles";
 
 const propTypes = {
   /** Descriptive a11y text for assistive technologies. Typically required. */
@@ -39,7 +39,7 @@ function Switch(props) {
 
   return (
     <RawButton
-      css={SwitchStyles}
+      css={switchStyles}
       role="switch"
       a11yText={a11yText}
       aria-checked={isChecked}

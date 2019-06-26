@@ -14,7 +14,7 @@ function renderComponent(props = {}) {
   };
 }
 
-describe("RawButton", () => {
+describe("Switch", () => {
   it("Renders with default props", () => {
     const { switchElement } = renderComponent();
 

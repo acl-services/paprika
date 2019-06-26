@@ -1,21 +1,22 @@
-import styled from "styled-components";
+import styled, { css } from "styled-components";
+
 import tokens from "@paprika/tokens";
 import stylers from "@paprika/stylers";
 
 const KnobPositionStyles = {
-  small: `
+  small: css`
     transform: translateX(12px);
   `,
-  medium: `
+  medium: css`
     transform: translate(20px, 0);
   `,
-  large: `
+  large: css`
     transform: translate(28px);
   `,
 };
 
 const KnobSizeStyles = {
-  small: `
+  small: css`
     height: 12px;
     width: 12px;
 
@@ -23,7 +24,7 @@ const KnobSizeStyles = {
       height: 13px;
     }
   `,
-  medium: `
+  medium: css`
     height: 20px;
     width: 20px;
 
@@ -31,7 +32,7 @@ const KnobSizeStyles = {
       height: 21px;
     }
   `,
-  large: `
+  large: css`
     height: 28px;
     width: 28px;
 
@@ -42,16 +43,16 @@ const KnobSizeStyles = {
 };
 
 const UnderlaySizeStyles = {
-  small: `
+  small: css`
     height: ${stylers.spacer(2)};
     width: 28px;
   `,
-  medium: `
-    height:  ${stylers.spacer(3)};
+  medium: css`
+    height: ${stylers.spacer(3)};
     width: 44px;
   `,
-  large: `
-    height:${stylers.spacer(4)};
+  large: css`
+    height: ${stylers.spacer(4)};
     width: 60px;
   `,
 };
@@ -81,7 +82,39 @@ export const UnderlayStyled = styled.span`
   vertical-align: middle;
 `;
 
-const SwitchStyles = ({ isDisabled, size }) => `
+const disabledStyles = css`
+  ${UnderlayStyled} {
+    box-shadow: none;
+  }
+
+  ${KnobStyled} {
+    box-shadow: none;
+
+    &::after {
+      content: "";
+      display: block;
+      left: 50%;
+      position: absolute;
+      width: 2px;
+      transform: rotate(45deg) translateX(-50%);
+    }
+  }
+
+  &[aria-checked="true"] {
+    ${UnderlayStyled},
+    ${KnobStyled}::after {
+      background-color: ${tokens.color.greenLighten30};
+    }
+  }
+
+  &[aria-checked="false"] {
+    ${UnderlayStyled},
+    ${KnobStyled}::after {
+      background-color: ${tokens.color.blackLighten60};
+    }
+  }
+`;
+const switchStyles = css`
   position: relative;
 
   &,
@@ -89,14 +122,14 @@ const SwitchStyles = ({ isDisabled, size }) => `
     box-sizing: border-box;
   }
 
-  ${UnderlaySizeStyles[size]}
+  ${({ size }) => UnderlaySizeStyles[size]}
 
   ${UnderlayStyled} {
-    ${UnderlaySizeStyles[size]}
+    ${({ size }) => UnderlaySizeStyles[size]}
   }
 
   ${KnobStyled} {
-    ${KnobSizeStyles[size]}
+    ${({ size }) => KnobSizeStyles[size]}
   }
 
   &:focus {
@@ -113,46 +146,11 @@ const SwitchStyles = ({ isDisabled, size }) => `
     }
 
     ${KnobStyled} {
-      ${KnobPositionStyles[size]}
+      ${({ size }) => KnobPositionStyles[size]}
     }
   }
 
-  ${
-    isDisabled
-      ? `
-      ${UnderlayStyled} {
-        box-shadow: none;
-      }
-
-      ${KnobStyled} {
-        box-shadow: none;
-
-        &::after {
-          content: "";
-          display: block;
-          left: 50%;
-          position: absolute;
-          width: 2px;
-          transform: rotate(45deg) translateX(-50%);
-        }
-      }
-
-      &[aria-checked="true"] {
-        ${UnderlayStyled},
-        ${KnobStyled}::after {
-          background-color: ${tokens.color.greenLighten30};
-        }
-      }
-
-      &[aria-checked="false"] {
-        ${UnderlayStyled},
-        ${KnobStyled}::after {
-          background-color: ${tokens.color.blackLighten60};
-        }
-      }
-    `
-      : ""
-  }
+  ${({ isDisabled }) => (isDisabled ? disabledStyles : null)}
 `;
 
-export default SwitchStyles;
+export default switchStyles;
