@@ -40,11 +40,13 @@ const propTypes = {
 
   /** Modify the look of the SidePanel */
   kind: PropTypes.oneOf(["default", "child"]),
+
+  /** Render the sidepanel inline */
+  isInline: PropTypes.bool,
 };
 
 const defaultProps = {
-  // this is an internal prop use by <SidePanel.Group /> (Group.js)
-  isInline: false, // eslint-disable-line
+  isInline: false,
   kind: "default",
   offsetY: 0,
   onAfterClose: () => {},
