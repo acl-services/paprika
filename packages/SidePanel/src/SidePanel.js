@@ -33,7 +33,7 @@ const propTypes = {
   isOpen: PropTypes.bool.isRequired,
 
   /** Control the z position of the sidepanel */
-  zIndex: PropTypes.string,
+  zIndex: PropTypes.number,
 
   /** Control y offset of the sidepanel */
   offsetY: PropTypes.number,
@@ -51,7 +51,7 @@ const defaultProps = {
   onClose: null,
   onAfterOpen: () => {},
   width: "33%",
-  zIndex: z(7),
+  zIndex: z.toNumber(7),
 };
 
 function SidePanel(props) {

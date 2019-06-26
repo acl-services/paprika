@@ -33,6 +33,14 @@ export const z = level => {
   return validLevels.includes(level) ? `z-index: ${level};` : `z-index: 1;`;
 };
 
+z.toNumber = level => {
+  const value = z(level)
+    .split("z-index:")[1]
+    .split(";")[0];
+
+  return Number.parseInt(value, 10);
+};
+
 //
 // Color
 //

@@ -15,6 +15,7 @@ export const headerCSS = css`
   height: ${spacer(6)};
   justify-content: space-between;
   min-height: ${spacer(6)};
+  padding: 0 ${spacer(1)};
   width: 100%;
 
   &:focus {
