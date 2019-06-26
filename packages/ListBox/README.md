@@ -39,34 +39,6 @@ function Component() {
 }
 ```
 
-### Props
-
-```js
-/** Child of type <ListBox.Option /> */
-children: PropTypes.node,
-
-/** Disable the entire ListBox */
-isDisabled: PropTypes.bool,
-
-/** Let the user to select multiple options at same time */
-isMulti: PropTypes.bool,
-
-/** This options will display the listbox without the Popover */
-isInline: PropTypes.bool,
-
-/** Indicates if the popover is visible */
-isOpen: PropTypes.bool,
-
-/** Callback returning the current selection on the ListBox */
-onChange: PropTypes.func,
-
-/** Defaults label to display when the ListBox has not option selected */
-placeholder: PropTypes.string,
-
-/** Indicate which is the height for the options container */
-height: PropTypes.number,
-```
-
 You can compose the ListBox with the following components:
 
 - <ListBox.Divider />
