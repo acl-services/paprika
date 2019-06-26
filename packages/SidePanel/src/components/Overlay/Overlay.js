@@ -1,6 +1,6 @@
 import React from "react";
 import PropTypes from "prop-types";
-import RawButton from "@paprika/raw-button";
+import Button from "@paprika/button";
 import useI18n from "@paprika/l10n/lib/useI18n";
 import { visuallyHidden } from "@paprika/stylers/lib/includes";
 import { z } from "@paprika/stylers/lib/helpers";
@@ -38,9 +38,9 @@ export default function Overlay(props) {
   const vh = visuallyHidden;
 
   return (
-    <RawButton {...moreProps} onClick={handleClick} css={overlayCSS}>
+    <Button isSemantic={false} {...moreProps} onClick={handleClick} css={overlayCSS}>
       <span css={vh}>{I18n.t("close")}</span>
-    </RawButton>
+    </Button>
   );
 }
 
