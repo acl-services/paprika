@@ -95,7 +95,7 @@ function SidePanel(props) {
   ]);
 
   const disableBodyOverflow = overlayExtracted || isInline;
-  useBodyOverflow(disableBodyOverflow);
+  useBodyOverflow(disableBodyOverflow, isOpen);
 
   const handleAnimationEnd = () => {
     if (!props.isOpen) {

@@ -3,7 +3,7 @@ import React from "react";
 const useOffsetScroll = offsetY => {
   const [offsetScroll, setOffsetScroll] = React.useState(offsetY);
 
-  React.useEffect(() => {
+  React.useLayoutEffect(() => {
     function handleScroll() {
       const top = window.pageYOffset || document.documentElement.scrollTop;
       if (top <= offsetY) {
