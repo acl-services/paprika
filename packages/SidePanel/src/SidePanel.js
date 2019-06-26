@@ -33,7 +33,7 @@ const propTypes = {
   isOpen: PropTypes.bool.isRequired,
 
   /** Control the z position of the sidepanel */
-  zIndex: PropTypes.number,
+  zIndex: PropTypes.string,
 
   /** Control y offset of the sidepanel */
   offsetY: PropTypes.number,

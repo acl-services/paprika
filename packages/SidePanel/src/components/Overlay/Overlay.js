@@ -14,7 +14,7 @@ const propTypes = {
   hasOutsideClick: PropTypes.bool,
   onClose: PropTypes.func,
   /** Control the z position of the sidepanel overlay */
-  zIndex: PropTypes.number,
+  zIndex: PropTypes.string,
 };
 
 const defaultProps = {
