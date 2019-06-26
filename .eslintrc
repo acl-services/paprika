@@ -51,7 +51,7 @@
     "react/prefer-stateless-function": "off",
     "react-hooks/rules-of-hooks": "error",
     "react-hooks/exhaustive-deps": "warn",
-    "better-styled-components/sort-declarations-alphabetically": 2
+    "better-styled-components/sort-declarations-alphabetically": "error"
   },
   "overrides": [
     {

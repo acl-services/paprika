@@ -8,11 +8,13 @@ const propTypes = {
   children: PropTypes.node.isRequired,
   hasCloseButton: PropTypes.bool,
   kind: PropTypes.oneOf(["default", "primary"]),
+  onClose: PropTypes.func,
 };
 
 const defaultProps = {
   hasCloseButton: true,
   kind: "default",
+  onClose: () => {},
 };
 
 function darkBackgroundProps(kind) {
@@ -28,7 +30,7 @@ const Header = React.forwardRef((props, ref) => {
     hasCloseButton,
     kind,
     // injected by Dialog.js
-    onClose, // eslint-disable-line
+    onClose,
     ...moreProps
   } = props;
 

@@ -2,6 +2,7 @@ import React from "react";
 import PropTypes from "prop-types";
 import RawButton from "@paprika/raw-button";
 import { visuallyHidden } from "@paprika/stylers/lib/includes";
+import { z } from "@paprika/stylers/lib/helpers";
 import { overlayCSS } from "./Overlay.styles";
 
 const propTypes = {
@@ -20,7 +21,7 @@ const defaultProps = {
   background: "#000",
   hasOutsideClick: true,
   onClose: null,
-  zIndex: 99,
+  zIndex: z(6),
 };
 
 export default function Overlay(props) {

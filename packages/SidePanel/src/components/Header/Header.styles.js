@@ -1,4 +1,4 @@
-import { fontSize } from "@paprika/stylers/lib/helpers";
+import { fontSize, spacer } from "@paprika/stylers/lib/helpers";
 import tokens from "@paprika/tokens/lib/tokens";
 import { css } from "styled-components";
 
@@ -7,16 +7,15 @@ const kind = {
   primary: `background: ${tokens.color.purple}; color: ${tokens.color.white};`,
 };
 
-const space = Number.parseInt(tokens.space, 10);
 export const headerCSS = css`
+  align-items: center;
   border-bottom: 1px solid ${tokens.border.color};
   box-sizing: border-box;
-  color: ;
   display: flex;
+  height: ${spacer(6)};
   justify-content: space-between;
-  padding: 12px ${space}px; // creates a 48px height
+  min-height: ${spacer(6)};
   width: 100%;
-  align-items: center;
 
   &:focus {
     outline: 0;

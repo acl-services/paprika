@@ -1,6 +1,7 @@
 import React from "react";
 import ReactDOM from "react-dom";
 import PropTypes from "prop-types";
+import { z } from "@paprika/stylers/lib/helpers";
 import Dialog from "./components/Dialog";
 import Footer from "./components/Footer";
 import Header from "./components/Header";
@@ -8,10 +9,9 @@ import Overlay from "./components/Overlay";
 import Trigger from "./components/Trigger";
 import Group from "./components/Group";
 import FocusTrap from "./components/FocusTrap";
+
 import { extractChildren } from "./helpers";
-import useOffsetScroll from "./hooks/useOffsetScroll";
-import useBodyOverflow from "./hooks/useBodyOverflow";
-import useEscapeKey from "./hooks/useEscapeKey";
+import { useOffsetScroll, useBodyOverflow, useEscapeKey } from "./hooks";
 
 const propTypes = {
   /** The content for the SidePanel. */
@@ -40,9 +40,6 @@ const propTypes = {
 
   /** Modify the look of the SidePanel */
   kind: PropTypes.oneOf(["default", "child"]),
-
-  /** Disable scroll overflow on document.body when SidePanel is open. */
-  disableBodyOverflow: PropTypes.bool,
 };
 
 const defaultProps = {
@@ -54,8 +51,7 @@ const defaultProps = {
   onClose: null,
   onAfterOpen: () => {},
   width: "33%",
-  zIndex: 100,
-  disableBodyOverflow: true,
+  zIndex: z(7),
 };
 
 function SidePanel(props) {
@@ -75,7 +71,6 @@ function SidePanel(props) {
   // Hooks
   const [isSidePanelVisible, setIsSidePanelVisible] = React.useState(props.isOpen);
   const offsetScroll = useOffsetScroll(offsetY);
-  useBodyOverflow(props.disableBodyOverflow);
   useEscapeKey(props.isOpen, onClose);
 
   // Refs
@@ -98,6 +93,9 @@ function SidePanel(props) {
     "SidePanel.Overlay",
     "SidePanel.Trigger",
   ]);
+
+  const disableBodyOverflow = overlayExtracted || isInline;
+  useBodyOverflow(disableBodyOverflow);
 
   const handleAnimationEnd = () => {
     if (!props.isOpen) {
