@@ -36,7 +36,7 @@ export const z = level => {
   return zIsValid(level) ? `z-index: ${level};` : `z-index: 1;`;
 };
 
-z.toNumber = level => {
+export const zValue = level => {
   return zIsValid(level) ? level : 1;
 };
 

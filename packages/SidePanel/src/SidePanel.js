@@ -1,7 +1,7 @@
 import React from "react";
 import ReactDOM from "react-dom";
 import PropTypes from "prop-types";
-import { z } from "@paprika/stylers/lib/helpers";
+import { zValue } from "@paprika/stylers/lib/helpers";
 import Dialog from "./components/Dialog";
 import Footer from "./components/Footer";
 import Header from "./components/Header";
@@ -53,7 +53,7 @@ const defaultProps = {
   onClose: null,
   onAfterOpen: () => {},
   width: "33%",
-  zIndex: z.toNumber(7),
+  zIndex: zValue(7),
 };
 
 function SidePanel(props) {

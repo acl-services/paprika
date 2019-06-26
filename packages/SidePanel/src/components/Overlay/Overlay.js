@@ -3,7 +3,7 @@ import PropTypes from "prop-types";
 import Button from "@paprika/button";
 import useI18n from "@paprika/l10n/lib/useI18n";
 import { visuallyHidden } from "@paprika/stylers/lib/includes";
-import { z } from "@paprika/stylers/lib/helpers";
+import { zValue } from "@paprika/stylers/lib/helpers";
 import { overlayCSS } from "./Overlay.styles";
 
 const propTypes = {
@@ -22,7 +22,7 @@ const defaultProps = {
   background: "#000",
   hasOutsideClick: true,
   onClose: null,
-  zIndex: z.toNumber(6),
+  zIndex: zValue(6),
 };
 
 export default function Overlay(props) {
