@@ -36,7 +36,7 @@ function slideOut() {
 }
 
 export const dialogStyles = css`
-  background: #fff;
+  background: ${tokens.color.white};
   box-shadow: ${tokens.modal.shadow};
   box-sizing: border-box;
   height: 100%;
