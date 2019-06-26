@@ -2,7 +2,7 @@ import React from "react";
 import debounce from "lodash.debounce";
 
 const useFooterOffset = (height, ref = null, isSticky) => {
-  const _refElement = React.useRef(ref);
+  const _refElement = React.useRef(ref.current);
   const [offsetY, setOffsetY] = React.useState(0);
   const [opacity, setOpacity] = React.useState(1);
 
