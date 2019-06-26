@@ -27,18 +27,17 @@ export const lineHeight = (scale = 0) => `
 
 export const spacer = numSpaces => `${Number.parseInt(tokens.space, 10) * numSpaces}px`;
 
-export const z = level => {
+function zIsValid(level) {
   const validLevels = ["auto", "initial", "inherit", "-1", "0", "1", "2", "3", "4", "5", "6", "7"];
+  return validLevels.includes(level);
+}
 
-  return validLevels.includes(level) ? `z-index: ${level};` : `z-index: 1;`;
+export const z = level => {
+  return zIsValid(level) ? `z-index: ${level};` : `z-index: 1;`;
 };
 
 z.toNumber = level => {
-  const value = z(level)
-    .split("z-index:")[1]
-    .split(";")[0];
-
-  return Number.parseInt(value, 10);
+  return zIsValid(level) ? level : 1;
 };
 
 //
