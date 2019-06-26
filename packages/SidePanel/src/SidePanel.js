@@ -58,17 +58,7 @@ const defaultProps = {
 
 function SidePanel(props) {
   // Props
-  const {
-    onAfterClose,
-    onAfterOpen,
-    onClose,
-    width,
-    isInline, // eslint-disable-line
-    kind,
-    offsetY,
-    isOpen,
-    ...moreProps
-  } = props;
+  const { onAfterClose, onAfterOpen, onClose, width, isInline, kind, offsetY, isOpen, ...moreProps } = props;
 
   // Hooks
   const [isVisible, setIsVisible] = React.useState(props.isOpen);
