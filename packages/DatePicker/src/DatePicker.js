@@ -54,9 +54,12 @@ function DatePicker(props) {
   // Props
   const { children, dataFormat, date, humanFormat, isDisabled, isReadOnly, onChange } = props;
 
-  function formatDateProp(format) {
-    return date && date.isValid() ? moment.utc(date).format(format || I18n.t("datePicker.confirmation_format")) : "";
-  }
+  const formatDateProp = React.useCallback(
+    format => {
+      return date && date.isValid() ? moment.utc(date).format(format || I18n.t("datePicker.confirmation_format")) : "";
+    },
+    [I18n, date]
+  );
 
   // State
   const [confirmationResult, setConfirmationResult] = React.useState(formatDateProp(humanFormat));
@@ -73,7 +76,7 @@ function DatePicker(props) {
   React.useEffect(() => {
     setInputtedString(formatDateProp(dataFormat));
     setConfirmationResult(formatDateProp(humanFormat));
-  }, [date]);
+  }, [dataFormat, date, formatDateProp, humanFormat]);
 
   const debouncedPossibleDate = useDebounce(possibleDate, 300);
   const extendedInputProps = extractChildrenProps(children, DateInput);

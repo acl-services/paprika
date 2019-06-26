@@ -28,20 +28,16 @@ import DatePicker from "@paprika/date-picker";
 </DatePicker>;
 ```
 
-### Props
-
-- `children`
-- `dataFormat`
-- `date` Moment object
-- `humanFormat`
-- `isDisabled`
-- `isReadOnly`
-- `onChange` (Required)
-
 #### DatePicker.Input
 
 - `a11yText`
 - `placeholder`
 - `size` `["small", "medium", "large"]`
+
+#### DatePicker.Popover
+
+- `align` `["top", "right", "bottom", "left"]`
+- `offset`
+- `zIndex`
 
 [More detail about these props](https://github.com/acl-services/paprika/blob/master/packages/DatePicker/src/DatePicker.js)
