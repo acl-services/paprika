@@ -22,8 +22,8 @@ export const itemStyles = css`
   }
 
   &:focus {
-    outline: none;
     box-shadow: ${tokens.highlight.active.withBorder.boxShadow};
+    outline: none;
   }
 
   ${({ isDragging }) => (isDragging ? draggingStyles : null)}
@@ -40,16 +40,16 @@ export const itemHandleStyles = css`
 
 export const itemIndexStyles = css`
   ${stylers.fontSize()};
-  flex-shrink: 0;
   align-self: center;
   background: ${tokens.color.blackLighten40};
   border-radius: ${tokens.border.radius};
   color: ${tokens.color.white};
+  flex-shrink: 0;
   height: ${stylers.spacer(4)};
   line-height: ${stylers.spacer(4)};
+  margin: 0 ${tokens.space} 0 0;
   min-width: 1.5em;
   padding: 0 2px;
-  margin: 0 ${tokens.space} 0 0;
   text-align: center;
 `;
 
