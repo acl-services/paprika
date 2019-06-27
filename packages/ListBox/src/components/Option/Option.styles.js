@@ -4,10 +4,10 @@ import tokens from "@paprika/tokens";
 const blueSelected = "#e5f1fe";
 
 export const OptionStyled = styled.li`
-  padding: 4px;
-  margin-bottom: 4px;
-  font-size: 13px;
   border-radius: 3px;
+  font-size: 13px;
+  margin-bottom: 4px;
+  padding: 4px;
 
   &:hover {
     ${props => {

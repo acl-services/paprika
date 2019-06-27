@@ -1,8 +1,8 @@
 import styled from "styled-components";
 
 const NoResultsStyled = styled.div`
-  padding: 8px;
   margin-top: -4px;
+  padding: 8px;
 `;
 
 export default NoResultsStyled;

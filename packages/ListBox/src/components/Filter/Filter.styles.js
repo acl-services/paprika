@@ -7,8 +7,8 @@ export const FilterContainerStyled = styled.div`
 
 export const FilterInputStyled = styled.input`
   background-color: white;
-  border-radius: 3px;
   border: 1px solid #d7d7d7;
+  border-radius: 3px;
   box-shadow: none;
   box-sizing: border-box;
   font-size: 14px;
@@ -32,11 +32,11 @@ export const FilterInputStyled = styled.input`
 `;
 
 export const FilterGroupFilterLabel = styled.label`
+  display: block;
   font-size: 13px;
   font-weight: bold;
-  width: 100%;
-  display: block;
   margin: 4px 0 4px 0;
+  width: 100%;
 
   &:focus {
     background-color: #ffffff;
@@ -46,8 +46,8 @@ export const FilterGroupFilterLabel = styled.label`
 `;
 
 export const FilterSearchIconStyled = styled.div`
-  border-radius: 100%;
   border: solid 2px #bdbdbd;
+  border-radius: 100%;
   box-sizing: border-box;
   color: #000;
   height: 12px;
@@ -60,12 +60,12 @@ export const FilterSearchIconStyled = styled.div`
   width: 12px;
 
   &:before {
+    background-color: #bdbdbd;
     content: "";
+    height: 5px;
+    left: 3px;
     position: absolute;
     top: 9px;
-    left: 3px;
-    height: 5px;
     width: 2px;
-    background-color: #bdbdbd;
   }
 `;
