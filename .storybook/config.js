@@ -1,6 +1,7 @@
 import React from "react";
 import ReactDOM from "react-dom";
 import { addParameters, configure, addDecorator } from "@storybook/react";
+import { DocsPage } from "@storybook/addon-docs/blocks";
 import paprikaTheme from "./paprikaTheme";
 import axeConfig from "./axeConfig";
 import { withA11y } from "@storybook/addon-a11y";
@@ -13,6 +14,7 @@ addParameters({
   options: {
     theme: paprikaTheme,
   },
+  docs: DocsPage,
 });
 
 // const axe = require("react-axe");
@@ -20,13 +22,14 @@ addParameters({
 
 const meFirst = ["/Button/", "/RawButton/", "/Popover/", "/Stylers/"];
 
-const req = require.context("../packages", true, /\.stories\.js$/);
+const req = require.context("../packages", true, /\.stories\.(js|mdx)$/);
 const stack = req.keys();
 
 const ordered = meFirst.flatMap(comp => stack.filter(filename => filename.match(comp)));
 const rest = stack.filter(filename => !ordered.includes(filename));
 
 require("./welcome.story");
+
 configure(() => {
   ordered.forEach(filename => req(filename));
   rest.forEach(filename => req(filename));
