@@ -865,9 +865,9 @@ const calendarBaseStyles = css`
     text-decoration: none;
   }
   .DateRangePicker_closeButton_svg {
+    fill: #cacccd;
     height: 15px;
     width: 15px;
-    fill: #cacccd;
   }
 `;
 

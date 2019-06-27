@@ -8,8 +8,8 @@ import { hoveredItemStyles, selectedItemStyles, visuallyHiddenStyles } from "../
 export const actionBarStyles = css`
   align-items: center;
   background: ${tokens.color.blackLighten80};
-  bottom: 0;
   border-top: 1px solid ${tokens.border.color};
+  bottom: 0;
   box-sizing: border-box;
   display: flex;
   height: ${stylers.spacer(5)};
