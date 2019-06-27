@@ -48,7 +48,6 @@ describe("RawButton", () => {
     const { container } = renderComponent({ isDisabled: true });
 
     expect(container.querySelector('[aria-disabled="true"]')).toBeInTheDocument();
-    expect(container.querySelector('[tabindex="-1"]')).toBeInTheDocument();
   });
 
   it("Fires onClick callback when clicked", () => {
