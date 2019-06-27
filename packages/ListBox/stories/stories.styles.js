@@ -5,14 +5,14 @@ export const Frame = styled.div`
 `;
 
 export const ImageOption = styled.div`
-  width: 115px;
   height: 115px;
   line-height: 115px;
   text-align: center;
+  width: 115px;
 
   img {
-    max-width: 100%;
     max-height: 100%;
+    max-width: 100%;
     vertical-align: middle;
   }
 `;
