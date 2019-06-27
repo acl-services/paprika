@@ -4,13 +4,13 @@ const ListStyled = styled.ul`
   box-sizing: border-box;
   list-style: none;
   margin: 0;
-  padding: 8px;
+  overflow: auto;
 
   li {
     box-sizing: border-box;
   }
 
-  overflow: auto;
+  padding: 8px;
   ${props => {
     const paddingNoResults = props.noResultsFound ? "padding: 0" : "";
     return `

@@ -8,11 +8,11 @@ const isInlineCSS = `
 `;
 
 export const BoxContainerStyled = styled.div`
-  box-sizing: border-box;
   background-color: #ffffff;
-  border-radius: 3px;
   border: 1px solid #d7d7d7;
+  border-radius: 3px;
   box-shadow: 0px 1px 5px rgba(0, 0, 0, 0.07), 0px 7px 17px rgba(0, 0, 0, 0.1);
+  box-sizing: border-box;
   padding: 0;
 
   ${props => {

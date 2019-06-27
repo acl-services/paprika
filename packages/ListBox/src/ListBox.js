@@ -119,6 +119,7 @@ const ListBoxContainer = React.forwardRef((props, ref) => {
   React.useImperativeHandle(ref, imperativeHandle);
 
   // HOOKS
+  // eslint-disable-next-line react/prop-types
   const shouldTriggerKeepFocus = popover && popover.props.shouldKeepFocus;
 
   useAdjustWidth();
@@ -146,6 +147,7 @@ const ListBoxContainer = React.forwardRef((props, ref) => {
 
   if (popover) {
     const PopoverClone = React.cloneElement(popover, {
+      // eslint-disable-next-line react/prop-types
       ...popover.props,
       children: listBox,
     });

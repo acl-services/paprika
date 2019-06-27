@@ -11,8 +11,8 @@ import Button from "../../src";
 const DarkBackground = styled.span`
   background: ${tokens.color.black};
   display: inline-block;
-  padding: ${tokens.space};
   margin-left: ${tokens.space};
+  padding: ${tokens.space};
 `;
 
 function clickHandler() {

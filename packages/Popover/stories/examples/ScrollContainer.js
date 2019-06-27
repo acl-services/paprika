@@ -16,13 +16,13 @@ const PopoverContainer = styled.div`
 `;
 
 const ScrollBox = styled.div`
-  width: 100%;
-  height: 420px;
-  overflow: scroll;
   border: 3px solid #333;
   border-radius: 5px;
+  height: 420px;
   margin: 16px 32px;
+  overflow: scroll;
   position: relative;
+  width: 100%;
 `;
 
 const TrailerBox = styled.div`

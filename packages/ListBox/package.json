@@ -8,9 +8,9 @@
     "@paprika/button": "^0.1.0",
     "@paprika/popover": "^0.1.0",
     "@paprika/raw-button": "^0.1.0",
-    "@paprika/tokens": "^0.1.0",
     "@paprika/stylers": "^0.1.0",
-    "prop-types": "15.5.7",
+    "@paprika/tokens": "^0.1.0",
+    "prop-types": "15.7.2",
     "uuid": "^3.3.2"
   },
   "peerDependencies": {

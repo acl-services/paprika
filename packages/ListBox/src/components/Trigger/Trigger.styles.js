@@ -49,12 +49,12 @@ export const ListBoxTriggerStyled = styled.div`
 export const TriggerActionIconsContainer = styled.div`
   align-items: center;
   display: flex;
+  height: 100%;
   justify-content: center;
+  pointer-events: none;
   position: absolute;
   right: 0;
   top: 0;
-  height: 100%;
-  pointer-events: none;
 `;
 
 export const RawButtonClearButtonStyled = styled(RawButton)`

@@ -11,12 +11,12 @@ const pseudoElement = `
 // css let the IDE recognize css highlight
 export const dividerCSS = css`
   align-items: center;
-  display: flex;
   color: #717171;
-  justify-content: center;
-  width: 100%;
+  display: flex;
   font-size: 12px;
+  justify-content: center;
   padding: 4px;
+  width: 100%;
 
   &:before {
     ${pseudoElement}

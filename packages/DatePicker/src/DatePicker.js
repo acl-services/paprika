@@ -63,7 +63,7 @@ function DatePicker(props) {
   // Effect
   React.useEffect(() => {
     setInputtedString(date ? moment.utc(date).format(dataFormat) : "");
-  }, [date]);
+  }, [dataFormat, date]);
 
   const debouncedPossibleDate = useDebounce(possibleDate, 800);
   const extendedInputProps = extractChildrenProps(children);
