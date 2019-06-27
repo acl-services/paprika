@@ -1,0 +1,20 @@
+version: v1.0
+name: Storybook deploy
+agent:
+  machine:
+    type: e1-standard-2
+    os_image: ubuntu1804
+
+blocks:
+  - name: "Storybook Deploy"
+    task:
+      prologue:
+        commands:
+          - checkout
+          - cache restore node-modules-$SEMAPHORE_GIT_BRANCH
+      jobs:
+        - name: Build & deploy Storybook
+          commands:
+            - npx lerna bootstrap
+            - yarn storybook:build
+            - yarn storybook:deploy $SEMAPHORE_GIT_BRANCH
