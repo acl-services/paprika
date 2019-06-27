@@ -31,13 +31,6 @@ describe("Lazy ListBox", () => {
       .and("contain", "Sauron");
   });
 
-  it("should filter and show correct options", () => {
-    cy.get(selectors.filterInput).type("z");
-    cy.get(selectors.popoverList)
-      .children()
-      .should("have.length", 12);
-  });
-
   it("should show correct amount when backspacing filter", () => {
     cy.get(selectors.filterInput)
       .type("o")
