@@ -17,6 +17,7 @@
   },
   "plugins": ["cypress", "react-hooks", "better-styled-components"],
   "rules": {
+    "no-shadow": "off",
     "camelcase": "off",
     "class-methods-use-this": "off",
     "consistent-return": "off",
@@ -29,7 +30,6 @@
     "jsx-a11y/label-has-for": "off",
     "new-cap": "off",
     "no-plusplus": "off",
-    "no-shadow": "off",
     "no-console": "off",
     "no-restricted-syntax": [
       "error",

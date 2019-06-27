@@ -16,6 +16,7 @@ export default function List(props) {
 
   return (
     <ListStyled
+      data-qa-anchor="styled-list"
       {...getDOMAttributesForListBox(state)}
       noResultsFound={state.noResultsFound}
       height={height}
