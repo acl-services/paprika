@@ -44,13 +44,13 @@
     "@babel/preset-env": "^7.3.1",
     "@babel/preset-react": "^7.0.0",
     "@paprika/button": "^0.1.0",
-    "@paprika/date-picker": "^0.0.1",
+    "@paprika/date-picker": "^0.1.0",
     "@paprika/heading": "^0.1.0",
     "@paprika/helpers": "^0.1.0",
     "@paprika/icon": "^0.1.0",
     "@paprika/input": "^0.1.0",
     "@paprika/l10n": "^0.1.0",
-    "@paprika/listbox": "^0.1.0",
+    "@paprika/listbox": "^0.5.0",
     "@paprika/popover": "^0.1.0",
     "@paprika/raw-button": "^0.1.0",
     "@paprika/select": "^0.1.0",
@@ -114,6 +114,7 @@
     ]
   },
   "dependencies": {
-    "@babel/runtime-corejs2": "^7.4.4"
+    "@babel/runtime-corejs2": "^7.4.4",
+    "react-json-tree": "^0.11.2"
   }
 }
