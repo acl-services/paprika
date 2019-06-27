@@ -131,6 +131,7 @@ export default function Trigger(props) {
       <TriggerActionIconsContainer>
         {state.selectedOptions.length && hasClearButton ? (
           <RawButtonClearButtonStyled
+            data-qa-anchor="clear-button"
             hasRenderTrigger={hasRenderTrigger}
             isDisabled={isDisabled}
             onClick={handleClickClear}
