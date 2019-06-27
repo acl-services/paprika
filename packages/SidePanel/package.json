@@ -1,7 +1,7 @@
 {
-  "name": "@paprika/SidePanel",
+  "name": "@paprika/sidepanel",
   "version": "0.1.0",
-  "description": "Button component",
+  "description": "SidePanel component",
   "author": "@paprika",
   "main": "lib/index.js",
   "license": "MIT",
