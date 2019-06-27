@@ -69,16 +69,16 @@ export const KnobStyled = styled.span`
 `;
 
 export const UnderlayStyled = styled.span`
+  -khtml-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  -webkit-user-select: none;
   background-color: ${tokens.color.blackLighten50};
   border-radius: 50px;
   display: inline-block;
   position: absolute;
   transition: 0.25s ease-in-out;
   user-select: none;
-  -moz-user-select: none;
-  -khtml-user-select: none;
-  -webkit-user-select: none;
-  -ms-user-select: none;
   vertical-align: middle;
 `;
 
