@@ -35,3 +35,7 @@ export const Tagline = styled.div`
   color: ${tokens.textColor.subtle};
   font-style: italic;
 `;
+
+export const Gap = styled.div`
+  height: 120px;
+`;

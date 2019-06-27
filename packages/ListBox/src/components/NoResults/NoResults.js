@@ -12,7 +12,7 @@ export default function NoResults(props) {
   const [state] = useListBox();
 
   if ((state.isOpen || state.isInline) && state.noResultsFound) {
-    return <NoResultsStyled>{label}</NoResultsStyled>;
+    return <NoResultsStyled data-qa-anchor="no-results">{label}</NoResultsStyled>;
   }
 
   return null;

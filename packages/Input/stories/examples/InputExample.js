@@ -4,11 +4,7 @@ import Input from "../../src";
 const InputExample = props => {
   const [value, setValue] = React.useState(props.value || "");
 
-  return (
-    <div>
-      <Input {...props} onChange={e => setValue(e.target.value)} value={value} />
-    </div>
-  );
+  return <Input {...props} onChange={e => setValue(e.target.value)} value={value} />;
 };
 
 export default InputExample;

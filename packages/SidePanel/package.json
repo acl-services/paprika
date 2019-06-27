@@ -1,0 +1,33 @@
+{
+  "name": "@paprika/sidepanel",
+  "version": "0.1.0",
+  "description": "SidePanel component",
+  "author": "@paprika",
+  "main": "lib/index.js",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/acl-services/paprika/tree/master/packages/SidePanel"
+  },
+  "publishConfig": {
+    "access": "public"
+  },
+  "dependencies": {
+    "@babel/runtime-corejs2": "^7.3.1",
+    "@paprika/button": "^0.1.1",
+    "@paprika/heading": "^0.1.1",
+    "@paprika/helpers": "^0.1.1",
+    "@paprika/icon": "^0.1.1",
+    "@paprika/raw-button": "^0.1.1",
+    "@paprika/stylers": "^0.1.1",
+    "@paprika/tokens": "^0.1.1",
+    "focus-trap-react": "^6.0.0",
+    "lodash.debounce": "^4.0.8",
+    "prop-types": "^15.7.2"
+  },
+  "peerDependencies": {
+    "react": "^16.8.4",
+    "react-dom": "^16.8.4",
+    "styled-components": "^4.2.0"
+  }
+}

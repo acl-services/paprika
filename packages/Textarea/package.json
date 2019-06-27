@@ -1,6 +1,6 @@
 {
   "name": "@paprika/textarea",
-  "version": "0.1.0",
+  "version": "0.1.2",
   "description": "Textarea component",
   "author": "@paprika",
   "license": "MIT",
@@ -13,8 +13,8 @@
   },
   "dependencies": {
     "@babel/runtime-corejs2": "^7.3.1",
-    "@paprika/stylers": "^0.1.0",
-    "@paprika/tokens": "^0.1.0",
+    "@paprika/stylers": "^0.1.1",
+    "@paprika/tokens": "^0.1.1",
     "classnames": "^2.2.6",
     "prop-types": "^15.7.2"
   },

@@ -76,6 +76,7 @@ class Textarea extends React.Component {
     if (a11yText) moreProps["aria-label"] = a11yText;
 
     const rootClasses = classNames(
+      "form-textarea",
       `form-textarea--${size}`,
       { "form-textarea--is-disabled": isDisabled },
       { "form-textarea--is-readonly": isReadOnly },

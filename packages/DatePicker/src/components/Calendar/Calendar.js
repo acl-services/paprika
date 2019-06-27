@@ -129,7 +129,7 @@ function Calendar(props) {
     return day.isBefore(MIN_DATE, "day") || day.isAfter(MAX_DATE, "day");
   }
 
-  // eslint-disable-next-line react/prop-types
+  /* eslint-disable react/prop-types */
   function renderMonthHeaderElement({ month }) {
     return (
       <Button
@@ -146,6 +146,7 @@ function Calendar(props) {
       </Button>
     );
   }
+  /* eslint-enable react/prop-types */
 
   function renderArrowLeft() {
     return (

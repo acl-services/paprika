@@ -15,8 +15,9 @@
       "experimentalObjectRestSpread": true
     }
   },
-  "plugins": ["cypress", "react-hooks"],
+  "plugins": ["cypress", "react-hooks", "better-styled-components"],
   "rules": {
+    "no-shadow": "off",
     "camelcase": "off",
     "class-methods-use-this": "off",
     "consistent-return": "off",
@@ -29,7 +30,6 @@
     "jsx-a11y/label-has-for": "off",
     "new-cap": "off",
     "no-plusplus": "off",
-    "no-shadow": "off",
     "no-console": "off",
     "no-restricted-syntax": [
       "error",
@@ -50,7 +50,8 @@
     "react/no-multi-comp": "off",
     "react/prefer-stateless-function": "off",
     "react-hooks/rules-of-hooks": "error",
-    "react-hooks/exhaustive-deps": "warn"
+    "react-hooks/exhaustive-deps": "warn",
+    "better-styled-components/sort-declarations-alphabetically": "error"
   },
   "overrides": [
     {
