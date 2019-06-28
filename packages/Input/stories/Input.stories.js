@@ -10,7 +10,6 @@ import Input from "../src";
 
 import InputStoryWrapper from "./assets/InputStoryWrapper";
 
-//import ShowcaseStory from "./examples/Showcase";
 import SizesStory from "./examples/Sizes";
 import WithContentStory from "./examples/WithContent";
 import WithIconStory from "./examples/WithIcon";
