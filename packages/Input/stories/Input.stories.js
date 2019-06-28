@@ -6,6 +6,8 @@ import { ShirtSizes } from "@paprika/helpers/lib/customPropTypes";
 import SearchIcon from "@paprika/icon/lib/Search";
 import InfoIcon from "@paprika/icon/lib/InfoCircle";
 
+import { Code, Gap, Pill, Rule, Small, Story } from "storybook/assets/styles/common.styles";
+
 import Input from "../src";
 
 import InputStoryWrapper from "./assets/InputStoryWrapper";
@@ -51,21 +53,70 @@ storiesOf("Forms|Input", module)
 
     return (
       <React.Fragment>
-        <h2>Size Props</h2>
-        <h3>
-          <code>size = small</code>
-        </h3>
-        <Input {...defaultProps} placeholder="First Name" size="small" />
-        <br />
-        <h3>
-          <code>size = medium</code> (default)
-        </h3>
-        <Input {...defaultProps} placeholder="First Name" isDisabled />
-        <br />
-        <h3>
-          <code>size = large</code>
-        </h3>
-        <Input {...defaultProps} placeholder="First Name" size="large" />
+        <Story>
+          <h1>Input</h1>
+          <h2>
+            <Code>hasClearButton</Code> props
+          </h2>
+          <Code>hasClearButton=&quot;true&quot; value=&quot;Name&quot;</Code>
+          <Input {...defaultProps} hasClearButton placeholder="First Name" value="Name" />
+          <Rule />
+          <h2>
+            <Code>size</Code> props
+          </h2>
+          <Code>size=&quot;small&quot;</Code>
+          <Input {...defaultProps} placeholder="First Name" size="small" />
+          <br />
+          <Code>size=&quot;medium&quot;</Code> <Pill>Default</Pill>
+          <Input {...defaultProps} placeholder="First Name" />
+          <br />
+          <Code>size=&quot;large&quot;</Code>
+          <Input {...defaultProps} placeholder="First Name" size="large" />
+          <Rule />
+          <h2>
+            <Code>isDisabled</Code> props
+          </h2>
+          <Code>isDisabled=&quot;true&quot;</Code>
+          <Input {...defaultProps} isDisabled placeholder="First Name" />
+          <Code>isDisabled=&quot;true&quot; value=&quot;Name&quot;</Code>
+          <Input {...defaultProps} isDisabled placeholder="First Name" value="Name" />
+          <Rule />
+          <h2>
+            <Code>isReadOnly</Code> props
+          </h2>
+          <Code>isReadOnly=&quot;true&quot;</Code>
+          <Input {...defaultProps} isReadOnly placeholder="First Name" />
+          <br />
+          <Code>isReadOnly=&quot;true&quot; value=&quot;Name&quot;</Code>
+          <Input {...defaultProps} isReadOnly placeholder="First Name" value="Name" />
+          <Rule />
+          <h2>
+            <Code>hasError</Code> props
+          </h2>
+          <Code>hasError=&quot;true&quot;</Code>
+          <Input {...defaultProps} hasError placeholder="First Name" />
+          <Rule />
+          <h2>
+            <Code>Icon</Code> props
+          </h2>
+          <Code>
+            Icon=
+            <SearchIcon />
+          </Code>
+          <Input {...defaultProps} icon={<SearchIcon />} placeholder="First Name" />
+          <Rule />
+          <h2>
+            <Code>type</Code> props
+          </h2>
+          <Code>type=&quot;text&quot;</Code> <Pill>Default</Pill>
+          <Input {...defaultProps} placeholder="First Name" value="Name" />
+          <br />
+          <Code>type=&quot;number&quot;</Code>
+          <Input {...defaultProps} type="number" placeholder="First Name" value="100" />
+          <br />
+          <Code>type=&quot;password&quot;</Code>
+          <Input {...defaultProps} type="password" placeholder="First Name" value="password" />
+        </Story>
       </React.Fragment>
     );
   });

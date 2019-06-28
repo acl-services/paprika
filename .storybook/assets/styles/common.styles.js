@@ -21,6 +21,16 @@ export const CenteredStory = styled.div`
   width: 100%;
 `;
 
+export const Code = styled.code`
+  background-color: ${tokens.color.greenLighten40};
+  border: 1px solid ${tokens.color.greenLighten30};
+  color: ${tokens.color.blackLighten20};
+  display: inline-block;
+  font-weight: normal;
+  margin-bottom: ${stylers.spacer(2)};
+  padding: 0 ${tokens.spaceSm};
+`;
+
 export const Rule = styled.hr`
   border: none;
   border-bottom: 1px solid ${tokens.border.color};
@@ -38,4 +48,13 @@ export const Tagline = styled.div`
 
 export const Gap = styled.div`
   height: 120px;
+`;
+
+export const Pill = styled.span`
+  background-color: ${tokens.color.blackLighten60};
+  border-radius: ${tokens.space} / 50%;
+  color: ${tokens.color.black};
+  display: inline-block;
+  ${stylers.fontSize(-2)};
+  padding: 0 ${tokens.space};
 `;
