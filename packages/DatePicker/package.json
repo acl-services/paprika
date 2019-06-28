@@ -2,6 +2,7 @@
   "name": "@paprika/date-picker",
   "version": "0.1.0",
   "description": "DatePicker component",
+  "main": "lib/index.js",
   "author": "@paprika",
   "license": "MIT",
   "repository": {
