@@ -1,10 +1,8 @@
 import React from "react";
-import InputExample from "./InputExample";
-import { InputStory } from "../Input.stories.styles";
 
 const TypesExampleStory = () => {
   return (
-    <InputStory>
+    <React.Fragment>
       <h3>
         <small>
           <code>type=&quot;text&quot;</code>
@@ -25,7 +23,7 @@ const TypesExampleStory = () => {
         </small>
       </h3>
       Don&apos;t do this. Use the &lt;InputNumber&gt; component.
-    </InputStory>
+    </React.Fragment>
   );
 };
 

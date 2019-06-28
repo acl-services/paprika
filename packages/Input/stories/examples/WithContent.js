@@ -1,10 +1,9 @@
 import React from "react";
 import InputExample from "./InputExample";
-import { InputStory } from "../Input.stories.styles";
 
 const WithContentExampleStory = () => {
   return (
-    <InputStory>
+    <React.Fragment>
       <InputExample value="Sam Bennett" a11yText="Sam Bennett" />
       <br />
       <h3>
@@ -13,7 +12,7 @@ const WithContentExampleStory = () => {
         </small>
       </h3>
       <InputExample value="Sam Bennett" a11yText="Sam Bennett" hasClearButton />
-    </InputStory>
+    </React.Fragment>
   );
 };
 

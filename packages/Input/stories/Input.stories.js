@@ -6,12 +6,9 @@ import { ShirtSizes } from "@paprika/helpers/lib/customPropTypes";
 import SearchIcon from "@paprika/icon/lib/Search";
 import InfoIcon from "@paprika/icon/lib/InfoCircle";
 
-import { InputStory } from "./Input.stories.styles";
-import InputExample from "./examples/InputExample";
 import Input from "../src";
 
-import InputStoryControl from "./assets/InputStoryControl";
-import InputStoryStyles from "./assets/InputStoryStyles";
+import InputStoryWrapper from "./assets/InputStoryWrapper";
 
 //import ShowcaseStory from "./examples/Showcase";
 import SizesStory from "./examples/Sizes";
@@ -29,8 +26,7 @@ const iconSelections = {
 
 storiesOf("Forms|Input", module)
   .addDecorator(withKnobs)
-  .addDecorator(InputStoryStyles)
-  .addDecorator(InputStoryControl)
+  .addDecorator(InputStoryWrapper)
   .add("Showcase", ({ onChange, onClear, value }) => (
     <Input
       onChange={onChange}
@@ -46,11 +42,41 @@ storiesOf("Forms|Input", module)
       type={select("type", ["password", "text"], "text")}
       a11yText={text("a11yText", "")}
     />
-  ));
+  ))
+  .add("Variations", ({ onChange, onClear, value }) => {
+    const defaultProps = {
+      value,
+      onChange,
+      onClear,
+    };
+
+    return (
+      <React.Fragment>
+        <h2>Size Props</h2>
+        <h3>
+          <code>size = small</code>
+        </h3>
+        <CodeShower>
+        <Input {...defaultProps} placeholder="First Name" size="small" />
+        <br />
+        <h3 default=>
+          <code>size = medium</code> (default)
+        </h3>
+        <Input {...defaultProps} placeholder="First Name" isDisabled />
+        <br />
+        <h3>
+          <code>size = large</code>
+        </h3>
+        <Input {...defaultProps} placeholder="First Name" size="large" />
+      </React.Fragment>
+    );
+  });
+
+storiesOf("Forms|Input", module);
 
 storiesOf("Forms|Input/Dev", module)
   .addDecorator(withKnobs)
-  .addDecorator(storyFn => <InputStory>{storyFn()}</InputStory>)
+  .addDecorator(InputStoryWrapper)
   .add("Sizes", () => <SizesStory />)
   .add("With content", () => <WithContentStory />)
   .add("With decorative icon", () => <WithIconStory />)
@@ -58,14 +84,10 @@ storiesOf("Forms|Input/Dev", module)
   .add("Types", () => <TypesStory />)
   .add("With Ref", () => <WithRef />);
 
-storiesOf("Forms|Input/Dev/Automation Tests/Screener", module).add("InputExample", () => (
-  <InputStory>
-    <InputExample placeholder="First Name" size="large" />
-  </InputStory>
-));
+storiesOf("Forms|Input/Dev/Automation Tests/Screener", module)
+  .addDecorator(InputStoryWrapper)
+  .add("InputExample", () => <Input placeholder="First Name" size="large" />);
 
-storiesOf("Forms|Input/Dev/Automation Tests/Accessibility", module).add("Default", () => (
-  <InputStory>
-    <InputExample placeholder="First Name" size="large" onChange={() => {}} />
-  </InputStory>
-));
+storiesOf("Forms|Input/Dev/Automation Tests/Accessibility", module)
+  .addDecorator(InputStoryWrapper)
+  .add("Default", () => <Input value="" onChange={() => {}} placeholder="First Name" size="large" />);

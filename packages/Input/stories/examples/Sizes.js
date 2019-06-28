@@ -1,10 +1,9 @@
 import React from "react";
 import InputExample from "./InputExample";
-import { InputStory } from "../Input.stories.styles";
 
 const SizesExampleStory = () => {
   return (
-    <InputStory>
+    <React.Fragment>
       <h3>
         <small>
           <code>size = small</code>
@@ -25,7 +24,7 @@ const SizesExampleStory = () => {
         </small>
       </h3>
       <InputExample placeholder="First Name" size="large" />
-    </InputStory>
+    </React.Fragment>
   );
 };
 

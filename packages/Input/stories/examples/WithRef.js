@@ -1,6 +1,5 @@
 import React from "react";
 import InputExample from "./InputExample";
-import { InputStory } from "../Input.stories.styles";
 
 const WithRefStory = () => {
   let $input;
@@ -13,7 +12,7 @@ const WithRefStory = () => {
   }, 1000);
 
   return (
-    <InputStory>
+    <React.Fragment>
       <h3>
         <small>
           <code>inputRef</code>
@@ -21,7 +20,7 @@ const WithRefStory = () => {
       </h3>
       <InputExample inputRef={setRef} />
       <small>This text input will capture the focus after 1 second.</small>
-    </InputStory>
+    </React.Fragment>
   );
 };
 

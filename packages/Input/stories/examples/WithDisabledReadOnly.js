@@ -1,10 +1,8 @@
 import React from "react";
 import InputExample from "./InputExample";
-import { InputStory } from "../Input.stories.styles";
-
 const WithDisabledReadOnlyExampleStory = () => {
   return (
-    <InputStory>
+    <React.Fragment>
       <h3>
         <small>
           <code>isDisabled</code>
@@ -29,7 +27,7 @@ const WithDisabledReadOnlyExampleStory = () => {
       <InputExample isReadOnly placeholder="First Name" />
       <InputExample isReadOnly value="Sam Bennett" />
       <InputExample isReadOnly value="This is a very long text to test that you can scroll this input horizontally." />
-    </InputStory>
+    </React.Fragment>
   );
 };
 
