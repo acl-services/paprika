@@ -56,10 +56,9 @@ storiesOf("Forms|Input", module)
         <h3>
           <code>size = small</code>
         </h3>
-        <CodeShower>
         <Input {...defaultProps} placeholder="First Name" size="small" />
         <br />
-        <h3 default=>
+        <h3>
           <code>size = medium</code> (default)
         </h3>
         <Input {...defaultProps} placeholder="First Name" isDisabled />

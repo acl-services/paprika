@@ -1,4 +1,5 @@
 import React from "react";
+import InputExample from "./InputExample";
 
 const TypesExampleStory = () => {
   return (
