@@ -6,7 +6,7 @@ import { ShirtSizes } from "@paprika/helpers/lib/customPropTypes";
 import SearchIcon from "@paprika/icon/lib/Search";
 import InfoIcon from "@paprika/icon/lib/InfoCircle";
 
-import { Code, Gap, Pill, Rule, Small, Story } from "storybook/assets/styles/common.styles";
+import { Code, Pill, Rule, Story } from "storybook/assets/styles/common.styles";
 
 import Input from "../src";
 
