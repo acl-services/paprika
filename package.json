@@ -14,7 +14,7 @@
     "postinstall": "cd documentation && yarn",
     "prepare": "lerna run pretranspile && yarn transpile",
     "prettier:format": "yarn prettier -- --write",
-    "prettier": "prettier \"**/*.+(js|json|yml|css|scss|md|mdx)\"",
+    "prettier": "prettier \"**/*.+(js|json|yml|css|scss|md)\"",
     "registrymock:publish": "lerna publish --no-git-tag-version --no-push --registry http://localhost:4873",
     "registrymock:start": "verdaccio",
     "storybook:build": "build-storybook -c .storybook -o storybook-dist",
