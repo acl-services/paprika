@@ -24,7 +24,7 @@ function filterChildren(children) {
   return React.Children.toArray(children).filter(child => child.type.displayName === "Sortable.Item");
 }
 
-const Sortable = ({ children, onChange, hasNumbers, onRemove }) => {
+const Sortable = ({ children, onChange, hasNumbers, onRemove, ...moreProps }) => {
   const I18n = useI18n();
   const dropId = React.useRef(uuid());
   const validChildren = filterChildren(children);
@@ -66,7 +66,9 @@ const Sortable = ({ children, onChange, hasNumbers, onRemove }) => {
         {(provided, snapshot) => (
           <ul
             {...provided.droppableProps}
+            {...moreProps}
             css={sortableStyles}
+            data-component-type="sortable"
             data-is-dragging-over={snapshot.isDraggingOver ? true : undefined}
             isDraggingOver={snapshot.isDraggingOver}
             ref={provided.innerRef}
@@ -77,6 +79,7 @@ const Sortable = ({ children, onChange, hasNumbers, onRemove }) => {
                   {child}
                 </SortableItem>
               ))}
+            {provided.placeholder}
           </ul>
         )}
       </Droppable>

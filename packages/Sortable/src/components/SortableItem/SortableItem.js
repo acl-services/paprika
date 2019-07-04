@@ -26,30 +26,35 @@ const SortableItem = ({ children, index, hasNumbers, onRemove }) => {
 
   return (
     <Draggable draggableId={`draggable-${children.props.sortId}`} index={index}>
-      {(provided, snapshot) => {
-        return (
-          <li
-            {...provided.draggableProps}
-            {...provided.dragHandleProps}
-            css={itemStyles}
-            data-is-dragging={snapshot.isDragging ? true : undefined}
-            isDragging={snapshot.isDragging}
-            ref={provided.innerRef}
-            aria-roledescription={I18n.t("sortable.aria_description")}
-          >
-            <div css={itemHandleStyles}>
-              <HandleIcon />
+      {(provided, snapshot) => (
+        <li
+          {...provided.draggableProps}
+          {...provided.dragHandleProps}
+          css={itemStyles}
+          data-component-type="sortable.item"
+          data-is-dragging={snapshot.isDragging ? true : undefined}
+          isDragging={snapshot.isDragging}
+          ref={provided.innerRef}
+          aria-roledescription={I18n.t("sortable.aria_description")}
+        >
+          <div css={itemHandleStyles} data-component-type="sortable.item.handle">
+            <HandleIcon />
+          </div>
+          {hasNumbers && (
+            <div css={itemIndexStyles} data-component-type="sortable.item.number">
+              {index + 1}
             </div>
-            {hasNumbers && <div css={itemIndexStyles}>{index + 1}</div>}
-            <div css={itemBodyStyles}>{children}</div>
-            {onRemove && (
-              <div css={itemCloseStyles}>
-                <Button.Close onClick={handleRemove} size="small" />
-              </div>
-            )}
-          </li>
-        );
-      }}
+          )}
+          <div css={itemBodyStyles} data-component-type="sortable.item.body">
+            {children}
+          </div>
+          {onRemove && (
+            <div css={itemCloseStyles} data-component-type="sortable.item.remove">
+              <Button.Close onClick={handleRemove} size="small" isSemantic={false} />
+            </div>
+          )}
+        </li>
+      )}
     </Draggable>
   );
 };
