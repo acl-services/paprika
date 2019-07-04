@@ -1,8 +1,8 @@
 import styled from "styled-components";
 import { Story } from "storybook/assets/styles/common.styles";
 
-// Common Dropdown Menu story styles
+// Common DropDown Menu story styles
 
-export const DropdownMenuStory = styled(Story)`
+export const DropDownMenuStory = styled(Story)`
   max-width: 500px;
 `;

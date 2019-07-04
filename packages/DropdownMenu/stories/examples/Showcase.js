@@ -2,30 +2,26 @@ import React from "react";
 import { boolean, select, text } from "@storybook/addon-knobs";
 import { Rule, Tagline } from "storybook/assets/styles/common.styles";
 import Heading from "@paprika/heading";
-import { DropdownMenuStory } from "../DropdownMenu.stories.styles";
-import DropdownMenuExample from "./DropdownMenuExample";
+import Button from "@paprika/button";
+import { DropDownMenuStory } from "../DropDownMenu.stories.styles";
+import DropDownMenuExample from "./DropDownMenuExample";
 
-const dropdownMenuProps = () => ({
-  // size: select("size", ShirtSizes.DEFAULT, "medium"),
-  // placeholder: text("placeholder", "Enter some text"),
-  // icon: iconSelections[select("icon", Object.keys(iconSelections), null)],
-  // hasClearButton: boolean("hasClearButton", false),
-  // isDisabled: boolean("isDisabled", false),
-  // isReadOnly: boolean("isReadOnly", false),
-  // hasError: boolean("hasError", false),
-  // type: select("type", ["password", "text"], "text"),
-  // a11yText: text("a11yText", ""),
+const dropDownMenuProps = () => ({
+  /** Render prop for rendering the trigger element that toggles the dropdown */
+  renderTrigger: ({ onToggleMenu }) => (
+    <Button className="aclui-dropdown-menu__trigger" onClick={onToggleMenu} icon="ellipsis" isSquare />
+  ),
 });
 
 const ExampleStory = props => (
-  <DropdownMenuStory>
+  <DropDownMenuStory>
     <Heading level={1} displayLevel={2} isLight>
       Showcase
     </Heading>
     <Tagline>Use the knobs to tinker with the props.</Tagline>
     <Rule />
-    <DropdownMenuExample {...props} />
-  </DropdownMenuStory>
+    <DropDownMenuExample {...props} />
+  </DropDownMenuStory>
 );
 
-export default () => <ExampleStory {...dropdownMenuProps()} />;
+export default () => <ExampleStory {...dropDownMenuProps()} />;
