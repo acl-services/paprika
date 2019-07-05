@@ -68,7 +68,7 @@ const Sortable = ({ children, onChange, hasNumbers, onRemove, ...moreProps }) =>
             {...provided.droppableProps}
             {...moreProps}
             css={sortableStyles}
-            data-component-type="sortable"
+            data-display-name="sortable"
             data-is-dragging-over={snapshot.isDraggingOver ? true : undefined}
             isDraggingOver={snapshot.isDraggingOver}
             ref={provided.innerRef}
