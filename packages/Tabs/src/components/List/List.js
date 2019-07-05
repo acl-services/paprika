@@ -16,17 +16,17 @@ const List = props => {
   const context = React.useContext(TabsContext);
 
   const { a11yText, children, ...moreProps } = props;
-  const { activeIndex, handleKeyDown, handleTabClick, setNumberOfTabs, setTabListRef } = context;
+  const { activeIndex, onKeyDown, onClickTab, setNumberOfTabs, setTabListRef } = context;
+
+  setNumberOfTabs(React.Children.count(children));
 
   const childrenWithProps = React.Children.map(children, (tab, index) => {
     const isSelected = activeIndex === index;
 
-    setNumberOfTabs(React.Children.count(children));
-
     return React.cloneElement(tab, {
       isSelected,
-      onClick: e => handleTabClick(e, index),
-      onKeyDownArrows: e => handleKeyDown(e),
+      onClick: e => onClickTab(e, index),
+      onKeyDownArrows: onKeyDown,
     });
   });
 

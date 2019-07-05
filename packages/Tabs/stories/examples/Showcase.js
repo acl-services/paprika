@@ -10,7 +10,7 @@ const renderTabs = () => {
   const separator = ", ";
   const tabs = array(label, defaultValue, separator);
 
-  return tabs.map(tabLabel => <Tabs.Tab label={tabLabel} />);
+  return tabs.map(tabLabel => <Tabs.Tab label={tabLabel} key={tabLabel} />);
 };
 
 const tabProps = () => ({

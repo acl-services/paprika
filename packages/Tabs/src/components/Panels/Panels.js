@@ -17,7 +17,7 @@ const Panels = ({ children }) => {
     });
   });
 
-  return <div>{childrenWithProps}</div>;
+  return <React.Fragment>{childrenWithProps}</React.Fragment>;
 };
 
 Panels.displayName = "Tabs.Panels";

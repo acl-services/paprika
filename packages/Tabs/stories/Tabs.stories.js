@@ -35,10 +35,10 @@ storiesOf("Tabs", module)
     <Story>
       <Tabs>
         <Tabs.List>
-          <Tabs.Tab label="Google" linkUrl="https://google.com" />
+          <Tabs.Tab label="Google" href="https://google.com" />
           <Tabs.Tab
             label="Galvanize new tab"
-            linkUrl="https://wegalvanize.com"
+            href="https://wegalvanize.com"
             target="_blank"
             rel="noopener noreferrer"
           />

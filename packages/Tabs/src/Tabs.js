@@ -8,7 +8,7 @@ import List from "./components/List/List";
 
 const propTypes = {
   children: PropTypes.node.isRequired,
-  isDisabled: PropTypes.node,
+  isDisabled: PropTypes.bool,
 };
 
 const defaultProps = {
@@ -21,21 +21,20 @@ const Tabs = props => {
   let tabListRef = null;
 
   const { isDisabled } = props;
-  
+
   const setTabListRef = ref => {
     tabListRef = ref;
   };
 
-  const handleTabClick = (event, index) => {
+  const onClickTab = (event, index) => {
     event.preventDefault();
     if (activeIndex !== index) {
       setActiveIndex(index);
     }
   };
 
-  const handleKeyDown = index => {
+  const onKeyDown = index => {
     let tabIndex = index;
-    const totalTabs = numberOfTabs;
 
     // const tabList = React.Children.toArray(props.children)[0];
     // const currentTab = tabList.props.children[tabIndex];
@@ -46,7 +45,7 @@ const Tabs = props => {
 
     if (index < 0) {
       tabIndex = numberOfTabs - 1;
-    } else if (index >= totalTabs) {
+    } else if (index >= numberOfTabs) {
       tabIndex = 0;
     }
 
@@ -56,8 +55,8 @@ const Tabs = props => {
 
   const contextValue = {
     activeIndex,
-    handleTabClick,
-    handleKeyDown,
+    onClickTab,
+    onKeyDown,
     isDisabled,
     setNumberOfTabs,
     setTabListRef,

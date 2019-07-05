@@ -10,9 +10,8 @@ const propTypes = {
   label: PropTypes.node,
   isSelected: PropTypes.bool,
   isDisabled: PropTypes.bool,
-  linkUrl: PropTypes.string,
+  href: PropTypes.string,
   onClick: PropTypes.func,
-  onKeyDown: PropTypes.func,
   onKeyDownArrows: PropTypes.func,
 };
 
@@ -21,17 +20,25 @@ const defaultProps = {
   isSelected: false,
   isDisabled: false,
   label: null,
-  linkUrl: null,
+  href: null,
   onClick: () => {},
   onKeyDownArrows: () => {},
-  onKeyDown: () => {},
 };
 
 const Tab = props => {
   const context = React.useContext(TabsContext);
 
-  const { className, isDisabled, isSelected, label, linkUrl, onClick, onKeyDown, onKeyDownArrows, ...moreProps } = props;
-  
+  const {
+    className,
+    isDisabled,
+    isSelected,
+    label,
+    href,
+    onClick,
+    onKeyDownArrows,
+    ...moreProps
+  } = props;
+
   const _isDisabled = context.isDisabled || props.isDisabled;
 
   const cn = classNames("tab", { "tab--is-active": isSelected }, { "tab--is-disabled": _isDisabled }, className);
@@ -45,19 +52,17 @@ const Tab = props => {
     } else if (event.which === rightArrowKey) {
       onKeyDownArrows(context.activeIndex + 1);
     }
-
-    onKeyDown(event);
   };
 
   const handleClick = _isDisabled ? () => {} : onClick;
   const tabIndex = _isDisabled ? -1 : 0;
 
-  if (linkUrl) {
+  if (href) {
     return (
       <a
         css={tabStyles}
         className={classNames("tab-link", cn)}
-        href={linkUrl}
+        href={href}
         onKeyDown={handleKeyDown}
         role="tab"
         tabIndex={tabIndex}
@@ -70,6 +75,7 @@ const Tab = props => {
 
   return (
     <RawButton
+      aria-disabled={_isDisabled}
       aria-selected={isSelected}
       css={tabStyles}
       className={cn}
