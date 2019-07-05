@@ -57,6 +57,7 @@ const Item = props => {
   // };
 
   const handleClickItem = () => {
+    console.log("handling click item close click");
     onClick();
     onClose();
   };

@@ -4,10 +4,14 @@ import stylers from "@paprika/stylers";
 
 const ItemStyles = css`
   display: block;
-  font-size: ${stylers.fontSize()};
+  ${stylers.fontSize()};
+  font-family: ${tokens.fontFamily.default};
   font-weight: normal;
   padding: ${tokens.spaceSm} ${stylers.spacer(2)};
   text-decoration: none;
+
+  /* unsure if these should be set outside the component */
+  line-height:1.5;
 
   /* // not sure how to do */
   /* &:not(.is-disabled):hover {

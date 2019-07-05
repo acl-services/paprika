@@ -7,13 +7,13 @@ const DropDownMenuExample = props => {
 
   return (
     <DropDownMenu {...props}>
-      <DropDownMenu.Item onClick={() => {}}>Freight</DropDownMenu.Item>
-      <DropDownMenu.Item onClick={() => {}}>Freight</DropDownMenu.Item>
+      <DropDownMenu.Item onClick={() => {}}>Edit</DropDownMenu.Item>
+      <DropDownMenu.Item onClick={() => {}}>Duplicate</DropDownMenu.Item>
       <DropDownMenu.Item isDestructive isDisabled onClick={() => {}}>
-        Freight
+        Google
       </DropDownMenu.Item>
       <DropDownMenu.Item isDisabled onClick={() => {}}>
-        Freight
+        Galvanize
       </DropDownMenu.Item>
       <DropDownMenu.Item
         isDestructive
@@ -30,7 +30,7 @@ const DropDownMenuExample = props => {
               >
                 Delete me
               </Button>
-              <Button type="minor" onClick={onClose}>
+              <Button type="minor" onClick={() => onClose(false)}>
                 Cancel
               </Button>
             </div>
