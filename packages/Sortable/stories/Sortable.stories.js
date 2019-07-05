@@ -27,6 +27,6 @@ storiesOf("Sortable/Automation Tests", module)
   .add("Screener", () => <ScreenerExample />)
   .add("Cypress", () => (
     <Story css={helpers.storyStyles}>
-      <Sortable>{helpers.inputChildren(4)}</Sortable>
+      <Sortable>{helpers.basicChildren(4)}</Sortable>
     </Story>
   ));
