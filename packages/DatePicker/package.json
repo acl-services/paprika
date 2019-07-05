@@ -17,7 +17,7 @@
     "@paprika/icon": "^0.1.1",
     "@paprika/input": "^0.1.1",
     "@paprika/l10n": "^0.1.1",
-    "@paprika/popover": "^0.1.1",
+    "@paprika/popover": "^0.1.2",
     "@paprika/stylers": "^0.1.1",
     "@paprika/tokens": "^0.1.1",
     "moment": "^2.24.0",
