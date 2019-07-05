@@ -2,9 +2,9 @@ const baseStory = "sortable-automation-tests";
 const testStory = "cypress";
 
 const selector = {
-  root: "[data-display-name='sortable']",
-  item: "[data-display-name='sortable.item']",
-  remove: "[data-display-name='sortable.item.remove']",
+  root: "[data-pka-anchor='sortable']",
+  item: "[data-pka-anchor='sortable.item']",
+  remove: "[data-pka-anchor='sortable.item.remove']",
 };
 const keyEvent = {
   space: { keyCode: 32, force: true },

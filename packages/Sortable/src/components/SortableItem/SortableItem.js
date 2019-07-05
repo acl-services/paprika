@@ -31,25 +31,25 @@ const SortableItem = ({ children, index, hasNumbers, onRemove }) => {
           {...provided.draggableProps}
           {...provided.dragHandleProps}
           css={itemStyles}
-          data-display-name="sortable.item"
+          data-pka-anchor="sortable.item"
           data-is-dragging={snapshot.isDragging ? true : undefined}
           isDragging={snapshot.isDragging}
           ref={provided.innerRef}
           aria-roledescription={I18n.t("sortable.aria_description")}
         >
-          <div css={itemHandleStyles} data-display-name="sortable.item.handle">
+          <div css={itemHandleStyles} data-pka-anchor="sortable.item.handle">
             <HandleIcon />
           </div>
           {hasNumbers && (
-            <div css={itemIndexStyles} data-display-name="sortable.item.number">
+            <div css={itemIndexStyles} data-pka-anchor="sortable.item.number">
               {index + 1}
             </div>
           )}
-          <div css={itemBodyStyles} data-display-name="sortable.item.body">
+          <div css={itemBodyStyles} data-pka-anchor="sortable.item.body">
             {children}
           </div>
           {onRemove && (
-            <div css={itemCloseStyles} data-display-name="sortable.item.remove">
+            <div css={itemCloseStyles} data-pka-anchor="sortable.item.remove">
               <Button.Close onClick={handleRemove} size="small" isSemantic={false} />
             </div>
           )}
