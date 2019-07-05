@@ -1,6 +1,6 @@
 {
   "name": "@paprika/tokens",
-  "version": "0.1.2",
+  "version": "0.1.1",
   "description": "Design tokens generated as scss + js",
   "author": "@paprika",
   "main": "lib/index.js",
@@ -16,7 +16,9 @@
     "pretranspile": "node processTokens.js"
   },
   "dependencies": {
-    "@babel/runtime-corejs2": "^7.3.1",
+    "@babel/runtime-corejs2": "^7.3.1"
+  },
+  "devDependencies": {
     "node-sass": "^4.9.2",
     "yamljs": "^0.3.0"
   }
