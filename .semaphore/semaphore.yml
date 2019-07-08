@@ -6,26 +6,17 @@ agent:
     os_image: ubuntu1804
 
 blocks:
-  - name: "🚀 NPM Release"
+  - name: "🎩 Yarn"
     task:
-      secrets:
-        - name: paprika-env
       jobs:
-      - name: "Releasing"
+      - name: "Yarn & caching"
         commands:
           - checkout
-          - yarn npm:release
-  # - name: "🎩 Yarn"
-  #   task:
-  #     jobs:
-  #     - name: "Yarn & caching"
-  #       commands:
-  #         - checkout
-  #         - cache restore node-modules-$SEMAPHORE_GIT_BRANCH
-  #         - yarn install --frozen-lockfile
-  #         - npx lerna bootstrap
-  #         - cache store node-modules-$SEMAPHORE_GIT_BRANCH node_modules
-  #         - cache store cypress-$SEMAPHORE_GIT_BRANCH ~/.cache/Cypress
+          - cache restore node-modules-$SEMAPHORE_GIT_BRANCH
+          - yarn install --frozen-lockfile
+          - npx lerna bootstrap
+          - cache store node-modules-$SEMAPHORE_GIT_BRANCH node_modules
+          - cache store cypress-$SEMAPHORE_GIT_BRANCH ~/.cache/Cypress
   #
   # - name: "💅 Format"
   #   task:
@@ -88,3 +79,13 @@ blocks:
   #           - npx lerna bootstrap
   #           - yarn storybook:build
   #           - yarn storybook:screener
+  - name: "🚀 NPM Release"
+    task:
+      secrets:
+        - name: paprika-env
+      jobs:
+      - name: "Releasing"
+        commands:
+          - checkout
+          - cache restore node-modules-$SEMAPHORE_GIT_BRANCH          
+          - yarn npm:release
