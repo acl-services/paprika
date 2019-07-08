@@ -1,5 +1,4 @@
 import React from "react";
-import { boolean, select, text } from "@storybook/addon-knobs";
 import { Rule, Tagline } from "storybook/assets/styles/common.styles";
 import Heading from "@paprika/heading";
 import Button from "@paprika/button";

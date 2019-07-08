@@ -1,7 +1,6 @@
 import React from "react";
-// import classNames from "classnames";
 import PropTypes from "prop-types";
-import Popover from "../../Popover";
+import Popover from "@paprika/popover";
 import ContentContainerStyled from "./ContentContainer.styles";
 import Confirmation from "./Confirmation/Confirmation";
 import Item from "./Item/Item";

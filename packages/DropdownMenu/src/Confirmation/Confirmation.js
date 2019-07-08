@@ -3,7 +3,7 @@ import PropTypes from "prop-types";
 import Button from "@paprika/button";
 import { ShirtSizes } from "@paprika/helpers/lib/customPropTypes";
 import useI18n from "@paprika/l10n/lib/useI18n";
-import Popover from "../../../Popover";
+import Popover from "@paprika/popover";
 import ContentContainerStyled from "../ContentContainer.styles";
 import ConfirmationStyles from "./Confirmation.styles";
 
