@@ -6,6 +6,16 @@ agent:
     os_image: ubuntu1804
 
 blocks:
+  - name: "🚀 Release to NPM"
+    task:
+      prologue:
+        commands:
+          - checkout
+          - cache restore node-modules-$SEMAPHORE_GIT_BRANCH
+      jobs:
+        - name: RELEASING
+          commands:
+            - yarn npm:env
   - name: "🎩 Yarn"
     task:
       jobs:
@@ -18,22 +28,29 @@ blocks:
           - cache store node-modules-$SEMAPHORE_GIT_BRANCH node_modules
           - cache store cypress-$SEMAPHORE_GIT_BRANCH ~/.cache/Cypress
 
-  - name: "💅 Format + ♿️ Accessibility"
+  - name: "Eslint + A11y + Jest + Screener"
     task:
       prologue:
         commands:
           - checkout
           - cache restore node-modules-$SEMAPHORE_GIT_BRANCH
       jobs:
-        - name: Lint && prettier
+        - name: Lint / prettier / JEST
           commands:
             - yarn add eslint-plugin-react-hooks -D -W
             - yarn lint && yarn prettier -- --list-different
         - name: Axe test
           commands:
             - yarn test:a11y
-
-  - name: "⚡️ Integration/Unit + E2E + Visual Regression"
+        - name: JEST
+          commands:
+            - yarn test
+        - name: Screener
+          commands:
+            - npx lerna bootstrap
+            - yarn storybook:build
+            - yarn storybook:screener
+  - name: "Cypress E2E"
     task:
       prologue:
         commands:
@@ -42,15 +59,8 @@ blocks:
           - cache restore node-modules-$SEMAPHORE_GIT_BRANCH
           - cache restore cypress-$SEMAPHORE_GIT_BRANCH
       jobs:
-        - name: JEST
-          commands:
-            - yarn test
         - name: Cypress
           commands:
             - npx lerna bootstrap
             - yarn cypress:ci
         - name: Screener
-          commands:
-            - npx lerna bootstrap
-            - yarn storybook:build
-            - yarn storybook:screener
