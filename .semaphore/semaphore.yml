@@ -8,9 +8,9 @@ agent:
 blocks:
   - name: "🚀 NPM Release"
     task:
-      prologue:
+      jobs:
+      - name: "Releasing"
         commands:
-          - checkout
           - yarn npm:release
   # - name: "🎩 Yarn"
   #   task:
