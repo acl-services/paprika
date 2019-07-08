@@ -80,23 +80,27 @@ const DropDownMenu = props => {
       return renderConfirmation(handleToggleMenu);
     }
 
-    return React.Children.toArray(children).map(child => {
-      if (child.type.componentType === "DropDownMenu.Item") {
-        if (child.props.renderConfirmation) {
-          return React.cloneElement(child, {
-            onShowConfirmation: handleShowConfirmation(child.props.renderConfirmation),
-          });
-        }
-        return React.cloneElement(child, {
-          onClose: () => {
-            console.log("calling on close");
-            handleToggleMenu(false);
-          },
-        });
-      }
+    return (
+      <ContentContainerStyled isOpen={isOpen}>
+        {React.Children.toArray(children).map(child => {
+          if (child.type.componentType === "DropDownMenu.Item") {
+            if (child.props.renderConfirmation) {
+              return React.cloneElement(child, {
+                onShowConfirmation: handleShowConfirmation(child.props.renderConfirmation),
+              });
+            }
+            return React.cloneElement(child, {
+              onClose: () => {
+                console.log("calling on close");
+                handleToggleMenu(false);
+              },
+            });
+          }
 
-      return child;
-    });
+          return child;
+        })}
+      </ContentContainerStyled>
+    );
   };
 
   // const getClasses = () => {
@@ -127,9 +131,7 @@ const DropDownMenu = props => {
       }} // maybe needed
     >
       <Popover.Trigger>{props.renderTrigger(getTriggerStateAndHelpers())}</Popover.Trigger>
-      <Popover.Content>
-        <ContentContainerStyled>{renderContent()}</ContentContainerStyled>
-      </Popover.Content>
+      <Popover.Content>{renderContent()}</Popover.Content>
     </Popover>
   );
 };

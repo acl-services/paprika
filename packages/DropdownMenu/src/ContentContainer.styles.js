@@ -11,6 +11,12 @@ const ContentContainerStyles = styled.div`
   min-width: 150px;
   padding: ${tokens.space} 0;
   text-align: left;
+  
+  ${({ isOpen }) => {
+    if (isOpen === false) {
+      return { opacity: 0 };
+    }
+  }}
 
   // this is positioning, not sure if good way to do it
   margin-left: ${stylers.spacer(2)};
