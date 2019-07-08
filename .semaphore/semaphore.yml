@@ -8,6 +8,8 @@ agent:
 blocks:
   - name: "🚀 NPM Release"
     task:
+      secrets:
+        - name: PAPRIKA_NPM_TOKEN
       jobs:
       - name: "Releasing"
         commands:
