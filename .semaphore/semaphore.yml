@@ -6,16 +6,6 @@ agent:
     os_image: ubuntu1804
 
 blocks:
-  - name: "🚀 Release to NPM"
-    task:
-      prologue:
-        commands:
-          - checkout
-          - cache restore node-modules-$SEMAPHORE_GIT_BRANCH
-      jobs:
-        - name: RELEASING
-          commands:
-            - yarn npm:env
   - name: "🎩 Yarn"
     task:
       jobs:
@@ -64,3 +54,13 @@ blocks:
             - npx lerna bootstrap
             - yarn cypress:ci
         - name: Screener
+  - name: "🚀 Release to NPM"
+    task:
+      prologue:
+        commands:
+          - checkout
+          - cache restore node-modules-$SEMAPHORE_GIT_BRANCH
+      jobs:
+        - name: RELEASING
+          commands:
+            - yarn npm:release
