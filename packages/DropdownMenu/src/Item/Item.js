@@ -1,6 +1,5 @@
 import React from "react";
 import PropTypes from "prop-types";
-// import classNames from "classnames";
 import RawButton from "@paprika/raw-button";
 import ItemStyles from "./Item.styles";
 
@@ -50,14 +49,7 @@ const Item = props => {
     ...remainingProps
   } = props;
 
-  // const getClasses = () => {
-  //   return classNames(className, "aclui-dropdown-menu__item", {
-  //     "aclui-dropdown-menu__item--is-destructive": isDestructive,
-  //   });
-  // };
-
   const handleClickItem = () => {
-    console.log("handling click item close click");
     onClick();
     onClose();
   };
@@ -65,7 +57,7 @@ const Item = props => {
   return (
     <RawButton
       css={ItemStyles}
-      // className={getClasses()}
+      className={className}
       onClick={renderConfirmation !== null ? onShowConfirmation : handleClickItem}
       role="menuitem"
       isDestructive={isDestructive}

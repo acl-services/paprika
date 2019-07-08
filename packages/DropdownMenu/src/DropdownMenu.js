@@ -28,20 +28,13 @@ const defaultProps = {
 };
 
 const DropDownMenu = props => {
-  // let triggerWrapper = null;
   const { align, children, className } = props;
   const [isOpen, setIsOpen] = React.useState();
   const [isConfirming, setIsConfirming] = React.useState();
   const [renderConfirmation, setRenderConfirmation] = React.useState();
 
   const handleToggleMenu = openState => {
-    console.log("handle toggle called");
-    setIsOpen(prevIsOpenState => {
-      // if (openState === false) {
-      return openState;
-      // }
-      // return !prevIsOpenState;
-    });
+    setIsOpen(openState);
     setIsConfirming(false);
     setRenderConfirmation(null);
   };
@@ -51,29 +44,12 @@ const DropDownMenu = props => {
     setRenderConfirmation(prevIsConfirmingState => (prevIsConfirmingState ? null : renderConfirmation));
   };
 
-  // const handleOutsideClick = e => {
-  //   const isOutsideClick = e.currentTarget === document;
-  //   const isTriggerClick = triggerWrapper.contains(e.target);
-
-  //   if (isOutsideClick && isTriggerClick) {
-  //     // if both outside click and trigger click then this is duplicate event
-  //     // that could cause toggle twice as the trigger will have its own click
-  //     // event.
-  //     return;
-  //   }
-  //   handleToggleMenu();
-  // };
-
   const getTriggerStateAndHelpers = () => {
     return {
       isOpen,
       onToggleMenu: () => handleToggleMenu(true),
     };
   };
-
-  // const setTriggerWrapperRef = el => {
-  //   triggerWrapper = el;
-  // };
 
   const renderContent = () => {
     if (isConfirming) {
@@ -91,7 +67,6 @@ const DropDownMenu = props => {
             }
             return React.cloneElement(child, {
               onClose: () => {
-                console.log("calling on close");
                 handleToggleMenu(false);
               },
             });
@@ -103,32 +78,18 @@ const DropDownMenu = props => {
     );
   };
 
-  // const getClasses = () => {
-  //   return classNames(className, "aclui-dropdown-menu__dropdown", {
-  //     "aclui-dropdown-menu__confirmation": isConfirming,
-  //   });
-  // };
-
-  console.log("re rendering ");
-  console.log("isOpen", isOpen);
   return (
     <Popover
       align={align}
-      // className={getClasses()} // not sure if is necessary
-      // content={renderContent()} // children is rendering content
-      // hasArrow={false}
-      // onOutsideClick={handleOutsideClick}
+      className={className}
       offset={4}
-      role={!isConfirming ? "menu" : null} // not sure if is necessary
-      // rootClassName="aclui-dropdown-menu" // not sure if is necessary
-      isOpen={isOpen} // maybe needed
+      role={!isConfirming ? "menu" : null}
+      isOpen={isOpen}
       onClose={() => {
-        console.log("paprika close handler called");
-        // needed to add isConfirming boolean check here
         if (!isConfirming) {
           handleToggleMenu(false);
         }
-      }} // maybe needed
+      }}
     >
       <Popover.Trigger>{props.renderTrigger(getTriggerStateAndHelpers())}</Popover.Trigger>
       <Popover.Content>{renderContent()}</Popover.Content>

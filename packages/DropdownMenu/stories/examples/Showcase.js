@@ -10,7 +10,9 @@ const dropDownMenuProps = () => ({
   /** Render prop for rendering the trigger element that toggles the dropdown */
   align: "bottom",
   renderTrigger: ({ onToggleMenu }) => (
-    <Button className="aclui-dropdown-menu__trigger" onClick={onToggleMenu} icon="ellipsis" isSquare />
+    <Button className="aclui-dropdown-menu__trigger" onClick={onToggleMenu}>
+      Trigger
+    </Button>
   ),
 });
 
