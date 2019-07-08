@@ -9,7 +9,7 @@ blocks:
   - name: "🚀 NPM Release"
     task:
       secrets:
-        - name: PAPRIKA_NPM_TOKEN
+        - name: paprika-env
       jobs:
       - name: "Releasing"
         commands:
