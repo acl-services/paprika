@@ -11,6 +11,7 @@ blocks:
       jobs:
       - name: "Releasing"
         commands:
+          - checkout
           - yarn npm:release
   # - name: "🎩 Yarn"
   #   task:
