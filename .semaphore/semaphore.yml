@@ -6,61 +6,82 @@ agent:
     os_image: ubuntu1804
 
 blocks:
-  - name: "🎩 Yarn"
-    task:
-      jobs:
-      - name: "Yarn & caching"
-        commands:
-          - checkout
-          - cache restore node-modules-$SEMAPHORE_GIT_BRANCH
-          - yarn install --frozen-lockfile
-          - npx lerna bootstrap
-          - cache store node-modules-$SEMAPHORE_GIT_BRANCH node_modules
-          - cache store cypress-$SEMAPHORE_GIT_BRANCH ~/.cache/Cypress
-
-  - name: "Eslint + A11y + Jest + Screener"
+  - name: "🚀 NPM Release"
     task:
       prologue:
         commands:
           - checkout
-          - cache restore node-modules-$SEMAPHORE_GIT_BRANCH
-      jobs:
-        - name: Lint / prettier / JEST
-          commands:
-            - yarn add eslint-plugin-react-hooks -D -W
-            - yarn lint && yarn prettier -- --list-different
-        - name: Axe test
-          commands:
-            - yarn test:a11y
-        - name: JEST
-          commands:
-            - yarn test
-        - name: Screener
-          commands:
-            - npx lerna bootstrap
-            - yarn storybook:build
-            - yarn storybook:screener
-  - name: "Cypress E2E"
-    task:
-      prologue:
-        commands:
-          - checkout
-          - sudo apt-get -y install xvfb libgtk2.0-0 libnotify-dev libgconf-2-4 libnss3 libxss1 libasound2
-          - cache restore node-modules-$SEMAPHORE_GIT_BRANCH
-          - cache restore cypress-$SEMAPHORE_GIT_BRANCH
-      jobs:
-        - name: Cypress
-          commands:
-            - npx lerna bootstrap
-            - yarn cypress:ci
-        - name: Screener
-  - name: "🚀 Release to NPM"
-    task:
-      prologue:
-        commands:
-          - checkout
-          - cache restore node-modules-$SEMAPHORE_GIT_BRANCH
-      jobs:
-        - name: RELEASING
-          commands:
-            - yarn npm:release
+          - yarn npm:release
+  # - name: "🎩 Yarn"
+  #   task:
+  #     jobs:
+  #     - name: "Yarn & caching"
+  #       commands:
+  #         - checkout
+  #         - cache restore node-modules-$SEMAPHORE_GIT_BRANCH
+  #         - yarn install --frozen-lockfile
+  #         - npx lerna bootstrap
+  #         - cache store node-modules-$SEMAPHORE_GIT_BRANCH node_modules
+  #         - cache store cypress-$SEMAPHORE_GIT_BRANCH ~/.cache/Cypress
+  #
+  # - name: "💅 Format"
+  #   task:
+  #     prologue:
+  #       commands:
+  #         - checkout
+  #         - cache restore node-modules-$SEMAPHORE_GIT_BRANCH
+  #     jobs:
+  #       - name: Lint && prettier
+  #         commands:
+  #           - yarn add eslint-plugin-react-hooks -D -W
+  #           - yarn lint && yarn prettier -- --list-different
+  #
+  # - name: "♿️ Accessibility"
+  #   task:
+  #     prologue:
+  #       commands:
+  #         - checkout
+  #         - cache restore node-modules-$SEMAPHORE_GIT_BRANCH
+  #     jobs:
+  #       - name: Axe test
+  #         commands:
+  #           - yarn test:a11y
+  #
+  # - name: "⚡️ Integration/Unit"
+  #   task:
+  #     prologue:
+  #       commands:
+  #         - checkout
+  #         - cache restore node-modules-$SEMAPHORE_GIT_BRANCH
+  #         - yarn install
+  #     jobs:
+  #       - name: JEST
+  #         commands:
+  #           - yarn test
+  #
+  # - name: "⛰ E2E"
+  #   task:
+  #     prologue:
+  #       commands:
+  #         - checkout
+  #         - sudo apt-get -y install xvfb libgtk2.0-0 libnotify-dev libgconf-2-4 libnss3 libxss1 libasound2
+  #         - cache restore node-modules-$SEMAPHORE_GIT_BRANCH
+  #         - cache restore cypress-$SEMAPHORE_GIT_BRANCH
+  #     jobs:
+  #       - name: Cypress
+  #         commands:
+  #           - npx lerna bootstrap
+  #           - yarn cypress:ci
+  #
+  # - name: "🔎 Visual Regression"
+  #   task:
+  #     prologue:
+  #       commands:
+  #         - checkout
+  #         - cache restore node-modules-$SEMAPHORE_GIT_BRANCH
+  #     jobs:
+  #       - name: Screener
+  #         commands:
+  #           - npx lerna bootstrap
+  #           - yarn storybook:build
+  #           - yarn storybook:screener
