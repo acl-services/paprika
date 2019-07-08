@@ -3,6 +3,7 @@ import React from "react";
 import PropTypes from "prop-types";
 import Popover from "../../Popover";
 import ContentContainerStyled from "./ContentContainer.styles";
+import Confirmation from "./Confirmation/Confirmation";
 import Item from "./Item/Item";
 
 const { alignTypes, oneOf, node, string, func } = PropTypes;
@@ -80,7 +81,7 @@ const DropDownMenu = props => {
     }
 
     return React.Children.toArray(children).map(child => {
-      if (child.type.componentType === "DropdownMenu.Item") {
+      if (child.type.componentType === "DropDownMenu.Item") {
         if (child.props.renderConfirmation) {
           return React.cloneElement(child, {
             onShowConfirmation: handleShowConfirmation(child.props.renderConfirmation),
@@ -135,6 +136,7 @@ const DropDownMenu = props => {
 
 DropDownMenu.displayName = "DropDownMenu";
 DropDownMenu.Item = Item;
+DropDownMenu.Confirmation = Confirmation;
 DropDownMenu.propTypes = propTypes;
 DropDownMenu.defaultProps = defaultProps;
 
