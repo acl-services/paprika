@@ -6,6 +6,9 @@ if (SEMAPHORE_GIT_BRANCH === "UX-498-automate-release-process") {
   console.log("BRANCH:", "👍");
 }
 
-console.log("TOKEN:", PAPRIKA_NPM_TOKEN);
+console.log("========================");
+console.log("========================");
+console.log(process.env);
+console.log("========================");
 
 process.exit(0);
