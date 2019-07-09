@@ -8,7 +8,7 @@ const handleKeyDown = e => {
   e.stopPropagation();
 };
 
-const props = {
+const propTypes = {
   isOpen: bool.isRequired,
   handleOpenMenu: func.isRequired,
 };
@@ -24,6 +24,6 @@ const Trigger = ({ isOpen, handleOpenMenu, ...props }) => (
   />
 );
 
-Trigger.propTypes = props;
+Trigger.propTypes = propTypes;
 Trigger.componentName = "DropDownMenu.Trigger";
 export default Trigger;
