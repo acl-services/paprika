@@ -3,6 +3,7 @@ import tokens from "@paprika/tokens";
 import stylers from "@paprika/stylers";
 
 const ItemStyles = css`
+  cursor: pointer;
   display: block;
   ${stylers.fontSize()};
   font-family: ${tokens.fontFamily.default};

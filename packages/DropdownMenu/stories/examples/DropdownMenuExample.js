@@ -20,6 +20,9 @@ const DropDownMenuExample = props => {
         <DropDownMenu.Item isDestructive isDisabled onClick={() => {}}>
           Google
         </DropDownMenu.Item>
+        <DropDownMenu.Item isLink onClick={() => {}}>
+          Is Link Item
+        </DropDownMenu.Item>
         <DropDownMenu.Item isDisabled onClick={() => {}}>
           Galvanize
         </DropDownMenu.Item>
