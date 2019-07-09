@@ -198,7 +198,7 @@ class Popover extends React.Component {
     $shadowContent.style.maxWidth = this.props.maxWidth;
 
     document.body.appendChild($shadowContent);
-    const contentWidth = $shadowContent.getBoundingClientRect().width;
+    const contentWidth = this.getBoundingClientRect($shadowContent).width;
     document.body.removeChild($shadowContent);
 
     return contentWidth;
@@ -220,18 +220,47 @@ class Popover extends React.Component {
     this.updateVisibilityAndPositionState(isOpening);
   }
 
+  getBoundingClientRect(el) {
+    const rect = el.getBoundingClientRect();
+
+    let x;
+    let y;
+    if (rect.x === undefined) {
+      x = rect.left;
+    } else {
+      x = rect.x;
+    }
+
+    if (rect.y === undefined) {
+      y = rect.top;
+    } else {
+      y = rect.y;
+    }
+
+    return {
+      left: rect.left,
+      top: rect.top,
+      right: rect.right,
+      bottom: rect.bottom,
+      x,
+      y,
+      width: rect.width,
+      height: rect.height,
+    };
+  }
+
   getCoordinates = () => {
     const { align, getScrollContainer } = this.props;
 
     const targetRect =
       this.props.getPositioningElement === null
-        ? this.$popover.current.getBoundingClientRect()
-        : this.props.getPositioningElement().getBoundingClientRect();
+        ? this.getBoundingClientRect(this.$popover.current)
+        : this.getBoundingClientRect(this.props.getPositioningElement());
 
     const contentCoords = getContentCoordinates({
-      rect: this.$content.getBoundingClientRect(),
+      rect: this.getBoundingClientRect(this.$content),
       targetRect,
-      scrollRect: getScrollContainer !== null ? getScrollContainer().getBoundingClientRect() : null,
+      scrollRect: getScrollContainer !== null ? this.getBoundingClientRect(getScrollContainer()) : null,
       align,
       offset: this.props.offset,
     });
@@ -240,9 +269,9 @@ class Popover extends React.Component {
 
     if (this.$tip) {
       tipCoords = getTipCoordinates({
-        tipRect: this.$tip.getBoundingClientRect(),
+        tipRect: this.getBoundingClientRect(this.$tip),
         targetRect,
-        contentRect: this.$content.getBoundingClientRect(),
+        contentRect: this.getBoundingClientRect(this.$content),
         contentCoords,
         align,
       });

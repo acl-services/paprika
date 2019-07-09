@@ -25,11 +25,11 @@ en:
       delete: Delete
       apply: Apply
       cancel: Cancel
-    dateInput:
-      choose: Choose a Date
+    datePicker:
       calendar_header_format: MMMM YYYY
-      clear: Clear Date
       confirmation_format: MMMM DD, YYYY
+      month: Month
+      year: Year
     daterange:
       last_7_days: Last 7 Days
       last_30_days: Last 30 Days

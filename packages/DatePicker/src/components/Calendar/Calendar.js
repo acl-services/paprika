@@ -8,19 +8,33 @@ import { DayPickerSingleDateController as SDPController } from "react-dates";
 
 import ArrowLeft from "@paprika/icon/lib/ArrowLeft";
 import ArrowRight from "@paprika/icon/lib/ArrowRight";
+import Button from "@paprika/button";
 import useI18n from "@paprika/l10n/lib/useI18n";
 
-import CalendarStyled, { DayTriggerStyle, CalendarHeaderStyled } from "./Calendar.styles";
+import ShortcutPanel from "../ShortcutPanel";
+import { isMomentObjectOrNull } from "../../helpers";
+
+import calendarStyles, {
+  arrowIconStyles,
+  calendarWrapperStyles,
+  dayTriggerStyles,
+  monthHeaderButtonStyles,
+} from "./Calendar.styles";
 
 const propTypes = {
   /** Selected date in moment object */
   date: momentPropTypes.momentObj,
 
-  /** Possible date might be selected in moment object */
-  possibleDate: momentPropTypes.momentObj,
+  /** Visibility of calendar picker and shortcut */
+  isVisible: PropTypes.bool.isRequired,
 
   /** Callback to fire when user select date */
   onSelect: PropTypes.func.isRequired,
+
+  /** Possible date might be selected in moment object */
+  possibleDate: isMomentObjectOrNull,
+
+  resetPossibleDate: PropTypes.func.isRequired,
 };
 
 const defaultProps = {
@@ -35,15 +49,64 @@ function Calendar(props) {
   const I18n = useI18n();
 
   // Props
-  const { date, possibleDate, onSelect } = props;
+  const { date, isVisible, onSelect, possibleDate, resetPossibleDate } = props;
+
+  // State
+  const [shouldShowShortcut, setShouldShowShortcut] = React.useState(false);
+  const [currentMonth, setCurrentMonth] = React.useState(null);
 
   // Ref
   const nextButtonRef = React.useRef(null);
   const prevButtonRef = React.useRef(null);
+  const calendarRef = React.useRef(null);
+
+  function keepFocus() {
+    if (calendarRef.current) calendarRef.current.focus();
+  }
+
+  // Effect
+  React.useEffect(() => {
+    if (!isVisible) {
+      setShouldShowShortcut(false);
+      setCurrentMonth(null);
+    }
+    keepFocus();
+  }, [isVisible]);
+
+  React.useEffect(() => {
+    keepFocus();
+  }, [currentMonth, date]);
 
   function getInitialVisibleMonth() {
-    if (possibleDate && possibleDate.isValid()) return possibleDate;
-    return date && date.isValid() ? date : moment();
+    let initialVisibleMonth;
+
+    if (possibleDate && possibleDate.isValid()) {
+      initialVisibleMonth = possibleDate;
+    } else if (currentMonth && currentMonth.isValid()) {
+      initialVisibleMonth = currentMonth;
+    } else {
+      initialVisibleMonth = date && date.isValid() ? date : moment();
+    }
+
+    return initialVisibleMonth;
+  }
+
+  function handleClickHeader(month) {
+    setCurrentMonth(month);
+    resetPossibleDate();
+    setShouldShowShortcut(true);
+  }
+
+  function handleCancelShortcut() {
+    setShouldShowShortcut(false);
+    keepFocus();
+  }
+
+  function handleConfirmShortcut({ month, year }) {
+    setCurrentMonth(moment.utc([year, month]));
+    resetPossibleDate();
+    setShouldShowShortcut(false);
+    keepFocus();
   }
 
   function handleClickNavigation(buttonRef) {
@@ -68,22 +131,35 @@ function Calendar(props) {
 
   /* eslint-disable react/prop-types */
   function renderMonthHeaderElement({ month }) {
-    return <CalendarHeaderStyled>{month.format(I18n.t("dateInput.calendar_header_format"))}</CalendarHeaderStyled>;
+    return (
+      <Button
+        css={monthHeaderButtonStyles}
+        isDropdown
+        kind="flat"
+        onClick={() => {
+          handleClickHeader(month);
+        }}
+        tabIndex={-1}
+        data-qa-anchor="datepicker.calendar.header"
+      >
+        {month.format(I18n.t("datePicker.calendar_header_format"))}
+      </Button>
+    );
   }
   /* eslint-enable react/prop-types */
 
   function renderArrowLeft() {
     return (
-      <span ref={prevButtonRef} data-qa-anchor="datepicker-prev-month">
-        <ArrowLeft role="presentation" size="14px" />
+      <span css={arrowIconStyles} ref={prevButtonRef} data-qa-anchor="datepicker-prev-month">
+        <ArrowLeft role="presentation" />
       </span>
     );
   }
 
   function renderArrowRight() {
     return (
-      <span ref={nextButtonRef} data-qa-anchor="datepicker-next-month">
-        <ArrowRight role="presentation" size="14px" />
+      <span css={arrowIconStyles} ref={nextButtonRef} data-qa-anchor="datepicker-next-month">
+        <ArrowRight role="presentation" />
       </span>
     );
   }
@@ -91,7 +167,7 @@ function Calendar(props) {
   function renderDayContents(day) {
     return (
       <span
-        css={DayTriggerStyle}
+        css={dayTriggerStyles}
         isSelected={moment(day).isSame(date, "day")}
         isToday={moment(day).isSame(moment(), "day")}
       >
@@ -100,30 +176,42 @@ function Calendar(props) {
     );
   }
 
+  const CalendarKey = `${currentMonth && currentMonth.format("YYYY-MM")}/${possibleDate &&
+    possibleDate.format("YYYY-MM")}/${date && date.format("YYYY-MM")}/${isVisible}`;
+
   return (
-    <CalendarStyled>
-      <SDPController
-        key={possibleDate || date}
-        date={date}
-        onDateChange={onSelect}
-        focused
-        isOutsideRange={isOutsideSupportedRange}
-        renderMonthElement={renderMonthHeaderElement}
-        enableOutsideDays
-        numberOfMonths={1}
-        initialVisibleMonth={getInitialVisibleMonth}
-        hideKeyboardShortcutsPanel
-        daySize={30}
-        verticalBorderSpacing={0}
-        transitionDuration={0}
-        horizontalMonthPadding={0}
-        navPrev={renderArrowLeft()}
-        navNext={renderArrowRight()}
-        onPrevMonthClick={handleClickPrevMonth}
-        onNextMonthClick={handleClickNextMonth}
-        renderDayContents={renderDayContents}
+    <div css={calendarWrapperStyles} tabIndex={-1} ref={calendarRef}>
+      <div css={calendarStyles} isVisible={!shouldShowShortcut}>
+        <SDPController
+          key={CalendarKey}
+          date={date}
+          onDateChange={onSelect}
+          focused
+          isOutsideRange={isOutsideSupportedRange}
+          renderMonthElement={renderMonthHeaderElement}
+          enableOutsideDays
+          numberOfMonths={1}
+          initialVisibleMonth={getInitialVisibleMonth}
+          hideKeyboardShortcutsPanel
+          daySize={34}
+          verticalBorderSpacing={0}
+          transitionDuration={0}
+          horizontalMonthPadding={0}
+          navPrev={renderArrowLeft()}
+          navNext={renderArrowRight()}
+          onPrevMonthClick={handleClickPrevMonth}
+          onNextMonthClick={handleClickNextMonth}
+          renderDayContents={renderDayContents}
+        />
+      </div>
+      <ShortcutPanel
+        key={shouldShowShortcut}
+        date={currentMonth || moment()}
+        isVisible={shouldShowShortcut}
+        onCancel={handleCancelShortcut}
+        onConfirm={handleConfirmShortcut}
       />
-    </CalendarStyled>
+    </div>
   );
 }
 
