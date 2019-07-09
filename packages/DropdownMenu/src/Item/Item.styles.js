@@ -13,18 +13,6 @@ const ItemStyles = css`
   /* unsure if these should be set outside the component */
   line-height:1.5;
 
-  /* // not sure how to do */
-  /* &:not(.is-disabled):hover {
-    ${({ isDestructive }) =>
-      isDestructive
-        ? { backgroundColor: tokens.color.colorOrangeLighten40 }
-        : { backgroundColor: tokens.color.blackLighten70 }}
-  }
-
-  &:not(.is-disabled):active {
-    background-color: ${tokens.color.blackLighten60};
-  } */
-
   &:focus {
     box-shadow: ${tokens.highlight.active.withBorder}
     outline: none;
@@ -36,6 +24,18 @@ const ItemStyles = css`
     if (isDisabled) {
       return isDestructive ? { color: tokens.color.colorOrangeDisabled } : { color: tokens.color.blackDisabled };
     }
+
+    /* todo */
+    /* &:not(.is-disabled):hover {
+    ${({ isDestructive }) =>
+      isDestructive
+        ? { backgroundColor: tokens.color.colorOrangeLighten40 }
+        : { backgroundColor: tokens.color.blackLighten70 }}
+  }
+
+  &:not(.is-disabled):active {
+    background-color: ${tokens.color.blackLighten60};
+  } */
 
     return isDestructive ? { color: tokens.color.orangeDarken10 } : { color: tokens.color.colorBlack };
   }}}
