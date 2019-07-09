@@ -4,6 +4,7 @@ import Popover from "@paprika/popover";
 import ContentContainerStyled from "./ContentContainer.styles";
 import Confirmation from "./Confirmation/Confirmation";
 import Divider from "./Divider/Divider";
+import Trigger from "./Trigger/Trigger";
 import Item from "./Item/Item";
 
 const { alignTypes, oneOf, node, string, func } = PropTypes;
@@ -29,9 +30,9 @@ const defaultProps = {
 
 const DropDownMenu = props => {
   const { align, children, className } = props;
-  const [isOpen, setIsOpen] = React.useState();
-  const [isConfirming, setIsConfirming] = React.useState();
-  const [renderConfirmation, setRenderConfirmation] = React.useState();
+  const [isOpen, setIsOpen] = React.useState(false);
+  const [isConfirming, setIsConfirming] = React.useState(false);
+  const [renderConfirmation, setRenderConfirmation] = React.useState(null);
 
   const handleCloseMenu = () => {
     setIsOpen(false);
@@ -41,6 +42,13 @@ const DropDownMenu = props => {
 
   const handleOpenMenu = () => {
     setIsOpen(true);
+  };
+
+  const getTriggerStateAndHelpers = () => {
+    return {
+      isOpen,
+      handleOpenMenu,
+    };
   };
 
   const handleShowConfirmation = renderConfirmation => () => {
@@ -86,7 +94,7 @@ const DropDownMenu = props => {
         }
       }}
     >
-      <Popover.Trigger>{props.renderTrigger(handleOpenMenu)}</Popover.Trigger>
+      <Popover.Trigger>{props.renderTrigger(getTriggerStateAndHelpers())}</Popover.Trigger>
       <Popover.Content>{renderContent()}</Popover.Content>
     </Popover>
   );
@@ -96,6 +104,7 @@ DropDownMenu.displayName = "DropDownMenu";
 DropDownMenu.Divider = Divider;
 DropDownMenu.Item = Item;
 DropDownMenu.Confirmation = Confirmation;
+DropDownMenu.Trigger = Trigger;
 DropDownMenu.propTypes = propTypes;
 DropDownMenu.defaultProps = defaultProps;
 
