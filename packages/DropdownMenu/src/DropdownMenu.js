@@ -63,9 +63,7 @@ const DropDownMenu = props => {
               });
             }
             return React.cloneElement(child, {
-              onClose: () => {
-                handleCloseMenu();
-              },
+              onClose: handleCloseMenu,
             });
           }
 

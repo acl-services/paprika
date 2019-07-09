@@ -4,12 +4,12 @@ import L10n from "@paprika/l10n";
 import DropDownMenu from "../../src";
 
 const DropDownMenuExample = props => {
-  const handleConfirm = onClose => {
-    onClose(false);
+  const handleConfirm = handleCloseMenu => {
+    handleCloseMenu();
   };
 
-  const handleCancel = onClose => {
-    onClose(false);
+  const handleCancel = handleCloseMenu => {
+    handleCloseMenu();
   };
 
   return (
@@ -29,14 +29,14 @@ const DropDownMenuExample = props => {
         <DropDownMenu.Divider />
         <DropDownMenu.Item
           isDestructive
-          renderConfirmation={onClose => {
+          renderConfirmation={handleCloseMenu => {
             return (
               <DropDownMenu.Confirmation
                 buttonSize={select("Confirmation Button Size", ["x-small", "small", "medium", "large"], "medium")}
                 confirmLabel="Delete filter"
                 description="Lorem ipsum dolor amet vexillologist tacos selvage narwhal butcher twee ethical hot chicken."
-                onConfirm={() => handleConfirm(onClose)}
-                onCancel={() => handleCancel(onClose)}
+                onConfirm={() => handleConfirm(handleCloseMenu)}
+                onCancel={() => handleCancel(handleCloseMenu)}
                 title="Delete filter?"
               />
             );
