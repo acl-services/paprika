@@ -9,8 +9,6 @@ const ItemStyles = css`
   font-weight: normal;
   padding: ${tokens.spaceSm} ${stylers.spacer(2)};
   text-decoration: none;
-
-  /* unsure if these should be set outside the component */
   line-height:1.5;
 
   &:focus {
@@ -25,20 +23,19 @@ const ItemStyles = css`
       return isDestructive ? { color: tokens.color.colorOrangeDisabled } : { color: tokens.color.blackDisabled };
     }
 
-    /* todo */
-    /* &:not(.is-disabled):hover {
-    ${({ isDestructive }) =>
-      isDestructive
-        ? { backgroundColor: tokens.color.colorOrangeLighten40 }
-        : { backgroundColor: tokens.color.blackLighten70 }}
-  }
-
-  &:not(.is-disabled):active {
-    background-color: ${tokens.color.blackLighten60};
-  } */
-
     return isDestructive ? { color: tokens.color.orangeDarken10 } : { color: tokens.color.colorBlack };
   }}}
+
+  &:hover{
+    ${({ isDestructive, isDisabled }) => {
+      if (!isDisabled) {
+        return isDestructive
+          ? { backgroundColor: tokens.color.colorOrangeLighten40 }
+          : { backgroundColor: tokens.color.blackLighten70 };
+      }
+    }}
+  }
+
 
 `;
 

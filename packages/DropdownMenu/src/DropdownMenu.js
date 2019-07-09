@@ -3,6 +3,7 @@ import PropTypes from "prop-types";
 import Popover from "@paprika/popover";
 import ContentContainerStyled from "./ContentContainer.styles";
 import Confirmation from "./Confirmation/Confirmation";
+import Divider from "./Divider/Divider";
 import Item from "./Item/Item";
 
 const { alignTypes, oneOf, node, string, func } = PropTypes;
@@ -94,6 +95,7 @@ const DropDownMenu = props => {
 };
 
 DropDownMenu.displayName = "DropDownMenu";
+DropDownMenu.Divider = Divider;
 DropDownMenu.Item = Item;
 DropDownMenu.Confirmation = Confirmation;
 DropDownMenu.propTypes = propTypes;

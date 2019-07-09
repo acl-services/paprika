@@ -23,6 +23,7 @@ const DropDownMenuExample = props => {
         <DropDownMenu.Item isDisabled onClick={() => {}}>
           Galvanize
         </DropDownMenu.Item>
+        <DropDownMenu.Divider />
         <DropDownMenu.Item
           isDestructive
           renderConfirmation={onClose => {
