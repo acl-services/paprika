@@ -35,10 +35,10 @@ const Confirmation = ({ title, buttonSize, confirmButtonType, confirmLabel, desc
             <div className="dropdown-menu__confirmation-header">{title}</div>
             {description && <div className="dropdown-menu__confirmation-description">{description}</div>}
             <div className="dropdown-menu__confirmation-footer">
-              <Button type={confirmButtonType} size={buttonSize} onClick={onConfirm}>
+              <Button kind={confirmButtonType} size={buttonSize} onClick={onConfirm}>
                 {confirmLabel}
               </Button>
-              <Button type="minor" size={buttonSize} onClick={onCancel}>
+              <Button kind="minor" size={buttonSize} onClick={onCancel}>
                 {I18n.t("actions.cancel")}
               </Button>
             </div>

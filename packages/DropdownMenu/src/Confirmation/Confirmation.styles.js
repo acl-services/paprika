@@ -17,6 +17,10 @@ const ConfirmationStyles = css`
 
   .dropdown-menu__confirmation-footer {
     margin-top: ${stylers.spacer(2)};
+
+    button {
+      margin-right: ${tokens.spaceSm};
+    }
   }
 `;
 
