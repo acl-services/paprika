@@ -47,13 +47,6 @@ const DropDownMenu = props => {
     setRenderConfirmation(prevIsConfirmingState => (prevIsConfirmingState ? null : renderConfirmation));
   };
 
-  const getTriggerStateAndHelpers = () => {
-    return {
-      isOpen,
-      handleOpenMenu,
-    };
-  };
-
   const renderContent = () => {
     if (isConfirming) {
       return renderConfirmation(handleCloseMenu);
@@ -94,7 +87,7 @@ const DropDownMenu = props => {
         }
       }}
     >
-      <Popover.Trigger>{props.renderTrigger(getTriggerStateAndHelpers())}</Popover.Trigger>
+      <Popover.Trigger>{props.renderTrigger(handleOpenMenu)}</Popover.Trigger>
       <Popover.Content>{renderContent()}</Popover.Content>
     </Popover>
   );
