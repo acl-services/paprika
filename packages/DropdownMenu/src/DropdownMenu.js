@@ -32,10 +32,14 @@ const DropDownMenu = props => {
   const [isConfirming, setIsConfirming] = React.useState();
   const [renderConfirmation, setRenderConfirmation] = React.useState();
 
-  const handleToggleMenu = openState => {
-    setIsOpen(openState);
+  const handleCloseMenu = () => {
+    setIsOpen(false);
     setIsConfirming(false);
     setRenderConfirmation(null);
+  };
+
+  const handleOpenMenu = () => {
+    setIsOpen(true);
   };
 
   const handleShowConfirmation = renderConfirmation => () => {
@@ -46,13 +50,13 @@ const DropDownMenu = props => {
   const getTriggerStateAndHelpers = () => {
     return {
       isOpen,
-      onToggleMenu: () => handleToggleMenu(true),
+      handleOpenMenu,
     };
   };
 
   const renderContent = () => {
     if (isConfirming) {
-      return renderConfirmation(handleToggleMenu);
+      return renderConfirmation(handleCloseMenu);
     }
 
     return (
@@ -66,7 +70,7 @@ const DropDownMenu = props => {
             }
             return React.cloneElement(child, {
               onClose: () => {
-                handleToggleMenu(false);
+                handleCloseMenu();
               },
             });
           }
@@ -86,7 +90,7 @@ const DropDownMenu = props => {
       isOpen={isOpen}
       onClose={() => {
         if (!isConfirming) {
-          handleToggleMenu(false);
+          handleCloseMenu();
         }
       }}
     >

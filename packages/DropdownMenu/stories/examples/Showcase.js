@@ -8,7 +8,7 @@ import DropDownMenuExample from "./DropDownMenuExample";
 const dropDownMenuProps = () => ({
   /** Render prop for rendering the trigger element that toggles the dropdown */
   align: "bottom",
-  renderTrigger: ({ onToggleMenu }) => <Button onClick={onToggleMenu}>Trigger</Button>,
+  renderTrigger: ({ handleOpenMenu }) => <Button onClick={handleOpenMenu}>Trigger</Button>,
 });
 
 const ExampleStory = props => (

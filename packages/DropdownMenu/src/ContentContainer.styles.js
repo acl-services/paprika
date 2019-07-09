@@ -7,19 +7,17 @@ const ContentContainerStyles = styled.div`
   border: 1px solid ${tokens.border.color};
   border-radius: ${tokens.popover.borderRadius};
   box-shadow: ${tokens.popover.shadow};
+  margin-left: ${stylers.spacer(2)};
   max-width: 320px;
   min-width: 150px;
   padding: ${tokens.space} 0;
   text-align: left;
-  
+
   ${({ isOpen }) => {
     if (isOpen === false) {
       return { opacity: 0 };
     }
   }}
-
-  // this is positioning, not sure if good way to do it
-  margin-left: ${stylers.spacer(2)};
 `;
 
 export default ContentContainerStyles;
