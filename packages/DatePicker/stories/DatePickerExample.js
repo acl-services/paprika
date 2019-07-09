@@ -7,7 +7,7 @@ function Example(props) {
   const { initialDate, children, locale, ...moreProps } = props;
   const [date, setDate] = React.useState(initialDate || null);
 
-  moment.locale(locale || "en");
+  moment.locale(locale === "zh" ? "zh-cn" : locale || "en");
 
   function handleChange(newDate) {
     setDate(newDate);

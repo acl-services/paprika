@@ -21,12 +21,12 @@
     "@paprika/popover": "^0.1.1",
     "@paprika/stylers": "^0.1.1",
     "@paprika/tokens": "^0.1.1",
-    "moment": "^2.24.0",
     "prop-types": "^15.7.2",
     "react-dates": "^20.1.0",
     "react-moment-proptypes": "^1.6.0"
   },
   "peerDependencies": {
+    "moment": "^2.18.1",
     "react": "^16.8.4",
     "react-dom": "^16.8.4",
     "styled-components": "^4.2.0"

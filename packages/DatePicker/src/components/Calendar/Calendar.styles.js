@@ -1,16 +1,46 @@
-import styled from "styled-components";
+import { css } from "styled-components";
+
 import tokens from "@paprika/tokens";
 import stylers from "@paprika/stylers";
 
-import CalendarBaseStyle from "./CalendarBase.styles";
+import calendarBaseStyles from "./CalendarBase.styles";
+import { hoveredItemStyles, selectedItemStyles, visuallyHiddenStyles } from "../../shared.styles";
 
-const CalendarStyled = styled.div`
-  ${CalendarBaseStyle}
+export const arrowIconStyles = css`
+  > svg[role="presentation"] {
+    ${stylers.fontSize(-1)}
 
-  * {
-    box-sizing: border-box;
-    font-family: ${tokens.fontFamily.default};
+    display: block;
   }
+`;
+
+const iconButtonStyles = css`
+  transition: background-color 0.2s ease-out;
+
+  &:hover {
+    background-color: ${stylers.alpha(tokens.color.black, 0.1)};
+    border-color: ${tokens.border.hoverColor};
+  }
+
+  &:focus,
+  &:active {
+    box-shadow: ${tokens.highlight.active.withBorder.boxShadow};
+    outline: none;
+  }
+
+  &:active {
+    background-color: ${stylers.alpha(tokens.color.black, 0.2)};
+  }
+`;
+
+const calendarStyles = css`
+  ${calendarBaseStyles}
+
+  &:focus {
+    outline: none;
+  }
+
+  ${({ isVisible }) => !isVisible && visuallyHiddenStyles}
 
   .DayPicker_transitionContainer__horizontal {
     transition: none;
@@ -25,8 +55,11 @@ const CalendarStyled = styled.div`
   }
 
   .CalendarMonth_caption {
+    align-items: center;
     background-color: ${tokens.color.blackLighten80};
+    display: flex;
     height: ${stylers.spacer(5)};
+    justify-content: center;
     line-height: ${stylers.spacer(5)};
     padding: 0;
     margin-bottom: ${tokens.spaceLg};
@@ -40,11 +73,26 @@ const CalendarStyled = styled.div`
     padding: 0;
     vertical-align: middle;
 
-    &:hover,
-    &:focus,
-    &:active {
+    &:hover {
       background-color: ${tokens.color.white};
       border: none;
+    }
+
+    &:focus {
+      outline: none;
+
+      > span {
+        box-shadow: ${tokens.highlight.active.noBorder.boxShadow};
+        border: 1px solid ${tokens.highlight.active.noBorder.borderColor};
+      }
+    }
+
+    &:active {
+      > span {
+        box-shadow: ${tokens.highlight.active.noBorder.boxShadow}, inset 0 1px 1px 0 rgba(0, 0, 0, 0.1),
+          inset 0 1px ${tokens.spaceSm} 0 rgba(0, 0, 0, 0.3);
+        transform: scale(0.98);
+      }
     }
 
     &.CalendarDay__selected {
@@ -69,14 +117,17 @@ const CalendarStyled = styled.div`
   }
 
   .DayPickerNavigation_button {
+    ${iconButtonStyles}
+
+    align-items: center;
     border-radius: ${tokens.border.radius};
-    position: absolute;
-    top: 10px;
-    display: block;
+    display: flex;
+    height: ${stylers.spacer(3)};
+    justify-content: center;
     padding: ${tokens.spaceSm};
-    width: 22px;
-    height: 22px;
-    box-sizing: border-box;
+    position: absolute;
+    top: ${tokens.space};
+    width: ${stylers.spacer(3)};
 
     &:first-child {
       left: ${tokens.space};
@@ -91,12 +142,6 @@ const CalendarStyled = styled.div`
     top: 3px;
   }
 
-  .DayPickerNavigation_button:focus,
-  .DayPickerNavigation_button:active {
-    box-shadow: ${tokens.highlight.active.withBorder.boxShadow};
-    outline: none;
-  }
-
   .CalendarMonth_table {
     border: 0;
     margin-bottom: 0;
@@ -104,42 +149,50 @@ const CalendarStyled = styled.div`
   }
 `;
 
-export const DayTriggerStyle = props => {
-  const SelectedStyle = `
-    background-color: #cde5fc;
-    font-weight: bold;
-
-    &:hover {
-      border: 0;
-    }
-  `;
-  const TodayStyle = `
-    border: 1px solid ${tokens.border.color};
-    font-weight: bold;
-  `;
-
-  return `
-    display: inline-flex;
-    align-items: center;
+export const calendarWrapperStyles = css`
+  &,
+  * {
     box-sizing: border-box;
-    justify-content: center;
-    width: 30px;
-    height: 27px;
-    border-radius: ${tokens.border.radius};
-    color: ${tokens.color.black};
+  }
 
-    &:hover {
-      background: ${tokens.color.blackLighten70};
-      font-weight: bold;
-    }
-
-    ${props.isSelected ? SelectedStyle : ""}
-    ${props.isToday ? TodayStyle : ""}
-  `;
-};
-
-export const CalendarHeaderStyled = styled.span`
-  ${stylers.fontSize()}
+  &:focus {
+    outline: none;
+  }
 `;
 
-export default CalendarStyled;
+const dayTriggerSelectedStyle = css`
+  ${selectedItemStyles}
+
+  &:hover {
+    border: 0;
+  }
+`;
+
+const dayTriggerTodayStyle = css`
+  border: 1px solid ${tokens.border.color};
+  font-weight: bold;
+`;
+
+export const dayTriggerStyles = css`
+  align-items: center;
+  border-radius: ${tokens.border.radius};
+  box-sizing: border-box;
+  color: ${tokens.color.black};
+  display: inline-flex;
+  height: 27px;
+  justify-content: center;
+  width: 33px;
+
+  &:hover {
+    ${hoveredItemStyles}
+  }
+
+  ${({ isSelected }) => (isSelected ? dayTriggerSelectedStyle : null)}
+  ${({ isToday }) => (isToday ? dayTriggerTodayStyle : null)}
+`;
+
+export const monthHeaderButtonStyles = css`
+  font-weight: normal;
+`;
+
+export default calendarStyles;
