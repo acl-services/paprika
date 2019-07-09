@@ -8,11 +8,7 @@ import DropDownMenuExample from "./DropDownMenuExample";
 const dropDownMenuProps = () => ({
   /** Render prop for rendering the trigger element that toggles the dropdown */
   align: "bottom",
-  renderTrigger: ({ onToggleMenu }) => (
-    <Button className="aclui-dropdown-menu__trigger" onClick={onToggleMenu}>
-      Trigger
-    </Button>
-  ),
+  renderTrigger: ({ onToggleMenu }) => <Button onClick={onToggleMenu}>Trigger</Button>,
 });
 
 const ExampleStory = props => (
