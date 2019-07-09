@@ -8,6 +8,9 @@ import RawButton from "../../RawButton";
 import "./Collapsible.scss";
 
 const Collapsible = props => {
+  const I18n = useI18n();
+  let hasWarnedForAriaText = false;
+
   const collapsedIcon = () => {
     const { iconExpand, iconCollapse } = props;
 
@@ -21,6 +24,10 @@ const Collapsible = props => {
         "Error: It is necessary to provide either an ariaText prop or the i18n.t function via the L10n component for Collapsible."
       );
     }
+  };
+
+  const handleClickCollapse = event => {
+    props.onClick(event);
   };
 
   const renderDefaultCollapsible = () => {
@@ -63,16 +70,12 @@ const Collapsible = props => {
     );
   };
 
-  const I18n = useI18n();
-  let hasWarnedForAriaText = false;
-
-  checkPropsError();
+  // checkPropsError();
 
   React.useEffect(() => {
     checkPropsError();
   });
 
-  /* eslint-disable no-unused-vars */
   /* Destructuring is used to isolate additional props in moreProps and pass them along to
        Collapsible.  Several are not used by render() but they must remain in this statement to
        exclude them from moreProps.
