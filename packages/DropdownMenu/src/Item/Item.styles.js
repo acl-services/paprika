@@ -19,19 +19,21 @@ const ItemStyles = css`
   }
 
   ${({ isDestructive, isDisabled }) => {
+    let colorString;
     if (isDisabled) {
-      return isDestructive ? { color: tokens.color.colorOrangeDisabled } : { color: tokens.color.blackDisabled };
+      colorString = isDestructive ? "colorOrangeDisabled" : "blackDisabled";
+      return { color: tokens.color[colorString] };
     }
 
-    return isDestructive ? { color: tokens.color.orangeDarken10 } : { color: tokens.color.colorBlack };
+    colorString = isDestructive ? "orangeDarken10" : "colorBlack";
+    return { color: tokens.color[colorString] };
   }}}
 
   &:hover{
     ${({ isDestructive, isDisabled }) => {
       if (!isDisabled) {
-        return isDestructive
-          ? { backgroundColor: tokens.color.colorOrangeLighten40 }
-          : { backgroundColor: tokens.color.blackLighten70 };
+        const bgColorString = isDestructive ? "colorOrangeLighten40" : "blackLighten70";
+        return { backgroundColor: tokens.color[bgColorString] };
       }
     }}
   }
