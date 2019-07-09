@@ -1,0 +1,40 @@
+// @import "../../helpers/css/index";
+
+.aclui-collapsible {
+  box-sizing: border-box;
+  display: block;
+  // font-size: font-scale();
+  width: 100%;
+
+  > .aclui-raw-button {
+    // border-radius: $border--radius;
+  }
+}
+
+.aclui-collapsible__body {
+  display: none;
+  width: 100%;
+}
+.aclui-collapsible--is-open > .aclui-collapsible__body {
+  display: block;
+}
+
+.aclui-collapsible__label {
+  display: inline-block;
+  width: 100%;
+}
+
+.aclui-collapsible__label--is-toggle-icon-only {
+  width: auto;
+}
+
+.aclui-collapsible--icon-left {
+  // padding-right: $space/2;
+}
+.aclui-collapsible--icon-right {
+  float: right;
+}
+
+.aclui-collapsible__aria-label {
+  // @include is-visually-hidden;
+}
