@@ -20,7 +20,7 @@ const propTypes = {
 };
 
 const defaultProps = {
-  buttonSize: ShirtSizes.DEFAULT,
+  buttonSize: ShirtSizes.MEDIUM,
   confirmButtonType: "destructive",
   description: null,
 };

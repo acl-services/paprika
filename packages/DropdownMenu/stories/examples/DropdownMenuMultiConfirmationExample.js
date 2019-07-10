@@ -1,7 +1,16 @@
 import React from "react";
+import { select } from "@storybook/addon-knobs";
 import DropdownMenu from "../../src";
 
 const DropdownMenuExample = () => {
+  const handleConfirm = handleCloseMenu => {
+    handleCloseMenu();
+  };
+
+  const handleCancel = handleCloseMenu => {
+    handleCloseMenu();
+  };
+
   return (
     <DropdownMenu
       align="bottom"
@@ -15,6 +24,22 @@ const DropdownMenuExample = () => {
       <DropdownMenu.Item onClick={() => {}}>Duplicate</DropdownMenu.Item>
       <DropdownMenu.Item isDestructive isDisabled onClick={() => {}}>
         Google
+      </DropdownMenu.Item>
+      <DropdownMenu.Item
+        isDestructive
+        renderConfirmation={handleCloseMenu => {
+          return (
+            <DropdownMenu.Confirmation
+              confirmLabel="Delete filter"
+              description="Lorem ipsum dolor amet vexillologist tacos selvage narwhal butcher twee ethical hot chicken."
+              onConfirm={() => handleConfirm(handleCloseMenu)}
+              onCancel={() => handleCancel(handleCloseMenu)}
+              title="Delete filter 1?"
+            />
+          );
+        }}
+      >
+        Delete filter 1
       </DropdownMenu.Item>
       <DropdownMenu.Item isLink onClick={() => {}}>
         Is Link Item
@@ -30,14 +55,14 @@ const DropdownMenuExample = () => {
             <DropdownMenu.Confirmation
               confirmLabel="Delete filter"
               description="Lorem ipsum dolor amet vexillologist tacos selvage narwhal butcher twee ethical hot chicken."
-              onConfirm={() => handleCloseMenu()}
-              onCancel={() => handleCloseMenu()}
-              title="Delete filter?"
+              onConfirm={() => handleConfirm(handleCloseMenu)}
+              onCancel={() => handleCancel(handleCloseMenu)}
+              title="Delete filter 2?"
             />
           );
         }}
       >
-        Delete filter
+        Delete filter 2
       </DropdownMenu.Item>
     </DropdownMenu>
   );
