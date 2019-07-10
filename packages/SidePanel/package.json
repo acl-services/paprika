@@ -1,6 +1,6 @@
 {
   "name": "@paprika/sidepanel",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "SidePanel component",
   "author": "@paprika",
   "main": "lib/index.js",
@@ -14,13 +14,13 @@
   },
   "dependencies": {
     "@babel/runtime-corejs2": "^7.3.1",
-    "@paprika/button": "^0.1.1",
-    "@paprika/heading": "^0.1.1",
+    "@paprika/button": "^0.1.2",
+    "@paprika/heading": "^0.1.2",
     "@paprika/helpers": "^0.1.1",
-    "@paprika/icon": "^0.1.1",
-    "@paprika/raw-button": "^0.1.1",
+    "@paprika/icon": "^0.1.2",
+    "@paprika/raw-button": "^0.1.2",
     "@paprika/stylers": "^0.1.1",
-    "@paprika/tokens": "^0.1.1",
+    "@paprika/tokens": "^0.1.2",
     "focus-trap-react": "^6.0.0",
     "lodash.debounce": "^4.0.8",
     "prop-types": "^15.7.2"
