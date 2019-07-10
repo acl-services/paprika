@@ -1,7 +1,7 @@
 import React from "react";
-import DropDownMenuDividerStyles from "./Divider.styles";
+import DividerStyles from "./Divider.styles";
 
-const Divider = () => <span css={DropDownMenuDividerStyles} />;
+const Divider = () => <span css={DividerStyles} />;
 
-Divider.componentType = "DropDownMenu.Divider";
+Divider.componentType = "DropdownMenu.Divider";
 export default Divider;

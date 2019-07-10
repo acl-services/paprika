@@ -49,7 +49,7 @@ const Confirmation = ({ title, buttonSize, confirmButtonType, confirmLabel, desc
   );
 };
 
-Confirmation.componentType = "DropDownMenu.Confirmation";
+Confirmation.componentType = "DropdownMenu.Confirmation";
 Confirmation.propTypes = propTypes;
 Confirmation.defaultProps = defaultProps;
 

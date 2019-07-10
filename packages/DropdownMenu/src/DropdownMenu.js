@@ -28,7 +28,7 @@ const defaultProps = {
   className: "",
 };
 
-const DropDownMenu = props => {
+const DropdownMenu = props => {
   const { align, children, className } = props;
   const [isOpen, setIsOpen] = React.useState(false);
   const [isConfirming, setIsConfirming] = React.useState(false);
@@ -64,7 +64,7 @@ const DropDownMenu = props => {
     return (
       <ContentContainerStyled isOpen={isOpen}>
         {React.Children.toArray(children).map(child => {
-          if (child.type.componentType === "DropDownMenu.Item") {
+          if (child.type.componentType === "DropdownMenu.Item") {
             if (child.props.renderConfirmation) {
               return React.cloneElement(child, {
                 onShowConfirmation: handleShowConfirmation(child.props.renderConfirmation),
@@ -100,12 +100,12 @@ const DropDownMenu = props => {
   );
 };
 
-DropDownMenu.displayName = "DropDownMenu";
-DropDownMenu.Divider = Divider;
-DropDownMenu.Item = Item;
-DropDownMenu.Confirmation = Confirmation;
-DropDownMenu.Trigger = Trigger;
-DropDownMenu.propTypes = propTypes;
-DropDownMenu.defaultProps = defaultProps;
+DropdownMenu.displayName = "DropdownMenu";
+DropdownMenu.Divider = Divider;
+DropdownMenu.Item = Item;
+DropdownMenu.Confirmation = Confirmation;
+DropdownMenu.Trigger = Trigger;
+DropdownMenu.propTypes = propTypes;
+DropdownMenu.defaultProps = defaultProps;
 
-export default DropDownMenu;
+export default DropdownMenu;

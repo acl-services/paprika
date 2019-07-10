@@ -25,5 +25,5 @@ const Trigger = ({ isOpen, handleOpenMenu, ...props }) => (
 );
 
 Trigger.propTypes = propTypes;
-Trigger.componentName = "DropDownMenu.Trigger";
+Trigger.componentName = "DropdownMenu.Trigger";
 export default Trigger;

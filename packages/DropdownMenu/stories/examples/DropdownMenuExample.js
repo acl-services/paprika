@@ -1,9 +1,9 @@
 import React from "react";
 import { select } from "@storybook/addon-knobs";
 import L10n from "@paprika/l10n";
-import DropDownMenu from "../../src";
+import DropdownMenu from "../../src";
 
-const DropDownMenuExample = () => {
+const DropdownMenuExample = () => {
   const handleConfirm = handleCloseMenu => {
     handleCloseMenu();
   };
@@ -14,31 +14,31 @@ const DropDownMenuExample = () => {
 
   return (
     <L10n locale={select("locale", ["en", "de", "es", "fr", "ja", "pt", "zh"], "en")}>
-      <DropDownMenu
+      <DropdownMenu
         align="bottom"
         renderTrigger={({ isOpen, handleOpenMenu }) => (
-          <DropDownMenu.Trigger isOpen={isOpen} handleOpenMenu={handleOpenMenu}>
+          <DropdownMenu.Trigger isOpen={isOpen} handleOpenMenu={handleOpenMenu}>
             Trigger
-          </DropDownMenu.Trigger>
+          </DropdownMenu.Trigger>
         )}
       >
-        <DropDownMenu.Item onClick={() => {}}>Edit</DropDownMenu.Item>
-        <DropDownMenu.Item onClick={() => {}}>Duplicate</DropDownMenu.Item>
-        <DropDownMenu.Item isDestructive isDisabled onClick={() => {}}>
+        <DropdownMenu.Item onClick={() => {}}>Edit</DropdownMenu.Item>
+        <DropdownMenu.Item onClick={() => {}}>Duplicate</DropdownMenu.Item>
+        <DropdownMenu.Item isDestructive isDisabled onClick={() => {}}>
           Google
-        </DropDownMenu.Item>
-        <DropDownMenu.Item isLink onClick={() => {}}>
+        </DropdownMenu.Item>
+        <DropdownMenu.Item isLink onClick={() => {}}>
           Is Link Item
-        </DropDownMenu.Item>
-        <DropDownMenu.Item isDisabled onClick={() => {}}>
+        </DropdownMenu.Item>
+        <DropdownMenu.Item isDisabled onClick={() => {}}>
           Galvanize
-        </DropDownMenu.Item>
-        <DropDownMenu.Divider />
-        <DropDownMenu.Item
+        </DropdownMenu.Item>
+        <DropdownMenu.Divider />
+        <DropdownMenu.Item
           isDestructive
           renderConfirmation={handleCloseMenu => {
             return (
-              <DropDownMenu.Confirmation
+              <DropdownMenu.Confirmation
                 buttonSize={select("Confirmation Button Size", ["x-small", "small", "medium", "large"], "medium")}
                 confirmLabel="Delete filter"
                 description="Lorem ipsum dolor amet vexillologist tacos selvage narwhal butcher twee ethical hot chicken."
@@ -50,10 +50,10 @@ const DropDownMenuExample = () => {
           }}
         >
           Delete filter
-        </DropDownMenu.Item>
-      </DropDownMenu>
+        </DropdownMenu.Item>
+      </DropdownMenu>
     </L10n>
   );
 };
 
-export default DropDownMenuExample;
+export default DropdownMenuExample;

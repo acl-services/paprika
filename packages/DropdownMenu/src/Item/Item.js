@@ -80,7 +80,7 @@ const Item = props => {
   );
 };
 
-Item.componentType = "DropDownMenu.Item";
+Item.componentType = "DropdownMenu.Item";
 Item.propTypes = propTypes;
 Item.defaultProps = defaultProps;
 
