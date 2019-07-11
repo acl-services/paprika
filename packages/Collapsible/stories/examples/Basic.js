@@ -8,7 +8,7 @@ const BasicCollapsibleStory = () => {
   return (
     <Story>
       <Collapsible
-        ariaText="collapsible section"
+        a11yText="collapsible section"
         isCollapsed={isCollapsed}
         isDisabled={false}
         label="Click me to show/hide the content"

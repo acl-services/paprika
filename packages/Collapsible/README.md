@@ -18,7 +18,7 @@ const [isCollapsed, setIsCollapsed] = React.useState(false);
 const yourComponent = () => {
   return (
     <Collapsible
-      ariaText="collapsible section"
+      a11yText="collapsible section"
       isCollapsed={isCollapsed}
       isDisabled={false}
       label="Click me to show/hide the content"
@@ -38,7 +38,7 @@ export default yourComponent;
 
 ### Props
 
-- `ariaText`
+- `a11yText`
 - `children`
 - `className`
 - `iconAlign`

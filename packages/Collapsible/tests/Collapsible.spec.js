@@ -4,7 +4,7 @@ import Collapsible from "../src";
 
 const searchableContent = "The body of the collapsible";
 const defaultProps = {
-  ariaText: "collapsible section",
+  a11yText: "collapsible section",
   hasOnlyIconToggle: false,
   isCollapsed: false,
   isDisabled: false,

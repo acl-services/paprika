@@ -9,7 +9,7 @@ const collapsibleStyles = props => `
   line-height: 24px;
   width: 100%;
 
-  > .raw-button {
+  > .collapsible__label {
     border-radius: ${tokens.borderRadius};
   }
 
@@ -38,10 +38,6 @@ const collapsibleStyles = props => `
 
   .collapsible--icon-right {
     float: right;
-  }
-
-  .collapsible__aria-label {
-    ${stylers.visuallyHidden}
   }
 `;
 
