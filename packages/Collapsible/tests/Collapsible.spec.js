@@ -71,7 +71,7 @@ describe("Collapsible", () => {
 
   it("should show the expand/collapse icon when collapsed", () => {
     const { container } = renderComponent({ isCollapsed: true });
-    expect(container.querySelector(".aclui-collapsible--icon-left")).toBeVisible();
+    expect(container.querySelector(".collapsible--icon-left")).toBeVisible();
   });
 
   it("should show custom icons", () => {
