@@ -41,14 +41,14 @@ describe("Collapsible", () => {
 
   it("should not include label in button when hasOnlyIconToggle === true", () => {
     const label = <span className="custom-label">my label</span>;
-    const { container } = renderComponent({ label, hasOnlyIconToggle: true });
-    expect(container.querySelector("span[role='button'] .custom-label")).not.toBeInTheDocument();
+    const { getByRole } = renderComponent({ label, hasOnlyIconToggle: true });
+    expect(getByRole("button").querySelector(".custom-label")).not.toBeInTheDocument();
   });
 
   it("should include label in button when hasOnlyIconToggle === false", () => {
     const label = <span className="custom-label">my label</span>;
-    const { container } = renderComponent({ label, hasOnlyIconToggle: false });
-    expect(container.querySelector("span[role='button'] .custom-label")).toBeInTheDocument();
+    const { getByRole } = renderComponent({ label, hasOnlyIconToggle: false });
+    expect(getByRole("button").querySelector(".custom-label")).toBeInTheDocument();
   });
 
   it("should not fire callback when click label and hasOnlyIconToggle === true", () => {

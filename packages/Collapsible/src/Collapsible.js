@@ -96,7 +96,6 @@ const Collapsible = props => {
   const {
     a11yText,
     children,
-    className,
     iconAlign,
     iconCollapse,
     iconExpand,
