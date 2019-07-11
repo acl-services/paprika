@@ -4,14 +4,14 @@ A controlled component that shows/hides content on click.
 
 ### Installation
 
-`> npm install --save @paprika/Collapsible`
+`> npm install --save @paprika/collapsible`
 or
-`> yarn add @paprika/Collapsible`
+`> yarn add @paprika/collapsible`
 
 ### Usage
 
 ```js
-import Collapsible from "@paprika/Collapsible";
+import Collapsible from "@paprika/collapsible";
 
 const [isCollapsed, setIsCollapsed] = React.useState(false);
 
