@@ -3,19 +3,21 @@ import { Story } from "storybook/assets/styles/common.styles";
 import Collapsible from "../../src";
 
 const BasicCollapsibleStory = () => {
+  const [isCollapsed, setIsCollapsed] = React.useState(false);
+
   return (
     <Story>
       <Collapsible
         ariaText="collapsible section"
-        isCollapsed={false}
+        isCollapsed={isCollapsed}
         isDisabled={false}
-        label="Collapsible Label"
+        label="Click me to show/hide the content"
         iconAlign="left"
-        onClick={() => {}}
+        onClick={() => setIsCollapsed(!isCollapsed)}
       >
         <p>
-          <strong>Content</strong> – children of the &lt;Collapsible&gt; craft beer post-ironic lumbersexual man braid
-          next level kale chips pop-up gochujang unicorn woke lo-fi occupy. Taxidermy vinyl plaid flannel YOLO brunch.
+          <strong>Content</strong> – children of the &lt;Collapsible&gt; is hidden while the collapsible is collapsed,
+          and visible with it is expanded.
         </p>
       </Collapsible>
     </Story>

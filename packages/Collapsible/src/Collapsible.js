@@ -1,21 +1,15 @@
 import React from "react";
 import PropTypes from "prop-types";
-import classNames from "classnames";
 import RightArrowIcon from "@paprika/icon/lib/ArrowRight";
 import DownArrowIcon from "@paprika/icon/lib/ArrowDown";
 import useI18n from "@paprika/l10n/lib/useI18n";
 import RawButton from "../../RawButton";
-import "./Collapsible.scss";
+import collapsibleStyles from "./Collapsible.styles";
 
 const Collapsible = props => {
   const I18n = useI18n();
   let hasWarnedForAriaText = false;
-
-  const collapsedIcon = () => {
-    const { iconExpand, iconCollapse } = props;
-
-    return [iconExpand, iconCollapse];
-  };
+  const collapsedIcon = [props.iconExpand, props.iconCollapse];
 
   const checkPropsError = () => {
     if (!props.ariaText && !(I18n && I18n.t) && !hasWarnedForAriaText) {
@@ -70,8 +64,6 @@ const Collapsible = props => {
     );
   };
 
-  // checkPropsError();
-
   React.useEffect(() => {
     checkPropsError();
   });
@@ -80,6 +72,7 @@ const Collapsible = props => {
        Collapsible.  Several are not used by render() but they must remain in this statement to
        exclude them from moreProps.
     */
+
   const {
     ariaText,
     children,
@@ -96,24 +89,17 @@ const Collapsible = props => {
   } = props;
   /* eslint-enable no-unused-vars */
 
-  const rootClasses = classNames(
-    "aclui-collapsible",
-    className,
-    { "aclui-collapsible--is-open": !isCollapsed },
-    { "is-disabled": isDisabled }
-  );
+  const collapsibleProps = {
+    isCollapsed,
+  };
 
   return (
-    <div className={rootClasses} role="group" {...moreProps}>
+    <div className="aclui-collapsible" css={collapsibleStyles} {...collapsibleProps} role="group" {...moreProps}>
       {hasOnlyIconToggle ? renderCollapsibleByIcon() : renderDefaultCollapsible()}
       <div className="aclui-collapsible__body">{children}</div>
     </div>
   );
 };
-
-// Collapsible.contextTypes = {
-//   t: PropTypes.func,
-// };
 
 Collapsible.propTypes = {
   ariaText: PropTypes.string,
