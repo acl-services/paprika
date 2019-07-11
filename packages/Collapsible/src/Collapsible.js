@@ -94,7 +94,7 @@ const Collapsible = props => {
   };
 
   return (
-    <div className="aclui-collapsible" css={collapsibleStyles} {...collapsibleProps} role="group" {...moreProps}>
+    <div css={collapsibleStyles} {...collapsibleProps} role="group" {...moreProps}>
       {hasOnlyIconToggle ? renderCollapsibleByIcon() : renderDefaultCollapsible()}
       <div className="aclui-collapsible__body">{children}</div>
     </div>
