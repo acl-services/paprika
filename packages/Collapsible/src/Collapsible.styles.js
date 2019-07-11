@@ -17,10 +17,6 @@ const collapsibleStyles = props => `
     display: none;
     width: 100%;
     ${props.isCollapsed ? "display: none;" : "display: block;"}
-
-    p {
-      margin: 0 0 1.25rem 0;
-    }
   }
 
   .collapsible__label {

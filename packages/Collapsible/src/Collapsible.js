@@ -58,7 +58,7 @@ const Collapsible = props => {
         aria-expanded={!isCollapsed}
         className="collapsible__label"
         isDisabled={isDisabled}
-        onClick={e => handleClickCollapse(e)}
+        onClick={handleClickCollapse}
       >
         <span className={`collapsible--icon-${iconAlign}`} aria-hidden="true">
           {collapsedIcon[+isCollapsed]}
@@ -78,7 +78,7 @@ const Collapsible = props => {
           aria-expanded={!isCollapsed}
           className="collapsible__label collapsible__label--is-toggle-icon-only"
           isDisabled={isDisabled}
-          onClick={e => handleClickCollapse(e)}
+          onClick={handleClickCollapse}
         >
           <span className={`collapsible--icon-${iconAlign}`} aria-hidden="true">
             {collapsedIcon[+isCollapsed]}
