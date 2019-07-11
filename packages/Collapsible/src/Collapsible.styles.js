@@ -9,11 +9,11 @@ const collapsibleStyles = props => `
   line-height: 24px;
   width: 100%;
 
-  > .aclui-raw-button {
+  > .raw-button {
     border-radius: ${tokens.borderRadius};
   }
 
-  .aclui-collapsible__body {
+  .collapsible__body {
     display: none;
     width: 100%;
     ${props.isCollapsed ? "display: none;" : "display: block;"}
@@ -23,24 +23,24 @@ const collapsibleStyles = props => `
     }
   }
 
-  .aclui-collapsible__label {
+  .collapsible__label {
     display: inline-block;
     width: 100%;
   }
 
-  .aclui-collapsible__label--is-toggle-icon-only {
+  .collapsible__label--is-toggle-icon-only {
     width: auto;
   }
 
-  .aclui-collapsible--icon-left {
+  .collapsible--icon-left {
     padding-right: ${tokens.spaceSm};
   }
 
-  .aclui-collapsible--icon-right {
+  .collapsible--icon-right {
     float: right;
   }
 
-  .aclui-collapsible__aria-label {
+  .collapsible__aria-label {
     ${stylers.visuallyHidden}
   }
 `;
