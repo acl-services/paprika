@@ -22,7 +22,7 @@ class Trigger extends React.Component {
       window.requestAnimationFrame(() => {
         if (!isActiveElementPopover()) onClose();
       });
-    } else if (event.type === "click") {
+    } else if (event.type === "click" || event.key === " " || event.key === "Enter") {
       onClick();
     }
   };
