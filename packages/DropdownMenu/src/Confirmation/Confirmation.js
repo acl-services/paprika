@@ -15,6 +15,7 @@ const propTypes = {
   confirmLabel: string.isRequired,
   description: string,
   onCancel: func.isRequired,
+  onClose: func,
   onConfirm: func.isRequired,
   title: string.isRequired,
 };
@@ -23,19 +24,27 @@ const defaultProps = {
   buttonSize: ShirtSizes.MEDIUM,
   confirmButtonType: "destructive",
   description: null,
+  onClose: () => {},
 };
 
-const Confirmation = ({ title, buttonSize, confirmButtonType, confirmLabel, description, onConfirm, onCancel }) => {
+const Confirmation = props => {
+  const { title, buttonSize, confirmButtonType, confirmLabel, description, onConfirm, onCancel, onClose } = props;
+  const confirmRef = React.useRef(null);
+
+  React.useEffect(() => {
+    if (confirmRef.current) confirmRef.current.focus();
+  });
+
   const I18n = useI18n();
   return (
-    <Popover defaultIsOpen>
+    <Popover defaultIsOpen onClose={onClose}>
       <Popover.Content>
         <ContentContainerStyled>
           <div css={ConfirmationStyles}>
             <div className="dropdown-menu__confirmation-header">{title}</div>
             {description && <div className="dropdown-menu__confirmation-description">{description}</div>}
             <div className="dropdown-menu__confirmation-footer">
-              <Button kind={confirmButtonType} size={buttonSize} onClick={onConfirm}>
+              <Button ref={confirmRef} kind={confirmButtonType} size={buttonSize} onClick={onConfirm}>
                 {confirmLabel}
               </Button>
               <Button kind="minor" size={buttonSize} onClick={onCancel}>
