@@ -18,30 +18,7 @@ blocks:
           - cache store node-modules-$SEMAPHORE_GIT_BRANCH node_modules
           - cache store cypress-$SEMAPHORE_GIT_BRANCH ~/.cache/Cypress
 
-  - name: "💅 Format"
-    task:
-      prologue:
-        commands:
-          - checkout
-          - cache restore node-modules-$SEMAPHORE_GIT_BRANCH
-      jobs:
-        - name: Lint && prettier
-          commands:
-            - yarn add eslint-plugin-react-hooks -D -W
-            - yarn lint && yarn prettier -- --list-different
-
-  - name: "♿️ Accessibility"
-    task:
-      prologue:
-        commands:
-          - checkout
-          - cache restore node-modules-$SEMAPHORE_GIT_BRANCH
-      jobs:
-        - name: Axe test
-          commands:
-            - yarn test:a11y
-
-  - name: "⚡️ Integration/Unit"
+  - name: "🏎 Testing Fast"
     task:
       prologue:
         commands:
@@ -49,11 +26,18 @@ blocks:
           - cache restore node-modules-$SEMAPHORE_GIT_BRANCH
           - yarn install
       jobs:
-        - name: JEST
+        - name: 💅 Format
+          commands:
+            - yarn add eslint-plugin-react-hooks -D -W
+            - yarn lint && yarn prettier -- --list-different
+        - name: Axe test
+          commands:
+            - yarn test:a11y
+        - name: 🧐 Testing Integration + Unit
           commands:
             - yarn test
 
-  - name: "⛰ E2E"
+  - name: "🚚 Testing E2E"
     task:
       prologue:
         commands:
@@ -62,12 +46,12 @@ blocks:
           - cache restore node-modules-$SEMAPHORE_GIT_BRANCH
           - cache restore cypress-$SEMAPHORE_GIT_BRANCH
       jobs:
-        - name: Cypress
+        - name: ⛰ Cypress
           commands:
             - npx lerna bootstrap
             - yarn cypress:ci
 
-  - name: "🔎 Visual Regression"
+  - name: "🚜 Visual Regression"
     task:
       prologue:
         commands:
