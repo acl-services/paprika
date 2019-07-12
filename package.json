@@ -106,7 +106,7 @@
   "husky": {
     "hooks": {
       "pre-commit": "lint-staged",
-      "pre-push": "yarn jest && yarn prettier --list-different"
+      "pre-push": "yarn jest"
     }
   },
   "lint-staged": {
