@@ -1,22 +1,20 @@
 {
-  "name": "@paprika/collapsible",
+  "name": "@paprika/collapsible-list",
   "version": "0.1.0",
-  "description": "Collapsible component",
+  "description": "CollapsibleList component",
   "author": "@paprika",
   "license": "MIT",
   "main": "lib/index.js",
   "repository": {
     "type": "git",
-    "url": "https://github.com/acl-services/paprika/tree/master/packages/Collapsible"
+    "url": "https://github.com/acl-services/paprika/tree/master/packages/CollapsibleList"
   },
   "publishConfig": {
     "access": "public"
   },
   "dependencies": {
     "@babel/runtime-corejs2": "^7.3.1",
-    "@paprika/icon": "^0.1.2",
-    "@paprika/l10n": "^0.1.2",
-    "@paprika/raw-button": "^0.1.2",
+    "@paprika/collapsible": "^0.1.0",
     "@paprika/stylers": "^0.1.1",
     "@paprika/tokens": "^0.1.1",
     "class-names": "^1.0.0",
