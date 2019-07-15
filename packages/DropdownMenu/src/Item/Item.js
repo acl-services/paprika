@@ -1,14 +1,11 @@
 import React from "react";
 import PropTypes from "prop-types";
 import RawButton from "@paprika/raw-button";
-import ItemStyles from "./Item.styles";
+import ItemStyles from "../Item.styles";
 
-const { bool, func, node, string } = PropTypes;
+const { bool, func, node } = PropTypes;
 
 const propTypes = {
-  /** Optional custom classes */
-  className: string,
-
   /** HTML for each item */
   children: node.isRequired,
 
@@ -32,7 +29,6 @@ const propTypes = {
 };
 
 const defaultProps = {
-  className: "",
   isDestructive: false,
   onClick: () => {},
   onClose: () => {},
@@ -43,7 +39,6 @@ const defaultProps = {
 
 const Item = props => {
   const {
-    className,
     children,
     isDestructive,
     isLink,
@@ -60,7 +55,6 @@ const Item = props => {
   };
 
   const itemProps = {
-    className,
     onClick: renderConfirmation !== null ? onShowConfirmation : handleClickItem,
     role: "menuitem",
     isDestructive,
@@ -80,7 +74,7 @@ const Item = props => {
   );
 };
 
-Item.componentType = "DropdownMenu.Item";
+Item.displayName = "DropdownMenu.Item";
 Item.propTypes = propTypes;
 Item.defaultProps = defaultProps;
 

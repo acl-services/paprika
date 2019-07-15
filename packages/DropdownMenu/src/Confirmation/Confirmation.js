@@ -4,20 +4,18 @@ import Button from "@paprika/button";
 import { ShirtSizes } from "@paprika/helpers/lib/customPropTypes";
 import useI18n from "@paprika/l10n/lib/useI18n";
 import Popover from "@paprika/popover";
-import ContentContainerStyled from "../ContentContainer.styles";
+import contentContainerStyles from "../ContentContainer.styles";
 import ConfirmationStyles from "./Confirmation.styles";
 
-const { func, string } = PropTypes;
-
 const propTypes = {
-  buttonSize: string,
-  confirmButtonType: string,
-  confirmLabel: string.isRequired,
-  description: string,
-  onCancel: func.isRequired,
-  onClose: func,
-  onConfirm: func.isRequired,
-  title: string.isRequired,
+  buttonSize: PropTypes.oneOf(ShirtSizes.DEFAULT),
+  confirmButtonType: PropTypes.oneOf(["primary", "destructive"]),
+  confirmLabel: PropTypes.string.isRequired,
+  description: PropTypes.node,
+  onCancel: PropTypes.func.isRequired,
+  onClose: PropTypes.func,
+  onConfirm: PropTypes.func.isRequired,
+  heading: PropTypes.string.isRequired,
 };
 
 const defaultProps = {
@@ -28,7 +26,7 @@ const defaultProps = {
 };
 
 const Confirmation = props => {
-  const { title, buttonSize, confirmButtonType, confirmLabel, description, onConfirm, onCancel, onClose } = props;
+  const { heading, buttonSize, confirmButtonType, confirmLabel, description, onConfirm, onCancel, onClose } = props;
   const confirmRef = React.useRef(null);
 
   React.useEffect(() => {
@@ -39,9 +37,9 @@ const Confirmation = props => {
   return (
     <Popover defaultIsOpen onClose={onClose}>
       <Popover.Content>
-        <ContentContainerStyled>
+        <div css={contentContainerStyles}>
           <div css={ConfirmationStyles}>
-            <div className="dropdown-menu__confirmation-header">{title}</div>
+            <div className="dropdown-menu__confirmation-header">{heading}</div>
             {description && <div className="dropdown-menu__confirmation-description">{description}</div>}
             <div className="dropdown-menu__confirmation-footer">
               <Button ref={confirmRef} kind={confirmButtonType} size={buttonSize} onClick={onConfirm}>
@@ -52,13 +50,13 @@ const Confirmation = props => {
               </Button>
             </div>
           </div>
-        </ContentContainerStyled>
+        </div>
       </Popover.Content>
     </Popover>
   );
 };
 
-Confirmation.componentType = "DropdownMenu.Confirmation";
+Confirmation.displayName = "DropdownMenu.Confirmation";
 Confirmation.propTypes = propTypes;
 Confirmation.defaultProps = defaultProps;
 

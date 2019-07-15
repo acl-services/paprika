@@ -16,22 +16,23 @@ const DropdownMenuExample = () => {
       <DropdownMenu.Item isDestructive isDisabled onClick={() => {}}>
         Google
       </DropdownMenu.Item>
-      <DropdownMenu.Item isLink onClick={() => {}}>
-        Is Link Item
-      </DropdownMenu.Item>
+      <DropdownMenu.LinkItem link="http://www.wegalvanize.com">Galvanize Link Item</DropdownMenu.LinkItem>
+      <DropdownMenu.LinkItem isExternal link="http://www.bbc.com">
+        External link
+      </DropdownMenu.LinkItem>
       <DropdownMenu.Item isDisabled onClick={() => {}}>
         Galvanize
       </DropdownMenu.Item>
       <DropdownMenu.Divider />
       <DropdownMenu.Item
         isDestructive
-        renderConfirmation={handleCloseMenu => {
+        renderConfirmation={onClose => {
           return (
             <DropdownMenu.Confirmation
               confirmLabel="Delete filter"
               description="Lorem ipsum dolor amet vexillologist tacos selvage narwhal butcher twee ethical hot chicken."
-              onConfirm={() => handleCloseMenu()}
-              onCancel={() => handleCloseMenu()}
+              onConfirm={() => onClose()}
+              onCancel={() => onClose()}
               title="Delete filter?"
             />
           );

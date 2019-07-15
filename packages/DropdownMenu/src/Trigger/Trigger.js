@@ -2,28 +2,34 @@ import React from "react";
 import PropTypes from "prop-types";
 import Button from "@paprika/button";
 
-const { bool, func } = PropTypes;
-
 const handleKeyDown = e => {
   e.stopPropagation();
 };
 
 const propTypes = {
-  isOpen: bool.isRequired,
-  handleOpenMenu: func.isRequired,
+  isOpen: PropTypes.bool.isRequired,
+  handleOpenMenu: PropTypes.func.isRequired,
+  triggerRef: PropTypes.shape({ current: PropTypes.instanceOf(Element) }) || null,
 };
 
-const Trigger = ({ isOpen, handleOpenMenu, ...props }) => (
-  <Button
-    aria-expanded={isOpen}
-    aria-haspopup="true"
-    onClick={handleOpenMenu}
-    onKeyDown={handleKeyDown}
-    isSquare
-    {...props}
-  />
-);
+const defaultProps = { triggerRef: null };
 
+const Trigger = props => {
+  const { isOpen, handleOpenMenu, triggerRef, ...otherProps } = props;
+  return (
+    <Button
+      ref={triggerRef}
+      aria-expanded={isOpen}
+      aria-haspopup="true"
+      onClick={handleOpenMenu}
+      onKeyDown={handleKeyDown}
+      isSquare
+      {...otherProps}
+    />
+  );
+};
+
+Trigger.defaultProps = defaultProps;
 Trigger.propTypes = propTypes;
-Trigger.componentName = "DropdownMenu.Trigger";
+Trigger.displayName = "DropdownMenu.Trigger";
 export default Trigger;

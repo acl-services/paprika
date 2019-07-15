@@ -27,13 +27,13 @@ const DropdownMenuExample = () => {
       </DropdownMenu.Item>
       <DropdownMenu.Item
         isDestructive
-        renderConfirmation={handleCloseMenu => {
+        renderConfirmation={onClose => {
           return (
             <DropdownMenu.Confirmation
               confirmLabel="Delete filter"
               description="Lorem ipsum dolor amet vexillologist tacos selvage narwhal butcher twee ethical hot chicken."
-              onConfirm={() => handleConfirm(handleCloseMenu)}
-              onCancel={() => handleCancel(handleCloseMenu)}
+              onConfirm={() => handleConfirm(onClose)}
+              onCancel={() => handleCancel(onClose)}
               title="Delete filter 1?"
             />
           );
@@ -50,13 +50,13 @@ const DropdownMenuExample = () => {
       <DropdownMenu.Divider />
       <DropdownMenu.Item
         isDestructive
-        renderConfirmation={handleCloseMenu => {
+        renderConfirmation={onClose => {
           return (
             <DropdownMenu.Confirmation
               confirmLabel="Delete filter"
               description="Lorem ipsum dolor amet vexillologist tacos selvage narwhal butcher twee ethical hot chicken."
-              onConfirm={() => handleConfirm(handleCloseMenu)}
-              onCancel={() => handleCancel(handleCloseMenu)}
+              onConfirm={() => handleConfirm(onClose)}
+              onCancel={() => handleCancel(onClose)}
               title="Delete filter 2?"
             />
           );

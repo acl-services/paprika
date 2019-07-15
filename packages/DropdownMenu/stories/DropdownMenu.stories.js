@@ -33,7 +33,7 @@ storiesOf("DropdownMenu", module)
   ))
   .add("DropdownMenu with disabled items", () => (
     <DropdownMenuStory>
-      <DropdownMenuDisabledExample />{" "}
+      <DropdownMenuDisabledExample />
     </DropdownMenuStory>
   ))
   .add("DropdownMenu with dividers", () => (
@@ -43,7 +43,7 @@ storiesOf("DropdownMenu", module)
   ))
   .add("DropdownMenu with longest story", () => (
     <DropdownMenuStory>
-      <DropdownMenuLongestExample />{" "}
+      <DropdownMenuLongestExample />
     </DropdownMenuStory>
   ))
   .add("DropdownMenu with trigger examples", () => (

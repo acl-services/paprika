@@ -142,7 +142,8 @@ const tokens = {
   },
   "popover": {
     "borderRadius": "6px",
-    "shadow": "0 2px 4px rgba(0,0,0,0.1)"
+    "shadow": "0 2px 4px rgba(0,0,0,0.1)",
+    "defaultWidth": "320px"
   },
   "backgroundColor": {
     "level0": "#f7f7f7"

@@ -1,13 +1,14 @@
 import React from "react";
 import PropTypes from "prop-types";
 import Popover from "@paprika/popover";
-import ContentContainerStyled from "./ContentContainer.styles";
 import Confirmation from "./Confirmation/Confirmation";
 import Divider from "./Divider/Divider";
 import Trigger from "./Trigger/Trigger";
+import LinkItem from "./LinkItem/LinkItem";
 import Item from "./Item/Item";
+import contentContainerStyles from "./ContentContainer.styles";
 
-const { alignTypes, oneOf, node, string, func } = PropTypes;
+const { alignTypes, oneOf, node, func } = PropTypes;
 
 const propTypes = {
   /** Alignment of the dropdown menu */
@@ -16,44 +17,47 @@ const propTypes = {
   /** Children should consist of <Dropdown.Item /> */
   children: node.isRequired,
 
-  /** Optional custom classes */
-  className: string,
-
   /** Render prop for rendering the trigger element that toggles the dropdown */
   renderTrigger: func.isRequired,
 };
 
 const defaultProps = {
   align: "bottom",
-  className: "",
 };
 
 const DropdownMenu = props => {
-  const { align, children, className } = props;
+  const { align, children, ...moreProps } = props;
   const [isOpen, setIsOpen] = React.useState(false);
   const [isConfirming, setIsConfirming] = React.useState(false);
   const [renderConfirmation, setRenderConfirmation] = React.useState(null);
+  const triggerRef = React.useRef(null);
 
   const handleCloseMenu = () => {
     setIsOpen(false);
     setIsConfirming(false);
     setRenderConfirmation(null);
+    if (triggerRef.current) triggerRef.current.focus();
   };
 
   const handleOpenMenu = () => {
     setIsOpen(true);
   };
 
-  const getTriggerStateAndHelpers = () => {
-    return {
-      isOpen,
-      handleOpenMenu,
-    };
-  };
+  const getTriggerStateAndHelpers = () => ({
+    isOpen,
+    handleOpenMenu,
+  });
 
   const handleShowConfirmation = renderConfirmation => () => {
     setIsConfirming(prevIsConfirmingState => !prevIsConfirmingState);
     setRenderConfirmation(prevIsConfirmingState => (prevIsConfirmingState ? null : renderConfirmation));
+  };
+
+  const renderTrigger = () => {
+    const triggerComponent = props.renderTrigger(getTriggerStateAndHelpers());
+    return React.cloneElement(triggerComponent, {
+      triggerRef,
+    });
   };
 
   const renderContent = () => {
@@ -65,9 +69,9 @@ const DropdownMenu = props => {
     }
 
     return (
-      <ContentContainerStyled isOpen={isOpen}>
+      <div css={contentContainerStyles} isOpen={isOpen}>
         {React.Children.toArray(children).map(child => {
-          if (child.type.componentType === "DropdownMenu.Item") {
+          if (child.type.displayName === "DropdownMenu.Item") {
             if (child.props.renderConfirmation) {
               return React.cloneElement(child, {
                 onShowConfirmation: handleShowConfirmation(child.props.renderConfirmation),
@@ -80,31 +84,31 @@ const DropdownMenu = props => {
 
           return child;
         })}
-      </ContentContainerStyled>
+      </div>
     );
   };
 
   return (
     <Popover
       align={align}
-      className={className}
       offset={4}
-      role={!isConfirming ? "menu" : null}
       isOpen={isOpen}
       onClose={() => {
         if (!isConfirming) {
           handleCloseMenu();
         }
       }}
+      {...moreProps}
     >
-      <Popover.Trigger>{props.renderTrigger(getTriggerStateAndHelpers())}</Popover.Trigger>
-      <Popover.Content>{renderContent()}</Popover.Content>
+      <Popover.Trigger>{() => renderTrigger()}</Popover.Trigger>
+      <Popover.Content role={!isConfirming ? "menu" : null}>{renderContent()}</Popover.Content>
     </Popover>
   );
 };
 
 DropdownMenu.displayName = "DropdownMenu";
 DropdownMenu.Divider = Divider;
+DropdownMenu.LinkItem = LinkItem;
 DropdownMenu.Item = Item;
 DropdownMenu.Confirmation = Confirmation;
 DropdownMenu.Trigger = Trigger;

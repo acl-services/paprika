@@ -12,10 +12,10 @@ const DropdownMenuDisabledExample = () => {
       )}
     >
       <DropdownMenu.Item isDestructive isDisabled onClick={() => {}}>
-        Google
+        Galvanize disabled distructive
       </DropdownMenu.Item>
       <DropdownMenu.Item isDisabled onClick={() => {}}>
-        Galvanize
+        Galvanize disabled
       </DropdownMenu.Item>
     </DropdownMenu>
   );

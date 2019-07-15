@@ -19,7 +19,7 @@ const ExampleStory = () => (
     <Heading level={1} displayLevel={2} isLight>
       DropdownMenu Showcase
     </Heading>
-    <Tagline>Use the knobs to tinker with the props.</Tagline>
+    <Tagline>Play with the controls to change the dropdown.</Tagline>
     <Rule />
     <L10n locale={select("locale", ["en", "de", "es", "fr", "ja", "pt", "zh"], "en")}>
       <DropdownMenu
@@ -33,26 +33,32 @@ const ExampleStory = () => (
         <DropdownMenu.Item onClick={() => {}}>Edit</DropdownMenu.Item>
         <DropdownMenu.Item onClick={() => {}}>Duplicate</DropdownMenu.Item>
         <DropdownMenu.Item isDestructive isDisabled onClick={() => {}}>
-          Google
+          Galvanize item
         </DropdownMenu.Item>
-        <DropdownMenu.Item isLink onClick={() => {}}>
-          Is Link Item
+        <DropdownMenu.Item isDisabled onClick={() => {}}>
+          Galvanize item
         </DropdownMenu.Item>
+        <DropdownMenu.LinkItem link="http://www.wegalvanize.com">Galvanize Link Item</DropdownMenu.LinkItem>
+        <DropdownMenu.LinkItem isExternal link="http://www.bbc.com">
+          External link
+        </DropdownMenu.LinkItem>
         <DropdownMenu.Item isDisabled onClick={() => {}}>
           Galvanize
         </DropdownMenu.Item>
         <DropdownMenu.Divider />
         <DropdownMenu.Item
           isDestructive
-          renderConfirmation={handleCloseMenu => {
+          renderConfirmation={onClose => {
             return (
               <DropdownMenu.Confirmation
                 buttonSize={select("Confirmation Button Size", ["x-small", "small", "medium", "large"], "medium")}
                 confirmLabel="Delete filter"
-                description="Lorem ipsum dolor amet vexillologist tacos selvage narwhal butcher twee ethical hot chicken."
-                onConfirm={() => handleConfirm(handleCloseMenu)}
-                onCancel={() => handleCancel(handleCloseMenu)}
-                title="Delete filter?"
+                description={
+                  <p>Lorem ipsum dolor amet vexillologist tacos selvage narwhal butcher twee ethical hot chicken.</p>
+                }
+                onConfirm={() => handleConfirm(onClose)}
+                onCancel={() => handleCancel(onClose)}
+                heading="Delete filter?"
               />
             );
           }}
