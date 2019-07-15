@@ -1,11 +1,12 @@
 import React from "react";
-import { render } from "react-testing-library";
+import { render, cleanup } from "@testing-library/react";
 import Spinner from "../src";
+
+beforeEach(cleanup);
 
 describe("Spinner", () => {
   it("should render caption", () => {
-    const { getByText } = render(<Spinner caption="Spin me" />);
-
-    expect(getByText(/Spin me/i)).toBeVisible();
+    const { getAllByText } = render(<Spinner caption="Spin me" />);
+    expect(getAllByText(/Spin me/i).length).toBe(2);
   });
 });

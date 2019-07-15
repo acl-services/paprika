@@ -113,11 +113,6 @@
       "yarn prettier --check"
     ]
   },
-  "jest": {
-    "setupFilesAfterEnv": [
-      "jest-dom/extend-expect"
-    ]
-  },
   "dependencies": {
     "@babel/runtime-corejs2": "^7.4.4",
     "react-json-tree": "^0.11.2"
