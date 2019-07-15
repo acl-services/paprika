@@ -63,8 +63,8 @@ const zStyles = props => `
 `;
 
 export const ZBox = styled(Box)`
-  position: relative;
   height: ${stylers.spacer(15)};
+  position: relative;
 `;
 
 export const ZStep = styled.span`
