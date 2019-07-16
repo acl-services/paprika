@@ -13,6 +13,15 @@ const renderTabs = () => {
   return tabs.map(tabLabel => <Tabs.Tab label={tabLabel} key={tabLabel} />);
 };
 
+const renderPanels = () => {
+  const label = "tab panels";
+  const defaultValue = ["Pepsi", "Coke", "Diet Coke", "Canada Dry"];
+  const separator = ", ";
+  const tabPanels = array(label, defaultValue, separator);
+
+  return tabPanels.map(children => <Tabs.Panel>{children}</Tabs.Panel>);
+};
+
 const tabProps = () => ({
   children: renderTabs(),
   isDisabled: boolean("isDisabled", false),
@@ -27,6 +36,7 @@ const ExampleStory = props => (
     <Rule />
     <Tabs {...props}>
       <Tabs.List>{renderTabs(false)}</Tabs.List>
+      <Tabs.Panels>{renderPanels(false)}</Tabs.Panels>
     </Tabs>
   </Story>
 );

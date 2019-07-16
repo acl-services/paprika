@@ -1,7 +1,7 @@
 import React from "react";
 import PropTypes from "prop-types";
 
-import panelStyles from "./Panel.styles";
+import { panelStyles } from "./Panel.styles";
 
 const propTypes = {
   children: PropTypes.node,

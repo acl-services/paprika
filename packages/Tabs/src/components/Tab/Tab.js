@@ -1,9 +1,8 @@
 import React from "react";
 import PropTypes from "prop-types";
-import classNames from "classnames";
 import RawButton from "@paprika/raw-button";
 import TabsContext from "../../TabsContext";
-import tabStyles from "./Tab.styles";
+import { tabStyles } from "./Tab.styles";
 
 const propTypes = {
   className: PropTypes.string,
@@ -30,7 +29,6 @@ const Tab = props => {
 
   const {
     className,
-    isDisabled,
     isSelected,
     label,
     href,
@@ -39,29 +37,19 @@ const Tab = props => {
     ...moreProps
   } = props;
 
-  const _isDisabled = context.isDisabled || props.isDisabled;
-
-  const cn = classNames("tab", { "tab--is-active": isSelected }, { "tab--is-disabled": _isDisabled }, className);
-
-  const handleKeyDown = event => {
-    const leftArrowKey = 37;
-    const rightArrowKey = 39;
-
-    if (event.which === leftArrowKey) {
-      onKeyDownArrows(context.activeIndex - 1);
-    } else if (event.which === rightArrowKey) {
-      onKeyDownArrows(context.activeIndex + 1);
-    }
+  const handleKeyDown = (event, index) => {
+    onKeyDownArrows(event, index);
   };
 
-  const handleClick = _isDisabled ? () => {} : onClick;
-  const tabIndex = _isDisabled ? -1 : 0;
+  const isDisabled = context.isDisabled || props.isDisabled;
+  const handleClick = isDisabled ? () => {} : onClick;
+  const tabIndex = isDisabled ? -1 : 0;
 
   if (href) {
     return (
       <a
         css={tabStyles}
-        className={classNames("tab-link", cn)}
+        className="tab tab-link"
         href={href}
         onKeyDown={handleKeyDown}
         role="tab"
@@ -75,12 +63,14 @@ const Tab = props => {
 
   return (
     <RawButton
-      aria-disabled={_isDisabled}
+      aria-disabled={isDisabled}
       aria-selected={isSelected}
+      className="tab"
       css={tabStyles}
-      className={cn}
+      isDisabled={isDisabled}
+      isSelected={isSelected}
       onClick={e => handleClick(e, context.activeIndex)}
-      onKeyDown={handleKeyDown}
+      onKeyDown={e => handleKeyDown(e, context.activeIndex)}
       role="tab"
       tabIndex={tabIndex}
     >

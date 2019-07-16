@@ -1,7 +1,7 @@
 import React from "react";
 import PropTypes from "prop-types";
 import TabsContext from "../../TabsContext";
-import tabsListStyles from "./List.styles";
+import { tabsListStyles } from "./List.styles";
 
 const propTypes = {
   a11yText: PropTypes.string,
@@ -16,9 +16,7 @@ const List = props => {
   const context = React.useContext(TabsContext);
 
   const { a11yText, children, ...moreProps } = props;
-  const { activeIndex, onKeyDown, onClickTab, setNumberOfTabs, setTabListRef } = context;
-
-  setNumberOfTabs(React.Children.count(children));
+  const { activeIndex, onKeyDown, onClickTab, setTabListRef } = context;
 
   const childrenWithProps = React.Children.map(children, (tab, index) => {
     const isSelected = activeIndex === index;

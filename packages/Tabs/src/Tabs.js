@@ -8,19 +8,25 @@ import List from "./components/List/List";
 
 const propTypes = {
   children: PropTypes.node.isRequired,
+  defaultIndex: PropTypes.number,
   isDisabled: PropTypes.bool,
 };
 
 const defaultProps = {
+  defaultIndex: 0,
   isDisabled: false,
 };
 
 const Tabs = props => {
-  const [activeIndex, setActiveIndex] = React.useState(null);
-  const [numberOfTabs, setNumberOfTabs] = React.useState(null);
-  let tabListRef = null;
+  const [activeIndex, setActiveIndex] = React.useState(props.defaultIndex);
+  let tabListRef = React.useRef(null);
 
   const { isDisabled } = props;
+
+  function focusAndSetIndex(index) {
+    tabListRef.querySelectorAll(".tab")[index].focus();
+    setActiveIndex(index);
+  }
 
   const setTabListRef = ref => {
     tabListRef = ref;
@@ -28,29 +34,32 @@ const Tabs = props => {
 
   const onClickTab = (event, index) => {
     event.preventDefault();
-    if (activeIndex !== index) {
-      setActiveIndex(index);
-    }
+    setActiveIndex(index);
   };
 
-  const onKeyDown = index => {
-    let tabIndex = index;
+  const onKeyDown = (event, currentIndex) => {
+    const LEFT_ARROW_KEY = 37;
+    const RIGHT_ARROW_KEY = 39;
 
-    // const tabList = React.Children.toArray(props.children)[0];
-    // const currentTab = tabList.props.children[tabIndex];
+    const tabList = React.Children.toArray(props.children)[0];
+    const enabledIndexes = tabList.props.children.map((tab, index) =>
+      tab.props.isDisabled === true ? null : index
+    ).filter(index => index != null);
 
-    // if (currentTab.props.isDisabled) {
-    //   tabIndex += 1;
-    // }
+    const enabledSelectedIndex = enabledIndexes.indexOf(currentIndex);
+    const count = enabledIndexes.length;
 
-    if (index < 0) {
-      tabIndex = numberOfTabs - 1;
-    } else if (index >= numberOfTabs) {
-      tabIndex = 0;
+    if(event.which === RIGHT_ARROW_KEY) {
+      const nextEnabledIndex = (enabledSelectedIndex + 1) % count;
+      const nextIndex = enabledIndexes[nextEnabledIndex];
+
+      focusAndSetIndex(nextIndex);
+    } else if (event.which === LEFT_ARROW_KEY) {
+      const nextEnabledIndex = (enabledSelectedIndex - 1 + count) % count;
+      const nextIndex = enabledIndexes[nextEnabledIndex];
+
+      focusAndSetIndex(nextIndex);
     }
-
-    tabListRef.querySelectorAll(".tab")[tabIndex].focus();
-    setActiveIndex(tabIndex);
   };
 
   const contextValue = {
@@ -58,7 +67,6 @@ const Tabs = props => {
     onClickTab,
     onKeyDown,
     isDisabled,
-    setNumberOfTabs,
     setTabListRef,
   };
 
