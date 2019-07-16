@@ -2,6 +2,7 @@ import React from "react";
 import PropTypes from "prop-types";
 import Collapsible from "@paprika/collapsible";
 import Item from "../Item";
+import groupStyles from "./Group.styles";
 
 const propTypes = {
   children: PropTypes.oneOfType([PropTypes.node, PropTypes.arrayOf(PropTypes.node)]), // are probably an array of "Items", but could be a Spinner or anything else
@@ -87,6 +88,7 @@ function Group(props) {
   return (
     <Collapsible
       a11yText="umm..."
+      css={groupStyles}
       hasOnlyIconToggle
       isCollapsed={isCollapsed}
       isDisabled={isDisabled}

@@ -1,15 +1,14 @@
 import React from "react";
 // import { action } from "@storybook/addon-actions";
-// import styled from "styled-components";
 import InfoIcon from "@paprika/icon/lib/InfoCircle";
 import Spinner from "../../../Spinner/src/index";
 import CollapsibleChecklists from "../../src/index";
 
-// TODO: ensure each Item has 'isChecked', isDisabled, and 'name'. They can provide more attributes for their own use, but the component won't use them (e.g. ids for figuring out if checked)
-// TODO: style it
+// TODO: use data-pka-anchor instead of class
 // TODO: i18n
 // TODO: a11y
 // TODO: tests [& stories?]
+// TODO: confirm did these things: https://github.com/acl-services/acl-ui/wiki/Migrating-to-Paprika
 
 const ExampleStory = () => {
   const handleHover = () => {
@@ -41,7 +40,11 @@ const ExampleStory = () => {
           title: (
             <span>
               Baseball
-              <span onFocus={() => {}} onMouseOver={handleHover}>
+              <span
+                onFocus={() => {}}
+                onMouseOver={handleHover}
+                style={{ paddingLeft: "4px", color: "silver", cursor: "pointer" }}
+              >
                 <InfoIcon />
               </span>
             </span>
@@ -134,7 +137,7 @@ const ExampleStory = () => {
       </CollapsibleChecklists.Group>
 
       <CollapsibleChecklists.Heading>Saskatchewan Sports Teams</CollapsibleChecklists.Heading>
-      <div>None available (this shows that any child is accepted)</div>
+      <div style={{ fontStyle: "italic", padding: "4px" }}>None available (this shows that any child is accepted)</div>
     </CollapsibleChecklists>
   );
 };

@@ -1,5 +1,6 @@
 import React from "react";
 import PropTypes from "prop-types";
+import itemStyles from "./Item.styles";
 
 const propTypes = {
   children: PropTypes.node.isRequired,
@@ -18,7 +19,7 @@ function Item(props) {
   const { children, isChecked, isDisabled, onChange } = props;
 
   return (
-    <div style={{ marginLeft: "16px" }}>
+    <div css={itemStyles} {...props}>
       <input type="checkbox" checked={isChecked} disabled={isDisabled} onChange={onChange} /> {children}
     </div>
   );
