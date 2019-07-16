@@ -1,5 +1,6 @@
 import React from "react";
 import { render, configure } from "react-testing-library";
+import "react-testing-library/cleanup-after-each";
 import L10n from "@paprika/l10n";
 
 import DropdownMenu from "../src";
@@ -7,6 +8,8 @@ import DropdownMenu from "../src";
 configure({ testIdAttribute: "data-qa-anchor" });
 
 const evt = document.createEvent("HTMLEvents");
+
+const transitionDelay = 150;
 
 function renderComponent(props = {}) {
   const renderedComponent = render(
@@ -32,7 +35,7 @@ function renderComponent(props = {}) {
                 onCancel={() => {
                   handleCloseMenu();
                 }}
-                title="Delete Button"
+                heading="Delete Button?"
               />
             );
           }}
@@ -49,14 +52,18 @@ function renderComponent(props = {}) {
 }
 
 describe("DropdownMenu", () => {
+  let getByText;
+
+  beforeEach(() => {
+    ({ getByText } = renderComponent());
+  });
+
   it("should show trigger initially with dropdown hidden", () => {
-    const { getByText } = renderComponent();
     expect(getByText(/trigger/i)).toBeVisible();
     expect(getByText(/edit/i)).not.toBeVisible();
   });
 
   it("should hide dropdown menu when outside is clicked", () => {
-    const { getByText } = renderComponent();
     getByText("Trigger").click();
     expect(getByText(/edit/i)).toBeVisible();
     evt.initEvent("click", false, true);
@@ -64,60 +71,54 @@ describe("DropdownMenu", () => {
     setTimeout(() => {
       expect(getByText(/trigger/i)).toBeVisible();
       expect(getByText(/edit/i)).not.toBeVisible();
-    }, 150);
+    }, transitionDelay);
   });
 
   it("should hide dropdown when item is clicked", () => {
-    const { getByText } = renderComponent();
     getByText("Trigger").click();
     expect(getByText(/edit/i)).toBeVisible();
     getByText(/edit/i).click();
     setTimeout(() => {
       expect(getByText(/trigger/i)).toBeVisible();
       expect(getByText(/edit/i)).not.toBeVisible();
-    }, 150);
+    }, transitionDelay);
   });
 
   it("should hide dropdown when trigger is clicked again", () => {
-    const { getByText } = renderComponent();
     getByText("Trigger").click();
     expect(getByText(/edit/i)).toBeVisible();
     getByText("Trigger").click();
     setTimeout(() => {
       expect(getByText(/trigger/i)).toBeVisible();
       expect(getByText(/edit/i)).not.toBeVisible();
-    }, 150);
+    }, transitionDelay);
   });
 
   describe("replacement popover", () => {
     beforeEach(() => {
-      const { getByText } = renderComponent();
       getByText("Trigger").click();
       expect(getByText(/edit/i)).toBeVisible();
       getByText(/delete/i).click();
     });
 
     it("should replace dropdown when destructive item is clicked", () => {
-      const { getByText } = renderComponent();
       expect(getByText(/confirm delete/i)).toBeVisible();
     });
 
     it("should hide all dropdown menus when replacement cancel button is clicked", () => {
-      const { getByText } = renderComponent();
       getByText(/cancel/i).click();
       setTimeout(() => {
         expect(getByText(/confirm delete/i)).not.toBeVisible();
         expect(getByText(/edit/i)).not.toBeVisible();
-      }, 150);
+      }, transitionDelay);
     });
 
     it("should hide all dropdown menus when primary button is clicked inside replacement popover", () => {
-      const { getByText } = renderComponent();
-      getByText("Delete Button").click();
+      getByText(/delete button/i).click();
       setTimeout(() => {
         expect(getByText(/confirm delete/i)).not.toBeVisible();
         expect(getByText(/edit/i)).not.toBeVisible();
-      }, 150);
+      }, transitionDelay);
     });
   });
 });
