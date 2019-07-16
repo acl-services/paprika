@@ -8,7 +8,7 @@ const contentContainerStyles = css`
   border-radius: ${tokens.popover.borderRadius};
   box-shadow: ${tokens.popover.shadow};
   margin-left: ${stylers.spacer(2)};
-  max-width: ${tokens.popover.defaultWidth};
+  max-width: ${tokens.popover.maxWidth}px;
   min-width: 150px;
   padding: ${tokens.space} 0;
   text-align: left;
