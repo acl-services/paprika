@@ -6,9 +6,9 @@ import Popover from "../../src";
 
 const TransformedStory = styled(CenteredStory)`
   background: #333;
+  height: 50vh;
   transform: translate(50%, 50%);
   width: 50vw;
-  height: 50vh;
 `;
 
 const ExampleStory = () => (
