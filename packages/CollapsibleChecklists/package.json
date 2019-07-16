@@ -1,13 +1,13 @@
 {
-  "name": "@paprika/collapsible-list",
+  "name": "@paprika/collapsible-checklists",
   "version": "0.1.0",
-  "description": "CollapsibleList component",
+  "description": "CollapsibleChecklists component",
   "author": "@paprika",
   "license": "MIT",
   "main": "lib/index.js",
   "repository": {
     "type": "git",
-    "url": "https://github.com/acl-services/paprika/tree/master/packages/CollapsibleList"
+    "url": "https://github.com/acl-services/paprika/tree/master/packages/CollapsibleChecklists"
   },
   "publishConfig": {
     "access": "public"
@@ -17,8 +17,8 @@
     "@paprika/collapsible": "^0.1.0",
     "@paprika/stylers": "^0.1.1",
     "@paprika/tokens": "^0.1.1",
-    "class-names": "^1.0.0",
-    "prop-types": "^15.7.2"
+    "prop-types": "^15.7.2",
+    "react-addons-text-content": "^0.0.4"
   },
   "peerDependencies": {
     "react": "^16.8.0",

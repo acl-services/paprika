@@ -1,14 +1,7 @@
 import React from "react";
-// import { action } from "@storybook/addon-actions";
 import InfoIcon from "@paprika/icon/lib/InfoCircle";
 import Spinner from "../../../Spinner/src/index";
 import CollapsibleChecklists from "../../src/index";
-
-// TODO: use data-pka-anchor instead of class
-// TODO: i18n
-// TODO: a11y
-// TODO: tests [& stories?]
-// TODO: confirm did these things: https://github.com/acl-services/acl-ui/wiki/Migrating-to-Paprika
 
 const ExampleStory = () => {
   const handleHover = () => {

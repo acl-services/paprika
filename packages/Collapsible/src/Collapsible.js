@@ -72,7 +72,7 @@ const Collapsible = props => {
     const { a11yText, label, isCollapsed, isDisabled, iconAlign } = props;
 
     return (
-      <div className="collapsible__heading">
+      <div data-pka-anchor="collapsible__heading">
         <RawButton
           ariaLabel={a11yText || I18n.t("collapsible.a11yText")}
           aria-expanded={!isCollapsed}

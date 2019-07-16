@@ -1,5 +1,6 @@
 import React from "react";
 import PropTypes from "prop-types";
+import textContent from "react-addons-text-content";
 import itemStyles from "./Item.styles";
 
 const propTypes = {
@@ -20,7 +21,14 @@ function Item(props) {
 
   return (
     <div css={itemStyles} {...props}>
-      <input type="checkbox" checked={isChecked} disabled={isDisabled} onChange={onChange} /> {children}
+      <input
+        aria-label={textContent(children)}
+        type="checkbox"
+        checked={isChecked}
+        disabled={isDisabled}
+        onChange={onChange}
+      />{" "}
+      {children}
     </div>
   );
 }

@@ -1,6 +1,7 @@
 import React from "react";
 import PropTypes from "prop-types";
 import Collapsible from "@paprika/collapsible";
+import textContent from "react-addons-text-content";
 import Item from "../Item";
 import groupStyles from "./Group.styles";
 
@@ -48,18 +49,26 @@ function Group(props) {
     checkboxRef.current.indeterminate = true;
   }
 
-  function handleOnChange() {
-    const allChildrenAreChecked =
-      children.filter(child => child.props.isChecked || child.props.isDisabled).length === children.length;
+  function toggleChildren() {
+    const childItems =
+      children.length > 0 ? children.filter(childItem => childItem.type.displayName === Item.displayName) : [];
 
-    let childrenToChange = [];
-    if (allChildrenAreChecked) {
-      childrenToChange = children.filter(child => !child.props.isDisabled);
-    } else {
-      childrenToChange = children.filter(child => !child.props.isChecked && !child.props.isDisabled);
+    if (childItems.length === 0) {
+      return;
     }
 
-    onChange(childrenToChange);
+    const allChildItemsAreChecked =
+      childItems.filter(childItem => childItem.props.isChecked || childItem.props.isDisabled).length ===
+      childItems.length;
+
+    let childItemsToChange = [];
+    if (allChildItemsAreChecked) {
+      childItemsToChange = childItems.filter(childItem => !childItem.props.isDisabled);
+    } else {
+      childItemsToChange = childItems.filter(childItem => !childItem.props.isChecked && !childItem.props.isDisabled);
+    }
+
+    onChange(childItemsToChange);
   }
 
   const label = (
@@ -69,7 +78,8 @@ function Group(props) {
         checked={allAreChecked}
         type="checkbox"
         disabled={isDisabled}
-        onChange={handleOnChange}
+        onChange={toggleChildren}
+        aria-label={textContent(title)}
       />
       {title}
     </React.Fragment>
@@ -87,7 +97,6 @@ function Group(props) {
 
   return (
     <Collapsible
-      a11yText="umm..."
       css={groupStyles}
       hasOnlyIconToggle
       isCollapsed={isCollapsed}

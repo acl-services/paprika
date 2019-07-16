@@ -2,7 +2,7 @@ import tokens from "@paprika/tokens";
 import { disabledStyle } from "../helpers.styles";
 
 const groupStyles = props => `
-  .collapsible__heading {
+  [data-pka-anchor="collapsible__heading"] {
     align-items: center;
     background-color: ${tokens.color.cremeLighten5};
     border-bottom: 1px solid ${tokens.color.blackLighten60};

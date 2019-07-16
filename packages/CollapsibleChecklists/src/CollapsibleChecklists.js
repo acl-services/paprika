@@ -3,7 +3,6 @@ import PropTypes from "prop-types";
 import Heading from "./components/Heading";
 import Group from "./components/Group";
 import Item from "./components/Item";
-import collapsibleChecklistsStyles from "./CollapsibleChecklists.styles";
 
 const propTypes = {
   children: PropTypes.node.isRequired,
@@ -16,7 +15,7 @@ const CollapsibleChecklists = props => {
   const { children, onChange } = props;
 
   return (
-    <div css={collapsibleChecklistsStyles}>
+    <React.Fragment>
       {children.map((child, index) => {
         switch (child.type.displayName) {
           case Heading.displayName:
@@ -27,7 +26,7 @@ const CollapsibleChecklists = props => {
             return child;
         }
       })}
-    </div>
+    </React.Fragment>
   );
 };
 
