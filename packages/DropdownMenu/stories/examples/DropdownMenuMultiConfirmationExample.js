@@ -22,7 +22,7 @@ const DropdownMenuExample = () => {
       <DropdownMenu.Item onClick={() => {}}>Edit</DropdownMenu.Item>
       <DropdownMenu.Item onClick={() => {}}>Duplicate</DropdownMenu.Item>
       <DropdownMenu.Item isDestructive isDisabled onClick={() => {}}>
-        Google
+        Galvanize
       </DropdownMenu.Item>
       <DropdownMenu.Item
         isDestructive

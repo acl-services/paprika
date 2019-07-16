@@ -9,7 +9,7 @@ const handleKeyDown = e => {
 const propTypes = {
   isOpen: PropTypes.bool.isRequired,
   handleOpenMenu: PropTypes.func.isRequired,
-  triggerRef: PropTypes.shape({ current: PropTypes.instanceOf(Element) }) || null,
+  triggerRef: PropTypes.shape({ current: PropTypes.instanceOf(Object) }) || null,
 };
 
 const defaultProps = { triggerRef: null };

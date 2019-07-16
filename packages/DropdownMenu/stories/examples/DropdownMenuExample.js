@@ -14,7 +14,7 @@ const DropdownMenuExample = () => {
       <DropdownMenu.Item onClick={() => {}}>Edit</DropdownMenu.Item>
       <DropdownMenu.Item onClick={() => {}}>Duplicate</DropdownMenu.Item>
       <DropdownMenu.Item isDestructive isDisabled onClick={() => {}}>
-        Google
+        Galvanize
       </DropdownMenu.Item>
       <DropdownMenu.LinkItem link="http://www.wegalvanize.com">Galvanize Link Item</DropdownMenu.LinkItem>
       <DropdownMenu.LinkItem isExternal link="http://www.bbc.com">
