@@ -1,6 +1,6 @@
 {
   "name": "@paprika/sortable",
-  "version": "0.1.1",
+  "version": "0.1.2",
   "description": "Sortable component",
   "author": "@paprika",
   "license": "MIT",
@@ -14,11 +14,11 @@
   },
   "dependencies": {
     "@babel/runtime-corejs2": "^7.3.1",
-    "@paprika/button": "^0.1.2",
-    "@paprika/icon": "^0.1.2",
+    "@paprika/button": "^0.1.3",
+    "@paprika/icon": "^0.1.3",
     "@paprika/l10n": "^0.1.2",
-    "@paprika/stylers": "^0.1.1",
-    "@paprika/tokens": "^0.1.2",
+    "@paprika/stylers": "^0.1.2",
+    "@paprika/tokens": "^0.1.3",
     "prop-types": "^15.7.2",
     "react-beautiful-dnd": "^11.0.4",
     "uuid": "^3.3.2"

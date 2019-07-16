@@ -5,7 +5,14 @@ import { isActiveElementPopover } from "../../helpers/isActiveElementPopover";
 import PopoverContext from "../../PopoverContext";
 
 const propTypes = {
+  /** Descriptive a11y text for assistive technologies for the trigger. */
+  a11yText: PropTypes.string,
+
   children: PropTypes.oneOfType([PropTypes.func, PropTypes.node]).isRequired,
+};
+
+const defaultProps = {
+  a11yText: null,
 };
 
 class Trigger extends React.Component {
@@ -28,6 +35,8 @@ class Trigger extends React.Component {
   };
 
   render() {
+    const { a11yText, children } = this.props;
+
     return (
       <PopoverContext.Consumer>
         {({ isEager, onClick, onClose, onDelayedClose, onDelayedOpen, onOpen, shouldKeepFocus }) => {
@@ -41,21 +50,27 @@ class Trigger extends React.Component {
             shouldKeepFocus
           );
 
-          if (typeof this.props.children !== "function") {
+          if (typeof children !== "function") {
             /* issue https://github.com/acl-services/paprika/issues/33 */
             return isEager ? (
               <RawButton
+                a11yText={a11yText}
                 data-qa-anchor="popover-trigger"
                 onMouseOver={handler}
                 onMouseOut={handler}
                 onFocus={handler}
                 onBlur={handler}
               >
-                {this.props.children}
+                {children}
               </RawButton>
             ) : (
-              <RawButton data-qa-anchor="popover-trigger" onClick={handler} onBlur={shouldKeepFocus ? handler : null}>
-                {this.props.children}
+              <RawButton
+                a11yText={a11yText}
+                data-qa-anchor="popover-trigger"
+                onClick={handler}
+                onBlur={shouldKeepFocus ? handler : null}
+              >
+                {children}
               </RawButton>
             );
           }
@@ -70,5 +85,6 @@ class Trigger extends React.Component {
 Trigger.displayName = "Popover.Trigger";
 
 Trigger.propTypes = propTypes;
+Trigger.defaultProps = defaultProps;
 
 export default Trigger;
