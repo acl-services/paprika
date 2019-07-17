@@ -1,5 +1,6 @@
 import React from "react";
 import PropTypes from "prop-types";
+import useI18n from "@paprika/l10n/lib/useI18n";
 import responsesStyles from "./Responses.styles";
 
 const responseShape = {
@@ -16,10 +17,12 @@ const defaultProps = {
 };
 
 const Response = ({ heading, body }) => {
+  const I18n = useI18n();
+
   return (
     <>
       <dt>{heading}</dt>
-      <dd>{body || <em>None</em>}</dd>
+      <dd>{body || <em>{I18n.t("responsesAccordion.no_response")}</em>}</dd>
     </>
   );
 };

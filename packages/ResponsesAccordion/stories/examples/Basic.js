@@ -5,7 +5,7 @@ import ResponsesAccordion from "../../src";
 const mockResponses = [
   {
     heading: "Who is on first?",
-    body: <p>Yes</p>,
+    body: <p>Yes.</p>,
   },
   {
     heading: "Why?",
