@@ -13,9 +13,9 @@ export const Th = styled.th`
 `;
 
 export const TdFilter = styled(Td)`
-  padding: 14px;
   border-bottom: 1px solid #ccc;
   max-width: 200px;
+  padding: 14px;
   text-align: right;
 `;
 
