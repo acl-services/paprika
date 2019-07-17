@@ -84,13 +84,13 @@ const ExampleStory = () => {
   };
 
   function handleOnChange(changedItemsArray) {
-    console.log(changedItemsArray);
     action("handleOnChange")();
     const newSportsData = sportsData.slice(0);
     newSportsData.forEach(newSportsDatum => {
       newSportsDatum.sports.forEach(sport => {
         sport.teams.forEach(team => {
-          const thisTeamWasChanged = changedItemsArray.filter(changedItem => changedItem.key === team.name).length > 0;
+          const thisTeamWasChanged =
+            changedItemsArray.filter(changedItem => changedItem.props.foobar === team.name).length > 0;
 
           if (thisTeamWasChanged) {
             team.isChecked = !team.isChecked; // eslint-disable-line
@@ -104,7 +104,7 @@ const ExampleStory = () => {
 
   function renderTeams(teams) {
     return teams.map(team => (
-      <CollapsibleChecklists.Item key={team.name} isChecked={team.isChecked} isDisabled={team.isDisabled}>
+      <CollapsibleChecklists.Item foobar={team.name} isChecked={team.isChecked} isDisabled={team.isDisabled}>
         {team.name}
       </CollapsibleChecklists.Item>
     ));

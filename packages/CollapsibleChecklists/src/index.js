@@ -1,3 +1,1 @@
-import CollapsibleChecklists from "./CollapsibleChecklists";
-
-export { CollapsibleChecklists as default };
+export { default } from "./CollapsibleChecklists";
