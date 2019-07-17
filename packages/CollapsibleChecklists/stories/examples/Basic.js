@@ -86,7 +86,6 @@ const ExampleStory = () => {
   function handleOnChange(changedItemsArray) {
     action("handleOnChange")();
     const newSportsData = sportsData.slice(0);
-
     newSportsData.forEach(newSportsDatum => {
       newSportsDatum.sports.forEach(sport => {
         sport.teams.forEach(team => {

@@ -20,7 +20,7 @@ function Item(props) {
   const { children, isChecked, isDisabled, onChange } = props;
 
   return (
-    <div css={itemStyles} {...props}>
+    <div css={itemStyles} isDisabled={isDisabled}>
       <input
         aria-label={textContent(children)}
         type="checkbox"

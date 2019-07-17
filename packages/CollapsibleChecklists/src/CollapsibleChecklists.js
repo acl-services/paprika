@@ -17,10 +17,10 @@ const CollapsibleChecklists = props => {
   return (
     <React.Fragment>
       {children.map((child, index) => {
-        switch (child.type.displayName) {
-          case Heading.displayName:
+        switch (child.type) {
+          case Heading:
             return <Heading key={`heading${index}`} {...child.props} />; // eslint-disable-line react/no-array-index-key
-          case Group.displayName:
+          case Group:
             return <Group key={`group${index}`} {...child.props} onChange={onChange} />; // eslint-disable-line react/no-array-index-key
           default:
             return child;
