@@ -2,6 +2,10 @@ import { css } from 'styled-components';
 import tokens from "@paprika/tokens";
 import stylers from "@paprika/stylers";
 
+const activeStyles = css`
+  border-bottom: ${tokens.spaceSm} solid ${tokens.color.green};
+`;
+
 const disabledStyles = css`
   border-bottom: 0;
   color: ${tokens.color.blackDisabled};
@@ -22,13 +26,13 @@ export const tabStyles = css`
   transition: border-color 0.3s ease;
 
   ${({ isDisabled }) => (isDisabled ? disabledStyles : null)}
+  ${({ isSelected }) => (isSelected ? activeStyles : null)}
   
   &:first-child {
     margin-left: 0;
   }
 
   &:focus {
-    border-bottom: ${tokens.spaceSm} solid ${tokens.color.green};
     ${stylers.z(1)}
   }
 

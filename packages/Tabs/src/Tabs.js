@@ -19,13 +19,15 @@ const defaultProps = {
 
 const Tabs = props => {
   const [activeIndex, setActiveIndex] = React.useState(props.defaultIndex);
+  const [currentFocusIndex, setFocusIndex] = React.useState(null);
+
   let tabListRef = React.useRef(null);
 
   const { isDisabled } = props;
 
   function focusAndSetIndex(index) {
     tabListRef.querySelectorAll(".tab")[index].focus();
-    setActiveIndex(index);
+    setFocusIndex(index);
   }
 
   const setTabListRef = ref => {
@@ -64,6 +66,7 @@ const Tabs = props => {
 
   const contextValue = {
     activeIndex,
+    currentFocusIndex,
     onClickTab,
     onKeyDown,
     isDisabled,

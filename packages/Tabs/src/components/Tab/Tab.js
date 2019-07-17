@@ -70,7 +70,7 @@ const Tab = props => {
       isDisabled={isDisabled}
       isSelected={isSelected}
       onClick={e => handleClick(e, context.activeIndex)}
-      onKeyDown={e => handleKeyDown(e, context.activeIndex)}
+      onKeyDown={e => handleKeyDown(e, context.currentFocusIndex)}
       role="tab"
       tabIndex={tabIndex}
     >
