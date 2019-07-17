@@ -14,7 +14,7 @@ or
 ```js
 import CollapsibleChecklists from "@paprika/collapsible-checklists";
 
-const yourComponent = () => {
+const YourComponent = () => {
   return (
     <CollapsibleChecklists
       onChange={() => {
@@ -39,7 +39,7 @@ const yourComponent = () => {
   );
 };
 
-export default yourComponent;
+export default YourComponent;
 ```
 
 ### Props

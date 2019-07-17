@@ -66,6 +66,12 @@ const ExampleStory = () => {
     },
   ]);
 
+  // For readability
+  const californiaBasketball = sportsData[0].sports[0];
+  const californiaHockey = sportsData[0].sports[1];
+  const californiaBaseball = sportsData[0].sports[2];
+  const ohioFootball = sportsData[1].sports[0];
+
   const handleExpand = () => {
     setTimeout(() => {
       const newSportsData = sportsData.slice(0);
@@ -78,7 +84,7 @@ const ExampleStory = () => {
   };
 
   function handleOnChange(changedItemsArray) {
-    alert("handleOnChange")();
+    action("handleOnChange")();
     const newSportsData = sportsData.slice(0);
 
     newSportsData.forEach(newSportsDatum => {
@@ -105,28 +111,28 @@ const ExampleStory = () => {
   }
 
   function renderOhioFootballTeams() {
-    if (sportsData[1].sports[0].teams.length === 0) {
+    if (ohioFootball.teams.length === 0) {
       return <Spinner />;
     }
 
-    return renderTeams(sportsData[1].sports[0].teams);
+    return renderTeams(ohioFootball.teams);
   }
 
   return (
     <CollapsibleChecklists onChange={handleOnChange}>
       <CollapsibleChecklists.Heading>California Sports Teams</CollapsibleChecklists.Heading>
-      <CollapsibleChecklists.Group title={sportsData[0].sports[0].title}>
-        {renderTeams(sportsData[0].sports[0].teams)}
+      <CollapsibleChecklists.Group title={californiaBasketball.title}>
+        {renderTeams(californiaBasketball.teams)}
       </CollapsibleChecklists.Group>
-      <CollapsibleChecklists.Group title={sportsData[0].sports[1].title}>
-        {renderTeams(sportsData[0].sports[1].teams)}
+      <CollapsibleChecklists.Group title={californiaHockey.title}>
+        {renderTeams(californiaHockey.teams)}
       </CollapsibleChecklists.Group>
-      <CollapsibleChecklists.Group title={sportsData[0].sports[2].title} isDisabled>
-        {renderTeams(sportsData[0].sports[2].teams)}
+      <CollapsibleChecklists.Group title={californiaBaseball.title} isDisabled>
+        {renderTeams(californiaBaseball.teams)}
       </CollapsibleChecklists.Group>
 
       <CollapsibleChecklists.Heading>Ohio Sports Teams</CollapsibleChecklists.Heading>
-      <CollapsibleChecklists.Group title={sportsData[1].sports[0].title} onExpand={handleExpand}>
+      <CollapsibleChecklists.Group title={ohioFootball.title} onExpand={handleExpand}>
         {renderOhioFootballTeams()}
       </CollapsibleChecklists.Group>
 
