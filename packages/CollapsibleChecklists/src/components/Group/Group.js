@@ -93,12 +93,14 @@ function Group(props) {
 
   const modifiedChildren = [];
   React.Children.forEach(children, child => {
-    const newProps =
-      child.type.displayName === Item.displayName
-        ? {
-            onChange: () => onChange([child]),
-          }
-        : null;
+    const newProps = {
+      key: Math.random(),
+    };
+
+    if (child.type.displayName === Item.displayName) {
+      newProps.onChange = () => onChange([child]);
+    }
+
     modifiedChildren.push(React.cloneElement(child, newProps));
   });
 

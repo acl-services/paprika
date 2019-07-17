@@ -104,7 +104,12 @@ const ExampleStory = () => {
 
   function renderTeams(teams) {
     return teams.map(team => (
-      <CollapsibleChecklists.Item foobar={team.name} isChecked={team.isChecked} isDisabled={team.isDisabled}>
+      <CollapsibleChecklists.Item
+        foobar={team.name}
+        isChecked={team.isChecked}
+        isDisabled={team.isDisabled}
+        key={team.name}
+      >
         {team.name}
       </CollapsibleChecklists.Item>
     ));
