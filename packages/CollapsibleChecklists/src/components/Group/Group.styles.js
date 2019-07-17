@@ -1,20 +1,25 @@
 import tokens from "@paprika/tokens";
+import { css } from "styled-components";
 import { disabledStyle } from "../helpers.styles";
 
-const groupStyles = props => `
-  [data-pka-anchor="collapsible__heading"] {
-    align-items: center;
-    background-color: ${tokens.color.cremeLighten5};
-    border-bottom: 1px solid ${tokens.color.blackLighten60};
-    display: flex;
-    padding: ${tokens.spaceSm};
+const groupStyles = css`
+  ${({ isDisabled }) => {
+    return `
+      [data-pka-anchor="collapsible.heading"] {
+        align-items: center;
+        background-color: ${tokens.color.cremeLighten5};
+        border-bottom: 1px solid ${tokens.color.blackLighten60};
+        display: flex;
+        padding: ${tokens.spaceSm};
 
-    input[type="checkbox"] {
-      margin-right: ${tokens.space};
-    }
+        input[type="checkbox"] {
+          margin-right: ${tokens.space};
+        }
 
-    ${props.isDisabled ? disabledStyle : ""};
-  }
+        ${isDisabled ? disabledStyle : ""};
+      }
+    `;
+  }}
 `;
 
 export default groupStyles;
