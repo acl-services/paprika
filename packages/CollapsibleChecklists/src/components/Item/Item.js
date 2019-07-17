@@ -19,6 +19,7 @@ const defaultProps = {
 function Item(props) {
   const { children, isChecked, isDisabled, onChange } = props;
 
+  /* eslint-disable jsx-a11y/label-has-associated-control */
   return (
     <div css={itemStyles} isDisabled={isDisabled}>
       <label>
@@ -33,6 +34,7 @@ function Item(props) {
       </label>
     </div>
   );
+  /* eslint-enable jsx-a11y/label-has-associated-control */
 }
 
 Item.displayName = "Item";

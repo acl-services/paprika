@@ -74,10 +74,10 @@ function Group(props) {
     onChange(childItemsToChange);
   }
 
+  /* eslint-disable jsx-a11y/label-has-associated-control */
   const label = (
     <React.Fragment>
       <label>
-        {title}
         <input
           ref={checkboxRef}
           checked={allAreChecked}
@@ -85,9 +85,11 @@ function Group(props) {
           disabled={isDisabled}
           onChange={toggleChildren}
         />
+        {title}
       </label>
     </React.Fragment>
   );
+  /* eslint-enable jsx-a11y/label-has-associated-control */
 
   const modifiedChildren = [];
   React.Children.forEach(children, child => {
