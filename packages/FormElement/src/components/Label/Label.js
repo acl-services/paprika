@@ -5,31 +5,37 @@ import useI18n from "@paprika/l10n/lib/useI18n";
 
 import labelStyles, { ruleStyles } from "./Label.styles";
 
-const propTypes = {};
+const propTypes = {
+  hint: PropTypes.node,
+  id: PropTypes.string.isRequired,
+  isInline: PropTypes.bool.isRequired,
+  isOptional: PropTypes.bool.isRequired,
+  isRequired: PropTypes.bool.isRequired,
+  isVisuallyHidden: PropTypes.bool.isRequired,
+  label: PropTypes.string.isRequired,
+};
 
 const defaultProps = {
-  isDisabled: false,
-  isInline: false,
-  isOptional: false,
-  isReadOnly: false,
-  isRequired: false,
-  size: "medium",
+  hint: null,
 };
 
 function Label(props) {
-  const { label, id, isOptional, isRequired, isInline } = props;
+  const { hint, id, isInline, isOptional, isRequired, isVisuallyHidden, label } = props;
   const I18n = useI18n();
 
   return (
-    <label css={labelStyles} htmlFor={id}>
-      {label}
-      {
-        <span css={ruleStyles}>
-          {isRequired ? I18n.t("formElement.required") : null}
-          {isOptional ? I18n.t("formElement.optional") : null}
-        </span>
-      }
-    </label>
+    <div css={labelStyles} isInline={isInline} isVisuallyHidden={isVisuallyHidden}>
+      <label htmlFor={id}>
+        {label}
+        {isOptional || isRequired ? (
+          <span css={ruleStyles}>
+            {isRequired ? I18n.t("formElement.required") : null}
+            {isOptional ? I18n.t("formElement.optional") : null}
+          </span>
+        ) : null}
+      </label>
+      {hint}
+    </div>
   );
 }
 

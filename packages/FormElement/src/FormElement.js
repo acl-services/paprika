@@ -1,5 +1,5 @@
 import React from "react";
-import PropTypes, { func } from "prop-types";
+import PropTypes from "prop-types";
 
 import { ShirtSizes } from "@paprika/helpers/lib/customPropTypes";
 import isNil from "lodash/isNil";
@@ -17,11 +17,17 @@ import formElementStyles from "./FormElement.styles";
 const propTypes = {
   children: PropTypes.node.isRequired,
 
+  /** Id of the input */
+  id: PropTypes.string,
+
   /** Should be disabled or not, default is false. */
   isDisabled: PropTypes.bool,
 
   /** Should label and children be inline or not, default is false. */
   isInline: PropTypes.bool,
+
+  /** Should label be hidden, default is false. Note: this is discouraged because of accessibility requirements. */
+  isLabelVisuallyHidden: PropTypes.bool,
 
   /** Should show is optional text besides the label or not. */
   isOptional: PropTypes.bool,
@@ -32,13 +38,18 @@ const propTypes = {
   /** Should show is required text besides the label or not. */
   isRequired: PropTypes.bool,
 
+  /** Label text of this field. */
+  label: PropTypes.string.isRequired,
+
   /** Size of the label, child component, error, hint and description (font size, min-height, padding, etc). */
   size: PropTypes.oneOf(ShirtSizes.DEFAULT),
 };
 
 const defaultProps = {
+  id: null,
   isDisabled: false,
   isInline: false,
+  isLabelVisuallyHidden: false,
   isOptional: false,
   isReadOnly: false,
   isRequired: false,
@@ -46,7 +57,18 @@ const defaultProps = {
 };
 
 function FormElement(props) {
-  const { children, isDisabled, isInline, isOptional, isReadOnly, isRequired, size } = props;
+  const {
+    children,
+    id,
+    isDisabled,
+    isInline,
+    isLabelVisuallyHidden,
+    isOptional,
+    isReadOnly,
+    isRequired,
+    label,
+    size,
+  } = props;
 
   const extratedChildren = extractChildren(children, [
     "FormElement.Description",
@@ -54,23 +76,45 @@ function FormElement(props) {
     "FormElement.Hint",
   ]);
 
-  const footer = extratedChildren["FormElement.Error"] || extratedChildren["FormElement.Description"];
+  let isFooterInserted = false;
+
+  const uniqueId = isNil(id) ? uuid() : id;
+  const ariaDescriptionId = uuid();
+
+  function renderFooter() {
+    if (isFooterInserted) return;
+    isFooterInserted = true;
+    return (
+      extratedChildren["FormElement.Error"] ||
+      React.cloneElement(extratedChildren["FormElement.Description"], {
+        ariaDescriptionId,
+      })
+    );
+  }
 
   return (
     <div css={formElementStyles} isInline={isInline} size={size} isDisabled={isDisabled}>
+      <Label
+        hint={extratedChildren["FormElement.Hint"]}
+        id={uniqueId}
+        isInline={isInline}
+        isVisuallyHidden={isLabelVisuallyHidden}
+        isOptional={isOptional}
+        isRequired={isRequired}
+        label={label}
+      />
+
       {extratedChildren.children.map(child => {
-        console.log("child", child, React.isValidElement(child));
-        // TODO: Also check if display name is Input, DatePicker...
-        if (React.isValidElement(child) && child.type.displayName) {
-          const uniqueId = isNil(child.props.id) ? uuid() : child.props.id;
+        if (React.isValidElement(child)) {
           const clonedChild = (
-            <child.type //datepicker
+            <child.type
               {...child.props}
+              hasError={!!extratedChildren["FormElement.Error"]}
               id={uniqueId}
               isDisabled={isDisabled}
               isReadOnly={isReadOnly}
-              label={null}
               size={size}
+              aria-describedby={ariaDescriptionId}
             >
               {child.props.children}
             </child.type>
@@ -78,37 +122,22 @@ function FormElement(props) {
 
           return (
             <React.Fragment key={child.key}>
-              {child.props.label ? (
-                <Label
-                  label={child.props.label}
-                  id={uniqueId}
-                  isOptional={isOptional}
-                  isRequired={isRequired}
-                  isInline={isInline}
-                />
-              ) : null}
-
               {isInline ? (
                 <div>
                   {clonedChild}
-                  {footer}
+                  {renderFooter()}
                 </div>
               ) : (
                 <React.Fragment>
                   {clonedChild}
-                  {footer}
+                  {renderFooter()}
                 </React.Fragment>
               )}
             </React.Fragment>
           );
         }
 
-        return (
-          <React.Fragment>
-            {child}
-            {footer}
-          </React.Fragment>
-        );
+        return child;
       })}
     </div>
   );
@@ -122,6 +151,5 @@ FormElement.defaultProps = defaultProps;
 FormElement.Description = Description;
 FormElement.Error = ErrorMessage;
 FormElement.Hint = Hint;
-FormElement.Label = Label;
 
 export default FormElement;

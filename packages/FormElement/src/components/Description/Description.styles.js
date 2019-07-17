@@ -4,8 +4,8 @@ import tokens from "@paprika/tokens";
 import stylers from "@paprika/stylers";
 
 const descriptionStyles = css`
+  ${stylers.lineHeight(-1)}
   color: ${tokens.color.blackLighten20};
-  line-height: 1.3;
   margin: ${tokens.spaceSm} 0 0 0;
 `;
 

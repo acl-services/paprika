@@ -17,6 +17,7 @@
     "@paprika/helpers": "^0.1.1",
     "@paprika/icon": "^0.1.2",
     "@paprika/l10n": "^0.1.2",
+    "@paprika/popover": "^0.1.4",
     "@paprika/stylers": "^0.1.1",
     "@paprika/tokens": "^0.1.2",
     "prop-types": "^15.7.2",

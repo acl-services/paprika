@@ -29,6 +29,9 @@ const propTypes = {
   /** Date format used while displaying date. It should be human-friendly and spelled out, default is MMMM DD,YYYY */
   humanFormat: PropTypes.string,
 
+  /** Id of the input, you might don't need this if you wrap this component into <FormElement> */
+  id: PropTypes.string,
+
   /** Should be disabled or not, default is false. */
   isDisabled: PropTypes.bool,
 
@@ -44,6 +47,7 @@ const defaultProps = {
   dataFormat: "MM/DD/YYYY",
   date: null,
   humanFormat: null,
+  id: null,
   isDisabled: false,
   isReadOnly: false,
 };
@@ -52,7 +56,7 @@ function DatePicker(props) {
   const I18n = useI18n();
 
   // Props
-  const { children, dataFormat, date, humanFormat, isDisabled, isReadOnly, onChange } = props;
+  const { children, dataFormat, date, humanFormat, id, isDisabled, isReadOnly, onChange } = props;
 
   const formatDateProp = React.useCallback(
     format => {
@@ -199,6 +203,7 @@ function DatePicker(props) {
       <Input
         hasError={hasError}
         icon={<CalendarIcon />}
+        id={id}
         isDisabled={isDisabled}
         isReadOnly={isReadOnly}
         onBlur={handleInputBlur}

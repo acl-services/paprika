@@ -9,8 +9,8 @@ export const iconStyles = css`
 `;
 
 const errorMessageStyles = css`
+  ${stylers.lineHeight(-1)}
   color: ${tokens.color.orangeDarken10};
-  line-height: 1.3;
   margin: ${tokens.spaceSm} 0 0 0;
 `;
 

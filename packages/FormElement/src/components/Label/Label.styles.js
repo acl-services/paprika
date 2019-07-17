@@ -10,16 +10,19 @@ export const ruleStyles = css`
 `;
 
 const labelStyles = css`
+  ${stylers.lineHeight(-1)}
   color: ${tokens.textColor.default};
-  display: block;
+  display: flex;
   font-weight: bold;
-  line-height: 1.3;
   margin: 0 0 ${tokens.spaceSm} 0;
 
-  ${({ isInline }) =>
-    isInline &&
-    `
-  margin-right: ${stylers.spacer()};`}
+  ${({ isInline }) => isInline && `padding-right: ${stylers.spacer(1)};`}
+
+  ${({ isVisuallyHidden }) => isVisuallyHidden && stylers.visuallyHidden}
+
+  label {
+    margin-right: ${tokens.spaceSm};
+  }
 `;
 
 export default labelStyles;

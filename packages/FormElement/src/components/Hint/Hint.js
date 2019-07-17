@@ -1,25 +1,38 @@
 import React from "react";
 import PropTypes from "prop-types";
 
-import { ShirtSizes } from "@paprika/helpers/lib/customPropTypes";
+import Popover from "@paprika/popover";
+import InfoCircleIcon from "@paprika/icon/lib/InfoCircle";
+import useI18n from "@paprika/l10n/lib/useI18n";
 
-import { extractChildren } from "../../helpers/extractChildren";
+import hintStyles, { iconStyles } from "./Hint.styles";
 
-const propTypes = {};
+const propTypes = {
+  children: PropTypes.node.isRequired,
+
+  /** Aria text for information button to trigger hint popover. */
+  triggerA11yText: PropTypes.string,
+};
 
 const defaultProps = {
-  isDisabled: false,
-  isInline: false,
-  isOptional: false,
-  isReadOnly: false,
-  isRequired: false,
-  size: "medium",
+  triggerA11yText: null,
 };
 
 function Hint(props) {
-  const { children } = props;
+  const { children, triggerA11yText, ...moreProps } = props;
+  const I18n = useI18n();
 
-  return <span>{children}</span>;
+  return (
+    <Popover css={hintStyles} align="bottom" {...moreProps}>
+      <Popover.Trigger a11yText={triggerA11yText || I18n.t("formElement.aria_info_circle")}>
+        <InfoCircleIcon css={iconStyles} aria-hidden size={16} type="exclamation-circle" />
+      </Popover.Trigger>
+      <Popover.Content>
+        <Popover.Tip />
+        <Popover.Card>{children}</Popover.Card>
+      </Popover.Content>
+    </Popover>
+  );
 }
 
 Hint.displayName = "FormElement.Hint";
