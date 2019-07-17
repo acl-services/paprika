@@ -21,14 +21,16 @@ function Item(props) {
 
   return (
     <div css={itemStyles} isDisabled={isDisabled}>
-      <input
-        aria-label={textContent(children)}
-        type="checkbox"
-        checked={isChecked}
-        disabled={isDisabled}
-        onChange={onChange}
-      />
-      {children}
+      <label>
+        <input
+          aria-label={textContent(children)}
+          type="checkbox"
+          checked={isChecked}
+          disabled={isDisabled}
+          onChange={onChange}
+        />
+        {children}
+      </label>
     </div>
   );
 }

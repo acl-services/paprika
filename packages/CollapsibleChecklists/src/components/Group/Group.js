@@ -1,12 +1,11 @@
 import React from "react";
 import PropTypes from "prop-types";
 import Collapsible from "@paprika/collapsible";
-import textContent from "react-addons-text-content";
 import Item from "../Item";
 import groupStyles from "./Group.styles";
 
 const propTypes = {
-  children: PropTypes.oneOfType([PropTypes.node, PropTypes.arrayOf(PropTypes.node)]), // are probably an array of "Items", but could be a Spinner or anything else
+  children: PropTypes.node, // probably an array of "Items", but could be a Spinner or anything else
   isDisabled: PropTypes.bool,
   onChange: PropTypes.func,
   onExpand: PropTypes.func,
@@ -77,15 +76,16 @@ function Group(props) {
 
   const label = (
     <React.Fragment>
-      <input
-        ref={checkboxRef}
-        checked={allAreChecked}
-        type="checkbox"
-        disabled={isDisabled}
-        onChange={toggleChildren}
-        aria-label={textContent(title)}
-      />
-      {title}
+      <label>
+        <input
+          ref={checkboxRef}
+          checked={allAreChecked}
+          type="checkbox"
+          disabled={isDisabled}
+          onChange={toggleChildren}
+        />
+        {title}
+      </label>
     </React.Fragment>
   );
 
