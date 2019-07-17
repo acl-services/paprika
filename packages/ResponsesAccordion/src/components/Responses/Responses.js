@@ -1,5 +1,6 @@
 import React from "react";
 import PropTypes from "prop-types";
+import responsesStyles from "./Responses.styles";
 
 const responseShape = {
   heading: PropTypes.node.isRequired,
@@ -16,10 +17,10 @@ const defaultProps = {
 
 const Response = ({ heading, body }) => {
   return (
-    <div>
-      <div>{heading}</div>
-      <div>{body || "None"}</div>
-    </div>
+    <React.Fragment>
+      <dt>{heading}</dt>
+      <dd>{body || "None"}</dd>
+    </React.Fragment>
   );
 };
 
@@ -29,7 +30,13 @@ Response.defaultProps = {
 };
 
 const Responses = ({ responses }) => {
-  return responses.map(({ heading, body }) => <Response heading={heading} body={body} />);
+  return (
+    <dl css={responsesStyles}>
+      {responses.map(({ heading, body }) => (
+        <Response heading={heading} body={body} />
+      ))}
+    </dl>
+  );
 };
 
 Responses.displayName = "ResponsesAccordion.Responses";

@@ -4,15 +4,30 @@ import ResponsesAccordion from "../../src";
 
 const mockResponses = [
   {
-    heading: <p>Who is on first?</p>,
+    heading: "Who is on first?",
     body: <p>Yes</p>,
   },
   {
-    heading: <p>Why?</p>,
+    heading: "Why?",
     body: <p>Is in left field.</p>,
   },
   {
-    heading: <p>What?</p>,
+    heading: "What?",
+    body: (
+      <React.Fragment>
+        <p>
+          Lorem ipsum dolor amet ennui wolf trust fund vinyl leggings butcher fingerstache. Occupy hot chicken swag
+          beard, DIY kombucha unicorn pour-over coloring book brunch.
+        </p>
+        <p>
+          Kinfolk asymmetrical bicycle rights artisan, typewriter single-origin coffee heirloom. Hammock pug bicycle
+          rights authentic, trust fund forage tote bag swag.
+        </p>
+      </React.Fragment>
+    ),
+  },
+  {
+    heading: "Where?",
   },
 ];
 
