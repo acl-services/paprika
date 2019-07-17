@@ -21,7 +21,7 @@ const CollapsibleChecklists = props => {
           case Heading:
             return <Heading key={`heading${index}`} {...child.props} />; // eslint-disable-line react/no-array-index-key
           case Group:
-            return <Group key={`group${index}`} {...child.props} onChange={onChange} />; // eslint-disable-line react/no-array-index-key
+            return React.cloneElement(child, { key: `group${index}`, onChange }); // eslint-disable-line react/no-array-index-key
           default:
             return child;
         }
