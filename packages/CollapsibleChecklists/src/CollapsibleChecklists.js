@@ -16,8 +16,8 @@ const CollapsibleChecklists = props => {
   const modifiedChildren = [];
 
   React.Children.forEach(children, (child, index) => {
-    switch (child.type) {
-      case Group:
+    switch (child.type.displayName) {
+      case Group.displayName:
         modifiedChildren.push(React.cloneElement(child, { key: `group${index}`, onChange })); // eslint-disable-line react/no-array-index-key
         break;
       default:
