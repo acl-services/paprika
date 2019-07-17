@@ -4,7 +4,7 @@ import Item from "./components/Item";
 import Indicator from "./components/Indicator";
 import Responses from "./components/Responses";
 import Collapsible from "./components/Collapsible";
-import accordionStyles from "./ResponsesAccordion.styles";
+import { accordionStyles, itemStyles } from "./ResponsesAccordion.styles";
 
 const propTypes = {
   activeIndex: PropTypes.number,
@@ -45,19 +45,15 @@ const ResponsesAccordion = props => {
         validChildren.map((child, index) => {
           const { label, ...moreChildProps } = child.props;
           const isComplete = activeIndex > index;
-          const isActive = activeIndex === index;
+          const indicatorProps = {
+            isComplete,
+            isActive: activeIndex === index,
+            isLast: index === validChildren.length - 1,
+          };
 
           return (
-            <div
-              css={`
-                display: flex;
-                padding: 8px 0;
-                [data-pka-anchor="indicator"] {
-                  margin-right: 8px;
-                }
-              `}
-            >
-              <Indicator isComplete={isComplete} isActive={isActive} />
+            <div css={itemStyles}>
+              <Indicator {...indicatorProps} />
               <Collapsible label={getLabel(label, index)} isComplete={isComplete} {...moreChildProps}>
                 {child}
               </Collapsible>

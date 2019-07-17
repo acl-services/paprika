@@ -1,5 +1,5 @@
 import React from "react";
-import { Story, Rule } from "storybook/assets/styles/common.styles";
+import { Story } from "storybook/assets/styles/common.styles";
 import ResponsesAccordion from "../../src";
 
 const mockResponses = [
@@ -19,23 +19,16 @@ const mockResponses = [
 const ExampleStory = () => {
   return (
     <Story>
-      <ResponsesAccordion activeIndex={1} activeStatus="idle hands">
+      <ResponsesAccordion activeIndex={2} activeStatus="idle hands">
         <ResponsesAccordion.Item label="Zero">
           <ResponsesAccordion.Responses responses={mockResponses} />
         </ResponsesAccordion.Item>
-        <ResponsesAccordion.Item label="One" />
+        <ResponsesAccordion.Item label="One">
+          <ResponsesAccordion.Responses responses={mockResponses} />
+        </ResponsesAccordion.Item>
         <ResponsesAccordion.Item label="Two" />
+        <ResponsesAccordion.Item label="Three" />
       </ResponsesAccordion>
-
-      <Rule />
-
-      <ResponsesAccordion.Indicator />
-      <br />
-      <ResponsesAccordion.Indicator isComplete />
-      <br />
-      <ResponsesAccordion.Indicator isActive />
-      <br />
-      <ResponsesAccordion.Indicator isComplete isActive />
     </Story>
   );
 };

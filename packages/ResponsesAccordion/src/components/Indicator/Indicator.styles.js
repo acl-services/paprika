@@ -3,7 +3,28 @@ import tokens from "@paprika/tokens";
 import stylers from "@paprika/stylers";
 
 const indicatorSize = stylers.spacer(3);
-const activeDotSize = "8px";
+const topPadding = tokens.space;
+const activeDotSize = tokens.space;
+
+const lineStyles = css`
+  ${stylers.z(1)}
+
+  border-left: 2px solid ${tokens.border.color};
+  content: "";
+  height: calc(100% - ${indicatorSize} + ${topPadding});
+  left: 50%;
+  position: absolute;
+  top: ${indicatorSize};
+  transform: translateX(-50%);
+`;
+
+const activeLineStyles = css`
+  ${lineStyles}
+  ${stylers.z(2)}
+
+  border-color: ${tokens.color.blue};
+  height: calc((100% - ${indicatorSize} + ${topPadding}) / 2);
+`;
 
 const activeStyles = css`
   border-color: ${tokens.color.blue};
@@ -33,16 +54,25 @@ export const indicatorStyles = css`
     box-sizing: border-box;
   }
 
-  display: block;
+  display: inline-block;
   line-height: 1;
   position: relative;
+
+  &:before {
+    ${({ isLast }) => !isLast && lineStyles}
+    ${({ isComplete }) => isComplete && `border-color: ${tokens.color.black}`}
+  }
+
+  &:after {
+    ${({ isActive, isLast }) => isActive && !isLast && activeLineStyles}
+  }
 `;
 
 export const indicatorDotStyles = css`
   ${stylers.z(2)};
 
   align-items: center;
-  background: ${tokens.color.white};
+  background-color: ${tokens.color.white};
   border: 2px solid ${tokens.color.blackLighten40};
   border-radius: 100%;
   display: flex;

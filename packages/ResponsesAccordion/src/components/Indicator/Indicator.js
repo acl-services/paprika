@@ -6,18 +6,20 @@ import { indicatorStyles, indicatorDotStyles } from "./Indicator.styles";
 const propTypes = {
   isActive: PropTypes.bool,
   isComplete: PropTypes.bool,
+  isLast: PropTypes.bool,
 };
 
 const defaultProps = {
   isActive: false,
   isComplete: false,
+  isLast: false,
 };
 
 const Indicator = props => {
   const { isComplete, isActive } = props;
 
   return (
-    <div data-pka-anchor="indicator" css={indicatorStyles}>
+    <div data-pka-anchor="indicator" css={indicatorStyles} {...props}>
       <span data-pka-anchor="indicator.dot" css={indicatorDotStyles} {...props}>
         {isComplete && !isActive && <CheckIcon />}
       </span>

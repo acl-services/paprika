@@ -3,6 +3,7 @@ import PropTypes from "prop-types";
 import Collapsible from "@paprika/collapsible";
 import UpIcon from "@paprika/icon/lib/ArrowUp";
 import DownIcon from "@paprika/icon/lib/ArrowDown";
+import { collapsibleStyles, incompleteStyles } from "./Collapsible.styles";
 
 const propTypes = {
   children: PropTypes.node.isRequired,
@@ -27,12 +28,13 @@ const ResponsesAccordionCollapsible = props => {
       isCollapsed={!isOpen}
       label={label}
       onClick={handleToggle}
+      css={collapsibleStyles}
       {...moreProps}
     >
       {children}
     </Collapsible>
   ) : (
-    <div>{label}</div>
+    <div css={incompleteStyles}>{label}</div>
   );
 };
 

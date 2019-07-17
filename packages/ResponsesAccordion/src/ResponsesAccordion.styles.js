@@ -1,12 +1,18 @@
 import { css } from "styled-components";
-// import tokens from "@paprika/tokens";
-// import stylers from "@paprika/stylers";
+import tokens from "@paprika/tokens";
 
-const accordionStyles = css`
+export const accordionStyles = css`
   &,
   * {
     box-sizing: border-box;
   }
 `;
 
-export default accordionStyles;
+export const itemStyles = css`
+  align-items: top;
+  display: flex;
+
+  [data-pka-anchor="indicator"] {
+    margin: ${tokens.space} ${tokens.spaceLg} 0 0;
+  }
+`;
