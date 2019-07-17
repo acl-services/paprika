@@ -64,7 +64,7 @@ describe("CollapsibleChecklists", () => {
   it("cannot expand a disabled group", () => {
     const { getByText, container } = renderComponent();
     expect(getByText(/easter/i)).not.toBeVisible();
-    fireEvent.click(container.querySelectorAll(".collapsible__label")[2]); // Lilies
+    fireEvent.click(container.querySelectorAll('[data-pka-anchor="collapsible.heading"]')[2]); // Lilies
     expect(getByText(/easter/i)).not.toBeVisible();
   });
 
