@@ -50,8 +50,12 @@ function Group(props) {
   }
 
   function toggleChildren() {
-    const childItems =
-      children.length > 0 ? children.filter(childItem => childItem.type.displayName === Item.displayName) : [];
+    const childItems = [];
+    React.Children.forEach(children, child => {
+      if (child.type === Item) {
+        childItems.push(child);
+      }
+    });
 
     if (childItems.length === 0) {
       return;
@@ -85,14 +89,15 @@ function Group(props) {
     </React.Fragment>
   );
 
-  const modifiedChildren = React.Children.map(children, child => {
+  const modifiedChildren = [];
+  React.Children.forEach(children, child => {
     const newProps =
       child.type.displayName === Item.displayName
         ? {
             onChange: () => onChange([child]),
           }
         : null;
-    return React.cloneElement(child, newProps);
+    modifiedChildren.push(React.cloneElement(child, newProps));
   });
 
   return (

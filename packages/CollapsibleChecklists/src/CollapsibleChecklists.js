@@ -13,21 +13,19 @@ const defaultProps = {};
 
 const CollapsibleChecklists = props => {
   const { children, onChange } = props;
+  const modifiedChildren = [];
 
-  return (
-    <React.Fragment>
-      {children.map((child, index) => {
-        switch (child.type) {
-          case Heading:
-            return <Heading key={`heading${index}`} {...child.props} />; // eslint-disable-line react/no-array-index-key
-          case Group:
-            return React.cloneElement(child, { key: `group${index}`, onChange }); // eslint-disable-line react/no-array-index-key
-          default:
-            return child;
-        }
-      })}
-    </React.Fragment>
-  );
+  React.Children.forEach(children, (child, index) => {
+    switch (child.type) {
+      case Group:
+        modifiedChildren.push(React.cloneElement(child, { key: `group${index}`, onChange })); // eslint-disable-line react/no-array-index-key
+        break;
+      default:
+        modifiedChildren.push(child);
+    }
+  });
+
+  return <React.Fragment>{modifiedChildren}</React.Fragment>;
 };
 
 CollapsibleChecklists.displayName = "CollapsibleChecklists";
