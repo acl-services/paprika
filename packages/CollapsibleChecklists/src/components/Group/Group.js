@@ -77,6 +77,7 @@ function Group(props) {
   const label = (
     <React.Fragment>
       <label>
+        {title}
         <input
           ref={checkboxRef}
           checked={allAreChecked}
@@ -84,7 +85,6 @@ function Group(props) {
           disabled={isDisabled}
           onChange={toggleChildren}
         />
-        {title}
       </label>
     </React.Fragment>
   );
