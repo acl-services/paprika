@@ -27,7 +27,7 @@ function Item(props) {
         checked={isChecked}
         disabled={isDisabled}
         onChange={onChange}
-      />{" "}
+      />
       {children}
     </div>
   );

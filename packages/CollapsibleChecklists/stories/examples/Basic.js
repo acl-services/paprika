@@ -1,11 +1,12 @@
 import React from "react";
+import { action } from "@storybook/addon-actions";
 import InfoIcon from "@paprika/icon/lib/InfoCircle";
 import Spinner from "../../../Spinner/src/index";
 import CollapsibleChecklists from "../../src/index";
 
 const ExampleStory = () => {
   const handleHover = () => {
-    console.log("Show a popover as to why its disabled");
+    action("Hovered")();
   };
 
   const [sportsData, setSportsData] = React.useState([
@@ -77,7 +78,7 @@ const ExampleStory = () => {
   };
 
   function handleOnChange(changedItemsArray) {
-    console.log("handleOnChange");
+    alert("handleOnChange")();
     const newSportsData = sportsData.slice(0);
 
     newSportsData.forEach(newSportsDatum => {

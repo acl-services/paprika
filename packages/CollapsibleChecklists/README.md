@@ -5,9 +5,9 @@ Checking the parent checks all of the children.
 
 ### Installation
 
-`> npm install --save @paprika/collapsible-list`
+`> npm install --save @paprika/collapsible-checklists`
 or
-`> yarn add @paprika/collapsible-list`
+`> yarn add @paprika/collapsible-checklists`
 
 ### Usage
 

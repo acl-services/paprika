@@ -8,9 +8,7 @@ const propTypes = {
 
 const defaultProps = {};
 
-const Heading = ({ children }) => {
-  return <div css={headingStyles}>{children}</div>;
-};
+const Heading = ({ children }) => <div css={headingStyles}>{children}</div>;
 
 Heading.displayName = "Heading";
 Heading.propTypes = propTypes;
