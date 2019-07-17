@@ -36,7 +36,7 @@ const Responses = ({ responses }) => {
   return (
     <dl css={responsesStyles}>
       {responses.map(({ heading, body }) => (
-        <Response heading={heading} body={body} />
+        <Response heading={heading} body={body} key={heading} />
       ))}
     </dl>
   );

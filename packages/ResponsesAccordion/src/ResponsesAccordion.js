@@ -59,7 +59,7 @@ const ResponsesAccordion = props => {
           };
 
           return (
-            <div css={itemStyles}>
+            <div css={itemStyles} key={label}>
               <Indicator {...indicatorProps} />
               <Collapsible label={getLabel(label, index)} isComplete={isComplete} {...moreChildProps}>
                 {child}
