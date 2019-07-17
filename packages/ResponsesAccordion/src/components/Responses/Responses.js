@@ -17,10 +17,10 @@ const defaultProps = {
 
 const Response = ({ heading, body }) => {
   return (
-    <React.Fragment>
+    <>
       <dt>{heading}</dt>
-      <dd>{body || "None"}</dd>
-    </React.Fragment>
+      <dd>{body || <em>None</em>}</dd>
+    </>
   );
 };
 

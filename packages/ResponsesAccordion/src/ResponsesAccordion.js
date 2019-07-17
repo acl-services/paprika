@@ -4,7 +4,13 @@ import Item from "./components/Item";
 import Indicator from "./components/Indicator";
 import Responses from "./components/Responses";
 import Collapsible from "./components/Collapsible";
-import { accordionStyles, itemStyles } from "./ResponsesAccordion.styles";
+import {
+  accordionStyles,
+  itemStyles,
+  activeItemStyles,
+  activeLabelStyles,
+  activeStatusStyles,
+} from "./ResponsesAccordion.styles";
 
 const propTypes = {
   activeIndex: PropTypes.number,
@@ -31,9 +37,10 @@ const ResponsesAccordion = props => {
 
   const getLabel = (label, index) => {
     return activeIndex === index ? (
-      <span>
-        {label} - {activeStatus}
-      </span>
+      <div css={activeItemStyles}>
+        <div css={activeLabelStyles}>{label}</div>
+        <div css={activeStatusStyles}>{activeStatus}</div>
+      </div>
     ) : (
       label
     );

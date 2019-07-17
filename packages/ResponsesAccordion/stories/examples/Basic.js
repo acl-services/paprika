@@ -1,5 +1,5 @@
 import React from "react";
-import { Story } from "storybook/assets/styles/common.styles";
+import { AccordionStory } from "../ResponsesAccordion.stories.styles";
 import ResponsesAccordion from "../../src";
 
 const mockResponses = [
@@ -14,7 +14,7 @@ const mockResponses = [
   {
     heading: "What?",
     body: (
-      <React.Fragment>
+      <>
         <p>
           Lorem ipsum dolor amet ennui wolf trust fund vinyl leggings butcher fingerstache. Occupy hot chicken swag
           beard, DIY kombucha unicorn pour-over coloring book brunch.
@@ -23,7 +23,7 @@ const mockResponses = [
           Kinfolk asymmetrical bicycle rights artisan, typewriter single-origin coffee heirloom. Hammock pug bicycle
           rights authentic, trust fund forage tote bag swag.
         </p>
-      </React.Fragment>
+      </>
     ),
   },
   {
@@ -33,18 +33,18 @@ const mockResponses = [
 
 const ExampleStory = () => {
   return (
-    <Story>
-      <ResponsesAccordion activeIndex={2} activeStatus="idle hands">
+    <AccordionStory>
+      <ResponsesAccordion activeIndex={2} activeStatus="5 days idle">
         <ResponsesAccordion.Item label="Zero">
           <ResponsesAccordion.Responses responses={mockResponses} />
         </ResponsesAccordion.Item>
-        <ResponsesAccordion.Item label="One">
+        <ResponsesAccordion.Item label="One 111111111111111111111111111111111111">
           <ResponsesAccordion.Responses responses={mockResponses} />
         </ResponsesAccordion.Item>
-        <ResponsesAccordion.Item label="Two" />
-        <ResponsesAccordion.Item label="Three" />
+        <ResponsesAccordion.Item label="Two 222222222222222222222222222222222222222222222222222222" />
+        <ResponsesAccordion.Item label="Three 3333333333333333333333333333333333333333333333333" />
       </ResponsesAccordion>
-    </Story>
+    </AccordionStory>
   );
 };
 

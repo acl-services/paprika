@@ -7,18 +7,24 @@ const responsesStyles = css`
 
   color: ${tokens.textColor.subtle};
   margin: ${tokens.space} 0;
-  padding: 0;
+  max-height: 420px;
+  overflow: auto;
+  padding: 0 ${tokens.space} 0 0;
 
   dt {
     ${stylers.fontSize(-1)}
   
-    font-weight:bold;
+    font-weight: bold;
     margin-bottom: ${tokens.space};
   }
 
   dd {
     margin: 0 0 ${stylers.spacer(3)} 0;
     padding: 0;
+
+    &:last-child {
+      margin-bottom: 0;
+    }
 
     p {
       margin: ${tokens.space} 0;
