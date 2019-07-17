@@ -1,6 +1,7 @@
 import React from "react";
 import PropTypes from "prop-types";
 import Item from "./components/Item";
+import Indicator from "./components/Indicator";
 import Responses from "./components/Responses";
 import Collapsible from "./components/Collapsible";
 import accordionStyles from "./ResponsesAccordion.styles";
@@ -43,10 +44,24 @@ const ResponsesAccordion = props => {
       {validChildren.length > 0 &&
         validChildren.map((child, index) => {
           const { label, ...moreChildProps } = child.props;
+          const isComplete = activeIndex > index;
+          const isActive = activeIndex === index;
+
           return (
-            <Collapsible label={getLabel(label, index)} isComplete={activeIndex > index} {...moreChildProps}>
-              {child}
-            </Collapsible>
+            <div
+              css={`
+                display: flex;
+                padding: 8px 0;
+                [data-pka-anchor="indicator"] {
+                  margin-right: 8px;
+                }
+              `}
+            >
+              <Indicator isComplete={isComplete} isActive={isActive} />
+              <Collapsible label={getLabel(label, index)} isComplete={isComplete} {...moreChildProps}>
+                {child}
+              </Collapsible>
+            </div>
           );
         })}
     </div>
@@ -58,6 +73,7 @@ ResponsesAccordion.propTypes = propTypes;
 ResponsesAccordion.defaultProps = defaultProps;
 
 ResponsesAccordion.Item = Item;
+ResponsesAccordion.Indicator = Indicator;
 ResponsesAccordion.Responses = Responses;
 
 export default ResponsesAccordion;

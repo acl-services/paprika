@@ -1,5 +1,5 @@
 import React from "react";
-import { Story } from "storybook/assets/styles/common.styles";
+import { Story, Rule } from "storybook/assets/styles/common.styles";
 import ResponsesAccordion from "../../src";
 
 const mockResponses = [
@@ -26,6 +26,16 @@ const ExampleStory = () => {
         <ResponsesAccordion.Item label="One" />
         <ResponsesAccordion.Item label="Two" />
       </ResponsesAccordion>
+
+      <Rule />
+
+      <ResponsesAccordion.Indicator />
+      <br />
+      <ResponsesAccordion.Indicator isComplete />
+      <br />
+      <ResponsesAccordion.Indicator isActive />
+      <br />
+      <ResponsesAccordion.Indicator isComplete isActive />
     </Story>
   );
 };
