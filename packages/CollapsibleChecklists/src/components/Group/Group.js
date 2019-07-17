@@ -92,9 +92,9 @@ function Group(props) {
   /* eslint-enable jsx-a11y/label-has-associated-control */
 
   const modifiedChildren = [];
-  React.Children.forEach(children, child => {
+  React.Children.forEach(children, (child, index) => {
     const newProps = {
-      key: Math.random(),
+      key: `${title}-child-${index}`,
     };
 
     if (child.type.displayName === Item.displayName) {
