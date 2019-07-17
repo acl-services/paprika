@@ -2159,24 +2159,6 @@
     universal-user-agent "^2.0.0"
     url-template "^2.0.8"
 
-"@paprika/date-picker@^0.1.0":
-  version "0.1.0"
-  resolved "https://registry.yarnpkg.com/@paprika/date-picker/-/date-picker-0.1.0.tgz#9799eaaae6d69bb5c90b992496a0514f6e88adf5"
-  integrity sha512-eYiQ5slqV/8LlHrdFOdpu61bJLYnNf9UuQx/KhzkFwhU425Zgw7JqZVNuuyDWZkvQhh60YRQ3SlpfMOn5RE95w==
-  dependencies:
-    "@babel/runtime-corejs2" "^7.3.1"
-    "@paprika/helpers" "^0.1.1"
-    "@paprika/icon" "^0.1.1"
-    "@paprika/input" "^0.1.1"
-    "@paprika/l10n" "^0.1.1"
-    "@paprika/popover" "^0.1.1"
-    "@paprika/stylers" "^0.1.1"
-    "@paprika/tokens" "^0.1.1"
-    moment "^2.24.0"
-    prop-types "^15.7.2"
-    react-dates "^20.1.0"
-    react-moment-proptypes "^1.6.0"
-
 "@reach/router@^1.2.1":
   version "1.2.1"
   resolved "https://registry.yarnpkg.com/@reach/router/-/router-1.2.1.tgz#34ae3541a5ac44fa7796e5506a5d7274a162be4e"
@@ -10205,7 +10187,7 @@ modify-values@^1.0.0:
   resolved "https://registry.yarnpkg.com/modify-values/-/modify-values-1.0.1.tgz#b3939fa605546474e3e3e3c63d64bd43b4ee6022"
   integrity sha512-xV2bxeN6F7oYjZWTe/YPAy6MN2M+sL4u/Rlm2AHCIVGfo2p1yGmBHQ6vHehl4bRTZBdHu3TSkWdYgkwpYzAGSw==
 
-moment@2.24.0, moment@2.x.x, moment@>=1.6.0, moment@^2.10.6, moment@^2.24.0:
+moment@2.24.0, moment@2.x.x, moment@>=1.6.0, moment@^2.10.6:
   version "2.24.0"
   resolved "https://registry.yarnpkg.com/moment/-/moment-2.24.0.tgz#0d055d53f5052aa653c9f6eb68bb5d12bf5c2b5b"
   integrity sha512-bV7f+6l2QigeBBZSM/6yTNq4P2fNpSWj/0e7jQcy87A8e7o2nAfP/34/2ky5Vw4B9S446EtIhodAzkFCcR4dQg==
