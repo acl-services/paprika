@@ -22,7 +22,11 @@
     "class-methods-use-this": "off",
     "consistent-return": "off",
     "import/no-cycle": "off",
-    "import/no-extraneous-dependencies": "off",
+    "import/no-extraneous-dependencies": ["error", {
+      "devDependencies": false,
+      "optionalDependencies": false,
+      "peerDependencies": true
+    }],
     "import/no-named-as-default": "off",
     "import/no-unresolved": "off",
     "import/prefer-default-export": "off",
@@ -56,7 +60,19 @@
   "overrides": [
     {
       "files": ["packages/**/stories/**/*.js"],
-      "rules": { "react/prop-types": "off" }
+      "rules": {
+        "react/prop-types": "off",
+        "import/no-extraneous-dependencies": "off",
+        "no-alert": "off"
+      }
+    },
+    {
+      "files": ["packages/**/*.spec.js"],
+      "rules": { "import/no-extraneous-dependencies": "off" }
+    },
+    {
+      "files": ["packages/helpers/**/*.js"],
+      "rules": { "import/no-extraneous-dependencies": "off" }
     }
   ]
 }
