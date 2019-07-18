@@ -1,6 +1,6 @@
 import React from "react";
 import { Story } from "storybook/assets/styles/common.styles";
-import Modal, { ModalHeader, ModalBody, ModalFooter } from "../..";
+import Modal, { ModalHeader, ModalBody, ModalFooter } from "../../src";
 
 const headerProps = {
   headerAriaLevel: 1,
