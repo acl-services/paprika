@@ -56,8 +56,8 @@ describe("CollapsibleChecklists", () => {
   });
 
   it("after expand, does show group items", () => {
-    const { getByText, getByRole } = renderComponent();
-    fireEvent.click(getByRole(/button/i));
+    const { getByText, getAllByRole } = renderComponent();
+    fireEvent.click(getAllByRole(/button/i)[0]);
     expect(getByText(/damask/i)).toBeVisible();
   });
 
@@ -77,8 +77,8 @@ describe("CollapsibleChecklists", () => {
 
   it("fires callback when select item", () => {
     const onChange = jest.fn();
-    const { getByRole, container } = renderComponent({ onChange });
-    fireEvent.click(getByRole(/button/i)); // expand 'Flowers'
+    const { getAllByRole, container } = renderComponent({ onChange });
+    fireEvent.click(getAllByRole(/button/i)[0]); // expand 'Flowers'
     fireEvent.click(container.querySelectorAll('input[type="checkbox"]')[1]); // Damask rose
     expect(onChange).toHaveBeenCalled();
   });
