@@ -1,7 +1,8 @@
 import tokens from "@paprika/tokens";
 import stylers from "@paprika/stylers";
+import { css } from "styled-components";
 
-const modalBodyStyles = props => `
+const modalBodyStyles = css`
   background-color: ${tokens.color.white};
   padding: ${stylers.spacer(3)};
 
@@ -12,7 +13,6 @@ const modalBodyStyles = props => `
   > p:last-child {
     margin-bottom: 0;
   }
-`
+`;
 
 export default modalBodyStyles;
-

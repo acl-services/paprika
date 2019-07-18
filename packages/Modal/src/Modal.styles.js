@@ -1,9 +1,10 @@
 import tokens from "@paprika/tokens";
 import stylers from "@paprika/stylers";
+import { css } from "styled-components";
 import { ShirtSizes } from "@paprika/helpers/lib/customPropTypes";
 
 const computeModalWidth = width => {
-  switch(width) {
+  switch (width) {
     case ShirtSizes.SMALL:
       return "450px";
     case ShirtSizes.MEDIUM:
@@ -12,38 +13,40 @@ const computeModalWidth = width => {
     default:
       return "900px";
   }
-}
+};
 
-export const modalStyles = props => `
+export const modalStyles = css`
   bottom: 0;
   left: 0;
+  opacity: 0;
   pointer-events: none;
   position: fixed;
   right: 0;
   top: 0;
-  opacity: 0;
   visibility: hidden;
-  z-index: ${props.zIndex || stylers.z(6)};
+  z-index: ${props => props.zIndex || stylers.z(6)};
 
-  ${props.isOpen && `
-    opacity: 1;
-    transition: opacity 0.2s;
-    visibility: visible;
-  `}
+  ${props =>
+    props.isOpen &&
+    css`
+      opacity: 1;
+      transition: opacity 0.2s;
+      visibility: visible;
+    `}
 `;
 
-export const frameStyles = props => `
+export const frameStyles = css`
   border-radius: ${tokens.card.borderRadius};
   left: 50%;
+  max-width: ${props => computeModalWidth(props.width)};
   pointer-events: auto;
   position: absolute;
   top: 50%;
   transform: translate(-50%, -50%);
   width: calc(100% - (${stylers.spacer(6)}));
-  max-width: ${computeModalWidth(props.width)};
 `;
 
-export const overlayStyles = props => `
+export const overlayStyles = css`
   background-color: ${tokens.modal.backdrop.backgroundColor};
   bottom: 0;
   left: 0;
@@ -53,7 +56,7 @@ export const overlayStyles = props => `
   top: 0;
 `;
 
-export const contentStyles = props => `
+export const contentStyles = css`
   background-color: ${tokens.color.white};
   border-radius: ${tokens.card.borderRadius};
   box-shadow: ${tokens.modal.shadow};
@@ -62,15 +65,19 @@ export const contentStyles = props => `
   transform: scale(0.8);
   transition: transform 0.3s ease-out;
 
-  ${props.isOpen && `
-    transform: scale(1);
-  `}
+  ${props =>
+    props.isOpen &&
+    css`
+      transform: scale(1);
+    `}
 
-  ${props.isScrollable && `
-    overflow-y: auto;
-  `}
+  ${props =>
+    props.isScrollable &&
+    css`
+      overflow-y: auto;
+    `}
 `;
 
-export const ariaLabelStyles = props => `
+export const ariaLabelStyles = css`
   ${stylers.visuallyHidden};
 `;
