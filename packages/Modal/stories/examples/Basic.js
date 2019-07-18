@@ -6,7 +6,7 @@ const headerProps = {
   headerAriaLevel: 1,
   hasCloseButton: true,
   isDark: false,
-  onClose: _ => _,
+  onClose: () => {},
 };
 
 const ExampleStory = () => {
