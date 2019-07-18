@@ -50,7 +50,7 @@
     "@paprika/listbox": "^0.5.0",
     "@paprika/popover": "^0.1.0",
     "@paprika/raw-button": "^0.1.0",
-    "@paprika/select": "^0.1.2",
+    "@paprika/select": "^0.1.0",
     "@paprika/sortable": "^0.1.0",
     "@paprika/spinner": "^0.1.0",
     "@paprika/stylers": "^0.1.0",
