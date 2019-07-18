@@ -5,7 +5,7 @@ import InfoCircleIcon from "@paprika/icon/lib/InfoCircle";
 import Popover from "@paprika/popover";
 import useI18n from "@paprika/l10n/lib/useI18n";
 
-import hintStyles, { iconStyles } from "./Hint.styles";
+import hintStyles, { StyledTrigger, iconStyles } from "./Hint.styles";
 
 const propTypes = {
   children: PropTypes.node.isRequired,
@@ -24,9 +24,9 @@ function Hint(props) {
 
   return (
     <Popover css={hintStyles} align="bottom" data-qa-anchor="formElement.hint" {...moreProps}>
-      <Popover.Trigger a11yText={triggerA11yText || I18n.t("formElement.aria_info_circle")}>
-        <InfoCircleIcon css={iconStyles} aria-hidden size={16} type="exclamation-circle" />
-      </Popover.Trigger>
+      <StyledTrigger a11yText={triggerA11yText || I18n.t("formElement.aria_info_circle")}>
+        <InfoCircleIcon css={iconStyles} aria-hidden type="exclamation-circle" />
+      </StyledTrigger>
       <Popover.Content>
         <Popover.Tip />
         <Popover.Card>{children}</Popover.Card>

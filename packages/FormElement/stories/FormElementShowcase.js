@@ -27,7 +27,7 @@ function Showcase() {
         label={text("label", "Form element")}
         size={select("size", ShirtSizes.DEFAULT, "medium")}
       >
-        <Input onChange={handleChange} value={value} placeholder="your_email@email" />
+        <Input onChange={handleChange} value={value} placeholder="Form placeholder" />
         <FormElement.Error>{text("children", "This field cannot be blank.")}</FormElement.Error>
         <FormElement.Description>
           <span>Description of this field.</span>
