@@ -17,13 +17,13 @@ function Showcase() {
   return (
     <L10n locale="en">
       <FormElement
+        hasOptionalLabel={boolean("hasOptionalLabel", false)}
+        hasRequiredLabel={boolean("hasRequiredLabel", false)}
         id={text("id", "input-id")}
         isDisabled={boolean("isDisabled", false)}
         isInline={boolean("isInline", false)}
         isLabelVisuallyHidden={boolean("isLabelVisuallyHidden", false)}
-        isOptional={boolean("isOptional", false)}
         isReadOnly={boolean("isReadOnly", false)}
-        isRequired={boolean("isRequired", false)}
         label={text("label", "Form element")}
         size={select("size", ShirtSizes.DEFAULT, "medium")}
       >
@@ -32,9 +32,9 @@ function Showcase() {
         <FormElement.Description>
           <span>Description of this field.</span>
         </FormElement.Description>
-        <FormElement.Hint>
-          Give me some hints. <a href="wegalvanize.com">Learn more</a>.
-        </FormElement.Hint>
+        <FormElement.Help>
+          Give me some help. <a href="wegalvanize.com">Learn more</a>.
+        </FormElement.Help>
       </FormElement>
     </L10n>
   );

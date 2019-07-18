@@ -9,13 +9,19 @@ import uuid from "uuid/v1";
 import { extractChildren } from "./helpers/extractChildren";
 import Description from "./components/Description";
 import ErrorMessage from "./components/ErrorMessage";
-import Hint from "./components/Hint";
+import Help from "./components/Help";
 import Label from "./components/Label";
 
-import formElementStyles from "./FormElement.styles";
+import formElementStyles, { inlineContainerStyles } from "./FormElement.styles";
 
 const propTypes = {
   children: PropTypes.node.isRequired,
+
+  /** Should show is optional text besides the label or not. */
+  hasOptionalLabel: PropTypes.bool,
+
+  /** Should show is required text besides the label or not. */
+  hasRequiredLabel: PropTypes.bool,
 
   /** ID for the child element. */
   id: PropTypes.string,
@@ -29,43 +35,37 @@ const propTypes = {
   /** Should label be hidden, default is false. Note: this is discouraged because of accessibility requirements. */
   isLabelVisuallyHidden: PropTypes.bool,
 
-  /** Should show is optional text besides the label or not. */
-  isOptional: PropTypes.bool,
-
   /** Should be read-only or not, default is false. */
   isReadOnly: PropTypes.bool,
-
-  /** Should show is required text besides the label or not. */
-  isRequired: PropTypes.bool,
 
   /** Label text of this field. */
   label: PropTypes.string.isRequired,
 
-  /** Size of the label, child component, error, hint and description (font size, min-height, padding, etc). */
+  /** Size of the label, child component, error, help and description (font size, min-height, padding, etc). */
   size: PropTypes.oneOf(ShirtSizes.DEFAULT),
 };
 
 const defaultProps = {
+  hasOptionalLabel: false,
+  hasRequiredLabel: false,
   id: null,
   isDisabled: false,
   isInline: false,
   isLabelVisuallyHidden: false,
-  isOptional: false,
   isReadOnly: false,
-  isRequired: false,
   size: "medium",
 };
 
 function FormElement(props) {
   const {
     children,
+    hasOptionalLabel,
+    hasRequiredLabel,
     id,
     isDisabled,
     isInline,
     isLabelVisuallyHidden,
-    isOptional,
     isReadOnly,
-    isRequired,
     label,
     size,
   } = props;
@@ -73,7 +73,7 @@ function FormElement(props) {
   const extratedChildren = extractChildren(children, [
     "FormElement.Description",
     "FormElement.Error",
-    "FormElement.Hint",
+    "FormElement.Help",
   ]);
   const ariaDescriptionId = uuid();
   const hasError = !!extratedChildren["FormElement.Error"] && !!extratedChildren["FormElement.Error"].props.children;
@@ -101,12 +101,12 @@ function FormElement(props) {
   return (
     <div css={formElementStyles} isInline={isInline} size={size} isDisabled={isDisabled}>
       <Label
-        hint={extratedChildren["FormElement.Hint"]}
+        hasOptionalLabel={hasOptionalLabel}
+        hasRequiredLabel={hasRequiredLabel}
+        help={extratedChildren["FormElement.Help"]}
         id={uniqueId}
         isInline={isInline}
         isVisuallyHidden={isLabelVisuallyHidden}
-        isOptional={isOptional}
-        isRequired={isRequired}
         label={label}
       />
 
@@ -127,17 +127,12 @@ function FormElement(props) {
                 isReadOnly,
                 size,
               };
-
-          const clonedChild = (
-            <child.type {...child.props} {...extendedProps}>
-              {child.props.children}
-            </child.type>
-          );
+          const clonedChild = React.cloneElement(child, extendedProps);
 
           return (
             <React.Fragment key={child.key}>
               {isInline ? (
-                <div>
+                <div css={inlineContainerStyles}>
                   {clonedChild}
                   {renderFooter()}
                 </div>
@@ -164,6 +159,6 @@ FormElement.defaultProps = defaultProps;
 
 FormElement.Description = Description;
 FormElement.Error = ErrorMessage;
-FormElement.Hint = Hint;
+FormElement.Help = Help;
 
 export default FormElement;

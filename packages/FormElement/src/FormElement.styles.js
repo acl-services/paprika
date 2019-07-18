@@ -8,6 +8,10 @@ const FontSizes = {
   large: stylers.fontSize(0),
 };
 
+export const inlineContainerStyles = css`
+  flex-grow: 1;
+`;
+
 const inlineFormElementStyles = css`
   align-items: baseline;
   display: flex;

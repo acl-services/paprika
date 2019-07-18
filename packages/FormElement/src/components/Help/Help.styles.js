@@ -11,9 +11,10 @@ export const iconStyles = css`
   color: ${tokens.textColor.icon};
 `;
 
-const hintStyles = css`
+const helpStyles = css`
   align-self: center;
   display: block;
+  height: 1em;
 `;
 
-export default hintStyles;
+export default helpStyles;

@@ -60,9 +60,9 @@ import MyInput from "./MyInput";
 - `isDisabled`
 - `isInline`
 - `isLabelVisuallyHidden`
-- `isOptional`
+- `hasOptionalLabel`
 - `isReadOnly`
-- `isRequired`
+- `hasRequiredLabel`
 - `label` (required)
 - `size`
 
@@ -75,7 +75,7 @@ import MyInput from "./MyInput";
 
 - `children`
 
-#### FormElement.Hint
+#### FormElement.Help
 
 - `children` (required)
 - `triggerA11yText`

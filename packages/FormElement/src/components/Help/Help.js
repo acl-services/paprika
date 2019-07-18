@@ -5,12 +5,12 @@ import InfoCircleIcon from "@paprika/icon/lib/InfoCircle";
 import Popover from "@paprika/popover";
 import useI18n from "@paprika/l10n/lib/useI18n";
 
-import hintStyles, { StyledTrigger, iconStyles } from "./Hint.styles";
+import helpStyles, { StyledTrigger, iconStyles } from "./Help.styles";
 
 const propTypes = {
   children: PropTypes.node.isRequired,
 
-  /** Aria text for information button to trigger hint popover. */
+  /** Aria text for information button to trigger help popover. */
   triggerA11yText: PropTypes.string,
 };
 
@@ -18,12 +18,12 @@ const defaultProps = {
   triggerA11yText: null,
 };
 
-function Hint(props) {
+function Help(props) {
   const { children, triggerA11yText, ...moreProps } = props;
   const I18n = useI18n();
 
   return (
-    <Popover css={hintStyles} align="bottom" data-qa-anchor="formElement.hint" {...moreProps}>
+    <Popover css={helpStyles} align="bottom" data-qa-anchor="formElement.help" {...moreProps}>
       <StyledTrigger a11yText={triggerA11yText || I18n.t("formElement.aria_info_circle")}>
         <InfoCircleIcon css={iconStyles} aria-hidden type="exclamation-circle" />
       </StyledTrigger>
@@ -35,9 +35,9 @@ function Hint(props) {
   );
 }
 
-Hint.displayName = "FormElement.Hint";
+Help.displayName = "FormElement.Help";
 
-Hint.propTypes = propTypes;
-Hint.defaultProps = defaultProps;
+Help.propTypes = propTypes;
+Help.defaultProps = defaultProps;
 
-export default Hint;
+export default Help;
