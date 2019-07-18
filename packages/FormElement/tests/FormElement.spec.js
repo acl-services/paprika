@@ -1,5 +1,5 @@
 import React from "react";
-import { render, configure } from "react-testing-library";
+import { render, configure } from "@testing-library/react";
 import L10n from "@paprika/l10n";
 import FormElement from "../src";
 
