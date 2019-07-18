@@ -18,6 +18,7 @@
   "dependencies": {
     "@babel/runtime-corejs2": "^7.3.1",
     "i18next": "^15.0.4",
+    "js-yaml": "^3.13.1",
     "prop-types": "^15.7.2"
   },
   "peerDependencies": {
