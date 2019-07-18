@@ -33,22 +33,18 @@ const defaultProps = {
 
 class Header extends React.Component {
   renderCloseButton() {
-    if (!this.props.hasCloseButton) return null;
+    const { hasCloseButton, isDark, onClose } = this.props;
+
+    if (!hasCloseButton) return null;
+
     return (
-      <Button
-        isCloseButton
-        size="small"
-        isDark={this.props.isDark}
-        cssOverrides={closeButtonStyle}
-        onClick={this.props.onClose}
-      >
-        X
-      </Button>
+      <Button.Close isCloseButton size="small" isDark={isDark} cssOverrides={closeButtonStyle} onClick={onClose} />
     );
   }
 
   render() {
     const { headerAriaLevel, className, children, isDark } = this.props;
+
     return (
       <header className={className} css={headerStyles} isDark={isDark}>
         {this.renderCloseButton()}
