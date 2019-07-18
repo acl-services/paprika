@@ -17,7 +17,7 @@ import formElementStyles from "./FormElement.styles";
 const propTypes = {
   children: PropTypes.node.isRequired,
 
-  /** Id of the input */
+  /** ID for the child element. */
   id: PropTypes.string,
 
   /** Should be disabled or not, default is false. */
@@ -77,7 +77,7 @@ function FormElement(props) {
   ]);
   const ariaDescriptionId = uuid();
   const hasError = !!extratedChildren["FormElement.Error"] && !!extratedChildren["FormElement.Error"].props.children;
-  const uniqueId = isNil(id) ? uuid() : id;
+  const uniqueId = isNil(id) || id === "" ? uuid() : id;
   let isFooterInserted = false;
 
   function renderFooter() {
@@ -122,6 +122,7 @@ function FormElement(props) {
             : {
                 "aria-describedby": ariaDescriptionId,
                 hasError,
+                id: uniqueId,
                 isDisabled,
                 isReadOnly,
                 size,

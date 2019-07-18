@@ -10,34 +10,74 @@ or
 
 Please use `<L10n />` component to wrap `<FormElement />` or you application.
 
-For a basic date picker
+Using with paprika `<Input />`
+
+```js
+import FormElement from "@paprika/form-element";
+import Input from "@paprika/input";
+
+<FormElement label="Name">
+  <Input onChange={changeHandler} />
+</FormElement>;
+```
+
+Using with paprika `<DatePicker />`
 
 ```js
 import DatePicker from "@paprika/date-picker";
+import FormElement from "@paprika/form-element";
 
-<DatePicker onChange={changeHandler} />;
+<FormElement label="Name">
+  <DatePicker onChange={changeHandler} />
+</FormElement>;
 ```
 
-Customized input
+Using with DOM input
 
 ```js
-import DatePicker from "@paprika/date-picker";
+import FormElement from "@paprika/form-element";
 
-<DatePicker onChange={changeHandler}>
-  <DatePicker.Input placeholder="Date..." />
-</DatePicker>;
+<FormElement label="Name">
+  <input onChange={changeHandler} />
+</FormElement>;
 ```
 
-#### DatePicker.Input
+Using with your component, you'll get `aria-describedby`, `hasError`, `isDisabled`, `isReadOnly` and `size` as additional props.
 
-- `a11yText`
-- `placeholder`
-- `size` `["small", "medium", "large"]`
+```js
+import FormElement from "@paprika/form-element";
+import MyInput from "./MyInput";
 
-#### DatePicker.Popover
+<FormElement label="Name">
+  <MyInput />
+</FormElement>;
+```
 
-- `align` `["top", "right", "bottom", "left"]`
-- `offset`
-- `zIndex`
+#### FormElement
 
-[More detail about these props](https://github.com/acl-services/paprika/blob/master/packages/DatePicker/src/DatePicker.js)
+- `children` (required)
+- `id`
+- `isDisabled`
+- `isInline`
+- `isLabelVisuallyHidden`
+- `isOptional`
+- `isReadOnly`
+- `isRequired`
+- `label` (required)
+- `size`
+
+#### FormElement.Description
+
+- `children` (required)
+- `ariaDescriptionId`
+
+#### FormElement.Error
+
+- `children`
+
+#### FormElement.Hint
+
+- `children` (required)
+- `triggerA11yText`
+
+[More detail about these props](https://github.com/acl-services/paprika/blob/master/packages/FormElement/src/FormElement.js)
