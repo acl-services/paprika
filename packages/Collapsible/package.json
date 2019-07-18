@@ -1,13 +1,13 @@
 {
   "name": "@paprika/collapsible",
-  "version": "0.1.1",
+  "version": "0.1.2",
   "description": "Collapsible component",
   "author": "@paprika",
   "license": "MIT",
   "main": "lib/index.js",
   "repository": {
     "type": "git",
-    "url": "https://github.com/acl-services/paprika/tree/master/packages/collapsible"
+    "url": "https://github.com/acl-services/paprika/tree/master/packages/Collapsible"
   },
   "publishConfig": {
     "access": "public"
