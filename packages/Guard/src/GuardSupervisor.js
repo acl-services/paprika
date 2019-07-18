@@ -1,111 +1,96 @@
 import React from "react";
 import PropTypes from "prop-types";
 
-class GuardSupervisor extends React.Component {
-  constructor(props, context) {
-    super(props, context);
+export const GuardRegistrationContext = React.createContext();
+export const GuardGetekeeperContext = React.createContext();
 
-    this.guards = [];
-    this.lastId = 0;
-  }
+export default function GuardSupervisor({ alertMessageDefault, children }) {
+  const guards = React.useRef([]);
+  const lastId = React.useRef(0);
 
-  getChildContext() {
-    return {
-      registerGuard: this.registerGuard,
-      canLeave: this.canLeave,
-    };
-  }
-
-  componentDidMount() {
-    window.addEventListener("beforeunload", this.handleWindowBeforeUnload, false);
-  }
-
-  componentWillUnmount() {
-    window.removeEventListener("beforeunload", this.handleWindowBeforeUnload, false);
-  }
-
-  /* eslint-disable no-param-reassign */
-  handleWindowBeforeUnload = event => {
-    if (this.hasDirtyConnectors()) {
-      const message = this.props.alertMessage;
-
-      event.returnValue = message;
-
-      return message;
-    }
-  };
-  /* eslint-enable no-param-reassign */
-
-  hasDirtyConnectors = group => {
+  function hasDirtyConnectors(group) {
     const checkIsDirty = guard => guard.isDirty;
 
     if (!group) {
-      return this.guards.some(checkIsDirty);
+      return guards.current.some(checkIsDirty);
     }
 
     const checkIsInGroup = guard => (Array.isArray(group) ? group.indexOf(guard.group) >= 0 : guard.group === group);
 
-    return this.guards.filter(checkIsInGroup).some(checkIsDirty);
-  };
+    return guards.current.filter(checkIsInGroup).some(checkIsDirty);
+  }
 
-  registerGuard = (isDirtyInitial, group) => {
-    const newId = this.generateId();
+  React.useEffect(() => {
+    function handleWindowBeforeUnload(event) {
+      if (hasDirtyConnectors()) {
+        const message = alertMessageDefault;
+
+        // eslint-disable-next-line no-param-reassign
+        event.returnValue = message;
+
+        return message;
+      }
+    }
+
+    window.addEventListener("beforeunload", handleWindowBeforeUnload, false);
+
+    return function cleanup() {
+      window.removeEventListener("beforeunload", handleWindowBeforeUnload, false);
+    };
+  }, [alertMessageDefault]);
+
+  function generateId() {
+    lastId.current++;
+    return lastId.current.toString();
+  }
+
+  const registerGuardCallback = React.useCallback(group => {
+    const newId = generateId();
 
     const guard = {
       id: newId,
-      isDirty: isDirtyInitial,
+      isDirty: false,
       group,
     };
 
-    this.guards.push(guard);
+    guards.current.push(guard);
 
     return {
-      unregister: () => this.unregisterGuard(newId),
+      unregister: () => {
+        guards.current = guards.current.filter(otherGuard => otherGuard.id !== newId);
+      },
       updateStatus: isDirty => {
         guard.isDirty = isDirty;
       },
     };
-  };
+  }, []);
 
-  unregisterGuard = id => {
-    this.guards = this.guards.filter(guard => guard.id !== id);
-  };
+  const canLeaveCallback = React.useCallback(
+    ({ alertMessage, group } = {}) => {
+      if (hasDirtyConnectors(group)) {
+        // eslint-disable-next-line no-restricted-globals, no-alert
+        return confirm(alertMessage || alertMessageDefault);
+      }
+      return true;
+    },
+    [alertMessageDefault]
+  );
 
-  canLeave = ({ alertMessage, group } = {}) => {
-    if (this.hasDirtyConnectors(group)) {
-      // eslint-disable-next-line no-restricted-globals, no-alert
-      return confirm(alertMessage || this.props.alertMessage);
-    }
-    return true;
-  };
-
-  generateId = () => {
-    this.lastId++;
-    return this.lastId.toString();
-  };
-
-  render() {
-    if (React.Children.count(this.props.children) > 1) {
-      return <React.Fragment>{this.props.children}</React.Fragment>;
-    }
-
-    return this.props.children;
-  }
+  return (
+    <GuardRegistrationContext.Provider value={registerGuardCallback}>
+      <GuardGetekeeperContext.Provider value={canLeaveCallback}>
+        {React.Children.count(children) > 1 ? <React.Fragment>{children}</React.Fragment> : children}
+      </GuardGetekeeperContext.Provider>
+    </GuardRegistrationContext.Provider>
+  );
 }
 
 GuardSupervisor.propTypes = {
   children: PropTypes.node,
-  alertMessage: PropTypes.string,
+  alertMessageDefault: PropTypes.string,
 };
 
 GuardSupervisor.defaultProps = {
   children: null,
-  alertMessage: null,
+  alertMessageDefault: null,
 };
-
-GuardSupervisor.childContextTypes = {
-  registerGuard: PropTypes.func,
-  canLeave: PropTypes.func,
-};
-
-export default GuardSupervisor;

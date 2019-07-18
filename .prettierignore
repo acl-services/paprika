@@ -8,6 +8,7 @@ lib
 #Node modules
 node_modules
 /**/node_modules
+.npmignore
 
 #CI
 semaphore.yml

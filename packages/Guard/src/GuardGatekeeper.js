@@ -1,15 +1,24 @@
 import React from "react";
 import PropTypes from "prop-types";
+import { GuardGetekeeperContext } from "./GuardSupervisor";
 
-export default class GuardGatekeeper extends React.Component {
-  render() {
-    return this.props.children(() =>
-      this.context.canLeave({
-        alertMessage: this.props.alertMessage,
-        group: this.props.group,
-      })
-    );
+export function useGatekeeper() {
+  return React.useContext(GuardGetekeeperContext);
+}
+
+export default function GuardGatekeeper({ alertMessage, children, group }) {
+  const canLeave = useGatekeeper();
+
+  if (!children) {
+    return null;
   }
+
+  return children(() =>
+    canLeave({
+      alertMessage,
+      group,
+    })
+  );
 }
 
 GuardGatekeeper.propTypes = {
@@ -22,8 +31,4 @@ GuardGatekeeper.defaultProps = {
   alertMessage: "",
   children: null,
   group: null,
-};
-
-GuardGatekeeper.contextTypes = {
-  canLeave: PropTypes.func,
 };

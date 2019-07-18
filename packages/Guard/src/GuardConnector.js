@@ -1,38 +1,29 @@
 import React from "react";
 import PropTypes from "prop-types";
+import { GuardRegistrationContext } from "./GuardSupervisor";
 
-class GuardConnector extends React.Component {
-  componentWillMount() {
-    this.registerSelf();
-  }
+function GuardConnector({ group, isDirty }) {
+  const registerGuard = React.useContext(GuardRegistrationContext);
+  const updateConnectorStatus = React.useRef(null);
 
-  componentDidUpdate(prevProps) {
-    if (prevProps.isDirty !== this.props.isDirty) {
-      this.updateStatus(this.props.isDirty);
+  React.useEffect(() => {
+    const { unregister, updateStatus } = registerGuard(group);
+
+    updateConnectorStatus.current = updateStatus;
+
+    return function cleanup() {
+      updateConnectorStatus.current = null;
+      unregister();
+    };
+  }, [group, registerGuard]);
+
+  React.useEffect(() => {
+    if (updateConnectorStatus.current) {
+      updateConnectorStatus.current(isDirty);
     }
+  }, [isDirty]);
 
-    if (prevProps.group !== this.props.group) {
-      this.unregister();
-      this.registerSelf();
-    }
-  }
-
-  componentWillUnmount() {
-    if (this.unregister) {
-      this.unregister();
-    }
-  }
-
-  registerSelf = () => {
-    const { unregister, updateStatus } = this.context.registerGuard(this.props.isDirty, this.props.group);
-
-    this.unregister = unregister;
-    this.updateStatus = updateStatus;
-  };
-
-  render() {
-    return null;
-  }
+  return null;
 }
 
 GuardConnector.propTypes = {
@@ -43,10 +34,6 @@ GuardConnector.propTypes = {
 GuardConnector.defaultProps = {
   isDirty: false,
   group: null,
-};
-
-GuardConnector.contextTypes = {
-  registerGuard: PropTypes.func,
 };
 
 export default GuardConnector;
