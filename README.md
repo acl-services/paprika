@@ -66,18 +66,6 @@ For debugging your jest test via chrome, just run the command below, [more info]
   yarn test:debug
 ```
 
-### run docz
-
-```sh
-$ yarn docz:dev
-```
-
-for building it
-
-```sh
-$ yarn docz:build
-```
-
 ### minimum requirements
 
 #### yarn version
