@@ -2,8 +2,9 @@ import React from "react";
 import { boolean, select, text } from "@storybook/addon-knobs";
 import { ShirtSizes } from "@paprika/helpers/lib/customPropTypes";
 
-import L10n from "@paprika/l10n";
 import Input from "@paprika/input";
+import L10n from "@paprika/l10n";
+
 import FormElement from "../src/FormElement";
 
 function Showcase() {
@@ -27,7 +28,7 @@ function Showcase() {
         size={select("size", ShirtSizes.DEFAULT, "medium")}
       >
         <Input onChange={handleChange} value={value} placeholder="your_email@email" />
-        {/* <FormElement.Error>This field cannot be blank.</FormElement.Error> */}
+        <FormElement.Error>{text("children", "This field cannot be blank.")}</FormElement.Error>
         <FormElement.Description>
           <span>Description of this field.</span>
         </FormElement.Description>

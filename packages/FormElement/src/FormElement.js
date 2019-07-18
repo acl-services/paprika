@@ -3,14 +3,14 @@ import PropTypes from "prop-types";
 
 import { ShirtSizes } from "@paprika/helpers/lib/customPropTypes";
 import isNil from "lodash/isNil";
+import isString from "lodash/isString";
 import uuid from "uuid/v1";
 
+import { extractChildren } from "./helpers/extractChildren";
 import Description from "./components/Description";
 import ErrorMessage from "./components/ErrorMessage";
 import Hint from "./components/Hint";
 import Label from "./components/Label";
-
-import { extractChildren } from "./helpers/extractChildren";
 
 import formElementStyles from "./FormElement.styles";
 
@@ -75,21 +75,27 @@ function FormElement(props) {
     "FormElement.Error",
     "FormElement.Hint",
   ]);
-
-  let isFooterInserted = false;
-
-  const uniqueId = isNil(id) ? uuid() : id;
   const ariaDescriptionId = uuid();
+  const hasError = !!extratedChildren["FormElement.Error"] && !!extratedChildren["FormElement.Error"].props.children;
+  const uniqueId = isNil(id) ? uuid() : id;
+  let isFooterInserted = false;
 
   function renderFooter() {
     if (isFooterInserted) return;
+
     isFooterInserted = true;
-    return (
-      extratedChildren["FormElement.Error"] ||
-      React.cloneElement(extratedChildren["FormElement.Description"], {
+
+    if (hasError) {
+      return extratedChildren["FormElement.Error"];
+    }
+
+    if (extratedChildren["FormElement.Description"]) {
+      return React.cloneElement(extratedChildren["FormElement.Description"], {
         ariaDescriptionId,
-      })
-    );
+      });
+    }
+
+    return null;
   }
 
   return (
@@ -106,16 +112,23 @@ function FormElement(props) {
 
       {extratedChildren.children.map(child => {
         if (React.isValidElement(child)) {
+          const extendedProps = isString(child.type)
+            ? {
+                "aria-describedby": ariaDescriptionId,
+                id: uniqueId,
+                disabled: isDisabled,
+                readOnly: isReadOnly,
+              }
+            : {
+                "aria-describedby": ariaDescriptionId,
+                hasError,
+                isDisabled,
+                isReadOnly,
+                size,
+              };
+
           const clonedChild = (
-            <child.type
-              {...child.props}
-              hasError={!!extratedChildren["FormElement.Error"]}
-              id={uniqueId}
-              isDisabled={isDisabled}
-              isReadOnly={isReadOnly}
-              size={size}
-              aria-describedby={ariaDescriptionId}
-            >
+            <child.type {...child.props} {...extendedProps}>
               {child.props.children}
             </child.type>
           );
