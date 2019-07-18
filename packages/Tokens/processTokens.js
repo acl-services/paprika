@@ -1,6 +1,6 @@
-const YAML = require("yamljs");
+const YAML = require("yamljs"); /* eslint-disable-line import/no-extraneous-dependencies */
 const fs = require("fs");
-const sass = require("node-sass");
+const sass = require("node-sass"); /* eslint-disable-line import/no-extraneous-dependencies */
 
 class DesignTokenBuilder {
   constructor() {
