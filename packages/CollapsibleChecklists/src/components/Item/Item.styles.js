@@ -9,6 +9,11 @@ const itemStyles = css`
       padding: 2px 0 2px ${stylers.spacer(5)};
       ${isDisabled ? disabledStyle : ""};
 
+      label {
+        align-items: center;
+        display: flex;
+      }
+
       input {
         margin-right: ${tokens.space}
       }

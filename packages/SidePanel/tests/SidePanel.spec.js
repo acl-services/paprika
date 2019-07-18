@@ -1,5 +1,5 @@
 import React from "react";
-import { render as renderReactTestingLibrary, configure, fireEvent } from "react-testing-library";
+import { render as renderReactTestingLibrary, configure, fireEvent } from "@testing-library/react";
 import SidePanel from "../src";
 
 configure({ testIdAttribute: "data-qa-anchor" });

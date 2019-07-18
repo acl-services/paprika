@@ -1,5 +1,5 @@
 import React from "react";
-import { render, fireEvent, configure } from "react-testing-library";
+import { render, fireEvent, configure } from "@testing-library/react";
 import ListBox from "../../../src";
 
 configure({ testIdAttribute: "data-qa-anchor" });
