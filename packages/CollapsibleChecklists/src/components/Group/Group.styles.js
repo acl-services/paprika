@@ -16,6 +16,11 @@ const groupStyles = css`
           margin-right: ${tokens.space};
         }
 
+        label {
+          align-items: center;
+          display: flex;
+        }
+
         ${isDisabled ? disabledStyle : ""};
       }
     `;
