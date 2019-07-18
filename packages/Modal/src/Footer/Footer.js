@@ -1,6 +1,6 @@
 import React from "react";
 import PropTypes from "prop-types";
-import { modalFooterStyles, contentStyles, actionsStyles }  from "./Footer.styles";
+import { modalFooterStyles, contentStyles, actionsStyles } from "./Footer.styles";
 
 const propTypes = {
   /** Custom classes for the Modal Footer element. */

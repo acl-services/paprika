@@ -3,9 +3,9 @@
 import React from "react";
 import ReactDOM from "react-dom";
 import PropTypes from "prop-types";
-import { ariaLabelStyles, contentStyles, modalStyles, frameStyles, overlayStyles } from "./Modal.styles";
-import { ShirtSizes } from "@paprika/helpers/lib/customPropTypes";
 import classNames from "classnames";
+import { ShirtSizes } from "@paprika/helpers/lib/customPropTypes";
+import { ariaLabelStyles, contentStyles, modalStyles, frameStyles, overlayStyles } from "./Modal.styles";
 
 const propTypes = {
   /** Aria title of dialog for accessibility. */
@@ -65,11 +65,11 @@ class Modal extends React.Component {
 
     // TODO: make this optional
     if (!modalRoot) {
-      modalRoot = document.createElement('div');
+      modalRoot = document.createElement("div");
       document.body.appendChild(modalRoot);
     }
 
-    this.el = document.createElement('div');
+    this.el = document.createElement("div");
   }
 
   componentDidMount() {
@@ -96,18 +96,35 @@ class Modal extends React.Component {
   };
 
   renderOverlay() {
-    if (!this.props.hasOverlay) return null;
-    return <div css={overlayStyles} onClick={this.props.onOverlayClick} tabIndex="-1" />;
+    const { hasOverlay, onOverlayClick } = this.props;
+
+    if (!hasOverlay) return null;
+
+    return <div css={overlayStyles} onClick={onOverlayClick} onKeyDown={onOverlayClick} tabIndex="-1" />;
   }
 
   renderModal() {
     const { ariaLabel, children, className, isOpen, isScrollable, width, zIndex } = this.props;
-    const rootClasses = classNames(className, {"modal--is-open": isOpen});
+    const rootClasses = classNames(className, { "modal--is-open": isOpen });
     return (
-      <div className={rootClasses} css={modalStyles} isOpen={isOpen} width={width} onKeyDown={this.handleKeyDown} ref={this.setRef} zIndex={zIndex}>
+      <div
+        className={rootClasses}
+        css={modalStyles}
+        isOpen={isOpen}
+        width={width}
+        onKeyDown={this.handleKeyDown}
+        ref={this.setRef}
+        zIndex={zIndex}
+      >
         {this.renderOverlay()}
         <div css={frameStyles} width={width}>
-          <section css={contentStyles} isOpen={isOpen} isScrollable={isScrollable} role="dialog" aria-labelledby={this.ariaId}>
+          <section
+            css={contentStyles}
+            isOpen={isOpen}
+            isScrollable={isScrollable}
+            role="dialog"
+            aria-labelledby={this.ariaId}
+          >
             <span css={ariaLabelStyles} id={this.ariaId}>
               {ariaLabel}
             </span>
@@ -119,10 +136,7 @@ class Modal extends React.Component {
   }
 
   render() {
-    return ReactDOM.createPortal(
-      this.renderModal(),
-      this.el,
-    );
+    return ReactDOM.createPortal(this.renderModal(), this.el);
   }
 }
 

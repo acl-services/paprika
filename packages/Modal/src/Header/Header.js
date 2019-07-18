@@ -5,7 +5,7 @@ import { closeButtonStyle, headerStyles, headingStyle } from "./Header.styles";
 
 const propTypes = {
   /** Defines the hierarchical level of an element within a structure. */
-  headerAriaLevel: PropTypes.number.isRequired,
+  headerAriaLevel: PropTypes.number,
 
   /** Custom classes for the Modal Header element. */
   className: PropTypes.string,
@@ -34,7 +34,17 @@ const defaultProps = {
 class Header extends React.Component {
   renderCloseButton() {
     if (!this.props.hasCloseButton) return null;
-    return <Button isCloseButton size="small" isDark={this.props.isDark} cssOverrides={closeButtonStyle} onClick={this.props.onClose}>X</Button>;
+    return (
+      <Button
+        isCloseButton
+        size="small"
+        isDark={this.props.isDark}
+        cssOverrides={closeButtonStyle}
+        onClick={this.props.onClose}
+      >
+        X
+      </Button>
+    );
   }
 
   render() {

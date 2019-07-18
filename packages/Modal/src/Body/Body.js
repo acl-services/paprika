@@ -1,4 +1,3 @@
-
 import React from "react";
 import PropTypes from "prop-types";
 import modalBodyStyles from "./Body.styles";
@@ -18,7 +17,11 @@ const defaultProps = {
 class Body extends React.Component {
   render() {
     const { className, children } = this.props;
-    return <div className={className} css={modalBodyStyles}>{children}</div>;
+    return (
+      <div className={className} css={modalBodyStyles}>
+        {children}
+      </div>
+    );
   }
 }
 
