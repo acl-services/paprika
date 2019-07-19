@@ -44,7 +44,7 @@ const Item = props => {
   );
 };
 
-Item.displayName = "ResponsesAccordion.Item";
+Item.displayName = "ProgressAccordion.Item";
 Item.propTypes = propTypes;
 Item.defaultProps = defaultProps;
 

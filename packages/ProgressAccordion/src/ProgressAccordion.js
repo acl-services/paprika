@@ -11,7 +11,7 @@ import {
   activeItemStyles,
   activeLabelStyles,
   activeStatusStyles,
-} from "./ResponsesAccordion.styles";
+} from "./ProgressAccordion.styles";
 
 const propTypes = {
   a11yText: PropTypes.string,
@@ -28,12 +28,10 @@ const defaultProps = {
 };
 
 function filterChildren(children) {
-  return React.Children.toArray(children).filter(
-    child => child.type && child.type.displayName === "ResponsesAccordion.Item"
-  );
+  return React.Children.toArray(children).filter(child => child.type && child.type.displayName === Item.displayName);
 }
 
-const ResponsesAccordion = props => {
+const ProgressAccordion = props => {
   const { a11yText, activeIndex, activeStatus, children, ...moreProps } = props;
 
   const I18n = useI18n();
@@ -45,7 +43,7 @@ const ResponsesAccordion = props => {
       <div css={activeItemStyles}>
         <div css={activeLabelStyles}>
           {label}
-          <span css={visuallyHidden}>. {I18n.t("responsesAccordion.active")}</span>
+          <span css={visuallyHidden}>. {I18n.t("progressAccordion.active")}</span>
         </div>
         <div css={activeStatusStyles}>{activeStatus}</div>
       </div>
@@ -78,12 +76,12 @@ const ResponsesAccordion = props => {
   );
 };
 
-ResponsesAccordion.displayName = "ResponsesAccordion";
-ResponsesAccordion.propTypes = propTypes;
-ResponsesAccordion.defaultProps = defaultProps;
+ProgressAccordion.displayName = "ProgressAccordion";
+ProgressAccordion.propTypes = propTypes;
+ProgressAccordion.defaultProps = defaultProps;
 
-ResponsesAccordion.Item = Item;
-ResponsesAccordion.Indicator = Indicator;
-ResponsesAccordion.Responses = Responses;
+ProgressAccordion.Item = Item;
+ProgressAccordion.Indicator = Indicator;
+ProgressAccordion.Responses = Responses;
 
-export default ResponsesAccordion;
+export default ProgressAccordion;

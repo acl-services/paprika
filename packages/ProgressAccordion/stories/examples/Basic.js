@@ -1,6 +1,6 @@
 import React from "react";
-import { AccordionStory } from "../ResponsesAccordion.stories.styles";
-import ResponsesAccordion from "../../src";
+import { AccordionStory } from "../ProgressAccordion.stories.styles";
+import ProgressAccordion from "../../src";
 
 const mockResponses = [
   {
@@ -38,16 +38,16 @@ const mockResponses = [
 const ExampleStory = () => {
   return (
     <AccordionStory>
-      <ResponsesAccordion activeIndex={2} activeStatus="5 days idle" a11yText="Responses">
-        <ResponsesAccordion.Item id="0" label="Zero">
-          <ResponsesAccordion.Responses responses={mockResponses} />
-        </ResponsesAccordion.Item>
-        <ResponsesAccordion.Item id="1" label="One 111111111111111111111111111111111111">
-          <ResponsesAccordion.Responses responses={mockResponses} />
-        </ResponsesAccordion.Item>
-        <ResponsesAccordion.Item id="2" label="Two 222222222222222222222222222222222222222222222222222222" />
-        <ResponsesAccordion.Item id="3" label="Three 3333333333333333333333333333333333333333333333333" />
-      </ResponsesAccordion>
+      <ProgressAccordion activeIndex={2} activeStatus="5 days idle" a11yText="Responses">
+        <ProgressAccordion.Item id="0" label="Zero">
+          <ProgressAccordion.Responses responses={mockResponses} />
+        </ProgressAccordion.Item>
+        <ProgressAccordion.Item id="1" label="One 111111111111111111111111111111111111">
+          <ProgressAccordion.Responses responses={mockResponses} />
+        </ProgressAccordion.Item>
+        <ProgressAccordion.Item id="2" label="Two 222222222222222222222222222222222222222222222222222222" />
+        <ProgressAccordion.Item id="3" label="Three 3333333333333333333333333333333333333333333333333" />
+      </ProgressAccordion>
     </AccordionStory>
   );
 };

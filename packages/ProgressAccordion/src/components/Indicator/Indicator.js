@@ -27,7 +27,7 @@ const Indicator = props => {
   );
 };
 
-Indicator.displayName = "ResponsesAccordion.Indicator";
+Indicator.displayName = "ProgressAccordion.Indicator";
 Indicator.propTypes = propTypes;
 Indicator.defaultProps = defaultProps;
 

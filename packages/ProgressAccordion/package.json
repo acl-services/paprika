@@ -1,13 +1,13 @@
 {
-  "name": "@paprika/responses-accordion",
+  "name": "@paprika/progress-accordion",
   "version": "0.1.0",
-  "description": "Responses Accordion component",
+  "description": "ProgressAccordion component",
   "author": "@paprika",
   "main": "lib/index.js",
   "license": "MIT",
   "repository": {
     "type": "git",
-    "url": "https://github.com/acl-services/paprika/tree/master/packages/ResponsesAccordion"
+    "url": "https://github.com/acl-services/paprika/tree/master/packages/ProgressAccordion"
   },
   "publishConfig": {
     "access": "public"

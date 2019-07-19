@@ -24,7 +24,7 @@ const Response = ({ heading, body }) => {
   return (
     <>
       <dt>{heading}</dt>
-      <dd>{body || <em>{I18n.t("responsesAccordion.no_response")}</em>}</dd>
+      <dd>{body || <em>{I18n.t("progressAccordion.no_response")}</em>}</dd>
     </>
   );
 };
@@ -44,7 +44,7 @@ const Responses = ({ responses }) => {
   );
 };
 
-Responses.displayName = "ResponsesAccordion.Responses";
+Responses.displayName = "ProgressAccordion.Responses";
 Responses.propTypes = propTypes;
 Responses.defaultProps = defaultProps;
 
