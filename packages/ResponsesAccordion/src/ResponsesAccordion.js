@@ -3,7 +3,6 @@ import PropTypes from "prop-types";
 import Item from "./components/Item";
 import Indicator from "./components/Indicator";
 import Responses from "./components/Responses";
-import Collapsible from "./components/Collapsible";
 import {
   accordionStyles,
   itemStyles,
@@ -50,7 +49,7 @@ const ResponsesAccordion = props => {
     <div css={accordionStyles} {...moreProps}>
       {validChildren.length > 0 &&
         validChildren.map((child, index) => {
-          const { label, ...moreChildProps } = child.props;
+          const { id, label } = child.props;
           const isComplete = activeIndex > index;
           const indicatorProps = {
             isComplete,
@@ -59,11 +58,9 @@ const ResponsesAccordion = props => {
           };
 
           return (
-            <div css={itemStyles} key={label}>
+            <div css={itemStyles} key={id}>
               <Indicator {...indicatorProps} />
-              <Collapsible label={getLabel(label, index)} isComplete={isComplete} {...moreChildProps}>
-                {child}
-              </Collapsible>
+              {React.cloneElement(child, { label: getLabel(label, index), isComplete })}
             </div>
           );
         })}

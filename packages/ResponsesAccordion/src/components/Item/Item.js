@@ -1,17 +1,51 @@
-/* eslint-disable react/no-unused-prop-types */
-
 import React from "react";
 import PropTypes from "prop-types";
+import Collapsible from "@paprika/collapsible";
+import UpIcon from "@paprika/icon/lib/ArrowUp";
+import DownIcon from "@paprika/icon/lib/ArrowDown";
+import { itemStyles, incompleteStyles, itemLabelStyles } from "./Item.styles";
 
-const Item = ({ children }) => <React.Fragment>{children}</React.Fragment>;
-
-Item.displayName = "ResponsesAccordion.Item";
-Item.propTypes = {
+const propTypes = {
   children: PropTypes.node,
   label: PropTypes.node.isRequired,
+  id: PropTypes.oneOfType([PropTypes.string, PropTypes.number]).isRequired,
+  isComplete: PropTypes.bool,
 };
-Item.defaultProps = {
+
+const defaultProps = {
   children: null,
+  isComplete: false,
 };
+
+const Item = props => {
+  const { children, label, isComplete, ...moreProps } = props;
+
+  const [isOpen, setIsOpen] = React.useState(false);
+
+  const handleToggle = () => {
+    setIsOpen(!isOpen);
+  };
+
+  return isComplete ? (
+    <Collapsible
+      iconAlign="right"
+      iconCollapse={<DownIcon />}
+      iconExpand={<UpIcon />}
+      isCollapsed={!isOpen}
+      label={<div css={itemLabelStyles}>{label}</div>}
+      onClick={handleToggle}
+      css={itemStyles}
+      {...moreProps}
+    >
+      {children}
+    </Collapsible>
+  ) : (
+    <div css={incompleteStyles}>{label}</div>
+  );
+};
+
+Item.displayName = "ResponsesAccordion.Item";
+Item.propTypes = propTypes;
+Item.defaultProps = defaultProps;
 
 export default Item;

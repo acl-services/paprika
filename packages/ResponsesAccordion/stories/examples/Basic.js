@@ -4,14 +4,17 @@ import ResponsesAccordion from "../../src";
 
 const mockResponses = [
   {
+    id: "0",
     heading: "Who is on first?",
     body: <p>Yes.</p>,
   },
   {
+    id: "1",
     heading: "Why?",
     body: <p>Is in left field.</p>,
   },
   {
+    id: "2",
     heading: "What?",
     body: (
       <>
@@ -27,6 +30,7 @@ const mockResponses = [
     ),
   },
   {
+    id: "3",
     heading: "Where?",
   },
 ];
@@ -35,14 +39,14 @@ const ExampleStory = () => {
   return (
     <AccordionStory>
       <ResponsesAccordion activeIndex={2} activeStatus="5 days idle">
-        <ResponsesAccordion.Item label="Zero">
+        <ResponsesAccordion.Item id="0" label="Zero">
           <ResponsesAccordion.Responses responses={mockResponses} />
         </ResponsesAccordion.Item>
-        <ResponsesAccordion.Item label="One 111111111111111111111111111111111111">
+        <ResponsesAccordion.Item id="1" label="One 111111111111111111111111111111111111">
           <ResponsesAccordion.Responses responses={mockResponses} />
         </ResponsesAccordion.Item>
-        <ResponsesAccordion.Item label="Two 222222222222222222222222222222222222222222222222222222" />
-        <ResponsesAccordion.Item label="Three 3333333333333333333333333333333333333333333333333" />
+        <ResponsesAccordion.Item id="2" label="Two 222222222222222222222222222222222222222222222222222222" />
+        <ResponsesAccordion.Item id="3" label="Three 3333333333333333333333333333333333333333333333333" />
       </ResponsesAccordion>
     </AccordionStory>
   );
