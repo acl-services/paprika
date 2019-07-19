@@ -4,7 +4,7 @@ import PropTypes from "prop-types";
 import { ShirtSizes } from "@paprika/helpers/lib/customPropTypes";
 import isNil from "lodash/isNil";
 import isString from "lodash/isString";
-import uuid from "uuid/v1";
+import uuidv4 from "uuid/v4";
 
 import { extractChildren } from "./helpers/extractChildren";
 import Description from "./components/Description";
@@ -75,9 +75,10 @@ function FormElement(props) {
     "FormElement.Error",
     "FormElement.Help",
   ]);
-  const ariaDescriptionId = uuid();
+  const ariaDescriptionId = React.useRef(uuidv4()).current;
   const hasError = !!extratedChildren["FormElement.Error"] && !!extratedChildren["FormElement.Error"].props.children;
-  const uniqueId = isNil(id) || id === "" ? uuid() : id;
+  const uniqueInputId = React.useRef(uuidv4()).current;
+  const inputId = isNil(id) || id === "" ? uniqueInputId : id;
   let isFooterInserted = false;
 
   function renderFooter() {
@@ -104,7 +105,7 @@ function FormElement(props) {
         hasOptionalLabel={hasOptionalLabel}
         hasRequiredLabel={hasRequiredLabel}
         help={extratedChildren["FormElement.Help"]}
-        id={uniqueId}
+        id={inputId}
         isInline={isInline}
         isVisuallyHidden={isLabelVisuallyHidden}
         label={label}
@@ -115,14 +116,14 @@ function FormElement(props) {
           const extendedProps = isString(child.type)
             ? {
                 "aria-describedby": ariaDescriptionId,
-                id: uniqueId,
+                id: inputId,
                 disabled: isDisabled,
                 readOnly: isReadOnly,
               }
             : {
                 "aria-describedby": ariaDescriptionId,
                 hasError,
-                id: uniqueId,
+                id: inputId,
                 isDisabled,
                 isReadOnly,
                 size,
