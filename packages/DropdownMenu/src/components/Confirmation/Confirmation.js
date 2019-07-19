@@ -4,7 +4,7 @@ import Button from "@paprika/button";
 import { ShirtSizes } from "@paprika/helpers/lib/customPropTypes";
 import useI18n from "@paprika/l10n/lib/useI18n";
 import Popover from "@paprika/popover";
-import contentContainerStyles from "../ContentContainer.styles";
+import contentContainerStyles from "../../ContentContainer.styles";
 import ConfirmationStyles from "./Confirmation.styles";
 
 const propTypes = {

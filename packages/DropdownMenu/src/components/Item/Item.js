@@ -1,7 +1,7 @@
 import React from "react";
 import PropTypes from "prop-types";
 import RawButton from "@paprika/raw-button";
-import ItemStyles from "../Item.styles";
+import ItemStyles from "../../Item.styles";
 
 const { bool, func, node } = PropTypes;
 

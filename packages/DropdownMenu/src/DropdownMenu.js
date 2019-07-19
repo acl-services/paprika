@@ -1,11 +1,11 @@
 import React from "react";
 import PropTypes from "prop-types";
 import Popover from "@paprika/popover";
-import Confirmation from "./Confirmation/Confirmation";
-import Divider from "./Divider/Divider";
-import Trigger from "./Trigger/Trigger";
-import LinkItem from "./LinkItem/LinkItem";
-import Item from "./Item/Item";
+import Confirmation from "./components/Confirmation";
+import Divider from "./components/Divider";
+import Trigger from "./components/Trigger";
+import LinkItem from "./components/LinkItem";
+import Item from "./components/Item";
 import contentContainerStyles from "./ContentContainer.styles";
 
 const { alignTypes, oneOf, node, func } = PropTypes;

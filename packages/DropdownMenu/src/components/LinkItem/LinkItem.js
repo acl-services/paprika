@@ -1,6 +1,6 @@
 import React from "react";
 import PropTypes from "prop-types";
-import LinkItemStyles from "../Item.styles";
+import LinkItemStyles from "../../Item.styles";
 
 const { bool, node, string } = PropTypes;
 
