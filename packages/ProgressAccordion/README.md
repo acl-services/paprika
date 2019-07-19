@@ -14,7 +14,7 @@ or
 import ProgressAccordion from "@paprika/progress-accordion";
 
 <ProgressAccordion activeIndex={1} activeStatus="5 days idle" a11yText="Responses">
-  <ProgressAccordion.Item id="0" label="Zero">
+  <ProgressAccordion.Item label="Zero">
     <ProgressAccordion.Responses>
       <ProgressAccordion.Responses.Item heading="Who is on first?">
         <p>Yes.</p>
@@ -24,8 +24,8 @@ import ProgressAccordion from "@paprika/progress-accordion";
       </ProgressAccordion.Responses.Item>
     </ProgressAccordion.Responses>
   </ProgressAccordion.Item>
-  <ProgressAccordion.Item id="1" label="One" />
-  <ProgressAccordion.Item id="2" label="Two" />
+  <ProgressAccordion.Item label="One" />
+  <ProgressAccordion.Item label="Two" />
 </ProgressAccordion>;
 ```
 

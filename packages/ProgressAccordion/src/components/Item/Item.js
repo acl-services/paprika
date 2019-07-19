@@ -8,7 +8,6 @@ import { itemStyles, incompleteStyles, itemLabelStyles } from "./Item.styles";
 const propTypes = {
   children: PropTypes.node,
   label: PropTypes.node.isRequired,
-  id: PropTypes.oneOfType([PropTypes.string, PropTypes.number]).isRequired,
   isComplete: PropTypes.bool,
 };
 

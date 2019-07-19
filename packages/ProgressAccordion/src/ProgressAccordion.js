@@ -56,8 +56,6 @@ const ProgressAccordion = props => {
     <div css={accordionStyles} {...moreProps} role="list" aria-label={a11yText}>
       {validChildren.length > 0 &&
         validChildren.map((child, index) => {
-          const { id, label } = child.props;
-
           const isComplete = activeIndex > index;
           const indicatorProps = {
             isComplete,
@@ -66,9 +64,10 @@ const ProgressAccordion = props => {
           };
 
           return (
-            <div css={itemStyles} key={id} role="listitem">
+            // eslint-disable-next-line react/no-array-index-key
+            <div css={itemStyles} key={index} role="listitem">
               <Indicator {...indicatorProps} />
-              {React.cloneElement(child, { label: getLabel(label, index), isComplete })}
+              {React.cloneElement(child, { label: getLabel(child.props.label, index), isComplete })}
             </div>
           );
         })}
