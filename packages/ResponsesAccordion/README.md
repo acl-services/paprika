@@ -15,22 +15,24 @@ import ResponsesAccordion from "@paprika/responses-accordion";
 
 const responses = [
   {
+    id: "1",
     heading: "Who is on first?",
     body: <p>Yes.</p>,
   },
 ];
 
-<ResponsesAccordion activeIndex={1} activeStatus="5 days idle">
-  <ResponsesAccordion.Item label="Zero">
+<ResponsesAccordion activeIndex={1} activeStatus="5 days idle" a11yText="Responses">
+  <ResponsesAccordion.Item id="0" label="Zero">
     <ResponsesAccordion.Responses responses={responses} />
   </ResponsesAccordion.Item>
-  <ResponsesAccordion.Item label="One" />
-  <ResponsesAccordion.Item label="Two" />
+  <ResponsesAccordion.Item id="1" label="One" />
+  <ResponsesAccordion.Item id="2" label="Two" />
 </ResponsesAccordion>;
 ```
 
 ### Props
 
+- a11yText
 - activeIndex
 - activeStatus
 
