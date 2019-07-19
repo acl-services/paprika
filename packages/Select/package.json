@@ -3,6 +3,7 @@
   "version": "0.1.4",
   "description": "Select component",
   "author": "@paprika",
+  "main": "lib/index.js",
   "license": "MIT",
   "repository": {
     "type": "git",
