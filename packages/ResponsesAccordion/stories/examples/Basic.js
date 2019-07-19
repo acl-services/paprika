@@ -38,7 +38,7 @@ const mockResponses = [
 const ExampleStory = () => {
   return (
     <AccordionStory>
-      <ResponsesAccordion activeIndex={2} activeStatus="5 days idle">
+      <ResponsesAccordion activeIndex={2} activeStatus="5 days idle" a11yText="Responses">
         <ResponsesAccordion.Item id="0" label="Zero">
           <ResponsesAccordion.Responses responses={mockResponses} />
         </ResponsesAccordion.Item>

@@ -1,5 +1,7 @@
 import React from "react";
 import PropTypes from "prop-types";
+import useI18n from "@paprika/l10n/lib/useI18n";
+import { visuallyHidden } from "@paprika/stylers/lib/includes";
 import Item from "./components/Item";
 import Indicator from "./components/Indicator";
 import Responses from "./components/Responses";
@@ -12,12 +14,14 @@ import {
 } from "./ResponsesAccordion.styles";
 
 const propTypes = {
+  a11yText: PropTypes.string,
   activeIndex: PropTypes.number,
   activeStatus: PropTypes.node,
   children: PropTypes.node,
 };
 
 const defaultProps = {
+  a11yText: null,
   activeIndex: 0,
   activeStatus: null,
   children: null,
@@ -30,14 +34,19 @@ function filterChildren(children) {
 }
 
 const ResponsesAccordion = props => {
-  const { activeIndex, activeStatus, children, ...moreProps } = props;
+  const { a11yText, activeIndex, activeStatus, children, ...moreProps } = props;
+
+  const I18n = useI18n();
 
   const validChildren = filterChildren(children);
 
   const getLabel = (label, index) => {
     return activeIndex === index ? (
       <div css={activeItemStyles}>
-        <div css={activeLabelStyles}>{label}</div>
+        <div css={activeLabelStyles}>
+          {label}
+          <span css={visuallyHidden}>. {I18n.t("responsesAccordion.active")}</span>
+        </div>
         <div css={activeStatusStyles}>{activeStatus}</div>
       </div>
     ) : (
@@ -46,10 +55,11 @@ const ResponsesAccordion = props => {
   };
 
   return (
-    <div css={accordionStyles} {...moreProps}>
+    <div css={accordionStyles} {...moreProps} role="list" aria-label={a11yText}>
       {validChildren.length > 0 &&
         validChildren.map((child, index) => {
           const { id, label } = child.props;
+
           const isComplete = activeIndex > index;
           const indicatorProps = {
             isComplete,
@@ -58,7 +68,7 @@ const ResponsesAccordion = props => {
           };
 
           return (
-            <div css={itemStyles} key={id}>
+            <div css={itemStyles} key={id} role="listitem">
               <Indicator {...indicatorProps} />
               {React.cloneElement(child, { label: getLabel(label, index), isComplete })}
             </div>

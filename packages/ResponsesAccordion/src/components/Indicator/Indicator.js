@@ -19,7 +19,7 @@ const Indicator = props => {
   const { isComplete, isActive } = props;
 
   return (
-    <div data-pka-anchor="indicator" css={indicatorStyles} {...props}>
+    <div data-pka-anchor="indicator" css={indicatorStyles} {...props} aria-hidden>
       <span data-pka-anchor="indicator.dot" css={indicatorDotStyles} {...props}>
         {isComplete && !isActive && <CheckIcon />}
       </span>

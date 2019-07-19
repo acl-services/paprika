@@ -28,13 +28,13 @@ const Item = props => {
 
   return isComplete ? (
     <Collapsible
+      css={itemStyles}
       iconAlign="right"
       iconCollapse={<DownIcon />}
       iconExpand={<UpIcon />}
       isCollapsed={!isOpen}
       label={<div css={itemLabelStyles}>{label}</div>}
       onClick={handleToggle}
-      css={itemStyles}
       {...moreProps}
     >
       {children}

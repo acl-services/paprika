@@ -83,6 +83,7 @@ const locales = {
         "aria_dropped_outside": "The item has been dropped while not over the list. The item has returned to its starting position of {{source}}."
       },
       "responsesAccordion": {
+        "active": "active",
         "no_response": "None"
       }
     }
