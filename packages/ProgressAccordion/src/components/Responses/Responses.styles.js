@@ -2,6 +2,10 @@ import { css } from "styled-components";
 import tokens from "@paprika/tokens";
 import stylers from "@paprika/stylers";
 
+export const emptyValueStyles = css`
+  font-style: italic;
+`;
+
 const responsesStyles = css`
   ${stylers.lineHeight()}
 

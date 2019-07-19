@@ -1,51 +1,30 @@
 import React from "react";
 import PropTypes from "prop-types";
-import useI18n from "@paprika/l10n/lib/useI18n";
+import Item from "./Item";
 import responsesStyles from "./Responses.styles";
 
-const idType = PropTypes.oneOfType([PropTypes.string, PropTypes.number]).isRequired;
-
-const responseShape = {
-  body: PropTypes.node,
-  heading: PropTypes.node.isRequired,
-};
-
 const propTypes = {
-  responses: PropTypes.arrayOf(PropTypes.shape({ ...responseShape, id: idType })),
+  children: PropTypes.node,
 };
 
 const defaultProps = {
-  responses: [],
+  children: null,
 };
 
-const Response = ({ heading, body }) => {
-  const I18n = useI18n();
+function filterChildren(children) {
+  return React.Children.toArray(children).filter(child => child.type && child.type.displayName === Item.displayName);
+}
 
-  return (
-    <>
-      <dt>{heading}</dt>
-      <dd>{body || <em>{I18n.t("progressAccordion.no_response")}</em>}</dd>
-    </>
-  );
-};
+const Responses = ({ children }) => {
+  const filteredChildren = filterChildren(children);
+  if (!children) return null;
 
-Response.propTypes = responseShape;
-Response.defaultProps = {
-  body: null,
-};
-
-const Responses = ({ responses }) => {
-  return (
-    <dl css={responsesStyles}>
-      {responses.map(({ id, heading, body }) => (
-        <Response heading={heading} body={body} key={id} />
-      ))}
-    </dl>
-  );
+  return <dl css={responsesStyles}>{filteredChildren}</dl>;
 };
 
 Responses.displayName = "ProgressAccordion.Responses";
 Responses.propTypes = propTypes;
 Responses.defaultProps = defaultProps;
+Responses.Item = Item;
 
 export default Responses;
