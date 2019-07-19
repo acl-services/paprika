@@ -100,3 +100,5 @@ The L10n component uses only JavaScript functions -- no YAML parsing is needed. 
 $ yarn translate
 ```
 
+
+
