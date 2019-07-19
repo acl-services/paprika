@@ -23,7 +23,7 @@ const Item = props => {
   const [isOpen, setIsOpen] = React.useState(false);
 
   const handleToggle = () => {
-    setIsOpen(!isOpen);
+    setIsOpen(prevIsOpen => !prevIsOpen);
   };
 
   return isComplete ? (
