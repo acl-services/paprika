@@ -15,6 +15,12 @@ const computeModalWidth = width => {
   }
 };
 
+const modalOpenStyles = css`
+  opacity: 1;
+  transition: opacity 0.2s;
+  visibility: visible;
+`;
+
 export const modalStyles = css`
   bottom: 0;
   left: 0;
@@ -25,14 +31,7 @@ export const modalStyles = css`
   top: 0;
   visibility: hidden;
   z-index: ${props => props.zIndex || stylers.z(6)};
-
-  ${props =>
-    props.isOpen &&
-    css`
-      opacity: 1;
-      transition: opacity 0.2s;
-      visibility: visible;
-    `}
+  ${props => props.isOpen && modalOpenStyles}
 `;
 
 export const frameStyles = css`
@@ -76,8 +75,4 @@ export const contentStyles = css`
     css`
       overflow-y: auto;
     `}
-`;
-
-export const ariaLabelStyles = css`
-  ${stylers.visuallyHidden};
 `;
