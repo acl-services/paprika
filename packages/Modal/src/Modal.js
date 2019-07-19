@@ -4,8 +4,10 @@ import React from "react";
 import ReactDOM from "react-dom";
 import PropTypes from "prop-types";
 import classNames from "classnames";
+import uuid from "uuid/v4";
+import stylers from "@paprika/stylers";
 import { ShirtSizes } from "@paprika/helpers/lib/customPropTypes";
-import { ariaLabelStyles, contentStyles, modalStyles, frameStyles, overlayStyles } from "./Modal.styles";
+import { contentStyles, modalStyles, frameStyles, overlayStyles } from "./Modal.styles";
 
 const propTypes = {
   /** Aria title of dialog for accessibility. */
@@ -61,7 +63,7 @@ class Modal extends React.Component {
   constructor(props) {
     super(props);
     this.modalContainer = null;
-    // this.ariaId = newId("modal-aria");
+    this.ariaId = uuid();
 
     // TODO: make this optional
     if (!modalRoot) {
@@ -125,7 +127,7 @@ class Modal extends React.Component {
             role="dialog"
             aria-labelledby={this.ariaId}
           >
-            <span css={ariaLabelStyles} id={this.ariaId}>
+            <span css={stylers.visuallyHidden} id={this.ariaId}>
               {ariaLabel}
             </span>
             {children}

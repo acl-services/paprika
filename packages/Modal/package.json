@@ -19,7 +19,8 @@
     "@paprika/raw-button": "^0.1.0",
     "@paprika/stylers": "^0.1.0",
     "@paprika/tokens": "^0.1.0",
-    "prop-types": "^15.7.2"
+    "prop-types": "^15.7.2",
+    "uuid": "^3.3.2"
   },
   "peerDependencies": {
     "react": "^16.8.4",
