@@ -5,25 +5,25 @@ import stylers from "@paprika/stylers";
 const iconButtonSizes = {
   small: css`
     ${stylers.fontSize(-2)};
-    height: ${stylers.spacer(3)}; 
-    line-height: ${stylers.spacer(3) - 2};  
-    padding: 0; 
-    width: ${stylers.spacer(3)}; 
-  }`,
+    height: ${stylers.spacer(3)};
+    line-height: ${Number.parseInt(tokens.space, 10) * 3 - 2}px;
+    padding: 0;
+    width: ${stylers.spacer(3)};
+  `,
   medium: css`
     ${stylers.fontSize(1)};
-    height: ${stylers.spacer(4)}; 
-    line-height: ${stylers.spacer(4) - 2};  
-    padding: 0; 
-    width: ${stylers.spacer(4)}; 
-  }`,
+    height: ${stylers.spacer(4)};
+    line-height: ${Number.parseInt(tokens.space, 10) * 4 - 2}px;
+    padding: 0;
+    width: ${stylers.spacer(4)};
+  `,
   large: css`
     ${stylers.fontSize(3)};
-    height: ${stylers.spacer(5)}; 
-    line-height: ${stylers.spacer(5) - 2};  
-    padding: 0; 
-    width: ${stylers.spacer(5)}; 
-  }`,
+    height: ${stylers.spacer(5)};
+    line-height: ${Number.parseInt(tokens.space, 10) * 5 - 2}px;
+    padding: 0;
+    width: ${stylers.spacer(5)};
+  `,
 };
 
 const minorStyles = css`
