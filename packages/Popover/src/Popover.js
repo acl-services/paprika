@@ -6,6 +6,7 @@ import tokens from "@paprika/tokens";
 import isInsideBoundaries from "./helpers/isInsideBoundaries";
 import { getContentCoordinates, getTipCoordinates } from "./helpers/getPosition";
 import { isActiveElementPopover } from "./helpers/isActiveElementPopover";
+import getBoundingClientRect from "./helpers/getBoundingClientRect";
 
 import PopoverContext, { ThemeContext } from "./PopoverContext";
 import Content from "./components/Content/Content";
@@ -14,7 +15,6 @@ import Trigger from "./components/Trigger/Trigger";
 import Tip from "./components/Tip/Tip";
 
 import PopoverStyled from "./Popover.styles";
-import getBoundingClientRect from "./helpers/getBoundingClientRect";
 
 // ACCESSIBILITY
 // NOTE: When closing the popover seems to be better to focus the trigger button
