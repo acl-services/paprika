@@ -1,33 +1,30 @@
 {
-  "name": "@paprika/date-picker",
-  "version": "0.3.2",
-  "description": "DatePicker component",
+  "name": "@paprika/form-element",
+  "version": "0.1.0",
+  "description": "FormElement component",
   "main": "lib/index.js",
   "author": "@paprika",
   "license": "MIT",
   "repository": {
     "type": "git",
-    "url": "https://github.com/acl-services/paprika/tree/master/packages/DatePicker"
+    "url": "https://github.com/acl-services/paprika/tree/master/packages/FormElement"
   },
   "publishConfig": {
     "access": "public"
   },
   "dependencies": {
     "@babel/runtime-corejs2": "^7.3.1",
-    "@paprika/button": "^0.1.3",
     "@paprika/helpers": "^0.1.1",
-    "@paprika/icon": "^0.1.3",
-    "@paprika/input": "^0.1.3",
+    "@paprika/icon": "^0.1.2",
     "@paprika/l10n": "^0.1.2",
     "@paprika/popover": "^0.1.4",
-    "@paprika/stylers": "^0.1.2",
-    "@paprika/tokens": "^0.1.3",
+    "@paprika/stylers": "^0.1.1",
+    "@paprika/tokens": "^0.1.2",
     "prop-types": "^15.7.2",
-    "react-dates": "^20.1.0",
-    "react-moment-proptypes": "^1.6.0"
+    "uuid": "^3.3.2"
   },
   "peerDependencies": {
-    "moment": "^2.18.1",
+    "lodash": "^4.17.14",
     "react": "^16.8.4",
     "react-dom": "^16.8.4",
     "styled-components": "^4.2.0"

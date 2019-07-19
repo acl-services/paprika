@@ -48,6 +48,7 @@ en:
     formElement:
       optional: (optional)
       required: (required)
+      aria_info_circle: Information
     prevNextArrowButton:
       arrowup: up
       arrowdown: down
