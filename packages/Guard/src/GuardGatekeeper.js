@@ -1,6 +1,6 @@
 import React from "react";
 import PropTypes from "prop-types";
-import { GuardGetekeeperContext } from "./GuardSupervisor";
+import { GuardGatekeeperContext } from "./GuardSupervisor";
 
 export function useGatekeeper() {
   return React.useContext(GuardGetekeeperContext);
