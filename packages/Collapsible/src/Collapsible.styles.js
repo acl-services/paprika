@@ -1,16 +1,21 @@
+import { css } from "styled-components";
 import tokens from "@paprika/tokens";
 import stylers from "@paprika/stylers";
 
-const collapsibleStyles = props => `
+const collapsibleStyles = css`
+  &, * {
+    box-sizing: border-box;
+  }
+
   ${stylers.fontSize()}
-  box-sizing: border-box;
+  
   color: ${tokens.color.black};
   display: block;
   line-height: ${stylers.spacer(3)};
   width: 100%;
 
   .collapsible__label {
-    ${stylers.inlineBlockStyle}
+    display: inline-block;
     border-radius: ${tokens.border.radius};
     width: 100%;
   }
@@ -32,8 +37,8 @@ const collapsibleStyles = props => `
   }
 
   .collapsible__body {
+    display: ${({ isCollapsed }) => (isCollapsed ? "none" : "block")};
     width: 100%;
-    ${props.isCollapsed ? "display: none;" : "display: block;"}
   }
 `;
 
