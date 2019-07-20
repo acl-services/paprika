@@ -81,6 +81,10 @@ const locales = {
         "aria_cancelled": "Movement cancelled. The item has returned to its starting position of {{source}}.",
         "aria_dropped": "You have dropped the item. It has moved from position {{source}} to {{destination}}.",
         "aria_dropped_outside": "The item has been dropped while not over the list. The item has returned to its starting position of {{source}}."
+      },
+      "progressAccordion": {
+        "active": "active",
+        "no_response": "None"
       }
     }
   }
