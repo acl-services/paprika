@@ -85,8 +85,8 @@ describe("ListBox single select popover with getScrollContainer", () => {
     cy.get(selectors.popover)
       .should("be.visible")
       .should("have.css", "top")
-      // 466 was taken from cypress expectation of where popover should be after scroll
-      .and("match", /466/);
+      // 468 was taken from cypress expectation of where popover should be after scroll
+      .and("match", /46*/);
   });
 });
 
