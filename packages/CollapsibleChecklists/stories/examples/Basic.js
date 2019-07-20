@@ -1,56 +1,93 @@
 import React from "react";
 import CollapsibleChecklists from "../../src/index";
 
-const _items = {
+// from API call #1
+const movies = {
   Action: [
-    { id: 1, item: "Die hard", isChecked: false },
-    { id: 2, item: "Speed", isChecked: false },
-    { id: 3, item: "Rambo", isChecked: false },
-    { id: 4, item: "Rocky", isChecked: false },
+    { id: 1, title: "Die hard", isChecked: false },
+    { id: 2, title: "Speed", isChecked: false },
+    { id: 3, title: "Rambo", isChecked: false },
+    { id: 4, title: "Rocky", isChecked: false },
   ],
   Fantasy: [
-    { id: 5, item: "Tiger and the dragon", isChecked: false },
-    { id: 6, item: "Lord of the Rings", isChecked: false },
-    { id: 7, item: "Matrix", isChecked: false },
+    { id: 5, title: "Tiger and the dragon", isChecked: false },
+    { id: 6, title: "Lord of the Rings", isChecked: false },
+    { id: 7, title: "Matrix", isChecked: false },
   ],
   Adventure: [
-    { id: 8, item: "Hook", isChecked: false },
-    { id: 9, item: "Avengers", isChecked: false },
-    { id: 10, item: "Toy Story", isChecked: false },
+    { id: 8, title: "Hook", isChecked: false },
+    { id: 9, title: "Avengers", isChecked: false },
+    { id: 10, title: "Toy Story", isChecked: false },
   ],
 };
 
-function BasicStory() {
-  const [items, setItem] = React.useState(_items);
+// from API call #2
+const tvShows = {
+  Gameshow: [
+    { id: 1, title: "The Price is Right", isChecked: false },
+    { id: 2, title: "Wheel of Fortune", isChecked: false },
+  ],
+  Reality: [
+    { id: 3, title: "Survivor", isChecked: false },
+    { id: 4, title: "Big Brother", isChecked: false },
+    { id: 5, title: "The Bachelor", isChecked: false },
+  ],
+};
 
-  function handleChange(itemsChanged) {
-    const cloneItems = { ...items };
+function Basic2Story() {
+  const merged = { movies, tvShows };
+  const [items, setItems] = React.useState(merged);
+
+  function handleChangeItems(itemsChanged) {
+    const newMovies = { ...movies };
+    const newTvShows = { ...tvShows };
+
     itemsChanged.forEach(itemChanged => {
-      const { kind, id } = itemChanged.props;
-      const i = cloneItems[kind].filter(i => i.id === id)[0];
-      i.isChecked = !i.isChecked;
+      if (newMovies[itemChanged.props.kind] !== undefined) {
+        const matchedMovie = newMovies[itemChanged.props.kind].filter(movie => movie.id === itemChanged.props.id)[0];
+        matchedMovie.isChecked = !matchedMovie.isChecked;
+      }
+
+      if (newTvShows[itemChanged.props.kind] !== undefined) {
+        const matchedTvShow = newTvShows[itemChanged.props.kind].filter(
+          tvShow => tvShow.id === itemChanged.props.id
+        )[0];
+        matchedTvShow.isChecked = !matchedTvShow.isChecked;
+      }
     });
-    setItem(cloneItems);
+
+    const newMerged = { movies: newMovies, tvShows: newTvShows };
+    setItems(newMerged);
+  }
+
+  function renderCollapsibleChecklists(title, items) {
+    return (
+      <React.Fragment>
+        <CollapsibleChecklists.Heading>{title}</CollapsibleChecklists.Heading>
+
+        {Object.keys(items).map(key => {
+          return (
+            <CollapsibleChecklists.Group title={key}>
+              {items[key].map(item => {
+                return (
+                  <CollapsibleChecklists.Item isChecked={item.isChecked} kind={key} id={item.id}>
+                    {item.title}
+                  </CollapsibleChecklists.Item>
+                );
+              })}
+            </CollapsibleChecklists.Group>
+          );
+        })}
+      </React.Fragment>
+    );
   }
 
   return (
-    <CollapsibleChecklists onChange={handleChange}>
-      <CollapsibleChecklists.Heading>Movies</CollapsibleChecklists.Heading>
-      {Object.keys(items).map(key => {
-        return (
-          <CollapsibleChecklists.Group title={key}>
-            {items[key].map(movie => {
-              return (
-                <CollapsibleChecklists.Item isChecked={movie.isChecked} kind={key} id={movie.id}>
-                  {movie.item}
-                </CollapsibleChecklists.Item>
-              );
-            })}
-          </CollapsibleChecklists.Group>
-        );
-      })}
+    <CollapsibleChecklists onChange={handleChangeItems}>
+      {renderCollapsibleChecklists("Movies", items.movies)}
+      {renderCollapsibleChecklists("TV Shows", items.tvShows)}
     </CollapsibleChecklists>
   );
 }
 
-export default BasicStory;
+export default Basic2Story;
