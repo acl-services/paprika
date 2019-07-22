@@ -1,150 +1,93 @@
 import React from "react";
-import { action } from "@storybook/addon-actions";
-import InfoIcon from "@paprika/icon/lib/InfoCircle";
-import Spinner from "../../../Spinner/src/index";
 import CollapsibleChecklists from "../../src/index";
 
-const ExampleStory = () => {
-  const handleHover = () => {
-    action("Hovered")();
-  };
+// from API call #1
+const movies = {
+  Action: [
+    { id: 1, title: "Die hard", isChecked: false },
+    { id: 2, title: "Speed", isChecked: false },
+    { id: 3, title: "Rambo", isChecked: false },
+    { id: 4, title: "Rocky", isChecked: false },
+  ],
+  Fantasy: [
+    { id: 5, title: "Tiger and the dragon", isChecked: false },
+    { id: 6, title: "Lord of the Rings", isChecked: false },
+    { id: 7, title: "Matrix", isChecked: false },
+  ],
+  Adventure: [
+    { id: 8, title: "Hook", isChecked: false },
+    { id: 9, title: "Avengers", isChecked: false },
+    { id: 10, title: "Toy Story", isChecked: false },
+  ],
+};
 
-  const [sportsData, setSportsData] = React.useState([
-    {
-      state: "California",
-      sports: [
-        {
-          title: <span>Basketball</span>,
-          teams: [
-            { isChecked: true, isDisabled: false, name: "Golden State Warriors" },
-            { isChecked: false, isDisabled: false, name: "LA Lakers" },
-            { isChecked: false, isDisabled: true, name: "LA Clippers" },
-            { isChecked: false, isDisabled: false, name: "Sacramento Kings" },
-          ],
-        },
-        {
-          title: "Hockey",
-          teams: [
-            { isChecked: true, isDisabled: false, name: "Anaheim Ducks" },
-            { isChecked: true, isDisabled: false, name: "LA Kings" },
-            { isChecked: true, isDisabled: false, name: "San Jose Sharks" },
-          ],
-        },
-        {
-          title: (
-            <span>
-              Baseball
-              <span
-                onFocus={() => {}}
-                onMouseOver={handleHover}
-                style={{ paddingLeft: "4px", color: "silver", cursor: "pointer" }}
-              >
-                <InfoIcon />
-              </span>
-            </span>
-          ),
-          teams: [
-            { isChecked: false, isDisabled: false, name: "Anaheim Angels" },
-            { isChecked: false, isDisabled: false, name: "LA Dodgers" },
-            { isChecked: false, isDisabled: false, name: "Oakland Athletics" },
-            { isChecked: false, isDisabled: false, name: "San Diego Padres" },
-            { isChecked: true, isDisabled: false, name: "San Francisco Giants" },
-          ],
-        },
-      ],
-    },
-    {
-      state: "Ohio",
-      sports: [
-        {
-          title: <span>Football (expand to retrieve from API)</span>,
-          teams: [
-            // This will later be retrieved from an API on expand
-          ],
-        },
-      ],
-    },
-  ]);
+// from API call #2
+const tvShows = {
+  Gameshow: [
+    { id: 1, title: "The Price is Right", isChecked: false },
+    { id: 2, title: "Wheel of Fortune", isChecked: false },
+  ],
+  Reality: [
+    { id: 3, title: "Survivor", isChecked: false },
+    { id: 4, title: "Big Brother", isChecked: false },
+    { id: 5, title: "The Bachelor", isChecked: false },
+  ],
+};
 
-  // For readability
-  const californiaBasketball = sportsData[0].sports[0];
-  const californiaHockey = sportsData[0].sports[1];
-  const californiaBaseball = sportsData[0].sports[2];
-  const ohioFootball = sportsData[1].sports[0];
+function Basic2Story() {
+  const merged = { movies, tvShows };
+  const [items, setItems] = React.useState(merged);
 
-  const handleExpand = () => {
-    setTimeout(() => {
-      const newSportsData = sportsData.slice(0);
-      newSportsData[1].sports[0].teams = [
-        { isChecked: false, isDisabled: false, name: "Cincinnati Bengals" },
-        { isChecked: false, isDisabled: false, name: "Cleveland Browns" },
-      ];
-      setSportsData(newSportsData);
-    }, 2000);
-  };
+  function handleChangeItems(itemsChanged) {
+    const newMovies = { ...movies };
+    const newTvShows = { ...tvShows };
 
-  function handleOnChange(changedItemsArray) {
-    action("handleOnChange")();
-    const newSportsData = sportsData.slice(0);
-    newSportsData.forEach(newSportsDatum => {
-      newSportsDatum.sports.forEach(sport => {
-        sport.teams.forEach(team => {
-          const thisTeamWasChanged =
-            changedItemsArray.filter(changedItem => changedItem.props.foobar === team.name).length > 0;
+    itemsChanged.forEach(itemChanged => {
+      if (newMovies[itemChanged.props.kind] !== undefined) {
+        const matchedMovie = newMovies[itemChanged.props.kind].filter(movie => movie.id === itemChanged.props.id)[0];
+        matchedMovie.isChecked = !matchedMovie.isChecked;
+      }
 
-          if (thisTeamWasChanged) {
-            team.isChecked = !team.isChecked; // eslint-disable-line
-          }
-        });
-      });
+      if (newTvShows[itemChanged.props.kind] !== undefined) {
+        const matchedTvShow = newTvShows[itemChanged.props.kind].filter(
+          tvShow => tvShow.id === itemChanged.props.id
+        )[0];
+        matchedTvShow.isChecked = !matchedTvShow.isChecked;
+      }
     });
 
-    setSportsData(newSportsData);
+    const newMerged = { movies: newMovies, tvShows: newTvShows };
+    setItems(newMerged);
   }
 
-  function renderTeams(teams) {
-    return teams.map(team => (
-      <CollapsibleChecklists.Item
-        foobar={team.name}
-        isChecked={team.isChecked}
-        isDisabled={team.isDisabled}
-        key={team.name}
-      >
-        {team.name}
-      </CollapsibleChecklists.Item>
-    ));
-  }
+  function renderCollapsibleChecklists(title, items) {
+    return (
+      <React.Fragment>
+        <CollapsibleChecklists.Heading>{title}</CollapsibleChecklists.Heading>
 
-  function renderOhioFootballTeams() {
-    if (ohioFootball.teams.length === 0) {
-      return <Spinner />;
-    }
-
-    return renderTeams(ohioFootball.teams);
+        {Object.keys(items).map(key => {
+          return (
+            <CollapsibleChecklists.Group title={key}>
+              {items[key].map(item => {
+                return (
+                  <CollapsibleChecklists.Item isChecked={item.isChecked} kind={key} id={item.id}>
+                    {item.title}
+                  </CollapsibleChecklists.Item>
+                );
+              })}
+            </CollapsibleChecklists.Group>
+          );
+        })}
+      </React.Fragment>
+    );
   }
 
   return (
-    <CollapsibleChecklists onChange={handleOnChange}>
-      <CollapsibleChecklists.Heading>California Sports Teams</CollapsibleChecklists.Heading>
-      <CollapsibleChecklists.Group title={californiaBasketball.title}>
-        {renderTeams(californiaBasketball.teams)}
-      </CollapsibleChecklists.Group>
-      <CollapsibleChecklists.Group title={californiaHockey.title}>
-        {renderTeams(californiaHockey.teams)}
-      </CollapsibleChecklists.Group>
-      <CollapsibleChecklists.Group title={californiaBaseball.title} isDisabled>
-        {renderTeams(californiaBaseball.teams)}
-      </CollapsibleChecklists.Group>
-
-      <CollapsibleChecklists.Heading>Ohio Sports Teams</CollapsibleChecklists.Heading>
-      <CollapsibleChecklists.Group title={ohioFootball.title} onExpand={handleExpand}>
-        {renderOhioFootballTeams()}
-      </CollapsibleChecklists.Group>
-
-      <CollapsibleChecklists.Heading>Saskatchewan Sports Teams</CollapsibleChecklists.Heading>
-      <div style={{ fontStyle: "italic", padding: "4px" }}>None available (this shows that any child is accepted)</div>
+    <CollapsibleChecklists onChange={handleChangeItems}>
+      {renderCollapsibleChecklists("Movies", items.movies)}
+      {renderCollapsibleChecklists("TV Shows", items.tvShows)}
     </CollapsibleChecklists>
   );
-};
+}
 
-export default ExampleStory;
+export default Basic2Story;
