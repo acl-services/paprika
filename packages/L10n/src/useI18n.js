@@ -1,9 +1,9 @@
 import React from "react";
 import L10nContext from "./L10nContext";
 import { i18n } from "./i18n";
-import Locales from "./locales";
+import PaprikaLocales from "./locales";
 
-export const getI18nObject = (locale = "en") => {
+export const getI18nObject = (locale = "en", Locales = PaprikaLocales) => {
   const _i18n = i18n(Locales);
   return {
     locale,
