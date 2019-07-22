@@ -8,7 +8,6 @@ const contentStyles = css`
   border-radius: ${tokens.popover.borderRadius};
   box-shadow: ${tokens.popover.shadow};
   margin-left: ${stylers.spacer(2)};
-  max-width: ${tokens.popover.maxWidth};
   min-width: 150px;
   overflow-wrap: break-word;
   padding: ${tokens.space} 0;
