@@ -68,6 +68,7 @@ function FormElement(props) {
     isReadOnly,
     label,
     size,
+    ...moreProps
   } = props;
 
   const extratedChildren = extractChildren(children, [
@@ -100,7 +101,7 @@ function FormElement(props) {
   }
 
   return (
-    <div css={formElementStyles} isInline={isInline} size={size} isDisabled={isDisabled}>
+    <div css={formElementStyles} isInline={isInline} size={size} isDisabled={isDisabled} {...moreProps}>
       <Label
         hasOptionalLabel={hasOptionalLabel}
         hasRequiredLabel={hasRequiredLabel}
