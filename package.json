@@ -6,12 +6,9 @@
     "cypress:dev": "run-p --race storybook cypress:open",
     "cypress:open": "cypress open",
     "cypress:run": "wait-on http://localhost:9009 && cypress run --browser chrome",
-    "docz:build": "cd documentation && yarn docz:build",
-    "docz:dev": "cd documentation && yarn docz:dev",
     "jest:watch": "yarn jest --watch",
     "lint:fix": "yarn lint --fix",
     "lint": "eslint packages --report-unused-disable-directives",
-    "postinstall": "cd documentation && yarn",
     "prepare": "lerna run pretranspile && yarn transpile",
     "prettier": "prettier \"**/*.+(js|json|yml|css|scss|md|mdx)\"",
     "prettier:format": "yarn prettier --write",
@@ -44,7 +41,7 @@
     "@babel/preset-env": "^7.3.1",
     "@babel/preset-react": "^7.0.0",
     "@paprika/button": "^0.1.0",
-    "@paprika/date-picker": "^0.1.0",
+    "@paprika/date-picker": "^0.3.1",
     "@paprika/heading": "^0.1.0",
     "@paprika/helpers": "^0.1.0",
     "@paprika/icon": "^0.1.0",
@@ -65,12 +62,12 @@
     "@storybook/addons": "^5.1.9",
     "@storybook/react": "^5.1.9",
     "@testing-library/cypress": "^4.0.3",
+    "@testing-library/react": "^8.0.4",
     "babel-eslint": "^10.0.0",
     "babel-loader": "^8.0.5",
     "babel-plugin-styled-components": "^1.10.0",
     "css-loader": "^2.1.0",
     "cypress": "3.3.1",
-    "docz-plugin-storybook": "^0.5.0",
     "eslint": "^5.16.0",
     "eslint-config-airbnb": "^17.1.0",
     "eslint-config-prettier": "^4.0.0",
@@ -94,7 +91,6 @@
     "react-axe": "^3.0.1",
     "react-dom": "^16.8.2",
     "react-test-renderer": "^16.8.6",
-    "react-testing-library": "^6.0.3",
     "sass-loader": "^7.1.0",
     "screener-storybook": "^0.18.2",
     "sinon": "^7.2.4",
@@ -115,12 +111,6 @@
     ],
     "packages/**/*.{js,json,yml,css,scss,md,mdx}": [
       "yarn prettier --check"
-    ]
-  },
-  "jest": {
-    "setupFilesAfterEnv": [
-      "jest-dom/extend-expect",
-      "react-testing-library/cleanup-after-each"
     ]
   },
   "dependencies": {

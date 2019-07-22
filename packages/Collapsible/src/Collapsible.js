@@ -60,7 +60,7 @@ const Collapsible = props => {
         isDisabled={isDisabled}
         onClick={handleClickCollapse}
       >
-        <span className={`collapsible--icon-${iconAlign}`} aria-hidden="true">
+        <span data-pka-anchor="collapsible.icon" className={`collapsible--icon-${iconAlign}`} aria-hidden="true">
           {collapsedIcon[+isCollapsed]}
         </span>
         {label}
@@ -72,7 +72,7 @@ const Collapsible = props => {
     const { a11yText, label, isCollapsed, isDisabled, iconAlign } = props;
 
     return (
-      <React.Fragment>
+      <div data-pka-anchor="collapsible.heading">
         <RawButton
           ariaLabel={a11yText || I18n.t("collapsible.a11yText")}
           aria-expanded={!isCollapsed}
@@ -80,12 +80,12 @@ const Collapsible = props => {
           isDisabled={isDisabled}
           onClick={handleClickCollapse}
         >
-          <span className={`collapsible--icon-${iconAlign}`} aria-hidden="true">
+          <span data-pka-anchor="collapsible.icon" className={`collapsible--icon-${iconAlign}`} aria-hidden="true">
             {collapsedIcon[+isCollapsed]}
           </span>
         </RawButton>
         {label}
-      </React.Fragment>
+      </div>
     );
   };
 

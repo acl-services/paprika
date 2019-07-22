@@ -1,19 +1,17 @@
 import { css } from "styled-components";
-
 import tokens from "@paprika/tokens";
-import stylers from "@paprika/stylers";
 
 const focusStyle = tokens.highlight.active.withBorder.boxShadow;
 const insetFocusStyle = tokens.highlight.active.withBorder.insetBoxShadow;
 
-const focusStyles = isInset => `
+const focusStyles = isInset => css`
   &:focus {
     box-shadow: ${isInset ? insetFocusStyle : focusStyle};
     outline: none;
   }
 `;
 
-const disabledStyles = `
+const disabledStyles = css`
   cursor: not-allowed;
 
   &:focus {
@@ -22,8 +20,8 @@ const disabledStyles = `
 `;
 
 const rawButtonStyles = css`
-  ${stylers.inlineBlockStyle};
   cursor: pointer;
+  display: inline-block;
   ${({ hasInsetFocusStyle }) => focusStyles(hasInsetFocusStyle)};
   ${({ isDisabled }) => (isDisabled ? disabledStyles : null)};
 `;
