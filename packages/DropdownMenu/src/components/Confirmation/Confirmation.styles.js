@@ -11,7 +11,7 @@ const ConfirmationStyles = css`
   }
 
   .dropdown-menu__confirmation-description {
-    line-height: 1.3;
+    ${stylers.lineHeight()}
     margin: ${tokens.space} 0;
   }
 

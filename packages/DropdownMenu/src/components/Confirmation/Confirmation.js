@@ -4,7 +4,7 @@ import Button from "@paprika/button";
 import { ShirtSizes } from "@paprika/helpers/lib/customPropTypes";
 import useI18n from "@paprika/l10n/lib/useI18n";
 import Popover from "@paprika/popover";
-import contentContainerStyles from "../../ContentContainer.styles";
+import contentStyles from "../../DropdownMenuContentStyles.styles";
 import ConfirmationStyles from "./Confirmation.styles";
 
 const propTypes = {
@@ -37,7 +37,7 @@ const Confirmation = props => {
   return (
     <Popover defaultIsOpen onClose={onClose}>
       <Popover.Content>
-        <div css={contentContainerStyles}>
+        <div css={contentStyles}>
           <div css={ConfirmationStyles}>
             <div className="dropdown-menu__confirmation-header">{heading}</div>
             {description && <div className="dropdown-menu__confirmation-description">{description}</div>}

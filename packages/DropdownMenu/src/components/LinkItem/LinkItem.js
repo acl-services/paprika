@@ -1,6 +1,6 @@
 import React from "react";
 import PropTypes from "prop-types";
-import LinkItemStyles from "../../Item.styles";
+import linkItemStyles from "../../Item.styles";
 
 const { bool, node, string } = PropTypes;
 
@@ -18,19 +18,21 @@ const defaultProps = {
 };
 
 const LinkItem = props => {
-  const { children, isExternal, link, ...remainingProps } = props;
+  const { children, isExternal, link, ...moreProps } = props;
 
   const linkItemProps = {
     role: "menuitem",
-    ...remainingProps,
+    href: link,
+    ...moreProps,
   };
 
   if (isExternal) {
     linkItemProps.target = "_blank";
+    linkItemProps.rel = "noopener noreferrer";
   }
 
   return (
-    <a css={LinkItemStyles} {...linkItemProps} href={link}>
+    <a css={linkItemStyles} {...linkItemProps}>
       {children}
     </a>
   );

@@ -3,20 +3,20 @@ import tokens from "@paprika/tokens";
 import stylers from "@paprika/stylers";
 
 const itemStyles = css`
+  ${stylers.fontSize()};
+  ${stylers.lineHeight()}
   cursor: pointer;
   display: block;
-  ${stylers.fontSize()};
   font-family: ${tokens.fontFamily.default};
   font-weight: normal;
   padding: ${tokens.spaceSm} ${stylers.spacer(2)};
   text-decoration: none;
-  line-height: ${stylers.lineHeight()};
 
   &:focus {
-    box-shadow: ${tokens.highlight.active.withBorder}
+    box-shadow: ${tokens.highlight.active.withBorder.boxShadow}
     outline: none;
     position: relative;
-    z-index: ${stylers.z(1)};
+    ${stylers.z(1)}
   }
 
   ${({ isDestructive, isDisabled }) => {

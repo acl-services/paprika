@@ -77,7 +77,7 @@ const defaultProps = {
   isEager: false,
   isOpen: null,
   defaultIsOpen: null,
-  maxWidth: tokens.popover.maxWidth,
+  maxWidth: parseInt(tokens.popover.maxWidth, 10),
   onClose: null,
   offset: parseInt(tokens.spaceLg, 10),
   getPositioningElement: null,

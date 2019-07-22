@@ -11,7 +11,9 @@ const DropdownMenuExample = () => {
         </DropdownMenu.Trigger>
       )}
     >
-      <DropdownMenu.Item onClick={() => {}}>Supercalifragilisticexpialidocious</DropdownMenu.Item>
+      <DropdownMenu.Item onClick={() => {}}>
+        SupercalifragilisticexpialidociousSupercalifragilisticexpialidociousSupercalifragilisticexpialidocious
+      </DropdownMenu.Item>
       <DropdownMenu.Item onClick={() => {}}>Pseudopseudohypoparathyroidism</DropdownMenu.Item>
       <DropdownMenu.Item onClick={() => {}}>Floccinaucinihilipilification</DropdownMenu.Item>
       <DropdownMenu.Item onClick={() => {}}>Antidisestablishmentarianism</DropdownMenu.Item>

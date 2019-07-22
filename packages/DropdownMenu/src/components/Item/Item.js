@@ -12,9 +12,6 @@ const propTypes = {
   /** If the item is destructive. */
   isDestructive: bool,
 
-  /**  If true, will render an <a> tag, otherwise a <span> is generated */
-  isLink: bool,
-
   /** Callback to be executed when button is clicked */
   onClick: func,
 
@@ -32,22 +29,12 @@ const defaultProps = {
   isDestructive: false,
   onClick: () => {},
   onClose: () => {},
-  isLink: false,
   onShowConfirmation: () => {},
   renderConfirmation: null,
 };
 
 const Item = props => {
-  const {
-    children,
-    isDestructive,
-    isLink,
-    onClick,
-    onClose,
-    onShowConfirmation,
-    renderConfirmation,
-    ...remainingProps
-  } = props;
+  const { children, isDestructive, onClick, onClose, onShowConfirmation, renderConfirmation, ...moreProps } = props;
 
   const handleClickItem = () => {
     onClick();
@@ -60,15 +47,8 @@ const Item = props => {
     isDestructive,
   };
 
-  if (isLink) {
-    return (
-      <a css={ItemStyles} {...itemProps}>
-        {children}
-      </a>
-    );
-  }
   return (
-    <RawButton css={ItemStyles} {...itemProps} {...remainingProps}>
+    <RawButton css={ItemStyles} {...itemProps} {...moreProps}>
       {children}
     </RawButton>
   );

@@ -6,7 +6,7 @@ import Divider from "./components/Divider";
 import Trigger from "./components/Trigger";
 import LinkItem from "./components/LinkItem";
 import Item from "./components/Item";
-import contentContainerStyles from "./ContentContainer.styles";
+import contentStyles from "./DropdownMenuContentStyles.styles";
 
 const { alignTypes, oneOf, node, func } = PropTypes;
 
@@ -53,10 +53,16 @@ const DropdownMenu = props => {
     setRenderConfirmation(prevIsConfirmingState => (prevIsConfirmingState ? null : renderConfirmation));
   };
 
+  const randomIdString = Math.random()
+    .toString(36)
+    .substring(7);
+  const menuRefId = `MenuId${randomIdString}`;
+
   const renderTrigger = () => {
     const triggerComponent = props.renderTrigger(getTriggerStateAndHelpers());
     return React.cloneElement(triggerComponent, {
       triggerRef,
+      menuRefId,
     });
   };
 
@@ -69,7 +75,7 @@ const DropdownMenu = props => {
     }
 
     return (
-      <div css={contentContainerStyles} isOpen={isOpen}>
+      <div css={contentStyles} isOpen={isOpen}>
         {React.Children.toArray(children).map(child => {
           if (child.type.displayName === "DropdownMenu.Item") {
             if (child.props.renderConfirmation) {
@@ -101,7 +107,9 @@ const DropdownMenu = props => {
       {...moreProps}
     >
       <Popover.Trigger>{() => renderTrigger()}</Popover.Trigger>
-      <Popover.Content role={!isConfirming ? "menu" : null}>{renderContent()}</Popover.Content>
+      <Popover.Content id={menuRefId} role={!isConfirming ? "menu" : null}>
+        {renderContent()}
+      </Popover.Content>
     </Popover>
   );
 };
