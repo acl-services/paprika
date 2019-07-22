@@ -1,8 +1,6 @@
 import React from "react";
-import { render, configure } from "react-testing-library";
-import "react-testing-library/cleanup-after-each";
+import { render, configure } from "@testing-library/react";
 import L10n from "@paprika/l10n";
-
 import DropdownMenu from "../src";
 
 configure({ testIdAttribute: "data-qa-anchor" });
