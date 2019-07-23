@@ -3,6 +3,7 @@ import PropTypes from "prop-types";
 import Heading from "./components/Heading";
 import Group from "./components/Group";
 import Item from "./components/Item";
+import CollapsibleChecklistsContext from "./CollapsibleChecklistsContext";
 
 const propTypes = {
   children: PropTypes.node.isRequired,
@@ -12,20 +13,11 @@ const propTypes = {
 const defaultProps = {};
 
 const CollapsibleChecklists = props => {
-  const { children, onChange } = props;
-  const modifiedChildren = [];
-
-  React.Children.forEach(children, (child, index) => {
-    switch (child.type.displayName) {
-      case Group.displayName:
-        modifiedChildren.push(React.cloneElement(child, { key: `group${index}`, onChange })); // eslint-disable-line react/no-array-index-key
-        break;
-      default:
-        modifiedChildren.push(child);
-    }
-  });
-
-  return <React.Fragment>{modifiedChildren}</React.Fragment>;
+  return (
+    <CollapsibleChecklistsContext.Provider value={props.onChange}>
+      {props.children}
+    </CollapsibleChecklistsContext.Provider>
+  );
 };
 
 CollapsibleChecklists.displayName = "CollapsibleChecklists";

@@ -1,13 +1,13 @@
 import React from "react";
 import PropTypes from "prop-types";
 import Collapsible from "@paprika/collapsible";
+import CollapsibleChecklistsContext from "../../CollapsibleChecklistsContext";
 import Item from "../Item";
 import groupStyles from "./Group.styles";
 
 const propTypes = {
   children: PropTypes.node, // probably an array of "Items", but could be a Spinner or anything else
   isDisabled: PropTypes.bool,
-  onChange: PropTypes.func,
   onExpand: PropTypes.func,
   title: PropTypes.node.isRequired,
 };
@@ -15,7 +15,6 @@ const propTypes = {
 const defaultProps = {
   children: [],
   isDisabled: false,
-  onChange: () => {},
   onExpand: () => {},
 };
 
@@ -27,7 +26,8 @@ function useIsIndeterminate(checkboxRef) {
 }
 
 function Group(props) {
-  const { children, isDisabled, onChange, onExpand, title } = props;
+  const { children, isDisabled, onExpand, title } = props;
+  const onChange = React.useContext(CollapsibleChecklistsContext);
   const [isCollapsed, setIsCollapsed] = React.useState(true);
   const checkboxRef = React.useRef({});
   useIsIndeterminate(checkboxRef);
