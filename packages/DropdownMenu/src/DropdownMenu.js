@@ -104,7 +104,7 @@ const DropdownMenu = props => {
       }}
       {...moreProps}
     >
-      <Popover.Trigger>{renderTrigger}</Popover.Trigger>
+      <Popover.Trigger>{() => renderTrigger()}</Popover.Trigger>
       <Popover.Content id={menuRefId.current} role={!isConfirming ? "menu" : null}>
         {renderContent()}
       </Popover.Content>
