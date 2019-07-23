@@ -74,15 +74,18 @@ const DropdownMenu = props => {
 
     return (
       <div css={contentStyles} isOpen={isOpen}>
-        {React.Children.toArray(children).map(child => {
+        {children.map((child, index) => {
           if (child.type.displayName === "DropdownMenu.Item") {
+            const childItem = { key: `DropdownMenuItem${index}` };
             if (child.props.renderConfirmation) {
               return React.cloneElement(child, {
                 onShowConfirmation: handleShowConfirmation(child.props.renderConfirmation),
+                ...childItem,
               });
             }
             return React.cloneElement(child, {
               onClose: handleCloseMenu,
+              ...childItem,
             });
           }
 
