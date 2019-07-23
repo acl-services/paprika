@@ -26,6 +26,7 @@ const Trigger = props => {
       onClick={handleOpenMenu}
       onKeyDown={handleKeyDown}
       isSquare
+      isSemantic={false}
       {...otherProps}
     />
   );

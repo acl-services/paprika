@@ -33,16 +33,14 @@ const DropdownMenuExample = () => {
               description="Lorem ipsum dolor amet vexillologist tacos selvage narwhal butcher twee ethical hot chicken."
               onConfirm={() => handleConfirm(onClose)}
               onCancel={() => handleCancel(onClose)}
-              title="Delete filter 1?"
+              heading="Delete filter 1?"
             />
           );
         }}
       >
         Delete filter 1
       </DropdownMenu.Item>
-      <DropdownMenu.Item isLink onClick={() => {}}>
-        Is Link Item
-      </DropdownMenu.Item>
+      <DropdownMenu.LinkItem link="http://www.wegalvanize.com">Galvanize Link Item</DropdownMenu.LinkItem>
       <DropdownMenu.Item isDisabled onClick={() => {}}>
         Galvanize
       </DropdownMenu.Item>
@@ -56,7 +54,7 @@ const DropdownMenuExample = () => {
               description="Lorem ipsum dolor amet vexillologist tacos selvage narwhal butcher twee ethical hot chicken."
               onConfirm={() => handleConfirm(onClose)}
               onCancel={() => handleCancel(onClose)}
-              title="Delete filter 2?"
+              heading="Delete filter 2?"
             />
           );
         }}

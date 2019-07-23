@@ -60,12 +60,12 @@ describe("DropdownMenu", () => {
     expect(getByText(/edit/i)).not.toBeVisible();
   });
 
-  it.skip("should hide dropdown menu when trigger is clicked", () => {
+  it("should hide dropdown menu when trigger is clicked", () => {
+    const { getAllByText } = renderComponent();
     triggerComponent.click();
-    expect(getByText(/edit/i)).toBeVisible();
+    expect(getAllByText(/Edit/)[0]).toBeVisible();
     triggerComponent.click();
-    expect(triggerComponent).toBeVisible();
-    expect(getByText(/edit/i)).not.toBeVisible();
+    expect(getAllByText(/Edit/)[0]).not.toBeVisible();
   });
 
   it("should hide dropdown when item is clicked", () => {
@@ -76,7 +76,7 @@ describe("DropdownMenu", () => {
     expect(getByText(/edit/i)).not.toBeVisible();
   });
 
-  it.skip("retain trigger focus when the dropdown is closed", () => {
+  it("retain trigger focus when the dropdown is closed", () => {
     triggerComponent.click();
     expect(getByText(/edit/i)).toBeVisible();
     triggerComponent.click();
