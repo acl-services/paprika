@@ -1,5 +1,6 @@
 import React from "react";
 import PropTypes from "prop-types";
+import uuid from "uuid/v4";
 import Popover from "@paprika/popover";
 import Confirmation from "./components/Confirmation";
 import Divider from "./components/Divider";
@@ -43,26 +44,23 @@ const DropdownMenu = props => {
     setIsOpen(true);
   };
 
-  const getTriggerStateAndHelpers = () => ({
+  const getTriggerStateAndHelpers = {
     isOpen,
     handleOpenMenu,
-  });
+  };
 
   const handleShowConfirmation = renderConfirmation => () => {
     setIsConfirming(prevIsConfirmingState => !prevIsConfirmingState);
     setRenderConfirmation(prevIsConfirmingState => (prevIsConfirmingState ? null : renderConfirmation));
   };
 
-  const randomIdString = Math.random()
-    .toString(36)
-    .substring(7);
-  const menuRefId = `MenuId${randomIdString}`;
+  const menuRefId = React.useRef(uuid());
 
   const renderTrigger = () => {
-    const triggerComponent = props.renderTrigger(getTriggerStateAndHelpers());
+    const triggerComponent = props.renderTrigger(getTriggerStateAndHelpers);
     return React.cloneElement(triggerComponent, {
       triggerRef,
-      menuRefId,
+      menuRefId: menuRefId.current,
     });
   };
 
@@ -106,8 +104,8 @@ const DropdownMenu = props => {
       }}
       {...moreProps}
     >
-      <Popover.Trigger>{() => renderTrigger()}</Popover.Trigger>
-      <Popover.Content id={menuRefId} role={!isConfirming ? "menu" : null}>
+      <Popover.Trigger>{renderTrigger}</Popover.Trigger>
+      <Popover.Content id={menuRefId.current} role={!isConfirming ? "menu" : null}>
         {renderContent()}
       </Popover.Content>
     </Popover>

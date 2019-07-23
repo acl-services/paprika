@@ -30,7 +30,7 @@ const itemStyles = css`
     return { color: tokens.color[colorString] };
   }}}
 
-  &:hover{
+  &:hover {
     ${({ isDestructive, isDisabled }) => {
       if (!isDisabled) {
         const bgColorString = isDestructive ? "orangeLighten40" : "blackLighten70";
@@ -39,7 +39,7 @@ const itemStyles = css`
     }}
   }
 
-  &:active{
+  &:active {
     ${({ isDestructive, isDisabled }) => {
       if (!isDisabled) {
         const bgColorString = isDestructive ? "orangeLighten40" : "blackLighten60";
