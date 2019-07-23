@@ -24,4 +24,10 @@ describe("Tabs", () => {
     expect(getByText(/Hello/i)).toBeVisible();
     expect(getByText(/World/i)).toBeVisible();
   });
+
+  it("should render tabs", () => {
+    const { getByText } = renderTabsComponent();
+
+    expect(getByText(/Hello/i)).toBeVisible();
+  });
 });
