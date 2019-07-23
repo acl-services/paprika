@@ -25,7 +25,7 @@ import Greeting from "./Greeting";
 
 export default function FakeAppWithLocales(props) {
   return (
-    <L10n locale="fr" Locales={YourLocales}>
+    <L10n locale="fr" locales={YourLocales}>
       ...
       <Greeting />
       ...

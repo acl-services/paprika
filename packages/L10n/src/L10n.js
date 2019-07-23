@@ -5,17 +5,17 @@ import L10nContext from "./L10nContext";
 
 const propTypes = {
   locale: PropTypes.string,
-  Locales: PropTypes.node,
+  locales: PropTypes.object /* eslint-disable-line react/forbid-prop-types */,
   children: PropTypes.node.isRequired,
 };
 
 const defaultProps = {
   locale: "en",
-  Locales: null,
+  locales: null,
 };
 
 export default function L10n(props) {
-  const value = React.useMemo(() => getI18nObject(props.locale, props.Locales), [props.locale]);
+  const value = React.useMemo(() => getI18nObject(props.locale, props.locales), [props.locale, props.locales]);
   return <L10nContext.Provider value={value}>{props.children}</L10nContext.Provider>;
 }
 
