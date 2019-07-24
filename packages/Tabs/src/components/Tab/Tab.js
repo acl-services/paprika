@@ -27,15 +27,7 @@ const defaultProps = {
 const Tab = props => {
   const context = React.useContext(TabsContext);
 
-  const {
-    className,
-    isSelected,
-    label,
-    href,
-    onClick,
-    onKeyDownArrows,
-    ...moreProps
-  } = props;
+  const { className, isSelected, label, href, onClick, onKeyDownArrows, ...moreProps } = props;
 
   const handleKeyDown = (event, index) => {
     onKeyDownArrows(event, index);

@@ -44,14 +44,14 @@ const Tabs = props => {
     const RIGHT_ARROW_KEY = 39;
 
     const tabList = React.Children.toArray(props.children)[0];
-    const enabledIndexes = tabList.props.children.map((tab, index) =>
-      tab.props.isDisabled === true ? null : index
-    ).filter(index => index != null);
+    const enabledIndexes = tabList.props.children
+      .map((tab, index) => (tab.props.isDisabled === true ? null : index))
+      .filter(index => index != null);
 
     const enabledSelectedIndex = enabledIndexes.indexOf(currentIndex);
     const count = enabledIndexes.length;
 
-    if(event.which === RIGHT_ARROW_KEY) {
+    if (event.which === RIGHT_ARROW_KEY) {
       const nextEnabledIndex = (enabledSelectedIndex + 1) % count;
       const nextIndex = enabledIndexes[nextEnabledIndex];
 
