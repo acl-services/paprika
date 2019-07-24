@@ -9,6 +9,7 @@ import RefreshIcon from "@paprika/icon/lib/Refresh";
 import SearchIcon from "@paprika/icon/lib/Search";
 import TrashIcon from "@paprika/icon/lib/Trashbin";
 import ArrowIcon from "@paprika/icon/lib/ArrowRight";
+import EllipsisIcon from "@paprika/icon/lib/Ellipsis";
 
 const ExampleStory = () => (
   <Story
@@ -44,6 +45,7 @@ const ExampleStory = () => (
         }}
       />
       , photo booth small batch poke. <ArrowIcon />
+      <EllipsisIcon />
     </p>
   </Story>
 );

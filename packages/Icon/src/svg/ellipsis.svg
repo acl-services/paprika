@@ -1,13 +1,15 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<svg width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
-    <!-- Generator: Sketch 55.2 (78181) - https://sketchapp.com -->
-    <title>Ellipsis</title>
+<svg width="398px" height="100px" viewBox="0 0 398 100" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 53 (72520) - https://sketchapp.com -->
+    <title>Add</title>
     <desc>Created with Sketch.</desc>
-    <g id="Icons" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
-        <g id="037.ellipsis___more" transform="translate(-41.000000, -190.000000)" fill="#757575">
-            <g id="ellipsis">
-                <path d="M141,240 C141,267.6 118.6,290 91,290 C63.4,290 41,267.6 41,240 C41,212.4 63.4,190 91,190 C118.6,190 141,212.4 141,240 Z M290,240 C290,267.6 267.6,290 240,290 C212.4,290 190,267.6 190,240 C190,212.4 212.4,190 240,190 C267.6,190 290,212.4 290,240 Z M439,240 C439,267.6 416.6,290 389,290 C361.4,290 339,267.6 339,240 C339,212.4 361.4,190 389,190 C416.6,190 439,212.4 439,240 Z" id="Combined-Shape"></path>
-            </g>
-        </g>
+    <defs>
+<path d="M141,240 C141,267.6 118.6,290 91,290 C63.4,290 41,267.6 41,240 C41,212.4 63.4,190 91,190 C118.6,190 141,212.4 141,240 Z M290,240 C290,267.6 267.6,290 240,290 C212.4,290 190,267.6 190,240 C190,212.4 212.4,190 240,190 C267.6,190 290,212.4 290,240 Z M439,240 C439,267.6 416.6,290 389,290 C361.4,290 339,267.6 339,240 C339,212.4 361.4,190 389,190 C416.6,190 439,212.4 439,240 Z" id="ellipsis-1"></path>
+    </defs>
+    <g id="Ellipsis" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <mask id="mask-2" fill="white">
+            <use xlink:href="#ellipsis-1"></use>
+        </mask>
+        <use id="🌈-Color" fill="#717171" xlink:href="#ellipsis-1"></use>
     </g>
 </svg>
