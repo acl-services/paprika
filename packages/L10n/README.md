@@ -1,16 +1,6 @@
-When someone wants to use a paprika component that has translatable text (like the `<Collapsible>`), they'd do it like this:
+This component can be used in one of two ways:
 
-```
-import L10n from "@paprika/L10n";
-import Collapsible from "@paprika/collapsible";
-
-<h4>Mon app</h4>
-<L10n locale="fr">
-  <Collapsible />
-</L10n>
-```
-
-or wrap their entire app with the L10n component:
+1. When someone wants to use a Paprika component that has translatable text (like the `<Collapsible>`) in a language other than English, they'd do it like this:
 
 ```
 import L10n from "@paprika/L10n";
@@ -24,15 +14,74 @@ import Collapsible from "@paprika/collapsible";
 </L10n>
 ```
 
-or if they just want to use English (and the component supports it) they can skip the L10n part:
+2. When someone wants to add their own translations to their own app/components, they'd do it like this:
 
 ```
-import Collapsible from "@paprika/collapsible";
+//App.js
+import React from "react";
+import L10n from "@paprika/L10n";
+import YourLocales from "./YourLocales";
+import Greeting from "./Greeting";
 
-<React.Fragment>
-  ...
-  <h4>My app</h4>
-  <Collapsible />
-  ...
-</React.Fragment>
+export default function FakeAppWithLocales(props) {
+  return (
+    <L10n locale="fr" locales={YourLocales}>
+      ...
+      <Greeting />
+      ...
+    </L10n>
+  );
+}
+
+
+//Greeting.js
+import React from "react";
+import useI18n from "@paprika/l10n/lib/useI18n";
+
+export default function Greeting() {
+  const i18n = useI18n();
+  return <h1>{i18n.t("customlocalegreeting")}</h1>;
+}
+
+
+//YourLocales/index.js
+const locales = {};
+
+["en", "fr"].forEach(lng => {
+  // eslint-disable-next-line
+  Object.assign(locales, require(`./${lng}.js`).default);
+});
+
+export default locales;
+
+
+//YourLocales/en.js
+const locales = {
+  en: {
+    translation: {
+      greeting: "Hello",
+      farewell: "Goodbye",
+      x: "xxx",
+      y: "yyy",
+      z: "zzz",
+    },
+  },
+};
+export default locales;
+
+
+//YourLocales/fr.js
+const locales = {
+  fr: {
+    translation: {
+      greeting: "Bonjour",
+      farewell: "Au revoir",
+      x: "xxx",
+      y: "yyy",
+      z: "zzz",
+    },
+  },
+};
+export default locales;
+
 ```
