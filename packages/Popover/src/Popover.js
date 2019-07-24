@@ -6,8 +6,9 @@ import tokens from "@paprika/tokens";
 import isInsideBoundaries from "./helpers/isInsideBoundaries";
 import { getContentCoordinates, getTipCoordinates } from "./helpers/getPosition";
 import { isActiveElementPopover } from "./helpers/isActiveElementPopover";
+import getBoundingClientRect from "./helpers/getBoundingClientRect";
 
-import PopoverContext from "./PopoverContext";
+import PopoverContext, { ThemeContext } from "./PopoverContext";
 import Content from "./components/Content/Content";
 import Card from "./components/Card/Card";
 import Trigger from "./components/Trigger/Trigger";
@@ -124,27 +125,13 @@ class Popover extends React.Component {
   }
 
   getContextValues = memoizeOne(
-    (
-      content,
-      maxWidth,
-      width,
-      isDark,
-      isEager,
-      isOpen,
-      portalElement,
-      refContent,
-      refTip,
-      shouldKeepFocus,
-      tip,
-      zIndex
-    ) => ({
+    (content, maxWidth, width, isEager, isOpen, portalElement, refContent, refTip, shouldKeepFocus, tip, zIndex) => ({
       content: {
         ...content,
         maxWidth, // maybe we should code a minimum maxWidth?
         width,
         zIndex,
       },
-      isDark,
       isEager,
       isOpen,
       onClick: this.handleClick,
@@ -198,7 +185,7 @@ class Popover extends React.Component {
     $shadowContent.style.maxWidth = this.props.maxWidth;
 
     document.body.appendChild($shadowContent);
-    const contentWidth = this.getBoundingClientRect($shadowContent).width;
+    const contentWidth = getBoundingClientRect($shadowContent).width;
     document.body.removeChild($shadowContent);
 
     return contentWidth;
@@ -220,47 +207,18 @@ class Popover extends React.Component {
     this.updateVisibilityAndPositionState(isOpening);
   }
 
-  getBoundingClientRect(el) {
-    const rect = el.getBoundingClientRect();
-
-    let x;
-    let y;
-    if (rect.x === undefined) {
-      x = rect.left;
-    } else {
-      x = rect.x;
-    }
-
-    if (rect.y === undefined) {
-      y = rect.top;
-    } else {
-      y = rect.y;
-    }
-
-    return {
-      left: rect.left,
-      top: rect.top,
-      right: rect.right,
-      bottom: rect.bottom,
-      x,
-      y,
-      width: rect.width,
-      height: rect.height,
-    };
-  }
-
   getCoordinates = () => {
     const { align, getScrollContainer } = this.props;
 
     const targetRect =
       this.props.getPositioningElement === null
-        ? this.getBoundingClientRect(this.$popover.current)
-        : this.getBoundingClientRect(this.props.getPositioningElement());
+        ? getBoundingClientRect(this.$popover.current)
+        : getBoundingClientRect(this.props.getPositioningElement());
 
     const contentCoords = getContentCoordinates({
-      rect: this.getBoundingClientRect(this.$content),
+      rect: getBoundingClientRect(this.$content),
       targetRect,
-      scrollRect: getScrollContainer !== null ? this.getBoundingClientRect(getScrollContainer()) : null,
+      scrollRect: getScrollContainer !== null ? getBoundingClientRect(getScrollContainer()) : null,
       align,
       offset: this.props.offset,
     });
@@ -269,9 +227,9 @@ class Popover extends React.Component {
 
     if (this.$tip) {
       tipCoords = getTipCoordinates({
-        tipRect: this.getBoundingClientRect(this.$tip),
+        tipRect: getBoundingClientRect(this.$tip),
         targetRect,
-        contentRect: this.getBoundingClientRect(this.$content),
+        contentRect: getBoundingClientRect(this.$content),
         contentCoords,
         align,
       });
@@ -444,7 +402,6 @@ class Popover extends React.Component {
       this.state.content,
       maxWidth,
       this.state.width,
-      isDark,
       isEager,
       this.isOpen(),
       this.$portal,
@@ -456,11 +413,13 @@ class Popover extends React.Component {
     );
 
     return (
-      <PopoverContext.Provider value={contextValue}>
-        <PopoverStyled {...moreProps} ref={this.$popover}>
-          {this.props.children}
-        </PopoverStyled>
-      </PopoverContext.Provider>
+      <ThemeContext.Provider value={isDark}>
+        <PopoverContext.Provider value={contextValue}>
+          <PopoverStyled {...moreProps} ref={this.$popover}>
+            {this.props.children}
+          </PopoverStyled>
+        </PopoverContext.Provider>
+      </ThemeContext.Provider>
     );
   }
 }

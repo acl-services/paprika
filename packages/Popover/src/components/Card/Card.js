@@ -1,13 +1,13 @@
 import React from "react";
 import PropTypes from "prop-types";
-import PopoverContext from "../../PopoverContext";
+import { ThemeContext } from "../../PopoverContext";
 import CardStyled from "./Card.styles";
 
-const Card = ({ children }) => (
-  <PopoverContext.Consumer>
-    {({ isDark }) => <CardStyled isDark={isDark}>{children}</CardStyled>}
-  </PopoverContext.Consumer>
-);
+function Card({ children }) {
+  const isDark = React.useContext(ThemeContext);
+
+  return <CardStyled isDark={isDark}>{children}</CardStyled>;
+}
 
 Card.displayName = "Popover.Card";
 

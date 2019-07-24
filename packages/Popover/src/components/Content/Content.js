@@ -17,21 +17,33 @@ const defaultProps = {
 
 const Content = React.forwardRef((props, ref) => {
   const { onBlur, children, ...moreProps } = props;
+
+  const {
+    content,
+    isEager,
+    isOpen,
+    onClose,
+    onDelayedClose,
+    onDelayedOpen,
+    portalElement,
+    refContent,
+  } = React.useContext(PopoverContext);
+
   // TODO: extract this to Storybook story somehow so supporting numbers as strings is not required
   function isNumber(n) {
     return RegExp(/^[0-9]+$/).test(n);
   }
 
-  const handleMouseEvent = (isEager, onDelayedClose, onDelayedOpen) => event => {
+  function handleMouseEvent(event) {
     if (!isEager) return;
     if (event.type === "mouseover") {
       onDelayedOpen();
     } else if (event.type === "mouseout") {
       onDelayedClose();
     }
-  };
+  }
 
-  const handleBlur = onClose => event => {
+  function handleBlur(event) {
     // onblur canceling onclick the following happens when:
     // Clicking twice the trigger button (open, close), will fire an onclick and onblur event
     // creating a race condition nullyfing the onClick and keeping the popover open
@@ -50,18 +62,7 @@ const Content = React.forwardRef((props, ref) => {
         onBlur();
       }
     }, parseInt(PopoverConstants.transition, 10));
-  };
-
-  const {
-    content,
-    isEager,
-    isOpen,
-    onClose,
-    onDelayedClose,
-    onDelayedOpen,
-    portalElement,
-    refContent,
-  } = React.useContext(PopoverContext);
+  }
 
   const handleRef = _ref => {
     refContent(_ref);
@@ -78,7 +79,6 @@ const Content = React.forwardRef((props, ref) => {
     width: content.width,
   };
 
-  const handler = handleMouseEvent(isEager, onDelayedClose, onDelayedOpen);
   /* eslint-disable jsx-a11y/mouse-events-have-key-events */
   return ReactDOM.createPortal(
     <ContentStyled
@@ -88,9 +88,9 @@ const Content = React.forwardRef((props, ref) => {
       data-qa-anchor="popover-content"
       ref={handleRef}
       isOpen={isOpen}
-      onBlur={handleBlur(onClose)}
-      onMouseOut={handler}
-      onMouseOver={handler}
+      onBlur={handleBlur}
+      onMouseOut={handleMouseEvent}
+      onMouseOver={handleMouseEvent}
       style={contentStyles}
       tabIndex={isOpen ? 0 : -1}
       zIndex={content.zIndex}
