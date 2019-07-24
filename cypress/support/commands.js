@@ -7,7 +7,7 @@
 //
 // -- This is a parent command --
 
-import "@testing-library/cypress";
+import "@testing-library/cypress/add-commands";
 
 Cypress.Commands.add("visitStorybook", story => {
   cy.visit(`http://localhost:9009/iframe.html?id=${story}`);
