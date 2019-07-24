@@ -60,27 +60,12 @@ describe("DropdownMenu", () => {
     expect(getByText(/edit/i)).not.toBeVisible();
   });
 
-  it("should hide dropdown menu when trigger is clicked", () => {
-    const { getAllByText } = renderComponent();
-    triggerComponent.click();
-    expect(getAllByText(/Edit/)[0]).toBeVisible();
-    triggerComponent.click();
-    expect(getAllByText(/Edit/)[0]).not.toBeVisible();
-  });
-
   it("should hide dropdown when item is clicked", () => {
     triggerComponent.click();
     expect(getByText(/edit/i)).toBeVisible();
     getByText(/edit/i).click();
     expect(triggerComponent).toBeVisible();
     expect(getByText(/edit/i)).not.toBeVisible();
-  });
-
-  it("retain trigger focus when the dropdown is closed", () => {
-    triggerComponent.click();
-    expect(getByText(/edit/i)).toBeVisible();
-    triggerComponent.click();
-    expect(document.activeElement).toBe(triggerComponent);
   });
 
   describe("replacement popover", () => {

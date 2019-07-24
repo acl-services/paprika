@@ -58,10 +58,11 @@ const DropdownMenu = props => {
 
   const renderTrigger = () => {
     const triggerComponent = props.renderTrigger(getTriggerStateAndHelpers);
-    return React.cloneElement(triggerComponent, {
-      triggerRef,
-      menuRefId: menuRefId.current,
-    });
+    return () =>
+      React.cloneElement(triggerComponent, {
+        triggerRef,
+        menuRefId: menuRefId.current,
+      });
   };
 
   const renderContent = () => {
