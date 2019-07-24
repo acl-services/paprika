@@ -1,4 +1,4 @@
-## ProgressAccordion
+## DropdownMenu
 
 The `<DropdownMenu>` component displays a trigger button, which when clicked displays a list of items in a dropdown format. These items can be raw content, Links or actions such as Delete, which will prompt a confirmation panel to be displayed
 
