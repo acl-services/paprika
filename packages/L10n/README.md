@@ -8,9 +8,11 @@ or
 
 ### Usage
 
-This component can be used in one of two ways:
+This component can be used in one of two ways: Translating Paprika components, or Translating your own components.
 
-1. When someone wants to use a Paprika component that has translatable text (like the `<Collapsible>`) in a language other than English, they'd do it like this:
+##### Translating Paprika components
+
+When someone wants to use a Paprika component that has translatable text (like the `<Collapsible>`) in a language other than English, they'd do it like this:
 
 ```
 import L10n from "@paprika/l10n";
@@ -24,46 +26,53 @@ import Collapsible from "@paprika/collapsible";
 </L10n>
 ```
 
-2. When someone wants to add their own translations to their own app/components, they'd do it like this:
+##### Translating your own components
+
+When someone wants to add their own translations to their own app/components, they'd do it like this:
 
 ```
-//App.js
+// App.js
 import React from "react";
 import L10n from "@paprika/l10n";
 import YourLocales from "./YourLocales";
-import Greeting from "./Greeting";
+import GreetingHeader from "./GreetingHeader";
 
 export default function FakeAppWithLocales(props) {
   return (
     <L10n locale="fr" locales={YourLocales}>
       ...
-      <Greeting />
+      <GreetingHeader />
       ...
     </L10n>
   );
 }
+```
 
-
-//Greeting.js
+```
+// GreetingHeader.js
 import React from "react";
 import useI18n from "@paprika/l10n/lib/useI18n";
 
-export default function Greeting() {
+export default function GreetingHeader() {
   const i18n = useI18n();
   return <h1>{i18n.t("greeting")}</h1>;
 }
+```
 
-
-//YourLocales/index.js
+```
+// YourLocales/index.js
 const locales = {};
+
 ["en", "fr"].forEach(lng => {
   // eslint-disable-next-line
   Object.assign(locales, require(`./${lng}.js`).default);
 });
+
 export default locales;
+```
 
-
-//YourLocales/en.js
+```
+// YourLocales/en.js
 const locales = {
   en: {
     translation: {
@@ -76,9 +85,10 @@ const locales = {
   },
 };
 export default locales;
+```
 
-
-//YourLocales/fr.js
+```
+// YourLocales/fr.js
 const locales = {
   fr: {
     translation: {
