@@ -74,6 +74,20 @@ function Group(props) {
     onChange(childItemsToChange);
   }
 
+  function expandGroupAndToggleChildren() {
+    if (isCollapsed && onExpand) {
+      setIsCollapsed(false);
+      onExpand();
+      // Note that if `onExpand` makes an API call to update the Group's children, toggleChildren() will NOT select them. The
+      // consumer will need to click on the checkbox again after the API has completed to select them.
+      // Making `onExpand` return a Promise, then running `toggleChildren()` after the Promise has resolved doesn't work
+      // either; we believe because in the React process, the next line that runs is the one below - where the children have
+      // not changed in memory.
+    }
+
+    toggleChildren();
+  }
+
   /* eslint-disable jsx-a11y/label-has-associated-control */
   const label = (
     <React.Fragment>
@@ -83,7 +97,7 @@ function Group(props) {
           checked={allAreChecked}
           type="checkbox"
           disabled={isDisabled}
-          onChange={toggleChildren}
+          onChange={expandGroupAndToggleChildren}
         />
         {title}
       </label>
