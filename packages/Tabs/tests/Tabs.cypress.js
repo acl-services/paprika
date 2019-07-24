@@ -6,8 +6,7 @@ describe("<Tabs />", () => {
     cy.visitStorybook(`${baseStory}--${testStory}`);
   });
 
-  // TODO: Fix test
-  it("should be navigitable with tabbing", () => {
+  it("should be keyboard accessible via tabbing", () => {
     cy.getByText(/Hello/i)
       .tab()
       .click();
