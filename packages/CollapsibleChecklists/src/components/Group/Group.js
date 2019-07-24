@@ -15,7 +15,7 @@ const propTypes = {
 const defaultProps = {
   children: [],
   isDisabled: false,
-  onExpand: () => {},
+  onExpand: null,
 };
 
 function useIsIndeterminate(checkboxRef) {
@@ -75,14 +75,17 @@ function Group(props) {
   }
 
   function expandGroupAndToggleChildren() {
-    if (isCollapsed && onExpand) {
+    if (isCollapsed) {
       setIsCollapsed(false);
-      onExpand();
-      // Note that if `onExpand` makes an API call to update the Group's children, toggleChildren() will NOT select them. The
-      // consumer will need to click on the checkbox again after the API has completed to select them.
-      // Making `onExpand` return a Promise, then running `toggleChildren()` after the Promise has resolved doesn't work
-      // either; we believe because in the React process, the next line that runs is the one below - where the children have
-      // not changed in memory.
+
+      if (onExpand) {
+        onExpand();
+        // Note that if `onExpand` makes an API call to update the Group's children, toggleChildren() will NOT select them. The
+        // consumer will need to click on the checkbox again after the API has completed to select them.
+        // Making `onExpand` return a Promise, then running `toggleChildren()` after the Promise has resolved doesn't work
+        // either; we believe because in the React process, the next line that runs is the one below - where the children have
+        // not changed in memory.
+      }
     }
 
     toggleChildren();
