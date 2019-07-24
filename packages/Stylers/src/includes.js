@@ -10,10 +10,7 @@ export const boxSizingStyle = `
 
 export const inlineBlockStyle = `
   ${boxSizingStyle}
-
   display: inline-block;
-  margin: 0;
-  padding: 0;
 `;
 
 export const alignMiddle = `

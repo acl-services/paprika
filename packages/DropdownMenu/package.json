@@ -1,0 +1,32 @@
+{
+  "name": "@paprika/dropdown-menu",
+  "version": "0.1.1",
+  "description": "DropdownMenu component",
+  "author": "@paprika",
+  "license": "MIT",
+  "main": "lib/index.js",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/acl-services/paprika/tree/master/packages/dropdown-menu"
+  },
+  "publishConfig": {
+    "access": "public"
+  },
+  "dependencies": {
+    "@babel/runtime-corejs2": "^7.3.1",
+    "@paprika/button": "^0.1.1",
+    "@paprika/helpers": "^0.1.0",
+    "@paprika/l10n": "^0.2.0",
+    "@paprika/popover": "^0.1.1",
+    "@paprika/raw-button": "^0.1.1",
+    "@paprika/stylers": "^0.1.1",
+    "@paprika/tokens": "^0.1.1",
+    "prop-types": "^15.7.2",
+    "uuid": "^3.3.2"
+  },
+  "peerDependencies": {
+    "react": "^16.8.4",
+    "react-dom": "^16.8.4",
+    "styled-components": "^4.2.0"
+  }
+}
