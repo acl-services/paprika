@@ -1,3 +1,13 @@
+## L10n
+
+### Installation
+
+`> npm install --save @paprika/l10n`
+or
+`> yarn add @paprika/l10n`
+
+### Usage
+
 This component can be used in one of two ways:
 
 1. When someone wants to use a Paprika component that has translatable text (like the `<Collapsible>`) in a language other than English, they'd do it like this:
@@ -46,12 +56,10 @@ export default function Greeting() {
 
 //YourLocales/index.js
 const locales = {};
-
 ["en", "fr"].forEach(lng => {
   // eslint-disable-next-line
   Object.assign(locales, require(`./${lng}.js`).default);
 });
-
 export default locales;
 
 
@@ -83,5 +91,4 @@ const locales = {
   },
 };
 export default locales;
-
 ```
