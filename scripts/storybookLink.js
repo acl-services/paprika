@@ -19,6 +19,7 @@ console.log("===============================================================\n")
 console.log("===============================================================\n");
 console.log("All", ...more);
 
+process.exit(0);
 /* eslint-disable import/no-extraneous-dependencies */
 // require("dotenv").config();
 // const Octokit = require("@octokit/rest");
