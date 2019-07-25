@@ -44,7 +44,7 @@ const DropdownMenu = props => {
     setIsOpen(true);
   };
 
-  const getTriggerStateAndHelpers = {
+  const triggerProps = {
     isOpen,
     handleOpenMenu,
   };
@@ -57,11 +57,14 @@ const DropdownMenu = props => {
   const menuRefId = React.useRef(uuid());
 
   const renderTrigger = () => {
-    const triggerComponent = props.renderTrigger(getTriggerStateAndHelpers);
-    return React.cloneElement(triggerComponent, {
-      triggerRef,
-      menuRefId: menuRefId.current,
-    });
+    const triggerComponent = props.renderTrigger(triggerProps);
+    // wrapping the returned item in a function to avoid needing to tab twice
+    // https://github.com/acl-services/paprika/issues/126
+    return () =>
+      React.cloneElement(triggerComponent, {
+        triggerRef,
+        menuRefId: menuRefId.current,
+      });
   };
 
   const renderContent = () => {
