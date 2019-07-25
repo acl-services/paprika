@@ -1,23 +1,23 @@
 #!/usr/bin/env node
 
-const {
-  GITHUB_PAPRIKA_TOKEN,
-  SEMAPHORE_GIT_BRANCH,
-  SEMAPHORE_GIT_REPO_SLUG,
-  SEMAPHORE_GIT_URL,
-  SEMAPHORE_GIT_SHA,
-  ...more
-} = process.env;
+// const {
+//   GITHUB_PAPRIKA_TOKEN,
+//   SEMAPHORE_GIT_BRANCH,
+//   SEMAPHORE_GIT_REPO_SLUG,
+//   SEMAPHORE_GIT_URL,
+//   SEMAPHORE_GIT_SHA,
+//   ...more
+// } = process.env;
 
-console.log("GITHUB_PAPRIKA_TOKEN", GITHUB_PAPRIKA_TOKEN);
-console.log("SEMAPHORE_GIT_BRANCH", SEMAPHORE_GIT_BRANCH);
-console.log("SEMAPHORE_GIT_REPO_SLUG", SEMAPHORE_GIT_REPO_SLUG);
-console.log("SEMAPHORE_GIT_URL", SEMAPHORE_GIT_URL);
-console.log("SEMAPHORE_GIT_SHA", SEMAPHORE_GIT_SHA);
+// console.log("GITHUB_PAPRIKA_TOKEN", GITHUB_PAPRIKA_TOKEN);
+// console.log("SEMAPHORE_GIT_BRANCH", SEMAPHORE_GIT_BRANCH);
+// console.log("SEMAPHORE_GIT_REPO_SLUG", SEMAPHORE_GIT_REPO_SLUG);
+// console.log("SEMAPHORE_GIT_URL", SEMAPHORE_GIT_URL);
+// console.log("SEMAPHORE_GIT_SHA", SEMAPHORE_GIT_SHA);
 console.log("===============================================================\n");
 console.log("===============================================================\n");
 console.log("===============================================================\n");
-console.log("All", ...more);
+console.log(process.env);
 
 process.exit(0);
 /* eslint-disable import/no-extraneous-dependencies */
