@@ -20,10 +20,17 @@ blocks:
           - npx lerna bootstrap
           - cache store node-modules-$SEMAPHORE_GIT_BRANCH node_modules
           - cache store cypress-$SEMAPHORE_GIT_BRANCH ~/.cache/Cypress
-      - name: "Storybook link"
+  - name: "🔗 Storybook link"
+    task:
+      prologue:
         commands:
-          - yarn storybook:link
-
+          - checkout
+          - cache restore node-modules-$SEMAPHORE_GIT_BRANCH
+      jobs:
+        - name: Insert Storybook link into PR Body Message
+          commands:
+            - yarn storybook:link
+            
   - name: "💅 Format"
     task:
       prologue:
