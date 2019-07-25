@@ -10,7 +10,7 @@ blocks:
   - name: "🎩 Yarn"
     task:
       secrets:
-        - name: GITHUB_PAPRIKA_TOKEN
+        - name: paprika-env
       jobs:
       - name: "Storybook link"
         commands:
