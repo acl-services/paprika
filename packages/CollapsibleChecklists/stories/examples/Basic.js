@@ -83,7 +83,7 @@ function Basic2Story() {
   }
 
   return (
-    <CollapsibleChecklists onChange={handleChangeItems}>
+    <CollapsibleChecklists onChange={handleChangeItems} className="custom-class-name">
       {renderCollapsibleChecklists("Movies", items.movies)}
       {renderCollapsibleChecklists("TV Shows", items.tvShows)}
     </CollapsibleChecklists>
