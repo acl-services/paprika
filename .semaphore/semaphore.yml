@@ -12,9 +12,6 @@ blocks:
       secrets:
         - name: paprika-env
       jobs:
-      - name: "Storybook link"
-        commands:
-          - yarn storybook:link
       - name: "Yarn & caching"
         commands:
           - checkout
@@ -23,6 +20,9 @@ blocks:
           - npx lerna bootstrap
           - cache store node-modules-$SEMAPHORE_GIT_BRANCH node_modules
           - cache store cypress-$SEMAPHORE_GIT_BRANCH ~/.cache/Cypress
+      - name: "Storybook link"
+        commands:
+          - yarn storybook:link
 
   - name: "💅 Format"
     task:
