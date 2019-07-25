@@ -14,7 +14,7 @@ const SvgEllipsis = ({ title, ...props }) => (
     focusable={false}
     {...props}
   >
-    <title>Ellipsis</title>
+    <title>{title}</title>
 
     <defs>
       <path
