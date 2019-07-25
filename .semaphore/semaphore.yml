@@ -6,9 +6,15 @@ agent:
     os_image: ubuntu1804
 
 blocks:
+
   - name: "🎩 Yarn"
     task:
+      secrets:
+        - name: GITHUB_PAPRIKA_TOKEN
       jobs:
+      - name: "Storybook link"
+        commands:
+          - yarn storybook:link
       - name: "Yarn & caching"
         commands:
           - checkout
