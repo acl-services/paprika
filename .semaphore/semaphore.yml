@@ -6,7 +6,6 @@ agent:
     os_image: ubuntu1804
 
 blocks:
-
   - name: "🎩 Yarn"
     task:
       jobs:
