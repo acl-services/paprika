@@ -58,7 +58,7 @@ blocks:
         commands:
           - checkout
           - cache restore node-modules-$SEMAPHORE_GIT_BRANCH
-          - yarn install
+          - yarn
       jobs:
         - name: JEST
           commands:
@@ -76,6 +76,7 @@ blocks:
         - name: Cypress
           commands:
             - npx lerna bootstrap
+            - yarn
             - yarn cypress:ci
 
   - name: "🔎 Visual Regression"
