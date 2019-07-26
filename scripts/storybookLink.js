@@ -49,7 +49,7 @@ async function updateIssueBodyWithLink(issueNumber, body) {
 async function getIssueNumberAndBody() {
   try {
     const issueFetched = await octokit.search.issuesAndPullRequests({
-      q: `${SEMAPHORE_GIT_BRANCH} repo:acl-services/paprika`,
+      q: `${SEMAPHORE_GIT_BRANCH} repo:${owner}/${repo}`,
     });
     const { number, body } = issueFetched.data.items[0];
 
@@ -60,7 +60,7 @@ async function getIssueNumberAndBody() {
   }
 }
 
-async function Init() {
+async function run() {
   const { number, body } = await getIssueNumberAndBody();
   const url = await updateIssueBodyWithLink(number, body);
 
@@ -68,4 +68,4 @@ async function Init() {
   process.exit(0);
 }
 
-Init();
+run();

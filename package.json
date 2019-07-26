@@ -16,7 +16,6 @@
     "registrymock:start": "verdaccio",
     "registrymock": "run-p -l registrymock:start registrymock:publish",
     "storybook:build": "build-storybook -c .storybook -o storybook-dist",
-    "storybook:link": "node scripts/storybookLink.js",
     "storybook:screener": "screener-storybook --conf screener.config.js",
     "storybook": "start-storybook -p 9009 -c .storybook",
     "test:a11y": "echo 'Axe will run on this command'",
@@ -100,8 +99,7 @@
     "style-loader": "^0.23.1",
     "styled-components": "^4.2.0",
     "verdaccio": "^3.11.6",
-    "wait-on": "^3.2.0",
-    "yarn": "^1.17.3"
+    "wait-on": "^3.2.0"
   },
   "husky": {
     "hooks": {
