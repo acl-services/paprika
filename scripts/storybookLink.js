@@ -11,10 +11,8 @@ const repo = "paprika";
 
 const { SEMAPHORE_GIT_BRANCH, GITHUB_PAPRIKA_TOKEN = process.env.GITHUB_PAPRIKA_LOCAL_TOKEN } = process.env;
 
-const TOKEN = GITHUB_PAPRIKA_TOKEN;
-
 const octokit = new Octokit({
-  auth: TOKEN,
+  auth: GITHUB_PAPRIKA_TOKEN,
 });
 
 const baseUrl = "http://storybooks.highbond-s3.com/paprika/";
@@ -67,7 +65,7 @@ async function Init() {
   const url = await updateIssueBodyWithLink(number, body);
 
   console.log(`url: ${url}`);
-  process.exit(0); // don't want to stop the build
+  process.exit(0);
 }
 
 Init();
