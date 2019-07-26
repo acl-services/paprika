@@ -9,8 +9,6 @@ blocks:
 
   - name: "🎩 Yarn"
     task:
-      secrets:
-        - name: paprika-env
       jobs:
       - name: "Yarn & caching"
         commands:
@@ -22,6 +20,8 @@ blocks:
           - cache store cypress-$SEMAPHORE_GIT_BRANCH ~/.cache/Cypress
   - name: "🔗 Storybook link"
     task:
+      secrets:
+        - name: paprika-env
       prologue:
         commands:
           - checkout
@@ -30,7 +30,7 @@ blocks:
         - name: Insert Storybook link into PR Body Message
           commands:
             - yarn storybook:link
-            
+
   - name: "💅 Format"
     task:
       prologue:

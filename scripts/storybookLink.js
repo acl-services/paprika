@@ -1,93 +1,76 @@
 #!/usr/bin/env node
 
-// const {
-//   GITHUB_PAPRIKA_TOKEN,
-//   SEMAPHORE_GIT_BRANCH,
-//   SEMAPHORE_GIT_REPO_SLUG,
-//   SEMAPHORE_GIT_URL,
-//   SEMAPHORE_GIT_SHA,
-//   ...more
-// } = process.env;
-
-// console.log("GITHUB_PAPRIKA_TOKEN", GITHUB_PAPRIKA_TOKEN);
-// console.log("SEMAPHORE_GIT_BRANCH", SEMAPHORE_GIT_BRANCH);
-// console.log("SEMAPHORE_GIT_REPO_SLUG", SEMAPHORE_GIT_REPO_SLUG);
-// console.log("SEMAPHORE_GIT_URL", SEMAPHORE_GIT_URL);
-// console.log("SEMAPHORE_GIT_SHA", SEMAPHORE_GIT_SHA);
-console.log("===============================================================\n");
-console.log("===============================================================\n");
-console.log("===============================================================\n");
-console.log(process.env);
-
-process.exit(0);
 /* eslint-disable import/no-extraneous-dependencies */
-// require("dotenv").config();
-// const Octokit = require("@octokit/rest");
-//
-// const owner = "acl-services";
-// const repo = "paprika";
-// const { SEMAPHORE_GIT_BRANCH, GITHUB_TOKEN } = process.env;
-// const branch = "UX-501-semaphore-config"; // SEMAPHORE_GIT_BRANCH;
-//
-// const octokit = new Octokit({
-//   auth: GITHUB_TOKEN,
-// });
-//
-// const baseUrl = "http://storybooks.highbond-s3.com/paprika/";
-//
-// async function updateIssueBodyWithLink(issueNumber, body) {
-//   const url = `${baseUrl}${branch}`;
-//   const newBody = `${body} \n ### Storybook \n <a href='${url}' target="_blank" rel="noopener">${url}</a>`;
-//   // const comment = await octokit.issues.update({
-//   //   owner,
-//   //   repo,
-//   //   issue_number: issueNumber,
-//   //   body,
-//   // });
-//   return newBody;
-// }
-//
-// async function getPullRequests() {
-//   const issues = await octokit.issues.listForRepo({
-//     owner,
-//     repo,
-//   });
-//
-//   return issues.data.filter(issue => issue.state === "open" && "pull_request" in issue);
-// }
-//
-// async function prsToUpdate() {
-//   const prs = await getPullRequests();
-//   const addCommentToThesePrs = prs.map(pr => (pr.body.includes(baseUrl) ? null : pr)).filter(chunk => chunk);
-//   return addCommentToThesePrs;
-// }
-//
-// async function getIssue(issueNumber) {
-//   const issue = await octokit.issues.get({
-//     owner,
-//     repo,
-//     issue_number: issueNumber,
-//   });
-//
-//   return issue;
-// }
-//
-// async function addStorybookComment() {
-//   const prs = await prsToUpdate();
-//   if (prs.length > 0) {
-//     prs.forEach(async pr => {
-//       const updatedBody = await updateIssueBodyWithLink(pr.number, pr.body);
-//       const issue = await getIssue(pr.number);
-//       console.log(issue);
-//     });
-//     return;
-//   }
-//
-//   console.log("no prs need link");
-// }
-//
-// async function Init() {
-//   addStorybookComment();
-// }
-//
-// Init();
+const Octokit = require("@octokit/rest");
+
+if (!process.env.CI) {
+  require("dotenv").config(); // eslint-disable-line
+}
+const owner = "acl-services";
+const repo = "paprika";
+
+const {
+  SEMAPHORE_GIT_BRANCH = "UX-499-storybook-link", // testing branch
+  GITHUB_PAPRIKA_TOKEN = process.env.GITHUB_PAPRIKA_LOCAL_TOKEN,
+} = process.env;
+
+const TOKEN = GITHUB_PAPRIKA_TOKEN;
+
+const octokit = new Octokit({
+  auth: TOKEN,
+});
+
+const baseUrl = "http://storybooks.highbond-s3.com/paprika/";
+
+async function updateIssueBodyWithLink(issueNumber, body) {
+  try {
+    const url = `${baseUrl}${SEMAPHORE_GIT_BRANCH}`;
+    if (!body.includes(baseUrl)) {
+      const newBody = `${body} \n ### 📙 Storybook \n <a href='${url}' target="_blank" rel="noopener">${url}</a>`;
+
+      const updatedIssue = await octokit.issues.update({
+        owner,
+        repo,
+        issue_number: issueNumber,
+        body: newBody,
+      });
+
+      if (updatedIssue.status === 200) {
+        console.log("📙 Awesome storybook url has been published!");
+        return url;
+      }
+
+      return console.log(`Couldn't updated ${SEMAPHORE_GIT_BRANCH} branch, \n sorry ...`);
+    }
+
+    console.log(`This has been already updated ✌️`);
+    return url;
+  } catch (e) {
+    console.log(`Couldn't updated ${SEMAPHORE_GIT_BRANCH} branch \n error: ${e}`);
+    process.exit(0); // don't want to stop the build
+  }
+}
+
+async function getIssueNumberAndBody() {
+  try {
+    const issueFetched = await octokit.search.issuesAndPullRequests({
+      q: `${SEMAPHORE_GIT_BRANCH} repo:acl-services/paprika`,
+    });
+    const { number, body } = issueFetched.data.items[0];
+
+    return { number, body };
+  } catch (e) {
+    console.log(`Couldn't found ${SEMAPHORE_GIT_BRANCH} branch \n error: ${e}`);
+    process.exit(0); // don't want to stop the build
+  }
+}
+
+async function Init() {
+  const { number, body } = await getIssueNumberAndBody();
+  const url = await updateIssueBodyWithLink(number, body);
+
+  console.log(`url: ${url}`);
+  process.exit(0); // don't want to stop the build
+}
+
+Init();
