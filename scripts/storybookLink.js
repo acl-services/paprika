@@ -9,10 +9,7 @@ if (!process.env.CI) {
 const owner = "acl-services";
 const repo = "paprika";
 
-const {
-  SEMAPHORE_GIT_BRANCH = "UX-499-storybook-link", // testing branch
-  GITHUB_PAPRIKA_TOKEN = process.env.GITHUB_PAPRIKA_LOCAL_TOKEN,
-} = process.env;
+const { SEMAPHORE_GIT_BRANCH, GITHUB_PAPRIKA_TOKEN = process.env.GITHUB_PAPRIKA_LOCAL_TOKEN } = process.env;
 
 const TOKEN = GITHUB_PAPRIKA_TOKEN;
 
