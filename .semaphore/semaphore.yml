@@ -28,7 +28,7 @@ blocks:
       jobs:
         - name: Insert Storybook link into PR Body Message
           commands:
-            - yarn storybook:link
+            - node scripts/storybookLink.js
   - name: "💅 Format"
     task:
       prologue:
