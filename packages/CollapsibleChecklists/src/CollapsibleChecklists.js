@@ -7,13 +7,10 @@ import CollapsibleChecklistsContext from "./CollapsibleChecklistsContext";
 
 const propTypes = {
   children: PropTypes.node.isRequired,
-  className: PropTypes.string,
   onChange: PropTypes.func.isRequired,
 };
 
-const defaultProps = {
-  className: null,
-};
+const defaultProps = {};
 
 const CollapsibleChecklists = props => {
   const { onChange, ...moreProps } = props;
