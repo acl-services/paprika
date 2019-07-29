@@ -112,6 +112,7 @@ function Group(props) {
   React.Children.forEach(children, (child, index) => {
     const newProps = {
       key: `${title}-child-${index}`,
+      isDisabled: isDisabled || child.props.isDisabled,
     };
 
     if (child.type.displayName === Item.displayName) {
@@ -126,7 +127,6 @@ function Group(props) {
       css={groupStyles}
       hasOnlyIconToggle
       isCollapsed={isCollapsed}
-      isDisabled={isDisabled}
       label={label}
       onClick={() => {
         if (isCollapsed && onExpand) {

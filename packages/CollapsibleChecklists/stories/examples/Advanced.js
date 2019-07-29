@@ -124,7 +124,7 @@ const AdvancedStory = () => {
   }
 
   return (
-    <CollapsibleChecklists onChange={handleOnChange}>
+    <CollapsibleChecklists onChange={handleOnChange} className="custom-class-name">
       <CollapsibleChecklists.Heading>California Sports Teams</CollapsibleChecklists.Heading>
       <CollapsibleChecklists.Group title={californiaBasketball.title}>
         {renderTeams(californiaBasketball.teams)}
