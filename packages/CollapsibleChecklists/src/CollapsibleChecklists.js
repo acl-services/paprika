@@ -15,13 +15,15 @@ const defaultProps = {
   className: null,
 };
 
-const CollapsibleChecklists = props => (
-  <div className={props.className}>
-    <CollapsibleChecklistsContext.Provider value={props.onChange}>
-      {props.children}
-    </CollapsibleChecklistsContext.Provider>
-  </div>
-);
+const CollapsibleChecklists = props => {
+  const { onChange, ...moreProps } = props;
+
+  return (
+    <div {...moreProps}>
+      <CollapsibleChecklistsContext.Provider value={onChange}>{props.children}</CollapsibleChecklistsContext.Provider>
+    </div>
+  );
+};
 
 CollapsibleChecklists.displayName = "CollapsibleChecklists";
 CollapsibleChecklists.propTypes = propTypes;
