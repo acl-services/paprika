@@ -14,7 +14,7 @@ const propTypes = {
   isReadOnly: PropTypes.bool,
   placeholder: PropTypes.string,
   size: PropTypes.oneOf(ShirtSizes.DEFAULT),
-  value: PropTypes.string.isRequired,
+  value: PropTypes.string,
 };
 
 const defaultProps = {
@@ -26,6 +26,7 @@ const defaultProps = {
   isReadOnly: false,
   placeholder: null,
   size: "medium",
+  value: "",
 };
 
 const Select = props => {
@@ -33,7 +34,7 @@ const Select = props => {
     const { placeholder } = props;
     if (!placeholder) return null;
     return (
-      <option disabled selected value="" key="placeholder">
+      <option disabled value="" key="placeholder">
         {placeholder}
       </option>
     );
