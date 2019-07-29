@@ -12,10 +12,10 @@ blocks:
       - name: "Yarn & caching"
         commands:
           - checkout
-          - cache restore node-modules-$SEMAPHORE_GIT_BRANCH
+          - cache restore client-node-modules-$SEMAPHORE_GIT_BRANCH-$(checksum yarn.lock),client-node-modules-$SEMAPHORE_GIT_BRANCH,client-node-modules-master
           - yarn install --frozen-lockfile
           - npx lerna bootstrap
-          - cache store node-modules-$SEMAPHORE_GIT_BRANCH node_modules
+          - cache store client-node-modules-$SEMAPHORE_GIT_BRANCH-$(checksum yarn.lock) node_modules
           - cache store cypress-$SEMAPHORE_GIT_BRANCH ~/.cache/Cypress
   - name: "🔗 Storybook link"
     task:
@@ -34,7 +34,7 @@ blocks:
       prologue:
         commands:
           - checkout
-          - cache restore node-modules-$SEMAPHORE_GIT_BRANCH
+          - cache restore client-node-modules-$SEMAPHORE_GIT_BRANCH-$(checksum yarn.lock),client-node-modules-$SEMAPHORE_GIT_BRANCH,client-node-modules-master
       jobs:
         - name: Lint && prettier
           commands:
@@ -46,7 +46,7 @@ blocks:
       prologue:
         commands:
           - checkout
-          - cache restore node-modules-$SEMAPHORE_GIT_BRANCH
+          - cache restore client-node-modules-$SEMAPHORE_GIT_BRANCH-$(checksum yarn.lock),client-node-modules-$SEMAPHORE_GIT_BRANCH,client-node-modules-master
       jobs:
         - name: Axe test
           commands:
@@ -57,7 +57,7 @@ blocks:
       prologue:
         commands:
           - checkout
-          - cache restore node-modules-$SEMAPHORE_GIT_BRANCH
+          - cache restore client-node-modules-$SEMAPHORE_GIT_BRANCH-$(checksum yarn.lock),client-node-modules-$SEMAPHORE_GIT_BRANCH,client-node-modules-master
           - yarn
       jobs:
         - name: JEST
@@ -70,7 +70,7 @@ blocks:
         commands:
           - checkout
           - sudo apt-get -y install xvfb libgtk2.0-0 libnotify-dev libgconf-2-4 libnss3 libxss1 libasound2
-          - cache restore node-modules-$SEMAPHORE_GIT_BRANCH
+          - cache restore client-node-modules-$SEMAPHORE_GIT_BRANCH-$(checksum yarn.lock),client-node-modules-$SEMAPHORE_GIT_BRANCH,client-node-modules-master
           - cache restore cypress-$SEMAPHORE_GIT_BRANCH
       jobs:
         - name: Cypress
@@ -84,7 +84,7 @@ blocks:
       prologue:
         commands:
           - checkout
-          - cache restore node-modules-$SEMAPHORE_GIT_BRANCH
+          - cache restore client-node-modules-$SEMAPHORE_GIT_BRANCH-$(checksum yarn.lock),client-node-modules-$SEMAPHORE_GIT_BRANCH,client-node-modules-master
       jobs:
         - name: Screener
           commands:
