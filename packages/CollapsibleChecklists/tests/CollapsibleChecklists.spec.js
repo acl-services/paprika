@@ -61,11 +61,11 @@ describe("CollapsibleChecklists", () => {
     expect(getByText(/damask/i)).toBeVisible();
   });
 
-  it("cannot expand a disabled group", () => {
+  it("can expand a disabled group", () => {
     const { getByText, container } = renderComponent();
     expect(getByText(/easter/i)).not.toBeVisible();
-    fireEvent.click(container.querySelectorAll('[data-pka-anchor="collapsible.heading"]')[2]); // Lilies
-    expect(getByText(/easter/i)).not.toBeVisible();
+    fireEvent.click(container.querySelectorAll('[data-pka-anchor="collapsible.icon"]')[2]); // Lilies
+    expect(getByText(/easter/i)).toBeVisible();
   });
 
   it("fires callback when select group", () => {
