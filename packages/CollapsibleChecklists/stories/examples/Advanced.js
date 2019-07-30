@@ -197,12 +197,12 @@ const AdvancedStory = () => {
         {renderOhioFootballTeams()}
       </CollapsibleChecklists.Group>
 
-      <CollapsibleChecklists.Heading>BC Sports Teams</CollapsibleChecklists.Heading>
+      <CollapsibleChecklists.Heading>British Columbia Sports Teams</CollapsibleChecklists.Heading>
       <CollapsibleChecklists.Group title={bcHockey.title} onExpand={handleExpandBc} isCheckedByDefault>
         {renderBcHockeyTeams()}
       </CollapsibleChecklists.Group>
 
-      <CollapsibleChecklists.Heading>MB Sports Teams</CollapsibleChecklists.Heading>
+      <CollapsibleChecklists.Heading>Manitoba Sports Teams</CollapsibleChecklists.Heading>
       <CollapsibleChecklists.Group title={mbHockey.title} onExpand={handleExpandMb}>
         {renderMbHockeyTeams()}
       </CollapsibleChecklists.Group>
