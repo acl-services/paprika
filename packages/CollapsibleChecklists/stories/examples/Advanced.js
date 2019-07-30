@@ -57,7 +57,29 @@ const AdvancedStory = () => {
       state: "Ohio",
       sports: [
         {
-          title: <span>Football (expand to retrieve from API)</span>,
+          title: <span>Football (expand to retrieve from API, pre-select some)</span>,
+          teams: [
+            // This will later be retrieved from an API on expand
+          ],
+        },
+      ],
+    },
+    {
+      state: "BC",
+      sports: [
+        {
+          title: <span>Hockey (expand to retrieve from API, pre-select all)</span>,
+          teams: [
+            // This will later be retrieved from an API on expand
+          ],
+        },
+      ],
+    },
+    {
+      state: "MB",
+      sports: [
+        {
+          title: <span>Hockey (expand to retrieve from API, pre-select none)</span>,
           teams: [
             // This will later be retrieved from an API on expand
           ],
@@ -71,14 +93,32 @@ const AdvancedStory = () => {
   const californiaHockey = sportsData[0].sports[1];
   const californiaBaseball = sportsData[0].sports[2];
   const ohioFootball = sportsData[1].sports[0];
+  const bcHockey = sportsData[2].sports[0];
+  const mbHockey = sportsData[3].sports[0];
 
-  const handleExpand = () => {
+  const handleExpandOhio = () => {
     setTimeout(() => {
       const newSportsData = sportsData.slice(0);
       newSportsData[1].sports[0].teams = [
         { isChecked: false, isDisabled: false, name: "Cincinnati Bengals" },
-        { isChecked: false, isDisabled: false, name: "Cleveland Browns" },
+        { isChecked: true, isDisabled: false, name: "Cleveland Browns" },
       ];
+      setSportsData(newSportsData);
+    }, 2000);
+  };
+
+  const handleExpandBc = () => {
+    setTimeout(() => {
+      const newSportsData = sportsData.slice(0);
+      newSportsData[2].sports[0].teams = [{ isChecked: true, isDisabled: false, name: "Vancouver Canucks" }];
+      setSportsData(newSportsData);
+    }, 2000);
+  };
+
+  const handleExpandMb = () => {
+    setTimeout(() => {
+      const newSportsData = sportsData.slice(0);
+      newSportsData[3].sports[0].teams = [{ isChecked: false, isDisabled: false, name: "Winnipeg Jets" }];
       setSportsData(newSportsData);
     }, 2000);
   };
@@ -123,8 +163,24 @@ const AdvancedStory = () => {
     return renderTeams(ohioFootball.teams);
   }
 
+  function renderBcHockeyTeams() {
+    if (bcHockey.teams.length === 0) {
+      return <Spinner />;
+    }
+
+    return renderTeams(bcHockey.teams);
+  }
+
+  function renderMbHockeyTeams() {
+    if (mbHockey.teams.length === 0) {
+      return <Spinner />;
+    }
+
+    return renderTeams(mbHockey.teams);
+  }
+
   return (
-    <CollapsibleChecklists onChange={handleOnChange} className="custom-class-name">
+    <CollapsibleChecklists onChange={handleOnChange}>
       <CollapsibleChecklists.Heading>California Sports Teams</CollapsibleChecklists.Heading>
       <CollapsibleChecklists.Group title={californiaBasketball.title}>
         {renderTeams(californiaBasketball.teams)}
@@ -137,8 +193,18 @@ const AdvancedStory = () => {
       </CollapsibleChecklists.Group>
 
       <CollapsibleChecklists.Heading>Ohio Sports Teams</CollapsibleChecklists.Heading>
-      <CollapsibleChecklists.Group title={ohioFootball.title} onExpand={handleExpand}>
+      <CollapsibleChecklists.Group title={ohioFootball.title} onExpand={handleExpandOhio} isIndeterminateByDefault>
         {renderOhioFootballTeams()}
+      </CollapsibleChecklists.Group>
+
+      <CollapsibleChecklists.Heading>BC Sports Teams</CollapsibleChecklists.Heading>
+      <CollapsibleChecklists.Group title={bcHockey.title} onExpand={handleExpandBc} isCheckedByDefault>
+        {renderBcHockeyTeams()}
+      </CollapsibleChecklists.Group>
+
+      <CollapsibleChecklists.Heading>MB Sports Teams</CollapsibleChecklists.Heading>
+      <CollapsibleChecklists.Group title={mbHockey.title} onExpand={handleExpandMb}>
+        {renderMbHockeyTeams()}
       </CollapsibleChecklists.Group>
 
       <CollapsibleChecklists.Heading>Saskatchewan Sports Teams</CollapsibleChecklists.Heading>

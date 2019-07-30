@@ -30,6 +30,12 @@ function renderComponent(overrideProps) {
         <CollapsibleChecklists.Item>Tiger</CollapsibleChecklists.Item>
         <CollapsibleChecklists.Item>Turks Cap</CollapsibleChecklists.Item>
       </CollapsibleChecklists.Group>
+
+      <CollapsibleChecklists.Group title="Peonies" />
+
+      <CollapsibleChecklists.Group title="Daisies" isIndeterminateByDefault />
+
+      <CollapsibleChecklists.Group title="Petunias" isCheckedByDefault />
     </CollapsibleChecklists>
   );
 }
@@ -81,5 +87,23 @@ describe("CollapsibleChecklists", () => {
     fireEvent.click(getAllByRole(/button/i)[0]); // expand 'Flowers'
     fireEvent.click(container.querySelectorAll('input[type="checkbox"]')[1]); // Damask rose
     expect(onChange).toHaveBeenCalled();
+  });
+
+  it("does not check group when children are unknown and not told to", () => {
+    const { container } = renderComponent();
+    const peoniesHeading = container.querySelectorAll('[data-pka-anchor="collapsible.heading"]')[3];
+    expect(peoniesHeading.querySelector('input[type="checkbox"]').checked).toBe(false);
+  });
+
+  it("sets group to indeterminate [even though children are unknown] when told to", () => {
+    const { container } = renderComponent();
+    const daisiesHeading = container.querySelectorAll('[data-pka-anchor="collapsible.heading"]')[4];
+    expect(daisiesHeading.querySelector('input[type="checkbox"]').indeterminate).toBe(true);
+  });
+
+  it("sets group to checked [even though children are unknown] when told to", () => {
+    const { container } = renderComponent();
+    const petuniasHeading = container.querySelectorAll('[data-pka-anchor="collapsible.heading"]')[5];
+    expect(petuniasHeading.querySelector('input[type="checkbox"]').checked).toBe(true);
   });
 });

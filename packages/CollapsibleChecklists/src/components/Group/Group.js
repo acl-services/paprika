@@ -7,14 +7,18 @@ import groupStyles from "./Group.styles";
 
 const propTypes = {
   children: PropTypes.node, // probably an array of "Items", but could be a Spinner or anything else
+  isCheckedByDefault: PropTypes.bool,
   isDisabled: PropTypes.bool,
+  isIndeterminateByDefault: PropTypes.bool,
   onExpand: PropTypes.func,
   title: PropTypes.node.isRequired,
 };
 
 const defaultProps = {
   children: [],
+  isCheckedByDefault: false,
   isDisabled: false,
+  isIndeterminateByDefault: false,
   onExpand: null,
 };
 
@@ -25,28 +29,58 @@ function useIsIndeterminate(checkboxRef) {
   }, [checkboxRef.current.indeterminate]);
 }
 
+function setIsIndeterminateAndGetAllChildItemsAreChecked(
+  children,
+  checkboxRef,
+  isCheckedByDefault,
+  isIndeterminateByDefault
+) {
+  let allChildItemsAreChecked = true;
+  let allChilItemsAreUnChecked = true;
+  let numberOfChildItems = 0;
+
+  React.Children.forEach(children, child => {
+    if (child.type === Item) {
+      numberOfChildItems++;
+      if (child.props.isChecked) {
+        allChilItemsAreUnChecked = false;
+      } else {
+        allChildItemsAreChecked = false;
+      }
+    }
+  });
+
+  if (numberOfChildItems === 0) {
+    // there were no Item children (maybe there was a Spinner)
+    allChildItemsAreChecked = false;
+
+    if (isIndeterminateByDefault) {
+      checkboxRef.current.indeterminate = true; // eslint-disable-line no-param-reassign
+    } else if (isCheckedByDefault) {
+      allChildItemsAreChecked = true;
+    }
+  } else if (allChildItemsAreChecked || allChilItemsAreUnChecked) {
+    checkboxRef.current.indeterminate = false; // eslint-disable-line no-param-reassign
+  } else {
+    checkboxRef.current.indeterminate = true; // eslint-disable-line no-param-reassign
+  }
+
+  return allChildItemsAreChecked;
+}
+
 function Group(props) {
-  const { children, isDisabled, onExpand, title } = props;
+  const { children, isCheckedByDefault, isDisabled, isIndeterminateByDefault, onExpand, title } = props;
   const onChange = React.useContext(CollapsibleChecklistsContext);
   const [isCollapsed, setIsCollapsed] = React.useState(true);
   const checkboxRef = React.useRef({});
   useIsIndeterminate(checkboxRef);
-  let allAreChecked = React.Children.count(props.children) > 0;
-  let noneAreChecked = true;
 
-  React.Children.forEach(children, child => {
-    if (child.props.isChecked) {
-      noneAreChecked = false;
-    } else {
-      allAreChecked = false;
-    }
-  });
-
-  if (allAreChecked || noneAreChecked) {
-    checkboxRef.current.indeterminate = false;
-  } else if (!allAreChecked && !noneAreChecked) {
-    checkboxRef.current.indeterminate = true;
-  }
+  const allChildItemsAreChecked = setIsIndeterminateAndGetAllChildItemsAreChecked(
+    children,
+    checkboxRef,
+    isCheckedByDefault,
+    isIndeterminateByDefault
+  );
 
   function toggleChildren() {
     const childItems = [];
@@ -97,7 +131,7 @@ function Group(props) {
       <label>
         <input
           ref={checkboxRef}
-          checked={allAreChecked}
+          checked={allChildItemsAreChecked}
           type="checkbox"
           disabled={isDisabled}
           onChange={expandGroupAndToggleChildren}
