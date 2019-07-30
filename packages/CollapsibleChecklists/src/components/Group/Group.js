@@ -29,21 +29,16 @@ function useIsIndeterminate(checkboxRef) {
   }, [checkboxRef.current.indeterminate]);
 }
 
-function setIsIndeterminateAndGetAllChildItemsAreChecked(
-  children,
-  checkboxRef,
-  isCheckedByDefault,
-  isIndeterminateByDefault
-) {
+function getChildData(children, isCheckedByDefault) {
   let allChildItemsAreChecked = true;
-  let allChilItemsAreUnChecked = true;
+  let allChildItemsAreUnChecked = true;
   let numberOfChildItems = 0;
 
   React.Children.forEach(children, child => {
     if (child.type === Item) {
       numberOfChildItems++;
       if (child.props.isChecked) {
-        allChilItemsAreUnChecked = false;
+        allChildItemsAreUnChecked = false;
       } else {
         allChildItemsAreChecked = false;
       }
@@ -51,21 +46,29 @@ function setIsIndeterminateAndGetAllChildItemsAreChecked(
   });
 
   if (numberOfChildItems === 0) {
-    // there were no Item children (maybe there was a Spinner)
     allChildItemsAreChecked = false;
 
-    if (isIndeterminateByDefault) {
-      checkboxRef.current.indeterminate = true; // eslint-disable-line no-param-reassign
-    } else if (isCheckedByDefault) {
+    if (isCheckedByDefault) {
       allChildItemsAreChecked = true;
     }
-  } else if (allChildItemsAreChecked || allChilItemsAreUnChecked) {
-    checkboxRef.current.indeterminate = false; // eslint-disable-line no-param-reassign
-  } else {
-    checkboxRef.current.indeterminate = true; // eslint-disable-line no-param-reassign
   }
 
-  return allChildItemsAreChecked;
+  return { numberOfChildItems, allChildItemsAreChecked, allChildItemsAreUnChecked };
+}
+
+function setIsIndeterminate(children, checkboxRef, isCheckedByDefault, isIndeterminateByDefault) {
+  const { numberOfChildItems, allChildItemsAreChecked, allChildItemsAreUnChecked } = getChildData(
+    children,
+    isCheckedByDefault
+  );
+
+  if (numberOfChildItems === 0 && isIndeterminateByDefault) {
+    checkboxRef.current.indeterminate = true; // eslint-disable-line no-param-reassign
+  } else if (numberOfChildItems > 0 && (allChildItemsAreChecked || allChildItemsAreUnChecked)) {
+    checkboxRef.current.indeterminate = false; // eslint-disable-line no-param-reassign
+  } else if (numberOfChildItems > 0) {
+    checkboxRef.current.indeterminate = true; // eslint-disable-line no-param-reassign
+  }
 }
 
 function Group(props) {
@@ -75,12 +78,8 @@ function Group(props) {
   const checkboxRef = React.useRef({});
   useIsIndeterminate(checkboxRef);
 
-  const allChildItemsAreChecked = setIsIndeterminateAndGetAllChildItemsAreChecked(
-    children,
-    checkboxRef,
-    isCheckedByDefault,
-    isIndeterminateByDefault
-  );
+  setIsIndeterminate(children, checkboxRef, isCheckedByDefault, isIndeterminateByDefault);
+  const { allChildItemsAreChecked } = getChildData(children, isCheckedByDefault);
 
   function toggleChildren() {
     const childItems = [];
