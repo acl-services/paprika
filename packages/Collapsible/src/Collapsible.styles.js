@@ -22,6 +22,10 @@ const collapsibleStyles = css`
 
   .collapsible__label--is-toggle-icon-only {
     width: auto;
+
+    &.collapsible__label--is-float-right {
+      float: right;
+    }
   }
 
   [data-pka-anchor="collapsible.icon"] svg {
@@ -40,6 +44,10 @@ const collapsibleStyles = css`
     display: ${({ isCollapsed }) => (isCollapsed ? "none" : "block")};
     width: 100%;
   }
+`;
+
+export const operationsWrapperStyles = css`
+  float: right;
 `;
 
 export default collapsibleStyles;
