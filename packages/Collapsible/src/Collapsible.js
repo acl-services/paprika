@@ -75,7 +75,7 @@ const Collapsible = props => {
 
     return (
       <RawButton
-        ariaLabel={a11yText || I18n.t("collapsible.a11yText")}
+        a11yText={a11yText || I18n.t("collapsible.a11yText")}
         aria-expanded={!isCollapsed}
         className="collapsible__label"
         isDisabled={isDisabled}
@@ -97,7 +97,7 @@ const Collapsible = props => {
       <div data-pka-anchor="collapsible.heading">
         {renderOperations()}
         <RawButton
-          ariaLabel={a11yText || I18n.t("collapsible.a11yText")}
+          a11yText={a11yText || I18n.t("collapsible.a11yText")}
           aria-expanded={!isCollapsed}
           className={classNames("collapsible__label", "collapsible__label--is-toggle-icon-only", {
             "collapsible__label--is-float-right": iconAlign === "right",
