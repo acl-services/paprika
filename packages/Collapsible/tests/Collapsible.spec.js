@@ -79,4 +79,10 @@ describe("Collapsible", () => {
     const { container } = renderComponent({ iconExpand });
     expect(container.querySelector(".custom-expand")).toBeVisible();
   });
+
+  it("should render operations", () => {
+    const operations = <span>operations</span>;
+    const { getByText } = renderComponent({ operations });
+    expect(getByText(/operations/i)).toBeVisible();
+  });
 });
