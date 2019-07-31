@@ -58,9 +58,7 @@ const AdvancedStory = () => {
       sports: [
         {
           title: <span>Football (expand to retrieve from API, pre-select some)</span>,
-          teams: [
-            // This will later be retrieved from an API on expand
-          ],
+          teams: null, // This will later be retrieved from an API on expand
         },
       ],
     },
@@ -69,9 +67,7 @@ const AdvancedStory = () => {
       sports: [
         {
           title: <span>Hockey (expand to retrieve from API, pre-select all)</span>,
-          teams: [
-            // This will later be retrieved from an API on expand
-          ],
+          teams: null, // This will later be retrieved from an API on expand
         },
       ],
     },
@@ -80,9 +76,7 @@ const AdvancedStory = () => {
       sports: [
         {
           title: <span>Hockey (expand to retrieve from API, pre-select none)</span>,
-          teams: [
-            // This will later be retrieved from an API on expand
-          ],
+          teams: null, // This will later be retrieved from an API on expand
         },
       ],
     },
@@ -97,6 +91,11 @@ const AdvancedStory = () => {
   const mbHockey = sportsData[3].sports[0];
 
   const handleExpandOhio = () => {
+    if (ohioFootball.teams) {
+      // already retrieved... do nothing
+      return;
+    }
+
     setTimeout(() => {
       const newSportsData = sportsData.slice(0);
       newSportsData[1].sports[0].teams = [
@@ -108,6 +107,11 @@ const AdvancedStory = () => {
   };
 
   const handleExpandBc = () => {
+    if (bcHockey.teams) {
+      // already retrieved... do nothing
+      return;
+    }
+
     setTimeout(() => {
       const newSportsData = sportsData.slice(0);
       newSportsData[2].sports[0].teams = [{ isChecked: true, isDisabled: false, name: "Vancouver Canucks" }];
@@ -116,6 +120,11 @@ const AdvancedStory = () => {
   };
 
   const handleExpandMb = () => {
+    if (mbHockey.teams) {
+      // already retrieved... do nothing
+      return;
+    }
+
     setTimeout(() => {
       const newSportsData = sportsData.slice(0);
       newSportsData[3].sports[0].teams = [{ isChecked: false, isDisabled: false, name: "Winnipeg Jets" }];
@@ -128,14 +137,16 @@ const AdvancedStory = () => {
     const newSportsData = sportsData.slice(0);
     newSportsData.forEach(newSportsDatum => {
       newSportsDatum.sports.forEach(sport => {
-        sport.teams.forEach(team => {
-          const thisTeamWasChanged =
-            changedItemsArray.filter(changedItem => changedItem.props.foobar === team.name).length > 0;
+        if (sport.teams) {
+          sport.teams.forEach(team => {
+            const thisTeamWasChanged =
+              changedItemsArray.filter(changedItem => changedItem.props.foobar === team.name).length > 0;
 
-          if (thisTeamWasChanged) {
-            team.isChecked = !team.isChecked; // eslint-disable-line
-          }
-        });
+            if (thisTeamWasChanged) {
+              team.isChecked = !team.isChecked; // eslint-disable-line
+            }
+          });
+        }
       });
     });
 
@@ -156,7 +167,7 @@ const AdvancedStory = () => {
   }
 
   function renderOhioFootballTeams() {
-    if (ohioFootball.teams.length === 0) {
+    if (!ohioFootball.teams) {
       return <Spinner />;
     }
 
@@ -164,7 +175,7 @@ const AdvancedStory = () => {
   }
 
   function renderBcHockeyTeams() {
-    if (bcHockey.teams.length === 0) {
+    if (!bcHockey.teams) {
       return <Spinner />;
     }
 
@@ -172,7 +183,7 @@ const AdvancedStory = () => {
   }
 
   function renderMbHockeyTeams() {
-    if (mbHockey.teams.length === 0) {
+    if (!mbHockey.teams) {
       return <Spinner />;
     }
 
