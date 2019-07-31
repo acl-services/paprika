@@ -17,7 +17,10 @@ axe(React, ReactDOM, 10000, axeConfig);
 
 require("./welcome.story");
 
-const req = require.context("../packages", true, /\.stories\.js$/);
-configure(() => {
-  req.keys().forEach(filename => req(filename));
-}, module);
+configure(require.context("../packages", true, /\.stories\.js$/), module);
+
+// const req = require.context("../packages", true, /\.stories\.js$/);
+
+// configure(() => {
+//   req.keys().forEach(filename => req(filename));
+// }, module);
