@@ -12,15 +12,15 @@ import WithDisabledReadOnlyStory from "./examples/WithDisabledReadOnly";
 import TypesStory from "./examples/Types";
 import WithRef from "./examples/WithRef";
 
-storiesOf("Input", module)
-  .addDecorator(withKnobs)
-  .add("Showcase", ShowcaseStory)
-  .add("Sizes", () => <SizesStory />)
-  .add("With content", () => <WithContentStory />)
-  .add("With decorative icon", () => <WithIconStory />)
-  .add("With isDisabled / isReadOnly", () => <WithDisabledReadOnlyStory />)
-  .add("Types", () => <TypesStory />)
-  .add("With Ref", () => <WithRef />);
+export default { title: "Input", decorators: [withKnobs] };
+
+export const showcase = () => <ShowcaseStory />;
+export const sizes = () => <SizesStory />;
+export const withContent = () => <WithContentStory />;
+export const withDecorativeIcon = () => <WithIconStory />;
+export const withDisabledReadOnly = () => <WithDisabledReadOnlyStory />;
+export const types = () => <TypesStory />;
+export const withRef = () => <WithRef />;
 
 storiesOf("Input/Automation Tests/Screener", module).add("InputExample", () => (
   <InputStory>
