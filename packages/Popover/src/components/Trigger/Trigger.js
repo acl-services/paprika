@@ -15,8 +15,12 @@ const defaultProps = {
   a11yText: null,
 };
 
-class Trigger extends React.Component {
-  handleTriggerEvent = (isEager, onClick, onClose, onDelayedClose, onDelayedOpen, onOpen, shouldKeepFocus) => event => {
+function Trigger(props) {
+  const { isEager, onClick, onClose, onDelayedClose, onDelayedOpen, onOpen, shouldKeepFocus } = React.useContext(
+    PopoverContext
+  );
+
+  function handleTriggerEvent(event) {
     if (isEager && (event.type === "mouseover" || event.type === "focus")) {
       if (event.type === "mouseover") {
         onDelayedOpen();
@@ -32,54 +36,40 @@ class Trigger extends React.Component {
     } else if (event.type === "click" || event.key === " " || event.key === "Enter") {
       onClick();
     }
-  };
+  }
 
-  render() {
-    const { a11yText, children } = this.props;
+  const { children, a11yText } = props;
 
+  if (typeof children === "function") {
+    return <React.Fragment>{children(handleTriggerEvent)}</React.Fragment>;
+  }
+
+  /* issue https://github.com/acl-services/paprika/issues/33 */
+  if (isEager) {
     return (
-      <PopoverContext.Consumer>
-        {({ isEager, onClick, onClose, onDelayedClose, onDelayedOpen, onOpen, shouldKeepFocus }) => {
-          const handler = this.handleTriggerEvent(
-            isEager,
-            onClick,
-            onClose,
-            onDelayedClose,
-            onDelayedOpen,
-            onOpen,
-            shouldKeepFocus
-          );
-
-          if (typeof children !== "function") {
-            /* issue https://github.com/acl-services/paprika/issues/33 */
-            return isEager ? (
-              <RawButton
-                a11yText={a11yText}
-                data-qa-anchor="popover-trigger"
-                onMouseOver={handler}
-                onMouseOut={handler}
-                onFocus={handler}
-                onBlur={handler}
-              >
-                {children}
-              </RawButton>
-            ) : (
-              <RawButton
-                a11yText={a11yText}
-                data-qa-anchor="popover-trigger"
-                onClick={handler}
-                onBlur={shouldKeepFocus ? handler : null}
-              >
-                {children}
-              </RawButton>
-            );
-          }
-
-          return this.props.children(handler);
-        }}
-      </PopoverContext.Consumer>
+      <RawButton
+        a11yText={a11yText}
+        data-qa-anchor="popover-trigger"
+        onMouseOver={handleTriggerEvent}
+        onMouseOut={handleTriggerEvent}
+        onFocus={handleTriggerEvent}
+        onBlur={handleTriggerEvent}
+      >
+        {children}
+      </RawButton>
     );
   }
+
+  return (
+    <RawButton
+      a11yText={a11yText}
+      data-qa-anchor="popover-trigger"
+      onClick={handleTriggerEvent}
+      onBlur={shouldKeepFocus ? handleTriggerEvent : null}
+    >
+      {children}
+    </RawButton>
+  );
 }
 
 Trigger.displayName = "Popover.Trigger";
