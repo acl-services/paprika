@@ -7,5 +7,5 @@ module.exports = {
   storybookConfigDir: ".storybook",
   storybookStaticDir: "./.storybook/assets",
   failureExitCode: 0, // Don't fail CI builds
-  includeRules: [/Automation Tests\/Screener/, /^Stylers/, /^Button: Basic/],
+  includeRules: [/Screener/, /^Stylers/, /^Button: Basic/],
 };
