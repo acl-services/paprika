@@ -2,6 +2,8 @@ import { css } from "styled-components";
 import tokens from "@paprika/tokens";
 import stylers from "@paprika/stylers";
 
+const incompleteHeight = `${Number.parseInt(tokens.space, 10) * 5 + 1}px`;
+
 export const itemStyles = css`
   border-bottom: 1px solid ${tokens.border.color};
   color: ${tokens.textColor.subtle};
@@ -25,6 +27,6 @@ export const incompleteStyles = css`
   border-bottom: 1px solid ${tokens.border.color};
   flex-grow: 1;
   font-weight: bold;
-  height: ${stylers.spacer(5)};
-  line-height: ${stylers.spacer(5)};
+  height: ${incompleteHeight};
+  line-height: ${incompleteHeight};
 `;
