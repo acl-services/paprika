@@ -6,10 +6,10 @@ function renderTabsComponent(props = {}) {
   return render(
     <Tabs {...props}>
       <Tabs.List>
-        <Tabs.Tab label="Hello" />
-        <Tabs.Tab label="World" />
-        <Tabs.Tab label="Disabled Tab" isDisabled />
-        <Tabs.Tab label="Link Tab" href="https://wegalvanize.com/" />
+        <Tabs.Tab>Hello</Tabs.Tab>
+        <Tabs.Tab>World</Tabs.Tab>
+        <Tabs.Tab isDisabled>Disabled Tab</Tabs.Tab>
+        <Tabs.Tab href="https://wegalvanize.com/">Linked Tab</Tabs.Tab>
       </Tabs.List>
       <Tabs.Panels>
         <Tabs.Panel>Content for first tab</Tabs.Panel>

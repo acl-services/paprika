@@ -5,8 +5,8 @@ import TabsContext from "../../TabsContext";
 import { tabStyles } from "./Tab.styles";
 
 const propTypes = {
+  children: PropTypes.node,
   className: PropTypes.string,
-  label: PropTypes.node,
   isSelected: PropTypes.bool,
   isDisabled: PropTypes.bool,
   href: PropTypes.string,
@@ -15,10 +15,10 @@ const propTypes = {
 };
 
 const defaultProps = {
+  children: null,
   className: null,
   isSelected: false,
   isDisabled: false,
-  label: null,
   href: null,
   onClick: () => {},
   onKeyDownArrows: () => {},
@@ -27,7 +27,7 @@ const defaultProps = {
 const Tab = props => {
   const context = React.useContext(TabsContext);
 
-  const { className, isSelected, label, href, onClick, onKeyDownArrows, ...moreProps } = props;
+  const { className, isSelected, children, href, onClick, onKeyDownArrows, ...moreProps } = props;
 
   const handleKeyDown = (event, index) => {
     onKeyDownArrows(event, index);
@@ -48,7 +48,7 @@ const Tab = props => {
         tabIndex={tabIndex}
         {...moreProps}
       >
-        {label}
+        {children}
       </a>
     );
   }
@@ -66,7 +66,7 @@ const Tab = props => {
       role="tab"
       tabIndex={tabIndex}
     >
-      {label}
+      {children}
     </RawButton>
   );
 };

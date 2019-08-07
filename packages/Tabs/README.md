@@ -15,10 +15,10 @@ import Tabs from "@paprika/tabs";
 
 <Tabs>
   <Tabs.List>
-    <Tabs.Tab label="Hello" />
-    <Tabs.Tab isDisabled label="Disabled 2" />
-    <Tabs.Tab label="ABC" />
-    <Tabs.Tab isDisabled label="Disabled 4" />
+    <Tabs.Tab>Hello</Tabs.Tab>
+    <Tabs.Tab isDisabled>World</Tabs.Tab>
+    <Tabs.Tab>ABC</Tabs.Tab>
+    <Tabs.Tab isDisabled>Disabled Tab</Tabs.Tab>
   </Tabs.List>
   <Tabs.Panels>
     <Tabs.Panel>Hello Tab</Tabs.Panel>

@@ -12,12 +12,12 @@ function TabsExample() {
     <React.Fragment>
       <Tabs>
         <Tabs.List>
-          <Tabs.Tab label="Hello" />
-          <Tabs.Tab isDisabled label="Disabled 2" />
-          <Tabs.Tab label="World" />
-          <Tabs.Tab isDisabled label="Disabled 4" />
-          <Tabs.Tab label="ABC" />
-          <Tabs.Tab isDisabled label="Disabled 6" />
+          <Tabs.Tab>Hello</Tabs.Tab>
+          <Tabs.Tab isDisabled>Disabled 2</Tabs.Tab>
+          <Tabs.Tab>World</Tabs.Tab>
+          <Tabs.Tab isDisabled>Disabled 4</Tabs.Tab>
+          <Tabs.Tab>ABC</Tabs.Tab>
+          <Tabs.Tab isDisabled>Disabled 6</Tabs.Tab>
         </Tabs.List>
         <Tabs.Panels>
           <Tabs.Panel>
@@ -48,13 +48,10 @@ storiesOf("Tabs", module)
     <Story>
       <Tabs>
         <Tabs.List>
-          <Tabs.Tab label="Google" href="https://google.com" />
-          <Tabs.Tab
-            label="Galvanize new tab"
-            href="https://wegalvanize.com"
-            target="_blank"
-            rel="noopener noreferrer"
-          />
+          <Tabs.Tab href="https://google.com">Google</Tabs.Tab>
+          <Tabs.Tab href="https://wegalvanize.com" target="_blank" rel="noopener noreferrer">
+            Galvanize new tab
+          </Tabs.Tab>
         </Tabs.List>
       </Tabs>
     </Story>
