@@ -42,10 +42,16 @@ const Confirmation = props => {
             <div className="dropdown-menu__confirmation-header">{heading}</div>
             {description && <div className="dropdown-menu__confirmation-description">{description}</div>}
             <div className="dropdown-menu__confirmation-footer">
-              <Button ref={confirmRef} kind={confirmButtonType} size={buttonSize} onClick={onConfirm}>
+              <Button
+                isSemantic={false}
+                ref={confirmRef}
+                kind={confirmButtonType}
+                size={buttonSize}
+                onClick={onConfirm}
+              >
                 {confirmLabel}
               </Button>
-              <Button kind="minor" size={buttonSize} onClick={onCancel}>
+              <Button isSemantic={false} kind="minor" size={buttonSize} onClick={onCancel}>
                 {I18n.t("actions.cancel")}
               </Button>
             </div>

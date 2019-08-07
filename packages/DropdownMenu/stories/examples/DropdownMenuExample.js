@@ -6,7 +6,7 @@ const DropdownMenuExample = () => {
     <DropdownMenu
       align="bottom"
       renderTrigger={({ isOpen, handleOpenMenu }) => (
-        <DropdownMenu.Trigger data-qa-anchor="trigger-data-anchor" isOpen={isOpen} handleOpenMenu={handleOpenMenu}>
+        <DropdownMenu.Trigger data-qa-anchor="dropdown-menu__trigger" isOpen={isOpen} handleOpenMenu={handleOpenMenu}>
           Trigger
         </DropdownMenu.Trigger>
       )}
