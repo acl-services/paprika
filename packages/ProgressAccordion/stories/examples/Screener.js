@@ -23,7 +23,7 @@ const ExampleStory = () => {
         >
           <ProgressAccordion.Item label="Zero">
             <ProgressAccordion.Responses>
-              <ProgressAccordion.Responses.Item heading="Who is on first?">
+              <ProgressAccordion.Responses.Item heading="Who‘s on first?">
                 <p>Yes.</p>
               </ProgressAccordion.Responses.Item>
             </ProgressAccordion.Responses>
