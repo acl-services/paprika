@@ -35,7 +35,7 @@ const Tab = props => {
 
   const isDisabled = context.isDisabled || props.isDisabled;
   const handleClick = isDisabled ? () => {} : onClick;
-  const tabIndex = isDisabled ? -1 : 0;
+  const tabIndex = isSelected ? 0 : -1;
 
   if (href) {
     return (
@@ -43,7 +43,7 @@ const Tab = props => {
         css={tabStyles}
         className="tab tab-link"
         href={href}
-        onKeyDown={handleKeyDown}
+        onKeyDown={e => handleKeyDown(e, context.currentFocusIndex)}
         role="tab"
         tabIndex={tabIndex}
         {...moreProps}

@@ -2159,6 +2159,16 @@
     universal-user-agent "^2.0.0"
     url-template "^2.0.8"
 
+"@paprika/l10n@^0.1.0":
+  version "0.1.4"
+  resolved "https://registry.yarnpkg.com/@paprika/l10n/-/l10n-0.1.4.tgz#623e0c49224258caf250a31ab465dcf49173a068"
+  integrity sha512-0sYCj77++NlRKDlz6ZJSDxg5JkexXzoxc2XfaPQiIXcXJhjw0lxPMziZa91fHZHLByFUN4stnh7kYlLBLoWO3Q==
+  dependencies:
+    "@babel/runtime-corejs2" "^7.3.1"
+    i18next "^15.0.4"
+    js-yaml "^3.13.1"
+    prop-types "^15.7.2"
+
 "@reach/router@^1.2.1":
   version "1.2.1"
   resolved "https://registry.yarnpkg.com/@reach/router/-/router-1.2.1.tgz#34ae3541a5ac44fa7796e5506a5d7274a162be4e"

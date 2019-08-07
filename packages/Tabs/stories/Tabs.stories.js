@@ -1,35 +1,43 @@
 import React from "react";
 import { storiesOf } from "@storybook/react";
 import { withKnobs } from "@storybook/addon-knobs";
-import { Story } from "storybook/assets/styles/common.styles";
+import { Gap, Story } from "storybook/assets/styles/common.styles";
+import Button from "@paprika/button";
+import Heading from "@paprika/heading";
 import ShowcaseStory from "./examples/Showcase";
 import Tabs from "../src/Tabs";
 
 function TabsExample() {
   return (
-    <Tabs>
-      <Tabs.List>
-        <Tabs.Tab label="Hello" />
-        <Tabs.Tab isDisabled label="Disabled 2" />
-        <Tabs.Tab label="World" />
-        <Tabs.Tab isDisabled label="Disabled 4" />
-        <Tabs.Tab label="ABC" />
-        <Tabs.Tab isDisabled label="Disabled 6" />
-      </Tabs.List>
-      <Tabs.Panels>
-        <Tabs.Panel>
-          Lorem ipsum dolor amet pop-up sartorial artisan keytar leggings bespoke chia swag flexitarian pabst yr godard
-          williamsburg. Marfa lomo four loko hoodie. Hella gastropub irony bitters succulents truffaut godard tbh street
-          art. Occupy bicycle rights fingerstache pinterest, af gluten-free health goth put a bird on it 90s
-          stumptownedison bulb pug hella. Small batch dreamcatcher mumblecore.
-        </Tabs.Panel>
-        <Tabs.Panel>Disabled tab 2</Tabs.Panel>
-        <Tabs.Panel>World Tab</Tabs.Panel>
-        <Tabs.Panel>Disabled tab 3</Tabs.Panel>
-        <Tabs.Panel>ABC Tab</Tabs.Panel>
-        <Tabs.Panel>Disabled tab 6</Tabs.Panel>
-      </Tabs.Panels>
-    </Tabs>
+    <React.Fragment>
+      <Tabs>
+        <Tabs.List>
+          <Tabs.Tab label="Hello" />
+          <Tabs.Tab isDisabled label="Disabled 2" />
+          <Tabs.Tab label="World" />
+          <Tabs.Tab isDisabled label="Disabled 4" />
+          <Tabs.Tab label="ABC" />
+          <Tabs.Tab isDisabled label="Disabled 6" />
+        </Tabs.List>
+        <Tabs.Panels>
+          <Tabs.Panel>
+            <Heading level={2}>Heading Example</Heading>
+            Lorem ipsum dolor amet pop-up sartorial artisan keytar leggings bespoke chia swag flexitarian pabst yr
+            godard williamsburg. Marfa lomo four loko hoodie. Hella gastropub irony bitters succulents truffaut godard
+            tbh street art. Occupy bicycle rights fingerstache pinterest, af gluten-free health goth put a bird on it
+            90s stumptownedison bulb pug hella. Small batch dreamcatcher mumblecore.
+            <Button>Focus test inside Tabs.Panel</Button>
+          </Tabs.Panel>
+          <Tabs.Panel>Disabled tab 2</Tabs.Panel>
+          <Tabs.Panel>World Tab</Tabs.Panel>
+          <Tabs.Panel>Disabled tab 3</Tabs.Panel>
+          <Tabs.Panel>ABC Tab</Tabs.Panel>
+          <Tabs.Panel>Disabled tab 6</Tabs.Panel>
+        </Tabs.Panels>
+      </Tabs>
+      <Gap />
+      <Button>Focus test outside Tabs</Button>
+    </React.Fragment>
   );
 }
 storiesOf("Tabs", module)

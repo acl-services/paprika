@@ -19,7 +19,7 @@ const defaultProps = {
 
 const Tabs = props => {
   const [activeIndex, setActiveIndex] = React.useState(props.defaultIndex);
-  const [currentFocusIndex, setFocusIndex] = React.useState(null);
+  const [currentFocusIndex, setFocusIndex] = React.useState(props.defaultIndex);
 
   let tabListRef = React.useRef(null);
 
@@ -40,9 +40,6 @@ const Tabs = props => {
   };
 
   const onKeyDown = (event, currentIndex) => {
-    const LEFT_ARROW_KEY = 37;
-    const RIGHT_ARROW_KEY = 39;
-
     const tabList = React.Children.toArray(props.children)[0];
     const enabledIndexes = tabList.props.children
       .map((tab, index) => (tab.props.isDisabled === true ? null : index))
@@ -51,16 +48,20 @@ const Tabs = props => {
     const enabledSelectedIndex = enabledIndexes.indexOf(currentIndex);
     const count = enabledIndexes.length;
 
-    if (event.which === RIGHT_ARROW_KEY) {
+    if (event.key === "ArrowRight") {
       const nextEnabledIndex = (enabledSelectedIndex + 1) % count;
       const nextIndex = enabledIndexes[nextEnabledIndex];
 
       focusAndSetIndex(nextIndex);
-    } else if (event.which === LEFT_ARROW_KEY) {
+    } else if (event.key === "ArrowLeft") {
       const nextEnabledIndex = (enabledSelectedIndex - 1 + count) % count;
       const nextIndex = enabledIndexes[nextEnabledIndex];
 
       focusAndSetIndex(nextIndex);
+    } else if (event.key === "Home") {
+      focusAndSetIndex(enabledIndexes[0]);
+    } else if (event.key === "End") {
+      focusAndSetIndex(enabledIndexes[count - 1]);
     }
   };
 
