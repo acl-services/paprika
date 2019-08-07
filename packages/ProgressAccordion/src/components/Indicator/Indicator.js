@@ -4,8 +4,13 @@ import CheckIcon from "@paprika/icon/lib/Check";
 import { indicatorStyles, indicatorDotStyles } from "./Indicator.styles";
 
 const propTypes = {
+  /** If this is the current or pending item in the list. */
   isActive: PropTypes.bool,
+
+  /** If this item is complete. */
   isComplete: PropTypes.bool,
+
+  /** If this is the last item in the list. */
   isLast: PropTypes.bool,
 };
 

@@ -14,9 +14,19 @@ import {
 } from "./ProgressAccordion.styles";
 
 const propTypes = {
+  /** A11y text for assistive technologies to descibe the semantic list. */
   a11yText: PropTypes.string,
+
+  /*
+   * The list item that is currently active or pending. If all items are
+   * complete, this can be set to a value greater than the list length.
+   */
   activeIndex: PropTypes.number,
+
+  /** Optional status text to be displayed with the active list item. */
   activeStatus: PropTypes.node,
+
+  /** List items (must be of type <ProgressAccordion.Item>. */
   children: PropTypes.node,
 };
 
