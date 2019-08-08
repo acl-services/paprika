@@ -12,6 +12,7 @@ const propTypes = {
   confirmButtonType: PropTypes.oneOf(["primary", "destructive"]),
   confirmLabel: PropTypes.string.isRequired,
   description: PropTypes.node,
+  isOpen: PropTypes.bool.isRequired,
   onCancel: PropTypes.func.isRequired,
   onClose: PropTypes.func,
   onConfirm: PropTypes.func.isRequired,
@@ -26,7 +27,17 @@ const defaultProps = {
 };
 
 const Confirmation = props => {
-  const { heading, buttonSize, confirmButtonType, confirmLabel, description, onConfirm, onCancel, onClose } = props;
+  const {
+    heading,
+    buttonSize,
+    confirmButtonType,
+    confirmLabel,
+    description,
+    onConfirm,
+    onCancel,
+    onClose,
+    isOpen,
+  } = props;
   const confirmRef = React.useRef(null);
 
   React.useEffect(() => {
@@ -35,7 +46,7 @@ const Confirmation = props => {
 
   const I18n = useI18n();
   return (
-    <Popover defaultIsOpen onClose={onClose}>
+    <Popover isOpen={isOpen} onClose={onClose}>
       <Popover.Content>
         <div css={contentStyles}>
           <div css={ConfirmationStyles}>

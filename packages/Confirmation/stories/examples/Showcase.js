@@ -22,6 +22,7 @@ const ExampleStory = () => (
     <Rule />
     <L10n locale={select("locale", ["en", "de", "es", "fr", "ja", "pt", "zh"], "en")}>
       <Confirmation
+        isOpen
         buttonSize={select("Confirmation Button Size", ["x-small", "small", "medium", "large"], "medium")}
         confirmLabel="Delete filter"
         description={
