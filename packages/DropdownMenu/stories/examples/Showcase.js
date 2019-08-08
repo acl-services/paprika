@@ -4,6 +4,7 @@ import { select } from "@storybook/addon-knobs";
 import L10n from "@paprika/l10n";
 import Heading from "@paprika/heading";
 import { DropdownMenuStory } from "../DropdownMenu.stories.styles";
+import Confirmation from "../../../Confirmation/src/Confirmation";
 import DropdownMenu from "../../src";
 
 const handleConfirm = handleCloseMenu => {
@@ -50,7 +51,7 @@ const ExampleStory = () => (
           isDestructive
           renderConfirmation={onClose => {
             return (
-              <DropdownMenu.Confirmation
+              <Confirmation
                 buttonSize={select("Confirmation Button Size", ["x-small", "small", "medium", "large"], "medium")}
                 confirmLabel="Delete filter"
                 description={
