@@ -6,6 +6,7 @@ import Confirmation from "./components/Confirmation";
 import Divider from "./components/Divider";
 import Trigger from "./components/Trigger";
 import LinkItem from "./components/LinkItem";
+import DestructiveItem from "./components/DestructiveItem";
 import Item from "./components/Item";
 import contentStyles from "./DropdownMenuContentStyles.styles";
 
@@ -78,7 +79,10 @@ const DropdownMenu = props => {
     return (
       <div css={contentStyles} isOpen={isOpen}>
         {children.map((child, index) => {
-          if (child.type.displayName === "DropdownMenu.Item") {
+          if (
+            child.type.displayName === "DropdownMenu.Item" ||
+            child.type.displayName === "DropdownMenu.DestructiveItem"
+          ) {
             const childItem = { key: `DropdownMenuItem${index}` };
             if (child.props.renderConfirmation) {
               return React.cloneElement(child, {
@@ -120,6 +124,7 @@ const DropdownMenu = props => {
 
 DropdownMenu.displayName = "DropdownMenu";
 DropdownMenu.Divider = Divider;
+DropdownMenu.DestructiveItem = DestructiveItem;
 DropdownMenu.LinkItem = LinkItem;
 DropdownMenu.Item = Item;
 DropdownMenu.Confirmation = Confirmation;

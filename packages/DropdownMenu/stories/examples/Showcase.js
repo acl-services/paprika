@@ -32,9 +32,6 @@ const ExampleStory = () => (
       >
         <DropdownMenu.Item onClick={() => {}}>Edit</DropdownMenu.Item>
         <DropdownMenu.Item onClick={() => {}}>Duplicate</DropdownMenu.Item>
-        <DropdownMenu.Item isDestructive isDisabled onClick={() => {}}>
-          Galvanize item
-        </DropdownMenu.Item>
         <DropdownMenu.Item isDisabled onClick={() => {}}>
           Galvanize item
         </DropdownMenu.Item>
@@ -46,8 +43,7 @@ const ExampleStory = () => (
           Galvanize
         </DropdownMenu.Item>
         <DropdownMenu.Divider />
-        <DropdownMenu.Item
-          isDestructive
+        <DropdownMenu.DestructiveItem
           renderConfirmation={onClose => {
             return (
               <DropdownMenu.Confirmation
@@ -64,7 +60,7 @@ const ExampleStory = () => (
           }}
         >
           Delete filter
-        </DropdownMenu.Item>
+        </DropdownMenu.DestructiveItem>
       </DropdownMenu>
     </L10n>
   </DropdownMenuStory>
