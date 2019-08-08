@@ -8,7 +8,13 @@ configure({ testIdAttribute: "data-qa-anchor" });
 function renderComponent() {
   const renderedComponent = render(
     <L10n>
-      <Confirmation confirmLabel="Confirm Delete" onConfirm={() => {}} onCancel={() => {}} heading="Delete Button?" />
+      <Confirmation
+        isOpen
+        confirmLabel="Confirm Delete"
+        onConfirm={() => {}}
+        onCancel={() => {}}
+        heading="Delete Button?"
+      />
     </L10n>
   );
 
