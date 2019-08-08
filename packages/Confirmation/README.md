@@ -14,6 +14,7 @@ or
 import Confirmation from "@paprika/confirmation";
 
 <Confirmation
+  isOpen={isOpen}
   confirmLabel="Delete filter"
   description="Lorem ipsum dolor amet vexillologist tacos selvage narwhal butcher twee ethical hot chicken"
   onConfirm={() => handleConfirm(onClose)}
@@ -24,6 +25,7 @@ import Confirmation from "@paprika/confirmation";
 
 ### Props
 
+- isOpen
 - buttonSize
 - confirmButtonType
 - confirmLabel
