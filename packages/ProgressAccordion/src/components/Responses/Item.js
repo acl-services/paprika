@@ -4,7 +4,10 @@ import useI18n from "@paprika/l10n/lib/useI18n";
 import { emptyValueStyles } from "./Responses.styles";
 
 const propTypes = {
+  /** The title / question / term for this Response item. */
   heading: PropTypes.node.isRequired,
+
+  /** The content / body / answer / definition for this Response item. */
   children: PropTypes.node,
 };
 
