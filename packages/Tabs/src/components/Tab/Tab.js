@@ -24,7 +24,7 @@ const defaultProps = {
   onKeyDownArrows: () => {},
 };
 
-const Tab = props => {
+export default function Tab(props) {
   const context = React.useContext(TabsContext);
 
   const { className, isSelected, children, href, onClick, onKeyDownArrows, ...moreProps } = props;
@@ -69,10 +69,8 @@ const Tab = props => {
       {children}
     </RawButton>
   );
-};
+}
 
 Tab.displayName = "Tabs.Tab";
 Tab.propTypes = propTypes;
 Tab.defaultProps = defaultProps;
-
-export default Tab;
