@@ -1,5 +1,6 @@
 import React from "react";
 import DropdownMenu from "../../src";
+import Confirmation from "../../../Confirmation/src/Confirmation";
 
 const DropdownMenuExample = () => {
   return (
@@ -30,7 +31,8 @@ const DropdownMenuExample = () => {
         isDestructive
         renderConfirmation={onClose => {
           return (
-            <DropdownMenu.Confirmation
+            <Confirmation
+              isOpen
               confirmLabel="Delete filter"
               description="Lorem ipsum dolor amet vexillologist tacos selvage narwhal butcher twee ethical hot chicken."
               onConfirm={() => onClose()}

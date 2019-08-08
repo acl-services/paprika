@@ -57,6 +57,7 @@ const ExampleStory = () => (
                 description={
                   <p>Lorem ipsum dolor amet vexillologist tacos selvage narwhal butcher twee ethical hot chicken.</p>
                 }
+                isOpen
                 onConfirm={() => handleConfirm(onClose)}
                 onCancel={() => handleCancel(onClose)}
                 heading="Delete filter?"
