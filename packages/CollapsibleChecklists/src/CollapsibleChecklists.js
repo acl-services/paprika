@@ -13,10 +13,12 @@ const propTypes = {
 const defaultProps = {};
 
 const CollapsibleChecklists = props => {
+  const { onChange, ...moreProps } = props;
+
   return (
-    <CollapsibleChecklistsContext.Provider value={props.onChange}>
-      {props.children}
-    </CollapsibleChecklistsContext.Provider>
+    <div {...moreProps}>
+      <CollapsibleChecklistsContext.Provider value={onChange}>{props.children}</CollapsibleChecklistsContext.Provider>
+    </div>
   );
 };
 

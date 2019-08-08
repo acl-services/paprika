@@ -11,7 +11,11 @@ const selectChildren = () => {
   const separator = ", ";
   const options = array(label, defaultValue, separator);
 
-  return options.map(optionLabel => <option value={optionLabel}>{optionLabel}</option>);
+  return options.map(optionLabel => (
+    <option key={optionLabel} value={optionLabel}>
+      {optionLabel}
+    </option>
+  ));
 };
 
 const selectProps = () => ({

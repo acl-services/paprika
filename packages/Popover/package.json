@@ -1,6 +1,6 @@
 {
   "name": "@paprika/popover",
-  "version": "0.1.6",
+  "version": "0.1.7",
   "description": "Popover / Tooltip component",
   "author": "@paprika",
   "main": "lib/index.js",

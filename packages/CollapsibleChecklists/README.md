@@ -44,4 +44,19 @@ export default YourComponent;
 
 ### Props
 
+##### CollapsibleChecklists
+
 - `onChange`
+- `title`
+
+##### CollapsibleChecklists.Group
+
+- `isCheckedByDefault`
+- `isDisabled`
+- `isIndeterminateByDefault`
+- `onExpand`
+
+##### CollapsibleChecklists.Item
+
+- `isChecked`
+- `isDisabled`
