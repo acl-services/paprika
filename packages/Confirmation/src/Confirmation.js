@@ -4,7 +4,7 @@ import Button from "@paprika/button";
 import { ShirtSizes } from "@paprika/helpers/lib/customPropTypes";
 import useI18n from "@paprika/l10n/lib/useI18n";
 import Popover from "@paprika/popover";
-// import contentStyles from "../../DropdownMenu/src/DropdownMenuContentStyles.styles";
+import contentStyles from "./ContentStyles.styles";
 import ConfirmationStyles from "./Confirmation.styles";
 
 const propTypes = {
@@ -37,16 +37,24 @@ const Confirmation = props => {
   return (
     <Popover defaultIsOpen onClose={onClose}>
       <Popover.Content>
-        <div css={ConfirmationStyles}>
-          <div className="dropdown-menu__confirmation-header">{heading}</div>
-          {description && <div className="dropdown-menu__confirmation-description">{description}</div>}
-          <div className="dropdown-menu__confirmation-footer">
-            <Button isSemantic={false} ref={confirmRef} kind={confirmButtonType} size={buttonSize} onClick={onConfirm}>
-              {confirmLabel}
-            </Button>
-            <Button isSemantic={false} kind="minor" size={buttonSize} onClick={onCancel}>
-              {I18n.t("actions.cancel")}
-            </Button>
+        <div css={contentStyles}>
+          <div css={ConfirmationStyles}>
+            <div className="dropdown-menu__confirmation-header">{heading}</div>
+            {description && <div className="dropdown-menu__confirmation-description">{description}</div>}
+            <div className="dropdown-menu__confirmation-footer">
+              <Button
+                isSemantic={false}
+                ref={confirmRef}
+                kind={confirmButtonType}
+                size={buttonSize}
+                onClick={onConfirm}
+              >
+                {confirmLabel}
+              </Button>
+              <Button isSemantic={false} kind="minor" size={buttonSize} onClick={onCancel}>
+                {I18n.t("actions.cancel")}
+              </Button>
+            </div>
           </div>
         </div>
       </Popover.Content>
