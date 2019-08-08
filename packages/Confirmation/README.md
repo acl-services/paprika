@@ -16,6 +16,7 @@ import Confirmation from "@paprika/confirmation";
 <Confirmation
   confirmLabel="Delete filter"
   description="Lorem ipsum dolor amet vexillologist tacos selvage narwhal butcher twee ethical hot chicken"
+  isOpen
   onConfirm={() => handleConfirm(onClose)}
   onCancel={() => handleCancel(onClose)}
   heading="Delete filter?"
@@ -28,6 +29,7 @@ import Confirmation from "@paprika/confirmation";
 - confirmButtonType
 - confirmLabel
 - description
+- isOpen
 - onCancel
 - onClose
 - onConfirm
