@@ -10,8 +10,6 @@ const contentStyles = css`
   overflow-wrap: break-word;
   padding: 0;
   text-align: left;
-
-  ${({ isOpen }) => (isOpen === false ? "opacity: 0;" : "")}
 `;
 
 export default contentStyles;
