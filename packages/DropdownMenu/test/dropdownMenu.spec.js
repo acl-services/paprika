@@ -2,6 +2,8 @@ import React from "react";
 import { render, configure } from "@testing-library/react";
 import L10n from "@paprika/l10n";
 import DropdownMenu from "../src";
+// must update to npm package
+import Confirmation from "../../Confirmation/src/Confirmation";
 
 configure({ testIdAttribute: "data-qa-anchor" });
 
@@ -21,7 +23,8 @@ function renderComponent(props = {}) {
           isDestructive
           renderConfirmation={handleCloseMenu => {
             return (
-              <DropdownMenu.Confirmation
+              <Confirmation
+                isOpen
                 confirmLabel="Confirm Delete"
                 onConfirm={() => {
                   handleCloseMenu();
