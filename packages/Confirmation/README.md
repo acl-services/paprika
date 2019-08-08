@@ -33,4 +33,4 @@ import Confirmation from "@paprika/confirmation";
 - onConfirm
 - heading
 
-[More detail about these props](https://github.com/acl-services/paprika/blob/master/packages/DropdownMenu/src/components/Confirmation/Confirmation.js)
+[More detail about these props](https://github.com/acl-services/paprika/blob/master/packages/Confirmation/src/Confirmation.js)
