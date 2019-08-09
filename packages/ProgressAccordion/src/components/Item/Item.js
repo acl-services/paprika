@@ -44,7 +44,9 @@ const Item = props => {
       {children}
     </Collapsible>
   ) : (
-    <div css={incompleteStyles}>{label}</div>
+    <div css={incompleteStyles} data-pka-anchor="progress-accordion.item.incomplete">
+      {label}
+    </div>
   );
 };
 
