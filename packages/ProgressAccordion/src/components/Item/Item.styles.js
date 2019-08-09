@@ -22,6 +22,7 @@ export const itemLabelStyles = css`
 `;
 
 export const incompleteStyles = css`
+  ${stylers.fontSize()}
   ${stylers.truncateText}
 
   border-bottom: 1px solid ${tokens.border.color};

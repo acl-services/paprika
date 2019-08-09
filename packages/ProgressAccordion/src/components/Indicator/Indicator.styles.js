@@ -69,7 +69,8 @@ export const indicatorStyles = css`
 `;
 
 export const indicatorDotStyles = css`
-  ${stylers.z(2)};
+  ${stylers.fontSize()}
+  ${stylers.z(2)}
 
   align-items: center;
   background-color: ${tokens.color.white};
