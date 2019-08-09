@@ -69,6 +69,11 @@ const selectStyles = () => `
     option {
       color: ${tokens.color.black};
       font-style: normal;
+
+      &:first-child {
+        color: inherit;
+        font-style: inherit;
+      }
     }
   }
 
