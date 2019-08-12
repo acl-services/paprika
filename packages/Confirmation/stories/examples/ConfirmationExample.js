@@ -6,12 +6,14 @@ const ConfirmationExample = () => {
   const [isOpen, setIsOpen] = React.useState(false);
 
   const handleConfirm = () => {
-    console.log("confirmed");
     setIsOpen(false);
   };
 
   const handleCancel = () => {
-    console.log("cancelled");
+    setIsOpen(false);
+  };
+
+  const handleClose = () => {
     setIsOpen(false);
   };
 
@@ -25,6 +27,7 @@ const ConfirmationExample = () => {
         description="Lorem ipsum dolor amet vexillologist tacos selvage narwhal butcher twee ethical hot chicken."
         onConfirm={handleConfirm}
         onCancel={handleCancel}
+        onClose={handleClose}
         heading="Delete filter?"
       />
     </div>
