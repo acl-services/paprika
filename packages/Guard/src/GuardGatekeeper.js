@@ -2,12 +2,24 @@ import React from "react";
 import PropTypes from "prop-types";
 import { GuardGatekeeperContext } from "./GuardSupervisor";
 
-export function useGatekeeper() {
-  return React.useContext(GuardGetekeeperContext);
+const propTypes = {
+  children: PropTypes.func,
+  alertMessage: PropTypes.string,
+  group: PropTypes.oneOfType([PropTypes.string, PropTypes.arrayOf(PropTypes.string)]),
+};
+
+const defaultProps = {
+  alertMessage: "",
+  children: null,
+  group: null,
+};
+
+export function useGuard() {
+  return React.useContext(GuardGatekeeperContext);
 }
 
 export default function GuardGatekeeper({ alertMessage, children, group }) {
-  const canLeave = useGatekeeper();
+  const canLeave = useGuard();
 
   if (!children) {
     return null;
@@ -21,14 +33,6 @@ export default function GuardGatekeeper({ alertMessage, children, group }) {
   );
 }
 
-GuardGatekeeper.propTypes = {
-  children: PropTypes.func,
-  alertMessage: PropTypes.string,
-  group: PropTypes.oneOfType([PropTypes.string, PropTypes.arrayOf(PropTypes.string)]),
-};
-
-GuardGatekeeper.defaultProps = {
-  alertMessage: "",
-  children: null,
-  group: null,
-};
+GuardGatekeeper.displayName = "GuardGatekeeper";
+GuardGatekeeper.propTypes = propTypes;
+GuardGatekeeper.defaultProps = defaultProps;

@@ -2,7 +2,17 @@ import React from "react";
 import PropTypes from "prop-types";
 import { GuardRegistrationContext } from "./GuardSupervisor";
 
-function GuardConnector({ group, isDirty }) {
+const propTypes = {
+  isDirty: PropTypes.bool,
+  group: PropTypes.string,
+};
+
+const defaultProps = {
+  isDirty: false,
+  group: null,
+};
+
+export default function GuardConnector({ group, isDirty }) {
   const registerGuard = React.useContext(GuardRegistrationContext);
   const updateConnectorStatus = React.useRef(null);
 
@@ -26,14 +36,6 @@ function GuardConnector({ group, isDirty }) {
   return null;
 }
 
-GuardConnector.propTypes = {
-  isDirty: PropTypes.bool,
-  group: PropTypes.string,
-};
-
-GuardConnector.defaultProps = {
-  isDirty: false,
-  group: null,
-};
-
-export default GuardConnector;
+GuardConnector.displayName = "GuardConnector";
+GuardConnector.propTypes = propTypes;
+GuardConnector.defaultProps = defaultProps;

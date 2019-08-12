@@ -1,39 +1,8 @@
 import React from "react";
-import { Story, Small, Rule } from "storybook/assets/styles/common.styles";
+import { Story, Small } from "storybook/assets/styles/common.styles";
 import Guard from "../../src";
 
-function GuardedInput() {
-  const [value, setValue] = React.useState("");
-  const [isHidden, setIsHidden] = React.useState(true);
-  const canLeave = Guard.useGatekeeper();
-
-  const isDirty = value !== "";
-
-  return (
-    <React.Fragment>
-      <button
-        type="button"
-        onClick={() =>
-          canLeave({
-            alertMessage: "Don't close me, please!",
-          }) && setIsHidden(isHidden => !isHidden)
-        }
-      >
-        Show/Hide the input
-      </button>
-
-      {!isHidden ? (
-        <div>
-          <Guard.Connector isDirty={isDirty} />
-          <input id="myInput" value={value} onChange={e => setValue(e.target.value)} />
-          <p>{isDirty ? "Form is dirty. Now, try to hide the input!" : null}</p>
-        </div>
-      ) : null}
-    </React.Fragment>
-  );
-}
-
-const ExampleStory = () => {
+const BasicStory = () => {
   return (
     <Story>
       <Guard.Supervisor>
@@ -48,16 +17,8 @@ const ExampleStory = () => {
           https://stackoverflow.com/questions/49445671/how-to-trigger-beforeunload-event-from-within-an-iframe
         </Small>
       </p>
-
-      <Rule />
-      <Guard.Supervisor>
-        <GuardedInput />
-      </Guard.Supervisor>
-      <p>
-        <Small>In this example, a confirmation dialog will be triggered if you try to close a dirty input.</Small>
-      </p>
     </Story>
   );
 };
 
-export default ExampleStory;
+export default BasicStory;

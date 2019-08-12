@@ -1,7 +1,7 @@
 {
   "name": "@paprika/guard",
   "version": "0.1.0",
-  "description": "Guard component helps to prevent user from losing unsaved data",
+  "description": "Guard component helps to prevent a user from losing unsaved data",
   "author": "@paprika",
   "main": "lib/index.js",
   "license": "MIT",
@@ -17,7 +17,7 @@
     "prop-types": "^15.7.2"
   },
   "peerDependencies": {
-    "react": "^16.4.0",
-    "react-dom": "^16.4.2"
+    "react": "^16.8.0",
+    "react-dom": "^16.8.0"
   }
 }

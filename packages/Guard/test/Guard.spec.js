@@ -5,5 +5,7 @@
 // const noop = () => {};
 
 describe("Guard", () => {
-  it("Renders with default props", () => {});
+  it("Renders with default props", () => {
+    // TODO
+  });
 });

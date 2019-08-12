@@ -2,7 +2,17 @@ import React from "react";
 import PropTypes from "prop-types";
 
 export const GuardRegistrationContext = React.createContext();
-export const GuardGetekeeperContext = React.createContext();
+export const GuardGatekeeperContext = React.createContext();
+
+const propTypes = {
+  children: PropTypes.node,
+  alertMessageDefault: PropTypes.string,
+};
+
+const defaultProps = {
+  children: null,
+  alertMessageDefault: null,
+};
 
 export default function GuardSupervisor({ alertMessageDefault, children }) {
   const guards = React.useRef([]);
@@ -23,12 +33,11 @@ export default function GuardSupervisor({ alertMessageDefault, children }) {
   React.useEffect(() => {
     function handleWindowBeforeUnload(event) {
       if (hasDirtyConnectors()) {
-        const message = alertMessageDefault;
-
+        // SEE: https://developer.mozilla.org/en-US/docs/Web/API/Event/returnValue
+        // SEE: https://stackoverflow.com/questions/38879742/is-it-possible-to-display-a-custom-message-in-the-beforeunload-popup
+        event.preventDefault();
         // eslint-disable-next-line no-param-reassign
-        event.returnValue = message;
-
-        return message;
+        event.returnValue = "";
       }
     }
 
@@ -37,7 +46,7 @@ export default function GuardSupervisor({ alertMessageDefault, children }) {
     return function cleanup() {
       window.removeEventListener("beforeunload", handleWindowBeforeUnload, false);
     };
-  }, [alertMessageDefault]);
+  }, []);
 
   function generateId() {
     lastId.current++;
@@ -78,19 +87,13 @@ export default function GuardSupervisor({ alertMessageDefault, children }) {
 
   return (
     <GuardRegistrationContext.Provider value={registerGuardCallback}>
-      <GuardGetekeeperContext.Provider value={canLeaveCallback}>
+      <GuardGatekeeperContext.Provider value={canLeaveCallback}>
         {React.Children.count(children) > 1 ? <React.Fragment>{children}</React.Fragment> : children}
-      </GuardGetekeeperContext.Provider>
+      </GuardGatekeeperContext.Provider>
     </GuardRegistrationContext.Provider>
   );
 }
 
-GuardSupervisor.propTypes = {
-  children: PropTypes.node,
-  alertMessageDefault: PropTypes.string,
-};
-
-GuardSupervisor.defaultProps = {
-  children: null,
-  alertMessageDefault: null,
-};
+GuardSupervisor.displayName = "GuardSupervisor";
+GuardSupervisor.propTypes = propTypes;
+GuardSupervisor.defaultProps = defaultProps;

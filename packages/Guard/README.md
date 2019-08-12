@@ -10,13 +10,49 @@ or
 
 ### Usage
 
+React <16.8.x
+
 ```js
 import Guard from "@paprika/guard";
 
-<Guard.Supervisor>
-  <Guard.Connector isDirty />
-  <Guard.Gatekeeper>{canLeave => <button onClick={() => canLeave() && doClose()}>Close</button>}</Guard.Gatekeeper>
-</Guard.Supervisor>;
+function App() {
+  function doClose() {}
+
+  return (
+    <Guard.Supervisor>
+      <Guard.Connector isDirty />
+      <Guard.Gatekeeper>{canLeave => <button onClick={() => canLeave() && doClose()}>Close</button>}</Guard.Gatekeeper>
+    </Guard.Supervisor>
+  );
+}
+```
+
+React >=16.8.x
+
+```js
+import Guard from "@paprika/guard";
+
+function MyComponent() {
+  const canLeave = Guard.useGuard(); // a hook
+  const isDirty = React.useState(false);
+
+  function doClose() {}
+
+  return (
+    <div>
+      <Guard.Connector isDirty={isDirty} />
+      <button onClick={() => canLeave() && doClose()}>Close</button>
+    </div>
+  );
+}
+
+function App() {
+  return (
+    <Guard.Supervisor>
+      <MyComponent />
+    </Guard.Supervisor>
+  );
+}
 ```
 
 ### Props
