@@ -47,7 +47,7 @@ const Confirmation = props => {
 
   React.useEffect(() => {
     if (confirmButtonRef.current) confirmButtonRef.current.focus();
-  });
+  }, [confirmButtonRef]);
 
   const I18n = useI18n();
   return (
