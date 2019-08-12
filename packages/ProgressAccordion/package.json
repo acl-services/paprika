@@ -1,0 +1,29 @@
+{
+  "name": "@paprika/progress-accordion",
+  "version": "0.1.3",
+  "description": "ProgressAccordion component",
+  "author": "@paprika",
+  "main": "lib/index.js",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/acl-services/paprika/tree/master/packages/ProgressAccordion"
+  },
+  "publishConfig": {
+    "access": "public"
+  },
+  "dependencies": {
+    "@babel/runtime-corejs2": "^7.3.1",
+    "@paprika/collapsible": "^0.1.7",
+    "@paprika/icon": "^0.1.6",
+    "@paprika/l10n": "^0.2.0",
+    "@paprika/stylers": "^0.1.4",
+    "@paprika/tokens": "^0.1.3",
+    "prop-types": "^15.7.2"
+  },
+  "peerDependencies": {
+    "react": "^16.8.4",
+    "react-dom": "^16.8.4",
+    "styled-components": "^4.2.0"
+  }
+}

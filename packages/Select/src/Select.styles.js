@@ -65,6 +65,16 @@ const selectStyles = () => `
 
   &.form-select--placeholder .form-select__select {
     ${stylers.placeholder}
+
+    option {
+      color: ${tokens.color.black};
+      font-style: normal;
+
+      &:first-child {
+        color: inherit;
+        font-style: inherit;
+      }
+    }
   }
 
   // Disabled
