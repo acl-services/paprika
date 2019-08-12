@@ -1,6 +1,7 @@
 import React from "react";
 import { Rule, Tagline } from "storybook/assets/styles/common.styles";
-import { select, action, text } from "@storybook/addon-knobs";
+import { select, text } from "@storybook/addon-knobs";
+import { action } from "@storybook/addon-actions";
 import L10n from "@paprika/l10n";
 import Heading from "@paprika/heading";
 import Confirmation from "../../src";
