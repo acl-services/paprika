@@ -1,6 +1,5 @@
 import React from "react";
 import PropTypes from "prop-types";
-import tokens from "@paprika/tokens";
 import TabsContext from "./TabsContext";
 import Panel from "./components/Panel/Panel";
 import Panels from "./components/Panels/Panels";
@@ -8,14 +7,14 @@ import Tab from "./components/Tab/Tab";
 import List from "./components/List/List";
 
 const propTypes = {
-  borderColor: PropTypes.string,
+  kind: PropTypes.oneOf(["primary", "secondary"]),
   children: PropTypes.node.isRequired,
   defaultIndex: PropTypes.number,
   isDisabled: PropTypes.bool,
 };
 
 const defaultProps = {
-  borderColor: tokens.color.green,
+  kind: "primary",
   defaultIndex: 0,
   isDisabled: false,
 };
@@ -26,7 +25,7 @@ const Tabs = props => {
 
   let tabListRef = React.useRef(null);
 
-  const { borderColor, isDisabled } = props;
+  const { kind, isDisabled } = props;
 
   function focusAndSetIndex(index) {
     tabListRef.querySelectorAll(".tab")[index].focus();
@@ -70,7 +69,7 @@ const Tabs = props => {
 
   const contextValue = {
     activeIndex,
-    borderColor,
+    kind,
     currentFocusIndex,
     onClickTab,
     onKeyDown,

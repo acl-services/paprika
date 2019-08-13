@@ -2,9 +2,19 @@ import { css } from "styled-components";
 import tokens from "@paprika/tokens";
 import stylers from "@paprika/stylers";
 
-const activeStyles = css`
+const kindStyles = () => ({
+  primary: `
+    border-bottom: ${tokens.spaceSm} solid ${tokens.color.green}
+  `,
+
+  secondary: `
+    border-bottom: ${tokens.spaceSm} solid ${tokens.color.purple}
+  `,
+});
+
+const activeStyles = props => css`
   &::after {
-    border-bottom: ${tokens.spaceSm} solid ${props => props.borderColor || tokens.color.green};
+    ${kindStyles()[props.kind]}
     bottom: -${tokens.spaceSm};
     content: "";
     height: ${tokens.spaceSm};
@@ -24,7 +34,6 @@ export const tabStyles = css`
   background-color: ${tokens.color.white};
   border: 0;
   border-bottom: ${tokens.spaceSm} solid transparent;
-  border-radius: ${tokens.border.radius};
   color: ${tokens.color.black};
   display: inline-block;
   margin: 0 0 0 ${stylers.spacer(4)};
@@ -40,6 +49,7 @@ export const tabStyles = css`
   }
 
   &:focus {
+    border-radius: ${tokens.border.radius};
     ${stylers.z(1)}
   }
 

@@ -1,5 +1,5 @@
 import React from "react";
-import { array, boolean, text } from "@storybook/addon-knobs";
+import { array, boolean, select } from "@storybook/addon-knobs";
 import { Story, Rule, Tagline } from "storybook/assets/styles/common.styles";
 import Heading from "@paprika/heading";
 import Tabs from "../../src";
@@ -23,7 +23,7 @@ const renderPanels = () => {
 };
 
 const tabProps = () => ({
-  borderColor: text("Border color", "green"),
+  kind: select("type", ["primary", "secondary"], "primary"),
   children: renderTabs(),
   isDisabled: boolean("isDisabled", false),
 });
