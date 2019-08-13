@@ -2,6 +2,8 @@ import { css } from "styled-components";
 import tokens from "@paprika/tokens";
 import stylers from "@paprika/stylers";
 
+const focusStyle = tokens.highlight.active.withBorder.boxShadow;
+
 const kindStyles = () => ({
   primary: `
     border-bottom: ${tokens.spaceSm} solid ${tokens.color.green}
@@ -60,5 +62,10 @@ export const tabStyles = css`
   &.tab-link {
     color: ${tokens.color.black};
     text-decoration: none;
+
+    &:focus {
+      box-shadow: ${focusStyle};
+      outline: none;
+    }
   }
 `;
