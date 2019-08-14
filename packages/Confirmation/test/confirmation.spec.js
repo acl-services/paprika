@@ -35,4 +35,20 @@ describe("Confirmation", () => {
   it("should show confirmation panel in the document", () => {
     expect(confirmationComponent).toBeVisible();
   });
+
+  it("should open the confirmation panel when button is clicked", () => {
+    // expect(confirmationComponent).toBeVisible();
+  });
+
+  it("should close the confirmation when clicking outside of the confirmation panel", () => {
+    // expect(confirmationComponent).toBeVisible();
+  });
+
+  it("should trigger the onConfirm callback when clicking the confirm button", () => {
+    // expect(confirmationComponent).toBeVisible();
+  });
+
+  it("should trigger the onCancel callback when clicking the cancel button", () => {
+    // expect(confirmationComponent).toBeVisible();
+  });
 });
