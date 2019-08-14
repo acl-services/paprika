@@ -7,7 +7,7 @@ export const confirmStyles = css`
 `;
 
 export const confirmHeaderStyles = css`
-  ${stylers.fontSize()};
+  ${stylers.fontSize()}
   font-weight: bold;
 `;
 

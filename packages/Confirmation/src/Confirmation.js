@@ -17,11 +17,11 @@ const propTypes = {
   confirmButtonType: PropTypes.oneOf(["primary", "destructive"]),
   confirmLabel: PropTypes.node.isRequired,
   description: PropTypes.node,
+  heading: PropTypes.node.isRequired,
   isOpen: PropTypes.bool.isRequired,
   onCancel: PropTypes.func.isRequired,
   onClose: PropTypes.func,
   onConfirm: PropTypes.func.isRequired,
-  heading: PropTypes.node.isRequired,
 };
 
 const defaultProps = {
