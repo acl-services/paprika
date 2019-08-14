@@ -7,12 +7,14 @@ import Tab from "./components/Tab/Tab";
 import List from "./components/List/List";
 
 const propTypes = {
+  kind: PropTypes.oneOf(["primary", "secondary"]),
   children: PropTypes.node.isRequired,
   defaultIndex: PropTypes.number,
   isDisabled: PropTypes.bool,
 };
 
 const defaultProps = {
+  kind: "primary",
   defaultIndex: 0,
   isDisabled: false,
 };
@@ -23,7 +25,7 @@ const Tabs = props => {
 
   let tabListRef = React.useRef(null);
 
-  const { isDisabled } = props;
+  const { kind, isDisabled } = props;
 
   function focusAndSetIndex(index) {
     tabListRef.querySelectorAll(".tab")[index].focus();
@@ -67,6 +69,7 @@ const Tabs = props => {
 
   const contextValue = {
     activeIndex,
+    kind,
     currentFocusIndex,
     onClickTab,
     onKeyDown,
