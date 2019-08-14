@@ -19,5 +19,6 @@ storiesOf("Popover", module)
   .add("With Scroll Container", ScrollContainer);
 
 storiesOf("Popover/Dev", module)
+  .addDecorator(withKnobs)
   .add("Has container with a CSS transform", () => <Transformed />)
   .add("Has scrolling as controlled component", () => <ControlledScroll />);

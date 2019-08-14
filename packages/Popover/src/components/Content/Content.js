@@ -106,4 +106,5 @@ Content.displayName = "Popover.Content";
 
 Content.propTypes = propTypes;
 Content.defaultProps = defaultProps;
+
 export default Content;
