@@ -33,6 +33,6 @@ export default function GuardGatekeeper({ alertMessage, children, group }) {
   );
 }
 
-GuardGatekeeper.displayName = "GuardGatekeeper";
+GuardGatekeeper.displayName = "Guard.Gatekeeper";
 GuardGatekeeper.propTypes = propTypes;
 GuardGatekeeper.defaultProps = defaultProps;

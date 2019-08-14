@@ -36,6 +36,6 @@ export default function GuardConnector({ group, isDirty }) {
   return null;
 }
 
-GuardConnector.displayName = "GuardConnector";
+GuardConnector.displayName = "Guard.Connector";
 GuardConnector.propTypes = propTypes;
 GuardConnector.defaultProps = defaultProps;

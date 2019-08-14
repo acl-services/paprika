@@ -94,6 +94,6 @@ export default function GuardSupervisor({ alertMessageDefault, children }) {
   );
 }
 
-GuardSupervisor.displayName = "GuardSupervisor";
+GuardSupervisor.displayName = "Guard.Supervisor";
 GuardSupervisor.propTypes = propTypes;
 GuardSupervisor.defaultProps = defaultProps;
