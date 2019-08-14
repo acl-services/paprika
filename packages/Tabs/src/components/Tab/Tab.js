@@ -37,7 +37,7 @@ export default function Tab(props) {
   const handleClick = isDisabled ? () => {} : onClick;
   const tabIndex = isSelected ? 0 : -1;
 
-  if (href) {
+  if (href && !isDisabled) {
     return (
       <a
         css={tabStyles}
@@ -55,8 +55,8 @@ export default function Tab(props) {
 
   return (
     <RawButton
-      aria-disabled={isDisabled}
       aria-selected={isSelected}
+      kind={context.kind}
       className="tab"
       css={tabStyles}
       isDisabled={isDisabled}
