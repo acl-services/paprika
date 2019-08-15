@@ -1,7 +1,7 @@
 import React from "react";
 import { action } from "@storybook/addon-actions";
 import styled from "styled-components";
-import { Rule } from "storybook/assets/styles/common.styles";
+import { Rule, breaklines } from "storybook/assets/styles/common.styles";
 import tokens from "@paprika/tokens";
 import PlusIcon from "@paprika/icon/lib/Add";
 import InfoIcon from "@paprika/icon/lib/InfoCircle";
@@ -158,9 +158,7 @@ const ExampleStory = () => (
         <Button.Close onClick={clickHandler} isDark a11yText="dark close" />
       </DarkBackground>
     </p>
-    {[...Array(34).keys()].map(index => (
-      <br key={index} />
-    ))}
+    {breaklines(34)}
     ...fin.
   </ButtonStory>
 );
