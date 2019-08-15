@@ -10,16 +10,16 @@ import Popover from "../../src";
 const PositioningElementStyled = styled.div`
   ${stylers.alignMiddle}
   ${stylers.fontSize(3)}
-
+  ${stylers.z(3)}
+  background: ${tokens.color.white};
   border: 2px dashed ${tokens.color.purpleLighten30};
   color: ${tokens.color.purple};
   font-weight: 100;
-
   height: 150px;
   letter-spacing: 0.05em;
-
   margin: 30px 0 0 120px;
   padding: ${stylers.spacer(2)};
+  position:relative;
   text-align: center;
   width: 150px;
 `;
@@ -33,7 +33,7 @@ const popoverProps = () => ({
 const ExampleStory = props => (
   <CenteredStory>
     <div>
-      <Popover {...props} getPositioningElement={getPositioningElement}>
+      <Popover {...props} getPositioningElement={getPositioningElement} offset={-20} zIndex={stylers.zValue(4)}>
         <Popover.Trigger>
           <Button>Open Popover</Button>
         </Popover.Trigger>
