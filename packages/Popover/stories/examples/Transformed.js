@@ -18,9 +18,9 @@ const ExampleStory = () => (
         <Button kind="secondary">Open Popover</Button>
       </Popover.Trigger>
       <Popover.Content>
-        <Popover.Tip />
         <Popover.Card>This popover renders inside a &lt;div&gt; with a CSS transform applied to it.</Popover.Card>
       </Popover.Content>
+      <Popover.Tip />
     </Popover>
   </TransformedStory>
 );

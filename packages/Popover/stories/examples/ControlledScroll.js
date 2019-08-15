@@ -30,17 +30,7 @@ const PopoverWithState = () => {
       zIndex={5}
       onClose={onCloseKnob()}
     >
-      <Popover.Trigger>
-        <Button
-          onClick={() =>
-            setOpen(prevOpen => {
-              setOpen(!prevOpen);
-            })
-          }
-        >
-          Open Popover
-        </Button>
-      </Popover.Trigger>
+      <Button onClick={() => setOpen(prevOpen => !prevOpen)}>Open Popover</Button>
       <Popover.Content>
         <Popover.Card>
           Lorem ipsum dolor amet trust fund brooklyn bicycle rights, quinoa hoodie chartreuse master cleanse.

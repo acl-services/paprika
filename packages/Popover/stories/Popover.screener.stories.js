@@ -13,33 +13,33 @@ storiesOf("Popover/Automation Tests/Screener", module).add("basic", () => (
     <Popover isOpen>
       <Popover.Trigger>Open Popover</Popover.Trigger>
       <Popover.Content>
-        <Popover.Tip />
         <Popover.Card>{shortContent}</Popover.Card>
       </Popover.Content>
+      <Popover.Tip />
     </Popover>
     <Gap />
     <Popover isOpen isDark>
       <Popover.Trigger>Open Popover</Popover.Trigger>
       <Popover.Content>
-        <Popover.Tip />
         <Popover.Card>{shortContent}</Popover.Card>
       </Popover.Content>
+      <Popover.Tip />
     </Popover>
     <div style={{ textAlign: "right" }}>
       <Popover isOpen>
         <Popover.Trigger>Open Popover</Popover.Trigger>
         <Popover.Content>
-          <Popover.Tip />
           <Popover.Card>{longContent}</Popover.Card>
         </Popover.Content>
+        <Popover.Tip />
       </Popover>
       <Gap />
       <Popover isOpen isDark>
         <Popover.Trigger>Open Popover</Popover.Trigger>
         <Popover.Content>
-          <Popover.Tip />
           <Popover.Card>{longContent}</Popover.Card>
         </Popover.Content>
+        <Popover.Tip />
       </Popover>
     </div>
   </React.Fragment>

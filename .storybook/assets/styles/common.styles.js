@@ -17,8 +17,8 @@ export const CenteredStory = styled.div`
   ${stylers.alignMiddle}
   align-items: center;
   display: flex;
-  height: 100vh;
   justify-content: center;
+  min-height: 100vh;
   width: 100%;
 `;
 

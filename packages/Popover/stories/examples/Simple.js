@@ -13,9 +13,9 @@ export default function Simple() {
           <Button>Card Popover</Button>
         </Popover.Trigger>
         <Popover.Content>
-          <Popover.Tip />
           <Popover.Card>{text}</Popover.Card>
         </Popover.Content>
+        <Popover.Tip />
       </Popover>
       <br />
       <br />
@@ -28,9 +28,9 @@ export default function Simple() {
           </Button>
         </Popover.Trigger>
         <Popover.Content>
-          <Popover.Tip />
           <Popover.Card>{text}</Popover.Card>
         </Popover.Content>
+        <Popover.Tip />
       </Popover>
     </React.Fragment>
   );

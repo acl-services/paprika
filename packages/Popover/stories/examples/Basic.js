@@ -30,9 +30,9 @@ const ExampleStory = props => (
         <Button>Open Popover</Button>
       </Popover.Trigger>
       <Popover.Content>
-        <Popover.Tip />
         <Popover.Card>{sampleText.long}</Popover.Card>
       </Popover.Content>
+      <Popover.Tip />
     </Popover>
 
     <Gap />
@@ -42,9 +42,9 @@ const ExampleStory = props => (
         <Button kind="minor">Open Tooltip</Button>
       </Popover.Trigger>
       <Popover.Content>
-        <Popover.Tip />
         <Popover.Card>{sampleText.short}</Popover.Card>
       </Popover.Content>
+      <Popover.Tip />
     </Popover>
   </CenteredStory>
 );

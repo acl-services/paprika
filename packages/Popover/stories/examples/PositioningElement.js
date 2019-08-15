@@ -38,9 +38,9 @@ const ExampleStory = props => (
           <Button>Open Popover</Button>
         </Popover.Trigger>
         <Popover.Content>
-          <Popover.Tip />
           <Popover.Card>Positioned by getPositioningElement</Popover.Card>
         </Popover.Content>
+        <Popover.Tip />
       </Popover>
       <PositioningElementStyled id="another-div">Positioning Element</PositioningElementStyled>
     </div>

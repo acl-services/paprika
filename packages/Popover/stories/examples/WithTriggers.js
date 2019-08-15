@@ -25,9 +25,9 @@ const ExampleStory = () => (
           )}
         </Popover.Trigger>
         <Popover.Content>
-          <Popover.Tip />
           <Popover.Card>Lorem ipsum single-origin kombucha butcher gentrify foraged flannel.</Popover.Card>
         </Popover.Content>
+        <Popover.Tip />
       </Popover>
       <Gap />
       <h5>
@@ -36,9 +36,9 @@ const ExampleStory = () => (
       <Popover shouldKeepFocus>
         <Popover.Trigger>{handler => <input onClick={handler} onBlur={handler} />}</Popover.Trigger>
         <Popover.Content>
-          <Popover.Tip />
           <Popover.Card>Lorem ipsum single-origin kombucha butcher gentrify foraged flannel.</Popover.Card>
         </Popover.Content>
+        <Popover.Tip />
       </Popover>
       <Gap />
       <h5>
@@ -58,9 +58,9 @@ const ExampleStory = () => (
           )}
         </Popover.Trigger>
         <Popover.Content>
-          <Popover.Tip />
           <Popover.Card>Lorem ipsum single-origin kombucha butcher gentrify foraged flannel.</Popover.Card>
         </Popover.Content>
+        <Popover.Tip />
       </Popover>
       &nbsp;More info
       <Gap />
@@ -70,9 +70,9 @@ const ExampleStory = () => (
           <a href="http://www.acl.com">More info</a>
         </Popover.Trigger>
         <Popover.Content>
-          <Popover.Tip />
           <Popover.Card>Lorem ipsum single-origin kombucha butcher gentrify foraged flannel.</Popover.Card>
         </Popover.Content>
+        <Popover.Tip />
       </Popover>
       <Gap />
       <h5>
@@ -85,9 +85,9 @@ const ExampleStory = () => (
           </span>
         </Popover.Trigger>
         <Popover.Content>
-          <Popover.Tip />
           <Popover.Card>Lorem ipsum single-origin kombucha.</Popover.Card>
         </Popover.Content>
+        <Popover.Tip />
       </Popover>
       <Gap />
       <h5>
@@ -98,9 +98,9 @@ const ExampleStory = () => (
           <input />
         </Popover.Trigger>
         <Popover.Content>
-          <Popover.Tip />
           <Popover.Card>Lorem ipsum single-origin kombucha.</Popover.Card>
         </Popover.Content>
+        <Popover.Tip />
       </Popover>
       <Gap />
     </div>

@@ -12,17 +12,17 @@ storiesOf("Popover/Automation Tests/Accessibility", module).add("Default", () =>
     <Popover isOpen>
       <Popover.Trigger>Open Popover</Popover.Trigger>
       <Popover.Content>
-        <Popover.Tip />
         <Popover.Card>Popover content.</Popover.Card>
       </Popover.Content>
+      <Popover.Tip />
     </Popover>
     <Gap />
     <Popover isOpen isDark>
       <Popover.Trigger>Open Popover</Popover.Trigger>
       <Popover.Content>
-        <Popover.Tip />
         <Popover.Card>Popover content.</Popover.Card>
       </Popover.Content>
+      <Popover.Tip />
     </Popover>
   </React.Fragment>
 ));
