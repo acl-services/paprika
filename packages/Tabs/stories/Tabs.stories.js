@@ -49,6 +49,9 @@ storiesOf("Tabs", module)
       <Tabs>
         <Tabs.List>
           <Tabs.Tab href="https://google.com">Google</Tabs.Tab>
+          <Tabs.Tab href="https://facebook.com" isDisabled>
+            Facebook
+          </Tabs.Tab>
           <Tabs.Tab href="https://wegalvanize.com" target="_blank" rel="noopener noreferrer">
             Galvanize new tab
           </Tabs.Tab>
