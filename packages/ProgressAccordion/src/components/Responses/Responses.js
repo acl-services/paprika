@@ -19,7 +19,11 @@ const Responses = ({ children }) => {
   const filteredChildren = filterChildren(children);
   if (!children) return null;
 
-  return <dl css={responsesStyles}>{filteredChildren}</dl>;
+  return (
+    <dl data-pka-anchor="responses" css={responsesStyles}>
+      {filteredChildren}
+    </dl>
+  );
 };
 
 Responses.displayName = "ProgressAccordion.Responses";

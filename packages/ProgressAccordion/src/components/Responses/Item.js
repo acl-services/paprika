@@ -20,8 +20,10 @@ const Item = ({ heading, children }) => {
 
   return (
     <>
-      <dt>{heading}</dt>
-      <dd>{children || <span css={emptyValueStyles}>{I18n.t("progressAccordion.no_response")}</span>}</dd>
+      <dt data-pka-anchor="responses.item.heading">{heading}</dt>
+      <dd data-pka-anchor="responses.item.body">
+        {children || <span css={emptyValueStyles}>{I18n.t("progressAccordion.no_response")}</span>}
+      </dd>
     </>
   );
 };

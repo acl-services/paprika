@@ -49,7 +49,7 @@ async function updateIssueBodyWithLink(issueNumber, body) {
 async function getIssueNumberAndBody() {
   try {
     const issueFetched = await octokit.search.issuesAndPullRequests({
-      q: `${SEMAPHORE_GIT_BRANCH} repo:${owner}/${repo}`,
+      q: `head:${SEMAPHORE_GIT_BRANCH} repo:${owner}/${repo}`,
     });
     const { number, body } = issueFetched.data.items[0];
 
