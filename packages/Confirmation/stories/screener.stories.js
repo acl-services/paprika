@@ -3,4 +3,4 @@ import { storiesOf } from "@storybook/react";
 
 import ConfirmationExample from "./examples/ConfirmationExample";
 
-storiesOf("confirmation / screener", module).add("confirmation test", () => <ConfirmationExample />);
+storiesOf("Confirmation / screener", module).add("confirmation test", () => <ConfirmationExample />);

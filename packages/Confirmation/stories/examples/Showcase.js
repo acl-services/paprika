@@ -23,8 +23,8 @@ const ExampleStory = () => (
     <Rule />
     <L10n locale={select("locale", ["en", "de", "es", "fr", "ja", "pt", "zh"], "en")}>
       <Confirmation
-        isOpen
-        buttonSize={select("Confirmation Button Size", ["x-small", "small", "medium", "large"], "medium")}
+        align={select("Alignment", ["bottom", "right", "left", "top"], "bottom")}
+        buttonSize={select("Confirmation and Cancel Button Size", ["x-small", "small", "medium", "large"], "medium")}
         confirmLabel={text("Confirm button text", "Delete filter")}
         description={text(
           "Description text",
@@ -33,6 +33,11 @@ const ExampleStory = () => (
         onConfirm={() => handleConfirm()}
         onCancel={() => handleCancel()}
         heading={text("Heading text", "Delete filter?")}
+        renderTrigger={({ isConfirmOpen, handleOpenConfirm }) => (
+          <Confirmation.Trigger isConfirmOpen={isConfirmOpen} handleOpenConfirm={handleOpenConfirm}>
+            Trigger
+          </Confirmation.Trigger>
+        )}
       />
     </L10n>
   </React.Fragment>

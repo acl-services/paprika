@@ -4,7 +4,9 @@ import Button from "@paprika/button";
 import { ShirtSizes } from "@paprika/helpers/lib/customPropTypes";
 import useI18n from "@paprika/l10n/lib/useI18n";
 import Popover from "@paprika/popover";
+import Trigger from "./components/Trigger";
 import contentStyles from "./ContentStyles.styles";
+
 import {
   confirmStyles,
   confirmHeaderStyles,
@@ -18,20 +20,25 @@ const propTypes = {
   confirmLabel: PropTypes.node.isRequired,
   description: PropTypes.node,
   heading: PropTypes.node.isRequired,
-  isOpen: PropTypes.bool.isRequired,
+  isOpenByDefault: PropTypes.bool,
   onCancel: PropTypes.func.isRequired,
   onClose: PropTypes.func,
   onConfirm: PropTypes.func.isRequired,
+  /** Render prop for rendering the trigger element that toggles the render panel */
+  renderTrigger: PropTypes.func,
 };
 
 const defaultProps = {
   buttonSize: ShirtSizes.MEDIUM,
   confirmButtonType: "destructive",
   description: null,
+  isOpenByDefault: false,
+  renderTrigger: null,
   onClose: () => {},
 };
 
 const Confirmation = props => {
+  const [isConfirmOpen, setIsConfirmOpen] = React.useState(false);
   const {
     heading,
     buttonSize,
@@ -41,18 +48,68 @@ const Confirmation = props => {
     onConfirm,
     onCancel,
     onClose,
-    isOpen,
+    isOpenByDefault,
+    ...moreProps
   } = props;
   const confirmButtonRef = React.useRef(null);
+  const triggerRef = React.useRef(null);
+  const confirmPanelRefId = React.useRef(null);
+
+  const focusConfirmButton = () => {
+    if (confirmButtonRef.current) confirmButtonRef.current.focus();
+  };
+
+  const handleOpenConfirm = () => {
+    setIsConfirmOpen(true);
+    setTimeout(() => {
+      focusConfirmButton();
+    }, 200);
+  };
 
   React.useEffect(() => {
-    if (confirmButtonRef.current) confirmButtonRef.current.focus();
-  }, [confirmButtonRef]);
+    if (isOpenByDefault && !isConfirmOpen) {
+      handleOpenConfirm();
+    }
+  }, [confirmButtonRef, isOpenByDefault]);
+
+  const triggerProps = {
+    isConfirmOpen,
+    handleOpenConfirm,
+  };
+
+  const handleOnConfirm = () => {
+    setIsConfirmOpen(false);
+    onConfirm();
+  };
+
+  const handleOnCancel = () => {
+    setIsConfirmOpen(false);
+    onCancel();
+  };
+
+  const handleCloseConfirm = () => {
+    setIsConfirmOpen(false);
+    if (triggerRef.current) triggerRef.current.focus();
+    onClose();
+  };
+
+  const renderTrigger = () => {
+    const triggerComponent = props.renderTrigger(triggerProps);
+    // wrapping the returned item in a function to avoid needing to tab twice
+    // https://github.com/acl-services/paprika/issues/126
+    return () =>
+      React.cloneElement(triggerComponent, {
+        triggerRef,
+        confirmPanelRefId: confirmPanelRefId.current,
+      });
+  };
 
   const I18n = useI18n();
+  // need to add moreProps to the popover
   return (
-    <Popover isOpen={isOpen} onClose={onClose}>
-      <Popover.Content>
+    <Popover isOpen={isConfirmOpen} onClose={handleCloseConfirm} {...moreProps}>
+      {props.renderTrigger ? <Popover.Trigger>{renderTrigger()}</Popover.Trigger> : null}
+      <Popover.Content id={confirmPanelRefId.current}>
         <div css={contentStyles}>
           <div css={confirmStyles}>
             <div css={confirmHeaderStyles}>{heading}</div>
@@ -63,11 +120,11 @@ const Confirmation = props => {
                 ref={confirmButtonRef}
                 kind={confirmButtonType}
                 size={buttonSize}
-                onClick={onConfirm}
+                onClick={handleOnConfirm}
               >
                 {confirmLabel}
               </Button>
-              <Button isSemantic={false} kind="minor" size={buttonSize} onClick={onCancel}>
+              <Button isSemantic={false} kind="minor" size={buttonSize} onClick={handleOnCancel}>
                 {I18n.t("actions.cancel")}
               </Button>
             </div>
@@ -78,8 +135,9 @@ const Confirmation = props => {
   );
 };
 
-Confirmation.displayName = "DropdownMenu.Confirmation";
+Confirmation.displayName = "Confirmation";
 Confirmation.propTypes = propTypes;
 Confirmation.defaultProps = defaultProps;
+Confirmation.Trigger = Trigger;
 
 export default Confirmation;
