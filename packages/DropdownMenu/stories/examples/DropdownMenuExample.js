@@ -32,7 +32,7 @@ const DropdownMenuExample = () => {
         renderConfirmation={onClose => {
           return (
             <Confirmation
-              isOpen
+              isOpenByDefault
               confirmLabel="Delete filter"
               description="Lorem ipsum dolor amet vexillologist tacos selvage narwhal butcher twee ethical hot chicken."
               onConfirm={() => onClose()}

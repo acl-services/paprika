@@ -70,6 +70,7 @@ const DropdownMenu = props => {
     if (isConfirming) {
       const confirmationComponent = renderConfirmation(handleCloseMenu);
       return React.cloneElement(confirmationComponent, {
+        align,
         onClose: handleCloseMenu,
       });
     }
