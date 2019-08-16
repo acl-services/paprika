@@ -31,6 +31,7 @@ import Tabs from "@paprika/tabs";
 
 ### Props
 
+- borderColor
 - children
 - defaultIndex
 - isDisabled

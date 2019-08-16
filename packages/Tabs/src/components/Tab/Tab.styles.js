@@ -2,12 +2,31 @@ import { css } from "styled-components";
 import tokens from "@paprika/tokens";
 import stylers from "@paprika/stylers";
 
-const activeStyles = css`
-  border-bottom: ${tokens.spaceSm} solid ${tokens.color.green};
+const focusStyle = tokens.highlight.active.withBorder.boxShadow;
+
+const kindStyles = () => ({
+  primary: `
+    border-bottom: ${tokens.spaceSm} solid ${tokens.color.green}
+  `,
+
+  secondary: `
+    border-bottom: ${tokens.spaceSm} solid ${tokens.color.purple}
+  `,
+});
+
+const activeStyles = props => css`
+  &::after {
+    ${kindStyles()[props.kind]}
+    bottom: -${tokens.spaceSm};
+    content: "";
+    height: ${tokens.spaceSm};
+    left: 0;
+    position: absolute;
+    width: 100%;
+  }
 `;
 
 const disabledStyles = css`
-  border-bottom: 0;
   color: ${tokens.color.blackDisabled};
   cursor: not-allowed;
 `;
@@ -17,11 +36,10 @@ export const tabStyles = css`
   background-color: ${tokens.color.white};
   border: 0;
   border-bottom: ${tokens.spaceSm} solid transparent;
-  border-radius: 0;
   color: ${tokens.color.black};
   display: inline-block;
   margin: 0 0 0 ${stylers.spacer(4)};
-  padding: ${stylers.spacer(2)} 0 ${tokens.space} 0;
+  padding: ${stylers.spacer(2)} ${tokens.spaceSm} ${tokens.space} ${tokens.spaceSm};
   position: relative;
   transition: border-color 0.3s ease;
 
@@ -33,6 +51,7 @@ export const tabStyles = css`
   }
 
   &:focus {
+    border-radius: ${tokens.border.radius};
     ${stylers.z(1)}
   }
 
@@ -43,5 +62,10 @@ export const tabStyles = css`
   &.tab-link {
     color: ${tokens.color.black};
     text-decoration: none;
+
+    &:focus {
+      box-shadow: ${focusStyle};
+      outline: none;
+    }
   }
 `;
