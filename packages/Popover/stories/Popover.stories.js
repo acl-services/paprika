@@ -8,7 +8,7 @@ import PositioningElement from "./examples/PositioningElement";
 import ScrollContainer from "./examples/ScrollContainer";
 import Transformed from "./examples/Transformed";
 import A11y from "./examples/A11y";
-import CypressStory, { propHandles } from "./examples/Cypress";
+import Cypress, { propHandles } from "./examples/Cypress";
 import Screener from "./examples/Screener";
 
 storiesOf("Popover", module)
@@ -27,4 +27,4 @@ storiesOf("Popover/Automation Tests", module)
 
 storiesOf("Popover/Automation Tests", module)
   .addDecorator(propHandles)
-  .add("Cypress", CypressStory);
+  .add("Cypress", Cypress);
