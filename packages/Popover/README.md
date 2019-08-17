@@ -68,44 +68,44 @@ const [isOpen, setOpen] = React.useState(false);
 
 ### Props
 
-align
-children (required)
-isDark  
-isEager
-isOpen  
-defaultIsOpen
-maxWidth  
-onClose
-offset  
-getPositioningElement
-getScrollContainer  
-shouldKeepFocus
-zIndex
+- align
+- children (required)
+- isDark
+- isEager
+- isOpen
+- defaultIsOpen
+- maxWidth
+- onClose
+- offset
+- getPositioningElement
+- getScrollContainer
+- shouldKeepFocus
+- zIndex
 
 [More detail about these props](https://github.com/acl-services/paprika/blob/master/packages/Popover/src/Popover.js)
 
 #### Trigger
 
-a11yText
-children (required)
+- a11yText
+- children (required)
 
 [More detail about these props](https://github.com/acl-services/paprika/blob/master/packages/Popover/src/components/Trigger/Trigger.js)
 
 #### Content
 
-children (required)
-onBlur
+- children (required)
+- onBlur
 
 [More detail about these props](https://github.com/acl-services/paprika/blob/master/packages/Popover/src/components/Content/Content.js)
 
 #### Card
 
-children (required)
+- children (required)
 
-[More detail about these props](https://github.com/acl-services/paprika/blob/master/packages/Popover/src/components/Card/Card.js)
+[More detail about this prop](https://github.com/acl-services/paprika/blob/master/packages/Popover/src/components/Card/Card.js)
 
 #### Tip
 
-zIndex
+- zIndex
 
-[More detail about these props](https://github.com/acl-services/paprika/blob/master/packages/Popover/src/components/Tip/Tip.js)
+[More detail about this prop](https://github.com/acl-services/paprika/blob/master/packages/Popover/src/components/Tip/Tip.js)

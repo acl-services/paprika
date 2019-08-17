@@ -1,13 +1,12 @@
 import React from "react";
-import { storiesOf } from "@storybook/react";
 import styled from "styled-components";
-import Popover from "../src";
+import Popover from "../../src";
 
 const Gap = styled.div`
   height: 200px;
 `;
 
-storiesOf("Popover/Automation Tests/Accessibility", module).add("Default", () => (
+const ExampleStory = () => (
   <React.Fragment>
     <Popover isOpen>
       <Popover.Trigger>Open Popover</Popover.Trigger>
@@ -25,4 +24,6 @@ storiesOf("Popover/Automation Tests/Accessibility", module).add("Default", () =>
       <Popover.Tip />
     </Popover>
   </React.Fragment>
-));
+);
+
+export default ExampleStory;
