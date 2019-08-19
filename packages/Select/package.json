@@ -1,6 +1,6 @@
 {
   "name": "@paprika/select",
-  "version": "0.1.8",
+  "version": "0.1.9",
   "description": "Select component",
   "author": "@paprika",
   "main": "lib/index.js",
