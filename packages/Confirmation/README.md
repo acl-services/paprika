@@ -32,7 +32,7 @@ or
 <Confirmation
   confirmLabel="Delete filter"
   description="Lorem ipsum dolor amet vexillologist tacos selvage narwhal butcher twee ethical hot chicken"
-  isOpenByDefault
+  defaultIsOpen
   onConfirm={() => handleConfirm(onClose)}
   onCancel={() => handleCancel(onClose)}
   heading="Delete filter?"
@@ -45,7 +45,8 @@ or
 - confirmButtonType
 - confirmLabel
 - description
-- isOpenByDefault
+- defaultIsOpen
+- isPending
 - onCancel
 - onClose
 - onConfirm

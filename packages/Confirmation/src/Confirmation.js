@@ -20,7 +20,8 @@ const propTypes = {
   confirmLabel: PropTypes.node.isRequired,
   description: PropTypes.node,
   heading: PropTypes.node.isRequired,
-  isOpenByDefault: PropTypes.bool,
+  defaultIsOpen: PropTypes.bool,
+  isPending: PropTypes.bool,
   onCancel: PropTypes.func.isRequired,
   onClose: PropTypes.func,
   onConfirm: PropTypes.func.isRequired,
@@ -32,7 +33,8 @@ const defaultProps = {
   buttonSize: ShirtSizes.MEDIUM,
   confirmButtonType: "destructive",
   description: null,
-  isOpenByDefault: false,
+  defaultIsOpen: false,
+  isPending: false,
   renderTrigger: null,
   onClose: () => {},
 };
@@ -45,7 +47,8 @@ const Confirmation = props => {
     confirmButtonType,
     confirmLabel,
     description,
-    isOpenByDefault,
+    defaultIsOpen,
+    isPending,
     onConfirm,
     onCancel,
     onClose,
@@ -67,10 +70,10 @@ const Confirmation = props => {
   };
 
   React.useEffect(() => {
-    if (isOpenByDefault && !isConfirmOpen) {
+    if (defaultIsOpen && !isConfirmOpen) {
       handleOpenConfirm();
     }
-  }, [confirmButtonRef, isOpenByDefault]);
+  }, [confirmButtonRef, defaultIsOpen]);
 
   const triggerProps = {
     isConfirmOpen,
@@ -116,6 +119,7 @@ const Confirmation = props => {
             {description && <div css={confirmDescriptionStyles}>{description}</div>}
             <div css={confirmFooterStyles}>
               <Button
+                isPending={isPending}
                 isSemantic={false}
                 ref={confirmButtonRef}
                 kind={confirmButtonType}
@@ -124,7 +128,7 @@ const Confirmation = props => {
               >
                 {confirmLabel}
               </Button>
-              <Button isSemantic={false} kind="minor" size={buttonSize} onClick={handleOnCancel}>
+              <Button disabled={isPending} isSemantic={false} kind="minor" size={buttonSize} onClick={handleOnCancel}>
                 {I18n.t("actions.cancel")}
               </Button>
             </div>

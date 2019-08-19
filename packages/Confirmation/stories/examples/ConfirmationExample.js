@@ -11,7 +11,7 @@ const ConfirmationExample = () => {
       </Button>
       {isConfirmationShowing ? (
         <Confirmation
-          isOpenByDefault
+          defaultIsOpen
           align="right"
           buttonSize="medium"
           confirmLabel="Confirm button text"
