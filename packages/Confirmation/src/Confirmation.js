@@ -45,10 +45,10 @@ const Confirmation = props => {
     confirmButtonType,
     confirmLabel,
     description,
+    isOpenByDefault,
     onConfirm,
     onCancel,
     onClose,
-    isOpenByDefault,
     ...moreProps
   } = props;
   const confirmButtonRef = React.useRef(null);
