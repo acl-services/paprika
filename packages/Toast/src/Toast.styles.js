@@ -22,7 +22,6 @@ const iconColors = {
   [Kinds.ERROR]: tokens.color.orange,
   [Kinds.INFO]: tokens.color.blue,
   [Kinds.LOCKED]: tokens.color.yellowDarken10,
-  [Kinds.VISUALLY_HIDDEN]: "inherit",
 };
 
 const closeButtonColors = {
@@ -33,7 +32,7 @@ const closeButtonColors = {
 };
 
 function getStylesForKind(kind) {
-  if (kind === "visually-hidden") return "";
+  if (kind === Kinds.VISUALLY_HIDDEN) return "";
 
   return css`
     background-color: ${primaryColors[kind]};
@@ -56,26 +55,25 @@ const fixedStyles = css`
 export const CloseButtonStyled = styled(Button.Close)`
   flex-grow: 0;
   flex-shrink: 0;
+  margin-left: ${tokens.space};
   min-height: 0;
 
   ${({ kind }) => closeButtonColors[kind] && `color: ${closeButtonColors[kind]};`}
 `;
 
 export const IconStyled = styled.div`
+  color: ${({ kind }) => iconColors[kind]};
   flex-grow: 0;
   flex-shrink: 0;
-  height: 20px;
-  padding: 2px ${tokens.space} 2px 0;
-  vertical-align: text-top;
-  width: 20px;
+  padding-right: ${tokens.space};
+  padding-top: 1px;
 
-  ${({ kind }) => `color: ${iconColors[kind]};`}
+  ${stylers.fontSize(2)}
 `;
 
 export const contentStyles = css`
   flex-grow: 1;
   flex-shrink: 1;
-  padding: 2px 0;
 `;
 
 const toastStyles = css`
@@ -91,8 +89,8 @@ const toastStyles = css`
   text-align: left;
   transition: opacity 0.3s ease-out;
 
-  ${stylers.fontSize()};
-  ${stylers.lineHeight()};
+  ${stylers.fontSize()}
+  ${stylers.lineHeight()}
   ${({ kind }) => getStylesForKind(kind)}
   ${({ isFixed }) => isFixed && fixedStyles}
   ${({ kind }) => kind === "visually-hidden" && visuallyHidden}

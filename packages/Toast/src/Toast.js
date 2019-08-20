@@ -56,7 +56,7 @@ const defaultProps = {
   onClose: () => {},
   isFixed: false,
   kind: Kinds.INFO,
-  zIndex: 1006,
+  zIndex: 1,
 };
 
 const minimumCloseTimeout = 1500;
@@ -67,7 +67,6 @@ const icons = {
   [Kinds.ERROR]: ExclamationCircleIcon,
   [Kinds.INFO]: InfoCircleIcon,
   [Kinds.LOCKED]: LockIcon,
-  [Kinds.VISUALLY_HIDDEN]: InfoCircleIcon,
 };
 
 function Toast(props) {
@@ -130,9 +129,11 @@ function Toast(props) {
       kind={kind}
       {...moreProps}
     >
-      <IconStyled as={icons[kind]} kind={kind} />
+      {kind === Kinds.VISUALLY_HIDDEN ? null : <IconStyled as={icons[kind]} kind={kind} />}
       <div css={contentStyles}>{children}</div>
-      {hasCloseButton ? <CloseButtonStyled onClick={handleClose} size="small" /> : null}
+      {hasCloseButton && kind !== Kinds.VISUALLY_HIDDEN ? (
+        <CloseButtonStyled onClick={handleClose} size="small" />
+      ) : null}
     </div>
   );
 }
