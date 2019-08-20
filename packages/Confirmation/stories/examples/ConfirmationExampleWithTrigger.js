@@ -8,19 +8,20 @@ const ConfirmationExample = () => {
         align="bottom"
         buttonSize="medium"
         confirmLabel="Confirm button text"
-        description="Description text"
+        body="Description text"
         onConfirm={closeConfirm => {
           // do action
           closeConfirm();
         }}
         onClose={() => {}}
         heading="Delete filter?"
-        renderTrigger={({ isConfirmOpen, handleOpenConfirm }) => (
-          <Confirmation.Trigger isConfirmOpen={isConfirmOpen} handleOpenConfirm={handleOpenConfirm}>
+      >
+        {({ isConfirmOpen, handleOpenConfirm }) => (
+          <Confirmation.Trigger isConfirmOpen={isConfirmOpen} onHandleOpenConfirm={handleOpenConfirm}>
             Trigger
           </Confirmation.Trigger>
         )}
-      />
+      </Confirmation>
     </div>
   );
 };

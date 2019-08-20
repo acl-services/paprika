@@ -3,17 +3,12 @@ import tokens from "@paprika/tokens";
 import stylers from "@paprika/stylers";
 
 export const confirmStyles = css`
-  padding: ${tokens.space} ${tokens.spaceSm};
+  padding: 0 ${tokens.spaceSm} ${tokens.space} ${tokens.spaceSm};
 `;
 
-export const confirmHeaderStyles = css`
-  ${stylers.fontSize()}
-  font-weight: bold;
-`;
-
-export const confirmDescriptionStyles = css`
+export const confirmBodyStyles = css`
     ${stylers.lineHeight()}
-    margin: ${tokens.space} 0;
+    padding: ${tokens.spaceSm} 0 0 0;
 `;
 
 export const confirmFooterStyles = css`

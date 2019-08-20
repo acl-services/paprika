@@ -8,22 +8,22 @@ const handleKeyDown = e => {
 
 const propTypes = {
   isConfirmOpen: PropTypes.bool.isRequired,
-  handleOpenConfirm: PropTypes.func.isRequired,
+  onHandleOpenConfirm: PropTypes.func.isRequired,
   triggerRef: PropTypes.shape({ current: PropTypes.instanceOf(Object) }) || null,
-  confirmPanelRefId: PropTypes.string,
+  confirmId: PropTypes.string,
 };
 
-const defaultProps = { triggerRef: null, confirmPanelRefId: "" };
+const defaultProps = { triggerRef: null, confirmId: "" };
 
 const Trigger = props => {
-  const { isConfirmOpen, handleOpenConfirm, confirmPanelRefId, triggerRef, ...otherProps } = props;
+  const { isConfirmOpen, onHandleOpenConfirm, confirmId, triggerRef, ...otherProps } = props;
   return (
     <Button
       ref={triggerRef}
-      aria-controls={confirmPanelRefId}
+      aria-controls={confirmId}
       aria-expanded={isConfirmOpen}
       aria-haspopup="true"
-      onClick={handleOpenConfirm}
+      onClick={onHandleOpenConfirm}
       onKeyDown={handleKeyDown}
       isSquare
       isSemantic={false}

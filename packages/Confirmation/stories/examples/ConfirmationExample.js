@@ -21,10 +21,10 @@ const ConfirmationExample = () => {
       {isConfirmationShowing ? (
         <Confirmation
           defaultIsOpen
-          align="right"
+          align="bottom"
           buttonSize="medium"
           confirmLabel="Confirm button text"
-          description="Description text"
+          body="Description text"
           onConfirm={() => {
             handleConfirm();
           }}

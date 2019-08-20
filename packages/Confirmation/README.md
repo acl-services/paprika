@@ -15,12 +15,12 @@ import Confirmation from "@paprika/confirmation";
 
 <Confirmation
   confirmLabel="Delete filter"
-  description="Lorem ipsum dolor amet vexillologist tacos selvage narwhal butcher twee ethical hot chicken"
+  body="Lorem ipsum dolor amet vexillologist tacos selvage narwhal butcher twee ethical hot chicken"
   onConfirm={() => handleConfirm(onClose)}
   onClose={() => handleClose(onClose)}
   heading="Delete filter?"
   renderTrigger={({ isConfirmOpen, handleOpenConfirm }) => (
-    <Confirmation.Trigger isConfirmOpen={isConfirmOpen} handleOpenConfirm={handleOpenConfirm}>
+    <Confirmation.Trigger isConfirmOpen={isConfirmOpen} onHandleOpenConfirm={handleOpenConfirm}>
       Trigger
     </Confirmation.Trigger>
   )}
@@ -30,7 +30,7 @@ or
 
 <Confirmation
   confirmLabel="Delete filter"
-  description="Lorem ipsum dolor amet vexillologist tacos selvage narwhal butcher twee ethical hot chicken"
+  body="Lorem ipsum dolor amet vexillologist tacos selvage narwhal butcher twee ethical hot chicken"
   defaultIsOpen
   onConfirm={() => handleConfirm(onClose)}
   heading="Delete filter?"
@@ -42,7 +42,7 @@ or
 - buttonSize
 - confirmButtonType
 - confirmLabel
-- description
+- body
 - defaultIsOpen
 - isPending
 - onClose

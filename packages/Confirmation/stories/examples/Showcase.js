@@ -13,31 +13,32 @@ const handleConfirm = closeConfirm => {
 
 const ExampleStory = () => (
   <React.Fragment>
-    <Heading level={1} displayLevel={2} isLight>
-      Confirmation Showcase
-    </Heading>
-    <Tagline>Play with the controls to change the confirmation.</Tagline>
-    <Rule />
-    <L10n locale={select("locale", ["en", "de", "es", "fr", "ja", "pt", "zh"], "en")}>
-      <Story>
+    <Story>
+      <Heading level={1} displayLevel={2} isLight>
+        Confirmation Showcase
+      </Heading>
+      <Tagline>Play with the controls to change the confirmation.</Tagline>
+      <Rule />
+      <L10n locale={select("locale", ["en", "de", "es", "fr", "ja", "pt", "zh"], "en")}>
         <Confirmation
           align={select("Alignment", ["bottom", "right", "left", "top"], "bottom")}
           buttonSize={select("Confirmation and Cancel Button Size", ["x-small", "small", "medium", "large"], "medium")}
           confirmLabel={text("Confirm button text", "Delete filter")}
-          description={text(
+          body={text(
             "Description text",
             "Lorem ipsum dolor amet vexillologist tacos selvage narwhal butcher twee ethical hot chicken."
           )}
           onConfirm={closeConfirm => handleConfirm(closeConfirm)}
           heading={text("Heading text", "Delete filter?")}
-          renderTrigger={({ isConfirmOpen, handleOpenConfirm }) => (
-            <Confirmation.Trigger isConfirmOpen={isConfirmOpen} handleOpenConfirm={handleOpenConfirm}>
+        >
+          {({ isConfirmOpen, handleOpenConfirm }) => (
+            <Confirmation.Trigger isConfirmOpen={isConfirmOpen} onHandleOpenConfirm={handleOpenConfirm}>
               Trigger
             </Confirmation.Trigger>
           )}
-        />
-      </Story>
-    </L10n>
+        </Confirmation>
+      </L10n>
+    </Story>
   </React.Fragment>
 );
 
