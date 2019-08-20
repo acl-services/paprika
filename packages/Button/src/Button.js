@@ -131,7 +131,7 @@ const Button = React.forwardRef((props, ref) => {
     ...moreProps,
   };
   if (isSemantic) {
-    buttonProps.disabled = isDisabled;
+    buttonProps.disabled = isDisabled || isPending;
     buttonProps.type = isSubmit ? "submit" : "button";
     if (role !== "button") buttonProps.role = role;
   } else {
