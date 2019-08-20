@@ -7,9 +7,10 @@ import L10n from "@paprika/l10n";
 
 import Toast from "../src";
 import ControlledToastExample from "./ControlledToastExample";
-import NotControlledToastExample from "./NotControlledToastExample";
-import StickyToastExample from "./StickyToastExample";
-import AllTypesExposed from "./AllTypesExposed";
+import UncontrolledToastExample from "./UncontrolledToastExample";
+import FixedToastExample from "./FixedToastExample";
+import AllKindsExposed from "./AllKindsExposed";
+import Kinds from "../src/ToastKinds";
 
 storiesOf("Toast", module)
   .addDecorator(withKnobs)
@@ -17,12 +18,16 @@ storiesOf("Toast", module)
     <L10n locale="en">
       <Toast
         ariaAlert={boolean("ariaAlert", false)}
-        autoclose={boolean("autoclose", false)}
-        autocloseTimeout={number("autocloseTimeout", 1500)}
+        canAutoClose={boolean("canAutoClose", false)}
+        autoCloseDelay={number("autoCloseDelay", 1500)}
         hasCloseButton={boolean("hasCloseButton", true)}
         isOpen={boolean("isOpen", undefined)}
-        isSticky={boolean("isSticky", false)}
-        type={select("type", ["success", "warning", "error", "info", "locked", "visually-hidden"], "info")}
+        isFixed={boolean("isFixed", false)}
+        kind={select(
+          "kind",
+          [Kinds.SUCCESS, Kinds.WARNING, Kinds.ERROR, Kinds.INFO, Kinds.LOCKED, Kinds.VISUALLY_HIDDEN],
+          Kinds.INFO
+        )}
         zIndex={number("zIndex", 1006)}
       >
         {text("content", "Notification")}
@@ -30,6 +35,6 @@ storiesOf("Toast", module)
     </L10n>
   ))
   .add("Controlled Toast", () => <ControlledToastExample />)
-  .add("Not controlled Toast", () => <NotControlledToastExample />)
-  .add("Sticky Toast", () => <StickyToastExample />)
-  .add("AllTypesExposed", () => <AllTypesExposed />);
+  .add("Uncontrolled Toast", () => <UncontrolledToastExample />)
+  .add("Sticky Toast", () => <FixedToastExample />)
+  .add("AllKindsExposed", () => <AllKindsExposed />);

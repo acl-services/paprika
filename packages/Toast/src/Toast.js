@@ -7,6 +7,8 @@ import ExclamationCircleIcon from "@paprika/icon/lib/ExclamationCircle";
 import InfoCircleIcon from "@paprika/icon/lib/InfoCircle";
 import LockIcon from "@paprika/icon/lib/Lock";
 
+import Kinds from "./ToastKinds";
+
 import toastStyles, { contentStyles, IconStyled, CloseButtonStyled } from "./Toast.styles";
 
 const propTypes = {
@@ -16,11 +18,11 @@ const propTypes = {
    */
   ariaAlert: PropTypes.bool,
 
-  /** Will automatically close after 1500ms (or longer if provided by autocloseTimeout) */
-  autoclose: PropTypes.bool,
+  /** Will automatically close after 1500ms (or longer if provided by autoCloseDelay) */
+  canAutoClose: PropTypes.bool,
 
-  /** Duration (in ms) before Toast will automaticall close (if autoclose is true) */
-  autocloseTimeout: PropTypes.number,
+  /** Duration (in ms) before Toast will automaticall close (if canAutoClose is true) */
+  autoCloseDelay: PropTypes.number,
 
   /** Content of the Toast */
   children: PropTypes.node,
@@ -35,10 +37,10 @@ const propTypes = {
   onClose: PropTypes.func,
 
   /** If the Toast is fixed to the top of the viewport */
-  isSticky: PropTypes.bool,
+  isFixed: PropTypes.bool,
 
   /** Determines the styling of the Toast */
-  type: PropTypes.oneOf(["success", "warning", "error", "info", "locked", "visually-hidden"]),
+  kind: PropTypes.oneOf([Kinds.SUCCESS, Kinds.WARNING, Kinds.ERROR, Kinds.INFO, Kinds.LOCKED, Kinds.VISUALLY_HIDDEN]),
 
   /** The z-index of the Toast */
   zIndex: PropTypes.number,
@@ -46,57 +48,57 @@ const propTypes = {
 
 const defaultProps = {
   ariaAlert: false,
-  autoclose: false,
-  autocloseTimeout: 5000,
+  canAutoClose: false,
+  autoCloseDelay: 1500,
   children: null,
   hasCloseButton: true,
   isOpen: undefined,
   onClose: () => {},
-  isSticky: false,
-  type: "info",
+  isFixed: false,
+  kind: Kinds.INFO,
   zIndex: 1006,
 };
 
 const minimumCloseTimeout = 1500;
 
 const icons = {
-  success: CheckIcon,
-  warning: CautionIcon,
-  error: ExclamationCircleIcon,
-  info: InfoCircleIcon,
-  locked: LockIcon,
-  "visually-hidden": InfoCircleIcon,
+  [Kinds.SUCCESS]: CheckIcon,
+  [Kinds.WARNING]: CautionIcon,
+  [Kinds.ERROR]: ExclamationCircleIcon,
+  [Kinds.INFO]: InfoCircleIcon,
+  [Kinds.LOCKED]: LockIcon,
+  [Kinds.VISUALLY_HIDDEN]: InfoCircleIcon,
 };
 
 function Toast(props) {
   const {
     ariaAlert,
-    autoclose,
-    autocloseTimeout,
+    canAutoClose,
+    autoCloseDelay,
     children,
     hasCloseButton,
     isOpen,
     onClose,
-    isSticky,
-    type,
+    isFixed,
+    kind,
     zIndex,
     ...moreProps
   } = props;
 
   const ariaLive = ariaAlert ? "assertive" : "polite";
-  const [shouldShowToast, setShouldShowToast] = React.useState(isOpen === undefined ? true : isOpen);
+  const [isToastOpen, setIsToastOpen] = React.useState(isOpen === undefined ? true : isOpen);
   const timerRef = React.useRef(null);
 
   function handleClose() {
     clearTimeout(timerRef.current);
-    if (isOpen === undefined) setShouldShowToast(false);
+    if (isOpen === undefined) setIsToastOpen(false);
     onClose();
   }
 
   function startTimer() {
     const newTimer = setTimeout(() => {
       handleClose();
-    }, Math.max(autocloseTimeout, minimumCloseTimeout));
+    }, Math.max(autoCloseDelay, minimumCloseTimeout));
 
     timerRef.current = newTimer;
   }
@@ -104,31 +106,31 @@ function Toast(props) {
   const memoizedStartTimer = React.useCallback(startTimer, []);
 
   React.useEffect(() => {
-    if (autoclose) {
+    if (canAutoClose) {
       memoizedStartTimer();
       return () => clearTimeout(timerRef.current);
     }
-  }, [autoclose, memoizedStartTimer]);
+  }, [canAutoClose, memoizedStartTimer]);
 
   React.useEffect(() => {
     if (isOpen === undefined) return;
-    if (isOpen !== shouldShowToast && !autoclose) setShouldShowToast(isOpen);
-  }, [isOpen, shouldShowToast, autoclose]);
+    if (isOpen !== isToastOpen && !canAutoClose) setIsToastOpen(isOpen);
+  }, [isOpen, isToastOpen, canAutoClose]);
 
-  if (!shouldShowToast) return null;
+  if (!isToastOpen) return null;
 
   return (
     <div
       aria-live={ariaLive}
       css={toastStyles}
       hasCloseButton={hasCloseButton}
-      isSticky={isSticky}
+      isFixed={isFixed}
       role="alert"
       style={{ zIndex }}
-      type={type}
+      kind={kind}
       {...moreProps}
     >
-      <IconStyled as={icons[type]} type={type} />
+      <IconStyled as={icons[kind]} kind={kind} />
       <div css={contentStyles}>{children}</div>
       {hasCloseButton ? <CloseButtonStyled onClick={handleClose} size="small" /> : null}
     </div>

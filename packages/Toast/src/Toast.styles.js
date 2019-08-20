@@ -6,28 +6,45 @@ import tokens from "@paprika/tokens";
 import Button from "@paprika/button";
 import { visuallyHidden } from "@paprika/stylers/lib/includes";
 
-function getStylesForType(type) {
-  if (type === "visually-hidden") return "";
-  const primaryColors = {
-    success: tokens.color.greenLighten50,
-    warning: tokens.color.yellowLighten30,
-    error: tokens.color.orangeLighten40,
-    info: tokens.color.cremeLighten5,
-    locked: tokens.color.yellowLighten30,
-  };
+import Kinds from "./ToastKinds";
+
+const primaryColors = {
+  [Kinds.SUCCESS]: tokens.color.greenLighten50,
+  [Kinds.WARNING]: tokens.color.yellowLighten30,
+  [Kinds.ERROR]: tokens.color.orangeLighten40,
+  [Kinds.INFO]: tokens.color.cremeLighten5,
+  [Kinds.LOCKED]: tokens.color.yellowLighten30,
+};
+
+const iconColors = {
+  [Kinds.SUCCESS]: tokens.color.green,
+  [Kinds.WARNING]: tokens.color.yellowDarken10,
+  [Kinds.ERROR]: tokens.color.orange,
+  [Kinds.INFO]: tokens.color.blue,
+  [Kinds.LOCKED]: tokens.color.yellowDarken10,
+  [Kinds.VISUALLY_HIDDEN]: "inherit",
+};
+
+const closeButtonColors = {
+  [Kinds.SUCCESS]: tokens.color.greenDarken20,
+  [Kinds.WARNING]: tokens.color.yellowDarken40,
+  [Kinds.ERROR]: tokens.color.orangeLighten40,
+  [Kinds.LOCKED]: tokens.color.yellowLighten30,
+};
+
+function getStylesForKind(kind) {
+  if (kind === "visually-hidden") return "";
 
   return css`
-    background-color: ${primaryColors[type]};
-    border-color: ${tinycolor(primaryColors[type])
+    background-color: ${primaryColors[kind]};
+    border-color: ${tinycolor(primaryColors[kind])
       .darken(10)
       .toString()};
-    color: ${tinycolor(primaryColors[type]).toHsl().l > 0.7 ? tokens.color.black : tokens.color.white};
+    color: ${tinycolor(primaryColors[kind]).toHsl().l > 0.7 ? tokens.color.black : tokens.color.white};
   `;
 }
 
-const AlertLineHeight = "1.3";
-
-const stickyStyles = css`
+const fixedStyles = css`
   left: 50%;
   max-width: 675px;
   position: fixed;
@@ -36,28 +53,12 @@ const stickyStyles = css`
   width: calc(100% - #{${stylers.spacer(4)}});
 `;
 
-const iconColors = {
-  success: tokens.color.green,
-  warning: tokens.color.yellowDarken10,
-  error: tokens.color.orange,
-  info: tokens.color.blue,
-  locked: tokens.color.yellowDarken10,
-  "visually-hidden": "inherit",
-};
-
-const closeButtonColors = {
-  success: tokens.color.greenDarken20,
-  warning: tokens.color.yellowDarken40,
-  error: tokens.color.orangeLighten40,
-  locked: tokens.color.yellowLighten30,
-};
-
 export const CloseButtonStyled = styled(Button.Close)`
   flex-grow: 0;
   flex-shrink: 0;
   min-height: 0;
 
-  ${({ type }) => closeButtonColors[type] && `color: ${closeButtonColors[type]};`}
+  ${({ kind }) => closeButtonColors[kind] && `color: ${closeButtonColors[kind]};`}
 `;
 
 export const IconStyled = styled.div`
@@ -68,7 +69,7 @@ export const IconStyled = styled.div`
   vertical-align: text-top;
   width: 20px;
 
-  ${({ type }) => `color: ${iconColors[type]};`}
+  ${({ kind }) => `color: ${iconColors[kind]};`}
 `;
 
 export const contentStyles = css`
@@ -84,17 +85,17 @@ const toastStyles = css`
   border-width: 1px;
   display: flex;
   font-weight: normal;
-  line-height: ${AlertLineHeight};
   margin-bottom: ${stylers.spacer(2)};
   padding: ${tokens.spaceLg};
   position: relative;
   text-align: left;
   transition: opacity 0.3s ease-out;
 
-  ${stylers.fontSize(0)};
-  ${({ type }) => getStylesForType(type)}
-  ${({ isSticky }) => isSticky && stickyStyles}
-  ${({ type }) => type === "visually-hidden" && visuallyHidden}
+  ${stylers.fontSize()};
+  ${stylers.lineHeight()};
+  ${({ kind }) => getStylesForKind(kind)}
+  ${({ isFixed }) => isFixed && fixedStyles}
+  ${({ kind }) => kind === "visually-hidden" && visuallyHidden}
 `;
 
 export default toastStyles;

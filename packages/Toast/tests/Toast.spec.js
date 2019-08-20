@@ -55,7 +55,7 @@ describe("Toast", () => {
 
   it("should auto close", () => {
     const handleClose = jest.fn();
-    const { getByText, queryByText } = renderComponent({ autoclose: true, onClose: handleClose });
+    const { getByText, queryByText } = renderComponent({ canAutoClose: true, onClose: handleClose });
 
     expect(getByText(/content/i)).toBeInTheDocument();
     jest.runAllTimers();

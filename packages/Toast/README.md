@@ -21,13 +21,13 @@ import Toast from "@paprika/toast";
 #### Toast
 
 - `ariaAlert`
-- `autoclose`
-- `autocloseTimeout`
+- `canAutoClose`
+- `autoCloseDelay`
 - `children`
 - `hasCloseButton`
 - `isOpen`
-- `isSticky`
-- `type`
+- `isFixed`
+- `kind`
 - `zIndex`
 
 [More detail about these props](https://github.com/acl-services/paprika/blob/master/packages/Toast/src/Toast.js)

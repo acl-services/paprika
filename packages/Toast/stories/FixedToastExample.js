@@ -3,7 +3,7 @@ import React from "react";
 import L10n from "@paprika/l10n";
 import Toast from "../src";
 
-export default function StickyToast() {
+export default function FixedToast() {
   return (
     <L10n locale="en">
       <p>
@@ -30,7 +30,7 @@ export default function StickyToast() {
         scelerisque pharetra velit, eget egestas eros. Donec at nisl eu eros faucibus consequat in sed lorem. Vivamus
         ultricies ligula non dolor fermentum tincidunt.
       </p>
-      <Toast isSticky hasCloseButton>
+      <Toast isFixed hasCloseButton>
         Sticky toast component
       </Toast>
     </L10n>
