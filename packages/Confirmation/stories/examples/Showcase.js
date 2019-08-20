@@ -6,12 +6,9 @@ import L10n from "@paprika/l10n";
 import Heading from "@paprika/heading";
 import Confirmation from "../../src";
 
-const handleConfirm = () => {
+const handleConfirm = closeConfirm => {
   action("Clicked the confirmation button")();
-};
-
-const handleCancel = () => {
-  action("Clicked the cancel button")();
+  closeConfirm();
 };
 
 const ExampleStory = () => (
@@ -31,8 +28,7 @@ const ExampleStory = () => (
             "Description text",
             "Lorem ipsum dolor amet vexillologist tacos selvage narwhal butcher twee ethical hot chicken."
           )}
-          onConfirm={() => handleConfirm()}
-          onCancel={() => handleCancel()}
+          onConfirm={closeConfirm => handleConfirm(closeConfirm)}
           heading={text("Heading text", "Delete filter?")}
           renderTrigger={({ isConfirmOpen, handleOpenConfirm }) => (
             <Confirmation.Trigger isConfirmOpen={isConfirmOpen} handleOpenConfirm={handleOpenConfirm}>

@@ -10,7 +10,11 @@ import ConfirmationExampleWithTrigger from "./examples/ConfirmationExampleWithTr
 storiesOf("Confirmation", module)
   .addDecorator(withKnobs)
   .add("Showcase", ShowcaseStory)
-  .add("Confirmation", () => <ConfirmationExample />)
+  .add("Confirmation", () => (
+    <Story>
+      <ConfirmationExample />
+    </Story>
+  ))
   .add("ConfirmationExample with locale", () => (
     <L10n locale="zh">
       <Story>

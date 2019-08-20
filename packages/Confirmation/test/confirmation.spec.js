@@ -8,13 +8,7 @@ configure({ testIdAttribute: "data-qa-anchor" });
 function renderComponent() {
   const renderedComponent = render(
     <L10n>
-      <Confirmation
-        defaultIsOpen
-        confirmLabel="Confirm Delete"
-        onConfirm={() => {}}
-        onCancel={() => {}}
-        heading="Delete Button?"
-      />
+      <Confirmation defaultIsOpen confirmLabel="Confirm Delete" onConfirm={() => {}} heading="Delete Button?" />
     </L10n>
   );
 
@@ -29,7 +23,6 @@ function renderComponent() {
 //       <Confirmation
 //         confirmLabel="Confirm Delete"
 //         onConfirm={() => {}}
-//         onCancel={() => {}}
 //         heading="Delete Button?"
 //         renderTrigger={({ isConfirmOpen, handleOpenConfirm }) => (
 //           <Confirmation.Trigger isConfirmOpen={isConfirmOpen} handleOpenConfirm={handleOpenConfirm}>
@@ -68,10 +61,6 @@ describe("Confirmation", () => {
   });
 
   it("should trigger the onConfirm callback when clicking the confirm button", () => {
-    // expect(confirmationComponent).toBeVisible();
-  });
-
-  it("should trigger the onCancel callback when clicking the cancel button", () => {
     // expect(confirmationComponent).toBeVisible();
   });
 });

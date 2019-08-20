@@ -17,7 +17,6 @@ import Confirmation from "@paprika/confirmation";
   confirmLabel="Delete filter"
   description="Lorem ipsum dolor amet vexillologist tacos selvage narwhal butcher twee ethical hot chicken"
   onConfirm={() => handleConfirm(onClose)}
-  onCancel={() => handleCancel(onClose)}
   onClose={() => handleClose(onClose)}
   heading="Delete filter?"
   renderTrigger={({ isConfirmOpen, handleOpenConfirm }) => (
@@ -34,7 +33,6 @@ or
   description="Lorem ipsum dolor amet vexillologist tacos selvage narwhal butcher twee ethical hot chicken"
   defaultIsOpen
   onConfirm={() => handleConfirm(onClose)}
-  onCancel={() => handleCancel(onClose)}
   heading="Delete filter?"
 />;
 ```
@@ -47,7 +45,6 @@ or
 - description
 - defaultIsOpen
 - isPending
-- onCancel
 - onClose
 - onConfirm
 - heading

@@ -9,8 +9,10 @@ const ConfirmationExample = () => {
         buttonSize="medium"
         confirmLabel="Confirm button text"
         description="Description text"
-        onConfirm={() => {}}
-        onCancel={() => {}}
+        onConfirm={closeConfirm => {
+          // do action
+          closeConfirm();
+        }}
         onClose={() => {}}
         heading="Delete filter?"
         renderTrigger={({ isConfirmOpen, handleOpenConfirm }) => (

@@ -5,7 +5,6 @@ import { ShirtSizes } from "@paprika/helpers/lib/customPropTypes";
 import useI18n from "@paprika/l10n/lib/useI18n";
 import Popover from "@paprika/popover";
 import Trigger from "./components/Trigger";
-import contentStyles from "./ContentStyles.styles";
 
 import {
   confirmStyles,
@@ -22,7 +21,6 @@ const propTypes = {
   heading: PropTypes.node.isRequired,
   defaultIsOpen: PropTypes.bool,
   isPending: PropTypes.bool,
-  onCancel: PropTypes.func.isRequired,
   onClose: PropTypes.func,
   onConfirm: PropTypes.func.isRequired,
   /** Render prop for rendering the trigger element that toggles the render panel */
@@ -50,7 +48,6 @@ const Confirmation = props => {
     defaultIsOpen,
     isPending,
     onConfirm,
-    onCancel,
     onClose,
     ...moreProps
   } = props;
@@ -80,14 +77,12 @@ const Confirmation = props => {
     handleOpenConfirm,
   };
 
-  const handleOnConfirm = () => {
+  const closeConfirm = () => {
     setIsConfirmOpen(false);
-    onConfirm();
   };
 
-  const handleOnCancel = () => {
-    setIsConfirmOpen(false);
-    onCancel();
+  const handleOnConfirm = () => {
+    onConfirm(closeConfirm);
   };
 
   const handleCloseConfirm = () => {
@@ -108,11 +103,12 @@ const Confirmation = props => {
   };
 
   const I18n = useI18n();
+
   return (
     <Popover isOpen={isConfirmOpen} onClose={handleCloseConfirm} {...moreProps}>
       {props.renderTrigger ? <Popover.Trigger>{renderTrigger()}</Popover.Trigger> : null}
       <Popover.Content id={confirmPanelRefId.current}>
-        <div css={contentStyles}>
+        <Popover.Card>
           <div css={confirmStyles}>
             <div css={confirmHeaderStyles}>{heading}</div>
             {description && <div css={confirmDescriptionStyles}>{description}</div>}
@@ -127,12 +123,18 @@ const Confirmation = props => {
               >
                 {confirmLabel}
               </Button>
-              <Button disabled={isPending} isSemantic={false} kind="minor" size={buttonSize} onClick={handleOnCancel}>
+              <Button
+                isDisabled={isPending}
+                isSemantic={false}
+                kind="minor"
+                size={buttonSize}
+                onClick={handleCloseConfirm}
+              >
                 {I18n.t("actions.cancel")}
               </Button>
             </div>
           </div>
-        </div>
+        </Popover.Card>
       </Popover.Content>
     </Popover>
   );

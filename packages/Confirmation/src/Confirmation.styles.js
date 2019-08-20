@@ -3,7 +3,7 @@ import tokens from "@paprika/tokens";
 import stylers from "@paprika/stylers";
 
 export const confirmStyles = css`
-  padding: ${stylers.spacer(2)};
+  padding: ${tokens.space} ${tokens.spaceSm};
 `;
 
 export const confirmHeaderStyles = css`

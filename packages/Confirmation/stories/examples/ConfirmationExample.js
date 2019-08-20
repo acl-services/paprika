@@ -4,6 +4,15 @@ import Confirmation from "../../src";
 
 const ConfirmationExample = () => {
   const [isConfirmationShowing, setIsConfirmationShowing] = React.useState(false);
+
+  const handleConfirm = () => {
+    setIsConfirmationShowing(false);
+  };
+
+  const handleClose = () => {
+    setIsConfirmationShowing(false);
+  };
+
   return (
     <div>
       <Button id="triggerElement" isSemantic={false} onClick={() => setIsConfirmationShowing(true)}>
@@ -16,9 +25,12 @@ const ConfirmationExample = () => {
           buttonSize="medium"
           confirmLabel="Confirm button text"
           description="Description text"
-          onConfirm={() => {}}
-          onCancel={() => {}}
-          onClose={() => {}}
+          onConfirm={() => {
+            handleConfirm();
+          }}
+          onClose={() => {
+            handleClose();
+          }}
           heading="Delete filter?"
           getPositioningElement={() => document.getElementById("triggerElement")}
           offset={4}
