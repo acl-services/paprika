@@ -108,7 +108,6 @@ const Confirmation = props => {
   };
 
   const I18n = useI18n();
-  // need to add moreProps to the popover
   return (
     <Popover isOpen={isConfirmOpen} onClose={handleCloseConfirm} {...moreProps}>
       {props.renderTrigger ? <Popover.Trigger>{renderTrigger()}</Popover.Trigger> : null}
