@@ -6,6 +6,7 @@ import L10n from "@paprika/l10n";
 import ShowcaseStory from "./examples/Showcase";
 import ConfirmationExample from "./examples/ConfirmationExample";
 import ConfirmationExampleWithTrigger from "./examples/ConfirmationExampleWithTrigger";
+import ConfirmationExampleWithTriggerIcon from "./examples/ConfirmationExampleWithTriggerIcon";
 
 storiesOf("Confirmation", module)
   .addDecorator(withKnobs)
@@ -25,5 +26,7 @@ storiesOf("Confirmation", module)
   .add("ConfirmationExample with trigger", () => (
     <Story>
       <ConfirmationExampleWithTrigger />
+      <br />
+      <ConfirmationExampleWithTriggerIcon />
     </Story>
   ));

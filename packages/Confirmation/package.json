@@ -27,6 +27,7 @@
   "peerDependencies": {
     "react": "^16.8.4",
     "react-dom": "^16.8.4",
-    "styled-components": "^4.2.0"
+    "styled-components": "^4.2.0",
+    "@paprika/icon": "^0.2.0"
   }
 }
