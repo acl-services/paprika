@@ -1,5 +1,4 @@
 import styled, { css } from "styled-components";
-import tinycolor from "tinycolor2";
 
 import stylers from "@paprika/stylers";
 import tokens from "@paprika/tokens";
@@ -8,7 +7,7 @@ import { visuallyHidden } from "@paprika/stylers/lib/includes";
 
 import Kinds from "./ToastKinds";
 
-const primaryColors = {
+const backgroundColors = {
   [Kinds.SUCCESS]: tokens.color.greenLighten50,
   [Kinds.WARNING]: tokens.color.yellowLighten30,
   [Kinds.ERROR]: tokens.color.orangeLighten40,
@@ -16,12 +15,13 @@ const primaryColors = {
   [Kinds.LOCKED]: tokens.color.yellowLighten30,
 };
 
-const iconColors = {
-  [Kinds.SUCCESS]: tokens.color.green,
-  [Kinds.WARNING]: tokens.color.yellowDarken10,
-  [Kinds.ERROR]: tokens.color.orange,
-  [Kinds.INFO]: tokens.color.blue,
-  [Kinds.LOCKED]: tokens.color.yellowDarken10,
+// Calculated by brightness.
+const borderColors = {
+  [Kinds.SUCCESS]: "#c5e2d3",
+  [Kinds.WARNING]: "#f2deaf",
+  [Kinds.ERROR]: "#f2c2b8",
+  [Kinds.INFO]: "#dbd8d0",
+  [Kinds.LOCKED]: "#f2deaf",
 };
 
 const closeButtonColors = {
@@ -31,18 +31,6 @@ const closeButtonColors = {
   [Kinds.LOCKED]: tokens.color.yellowLighten30,
 };
 
-function getStylesForKind(kind) {
-  if (kind === Kinds.VISUALLY_HIDDEN) return "";
-
-  return css`
-    background-color: ${primaryColors[kind]};
-    border-color: ${tinycolor(primaryColors[kind])
-      .darken(10)
-      .toString()};
-    color: ${tinycolor(primaryColors[kind]).toHsl().l > 0.7 ? tokens.color.black : tokens.color.white};
-  `;
-}
-
 const fixedStyles = css`
   left: 50%;
   max-width: 675px;
@@ -51,6 +39,14 @@ const fixedStyles = css`
   transform: translateX(-50%);
   width: calc(100% - #{${stylers.spacer(4)}});
 `;
+
+const iconColors = {
+  [Kinds.SUCCESS]: tokens.color.green,
+  [Kinds.WARNING]: tokens.color.yellowDarken10,
+  [Kinds.ERROR]: tokens.color.orange,
+  [Kinds.INFO]: tokens.color.blue,
+  [Kinds.LOCKED]: tokens.color.yellowDarken10,
+};
 
 export const CloseButtonStyled = styled(Button.Close)`
   flex-grow: 0;
@@ -78,9 +74,12 @@ export const contentStyles = css`
 
 const toastStyles = css`
   align-items: flex-start;
+  background-color: ${({ kind }) => backgroundColors[kind]};
+  border-color: ${({ kind }) => borderColors[kind]};
   border-radius: ${tokens.border.radius};
   border-style: solid;
   border-width: 1px;
+  color: ${tokens.color.black};
   display: flex;
   font-weight: normal;
   margin-bottom: ${stylers.spacer(2)};
@@ -91,7 +90,6 @@ const toastStyles = css`
 
   ${stylers.fontSize()}
   ${stylers.lineHeight()}
-  ${({ kind }) => getStylesForKind(kind)}
   ${({ isFixed }) => isFixed && fixedStyles}
   ${({ kind }) => kind === "visually-hidden" && visuallyHidden}
 `;

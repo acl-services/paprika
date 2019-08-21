@@ -19,8 +19,7 @@
     "@paprika/l10n": "^0.2.0",
     "@paprika/stylers": "^0.1.4",
     "@paprika/tokens": "^0.1.4",
-    "prop-types": "^15.7.2",
-    "tinycolor2": "^1.4.1"
+    "prop-types": "^15.7.2"
   },
   "peerDependencies": {
     "react": "^16.8.4",
