@@ -8,11 +8,15 @@ import Confirmation from "../../Confirmation/src/Confirmation";
 configure({ testIdAttribute: "data-qa-anchor" });
 
 function renderComponent(props = {}) {
+  const handleConfirm = onCloseMenu => onCloseConfirm => {
+    onCloseConfirm();
+    onCloseMenu();
+  };
   const renderedComponent = render(
     <L10n>
       <DropdownMenu
         renderTrigger={({ isOpen, handleOpenMenu }) => (
-          <DropdownMenu.Trigger isOpen={isOpen} handleOpenMenu={handleOpenMenu} {...props}>
+          <DropdownMenu.Trigger isOpen={isOpen} onOpenMenu={handleOpenMenu} {...props}>
             Trigger
           </DropdownMenu.Trigger>
         )}
@@ -21,17 +25,13 @@ function renderComponent(props = {}) {
         <DropdownMenu.Item onClick={() => {}}>Filter</DropdownMenu.Item>
         <DropdownMenu.Item
           isDestructive
-          renderConfirmation={handleCloseMenu => {
+          renderConfirmation={onCloseMenu => {
             return (
               <Confirmation
-                isOpen
+                body="description"
+                defaultIsOpen
                 confirmLabel="Confirm Delete"
-                onConfirm={() => {
-                  handleCloseMenu();
-                }}
-                onCancel={() => {
-                  handleCloseMenu();
-                }}
+                onConfirm={handleConfirm(onCloseMenu)}
                 heading="Delete Button?"
               />
             );
