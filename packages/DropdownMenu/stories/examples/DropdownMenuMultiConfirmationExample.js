@@ -30,9 +30,9 @@ const DropdownMenuExample = () => {
         renderConfirmation={onClose => {
           return (
             <Confirmation
-              isOpenByDefault
+              defaultIsOpen
               confirmLabel="Delete filter"
-              description="Lorem ipsum dolor amet vexillologist tacos selvage narwhal butcher twee ethical hot chicken."
+              body="Lorem ipsum dolor amet vexillologist tacos selvage narwhal butcher twee ethical hot chicken."
               onConfirm={() => handleConfirm(onClose)}
               onCancel={() => handleCancel(onClose)}
               heading="Delete filter 1?"
@@ -52,9 +52,9 @@ const DropdownMenuExample = () => {
         renderConfirmation={onClose => {
           return (
             <Confirmation
-              isOpenByDefault
+              defaultIsOpen
               confirmLabel="Delete filter"
-              description="Lorem ipsum dolor amet vexillologist tacos selvage narwhal butcher twee ethical hot chicken."
+              body="Lorem ipsum dolor amet vexillologist tacos selvage narwhal butcher twee ethical hot chicken."
               onConfirm={() => handleConfirm(onClose)}
               onCancel={() => handleCancel(onClose)}
               heading="Delete filter 2?"

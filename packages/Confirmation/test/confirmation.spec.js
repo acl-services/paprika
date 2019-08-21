@@ -8,13 +8,7 @@ configure({ testIdAttribute: "data-qa-anchor" });
 function renderComponent() {
   const renderedComponent = render(
     <L10n>
-      <Confirmation
-        isOpen
-        confirmLabel="Confirm Delete"
-        onConfirm={() => {}}
-        onCancel={() => {}}
-        heading="Delete Button?"
-      />
+      <Confirmation defaultIsOpen confirmLabel="Confirm Delete" onConfirm={() => {}} heading="Delete Button?" />
     </L10n>
   );
 
@@ -23,20 +17,42 @@ function renderComponent() {
   };
 }
 
+// function renderComponentWithTrigger() {
+//   const renderedComponent = render(
+//     <L10n>
+//       <Confirmation
+//         confirmLabel="Confirm Delete"
+//         onConfirm={() => {}}
+//         heading="Delete Button?"
+//         renderTrigger={({ isConfirmOpen, handleOpenConfirm }) => (
+//           <Confirmation.Trigger isConfirmOpen={isConfirmOpen} onOpenConfirm={handleOpenConfirm}>
+//             Trigger
+//           </Confirmation.Trigger>
+//         )}
+//       />
+//     </L10n>
+//   );
+
+//   return {
+//     ...renderedComponent,
+//   };
+// }
+
 describe("Confirmation", () => {
   let getByText;
   let confirmationComponent;
+  // const onOpenManageTableSidePanel = jest.fn();
 
   beforeEach(() => {
     ({ getByText } = renderComponent());
     confirmationComponent = getByText(/confirm delete/i);
   });
 
-  it("should show confirmation panel in the document", () => {
+  it("should show confirmation panel by default when mounted ", () => {
     expect(confirmationComponent).toBeVisible();
   });
 
-  it("should open the confirmation panel when button is clicked", () => {
+  it("should trigger the confirm callback when confirm button is clicked", () => {
     // expect(confirmationComponent).toBeVisible();
   });
 
@@ -45,10 +61,6 @@ describe("Confirmation", () => {
   });
 
   it("should trigger the onConfirm callback when clicking the confirm button", () => {
-    // expect(confirmationComponent).toBeVisible();
-  });
-
-  it("should trigger the onCancel callback when clicking the cancel button", () => {
     // expect(confirmationComponent).toBeVisible();
   });
 });

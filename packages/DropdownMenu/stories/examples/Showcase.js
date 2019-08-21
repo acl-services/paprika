@@ -26,7 +26,7 @@ const ExampleStory = () => (
       <DropdownMenu
         align="bottom"
         renderTrigger={({ isOpen, handleOpenMenu }) => (
-          <DropdownMenu.Trigger isOpen={isOpen} handleOpenMenu={handleOpenMenu}>
+          <DropdownMenu.Trigger id="triggerElement" isOpen={isOpen} handleOpenMenu={handleOpenMenu}>
             Trigger
           </DropdownMenu.Trigger>
         )}
@@ -52,15 +52,16 @@ const ExampleStory = () => (
           renderConfirmation={onClose => {
             return (
               <Confirmation
-                isOpenByDefault
                 buttonSize={select("Confirmation Button Size", ["x-small", "small", "medium", "large"], "medium")}
-                confirmLabel="Delete filter"
-                description={
+                body={
                   <p>Lorem ipsum dolor amet vexillologist tacos selvage narwhal butcher twee ethical hot chicken.</p>
                 }
+                confirmLabel="Delete filter"
+                getPositioningElement={() => document.getElementById("triggerElement")}
+                heading="Delete filter?"
+                defaultIsOpen
                 onConfirm={() => handleConfirm(onClose)}
                 onCancel={() => handleCancel(onClose)}
-                heading="Delete filter?"
               />
             );
           }}

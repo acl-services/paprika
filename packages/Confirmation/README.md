@@ -15,10 +15,24 @@ import Confirmation from "@paprika/confirmation";
 
 <Confirmation
   confirmLabel="Delete filter"
-  description="Lorem ipsum dolor amet vexillologist tacos selvage narwhal butcher twee ethical hot chicken"
-  isOpen
+  body="Lorem ipsum dolor amet vexillologist tacos selvage narwhal butcher twee ethical hot chicken"
   onConfirm={() => handleConfirm(onClose)}
-  onCancel={() => handleCancel(onClose)}
+  onClose={() => handleClose(onClose)}
+  heading="Delete filter?"
+  renderTrigger={({ isConfirmOpen, handleOpenConfirm }) => (
+    <Confirmation.Trigger isConfirmOpen={isConfirmOpen} onOpenConfirm={handleOpenConfirm}>
+      Trigger
+    </Confirmation.Trigger>
+  )}
+/>;
+
+or
+
+<Confirmation
+  confirmLabel="Delete filter"
+  body="Lorem ipsum dolor amet vexillologist tacos selvage narwhal butcher twee ethical hot chicken"
+  defaultIsOpen
+  onConfirm={() => handleConfirm(onClose)}
   heading="Delete filter?"
 />;
 ```
@@ -28,11 +42,12 @@ import Confirmation from "@paprika/confirmation";
 - buttonSize
 - confirmButtonType
 - confirmLabel
-- description
-- isOpen
-- onCancel
+- body
+- defaultIsOpen
+- isPending
 - onClose
 - onConfirm
 - heading
+- renderTrigger
 
 [More detail about these props](https://github.com/acl-services/paprika/blob/master/packages/Confirmation/src/Confirmation.js)

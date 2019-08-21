@@ -67,6 +67,15 @@ describe("Button", () => {
     expect(onClick).not.toHaveBeenCalled();
   });
 
+  it("Does not fire onClick callback when pending", () => {
+    const onClick = jest.fn();
+    const { getByText } = renderComponent({ onClick, isPending: true });
+    const buttonElement = getByText(/happy button/i);
+    fireEvent.click(buttonElement);
+
+    expect(onClick).not.toHaveBeenCalled();
+  });
+
   it("Propagates click events by default", () => {
     const onClick = jest.fn();
     const bubbledClick = jest.fn();

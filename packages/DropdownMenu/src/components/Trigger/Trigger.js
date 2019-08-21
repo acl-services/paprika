@@ -7,18 +7,26 @@ const handleKeyDown = e => {
 };
 
 const propTypes = {
+  children: PropTypes.node,
+  icon: PropTypes.node,
   isOpen: PropTypes.bool.isRequired,
   handleOpenMenu: PropTypes.func.isRequired,
   triggerRef: PropTypes.shape({ current: PropTypes.instanceOf(Object) }) || null,
   menuRefId: PropTypes.string,
 };
 
-const defaultProps = { triggerRef: null, menuRefId: "" };
+const defaultProps = {
+  children: null,
+  icon: null,
+  triggerRef: null,
+  menuRefId: "",
+};
 
 const Trigger = props => {
-  const { isOpen, handleOpenMenu, menuRefId, triggerRef, ...otherProps } = props;
+  const { icon, children, isOpen, handleOpenMenu, menuRefId, triggerRef, ...otherProps } = props;
+  const TriggerComponent = icon ? Button.Icon : Button;
   return (
-    <Button
+    <TriggerComponent
       ref={triggerRef}
       aria-controls={menuRefId}
       aria-expanded={isOpen}
@@ -28,7 +36,9 @@ const Trigger = props => {
       isSquare
       isSemantic={false}
       {...otherProps}
-    />
+    >
+      {icon || children}
+    </TriggerComponent>
   );
 };
 

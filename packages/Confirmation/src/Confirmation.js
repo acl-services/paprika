@@ -1,39 +1,37 @@
 import React from "react";
 import PropTypes from "prop-types";
+import uuid from "uuid/v4";
 import Button from "@paprika/button";
+import Heading from "@paprika/heading";
 import { ShirtSizes } from "@paprika/helpers/lib/customPropTypes";
 import useI18n from "@paprika/l10n/lib/useI18n";
 import Popover from "@paprika/popover";
 import Trigger from "./components/Trigger";
-import contentStyles from "./ContentStyles.styles";
 
-import {
-  confirmStyles,
-  confirmHeaderStyles,
-  confirmDescriptionStyles,
-  confirmFooterStyles,
-} from "./Confirmation.styles";
+import { confirmStyles, confirmBodyStyles, confirmFooterStyles } from "./Confirmation.styles";
 
 const propTypes = {
   buttonSize: PropTypes.oneOf(ShirtSizes.DEFAULT),
+  /** Children should be a render prop in the form of a function to display trigger */
+  children: PropTypes.func,
   confirmButtonType: PropTypes.oneOf(["primary", "destructive"]),
-  confirmLabel: PropTypes.node.isRequired,
-  description: PropTypes.node,
-  heading: PropTypes.node.isRequired,
-  isOpenByDefault: PropTypes.bool,
-  onCancel: PropTypes.func.isRequired,
+  confirmLabel: PropTypes.string.isRequired,
+  body: PropTypes.node,
+  heading: PropTypes.string,
+  defaultIsOpen: PropTypes.bool,
+  isPending: PropTypes.bool,
   onClose: PropTypes.func,
   onConfirm: PropTypes.func.isRequired,
-  /** Render prop for rendering the trigger element that toggles the render panel */
-  renderTrigger: PropTypes.func,
 };
 
 const defaultProps = {
   buttonSize: ShirtSizes.MEDIUM,
+  children: null,
   confirmButtonType: "destructive",
-  description: null,
-  isOpenByDefault: false,
-  renderTrigger: null,
+  defaultIsOpen: false,
+  body: null,
+  heading: null,
+  isPending: false,
   onClose: () => {},
 };
 
@@ -42,18 +40,19 @@ const Confirmation = props => {
   const {
     heading,
     buttonSize,
+    children,
     confirmButtonType,
     confirmLabel,
-    description,
+    body,
+    defaultIsOpen,
+    isPending,
     onConfirm,
-    onCancel,
     onClose,
-    isOpenByDefault,
     ...moreProps
   } = props;
   const confirmButtonRef = React.useRef(null);
   const triggerRef = React.useRef(null);
-  const confirmPanelRefId = React.useRef(null);
+  const confirmId = React.useRef(uuid());
 
   const focusConfirmButton = () => {
     if (confirmButtonRef.current) confirmButtonRef.current.focus();
@@ -67,24 +66,22 @@ const Confirmation = props => {
   };
 
   React.useEffect(() => {
-    if (isOpenByDefault && !isConfirmOpen) {
+    if (defaultIsOpen && !isConfirmOpen) {
       handleOpenConfirm();
     }
-  }, [confirmButtonRef, isOpenByDefault]);
+  }, [confirmButtonRef, defaultIsOpen]);
 
   const triggerProps = {
     isConfirmOpen,
     handleOpenConfirm,
   };
 
-  const handleOnConfirm = () => {
+  const closeConfirm = () => {
     setIsConfirmOpen(false);
-    onConfirm();
   };
 
-  const handleOnCancel = () => {
-    setIsConfirmOpen(false);
-    onCancel();
+  const handleOnConfirm = () => {
+    onConfirm(closeConfirm);
   };
 
   const handleCloseConfirm = () => {
@@ -93,29 +90,37 @@ const Confirmation = props => {
     onClose();
   };
 
-  const renderTrigger = () => {
-    const triggerComponent = props.renderTrigger(triggerProps);
+  const renderTrigger = triggerComponent => {
+    // const triggerComponent = renderTriggerFunction(triggerProps);
     // wrapping the returned item in a function to avoid needing to tab twice
     // https://github.com/acl-services/paprika/issues/126
     return () =>
       React.cloneElement(triggerComponent, {
         triggerRef,
-        confirmPanelRefId: confirmPanelRefId.current,
+        confirmId: confirmId.current,
       });
   };
 
   const I18n = useI18n();
-  // need to add moreProps to the popover
+
+  // note: In future could support a node instead of just function
+  const triggerComponent = children ? children(triggerProps) : null;
+
   return (
     <Popover isOpen={isConfirmOpen} onClose={handleCloseConfirm} {...moreProps}>
-      {props.renderTrigger ? <Popover.Trigger>{renderTrigger()}</Popover.Trigger> : null}
-      <Popover.Content id={confirmPanelRefId.current}>
-        <div css={contentStyles}>
+      {triggerComponent && <Popover.Trigger>{renderTrigger(triggerComponent)}</Popover.Trigger>}
+      <Popover.Content id={confirmId.current}>
+        <Popover.Card>
           <div css={confirmStyles}>
-            <div css={confirmHeaderStyles}>{heading}</div>
-            {description && <div css={confirmDescriptionStyles}>{description}</div>}
+            {heading && (
+              <Heading displayLevel={5} level={2}>
+                {heading}
+              </Heading>
+            )}
+            {body && <div css={confirmBodyStyles}>{body}</div>}
             <div css={confirmFooterStyles}>
               <Button
+                isPending={isPending}
                 isSemantic={false}
                 ref={confirmButtonRef}
                 kind={confirmButtonType}
@@ -124,12 +129,18 @@ const Confirmation = props => {
               >
                 {confirmLabel}
               </Button>
-              <Button isSemantic={false} kind="minor" size={buttonSize} onClick={handleOnCancel}>
+              <Button
+                isDisabled={isPending}
+                isSemantic={false}
+                kind="minor"
+                size={buttonSize}
+                onClick={handleCloseConfirm}
+              >
                 {I18n.t("actions.cancel")}
               </Button>
             </div>
           </div>
-        </div>
+        </Popover.Card>
       </Popover.Content>
     </Popover>
   );

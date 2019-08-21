@@ -2,37 +2,45 @@ import React from "react";
 import PropTypes from "prop-types";
 import Button from "@paprika/button";
 
-const handleKeyDown = e => {
-  e.stopPropagation();
-};
-
 const propTypes = {
+  children: PropTypes.node,
+  confirmId: PropTypes.string,
+  icon: PropTypes.node,
   isConfirmOpen: PropTypes.bool.isRequired,
-  handleOpenConfirm: PropTypes.func.isRequired,
-  triggerRef: PropTypes.shape({ current: PropTypes.instanceOf(Object) }) || null,
-  confirmPanelRefId: PropTypes.string,
+  onOpenConfirm: PropTypes.func.isRequired,
+  triggerRef: PropTypes.shape({ current: PropTypes.instanceOf(Object) }),
 };
 
-const defaultProps = { triggerRef: null, confirmPanelRefId: "" };
+const defaultProps = {
+  children: null,
+  confirmId: null,
+  icon: null,
+  triggerRef: null,
+};
 
 const Trigger = props => {
-  const { isConfirmOpen, handleOpenConfirm, confirmPanelRefId, triggerRef, ...otherProps } = props;
+  const { icon, isConfirmOpen, children, onOpenConfirm, confirmId, triggerRef, ...moreProps } = props;
+
+  const TriggerComponent = icon ? Button.Icon : Button;
+
   return (
-    <Button
+    <TriggerComponent
       ref={triggerRef}
-      aria-controls={confirmPanelRefId}
+      aria-controls={confirmId}
       aria-expanded={isConfirmOpen}
       aria-haspopup="true"
-      onClick={handleOpenConfirm}
-      onKeyDown={handleKeyDown}
       isSquare
       isSemantic={false}
-      {...otherProps}
-    />
+      onClick={onOpenConfirm}
+      {...moreProps}
+    >
+      {icon || children}
+    </TriggerComponent>
   );
 };
 
+Trigger.displayName = "Confirmation.Trigger";
 Trigger.defaultProps = defaultProps;
 Trigger.propTypes = propTypes;
-Trigger.displayName = "Confirmation.Trigger";
+
 export default Trigger;
