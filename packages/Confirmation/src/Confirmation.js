@@ -85,9 +85,13 @@ const Confirmation = props => {
   };
 
   const handleCloseConfirm = () => {
-    setIsConfirmOpen(false);
-    if (triggerRef.current) triggerRef.current.focus();
-    onClose();
+    if (isConfirmOpen) {
+      setIsConfirmOpen(false);
+      if (triggerRef.current) triggerRef.current.focus();
+      setTimeout(() => {
+        onClose();
+      }, 0);
+    }
   };
 
   const renderTrigger = triggerComponent => {
