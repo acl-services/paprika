@@ -2,12 +2,17 @@ import React from "react";
 import DropdownMenu from "../../src";
 import Confirmation from "../../../Confirmation/src/Confirmation";
 
+const handleConfirm = onCloseMenu => onCloseConfirm => {
+  onCloseConfirm();
+  onCloseMenu();
+};
+
 const DropdownMenuExample = () => {
   return (
     <DropdownMenu
       align="bottom"
       renderTrigger={({ isOpen, handleOpenMenu }) => (
-        <DropdownMenu.Trigger data-qa-anchor="dropdown-menu__trigger" isOpen={isOpen} handleOpenMenu={handleOpenMenu}>
+        <DropdownMenu.Trigger data-qa-anchor="dropdown-menu__trigger" isOpen={isOpen} onOpenMenu={handleOpenMenu}>
           Trigger
         </DropdownMenu.Trigger>
       )}
@@ -29,15 +34,14 @@ const DropdownMenuExample = () => {
       <DropdownMenu.Divider />
       <DropdownMenu.Item
         isDestructive
-        renderConfirmation={onClose => {
+        renderConfirmation={onCloseMenu => {
           return (
             <Confirmation
-              isOpenByDefault
+              body="Lorem ipsum dolor amet vexillologist tacos selvage narwhal butcher twee ethical hot chicken."
               confirmLabel="Delete filter"
-              description="Lorem ipsum dolor amet vexillologist tacos selvage narwhal butcher twee ethical hot chicken."
-              onConfirm={() => onClose()}
-              onCancel={() => onClose()}
+              defaultIsOpen
               heading="Delete filter?"
+              onConfirm={handleConfirm(onCloseMenu)}
             />
           );
         }}

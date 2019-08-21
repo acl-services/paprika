@@ -34,8 +34,13 @@ const DropdownMenu = props => {
 
   const handleCloseMenu = () => {
     setIsOpen(false);
-    setIsConfirming(false);
-    setRenderConfirmation(null);
+    if (isConfirming) {
+      setTimeout(() => {
+        setIsConfirming(false);
+        setRenderConfirmation(null);
+      }, 0);
+    }
+
     if (triggerRef.current) triggerRef.current.focus();
   };
 

@@ -7,12 +7,9 @@ import { DropdownMenuStory } from "../DropdownMenu.stories.styles";
 import Confirmation from "../../../Confirmation/src/Confirmation";
 import DropdownMenu from "../../src";
 
-const handleConfirm = handleCloseMenu => {
-  handleCloseMenu();
-};
-
-const handleCancel = handleCloseMenu => {
-  handleCloseMenu();
+const handleConfirm = onCloseMenu => onCloseConfirm => {
+  onCloseConfirm();
+  onCloseMenu();
 };
 
 const ExampleStory = () => (
@@ -26,7 +23,7 @@ const ExampleStory = () => (
       <DropdownMenu
         align="bottom"
         renderTrigger={({ isOpen, handleOpenMenu }) => (
-          <DropdownMenu.Trigger id="triggerElement" isOpen={isOpen} handleOpenMenu={handleOpenMenu}>
+          <DropdownMenu.Trigger id="triggerElement" isOpen={isOpen} onOpenMenu={handleOpenMenu}>
             Trigger
           </DropdownMenu.Trigger>
         )}
@@ -49,7 +46,7 @@ const ExampleStory = () => (
         <DropdownMenu.Divider />
         <DropdownMenu.Item
           isDestructive
-          renderConfirmation={onClose => {
+          renderConfirmation={onCloseMenu => {
             return (
               <Confirmation
                 buttonSize={select("Confirmation Button Size", ["x-small", "small", "medium", "large"], "medium")}
@@ -60,8 +57,7 @@ const ExampleStory = () => (
                 getPositioningElement={() => document.getElementById("triggerElement")}
                 heading="Delete filter?"
                 defaultIsOpen
-                onConfirm={() => handleConfirm(onClose)}
-                onCancel={() => handleCancel(onClose)}
+                onConfirm={handleConfirm(onCloseMenu)}
               />
             );
           }}

@@ -2,28 +2,24 @@ import React from "react";
 import PropTypes from "prop-types";
 import Button from "@paprika/button";
 
-const handleKeyDown = e => {
-  e.stopPropagation();
-};
-
 const propTypes = {
   children: PropTypes.node,
   icon: PropTypes.node,
   isOpen: PropTypes.bool.isRequired,
-  handleOpenMenu: PropTypes.func.isRequired,
-  triggerRef: PropTypes.shape({ current: PropTypes.instanceOf(Object) }) || null,
   menuRefId: PropTypes.string,
+  onOpenMenu: PropTypes.func.isRequired,
+  triggerRef: PropTypes.shape({ current: PropTypes.instanceOf(Object) }) || null,
 };
 
 const defaultProps = {
   children: null,
   icon: null,
-  triggerRef: null,
   menuRefId: "",
+  triggerRef: null,
 };
 
 const Trigger = props => {
-  const { icon, children, isOpen, handleOpenMenu, menuRefId, triggerRef, ...otherProps } = props;
+  const { icon, children, isOpen, onOpenMenu, menuRefId, triggerRef, ...otherProps } = props;
   const TriggerComponent = icon ? Button.Icon : Button;
   return (
     <TriggerComponent
@@ -31,8 +27,7 @@ const Trigger = props => {
       aria-controls={menuRefId}
       aria-expanded={isOpen}
       aria-haspopup="true"
-      onClick={handleOpenMenu}
-      onKeyDown={handleKeyDown}
+      onClick={onOpenMenu}
       isSquare
       isSemantic={false}
       {...otherProps}
@@ -42,7 +37,7 @@ const Trigger = props => {
   );
 };
 
+Trigger.displayName = "DropdownMenu.Trigger";
 Trigger.defaultProps = defaultProps;
 Trigger.propTypes = propTypes;
-Trigger.displayName = "DropdownMenu.Trigger";
 export default Trigger;

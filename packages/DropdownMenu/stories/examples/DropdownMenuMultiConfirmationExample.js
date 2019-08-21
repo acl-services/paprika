@@ -3,19 +3,16 @@ import DropdownMenu from "../../src";
 import Confirmation from "../../../Confirmation/src/Confirmation";
 
 const DropdownMenuExample = () => {
-  const handleConfirm = handleCloseMenu => {
-    handleCloseMenu();
-  };
-
-  const handleCancel = handleCloseMenu => {
-    handleCloseMenu();
+  const handleConfirm = onCloseMenu => onCloseConfirm => {
+    onCloseConfirm();
+    onCloseMenu();
   };
 
   return (
     <DropdownMenu
       align="bottom"
       renderTrigger={({ isOpen, handleOpenMenu }) => (
-        <DropdownMenu.Trigger isOpen={isOpen} handleOpenMenu={handleOpenMenu}>
+        <DropdownMenu.Trigger isOpen={isOpen} onOpenMenu={handleOpenMenu}>
           Trigger
         </DropdownMenu.Trigger>
       )}
@@ -27,15 +24,14 @@ const DropdownMenuExample = () => {
       </DropdownMenu.Item>
       <DropdownMenu.Item
         isDestructive
-        renderConfirmation={onClose => {
+        renderConfirmation={onCloseMenu => {
           return (
             <Confirmation
-              defaultIsOpen
-              confirmLabel="Delete filter"
               body="Lorem ipsum dolor amet vexillologist tacos selvage narwhal butcher twee ethical hot chicken."
-              onConfirm={() => handleConfirm(onClose)}
-              onCancel={() => handleCancel(onClose)}
+              confirmLabel="Delete filter"
+              defaultIsOpen
               heading="Delete filter 1?"
+              onConfirm={handleConfirm(onCloseMenu)}
             />
           );
         }}
@@ -49,15 +45,14 @@ const DropdownMenuExample = () => {
       <DropdownMenu.Divider />
       <DropdownMenu.Item
         isDestructive
-        renderConfirmation={onClose => {
+        renderConfirmation={onCloseMenu => {
           return (
             <Confirmation
-              defaultIsOpen
-              confirmLabel="Delete filter"
               body="Lorem ipsum dolor amet vexillologist tacos selvage narwhal butcher twee ethical hot chicken."
-              onConfirm={() => handleConfirm(onClose)}
-              onCancel={() => handleCancel(onClose)}
+              confirmLabel="Delete filter"
+              defaultIsOpen
               heading="Delete filter 2?"
+              onConfirm={handleConfirm(onCloseMenu)}
             />
           );
         }}
