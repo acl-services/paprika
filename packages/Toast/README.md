@@ -8,7 +8,7 @@ or
 
 ### Usage
 
-Please use `<L10n />` component to wrap `<Toast />` or you application.
+Please use `<L10n />` component to wrap `<Toast />` or your application.
 
 Example:
 

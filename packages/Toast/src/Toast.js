@@ -88,21 +88,21 @@ function Toast(props) {
   const [isToastOpen, setIsToastOpen] = React.useState(isOpen === undefined ? true : isOpen);
   const timerRef = React.useRef(null);
 
+  const memoizedStartTimer = React.useCallback(() => {
+    function handleDelayedClose() {
+      clearTimeout(timerRef.current);
+      if (isOpen === undefined) setIsToastOpen(false);
+      onClose();
+    }
+
+    timerRef.current = setTimeout(handleDelayedClose, Math.max(autoCloseDelay, minimumCloseTimeout));
+  }, [autoCloseDelay, isOpen, onClose]);
+
   function handleClose() {
-    clearTimeout(timerRef.current);
+    if (timerRef.current) clearTimeout(timerRef.current);
     if (isOpen === undefined) setIsToastOpen(false);
     onClose();
   }
-
-  function startTimer() {
-    const newTimer = setTimeout(() => {
-      handleClose();
-    }, Math.max(autoCloseDelay, minimumCloseTimeout));
-
-    timerRef.current = newTimer;
-  }
-
-  const memoizedStartTimer = React.useCallback(startTimer, []);
 
   React.useEffect(() => {
     if (canAutoClose) {
