@@ -11,6 +11,10 @@ const handleConfirm = closeConfirm => {
   closeConfirm();
 };
 
+const handleClose = () => {
+  action("Confirmation panel closed")();
+};
+
 const ExampleStory = () => (
   <React.Fragment>
     <Story>
@@ -29,6 +33,7 @@ const ExampleStory = () => (
             "Lorem ipsum dolor amet vexillologist tacos selvage narwhal butcher twee ethical hot chicken."
           )}
           onConfirm={handleConfirm}
+          onClose={handleClose}
           heading={text("Heading text", "Delete filter?")}
         >
           {({ isConfirmOpen, handleOpenConfirm }) => (
