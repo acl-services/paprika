@@ -14,7 +14,7 @@ export const confirmBodyStyles = css`
 export const confirmFooterStyles = css`
   margin-top: ${stylers.spacer(2)};
 
-  span[role="button"] {
-    margin-right: ${tokens.space};
+  [role="button"] + [role="button"] {
+    margin-left: ${tokens.space};
   }
 `;

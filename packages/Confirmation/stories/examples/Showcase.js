@@ -28,11 +28,11 @@ const ExampleStory = () => (
             "Description text",
             "Lorem ipsum dolor amet vexillologist tacos selvage narwhal butcher twee ethical hot chicken."
           )}
-          onConfirm={closeConfirm => handleConfirm(closeConfirm)}
+          onConfirm={handleConfirm}
           heading={text("Heading text", "Delete filter?")}
         >
           {({ isConfirmOpen, handleOpenConfirm }) => (
-            <Confirmation.Trigger isConfirmOpen={isConfirmOpen} onHandleOpenConfirm={handleOpenConfirm}>
+            <Confirmation.Trigger isConfirmOpen={isConfirmOpen} onOpenConfirm={handleOpenConfirm}>
               Trigger
             </Confirmation.Trigger>
           )}

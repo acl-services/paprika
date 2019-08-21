@@ -25,7 +25,7 @@ function renderComponent() {
 //         onConfirm={() => {}}
 //         heading="Delete Button?"
 //         renderTrigger={({ isConfirmOpen, handleOpenConfirm }) => (
-//           <Confirmation.Trigger isConfirmOpen={isConfirmOpen} onHandleOpenConfirm={handleOpenConfirm}>
+//           <Confirmation.Trigger isConfirmOpen={isConfirmOpen} onOpenConfirm={handleOpenConfirm}>
 //             Trigger
 //           </Confirmation.Trigger>
 //         )}

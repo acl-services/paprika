@@ -25,12 +25,8 @@ const ConfirmationExample = () => {
           buttonSize="medium"
           confirmLabel="Confirm button text"
           body="Description text"
-          onConfirm={() => {
-            handleConfirm();
-          }}
-          onClose={() => {
-            handleClose();
-          }}
+          onConfirm={handleConfirm}
+          onClose={handleClose}
           heading="Delete filter?"
           getPositioningElement={() => document.getElementById("triggerElement")}
           offset={4}

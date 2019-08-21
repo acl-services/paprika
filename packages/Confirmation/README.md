@@ -20,7 +20,7 @@ import Confirmation from "@paprika/confirmation";
   onClose={() => handleClose(onClose)}
   heading="Delete filter?"
   renderTrigger={({ isConfirmOpen, handleOpenConfirm }) => (
-    <Confirmation.Trigger isConfirmOpen={isConfirmOpen} onHandleOpenConfirm={handleOpenConfirm}>
+    <Confirmation.Trigger isConfirmOpen={isConfirmOpen} onOpenConfirm={handleOpenConfirm}>
       Trigger
     </Confirmation.Trigger>
   )}

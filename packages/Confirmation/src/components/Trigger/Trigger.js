@@ -7,7 +7,7 @@ const propTypes = {
   confirmId: PropTypes.string,
   icon: PropTypes.node,
   isConfirmOpen: PropTypes.bool.isRequired,
-  onHandleOpenConfirm: PropTypes.func.isRequired,
+  onOpenConfirm: PropTypes.func.isRequired,
   triggerRef: PropTypes.shape({ current: PropTypes.instanceOf(Object) }),
 };
 
@@ -19,7 +19,7 @@ const defaultProps = {
 };
 
 const Trigger = props => {
-  const { icon, isConfirmOpen, children, onHandleOpenConfirm, confirmId, triggerRef, ...moreProps } = props;
+  const { icon, isConfirmOpen, children, onOpenConfirm, confirmId, triggerRef, ...moreProps } = props;
 
   const TriggerComponent = icon ? Button.Icon : Button;
 
@@ -31,7 +31,7 @@ const Trigger = props => {
       aria-haspopup="true"
       isSquare
       isSemantic={false}
-      onClick={onHandleOpenConfirm}
+      onClick={onOpenConfirm}
       {...moreProps}
     >
       {icon || children}
