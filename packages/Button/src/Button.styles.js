@@ -6,8 +6,7 @@ import { css, keyframes } from "styled-components";
 
 const commonStyles = `
   ${stylers.alignMiddle}
-  ${stylers.lineHeight(-1)};
-  
+  ${stylers.lineHeight(-1)}
   appearance: none;
   border-radius: ${tokens.button.borderRadius};
   border-style: solid;

@@ -117,13 +117,15 @@ const Button = React.forwardRef((props, ref) => {
     },
   }));
 
+  const isButtonDisabled = isDisabled || isPending;
+
   const handleClick = event => {
     if (!canPropagate) event.stopPropagation();
-    if (!isDisabled) onClick(event);
+    if (!isButtonDisabled) onClick(event);
   };
 
   const buttonProps = {
-    isDisabled,
+    isDisabled: isButtonDisabled,
     kind,
     onClick: handleClick,
     ref: buttonRef,
@@ -131,16 +133,16 @@ const Button = React.forwardRef((props, ref) => {
     ...moreProps,
   };
   if (isSemantic) {
-    buttonProps.disabled = isDisabled;
+    buttonProps.disabled = isButtonDisabled;
     buttonProps.type = isSubmit ? "submit" : "button";
     if (role !== "button") buttonProps.role = role;
   } else {
-    buttonProps.tabIndex = isDisabled ? -1 : tabIndex;
+    buttonProps.tabIndex = isButtonDisabled ? -1 : tabIndex;
     buttonProps.role = role;
   }
 
   const iconProps = {
-    isDisabled,
+    isButtonDisabled,
     kind,
   };
 
