@@ -1,8 +1,8 @@
 import React from "react";
 import Confirmation from "../../src";
 
-const handleConfirm = closeConfirm => {
-  closeConfirm();
+const handleConfirm = handleCloseConfirm => {
+  handleCloseConfirm();
 };
 
 const ConfirmationExample = () => {
@@ -18,9 +18,9 @@ const ConfirmationExample = () => {
         heading="Delete filter?"
       >
         {({ isConfirmOpen, handleOpenConfirm }) => (
-          <Confirmation.Trigger isConfirmOpen={isConfirmOpen} onOpenConfirm={handleOpenConfirm}>
+          <Confirmation.TriggerButton isConfirmOpen={isConfirmOpen} onOpenConfirm={handleOpenConfirm}>
             Trigger
-          </Confirmation.Trigger>
+          </Confirmation.TriggerButton>
         )}
       </Confirmation>
     </div>

@@ -17,27 +17,6 @@ function renderComponent() {
   };
 }
 
-// function renderComponentWithTrigger() {
-//   const renderedComponent = render(
-//     <L10n>
-//       <Confirmation
-//         confirmLabel="Confirm Delete"
-//         onConfirm={() => {}}
-//         heading="Delete Button?"
-//         renderTrigger={({ isConfirmOpen, handleOpenConfirm }) => (
-//           <Confirmation.Trigger isConfirmOpen={isConfirmOpen} onOpenConfirm={handleOpenConfirm}>
-//             Trigger
-//           </Confirmation.Trigger>
-//         )}
-//       />
-//     </L10n>
-//   );
-
-//   return {
-//     ...renderedComponent,
-//   };
-// }
-
 describe("Confirmation", () => {
   let getByText;
   let confirmationComponent;
