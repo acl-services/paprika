@@ -28,30 +28,7 @@ export const lineHeight = (scale = 0) => `
 export const spacer = numSpaces => `${Number.parseInt(tokens.space, 10) * numSpaces}px`;
 
 function zIsValid(level) {
-  const validLevels = [
-    "auto",
-    "initial",
-    "inherit",
-    "-1",
-    "0",
-    "1",
-    "2",
-    "3",
-    "4",
-    "5",
-    "6",
-    "7",
-    -1,
-    0,
-    1,
-    2,
-    3,
-    4,
-    5,
-    6,
-    7,
-  ];
-  return validLevels.includes(level);
+  return /^-1$|^[0-7]$|^inherit$|^initial$|^auto$/.test(level);
 }
 
 export const z = level => {
