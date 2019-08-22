@@ -6,7 +6,7 @@ import Heading from "@paprika/heading";
 import { ShirtSizes } from "@paprika/helpers/lib/customPropTypes";
 import useI18n from "@paprika/l10n/lib/useI18n";
 import Popover from "@paprika/popover";
-import Trigger from "./components/Trigger";
+import TriggerButton from "./components/TriggerButton";
 
 import { confirmStyles, confirmBodyStyles, confirmFooterStyles } from "./Confirmation.styles";
 
@@ -60,9 +60,7 @@ const Confirmation = props => {
 
   const handleOpenConfirm = () => {
     setIsConfirmOpen(true);
-    setTimeout(() => {
-      focusConfirmButton();
-    }, 200);
+    setTimeout(focusConfirmButton, 250);
   };
 
   React.useEffect(() => {
@@ -76,22 +74,16 @@ const Confirmation = props => {
     handleOpenConfirm,
   };
 
-  const closeConfirm = () => {
-    setIsConfirmOpen(false);
-  };
-
-  const handleOnConfirm = () => {
-    onConfirm(closeConfirm);
-  };
-
   const handleCloseConfirm = () => {
     if (isConfirmOpen) {
       setIsConfirmOpen(false);
       if (triggerRef.current) triggerRef.current.focus();
-      setTimeout(() => {
-        onClose();
-      }, 0);
+      setTimeout(onClose, 0);
     }
+  };
+
+  const handleOnConfirm = () => {
+    onConfirm(handleCloseConfirm);
   };
 
   const renderTrigger = triggerComponent => {
@@ -153,6 +145,6 @@ const Confirmation = props => {
 Confirmation.displayName = "Confirmation";
 Confirmation.propTypes = propTypes;
 Confirmation.defaultProps = defaultProps;
-Confirmation.Trigger = Trigger;
+Confirmation.TriggerButton = TriggerButton;
 
 export default Confirmation;

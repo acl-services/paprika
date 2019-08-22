@@ -6,9 +6,9 @@ import L10n from "@paprika/l10n";
 import Heading from "@paprika/heading";
 import Confirmation from "../../src";
 
-const handleConfirm = closeConfirm => {
+const handleConfirm = handleCloseConfirm => {
   action("Clicked the confirmation button")();
-  closeConfirm();
+  handleCloseConfirm();
 };
 
 const handleClose = () => {
@@ -37,9 +37,9 @@ const ExampleStory = () => (
           heading={text("Heading text", "Delete filter?")}
         >
           {({ isConfirmOpen, handleOpenConfirm }) => (
-            <Confirmation.Trigger isConfirmOpen={isConfirmOpen} onOpenConfirm={handleOpenConfirm}>
+            <Confirmation.TriggerButton isConfirmOpen={isConfirmOpen} onOpenConfirm={handleOpenConfirm}>
               Trigger
-            </Confirmation.Trigger>
+            </Confirmation.TriggerButton>
           )}
         </Confirmation>
       </L10n>

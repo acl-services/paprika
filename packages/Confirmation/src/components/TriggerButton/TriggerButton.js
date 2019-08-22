@@ -18,7 +18,7 @@ const defaultProps = {
   triggerRef: null,
 };
 
-const Trigger = props => {
+const TriggerButton = props => {
   const { icon, isConfirmOpen, children, onOpenConfirm, confirmId, triggerRef, ...moreProps } = props;
 
   const TriggerComponent = icon ? Button.Icon : Button;
@@ -39,8 +39,8 @@ const Trigger = props => {
   );
 };
 
-Trigger.displayName = "Confirmation.Trigger";
-Trigger.defaultProps = defaultProps;
-Trigger.propTypes = propTypes;
+TriggerButton.displayName = "Confirmation.TriggerButton";
+TriggerButton.defaultProps = defaultProps;
+TriggerButton.propTypes = propTypes;
 
-export default Trigger;
+export default TriggerButton;

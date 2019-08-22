@@ -2,8 +2,8 @@ import React from "react";
 import Add from "@paprika/icon/lib/Add";
 import Confirmation from "../../src";
 
-const handleConfirm = closeConfirm => {
-  closeConfirm();
+const handleConfirm = handleCloseConfirm => {
+  handleCloseConfirm();
 };
 
 const ConfirmationExample = () => {
@@ -19,7 +19,7 @@ const ConfirmationExample = () => {
         heading="Delete filter?"
       >
         {({ isConfirmOpen, handleOpenConfirm }) => (
-          <Confirmation.Trigger icon={<Add />} isConfirmOpen={isConfirmOpen} onOpenConfirm={handleOpenConfirm} />
+          <Confirmation.TriggerButton icon={<Add />} isConfirmOpen={isConfirmOpen} onOpenConfirm={handleOpenConfirm} />
         )}
       </Confirmation>
     </div>
