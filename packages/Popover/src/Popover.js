@@ -3,6 +3,7 @@ import memoizeOne from "memoize-one";
 import PropTypes from "prop-types";
 import throttle from "lodash.throttle";
 import tokens from "@paprika/tokens";
+import { AlignTypes } from "@paprika/helpers/lib/customPropTypes";
 import isInsideBoundaries from "./helpers/isInsideBoundaries";
 import { getContentCoordinates, getTipCoordinates } from "./helpers/getPosition";
 import { isActiveElementPopover } from "./helpers/isActiveElementPopover";
@@ -33,7 +34,7 @@ const throttleDelay = 20;
 
 const propTypes = {
   /** Where the popover content is positioned relative to the trigger or getPositioningElement. */
-  align: PropTypes.oneOf(["top", "right", "bottom", "left"]),
+  align: PropTypes.oneOf(AlignTypes.ALL),
 
   /** Content of the popover */
   children: PropTypes.node.isRequired,
@@ -194,7 +195,7 @@ class Popover extends React.Component {
   setVisibilityAndPosition(isOpening = false) {
     // dynamically setting a fixed width before positioning avoids issues at the
     // right edge of the screen
-    if (isOpening && ["top", "bottom"].includes(this.props.align)) {
+    if (isOpening && [AlignTypes.TOP, AlignTypes.BOTTOM].includes(this.props.align)) {
       const newWidth = this.getContentWidth();
       if (newWidth !== this.state.width) {
         this.setState({ width: newWidth }, () => {
