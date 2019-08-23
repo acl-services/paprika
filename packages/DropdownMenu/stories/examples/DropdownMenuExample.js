@@ -48,6 +48,7 @@ const DropdownMenuExample = () => {
       >
         Delete filter
       </DropdownMenu.Item>
+      {false && <DropdownMenu.Item onClick={() => {}}>Excluded</DropdownMenu.Item>}
     </DropdownMenu>
   );
 };
