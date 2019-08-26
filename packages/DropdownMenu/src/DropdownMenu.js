@@ -7,7 +7,7 @@ import Divider from "./components/Divider";
 import Trigger from "./components/Trigger";
 import LinkItem from "./components/LinkItem";
 import Item from "./components/Item";
-import contentStyles from "./DropdownMenuContentStyles.styles";
+import { contentStyles } from "./DropdownMenu.styles";
 
 const propTypes = {
   /** Alignment of the dropdown menu */
@@ -87,22 +87,21 @@ const DropdownMenu = props => {
     }
 
     return (
-      <div css={contentStyles} isOpen={isOpen}>
+      <div css={contentStyles}>
         {React.Children.map(children, (child, index) => {
           if (child && child.type && child.type.displayName === "DropdownMenu.Item") {
-            const childItem = { key: `DropdownMenuItem${index}` };
+            const childKey = { key: `DropdownMenuItem${index}` };
             if (child.props.renderConfirmation) {
               return React.cloneElement(child, {
                 onShowConfirmation: handleShowConfirmation(child.props.renderConfirmation),
-                ...childItem,
+                ...childKey,
               });
             }
             return React.cloneElement(child, {
               onClose: handleCloseMenu,
-              ...childItem,
+              ...childKey,
             });
           }
-
           return child;
         })}
       </div>
@@ -115,26 +114,24 @@ const DropdownMenu = props => {
       offset={popoverOffset}
       isOpen={isOpen}
       onClose={() => {
-        if (!isConfirming) {
-          handleCloseMenu();
-        }
+        if (!isConfirming) handleCloseMenu();
       }}
       {...moreProps}
     >
       <Popover.Trigger>{renderTrigger()}</Popover.Trigger>
       <Popover.Content id={menuId.current} role={!isConfirming ? "menu" : null}>
-        {renderContent()}
+        <Popover.Card>{renderContent()}</Popover.Card>
       </Popover.Content>
     </Popover>
   );
 };
 
 DropdownMenu.displayName = "DropdownMenu";
+DropdownMenu.propTypes = propTypes;
+DropdownMenu.defaultProps = defaultProps;
 DropdownMenu.Divider = Divider;
 DropdownMenu.LinkItem = LinkItem;
 DropdownMenu.Item = Item;
 DropdownMenu.Trigger = Trigger;
-DropdownMenu.propTypes = propTypes;
-DropdownMenu.defaultProps = defaultProps;
 
 export default DropdownMenu;
