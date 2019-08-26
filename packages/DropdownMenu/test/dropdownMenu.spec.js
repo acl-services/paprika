@@ -1,9 +1,8 @@
 import React from "react";
 import { render, configure, fireEvent } from "@testing-library/react";
 import L10n from "@paprika/l10n";
+import Confirmation from "@paprika/confirmation";
 import DropdownMenu from "../src";
-// must update to npm package
-import Confirmation from "../../Confirmation/src/Confirmation";
 
 configure({ testIdAttribute: "data-qa-anchor" });
 

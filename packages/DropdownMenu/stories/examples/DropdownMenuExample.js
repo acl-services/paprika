@@ -1,6 +1,6 @@
 import React from "react";
+import Confirmation from "@paprika/confirmation";
 import DropdownMenu from "../../src";
-import Confirmation from "../../../Confirmation/src/Confirmation";
 
 const handleConfirm = onCloseMenu => onCloseConfirm => {
   onCloseConfirm();
