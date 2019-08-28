@@ -22,9 +22,9 @@ export default class ExampleStory extends React.Component {
         <Popover isOpen={this.state.isOpen} onClose={this.handleClose}>
           <Button onClick={this.handleClick}>Open Popover</Button>
           <Popover.Content>
-            <Popover.Tip />
             <Popover.Card>This popover is a controlled component.</Popover.Card>
           </Popover.Content>
+          <Popover.Tip />
         </Popover>
       </CenteredStory>
     );

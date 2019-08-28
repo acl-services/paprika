@@ -1,11 +1,11 @@
 import selectors from "./helpers/selectors";
 
-const basePopoverStory = "popover-automation-tests-cypress";
-const basicPopoverStory = "basic-popover-test";
+const storyFolder = "popover-automation-tests";
+const story = "cypress";
 
 describe("Popover", () => {
   beforeEach(() => {
-    cy.visitStorybook(`${basePopoverStory}--${basicPopoverStory}`);
+    cy.visitStorybook(`${storyFolder}--${story}`);
     cy.get(selectors.popover).should("be.not.visible");
   });
 

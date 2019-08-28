@@ -1,6 +1,6 @@
 import React from "react";
 import { action } from "@storybook/addon-actions";
-import { Story, Small, Rule } from "storybook/assets/styles/common.styles";
+import { Story, Small, Rule, breaklines } from "storybook/assets/styles/common.styles";
 import RawButton from "../../src";
 
 function clickHandler() {
@@ -45,9 +45,7 @@ const ExampleStory = () => {
           Disabled RawButton
         </RawButton>
       </p>
-      {[...Array(34).keys()].map(index => (
-        <br key={index} />
-      ))}
+      {breaklines(34)}
       ...fin.
     </Story>
   );

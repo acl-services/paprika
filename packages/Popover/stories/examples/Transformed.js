@@ -7,6 +7,7 @@ import Popover from "../../src";
 const TransformedStory = styled(CenteredStory)`
   background: #333;
   height: 50vh;
+  min-height: 0;
   transform: translate(50%, 50%);
   width: 50vw;
 `;
@@ -18,9 +19,9 @@ const ExampleStory = () => (
         <Button kind="secondary">Open Popover</Button>
       </Popover.Trigger>
       <Popover.Content>
-        <Popover.Tip />
         <Popover.Card>This popover renders inside a &lt;div&gt; with a CSS transform applied to it.</Popover.Card>
       </Popover.Content>
+      <Popover.Tip />
     </Popover>
   </TransformedStory>
 );

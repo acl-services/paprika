@@ -51,9 +51,9 @@ const PopoverBox = props => {
           <Button>Open Popover</Button>
         </Popover.Trigger>
         <Popover.Content>
-          <Popover.Tip />
           <Popover.Card>{sampleText}</Popover.Card>
         </Popover.Content>
+        <Popover.Tip />
       </Popover>
     </PopoverContainer>
   );

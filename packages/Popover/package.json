@@ -1,6 +1,6 @@
 {
   "name": "@paprika/popover",
-  "version": "0.1.7",
+  "version": "0.1.8",
   "description": "Popover / Tooltip component",
   "author": "@paprika",
   "main": "lib/index.js",
@@ -16,8 +16,8 @@
   "dependencies": {
     "@babel/runtime-corejs2": "^7.3.1",
     "@paprika/helpers": "^0.1.1",
-    "@paprika/raw-button": "^0.1.5",
-    "@paprika/stylers": "^0.1.4",
+    "@paprika/raw-button": "^0.1.6",
+    "@paprika/stylers": "^0.1.5",
     "@paprika/tokens": "^0.1.4",
     "lodash.throttle": "^4.1.1",
     "memoize-one": "^5.0.0",

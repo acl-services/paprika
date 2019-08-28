@@ -66,10 +66,10 @@ const propTypes = {
   /** Function that provides the scrolling DOM element that contains the popover. */
   getScrollContainer: PropTypes.func,
 
-  /** If this value is true, focus will stay at the trigger when showing popover, and only can be closed when clicking outside or pressing escape key . Default is false. */
+  /** If focus will stay at the trigger when showing popover. Popover can still be closed when clicking outside or pressing escape key. */
   shouldKeepFocus: PropTypes.bool,
 
-  /** Number setting the z-index for the popover content */
+  /** Number setting the z-index for the popover content / tip. */
   zIndex: PropTypes.number,
 };
 
