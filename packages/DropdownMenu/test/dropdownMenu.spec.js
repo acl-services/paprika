@@ -59,15 +59,14 @@ describe("DropdownMenu", () => {
 
   it("should show trigger initially with dropdown hidden", () => {
     expect(triggerComponent).toBeVisible();
-    expect(getByText(/edit/i)).not.toBeVisible();
+    expect(queryByText(/edit/i)).not.toBeInTheDocument();
   });
-
   it("should hide dropdown when item is clicked", () => {
     fireEvent.click(triggerComponent);
     expect(getByText(/edit/i)).toBeVisible();
     fireEvent.click(getByText(/edit/i));
     expect(triggerComponent).toBeVisible();
-    expect(getByText(/edit/i)).not.toBeVisible();
+    expect(queryByText(/edit/i)).not.toBeInTheDocument();
   });
 
   describe("Confirmation popover", () => {
@@ -85,15 +84,9 @@ describe("DropdownMenu", () => {
       fireEvent.click(getByText(/cancel/i));
       setTimeout(() => {
         expect(queryByText(/confirm delete/i)).not.toBeInTheDocument();
-        expect(getByText(/edit/i)).not.toBeVisible();
+        expect(queryByText(/edit/i)).not.toBeInTheDocument();
         done();
       }, 350);
     });
-
-    // it("should hide all dropdown menus when primary button is clicked inside replacement popover", () => {
-    //   getByText(/confirm delete/i).click();
-    //   expect(queryByText(/confirm delete/i)).not.toBeInTheDocument();
-    //   expect(getByText(/edit/i)).not.toBeVisible();
-    // });
   });
 });

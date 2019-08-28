@@ -120,7 +120,7 @@ const DropdownMenu = props => {
     >
       <Popover.Trigger>{renderTrigger()}</Popover.Trigger>
       <Popover.Content id={menuId.current} role={!isConfirming ? "menu" : null}>
-        <Popover.Card>{renderContent()}</Popover.Card>
+        {isOpen && <Popover.Card>{renderContent()}</Popover.Card>}
       </Popover.Content>
     </Popover>
   );
