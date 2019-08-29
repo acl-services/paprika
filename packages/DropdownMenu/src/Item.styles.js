@@ -13,7 +13,7 @@ const itemStyles = css`
   text-decoration: none;
 
   &:focus {
-    box-shadow: ${tokens.highlight.active.withBorder.boxShadow}
+    box-shadow: ${tokens.highlight.active.withBorder.insetBoxShadow};
     outline: none;
     position: relative;
     ${stylers.z(1)}

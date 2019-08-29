@@ -48,7 +48,7 @@ const Item = props => {
   };
 
   return (
-    <RawButton css={ItemStyles} {...itemProps} {...moreProps}>
+    <RawButton hasInsetFocusStyle css={ItemStyles} {...itemProps} {...moreProps}>
       {children}
     </RawButton>
   );

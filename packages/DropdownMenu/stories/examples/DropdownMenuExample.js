@@ -1,12 +1,18 @@
 import React from "react";
+import Confirmation from "@paprika/confirmation";
 import DropdownMenu from "../../src";
+
+const handleConfirm = onCloseMenu => onCloseConfirm => {
+  onCloseConfirm();
+  onCloseMenu();
+};
 
 const DropdownMenuExample = () => {
   return (
     <DropdownMenu
       align="bottom"
       renderTrigger={({ isOpen, handleOpenMenu }) => (
-        <DropdownMenu.Trigger data-qa-anchor="dropdown-menu__trigger" isOpen={isOpen} handleOpenMenu={handleOpenMenu}>
+        <DropdownMenu.Trigger data-qa-anchor="dropdown-menu__trigger" isOpen={isOpen} onOpenMenu={handleOpenMenu}>
           Trigger
         </DropdownMenu.Trigger>
       )}
@@ -28,20 +34,21 @@ const DropdownMenuExample = () => {
       <DropdownMenu.Divider />
       <DropdownMenu.Item
         isDestructive
-        renderConfirmation={onClose => {
+        renderConfirmation={onCloseMenu => {
           return (
-            <DropdownMenu.Confirmation
+            <Confirmation
+              body="Lorem ipsum dolor amet vexillologist tacos selvage narwhal butcher twee ethical hot chicken."
               confirmLabel="Delete filter"
-              description="Lorem ipsum dolor amet vexillologist tacos selvage narwhal butcher twee ethical hot chicken."
-              onConfirm={() => onClose()}
-              onCancel={() => onClose()}
+              defaultIsOpen
               heading="Delete filter?"
+              onConfirm={handleConfirm(onCloseMenu)}
             />
           );
         }}
       >
         Delete filter
       </DropdownMenu.Item>
+      {false && <DropdownMenu.Item onClick={() => {}}>Excluded</DropdownMenu.Item>}
     </DropdownMenu>
   );
 };
