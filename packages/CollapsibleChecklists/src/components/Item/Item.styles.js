@@ -1,21 +1,23 @@
 import stylers from "@paprika/stylers";
 import tokens from "@paprika/tokens";
 import { css } from "styled-components";
-import { disabledStyle } from "../helpers.styles";
+import { disabledStyles } from "../helpers.styles";
 
 const itemStyles = css`
   ${({ isDisabled }) => {
     return `
-      padding: 2px 0 2px ${stylers.spacer(5)};
-      ${isDisabled ? disabledStyle : ""};
+      padding: ${tokens.spaceSm} 6px ${tokens.spaceSm} ${stylers.spacer(7)};
+      
+      ${isDisabled ? disabledStyles : ""};
 
       label {
-        align-items: center;
+        ${stylers.lineHeight(-1)}
+        align-items: flex-start;
         display: flex;
       }
 
-      input {
-        margin-right: ${tokens.space}
+      input[type="checkbox"] {
+        margin: 0.4em ${tokens.space} 0 0;
       }
     `;
   }}
