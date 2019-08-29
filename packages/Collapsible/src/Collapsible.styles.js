@@ -17,23 +17,38 @@ const collapsibleStyles = css`
   .collapsible__label {
     display: inline-block;
     border-radius: ${tokens.border.radius};
-    width: 100%;
+    margin-left: -${tokens.spaceSm};
+    margin-right: -${tokens.spaceSm};
+    padding-left: ${tokens.spaceSm};
+    padding-right: ${tokens.spaceSm};
+    width: calc(100% + ${tokens.space});
   }
 
+  .collapsible__icon--left {
+    margin-right: ${tokens.spaceSm};
+  }
+
+  .collapsible__icon--right {
+    float: right;
+    margin-left: ${tokens.spaceSm};
+  }
+  
   .collapsible__label--is-toggle-icon-only {
+    margin: 0;
     width: auto;
+  }
+
+  .collapsible__label--left {
+    margin-right: ${tokens.spaceSm}; 
+  }
+
+  .collapsible__label--right {
+    float: right;
+    margin-left: ${tokens.spaceSm};
   }
 
   [data-pka-anchor="collapsible.icon"] svg {
     vertical-align: -0.1em;
-  }
-
-  .collapsible--icon-left {
-    padding-right: ${tokens.spaceSm};
-  }
-
-  .collapsible--icon-right {
-    float: right;
   }
 
   .collapsible__body {
