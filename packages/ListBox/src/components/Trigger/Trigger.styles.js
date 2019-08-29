@@ -2,6 +2,7 @@ import styled from "styled-components";
 import RawButton from "@paprika/raw-button";
 import RawButtonStyled from "@paprika/raw-button/lib/RawButton.styles";
 import tokens from "@paprika/tokens";
+import stylers from "@paprika/stylers";
 
 const triggerStyles = `
   align-items: center;
@@ -12,7 +13,9 @@ const triggerStyles = `
   color: #3f3d3c;
   display: block;
   font-size: 14px;
-  padding: 8px; /* Define Trigger's height */
+  height: ${stylers.spacer(4)};
+  line-height: ${stylers.spacer(4)};
+  padding: 0 8px;
   position: relative;
   text-align: left;
   transition: border-color 0.2s;
