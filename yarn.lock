@@ -2178,6 +2178,16 @@
     universal-user-agent "^3.0.0"
     url-template "^2.0.8"
 
+"@paprika/icon@^0.1.6":
+  version "0.1.6"
+  resolved "https://registry.yarnpkg.com/@paprika/icon/-/icon-0.1.6.tgz#bc77e91a165ff9257ce48d5d0fd60f2326a46323"
+  integrity sha512-q7M3G9gdgLuZ2iblQUNFwdbcqqw6coOo1hmlhfw2/kXrrca9NMe7x4lrbEXHpNBUGoihI+D1sGbO0QyfTjMdJQ==
+  dependencies:
+    "@babel/runtime-corejs2" "^7.3.1"
+    "@paprika/tokens" "^0.1.4"
+    "@svgr/cli" "^4.1.0"
+    prop-types "^15.7.2"
+
 "@paprika/l10n@^0.1.0":
   version "0.1.4"
   resolved "https://registry.yarnpkg.com/@paprika/l10n/-/l10n-0.1.4.tgz#623e0c49224258caf250a31ab465dcf49173a068"
