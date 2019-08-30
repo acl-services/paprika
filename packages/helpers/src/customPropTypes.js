@@ -10,6 +10,14 @@ export const ShirtSizes = {
 ShirtSizes.DEFAULT = [ShirtSizes.SMALL, ShirtSizes.MEDIUM, ShirtSizes.LARGE];
 ShirtSizes.ALL = Object.values(ShirtSizes);
 
+export const AlignTypes = {
+  TOP: "top",
+  RIGHT: "right",
+  BOTTOM: "bottom",
+  LEFT: "left",
+};
+AlignTypes.ALL = Object.values(AlignTypes);
+
 export const deprecated = name => (props, propName, component) => {
   if (props[propName] !== undefined) {
     return new Error(`Deprecated prop '${propName}' supplied to ${component}. Use '${name}' instead.`);
