@@ -12,6 +12,7 @@ or
 
 ```js
 import DropdownMenu from "@paprika/dropdown-menu";
+import Confirmation from "@paprika/confirmation";
 
 <DropdownMenu
   renderTrigger={({ isOpen, handleOpenMenu }) => (
@@ -32,12 +33,12 @@ import DropdownMenu from "@paprika/dropdown-menu";
     isDestructive
     renderConfirmation={onClose => {
       return (
-        <DropdownMenu.Confirmation
+        <Confirmation
+          body="Lorem ipsum dolor amet vexillologist tacos selvage narwhal butcher twee ethical hot chicken."
           confirmLabel="Delete filter"
-          description="Lorem ipsum dolor amet vexillologist tacos selvage narwhal butcher twee ethical hot chicken"
-          onConfirm={() => handleConfirm(onClose)}
-          onCancel={() => handleCancel(onClose)}
+          defaultIsOpen
           heading="Delete filter?"
+          onConfirm={handleConfirm(onCloseMenu)}
         />
       );
     }}
@@ -84,16 +85,3 @@ import DropdownMenu from "@paprika/dropdown-menu";
 #### DropdownMenu.Divider
 
 [More detail about this component](https://github.com/acl-services/paprika/blob/master/packages/DropdownMenu/src/components/Divider/Divider.js)
-
-#### DropdownMenu.Confirmation
-
-- buttonSize
-- confirmButtonType
-- confirmLabel
-- description
-- onCancel
-- onClose
-- onConfirm
-- heading
-
-[More detail about these props](https://github.com/acl-services/paprika/blob/master/packages/DropdownMenu/src/components/Confirmation/Confirmation.js)
