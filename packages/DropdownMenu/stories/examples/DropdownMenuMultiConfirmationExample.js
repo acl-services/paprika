@@ -1,20 +1,18 @@
 import React from "react";
+import Confirmation from "@paprika/confirmation";
 import DropdownMenu from "../../src";
 
 const DropdownMenuExample = () => {
-  const handleConfirm = handleCloseMenu => {
-    handleCloseMenu();
-  };
-
-  const handleCancel = handleCloseMenu => {
-    handleCloseMenu();
+  const handleConfirm = onCloseMenu => onCloseConfirm => {
+    onCloseConfirm();
+    onCloseMenu();
   };
 
   return (
     <DropdownMenu
       align="bottom"
       renderTrigger={({ isOpen, handleOpenMenu }) => (
-        <DropdownMenu.Trigger isOpen={isOpen} handleOpenMenu={handleOpenMenu}>
+        <DropdownMenu.Trigger isOpen={isOpen} onOpenMenu={handleOpenMenu}>
           Trigger
         </DropdownMenu.Trigger>
       )}
@@ -26,14 +24,14 @@ const DropdownMenuExample = () => {
       </DropdownMenu.Item>
       <DropdownMenu.Item
         isDestructive
-        renderConfirmation={onClose => {
+        renderConfirmation={onCloseMenu => {
           return (
-            <DropdownMenu.Confirmation
+            <Confirmation
+              body="Lorem ipsum dolor amet vexillologist tacos selvage narwhal butcher twee ethical hot chicken."
               confirmLabel="Delete filter"
-              description="Lorem ipsum dolor amet vexillologist tacos selvage narwhal butcher twee ethical hot chicken."
-              onConfirm={() => handleConfirm(onClose)}
-              onCancel={() => handleCancel(onClose)}
+              defaultIsOpen
               heading="Delete filter 1?"
+              onConfirm={handleConfirm(onCloseMenu)}
             />
           );
         }}
@@ -47,14 +45,14 @@ const DropdownMenuExample = () => {
       <DropdownMenu.Divider />
       <DropdownMenu.Item
         isDestructive
-        renderConfirmation={onClose => {
+        renderConfirmation={onCloseMenu => {
           return (
-            <DropdownMenu.Confirmation
+            <Confirmation
+              body="Lorem ipsum dolor amet vexillologist tacos selvage narwhal butcher twee ethical hot chicken."
               confirmLabel="Delete filter"
-              description="Lorem ipsum dolor amet vexillologist tacos selvage narwhal butcher twee ethical hot chicken."
-              onConfirm={() => handleConfirm(onClose)}
-              onCancel={() => handleCancel(onClose)}
+              defaultIsOpen
               heading="Delete filter 2?"
+              onConfirm={handleConfirm(onCloseMenu)}
             />
           );
         }}

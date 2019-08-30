@@ -3,15 +3,13 @@ import { Rule, Tagline } from "storybook/assets/styles/common.styles";
 import { select } from "@storybook/addon-knobs";
 import L10n from "@paprika/l10n";
 import Heading from "@paprika/heading";
+import Confirmation from "@paprika/confirmation";
 import { DropdownMenuStory } from "../DropdownMenu.stories.styles";
 import DropdownMenu from "../../src";
 
-const handleConfirm = handleCloseMenu => {
-  handleCloseMenu();
-};
-
-const handleCancel = handleCloseMenu => {
-  handleCloseMenu();
+const handleConfirm = onCloseMenu => onCloseConfirm => {
+  onCloseConfirm();
+  onCloseMenu();
 };
 
 const ExampleStory = () => (
@@ -25,7 +23,7 @@ const ExampleStory = () => (
       <DropdownMenu
         align="bottom"
         renderTrigger={({ isOpen, handleOpenMenu }) => (
-          <DropdownMenu.Trigger isOpen={isOpen} handleOpenMenu={handleOpenMenu}>
+          <DropdownMenu.Trigger id="triggerElement" isOpen={isOpen} onOpenMenu={handleOpenMenu}>
             Trigger
           </DropdownMenu.Trigger>
         )}
@@ -38,7 +36,9 @@ const ExampleStory = () => (
         <DropdownMenu.Item isDisabled onClick={() => {}}>
           Galvanize item
         </DropdownMenu.Item>
-        <DropdownMenu.LinkItem link="http://www.wegalvanize.com">Galvanize Link Item</DropdownMenu.LinkItem>
+        <DropdownMenu.LinkItem link="http://www.wegalvanize.com">
+          Extra super long label for a Galvanize LinkItem
+        </DropdownMenu.LinkItem>
         <DropdownMenu.LinkItem isExternal link="http://www.bbc.com">
           External link
         </DropdownMenu.LinkItem>
@@ -48,17 +48,18 @@ const ExampleStory = () => (
         <DropdownMenu.Divider />
         <DropdownMenu.Item
           isDestructive
-          renderConfirmation={onClose => {
+          renderConfirmation={onCloseMenu => {
             return (
-              <DropdownMenu.Confirmation
+              <Confirmation
                 buttonSize={select("Confirmation Button Size", ["x-small", "small", "medium", "large"], "medium")}
-                confirmLabel="Delete filter"
-                description={
+                body={
                   <p>Lorem ipsum dolor amet vexillologist tacos selvage narwhal butcher twee ethical hot chicken.</p>
                 }
-                onConfirm={() => handleConfirm(onClose)}
-                onCancel={() => handleCancel(onClose)}
+                confirmLabel="Delete filter"
+                getPositioningElement={() => document.getElementById("triggerElement")}
                 heading="Delete filter?"
+                defaultIsOpen
+                onConfirm={handleConfirm(onCloseMenu)}
               />
             );
           }}

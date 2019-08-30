@@ -1,6 +1,6 @@
 import React from "react";
 import RawButton from "@paprika/raw-button";
-import AddIcon from "@paprika/icon/lib/Add";
+import Add from "@paprika/icon/lib/Add";
 import DropdownMenu from "../../src";
 
 const DropdownMenuTriggerExample = () => {
@@ -31,10 +31,8 @@ const DropdownMenuTriggerExample = () => {
         <br />
         <DropdownMenu
           align="bottom"
-          renderTrigger={({ handleOpenMenu }) => (
-            <RawButton onClick={handleOpenMenu}>
-              <AddIcon aria-hidden />
-            </RawButton>
+          renderTrigger={({ isOpen, handleOpenMenu }) => (
+            <DropdownMenu.Trigger icon={<Add />} isOpen={isOpen} onOpenMenu={handleOpenMenu} />
           )}
         >
           <DropdownMenu.Item onClick={() => {}}>First Item</DropdownMenu.Item>
@@ -50,7 +48,7 @@ const DropdownMenuTriggerExample = () => {
         <DropdownMenu
           align="bottom"
           renderTrigger={({ isOpen, handleOpenMenu }) => (
-            <DropdownMenu.Trigger size="small" isOpen={isOpen} handleOpenMenu={handleOpenMenu}>
+            <DropdownMenu.Trigger size="small" isOpen={isOpen} onOpenMenu={handleOpenMenu}>
               Trigger
             </DropdownMenu.Trigger>
           )}

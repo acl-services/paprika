@@ -1,8 +1,9 @@
 import PropTypes from "prop-types";
+import { AlignTypes } from "@paprika/helpers/lib/customPropTypes";
 
 const propTypes = {
   /** Where the calendar is positioned relative to the trigger. */
-  align: PropTypes.oneOf(["top", "right", "bottom", "left"]),
+  align: PropTypes.oneOf(AlignTypes.ALL),
 
   /** Distance, in px, between calendar edge and the input. */
   offset: PropTypes.number,
@@ -12,7 +13,7 @@ const propTypes = {
 };
 
 const defaultProps = {
-  align: "bottom",
+  align: AlignTypes.BOTTOM,
   offset: 8,
   zIndex: 1,
 };
