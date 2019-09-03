@@ -27,7 +27,7 @@ const groupStyles = css`
         }
 
         input[type="checkbox"] {
-          margin: 0.4em ${tokens.space} 0 ${tokens.spaceSm}
+          margin: 4px ${tokens.space} 0 ${tokens.spaceSm}
         }
       }
     `;

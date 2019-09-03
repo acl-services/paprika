@@ -17,7 +17,7 @@ const itemStyles = css`
       }
 
       input[type="checkbox"] {
-        margin: 0.4em ${tokens.space} 0 0;
+        margin: 4px ${tokens.space} 0 0;
       }
     `;
   }}

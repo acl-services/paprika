@@ -48,7 +48,7 @@ const collapsibleStyles = css`
   }
 
   [data-pka-anchor="collapsible.icon"] svg {
-    vertical-align: -0.1em;
+    vertical-align: -2px; 
   }
 
   .collapsible__body {

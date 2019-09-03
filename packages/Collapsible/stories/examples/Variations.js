@@ -4,8 +4,8 @@ import Collapsible from "../../src";
 
 const dummyContent = (
   <p>
-    <strong>Content</strong> – children of the &lt;Collapsible&gt; is hidden while the collapsible is collapsed, and
-    visible with it is expanded.
+    <strong>Content</strong> – children of the &lt;Collapsible&gt; are hidden when it is collapsed, and visible when it
+    is expanded.
   </p>
 );
 
