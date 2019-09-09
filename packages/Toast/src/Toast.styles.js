@@ -87,6 +87,7 @@ const toastStyles = css`
   position: relative;
   text-align: left;
   transition: opacity 0.3s ease-out;
+  z-index: ${({ zIndex }) => zIndex};
 
   ${stylers.fontSize()}
   ${stylers.lineHeight()}

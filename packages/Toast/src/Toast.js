@@ -56,7 +56,7 @@ const defaultProps = {
   onClose: () => {},
   isFixed: false,
   kind: Kinds.INFO,
-  zIndex: undefined,
+  zIndex: null,
 };
 
 const minimumCloseTimeout = 1500;
@@ -128,8 +128,8 @@ function Toast(props) {
       hasCloseButton={hasCloseButton}
       isFixed={isFixed}
       role="alert"
-      style={{ zIndex: zIndex !== undefined ? zIndex : deafultZIndex }}
       kind={kind}
+      zIndex={zIndex !== null ? zIndex : deafultZIndex}
       {...moreProps}
     >
       {kind === Kinds.VISUALLY_HIDDEN ? null : <IconStyled as={icons[kind]} kind={kind} />}
