@@ -5,11 +5,16 @@ import CollapsibleChecklists from "../../src/index";
 const movies = {
   Action: [
     { id: 1, title: "Die hard", isChecked: false },
-    { id: 2, title: "Speed", isChecked: false },
+    {
+      id: 2,
+      title:
+        "Lorem hipsum unicorn distillery pour-over hammock listicle readymade mumblecore craft beer cold-pressed vaporware forage.",
+      isChecked: false,
+    },
     { id: 3, title: "Rambo", isChecked: false },
     { id: 4, title: "Rocky", isChecked: false },
   ],
-  Fantasy: [
+  "Fantasy unicorn distillery pour-over hammock listicle readymade mumblecore": [
     { id: 5, title: "Tiger and the dragon", isChecked: false },
     { id: 6, title: "Lord of the Rings", isChecked: false },
     { id: 7, title: "Matrix", isChecked: false },

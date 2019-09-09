@@ -50,7 +50,12 @@ const SortableItem = ({ children, index, hasNumbers, onRemove }) => {
           </div>
           {onRemove && (
             <div css={itemCloseStyles} data-pka-anchor="sortable.item.remove">
-              <Button.Close onClick={handleRemove} size="small" isSemantic={false} />
+              <Button.Close
+                a11yText={I18n.t("sortable.aria_remove")}
+                onClick={handleRemove}
+                size="small"
+                isSemantic={false}
+              />
             </div>
           )}
         </li>

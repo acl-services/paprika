@@ -9,7 +9,7 @@ const propTypes = {
   className: PropTypes.string,
   children: PropTypes.node.isRequired,
   hasError: PropTypes.bool,
-  inputRef: PropTypes.func,
+  inputRef: PropTypes.oneOfType([PropTypes.func, PropTypes.shape({ current: PropTypes.instanceOf(Element) })]),
   isDisabled: PropTypes.bool,
   isReadOnly: PropTypes.bool,
   placeholder: PropTypes.string,

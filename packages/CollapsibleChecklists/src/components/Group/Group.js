@@ -157,6 +157,7 @@ function Group(props) {
 
   return (
     <Collapsible
+      a11yText={title}
       css={groupStyles}
       hasOnlyIconToggle
       isCollapsed={isCollapsed}
