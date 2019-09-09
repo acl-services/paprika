@@ -1,6 +1,6 @@
 {
   "name": "@paprika/sidepanel",
-  "version": "0.1.9",
+  "version": "0.1.10",
   "description": "SidePanel component",
   "author": "@paprika",
   "main": "lib/index.js",
@@ -18,7 +18,7 @@
     "@paprika/heading": "^0.1.6",
     "@paprika/helpers": "^0.1.2",
     "@paprika/icon": "^0.2.0",
-    "@paprika/l10n": "^0.2.0",
+    "@paprika/l10n": "^0.2.1",
     "@paprika/raw-button": "^0.1.6",
     "@paprika/stylers": "^0.1.5",
     "@paprika/tokens": "^0.1.4",
