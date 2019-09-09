@@ -14,7 +14,7 @@ const triggerStyles = `
   font-size: 14px;
   height: ${stylers.spacer(4)};
   line-height: ${stylers.spacer(4)};
-  padding: 0 8px;
+  padding: 0 ${tokens.space};
   position: relative;
   text-align: left;
   transition: border-color 0.2s;
@@ -36,7 +36,7 @@ const triggerStylesProps = () => props => {
       ${isDisabled}
     `
     : `
-      & > [data-qa-anchor='listbox-trigger'] {
+      & > [data-pka-anchor='listbox-trigger'] {
         ${triggerStyles}
         ${isDisabled}
       }

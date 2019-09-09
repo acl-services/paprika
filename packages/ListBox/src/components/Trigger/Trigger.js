@@ -92,7 +92,7 @@ export default function Trigger(props) {
         onKeyDown={handleKeyboardKeys(state, dispatch)}
         onKeyUp={() => {}}
         isDisabled={isDisabled}
-        data-qa-anchor="listbox-trigger"
+        data-pka-anchor="listbox-trigger"
       >
         <Label
           activeOption={state.options[state.activeOption]}
@@ -140,7 +140,7 @@ export default function Trigger(props) {
         {state.selectedOptions.length && hasClearButton && !shouldHideClearButton ? (
           <ClearButtonStyled
             isDisabled={isDisabled}
-            data-qa-anchor="clear-button"
+            data-pka-anchor="clear-button"
             kind="minor"
             onClick={handleClickClear}
           >

@@ -3,7 +3,7 @@ import { configure, render, fireEvent } from "@testing-library/react";
 
 import ListBox from "../../../src";
 
-configure({ testIdAttribute: "data-qa-anchor" });
+configure({ testIdAttribute: "data-pka-anchor" });
 
 const childrenContent = [
   <ListBox.Option key="1">Venus</ListBox.Option>,
