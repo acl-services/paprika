@@ -1,7 +1,7 @@
 import styled from "styled-components";
 import tokens from "@paprika/tokens";
 import stylers from "@paprika/stylers";
-import backgroundImg from "./paprika.jpg";
+import backgroundImg from "./assets/images/paprika-background.jpg";
 
 export const WelcomePage = styled.div`
   align-items: flex-end;
@@ -16,7 +16,7 @@ export const WelcomeBody = styled.div`
   ${stylers.alignMiddle}
   flex-direction: column;
   height: 30%;
-  padding: ${stylers.spacer(6)} ${stylers.spacer(3)}
+  padding: ${stylers.spacer(6)} ${stylers.spacer(3)};
   text-align: center;
   width: 100%;
 `;
@@ -33,8 +33,9 @@ const headingStyles = `
 
 export const Heading1 = styled.h1`
   ${headingStyles};
-  ${stylers.fontSize(7)};
+  font-size: 12vh;
   font-weight: 300;
+  letter-spacing: -0.04em;
   margin: 0 0 ${stylers.spacer(3)} 0;
 `;
 
@@ -43,6 +44,7 @@ export const Heading2 = styled.h2`
   ${stylers.fontSize(1)};
   font-weight: 400;
   margin: 0;
+  opacity: 0.8;
 `;
 
 export const Bar = styled.span`

@@ -9,6 +9,8 @@ import "./reset.scss";
 addParameters({
   options: {
     theme: paprikaTheme,
+    showPanel: true,
+    panelPosition: "right",
   },
 });
 
