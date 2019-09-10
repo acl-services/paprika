@@ -11,4 +11,4 @@ storiesOf("L10n", module)
     <FakeAppWithContext locale={select("locale", ["en", "de", "fr", "es", "pt", "pl", "ja", "zh"], "de")} />
   ))
   .add("Without Context", () => <FakeAppWithoutContext />)
-  .add("Providing Locales", () => <FakeAppWithLocales locale={select("locale", ["en", "fr"], "en")} />);
+  .add("Providing Locales", () => <FakeAppWithLocales locale={select("locale", ["en", "fr"], "fr")} />);

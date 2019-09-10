@@ -3,8 +3,24 @@ import L10nContext from "./L10nContext";
 import { i18n } from "./i18n";
 import PaprikaLocales from "./locales";
 
-export const getI18nObject = (locale = "en", Locales = PaprikaLocales) => {
-  const _i18n = i18n(Locales);
+function mergeTranslation(customLocales, paprikaLocales) {
+  const result = {};
+
+  Object.keys(paprikaLocales).forEach(lang => {
+    result[lang] = {
+      translation: {
+        ...(customLocales[lang] ? customLocales[lang].translation : {}),
+        ...(paprikaLocales[lang] ? paprikaLocales[lang].translation : {}),
+      },
+    };
+  });
+
+  return result;
+}
+
+export const getI18nObject = (locale = "en", locales) => {
+  const _i18n = i18n(locales ? mergeTranslation(locales, PaprikaLocales) : PaprikaLocales);
+
   return {
     locale,
     t: _i18n.getFixedT(locale),
