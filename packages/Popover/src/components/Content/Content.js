@@ -85,7 +85,7 @@ const Content = React.forwardRef((props, ref) => {
       {...moreProps}
       aria-hidden={!isOpen}
       data-component-name="PopoverContent"
-      data-qa-anchor="popover-content"
+      data-pka-anchor="popover-content"
       ref={handleRef}
       isOpen={isOpen}
       onBlur={handleBlur}
