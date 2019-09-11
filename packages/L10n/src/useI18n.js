@@ -9,8 +9,8 @@ function mergeTranslation(customLocales, paprikaLocales) {
   Object.keys(paprikaLocales).forEach(lang => {
     result[lang] = {
       translation: {
-        ...(customLocales[lang] ? customLocales[lang].translation : {}),
         ...(paprikaLocales[lang] ? paprikaLocales[lang].translation : {}),
+        ...(customLocales[lang] ? customLocales[lang].translation : {}),
       },
     };
   });

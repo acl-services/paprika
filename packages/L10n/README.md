@@ -102,3 +102,5 @@ const locales = {
 };
 export default locales;
 ```
+
+Please do not using the same translation key as paprika's to avoid overriding. You can check them from here: https://github.com/acl-services/paprika/blob/master/packages/L10n/src/locales/en.yml
