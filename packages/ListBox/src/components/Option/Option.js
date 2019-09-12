@@ -66,6 +66,7 @@ export default function Option(props) {
       isSelected={isSelected}
       key={index}
       onClick={handleClickOption({ props, state, dispatch })}
+      data-pka-anchor={isSelected ? "list-option--is-selected" : "list-option"}
     >
       {typeof props.children === "function" ? props.children({ isSelected, isDisabled, id }) : props.children}
     </OptionStyled>
