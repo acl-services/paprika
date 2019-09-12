@@ -16,7 +16,7 @@ function Description(props) {
   const { children, ariaDescriptionId } = props;
 
   return (
-    <div id={ariaDescriptionId} css={descriptionStyles} data-qa-anchor="formElement.description">
+    <div id={ariaDescriptionId} css={descriptionStyles} data-pka-anchor="formElement.description">
       {children}
     </div>
   );

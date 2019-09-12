@@ -4,7 +4,7 @@ import L10n from "@paprika/l10n";
 import Confirmation from "@paprika/confirmation";
 import DropdownMenu from "../src";
 
-configure({ testIdAttribute: "data-qa-anchor" });
+configure({ testIdAttribute: "data-pka-anchor" });
 
 function renderComponent(props = {}) {
   const handleConfirm = onCloseMenu => onCloseConfirm => {

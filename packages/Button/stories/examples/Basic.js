@@ -22,7 +22,7 @@ function clickHandler() {
 const ExampleStory = () => (
   <ButtonStory>
     <p>
-      <Button a11yText="ceci n'est pas un bouton" data-qa-anchor="test-button" onClick={clickHandler}>
+      <Button a11yText="ceci n'est pas un bouton" data-pka-anchor="test-button" onClick={clickHandler}>
         default button
       </Button>
       <Button onClick={clickHandler} isDisabled>
