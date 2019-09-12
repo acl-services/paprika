@@ -17,7 +17,9 @@
     "registrymock": "run-p -l registrymock:start registrymock:publish",
     "storybook:build": "build-storybook -c .storybook -o storybook-dist",
     "storybook:screener": "screener-storybook --conf screener.config.js",
-    "storybook": "start-storybook -p 9009 -c .storybook",
+    "storybook:start": "start-storybook -p 9009 -c .storybook",
+    "storybook:uploadserver": "cd packages/Uploader/server && php -S localhost:9000",
+    "storybook": "run-p --race storybook:start storybook:uploadserver",
     "test:a11y": "echo 'Axe will run on this command'",
     "test:debug": "node --inspect node_modules/.bin/jest --runInBand",
     "test": "jest --passWithNoTests",
@@ -100,6 +102,7 @@
     "sinon": "^7.2.4",
     "style-loader": "^0.23.1",
     "styled-components": "^4.2.0",
+    "superagent": "^5.1.0",
     "verdaccio": "^3.11.6",
     "wait-on": "^3.2.0"
   },
