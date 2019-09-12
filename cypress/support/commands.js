@@ -14,5 +14,5 @@ Cypress.Commands.add("visitStorybook", story => {
 });
 
 Cypress.Commands.add("getByTestId", str => {
-  cy.get(`[data-qa-anchor='${str}']`);
+  cy.get(`[data-pka-anchor='${str}']`);
 });

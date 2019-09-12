@@ -30,7 +30,7 @@ const ExampleStory = () => {
           a11yText="ceci n'est pas un bouton"
           hasInsetFocusStyle
           onClick={clickHandler}
-          data-qa-anchor="test-button"
+          data-pka-anchor="test-button"
           ref={buttonRef}
         >
           RawButton with test props

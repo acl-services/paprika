@@ -8,13 +8,13 @@ jest.useFakeTimers();
 describe("Toast", () => {
   function renderComponent(props) {
     const renderedComponent = renderWithL10n(
-      <Toast {...props} data-qa-anchor="Toast">
+      <Toast {...props} data-pka-anchor="Toast">
         Content
       </Toast>
     );
     const rerenderComponent = newProps => {
       renderedComponent.rerender(
-        <Toast {...newProps} data-qa-anchor="Toast">
+        <Toast {...newProps} data-pka-anchor="Toast">
           Content
         </Toast>
       );

@@ -3,7 +3,7 @@ import { render, configure } from "@testing-library/react";
 import L10n from "@paprika/l10n";
 import FormElement from "../src";
 
-configure({ testIdAttribute: "data-qa-anchor" });
+configure({ testIdAttribute: "data-pka-anchor" });
 
 const defaultLabel = "Form Element";
 
@@ -12,7 +12,7 @@ function renderComponent(props = {}) {
   return render(
     <L10n>
       <FormElement label={label || defaultLabel} {...moreProps}>
-        {children || <input data-qa-anchor="formElement.input" />}
+        {children || <input data-pka-anchor="formElement.input" />}
       </FormElement>
     </L10n>
   );
@@ -56,7 +56,7 @@ describe("FormElement", () => {
     const { getByTestId } = render(
       <L10n>
         <FormElement label={defaultLabel}>
-          <input data-qa-anchor="formElement.input" />
+          <input data-pka-anchor="formElement.input" />
           <FormElement.Description>Sample description</FormElement.Description>
           <FormElement.Help>Sample help</FormElement.Help>
         </FormElement>
@@ -71,7 +71,7 @@ describe("FormElement", () => {
     const { getByTestId, queryByTestId } = render(
       <L10n>
         <FormElement label={defaultLabel}>
-          <input data-qa-anchor="formElement.input" />
+          <input data-pka-anchor="formElement.input" />
           <FormElement.Description>Sample description</FormElement.Description>
           <FormElement.Error>Sample error</FormElement.Error>
         </FormElement>

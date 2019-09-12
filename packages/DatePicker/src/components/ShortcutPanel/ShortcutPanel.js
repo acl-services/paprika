@@ -111,7 +111,7 @@ function ShortcutPanel(props) {
   }
 
   return (
-    <div css={containerStyles} data-qa-anchor="datepicker.calendar.shortcut" isVisible={isVisible}>
+    <div css={containerStyles} data-pka-anchor="datepicker.calendar.shortcut" isVisible={isVisible}>
       <div css={panelContentStyles}>
         <div css={listStyles}>
           <div css={columnHeaderStyles}>{I18n.t("datePicker.month")}</div>
@@ -131,10 +131,10 @@ function ShortcutPanel(props) {
         </div>
       </div>
       <div css={actionBarStyles}>
-        <Button kind="primary" onClick={handleConfirm} size="small" data-qa-anchor="datepicker.calendar.apply">
+        <Button kind="primary" onClick={handleConfirm} size="small" data-pka-anchor="datepicker.calendar.apply">
           {I18n.t("actions.apply")}
         </Button>
-        <Button kind="minor" onClick={onCancel} size="small" data-qa-anchor="datepicker.calendar.cancel">
+        <Button kind="minor" onClick={onCancel} size="small" data-pka-anchor="datepicker.calendar.cancel">
           {I18n.t("actions.cancel")}
         </Button>
       </div>

@@ -3,7 +3,7 @@ import { render, configure } from "@testing-library/react";
 import L10n from "@paprika/l10n";
 import Confirmation from "../src";
 
-configure({ testIdAttribute: "data-qa-anchor" });
+configure({ testIdAttribute: "data-pka-anchor" });
 
 function renderComponent() {
   const renderedComponent = render(

@@ -2,7 +2,7 @@ import React from "react";
 import { render as renderReactTestingLibrary, configure, fireEvent } from "@testing-library/react";
 import SidePanel from "../src";
 
-configure({ testIdAttribute: "data-qa-anchor" });
+configure({ testIdAttribute: "data-pka-anchor" });
 
 const noop = () => {};
 
@@ -93,7 +93,7 @@ describe("SidePanel", () => {
       const fn = jest.fn();
       const { getByTestId } = render({
         onClose: fn,
-        children: <SidePanel.Footer data-qa-anchor="sidepanel.footer">Footer</SidePanel.Footer>,
+        children: <SidePanel.Footer data-pka-anchor="sidepanel.footer">Footer</SidePanel.Footer>,
       });
 
       expect(getByTestId("sidepanel.footer")).toBeVisible();

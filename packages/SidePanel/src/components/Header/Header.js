@@ -40,7 +40,7 @@ const Header = React.forwardRef((props, ref) => {
       <div>
         {hasCloseButton ? (
           <Button.Close
-            data-qa-anchor="sidepanel-header-close"
+            data-pka-anchor="sidepanel-header-close"
             isSemantic={false}
             onClick={onClose}
             {...darkBackgroundProps(kind)}

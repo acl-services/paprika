@@ -97,7 +97,7 @@ export default function FilterSelect() {
         <FilterColor onChange={handleChangeFilterColor} ref={refFilterColor} />
         <FilterPrice onChange={handleChangeFilterPrice} ref={refFilterPrice} />
         <FilterQty onChange={handleChangeFilterQty} ref={refFilterQty} />
-        <Button data-qa-anchor="clear-filters-button" onClick={handleClickClear}>
+        <Button data-pka-anchor="clear-filters-button" onClick={handleClickClear}>
           Clear
         </Button>
       </FiltersStyled>
@@ -110,7 +110,7 @@ export default function FilterSelect() {
             <Th scope="col">Qty</Th>
           </tr>
         </thead>
-        <tbody data-qa-anchor="table-list">
+        <tbody data-pka-anchor="table-list">
           {items
             .filter(filterItems({ price: filterPriceValue, colors: filterColorValue, qty: filterQtyValue }))
             .map(item => (

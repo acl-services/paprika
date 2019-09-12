@@ -1,10 +1,8 @@
 import selectors from "../helpers/selectors";
 import { openLazyDropDown } from "../helpers/toggleHelpers";
 
-function checkIfSelected(marvelChar, fontWeight) {
-  cy.contains(marvelChar)
-    .should("have.css", "font-weight")
-    .and("contain", fontWeight);
+function checkIfSelected(marvelChar, isSelected) {
+  cy.getByTestId(isSelected ? "list-option--is-selected" : "list-option").should("have.any", marvelChar);
 }
 
 describe("Lazy ListBox", () => {
@@ -52,9 +50,9 @@ describe("Lazy ListBox", () => {
 
   it("should select options and clear selections", () => {
     cy.contains("Nebula").click();
-    checkIfSelected("Nebula", "600");
+    checkIfSelected("Nebula", true);
     cy.contains("Clear").click();
-    checkIfSelected("Nebula", "400");
+    checkIfSelected("Nebula", false);
   });
 
   // fails

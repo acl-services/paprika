@@ -23,7 +23,7 @@ function Help(props) {
   const I18n = useI18n();
 
   return (
-    <Popover css={helpStyles} align="bottom" data-qa-anchor="formElement.help" {...moreProps}>
+    <Popover css={helpStyles} align="bottom" data-pka-anchor="formElement.help" {...moreProps}>
       <StyledTrigger a11yText={triggerA11yText || I18n.t("formElement.aria_info_circle")}>
         <InfoCircleIcon css={iconStyles} aria-hidden type="exclamation-circle" />
       </StyledTrigger>
