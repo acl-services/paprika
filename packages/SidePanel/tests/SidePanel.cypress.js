@@ -74,7 +74,7 @@ describe("<SidePanel />", () => {
 
       // simulating the user take 700ms before clicking close
       cy.wait(1000).then(() => {
-        cy.get('[data-qa-anchor="sidepanel-header-close"]').click();
+        cy.get('[data-pka-anchor="sidepanel-header-close"]').click();
       });
     });
   });

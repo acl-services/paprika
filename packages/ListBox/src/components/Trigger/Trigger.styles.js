@@ -1,6 +1,6 @@
-import styled from "styled-components";
-import RawButton from "@paprika/raw-button";
-import RawButtonStyled from "@paprika/raw-button/lib/RawButton.styles";
+import styled, { css } from "styled-components";
+import Button from "@paprika/button";
+import stylers from "@paprika/stylers";
 import tokens from "@paprika/tokens";
 
 const triggerStyles = `
@@ -12,7 +12,9 @@ const triggerStyles = `
   color: #3f3d3c;
   display: block;
   font-size: 14px;
-  padding: 8px; /* Define Trigger's height */
+  height: ${stylers.spacer(4)};
+  line-height: ${stylers.spacer(4)};
+  padding: 0 ${tokens.space};
   position: relative;
   text-align: left;
   transition: border-color 0.2s;
@@ -34,7 +36,7 @@ const triggerStylesProps = () => props => {
       ${isDisabled}
     `
     : `
-      & > [data-qa-anchor='listbox-trigger'] {
+      & > [data-pka-anchor='listbox-trigger'] {
         ${triggerStyles}
         ${isDisabled}
       }
@@ -51,90 +53,31 @@ export const TriggerActionIconsContainer = styled.div`
   display: flex;
   height: 100%;
   justify-content: center;
-  pointer-events: none;
   position: absolute;
-  right: 0;
+  right: ${tokens.space};
   top: 0;
 `;
 
-export const RawButtonClearButtonStyled = styled(RawButton)`
-  ${RawButtonStyled}
-  && {
-    align-items: center;
-    border: 0;
-    display: flex;
-    height: 100%;
-    padding: 0;
-    padding-left: 8px;
-    pointer-events: visible;
-    position: relative;
-    top: 1px;
-    width: 32px;
+export const iconStyles = css`
+  ${stylers.fontSize(-1)}
 
-    && span {
-      background: #9c9c9c;
-      border-radius: 50%;
-      color: #fff;
-      display: block;
-      font-size: 13px;
-      font-weight: bold;
-      height: 15px;
-      left: -1px;
-      line-height: 1;
-      position: relative;
-      text-align: center;
-      top: -1px;
-      user-select: none;
-      width: 15px;
-      &:hover {
-        background: #717171;
-      }
-    }
-
-    ${props => {
-      if (props.hasFooter && props.isOpen) {
-        return "display: none";
-      }
-
-      if (props.hasRenderTrigger) {
-        return "display: none";
-      }
-
-      const isDisabled = props.isDisabled
-        ? `
-        color: ${tokens.color.blackLighten60};
-        && span {
-          background: ${tokens.color.blackLighten60};
-          &:hover {
-            background: ${tokens.color.blackLighten60}
-          }
-        };
-      `
-        : "";
-
-      return `${isDisabled}`;
-    }}
-  }
+  ${({ isDisabled }) => isDisabled && `color: ${tokens.color.blackLighten60};`}
 `;
 
-export const TriggerArrowStyled = styled.span`
-  ${props => {
-    if (props.hasRenderTrigger || props.isInline) {
-      return "display: none";
+export const ClearButtonStyled = styled(Button.Icon)`
+  margin-right: 2px;
+
+  > span {
+    height: 14px;
+    line-height: 14px;
+
+    > svg {
+      color: ${tokens.color.blackLighten20};
+      vertical-align: text-top;
     }
+  }
 
-    const isDisabled = props.isDisabled ? `color: ${tokens.color.blackLighten60};` : "";
-    const rotate = props.isOpen ? `transform: rotate(180deg);` : `transform: rotate(0);`;
-
-    return `
-      display: block;
-      margin-right: 16px;
-      font-size: 11px;
-      color: #333;
-      pointer-events: none;
-      transition: all 0.4s ease;
-      ${rotate}
-      ${isDisabled}
-    `;
-  }}
+  &:hover {
+    background-color: transparent;
+  }
 `;

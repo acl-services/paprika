@@ -1,6 +1,9 @@
 import React from "react";
 import PropTypes from "prop-types";
 import RawButton from "@paprika/raw-button";
+import CaretDownIcon from "@paprika/icon/lib/CaretDown";
+import CaretUpIcon from "@paprika/icon/lib/CaretUp";
+import TimesCircleIcon from "@paprika/icon/lib/TimesCircle";
 import Label from "../Label";
 import handleKeyboardKeys from "../../helpers/handleKeyboardKeys";
 import useListBox from "../../useListBox";
@@ -10,12 +13,7 @@ import invokeOnChange, {
   getSelectedOptionsMulti,
 } from "../../helpers/invokeOnChange";
 
-import {
-  ListBoxTriggerStyled,
-  TriggerArrowStyled,
-  RawButtonClearButtonStyled,
-  TriggerActionIconsContainer,
-} from "./Trigger.styles";
+import { ListBoxTriggerStyled, TriggerActionIconsContainer, ClearButtonStyled, iconStyles } from "./Trigger.styles";
 import { getDOMAttributesForListBoxButton } from "../../helpers/DOMAttributes";
 
 const propTypes = {
@@ -94,7 +92,7 @@ export default function Trigger(props) {
         onKeyDown={handleKeyboardKeys(state, dispatch)}
         onKeyUp={() => {}}
         isDisabled={isDisabled}
-        data-qa-anchor="listbox-trigger"
+        data-pka-anchor="listbox-trigger"
       >
         <Label
           activeOption={state.options[state.activeOption]}
@@ -120,6 +118,16 @@ export default function Trigger(props) {
     }
   }, [hasRenderTrigger, children, isMulti, state, dispatch, idListBox, refTrigger]);
 
+  const caret = state.isOpen ? (
+    <CaretUpIcon isDisabled={isDisabled} css={iconStyles} />
+  ) : (
+    <CaretDownIcon isDisabled={isDisabled} css={iconStyles} />
+  );
+
+  const shouldHideClearButton = (state.hasFooter && state.isOpen) || hasRenderTrigger;
+
+  const shouldHideCaret = hasRenderTrigger || state.isInline;
+
   return (
     <ListBoxTriggerStyled
       isInline={state.isInline}
@@ -129,25 +137,17 @@ export default function Trigger(props) {
     >
       {hasRenderTrigger ? renderChildrenProps : renderLabel()}
       <TriggerActionIconsContainer>
-        {state.selectedOptions.length && hasClearButton ? (
-          <RawButtonClearButtonStyled
-            data-qa-anchor="clear-button"
-            hasRenderTrigger={hasRenderTrigger}
+        {state.selectedOptions.length && hasClearButton && !shouldHideClearButton ? (
+          <ClearButtonStyled
             isDisabled={isDisabled}
+            data-pka-anchor="clear-button"
+            kind="minor"
             onClick={handleClickClear}
-            isOpen={state.isOpen}
-            hasFooter={state.hasFooter}
           >
-            <span dangerouslySetInnerHTML={{ __html: "&times;" }} />
-          </RawButtonClearButtonStyled>
+            <TimesCircleIcon isDisabled={isDisabled} css={iconStyles} />
+          </ClearButtonStyled>
         ) : null}
-        <TriggerArrowStyled
-          hasRenderTrigger={hasRenderTrigger}
-          isDisabled={isDisabled}
-          isOpen={state.isOpen}
-          isInline={state.isInline}
-          dangerouslySetInnerHTML={{ __html: "&#x25BC;" }}
-        />
+        {shouldHideCaret ? null : caret}
       </TriggerActionIconsContainer>
     </ListBoxTriggerStyled>
   );

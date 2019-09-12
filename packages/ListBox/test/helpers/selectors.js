@@ -1,12 +1,12 @@
 const selectors = {
-  clearButton: "[data-qa-anchor='clear-button']",
-  filterInput: "[data-qa-anchor='list-filter-input']",
-  filtersClearButton: "[data-qa-anchor='clear-filters-button']",
-  filterSelectTableList: "[data-qa-anchor='table-list']",
-  noResults: "[data-qa-anchor='no-results']",
-  popover: "[data-qa-anchor='popover-content']",
-  popoverList: "[data-qa-anchor='styled-list']",
-  trigger: "[data-qa-anchor='listbox-trigger']",
+  clearButton: "[data-pka-anchor='clear-button']",
+  filterInput: "[data-pka-anchor='list-filter-input']",
+  filtersClearButton: "[data-pka-anchor='clear-filters-button']",
+  filterSelectTableList: "[data-pka-anchor='table-list']",
+  noResults: "[data-pka-anchor='no-results']",
+  popover: "[data-pka-anchor='popover-content']",
+  popoverList: "[data-pka-anchor='styled-list']",
+  trigger: "[data-pka-anchor='listbox-trigger']",
 };
 
 export default selectors;

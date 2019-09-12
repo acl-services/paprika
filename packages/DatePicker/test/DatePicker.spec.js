@@ -4,7 +4,7 @@ import { render as renderReactTestingLibrary, configure } from "@testing-library
 import L10n from "@paprika/l10n";
 import DatePicker from "../src";
 
-configure({ testIdAttribute: "data-qa-anchor" });
+configure({ testIdAttribute: "data-pka-anchor" });
 
 function render(props = {}) {
   const { onChange, ...moreProps } = props;
@@ -12,7 +12,7 @@ function render(props = {}) {
   const rendered = renderReactTestingLibrary(
     <L10n>
       <DatePicker onChange={handleChange} {...moreProps}>
-        <DatePicker.Input data-qa-anchor="datepicker.input" />
+        <DatePicker.Input data-pka-anchor="datepicker.input" />
       </DatePicker>
     </L10n>
   );
@@ -24,7 +24,7 @@ function render(props = {}) {
       rerender(
         <L10n>
           <DatePicker onChange={handleChange} {...moreProps} {...updatedProps}>
-            <DatePicker.Input data-qa-anchor="datepicker.input" />
+            <DatePicker.Input data-pka-anchor="datepicker.input" />
           </DatePicker>
         </L10n>
       );

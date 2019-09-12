@@ -63,10 +63,10 @@ const SidePanelStoryGroup = () => {
     <React.Fragment>
       <Nav>
         <div style={menu}>
-          <Button data-qa-anchor="button-sidepanel1" onClick={handleParent1} size="small">
+          <Button data-pka-anchor="button-sidepanel1" onClick={handleParent1} size="small">
             Parent 1
           </Button>
-          <Button data-qa-anchor="button-sidepanel2" onClick={handleParent2} size="small">
+          <Button data-pka-anchor="button-sidepanel2" onClick={handleParent2} size="small">
             Parent 2
           </Button>
         </div>
@@ -86,13 +86,13 @@ const SidePanelStoryGroup = () => {
         </div>
       </div>
       <SidePanel.Group offsetY={40}>
-        <SidePanel data-qa-anchor="sidepanel1" width={400} onClose={handleParent1} isOpen={spParent1}>
+        <SidePanel data-pka-anchor="sidepanel1" width={400} onClose={handleParent1} isOpen={spParent1}>
           <SidePanel.Header kind="primary">
             <Heading level={2}>Parent 1</Heading>
           </SidePanel.Header>
           <TextLine repeat={100} />
         </SidePanel>
-        <SidePanel data-qa-anchor="sidepanel2" onClose={handleParent2} width={400} isOpen={spParent2}>
+        <SidePanel data-pka-anchor="sidepanel2" onClose={handleParent2} width={400} isOpen={spParent2}>
           <SidePanel.Header kind="primary">
             <Heading level={2}>Parent 2</Heading>
           </SidePanel.Header>
@@ -105,7 +105,7 @@ const SidePanelStoryGroup = () => {
           </Button>
         </SidePanel>
         <SidePanel
-          data-qa-anchor="sidepanel-child"
+          data-pka-anchor="sidepanel-child"
           onClose={() => {
             setSpChild(false);
           }}
