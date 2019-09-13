@@ -16,6 +16,7 @@ const propTypes = {
   onChange: PropTypes.func.isRequired,
   querySelectorForDropArea: PropTypes.func,
   url: PropTypes.string.isRequired,
+  children: PropTypes.func.isRequired,
 };
 
 const defaultProps = {
@@ -42,6 +43,7 @@ function UploaderComponent(props, ref) {
     onChange,
     querySelectorForDropArea,
     url,
+    children,
     ...moreProps
   } = props;
 
@@ -78,8 +80,9 @@ function UploaderComponent(props, ref) {
   }, [files, hasAutoupload, onChange, url]);
 
   function handleChange(event) {
+    const files = getFiles({ event, maximumFileSize, acceptableFileTypes });
     setFiles(() => {
-      const files = getFiles({ event, maximumFileSize, acceptableFileTypes });
+      refInput.current.value = "";
       return files;
     });
   }
@@ -111,8 +114,8 @@ function UploaderComponent(props, ref) {
         ref={refInput}
         css="opacity: 1;"
         type="file"
-        {...moreProps}
       />
+      {children({ files, setFiles, props: { ...props } })}
     </label>
   );
 }

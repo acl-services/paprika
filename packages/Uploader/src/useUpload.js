@@ -2,7 +2,6 @@ import React from "react";
 
 export default function useUpload({ hasAutoupload, upload, onChange, files, url, refInput }) {
   React.useEffect(() => {
-    console.log("useUpload--------->");
     function onProgress({ file, percentage }) {
       console.log(file.key, percentage);
     }

@@ -2,6 +2,11 @@ import React from "react";
 import { storiesOf } from "@storybook/react";
 import { withKnobs } from "@storybook/addon-knobs";
 import Uploader from "../src/Uploader";
+import Testing from "./Testing";
+
+function TestingFn({ files }) {
+  return <Testing files={files} />;
+}
 
 storiesOf("Uploader", module)
   .addDecorator(withKnobs)
@@ -11,5 +16,7 @@ storiesOf("Uploader", module)
       onChange={files => {
         console.log("onChange files:", files);
       }}
-    />
+    >
+      {TestingFn}
+    </Uploader>
   ));
