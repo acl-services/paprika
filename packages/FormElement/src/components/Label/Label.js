@@ -25,7 +25,7 @@ function Label(props) {
 
   return (
     <div css={labelStyles} isInline={isInline} isVisuallyHidden={isVisuallyHidden}>
-      <label htmlFor={id} data-qa-anchor="formElement.label">
+      <label htmlFor={id} data-pka-anchor="formElement.label">
         {label}
         {hasOptionalLabel || hasRequiredLabel ? (
           <span css={ruleStyles}>

@@ -6,6 +6,10 @@ const ListStyled = styled.ul`
   margin: 0;
   overflow: auto;
 
+  &:focus {
+    outline: none;
+  }
+
   li {
     box-sizing: border-box;
   }

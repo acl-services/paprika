@@ -56,10 +56,12 @@ const defaultProps = {
   onClose: () => {},
   isFixed: false,
   kind: Kinds.INFO,
-  zIndex: 1,
+  zIndex: null,
 };
 
 const minimumCloseTimeout = 1500;
+
+const zIndexPlaceholder = 1;
 
 const icons = {
   [Kinds.SUCCESS]: CheckIcon,
@@ -87,6 +89,7 @@ function Toast(props) {
   const ariaLive = ariaAlert ? "assertive" : "polite";
   const [isToastOpen, setIsToastOpen] = React.useState(isOpen === undefined ? true : isOpen);
   const timerRef = React.useRef(null);
+  const defaultZIndex = isFixed ? zIndexPlaceholder : null;
 
   const memoizedStartTimer = React.useCallback(() => {
     function handleDelayedClose() {
@@ -125,8 +128,8 @@ function Toast(props) {
       hasCloseButton={hasCloseButton}
       isFixed={isFixed}
       role="alert"
-      style={{ zIndex }}
       kind={kind}
+      zIndex={zIndex !== null ? zIndex : defaultZIndex}
       {...moreProps}
     >
       {kind === Kinds.VISUALLY_HIDDEN ? null : <IconStyled as={icons[kind]} kind={kind} />}

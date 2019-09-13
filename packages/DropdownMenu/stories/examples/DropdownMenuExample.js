@@ -12,12 +12,12 @@ const DropdownMenuExample = () => {
     <DropdownMenu
       align="bottom"
       renderTrigger={({ isOpen, handleOpenMenu }) => (
-        <DropdownMenu.Trigger data-qa-anchor="dropdown-menu__trigger" isOpen={isOpen} onOpenMenu={handleOpenMenu}>
+        <DropdownMenu.Trigger data-pka-anchor="dropdown-menu__trigger" isOpen={isOpen} onOpenMenu={handleOpenMenu}>
           Trigger
         </DropdownMenu.Trigger>
       )}
     >
-      <DropdownMenu.Item data-qa-anchor="edit-item-data-anchor" onClick={() => {}}>
+      <DropdownMenu.Item data-pka-anchor="edit-item-data-anchor" onClick={() => {}}>
         Edit
       </DropdownMenu.Item>
       <DropdownMenu.Item onClick={() => {}}>Duplicate</DropdownMenu.Item>

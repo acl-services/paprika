@@ -31,7 +31,7 @@ export default function FixedToast() {
         ultricies ligula non dolor fermentum tincidunt.
       </p>
       <Toast isFixed hasCloseButton>
-        Sticky toast component
+        Fixed toast component
       </Toast>
     </L10n>
   );

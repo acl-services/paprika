@@ -140,7 +140,7 @@ function Calendar(props) {
           handleClickHeader(month);
         }}
         tabIndex={-1}
-        data-qa-anchor="datepicker.calendar.header"
+        data-pka-anchor="datepicker.calendar.header"
       >
         {month.format(I18n.t("datePicker.calendar_header_format"))}
       </Button>
@@ -150,7 +150,7 @@ function Calendar(props) {
 
   function renderArrowLeft() {
     return (
-      <span css={arrowIconStyles} ref={prevButtonRef} data-qa-anchor="datepicker-prev-month">
+      <span css={arrowIconStyles} ref={prevButtonRef} data-pka-anchor="datepicker-prev-month">
         <ArrowLeft role="presentation" />
       </span>
     );
@@ -158,7 +158,7 @@ function Calendar(props) {
 
   function renderArrowRight() {
     return (
-      <span css={arrowIconStyles} ref={nextButtonRef} data-qa-anchor="datepicker-next-month">
+      <span css={arrowIconStyles} ref={nextButtonRef} data-pka-anchor="datepicker-next-month">
         <ArrowRight role="presentation" />
       </span>
     );

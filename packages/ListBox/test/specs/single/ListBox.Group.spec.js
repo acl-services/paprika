@@ -2,7 +2,7 @@ import React from "react";
 import { configure, render, fireEvent } from "@testing-library/react";
 import ListBox from "../../../src";
 
-configure({ testIdAttribute: "data-qa-anchor" });
+configure({ testIdAttribute: "data-pka-anchor" });
 
 function renderComponent() {
   const rendered = render(

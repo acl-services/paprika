@@ -8,7 +8,7 @@ storiesOf("SidePanel / cypress", module).add("SidePanel Default Sticky", () => (
   <React.Fragment>
     <Nav />
     <p>
-      <SidePanel data-qa-anchor="sidepanel" isOpen offsetY={40}>
+      <SidePanel data-pka-anchor="sidepanel" isOpen offsetY={40}>
         <SidePanel.Header>
           <Heading level={2}>Cypress</Heading>
         </SidePanel.Header>
@@ -26,7 +26,7 @@ storiesOf("SidePanel / cypress", module).add("SidePanel Footer Sticky", () => (
     <p>
       <SidePanel isOpen>
         <TextLine repeat={100} />
-        <SidePanel.Footer data-qa-anchor="sidepanel.footer" isSticky>
+        <SidePanel.Footer data-pka-anchor="sidepanel.footer" isSticky>
           Footer
         </SidePanel.Footer>
       </SidePanel>
@@ -50,7 +50,7 @@ const SidePanelOnAfter = () => {
           onClose={() => {
             setIsOpen(false);
           }}
-          data-qa-anchor="sidepanel"
+          data-pka-anchor="sidepanel"
           isOpen={isOpen}
           offsetY={40}
         >

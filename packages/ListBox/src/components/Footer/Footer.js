@@ -110,7 +110,7 @@ export function FooterComponent(props, ref) {
       <div>
         {isClearVisible && (
           <Button
-            data-qa-anchor="footer-clear-button"
+            data-pka-anchor="footer-clear-button"
             isDisabled={isDisabled}
             kind={kindClear}
             size={size}
