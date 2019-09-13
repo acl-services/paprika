@@ -36,5 +36,5 @@ storiesOf("Toast", module)
   ))
   .add("Controlled Toast", () => <ControlledToastExample />)
   .add("Uncontrolled Toast", () => <UncontrolledToastExample />)
-  .add("Sticky Toast", () => <FixedToastExample />)
+  .add("Fixed Toast", () => <FixedToastExample />)
   .add("AllKindsExposed", () => <AllKindsExposed />);
