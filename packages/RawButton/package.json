@@ -1,6 +1,6 @@
 {
   "name": "@paprika/raw-button",
-  "version": "0.1.6",
+  "version": "0.1.7",
   "description": "Raw button component",
   "author": "@paprika",
   "main": "lib/index.js",
