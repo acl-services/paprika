@@ -1,0 +1,30 @@
+{
+  "name": "@paprika/show-more",
+  "version": "0.1.0",
+  "description": "ShowMore component",
+  "author": "@paprika",
+  "license": "MIT",
+  "main": "lib/index.js",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/acl-services/paprika/tree/master/packages/ShowMore"
+  },
+  "publishConfig": {
+    "access": "public"
+  },
+  "dependencies": {
+    "@babel/runtime-corejs2": "^7.3.1",
+    "@paprika/l10n": "^0.2.1",
+    "@paprika/button": "^0.1.9",
+    "@paprika/tokens": "^0.1.4",
+    "class-names": "^1.0.0",
+    "lodash": "^4.17.15",
+    "prop-types": "^15.7.2",
+    "uuid": "^3.3.2"
+  },
+  "peerDependencies": {
+    "react": "^16.8.0",
+    "react-dom": "^16.8.0",
+    "styled-components": "^4.2.0"
+  }
+}
