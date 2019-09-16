@@ -1,9 +1,8 @@
 import React from "react";
 import ReactDOM from "react-dom";
-import { addParameters, configure } from "@storybook/react";
+import { addParameters, addDecorator, configure } from "@storybook/react";
+import { withA11y } from "@storybook/addon-a11y";
 import paprikaTheme from "./paprikaTheme";
-import axeConfig from "./axeConfig";
-
 import "./reset.scss";
 
 addParameters({
@@ -14,8 +13,7 @@ addParameters({
   },
 });
 
-const axe = require("react-axe");
-axe(React, ReactDOM, 10000, axeConfig);
+addDecorator(withA11y);
 
 require("./welcome.story");
 
