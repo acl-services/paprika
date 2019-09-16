@@ -8,8 +8,13 @@ import Button from "@paprika/button";
 import { toggleStyles } from "./ShowMore.styles";
 
 const propTypes = {
+  /** Additional description for "Show more" link. Should be a "topic" that will be appended to "Show more about [topic]". */
   a11yText: PropTypes.string,
+
+  /* Full content to be revealed. */
   children: PropTypes.node.isRequired,
+
+  /* Length, in characters, of truncated preview content. */
   collapsedLength: PropTypes.number,
 };
 
@@ -26,8 +31,9 @@ function getTruncatedVersion(content, length) {
 }
 
 const ShowMore = props => {
-  const I18n = useI18n();
   const { a11yText, children, collapsedLength, ...moreProps } = props;
+
+  const I18n = useI18n();
   const [isCollapsed, setIsCollapsed] = React.useState(true);
   const [collapsedContent, setCollapsedContent] = React.useState();
   const contentId = React.useRef(uuid()).current;
@@ -57,9 +63,9 @@ const ShowMore = props => {
     <div data-pka-anchor="show-more" {...moreProps}>
       {isCollapsed ? (
         <span
+          dangerouslySetInnerHTML={{ __html: collapsedContent }}
           data-pka-anchor="show-more.content"
           id={contentId}
-          dangerouslySetInnerHTML={{ __html: collapsedContent }}
         />
       ) : (
         <span data-pka-anchor="show-more.content" id={contentId}>
