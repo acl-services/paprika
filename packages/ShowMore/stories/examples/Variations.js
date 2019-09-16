@@ -5,6 +5,14 @@ import ShowMore from "../../src";
 const ExampleStory = () => {
   return (
     <Story>
+      <ShowMore>Lorem hipsum raw denim listicle mixtape.</ShowMore>
+      <Rule />
+      <ShowMore>
+        Lorem hipsum roof party disrupt post-ironic, photo booth marfa hot chicken iceland readymade. Small batch
+        succulents unicorn direct trade, truffaut fanny pack man bun poke vexillologist copper mug master cleanse
+        iceland chillwave stumptown. Bespoke adaptogen hexagon.
+      </ShowMore>
+      <Rule />
       <ShowMore>
         Lorem hipsum lomo cronut meggings hella tattooed affogato. Pug cred plaid, neutra lyft typewriter locavore beard
         vice art party glossier woke kinfolk. Craft beer keytar poke man bun. Yr polaroid flannel air plant. Brunch tote
@@ -36,13 +44,15 @@ const ExampleStory = () => {
       </ShowMore>
       <Rule />
       <ShowMore>
-        <p>Lorem hipsum next level typewriter vape forage paleo aesthetic kickstarter.</p>
         <ul>
-          <li>Prism vaporware intelligentsia letterpress 8-bit, waistcoat</li>
-          <li>Butcher thundercats bicycle rights before they sold out</li>
-          <li>Cronut copper mug gluten-free</li>
-          <li>Mustache swag jianbing try-hard fam</li>
-          <li>Chillwave tacos kombucha lo-fi meh lyft, pour-over shabby chic austin pabst freegan</li>
+          <li>Lorem hipsum next level typewriter vape forage.</li>
+          <li>Succulents paleo aesthetic kickstarter.</li>
+          <li>Prism vaporware intelligentsia letterpress 8-bit, waistcoat.</li>
+          <li>Butcher thundercats bicycle rights before they sold out.</li>
+          <li>Cronut copper mug gluten-free.</li>
+          <li>Mustache swag jianbing try-hard fam.</li>
+          <li>Chillwave tacos kombucha lo-fi meh lyft.</li>
+          <li>Pour-over shabby chic austin pabst freegan.</li>
         </ul>
       </ShowMore>
     </Story>

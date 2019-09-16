@@ -1,7 +1,7 @@
 import React from "react";
 import ReactDOMServer from "react-dom/server";
 import PropTypes from "prop-types";
-import truncate from "lodash/truncate";
+import truncate from "lodash.truncate";
 import uuid from "uuid/v4";
 import useI18n from "@paprika/l10n/lib/useI18n";
 import Button from "@paprika/button";
@@ -11,7 +11,7 @@ const propTypes = {
   /** Additional description for "Show more" link. Should be a "topic" that will be appended to "Show more about [topic]". */
   a11yText: PropTypes.string,
 
-  /* Full content to be revealed. */
+  /* Full content to be revealed. Can include HTML markup, but should not include dynamic React nodes. */
   children: PropTypes.node.isRequired,
 
   /* Length, in characters, of truncated preview content. */
@@ -23,6 +23,8 @@ const defaultProps = {
   collapsedLength: 255,
 };
 
+const collapseThreshold = 12;
+
 function getTruncatedVersion(content, length) {
   return truncate(content, {
     length,
@@ -30,17 +32,12 @@ function getTruncatedVersion(content, length) {
   });
 }
 
-const ShowMore = props => {
+function ShowMore(props) {
   const { a11yText, children, collapsedLength, ...moreProps } = props;
 
   const I18n = useI18n();
   const [isCollapsed, setIsCollapsed] = React.useState(true);
-  const [collapsedContent, setCollapsedContent] = React.useState();
   const contentId = React.useRef(uuid()).current;
-
-  React.useEffect(() => {
-    setCollapsedContent(`${getTruncatedVersion(ReactDOMServer.renderToStaticMarkup(children), collapsedLength)} `);
-  }, [children, collapsedLength]);
 
   function getToggleLabel() {
     return isCollapsed ? I18n.t("showMore.more") : I18n.t("showMore.less");
@@ -59,9 +56,14 @@ const ShowMore = props => {
     setIsCollapsed(prevCollapsed => !prevCollapsed);
   };
 
+  const renderedContent = ReactDOMServer.renderToStaticMarkup(children);
+  const isOverflowing = renderedContent.length > collapsedLength + collapseThreshold;
+  let collapsedContent;
+  if (isOverflowing) collapsedContent = `${getTruncatedVersion(renderedContent, collapsedLength)} `;
+
   return (
     <div data-pka-anchor="show-more" {...moreProps}>
-      {isCollapsed ? (
+      {isCollapsed && isOverflowing ? (
         <span
           dangerouslySetInnerHTML={{ __html: collapsedContent }}
           data-pka-anchor="show-more.content"
@@ -72,20 +74,22 @@ const ShowMore = props => {
           {children}
         </span>
       )}
-      <span isCollapsed={isCollapsed} css={toggleStyles}>
-        <Button
-          a11yText={getA11yText()}
-          aria-controls={contentId}
-          aria-expanded={!isCollapsed}
-          kind="link"
-          onClick={handleToggle}
-        >
-          {getToggleLabel()}
-        </Button>
-      </span>
+      {isOverflowing && (
+        <span isCollapsed={isCollapsed} css={toggleStyles}>
+          <Button
+            a11yText={getA11yText()}
+            aria-controls={contentId}
+            aria-expanded={!isCollapsed}
+            kind="link"
+            onClick={handleToggle}
+          >
+            {getToggleLabel()}
+          </Button>
+        </span>
+      )}
     </div>
   );
-};
+}
 
 ShowMore.displayName = "ShowMore";
 ShowMore.propTypes = propTypes;

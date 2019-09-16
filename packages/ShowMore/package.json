@@ -17,8 +17,7 @@
     "@paprika/l10n": "^0.2.1",
     "@paprika/button": "^0.1.9",
     "@paprika/tokens": "^0.1.4",
-    "class-names": "^1.0.0",
-    "lodash": "^4.17.15",
+    "lodash.truncate": "^4.4.2",
     "prop-types": "^15.7.2",
     "uuid": "^3.3.2"
   },
