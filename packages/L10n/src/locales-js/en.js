@@ -87,7 +87,7 @@ const locales = {
         "active": "active",
         "no_response": "None"
       },
-      "showMore": {
+      "collapsibleText": {
         "more": "Show more",
         "less": "Show less",
         "more_about": "show more about {{topic}}",

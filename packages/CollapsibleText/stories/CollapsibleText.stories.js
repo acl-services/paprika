@@ -4,6 +4,6 @@ import { withKnobs } from "@storybook/addon-knobs";
 
 import Variations from "./examples/Variations";
 
-storiesOf("ShowMore", module)
+storiesOf("CollapsibleText", module)
   .addDecorator(withKnobs)
   .add("Variations", () => <Variations />);

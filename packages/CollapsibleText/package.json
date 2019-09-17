@@ -1,13 +1,13 @@
 {
-  "name": "@paprika/show-more",
+  "name": "@paprika/collapsible-text",
   "version": "0.1.0",
-  "description": "ShowMore component",
+  "description": "CollapsibleText component",
   "author": "@paprika",
   "license": "MIT",
   "main": "lib/index.js",
   "repository": {
     "type": "git",
-    "url": "https://github.com/acl-services/paprika/tree/master/packages/ShowMore"
+    "url": "https://github.com/acl-services/paprika/tree/master/packages/CollapsibleText"
   },
   "publishConfig": {
     "access": "public"

@@ -5,7 +5,7 @@ import truncate from "lodash.truncate";
 import uuid from "uuid/v4";
 import useI18n from "@paprika/l10n/lib/useI18n";
 import Button from "@paprika/button";
-import { toggleStyles } from "./ShowMore.styles";
+import { toggleStyles } from "./CollapsibleText.styles";
 
 const propTypes = {
   /** Additional description for "Show more" link. Should be a "topic" that will be appended to "Show more about [topic]". */
@@ -32,7 +32,7 @@ function getTruncatedVersion(content, length) {
   });
 }
 
-function ShowMore(props) {
+function CollapsibleText(props) {
   const { a11yText, children, collapsedLength, ...moreProps } = props;
 
   const I18n = useI18n();
@@ -40,14 +40,14 @@ function ShowMore(props) {
   const contentId = React.useRef(uuid()).current;
 
   function getToggleLabel() {
-    return isCollapsed ? I18n.t("showMore.more") : I18n.t("showMore.less");
+    return isCollapsed ? I18n.t("collapsibleText.more") : I18n.t("collapsibleText.less");
   }
 
   function getA11yText() {
     if (a11yText) {
       return isCollapsed
-        ? `${I18n.t("showMore.more_about")}: ${a11yText}`
-        : `${I18n.t("showMore.less_about")}: ${a11yText}`;
+        ? `${I18n.t("collapsibleText.more_about")}: ${a11yText}`
+        : `${I18n.t("collapsibleText.less_about")}: ${a11yText}`;
     }
     return getToggleLabel();
   }
@@ -62,15 +62,15 @@ function ShowMore(props) {
   if (isOverflowing) collapsedContent = `${getTruncatedVersion(renderedContent, collapsedLength)} `;
 
   return (
-    <div data-pka-anchor="show-more" {...moreProps}>
+    <div data-pka-anchor="collapsible-text" {...moreProps}>
       {isCollapsed && isOverflowing ? (
         <span
           dangerouslySetInnerHTML={{ __html: collapsedContent }}
-          data-pka-anchor="show-more.content"
+          data-pka-anchor="collapsible-text.content"
           id={contentId}
         />
       ) : (
-        <span data-pka-anchor="show-more.content" id={contentId}>
+        <span data-pka-anchor="collapsible-text.content" id={contentId}>
           {children}
         </span>
       )}
@@ -91,8 +91,8 @@ function ShowMore(props) {
   );
 }
 
-ShowMore.displayName = "ShowMore";
-ShowMore.propTypes = propTypes;
-ShowMore.defaultProps = defaultProps;
+CollapsibleText.displayName = "CollapsibleText";
+CollapsibleText.propTypes = propTypes;
+CollapsibleText.defaultProps = defaultProps;
 
-export default ShowMore;
+export default CollapsibleText;
