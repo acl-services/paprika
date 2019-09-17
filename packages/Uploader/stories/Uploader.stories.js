@@ -53,4 +53,31 @@ storiesOf("Uploader", module)
         {TestingFn}
       </Uploader>
     </>
+  ))
+  .add("Imposing a maxium filesize", () => (
+    <>
+      <p>
+        Will only allow images under 1 <strong>mebibyte</strong> (close to 1 MB)
+      </p>
+      <Uploader
+        url="http://localhost:9000/upload.php"
+        acceptableFileTypes={["image/*"]}
+        maximumFileSize={Uploader.convertUnitsToMebibytes(1)}
+        onChange={files => {
+          console.log("onChange files:", files);
+        }}
+      >
+        {TestingFn}
+      </Uploader>
+    </>
+  ))
+  .add("Upload on demand", () => (
+    <>
+      <p>
+        Will only allow images under 1 <strong>mebibyte</strong> (close to 1 MB)
+      </p>
+      <Uploader url="http://localhost:9000/upload.php" acceptableFileTypes={["image/*"]} hasAutoupload={false}>
+        {TestingFn}
+      </Uploader>
+    </>
   ));

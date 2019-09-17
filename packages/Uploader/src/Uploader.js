@@ -6,12 +6,13 @@
   - [] pass down function to interact with the uploader, retry file, upload file, delete file, etc
   - [x] abstract complexity for uploading into hook useProcessFiles
   - [x] filter by file extension
-  - [] create testing cases for the component
+  - [x] create testing cases for the component
   - [x] handle errors
   - [] match the file button and the render button automatically.
   - [] upload on demand not only with hasAutoupload
   - [] cleanup
   - [x] ProgressBar component
+  - [x] if it's disabled shouldn't execute any uploading at all.
 */
 import React from "react";
 import PropTypes from "prop-types";
@@ -65,10 +66,14 @@ function UploaderComponent(props, ref) {
   const refInput = React.useRef();
   const [refId] = React.useState(uuidv4());
   const i18n = useI18n();
-  const [isDragOver, setIsDragOver] = React.useState(defaultIsDisable);
-  const [isDragLeave, setIsDragLeave] = React.useState(defaultIsDisable);
 
   const label = a11yText || i18n.t("uploader.label");
+
+  React.useImperativeHandle(ref, () => ({
+    focus: () => {
+      refInput.current.focus();
+    },
+  }));
 
   const { files, setFiles, isDisabled, hasSucceeded } = useProcessFiles({
     hasAutoupload,
@@ -77,13 +82,9 @@ function UploaderComponent(props, ref) {
     defaultIsDisable,
   });
 
-  React.useImperativeHandle(ref, () => ({
-    focus: () => {
-      refInput.current.focus();
-    },
-  }));
-
   function handleChange(event) {
+    if (isDisabled) return;
+
     const files = getFiles({ event, maximumFileSize, acceptableFileTypes });
     setFiles(() => {
       refInput.current.value = "";
@@ -91,27 +92,11 @@ function UploaderComponent(props, ref) {
     });
   }
 
-  function onDragOver(event) {
-    setIsDragOver(() => true);
-    setIsDragLeave(() => false);
-    // this prevent images from rendering on the browser
-    event.preventDefault();
-  }
-
-  function onDragLeave() {
-    setIsDragOver(() => false);
-    setIsDragLeave(() => true);
-  }
-
-  function onDrop(event) {
-    // this prevent images from rendering on the browser
-    setIsDragOver(() => false);
-    setIsDragLeave(() => true);
-    event.preventDefault();
-    handleChange(event);
-  }
-
-  useDragAndDropEvents({ dropArea: querySelectorForDropArea, onDragOver, onDragLeave, onDrop });
+  const { isDragLeave, isDragOver } = useDragAndDropEvents({
+    dropArea: querySelectorForDropArea,
+    handleChange,
+    defaultIsDisable,
+  });
 
   return (
     <>

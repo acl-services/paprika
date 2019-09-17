@@ -1,15 +1,30 @@
 import React from "react";
 
-const noop = () => {};
+export default function useDragAndDropZoneEvents({ dropArea = () => document.body, handleChange, defaultIsDisable }) {
+  const [isDragOver, setIsDragOver] = React.useState(defaultIsDisable);
+  const [isDragLeave, setIsDragLeave] = React.useState(defaultIsDisable);
 
-export default function useDragAndDropZoneEvents({
-  dropArea = () => document.body,
-  onDragEnter = noop,
-  onDragOver = noop,
-  onDragLeave = noop,
-  onDrop = noop,
-}) {
   React.useEffect(() => {
+    function onDragOver(event) {
+      setIsDragOver(() => true);
+      setIsDragLeave(() => false);
+      // this prevent images from rendering on the browser
+      event.preventDefault();
+    }
+
+    function onDragLeave() {
+      setIsDragOver(() => false);
+      setIsDragLeave(() => true);
+    }
+
+    function onDrop(event) {
+      // this prevent images from rendering on the browser
+      setIsDragOver(() => false);
+      setIsDragLeave(() => true);
+      event.preventDefault();
+      handleChange(event);
+    }
+
     const element = dropArea();
     element.addEventListener("dragover", onDragOver, false);
     element.addEventListener("dragleave", onDragLeave, false);
@@ -20,5 +35,7 @@ export default function useDragAndDropZoneEvents({
       element.removeEventListener("dragleave", onDragLeave, false);
       element.removeEventListener("drop", onDrop, false);
     };
-  }, [dropArea, onDragEnter, onDragLeave, onDragOver, onDrop]);
+  }, [dropArea, handleChange]);
+
+  return { isDragOver, isDragLeave };
 }
