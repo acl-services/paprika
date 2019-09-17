@@ -5,7 +5,8 @@ import CollapsibleText from "../../src";
 
 const screenerScript = new Steps()
   .snapshot("Collapsed")
-  .click("[data-pka-anchor='button']")
+  .click(".screener-collapsible-text--basic [data-pka-anchor='button']")
+  .click(".screener-collapsible-text--rich [data-pka-anchor='button']")
   .snapshot("Expanded")
   .end();
 
@@ -21,7 +22,7 @@ const ExampleStory = () => {
           iceland chillwave stumptown. Bespoke adaptogen hexagon.
         </CollapsibleText>
         <Rule />
-        <CollapsibleText collapsedLength={64}>
+        <CollapsibleText collapsedLength={64} className="screener-collapsible-text--basic">
           Lorem hipsum meditation cardigan +1, plaid brunch street cred cloud bread art party pickled, VHS fingerstache
           la croix paleo single-origin coffee. Pinterest normcore wayfarers gentrify marfa helvetica street art vegan.
           Wayfarers portland chicharrones craft beer sartorial. Cray raw denim listicle mixtape, pug farm-to-table tofu
@@ -29,7 +30,7 @@ const ExampleStory = () => {
           90s.
         </CollapsibleText>
         <Rule />
-        <CollapsibleText>
+        <CollapsibleText className="screener-collapsible-text--rich">
           <p>
             Lorem hipsum cronut meggings hella tattooed affogato. Pug cred plaid, neutra lyft typewriter locavore beard
             vice art party glossier woke kinfolk. Craft beer keytar poke man bun. Yr polaroid flannel air plant. Brunch
