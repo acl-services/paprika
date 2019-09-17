@@ -86,6 +86,12 @@ const locales = {
       "progressAccordion": {
         "active": "active",
         "no_response": "None"
+      },
+      "collapsibleText": {
+        "more": "Show more",
+        "less": "Show less",
+        "more_about": "show more about {{topic}}",
+        "less_about": "show less about {{topic}}"
       }
     }
   }

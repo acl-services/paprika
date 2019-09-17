@@ -142,17 +142,17 @@ const Button = React.forwardRef((props, ref) => {
   }
 
   const iconProps = {
-    isButtonDisabled,
+    isDisabled: isButtonDisabled,
     kind,
   };
 
   return (
-    <span css={buttonStyles} {...buttonProps} as={isSemantic ? "button" : RawButton}>
-      <ButtonIcon {...iconProps} isPending={isPending}>
+    <span css={buttonStyles} data-pka-anchor="button" {...buttonProps} as={isSemantic ? "button" : RawButton}>
+      <ButtonIcon {...iconProps} isPending={isPending} data-pka-anchor="button.icon">
         {isPending ? <RefreshIcon /> : icon}
       </ButtonIcon>
       {children}
-      <ButtonIcon {...iconProps} isDropdown>
+      <ButtonIcon {...iconProps} isDropdown data-pka-anchor="button.icon">
         {isDropdown && <DownIcon />}
       </ButtonIcon>
     </span>
