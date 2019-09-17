@@ -1,10 +1,7 @@
 import React from "react";
-import PropTypes from "prop-types";
 import { addParameters } from "@storybook/react";
-
 import { select } from "@storybook/addon-knobs";
 import { action } from "@storybook/addon-actions";
-
 import styled from "styled-components";
 import { CenteredStory } from "storybook/assets/styles/common.styles";
 import Button from "@paprika/button";
@@ -45,7 +42,7 @@ const popoverProps = () => ({
   sampleText: sampleTexts[select("content", ["short", "long"], "long")],
 });
 
-const PopoverBox = props => {
+function PopoverBox(props) {
   const { sampleText, ...moreProps } = props;
   return (
     <PopoverContainer>
@@ -60,35 +57,31 @@ const PopoverBox = props => {
       </Popover>
     </PopoverContainer>
   );
-};
-PopoverBox.propTypes = {
-  getScrollContainer: PropTypes.func.isRequired,
-};
+}
 
 function setKnobsTab() {
   setTimeout(() => {
-    // eslint-disable-next-line no-restricted-globals
-    parent.document.querySelector("#storybook-panel-root .simplebar-content button").click();
+    const $knobsTab = window.parent.document.querySelector("#storybook-panel-root .simplebar-content button");
+    if ($knobsTab) $knobsTab.click();
   });
 }
 
 function togglePanelPosition() {
   setTimeout(() => {
-    // eslint-disable-next-line no-restricted-globals
-    const buttons = parent.document.querySelectorAll("#storybook-panel-root .simplebar-content button");
-    buttons[buttons.length - 2].click();
+    const $panelButtons = window.parent.document.querySelectorAll("#storybook-panel-root .simplebar-content button");
+    if ($panelButtons && $panelButtons.length) $panelButtons[$panelButtons.length - 2].click();
   });
 }
 
-function actionsObseyo() {
+function noActionsMessage() {
   setTimeout(() => {
-    action("There are 0 actions for this story.")();
+    action("There are no actions for this story.")();
     setKnobsTab();
   });
 }
 
 const ExampleStory = props => {
-  actionsObseyo();
+  noActionsMessage();
   togglePanelPosition();
 
   setTimeout(() => {
