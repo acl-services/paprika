@@ -21,24 +21,30 @@ if ($_SERVER['REQUEST_METHOD'] == 'OPTIONS') {
     exit(0);
 }
 
-if(!empty($_FILES['file'])) {
-  sleep(1.5);
-  error_log(print_r("filename: ".$_FILES['file']['name'], true));
-
-  $path = "uploads/";
-
-  error_log("json: ".json_encode($_FILES['file']['name'], JSON_PRETTY_PRINT), true);
-
-  $path = $path . basename($_FILES['file']['name']);
-
-  error_log(print_r("upload: ".$path, true));
-
-  if(move_uploaded_file($_FILES['file']['tmp_name'], $path)) {
-    error_log(print_r("moved: ", true));
-    http_response_code(200);
-  }
-} else {
+if (!empty($_GET['error'])) {
   http_response_code(500);
+} else {
+  if(!empty($_FILES['file'])) {
+    sleep(1);
+    error_log(print_r("filename: ".$_FILES['file']['name'], true));
+
+    $path = "uploads/";
+
+    error_log("json: ".json_encode($_FILES['file']['name'], JSON_PRETTY_PRINT), true);
+
+    $path = $path . basename($_FILES['file']['name']);
+
+    error_log(print_r("upload: ".$path, true));
+
+    if(move_uploaded_file($_FILES['file']['tmp_name'], $path)) {
+      error_log(print_r("moved: ", true));
+      http_response_code(200);
+    }
+  } else {
+    http_response_code(500);
+  }
 }
+
+
 
 ?>

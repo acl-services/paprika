@@ -11,15 +11,13 @@ export default function useDragAndDropZoneEvents({
 }) {
   React.useEffect(() => {
     const element = dropArea();
-    element.addEventListener("dragenter", onDragEnter, false);
     element.addEventListener("dragover", onDragOver, false);
     element.addEventListener("dragleave", onDragLeave, false);
     element.addEventListener("drop", onDrop, false);
 
     return function cleanup() {
-      console.log("🛀 clean up", element);
-      element.removeEventListener("dragenter", onDragEnter, false);
       element.removeEventListener("dragover", onDragOver, false);
+      element.removeEventListener("dragleave", onDragLeave, false);
       element.removeEventListener("drop", onDrop, false);
     };
   }, [dropArea, onDragEnter, onDragLeave, onDragOver, onDrop]);

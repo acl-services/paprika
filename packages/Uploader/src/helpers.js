@@ -43,7 +43,7 @@ function isValidFileType({ file, acceptableFileTypes }) {
 
 function isValidFile({ file, maximumFileSize, acceptableFileTypes }) {
   const validation = {
-    isServerValid: true, // this will be modify by the server in case failed
+    isServerValid: true, // this will be true unless failed when uploading the file
     isSizeValid: file.size <= maximumFileSize,
     isTypeValid: isValidFileType({ file, acceptableFileTypes }),
   };
@@ -56,9 +56,10 @@ function isValidFile({ file, maximumFileSize, acceptableFileTypes }) {
 function createFilesDataStructure({ files, maximumFileSize, acceptableFileTypes }) {
   return [...files].map(file => {
     const key = uuidv4();
+    const fileValidation = isValidFile({ file, maximumFileSize, acceptableFileTypes });
     return {
       key,
-      ...isValidFile({ file, maximumFileSize, acceptableFileTypes }),
+      ...fileValidation,
       extension: getExtension({ file }),
       file,
       filename: file.name,
@@ -66,12 +67,16 @@ function createFilesDataStructure({ files, maximumFileSize, acceptableFileTypes 
       filesizeHumanize: fileSizeUnitsToHumanReadableFormat(file.size),
       progress: 0,
       request: null,
-      status: types.IDLE,
+      status: fileValidation.isValid ? types.IDLE : types.ERROR,
+      hasSucceeded: false,
+      hasError: false,
+      errorMessage: null,
+      processed: !fileValidation.isValid, // if the file is not valid mean has been processed
     };
   });
 }
 
-export function upload({ url, file, data = {} }) {
+export function upload({ url, file, data = {}, onProgress, onSuccess, onError }) {
   const formData = new FormData();
   formData.append("file", file.file);
   formData.append("data", JSON.stringify(data));
@@ -88,10 +93,16 @@ export function upload({ url, file, data = {} }) {
     .send(formData)
     .on("progress", ({ percent }) => {
       if (percent) {
-        console.log(percent);
+        onProgress({ file, percent });
       }
     })
-    .end((err, res) => {
+    .end((error, response) => {
+      if (error) {
+        onError({ file, error });
+        return;
+      }
+
+      onSuccess({ file, response });
       // Calling the end function will send the request
     });
 }
