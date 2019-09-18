@@ -11,7 +11,7 @@ import {
   FontStep,
   LeadingStep,
   ZBox,
-  ZStep,
+  // ZStep,
 } from "./stylers.stories.styles";
 
 storiesOf("Stylers", module)
@@ -146,12 +146,13 @@ storiesOf("Stylers", module)
       <h4>
         <code>stylers.z()</code>
       </h4>
+
       <ZBox>
-        {[...Array(8).keys()].map(index => (
+        {/* [...Array(8).keys()].map(index => (
           <ZStep key={index} level={index}>
             {index}
           </ZStep>
-        ))}
+        )) */}
       </ZBox>
     </Story>
   ));

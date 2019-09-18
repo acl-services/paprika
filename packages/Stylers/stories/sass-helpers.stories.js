@@ -136,9 +136,9 @@ storiesOf("Stylers", module)
         <code>z()</code>
       </h4>
       <Box className="z">
-        {[...Array(8).keys()].map(index => (
+        {/* [...Array(8).keys()].map(index => (
           <span key={index}>{index}</span>
-        ))}
+        )) */}
       </Box>
     </Story>
   ));
