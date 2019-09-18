@@ -7,6 +7,7 @@
   - [x] abstract complexity for uploading into hook useProcessFiles
   - [x] filter by file extension
   - [x] create testing cases for the component
+  - [x] deleter remove item, will work only once hasFinished and file.status === types.IDLE
   - [x] handle errors
   - [] match the file button and the render button automatically.
   - [] upload on demand not only with hasAutoupload
@@ -17,12 +18,13 @@
 import React from "react";
 import PropTypes from "prop-types";
 import uuidv4 from "uuid/v4";
+import stylers from "@paprika/stylers/";
 import useI18n from "@paprika/l10n/lib/useI18n";
-import useDragAndDropEvents from "./useDragAndDropEvents";
-import useProcessFiles from "./useProcessFiles";
 import { getFiles } from "./helpers";
 import ProgressBar from "./components/ProgressBar";
 import types from "./types";
+import useDragAndDropEvents from "./useDragAndDropEvents";
+import useProcessFiles from "./useProcessFiles";
 
 const oneMebibyte = 1048576;
 
@@ -32,7 +34,7 @@ const propTypes = {
   allowMultipleFile: PropTypes.bool,
   hasAutoupload: PropTypes.bool,
   maximumFileSize: PropTypes.number,
-  onChange: PropTypes.func.isRequired,
+  onChange: PropTypes.func,
   querySelectorForDropArea: PropTypes.func,
   url: PropTypes.string.isRequired,
   children: PropTypes.func.isRequired,
@@ -47,6 +49,7 @@ const defaultProps = {
   maximumFileSize: oneMebibyte * 10, // 1048576bytes * 10 = 10,485,760 Mebibytes
   querySelectorForDropArea: undefined,
   defaultIsDisable: false,
+  onChange: () => {},
 };
 
 function UploaderComponent(props, ref) {
@@ -66,8 +69,8 @@ function UploaderComponent(props, ref) {
   const refInput = React.useRef();
   const [refId] = React.useState(uuidv4());
   const i18n = useI18n();
-
   const label = a11yText || i18n.t("uploader.label");
+  const refTrigger = React.createRef(null);
 
   React.useImperativeHandle(ref, () => ({
     focus: () => {
@@ -75,11 +78,19 @@ function UploaderComponent(props, ref) {
     },
   }));
 
-  const { files, setFiles, isDisabled, hasSucceeded } = useProcessFiles({
+  // prettier-ignore
+  const {
+    files,
+    hasFinished,
+    isDisabled,
+    removeItem,
+    setFiles,
+    upload,
+  } = useProcessFiles({
+    defaultIsDisable,
     hasAutoupload,
     onChange,
     url,
-    defaultIsDisable,
   });
 
   function handleChange(event) {
@@ -101,7 +112,7 @@ function UploaderComponent(props, ref) {
   return (
     <>
       <label htmlFor={refId}>
-        {label}
+        <span css={stylers.visuallyHidden}>{label}</span>
         <input
           multiple={allowMultipleFile}
           id={refId}
@@ -113,12 +124,14 @@ function UploaderComponent(props, ref) {
         />
       </label>
       {children({
-        attributes: { "data-uploader-id": `child_${refId}` },
+        attributes: { "data-uploader-id": `child_${refId}`, ref: refTrigger },
         files,
         isDisabled,
         isDragLeave,
         isDragOver,
-        hasSucceeded,
+        hasFinished,
+        upload,
+        removeItem,
       })}
     </>
   );

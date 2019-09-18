@@ -11,11 +11,11 @@ export default {
   progress: css`
     border-radius: ${tokens.spaceSm};
     height: 100%;
-    ${({ progress = 0, hasError, hasSucceeded }) => {
+    ${({ progress = 0, hasError, hasFinished }) => {
       let background = tokens.color.purple;
 
-      if (hasSucceeded || hasError) {
-        background = hasSucceeded ? tokens.color.green : tokens.color.orange;
+      if (hasFinished || hasError) {
+        background = hasFinished ? tokens.color.green : tokens.color.orange;
       }
 
       return `

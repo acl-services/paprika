@@ -1,14 +1,44 @@
 import React from "react";
 import types from "./types";
-import { upload } from "./helpers";
+import { upload as uploadToServer } from "./helpers";
 
 export default function useProcessFiles({ hasAutoupload, onChange, url, defaultIsDisable }) {
   const [uploadingFileList, setUploadingFileList] = React.useState([]);
   const [isDisabled, setIsDisabled] = React.useState(defaultIsDisable);
-  const [hasSucceeded, setHasSucceeded] = React.useState(null);
+  const [hasFinished, sethasFinished] = React.useState(null);
   const [files, setFiles] = React.useState([]);
 
-  React.useEffect(() => {
+  function removeItem(key) {
+    let index = null;
+
+    files.some((file, i) => {
+      if (file.key === key) {
+        index = i;
+        return true;
+      }
+      return false;
+    });
+
+    if (index !== null) {
+      /*
+        Removing a file while is been uploaded mess with areAllFilesProccessed() function,
+        as well give a wrong impression the request has been cancel to the server.
+        Therefore is only possible to remove files once they were processed or on idle status.
+      */
+      if (hasFinished || files[index].status === types.IDLE) {
+        const fileClones = files.slice(0);
+        fileClones.splice(index, 1);
+
+        const uploadingFileListClone = uploadingFileList.slice(0);
+        uploadingFileListClone.splice(index, 1);
+
+        setFiles(() => fileClones);
+        setUploadingFileList(() => uploadingFileListClone);
+      }
+    }
+  }
+
+  const upload = React.useCallback(() => {
     const setFile = (file, callback) => files => {
       const cloneFiles = files.slice(0);
       let index = null;
@@ -28,18 +58,18 @@ export default function useProcessFiles({ hasAutoupload, onChange, url, defaultI
       return cloneFiles;
     };
 
-    function isSameList() {
+    const isSameList = (files, uploadingFileList) => {
       const sameList =
         files.length === uploadingFileList.length &&
         files.every((file, index) => file.key === uploadingFileList[index].key);
 
       return sameList;
-    }
+    };
 
     function areAllFilesProccessed() {
       if (files.every(file => file.processed)) {
         setIsDisabled(() => false);
-        setHasSucceeded(() => true);
+        sethasFinished(() => true);
       }
     }
 
@@ -89,22 +119,26 @@ export default function useProcessFiles({ hasAutoupload, onChange, url, defaultI
       );
     }
 
-    function processFiles(files) {
+    if (files.length && !isSameList(files, uploadingFileList) && !isDisabled) {
+      setUploadingFileList(() => files);
+      setIsDisabled(() => true);
+      sethasFinished(() => null);
+      onChange(files);
       files.forEach(file => {
-        if (file.isValid) {
-          upload({ file, url, onProgress, onSuccess, onError });
+        if (file.isValid && file.status !== types.SUCCESS) {
+          uploadToServer({ file, url, onProgress, onSuccess, onError });
         }
       });
     }
+  }, [files, isDisabled, onChange, uploadingFileList, url]);
 
-    if (hasAutoupload && files.length && !isSameList() && !isDisabled) {
-      setUploadingFileList(() => files);
-      setIsDisabled(() => true);
-      setHasSucceeded(() => null);
-      onChange(files);
-      processFiles(files);
+  upload.displayName = "upload"; // helps dev tools displaying upload() instead of anonymous function
+
+  React.useEffect(() => {
+    if (hasAutoupload) {
+      upload();
     }
-  }, [files, hasAutoupload, isDisabled, onChange, uploadingFileList, url]);
+  }, [files, hasAutoupload, upload]);
 
-  return { files, setFiles, isDisabled, hasSucceeded };
+  return { files, setFiles, isDisabled, hasFinished, upload, removeItem };
 }

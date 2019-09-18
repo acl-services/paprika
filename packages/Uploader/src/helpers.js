@@ -68,7 +68,7 @@ function createFilesDataStructure({ files, maximumFileSize, acceptableFileTypes 
       progress: 0,
       request: null,
       status: fileValidation.isValid ? types.IDLE : types.ERROR,
-      hasSucceeded: false,
+      hasFinished: false,
       hasError: false,
       errorMessage: null,
       processed: !fileValidation.isValid, // if the file is not valid mean has been processed

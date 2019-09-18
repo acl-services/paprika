@@ -17,11 +17,13 @@ const styles = {
 const propTypes = {
   isDisabled: PropTypes.bool,
   files: PropTypes.arrayOf(PropTypes.object),
+  hasUploadButton: PropTypes.bool,
 };
 
 const defaultProps = {
   isDisabled: false,
   files: [],
+  hasUploadButton: false,
 };
 
 function hasError(isValid) {
@@ -29,14 +31,43 @@ function hasError(isValid) {
 }
 
 export default function Testing(props) {
-  const { files, isDragOver, isDragLeave, isDisabled, hasSucceeded } = props;
+  const {
+    /* Props provided by children() function */
+    files,
+    isDragOver,
+    isDragLeave,
+    isDisabled,
+    hasFinished,
+    upload,
+    removeItem,
+    /* EO Props provided by children() function */
+
+    /* custom prop from storybook just fo this example */
+    hasUploadButton,
+  } = props;
+
+  const handleUpload = () => {
+    upload();
+  };
+
+  const handleRemove = key => () => {
+    removeItem(key);
+  };
 
   return (
     <>
+      {hasUploadButton ? (
+        <p>
+          After selecting your images, click the button to upload it.
+          <button type="button" onClick={handleUpload}>
+            upload images
+          </button>
+        </p>
+      ) : null}
       <p>{isDisabled ? "isDisabled is true" : "isDisabled is false"}</p>
       <p>{isDragOver ? "isDragOver 🤚" : ""}</p>
       <p>{isDragLeave ? "isDragLeave 👋" : ""}</p>
-      <p>{hasSucceeded ? "success ✅" : null}</p>
+      <p>{hasFinished ? "success ✅" : null}</p>
       <hr />
       {files.length ? (
         <table css={styles.table}>
@@ -53,6 +84,7 @@ export default function Testing(props) {
               <td>isSizeValid</td>
               <td>isTypeValid</td>
               <td>isServerValid</td>
+              <td>remove</td>
             </tr>
             {files.map(file => (
               <tr key={file.key}>
@@ -66,7 +98,7 @@ export default function Testing(props) {
                   {
                     <Uploader.ProgressBar
                       progress={file.progress}
-                      hasSucceeded={file.status === Uploader.types.SUCCESS}
+                      hasFinished={file.status === Uploader.types.SUCCESS}
                       hasError={!file.isValid}
                     />
                   }
@@ -75,6 +107,11 @@ export default function Testing(props) {
                 <td>{hasError(file.isSizeValid)}</td>
                 <td>{hasError(file.isTypeValid)}</td>
                 <td>{hasError(file.isServerValid)}</td>
+                <td>
+                  <button type="button" onClick={handleRemove(file.key)}>
+                    remove
+                  </button>
+                </td>
               </tr>
             ))}
           </tbody>
