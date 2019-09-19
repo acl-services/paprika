@@ -8,7 +8,7 @@
 </div>
 <br>
 
-It has a collection of reusable components that are versioned and downloaded individually. Paprika is built and maintained by [Galvanize](https://www.wegalvanize.com).
+Paprika is a collection of reusable components that are versioned and downloaded individually. Paprika is built and maintained by [Galvanize](https://www.wegalvanize.com).
 
 *Our list of components can be find for now at [npm](https://www.npmjs.com/org/paprika).*
 
