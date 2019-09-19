@@ -65,6 +65,56 @@ const ExampleStory = () => (
       </Popover>
       &nbsp;More info
       <Gap />
+      <h5>
+        Render prop: &lt;a&gt; link <code>isEager</code>
+      </h5>
+      <Popover isEager>
+        <Popover.Trigger>
+          {(handler, ariaId) => (
+            <a
+              href="http://www.acl.com"
+              onMouseOver={handler}
+              onMouseOut={handler}
+              onFocus={handler}
+              onBlur={handler}
+              aria-describedby={ariaId}
+            >
+              More info
+            </a>
+          )}
+        </Popover.Trigger>
+        <Popover.Content>
+          <Popover.Card>Lorem ipsum single-origin kombucha butcher gentrify foraged flannel.</Popover.Card>
+        </Popover.Content>
+        <Popover.Tip />
+      </Popover>
+      <Gap />
+      <h5>
+        Render prop: &lt;a&gt; Button <code>isEager</code>
+      </h5>
+      <Popover isEager>
+        <Popover.Trigger>
+          {(handler, ariaId) => (
+            <Button
+              onMouseOver={handler}
+              onMouseOut={handler}
+              onFocus={handler}
+              onBlur={handler}
+              aria-describedby={ariaId}
+              onClick={() => {
+                window.location.href = "http://www.acl.com";
+              }}
+            >
+              More info
+            </Button>
+          )}
+        </Popover.Trigger>
+        <Popover.Content>
+          <Popover.Card>Lorem ipsum single-origin kombucha butcher gentrify foraged flannel.</Popover.Card>
+        </Popover.Content>
+        <Popover.Tip />
+      </Popover>
+      <Gap />
       <h5>Node: &lt;a&gt; link</h5>
       <Popover>
         <Popover.Trigger>
@@ -77,24 +127,22 @@ const ExampleStory = () => (
       </Popover>
       <Gap />
       <h5>
-        Node: &lt;a&gt; link <code>isEager isDark</code>
+        Render prop: &lt;a&gt; link <code>isEager</code> without <code>Popover.Card</code> component
       </h5>
       <Popover isEager isDark>
         <Popover.Trigger>
-          <a href="http://www.acl.com">More info</a>
-        </Popover.Trigger>
-        <Popover.Content>
-          <Popover.Card>Lorem ipsum single-origin kombucha butcher gentrify foraged flannel.</Popover.Card>
-        </Popover.Content>
-        <Popover.Tip />
-      </Popover>
-      <Gap />
-      <h5>
-        Node: &lt;a&gt; link <code>isEager</code> without <code>Popover.Card</code> component
-      </h5>
-      <Popover isEager isDark>
-        <Popover.Trigger>
-          <a href="http://www.acl.com">More info</a>
+          {(handler, ariaId) => (
+            <a
+              href="http://www.acl.com"
+              onMouseOver={handler}
+              onMouseOut={handler}
+              onFocus={handler}
+              onBlur={handler}
+              aria-describedby={ariaId}
+            >
+              More info
+            </a>
+          )}
         </Popover.Trigger>
         <Popover.Content>Lorem ipsum single-origin kombucha.</Popover.Content>
       </Popover>
