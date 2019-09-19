@@ -11,7 +11,9 @@
 It has a collection of reusable components that are versioned and downloaded individually. Paprika is built and maintained by [Galvanize](https://www.wegalvanize.com).
 
 *Our list of components can be find for now at [npm](https://www.npmjs.com/org/paprika).*
-*Storybook url: https://paprika.highbond.com*
+
+[Storybook](https://paprika.highbond.com)
+[Airtable](https://airtable.com/tblKm8hk9hxOhSjqZ/viwWfRyRdodyS2xVv?blocks=hide)
 
 All paprika components can be installed as:
 
