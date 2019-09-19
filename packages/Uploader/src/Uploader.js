@@ -18,6 +18,8 @@
   - [x] drop only in a designated area
   - [x] allowMultipleFile let the user upload multiple or only one file via dropping or clicking file input
   - [x] implementing onFinished callback which get fired once all files are processed.
+  - [x] ability to cancel a request
+  - [x] abitlity to focus while navigating with the keyboard
   - [] ability to pass custom headers as example [X-CSRF-Token]
   - [] cleanup
 
@@ -105,7 +107,7 @@ function UploaderComponent(props, ref) {
     },
   }));
 
-  const { files, hasFinished, isDisabled, removeItem, setFiles, upload } = useProcessFiles({
+  const { files, hasFinished, isDisabled, removeFile, cancelFile, setFiles, upload } = useProcessFiles({
     defaultIsDisable,
     hasAutoupload,
     onChange,
@@ -116,7 +118,7 @@ function UploaderComponent(props, ref) {
   function handleChange(event) {
     if (isDisabled) return;
 
-    const files = getFiles({ event, maximumFileSize, acceptableFileTypes });
+    const files = getFiles({ event, maximumFileSize, acceptableFileTypes, endpoint });
     setFiles(() => {
       if (refInput.current) {
         refInput.current.value = "";
@@ -163,7 +165,8 @@ function UploaderComponent(props, ref) {
         isDisabled,
         isDragLeave,
         isDragOver,
-        removeItem,
+        removeFile,
+        cancelFile,
         upload,
       })}
     </>

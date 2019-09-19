@@ -53,7 +53,7 @@ function isValidFile({ file, maximumFileSize, acceptableFileTypes }) {
   return validation;
 }
 
-function createFilesDataStructure({ files, maximumFileSize, acceptableFileTypes }) {
+function createFilesDataStructure({ files, maximumFileSize, acceptableFileTypes, endpoint }) {
   return [...files].map(file => {
     const key = uuidv4();
     const fileValidation = isValidFile({ file, maximumFileSize, acceptableFileTypes });
@@ -66,7 +66,7 @@ function createFilesDataStructure({ files, maximumFileSize, acceptableFileTypes 
       filesize: file.size,
       filesizeHumanize: fileSizeUnitsToHumanReadableFormat(file.size),
       progress: 0,
-      request: null,
+      request: superagent.post(endpoint),
       status: fileValidation.isValid ? types.IDLE : types.ERROR,
       hasError: false,
       errorMessage: null,
@@ -75,20 +75,18 @@ function createFilesDataStructure({ files, maximumFileSize, acceptableFileTypes 
   });
 }
 
-export function upload({ endpoint, file, data = {}, onProgress, onSuccess, onError }) {
+export function upload({ file, data = {}, onProgress, onSuccess, onError }) {
   const formData = new FormData();
   formData.append("file", file.file);
   formData.append("data", JSON.stringify(data));
 
-  const _superagent = superagent.post(endpoint);
-
   const headers = [];
   //
   headers.forEach(header => {
-    _superagent.set(header.type, header.value);
+    file.request.set(header.type, header.value);
   });
 
-  _superagent
+  file.request
     .send(formData)
     .on("progress", ({ percent }) => {
       if (percent) {
@@ -102,11 +100,10 @@ export function upload({ endpoint, file, data = {}, onProgress, onSuccess, onErr
       }
 
       onSuccess({ file, response });
-      // Calling the end function will send the request
     });
 }
 
-export function getFiles({ event, maximumFileSize, acceptableFileTypes }) {
+export function getFiles({ event, maximumFileSize, acceptableFileTypes, endpoint }) {
   if ((event.target && event.target.files) || (event.dataTransfer && event.dataTransfer.files)) {
     let files = [];
     if (event.dataTransfer) {
@@ -115,7 +112,7 @@ export function getFiles({ event, maximumFileSize, acceptableFileTypes }) {
       files = event.target.files;
     }
 
-    return createFilesDataStructure({ files, maximumFileSize, acceptableFileTypes });
+    return createFilesDataStructure({ files, maximumFileSize, acceptableFileTypes, endpoint });
   }
 
   return [];

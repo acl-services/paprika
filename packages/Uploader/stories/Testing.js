@@ -50,7 +50,8 @@ export default function Testing(props) {
     isDisabled,
     hasFinished,
     upload,
-    removeItem,
+    removeFile,
+    cancelFile,
     FileInput,
     /* EO Props provided by children() function */
 
@@ -63,7 +64,11 @@ export default function Testing(props) {
   };
 
   const handleRemove = key => () => {
-    removeItem(key);
+    removeFile(key);
+  };
+
+  const handleCancel = key => () => {
+    cancelFile(key);
   };
 
   return (
@@ -125,6 +130,11 @@ export default function Testing(props) {
                 <td>
                   <button type="button" onClick={handleRemove(file.key)}>
                     remove
+                  </button>
+                </td>
+                <td>
+                  <button type="button" onClick={handleCancel(file.key)}>
+                    cancel
                   </button>
                 </td>
               </tr>

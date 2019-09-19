@@ -2,22 +2,67 @@ import React from "react";
 import types from "./types";
 import { upload as uploadToServer } from "./helpers";
 
+function getFileByIndex(key, files) {
+  let index = null;
+
+  files.some((file, i) => {
+    if (file.key === key) {
+      index = i;
+      return true;
+    }
+    return false;
+  });
+
+  return index || null;
+}
+
+const setFile = (file, callback) => files => {
+  const cloneFiles = files.slice(0);
+  let index = null;
+  files.some((f, i) => {
+    if (f.key === file.key) {
+      index = i;
+      return true;
+    }
+    return false;
+  });
+
+  if (index !== null) {
+    const updatedFile = callback(cloneFiles[index]);
+    cloneFiles[index] = updatedFile;
+  }
+
+  return cloneFiles;
+};
+
 export default function useProcessFiles({ hasAutoupload, onChange, onFinished, endpoint, defaultIsDisable }) {
   const [uploadingFileList, setUploadingFileList] = React.useState([]);
   const [isDisabled, setIsDisabled] = React.useState(defaultIsDisable);
   const [hasFinished, sethasFinished] = React.useState(null);
   const [files, setFiles] = React.useState([]);
 
-  function removeItem(key) {
-    let index = null;
+  function cancelFile(key) {
+    const index = getFileByIndex(key, files);
+    if (index !== null) {
+      if (files[index].status === types.PROCESSING || files[index].status === types.WAITINGFORSERVER) {
+        const file = files[index];
 
-    files.some((file, i) => {
-      if (file.key === key) {
-        index = i;
-        return true;
+        // will stop the uploading
+        file.request.abort();
+
+        setFiles(
+          setFile(file, fileItem => {
+            const file = fileItem;
+            file.status = types.CANCEL;
+            return fileItem;
+          })
+        );
       }
-      return false;
-    });
+    }
+  }
+
+  function removeFile(key) {
+    const index = getFileByIndex(key, files);
 
     if (index !== null) {
       /*
@@ -38,102 +83,84 @@ export default function useProcessFiles({ hasAutoupload, onChange, onFinished, e
     }
   }
 
-  const upload = React.useCallback(() => {
-    const setFile = (file, callback) => files => {
-      const cloneFiles = files.slice(0);
-      let index = null;
-      files.some((f, i) => {
-        if (f.key === file.key) {
-          index = i;
-          return true;
+  const upload = React.useCallback(
+    function uploadItem() {
+      const isSameList = (files, uploadingFileList) => {
+        const sameList =
+          files.length === uploadingFileList.length &&
+          files.every((file, index) => file.key === uploadingFileList[index].key);
+
+        return sameList;
+      };
+
+      function areAllFilesProccessed() {
+        if (files.every(file => file.processed)) {
+          setIsDisabled(() => false);
+          sethasFinished(() => true);
+          onFinished(files);
         }
-        return false;
-      });
-
-      if (index !== null) {
-        const updatedFile = callback(cloneFiles[index]);
-        cloneFiles[index] = updatedFile;
       }
 
-      return cloneFiles;
-    };
+      function onSuccess({ file, response }) {
+        setFiles(
+          setFile(file, fileItem => {
+            const file = fileItem;
+            file.isValid = true;
+            file.processed = true;
+            file.response = response;
+            file.status = types.SUCCESS;
+            return fileItem;
+          })
+        );
 
-    const isSameList = (files, uploadingFileList) => {
-      const sameList =
-        files.length === uploadingFileList.length &&
-        files.every((file, index) => file.key === uploadingFileList[index].key);
-
-      return sameList;
-    };
-
-    function areAllFilesProccessed() {
-      if (files.every(file => file.processed)) {
-        setIsDisabled(() => false);
-        sethasFinished(() => true);
-        onFinished(files);
+        areAllFilesProccessed();
       }
-    }
 
-    function onSuccess({ file, response }) {
-      setFiles(
-        setFile(file, fileItem => {
-          const file = fileItem;
-          file.isValid = true;
-          file.processed = true;
-          file.response = response;
-          file.status = types.SUCCESS;
-          return fileItem;
-        })
-      );
+      function onError({ file, error }) {
+        setFiles(
+          setFile(file, fileItem => {
+            const file = fileItem;
+            file.status = types.ERROR;
+            file.error = error;
+            file.processed = true;
+            file.isValid = false;
+            file.isServerValid = false;
+            return fileItem;
+          })
+        );
 
-      areAllFilesProccessed();
-    }
+        areAllFilesProccessed();
+      }
 
-    function onError({ file, error }) {
-      setFiles(
-        setFile(file, fileItem => {
-          const file = fileItem;
-          file.status = types.ERROR;
-          file.error = error;
-          file.processed = true;
-          file.isValid = false;
-          file.isServerValid = false;
-          return fileItem;
-        })
-      );
+      function onProgress({ file, percent }) {
+        setFiles(
+          setFile(file, fileItem => {
+            const file = fileItem;
+            file.progress = percent;
+            file.status = types.PROCESSING;
 
-      areAllFilesProccessed();
-    }
+            if (percent === 100) {
+              file.status = types.WAITINGFORSERVER;
+            }
+            return fileItem;
+          })
+        );
+      }
 
-    function onProgress({ file, percent }) {
-      setFiles(
-        setFile(file, fileItem => {
-          const file = fileItem;
-          file.progress = percent;
-          file.status = types.PROCESSING;
-
-          if (percent === 100) {
-            file.status = types.WAITING4SERVER;
+      if (files.length && !isSameList(files, uploadingFileList) && !isDisabled) {
+        setUploadingFileList(() => files);
+        setIsDisabled(() => true);
+        sethasFinished(() => null);
+        onChange(files);
+        files.forEach(file => {
+          if (file.isValid && file.status !== types.SUCCESS) {
+            uploadToServer({ file, endpoint, onProgress, onSuccess, onError });
           }
-          return fileItem;
-        })
-      );
-    }
-
-    if (files.length && !isSameList(files, uploadingFileList) && !isDisabled) {
-      setUploadingFileList(() => files);
-      setIsDisabled(() => true);
-      sethasFinished(() => null);
-      onChange(files);
-      files.forEach(file => {
-        if (file.isValid && file.status !== types.SUCCESS) {
-          uploadToServer({ file, endpoint, onProgress, onSuccess, onError });
-        }
-      });
-    }
-  }, [files, uploadingFileList, isDisabled, onFinished, onChange, endpoint]);
-
-  upload.displayName = "upload"; // helps dev tools displaying upload() instead of anonymous function
+        });
+      }
+    },
+    [files, uploadingFileList, isDisabled, onFinished, onChange, endpoint]
+  );
 
   React.useEffect(() => {
     if (hasAutoupload) {
@@ -141,5 +168,5 @@ export default function useProcessFiles({ hasAutoupload, onChange, onFinished, e
     }
   }, [files, hasAutoupload, upload]);
 
-  return { files, setFiles, isDisabled, hasFinished, upload, removeItem };
+  return { files, setFiles, isDisabled, hasFinished, upload, removeFile, cancelFile };
 }

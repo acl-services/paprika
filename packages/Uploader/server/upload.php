@@ -25,7 +25,7 @@ if (!empty($_GET['error'])) {
   http_response_code(500);
 } else {
   if(!empty($_FILES['file'])) {
-    sleep(1);
+    sleep(2);
     error_log(print_r("filename: ".$_FILES['file']['name'], true));
 
     $path = "uploads/";

@@ -3,7 +3,17 @@ import { storiesOf } from "@storybook/react";
 import Uploader from "../src/Uploader";
 import Testing from "./Testing";
 
-function TestingFn({ FileInput, files, isDisabled, isDragOver, isDragLeave, hasFinished, upload, removeItem }) {
+function TestingFn({
+  FileInput,
+  files,
+  isDisabled,
+  isDragOver,
+  isDragLeave,
+  hasFinished,
+  upload,
+  removeFile,
+  cancelFile,
+}) {
   return (
     <Testing
       files={files}
@@ -13,7 +23,8 @@ function TestingFn({ FileInput, files, isDisabled, isDragOver, isDragLeave, hasF
       hasFinished={hasFinished}
       upload={upload}
       FileInput={FileInput}
-      removeItem={removeItem}
+      removeFile={removeFile}
+      cancelFile={cancelFile}
     />
   );
 }
@@ -26,7 +37,8 @@ function TestingFnForUploadOnDemand({
   isDragLeave,
   hasFinished,
   upload,
-  removeItem,
+  removeFile,
+  cancelFile,
 }) {
   return (
     <Testing
@@ -36,7 +48,8 @@ function TestingFnForUploadOnDemand({
       isDragLeave={isDragLeave}
       hasFinished={hasFinished}
       upload={upload}
-      removeItem={removeItem}
+      removeFile={removeFile}
+      cancelFile={cancelFile}
       FileInput={FileInput}
       hasUploadButton
     />

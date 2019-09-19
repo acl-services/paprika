@@ -1,7 +1,8 @@
 export default {
   IDLE: "idle",
   PROCESSING: "processing",
-  WAITING4SERVER: "waiting-for-server",
+  WAITINGFORSERVER: "waiting-for-server",
   SUCCESS: "success",
   ERROR: "error",
+  CANCEL: "cancel",
 };
