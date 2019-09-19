@@ -52,7 +52,6 @@ const collapsibleStyles = css`
   }
 
   .collapsible__body {
-    display: ${({ isCollapsed }) => (isCollapsed ? "none" : "block")};
     width: 100%;
   }
 `;
