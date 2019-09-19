@@ -124,4 +124,17 @@ storiesOf("Uploader", module)
         {TestingFn}
       </Uploader>
     </>
+  ))
+  .add("Making use of onFinished prop", () => (
+    <>
+      <p>
+        The onFinished prop callback is fired once all files have been processed which dont neccessaril means that all
+        files were successuflly uploaded. The callback received as parameter the file list of all files processed with
+        their last status, you easily could map over the list and figured out if all files have file.status ===
+        Uploader.types.SUCCESS and verified if all file were uploaded correctly.
+      </p>
+      <Uploader onFinished={files => console.log("on finished:", files)} endpoint="http://localhost:9000/upload.php">
+        {TestingFn}
+      </Uploader>
+    </>
   ));

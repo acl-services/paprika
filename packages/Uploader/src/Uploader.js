@@ -16,7 +16,7 @@
   - [x] if it's disabled shouldn't execute any uploading at all.
   - [x] ability to have focus highlight.active.withBorder.boxShadow	automatically
   - [x] drop only in a designated area
-  - [x] allowMultipleFile let the user upload multiple or only one file via dropping or clicking file input 
+  - [x] allowMultipleFile let the user upload multiple or only one file via dropping or clicking file input
   - [] cleanup
 
   NOTES:
@@ -44,24 +44,26 @@ const propTypes = {
   a11yText: PropTypes.string,
   acceptableFileTypes: PropTypes.arrayOf(PropTypes.string),
   allowMultipleFile: PropTypes.bool,
-  hasAutoupload: PropTypes.bool,
-  maximumFileSize: PropTypes.number,
-  onChange: PropTypes.func,
-  isBodyDroppableArea: PropTypes.bool,
-  endpoint: PropTypes.string.isRequired,
   children: PropTypes.func.isRequired,
   defaultIsDisable: PropTypes.bool,
+  endpoint: PropTypes.string.isRequired,
+  hasAutoupload: PropTypes.bool,
+  isBodyDroppableArea: PropTypes.bool,
+  maximumFileSize: PropTypes.number,
+  onChange: PropTypes.func,
+  onFinished: PropTypes.func,
 };
 
 const defaultProps = {
   a11yText: null,
   acceptableFileTypes: ["*/*"],
   allowMultipleFile: true,
-  hasAutoupload: true,
-  maximumFileSize: oneMebibyte * 10, // 1048576bytes * 10 = 10,485,760 Mebibytes
-  isBodyDroppableArea: true,
   defaultIsDisable: false,
+  hasAutoupload: true,
+  isBodyDroppableArea: true,
+  maximumFileSize: oneMebibyte * 10, // 1048576bytes * 10 = 10,485,760 Mebibytes
   onChange: () => {},
+  onFinished: () => {},
 };
 
 function getDocumentBody() {
@@ -82,6 +84,7 @@ function UploaderComponent(props, ref) {
     hasAutoupload,
     maximumFileSize,
     onChange,
+    onFinished,
     isBodyDroppableArea,
     endpoint,
     children,
@@ -104,6 +107,7 @@ function UploaderComponent(props, ref) {
     defaultIsDisable,
     hasAutoupload,
     onChange,
+    onFinished,
     endpoint,
   });
 
