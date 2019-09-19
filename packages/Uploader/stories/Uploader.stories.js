@@ -3,7 +3,7 @@ import { storiesOf } from "@storybook/react";
 import Uploader from "../src/Uploader";
 import Testing from "./Testing";
 
-function TestingFn({ files, isDisabled, isDragOver, isDragLeave, hasFinished, upload, removeItem }) {
+function TestingFn({ files, isDisabled, isDragOver, isDragLeave, hasFinished, upload, removeItem, FileInput }) {
   return (
     <Testing
       files={files}
@@ -12,12 +12,22 @@ function TestingFn({ files, isDisabled, isDragOver, isDragLeave, hasFinished, up
       isDragLeave={isDragLeave}
       hasFinished={hasFinished}
       upload={upload}
+      FileInput={FileInput}
       removeItem={removeItem}
     />
   );
 }
 
-function TestingFnForUploadOnDemand({ files, isDisabled, isDragOver, isDragLeave, hasFinished, upload, removeItem }) {
+function TestingFnForUploadOnDemand({
+  files,
+  isDisabled,
+  isDragOver,
+  isDragLeave,
+  hasFinished,
+  upload,
+  removeItem,
+  FileInput,
+}) {
   return (
     <Testing
       files={files}
@@ -26,8 +36,9 @@ function TestingFnForUploadOnDemand({ files, isDisabled, isDragOver, isDragLeave
       isDragLeave={isDragLeave}
       hasFinished={hasFinished}
       upload={upload}
-      hasUploadButton
       removeItem={removeItem}
+      FileInput={FileInput}
+      hasUploadButton
     />
   );
 }
@@ -90,11 +101,19 @@ storiesOf("Uploader", module)
   .add("Upload on demand", () => (
     <>
       <p>
-        Will upload image until you select your images and then click the button with the legend{" "}
+        Will upload image until you select your images and then click the button with the legend
         <strong>upload images</strong>
       </p>
       <Uploader url="http://localhost:9000/upload.php" acceptableFileTypes={["image/*"]} hasAutoupload={false}>
         {TestingFnForUploadOnDemand}
+      </Uploader>
+    </>
+  ))
+  .add("Only accept files if are drop on the FileInput area", () => (
+    <>
+      <p>Will accept dropped files only if they are drop at the FileInput area.</p>
+      <Uploader isBodyDroppableArea={false} url="http://localhost:9000/upload.php">
+        {TestingFn}
       </Uploader>
     </>
   ));

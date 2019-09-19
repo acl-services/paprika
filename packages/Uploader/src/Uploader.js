@@ -14,12 +14,15 @@
   - [] cleanup
   - [x] ProgressBar component
   - [x] if it's disabled shouldn't execute any uploading at all.
+  - [x] ability to have focus highlight.active.withBorder.boxShadow	automatically
+  - [] drop only in a designated area
 */
 import React from "react";
 import PropTypes from "prop-types";
 import uuidv4 from "uuid/v4";
 import stylers from "@paprika/stylers/";
 import useI18n from "@paprika/l10n/lib/useI18n";
+import { inputFileStyles, labelStyles, containerStyles } from "./Uploader.styles";
 import { getFiles } from "./helpers";
 import ProgressBar from "./components/ProgressBar";
 import types from "./types";
@@ -35,7 +38,7 @@ const propTypes = {
   hasAutoupload: PropTypes.bool,
   maximumFileSize: PropTypes.number,
   onChange: PropTypes.func,
-  querySelectorForDropArea: PropTypes.func,
+  isBodyDroppableArea: PropTypes.bool,
   url: PropTypes.string.isRequired,
   children: PropTypes.func.isRequired,
   defaultIsDisable: PropTypes.bool,
@@ -47,10 +50,20 @@ const defaultProps = {
   allowMultipleFile: true,
   hasAutoupload: true,
   maximumFileSize: oneMebibyte * 10, // 1048576bytes * 10 = 10,485,760 Mebibytes
-  querySelectorForDropArea: undefined,
+  isBodyDroppableArea: true,
   defaultIsDisable: false,
   onChange: () => {},
 };
+
+function getDocumentBody() {
+  return document.body;
+}
+
+function getContainer(refContainer) {
+  return function findContainer() {
+    return refContainer.current;
+  };
+}
 
 function UploaderComponent(props, ref) {
   const {
@@ -60,17 +73,17 @@ function UploaderComponent(props, ref) {
     hasAutoupload,
     maximumFileSize,
     onChange,
-    querySelectorForDropArea,
+    isBodyDroppableArea,
     url,
     children,
     defaultIsDisable,
   } = props;
 
   const refInput = React.useRef();
+  const refContainer = React.useRef(null);
   const [refId] = React.useState(uuidv4());
   const i18n = useI18n();
   const label = a11yText || i18n.t("uploader.label");
-  const refTrigger = React.createRef(null);
 
   React.useImperativeHandle(ref, () => ({
     focus: () => {
@@ -78,15 +91,7 @@ function UploaderComponent(props, ref) {
     },
   }));
 
-  // prettier-ignore
-  const {
-    files,
-    hasFinished,
-    isDisabled,
-    removeItem,
-    setFiles,
-    upload,
-  } = useProcessFiles({
+  const { files, hasFinished, isDisabled, removeItem, setFiles, upload } = useProcessFiles({
     defaultIsDisable,
     hasAutoupload,
     onChange,
@@ -104,34 +109,44 @@ function UploaderComponent(props, ref) {
   }
 
   const { isDragLeave, isDragOver } = useDragAndDropEvents({
-    dropArea: querySelectorForDropArea,
+    dropArea: isBodyDroppableArea ? getDocumentBody : getContainer(refContainer),
     handleChange,
     defaultIsDisable,
   });
 
-  return (
-    <>
-      <label htmlFor={refId}>
-        <span css={stylers.visuallyHidden}>{label}</span>
+  function FileInput(props) {
+    const { children } = props;
+    return (
+      <div css={containerStyles} ref={refContainer}>
         <input
           multiple={allowMultipleFile}
           id={refId}
           onChange={handleChange}
           ref={refInput}
-          css="opacity: 1;"
+          css={inputFileStyles}
           type="file"
           accept={acceptableFileTypes.join(",")}
         />
-      </label>
+        <label css={labelStyles} htmlFor={refId}>
+          <span css={stylers.visuallyHidden}>{label}</span>
+        </label>
+        {/* aria-hidden will prevent from rendering content that can be counter intuitive for the screen reader */}
+        <div aria-hidden>{children}</div>
+      </div>
+    );
+  }
+
+  return (
+    <>
       {children({
-        attributes: { "data-uploader-id": `child_${refId}`, ref: refTrigger },
+        FileInput,
         files,
+        hasFinished,
         isDisabled,
         isDragLeave,
         isDragOver,
-        hasFinished,
-        upload,
         removeItem,
+        upload,
       })}
     </>
   );

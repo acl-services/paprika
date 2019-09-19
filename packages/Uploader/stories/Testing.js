@@ -1,6 +1,7 @@
 import React from "react";
 import PropTypes from "prop-types";
 import { css } from "styled-components";
+import tokens from "@paprika/tokens";
 import Uploader from "../src/Uploader";
 
 const styles = {
@@ -12,6 +13,16 @@ const styles = {
       text-overflow: ellipsis;
       white-space: nowrap;
     }
+  `,
+  fileInput: css`
+    align-items: center;
+    border: 1px dashed blue;
+    border-radius: 6px;
+    box-shadow: ${tokens.popover.shadow};
+    display: flex;
+    height: 200px;
+    justify-content: center;
+    width: 300px;
   `,
 };
 const propTypes = {
@@ -40,6 +51,7 @@ export default function Testing(props) {
     hasFinished,
     upload,
     removeItem,
+    FileInput,
     /* EO Props provided by children() function */
 
     /* custom prop from storybook just fo this example */
@@ -56,6 +68,9 @@ export default function Testing(props) {
 
   return (
     <>
+      <FileInput>
+        <div css={styles.fileInput}>FILE INPUT AREA (children)</div>
+      </FileInput>
       {hasUploadButton ? (
         <p>
           After selecting your images, click the button to upload it.
