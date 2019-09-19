@@ -17,6 +17,8 @@
   - [x] ability to have focus highlight.active.withBorder.boxShadow	automatically
   - [x] drop only in a designated area
   - [x] allowMultipleFile let the user upload multiple or only one file via dropping or clicking file input
+  - [x] implementing onFinished callback which get fired once all files are processed.
+  - [] ability to pass custom headers as example [X-CSRF-Token]
   - [] cleanup
 
   NOTES:
@@ -116,7 +118,9 @@ function UploaderComponent(props, ref) {
 
     const files = getFiles({ event, maximumFileSize, acceptableFileTypes });
     setFiles(() => {
-      refInput.current.value = "";
+      if (refInput.current) {
+        refInput.current.value = "";
+      }
       return allowMultipleFile ? files : [files[0]]; // in case only allow one file per upload
     });
   }
@@ -143,6 +147,7 @@ function UploaderComponent(props, ref) {
         <label css={labelStyles} htmlFor={refId}>
           <span css={stylers.visuallyHidden}>{label}</span>
         </label>
+        {/* a11y help require, is this the best approach? */}
         {/* aria-hidden will prevent from rendering content that can be counter intuitive for the screen reader */}
         <div aria-hidden>{children}</div>
       </div>

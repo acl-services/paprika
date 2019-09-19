@@ -3,7 +3,7 @@ import { storiesOf } from "@storybook/react";
 import Uploader from "../src/Uploader";
 import Testing from "./Testing";
 
-function TestingFn({ files, isDisabled, isDragOver, isDragLeave, hasFinished, upload, removeItem, FileInput }) {
+function TestingFn({ FileInput, files, isDisabled, isDragOver, isDragLeave, hasFinished, upload, removeItem }) {
   return (
     <Testing
       files={files}
@@ -19,6 +19,7 @@ function TestingFn({ files, isDisabled, isDragOver, isDragLeave, hasFinished, up
 }
 
 function TestingFnForUploadOnDemand({
+  FileInput,
   files,
   isDisabled,
   isDragOver,
@@ -26,7 +27,6 @@ function TestingFnForUploadOnDemand({
   hasFinished,
   upload,
   removeItem,
-  FileInput,
 }) {
   return (
     <Testing
@@ -43,8 +43,23 @@ function TestingFnForUploadOnDemand({
   );
 }
 
+function TestingFnWithoutFileInput({ files, hasFinished }) {
+  return (
+    <>
+      {!hasFinished ? <span>{files.length ? "⏰ wait a moment!" : "🧘‍♀️🧘‍♀️🧘‍♀️🧘‍♀️"}</span> : null}
+
+      <span>{hasFinished ? "💯✅" : ""}</span>
+      <ul>
+        {files.map(file => (
+          <li>{file.filename}</li>
+        ))}
+      </ul>
+    </>
+  );
+}
+
 storiesOf("Uploader", module)
-  .add("on success", () => (
+  .add("Basic example with all files successfully uploaded", () => (
     <>
       <Uploader
         endpoint="http://localhost:9000/upload.php"
@@ -56,7 +71,7 @@ storiesOf("Uploader", module)
       </Uploader>
     </>
   ))
-  .add("on failed", () => (
+  .add("Basic example with all files failing at upload", () => (
     <>
       <Uploader
         endpoint="http://localhost:9000/upload.php?error=true"
@@ -135,6 +150,17 @@ storiesOf("Uploader", module)
       </p>
       <Uploader onFinished={files => console.log("on finished:", files)} endpoint="http://localhost:9000/upload.php">
         {TestingFn}
+      </Uploader>
+    </>
+  ))
+  .add("Using uploader without FileInput component", () => (
+    <>
+      <p>
+        The uploader can be use without render the FileInput component provided by renderChildrenProp function. While
+        this is not a common scenario, showcase that is possible to keep draggin and dropping files and still working.
+      </p>
+      <Uploader onFinished={files => console.log("on finished:", files)} endpoint="http://localhost:9000/upload.php">
+        {TestingFnWithoutFileInput}
       </Uploader>
     </>
   ));
