@@ -19,6 +19,7 @@ packages/Tokens/src/tokens.scss
 packages/Tokens/src/tokens.yaml
 packages/Tokens/src/tokens.js
 packages/Tokens/src/tokens.mdx
+packages/Uploader/src/server/uploads/
 
 # Locales
 locales-js

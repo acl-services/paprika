@@ -45,16 +45,65 @@ import useProcessFiles from "./useProcessFiles";
 const oneMebibyte = 1048576;
 
 const propTypes = {
+  /**
+    Accessible message for the input[type="file"].
+  */
   a11yText: PropTypes.string,
+  /**
+    An array of string describing the allowed file types for the uploader ex. ["image/*", ".pdf", ".doc", "docx"]
+    reference: https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input/file#Unique_file_type_specifiers.
+  */
   acceptableFileTypes: PropTypes.arrayOf(PropTypes.string),
+  /**
+    When false the uploader only accept one file per upload.
+   */
   allowMultipleFile: PropTypes.bool,
+  /**
+    children function received the following parameter which you can use to build you own UI:
+
+    FileInput,   // the input[type="file"] element ready to be consumed
+    files,       // a enhance list of the user selected files
+    hasFinished, // is true when all files have been processed
+    isDisabled,  // describe the status of the component
+    isDragLeave, // will be true if a dragOver event occurred and leave the droppable area
+    isDragOver,  // True when detecting the user is draggin files over the droppable area
+    removeFile,  // removeFile(key) will remove a file from the files list, this function doesn't work while the file is on PROCESSING state.
+    cancelFile,  // cancelFile(key) stop the request cycle keep in mind that if it's on WAITINGFORSERVER state the server might save the file even if the request has been cancel
+    upload,      // upload() give you the option to manually upload the files if you are decide to not use hasAutoupload
+  */
   children: PropTypes.func.isRequired,
+  /**
+    intial disable state for the uploader
+  */
   defaultIsDisable: PropTypes.bool,
+  /**
+    The url that will be use to upload the files ex. https://yourEndPointURL.com
+  */
   endpoint: PropTypes.string.isRequired,
+  /**
+    On true will upload the file as soon they are selected or dropped
+  */
   hasAutoupload: PropTypes.bool,
+  /**
+    When true the user will be able to drop files at any part of the document.body triggering
+    the upload listeners. On false will only received files if they are drop exactly on the FileInput area.
+  */
   isBodyDroppableArea: PropTypes.bool,
+  /**
+    Size in Mebibytes which is use for comparing each file that will be upload
+    you can make use of Uploader.convertUnitsToMebibytes() for easily convert units to Mebibyes
+    ex.  Uploader.convertUnitsToMebibytes(4) => 4194304 (close to 4MB);
+  */
   maximumFileSize: PropTypes.number,
+  /**
+    This callback fires everytime a file has been proccessed
+  */
   onChange: PropTypes.func,
+  /**
+    Will be fire once all files has been processed with the files as parameter, finishing doesn't mean that all
+    files has been correctly uploaded, only means that they were processed, to find about each file state you can
+    iterate over the files passed as parameter.
+  */
   onFinished: PropTypes.func,
 };
 
