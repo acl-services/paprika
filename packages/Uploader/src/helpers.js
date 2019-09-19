@@ -76,12 +76,12 @@ function createFilesDataStructure({ files, maximumFileSize, acceptableFileTypes 
   });
 }
 
-export function upload({ url, file, data = {}, onProgress, onSuccess, onError }) {
+export function upload({ endpoint, file, data = {}, onProgress, onSuccess, onError }) {
   const formData = new FormData();
   formData.append("file", file.file);
   formData.append("data", JSON.stringify(data));
 
-  const _superagent = superagent.post(url);
+  const _superagent = superagent.post(endpoint);
 
   const headers = [];
   //

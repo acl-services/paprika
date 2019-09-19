@@ -47,7 +47,7 @@ storiesOf("Uploader", module)
   .add("on success", () => (
     <>
       <Uploader
-        url="http://localhost:9000/upload.php"
+        endpoint="http://localhost:9000/upload.php"
         onChange={files => {
           console.log("onChange files:", files);
         }}
@@ -59,7 +59,7 @@ storiesOf("Uploader", module)
   .add("on failed", () => (
     <>
       <Uploader
-        url="http://localhost:9000/upload.php?error=true"
+        endpoint="http://localhost:9000/upload.php?error=true"
         onChange={files => {
           console.log("onChange files:", files);
         }}
@@ -71,7 +71,7 @@ storiesOf("Uploader", module)
   .add("on invalid file type", () => (
     <>
       <Uploader
-        url="http://localhost:9000/upload.php"
+        endpoint="http://localhost:9000/upload.php"
         acceptableFileTypes={["image/*"]}
         onChange={files => {
           console.log("onChange files:", files);
@@ -87,7 +87,7 @@ storiesOf("Uploader", module)
         Will only allow images under 1 <strong>mebibyte</strong> (close to 1 MB)
       </p>
       <Uploader
-        url="http://localhost:9000/upload.php"
+        endpoint="http://localhost:9000/upload.php"
         acceptableFileTypes={["image/*"]}
         maximumFileSize={Uploader.convertUnitsToMebibytes(1)}
         onChange={files => {
@@ -104,7 +104,7 @@ storiesOf("Uploader", module)
         Will upload image until you select your images and then click the button with the legend
         <strong>upload images</strong>
       </p>
-      <Uploader url="http://localhost:9000/upload.php" acceptableFileTypes={["image/*"]} hasAutoupload={false}>
+      <Uploader endpoint="http://localhost:9000/upload.php" acceptableFileTypes={["image/*"]} hasAutoupload={false}>
         {TestingFnForUploadOnDemand}
       </Uploader>
     </>
@@ -112,7 +112,15 @@ storiesOf("Uploader", module)
   .add("Only accept files if are drop on the FileInput area", () => (
     <>
       <p>Will accept dropped files only if they are drop at the FileInput area.</p>
-      <Uploader isBodyDroppableArea={false} url="http://localhost:9000/upload.php">
+      <Uploader isBodyDroppableArea={false} endpoint="http://localhost:9000/upload.php">
+        {TestingFn}
+      </Uploader>
+    </>
+  ))
+  .add("Allow only one file per upload", () => (
+    <>
+      <p>Allow only one file per upload.</p>
+      <Uploader allowMultipleFile={false} endpoint="http://localhost:9000/upload.php">
         {TestingFn}
       </Uploader>
     </>

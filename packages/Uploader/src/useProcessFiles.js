@@ -2,7 +2,7 @@ import React from "react";
 import types from "./types";
 import { upload as uploadToServer } from "./helpers";
 
-export default function useProcessFiles({ hasAutoupload, onChange, url, defaultIsDisable }) {
+export default function useProcessFiles({ hasAutoupload, onChange, endpoint, defaultIsDisable }) {
   const [uploadingFileList, setUploadingFileList] = React.useState([]);
   const [isDisabled, setIsDisabled] = React.useState(defaultIsDisable);
   const [hasFinished, sethasFinished] = React.useState(null);
@@ -126,11 +126,11 @@ export default function useProcessFiles({ hasAutoupload, onChange, url, defaultI
       onChange(files);
       files.forEach(file => {
         if (file.isValid && file.status !== types.SUCCESS) {
-          uploadToServer({ file, url, onProgress, onSuccess, onError });
+          uploadToServer({ file, endpoint, onProgress, onSuccess, onError });
         }
       });
     }
-  }, [files, isDisabled, onChange, uploadingFileList, url]);
+  }, [files, isDisabled, onChange, uploadingFileList, endpoint]);
 
   upload.displayName = "upload"; // helps dev tools displaying upload() instead of anonymous function
 

@@ -3,19 +3,28 @@
   - [x] make isDisabled work
   - [x] pass down states onDrag/onDragOver etc..
   - [x] pass down all different state for individuals files as well globally state for the uploading process
-  - [] pass down function to interact with the uploader, retry file, upload file, delete file, etc
+  - [x] pass down function to interact with the uploader, ~retry file~, upload file, delete file, etc
+  - [x] pass headers down
   - [x] abstract complexity for uploading into hook useProcessFiles
   - [x] filter by file extension
   - [x] create testing cases for the component
   - [x] deleter remove item, will work only once hasFinished and file.status === types.IDLE
   - [x] handle errors
-  - [] match the file button and the render button automatically.
-  - [] upload on demand not only with hasAutoupload
-  - [] cleanup
+  - [x] match the file button and the render button automatically.
+  - [x] upload on demand not only with hasAutoupload
   - [x] ProgressBar component
   - [x] if it's disabled shouldn't execute any uploading at all.
   - [x] ability to have focus highlight.active.withBorder.boxShadow	automatically
-  - [] drop only in a designated area
+  - [x] drop only in a designated area
+  - [x] allowMultipleFile let the user upload multiple or only one file via dropping or clicking file input 
+  - [] cleanup
+
+  NOTES:
+
+  - let's say you have designated only the FileInput to be a droppable area,
+    shouldn't we display an error if you dropped the file outside of the container?
+  - for the contrary, shouldn't we display in the other case that they can drop the files wherever they want?
+  - when the file has uploaded
 */
 import React from "react";
 import PropTypes from "prop-types";
@@ -39,7 +48,7 @@ const propTypes = {
   maximumFileSize: PropTypes.number,
   onChange: PropTypes.func,
   isBodyDroppableArea: PropTypes.bool,
-  url: PropTypes.string.isRequired,
+  endpoint: PropTypes.string.isRequired,
   children: PropTypes.func.isRequired,
   defaultIsDisable: PropTypes.bool,
 };
@@ -74,7 +83,7 @@ function UploaderComponent(props, ref) {
     maximumFileSize,
     onChange,
     isBodyDroppableArea,
-    url,
+    endpoint,
     children,
     defaultIsDisable,
   } = props;
@@ -95,7 +104,7 @@ function UploaderComponent(props, ref) {
     defaultIsDisable,
     hasAutoupload,
     onChange,
-    url,
+    endpoint,
   });
 
   function handleChange(event) {
@@ -104,7 +113,7 @@ function UploaderComponent(props, ref) {
     const files = getFiles({ event, maximumFileSize, acceptableFileTypes });
     setFiles(() => {
       refInput.current.value = "";
-      return files;
+      return allowMultipleFile ? files : [files[0]]; // in case only allow one file per upload
     });
   }
 
