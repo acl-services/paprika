@@ -10,8 +10,7 @@
 
 Paprika is a collection of reusable components that are versioned and downloaded individually which is built and maintained by [Galvanize](https://www.wegalvanize.com).
 
-*Our list of components can be found at [npm](https://www.npmjs.com/org/paprika).*
-
+[Npm](https://www.npmjs.com/org/paprika) |
 [Storybook](https://paprika.highbond.com) | 
 [Airtable](https://airtable.com/tblKm8hk9hxOhSjqZ/viwWfRyRdodyS2xVv?blocks=hide)
 
