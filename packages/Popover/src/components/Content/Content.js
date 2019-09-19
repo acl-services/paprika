@@ -79,6 +79,20 @@ const Content = React.forwardRef((props, ref) => {
     width: content.width,
   };
 
+  let hasCardComponent = false;
+  const popoverContent = isEager
+    ? React.Children.map(props.children, child => {
+        if (child.type && child.type.displayName === "Popover.Card") {
+          hasCardComponent = true;
+          return React.cloneElement(child, {
+            id: content.ariaId,
+          });
+        }
+
+        return child;
+      })
+    : props.children;
+
   /* eslint-disable jsx-a11y/mouse-events-have-key-events */
   return ReactDOM.createPortal(
     <ContentStyled
@@ -94,8 +108,9 @@ const Content = React.forwardRef((props, ref) => {
       style={contentStyles}
       tabIndex={isOpen ? 0 : -1}
       zIndex={content.zIndex}
+      id={isEager && !hasCardComponent ? content.ariaId : null}
     >
-      {children}
+      {popoverContent}
     </ContentStyled>,
     portalElement
   );

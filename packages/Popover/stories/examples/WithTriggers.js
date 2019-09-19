@@ -1,4 +1,3 @@
-/* eslint-disable jsx-a11y/mouse-events-have-key-events */
 import React from "react";
 import styled from "styled-components";
 import { CenteredStory } from "storybook/assets/styles/common.styles";
@@ -46,14 +45,16 @@ const ExampleStory = () => (
       </h5>
       <Popover isEager>
         <Popover.Trigger>
-          {handler => (
+          {(handler, ariaId) => (
             <Icon
               onMouseOver={handler}
               onMouseOut={handler}
               onFocus={handler}
+              onBlur={handler}
               tabIndex={0}
               role="img"
               aria-label="info"
+              aria-describedby={ariaId}
             />
           )}
         </Popover.Trigger>
@@ -76,6 +77,29 @@ const ExampleStory = () => (
       </Popover>
       <Gap />
       <h5>
+        Node: &lt;a&gt; link <code>isEager isDark</code>
+      </h5>
+      <Popover isEager isDark>
+        <Popover.Trigger>
+          <a href="http://www.acl.com">More info</a>
+        </Popover.Trigger>
+        <Popover.Content>
+          <Popover.Card>Lorem ipsum single-origin kombucha butcher gentrify foraged flannel.</Popover.Card>
+        </Popover.Content>
+        <Popover.Tip />
+      </Popover>
+      <Gap />
+      <h5>
+        Node: &lt;a&gt; link <code>isEager</code> without <code>Popover.Card</code> component
+      </h5>
+      <Popover isEager isDark>
+        <Popover.Trigger>
+          <a href="http://www.acl.com">More info</a>
+        </Popover.Trigger>
+        <Popover.Content>Lorem ipsum single-origin kombucha.</Popover.Content>
+      </Popover>
+      <Gap />
+      <h5>
         Node: <code>isEager isDark</code>
       </h5>
       <Popover isEager isDark>
@@ -91,7 +115,7 @@ const ExampleStory = () => (
       </Popover>
       <Gap />
       <h5>
-        Node: <code>shouldAutoFocus</code>
+        Node: <code>shouldKeepFocus</code>
       </h5>
       <Popover shouldKeepFocus>
         <Popover.Trigger>
