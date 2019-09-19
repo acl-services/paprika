@@ -1,12 +1,17 @@
 ![Paprika logo](https://user-images.githubusercontent.com/10501940/52080175-07327400-254c-11e9-9748-7a00f93a13a8.png)
 
-# Paprika
+<h1 align="center">Paprika</h1>
+<p align="center">Paprika is a react component library of the <a href="https://design.wegalvanize.com">Starling Design System</a>.</p>
+<div align="center">
+<img alt="GitHub issues" src="https://img.shields.io/github/issues/acl-services/paprika">
+<img alt="GitHub" src="https://img.shields.io/github/license/acl-services/paprika">
+</div>
+<br>
 
-## Getting started
+It has a collection of reusable components that are versioned and downloaded individually. Paprika is built and maintained by [Galvanize](https://www.wegalvanize.com).
 
-Our list of components can be find for now at [npm](https://www.npmjs.com/org/paprika).
-
-Paprika has a `peerDependecy` of [styled-components](https://www.styled-components.com/docs/basics#installation) so make sure to install it as a dependency in your project.
+*Our list of components can be find for now at [npm](https://www.npmjs.com/org/paprika).*
+*Storybook url: https://paprika.highbond.com*
 
 All paprika components can be installed as:
 
