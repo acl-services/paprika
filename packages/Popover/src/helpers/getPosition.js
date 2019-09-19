@@ -1,4 +1,5 @@
 import tokens from "@paprika/tokens";
+import { AlignTypes } from "@paprika/helpers/lib/customPropTypes";
 
 const rotate = {
   top: 180,
@@ -61,13 +62,23 @@ const getAnchor = (rect, align) => {
   return positions[align]();
 };
 
-export const getContentCoordinates = ({ rect, targetRect, scrollRect, align, offset = 12 }) => {
+export const getContentCoordinates = ({ rect, targetRect, scrollRect, align, offset = 12, edge }) => {
   const anchor = getAnchor(targetRect, align);
 
+  const getContentXByEdge = edge => {
+    if (edge === AlignTypes.LEFT) {
+      return anchor.x - targetRect.width / 2;
+    }
+    if (edge === AlignTypes.RIGHT) {
+      return anchor.x - rect.width + targetRect.width / 2;
+    }
+    return anchor.x - rect.width / 2;
+  };
+
   const alignedPosition = {
-    top: () =>
+    [AlignTypes.TOP]: () =>
       getAdjustedContentCoordinates({
-        x: anchor.x - rect.width / 2,
+        x: getContentXByEdge(edge),
         y: anchor.y - (rect.height + offset),
         contentRect: rect,
         targetRect,
@@ -75,7 +86,7 @@ export const getContentCoordinates = ({ rect, targetRect, scrollRect, align, off
         align,
         offset,
       }),
-    right: () =>
+    [AlignTypes.RIGHT]: () =>
       getAdjustedContentCoordinates({
         x: anchor.x + offset,
         y: anchor.y - rect.height / 2,
@@ -85,9 +96,9 @@ export const getContentCoordinates = ({ rect, targetRect, scrollRect, align, off
         align,
         offset,
       }),
-    bottom: () =>
+    [AlignTypes.BOTTOM]: () =>
       getAdjustedContentCoordinates({
-        x: anchor.x - rect.width / 2,
+        x: getContentXByEdge(edge),
         y: anchor.y + offset,
         contentRect: rect,
         targetRect,
@@ -95,7 +106,7 @@ export const getContentCoordinates = ({ rect, targetRect, scrollRect, align, off
         align,
         offset,
       }),
-    left: () =>
+    [AlignTypes.LEFT]: () =>
       getAdjustedContentCoordinates({
         x: anchor.x - rect.width - offset,
         y: anchor.y - rect.height / 2,

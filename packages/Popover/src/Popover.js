@@ -51,6 +51,9 @@ const propTypes = {
   /** How "uncontrolled" popovers can be rendered open by default. */
   defaultIsOpen: PropTypes.bool,
 
+  /** Where the edge of the popover content is based on the trigger or getPositioningElement */
+  edge: PropTypes.oneOf([AlignTypes.LEFT, AlignTypes.RIGHT, null]),
+
   /** Maximum width of popover content. Use of a number will imply px units and is recommended. */
   maxWidth: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
 
@@ -74,11 +77,12 @@ const propTypes = {
 };
 
 const defaultProps = {
-  align: "bottom",
+  align: AlignTypes.BOTTOM,
   isDark: false,
   isEager: false,
   isOpen: null,
   defaultIsOpen: null,
+  edge: AlignTypes.RIGHT,
   maxWidth: 320,
   onClose: null,
   offset: parseInt(tokens.spaceLg, 10),
@@ -209,7 +213,7 @@ class Popover extends React.Component {
   }
 
   getCoordinates = () => {
-    const { align, getScrollContainer } = this.props;
+    const { align, edge, getScrollContainer } = this.props;
 
     const targetRect =
       this.props.getPositioningElement === null
@@ -222,6 +226,7 @@ class Popover extends React.Component {
       scrollRect: getScrollContainer !== null ? getBoundingClientRect(getScrollContainer()) : null,
       align,
       offset: this.props.offset,
+      edge,
     });
 
     let tipCoords = { x: null, y: null, rotate: null };
