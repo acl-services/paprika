@@ -1,18 +1,22 @@
 import styled from "styled-components";
 import tokens from "@paprika/tokens";
+import stylers from "@paprika/stylers";
 
-const blueSelected = "#e5f1fe";
+const blueSelected = tokens.color.blueLighten50;
 
 export const OptionStyled = styled.li`
   border: 2px solid transparent;
   border-radius: 3px;
-  font-size: 13px;
-  margin-bottom: 4px;
-  padding: 4px;
+  margin-bottom: ${tokens.spaceSm};
+  padding: ${tokens.spaceSm};
+
+  ${stylers.fontSize(-1)};
 
   &:hover {
     ${props => {
-      const isSelected = props.isSelected ? `background: ${blueSelected}` : `background: #f0f0f0`;
+      const isSelected = props.isSelected
+        ? `background: ${blueSelected}`
+        : `background: ${tokens.color.blackLighten70}`;
       const isDisabled = props.isDisabled ? "background: transparent; cursor: not-allowed;" : "";
       const hasPreventDefaultOnSelect = props.hasPreventDefaultOnSelect ? "background: transparent;" : "";
 
