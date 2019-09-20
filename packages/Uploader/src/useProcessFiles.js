@@ -54,6 +54,7 @@ export default function useProcessFiles({ hasAutoupload, onChange, onFinished, e
           setFile(file, fileItem => {
             const file = fileItem;
             file.status = types.CANCEL;
+            file.processed = true;
             return fileItem;
           })
         );
