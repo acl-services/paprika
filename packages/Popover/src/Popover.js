@@ -82,7 +82,7 @@ const defaultProps = {
   isEager: false,
   isOpen: null,
   defaultIsOpen: null,
-  edge: AlignTypes.RIGHT,
+  edge: null,
   maxWidth: 320,
   onClose: null,
   offset: parseInt(tokens.spaceLg, 10),
