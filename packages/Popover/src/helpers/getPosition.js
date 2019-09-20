@@ -65,7 +65,7 @@ const getAnchor = (rect, align) => {
 export const getContentCoordinates = ({ rect, targetRect, scrollRect, align, offset = 12, edge }) => {
   const anchor = getAnchor(targetRect, align);
 
-  const getContentXByEdge = edge => {
+  const getContentXByEdge = () => {
     if (edge === AlignTypes.LEFT) {
       return anchor.x - targetRect.width / 2;
     }
@@ -78,7 +78,7 @@ export const getContentCoordinates = ({ rect, targetRect, scrollRect, align, off
   const alignedPosition = {
     [AlignTypes.TOP]: () =>
       getAdjustedContentCoordinates({
-        x: getContentXByEdge(edge),
+        x: getContentXByEdge(),
         y: anchor.y - (rect.height + offset),
         contentRect: rect,
         targetRect,
@@ -98,7 +98,7 @@ export const getContentCoordinates = ({ rect, targetRect, scrollRect, align, off
       }),
     [AlignTypes.BOTTOM]: () =>
       getAdjustedContentCoordinates({
-        x: getContentXByEdge(edge),
+        x: getContentXByEdge(),
         y: anchor.y + offset,
         contentRect: rect,
         targetRect,
