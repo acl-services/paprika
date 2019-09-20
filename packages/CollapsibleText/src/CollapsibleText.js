@@ -80,6 +80,7 @@ function CollapsibleText(props) {
             a11yText={getA11yText()}
             aria-controls={contentId}
             aria-expanded={!isCollapsed}
+            isSemantic={false}
             kind="link"
             onClick={handleToggle}
           >
