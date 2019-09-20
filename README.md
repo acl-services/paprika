@@ -1,17 +1,17 @@
 ![Paprika logo](https://user-images.githubusercontent.com/10501940/52080175-07327400-254c-11e9-9748-7a00f93a13a8.png)
 
 <h1 align="center">Paprika</h1>
-<p align="center">Paprika is a react component library of the <a href="https://design.wegalvanize.com">Starling Design System</a>.</p>
+<p align="center">React component library of the <a href="https://design.wegalvanize.com">Starling Design System</a>.</p>
 <div align="center">
 <img alt="react version" src="https://img.shields.io/badge/react-v16.8.2-green.svg">
 <img alt="node version" src="https://img.shields.io/badge/node-v10.0.0%2B-brightgreen.svg">
 <img alt="yarn version" src="https://img.shields.io/badge/yarn-v1.12.3%2B-yellowgreen.svg">
-<img alt="GitHub issues" src="https://img.shields.io/github/issues/acl-services/paprika">
-<img alt="GitHub" src="https://img.shields.io/github/license/acl-services/paprika">
+<a href="https://github.com/acl-services/paprika/issues"><img alt="GitHub issues" src="https://img.shields.io/github/issues/acl-services/paprika"></a>
+<a href="https://github.com/acl-services/paprika/blob/master/LICENSE"><img alt="GitHub" src="https://img.shields.io/github/license/acl-services/paprika"></a>
 </div>
 <br>
 
-Paprika is a collection of reusable components that are versioned and downloaded individually which is built and maintained by [Galvanize](https://www.wegalvanize.com).
+Paprika is a collection of individually versioned and distributed reusable components built and maintained by [Galvanize](https://www.wegalvanize.com).
 
 [Storybook](https://paprika.highbond.com) |
 [Npm](https://www.npmjs.com/org/paprika) |
@@ -21,7 +21,7 @@ Paprika is a collection of reusable components that are versioned and downloaded
 
 ### Prerequisites
 
-Paprika has a `peerDependecy` of `styled-components` so make sure to install it as a dependency in your project.
+Paprika has a `peerDependency` on `styled-components` so make sure to install it as a dependency in your project.
 
 ```sh
 yarn add styled-components
@@ -32,7 +32,7 @@ yarn add styled-components
 
 ### Example of installing a component
 
-The following is an example of the button component, but all other components will be installed in a similiar way.
+The following is an example of the button component, but all other components will be installed in a similar way.
 
 1. Installing the button package:
 
@@ -46,12 +46,12 @@ yarn add @paprika/button
 import React from "react";
 import Button from "@paprika/button";
 
-export default <Button>Hello</Button>;
+export default () => <Button>Hello</Button>;
 ```
 
 ## Contributors guide
 
-We welcome anyone to contribute to paprika by submitting a pull request, filing a bug report or asking for a feature request. For more information please check out our [contributing guidelines](https://github.com/acl-services/paprika/wiki/Contributing-Guidelines) wiki page.
+We welcome anyone to contribute to paprika by submitting a pull request, filing a bug report or making a feature request. For more information please check out our [contributing guidelines](https://github.com/acl-services/paprika/wiki/Contributing-Guidelines) wiki page.
 
 ### How to run paprika locally
 
