@@ -5,7 +5,7 @@
 <div align="center">
 <img alt="react version" src="https://img.shields.io/badge/react-v16.8.2%2B-green.svg">
 <img alt="node version" src="https://img.shields.io/badge/node-v10.0.0%2B-brightgreen.svg">
-<img alt="yarn version" src="https://img.shields.io/badge/node-v10.0.0%2B-yellowgreen.svg">
+<img alt="yarn version" src="https://img.shields.io/badge/yarn-v1.12.3%2B-yellowgreen.svg">
 <img alt="GitHub issues" src="https://img.shields.io/github/issues/acl-services/paprika">
 <img alt="GitHub" src="https://img.shields.io/github/license/acl-services/paprika">
 </div>
