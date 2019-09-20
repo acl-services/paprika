@@ -1,35 +1,3 @@
-/*
-  TODO:
-  - [x] make isDisabled work
-  - [x] pass down states onDrag/onDragOver etc..
-  - [x] pass down all different state for individuals files as well globally state for the uploading process
-  - [x] pass down function to interact with the uploader, ~retry file~, upload file, delete file, etc
-  - [x] pass headers down
-  - [x] abstract complexity for uploading into hook useProcessFiles
-  - [x] filter by file extension
-  - [x] create testing cases for the component
-  - [x] deleter remove item, will work only once hasFinished and file.status === types.IDLE
-  - [x] handle errors
-  - [x] match the file button and the render button automatically.
-  - [x] upload on demand not only with hasAutoupload
-  - [x] ProgressBar component
-  - [x] if it's disabled shouldn't execute any uploading at all.
-  - [x] ability to have focus highlight.active.withBorder.boxShadow	automatically
-  - [x] drop only in a designated area
-  - [x] allowMultipleFile let the user upload multiple or only one file via dropping or clicking file input
-  - [x] implementing onFinished callback which get fired once all files are processed.
-  - [x] ability to cancel a request
-  - [x] abitlity to focus while navigating with the keyboard
-  - [x] ability to pass custom headers as example [X-CSRF-Token]
-  - [] cleanup
-
-  NOTES:
-
-  - let's say you have designated only the FileInput to be a droppable area,
-    shouldn't we display an error if you dropped the file outside of the container?
-  - for the contrary, shouldn't we display in the other case that they can drop the files wherever they want?
-  - when the file has uploaded
-*/
 import React from "react";
 import PropTypes from "prop-types";
 import uuidv4 from "uuid/v4";

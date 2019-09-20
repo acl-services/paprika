@@ -12,7 +12,7 @@ or
 
 ## Usage
 
-The `<Uploader />` component use a render prop pattern expecting a function to be pass a children.
+The `<Uploader />` component uses a render prop pattern expecting a function to pass children.
 
 ```js
 <Uploader>
@@ -24,8 +24,7 @@ The `<Uploader />` component use a render prop pattern expecting a function to b
 
 ### The children function
 
-_The children_ function will received the state and helpers that you can use to build your own UI. The following
-are the properties pass down to the children function.
+_The children_ function will received the state and helpers that you can use to build your own UI. The following are the properties pass down to the children function.
 
 - FileInput
   The input[type="file"] element ready to be consumed
@@ -87,13 +86,10 @@ The _Uploader_ provides a `endpoint` prop which you can use to point the url of 
 | onFinished          | func            | Will be fire once all files has been processed with the files as parameter       |
 | headers             | arrayOf(object) | you can pass an array of header objects as need                                  |
 
+[More detail about these props](https://github.com/acl-services/paprika/blob/master/packages/Uploader/src/Uploader.js)
+
 ### Accessibility
 
 The Uploader automatically handle the on focus circle when using the `<FileInput />` component on it.
 
 - it should notify when start uploading the files and when finishing processing the files.
-
-```
-
-[More detail about these props](https://github.com/acl-services/paprika/blob/master/packages/Uploader/src/Uploader.js)
-```

@@ -13,7 +13,7 @@ function getFileByIndex(key, files) {
     return false;
   });
 
-  return index || null;
+  return index === null ? null : index;
 }
 
 const setFile = (file, callback) => files => {
