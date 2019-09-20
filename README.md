@@ -6,6 +6,9 @@
 <img alt="react version" src="https://img.shields.io/badge/react-v16.8.2-green.svg">
 <img alt="node version" src="https://img.shields.io/badge/node-v10.0.0%2B-brightgreen.svg">
 <img alt="yarn version" src="https://img.shields.io/badge/yarn-v1.12.3%2B-yellowgreen.svg">
+<img alt="lerna version" src="https://img.shields.io/badge/lerna-v3.13.0-blue.svg">
+<img alt="styled components version" src="https://img.shields.io/badge/styled--components-4.2.0-yellow">
+<img alt="prettier" src="https://img.shields.io/badge/codestyle-prettier-%23ff69b4">
 <a href="https://github.com/acl-services/paprika/issues"><img alt="GitHub issues" src="https://img.shields.io/github/issues/acl-services/paprika"></a>
 <a href="https://github.com/acl-services/paprika/blob/master/LICENSE"><img alt="MIT license" src="https://img.shields.io/github/license/acl-services/paprika"></a>
 </div>
@@ -83,7 +86,7 @@ yarn test
 
 ### Build <L10n> Translations
 
-The L10n component uses only JavaScript functions -- no YAML parsing is needed. To accomplish this, the `prepublish` build step [will] converts the .yml files to .js files. If you'd like to run this translation manually, run:
+Translations are automatically built when `npx lerna bootstrap` is executed. If you are adding new translation keys, remember to run `yarn translate` to see your changes locally.
 
 ```sh
 yarn translate
