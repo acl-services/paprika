@@ -73,7 +73,7 @@ const propTypes = {
   */
   children: PropTypes.func.isRequired,
   /**
-    intial disable state for the uploader
+    initial disable state for the uploader
   */
   defaultIsDisable: PropTypes.bool,
   /**
@@ -96,7 +96,7 @@ const propTypes = {
   */
   maximumFileSize: PropTypes.number,
   /**
-    This callback fires everytime a file has been proccessed
+    This callback fires every time a file has been processed
   */
   onChange: PropTypes.func,
   /**

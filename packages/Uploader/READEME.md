@@ -1,8 +1,8 @@
-## UPLOADER
+# UPLOADER
 
 An agnostic UI component that let you upload files and customize the interface. has a peer dependency on [superagent](https://github.com/visionmedia/superagent)
 
-### Installation
+## Installation
 
 `> npm install --save @paprika/uploader superagent`
 
@@ -10,7 +10,7 @@ or
 
 `> yarn add @paprika/uploader superagent`
 
-### Usage
+## Usage
 
 The `<Uploader />` component use a render prop pattern expecting a function to be pass a children.
 
@@ -22,7 +22,7 @@ The `<Uploader />` component use a render prop pattern expecting a function to b
 </Uploader>
 ```
 
-#### The children function
+### The children function
 
 _The children_ function will received the state and helpers that you can use to build your own UI. The following
 are the properties pass down to the children function.
@@ -60,10 +60,32 @@ Example:
 </Uploader>
 ```
 
-#### FileInput Component
+### FileInput Component
 
 The `<FileInput>{children}</FileInput>` is a ready to use component which is passed down by the `<Uploader />` component.
 This component has attached accessibility and attributes required to make it work correctly, you can pass any children to beautify their aspect, keep in mind that is already an input[type='file'] so avoid putting a <Button /> component or a <button /> element as a children, just make it look like one.
+
+### Endpoint
+
+The _Uploader_ provides a `endpoint` prop which you can use to point the url of the service you want to reach, Ex.
+`<Uploader endpoint="https://yoururl.com/api/upload" ...`
+
+## Props
+
+| Prop                | Type            | Description                                                                      |
+| ------------------- | --------------- | -------------------------------------------------------------------------------- |
+| a11yText            | string          | Accessible message for the input[type="file"].                                   |
+| acceptableFileTypes | arrayOf(string) | An array of string describing the allowed file types for the uploader.           |
+| allowMultipleFile   | bool            | When false the uploader only accept one file per upload.                         |
+| children            | function        | children function                                                                |
+| defaultIsDisable    | bool            | initial disable state for the uploader                                           |
+| endpoint            | string          | The url that will be use to upload the files ex. https://yoursite.com/api/upload |
+| hasAutoupload       | bool            | On true will upload the file as soon they are selected or dropped                |
+| isBodyDroppableArea | bool            | When true the user will be able to drop files at any part of the document.body   |
+| maximumFileSize     | number          | Size in Mebibytes                                                                |
+| onChange            | func            | This callback fires every time a file has been processed                         |
+| onFinished          | func            | Will be fire once all files has been processed with the files as parameter       |
+| headers             | arrayOf(object) | you can pass an array of header objects as need                                  |
 
 ### Accessibility
 
