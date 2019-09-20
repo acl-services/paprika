@@ -1,5 +1,5 @@
 import React from "react";
-import Input from "../../src";
+import Input from "../../src/Input";
 
 const InputExample = props => {
   const [value, setValue] = React.useState(props.value || "");

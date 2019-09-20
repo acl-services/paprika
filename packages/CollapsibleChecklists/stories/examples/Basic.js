@@ -1,5 +1,5 @@
 import React from "react";
-import CollapsibleChecklists from "../../src/index";
+import CollapsibleChecklists from "../../src/CollapsibleChecklists";
 
 // from API call #1
 const movies = {
@@ -39,7 +39,7 @@ const tvShows = {
   ],
 };
 
-function Basic2Story() {
+function BasicStory() {
   const merged = { movies, tvShows };
   const [items, setItems] = React.useState(merged);
 
@@ -95,4 +95,4 @@ function Basic2Story() {
   );
 }
 
-export default Basic2Story;
+export default BasicStory;

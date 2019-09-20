@@ -6,7 +6,7 @@ import styled from "styled-components";
 import { CenteredStory } from "storybook/assets/styles/common.styles";
 import Button from "@paprika/button";
 import { popoverProps as basicProps } from "./Basic";
-import Popover from "../../src";
+import Popover from "../../src/Popover";
 
 const PopoverContainer = styled.div`
   height: 1024px;

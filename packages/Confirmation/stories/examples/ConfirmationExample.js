@@ -1,6 +1,6 @@
 import React from "react";
 import Button from "@paprika/button";
-import Confirmation from "../../src";
+import Confirmation from "../../src/Confirmation";
 
 const ConfirmationExample = () => {
   const [isConfirmationShowing, setIsConfirmationShowing] = React.useState(false);

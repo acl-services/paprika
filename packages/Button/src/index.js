@@ -1,4 +1,4 @@
-import Button from "./Button";
+import { Button } from "./Button";
 import CloseButton from "./CloseButton";
 import IconButton from "./IconButton";
 

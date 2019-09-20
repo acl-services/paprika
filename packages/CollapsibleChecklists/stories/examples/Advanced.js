@@ -1,8 +1,8 @@
 import React from "react";
 import { action } from "@storybook/addon-actions";
 import InfoIcon from "@paprika/icon/lib/InfoCircle";
-import Spinner from "../../../Spinner/src/index";
-import CollapsibleChecklists from "../../src/index";
+import Spinner from "@paprika/spinner";
+import CollapsibleChecklists from "../../src/CollapsibleChecklists";
 
 const AdvancedStory = () => {
   const handleHover = () => {

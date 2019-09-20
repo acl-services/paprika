@@ -2,7 +2,7 @@ import React from "react";
 import PropTypes from "prop-types";
 import { ShirtSizes } from "@paprika/helpers/lib/customPropTypes";
 import iconButtonStyles from "./IconButton.styles";
-import Button from "./Button";
+import { Button } from "./Button";
 
 const IconPropTypes = {
   /** Body content of the button (an icon). */

@@ -90,7 +90,7 @@ const ButtonIcon = props =>
     </span>
   ) : null;
 
-const Button = React.forwardRef((props, ref) => {
+export const Button = React.forwardRef((props, ref) => {
   const {
     a11yText,
     canPropagate,
@@ -166,4 +166,5 @@ Button.displayName = "Button";
 Button.propTypes = propTypes;
 Button.defaultProps = defaultProps;
 
-export default Button;
+// export default Button;
+// export Button;

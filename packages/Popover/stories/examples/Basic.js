@@ -1,9 +1,9 @@
 import React from "react";
 import { text, number, select } from "@storybook/addon-knobs";
 import styled from "styled-components";
-import { CenteredStory } from "storybook/assets/styles/common.styles";
-import Button from "@paprika/button";
-import Popover from "../../src";
+// import { CenteredStory } from "storybook/assets/styles/common.styles";
+// import Button from "@paprika/button";
+import Popover from "../../src/Popover";
 
 const Gap = styled.div`
   display: inline-block;
@@ -24,10 +24,10 @@ export const popoverProps = () => ({
 });
 
 const ExampleStory = props => (
-  <CenteredStory>
+  <div>
     <Popover {...props}>
       <Popover.Trigger>
-        <Button>Open Popover</Button>
+        <button>Open Popover</button>
       </Popover.Trigger>
       <Popover.Content>
         <Popover.Card>{sampleText.long}</Popover.Card>
@@ -39,14 +39,14 @@ const ExampleStory = props => (
 
     <Popover {...props} isDark isEager>
       <Popover.Trigger>
-        <Button kind="minor">Open Tooltip</Button>
+        <button>Open Tooltip</button>
       </Popover.Trigger>
       <Popover.Content>
         <Popover.Card>{sampleText.short}</Popover.Card>
       </Popover.Content>
       <Popover.Tip />
     </Popover>
-  </CenteredStory>
+  </div>
 );
 
 export default () => <ExampleStory {...popoverProps()} />;

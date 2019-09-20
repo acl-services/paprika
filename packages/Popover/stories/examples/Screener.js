@@ -2,7 +2,7 @@ import React from "react";
 import { Gap } from "storybook/assets/styles/common.styles";
 import Popover from "../../src";
 
-const shortContent = "Popover content";
+const shortContent = "Popover content/Popover";
 const longContent =
   "Lorem ipsum fixie raw denim scenester plaid sustainable lumbersexual, single-origin coffee. Live-edge yr tote bag vaporware slow-carb farm-to-table ethical af humblebrag.";
 

@@ -1,5 +1,5 @@
 import React from "react";
-import Confirmation from "../../src";
+import Confirmation from "../../src/Confirmation";
 
 const handleConfirm = handleCloseConfirm => {
   handleCloseConfirm();

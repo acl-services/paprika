@@ -1,6 +1,6 @@
 import React from "react";
 import Add from "@paprika/icon/lib/Add";
-import Confirmation from "../../src";
+import Confirmation from "../../src/Confirmation";
 
 const handleConfirm = handleCloseConfirm => {
   handleCloseConfirm();

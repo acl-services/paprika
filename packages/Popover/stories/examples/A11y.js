@@ -1,6 +1,6 @@
 import React from "react";
 import styled from "styled-components";
-import Popover from "../../src";
+import Popover from "../../src/Popover";
 
 const Gap = styled.div`
   height: 200px;

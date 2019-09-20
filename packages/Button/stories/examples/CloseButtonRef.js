@@ -1,7 +1,10 @@
 import React from "react";
 import { action } from "@storybook/addon-actions";
 import { Story, Small } from "storybook/assets/styles/common.styles";
-import Button from "../../src";
+import CloseButton from "../../src/CloseButton";
+
+const Button = {};
+Button.Close = CloseButton;
 
 function clickHandler() {
   action("Clicked a button")();

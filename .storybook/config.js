@@ -17,7 +17,18 @@ addDecorator(withA11y);
 
 require("./welcome.story");
 
-const req = require.context("../packages", true, /\.stories\.js$/);
-configure(() => {
-  req.keys().forEach(filename => req(filename));
-}, module);
+require("../packages/RawButton/stories/RawButton.stories");
+require("../packages/Button/stories/Button.stories");
+require("../packages/L10n/stories/L10n.stories");
+require("../packages/Collapsible/stories/Collapsible.stories");
+require("../packages/Input/stories/Input.stories");
+
+require("../packages/Popover/stories/Popover.stories");
+
+// require("../packages/CollapsibleChecklists/stories/CollapsibleChecklists.stories");
+// require("../packages/Confirmation/stories/Confirmation.stories");
+
+// const req = require.context("../packages", true, /\.stories\.js$/);
+// configure(() => {
+//   req.keys().forEach(filename => req(filename));
+// }, module);

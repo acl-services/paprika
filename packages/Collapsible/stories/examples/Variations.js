@@ -1,6 +1,6 @@
 import React from "react";
 import { Story, Rule } from "storybook/assets/styles/common.styles";
-import Collapsible from "../../src";
+import Collapsible from "../../src/Collapsible";
 
 const dummyContent = (
   <p>
