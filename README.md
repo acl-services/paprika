@@ -7,7 +7,7 @@
 <img alt="node version" src="https://img.shields.io/badge/node-v10.0.0%2B-brightgreen.svg">
 <img alt="yarn version" src="https://img.shields.io/badge/yarn-v1.12.3%2B-yellowgreen.svg">
 <a href="https://github.com/acl-services/paprika/issues"><img alt="GitHub issues" src="https://img.shields.io/github/issues/acl-services/paprika"></a>
-<a href="https://github.com/acl-services/paprika/blob/master/LICENSE"><img alt="GitHub" src="https://img.shields.io/github/license/acl-services/paprika"></a>
+<a href="https://github.com/acl-services/paprika/blob/master/LICENSE"><img alt="MIT license" src="https://img.shields.io/github/license/acl-services/paprika"></a>
 </div>
 <br>
 
