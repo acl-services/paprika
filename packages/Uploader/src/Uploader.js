@@ -20,7 +20,7 @@
   - [x] implementing onFinished callback which get fired once all files are processed.
   - [x] ability to cancel a request
   - [x] abitlity to focus while navigating with the keyboard
-  - [] ability to pass custom headers as example [X-CSRF-Token]
+  - [x] ability to pass custom headers as example [X-CSRF-Token]
   - [] cleanup
 
   NOTES:
@@ -101,10 +101,17 @@ const propTypes = {
   onChange: PropTypes.func,
   /**
     Will be fire once all files has been processed with the files as parameter, finishing doesn't mean that all
-    files has been correctly uploaded, only means that they were processed, to find about each file state you can
-    iterate over the files passed as parameter.
+    files has been correctly uploaded, only means that they were processed, to find about the state of each file
+    iterate over the files list.
   */
   onFinished: PropTypes.func,
+  /**
+    you can pass an array of header objects as need it ex.
+    <Uploader headers={[{ "API-Key": "your-api-key" }, { Accept: "application/json" }, { "X-CSRF-Token": "your-token"} ]} ...>
+      {({...}) => <YourUI />}
+    </Uploader>
+  */
+  headers: PropTypes.arrayOf(PropTypes.object),
 };
 
 const defaultProps = {
@@ -113,6 +120,7 @@ const defaultProps = {
   allowMultipleFile: true,
   defaultIsDisable: false,
   hasAutoupload: true,
+  headers: [],
   isBodyDroppableArea: true,
   maximumFileSize: oneMebibyte * 10, // 1048576bytes * 10 = 10,485,760 Mebibytes
   onChange: () => {},
@@ -142,6 +150,7 @@ function UploaderComponent(props, ref) {
     endpoint,
     children,
     defaultIsDisable,
+    headers,
   } = props;
 
   const refInput = React.useRef();
@@ -158,10 +167,11 @@ function UploaderComponent(props, ref) {
 
   const { files, hasFinished, isDisabled, removeFile, cancelFile, setFiles, upload } = useProcessFiles({
     defaultIsDisable,
+    endpoint,
     hasAutoupload,
+    headers,
     onChange,
     onFinished,
-    endpoint,
   });
 
   function handleChange(event) {

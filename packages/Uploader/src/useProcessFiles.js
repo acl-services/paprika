@@ -35,7 +35,7 @@ const setFile = (file, callback) => files => {
   return cloneFiles;
 };
 
-export default function useProcessFiles({ hasAutoupload, onChange, onFinished, endpoint, defaultIsDisable }) {
+export default function useProcessFiles({ hasAutoupload, onChange, onFinished, endpoint, defaultIsDisable, headers }) {
   const [uploadingFileList, setUploadingFileList] = React.useState([]);
   const [isDisabled, setIsDisabled] = React.useState(defaultIsDisable);
   const [hasFinished, sethasFinished] = React.useState(null);
@@ -154,12 +154,12 @@ export default function useProcessFiles({ hasAutoupload, onChange, onFinished, e
         onChange(files);
         files.forEach(file => {
           if (file.isValid && file.status !== types.SUCCESS) {
-            uploadToServer({ file, endpoint, onProgress, onSuccess, onError });
+            uploadToServer({ file, endpoint, onProgress, onSuccess, onError, headers });
           }
         });
       }
     },
-    [files, uploadingFileList, isDisabled, onFinished, onChange, endpoint]
+    [files, uploadingFileList, isDisabled, onFinished, onChange, endpoint, headers]
   );
 
   React.useEffect(() => {

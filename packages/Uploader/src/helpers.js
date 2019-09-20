@@ -75,16 +75,19 @@ function createFilesDataStructure({ files, maximumFileSize, acceptableFileTypes,
   });
 }
 
-export function upload({ file, data = {}, onProgress, onSuccess, onError }) {
+export function upload({ file, data = {}, onProgress, onSuccess, onError, headers }) {
   const formData = new FormData();
   formData.append("file", file.file);
   formData.append("data", JSON.stringify(data));
 
-  const headers = [];
-  //
-  headers.forEach(header => {
-    file.request.set(header.type, header.value);
-  });
+  if (headers.length) {
+    let headerObj = {};
+    headers.forEach(header => {
+      headerObj = { ...headerObj, ...header };
+    });
+
+    file.request.set(headerObj);
+  }
 
   file.request
     .send(formData)

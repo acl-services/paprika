@@ -21,6 +21,13 @@ if ($_SERVER['REQUEST_METHOD'] == 'OPTIONS') {
     exit(0);
 }
 
+$headers = apache_request_headers();
+
+foreach ($headers as $header => $value) {
+  error_log(print_r("$header: $value <br />\n", true));
+
+}
+
 if (!empty($_GET['error'])) {
   http_response_code(500);
 } else {

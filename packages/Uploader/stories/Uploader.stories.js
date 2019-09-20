@@ -176,4 +176,19 @@ storiesOf("Uploader", module)
         {TestingFnWithoutFileInput}
       </Uploader>
     </>
+  ))
+  .add("Adding custom headers", () => (
+    <>
+      <p>
+        You can add custom header using the headers props, which take an array of object where use the key as the name
+        of the header you want to use and the value as the header value.
+      </p>
+      <Uploader
+        headers={[{ "API-Key": "your-api-key" }, { "X-CSRF-Token": "your-token" }]}
+        onFinished={files => console.log("on finished:", files)}
+        endpoint="http://localhost:9000/upload.php"
+      >
+        {TestingFn}
+      </Uploader>
+    </>
   ));
