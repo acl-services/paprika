@@ -11,12 +11,15 @@
 Paprika is a collection of reusable components that are versioned and downloaded individually which is built and maintained by [Galvanize](https://www.wegalvanize.com).
 
 [Npm](https://www.npmjs.com/org/paprika) |
-[Storybook](https://paprika.highbond.com) | 
+[Storybook](https://paprika.highbond.com) |
 [Airtable](https://airtable.com/tblKm8hk9hxOhSjqZ/viwWfRyRdodyS2xVv?blocks=hide)
 
 ## Installation and usage
+
 ### Prerequisites
+
 Paprika has a `peerDependecy` of `styled-components` so make sure to install it as a dependency in your project.
+
 ```sh
 yarn add styled-components
 ```
@@ -25,34 +28,42 @@ yarn add styled-components
 - Yarn v1.12.3+
 
 ### Example of installing the button component
+
 1. Installing the button package:
+
 ```sh
 yarn add @paprika/button
 ```
 
 2. In your project:
-```js
-import React from 'react';
-import Button from '@paprika/button';
 
-export default (<Button>Hello</Button>);
+```js
+import React from "react";
+import Button from "@paprika/button";
+
+export default <Button>Hello</Button>;
 ```
 
 ## Contributors guide
+
 We welcome anyone to contribute to paprika by submitting a pull request, filing a bug report or asking for a feature request. For more information please check out our [contributing guidelines](https://github.com/acl-services/paprika/wiki/Contributing-Guidelines) wiki page.
 
 ### How to run paprika locally
+
 1. Install dependencies
+
 ```sh
 $ yarn
 ```
 
 2. Link packages with Lerna
+
 ```sh
 $ npx lerna bootstrap
 ```
 
 ### How to run storybook locally
+
 ```sh
 $ yarn storybook
 ```
@@ -60,6 +71,7 @@ $ yarn storybook
 ### Running tests
 
 We use [jest](https://jestjs.io/docs/en/expect) and [react-testing-library](https://github.com/testing-library/react-testing-library) for testing.
+
 ```sh
   yarn test
 ```
@@ -73,4 +85,5 @@ $ yarn translate
 ```
 
 ## License
+
 [The MIT License (MIT)](https://github.com/acl-services/paprika/blob/master/LICENSE)
