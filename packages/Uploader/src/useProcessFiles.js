@@ -13,7 +13,7 @@ function getFileByIndex(key, files) {
     return false;
   });
 
-  return index === null ? null : index;
+  return index !== null ? index : null;
 }
 
 const setFile = (file, callback) => files => {
@@ -70,7 +70,7 @@ export default function useProcessFiles({ hasAutoupload, onChange, onFinished, e
         as well give a wrong impression the request has been cancel to the server.
         Therefore is only possible to remove files once they were processed or on idle status.
       */
-      if (hasFinished || files[index].status === types.IDLE) {
+      if (hasFinished || files[index].status === types.IDLE || files[index].status === types.ERROR) {
         const fileClones = files.slice(0);
         fileClones.splice(index, 1);
 
