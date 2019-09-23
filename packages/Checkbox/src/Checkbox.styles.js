@@ -8,12 +8,7 @@ const fontSize = `${stylers.fontSizeValue(2)}px`;
 const getTopOffset = () => `${(Number.parseInt(stylers.fontSizeValue(), 10) * stylers.lineHeightValue()) / 2}px`;
 
 export const checkboxStyles = css`
-  &,
-  *,
-  *::before,
-  *::after {
-    box-sizing: border-box;
-  }
+  ${stylers.boxSizingStyles}
 
   ${stylers.fontSize()}
   ${stylers.lineHeight()}
