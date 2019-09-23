@@ -119,11 +119,11 @@ function ShortcutPanel(props) {
         </div>
         <div css={yearListStyles}>
           <div css={columnHeaderStyles} isYear>
-            <Button.Icon onClick={handleClickPrev} kind="minor" size="small">
+            <Button.Icon isSemantic={false} onClick={handleClickPrev} kind="minor" size="small">
               <ArrowLeft color={tokens.textColor.icon} />
             </Button.Icon>
             {I18n.t("datePicker.year")}
-            <Button.Icon onClick={handleClickNext} kind="minor" size="small">
+            <Button.Icon isSemantic={false} onClick={handleClickNext} kind="minor" size="small">
               <ArrowRight color={tokens.textColor.icon} />
             </Button.Icon>
           </div>
@@ -131,10 +131,22 @@ function ShortcutPanel(props) {
         </div>
       </div>
       <div css={actionBarStyles}>
-        <Button kind="primary" onClick={handleConfirm} size="small" data-pka-anchor="datepicker.calendar.apply">
+        <Button
+          isSemantic={false}
+          kind="primary"
+          onClick={handleConfirm}
+          size="small"
+          data-pka-anchor="datepicker.calendar.apply"
+        >
           {I18n.t("actions.apply")}
         </Button>
-        <Button kind="minor" onClick={onCancel} size="small" data-pka-anchor="datepicker.calendar.cancel">
+        <Button
+          isSemantic={false}
+          kind="minor"
+          onClick={onCancel}
+          size="small"
+          data-pka-anchor="datepicker.calendar.cancel"
+        >
           {I18n.t("actions.cancel")}
         </Button>
       </div>
