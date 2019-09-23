@@ -8,6 +8,7 @@ import Input from "@paprika/input";
 import Popover from "@paprika/popover";
 import useI18n from "@paprika/l10n/lib/useI18n";
 import useDebounce from "@paprika/helpers/lib/hooks/useDebounce";
+import usePrevious from "@paprika/helpers/lib/hooks/usePrevious";
 import isElementContainsFocus from "@paprika/helpers/lib/dom/isElementContainsFocus";
 
 import Calendar from "./components/Calendar";
@@ -50,7 +51,7 @@ const defaultProps = {
   dataFormat: "MM/DD/YYYY",
   date: null,
   hasError: false,
-  humanFormat: null,
+  humanFormat: undefined,
   id: null,
   isDisabled: false,
   isReadOnly: false,
@@ -60,13 +61,23 @@ function DatePicker(props) {
   const I18n = useI18n();
 
   // Props
-  const { children, dataFormat, date, hasError, humanFormat, id, isDisabled, isReadOnly, onChange } = props;
+  const {
+    children,
+    dataFormat,
+    date,
+    hasError,
+    humanFormat = I18n.t("datePicker.confirmation_format"),
+    id,
+    isDisabled,
+    isReadOnly,
+    onChange,
+  } = props;
 
   const formatDateProp = React.useCallback(
     format => {
-      return date && date.isValid() ? moment.utc(date).format(format || I18n.t("datePicker.confirmation_format")) : "";
+      return date && date.isValid() ? moment.utc(date).format(format || humanFormat) : "";
     },
-    [I18n, date]
+    [I18n, date, humanFormat]
   );
 
   // State
@@ -75,6 +86,7 @@ function DatePicker(props) {
   const [inputtedString, setInputtedString] = React.useState(formatDateProp(dataFormat));
   const [possibleDate, setPossibleDate] = React.useState(null);
   const [shouldShowCalendar, setShouldShowCalendar] = React.useState(false);
+  const prevDate = usePrevious(date);
 
   // Ref
   const calendarRef = React.useRef(null);
@@ -82,9 +94,10 @@ function DatePicker(props) {
 
   // Effect
   React.useEffect(() => {
+    if (date && prevDate && date.isSame(prevDate, "day")) return;
     setInputtedString(formatDateProp(dataFormat));
     setConfirmationResult(formatDateProp(humanFormat));
-  }, [dataFormat, date, formatDateProp, humanFormat]);
+  }, [dataFormat, date, prevDate, formatDateProp, humanFormat]);
 
   const debouncedPossibleDate = useDebounce(possibleDate, 300);
   const extendedInputProps = extractChildrenProps(children, DateInput);

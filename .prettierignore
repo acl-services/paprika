@@ -31,3 +31,7 @@ packages/L10n/locales-js
 
 # Cypress
 cypress/fixtures
+
+# MD / MDX
+.md
+.mdx

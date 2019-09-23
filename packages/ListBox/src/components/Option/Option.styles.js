@@ -1,51 +1,50 @@
-import styled from "styled-components";
+import styled, { css } from "styled-components";
 import tokens from "@paprika/tokens";
+import stylers from "@paprika/stylers";
 
-const blueSelected = "#e5f1fe";
+const blueSelected = tokens.color.blueLighten50;
+
+const activeStyles = css`
+  border: 2px solid Highlight;
+  border-radius: 3px;
+`;
+
+const disabledStyles = css`
+  background: transparent;
+  border: 0;
+  color: ${tokens.color.blackLighten60};
+`;
 
 export const OptionStyled = styled.li`
   border: 2px solid transparent;
   border-radius: 3px;
-  font-size: 13px;
-  margin-bottom: 4px;
-  padding: 4px;
+  margin-bottom: ${tokens.spaceSm};
+  padding: ${tokens.spaceSm};
+
+  ${stylers.fontSize(-1)};
 
   &:hover {
     ${props => {
-      const isSelected = props.isSelected ? `background: ${blueSelected}` : `background: #f0f0f0`;
-      const isDisabled = props.isDisabled ? "background: transparent; cursor: not-allowed;" : "";
-      const hasPreventDefaultOnSelect = props.hasPreventDefaultOnSelect ? "background: transparent;" : "";
+      const hoveredDisabledStyles = props.isDisabled ? "background: transparent; cursor: not-allowed;" : "";
+      const hasPreventDefaultOnSelectStyles = props.hasPreventDefaultOnSelect ? "background: transparent;" : "";
 
       return `
-        ${isSelected}
-        ${isDisabled}
-        ${hasPreventDefaultOnSelect}
+        background: ${props.isSelected ? blueSelected : tokens.color.blackLighten70};
+        ${hoveredDisabledStyles}
+        ${hasPreventDefaultOnSelectStyles}
       `;
     }}
   }
 
   ${props => {
-    const isDisabled = props.isDisabled
-      ? `color: ${tokens.color.blackLighten60}; border: 0; background: transparent;`
-      : "";
-
-    const isActived = props.isActive
-      ? `
-        border: 2px solid Highlight;
-        border-radius: 3px;
-        `
-      : "";
-
     const hasPreventDefaultOnSelect =
       props.isActive && props.hasPreventDefaultOnSelect ? `border-color: ${tokens.color.blackLighten60}` : "";
 
-    const isSelected = props.isSelected ? `background: ${blueSelected}` : "";
-
     return `
-      ${isActived}
+      ${props.isActived ? activeStyles : ""}
       ${hasPreventDefaultOnSelect}
-      ${isSelected}
-      ${isDisabled}
+      ${props.isSelected ? `background: ${blueSelected};` : ""}
+      ${props.isDisabled ? disabledStyles : ""}
     `;
   }}
 `;
