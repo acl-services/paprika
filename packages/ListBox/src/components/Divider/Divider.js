@@ -8,15 +8,20 @@ const propTypes = {
   // later can be ignore by the keyup keydown event seens is consider disable see options/helpers/options.js
   // function getNextOptionActiveIndex
   isDisabled: PropTypes.bool, // eslint-disable-line
-  children: PropTypes.node.isRequired,
+  children: PropTypes.node,
 };
 
 const defaultProps = {
   isDisabled: true,
+  children: null,
 };
 
 export default function Divider(props) {
-  return <li css={dividerCSS}>{props.children}</li>;
+  return (
+    <li css={dividerCSS} hasChildren={!!props.children}>
+      {props.children}
+    </li>
+  );
 }
 
 Divider.propTypes = propTypes;
