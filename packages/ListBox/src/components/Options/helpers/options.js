@@ -5,25 +5,27 @@ function getOnChangeFn(state) {
   return invokeOnChange(state.onChange, "listbox:option-selected");
 }
 
-export function selectSingleOption({ activeOptionIndex, isOpen, state, dispatch }) {
+export function selectSingleOption({ activeOptionIndex, isOpen, state, dispatch, onChange = null }) {
+  const onChangeFn = onChange || getOnChangeFn(state, activeOptionIndex);
+
   dispatch({
     type: useListBox.types.selectSingleOption,
-    payload: { activeOptionIndex, isOpen, onChangeFn: getOnChangeFn(state, activeOptionIndex) },
+    payload: { activeOptionIndex, isOpen, onChangeFn },
   });
 }
 
 export function toggleMultipleOption({ activeOptionIndex, state, dispatch }) {
-  debugger;
   dispatch({
     type: useListBox.types.toggleMultipleOption,
     payload: { activeOptionIndex, onChangeFn: getOnChangeFn(state, activeOptionIndex) },
   });
 }
 
-export function selectMultipleOption({ activeOptionIndex, state, dispatch, isSelected }) {
+export function selectMultipleOption({ activeOptionIndex, state, dispatch, isSelected, onChange = null }) {
+  const onChangeFn = onChange || getOnChangeFn(state, activeOptionIndex);
   dispatch({
     type: useListBox.types.selectMultipleOption,
-    payload: { activeOptionIndex, onChangeFn: getOnChangeFn(state, activeOptionIndex), isSelected },
+    payload: { activeOptionIndex, onChangeFn, isSelected },
   });
 }
 

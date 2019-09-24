@@ -1,5 +1,6 @@
 import React from "react";
 import tokens from "@paprika/tokens";
+import { css } from "styled-components";
 import ListBox from "../../src";
 import * as characters from "../fixtures/characters";
 
@@ -108,14 +109,26 @@ export const WithGroupsAndHavePreselectedOptions = () => (
   </ListBox>
 );
 
+const styles = {
+  container: css`
+    padding: 12px;
+  `,
+  button: css`
+    font-size: 16px;
+    margin: 2px;
+    padding: 8px;
+    ${({ isSelected }) => {
+      return isSelected ? `background: ${tokens.color.blue}; color: ${tokens.color.white}` : "";
+    }}
+  `,
+};
+
 export const ControlledIsSelected = () => {
   const [options, setOptions] = React.useState(characters.antiHeroesRaw);
 
   const handleClick = index => () => {
     setOptions(() => {
       const cloneOptions = options.slice(0);
-
-      // when is a multi selection listbox we want to toggle the selection
 
       cloneOptions[index].isSelected = !cloneOptions[index].isSelected;
 
@@ -124,40 +137,29 @@ export const ControlledIsSelected = () => {
   };
 
   function handleChange(selectedOptions) {
+    /** this will be trigger when a uncontrolled change occurred inside the listbox
+    let's sync our local state with the one on the listbox so we can turn on / off
+    the buttons */
+
     setOptions(options => {
-      console.log(selectedOptions);
       const cloneOptions = options.slice(0);
       cloneOptions.forEach((op, index) => {
-        const option = op;
-        if (selectedOptions.includes(index)) {
-          option.isSelected = true;
-        } else {
-          option.isSelected = false;
-        }
+        cloneOptions[index].isSelected = selectedOptions.includes(index);
       });
 
       return cloneOptions;
     });
   }
 
+  console.log(options.filter(option => option.isSelected).map(i => i.label));
+
   return (
     <React.Fragment>
-      Click on any button to controlled the Listbox:
-      <div
-        css={`
-          padding: 12px;
-        `}
-      >
+      <div css={styles.container}>
+        <p>Click on any button to controlled the Listbox:</p>
         {options.map((item, index) => (
           <button
-            css={`
-              font-size: 16px;
-              padding: 8px;
-              margin: 2px;
-              ${({ isSelected }) => {
-                return isSelected ? `background: ${tokens.color.blue}; color: ${tokens.color.white}` : "";
-              }}
-            `}
+            css={styles.button}
             type="button"
             key={item.label}
             isSelected={options[index].isSelected}
@@ -168,9 +170,6 @@ export const ControlledIsSelected = () => {
         ))}
       </div>
       <hr />
-      <h2>
-        Controlling a Listbox with <strong>isInline={`{true}`}</strong>
-      </h2>
       <ListBox isInline isMulti onChange={handleChange}>
         {options.map(item => {
           return (

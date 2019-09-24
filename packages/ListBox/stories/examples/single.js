@@ -1,5 +1,6 @@
 import React from "react";
 import tokens from "@paprika/tokens";
+import { css } from "styled-components";
 import { ImageOption } from "../stories.styles";
 import ListBox from "../../src";
 import { images } from "../fixtures/images";
@@ -136,65 +137,68 @@ export const IsInline = () => (
   </ListBox>
 );
 
+const styles = {
+  container: css`
+    padding: 12px;
+  `,
+  button: css`
+    font-size: 16px;
+    margin: 2px;
+    padding: 8px;
+    ${({ isSelected }) => {
+      return isSelected ? `background: ${tokens.color.blue}; color: ${tokens.color.white}` : "";
+    }}
+  `,
+};
+
 export const ControlledIsSelected = () => {
-  const [items, setItems] = React.useState(characters.antiHeroesRaw);
+  const [options, setOptions] = React.useState(characters.antiHeroesRaw);
 
-  const handleItem = index => () => {
-    setItems(() => {
-      const cloneList = items.slice(0);
+  const handleClickItem = index => () => {
+    setOptions(options => {
+      const cloneList = options.slice(0);
 
-      // set all items on false
+      // setting all options on false
       cloneList.forEach(item => {
         const it = item;
         it.isSelected = false;
       });
 
-      // set the only one in isSelected true
+      // only setting the option to be selected
       cloneList[index].isSelected = true;
 
       return cloneList;
     });
   };
 
+  function handleChange(activeOptionIndex) {
+    /** this will be trigger when a uncontrolled change occurred inside the listbox
+    let's sync our local state with the one on the listbox so we can turn on / off
+    the buttons */
+    handleClickItem(activeOptionIndex)();
+  }
+
+  console.log(options.filter(option => option.isSelected).map(i => i.label));
+
   return (
     <React.Fragment>
       Click on any button to controlled the Listbox:
-      <div
-        css={`
-          padding: 12px;
-        `}
-      >
-        {items.map((item, index) => (
+      <div css={styles.container}>
+        {options.map((item, index) => (
           <button
-            css={`
-              font-size: 16px;
-              padding: 8px;
-              margin: 2px;
-              ${({ isSelected }) => {
-                return isSelected ? `background: ${tokens.color.blue}; color: ${tokens.color.white}` : "";
-              }}
-            `}
+            css={styles.button}
             type="button"
             key={item.label}
-            isSelected={items[index].isSelected}
-            onClick={handleItem(index)}
+            isSelected={options[index].isSelected}
+            onClick={handleClickItem(index)}
           >
             {item.label}
           </button>
         ))}
       </div>
       <hr />
-      <h2>
-        Controlling a Listbox with <strong>isInline={`{true}`}</strong>
-      </h2>
-      <ListBox
-        isInline
-        onChange={activeOptionIndex => {
-          handleItem(activeOptionIndex)();
-          console.log(activeOptionIndex);
-        }}
-      >
-        {items.map(item => {
+      <ListBox isInline onChange={handleChange}>
+        {options.map(item => {
           return (
             <ListBox.Option key={item.label} isSelected={item.isSelected}>
               {item.label}
