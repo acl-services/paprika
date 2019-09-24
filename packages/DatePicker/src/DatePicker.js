@@ -94,7 +94,7 @@ function DatePicker(props) {
 
   // Effect
   React.useEffect(() => {
-    if (date && prevDate && date.isSame(prevDate, "day")) return;
+    if ((!date && !prevDate) || (date && prevDate && date.isSame(prevDate, "day"))) return;
     setInputtedString(formatDateProp(dataFormat));
     setConfirmationResult(formatDateProp(humanFormat));
   }, [dataFormat, date, prevDate, formatDateProp, humanFormat]);
