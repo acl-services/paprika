@@ -1,4 +1,5 @@
 import React from "react";
+import tokens from "@paprika/tokens";
 import ListBox from "../../src";
 import * as characters from "../fixtures/characters";
 
@@ -106,3 +107,79 @@ export const WithGroupsAndHavePreselectedOptions = () => (
     {characters.heroes}
   </ListBox>
 );
+
+export const ControlledIsSelected = () => {
+  const [options, setOptions] = React.useState(characters.antiHeroesRaw);
+
+  const handleClick = index => () => {
+    setOptions(() => {
+      const cloneOptions = options.slice(0);
+
+      // when is a multi selection listbox we want to toggle the selection
+
+      cloneOptions[index].isSelected = !cloneOptions[index].isSelected;
+
+      return cloneOptions;
+    });
+  };
+
+  function handleChange(selectedOptions) {
+    setOptions(options => {
+      console.log(selectedOptions);
+      const cloneOptions = options.slice(0);
+      cloneOptions.forEach((op, index) => {
+        const option = op;
+        if (selectedOptions.includes(index)) {
+          option.isSelected = true;
+        } else {
+          option.isSelected = false;
+        }
+      });
+
+      return cloneOptions;
+    });
+  }
+
+  return (
+    <React.Fragment>
+      Click on any button to controlled the Listbox:
+      <div
+        css={`
+          padding: 12px;
+        `}
+      >
+        {options.map((item, index) => (
+          <button
+            css={`
+              font-size: 16px;
+              padding: 8px;
+              margin: 2px;
+              ${({ isSelected }) => {
+                return isSelected ? `background: ${tokens.color.blue}; color: ${tokens.color.white}` : "";
+              }}
+            `}
+            type="button"
+            key={item.label}
+            isSelected={options[index].isSelected}
+            onClick={handleClick(index)}
+          >
+            {item.label}
+          </button>
+        ))}
+      </div>
+      <hr />
+      <h2>
+        Controlling a Listbox with <strong>isInline={`{true}`}</strong>
+      </h2>
+      <ListBox isInline isMulti onChange={handleChange}>
+        {options.map(item => {
+          return (
+            <ListBox.Option key={item.label} isSelected={item.isSelected}>
+              {item.label}
+            </ListBox.Option>
+          );
+        })}
+      </ListBox>
+    </React.Fragment>
+  );
+};

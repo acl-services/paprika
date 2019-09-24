@@ -4,6 +4,7 @@ import useListBox from "../../useListBox";
 import { getA11yAttributesForOption } from "../../helpers/DOMAttributes";
 import { isOptionVisible, isOptionSelected, handleClickOption } from "../Options/helpers/options";
 import { OptionStyled } from "./Option.styles";
+import useIsSelectedOption from "./useIsSelectedOption";
 
 const propTypes = {
   /** String, number or JSX content */
@@ -43,6 +44,8 @@ export default function Option(props) {
   const [state, dispatch] = useListBox();
   const { activeOption, isDisabled: isDisabledState } = state;
   const { index, groupId, label } = props; // eslint-disable-line
+
+  useIsSelectedOption({ index, props });
 
   if (typeof state.options[index] === "undefined") {
     return null;

@@ -1,8 +1,8 @@
 import React from "react";
+import tokens from "@paprika/tokens";
 import { ImageOption } from "../stories.styles";
 import ListBox from "../../src";
 import { images } from "../fixtures/images";
-
 import * as characters from "../fixtures/characters";
 
 export const Basic = () => (
@@ -128,3 +128,80 @@ export const WithCustomZIndex = () => (
     {characters.antiHeroes}
   </ListBox>
 );
+
+export const IsInline = () => (
+  <ListBox isInline>
+    <ListBox.Popover zIndex={10000}>Anti-Heroes</ListBox.Popover>
+    {characters.antiHeroes}
+  </ListBox>
+);
+
+export const ControlledIsSelected = () => {
+  const [items, setItems] = React.useState(characters.antiHeroesRaw);
+
+  const handleItem = index => () => {
+    setItems(() => {
+      const cloneList = items.slice(0);
+
+      // set all items on false
+      cloneList.forEach(item => {
+        const it = item;
+        it.isSelected = false;
+      });
+
+      // set the only one in isSelected true
+      cloneList[index].isSelected = true;
+
+      return cloneList;
+    });
+  };
+
+  return (
+    <React.Fragment>
+      Click on any button to controlled the Listbox:
+      <div
+        css={`
+          padding: 12px;
+        `}
+      >
+        {items.map((item, index) => (
+          <button
+            css={`
+              font-size: 16px;
+              padding: 8px;
+              margin: 2px;
+              ${({ isSelected }) => {
+                return isSelected ? `background: ${tokens.color.blue}; color: ${tokens.color.white}` : "";
+              }}
+            `}
+            type="button"
+            key={item.label}
+            isSelected={items[index].isSelected}
+            onClick={handleItem(index)}
+          >
+            {item.label}
+          </button>
+        ))}
+      </div>
+      <hr />
+      <h2>
+        Controlling a Listbox with <strong>isInline={`{true}`}</strong>
+      </h2>
+      <ListBox
+        isInline
+        onChange={activeOptionIndex => {
+          handleItem(activeOptionIndex)();
+          console.log(activeOptionIndex);
+        }}
+      >
+        {items.map(item => {
+          return (
+            <ListBox.Option key={item.label} isSelected={item.isSelected}>
+              {item.label}
+            </ListBox.Option>
+          );
+        })}
+      </ListBox>
+    </React.Fragment>
+  );
+};

@@ -32,3 +32,14 @@ export const heroes = [
   <ListBox.Option>Iron Man</ListBox.Option>,
   <ListBox.Option>Doctor Strange</ListBox.Option>,
 ];
+
+export const antiHeroesRaw = [
+  { label: "Black Panther", isSelected: false },
+  { label: "Wonder Woman", isSelected: false },
+  { label: "Spiderman", isSelected: false },
+  { label: "The Incredibles", isSelected: false },
+  { label: "Thor", isSelected: false },
+  { label: "Batman", isSelected: false },
+  { label: "Iron Man", isSelected: false },
+  { label: "Doctor Strange", isSelected: false },
+];
