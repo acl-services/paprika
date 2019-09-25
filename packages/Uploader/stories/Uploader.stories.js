@@ -100,7 +100,7 @@ storiesOf("Uploader", module)
     <>
       <Uploader
         endpoint="http://localhost:9000/upload.php"
-        acceptableFileTypes={["image/*"]}
+        okFileTypes={["image/*"]}
         onChange={files => {
           console.log("onChange files:", files);
         }}
@@ -116,8 +116,8 @@ storiesOf("Uploader", module)
       </p>
       <Uploader
         endpoint="http://localhost:9000/upload.php"
-        acceptableFileTypes={["image/*"]}
-        maximumFileSize={Uploader.convertUnitsToMebibytes(1)}
+        okFileTypes={["image/*"]}
+        maxFileSize={Uploader.convertUnitsToMebibytes(1)}
         onChange={files => {
           console.log("onChange files:", files);
         }}
@@ -132,7 +132,7 @@ storiesOf("Uploader", module)
         Will upload image until you select your images and then click the button with the legend
         <strong>upload images</strong>
       </p>
-      <Uploader endpoint="http://localhost:9000/upload.php" acceptableFileTypes={["image/*"]} hasAutoupload={false}>
+      <Uploader endpoint="http://localhost:9000/upload.php" okFileTypes={["image/*"]} hasAutoUpload={false}>
         {TestingFnForUploadOnDemand}
       </Uploader>
     </>
@@ -140,7 +140,7 @@ storiesOf("Uploader", module)
   .add("Only accept files if are drop on the FileInput area", () => (
     <>
       <p>Will accept dropped files only if they are drop at the FileInput area.</p>
-      <Uploader isBodyDroppableArea={false} endpoint="http://localhost:9000/upload.php">
+      <Uploader isBodyDroppable={false} endpoint="http://localhost:9000/upload.php">
         {TestingFn}
       </Uploader>
     </>
@@ -148,20 +148,20 @@ storiesOf("Uploader", module)
   .add("Allow only one file per upload", () => (
     <>
       <p>Allow only one file per upload.</p>
-      <Uploader allowMultipleFile={false} endpoint="http://localhost:9000/upload.php">
+      <Uploader canChooseMultiple={false} endpoint="http://localhost:9000/upload.php">
         {TestingFn}
       </Uploader>
     </>
   ))
-  .add("Making use of onFinished prop", () => (
+  .add("Making use of onCompleted prop", () => (
     <>
       <p>
-        The onFinished prop callback is fired once all files have been processed which dont neccessaril means that all
+        The onCompleted prop callback is fired once all files have been processed which dont neccessaril means that all
         files were successuflly uploaded. The callback received as parameter the file list of all files processed with
         their last status, you easily could map over the list and figured out if all files have file.status ===
         Uploader.types.SUCCESS and verified if all file were uploaded correctly.
       </p>
-      <Uploader onFinished={files => console.log("on finished:", files)} endpoint="http://localhost:9000/upload.php">
+      <Uploader onCompleted={files => console.log("on finished:", files)} endpoint="http://localhost:9000/upload.php">
         {TestingFn}
       </Uploader>
     </>
@@ -172,7 +172,7 @@ storiesOf("Uploader", module)
         The uploader can be use without render the FileInput component provided by renderChildrenProp function. While
         this is not a common scenario, showcase that is possible to keep draggin and dropping files and still working.
       </p>
-      <Uploader onFinished={files => console.log("on finished:", files)} endpoint="http://localhost:9000/upload.php">
+      <Uploader onCompleted={files => console.log("on finished:", files)} endpoint="http://localhost:9000/upload.php">
         {TestingFnWithoutFileInput}
       </Uploader>
     </>
@@ -185,7 +185,7 @@ storiesOf("Uploader", module)
       </p>
       <Uploader
         headers={[{ "API-Key": "your-api-key" }, { "X-CSRF-Token": "your-token" }]}
-        onFinished={files => console.log("on finished:", files)}
+        onCompleted={files => console.log("on finished:", files)}
         endpoint="http://localhost:9000/upload.php"
       >
         {TestingFn}

@@ -35,9 +35,16 @@ const setFile = (file, callback) => files => {
   return cloneFiles;
 };
 
-export default function useProcessFiles({ hasAutoupload, onChange, onFinished, endpoint, defaultIsDisable, headers }) {
+export default function useProcessFiles({
+  hasAutoUpload,
+  onChange,
+  onCompleted,
+  endpoint,
+  defaultIsDisabled,
+  headers,
+}) {
   const [uploadingFileList, setUploadingFileList] = React.useState([]);
-  const [isDisabled, setIsDisabled] = React.useState(defaultIsDisable);
+  const [isDisabled, setIsDisabled] = React.useState(defaultIsDisabled);
   const [hasFinished, sethasFinished] = React.useState(null);
   const [files, setFiles] = React.useState([]);
 
@@ -98,7 +105,7 @@ export default function useProcessFiles({ hasAutoupload, onChange, onFinished, e
         if (files.every(file => file.processed)) {
           setIsDisabled(() => false);
           sethasFinished(() => true);
-          onFinished(files);
+          onCompleted(files);
         }
       }
 
@@ -160,14 +167,14 @@ export default function useProcessFiles({ hasAutoupload, onChange, onFinished, e
         });
       }
     },
-    [files, uploadingFileList, isDisabled, onFinished, onChange, endpoint, headers]
+    [files, uploadingFileList, isDisabled, onCompleted, onChange, endpoint, headers]
   );
 
   React.useEffect(() => {
-    if (hasAutoupload) {
+    if (hasAutoUpload) {
       upload();
     }
-  }, [files, hasAutoupload, upload]);
+  }, [files, hasAutoUpload, upload]);
 
   return { files, setFiles, isDisabled, hasFinished, upload, removeFile, cancelFile };
 }

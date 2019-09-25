@@ -26,24 +26,24 @@ The `<Uploader />` component uses a render prop pattern expecting a function to 
 
 _The children_ function will received the state and helpers that you can use to build your own UI. The following are the properties pass down to the children function.
 
-- FileInput
+- **FileInput**
   The input[type="file"] element ready to be consumed
-- files,
+- **files**
   A enhance list of the user selected files
-- hasFinished,
+- **hasFinished**
   Is true when all files have been processed
-- isDisabled
+- **isDisabled**
   Describe the status of the component
-- isDragLeave
+- **isDragLeave**
   Will be true if a dragOver event occurred and leave the droppable area
-- isDragOver
+- **isDragOver**
   Is `True` when detecting the user is dragging files over the droppable area
-- removeFile,
+- **removeFile**
   `removeFile(key)` will remove a file from the files list, this function doesn't work while the file is on _PROCESSING_ state.
-- cancelFile
+- **cancelFile**
   `cancelFile(key)` stop the request cycle keep in mind that if it's on _WAITINGFORSERVER_ state the server might save the file even if - the request has been cancel
-- upload
-  `upload()` give you the option to manually upload the files if you are decide to not use _hasAutoupload_
+- **upload**
+  `upload()` give you the option to manually upload the files if you are decide to not use _hasAutoUpload_
 
 Example:
 
@@ -71,20 +71,20 @@ The _Uploader_ provides a `endpoint` prop which you can use to point the url of 
 
 ## Props
 
-| Prop                | Type            | Description                                                                      |
-| ------------------- | --------------- | -------------------------------------------------------------------------------- |
-| a11yText            | string          | Accessible message for the input[type="file"].                                   |
-| acceptableFileTypes | arrayOf(string) | An array of string describing the allowed file types for the uploader.           |
-| allowMultipleFile   | bool            | When false the uploader only accept one file per upload.                         |
-| children            | function        | children function                                                                |
-| defaultIsDisable    | bool            | initial disable state for the uploader                                           |
-| endpoint            | string          | The url that will be use to upload the files ex. https://yoursite.com/api/upload |
-| hasAutoupload       | bool            | On true will upload the file as soon they are selected or dropped                |
-| isBodyDroppableArea | bool            | When true the user will be able to drop files at any part of the document.body   |
-| maximumFileSize     | number          | Size in Mebibytes                                                                |
-| onChange            | func            | This callback fires every time a file has been processed                         |
-| onFinished          | func            | Will be fire once all files has been processed with the files as parameter       |
-| headers             | arrayOf(object) | you can pass an array of header objects as need                                  |
+| Prop              | Type            | Description                                                                      |
+| ----------------- | --------------- | -------------------------------------------------------------------------------- |
+| a11yText          | string          | Accessible message for the input[type="file"].                                   |
+| okFileTypes       | arrayOf(string) | An array of string describing the allowed file types for the uploader.           |
+| canChooseMultiple | bool            | When false the uploader only accept one file per upload.                         |
+| children          | function        | children function                                                                |
+| defaultIsDisabled | bool            | initial disable state for the uploader                                           |
+| endpoint          | string          | The url that will be use to upload the files ex. https://yoursite.com/api/upload |
+| hasAutoUpload     | bool            | On true will upload the file as soon they are selected or dropped                |
+| isBodyDroppable   | bool            | When true the user will be able to drop files at any part of the document.body   |
+| maxFileSize       | number          | Size in Mebibytes                                                                |
+| onChange          | func            | This callback fires every time a file has been processed                         |
+| onCompleted       | func            | Will be fire once all files has been processed with the files as parameter       |
+| headers           | arrayOf(object) | you can pass an array of header objects as need                                  |
 
 [More detail about these props](https://github.com/acl-services/paprika/blob/master/packages/Uploader/src/Uploader.js)
 

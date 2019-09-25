@@ -21,13 +21,13 @@ const propTypes = {
     An array of string describing the allowed file types for the uploader ex. ["image/*", ".pdf", ".doc", "docx"]
     reference: https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input/file#Unique_file_type_specifiers.
   */
-  acceptableFileTypes: PropTypes.arrayOf(PropTypes.string),
+  okFileTypes: PropTypes.arrayOf(PropTypes.string),
   /**
     When false the uploader only accept one file per upload.
    */
-  allowMultipleFile: PropTypes.bool,
+  canChooseMultiple: PropTypes.bool,
   /**
-    children function received the following parameter which you can use to build you own UI:
+    children function received the following parameters which you can use to build you own UI:
 
     FileInput,   // the input[type="file"] element ready to be consumed
     files,       // a enhance list of the user selected files
@@ -37,13 +37,13 @@ const propTypes = {
     isDragOver,  // True when detecting the user is draggin files over the droppable area
     removeFile,  // removeFile(key) will remove a file from the files list, this function doesn't work while the file is on PROCESSING state.
     cancelFile,  // cancelFile(key) stop the request cycle keep in mind that if it's on WAITINGFORSERVER state the server might save the file even if the request has been cancel
-    upload,      // upload() give you the option to manually upload the files if you are decide to not use hasAutoupload
+    upload,      // upload() give you the option to manually upload the files if you are decide to not use hasAutoUpload
   */
   children: PropTypes.func.isRequired,
   /**
     initial disable state for the uploader
   */
-  defaultIsDisable: PropTypes.bool,
+  defaultIsDisabled: PropTypes.bool,
   /**
     The url that will be use to upload the files ex. https://yourEndPointURL.com
   */
@@ -51,18 +51,18 @@ const propTypes = {
   /**
     On true will upload the file as soon they are selected or dropped
   */
-  hasAutoupload: PropTypes.bool,
+  hasAutoUpload: PropTypes.bool,
   /**
     When true the user will be able to drop files at any part of the document.body triggering
     the upload listeners. On false will only received files if they are drop exactly on the FileInput area.
   */
-  isBodyDroppableArea: PropTypes.bool,
+  isBodyDroppable: PropTypes.bool,
   /**
     Size in Mebibytes which is use for comparing each file that will be upload
     you can make use of Uploader.convertUnitsToMebibytes() for easily convert units to Mebibyes
     ex.  Uploader.convertUnitsToMebibytes(4) => 4194304 (close to 4MB);
   */
-  maximumFileSize: PropTypes.number,
+  maxFileSize: PropTypes.number,
   /**
     This callback fires every time a file has been processed
   */
@@ -72,7 +72,7 @@ const propTypes = {
     files has been correctly uploaded, only means that they were processed, to find about the state of each file
     iterate over the files list.
   */
-  onFinished: PropTypes.func,
+  onCompleted: PropTypes.func,
   /**
     you can pass an array of header objects as need it ex.
     <Uploader headers={[{ "API-Key": "your-api-key" }, { Accept: "application/json" }, { "X-CSRF-Token": "your-token"} ]} ...>
@@ -84,15 +84,15 @@ const propTypes = {
 
 const defaultProps = {
   a11yText: null,
-  acceptableFileTypes: ["*/*"],
-  allowMultipleFile: true,
-  defaultIsDisable: false,
-  hasAutoupload: true,
+  okFileTypes: ["*/*"],
+  canChooseMultiple: true,
+  defaultIsDisabled: false,
+  hasAutoUpload: true,
   headers: [],
-  isBodyDroppableArea: true,
-  maximumFileSize: oneMebibyte * 10, // 1048576bytes * 10 = 10,485,760 Mebibytes
+  isBodyDroppable: true,
+  maxFileSize: oneMebibyte * 10, // 1048576bytes * 10 = 10,485,760 Mebibytes
   onChange: () => {},
-  onFinished: () => {},
+  onCompleted: () => {},
 };
 
 function getDocumentBody() {
@@ -108,16 +108,16 @@ function getContainer(refContainer) {
 function UploaderComponent(props, ref) {
   const {
     a11yText,
-    acceptableFileTypes,
-    allowMultipleFile,
-    hasAutoupload,
-    maximumFileSize,
+    okFileTypes,
+    canChooseMultiple,
+    hasAutoUpload,
+    maxFileSize,
     onChange,
-    onFinished,
-    isBodyDroppableArea,
+    onCompleted,
+    isBodyDroppable,
     endpoint,
     children,
-    defaultIsDisable,
+    defaultIsDisabled,
     headers,
   } = props;
 
@@ -134,30 +134,30 @@ function UploaderComponent(props, ref) {
   }));
 
   const { files, hasFinished, isDisabled, removeFile, cancelFile, setFiles, upload } = useProcessFiles({
-    defaultIsDisable,
+    defaultIsDisabled,
     endpoint,
-    hasAutoupload,
+    hasAutoUpload,
     headers,
     onChange,
-    onFinished,
+    onCompleted,
   });
 
   function handleChange(event) {
     if (isDisabled) return;
 
-    const files = getFiles({ event, maximumFileSize, acceptableFileTypes, endpoint });
+    const files = getFiles({ event, maxFileSize, okFileTypes, endpoint });
     setFiles(() => {
       if (refInput.current) {
         refInput.current.value = "";
       }
-      return allowMultipleFile ? files : [files[0]]; // in case only allow one file per upload
+      return canChooseMultiple ? files : [files[0]]; // in case only allow one file per upload
     });
   }
 
   const { isDragLeave, isDragOver } = useDragAndDropEvents({
-    dropArea: isBodyDroppableArea ? getDocumentBody : getContainer(refContainer),
+    dropArea: isBodyDroppable ? getDocumentBody : getContainer(refContainer),
     handleChange,
-    defaultIsDisable,
+    defaultIsDisabled,
   });
 
   function FileInput(props) {
@@ -165,13 +165,13 @@ function UploaderComponent(props, ref) {
     return (
       <div css={containerStyles} ref={refContainer}>
         <input
-          multiple={allowMultipleFile}
+          multiple={canChooseMultiple}
           id={refId}
           onChange={handleChange}
           ref={refInput}
           css={inputFileStyles}
           type="file"
-          accept={acceptableFileTypes.join(",")}
+          accept={okFileTypes.join(",")}
         />
         <label css={labelStyles} htmlFor={refId}>
           <span css={stylers.visuallyHidden}>{label}</span>
