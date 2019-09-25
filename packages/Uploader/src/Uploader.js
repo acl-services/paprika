@@ -27,17 +27,7 @@ const propTypes = {
    */
   canChooseMultiple: PropTypes.bool,
   /**
-    children function received the following parameters which you can use to build you own UI:
-
-    FileInput,   // the input[type="file"] element ready to be consumed
-    files,       // a enhance list of the user selected files
-    isCompleted, // is true when all files have been processed
-    isDisabled,  // describe the status of the component
-    isDragLeave, // will be true if a dragOver event occurred and leave the droppable area
-    isDraggingOver,  // True when detecting the user is draggin files over the droppable area
-    removeFile,  // removeFile(key) will remove a file from the files list, this function doesn't work while the file is on PROCESSING state.
-    cancelFile,  // cancelFile(key) stop the request cycle keep in mind that if it's on WAITINGFORSERVER state the server might save the file even if the request has been cancel
-    upload,      // upload() give you the option to manually upload the files if you are decide to not use hasAutoUpload
+    render children function, please read the `README.md` file for futher information about the parameters
   */
   children: PropTypes.func.isRequired,
   /**
