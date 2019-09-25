@@ -45,7 +45,7 @@ export default function Testing(props) {
   const {
     /* Props provided by children() function */
     files,
-    isDragOver,
+    isDraggingOver,
     isDragLeave,
     isDisabled,
     hasFinished,
@@ -85,7 +85,7 @@ export default function Testing(props) {
         </p>
       ) : null}
       <p>{isDisabled ? "isDisabled is true" : "isDisabled is false"}</p>
-      <p>{isDragOver ? "isDragOver 🤚" : ""}</p>
+      <p>{isDraggingOver ? "isDraggingOver 🤚" : ""}</p>
       <p>{isDragLeave ? "isDragLeave 👋" : ""}</p>
       <p>{hasFinished ? "success ✅" : null}</p>
       <hr />

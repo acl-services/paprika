@@ -34,7 +34,7 @@ const propTypes = {
     hasFinished, // is true when all files have been processed
     isDisabled,  // describe the status of the component
     isDragLeave, // will be true if a dragOver event occurred and leave the droppable area
-    isDragOver,  // True when detecting the user is draggin files over the droppable area
+    isDraggingOver,  // True when detecting the user is draggin files over the droppable area
     removeFile,  // removeFile(key) will remove a file from the files list, this function doesn't work while the file is on PROCESSING state.
     cancelFile,  // cancelFile(key) stop the request cycle keep in mind that if it's on WAITINGFORSERVER state the server might save the file even if the request has been cancel
     upload,      // upload() give you the option to manually upload the files if you are decide to not use hasAutoUpload
@@ -154,7 +154,7 @@ function UploaderComponent(props, ref) {
     });
   }
 
-  const { isDragLeave, isDragOver } = useDragAndDropEvents({
+  const { isDragLeave, isDraggingOver } = useDragAndDropEvents({
     dropArea: isBodyDroppable ? getDocumentBody : getContainer(refContainer),
     handleChange,
     defaultIsDisabled,
@@ -191,7 +191,7 @@ function UploaderComponent(props, ref) {
         hasFinished,
         isDisabled,
         isDragLeave,
-        isDragOver,
+        isDraggingOver,
         removeFile,
         cancelFile,
         upload,

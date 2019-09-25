@@ -7,7 +7,7 @@ function TestingFn({
   FileInput,
   files,
   isDisabled,
-  isDragOver,
+  isDraggingOver,
   isDragLeave,
   hasFinished,
   upload,
@@ -18,7 +18,7 @@ function TestingFn({
     <Testing
       files={files}
       isDisabled={isDisabled}
-      isDragOver={isDragOver}
+      isDraggingOver={isDraggingOver}
       isDragLeave={isDragLeave}
       hasFinished={hasFinished}
       upload={upload}
@@ -33,7 +33,7 @@ function TestingFnForUploadOnDemand({
   FileInput,
   files,
   isDisabled,
-  isDragOver,
+  isDraggingOver,
   isDragLeave,
   hasFinished,
   upload,
@@ -44,7 +44,7 @@ function TestingFnForUploadOnDemand({
     <Testing
       files={files}
       isDisabled={isDisabled}
-      isDragOver={isDragOver}
+      isDraggingOver={isDraggingOver}
       isDragLeave={isDragLeave}
       hasFinished={hasFinished}
       upload={upload}

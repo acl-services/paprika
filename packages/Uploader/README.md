@@ -36,7 +36,7 @@ _The children_ function will received the state and helpers that you can use to 
   Describe the status of the component
 - **isDragLeave**
   Will be true if a dragOver event occurred and leave the droppable area
-- **isDragOver**
+- **isDraggingOver**
   Is `True` when detecting the user is dragging files over the droppable area
 - **removeFile**
   `removeFile(key)` will remove a file from the files list, this function doesn't work while the file is on _PROCESSING_ state.
@@ -49,7 +49,7 @@ Example:
 
 ```js
 <Uploader>
-  {({ FileInput, files, isDisabled, isDragOver, isDragLeave, hasFinished, upload, removeFile, cancelFile }) => {
+  {({ FileInput, files, isDisabled, isDraggingOver, isDragLeave, hasFinished, upload, removeFile, cancelFile }) => {
     return (
       <FileInput>
         <YourStylishUI />

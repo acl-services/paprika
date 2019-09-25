@@ -1,25 +1,25 @@
 import React from "react";
 
 export default function useDragAndDropZoneEvents({ dropArea = () => document.body, handleChange, defaultIsDisabled }) {
-  const [isDragOver, setIsDragOver] = React.useState(defaultIsDisabled);
+  const [isDraggingOver, setisDraggingOver] = React.useState(defaultIsDisabled);
   const [isDragLeave, setIsDragLeave] = React.useState(defaultIsDisabled);
 
   React.useEffect(() => {
     function onDragOver(event) {
-      setIsDragOver(() => true);
+      setisDraggingOver(() => true);
       setIsDragLeave(() => false);
       // this prevent images from rendering on the browser
       event.preventDefault();
     }
 
     function onDragLeave() {
-      setIsDragOver(() => false);
+      setisDraggingOver(() => false);
       setIsDragLeave(() => true);
     }
 
     function onDrop(event) {
       // this prevent images from rendering on the browser
-      setIsDragOver(() => false);
+      setisDraggingOver(() => false);
       setIsDragLeave(() => true);
       event.preventDefault();
       handleChange(event);
@@ -37,5 +37,5 @@ export default function useDragAndDropZoneEvents({ dropArea = () => document.bod
     };
   }, [dropArea, handleChange]);
 
-  return { isDragOver, isDragLeave };
+  return { isDraggingOver, isDragLeave };
 }
