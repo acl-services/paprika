@@ -55,10 +55,9 @@ export default function reducer(state, { type, payload }) {
         // remove duplicates
         selectedOptions = [...new Set([...state.selectedOptions, activeOptionIndex])];
       } else if (state.selectedOptions.includes(activeOptionIndex)) {
-        const cloneSelectedOptions = state.selectedOptions.slice(0);
-        const index = cloneSelectedOptions.indexOf(activeOptionIndex);
-        cloneSelectedOptions.splice(index, 1);
-        selectedOptions = [...cloneSelectedOptions];
+        selectedOptions = state.selectedOptions.slice(0);
+        const index = selectedOptions.indexOf(activeOptionIndex);
+        selectedOptions.splice(index, 1);
       } else {
         return { ...state };
       }

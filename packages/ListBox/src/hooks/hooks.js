@@ -93,9 +93,9 @@ export function useOnScrolled() {
   React.useLayoutEffect(() => {
     if (!state.refListBox.current) return;
 
-    const shallScrolled = (state.shouldContentScroll && state.isInline) || (state.isOpen && state.shouldContentScroll);
+    const shouldScroll = (state.shouldContentScroll && state.isInline) || (state.isOpen && state.shouldContentScroll);
 
-    if (shallScrolled && state.options[state.activeOption]) {
+    if (shouldScroll && state.options[state.activeOption]) {
       const parentOffsetTop = state.refListBox.current.offsetTop;
       const $option = document.getElementById(state.options[state.activeOption].id);
       if ($option) {
