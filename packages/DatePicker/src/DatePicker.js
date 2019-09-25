@@ -170,7 +170,7 @@ function DatePicker(props) {
     } else {
       setConfirmationResult("");
       setHasParsingError(true);
-      onDateParseError();
+      onDateParseError(inputtedString);
     }
   }
 
