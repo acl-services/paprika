@@ -165,7 +165,10 @@ export const ControlledIsSelected = () => {
       });
 
       // only setting the option to be selected
-      cloneList[index].isSelected = true;
+      // index could be null if the user clear the listbox.
+      if (index) {
+        cloneList[index].isSelected = true;
+      }
 
       return cloneList;
     });
