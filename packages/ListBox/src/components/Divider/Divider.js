@@ -5,7 +5,7 @@ import { dividerCSS } from "./Divider.styles";
 const propTypes = {
   // isDisable is use internally as a default prop
   // the prop is read by the option/helpers/optionState.js which is assigned in the store
-  // it helps to ingore the divider while using the keyboard.
+  // it helps to ignore the divider while using the keyboard.
   // see: options/helpers/options.js
   isDisabled: PropTypes.bool, // eslint-disable-line
   children: PropTypes.node.isRequired,
