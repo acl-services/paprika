@@ -10,10 +10,10 @@ const propTypes = {
   /** String, number or JSX content */
   children: PropTypes.oneOfType([PropTypes.node, PropTypes.func]).isRequired,
 
-  /** Describe if the option is selected or not controlled */
+  /* Controls if the option is selected or not, never combine it with defaultIsSelected */
   isSelected: PropTypes.bool,
 
-  /** Describe if the option started as selected or not uncontrolled */
+  /** Describe if the option started as selected or not */
   defaultIsSelected: PropTypes.bool,
 
   /** Describe if the option is enable or not */
