@@ -47,7 +47,7 @@ export const columnHeaderStyles = css`
 
 export const containerStyles = css`
   ${stylers.fontSize(-1)};
-
+  background-color: ${tokens.color.white}
   border: 1px solid ${tokens.border.color};
   border-radius: ${tokens.border.radius};
   box-sizing: border-box;
@@ -77,6 +77,12 @@ export const containerStyles = css`
     margin: 0;
     overflow: hidden;
     padding: 5px ${tokens.spaceLg} ${tokens.spaceSm} ${tokens.spaceLg};
+
+    /* prevent acl-ui3 label style overrides */
+    input[type="radio"] + label {
+      display: flex;
+      margin: auto;
+    }
   }
 `;
 

@@ -8,15 +8,20 @@ const propTypes = {
   // it helps to ignore the divider while using the keyboard.
   // see: options/helpers/options.js
   isDisabled: PropTypes.bool, // eslint-disable-line
-  children: PropTypes.node.isRequired,
+  children: PropTypes.node,
 };
 
 const defaultProps = {
   isDisabled: true,
+  children: null,
 };
 
 export default function Divider(props) {
-  return <li css={dividerCSS}>{props.children}</li>;
+  return (
+    <li css={dividerCSS} hasChildren={!!props.children}>
+      {props.children}
+    </li>
+  );
 }
 
 Divider.propTypes = propTypes;
