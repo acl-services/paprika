@@ -27,9 +27,6 @@ const propTypes = {
   /** Selected date in moment object. */
   date: momentPropTypes.momentObj,
 
-  /** If the value of <input> is valid or not. Not required when wrapped with <FormElement>. */
-  hasError: PropTypes.bool,
-
   /** Date format used while displaying date. It should be human-friendly and spelled out, default is MMMM DD,YYYY */
   humanFormat: PropTypes.string,
 
@@ -45,20 +42,19 @@ const propTypes = {
   /** Callback when date is selected or input. */
   onChange: PropTypes.func.isRequired,
 
-  /** Callback when input string is not correctly parsed as a date . */
-  onDateParseError: PropTypes.func,
+  /** Errors callback */
+  onError: PropTypes.func,
 };
 
 const defaultProps = {
   children: null,
   dataFormat: "MM/DD/YYYY",
   date: null,
-  hasError: false,
   humanFormat: undefined,
   id: null,
   isDisabled: false,
   isReadOnly: false,
-  onDateParseError: () => {},
+  onError: () => {},
 };
 
 function DatePicker(props) {
@@ -69,13 +65,12 @@ function DatePicker(props) {
     children,
     dataFormat,
     date,
-    hasError,
     humanFormat = I18n.t("datePicker.confirmation_format"),
     id,
     isDisabled,
     isReadOnly,
     onChange,
-    onDateParseError,
+    onError,
   } = props;
 
   const formatDateProp = React.useCallback(
@@ -170,7 +165,7 @@ function DatePicker(props) {
     } else {
       setConfirmationResult("");
       setHasParsingError(true);
-      onDateParseError(inputtedString);
+      onError({ type: "input-parse", value: inputtedString });
     }
   }
 
@@ -214,6 +209,8 @@ function DatePicker(props) {
     handleChange(selectedDate);
   }
 
+  const hasError = extendedInputProps.hasError || hasParsingError;
+
   return (
     <Popover
       offset={8}
@@ -224,7 +221,6 @@ function DatePicker(props) {
       shouldKeepFocus
     >
       <Input
-        hasError={hasError || hasParsingError}
         icon={<CalendarIcon />}
         id={id}
         isDisabled={isDisabled}
@@ -237,6 +233,7 @@ function DatePicker(props) {
         inputRef={inputRef}
         value={confirmationResult || inputtedString}
         {...extendedInputProps}
+        hasError={hasError}
       />
 
       <Popover.Content>
