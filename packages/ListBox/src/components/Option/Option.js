@@ -10,8 +10,11 @@ const propTypes = {
   /** String, number or JSX content */
   children: PropTypes.oneOfType([PropTypes.node, PropTypes.func]).isRequired,
 
-  /** Describe if the option is selected or not */
+  /** Describe if the option is selected or not controlled */
   isSelected: PropTypes.bool,
+
+  /** Describe if the option started as selected or not uncontrolled */
+  defaultIsSelected: PropTypes.bool,
 
   /** Describe if the option is enable or not */
   isDisabled: PropTypes.bool,
@@ -34,7 +37,8 @@ const defaultProps = {
   isHidden: false,
   // internal prop, which shouldn't be documented
   preventDefaultOnSelect: false, // eslint-disable-line
-  isSelected: false,
+  isSelected: null,
+  defaultIsSelected: null,
   label: null,
   onClick: null,
   value: null,

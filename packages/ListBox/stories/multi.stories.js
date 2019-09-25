@@ -14,3 +14,4 @@ storiesOf("ListBox / multi", module).add("With Groups and have preselected optio
   <Multi.WithGroupsAndHavePreselectedOptions />
 ));
 storiesOf("ListBox / multi", module).add("Controlled listbox", () => <Multi.ControlledIsSelected />);
+storiesOf("ListBox / multi", module).add("UnControlled defaultIsSelected listbox", () => <Multi.DefaultIsSelected />);

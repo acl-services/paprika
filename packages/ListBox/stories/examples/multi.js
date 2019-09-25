@@ -181,3 +181,23 @@ export const ControlledIsSelected = () => {
     </React.Fragment>
   );
 };
+
+export const DefaultIsSelected = () => {
+  return (
+    <ListBox
+      isInline
+      isMulti
+      onChange={selectedOptions => {
+        console.log(selectedOptions);
+      }}
+    >
+      {characters.antiHeroesRaw.map((item, index) => {
+        return (
+          <ListBox.Option key={item.label} defaultIsSelected={Boolean(index % 2)}>
+            {item.label}
+          </ListBox.Option>
+        );
+      })}
+    </ListBox>
+  );
+};

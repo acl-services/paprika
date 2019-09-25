@@ -20,4 +20,5 @@ storiesOf("ListBox / single", module).add("Has no clear button", () => <Single.H
 storiesOf("ListBox / single", module).add("Has prevent default on select", () => <Single.WithPreventDefaultOnSelect />);
 storiesOf("ListBox / single", module).add("Has scroll connected to element", () => <Single.WithContainerScroll />);
 
-storiesOf("ListBox / single", module).add("Controlled listbox", () => <Single.ControlledIsSelected />);
+storiesOf("ListBox / single", module).add("Controlled isSelected listbox", () => <Single.ControlledIsSelected />);
+storiesOf("ListBox / single", module).add("UnControlled defaultIsSelected listbox", () => <Single.DefaultIsSelected />);
