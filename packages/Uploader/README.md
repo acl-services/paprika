@@ -30,7 +30,7 @@ _The children_ function will received the state and helpers that you can use to 
   The input[type="file"] element ready to be consumed
 - **files**
   A enhance list of the user selected files
-- **hasFinished**
+- **isCompleted**
   Is true when all files have been processed
 - **isDisabled**
   Describe the status of the component
@@ -43,13 +43,13 @@ _The children_ function will received the state and helpers that you can use to 
 - **cancelFile**
   `cancelFile(key)` stop the request cycle keep in mind that if it's on _WAITINGFORSERVER_ state the server might save the file even if - the request has been cancel
 - **upload**
-  `upload()` give you the option to manually upload the files if you are decide to not use _hasAutoUpload_
+  `upload()` give you the option to manually upload the files if the consumer decided to not use _hasAutoUpload_
 
 Example:
 
 ```js
 <Uploader>
-  {({ FileInput, files, isDisabled, isDraggingOver, isDragLeave, hasFinished, upload, removeFile, cancelFile }) => {
+  {({ FileInput, files, isDisabled, isDraggingOver, isDragLeave, isCompleted, upload, removeFile, cancelFile }) => {
     return (
       <FileInput>
         <YourStylishUI />

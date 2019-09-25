@@ -9,7 +9,7 @@ function TestingFn({
   isDisabled,
   isDraggingOver,
   isDragLeave,
-  hasFinished,
+  isCompleted,
   upload,
   removeFile,
   cancelFile,
@@ -20,7 +20,7 @@ function TestingFn({
       isDisabled={isDisabled}
       isDraggingOver={isDraggingOver}
       isDragLeave={isDragLeave}
-      hasFinished={hasFinished}
+      isCompleted={isCompleted}
       upload={upload}
       FileInput={FileInput}
       removeFile={removeFile}
@@ -35,7 +35,7 @@ function TestingFnForUploadOnDemand({
   isDisabled,
   isDraggingOver,
   isDragLeave,
-  hasFinished,
+  isCompleted,
   upload,
   removeFile,
   cancelFile,
@@ -46,7 +46,7 @@ function TestingFnForUploadOnDemand({
       isDisabled={isDisabled}
       isDraggingOver={isDraggingOver}
       isDragLeave={isDragLeave}
-      hasFinished={hasFinished}
+      isCompleted={isCompleted}
       upload={upload}
       removeFile={removeFile}
       cancelFile={cancelFile}
@@ -56,12 +56,12 @@ function TestingFnForUploadOnDemand({
   );
 }
 
-function TestingFnWithoutFileInput({ files, hasFinished }) {
+function TestingFnWithoutFileInput({ files, isCompleted }) {
   return (
     <>
-      {!hasFinished ? <span>{files.length ? "⏰ wait a moment!" : "🧘‍♀️🧘‍♀️🧘‍♀️🧘‍♀️"}</span> : null}
+      {!isCompleted ? <span>{files.length ? "⏰ wait a moment!" : "🧘‍♀️🧘‍♀️🧘‍♀️🧘‍♀️"}</span> : null}
 
-      <span>{hasFinished ? "💯✅" : ""}</span>
+      <span>{isCompleted ? "💯✅" : ""}</span>
       <ul>
         {files.map(file => (
           <li>{file.filename}</li>

@@ -48,7 +48,7 @@ export default function Testing(props) {
     isDraggingOver,
     isDragLeave,
     isDisabled,
-    hasFinished,
+    isCompleted,
     upload,
     removeFile,
     cancelFile,
@@ -87,7 +87,7 @@ export default function Testing(props) {
       <p>{isDisabled ? "isDisabled is true" : "isDisabled is false"}</p>
       <p>{isDraggingOver ? "isDraggingOver 🤚" : ""}</p>
       <p>{isDragLeave ? "isDragLeave 👋" : ""}</p>
-      <p>{hasFinished ? "success ✅" : null}</p>
+      <p>{isCompleted ? "success ✅" : null}</p>
       <hr />
       {files.length ? (
         <table css={styles.table}>
@@ -118,7 +118,7 @@ export default function Testing(props) {
                   {
                     <Uploader.ProgressBar
                       progress={file.progress}
-                      hasFinished={file.status === Uploader.types.SUCCESS}
+                      isCompleted={file.status === Uploader.types.SUCCESS}
                       hasError={!file.isValid}
                     />
                   }

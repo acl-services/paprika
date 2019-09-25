@@ -31,7 +31,7 @@ const propTypes = {
 
     FileInput,   // the input[type="file"] element ready to be consumed
     files,       // a enhance list of the user selected files
-    hasFinished, // is true when all files have been processed
+    isCompleted, // is true when all files have been processed
     isDisabled,  // describe the status of the component
     isDragLeave, // will be true if a dragOver event occurred and leave the droppable area
     isDraggingOver,  // True when detecting the user is draggin files over the droppable area
@@ -133,7 +133,7 @@ function UploaderComponent(props, ref) {
     },
   }));
 
-  const { files, hasFinished, isDisabled, removeFile, cancelFile, setFiles, upload } = useProcessFiles({
+  const { files, isCompleted, isDisabled, removeFile, cancelFile, setFiles, upload } = useProcessFiles({
     defaultIsDisabled,
     endpoint,
     hasAutoUpload,
@@ -188,7 +188,7 @@ function UploaderComponent(props, ref) {
       {children({
         FileInput,
         files,
-        hasFinished,
+        isCompleted,
         isDisabled,
         isDragLeave,
         isDraggingOver,

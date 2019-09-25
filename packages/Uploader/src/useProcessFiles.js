@@ -45,7 +45,7 @@ export default function useProcessFiles({
 }) {
   const [uploadingFileList, setUploadingFileList] = React.useState([]);
   const [isDisabled, setIsDisabled] = React.useState(defaultIsDisabled);
-  const [hasFinished, sethasFinished] = React.useState(null);
+  const [isCompleted, setisCompleted] = React.useState(null);
   const [files, setFiles] = React.useState([]);
 
   function cancelFile(key) {
@@ -78,7 +78,7 @@ export default function useProcessFiles({
         as well give a wrong impression the request has been cancel to the server.
         Therefore is only possible to remove files once they were processed or on idle status.
       */
-      if (hasFinished || files[index].status === types.IDLE || files[index].status === types.ERROR) {
+      if (isCompleted || files[index].status === types.IDLE || files[index].status === types.ERROR) {
         const fileClones = files.slice(0);
         fileClones.splice(index, 1);
 
@@ -104,7 +104,7 @@ export default function useProcessFiles({
       function areAllFilesProccessed() {
         if (files.every(file => file.processed)) {
           setIsDisabled(() => false);
-          sethasFinished(() => true);
+          setisCompleted(() => true);
           onCompleted(files);
         }
       }
@@ -158,7 +158,7 @@ export default function useProcessFiles({
       if (files.length && !isSameList(files, uploadingFileList) && !isDisabled) {
         setUploadingFileList(() => files);
         setIsDisabled(() => true);
-        sethasFinished(() => null);
+        setisCompleted(() => null);
         onChange(files);
         files.forEach(file => {
           if (file.isValid && file.status !== types.SUCCESS) {
@@ -176,5 +176,5 @@ export default function useProcessFiles({
     }
   }, [files, hasAutoUpload, upload]);
 
-  return { files, setFiles, isDisabled, hasFinished, upload, removeFile, cancelFile };
+  return { files, setFiles, isDisabled, isCompleted, upload, removeFile, cancelFile };
 }
