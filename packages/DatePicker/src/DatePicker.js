@@ -44,6 +44,9 @@ const propTypes = {
 
   /** Callback when date is selected or input. */
   onChange: PropTypes.func.isRequired,
+
+  /** Callback when input string is not correctly parsed as a date . */
+  onDateParseError: PropTypes.func,
 };
 
 const defaultProps = {
@@ -55,6 +58,7 @@ const defaultProps = {
   id: null,
   isDisabled: false,
   isReadOnly: false,
+  onDateParseError: () => {},
 };
 
 function DatePicker(props) {
@@ -71,6 +75,7 @@ function DatePicker(props) {
     isDisabled,
     isReadOnly,
     onChange,
+    onDateParseError,
   } = props;
 
   const formatDateProp = React.useCallback(
@@ -165,6 +170,7 @@ function DatePicker(props) {
     } else {
       setConfirmationResult("");
       setHasParsingError(true);
+      onDateParseError();
     }
   }
 
