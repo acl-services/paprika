@@ -2,7 +2,7 @@ import React from "react";
 import useListBox from "../../useListBox";
 import { selectSingleOption, selectMultipleOption } from "../Options/helpers/options";
 
-// previnting to report twice the onChange when props changed.
+// prevents onChange to be fired twice when props are changed.
 const noop = () => {};
 
 export default function useIsSelectedOption({ index, props }) {
