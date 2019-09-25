@@ -113,7 +113,7 @@ function UploaderComponent(props, ref) {
 
   const refInput = React.useRef();
   const refContainer = React.useRef(null);
-  const [refId] = React.useState(uuidv4());
+  const refId = React.useRef(uuidv4()).current;
   const i18n = useI18n();
   const label = a11yText || i18n.t("uploader.label");
 
