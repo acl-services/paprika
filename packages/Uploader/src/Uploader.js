@@ -95,7 +95,7 @@ function getContainer(refContainer) {
   };
 }
 
-function UploaderComponent(props, ref) {
+const Uploader = React.forwardRef(function UploaderComponent(props, ref) {
   const {
     a11yText,
     okFileTypes,
@@ -188,12 +188,7 @@ function UploaderComponent(props, ref) {
       })}
     </>
   );
-}
-
-const Uploader = React.forwardRef(UploaderComponent);
-
-UploaderComponent.defaultProps = defaultProps;
-UploaderComponent.propTypes = propTypes;
+});
 
 Uploader.defaultProps = defaultProps;
 Uploader.propTypes = propTypes;
