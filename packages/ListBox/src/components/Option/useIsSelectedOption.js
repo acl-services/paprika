@@ -18,5 +18,5 @@ export default function useIsSelectedOption({ index, props }) {
       // we want to execute the method exclusively on the prop with selected === true
       selectSingleOption({ activeOptionIndex: index, state, dispatch, isOpen: false, onChange: noop });
     }
-  }, [props.isSelected]); // eslint-disable-line
+  }, [dispatch, index, props.isSelected]); // eslint-disable-line
 }

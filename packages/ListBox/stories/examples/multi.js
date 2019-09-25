@@ -151,8 +151,6 @@ export const ControlledIsSelected = () => {
     });
   }
 
-  console.log(options.filter(option => option.isSelected).map(i => i.label));
-
   return (
     <React.Fragment>
       <div css={styles.container}>
@@ -164,6 +162,7 @@ export const ControlledIsSelected = () => {
             key={item.label}
             isSelected={options[index].isSelected}
             onClick={handleClick(index)}
+            data-pka-anchor={`button_${index}`}
           >
             {item.label}
           </button>

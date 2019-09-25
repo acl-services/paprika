@@ -2,6 +2,7 @@ import React from "react";
 import { configure, render, fireEvent } from "@testing-library/react";
 
 import ListBox from "../../../src";
+import { ControlledIsSelected } from "../../../stories/examples/multi";
 
 configure({ testIdAttribute: "data-pka-anchor" });
 
@@ -317,5 +318,28 @@ describe("Listbox multi select", () => {
     selectVenus();
     selectJupiter();
     expect(queryByTestId("clear-button")).toBeNull();
+  });
+
+  it("should select an option via a controlled button", () => {
+    const { getByTestId, getAllByTestId } = render(<ControlledIsSelected />);
+    const dataAttributeIsSelected = "list-option--is-selected";
+    const button1 = getByTestId("button_1");
+    expect(button1).not.toBeNull();
+    fireEvent.click(button1);
+
+    expect(getAllByTestId(dataAttributeIsSelected).length).toBe(1);
+    expect(getByTestId(dataAttributeIsSelected).textContent).toBe("Wonder Woman");
+
+    const button2 = getByTestId("button_2");
+    expect(button2).not.toBeNull();
+
+    fireEvent.click(button2);
+
+    expect(getAllByTestId(dataAttributeIsSelected).length).toBe(2);
+    expect(getAllByTestId(dataAttributeIsSelected)[0].textContent).toBe("Wonder Woman");
+    expect(getAllByTestId(dataAttributeIsSelected)[1].textContent).toBe("Spiderman");
+
+    fireEvent.click(button2);
+    expect(getAllByTestId(dataAttributeIsSelected).length).toBe(1);
   });
 });

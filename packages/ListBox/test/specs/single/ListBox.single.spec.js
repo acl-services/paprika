@@ -1,6 +1,7 @@
 import React from "react";
 import { render, fireEvent, configure } from "@testing-library/react";
 import ListBox from "../../../src";
+import { ControlledIsSelected as ListBoxControlled } from "../../../stories/examples/single";
 
 configure({ testIdAttribute: "data-pka-anchor" });
 
@@ -235,5 +236,32 @@ describe("Listbox single select", () => {
     openSelect();
     selectVenus();
     expect(queryByTestId("clear-button")).toBeNull();
+  });
+
+  it("should select an option via a controlled button", () => {
+    const { getByTestId, getAllByTestId } = render(<ListBoxControlled />);
+
+    const button = getByTestId("button_1");
+    expect(button).not.toBeNull();
+
+    fireEvent.click(button);
+
+    expect(getAllByTestId("list-option--is-selected").length).toBe(1);
+    expect(getByTestId("list-option--is-selected").textContent).toBe("Wonder Woman");
+  });
+
+  it("should select only ONE option via a controlled button", () => {
+    const { getByTestId, getAllByTestId } = render(<ListBoxControlled />);
+
+    const button1 = getByTestId("button_1");
+    const button2 = getByTestId("button_2");
+    expect(button1).not.toBeNull();
+    expect(button2).not.toBeNull();
+
+    fireEvent.click(button1);
+    fireEvent.click(button2);
+
+    expect(getAllByTestId("list-option--is-selected").length).toBe(1);
+    expect(getByTestId("list-option--is-selected").textContent).toBe("Spiderman");
   });
 });

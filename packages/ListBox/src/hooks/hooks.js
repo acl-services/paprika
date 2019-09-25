@@ -105,7 +105,7 @@ export function useOnScrolled() {
           offsetTop = 0;
         }
 
-        state.refListBox.current.scrollTo(0, offsetTop - 10);
+        if (state.refListBox.current) state.refListBox.current.scrollTo(0, offsetTop - 10);
       }
     }
   }, [state.activeOption, state.isInline, state.isOpen, state.options, state.refListBox, state.shouldContentScroll]);

@@ -59,9 +59,10 @@ export default function Option(props) {
   const isSelected = isOptionSelected(state, index);
   const isDisabled = isDisabledState || props.isDisabled;
   const id = state.options[index].id;
+
   return (
     <OptionStyled
-      {...getA11yAttributesForOption(state.options[index].isSelected)}
+      {...getA11yAttributesForOption(isSelected)}
       hasPreventDefaultOnSelect={props.preventDefaultOnSelect}
       id={id}
       isActive={activeOption === index}

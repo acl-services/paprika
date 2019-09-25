@@ -178,8 +178,6 @@ export const ControlledIsSelected = () => {
     handleClickItem(activeOptionIndex)();
   }
 
-  console.log(options.filter(option => option.isSelected).map(i => i.label));
-
   return (
     <React.Fragment>
       Click on any button to controlled the Listbox:
@@ -191,6 +189,7 @@ export const ControlledIsSelected = () => {
             key={item.label}
             isSelected={options[index].isSelected}
             onClick={handleClickItem(index)}
+            data-pka-anchor={`button_${index}`}
           >
             {item.label}
           </button>
