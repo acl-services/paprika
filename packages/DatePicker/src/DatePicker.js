@@ -18,6 +18,8 @@ import { extractChildrenProps } from "./helpers";
 
 import { calendarPopoverStyles } from "./DatePicker.styles";
 
+const INPUT_PARSE_ERROR = "INPUT_PARSE";
+
 const propTypes = {
   children: PropTypes.node,
 
@@ -165,7 +167,7 @@ function DatePicker(props) {
     } else {
       setConfirmationResult("");
       setHasParsingError(true);
-      onError({ type: "input-parse", value: inputtedString });
+      onError({ type: INPUT_PARSE_ERROR, value: inputtedString });
     }
   }
 
