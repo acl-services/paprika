@@ -129,7 +129,11 @@ function DatePicker(props) {
   }
 
   function handleClosePopover() {
-    if (!isElementContainsFocus(calendarRef.current) && !isElementContainsFocus(inputRef.current)) {
+    if (
+      calendarRef.current &&
+      !isElementContainsFocus(calendarRef.current) &&
+      !isElementContainsFocus(inputRef.current)
+    ) {
       if (!hasParsingError) {
         setConfirmationResult(formatDateProp(humanFormat));
         setInputtedString(formatDateProp(dataFormat));
@@ -169,11 +173,13 @@ function DatePicker(props) {
   }
 
   function handleInputBlur() {
-    window.requestAnimationFrame(() => {
-      if (!isElementContainsFocus(calendarRef.current)) {
-        handleInputConfirm();
-      }
-    });
+    if (calendarRef.current) {
+      window.requestAnimationFrame(() => {
+        if (!isElementContainsFocus(calendarRef.current)) {
+          handleInputConfirm();
+        }
+      });
+    }
   }
 
   function handleInputChange(e) {
@@ -233,17 +239,19 @@ function DatePicker(props) {
         {...extendedInputProps}
       />
 
-      <Popover.Content>
-        <div css={calendarPopoverStyles} data-pka-anchor="datepicker.calendar" ref={calendarRef}>
-          <Calendar
-            date={date}
-            isVisible={shouldShowCalendar}
-            onSelect={handleSelect}
-            possibleDate={debouncedPossibleDate}
-            resetPossibleDate={handleResetPossibleDate}
-          />
-        </div>
-      </Popover.Content>
+      {shouldShowCalendar ? (
+        <Popover.Content>
+          <div css={calendarPopoverStyles} data-pka-anchor="datepicker.calendar" ref={calendarRef}>
+            <Calendar
+              date={date}
+              isVisible={shouldShowCalendar}
+              onSelect={handleSelect}
+              possibleDate={debouncedPossibleDate}
+              resetPossibleDate={handleResetPossibleDate}
+            />
+          </div>
+        </Popover.Content>
+      ) : null}
     </Popover>
   );
 }
