@@ -173,13 +173,13 @@ function DatePicker(props) {
   }
 
   function handleInputBlur() {
-    if (calendarRef.current) {
-      window.requestAnimationFrame(() => {
+    window.requestAnimationFrame(() => {
+      if (calendarRef.current) {
         if (!isElementContainsFocus(calendarRef.current)) {
           handleInputConfirm();
         }
-      });
-    }
+      }
+    });
   }
 
   function handleInputChange(e) {
