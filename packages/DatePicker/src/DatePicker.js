@@ -209,7 +209,7 @@ function DatePicker(props) {
     handleChange(selectedDate);
   }
 
-  const hasError = extendedInputProps.hasError || hasParsingError;
+  const { hasError, ...moreExtendedInputProps } = extendedInputProps;
 
   return (
     <Popover
@@ -221,6 +221,7 @@ function DatePicker(props) {
       shouldKeepFocus
     >
       <Input
+        hasError={hasError || hasParsingError}
         icon={<CalendarIcon />}
         id={id}
         isDisabled={isDisabled}
@@ -232,8 +233,7 @@ function DatePicker(props) {
         onKeyUp={handleKeyUp}
         inputRef={inputRef}
         value={confirmationResult || inputtedString}
-        {...extendedInputProps}
-        hasError={hasError}
+        {...moreExtendedInputProps}
       />
 
       <Popover.Content>
