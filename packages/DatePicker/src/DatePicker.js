@@ -209,7 +209,7 @@ function DatePicker(props) {
     handleChange(selectedDate);
   }
 
-  const hasError = extendedInputProps && extendedInputProps.hasError ? extendedInputProps.hasError : false;
+  const hasError = extendedInputProps && extendedInputProps.hasError;
 
   return (
     <Popover
