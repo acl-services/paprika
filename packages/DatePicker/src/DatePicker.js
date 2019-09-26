@@ -18,6 +18,8 @@ import { extractChildrenProps } from "./helpers";
 
 import { calendarPopoverStyles } from "./DatePicker.styles";
 
+const INPUT_PARSE_ERROR = "INPUT_PARSE";
+
 const propTypes = {
   children: PropTypes.node,
 
@@ -26,9 +28,6 @@ const propTypes = {
 
   /** Selected date in moment object. */
   date: momentPropTypes.momentObj,
-
-  /** If the value of <input> is valid or not. Not required when wrapped with <FormElement>. */
-  hasError: PropTypes.bool,
 
   /** Date format used while displaying date. It should be human-friendly and spelled out, default is MMMM DD,YYYY */
   humanFormat: PropTypes.string,
@@ -44,17 +43,20 @@ const propTypes = {
 
   /** Callback when date is selected or input. */
   onChange: PropTypes.func.isRequired,
+
+  /** Errors callback */
+  onError: PropTypes.func,
 };
 
 const defaultProps = {
   children: null,
   dataFormat: "MM/DD/YYYY",
   date: null,
-  hasError: false,
   humanFormat: undefined,
   id: null,
   isDisabled: false,
   isReadOnly: false,
+  onError: () => {},
 };
 
 function DatePicker(props) {
@@ -65,12 +67,12 @@ function DatePicker(props) {
     children,
     dataFormat,
     date,
-    hasError,
     humanFormat = I18n.t("datePicker.confirmation_format"),
     id,
     isDisabled,
     isReadOnly,
     onChange,
+    onError,
   } = props;
 
   const formatDateProp = React.useCallback(
@@ -165,6 +167,7 @@ function DatePicker(props) {
     } else {
       setConfirmationResult("");
       setHasParsingError(true);
+      onError({ type: INPUT_PARSE_ERROR, value: inputtedString });
     }
   }
 
@@ -208,6 +211,8 @@ function DatePicker(props) {
     handleChange(selectedDate);
   }
 
+  const hasError = extendedInputProps && extendedInputProps.hasError;
+
   return (
     <Popover
       offset={8}
@@ -218,7 +223,6 @@ function DatePicker(props) {
       shouldKeepFocus
     >
       <Input
-        hasError={hasError || hasParsingError}
         icon={<CalendarIcon />}
         id={id}
         isDisabled={isDisabled}
@@ -231,6 +235,7 @@ function DatePicker(props) {
         inputRef={inputRef}
         value={confirmationResult || inputtedString}
         {...extendedInputProps}
+        hasError={hasError || hasParsingError}
       />
 
       <Popover.Content>
