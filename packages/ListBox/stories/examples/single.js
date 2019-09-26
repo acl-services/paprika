@@ -1,8 +1,9 @@
 import React from "react";
+import tokens from "@paprika/tokens";
+import { css } from "styled-components";
 import { ImageOption } from "../stories.styles";
 import ListBox from "../../src";
 import { images } from "../fixtures/images";
-
 import * as characters from "../fixtures/characters";
 
 export const Basic = () => (
@@ -128,3 +129,104 @@ export const WithCustomZIndex = () => (
     {characters.antiHeroes}
   </ListBox>
 );
+
+export const IsInline = () => (
+  <ListBox isInline>
+    <ListBox.Popover zIndex={10000}>Anti-Heroes</ListBox.Popover>
+    {characters.antiHeroes}
+  </ListBox>
+);
+
+const styles = {
+  container: css`
+    padding: 12px;
+  `,
+  button: css`
+    font-size: 16px;
+    margin: 2px;
+    padding: 8px;
+    ${({ isSelected }) => {
+      return isSelected ? `background: ${tokens.color.blue}; color: ${tokens.color.white}` : "";
+    }}
+  `,
+};
+
+export const ControlledIsSelected = () => {
+  const [options, setOptions] = React.useState(characters.antiHeroesRaw);
+
+  const handleClickItem = index => () => {
+    setOptions(options => {
+      const cloneList = options.slice(0);
+
+      // setting all options on false
+      cloneList.forEach(item => {
+        const it = item;
+        it.isSelected = false;
+      });
+
+      // only setting the option to be selected
+      // index could be null if the user clear the listbox.
+      if (index !== null) {
+        cloneList[index].isSelected = true;
+      }
+
+      return cloneList;
+    });
+  };
+
+  function handleChange(activeOptionIndex) {
+    /** this will be trigger when a uncontrolled change occurred inside the listbox
+    let's sync our local state with the one on the listbox so we can turn on / off
+    the buttons */
+    handleClickItem(activeOptionIndex)();
+  }
+
+  return (
+    <React.Fragment>
+      Click on any button to controlled the Listbox:
+      <div css={styles.container}>
+        {options.map((item, index) => (
+          <button
+            css={styles.button}
+            type="button"
+            key={item.label}
+            isSelected={options[index].isSelected}
+            onClick={handleClickItem(index)}
+            data-pka-anchor={`button_${index}`}
+          >
+            {item.label}
+          </button>
+        ))}
+      </div>
+      <hr />
+      <ListBox isInline onChange={handleChange}>
+        {options.map(item => {
+          return (
+            <ListBox.Option key={item.label} isSelected={item.isSelected}>
+              {item.label}
+            </ListBox.Option>
+          );
+        })}
+      </ListBox>
+    </React.Fragment>
+  );
+};
+
+export const DefaultIsSelected = () => {
+  return (
+    <ListBox
+      isInline
+      onChange={activeOptionIndex => {
+        console.log(activeOptionIndex);
+      }}
+    >
+      {characters.antiHeroesRaw.map((item, index) => {
+        return (
+          <ListBox.Option key={item.label} defaultIsSelected={index === 4}>
+            {item.label}
+          </ListBox.Option>
+        );
+      })}
+    </ListBox>
+  );
+};
