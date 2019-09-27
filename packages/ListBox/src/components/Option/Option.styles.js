@@ -41,7 +41,7 @@ export const OptionStyled = styled.li`
       props.isActive && props.hasPreventDefaultOnSelect ? `border-color: ${tokens.color.blackLighten60}` : "";
 
     return `
-      ${props.isActived ? activeStyles : ""}
+      ${props.isActive ? activeStyles : ""}
       ${hasPreventDefaultOnSelect}
       ${props.isSelected ? `background: ${blueSelected};` : ""}
       ${props.isDisabled ? disabledStyles : ""}
