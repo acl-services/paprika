@@ -47,7 +47,7 @@ export const columnHeaderStyles = css`
 
 export const containerStyles = css`
   ${stylers.fontSize(-1)};
-  background-color: ${tokens.color.white}
+  background-color: ${tokens.color.white};
   border: 1px solid ${tokens.border.color};
   border-radius: ${tokens.border.radius};
   box-sizing: border-box;
