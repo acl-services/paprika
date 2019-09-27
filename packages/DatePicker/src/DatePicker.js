@@ -239,7 +239,12 @@ function DatePicker(props) {
       />
 
       <Popover.Content>
-        <div css={calendarPopoverStyles} data-pka-anchor="datepicker.calendar" ref={calendarRef}>
+        <div
+          css={calendarPopoverStyles}
+          data-pka-anchor="datepicker.calendar"
+          ref={calendarRef}
+          shouldShowCalendar={shouldShowCalendar}
+        >
           <Calendar
             date={date}
             isVisible={shouldShowCalendar}
