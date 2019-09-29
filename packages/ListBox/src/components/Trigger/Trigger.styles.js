@@ -27,6 +27,12 @@ const triggerStyles = `
 `;
 
 const triggerStylesProps = () => props => {
+  if (props.isHidden) {
+    return css`
+      border: 1px solid #d7d7d7;
+    `;
+  }
+
   const isDisabled = props.isDisabled ? `color: ${tokens.color.blackLighten60};` : "";
   return props.isInline
     ? `

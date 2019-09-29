@@ -53,6 +53,7 @@ export default function Content(props) {
         {...getDOMAttributesForListBoxContainer({ isInline: true })}
         onKeyDown={handleKeyboardKeys(state, dispatch)}
         ref={refListBoxContainer}
+        data-ppk-anchor="listbox-content-inline"
       >
         {props.children}
       </div>

@@ -11,7 +11,7 @@ export default function Box(props) {
   const [state] = useListBox();
 
   return (
-    <BoxContainerStyled isInline={state.isInline} triggerWidth={state.triggerWidth}>
+    <BoxContainerStyled data-ppk-anchor="listbox-box" isInline={state.isInline} triggerWidth={state.triggerWidth}>
       {props.children}
     </BoxContainerStyled>
   );
