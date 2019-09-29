@@ -23,6 +23,7 @@ const propTypes = {
   onClickClear: PropTypes.func,
   onClickFooterAccept: PropTypes.func,
   placeholder: PropTypes.string,
+  isHidden: PropTypes.bool,
 };
 
 const defaultProps = {
@@ -31,11 +32,12 @@ const defaultProps = {
   onClickClear: null,
   onClickFooterAccept: null,
   placeholder: "Select...",
+  isHidden: false,
 };
 
 export default function Trigger(props) {
   const [state, dispatch] = useListBox();
-  const { placeholder, hasClearButton, onClickFooterAccept, children } = props;
+  const { placeholder, hasClearButton, onClickFooterAccept, children, isHidden } = props;
   const { isDisabled, refTriggerContainer, refTrigger, isMulti, idListBox } = state;
 
   const handleClick = () => {
@@ -129,11 +131,16 @@ export default function Trigger(props) {
 
   const shouldHideCaret = hasRenderTrigger || state.isInline;
 
+  if (isHidden && state.isInline) {
+    return <ListBoxTriggerStyled data-ppk-anchor="listbox-trigger" isHidden />;
+  }
+
   return (
     <ListBoxTriggerStyled
       isInline={state.isInline}
       isDisabled={isDisabled}
       ref={refTriggerContainer}
+      data-ppk-anchor="listbox-trigger"
       {...getDOMAttributesForListBoxButton(state.idListBox)()}
     >
       {hasRenderTrigger ? renderChildrenProps : renderLabel()}
