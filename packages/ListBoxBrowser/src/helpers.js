@@ -1,23 +1,43 @@
 const hasOptions = options => typeof options !== "undefined" && Array.isArray(options);
 
-export function getData({ data, path = "" }) {
+export function getData({ data, path = "root", selectedOptions }) {
   return data.map(({ label = null, options, defaultIsSelected = false, ...moreAttributes }, index) => {
     if (!label) {
       throw new Error("A Label attribute is required for each option object, can't process data.");
     }
-    const newPath = path === "" ? `${index}` : `${path}/${index}`;
+
+    let newPath = path === "root" ? `${index}` : `${path}/${index}`;
     const _hasOptions = hasOptions(options);
-    return {
+    const option = {
       parent: path,
       hasOptions: _hasOptions,
       $$key: newPath,
       attributes: {
         defaultIsSelected,
         label,
-        options: _hasOptions ? getData({ data: options, path: newPath }) : null,
+        options: _hasOptions ? getData({ data: options, selectedOptions, path: newPath }) : null,
         ...moreAttributes,
       },
     };
+
+    if (defaultIsSelected) {
+      /* eslint-disable no-param-reassign */
+      if (option.parent === "root") {
+        newPath = "root";
+      }
+
+      if (option.parent in selectedOptions.current) {
+        selectedOptions.current = {
+          ...selectedOptions.current,
+          [option.parent]: [...selectedOptions.current[option.parent], option],
+        };
+      } else {
+        selectedOptions.current = { ...selectedOptions.current, [option.parent]: [option] };
+      }
+      /* eslint-enable no-param-reassing */
+    }
+
+    return option;
   });
 }
 

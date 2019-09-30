@@ -353,7 +353,7 @@ Array [
       ],
     },
     "hasOptions": true,
-    "parent": "",
+    "parent": "root",
   },
   Object {
     "$$key": "1",
@@ -435,7 +435,7 @@ Array [
       ],
     },
     "hasOptions": true,
-    "parent": "",
+    "parent": "root",
   },
   Object {
     "$$key": "2",
@@ -476,7 +476,7 @@ Array [
       ],
     },
     "hasOptions": true,
-    "parent": "",
+    "parent": "root",
   },
   Object {
     "$$key": "3",
@@ -486,7 +486,7 @@ Array [
       "options": null,
     },
     "hasOptions": false,
-    "parent": "",
+    "parent": "root",
   },
   Object {
     "$$key": "4",
@@ -496,9 +496,72 @@ Array [
       "options": null,
     },
     "hasOptions": false,
-    "parent": "",
+    "parent": "root",
   },
 ]
+`;
+
+exports[`ListBoxBrowser should return a data with proper keys 2`] = `
+Object {
+  "current": Object {
+    "0/0": Array [
+      Object {
+        "$$key": "0/0/1",
+        "attributes": Object {
+          "defaultIsSelected": true,
+          "label": "The Punisher",
+          "options": null,
+        },
+        "hasOptions": false,
+        "parent": "0/0",
+      },
+      Object {
+        "$$key": "0/0/8",
+        "attributes": Object {
+          "defaultIsSelected": true,
+          "label": "Bucky",
+          "options": null,
+        },
+        "hasOptions": false,
+        "parent": "0/0",
+      },
+    ],
+    "1/2": Array [
+      Object {
+        "$$key": "1/2/2",
+        "attributes": Object {
+          "defaultIsSelected": true,
+          "label": "Shazam",
+          "options": null,
+        },
+        "hasOptions": false,
+        "parent": "1/2",
+      },
+      Object {
+        "$$key": "1/2/3",
+        "attributes": Object {
+          "defaultIsSelected": true,
+          "label": "Highfather",
+          "options": null,
+        },
+        "hasOptions": false,
+        "parent": "1/2",
+      },
+    ],
+    "root": Array [
+      Object {
+        "$$key": "4",
+        "attributes": Object {
+          "defaultIsSelected": true,
+          "label": "Dragon Ball",
+          "options": null,
+        },
+        "hasOptions": false,
+        "parent": "root",
+      },
+    ],
+  },
+}
 `;
 
 exports[`ListBoxBrowser should return option with $$key === 0 1`] = `
@@ -853,7 +916,7 @@ Object {
     ],
   },
   "hasOptions": true,
-  "parent": "",
+  "parent": "root",
 }
 `;
 
@@ -938,7 +1001,7 @@ Object {
     ],
   },
   "hasOptions": true,
-  "parent": "",
+  "parent": "root",
 }
 `;
 
