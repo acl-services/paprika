@@ -47,7 +47,7 @@ const defaultProps = {
 export default function Option(props) {
   const [state, dispatch] = useListBox();
   const { activeOption, isDisabled: isDisabledState } = state;
-  const { index, groupId, label } = props; // eslint-disable-line
+  const { index, groupId, label, ...moreProps } = props; // eslint-disable-line
 
   useIsSelectedOption({ index, props });
 
@@ -66,6 +66,7 @@ export default function Option(props) {
 
   return (
     <OptionStyled
+      {...moreProps}
       {...getA11yAttributesForOption(isSelected)}
       hasPreventDefaultOnSelect={props.preventDefaultOnSelect}
       id={id}
@@ -75,6 +76,7 @@ export default function Option(props) {
       key={index}
       onClick={handleClickOption({ props, state, dispatch })}
       data-pka-anchor={isSelected ? "list-option--is-selected" : "list-option"}
+      data-pka-prevent-default-on-select={props.preventDefaultOnSelect}
     >
       {typeof props.children === "function" ? props.children({ isSelected, isDisabled, id }) : props.children}
     </OptionStyled>

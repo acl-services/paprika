@@ -11,13 +11,17 @@ export const flex = css`
 export const container = css`
   border: 2px solid ${tokens.border.color};
   border-radius: 6px;
-  min-height: 240px;
   position: relative;
   width: 100%;
 
   [data-ppk-anchor="listbox-content-inline"] {
     border: 0;
     flex-basis: 50%;
+    ${({ height }) => {
+      return `
+        min-height: ${height}px;
+      `;
+    }}
   }
 
   [data-ppk-anchor="listbox-box"] {
@@ -29,6 +33,22 @@ export const container = css`
     display: none;
   }
 
+  [data-pka-prevent-default-on-select="true"] {
+    &:hover {
+      background: ${tokens.color.blackLighten70};
+    }
+  }
+
+  [data-ppk-is-root-selected="true"] {
+    background: ${tokens.color.blue};
+    color: ${tokens.color.white};
+
+    &:hover {
+      background: ${tokens.color.blue};
+      color: ${tokens.color.white};
+    }
+  }
+
   [data-ppk-anchor="listbox-trigger"] ~ [data-ppk-anchor="listbox-trigger"] {
     border-left: 1px solid ${tokens.border.color};
     display: block;
@@ -37,6 +57,12 @@ export const container = css`
     position: absolute;
     top: 0px;
     width: 1px;
+
+    ${({ height }) => {
+      return `
+        max-height: ${height + 38}px;
+      `;
+    }}
   }
 `;
 
