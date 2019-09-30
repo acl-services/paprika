@@ -1,6 +1,6 @@
 {
   "name": "@paprika/date-picker",
-  "version": "0.4.0",
+  "version": "0.4.1",
   "description": "DatePicker component",
   "main": "lib/index.js",
   "author": "@paprika",
