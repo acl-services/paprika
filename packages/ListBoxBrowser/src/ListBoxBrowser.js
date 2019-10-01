@@ -10,12 +10,14 @@ const propTypes = {
   isMulti: PropTypes.bool,
   height: PropTypes.number,
   onChange: PropTypes.func,
+  isParentSelectable: PropTypes.bool,
 };
 
 const defaultProps = {
   isMulti: true,
   height: 220,
   onChange: () => {},
+  isParentSelectable: null,
 };
 
 function getOptions(indexes, list) {
@@ -30,12 +32,12 @@ function getOptions(indexes, list) {
 
 export default function ListBoxBrowser(props) {
   const refSelectedOptions = React.useRef({});
-  const [localData] = React.useState(() => getData({ data: props.data, selectedOptions: refSelectedOptions }));
+  const { onChange, isParentSelectable, data, isMulti, height } = props;
+  const [localData] = React.useState(() => getData({ data, selectedOptions: refSelectedOptions }));
   const [rootKey, setRootKey] = React.useState("0");
   // NOTE: will yield a bug if the first option has not children
   const [browserKey, setBrowserKey] = React.useState("0");
   const [selectedOptions, setSelectedOptions] = React.useState(refSelectedOptions.current);
-  const { onChange } = props;
   const browserOptions = React.useMemo(() => getOptionByKey(localData, browserKey || rootKey), [
     browserKey,
     localData,
@@ -71,17 +73,19 @@ export default function ListBoxBrowser(props) {
     });
   };
 
-  const handleClickRoot = ($$key, hasOptions) => () => {
+  const handleClickRoot = ($$key, hasOptions) => event => {
     if (hasOptions) {
       setRootKey($$key);
       setBrowserKey($$key);
+      event.stopPropagation();
     }
   };
 
-  const handleClickBrowser = $$key => () => {
+  const handleClickBrowser = $$key => event => {
     const option = getOptionByKey(localData, $$key);
     if (option.hasOptions) {
       setBrowserKey($$key);
+      event.stopPropagation();
     }
   };
 
@@ -94,31 +98,35 @@ export default function ListBoxBrowser(props) {
   }, [onChange, selectedOptions]);
 
   return (
-    <div css={container} height={props.height}>
+    <div css={container} height={height}>
       <div css={flex}>
         <div css={title}>title 1</div>
         <div css={title}>title 2</div>
       </div>
       <div css={flex}>
         <CustomListBox
-          options={localData}
-          height={props.height}
-          isMulti={props.isMulti}
+          browserKey="root"
+          height={height}
+          isMulti={isMulti}
           onChange={handleChange("root")}
-          selectedOptions={selectedOptions}
           onClickNavigate={handleClickRoot}
+          options={localData}
           rootKey={rootKey}
+          selectedOptions={selectedOptions}
+          isParentSelectable={isParentSelectable}
         />
         <CustomListBox
-          options={browserOptions.attributes.options}
-          id={browserKey}
-          height={props.height}
-          isMulti={props.isMulti}
-          onChange={handleChange("browser")}
+          browserKey={browserKey}
           hasOnUp={browserOptions.parent !== "root"}
-          onUp={handleUp(browserOptions.parent)}
-          selectedOptions={selectedOptions}
+          height={height}
+          id={browserKey}
+          isMulti={isMulti}
+          onChange={handleChange("browser")}
           onClickNavigate={handleClickBrowser}
+          onUp={handleUp(browserOptions.parent)}
+          options={browserOptions.attributes.options}
+          selectedOptions={selectedOptions}
+          isParentSelectable={isParentSelectable}
         />
       </div>
       <OptionsSelected options={selectedOptions} />

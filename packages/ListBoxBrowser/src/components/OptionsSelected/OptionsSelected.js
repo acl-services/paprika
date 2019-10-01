@@ -15,7 +15,13 @@ export default function OptionsSelected(props) {
       <div css={divider}>Results (i18n)</div>
       <div css={container}>
         {Object.keys(options).map(key => {
-          return options[key].map(option => <div css={optionStyles}>{option.attributes.label}</div>);
+          return options[key].map(option => {
+            return (
+              <div key={option.$$key} css={optionStyles}>
+                {option.attributes.label}
+              </div>
+            );
+          });
         })}
       </div>
     </>
