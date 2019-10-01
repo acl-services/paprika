@@ -33,12 +33,6 @@ export const container = css`
     display: none;
   }
 
-  [data-pka-prevent-default-on-select="true"] {
-    &:hover {
-      background: ${tokens.color.blackLighten70};
-    }
-  }
-
   [data-ppk-is-root-selected="true"] {
     background: ${tokens.color.blue};
     color: ${tokens.color.white};
@@ -66,15 +60,43 @@ export const container = css`
   }
 `;
 
-export const breakLine = css`
-  border: 1px solid red;
-  flex-basis: 100%;
-  height: 0;
-`;
-
 export const title = css`
   background: ${tokens.backgroundColor.level0};
   border-bottom: 1px solid ${tokens.border.color};
   flex-grow: 1;
   padding: ${spacer(1)} ${spacer(1)} ${spacer(1)} 12px;
+`;
+
+export const label = css`
+  align-items: center;
+  display: flex;
+  justify-content: flex-start;
+  position: relative;
+  & > div {
+    flex-grow: 1;
+  }
+
+  & > div + div {
+    color: ${tokens.color.white};
+    display: flex;
+    justify-content: flex-end;
+
+    svg {
+      left: 1px;
+      position: relative;
+    }
+  }
+`;
+
+export const navigateButton = css`
+  align-items: center;
+  background: ${tokens.backgroundColor.level0};
+  border: 1px solid ${tokens.border.color};
+  border-radius: ${tokens.border.radius};
+  color: ${tokens.color.black};
+  display: flex;
+  height: 20px;
+  justify-content: center;
+  position: relative;
+  width: 20px;
 `;

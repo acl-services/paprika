@@ -1,19 +1,21 @@
 import React from "react";
 import PropTypes from "prop-types";
-import ListBox from "@paprika/listbox";
 import { container, flex, title } from "./ListBoxBrowser.styles";
 import { getData, getOptionByKey } from "./helpers";
 import OptionsSelected from "./components/OptionsSelected";
+import CustomListBox from "./components/CustomListBox";
 
 const propTypes = {
   data: PropTypes.any.isRequired, // eslint-disable-line
   isMulti: PropTypes.bool,
   height: PropTypes.number,
+  onChange: PropTypes.func,
 };
 
 const defaultProps = {
   isMulti: true,
   height: 220,
+  onChange: () => {},
 };
 
 function getOptions(indexes, list) {
@@ -26,14 +28,6 @@ function getOptions(indexes, list) {
   return [list[indexes].value];
 }
 
-function isSelected({ $$key, selectedOptions, browserKey }) {
-  if (browserKey in selectedOptions) {
-    return selectedOptions[browserKey].some(option => option.$$key === $$key);
-  }
-
-  return false;
-}
-
 export default function ListBoxBrowser(props) {
   const refSelectedOptions = React.useRef({});
   const [localData] = React.useState(() => getData({ data: props.data, selectedOptions: refSelectedOptions }));
@@ -41,7 +35,7 @@ export default function ListBoxBrowser(props) {
   // NOTE: will yield a bug if the first option has not children
   const [browserKey, setBrowserKey] = React.useState("0");
   const [selectedOptions, setSelectedOptions] = React.useState(refSelectedOptions.current);
-
+  const { onChange } = props;
   const browserOptions = React.useMemo(() => getOptionByKey(localData, browserKey || rootKey), [
     browserKey,
     localData,
@@ -95,7 +89,9 @@ export default function ListBoxBrowser(props) {
     setBrowserKey(`${_parent}`);
   };
 
-  console.log("selected options", selectedOptions);
+  React.useEffect(() => {
+    onChange(selectedOptions);
+  }, [onChange, selectedOptions]);
 
   return (
     <div css={container} height={props.height}>
@@ -104,48 +100,26 @@ export default function ListBoxBrowser(props) {
         <div css={title}>title 2</div>
       </div>
       <div css={flex}>
-        <ListBox height={props.height} isInline isMulti={props.isMulti} onChange={handleChange("root")}>
-          <ListBox.Trigger isHidden></ListBox.Trigger>
-          {localData.map(({ $$key, attributes, hasOptions }) => (
-            <ListBox.Option
-              preventDefaultOnSelect={hasOptions}
-              isSelected={isSelected({ $$key, browserKey, selectedOptions })}
-              key={$$key}
-              label={attributes.label}
-              onClick={handleClickRoot($$key, hasOptions)}
-              value={{ $$key, attributes, hasOptions }}
-              data-ppk-is-root-selected={rootKey === $$key}
-            >
-              {attributes.label}
-              {hasOptions ? " >" : null}
-            </ListBox.Option>
-          ))}
-        </ListBox>
-        <ListBox
-          key={browserKey}
+        <CustomListBox
+          options={localData}
           height={props.height}
           isMulti={props.isMulti}
-          isInline
+          onChange={handleChange("root")}
+          selectedOptions={selectedOptions}
+          onClickNavigate={handleClickRoot}
+          rootKey={rootKey}
+        />
+        <CustomListBox
+          options={browserOptions.attributes.options}
+          id={browserKey}
+          height={props.height}
+          isMulti={props.isMulti}
           onChange={handleChange("browser")}
-        >
-          <ListBox.Trigger isHidden></ListBox.Trigger>
-          {browserOptions.parent !== "root" ? (
-            <ListBox.Option onClick={handleUp(browserOptions.parent)}>../</ListBox.Option>
-          ) : null}
-          {browserOptions.attributes.options.map(({ $$key, attributes, hasOptions }) => (
-            <ListBox.Option
-              preventDefaultOnSelect={hasOptions}
-              isSelected={isSelected({ $$key, browserKey, selectedOptions })}
-              key={$$key}
-              label={attributes.label}
-              onClick={handleClickBrowser($$key)}
-              value={{ $$key, attributes, hasOptions }}
-            >
-              {attributes.label}
-              {hasOptions ? " >" : null}
-            </ListBox.Option>
-          ))}
-        </ListBox>
+          hasOnUp={browserOptions.parent !== "root"}
+          onUp={handleUp(browserOptions.parent)}
+          selectedOptions={selectedOptions}
+          onClickNavigate={handleClickBrowser}
+        />
       </div>
       <OptionsSelected options={selectedOptions} />
     </div>

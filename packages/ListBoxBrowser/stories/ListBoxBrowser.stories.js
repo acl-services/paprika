@@ -6,6 +6,11 @@ import data from "../test/fixtures";
 
 storiesOf("ListBoxBrowser", module).add("Showcase", () => (
   <Story>
-    <ListBoxBrowser data={data} />
+    <ListBoxBrowser
+      data={data}
+      onChange={selectedOptions => {
+        console.log("selected options:", selectedOptions);
+      }}
+    />
   </Story>
 ));

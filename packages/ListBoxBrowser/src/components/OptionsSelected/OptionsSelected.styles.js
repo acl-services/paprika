@@ -3,6 +3,7 @@ import tokens from "@paprika/tokens/lib/tokens";
 import { spacer } from "@paprika/stylers/lib/helpers";
 
 export const container = css`
+  display: flex;
   padding: ${tokens.space};
 `;
 
@@ -11,10 +12,8 @@ export const optionStyles = css`
   border-radius: ${tokens.border.radius};
   box-sizing: border-box;
   font-size: 14px;
-  margin-bottom: ${spacer(1)};
-  margin-top: ${tokens.space};
+  margin: ${tokens.spaceSm};
   padding: ${tokens.spaceSm};
-  width: 100%;
 `;
 
 export const divider = css`
