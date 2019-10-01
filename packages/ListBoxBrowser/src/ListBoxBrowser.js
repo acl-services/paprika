@@ -106,7 +106,7 @@ export default function ListBoxBrowser(props) {
   }, [onChange, selectedOptions]);
 
   return (
-    <div css={container} height={height}>
+    <div isParentSelectable={isParentSelectable} css={container} height={height}>
       <div css={flex}>
         <div css={title}>title 1</div>
         <div css={title}>title 2</div>

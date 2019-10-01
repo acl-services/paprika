@@ -24,6 +24,14 @@ export const container = css`
     }}
   }
 
+  [data-pka-prevent-default-on-select="true"] {
+    cursor: pointer;
+
+    &:hover {
+      background: ${tokens.backgroundColor.level0};
+    }
+  }
+
   [data-ppk-anchor="listbox-box"] {
     border: 0;
   }
@@ -36,14 +44,14 @@ export const container = css`
   [data-ppk-is-root-selected="true"] {
     background: ${tokens.color.blue};
     color: ${tokens.color.white};
-    [role="button"] {
-      color: ${tokens.color.white};
-    }
 
     &:hover {
       background: ${tokens.color.blue};
       color: ${tokens.color.white};
     }
+    ${({ isParentSelectable }) => {
+      return `[role="button"] { color: ${isParentSelectable ? tokens.color.black : tokens.color.white}; };`;
+    }}
   }
 
   [data-ppk-anchor="listbox-trigger"] ~ [data-ppk-anchor="listbox-trigger"] {
