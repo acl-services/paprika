@@ -30,6 +30,14 @@ function getOptions(indexes, list) {
   return [list[indexes].value];
 }
 
+function isSelectable({ hasOptions, isParentSelectable }) {
+  if (isParentSelectable !== null) {
+    return !isParentSelectable;
+  }
+
+  return hasOptions;
+}
+
 export default function ListBoxBrowser(props) {
   const refSelectedOptions = React.useRef({});
   const { onChange, isParentSelectable, data, isMulti, height } = props;
@@ -48,7 +56,7 @@ export default function ListBoxBrowser(props) {
     if (source === "root") {
       const options = getOptions(indexes, list)
         .map(option => {
-          if (option.hasOptions) {
+          if (isSelectable({ hasOptions: option.hasOptions, isParentSelectable })) {
             return null;
           }
 
@@ -73,19 +81,19 @@ export default function ListBoxBrowser(props) {
     });
   };
 
-  const handleClickRoot = ($$key, hasOptions) => event => {
-    if (hasOptions) {
+  const handleClickRoot = ({ $$key, hasOptions, isClickFromButton = false }) => event => {
+    if ((hasOptions && isParentSelectable === null) || isClickFromButton) {
       setRootKey($$key);
       setBrowserKey($$key);
-      event.stopPropagation();
+      if (event) event.stopPropagation();
     }
   };
 
-  const handleClickBrowser = $$key => event => {
+  const handleClickBrowser = ({ $$key, isClickFromButton = false }) => event => {
     const option = getOptionByKey(localData, $$key);
-    if (option.hasOptions) {
+    if ((option.hasOptions && isParentSelectable === null) || isClickFromButton) {
       setBrowserKey($$key);
-      event.stopPropagation();
+      if (event) event.stopPropagation();
     }
   };
 

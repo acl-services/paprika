@@ -3,8 +3,9 @@ import PropTypes from "prop-types";
 import ListBox from "@paprika/listbox";
 import RawButton from "@paprika/raw-button";
 import ArrowRight from "@paprika/icon/lib/ArrowRight";
-import { label, navigateButton } from "../../ListBoxBrowser.styles";
+import { label, navigateButton } from "./CustomListBox.styles";
 
+const noop = () => () => {};
 const propTypes = {
   id: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
   height: PropTypes.number.isRequired,
@@ -35,7 +36,7 @@ function isSelected({ $$key, selectedOptions, browserKey }) {
   return false;
 }
 
-function hasPreventDefaultOnSelect({ hasOptions, isParentSelectable }) {
+function isSelectable({ hasOptions, isParentSelectable }) {
   if (isParentSelectable !== null) {
     return !isParentSelectable;
   }
@@ -64,12 +65,13 @@ export default function CustomListBox(props) {
       {hasOnUp ? <ListBox.Option onClick={onUp}>../</ListBox.Option> : null}
       {options.map(({ $$key, attributes, hasOptions }) => (
         <ListBox.Option
-          preventDefaultOnSelect={hasPreventDefaultOnSelect({ hasOptions, isParentSelectable })}
+          preventDefaultOnSelect={isSelectable({ hasOptions, isParentSelectable })}
           isSelected={isSelected({ browserKey, $$key, selectedOptions })}
           key={$$key}
           label={attributes.label}
           value={{ $$key, attributes, hasOptions }}
           data-ppk-is-root-selected={rootKey === $$key}
+          onClick={hasOptions ? onClickNavigate({ $$key, hasOptions }) : noop()}
         >
           {({ isSelected }) => {
             return (
@@ -85,9 +87,10 @@ export default function CustomListBox(props) {
                 <div>
                   {hasOptions ? (
                     <RawButton
+                      isParentSelectable={isParentSelectable}
                       a11yText="Browse content (i18n)"
                       css={navigateButton}
-                      onClick={onClickNavigate($$key, hasOptions)}
+                      onClick={onClickNavigate({ $$key, hasOptions, isClickFromButton: true })}
                     >
                       <ArrowRight />
                     </RawButton>
