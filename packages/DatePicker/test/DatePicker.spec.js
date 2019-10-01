@@ -20,6 +20,7 @@ function render(props = {}, inputProps = {}) {
 
   return {
     ...rendered,
+
     rerender: updatedProps => {
       rerender(
         <L10n>
@@ -33,29 +34,32 @@ function render(props = {}, inputProps = {}) {
 }
 
 describe("DatePicker", () => {
-  it("should display empty in input by default", () => {
-    const { getByTestId } = render();
-
-    expect(getByTestId("datepicker.input").value).toEqual("");
+  const datePickerInputTestId = "datepicker.input";
+  describe("DatePicker default state", () => {
+    it("should display empty in input", () => {
+      const { getByTestId } = render();
+      expect(getByTestId(datePickerInputTestId).value).toEqual("");
+    });
   });
 
-  it("should display initial date", () => {
-    const { getByTestId } = render({ date: moment("2019-01-02") });
+  describe("When Date Picker recieves changes ", () => {
+    let getByTestId;
+    let rerender;
 
-    expect(getByTestId("datepicker.input").value).toEqual("January 02, 2019");
-  });
+    beforeEach(() => {
+      ({ getByTestId, rerender } = render({ date: moment("2019-01-02") }));
+    });
 
-  it("should update date if props updated", () => {
-    const { getByTestId, rerender } = render({ date: moment("2019-01-02") });
-
-    rerender({ date: moment("2019-03-01") });
-
-    expect(getByTestId("datepicker.input").value).toEqual("March 01, 2019");
-  });
-
-  it("should render input as error state hasError", () => {
-    render({ date: moment("2019-01-02") }, { hasError: true });
-
-    expect(document.getElementsByClassName("form-input--has-error").length).toEqual(1);
+    it("should display initial date", () => {
+      expect(getByTestId(datePickerInputTestId).value).toEqual("January 02, 2019");
+    });
+    it("should update date if props updated", () => {
+      rerender({ date: moment("2019-03-01") });
+      expect(getByTestId(datePickerInputTestId).value).toEqual("March 01, 2019");
+    });
+    it("should render input as error state hasError", () => {
+      render({ date: moment("2019-01-02") }, { hasError: true });
+      expect(document.getElementsByClassName("form-input--has-error").length).toEqual(1);
+    });
   });
 });

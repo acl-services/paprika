@@ -131,7 +131,11 @@ function DatePicker(props) {
   }
 
   function handleClosePopover() {
-    if (!isElementContainsFocus(calendarRef.current) && !isElementContainsFocus(inputRef.current)) {
+    if (
+      calendarRef.current &&
+      !isElementContainsFocus(calendarRef.current) &&
+      (inputRef.current && !isElementContainsFocus(inputRef.current))
+    ) {
       if (!hasParsingError) {
         setConfirmationResult(formatDateProp(humanFormat));
         setInputtedString(formatDateProp(dataFormat));
@@ -173,7 +177,7 @@ function DatePicker(props) {
 
   function handleInputBlur() {
     window.requestAnimationFrame(() => {
-      if (!isElementContainsFocus(calendarRef.current)) {
+      if (calendarRef.current && !isElementContainsFocus(calendarRef.current)) {
         handleInputConfirm();
       }
     });
