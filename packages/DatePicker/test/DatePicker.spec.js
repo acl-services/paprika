@@ -40,21 +40,21 @@ describe("DatePicker", () => {
   });
 
   it("should display initial date", () => {
-    const { getByTestId } = render({ date: moment("2019-01-02 11:55") });
+    const { getByTestId } = render({ date: moment.utc("2019-01-02") });
 
     expect(getByTestId("datepicker.input").value).toEqual("January 02, 2019");
   });
 
   it("should update date if props updated", () => {
-    const { getByTestId, rerender } = render({ date: moment("2019-01-02 11:55") });
+    const { getByTestId, rerender } = render({ date: moment.utc("2019-01-02") });
 
-    rerender({ date: moment("2019-03-01 11:55") });
+    rerender({ date: moment.utc("2019-03-01") });
 
     expect(getByTestId("datepicker.input").value).toEqual("March 01, 2019");
   });
 
   it("should render input as error state hasError", () => {
-    render({ date: moment("2019-01-02 11:55") }, { hasError: true });
+    render({ date: moment.utc("2019-01-02") }, { hasError: true });
 
     expect(document.getElementsByClassName("form-input--has-error").length).toEqual(1);
   });
