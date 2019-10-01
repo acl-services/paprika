@@ -38,6 +38,12 @@ function isSelectable({ hasOptions, isParentSelectable }) {
   return hasOptions;
 }
 
+function focusListBoxBrowser() {
+  window.requestAnimationFrame(() => {
+    document.querySelectorAll('[data-ppk-anchor="listbox-content-inline"]')[1].focus();
+  });
+}
+
 export default function ListBoxBrowser(props) {
   const refSelectedOptions = React.useRef({});
   const { onChange, isParentSelectable, data, isMulti, height } = props;
@@ -85,6 +91,7 @@ export default function ListBoxBrowser(props) {
     if ((hasOptions && isParentSelectable === null) || isClickFromButton) {
       setRootKey($$key);
       setBrowserKey($$key);
+      focusListBoxBrowser();
       if (event) event.stopPropagation();
     }
   };
@@ -93,12 +100,14 @@ export default function ListBoxBrowser(props) {
     const option = getOptionByKey(localData, $$key);
     if ((option.hasOptions && isParentSelectable === null) || isClickFromButton) {
       setBrowserKey($$key);
+      focusListBoxBrowser();
       if (event) event.stopPropagation();
     }
   };
 
   const handleUp = _parent => () => {
     setBrowserKey(`${_parent}`);
+    focusListBoxBrowser();
   };
 
   React.useEffect(() => {
