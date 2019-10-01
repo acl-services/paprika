@@ -1,14 +1,23 @@
 import React from "react";
 import { storiesOf } from "@storybook/react";
-import Takeover from "@paprika/takeover/src";
+import { boolean, withKnobs } from "@storybook/addon-knobs";
+import Button from "@paprika/button";
+import Takeover from "../src";
 
-const TakeoverStory = () => {
+const TakeoverStory = ({ isInline }) => {
   const [isOpen, setIsOpen] = React.useState(true);
   const toggle = () => {
     setIsOpen(state => !state);
   };
 
-  return <Takeover isOpen={isOpen} onClose={toggle} />;
+  return (
+    <>
+      <Button onClick={toggle}>Open</Button>
+      <Takeover isInline={isInline} isOpen={isOpen} onClose={toggle} />
+    </>
+  );
 };
 
-storiesOf("Takeover", module).add("Basic", () => <TakeoverStory />);
+storiesOf("Takeover", module)
+  .addDecorator(withKnobs)
+  .add("Basic", () => <TakeoverStory isInline={boolean("Inline", false)} />);

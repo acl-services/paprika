@@ -23,7 +23,8 @@
     "@paprika/stylers": "^0.1.5",
     "@paprika/tokens": "^0.1.4",
     "focus-trap-react": "^6.0.0",
-    "prop-types": "^15.7.2"
+    "prop-types": "^15.7.2",
+    "react-transition-group": "^4.3.0"
   },
   "peerDependencies": {
     "react": "^16.8.4",
