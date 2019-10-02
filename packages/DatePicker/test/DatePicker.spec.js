@@ -58,4 +58,14 @@ describe("DatePicker", () => {
 
     expect(document.getElementsByClassName("form-input--has-error").length).toEqual(1);
   });
+
+  it("should render date correctly with different timezones", () => {
+    const utcOffSetPlusOneHour = moment("2019-04-02").utcOffset(60);
+    const { getByTestId, rerender } = render({ date: utcOffSetPlusOneHour });
+    expect(getByTestId("datepicker.input").value).toEqual("April 02, 2019");
+
+    const utcOffSetMinusOneHour = moment("2019-04-02").utcOffset(-60);
+    rerender({ date: utcOffSetMinusOneHour });
+    expect(getByTestId("datepicker.input").value).toEqual("April 02, 2019");
+  });
 });
