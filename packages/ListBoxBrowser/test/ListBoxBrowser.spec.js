@@ -1,4 +1,4 @@
-import data from "./fixtures";
+import data from "./fixtures/multiple";
 import { getData, getOptionByKey } from "../src/helpers";
 
 describe("ListBoxBrowser", () => {

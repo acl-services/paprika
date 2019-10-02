@@ -1,44 +1,27 @@
 const hasOptions = options => typeof options !== "undefined" && Array.isArray(options);
 
-export function getData({ data, path = "root", selectedOptions }) {
-  return data.map(({ label = null, options, defaultIsSelected = false, ...moreAttributes }, index) => {
-    if (!label) {
-      throw new Error("A Label attribute is required for each option object, can't process data.");
-    }
+export function isRoot(key) {
+  if (key === null) return false;
 
-    let newPath = path === "root" ? `${index}` : `${path}/${index}`;
-    const _hasOptions = hasOptions(options);
-    const option = {
-      parent: path,
-      hasOptions: _hasOptions,
-      $$key: newPath,
-      attributes: {
-        defaultIsSelected,
-        label,
-        options: _hasOptions ? getData({ data: options, selectedOptions, path: newPath }) : null,
-        ...moreAttributes,
-      },
-    };
+  return key.includes("root");
+}
 
-    if (defaultIsSelected) {
-      /* eslint-disable no-param-reassign */
-      if (option.parent === "root") {
-        newPath = "root";
-      }
+function getOptions(indexes, list) {
+  if (Array.isArray(indexes)) {
+    return indexes.map(index => {
+      return list[index].value;
+    });
+  }
 
-      if (option.parent in selectedOptions.current) {
-        selectedOptions.current = {
-          ...selectedOptions.current,
-          [option.parent]: [...selectedOptions.current[option.parent], option],
-        };
-      } else {
-        selectedOptions.current = { ...selectedOptions.current, [option.parent]: [option] };
-      }
-      /* eslint-enable no-param-reassing */
-    }
+  return [list[indexes].value];
+}
 
-    return option;
-  });
+function isSelectable({ hasOptions, isParentSelectable }) {
+  if (isParentSelectable !== null) {
+    return !isParentSelectable;
+  }
+
+  return hasOptions;
 }
 
 export function getOptionByKey(data, path) {
@@ -71,12 +54,91 @@ export function getOptionByKey(data, path) {
   }
 }
 
+export function onChange({ source, indexes, list, isParentSelectable, setSelectedOptions, browserKey, isMulti }) {
+  if (!isMulti) {
+    setSelectedOptions(() => {
+      const key = isRoot(source) ? "root" : browserKey;
+      return { [key]: getOptions(indexes, list) };
+    });
+
+    return;
+  }
+
+  if (isRoot(source)) {
+    const options = getOptions(indexes, list)
+      .map(option => {
+        if (isSelectable({ hasOptions: option.hasOptions, isParentSelectable })) {
+          return null;
+        }
+
+        return option;
+      })
+      .filter(chunk => chunk);
+
+    if (options.length) {
+      setSelectedOptions(selectedOptions => {
+        return { ...selectedOptions, root: [...options] };
+      });
+      return;
+    }
+
+    setSelectedOptions(selectedOptions => {
+      return { ...selectedOptions, root: [] };
+    });
+  }
+
+  setSelectedOptions(selectedOptions => {
+    return { ...selectedOptions, [browserKey]: getOptions(indexes, list) };
+  });
+}
+
+export function getData({ data, path = "root", selectedOptions }) {
+  return data.map(({ label = null, options, defaultIsSelected = false, ...moreAttributes }, index) => {
+    if (!label) {
+      throw new Error("A Label attribute is required for each option object, can't process data.");
+    }
+
+    let newPath = isRoot(path) ? `${index}` : `${path}/${index}`;
+    const _hasOptions = hasOptions(options);
+    const option = {
+      parent: path,
+      hasOptions: _hasOptions,
+      $$key: newPath,
+      attributes: {
+        defaultIsSelected,
+        label,
+        options: _hasOptions ? getData({ data: options, selectedOptions, path: newPath }) : null,
+        ...moreAttributes,
+      },
+    };
+
+    if (defaultIsSelected) {
+      /* eslint-disable no-param-reassign */
+      if (isRoot(option.parent)) {
+        newPath = "root";
+      }
+
+      if (option.parent in selectedOptions.current) {
+        selectedOptions.current = {
+          ...selectedOptions.current,
+          [option.parent]: [...selectedOptions.current[option.parent], option],
+        };
+      } else {
+        selectedOptions.current = { ...selectedOptions.current, [option.parent]: [option] };
+      }
+      /* eslint-enable no-param-reassing */
+    }
+
+    return option;
+  });
+}
+
 export function getBreadcrumb({ data, option }) {
   let activeOption = option;
   let key = null;
   const breadcrumb = [];
-  while (key !== "root") {
-    if (activeOption.parent !== "root") {
+  while (!isRoot(key)) {
+    if (!isRoot(activeOption.parent)) {
       const parent = getOptionByKey(data, activeOption.parent);
       breadcrumb.push(parent);
       activeOption = parent;

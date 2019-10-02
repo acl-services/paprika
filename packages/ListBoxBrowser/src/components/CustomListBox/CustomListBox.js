@@ -73,40 +73,36 @@ export default function CustomListBox(props) {
           data-ppk-is-root-selected={rootKey === $$key}
           onClick={hasOptions ? onClickNavigate({ $$key, hasOptions }) : noop()}
         >
-          {({ isSelected }) => {
-            return (
-              <div css={label}>
-                <div css={labelContent}>
-                  {hasOptions ? (
-                    <RawButton
-                      tabIndex={isParentSelectable ? 0 : -1}
-                      isParentSelectable={isParentSelectable}
-                      a11yText="Browse content (i18n)"
-                      css={navigateButton}
-                      onClick={onClickNavigate({ $$key, hasOptions, isClickFromButton: true })}
-                    >
-                      <ArrowRight />
-                    </RawButton>
-                  ) : null}
-                  <span>{attributes.label}</span>
-                </div>
-                <div css={action}>
-                  {!hasOptions || isParentSelectable ? (
-                    <span>
-                      <input
-                        css={checkbox}
-                        tabIndex={-1}
-                        aria-hidden
-                        type="checkbox"
-                        checked={isSelected}
-                        onChange={() => {}}
-                      />
-                    </span>
-                  ) : null}
-                </div>
-              </div>
-            );
-          }}
+          <div css={label}>
+            <div css={labelContent}>
+              {hasOptions ? (
+                <RawButton
+                  tabIndex={isParentSelectable ? 0 : -1}
+                  isParentSelectable={isParentSelectable}
+                  a11yText="Browse content (i18n)"
+                  css={navigateButton}
+                  onClick={onClickNavigate({ $$key, hasOptions, isClickFromButton: true })}
+                >
+                  <ArrowRight />
+                </RawButton>
+              ) : null}
+              <span>{attributes.label}</span>
+            </div>
+            <div css={action}>
+              {!hasOptions || isParentSelectable ? (
+                <span>
+                  <input
+                    css={checkbox}
+                    tabIndex={-1}
+                    aria-hidden
+                    type={isMulti ? "checkbox" : "radio"}
+                    checked={isSelected({ browserKey, $$key, selectedOptions })}
+                    onChange={() => {}}
+                  />
+                </span>
+              ) : null}
+            </div>
+          </div>
         </ListBox.Option>
       ))}
     </ListBox>
