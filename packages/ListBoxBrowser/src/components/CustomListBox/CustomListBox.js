@@ -75,20 +75,6 @@ export default function CustomListBox(props) {
         >
           <div css={label}>
             <div css={labelContent}>
-              {hasOptions ? (
-                <RawButton
-                  tabIndex={isParentSelectable ? 0 : -1}
-                  isParentSelectable={isParentSelectable}
-                  a11yText="Browse content (i18n)"
-                  css={navigateButton}
-                  onClick={onClickNavigate({ $$key, hasOptions, isClickFromButton: true })}
-                >
-                  <ArrowRight />
-                </RawButton>
-              ) : null}
-              <span>{attributes.label}</span>
-            </div>
-            <div css={action}>
               {!hasOptions || isParentSelectable ? (
                 <span>
                   <input
@@ -100,6 +86,20 @@ export default function CustomListBox(props) {
                     onChange={() => {}}
                   />
                 </span>
+              ) : null}
+              <span>{attributes.label}</span>
+            </div>
+            <div css={action}>
+              {hasOptions ? (
+                <RawButton
+                  tabIndex={isParentSelectable ? 0 : -1}
+                  isParentSelectable={isParentSelectable}
+                  a11yText="Browse content (i18n)"
+                  css={navigateButton}
+                  onClick={onClickNavigate({ $$key, hasOptions, isClickFromButton: true })}
+                >
+                  <ArrowRight />
+                </RawButton>
               ) : null}
             </div>
           </div>

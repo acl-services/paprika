@@ -16,16 +16,12 @@ export const navigateButton = css`
   ${({ isParentSelectable }) => {
     return isParentSelectable
       ? css`
-          margin-right: 4px;
           top: 1px;
         `
       : css`
           background: transparent;
           border: 1px solid transparent;
           border-radius: ${tokens.border.radius};
-          margin-left: -6px;
-          top: 2px;
-          width: 18px;
         `;
   }}
 `;
