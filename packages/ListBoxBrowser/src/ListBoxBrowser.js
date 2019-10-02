@@ -1,7 +1,7 @@
 import React from "react";
 import PropTypes from "prop-types";
 import { container, flex } from "./ListBoxBrowser.styles";
-import { getData, getOptionByKey } from "./helpers";
+import { getData, getOptionByKey, onChange as onChangeHelper, isRoot } from "./helpers";
 import OptionsSelected from "./components/OptionsSelected";
 import CustomListBox from "./components/CustomListBox";
 import Title from "./components/Title";
@@ -25,24 +25,6 @@ const defaultProps = {
   browserTitle: "",
 };
 
-function getOptions(indexes, list) {
-  if (Array.isArray(indexes)) {
-    return indexes.map(index => {
-      return list[index].value;
-    });
-  }
-
-  return [list[indexes].value];
-}
-
-function isSelectable({ hasOptions, isParentSelectable }) {
-  if (isParentSelectable !== null) {
-    return !isParentSelectable;
-  }
-
-  return hasOptions;
-}
-
 function focusListBoxBrowser() {
   window.requestAnimationFrame(() => {
     document.querySelectorAll('[data-ppk-anchor="listbox-content-inline"]')[1].focus();
@@ -64,31 +46,14 @@ export default function ListBoxBrowser(props) {
   ]);
 
   const handleChange = source => (indexes, list) => {
-    if (source === "root") {
-      const options = getOptions(indexes, list)
-        .map(option => {
-          if (isSelectable({ hasOptions: option.hasOptions, isParentSelectable })) {
-            return null;
-          }
-
-          return option;
-        })
-        .filter(chunk => chunk);
-
-      if (options.length) {
-        setSelectedOptions(selectedOptions => {
-          return { ...selectedOptions, root: [...options] };
-        });
-        return;
-      }
-
-      setSelectedOptions(selectedOptions => {
-        return { ...selectedOptions, root: [] };
-      });
-    }
-
-    setSelectedOptions(selectedOptions => {
-      return { ...selectedOptions, [browserKey]: getOptions(indexes, list) };
+    onChangeHelper({
+      source,
+      indexes,
+      list,
+      isParentSelectable,
+      setSelectedOptions,
+      browserKey,
+      isMulti,
     });
   };
 
@@ -146,10 +111,10 @@ export default function ListBoxBrowser(props) {
           isParentSelectable={isParentSelectable}
         />
         <CustomListBox
-          browserKey={browserKey}
-          hasOnUp={browserOptions.parent !== "root"}
-          height={height}
           id={browserKey}
+          browserKey={browserKey}
+          hasOnUp={!isRoot(browserOptions.parent)}
+          height={height}
           isMulti={isMulti}
           onChange={handleChange("browser")}
           onClickNavigate={handleClickBrowser}

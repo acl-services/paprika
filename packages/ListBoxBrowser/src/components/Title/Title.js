@@ -1,7 +1,7 @@
 import React from "react";
 import PropTypes from "prop-types";
 import { title, flex } from "./Title.styles";
-import { getBreadcrumb, getOptionByKey } from "../../helpers";
+import { getBreadcrumb, getOptionByKey, isRoot } from "../../helpers";
 import Breadcrumb from "../Breadcrumb";
 
 const propTypes = {
@@ -34,7 +34,7 @@ export default function Title(props) {
           {breadcrumb.length ? " / " : null}
         </span>
         {<Breadcrumb onClick={handleClick} breadcrumb={breadcrumb} />}
-        <span>{option.parent !== "root" ? option.attributes.label : null}</span>
+        <span>{!isRoot(option.parent) ? option.attributes.label : null}</span>
       </div>
     </div>
   );

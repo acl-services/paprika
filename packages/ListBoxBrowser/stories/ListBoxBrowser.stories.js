@@ -2,13 +2,14 @@ import React from "react";
 import { Story } from "storybook/assets/styles/common.styles";
 import { storiesOf } from "@storybook/react";
 import ListBoxBrowser from "../src";
-import data from "../test/fixtures";
+import dataMultiple from "../test/fixtures/multiple";
+import dataSingle from "../test/fixtures/single";
 
 storiesOf("ListBoxBrowser", module)
   .add("Multi / basic", () => (
     <Story>
       <ListBoxBrowser
-        data={data}
+        data={dataMultiple}
         rootTitle="Universes"
         browserTitle="Heroes"
         onChange={selectedOptions => {
@@ -20,8 +21,19 @@ storiesOf("ListBoxBrowser", module)
   .add("Multi / Allowing select parent", () => (
     <Story>
       <ListBoxBrowser
-        data={data}
+        data={dataMultiple}
         isParentSelectable
+        onChange={selectedOptions => {
+          console.log("selected options:", selectedOptions);
+        }}
+      />
+    </Story>
+  ))
+  .add("Single / basic", () => (
+    <Story>
+      <ListBoxBrowser
+        data={dataSingle}
+        isMulti={false}
         onChange={selectedOptions => {
           console.log("selected options:", selectedOptions);
         }}
