@@ -3,7 +3,7 @@ import PropTypes from "prop-types";
 import ListBox from "@paprika/listbox";
 import RawButton from "@paprika/raw-button";
 import ArrowRight from "@paprika/icon/lib/ArrowRight";
-import { label, navigateButton } from "./CustomListBox.styles";
+import { label, navigateButton, action, labelContent, checkbox } from "./CustomListBox.styles";
 
 const noop = () => () => {};
 const propTypes = {
@@ -76,17 +76,10 @@ export default function CustomListBox(props) {
           {({ isSelected }) => {
             return (
               <div css={label}>
-                <div>
-                  {!hasOptions || isParentSelectable ? (
-                    <span>
-                      <input tabIndex={-1} aria-hidden type="checkbox" checked={isSelected} onChange={() => {}} />
-                    </span>
-                  ) : null}
-                  <span>{attributes.label}</span>
-                </div>
-                <div>
+                <div css={labelContent}>
                   {hasOptions ? (
                     <RawButton
+                      tabIndex={isParentSelectable ? "0" : "-1"}
                       isParentSelectable={isParentSelectable}
                       a11yText="Browse content (i18n)"
                       css={navigateButton}
@@ -94,6 +87,21 @@ export default function CustomListBox(props) {
                     >
                       <ArrowRight />
                     </RawButton>
+                  ) : null}
+                  <span>{attributes.label}</span>
+                </div>
+                <div css={action}>
+                  {!hasOptions || isParentSelectable ? (
+                    <span>
+                      <input
+                        css={checkbox}
+                        tabIndex={-1}
+                        aria-hidden
+                        type="checkbox"
+                        checked={isSelected}
+                        onChange={() => {}}
+                      />
+                    </span>
                   ) : null}
                 </div>
               </div>
