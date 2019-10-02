@@ -13,3 +13,5 @@ storiesOf("ListBox / multi", module).add("With Filter", () => <Multi.WithFilter 
 storiesOf("ListBox / multi", module).add("With Groups and have preselected options", () => (
   <Multi.WithGroupsAndHavePreselectedOptions />
 ));
+storiesOf("ListBox / multi", module).add("Controlled listbox", () => <Multi.ControlledIsSelected />);
+storiesOf("ListBox / multi", module).add("UnControlled defaultIsSelected listbox", () => <Multi.DefaultIsSelected />);

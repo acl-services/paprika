@@ -4,13 +4,17 @@ import useListBox from "../../useListBox";
 import { getA11yAttributesForOption } from "../../helpers/DOMAttributes";
 import { isOptionVisible, isOptionSelected, handleClickOption } from "../Options/helpers/options";
 import { OptionStyled } from "./Option.styles";
+import useIsSelectedOption from "./useIsSelectedOption";
 
 const propTypes = {
   /** String, number or JSX content */
   children: PropTypes.oneOfType([PropTypes.node, PropTypes.func]).isRequired,
 
-  /** Describe if the option is selected or not */
+  /* Controls if the option is selected or not, never combine it with defaultIsSelected */
   isSelected: PropTypes.bool,
+
+  /** Describe if the option started as selected or not */
+  defaultIsSelected: PropTypes.bool,
 
   /** Describe if the option is enable or not */
   isDisabled: PropTypes.bool,
@@ -33,7 +37,8 @@ const defaultProps = {
   isHidden: false,
   // internal prop, which shouldn't be documented
   preventDefaultOnSelect: false, // eslint-disable-line
-  isSelected: false,
+  isSelected: null,
+  defaultIsSelected: null,
   label: null,
   onClick: null,
   value: null,
@@ -43,6 +48,8 @@ export default function Option(props) {
   const [state, dispatch] = useListBox();
   const { activeOption, isDisabled: isDisabledState } = state;
   const { index, groupId, label } = props; // eslint-disable-line
+
+  useIsSelectedOption({ index, props });
 
   if (typeof state.options[index] === "undefined") {
     return null;
@@ -56,9 +63,10 @@ export default function Option(props) {
   const isSelected = isOptionSelected(state, index);
   const isDisabled = isDisabledState || props.isDisabled;
   const id = state.options[index].id;
+
   return (
     <OptionStyled
-      {...getA11yAttributesForOption(state.options[index].isSelected)}
+      {...getA11yAttributesForOption(isSelected)}
       hasPreventDefaultOnSelect={props.preventDefaultOnSelect}
       id={id}
       isActive={activeOption === index}

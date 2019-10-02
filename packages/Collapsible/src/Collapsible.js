@@ -45,10 +45,6 @@ const Collapsible = props => {
     }
   };
 
-  const handleClickCollapse = event => {
-    props.onClick(event);
-  };
-
   const renderDefaultCollapsible = () => {
     const { a11yText, label, isCollapsed, isDisabled, iconAlign } = props;
 
@@ -58,7 +54,7 @@ const Collapsible = props => {
         aria-expanded={!isCollapsed}
         className="collapsible__label"
         isDisabled={isDisabled}
-        onClick={handleClickCollapse}
+        onClick={props.onClick}
       >
         <span
           data-pka-anchor="collapsible.icon"
@@ -82,7 +78,7 @@ const Collapsible = props => {
           aria-expanded={!isCollapsed}
           className={`collapsible__label collapsible__label--is-toggle-icon-only collapsible__label--${iconAlign}`}
           isDisabled={isDisabled}
-          onClick={handleClickCollapse}
+          onClick={props.onClick}
         >
           <span data-pka-anchor="collapsible.icon" aria-hidden="true" className="collapsible__icon">
             {collapsedIcon[+isCollapsed]}
@@ -115,10 +111,16 @@ const Collapsible = props => {
     isCollapsed,
   };
 
+  const hiddenStyles = {
+    display: "none",
+  };
+
   return (
     <div css={collapsibleStyles} {...collapsibleProps} role="group" {...moreProps}>
       {hasOnlyIconToggle ? renderCollapsibleByIcon() : renderDefaultCollapsible()}
-      <div className="collapsible__body">{children}</div>
+      <div className="collapsible__body" style={isCollapsed ? hiddenStyles : null}>
+        {children}
+      </div>
     </div>
   );
 };
