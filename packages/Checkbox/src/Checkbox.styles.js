@@ -1,70 +1,86 @@
 import { css } from "styled-components";
+import stylers from "@paprika/stylers";
 import tokens from "@paprika/tokens";
 
-const svgString = color =>
-  `<svg color='${color}' width='32' height='32' xmlns='http://www.w3.org/2000/svg'><path fill='currentColor' d='M29.839 10.107q0 0.714-0.5 1.214l-15.357 15.357q-0.5 0.5-1.214 0.5t-1.214-0.5l-8.893-8.893q-0.5-0.5-0.5-1.214t0.5-1.214l2.429-2.429q0.5-0.5 1.214-0.5t1.214 0.5l5.25 5.268 11.714-11.732q0.5-0.5 1.214-0.5t1.214 0.5l2.429 2.429q0.5 0.5 0.5 1.214z'></path></svg>`;
+const integize = token => Number.parseInt(token, 10);
 
-const checkboxTick = (color = tokens.color.green) => `
-  background-image: url("data:image/svg+xml;base64,${btoa(svgString(color))}");
-`;
+const size = stylers.spacer(4);
 
-export const checkboxStyles = css`
+const iconFontSize = (integize(size) / integize(tokens.space) - 2.5) * 2;
+const iconSize = `${stylers.fontSizeValue(iconFontSize)}px`;
+
+const topOffset = (integize(size) - integize(stylers.fontSizeValue()) * stylers.lineHeightValue(-1)) / 2;
+const isCheckboxBigger = topOffset > 0;
+const labelPadding = ({ hasChildren }) => {
+  const top = isCheckboxBigger ? `${topOffset}px` : 0;
+  const left = hasChildren ? `${integize(size) + integize(tokens.spaceSm)}px` : size;
+  return `${top} 0 ${top} ${left}`;
+};
+const checkerTop = isCheckboxBigger ? "-1px" : `${Math.abs(topOffset / 2)}px`;
+
+const checkboxStyles = css`
+  ${stylers.boxSizingStyles}
+  ${stylers.fontSize()}
+
+  line-height: ${({ hasChildren }) => (hasChildren ? stylers.lineHeightValue(-1) : "0")};
+  position: relative;
+
   input[type="checkbox"] {
-    display: block;
-    height: 0;
-    margin: 0;
-    visibility: hidden;
-    width: 0;
-  }
+    ${stylers.visuallyHidden}
 
-  [type="checkbox"] + label {
-    cursor: pointer;
-    padding-left: 36px;
-    position: relative;
-  }
+    & + label {
+      cursor: pointer;
+      display: inline-block;
+      margin: 0;
+      min-height: ${size};
+      padding: ${labelPadding};
+      position: relative;
+    }
+  
+    & + label::before,
+    & + label > [data-pka-anchor="checkbox.icon"] {
+      position: absolute;
+      top: ${checkerTop};
+    }
 
-  [type="checkbox"] + label::before,
-  [type="checkbox"] + label::after {
-    content: "";
-    height: 30px;
-    left: 0;
-    position: absolute;
-    top: 0;
-    width: 30px;
-  }
-  [type="checkbox"] + label::before {
-    background: ${tokens.color.white};
-    border: 1px solid ${tokens.border.color};
-    border-radius: ${tokens.border.radius};
-    z-index: 1;
-  }
+    & + label::before {
+      content: "";
+      border: 1px solid ${tokens.border.color};
+      border-radius: ${tokens.border.radius};
+      background: ${tokens.color.white};
+      height: ${size};
+      left: 0; 
+      width: ${size};
+      z-index: 1;
+    }
 
-  [type="checkbox"] + label::after {
-    ${checkboxTick()}
-    background-position: 55% 55%;
-    background-repeat: no-repeat;
-    background-size: 75% auto;
-    transition: opacity 0.2s ease-out;
-    z-index: 2;
-  }
+    & + label > [data-pka-anchor="checkbox.icon"] {
+      color: ${tokens.color.blue};
+      font-size: ${iconSize};
+      height: ${size};
+      left: ${integize(size) / 2}px;
+      opacity: 0;
+      pointer-events: none;
+      transform: translateX(-50%);
+      transition: opacity 0.15s ease-out;
+      z-index: 2;
+    }
 
-  [type="checkbox"]:disabled + label {
-    opacity: 0.66;
-  }
-  [type="checkbox"]:disabled + label::before {
-    background-color: darken(${tokens.color.white}, 10%);
-  }
+    &:checked + label > [data-pka-anchor="checkbox.icon"] {
+      opacity: 1;
+    }
 
-  [type="checkbox"]:not(:checked) + label::after {
-    opacity: 0;
-  }
-  [type="checkbox"]:checked + label::after {
-    opacity: 1;
+    &:disabled {
+      & + label,
+      & ~ [data-pka-anchor="checkbox.icon"] {
+        opacity: 0.5;
+        transition: none;
+      }
+      & + label::before {
+        background-color: ${tokens.color.blackLighten70};
+      }
+    }
   }
 `;
 
-export const labelStyles = css`
-  display: inline-block;
-  height: 30px;
-  line-height: 30px;
-`;
+export default checkboxStyles;

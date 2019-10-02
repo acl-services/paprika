@@ -6,7 +6,8 @@ import tokens from "@paprika/tokens";
 
 const fontScaleRatio = 1.125; // 8:9 - Major second
 
-const fontSizeValue = (scale = 0) => Math.round(Number.parseInt(tokens.fontSize.default, 10) * fontScaleRatio ** scale);
+export const fontSizeValue = (scale = 0) =>
+  Math.round(Number.parseInt(tokens.fontSize.default, 10) * fontScaleRatio ** scale);
 
 export const fontSize = (scale = 0) => `
   font-size: ${fontSizeValue(scale)}px;
