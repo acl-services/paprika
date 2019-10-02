@@ -1,9 +1,10 @@
 import React from "react";
 import PropTypes from "prop-types";
-import { container, flex, title } from "./ListBoxBrowser.styles";
+import { container, flex } from "./ListBoxBrowser.styles";
 import { getData, getOptionByKey } from "./helpers";
 import OptionsSelected from "./components/OptionsSelected";
 import CustomListBox from "./components/CustomListBox";
+import Title from "./components/Title";
 
 const propTypes = {
   data: PropTypes.any.isRequired, // eslint-disable-line
@@ -11,6 +12,8 @@ const propTypes = {
   height: PropTypes.number,
   onChange: PropTypes.func,
   isParentSelectable: PropTypes.bool,
+  rootTitle: PropTypes.string,
+  browserTitle: PropTypes.string,
 };
 
 const defaultProps = {
@@ -18,6 +21,8 @@ const defaultProps = {
   height: 220,
   onChange: () => {},
   isParentSelectable: null,
+  rootTitle: "",
+  browserTitle: "",
 };
 
 function getOptions(indexes, list) {
@@ -46,7 +51,7 @@ function focusListBoxBrowser() {
 
 export default function ListBoxBrowser(props) {
   const refSelectedOptions = React.useRef({});
-  const { onChange, isParentSelectable, data, isMulti, height } = props;
+  const { onChange, isParentSelectable, data, isMulti, height, rootTitle, browserTitle } = props;
   const [localData] = React.useState(() => getData({ data, selectedOptions: refSelectedOptions }));
   const [rootKey, setRootKey] = React.useState("0");
   // NOTE: will yield a bug if the first option has not children
@@ -110,16 +115,24 @@ export default function ListBoxBrowser(props) {
     focusListBoxBrowser();
   };
 
+  function handleClickBreadcrumb(option) {
+    setBrowserKey(`${option.$$key}`);
+    focusListBoxBrowser();
+  }
+
   React.useEffect(() => {
     onChange(selectedOptions);
   }, [onChange, selectedOptions]);
 
   return (
     <div isParentSelectable={isParentSelectable} css={container} height={height}>
-      <div css={flex}>
-        <div css={title}>title 1</div>
-        <div css={title}>title 2</div>
-      </div>
+      <Title
+        rootTitle={rootTitle}
+        browserTitle={browserTitle}
+        onClickBreadcrumb={handleClickBreadcrumb}
+        browserKey={browserKey}
+        data={localData}
+      />
       <div css={flex}>
         <CustomListBox
           browserKey="root"

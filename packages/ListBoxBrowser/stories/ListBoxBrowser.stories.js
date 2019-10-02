@@ -9,6 +9,8 @@ storiesOf("ListBoxBrowser", module)
     <Story>
       <ListBoxBrowser
         data={data}
+        rootTitle="Universes"
+        browserTitle="Heroes"
         onChange={selectedOptions => {
           console.log("selected options:", selectedOptions);
         }}

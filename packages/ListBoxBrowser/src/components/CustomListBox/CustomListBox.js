@@ -79,7 +79,7 @@ export default function CustomListBox(props) {
                 <div css={labelContent}>
                   {hasOptions ? (
                     <RawButton
-                      tabIndex={isParentSelectable ? "0" : "-1"}
+                      tabIndex={isParentSelectable ? 0 : -1}
                       isParentSelectable={isParentSelectable}
                       a11yText="Browse content (i18n)"
                       css={navigateButton}

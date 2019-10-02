@@ -1,6 +1,5 @@
 import { css } from "styled-components";
 import tokens from "@paprika/tokens/lib/tokens";
-import { spacer } from "@paprika/stylers/lib/helpers";
 
 export const flex = css`
   align-items: flex-start;
@@ -69,11 +68,4 @@ export const container = css`
       `;
     }}
   }
-`;
-
-export const title = css`
-  background: ${tokens.backgroundColor.level0};
-  border-bottom: 1px solid ${tokens.border.color};
-  flex-grow: 1;
-  padding: ${spacer(1)} ${spacer(1)} ${spacer(1)} 12px;
 `;
