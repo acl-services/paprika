@@ -77,9 +77,9 @@ function DatePicker(props) {
 
   const formatDateProp = React.useCallback(
     format => {
-      return date && date.isValid() ? moment.utc(date).format(format || humanFormat) : "";
+      return date && date.isValid() ? moment(date).format(format || humanFormat) : "";
     },
-    [I18n, date, humanFormat]
+    [date, humanFormat]
   );
 
   // State
@@ -115,9 +115,9 @@ function DatePicker(props) {
   }
 
   function parseInput() {
-    let newDate = moment.utc(inputtedString, dataFormat);
+    let newDate = moment(inputtedString, dataFormat);
 
-    if (!newDate.isValid()) newDate = moment.utc(inputtedString);
+    if (!newDate.isValid()) newDate = moment(inputtedString);
 
     return newDate;
   }
