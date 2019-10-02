@@ -70,3 +70,19 @@ export function getOptionByKey(data, path) {
     return node;
   }
 }
+
+export function getBreadcrumb({ data, option }) {
+  let activeOption = option;
+  let key = null;
+  const breadcrumb = [];
+  while (key !== "root") {
+    if (activeOption.parent !== "root") {
+      const parent = getOptionByKey(data, activeOption.parent);
+      breadcrumb.push(parent);
+      activeOption = parent;
+    }
+    key = activeOption.parent;
+  }
+
+  return breadcrumb.reverse();
+}
