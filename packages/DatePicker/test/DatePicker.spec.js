@@ -64,8 +64,8 @@ describe("DatePicker", () => {
     const { getByTestId, rerender } = render({ date: utcOffSetPlusOneHour });
     expect(getByTestId("datepicker.input").value).toEqual("April 02, 2019");
 
-    const utcOffSetMinusOneHour = moment("2019-04-02").utcOffset(-60);
+    const utcOffSetMinusOneHour = moment("2019-06-06").utcOffset(-60);
     rerender({ date: utcOffSetMinusOneHour });
-    expect(getByTestId("datepicker.input").value).toEqual("April 02, 2019");
+    expect(getByTestId("datepicker.input").value).toEqual("June 06, 2019");
   });
 });
