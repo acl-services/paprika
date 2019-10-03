@@ -44,6 +44,16 @@ export const button = css`
     width: 1px;
   }
 `;
+
+export const counter = css`
+  background: ${tokens.color.white};
+  border: 1px solid ${tokens.border.color};
+  border-radius: ${tokens.border.radius};
+  font-size: 13px;
+  font-weight: bold;
+  padding: 2px ${tokens.spaceSm};
+`;
+
 export const remove = css`
   align: center;
   border-radius: ${tokens.border.radius};
@@ -57,4 +67,15 @@ export const remove = css`
   &:hover {
     color: ${tokens.color.black};
   }
+`;
+
+export const optionLabel = css`
+  font-size: 16px;
+  margin-bottom: 3px;
+`;
+
+export const optionBreadcrum = css`
+  color: ${tokens.color.blackLighten30};
+  font-size: 13px;
+  font-style: italic;
 `;
