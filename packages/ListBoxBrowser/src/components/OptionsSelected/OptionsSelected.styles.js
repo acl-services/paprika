@@ -4,6 +4,7 @@ import { spacer } from "@paprika/stylers/lib/helpers";
 
 export const container = css`
   display: flex;
+  flex-wrap: wrap;
   padding: ${tokens.space};
 `;
 
