@@ -12,7 +12,7 @@ export default function OptionsSelected(props) {
   const { options } = props;
   return (
     <>
-      <div css={divider}>Results (i18n)</div>
+      <div css={divider}>Selected options (i18n)</div>
       <div css={container}>
         {Object.keys(options).map(key => {
           return options[key].map(option => {
