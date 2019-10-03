@@ -23,6 +23,8 @@ storiesOf("ListBoxBrowser", module)
       <ListBoxBrowser
         data={dataMultiple}
         isParentSelectable
+        rootTitle="Universes"
+        browserTitle="Heroes"
         onChange={selectedOptions => {
           console.log("selected options:", selectedOptions);
         }}
@@ -34,6 +36,8 @@ storiesOf("ListBoxBrowser", module)
       <ListBoxBrowser
         data={dataSingle}
         isMulti={false}
+        rootTitle="Universes"
+        browserTitle="Heroes"
         onChange={selectedOptions => {
           console.log("selected options:", selectedOptions);
         }}

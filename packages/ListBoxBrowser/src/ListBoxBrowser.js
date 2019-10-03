@@ -124,7 +124,7 @@ export default function ListBoxBrowser(props) {
           isParentSelectable={isParentSelectable}
         />
       </div>
-      <OptionsSelected options={selectedOptions} />
+      {Object.keys(selectedOptions).length ? <OptionsSelected options={selectedOptions} /> : null}
     </div>
   );
 }
