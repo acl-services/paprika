@@ -47,3 +47,20 @@ export const checkbox = css`
   position: relative;
   top: -2px;
 `;
+
+export const backButton = css`
+  align-items: center;
+  display: inline-flex;
+  font-weight: bold;
+  justify-content: flex-start;
+  padding: 3px 0;
+  position: relative;
+  width: 100%;
+  &:after {
+    border-bottom: 1px solid ${tokens.border.color};
+    bottom: -7px;
+    content: "";
+    position: absolute;
+    width: 100%;
+  }
+`;

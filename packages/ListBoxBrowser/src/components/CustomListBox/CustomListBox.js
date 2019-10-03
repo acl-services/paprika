@@ -3,7 +3,8 @@ import PropTypes from "prop-types";
 import ListBox from "@paprika/listbox";
 import RawButton from "@paprika/raw-button";
 import ArrowRight from "@paprika/icon/lib/ArrowRight";
-import { label, navigateButton, action, labelContent, checkbox } from "./CustomListBox.styles";
+import ArrowLeft from "@paprika/icon/lib/ArrowLeft";
+import { label, navigateButton, action, labelContent, checkbox, backButton } from "./CustomListBox.styles";
 
 const noop = () => () => {};
 const propTypes = {
@@ -62,7 +63,13 @@ export default function CustomListBox(props) {
   return (
     <ListBox key={id} height={height} isMulti={isMulti} isInline onChange={onChange}>
       <ListBox.Trigger isHidden></ListBox.Trigger>
-      {hasOnUp ? <ListBox.Option onClick={onUp}>../</ListBox.Option> : null}
+      {hasOnUp ? (
+        <ListBox.Option onClick={onUp}>
+          <span css={backButton}>
+            <ArrowLeft /> Back <span css="opacity: .2; margin-left: 8px">(i18n)</span>
+          </span>
+        </ListBox.Option>
+      ) : null}
       {options.map(option => {
         const { $$key, attributes, hasOptions } = option;
         return (
