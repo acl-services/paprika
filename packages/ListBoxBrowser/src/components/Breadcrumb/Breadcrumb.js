@@ -13,12 +13,12 @@ export default function Breadcrumb(props) {
   const { breadcrumb, onClick } = props;
   if (breadcrumb.length) {
     return breadcrumb.map(option => (
-      <>
+      <React.Fragment key={option.$$key}>
         <RawButton css={button} onClick={onClick(option)}>
           {option.attributes.label}
         </RawButton>
         <span> / </span>
-      </>
+      </React.Fragment>
     ));
   }
 

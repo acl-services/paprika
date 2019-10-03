@@ -146,7 +146,7 @@ export default function ListBoxBrowser(props) {
         />
       </div>
       {Object.keys(selectedOptions).length ? (
-        <OptionsSelected onClick={handleClickJumpToOption} options={selectedOptions} />
+        <OptionsSelected onClick={handleClickJumpToOption} data={localData} options={selectedOptions} />
       ) : null}
     </div>
   );
