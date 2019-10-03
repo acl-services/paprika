@@ -1,7 +1,14 @@
 import React from "react";
 import PropTypes from "prop-types";
 import { container, flex } from "./ListBoxBrowser.styles";
-import { getData, getOptionByKey, onChange as onChangeHelper, isRoot } from "./helpers";
+import {
+  getData,
+  getOptionByKey,
+  onChange as onChangeHelper,
+  isRoot,
+  focusListBoxBrowser,
+  focusListBoxRoot,
+} from "./helpers";
 import OptionsSelected from "./components/OptionsSelected";
 import CustomListBox from "./components/CustomListBox";
 import Title from "./components/Title";
@@ -25,12 +32,6 @@ const defaultProps = {
   browserTitle: "",
 };
 
-function focusListBoxBrowser() {
-  window.requestAnimationFrame(() => {
-    document.querySelectorAll('[data-ppk-anchor="listbox-content-inline"]')[1].focus();
-  });
-}
-
 export default function ListBoxBrowser(props) {
   const refSelectedOptions = React.useRef({});
   const { onChange, isParentSelectable, data, isMulti, height, rootTitle, browserTitle } = props;
@@ -39,6 +40,7 @@ export default function ListBoxBrowser(props) {
   // NOTE: will yield a bug if the first option has not children
   const [browserKey, setBrowserKey] = React.useState("0");
   const [selectedOptions, setSelectedOptions] = React.useState(refSelectedOptions.current);
+
   const browserOptions = React.useMemo(() => getOptionByKey(localData, browserKey || rootKey), [
     browserKey,
     localData,
@@ -85,6 +87,25 @@ export default function ListBoxBrowser(props) {
     focusListBoxBrowser();
   }
 
+  function handleClickJumpToOption(option) {
+    if (option.hasOptions) {
+      const attributes = { $$key: option.$$key, hasOptions: true, isClickFromButton: true };
+      if (isRoot(option.$$key)) {
+        handleClickRoot(...attributes)();
+        return;
+      }
+      handleClickBrowser({ ...attributes })();
+      return;
+    }
+
+    if (isRoot(option.parent)) {
+      focusListBoxRoot();
+      return;
+    }
+
+    handleClickBrowser({ $$key: option.parent, hasOptions: false, isClickFromButton: true })();
+  }
+
   React.useEffect(() => {
     onChange(selectedOptions);
   }, [onChange, selectedOptions]);
@@ -124,7 +145,9 @@ export default function ListBoxBrowser(props) {
           isParentSelectable={isParentSelectable}
         />
       </div>
-      {Object.keys(selectedOptions).length ? <OptionsSelected options={selectedOptions} /> : null}
+      {Object.keys(selectedOptions).length ? (
+        <OptionsSelected onClick={handleClickJumpToOption} options={selectedOptions} />
+      ) : null}
     </div>
   );
 }
