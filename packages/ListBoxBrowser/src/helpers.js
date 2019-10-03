@@ -56,8 +56,19 @@ export function getOptionByKey(data, path) {
 
 export function onChange({ source, indexes, list, isParentSelectable, setSelectedOptions, browserKey, isMulti }) {
   if (!isMulti) {
-    setSelectedOptions(() => {
+    setSelectedOptions(selectedOptions => {
       const key = isRoot(source) ? "root" : browserKey;
+      if (Object.keys(selectedOptions).length) {
+        const option = getOptions(indexes, list)[0];
+        const isSameOption = Object.keys(selectedOptions).some(key => {
+          return selectedOptions[key][0].$$key === option.$$key;
+        });
+
+        if (isSameOption) {
+          return {};
+        }
+      }
+
       return { [key]: getOptions(indexes, list) };
     });
 
