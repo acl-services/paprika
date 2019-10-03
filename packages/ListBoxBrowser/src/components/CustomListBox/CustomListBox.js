@@ -63,48 +63,51 @@ export default function CustomListBox(props) {
     <ListBox key={id} height={height} isMulti={isMulti} isInline onChange={onChange}>
       <ListBox.Trigger isHidden></ListBox.Trigger>
       {hasOnUp ? <ListBox.Option onClick={onUp}>../</ListBox.Option> : null}
-      {options.map(({ $$key, attributes, hasOptions }) => (
-        <ListBox.Option
-          preventDefaultOnSelect={isSelectable({ hasOptions, isParentSelectable })}
-          isSelected={isSelected({ browserKey, $$key, selectedOptions })}
-          key={$$key}
-          label={attributes.label}
-          value={{ $$key, attributes, hasOptions }}
-          data-ppk-is-root-selected={rootKey === $$key}
-          onClick={hasOptions ? onClickNavigate({ $$key, hasOptions }) : noop()}
-        >
-          <div css={label}>
-            <div css={labelContent}>
-              {!hasOptions || isParentSelectable ? (
-                <span>
-                  <input
-                    css={checkbox}
-                    tabIndex={-1}
-                    aria-hidden
-                    type={isMulti ? "checkbox" : "radio"}
-                    checked={isSelected({ browserKey, $$key, selectedOptions })}
-                    onChange={() => {}}
-                  />
-                </span>
-              ) : null}
-              <span>{attributes.label}</span>
+      {options.map(option => {
+        const { $$key, attributes, hasOptions } = option;
+        return (
+          <ListBox.Option
+            preventDefaultOnSelect={isSelectable({ hasOptions, isParentSelectable })}
+            isSelected={isSelected({ browserKey, $$key, selectedOptions })}
+            key={$$key}
+            label={attributes.label}
+            value={option}
+            data-ppk-is-root-selected={rootKey === $$key}
+            onClick={hasOptions ? onClickNavigate({ $$key, hasOptions }) : noop()}
+          >
+            <div css={label}>
+              <div css={labelContent}>
+                {!hasOptions || isParentSelectable ? (
+                  <span>
+                    <input
+                      css={checkbox}
+                      tabIndex={-1}
+                      aria-hidden
+                      type={isMulti ? "checkbox" : "radio"}
+                      checked={isSelected({ browserKey, $$key, selectedOptions })}
+                      onChange={() => {}}
+                    />
+                  </span>
+                ) : null}
+                <span>{attributes.label}</span>
+              </div>
+              <div css={action}>
+                {hasOptions ? (
+                  <RawButton
+                    tabIndex={isParentSelectable ? 0 : -1}
+                    isParentSelectable={isParentSelectable}
+                    a11yText="Browse content (i18n)"
+                    css={navigateButton}
+                    onClick={onClickNavigate({ $$key, hasOptions, isClickFromButton: true })}
+                  >
+                    <ArrowRight />
+                  </RawButton>
+                ) : null}
+              </div>
             </div>
-            <div css={action}>
-              {hasOptions ? (
-                <RawButton
-                  tabIndex={isParentSelectable ? 0 : -1}
-                  isParentSelectable={isParentSelectable}
-                  a11yText="Browse content (i18n)"
-                  css={navigateButton}
-                  onClick={onClickNavigate({ $$key, hasOptions, isClickFromButton: true })}
-                >
-                  <ArrowRight />
-                </RawButton>
-              ) : null}
-            </div>
-          </div>
-        </ListBox.Option>
-      ))}
+          </ListBox.Option>
+        );
+      })}
     </ListBox>
   );
 }

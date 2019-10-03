@@ -159,3 +159,15 @@ export function getBreadcrumb({ data, option }) {
 
   return breadcrumb.reverse();
 }
+
+export function focusListBoxBrowser() {
+  window.requestAnimationFrame(() => {
+    document.querySelectorAll('[data-ppk-anchor="listbox-content-inline"]')[1].focus();
+  });
+}
+
+export function focusListBoxRoot() {
+  window.requestAnimationFrame(() => {
+    document.querySelectorAll('[data-ppk-anchor="listbox-content-inline"]')[0].focus();
+  });
+}
