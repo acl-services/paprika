@@ -19,6 +19,7 @@ const sampleText = {
 
 export const popoverProps = () => ({
   align: select("align", ["bottom", "top", "right", "left"], "bottom"),
+  edge: select("edge", ["left", "right", null], null),
   maxWidth: text("maxWidth", "320"),
   offset: number("offset", 12),
 });
