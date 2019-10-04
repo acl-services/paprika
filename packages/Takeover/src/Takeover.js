@@ -3,10 +3,12 @@ import ReactDOM from "react-dom";
 import PropTypes from "prop-types";
 import { Transition } from "react-transition-group";
 import FocusTrapLibrary from "focus-trap-react";
+import styled from "styled-components";
 import EscListener from "./components/EscListener";
 import Wrapper from "./components/Wrapper";
+import Header from "./components/Header";
+import Content from "./components/Content";
 import LockBodyScroll from "./components/LockBodyScroll";
-import FocusTrap from "./components/FocusTrap";
 import { animationDuration } from "./tokens";
 import extractChildren from "./helpers/extractChildren";
 
@@ -40,6 +42,20 @@ const defaultProps = {
 const Portal = ({ children, active }) =>
   active ? ReactDOM.createPortal(children, document.body) : <React.Fragment>{children}</React.Fragment>;
 
+const StyledWrapper = styled(Wrapper)`
+  display: flex;
+  flex-direction: column;
+`;
+
+const StyledHeader = styled(Header)`
+  flex: none;
+`;
+
+const StyledContent = styled(Content)`
+  overflow-y: auto;
+  flex: 1 1 auto;
+`;
+
 const Takeover = ({ isOpen, onClose, isInline, onAfterClose, onAfterOpen, ...props }) => {
   const refWrapper = React.useRef(null);
 
@@ -48,9 +64,12 @@ const Takeover = ({ isOpen, onClose, isInline, onAfterClose, onAfterOpen, ...pro
     node.scrollTop;
   }
 
-  const { "Takeover.FocusTrap": focusTrapExtracted, children } = extractChildren(props.children, [
-    "Takeover.FocusTrap",
-  ]);
+  const {
+    "Takeover.FocusTrap": focusTrapExtracted,
+    "Takeover.Header": headerExtracted,
+    "Takeover.Content": contentExtracted,
+    children,
+  } = extractChildren(props.children, ["Takeover.FocusTrap", "Takeover.Header", "Takeover.Content"]);
 
   const extendedFocusTrapOptions = focusTrapExtracted ? focusTrapExtracted.props : {};
 
@@ -75,9 +94,11 @@ const Takeover = ({ isOpen, onClose, isInline, onAfterClose, onAfterOpen, ...pro
         >
           {state => (
             <FocusTrapLibrary active={!isInline} focusTrapOptions={focusTrapOptions}>
-              <Wrapper ref={refWrapper} state={state}>
+              <StyledWrapper ref={refWrapper} state={state}>
+                {headerExtracted && <StyledHeader {...headerExtracted.props} onClose={onClose} />}
+                {contentExtracted && <StyledContent {...contentExtracted.props} tabIndex="0" />}
                 {children}
-              </Wrapper>
+              </StyledWrapper>
             </FocusTrapLibrary>
           )}
         </Transition>
@@ -88,7 +109,5 @@ const Takeover = ({ isOpen, onClose, isInline, onAfterClose, onAfterOpen, ...pro
 
 Takeover.propTypes = propTypes;
 Takeover.defaultProps = defaultProps;
-
-Takeover.FocusTrap = FocusTrap;
 
 export default Takeover;

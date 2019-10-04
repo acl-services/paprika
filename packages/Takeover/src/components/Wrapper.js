@@ -1,4 +1,5 @@
 import styled, { css } from "styled-components";
+import tokens from '@paprika/tokens';
 import { animationDuration } from "../tokens";
 
 const openedCss = css`
@@ -22,7 +23,7 @@ const Wrapper = styled.div`
   right: 0;
   bottom: 0;
   left: 0;
-  background-color: deepskyblue;
+  background-color: ${tokens.backgroundColor.level0};
 `;
 
 const AnimatedWrapper = styled(Wrapper)`
