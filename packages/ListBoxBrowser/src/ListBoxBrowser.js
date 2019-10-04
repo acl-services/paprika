@@ -163,14 +163,13 @@ export default function ListBoxBrowser(props) {
           isParentSelectable={isParentSelectable}
         />
       </div>
-      {Object.keys(selectedOptions).length ? (
-        <OptionsSelected
-          onRemove={handleRemove}
-          onClick={handleClickJumpToOption}
-          data={localData}
-          options={selectedOptions}
-        />
-      ) : null}
+
+      <OptionsSelected
+        onRemove={handleRemove}
+        onClick={handleClickJumpToOption}
+        data={localData}
+        options={selectedOptions}
+      />
     </div>
   );
 }
