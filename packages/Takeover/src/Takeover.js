@@ -2,13 +2,18 @@ import React from "react";
 import ReactDOM from "react-dom";
 import PropTypes from "prop-types";
 import { Transition } from "react-transition-group";
-import FocusTrap from "focus-trap-react";
+import FocusTrapLibrary from "focus-trap-react";
 import EscListener from "./components/EscListener";
 import Wrapper from "./components/Wrapper";
-import { animationDuration } from "./tokens";
 import LockBodyScroll from "./components/LockBodyScroll";
+import FocusTrap from "./components/FocusTrap";
+import { animationDuration } from "./tokens";
+import extractChildren from "./helpers/extractChildren";
 
 const propTypes = {
+  /** The content for the Takeover. */
+  children: PropTypes.node.isRequired,
+
   /** Control the visibility of the takeover */
   isOpen: PropTypes.bool.isRequired,
 
@@ -35,13 +40,24 @@ const defaultProps = {
 const Portal = ({ children, active }) =>
   active ? ReactDOM.createPortal(children, document.body) : <React.Fragment>{children}</React.Fragment>;
 
-const Takeover = ({ isOpen, onClose, isInline, onAfterClose, onAfterOpen }) => {
+const Takeover = ({ isOpen, onClose, isInline, onAfterClose, onAfterOpen, ...props }) => {
   const refWrapper = React.useRef(null);
 
   function handleTransitionEnter(node) {
     // https://github.com/reactjs/react-transition-group/blob/6dbadb594c7c2a2f15bc47afc6b4374cfd73c7c0/src/CSSTransition.js#L44
     node.scrollTop;
   }
+
+  const { "Takeover.FocusTrap": focusTrapExtracted, children } = extractChildren(props.children, [
+    "Takeover.FocusTrap",
+  ]);
+
+  const extendedFocusTrapOptions = focusTrapExtracted ? focusTrapExtracted.props : {};
+
+  const focusTrapOptions = {
+    fallbackFocus: () => document.createElement("div"),
+    ...extendedFocusTrapOptions,
+  };
 
   return (
     <>
@@ -58,11 +74,11 @@ const Takeover = ({ isOpen, onClose, isInline, onAfterClose, onAfterOpen }) => {
           onExited={onAfterClose}
         >
           {state => (
-            <FocusTrap active={!isInline} focusTrapOptions={{ fallbackFocus: () => document.createElement("div") }}>
+            <FocusTrapLibrary active={!isInline} focusTrapOptions={focusTrapOptions}>
               <Wrapper ref={refWrapper} state={state}>
-                111
+                {children}
               </Wrapper>
-            </FocusTrap>
+            </FocusTrapLibrary>
           )}
         </Transition>
       </Portal>
@@ -72,5 +88,7 @@ const Takeover = ({ isOpen, onClose, isInline, onAfterClose, onAfterOpen }) => {
 
 Takeover.propTypes = propTypes;
 Takeover.defaultProps = defaultProps;
+
+Takeover.FocusTrap = FocusTrap;
 
 export default Takeover;

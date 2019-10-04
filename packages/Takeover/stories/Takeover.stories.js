@@ -18,7 +18,9 @@ const TakeoverStory = ({ isInline }) => {
   return (
     <LongBlock>
       <Button onClick={toggle}>Open</Button>
-      <Takeover isInline={isInline} isOpen={isOpen} onClose={toggle} />
+      <Takeover isInline={isInline} isOpen={isOpen} onClose={toggle}>
+        Full-width content
+      </Takeover>
     </LongBlock>
   );
 };
