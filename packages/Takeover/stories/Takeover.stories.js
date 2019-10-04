@@ -6,6 +6,7 @@ import Button from "@paprika/button";
 import Heading from "@paprika/heading";
 import Takeover from "../src";
 
+/* Long block to test body scroll locking */
 const LongBlock = styled.div`
   padding-bottom: 200vh;
 `;
