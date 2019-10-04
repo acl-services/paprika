@@ -20,6 +20,7 @@ storiesOf("DatePicker", module)
     const inputProps = () => ({
       size: select("size", ["small", "medium", "large"], "medium"),
       placeholder: text("placeholder", ""),
+      hasError: boolean("hasError", false),
     });
     return (
       <Example locale="en" {...datePickerProps()}>

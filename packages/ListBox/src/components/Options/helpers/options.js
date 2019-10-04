@@ -5,17 +5,27 @@ function getOnChangeFn(state) {
   return invokeOnChange(state.onChange, "listbox:option-selected");
 }
 
-function selectSingleOption({ activeOptionIndex, isOpen, state, dispatch }) {
+export function selectSingleOption({ activeOptionIndex, isOpen, state, dispatch, onChange = null }) {
+  const onChangeFn = onChange || getOnChangeFn(state, activeOptionIndex);
+
   dispatch({
     type: useListBox.types.selectSingleOption,
-    payload: { activeOptionIndex, isOpen, onChangeFn: getOnChangeFn(state, activeOptionIndex) },
+    payload: { activeOptionIndex, isOpen, onChangeFn },
   });
 }
 
-function selectMultipleOption({ activeOptionIndex, state, dispatch }) {
+export function toggleMultipleOption({ activeOptionIndex, state, dispatch }) {
+  dispatch({
+    type: useListBox.types.toggleMultipleOption,
+    payload: { activeOptionIndex, onChangeFn: getOnChangeFn(state, activeOptionIndex) },
+  });
+}
+
+export function selectMultipleOption({ activeOptionIndex, state, dispatch, isSelected, onChange = null }) {
+  const onChangeFn = onChange || getOnChangeFn(state, activeOptionIndex);
   dispatch({
     type: useListBox.types.selectMultipleOption,
-    payload: { activeOptionIndex, onChangeFn: getOnChangeFn(state, activeOptionIndex) },
+    payload: { activeOptionIndex, onChangeFn, isSelected },
   });
 }
 
@@ -94,7 +104,7 @@ export function getNextOptionActiveIndexLooping(state) {
 }
 
 export function handleArrowKeys({ event, state, dispatch, isArrowDown = null }) {
-  if (!state.isOpen) {
+  if (!state.isInline && !state.isOpen) {
     dispatch({ type: useListBox.types.openPopover });
     return;
   }
@@ -146,7 +156,7 @@ export const handleClickOption = ({ props, state, dispatch }) => event => {
   }
 
   if (isMulti) {
-    selectMultipleOption({
+    toggleMultipleOption({
       activeOptionIndex: index,
       state,
       dispatch,
@@ -204,7 +214,7 @@ export function handleEnterOrSpace({ event, state, dispatch }) {
     }
 
     if (state.isMulti) {
-      selectMultipleOption({
+      toggleMultipleOption({
         activeOptionIndex: state.activeOption,
         state,
         dispatch,
@@ -215,7 +225,9 @@ export function handleEnterOrSpace({ event, state, dispatch }) {
     // for single select the option is set when the user interact with up and down arrows
     // no need to notify which option is selected just close the popover
     dispatch({ type: useListBox.types.closePopover });
-    state.refTrigger.current.focus();
+    if (state.refTrigger.current) {
+      state.refTrigger.current.focus();
+    }
   } else {
     dispatch({ type: useListBox.types.openPopover });
   }

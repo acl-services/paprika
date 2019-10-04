@@ -55,7 +55,7 @@ function Trigger(props) {
     return (
       <RawButton
         a11yText={a11yText}
-        data-pka-anchor="popover-trigger"
+        data-pka-anchor="popover.trigger"
         onMouseOver={handleTriggerEvent}
         onMouseOut={handleTriggerEvent}
         onFocus={handleTriggerEvent}
@@ -70,7 +70,7 @@ function Trigger(props) {
   return (
     <RawButton
       a11yText={a11yText}
-      data-pka-anchor="popover-trigger"
+      data-pka-anchor="popover.trigger"
       onClick={handleTriggerEvent}
       onBlur={shouldKeepFocus ? handleTriggerEvent : null}
     >

@@ -2,6 +2,7 @@ import React from "react";
 import { configure, render, fireEvent } from "@testing-library/react";
 
 import ListBox from "../../../src";
+import { ControlledIsSelected } from "../../../stories/examples/multi";
 
 configure({ testIdAttribute: "data-pka-anchor" });
 
@@ -32,10 +33,10 @@ function renderComponent(props = {}, children = childrenContent) {
       fireEvent.click(rendered.getByText(/jupiter/i));
     },
     expectDropdownIsHidden: () => {
-      expect(rendered.getByTestId("popover-content").getAttribute("aria-hidden")).toBeTruthy();
+      expect(rendered.getByTestId("popover.content").getAttribute("aria-hidden")).toBeTruthy();
     },
     expectDropdownIsNotHidden: () => {
-      expect(rendered.getByTestId("popover-content").getAttribute("aria-hidden")).toMatch(/false/i);
+      expect(rendered.getByTestId("popover.content").getAttribute("aria-hidden")).toMatch(/false/i);
     },
   };
 }
@@ -126,7 +127,7 @@ describe("Listbox multi select", () => {
       isInline: true,
     });
 
-    expect(queryByTestId("popover-content")).toBeNull();
+    expect(queryByTestId("popover.content")).toBeNull();
   });
 
   it("should focus on option container as soon as the Popover is open", done => {
@@ -138,7 +139,7 @@ describe("Listbox multi select", () => {
     // ends we can improve this test :/
 
     setTimeout(() => {
-      expect(document.activeElement).toBe(getByTestId("popover-content"));
+      expect(document.activeElement).toBe(getByTestId("popover.content"));
       done();
     }, 350);
   });
@@ -150,7 +151,7 @@ describe("Listbox multi select", () => {
     ]);
 
     openSelect();
-    expect(document.activeElement).not.toBe(getByTestId("popover-content"));
+    expect(document.activeElement).not.toBe(getByTestId("popover.content"));
   });
 
   it("placeholder should display default label when no option is selected", () => {
@@ -317,5 +318,28 @@ describe("Listbox multi select", () => {
     selectVenus();
     selectJupiter();
     expect(queryByTestId("clear-button")).toBeNull();
+  });
+
+  it("should select an option via a controlled button", () => {
+    const { getByTestId, getAllByTestId } = render(<ControlledIsSelected />);
+    const dataAttributeIsSelected = "list-option--is-selected";
+    const button1 = getByTestId("button_1");
+    expect(button1).not.toBeNull();
+    fireEvent.click(button1);
+
+    expect(getAllByTestId(dataAttributeIsSelected).length).toBe(1);
+    expect(getByTestId(dataAttributeIsSelected).textContent).toBe("Wonder Woman");
+
+    const button2 = getByTestId("button_2");
+    expect(button2).not.toBeNull();
+
+    fireEvent.click(button2);
+
+    expect(getAllByTestId(dataAttributeIsSelected).length).toBe(2);
+    expect(getAllByTestId(dataAttributeIsSelected)[0].textContent).toBe("Wonder Woman");
+    expect(getAllByTestId(dataAttributeIsSelected)[1].textContent).toBe("Spiderman");
+
+    fireEvent.click(button2);
+    expect(getAllByTestId(dataAttributeIsSelected).length).toBe(1);
   });
 });

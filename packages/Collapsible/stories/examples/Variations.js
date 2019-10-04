@@ -21,6 +21,8 @@ const ExampleStory = () => {
   const [isCollapsed2, setIsCollapsed2] = React.useState(false);
   const [isCollapsed3, setIsCollapsed3] = React.useState(false);
   const [isCollapsed4, setIsCollapsed4] = React.useState(false);
+  const [isCollapsed5, setIsCollapsed5] = React.useState(true);
+  const [isCollapsed6, setIsCollapsed6] = React.useState(true);
 
   return (
     <Story>
@@ -62,6 +64,26 @@ const ExampleStory = () => {
         onClick={() => setIsCollapsed4(prevCollapsed => !prevCollapsed)}
       >
         {dummyContent}
+      </Collapsible>
+      <Rule />
+      <h5>Nested Collapsible</h5>
+      <Collapsible
+        {...collapsibleDefaultProps}
+        label="Click to show parent content"
+        isCollapsed={isCollapsed5}
+        iconAlign="right"
+        onClick={() => setIsCollapsed5(prevCollapsed => !prevCollapsed)}
+      >
+        Parent content
+        <Collapsible
+          {...collapsibleDefaultProps}
+          label="Click to show child content"
+          isCollapsed={isCollapsed6}
+          iconAlign="right"
+          onClick={() => setIsCollapsed6(prevCollapsed => !prevCollapsed)}
+        >
+          Child content
+        </Collapsible>
       </Collapsible>
     </Story>
   );

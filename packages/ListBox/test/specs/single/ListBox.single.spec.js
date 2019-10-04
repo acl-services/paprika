@@ -1,6 +1,7 @@
 import React from "react";
 import { render, fireEvent, configure } from "@testing-library/react";
 import ListBox from "../../../src";
+import { ControlledIsSelected as ListBoxControlled } from "../../../stories/examples/single";
 
 configure({ testIdAttribute: "data-pka-anchor" });
 
@@ -24,10 +25,10 @@ function renderComponent(props = {}, children = childrenContent) {
       fireEvent.click(rendered.getByText(/jupiter/i));
     },
     popoverIsHidden: () => {
-      expect(rendered.getByTestId("popover-content").getAttribute("aria-hidden")).toBeTruthy();
+      expect(rendered.getByTestId("popover.content").getAttribute("aria-hidden")).toBeTruthy();
     },
     popoverIsVisible: () => {
-      expect(rendered.getByTestId("popover-content").getAttribute("aria-hidden")).toMatch(/false/i);
+      expect(rendered.getByTestId("popover.content").getAttribute("aria-hidden")).toMatch(/false/i);
     },
   };
 }
@@ -109,7 +110,7 @@ describe("Listbox single select", () => {
       isInline: true,
     });
 
-    expect(queryByTestId("popover-content")).toBeNull();
+    expect(queryByTestId("popover.content")).toBeNull();
   });
 
   it("should focus on option container as soon as the Popover is open", done => {
@@ -117,7 +118,7 @@ describe("Listbox single select", () => {
 
     openSelect();
     setTimeout(() => {
-      expect(document.activeElement).toBe(getByTestId("popover-content"));
+      expect(document.activeElement).toBe(getByTestId("popover.content"));
       done();
     }, 350);
   });
@@ -135,7 +136,7 @@ describe("Listbox single select", () => {
 
     // NOT BEST PRACTICE: fix later, this is due the timer I had to put on the ListBox becaue the PopoverTimer
     setTimeout(() => {
-      expect(document.activeElement).not.toBe(getByTestId("popover-content"));
+      expect(document.activeElement).not.toBe(getByTestId("popover.content"));
       done();
     }, 350);
   });
@@ -235,5 +236,32 @@ describe("Listbox single select", () => {
     openSelect();
     selectVenus();
     expect(queryByTestId("clear-button")).toBeNull();
+  });
+
+  it("should select an option via a controlled button", () => {
+    const { getByTestId, getAllByTestId } = render(<ListBoxControlled />);
+
+    const button = getByTestId("button_1");
+    expect(button).not.toBeNull();
+
+    fireEvent.click(button);
+
+    expect(getAllByTestId("list-option--is-selected").length).toBe(1);
+    expect(getByTestId("list-option--is-selected").textContent).toBe("Wonder Woman");
+  });
+
+  it("should select only ONE option via a controlled button", () => {
+    const { getByTestId, getAllByTestId } = render(<ListBoxControlled />);
+
+    const button1 = getByTestId("button_1");
+    const button2 = getByTestId("button_2");
+    expect(button1).not.toBeNull();
+    expect(button2).not.toBeNull();
+
+    fireEvent.click(button1);
+    fireEvent.click(button2);
+
+    expect(getAllByTestId("list-option--is-selected").length).toBe(1);
+    expect(getByTestId("list-option--is-selected").textContent).toBe("Spiderman");
   });
 });

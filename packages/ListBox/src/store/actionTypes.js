@@ -6,6 +6,7 @@ export const closePopover = "CLOSE_POPOVER";
 export const hideOptions = "HIDE_OPTION";
 export const openPopover = "OPEN_POPOVER";
 export const reset = "RESET";
+export const toggleMultipleOption = "TOGGLE_MULTIPLE_OPTION";
 export const selectMultipleOption = "SELECT_MULTIPLE_OPTION";
 export const selectSingleOption = "SELECT_SINGLE_OPTION";
 export const setActiveOption = "SET_ACTION_OPTION";
