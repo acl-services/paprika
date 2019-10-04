@@ -1,89 +1,97 @@
 ![Paprika logo](https://user-images.githubusercontent.com/10501940/52080175-07327400-254c-11e9-9748-7a00f93a13a8.png)
 
-# Paprika
+<h1 align="center">Paprika</h1>
+<p align="center">React component library of the <a href="https://design.wegalvanize.com">Starling Design System</a>.</p>
+<div align="center">
+<img alt="react version" src="https://img.shields.io/badge/react-v16.8.2-green.svg">
+<img alt="node version" src="https://img.shields.io/badge/node-v10.0.0%2B-brightgreen.svg">
+<img alt="yarn version" src="https://img.shields.io/badge/yarn-v1.12.3%2B-yellowgreen.svg">
+<img alt="lerna version" src="https://img.shields.io/badge/lerna-v3.13.0-blue.svg">
+<img alt="styled components version" src="https://img.shields.io/badge/styled--components-4.2.0-yellow">
+<img alt="prettier" src="https://img.shields.io/badge/codestyle-prettier-%23ff69b4">
+<a href="https://github.com/acl-services/paprika/issues"><img alt="GitHub issues" src="https://img.shields.io/github/issues/acl-services/paprika"></a>
+<a href="https://github.com/acl-services/paprika/blob/master/LICENSE"><img alt="MIT license" src="https://img.shields.io/github/license/acl-services/paprika"></a>
+</div>
+<br>
 
-## Getting started
+Paprika is a collection of individually versioned and distributed reusable components built and maintained by [Galvanize](https://www.wegalvanize.com).
 
-Our list of components can be find for now at [npm](https://www.npmjs.com/org/paprika).
+[Storybook](https://paprika.highbond.com) |
+[Npm](https://www.npmjs.com/org/paprika) |
+[Airtable](https://airtable.com/shrkJwkvtbgc3FT22)
 
-Paprika has a `peerDependecy` of [styled-components](https://www.styled-components.com/docs/basics#installation) so make sure to install it as a dependency in your project.
+## Installation and usage
 
-All paprika components can be installed as:
+### Prerequisites
 
-```sh
-  npm install @paprika/ComponentToConsume
-```
-
-or
-
-```sh
-  yarn add @paprika/ComponentToConsume
-```
-
----
-
-## Contributors guide.
-
-### Basic installation
-
-Follow the next steps to start coding on paprika
-
-1.- Install dependencies
+Paprika has a `peerDependency` on `styled-components` so make sure to install it as a dependency in your project.
 
 ```sh
-$ yarn
+yarn add styled-components
 ```
 
-2.- Link packages with Lerna
+- Node v10.0.0+
+- Yarn v1.12.3+
+
+### Example of installing a component
+
+The following is an example of the button component, but all other components will be installed in a similar way.
+
+1. Installing the button package:
 
 ```sh
-$ npx lerna bootstrap
+yarn add @paprika/button
 ```
 
-That's all you are ready to go from here you can:
+2. In your project:
 
-### run storybook
+```js
+import React from "react";
+import Button from "@paprika/button";
 
-run storybook and explore paprika's components
+export default () => <Button>Hello</Button>;
+```
+
+## Contributors guide
+
+We welcome anyone to contribute to paprika by submitting a pull request, filing a bug report or making a feature request. For more information please check out our [contributing guidelines](https://github.com/acl-services/paprika/wiki/Contributing-Guidelines) wiki page.
+
+### How to run paprika locally
+
+1. Install dependencies
 
 ```sh
-$ yarn storybook
+yarn
 ```
 
-### run test
-
-We use [jest](https://jestjs.io/docs/en/expect) and [react-testing-library](https://github.com/testing-library/react-testing-library) as one of our tools for testing.
+2. Link packages with Lerna
 
 ```sh
-  yarn test
+npx lerna bootstrap
 ```
 
-or
-
-For debugging your jest test via chrome, just run the command below, [more info](https://artsy.github.io/blog/2018/08/24/How-to-debug-jest-tests/)
+### How to run storybook locally
 
 ```sh
-  yarn test:debug
+yarn storybook
 ```
 
-### minimum requirements
+### Running tests
 
-#### yarn version
-
-yarn v1.12.3 (which contains yarn audit command) or update via:
+We use [jest](https://jestjs.io/docs/en/expect) and [react-testing-library](https://github.com/testing-library/react-testing-library) for testing.
 
 ```sh
-$ brew install yarn
+yarn test
 ```
-
-#### node version
-
-v10.0.0 which is required by `eslint`
 
 ### Build <L10n> Translations
 
-The L10n component uses only JavaScript functions -- no YAML parsing is needed. To accomplish this, the `prepublish` build step [will] converts the .yml files to .js files. If you'd like to run this translation manually, run:
+Translations are automatically built when `npx lerna bootstrap` is executed. If you are adding new translation keys, remember to run `yarn translate` to see your changes locally.
 
 ```sh
-$ yarn translate
+yarn translate
 ```
+
+## License
+
+[The MIT License (MIT)](https://github.com/acl-services/paprika/blob/master/LICENSE)

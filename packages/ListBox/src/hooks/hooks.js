@@ -93,7 +93,9 @@ export function useOnScrolled() {
   React.useLayoutEffect(() => {
     if (!state.refListBox.current) return;
 
-    if (state.isOpen && state.options[state.activeOption] && state.shouldContentScroll) {
+    const shouldScroll = (state.shouldContentScroll && state.isInline) || (state.isOpen && state.shouldContentScroll);
+
+    if (shouldScroll && state.options[state.activeOption]) {
       const parentOffsetTop = state.refListBox.current.offsetTop;
       const $option = document.getElementById(state.options[state.activeOption].id);
       if ($option) {
@@ -103,10 +105,12 @@ export function useOnScrolled() {
           offsetTop = 0;
         }
 
-        state.refListBox.current.scrollTo(0, offsetTop - 10);
+        if (state.refListBox.current && Element.prototype.scrollTo) {
+          state.refListBox.current.scrollTo(0, offsetTop - 10);
+        }
       }
     }
-  }, [state.activeOption, state.isOpen, state.options, state.refListBox, state.shouldContentScroll]);
+  }, [state.activeOption, state.isInline, state.isOpen, state.options, state.refListBox, state.shouldContentScroll]);
 }
 
 export function useIsDisabled(isDisabled) {

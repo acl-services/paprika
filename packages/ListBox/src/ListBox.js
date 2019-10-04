@@ -9,6 +9,8 @@ import Popover from "./components/Popover";
 import Trigger from "./components/Trigger";
 import useListBox from "./useListBox";
 import handleImperative from "./imperative";
+import "@paprika/helpers/lib/dom/elementScrollToPolyfill";
+
 import {
   useAdjustWidth,
   useChildrenLengthChange,

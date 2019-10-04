@@ -1,30 +1,43 @@
 import { css } from "styled-components";
+import tokens from "@paprika/tokens";
+import stylers from "@paprika/stylers";
 
-const pseudoElement = `
-  background: #d7d7d7;
+const pseudoElement = css`
+  background: ${tokens.color.blackLighten60};
   content: "";
   display: inline-block;
   flex-grow: 1;
   height: 1px;
 `;
 
-// css let the IDE recognize css highlight
-export const dividerCSS = css`
-  align-items: center;
-  color: #717171;
-  display: flex;
-  font-size: 12px;
-  justify-content: center;
-  padding: 4px;
-  width: 100%;
-
+const textDividerStyles = css`
   &:before {
     ${pseudoElement}
-    margin-right: 8px;
+    margin-right: ${tokens.space};
   }
 
   &:after {
     ${pseudoElement}
-    margin-left: 8px;
+    margin-left: ${tokens.space};
   }
+`;
+
+const lineDividerStyles = css`
+  &:before {
+    ${pseudoElement}
+  }
+`;
+
+// css let the IDE recognize css highlight
+export const dividerCSS = css`
+  align-items: center;
+  color: ${tokens.color.blackLighten20};
+  display: flex;
+  justify-content: center;
+  padding: ${tokens.spaceSm};
+  width: 100%;
+
+  ${stylers.fontSize(-1)};
+
+  ${({ hasChildren }) => (hasChildren ? textDividerStyles : lineDividerStyles)}
 `;

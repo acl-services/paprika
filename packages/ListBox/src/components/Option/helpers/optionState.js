@@ -3,7 +3,9 @@ import uuidv4 from "uuid/v4";
 import { isWhiteListed } from "../../Options/helpers/options";
 
 function createOption({ index, child, groupLabel = null, groupId = null }) {
-  const { isDisabled, isHidden, isSelected, label, onClick, preventDefaultOnSelect, value } = child.props;
+  const { isDisabled, isHidden, label, onClick, preventDefaultOnSelect, value } = child.props;
+
+  const isSelected = child.props.isSelected || child.props.defaultIsSelected || false;
 
   return {
     content: child,

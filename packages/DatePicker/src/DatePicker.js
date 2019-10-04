@@ -8,6 +8,7 @@ import Input from "@paprika/input";
 import Popover from "@paprika/popover";
 import useI18n from "@paprika/l10n/lib/useI18n";
 import useDebounce from "@paprika/helpers/lib/hooks/useDebounce";
+import usePrevious from "@paprika/helpers/lib/hooks/usePrevious";
 import isElementContainsFocus from "@paprika/helpers/lib/dom/isElementContainsFocus";
 
 import Calendar from "./components/Calendar";
@@ -17,6 +18,8 @@ import { extractChildrenProps } from "./helpers";
 
 import { calendarPopoverStyles } from "./DatePicker.styles";
 
+const INPUT_PARSE_ERROR = "INPUT_PARSE";
+
 const propTypes = {
   children: PropTypes.node,
 
@@ -25,9 +28,6 @@ const propTypes = {
 
   /** Selected date in moment object. */
   date: momentPropTypes.momentObj,
-
-  /** If the value of <input> is valid or not. Not required when wrapped with <FormElement>. */
-  hasError: PropTypes.bool,
 
   /** Date format used while displaying date. It should be human-friendly and spelled out, default is MMMM DD,YYYY */
   humanFormat: PropTypes.string,
@@ -43,30 +43,43 @@ const propTypes = {
 
   /** Callback when date is selected or input. */
   onChange: PropTypes.func.isRequired,
+
+  /** Errors callback */
+  onError: PropTypes.func,
 };
 
 const defaultProps = {
   children: null,
   dataFormat: "MM/DD/YYYY",
   date: null,
-  hasError: false,
-  humanFormat: null,
+  humanFormat: undefined,
   id: null,
   isDisabled: false,
   isReadOnly: false,
+  onError: () => {},
 };
 
 function DatePicker(props) {
   const I18n = useI18n();
 
   // Props
-  const { children, dataFormat, date, hasError, humanFormat, id, isDisabled, isReadOnly, onChange } = props;
+  const {
+    children,
+    dataFormat,
+    date,
+    humanFormat = I18n.t("datePicker.confirmation_format"),
+    id,
+    isDisabled,
+    isReadOnly,
+    onChange,
+    onError,
+  } = props;
 
   const formatDateProp = React.useCallback(
     format => {
-      return date && date.isValid() ? moment.utc(date).format(format || I18n.t("datePicker.confirmation_format")) : "";
+      return date && date.isValid() ? moment(date).format(format || humanFormat) : "";
     },
-    [I18n, date]
+    [date, humanFormat]
   );
 
   // State
@@ -75,6 +88,7 @@ function DatePicker(props) {
   const [inputtedString, setInputtedString] = React.useState(formatDateProp(dataFormat));
   const [possibleDate, setPossibleDate] = React.useState(null);
   const [shouldShowCalendar, setShouldShowCalendar] = React.useState(false);
+  const prevDate = usePrevious(date);
 
   // Ref
   const calendarRef = React.useRef(null);
@@ -82,9 +96,10 @@ function DatePicker(props) {
 
   // Effect
   React.useEffect(() => {
+    if ((!date && !prevDate) || (date && prevDate && date.isSame(prevDate, "day"))) return;
     setInputtedString(formatDateProp(dataFormat));
     setConfirmationResult(formatDateProp(humanFormat));
-  }, [dataFormat, date, formatDateProp, humanFormat]);
+  }, [dataFormat, date, prevDate, formatDateProp, humanFormat]);
 
   const debouncedPossibleDate = useDebounce(possibleDate, 300);
   const extendedInputProps = extractChildrenProps(children, DateInput);
@@ -100,9 +115,9 @@ function DatePicker(props) {
   }
 
   function parseInput() {
-    let newDate = moment.utc(inputtedString, dataFormat);
+    let newDate = moment(inputtedString, dataFormat);
 
-    if (!newDate.isValid()) newDate = moment.utc(inputtedString);
+    if (!newDate.isValid()) newDate = moment(inputtedString);
 
     return newDate;
   }
@@ -152,6 +167,7 @@ function DatePicker(props) {
     } else {
       setConfirmationResult("");
       setHasParsingError(true);
+      onError({ type: INPUT_PARSE_ERROR, value: inputtedString });
     }
   }
 
@@ -195,6 +211,8 @@ function DatePicker(props) {
     handleChange(selectedDate);
   }
 
+  const hasError = extendedInputProps && extendedInputProps.hasError;
+
   return (
     <Popover
       offset={8}
@@ -205,7 +223,6 @@ function DatePicker(props) {
       shouldKeepFocus
     >
       <Input
-        hasError={hasError || hasParsingError}
         icon={<CalendarIcon />}
         id={id}
         isDisabled={isDisabled}
@@ -218,10 +235,16 @@ function DatePicker(props) {
         inputRef={inputRef}
         value={confirmationResult || inputtedString}
         {...extendedInputProps}
+        hasError={hasError || hasParsingError}
       />
 
       <Popover.Content>
-        <div css={calendarPopoverStyles} data-pka-anchor="datepicker.calendar" ref={calendarRef}>
+        <div
+          css={calendarPopoverStyles}
+          data-pka-anchor="datepicker.calendar"
+          ref={calendarRef}
+          shouldShowCalendar={shouldShowCalendar}
+        >
           <Calendar
             date={date}
             isVisible={shouldShowCalendar}

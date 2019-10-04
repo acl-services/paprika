@@ -48,6 +48,31 @@ export default function reducer(state, { type, payload }) {
     }
 
     case useListBox.types.selectMultipleOption: {
+      const { activeOptionIndex, isSelected } = payload;
+      let selectedOptions = [];
+
+      if (isSelected) {
+        // remove duplicates
+        selectedOptions = [...new Set([...state.selectedOptions, activeOptionIndex])];
+      } else if (state.selectedOptions.includes(activeOptionIndex)) {
+        selectedOptions = state.selectedOptions.slice(0);
+        const index = selectedOptions.indexOf(activeOptionIndex);
+        selectedOptions.splice(index, 1);
+      } else {
+        return { ...state };
+      }
+
+      return {
+        ...state,
+        activeOption: activeOptionIndex,
+        isOpen: true,
+        onChangeFn: payload.onChangeFn,
+        selectedOptions,
+        shouldContentScroll: false,
+      };
+    }
+
+    case useListBox.types.toggleMultipleOption: {
       const selectedOptionsArray = state.selectedOptions.slice();
       const { activeOptionIndex } = payload;
 
