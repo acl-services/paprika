@@ -4,7 +4,7 @@ const selectors = {
   filtersClearButton: "[data-pka-anchor='clear-filters-button']",
   filterSelectTableList: "[data-pka-anchor='table-list']",
   noResults: "[data-pka-anchor='no-results']",
-  popover: "[data-pka-anchor='popover-content']",
+  popover: "[data-pka-anchor='popover.content']",
   popoverList: "[data-pka-anchor='styled-list']",
   trigger: "[data-pka-anchor='listbox-trigger']",
 };
