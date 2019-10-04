@@ -48,7 +48,7 @@ function Trigger(props) {
   const { children, a11yText } = props;
 
   if (typeof children === "function") {
-    return <React.Fragment>{children(handleTriggerEvent, content.ariaId)}</React.Fragment>;
+    return <React.Fragment>{children(handleTriggerEvent, { "aria-describedby": content.ariaId })}</React.Fragment>;
   }
 
   if (isEager) {

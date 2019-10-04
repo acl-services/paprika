@@ -45,8 +45,9 @@ const ExampleStory = () => (
       </h5>
       <Popover isEager>
         <Popover.Trigger>
-          {(handler, ariaId) => (
+          {(handler, attributes) => (
             <Icon
+              {...attributes}
               onMouseOver={handler}
               onMouseOut={handler}
               onFocus={handler}
@@ -54,7 +55,6 @@ const ExampleStory = () => (
               tabIndex={0}
               role="img"
               aria-label="info"
-              aria-describedby={ariaId}
             />
           )}
         </Popover.Trigger>
@@ -70,14 +70,14 @@ const ExampleStory = () => (
       </h5>
       <Popover isEager>
         <Popover.Trigger>
-          {(handler, ariaId) => (
+          {(handler, attributes) => (
             <a
+              {...attributes}
               href="http://www.acl.com"
               onMouseOver={handler}
               onMouseOut={handler}
               onFocus={handler}
               onBlur={handler}
-              aria-describedby={ariaId}
             >
               More info
             </a>
@@ -94,13 +94,13 @@ const ExampleStory = () => (
       </h5>
       <Popover isEager>
         <Popover.Trigger>
-          {(handler, ariaId) => (
+          {(handler, attributes) => (
             <Button
+              {...attributes}
               onMouseOver={handler}
               onMouseOut={handler}
               onFocus={handler}
               onBlur={handler}
-              aria-describedby={ariaId}
               onClick={() => {
                 window.location.href = "http://www.acl.com";
               }}
@@ -131,14 +131,14 @@ const ExampleStory = () => (
       </h5>
       <Popover isEager isDark>
         <Popover.Trigger>
-          {(handler, ariaId) => (
+          {(handler, attributes) => (
             <a
+              {...attributes}
               href="http://www.acl.com"
               onMouseOver={handler}
               onMouseOut={handler}
               onFocus={handler}
               onBlur={handler}
-              aria-describedby={ariaId}
             >
               More info
             </a>

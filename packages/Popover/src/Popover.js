@@ -290,7 +290,6 @@ class Popover extends React.Component {
     // NOTE: do this should make more that only focus the content div? should as well
     //       find the first focusable element like button, input, etc?
     //       can focus automatically
-    //       should we set focus into the popover content automatically?
     if (!this.props.shouldKeepFocus && !this.props.isEager && this.isOpen() && event.propertyName === "visibility") {
       event.target.focus();
     }
