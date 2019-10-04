@@ -106,6 +106,24 @@ export default function ListBoxBrowser(props) {
     handleClickBrowser({ $$key: option.parent, hasOptions: false, isClickFromButton: true })();
   }
 
+  function handleRemove(option) {
+    setSelectedOptions(selectedOptions => {
+      console.log(option);
+      const cloneSelectedOptions = { ...selectedOptions };
+      let index = null;
+      cloneSelectedOptions[option.parent].some((opt, i) => {
+        if (opt.$$key === option.$$key) {
+          index = i;
+          return true;
+        }
+        return false;
+      });
+
+      cloneSelectedOptions[option.parent].splice(index, 1);
+      return cloneSelectedOptions;
+    });
+  }
+
   React.useEffect(() => {
     onChange(selectedOptions);
   }, [onChange, selectedOptions]);
@@ -146,7 +164,12 @@ export default function ListBoxBrowser(props) {
         />
       </div>
       {Object.keys(selectedOptions).length ? (
-        <OptionsSelected onClick={handleClickJumpToOption} data={localData} options={selectedOptions} />
+        <OptionsSelected
+          onRemove={handleRemove}
+          onClick={handleClickJumpToOption}
+          data={localData}
+          options={selectedOptions}
+        />
       ) : null}
     </div>
   );

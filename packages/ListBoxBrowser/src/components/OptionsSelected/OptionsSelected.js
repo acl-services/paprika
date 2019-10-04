@@ -18,7 +18,7 @@ const propTypes = {
   // need a custom proptype
   options: PropTypes.object.isRequired, // eslint-disable-line
   onClick: PropTypes.func,
-  onRemove: PropTypes.bool,
+  onRemove: PropTypes.func,
   data: PropTypes.arrayOf(PropTypes.object).isRequired,
 };
 
@@ -57,12 +57,14 @@ export default function OptionsSelected(props) {
           return options[key].map(option => {
             const breadcrumb = getBreadcrumb({ data, option });
             return (
-              <div key={option.$$key} css={optionStyles}>
+              <div key={option.$$key} css={optionStyles} data-ppk-anchor="listbox-browser-selected-options">
                 <RawButton css={button} onClick={handleClick(option)}>
-                  <div css={optionLabel}>{option.attributes.label}</div>
+                  <div css={optionLabel} data-ppk-anchor="listbox-browser-selected-options-label">
+                    {option.attributes.label}
+                  </div>
                   <div css={optionBreadcrum}>
                     {breadcrumb.map((option, index, list) => (
-                      <span>
+                      <span key={option.$$key} data-ppk-anchor="listbox-browser-selected-options-breadcrumb">
                         {option.attributes.label} {index !== list.length - 1 ? `>` : null}
                       </span>
                     ))}

@@ -19,8 +19,6 @@ export const optionStyles = css`
   font-size: 14px;
   justify-content: center;
   margin: ${tokens.spaceSm};
-  padding: ${tokens.spaceSm};
-  position: relative;
 `;
 
 export const divider = css`
@@ -33,17 +31,9 @@ export const divider = css`
 `;
 
 export const button = css`
-  flex-grow: 1;
-  margin-right: ${spacer(1)};
-  &:after {
-    border-right: 1px solid ${tokens.border.color};
-    content: "";
-    height: 100%;
-    left: calc(100% - 21px);
-    position: absolute;
-    top: 0;
-    width: 1px;
-  }
+  border-top-left-radius: ${tokens.border.radius};
+  border-top-left-radius: ${tokens.border.radius};
+  padding: ${tokens.spaceSm};
 `;
 
 export const counter = css`
@@ -57,12 +47,17 @@ export const counter = css`
 
 export const remove = css`
   align: center;
-  border-radius: ${tokens.border.radius};
+  align-items: center;
+  border-bottom-right-radius: ${tokens.border.radius};
+  border-left: 1px solid ${tokens.border.color};
+  border-top-right-radius: ${tokens.border.radius};
   color: ${tokens.color.cremeDarken30};
+  display: inline-flex;
   display: flex;
   font-size: 12px;
+  height: 100%;
   justify: center;
-  padding: ${tokens.spaceSm / 2};
+  padding: 0 ${tokens.space};
   position: relative;
 
   &:hover {
