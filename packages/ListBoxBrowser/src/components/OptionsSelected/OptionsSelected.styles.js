@@ -33,7 +33,7 @@ export const divider = css`
 export const button = css`
   border-top-left-radius: ${tokens.border.radius};
   border-top-left-radius: ${tokens.border.radius};
-  padding: ${tokens.spaceSm};
+  padding: ${tokens.spaceSm} ${tokens.space};
 `;
 
 export const counter = css`
