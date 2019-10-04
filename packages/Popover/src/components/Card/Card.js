@@ -6,7 +6,11 @@ import CardStyled from "./Card.styles";
 function Card({ children }) {
   const isDark = React.useContext(ThemeContext);
 
-  return <CardStyled isDark={isDark}>{children}</CardStyled>;
+  return (
+    <CardStyled isDark={isDark} data-pka-anchor="popover.card">
+      {children}
+    </CardStyled>
+  );
 }
 
 Card.displayName = "Popover.Card";
