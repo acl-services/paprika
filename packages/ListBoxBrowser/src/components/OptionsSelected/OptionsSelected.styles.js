@@ -10,7 +10,7 @@ export const container = css`
 
 export const optionStyles = css`
   align-items: center;
-  background: ${tokens.backgroundColor.level0};
+  background: ${tokens.backgroundColor.white};
   border: 1px solid ${tokens.border.color};
   border-radius: ${tokens.border.radius};
   box-sizing: border-box;
@@ -71,7 +71,7 @@ export const optionLabel = css`
 `;
 
 export const optionBreadcrum = css`
-  color: ${tokens.color.blackLighten30};
+  color: ${tokens.color.blackLighten20};
   font-size: 13px;
   font-style: italic;
 `;
