@@ -6,6 +6,7 @@ import FocusTrap from "focus-trap-react";
 import EscListener from "./components/EscListener";
 import Wrapper from "./components/Wrapper";
 import { animationDuration } from "./tokens";
+import LockBodyScroll from "./components/LockBodyScroll";
 
 const propTypes = {
   /** Control the visibility of the takeover */
@@ -43,26 +44,29 @@ const Takeover = ({ isOpen, onClose, isInline, onAfterClose, onAfterOpen }) => {
   }
 
   return (
-    <Portal active={!isInline}>
+    <>
       {isOpen && <EscListener on={onClose} />}
-      <Transition
-        mountOnEnter
-        unmountOnExit
-        in={isOpen}
-        timeout={animationDuration}
-        onEnter={handleTransitionEnter}
-        onEntered={onAfterOpen}
-        onExited={onAfterClose}
-      >
-        {state => (
-          <FocusTrap active={!isInline} focusTrapOptions={{ fallbackFocus: () => document.createElement("div") }}>
-            <Wrapper ref={refWrapper} state={state}>
-              111
-            </Wrapper>
-          </FocusTrap>
-        )}
-      </Transition>
-    </Portal>
+      {isOpen && <LockBodyScroll />}
+      <Portal active={!isInline}>
+        <Transition
+          mountOnEnter
+          unmountOnExit
+          in={isOpen}
+          timeout={animationDuration}
+          onEnter={handleTransitionEnter}
+          onEntered={onAfterOpen}
+          onExited={onAfterClose}
+        >
+          {state => (
+            <FocusTrap active={!isInline} focusTrapOptions={{ fallbackFocus: () => document.createElement("div") }}>
+              <Wrapper ref={refWrapper} state={state}>
+                111
+              </Wrapper>
+            </FocusTrap>
+          )}
+        </Transition>
+      </Portal>
+    </>
   );
 };
 
