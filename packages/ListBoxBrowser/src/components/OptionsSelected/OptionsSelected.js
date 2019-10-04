@@ -47,10 +47,14 @@ export default function OptionsSelected(props) {
     onRemove(key);
   };
 
+  const length = getLength(options);
+
+  if (!length) return null;
+
   return (
     <>
       <div css={divider}>
-        (i18n) Selected options <span css={counter}>{getLength(options)}</span>
+        (i18n) Selected options <span css={counter}>{length}</span>
       </div>
       <div css={container}>
         {Object.keys(options).map(key => {
