@@ -5,10 +5,10 @@ describe("<DropdownMenu />", () => {
 
   it("should show hide dropdown content when when clicking trigger", () => {
     cy.getByTestId("dropdown-menu__trigger").click();
-    cy.getByTestId("popover-content").should("be.visible");
+    cy.getByTestId("popover.content").should("be.visible");
     cy.wait(100).then(() => {
       cy.getByTestId("dropdown-menu__trigger").click();
-      cy.getByTestId("popover-content").should("not.be.visible");
+      cy.getByTestId("popover.content").should("not.be.visible");
     });
   });
 

@@ -98,7 +98,6 @@ class Popover extends React.Component {
     this.$tip = null; // this ref comes from a callback of the <Tip /> component
 
     const portalNode = document.createElement("div");
-    // portalNode.setAttribute("data-paprika-type", "Popover");
     this.$portal = document.body.appendChild(portalNode);
 
     this.state = {
@@ -416,7 +415,7 @@ class Popover extends React.Component {
     return (
       <ThemeContext.Provider value={isDark}>
         <PopoverContext.Provider value={contextValue}>
-          <PopoverStyled {...moreProps} ref={this.$popover}>
+          <PopoverStyled data-pka-anchor="popover" {...moreProps} ref={this.$popover}>
             {this.props.children}
           </PopoverStyled>
         </PopoverContext.Provider>
