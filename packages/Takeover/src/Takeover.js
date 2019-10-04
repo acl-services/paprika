@@ -31,7 +31,8 @@ const defaultProps = {
   onAfterOpen: () => {},
 };
 
-const Portal = ({ children, active }) => (active ? ReactDOM.createPortal(children, document.body) : React.Fragment);
+const Portal = ({ children, active }) =>
+  active ? ReactDOM.createPortal(children, document.body) : <React.Fragment>{children}</React.Fragment>;
 
 const Takeover = ({ isOpen, onClose, isInline, onAfterClose, onAfterOpen }) => {
   const refWrapper = React.useRef(null);
