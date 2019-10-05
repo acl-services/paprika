@@ -86,6 +86,7 @@ const Content = React.forwardRef((props, ref) => {
       data-component-name="PopoverContent"
       data-pka-anchor="popover.content"
       ref={handleRef}
+      id={isEager ? content.ariaId : null}
       isOpen={isOpen}
       onBlur={handleBlur}
       onMouseOut={handleMouseEvent}
@@ -95,7 +96,7 @@ const Content = React.forwardRef((props, ref) => {
       zIndex={content.zIndex}
       {...moreProps}
     >
-      {children}
+      {props.children}
     </ContentStyled>,
     portalElement
   );

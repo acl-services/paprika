@@ -16,9 +16,16 @@ const defaultProps = {
 };
 
 function Trigger(props) {
-  const { isEager, onClick, onClose, onDelayedClose, onDelayedOpen, onOpen, shouldKeepFocus } = React.useContext(
-    PopoverContext
-  );
+  const {
+    content,
+    isEager,
+    onClick,
+    onClose,
+    onDelayedClose,
+    onDelayedOpen,
+    onOpen,
+    shouldKeepFocus,
+  } = React.useContext(PopoverContext);
 
   function handleTriggerEvent(event) {
     if (isEager && (event.type === "mouseover" || event.type === "focus")) {
@@ -29,7 +36,7 @@ function Trigger(props) {
       }
     } else if (isEager && event.type === "mouseout") {
       onDelayedClose();
-    } else if (shouldKeepFocus && event.type === "blur") {
+    } else if ((shouldKeepFocus || isEager) && event.type === "blur") {
       window.requestAnimationFrame(() => {
         if (!isActiveElementPopover()) onClose();
       });
@@ -41,10 +48,9 @@ function Trigger(props) {
   const { children, a11yText } = props;
 
   if (typeof children === "function") {
-    return <React.Fragment>{children(handleTriggerEvent)}</React.Fragment>;
+    return <React.Fragment>{children(handleTriggerEvent, { "aria-describedby": content.ariaId })}</React.Fragment>;
   }
 
-  /* issue https://github.com/acl-services/paprika/issues/33 */
   if (isEager) {
     return (
       <RawButton
@@ -54,6 +60,7 @@ function Trigger(props) {
         onMouseOut={handleTriggerEvent}
         onFocus={handleTriggerEvent}
         onBlur={handleTriggerEvent}
+        aria-describedby={content.ariaId}
       >
         {children}
       </RawButton>
