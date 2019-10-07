@@ -75,7 +75,13 @@ const Sortable = ({ children, onChange, hasNumbers, onRemove, ...moreProps }) =>
           >
             {validChildren.length > 0 &&
               validChildren.map((child, index) => (
-                <SortableItem key={child.props.sortId} index={index} hasNumbers={hasNumbers} onRemove={onRemove}>
+                <SortableItem
+                  key={child.props.sortId}
+                  index={index}
+                  hasNumbers={hasNumbers}
+                  onRemove={onRemove}
+                  {...child.props}
+                >
                   {child}
                 </SortableItem>
               ))}

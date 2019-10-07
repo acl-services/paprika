@@ -19,7 +19,7 @@ const defaultProps = {
   onRemove: null,
 };
 
-const SortableItem = ({ children, index, hasNumbers, onRemove }) => {
+const SortableItem = ({ children, index, hasNumbers, onRemove, ...moreProps }) => {
   const I18n = useI18n();
 
   const handleRemove = () => {
@@ -38,6 +38,7 @@ const SortableItem = ({ children, index, hasNumbers, onRemove }) => {
           isDragging={snapshot.isDragging}
           ref={provided.innerRef}
           aria-roledescription={I18n.t("sortable.aria_description")}
+          {...moreProps}
         >
           <div css={itemHandleStyles} data-pka-anchor="sortable.item.handle">
             <HandleIcon />
