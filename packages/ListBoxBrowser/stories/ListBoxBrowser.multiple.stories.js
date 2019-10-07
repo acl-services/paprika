@@ -3,6 +3,7 @@ import { Story } from "storybook/assets/styles/common.styles";
 import { storiesOf } from "@storybook/react";
 import ListBoxBrowser from "../src";
 import dataMultiple from "../test/fixtures/multiple";
+import dataMultipleFirstOptionNoOptions from "../test/fixtures/multiple.firstOptionNoOptions";
 
 storiesOf("ListBoxBrowser", module)
   .add("Multi / basic", () => (
@@ -35,6 +36,20 @@ storiesOf("ListBoxBrowser", module)
       <ListBoxBrowser
         data={dataMultiple}
         isParentSelectable
+        rootTitle="Universes"
+        browserTitle="Heroes"
+        onChange={selectedOptions => {
+          console.log("selected options:", selectedOptions);
+        }}
+      >
+        <ListBoxBrowser.OptionsSelected />
+      </ListBoxBrowser>
+    </Story>
+  ))
+  .add("Multi / With first Option without Options", () => (
+    <Story>
+      <ListBoxBrowser
+        data={dataMultipleFirstOptionNoOptions}
         rootTitle="Universes"
         browserTitle="Heroes"
         onChange={selectedOptions => {
