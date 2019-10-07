@@ -34,22 +34,40 @@ const defaultProps = {
   children: null,
 };
 
+function getFirstOptionWithOptions(localData) {
+  let index = null;
+  try {
+    Object.keys(localData).some(key => {
+      if (localData[key].hasOptions) {
+        index = key;
+        throw new Error("index found");
+      }
+      return false;
+    });
+
+    return index;
+  } catch (e) {
+    return index;
+  }
+}
+
 export const ListBoxBrowserContext = React.createContext({});
 
 export default function ListBoxBrowser(props) {
   const refSelectedOptions = React.useRef({});
   const { onChange, isParentSelectable, data, isMulti, height, rootTitle, browserTitle, children } = props;
   const [localData] = React.useState(() => getData({ data, selectedOptions: refSelectedOptions }));
-  const [rootKey, setRootKey] = React.useState("0");
-  // NOTE: will yield a bug if the first option has not children
-  const [browserKey, setBrowserKey] = React.useState("0");
+  const index = getFirstOptionWithOptions(localData);
+
+  if (index === null) {
+    throw new Error("At least one option should have options attribute");
+  }
+
+  const [rootKey, setRootKey] = React.useState(index);
+  const [browserKey, setBrowserKey] = React.useState(index);
   const [selectedOptions, setSelectedOptions] = React.useState(refSelectedOptions.current);
 
-  const browserOptions = React.useMemo(() => getOptionByKey(localData, browserKey || rootKey), [
-    browserKey,
-    localData,
-    rootKey,
-  ]);
+  const browserOptions = React.useMemo(() => getOptionByKey(localData, browserKey), [browserKey, localData]);
 
   const handleChange = source => (indexes, list) => {
     onChangeHelper({

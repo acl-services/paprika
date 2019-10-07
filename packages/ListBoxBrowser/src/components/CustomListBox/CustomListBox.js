@@ -29,7 +29,6 @@ function isSelected({ $$key, selectedOptions, browserKey, isRootListBox }) {
   }
 
   if (key in selectedOptions) {
-    console.log("isSelected", selectedOptions[key].some(option => option.$$key === $$key));
     return selectedOptions[key].some(option => option.$$key === $$key);
   }
 
