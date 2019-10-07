@@ -3,7 +3,9 @@ import PropTypes from "prop-types";
 import { Draggable } from "react-beautiful-dnd";
 import HandleIcon from "@paprika/icon/lib/DragHandle";
 import Button from "@paprika/button";
+import TrashbinIcon from "@paprika/icon/lib/Trashbin";
 import useI18n from "@paprika/l10n/lib/useI18n";
+import tokens from "@paprika/tokens";
 import { itemStyles, itemIndexStyles, itemHandleStyles, itemBodyStyles, itemCloseStyles } from "./SortableItem.styles";
 
 const propTypes = {
@@ -50,12 +52,9 @@ const SortableItem = ({ children, index, hasNumbers, onRemove }) => {
           </div>
           {onRemove && (
             <div css={itemCloseStyles} data-pka-anchor="sortable.item.remove">
-              <Button.Close
-                a11yText={I18n.t("sortable.aria_remove")}
-                onClick={handleRemove}
-                size="small"
-                isSemantic={false}
-              />
+              <Button.Icon onClick={handleRemove} kind="minor" size="small">
+                <TrashbinIcon color={tokens.color.blackLighten20} />
+              </Button.Icon>
             </div>
           )}
         </li>
