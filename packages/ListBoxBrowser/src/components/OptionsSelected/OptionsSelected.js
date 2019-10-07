@@ -1,8 +1,9 @@
 import React from "react";
-import PropTypes from "prop-types";
 import RawButton from "@paprika/raw-button";
 import Times from "@paprika/icon/lib/Times";
 import { getBreadcrumb } from "../../helpers";
+import { ListBoxBrowserContext } from "../../ListBoxBrowser";
+
 import {
   optionStyles,
   container,
@@ -14,19 +15,6 @@ import {
   optionBreadcrum,
 } from "./OptionsSelected.styles";
 
-const propTypes = {
-  // need a custom proptype
-  options: PropTypes.object.isRequired, // eslint-disable-line
-  onClick: PropTypes.func,
-  onRemove: PropTypes.func,
-  data: PropTypes.arrayOf(PropTypes.object).isRequired,
-};
-
-const defaultProps = {
-  onClick: () => {},
-  onRemove: () => {},
-};
-
 function getLength(options) {
   let i = 0;
   Object.keys(options).forEach(key => {
@@ -37,17 +25,17 @@ function getLength(options) {
   return i;
 }
 
-export default function OptionsSelected(props) {
-  const { options, onClick, onRemove, data } = props;
+export default function OptionsSelected() {
+  const { selectedOptions, localData, onRemove, onJumpToOption } = React.useContext(ListBoxBrowserContext);
   const handleClick = key => () => {
-    onClick(key);
+    onJumpToOption(key);
   };
 
-  const handleRemove = key => () => {
-    onRemove(key);
+  const handleRemove = option => () => {
+    onRemove(option);
   };
 
-  const length = getLength(options);
+  const length = getLength(selectedOptions);
 
   if (!length) return null;
 
@@ -57,9 +45,9 @@ export default function OptionsSelected(props) {
         (i18n) Selected options <span css={counter}>{length}</span>
       </div>
       <div css={container}>
-        {Object.keys(options).map(key => {
-          return options[key].map(option => {
-            const breadcrumb = getBreadcrumb({ data, option });
+        {Object.keys(selectedOptions).map(key => {
+          return selectedOptions[key].map(option => {
+            const breadcrumb = getBreadcrumb({ data: localData, option });
             return (
               <div key={option.$$key} css={optionStyles} data-ppk-anchor="listbox-browser-selected-options">
                 <RawButton css={button} onClick={handleClick(option)}>
@@ -85,6 +73,3 @@ export default function OptionsSelected(props) {
     </>
   );
 }
-
-OptionsSelected.propTypes = propTypes;
-OptionsSelected.defaultProps = defaultProps;
