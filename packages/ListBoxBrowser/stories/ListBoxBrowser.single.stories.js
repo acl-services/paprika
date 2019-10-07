@@ -19,6 +19,22 @@ storiesOf("ListBoxBrowser", module)
       />
     </Story>
   ))
+  .add("Single / Allowing select parent", () => (
+    <Story>
+      <ListBoxBrowser
+        data={dataSingle}
+        isMulti={false}
+        rootTitle="Universes"
+        browserTitle="Heroes"
+        isParentSelectable
+        onChange={selectedOptions => {
+          console.log("selected options:", selectedOptions);
+        }}
+      >
+        <ListBoxBrowser.OptionsSelected />
+      </ListBoxBrowser>
+    </Story>
+  ))
   .add("Single / With OptionSelected component", () => (
     <Story>
       <ListBoxBrowser
