@@ -22,9 +22,15 @@ const defaultProps = {
   onUp: () => {},
 };
 
-function isSelected({ $$key, selectedOptions, browserKey }) {
-  if (browserKey in selectedOptions) {
-    return selectedOptions[browserKey].some(option => option.$$key === $$key);
+function isSelected({ $$key, selectedOptions, browserKey, isRootListBox }) {
+  let key = browserKey;
+  if (isRootListBox) {
+    key = "root";
+  }
+
+  if (key in selectedOptions) {
+    console.log("isSelected", selectedOptions[key].some(option => option.$$key === $$key));
+    return selectedOptions[key].some(option => option.$$key === $$key);
   }
 
   return false;
@@ -44,7 +50,7 @@ export default function CustomListBox(props) {
   );
 
   const { id, onChange, options, onClickNavigate, onUp, hasOnUp } = props;
-
+  const isRootListBox = id === "root";
   return (
     <ListBox key={id} height={height} isMulti={isMulti} isInline onChange={onChange}>
       <ListBox.Trigger isHidden></ListBox.Trigger>
@@ -60,7 +66,7 @@ export default function CustomListBox(props) {
         return (
           <ListBox.Option
             preventDefaultOnSelect={isSelectable({ hasOptions, isParentSelectable })}
-            isSelected={isSelected({ browserKey, $$key, selectedOptions })}
+            isSelected={isSelected({ browserKey, $$key, selectedOptions, isRootListBox })}
             key={$$key}
             label={attributes.label}
             value={option}
@@ -76,7 +82,7 @@ export default function CustomListBox(props) {
                       tabIndex={-1}
                       aria-hidden
                       type={isMulti ? "checkbox" : "radio"}
-                      checked={isSelected({ browserKey, $$key, selectedOptions })}
+                      checked={isSelected({ browserKey, $$key, selectedOptions, isRootListBox })}
                       onChange={() => {}}
                     />
                   </span>

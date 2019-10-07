@@ -28,6 +28,7 @@ export const navigateButton = css`
 
 export const label = css`
   align-items: center;
+  cursor: default;
   display: flex;
   font-size: 16px;
   justify-content: flex-start;
