@@ -5,6 +5,10 @@ import tokens from "@paprika/tokens";
 const PillColorStyles = {
   "#d7d7d7": css`
     color: ${tokens.color.black};
+
+    svg {
+      fill: ${tokens.color.black};
+    }
   `,
 
   noRisk: css`
@@ -46,9 +50,10 @@ const PillSizeStyles = {
 };
 
 const pillStyles = css`
+  align-items: center;
   background: ${props => props.pillColor};
   color: ${props => props.textColor};
-  display: inline-block;
+  display: inline-flex;
   white-space: nowrap;
 
   &,
@@ -58,6 +63,10 @@ const pillStyles = css`
 
   &:focus {
     outline: 0;
+  }
+
+  svg {
+    margin-right: ${tokens.spaceSm};
   }
 
   ${({ size }) => PillSizeStyles[size]}

@@ -2,6 +2,7 @@ import React from "react";
 import { Story } from "storybook/assets/styles/common.styles";
 import Heading from "@paprika/heading";
 import tokens from "@paprika/tokens";
+import Icon from "@paprika/icon/lib/Upload";
 import Pill from "../../src/Pill";
 
 import * as helpers from "../Pill.stories.helpers";
@@ -22,6 +23,11 @@ const SizesColorsExample = () => (
     <Pill pillColor={tokens.color.blackLighten20}>Custom</Pill>
     <Pill pillColor="teal" textColor="lightgreen">
       Teal and green
+    </Pill>
+    <Heading level={3}>With Icons</Heading>
+    <Pill pillColor="noRisk">
+      <Icon />
+      No risk with icon
     </Pill>
   </Story>
 );
