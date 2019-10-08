@@ -31,7 +31,7 @@ const PillColorStyles = {
 
 const PillSizeStyles = {
   small: css`
-    border-radius: 8px / 50%;
+    border-radius: ${tokens.space} / 50%;
     font-weight: bold;
     line-height: ${stylers.spacer(2)};
     padding: 0 ${tokens.space};
@@ -42,7 +42,7 @@ const PillSizeStyles = {
     }
   `,
   medium: css`
-    border-radius: 12px / 50%;
+    border-radius: ${tokens.spaceLg} / 50%;
     line-height: ${stylers.spacer(3)};
     padding: 0 ${stylers.spacer(4)};
     ${stylers.fontSize(-1)};
