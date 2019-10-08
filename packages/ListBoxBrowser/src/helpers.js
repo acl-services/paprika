@@ -171,3 +171,20 @@ export function focusListBoxRoot() {
     document.querySelectorAll('[data-ppk-anchor="listbox-content-inline"]')[0].focus();
   });
 }
+
+export function getFirstOptionWithOptions(localData) {
+  let index = null;
+  try {
+    Object.keys(localData).some(key => {
+      if (localData[key].hasOptions) {
+        index = key;
+        throw new Error("index found");
+      }
+      return false;
+    });
+
+    return index;
+  } catch (e) {
+    return index;
+  }
+}

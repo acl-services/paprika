@@ -3,6 +3,7 @@ import PropTypes from "prop-types";
 import { title, flex } from "./Title.styles";
 import { getBreadcrumb, getOptionByKey, isRoot } from "../../helpers";
 import Breadcrumb from "../Breadcrumb";
+import { ListBoxBrowserContext } from "../../ListBoxBrowser";
 
 const propTypes = {
   rootTitle: PropTypes.string.isRequired,
@@ -25,16 +26,18 @@ export default function Title(props) {
     return getBreadcrumb({ data, option });
   }, [data, option]);
 
+  const { hasBreadcrumb } = React.useContext(ListBoxBrowserContext);
+
   return (
     <div css={flex}>
       <div css={title}>{rootTitle}</div>
       <div css={title}>
         <span>
           {browserTitle}
-          {breadcrumb.length ? " / " : null}
+          {hasBreadcrumb && breadcrumb.length && browserTitle !== "" ? " / " : null}
         </span>
-        {<Breadcrumb onClick={handleClick} breadcrumb={breadcrumb} />}
-        <span>{!isRoot(option.parent) ? option.attributes.label : null}</span>
+        {hasBreadcrumb ? <Breadcrumb onClick={handleClick} breadcrumb={breadcrumb} /> : null}
+        <span>{!isRoot(option.parent) && hasBreadcrumb ? option.attributes.label : null}</span>
       </div>
     </div>
   );

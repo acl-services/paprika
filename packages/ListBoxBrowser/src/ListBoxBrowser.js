@@ -8,6 +8,7 @@ import {
   isRoot,
   focusListBoxBrowser,
   focusListBoxRoot,
+  getFirstOptionWithOptions,
 } from "./helpers";
 import OptionsSelected from "./components/OptionsSelected";
 import CustomListBox from "./components/CustomListBox";
@@ -22,6 +23,7 @@ const propTypes = {
   rootTitle: PropTypes.string,
   browserTitle: PropTypes.string,
   children: PropTypes.node,
+  hasBreadcrumb: PropTypes.bool,
 };
 
 const defaultProps = {
@@ -32,30 +34,24 @@ const defaultProps = {
   rootTitle: "",
   browserTitle: "",
   children: null,
+  hasBreadcrumb: true,
 };
-
-function getFirstOptionWithOptions(localData) {
-  let index = null;
-  try {
-    Object.keys(localData).some(key => {
-      if (localData[key].hasOptions) {
-        index = key;
-        throw new Error("index found");
-      }
-      return false;
-    });
-
-    return index;
-  } catch (e) {
-    return index;
-  }
-}
 
 export const ListBoxBrowserContext = React.createContext({});
 
 export default function ListBoxBrowser(props) {
   const refSelectedOptions = React.useRef({});
-  const { onChange, isParentSelectable, data, isMulti, height, rootTitle, browserTitle, children } = props;
+  const {
+    browserTitle,
+    children,
+    data,
+    hasBreadcrumb,
+    height,
+    isMulti,
+    isParentSelectable,
+    onChange,
+    rootTitle,
+  } = props;
   const [localData] = React.useState(() => getData({ data, selectedOptions: refSelectedOptions }));
   const index = getFirstOptionWithOptions(localData);
 
@@ -66,7 +62,6 @@ export default function ListBoxBrowser(props) {
   const [rootKey, setRootKey] = React.useState(index);
   const [browserKey, setBrowserKey] = React.useState(index);
   const [selectedOptions, setSelectedOptions] = React.useState(refSelectedOptions.current);
-
   const browserOptions = React.useMemo(() => getOptionByKey(localData, browserKey), [browserKey, localData]);
 
   const handleChange = source => (indexes, list) => {
@@ -174,6 +169,7 @@ export default function ListBoxBrowser(props) {
       browserOptions,
       onRemove,
       onJumpToOption,
+      hasBreadcrumb,
     };
   }, [
     onChange,
@@ -189,6 +185,7 @@ export default function ListBoxBrowser(props) {
     browserOptions,
     onRemove,
     onJumpToOption,
+    hasBreadcrumb,
   ]);
 
   return (

@@ -4,14 +4,14 @@ import { storiesOf } from "@storybook/react";
 import ListBoxBrowser from "../src";
 import dataMultiple from "../test/fixtures/multiple";
 import dataMultipleFirstOptionNoOptions from "../test/fixtures/multiple.firstOptionNoOptions";
+import issues from "../test/fixtures/issues";
 
 storiesOf("ListBoxBrowser", module)
   .add("Multi / basic", () => (
     <Story>
       <ListBoxBrowser
-        data={dataMultiple}
-        rootTitle="Universes"
-        browserTitle="Heroes"
+        data={issues}
+        rootTitle="Phase"
         onChange={selectedOptions => {
           console.log("selected options:", selectedOptions);
         }}
@@ -59,4 +59,29 @@ storiesOf("ListBoxBrowser", module)
         <ListBoxBrowser.OptionsSelected />
       </ListBoxBrowser>
     </Story>
+  ))
+  .add("Multi / Has not breadcrumb", () => (
+    <Story>
+      <ListBoxBrowser data={dataMultiple} rootTitle="Phase" />
+    </Story>
   ));
+
+function getAlotOfOptions(qty, prefix) {
+  const options = [];
+  for (let i = 0, len = qty; i < len; i++) {
+    options.push({ label: `${prefix}-${i}` });
+  }
+
+  return options;
+}
+storiesOf("ListBoxBrowser", module).add("Multi / with multiple options", () => {
+  const data = [
+    { label: "option 1", options: [...getAlotOfOptions(99, "options 1")] },
+    { label: "option 2", options: [...getAlotOfOptions(99, "options 2")] },
+    { label: "option 3", options: [...getAlotOfOptions(99, "options 3")] },
+    { label: "option 4", options: [...getAlotOfOptions(99, "options 4")] },
+    ...getAlotOfOptions(99, "options 5"),
+  ];
+
+  return <ListBoxBrowser data={data} rootTitle="A lot of options" />;
+});
