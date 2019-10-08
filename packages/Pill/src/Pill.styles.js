@@ -2,7 +2,7 @@ import { css } from "styled-components";
 import stylers from "@paprika/stylers";
 import tokens from "@paprika/tokens";
 
-const PillColorStyles = {
+const pillColorStyles = {
   "#d7d7d7": css`
     color: ${tokens.color.black};
 
@@ -29,7 +29,7 @@ const PillColorStyles = {
   `,
 };
 
-const PillSizeStyles = {
+const pillSizeStyles = {
   small: css`
     border-radius: ${tokens.space} / 50%;
     font-weight: bold;
@@ -69,8 +69,8 @@ const pillStyles = css`
     margin-right: ${tokens.spaceSm};
   }
 
-  ${({ size }) => PillSizeStyles[size]}
-  ${({ pillColor }) => PillColorStyles[pillColor]}
+  ${({ size }) => pillSizeStyles[size]}
+  ${({ pillColor }) => pillColorStyles[pillColor]}
 `;
 
 export default pillStyles;
