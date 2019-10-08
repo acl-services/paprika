@@ -48,6 +48,10 @@ const Example = () => {
           </Sortable.Item>
         </Sortable>
       </div>
+      <Rule />
+      <Sortable onChange={() => {}} hasZebraStripes>
+        {helpers.inputChildren(4)}
+      </Sortable>
     </Story>
   );
 };
