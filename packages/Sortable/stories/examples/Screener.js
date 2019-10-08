@@ -2,6 +2,7 @@ import React from "react";
 import { Story, Rule } from "storybook/assets/styles/common.styles";
 import * as helpers from "../Sortable.stories.helpers";
 import Sortable from "../../src";
+import "./Overflowing.scss";
 
 const Example = () => {
   return (
@@ -32,6 +33,21 @@ const Example = () => {
       <Sortable onChange={() => {}} hasNumbers={false}>
         {helpers.inputChildren(4)}
       </Sortable>
+      <Rule />
+      <div className="overflowing-example-sortable-wrapper">
+        <Sortable onChange={() => {}} onRemove={() => {}}>
+          <Sortable.Item sortId="1">
+            <div className="overflowing-example__parent">
+              <div className="overflowing-example__child">short content</div>
+            </div>
+          </Sortable.Item>
+          <Sortable.Item sortId="2">
+            <div className="overflowing-example__parent">
+              <div className="overflowing-example__child">really long content that is too wide for the parent.</div>
+            </div>
+          </Sortable.Item>
+        </Sortable>
+      </div>
     </Story>
   );
 };
