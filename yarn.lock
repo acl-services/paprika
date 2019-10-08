@@ -2210,6 +2210,15 @@
     "@paprika/tokens" "^0.1.4"
     lodash.throttle "^4.1.1"
     memoize-one "^5.0.0"
+
+"@paprika/raw-button@0.1.5":
+  version "0.1.5"
+  resolved "https://registry.yarnpkg.com/@paprika/raw-button/-/raw-button-0.1.5.tgz#06dc8dd71fa405b27756676f74a75505ef863fba"
+  integrity sha512-vHwmMnZJ6t4jIiTUHoH9Q5CydaJqQWwiNqt8yFf9L5vfEVtYqcPSj90cGQG5WU9LJGq23Qm+PnFuRzQZ/iodNg==
+  dependencies:
+    "@babel/runtime-corejs2" "^7.3.1"
+    "@paprika/stylers" "^0.1.4"
+    "@paprika/tokens" "^0.1.4"
     prop-types "^15.7.2"
 
 "@reach/router@^1.2.1":
