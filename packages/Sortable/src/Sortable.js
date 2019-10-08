@@ -62,8 +62,6 @@ const Sortable = ({ children, onChange, hasNumbers, hasZebraStripes, onRemove, .
     }
   };
 
-  console.log("hasZebraStripes", hasZebraStripes);
-
   return (
     <DragDropContext onDragEnd={handleDragEnd} onDragStart={handleDragStart} onDragUpdate={handleDragUpdate}>
       <Droppable droppableId={dropId.current}>
