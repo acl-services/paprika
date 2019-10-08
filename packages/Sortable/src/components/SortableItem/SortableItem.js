@@ -53,7 +53,7 @@ const SortableItem = ({ children, index, hasNumbers, onRemove, ...moreProps }) =
           </div>
           {onRemove && (
             <div css={itemCloseStyles} data-pka-anchor="sortable.item.remove">
-              <Button.Icon onClick={handleRemove} kind="minor" size="small">
+              <Button.Icon onClick={handleRemove} kind="minor" size="small" a11yText={I18n.t("sortable.aria_remove")}>
                 <TrashbinIcon color={tokens.color.blackLighten20} />
               </Button.Icon>
             </div>
