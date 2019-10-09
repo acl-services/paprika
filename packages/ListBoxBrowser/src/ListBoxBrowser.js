@@ -52,7 +52,8 @@ export default function ListBoxBrowser(props) {
     onChange,
     rootTitle,
   } = props;
-  const [localData] = React.useState(() => getData({ data, selectedOptions: refSelectedOptions }));
+
+  const localData = React.useMemo(() => getData({ data, selectedOptions: refSelectedOptions }), [data]);
   const index = getFirstOptionWithOptions(localData);
 
   if (index === null) {
