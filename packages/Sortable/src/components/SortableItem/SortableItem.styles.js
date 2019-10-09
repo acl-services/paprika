@@ -57,6 +57,7 @@ export const itemBodyStyles = css`
   align-items: center;
   display: flex;
   flex-grow: 1;
+  min-width: 0;
 `;
 
 export const itemCloseStyles = css`

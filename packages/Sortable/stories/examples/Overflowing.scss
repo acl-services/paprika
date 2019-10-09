@@ -1,0 +1,17 @@
+.overflowing-example-sortable-wrapper {
+  .overflowing-example__parent {
+    border: 1px solid blue;
+    display: inline-block;
+    overflow: hidden;
+    width: 100%;
+  }
+
+  .overflowing-example__child {
+    max-width: none;
+    position: relative;
+    width: 600px;
+  }
+
+  border: 1px solid red;
+  width: 250px;
+}
