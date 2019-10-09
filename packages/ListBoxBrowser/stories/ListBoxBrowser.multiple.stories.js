@@ -5,6 +5,7 @@ import ListBoxBrowser from "../src";
 import dataMultiple from "../test/fixtures/multiple";
 import dataMultipleFirstOptionNoOptions from "../test/fixtures/multiple.firstOptionNoOptions";
 import issues from "../test/fixtures/issues";
+import withEmptyArrays from "../test/fixtures/multiple.withEmptyArrays";
 
 storiesOf("ListBoxBrowser", module)
   .add("Multi / basic", () => (
@@ -62,7 +63,12 @@ storiesOf("ListBoxBrowser", module)
   ))
   .add("Multi / Has not breadcrumb", () => (
     <Story>
-      <ListBoxBrowser data={dataMultiple} rootTitle="Phase" />
+      <ListBoxBrowser data={dataMultiple} rootTitle="Universes" browserTitle="Heroes" hasBreadcrumb={false} />
+    </Story>
+  ))
+  .add("Multi / With lazy loading", () => (
+    <Story>
+      <ListBoxBrowser data={withEmptyArrays} rootTitle="Universes" browserTitle="Heroes" />
     </Story>
   ));
 
