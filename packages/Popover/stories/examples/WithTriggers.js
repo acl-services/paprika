@@ -1,4 +1,3 @@
-/* eslint-disable jsx-a11y/mouse-events-have-key-events */
 import React from "react";
 import styled from "styled-components";
 import { CenteredStory } from "storybook/assets/styles/common.styles";
@@ -46,11 +45,13 @@ const ExampleStory = () => (
       </h5>
       <Popover isEager>
         <Popover.Trigger>
-          {handler => (
+          {(handler, attributes) => (
             <Icon
+              {...attributes}
               onMouseOver={handler}
               onMouseOut={handler}
               onFocus={handler}
+              onBlur={handler}
               tabIndex={0}
               role="img"
               aria-label="info"
@@ -64,6 +65,56 @@ const ExampleStory = () => (
       </Popover>
       &nbsp;More info
       <Gap />
+      <h5>
+        Render prop: &lt;a&gt; link <code>isEager</code>
+      </h5>
+      <Popover isEager>
+        <Popover.Trigger>
+          {(handler, attributes) => (
+            <a
+              {...attributes}
+              href="http://www.acl.com"
+              onMouseOver={handler}
+              onMouseOut={handler}
+              onFocus={handler}
+              onBlur={handler}
+            >
+              More info
+            </a>
+          )}
+        </Popover.Trigger>
+        <Popover.Content>
+          <Popover.Card>Lorem ipsum single-origin kombucha butcher gentrify foraged flannel.</Popover.Card>
+        </Popover.Content>
+        <Popover.Tip />
+      </Popover>
+      <Gap />
+      <h5>
+        Render prop: &lt;a&gt; Button <code>isEager</code>
+      </h5>
+      <Popover isEager>
+        <Popover.Trigger>
+          {(handler, attributes) => (
+            <Button
+              {...attributes}
+              onMouseOver={handler}
+              onMouseOut={handler}
+              onFocus={handler}
+              onBlur={handler}
+              onClick={() => {
+                window.location.href = "http://www.acl.com";
+              }}
+            >
+              More info
+            </Button>
+          )}
+        </Popover.Trigger>
+        <Popover.Content>
+          <Popover.Card>Lorem ipsum single-origin kombucha butcher gentrify foraged flannel.</Popover.Card>
+        </Popover.Content>
+        <Popover.Tip />
+      </Popover>
+      <Gap />
       <h5>Node: &lt;a&gt; link</h5>
       <Popover>
         <Popover.Trigger>
@@ -73,6 +124,27 @@ const ExampleStory = () => (
           <Popover.Card>Lorem ipsum single-origin kombucha butcher gentrify foraged flannel.</Popover.Card>
         </Popover.Content>
         <Popover.Tip />
+      </Popover>
+      <Gap />
+      <h5>
+        Render prop: &lt;a&gt; link <code>isEager</code> without <code>Popover.Card</code> component
+      </h5>
+      <Popover isEager isDark>
+        <Popover.Trigger>
+          {(handler, attributes) => (
+            <a
+              {...attributes}
+              href="http://www.acl.com"
+              onMouseOver={handler}
+              onMouseOut={handler}
+              onFocus={handler}
+              onBlur={handler}
+            >
+              More info
+            </a>
+          )}
+        </Popover.Trigger>
+        <Popover.Content>Lorem ipsum single-origin kombucha.</Popover.Content>
       </Popover>
       <Gap />
       <h5>
@@ -91,7 +163,7 @@ const ExampleStory = () => (
       </Popover>
       <Gap />
       <h5>
-        Node: <code>shouldAutoFocus</code>
+        Node: <code>shouldKeepFocus</code>
       </h5>
       <Popover shouldKeepFocus>
         <Popover.Trigger>

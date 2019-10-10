@@ -7,6 +7,7 @@ export const TipStyled = styled.div`
   height: ${stylers.spacer(2)};
   line-height: ${stylers.spacer(2)};
   opacity: ${props => (props.isOpen ? 1 : 0)};
+  pointer-events: none;
   position: fixed;
   transform: rotate(${props => props.rotate || "0"}deg);
   transition: opacity ${consts.transition} ease, visibility ${consts.transition} ease;

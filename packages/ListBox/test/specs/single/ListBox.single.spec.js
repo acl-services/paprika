@@ -25,10 +25,10 @@ function renderComponent(props = {}, children = childrenContent) {
       fireEvent.click(rendered.getByText(/jupiter/i));
     },
     popoverIsHidden: () => {
-      expect(rendered.getByTestId("popover-content").getAttribute("aria-hidden")).toBeTruthy();
+      expect(rendered.getByTestId("popover.content").getAttribute("aria-hidden")).toBeTruthy();
     },
     popoverIsVisible: () => {
-      expect(rendered.getByTestId("popover-content").getAttribute("aria-hidden")).toMatch(/false/i);
+      expect(rendered.getByTestId("popover.content").getAttribute("aria-hidden")).toMatch(/false/i);
     },
   };
 }
@@ -110,7 +110,7 @@ describe("Listbox single select", () => {
       isInline: true,
     });
 
-    expect(queryByTestId("popover-content")).toBeNull();
+    expect(queryByTestId("popover.content")).toBeNull();
   });
 
   it("should focus on option container as soon as the Popover is open", done => {
@@ -118,7 +118,7 @@ describe("Listbox single select", () => {
 
     openSelect();
     setTimeout(() => {
-      expect(document.activeElement).toBe(getByTestId("popover-content"));
+      expect(document.activeElement).toBe(getByTestId("popover.content"));
       done();
     }, 350);
   });
@@ -136,7 +136,7 @@ describe("Listbox single select", () => {
 
     // NOT BEST PRACTICE: fix later, this is due the timer I had to put on the ListBox becaue the PopoverTimer
     setTimeout(() => {
-      expect(document.activeElement).not.toBe(getByTestId("popover-content"));
+      expect(document.activeElement).not.toBe(getByTestId("popover.content"));
       done();
     }, 350);
   });

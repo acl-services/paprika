@@ -14,6 +14,8 @@ const defaultProps = {
 };
 
 function Tip(props) {
+  const { zIndex, ...moreProps } = props;
+
   const isDark = React.useContext(ThemeContext);
   const { content, tip, refTip, isOpen, portalElement } = React.useContext(PopoverContext);
   const borderColor = isDark ? tokens.color.black : tokens.border.color;
@@ -21,11 +23,13 @@ function Tip(props) {
 
   return ReactDOM.createPortal(
     <TipStyled
-      ref={refTip}
       isOpen={isOpen}
+      data-pka-anchor="popover.tip"
+      ref={refTip}
       rotate={tip.rotate}
       style={{ left: tip.x, top: tip.y }}
-      zIndex={props.zIndex || content.zIndex}
+      zIndex={zIndex || content.zIndex}
+      {...moreProps}
     >
       <svg height="100%" width="100%" viewBox="0 0 12 12" version="1.1" xmlns="http://www.w3.org/2000/svg">
         <polygon points="0 12 12 12 6 6" fill={borderColor} />
