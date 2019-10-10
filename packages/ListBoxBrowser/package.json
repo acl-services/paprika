@@ -18,6 +18,7 @@
     "@paprika/icon": "^0.2.0",
     "@paprika/listbox": "^0.6.1",
     "@paprika/raw-button": "^0.1.7",
+    "@paprika/spinner": "^0.1.9",
     "@paprika/stylers": "^0.1.5",
     "@paprika/tokens": "^0.1.4",
     "prop-types": "^15.7.2"

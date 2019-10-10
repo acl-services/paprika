@@ -4,21 +4,25 @@ import ListBox from "@paprika/listbox";
 import RawButton from "@paprika/raw-button";
 import ArrowRight from "@paprika/icon/lib/ArrowRight";
 import ArrowLeft from "@paprika/icon/lib/ArrowLeft";
+import Spinner from "@paprika/spinner";
 import { ListBoxBrowserContext } from "../../ListBoxBrowser";
-import { label, navigateButton, action, labelContent, checkbox, backButton } from "./CustomListBox.styles";
+import { label, navigateButton, action, labelContent, checkbox, backButton, loading } from "./CustomListBox.styles";
 
 const noop = () => () => {};
 const propTypes = {
-  id: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
-  onChange: PropTypes.func.isRequired,
   hasOnUp: PropTypes.bool,
+  id: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
+  isLoading: PropTypes.bool,
+  onChange: PropTypes.func.isRequired,
+  onClickNavigate: PropTypes.func.isRequired,
   onUp: PropTypes.func,
   options: PropTypes.arrayOf(PropTypes.object).isRequired,
-  onClickNavigate: PropTypes.func.isRequired,
 };
+
 const defaultProps = {
-  id: "root",
   hasOnUp: false,
+  id: "root",
+  isLoading: false,
   onUp: () => {},
 };
 
@@ -48,8 +52,17 @@ export default function CustomListBox(props) {
     ListBoxBrowserContext
   );
 
-  const { id, onChange, options, onClickNavigate, onUp, hasOnUp } = props;
+  const { id, onChange, options, onClickNavigate, onUp, hasOnUp, isLoading } = props;
   const isRootListBox = id === "root";
+
+  if (isLoading) {
+    return (
+      <div css={loading}>
+        <Spinner />
+      </div>
+    );
+  }
+
   return (
     <ListBox key={id} height={height} isMulti={isMulti} isInline onChange={onChange}>
       <ListBox.Trigger isHidden></ListBox.Trigger>

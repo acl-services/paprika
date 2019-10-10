@@ -1,3 +1,5 @@
+import React from "react";
+
 const hasOptions = options => typeof options !== "undefined" && Array.isArray(options);
 
 export function isRoot(key) {
@@ -176,7 +178,7 @@ export function getFirstOptionWithOptions(localData) {
   let index = null;
   try {
     Object.keys(localData).some(key => {
-      if (localData[key].hasOptions) {
+      if (localData[key].hasOptions || localData[key].attributes.options.length === 0) {
         index = key;
         throw new Error("index found");
       }
@@ -186,5 +188,45 @@ export function getFirstOptionWithOptions(localData) {
     return index;
   } catch (e) {
     return index;
+  }
+}
+
+export function extractedExtendedProps(children) {
+  const props = {};
+  React.Children.map(children, child => {
+    if (child.type.displayName === "ListBoxBrowser.Root") {
+      props.root = { ...child.props };
+    }
+
+    if (child.type.displayName === "ListBoxBrowser.Browser") {
+      props.browser = { ...child.props };
+    }
+  });
+
+  return { ...props, children };
+}
+
+export function getDataOptionByFn(data, fn) {
+  let node = null;
+  function runner(data, fn) {
+    return data.map(option => {
+      if (fn(option)) {
+        node = option;
+        throw new Error("option found");
+      }
+
+      if (hasOptions(option.options)) {
+        return runner(option.options, fn);
+      }
+
+      return [];
+    });
+  }
+
+  try {
+    runner(data, fn);
+    return node;
+  } catch (e) {
+    return node;
   }
 }

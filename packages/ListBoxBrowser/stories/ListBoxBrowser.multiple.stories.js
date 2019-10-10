@@ -5,7 +5,7 @@ import ListBoxBrowser from "../src";
 import dataMultiple from "../test/fixtures/multiple";
 import dataMultipleFirstOptionNoOptions from "../test/fixtures/multiple.firstOptionNoOptions";
 import issues from "../test/fixtures/issues";
-import withEmptyArrays from "../test/fixtures/multiple.withEmptyArrays";
+import Lazy from "./examples/Lazy";
 
 storiesOf("ListBoxBrowser", module)
   .add("Multi / basic", () => (
@@ -67,27 +67,33 @@ storiesOf("ListBoxBrowser", module)
     </Story>
   ))
   .add("Multi / With lazy loading", () => (
-    <Story>
-      <ListBoxBrowser data={withEmptyArrays} rootTitle="Universes" browserTitle="Heroes" />
-    </Story>
+    <Lazy
+      defaultData={[
+        {
+          key: "0",
+          label: "Marvel Universe",
+          options: [],
+        },
+        {
+          key: "2",
+          label: "DC Universe",
+          options: [],
+        },
+        {
+          key: "3",
+          label: "Starcraft Universe",
+          options: [],
+        },
+        {
+          key: "4",
+          label: "Cartoon Network",
+          options: [],
+        },
+        {
+          key: "5",
+          label: "Dragon Ball",
+          options: [],
+        },
+      ]}
+    />
   ));
-
-function getAlotOfOptions(qty, prefix) {
-  const options = [];
-  for (let i = 0, len = qty; i < len; i++) {
-    options.push({ label: `${prefix}-${i}` });
-  }
-
-  return options;
-}
-storiesOf("ListBoxBrowser", module).add("Multi / with multiple options", () => {
-  const data = [
-    { label: "option 1", options: [...getAlotOfOptions(99, "options 1")] },
-    { label: "option 2", options: [...getAlotOfOptions(99, "options 2")] },
-    { label: "option 3", options: [...getAlotOfOptions(99, "options 3")] },
-    { label: "option 4", options: [...getAlotOfOptions(99, "options 4")] },
-    ...getAlotOfOptions(99, "options 5"),
-  ];
-
-  return <ListBoxBrowser data={data} rootTitle="A lot of options" />;
-});

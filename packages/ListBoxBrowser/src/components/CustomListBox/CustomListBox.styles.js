@@ -65,3 +65,12 @@ export const backButton = css`
     width: 100%;
   }
 `;
+
+export const loading = css`
+  align-items: center;
+  border: 0;
+  display: flex;
+  flex-basis: 50%;
+  justify-content: center;
+  min-height: 220px;
+`;

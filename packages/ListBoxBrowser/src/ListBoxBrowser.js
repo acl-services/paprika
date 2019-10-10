@@ -9,9 +9,13 @@ import {
   focusListBoxBrowser,
   focusListBoxRoot,
   getFirstOptionWithOptions,
+  extractedExtendedProps,
+  getDataOptionByFn,
 } from "./helpers";
 import OptionsSelected from "./components/OptionsSelected";
 import CustomListBox from "./components/CustomListBox";
+import Root from "./components/Root";
+import Browser from "./components/Browser";
 import Title from "./components/Title";
 
 const propTypes = {
@@ -24,6 +28,7 @@ const propTypes = {
   browserTitle: PropTypes.string,
   children: PropTypes.node,
   hasBreadcrumb: PropTypes.bool,
+  onFetch: PropTypes.func,
 };
 
 const defaultProps = {
@@ -35,6 +40,7 @@ const defaultProps = {
   browserTitle: "",
   children: null,
   hasBreadcrumb: true,
+  onFetch: null,
 };
 
 export const ListBoxBrowserContext = React.createContext({});
@@ -43,7 +49,7 @@ export default function ListBoxBrowser(props) {
   const refSelectedOptions = React.useRef({});
   const {
     browserTitle,
-    children,
+    children: childrenProps,
     data,
     hasBreadcrumb,
     height,
@@ -51,14 +57,12 @@ export default function ListBoxBrowser(props) {
     isParentSelectable,
     onChange,
     rootTitle,
+    onFetch,
   } = props;
 
+  const { root, browser, children } = extractedExtendedProps(childrenProps);
   const localData = React.useMemo(() => getData({ data, selectedOptions: refSelectedOptions }), [data]);
   const index = getFirstOptionWithOptions(localData);
-
-  if (index === null) {
-    throw new Error("At least one option should have options attribute");
-  }
 
   const [rootKey, setRootKey] = React.useState(index);
   const [browserKey, setBrowserKey] = React.useState(index);
@@ -76,6 +80,17 @@ export default function ListBoxBrowser(props) {
       isMulti,
     });
   };
+
+  const fetch = React.useCallback(
+    function fetchCallback($$key) {
+      const option = getOptionByKey(localData, $$key);
+      const { attributes } = option;
+      if (attributes.options.length === 0) {
+        if (onFetch) onFetch(attributes);
+      }
+    },
+    [localData, onFetch]
+  );
 
   const handleClickRoot = React.useCallback(
     ({ $$key, hasOptions, isClickFromButton = false }) => event => {
@@ -155,39 +170,51 @@ export default function ListBoxBrowser(props) {
     onChange(selectedOptions);
   }, [onChange, selectedOptions]);
 
+  React.useEffect(() => {
+    if (rootKey !== null) fetch(rootKey);
+  }, [fetch, rootKey]);
+
+  React.useEffect(() => {
+    if (browserKey !== null) fetch(browserKey);
+  }, [fetch, browserKey]);
+
   const value = React.useMemo(() => {
     return {
-      onChange,
-      isParentSelectable,
-      isMulti,
-      height,
-      rootTitle,
-      browserTitle,
-      localData,
-      rootKey,
       browserKey,
-      selectedOptions,
       browserOptions,
-      onRemove,
-      onJumpToOption,
+      browserTitle,
       hasBreadcrumb,
+      height,
+      isMulti,
+      isParentSelectable,
+      localData,
+      onChange,
+      onJumpToOption,
+      onRemove,
+      rootKey,
+      rootTitle,
+      selectedOptions,
     };
   }, [
-    onChange,
-    isParentSelectable,
-    isMulti,
-    height,
-    rootTitle,
-    browserTitle,
-    localData,
-    rootKey,
     browserKey,
-    selectedOptions,
     browserOptions,
-    onRemove,
-    onJumpToOption,
+    browserTitle,
     hasBreadcrumb,
+    height,
+    isMulti,
+    isParentSelectable,
+    localData,
+    onChange,
+    onJumpToOption,
+    onRemove,
+    rootKey,
+    rootTitle,
+    selectedOptions,
   ]);
+
+  if (!rootKey && !browserKey) {
+    throw new Error("At least one option should have options attribute");
+  }
 
   return (
     <ListBoxBrowserContext.Provider value={value}>
@@ -205,6 +232,7 @@ export default function ListBoxBrowser(props) {
             onChange={handleChange("root")}
             onClickNavigate={handleClickRoot}
             options={localData}
+            isLoading={(root && root.isLoading) || false}
           />
           <CustomListBox
             id={browserKey}
@@ -214,6 +242,7 @@ export default function ListBoxBrowser(props) {
             onClickNavigate={handleClickBrowser}
             onUp={handleUp(browserOptions.parent)}
             options={browserOptions.attributes.options}
+            isLoading={(browser && browser.isLoading) || false}
           />
         </div>
         {children}
@@ -223,5 +252,9 @@ export default function ListBoxBrowser(props) {
 }
 
 ListBoxBrowser.OptionsSelected = OptionsSelected;
+ListBoxBrowser.Browser = Browser;
+ListBoxBrowser.Root = Root;
+ListBoxBrowser.findOption = getDataOptionByFn;
+
 ListBoxBrowser.propTypes = propTypes;
 ListBoxBrowser.defaultProps = defaultProps;
