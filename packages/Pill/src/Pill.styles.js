@@ -46,17 +46,14 @@ const pillSizeStyles = {
   small: css`
     border-radius: ${tokens.pill.smallRadius};
     font-weight: bold;
-    line-height: ${stylers.spacer(2)};
+    height: ${stylers.spacer(2)};
     padding: 0 ${tokens.space};
     ${stylers.fontSize(-3)};
-
-    .aclui-icon::before {
-      ${stylers.fontSize(-3)};
-    }
   `,
+
   medium: css`
     border-radius: ${tokens.pill.mediumRadius};
-    line-height: ${stylers.spacer(3)};
+    height: ${stylers.spacer(3)};
     padding: 0 ${stylers.spacer(4)};
     ${stylers.fontSize(-1)};
   `,
