@@ -21,7 +21,7 @@ const iconSelections = {
 };
 
 const buttonProps = () => ({
-  children: text("label", "Take Action"),
+  children: text("label", "Buy now"),
   size: select("size", ShirtSizes.DEFAULT, "medium"),
   kind: select("type", ["default", "primary", "secondary", "flat", "destructive", "minor", "link"], "default"),
   onClick: clickHandler,
