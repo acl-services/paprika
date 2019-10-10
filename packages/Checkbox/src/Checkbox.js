@@ -55,8 +55,8 @@ const Checkbox = props => {
       />
       <label htmlFor={checkboxId.current}>
         {children}
-        {!isIndeterminate ? <CheckIcon aria-hidden data-pka-anchor="checkbox.icon" /> : null}
-        {isIndeterminate ? <AddIcon aria-hidden data-pka-anchor="checkbox.icon" /> : null}
+        <CheckIcon className="checkbox-icon" aria-hidden data-pka-anchor="checkbox.icon.check" />
+        <AddIcon aria-hidden className="checkbox-icon" data-pka-anchor="checkbox.icon.indeterminate" />
       </label>
     </div>
   );

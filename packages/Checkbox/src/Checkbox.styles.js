@@ -46,7 +46,7 @@ const checkboxStyles = css`
     }
 
     & + label::before,
-    & + label > [data-pka-anchor="checkbox.icon"] {
+    & + label > .checkbox-icon {
       position: absolute;
       top: ${checkerTop};
     }
@@ -62,7 +62,8 @@ const checkboxStyles = css`
       z-index: 1;
     }
 
-    & + label > [data-pka-anchor="checkbox.icon"] {
+    & + label > .checkbox-icon {
+      color: ${tokens.color.white};
       font-size: ${iconSize};
       height: ${size};
       left: ${checkBoxIconLeft};
@@ -80,19 +81,21 @@ const checkboxStyles = css`
       }
     }
 
-    &:checked + label > [data-pka-anchor="checkbox.icon"] {
-      color: ${tokens.color.white};
+    &:checked + label > [data-pka-anchor="checkbox.icon.check"] {
       opacity: 1;
     }
 
-    &:indeterminate + label > [data-pka-anchor="checkbox.icon"] {
-      color: ${tokens.color.white};
+    &:indeterminate + label > [data-pka-anchor="checkbox.icon.check"] {
+      opacity: 0;
+    }
+
+    &:indeterminate + label > [data-pka-anchor="checkbox.icon.indeterminate"] {
       opacity: 1;
     }
 
     &:disabled {
       & + label,
-      & ~ [data-pka-anchor="checkbox.icon"] {
+      & ~ .checkbox-icon {
         opacity: 0.5;
         transition: none;
       }
