@@ -82,11 +82,11 @@ const Content = React.forwardRef((props, ref) => {
   /* eslint-disable jsx-a11y/mouse-events-have-key-events */
   return ReactDOM.createPortal(
     <ContentStyled
-      {...moreProps}
       aria-hidden={!isOpen}
       data-component-name="PopoverContent"
-      data-pka-anchor="popover-content"
+      data-pka-anchor="popover.content"
       ref={handleRef}
+      id={isEager ? content.ariaId : null}
       isOpen={isOpen}
       onBlur={handleBlur}
       onMouseOut={handleMouseEvent}
@@ -94,8 +94,9 @@ const Content = React.forwardRef((props, ref) => {
       style={contentStyles}
       tabIndex={isOpen ? 0 : -1}
       zIndex={content.zIndex}
+      {...moreProps}
     >
-      {children}
+      {props.children}
     </ContentStyled>,
     portalElement
   );

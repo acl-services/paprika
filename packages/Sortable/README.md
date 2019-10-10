@@ -41,6 +41,7 @@ Read more about the library used for this component, [react-beautiful-dnd](https
 
 - `children`
 - `hasNumbers`
+- `hasZebraStripes`
 - `onChange` (Required)
 - `onRemove`
 

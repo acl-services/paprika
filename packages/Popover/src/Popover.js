@@ -2,6 +2,7 @@ import React from "react";
 import memoizeOne from "memoize-one";
 import PropTypes from "prop-types";
 import throttle from "lodash.throttle";
+import uuidv4 from "uuid/v4";
 import tokens from "@paprika/tokens";
 import { AlignTypes } from "@paprika/helpers/lib/customPropTypes";
 import isInsideBoundaries from "./helpers/isInsideBoundaries";
@@ -102,7 +103,6 @@ class Popover extends React.Component {
     this.$tip = null; // this ref comes from a callback of the <Tip /> component
 
     const portalNode = document.createElement("div");
-    // portalNode.setAttribute("data-paprika-type", "Popover");
     this.$portal = document.body.appendChild(portalNode);
 
     this.state = {
@@ -127,15 +127,31 @@ class Popover extends React.Component {
         isOpen prop is also provided.`
       );
     }
+
+    this.ariaIdForContent = `popover-content-${uuidv4()}`;
   }
 
   getContextValues = memoizeOne(
-    (content, maxWidth, width, isEager, isOpen, portalElement, refContent, refTip, shouldKeepFocus, tip, zIndex) => ({
+    (
+      content,
+      maxWidth,
+      width,
+      isEager,
+      isOpen,
+      portalElement,
+      refContent,
+      refTip,
+      shouldKeepFocus,
+      tip,
+      zIndex,
+      ariaIdForContent
+    ) => ({
       content: {
         ...content,
         maxWidth, // maybe we should code a minimum maxWidth?
         width,
         zIndex,
+        ariaId: ariaIdForContent,
       },
       isEager,
       isOpen,
@@ -278,8 +294,7 @@ class Popover extends React.Component {
     // NOTE: do this should make more that only focus the content div? should as well
     //       find the first focusable element like button, input, etc?
     //       can focus automatically
-    //       should we set focus into the popover content automatically?
-    if (!this.props.shouldKeepFocus && this.isOpen() && event.propertyName === "visibility") {
+    if (!this.props.shouldKeepFocus && !this.props.isEager && this.isOpen() && event.propertyName === "visibility") {
       event.target.focus();
     }
   };
@@ -303,7 +318,7 @@ class Popover extends React.Component {
   };
 
   handleClick = () => {
-    if (this.isOpen() && !this.props.shouldKeepFocus) this.close();
+    if (this.isOpen() && !this.props.shouldKeepFocus && !this.props.isEager) this.close();
     else this.open();
   };
 
@@ -415,13 +430,14 @@ class Popover extends React.Component {
       this.refTip,
       this.props.shouldKeepFocus,
       this.state.tip,
-      zIndex
+      zIndex,
+      this.ariaIdForContent
     );
 
     return (
       <ThemeContext.Provider value={isDark}>
         <PopoverContext.Provider value={contextValue}>
-          <PopoverStyled {...moreProps} ref={this.$popover}>
+          <PopoverStyled data-pka-anchor="popover" {...moreProps} ref={this.$popover}>
             {this.props.children}
           </PopoverStyled>
         </PopoverContext.Provider>
