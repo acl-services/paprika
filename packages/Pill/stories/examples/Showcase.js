@@ -3,16 +3,15 @@ import { select, text } from "@storybook/addon-knobs";
 import { Story, Rule, Tagline } from "storybook/assets/styles/common.styles";
 import Heading from "@paprika/heading";
 
-import Pill, { pillSizes, tokenPillColors, severityPillColors } from "../../src/Pill";
+import Pill, { pillColors, severityPillColors } from "../../src/Pill";
 
-const allColors = [...tokenPillColors, ...severityPillColors];
+const allColors = [...pillColors, ...severityPillColors];
 
 const pillProps = () => ({
   a11yText: text("a11yText", ""),
   children: text("text / children", "Content goes here"),
-  size: select("size", pillSizes, "medium"),
-  textColor: text("textColor"),
   pillColor: select("pillColor", allColors, "mediumRisk"),
+  size: select("size", ["small", "medium"], "medium"),
 });
 
 const ExampleStory = props => (

@@ -3,12 +3,25 @@ import stylers from "@paprika/stylers";
 import tokens from "@paprika/tokens";
 
 const pillColorStyles = {
-  "#d7d7d7": css`
-    color: ${tokens.color.black};
+  black: css`
+    background: ${tokens.color.black};
+  `,
 
-    svg {
-      fill: ${tokens.color.black};
-    }
+  blue: css`
+    background: ${tokens.color.blue};
+  `,
+
+  grey: css`
+    background: ${tokens.color.blackLighten60};
+    color: ${tokens.color.black};
+  `,
+
+  green: css`
+    background: ${tokens.color.greenDarken10};
+  `,
+
+  orange: css`
+    background: ${tokens.color.orangeDarken10};
   `,
 
   noRisk: css`
@@ -31,7 +44,7 @@ const pillColorStyles = {
 
 const pillSizeStyles = {
   small: css`
-    border-radius: ${tokens.space} / 50%;
+    border-radius: ${tokens.pill.smallRadius};
     font-weight: bold;
     line-height: ${stylers.spacer(2)};
     padding: 0 ${tokens.space};
@@ -42,7 +55,7 @@ const pillSizeStyles = {
     }
   `,
   medium: css`
-    border-radius: ${tokens.spaceLg} / 50%;
+    border-radius: ${tokens.pill.mediumRadius};
     line-height: ${stylers.spacer(3)};
     padding: 0 ${stylers.spacer(4)};
     ${stylers.fontSize(-1)};
@@ -51,10 +64,8 @@ const pillSizeStyles = {
 
 const pillStyles = css`
   align-items: center;
-  background: ${props => props.pillColor};
-  color: ${props => props.textColor};
+  color: ${tokens.color.white};
   display: inline-flex;
-  white-space: nowrap;
 
   &,
   * {

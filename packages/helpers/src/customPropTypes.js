@@ -8,6 +8,7 @@ export const ShirtSizes = {
   XLARGE: "xlarge",
 };
 ShirtSizes.DEFAULT = [ShirtSizes.SMALL, ShirtSizes.MEDIUM, ShirtSizes.LARGE];
+ShirtSizes.LIMITED = [ShirtSizes.SMALL, ShirtSizes.MEDIUM];
 ShirtSizes.ALL = Object.values(ShirtSizes);
 
 export const AlignTypes = {

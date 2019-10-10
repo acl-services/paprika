@@ -1,45 +1,33 @@
 import React from "react";
 import PropTypes from "prop-types";
-import tokens from "@paprika/tokens";
 import RawButton from "@paprika/raw-button";
+import { ShirtSizes } from "@paprika/helpers/lib/customPropTypes";
 import pillStyles from "./Pill.styles";
 
-export const tokenPillColors = [
-  tokens.color.black,
-  tokens.color.blackLighten60,
-  tokens.color.blue,
-  tokens.color.greenDarken10,
-  tokens.color.orangeDarken10,
-];
+export const pillColors = ["black", "blue", "green", "grey", "orange"];
 export const severityPillColors = ["noRisk", "lowRisk", "mediumRisk", "highRisk"];
-export const pillSizes = ["small", "medium"];
 
 const propTypes = {
   a11yText: PropTypes.string,
   children: PropTypes.node.isRequired,
   isDisabled: PropTypes.bool,
   onClick: PropTypes.func,
-  pillColor: PropTypes.oneOf([...tokenPillColors, ...severityPillColors]),
-  size: PropTypes.oneOf(pillSizes),
-  textColor: PropTypes.string,
+  pillColor: PropTypes.oneOf([...pillColors, ...severityPillColors]),
+  size: PropTypes.oneOf(ShirtSizes.LIMITED),
 };
 
 const defaultProps = {
   a11yText: null,
   isDisabled: false,
   onClick: null,
-  pillColor: tokens.color.blackLighten60,
+  pillColor: "grey",
   size: "medium",
-  textColor: tokens.color.white,
 };
 
 function Pill(props) {
-  const { a11yText, pillColor, textColor, isDisabled, size, onClick, ...moreProps } = props;
-
-  const tabIndex = onClick === null ? -1 : 0;
+  const { a11yText, pillColor, isDisabled, size, onClick, ...moreProps } = props;
 
   const styleProps = {
-    textColor,
     pillColor,
     size,
   };
@@ -52,7 +40,6 @@ function Pill(props) {
         a11yText={a11yText}
         isDisabled={isDisabled}
         onClick={onClick}
-        tabIndex={tabIndex}
         {...moreProps}
       >
         {props.children}
@@ -61,7 +48,7 @@ function Pill(props) {
   }
 
   return (
-    <div css={pillStyles} {...styleProps} tabIndex={tabIndex} {...moreProps}>
+    <div css={pillStyles} {...styleProps} {...moreProps}>
       {props.children}
     </div>
   );
