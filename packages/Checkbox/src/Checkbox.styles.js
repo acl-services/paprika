@@ -4,19 +4,23 @@ import tokens from "@paprika/tokens";
 
 const integize = token => Number.parseInt(token, 10);
 
-const size = stylers.spacer(2);
+const getSizeInt = size => stylers.spacer(size === "large" ? 4 : 2);
+const size = ({ size }) => getSizeInt(size);
 
-const iconFontSize = (integize(size) / integize(tokens.space) - 3.5) * 2;
-const iconSize = `${stylers.fontSizeValue(iconFontSize)}px`;
+const iconFontSize = size => (integize(getSizeInt(size)) / integize(tokens.space) - 3.5) * 2; // needs better calculations for large size
+const iconSize = size => `${stylers.fontSizeValue(iconFontSize(size))}px`;
 
-const topOffset = (integize(size) - integize(stylers.fontSizeValue()) * stylers.lineHeightValue(-1)) / 2;
-const isCheckboxBigger = topOffset > 0;
-const labelPadding = ({ hasChildren }) => {
-  const top = isCheckboxBigger ? `${topOffset}px` : 0;
-  const left = hasChildren ? `${integize(size) + integize(tokens.space)}px` : size;
+const topOffset = size =>
+  (integize(getSizeInt(size)) - integize(stylers.fontSizeValue()) * stylers.lineHeightValue(-1)) / 2;
+const isCheckboxBigger = size => topOffset(size) > 0;
+
+const labelPadding = ({ hasChildren, size }) => {
+  const top = isCheckboxBigger(size) ? `${topOffset(size)}px` : 0;
+  const left = hasChildren ? `${integize(getSizeInt(size)) + integize(tokens.space)}px` : getSizeInt(size);
   return `${top} 0 ${top} ${left}`;
 };
 const checkerTop = isCheckboxBigger ? "-1px" : `${Math.abs(topOffset / 2)}px`;
+const checkBoxIconLeft = ({ size }) => `${integize(getSizeInt(size)) / 2}px`;
 
 const checkboxStyles = css`
   ${stylers.boxSizingStyles}
@@ -26,6 +30,7 @@ const checkboxStyles = css`
   position: relative;
 
   input[type="checkbox"] {
+
     ${stylers.visuallyHidden}
 
     & + label {
@@ -58,7 +63,7 @@ const checkboxStyles = css`
       color: ${tokens.color.blue};
       font-size: ${iconSize};
       height: ${size};
-      left: ${integize(size) / 2}px;
+      left: ${checkBoxIconLeft};
       opacity: 0;
       pointer-events: none;
       transform: translateX(-50%);
