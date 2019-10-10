@@ -9,6 +9,7 @@ import CheckboxExample from "./CheckboxExample";
 const checkboxProps = () => ({
   size: select("size", ShirtSizes.DEFAULT, "medium"),
   isDisabled: boolean("isDisabled", false),
+  isIndeterminate: boolean("isIndeterminate", false),
   a11yText: text("a11yText", ""),
 });
 

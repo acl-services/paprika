@@ -63,7 +63,6 @@ const checkboxStyles = css`
     }
 
     & + label > [data-pka-anchor="checkbox.icon"] {
-      color: ${tokens.color.blue};
       font-size: ${iconSize};
       height: ${size};
       left: ${checkBoxIconLeft};
@@ -74,7 +73,7 @@ const checkboxStyles = css`
       z-index: 2;
     }
 
-    &:checked{
+    &:checked, &:indeterminate{
       & + label::before {
         background: ${tokens.color.black};
         border: none;
@@ -82,6 +81,11 @@ const checkboxStyles = css`
     }
 
     &:checked + label > [data-pka-anchor="checkbox.icon"] {
+      color: ${tokens.color.white};
+      opacity: 1;
+    }
+
+    &:indeterminate + label > [data-pka-anchor="checkbox.icon"] {
       color: ${tokens.color.white};
       opacity: 1;
     }
