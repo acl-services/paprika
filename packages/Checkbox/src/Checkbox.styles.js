@@ -13,7 +13,7 @@ const sizeMap = {
 const getSpacing = size => stylers.spacer(sizeMap[size]);
 const getSpacingInt = size => integize(getSpacing(size));
 const size = ({ size }) => getSpacing(size);
-const iconFontSize = size => (getSpacingInt(size) / integize(tokens.space) - 3) * 2; // needs better calculations for sizes
+const iconFontSize = size => (getSpacingInt(size) / integize(tokens.space) - 3) * 2;
 const iconSize = ({ size }) => `${stylers.fontSizeValue(iconFontSize(size))}px`;
 const topOffset = size => (getSpacingInt(size) - integize(stylers.fontSizeValue()) * stylers.lineHeightValue(-1)) / 2;
 const isCheckboxBigger = size => topOffset(size) > 0;
