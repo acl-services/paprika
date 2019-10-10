@@ -10,6 +10,7 @@ import sortableStyles from "./Sortable.styles";
 const propTypes = {
   children: PropTypes.node,
   hasNumbers: PropTypes.bool,
+  hasZebraStripes: PropTypes.bool,
   onChange: PropTypes.func.isRequired,
   onRemove: PropTypes.func,
 };
@@ -17,6 +18,7 @@ const propTypes = {
 const defaultProps = {
   children: null,
   hasNumbers: true,
+  hasZebraStripes: false,
   onRemove: null,
 };
 
@@ -24,7 +26,7 @@ function filterChildren(children) {
   return React.Children.toArray(children).filter(child => child.type.displayName === "Sortable.Item");
 }
 
-const Sortable = ({ children, onChange, hasNumbers, onRemove, ...moreProps }) => {
+const Sortable = ({ children, onChange, hasNumbers, hasZebraStripes, onRemove, ...moreProps }) => {
   const I18n = useI18n();
   const dropId = React.useRef(uuid());
   const validChildren = filterChildren(children);
@@ -67,6 +69,7 @@ const Sortable = ({ children, onChange, hasNumbers, onRemove, ...moreProps }) =>
           <ul
             {...provided.droppableProps}
             {...moreProps}
+            hasZebraStripes={hasZebraStripes}
             css={sortableStyles}
             data-pka-anchor="sortable"
             data-is-dragging-over={snapshot.isDraggingOver ? true : undefined}
@@ -75,7 +78,13 @@ const Sortable = ({ children, onChange, hasNumbers, onRemove, ...moreProps }) =>
           >
             {validChildren.length > 0 &&
               validChildren.map((child, index) => (
-                <SortableItem key={child.props.sortId} index={index} hasNumbers={hasNumbers} onRemove={onRemove}>
+                <SortableItem
+                  key={child.props.sortId}
+                  index={index}
+                  hasNumbers={hasNumbers}
+                  onRemove={onRemove}
+                  {...child.props}
+                >
                   {child}
                 </SortableItem>
               ))}
