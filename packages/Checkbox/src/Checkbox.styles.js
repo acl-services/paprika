@@ -4,16 +4,16 @@ import tokens from "@paprika/tokens";
 
 const integize = token => Number.parseInt(token, 10);
 
-const size = stylers.spacer(4);
+const size = stylers.spacer(2);
 
-const iconFontSize = (integize(size) / integize(tokens.space) - 2.5) * 2;
+const iconFontSize = (integize(size) / integize(tokens.space) - 3.5) * 2;
 const iconSize = `${stylers.fontSizeValue(iconFontSize)}px`;
 
 const topOffset = (integize(size) - integize(stylers.fontSizeValue()) * stylers.lineHeightValue(-1)) / 2;
 const isCheckboxBigger = topOffset > 0;
 const labelPadding = ({ hasChildren }) => {
   const top = isCheckboxBigger ? `${topOffset}px` : 0;
-  const left = hasChildren ? `${integize(size) + integize(tokens.spaceSm)}px` : size;
+  const left = hasChildren ? `${integize(size) + integize(tokens.space)}px` : size;
   return `${top} 0 ${top} ${left}`;
 };
 const checkerTop = isCheckboxBigger ? "-1px" : `${Math.abs(topOffset / 2)}px`;
@@ -36,7 +36,7 @@ const checkboxStyles = css`
       padding: ${labelPadding};
       position: relative;
     }
-  
+
     & + label::before,
     & + label > [data-pka-anchor="checkbox.icon"] {
       position: absolute;
@@ -44,12 +44,12 @@ const checkboxStyles = css`
     }
 
     & + label::before {
-      content: "";
-      border: 1px solid ${tokens.border.color};
-      border-radius: ${tokens.border.radius};
       background: ${tokens.color.white};
+      border: 2px solid ${tokens.border.color};
+      border-radius: ${tokens.border.radius};
+      content: "";
       height: ${size};
-      left: 0; 
+      left: 0;
       width: ${size};
       z-index: 1;
     }
@@ -66,7 +66,15 @@ const checkboxStyles = css`
       z-index: 2;
     }
 
+    &:checked{
+      & + label::before {
+        background: ${tokens.color.black};
+        border: none;
+      }
+    }
+
     &:checked + label > [data-pka-anchor="checkbox.icon"] {
+      color: ${tokens.color.white};
       opacity: 1;
     }
 
@@ -78,6 +86,14 @@ const checkboxStyles = css`
       }
       & + label::before {
         background-color: ${tokens.color.blackLighten70};
+      }
+    }
+  }
+
+  &:hover{
+    input[type="checkbox"] {
+      & + label::before {
+        border: 2px solid ${tokens.color.black};
       }
     }
   }
