@@ -2,7 +2,7 @@ import React from "react";
 import PropTypes from "prop-types";
 import RawButton from "@paprika/raw-button";
 import { ShirtSizes } from "@paprika/helpers/lib/customPropTypes";
-import pillStyles from "./Pill.styles";
+import pillStyles, { pillTextStyles } from "./Pill.styles";
 
 export const pillColors = ["black", "blue", "green", "grey", "orange"];
 export const severityPillColors = ["noRisk", "lowRisk", "mediumRisk", "highRisk"];
@@ -42,14 +42,14 @@ function Pill(props) {
         onClick={onClick}
         {...moreProps}
       >
-        {props.children}
+        <span css={pillTextStyles}>{props.children}</span>
       </RawButton>
     );
   }
 
   return (
     <div css={pillStyles} {...styleProps} {...moreProps}>
-      {props.children}
+      <span css={pillTextStyles}>{props.children}</span>
     </div>
   );
 }

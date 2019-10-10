@@ -63,6 +63,7 @@ const pillStyles = css`
   align-items: center;
   color: ${tokens.color.white};
   display: inline-flex;
+  max-width: 100%;
 
   &,
   * {
@@ -79,6 +80,10 @@ const pillStyles = css`
 
   ${({ size }) => pillSizeStyles[size]}
   ${({ pillColor }) => pillColorStyles[pillColor]}
+`;
+
+export const pillTextStyles = css`
+  ${stylers.truncateText};
 `;
 
 export default pillStyles;
