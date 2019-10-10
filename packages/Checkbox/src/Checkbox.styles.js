@@ -4,23 +4,26 @@ import tokens from "@paprika/tokens";
 
 const integize = token => Number.parseInt(token, 10);
 
-const getSizeInt = size => stylers.spacer(size === "large" ? 4 : 2);
-const size = ({ size }) => getSizeInt(size);
+const sizeMap = {
+  small: 2,
+  medium: 4,
+  large: 6,
+};
 
-const iconFontSize = size => (integize(getSizeInt(size)) / integize(tokens.space) - 3.5) * 2; // needs better calculations for large size
+const getSpacing = size => stylers.spacer(sizeMap[size]);
+const getSpacingInt = size => integize(getSpacing(size));
+const size = ({ size }) => getSpacing(size);
+const iconFontSize = size => (getSpacingInt(size) / integize(tokens.space) - 3.5) * 2; // needs better calculations for sizes
 const iconSize = size => `${stylers.fontSizeValue(iconFontSize(size))}px`;
-
-const topOffset = size =>
-  (integize(getSizeInt(size)) - integize(stylers.fontSizeValue()) * stylers.lineHeightValue(-1)) / 2;
+const topOffset = size => (getSpacingInt(size) - integize(stylers.fontSizeValue()) * stylers.lineHeightValue(-1)) / 2;
 const isCheckboxBigger = size => topOffset(size) > 0;
-
 const labelPadding = ({ hasChildren, size }) => {
   const top = isCheckboxBigger(size) ? `${topOffset(size)}px` : 0;
-  const left = hasChildren ? `${integize(getSizeInt(size)) + integize(tokens.space)}px` : getSizeInt(size);
+  const left = hasChildren ? `${getSpacingInt(size) + integize(tokens.space)}px` : getSpacing(size);
   return `${top} 0 ${top} ${left}`;
 };
-const checkerTop = isCheckboxBigger ? "-1px" : `${Math.abs(topOffset / 2)}px`;
-const checkBoxIconLeft = ({ size }) => `${integize(getSizeInt(size)) / 2}px`;
+const checkerTop = size => (isCheckboxBigger ? "-1px" : `${Math.abs(topOffset(size) / 2)}px`);
+const checkBoxIconLeft = ({ size }) => `${getSpacingInt(size) / 2}px`;
 
 const checkboxStyles = css`
   ${stylers.boxSizingStyles}
