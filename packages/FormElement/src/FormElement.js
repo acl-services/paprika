@@ -53,7 +53,7 @@ const defaultProps = {
   isInline: false,
   isLabelVisuallyHidden: false,
   isReadOnly: false,
-  size: "medium",
+  size: ShirtSizes.MEDIUM,
 };
 
 function FormElement(props) {

@@ -1,6 +1,7 @@
 import React from "react";
 import PropTypes from "prop-types";
 import RawButton from "@paprika/raw-button";
+import Button from "@paprika/button";
 import CaretDownIcon from "@paprika/icon/lib/CaretDown";
 import CaretUpIcon from "@paprika/icon/lib/CaretUp";
 import TimesCircleIcon from "@paprika/icon/lib/TimesCircle";
@@ -141,7 +142,7 @@ export default function Trigger(props) {
           <ClearButtonStyled
             isDisabled={isDisabled}
             data-pka-anchor="clear-button"
-            kind="minor"
+            kind={Button.Kinds.MINOR}
             onClick={handleClickClear}
           >
             <TimesCircleIcon isDisabled={isDisabled} css={iconStyles} />
