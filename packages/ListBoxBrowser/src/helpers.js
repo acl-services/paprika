@@ -178,7 +178,10 @@ export function getFirstOptionWithOptions(localData) {
   let index = null;
   try {
     Object.keys(localData).some(key => {
-      if (localData[key].hasOptions || localData[key].attributes.options.length === 0) {
+      if (
+        localData[key].hasOptions ||
+        (localData[key].attributes.options && localData[key].attributes.options.length === 0)
+      ) {
         index = key;
         throw new Error("index found");
       }
