@@ -69,6 +69,7 @@ export const backButton = css`
 export const loading = css`
   align-items: center;
   border: 0;
+  border-left: 1px solid ${tokens.border.color};
   display: flex;
   flex-basis: 50%;
   justify-content: center;
