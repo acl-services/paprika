@@ -9,7 +9,6 @@ export default function useEscapeKey(isOpen, onClose, shouldStopEscapePropagatio
             event.stopPropagation();
           }
 
-          console.log('close');
           onClose();
         }
       }
