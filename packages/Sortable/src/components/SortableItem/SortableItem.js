@@ -57,7 +57,7 @@ const SortableItem = ({ children, index, hasNumbers, onRemove, ...moreProps }) =
               <Button.Icon
                 onClick={handleRemove}
                 kind={Button.Kinds.MINOR}
-                size={ShirtSizes.SMALL}
+                size={ShirtSizes.MEDIUM}
                 a11yText={I18n.t("sortable.aria_remove")}
               >
                 <TrashbinIcon color={tokens.color.blackLighten20} />
