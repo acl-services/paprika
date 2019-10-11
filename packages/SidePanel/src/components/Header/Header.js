@@ -1,6 +1,7 @@
 import React from "react";
 import PropTypes from "prop-types";
 import Button from "@paprika/button";
+import { ShirtSizes } from "@paprika/helpers/lib/customPropTypes";
 
 import { headerCSS } from "./Header.styles";
 
@@ -44,7 +45,7 @@ const Header = React.forwardRef((props, ref) => {
             isSemantic={false}
             onClick={onClose}
             {...darkBackgroundProps(kind)}
-            size="small"
+            size={ShirtSizes.SMALL}
           />
         ) : null}
       </div>

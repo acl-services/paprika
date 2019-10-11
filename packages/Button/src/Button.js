@@ -71,7 +71,7 @@ const defaultProps = {
   kind: "default",
   onClick: () => {},
   role: "button",
-  size: "medium",
+  size: ShirtSizes.MEDIUM,
   tabIndex: 0,
 };
 

@@ -15,7 +15,7 @@ const defaultProps = {
   a11yText: null,
   className: null,
   caption: null,
-  size: "medium",
+  size: ShirtSizes.MEDIUM,
 };
 
 const spinnerSize = {

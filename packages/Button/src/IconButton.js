@@ -17,7 +17,7 @@ const IconPropTypes = {
 
 const IconDefaultProps = {
   kind: "default",
-  size: "medium",
+  size: ShirtSizes.MEDIUM,
 };
 
 const IconButton = React.forwardRef((props, ref) => {
