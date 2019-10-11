@@ -148,6 +148,11 @@ popover:
   border-radius: $card--border-radius
   shadow: 0 2px 4px rgba(0, 0, 0, 0.1)
 #
+counter:
+  radius: 50px
+  small: 17px
+  medium: 19px
+#
 background-color:
   level0: $color--black-lighten-80
 #
