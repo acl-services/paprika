@@ -9,9 +9,11 @@ import Overlay from "./components/Overlay";
 import Trigger from "./components/Trigger";
 import Group from "./components/Group";
 import FocusTrap from "./components/FocusTrap";
+import LockBodyScroll from "./components/LockBodyScroll";
+import EscListener from "./components/EscListener";
 
 import { extractChildren } from "./helpers";
-import { useOffsetScroll, useBodyOverflow, useEscapeKey } from "./hooks";
+import { useOffsetScroll } from "./hooks";
 
 const propTypes = {
   /** The content for the SidePanel. */
@@ -63,7 +65,6 @@ function SidePanel(props) {
   // Hooks
   const [isVisible, setIsVisible] = React.useState(props.isOpen);
   const offsetScroll = useOffsetScroll(offsetY);
-  useEscapeKey(props.isOpen, onClose);
 
   // Refs
   const refTrigger = React.useRef(null);
@@ -85,9 +86,6 @@ function SidePanel(props) {
     "SidePanel.Overlay",
     "SidePanel.Trigger",
   ]);
-
-  const disableBodyOverflow = overlayExtracted || isInline;
-  useBodyOverflow(disableBodyOverflow, isOpen);
 
   const handleAnimationEnd = () => {
     if (!props.isOpen) {
@@ -158,9 +156,12 @@ function SidePanel(props) {
   }
 
   const trigger = triggerExtracted ? React.cloneElement(triggerExtracted, { ref: refTrigger }) : null;
+  const shouldDisableBodyOverflow = (overlayExtracted || isInline) && isOpen;
 
   return (
     <React.Fragment>
+      {isOpen && <EscListener onEscKeydown={onClose} />}
+      {shouldDisableBodyOverflow && <LockBodyScroll />}
       {trigger}
       {sidePanel}
     </React.Fragment>
