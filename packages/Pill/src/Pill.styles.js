@@ -84,6 +84,8 @@ const pillStyles = css`
 
 export const pillTextStyles = css`
   ${stylers.truncateText};
+  align-items: center;
+  display: inline-flex;
 `;
 
 export default pillStyles;
