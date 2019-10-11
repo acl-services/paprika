@@ -8,6 +8,7 @@ import ArrowRight from "@paprika/icon/lib/ArrowRight";
 import Button from "@paprika/button";
 import tokens from "@paprika/tokens";
 import useI18n from "@paprika/l10n/lib/useI18n";
+import { ShirtSizes } from "@paprika/helpers/lib/customPropTypes";
 
 import {
   actionBarStyles,
@@ -119,11 +120,11 @@ function ShortcutPanel(props) {
         </div>
         <div css={yearListStyles}>
           <div css={columnHeaderStyles} isYear>
-            <Button.Icon isSemantic={false} onClick={handleClickPrev} kind="minor" size="small">
+            <Button.Icon isSemantic={false} onClick={handleClickPrev} kind="minor" size={ShirtSizes.SMALL}>
               <ArrowLeft color={tokens.textColor.icon} />
             </Button.Icon>
             {I18n.t("datePicker.year")}
-            <Button.Icon isSemantic={false} onClick={handleClickNext} kind="minor" size="small">
+            <Button.Icon isSemantic={false} onClick={handleClickNext} kind="minor" size={ShirtSizes.SMALL}>
               <ArrowRight color={tokens.textColor.icon} />
             </Button.Icon>
           </div>
@@ -133,18 +134,18 @@ function ShortcutPanel(props) {
       <div css={actionBarStyles}>
         <Button
           isSemantic={false}
-          kind="primary"
+          kind={Button.Kinds.PRIMARY}
           onClick={handleConfirm}
-          size="small"
+          size={ShirtSizes.SMALL}
           data-pka-anchor="datepicker.calendar.apply"
         >
           {I18n.t("actions.apply")}
         </Button>
         <Button
           isSemantic={false}
-          kind="minor"
+          kind={Button.Kinds.MINOR}
           onClick={onCancel}
-          size="small"
+          size={ShirtSizes.SMALL}
           data-pka-anchor="datepicker.calendar.cancel"
         >
           {I18n.t("actions.cancel")}

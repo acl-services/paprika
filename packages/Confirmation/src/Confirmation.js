@@ -7,14 +7,13 @@ import { ShirtSizes } from "@paprika/helpers/lib/customPropTypes";
 import useI18n from "@paprika/l10n/lib/useI18n";
 import Popover from "@paprika/popover";
 import TriggerButton from "./components/TriggerButton";
-
 import { confirmStyles, confirmBodyStyles, confirmFooterStyles } from "./Confirmation.styles";
 
 const propTypes = {
   buttonSize: PropTypes.oneOf(ShirtSizes.DEFAULT),
   /** Children should be a render prop in the form of a function to display trigger */
   children: PropTypes.func,
-  confirmButtonType: PropTypes.oneOf(["primary", "destructive"]),
+  confirmButtonType: PropTypes.oneOf([Button.Kinds.PRIMARY, Button.Kinds.DESTRUCTIVE]),
   confirmLabel: PropTypes.string.isRequired,
   body: PropTypes.node,
   heading: PropTypes.string,
@@ -27,7 +26,7 @@ const propTypes = {
 const defaultProps = {
   buttonSize: ShirtSizes.MEDIUM,
   children: null,
-  confirmButtonType: "destructive",
+  confirmButtonType: Button.Kinds.DESTRUCTIVE,
   defaultIsOpen: false,
   body: null,
   heading: null,
@@ -128,7 +127,7 @@ const Confirmation = props => {
               <Button
                 isDisabled={isPending}
                 isSemantic={false}
-                kind="minor"
+                kind={Button.Kinds.MINOR}
                 size={buttonSize}
                 onClick={handleCloseConfirm}
               >

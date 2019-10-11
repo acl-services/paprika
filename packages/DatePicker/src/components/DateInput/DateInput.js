@@ -19,7 +19,7 @@ const propTypes = {
 const defaultProps = {
   a11yText: null,
   placeholder: "",
-  size: "medium",
+  size: ShirtSizes.MEDIUM,
   hasError: false,
 };
 

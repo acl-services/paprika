@@ -136,7 +136,7 @@ function Calendar(props) {
         css={monthHeaderButtonStyles}
         isDropdown
         isSemantic={false}
-        kind="flat"
+        kind={Button.Kinds.FLAT}
         onClick={() => {
           handleClickHeader(month);
         }}
