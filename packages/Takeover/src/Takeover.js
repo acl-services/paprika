@@ -7,7 +7,6 @@ import styled from "styled-components";
 import EscListener from "./components/EscListener";
 import Wrapper from "./components/Wrapper";
 import Header from "./components/Header";
-import Content from "./components/Content";
 import LockBodyScroll from "./components/LockBodyScroll";
 import { animationDuration } from "./tokens";
 import extractChildren from "./helpers/extractChildren";
@@ -55,7 +54,7 @@ const StyledHeader = styled(Header)`
   flex: none;
 `;
 
-const StyledContent = styled(Content)`
+const ContentWrapper = styled.div`
   overflow-y: auto;
   flex: 1 1 auto;
 `;
@@ -100,7 +99,7 @@ const Takeover = ({ isOpen, onClose, isInline, shouldStopEscapePropagation, onAf
             <FocusTrapLibrary active={!isInline} focusTrapOptions={focusTrapOptions}>
               <StyledWrapper ref={refWrapper} state={state}>
                 {headerExtracted && <StyledHeader {...headerExtracted.props} onClose={onClose} />}
-                {contentExtracted && <StyledContent {...contentExtracted.props} tabIndex="0" />}
+                {contentExtracted && <ContentWrapper tabIndex="0">{contentExtracted}</ContentWrapper>}
                 {children}
               </StyledWrapper>
             </FocusTrapLibrary>
