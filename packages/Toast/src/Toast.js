@@ -1,6 +1,6 @@
 import React from "react";
 import PropTypes from "prop-types";
-
+import { ShirtSizes } from "@paprika/helpers/lib/customPropTypes";
 import CheckIcon from "@paprika/icon/lib/Check";
 import CautionIcon from "@paprika/icon/lib/Caution";
 import ExclamationCircleIcon from "@paprika/icon/lib/ExclamationCircle";
@@ -135,7 +135,7 @@ function Toast(props) {
       {kind === Kinds.VISUALLY_HIDDEN ? null : <IconStyled as={icons[kind]} kind={kind} />}
       <div css={contentStyles}>{children}</div>
       {hasCloseButton && kind !== Kinds.VISUALLY_HIDDEN ? (
-        <CloseButtonStyled onClick={handleClose} size="small" />
+        <CloseButtonStyled onClick={handleClose} size={ShirtSizes.SMALL} />
       ) : null}
     </div>
   );

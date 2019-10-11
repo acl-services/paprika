@@ -32,7 +32,7 @@ const defaultProps = {
   isDisabled: false,
   isReadOnly: false,
   onClear: () => {},
-  size: "medium",
+  size: ShirtSizes.MEDIUM,
   type: "text",
   value: "",
 };
@@ -47,12 +47,12 @@ const Input = props => {
   const renderClear = () => {
     const { hasClearButton, isDisabled, isReadOnly, size, value } = props;
     if (!hasClearButton || isDisabled || isReadOnly || !value) return null;
-    const iconSize = size === "large" ? "medium" : "small";
+    const iconSize = size === ShirtSizes.LARGE ? ShirtSizes.MEDIUM : ShirtSizes.SMALL;
     return (
       <Button.Icon
         a11yText="Clear Input" // TODO: add L10n
         className="form-input__clear"
-        kind="minor"
+        kind={Button.Kinds.MINOR}
         size={iconSize}
         onClick={inputClearHandler}
       >

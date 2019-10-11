@@ -1,10 +1,11 @@
 import { fontSize, spacer } from "@paprika/stylers/lib/helpers";
 import tokens from "@paprika/tokens/lib/tokens";
+import Button from "@paprika/button";
 import { css } from "styled-components";
 
 const kind = {
-  default: `background: ${tokens.color.white}; color: ${tokens.color.black};`,
-  primary: `background: ${tokens.color.purple}; color: ${tokens.color.white};`,
+  [Button.Kinds.DEFAULT]: `background: ${tokens.color.white}; color: ${tokens.color.black};`,
+  [Button.Kinds.PRIMARY]: `background: ${tokens.color.purple}; color: ${tokens.color.white};`,
 };
 
 export const headerCSS = css`
