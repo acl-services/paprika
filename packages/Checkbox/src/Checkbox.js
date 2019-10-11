@@ -22,7 +22,7 @@ const defaultProps = {
   isChecked: false,
   isDisabled: false,
   isIndeterminate: false,
-  size: "medium",
+  size: ShirtSizes.MEDIUM,
 };
 
 const Checkbox = props => {

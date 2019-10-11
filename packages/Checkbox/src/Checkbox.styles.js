@@ -1,20 +1,23 @@
 import { css } from "styled-components";
 import stylers from "@paprika/stylers";
+import { ShirtSizes } from "@paprika/helpers/lib/customPropTypes";
 import tokens from "@paprika/tokens";
 
 const integize = token => Number.parseInt(token, 10);
 
 const sizeMap = {
-  small: 2,
-  medium: 4,
-  large: 6,
+  [ShirtSizes.SMALL]: 2,
+  [ShirtSizes.MEDIUM]: 4,
+  [ShirtSizes.LARGE]: 6,
 };
 
 const getSpacing = size => stylers.spacer(sizeMap[size]);
 const getSpacingInt = size => integize(getSpacing(size));
+
 const size = ({ size }) => getSpacing(size);
 const iconFontSize = size => (getSpacingInt(size) / integize(tokens.space) - 3) * 2;
 const iconSize = ({ size }) => `${stylers.fontSizeValue(iconFontSize(size))}px`;
+
 const topOffset = size => (getSpacingInt(size) - integize(stylers.fontSizeValue()) * stylers.lineHeightValue(-1)) / 2;
 const isCheckboxBigger = size => topOffset(size) > 0;
 const labelPadding = ({ hasChildren, size }) => {
@@ -22,6 +25,7 @@ const labelPadding = ({ hasChildren, size }) => {
   const left = hasChildren ? `${getSpacingInt(size) + integize(tokens.space)}px` : getSpacing(size);
   return `${top} 0 ${top} ${left}`;
 };
+
 const checkerTop = size => (isCheckboxBigger ? "0px" : `${Math.abs(topOffset(size) / 2)}px`);
 const checkBoxIconLeft = ({ size }) => `${getSpacingInt(size) / 2}px`;
 
