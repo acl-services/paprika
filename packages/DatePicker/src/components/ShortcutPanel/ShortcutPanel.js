@@ -134,7 +134,7 @@ function ShortcutPanel(props) {
       <div css={actionBarStyles}>
         <Button
           isSemantic={false}
-          kind="primary"
+          kind={Button.Kinds.PRIMARY}
           onClick={handleConfirm}
           size={ShirtSizes.SMALL}
           data-pka-anchor="datepicker.calendar.apply"
@@ -143,7 +143,7 @@ function ShortcutPanel(props) {
         </Button>
         <Button
           isSemantic={false}
-          kind="minor"
+          kind={Button.Kinds.MINOR}
           onClick={onCancel}
           size={ShirtSizes.SMALL}
           data-pka-anchor="datepicker.calendar.cancel"

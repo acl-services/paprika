@@ -52,7 +52,7 @@ const Input = props => {
       <Button.Icon
         a11yText="Clear Input" // TODO: add L10n
         className="form-input__clear"
-        kind="minor"
+        kind={Button.Kinds.MINOR}
         size={iconSize}
         onClick={inputClearHandler}
       >

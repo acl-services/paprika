@@ -6,6 +6,8 @@ import DownIcon from "@paprika/icon/lib/CaretDown";
 import { ShirtSizes } from "@paprika/helpers/lib/customPropTypes";
 import buttonStyles, { iconStyles } from "./Button.styles";
 
+import Kinds from "./ButtonKinds";
+
 const propTypes = {
   /** Descriptive a11y text for assistive technologies. By default, text from children node will be used. */
   a11yText: PropTypes.string,
@@ -41,7 +43,7 @@ const propTypes = {
   isSubmit: PropTypes.bool,
 
   /** The visual style of the button. */
-  kind: PropTypes.oneOf(["default", "primary", "secondary", "destructive", "flat", "minor", "link"]),
+  kind: PropTypes.oneOf(Kinds),
 
   /** Callback to be executed when the button is clicked or activated by keyboard. Typically required. */
   onClick: PropTypes.func,
@@ -68,7 +70,7 @@ const defaultProps = {
   isPending: false,
   isSemantic: true,
   isSubmit: false,
-  kind: "default",
+  kind: Kinds.DEFAULT,
   onClick: () => {},
   role: "button",
   size: ShirtSizes.MEDIUM,
@@ -162,6 +164,7 @@ const Button = React.forwardRef((props, ref) => {
 ButtonIcon.propTypes = buttonPropTypes;
 ButtonIcon.defaultProps = buttonDefaultProps;
 
+Button.Kinds = Kinds;
 Button.displayName = "Button";
 Button.propTypes = propTypes;
 Button.defaultProps = defaultProps;

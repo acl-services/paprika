@@ -56,7 +56,7 @@ const SortableItem = ({ children, index, hasNumbers, onRemove, ...moreProps }) =
             <div css={itemCloseStyles} data-pka-anchor="sortable.item.remove">
               <Button.Icon
                 onClick={handleRemove}
-                kind="minor"
+                kind={Button.Kinds.MINOR}
                 size={ShirtSizes.SMALL}
                 a11yText={I18n.t("sortable.aria_remove")}
               >

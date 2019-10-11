@@ -8,18 +8,18 @@ import { headerCSS } from "./Header.styles";
 const propTypes = {
   children: PropTypes.node.isRequired,
   hasCloseButton: PropTypes.bool,
-  kind: PropTypes.oneOf(["default", "primary"]),
+  kind: PropTypes.oneOf([Button.Kinds.DEFAULT, Button.Kinds.PRIMARY]),
   onClose: PropTypes.func,
 };
 
 const defaultProps = {
   hasCloseButton: true,
-  kind: "default",
+  kind: Button.Kinds.DEFAULT,
   onClose: () => {},
 };
 
 function darkBackgroundProps(kind) {
-  if (kind === "primary") {
+  if (kind === Button.Kinds.PRIMARY) {
     return { isDark: true };
   }
 
