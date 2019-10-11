@@ -10,10 +10,9 @@ import Trigger from "./components/Trigger";
 import Group from "./components/Group";
 import FocusTrap from "./components/FocusTrap";
 import LockBodyScroll from "./components/LockBodyScroll";
-import EscListener from "./components/EscListener";
 
 import { extractChildren } from "./helpers";
-import { useOffsetScroll } from "./hooks";
+import { useOffsetScroll, useEscapeKey } from "./hooks";
 
 const propTypes = {
   /** The content for the SidePanel. */
@@ -65,6 +64,7 @@ function SidePanel(props) {
   // Hooks
   const [isVisible, setIsVisible] = React.useState(props.isOpen);
   const offsetScroll = useOffsetScroll(offsetY);
+  useEscapeKey(isOpen, onClose);
 
   // Refs
   const refTrigger = React.useRef(null);
@@ -160,7 +160,6 @@ function SidePanel(props) {
 
   return (
     <React.Fragment>
-      {isOpen && <EscListener onEscKeydown={onClose} />}
       {shouldDisableBodyOverflow && <LockBodyScroll />}
       {trigger}
       {sidePanel}
