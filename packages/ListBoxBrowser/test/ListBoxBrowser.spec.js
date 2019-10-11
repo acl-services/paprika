@@ -2,7 +2,7 @@ import { render } from "@testing-library/react";
 import React from "react";
 import data from "./fixtures/multiple";
 import dataMultipleFirstOptionNoOptions from "./fixtures/multiple.firstOptionNoOptions";
-import dataNoOptions from "./fixtures/multiple.withNotOptions";
+import dataNoOptions from "./fixtures/multiple.withNoOptions";
 import { getData, getOptionByKey } from "../src/helpers";
 import ListBoxBrowser from "../src";
 
