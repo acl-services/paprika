@@ -17,7 +17,7 @@ const Example = props => (
     <Heading level={1} displayLevel={2} isLight>
       <code>&lt;Counter /&gt;</code>
     </Heading>
-    <Tagline>Best component</Tagline>
+    <Tagline>Use the knobs to tinker with the props.</Tagline>
     <Rule />
     <Counter {...props} />
   </Story>
