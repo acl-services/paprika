@@ -78,7 +78,7 @@ storiesOf("Takeover", module)
     return (
       <TakeoverStory>
         <Takeover.Content>
-          <SidePanel isOpen={isOpen} onClose={toggle}>
+          <SidePanel shouldStopEscapePropagation isOpen={isOpen} onClose={toggle}>
             <SidePanel.Overlay />
             <SidePanel.Trigger kind="primary" onClick={toggle}>
               {isOpen ? "close" : "open side panel"}
