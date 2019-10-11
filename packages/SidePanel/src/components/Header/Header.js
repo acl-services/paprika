@@ -1,24 +1,25 @@
 import React from "react";
 import PropTypes from "prop-types";
 import Button from "@paprika/button";
+import { ShirtSizes } from "@paprika/helpers/lib/customPropTypes";
 
 import { headerCSS } from "./Header.styles";
 
 const propTypes = {
   children: PropTypes.node.isRequired,
   hasCloseButton: PropTypes.bool,
-  kind: PropTypes.oneOf(["default", "primary"]),
+  kind: PropTypes.oneOf([Button.Kinds.DEFAULT, Button.Kinds.PRIMARY]),
   onClose: PropTypes.func,
 };
 
 const defaultProps = {
   hasCloseButton: true,
-  kind: "default",
+  kind: Button.Kinds.DEFAULT,
   onClose: () => {},
 };
 
 function darkBackgroundProps(kind) {
-  if (kind === "primary") {
+  if (kind === Button.Kinds.PRIMARY) {
     return { isDark: true };
   }
 
@@ -44,7 +45,7 @@ const Header = React.forwardRef((props, ref) => {
             isSemantic={false}
             onClick={onClose}
             {...darkBackgroundProps(kind)}
-            size="small"
+            size={ShirtSizes.SMALL}
           />
         ) : null}
       </div>

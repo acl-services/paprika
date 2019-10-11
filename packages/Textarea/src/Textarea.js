@@ -26,7 +26,7 @@ const defaultProps = {
   isDisabled: false,
   isReadOnly: false,
   maxHeight: "300px",
-  size: "medium",
+  size: ShirtSizes.MEDIUM,
 };
 
 class Textarea extends React.Component {

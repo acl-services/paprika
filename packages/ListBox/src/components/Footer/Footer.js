@@ -1,6 +1,7 @@
 import React from "react";
 import Button from "@paprika/button";
 import PropTypes from "prop-types";
+import { ShirtSizes } from "@paprika/helpers/lib/customPropTypes";
 import { FooterContainerStyled } from "./Footer.styles";
 import useListBox from "../../useListBox";
 import invokeOnChange from "../../helpers/invokeOnChange";
@@ -27,16 +28,16 @@ const defaultProps = {
   isCancelVisible: true,
   isClearVisible: true,
   isDisabled: false,
-  kindAccept: "primary",
-  kindCancel: "minor",
-  kindClear: "minor",
+  kindAccept: Button.Kinds.PRIMARY,
+  kindCancel: Button.Kinds.MINOR,
+  kindClear: Button.Kinds.MINOR,
   labelAccept: "Accept",
   labelCancel: "Cancel",
   labelClear: "Clear",
   onClickAccept: null,
   onClickCancel: null,
   onClickClear: null,
-  size: "small",
+  size: ShirtSizes.SMALL,
 };
 
 export function FooterComponent(props, ref) {
