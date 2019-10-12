@@ -7,5 +7,6 @@ const Kinds = {
   MINOR: "minor",
   LINK: "link",
 };
+Kinds.ALL = Object.values(Kinds);
 
 export default Kinds;
