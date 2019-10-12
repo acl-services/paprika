@@ -1,6 +1,6 @@
 {
   "name": "@paprika/pill",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "Pill component",
   "author": "@paprika",
   "main": "lib/index.js",
