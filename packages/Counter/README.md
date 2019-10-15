@@ -27,10 +27,10 @@ import Counter from "@paprika/counter";
 
 ### Props
 
+- `color`
 - `hasIndicator`
 - `quantity`
 - `size`
 - `threshold`
-- `type`
 
 [More detail about these props](https://github.com/acl-services/paprika/blob/master/packages/Counter/src/Counter.js)
