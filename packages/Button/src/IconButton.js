@@ -9,7 +9,7 @@ const IconPropTypes = {
   children: PropTypes.node.isRequired,
 
   /** The visual style of the button. */
-  kind: PropTypes.oneOf(Button.Kinds),
+  kind: PropTypes.oneOf(Button.Kinds.ALL),
 
   /** Size of the button (font size, min-height, padding, etc). */
   size: PropTypes.oneOf(ShirtSizes.DEFAULT),
