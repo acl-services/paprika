@@ -43,7 +43,7 @@ const propTypes = {
   isSubmit: PropTypes.bool,
 
   /** The visual style of the button. */
-  kind: PropTypes.oneOf(Kinds),
+  kind: PropTypes.oneOf(Kinds.ALL),
 
   /** Callback to be executed when the button is clicked or activated by keyboard. Typically required. */
   onClick: PropTypes.func,
