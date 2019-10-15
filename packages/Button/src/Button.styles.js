@@ -186,7 +186,7 @@ const kindStyles = props => ({
 
     ${props.isDisabled ? disabledStyles : ""}
   `,
-  [Kinds.FLAT]: `
+  [Kinds.MINOR]: `
     ${textButtonStyles}
 
     &:hover {

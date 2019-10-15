@@ -23,7 +23,7 @@ const iconSelections = {
 const buttonProps = () => ({
   children: text("label", "Take Action"),
   size: select("size", ShirtSizes.DEFAULT, "medium"),
-  kind: select("type", Button.Kinds, "default"),
+  kind: select("type", Button.Kinds.ALL, "default"),
   onClick: clickHandler,
   icon: iconSelections[select("icon", Object.keys(iconSelections), null)],
   isActive: boolean("isActive", false),
