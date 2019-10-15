@@ -18,8 +18,8 @@ const counterSizeStyles = {
   `,
 };
 
-const counterTypeStyles = {
-  default: `
+const counterColorStyles = {
+  grey: `
     background: ${tokens.color.blackLighten80};
     border-radius: ${tokens.border.radius};
     border: 1px solid ${tokens.border.color};
@@ -27,7 +27,7 @@ const counterTypeStyles = {
   `,
 
   red: `
-    border-radius: ${tokens.counter.radius};
+    border-radius: 50px;
     color: ${tokens.color.white};
     padding: 0 ${tokens.spaceSm};
     background: ${tokens.color.orangeDarken10};
@@ -35,13 +35,27 @@ const counterTypeStyles = {
   `,
 
   blue: `
-    border-radius: ${tokens.counter.radius};
+    border-radius: 50px;
     color: ${tokens.color.white};
     padding: 0 ${tokens.spaceSm};
     background: ${tokens.color.blue};
     border: 1px solid ${tokens.color.blue};
   `,
 };
+
+const indicatorStyles = css`
+  ::after {
+    background-color: ${tokens.color.orange};
+    border: 1px solid ${tokens.color.white};
+    border-radius: 100%;
+    content: "";
+    height: ${tokens.space};
+    position: absolute;
+    right: -5px;
+    top: -5px;
+    width: ${tokens.space};
+  }
+`;
 
 const counterStyles = css`
   display: inline-flex;
@@ -56,23 +70,9 @@ const counterStyles = css`
     box-sizing: border-box;
   }
 
+  ${({ hasIndicator }) => hasIndicator && indicatorStyles};
+  ${({ color }) => counterColorStyles[color]};
   ${({ size }) => counterSizeStyles[size]};
-  ${({ type }) => counterTypeStyles[type]};
-  ${({ hasIndicator }) =>
-    hasIndicator &&
-    `
-      ::after {
-        background-color: ${tokens.color.orange};
-        border: 1px solid ${tokens.color.white};
-        border-radius: ${tokens.counter.radius}
-        content: "";
-        height: ${tokens.space};
-        position: absolute;
-        right: -5px;
-        top: -5px;
-        width: ${tokens.space};
-      }
-    `}
 `;
 
 export default counterStyles;

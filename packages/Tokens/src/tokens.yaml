@@ -149,7 +149,6 @@ popover:
   shadow: 0 2px 4px rgba(0, 0, 0, 0.1)
 #
 counter:
-  radius: 50px
   small: 17px
   medium: 19px
 #

@@ -20,11 +20,11 @@ const WithInlineTextExample = () => (
       <u>Poke Bowl Hexagon</u> <Counter quantity={12} hasIndicator />{" "}
     </p>
     <p>
-      Ethical Slow-carb IPA <Counter type="red" quantity={54} />
+      Ethical Slow-carb IPA <Counter color="red" quantity={54} />
     </p>
     <p>
       <span style={{ fontSize: "14px" }}>Authentic Fingerstache</span>{" "}
-      <Counter type="blue" size="small" quantity={101} />
+      <Counter color="blue" size="small" quantity={101} />
     </p>
   </Story>
 );

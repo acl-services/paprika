@@ -4,28 +4,37 @@ import { ShirtSizes } from "@paprika/helpers/lib/customPropTypes";
 import counterStyles from "./Counter.styles";
 
 const propTypes = {
+  /** Background color of the counter. */
+  color: PropTypes.oneOf(["grey", "blue", "red"]),
+
+  /** If the counter should display a red dot on the top right corner. Normally used to indicate when there are new items. */
   hasIndicator: PropTypes.bool,
+
+  /** The number displayed inside the counter. */
   quantity: PropTypes.number.isRequired,
+
+  /** Size of counter. It can be small or medium. Default is medium. */
   size: ShirtSizes.LIMITED,
+
+  /** When quantity exceeds threshold, it will display "(Threshold)+" inside the counter. Default is 99. */
   threshold: PropTypes.number,
-  type: PropTypes.oneOf(["default", "blue", "red"]),
 };
 
 const defaultProps = {
+  color: "grey",
   hasIndicator: false,
   size: "medium",
   threshold: 99,
-  type: "default",
 };
 
 function Counter(props) {
-  const { hasIndicator, quantity, size, threshold, type } = props;
+  const { color, hasIndicator, quantity, size, threshold } = props;
   const exceedsThreshold = quantity > threshold;
 
   const counterProps = {
+    color,
     hasIndicator,
     size,
-    type,
   };
 
   return (

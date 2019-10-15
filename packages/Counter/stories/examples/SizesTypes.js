@@ -9,19 +9,19 @@ const SizesTypesExample = () => (
     <Counter size="small" quantity={33} />
     <HorizontalSmallGap />
     <Counter quantity={33} />
-    <Heading level={3}>Types</Heading>
-    <Heading level={5}>Default</Heading>
+    <Heading level={3}>Colors</Heading>
+    <Heading level={5}>Grey</Heading>
     <Counter quantity={33} />
     <HorizontalSmallGap />
     <Counter quantity={100} />
     <Heading level={5}>Red</Heading>
-    <Counter type="red" quantity={33} />
+    <Counter color="red" quantity={33} />
     <HorizontalSmallGap />
-    <Counter type="red" quantity={100} />
+    <Counter color="red" quantity={100} />
     <Heading level={5}>Blue</Heading>
-    <Counter type="blue" quantity={33} />
+    <Counter color="blue" quantity={33} />
     <HorizontalSmallGap />
-    <Counter type="blue" quantity={100} />
+    <Counter color="blue" quantity={100} />
   </Story>
 );
 

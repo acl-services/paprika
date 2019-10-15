@@ -1,15 +1,16 @@
 import React from "react";
 import { boolean, number, select } from "@storybook/addon-knobs";
 import { Story, Rule, Tagline } from "storybook/assets/styles/common.styles";
+import { ShirtSizes } from "@paprika/helpers/lib/customPropTypes";
 import Heading from "@paprika/heading";
 import Counter from "../../src/Counter";
 
 const counterKnobs = () => ({
+  color: select("color", ["grey", "blue", "red"], "grey"),
   hasIndicator: boolean("hasIndicator", false),
   quantity: number("quantity", 32),
-  size: select("size", ["small", "medium"], "medium"),
+  size: select("size", ShirtSizes.LIMITED, "medium"),
   threshold: number("threshold", 99),
-  type: select("type", ["default", "blue", "red"], "default"),
 });
 
 const Example = props => (
