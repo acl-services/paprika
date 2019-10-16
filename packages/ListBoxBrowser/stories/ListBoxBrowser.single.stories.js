@@ -4,9 +4,10 @@ import { storiesOf } from "@storybook/react";
 import ListBoxBrowser from "../src";
 
 import dataSingle from "../test/fixtures/single";
+import withNoOptionsSelected from "../test/fixtures/withNoOptionsSelected";
 
-storiesOf("ListBoxBrowser", module)
-  .add("Single / basic", () => (
+storiesOf("ListBoxBrowser/Single", module)
+  .add("basic", () => (
     <Story>
       <ListBoxBrowser
         data={dataSingle}
@@ -19,7 +20,7 @@ storiesOf("ListBoxBrowser", module)
       />
     </Story>
   ))
-  .add("Single / Allowing select parent", () => (
+  .add("Allowing select parent", () => (
     <Story>
       <ListBoxBrowser
         data={dataSingle}
@@ -35,7 +36,7 @@ storiesOf("ListBoxBrowser", module)
       </ListBoxBrowser>
     </Story>
   ))
-  .add("Single / With OptionSelected component", () => (
+  .add("With OptionSelected component", () => (
     <Story>
       <ListBoxBrowser
         data={dataSingle}
@@ -46,6 +47,13 @@ storiesOf("ListBoxBrowser", module)
           console.log("selected options:", selectedOptions);
         }}
       >
+        <ListBoxBrowser.OptionsSelected />
+      </ListBoxBrowser>
+    </Story>
+  ))
+  .add("Without selected options", () => (
+    <Story>
+      <ListBoxBrowser data={withNoOptionsSelected} isMulti={false} rootTitle="Universes" browserTitle="Heroes">
         <ListBoxBrowser.OptionsSelected />
       </ListBoxBrowser>
     </Story>

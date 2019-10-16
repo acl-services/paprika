@@ -7,8 +7,8 @@ import dataMultipleFirstOptionNoOptions from "../test/fixtures/multiple.firstOpt
 import issues from "../test/fixtures/issues";
 import Lazy from "./examples/Lazy";
 
-storiesOf("ListBoxBrowser", module)
-  .add("Multi / basic", () => (
+storiesOf("ListBoxBrowser/Multi", module)
+  .add("basic", () => (
     <Story>
       <ListBoxBrowser
         data={issues}
@@ -19,7 +19,7 @@ storiesOf("ListBoxBrowser", module)
       />
     </Story>
   ))
-  .add("Multi / Allowing select parent", () => (
+  .add("Allowing select parent", () => (
     <Story>
       <ListBoxBrowser
         data={dataMultiple}
@@ -32,7 +32,7 @@ storiesOf("ListBoxBrowser", module)
       />
     </Story>
   ))
-  .add("Multi / With OptionSelected component", () => (
+  .add("With OptionSelected component", () => (
     <Story>
       <ListBoxBrowser
         data={dataMultiple}
@@ -47,7 +47,7 @@ storiesOf("ListBoxBrowser", module)
       </ListBoxBrowser>
     </Story>
   ))
-  .add("Multi / With first Option without Options", () => (
+  .add("With first Option without Options", () => (
     <Story>
       <ListBoxBrowser
         data={dataMultipleFirstOptionNoOptions}
@@ -61,12 +61,12 @@ storiesOf("ListBoxBrowser", module)
       </ListBoxBrowser>
     </Story>
   ))
-  .add("Multi / Has not breadcrumb", () => (
+  .add("Has not breadcrumb", () => (
     <Story>
       <ListBoxBrowser data={dataMultiple} rootTitle="Universes" browserTitle="Heroes" hasBreadcrumb={false} />
     </Story>
   ))
-  .add("Multi / With lazy loading", () => (
+  .add("With lazy loading", () => (
     <Lazy
       defaultData={[
         {

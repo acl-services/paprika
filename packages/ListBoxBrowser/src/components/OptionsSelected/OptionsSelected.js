@@ -7,12 +7,14 @@ import { ListBoxBrowserContext } from "../../ListBoxBrowser";
 import {
   optionStyles,
   container,
-  divider,
+  title,
   button,
   remove,
   counter,
   optionLabel,
   optionBreadcrum,
+  noOptionsSelectedContainer,
+  noOptionsSelected,
 } from "./OptionsSelected.styles";
 
 function getLength(options) {
@@ -37,11 +39,22 @@ export default function OptionsSelected() {
 
   const length = getLength(selectedOptions);
 
-  if (!length) return null;
+  if (!length) {
+    return (
+      <>
+        <div css={title}>
+          (i18n) Selected options <span css={counter}>0</span>
+        </div>
+        <div css={noOptionsSelectedContainer}>
+          <div css={noOptionsSelected}>Select one or more items...(i18n)</div>
+        </div>
+      </>
+    );
+  }
 
   return (
     <>
-      <div css={divider}>
+      <div css={title}>
         (i18n) Selected options <span css={counter}>{length}</span>
       </div>
       <div css={container}>

@@ -16,12 +16,14 @@ export const optionStyles = css`
   box-sizing: border-box;
   color: ${tokens.color.black};
   display: flex;
+  flex-basis: 100%;
+  flex-grow: 1;
   font-size: 14px;
-  justify-content: center;
+  justify-content: flex-start;
   margin: ${tokens.spaceSm};
 `;
 
-export const divider = css`
+export const title = css`
   background: ${tokens.backgroundColor.level0};
   border-bottom: 1px solid ${tokens.border.color};
   border-top: 1px solid ${tokens.border.color};
@@ -33,6 +35,8 @@ export const divider = css`
 export const button = css`
   border-top-left-radius: ${tokens.border.radius};
   border-top-left-radius: ${tokens.border.radius};
+  flex-basis: 100%;
+  flex-grow: 1;
   padding: ${tokens.spaceSm} ${tokens.space};
 `;
 
@@ -53,10 +57,9 @@ export const remove = css`
   border-top-right-radius: ${tokens.border.radius};
   color: ${tokens.color.cremeDarken30};
   display: inline-flex;
-  display: flex;
   font-size: 12px;
   height: 100%;
-  justify: center;
+  justify: flex-end;
   padding: 0 ${tokens.space};
   position: relative;
 
@@ -74,4 +77,18 @@ export const optionBreadcrum = css`
   color: ${tokens.color.blackLighten20};
   font-size: 13px;
   font-style: italic;
+`;
+
+export const noOptionsSelectedContainer = css`
+  background: ${tokens.backgroundColor.level0};
+  padding: ${spacer(1)};
+`;
+
+export const noOptionsSelected = css`
+  background: ${tokens.color.white};
+  border: 1px dashed ${tokens.border.color};
+  color: ${tokens.textColor.subtle};
+  font-style: italic;
+  padding: ${spacer(1)};
+  text-align: center;
 `;
