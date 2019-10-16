@@ -14,7 +14,7 @@ const propTypes = {
   quantity: PropTypes.number.isRequired,
 
   /** Size of counter. It can be small or medium. Default is medium. */
-  size: ShirtSizes.LIMITED,
+  size: PropTypes.oneOf(ShirtSizes.LIMITED),
 
   /** When quantity exceeds threshold, it will display "(Threshold)+" inside the counter. Default is 99. */
   threshold: PropTypes.number,
