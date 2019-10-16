@@ -1,14 +1,15 @@
 import { css } from "styled-components";
 import tokens from "@paprika/tokens/lib/tokens";
+import stylers from "@paprika/stylers";
 
 export const arrowRigthContainer = css`
   display: flex;
-  height: 32px;
+  height: ${stylers.spacer(4)};
   justify-content: flex-end;
   position: absolute;
   right: -8px;
   top: -7px;
-  width: 32px;
+  width: ${stylers.spacer(4)};
 `;
 
 export const arrowRightButton = css`
@@ -24,7 +25,7 @@ export const arrowRightButton = css`
     background: ${tokens.color.black};
     border-radius: 50%;
     content: "";
-    height: 24px;
+    height: ${stylers.spacer(3)};
     left: 50%;
     margin-left: -12px;
     margin-top: -12px;
@@ -32,7 +33,7 @@ export const arrowRightButton = css`
     pointer-events: none;
     position: absolute;
     top: 50%;
-    width: 24px;
+    width: ${stylers.spacer(3)};
   }
 
   ${({ isParentSelectable }) => {
@@ -50,7 +51,7 @@ export const labelContainer = css`
   align-items: center;
   cursor: default;
   display: flex;
-  font-size: 16px;
+  font-size: ${stylers.spacer(2)};
   justify-content: flex-start;
   position: relative;
 `;
