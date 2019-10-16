@@ -5,6 +5,10 @@ export const flex = css`
   align-items: flex-start;
   display: flex;
   justify-content: center;
+
+  [data-ppk-anchor="listbox-content-inline"]:last-child {
+    border-left: 1px solid ${tokens.border.color};
+  }
 `;
 
 export const container = css`
@@ -41,31 +45,6 @@ export const container = css`
   }
 
   [data-ppk-is-root-selected="true"] {
-    background: ${tokens.color.blue};
-    color: ${tokens.color.white};
-
-    &:hover {
-      background: ${tokens.color.blue};
-      color: ${tokens.color.white};
-    }
-    ${({ isParentSelectable }) => {
-      return `[role="button"] { color: ${isParentSelectable ? tokens.color.black : tokens.color.white}; };`;
-    }}
-  }
-
-  [data-ppk-anchor="listbox-trigger"] ~ [data-ppk-anchor="listbox-trigger"] {
-    border-left: 1px solid ${tokens.border.color};
-    display: block;
-    height: 100%;
-    left: 50%;
-    position: absolute;
-    top: 0px;
-    width: 1px;
-
-    ${({ height }) => {
-      return `
-        max-height: ${height + 38}px;
-      `;
-    }}
+    background: ${tokens.color.greenLighten50};
   }
 `;

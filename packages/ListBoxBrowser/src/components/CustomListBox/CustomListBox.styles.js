@@ -1,23 +1,43 @@
 import { css } from "styled-components";
 import tokens from "@paprika/tokens/lib/tokens";
 
-export const navigateButton = css`
+export const arrowRigthContainer = css`
+  display: flex;
+  height: 32px;
+  justify-content: flex-end;
+  position: absolute;
+  right: -8px;
+  top: -7px;
+  width: 32px;
+`;
+
+export const arrowRightButton = css`
   align-items: center;
-  background: ${tokens.backgroundColor.level0};
-  border: 1px solid ${tokens.border.color};
-  border-radius: ${tokens.border.radius};
+  border-left: 1px solid ${tokens.border.color};
   color: ${tokens.color.black};
   display: inline-flex;
-  height: 20px;
+  height: 100%;
   justify-content: center;
-  position: relative;
-  width: 20px;
+  width: 100%;
+
+  &:hover:after {
+    background: ${tokens.color.black};
+    border-radius: 50%;
+    content: "";
+    height: 24px;
+    left: 50%;
+    margin-left: -12px;
+    margin-top: -12px;
+    opacity: 0.1;
+    pointer-events: none;
+    position: absolute;
+    top: 50%;
+    width: 24px;
+  }
 
   ${({ isParentSelectable }) => {
     return isParentSelectable
-      ? css`
-          top: 1px;
-        `
+      ? ""
       : css`
           background: transparent;
           border: 1px solid transparent;
@@ -26,7 +46,7 @@ export const navigateButton = css`
   }}
 `;
 
-export const label = css`
+export const labelContainer = css`
   align-items: center;
   cursor: default;
   display: flex;
@@ -35,13 +55,13 @@ export const label = css`
   position: relative;
 `;
 
-export const labelContent = css`
+export const label = css`
   flex-grow: 1;
 `;
 
-export const action = css`
-  display: flex;
-  justify-content: flex-end;
+export const labelCheckbox = css`
+  display: inline-block;
+  min-width: 22px;
 `;
 
 export const checkbox = css`
@@ -51,6 +71,7 @@ export const checkbox = css`
 
 export const backButton = css`
   align-items: center;
+  cursor: pointer;
   display: inline-flex;
   font-weight: bold;
   justify-content: flex-start;

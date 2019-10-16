@@ -18,4 +18,8 @@ export const flex = css`
   align-items: flex-start;
   display: flex;
   justify-content: center;
+
+  & div:last-child {
+    border-left: 1px solid ${tokens.border.color};
+  }
 `;

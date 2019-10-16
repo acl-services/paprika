@@ -6,7 +6,16 @@ import ArrowRight from "@paprika/icon/lib/ArrowRight";
 import ArrowLeft from "@paprika/icon/lib/ArrowLeft";
 import Spinner from "@paprika/spinner";
 import { ListBoxBrowserContext } from "../../ListBoxBrowser";
-import { label, navigateButton, action, labelContent, checkbox, backButton, loading } from "./CustomListBox.styles";
+import {
+  arrowRightButton,
+  arrowRigthContainer,
+  backButton,
+  checkbox,
+  label,
+  labelContainer,
+  labelCheckbox,
+  loading,
+} from "./CustomListBox.styles";
 
 const noop = () => () => {};
 const propTypes = {
@@ -85,10 +94,10 @@ export default function CustomListBox(props) {
             data-ppk-is-root-selected={rootKey === $$key}
             onClick={hasOptions ? onClickNavigate({ $$key, hasOptions }) : noop()}
           >
-            <div css={label}>
-              <div css={labelContent}>
-                {!hasOptions || isParentSelectable ? (
-                  <span>
+            <div css={labelContainer}>
+              <div css={label}>
+                <span css={labelCheckbox}>
+                  {!hasOptions || isParentSelectable ? (
                     <input
                       css={checkbox}
                       tabIndex={-1}
@@ -97,17 +106,17 @@ export default function CustomListBox(props) {
                       checked={isSelected({ browserKey, $$key, selectedOptions, isRootListBox })}
                       onChange={() => {}}
                     />
-                  </span>
-                ) : null}
+                  ) : null}
+                </span>
                 <span>{attributes.label}</span>
               </div>
-              <div css={action}>
+              <div css={arrowRigthContainer}>
                 {hasOptions ? (
                   <RawButton
                     tabIndex={isParentSelectable ? 0 : -1}
                     isParentSelectable={isParentSelectable}
                     a11yText="Browse content (i18n)"
-                    css={navigateButton}
+                    css={arrowRightButton}
                     onClick={onClickNavigate({ $$key, hasOptions, isClickFromButton: true })}
                   >
                     <ArrowRight />
