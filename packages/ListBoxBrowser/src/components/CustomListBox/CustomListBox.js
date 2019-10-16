@@ -5,6 +5,7 @@ import RawButton from "@paprika/raw-button";
 import ArrowRight from "@paprika/icon/lib/ArrowRight";
 import ArrowLeft from "@paprika/icon/lib/ArrowLeft";
 import Spinner from "@paprika/spinner";
+import { isSelected, isSelectable } from "./helpers";
 import { ListBoxBrowserContext } from "../../ListBoxBrowser";
 import {
   arrowRightButton,
@@ -34,27 +35,6 @@ const defaultProps = {
   isLoading: false,
   onUp: () => {},
 };
-
-function isSelected({ $$key, selectedOptions, browserKey, isRootListBox }) {
-  let key = browserKey;
-  if (isRootListBox) {
-    key = "root";
-  }
-
-  if (key in selectedOptions) {
-    return selectedOptions[key].some(option => option.$$key === $$key);
-  }
-
-  return false;
-}
-
-function isSelectable({ hasOptions, isParentSelectable }) {
-  if (isParentSelectable !== null) {
-    return !isParentSelectable;
-  }
-
-  return hasOptions;
-}
 
 export default function CustomListBox(props) {
   const { browserKey, height, isMulti, isParentSelectable, rootKey, selectedOptions } = React.useContext(
