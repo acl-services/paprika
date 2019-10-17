@@ -6,36 +6,33 @@ import dataNoOptions from "./fixtures/multiple.withNoOptions";
 import { getData, getOptionByKey } from "../src/helpers";
 import ListBoxBrowser from "../src";
 
+const selectedOptions = { current: {} };
+const dataParameters = { data, selectedOptions, defaultSelectedOptions: () => false };
+
 describe("ListBoxBrowser", () => {
   it("should return a data with proper keys", () => {
-    const selectedOptions = { current: {} };
-    const modifiedData = getData({ data, selectedOptions });
+    const modifiedData = getData(dataParameters);
 
     expect(modifiedData).toMatchSnapshot();
-    expect(selectedOptions).toMatchSnapshot();
   });
 
   it("should return option with $$key === 0", () => {
-    const selectedOptions = { current: {} };
-    const option = getOptionByKey(getData({ data, selectedOptions }), "0");
+    const option = getOptionByKey(getData(dataParameters), "0");
     expect(option).toMatchSnapshot();
   });
 
   it("should return option with $$key === 1", () => {
-    const selectedOptions = { current: {} };
-    const option = getOptionByKey(getData({ data, selectedOptions }), "1");
+    const option = getOptionByKey(getData(dataParameters), "1");
     expect(option).toMatchSnapshot();
   });
 
   it("should return option with $$key === 2/1", () => {
-    const selectedOptions = { current: {} };
-    const option = getOptionByKey(getData({ data, selectedOptions }), "2/1");
+    const option = getOptionByKey(getData(dataParameters), "2/1");
     expect(option).toMatchSnapshot();
   });
 
   it("should return option with $$key === 1/2/1", () => {
-    const selectedOptions = { current: {} };
-    const option = getOptionByKey(getData({ data, selectedOptions }), "1/2/1");
+    const option = getOptionByKey(getData(dataParameters), "1/2/1");
     expect(option).toMatchSnapshot();
   });
 
