@@ -6,6 +6,7 @@ import Button from "@paprika/button";
 import TrashbinIcon from "@paprika/icon/lib/Trashbin";
 import useI18n from "@paprika/l10n/lib/useI18n";
 import tokens from "@paprika/tokens";
+import { ShirtSizes } from "@paprika/helpers/lib/customPropTypes";
 import { itemStyles, itemIndexStyles, itemHandleStyles, itemBodyStyles, itemCloseStyles } from "./SortableItem.styles";
 
 const propTypes = {
@@ -53,7 +54,12 @@ const SortableItem = ({ children, index, hasNumbers, onRemove, ...moreProps }) =
           </div>
           {onRemove && (
             <div css={itemCloseStyles} data-pka-anchor="sortable.item.remove">
-              <Button.Icon onClick={handleRemove} kind="minor" size="small" a11yText={I18n.t("sortable.aria_remove")}>
+              <Button.Icon
+                onClick={handleRemove}
+                kind={Button.Kinds.MINOR}
+                size={ShirtSizes.MEDIUM}
+                a11yText={I18n.t("sortable.aria_remove")}
+              >
                 <TrashbinIcon color={tokens.color.blackLighten20} />
               </Button.Icon>
             </div>

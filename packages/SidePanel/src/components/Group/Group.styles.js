@@ -7,6 +7,9 @@ export const groupCSS = css`
   justify-content: flex-end;
   position: fixed;
   right: 0;
+  width: 100%;
+  z-index: ${props => props.zIndex};
+
   ${props => {
     return `
       top: ${props.offsetY}px;

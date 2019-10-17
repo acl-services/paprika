@@ -1,6 +1,8 @@
 import tokens from "@paprika/tokens";
 import stylers from "@paprika/stylers";
 import { css, keyframes } from "styled-components";
+import { ShirtSizes } from "@paprika/helpers/lib/customPropTypes";
+import Kinds from "./ButtonKinds";
 
 // Common
 
@@ -89,17 +91,17 @@ const activeStyles = `
 // Sizes
 
 const sizeStyles = {
-  small: `
+  [ShirtSizes.SMALL]: `
     ${stylers.fontSize(-2)};
     min-height: ${stylers.spacer(3)};
     padding: 3px ${tokens.space};
   `,
-  medium: `
+  [ShirtSizes.MEDIUM]: `
     ${stylers.fontSize(-1)};
     min-height: ${stylers.spacer(4)};
     padding: 6.5px ${tokens.spaceLg};
   `,
-  large: `
+  [ShirtSizes.LARGE]: `
     ${stylers.fontSize()};
     min-height: ${stylers.spacer(5)};
     padding: 9px ${stylers.spacer(2)};
@@ -109,7 +111,7 @@ const sizeStyles = {
 // Kinds
 
 const kindStyles = props => ({
-  default: `
+  [Kinds.DEFAULT]: `
     ${skeuomorphicStyles}
 
     background-image: linear-gradient(${tokens.color.blackLighten90}, ${tokens.color.blackLighten70});
@@ -124,7 +126,7 @@ const kindStyles = props => ({
 
     ${props.isDisabled ? disabledStyles : ""}
   `,
-  primary: `
+  [Kinds.PRIMARY]: `
     ${skeuomorphicStyles}
     ${coloredButtonStyles}
 
@@ -139,7 +141,7 @@ const kindStyles = props => ({
 
     ${props.isDisabled ? disabledStyles : ""}
   `,
-  secondary: `
+  [Kinds.SECONDARY]: `
     ${skeuomorphicStyles}
     ${coloredButtonStyles}
 
@@ -154,7 +156,7 @@ const kindStyles = props => ({
 
     ${props.isDisabled ? disabledStyles : ""}
   `,
-  destructive: `
+  [Kinds.DESTRUCTIVE]: `
     ${skeuomorphicStyles}
     ${coloredButtonStyles}
 
@@ -169,7 +171,7 @@ const kindStyles = props => ({
 
     ${props.isDisabled ? disabledStyles : ""}
   `,
-  flat: `
+  [Kinds.FLAT]: `
     ${skeuomorphicStyles}
 
     background-color: ${tokens.color.white};
@@ -184,7 +186,7 @@ const kindStyles = props => ({
 
     ${props.isDisabled ? disabledStyles : ""}
   `,
-  minor: `
+  [Kinds.MINOR]: `
     ${textButtonStyles}
 
     &:hover {
@@ -193,7 +195,7 @@ const kindStyles = props => ({
 
     ${props.isDisabled ? disabledTextStyles : ""}
   `,
-  link: `
+  [Kinds.LINK]: `
     ${textButtonStyles}
 
     color: ${tokens.textColor.link};
@@ -249,13 +251,13 @@ const spinKeyframes = keyframes`
 `;
 
 const iconColors = {
-  default: tokens.textColor.icon,
-  primary: tokens.color.white,
-  secondary: tokens.color.white,
-  destructive: tokens.color.white,
-  flat: tokens.textColor.icon,
-  minor: tokens.textColor.icon,
-  link: tokens.textColor.icon,
+  [Kinds.DEFAULT]: tokens.textColor.icon,
+  [Kinds.PRIMARY]: tokens.color.white,
+  [Kinds.SECONDARY]: tokens.color.white,
+  [Kinds.DESTRUCTIVE]: tokens.color.white,
+  [Kinds.FLAT]: tokens.textColor.icon,
+  [Kinds.MINOR]: tokens.textColor.icon,
+  [Kinds.LINK]: tokens.textColor.icon,
 };
 
 function getIconColor(props) {

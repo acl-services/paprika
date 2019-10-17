@@ -1,6 +1,6 @@
 {
   "name": "@paprika/raw-button",
-  "version": "0.1.7",
+  "version": "0.1.9",
   "description": "Raw button component",
   "author": "@paprika",
   "main": "lib/index.js",
@@ -14,13 +14,13 @@
   },
   "dependencies": {
     "@babel/runtime-corejs2": "^7.3.1",
-    "@paprika/stylers": "^0.1.5",
-    "@paprika/tokens": "^0.1.4",
+    "@paprika/stylers": "^0.1.7",
+    "@paprika/tokens": "^0.1.6",
     "prop-types": "^15.7.2"
   },
   "peerDependencies": {
-    "react": "^16.4.0",
-    "react-dom": "^16.4.2",
+    "react": "^16.8.0",
+    "react-dom": "^16.8.0",
     "styled-components": "^4.2.0"
   }
 }

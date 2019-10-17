@@ -31,7 +31,7 @@ const defaultProps = {
   isChecked: false,
   isDisabled: false,
   onChange: () => {},
-  size: "medium",
+  size: ShirtSizes.MEDIUM,
 };
 
 function Switch(props) {

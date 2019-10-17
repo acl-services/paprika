@@ -4,7 +4,7 @@ const SvgArrowUp = ({ title, ...props }) => (
   <svg
     width="1em"
     height="1em"
-    viewBox="0 0 22 12"
+    viewBox="0 0 24 24"
     css={`
       color: ${props.color};
       width: ${props.size};
