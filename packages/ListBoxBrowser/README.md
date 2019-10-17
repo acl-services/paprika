@@ -17,29 +17,31 @@ $ yarn add @paprika/listbox-browser
 ## Props
 
 ```
-data
-isMulti
-height
-onChange
-isParentSelectable
-rootTitle
 browserTitle
 children
-hasBreadcrumb
+data
 defaultSelectedOptions
 defaultSelectedView
+hasBreadcrumb
+hasError
+height
+isMulti
+isParentSelectable
+onChange
+rootTitle
 ```
 
 ## Usage
 
-The `<ListBoxBrowser />` is primarily an uncontrolled component that provides a `data` prop allowing the consumer to set the initial state.
-It also provides two other functions to set defaults for selected options and initial selected view for browser column.
+The `<ListBoxBrowser />` is primarily an uncontrolled component which received a `data` prop allowing the consumer to set the initial state.
 
-The component exposes a `onChange` prop, which receives a parameter with an array of the selected options.
+Also, has two functions to set defaults for selected options and a default selected view for the browser column.
+
+The `onChange` prop receives a parameter with an array of the selected options.
 
 ### Data prop
 
-The most important prop for the **<ListBoxBrowser />** is the `data` prop, which initializes the state for the component.
+The most important prop for the `<ListBoxBrowser />` is the `data` prop, which initializes the state for the component.
 
 The `data` prop has a shape of an array of objects where each object requires to have at least a `label` attribute on it, and at least one of those items should include an `options` property.
 
