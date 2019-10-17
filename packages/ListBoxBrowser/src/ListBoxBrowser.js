@@ -8,7 +8,7 @@ import {
   isRoot,
   focusListBoxBrowser,
   focusListBoxRoot,
-  getFirstOptionWithOptions,
+  getInitialView,
   extractedExtendedProps,
   getDataOptionByFn,
 } from "./helpers";
@@ -30,6 +30,7 @@ const propTypes = {
   hasBreadcrumb: PropTypes.bool,
   onFetch: PropTypes.func,
   defaultSelectedOptions: PropTypes.func,
+  defaultSelectedView: PropTypes.func,
 };
 
 const defaultProps = {
@@ -45,12 +46,12 @@ const defaultProps = {
   defaultSelectedOptions: () => {
     return false;
   },
+  defaultSelectedView: null,
 };
 
 export const ListBoxBrowserContext = React.createContext({});
 
 export default function ListBoxBrowser(props) {
-  const refSelectedOptions = React.useRef({});
   const {
     browserTitle,
     children: childrenProps,
@@ -63,18 +64,35 @@ export default function ListBoxBrowser(props) {
     rootTitle,
     onFetch,
     defaultSelectedOptions,
+    defaultSelectedView,
   } = props;
+  const refDefaultSelectedOptions = React.useRef({});
+  const refDefaultSelectedView = React.useRef(null);
 
   const { root, browser, children } = extractedExtendedProps(childrenProps);
   const localData = React.useMemo(
-    () => getData({ data, selectedOptions: refSelectedOptions, defaultSelectedOptions }),
-    [data, defaultSelectedOptions]
+    () =>
+      getData({
+        data,
+        refDefaultSelectedOptions,
+        defaultSelectedOptions,
+        defaultSelectedView,
+        refDefaultSelectedView,
+      }),
+    [data, defaultSelectedOptions, defaultSelectedView]
   );
-  const index = getFirstOptionWithOptions(localData);
 
-  const [rootKey, setRootKey] = React.useState(index);
-  const [browserKey, setBrowserKey] = React.useState(index);
-  const [selectedOptions, setSelectedOptions] = React.useState(refSelectedOptions.current);
+  const index = React.useMemo(() => {
+    if (refDefaultSelectedView.current) {
+      const browser = refDefaultSelectedView.current;
+      return { root: browser.split("/")[0], browser };
+    }
+    const index = getInitialView(localData);
+    return { root: index, browser: index };
+  }, [localData]);
+  const [rootKey, setRootKey] = React.useState(index.root);
+  const [browserKey, setBrowserKey] = React.useState(index.browser);
+  const [selectedOptions, setSelectedOptions] = React.useState(refDefaultSelectedOptions.current);
   const browserOptions = React.useMemo(() => getOptionByKey(localData, browserKey), [browserKey, localData]);
 
   const handleChange = source => (indexes, list) => {
