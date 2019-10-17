@@ -29,15 +29,30 @@ function isSelectable({ hasOptions, isParentSelectable }) {
 
 /** DATA STRUCTURE */
 
-export function getData({ data, path = "root", selectedOptions, defaultSelectedOptions }) {
+export function getData({
+  data,
+  path = "root",
+  refDefaultSelectedOptions,
+  defaultSelectedOptions,
+  defaultSelectedView,
+  refDefaultSelectedView,
+}) {
   return data.map(({ label = null, options, ...moreAttributes }, index) => {
     if (!label) {
       throw new Error("A Label attribute is required for each option object, can't process data.");
     }
 
     let newPath = isRoot(path) ? `${index}` : `${path}/${index}`;
-    const recursiveParameters = { data: options, selectedOptions, path: newPath, defaultSelectedOptions };
+    const recursiveParameters = {
+      data: options,
+      defaultSelectedOptions,
+      defaultSelectedView,
+      path: newPath,
+      refDefaultSelectedOptions,
+      refDefaultSelectedView,
+    };
     const _hasOptions = hasOptions(options);
+
     const option = {
       parent: path,
       hasOptions: _hasOptions,
@@ -55,15 +70,20 @@ export function getData({ data, path = "root", selectedOptions, defaultSelectedO
         newPath = "root";
       }
 
-      if (option.parent in selectedOptions.current) {
-        selectedOptions.current = {
-          ...selectedOptions.current,
-          [option.parent]: [...selectedOptions.current[option.parent], option],
+      if (option.parent in refDefaultSelectedOptions.current) {
+        refDefaultSelectedOptions.current = {
+          ...refDefaultSelectedOptions.current,
+          [option.parent]: [...refDefaultSelectedOptions.current[option.parent], option],
         };
       } else {
-        selectedOptions.current = { ...selectedOptions.current, [option.parent]: [option] };
+        refDefaultSelectedOptions.current = { ...refDefaultSelectedOptions.current, [option.parent]: [option] };
       }
       /* eslint-enable no-param-reassing */
+    }
+
+    // checking if its initial view
+    if (_hasOptions && defaultSelectedView && defaultSelectedView(option.attributes)) {
+      refDefaultSelectedView.current = newPath;
     }
 
     return option;
@@ -177,7 +197,7 @@ export function focusListBoxRoot() {
   });
 }
 
-export function getFirstOptionWithOptions(localData) {
+export function getInitialView(localData) {
   let index = null;
   try {
     Object.keys(localData).some(key => {
@@ -188,6 +208,7 @@ export function getFirstOptionWithOptions(localData) {
         index = key;
         throw new Error("index found");
       }
+
       return false;
     });
 
