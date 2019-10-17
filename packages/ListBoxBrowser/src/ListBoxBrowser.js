@@ -19,17 +19,77 @@ import Browser from "./components/Browser";
 import Title from "./components/Title";
 
 const propTypes = {
+  /**
+    An array of javascript objects holding the data structure for the ListBoxBrowser
+    The object shape **must have** at least a string **label** property and an optional array **options** property.
+    Also can hold any other kind of data for your own use.
+    ex.
+
+    [{ label: "One" }, { label: "Two", options: [{ label: "Three" }] }]
+  */
   data: PropTypes.any.isRequired, // eslint-disable-line
+
+  /**
+    Indicates if the user can select one or multiple options
+  */
   isMulti: PropTypes.bool,
+  /**
+    Set the height for the ListBoxBrowser
+  */
   height: PropTypes.number,
+  /**
+    Callback function receiving an array of selected options by the component
+  */
   onChange: PropTypes.func,
+  /**
+    Allows the user to select the parent options
+  */
   isParentSelectable: PropTypes.bool,
-  rootTitle: PropTypes.string,
-  browserTitle: PropTypes.string,
+  /**
+    Content title for the left column
+  */
+  rootTitle: PropTypes.node,
+  /**
+    Content title for the right column
+  */
+  browserTitle: PropTypes.node,
+  /**
+    You can pass <ListBoxBrowser.OptionSelected /> as a children
+  */
   children: PropTypes.node,
+  /**
+    Indicates if the right column should display a breadcrumb
+  */
   hasBreadcrumb: PropTypes.bool,
+  /**
+    When declaring the array options empty, this will be execute to retrive the
+    data, useful if you want to do a lazy load.
+
+    ex.
+    <ListBoxBrowser data={[{ label: "lazy", options: [] }]} onFetch={(option) => {** logic**}}>
+      <ListBoxBrowser.Browser isLoading={isBrowserLoading} />
+    </ListBoxBrowser>
+  */
   onFetch: PropTypes.func,
+  /**
+    A function that set an option selected returning true or false
+    you can use to compare your data structure and decide if the option is
+    initially selected or not.
+
+    const data = [{ key: 1, label: "one", options: [...] }, { key: 2, label: "two" }, { key: 3, label: "three" }]
+
+    ex.
+    <ListBoxBrowser data={data} defaultSelectedOptions={(option) => {
+      return option.key === 2 or option.key === 3
+    }} />
+  */
   defaultSelectedOptions: PropTypes.func,
+  /**
+    A function that set the intial view for the right columns (Browser) of the ListBoxBrowser
+    the option selected to be the initial view should have options to be valid,
+    by default the ListBoxBrowser picked the first option which has options to be the
+    initial value.
+  */
   defaultSelectedView: PropTypes.func,
 };
 
@@ -82,18 +142,33 @@ export default function ListBoxBrowser(props) {
     [data, defaultSelectedOptions, defaultSelectedView]
   );
 
-  const index = React.useMemo(() => {
-    if (refDefaultSelectedView.current) {
-      const browser = refDefaultSelectedView.current;
-      return { root: browser.split("/")[0], browser };
-    }
-    const index = getInitialView(localData);
-    return { root: index, browser: index };
-  }, [localData]);
+  const index = React.useMemo(
+    function getIndex() {
+      if (refDefaultSelectedView.current) {
+        const browser = refDefaultSelectedView.current;
+        return { root: browser.split("/")[0], browser };
+      }
+      const index = getInitialView(localData);
+      return { root: index, browser: index };
+    },
+    [localData]
+  );
+
   const [rootKey, setRootKey] = React.useState(index.root);
   const [browserKey, setBrowserKey] = React.useState(index.browser);
   const [selectedOptions, setSelectedOptions] = React.useState(refDefaultSelectedOptions.current);
   const browserOptions = React.useMemo(() => getOptionByKey(localData, browserKey), [browserKey, localData]);
+
+  const fetch = React.useCallback(
+    function fetchCallback($$key) {
+      const option = getOptionByKey(localData, $$key);
+      const { attributes } = option;
+      if (attributes.options.length === 0) {
+        if (onFetch) onFetch(attributes);
+      }
+    },
+    [localData, onFetch]
+  );
 
   const handleChange = source => (indexes, list) => {
     onChangeHelper({
@@ -106,17 +181,6 @@ export default function ListBoxBrowser(props) {
       isMulti,
     });
   };
-
-  const fetch = React.useCallback(
-    function fetchCallback($$key) {
-      const option = getOptionByKey(localData, $$key);
-      const { attributes } = option;
-      if (attributes.options.length === 0) {
-        if (onFetch) onFetch(attributes);
-      }
-    },
-    [localData, onFetch]
-  );
 
   const handleClickRoot = React.useCallback(
     ({ $$key, hasOptions, isClickFromButton = false }) => event => {
@@ -141,16 +205,6 @@ export default function ListBoxBrowser(props) {
     },
     [isParentSelectable, localData]
   );
-
-  const handleUp = _parent => () => {
-    setBrowserKey(`${_parent}`);
-    focusListBoxBrowser();
-  };
-
-  function handleClickBreadcrumb(option) {
-    setBrowserKey(`${option.$$key}`);
-    focusListBoxBrowser();
-  }
 
   const onJumpToOption = React.useCallback(
     function handleClickJumpToOption(option) {
@@ -190,6 +244,16 @@ export default function ListBoxBrowser(props) {
       return cloneSelectedOptions;
     });
   }, []);
+
+  const handleUp = _parent => () => {
+    setBrowserKey(`${_parent}`);
+    focusListBoxBrowser();
+  };
+
+  function handleClickBreadcrumb(option) {
+    setBrowserKey(`${option.$$key}`);
+    focusListBoxBrowser();
+  }
 
   React.useEffect(() => {
     onChange(selectedOptions);

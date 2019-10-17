@@ -6,8 +6,8 @@ import Breadcrumb from "../Breadcrumb";
 import { ListBoxBrowserContext } from "../../ListBoxBrowser";
 
 const propTypes = {
-  rootTitle: PropTypes.string.isRequired,
-  browserTitle: PropTypes.string.isRequired,
+  rootTitle: PropTypes.node.isRequired,
+  browserTitle: PropTypes.node.isRequired,
   data: PropTypes.arrayOf(PropTypes.object), // eslint-disable-line
   browserKey: PropTypes.oneOfType([PropTypes.string, PropTypes.number]).isRequired,
   onClickBreadcrumb: PropTypes.func.isRequired,
