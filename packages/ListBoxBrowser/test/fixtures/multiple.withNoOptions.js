@@ -7,7 +7,6 @@ export default [
   },
   {
     label: "Dragon Ball",
-    defaultIsSelected: true,
   },
   {
     label: "Starcraft Universe",

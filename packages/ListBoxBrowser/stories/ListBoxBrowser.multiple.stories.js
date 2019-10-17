@@ -66,6 +66,16 @@ storiesOf("ListBoxBrowser/Multi", module)
       <ListBoxBrowser data={dataMultiple} rootTitle="Universes" browserTitle="Heroes" hasBreadcrumb={false} />
     </Story>
   ))
+  .add("Has option default selected", () => (
+    <Story>
+      <ListBoxBrowser
+        data={dataMultiple}
+        rootTitle="Universes"
+        browserTitle="Heroes"
+        defaultSelectedOptions={option => ["Shazam", "Terrans", "Zergs", "Dragon Ball"].includes(option.label)}
+      />
+    </Story>
+  ))
   .add("With lazy loading", () => (
     <Lazy
       defaultData={[

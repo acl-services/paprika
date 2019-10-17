@@ -1,5 +1,6 @@
 import React from "react";
 
+/** helpers */
 const hasOptions = options => typeof options !== "undefined" && Array.isArray(options);
 
 export function isRoot(key) {
@@ -24,6 +25,49 @@ function isSelectable({ hasOptions, isParentSelectable }) {
   }
 
   return hasOptions;
+}
+
+/** DATA STRUCTURE */
+
+export function getData({ data, path = "root", selectedOptions, defaultSelectedOptions }) {
+  return data.map(({ label = null, options, ...moreAttributes }, index) => {
+    if (!label) {
+      throw new Error("A Label attribute is required for each option object, can't process data.");
+    }
+
+    let newPath = isRoot(path) ? `${index}` : `${path}/${index}`;
+    const recursiveParameters = { data: options, selectedOptions, path: newPath, defaultSelectedOptions };
+    const _hasOptions = hasOptions(options);
+    const option = {
+      parent: path,
+      hasOptions: _hasOptions,
+      $$key: newPath,
+      attributes: {
+        label,
+        options: _hasOptions ? getData(recursiveParameters) : null,
+        ...moreAttributes,
+      },
+    };
+
+    if (defaultSelectedOptions(option.attributes)) {
+      /* eslint-disable no-param-reassign */
+      if (isRoot(option.parent)) {
+        newPath = "root";
+      }
+
+      if (option.parent in selectedOptions.current) {
+        selectedOptions.current = {
+          ...selectedOptions.current,
+          [option.parent]: [...selectedOptions.current[option.parent], option],
+        };
+      } else {
+        selectedOptions.current = { ...selectedOptions.current, [option.parent]: [option] };
+      }
+      /* eslint-enable no-param-reassing */
+    }
+
+    return option;
+  });
 }
 
 export function getOptionByKey(data, path) {
@@ -54,6 +98,22 @@ export function getOptionByKey(data, path) {
   } catch (e) {
     return node;
   }
+}
+
+export function getBreadcrumb({ data, option }) {
+  let activeOption = option;
+  let key = null;
+  const breadcrumb = [];
+  while (!isRoot(key)) {
+    if (!isRoot(activeOption.parent)) {
+      const parent = getOptionByKey(data, activeOption.parent);
+      breadcrumb.push(parent);
+      activeOption = parent;
+    }
+    key = activeOption.parent;
+  }
+
+  return breadcrumb.reverse();
 }
 
 export function onChange({ source, indexes, list, isParentSelectable, setSelectedOptions, browserKey, isMulti }) {
@@ -103,63 +163,6 @@ export function onChange({ source, indexes, list, isParentSelectable, setSelecte
   setSelectedOptions(selectedOptions => {
     return { ...selectedOptions, [browserKey]: getOptions(indexes, list) };
   });
-}
-
-export function getData({ data, path = "root", selectedOptions }) {
-  return data.map(({ label = null, options, defaultIsSelected = false, ...moreAttributes }, index) => {
-    if (!label) {
-      throw new Error("A Label attribute is required for each option object, can't process data.");
-    }
-
-    let newPath = isRoot(path) ? `${index}` : `${path}/${index}`;
-    const _hasOptions = hasOptions(options);
-    const option = {
-      parent: path,
-      hasOptions: _hasOptions,
-      $$key: newPath,
-      attributes: {
-        defaultIsSelected,
-        label,
-        options: _hasOptions ? getData({ data: options, selectedOptions, path: newPath }) : null,
-        ...moreAttributes,
-      },
-    };
-
-    if (defaultIsSelected) {
-      /* eslint-disable no-param-reassign */
-      if (isRoot(option.parent)) {
-        newPath = "root";
-      }
-
-      if (option.parent in selectedOptions.current) {
-        selectedOptions.current = {
-          ...selectedOptions.current,
-          [option.parent]: [...selectedOptions.current[option.parent], option],
-        };
-      } else {
-        selectedOptions.current = { ...selectedOptions.current, [option.parent]: [option] };
-      }
-      /* eslint-enable no-param-reassing */
-    }
-
-    return option;
-  });
-}
-
-export function getBreadcrumb({ data, option }) {
-  let activeOption = option;
-  let key = null;
-  const breadcrumb = [];
-  while (!isRoot(key)) {
-    if (!isRoot(activeOption.parent)) {
-      const parent = getOptionByKey(data, activeOption.parent);
-      breadcrumb.push(parent);
-      activeOption = parent;
-    }
-    key = activeOption.parent;
-  }
-
-  return breadcrumb.reverse();
 }
 
 export function focusListBoxBrowser() {
