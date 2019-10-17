@@ -47,7 +47,6 @@ export default [
       },
       {
         label: "Celestials",
-        defaultIsSelected: true,
       },
     ],
   },

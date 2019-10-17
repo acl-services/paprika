@@ -29,6 +29,7 @@ const propTypes = {
   children: PropTypes.node,
   hasBreadcrumb: PropTypes.bool,
   onFetch: PropTypes.func,
+  defaultSelectedOptions: PropTypes.func,
 };
 
 const defaultProps = {
@@ -41,6 +42,9 @@ const defaultProps = {
   children: null,
   hasBreadcrumb: true,
   onFetch: null,
+  defaultSelectedOptions: () => {
+    return false;
+  },
 };
 
 export const ListBoxBrowserContext = React.createContext({});
@@ -58,10 +62,14 @@ export default function ListBoxBrowser(props) {
     onChange,
     rootTitle,
     onFetch,
+    defaultSelectedOptions,
   } = props;
 
   const { root, browser, children } = extractedExtendedProps(childrenProps);
-  const localData = React.useMemo(() => getData({ data, selectedOptions: refSelectedOptions }), [data]);
+  const localData = React.useMemo(
+    () => getData({ data, selectedOptions: refSelectedOptions, defaultSelectedOptions }),
+    [data, defaultSelectedOptions]
+  );
   const index = getFirstOptionWithOptions(localData);
 
   const [rootKey, setRootKey] = React.useState(index);
@@ -142,7 +150,6 @@ export default function ListBoxBrowser(props) {
         focusListBoxRoot();
         return;
       }
-
       handleClickBrowser({ $$key: option.parent, hasOptions: false, isClickFromButton: true })();
     },
     [handleClickBrowser, handleClickRoot]

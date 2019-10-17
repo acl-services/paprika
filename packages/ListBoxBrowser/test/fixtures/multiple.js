@@ -16,14 +16,12 @@ export default [
               { label: "Baal" },
             ],
           },
-          { label: "The Punisher", defaultIsSelected: true },
           { label: "Silver Sable" },
           { label: "Red Skull" },
           { label: "Vulture" },
           { label: "Falcon" },
           { label: "Kraven the hunter" },
           { label: "Bruce banner" },
-          { label: "Bucky", defaultIsSelected: true },
           { label: "Moon Knight" },
           { label: "KingPin" },
           { label: "Doctor Octopus" },
@@ -70,11 +68,9 @@ export default [
           },
           {
             label: "Shazam",
-            defaultIsSelected: true,
           },
           {
             label: "Highfather",
-            defaultIsSelected: true,
           },
         ],
       },
@@ -99,6 +95,5 @@ export default [
   },
   {
     label: "Dragon Ball",
-    defaultIsSelected: true,
   },
 ];
