@@ -47,4 +47,12 @@ export const container = css`
   [data-ppk-is-root-selected="true"] {
     background: ${tokens.color.greenLighten50};
   }
+
+  ${({ hasError }) =>
+    hasError
+      ? `
+      border: 2px solid ${tokens.color.orange};
+      border-radius: ${tokens.border.radius};
+    `
+      : ""}
 `;

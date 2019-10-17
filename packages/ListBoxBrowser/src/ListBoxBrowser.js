@@ -62,6 +62,10 @@ const propTypes = {
   */
   hasBreadcrumb: PropTypes.bool,
   /**
+    Set a border red color around the component indicating that has an error
+  */
+  hasError: PropTypes.bool,
+  /**
     When declaring the array options empty, this will be execute to retrive the
     data, useful if you want to do a lazy load.
 
@@ -94,15 +98,16 @@ const propTypes = {
 };
 
 const defaultProps = {
-  isMulti: true,
-  height: 220,
-  onChange: () => {},
-  isParentSelectable: null,
-  rootTitle: "",
   browserTitle: "",
   children: null,
   hasBreadcrumb: true,
+  hasError: false,
+  height: 220,
+  isMulti: true,
+  isParentSelectable: null,
+  onChange: () => {},
   onFetch: null,
+  rootTitle: "",
   defaultSelectedOptions: () => {
     return false;
   },
@@ -116,15 +121,16 @@ export default function ListBoxBrowser(props) {
     browserTitle,
     children: childrenProps,
     data,
+    defaultSelectedOptions,
+    defaultSelectedView,
     hasBreadcrumb,
+    hasError,
     height,
     isMulti,
     isParentSelectable,
     onChange,
-    rootTitle,
     onFetch,
-    defaultSelectedOptions,
-    defaultSelectedView,
+    rootTitle,
   } = props;
   const refDefaultSelectedOptions = React.useRef({});
   const refDefaultSelectedView = React.useRef(null);
@@ -307,7 +313,7 @@ export default function ListBoxBrowser(props) {
 
   return (
     <ListBoxBrowserContext.Provider value={value}>
-      <div isParentSelectable={isParentSelectable} css={container} height={height}>
+      <div hasError={hasError} isParentSelectable={isParentSelectable} css={container} height={height}>
         <Title
           rootTitle={rootTitle}
           browserTitle={browserTitle}

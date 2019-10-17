@@ -57,4 +57,11 @@ storiesOf("ListBoxBrowser/Single", module)
         <ListBoxBrowser.OptionsSelected />
       </ListBoxBrowser>
     </Story>
+  ))
+  .add("Has Error", () => (
+    <Story>
+      <ListBoxBrowser hasError data={withNoOptionsSelected} isMulti={false}>
+        <ListBoxBrowser.OptionsSelected />
+      </ListBoxBrowser>
+    </Story>
   ));
