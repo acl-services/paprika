@@ -5,25 +5,21 @@ Array [
   Object {
     "$$key": "0",
     "attributes": Object {
-      "defaultIsSelected": false,
       "label": "Marvel Universe",
       "options": Array [
         Object {
           "$$key": "0/0",
           "attributes": Object {
-            "defaultIsSelected": false,
             "label": "Humans",
             "options": Array [
               Object {
                 "$$key": "0/0/0",
                 "attributes": Object {
-                  "defaultIsSelected": false,
                   "label": "Black Cat",
                   "options": Array [
                     Object {
                       "$$key": "0/0/0/0",
                       "attributes": Object {
-                        "defaultIsSelected": false,
                         "label": "Akhenaten",
                         "options": null,
                       },
@@ -33,7 +29,6 @@ Array [
                     Object {
                       "$$key": "0/0/0/1",
                       "attributes": Object {
-                        "defaultIsSelected": false,
                         "label": "Alistair Smythe",
                         "options": null,
                       },
@@ -43,7 +38,6 @@ Array [
                     Object {
                       "$$key": "0/0/0/2",
                       "attributes": Object {
-                        "defaultIsSelected": false,
                         "label": "Angelo Fortunato",
                         "options": null,
                       },
@@ -53,7 +47,6 @@ Array [
                     Object {
                       "$$key": "0/0/0/3",
                       "attributes": Object {
-                        "defaultIsSelected": false,
                         "label": "Arcade",
                         "options": null,
                       },
@@ -63,7 +56,6 @@ Array [
                     Object {
                       "$$key": "0/0/0/4",
                       "attributes": Object {
-                        "defaultIsSelected": false,
                         "label": "Aria",
                         "options": null,
                       },
@@ -73,7 +65,6 @@ Array [
                     Object {
                       "$$key": "0/0/0/5",
                       "attributes": Object {
-                        "defaultIsSelected": false,
                         "label": "Baal",
                         "options": null,
                       },
@@ -88,8 +79,7 @@ Array [
               Object {
                 "$$key": "0/0/1",
                 "attributes": Object {
-                  "defaultIsSelected": true,
-                  "label": "The Punisher",
+                  "label": "Silver Sable",
                   "options": null,
                 },
                 "hasOptions": false,
@@ -98,8 +88,7 @@ Array [
               Object {
                 "$$key": "0/0/2",
                 "attributes": Object {
-                  "defaultIsSelected": false,
-                  "label": "Silver Sable",
+                  "label": "Red Skull",
                   "options": null,
                 },
                 "hasOptions": false,
@@ -108,8 +97,7 @@ Array [
               Object {
                 "$$key": "0/0/3",
                 "attributes": Object {
-                  "defaultIsSelected": false,
-                  "label": "Red Skull",
+                  "label": "Vulture",
                   "options": null,
                 },
                 "hasOptions": false,
@@ -118,8 +106,7 @@ Array [
               Object {
                 "$$key": "0/0/4",
                 "attributes": Object {
-                  "defaultIsSelected": false,
-                  "label": "Vulture",
+                  "label": "Falcon",
                   "options": null,
                 },
                 "hasOptions": false,
@@ -128,8 +115,7 @@ Array [
               Object {
                 "$$key": "0/0/5",
                 "attributes": Object {
-                  "defaultIsSelected": false,
-                  "label": "Falcon",
+                  "label": "Kraven the hunter",
                   "options": null,
                 },
                 "hasOptions": false,
@@ -138,8 +124,7 @@ Array [
               Object {
                 "$$key": "0/0/6",
                 "attributes": Object {
-                  "defaultIsSelected": false,
-                  "label": "Kraven the hunter",
+                  "label": "Bruce banner",
                   "options": null,
                 },
                 "hasOptions": false,
@@ -148,8 +133,7 @@ Array [
               Object {
                 "$$key": "0/0/7",
                 "attributes": Object {
-                  "defaultIsSelected": false,
-                  "label": "Bruce banner",
+                  "label": "Moon Knight",
                   "options": null,
                 },
                 "hasOptions": false,
@@ -158,8 +142,7 @@ Array [
               Object {
                 "$$key": "0/0/8",
                 "attributes": Object {
-                  "defaultIsSelected": true,
-                  "label": "Bucky",
+                  "label": "KingPin",
                   "options": null,
                 },
                 "hasOptions": false,
@@ -168,8 +151,7 @@ Array [
               Object {
                 "$$key": "0/0/9",
                 "attributes": Object {
-                  "defaultIsSelected": false,
-                  "label": "Moon Knight",
+                  "label": "Doctor Octopus",
                   "options": null,
                 },
                 "hasOptions": false,
@@ -178,8 +160,7 @@ Array [
               Object {
                 "$$key": "0/0/10",
                 "attributes": Object {
-                  "defaultIsSelected": false,
-                  "label": "KingPin",
+                  "label": "Elektra",
                   "options": null,
                 },
                 "hasOptions": false,
@@ -188,8 +169,7 @@ Array [
               Object {
                 "$$key": "0/0/11",
                 "attributes": Object {
-                  "defaultIsSelected": false,
-                  "label": "Doctor Octopus",
+                  "label": "Black Widow",
                   "options": null,
                 },
                 "hasOptions": false,
@@ -198,8 +178,7 @@ Array [
               Object {
                 "$$key": "0/0/12",
                 "attributes": Object {
-                  "defaultIsSelected": false,
-                  "label": "Elektra",
+                  "label": "Hawkeye",
                   "options": null,
                 },
                 "hasOptions": false,
@@ -208,8 +187,7 @@ Array [
               Object {
                 "$$key": "0/0/13",
                 "attributes": Object {
-                  "defaultIsSelected": false,
-                  "label": "Black Widow",
+                  "label": "Bullseye",
                   "options": null,
                 },
                 "hasOptions": false,
@@ -218,8 +196,7 @@ Array [
               Object {
                 "$$key": "0/0/14",
                 "attributes": Object {
-                  "defaultIsSelected": false,
-                  "label": "Hawkeye",
+                  "label": "TaskMaster",
                   "options": null,
                 },
                 "hasOptions": false,
@@ -228,8 +205,7 @@ Array [
               Object {
                 "$$key": "0/0/15",
                 "attributes": Object {
-                  "defaultIsSelected": false,
-                  "label": "Bullseye",
+                  "label": "Star-Lord",
                   "options": null,
                 },
                 "hasOptions": false,
@@ -238,8 +214,7 @@ Array [
               Object {
                 "$$key": "0/0/16",
                 "attributes": Object {
-                  "defaultIsSelected": false,
-                  "label": "TaskMaster",
+                  "label": "DareDevil",
                   "options": null,
                 },
                 "hasOptions": false,
@@ -248,8 +223,7 @@ Array [
               Object {
                 "$$key": "0/0/17",
                 "attributes": Object {
-                  "defaultIsSelected": false,
-                  "label": "Star-Lord",
+                  "label": "Ikari",
                   "options": null,
                 },
                 "hasOptions": false,
@@ -258,8 +232,7 @@ Array [
               Object {
                 "$$key": "0/0/18",
                 "attributes": Object {
-                  "defaultIsSelected": false,
-                  "label": "DareDevil",
+                  "label": "War Machine",
                   "options": null,
                 },
                 "hasOptions": false,
@@ -268,8 +241,7 @@ Array [
               Object {
                 "$$key": "0/0/19",
                 "attributes": Object {
-                  "defaultIsSelected": false,
-                  "label": "Ikari",
+                  "label": "Nick Fury",
                   "options": null,
                 },
                 "hasOptions": false,
@@ -278,8 +250,7 @@ Array [
               Object {
                 "$$key": "0/0/20",
                 "attributes": Object {
-                  "defaultIsSelected": false,
-                  "label": "War Machine",
+                  "label": "Hank Pym",
                   "options": null,
                 },
                 "hasOptions": false,
@@ -288,8 +259,7 @@ Array [
               Object {
                 "$$key": "0/0/21",
                 "attributes": Object {
-                  "defaultIsSelected": false,
-                  "label": "Nick Fury",
+                  "label": "Captain America",
                   "options": null,
                 },
                 "hasOptions": false,
@@ -298,27 +268,6 @@ Array [
               Object {
                 "$$key": "0/0/22",
                 "attributes": Object {
-                  "defaultIsSelected": false,
-                  "label": "Hank Pym",
-                  "options": null,
-                },
-                "hasOptions": false,
-                "parent": "0/0",
-              },
-              Object {
-                "$$key": "0/0/23",
-                "attributes": Object {
-                  "defaultIsSelected": false,
-                  "label": "Captain America",
-                  "options": null,
-                },
-                "hasOptions": false,
-                "parent": "0/0",
-              },
-              Object {
-                "$$key": "0/0/24",
-                "attributes": Object {
-                  "defaultIsSelected": false,
                   "label": "Iron Man",
                   "options": null,
                 },
@@ -333,7 +282,6 @@ Array [
         Object {
           "$$key": "0/1",
           "attributes": Object {
-            "defaultIsSelected": false,
             "label": "Mutants",
             "options": null,
           },
@@ -343,7 +291,6 @@ Array [
         Object {
           "$$key": "0/2",
           "attributes": Object {
-            "defaultIsSelected": false,
             "label": "Celestials",
             "options": null,
           },
@@ -358,13 +305,11 @@ Array [
   Object {
     "$$key": "1",
     "attributes": Object {
-      "defaultIsSelected": false,
       "label": "DC Universe",
       "options": Array [
         Object {
           "$$key": "1/0",
           "attributes": Object {
-            "defaultIsSelected": false,
             "label": "Humans",
             "options": null,
           },
@@ -374,7 +319,6 @@ Array [
         Object {
           "$$key": "1/1",
           "attributes": Object {
-            "defaultIsSelected": false,
             "label": "Meta Humans",
             "options": null,
           },
@@ -384,13 +328,11 @@ Array [
         Object {
           "$$key": "1/2",
           "attributes": Object {
-            "defaultIsSelected": false,
             "label": "The Quintessence",
             "options": Array [
               Object {
                 "$$key": "1/2/0",
                 "attributes": Object {
-                  "defaultIsSelected": false,
                   "label": "Zeus",
                   "options": null,
                 },
@@ -400,7 +342,6 @@ Array [
               Object {
                 "$$key": "1/2/1",
                 "attributes": Object {
-                  "defaultIsSelected": false,
                   "label": "Ganthet",
                   "options": null,
                 },
@@ -410,7 +351,6 @@ Array [
               Object {
                 "$$key": "1/2/2",
                 "attributes": Object {
-                  "defaultIsSelected": true,
                   "label": "Shazam",
                   "options": null,
                 },
@@ -420,7 +360,6 @@ Array [
               Object {
                 "$$key": "1/2/3",
                 "attributes": Object {
-                  "defaultIsSelected": true,
                   "label": "Highfather",
                   "options": null,
                 },
@@ -440,13 +379,11 @@ Array [
   Object {
     "$$key": "2",
     "attributes": Object {
-      "defaultIsSelected": false,
       "label": "Starcraft Universe",
       "options": Array [
         Object {
           "$$key": "2/0",
           "attributes": Object {
-            "defaultIsSelected": false,
             "label": "Terrans",
             "options": null,
           },
@@ -456,7 +393,6 @@ Array [
         Object {
           "$$key": "2/1",
           "attributes": Object {
-            "defaultIsSelected": false,
             "label": "Zergs",
             "options": null,
           },
@@ -466,7 +402,6 @@ Array [
         Object {
           "$$key": "2/2",
           "attributes": Object {
-            "defaultIsSelected": false,
             "label": "Protos",
             "options": null,
           },
@@ -481,7 +416,6 @@ Array [
   Object {
     "$$key": "3",
     "attributes": Object {
-      "defaultIsSelected": false,
       "label": "Cartoon Network",
       "options": null,
     },
@@ -491,7 +425,6 @@ Array [
   Object {
     "$$key": "4",
     "attributes": Object {
-      "defaultIsSelected": true,
       "label": "Dragon Ball",
       "options": null,
     },
@@ -501,92 +434,25 @@ Array [
 ]
 `;
 
-exports[`ListBoxBrowser should return a data with proper keys 2`] = `
-Object {
-  "current": Object {
-    "0/0": Array [
-      Object {
-        "$$key": "0/0/1",
-        "attributes": Object {
-          "defaultIsSelected": true,
-          "label": "The Punisher",
-          "options": null,
-        },
-        "hasOptions": false,
-        "parent": "0/0",
-      },
-      Object {
-        "$$key": "0/0/8",
-        "attributes": Object {
-          "defaultIsSelected": true,
-          "label": "Bucky",
-          "options": null,
-        },
-        "hasOptions": false,
-        "parent": "0/0",
-      },
-    ],
-    "1/2": Array [
-      Object {
-        "$$key": "1/2/2",
-        "attributes": Object {
-          "defaultIsSelected": true,
-          "label": "Shazam",
-          "options": null,
-        },
-        "hasOptions": false,
-        "parent": "1/2",
-      },
-      Object {
-        "$$key": "1/2/3",
-        "attributes": Object {
-          "defaultIsSelected": true,
-          "label": "Highfather",
-          "options": null,
-        },
-        "hasOptions": false,
-        "parent": "1/2",
-      },
-    ],
-    "root": Array [
-      Object {
-        "$$key": "4",
-        "attributes": Object {
-          "defaultIsSelected": true,
-          "label": "Dragon Ball",
-          "options": null,
-        },
-        "hasOptions": false,
-        "parent": "root",
-      },
-    ],
-  },
-}
-`;
-
 exports[`ListBoxBrowser should return option with $$key === 0 1`] = `
 Object {
   "$$key": "0",
   "attributes": Object {
-    "defaultIsSelected": false,
     "label": "Marvel Universe",
     "options": Array [
       Object {
         "$$key": "0/0",
         "attributes": Object {
-          "defaultIsSelected": false,
           "label": "Humans",
           "options": Array [
             Object {
               "$$key": "0/0/0",
               "attributes": Object {
-                "defaultIsSelected": false,
                 "label": "Black Cat",
                 "options": Array [
                   Object {
                     "$$key": "0/0/0/0",
                     "attributes": Object {
-                      "defaultIsSelected": false,
                       "label": "Akhenaten",
                       "options": null,
                     },
@@ -596,7 +462,6 @@ Object {
                   Object {
                     "$$key": "0/0/0/1",
                     "attributes": Object {
-                      "defaultIsSelected": false,
                       "label": "Alistair Smythe",
                       "options": null,
                     },
@@ -606,7 +471,6 @@ Object {
                   Object {
                     "$$key": "0/0/0/2",
                     "attributes": Object {
-                      "defaultIsSelected": false,
                       "label": "Angelo Fortunato",
                       "options": null,
                     },
@@ -616,7 +480,6 @@ Object {
                   Object {
                     "$$key": "0/0/0/3",
                     "attributes": Object {
-                      "defaultIsSelected": false,
                       "label": "Arcade",
                       "options": null,
                     },
@@ -626,7 +489,6 @@ Object {
                   Object {
                     "$$key": "0/0/0/4",
                     "attributes": Object {
-                      "defaultIsSelected": false,
                       "label": "Aria",
                       "options": null,
                     },
@@ -636,7 +498,6 @@ Object {
                   Object {
                     "$$key": "0/0/0/5",
                     "attributes": Object {
-                      "defaultIsSelected": false,
                       "label": "Baal",
                       "options": null,
                     },
@@ -651,8 +512,7 @@ Object {
             Object {
               "$$key": "0/0/1",
               "attributes": Object {
-                "defaultIsSelected": true,
-                "label": "The Punisher",
+                "label": "Silver Sable",
                 "options": null,
               },
               "hasOptions": false,
@@ -661,8 +521,7 @@ Object {
             Object {
               "$$key": "0/0/2",
               "attributes": Object {
-                "defaultIsSelected": false,
-                "label": "Silver Sable",
+                "label": "Red Skull",
                 "options": null,
               },
               "hasOptions": false,
@@ -671,8 +530,7 @@ Object {
             Object {
               "$$key": "0/0/3",
               "attributes": Object {
-                "defaultIsSelected": false,
-                "label": "Red Skull",
+                "label": "Vulture",
                 "options": null,
               },
               "hasOptions": false,
@@ -681,8 +539,7 @@ Object {
             Object {
               "$$key": "0/0/4",
               "attributes": Object {
-                "defaultIsSelected": false,
-                "label": "Vulture",
+                "label": "Falcon",
                 "options": null,
               },
               "hasOptions": false,
@@ -691,8 +548,7 @@ Object {
             Object {
               "$$key": "0/0/5",
               "attributes": Object {
-                "defaultIsSelected": false,
-                "label": "Falcon",
+                "label": "Kraven the hunter",
                 "options": null,
               },
               "hasOptions": false,
@@ -701,8 +557,7 @@ Object {
             Object {
               "$$key": "0/0/6",
               "attributes": Object {
-                "defaultIsSelected": false,
-                "label": "Kraven the hunter",
+                "label": "Bruce banner",
                 "options": null,
               },
               "hasOptions": false,
@@ -711,8 +566,7 @@ Object {
             Object {
               "$$key": "0/0/7",
               "attributes": Object {
-                "defaultIsSelected": false,
-                "label": "Bruce banner",
+                "label": "Moon Knight",
                 "options": null,
               },
               "hasOptions": false,
@@ -721,8 +575,7 @@ Object {
             Object {
               "$$key": "0/0/8",
               "attributes": Object {
-                "defaultIsSelected": true,
-                "label": "Bucky",
+                "label": "KingPin",
                 "options": null,
               },
               "hasOptions": false,
@@ -731,8 +584,7 @@ Object {
             Object {
               "$$key": "0/0/9",
               "attributes": Object {
-                "defaultIsSelected": false,
-                "label": "Moon Knight",
+                "label": "Doctor Octopus",
                 "options": null,
               },
               "hasOptions": false,
@@ -741,8 +593,7 @@ Object {
             Object {
               "$$key": "0/0/10",
               "attributes": Object {
-                "defaultIsSelected": false,
-                "label": "KingPin",
+                "label": "Elektra",
                 "options": null,
               },
               "hasOptions": false,
@@ -751,8 +602,7 @@ Object {
             Object {
               "$$key": "0/0/11",
               "attributes": Object {
-                "defaultIsSelected": false,
-                "label": "Doctor Octopus",
+                "label": "Black Widow",
                 "options": null,
               },
               "hasOptions": false,
@@ -761,8 +611,7 @@ Object {
             Object {
               "$$key": "0/0/12",
               "attributes": Object {
-                "defaultIsSelected": false,
-                "label": "Elektra",
+                "label": "Hawkeye",
                 "options": null,
               },
               "hasOptions": false,
@@ -771,8 +620,7 @@ Object {
             Object {
               "$$key": "0/0/13",
               "attributes": Object {
-                "defaultIsSelected": false,
-                "label": "Black Widow",
+                "label": "Bullseye",
                 "options": null,
               },
               "hasOptions": false,
@@ -781,8 +629,7 @@ Object {
             Object {
               "$$key": "0/0/14",
               "attributes": Object {
-                "defaultIsSelected": false,
-                "label": "Hawkeye",
+                "label": "TaskMaster",
                 "options": null,
               },
               "hasOptions": false,
@@ -791,8 +638,7 @@ Object {
             Object {
               "$$key": "0/0/15",
               "attributes": Object {
-                "defaultIsSelected": false,
-                "label": "Bullseye",
+                "label": "Star-Lord",
                 "options": null,
               },
               "hasOptions": false,
@@ -801,8 +647,7 @@ Object {
             Object {
               "$$key": "0/0/16",
               "attributes": Object {
-                "defaultIsSelected": false,
-                "label": "TaskMaster",
+                "label": "DareDevil",
                 "options": null,
               },
               "hasOptions": false,
@@ -811,8 +656,7 @@ Object {
             Object {
               "$$key": "0/0/17",
               "attributes": Object {
-                "defaultIsSelected": false,
-                "label": "Star-Lord",
+                "label": "Ikari",
                 "options": null,
               },
               "hasOptions": false,
@@ -821,8 +665,7 @@ Object {
             Object {
               "$$key": "0/0/18",
               "attributes": Object {
-                "defaultIsSelected": false,
-                "label": "DareDevil",
+                "label": "War Machine",
                 "options": null,
               },
               "hasOptions": false,
@@ -831,8 +674,7 @@ Object {
             Object {
               "$$key": "0/0/19",
               "attributes": Object {
-                "defaultIsSelected": false,
-                "label": "Ikari",
+                "label": "Nick Fury",
                 "options": null,
               },
               "hasOptions": false,
@@ -841,8 +683,7 @@ Object {
             Object {
               "$$key": "0/0/20",
               "attributes": Object {
-                "defaultIsSelected": false,
-                "label": "War Machine",
+                "label": "Hank Pym",
                 "options": null,
               },
               "hasOptions": false,
@@ -851,8 +692,7 @@ Object {
             Object {
               "$$key": "0/0/21",
               "attributes": Object {
-                "defaultIsSelected": false,
-                "label": "Nick Fury",
+                "label": "Captain America",
                 "options": null,
               },
               "hasOptions": false,
@@ -861,27 +701,6 @@ Object {
             Object {
               "$$key": "0/0/22",
               "attributes": Object {
-                "defaultIsSelected": false,
-                "label": "Hank Pym",
-                "options": null,
-              },
-              "hasOptions": false,
-              "parent": "0/0",
-            },
-            Object {
-              "$$key": "0/0/23",
-              "attributes": Object {
-                "defaultIsSelected": false,
-                "label": "Captain America",
-                "options": null,
-              },
-              "hasOptions": false,
-              "parent": "0/0",
-            },
-            Object {
-              "$$key": "0/0/24",
-              "attributes": Object {
-                "defaultIsSelected": false,
                 "label": "Iron Man",
                 "options": null,
               },
@@ -896,7 +715,6 @@ Object {
       Object {
         "$$key": "0/1",
         "attributes": Object {
-          "defaultIsSelected": false,
           "label": "Mutants",
           "options": null,
         },
@@ -906,7 +724,6 @@ Object {
       Object {
         "$$key": "0/2",
         "attributes": Object {
-          "defaultIsSelected": false,
           "label": "Celestials",
           "options": null,
         },
@@ -924,13 +741,11 @@ exports[`ListBoxBrowser should return option with $$key === 1 1`] = `
 Object {
   "$$key": "1",
   "attributes": Object {
-    "defaultIsSelected": false,
     "label": "DC Universe",
     "options": Array [
       Object {
         "$$key": "1/0",
         "attributes": Object {
-          "defaultIsSelected": false,
           "label": "Humans",
           "options": null,
         },
@@ -940,7 +755,6 @@ Object {
       Object {
         "$$key": "1/1",
         "attributes": Object {
-          "defaultIsSelected": false,
           "label": "Meta Humans",
           "options": null,
         },
@@ -950,13 +764,11 @@ Object {
       Object {
         "$$key": "1/2",
         "attributes": Object {
-          "defaultIsSelected": false,
           "label": "The Quintessence",
           "options": Array [
             Object {
               "$$key": "1/2/0",
               "attributes": Object {
-                "defaultIsSelected": false,
                 "label": "Zeus",
                 "options": null,
               },
@@ -966,7 +778,6 @@ Object {
             Object {
               "$$key": "1/2/1",
               "attributes": Object {
-                "defaultIsSelected": false,
                 "label": "Ganthet",
                 "options": null,
               },
@@ -976,7 +787,6 @@ Object {
             Object {
               "$$key": "1/2/2",
               "attributes": Object {
-                "defaultIsSelected": true,
                 "label": "Shazam",
                 "options": null,
               },
@@ -986,7 +796,6 @@ Object {
             Object {
               "$$key": "1/2/3",
               "attributes": Object {
-                "defaultIsSelected": true,
                 "label": "Highfather",
                 "options": null,
               },
@@ -1009,7 +818,6 @@ exports[`ListBoxBrowser should return option with $$key === 1/2/1 1`] = `
 Object {
   "$$key": "1/2/1",
   "attributes": Object {
-    "defaultIsSelected": false,
     "label": "Ganthet",
     "options": null,
   },
@@ -1022,7 +830,6 @@ exports[`ListBoxBrowser should return option with $$key === 2/1 1`] = `
 Object {
   "$$key": "2/1",
   "attributes": Object {
-    "defaultIsSelected": false,
     "label": "Zergs",
     "options": null,
   },
