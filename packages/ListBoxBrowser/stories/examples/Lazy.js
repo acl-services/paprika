@@ -23,29 +23,36 @@ const fakeDB = {
   ],
 };
 
+function fakeFetch({ ms = 1000, key }) {
+  return new Promise(resolve =>
+    setTimeout(() => {
+      resolve(fakeDB[key]);
+    }, ms)
+  );
+}
+
 export default function Lazy(props) {
   const [isBrowserLoading, setIsBrowserLoading] = React.useState(false);
   const [data, setData] = React.useState(props.defaultData);
 
-  function handleFetch(option) {
+  async function handleFetch(option) {
     setIsBrowserLoading(() => true);
-    setTimeout(() => {
-      setData(data => {
-        const key = option.key;
-        const cloneData = data.splice(0);
-        const o = ListBoxBrowser.findOption(cloneData, option => option.key === key);
-        o.options = fakeDB[key];
+    const key = option.key;
+    const response = await fakeFetch({ key });
 
-        return cloneData;
-      });
-      setIsBrowserLoading(() => false);
-    }, 1000);
+    setData(data => {
+      const cloneData = data.splice(0);
+      const o = ListBoxBrowser.findOption(cloneData, option => option.key === key);
+      o.options = response;
+
+      return cloneData;
+    });
+    setIsBrowserLoading(() => false);
   }
 
   return (
     <Story>
       <ListBoxBrowser onFetch={handleFetch} data={data} rootTitle="Universes" browserTitle="Heroes">
-        <ListBoxBrowser.Root />
         <ListBoxBrowser.Browser isLoading={isBrowserLoading} />
         <ListBoxBrowser.OptionsSelected />
       </ListBoxBrowser>
