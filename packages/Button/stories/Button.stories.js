@@ -10,6 +10,7 @@ import CloseButtonRef from "./examples/CloseButtonRef";
 
 import CommonButtons from "./examples/CommonButtons";
 import ButtonStates from "./examples/ButtonStates";
+import ButtonVariations from "./examples/ButtonVariations";
 
 storiesOf("Button", module)
   .addDecorator(withKnobs)
@@ -23,4 +24,5 @@ storiesOf("Button/Examples", module)
 
 storiesOf("Button/Starling", module)
   .add("Common Buttons", () => <CommonButtons />)
-  .add("Button States", () => <ButtonStates />);
+  .add("Button States", () => <ButtonStates />)
+  .add("Button Variations", () => <ButtonVariations />);
