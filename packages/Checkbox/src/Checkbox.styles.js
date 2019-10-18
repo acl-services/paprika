@@ -7,8 +7,8 @@ const integize = token => Number.parseInt(token, 10);
 
 const sizeMap = {
   [ShirtSizes.SMALL]: 2,
-  [ShirtSizes.MEDIUM]: 4,
-  [ShirtSizes.LARGE]: 6,
+  [ShirtSizes.MEDIUM]: 2.5,
+  [ShirtSizes.LARGE]: 3,
 };
 
 const getSpacing = size => stylers.spacer(sizeMap[size]);
@@ -105,8 +105,9 @@ const checkboxStyles = css`
         opacity: 0.5;
         transition: none;
       }
-      & + label::before {
-        background-color: ${tokens.color.blackLighten70};
+      &:checked + label::before,
+      &:indeterminate + label::before {
+        background-color: ${tokens.color.blackLighten40};
       }
     }
   }
