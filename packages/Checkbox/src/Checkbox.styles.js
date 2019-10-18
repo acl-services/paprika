@@ -15,8 +15,8 @@ const getSpacing = size => stylers.spacer(sizeMap[size]);
 const getSpacingInt = size => integize(getSpacing(size));
 
 const size = ({ size }) => getSpacing(size);
-const iconFontSize = size => (getSpacingInt(size) / integize(tokens.space) - 3) * 2;
-const iconSize = ({ size }) => `${stylers.fontSizeValue(iconFontSize(size))}px`;
+const fontSizeInt = size => (getSpacingInt(size) / integize(tokens.space) - 3) * 2;
+const fontSizeValue = ({ size }) => `${stylers.fontSizeValue(fontSizeInt(size))}px`;
 
 const topOffset = size => (getSpacingInt(size) - integize(stylers.fontSizeValue()) * stylers.lineHeightValue(-1)) / 2;
 const isCheckboxBigger = size => topOffset(size) > 0;
@@ -26,21 +26,18 @@ const labelPadding = ({ hasChildren, size }) => {
   return `${top} 0 ${top} ${left}`;
 };
 
-const fontSize = ({ size }) => `${stylers.fontSizeValue(iconFontSize(size))}px`;
-
-const checkerTop = size => (isCheckboxBigger ? "0px" : `${Math.abs(topOffset(size) / 2)}px`);
+const checkerTop = size => (isCheckboxBigger ? "-1px" : `${Math.abs(topOffset(size) / 2)}px`);
 const checkBoxIconLeft = ({ size }) => `${getSpacingInt(size) / 2}px`;
 
 const checkboxStyles = css`
-  ${stylers.boxSizingStyles}
-  font-size: ${fontSize}
+  ${stylers.boxSizingStyles};
+  font-size: ${fontSizeValue};
 
   line-height: ${({ hasChildren }) => (hasChildren ? stylers.lineHeightValue(-1) : "0")};
   position: relative;
 
   input[type="checkbox"] {
-
-    ${stylers.visuallyHidden}
+    ${stylers.visuallyHidden};
 
     & + label {
       cursor: pointer;
@@ -70,7 +67,7 @@ const checkboxStyles = css`
 
     & + label > .checkbox-icon {
       color: ${tokens.color.white};
-      font-size: ${iconSize};
+      font-size: ${fontSizeValue};
       height: ${size};
       left: ${checkBoxIconLeft};
       opacity: 0;
@@ -80,7 +77,8 @@ const checkboxStyles = css`
       z-index: 2;
     }
 
-    &:checked, &:indeterminate{
+    &:checked,
+    &:indeterminate {
       & + label::before {
         background: ${tokens.color.black};
         border: none;
@@ -112,7 +110,7 @@ const checkboxStyles = css`
     }
   }
 
-  &:hover{
+  &:hover {
     input[type="checkbox"] {
       & + label::before {
         border: 2px solid ${tokens.color.black};
