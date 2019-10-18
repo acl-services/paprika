@@ -1,6 +1,6 @@
 {
   "name": "@paprika/tokens",
-  "version": "0.1.4",
+  "version": "0.1.6",
   "description": "Design tokens generated as scss + js",
   "author": "@paprika",
   "main": "lib/index.js",
@@ -24,6 +24,7 @@
     "yamljs": "^0.3.0"
   },
   "peerDependencies": {
-    "react": "^16.8.4"
+    "react": "^16.8.4",
+    "react-dom": "^16.8.4"
   }
 }

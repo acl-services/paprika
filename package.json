@@ -49,6 +49,7 @@
     "@paprika/input": "^0.1.0",
     "@paprika/l10n": "^0.1.0",
     "@paprika/listbox": "^0.6.0",
+    "@paprika/pill": "^0.1.0",
     "@paprika/popover": "^0.1.0",
     "@paprika/raw-button": "^0.1.0",
     "@paprika/select": "^0.1.0",

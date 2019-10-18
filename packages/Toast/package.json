@@ -1,6 +1,6 @@
 {
   "name": "@paprika/toast",
-  "version": "0.1.6",
+  "version": "0.1.8",
   "description": "Toast component",
   "main": "lib/index.js",
   "author": "@paprika",
@@ -14,11 +14,12 @@
   },
   "dependencies": {
     "@babel/runtime-corejs2": "^7.3.1",
-    "@paprika/button": "^0.1.13",
+    "@paprika/button": "^0.1.15",
+    "@paprika/helpers": "^0.2.1",
     "@paprika/icon": "^0.1.6",
-    "@paprika/l10n": "^0.2.3",
-    "@paprika/stylers": "^0.1.5",
-    "@paprika/tokens": "^0.1.4",
+    "@paprika/l10n": "^0.2.4",
+    "@paprika/stylers": "^0.1.7",
+    "@paprika/tokens": "^0.1.6",
     "prop-types": "^15.7.2"
   },
   "peerDependencies": {

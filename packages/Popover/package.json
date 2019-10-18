@@ -1,6 +1,6 @@
 {
   "name": "@paprika/popover",
-  "version": "0.2.1",
+  "version": "0.2.3",
   "description": "Popover / Tooltip component",
   "author": "@paprika",
   "main": "lib/index.js",
@@ -15,18 +15,18 @@
   },
   "dependencies": {
     "@babel/runtime-corejs2": "^7.3.1",
-    "@paprika/helpers": "^0.2.0",
-    "@paprika/raw-button": "^0.1.7",
-    "@paprika/stylers": "^0.1.5",
-    "@paprika/tokens": "^0.1.4",
+    "@paprika/helpers": "^0.2.1",
+    "@paprika/raw-button": "^0.1.9",
+    "@paprika/stylers": "^0.1.7",
+    "@paprika/tokens": "^0.1.6",
     "lodash.throttle": "^4.1.1",
     "memoize-one": "^5.0.0",
     "prop-types": "^15.7.2",
     "uuid": "^3.3.2"
   },
   "peerDependencies": {
-    "react": "^16.4.0",
-    "react-dom": "^16.4.2",
+    "react": "^16.8.0",
+    "react-dom": "^16.8.0",
     "styled-components": "^4.2.0"
   }
 }

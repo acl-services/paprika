@@ -1,5 +1,5 @@
 import React from "react";
-import { fireEvent } from "@testing-library/react";
+import { fireEvent, act } from "@testing-library/react";
 
 import Toast from "../src";
 
@@ -58,7 +58,9 @@ describe("Toast", () => {
     const { getByText, queryByText } = renderComponent({ canAutoClose: true, onClose: handleClose });
 
     expect(getByText(/content/i)).toBeInTheDocument();
-    jest.runAllTimers();
+    act(() => {
+      jest.runAllTimers();
+    });
     expect(queryByText(/content/i)).not.toBeInTheDocument();
     expect(handleClose).toHaveBeenCalledTimes(1);
   });

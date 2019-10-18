@@ -25,7 +25,7 @@ const defaultProps = {
   isDisabled: false,
   isReadOnly: false,
   placeholder: null,
-  size: "medium",
+  size: ShirtSizes.MEDIUM,
   value: "",
 };
 

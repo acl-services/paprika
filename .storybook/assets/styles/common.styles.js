@@ -41,4 +41,9 @@ export const Gap = styled.div`
   height: 120px;
 `;
 
+export const HorizontalSmallGap = styled.div`
+  display: inline-flex;
+  width: ${tokens.space};
+`;
+
 export const breaklines = num => [...Array(num).keys()].map(index => <br key={index} />);
