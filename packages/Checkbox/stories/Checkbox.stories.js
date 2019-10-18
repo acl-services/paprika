@@ -11,6 +11,6 @@ storiesOf("Checkbox", module)
 
 storiesOf("Checkbox/Automation Tests/Screener", module).add("CheckboxExample", () => (
   <CheckboxStory>
-    <CheckboxExample size="large" />
+    <CheckboxExample size="medium" />
   </CheckboxStory>
 ));

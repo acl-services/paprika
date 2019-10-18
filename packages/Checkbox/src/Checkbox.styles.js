@@ -26,12 +26,14 @@ const labelPadding = ({ hasChildren, size }) => {
   return `${top} 0 ${top} ${left}`;
 };
 
+const fontSize = ({ size }) => `${stylers.fontSizeValue(iconFontSize(size))}px`;
+
 const checkerTop = size => (isCheckboxBigger ? "0px" : `${Math.abs(topOffset(size) / 2)}px`);
 const checkBoxIconLeft = ({ size }) => `${getSpacingInt(size) / 2}px`;
 
 const checkboxStyles = css`
   ${stylers.boxSizingStyles}
-  ${stylers.fontSize()}
+  font-size: ${fontSize}
 
   line-height: ${({ hasChildren }) => (hasChildren ? stylers.lineHeightValue(-1) : "0")};
   position: relative;
