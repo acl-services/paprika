@@ -65,6 +65,12 @@ const checkboxStyles = css`
       z-index: 1;
     }
 
+    & + label:hover {
+      &:before {
+        border: 2px solid ${tokens.color.black};
+      }
+    }
+
     & + label > .checkbox-icon {
       color: ${tokens.color.white};
       font-size: ${fontSizeValue};
@@ -106,14 +112,6 @@ const checkboxStyles = css`
       &:checked + label::before,
       &:indeterminate + label::before {
         background-color: ${tokens.color.blackLighten40};
-      }
-    }
-  }
-
-  &:hover {
-    input[type="checkbox"] {
-      & + label::before {
-        border: 2px solid ${tokens.color.black};
       }
     }
   }
