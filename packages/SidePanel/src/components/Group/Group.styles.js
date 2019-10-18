@@ -7,6 +7,7 @@ export const groupCSS = css`
   justify-content: flex-end;
   position: fixed;
   right: 0;
+  visibility: hidden;
   width: 100%;
   z-index: ${props => props.zIndex};
 
@@ -15,4 +16,8 @@ export const groupCSS = css`
       top: ${props.offsetY}px;
     `;
   }}
+
+  > div[role="dialog"] {
+    visibility: visible;
+  }
 `;

@@ -57,8 +57,8 @@ storiesOf("SidePanel / SidePanel.Group", module).add("SidePanel.Group has offset
     <Nav />
     <TextLine repeat={100} />
     <SidePanel.Group offsetY={40}>
-      <SidePanel.Group.Overlay />
-      <SidePanel onClose={onClose} isOpen width={300}>
+      <SidePanel.Group.Overlay onClose={onClose} />
+      <SidePanel onClose={onClose} isOpen width="50%">
         <SidePanel.Header>
           <Heading level={2}>With Header</Heading>
         </SidePanel.Header>
