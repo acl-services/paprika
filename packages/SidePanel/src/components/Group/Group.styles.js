@@ -17,6 +17,7 @@ export const groupCSS = css`
     `;
   }}
 
+  /* Read more here: https://github.com/acl-services/paprika/pull/239#discussion_r336679762 */
   > div[role="dialog"] {
     visibility: visible;
   }
