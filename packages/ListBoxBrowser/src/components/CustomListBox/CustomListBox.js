@@ -5,6 +5,8 @@ import RawButton from "@paprika/raw-button";
 import ArrowRight from "@paprika/icon/lib/ArrowRight";
 import ArrowLeft from "@paprika/icon/lib/ArrowLeft";
 import Spinner from "@paprika/spinner";
+import useI18n from "@paprika/l10n/lib/useI18n";
+
 import { isSelected, isSelectable } from "./helpers";
 import { ListBoxBrowserContext } from "../../ListBoxBrowser";
 import {
@@ -37,6 +39,7 @@ const defaultProps = {
 };
 
 export default function CustomListBox(props) {
+  const i18n = useI18n();
   const { browserKey, height, isMulti, isParentSelectable, rootKey, selectedOptions } = React.useContext(
     ListBoxBrowserContext
   );
@@ -58,7 +61,8 @@ export default function CustomListBox(props) {
       {hasOnUp ? (
         <ListBox.Option onClick={onUp}>
           <span css={backButton}>
-            <ArrowLeft /> Back <span css="opacity: .2; margin-left: 8px">(i18n)</span>
+            <ArrowLeft />
+            {i18n.t("back")}
           </span>
         </ListBox.Option>
       ) : null}
@@ -95,7 +99,7 @@ export default function CustomListBox(props) {
                   <RawButton
                     tabIndex={isParentSelectable ? 0 : -1}
                     isParentSelectable={isParentSelectable}
-                    a11yText="Browse content (i18n)"
+                    a11yText={i18n.t("listBoxBrowser.explore")}
                     css={arrowRightButton}
                     onClick={onClickNavigate({ $$key, hasOptions, isClickFromButton: true })}
                   >

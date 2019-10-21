@@ -78,6 +78,7 @@ export const backButton = css`
   justify-content: flex-start;
   padding: 3px 0;
   position: relative;
+  text-transform: uppercase;
   width: 100%;
   &:after {
     border-bottom: 1px solid ${tokens.border.color};
