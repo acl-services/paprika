@@ -6,30 +6,34 @@ import CheckIcon from "@paprika/icon/lib/Check";
 import AddIcon from "@paprika/icon/lib/Add";
 import checkboxStyles from "./Checkbox.styles";
 
+export const checkboxStates = {
+  CHECKED: "checked",
+  UNCHECKED: "unchecked",
+  INDETERMINATE: "indeterminate",
+};
+
 const propTypes = {
   a11yText: PropTypes.string,
   children: PropTypes.node,
-  isChecked: PropTypes.bool,
   isDisabled: PropTypes.bool,
-  isIndeterminate: PropTypes.bool,
   onChange: PropTypes.func.isRequired,
   size: PropTypes.oneOf(ShirtSizes.DEFAULT),
+  checkedState: PropTypes.oneOf([checkboxStates.CHECKED, checkboxStates.UNCHECKED, checkboxStates.INDETERMINATE]),
 };
 
 const defaultProps = {
   a11yText: null,
   children: null,
-  isChecked: false,
   isDisabled: false,
-  isIndeterminate: false,
   size: ShirtSizes.MEDIUM,
+  checkedState: checkboxStates.UNCHECKED,
 };
 
 const Checkbox = props => {
   const checkboxId = React.useRef(uuid()).current;
   const inputRef = React.useRef(null);
 
-  const { a11yText, children, isChecked, isDisabled, isIndeterminate, size, ...moreProps } = props;
+  const { a11yText, children, isDisabled, checkedState, size, ...moreProps } = props;
 
   const styleProps = {
     hasChildren: !!children,
@@ -37,15 +41,24 @@ const Checkbox = props => {
   };
 
   React.useEffect(() => {
-    if (inputRef.current) inputRef.current.indeterminate = isIndeterminate;
-  }, [isIndeterminate]);
+    if (inputRef.current && checkedState === checkboxStates.INDETERMINATE) {
+      inputRef.current.indeterminate = checkboxStates.INDETERMINATE;
+    }
+  }, [checkedState]);
 
   const inputProps = {};
   if (a11yText) inputProps["aria-label"] = a11yText;
 
   return (
     <div data-pka-anchor="checkbox" css={checkboxStyles} {...styleProps} {...moreProps}>
-      <input type="checkbox" id={checkboxId} checked={isChecked} disabled={isDisabled} ref={inputRef} {...inputProps} />
+      <input
+        type="checkbox"
+        id={checkboxId}
+        checked={checkedState === checkboxStates.CHECKED}
+        disabled={isDisabled}
+        ref={inputRef}
+        {...inputProps}
+      />
       <label htmlFor={checkboxId}>
         {children}
         <CheckIcon className="checkbox-icon" aria-hidden data-pka-anchor="checkbox.icon.check" />

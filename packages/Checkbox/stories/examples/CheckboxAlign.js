@@ -1,15 +1,14 @@
 import React from "react";
 import { Rule } from "storybook/assets/styles/common.styles";
 import Heading from "@paprika/heading";
-import Checkbox from "../../src";
+import Checkbox, { checkboxStates } from "../../src/Checkbox";
+
+const { CHECKED, UNCHECKED } = checkboxStates;
 
 const CheckboxExample = props => {
-  const state2 = React.useState(props.value || false);
+  const [checkedState, setCheckedState] = React.useState(props.value || UNCHECKED);
 
-  const handleChange = state => () => {
-    const [, setIsChecked] = state;
-    setIsChecked(prevChecked => !prevChecked);
-  };
+  const handleChange = () => setCheckedState(checkedState === CHECKED ? UNCHECKED : CHECKED);
 
   return (
     <div>
@@ -23,16 +22,16 @@ const CheckboxExample = props => {
           text-align: right;
         `}
       >
-        <Checkbox {...props} onChange={handleChange(state2)} isChecked={state2[0]}>
+        <Checkbox {...props} onChange={handleChange} checkedState={checkedState}>
           Slow-carb cold-pressed hexagon forage chillwave
         </Checkbox>
-        <Checkbox {...props} onChange={handleChange(state2)} isChecked={state2[0]}>
+        <Checkbox {...props} onChange={handleChange} checkedState={checkedState}>
           Flexitarian
         </Checkbox>
-        <Checkbox {...props} onChange={handleChange(state2)} isChecked={state2[0]}>
+        <Checkbox {...props} onChange={handleChange} checkedState={checkedState}>
           Locavore
         </Checkbox>
-        <Checkbox {...props} onChange={handleChange(state2)} isChecked={state2[0]} />
+        <Checkbox {...props} onChange={handleChange} checkedState={checkedState} />
       </div>
     </div>
   );

@@ -1,20 +1,19 @@
 import React from "react";
 import { Rule } from "storybook/assets/styles/common.styles";
 import Heading from "@paprika/heading";
-import Checkbox from "../../src";
+import Checkbox, { checkboxStates } from "../../src/Checkbox";
+
+const { CHECKED, UNCHECKED } = checkboxStates;
 
 const CheckboxExample = props => {
-  const state2 = React.useState(props.value || false);
+  const [checkedState, setCheckedState] = React.useState(props.value || UNCHECKED);
 
-  const handleChange = state => () => {
-    const [, setIsChecked] = state;
-    setIsChecked(prevChecked => !prevChecked);
-  };
+  const handleChange = () => setCheckedState(checkedState === CHECKED ? UNCHECKED : CHECKED);
 
   return (
     <div>
       <Heading level={1} displayLevel={2} isLight>
-        Checkbox Grouping Example
+        Checkbox Grouping
       </Heading>
       <Rule />
       <div
@@ -24,30 +23,21 @@ const CheckboxExample = props => {
           }
         `}
       >
-        <Checkbox {...props} onChange={handleChange(state2)} isChecked={state2[0]}>
-          Lorem hipsum sartorial readymade green juice chicharrones.
+        <Checkbox {...props} onChange={handleChange} checkedState={checkedState}>
+          Slow-carb cold-pressed hexagon forage chillwave
         </Checkbox>
-        <Checkbox {...props} onChange={handleChange(state2)} isChecked={state2[0]}>
-          Scenester craft beer skateboard.
+        <Checkbox {...props} onChange={handleChange} checkedState={checkedState}>
+          Flexitarian
         </Checkbox>
-        <Checkbox {...props} onChange={handleChange(state2)} isChecked={state2[0]}>
-          Mixtape.
+        <Checkbox {...props} onChange={handleChange} checkedState={checkedState}>
+          Locavore
         </Checkbox>
-        <Checkbox {...props} onChange={handleChange(state2)} isChecked={state2[0]}>
-          Literally.
+        <Checkbox {...props} onChange={handleChange} checkedState={checkedState} />
+        <Checkbox {...props} onChange={handleChange} checkedState={checkedState}>
+          &nbsp;
         </Checkbox>
+        <Checkbox {...props} onChange={handleChange} checkedState={checkedState} />
       </div>
-      <Rule />
-      <Checkbox {...props} onChange={handleChange(state2)} isChecked={state2[0]}>
-        Polaroid
-      </Checkbox>
-      <Checkbox {...props} onChange={handleChange(state2)} isChecked={state2[0]}>
-        &nbsp;
-      </Checkbox>
-      <Checkbox {...props} onChange={handleChange(state2)} isChecked={state2[0]} />
-      <Checkbox {...props} onChange={handleChange(state2)} isChecked={state2[0]} />
-      <Checkbox {...props} onChange={handleChange(state2)} isChecked={state2[0]} />
-      <Rule />
     </div>
   );
 };

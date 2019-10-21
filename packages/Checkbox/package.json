@@ -23,7 +23,8 @@
   },
   "devDependencies": {
     "@paprika/l10n": "^0.2.4",
-    "@paprika/heading": "^0.1.8"
+    "@paprika/heading": "^0.1.8",
+    "@paprika/button": "^0.1.15"
   },
   "peerDependencies": {
     "react": "^16.8.4",
