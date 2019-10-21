@@ -1,6 +1,6 @@
 ## DropdownMenu
 
-The `<DropdownMenu>` component displays a trigger button, which when clicked displays a list of items in a dropdown format. These items can be raw content, Links or actions such as Delete, which will prompt a confirmation panel to be displayed
+The `<Checkbox>` component displays a checkbox and label text beside it. When clicked it displays a checkmark. It can also have an indeterminate state which can be used to group checkboxes.
 
 ### Installation
 
@@ -11,77 +11,21 @@ or
 ### Usage
 
 ```js
-import DropdownMenu from "@paprika/dropdown-menu";
-import Confirmation from "@paprika/confirmation";
+import Checkbox from "@paprika/checkbox";
 
-<DropdownMenu
-  renderTrigger={({ isOpen, handleOpenMenu }) => (
-    <DropdownMenu.Trigger isOpen={isOpen} handleOpenMenu={handleOpenMenu}>
-      Trigger
-    </DropdownMenu.Trigger>
-  )}
->
-  <DropdownMenu.Item onClick={() => {}}>Edit</DropdownMenu.Item>
-  <DropdownMenu.LinkItem isExternal link="http://www.wegalvanize.com">
-    External link
-  </DropdownMenu.LinkItem>
-  <DropdownMenu.Item isDisabled onClick={() => {}}>
-    Disabled Item
-  </DropdownMenu.Item>
-  <DropdownMenu.Divider />
-  <DropdownMenu.Item
-    isDestructive
-    renderConfirmation={onClose => {
-      return (
-        <Confirmation
-          body="Lorem ipsum dolor amet vexillologist tacos selvage narwhal butcher twee ethical hot chicken."
-          confirmLabel="Delete filter"
-          defaultIsOpen
-          heading="Delete filter?"
-          onConfirm={handleConfirm(onCloseMenu)}
-        />
-      );
-    }}
-  >
-    Delete filter
-  </DropdownMenu.Item>
-</DropdownMenu>;
+<Checkbox {...props} onChange={handleChange(setStateValue)} isChecked={stateValue>
+  Checkbox 1
+</Checkbox>;
 ```
 
 ### Props
 
-- align
+- a11yText
 - children
-- renderTrigger
+- isChecked
+- isDisabled
+- isIndeterminate
+- onChange
+- size
 
-[More detail about these props](https://github.com/acl-services/paprika/blob/master/packages/DropdownMenu/src/DropdownMenu.js)
-
-#### DropdownMenu.Trigger
-
-- isOpen
-- handleOpenMenu
-
-[More detail about these props](https://github.com/acl-services/paprika/blob/master/packages/DropdownMenu/src/components/Trigger/Trigger.js)
-
-#### DropdownMenu.Item
-
-- children
-- isDestructive
-- onClick
-- onClose
-- onShowConfirmation
-- renderConfirmation
-
-[More detail about these props](https://github.com/acl-services/paprika/blob/master/packages/DropdownMenu/src/components/Item/Item.js)
-
-#### DropdownMenu.LinkItem
-
-- children
-- link
-- isExternal
-
-[More detail about these props](https://github.com/acl-services/paprika/blob/master/packages/DropdownMenu/src/components/LinkItem/LinkItem.js)
-
-#### DropdownMenu.Divider
-
-[More detail about this component](https://github.com/acl-services/paprika/blob/master/packages/DropdownMenu/src/components/Divider/Divider.js)
+[More detail about these props](https://github.com/acl-services/paprika/blob/master/packages/Checkbox/src/Checkbox.js)
