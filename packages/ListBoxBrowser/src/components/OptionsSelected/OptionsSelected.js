@@ -1,6 +1,7 @@
 import React from "react";
 import RawButton from "@paprika/raw-button";
 import Times from "@paprika/icon/lib/Times";
+import useI18n from "@paprika/l10n/lib/useI18n";
 import { getBreadcrumb } from "../../helpers";
 import { ListBoxBrowserContext } from "../../ListBoxBrowser";
 
@@ -29,6 +30,8 @@ function getLength(options) {
 
 export default function OptionsSelected() {
   const { selectedOptions, localData, onRemove, onJumpToOption } = React.useContext(ListBoxBrowserContext);
+  const i18n = useI18n();
+
   const handleClick = key => () => {
     onJumpToOption(key);
   };
@@ -43,10 +46,10 @@ export default function OptionsSelected() {
     return (
       <>
         <div css={title}>
-          (i18n) Selected options <span css={counter}>0</span>
+          {`${i18n.t("listBoxBrowser.selected")} `} <span css={counter}>0</span>
         </div>
         <div css={noOptionsSelectedContainer}>
-          <div css={noOptionsSelected}>Select one or more items...(i18n)</div>
+          <div css={noOptionsSelected}>{i18n.t("listBoxBrowser.selectOne")}</div>
         </div>
       </>
     );
@@ -55,7 +58,8 @@ export default function OptionsSelected() {
   return (
     <>
       <div css={title}>
-        (i18n) Selected options <span css={counter}>{length}</span>
+        {`${i18n.t("listBoxBrowser.selected")} `}
+        <span css={counter}>{length}</span>
       </div>
       <div css={container}>
         {Object.keys(selectedOptions).map(key => {
@@ -75,7 +79,11 @@ export default function OptionsSelected() {
                     ))}
                   </div>
                 </RawButton>
-                <RawButton onClick={handleRemove(option)} css={remove} a11yText="Remove (i18n)">
+                <RawButton
+                  onClick={handleRemove(option)}
+                  css={remove}
+                  a11yText={`${i18n.t("remove")} ${option.attributes.label}`}
+                >
                   <Times />
                 </RawButton>
               </div>
