@@ -26,7 +26,7 @@ const defaultProps = {
 };
 
 const Checkbox = props => {
-  const checkboxId = React.useRef(uuid());
+  const checkboxId = React.useRef(uuid()).current;
   const inputRef = React.useRef(null);
 
   const { a11yText, children, isChecked, isDisabled, isIndeterminate, size, ...moreProps } = props;
@@ -45,15 +45,8 @@ const Checkbox = props => {
 
   return (
     <div data-pka-anchor="checkbox" css={checkboxStyles} {...styleProps} {...moreProps}>
-      <input
-        type="checkbox"
-        id={checkboxId.current}
-        checked={isChecked}
-        disabled={isDisabled}
-        ref={inputRef}
-        {...inputProps}
-      />
-      <label htmlFor={checkboxId.current}>
+      <input type="checkbox" id={checkboxId} checked={isChecked} disabled={isDisabled} ref={inputRef} {...inputProps} />
+      <label htmlFor={checkboxId}>
         {children}
         <CheckIcon className="checkbox-icon" aria-hidden data-pka-anchor="checkbox.icon.check" />
         <AddIcon aria-hidden className="checkbox-icon" data-pka-anchor="checkbox.icon.indeterminate" />

@@ -18,7 +18,6 @@
     "@paprika/icon": "^0.2.0",
     "@paprika/stylers": "^0.1.5",
     "@paprika/tokens": "^0.1.4",
-    "classnames": "^2.2.6",
     "prop-types": "^15.7.2",
     "uuid": "^3.3.2"
   },
