@@ -89,6 +89,11 @@ const checkboxStyles = css`
         background: ${tokens.color.black};
         border: none;
       }
+      & + label:hover {
+        &:before {
+          background: ${tokens.color.blackLighten30};
+        }
+      }
     }
 
     &:checked + label > [data-pka-anchor="checkbox.icon.check"] {
