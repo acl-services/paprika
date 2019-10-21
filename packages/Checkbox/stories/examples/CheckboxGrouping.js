@@ -1,9 +1,9 @@
 import React from "react";
 import { Rule } from "storybook/assets/styles/common.styles";
+import Heading from "@paprika/heading";
 import Checkbox from "../../src";
 
 const CheckboxExample = props => {
-  const state1 = React.useState(props.value || true);
   const state2 = React.useState(props.value || false);
 
   const handleChange = state => () => {
@@ -13,9 +13,9 @@ const CheckboxExample = props => {
 
   return (
     <div>
-      <Checkbox {...props} onChange={handleChange(state1)} isChecked={state1[0]}>
-        Authentic VHS beard.
-      </Checkbox>
+      <Heading level={1} displayLevel={2} isLight>
+        Checkbox Grouping Example
+      </Heading>
       <Rule />
       <div
         css={`
@@ -48,23 +48,6 @@ const CheckboxExample = props => {
       <Checkbox {...props} onChange={handleChange(state2)} isChecked={state2[0]} />
       <Checkbox {...props} onChange={handleChange(state2)} isChecked={state2[0]} />
       <Rule />
-      <div
-        css={`
-          background: #eee;
-          text-align: right;
-        `}
-      >
-        <Checkbox {...props} onChange={handleChange(state2)} isChecked={state2[0]}>
-          Slow-carb cold-pressed hexagon forage chillwave
-        </Checkbox>
-        <Checkbox {...props} onChange={handleChange(state2)} isChecked={state2[0]}>
-          Flexitarian
-        </Checkbox>
-        <Checkbox {...props} onChange={handleChange(state2)} isChecked={state2[0]}>
-          Locavore
-        </Checkbox>
-        <Checkbox {...props} onChange={handleChange(state2)} isChecked={state2[0]} />
-      </div>
     </div>
   );
 };

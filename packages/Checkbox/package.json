@@ -22,6 +22,10 @@
     "prop-types": "^15.7.2",
     "uuid": "^3.3.2"
   },
+  "devDependencies": {
+    "@paprika/l10n": "^0.2.4",
+    "@paprika/heading": "^0.1.8"
+  },
   "peerDependencies": {
     "react": "^16.8.4",
     "react-dom": "^16.8.4",
