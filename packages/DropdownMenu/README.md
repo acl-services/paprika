@@ -13,7 +13,7 @@ or
 ```js
 import Checkbox from "@paprika/checkbox";
 
-<Checkbox {...props} onChange={handleChange(setStateValue)} isChecked={stateValue>
+<Checkbox {...props} onChange={handleChange} checkState={checkedStateValue>
   Checkbox 1
 </Checkbox>;
 ```
@@ -22,9 +22,8 @@ import Checkbox from "@paprika/checkbox";
 
 - a11yText
 - children
-- isChecked
 - isDisabled
-- isIndeterminate
+- checkedState
 - onChange
 - size
 
