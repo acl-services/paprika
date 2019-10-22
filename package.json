@@ -102,7 +102,6 @@
     "sinon": "^7.2.4",
     "style-loader": "^0.23.1",
     "styled-components": "^4.2.0",
-    "superagent": "^5.1.0",
     "verdaccio": "^3.11.6",
     "wait-on": "^3.2.0"
   },

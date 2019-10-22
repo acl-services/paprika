@@ -20,12 +20,12 @@
     "@paprika/stylers": "^0.1.5",
     "@paprika/tokens": "^0.1.4",
     "prop-types": "^15.7.2",
+    "superagent": "^5.1.0",
     "uuid": "^3.3.3"
   },
   "peerDependencies": {
     "react": "^16.8.4",
     "react-dom": "^16.8.4",
-    "styled-components": "^4.2.0",
-    "superagent": "^5.1.0"
+    "styled-components": "^4.2.0"
   }
 }
