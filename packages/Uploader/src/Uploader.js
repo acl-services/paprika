@@ -3,7 +3,7 @@ import PropTypes from "prop-types";
 import uuidv4 from "uuid/v4";
 import stylers from "@paprika/stylers/";
 import useI18n from "@paprika/l10n/lib/useI18n";
-import { inputFileStyles, labelStyles, containerStyles } from "./Uploader.styles";
+import { containerStyles } from "./Uploader.styles";
 import { getFiles } from "./helpers";
 import ProgressBar from "./components/ProgressBar";
 import types from "./types";
@@ -165,14 +165,13 @@ const Uploader = React.forwardRef(function UploaderComponent(props, ref) {
             id={refId}
             onChange={handleChange}
             ref={refInput}
-            css={inputFileStyles}
             type="file"
             accept={okFileTypes.join(",")}
           />
-          <label css={labelStyles} htmlFor={refId}>
+          <label htmlFor={refId}>
             <span css={stylers.visuallyHidden}>{label}</span>
           </label>
-          {/* a11y help require, is this the best approach? */}
+          {/* is this the best approach? */}
           {/* aria-hidden will prevent from rendering content that can be counter intuitive for the screen reader */}
           <div aria-hidden>{children}</div>
         </div>
