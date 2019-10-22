@@ -46,9 +46,13 @@ function YourUI() {
   );
 }
 
-<Uploader>
-  <YourUI />
-</Uploader>;
+function App() {
+  return (
+    <Uploader>
+     <YourUI />
+    </Uploader>;
+  )
+}
 ```
 
 ### The children function
