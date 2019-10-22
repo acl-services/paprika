@@ -12,7 +12,6 @@ const { CHECKED, UNCHECKED, INDETERMINATE } = checkboxStates;
 const checkboxProps = () => ({
   size: select("size", ShirtSizes.DEFAULT, "medium"),
   isDisabled: boolean("isDisabled", false),
-  checkedState: select("checkedState", [CHECKED, UNCHECKED, INDETERMINATE], UNCHECKED),
   a11yText: text("a11yText", ""),
 });
 
