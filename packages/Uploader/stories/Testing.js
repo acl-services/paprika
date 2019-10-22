@@ -44,7 +44,6 @@ export default function Testing(props) {
   } = props;
 
   const {
-    /* Props provided by children() function */
     files,
     isDraggingOver,
     isDragLeave,
@@ -54,7 +53,6 @@ export default function Testing(props) {
     removeFile,
     cancelFile,
     FileInput,
-    /* EO Props provided by children() function */
   } = React.useContext(UploaderContext);
 
   const handleUpload = () => {

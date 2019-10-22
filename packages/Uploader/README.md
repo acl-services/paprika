@@ -1,31 +1,59 @@
 # UPLOADER
 
-An agnostic UI component that let you upload files and customize the interface. has a peer dependency on [superagent](https://github.com/visionmedia/superagent)
+An agnostic UI component that let you upload files and customize the interface.
 
 ## Installation
 
-`> npm install --save @paprika/uploader superagent`
+`> npm install --save @paprika/uploader`
 
 or
 
-`> yarn add @paprika/uploader superagent`
+`> yarn add @paprika/uploader`
 
 ## Usage
 
-The `<Uploader />` component uses a render prop pattern expecting a function to pass children.
+The `<Uploader />` component make use of a context so you can create you own UI.
 
 ```js
+import { UploaderContext } from "@paprika/uploader";
+function YourUI() {
+  const {
+    /*provided by context*/
+    cancelFile,
+    FileInput,
+    files,
+    isCompleted,
+    isDisabled,
+    isDraggingOver,
+    isDragLeave,
+    removeFile,
+    upload,
+  } = React.useContext(UploaderContext);
+
+  return (
+    <>
+      <FileInput>
+        <div css={yourStyle}>FILE INPUT ZONE</div>
+      </FileInput>
+      {files.length ? (
+        <ul>
+          {files.map(file => (
+            <li>{file.filename}</li>
+          ))}
+        </ul>
+      ) : null}
+    </>
+  );
+}
+
 <Uploader>
-  {({ ...props }) => {
-    return <YourUI />;
-  }}
-</Uploader>
+  <YourUI />
+</Uploader>;
 ```
 
 ### The children function
 
-_The children_ function will received the state and helpers that you can use to build your own UI. The following are the properties pass down to the children function.
-
+- **children** you can pass a component using the Provided Context.
 - **FileInput**
   The input[type="file"] element ready to be consumed
 - **files**
@@ -45,23 +73,9 @@ _The children_ function will received the state and helpers that you can use to 
 - **upload**
   `upload()` give you the option to manually upload the files if the consumer decided to not use _hasAutoUpload_
 
-Example:
-
-```js
-<Uploader>
-  {({ FileInput, files, isDisabled, isDraggingOver, isDragLeave, isCompleted, upload, removeFile, cancelFile }) => {
-    return (
-      <FileInput>
-        <YourStylishUI />
-      </FileInput>
-    );
-  }}
-</Uploader>
-```
-
 ### FileInput Component
 
-The `<FileInput>{children}</FileInput>` is a ready to use component which is passed down by the `<Uploader />` component.
+The `<FileInput>{children}</FileInput>` is a ready to use component which is passed down by the `<Uploader />` context.
 This component has attached accessibility and attributes required to make it work correctly, you can pass any children to beautify their aspect, keep in mind that is already an input[type='file'] so avoid putting a <Button /> component or a <button /> element as a children, just make it look like one.
 
 ### Endpoint
