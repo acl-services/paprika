@@ -2,7 +2,7 @@ import React from "react";
 import PropTypes from "prop-types";
 import { css } from "styled-components";
 import tokens from "@paprika/tokens";
-import Uploader from "../src/Uploader";
+import Uploader, { UploaderContext } from "../src/Uploader";
 
 const styles = {
   table: css`
@@ -26,14 +26,10 @@ const styles = {
   `,
 };
 const propTypes = {
-  isDisabled: PropTypes.bool,
-  files: PropTypes.arrayOf(PropTypes.object),
   hasUploadButton: PropTypes.bool,
 };
 
 const defaultProps = {
-  isDisabled: false,
-  files: [],
   hasUploadButton: false,
 };
 
@@ -42,6 +38,11 @@ function hasError(isValid) {
 }
 
 export default function Testing(props) {
+  const {
+    /* custom prop from storybook just fo this example */
+    hasUploadButton,
+  } = props;
+
   const {
     /* Props provided by children() function */
     files,
@@ -54,10 +55,7 @@ export default function Testing(props) {
     cancelFile,
     FileInput,
     /* EO Props provided by children() function */
-
-    /* custom prop from storybook just fo this example */
-    hasUploadButton,
-  } = props;
+  } = React.useContext(UploaderContext);
 
   const handleUpload = () => {
     upload();

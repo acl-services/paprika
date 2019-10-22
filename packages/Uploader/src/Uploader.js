@@ -12,6 +12,8 @@ import useProcessFiles from "./useProcessFiles";
 
 const oneMebibyte = 1048576;
 
+export const UploaderContext = React.createContext(null);
+
 const propTypes = {
   /**
     Accessible message for the input[type="file"].
@@ -132,17 +134,20 @@ const Uploader = React.forwardRef(function UploaderComponent(props, ref) {
     onCompleted,
   });
 
-  function handleChange(event) {
-    if (isDisabled) return;
+  const handleChange = React.useCallback(
+    function handleChange(event) {
+      if (isDisabled) return;
 
-    const files = getFiles({ event, maxFileSize, okFileTypes, endpoint });
-    setFiles(() => {
-      if (refInput.current) {
-        refInput.current.value = "";
-      }
-      return canChooseMultiple ? files : [files[0]]; // in case only allow one file per upload
-    });
-  }
+      const files = getFiles({ event, maxFileSize, okFileTypes, endpoint });
+      setFiles(() => {
+        if (refInput.current) {
+          refInput.current.value = "";
+        }
+        return canChooseMultiple ? files : [files[0]]; // in case only allow one file per upload
+      });
+    },
+    [canChooseMultiple, endpoint, isDisabled, maxFileSize, okFileTypes, setFiles]
+  );
 
   const { isDragLeave, isDraggingOver } = useDragAndDropEvents({
     dropArea: isBodyDroppable ? getDocumentBody : getContainer(refContainer),
@@ -150,44 +155,57 @@ const Uploader = React.forwardRef(function UploaderComponent(props, ref) {
     defaultIsDisabled,
   });
 
-  function FileInput(props) {
-    const { children } = props;
-    return (
-      <div css={containerStyles} ref={refContainer}>
-        <input
-          multiple={canChooseMultiple}
-          id={refId}
-          onChange={handleChange}
-          ref={refInput}
-          css={inputFileStyles}
-          type="file"
-          accept={okFileTypes.join(",")}
-        />
-        <label css={labelStyles} htmlFor={refId}>
-          <span css={stylers.visuallyHidden}>{label}</span>
-        </label>
-        {/* a11y help require, is this the best approach? */}
-        {/* aria-hidden will prevent from rendering content that can be counter intuitive for the screen reader */}
-        <div aria-hidden>{children}</div>
-      </div>
-    );
-  }
+  const value = React.useMemo(() => {
+    function FileInput(props) {
+      const { children } = props;
+      return (
+        <div css={containerStyles} ref={refContainer}>
+          <input
+            multiple={canChooseMultiple}
+            id={refId}
+            onChange={handleChange}
+            ref={refInput}
+            css={inputFileStyles}
+            type="file"
+            accept={okFileTypes.join(",")}
+          />
+          <label css={labelStyles} htmlFor={refId}>
+            <span css={stylers.visuallyHidden}>{label}</span>
+          </label>
+          {/* a11y help require, is this the best approach? */}
+          {/* aria-hidden will prevent from rendering content that can be counter intuitive for the screen reader */}
+          <div aria-hidden>{children}</div>
+        </div>
+      );
+    }
+    return {
+      FileInput,
+      files,
+      isCompleted,
+      isDisabled,
+      isDragLeave,
+      isDraggingOver,
+      removeFile,
+      cancelFile,
+      upload,
+    };
+  }, [
+    canChooseMultiple,
+    cancelFile,
+    files,
+    handleChange,
+    isCompleted,
+    isDisabled,
+    isDragLeave,
+    isDraggingOver,
+    label,
+    okFileTypes,
+    refId,
+    removeFile,
+    upload,
+  ]);
 
-  return (
-    <>
-      {children({
-        FileInput,
-        files,
-        isCompleted,
-        isDisabled,
-        isDragLeave,
-        isDraggingOver,
-        removeFile,
-        cancelFile,
-        upload,
-      })}
-    </>
-  );
+  return <UploaderContext.Provider value={value}>{children}</UploaderContext.Provider>;
 });
 
 Uploader.defaultProps = defaultProps;

@@ -3,74 +3,6 @@ import { storiesOf } from "@storybook/react";
 import Uploader from "../src/Uploader";
 import Testing from "./Testing";
 
-function TestingFn({
-  FileInput,
-  files,
-  isDisabled,
-  isDraggingOver,
-  isDragLeave,
-  isCompleted,
-  upload,
-  removeFile,
-  cancelFile,
-}) {
-  return (
-    <Testing
-      files={files}
-      isDisabled={isDisabled}
-      isDraggingOver={isDraggingOver}
-      isDragLeave={isDragLeave}
-      isCompleted={isCompleted}
-      upload={upload}
-      FileInput={FileInput}
-      removeFile={removeFile}
-      cancelFile={cancelFile}
-    />
-  );
-}
-
-function TestingFnForUploadOnDemand({
-  FileInput,
-  files,
-  isDisabled,
-  isDraggingOver,
-  isDragLeave,
-  isCompleted,
-  upload,
-  removeFile,
-  cancelFile,
-}) {
-  return (
-    <Testing
-      files={files}
-      isDisabled={isDisabled}
-      isDraggingOver={isDraggingOver}
-      isDragLeave={isDragLeave}
-      isCompleted={isCompleted}
-      upload={upload}
-      removeFile={removeFile}
-      cancelFile={cancelFile}
-      FileInput={FileInput}
-      hasUploadButton
-    />
-  );
-}
-
-function TestingFnWithoutFileInput({ files, isCompleted }) {
-  return (
-    <>
-      {!isCompleted ? <span>{files.length ? "⏰ wait a moment!" : "🧘‍♀️🧘‍♀️🧘‍♀️🧘‍♀️"}</span> : null}
-
-      <span>{isCompleted ? "💯✅" : ""}</span>
-      <ul>
-        {files.map(file => (
-          <li>{file.filename}</li>
-        ))}
-      </ul>
-    </>
-  );
-}
-
 storiesOf("Uploader", module)
   .add("Basic example with all files successfully uploaded", () => (
     <>
@@ -80,7 +12,7 @@ storiesOf("Uploader", module)
           console.log("onChange files:", files);
         }}
       >
-        {TestingFn}
+        <Testing />
       </Uploader>
     </>
   ))
@@ -92,7 +24,7 @@ storiesOf("Uploader", module)
           console.log("onChange files:", files);
         }}
       >
-        {TestingFn}
+        <Testing />
       </Uploader>
     </>
   ))
@@ -105,7 +37,7 @@ storiesOf("Uploader", module)
           console.log("onChange files:", files);
         }}
       >
-        {TestingFn}
+        <Testing />
       </Uploader>
     </>
   ))
@@ -122,7 +54,7 @@ storiesOf("Uploader", module)
           console.log("onChange files:", files);
         }}
       >
-        {TestingFn}
+        <Testing />
       </Uploader>
     </>
   ))
@@ -133,7 +65,7 @@ storiesOf("Uploader", module)
         <strong>upload images</strong>
       </p>
       <Uploader endpoint="http://localhost:9000/upload.php" okFileTypes={["image/*"]} hasAutoUpload={false}>
-        {TestingFnForUploadOnDemand}
+        <Testing hasUploadButton />
       </Uploader>
     </>
   ))
@@ -141,7 +73,7 @@ storiesOf("Uploader", module)
     <>
       <p>Will accept dropped files only if they are drop at the FileInput area.</p>
       <Uploader isBodyDroppable={false} endpoint="http://localhost:9000/upload.php">
-        {TestingFn}
+        <Testing />
       </Uploader>
     </>
   ))
@@ -149,7 +81,7 @@ storiesOf("Uploader", module)
     <>
       <p>Allow only one file per upload.</p>
       <Uploader canChooseMultiple={false} endpoint="http://localhost:9000/upload.php">
-        {TestingFn}
+        <Testing />
       </Uploader>
     </>
   ))
@@ -162,18 +94,7 @@ storiesOf("Uploader", module)
         Uploader.types.SUCCESS and verified if all file were uploaded correctly.
       </p>
       <Uploader onCompleted={files => console.log("on finished:", files)} endpoint="http://localhost:9000/upload.php">
-        {TestingFn}
-      </Uploader>
-    </>
-  ))
-  .add("Using uploader without FileInput component", () => (
-    <>
-      <p>
-        The uploader can be use without render the FileInput component provided by renderChildrenProp function. While
-        this is not a common scenario, showcase that is possible to keep draggin and dropping files and still working.
-      </p>
-      <Uploader onCompleted={files => console.log("on finished:", files)} endpoint="http://localhost:9000/upload.php">
-        {TestingFnWithoutFileInput}
+        <Testing />
       </Uploader>
     </>
   ))
@@ -188,7 +109,7 @@ storiesOf("Uploader", module)
         onCompleted={files => console.log("on finished:", files)}
         endpoint="http://localhost:9000/upload.php"
       >
-        {TestingFn}
+        <Testing />
       </Uploader>
     </>
   ));
