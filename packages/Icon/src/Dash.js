@@ -15,7 +15,7 @@ const SvgDash = ({ title, ...props }) => (
     {...props}
   >
     {title ? <title>{title}</title> : null}
-    <path d="M6 11h12v2H6z" />
+    <path fill="currentColor" shapeRendering="crispEdges" d="M6 10h12v4H6z" />
   </svg>
 );
 
