@@ -28,7 +28,9 @@ export const title = css`
   border-bottom: 1px solid ${tokens.border.color};
   border-top: 1px solid ${tokens.border.color};
   box-sizing: border-box;
-  padding: ${spacer(1)} ${spacer(1)} ${spacer(1)} 12px;
+  font-size: 14px;
+  font-weight: bold;
+  padding: ${spacer(0.5)} ${spacer(1)} ${spacer(0.5)} ${spacer(1.5)};
   width: 100%;
 `;
 
@@ -37,15 +39,16 @@ export const button = css`
   border-top-left-radius: ${tokens.border.radius};
   flex-basis: 100%;
   flex-grow: 1;
-  padding: ${tokens.spaceSm} ${tokens.space};
+  padding: ${tokens.space} ${tokens.spaceLg};
 `;
 
 export const counter = css`
-  background: ${tokens.color.white};
   border: 1px solid ${tokens.border.color};
   border-radius: ${tokens.border.radius};
+  display: inline-box;
   font-size: 13px;
   font-weight: bold;
+  margin-left: ${tokens.spaceSm};
   padding: 2px ${tokens.spaceSm};
 `;
 
@@ -76,7 +79,6 @@ export const optionLabel = css`
 export const optionBreadcrum = css`
   color: ${tokens.color.blackLighten20};
   font-size: 13px;
-  font-style: italic;
 `;
 
 export const noOptionsSelectedContainer = css`
