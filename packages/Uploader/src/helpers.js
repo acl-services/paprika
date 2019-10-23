@@ -48,7 +48,7 @@ function isValidFile({ file, maxFileSize, okFileTypes }) {
     isTypeValid: isValidFileType({ file, okFileTypes }),
   };
 
-  validation.isValid = [validation.isSizeValid, validation.isTypeValid].every(rule => rule);
+  validation.isValid = validation.isSizeValid && validation.isTypeValid;
 
   return validation;
 }
