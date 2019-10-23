@@ -55,9 +55,11 @@ function App() {
 }
 ```
 
-### The children function
+### Context
 
-- **children** you can pass a component using the Provided Context.
+`import { UploaderContext } from "@paprika/uploader";`
+
+- **children** you can pass a component which can consume the Context provided.
 - **FileInput**
   The input[type="file"] element ready to be consumed
 - **files**
