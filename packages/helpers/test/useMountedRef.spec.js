@@ -3,7 +3,7 @@ import { renderHook } from "@testing-library/react-hooks";
 import useMountedRef from "../src/hooks/useMountedRef";
 
 describe("useMountedRef", () => {
-  test("should increment counter", () => {
+  test("should return a reference with a bool showing is the component is mounted", () => {
     const {
       result: { current: mountedRef },
       rerender,
