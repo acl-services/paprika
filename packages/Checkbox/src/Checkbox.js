@@ -3,7 +3,7 @@ import PropTypes from "prop-types";
 import uuid from "uuid/v4";
 import { ShirtSizes } from "@paprika/helpers/lib/customPropTypes";
 import CheckIcon from "@paprika/icon/lib/Check";
-import AddIcon from "@paprika/icon/lib/Add";
+import DashIcon from "@paprika/icon/lib/Dash";
 import checkboxStyles from "./Checkbox.styles";
 
 export const checkboxStates = {
@@ -62,7 +62,7 @@ const Checkbox = props => {
       <label htmlFor={checkboxId}>
         {children}
         <CheckIcon className="checkbox-icon" aria-hidden data-pka-anchor="checkbox.icon.check" />
-        <AddIcon aria-hidden className="checkbox-icon" data-pka-anchor="checkbox.icon.indeterminate" />
+        <DashIcon color="#fff" aria-hidden className="checkbox-icon" data-pka-anchor="checkbox.icon.indeterminate" />
       </label>
     </div>
   );
