@@ -7,6 +7,7 @@ import PlusIcon from "@paprika/icon/lib/Add";
 import InfoIcon from "@paprika/icon/lib/InfoCircle";
 import { ButtonStory } from "../Button.stories.styles";
 import Button from "../../src";
+// import LinkButton from "LinkButton";
 
 const DarkBackground = styled.span`
   background: ${tokens.color.black};
@@ -51,6 +52,7 @@ const ExampleStory = () => (
         small
       </Button>
       <Button onClick={clickHandler}>medium</Button>
+
       <Button size="large" onClick={clickHandler}>
         large
       </Button>
@@ -76,6 +78,9 @@ const ExampleStory = () => (
       <Button kind="link" onClick={clickHandler}>
         link
       </Button>
+      <Button.Link onClick={clickHandler} kind="primary" url="/">
+        Link
+      </Button.Link>
     </p>
     <Rule />
     <p>

@@ -15,6 +15,7 @@ const ExampleStory = () => {
       <Button isDropdown>Dropdown</Button>
       <Button.Icon>
         <PlusIcon />
+        <Button.Link />
       </Button.Icon>
       <Button icon={<PlusIcon />}>Icon & text</Button>
       <Button isFullWidth>Full-width</Button>
