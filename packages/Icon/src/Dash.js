@@ -14,10 +14,8 @@ const SvgDash = ({ title, ...props }) => (
     focusable={false}
     {...props}
   >
-    <title>{title}</title>
-    <g>
-      <rect x="6" y="11" width="12" height="2" />
-    </g>
+    {title ? <title>{title}</title> : null}
+    <path d="M6 11h12v2H6z" />
   </svg>
 );
 

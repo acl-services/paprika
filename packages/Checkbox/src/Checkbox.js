@@ -62,7 +62,7 @@ const Checkbox = props => {
       <label htmlFor={checkboxId}>
         {children}
         <CheckIcon className="checkbox-icon" aria-hidden data-pka-anchor="checkbox.icon.check" />
-        <DashIcon color="#fff" aria-hidden className="checkbox-icon" data-pka-anchor="checkbox.icon.indeterminate" />
+        <DashIcon aria-hidden className="checkbox-icon" data-pka-anchor="checkbox.icon.indeterminate" />
       </label>
     </div>
   );
