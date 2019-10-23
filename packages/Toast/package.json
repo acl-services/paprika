@@ -17,12 +17,12 @@
     "@paprika/button": "^0.1.15",
     "@paprika/helpers": "^0.2.1",
     "@paprika/icon": "^0.1.6",
-    "@paprika/l10n": "^0.2.4",
     "@paprika/stylers": "^0.1.7",
     "@paprika/tokens": "^0.1.6",
     "prop-types": "^15.7.2"
   },
   "peerDependencies": {
+    "@paprika/l10n": "^0.2.4",
     "react": "^16.8.4",
     "react-dom": "^16.8.4",
     "styled-components": "^4.2.0"

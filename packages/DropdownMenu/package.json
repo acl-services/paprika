@@ -17,7 +17,6 @@
     "@paprika/button": "^0.1.15",
     "@paprika/confirmation": "^0.1.10",
     "@paprika/helpers": "^0.2.1",
-    "@paprika/l10n": "^0.2.4",
     "@paprika/popover": "^0.2.3",
     "@paprika/raw-button": "^0.1.9",
     "@paprika/stylers": "^0.1.7",
@@ -26,6 +25,7 @@
     "uuid": "^3.3.2"
   },
   "peerDependencies": {
+    "@paprika/l10n": "^0.2.4",
     "react": "^16.8.4",
     "react-dom": "^16.8.4",
     "styled-components": "^4.2.0"
