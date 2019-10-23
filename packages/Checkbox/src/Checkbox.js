@@ -18,7 +18,7 @@ const propTypes = {
   isDisabled: PropTypes.bool,
   onChange: PropTypes.func.isRequired,
   size: PropTypes.oneOf(ShirtSizes.DEFAULT),
-  checkedState: PropTypes.oneOf([checkboxStates.CHECKED, checkboxStates.UNCHECKED, checkboxStates.INDETERMINATE]),
+  checkedState: PropTypes.oneOf(Object.values(checkboxStates)),
 };
 
 const defaultProps = {

@@ -32,12 +32,19 @@ const checkBoxIconLeft = ({ size }) => `${getSpacingInt(size) / 2}px`;
 const checkboxStyles = css`
   ${stylers.boxSizingStyles};
   font-size: ${fontSizeValue};
-
   line-height: ${({ hasChildren }) => (hasChildren ? stylers.lineHeightValue(-1) : "0")};
   position: relative;
 
   input[type="checkbox"] {
     ${stylers.visuallyHidden};
+
+    &:focus {
+      & + label {
+        box-shadow: ${tokens.highlight.active.noBorder.boxShadow};
+        border-color: ${tokens.highlight.active.noBorder.borderColor};
+        outline: none;
+      }
+    }
 
     & + label {
       cursor: pointer;
@@ -111,6 +118,7 @@ const checkboxStyles = css`
     &:disabled {
       & + label,
       & ~ .checkbox-icon {
+        pointer-events: none;
         opacity: 0.5;
         transition: none;
       }
