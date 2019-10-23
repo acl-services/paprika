@@ -10,8 +10,9 @@ export const title = css`
   flex-basis: 50%;
   flex-grow: 1;
   font-size: 14px;
+  font-weight: bold;
   min-height: 20px;
-  padding: ${spacer(1)} ${spacer(1)} ${spacer(1)} 12px;
+  padding: ${spacer(0.5)} ${spacer(1)} ${spacer(0.5)} ${spacer(1.5)};
 `;
 
 export const flex = css`

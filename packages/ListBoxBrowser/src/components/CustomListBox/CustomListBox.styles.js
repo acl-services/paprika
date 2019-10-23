@@ -74,11 +74,10 @@ export const backButton = css`
   align-items: center;
   cursor: pointer;
   display: inline-flex;
-  font-weight: bold;
+  font-size: 14px;
   justify-content: flex-start;
-  padding: 3px 0;
+  padding: 0;
   position: relative;
-  text-transform: uppercase;
   width: 100%;
   &:after {
     border-bottom: 1px solid ${tokens.border.color};

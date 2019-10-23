@@ -1,6 +1,6 @@
 import React from "react";
 import RawButton from "@paprika/raw-button";
-import Times from "@paprika/icon/lib/Times";
+import Trashbin from "@paprika/icon/lib/Trashbin";
 import useI18n from "@paprika/l10n/lib/useI18n";
 import { getBreadcrumb } from "../../helpers";
 import { ListBoxBrowserContext } from "../../ListBoxBrowser";
@@ -84,7 +84,7 @@ export default function OptionsSelected() {
                   css={remove}
                   a11yText={`${i18n.t("remove")} ${option.attributes.label}`}
                 >
-                  <Times />
+                  <Trashbin />
                 </RawButton>
               </div>
             );
