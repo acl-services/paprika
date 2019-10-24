@@ -35,7 +35,7 @@ rootTitle
 
 The `<ListBoxBrowser />` is primarily an uncontrolled component which received a `data` prop allowing the consumer to set the initial state.
 
-Also, has two functions to set defaults for selected options and a default selected view for the browser column.
+It has two functions to set defaults. One for selected options and another for a default selected view for the browser column.
 
 The `onChange` prop receives a parameter with an array of the selected options.
 
