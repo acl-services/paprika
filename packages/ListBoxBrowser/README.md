@@ -111,7 +111,7 @@ The `defaultSelectedOptions` received a function to be executed to determine if 
 
 Ex.
 
-```js
+```jsx
 const data = [
 	{ key: 1, label: "one", options: [{...}]},
 	{ key: 2, label: "two", options: [{...}]},
