@@ -61,7 +61,7 @@ storiesOf("ListBoxBrowser/Multi", module)
       </ListBoxBrowser>
     </Story>
   ))
-  .add("Has not breadcrumb", () => (
+  .add("Has no breadcrumb", () => (
     <Story>
       <ListBoxBrowser data={dataMultiple} rootTitle="Universes" browserTitle="Heroes" hasBreadcrumb={false} />
     </Story>
