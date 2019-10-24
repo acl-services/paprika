@@ -33,7 +33,7 @@ rootTitle
 
 ## Usage
 
-The `<ListBoxBrowser />` is primarily an uncontrolled component which received a `data` prop allowing the consumer to set the initial state.
+The `<ListBoxBrowser />` is primarily an uncontrolled component which receives a `data` prop which allows the consumer to set the initial state.
 
 It has two functions to set defaults. One for selected options and another for a default selected view for the browser column.
 
