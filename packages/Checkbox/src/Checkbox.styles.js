@@ -38,12 +38,9 @@ const checkboxStyles = css`
   input[type="checkbox"] {
     ${stylers.visuallyHidden};
 
-    &:focus {
-      & + label {
-        box-shadow: ${tokens.highlight.active.noBorder.boxShadow};
-        border-color: ${tokens.highlight.active.noBorder.borderColor};
-        outline: none;
-      }
+    &:focus + label::before {
+      box-shadow: ${tokens.highlight.active.noBorder.boxShadow};
+      border-color: ${tokens.highlight.active.noBorder.borderColor};
     }
 
     & + label {
