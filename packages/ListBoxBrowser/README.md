@@ -107,7 +107,7 @@ But you can activate this feature to display multiple options using the `<ListBo
 
 #### defaultSelectedOptions
 
-The `defaultSelectedOptions` received a function to be executed to determine if an option should start as selected or not. This function is called as many times as options are pass down on the data prop.
+The `defaultSelectedOptions` receives a function to be executed to determine if an option should start as selected or not. This function is called as options are passed down on the data prop.
 
 Ex.
 
