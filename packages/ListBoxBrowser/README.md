@@ -83,7 +83,7 @@ Recursively the component runs over all the options on the array and assembles t
 
 #### Basic example
 
-```js
+```jsx
 import ListBoxBrowser from "@paprika/listbox-browser";
 
 export default function App() {
