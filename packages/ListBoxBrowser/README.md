@@ -75,7 +75,7 @@ const data = [
 ]
 ```
 
-Recursively the component runs over all the options on the array and assembles the appropriated UI for the user.
+Recursively the component runs over all the options on the array and assembles the UI for the user.
 
 **NOTE** You can add extra properties to the objects; those are and pass to you back on the `onChange` function or when using `defaultSelectedOptions`, `defaultSelectedView` functions.
 
