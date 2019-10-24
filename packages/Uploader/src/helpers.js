@@ -54,7 +54,7 @@ function isValidFile({ file, maxFileSize, okFileTypes }) {
 }
 
 function createFilesDataStructure({ files, maxFileSize, okFileTypes, endpoint }) {
-  return files.map(file => {
+  return [...files].map(file => {
     const key = uuidv4();
     const fileValidation = isValidFile({ file, maxFileSize, okFileTypes });
     return {
