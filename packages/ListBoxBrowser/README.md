@@ -43,7 +43,7 @@ The `onChange` prop receives a parameter with an array of the selected options.
 
 The most important prop for the `<ListBoxBrowser />` is the `data` prop, which initializes the state for the component.
 
-The `data` prop has a shape of an array of objects where each object requires to have at least a `label` attribute on it, and at least one of those items should include an `options` property.
+The `data` prop is an array of objects where each object requires to have at least a `label` attribute on it and at least one of those items should include an `options` property.
 
 ### Data prop shape
 
