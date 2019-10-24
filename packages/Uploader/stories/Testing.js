@@ -46,7 +46,6 @@ export default function Testing(props) {
   const {
     files,
     isDraggingOver,
-    isDragLeave,
     isDisabled,
     isCompleted,
     upload,
@@ -82,7 +81,6 @@ export default function Testing(props) {
       ) : null}
       <p>{isDisabled ? "isDisabled is true" : "isDisabled is false"}</p>
       <p>{isDraggingOver ? "isDraggingOver 🤚" : ""}</p>
-      <p>{isDragLeave ? "isDragLeave 👋" : ""}</p>
       <p>{isCompleted ? "success ✅" : null}</p>
       <hr />
       {files.length ? (

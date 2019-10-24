@@ -12,7 +12,7 @@ export default function ProgressBar(props) {
   const { progress, isCompleted, hasError } = props;
 
   return (
-    <div css={styles.container} data-type="uploader-progress-bar">
+    <div css={styles.container} data-pka-anchor="uploader.progress-bar">
       <div css={styles.progress} progress={progress} isCompleted={isCompleted} hasError={hasError} />
     </div>
   );

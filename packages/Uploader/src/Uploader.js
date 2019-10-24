@@ -1,7 +1,5 @@
 import React from "react";
 import PropTypes from "prop-types";
-import uuidv4 from "uuid/v4";
-import stylers from "@paprika/stylers/";
 import useI18n from "@paprika/l10n/lib/useI18n";
 import { containerStyles } from "./Uploader.styles";
 import { getFiles } from "./helpers";
@@ -115,7 +113,6 @@ const Uploader = React.forwardRef((props, ref) => {
 
   const refInput = React.useRef();
   const refContainer = React.useRef(null);
-  const refId = React.useRef(uuidv4()).current;
   const i18n = useI18n();
   const label = a11yText || i18n.t("uploader.label");
 
@@ -162,15 +159,12 @@ const Uploader = React.forwardRef((props, ref) => {
         <div css={containerStyles} ref={refContainer}>
           <input
             multiple={canChooseMultiple}
-            id={refId}
             onChange={handleChange}
             ref={refInput}
             type="file"
             accept={okFileTypes.join(",")}
+            aria-label={label}
           />
-          <label htmlFor={refId}>
-            <span css={stylers.visuallyHidden}>{label}</span>
-          </label>
           {/* is this the best approach? */}
           {/* aria-hidden will prevent from rendering content that can be counter intuitive for the screen reader */}
           <div aria-hidden>{children}</div>
@@ -199,7 +193,6 @@ const Uploader = React.forwardRef((props, ref) => {
     isDraggingOver,
     label,
     okFileTypes,
-    refId,
     removeFile,
     upload,
   ]);
