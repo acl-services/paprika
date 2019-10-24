@@ -5,6 +5,7 @@ const locales = {
       "moreInformation": "more information",
       "close": "Close",
       "uploader": {
+        "label": "Drag and drop or choose files from your computer",
         "overlay": {
           "title": "Drag and drop",
           "subtitle": "Your files here"
