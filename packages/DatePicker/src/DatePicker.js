@@ -83,7 +83,6 @@ function DatePicker(props) {
   );
 
   // State
-  const [confirmationResult, setConfirmationResult] = React.useState(formatDateProp(humanFormat));
   const [hasParsingError, setHasParsingError] = React.useState(false);
   const [inputtedString, setInputtedString] = React.useState(formatDateProp(dataFormat));
   const [possibleDate, setPossibleDate] = React.useState(null);
@@ -98,7 +97,6 @@ function DatePicker(props) {
   React.useEffect(() => {
     if ((!date && !prevDate) || (date && prevDate && date.isSame(prevDate, "day"))) return;
     setInputtedString(formatDateProp(dataFormat));
-    setConfirmationResult(formatDateProp(humanFormat));
   }, [dataFormat, date, prevDate, formatDateProp, humanFormat]);
 
   const debouncedPossibleDate = useDebounce(possibleDate, 300);
@@ -133,15 +131,10 @@ function DatePicker(props) {
   function handleClosePopover() {
     if (!isElementContainsFocus(calendarRef.current) && !isElementContainsFocus(inputRef.current)) {
       if (!hasParsingError) {
-        setConfirmationResult(formatDateProp(humanFormat));
         setInputtedString(formatDateProp(dataFormat));
       }
       hideCalendar();
     }
-  }
-
-  function handleFocusInput() {
-    if (!isReadOnly) setConfirmationResult("");
   }
 
   function handleReset() {
@@ -161,11 +154,9 @@ function DatePicker(props) {
     const newDate = parseInput();
 
     if (newDate.isValid()) {
-      setConfirmationResult(newDate.format(humanFormat));
       setHasParsingError(false);
       if (!moment(newDate).isSame(date, "day")) handleChange(newDate);
     } else {
-      setConfirmationResult("");
       setHasParsingError(true);
       onError({ type: INPUT_PARSE_ERROR, value: inputtedString });
     }
@@ -206,12 +197,16 @@ function DatePicker(props) {
 
   function handleSelect(selectedDate) {
     setHasParsingError(false);
-    setConfirmationResult(selectedDate.format(humanFormat));
     hideCalendar();
     handleChange(selectedDate);
   }
 
   const hasError = extendedInputProps && extendedInputProps.hasError;
+
+  const inputText =
+    inputRef && inputRef.current && isElementContainsFocus(inputRef.current)
+      ? inputtedString
+      : formatDateProp(humanFormat);
 
   return (
     <Popover
@@ -230,10 +225,9 @@ function DatePicker(props) {
         onBlur={handleInputBlur}
         onChange={handleInputChange}
         onClick={handleClick}
-        onFocus={handleFocusInput}
         onKeyUp={handleKeyUp}
         inputRef={inputRef}
-        value={confirmationResult || inputtedString}
+        value={inputText}
         {...extendedInputProps}
         hasError={hasError || hasParsingError}
       />
