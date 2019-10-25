@@ -14,12 +14,12 @@ const defaultProps = {
 };
 
 function ErrorMessage(props) {
-  const { children } = props;
+  const { children, ...moreProps } = props;
 
   if (!children) return null;
 
   return (
-    <div css={errorMessageStyles} data-pka-anchor="formElement.error">
+    <div css={errorMessageStyles} data-pka-anchor="formElement.error" {...moreProps}>
       <ExclamationCircleIcon css={iconStyles} />
       {children}
     </div>

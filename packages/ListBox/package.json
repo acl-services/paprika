@@ -1,14 +1,14 @@
 {
   "name": "@paprika/listbox",
-  "version": "0.6.5",
+  "version": "0.6.6",
   "description": "",
   "main": "lib/index.js",
   "dependencies": {
     "@babel/runtime-corejs2": "^7.3.1",
-    "@paprika/button": "^0.1.15",
-    "@paprika/helpers": "^0.2.1",
+    "@paprika/button": "^0.1.16",
+    "@paprika/helpers": "^0.2.2",
     "@paprika/icon": "^0.2.2",
-    "@paprika/popover": "^0.2.3",
+    "@paprika/popover": "^0.2.4",
     "@paprika/raw-button": "^0.1.9",
     "@paprika/stylers": "^0.1.7",
     "@paprika/tokens": "^0.1.6",
