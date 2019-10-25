@@ -23,9 +23,11 @@ storiesOf("DatePicker", module)
       hasError: boolean("hasError", false),
     });
     return (
-      <Example locale="en" {...datePickerProps()}>
-        <DatePicker.Input {...inputProps()} />
-      </Example>
+      <div style={{ marginTop: "270px" }}>
+        <Example locale="en" {...datePickerProps()}>
+          <DatePicker.Input {...inputProps()} />
+        </Example>
+      </div>
     );
   })
   .add("DatePicker", () => <Example locale="en" />)
