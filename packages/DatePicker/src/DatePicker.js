@@ -203,8 +203,10 @@ function DatePicker(props) {
 
   const hasError = extendedInputProps && extendedInputProps.hasError;
 
+  const hasErrorValue = hasError || hasParsingError;
+
   const inputText =
-    inputRef && inputRef.current && isElementContainsFocus(inputRef.current)
+    (inputRef && inputRef.current && isElementContainsFocus(inputRef.current)) || hasErrorValue
       ? inputtedString
       : formatDateProp(humanFormat);
 
@@ -229,7 +231,7 @@ function DatePicker(props) {
         inputRef={inputRef}
         value={inputText}
         {...extendedInputProps}
-        hasError={hasError || hasParsingError}
+        hasError={hasErrorValue}
       />
 
       <Popover.Content>
