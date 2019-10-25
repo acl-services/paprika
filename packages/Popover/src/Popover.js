@@ -332,7 +332,9 @@ class Popover extends React.Component {
 
   handleChildChange = () => {
     if (this.$popover.current) {
-      this.setVisibilityAndPosition();
+      setTimeout(() => {
+        this.setVisibilityAndPosition();
+      });
     }
   };
 
@@ -451,6 +453,7 @@ class Popover extends React.Component {
   }
 }
 
+// Todo Refactor this when we convert popover component to use hooks
 function PopoverChildren(props) {
   React.useLayoutEffect(() => {
     if (props.children) props.onChildChange();
