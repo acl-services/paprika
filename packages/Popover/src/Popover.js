@@ -330,9 +330,14 @@ class Popover extends React.Component {
     this.$content = ref;
   };
 
+  handleChildChange = () => {
+    if (this.$popover.current) {
+      this.setVisibilityAndPosition();
+    }
+  };
+
   open() {
     this.$trigger = document.activeElement;
-
     this.setVisibilityAndPosition(true);
   }
 
@@ -438,12 +443,19 @@ class Popover extends React.Component {
       <ThemeContext.Provider value={isDark}>
         <PopoverContext.Provider value={contextValue}>
           <PopoverStyled data-pka-anchor="popover" {...moreProps} ref={this.$popover}>
-            {this.props.children}
+            <PopoverChildren onChildChange={this.handleChildChange}>{this.props.children}</PopoverChildren>
           </PopoverStyled>
         </PopoverContext.Provider>
       </ThemeContext.Provider>
     );
   }
+}
+
+function PopoverChildren(props) {
+  React.useLayoutEffect(() => {
+    if (props.children) props.onChildChange();
+  }, [props.children]);
+  return props.children;
 }
 
 Popover.displayName = "Popover";
