@@ -178,7 +178,7 @@ function Calendar(props) {
   }
 
   const CalendarKey = `${currentMonth && currentMonth.format("YYYY-MM")}/${possibleDate &&
-    possibleDate.format("YYYY-MM")}/${date && date.format("YYYY-MM")}`;
+    possibleDate.format("YYYY-MM")}/${date && date.format("YYYY-MM")}/${isVisible}`; // Calendar component needs re-render due to not always showing correct date.
 
   return (
     <div css={calendarWrapperStyles} tabIndex={-1} ref={calendarRef}>

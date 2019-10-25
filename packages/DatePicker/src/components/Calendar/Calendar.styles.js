@@ -6,6 +6,9 @@ import stylers from "@paprika/stylers";
 import calendarBaseStyles from "./CalendarBase.styles";
 import { hoveredItemStyles, selectedItemStyles, visuallyHiddenStyles } from "../../shared.styles";
 
+const calendarWidth = 257;
+const calendarHeight = 274;
+
 export const arrowIconStyles = css`
   > svg[role="presentation"] {
     ${stylers.fontSize(-1)}
@@ -34,6 +37,9 @@ const iconButtonStyles = css`
 `;
 
 const calendarStyles = css`
+  height: ${calendarHeight}px;
+  width: ${calendarWidth}px;
+
   ${calendarBaseStyles}
 
   &:focus {
