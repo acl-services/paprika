@@ -23,7 +23,7 @@ storiesOf("DatePicker", module)
       hasError: boolean("hasError", false),
     });
     return (
-      <div style={{ marginTop: "270px" }}>
+      <div style={{ marginTop: "300px" }}>
         <Example locale="en" {...datePickerProps()}>
           <DatePicker.Input {...inputProps()} />
         </Example>
