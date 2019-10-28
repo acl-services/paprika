@@ -13,9 +13,9 @@ const ExampleStory = () => {
       <Button isDisabled>Disabled</Button>
       <Button isPending>Pending</Button>
       <Button isDropdown>Dropdown</Button>
+      <Button.Link />
       <Button.Icon>
         <PlusIcon />
-        <Button.Link />
       </Button.Icon>
       <Button icon={<PlusIcon />}>Icon & text</Button>
       <Button isFullWidth>Full-width</Button>

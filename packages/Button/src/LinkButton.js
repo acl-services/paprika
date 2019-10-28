@@ -1,43 +1,52 @@
 import React from "react";
 import PropTypes from "prop-types";
 import { ShirtSizes } from "@paprika/helpers/lib/customPropTypes";
-// import iconButtonStyles from "./IconButton.styles";
 import Button from "./Button";
+import buttonStyles from "./Button.styles";
 
 const LinkPropTypes = {
   children: PropTypes.node.isRequired,
   kind: PropTypes.oneOf(Button.Kinds.ALL),
   size: PropTypes.oneOf(ShirtSizes.MEDIUM),
-  url: PropTypes.string,
+  href: PropTypes.string,
+  text: PropTypes.string,
+  isOpenNewTab: PropTypes.bool,
 };
 
 const LinkDefaultProps = {
   kind: Button.Kinds.DEFAULT,
   size: ShirtSizes.MEDIUM,
-  url: null,
+  href: null,
+  text: "Link",
+  isOpenNewTab: true,
 };
-function redirect_to(url) {
-  window.location = url;
-}
+
 const LinkButton = React.forwardRef((props, ref) => {
   const buttonProps = {
     children: null,
-    icon: props.children,
-    isFullWidth: false,
   };
-  // debugger/
-  // buttonProps.children = <a href={props.url} />
+  console.log(props);
+  if (props.isOpenNewTab) {
+    return (
+      <a
+        css={buttonStyles}
+        {...props}
+        {...buttonProps}
+        ref={ref}
+        href={props.href}
+        target="_blank"
+        rel="noopener noreferrer"
+      >
+        {props.text}
+        {buttonProps.children}
+      </a>
+    );
+  }
   return (
-    <Button
-      {...props}
-      {...buttonProps}
-      ref={ref}
-      onClick={() => {
-        redirect_to(props.url);
-      }}
-    >
+    <a css={buttonStyles} {...props} {...buttonProps} ref={ref} href={props.href}>
+      {props.text}
       {buttonProps.children}
-    </Button>
+    </a>
   );
 });
 
