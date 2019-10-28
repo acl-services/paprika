@@ -69,10 +69,8 @@ const checkboxStyles = css`
       z-index: 1;
     }
 
-    & + label:hover {
-      &:before {
-        border: 2px solid ${tokens.color.black};
-      }
+    & + label:hover::before {
+      border: 2px solid ${tokens.color.black};
     }
 
     & + label > .checkbox-icon {
@@ -93,10 +91,8 @@ const checkboxStyles = css`
         background: ${tokens.color.black};
         border: none;
       }
-      & + label:hover {
-        &:before {
-          background: ${tokens.color.blackLighten30};
-        }
+      & + label:hover::before {
+        background: ${tokens.color.blackLighten30};
       }
     }
 
