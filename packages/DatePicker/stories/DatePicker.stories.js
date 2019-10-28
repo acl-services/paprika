@@ -25,6 +25,7 @@ storiesOf("DatePicker", module)
     return (
       <Example locale="en" {...datePickerProps()}>
         <DatePicker.Input {...inputProps()} />
+        <DatePicker.Popover style={{ marginTop: "270px" }}></DatePicker.Popover>
       </Example>
     );
   })
