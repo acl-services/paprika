@@ -215,7 +215,6 @@ function DatePicker(props) {
 
   return (
     <Popover
-      style={{ marginTop: "150px" }}
       offset={8}
       {...extendedPopoverProps}
       isOpen={shouldShowCalendar}

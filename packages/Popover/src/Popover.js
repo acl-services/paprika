@@ -333,11 +333,9 @@ class Popover extends React.Component {
   };
 
   handleChildChange = () => {
-    if (this.$popover.current) {
-      setTimeout(() => {
-        this.setVisibilityAndPosition();
-      });
-    }
+    setTimeout(() => {
+      this.setVisibilityAndPosition();
+    });
   };
 
   open() {
