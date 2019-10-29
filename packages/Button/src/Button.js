@@ -12,6 +12,12 @@ const propTypes = {
   /** Descriptive a11y text for assistive technologies. By default, text from children node will be used. */
   a11yText: PropTypes.string,
 
+  /** If click the button, we need a href (url) to open a new tab  */
+  href: PropTypes.string,
+
+  /** If click the button, it will open a new tab. */
+  isOpenNewTab: PropTypes.bool,
+
   /** If click events are allowed to propagate up the DOM tree. */
   canPropagate: PropTypes.bool,
 
@@ -63,6 +69,8 @@ const defaultProps = {
   canPropagate: true,
   children: null,
   icon: null,
+  href: null,
+  isOpenNewTab: true,
   isActive: false,
   isDisabled: false,
   isDropdown: false,
@@ -102,9 +110,11 @@ const Button = React.forwardRef((props, ref) => {
     isDropdown,
     isPending,
     isSemantic,
+    isOpenNewTab,
     isSubmit,
     kind,
     onClick,
+    href,
     role,
     tabIndex,
     ...moreProps
@@ -134,6 +144,7 @@ const Button = React.forwardRef((props, ref) => {
     tabIndex,
     ...moreProps,
   };
+
   if (isSemantic) {
     buttonProps.disabled = isButtonDisabled;
     buttonProps.type = isSubmit ? "submit" : "button";
