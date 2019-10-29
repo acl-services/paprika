@@ -213,19 +213,21 @@ class Popover extends React.Component {
   }
 
   setVisibilityAndPosition(isOpening = false) {
-    // dynamically setting a fixed width before positioning avoids issues at the
-    // right edge of the screen
-    if (isOpening && [AlignTypes.TOP, AlignTypes.BOTTOM].includes(this.props.align)) {
-      const newWidth = this.getContentWidth();
-      if (newWidth !== this.state.width) {
-        this.setState({ width: newWidth }, () => {
-          this.updateVisibilityAndPositionState(isOpening);
-        });
-        return;
+    if (this.$popover.current) {
+      // dynamically setting a fixed width before positioning avoids issues at the
+      // right edge of the screen
+      if (isOpening && [AlignTypes.TOP, AlignTypes.BOTTOM].includes(this.props.align)) {
+        const newWidth = this.getContentWidth();
+        if (newWidth !== this.state.width) {
+          this.setState({ width: newWidth }, () => {
+            this.updateVisibilityAndPositionState(isOpening);
+          });
+          return;
+        }
       }
-    }
 
-    this.updateVisibilityAndPositionState(isOpening);
+      this.updateVisibilityAndPositionState(isOpening);
+    }
   }
 
   getCoordinates = () => {
@@ -237,7 +239,7 @@ class Popover extends React.Component {
         : getBoundingClientRect(this.props.getPositioningElement());
 
     const contentCoords = getContentCoordinates({
-      rect: getBoundingClientRect(this.$content),
+      rect: this.$content ? getBoundingClientRect(this.$content) : null,
       targetRect,
       scrollRect: getScrollContainer !== null ? getBoundingClientRect(getScrollContainer()) : null,
       align,
@@ -330,9 +332,14 @@ class Popover extends React.Component {
     this.$content = ref;
   };
 
+  handleChildChange = () => {
+    setTimeout(() => {
+      this.setVisibilityAndPosition();
+    });
+  };
+
   open() {
     this.$trigger = document.activeElement;
-
     this.setVisibilityAndPosition(true);
   }
 
@@ -438,12 +445,20 @@ class Popover extends React.Component {
       <ThemeContext.Provider value={isDark}>
         <PopoverContext.Provider value={contextValue}>
           <PopoverStyled data-pka-anchor="popover" {...moreProps} ref={this.$popover}>
-            {this.props.children}
+            <PopoverChildren onChildChange={this.handleChildChange}>{this.props.children}</PopoverChildren>
           </PopoverStyled>
         </PopoverContext.Provider>
       </ThemeContext.Provider>
     );
   }
+}
+
+// Todo Refactor this when we convert popover component to use hooks
+function PopoverChildren(props) {
+  React.useLayoutEffect(() => {
+    if (props.children) props.onChildChange();
+  }, [props.children]);
+  return props.children;
 }
 
 Popover.displayName = "Popover";
