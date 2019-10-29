@@ -14,37 +14,43 @@ export const checkboxStates = {
 
 const propTypes = {
   a11yText: PropTypes.string,
+  checkedState: PropTypes.oneOf(Object.values(checkboxStates)),
   children: PropTypes.node,
   isDisabled: PropTypes.bool,
   onChange: PropTypes.func.isRequired,
   size: PropTypes.oneOf(ShirtSizes.DEFAULT),
-  checkedState: PropTypes.oneOf(Object.values(checkboxStates)),
 };
 
 const defaultProps = {
   a11yText: null,
+  checkedState: checkboxStates.UNCHECKED,
   children: null,
   isDisabled: false,
   size: ShirtSizes.MEDIUM,
-  checkedState: checkboxStates.UNCHECKED,
 };
 
 const Checkbox = props => {
+  const { a11yText, children, isDisabled, checkedState, size, ...moreProps } = props;
+  const { CHECKED, INDETERMINATE } = checkboxStates;
+
   const checkboxId = React.useRef(uuid()).current;
   const inputRef = React.useRef(null);
 
-  const { a11yText, children, isDisabled, checkedState, size, ...moreProps } = props;
+  React.useEffect(() => {
+    if (!inputRef.current) return;
+
+    if (checkedState === INDETERMINATE) {
+      inputRef.current.indeterminate = INDETERMINATE;
+    } else {
+      inputRef.current.indeterminate = false;
+      inputRef.current.checked = checkedState === CHECKED;
+    }
+  }, [checkedState]);
 
   const styleProps = {
     hasChildren: !!children,
     size,
   };
-
-  React.useEffect(() => {
-    if (inputRef.current && checkedState === checkboxStates.INDETERMINATE) {
-      inputRef.current.indeterminate = checkboxStates.INDETERMINATE;
-    }
-  }, [checkedState]);
 
   const inputProps = {};
   if (a11yText) inputProps["aria-label"] = a11yText;
@@ -52,11 +58,11 @@ const Checkbox = props => {
   return (
     <div data-pka-anchor="checkbox" css={checkboxStyles} {...styleProps} {...moreProps}>
       <input
-        type="checkbox"
-        id={checkboxId}
-        checked={checkedState === checkboxStates.CHECKED}
+        checked={checkedState === CHECKED}
         disabled={isDisabled}
+        id={checkboxId}
         ref={inputRef}
+        type="checkbox"
         {...inputProps}
       />
       <label htmlFor={checkboxId}>
