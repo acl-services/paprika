@@ -20,17 +20,14 @@ const LinkDefaultProps = {
 };
 
 const LinkButton = React.forwardRef((props, ref) => {
-  const buttonProps = {
-    children: props.children,
-  };
   const isOpenNewTabProps = {};
   if (props.isOpenNewTab) {
     isOpenNewTabProps.target = "_blank";
     isOpenNewTabProps.rel = "noopener noreferrer";
   }
   return (
-    <a css={buttonStyles} {...props} {...buttonProps} ref={ref} href={props.href} {...isOpenNewTabProps}>
-      {buttonProps.children}
+    <a css={buttonStyles} {...props} ref={ref} href={props.href} {...isOpenNewTabProps}>
+      {props.children}
     </a>
   );
 });
