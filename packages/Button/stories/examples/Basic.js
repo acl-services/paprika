@@ -81,8 +81,12 @@ const ExampleStory = () => (
     </p>
     <Rule />
     <p>
-      <Button.Link onClick={clickHandler} isOpenNewTab={false} kind="primary" href="/about" text="Link" />
-      <Button.Link onClick={clickHandler} kind="secondary" href="/about" text="Link that opens in new tab" />
+      <Button.Link onClick={clickHandler} isOpenNewTab={false} kind="primary" href="https://www.google.ca">
+        Link
+      </Button.Link>
+      <Button.Link onClick={clickHandler} kind="secondary" href="https://www.google.ca">
+        Link that opens in new tab
+      </Button.Link>
     </p>
     <Rule />
     <p>

@@ -9,7 +9,6 @@ const LinkPropTypes = {
   kind: PropTypes.oneOf(Button.Kinds.ALL),
   size: PropTypes.oneOf(ShirtSizes.MEDIUM),
   href: PropTypes.string,
-  text: PropTypes.string,
   isOpenNewTab: PropTypes.bool,
 };
 
@@ -17,34 +16,20 @@ const LinkDefaultProps = {
   kind: Button.Kinds.DEFAULT,
   size: ShirtSizes.MEDIUM,
   href: null,
-  text: "Link",
   isOpenNewTab: true,
 };
 
 const LinkButton = React.forwardRef((props, ref) => {
   const buttonProps = {
-    children: null,
+    children: props.children,
   };
-  console.log(props);
+  const isOpenNewTabProps = {};
   if (props.isOpenNewTab) {
-    return (
-      <a
-        css={buttonStyles}
-        {...props}
-        {...buttonProps}
-        ref={ref}
-        href={props.href}
-        target="_blank"
-        rel="noopener noreferrer"
-      >
-        {props.text}
-        {buttonProps.children}
-      </a>
-    );
+    isOpenNewTabProps.target = "_blank";
+    isOpenNewTabProps.rel = "noopener noreferrer";
   }
   return (
-    <a css={buttonStyles} {...props} {...buttonProps} ref={ref} href={props.href}>
-      {props.text}
+    <a css={buttonStyles} {...props} {...buttonProps} ref={ref} href={props.href} {...isOpenNewTabProps}>
       {buttonProps.children}
     </a>
   );
