@@ -1,5 +1,5 @@
 import { css } from "styled-components";
-import { spacer, toInt, fontSizeValue, lineHeightValue } from "@paprika/stylers/lib/helpers";
+import { spacer, toInt, fontSizeValue, lineHeightValue, z } from "@paprika/stylers/lib/helpers";
 import { boxSizingStyles, visuallyHidden } from "@paprika/stylers/lib/includes";
 import { ShirtSizes } from "@paprika/helpers/lib/customPropTypes";
 import tokens from "@paprika/tokens";
@@ -78,7 +78,7 @@ const checkboxStyles = css`
       height: ${checkBoxSize};
       left: 0;
       width: ${checkBoxSize};
-      z-index: 1;
+      z-index: ${z(1)};
     }
 
     & + label:hover::before {
@@ -94,7 +94,7 @@ const checkboxStyles = css`
       pointer-events: none;
       transform: translateX(-50%);
       transition: opacity 0.15s ease-out;
-      z-index: 2;
+      z-index: ${z(2)};
     }
 
     &:checked,
