@@ -7,7 +7,6 @@ import PlusIcon from "@paprika/icon/lib/Add";
 import InfoIcon from "@paprika/icon/lib/InfoCircle";
 import { ButtonStory } from "../Button.stories.styles";
 import Button from "../../src";
-// import LinkButton from "LinkButton";
 
 const DarkBackground = styled.span`
   background: ${tokens.color.black};
