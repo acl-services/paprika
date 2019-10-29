@@ -1,42 +1,54 @@
 import { css } from "styled-components";
-import stylers from "@paprika/stylers";
+import { spacer, toInt, fontSizeValue, lineHeightValue } from "@paprika/stylers/lib/helpers";
+import { boxSizingStyles, visuallyHidden } from "@paprika/stylers/lib/includes";
 import { ShirtSizes } from "@paprika/helpers/lib/customPropTypes";
 import tokens from "@paprika/tokens";
 
-const integize = token => Number.parseInt(token, 10);
+const labelSizeMap = {
+  [ShirtSizes.SMALL]: -1,
+  [ShirtSizes.MEDIUM]: 0,
+  [ShirtSizes.LARGE]: 0,
+};
 
-const sizeMap = {
+const iconSizeMap = {
+  [ShirtSizes.SMALL]: -3,
+  [ShirtSizes.MEDIUM]: -1,
+  [ShirtSizes.LARGE]: 0,
+};
+
+const checkboxSizeMap = {
   [ShirtSizes.SMALL]: 2,
   [ShirtSizes.MEDIUM]: 2.5,
   [ShirtSizes.LARGE]: 3,
 };
 
-const getSpacing = size => stylers.spacer(sizeMap[size]);
-const getSpacingInt = size => integize(getSpacing(size));
-
-const size = ({ size }) => getSpacing(size);
-const fontSizeInt = size => (getSpacingInt(size) / integize(tokens.space) - 3) * 2;
-const fontSizeValue = ({ size }) => `${stylers.fontSizeValue(fontSizeInt(size))}px`;
-
-const topOffset = size => (getSpacingInt(size) - integize(stylers.fontSizeValue()) * stylers.lineHeightValue(-1)) / 2;
-const isCheckboxBigger = size => topOffset(size) > 0;
-const labelPadding = ({ hasChildren, size }) => {
-  const top = isCheckboxBigger(size) ? `${topOffset(size)}px` : 0;
-  const left = hasChildren ? `${getSpacingInt(size) + integize(tokens.space)}px` : getSpacing(size);
-  return `${top} 0 ${top} ${left}`;
+const labelTopOffsetMap = {
+  [ShirtSizes.SMALL]: 0,
+  [ShirtSizes.MEDIUM]: 1,
+  [ShirtSizes.LARGE]: 3,
 };
 
-const checkerTop = size => (isCheckboxBigger ? "-1px" : `${Math.abs(topOffset(size) / 2)}px`);
-const checkBoxIconLeft = ({ size }) => `${getSpacingInt(size) / 2}px`;
+const getSpacing = size => spacer(checkboxSizeMap[size]);
+const checkBoxSize = ({ size }) => getSpacing(size);
+const checkBoxHalfSize = ({ size }) => `${toInt(getSpacing(size)) / 2}px`;
+
+const labelSizeValue = ({ size }) => `${fontSizeValue(labelSizeMap[size])}px`;
+const iconSizeValue = ({ size }) => `${fontSizeValue(iconSizeMap[size])}px`;
+
+const labelPadding = ({ hasLabel, size }) => {
+  const top = `${labelTopOffsetMap[size]}px`;
+  const left = hasLabel ? `${toInt(getSpacing(size)) + toInt(tokens.space)}px` : getSpacing(size);
+  return `${top} 0 0 ${left}`;
+};
 
 const checkboxStyles = css`
-  ${stylers.boxSizingStyles};
-  font-size: ${fontSizeValue};
-  line-height: ${({ hasChildren }) => (hasChildren ? stylers.lineHeightValue(-1) : "0")};
+  ${boxSizingStyles};
+  font-size: ${labelSizeValue};
+  line-height: ${({ hasLabel }) => (hasLabel ? lineHeightValue(-1) : "0")};
   position: relative;
 
   input[type="checkbox"] {
-    ${stylers.visuallyHidden};
+    ${visuallyHidden};
 
     &:focus + label::before {
       box-shadow: ${tokens.highlight.active.noBorder.boxShadow};
@@ -47,7 +59,7 @@ const checkboxStyles = css`
       cursor: pointer;
       display: inline-block;
       margin: 0;
-      min-height: ${size};
+      min-height: ${checkBoxSize};
       padding: ${labelPadding};
       position: relative;
     }
@@ -55,7 +67,7 @@ const checkboxStyles = css`
     & + label::before,
     & + label > .checkbox-icon {
       position: absolute;
-      top: ${checkerTop};
+      top: 0;
     }
 
     & + label::before {
@@ -63,9 +75,9 @@ const checkboxStyles = css`
       border: 2px solid ${tokens.border.color};
       border-radius: ${tokens.border.radius};
       content: "";
-      height: ${size};
+      height: ${checkBoxSize};
       left: 0;
-      width: ${size};
+      width: ${checkBoxSize};
       z-index: 1;
     }
 
@@ -75,9 +87,9 @@ const checkboxStyles = css`
 
     & + label > .checkbox-icon {
       color: ${tokens.color.white};
-      font-size: ${fontSizeValue};
-      height: ${size};
-      left: ${checkBoxIconLeft};
+      font-size: ${iconSizeValue};
+      height: ${checkBoxSize};
+      left: ${checkBoxHalfSize};
       opacity: 0;
       pointer-events: none;
       transform: translateX(-50%);

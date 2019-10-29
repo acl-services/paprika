@@ -43,12 +43,11 @@ const Checkbox = props => {
       inputRef.current.indeterminate = INDETERMINATE;
     } else {
       inputRef.current.indeterminate = false;
-      inputRef.current.checked = checkedState === CHECKED;
     }
   }, [checkedState]);
 
   const styleProps = {
-    hasChildren: !!children,
+    hasLabel: !!children,
     size,
   };
 

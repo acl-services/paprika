@@ -1,6 +1,12 @@
 import tokens from "@paprika/tokens";
 
 //
+// Utilities
+//
+
+export const toInt = token => Number.parseInt(token, 10);
+
+//
 // Typography
 //
 
