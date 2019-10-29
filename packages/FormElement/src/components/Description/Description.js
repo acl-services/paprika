@@ -13,10 +13,10 @@ const defaultProps = {
 };
 
 function Description(props) {
-  const { children, ariaDescriptionId } = props;
+  const { children, ariaDescriptionId, ...moreProps } = props;
 
   return (
-    <div id={ariaDescriptionId} css={descriptionStyles} data-pka-anchor="formElement.description">
+    <div id={ariaDescriptionId} css={descriptionStyles} data-pka-anchor="formElement.description" {...moreProps}>
       {children}
     </div>
   );
