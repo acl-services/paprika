@@ -6,17 +6,16 @@ import buttonStyles from "./Button.styles";
 
 const LinkPropTypes = {
   children: PropTypes.node.isRequired,
+  href: PropTypes.string.isRequired,
+  isOpenNewTab: PropTypes.bool,
   kind: PropTypes.oneOf(Button.Kinds.ALL),
   size: PropTypes.oneOf(ShirtSizes.MEDIUM),
-  href: PropTypes.string,
-  isOpenNewTab: PropTypes.bool,
 };
 
 const LinkDefaultProps = {
+  isOpenNewTab: true,
   kind: Button.Kinds.DEFAULT,
   size: ShirtSizes.MEDIUM,
-  href: null,
-  isOpenNewTab: true,
 };
 
 const LinkButton = React.forwardRef((props, ref) => {
