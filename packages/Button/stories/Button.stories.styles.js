@@ -5,10 +5,12 @@ import tokens from "@paprika/tokens";
 // Common Button story styles
 
 export const ButtonStory = styled(Story)`
+  a,
   button,
-  [role="button"] {
+  [role="button"][role="a"] {
     & + button,
-    & + [role="button"] {
+    & + a,
+    & + [role="button"][role="a"] {
       margin-left: ${tokens.space};
     }
   }

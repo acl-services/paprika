@@ -51,6 +51,7 @@ const ExampleStory = () => (
         small
       </Button>
       <Button onClick={clickHandler}>medium</Button>
+
       <Button size="large" onClick={clickHandler}>
         large
       </Button>
@@ -76,6 +77,15 @@ const ExampleStory = () => (
       <Button kind="link" onClick={clickHandler}>
         link
       </Button>
+    </p>
+    <Rule />
+    <p>
+      <Button.Link onClick={clickHandler} isOpenNewTab={false} kind="primary" href="https://www.google.ca">
+        Link
+      </Button.Link>
+      <Button.Link onClick={clickHandler} kind="secondary" href="https://www.google.ca">
+        Link that opens in new tab
+      </Button.Link>
     </p>
     <Rule />
     <p>
