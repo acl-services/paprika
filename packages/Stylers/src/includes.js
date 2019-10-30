@@ -1,19 +1,20 @@
+import { css } from "styled-components";
 import tokens from "@paprika/tokens";
 
 //
 // Layout
 //
 
-export const boxSizingStyle = `
-  box-sizing: border-box;
+export const boxSizingStyles = css`
+  &,
+  *,
+  *::before,
+  *::after {
+    box-sizing: border-box;
+  }
 `;
 
-export const inlineBlockStyle = `
-  ${boxSizingStyle}
-  display: inline-block;
-`;
-
-export const alignMiddle = `
+export const alignMiddle = css`
   align-items: center;
   display: flex;
   justify-content: center;
@@ -23,13 +24,13 @@ export const alignMiddle = `
 // Typography
 //
 
-export const truncateText = `
+export const truncateText = css`
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
 `;
 
-export const noTruncateText = `
+export const noTruncateText = css`
   overflow: visible;
   text-overflow: clip;
   white-space: normal;
@@ -39,7 +40,7 @@ export const noTruncateText = `
 // Accessibility
 //
 
-export const visuallyHidden = `
+export const visuallyHidden = css`
   border: 0 !important;
   clip: rect(1px, 1px, 1px, 1px);
   height: 1px !important;
@@ -51,11 +52,11 @@ export const visuallyHidden = `
 
 // Forms
 
-export const disabledPlaceholder = `
-color: ${tokens.color.blackLighten60};
+export const disabledPlaceholder = css`
+  color: ${tokens.color.blackLighten60};
 `;
 
-export const placeholder = `
+export const placeholder = css`
   color: ${tokens.placeholder.color};
   font-style: ${tokens.placeholder.fontStyle};
 
@@ -64,7 +65,7 @@ export const placeholder = `
   }
 `;
 
-export const placeholders = `
+export const placeholders = css`
   &::placeholder {
     ${placeholder};
   }
