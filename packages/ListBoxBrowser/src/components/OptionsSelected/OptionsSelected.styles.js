@@ -1,6 +1,6 @@
 import { css } from "styled-components";
 import tokens from "@paprika/tokens/lib/tokens";
-import { spacer } from "@paprika/stylers/lib/helpers";
+import stylers from "@paprika/stylers";
 
 export const container = css`
   display: flex;
