@@ -130,7 +130,7 @@ const data = [
 
 This prop works exactly like the `defaultSelectedOptions`. It receives a function which you can use to compare and decide what option should be the one as initial view.
 
-**Note**: Be sure to selected an `option` property with `options`; otherwise, this function doesn't work and fall back to the default behaviour, which is to select the first option with options.
+**Note**: Be sure to select an `option` property with `options`. Otherwise, this function doesn't work and falls back to the default behaviour, which selects the first option with options.
 
 ### Lazy loading
 
