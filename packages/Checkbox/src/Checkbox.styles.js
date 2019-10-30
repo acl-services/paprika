@@ -1,49 +1,85 @@
 import { css } from "styled-components";
-import { spacer, toInt, fontSizeValue, lineHeightValue, z } from "@paprika/stylers/lib/helpers";
+import { toInt, lineHeightValue, z } from "@paprika/stylers/lib/helpers";
 import { boxSizingStyles, visuallyHidden } from "@paprika/stylers/lib/includes";
 import { ShirtSizes } from "@paprika/helpers/lib/customPropTypes";
 import tokens from "@paprika/tokens";
 
-const labelSizeMap = {
-  [ShirtSizes.SMALL]: -1,
-  [ShirtSizes.MEDIUM]: 0,
-  [ShirtSizes.LARGE]: 0,
+const getLabelLeftPadding = (checkboxSize, hasLabel) => {
+  return hasLabel ? `${toInt(checkboxSize) + toInt(tokens.space)}px` : checkboxSize;
 };
 
-const iconSizeMap = {
-  [ShirtSizes.SMALL]: -3,
-  [ShirtSizes.MEDIUM]: -1,
-  [ShirtSizes.LARGE]: 0,
-};
+const smallCheckboxSize = "16px";
+const mediumCheckboxSize = "20px";
+const largeCheckboxSize = "24px";
 
-const checkboxSizeMap = {
-  [ShirtSizes.SMALL]: 2,
-  [ShirtSizes.MEDIUM]: 2.5,
-  [ShirtSizes.LARGE]: 3,
-};
-
-const labelTopOffsetMap = {
-  [ShirtSizes.SMALL]: 0,
-  [ShirtSizes.MEDIUM]: 1,
-  [ShirtSizes.LARGE]: 3,
-};
-
-const getSpacing = size => spacer(checkboxSizeMap[size]);
-const checkBoxSize = ({ size }) => getSpacing(size);
-const checkBoxHalfSize = ({ size }) => `${toInt(getSpacing(size)) / 2}px`;
-
-const labelSizeValue = ({ size }) => `${fontSizeValue(labelSizeMap[size])}px`;
-const iconSizeValue = ({ size }) => `${fontSizeValue(iconSizeMap[size])}px`;
-
-const labelPadding = ({ hasLabel, size }) => {
-  const top = `${labelTopOffsetMap[size]}px`;
-  const left = hasLabel ? `${toInt(getSpacing(size)) + toInt(tokens.space)}px` : getSpacing(size);
-  return `${top} 0 0 ${left}`;
+const styles = {
+  [ShirtSizes.SMALL]: {
+    baseFontSize: {
+      fontSize: "14px",
+    },
+    checkBoxStyles: {
+      height: smallCheckboxSize,
+      width: smallCheckboxSize,
+    },
+    checkBoxIconStyles: {
+      fontSize: "12px",
+      height: smallCheckboxSize,
+      left: `${toInt(smallCheckboxSize) / 2}px`,
+    },
+    labelStyles: hasLabel => {
+      return {
+        minHeight: smallCheckboxSize,
+        padding: `0 0 0 ${getLabelLeftPadding(smallCheckboxSize, hasLabel)}`,
+      };
+    },
+  },
+  [ShirtSizes.MEDIUM]: {
+    baseFontSize: {
+      fontSize: "16px",
+    },
+    checkBoxStyles: {
+      height: mediumCheckboxSize,
+      width: mediumCheckboxSize,
+    },
+    checkBoxIconStyles: {
+      fontSize: "14px",
+      height: mediumCheckboxSize,
+      left: `${toInt(mediumCheckboxSize) / 2}px`,
+    },
+    labelStyles: hasLabel => {
+      return {
+        minHeight: mediumCheckboxSize,
+        padding: `1px 0 0 ${getLabelLeftPadding(mediumCheckboxSize, hasLabel)}`,
+      };
+    },
+  },
+  [ShirtSizes.LARGE]: {
+    baseFontSize: {
+      fontSize: "16px",
+    },
+    checkBoxStyles: {
+      height: largeCheckboxSize,
+      width: largeCheckboxSize,
+    },
+    checkBoxIconStyles: {
+      fontSize: "16px",
+      height: largeCheckboxSize,
+      left: `${toInt(largeCheckboxSize) / 2}px`,
+    },
+    labelStyles: hasLabel => {
+      return {
+        minHeight: largeCheckboxSize,
+        padding: `3px 0 0 ${getLabelLeftPadding(largeCheckboxSize, hasLabel)}`,
+      };
+    },
+  },
 };
 
 const checkboxStyles = css`
   ${boxSizingStyles};
-  font-size: ${labelSizeValue};
+  ${({ size }) => {
+    return styles[size].baseFontSize;
+  }};
   line-height: ${({ hasLabel }) => (hasLabel ? lineHeightValue(-1) : "0")};
   position: relative;
 
@@ -59,8 +95,9 @@ const checkboxStyles = css`
       cursor: pointer;
       display: inline-block;
       margin: 0;
-      min-height: ${checkBoxSize};
-      padding: ${labelPadding};
+      ${({ size, hasLabel }) => {
+        return styles[size].labelStyles(hasLabel);
+      }};
       position: relative;
     }
 
@@ -75,10 +112,11 @@ const checkboxStyles = css`
       border: 2px solid ${tokens.border.color};
       border-radius: ${tokens.border.radius};
       content: "";
-      height: ${checkBoxSize};
       left: 0;
-      width: ${checkBoxSize};
-      z-index: ${z(1)};
+      ${z(1)};
+      ${({ size }) => {
+        return styles[size].checkBoxStyles;
+      }}
     }
 
     & + label:hover::before {
@@ -87,14 +125,14 @@ const checkboxStyles = css`
 
     & + label > .checkbox-icon {
       color: ${tokens.color.white};
-      font-size: ${iconSizeValue};
-      height: ${checkBoxSize};
-      left: ${checkBoxHalfSize};
+      ${({ size }) => {
+        return styles[size].checkBoxIconStyles;
+      }}
       opacity: 0;
       pointer-events: none;
       transform: translateX(-50%);
       transition: opacity 0.15s ease-out;
-      z-index: ${z(2)};
+      ${z(2)};
     }
 
     &:checked,
