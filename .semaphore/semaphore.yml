@@ -9,7 +9,7 @@ blocks:
   - name: "🎩 Yarn"
     task:
       jobs:
-      - name: "Yarn & caching"
+      - name: "🎩 Yarn & caching"
         commands:
           - checkout
           - cache restore client-node-modules-$SEMAPHORE_GIT_BRANCH-$(checksum yarn.lock),client-node-modules-$SEMAPHORE_GIT_BRANCH,client-node-modules-master

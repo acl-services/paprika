@@ -14,5 +14,8 @@
   },
   "dependencies": {
     "@paprika/tokens": "^0.1.6"
+  },
+  "peerDependencies": {
+    "styled-components": "^4.2.0"
   }
 }

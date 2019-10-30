@@ -33,6 +33,7 @@ const buttonProps = () => ({
   isPending: boolean("isPending", false),
   isSubmit: boolean("isSubmit", false),
   isSemantic: boolean("isSemantic", true),
+  isOpenNewTab: boolean("isOpenNewTab", true),
   a11yText: text("a11yText", ""),
 });
 

@@ -1,6 +1,6 @@
 {
   "name": "@paprika/sidepanel",
-  "version": "0.1.19",
+  "version": "0.1.20",
   "description": "SidePanel component",
   "author": "@paprika",
   "main": "lib/index.js",
@@ -14,7 +14,7 @@
   },
   "dependencies": {
     "@babel/runtime-corejs2": "^7.3.1",
-    "@paprika/button": "^0.1.16",
+    "@paprika/button": "^0.1.17",
     "@paprika/heading": "^0.1.8",
     "@paprika/helpers": "^0.2.2",
     "@paprika/icon": "^0.2.2",
