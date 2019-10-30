@@ -30,7 +30,7 @@ const propTypes = {
   data: PropTypes.any.isRequired, // eslint-disable-line
 
   /**
-    Indicates if the user can select one or multiple options
+    Indicates if the user can select multiple options
   */
   isMulti: PropTypes.bool,
   /**
