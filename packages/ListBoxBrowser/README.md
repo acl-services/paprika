@@ -1,6 +1,6 @@
 # ListBoxBrowser
 
-It is a React component that allows users to select one or multiple options using two columns, similar to the experience of browsing a file manager in any giving Operative System.
+A two column layout that allows users to select one or multiple options. It is similar to the experience of browsing a file manager in any operating system.
 
 ## Installation
 
