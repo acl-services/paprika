@@ -1,5 +1,4 @@
 import styled from "styled-components";
-import stylers from "@paprika/stylers";
 
 // constants for this component (and subcomponents)
 export const consts = {
@@ -8,7 +7,7 @@ export const consts = {
 
 // styling for main <Popover> component
 const PopoverStyled = styled.div`
-  ${stylers.inlineBlockStyle};
+  display: inline-block;
 `;
 
 export default PopoverStyled;
