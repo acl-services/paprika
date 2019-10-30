@@ -77,9 +77,7 @@ const styles = {
 
 const checkboxStyles = css`
   ${boxSizingStyles};
-  ${({ size }) => {
-    return styles[size].baseFontSize;
-  }};
+  ${({ size }) => styles[size].baseFontSize};
   line-height: ${({ hasLabel }) => (hasLabel ? lineHeightValue(-1) : "0")};
   position: relative;
 
@@ -95,9 +93,7 @@ const checkboxStyles = css`
       cursor: pointer;
       display: inline-block;
       margin: 0;
-      ${({ size, hasLabel }) => {
-        return styles[size].labelStyles(hasLabel);
-      }};
+      ${({ size, hasLabel }) => styles[size].labelStyles(hasLabel)};
       position: relative;
     }
 
@@ -114,9 +110,7 @@ const checkboxStyles = css`
       content: "";
       left: 0;
       ${z(1)};
-      ${({ size }) => {
-        return styles[size].checkBoxStyles;
-      }}
+      ${({ size }) => styles[size].checkBoxStyles};
     }
 
     & + label:hover::before {
@@ -125,9 +119,7 @@ const checkboxStyles = css`
 
     & + label > .checkbox-icon {
       color: ${tokens.color.white};
-      ${({ size }) => {
-        return styles[size].checkBoxIconStyles;
-      }}
+      ${({ size }) => styles[size].checkBoxIconStyles};
       opacity: 0;
       pointer-events: none;
       transform: translateX(-50%);
