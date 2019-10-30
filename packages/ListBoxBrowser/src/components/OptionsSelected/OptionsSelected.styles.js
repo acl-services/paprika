@@ -18,7 +18,7 @@ export const optionStyles = css`
   display: flex;
   flex-basis: 100%;
   flex-grow: 1;
-  font-size: 14px;
+  ${stylers.fontSize(-1)}
   justify-content: flex-start;
   margin: ${tokens.spaceSm};
 `;
