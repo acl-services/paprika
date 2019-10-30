@@ -14,10 +14,10 @@ const SvgCaretUp = ({ title, ...props }) => (
     focusable={false}
     {...props}
   >
-    <title>{title}</title>
+    {title ? <title>{title}</title> : null}
     <defs>
       <path
-        d="M8.71 10.908a1.501 1.501 0 0 0 0 2.222l5.79 5.256a.753.753 0 0 0 1.257-.555V6.208a.751.751 0 0 0-1.258-.556L8.71 10.908z"
+        d="M8.71 10.908a1.501 1.501 0 000 2.222l5.79 5.256a.753.753 0 001.257-.555V6.208a.751.751 0 00-1.258-.556L8.71 10.908z"
         id="caret-up_svg__a"
       />
     </defs>
