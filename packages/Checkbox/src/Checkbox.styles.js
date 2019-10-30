@@ -1,5 +1,5 @@
 import { css } from "styled-components";
-import { toInt, lineHeightValue, z } from "@paprika/stylers/lib/helpers";
+import { toInt, fontSizeValue, lineHeightValue, z } from "@paprika/stylers/lib/helpers";
 import { boxSizingStyles, visuallyHidden } from "@paprika/stylers/lib/includes";
 import { ShirtSizes } from "@paprika/helpers/lib/customPropTypes";
 import tokens from "@paprika/tokens";
@@ -8,21 +8,21 @@ const getLabelLeftPadding = (checkboxSize, hasLabel) => {
   return hasLabel ? `${toInt(checkboxSize) + toInt(tokens.space)}px` : checkboxSize;
 };
 
-const smallCheckboxSize = "16px";
-const mediumCheckboxSize = "20px";
-const largeCheckboxSize = "24px";
+const smallCheckboxSize = tokens.checkbox.sizeSm;
+const mediumCheckboxSize = tokens.checkbox.sizeMd;
+const largeCheckboxSize = tokens.checkbox.sizeLg;
 
 const styles = {
   [ShirtSizes.SMALL]: {
     baseFontSize: {
-      fontSize: "14px",
+      fontSize: `${fontSizeValue(-1)}px`,
     },
     checkBoxStyles: {
       height: smallCheckboxSize,
       width: smallCheckboxSize,
     },
     checkBoxIconStyles: {
-      fontSize: "12px",
+      fontSize: `${fontSizeValue(-3)}px`,
       height: smallCheckboxSize,
       left: `${toInt(smallCheckboxSize) / 2}px`,
     },
@@ -35,14 +35,14 @@ const styles = {
   },
   [ShirtSizes.MEDIUM]: {
     baseFontSize: {
-      fontSize: "16px",
+      fontSize: `${fontSizeValue()}px`,
     },
     checkBoxStyles: {
       height: mediumCheckboxSize,
       width: mediumCheckboxSize,
     },
     checkBoxIconStyles: {
-      fontSize: "14px",
+      fontSize: `${fontSizeValue(-1)}px`,
       height: mediumCheckboxSize,
       left: `${toInt(mediumCheckboxSize) / 2}px`,
     },
@@ -55,14 +55,14 @@ const styles = {
   },
   [ShirtSizes.LARGE]: {
     baseFontSize: {
-      fontSize: "16px",
+      fontSize: `${fontSizeValue()}px`,
     },
     checkBoxStyles: {
       height: largeCheckboxSize,
       width: largeCheckboxSize,
     },
     checkBoxIconStyles: {
-      fontSize: "16px",
+      fontSize: `${fontSizeValue()}px`,
       height: largeCheckboxSize,
       left: `${toInt(largeCheckboxSize) / 2}px`,
     },
