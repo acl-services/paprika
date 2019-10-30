@@ -5,7 +5,7 @@ const { exec } = require("child_process");
 
 if (!CI) {
   console.log("🚀 Uploader server ready");
-  exec("php -S localhost:9000");
+  exec("cd packages/Uploader/server && php -S localhost:9000");
+  return;
 }
 console.log("Exit without staring the uploader server");
-process.exit(0);
