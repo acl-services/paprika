@@ -161,13 +161,21 @@ const checkboxStyles = css`
     &:disabled {
       & + label,
       & ~ .checkbox-icon {
-        pointer-events: none;
+        cursor: not-allowed;
         opacity: 0.5;
         transition: none;
       }
-      &:checked + label::before,
-      &:indeterminate + label::before {
-        background-color: ${tokens.color.blackLighten40};
+      &:checked,
+      &:indeterminate {
+        & + label::before {
+          background-color: ${tokens.color.blackLighten40};
+        }
+        & + label:hover::before {
+          border: none;
+        }
+      }
+      & + label:hover::before {
+        border: 2px solid ${tokens.border.color};
       }
     }
   }
