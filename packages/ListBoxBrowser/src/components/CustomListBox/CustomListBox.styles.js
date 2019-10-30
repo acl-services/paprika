@@ -74,7 +74,7 @@ export const backButton = css`
   align-items: center;
   cursor: pointer;
   display: inline-flex;
-  font-size: 14px;
+  ${stylers.fontSize(-1)}
   justify-content: flex-start;
   padding: 0;
   position: relative;
