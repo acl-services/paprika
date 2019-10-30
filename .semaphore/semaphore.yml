@@ -17,6 +17,22 @@ blocks:
           - npx lerna bootstrap
           - cache store client-node-modules-$SEMAPHORE_GIT_BRANCH-$(checksum yarn.lock) node_modules
           - cache store cypress-$SEMAPHORE_GIT_BRANCH ~/.cache/Cypress
+          
+  - name: "⛰ E2E"
+    task:
+      prologue:
+        commands:
+          - checkout
+          - sudo apt-get -y install xvfb libgtk2.0-0 libnotify-dev libgconf-2-4 libnss3 libxss1 libasound2
+          - cache restore client-node-modules-$SEMAPHORE_GIT_BRANCH-$(checksum yarn.lock),client-node-modules-$SEMAPHORE_GIT_BRANCH,client-node-modules-master
+          - cache restore cypress-$SEMAPHORE_GIT_BRANCH
+      jobs:
+        - name: Cypress
+          commands:
+            - npx lerna bootstrap
+            - yarn
+            - yarn cypress:ci
+
   - name: "🔗 Storybook link"
     task:
       secrets:
@@ -63,21 +79,6 @@ blocks:
         - name: JEST
           commands:
             - yarn test
-
-  - name: "⛰ E2E"
-    task:
-      prologue:
-        commands:
-          - checkout
-          - sudo apt-get -y install xvfb libgtk2.0-0 libnotify-dev libgconf-2-4 libnss3 libxss1 libasound2
-          - cache restore client-node-modules-$SEMAPHORE_GIT_BRANCH-$(checksum yarn.lock),client-node-modules-$SEMAPHORE_GIT_BRANCH,client-node-modules-master
-          - cache restore cypress-$SEMAPHORE_GIT_BRANCH
-      jobs:
-        - name: Cypress
-          commands:
-            - npx lerna bootstrap
-            - yarn
-            - yarn cypress:ci
 
   - name: "🔎 Visual Regression"
     task:
