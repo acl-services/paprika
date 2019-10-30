@@ -30,7 +30,7 @@ export const title = css`
   box-sizing: border-box;
   ${stylers.fontSize(-1)}
   font-weight: bold;
-  padding: ${spacer(0.5)} ${spacer(1)} ${spacer(0.5)} ${spacer(1.5)};
+  padding: ${tokens.spaceSm} ${tokens.space} ${tokens.spaceSm} ${tokens.spaceLg};
   width: 100%;
 `;
 
