@@ -134,7 +134,7 @@ This prop works exactly like the `defaultSelectedOptions`. It receives a functio
 
 ### Lazy loading
 
-This component provides a way to load async options. To achieve this, you should declare the `options` array property empty `[]`, this indicates to the component to fire the `onFetch={option => ()}` prop when the user interacts with it.
+This component provides a way to load async options. To achieve this, you can declare the `options` array property empty `[]`. This indicates to the component to fire the `onFetch={option => ()}` prop when the user interacts with it.
 
 #### Lazy loading example
 
