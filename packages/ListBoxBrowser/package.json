@@ -1,7 +1,7 @@
 {
   "name": "@paprika/listbox-browser",
   "version": "0.1.0",
-  "description": "ListBox Browser component let you select options in a multi level env",
+  "description": "ListBox Browser component lets you select options in a multi level environment",
   "author": "@paprika",
   "main": "lib/index.js",
   "license": "MIT",
