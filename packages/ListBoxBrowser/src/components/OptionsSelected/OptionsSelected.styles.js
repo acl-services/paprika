@@ -83,7 +83,7 @@ export const optionBreadcrum = css`
 
 export const noOptionsSelectedContainer = css`
   background: ${tokens.backgroundColor.level0};
-  padding: ${spacer(1)};
+  padding: ${tokens.space};
 `;
 
 export const noOptionsSelected = css`
