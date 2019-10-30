@@ -89,7 +89,7 @@ const propTypes = {
   */
   defaultSelectedOptions: PropTypes.func,
   /**
-    A function that set the intial view for the right columns (Browser) of the ListBoxBrowser
+    A function that sets the initial view for the right columns (Browser) of the ListBoxBrowser
     the option selected to be the initial view should have options to be valid,
     by default the ListBoxBrowser picked the first option which has options to be the
     initial value.
