@@ -28,7 +28,7 @@ export const title = css`
   border-bottom: 1px solid ${tokens.border.color};
   border-top: 1px solid ${tokens.border.color};
   box-sizing: border-box;
-  font-size: 14px;
+  ${stylers.fontSize(-1)}
   font-weight: bold;
   padding: ${spacer(0.5)} ${spacer(1)} ${spacer(0.5)} ${spacer(1.5)};
   width: 100%;
