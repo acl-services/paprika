@@ -66,7 +66,7 @@ const propTypes = {
   */
   hasError: PropTypes.bool,
   /**
-    When declaring the array options empty, this will be execute to retrive the
+    When declaring the array options empty, this will be executed to retrieve the
     data, useful if you want to do a lazy load.
 
     ex.
