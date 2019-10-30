@@ -28,7 +28,7 @@ export const arrowRightButton = css`
     height: ${stylers.spacer(3)};
     left: 50%;
     margin-left: -${tokens.spaceLg};
-    margin-top: -12px;
+    margin-top: -${tokens.spaceLg};
     opacity: 0.1;
     pointer-events: none;
     position: absolute;
