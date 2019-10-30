@@ -141,7 +141,7 @@ This component provides a way to load async options. To achieve this, you can de
 To help you to sync your data with the newest options, the ListBoxBrowser provides you with some tools to make it easier:
 
 A Subcomponent `<ListBoxBrowser.Browser isLoading />` which lets you set the right column into a pending state.
-And a `ListBoxBrowser.findOption(data, fn)` which helps you in finding an option in your data so you can modify it.
+A `ListBoxBrowser.findOption(data, fn)` which helps you in finding an option in your data so you can modify it.
 
 ```js
 export default function App(props) {
