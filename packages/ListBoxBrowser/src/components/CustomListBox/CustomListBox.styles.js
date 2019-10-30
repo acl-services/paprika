@@ -7,7 +7,7 @@ export const arrowRigthContainer = css`
   height: ${stylers.spacer(4)};
   justify-content: flex-end;
   position: absolute;
-  right: -8px;
+  right: -${tokens.space};
   top: -7px;
   width: ${stylers.spacer(4)};
 `;
