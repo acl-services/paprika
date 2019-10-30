@@ -76,7 +76,7 @@ const propTypes = {
   */
   onFetch: PropTypes.func,
   /**
-    A function that set an option selected returning true or false
+    A function that sets an option selected returning true or false
     you can use to compare your data structure and decide if the option is
     initially selected or not.
 
