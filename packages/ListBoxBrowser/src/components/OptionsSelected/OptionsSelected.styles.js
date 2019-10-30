@@ -91,6 +91,6 @@ export const noOptionsSelected = css`
   border: 1px dashed ${tokens.border.color};
   color: ${tokens.textColor.subtle};
   font-style: italic;
-  padding: ${spacer(1)};
+  padding: ${tokens.space};
   text-align: center;
 `;
