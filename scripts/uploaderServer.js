@@ -8,4 +8,4 @@ if (!CI) {
   exec("cd packages/Uploader/server && php -S localhost:9000");
   return;
 }
-console.log("Exit without staring the uploader server");
+console.log("Exit without starting the uploader server");
