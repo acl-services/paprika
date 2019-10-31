@@ -28,7 +28,7 @@ pt:
       cancel: Cancelar
     datePicker:
       calendar_header_format: MMMM YYYY
-      confirmation_format: LL
+      confirmation_format: ll
       month: Mês
       year: Ano
     daterange:
