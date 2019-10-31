@@ -210,7 +210,7 @@ class Popover extends React.Component {
   }
 
   setVisibilityAndPosition(isOpening = false) {
-    if (!this.$content) {
+    if (this.$content) {
       // dynamically setting a fixed width before positioning avoids issues at the
       // right edge of the screen
       if (isOpening && [AlignTypes.TOP, AlignTypes.BOTTOM].includes(this.props.align)) {
