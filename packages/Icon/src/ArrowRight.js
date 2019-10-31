@@ -14,7 +14,7 @@ const SvgArrowRight = ({ title, ...props }) => (
     focusable={false}
     {...props}
   >
-    <title>{title}</title>
+    {title ? <title>{title}</title> : null}
     <defs>
       <path
         d="M10.493 17.314c.821.82 2.151.82 2.972 0l9.014-9.015-2.228-2.228-8.272 8.271-8.271-8.271-2.229 2.228 9.014 9.015z"

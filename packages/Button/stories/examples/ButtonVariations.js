@@ -13,6 +13,7 @@ const ExampleStory = () => {
       <Button isDisabled>Disabled</Button>
       <Button isPending>Pending</Button>
       <Button isDropdown>Dropdown</Button>
+      <Button.Link />
       <Button.Icon>
         <PlusIcon />
       </Button.Icon>

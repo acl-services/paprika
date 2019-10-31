@@ -1,6 +1,6 @@
 {
   "name": "@paprika/collapsible",
-  "version": "0.1.15",
+  "version": "0.1.16",
   "description": "Collapsible component",
   "author": "@paprika",
   "license": "MIT",
@@ -22,7 +22,7 @@
     "prop-types": "^15.7.2"
   },
   "peerDependencies": {
-    "@paprika/l10n": "^0.2.4",
+    "@paprika/l10n": "^0.2.5",
     "react": "^16.8.0",
     "react-dom": "^16.8.0",
     "styled-components": "^4.2.0"

@@ -1,6 +1,6 @@
 {
   "name": "@paprika/confirmation",
-  "version": "0.1.10",
+  "version": "0.1.13",
   "description": "Confirmation component",
   "author": "@paprika",
   "license": "MIT",
@@ -14,17 +14,17 @@
   },
   "dependencies": {
     "@babel/runtime-corejs2": "^7.3.1",
-    "@paprika/button": "^0.1.15",
+    "@paprika/button": "^0.1.17",
     "@paprika/heading": "^0.1.8",
-    "@paprika/helpers": "^0.2.1",
-    "@paprika/popover": "^0.2.3",
+    "@paprika/helpers": "^0.2.2",
+    "@paprika/popover": "^0.2.5",
     "@paprika/stylers": "^0.1.7",
     "@paprika/tokens": "^0.1.6",
     "prop-types": "^15.7.2",
     "uuid": "^3.3.2"
   },
   "peerDependencies": {
-    "@paprika/l10n": "^0.2.4",
+    "@paprika/l10n": "^0.2.5",
     "react": "^16.8.4",
     "react-dom": "^16.8.4",
     "styled-components": "^4.2.0"
