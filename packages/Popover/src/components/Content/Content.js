@@ -7,11 +7,12 @@ import { consts as PopoverConstants } from "../../Popover.styles";
 import { ContentStyled } from "./Content.styles";
 
 const propTypes = {
-  children: PropTypes.node.isRequired,
+  children: PropTypes.node,
   onBlur: PropTypes.func,
 };
 
 const defaultProps = {
+  children: null,
   onBlur: () => {},
 };
 

@@ -30,9 +30,6 @@ const throttleDelay = 20;
 // TODO: To handle cases where there are multiple scrolling containers, we need to implement
 //       getScrollContainer as oneOfType([func, arrayOf(func)])
 
-// TODO: To accommodate cases like a popover menu, we need two additional alignment options:
-//       leftEdge and rightEdge.
-
 const propTypes = {
   /** Where the popover content is positioned relative to the trigger or getPositioningElement. */
   align: PropTypes.oneOf(AlignTypes.ALL),
@@ -213,7 +210,7 @@ class Popover extends React.Component {
   }
 
   setVisibilityAndPosition(isOpening = false) {
-    if (this.$popover.current) {
+    if (!this.$content) {
       // dynamically setting a fixed width before positioning avoids issues at the
       // right edge of the screen
       if (isOpening && [AlignTypes.TOP, AlignTypes.BOTTOM].includes(this.props.align)) {
