@@ -6,7 +6,7 @@ export const flex = css`
   display: flex;
   justify-content: center;
 
-  [data-ppk-anchor="listbox-content-inline"]:last-child {
+  [data-pka-anchor="listbox-content-inline"]:last-child {
     border-left: 1px solid ${tokens.border.color};
   }
 `;
@@ -17,7 +17,7 @@ export const container = css`
   position: relative;
   width: 100%;
 
-  [data-ppk-anchor="listbox-content-inline"] {
+  [data-pka-anchor="listbox-content-inline"] {
     border: 0;
     flex-basis: 50%;
     ${({ height }) => {
@@ -35,11 +35,11 @@ export const container = css`
     }
   }
 
-  [data-ppk-anchor="listbox-box"] {
+  [data-pka-anchor="listbox-box"] {
     border: 0;
   }
 
-  [data-ppk-anchor="listbox-trigger"] {
+  [data-pka-anchor="listbox-trigger"] {
     border: 0;
     display: none;
   }

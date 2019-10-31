@@ -132,7 +132,7 @@ export default function Trigger(props) {
   const shouldHideCaret = hasRenderTrigger || state.isInline;
 
   if (isHidden && state.isInline) {
-    return <ListBoxTriggerStyled data-ppk-anchor="listbox-trigger" isHidden />;
+    return <ListBoxTriggerStyled data-pka-anchor="listbox-trigger" isHidden />;
   }
 
   return (
@@ -140,7 +140,7 @@ export default function Trigger(props) {
       isInline={state.isInline}
       isDisabled={isDisabled}
       ref={refTriggerContainer}
-      data-ppk-anchor="listbox-trigger"
+      data-pka-anchor="listbox-trigger"
       {...getDOMAttributesForListBoxButton(state.idListBox)()}
     >
       {hasRenderTrigger ? renderChildrenProps : renderLabel()}

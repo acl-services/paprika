@@ -66,14 +66,14 @@ export default function OptionsSelected() {
           return selectedOptions[key].map(option => {
             const breadcrumb = getBreadcrumb({ data: localData, option });
             return (
-              <div key={option.$$key} css={optionStyles} data-ppk-anchor="listbox-browser-selected-options">
+              <div key={option.$$key} css={optionStyles} data-pka-anchor="listbox-browser-selected-options">
                 <RawButton css={button} onClick={handleClick(option)}>
-                  <div css={optionLabel} data-ppk-anchor="listbox-browser-selected-options-label">
+                  <div css={optionLabel} data-pka-anchor="listbox-browser-selected-options-label">
                     {option.attributes.label}
                   </div>
                   <div css={optionBreadcrum}>
                     {breadcrumb.map((option, index, list) => (
-                      <span key={option.$$key} data-ppk-anchor="listbox-browser-selected-options-breadcrumb">
+                      <span key={option.$$key} data-pka-anchor="listbox-browser-selected-options-breadcrumb">
                         {option.attributes.label} {index !== list.length - 1 ? `>` : null}
                       </span>
                     ))}

@@ -187,13 +187,13 @@ export function onChange({ source, indexes, list, isParentSelectable, setSelecte
 
 export function focusListBoxBrowser() {
   window.requestAnimationFrame(() => {
-    document.querySelectorAll('[data-ppk-anchor="listbox-content-inline"]')[1].focus();
+    document.querySelectorAll('[data-pka-anchor="listbox-content-inline"]')[1].focus();
   });
 }
 
 export function focusListBoxRoot() {
   window.requestAnimationFrame(() => {
-    document.querySelectorAll('[data-ppk-anchor="listbox-content-inline"]')[0].focus();
+    document.querySelectorAll('[data-pka-anchor="listbox-content-inline"]')[0].focus();
   });
 }
 
