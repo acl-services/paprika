@@ -59,8 +59,8 @@ const locales = {
         "next": "Next page"
       },
       "formElement": {
-        "optional": "(optional)",
-        "required": "(required)",
+        "optional": " (optional)",
+        "required": " (required)",
         "aria_info_circle": "Information"
       },
       "prevNextArrowButton": {

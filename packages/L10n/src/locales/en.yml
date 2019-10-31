@@ -47,8 +47,8 @@ en:
       prev: Previous page
       next: Next page
     formElement:
-      optional: (optional)
-      required: (required)
+      optional: " (optional)"
+      required: " (required)"
       aria_info_circle: Information
     prevNextArrowButton:
       arrowup: up

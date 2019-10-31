@@ -56,8 +56,8 @@ const locales = {
         "next": "Siguiente página"
       },
       "formElement": {
-        "optional": "(opcional)",
-        "required": "(requerido)"
+        "optional": " (opcional)",
+        "required": " (requerido)"
       },
       "prevNextArrowButton": {
         "arrowup": "arriba",

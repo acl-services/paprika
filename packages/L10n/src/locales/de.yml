@@ -44,8 +44,8 @@ de:
       prev: Vorherige Seite
       next: Nächste Seite
     formElement:
-      optional: (optional)
-      required: (erforderlich)
+      optional: " (optional)"
+      required: " (erforderlich)"
     prevNextArrowButton:
       arrowup: Auf
       arrowdown: Ab

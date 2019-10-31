@@ -44,8 +44,8 @@ fr:
       prev: Page précédente
       next: Page suivante
     formElement:
-      optional: (facultatif)
-      required: (requis)
+      optional: " (facultatif)"
+      required: " (requis)"
     prevNextArrowButton:
       arrowup: haut
       arrowdown: bas
