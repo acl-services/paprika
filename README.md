@@ -39,7 +39,7 @@ Paprika also has a `peerDependency` on `@paprika/l10n` to localize your applicat
 yarn add @paprika/l10n
 ```
 
-Then wrapping your project using `<L10n>`.
+Optional: If you want to use different locales, then wrapping your project using `<L10n>`.
 
 ```js
 import L10n from "@paprika/l10n";
