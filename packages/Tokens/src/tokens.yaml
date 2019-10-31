@@ -148,6 +148,10 @@ checkbox:
   size-sm: 16px
   size-md: 20px
   size-lg: 24px
+radio:
+  size-sm: 16px
+  size-md: 20px
+  size-lg: 24px
 popover:
   border-radius: $card--border-radius
   shadow: 0 2px 4px rgba(0, 0, 0, 0.1)
