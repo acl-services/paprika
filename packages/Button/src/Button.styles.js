@@ -20,6 +20,7 @@ const commonStyles = `
   font-weight: bold;
   text-align: center;
   vertical-align: middle;
+  text-decoration: none;
 
   &:focus {
     box-shadow: ${tokens.highlight.active.noBorder.boxShadow};

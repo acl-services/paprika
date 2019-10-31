@@ -28,8 +28,8 @@ export const headerCSS = css`
   .heading--level-3,
   .heading--level-4,
   .heading--level-5 {
-    ${fontSize()};
-    font-weight: 400;
+    ${fontSize(1)};
+    font-weight: 700;
     margin: 0;
   }
 

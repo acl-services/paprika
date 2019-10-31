@@ -1,6 +1,6 @@
 {
   "name": "@paprika/button",
-  "version": "0.1.16",
+  "version": "0.1.17",
   "description": "Button component",
   "author": "@paprika",
   "main": "lib/index.js",
