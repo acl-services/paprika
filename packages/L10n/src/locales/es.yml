@@ -3,6 +3,7 @@ es:
     moreInformation: más información
     close: Cerrar
     uploader:
+      label: Arrastre y suelte o elija archivos de su computadora
       overlay:
         title: Arrastrar y soltar
         subtitle: Sus archivos aquí
@@ -25,9 +26,11 @@ es:
       delete: Eliminar
       apply: Aplicar
       cancel: Cancelar
-    dateInput:
-      choose: Seleccionar una fecha
-      clear: Borrar fecha
+    datePicker:
+      calendar_header_format: MMMM YYYY
+      confirmation_format: D de MMMM de YYYY
+      month: Mes
+      year: Año
     daterange:
       last_7_days: Los últimos 7 días
       last_30_days: Los últimos 30 días
@@ -46,6 +49,7 @@ es:
     formElement:
       optional: (opcional)
       required: (requerido)
+      aria_info_circle: Información
     prevNextArrowButton:
       arrowup: arriba
       arrowdown: abajo
@@ -54,3 +58,20 @@ es:
       view: ver
     collapsible:
       ariaText: sección contraíble
+    sortable:
+      aria_description: Elemento arrastrable. Presione la barra espaciadora para levantar.
+      aria_lift: Ha levantado un elemento de la posición {{source}}. Utilice las teclas de flecha para moverse, el espacio para soltar y la tecla escape para cancelar.
+      aria_moving: Ha movido el elemento de la posición {{source}} a la posición {{destination}}.
+      aria_moving_outside: Actualmente no está arrastrando sobre un área donde soltar.
+      aria_cancelled: Movimiento cancelado. El elemento ha vuelto a su posición inicial de {{source}}.
+      aria_dropped: Ha soltado el elemento. Se ha movido de la posición {{source}} a {{destination}}.
+      aria_dropped_outside: El elemento se ha soltado mientras no estaba sobre la lista. El elemento ha vuelto a su posición inicial de {{source}}.
+      aria_remove: Quitar
+    progressAccordion:
+      active: activo/a
+      no_response: Ninguno
+    collapsibleText:
+      more: Mostrar más
+      less: Mostrar menos
+      more_about: mostrar más sobre {{topic}}
+      less_about: mostrar menos sobre {{topic}}

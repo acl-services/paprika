@@ -1,8 +1,9 @@
 ja:
   translation:
     moreInformation: 詳しい情報
-    close: クローズ
+    close: 閉じる
     uploader:
+      label: ドラッグ アンド ドロップするか、お手元のコンピュータからファイルを選択する
       overlay:
         title: ドラッグ アンド ドロップ
         subtitle: ファイルをここに
@@ -25,9 +26,11 @@ ja:
       delete: 削除
       apply: 適用
       cancel: キャンセル
-    dateInput:
-      choose: 日付の選択
-      clear: 日付のクリア
+    datePicker:
+      calendar_header_format: YYYY 年 M 月
+      confirmation_format: YYYY 年 M 月 D 日
+      month: 月
+      year: 年
     daterange:
       last_7_days: 過去 7 日間
       last_30_days: 過去 30 日間
@@ -39,13 +42,14 @@ ja:
       delete: コメントを削除
     pagination:
       intro: 改ページ位置の自動修正、現在は {{currentPage}} ページ
-      page: "{{pageNumber}} ページ"
+      page: '{{pageNumber}} ページ'
       ellipsis: その他のページ
       prev: 前ページ
       next: 次ページ
     formElement:
       optional: (省略可能)
       required: (必須)
+      aria_info_circle: 情報
     prevNextArrowButton:
       arrowup: 上
       arrowdown: 下
@@ -54,3 +58,20 @@ ja:
       view: 表示
     collapsible:
       ariaText: 縮小可能セクション
+    sortable:
+      aria_description: ドラッグ可能な項目。スペースを押して取り除きます。
+      aria_lift: '{{source}}のポジションにある項目を 1 つ取り除きました。移動するには矢印、ドロップするにはスペース、そしてキャンセルするにはエスケープ キーを使用します。'
+      aria_moving: '{{source}}のポジションから{{destination}}のポジションまで項目を移動しました。'
+      aria_moving_outside: 現在ドラッグしているのは、ドラッグ可能な領域ではありません。
+      aria_cancelled: 移動がキャンセルされました。項目は、{{source}}の出発点に戻りました。
+      aria_dropped: 項目をドロップしました。{{source}}のポジションから{{destination}}のポジションまで項目が移動しました。
+      aria_dropped_outside: 一覧にない項目がドロップされました。項目は、{{source}}の出発点に戻りました。
+      aria_remove: 削除
+    progressAccordion:
+      active: アクティブ
+      no_response: なし
+    collapsibleText:
+      more: 詳しく表示
+      less: 少なく表示
+      more_about: '{{topic}}について詳しく表示'
+      less_about: '{{topic}}について少なく表示'
