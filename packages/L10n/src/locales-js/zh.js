@@ -5,6 +5,7 @@ const locales = {
       "moreInformation": "更多信息",
       "close": "关闭",
       "uploader": {
+        "label": "拖放或从您的电脑中选择文件",
         "overlay": {
           "title": "拖放",
           "subtitle": "您的文件到此"
@@ -33,9 +34,11 @@ const locales = {
         "apply": "应用",
         "cancel": "取消"
       },
-      "dateInput": {
-        "choose": "选择日期",
-        "clear": "清除日期"
+      "datePicker": {
+        "calendar_header_format": "YYYY 年 M 月",
+        "confirmation_format": "YYYY 年 M 月 D 日",
+        "month": "月",
+        "year": "年"
       },
       "daterange": {
         "last_7_days": "过去 7 天",
@@ -57,7 +60,8 @@ const locales = {
       },
       "formElement": {
         "optional": "（可选）",
-        "required": "（必须）"
+        "required": "（必须）",
+        "aria_info_circle": "信息"
       },
       "prevNextArrowButton": {
         "arrowup": "上",
@@ -69,6 +73,26 @@ const locales = {
       },
       "collapsible": {
         "ariaText": "可折叠部分"
+      },
+      "sortable": {
+        "aria_description": "可拖动项目。按空格键提起。",
+        "aria_lift": "您已将一个项目提起到位 {{source}}。使用箭头键移动，使用空格键放下，使用 Esc 键取消。",
+        "aria_moving": "您已将项目从位置{{source}移动到位置{{destination}。",
+        "aria_moving_outside": "您当前不是在可拖放区域上拖动。",
+        "aria_cancelled": "已取消移动。项目已返回到其{{source}}的起始位置。",
+        "aria_dropped": "您已放下该项目。它已从位置{{source}移到{{destination}。",
+        "aria_dropped_outside": "该项目不在列表上方时已被放下。项目已返回到其{{source}}的起始位置。",
+        "aria_remove": "移除"
+      },
+      "progressAccordion": {
+        "active": "活动的",
+        "no_response": "无"
+      },
+      "collapsibleText": {
+        "more": "显示更多",
+        "less": "显示更少",
+        "more_about": "显示关于{{topic}}的更多信息",
+        "less_about": "显示关于{{topic}}的更少信息"
       }
     }
   }
