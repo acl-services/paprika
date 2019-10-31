@@ -42,7 +42,7 @@ ja:
       delete: コメントを削除
     pagination:
       intro: 改ページ位置の自動修正、現在は {{currentPage}} ページ
-      page: '{{pageNumber}} ページ'
+      page: "{{pageNumber}} ページ"
       ellipsis: その他のページ
       prev: 前ページ
       next: 次ページ
@@ -60,8 +60,8 @@ ja:
       ariaText: 縮小可能セクション
     sortable:
       aria_description: ドラッグ可能な項目。スペースを押して取り除きます。
-      aria_lift: '{{source}}のポジションにある項目を 1 つ取り除きました。移動するには矢印、ドロップするにはスペース、そしてキャンセルするにはエスケープ キーを使用します。'
-      aria_moving: '{{source}}のポジションから{{destination}}のポジションまで項目を移動しました。'
+      aria_lift: "{{source}}のポジションにある項目を 1 つ取り除きました。移動するには矢印、ドロップするにはスペース、そしてキャンセルするにはエスケープ キーを使用します。"
+      aria_moving: "{{source}}のポジションから{{destination}}のポジションまで項目を移動しました。"
       aria_moving_outside: 現在ドラッグしているのは、ドラッグ可能な領域ではありません。
       aria_cancelled: 移動がキャンセルされました。項目は、{{source}}の出発点に戻りました。
       aria_dropped: 項目をドロップしました。{{source}}のポジションから{{destination}}のポジションまで項目が移動しました。
@@ -73,5 +73,5 @@ ja:
     collapsibleText:
       more: 詳しく表示
       less: 少なく表示
-      more_about: '{{topic}}について詳しく表示'
-      less_about: '{{topic}}について少なく表示'
+      more_about: "{{topic}}について詳しく表示"
+      less_about: "{{topic}}について少なく表示"
