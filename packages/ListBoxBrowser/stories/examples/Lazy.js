@@ -2,9 +2,6 @@ import React from "react";
 import { Story } from "storybook/assets/styles/common.styles";
 import ListBoxBrowser from "../../src";
 
-const propTypes = {};
-const defaultProps = {};
-
 const fakeDB = {
   "0": [{ label: "0_1" }, { label: "0_2" }, { label: "0_3" }],
   "1": [{ label: "1_1" }, { label: "1_2" }, { label: "2_3" }],
@@ -59,6 +56,3 @@ export default function Lazy(props) {
     </Story>
   );
 }
-
-Lazy.propTypes = propTypes;
-Lazy.defaultProps = defaultProps;

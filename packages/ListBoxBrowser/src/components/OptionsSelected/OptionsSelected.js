@@ -13,7 +13,7 @@ import {
   remove,
   counter,
   optionLabel,
-  optionBreadcrum,
+  optionBreadcrumb,
   noOptionsSelectedContainer,
   noOptionsSelected,
 } from "./OptionsSelected.styles";
@@ -71,7 +71,7 @@ export default function OptionsSelected() {
                   <div css={optionLabel} data-pka-anchor="listbox-browser-selected-options-label">
                     {option.attributes.label}
                   </div>
-                  <div css={optionBreadcrum}>
+                  <div css={optionBreadcrumb}>
                     {breadcrumb.map((option, index, list) => (
                       <span key={option.$$key} data-pka-anchor="listbox-browser-selected-options-breadcrumb">
                         {option.attributes.label} {index !== list.length - 1 ? `>` : null}

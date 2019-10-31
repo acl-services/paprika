@@ -11,7 +11,7 @@ import { isSelected, isSelectable } from "./helpers";
 import { ListBoxBrowserContext } from "../../ListBoxBrowser";
 import {
   arrowRightButton,
-  arrowRigthContainer,
+  arrowRightContainer,
   backButton,
   checkbox,
   label,
@@ -94,7 +94,7 @@ export default function CustomListBox(props) {
                 </span>
                 <span>{attributes.label}</span>
               </div>
-              <div css={arrowRigthContainer}>
+              <div css={arrowRightContainer}>
                 {hasOptions ? (
                   <RawButton
                     tabIndex={isParentSelectable ? 0 : -1}

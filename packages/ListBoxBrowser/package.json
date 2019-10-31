@@ -16,7 +16,6 @@
     "@babel/runtime-corejs2": "^7.3.1",
     "@paprika/helpers": "^0.2.0",
     "@paprika/icon": "^0.2.0",
-    "@paprika/l10n": "^0.2.4",
     "@paprika/listbox": "^0.6.1",
     "@paprika/raw-button": "^0.1.7",
     "@paprika/spinner": "^0.1.9",
@@ -25,8 +24,9 @@
     "prop-types": "^15.7.2"
   },
   "peerDependencies": {
-    "react": "^16.8.4",
+    "@paprika/l10n": "^0.2.5",
     "react-dom": "^16.8.4",
+    "react": "^16.8.4",
     "styled-components": "^4.2.0"
   }
 }

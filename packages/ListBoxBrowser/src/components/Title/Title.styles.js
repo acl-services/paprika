@@ -1,6 +1,6 @@
 import { css } from "styled-components";
 import tokens from "@paprika/tokens/lib/tokens";
-import { spacer } from "@paprika/stylers/lib/helpers";
+import stylers from "@paprika/stylers";
 
 export const title = css`
   background: ${tokens.backgroundColor.level0};
@@ -9,10 +9,10 @@ export const title = css`
   border-top-right-radius: ${tokens.border.radius};
   flex-basis: 50%;
   flex-grow: 1;
-  font-size: 14px;
+  font-size: ${stylers.fontSize(-1)};
   font-weight: bold;
   min-height: 20px;
-  padding: ${spacer(0.5)} ${spacer(1)} ${spacer(0.5)} ${spacer(1.5)};
+  padding: ${tokens.spaceSm} ${tokens.space} ${tokens.spaceSm} ${tokens.spaceLg};
 `;
 
 export const flex = css`

@@ -134,6 +134,7 @@ export default function ListBoxBrowser(props) {
   } = props;
   const refDefaultSelectedOptions = React.useRef({});
   const refDefaultSelectedView = React.useRef(null);
+  const refRootElement = React.useRef(null);
 
   const { root, browser, children } = extractedExtendedProps(childrenProps);
   const localData = React.useMemo(
@@ -193,7 +194,7 @@ export default function ListBoxBrowser(props) {
       if ((hasOptions && isParentSelectable === null) || isClickFromButton) {
         setRootKey($$key);
         setBrowserKey($$key);
-        focusListBoxBrowser();
+        focusListBoxBrowser(refRootElement.current);
         if (event) event.stopPropagation();
       }
     },
@@ -205,7 +206,7 @@ export default function ListBoxBrowser(props) {
       const option = getOptionByKey(localData, $$key);
       if ((option.hasOptions && isParentSelectable === null) || isClickFromButton) {
         setBrowserKey($$key);
-        focusListBoxBrowser();
+        focusListBoxBrowser(refRootElement.current);
         if (event) event.stopPropagation();
       }
     },
@@ -235,7 +236,6 @@ export default function ListBoxBrowser(props) {
 
   const onRemove = React.useCallback(function handleRemove(option) {
     setSelectedOptions(selectedOptions => {
-      console.log(option);
       const cloneSelectedOptions = { ...selectedOptions };
       let index = null;
       cloneSelectedOptions[option.parent].some((opt, i) => {
@@ -253,12 +253,12 @@ export default function ListBoxBrowser(props) {
 
   const handleUp = _parent => () => {
     setBrowserKey(`${_parent}`);
-    focusListBoxBrowser();
+    focusListBoxBrowser(refRootElement.current);
   };
 
   function handleClickBreadcrumb(option) {
     setBrowserKey(`${option.$$key}`);
-    focusListBoxBrowser();
+    focusListBoxBrowser(refRootElement.current);
   }
 
   React.useEffect(() => {
@@ -286,6 +286,7 @@ export default function ListBoxBrowser(props) {
       onChange,
       onJumpToOption,
       onRemove,
+      refRootElement,
       rootKey,
       rootTitle,
       selectedOptions,
@@ -313,7 +314,13 @@ export default function ListBoxBrowser(props) {
 
   return (
     <ListBoxBrowserContext.Provider value={value}>
-      <div hasError={hasError} isParentSelectable={isParentSelectable} css={container} height={height}>
+      <div
+        ref={refRootElement}
+        hasError={hasError}
+        isParentSelectable={isParentSelectable}
+        css={container}
+        height={height}
+      >
         <Title
           rootTitle={rootTitle}
           browserTitle={browserTitle}

@@ -39,7 +39,7 @@ export function getData({
 }) {
   return data.map(({ label = null, options, ...moreAttributes }, index) => {
     if (!label) {
-      throw new Error("A Label attribute is required for each option object, can't process data.");
+      throw new Error("A 'label' attribute is required for each option object, can't process data.");
     }
 
     let newPath = isRoot(path) ? `${index}` : `${path}/${index}`;
@@ -185,15 +185,15 @@ export function onChange({ source, indexes, list, isParentSelectable, setSelecte
   });
 }
 
-export function focusListBoxBrowser() {
+export function focusListBoxBrowser($root) {
   window.requestAnimationFrame(() => {
-    document.querySelectorAll('[data-pka-anchor="listbox-content-inline"]')[1].focus();
+    $root.querySelectorAll('[data-pka-anchor="listbox-content-inline"]')[1].focus();
   });
 }
 
-export function focusListBoxRoot() {
+export function focusListBoxRoot($root) {
   window.requestAnimationFrame(() => {
-    document.querySelectorAll('[data-pka-anchor="listbox-content-inline"]')[0].focus();
+    $root.querySelectorAll('[data-pka-anchor="listbox-content-inline"]')[0].focus();
   });
 }
 

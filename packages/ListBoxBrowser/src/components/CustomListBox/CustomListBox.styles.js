@@ -2,7 +2,7 @@ import { css } from "styled-components";
 import tokens from "@paprika/tokens/lib/tokens";
 import stylers from "@paprika/stylers";
 
-export const arrowRigthContainer = css`
+export const arrowRightContainer = css`
   display: flex;
   height: ${stylers.spacer(4)};
   justify-content: flex-end;

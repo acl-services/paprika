@@ -12,7 +12,6 @@ const propTypes = {
   browserKey: PropTypes.oneOfType([PropTypes.string, PropTypes.number]).isRequired,
   onClickBreadcrumb: PropTypes.func.isRequired,
 };
-const defaultProps = {};
 
 export default function Title(props) {
   const { rootTitle, browserTitle, data, browserKey, onClickBreadcrumb } = props;
@@ -44,4 +43,3 @@ export default function Title(props) {
 }
 
 Title.propTypes = propTypes;
-Title.defaultProps = defaultProps;

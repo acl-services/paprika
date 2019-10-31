@@ -76,7 +76,7 @@ export const optionLabel = css`
   margin-bottom: 3px;
 `;
 
-export const optionBreadcrum = css`
+export const optionBreadcrumb = css`
   color: ${tokens.color.blackLighten20};
   font-size: 13px;
 `;
