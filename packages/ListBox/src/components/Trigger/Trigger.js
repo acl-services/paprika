@@ -89,7 +89,6 @@ export default function Trigger(props) {
       />
     ) : (
       <RawButton
-        type="button"
         onClick={handleClick}
         ref={refTrigger}
         onKeyDown={handleKeyboardKeys(state, dispatch)}
@@ -140,7 +139,6 @@ export default function Trigger(props) {
       isInline={state.isInline}
       isDisabled={isDisabled}
       ref={refTriggerContainer}
-      data-pka-anchor="listbox-trigger"
       {...getDOMAttributesForListBoxButton(state.idListBox)()}
     >
       {hasRenderTrigger ? renderChildrenProps : renderLabel()}
