@@ -1,10 +1,8 @@
-// https://github.com/webpack/webpack/issues/4039#issuecomment-445941469
-// @babel/plugin-transform-modules-commonjs is for memoize-one
-
 module.exports = function BabelConfigJS(api) {
   api.cache(true);
 
   const presets = ["@babel/preset-env", "@babel/preset-react"];
+
   const plugins = [
     "styled-components",
     [
@@ -16,16 +14,16 @@ module.exports = function BabelConfigJS(api) {
         useESModules: false,
       },
     ],
-    "@babel/plugin-proposal-class-properties",
     [
-      "@babel/plugin-transform-modules-commonjs",
+      "@babel/plugin-proposal-class-properties",
       {
-        allowTopLevelThis: true,
+        loose: true,
       },
     ],
   ];
 
   return {
+    sourceType: "unambiguous",
     presets,
     plugins,
   };
