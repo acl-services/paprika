@@ -12,6 +12,11 @@ const smallRadioSize = tokens.radio.sizeSm;
 const mediumRadioSize = tokens.radio.sizeMd;
 const largeRadioSize = tokens.radio.sizeLg;
 
+const getHalfSizeCss = sizeCss => `${toInt(sizeCss) / 2}px`;
+const smallRadioHalfSize = getHalfSizeCss(smallRadioSize);
+const mediumRadioHalfSize = getHalfSizeCss(mediumRadioSize);
+const largeRadioHalfSize = getHalfSizeCss(largeRadioSize);
+
 const styles = {
   [ShirtSizes.SMALL]: {
     baseFontSize: {
@@ -20,11 +25,12 @@ const styles = {
     radioStyles: {
       height: smallRadioSize,
       width: smallRadioSize,
+      borderRadius: smallRadioHalfSize,
     },
     radioIconStyles: {
-      fontSize: `${fontSizeValue(-3)}px`,
+      fontSize: `${fontSizeValue(-4)}px`,
       height: smallRadioSize,
-      left: `${toInt(smallRadioSize) / 2}px`,
+      left: smallRadioHalfSize,
     },
     labelStyles: hasLabel => {
       return {
@@ -40,11 +46,12 @@ const styles = {
     radioStyles: {
       height: mediumRadioSize,
       width: mediumRadioSize,
+      borderRadius: mediumRadioHalfSize,
     },
     radioIconStyles: {
-      fontSize: `${fontSizeValue(-1)}px`,
+      fontSize: `${fontSizeValue(-2)}px`,
       height: mediumRadioSize,
-      left: `${toInt(mediumRadioSize) / 2}px`,
+      left: mediumRadioHalfSize,
     },
     labelStyles: hasLabel => {
       return {
@@ -60,11 +67,12 @@ const styles = {
     radioStyles: {
       height: largeRadioSize,
       width: largeRadioSize,
+      borderRadius: largeRadioHalfSize,
     },
     radioIconStyles: {
       fontSize: `${fontSizeValue()}px`,
       height: largeRadioSize,
-      left: `${toInt(largeRadioSize) / 2}px`,
+      left: largeRadioHalfSize,
     },
     labelStyles: hasLabel => {
       return {
@@ -106,7 +114,6 @@ const radioStyles = css`
     & + label::before {
       background: ${tokens.color.white};
       border: 2px solid ${tokens.border.color};
-      border-radius: ${tokens.border.radius};
       content: "";
       left: 0;
       ${z(1)};
@@ -118,7 +125,7 @@ const radioStyles = css`
     }
 
     & + label > .radio-icon {
-      color: ${tokens.color.white};
+      color: ${tokens.color.black};
       ${({ size }) => styles[size].radioIconStyles};
       opacity: 0;
       pointer-events: none;
@@ -127,8 +134,16 @@ const radioStyles = css`
       ${z(2)};
     }
 
+    & + label > .radio-solid-background {
+      background-color:black;
+      width: 10px;
+      height: 10px;
+      top: 5px;
+      border-radius: 6px;
+    }
+
     &:checked,
-    &:indeterminate {
+    &:deselectable {
       & + label::before {
         background: ${tokens.color.black};
         border: none;
@@ -142,15 +157,15 @@ const radioStyles = css`
       opacity: 1;
     }
 
-    &:indeterminate + label > [data-pka-anchor="radio.icon.check"] {
+    /* &:deselectable + label > [data-pka-anchor="radio.icon.check"] {
       opacity: 0;
     }
 
-    &:indeterminate + label > [data-pka-anchor="radio.icon.indeterminate"] {
+    &:deselectable + label > [data-pka-anchor="radio.icon.deselectable"] {
       opacity: 1;
-    }
+    } */
 
-    &:disabled {
+    /* &:disabled {
       & + label,
       & ~ .radio-icon {
         cursor: not-allowed;
@@ -169,7 +184,7 @@ const radioStyles = css`
       & + label:hover::before {
         border: 2px solid ${tokens.border.color};
       }
-    }
+    } */
   }
 `;
 

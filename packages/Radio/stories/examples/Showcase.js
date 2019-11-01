@@ -4,27 +4,22 @@ import { Rule, Tagline } from "storybook/assets/styles/common.styles";
 import { ShirtSizes } from "@paprika/helpers/lib/customPropTypes";
 import Heading from "@paprika/heading";
 import { RadioStory } from "../Radio.stories.styles";
-import Radio, { radioStates } from "../../src/Radio";
-
-const { CHECKED, UNCHECKED } = radioStates;
+import Radio from "../../src/Radio";
 
 const radioProps = () => ({
   size: select("size", ShirtSizes.DEFAULT, "medium"),
   isDisabled: boolean("isDisabled", false),
-  checkedState: select("checkedState", Object.values(radioStates), UNCHECKED),
+  isChecked: boolean("isChecked", false),
+  canDeselect: boolean("canDeselect", false),
   a11yText: text("a11yText", ""),
 });
 
 const ExampleStory = props => {
-  const { checkedState } = props;
-  const [internalCheckedState, setInternalCheckedState] = React.useState(checkedState || UNCHECKED);
-
-  React.useEffect(() => {
-    setInternalCheckedState(checkedState);
-  }, [checkedState]);
-
-  const handleChange = () => {
-    setInternalCheckedState(prevInternalCheckedState => (prevInternalCheckedState === UNCHECKED ? CHECKED : UNCHECKED));
+  const { isChecked, canDeselect } = props;
+  const [isCheckedState, setIsCheckedState] = React.useState(isChecked);
+  const handleClick = e => {
+    e.preventDefault();
+    setIsCheckedState(canDeselect ? !isCheckedState : true);
   };
 
   return (
@@ -34,7 +29,7 @@ const ExampleStory = props => {
       </Heading>
       <Tagline>Use the knobs to tinker with the props.</Tagline>
       <Rule />
-      <Radio {...props} onChange={handleChange} checkedState={internalCheckedState}>
+      <Radio {...props} onClick={handleClick} isChecked={isCheckedState}>
         Authentic VHS beard.
       </Radio>
       <Rule />

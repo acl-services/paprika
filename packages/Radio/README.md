@@ -23,8 +23,9 @@ import Radio from "@paprika/radio";
 - a11yText
 - children
 - isDisabled
-- checkedState ("checked", "unchecked", "indeterminate")
-- onChange
+- isChecked
+- canDeselect
+- onClick
 - size ("small, "medium", "large")
 
 [More detail about these props](https://github.com/acl-services/paprika/blob/master/packages/Checkbox/src/Radio.js)
