@@ -29,9 +29,6 @@ const propTypes = {
 
   /** Render the takeover inline */
   isInline: PropTypes.bool,
-
-  /** Takeover will capture and will not propagate event after pressing ESC. Helps in case we have many overlapped components. */
-  shouldStopEscapePropagation: PropTypes.bool,
 };
 
 const defaultProps = {
@@ -59,7 +56,7 @@ const ContentWrapper = styled.div`
   flex: 1 1 auto;
 `;
 
-const Takeover = ({ isOpen, onClose, isInline, shouldStopEscapePropagation, onAfterClose, onAfterOpen, ...props }) => {
+const Takeover = ({ isOpen, onClose, isInline, onAfterClose, onAfterOpen, ...props }) => {
   const refWrapper = React.useRef(null);
 
   function handleTransitionEnter(node) {
@@ -83,7 +80,7 @@ const Takeover = ({ isOpen, onClose, isInline, shouldStopEscapePropagation, onAf
 
   return (
     <>
-      {isOpen && <EscListener on={onClose} shouldStopEscapePropagation={shouldStopEscapePropagation} />}
+      {isOpen && <EscListener on={onClose} />}
       {isOpen && <LockBodyScroll />}
       <Portal active={!isInline}>
         <Transition

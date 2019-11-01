@@ -6,22 +6,20 @@ const propTypes = {
   on: PropTypes.func.isRequired,
 };
 
-const EscListener = ({ on, shouldStopEscapePropagation }) => {
+const EscListener = ({ on }) => {
   React.useEffect(() => {
     function handleEscKey(event) {
       if (event.key === "Escape") {
-        if (shouldStopEscapePropagation) {
-          event.stopPropagation();
-        }
+        event.stopPropagation();
 
         on();
       }
     }
 
-    document.addEventListener("keydown", handleEscKey, !!shouldStopEscapePropagation);
+    document.addEventListener("keydown", handleEscKey, true);
 
     return () => {
-      document.removeEventListener("keydown", handleEscKey, !!shouldStopEscapePropagation);
+      document.removeEventListener("keydown", handleEscKey, true);
     };
   }, [on]);
 
