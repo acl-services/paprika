@@ -1,32 +1,35 @@
 import React from "react";
-import { storiesOf } from "@storybook/react";
-// import { withKnobs } from "@storybook/addon-knobs";
+import { withKnobs } from "@storybook/addon-knobs";
 import Variations from "./examples/Variations";
-// import Screener from "./examples/Screener";
+import Showcase from "./examples/Showcase";
 import CollapsibleText from "../src";
-//
-// import mdx from "./CollapsibleText.mdx";
-//
-// const docs = mdx && mdx.parameters && mdx.parameters.docs;
 
-// export const dummy = () => <CollapsibleText>Lorem hipsum raw denim listicle mixtape.</CollapsibleText>;
+export default {
+  title: "CollapsibleText",
+  component: CollapsibleText,
+};
 
-// dummy.story = {
-//   name: "dummy",
-//   // title: "CollapsibleText",
-//   // component: CollapsibleText,
-// };
-//
-// export default {
-//   title: "CollapsibleText",
-//   component: CollapsibleText,
-//   // includeStories: ["variations"],
-// };
+export const showcase = Showcase;
 
-storiesOf("CollapsibleText", module)
-  // .addDecorator(withKnobs)
+showcase.story = {
+  parameters: {
+    docs: { page: null },
+    decorators: [withKnobs],
+    options: {
+      isToolshown: true,
+      showPanel: true,
+    },
+  },
+};
 
-  .addParameters({ component: CollapsibleText })
-  .add("Variations", () => <Variations />);
+export const variations = () => <Variations />;
 
-// storiesOf("CollapsibleText/Automation Tests", module).add("Screener", () => <Screener />);
+variations.story = {
+  parameters: {
+    docs: { page: null },
+    options: {
+      isToolshown: true,
+      showPanel: false,
+    },
+  },
+};

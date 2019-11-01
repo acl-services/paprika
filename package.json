@@ -11,7 +11,7 @@
     "lint": "eslint packages --report-unused-disable-directives",
     "prepare": "lerna run pretranspile && yarn transpile",
     "prettier:format": "yarn prettier --write",
-    "prettier": "prettier \"**/*.+(js|json|yml|css|scss|md|mdx)\"",
+    "prettier": "prettier \"**/*.+(js|json|yml|css|scss)\"",
     "registrymock:publish": "lerna publish --no-git-tag-version --no-push --registry http://localhost:4873",
     "registrymock:start": "verdaccio",
     "registrymock": "run-p -l registrymock:start registrymock:publish",
@@ -102,7 +102,7 @@
     "packages/**/*.js": [
       "yarn lint"
     ],
-    "packages/**/*.{js,json,yml,css,scss,md,mdx}": [
+    "packages/**/*.{js,json,yml,css,scss}": [
       "yarn prettier --check"
     ]
   },
