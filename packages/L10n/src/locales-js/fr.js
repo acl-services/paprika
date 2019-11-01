@@ -5,6 +5,7 @@ const locales = {
       "moreInformation": "plus d'informations",
       "close": "Fermer",
       "uploader": {
+        "label": "Glissez-déplacez ou choisissez des fichiers dans votre ordinateur",
         "overlay": {
           "title": "Glisser-déposer",
           "subtitle": "Vos fichiers ici"
@@ -33,9 +34,11 @@ const locales = {
         "apply": "Appliquer",
         "cancel": "Annuler"
       },
-      "dateInput": {
-        "choose": "Choisir une date",
-        "clear": "Effacer la date"
+      "datePicker": {
+        "calendar_header_format": "MMMM YYYY",
+        "confirmation_format": "D MMMM YYYY",
+        "month": "Mois",
+        "year": "Année"
       },
       "daterange": {
         "last_7_days": "7 derniers jours",
@@ -57,7 +60,8 @@ const locales = {
       },
       "formElement": {
         "optional": "(facultatif)",
-        "required": "(requis)"
+        "required": "(requis)",
+        "aria_info_circle": "Informations"
       },
       "prevNextArrowButton": {
         "arrowup": "haut",
@@ -69,6 +73,26 @@ const locales = {
       },
       "collapsible": {
         "ariaText": "section compressible"
+      },
+      "sortable": {
+        "aria_description": "Élément déplaçable. Appuyez sur la touche espace pour lever.",
+        "aria_lift": "Vous avez élevé un élément dans la position {{source}}. Utilisez les touches de direction pour déplacer, la touche Espace pour déposer et Échap pour annuler.",
+        "aria_moving": "Vous avez déplacé l'élément de la position {{source}} vers la position {{destination}}.",
+        "aria_moving_outside": "Vous n'êtes pas en train de faire glisser un élément sur une zone déposable.",
+        "aria_cancelled": "Mouvement annulé. L'élément est retourné à sa position initiale de {{source}}.",
+        "aria_dropped": "Vous avez déposé l'élément. Il est déplacé de la position {{source}} vers {{destination}}.",
+        "aria_dropped_outside": "L'élément a été déposé alors qu'il n'était au-dessus de la liste. L'élément est retourné à sa position initiale de {{source}}.",
+        "aria_remove": "Supprimer"
+      },
+      "progressAccordion": {
+        "active": "actif(ve)",
+        "no_response": "Aucun"
+      },
+      "collapsibleText": {
+        "more": "Afficher plus",
+        "less": "Afficher moins",
+        "more_about": "Afficher plus sur {{topic}}",
+        "less_about": "Afficher moins sur {{topic}}"
       }
     }
   }

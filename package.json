@@ -49,7 +49,7 @@
     "@paprika/helpers": "^0.2.0",
     "@paprika/icon": "^0.2.0",
     "@paprika/input": "^0.1.0",
-    "@paprika/l10n": "^0.1.0",
+    "@paprika/l10n": "^0.2.5",
     "@paprika/listbox": "^0.6.0",
     "@paprika/pill": "^0.1.0",
     "@paprika/popover": "^0.1.0",

@@ -5,6 +5,7 @@ const locales = {
       "moreInformation": "weitere Informationen",
       "close": "Schließen",
       "uploader": {
+        "label": "Ziehen und Ablegen oder wählen Sie Dateien von Ihrem Computer",
         "overlay": {
           "title": "Ziehen & Ablegen",
           "subtitle": "Dateien hier"
@@ -33,9 +34,11 @@ const locales = {
         "apply": "Anwenden",
         "cancel": "Abbrechen"
       },
-      "dateInput": {
-        "choose": "Datum auswählen",
-        "clear": "Datum löschen"
+      "datePicker": {
+        "calendar_header_format": "MMMM YYYY",
+        "confirmation_format": "DD. MMMM YYYY",
+        "month": "Monat",
+        "year": "Jahr"
       },
       "daterange": {
         "last_7_days": "Letzte 7 Tage",
@@ -57,7 +60,8 @@ const locales = {
       },
       "formElement": {
         "optional": "(optional)",
-        "required": "(erforderlich)"
+        "required": "(erforderlich)",
+        "aria_info_circle": "Informationen"
       },
       "prevNextArrowButton": {
         "arrowup": "Auf",
@@ -69,6 +73,26 @@ const locales = {
       },
       "collapsible": {
         "ariaText": "ausblendbarer Bereich"
+      },
+      "sortable": {
+        "aria_description": "Ziehbares Element. Drücken Sie zum Anheben die Leertaste.",
+        "aria_lift": "Sie haben ein Element in Position {{source}} angehoben. Verwenden Sie die Pfeiltasten, um es zu bewegen, die Leertaste, um es fallen zu lassen, und Esc, um Aktion abzubrechen.",
+        "aria_moving": "Sie haben das Element von Position {{source}} an Position {{destination}} verschoben.",
+        "aria_moving_outside": "Sie ziehen das Element derzeit nicht über einen Bereich, auf dem Sie es ablegen können.",
+        "aria_cancelled": "Verschieben abgebrochen. Das Element ist in seine Ausgangsposition von {{source}} zurückgekehrt.",
+        "aria_dropped": "Sie haben das Element abgelegt. Das Element wurde von Position {{source}} an Position {{destination}} verschoben.",
+        "aria_dropped_outside": "Das Element wurde abgelegt, während es sich nicht über der Liste befand. Das Element ist in seine Ausgangsposition von {{source}} zurückgekehrt.",
+        "aria_remove": "Entfernen"
+      },
+      "progressAccordion": {
+        "active": "aktiv",
+        "no_response": "Keine"
+      },
+      "collapsibleText": {
+        "more": "Mehr anzeigen",
+        "less": "Weniger anzeigen",
+        "more_about": "Mehr über {{topic}} anzeigen",
+        "less_about": "Weniger über {{topic}} anzeigen"
       }
     }
   }
