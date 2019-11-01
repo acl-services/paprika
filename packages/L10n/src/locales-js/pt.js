@@ -5,6 +5,7 @@ const locales = {
       "moreInformation": "mais informações",
       "close": "Fechar",
       "uploader": {
+        "label": "Arraste e solte ou selecione arquivos no seu computador",
         "overlay": {
           "title": "Arraste e solte",
           "subtitle": "Seus arquivos aqui"
@@ -33,9 +34,11 @@ const locales = {
         "apply": "Aplicar",
         "cancel": "Cancelar"
       },
-      "dateInput": {
-        "choose": "Escolha uma data",
-        "clear": "Limpar Data"
+      "datePicker": {
+        "calendar_header_format": "MMMM YYYY",
+        "confirmation_format": "ll",
+        "month": "Mês",
+        "year": "Ano"
       },
       "daterange": {
         "last_7_days": "Últimos 7 Dias",
@@ -57,7 +60,8 @@ const locales = {
       },
       "formElement": {
         "optional": "(opcional)",
-        "required": "(obrigatório)"
+        "required": "(obrigatório)",
+        "aria_info_circle": "Informação"
       },
       "prevNextArrowButton": {
         "arrowup": "para cima",
@@ -69,6 +73,26 @@ const locales = {
       },
       "collapsible": {
         "ariaText": "seção recolhível"
+      },
+      "sortable": {
+        "aria_description": "Item arrastável. Pressione espaço para levantar.",
+        "aria_lift": "Você levantou um item em posição {{source}}. Use as teclas de seta para mover, espaço para soltar e esc para cancelar.",
+        "aria_moving": "Você moveu o item da posição {{source}} para a posição {{destination}}.",
+        "aria_moving_outside": "Você atualmente não está arrastando sobr euma área onde é possível soltar.",
+        "aria_cancelled": "Movimento cancelado. O item voltou para sua posição inicial de {{source}}.",
+        "aria_dropped": "Você soltou o item. Ele foi movido da posição {{source}} para a posição {{destination}}.",
+        "aria_dropped_outside": "O item foi solto enquanto não estava sobre a lista. O item voltou para sua posição inicial de {{source}}.",
+        "aria_remove": "Remover"
+      },
+      "progressAccordion": {
+        "active": "ativo(a)",
+        "no_response": "Nenhum"
+      },
+      "collapsibleText": {
+        "more": "Mostrar mais",
+        "less": "Mostrar menos",
+        "more_about": "mostrar mais sobre {{topic}}",
+        "less_about": "mostrar menos sobre {{topic}}"
       }
     }
   }

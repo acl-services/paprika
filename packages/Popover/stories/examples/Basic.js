@@ -21,12 +21,13 @@ export const popoverProps = () => ({
   align: select("align", ["bottom", "top", "right", "left"], "bottom"),
   edge: select("edge", ["left", "right", null], null),
   maxWidth: text("maxWidth", "320"),
+  minWidth: text("minWidth", "0"),
   offset: number("offset", 12),
 });
 
-const ExampleStory = props => (
+const ExampleStory = () => (
   <CenteredStory>
-    <Popover {...props}>
+    <Popover {...popoverProps()}>
       <Popover.Trigger>
         <Button>Open Popover</Button>
       </Popover.Trigger>
@@ -38,7 +39,7 @@ const ExampleStory = props => (
 
     <Gap />
 
-    <Popover {...props} isDark isEager>
+    <Popover {...popoverProps()} isDark isEager>
       <Popover.Trigger>
         <Button kind="minor">Open Tooltip</Button>
       </Popover.Trigger>
@@ -50,4 +51,4 @@ const ExampleStory = props => (
   </CenteredStory>
 );
 
-export default () => <ExampleStory {...popoverProps()} />;
+export default () => <ExampleStory />;
