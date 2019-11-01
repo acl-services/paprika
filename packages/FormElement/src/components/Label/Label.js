@@ -29,6 +29,7 @@ function Label(props) {
         {label}
         {hasOptionalLabel || hasRequiredLabel ? (
           <span css={ruleStyles}>
+            {" "}
             {hasRequiredLabel ? I18n.t("formElement.required") : null}
             {hasOptionalLabel ? I18n.t("formElement.optional") : null}
           </span>
