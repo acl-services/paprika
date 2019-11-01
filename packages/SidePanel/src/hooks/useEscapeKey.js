@@ -1,23 +1,21 @@
 import React from "react";
 
-export default function useEscapeKey(isOpen, onClose, shouldStopEscapePropagation) {
+export default function useEscapeKey(isOpen, onClose) {
   React.useEffect(() => {
     function handleEscKey(event) {
       if (event.key === "Escape") {
         if (isOpen && onClose) {
-          if (shouldStopEscapePropagation) {
-            event.stopPropagation();
-          }
+          event.stopPropagation();
 
           onClose();
         }
       }
     }
 
-    document.addEventListener("keydown", handleEscKey, !!shouldStopEscapePropagation);
+    document.addEventListener("keydown", handleEscKey, true);
 
     return () => {
-      document.removeEventListener("keydown", handleEscKey, !!shouldStopEscapePropagation);
+      document.removeEventListener("keydown", handleEscKey, true);
     };
   }, [onClose, isOpen]);
 }
