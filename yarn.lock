@@ -2186,16 +2186,6 @@
     "@svgr/cli" "^4.1.0"
     prop-types "^15.7.2"
 
-"@paprika/l10n@^0.1.0":
-  version "0.1.4"
-  resolved "https://registry.yarnpkg.com/@paprika/l10n/-/l10n-0.1.4.tgz#623e0c49224258caf250a31ab465dcf49173a068"
-  integrity sha512-0sYCj77++NlRKDlz6ZJSDxg5JkexXzoxc2XfaPQiIXcXJhjw0lxPMziZa91fHZHLByFUN4stnh7kYlLBLoWO3Q==
-  dependencies:
-    "@babel/runtime-corejs2" "^7.3.1"
-    i18next "^15.0.4"
-    js-yaml "^3.13.1"
-    prop-types "^15.7.2"
-
 "@paprika/popover@^0.1.0":
   version "0.1.12"
   resolved "https://registry.yarnpkg.com/@paprika/popover/-/popover-0.1.12.tgz#e8d7cd243003dbdbc07fbd70f41d7ecd55043d40"

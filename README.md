@@ -33,6 +33,30 @@ yarn add styled-components
 - Node v10.0.0+
 - Yarn v1.12.3+
 
+Paprika also has a `peerDependency` on `@paprika/l10n` to localize your application and paprika components. To install it, run:
+
+```sh
+yarn add @paprika/l10n
+```
+
+Optional: If you want to use different locales, then wrapping your project using `<L10n>`.
+
+```js
+import L10n from "@paprika/l10n";
+
+function YourProject(props) {
+  return (
+    <L10n locale="fr" locales={YourLocales}>
+      ...
+      <GreetingHeader />
+      ...
+    </L10n>
+  );
+}
+```
+
+For more details, you can check it from here: https://github.com/acl-services/paprika/tree/master/packages/L10n
+
 ### Example of installing a component
 
 The following is an example of the button component, but all other components will be installed in a similar way.

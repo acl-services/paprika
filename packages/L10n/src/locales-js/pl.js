@@ -5,6 +5,7 @@ const locales = {
       "moreInformation": "więcej informacji",
       "close": "Zamknij",
       "uploader": {
+        "label": "Przeciągnij i upuść lub wybierz pliki z komputera",
         "overlay": {
           "title": "Przeciągnij i upuść",
           "subtitle": "Twoje pliki"
@@ -33,9 +34,11 @@ const locales = {
         "apply": "Zastosuj",
         "cancel": "Anuluj"
       },
-      "dateInput": {
-        "choose": "Wybierz Datę",
-        "clear": "Wyczyść Datę"
+      "datePicker": {
+        "calendar_header_format": "MMMM YYYY",
+        "confirmation_format": "DD MMMM YYYY",
+        "month": "Miesiąc",
+        "year": "Rok"
       },
       "daterange": {
         "last_7_days": "Ostanie 7 Dni",
@@ -57,7 +60,8 @@ const locales = {
       },
       "formElement": {
         "optional": "(opcjonalny)",
-        "required": "(wymagane)"
+        "required": "(wymagane)",
+        "aria_info_circle": "Informacja"
       },
       "prevNextArrowButton": {
         "arrowup": "w górę",
@@ -69,6 +73,26 @@ const locales = {
       },
       "collapsible": {
         "ariaText": "zwiń sekcję"
+      },
+      "sortable": {
+        "aria_description": "Element przeciągany. Naciśnij spację, aby podnieść.",
+        "aria_lift": "Podniosłeś przedmiot na pozycję {{source}}. Użyj klawiszy strzałek, aby się poruszać, spacji, aby upuścić i escape, aby anulować.",
+        "aria_moving": "Przesunąłeś przedmiot z pozycji {{source}} na pozycję {{destination}}.",
+        "aria_moving_outside": "Obecnie nie przeciągasz po obszarze na którym można upuścić.",
+        "aria_cancelled": "Ruch anulowany. Element powrócił do pozycji początkowej {{source}}.",
+        "aria_dropped": "Upuściłeś przedmiot. Przesunął się z pozycji {{source}} na {{destination}}.",
+        "aria_dropped_outside": "Element został upuszczony, ale nie znajduje się na liście. Element powrócił do pozycji początkowej {{source}}.",
+        "aria_remove": "Usuń"
+      },
+      "progressAccordion": {
+        "active": "aktywny",
+        "no_response": "Żaden"
+      },
+      "collapsibleText": {
+        "more": "Pokaż więcej",
+        "less": "Pokaż mniej",
+        "more_about": "Pokaż więcej na temat {{topic}}",
+        "less_about": "Pokaż mniej na temat {{topic}}"
       }
     }
   }

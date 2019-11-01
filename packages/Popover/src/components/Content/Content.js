@@ -7,11 +7,12 @@ import { consts as PopoverConstants } from "../../Popover.styles";
 import { ContentStyled } from "./Content.styles";
 
 const propTypes = {
-  children: PropTypes.node.isRequired,
+  children: PropTypes.node,
   onBlur: PropTypes.func,
 };
 
 const defaultProps = {
+  children: null,
   onBlur: () => {},
 };
 
@@ -64,6 +65,10 @@ const Content = React.forwardRef((props, ref) => {
     }, parseInt(PopoverConstants.transition, 10));
   }
 
+  function cssValue(value) {
+    return isNumber(value) ? `${value}px` : value;
+  }
+
   const handleRef = _ref => {
     refContent(_ref);
     if (ref) {
@@ -74,10 +79,13 @@ const Content = React.forwardRef((props, ref) => {
 
   const contentStyles = {
     left: content.x,
-    maxWidth: isNumber(content.maxWidth) ? `${content.maxWidth}px` : content.maxWidth,
     top: content.y,
-    width: content.width,
+    maxWidth: cssValue(content.maxWidth),
+    minWidth: cssValue(content.minWidth),
   };
+  if (content.width && content.width !== "auto") {
+    contentStyles.width = content.width;
+  }
 
   /* eslint-disable jsx-a11y/mouse-events-have-key-events */
   return ReactDOM.createPortal(
