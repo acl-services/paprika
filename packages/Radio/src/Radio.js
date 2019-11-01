@@ -25,7 +25,7 @@ const defaultProps = {
 };
 
 const Radio = props => {
-  const { a11yText, children, isChecked, canDeselect, isDisabled, size, ...moreProps } = props;
+  const { a11yText, children, isChecked, canDeselect, isDisabled, size, onClick, ...moreProps } = props;
 
   const radioId = React.useRef(uuid()).current;
   const inputRef = React.useRef(null);
@@ -39,7 +39,15 @@ const Radio = props => {
   if (a11yText) inputProps["aria-label"] = a11yText;
   return (
     <div data-pka-anchor="radio" css={radioStyles} {...styleProps} {...moreProps}>
-      <input checked={isChecked} disabled={isDisabled} id={radioId} ref={inputRef} type="radio" {...inputProps} />
+      <input
+        onClick={onClick}
+        checked={isChecked}
+        disabled={isDisabled}
+        id={radioId}
+        ref={inputRef}
+        type="radio"
+        {...inputProps}
+      />
       <label className={canDeselect ? "deselectable" : ""} htmlFor={radioId}>
         {children}
 

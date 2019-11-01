@@ -17,8 +17,7 @@ const radioProps = () => ({
 const ExampleStory = props => {
   const { isChecked, canDeselect } = props;
   const [isCheckedState, setIsCheckedState] = React.useState(isChecked);
-  const handleClick = e => {
-    e.preventDefault();
+  const handleClick = () => {
     setIsCheckedState(canDeselect ? !isCheckedState : true);
   };
 
