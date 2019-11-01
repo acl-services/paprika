@@ -40,13 +40,13 @@ const Radio = props => {
   return (
     <div data-pka-anchor="radio" css={radioStyles} {...styleProps} {...moreProps}>
       <input checked={isChecked} disabled={isDisabled} id={radioId} ref={inputRef} type="radio" {...inputProps} />
-      <label htmlFor={radioId}>
+      <label className={canDeselect ? "deselectable" : ""} htmlFor={radioId}>
         {children}
 
         {canDeselect ? (
-          <CheckIcon className="checked-state radio-icon" aria-hidden data-pka-anchor="radio.icon.check" />
+          <CheckIcon className="radio-icon" aria-hidden data-pka-anchor="radio.icon.check" />
         ) : (
-          <div className="checked-state radio-icon radio-solid-background" data-pka-anchor="radio.icon.check" />
+          <div className="radio-icon radio-solid-background" data-pka-anchor="radio.icon.check" />
         )}
       </label>
     </div>

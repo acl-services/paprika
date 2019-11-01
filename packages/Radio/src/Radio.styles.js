@@ -135,56 +135,25 @@ const radioStyles = css`
     }
 
     & + label > .radio-solid-background {
-      background-color:black;
+      background-color: ${tokens.color.black};
       width: 10px;
       height: 10px;
       top: 5px;
       border-radius: 6px;
     }
 
-    &:checked,
-    &:deselectable {
-      & + label::before {
-        background: ${tokens.color.black};
-        border: none;
+    &:checked {
+      & + label.deselectable:hover:before {
+        background: ${tokens.color.blackLighten60};
       }
-      & + label:hover::before {
-        background: ${tokens.color.blackLighten30};
+      & + label::before {
+        border: 2px solid ${tokens.color.black};
       }
     }
 
     &:checked + label > [data-pka-anchor="radio.icon.check"] {
       opacity: 1;
     }
-
-    /* &:deselectable + label > [data-pka-anchor="radio.icon.check"] {
-      opacity: 0;
-    }
-
-    &:deselectable + label > [data-pka-anchor="radio.icon.deselectable"] {
-      opacity: 1;
-    } */
-
-    /* &:disabled {
-      & + label,
-      & ~ .radio-icon {
-        cursor: not-allowed;
-        opacity: 0.5;
-        transition: none;
-      }
-      &:checked,
-      &:indeterminate {
-        & + label::before {
-          background-color: ${tokens.color.blackLighten40};
-        }
-        & + label:hover::before {
-          border: none;
-        }
-      }
-      & + label:hover::before {
-        border: 2px solid ${tokens.border.color};
-      }
-    } */
   }
 `;
 
