@@ -3,8 +3,8 @@ import React from "react";
 import data from "./fixtures/multiple";
 import dataMultipleFirstOptionNoOptions from "./fixtures/multiple.firstOptionNoOptions";
 import dataNoOptions from "./fixtures/multiple.withNoOptions";
-import { getData, getOptionByKey } from "../src/helpers";
-import ListBoxBrowser from "../src";
+import { getData, getOptionByKey } from "../../src/helpers";
+import ListBoxBrowser from "../../src";
 
 const selectedOptions = { current: {} };
 const dataParameters = { data, selectedOptions, defaultSelectedOptions: () => false };
