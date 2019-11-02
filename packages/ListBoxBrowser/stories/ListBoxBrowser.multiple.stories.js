@@ -122,3 +122,17 @@ storiesOf("ListBoxBrowser/Multi", module)
       ]}
     />
   ));
+
+storiesOf("ListBoxBrowser/Automation Tests ", module).add("Basic", () => (
+  <Story>
+    <ListBoxBrowser
+      data={issues}
+      rootTitle="Phase"
+      onChange={selectedOptions => {
+        console.log("selected options:", selectedOptions);
+      }}
+    >
+      <ListBoxBrowser.OptionsSelected />
+    </ListBoxBrowser>
+  </Story>
+));

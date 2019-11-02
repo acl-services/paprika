@@ -60,7 +60,7 @@ export default function CustomListBox(props) {
       <ListBox.Trigger isHidden></ListBox.Trigger>
       {hasOnUp ? (
         <ListBox.Option onClick={onUp}>
-          <span css={backButton}>
+          <span css={backButton} data-pka-anchor="listboxbrowser-listoption-back">
             <ArrowLeft />
             {i18n.t("back")}
           </span>

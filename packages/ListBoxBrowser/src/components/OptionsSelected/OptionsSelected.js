@@ -46,7 +46,10 @@ export default function OptionsSelected() {
     return (
       <>
         <div css={title}>
-          {`${i18n.t("listBoxBrowser.selected")} `} <span css={counter}>0</span>
+          {`${i18n.t("listBoxBrowser.selected")} `}{" "}
+          <span css={counter} data-pka-anchor="listboxbrowser-optionselected-counter">
+            0
+          </span>
         </div>
         <div css={noOptionsSelectedContainer}>
           <div css={noOptionsSelected}>{i18n.t("listBoxBrowser.selectOne")}</div>
@@ -59,21 +62,23 @@ export default function OptionsSelected() {
     <>
       <div css={title}>
         {`${i18n.t("listBoxBrowser.selected")} `}
-        <span css={counter}>{length}</span>
+        <span css={counter} data-pka-anchor="listboxbrowser-optionselected-counter">
+          {length}
+        </span>
       </div>
       <div css={container}>
         {Object.keys(selectedOptions).map(key => {
           return selectedOptions[key].map(option => {
             const breadcrumb = getBreadcrumb({ data: localData, option });
             return (
-              <div key={option.$$key} css={optionStyles} data-pka-anchor="listbox-browser-selected-options">
+              <div key={option.$$key} css={optionStyles} data-pka-anchor="listbox-browser-selected-option">
                 <RawButton css={button} onClick={handleClick(option)}>
-                  <div css={optionLabel} data-pka-anchor="listbox-browser-selected-options-label">
+                  <div css={optionLabel} data-pka-anchor="listbox-browser-selected-option-label">
                     {option.attributes.label}
                   </div>
                   <div css={optionBreadcrumb}>
                     {breadcrumb.map((option, index, list) => (
-                      <span key={option.$$key} data-pka-anchor="listbox-browser-selected-options-breadcrumb">
+                      <span key={option.$$key} data-pka-anchor="listbox-browser-selected-option-breadcrumb">
                         {option.attributes.label} {index !== list.length - 1 ? `>` : null}
                       </span>
                     ))}
@@ -83,6 +88,7 @@ export default function OptionsSelected() {
                   onClick={handleRemove(option)}
                   css={remove}
                   a11yText={`${i18n.t("remove")} ${option.attributes.label}`}
+                  data-pka-anchor="listbox-browser-selected-option-trashbin"
                 >
                   <Trashbin />
                 </RawButton>

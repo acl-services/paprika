@@ -29,8 +29,10 @@ export default function Title(props) {
 
   return (
     <div css={flex}>
-      <div css={title}>{rootTitle}</div>
-      <div css={title}>
+      <div css={title} data-pka-anchor="root-title">
+        {rootTitle}
+      </div>
+      <div css={title} data-pka-anchor="breadcrumb-title">
         <span>
           {browserTitle}
           {hasBreadcrumb && breadcrumb.length && browserTitle !== "" ? " / " : null}
