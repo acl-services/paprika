@@ -7,7 +7,7 @@ const Content = styled.div`
   padding: ${spacer(2)};
   background-color: ${tokens.color.white};
   border: 1px solid ${tokens.border.color};
-  border-radius: 3px;
+  border-radius: ${tokens.border.radius};
   box-shadow: ${tokens.shadow};
 `;
 
