@@ -1,11 +1,11 @@
 import React from "react";
-import { Story } from "storybook/assets/styles/common.styles";
 import PlusIcon from "@paprika/icon/lib/Add";
+import { ButtonStory } from "../Button.stories.styles";
 import Button from "../../src";
 
 const ExampleStory = () => {
   return (
-    <Story>
+    <ButtonStory>
       <Button kind="flat">Flat</Button>
       <Button kind="secondary">Secondary</Button>
       <Button kind="destructive">Destructive</Button>
@@ -19,7 +19,7 @@ const ExampleStory = () => {
       </Button.Icon>
       <Button icon={<PlusIcon />}>Icon & text</Button>
       <Button isFullWidth>Full-width</Button>
-    </Story>
+    </ButtonStory>
   );
 };
 
