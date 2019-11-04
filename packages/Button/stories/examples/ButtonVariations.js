@@ -13,7 +13,7 @@ const ExampleStory = () => {
       <Button isDisabled>Disabled</Button>
       <Button isPending>Pending</Button>
       <Button isDropdown>Dropdown</Button>
-      <Button.Link href="#">Link</Button.Link>
+      <Button.Link href="https://youtu.be/IdkCEioCp24?t=92">Link</Button.Link>
       <Button.Icon>
         <PlusIcon />
       </Button.Icon>
