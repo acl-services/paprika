@@ -55,11 +55,11 @@ const underline = level => {
 };
 
 const hidden = `
-${stylers.visuallyHidden}
+  ${stylers.visuallyHidden}
 `;
 
 const light = `
-font-weight: 400;
+  font-weight: 400;
 `;
 
 export const dividerStyles = `
@@ -69,9 +69,9 @@ export const dividerStyles = `
 `;
 
 export const headingStyles = props => `
-${defaultHeadingStyles}
-${heading[`HEADING_LEVEL_${props.safeDisplayLevel || props.safeLevel}`]}
-${props.isHidden ? hidden : ""}
-${props.hasUnderline ? underline(props.safeDisplayLevel || props.safeLevel) : ""}
-${props.isLight ? light : ""}
+  ${defaultHeadingStyles}
+  ${heading[`HEADING_LEVEL_${props.safeDisplayLevel || props.safeLevel}`]}
+  ${props.isHidden ? hidden : ""}
+  ${props.hasUnderline ? underline(props.safeDisplayLevel || props.safeLevel) : ""}
+  ${props.isLight ? light : ""}
 `;
