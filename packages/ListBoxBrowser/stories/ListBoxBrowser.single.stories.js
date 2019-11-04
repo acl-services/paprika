@@ -3,8 +3,8 @@ import { Story } from "storybook/assets/styles/common.styles";
 import { storiesOf } from "@storybook/react";
 import ListBoxBrowser from "../src";
 
-import dataSingle from "../test/fixtures/single";
-import withNoOptionsSelected from "../test/fixtures/withNoOptionsSelected";
+import dataSingle from "../test/specs/fixtures/single";
+import withNoOptionsSelected from "../test/specs/fixtures/withNoOptionsSelected";
 
 storiesOf("ListBoxBrowser/Single", module)
   .add("basic", () => (

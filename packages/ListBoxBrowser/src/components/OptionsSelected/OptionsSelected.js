@@ -18,14 +18,8 @@ import {
   noOptionsSelected,
 } from "./OptionsSelected.styles";
 
-function getLength(options) {
-  let i = 0;
-  Object.keys(options).forEach(key => {
-    return options[key].forEach(() => {
-      i += 1;
-    });
-  });
-  return i;
+function getTotalOptionsLength(options) {
+  return Object.values(options).reduce((acc, option) => acc + option.length, 0);
 }
 
 export default function OptionsSelected() {
@@ -40,7 +34,7 @@ export default function OptionsSelected() {
     onRemove(option);
   };
 
-  const length = getLength(selectedOptions);
+  const length = getTotalOptionsLength(selectedOptions);
 
   if (!length) {
     return (

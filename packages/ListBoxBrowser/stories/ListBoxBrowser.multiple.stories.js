@@ -2,9 +2,9 @@ import React from "react";
 import { Story } from "storybook/assets/styles/common.styles";
 import { storiesOf } from "@storybook/react";
 import ListBoxBrowser from "../src";
-import dataMultiple from "../test/fixtures/multiple";
-import dataMultipleFirstOptionNoOptions from "../test/fixtures/multiple.firstOptionNoOptions";
-import issues from "../test/fixtures/issues";
+import dataMultiple from "../test/specs/fixtures/multiple";
+import dataMultipleFirstOptionNoOptions from "../test/specs/fixtures/multiple.firstOptionNoOptions";
+import issues from "../test/specs/fixtures/issues";
 import Lazy from "./examples/Lazy";
 
 storiesOf("ListBoxBrowser/Multi", module)
