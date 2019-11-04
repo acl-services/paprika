@@ -1,9 +1,7 @@
 import React from "react";
 import PropTypes from "prop-types";
-import styled from "styled-components";
-import { fontSize, spacer } from "@paprika/stylers/lib/helpers";
-import tokens from "@paprika/tokens/lib/tokens";
 import Button from "@paprika/button";
+import * as styles from "./Header.styles";
 
 const propTypes = {
   children: PropTypes.node.isRequired,
@@ -18,63 +16,26 @@ const defaultProps = {
   onClose: () => {},
 };
 
-const kind = {
-  default: `background: ${tokens.color.white}; color: ${tokens.color.black};`,
-  primary: `background: ${tokens.color.purple}; color: ${tokens.color.white};`,
-};
+const Header = React.forwardRef((props, ref) => {
+  const { children, hasCloseButton, kind, onClose, ...moreProps } = props;
 
-const Wrapper = styled.div`
-  align-items: center;
-  border-bottom: 1px solid ${tokens.border.color};
-  box-shadow: ${tokens.shadow};
-  box-sizing: border-box;
-  display: flex;
-  height: ${spacer(6)};
-  justify-content: space-between;
-  min-height: ${spacer(6)};
-  padding: 0 ${spacer(2)};
-  width: 100%;
-
-  &:focus {
-    outline: 0;
-  }
-
-  .heading--level-1,
-  .heading--level-2,
-  .heading--level-3,
-  .heading--level-4,
-  .heading--level-5 {
-    ${fontSize()};
-    font-weight: 400;
-    margin: 0;
-  }
-
-  ${props => kind[props.kind]}
-`;
-
-const StyledCloseButton = styled(Button.Close)`
-  .button__icon {
-    align-items: center;
-    display: flex;
-    justify-content: center;
-  }
-`;
-
-const Header = React.forwardRef(({ children, hasCloseButton, kind, onClose, ...moreProps }, ref) => (
-  <Wrapper ref={ref} kind={kind} {...moreProps}>
-    <div tabIndex="-1">{children}</div>
-    <div>
-      {hasCloseButton && (
-        <StyledCloseButton
-          data-pka-anchor="takeover.header.close-button"
-          onClick={onClose}
-          isDark={kind === "primary" || undefined}
-          size="small"
-        />
-      )}
+  return (
+    <div css={styles.wrapper} ref={ref} kind={kind} {...moreProps}>
+      <div tabIndex="-1">{children}</div>
+      <div>
+        {hasCloseButton && (
+          <Button.Close
+            css={styles.closeButton}
+            data-pka-anchor="takeover.header.close-button"
+            onClick={onClose}
+            isDark={kind === "primary" || undefined}
+            size="small"
+          />
+        )}
+      </div>
     </div>
-  </Wrapper>
-));
+  );
+});
 
 Header.propTypes = propTypes;
 Header.defaultProps = defaultProps;

@@ -1,6 +1,6 @@
-import styled, { css } from "styled-components";
-import tokens from '@paprika/tokens';
-import { animationDuration } from "../tokens";
+import { css } from "styled-components";
+import tokens from "@paprika/tokens";
+import { animationDuration } from "./tokens";
 
 const openedCss = css`
   opacity: 1;
@@ -17,18 +17,24 @@ const states = {
   exited: closedCss,
 };
 
-const Wrapper = styled.div`
+export const wrapper = css`
   background-color: ${tokens.backgroundColor.level0};
   bottom: 0;
+  display: flex;
+  flex-direction: column;
   left: 0;
   position: fixed;
   right: 0;
   top: 0;
-`;
-
-const AnimatedWrapper = styled(Wrapper)`
   transition: all ${animationDuration}ms ease;
   ${({ state }) => states[state]};
 `;
 
-export default AnimatedWrapper;
+export const header = css`
+  flex: none;
+`;
+
+export const contentWrapper = css`
+  flex: 1 1 auto;
+  overflow-y: auto;
+`;

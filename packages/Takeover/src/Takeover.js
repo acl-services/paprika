@@ -3,8 +3,7 @@ import ReactDOM from "react-dom";
 import PropTypes from "prop-types";
 import { Transition } from "react-transition-group";
 import FocusTrapLibrary from "focus-trap-react";
-import styled from "styled-components";
-import Wrapper from "./components/Wrapper";
+import * as styles from "./Takeover.styles";
 import Header from "./components/Header";
 import LockBodyScroll from "./components/LockBodyScroll";
 import { animationDuration } from "./tokens";
@@ -40,21 +39,9 @@ const defaultProps = {
 const Portal = ({ children, active }) =>
   active ? ReactDOM.createPortal(children, document.body) : <React.Fragment>{children}</React.Fragment>;
 
-const StyledWrapper = styled(Wrapper)`
-  display: flex;
-  flex-direction: column;
-`;
+const Takeover = props => {
+  const { isOpen, onClose, isInline, onAfterClose, onAfterOpen, ...moreProps } = props;
 
-const StyledHeader = styled(Header)`
-  flex: none;
-`;
-
-const ContentWrapper = styled.div`
-  flex: 1 1 auto;
-  overflow-y: auto;
-`;
-
-const Takeover = ({ isOpen, onClose, isInline, onAfterClose, onAfterOpen, ...props }) => {
   function handleTransitionEnter(node) {
     // https://github.com/reactjs/react-transition-group/blob/6dbadb594c7c2a2f15bc47afc6b4374cfd73c7c0/src/CSSTransition.js#L44
     // eslint-disable-next-line no-unused-expressions
@@ -66,7 +53,7 @@ const Takeover = ({ isOpen, onClose, isInline, onAfterClose, onAfterOpen, ...pro
     "Takeover.Header": headerExtracted,
     "Takeover.Content": contentExtracted,
     children,
-  } = extractChildren(props.children, ["Takeover.FocusTrap", "Takeover.Header", "Takeover.Content"]);
+  } = extractChildren(moreProps.children, ["Takeover.FocusTrap", "Takeover.Header", "Takeover.Content"]);
 
   const extendedFocusTrapOptions = focusTrapExtracted ? focusTrapExtracted.props : {};
 
@@ -98,17 +85,26 @@ const Takeover = ({ isOpen, onClose, isInline, onAfterClose, onAfterOpen, ...pro
         >
           {state => (
             <FocusTrapLibrary active={!isInline} focusTrapOptions={focusTrapOptions}>
-              <StyledWrapper
+              <div
+                css={styles.wrapper}
                 state={state}
                 role="dialog"
                 tabIndex="-1"
                 onKeyDown={handleEscKey}
                 data-pka-anchor="takeover"
               >
-                {headerExtracted && <StyledHeader {...headerExtracted.props} onClose={onClose} />}
-                {contentExtracted && <ContentWrapper tabIndex="0">{contentExtracted}</ContentWrapper>}
+                {headerExtracted && <Header css={styles.header} {...headerExtracted.props} onClose={onClose} />}
+                {contentExtracted && (
+                  <div
+                    role="region"
+                    css={styles.contentWrapper}
+                    tabIndex="0" // eslint-disable-line jsx-a11y/no-noninteractive-tabindex
+                  >
+                    {contentExtracted}
+                  </div>
+                )}
                 {children}
-              </StyledWrapper>
+              </div>
             </FocusTrapLibrary>
           )}
         </Transition>
