@@ -67,10 +67,12 @@ function getElementProps(safeDisplayLevel, safeLevel, props) {
     "aria-label": a11yText || undefined,
     safeLevel,
     safeDisplayLevel,
+    isHidden,
+    hasUnderline,
+    isLight,
     ref: domRef,
     role: isSemantic ? null : "heading",
     ...moreProps,
-    ...props,
   };
 }
 
