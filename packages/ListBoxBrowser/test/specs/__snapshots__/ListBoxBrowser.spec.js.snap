@@ -1,5 +1,25 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
+exports[`ListBoxBrowser should find the options using getDataOptionByFn function 1`] = `
+Object {
+  "label": "Angelo Fortunato",
+}
+`;
+
+exports[`ListBoxBrowser should find the options using getDataOptionByFn function 2`] = `
+Object {
+  "key": "test1",
+  "label": "Mutants",
+}
+`;
+
+exports[`ListBoxBrowser should find the options using getDataOptionByFn function 3`] = `
+Object {
+  "key": "test2",
+  "label": "Celestials",
+}
+`;
+
 exports[`ListBoxBrowser should return a data with proper keys 1`] = `
 Array [
   Object {
@@ -282,6 +302,7 @@ Array [
         Object {
           "$$key": "0/1",
           "attributes": Object {
+            "key": "test1",
             "label": "Mutants",
             "options": null,
           },
@@ -291,6 +312,7 @@ Array [
         Object {
           "$$key": "0/2",
           "attributes": Object {
+            "key": "test2",
             "label": "Celestials",
             "options": null,
           },
@@ -715,6 +737,7 @@ Object {
       Object {
         "$$key": "0/1",
         "attributes": Object {
+          "key": "test1",
           "label": "Mutants",
           "options": null,
         },
@@ -724,6 +747,7 @@ Object {
       Object {
         "$$key": "0/2",
         "attributes": Object {
+          "key": "test2",
           "label": "Celestials",
           "options": null,
         },

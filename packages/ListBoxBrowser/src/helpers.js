@@ -243,7 +243,7 @@ export function getDataOptionByFn(data, fn) {
       }
 
       if (hasOptions(option.options)) {
-        return runner(option.options, fn);
+        runner(option.options, fn);
       }
     });
   }
@@ -252,6 +252,7 @@ export function getDataOptionByFn(data, fn) {
     runner(data, fn);
     return node;
   } catch (e) {
+    // will fire if an option is found
     return node;
   }
 }

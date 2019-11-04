@@ -3,7 +3,7 @@ import React from "react";
 import data from "./fixtures/multiple";
 import dataMultipleFirstOptionNoOptions from "./fixtures/multiple.firstOptionNoOptions";
 import dataNoOptions from "./fixtures/multiple.withNoOptions";
-import { getData, getOptionByKey } from "../../src/helpers";
+import { getData, getOptionByKey, getDataOptionByFn } from "../../src/helpers";
 import ListBoxBrowser from "../../src";
 
 const selectedOptions = { current: {} };
@@ -65,5 +65,23 @@ describe("ListBoxBrowser", () => {
       expect(e.message).toBe("At least one option should have options attribute");
       console.error = error;
     }
+  });
+
+  it("should find the options using getDataOptionByFn function", () => {
+    const option = getDataOptionByFn(data, option => {
+      return option.label === "Angelo Fortunato";
+    });
+
+    const test1 = getDataOptionByFn(data, option => {
+      return option.key === "test1";
+    });
+
+    const test2 = getDataOptionByFn(data, option => {
+      return option.key === "test2";
+    });
+
+    expect(option).toMatchSnapshot();
+    expect(test1).toMatchSnapshot();
+    expect(test2).toMatchSnapshot();
   });
 });

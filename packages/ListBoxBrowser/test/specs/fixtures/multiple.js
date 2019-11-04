@@ -42,9 +42,11 @@ export default [
       },
       {
         label: "Mutants",
+        key: "test1",
       },
       {
         label: "Celestials",
+        key: "test2",
       },
     ],
   },
