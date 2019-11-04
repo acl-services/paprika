@@ -54,8 +54,8 @@ const Wrapper = styled.div`
 
 const StyledCloseButton = styled(Button.Close)`
   .button__icon {
-    display: flex;
     align-items: center;
+    display: flex;
     justify-content: center;
   }
 `;

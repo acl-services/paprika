@@ -50,8 +50,8 @@ const StyledHeader = styled(Header)`
 `;
 
 const ContentWrapper = styled.div`
-  overflow-y: auto;
   flex: 1 1 auto;
+  overflow-y: auto;
 `;
 
 const Takeover = ({ isOpen, onClose, isInline, onAfterClose, onAfterOpen, ...props }) => {

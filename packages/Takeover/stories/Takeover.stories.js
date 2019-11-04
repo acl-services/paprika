@@ -13,8 +13,8 @@ const LongBlock = styled.div`
 `;
 
 const DemoFullWidthContent = styled.div`
-  flex: 1 1 auto;
   background-image: linear-gradient(to bottom, #79ff85, #70b3ff);
+  flex: 1 1 auto;
 `;
 
 const TakeoverStory = ({ children }) => {
@@ -47,6 +47,7 @@ storiesOf("Takeover", module)
         {Array(100)
           .fill(null)
           .map((_, i) => (
+            // eslint-disable-next-line react/no-array-index-key
             <p key={i}>Some content here</p>
           ))}
       </Takeover.Content>
