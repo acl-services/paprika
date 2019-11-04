@@ -236,17 +236,15 @@ export function extractedExtendedProps(children) {
 export function getDataOptionByFn(data, fn) {
   let node = null;
   function runner(data, fn) {
-    return data.map(option => {
+    data.forEach(option => {
       if (fn(option)) {
         node = option;
-        throw new Error("option found");
+        throw new Error("We have found the option");
       }
 
       if (hasOptions(option.options)) {
         return runner(option.options, fn);
       }
-
-      return [];
     });
   }
 
