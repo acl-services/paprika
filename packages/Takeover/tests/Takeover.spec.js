@@ -28,7 +28,7 @@ describe("Takeover", () => {
       it("triggers onClose when ESC press", () => {
         given("onClose", () => jest.fn());
 
-        fireEvent.keyDown(given.rendered.container, { key: "Escape", keyCode: 27, which: 27 });
+        fireEvent.keyDown(given.rendered.getByRole("dialog"), { key: "Escape", keyCode: 27, which: 27 });
 
         expect(given.onClose).toHaveBeenCalled();
       });

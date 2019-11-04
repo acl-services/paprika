@@ -4,7 +4,6 @@ import PropTypes from "prop-types";
 import { Transition } from "react-transition-group";
 import FocusTrapLibrary from "focus-trap-react";
 import styled from "styled-components";
-import EscListener from "./components/EscListener";
 import Wrapper from "./components/Wrapper";
 import Header from "./components/Header";
 import LockBodyScroll from "./components/LockBodyScroll";
@@ -33,7 +32,6 @@ const propTypes = {
 
 const defaultProps = {
   isInline: false,
-  shouldStopEscapePropagation: false,
   onAfterClose: () => {},
   onClose: () => {},
   onAfterOpen: () => {},
@@ -57,8 +55,6 @@ const ContentWrapper = styled.div`
 `;
 
 const Takeover = ({ isOpen, onClose, isInline, onAfterClose, onAfterOpen, ...props }) => {
-  const refWrapper = React.useRef(null);
-
   function handleTransitionEnter(node) {
     // https://github.com/reactjs/react-transition-group/blob/6dbadb594c7c2a2f15bc47afc6b4374cfd73c7c0/src/CSSTransition.js#L44
     node.scrollTop;
@@ -78,9 +74,16 @@ const Takeover = ({ isOpen, onClose, isInline, onAfterClose, onAfterOpen, ...pro
     ...extendedFocusTrapOptions,
   };
 
+  function handleEscKey(event) {
+    if (event.key === "Escape") {
+      event.stopPropagation();
+
+      onClose();
+    }
+  }
+
   return (
     <>
-      {isOpen && <EscListener on={onClose} />}
       {isOpen && <LockBodyScroll />}
       <Portal active={!isInline}>
         <Transition
@@ -94,7 +97,7 @@ const Takeover = ({ isOpen, onClose, isInline, onAfterClose, onAfterOpen, ...pro
         >
           {state => (
             <FocusTrapLibrary active={!isInline} focusTrapOptions={focusTrapOptions}>
-              <StyledWrapper ref={refWrapper} state={state} role="dialog" tabIndex="-1">
+              <StyledWrapper state={state} role="dialog" tabIndex="-1" onKeyDown={handleEscKey}>
                 {headerExtracted && <StyledHeader {...headerExtracted.props} onClose={onClose} />}
                 {contentExtracted && <ContentWrapper tabIndex="0">{contentExtracted}</ContentWrapper>}
                 {children}

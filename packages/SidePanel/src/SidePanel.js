@@ -12,7 +12,7 @@ import FocusTrap from "./components/FocusTrap";
 import LockBodyScroll from "./components/LockBodyScroll";
 
 import { extractChildren } from "./helpers";
-import { useOffsetScroll, useEscapeKey } from "./hooks";
+import { useOffsetScroll } from "./hooks";
 
 const propTypes = {
   /** The content for the SidePanel. */
@@ -64,7 +64,6 @@ function SidePanel(props) {
   // Hooks
   const [isVisible, setIsVisible] = React.useState(props.isOpen);
   const offsetScroll = useOffsetScroll(offsetY);
-  useEscapeKey(isOpen, onClose);
 
   // Refs
   const refTrigger = React.useRef(null);
@@ -118,6 +117,14 @@ function SidePanel(props) {
     ...extendedFocusTrapOptions,
   };
 
+  function handleEscKey(event) {
+    if (event.key === "Escape") {
+      event.stopPropagation();
+
+      onClose();
+    }
+  }
+
   let sidePanel = null;
 
   if (isVisible) {
@@ -134,6 +141,7 @@ function SidePanel(props) {
         refHeader={refHeader}
         offsetY={offsetScroll}
         isOpen={isOpen}
+        onKeyDown={handleEscKey}
         {...moreProps}
       >
         {children}
