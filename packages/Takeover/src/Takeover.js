@@ -97,7 +97,13 @@ const Takeover = ({ isOpen, onClose, isInline, onAfterClose, onAfterOpen, ...pro
         >
           {state => (
             <FocusTrapLibrary active={!isInline} focusTrapOptions={focusTrapOptions}>
-              <StyledWrapper state={state} role="dialog" tabIndex="-1" onKeyDown={handleEscKey}>
+              <StyledWrapper
+                state={state}
+                role="dialog"
+                tabIndex="-1"
+                onKeyDown={handleEscKey}
+                data-pka-anchor="takeover"
+              >
                 {headerExtracted && <StyledHeader {...headerExtracted.props} onClose={onClose} />}
                 {contentExtracted && <ContentWrapper tabIndex="0">{contentExtracted}</ContentWrapper>}
                 {children}
