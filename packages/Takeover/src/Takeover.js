@@ -57,6 +57,7 @@ const ContentWrapper = styled.div`
 const Takeover = ({ isOpen, onClose, isInline, onAfterClose, onAfterOpen, ...props }) => {
   function handleTransitionEnter(node) {
     // https://github.com/reactjs/react-transition-group/blob/6dbadb594c7c2a2f15bc47afc6b4374cfd73c7c0/src/CSSTransition.js#L44
+    // eslint-disable-next-line no-unused-expressions
     node.scrollTop;
   }
 
