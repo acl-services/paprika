@@ -31,6 +31,6 @@ const FocusTrap = () => null;
 
 FocusTrap.propTypes = propTypes;
 FocusTrap.defaultProps = defaultProps;
-FocusTrap.componentType = "Takeover.FocusTrap";
+FocusTrap.displayName = "Takeover.FocusTrap";
 
 export default FocusTrap;

@@ -11,6 +11,6 @@ const Content = styled.div`
   box-shadow: ${tokens.shadow};
 `;
 
-Content.componentType = "Takeover.Content";
+Content.displayName = "Takeover.Content";
 
 export default Content;

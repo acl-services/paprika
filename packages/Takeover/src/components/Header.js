@@ -78,6 +78,6 @@ const Header = React.forwardRef(({ children, hasCloseButton, kind, onClose, ...m
 
 Header.propTypes = propTypes;
 Header.defaultProps = defaultProps;
-Header.componentType = "Takeover.Header";
+Header.displayName = "Takeover.Header";
 
 export default Header;
