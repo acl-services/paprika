@@ -1,6 +1,6 @@
 import React from "react";
 import PropTypes from "prop-types";
-import headingStyles from "./Heading.styles";
+import { headingStyles, dividerStyles } from "./Heading.styles";
 
 const propTypes = {
   /** Optional aria text if it should be more descriptive than what is rendered */
@@ -65,6 +65,8 @@ function getElementProps(safeDisplayLevel, safeLevel, props) {
   return {
     "aria-level": isSemantic ? null : safeLevel,
     "aria-label": a11yText || undefined,
+    safeLevel,
+    safeDisplayLevel,
     ref: domRef,
     role: isSemantic ? null : "heading",
     ...moreProps,
@@ -77,10 +79,10 @@ function renderHeadingContent(a11yText, children) {
 }
 
 function Heading(props) {
-  const { a11yText, children, hasDivider, isSemantic, level, displayLevel } = props;
+  const { a11yText, children, displayLevel, hasDivider, isSemantic, level } = props;
   const safeLevel = safeValue(level);
   const safeDisplayLevel = displayLevel ? safeValue(displayLevel) : null;
-  const divider = <span className="heading__divider" />;
+  const divider = <span css={dividerStyles} />;
   const elementProps = getElementProps(safeDisplayLevel, safeLevel, props);
   return (
     <div css={headingStyles} {...elementProps} as={isSemantic ? `h${safeLevel}` : "div"}>
