@@ -1,8 +1,8 @@
 ## Heading
 
-The `<Heading>` component provides heading styles without className, which is already implemented in heading.js so can be used with the attributes to control the styling without importing from Heading.styles.js.If displayLevel exists, the heading will display <h> tag with displayLevel, otherwise it will display <h> tag with level.
+The `<Heading>` component provides six different levels of heading with different stylings such as divider, underline, light or hidden.
 
-It is rendered as a `<h> tag`by default, but can also be rendered as a generic `<div>`, if global CSS conflicts are an issue (when `isSemantic` prop is set to `false`).
+It is rendered as a `<h> tag` by default, but can also be rendered as a generic `<div>`. Set `isSemantic` to false if there are global CSS conflicts.
 
 ### Installation
 
