@@ -59,7 +59,7 @@
     "@paprika/spinner": "^0.2.0",
     "@paprika/stylers": "^0.2.0",
     "@paprika/textarea": "^0.2.0",
-    "@paprika/tokens": "^0.1.8",
+    "@paprika/tokens": "^0.1.7",
     "@storybook/addon-a11y": "^5.2.5",
     "@storybook/addon-actions": "^5.2.5",
     "@storybook/addon-knobs": "^5.2.5",
