@@ -13,7 +13,7 @@ blocks:
         commands:
           - checkout
           - cache restore client-node-modules-$SEMAPHORE_GIT_BRANCH-$(checksum yarn.lock),client-node-modules-$SEMAPHORE_GIT_BRANCH,client-node-modules-master
-          - yarn install --force --frozen-lockfile
+          - yarn install --frozen-lockfile
           - npx lerna bootstrap
           - cache store client-node-modules-$SEMAPHORE_GIT_BRANCH-$(checksum yarn.lock) node_modules
           - cache store cypress-$SEMAPHORE_GIT_BRANCH ~/.cache/Cypress
