@@ -117,7 +117,9 @@ const ExampleStory = () => (
         <InfoIcon />
       </Button.Icon>
       <Button.Icon onClick={clickHandler} icon="🐐" kind="secondary" size="small">
-        {"🦙"}
+        <span role="img" aria-label="Llama">
+          🦙
+        </span>
       </Button.Icon>
     </p>
     <Rule />

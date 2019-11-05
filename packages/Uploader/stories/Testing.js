@@ -109,13 +109,11 @@ export default function Testing(props) {
                 <td>{hasError(file.isValid)}</td>
                 <td>{file.status}</td>
                 <td>
-                  {
-                    <Uploader.ProgressBar
-                      progress={file.progress}
-                      isCompleted={file.status === Uploader.types.SUCCESS}
-                      hasError={!file.isValid}
-                    />
-                  }
+                  <Uploader.ProgressBar
+                    progress={file.progress}
+                    isCompleted={file.status === Uploader.types.SUCCESS}
+                    hasError={!file.isValid}
+                  />
                 </td>
                 <td>{file.error ? file.error.message : ""}</td>
                 <td>{hasError(file.isSizeValid)}</td>
