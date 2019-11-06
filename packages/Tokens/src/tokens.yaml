@@ -105,6 +105,16 @@ highlight:
     with-border:
       box-shadow: 0 0 0 1px $color--blue, 0 0 0 3px $color--blue-lighten-30
       inset-box-shadow: inset 0 0 0 1px $color--blue, inset 0 0 0 3px $color--blue-lighten-30
+  text:
+    added:
+      background: $color--green-lighten-50
+      font: $color--green-lighten-20
+    removed:
+      background: $color--orange-lighten-40
+      font: $color--orange-darken-20
+    selected:
+      background: '#f7f3ba'
+      font: $color--yellow-darken-40
 #
 text-color:
   default: $color--black

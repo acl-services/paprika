@@ -105,7 +105,7 @@ function DatePicker(props) {
 
   function hideCalendar() {
     if (shouldShowCalendar) setShouldShowCalendar(false);
-    inputRef.current.blur();
+    if (inputRef.current) inputRef.current.blur();
   }
 
   function showCalendar() {
@@ -206,7 +206,7 @@ function DatePicker(props) {
   const hasErrorValue = hasError || hasParsingError;
 
   const inputText =
-    (inputRef && inputRef.current && isElementContainsFocus(inputRef.current)) || hasErrorValue
+    (inputRef && isElementContainsFocus(inputRef.current)) || hasErrorValue
       ? inputtedString
       : formatDateProp(humanFormat);
 
