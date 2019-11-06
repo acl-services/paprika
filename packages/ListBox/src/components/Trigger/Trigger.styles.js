@@ -62,8 +62,8 @@ export const iconStyles = css`
 export const ClearButtonStyled = styled(Button.Icon)`
   height: 100%;
   margin-right: 2px;
-  /* 14px + 8px */
   position: absolute;
+  /* 14px + 8px */
   right: ${({ shouldHideCaret }) => (shouldHideCaret ? 0 : "22px")};
   top: 0;
 
