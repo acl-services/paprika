@@ -14,7 +14,7 @@ import invokeOnChange, {
   getSelectedOptionsMulti,
 } from "../../helpers/invokeOnChange";
 
-import { ListBoxTriggerStyled, TriggerActionIconsContainer, ClearButtonStyled, iconStyles } from "./Trigger.styles";
+import { ListBoxTriggerStyled, ClearButtonStyled, iconStyles } from "./Trigger.styles";
 import { getDOMAttributesForListBoxButton } from "../../helpers/DOMAttributes";
 
 const propTypes = {
@@ -137,19 +137,18 @@ export default function Trigger(props) {
       {...getDOMAttributesForListBoxButton(state.idListBox)()}
     >
       {hasRenderTrigger ? renderChildrenProps : renderLabel()}
-      <TriggerActionIconsContainer>
-        {state.selectedOptions.length && hasClearButton && !shouldHideClearButton ? (
-          <ClearButtonStyled
-            isDisabled={isDisabled}
-            data-pka-anchor="clear-button"
-            kind={Button.Kinds.MINOR}
-            onClick={handleClickClear}
-          >
-            <TimesCircleIcon isDisabled={isDisabled} css={iconStyles} />
-          </ClearButtonStyled>
-        ) : null}
-        {shouldHideCaret ? null : caret}
-      </TriggerActionIconsContainer>
+      {state.selectedOptions.length && hasClearButton && !shouldHideClearButton ? (
+        <ClearButtonStyled
+          isDisabled={isDisabled}
+          data-pka-anchor="clear-button"
+          kind={Button.Kinds.MINOR}
+          onClick={handleClickClear}
+          shouldHideCaret={shouldHideCaret}
+        >
+          <TimesCircleIcon isDisabled={isDisabled} css={iconStyles} />
+        </ClearButtonStyled>
+      ) : null}
+      {shouldHideCaret ? null : caret}
     </ListBoxTriggerStyled>
   );
 }
