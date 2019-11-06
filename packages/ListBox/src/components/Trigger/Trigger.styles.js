@@ -48,24 +48,24 @@ export const ListBoxTriggerStyled = styled.div`
   ${triggerStylesProps()}
 `;
 
-export const TriggerActionIconsContainer = styled.div`
-  align-items: center;
-  display: flex;
+export const iconStyles = css`
   height: 100%;
-  justify-content: center;
+  pointer-events: none;
   position: absolute;
   right: ${tokens.space};
   top: 0;
-`;
-
-export const iconStyles = css`
   ${stylers.fontSize(-1)}
 
   ${({ isDisabled }) => isDisabled && `color: ${tokens.color.blackLighten60};`}
 `;
 
 export const ClearButtonStyled = styled(Button.Icon)`
+  height: 100%;
   margin-right: 2px;
+  /* 14px + 8px */
+  position: absolute;
+  right: ${({ shouldHideCaret }) => (shouldHideCaret ? 0 : "22px")};
+  top: 0;
 
   > span {
     height: 14px;
