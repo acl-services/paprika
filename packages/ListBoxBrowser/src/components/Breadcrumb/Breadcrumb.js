@@ -8,7 +8,9 @@ const propTypes = {
   onClick: PropTypes.func.isRequired,
   breadcrumb: PropTypes.arrayOf(PropTypes.object),
 };
-const defaultProps = {};
+const defaultProps = {
+  breadcrumb: [],
+};
 
 export default function Breadcrumb(props) {
   const { breadcrumb, onClick } = props;
