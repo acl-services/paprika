@@ -106,13 +106,13 @@ highlight:
       box-shadow: 0 0 0 1px $color--blue, 0 0 0 3px $color--blue-lighten-30
       inset-box-shadow: inset 0 0 0 1px $color--blue, inset 0 0 0 3px $color--blue-lighten-30
   text:
-    added:
+    green:
       background: $color--green-lighten-50
-      font: $color--green-lighten-20
-    removed:
+      font: $color--green-darken-20
+    orange:
       background: $color--orange-lighten-40
       font: $color--orange-darken-20
-    selected:
+    yellow:
       background: '#f7f3ba'
       font: $color--yellow-darken-40
 #
