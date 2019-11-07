@@ -7,7 +7,7 @@ const defaultHeadingStyles = `
   display: flex;
   font-weight: 700;
   letter-spacing: 0;
-  line-height: 1.2;
+  ${stylers.lineHeight(-1)};
   margin: ${stylers.spacer(2)} 0;
 
   &:focus {
@@ -54,14 +54,6 @@ const underline = level => {
   return result;
 };
 
-const hidden = `
-  ${stylers.visuallyHidden}
-`;
-
-const light = `
-  font-weight: 400;
-`;
-
 export const dividerStyles = `
   border-bottom: 2px solid ${tokens.color.blackLighten70};
   flex: 1;
@@ -71,7 +63,7 @@ export const dividerStyles = `
 export const headingStyles = props => `
   ${defaultHeadingStyles}
   ${heading[`HEADING_LEVEL_${props.safeDisplayLevel || props.safeLevel}`]}
-  ${props.isHidden ? hidden : ""}
+  ${props.isHidden ? stylers.visuallyHidden : ""}
   ${props.hasUnderline ? underline(props.safeDisplayLevel || props.safeLevel) : ""}
-  ${props.isLight ? light : ""}
+  ${props.isLight ? "font-weight: 400;" : ""}
 `;

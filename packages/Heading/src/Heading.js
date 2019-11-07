@@ -87,7 +87,7 @@ function Heading(props) {
   const divider = <span css={dividerStyles} />;
   const elementProps = getElementProps(safeDisplayLevel, safeLevel, props);
   return (
-    <div css={headingStyles} {...elementProps} as={isSemantic ? `h${safeLevel}` : "div"}>
+    <div data-pka-anchor="heading" css={headingStyles} {...elementProps} as={isSemantic ? `h${safeLevel}` : "div"}>
       {renderHeadingContent(a11yText, children)}
       {hasDivider ? divider : null}
     </div>
