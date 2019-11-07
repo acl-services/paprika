@@ -2090,6 +2090,13 @@
     "@svgr/cli" "^4.1.0"
     prop-types "^15.7.2"
 
+"@paprika/stylers@^0.1.5":
+  version "0.1.7"
+  resolved "https://registry.yarnpkg.com/@paprika/stylers/-/stylers-0.1.7.tgz#ae3328853fea2c463af070bdeafdec9ac34d3d9c"
+  integrity sha512-cfCvRbqEBVUIjamaGr8ykoJ9wkfnjkWwQzWwQAit8ySf3Vt+HbpGBOTsBx+Z3GESbHUxim0sN5o6Iwso6sgnDg==
+  dependencies:
+    "@paprika/tokens" "^0.1.6"
+
 "@reach/router@^1.2.1":
   version "1.2.1"
   resolved "https://registry.yarnpkg.com/@reach/router/-/router-1.2.1.tgz#34ae3541a5ac44fa7796e5506a5d7274a162be4e"
