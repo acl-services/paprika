@@ -16,13 +16,13 @@ const defaultProps = {
 };
 
 function Item(props) {
-  const { children, isChecked, isDisabled, onChange } = props;
+  const { children, isChecked, isDisabled, onChange, ...moreProps } = props;
 
   /* eslint-disable jsx-a11y/label-has-associated-control */
   return (
     <div css={itemStyles} isDisabled={isDisabled}>
       <label>
-        <input type="checkbox" checked={isChecked} disabled={isDisabled} onChange={onChange} />
+        <input type="checkbox" checked={isChecked} disabled={isDisabled} onChange={onChange} {...moreProps} />
         {children}
       </label>
     </div>
