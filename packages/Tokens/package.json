@@ -1,6 +1,6 @@
 {
   "name": "@paprika/tokens",
-  "version": "0.1.8",
+  "version": "0.1.9",
   "description": "Design tokens generated as scss + js",
   "author": "@paprika",
   "main": "lib/index.js",
