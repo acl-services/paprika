@@ -1,6 +1,6 @@
 {
   "name": "@paprika/collapsible-checklists",
-  "version": "0.3.0",
+  "version": "0.3.1",
   "description": "CollapsibleChecklists component",
   "author": "@paprika",
   "license": "MIT",
@@ -14,9 +14,9 @@
   },
   "dependencies": {
     "@babel/runtime-corejs2": "^7.3.1",
-    "@paprika/collapsible": "^0.2.0",
-    "@paprika/stylers": "^0.2.0",
-    "@paprika/tokens": "^0.1.7",
+    "@paprika/collapsible": "^0.2.1",
+    "@paprika/stylers": "^0.2.1",
+    "@paprika/tokens": "^0.1.8",
     "prop-types": "^15.7.2"
   },
   "peerDependencies": {

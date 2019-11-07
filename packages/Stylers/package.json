@@ -1,6 +1,6 @@
 {
   "name": "@paprika/stylers",
-  "version": "0.2.0",
+  "version": "0.2.1",
   "description": "Helpers and includes for styled-components",
   "author": "@paprika",
   "main": "lib/index.js",
@@ -13,7 +13,7 @@
     "access": "public"
   },
   "dependencies": {
-    "@paprika/tokens": "^0.1.7"
+    "@paprika/tokens": "^0.1.8"
   },
   "peerDependencies": {
     "styled-components": "^4.2.0"
