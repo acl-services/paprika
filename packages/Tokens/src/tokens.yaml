@@ -108,7 +108,7 @@ highlight:
   text:
     added:
       background: $color--green-lighten-50
-      font: $color--green-lighten-20
+      font: $color--green-darken-20
     removed:
       background: $color--orange-lighten-40
       font: $color--orange-darken-20
