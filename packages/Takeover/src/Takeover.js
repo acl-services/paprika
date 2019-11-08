@@ -1,9 +1,9 @@
 import React from "react";
-import ReactDOM from "react-dom";
 import PropTypes from "prop-types";
 import { Transition } from "react-transition-group";
 import FocusTrapLibrary from "focus-trap-react";
 import LockBodyScroll from "@paprika/helpers/lib/components/LockBodyScroll";
+import Portal from "@paprika/helpers/lib/components/Portal";
 import * as styles from "./Takeover.styles";
 import Header from "./components/Header";
 import { animationDuration } from "./tokens";
@@ -35,9 +35,6 @@ const defaultProps = {
   onClose: () => {},
   onAfterOpen: () => {},
 };
-
-const Portal = ({ children, active }) =>
-  active ? ReactDOM.createPortal(children, document.body) : <React.Fragment>{children}</React.Fragment>;
 
 const Takeover = props => {
   const { isOpen, onClose, isInline, onAfterClose, onAfterOpen, ...moreProps } = props;

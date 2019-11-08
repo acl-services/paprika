@@ -1,8 +1,8 @@
 import React from "react";
-import ReactDOM from "react-dom";
 import PropTypes from "prop-types";
 import { zValue } from "@paprika/stylers/lib/helpers";
 import LockBodyScroll from "@paprika/helpers/lib/components/LockBodyScroll";
+import Portal from "@paprika/helpers/lib/components/Portal";
 import Dialog from "./components/Dialog";
 import Footer from "./components/Footer";
 import Header from "./components/Header";
@@ -148,19 +148,16 @@ function SidePanel(props) {
       </Dialog>
     );
 
-    if (isInline) {
-      sidePanel = dialog;
-    } else {
-      sidePanel = ReactDOM.createPortal(
+    sidePanel = (
+      <Portal active={!isInline}>
         <React.Fragment>
           <FocusTrap focusTrapOptions={focusTrapOptions}>
             <div>{dialog}</div>
           </FocusTrap>
           {overlayExtracted ? React.cloneElement(overlayExtracted, { onClose }) : null}
-        </React.Fragment>,
-        document.body
-      );
-    }
+        </React.Fragment>
+      </Portal>
+    );
   }
 
   const trigger = triggerExtracted ? React.cloneElement(triggerExtracted, { ref: refTrigger }) : null;
