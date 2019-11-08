@@ -15,20 +15,20 @@ const defaultProps = {
   onChange: () => {},
 };
 
-function Item(props) {
-  const { children, isChecked, isDisabled, onChange } = props;
+const Item = React.forwardRef((props, ref) => {
+  const { children, isChecked, isDisabled, onChange, ...moreProps } = props;
 
   /* eslint-disable jsx-a11y/label-has-associated-control */
   return (
     <div css={itemStyles} isDisabled={isDisabled}>
       <label>
-        <input type="checkbox" checked={isChecked} disabled={isDisabled} onChange={onChange} />
+        <input type="checkbox" checked={isChecked} disabled={isDisabled} onChange={onChange} ref={ref} {...moreProps} />
         {children}
       </label>
     </div>
   );
   /* eslint-enable jsx-a11y/label-has-associated-control */
-}
+});
 
 Item.displayName = "Item";
 Item.propTypes = propTypes;

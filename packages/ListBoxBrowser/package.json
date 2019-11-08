@@ -1,6 +1,6 @@
 {
   "name": "@paprika/listbox-browser",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "ListBox Browser component lets you select options in a multi level environment",
   "author": "@paprika",
   "main": "lib/index.js",
@@ -14,19 +14,19 @@
   },
   "dependencies": {
     "@babel/runtime-corejs2": "^7.3.1",
-    "@paprika/helpers": "^0.2.0",
-    "@paprika/icon": "^0.2.0",
-    "@paprika/listbox": "^0.7.0",
-    "@paprika/raw-button": "^0.2.0",
-    "@paprika/spinner": "^0.2.0",
+    "@paprika/helpers": "^0.2.3",
+    "@paprika/icon": "^0.2.5",
+    "@paprika/listbox": "^0.7.2",
+    "@paprika/raw-button": "^0.2.2",
+    "@paprika/spinner": "^0.2.2",
     "@paprika/stylers": "^0.1.5",
-    "@paprika/tokens": "^0.1.4",
+    "@paprika/tokens": "^0.1.9",
     "prop-types": "^15.7.2"
   },
   "peerDependencies": {
     "@paprika/l10n": "^0.2.5",
-    "react-dom": "^16.8.4",
     "react": "^16.8.4",
+    "react-dom": "^16.8.4",
     "styled-components": "^4.2.0"
   }
 }
