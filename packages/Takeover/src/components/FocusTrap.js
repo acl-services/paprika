@@ -1,5 +1,4 @@
 import PropTypes from "prop-types";
-import FocusTrapLibrary from "focus-trap-react";
 
 // properties copy from https://github.com/davidtheclark/focus-trap
 
@@ -54,7 +53,7 @@ const propTypes = {
   clickOutsideDeactivates: PropTypes.bool,
 };
 
-const defaultProps = FocusTrapLibrary.defaultProps.focusTrapOptions;
+const defaultProps = {};
 
 const FocusTrap = () => null;
 
