@@ -35,6 +35,6 @@ export const header = css`
 `;
 
 export const contentWrapper = css`
-  flex: 1 1 auto;
+  flex-grow: 1;
   overflow-y: auto;
 `;
