@@ -16,6 +16,7 @@
     "@babel/runtime-corejs2": "^7.3.1",
     "@paprika/button": "^0.1.13",
     "@paprika/heading": "^0.1.6",
+    "@paprika/helpers": "^0.2.3",
     "@paprika/stylers": "^0.1.5",
     "@paprika/tokens": "^0.1.4",
     "focus-trap-react": "^6.0.0",

@@ -3,9 +3,9 @@ import ReactDOM from "react-dom";
 import PropTypes from "prop-types";
 import { Transition } from "react-transition-group";
 import FocusTrapLibrary from "focus-trap-react";
+import LockBodyScroll from "@paprika/helpers/lib/components/LockBodyScroll";
 import * as styles from "./Takeover.styles";
 import Header from "./components/Header";
-import LockBodyScroll from "./components/LockBodyScroll";
 import { animationDuration } from "./tokens";
 import extractChildren from "./helpers/extractChildren";
 

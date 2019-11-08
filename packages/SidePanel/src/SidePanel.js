@@ -2,6 +2,7 @@ import React from "react";
 import ReactDOM from "react-dom";
 import PropTypes from "prop-types";
 import { zValue } from "@paprika/stylers/lib/helpers";
+import LockBodyScroll from "@paprika/helpers/lib/components/LockBodyScroll";
 import Dialog from "./components/Dialog";
 import Footer from "./components/Footer";
 import Header from "./components/Header";
@@ -9,7 +10,6 @@ import Overlay from "./components/Overlay";
 import Trigger from "./components/Trigger";
 import Group from "./components/Group";
 import FocusTrap from "./components/FocusTrap";
-import LockBodyScroll from "./components/LockBodyScroll";
 
 import { extractChildren } from "./helpers";
 import { useOffsetScroll } from "./hooks";
