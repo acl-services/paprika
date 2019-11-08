@@ -901,6 +901,14 @@
     core-js "^2.6.5"
     regenerator-runtime "^0.13.2"
 
+"@babel/runtime-corejs2@^7.7.2":
+  version "7.7.2"
+  resolved "https://registry.yarnpkg.com/@babel/runtime-corejs2/-/runtime-corejs2-7.7.2.tgz#5a8c4e2f8688ce58adc9eb1d8320b6e7341f96ce"
+  integrity sha512-GfVnHchOBvIMsweQ13l4jd9lT4brkevnavnVOej5g2y7PpTRY+R4pcQlCjWMZoUla5rMLFzaS/Ll2s59cB1TqQ==
+  dependencies:
+    core-js "^2.6.5"
+    regenerator-runtime "^0.13.2"
+
 "@babel/runtime@7.6.0":
   version "7.6.0"
   resolved "https://registry.yarnpkg.com/@babel/runtime/-/runtime-7.6.0.tgz#4fc1d642a9fd0299754e8b5de62c631cf5568205"
@@ -2075,31 +2083,6 @@
   dependencies:
     "@types/node" ">= 8"
 
-"@paprika/button@^0.1.13":
-  version "0.1.17"
-  resolved "https://registry.yarnpkg.com/@paprika/button/-/button-0.1.17.tgz#290c902436afab6fb0cec7ac1bfd71ddfb092824"
-  integrity sha512-t9XcsO5eUAj8Us9uGl/SEavxqkNvSkLrYzcajUErZWlE+S5p7epGjZ+NFFezYfwwCr/tOVCMmxn+zTiS/0k46g==
-  dependencies:
-    "@babel/runtime-corejs2" "^7.3.1"
-    "@paprika/helpers" "^0.2.2"
-    "@paprika/icon" "^0.2.2"
-    "@paprika/raw-button" "^0.1.9"
-    "@paprika/stylers" "^0.1.7"
-    "@paprika/tokens" "^0.1.6"
-    prop-types "^15.7.2"
-
-"@paprika/heading@^0.1.6":
-  version "0.1.8"
-  resolved "https://registry.yarnpkg.com/@paprika/heading/-/heading-0.1.8.tgz#bdbb209a826327840adee4d15a0874646d712ab0"
-  integrity sha512-E5g1CvdejnfCrx/TGIGDRe+2ki6XfR6z3FJz+ZHDjaxMCHCrx0r9wco1bI8csr+uBFxduilrZbDiVfuoOYnCmA==
-  dependencies:
-    "@babel/runtime-corejs2" "^7.3.1"
-    "@paprika/stylers" "^0.1.7"
-    "@paprika/tokens" "^0.1.6"
-    class-names "^1.0.0"
-    classnames "^2.2.6"
-    prop-types "^15.7.2"
-
 "@paprika/helpers@^0.1.2":
   version "0.1.3"
   resolved "https://registry.yarnpkg.com/@paprika/helpers/-/helpers-0.1.3.tgz#2606180f2e5df0316e37442930dba5f016aa8697"
@@ -2115,17 +2098,7 @@
     "@svgr/cli" "^4.1.0"
     prop-types "^15.7.2"
 
-"@paprika/raw-button@^0.1.9":
-  version "0.1.9"
-  resolved "https://registry.yarnpkg.com/@paprika/raw-button/-/raw-button-0.1.9.tgz#2b278f25a8d7afde2a5336f1c1f4fcd070b7c241"
-  integrity sha512-E0PfVoYQPXwKC5ZBE7de4vJIE8nOHVLJXgHA+MORp+xNd07fcZ0Uz+vSOnzBaQh3UIj3ONWkIxtuYR3QG+DLoA==
-  dependencies:
-    "@babel/runtime-corejs2" "^7.3.1"
-    "@paprika/stylers" "^0.1.7"
-    "@paprika/tokens" "^0.1.6"
-    prop-types "^15.7.2"
-
-"@paprika/stylers@^0.1.5", "@paprika/stylers@^0.1.7":
+"@paprika/stylers@^0.1.5":
   version "0.1.7"
   resolved "https://registry.yarnpkg.com/@paprika/stylers/-/stylers-0.1.7.tgz#ae3328853fea2c463af070bdeafdec9ac34d3d9c"
   integrity sha512-cfCvRbqEBVUIjamaGr8ykoJ9wkfnjkWwQzWwQAit8ySf3Vt+HbpGBOTsBx+Z3GESbHUxim0sN5o6Iwso6sgnDg==
