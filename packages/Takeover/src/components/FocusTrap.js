@@ -47,7 +47,10 @@ const propTypes = {
    */
   escapeDeactivates: PropTypes.bool,
 
-  /** Default: false. If true, a click outside the focus trap will deactivate the focus trap and allow the click event to do its thing. */
+  /**
+   * Default: `false`. If `true`, a click outside the focus trap will
+   * deactivate the focus trap and allow the click event to do its thing.
+   */
   clickOutsideDeactivates: PropTypes.bool,
 };
 
