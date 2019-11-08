@@ -24,20 +24,16 @@ const propTypes = {
 
   /** Callback once the takeover has been closed event */
   onAfterClose: PropTypes.func,
-
-  /** Render the takeover inline */
-  isInline: PropTypes.bool,
 };
 
 const defaultProps = {
-  isInline: false,
   onAfterClose: () => {},
   onClose: () => {},
   onAfterOpen: () => {},
 };
 
 const Takeover = props => {
-  const { isOpen, onClose, isInline, onAfterClose, onAfterOpen, ...moreProps } = props;
+  const { isOpen, onClose, onAfterClose, onAfterOpen, ...moreProps } = props;
 
   function handleTransitionEnter(node) {
     // https://github.com/reactjs/react-transition-group/blob/6dbadb594c7c2a2f15bc47afc6b4374cfd73c7c0/src/CSSTransition.js#L44
@@ -70,7 +66,7 @@ const Takeover = props => {
   return (
     <>
       {isOpen && <LockBodyScroll />}
-      <Portal active={!isInline}>
+      <Portal>
         <Transition
           mountOnEnter
           unmountOnExit
@@ -81,7 +77,7 @@ const Takeover = props => {
           onExited={onAfterClose}
         >
           {state => (
-            <FocusTrapLibrary active={!isInline} focusTrapOptions={focusTrapOptions}>
+            <FocusTrapLibrary focusTrapOptions={focusTrapOptions}>
               <div
                 css={styles.wrapper}
                 state={state}

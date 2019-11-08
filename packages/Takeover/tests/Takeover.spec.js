@@ -10,7 +10,6 @@ describe("Takeover", () => {
 
   given("props", () => ({
     isOpen: given.isOpen,
-    isInline: given.isInline,
     onClose: given.onClose,
     children: given.children,
   }));
@@ -20,61 +19,42 @@ describe("Takeover", () => {
   context("when opened", () => {
     given("isOpen", () => true);
 
-    const sharedExamples = () => {
-      it("renders children", () => {
-        expect(given.rendered.getByText(/some content/i)).toBeVisible();
-      });
-
-      it("triggers onClose when ESC press", () => {
-        given("onClose", () => jest.fn());
-
-        fireEvent.keyDown(given.rendered.getByRole("dialog"), { key: "Escape", keyCode: 27, which: 27 });
-
-        expect(given.onClose).toHaveBeenCalled();
-      });
-
-      context("with Takeover.Header", () => {
-        given("children", () => <Takeover.Header>Header</Takeover.Header>);
-
-        it("renders header", () => {
-          expect(given.rendered.getByText(/Header/i)).toBeVisible();
-        });
-      });
-
-      context("with Takeover.Content", () => {
-        given("children", () => <Takeover.Content>Content</Takeover.Content>);
-
-        it("renders content", () => {
-          expect(given.rendered.getByText(/Content/i)).toBeVisible();
-        });
-      });
-    };
-
-    context("when inline", () => {
-      given("isInline", () => true);
-
-      it("renders within container", () => {
-        expect(getByRole(given.rendered.container, "dialog")).toBeVisible();
-      });
-
-      sharedExamples();
+    it("renders children", () => {
+      expect(given.rendered.getByText(/some content/i)).toBeVisible();
     });
 
-    context("when portaled", () => {
-      given("isInline", () => false);
+    it("renders outside of container", () => {
+      expect(queryByRole(given.rendered.container, "dialog")).toBeNull();
+      expect(getByRole(given.rendered.baseElement, "dialog")).toBeVisible();
+    });
 
-      it("renders outside of container", () => {
-        expect(queryByRole(given.rendered.container, "dialog")).toBeNull();
-        expect(getByRole(given.rendered.baseElement, "dialog")).toBeVisible();
+    it("triggers onClose when ESC press", () => {
+      given("onClose", () => jest.fn());
+
+      fireEvent.keyDown(given.rendered.getByRole("dialog"), { key: "Escape", keyCode: 27, which: 27 });
+
+      expect(given.onClose).toHaveBeenCalled();
+    });
+
+    context("with Takeover.Header", () => {
+      given("children", () => <Takeover.Header>Header</Takeover.Header>);
+
+      it("renders header", () => {
+        expect(given.rendered.getByText(/Header/i)).toBeVisible();
       });
+    });
 
-      sharedExamples();
+    context("with Takeover.Content", () => {
+      given("children", () => <Takeover.Content>Content</Takeover.Content>);
+
+      it("renders content", () => {
+        expect(given.rendered.getByText(/Content/i)).toBeVisible();
+      });
     });
   });
 
   context('when closed', () => {
     given("isOpen", () => false);
-    given("isInline", () => false);
 
     it('renders nothing', () => {
       expect(given.rendered.container).toBeEmpty()
@@ -91,7 +71,6 @@ describe("Takeover", () => {
 
   describe("Takeover.Header", () => {
     given("isOpen", () => true);
-    given("isInline", () => false);
     given("headerProps", () => ({}));
 
     given("children", () => <Takeover.Header {...given.headerProps}>Header</Takeover.Header>);
