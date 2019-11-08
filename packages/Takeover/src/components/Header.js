@@ -25,7 +25,6 @@ const Header = React.forwardRef((props, ref) => {
       <div>
         {hasCloseButton && (
           <Button.Close
-            css={styles.closeButton}
             data-pka-anchor="takeover.header.close-button"
             onClick={onClose}
             isDark={kind === "primary" || undefined}

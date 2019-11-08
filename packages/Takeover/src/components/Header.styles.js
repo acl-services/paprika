@@ -35,11 +35,3 @@ export const wrapper = css`
 
   ${props => kind[props.kind]}
 `;
-
-export const closeButton = css`
-  .button__icon {
-    align-items: center;
-    display: flex;
-    justify-content: center;
-  }
-`;
