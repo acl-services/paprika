@@ -8,6 +8,7 @@ import uuidv4 from "uuid/v4";
 
 import { extractChildren } from "./helpers/extractChildren";
 import Description from "./components/Description";
+import ExtraPanel from "./components/ExtraPanel";
 import ErrorMessage from "./components/ErrorMessage";
 import Help from "./components/Help";
 import Label from "./components/Label";
@@ -71,28 +72,24 @@ function FormElement(props) {
     ...moreProps
   } = props;
 
-  const extratedChildren = extractChildren(children, [
+  const extractedChildren = extractChildren(children, [
     "FormElement.Description",
     "FormElement.Error",
     "FormElement.Help",
+    "FormElement.ExtraPanel",
   ]);
   const ariaDescriptionId = React.useRef(uuidv4()).current;
-  const hasError = !!extratedChildren["FormElement.Error"] && !!extratedChildren["FormElement.Error"].props.children;
+  const hasError = !!extractedChildren["FormElement.Error"] && !!extractedChildren["FormElement.Error"].props.children;
   const uniqueInputId = React.useRef(uuidv4()).current;
   const inputId = isNil(id) || id === "" ? uniqueInputId : id;
-  let isFooterInserted = false;
 
   function renderFooter() {
-    if (isFooterInserted) return;
-
-    isFooterInserted = true;
-
     if (hasError) {
-      return extratedChildren["FormElement.Error"];
+      return extractedChildren["FormElement.Error"];
     }
 
-    if (extratedChildren["FormElement.Description"]) {
-      return React.cloneElement(extratedChildren["FormElement.Description"], {
+    if (extractedChildren["FormElement.Description"]) {
+      return React.cloneElement(extractedChildren["FormElement.Description"], {
         ariaDescriptionId,
       });
     }
@@ -100,56 +97,49 @@ function FormElement(props) {
     return null;
   }
 
+  const childAttributes = {
+    className: "form-element--child",
+    "aria-describedby": ariaDescriptionId,
+    id: inputId,
+  };
+
   return (
     <div css={formElementStyles} isInline={isInline} size={size} isDisabled={isDisabled} {...moreProps}>
       <Label
         hasOptionalLabel={hasOptionalLabel}
         hasRequiredLabel={hasRequiredLabel}
-        help={extratedChildren["FormElement.Help"]}
+        help={extractedChildren["FormElement.Help"]}
         id={inputId}
         isInline={isInline}
         isVisuallyHidden={isLabelVisuallyHidden}
         label={label}
       />
+      <div css={isInline ? inlineContainerStyles : null}>
+        {extractedChildren["FormElement.ExtraPanel"] ? extractedChildren["FormElement.ExtraPanel"] : null}
 
-      {extratedChildren.children.map(child => {
-        if (React.isValidElement(child)) {
-          const extendedProps = isString(child.type)
-            ? {
-                "aria-describedby": ariaDescriptionId,
-                id: inputId,
-                disabled: isDisabled,
-                readOnly: isReadOnly,
-              }
-            : {
-                "aria-describedby": ariaDescriptionId,
-                hasError,
-                id: inputId,
-                isDisabled,
-                isReadOnly,
-                size,
-              };
-          const clonedChild = React.cloneElement(child, extendedProps);
+        {extractedChildren.children.map(child => {
+          if (React.isValidElement(child)) {
+            const extendedProps = isString(child.type)
+              ? {
+                  ...childAttributes,
+                  disabled: isDisabled,
+                  readOnly: isReadOnly,
+                }
+              : {
+                  ...childAttributes,
+                  hasError,
+                  isDisabled,
+                  isReadOnly,
+                  size,
+                };
+            const clonedChild = React.cloneElement(child, extendedProps);
+            return clonedChild;
+          }
 
-          return (
-            <React.Fragment key={child.key}>
-              {isInline ? (
-                <div css={inlineContainerStyles}>
-                  {clonedChild}
-                  {renderFooter()}
-                </div>
-              ) : (
-                <React.Fragment>
-                  {clonedChild}
-                  {renderFooter()}
-                </React.Fragment>
-              )}
-            </React.Fragment>
-          );
-        }
-
-        return child;
-      })}
+          return child;
+        })}
+        {renderFooter()}
+      </div>
     </div>
   );
 }
@@ -159,6 +149,7 @@ FormElement.displayName = "FormElement";
 FormElement.propTypes = propTypes;
 FormElement.defaultProps = defaultProps;
 
+FormElement.ExtraPanel = ExtraPanel;
 FormElement.Description = Description;
 FormElement.Error = ErrorMessage;
 FormElement.Help = Help;

@@ -1,5 +1,6 @@
 import { css } from "styled-components";
 
+import tokens from "@paprika/tokens";
 import stylers from "@paprika/stylers";
 
 const FontSizes = {
@@ -23,6 +24,10 @@ const formElementStyles = css`
   ${({ isInline }) => isInline && inlineFormElementStyles};
 
   ${({ isDisabled }) => isDisabled && `opacity: 0.5;`}
+
+  .form-element--child {
+    margin: ${tokens.space} 0;
+  }
 `;
 
 export default formElementStyles;
