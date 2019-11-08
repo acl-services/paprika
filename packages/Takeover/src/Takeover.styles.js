@@ -1,6 +1,6 @@
 import { css } from "styled-components";
 import tokens from "@paprika/tokens";
-import { animationDuration } from "./tokens";
+import { animationDuration } from "./helpers/tokens";
 
 const openedCss = css`
   opacity: 1;

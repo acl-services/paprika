@@ -1,6 +1,6 @@
 import React from "react";
+import extractChildren from "@paprika/helpers/lib/extractChildren";
 import ListBox, { propTypes, defaultProps } from "./ListBox";
-import extractChildren from "./helpers/extractChildren";
 import Divider from "./components/Divider";
 import Filter from "./components/Filter";
 import Footer from "./components/Footer";

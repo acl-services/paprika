@@ -4,10 +4,10 @@ import { Transition } from "react-transition-group";
 import FocusTrapLibrary from "focus-trap-react";
 import LockBodyScroll from "@paprika/helpers/lib/components/LockBodyScroll";
 import Portal from "@paprika/helpers/lib/components/Portal";
+import extractChildren from "@paprika/helpers/lib/extractChildren";
 import * as styles from "./Takeover.styles";
 import Header from "./components/Header";
-import { animationDuration } from "./tokens";
-import extractChildren from "./helpers/extractChildren";
+import { animationDuration } from "./helpers/tokens";
 
 const propTypes = {
   /** The content for the Takeover. */
