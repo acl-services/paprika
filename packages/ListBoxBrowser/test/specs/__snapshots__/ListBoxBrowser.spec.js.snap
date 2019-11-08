@@ -1,0 +1,863 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`ListBoxBrowser should find the options using getDataOptionByFn function 1`] = `
+Object {
+  "label": "Angelo Fortunato",
+}
+`;
+
+exports[`ListBoxBrowser should find the options using getDataOptionByFn function 2`] = `
+Object {
+  "key": "test1",
+  "label": "Mutants",
+}
+`;
+
+exports[`ListBoxBrowser should find the options using getDataOptionByFn function 3`] = `
+Object {
+  "key": "test2",
+  "label": "Celestials",
+}
+`;
+
+exports[`ListBoxBrowser should return a data with proper keys 1`] = `
+Array [
+  Object {
+    "$$key": "0",
+    "attributes": Object {
+      "label": "Marvel Universe",
+      "options": Array [
+        Object {
+          "$$key": "0/0",
+          "attributes": Object {
+            "label": "Humans",
+            "options": Array [
+              Object {
+                "$$key": "0/0/0",
+                "attributes": Object {
+                  "label": "Black Cat",
+                  "options": Array [
+                    Object {
+                      "$$key": "0/0/0/0",
+                      "attributes": Object {
+                        "label": "Akhenaten",
+                        "options": null,
+                      },
+                      "hasOptions": false,
+                      "parent": "0/0/0",
+                    },
+                    Object {
+                      "$$key": "0/0/0/1",
+                      "attributes": Object {
+                        "label": "Alistair Smythe",
+                        "options": null,
+                      },
+                      "hasOptions": false,
+                      "parent": "0/0/0",
+                    },
+                    Object {
+                      "$$key": "0/0/0/2",
+                      "attributes": Object {
+                        "label": "Angelo Fortunato",
+                        "options": null,
+                      },
+                      "hasOptions": false,
+                      "parent": "0/0/0",
+                    },
+                    Object {
+                      "$$key": "0/0/0/3",
+                      "attributes": Object {
+                        "label": "Arcade",
+                        "options": null,
+                      },
+                      "hasOptions": false,
+                      "parent": "0/0/0",
+                    },
+                    Object {
+                      "$$key": "0/0/0/4",
+                      "attributes": Object {
+                        "label": "Aria",
+                        "options": null,
+                      },
+                      "hasOptions": false,
+                      "parent": "0/0/0",
+                    },
+                    Object {
+                      "$$key": "0/0/0/5",
+                      "attributes": Object {
+                        "label": "Baal",
+                        "options": null,
+                      },
+                      "hasOptions": false,
+                      "parent": "0/0/0",
+                    },
+                  ],
+                },
+                "hasOptions": true,
+                "parent": "0/0",
+              },
+              Object {
+                "$$key": "0/0/1",
+                "attributes": Object {
+                  "label": "Silver Sable",
+                  "options": null,
+                },
+                "hasOptions": false,
+                "parent": "0/0",
+              },
+              Object {
+                "$$key": "0/0/2",
+                "attributes": Object {
+                  "label": "Red Skull",
+                  "options": null,
+                },
+                "hasOptions": false,
+                "parent": "0/0",
+              },
+              Object {
+                "$$key": "0/0/3",
+                "attributes": Object {
+                  "label": "Vulture",
+                  "options": null,
+                },
+                "hasOptions": false,
+                "parent": "0/0",
+              },
+              Object {
+                "$$key": "0/0/4",
+                "attributes": Object {
+                  "label": "Falcon",
+                  "options": null,
+                },
+                "hasOptions": false,
+                "parent": "0/0",
+              },
+              Object {
+                "$$key": "0/0/5",
+                "attributes": Object {
+                  "label": "Kraven the hunter",
+                  "options": null,
+                },
+                "hasOptions": false,
+                "parent": "0/0",
+              },
+              Object {
+                "$$key": "0/0/6",
+                "attributes": Object {
+                  "label": "Bruce banner",
+                  "options": null,
+                },
+                "hasOptions": false,
+                "parent": "0/0",
+              },
+              Object {
+                "$$key": "0/0/7",
+                "attributes": Object {
+                  "label": "Moon Knight",
+                  "options": null,
+                },
+                "hasOptions": false,
+                "parent": "0/0",
+              },
+              Object {
+                "$$key": "0/0/8",
+                "attributes": Object {
+                  "label": "KingPin",
+                  "options": null,
+                },
+                "hasOptions": false,
+                "parent": "0/0",
+              },
+              Object {
+                "$$key": "0/0/9",
+                "attributes": Object {
+                  "label": "Doctor Octopus",
+                  "options": null,
+                },
+                "hasOptions": false,
+                "parent": "0/0",
+              },
+              Object {
+                "$$key": "0/0/10",
+                "attributes": Object {
+                  "label": "Elektra",
+                  "options": null,
+                },
+                "hasOptions": false,
+                "parent": "0/0",
+              },
+              Object {
+                "$$key": "0/0/11",
+                "attributes": Object {
+                  "label": "Black Widow",
+                  "options": null,
+                },
+                "hasOptions": false,
+                "parent": "0/0",
+              },
+              Object {
+                "$$key": "0/0/12",
+                "attributes": Object {
+                  "label": "Hawkeye",
+                  "options": null,
+                },
+                "hasOptions": false,
+                "parent": "0/0",
+              },
+              Object {
+                "$$key": "0/0/13",
+                "attributes": Object {
+                  "label": "Bullseye",
+                  "options": null,
+                },
+                "hasOptions": false,
+                "parent": "0/0",
+              },
+              Object {
+                "$$key": "0/0/14",
+                "attributes": Object {
+                  "label": "TaskMaster",
+                  "options": null,
+                },
+                "hasOptions": false,
+                "parent": "0/0",
+              },
+              Object {
+                "$$key": "0/0/15",
+                "attributes": Object {
+                  "label": "Star-Lord",
+                  "options": null,
+                },
+                "hasOptions": false,
+                "parent": "0/0",
+              },
+              Object {
+                "$$key": "0/0/16",
+                "attributes": Object {
+                  "label": "DareDevil",
+                  "options": null,
+                },
+                "hasOptions": false,
+                "parent": "0/0",
+              },
+              Object {
+                "$$key": "0/0/17",
+                "attributes": Object {
+                  "label": "Ikari",
+                  "options": null,
+                },
+                "hasOptions": false,
+                "parent": "0/0",
+              },
+              Object {
+                "$$key": "0/0/18",
+                "attributes": Object {
+                  "label": "War Machine",
+                  "options": null,
+                },
+                "hasOptions": false,
+                "parent": "0/0",
+              },
+              Object {
+                "$$key": "0/0/19",
+                "attributes": Object {
+                  "label": "Nick Fury",
+                  "options": null,
+                },
+                "hasOptions": false,
+                "parent": "0/0",
+              },
+              Object {
+                "$$key": "0/0/20",
+                "attributes": Object {
+                  "label": "Hank Pym",
+                  "options": null,
+                },
+                "hasOptions": false,
+                "parent": "0/0",
+              },
+              Object {
+                "$$key": "0/0/21",
+                "attributes": Object {
+                  "label": "Captain America",
+                  "options": null,
+                },
+                "hasOptions": false,
+                "parent": "0/0",
+              },
+              Object {
+                "$$key": "0/0/22",
+                "attributes": Object {
+                  "label": "Iron Man",
+                  "options": null,
+                },
+                "hasOptions": false,
+                "parent": "0/0",
+              },
+            ],
+          },
+          "hasOptions": true,
+          "parent": "0",
+        },
+        Object {
+          "$$key": "0/1",
+          "attributes": Object {
+            "key": "test1",
+            "label": "Mutants",
+            "options": null,
+          },
+          "hasOptions": false,
+          "parent": "0",
+        },
+        Object {
+          "$$key": "0/2",
+          "attributes": Object {
+            "key": "test2",
+            "label": "Celestials",
+            "options": null,
+          },
+          "hasOptions": false,
+          "parent": "0",
+        },
+      ],
+    },
+    "hasOptions": true,
+    "parent": "root",
+  },
+  Object {
+    "$$key": "1",
+    "attributes": Object {
+      "label": "DC Universe",
+      "options": Array [
+        Object {
+          "$$key": "1/0",
+          "attributes": Object {
+            "label": "Humans",
+            "options": null,
+          },
+          "hasOptions": false,
+          "parent": "1",
+        },
+        Object {
+          "$$key": "1/1",
+          "attributes": Object {
+            "label": "Meta Humans",
+            "options": null,
+          },
+          "hasOptions": false,
+          "parent": "1",
+        },
+        Object {
+          "$$key": "1/2",
+          "attributes": Object {
+            "label": "The Quintessence",
+            "options": Array [
+              Object {
+                "$$key": "1/2/0",
+                "attributes": Object {
+                  "label": "Zeus",
+                  "options": null,
+                },
+                "hasOptions": false,
+                "parent": "1/2",
+              },
+              Object {
+                "$$key": "1/2/1",
+                "attributes": Object {
+                  "label": "Ganthet",
+                  "options": null,
+                },
+                "hasOptions": false,
+                "parent": "1/2",
+              },
+              Object {
+                "$$key": "1/2/2",
+                "attributes": Object {
+                  "label": "Shazam",
+                  "options": null,
+                },
+                "hasOptions": false,
+                "parent": "1/2",
+              },
+              Object {
+                "$$key": "1/2/3",
+                "attributes": Object {
+                  "label": "Highfather",
+                  "options": null,
+                },
+                "hasOptions": false,
+                "parent": "1/2",
+              },
+            ],
+          },
+          "hasOptions": true,
+          "parent": "1",
+        },
+      ],
+    },
+    "hasOptions": true,
+    "parent": "root",
+  },
+  Object {
+    "$$key": "2",
+    "attributes": Object {
+      "label": "Starcraft Universe",
+      "options": Array [
+        Object {
+          "$$key": "2/0",
+          "attributes": Object {
+            "label": "Terrans",
+            "options": null,
+          },
+          "hasOptions": false,
+          "parent": "2",
+        },
+        Object {
+          "$$key": "2/1",
+          "attributes": Object {
+            "label": "Zergs",
+            "options": null,
+          },
+          "hasOptions": false,
+          "parent": "2",
+        },
+        Object {
+          "$$key": "2/2",
+          "attributes": Object {
+            "label": "Protos",
+            "options": null,
+          },
+          "hasOptions": false,
+          "parent": "2",
+        },
+      ],
+    },
+    "hasOptions": true,
+    "parent": "root",
+  },
+  Object {
+    "$$key": "3",
+    "attributes": Object {
+      "label": "Cartoon Network",
+      "options": null,
+    },
+    "hasOptions": false,
+    "parent": "root",
+  },
+  Object {
+    "$$key": "4",
+    "attributes": Object {
+      "label": "Dragon Ball",
+      "options": null,
+    },
+    "hasOptions": false,
+    "parent": "root",
+  },
+]
+`;
+
+exports[`ListBoxBrowser should return option with $$key === 0 1`] = `
+Object {
+  "$$key": "0",
+  "attributes": Object {
+    "label": "Marvel Universe",
+    "options": Array [
+      Object {
+        "$$key": "0/0",
+        "attributes": Object {
+          "label": "Humans",
+          "options": Array [
+            Object {
+              "$$key": "0/0/0",
+              "attributes": Object {
+                "label": "Black Cat",
+                "options": Array [
+                  Object {
+                    "$$key": "0/0/0/0",
+                    "attributes": Object {
+                      "label": "Akhenaten",
+                      "options": null,
+                    },
+                    "hasOptions": false,
+                    "parent": "0/0/0",
+                  },
+                  Object {
+                    "$$key": "0/0/0/1",
+                    "attributes": Object {
+                      "label": "Alistair Smythe",
+                      "options": null,
+                    },
+                    "hasOptions": false,
+                    "parent": "0/0/0",
+                  },
+                  Object {
+                    "$$key": "0/0/0/2",
+                    "attributes": Object {
+                      "label": "Angelo Fortunato",
+                      "options": null,
+                    },
+                    "hasOptions": false,
+                    "parent": "0/0/0",
+                  },
+                  Object {
+                    "$$key": "0/0/0/3",
+                    "attributes": Object {
+                      "label": "Arcade",
+                      "options": null,
+                    },
+                    "hasOptions": false,
+                    "parent": "0/0/0",
+                  },
+                  Object {
+                    "$$key": "0/0/0/4",
+                    "attributes": Object {
+                      "label": "Aria",
+                      "options": null,
+                    },
+                    "hasOptions": false,
+                    "parent": "0/0/0",
+                  },
+                  Object {
+                    "$$key": "0/0/0/5",
+                    "attributes": Object {
+                      "label": "Baal",
+                      "options": null,
+                    },
+                    "hasOptions": false,
+                    "parent": "0/0/0",
+                  },
+                ],
+              },
+              "hasOptions": true,
+              "parent": "0/0",
+            },
+            Object {
+              "$$key": "0/0/1",
+              "attributes": Object {
+                "label": "Silver Sable",
+                "options": null,
+              },
+              "hasOptions": false,
+              "parent": "0/0",
+            },
+            Object {
+              "$$key": "0/0/2",
+              "attributes": Object {
+                "label": "Red Skull",
+                "options": null,
+              },
+              "hasOptions": false,
+              "parent": "0/0",
+            },
+            Object {
+              "$$key": "0/0/3",
+              "attributes": Object {
+                "label": "Vulture",
+                "options": null,
+              },
+              "hasOptions": false,
+              "parent": "0/0",
+            },
+            Object {
+              "$$key": "0/0/4",
+              "attributes": Object {
+                "label": "Falcon",
+                "options": null,
+              },
+              "hasOptions": false,
+              "parent": "0/0",
+            },
+            Object {
+              "$$key": "0/0/5",
+              "attributes": Object {
+                "label": "Kraven the hunter",
+                "options": null,
+              },
+              "hasOptions": false,
+              "parent": "0/0",
+            },
+            Object {
+              "$$key": "0/0/6",
+              "attributes": Object {
+                "label": "Bruce banner",
+                "options": null,
+              },
+              "hasOptions": false,
+              "parent": "0/0",
+            },
+            Object {
+              "$$key": "0/0/7",
+              "attributes": Object {
+                "label": "Moon Knight",
+                "options": null,
+              },
+              "hasOptions": false,
+              "parent": "0/0",
+            },
+            Object {
+              "$$key": "0/0/8",
+              "attributes": Object {
+                "label": "KingPin",
+                "options": null,
+              },
+              "hasOptions": false,
+              "parent": "0/0",
+            },
+            Object {
+              "$$key": "0/0/9",
+              "attributes": Object {
+                "label": "Doctor Octopus",
+                "options": null,
+              },
+              "hasOptions": false,
+              "parent": "0/0",
+            },
+            Object {
+              "$$key": "0/0/10",
+              "attributes": Object {
+                "label": "Elektra",
+                "options": null,
+              },
+              "hasOptions": false,
+              "parent": "0/0",
+            },
+            Object {
+              "$$key": "0/0/11",
+              "attributes": Object {
+                "label": "Black Widow",
+                "options": null,
+              },
+              "hasOptions": false,
+              "parent": "0/0",
+            },
+            Object {
+              "$$key": "0/0/12",
+              "attributes": Object {
+                "label": "Hawkeye",
+                "options": null,
+              },
+              "hasOptions": false,
+              "parent": "0/0",
+            },
+            Object {
+              "$$key": "0/0/13",
+              "attributes": Object {
+                "label": "Bullseye",
+                "options": null,
+              },
+              "hasOptions": false,
+              "parent": "0/0",
+            },
+            Object {
+              "$$key": "0/0/14",
+              "attributes": Object {
+                "label": "TaskMaster",
+                "options": null,
+              },
+              "hasOptions": false,
+              "parent": "0/0",
+            },
+            Object {
+              "$$key": "0/0/15",
+              "attributes": Object {
+                "label": "Star-Lord",
+                "options": null,
+              },
+              "hasOptions": false,
+              "parent": "0/0",
+            },
+            Object {
+              "$$key": "0/0/16",
+              "attributes": Object {
+                "label": "DareDevil",
+                "options": null,
+              },
+              "hasOptions": false,
+              "parent": "0/0",
+            },
+            Object {
+              "$$key": "0/0/17",
+              "attributes": Object {
+                "label": "Ikari",
+                "options": null,
+              },
+              "hasOptions": false,
+              "parent": "0/0",
+            },
+            Object {
+              "$$key": "0/0/18",
+              "attributes": Object {
+                "label": "War Machine",
+                "options": null,
+              },
+              "hasOptions": false,
+              "parent": "0/0",
+            },
+            Object {
+              "$$key": "0/0/19",
+              "attributes": Object {
+                "label": "Nick Fury",
+                "options": null,
+              },
+              "hasOptions": false,
+              "parent": "0/0",
+            },
+            Object {
+              "$$key": "0/0/20",
+              "attributes": Object {
+                "label": "Hank Pym",
+                "options": null,
+              },
+              "hasOptions": false,
+              "parent": "0/0",
+            },
+            Object {
+              "$$key": "0/0/21",
+              "attributes": Object {
+                "label": "Captain America",
+                "options": null,
+              },
+              "hasOptions": false,
+              "parent": "0/0",
+            },
+            Object {
+              "$$key": "0/0/22",
+              "attributes": Object {
+                "label": "Iron Man",
+                "options": null,
+              },
+              "hasOptions": false,
+              "parent": "0/0",
+            },
+          ],
+        },
+        "hasOptions": true,
+        "parent": "0",
+      },
+      Object {
+        "$$key": "0/1",
+        "attributes": Object {
+          "key": "test1",
+          "label": "Mutants",
+          "options": null,
+        },
+        "hasOptions": false,
+        "parent": "0",
+      },
+      Object {
+        "$$key": "0/2",
+        "attributes": Object {
+          "key": "test2",
+          "label": "Celestials",
+          "options": null,
+        },
+        "hasOptions": false,
+        "parent": "0",
+      },
+    ],
+  },
+  "hasOptions": true,
+  "parent": "root",
+}
+`;
+
+exports[`ListBoxBrowser should return option with $$key === 1 1`] = `
+Object {
+  "$$key": "1",
+  "attributes": Object {
+    "label": "DC Universe",
+    "options": Array [
+      Object {
+        "$$key": "1/0",
+        "attributes": Object {
+          "label": "Humans",
+          "options": null,
+        },
+        "hasOptions": false,
+        "parent": "1",
+      },
+      Object {
+        "$$key": "1/1",
+        "attributes": Object {
+          "label": "Meta Humans",
+          "options": null,
+        },
+        "hasOptions": false,
+        "parent": "1",
+      },
+      Object {
+        "$$key": "1/2",
+        "attributes": Object {
+          "label": "The Quintessence",
+          "options": Array [
+            Object {
+              "$$key": "1/2/0",
+              "attributes": Object {
+                "label": "Zeus",
+                "options": null,
+              },
+              "hasOptions": false,
+              "parent": "1/2",
+            },
+            Object {
+              "$$key": "1/2/1",
+              "attributes": Object {
+                "label": "Ganthet",
+                "options": null,
+              },
+              "hasOptions": false,
+              "parent": "1/2",
+            },
+            Object {
+              "$$key": "1/2/2",
+              "attributes": Object {
+                "label": "Shazam",
+                "options": null,
+              },
+              "hasOptions": false,
+              "parent": "1/2",
+            },
+            Object {
+              "$$key": "1/2/3",
+              "attributes": Object {
+                "label": "Highfather",
+                "options": null,
+              },
+              "hasOptions": false,
+              "parent": "1/2",
+            },
+          ],
+        },
+        "hasOptions": true,
+        "parent": "1",
+      },
+    ],
+  },
+  "hasOptions": true,
+  "parent": "root",
+}
+`;
+
+exports[`ListBoxBrowser should return option with $$key === 1/2/1 1`] = `
+Object {
+  "$$key": "1/2/1",
+  "attributes": Object {
+    "label": "Ganthet",
+    "options": null,
+  },
+  "hasOptions": false,
+  "parent": "1/2",
+}
+`;
+
+exports[`ListBoxBrowser should return option with $$key === 2/1 1`] = `
+Object {
+  "$$key": "2/1",
+  "attributes": Object {
+    "label": "Zergs",
+    "options": null,
+  },
+  "hasOptions": false,
+  "parent": "2",
+}
+`;

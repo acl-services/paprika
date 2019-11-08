@@ -14,7 +14,7 @@ import invokeOnChange, {
   getSelectedOptionsMulti,
 } from "../../helpers/invokeOnChange";
 
-import { ListBoxTriggerStyled, TriggerActionIconsContainer, ClearButtonStyled, iconStyles } from "./Trigger.styles";
+import { ListBoxTriggerStyled, ClearButtonStyled, iconStyles } from "./Trigger.styles";
 import { getDOMAttributesForListBoxButton } from "../../helpers/DOMAttributes";
 
 const propTypes = {
@@ -23,6 +23,7 @@ const propTypes = {
   onClickClear: PropTypes.func,
   onClickFooterAccept: PropTypes.func,
   placeholder: PropTypes.string,
+  isHidden: PropTypes.bool,
 };
 
 const defaultProps = {
@@ -31,11 +32,12 @@ const defaultProps = {
   onClickClear: null,
   onClickFooterAccept: null,
   placeholder: "Select...",
+  isHidden: false,
 };
 
 export default function Trigger(props) {
   const [state, dispatch] = useListBox();
-  const { placeholder, hasClearButton, onClickFooterAccept, children } = props;
+  const { placeholder, hasClearButton, onClickFooterAccept, children, isHidden } = props;
   const { isDisabled, refTriggerContainer, refTrigger, isMulti, idListBox } = state;
 
   const handleClick = () => {
@@ -87,7 +89,6 @@ export default function Trigger(props) {
       />
     ) : (
       <RawButton
-        type="button"
         onClick={handleClick}
         ref={refTrigger}
         onKeyDown={handleKeyboardKeys(state, dispatch)}
@@ -129,6 +130,10 @@ export default function Trigger(props) {
 
   const shouldHideCaret = hasRenderTrigger || state.isInline;
 
+  if (isHidden && state.isInline) {
+    return <ListBoxTriggerStyled data-pka-anchor="listbox-trigger" isHidden />;
+  }
+
   return (
     <ListBoxTriggerStyled
       isInline={state.isInline}
@@ -137,19 +142,18 @@ export default function Trigger(props) {
       {...getDOMAttributesForListBoxButton(state.idListBox)()}
     >
       {hasRenderTrigger ? renderChildrenProps : renderLabel()}
-      <TriggerActionIconsContainer>
-        {state.selectedOptions.length && hasClearButton && !shouldHideClearButton ? (
-          <ClearButtonStyled
-            isDisabled={isDisabled}
-            data-pka-anchor="clear-button"
-            kind={Button.Kinds.MINOR}
-            onClick={handleClickClear}
-          >
-            <TimesCircleIcon isDisabled={isDisabled} css={iconStyles} />
-          </ClearButtonStyled>
-        ) : null}
-        {shouldHideCaret ? null : caret}
-      </TriggerActionIconsContainer>
+      {state.selectedOptions.length && hasClearButton && !shouldHideClearButton ? (
+        <ClearButtonStyled
+          isDisabled={isDisabled}
+          data-pka-anchor="clear-button"
+          kind={Button.Kinds.MINOR}
+          onClick={handleClickClear}
+          shouldHideCaret={shouldHideCaret}
+        >
+          <TimesCircleIcon isDisabled={isDisabled} css={iconStyles} />
+        </ClearButtonStyled>
+      ) : null}
+      {shouldHideCaret ? null : caret}
     </ListBoxTriggerStyled>
   );
 }

@@ -27,6 +27,12 @@ const triggerStyles = `
 `;
 
 const triggerStylesProps = () => props => {
+  if (props.isHidden) {
+    return css`
+      border: 1px solid #d7d7d7;
+    `;
+  }
+
   const isDisabled = props.isDisabled ? `color: ${tokens.color.blackLighten60};` : "";
   return props.isInline
     ? `
@@ -48,24 +54,24 @@ export const ListBoxTriggerStyled = styled.div`
   ${triggerStylesProps()}
 `;
 
-export const TriggerActionIconsContainer = styled.div`
-  align-items: center;
-  display: flex;
+export const iconStyles = css`
   height: 100%;
-  justify-content: center;
+  pointer-events: none;
   position: absolute;
   right: ${tokens.space};
   top: 0;
-`;
-
-export const iconStyles = css`
   ${stylers.fontSize(-1)}
 
   ${({ isDisabled }) => isDisabled && `color: ${tokens.color.blackLighten60};`}
 `;
 
 export const ClearButtonStyled = styled(Button.Icon)`
+  height: 100%;
   margin-right: 2px;
+  position: absolute;
+  /* 14px + 8px */
+  right: ${({ shouldHideCaret }) => (shouldHideCaret ? 0 : "22px")};
+  top: 0;
 
   > span {
     height: 14px;

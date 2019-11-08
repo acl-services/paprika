@@ -12,9 +12,9 @@ export const iconStyles = css`
 `;
 
 const helpStyles = css`
-  align-self: center;
-  display: block;
+  display: inline-block;
   height: 1em;
+  vertical-align: middle;
 `;
 
 export default helpStyles;
