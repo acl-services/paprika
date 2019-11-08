@@ -20,9 +20,7 @@ You can use any of the following components to compose the Takeover:
   <Takeover.Header>
     <Heading level={2}>Header</Heading>
   </Takeover.Header>
-  <Takeover.Content>
-    My content
-  </Takeover.Content>
+  <Takeover.Content>My content</Takeover.Content>
 </Takeover>
 ```
 

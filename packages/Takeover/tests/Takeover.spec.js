@@ -53,11 +53,11 @@ describe("Takeover", () => {
     });
   });
 
-  context('when closed', () => {
+  context("when closed", () => {
     given("isOpen", () => false);
 
-    it('renders nothing', () => {
-      expect(given.rendered.container).toBeEmpty()
+    it("renders nothing", () => {
+      expect(given.rendered.container).toBeEmpty();
     });
 
     it("does not trigger onClose when ESC press", () => {
