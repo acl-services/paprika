@@ -132,8 +132,7 @@ function FormElement(props) {
                   isReadOnly,
                   size,
                 };
-            const clonedChild = React.cloneElement(child, extendedProps);
-            return clonedChild;
+            return React.cloneElement(child, extendedProps);
           }
 
           return child;
