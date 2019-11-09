@@ -43,9 +43,9 @@ const ExampleStory = () => {
       <Tagline>Form Element with checkboxs.</Tagline>
       <Rule />
       <FormElement label="Form Label">
-        <Checkbox>Checkbox response</Checkbox>
-        <Checkbox>Checkbox response</Checkbox>
-        <Checkbox>Checkbox response</Checkbox>
+        <Checkbox onChange={() => {}}>Checkbox response</Checkbox>
+        <Checkbox onChange={() => {}}>Checkbox response</Checkbox>
+        <Checkbox onChange={() => {}}>Checkbox response</Checkbox>
         <FormElement.Description>
           <span>Description of this field.</span>
         </FormElement.Description>
@@ -59,7 +59,7 @@ const ExampleStory = () => {
       <Tagline>Form Element with Date Picker.</Tagline>
       <Rule />
       <FormElement label="Form Label">
-        <DatePicker />
+        <DatePicker onChange={() => {}} />
         <FormElement.Description>
           <span>Description of this field.</span>
         </FormElement.Description>
