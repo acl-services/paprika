@@ -241,13 +241,15 @@ function DatePicker(props) {
           ref={calendarRef}
           shouldShowCalendar={shouldShowCalendar}
         >
-          <Calendar
-            date={date}
-            isVisible={shouldShowCalendar}
-            onSelect={handleSelect}
-            possibleDate={debouncedPossibleDate}
-            resetPossibleDate={handleResetPossibleDate}
-          />
+          {shouldShowCalendar ? (
+            <Calendar
+              date={date}
+              isVisible={shouldShowCalendar}
+              onSelect={handleSelect}
+              possibleDate={debouncedPossibleDate}
+              resetPossibleDate={handleResetPossibleDate}
+            />
+          ) : null}
         </div>
       </Popover.Content>
     </Popover>
