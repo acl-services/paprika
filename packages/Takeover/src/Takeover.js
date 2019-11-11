@@ -86,10 +86,7 @@ const Takeover = props => {
               >
                 {headerExtracted && <styled.Header {...headerExtracted.props} onClose={onClose} />}
                 {contentExtracted && (
-                  <styled.ContentWrapper
-                    role="region"
-                    tabIndex="0"
-                  >
+                  <styled.ContentWrapper role="region" tabIndex="0">
                     {contentExtracted}
                   </styled.ContentWrapper>
                 )}
