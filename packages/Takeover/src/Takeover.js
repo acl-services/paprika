@@ -77,7 +77,6 @@ const Takeover = props => {
         >
           {state => (
             <FocusTrapLibrary focusTrapOptions={focusTrapOptions}>
-              {/* eslint-disable-next-line jsx-a11y/no-noninteractive-element-interactions */}
               <styled.Wrapper
                 state={state}
                 role="dialog"
@@ -89,7 +88,7 @@ const Takeover = props => {
                 {contentExtracted && (
                   <styled.ContentWrapper
                     role="region"
-                    tabIndex="0" // eslint-disable-line jsx-a11y/no-noninteractive-tabindex
+                    tabIndex="0"
                   >
                     {contentExtracted}
                   </styled.ContentWrapper>
