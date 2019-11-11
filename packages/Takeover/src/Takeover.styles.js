@@ -1,6 +1,7 @@
-import { css } from "styled-components";
+import styled, { css } from "styled-components";
 import tokens from "@paprika/tokens";
 import { animationDuration } from "./helpers/tokens";
+import OriginalHeader from "./components/Header";
 
 const openedCss = css`
   opacity: 1;
@@ -17,7 +18,7 @@ const states = {
   exited: closedCss,
 };
 
-export const wrapper = css`
+export const Wrapper = styled.div`
   background-color: ${tokens.backgroundColor.level0};
   bottom: 0;
   display: flex;
@@ -30,11 +31,11 @@ export const wrapper = css`
   ${({ state }) => states[state]};
 `;
 
-export const header = css`
+export const Header = styled(OriginalHeader)`
   flex: none;
 `;
 
-export const contentWrapper = css`
+export const ContentWrapper = styled.div`
   flex-grow: 1;
   overflow-y: auto;
 `;

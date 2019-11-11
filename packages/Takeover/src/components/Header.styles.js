@@ -1,4 +1,4 @@
-import { css } from "styled-components";
+import styled from "styled-components";
 import { fontSize, spacer } from "@paprika/stylers/lib/helpers";
 import tokens from "@paprika/tokens/lib/tokens";
 
@@ -7,7 +7,7 @@ const kind = {
   primary: `background: ${tokens.color.purple}; color: ${tokens.color.white};`,
 };
 
-export const wrapper = css`
+export const Wrapper = styled.div`
   align-items: center;
   border-bottom: 1px solid ${tokens.border.color};
   box-shadow: ${tokens.shadow};

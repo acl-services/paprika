@@ -1,7 +1,7 @@
 import React from "react";
 import PropTypes from "prop-types";
 import Button from "@paprika/button";
-import * as styles from "./Header.styles";
+import * as styled from "./Header.styles";
 
 const propTypes = {
   children: PropTypes.node.isRequired,
@@ -20,7 +20,7 @@ const Header = React.forwardRef((props, ref) => {
   const { children, hasCloseButton, kind, onClose, ...moreProps } = props;
 
   return (
-    <div css={styles.wrapper} ref={ref} kind={kind} {...moreProps}>
+    <styled.Wrapper ref={ref} kind={kind} {...moreProps}>
       <div tabIndex="-1">{children}</div>
       <div>
         {hasCloseButton && (
@@ -32,7 +32,7 @@ const Header = React.forwardRef((props, ref) => {
           />
         )}
       </div>
-    </div>
+    </styled.Wrapper>
   );
 });
 

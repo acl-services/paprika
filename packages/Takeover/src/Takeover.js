@@ -5,8 +5,7 @@ import FocusTrapLibrary from "focus-trap-react";
 import LockBodyScroll from "@paprika/helpers/lib/components/LockBodyScroll";
 import Portal from "@paprika/helpers/lib/components/Portal";
 import extractChildren from "@paprika/helpers/lib/extractChildren";
-import * as styles from "./Takeover.styles";
-import Header from "./components/Header";
+import * as styled from "./Takeover.styles";
 import { animationDuration } from "./helpers/tokens";
 
 const propTypes = {
@@ -79,26 +78,24 @@ const Takeover = props => {
           {state => (
             <FocusTrapLibrary focusTrapOptions={focusTrapOptions}>
               {/* eslint-disable-next-line jsx-a11y/no-noninteractive-element-interactions */}
-              <div
-                css={styles.wrapper}
+              <styled.Wrapper
                 state={state}
                 role="dialog"
                 tabIndex="-1"
                 onKeyDown={handleEscKey}
                 data-pka-anchor="takeover"
               >
-                {headerExtracted && <Header css={styles.header} {...headerExtracted.props} onClose={onClose} />}
+                {headerExtracted && <styled.Header {...headerExtracted.props} onClose={onClose} />}
                 {contentExtracted && (
-                  <div
+                  <styled.ContentWrapper
                     role="region"
-                    css={styles.contentWrapper}
                     tabIndex="0" // eslint-disable-line jsx-a11y/no-noninteractive-tabindex
                   >
                     {contentExtracted}
-                  </div>
+                  </styled.ContentWrapper>
                 )}
                 {children}
-              </div>
+              </styled.Wrapper>
             </FocusTrapLibrary>
           )}
         </Transition>
