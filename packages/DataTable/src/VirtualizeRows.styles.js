@@ -1,19 +1,19 @@
 import styled from "styled-components";
 
-export const Virtualize = styled.div.attrs(({ height }) => ({
+export const Virtualize = styled.div.attrs(({ height, width }) => ({
   style: {
+    width: `${width}px`,
     height: `${height}px`,
   },
 }))`
-  border: 3px solid red;
   box-sizing: border-box;
-  width: 100%;
   overflow: scroll;
+  width: 100%;
 `;
 
 export const VirtualizeContent = styled.div.attrs(({ height }) => ({
   style: {
-    height: `${height}px`,
+    height: `${height + 32}px`,
   },
 }))`
   display: block;

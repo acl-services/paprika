@@ -27,16 +27,28 @@ export default function Table(props) {
   ]);
 
   return (
-    <VirtualizeRows data={data} gridRowHeight={rowHeight} gridLength={data.length} gridHeight={height}>
-      {subset => {
+    <VirtualizeRows
+      data={data}
+      gridRowHeight={rowHeight}
+      gridLength={data.length}
+      gridHeight={height}
+      gridWidth={width}
+    >
+      {(subset, keys, a11y) => {
         return subset.map((row, index) => {
           return (
-            <styled.Row height={rowHeight} key={`tr_${index}`}>
+            <styled.Row {...a11y.row} $height={rowHeight} key={`row_${keys[index]}`}>
+              <styled.Counter key={`row_index_${keys[index]}`}>{keys[index] + 1}</styled.Counter>
               {row.map((cell, i) => {
                 return (
-                  <div key={`td_${i}`}>
+                  <styled.Cell
+                    key={`cell_${keys[index]}_${i}`}
+                    {...a11y.cell}
+                    $width={ColumnsDefinition[i].props.width}
+                    $height={rowHeight}
+                  >
                     {ColumnsDefinition[i].props.renderCell ? ColumnsDefinition[i].props.renderCell(cell) : cell}
-                  </div>
+                  </styled.Cell>
                 );
               })}
             </styled.Row>

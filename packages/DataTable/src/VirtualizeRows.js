@@ -18,14 +18,14 @@ const defaultProps = {
 };
 
 export default function VirtualizeRows(props) {
-  const { index: $index, gridLength, gridRowHeight, gridHeight, gridWidth, data, children } = props;
+  const { index: $index, gridLength, gridRowHeight, gridHeight, gridWidth, data, children, ...moreProps } = props;
   const [state, setState] = React.useState({ index: $index, top: 0 });
   const refElementToScroll = React.useRef(null);
   // track scroll
   React.useEffect(() => {
     function handleScroll(event) {
       const top = event.target.scrollTop;
-      const index = Math.floor(top / gridRowHeight);
+      const index = Math.ceil(top / gridRowHeight);
       setState(() => ({ index, top }));
     }
 
@@ -59,7 +59,7 @@ export default function VirtualizeRows(props) {
     const from = state.index;
     let to = state.index + pageSize;
     if (state.index + pageSize > gridLength) {
-      to = gridLength - 1;
+      to = gridLength;
     }
 
     return data.slice(from, to);
@@ -69,10 +69,25 @@ export default function VirtualizeRows(props) {
     return gridLength * gridRowHeight;
   }, [gridLength, gridRowHeight]);
 
+  const keys = React.useMemo(() => {
+    return [...Array(pageSize).keys()].map(index => {
+      return state.index + index;
+    });
+  }, [pageSize, state.index]);
+
+  // need more a11y love https://developer.mozilla.org/en-US/docs/Web/Accessibility/ARIA/Roles/Row_Role
   return (
-    <styled.Virtualize height={gridHeight} data-pka-anchor="grid-virtualize" ref={refElementToScroll}>
-      <styled.VirtualizeContent height={memoHeight}>
-        <styled.VirualizeRows top={state.top}>{children(subsetToRender)}</styled.VirualizeRows>
+    <styled.Virtualize
+      width={gridWidth}
+      height={gridHeight}
+      data-pka-anchor="virtualize-rows-root"
+      ref={refElementToScroll}
+      {...moreProps}
+    >
+      <styled.VirtualizeContent role="grid" height={memoHeight}>
+        <styled.VirualizeRows role="rowgroup" top={state.top}>
+          {children(subsetToRender, keys, { row: { role: "row" }, cell: { role: "cell" } })}
+        </styled.VirualizeRows>
       </styled.VirtualizeContent>
     </styled.Virtualize>
   );

@@ -22,10 +22,7 @@ function App() {
   }
 
   return (
-    <Table data={data} hasRowNumber width={720}>
-      <Table.ColumnDefinition width={70} type={Table.types.integer}>
-        Rank
-      </Table.ColumnDefinition>
+    <Table data={data} height={window.innerHeight} hasRowNumber>
       <Table.ColumnDefinition type={Table.types.string} renderCell={renderCountryCell}>
         Country
       </Table.ColumnDefinition>
