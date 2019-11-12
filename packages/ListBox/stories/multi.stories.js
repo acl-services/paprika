@@ -1,5 +1,6 @@
 import React from "react";
 import { storiesOf } from "@storybook/react";
+import { Story } from "storybook/assets/styles/common.styles";
 import * as Multi from "./examples/multi";
 
 storiesOf("ListBox / multi", module).add("Basic", () => <Multi.Basic />);
@@ -15,3 +16,8 @@ storiesOf("ListBox / multi", module).add("With Groups and have preselected optio
 ));
 storiesOf("ListBox / multi", module).add("Controlled listbox", () => <Multi.ControlledIsSelected />);
 storiesOf("ListBox / multi", module).add("UnControlled defaultIsSelected listbox", () => <Multi.DefaultIsSelected />);
+storiesOf("ListBox / multi", module).add("Trigger is hidden when isInline", () => (
+  <Story>
+    <Multi.TriggerIsHidden />
+  </Story>
+));
