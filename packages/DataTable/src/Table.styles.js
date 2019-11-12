@@ -2,9 +2,9 @@ import styled, { css } from "styled-components";
 
 export const Row = styled.div`
   align-items: center;
+  background: #fff;
   border-bottom: 1px solid #dde1e3;
   display: flex;
-
   width: 100%;
   ${({ $height }) => {
     return css`
@@ -41,6 +41,26 @@ export const Counter = styled.div`
   ${({ $height }) => {
     return css`
       height: ${$height}px;
+    `;
+  }}
+`;
+
+export const Footer = styled.div`
+  align-items: center;
+  background: #fafafa;
+  border-top: 1px solid #dde1e3;
+  bottom: 0;
+  /* this should improved this can be like this */
+  color: #4d4d4d;
+  display: flex;
+  font-size: 13px;
+  padding-left: 8px;
+  position: fixed;
+  width: 100%;
+
+  ${({ $height }) => {
+    return css`
+      height: ${$height - 4}px;
     `;
   }}
 `;

@@ -22,7 +22,7 @@ function App() {
   }
 
   return (
-    <Table data={data} height={window.innerHeight} hasRowNumber>
+    <Table data={data} height={window.innerHeight - 30}>
       <Table.ColumnDefinition type={Table.types.string} renderCell={renderCountryCell}>
         Country
       </Table.ColumnDefinition>
@@ -33,4 +33,4 @@ function App() {
   );
 }
 
-storiesOf("Table", module).add("Showcase", () => <App />);
+storiesOf("DataTable", module).add("Showcase", () => <App />);

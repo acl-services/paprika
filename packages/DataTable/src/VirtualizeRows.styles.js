@@ -6,6 +6,7 @@ export const Virtualize = styled.div.attrs(({ height, width }) => ({
     height: `${height}px`,
   },
 }))`
+  background: #f5f5f5;
   box-sizing: border-box;
   overflow: scroll;
   width: 100%;
@@ -13,7 +14,8 @@ export const Virtualize = styled.div.attrs(({ height, width }) => ({
 
 export const VirtualizeContent = styled.div.attrs(({ height }) => ({
   style: {
-    height: `${height + 32}px`,
+    // this should be height + rowHeight + footer in case we put it
+    height: `${height + 64}px`,
   },
 }))`
   display: block;

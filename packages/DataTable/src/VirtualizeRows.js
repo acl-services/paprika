@@ -34,7 +34,7 @@ export default function VirtualizeRows(props) {
     return function cleanup() {
       $element.removeEventListener("scroll", handleScroll);
     };
-  }, [gridRowHeight, setState]);
+  }, [gridRowHeight, setState, state.index]);
 
   /**
     function
