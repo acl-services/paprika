@@ -26,4 +26,4 @@ export default function Popover(props) {
 
 Popover.propTypes = propTypes;
 Popover.defaultProps = defaultProps;
-Popover.componentType = "ListBox.Popover";
+Popover.displayName = "ListBox.Popover";

@@ -5,9 +5,9 @@ export default function Options(props) {
   let index = -1;
 
   return React.Children.map(props.children, child => {
-    const { componentType = null } = child.type;
+    const { displayName = null } = child.type;
 
-    if (child.type && isWhiteListed(componentType)) {
+    if (child.type && isWhiteListed(displayName)) {
       index += 1;
       return React.cloneElement(child, { ...child.props, index });
     }

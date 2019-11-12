@@ -139,4 +139,4 @@ export default function Filter(props) {
 
 Filter.propTypes = propTypes;
 Filter.defaultProps = defaultProps;
-Filter.componentType = "ListBox.Filter";
+Filter.displayName = "ListBox.Filter";
