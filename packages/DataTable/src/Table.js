@@ -35,22 +35,26 @@ export default function Table(props) {
       gridWidth={width}
     >
       {(subset, keys, a11y) => {
-        return subset.map((row, index) => {
+        return subset.map((row, rowIndex) => {
           return (
-            <styled.Row {...a11y.row} $height={rowHeight} key={`row_${keys[index]}`}>
-              <styled.Counter key={`row_index_${keys[index]}`}>{keys[index] + 1}</styled.Counter>
-              {row.map((cell, i) => {
+            <styled.Row {...a11y.row} $height={rowHeight} key={`row_${keys[rowIndex]}`}>
+              <styled.Counter key={`row_index_${keys[rowIndex]}`}>{keys[rowIndex] + 1}</styled.Counter>
+              {/* eslint-disable react/no-array-index-key */}
+              {row.map((cell, cellIndex) => {
                 return (
                   <styled.Cell
-                    key={`cell_${keys[index]}_${i}`}
+                    key={`cell_${keys[rowIndex]}_${cellIndex}`}
                     {...a11y.cell}
-                    $width={ColumnsDefinition[i].props.width}
+                    $width={ColumnsDefinition[cellIndex].props.width}
                     $height={rowHeight}
                   >
-                    {ColumnsDefinition[i].props.renderCell ? ColumnsDefinition[i].props.renderCell(cell) : cell}
+                    {ColumnsDefinition[cellIndex].props.renderCell
+                      ? ColumnsDefinition[cellIndex].props.renderCell(cell)
+                      : cell}
                   </styled.Cell>
                 );
               })}
+              {/* eslint-enable react/no-array-index-key */}
             </styled.Row>
           );
         });
