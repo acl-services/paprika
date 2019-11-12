@@ -1,12 +1,12 @@
-import { spaceSm, spacer } from "@paprika/stylers/lib/helpers";
+import stylers from "@paprika/stylers";
 import { css, keyframes } from "styled-components";
 import tokens from "@paprika/tokens/lib/tokens";
 
 const childPanel = css`
-  border-bottom-left-radius: ${spaceSm};
-  border-top-left-radius: ${spaceSm};
-  height: calc(100% - ${spacer(7) + 80}px);
-  margin-top: ${spacer(7)}px;
+  border-bottom-left-radius: ${stylers.spaceSm};
+  border-top-left-radius: ${stylers.spaceSm};
+  height: calc(100% - ${stylers.spacer(7) + 80}px);
+  margin-top: ${stylers.spacer(7)}px;
 `;
 
 function slideIn() {
@@ -70,7 +70,7 @@ export const dialogStyles = css`
 `;
 
 export const dialogContentStyles = css`
-  padding: ${spacer(2)};
+  padding: ${stylers.spacer(2)};
   ${props => {
     return props.isSticky ? `margin-bottom: ${props.footerHeight}px;` : "";
   }}

@@ -2,9 +2,12 @@
 const locales = {
   "en": {
     "translation": {
+      "back": "back",
+      "remove": "remove",
       "moreInformation": "more information",
       "close": "Close",
       "uploader": {
+        "label": "Drag and drop or choose files from your computer",
         "overlay": {
           "title": "Drag and drop",
           "subtitle": "Your files here"
@@ -92,6 +95,11 @@ const locales = {
         "less": "Show less",
         "more_about": "show more about {{topic}}",
         "less_about": "show less about {{topic}}"
+      },
+      "listBoxBrowser": {
+        "explore": "Explore more options",
+        "selected": "selected options",
+        "selectOne": "Select one or more items..."
       }
     }
   }

@@ -105,6 +105,16 @@ highlight:
     with-border:
       box-shadow: 0 0 0 1px $color--blue, 0 0 0 3px $color--blue-lighten-30
       inset-box-shadow: inset 0 0 0 1px $color--blue, inset 0 0 0 3px $color--blue-lighten-30
+  text:
+    green:
+      background: $color--green-lighten-50
+      font: $color--green-darken-20
+    orange:
+      background: $color--orange-lighten-40
+      font: $color--orange-darken-20
+    yellow:
+      background: '#f7f3ba'
+      font: $color--yellow-darken-40
 #
 text-color:
   default: $color--black
@@ -144,6 +154,10 @@ button:
 card:
   border-radius: ($border--radius * 2)
 #
+checkbox:
+  size-sm: 16px
+  size-md: 20px
+  size-lg: 24px
 popover:
   border-radius: $card--border-radius
   shadow: 0 2px 4px rgba(0, 0, 0, 0.1)

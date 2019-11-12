@@ -208,7 +208,7 @@ export function handleEnterOrSpace({ event, state, dispatch }) {
     }
   }
 
-  if (state.isOpen) {
+  if (state.isOpen || state.isInline) {
     if (state.options[state.activeOption].onClick) {
       state.options[state.activeOption].onClick();
     }

@@ -30,9 +30,6 @@ const throttleDelay = 20;
 // TODO: To handle cases where there are multiple scrolling containers, we need to implement
 //       getScrollContainer as oneOfType([func, arrayOf(func)])
 
-// TODO: To accommodate cases like a popover menu, we need two additional alignment options:
-//       leftEdge and rightEdge.
-
 const propTypes = {
   /** Where the popover content is positioned relative to the trigger or getPositioningElement. */
   align: PropTypes.oneOf(AlignTypes.ALL),
@@ -55,8 +52,11 @@ const propTypes = {
   /** Where the edge of the popover content is based on the trigger or getPositioningElement */
   edge: PropTypes.oneOf([AlignTypes.LEFT, AlignTypes.RIGHT, null]),
 
-  /** Maximum width of popover content. Use of a number will imply px units and is recommended. */
+  /** Maximum width of popover content. Using a number is recommended and implies px units. */
   maxWidth: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
+
+  /** Minimumn width of popover content. Using a number is recommended and implies px units. */
+  minWidth: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
 
   /** Callback to fire when user closes popover. */
   onClose: PropTypes.func,
@@ -85,6 +85,7 @@ const defaultProps = {
   defaultIsOpen: null,
   edge: null,
   maxWidth: 320,
+  minWidth: 0,
   onClose: null,
   offset: parseInt(tokens.spaceLg, 10),
   getPositioningElement: null,
@@ -135,6 +136,7 @@ class Popover extends React.Component {
     (
       content,
       maxWidth,
+      minWidth,
       width,
       isEager,
       isOpen,
@@ -148,7 +150,8 @@ class Popover extends React.Component {
     ) => ({
       content: {
         ...content,
-        maxWidth, // maybe we should code a minimum maxWidth?
+        maxWidth,
+        minWidth,
         width,
         zIndex,
         ariaId: ariaIdForContent,
@@ -204,6 +207,7 @@ class Popover extends React.Component {
     $shadowContent.style.left = 0;
     $shadowContent.style.width = "auto";
     $shadowContent.style.maxWidth = this.props.maxWidth;
+    $shadowContent.style.minWidth = this.props.minWidth;
 
     document.body.appendChild($shadowContent);
     const contentWidth = getBoundingClientRect($shadowContent).width;
@@ -213,19 +217,21 @@ class Popover extends React.Component {
   }
 
   setVisibilityAndPosition(isOpening = false) {
-    // dynamically setting a fixed width before positioning avoids issues at the
-    // right edge of the screen
-    if (isOpening && [AlignTypes.TOP, AlignTypes.BOTTOM].includes(this.props.align)) {
-      const newWidth = this.getContentWidth();
-      if (newWidth !== this.state.width) {
-        this.setState({ width: newWidth }, () => {
-          this.updateVisibilityAndPositionState(isOpening);
-        });
-        return;
+    if (this.$content) {
+      // dynamically setting a fixed width before positioning avoids issues at the
+      // right edge of the screen
+      if (isOpening && [AlignTypes.TOP, AlignTypes.BOTTOM].includes(this.props.align)) {
+        const newWidth = this.getContentWidth();
+        if (newWidth !== this.state.width) {
+          this.setState({ width: newWidth }, () => {
+            this.updateVisibilityAndPositionState(isOpening);
+          });
+          return;
+        }
       }
-    }
 
-    this.updateVisibilityAndPositionState(isOpening);
+      this.updateVisibilityAndPositionState(isOpening);
+    }
   }
 
   getCoordinates = () => {
@@ -237,7 +243,7 @@ class Popover extends React.Component {
         : getBoundingClientRect(this.props.getPositioningElement());
 
     const contentCoords = getContentCoordinates({
-      rect: getBoundingClientRect(this.$content),
+      rect: this.$content ? getBoundingClientRect(this.$content) : null,
       targetRect,
       scrollRect: getScrollContainer !== null ? getBoundingClientRect(getScrollContainer()) : null,
       align,
@@ -330,9 +336,14 @@ class Popover extends React.Component {
     this.$content = ref;
   };
 
+  handleChildChange = () => {
+    setTimeout(() => {
+      this.setVisibilityAndPosition();
+    });
+  };
+
   open() {
     this.$trigger = document.activeElement;
-
     this.setVisibilityAndPosition(true);
   }
 
@@ -411,6 +422,7 @@ class Popover extends React.Component {
       isOpen,
       defaultIsOpen,
       maxWidth,
+      minWidth,
       onClose,
       offset,
       getPositioningElement,
@@ -422,6 +434,7 @@ class Popover extends React.Component {
     const contextValue = this.getContextValues(
       this.state.content,
       maxWidth,
+      minWidth,
       this.state.width,
       isEager,
       this.isOpen(),
@@ -438,12 +451,23 @@ class Popover extends React.Component {
       <ThemeContext.Provider value={isDark}>
         <PopoverContext.Provider value={contextValue}>
           <PopoverStyled data-pka-anchor="popover" {...moreProps} ref={this.$popover}>
-            {this.props.children}
+            <PopoverChildren onChildChange={this.handleChildChange}>{this.props.children}</PopoverChildren>
           </PopoverStyled>
         </PopoverContext.Provider>
       </ThemeContext.Provider>
     );
   }
+}
+
+// Todo Refactor this when we convert popover component to use hooks
+function PopoverChildren(props) {
+  const { children, onChildChange } = props;
+
+  React.useLayoutEffect(() => {
+    if (children) onChildChange();
+  }, [children, onChildChange]);
+
+  return children;
 }
 
 Popover.displayName = "Popover";

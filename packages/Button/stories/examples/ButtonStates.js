@@ -1,14 +1,14 @@
 import React from "react";
-import { Story } from "storybook/assets/styles/common.styles";
+import { ButtonStory } from "../Button.stories.styles";
 import Button from "../../src";
 
 const ExampleStory = () => {
   return (
-    <Story>
+    <ButtonStory>
       <Button isActive>Active</Button>
       <Button isDisabled>Disabled</Button>
       <Button isPending>Pending</Button>
-    </Story>
+    </ButtonStory>
   );
 };
 

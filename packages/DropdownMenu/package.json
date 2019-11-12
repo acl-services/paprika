@@ -1,6 +1,6 @@
 {
   "name": "@paprika/dropdown-menu",
-  "version": "1.0.9",
+  "version": "1.1.2",
   "description": "DropdownMenu component",
   "author": "@paprika",
   "license": "MIT",
@@ -14,18 +14,18 @@
   },
   "dependencies": {
     "@babel/runtime-corejs2": "^7.3.1",
-    "@paprika/button": "^0.1.15",
-    "@paprika/confirmation": "^0.1.10",
-    "@paprika/helpers": "^0.2.1",
-    "@paprika/l10n": "^0.2.4",
-    "@paprika/popover": "^0.2.3",
-    "@paprika/raw-button": "^0.1.9",
-    "@paprika/stylers": "^0.1.7",
-    "@paprika/tokens": "^0.1.6",
+    "@paprika/button": "^0.2.2",
+    "@paprika/confirmation": "^0.2.2",
+    "@paprika/helpers": "^0.2.3",
+    "@paprika/popover": "^0.3.2",
+    "@paprika/raw-button": "^0.2.2",
+    "@paprika/stylers": "^0.2.2",
+    "@paprika/tokens": "^0.1.9",
     "prop-types": "^15.7.2",
     "uuid": "^3.3.2"
   },
   "peerDependencies": {
+    "@paprika/l10n": "^0.2.5",
     "react": "^16.8.4",
     "react-dom": "^16.8.4",
     "styled-components": "^4.2.0"
