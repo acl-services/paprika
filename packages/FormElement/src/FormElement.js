@@ -113,15 +113,15 @@ function FormElement(props) {
   const nativeChildTypes = ["input", "textarea", "select"];
 
   const renderFormElementChild = child => (
-    <div data-pka-anchor="form-element.child" key={`${child.key}`} css={formElementChildStyle}>
+    <div data-pka-anchor="form-element.child" key={child.key} css={formElementChildStyle}>
       {child}
     </div>
   );
 
-  const ariaDescribedByIds = `${ariaErrorId} ${ariaInstructionsId} ${ariaDescriptionId}`;
+  const isNativeElement = child => isString(child.type) && nativeChildTypes.includes(child.type);
 
   const childExtendedProps = {
-    "aria-describedby": ariaDescribedByIds,
+    "aria-describedby": `${ariaErrorId} ${ariaInstructionsId} ${ariaDescriptionId}`,
     id: inputId,
   };
 
@@ -139,21 +139,20 @@ function FormElement(props) {
       <div css={isInline ? inlineContainerStyles : null}>
         {renderInstructions()}
         {extractedChildren.children.map(child => {
-          if (isString(child.type) && nativeChildTypes.includes(child.type)) {
-            const extendedProps = {
-              ...childExtendedProps,
-              disabled: isDisabled,
-              readOnly: isReadOnly,
-            };
-            return renderFormElementChild(React.cloneElement(child, extendedProps));
-          }
-          const extendedProps = {
-            ...childExtendedProps,
-            hasError,
-            isDisabled,
-            isReadOnly,
-            size,
-          };
+          const extendedProps = isNativeElement(child)
+            ? {
+                ...childExtendedProps,
+                disabled: isDisabled,
+                readOnly: isReadOnly,
+              }
+            : {
+                ...childExtendedProps,
+                hasError,
+                isDisabled,
+                isReadOnly,
+                size,
+              };
+
           return renderFormElementChild(React.cloneElement(child, extendedProps));
         })}
         {renderFooter()}
