@@ -86,12 +86,9 @@ function FormElement(props) {
 
   function renderFooter() {
     if (hasError) {
-      if (extractedChildren["FormElement.Error"]) {
-        return React.cloneElement(extractedChildren["FormElement.Error"], {
-          ariaErrorId,
-        });
-      }
-      throw new Error("Error Component required");
+      return React.cloneElement(extractedChildren["FormElement.Error"], {
+        ariaErrorId,
+      });
     }
 
     if (extractedChildren["FormElement.Description"]) {
