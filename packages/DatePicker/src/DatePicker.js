@@ -244,7 +244,6 @@ function DatePicker(props) {
           {shouldShowCalendar ? (
             <Calendar
               date={date}
-              isVisible={shouldShowCalendar}
               onSelect={handleSelect}
               possibleDate={debouncedPossibleDate}
               resetPossibleDate={handleResetPossibleDate}
