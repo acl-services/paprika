@@ -61,6 +61,10 @@ function Calendar(props) {
     if (calendarRef.current) calendarRef.current.focus();
   }
 
+  React.useEffect(() => {
+    keepFocus();
+  }, [currentMonth, date]);
+
   function getInitialVisibleMonth() {
     let initialVisibleMonth;
 
