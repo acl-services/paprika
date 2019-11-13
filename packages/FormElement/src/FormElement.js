@@ -139,26 +139,22 @@ function FormElement(props) {
       <div css={isInline ? inlineContainerStyles : null}>
         {renderInstructions()}
         {extractedChildren.children.map(child => {
-          if (React.isValidElement(child)) {
-            if (isString(child.type) && nativeChildTypes.includes(child.type)) {
-              const extendedProps = {
-                ...childExtendedProps,
-                disabled: isDisabled,
-                readOnly: isReadOnly,
-              };
-              return renderFormElementChild(React.cloneElement(child, extendedProps));
-            }
+          if (isString(child.type) && nativeChildTypes.includes(child.type)) {
             const extendedProps = {
               ...childExtendedProps,
-              hasError,
-              isDisabled,
-              isReadOnly,
-              size,
+              disabled: isDisabled,
+              readOnly: isReadOnly,
             };
             return renderFormElementChild(React.cloneElement(child, extendedProps));
           }
-
-          return renderFormElementChild(child);
+          const extendedProps = {
+            ...childExtendedProps,
+            hasError,
+            isDisabled,
+            isReadOnly,
+            size,
+          };
+          return renderFormElementChild(React.cloneElement(child, extendedProps));
         })}
         {renderFooter()}
       </div>
