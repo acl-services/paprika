@@ -3,17 +3,16 @@ import PropTypes from "prop-types";
 
 import { ShirtSizes } from "@paprika/helpers/lib/customPropTypes";
 import isNil from "lodash/isNil";
-import isString from "lodash/isString";
 import uuidv4 from "uuid/v4";
 
 import { extractChildren } from "./helpers/extractChildren";
 import Description from "./components/Description";
-import ExtraPanel from "./components/ExtraPanel";
+import Instructions from "./components/Instructions";
 import ErrorMessage from "./components/ErrorMessage";
 import Help from "./components/Help";
 import Label from "./components/Label";
 
-import formElementStyles, { inlineContainerStyles } from "./FormElement.styles";
+import formElementStyles, { inlineContainerStyles, formElementChildStyle } from "./FormElement.styles";
 
 const propTypes = {
   children: PropTypes.node.isRequired,
@@ -76,16 +75,23 @@ function FormElement(props) {
     "FormElement.Description",
     "FormElement.Error",
     "FormElement.Help",
-    "FormElement.ExtraPanel",
+    "FormElement.Instructions",
   ]);
   const ariaDescriptionId = React.useRef(uuidv4()).current;
+  const ariaErrorId = React.useRef(uuidv4()).current;
+  const ariaInstructionsId = React.useRef(uuidv4()).current;
   const hasError = !!extractedChildren["FormElement.Error"] && !!extractedChildren["FormElement.Error"].props.children;
   const uniqueInputId = React.useRef(uuidv4()).current;
   const inputId = isNil(id) || id === "" ? uniqueInputId : id;
 
   function renderFooter() {
     if (hasError) {
-      return extractedChildren["FormElement.Error"];
+      if (extractedChildren["FormElement.Error"]) {
+        return React.cloneElement(extractedChildren["FormElement.Error"], {
+          ariaErrorId,
+        });
+      }
+      throw new Error("Error Component required");
     }
 
     if (extractedChildren["FormElement.Description"]) {
@@ -97,11 +103,23 @@ function FormElement(props) {
     return null;
   }
 
-  const childAttributes = {
-    className: "form-element--child",
-    "aria-describedby": ariaDescriptionId,
-    id: inputId,
-  };
+  function renderInstructions() {
+    if (extractedChildren["FormElement.Instructions"]) {
+      return React.cloneElement(extractedChildren["FormElement.Instructions"], {
+        ariaInstructionsId,
+      });
+    }
+  }
+
+  const nativeChildTypes = ["input", "textarea", "select"];
+
+  const renderFormElementChild = (child, index) => (
+    <div key={`child-key_${index}`} css={formElementChildStyle}>
+      {child}
+    </div>
+  );
+
+  const ariaIds = `${ariaErrorId} ${ariaInstructionsId} ${ariaDescriptionId}`;
 
   return (
     <div css={formElementStyles} isInline={isInline} size={size} isDisabled={isDisabled} {...moreProps}>
@@ -115,27 +133,29 @@ function FormElement(props) {
         label={label}
       />
       <div css={isInline ? inlineContainerStyles : null}>
-        {extractedChildren["FormElement.ExtraPanel"] ? extractedChildren["FormElement.ExtraPanel"] : null}
-
-        {extractedChildren.children.map(child => {
+        {renderInstructions()}
+        {extractedChildren.children.map((child, index) => {
           if (React.isValidElement(child)) {
-            const extendedProps = isString(child.type)
+            const extendedProps = nativeChildTypes.includes(child.type)
               ? {
-                  ...childAttributes,
                   disabled: isDisabled,
                   readOnly: isReadOnly,
+                  "aria-describedby": ariaIds,
+                  id: inputId,
                 }
               : {
-                  ...childAttributes,
                   hasError,
                   isDisabled,
                   isReadOnly,
                   size,
+                  "aria-describedby": ariaIds,
+                  id: child.type.displayName === "Input" ? inputId : null,
                 };
-            return React.cloneElement(child, extendedProps);
+
+            return renderFormElementChild(React.cloneElement(child, extendedProps), index);
           }
 
-          return child;
+          return renderFormElementChild(child, index);
         })}
         {renderFooter()}
       </div>
@@ -148,7 +168,7 @@ FormElement.displayName = "FormElement";
 FormElement.propTypes = propTypes;
 FormElement.defaultProps = defaultProps;
 
-FormElement.ExtraPanel = ExtraPanel;
+FormElement.Instructions = Instructions;
 FormElement.Description = Description;
 FormElement.Error = ErrorMessage;
 FormElement.Help = Help;

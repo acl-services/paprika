@@ -18,16 +18,16 @@ const inlineFormElementStyles = css`
   display: flex;
 `;
 
+export const formElementChildStyle = css`
+  margin: ${tokens.space} 0;
+`;
+
 const formElementStyles = css`
   ${({ size }) => FontSizes[size]}
 
   ${({ isInline }) => isInline && inlineFormElementStyles};
 
   ${({ isDisabled }) => isDisabled && `opacity: 0.5;`}
-
-  .form-element--child {
-    margin: ${tokens.space} 0;
-  }
 `;
 
 export default formElementStyles;

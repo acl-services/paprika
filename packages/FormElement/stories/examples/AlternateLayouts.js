@@ -19,15 +19,15 @@ const ExampleStory = () => {
         Alternate Layouts
       </Heading>
       <Rule />
-      <Tagline>Form Element with extra panel.</Tagline>
+      <Tagline>Form Element with instructions component.</Tagline>
       <Rule />
       <FormElement label="Form Label">
-        <FormElement.ExtraPanel>
+        <FormElement.Instructions>
           <span>
             Example text for extra panel for questionnaires. Example text for extra panel for questionnaires Example
             text for extra panel for questionnaires. Example text for extra panel for questionnaires
           </span>
-        </FormElement.ExtraPanel>
+        </FormElement.Instructions>
         <Input onChange={handleChange} value={value} placeholder="Form placeholder" />
         <FormElement.Description>
           <span>Description of this field.</span>
