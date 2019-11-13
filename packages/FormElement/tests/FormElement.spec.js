@@ -29,7 +29,7 @@ describe("FormElement", () => {
     expect(queryByTestId("formElement.description")).not.toBeInTheDocument();
     expect(queryByTestId("formElement.error")).not.toBeInTheDocument();
     expect(queryByTestId("formElement.help")).not.toBeInTheDocument();
-    expect(queryByTestId("formElement.extrapanel")).not.toBeInTheDocument();
+    expect(queryByTestId("formElement.instructions")).not.toBeInTheDocument();
   });
 
   it("renders id", () => {
@@ -73,7 +73,9 @@ describe("FormElement", () => {
       <L10n>
         <FormElement label={defaultLabel}>
           <input data-pka-anchor="formElement.input" />
-          <FormElement.ExtraPanel>Extra Panel content Extra Panel content Extra Panel content</FormElement.ExtraPanel>
+          <FormElement.Instructions>
+            Instructions Panel Content Instructions Panel Content Instructions Panel Content
+          </FormElement.Instructions>
           <FormElement.Description>Sample description</FormElement.Description>
           <FormElement.Help>Sample help</FormElement.Help>
         </FormElement>
