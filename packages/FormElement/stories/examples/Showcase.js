@@ -57,10 +57,7 @@ const ExampleStory = props => {
         <FormElement.Description>
           <span>{descriptionPropKnobs().descriptionText}</span>
         </FormElement.Description>
-        <FormElement.Help>
-          {helpPropKnobs().helpText}
-          <a href="wegalvanize.com">Learn more</a>.
-        </FormElement.Help>
+        <FormElement.Help>{helpPropKnobs().helpText}</FormElement.Help>
       </FormElement>
     </FormElementStory>
   );

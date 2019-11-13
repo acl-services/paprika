@@ -4,6 +4,7 @@ import PropTypes from "prop-types";
 import { ShirtSizes } from "@paprika/helpers/lib/customPropTypes";
 import isNil from "lodash/isNil";
 import uuidv4 from "uuid/v4";
+import isString from "lodash/isString";
 
 import { extractChildren } from "./helpers/extractChildren";
 import Description from "./components/Description";
@@ -106,17 +107,23 @@ function FormElement(props) {
         ariaInstructionsId,
       });
     }
+    return null;
   }
 
   const nativeChildTypes = ["input", "textarea", "select"];
 
-  const renderFormElementChild = (child, index) => (
-    <div key={`child-key_${index}`} css={formElementChildStyle}>
+  const renderFormElementChild = child => (
+    <div data-pka-anchor="form-element.child" key={`${child.key}`} css={formElementChildStyle}>
       {child}
     </div>
   );
 
   const ariaDescribedByIds = `${ariaErrorId} ${ariaInstructionsId} ${ariaDescriptionId}`;
+
+  const childExtendedProps = {
+    "aria-describedby": ariaDescribedByIds,
+    id: inputId,
+  };
 
   return (
     <div css={formElementStyles} isInline={isInline} size={size} isDisabled={isDisabled} {...moreProps}>
@@ -131,28 +138,28 @@ function FormElement(props) {
       />
       <div css={isInline ? inlineContainerStyles : null}>
         {renderInstructions()}
-        {extractedChildren.children.map((child, index) => {
-          if (React.isValidElement(child)) {
-            const extendedProps = nativeChildTypes.includes(child.type)
-              ? {
-                  disabled: isDisabled,
-                  readOnly: isReadOnly,
-                  "aria-describedby": ariaDescribedByIds,
-                  id: inputId,
-                }
-              : {
-                  hasError,
-                  isDisabled,
-                  isReadOnly,
-                  size,
-                  "aria-describedby": ariaDescribedByIds,
-                  id: child.type.displayName === "Input" ? inputId : null,
-                };
-
-            return renderFormElementChild(React.cloneElement(child, extendedProps), index);
+        {extractedChildren.children.map(child => {
+          if (React.isValidElement(child) && isString(child.type)) {
+            const extendedProps = {
+              ...childExtendedProps,
+              hasError,
+              isDisabled,
+              isReadOnly,
+              size,
+            };
+            return renderFormElementChild(React.cloneElement(child, extendedProps));
           }
 
-          return renderFormElementChild(child, index);
+          if (nativeChildTypes.includes(child.type)) {
+            const extendedProps = {
+              ...childExtendedProps,
+              disabled: isDisabled,
+              readOnly: isReadOnly,
+            };
+            return renderFormElementChild(React.cloneElement(child, extendedProps));
+          }
+
+          return renderFormElementChild(child);
         })}
         {renderFooter()}
       </div>
