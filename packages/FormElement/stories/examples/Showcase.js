@@ -20,8 +20,22 @@ const formElementProps = () => ({
 });
 
 const errorPropKnobs = () => ({
-  showError: boolean("show error", true),
-  errorText: text("error text", "This field cannot be blank."),
+  errorText: text("error text", ""),
+});
+
+const instructionsPropKnobs = () => ({
+  instructionsText: text(
+    "instructions text",
+    "Instructions Text Instructions Text Instructions Text Instructions Text Instructions Text Instructions Text Instructions Text Instructions Text Instructions Text."
+  ),
+});
+
+const descriptionPropKnobs = () => ({
+  descriptionText: text("description text", "Description of this field."),
+});
+
+const helpPropKnobs = () => ({
+  helpText: text("help text", "Give me some help."),
 });
 
 const ExampleStory = props => {
@@ -38,13 +52,15 @@ const ExampleStory = props => {
       <Tagline>Form Element.</Tagline>
       <Rule />
       <FormElement {...props}>
+        <FormElement.Instructions>{instructionsPropKnobs().instructionsText}</FormElement.Instructions>
         <Input onChange={handleChange} value={value} placeholder="Form placeholder" />
-        {errorPropKnobs().showError ? <FormElement.Error>{errorPropKnobs().errorText}</FormElement.Error> : null}
+        <FormElement.Error>{errorPropKnobs().errorText}</FormElement.Error>
         <FormElement.Description>
-          <span>Description of this field.</span>
+          <span>{descriptionPropKnobs().descriptionText}</span>
         </FormElement.Description>
         <FormElement.Help>
-          Give me some help. <a href="wegalvanize.com">Learn more</a>.
+          {helpPropKnobs().helpText}
+          <a href="wegalvanize.com">Learn more</a>.
         </FormElement.Help>
       </FormElement>
     </FormElementStory>
