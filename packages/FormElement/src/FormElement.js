@@ -116,7 +116,7 @@ function FormElement(props) {
     </div>
   );
 
-  const ariaIds = `${ariaErrorId} ${ariaInstructionsId} ${ariaDescriptionId}`;
+  const ariaDescribedByIds = `${ariaErrorId} ${ariaInstructionsId} ${ariaDescriptionId}`;
 
   return (
     <div css={formElementStyles} isInline={isInline} size={size} isDisabled={isDisabled} {...moreProps}>
@@ -137,7 +137,7 @@ function FormElement(props) {
               ? {
                   disabled: isDisabled,
                   readOnly: isReadOnly,
-                  "aria-describedby": ariaIds,
+                  "aria-describedby": ariaDescribedByIds,
                   id: inputId,
                 }
               : {
@@ -145,7 +145,7 @@ function FormElement(props) {
                   isDisabled,
                   isReadOnly,
                   size,
-                  "aria-describedby": ariaIds,
+                  "aria-describedby": ariaDescribedByIds,
                   id: child.type.displayName === "Input" ? inputId : null,
                 };
 

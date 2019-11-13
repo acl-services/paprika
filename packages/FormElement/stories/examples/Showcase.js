@@ -10,7 +10,6 @@ import FormElement from "../../src";
 const formElementProps = () => ({
   hasOptionalLabel: boolean("hasOptionalLabel", false),
   hasRequiredLabel: boolean("hasRequiredLabel", false),
-  id: text("id", "input-id"),
   isDisabled: boolean("isDisabled", false),
   isInline: boolean("isInline", false),
   isLabelVisuallyHidden: boolean("isLabelVisuallyHidden", false),
