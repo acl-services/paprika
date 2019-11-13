@@ -82,8 +82,8 @@ describe("FormElement", () => {
       </L10n>
     );
 
-    expect(getByTestId("formElement.extrapanel")).toHaveTextContent(
-      /Extra Panel content Extra Panel content Extra Panel content/i
+    expect(getByTestId("formElement.instructions")).toHaveTextContent(
+      /Instructions Panel Content Instructions Panel Content Instructions Panel Content/i
     );
   });
 
