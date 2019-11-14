@@ -84,7 +84,7 @@ export function handleArrowKeys({
           nextIndex = `${nextRow}_${cell}`;
 
           // if we are approaching to the bottom start scrolling
-          if (nextRow > bottom - 2) {
+          if (nextRow > bottom - 1) {
             const $scrollableElement = refVirtualizeRows.current.getScrollableElement();
             // from + 3 indicate will show 4 new row once start navigating out of the area
             $scrollableElement.scrollTo({ top: rowHeight * (top + 1) });

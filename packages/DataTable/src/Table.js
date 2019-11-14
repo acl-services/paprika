@@ -49,7 +49,7 @@ export default function Table(props) {
           rowHeight,
           setActiveCell,
         }),
-      5
+      15
     )
   ).current;
 
