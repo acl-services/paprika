@@ -87,14 +87,18 @@ function FormElement(props) {
 
   function renderFooter() {
     if (hasError) {
-      return React.cloneElement(extractedChildren["FormElement.Error"], {
-        ariaErrorId,
-      });
+      return (
+        <div aria-live="assertive">
+          {React.cloneElement(extractedChildren["FormElement.Error"], {
+            id: ariaErrorId,
+          })}
+        </div>
+      );
     }
 
     if (extractedChildren["FormElement.Description"]) {
       return React.cloneElement(extractedChildren["FormElement.Description"], {
-        ariaDescriptionId,
+        id: ariaDescriptionId,
       });
     }
 
@@ -104,7 +108,7 @@ function FormElement(props) {
   function renderInstructions() {
     if (extractedChildren["FormElement.Instructions"]) {
       return React.cloneElement(extractedChildren["FormElement.Instructions"], {
-        ariaInstructionsId,
+        id: ariaInstructionsId,
       });
     }
     return null;
@@ -123,6 +127,8 @@ function FormElement(props) {
   const childExtendedProps = {
     "aria-describedby": `${ariaErrorId} ${ariaInstructionsId} ${ariaDescriptionId}`,
     id: inputId,
+    "aria-required": hasRequiredLabel,
+    "aria-invalid": hasError,
   };
 
   return (
@@ -151,6 +157,8 @@ function FormElement(props) {
                 isDisabled,
                 isReadOnly,
                 size,
+                "aria-disabled": isDisabled,
+                "aria-readonly": isReadOnly,
               };
 
           return renderFormElementChild(React.cloneElement(child, extendedProps));
