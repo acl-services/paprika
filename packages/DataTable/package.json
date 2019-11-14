@@ -18,7 +18,7 @@
     "@paprika/raw-button": "^0.2.2",
     "@paprika/stylers": "^0.2.2",
     "@paprika/tokens": "^0.1.9",
-    "lodash.throttle": "^4.1.1",
+    "lodash.debounce": "^4.0.8",
     "prop-types": "^15.7.2"
   },
   "peerDependencies": {

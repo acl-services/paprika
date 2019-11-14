@@ -22,7 +22,7 @@ function App() {
   }
 
   return (
-    <Table data={data} height={window.innerHeight - 30}>
+    <Table data={data} height={window.innerHeight}>
       <Table.ColumnDefinition type={Table.types.string} renderCell={renderCountryCell}>
         Country
       </Table.ColumnDefinition>

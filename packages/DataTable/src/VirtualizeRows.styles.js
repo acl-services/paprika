@@ -22,7 +22,7 @@ export const VirtualizeContent = styled.div.attrs(({ height }) => ({
   width: 100%;
 `;
 
-export const VirualizeRows = styled.div.attrs(({ top }) => ({
+export const VirtualizeRows = styled.div.attrs(({ top }) => ({
   style: {
     top,
   },

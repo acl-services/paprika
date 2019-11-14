@@ -17,15 +17,23 @@ const defaultProps = {
   gridWidth: null,
 };
 
-export default function VirtualizeRows(props) {
+const VirtualizeRows = React.forwardRef((props, ref) => {
   const { index: $index, gridLength, gridRowHeight, gridHeight, gridWidth, data, children, ...moreProps } = props;
   const [state, setState] = React.useState({ index: $index, top: 0 });
   const refElementToScroll = React.useRef(null);
+
+  React.useImperativeHandle(ref, () => ({
+    getScrollableElement: () => {
+      return refElementToScroll.current;
+    },
+  }));
+
   // track scroll
   React.useEffect(() => {
     function handleScroll(event) {
       const top = event.target.scrollTop;
-      const index = Math.ceil(top / gridRowHeight);
+      console.log("top", top);
+      const index = Math.floor(top / gridRowHeight);
       setState(() => ({ index, top }));
     }
 
@@ -42,7 +50,7 @@ export default function VirtualizeRows(props) {
   */
   const pageSize = React.useMemo(() => {
     if (gridRowHeight && gridHeight) {
-      return Math.ceil(gridHeight / gridRowHeight);
+      return Math.floor((gridHeight - gridRowHeight) / gridRowHeight);
     }
     return null;
   }, [gridHeight, gridRowHeight]);
@@ -83,15 +91,17 @@ export default function VirtualizeRows(props) {
       data-pka-anchor="virtualize-rows-root"
       ref={refElementToScroll}
       {...moreProps}
+      tabIndex="0"
     >
       <styled.VirtualizeContent role="grid" height={memoHeight}>
-        <styled.VirualizeRows role="rowgroup" top={state.top}>
+        <styled.VirtualizeRows role="rowgroup" top={state.top}>
           {children(subsetToRender, keys, { row: { role: "row" }, cell: { role: "cell" } })}
-        </styled.VirualizeRows>
+        </styled.VirtualizeRows>
       </styled.VirtualizeContent>
     </styled.Virtualize>
   );
-}
+});
 
+export default VirtualizeRows;
 VirtualizeRows.propTypes = propTypes;
 VirtualizeRows.defaultProps = defaultProps;

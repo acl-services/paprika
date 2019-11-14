@@ -2,12 +2,14 @@
 import React from "react";
 import PropTypes from "prop-types";
 import RawButton from "@paprika/raw-button";
-import { extractChildren } from "./helpers";
+import debounce from "lodash.debounce";
+import { extractChildren, handleArrowKeys, arrowKeys } from "./helpers";
 import * as styled from "./Table.styles";
 import ColumnDefinition from "./components/ColumnDefinition";
 import CheckBox from "./components/CheckBox";
 import Events from "./components/Events";
 import VirtualizeRows from "./VirtualizeRows";
+import "@paprika/helpers/lib/dom/elementScrollToPolyfill";
 
 const propTypes = {
   height: PropTypes.number,
@@ -26,25 +28,33 @@ export default function Table(props) {
   const [activeCell, setActiveCell] = React.useState({ rowIndex: null, dataRow: null, index: null, data: null });
   /** Props and initializers */
   const { data, children: childrenProps, height, rowHeight, width } = props;
-
+  const refActivePage = React.useRef({ from: null, to: null });
+  const refVirtualizeRows = React.useRef(null);
   const { "DataTable.ColumnDefinition": ColumnsDefinition } = extractChildren(childrenProps, [
     "DataTable.ColumnDefinition",
   ]);
+  const columnsLength = ColumnsDefinition.length;
+  const rowsLength = data.length;
 
-  function toggleCellActiveClassName(index) {
-    const className = "paprika__datatable__cell--is-active";
-
-    const activeClassNameExists = document.querySelector(`.${className}`);
-    if (activeClassNameExists) {
-      activeClassNameExists.classList.remove(className);
-    }
-
-    document.querySelector(`[data-pka-cell-index="${index}"]`).classList.add(className);
-  }
+  const delayedKeyDown = React.useRef(
+    debounce(
+      ({ event, activeCell, rowsLength, refActivePage, columnsLength, refVirtualizeRows, rowHeight, setActiveCell }) =>
+        handleArrowKeys({
+          event,
+          activeCell,
+          rowsLength,
+          refActivePage,
+          columnsLength,
+          refVirtualizeRows,
+          rowHeight,
+          setActiveCell,
+        }),
+      5
+    )
+  ).current;
 
   const handleClickCell = ({ index, data, dataRow, rowIndex }) => () => {
     if (activeCell.index !== index) {
-      toggleCellActiveClassName(index);
       setActiveCell(() => ({
         index,
         data,
@@ -61,10 +71,19 @@ export default function Table(props) {
   const handleMouseLeave = (/* row, rowIndex */) => () => {};
 
   function handleKeyDown(event) {
-    const keys = ["ArrowDown", "ArrowUp", "ArrowRight", "ArrowLeft"];
-    if (keys.includes(event.key)) {
+    if (arrowKeys.includes(event.key)) {
       event.preventDefault();
-      console.log("press:", event.key);
+      delayedKeyDown({
+        event,
+        activeCell,
+        rowsLength,
+        refActivePage,
+        columnsLength,
+        refVirtualizeRows,
+        rowHeight,
+        setActiveCell,
+      });
+      event.persist();
     }
   }
 
@@ -81,8 +100,13 @@ export default function Table(props) {
         gridLength={data.length}
         gridHeight={height}
         gridWidth={width}
+        ref={refVirtualizeRows}
       >
         {(subset, keys, a11y) => {
+          // this information will help to calculated next and previous ArrowUp and ArrowDown
+          refActivePage.current.from = keys[0];
+          refActivePage.current.to = keys[keys.length - 1];
+
           return (
             <>
               <styled.HeaderRow {...a11y.row} $height={rowHeight}>
@@ -114,7 +138,6 @@ export default function Table(props) {
                     {...a11y.row}
                     $height={rowHeight}
                     key={rowKey}
-                    data-pka-anchor-row-key={rowKey}
                   >
                     <styled.Counter key={`row_index_${keys[rowIndex]}`}>
                       <styled.Check>
@@ -134,6 +157,8 @@ export default function Table(props) {
                           $width={ColumnsDefinition[cellIndex].props.width}
                           $height={rowHeight}
                           data-pka-cell-index={index}
+                          cellIndex={index}
+                          activeCellIndex={activeCell.index}
                           onClick={handleClickCell({
                             index,
                             data: cell,
@@ -151,7 +176,6 @@ export default function Table(props) {
                   </styled.Row>
                 );
               })}
-              <styled.Footer $height={rowHeight}>{data.length} records</styled.Footer>
             </>
           );
         }}

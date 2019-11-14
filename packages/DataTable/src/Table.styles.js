@@ -13,7 +13,16 @@ export const Row = styled.div`
   }}
 `;
 
-export const Cell = styled.div`
+export const Cell = styled.div.attrs(({ cellIndex, activeCellIndex }) => {
+  const style = {};
+  if (cellIndex && activeCellIndex && cellIndex === activeCellIndex) {
+    style.outline = "3px solid #2c7ff9";
+  }
+
+  return {
+    style,
+  };
+})`
   border-left: 1px solid #dde1e3;
   overflow: hidden;
   padding-left: 8px;
@@ -21,10 +30,6 @@ export const Cell = styled.div`
   text-overflow: ellipsis;
   white-space: nowrap;
   width: 100%;
-
-  &.paprika__datatable__cell--is-active {
-    outline: 3px solid #2c7ff9;
-  }
 
   ${({ $width, $height }) => {
     return css`
