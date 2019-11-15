@@ -17,11 +17,8 @@ addDecorator(withA11y);
 
 require("./welcome.story");
 
-configure(require.context("../packages/CollapsibleText/stories", false, /CollapsibleText.stories.(js|mdx)$/), module);
-configure(
-  require.context("../packages/CollapsibleText/stories", false, /CollapsibleText.Tests.stories.(js|mdx)$/),
-  module
-);
+configure(require.context("../packages/CollapsibleText", true, /CollapsibleText.stories.(js|mdx)$/), module);
+configure(require.context("../packages/CollapsibleText", true, /CollapsibleText.Tests.stories.(js|mdx)$/), module);
 
 const req = require.context("../packages", true, /\.stories\.js$/);
 configure(() => {
