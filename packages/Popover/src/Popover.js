@@ -7,7 +7,7 @@ import tokens from "@paprika/tokens";
 import { AlignTypes } from "@paprika/helpers/lib/customPropTypes";
 import isInsideBoundaries from "./helpers/isInsideBoundaries";
 import { getContentCoordinates, getTipCoordinates } from "./helpers/getPosition";
-import { isActiveElementPopover } from "./helpers/isActiveElementPopover";
+// import { isActiveElementPopover } from "./helpers/isActiveElementPopover";
 import getBoundingClientRect from "./helpers/getBoundingClientRect";
 
 import PopoverContext, { ThemeContext } from "./PopoverContext";
@@ -26,6 +26,9 @@ import PopoverStyled from "./Popover.styles";
 const openDelay = 350;
 const closeDelay = 150;
 const throttleDelay = 20;
+let focusableElements;
+const originalTabIndexes = [];
+let triggerFocusIndex = -1;
 
 // TODO: To handle cases where there are multiple scrolling containers, we need to implement
 //       getScrollContainer as oneOfType([func, arrayOf(func)])
@@ -175,6 +178,10 @@ class Popover extends React.Component {
     // about setState for Popovers and Tooltips in ComponentDidMount
     // https://reactjs.org/docs/react-component.html#componentdidmount
 
+    focusableElements = document.querySelectorAll(
+      'button, [href], input, select, textarea, [tabindex]:not([tabindex="-1"])'
+    );
+
     if (this.isOpen()) {
       this.addListeners();
       this.setVisibilityAndPosition();
@@ -296,11 +303,47 @@ class Popover extends React.Component {
     }
   };
 
+  handleKeyDown = event => {
+    if (event.key === "Tab" && this.isOpen() && this.$trigger) {
+      event.preventDefault();
+
+      if (event.shiftKey) {
+        focusableElements[triggerFocusIndex - 1].focus();
+      } else {
+        focusableElements[triggerFocusIndex + 1].focus();
+      }
+    }
+  };
+
+  restoreTabIndexes = () => {
+    focusableElements.forEach(focusableElement => {
+      if (focusableElement !== this.$trigger) {
+        focusableElement.tabIndex = originalTabIndexes.reverse().pop(); // eslint-disable-line no-param-reassign
+      }
+    });
+  };
+
+  removeTabIndexes = () => {
+    focusableElements.forEach((focusableElement, index) => {
+      // JamieK Note: this approach does not allow tabbing within the Popover.
+      // To do that, we'd have to:
+      //   - leave the tabIndex on the item if it is a child of the Popover
+      //   - not hijack the "tab" key when tabbing within the Popover, but hijack it when they are on the first/last element
+      if (focusableElement === this.$trigger) {
+        triggerFocusIndex = index;
+      } else {
+        originalTabIndexes.push(focusableElement.tabIndex);
+        focusableElement.tabIndex = -1; // eslint-disable-line no-param-reassign
+      }
+    });
+  };
+
   handleTransitionEnd = event => {
     // NOTE: do this should make more that only focus the content div? should as well
     //       find the first focusable element like button, input, etc?
     //       can focus automatically
     if (!this.props.shouldKeepFocus && !this.props.isEager && this.isOpen() && event.propertyName === "visibility") {
+      this.removeTabIndexes();
       event.target.focus();
     }
   };
@@ -356,9 +399,10 @@ class Popover extends React.Component {
 
       // NOTE: If we don't prevent the focusing back to the trigger while using focus and mouseover prop
       //       will created a bug looping over opening and closing constantly.
-      if (!this.props.shouldKeepFocus && !this.props.isEager && this.$trigger && !isActiveElementPopover()) {
-        this.$trigger.focus();
-      }
+      // if (!this.props.shouldKeepFocus && !this.props.isEager && this.$trigger && !isActiveElementPopover()) {
+      //   this.$trigger.focus();
+      // }
+      this.restoreTabIndexes();
       this.removeListeners();
     }
   }
@@ -383,6 +427,7 @@ class Popover extends React.Component {
   addListeners() {
     if (this.$content) {
       document.addEventListener("keyup", this.handleKeyUp, false);
+      document.addEventListener("keydown", this.handleKeyDown, false);
       document.addEventListener("resize", this.handleReposition, false);
       document.addEventListener("scroll", this.handleReposition, false);
 
@@ -407,6 +452,7 @@ class Popover extends React.Component {
       }
 
       document.removeEventListener("keyup", this.handleKeyUp);
+      document.removeEventListener("keydown", this.handleKeyDown);
 
       this.$content.removeEventListener("transitionend", this.handleTransitionEnd);
       this.hasListeners = false;
