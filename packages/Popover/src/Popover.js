@@ -26,6 +26,7 @@ import PopoverStyled from "./Popover.styles";
 const openDelay = 350;
 const closeDelay = 150;
 const throttleDelay = 20;
+const focusableElementSelector = 'button, [href], input, select, textarea, [tabindex]:not([tabindex="-1"])';
 let focusableElements;
 const originalTabIndexes = [];
 let triggerFocusIndex = -1;
@@ -178,9 +179,7 @@ class Popover extends React.Component {
     // about setState for Popovers and Tooltips in ComponentDidMount
     // https://reactjs.org/docs/react-component.html#componentdidmount
 
-    focusableElements = document.querySelectorAll(
-      'button, [href], input, select, textarea, [tabindex]:not([tabindex="-1"])'
-    );
+    focusableElements = document.querySelectorAll(focusableElementSelector);
 
     if (this.isOpen()) {
       this.addListeners();
@@ -305,19 +304,46 @@ class Popover extends React.Component {
 
   handleKeyDown = event => {
     if (event.key === "Tab" && this.isOpen() && this.$trigger) {
-      event.preventDefault();
-
-      if (event.shiftKey) {
-        focusableElements[triggerFocusIndex - 1].focus();
-      } else {
-        focusableElements[triggerFocusIndex + 1].focus();
+      if (event.shiftKey && this.focusIsOnFirstFocusableElementInPopover()) {
+        event.preventDefault();
+        focusableElements[triggerFocusIndex].focus(); // this closes the popover, which restores tabIndexes
+      } else if (!event.shiftKey && this.focusIsOnLastFocusableElementInPopover()) {
+        event.preventDefault();
+        focusableElements[triggerFocusIndex + 1].focus(); // this closes the popover, which restores tabIndexes
       }
     }
   };
 
+  focusIsOnFirstFocusableElementInPopover = () => {
+    return this.focusIsOnCertainElementInPopover("first");
+  };
+
+  focusIsOnLastFocusableElementInPopover = () => {
+    return this.focusIsOnCertainElementInPopover("last");
+  };
+
+  focusIsOnCertainElementInPopover = which => {
+    const popoverContent = document.querySelector("[data-pka-anchor='popover.content']"); // TODO: use react
+    const focusableElementsInPopover = popoverContent.querySelectorAll(focusableElementSelector);
+
+    const index = which === "first" ? 0 : focusableElementsInPopover.length - 1;
+    return document.activeElement === focusableElementsInPopover[index];
+  };
+
+  elementIsDescendentOfPopover = elem => {
+    let elementsParent = elem.parentNode;
+    while (elementsParent !== null) {
+      if (elementsParent.getAttribute && elementsParent.getAttribute("data-pka-anchor") === "popover.content") {
+        return true;
+      }
+      elementsParent = elementsParent.parentNode;
+    }
+    return false;
+  };
+
   restoreTabIndexes = () => {
     focusableElements.forEach(focusableElement => {
-      if (focusableElement !== this.$trigger) {
+      if (focusableElement !== this.$trigger && !this.elementIsDescendentOfPopover(focusableElement)) {
         focusableElement.tabIndex = originalTabIndexes.reverse().pop(); // eslint-disable-line no-param-reassign
       }
     });
@@ -325,13 +351,9 @@ class Popover extends React.Component {
 
   removeTabIndexes = () => {
     focusableElements.forEach((focusableElement, index) => {
-      // JamieK Note: this approach does not allow tabbing within the Popover.
-      // To do that, we'd have to:
-      //   - leave the tabIndex on the item if it is a child of the Popover
-      //   - not hijack the "tab" key when tabbing within the Popover, but hijack it when they are on the first/last element
       if (focusableElement === this.$trigger) {
         triggerFocusIndex = index;
-      } else {
+      } else if (!this.elementIsDescendentOfPopover(focusableElement)) {
         originalTabIndexes.push(focusableElement.tabIndex);
         focusableElement.tabIndex = -1; // eslint-disable-line no-param-reassign
       }
