@@ -160,7 +160,7 @@ function SidePanel(props) {
             {overlayExtracted ? React.cloneElement(overlayExtracted, { onClose }) : null}
           </React.Fragment>
         </Portal>
-      )
+      );
     }
   }
 
