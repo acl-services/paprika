@@ -13,7 +13,7 @@
     "access": "public"
   },
   "dependencies": {
-    "@babel/runtime-corejs2": "^7.7.2",
+    "@babel/runtime-corejs2": "^7.3.1",
     "@paprika/button": "^0.2.2",
     "@paprika/heading": "^0.2.2",
     "@paprika/helpers": "^0.2.3",
