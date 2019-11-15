@@ -1,7 +1,10 @@
 import React from "react";
 import { withKnobs } from "@storybook/addon-knobs";
+
 import Variations from "./examples/Variations";
 import Showcase from "./examples/Showcase";
+import Props from "./CollapsibleText.mdx";
+
 import CollapsibleText from "../src";
 
 export default {
@@ -10,11 +13,10 @@ export default {
 };
 
 export const showcase = Showcase;
-
 showcase.story = {
+  decorators: [withKnobs],
   parameters: {
-    docs: { page: null },
-    decorators: [withKnobs],
+    docs: { page: Props },
     options: {
       isToolshown: true,
       showPanel: true,
@@ -23,10 +25,9 @@ showcase.story = {
 };
 
 export const variations = () => <Variations />;
-
 variations.story = {
   parameters: {
-    docs: { page: null },
+    docs: { page: Variations },
     options: {
       isToolshown: true,
       showPanel: false,

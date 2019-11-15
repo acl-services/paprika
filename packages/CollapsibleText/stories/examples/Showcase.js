@@ -6,10 +6,10 @@ import Heading from "@paprika/heading";
 import CollapsibleText from "../../src";
 
 const exampleChildren = {
-  short: "Lorem hipsum raw denim listicle mixtape.",
-  long:
+  Short: "Lorem hipsum raw denim listicle mixtape.",
+  Long:
     "Lorem hipsum lomo cronut meggings hella tattooed affogato. Pug cred plaid, neutra lyft typewriter locavore beard vice art party glossier woke kinfolk. Craft beer keytar poke man bun. Yr polaroid flannel air plant. Brunch tote bag seitan meditation ennui, adaptogen yr health goth. Hashtag disrupt echo park wayfarers, air plant tofu 8-bit green juice tilde umami kickstarter waistcoat.",
-  node: (
+  "Rich-text node": (
     <>
       <p>
         Hella asymmetrical offal, drinking vinegar pinterest locavore pug twee lo-fi farm-to-table keytar vaporware
@@ -31,16 +31,21 @@ const exampleChildren = {
 
 const exampleProps = () => ({
   collapsedLength: number("collapsedLength", 255),
-  children: select("children", Object.keys(exampleChildren), "long"),
+  children: select("children", Object.keys(exampleChildren), "Long"),
 });
 
 const ExampleStory = props => {
   return (
     <Story>
       <Heading level={1} displayLevel={2} isLight>
-        Showcase
+        CollapsibleText
       </Heading>
-      <Tagline>Use the knobs to tinker with the props.</Tagline>
+      <Tagline>
+        <big>
+          <strong>Showcase</strong>
+        </big>{" "}
+        – Interact with the props API
+      </Tagline>
       <Rule />
       <CollapsibleText {...props}>{exampleChildren[props.children]}</CollapsibleText>
     </Story>
