@@ -1,6 +1,16 @@
 import { css } from "styled-components";
 import tokens from "@paprika/tokens/lib/tokens";
 
+const fixedFooterStyles = css`
+  position: fixed;
+  width: ${props => props.width};
+`;
+
+const relativeFooterStyles = css`
+  position: relative;
+  width: 100%;
+`;
+
 export const footerCSS = css`
   align-items: center;
   background: ${tokens.color.white};
@@ -15,6 +25,6 @@ export const footerCSS = css`
   width: 100%;
 
   ${props => {
-    return props.isSticky ? `position: fixed;width:${props.width};` : "position: relative; width: 100%";
+    return props.isSticky ? fixedFooterStyles : relativeFooterStyles;
   }}
 `;

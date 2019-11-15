@@ -5,14 +5,14 @@ import { footerCSS } from "./Footer.styles";
 const propTypes = {
   children: PropTypes.node.isRequired,
   height: PropTypes.number,
-  width: PropTypes.number,
+  width: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
   isSticky: PropTypes.bool,
 };
 
 const defaultProps = {
   height: 48,
   isSticky: false,
-  width: 100,
+  width: "33%",
 };
 
 export default function Footer(props) {
