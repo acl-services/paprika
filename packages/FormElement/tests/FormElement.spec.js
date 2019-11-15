@@ -29,6 +29,7 @@ describe("FormElement", () => {
     expect(queryByTestId("formElement.description")).not.toBeInTheDocument();
     expect(queryByTestId("formElement.error")).not.toBeInTheDocument();
     expect(queryByTestId("formElement.help")).not.toBeInTheDocument();
+    expect(queryByTestId("formElement.instructions")).not.toBeInTheDocument();
   });
 
   it("renders id", () => {
@@ -65,6 +66,25 @@ describe("FormElement", () => {
 
     expect(getByTestId("formElement.description")).toHaveTextContent(/sample description/i);
     expect(getByTestId("formElement.help")).toBeInTheDocument();
+  });
+
+  it("renders extra panel", () => {
+    const { getByTestId } = render(
+      <L10n>
+        <FormElement label={defaultLabel}>
+          <input data-pka-anchor="formElement.input" />
+          <FormElement.Instructions>
+            Instructions Panel Content Instructions Panel Content Instructions Panel Content
+          </FormElement.Instructions>
+          <FormElement.Description>Sample description</FormElement.Description>
+          <FormElement.Help>Sample help</FormElement.Help>
+        </FormElement>
+      </L10n>
+    );
+
+    expect(getByTestId("formElement.instructions")).toHaveTextContent(
+      /Instructions Panel Content Instructions Panel Content Instructions Panel Content/i
+    );
   });
 
   it("renders error", () => {

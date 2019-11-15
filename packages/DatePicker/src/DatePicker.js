@@ -235,19 +235,15 @@ function DatePicker(props) {
       />
 
       <Popover.Content>
-        <div
-          css={calendarPopoverStyles}
-          data-pka-anchor="datepicker.calendar"
-          ref={calendarRef}
-          shouldShowCalendar={shouldShowCalendar}
-        >
-          <Calendar
-            date={date}
-            isVisible={shouldShowCalendar}
-            onSelect={handleSelect}
-            possibleDate={debouncedPossibleDate}
-            resetPossibleDate={handleResetPossibleDate}
-          />
+        <div css={calendarPopoverStyles} data-pka-anchor="datepicker.calendar" ref={calendarRef}>
+          {shouldShowCalendar ? (
+            <Calendar
+              date={date}
+              onSelect={handleSelect}
+              possibleDate={debouncedPossibleDate}
+              resetPossibleDate={handleResetPossibleDate}
+            />
+          ) : null}
         </div>
       </Popover.Content>
     </Popover>
