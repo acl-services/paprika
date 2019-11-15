@@ -38,15 +38,26 @@ export default function Table(props) {
 
   const delayedKeyDown = React.useRef(
     debounce(
-      ({ event, activeCell, rowsLength, refActivePage, columnsLength, refVirtualizeRows, rowHeight, setActiveCell }) =>
+      ({
+        activeCell,
+        columnsLength,
+        delayedKeyDown,
+        event,
+        refActivePage,
+        refVirtualizeRows,
+        rowHeight,
+        rowsLength,
+        setActiveCell,
+      }) =>
         handleArrowKeys({
-          event,
           activeCell,
-          rowsLength,
-          refActivePage,
           columnsLength,
+          delayedKeyDown,
+          event,
+          refActivePage,
           refVirtualizeRows,
           rowHeight,
+          rowsLength,
           setActiveCell,
         }),
       15
@@ -74,13 +85,13 @@ export default function Table(props) {
     if (arrowKeys.includes(event.key)) {
       event.preventDefault();
       delayedKeyDown({
-        event,
         activeCell,
-        rowsLength,
-        refActivePage,
         columnsLength,
+        event,
+        refActivePage,
         refVirtualizeRows,
         rowHeight,
+        rowsLength,
         setActiveCell,
       });
       event.persist();

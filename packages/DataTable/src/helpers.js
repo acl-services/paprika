@@ -28,14 +28,16 @@ export function extractChildren(children, types) {
 
 export const arrowKeys = ["ArrowDown", "ArrowUp", "ArrowRight", "ArrowLeft"];
 
+const isOutOfBoundaries = (nextRow, boundaries) => nextRow < boundaries.top || nextRow > boundaries.bottom;
+
 export function handleArrowKeys({
-  event,
   activeCell,
-  rowsLength,
-  refActivePage,
   columnsLength,
+  event,
+  refActivePage,
   refVirtualizeRows,
   rowHeight,
+  rowsLength,
   setActiveCell,
 }) {
   if (arrowKeys.includes(event.key)) {
@@ -63,15 +65,19 @@ export function handleArrowKeys({
             return;
           }
 
-          nextIndex = `${nextRow}_${cell}`;
+          // if the user is using the keyboard and then decide to use the wheel or scroll manually the current
+          // activeCell.index will be out of boundaries so we have to position it again to the first row on the new pageSize
+          nextIndex = isOutOfBoundaries(row, boundaries) ? `${boundaries.top}_${cell}` : `${nextRow}_${cell}`;
 
           // if we are approaching to the top start scrolling
           if (nextRow <= top - 1) {
             const $scrollableElement = refVirtualizeRows.current.getScrollableElement();
             // from + 3 indicate will show 4 new row once start navigating out of the area
             const _top = top - 1 === 0 ? 0 : top - 1;
+
             $scrollableElement.scrollTo({ top: rowHeight * _top });
           }
+
           setActiveCell(activeCell => ({ ...activeCell, index: nextIndex }));
         },
         ArrowDown: () => {
@@ -83,6 +89,10 @@ export function handleArrowKeys({
           }
 
           nextIndex = `${nextRow}_${cell}`;
+
+          if (isOutOfBoundaries(nextRow, boundaries)) {
+            nextIndex = `${boundaries.top}_${cell}`;
+          }
 
           // if we are approaching to the bottom start scrolling
           if (nextRow > bottom - 2) {
