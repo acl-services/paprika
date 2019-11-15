@@ -13,7 +13,8 @@ export const footerCSS = css`
   right: 0;
   transition: opacity 0.3s ease-in;
   width: 100%;
+
   ${props => {
-    return props.isSticky ? "position: absolute;" : "position: relative;";
+    return props.isSticky ? "position: sticky;" : "position: relative;";
   }}
 `;

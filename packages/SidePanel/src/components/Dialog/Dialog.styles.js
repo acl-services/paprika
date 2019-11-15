@@ -71,7 +71,7 @@ export const dialogStyles = css`
 
 export const dialogContentStyles = css`
   padding: ${stylers.spacer(2)};
-  ${props => {
+  ${"" /* ${props => {
     return props.isSticky ? `margin-bottom: ${props.footerHeight}px;` : "";
-  }}
+  }} */}
 `;
