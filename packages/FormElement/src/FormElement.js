@@ -2,11 +2,11 @@ import React from "react";
 import PropTypes from "prop-types";
 
 import { ShirtSizes } from "@paprika/helpers/lib/customPropTypes";
+import extractChildren from "@paprika/helpers/lib/extractChildren";
 import isNil from "lodash/isNil";
 import uuidv4 from "uuid/v4";
 import isString from "lodash/isString";
 
-import { extractChildren } from "./helpers/extractChildren";
 import Description from "./components/Description";
 import Instructions from "./components/Instructions";
 import ErrorMessage from "./components/ErrorMessage";
