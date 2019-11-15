@@ -29,12 +29,6 @@ const useFooterOffset = (height, ref = null, isSticky) => {
     };
   }, [handleOffset, ref]);
 
-  // let style = {};
-  // if (isSticky) {
-  //   style = { bottom: `${offsetY}px`, opacity };
-  // }
-
-  // return { style, isSticky };
   return { isSticky };
 };
 

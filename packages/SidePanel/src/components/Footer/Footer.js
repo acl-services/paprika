@@ -1,32 +1,32 @@
 import React from "react";
 import PropTypes from "prop-types";
 import { footerCSS } from "./Footer.styles";
-// import { useFooterOffset } from "../../hooks";
 
 const propTypes = {
   children: PropTypes.node.isRequired,
   height: PropTypes.number,
+  width: PropTypes.number,
   isSticky: PropTypes.bool,
 };
 
 const defaultProps = {
   height: 48,
   isSticky: false,
+  width: 100,
 };
 
 export default function Footer(props) {
   const {
     height,
     isSticky,
+    width,
     children,
     refSidePanel, // eslint-disable-line
     ...moreProps
   } = props;
 
-  // const footerOffset = useFooterOffset(height, refSidePanel, isSticky);
-
   return (
-    <div css={footerCSS} {...{ isSticky }} {...moreProps}>
+    <div css={footerCSS} {...{ isSticky, width }} {...moreProps}>
       {children}
     </div>
   );

@@ -15,6 +15,6 @@ export const footerCSS = css`
   width: 100%;
 
   ${props => {
-    return props.isSticky ? "position: sticky;" : "position: relative;";
+    return props.isSticky ? `position: fixed;width:${props.width};` : "position: relative; width: 100%";
   }}
 `;
