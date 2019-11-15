@@ -88,7 +88,7 @@ function FormElement(props) {
   function renderFooter() {
     if (hasError) {
       return (
-        <div aria-live="assertive">
+        <div role="alert">
           {React.cloneElement(extractedChildren["FormElement.Error"], {
             id: ariaErrorId,
           })}
