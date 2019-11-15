@@ -148,16 +148,20 @@ function SidePanel(props) {
       </Dialog>
     );
 
-    sidePanel = (
-      <Portal active={!isInline}>
-        <React.Fragment>
-          <FocusTrap focusTrapOptions={focusTrapOptions}>
-            <div>{dialog}</div>
-          </FocusTrap>
-          {overlayExtracted ? React.cloneElement(overlayExtracted, { onClose }) : null}
-        </React.Fragment>
-      </Portal>
-    );
+    if (isInline) {
+      sidePanel = dialog;
+    } else {
+      sidePanel = (
+        <Portal active={!isInline}>
+          <React.Fragment>
+            <FocusTrap focusTrapOptions={focusTrapOptions}>
+              <div>{dialog}</div>
+            </FocusTrap>
+            {overlayExtracted ? React.cloneElement(overlayExtracted, { onClose }) : null}
+          </React.Fragment>
+        </Portal>
+      )
+    }
   }
 
   const trigger = triggerExtracted ? React.cloneElement(triggerExtracted, { ref: refTrigger }) : null;
