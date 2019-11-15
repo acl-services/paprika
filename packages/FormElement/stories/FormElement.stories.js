@@ -1,10 +1,11 @@
-import React from "react";
-import { withKnobs } from "@storybook/addon-knobs";
-
 import { storiesOf } from "@storybook/react";
-
-import Showcase from "./FormElementShowcase";
+import { withKnobs } from "@storybook/addon-knobs";
+import ShowcaseStory from "./examples/Showcase";
+import AlternateLayoutsStory from "./examples/AlternateLayouts";
 
 storiesOf("FormElement", module)
   .addDecorator(withKnobs)
-  .add("FormElement", () => <Showcase locale="en" />);
+  .add("Showcase", ShowcaseStory)
+  .add("AlternateLayouts", AlternateLayoutsStory);
+
+storiesOf("FormElement/Automation Tests", module);
