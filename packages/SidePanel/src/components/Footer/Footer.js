@@ -10,7 +10,7 @@ const propTypes = {
 };
 
 const defaultProps = {
-  height: 48,
+  height: 72,
   isSticky: false,
 };
 
