@@ -22,7 +22,8 @@ packages/Tokens/src/tokens.mdx
 packages/Uploader/server/uploads/
 
 # Locales
-locales-js
+packages/L10n/src/locales
+packages/L10n/src/locales-js
 
 # Storybook
 storybook-dist

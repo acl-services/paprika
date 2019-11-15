@@ -25,9 +25,6 @@ const propTypes = {
   /** Selected date in moment object */
   date: momentPropTypes.momentObj,
 
-  /** Visibility of calendar picker and shortcut */
-  isVisible: PropTypes.bool.isRequired,
-
   /** Callback to fire when user select date */
   onSelect: PropTypes.func.isRequired,
 
@@ -49,7 +46,7 @@ function Calendar(props) {
   const I18n = useI18n();
 
   // Props
-  const { date, isVisible, onSelect, possibleDate, resetPossibleDate } = props;
+  const { date, onSelect, possibleDate, resetPossibleDate } = props;
 
   // State
   const [shouldShowShortcut, setShouldShowShortcut] = React.useState(false);
@@ -63,15 +60,6 @@ function Calendar(props) {
   function keepFocus() {
     if (calendarRef.current) calendarRef.current.focus();
   }
-
-  // Effect
-  React.useEffect(() => {
-    if (!isVisible) {
-      setShouldShowShortcut(false);
-      setCurrentMonth(null);
-    }
-    keepFocus();
-  }, [isVisible]);
 
   React.useEffect(() => {
     keepFocus();
@@ -178,7 +166,7 @@ function Calendar(props) {
   }
 
   const CalendarKey = `${currentMonth && currentMonth.format("YYYY-MM")}/${possibleDate &&
-    possibleDate.format("YYYY-MM")}/${date && date.format("YYYY-MM")}/${isVisible}`;
+    possibleDate.format("YYYY-MM")}/${date && date.format("YYYY-MM")}`;
 
   return (
     <div css={calendarWrapperStyles} tabIndex={-1} ref={calendarRef}>
