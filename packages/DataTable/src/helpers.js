@@ -104,14 +104,24 @@ export function handleArrowKeys({
         },
         ArrowRight: () => {
           if (cell + 1 < boundaries.right) {
-            nextIndex = `${row}_${cell + 1}`;
+            nextIndex = isOutOfBoundaries(row, boundaries) ? `${boundaries.top}_${cell + 1}` : `${row}_${cell + 1}`;
           }
+
+          if (cell + 1 >= boundaries.right && isOutOfBoundaries(row, boundaries)) {
+            nextIndex = `${boundaries.top}_${cell}`;
+          }
+
           setActiveCell(activeCell => ({ ...activeCell, index: nextIndex }));
         },
         ArrowLeft: () => {
           if (cell - 1 >= boundaries.left) {
-            nextIndex = `${row}_${cell - 1}`;
+            nextIndex = isOutOfBoundaries(row, boundaries) ? `${boundaries.top}_${cell - 1}` : `${row}_${cell - 1}`;
           }
+
+          if (cell - 1 < boundaries.left && isOutOfBoundaries(row, boundaries)) {
+            nextIndex = `${boundaries.top}_${cell}`;
+          }
+
           setActiveCell(activeCell => ({ ...activeCell, index: nextIndex }));
         },
       };
