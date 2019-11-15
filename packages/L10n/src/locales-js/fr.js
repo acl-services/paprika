@@ -2,6 +2,8 @@
 const locales = {
   "fr": {
     "translation": {
+      "back": "retour",
+      "remove": "supprimer",
       "moreInformation": "plus d'informations",
       "close": "Fermer",
       "uploader": {
@@ -93,6 +95,11 @@ const locales = {
         "less": "Afficher moins",
         "more_about": "Afficher plus sur {{topic}}",
         "less_about": "Afficher moins sur {{topic}}"
+      },
+      "listBoxBrowser": {
+        "explore": "Découvrir d'autres options",
+        "selected": "options sélectionnées",
+        "selectOne": "Sélectionner un ou plusieurs éléments..."
       }
     }
   }
