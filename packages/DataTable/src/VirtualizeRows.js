@@ -33,7 +33,7 @@ const VirtualizeRows = React.forwardRef((props, ref) => {
     function handleScroll(event) {
       const top = event.target.scrollTop;
       console.log("top", top);
-      const index = Math.floor(top / gridRowHeight);
+      const index = Math.ceil(top / gridRowHeight);
       setState(() => ({ index, top }));
     }
 
@@ -50,7 +50,7 @@ const VirtualizeRows = React.forwardRef((props, ref) => {
   */
   const pageSize = React.useMemo(() => {
     if (gridRowHeight && gridHeight) {
-      return Math.floor((gridHeight - gridRowHeight) / gridRowHeight);
+      return Math.ceil((gridHeight - gridRowHeight) / gridRowHeight);
     }
     return null;
   }, [gridHeight, gridRowHeight]);

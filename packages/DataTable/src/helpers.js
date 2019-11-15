@@ -66,10 +66,11 @@ export function handleArrowKeys({
           nextIndex = `${nextRow}_${cell}`;
 
           // if we are approaching to the top start scrolling
-          if (nextRow < top) {
+          if (nextRow <= top - 1) {
             const $scrollableElement = refVirtualizeRows.current.getScrollableElement();
             // from + 3 indicate will show 4 new row once start navigating out of the area
-            $scrollableElement.scrollTo({ top: rowHeight * top - 1 });
+            const _top = top - 1 === 0 ? 0 : top - 1;
+            $scrollableElement.scrollTo({ top: rowHeight * _top });
           }
           setActiveCell(activeCell => ({ ...activeCell, index: nextIndex }));
         },
@@ -84,7 +85,7 @@ export function handleArrowKeys({
           nextIndex = `${nextRow}_${cell}`;
 
           // if we are approaching to the bottom start scrolling
-          if (nextRow > bottom - 1) {
+          if (nextRow > bottom - 2) {
             const $scrollableElement = refVirtualizeRows.current.getScrollableElement();
             // from + 3 indicate will show 4 new row once start navigating out of the area
             $scrollableElement.scrollTo({ top: rowHeight * (top + 1) });

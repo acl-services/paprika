@@ -117,14 +117,10 @@ export default function Table(props) {
                   <styled.Expand />
                 </styled.Counter>
                 {ColumnsDefinition.map((header, headerIndex) => {
+                  const { header: headerProp, width } = header.props;
                   return (
-                    <styled.Cell
-                      key={`cell_${headerIndex}`}
-                      {...a11y.cell}
-                      $width={header.props.width}
-                      $height={rowHeight}
-                    >
-                      {header.props.children}
+                    <styled.Cell key={`cell_${headerIndex}`} {...a11y.cell} $width={width} $height={rowHeight}>
+                      {typeof headerProp === "function" ? headerProp(header.props) : headerProp}
                     </styled.Cell>
                   );
                 })}
@@ -148,8 +144,13 @@ export default function Table(props) {
                       </styled.Expand>
                     </styled.Counter>
                     {/* eslint-disable react/no-array-index-key */}
-                    {row.map((cell, cellIndex) => {
+                    {Object.keys(row).map((key, cellIndex) => {
                       const index = `${keys[rowIndex]}_${cellIndex}`;
+
+                      const cell =
+                        typeof ColumnsDefinition[cellIndex].props.cell === "function"
+                          ? ColumnsDefinition[cellIndex].props.cell(row[key])
+                          : row[key];
                       return (
                         <styled.Cell
                           key={`cell_${keys[rowIndex]}_${cellIndex}`}
@@ -161,14 +162,12 @@ export default function Table(props) {
                           activeCellIndex={activeCell.index}
                           onClick={handleClickCell({
                             index,
-                            data: cell,
+                            data: row,
                             dataRow: row,
                             rowIndex: keys[rowIndex],
                           })}
                         >
-                          {ColumnsDefinition[cellIndex].props.renderCell
-                            ? ColumnsDefinition[cellIndex].props.renderCell(cell)
-                            : cell}
+                          {cell}
                         </styled.Cell>
                       );
                     })}

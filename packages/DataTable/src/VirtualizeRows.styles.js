@@ -6,7 +6,7 @@ export const Virtualize = styled.div.attrs(({ height, width }) => ({
     height: `${height}px`,
   },
 }))`
-  background: #f5f5f5;
+  background: #fff;
   box-sizing: border-box;
   overflow: scroll;
   width: 100%;

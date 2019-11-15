@@ -4,31 +4,35 @@ import Table from "../src";
 import fixtures from "./fixtures";
 
 const flags = {
+  Austria: "🇦🇹",
   Mexico: "🇲🇽",
+  Brazil: "🇧🇷",
+  Hungary: "🇭🇺",
+  Germany: "🇩🇪",
+  Portugal: "🇵🇹",
+  Argentina: "🇦🇷",
+  Scotland: "🏴󠁧󠁢󠁳󠁣󠁴󠁿",
+  Sweden: "🇸🇪",
+  England: "🏴󠁧󠁢󠁥󠁮󠁧󠁿",
+  Poland: "🇵🇱",
 };
 
-function getFlag(flag) {
-  if (flag in flags) {
-    return flags[flag];
+function getFlag(cell) {
+  if (cell in flags) {
+    return flags[cell];
   }
 
-  return flag;
+  return cell;
 }
 
 const data = fixtures(1000);
 function App() {
-  function renderCountryCell(flag) {
-    return <span dangerouslySetInnerHTML={{ __html: getFlag(flag) }} />;
-  }
-
   return (
     <Table data={data} height={window.innerHeight}>
-      <Table.ColumnDefinition type={Table.types.string} renderCell={renderCountryCell}>
-        Country
-      </Table.ColumnDefinition>
-      <Table.ColumnDefinition type={Table.types.string}>Name</Table.ColumnDefinition>
-      <Table.ColumnDefinition type={Table.types.number}>Score</Table.ColumnDefinition>
-      <Table.ColumnDefinition type={Table.types.string}>Status</Table.ColumnDefinition>
+      <Table.ColumnDefinition id="country" width="190" header="Country" cell={cell => getFlag(cell)} />
+      <Table.ColumnDefinition id="name" header="Name" cell="name" />
+      <Table.ColumnDefinition id="goals" header="Goals" cell="goals" />
+      <Table.ColumnDefinition id="status" header="Status" cell="status" />
     </Table>
   );
 }
