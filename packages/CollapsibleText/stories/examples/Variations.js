@@ -12,10 +12,6 @@ const ExampleStory = () => {
           margin-top: 32px;
           color: #999;
         }
-
-        [class*="commonstyles__Gap"] {
-          height: 40px;
-        }
       `}
     >
       <Heading level={1} displayLevel={2} isLight>
