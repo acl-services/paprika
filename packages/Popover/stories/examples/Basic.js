@@ -18,9 +18,10 @@ export const popoverProps = () => ({
   offset: number("offset", 12),
 });
 
+/* eslint-disable jsx-a11y/tabindex-no-positive */
 const ExampleStory = () => (
   <CenteredStory>
-    <input />
+    <input tabIndex="3" />
     <Gap />
     <Popover {...popoverProps()}>
       <Popover.Trigger>
@@ -43,5 +44,6 @@ const ExampleStory = () => (
     <input />
   </CenteredStory>
 );
+/* eslint-enable jsx-a11y/tabindex-no-positive */
 
 export default () => <ExampleStory />;
