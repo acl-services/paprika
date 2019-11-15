@@ -1,6 +1,6 @@
 import React from "react";
 import { storiesOf } from "@storybook/react";
-import Table from "../src";
+import DataTable from "../src";
 import fixtures from "./fixtures";
 
 const flags = {
@@ -28,12 +28,12 @@ function getFlag(cell) {
 const data = fixtures(1000);
 function App() {
   return (
-    <Table data={data} height={window.innerHeight}>
-      <Table.ColumnDefinition id="country" width="190" header="Country" cell={cell => getFlag(cell)} />
-      <Table.ColumnDefinition id="name" header="Name" cell="name" />
-      <Table.ColumnDefinition id="goals" header="Goals" cell="goals" />
-      <Table.ColumnDefinition id="status" header="Status" cell="status" />
-    </Table>
+    <DataTable data={data} height={window.innerHeight}>
+      <DataTable.ColumnDefinition id="country" width="190" header="Country" cell={cell => getFlag(cell)} />
+      <DataTable.ColumnDefinition id="name" header="Name" cell="name" />
+      <DataTable.ColumnDefinition id="goals" header="Goals" cell="goals" />
+      <DataTable.ColumnDefinition id="status" header="Status" cell="status" />
+    </DataTable>
   );
 }
 

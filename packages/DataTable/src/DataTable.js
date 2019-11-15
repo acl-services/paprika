@@ -4,10 +4,9 @@ import PropTypes from "prop-types";
 import RawButton from "@paprika/raw-button";
 import debounce from "lodash.debounce";
 import { extractChildren, handleArrowKeys, arrowKeys } from "./helpers";
-import * as styled from "./Table.styles";
+import * as styled from "./DataTable.styles";
 import ColumnDefinition from "./components/ColumnDefinition";
 import CheckBox from "./components/CheckBox";
-import Events from "./components/Events";
 import VirtualizeRows from "./VirtualizeRows";
 import "@paprika/helpers/lib/dom/elementScrollToPolyfill";
 
@@ -23,7 +22,7 @@ const defaultProps = {
   rowHeight: 32,
 };
 
-export default function Table(props) {
+export default function DataTable(props) {
   const [activeRowOnMouseEnter, setActiveRowOnMouseEnter] = React.useState({ index: null, data: null });
   const [activeCell, setActiveCell] = React.useState({ rowIndex: null, dataRow: null, index: null, data: null });
   /** Props and initializers */
@@ -194,8 +193,6 @@ export default function Table(props) {
   );
 }
 /* eslint-enable react/no-array-index-key */
-Table.prpoTypes = propTypes;
-Table.defaultProps = defaultProps;
-Table.ColumnDefinition = ColumnDefinition;
-Table.Events = Events;
-Table.types = { integer: "integer", string: "string", date: "date", object: "object" };
+DataTable.prpoTypes = propTypes;
+DataTable.defaultProps = defaultProps;
+DataTable.ColumnDefinition = ColumnDefinition;

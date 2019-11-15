@@ -1,5 +1,5 @@
 import React from "react";
-
+// I will import this one from @paprika/helper once danil migrate the one on the takeover
 export function extractChildren(children, types) {
   const _children = [];
   const components = {};
@@ -27,7 +27,6 @@ export function extractChildren(children, types) {
 }
 
 export const arrowKeys = ["ArrowDown", "ArrowUp", "ArrowRight", "ArrowLeft"];
-
 const isOutOfBoundaries = (nextRow, boundaries) => nextRow < boundaries.top || nextRow > boundaries.bottom;
 
 export function handleArrowKeys({

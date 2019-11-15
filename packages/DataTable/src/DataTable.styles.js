@@ -1,3 +1,4 @@
+/* This will likely change color and tokens, I will wait until the UI mockup exists */
 import styled, { css } from "styled-components";
 
 export const Row = styled.div`
@@ -91,6 +92,7 @@ export const Expand = styled.div`
     opacity: 1;
   }
 
+  /* Ignore this will be replace with an svg icon */
   [role="button"] {
     align-items: center;
     color: #2d7ff9;
@@ -99,24 +101,5 @@ export const Expand = styled.div`
     justify-content: center;
     opacity: 0;
   }
-`;
-
-export const Footer = styled.div`
-  align-items: center;
-  background: #fafafa;
-  border-top: 1px solid #dde1e3;
-  bottom: 0;
-  /* this should improved this can be like this */
-  color: #4d4d4d;
-  display: flex;
-  font-size: 13px;
-  padding-left: 8px;
-  position: fixed;
-  width: 100%;
-
-  ${({ $height }) => {
-    return css`
-      height: ${$height - 4}px;
-    `;
-  }}
+  /* Ignore this will be replace with an svg icon */
 `;
