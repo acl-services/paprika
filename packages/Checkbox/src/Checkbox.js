@@ -30,7 +30,7 @@ const defaultProps = {
 };
 
 const Checkbox = props => {
-  const { a11yText, children, isDisabled, checkedState, size, ...moreProps } = props;
+  const { a11yText, children, isDisabled, checkedState, size, onChange, ...moreProps } = props;
   const { CHECKED, INDETERMINATE } = checkboxStates;
 
   const checkboxId = React.useRef(uuid()).current;
@@ -62,6 +62,7 @@ const Checkbox = props => {
         id={checkboxId}
         ref={inputRef}
         type="checkbox"
+        onChange={onChange}
         {...inputProps}
       />
       <label htmlFor={checkboxId}>
