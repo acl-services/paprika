@@ -1,6 +1,7 @@
 import React from "react";
 import PropTypes from "prop-types";
 import * as styled from "./VirtualizeRows.styles";
+import { useTableState } from "./context";
 
 const propTypes = {
   index: PropTypes.number,
@@ -18,9 +19,14 @@ const defaultProps = {
 };
 
 const VirtualizeRows = React.forwardRef((props, ref) => {
-  const { index: $index, gridLength, gridRowHeight, gridHeight, gridWidth, data, children, ...moreProps } = props;
+  const { index: $index, gridLength, gridRowHeight, gridHeight, gridWidth, children, ...moreProps } = props;
   const [state, setState] = React.useState({ index: $index, top: 0 });
   const refElementToScroll = React.useRef(null);
+  const { data, sortedOrder, keygen } = useTableState();
+
+  const dataForRendering = sortedOrder
+    ? sortedOrder.map(keygenValue => data.find(item => item[keygen] === keygenValue))
+    : data;
 
   React.useImperativeHandle(ref, () => ({
     getScrollableElement: () => {
@@ -61,7 +67,7 @@ const VirtualizeRows = React.forwardRef((props, ref) => {
   */
   const subsetToRender = React.useMemo(() => {
     if (!gridHeight) {
-      return data;
+      return dataForRendering;
     }
 
     const from = state.index;
@@ -70,8 +76,8 @@ const VirtualizeRows = React.forwardRef((props, ref) => {
       to = gridLength;
     }
 
-    return data.slice(from, to);
-  }, [data, gridHeight, gridLength, pageSize, state.index]);
+    return dataForRendering.slice(from, to);
+  }, [dataForRendering, gridHeight, gridLength, pageSize, state.index]);
 
   const memoHeight = React.useMemo(() => {
     return gridLength * gridRowHeight;
@@ -95,7 +101,7 @@ const VirtualizeRows = React.forwardRef((props, ref) => {
     >
       <styled.VirtualizeContent role="grid" height={memoHeight}>
         <styled.VirtualizeRows role="rowgroup" top={state.top}>
-          {children(subsetToRender, keys, { row: { role: "row" }, cell: { role: "cell" } })}
+          {children(subsetToRender, keys, { row: { role: "row" }, cell: { role: "cell", tabIndex: "0" } })}
         </styled.VirtualizeRows>
       </styled.VirtualizeContent>
     </styled.Virtualize>

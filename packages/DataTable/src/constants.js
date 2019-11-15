@@ -1,0 +1,13 @@
+export const actions = {
+  ADD_FILTER: "ADD_FILTER",
+  REMOVE_FILTER: "REMOVE_FILTER",
+  RESET_DATA: "RESET_DATA",
+  SORT: "SORT",
+  UPDATE_FILTER_LOGIC: "UPDATE_FILTER_LOGIC",
+  UPDATE_FILTER: "UPDATE_FILTER",
+};
+
+export const sortDirections = {
+  ASCEND: "ASCEND",
+  DESCEND: "DESCEND",
+};
