@@ -2,6 +2,8 @@
 const locales = {
   "ja": {
     "translation": {
+      "back": "戻る",
+      "remove": "削除",
       "moreInformation": "詳しい情報",
       "close": "閉じる",
       "uploader": {
@@ -93,6 +95,11 @@ const locales = {
         "less": "少なく表示",
         "more_about": "{{topic}}について詳しく表示",
         "less_about": "{{topic}}について少なく表示"
+      },
+      "listBoxBrowser": {
+        "explore": "より多くのオプションを探す",
+        "selected": "選択されたオプション",
+        "selectOne": "1 つ以上の項目を選択..."
       }
     }
   }
