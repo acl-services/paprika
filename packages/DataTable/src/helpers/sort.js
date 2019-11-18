@@ -10,7 +10,7 @@ function compareNumber(a, b) {
 }
 
 export default function sort(data, keygen, columnId, direction, isBackendSort = false) {
-  if (isBackendSort) return [];
+  if (isBackendSort) return null;
 
   switch (direction) {
     case sortDirections.ASCEND:

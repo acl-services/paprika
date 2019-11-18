@@ -1,6 +1,5 @@
 import React from "react";
 import { storiesOf } from "@storybook/react";
-import Button from "@paprika/button";
 import DataTable from "../src";
 import fixtures from "./fixtures";
 
@@ -26,45 +25,15 @@ function getFlag(cell) {
   return cell;
 }
 
-const mockData = fixtures(1);
+const data = fixtures(1000);
 function App() {
-  const [data, setData] = React.useState(mockData);
   return (
     <React.Fragment>
-      <Button
-        onClick={() => {
-          setData([]);
-        }}
-      >
-        Clear data
-      </Button>
-      <DataTable
-        keygen="id"
-        data={data}
-        height={window.innerHeight}
-        // onSort={(columnId, direction) => {
-        //   console.log("sort", columnId, direction);
-        // }}
-      >
+      <DataTable keygen="id" data={data} height={window.innerHeight}>
         <DataTable.ColumnDefinition id="country" width="190" header="Country" cell={cell => getFlag(cell)} />
-        <DataTable.ColumnDefinition
-          id="name"
-          header="Name"
-          cell="name"
-          sortDirections={[DataTable.SortDirections.ASCEND]}
-        />
-        <DataTable.ColumnDefinition
-          id="goals"
-          header="Goals"
-          cell="goals"
-          sortDirections={DataTable.SortDirections.DEFAULT}
-        />
-        <DataTable.ColumnDefinition
-          id="status"
-          header="Status"
-          cell="status"
-          sortDirections={DataTable.SortDirections.DEFAULT}
-        />
+        <DataTable.ColumnDefinition id="name" header="Name" cell="name" />
+        <DataTable.ColumnDefinition id="goals" header="Goals" cell="goals" />
+        <DataTable.ColumnDefinition id="status" header="Status" cell="status" />
       </DataTable>
     </React.Fragment>
   );

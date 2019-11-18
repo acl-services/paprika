@@ -101,7 +101,7 @@ const VirtualizeRows = React.forwardRef((props, ref) => {
     >
       <styled.VirtualizeContent role="grid" height={memoHeight}>
         <styled.VirtualizeRows role="rowgroup" top={state.top}>
-          {children(subsetToRender, keys, { row: { role: "row" }, cell: { role: "cell", tabIndex: "0" } })}
+          {children(subsetToRender, keys, { row: { role: "row" }, cell: { role: "cell" } })}
         </styled.VirtualizeRows>
       </styled.VirtualizeContent>
     </styled.Virtualize>

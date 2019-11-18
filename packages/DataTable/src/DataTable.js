@@ -161,13 +161,13 @@ export default function DataTable(props) {
                           <RawButton>⇗</RawButton>
                         </styled.Expand>
                       </styled.Counter>
-                      {ColumnsDefinition.map(Column => {
+                      {ColumnsDefinition.map((Column, cellIndex) => {
                         const { id, cell, width } = Column.props;
-                        const index = `${row[keygen]}_${id}`;
+                        const index = `${keys[rowIndex]}_${cellIndex}`;
                         const cellContent = typeof cell === "function" ? cell(row[id]) : row[cell];
                         return (
                           <styled.Cell
-                            key={`cell_${row[keygen]}_${id}`}
+                            key={`cell_${index}`}
                             {...a11y.cell}
                             $width={width}
                             $height={rowHeight}
