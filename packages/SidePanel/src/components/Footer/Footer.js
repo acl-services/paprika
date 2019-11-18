@@ -34,4 +34,4 @@ export default function Footer(props) {
 
 Footer.propTypes = propTypes;
 Footer.defaultProps = defaultProps;
-Footer.componentType = "SidePanel.Footer";
+Footer.displayName = "SidePanel.Footer";

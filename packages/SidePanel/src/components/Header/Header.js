@@ -58,6 +58,6 @@ const Header = React.forwardRef((props, ref) => {
 
 Header.propTypes = propTypes;
 Header.defaultProps = defaultProps;
-Header.componentType = "SidePanel.Header";
+Header.displayName = "SidePanel.Header";
 
 export default Header;

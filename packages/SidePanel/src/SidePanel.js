@@ -189,6 +189,6 @@ SidePanel.Header = Header;
 SidePanel.Overlay = Overlay;
 SidePanel.propTypes = propTypes;
 SidePanel.Trigger = Trigger;
-SidePanel.componentType = "SidePanel";
+SidePanel.displayName = "SidePanel";
 
 export default SidePanel;
