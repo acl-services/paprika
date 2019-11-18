@@ -1,4 +1,5 @@
 import { css } from "styled-components";
+import stylers from "@paprika/stylers";
 import tokens from "@paprika/tokens/lib/tokens";
 
 const fixedFooterStyles = css`
@@ -11,19 +12,23 @@ const relativeFooterStyles = css`
   width: 100%;
 `;
 
+const compactStyles = css`
+  padding: ${stylers.spacer(2)};
+`;
+
 export const footerCSS = css`
   align-items: center;
-  background: ${tokens.color.white};
-  border-top: 1px solid ${tokens.border.color};
+  background: ${tokens.color.blackLighten80};
   bottom: 0;
   box-sizing: border-box;
   display: flex;
-  height: 48px;
-  padding: 0;
+  height: ${props => (props.height ? props.height : stylers.spacer(9))};
+  padding: ${stylers.spacer(2)} ${stylers.spacer(3)};
   right: 0;
   transition: opacity 0.3s ease-in;
   width: 100%;
 
+  ${props => (props.isCompact ? compactStyles : "")}
   ${props => {
     return props.isSticky ? fixedFooterStyles : relativeFooterStyles;
   }}
