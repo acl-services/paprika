@@ -6,6 +6,8 @@ const propTypes = {
   children: PropTypes.node.isRequired,
   footer: PropTypes.node,
   header: PropTypes.node,
+  kind: PropTypes.oneOf(["default", "child"]),
+  isCompact: PropTypes.bool,
   isInline: PropTypes.bool,
   offsetY: PropTypes.number,
   onAnimationEnd: PropTypes.func.isRequired,
@@ -19,6 +21,8 @@ const propTypes = {
 const defaultProps = {
   footer: null,
   header: null,
+  kind: "default",
+  isCompact: false,
   isInline: false,
   offsetY: 0,
   onClose: () => {},
@@ -32,6 +36,8 @@ function Dialog(props) {
     footer,
     onAnimationEnd,
     header,
+    kind,
+    isCompact,
     isInline,
     offsetY,
     onClose,
@@ -46,6 +52,7 @@ function Dialog(props) {
     <div
       aria-modal={isInline ? null : "true"}
       css={dialogStyles}
+      kind={kind}
       isInline={isInline}
       isOpen={isOpen}
       offsetY={props.offsetY}
@@ -56,18 +63,20 @@ function Dialog(props) {
       width={width}
       {...moreProps}
     >
-      {header ? React.cloneElement(header, { ref: refHeader, onClose }) : null}
+      {header ? React.cloneElement(header, { ref: refHeader, isCompact, onClose }) : null}
       <div
         css={dialogContentStyles}
+        isCompact={isCompact}
         isOpen={isOpen}
         isSticky={footer ? footer.props.isSticky : undefined}
         footerHeight={footer ? footer.props.height : undefined}
+        kind={kind}
         tabIndex="-1"
         ref={refSidePanelContent}
       >
         {children}
       </div>
-      {footer ? React.cloneElement(footer, { refSidePanel, width }) : null}
+      {footer ? React.cloneElement(footer, { refSidePanel, isCompact, width }) : null}
     </div>
   );
 }
