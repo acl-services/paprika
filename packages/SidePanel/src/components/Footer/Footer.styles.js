@@ -2,6 +2,16 @@ import { css } from "styled-components";
 import stylers from "@paprika/stylers";
 import tokens from "@paprika/tokens/lib/tokens";
 
+const fixedFooterStyles = css`
+  position: fixed;
+  width: ${props => props.width};
+`;
+
+const relativeFooterStyles = css`
+  position: relative;
+  width: 100%;
+`;
+
 const compactStyles = css`
   padding: ${stylers.spacer(2)};
 `;
@@ -17,8 +27,9 @@ export const footerCSS = css`
   right: 0;
   transition: opacity 0.3s ease-in;
   width: 100%;
+
   ${props => (props.isCompact ? compactStyles : "")}
   ${props => {
-    return props.isSticky ? "position: absolute;" : "position: relative;";
+    return props.isSticky ? fixedFooterStyles : relativeFooterStyles;
   }}
 `;
