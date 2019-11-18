@@ -6,16 +6,6 @@ import { actions } from "./constants";
 const TableStateContext = React.createContext();
 const TableDispatchContext = React.createContext();
 
-// const initialState = {
-//   columnConfig: [],
-//   filteredOrder: [],
-//   sortedOrder: [],
-//   filters: [],
-//   searchValue: "",
-//   sortColumn: null,
-//   sortDirection: null,
-// };
-
 function TableProvider(props) {
   const { data, keygen } = props;
   const [state, dispatch] = React.useReducer(tableReducer, {
