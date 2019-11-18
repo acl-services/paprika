@@ -21,7 +21,13 @@ export default function Options(props) {
     <DropdownMenu
       align="bottom"
       renderTrigger={({ isOpen, handleOpenMenu }) => (
-        <DropdownMenu.Trigger isOpen={isOpen} onClick={handleOpenMenu} icon={<ArrowDown />} kind="minor" size="small" />
+        <DropdownMenu.Trigger
+          isOpen={isOpen}
+          onOpenMenu={handleOpenMenu}
+          icon={<ArrowDown />}
+          kind="minor"
+          size="small"
+        />
       )}
     >
       {sortDirections
@@ -42,6 +48,6 @@ Options.propTypes = {
 };
 
 Options.defaultProps = {
-  sortDirections: [],
   onSort: null,
+  sortDirections: [],
 };

@@ -1,14 +1,17 @@
 import React from "react";
-import PropType from "prop-types";
+import PropTypes from "prop-types";
 import Button from "@paprika/button";
 import DropdownMenu from "@paprika/dropdown-menu";
 import { useTableState } from "../../context";
 import useSort from "../../hooks/useSort";
 
 export default function Controls(props) {
-  const { Columns, onSort } = props;
+  const { ColumnsDefinition, onSort } = props;
   const sort = useSort();
   const { sortColumn, sortDirection } = useTableState();
+  const hasSortDirections = ColumnsDefinition.find(
+    ({ props: columnProp }) => columnProp.sortDirections && columnProp.sortDirections.length > 0
+  );
 
   function handleSort(columnId, direction) {
     return () => {
@@ -17,8 +20,8 @@ export default function Controls(props) {
     };
   }
 
-  return (
-    <React.Fragment>
+  function renderSortingDropdown() {
+    return (
       <DropdownMenu
         align="bottom"
         renderTrigger={({ isOpen, handleOpenMenu }) => (
@@ -27,31 +30,35 @@ export default function Controls(props) {
           </DropdownMenu.Trigger>
         )}
       >
-        {Columns.map(({ props: columnProp }) => {
-          if (columnProp.sortDirections) {
-            return (
-              <DropdownMenu.Item key={columnProp.id} onClick={() => {}}>
-                Sort {columnProp.header} by
-                {columnProp.sortDirections.map(direction => (
-                  <Button onClick={handleSort(columnProp.id, direction)} kind="minor">
-                    {direction}
-                  </Button>
-                ))}
-              </DropdownMenu.Item>
-            );
-          }
-          return null;
-        })}
+        {ColumnsDefinition.map(({ props: columnProp }) => (
+          <DropdownMenu.Item key={columnProp.id} onClick={() => {}}>
+            Sort {columnProp.header} by
+            {columnProp.sortDirections &&
+              columnProp.sortDirections.map(direction => (
+                <Button key={direction} onClick={handleSort(columnProp.id, direction)} kind="minor">
+                  {direction}
+                </Button>
+              ))}
+          </DropdownMenu.Item>
+        ))}
       </DropdownMenu>
-    </React.Fragment>
-  );
+    );
+  }
+
+  return <React.Fragment>{hasSortDirections ? renderSortingDropdown() : null}</React.Fragment>;
 }
 
 Controls.propTypes = {
-  Columns: PropType.arrayOf(PropType.func).isRequired,
-  onSort: PropType.func,
+  ColumnsDefinition: PropTypes.arrayOf(
+    PropTypes.shape({
+      props: PropTypes.object.isRequired,
+      type: PropTypes.func.isRequired,
+    })
+  ),
+  onSort: PropTypes.func,
 };
 
 Controls.defaultProps = {
+  ColumnsDefinition: [],
   onSort: null,
 };

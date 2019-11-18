@@ -1,7 +1,6 @@
 import React from "react";
 import PropTypes from "prop-types";
 import * as styled from "./VirtualizeRows.styles";
-import { useTableState } from "./context";
 
 const propTypes = {
   index: PropTypes.number,
@@ -19,14 +18,9 @@ const defaultProps = {
 };
 
 const VirtualizeRows = React.forwardRef((props, ref) => {
-  const { index: $index, gridLength, gridRowHeight, gridHeight, gridWidth, children, ...moreProps } = props;
+  const { data, index: $index, gridLength, gridRowHeight, gridHeight, gridWidth, children, ...moreProps } = props;
   const [state, setState] = React.useState({ index: $index, top: 0 });
   const refElementToScroll = React.useRef(null);
-  const { data, sortedOrder, keygen } = useTableState();
-
-  const dataForRendering = sortedOrder
-    ? sortedOrder.map(keygenValue => data.find(item => item[keygen] === keygenValue))
-    : data;
 
   React.useImperativeHandle(ref, () => ({
     getScrollableElement: () => {
@@ -67,7 +61,7 @@ const VirtualizeRows = React.forwardRef((props, ref) => {
   */
   const subsetToRender = React.useMemo(() => {
     if (!gridHeight) {
-      return dataForRendering;
+      return data;
     }
 
     const from = state.index;
@@ -76,8 +70,8 @@ const VirtualizeRows = React.forwardRef((props, ref) => {
       to = gridLength;
     }
 
-    return dataForRendering.slice(from, to);
-  }, [dataForRendering, gridHeight, gridLength, pageSize, state.index]);
+    return data.slice(from, to);
+  }, [data, gridHeight, gridLength, pageSize, state.index]);
 
   const memoHeight = React.useMemo(() => {
     return gridLength * gridRowHeight;
