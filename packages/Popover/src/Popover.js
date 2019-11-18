@@ -26,7 +26,8 @@ import PopoverStyled from "./Popover.styles";
 const openDelay = 350;
 const closeDelay = 150;
 const throttleDelay = 20;
-const focusableElementSelector = 'button, [href], input, select, textarea, [tabindex]:not([tabindex="-1"])';
+const focusableElementSelector =
+  'button, [href], input, select, textarea, [tabindex]:not([tabindex="-1"]), [role="button"]';
 let focusableElements;
 const originalTabIndexes = [];
 let triggerFocusIndex = -1;
