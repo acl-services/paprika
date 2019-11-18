@@ -5,6 +5,8 @@ import DropdownMenu from "@paprika/dropdown-menu";
 import { useTableState } from "../../context";
 import useSort from "../../hooks/useSort";
 
+const noop = () => {};
+
 export default function Controls(props) {
   const { ColumnsDefinition, onSort } = props;
   const sort = useSort();
@@ -31,17 +33,22 @@ export default function Controls(props) {
           </DropdownMenu.Trigger>
         )}
       >
-        {ColumnsDefinition.map(({ props: columnProp }) => (
-          <DropdownMenu.Item key={columnProp.id} onClick={() => {}}>
-            Sort {columnProp.header} by
-            {columnProp.sortDirections &&
-              columnProp.sortDirections.map(direction => (
-                <Button key={direction} onClick={handleSort(columnProp.id, direction)} kind="minor">
-                  {direction}
-                </Button>
-              ))}
-          </DropdownMenu.Item>
-        ))}
+        {ColumnsDefinition.map(({ props: columnProp }) => {
+          const { id: columnId, header, sortDirections } = columnProp;
+          if (!sortDirections || sortDirections.length === 0) return null;
+          console.log(columnProp);
+          return (
+            <DropdownMenu.Item key={columnId} onClick={noop}>
+              Sort {header} by
+              {sortDirections &&
+                sortDirections.map(direction => (
+                  <Button key={direction} onClick={handleSort(columnId, direction)} kind="minor">
+                    {direction}
+                  </Button>
+                ))}
+            </DropdownMenu.Item>
+          );
+        })}
       </DropdownMenu>
     );
   }
