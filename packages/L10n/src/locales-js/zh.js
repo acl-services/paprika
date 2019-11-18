@@ -2,6 +2,8 @@
 const locales = {
   "zh": {
     "translation": {
+      "back": "返回",
+      "remove": "移除",
       "moreInformation": "更多信息",
       "close": "关闭",
       "uploader": {
@@ -93,6 +95,11 @@ const locales = {
         "less": "显示更少",
         "more_about": "显示关于{{topic}}的更多信息",
         "less_about": "显示关于{{topic}}的更少信息"
+      },
+      "listBoxBrowser": {
+        "explore": "探索更多选项",
+        "selected": "选定选项",
+        "selectOne": "选择一项或多项..."
       }
     }
   }

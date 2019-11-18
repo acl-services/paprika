@@ -1,7 +1,8 @@
 import React from "react";
-import ReactDOM from "react-dom";
 import PropTypes from "prop-types";
 import { zValue } from "@paprika/stylers/lib/helpers";
+import LockBodyScroll from "@paprika/helpers/lib/components/LockBodyScroll";
+import Portal from "@paprika/helpers/lib/components/Portal";
 import Dialog from "./components/Dialog";
 import Footer from "./components/Footer";
 import Header from "./components/Header";
@@ -9,10 +10,9 @@ import Overlay from "./components/Overlay";
 import Trigger from "./components/Trigger";
 import Group from "./components/Group";
 import FocusTrap from "./components/FocusTrap";
-import LockBodyScroll from "./components/LockBodyScroll";
 
 import { extractChildren } from "./helpers";
-import { useOffsetScroll, useEscapeKey } from "./hooks";
+import { useOffsetScroll } from "./hooks";
 
 const propTypes = {
   /** The content for the SidePanel. */
@@ -64,7 +64,6 @@ function SidePanel(props) {
   // Hooks
   const [isVisible, setIsVisible] = React.useState(props.isOpen);
   const offsetScroll = useOffsetScroll(offsetY);
-  useEscapeKey(isOpen, onClose);
 
   // Refs
   const refTrigger = React.useRef(null);
@@ -118,6 +117,14 @@ function SidePanel(props) {
     ...extendedFocusTrapOptions,
   };
 
+  function handleEscKey(event) {
+    if (event.key === "Escape") {
+      event.stopPropagation();
+
+      onClose();
+    }
+  }
+
   let sidePanel = null;
 
   if (isVisible) {
@@ -134,6 +141,7 @@ function SidePanel(props) {
         refHeader={refHeader}
         offsetY={offsetScroll}
         isOpen={isOpen}
+        onKeyDown={handleEscKey}
         {...moreProps}
       >
         {children}
@@ -143,14 +151,15 @@ function SidePanel(props) {
     if (isInline) {
       sidePanel = dialog;
     } else {
-      sidePanel = ReactDOM.createPortal(
-        <React.Fragment>
-          <FocusTrap focusTrapOptions={focusTrapOptions}>
-            <div>{dialog}</div>
-          </FocusTrap>
-          {overlayExtracted ? React.cloneElement(overlayExtracted, { onClose }) : null}
-        </React.Fragment>,
-        document.body
+      sidePanel = (
+        <Portal active={!isInline}>
+          <React.Fragment>
+            <FocusTrap focusTrapOptions={focusTrapOptions}>
+              <div>{dialog}</div>
+            </FocusTrap>
+            {overlayExtracted ? React.cloneElement(overlayExtracted, { onClose }) : null}
+          </React.Fragment>
+        </Portal>
       );
     }
   }

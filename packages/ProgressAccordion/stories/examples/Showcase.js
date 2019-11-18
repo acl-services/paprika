@@ -7,7 +7,7 @@ import generatedItems from "../fixtures/generateItems";
 import ProgressAccordion from "../../src";
 
 const propKnobs = () => ({
-  activeIndex: select("activeIndex", [0, 1, 2, 3, 4], 2),
+  activeIndex: select("activeIndex", [0, 1, 2, 3, 4], 3),
   activeStatus: text("activeStatus", "2 days idle"),
 });
 
@@ -49,4 +49,4 @@ const ExampleStory = () => {
   );
 };
 
-export default () => <ExampleStory />;
+export default () => <ExampleStory {...propKnobs()} />;
