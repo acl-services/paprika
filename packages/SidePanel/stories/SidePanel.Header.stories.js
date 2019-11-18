@@ -16,6 +16,20 @@ storiesOf("SidePanel / Header", module).add("SidePanel.Header", () => (
   </SidePanel>
 ));
 
+storiesOf("SidePanel / Header", module).add("SidePanel.Header isCompact", () => (
+  <SidePanel
+    onClose={() => {
+      alert("onClose");
+    }}
+    isCompact
+    isOpen
+  >
+    <SidePanel.Header>
+      <Heading level={2}>With Header Compact</Heading>
+    </SidePanel.Header>
+  </SidePanel>
+));
+
 storiesOf("SidePanel / Header", module).add("SidePanel.Header without close button", () => (
   <SidePanel isOpen>
     <SidePanel.Header hasCloseButton={false}>

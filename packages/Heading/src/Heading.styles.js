@@ -13,7 +13,6 @@ const defaultHeadingStyles = `
   &:focus {
     outline: none;
   }
-
 `;
 
 const heading = {
