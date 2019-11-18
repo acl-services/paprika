@@ -12,7 +12,8 @@ export default function Options(props) {
 
   function handleSortBy(direction) {
     return () => {
-      sort(columnId, direction, !!onSort);
+      const hasBackendSort = !!onSort;
+      sort(columnId, direction, hasBackendSort);
       if (onSort) onSort(columnId, direction);
     };
   }

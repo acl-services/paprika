@@ -12,13 +12,13 @@ export default function tableReducer(state, action) {
       ...state,
       sortColumn: action.payload.columnId,
       sortDirection: action.payload.direction,
-      sortedOrder: sort(
-        state.data,
-        state.keygen,
-        action.payload.columnId,
-        action.payload.direction,
-        action.payload.isBackendSort
-      ),
+      sortedOrder: sort({
+        data: state.data,
+        keygen: state.keygen,
+        columnId: action.payload.columnId,
+        direction: action.payload.direction,
+        hasBackendSort: action.payload.hasBackendSort,
+      }),
     };
 
   return { ...state };

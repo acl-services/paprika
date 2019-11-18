@@ -9,8 +9,8 @@ function compareNumber(a, b) {
   return a - b;
 }
 
-export default function sort(data, keygen, columnId, direction, isBackendSort = false) {
-  if (isBackendSort) return null;
+export default function sort({ data, keygen, columnId, direction, hasBackendSort = false }) {
+  if (hasBackendSort) return null;
 
   switch (direction) {
     case sortDirections.ASCEND:
