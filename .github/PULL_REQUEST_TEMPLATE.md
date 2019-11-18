@@ -23,5 +23,5 @@ _Jira ticket / GitHub issues_
 ### Resources 🔖
 - [Contributing Guidelines](https://github.com/acl-services/paprika/wiki/Contributing-Guidelines)
 - [README](https://github.com/acl-services/paprika/blob/master/README.md)
-- [Semantic commit messages](https://gist.github.com/joshbuchea/6f47e86d2510bce28f8e7f42ae84c716)
+- [Conventional Commits](https://www.conventionalcommits.org/en/v1.0.0/)
 - [Ask for help](https://github.com/acl-services/paprika/issues/new?template=help_wanted.md)
