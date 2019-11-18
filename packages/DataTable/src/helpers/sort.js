@@ -9,27 +9,21 @@ function compareNumber(a, b) {
   return a - b;
 }
 
-export default function sort({ data, keygen, columnId, direction, hasBackendSort = false }) {
-  if (hasBackendSort) return null;
-
+export default function sort({ data, columnId, direction }) {
   switch (direction) {
     case sortDirections.ASCEND:
-      return [...data]
-        .sort((rowA, rowB) =>
-          isString(rowA[columnId])
-            ? compareString(rowA[columnId], rowB[columnId])
-            : compareNumber(rowA[columnId], rowB[columnId])
-        )
-        .map(item => item[keygen]);
+      return [...data].sort((rowA, rowB) =>
+        isString(rowA[columnId])
+          ? compareString(rowA[columnId], rowB[columnId])
+          : compareNumber(rowA[columnId], rowB[columnId])
+      );
     case sortDirections.DESCEND:
-      return [...data]
-        .sort((rowA, rowB) =>
-          isString(rowA[columnId])
-            ? -compareString(rowA[columnId], rowB[columnId])
-            : -compareNumber(rowA[columnId], rowB[columnId])
-        )
-        .map(item => item[keygen]);
+      return [...data].sort((rowA, rowB) =>
+        isString(rowA[columnId])
+          ? -compareString(rowA[columnId], rowB[columnId])
+          : -compareNumber(rowA[columnId], rowB[columnId])
+      );
     default:
-      return null;
+      return data;
   }
 }
