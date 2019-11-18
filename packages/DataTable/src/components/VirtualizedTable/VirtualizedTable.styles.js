@@ -69,7 +69,7 @@ export const Check = styled.div`
   width: 40px;
 
   span {
-    diplay: block;
+    display: block;
     overflow: hidden;
     text-overflow: ellipsis;
     white-space: nowrap;
