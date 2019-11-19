@@ -10,7 +10,7 @@ storiesOf("SidePanel / Header", module).add("SidePanel.Header", () => (
     }}
     isOpen
   >
-    <SidePanel.Header>
+    <SidePanel.Header kind="primary">
       <Heading level={2}>With Header</Heading>
     </SidePanel.Header>
   </SidePanel>
