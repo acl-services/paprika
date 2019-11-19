@@ -39,6 +39,7 @@ const SortableItem = ({ children, index, hasNumbers, onRemove, ...moreProps }) =
           isDragging={snapshot.isDragging}
           ref={provided.innerRef}
           aria-roledescription={I18n.t("sortable.aria_description")}
+          role="button" /* eslint-disable-line */
           {...moreProps}
         >
           <div css={itemHandleStyles} data-pka-anchor="sortable.item.handle">

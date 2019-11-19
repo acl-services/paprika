@@ -20,7 +20,7 @@
     "@paprika/stylers": "^0.2.2",
     "@paprika/tokens": "^0.1.9",
     "prop-types": "^15.7.2",
-    "react-beautiful-dnd": "^11.0.4",
+    "react-beautiful-dnd": "^12.1.1",
     "uuid": "^3.3.2"
   },
   "peerDependencies": {
