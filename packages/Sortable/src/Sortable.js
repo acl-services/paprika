@@ -75,6 +75,7 @@ const Sortable = ({ children, onChange, hasNumbers, hasZebraStripes, onRemove, .
             data-is-dragging-over={snapshot.isDraggingOver ? true : undefined}
             isDraggingOver={snapshot.isDraggingOver}
             ref={provided.innerRef}
+            role="tree"
           >
             {validChildren.length > 0 &&
               validChildren.map((child, index) => (
