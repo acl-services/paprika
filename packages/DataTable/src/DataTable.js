@@ -3,6 +3,7 @@ import React from "react";
 import PropTypes from "prop-types";
 import ColumnDefinition from "./components/ColumnDefinition";
 import Controls from "./components/Controls";
+import TopNavigation from "./components/TopNavigation";
 import VirtualizedTable from "./components/VirtualizedTable";
 import { extractChildren } from "./helpers";
 import { sortDirections } from "./constants";
@@ -27,13 +28,15 @@ const defaultProps = {
 
 export default function DataTable(props) {
   const { data, children: childrenProps, height, rowHeight, width, keygen, onSort, plugins } = props;
-  const { "DataTable.ColumnDefinition": ColumnsDefinition } = extractChildren(childrenProps, [
-    "DataTable.ColumnDefinition",
-  ]);
+  const { "DataTable.ColumnDefinition": ColumnsDefinition, "DataTable.TopNavigation": TopNavigation } = extractChildren(
+    childrenProps,
+    ["DataTable.ColumnDefinition", "DataTable.TopNavigation"]
+  );
 
   return (
     <TableProvider data={data} keygen={keygen} plugins={plugins}>
       <Controls ColumnsDefinition={ColumnsDefinition} onSort={onSort} />
+      {TopNavigation}
       <VirtualizedTable
         ColumnsDefinition={ColumnsDefinition}
         height={height}
@@ -49,3 +52,4 @@ DataTable.prpoTypes = propTypes;
 DataTable.defaultProps = defaultProps;
 DataTable.ColumnDefinition = ColumnDefinition;
 DataTable.SortDirections = { ...sortDirections, DEFAULT: Object.values(sortDirections) };
+DataTable.TopNavigation = TopNavigation;
