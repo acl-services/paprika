@@ -233,8 +233,6 @@ export function handleEnterOrSpace({ event, state, dispatch }) {
   }
 }
 
-export function isWhiteListed(componentType) {
-  return (
-    componentType === "ListBox.Option" || componentType === "ListBox.RawItem" || componentType === "ListBox.Divider"
-  );
+export function isWhiteListed(displayName) {
+  return displayName === "ListBox.Option" || displayName === "ListBox.RawItem" || displayName === "ListBox.Divider";
 }

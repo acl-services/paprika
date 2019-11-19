@@ -46,4 +46,4 @@ export default function Overlay(props) {
 
 Overlay.propTypes = propTypes;
 Overlay.defaultProps = defaultProps;
-Overlay.componentType = "SidePanel.Overlay";
+Overlay.displayName = "SidePanel.Overlay";
