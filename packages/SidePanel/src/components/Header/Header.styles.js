@@ -39,5 +39,5 @@ export const headerCSS = props => `
   }
 
   ${props.isCompact ? compactStyles : ""}
-  ${props => kind[props.kind]}
+  ${props.kind ? kind[props.kind] : ""}
 `;
