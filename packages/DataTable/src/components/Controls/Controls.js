@@ -8,7 +8,7 @@ import useSort from "../../hooks/useSort";
 const noop = () => {};
 
 export default function Controls(props) {
-  const { ColumnsDefinition, onSort } = props;
+  const { ColumnsDefinition } = props;
   const sort = useSort();
   const { sortColumn, sortDirection } = useTableState();
   const hasSortDirections = ColumnsDefinition.find(
@@ -16,11 +16,7 @@ export default function Controls(props) {
   );
 
   function handleSort(columnId, direction) {
-    return () => {
-      const hasBackendSort = !!onSort;
-      sort(columnId, direction, hasBackendSort);
-      if (onSort) onSort(columnId, direction);
-    };
+    return () => sort(columnId, direction);
   }
 
   function renderSortingDropdown() {
@@ -35,8 +31,9 @@ export default function Controls(props) {
       >
         {ColumnsDefinition.map(({ props: columnProp }) => {
           const { id: columnId, header, sortDirections } = columnProp;
+
           if (!sortDirections || sortDirections.length === 0) return null;
-          console.log(columnProp);
+
           return (
             <DropdownMenu.Item key={columnId} onClick={noop}>
               Sort {header} by
@@ -63,10 +60,8 @@ Controls.propTypes = {
       type: PropTypes.func.isRequired,
     })
   ),
-  onSort: PropTypes.func,
 };
 
 Controls.defaultProps = {
   ColumnsDefinition: [],
-  onSort: null,
 };

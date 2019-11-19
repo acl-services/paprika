@@ -2,6 +2,7 @@ import React from "react";
 import { storiesOf } from "@storybook/react";
 import DataTable from "../src";
 import fixtures from "./fixtures";
+import { sortReducer } from "../src/reducers";
 
 const flags = {
   Austria: "🇦🇹",
@@ -26,20 +27,18 @@ function getFlag(cell) {
 }
 
 const mockData = fixtures(1);
-const sortedData = [...mockData].sort((itemA, itemB) => itemB.id - itemA.id);
+const sortedData = [...mockData].sort((itemA, itemB) => itemB.id - itemA.id && itemB.goals - itemA.goals);
+
 function App() {
-  const [data, setData] = React.useState(mockData);
+  const customReducer = (state, action) => {
+    console.log(action);
+    if (action.type === "SORT") return { ...action.changes, sortedOrder: sortedData.map(item => item.id) };
+    return action.changes;
+  };
+
   return (
     <React.Fragment>
-      <DataTable
-        keygen="id"
-        data={data}
-        height={window.innerHeight}
-        onSort={(columnId, direction) => {
-          setData(sortedData);
-          console.log("SORT", columnId, direction);
-        }}
-      >
+      <DataTable keygen="id" data={mockData} height={window.innerHeight} plugins={[sortReducer, customReducer]}>
         <DataTable.ColumnDefinition id="country" width="190" header="Country" cell={cell => getFlag(cell)} />
         <DataTable.ColumnDefinition
           id="name"

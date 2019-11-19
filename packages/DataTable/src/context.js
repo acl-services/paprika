@@ -7,14 +7,20 @@ const TableStateContext = React.createContext();
 const TableDispatchContext = React.createContext();
 
 function TableProvider(props) {
-  const { data, keygen } = props;
-  const [state, dispatch] = React.useReducer(tableReducer, {
-    data,
-    keygen,
-    sortColumn: null,
-    sortDirection: null,
-    sortedOrder: null,
-  });
+  const { data, keygen, plugins } = props;
+  const [state, dispatch] = React.useReducer(
+    (state, action) => {
+      const changes = tableReducer(state, action);
+      return plugins.reduce((prevState, reducer) => reducer(prevState, { ...action, changes }), state);
+    },
+    {
+      data,
+      keygen,
+      sortColumn: null,
+      sortDirection: null,
+      sortedOrder: null,
+    }
+  );
 
   React.useEffect(() => {
     dispatch({ type: actions.RESET_DATA, payload: data });
@@ -39,6 +45,7 @@ TableProvider.propTypes = {
   children: PropTypes.node.isRequired,
   data: PropTypes.arrayOf(PropTypes.objectOf(PropTypes.any)).isRequired,
   keygen: PropTypes.string.isRequired,
+  plugins: PropTypes.arrayOf(PropTypes.func).isRequired,
 };
 
 export { TableProvider, useTableState, useDispatch };

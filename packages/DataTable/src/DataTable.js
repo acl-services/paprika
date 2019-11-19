@@ -7,12 +7,14 @@ import VirtualizedTable from "./components/VirtualizedTable";
 import { extractChildren } from "./helpers";
 import { sortDirections } from "./constants";
 import { TableProvider } from "./context";
+import { sortReducer } from "./reducers";
 
 const propTypes = {
   height: PropTypes.number,
   width: PropTypes.number,
   rowHeight: PropTypes.number,
   onSort: PropTypes.func,
+  plugins: PropTypes.arrayOf(PropTypes.func),
 };
 
 const defaultProps = {
@@ -20,16 +22,17 @@ const defaultProps = {
   width: null,
   rowHeight: 32,
   onSort: null,
+  plugins: [sortReducer],
 };
 
 export default function DataTable(props) {
-  const { data, children: childrenProps, height, rowHeight, width, keygen, onSort } = props;
+  const { data, children: childrenProps, height, rowHeight, width, keygen, onSort, plugins } = props;
   const { "DataTable.ColumnDefinition": ColumnsDefinition } = extractChildren(childrenProps, [
     "DataTable.ColumnDefinition",
   ]);
 
   return (
-    <TableProvider data={data} keygen={keygen}>
+    <TableProvider data={data} keygen={keygen} plugins={plugins}>
       <Controls ColumnsDefinition={ColumnsDefinition} onSort={onSort} />
       <VirtualizedTable
         ColumnsDefinition={ColumnsDefinition}

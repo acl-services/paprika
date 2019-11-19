@@ -7,14 +7,12 @@ import useSort from "../../hooks/useSort";
 import { sortDirections } from "../../constants";
 
 export default function Options(props) {
-  const { sortDirections, columnId, onSort } = props;
+  const { sortDirections, columnId } = props;
   const sort = useSort();
 
   function handleSortBy(direction) {
     return () => {
-      const hasBackendSort = !!onSort;
-      sort(columnId, direction, hasBackendSort);
-      if (onSort) onSort(columnId, direction);
+      sort(columnId, direction);
     };
   }
 
@@ -44,11 +42,9 @@ export default function Options(props) {
 
 Options.propTypes = {
   columnId: PropTypes.string.isRequired,
-  onSort: PropTypes.func,
   sortDirections: PropTypes.arrayOf(PropTypes.oneOf([sortDirections.ASCEND, sortDirections.DESCEND])),
 };
 
 Options.defaultProps = {
-  onSort: null,
   sortDirections: [],
 };
