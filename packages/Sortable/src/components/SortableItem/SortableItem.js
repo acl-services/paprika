@@ -38,7 +38,6 @@ const SortableItem = ({ children, index, hasNumbers, onRemove, ...moreProps }) =
           data-is-dragging={snapshot.isDragging ? true : undefined}
           isDragging={snapshot.isDragging}
           ref={provided.innerRef}
-          aria-roledescription={I18n.t("sortable.aria_description")}
           role="treeitem"
           {...moreProps}
         >
