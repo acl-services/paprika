@@ -160,4 +160,4 @@ export default function Trigger(props) {
 
 Trigger.propTypes = propTypes;
 Trigger.defaultProps = defaultProps;
-Trigger.componentType = "ListBox.Trigger";
+Trigger.displayName = "ListBox.Trigger";
