@@ -33,7 +33,7 @@ function TableProvider(props) {
   );
 }
 
-function useTableState() {
+function useDataTableState() {
   return React.useContext(TableStateContext);
 }
 
@@ -48,4 +48,4 @@ TableProvider.propTypes = {
   plugins: PropTypes.arrayOf(PropTypes.func).isRequired,
 };
 
-export { TableProvider, useTableState, useDispatch };
+export { TableProvider, useDataTableState, useDispatch };

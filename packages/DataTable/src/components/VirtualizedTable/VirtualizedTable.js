@@ -8,7 +8,7 @@ import * as styled from "./VirtualizedTable.styles";
 import "@paprika/helpers/lib/dom/elementScrollToPolyfill";
 import Options from "../Options";
 import CheckBox from "../CheckBox";
-import { useTableState } from "../../context";
+import { useDataTableState } from "../../context";
 
 export default function VirtualizedTable(props) {
   const { ColumnsDefinition, height, rowHeight, width, onSort } = props;
@@ -19,7 +19,7 @@ export default function VirtualizedTable(props) {
   const refVirtualizeRows = React.useRef(null);
   const columnsLength = ColumnsDefinition.length;
 
-  const { data, sortedOrder, keygen } = useTableState();
+  const { data, sortedOrder, keygen } = useDataTableState();
 
   const dataForRendering = sortedOrder
     ? sortedOrder.map(keygenValue => data.find(item => item[keygen] === keygenValue))

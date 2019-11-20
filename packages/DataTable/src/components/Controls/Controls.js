@@ -2,7 +2,7 @@ import React from "react";
 import PropTypes from "prop-types";
 import Button from "@paprika/button";
 import DropdownMenu from "@paprika/dropdown-menu";
-import { useTableState } from "../../context";
+import { useDataTableState } from "../../context";
 import useSort from "../../hooks/useSort";
 
 const noop = () => {};
@@ -10,7 +10,7 @@ const noop = () => {};
 export default function Controls(props) {
   const { ColumnsDefinition } = props;
   const sort = useSort();
-  const { sortColumn, sortDirection } = useTableState();
+  const { sortColumn, sortDirection } = useDataTableState();
   const hasSortDirections = ColumnsDefinition.find(
     ({ props: columnProp }) => columnProp.sortDirections && columnProp.sortDirections.length > 0
   );
