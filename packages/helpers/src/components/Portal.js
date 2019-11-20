@@ -14,7 +14,9 @@ const defaultProps = {
   container: null,
 };
 
-function Portal({ children, active, container }) {
+function Portal(props) {
+  const { active, children, container } = props;
+
   return active ? (
     ReactDOM.createPortal(children, container || document.body)
   ) : (
