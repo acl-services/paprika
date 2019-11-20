@@ -37,6 +37,8 @@ function App() {
           setIsLoading(false);
           resolve({
             ...action.changes,
+            sortColumn: action.payload.columnId,
+            sortDirection: action.payload.direction,
             sortedOrder: [...mockData].sort(() => 0.5 - Math.random()).map(item => item.id),
           });
         }, 1000);
