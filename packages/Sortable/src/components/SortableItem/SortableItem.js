@@ -38,7 +38,6 @@ const SortableItem = ({ children, index, hasNumbers, onRemove, ...moreProps }) =
           data-is-dragging={snapshot.isDragging ? true : undefined}
           isDragging={snapshot.isDragging}
           ref={provided.innerRef}
-          role="treeitem"
           {...moreProps}
         >
           <div css={itemHandleStyles} data-pka-anchor="sortable.item.handle">
