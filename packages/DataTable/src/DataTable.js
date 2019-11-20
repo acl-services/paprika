@@ -33,8 +33,12 @@ export default function DataTable(props) {
     ["DataTable.ColumnDefinition", "DataTable.TopNavigation"]
   );
 
+  const topNavigationReducers = React.Children.map(TopNavigation.props.children, child => child.type.reducer).filter(
+    chunk => chunk
+  );
+
   return (
-    <TableProvider data={data} keygen={keygen} plugins={plugins}>
+    <TableProvider data={data} keygen={keygen} plugins={topNavigationReducers.concat(plugins)}>
       <Controls ColumnsDefinition={ColumnsDefinition} onSort={onSort} />
       {TopNavigation}
       <VirtualizedTable

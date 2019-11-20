@@ -29,7 +29,7 @@ const data = fixtures(1000);
 function App() {
   return (
     <React.Fragment>
-      <DataTable keygen="id" data={data} height={window.innerHeight}>
+      <DataTable keygen="id" data={data} height={window.innerHeight - 130}>
         <DataTable.TopNavigation>
           <RowHeight />
         </DataTable.TopNavigation>

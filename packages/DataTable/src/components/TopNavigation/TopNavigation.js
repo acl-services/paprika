@@ -5,7 +5,6 @@ import * as styled from "./TopNavigation.styles";
 const propTypes = {
   children: PropTypes.node.isRequired,
 };
-const defaultProps = {};
 
 export default function TopNavigation(props) {
   const { children } = props;
@@ -13,5 +12,4 @@ export default function TopNavigation(props) {
 }
 
 TopNavigation.propTypes = propTypes;
-TopNavigation.defaultProps = defaultProps;
 TopNavigation.displayName = "DataTable.TopNavigation";
