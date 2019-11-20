@@ -11,11 +11,16 @@ const propTypes = {
 const defaultProps = {
   children: null,
   active: true,
-  container: document.body,
+  container: null,
 };
 
-const Portal = ({ children, active, container }) =>
-  active ? ReactDOM.createPortal(children, container) : <React.Fragment>{children}</React.Fragment>;
+function Portal({ children, active, container }) {
+  return active ? (
+    ReactDOM.createPortal(children, container || document.body)
+  ) : (
+    <React.Fragment>{children}</React.Fragment>
+  );
+}
 
 Portal.propTypes = propTypes;
 Portal.defaultProps = defaultProps;
