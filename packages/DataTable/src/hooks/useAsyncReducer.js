@@ -5,15 +5,11 @@ const useAsyncReducer = (reducer, initialState = null) => {
 
   const dispatch = async action => {
     const result = reducer(state, action);
-    if (typeof result.then === "function") {
-      try {
-        const newState = await result;
-        setState(newState);
-      } catch (err) {
-        setState({ ...state, error: err });
-      }
-    } else {
-      setState(result);
+    try {
+      const newState = await result;
+      setState(newState);
+    } catch (err) {
+      setState({ ...state, error: err });
     }
   };
 

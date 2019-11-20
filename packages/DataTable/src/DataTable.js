@@ -15,6 +15,7 @@ const propTypes = {
   rowHeight: PropTypes.number,
   onSort: PropTypes.func,
   plugins: PropTypes.arrayOf(PropTypes.func),
+  isLoading: PropTypes.bool,
 };
 
 const defaultProps = {
@@ -23,16 +24,18 @@ const defaultProps = {
   rowHeight: 32,
   onSort: null,
   plugins: [sortReducer],
+  isLoading: false,
 };
 
 export default function DataTable(props) {
-  const { data, children: childrenProps, height, rowHeight, width, keygen, onSort, plugins } = props;
+  const { data, children: childrenProps, height, rowHeight, width, keygen, onSort, plugins, isLoading } = props;
   const { "DataTable.ColumnDefinition": ColumnsDefinition } = extractChildren(childrenProps, [
     "DataTable.ColumnDefinition",
   ]);
 
   return (
     <TableProvider data={data} keygen={keygen} plugins={plugins}>
+      <div>{isLoading ? "Loading..." : null}</div>
       <Controls ColumnsDefinition={ColumnsDefinition} onSort={onSort} />
       <VirtualizedTable
         ColumnsDefinition={ColumnsDefinition}
