@@ -26,11 +26,11 @@ function getFlag(cell) {
 }
 
 const mockData = fixtures(1);
-const sortedData = [...mockData].sort((itemA, itemB) => itemB.id - itemA.id && itemB.goals - itemA.goals);
 
 function App() {
   const customReducer = (state, action) => {
-    if (action.type === "SORT") return { ...action.changes, sortedOrder: sortedData.map(item => item.id) };
+    if (action.type === "SORT")
+      return { ...action.changes, sortedOrder: [...mockData].sort(() => 0.5 - Math.random()).map(item => item.id) };
     return action.changes;
   };
 
