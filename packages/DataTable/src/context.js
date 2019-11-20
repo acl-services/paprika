@@ -16,18 +16,25 @@ function TableProvider(props) {
     sortDirection: null,
     sortedOrder: null,
   };
-  const reducer = (state, action) => {
-    const changes = tableReducer(state, action);
-    return new Promise(resolve => {
-      resolve(
-        plugins.reduce(async (prevState, reducer) => {
-          const result = await reducer(prevState, { ...action, changes });
-          return result;
-        }, state)
-      );
-    });
-  };
-  const [state, dispatch] = useAsyncReducer(reducer, initialState);
+  const memorizedReducer = React.useCallback(
+    (state, action) => {
+      const changes = tableReducer(state, action);
+      return new Promise(resolve => {
+        resolve(
+          plugins.reduce(async (prevState, reducer) => {
+            const result = reducer(prevState, { ...action, changes });
+            if (typeof result.then === "function") {
+              const finalResult = await result;
+              return finalResult;
+            }
+            return result;
+          }, changes)
+        );
+      });
+    },
+    [plugins]
+  );
+  const [state, dispatch] = useAsyncReducer(memorizedReducer, initialState);
 
   React.useEffect(() => {
     dispatch({ type: actions.RESET_DATA, payload: data });
