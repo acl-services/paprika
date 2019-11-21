@@ -304,29 +304,25 @@ class Popover extends React.Component {
 
   handleKeyDown = event => {
     if (event.key === "Tab" && this.isOpen() && this.$trigger) {
-      if (event.shiftKey && this.focusIsOnFirstFocusableElementInPopover()) {
+      const isFocusOnFirst = this.focusIsOnCertainElementInPopover("first") || document.activeElement === this.$content;
+      const isFocusOnLast = this.focusIsOnCertainElementInPopover("last");
+
+      if (event.shiftKey && isFocusOnFirst) {
         event.preventDefault();
-        this.focusableElements[this.triggerFocusIndex].focus(); // this closes the popover, which restores tabIndexes
-      } else if (!event.shiftKey && this.focusIsOnLastFocusableElementInPopover()) {
+        this.restoreTabIndexes();
+        focusableElements[triggerFocusIndex].focus();
+      } else if (!event.shiftKey && isFocusOnLast) {
         event.preventDefault();
-        this.focusableElements[this.triggerFocusIndex + 1].focus(); // this closes the popover, which restores tabIndexes
+        this.restoreTabIndexes();
+        focusableElements[triggerFocusIndex + 1].focus();
       }
     }
   };
 
-  focusIsOnFirstFocusableElementInPopover = () => {
-    return this.focusIsOnCertainElementInPopover("first");
-  };
-
-  focusIsOnLastFocusableElementInPopover = () => {
-    return this.focusIsOnCertainElementInPopover("last");
-  };
-
   focusIsOnCertainElementInPopover = which => {
-    const popoverContent = document.querySelector("[data-pka-anchor='popover.content']"); // TODO: use react
-    const focusableElementsInPopover = popoverContent.querySelectorAll(focusableElementSelector);
-
+    const focusableElementsInPopover = this.$content.querySelectorAll(focusableElementSelector);
     const index = which === "first" ? 0 : focusableElementsInPopover.length - 1;
+
     return document.activeElement === focusableElementsInPopover[index];
   };
 
@@ -418,9 +414,6 @@ class Popover extends React.Component {
 
     if (this.props.isOpen === null) {
       this.setState({ isOpen: false });
-
-      // NOTE: If we don't prevent the focusing back to the trigger while using focus and mouseover prop
-      //       will created a bug looping over opening and closing constantly.
       this.restoreTabIndexes();
       this.removeListeners();
     }
