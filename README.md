@@ -2,6 +2,7 @@
 
 <p align="center">Paprika is the React component library for the generic UI components of the <a href="https://design.wegalvanize.com/">Starling Design System</a> by <a href="https://www.wegalvanize.com/">Galvanize</a>.</p>
 <p align="center">
+  Quick Links: 
   <a href="https://www.npmjs.com/org/paprika">NPM</a> |
   <a href="https://paprika.highbond.com/">Storybook</a> |
   <a href="https://airtable.com/shrkJwkvtbgc3FT22">Component Status</a> |
@@ -14,6 +15,7 @@
   <img alt="lerna version" src="https://img.shields.io/badge/lerna-v3.13.0-blue.svg">
   <img alt="styled components version" src="https://img.shields.io/badge/styled--components-4.2.0-yellow">
   <img alt="prettier" src="https://img.shields.io/badge/codestyle-prettier-%23ff69b4">
+  <a href="https://github.com/acl-services/paprika/pulls"><img alt="GitHub pull requests" src="https://img.shields.io/github/issues-pr/acl-services/paprika"></a>
   <a href="https://github.com/acl-services/paprika/issues"><img alt="GitHub issues" src="https://img.shields.io/github/issues/acl-services/paprika"></a>
   <a href="https://github.com/acl-services/paprika/blob/master/LICENSE"><img alt="MIT license" src="https://img.shields.io/github/license/acl-services/paprika"></a>
 </p>
@@ -53,6 +55,7 @@ import Button from "@paprika/button";
 export default () => <Button>Hello</Button>;
 ```
 
+
 ## Contributing
 
 Contributors are welcome to [submit a bug report](https://github.com/acl-services/paprika/issues/new?assignees=&labels=Bug+%F0%9F%90%9B&template=bug_report.md), 
@@ -62,12 +65,16 @@ If you're just getting started, check out the [Help Wanted](https://github.com/a
 
 For more information please check out our [Contributing Guidelines](https://github.com/acl-services/paprika/wiki/Contributing-Guidelines).
 
+
 ## Components
 
 Paprika components are individually versioned and distributed packages in a Lerna monorepo. 
-To browse a list of components, [view the source code](https://github.com/acl-services/paprika/tree/master/packages), 
+To browse a list of components, open the [Storybook](https://paprika.highbond.com/),
+view the [source code](https://github.com/acl-services/paprika/tree/master/packages), 
 visit the [NPM registry](https://www.npmjs.com/org/paprika), 
 or refer to the [AirTable summary](https://airtable.com/shrkJwkvtbgc3FT22).
+
+#### NPM Packages
 
 <a href="https://www.npmjs.com/package/@paprika/button"><img src="https://img.shields.io/npm/v/@paprika/button?label=Button" /></a>
 <a href="https://www.npmjs.com/package/@paprika/checkbox"><img src="https://img.shields.io/npm/v/@paprika/checkbox?label=Checkbox" /></a>
@@ -103,6 +110,40 @@ or refer to the [AirTable summary](https://airtable.com/shrkJwkvtbgc3FT22).
 <a href="https://www.npmjs.com/package/@paprika/toast"><img src="https://img.shields.io/npm/v/@paprika/toast?label=Toast" /></a>
 <a href="https://www.npmjs.com/package/@paprika/tokens"><img src="https://img.shields.io/npm/v/@paprika/tokens?label=tokens" /></a>
 <a href="https://www.npmjs.com/package/@paprika/uploader"><img src="https://img.shields.io/npm/v/@paprika/uploader?label=Uploader" /></a>
+
+
+## Testing
+
+There are a few layers to the testing pyramid in Paprika.  
+
+- Static analysis – [ESLint](https://eslint.org/) (with several plugins, namely [airbnb](https://www.npmjs.com/package/eslint-config-airbnb))
+- Unit testing – [Jest](https://jestjs.io/)
+- Component testing – [React Testing Library](https://testing-library.com/docs/react-testing-library/intro)
+- End-to-end testing – [Cypress](https://testing-library.com/docs/react-testing-library/intro)
+- Visual regresstion testing – [Screener](https://screener.io/)
+
+
+## Accessibility
+
+Paprika components are built with accessibility in mind from design through implementation. 
+Compliance with [WCAG 2.1 level AA](https://www.w3.org/TR/WCAG21/)
+by following [WAI-ARIA Authoring Practices 1.1](https://www.w3.org/TR/wai-aria-practices-1.1/)
+is a priority.  
+
+In practice this ensures the usability of Paprika components
+ - with keyboard, mouse or touch inputs
+ - at various zoom levels up to 200% on a variety of screen sizes
+ - with sufficent colour contrast for all essential elements
+ - with meaningful and semantic markup
+ - with support for assistive technology (screen readers like VoiceOver, NVDA, and Jaws)
+
+For more information about how these goals are achieve, please read our [guildelines for developers].
+
+
+## Support
+
+Have a question for the development team? [Ask us](https://github.com/acl-services/paprika/issues/new?assignees=&labels=Help+wanted+%E2%9D%93&template=help_wanted.md).
+
 
 ## License
 
