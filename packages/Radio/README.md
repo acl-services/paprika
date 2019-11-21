@@ -13,9 +13,17 @@ or
 ```js
 import Radio from "@paprika/radio";
 
-<Radio onChange={handleChange} checkState={checkedStateValue>
-  Radio 1
-</Radio>;
+<Radio.Group
+  defaultCheck={check => check.props.value.id === "value 1"}
+  onChange={value => {
+    // do something with value
+  }}
+>
+  <Radio value={{ id: "id-1" }}>Radio 1</Radio>
+  <Radio value={{ id: "id-2" }}>Radio 2</Radio>
+  <Radio value={{ id: "id-3" }}>Radio 3</Radio>
+  <Radio value={{ id: "id-4" }}>Radio 4</Radio>
+</Radio.Group>;
 ```
 
 ### Props
