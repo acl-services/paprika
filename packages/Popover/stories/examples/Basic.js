@@ -1,5 +1,5 @@
 import React from "react";
-import { text, number, select } from "@storybook/addon-knobs";
+import { boolean, text, number, select } from "@storybook/addon-knobs";
 import styled from "styled-components";
 import { CenteredStory } from "storybook/assets/styles/common.styles";
 import InfoCircleIcon from "@paprika/icon/lib/InfoCircle";
@@ -16,6 +16,8 @@ export const popoverProps = () => ({
   maxWidth: text("maxWidth", "320"),
   minWidth: text("minWidth", "0"),
   offset: number("offset", 12),
+  shouldKeepFocus: boolean("shouldKeepFocus", false),
+  isEager: boolean("isEager", false),
 });
 
 /* eslint-disable jsx-a11y/tabindex-no-positive */
