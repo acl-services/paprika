@@ -16,19 +16,11 @@ import Tip from "./components/Tip/Tip";
 
 import PopoverStyled from "./Popover.styles";
 
-// ACCESSIBILITY
-// NOTE: When closing the popover seems to be better to focus the trigger button
-//       only when the close method is the ESC key, when clicking outside doesn't feel a fluid action
-//       assigning the focus to the button again
-
 const openDelay = 350;
 const closeDelay = 150;
 const throttleDelay = 20;
 const focusableElementSelector =
   'button, [href], input, select, textarea, [tabindex]:not([tabindex="-1"]), [role="button"]';
-let focusableElements;
-const originalTabIndexes = [];
-let triggerFocusIndex;
 
 // TODO: To handle cases where there are multiple scrolling containers, we need to implement
 //       getScrollContainer as oneOfType([func, arrayOf(func)])
@@ -109,6 +101,10 @@ class Popover extends React.Component {
     const portalNode = document.createElement("div");
     this.$portal = document.body.appendChild(portalNode);
 
+    this.focusableElements = [];
+    this.originalTabIndexes = [];
+    this.triggerFocusIndex = null;
+
     this.state = {
       isOpen: this.props.defaultIsOpen || false,
       tip: {
@@ -184,9 +180,15 @@ class Popover extends React.Component {
     }
   }
 
+  componentWillReceiveProps(nextProps) {
+    if (!this.props.isOpen && nextProps.isOpen) {
+      this.open();
+    }
+  }
+
   componentDidUpdate(prevProps) {
     if (this.isOpen() && !this.hasListeners) {
-      focusableElements = document.querySelectorAll(focusableElementSelector);
+      this.focusableElements = document.querySelectorAll(focusableElementSelector);
       this.addListeners();
     }
 
@@ -304,10 +306,10 @@ class Popover extends React.Component {
     if (event.key === "Tab" && this.isOpen() && this.$trigger) {
       if (event.shiftKey && this.focusIsOnFirstFocusableElementInPopover()) {
         event.preventDefault();
-        focusableElements[triggerFocusIndex].focus(); // this closes the popover, which restores tabIndexes
+        this.focusableElements[this.triggerFocusIndex].focus(); // this closes the popover, which restores tabIndexes
       } else if (!event.shiftKey && this.focusIsOnLastFocusableElementInPopover()) {
         event.preventDefault();
-        focusableElements[triggerFocusIndex + 1].focus(); // this closes the popover, which restores tabIndexes
+        this.focusableElements[this.triggerFocusIndex + 1].focus(); // this closes the popover, which restores tabIndexes
       }
     }
   };
@@ -340,19 +342,19 @@ class Popover extends React.Component {
   };
 
   restoreTabIndexes = () => {
-    focusableElements.forEach(focusableElement => {
+    this.focusableElements.forEach(focusableElement => {
       if (focusableElement !== this.$trigger && !this.elementIsDescendentOfPopover(focusableElement)) {
-        focusableElement.tabIndex = originalTabIndexes.reverse().pop(); // eslint-disable-line no-param-reassign
+        focusableElement.tabIndex = this.originalTabIndexes.reverse().pop(); // eslint-disable-line no-param-reassign
       }
     });
   };
 
   removeTabIndexes = () => {
-    focusableElements.forEach((focusableElement, index) => {
+    this.focusableElements.forEach((focusableElement, index) => {
       if (focusableElement === this.$trigger) {
-        triggerFocusIndex = index;
+        this.triggerFocusIndex = index;
       } else if (!this.elementIsDescendentOfPopover(focusableElement)) {
-        originalTabIndexes.push(focusableElement.tabIndex);
+        this.originalTabIndexes.push(focusableElement.tabIndex);
         focusableElement.tabIndex = -1; // eslint-disable-line no-param-reassign
       }
     });
