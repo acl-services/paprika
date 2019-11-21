@@ -310,11 +310,11 @@ class Popover extends React.Component {
       if (event.shiftKey && isFocusOnFirst) {
         event.preventDefault();
         this.restoreTabIndexes();
-        focusableElements[triggerFocusIndex].focus();
+        this.focusableElements[this.triggerFocusIndex].focus();
       } else if (!event.shiftKey && isFocusOnLast) {
         event.preventDefault();
         this.restoreTabIndexes();
-        focusableElements[triggerFocusIndex + 1].focus();
+        this.focusableElements[this.triggerFocusIndex + 1].focus();
       }
     }
   };
@@ -420,6 +420,7 @@ class Popover extends React.Component {
   }
 
   isOpen() {
+    this.focusableElements = document.querySelectorAll(focusableElementSelector);
     return this.props.isOpen !== null ? this.props.isOpen : this.state.isOpen;
   }
 
