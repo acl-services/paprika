@@ -4,7 +4,7 @@ import { actions } from "../constants";
 export default function sortReducer(state, action) {
   if (action.type === actions.SORT)
     return {
-      ...state,
+      ...action.changes,
       sortColumn: action.payload.columnId,
       sortDirection: action.payload.direction,
       sortedOrder: sort({
@@ -14,5 +14,5 @@ export default function sortReducer(state, action) {
       }).map(item => item[state.keygen]),
     };
 
-  return { ...state };
+  return action.changes;
 }

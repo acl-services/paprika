@@ -28,15 +28,34 @@ function getFlag(cell) {
 const mockData = fixtures(1);
 
 function App() {
-  const customReducer = (state, action) => {
-    if (action.type === "SORT")
-      return { ...action.changes, sortedOrder: [...mockData].sort(() => 0.5 - Math.random()).map(item => item.id) };
-    return action.changes;
+  const [isLoading, setIsLoading] = React.useState(false);
+  const customReducer = async (state, action) => {
+    return new Promise(resolve => {
+      if (action.type === "SORT") {
+        setIsLoading(true);
+        setTimeout(() => {
+          setIsLoading(false);
+          resolve({
+            ...action.changes,
+            sortColumn: action.payload.columnId,
+            sortDirection: action.payload.direction,
+            sortedOrder: [...mockData].sort(() => 0.5 - Math.random()).map(item => item.id),
+          });
+        }, 1000);
+      }
+      return action.changes;
+    });
   };
 
   return (
     <React.Fragment>
-      <DataTable keygen="id" data={mockData} height={window.innerHeight} plugins={[customReducer]}>
+      <DataTable
+        keygen="id"
+        data={mockData}
+        height={window.innerHeight}
+        plugins={[customReducer]}
+        isLoading={isLoading}
+      >
         <DataTable.ColumnDefinition id="country" width="190" header="Country" cell={cell => getFlag(cell)} />
         <DataTable.ColumnDefinition
           id="name"

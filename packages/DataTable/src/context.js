@@ -2,29 +2,50 @@ import React from "react";
 import PropTypes from "prop-types";
 import tableReducer from "./reducers/table";
 import { actions } from "./constants";
+import useAsyncReducer from "./hooks/useAsyncReducer";
 
 const TableStateContext = React.createContext();
 const TableDispatchContext = React.createContext();
 
 function TableProvider(props) {
   const { data, keygen, plugins } = props;
-  const [state, dispatch] = React.useReducer(
+  const initialState = {
+    data,
+    keygen,
+    sortColumn: null,
+    sortDirection: null,
+    sortedOrder: null,
+  };
+  const isFirstRender = React.useRef(true);
+  const memorizedReducer = React.useCallback(
     (state, action) => {
       const changes = tableReducer(state, action);
-      return plugins.reduce((prevState, reducer) => reducer(prevState, { ...action, changes }), state);
+      return new Promise(resolve => {
+        resolve(
+          plugins.reduce(async (previousPromise, reducer) => {
+            const prevChanges = await previousPromise;
+            const result = reducer(state, { ...action, changes: prevChanges });
+            if (typeof result.then === "function") {
+              const finalResult = await result;
+              return finalResult;
+            }
+            return result;
+          }, changes)
+        );
+      });
     },
-    {
-      data,
-      keygen,
-      sortColumn: null,
-      sortDirection: null,
-      sortedOrder: null,
-    }
+    [plugins]
   );
+  const [state, dispatch] = useAsyncReducer(memorizedReducer, initialState);
 
   React.useEffect(() => {
+    if (isFirstRender.current) {
+      isFirstRender.current = false;
+      return;
+    }
     dispatch({ type: actions.RESET_DATA, payload: data });
-  }, [data]);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [data, isFirstRender]);
 
   return (
     <TableStateContext.Provider value={state}>

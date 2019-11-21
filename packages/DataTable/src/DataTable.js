@@ -14,20 +14,20 @@ const propTypes = {
   height: PropTypes.number,
   width: PropTypes.number,
   rowHeight: PropTypes.number,
-  onSort: PropTypes.func,
   plugins: PropTypes.arrayOf(PropTypes.func),
+  isLoading: PropTypes.bool,
 };
 
 const defaultProps = {
   height: 600,
   width: null,
   rowHeight: 32,
-  onSort: null,
   plugins: [sortReducer],
+  isLoading: false,
 };
 
 export default function DataTable(props) {
-  const { data, children: childrenProps, height, rowHeight, width, keygen, onSort, plugins } = props;
+  const { data, children: childrenProps, height, rowHeight, width, keygen, plugins, isLoading } = props;
   const { "DataTable.ColumnDefinition": ColumnsDefinition, "DataTable.Navigation": Navigation } = extractChildren(
     childrenProps,
     ["DataTable.ColumnDefinition", "DataTable.Navigation"]
@@ -42,15 +42,10 @@ export default function DataTable(props) {
 
   return (
     <TableProvider data={data} keygen={keygen} plugins={navigationReducers.concat(plugins)}>
-      <Controls ColumnsDefinition={ColumnsDefinition} onSort={onSort} />
+      <div>{isLoading ? "Loading..." : null}</div>
+      <Controls ColumnsDefinition={ColumnsDefinition} />
       {Navigation}
-      <VirtualizedTable
-        ColumnsDefinition={ColumnsDefinition}
-        height={height}
-        rowHeight={rowHeight}
-        width={width}
-        onSort={onSort}
-      />
+      <VirtualizedTable ColumnsDefinition={ColumnsDefinition} height={height} rowHeight={rowHeight} width={width} />
     </TableProvider>
   );
 }
