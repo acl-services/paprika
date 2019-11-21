@@ -16,14 +16,22 @@ http://storybooks.highbond-s3.com/paprika/your-branch-name
 _optional but highly recommended_
 
 ### References 🔗
-_Jira ticket / GitHub issues_
+_relevant Jira ticket / GitHub issues_
 
 
 <!--
----
 ### Resources 🔖
-- [Contributing Guidelines](https://github.com/acl-services/paprika/wiki/Contributing-Guidelines)
-- [README](https://github.com/acl-services/paprika/blob/master/README.md)
-- [Conventional Commits](https://www.conventionalcommits.org/en/v1.0.0/)
-- [Ask for help](https://github.com/acl-services/paprika/issues/new?template=help_wanted.md)
+
+Paprika README —
+https://github.com/acl-services/paprika/blob/master/README.md
+
+Contributing Guidelines —
+https://github.com/acl-services/paprika/wiki/Contributing-Guidelines
+
+Conventional Commits —
+https://www.conventionalcommits.org/
+
+Ask for help —
+https://github.com/acl-services/paprika/issues/new?template=help_wanted.md
+
 -->
