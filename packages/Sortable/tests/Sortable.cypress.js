@@ -25,7 +25,7 @@ describe("<Sortable />", () => {
       .trigger("mousemove", { button: 0, ...dragOffset })
       .wait(animationDelay);
     cy.get(selector.root)
-      .trigger("mousemove", { button: 0, ...dragOffset })
+      .trigger("mousemove", { button: 0, ...dragOffset, clientY: 100 })
       .trigger("mouseup")
       .wait(animationDelay * 2);
     cy.get(selector.item)

@@ -63,7 +63,12 @@ const Sortable = ({ children, onChange, hasNumbers, hasZebraStripes, onRemove, .
   };
 
   return (
-    <DragDropContext onDragEnd={handleDragEnd} onDragStart={handleDragStart} onDragUpdate={handleDragUpdate}>
+    <DragDropContext
+      onDragEnd={handleDragEnd}
+      onDragStart={handleDragStart}
+      onDragUpdate={handleDragUpdate}
+      liftInstruction={I18n.t("sortable.aria_description")}
+    >
       <Droppable droppableId={dropId.current}>
         {(provided, snapshot) => (
           <ul
