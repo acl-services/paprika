@@ -1,23 +1,38 @@
 /* This will likely change color and tokens, I will wait until the UI mockup exists */
-import styled, { css } from "styled-components";
+import styled from "styled-components";
 
-export const Row = styled.div`
+export const Row = styled.div.attrs(({ $height, isHeaderRow = false }) => {
+  const style = {};
+
+  if ($height) {
+    style.height = isHeaderRow ? "32px" : `${$height}px`;
+  }
+
+  return {
+    style,
+  };
+})`
+  width: 100%;
   align-items: center;
   background: #fff;
   border-bottom: 1px solid #dde1e3;
   display: flex;
-  width: 100%;
-  ${({ $height }) => {
-    return css`
-      height: ${$height}px;
-    `;
-  }}
 `;
 
-export const Cell = styled.div.attrs(({ cellIndex, activeCellIndex }) => {
+export const Cell = styled.div.attrs(({ cellIndex, activeCellIndex, $height, $width, isHeaderCell = false }) => {
   const style = {};
   if (cellIndex && activeCellIndex && cellIndex === activeCellIndex) {
     style.outline = "3px solid #2c7ff9";
+  }
+
+  if ($height) {
+    style.height = isHeaderCell ? "32px" : `${$height}px`;
+    style.alignItems = "center";
+    style.display = "flex";
+  }
+
+  if ($width) {
+    style.flexBasis = `${$width}px`;
   }
 
   return {
@@ -31,13 +46,6 @@ export const Cell = styled.div.attrs(({ cellIndex, activeCellIndex }) => {
   text-overflow: ellipsis;
   white-space: nowrap;
   width: 100%;
-
-  ${({ $width, $height }) => {
-    return css`
-      ${$width ? `flex-basis: ${$width}px;` : ""}
-      ${$height ? `height: ${$height}px; align-items:center; display: flex;` : ""}
-    `;
-  }}
 `;
 
 export const HeaderRow = styled(Row)`

@@ -2,7 +2,7 @@ import React from "react";
 import PropTypes from "prop-types";
 import debounce from "lodash.debounce";
 import RawButton from "@paprika/raw-button";
-import { handleArrowKeys, arrowKeys } from "../../helpers";
+import handleArrowKeys, { arrowKeys } from "../../helpers/handleArrowKeys";
 import VirtualizeRows from "../../VirtualizeRows";
 import * as styled from "./VirtualizedTable.styles";
 import "@paprika/helpers/lib/dom/elementScrollToPolyfill";
@@ -19,7 +19,10 @@ export default function VirtualizedTable(props) {
   const refVirtualizeRows = React.useRef(null);
   const columnsLength = ColumnsDefinition.length;
 
-  const { data, sortedOrder, keygen } = useDataTableState();
+  // this will inject 20 rows below the visible table to helps with the navigation and scrolling flickering
+  const tableRowsOffset = 20;
+
+  const { data, sortedOrder, keygen, rowHeight: stateRowHeigth } = useDataTableState();
 
   const dataForRendering = sortedOrder
     ? sortedOrder.map(keygenValue => data.find(item => item[keygen] === keygenValue))
@@ -37,6 +40,7 @@ export default function VirtualizedTable(props) {
         refVirtualizeRows,
         rowHeight,
         rowsLength,
+        rowsOffset,
         setActiveCell,
       }) =>
         handleArrowKeys({
@@ -48,6 +52,7 @@ export default function VirtualizedTable(props) {
           refVirtualizeRows,
           rowHeight,
           rowsLength,
+          rowsOffset,
           setActiveCell,
         }),
       15
@@ -70,6 +75,7 @@ export default function VirtualizedTable(props) {
   };
 
   const handleMouseLeave = (/* row, rowIndex */) => () => {};
+  const rowHeightValue = (stateRowHeigth && stateRowHeigth.value) || rowHeight;
 
   function handleKeyDown(event) {
     if (arrowKeys.includes(event.key)) {
@@ -80,9 +86,10 @@ export default function VirtualizedTable(props) {
         event,
         refActivePage,
         refVirtualizeRows,
-        rowHeight,
+        rowHeight: rowHeightValue,
         rowsLength,
         setActiveCell,
+        rowsOffset: tableRowsOffset,
       });
       event.persist();
     }
@@ -96,12 +103,30 @@ export default function VirtualizedTable(props) {
 
   return (
     <div onKeyDown={handleKeyDown} tabIndex="0">
+      <styled.HeaderRow isHeaderRow $height={rowHeightValue}>
+        <styled.Counter>
+          <styled.Check>
+            <input type="checkbox" />
+          </styled.Check>
+          <styled.Expand />
+        </styled.Counter>
+        {ColumnsDefinition.map((header, headerIndex) => {
+          const { header: headerProp, width, sortDirections, id } = header.props;
+          return (
+            <styled.Cell isHeaderCell key={`cell_${headerIndex}`} $width={width} $height={rowHeightValue}>
+              {typeof headerProp === "function" ? headerProp(header.props) : headerProp}
+              {sortDirections ? <Options sortDirections={sortDirections} columnId={id} onSort={onSort} /> : null}
+            </styled.Cell>
+          );
+        })}
+      </styled.HeaderRow>
       <VirtualizeRows
         data={dataForRendering}
-        gridRowHeight={rowHeight}
+        gridRowHeight={rowHeightValue}
         gridLength={data.length}
         gridHeight={height}
         gridWidth={width}
+        gridRowsOffset={tableRowsOffset}
         ref={refVirtualizeRows}
       >
         {(subset, keys, a11y) => {
@@ -111,25 +136,6 @@ export default function VirtualizedTable(props) {
 
           return (
             <>
-              <styled.HeaderRow {...a11y.row} $height={rowHeight}>
-                <styled.Counter>
-                  <styled.Check>
-                    <input type="checkbox" />
-                  </styled.Check>
-                  <styled.Expand />
-                </styled.Counter>
-                {ColumnsDefinition.map((header, headerIndex) => {
-                  const { header: headerProp, width, sortDirections, id } = header.props;
-                  return (
-                    <styled.Cell key={`cell_${headerIndex}`} {...a11y.cell} $width={width} $height={rowHeight}>
-                      {typeof headerProp === "function" ? headerProp(header.props) : headerProp}
-                      {sortDirections ? (
-                        <Options sortDirections={sortDirections} columnId={id} onSort={onSort} />
-                      ) : null}
-                    </styled.Cell>
-                  );
-                })}
-              </styled.HeaderRow>
               {subset.map((row, rowIndex) => {
                 const rowKey = `row_${keys[rowIndex]}`;
                 return (
@@ -137,7 +143,7 @@ export default function VirtualizedTable(props) {
                     onMouseEnter={handleMouseEnter(row, rowIndex, keys)}
                     onMouseLeave={handleMouseLeave(row, rowIndex, keys)}
                     {...a11y.row}
-                    $height={rowHeight}
+                    $height={rowHeightValue}
                     key={rowKey}
                   >
                     <styled.Counter key={`row_index_${keys[rowIndex]}`}>
@@ -157,7 +163,7 @@ export default function VirtualizedTable(props) {
                           key={`cell_${index}`}
                           {...a11y.cell}
                           $width={width}
-                          $height={rowHeight}
+                          $height={rowHeightValue}
                           data-pka-cell-index={index}
                           cellIndex={index}
                           activeCellIndex={activeCell.index}

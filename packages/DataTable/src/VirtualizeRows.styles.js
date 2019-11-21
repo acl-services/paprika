@@ -1,9 +1,9 @@
 import styled from "styled-components";
 
-export const Virtualize = styled.div.attrs(({ height, width }) => ({
+export const Virtualize = styled.div.attrs(({ height, width, rowHeight }) => ({
   style: {
     width: `${width}px`,
-    height: `${height}px`,
+    height: `${height + rowHeight / 3}px`,
   },
 }))`
   background: #fff;
