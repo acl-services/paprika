@@ -103,25 +103,23 @@ export default function VirtualizedTable(props) {
 
   return (
     <div onKeyDown={handleKeyDown} tabIndex="0">
-      <>
-        <styled.HeaderRow isHeaderRow $height={rowHeightValue}>
-          <styled.Counter>
-            <styled.Check>
-              <input type="checkbox" />
-            </styled.Check>
-            <styled.Expand />
-          </styled.Counter>
-          {ColumnsDefinition.map((header, headerIndex) => {
-            const { header: headerProp, width, sortDirections, id } = header.props;
-            return (
-              <styled.Cell isHeaderCell key={`cell_${headerIndex}`} $width={width} $height={rowHeightValue}>
-                {typeof headerProp === "function" ? headerProp(header.props) : headerProp}
-                {sortDirections ? <Options sortDirections={sortDirections} columnId={id} onSort={onSort} /> : null}
-              </styled.Cell>
-            );
-          })}
-        </styled.HeaderRow>
-      </>
+      <styled.HeaderRow isHeaderRow $height={rowHeightValue}>
+        <styled.Counter>
+          <styled.Check>
+            <input type="checkbox" />
+          </styled.Check>
+          <styled.Expand />
+        </styled.Counter>
+        {ColumnsDefinition.map((header, headerIndex) => {
+          const { header: headerProp, width, sortDirections, id } = header.props;
+          return (
+            <styled.Cell isHeaderCell key={`cell_${headerIndex}`} $width={width} $height={rowHeightValue}>
+              {typeof headerProp === "function" ? headerProp(header.props) : headerProp}
+              {sortDirections ? <Options sortDirections={sortDirections} columnId={id} onSort={onSort} /> : null}
+            </styled.Cell>
+          );
+        })}
+      </styled.HeaderRow>
       <VirtualizeRows
         data={dataForRendering}
         gridRowHeight={rowHeightValue}

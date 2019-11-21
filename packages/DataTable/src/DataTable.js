@@ -3,7 +3,7 @@ import React from "react";
 import PropTypes from "prop-types";
 import ColumnDefinition from "./components/ColumnDefinition";
 import Controls from "./components/Controls";
-import TopNavigation from "./components/TopNavigation";
+import Navigation from "./components/Navigation";
 import VirtualizedTable from "./components/VirtualizedTable";
 import { extractChildren } from "./helpers";
 import { sortDirections } from "./constants";
@@ -28,22 +28,22 @@ const defaultProps = {
 
 export default function DataTable(props) {
   const { data, children: childrenProps, height, rowHeight, width, keygen, onSort, plugins } = props;
-  const { "DataTable.ColumnDefinition": ColumnsDefinition, "DataTable.TopNavigation": TopNavigation } = extractChildren(
+  const { "DataTable.ColumnDefinition": ColumnsDefinition, "DataTable.Navigation": Navigation } = extractChildren(
     childrenProps,
-    ["DataTable.ColumnDefinition", "DataTable.TopNavigation"]
+    ["DataTable.ColumnDefinition", "DataTable.Navigation"]
   );
 
-  let topNavigationReducers = [];
-  if (TopNavigation && TopNavigation.props) {
-    topNavigationReducers = React.Children.map(TopNavigation.props.children, child => child.type.reducer).filter(
+  let navigationReducers = [];
+  if (Navigation && Navigation.props) {
+    navigationReducers = React.Children.map(Navigation.props.children, child => child.type.reducer).filter(
       chunk => chunk
     );
   }
 
   return (
-    <TableProvider data={data} keygen={keygen} plugins={topNavigationReducers.concat(plugins)}>
+    <TableProvider data={data} keygen={keygen} plugins={navigationReducers.concat(plugins)}>
       <Controls ColumnsDefinition={ColumnsDefinition} onSort={onSort} />
-      {TopNavigation}
+      {Navigation}
       <VirtualizedTable
         ColumnsDefinition={ColumnsDefinition}
         height={height}
@@ -59,4 +59,4 @@ DataTable.prpoTypes = propTypes;
 DataTable.defaultProps = defaultProps;
 DataTable.ColumnDefinition = ColumnDefinition;
 DataTable.SortDirections = { ...sortDirections, DEFAULT: Object.values(sortDirections) };
-DataTable.TopNavigation = TopNavigation;
+DataTable.Navigation = Navigation;

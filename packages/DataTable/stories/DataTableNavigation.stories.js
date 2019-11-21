@@ -26,13 +26,14 @@ function getFlag(cell) {
 }
 
 const data = fixtures(1000);
+
 function App() {
   return (
     <React.Fragment>
       <DataTable keygen="id" data={data} height={window.innerHeight - 130}>
-        <DataTable.TopNavigation>
+        <DataTable.Navigation>
           <RowHeight />
-        </DataTable.TopNavigation>
+        </DataTable.Navigation>
         <DataTable.ColumnDefinition id="country" width="190" header="Country" cell={cell => getFlag(cell)} />
         <DataTable.ColumnDefinition id="name" header="Name" cell="name" />
         <DataTable.ColumnDefinition id="goals" header="Goals" cell="goals" />

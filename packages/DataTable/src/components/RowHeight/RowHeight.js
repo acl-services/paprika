@@ -2,7 +2,6 @@ import React from "react";
 import PropTypes from "prop-types";
 import RawButton from "@paprika/raw-button";
 import { size } from "@paprika/helpers/lib/types";
-import Icon from "./Icon";
 
 import { useDispatch, useDataTableState } from "../..";
 
@@ -15,18 +14,7 @@ const defaultProps = {
 };
 
 function getIndexByValue(value, values) {
-  let index = null;
-
-  values.some((item, i) => {
-    if (item === value) {
-      index = i;
-      return true;
-    }
-
-    return false;
-  });
-
-  return index;
+  return values.indexOf(values.find(item => item === value));
 }
 
 function getNextIndex(index, values) {
@@ -47,6 +35,7 @@ export default function RowHeight(props) {
     [size.MEDIUM]: 87,
     [size.LARGE]: 127,
   };
+
   // just want to fire this the first time
   React.useEffect(() => {
     if (typeof state.rowHeight === "undefined" || state.rowHeight === null) {
@@ -63,7 +52,9 @@ export default function RowHeight(props) {
   console.log(state.rowHeight);
   return (
     <RawButton a11yText="L10n: Change row height" onClick={handleClick}>
-      <span dangerouslySetInnerHTML={{ __html: Icon }} />
+      <span role="img" aria-label="Row height">
+        🐶
+      </span>
     </RawButton>
   );
 }

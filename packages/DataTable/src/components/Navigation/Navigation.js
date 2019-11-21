@@ -1,15 +1,15 @@
 import React from "react";
 import PropTypes from "prop-types";
-import * as styled from "./TopNavigation.styles";
+import * as styled from "./Navigation.styles";
 
 const propTypes = {
   children: PropTypes.node.isRequired,
 };
 
-export default function TopNavigation(props) {
+export default function Navigation(props) {
   const { children } = props;
   return <styled.Navigation>{children}</styled.Navigation>;
 }
 
-TopNavigation.propTypes = propTypes;
-TopNavigation.displayName = "DataTable.TopNavigation";
+Navigation.propTypes = propTypes;
+Navigation.displayName = "DataTable.Navigation";
