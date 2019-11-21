@@ -26,7 +26,7 @@ export default function Footer(props) {
   } = props;
 
   return (
-    <div css={footerCSS} {...{ isSticky, width }} {...moreProps}>
+    <div data-pka-anchor="sidepanel.footer" css={footerCSS} {...{ isSticky, width }} {...moreProps}>
       {children}
     </div>
   );
