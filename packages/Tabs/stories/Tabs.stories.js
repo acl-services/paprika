@@ -22,10 +22,12 @@ function TabsExample() {
         <Tabs.Panels>
           <Tabs.Panel>
             <Heading level={2}>Heading Example</Heading>
-            Lorem ipsum dolor amet pop-up sartorial artisan keytar leggings bespoke chia swag flexitarian pabst yr
-            godard williamsburg. Marfa lomo four loko hoodie. Hella gastropub irony bitters succulents truffaut godard
-            tbh street art. Occupy bicycle rights fingerstache pinterest, af gluten-free health goth put a bird on it
-            90s stumptownedison bulb pug hella. Small batch dreamcatcher mumblecore.
+            <p>
+              Lorem ipsum dolor amet pop-up sartorial artisan keytar leggings bespoke chia swag flexitarian pabst yr
+              godard williamsburg. Marfa lomo four loko hoodie. Hella gastropub irony bitters succulents truffaut godard
+              tbh street art. Occupy bicycle rights fingerstache pinterest, af gluten-free health goth put a bird on it
+              90s stumptownedison bulb pug hella. Small batch dreamcatcher mumblecore.
+            </p>
             <Button>Focus test inside Tabs.Panel</Button>
           </Tabs.Panel>
           <Tabs.Panel>Disabled tab 2</Tabs.Panel>
@@ -35,7 +37,7 @@ function TabsExample() {
           <Tabs.Panel>Disabled tab 6</Tabs.Panel>
         </Tabs.Panels>
       </Tabs>
-      <Gap />
+      <Gap.Large />
       <Button>Focus test outside Tabs</Button>
     </React.Fragment>
   );

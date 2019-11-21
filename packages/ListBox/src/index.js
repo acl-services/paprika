@@ -63,4 +63,4 @@ ListBoxWithProvider.Popover = Popover;
 ListBoxWithProvider.RawItem = RawItem;
 ListBoxWithProvider.Trigger = Trigger;
 ListBoxWithProvider.displayName = "ListBox";
-ListBoxWithProvider.componentType = "ListBox";
+ListBoxWithProvider.displayName = "ListBox";

@@ -11,7 +11,7 @@
     "lint": "eslint packages --report-unused-disable-directives",
     "prepare": "lerna run pretranspile && yarn transpile",
     "prettier:format": "yarn prettier --write",
-    "prettier": "prettier \"**/*.+(js|json|yml|css|scss|md|mdx)\"",
+    "prettier": "prettier \"**/*.+(js|json|yml|css|scss)\"",
     "registrymock:publish": "lerna publish --no-git-tag-version --no-push --registry http://localhost:4873",
     "registrymock:start": "verdaccio",
     "registrymock": "run-p -l registrymock:start registrymock:publish",
@@ -45,6 +45,7 @@
     "@octokit/rest": "^16.28.6",
     "@storybook/addon-a11y": "^5.2.5",
     "@storybook/addon-actions": "^5.2.5",
+    "@storybook/addon-docs": "^5.2.5",
     "@storybook/addon-knobs": "^5.2.5",
     "@storybook/addon-links": "^5.2.5",
     "@storybook/addons": "^5.2.5",
@@ -81,6 +82,7 @@
     "prettier": "1.18.2",
     "react": "^16.8.2",
     "react-dom": "^16.8.2",
+    "react-is": "^16.11.0",
     "react-test-renderer": "^16.8.6",
     "sass-loader": "^7.1.0",
     "screener-storybook": "^0.18.7",
@@ -100,7 +102,7 @@
     "packages/**/*.js": [
       "yarn lint"
     ],
-    "packages/**/*.{js,json,yml,css,scss,md,mdx}": [
+    "packages/**/*.{js,json,yml,css,scss}": [
       "yarn prettier --check"
     ]
   },

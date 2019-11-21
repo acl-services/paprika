@@ -84,6 +84,6 @@ export default function Option(props) {
   /* eslint-enable react/prop-types */
 }
 
-Option.componentType = "ListBox.Option";
+Option.displayName = "ListBox.Option";
 Option.propTypes = propTypes;
 Option.defaultProps = defaultProps;

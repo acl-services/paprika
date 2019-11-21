@@ -14,6 +14,6 @@ const Trigger = React.forwardRef((props, ref) => {
 
 Trigger.propTypes = propTypes;
 Trigger.defaultProps = defaultProps;
-Trigger.componentType = "SidePanel.Trigger";
+Trigger.displayName = "SidePanel.Trigger";
 
 export default Trigger;

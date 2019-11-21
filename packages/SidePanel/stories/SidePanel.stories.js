@@ -24,6 +24,35 @@ const SidePanelStory = props => {
           <Heading level={2}>Header</Heading>
         </SidePanel.Header>
         <TextLine repeat={100} />
+        <SidePanel.Footer>
+          <Button>Default action</Button>
+          <Button kind="minor">Cancel</Button>
+        </SidePanel.Footer>
+      </SidePanel>
+      <TextLine repeat={100} />
+    </React.Fragment>
+  );
+};
+
+const SidePanelCompactStory = props => {
+  const { disableBodyOverflow, hasOverlay } = props;
+  const [isOpen, setIsOpen] = React.useState(true);
+  const toggle = () => {
+    setIsOpen(state => !state);
+  };
+
+  return (
+    <React.Fragment>
+      <Nav />
+      <SidePanel disableBodyOverflow={disableBodyOverflow} isOpen={isOpen} onClose={toggle} offsetY={40} isCompact>
+        {hasOverlay ? <SidePanel.Overlay /> : null}
+        <SidePanel.Trigger kind="primary" onClick={toggle}>
+          {isOpen ? "close" : "open"}
+        </SidePanel.Trigger>
+        <SidePanel.Header>
+          <Heading level={2}>Header</Heading>
+        </SidePanel.Header>
+        <TextLine repeat={100} />
       </SidePanel>
       <TextLine repeat={100} />
     </React.Fragment>
@@ -91,6 +120,7 @@ const SidePanelStoryGroup = () => {
             <Heading level={2}>Parent 1</Heading>
           </SidePanel.Header>
           <TextLine repeat={100} />
+          <Button>Test button</Button>
         </SidePanel>
         <SidePanel data-pka-anchor="sidepanel2" onClose={handleParent2} width={400} isOpen={spParent2}>
           <SidePanel.Header kind="primary">
@@ -111,12 +141,14 @@ const SidePanelStoryGroup = () => {
           }}
           kind="child"
           width={400}
+          isCompact
           isOpen={spChild}
         >
           <SidePanel.Header>
             <Heading level={2}>Child of Parent 2</Heading>
           </SidePanel.Header>
           <TextLine repeat={100} />
+          <Button>Test button</Button>
         </SidePanel>
       </SidePanel.Group>
     </React.Fragment>
@@ -124,6 +156,7 @@ const SidePanelStoryGroup = () => {
 };
 
 storiesOf("SidePanel", module).add("Basic", () => <SidePanelStory />);
+storiesOf("SidePanel", module).add("Basic isCompact", () => <SidePanelCompactStory hasOverlay />);
 storiesOf("SidePanel", module).add("Basic without overlay", () => (
   <SidePanelStory disableBodyOverflow={false} hasOverlay={false} />
 ));

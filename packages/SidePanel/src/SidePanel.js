@@ -30,7 +30,10 @@ const propTypes = {
   /** Callback once the sidepanel has been closed event */
   onAfterClose: PropTypes.func,
 
-  /** Control the visibility of the side panel. This prop makes the side panel */
+  /** Control the compactness of the side panel */
+  isCompact: PropTypes.bool,
+
+  /** Control the visibility of the side panel. This prop makes the side panel appear */
   isOpen: PropTypes.bool.isRequired,
 
   /** Control the z position of the sidepanel */
@@ -47,6 +50,7 @@ const propTypes = {
 };
 
 const defaultProps = {
+  isCompact: false,
   isInline: false,
   kind: "default",
   offsetY: 0,
@@ -59,7 +63,7 @@ const defaultProps = {
 
 function SidePanel(props) {
   // Props
-  const { onAfterClose, onAfterOpen, onClose, width, isInline, kind, offsetY, isOpen, ...moreProps } = props;
+  const { onAfterClose, onAfterOpen, onClose, width, isCompact, isInline, kind, offsetY, isOpen, ...moreProps } = props;
 
   // Hooks
   const [isVisible, setIsVisible] = React.useState(props.isOpen);
@@ -130,18 +134,20 @@ function SidePanel(props) {
   if (isVisible) {
     const dialog = (
       <Dialog
-        onAnimationEnd={handleAnimationEnd}
-        header={headerExtracted}
+        data-pka-anchor="sidepanel"
         footer={footerExtracted}
-        onClose={onClose}
-        refSidePanelContent={refSidePanelContent}
-        width={width}
-        kind={kind}
+        header={headerExtracted}
+        isCompact={isCompact}
         isInline={isInline}
-        refHeader={refHeader}
-        offsetY={offsetScroll}
         isOpen={isOpen}
+        kind={kind}
+        offsetY={offsetScroll}
+        onAnimationEnd={handleAnimationEnd}
+        onClose={onClose}
         onKeyDown={handleEscKey}
+        refSidePanelContent={refSidePanelContent}
+        refHeader={refHeader}
+        width={width}
         {...moreProps}
       >
         {children}
@@ -184,6 +190,6 @@ SidePanel.Header = Header;
 SidePanel.Overlay = Overlay;
 SidePanel.propTypes = propTypes;
 SidePanel.Trigger = Trigger;
-SidePanel.componentType = "SidePanel";
+SidePanel.displayName = "SidePanel";
 
 export default SidePanel;
