@@ -27,6 +27,12 @@ const styles = {
       width: smallRadioSize,
       borderRadius: smallRadioHalfSize,
     },
+    radioIconBackgroundStyles: {
+      borderRadius: "4px",
+      height: "8px",
+      top: "4px",
+      width: "8px",
+    },
     radioIconStyles: {
       fontSize: `${fontSizeValue(-4)}px`,
       height: smallRadioSize,
@@ -48,6 +54,12 @@ const styles = {
       width: mediumRadioSize,
       borderRadius: mediumRadioHalfSize,
     },
+    radioIconBackgroundStyles: {
+      borderRadius: "6px",
+      height: "10px",
+      top: "5px",
+      width: "10px",
+    },
     radioIconStyles: {
       fontSize: `${fontSizeValue(-2)}px`,
       height: mediumRadioSize,
@@ -68,6 +80,12 @@ const styles = {
       height: largeRadioSize,
       width: largeRadioSize,
       borderRadius: largeRadioHalfSize,
+    },
+    radioIconBackgroundStyles: {
+      borderRadius: "6px",
+      height: "12px",
+      top: "6px",
+      width: "12px",
     },
     radioIconStyles: {
       fontSize: `${fontSizeValue()}px`,
@@ -137,10 +155,7 @@ const radioStyles = css`
 
     & + label > .radio-solid-background {
       background-color: ${tokens.color.black};
-      width: 10px;
-      height: 10px;
-      top: 5px;
-      border-radius: 6px;
+      ${({ size }) => styles[size].radioIconBackgroundStyles};
     }
 
     &:checked {
@@ -154,6 +169,26 @@ const radioStyles = css`
 
     &:checked + label > [data-pka-anchor="radio.icon.check"] {
       opacity: 1;
+    }
+
+    &:disabled {
+      & + label,
+      & ~ .radio-icon {
+        cursor: not-allowed;
+        opacity: 0.5;
+        transition: none;
+      }
+      &:checked {
+        & + label:hover::before {
+          border: 2px solid ${tokens.color.black};
+        }
+        & + label.deselectable:hover:before {
+          background-color: inherit;
+        }
+      }
+      & + label:hover::before {
+        border: 2px solid ${tokens.color.blackLighten60};
+      }
     }
   }
 `;

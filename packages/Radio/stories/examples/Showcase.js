@@ -9,18 +9,11 @@ import Radio from "../../src/Radio";
 const radioProps = () => ({
   size: select("size", ShirtSizes.DEFAULT, "medium"),
   isDisabled: boolean("isDisabled", false),
-  isChecked: boolean("isChecked", false),
   canDeselect: boolean("canDeselect", false),
-  a11yText: text("a11yText", ""),
+  a11yLabelledByText: text("a11yLabelledByText", ""),
 });
 
 const ExampleStory = props => {
-  const { isChecked, canDeselect } = props;
-  const [isCheckedState, setIsCheckedState] = React.useState(isChecked);
-  const handleClick = () => {
-    setIsCheckedState(canDeselect ? !isCheckedState : true);
-  };
-
   return (
     <RadioStory>
       <Heading level={1} displayLevel={2} isLight>
@@ -28,9 +21,18 @@ const ExampleStory = props => {
       </Heading>
       <Tagline>Use the knobs to tinker with the props.</Tagline>
       <Rule />
-      <Radio {...props} onClick={handleClick} isChecked={isCheckedState}>
-        Authentic VHS beard.
-      </Radio>
+      <Radio.Group
+        defaultCheck={check => check.props.value.id === "value 1"}
+        onChange={value => {
+          console.log(value);
+        }}
+        {...props}
+      >
+        <Radio value={{ id: "value 1" }}>Radio 1</Radio>
+        <Radio value={{ id: "value 2" }}>Radio 2</Radio>
+        <Radio value={{ id: "value 3" }}>Radio 3</Radio>
+        <Radio value={{ id: "value 4" }}>Radio 4</Radio>
+      </Radio.Group>
       <Rule />
     </RadioStory>
   );
