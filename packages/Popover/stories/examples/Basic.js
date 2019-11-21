@@ -1,8 +1,8 @@
 import React from "react";
-import { boolean, text, number, select } from "@storybook/addon-knobs";
+import { text, number, select } from "@storybook/addon-knobs";
 import styled from "styled-components";
 import { CenteredStory } from "storybook/assets/styles/common.styles";
-import InfoCircleIcon from "@paprika/icon/lib/InfoCircle";
+import Button from "@paprika/button";
 import Popover from "../../src";
 
 const Gap = styled.div`
@@ -10,24 +10,26 @@ const Gap = styled.div`
   width: 100px;
 `;
 
+const sampleText = {
+  short: "Lorem Hipsum",
+  long: `Lorem ipsum lumbersexual hot chicken austin readymade messenger bag aesthetic meh twee you probably havent
+    heard of them 3 wolf moon listicle. Normcore ramps gastropub fanny pack pabst. Hashtag roof party pour-over food
+    truck, crucifix try-hard godard biodiesel next level snackwave disrupt flexitarian.`,
+};
+
 export const popoverProps = () => ({
   align: select("align", ["bottom", "top", "right", "left"], "bottom"),
   edge: select("edge", ["left", "right", null], null),
   maxWidth: text("maxWidth", "320"),
   minWidth: text("minWidth", "0"),
   offset: number("offset", 12),
-  shouldKeepFocus: boolean("shouldKeepFocus", false),
-  isEager: boolean("isEager", false),
 });
 
-/* eslint-disable jsx-a11y/tabindex-no-positive */
 const ExampleStory = () => (
   <CenteredStory>
-    <input tabIndex="3" />
-    <Gap />
     <Popover {...popoverProps()}>
       <Popover.Trigger>
-        <InfoCircleIcon />
+        <Button>Open Popover</Button>
       </Popover.Trigger>
       <Popover.Content>
         <Popover.Card>
@@ -42,10 +44,19 @@ const ExampleStory = () => (
       </Popover.Content>
       <Popover.Tip />
     </Popover>
+
     <Gap />
-    <input />
+
+    <Popover {...popoverProps()} isDark isEager>
+      <Popover.Trigger>
+        <Button kind="minor">Open Tooltip</Button>
+      </Popover.Trigger>
+      <Popover.Content>
+        <Popover.Card>{sampleText.short}</Popover.Card>
+      </Popover.Content>
+      <Popover.Tip />
+    </Popover>
   </CenteredStory>
 );
-/* eslint-enable jsx-a11y/tabindex-no-positive */
 
 export default () => <ExampleStory />;
