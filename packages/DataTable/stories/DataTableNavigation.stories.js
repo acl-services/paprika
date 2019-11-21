@@ -1,6 +1,6 @@
 import React from "react";
 import { storiesOf } from "@storybook/react";
-import DataTable from "../src";
+import DataTable, { RowHeight } from "../src";
 import fixtures from "./fixtures";
 
 const flags = {
@@ -26,10 +26,14 @@ function getFlag(cell) {
 }
 
 const data = fixtures(1000);
+
 function App() {
   return (
     <React.Fragment>
-      <DataTable keygen="id" data={data} height={window.innerHeight}>
+      <DataTable keygen="id" data={data} height={window.innerHeight - 130}>
+        <DataTable.Navigation>
+          <RowHeight />
+        </DataTable.Navigation>
         <DataTable.ColumnDefinition id="country" width="190" header="Country" cell={cell => getFlag(cell)} />
         <DataTable.ColumnDefinition id="name" header="Name" cell="name" />
         <DataTable.ColumnDefinition id="goals" header="Goals" cell="goals" />
@@ -39,4 +43,4 @@ function App() {
   );
 }
 
-storiesOf("DataTable", module).add("Showcase", () => <App />);
+storiesOf("DataTable", module).add("Navigation", () => <App />);
