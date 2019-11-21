@@ -49,7 +49,6 @@ export default function RowHeight(props) {
     dispatch({ type: "ROW_HEIGHT", payload: { index: nextIndex, value: heights[values[nextIndex]] } });
   };
 
-  console.log(state.rowHeight);
   return (
     <RawButton a11yText="L10n: Change row height" onClick={handleClick}>
       <span role="img" aria-label="Row height">

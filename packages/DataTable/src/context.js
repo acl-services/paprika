@@ -16,13 +16,15 @@ function TableProvider(props) {
     sortDirection: null,
     sortedOrder: null,
   };
+  const isFirstRender = React.useRef(true);
   const memorizedReducer = React.useCallback(
     (state, action) => {
       const changes = tableReducer(state, action);
       return new Promise(resolve => {
         resolve(
-          plugins.reduce(async (prevState, reducer) => {
-            const result = reducer(prevState, { ...action, changes });
+          plugins.reduce(async (previousPromise, reducer) => {
+            const prevChanges = await previousPromise;
+            const result = reducer(state, { ...action, changes: prevChanges });
             if (typeof result.then === "function") {
               const finalResult = await result;
               return finalResult;
@@ -37,8 +39,13 @@ function TableProvider(props) {
   const [state, dispatch] = useAsyncReducer(memorizedReducer, initialState);
 
   React.useEffect(() => {
+    if (isFirstRender.current) {
+      isFirstRender.current = false;
+      return;
+    }
     dispatch({ type: actions.RESET_DATA, payload: data });
-  }, [data]);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [data, isFirstRender]);
 
   return (
     <TableStateContext.Provider value={state}>
