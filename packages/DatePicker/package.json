@@ -1,6 +1,6 @@
 {
   "name": "@paprika/date-picker",
-  "version": "0.5.3",
+  "version": "0.5.4",
   "description": "DatePicker component",
   "main": "lib/index.js",
   "author": "@paprika",
@@ -14,11 +14,11 @@
   },
   "dependencies": {
     "@babel/runtime-corejs2": "^7.3.1",
-    "@paprika/button": "^0.2.3",
-    "@paprika/helpers": "^0.2.4",
+    "@paprika/button": "^0.2.4",
+    "@paprika/helpers": "^0.2.5",
     "@paprika/icon": "^0.2.5",
-    "@paprika/input": "^0.2.3",
-    "@paprika/popover": "^0.3.3",
+    "@paprika/input": "^0.2.4",
+    "@paprika/popover": "^0.3.4",
     "@paprika/stylers": "^0.2.2",
     "@paprika/tokens": "^0.1.9",
     "prop-types": "^15.7.2",
