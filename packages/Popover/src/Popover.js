@@ -7,9 +7,7 @@ import tokens from "@paprika/tokens";
 import { AlignTypes } from "@paprika/helpers/lib/customPropTypes";
 import isInsideBoundaries from "./helpers/isInsideBoundaries";
 import { getContentCoordinates, getTipCoordinates } from "./helpers/getPosition";
-// import { isActiveElementPopover } from "./helpers/isActiveElementPopover";
 import getBoundingClientRect from "./helpers/getBoundingClientRect";
-
 import PopoverContext, { ThemeContext } from "./PopoverContext";
 import Content from "./components/Content/Content";
 import Card from "./components/Card/Card";
@@ -30,7 +28,7 @@ const focusableElementSelector =
   'button, [href], input, select, textarea, [tabindex]:not([tabindex="-1"]), [role="button"]';
 let focusableElements;
 const originalTabIndexes = [];
-let triggerFocusIndex = -1;
+let triggerFocusIndex;
 
 // TODO: To handle cases where there are multiple scrolling containers, we need to implement
 //       getScrollContainer as oneOfType([func, arrayOf(func)])
@@ -180,8 +178,6 @@ class Popover extends React.Component {
     // about setState for Popovers and Tooltips in ComponentDidMount
     // https://reactjs.org/docs/react-component.html#componentdidmount
 
-    focusableElements = document.querySelectorAll(focusableElementSelector);
-
     if (this.isOpen()) {
       this.addListeners();
       this.setVisibilityAndPosition();
@@ -190,6 +186,7 @@ class Popover extends React.Component {
 
   componentDidUpdate(prevProps) {
     if (this.isOpen() && !this.hasListeners) {
+      focusableElements = document.querySelectorAll(focusableElementSelector);
       this.addListeners();
     }
 
@@ -422,9 +419,6 @@ class Popover extends React.Component {
 
       // NOTE: If we don't prevent the focusing back to the trigger while using focus and mouseover prop
       //       will created a bug looping over opening and closing constantly.
-      // if (!this.props.shouldKeepFocus && !this.props.isEager && this.$trigger && !isActiveElementPopover()) {
-      //   this.$trigger.focus();
-      // }
       this.restoreTabIndexes();
       this.removeListeners();
     }
