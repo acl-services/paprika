@@ -137,7 +137,7 @@ In practice this ensures the usability of Paprika components
  - with meaningful and semantic markup
  - with support for assistive technology (screen readers like VoiceOver, NVDA, and Jaws)
 
-For more information about how these goals are achieve, please read our [guildelines for developers].
+For more information about how these goals are achieve, please read our [guildelines for developers](https://design.wegalvanize.com/p/guidelines/accessibility#guidelines-for-developers-tab-3).
 
 
 ## Support
