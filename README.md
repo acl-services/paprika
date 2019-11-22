@@ -29,13 +29,14 @@
 - Node v10.0.0+
 - Yarn v1.12.3+
 
-Paprika has a `peerDependency` on `styled-components` and most packages also have a `peerDependency` on `@paprika/l10n` (for localization). 
-You will need to include them as dependencies in your project. 
+Paprika has a `peerDependency` on `styled-components` and most packages also have a `peerDependency` on `@paprika/l10n` (for localization).
+You will need to include them as dependencies in your project.
 
 ```sh
 $ yarn add styled-components
 $ yarn add @paprika/l10n
 ```
+
 [More details about using the L10n component](https://github.com/acl-services/paprika/blob/master/packages/L10n/README.md).
 
 #### Installing a Component
@@ -55,23 +56,22 @@ import Button from "@paprika/button";
 export default () => <Button>Hello</Button>;
 ```
 
-
 ## Contributing
 
-Contributors are welcome to [submit a bug report](https://github.com/acl-services/paprika/issues/new?assignees=&labels=Bug+%F0%9F%90%9B&template=bug_report.md), 
+Before contributing, please read our [Code of Conduct](https://github.com/acl-services/paprika/blob/master/CODE_OF_CONDUCT.md)
+Contributors are welcome to [submit a bug report](https://github.com/acl-services/paprika/issues/new?assignees=&labels=Bug+%F0%9F%90%9B&template=bug_report.md),
 [make a feature request](https://github.com/acl-services/paprika/issues/new?assignees=&labels=Feature+request+%F0%9F%92%A1&template=feature_request.md),
-or open a pull request. 
+or open a pull request.
 If you're just getting started, check out the [Help Wanted](https://github.com/acl-services/paprika/issues?q=is%3Aissue+is%3Aopen+label%3A%22Help+Wanted%22) or [Good First Issues](https://github.com/acl-services/paprika/issues?q=is%3Aissue+is%3Aopen+label%3A%22Good+First+Issue%22).
 
-For more information please check out our [Contributing Guidelines](https://github.com/acl-services/paprika/wiki/Contributing-Guidelines).
-
+For more information please check out our [Contributing Guidelines](https://github.com/acl-services/paprika/wiki/Contributing-Guidelines). You may want to start with the [Getting Started Guide](https://github.com/acl-services/paprika/wiki/Getting-Started)
 
 ## Components
 
-Paprika components are individually versioned and distributed packages in a Lerna monorepo. 
+Paprika components are individually versioned and distributed packages in a Lerna monorepo.
 To browse a list of components, open the [Storybook](https://paprika.highbond.com/),
-view the [source code](https://github.com/acl-services/paprika/tree/master/packages), 
-visit the [NPM registry](https://www.npmjs.com/org/paprika), 
+view the [source code](https://github.com/acl-services/paprika/tree/master/packages),
+visit the [NPM registry](https://www.npmjs.com/org/paprika),
 or refer to the [AirTable summary](https://airtable.com/shrkJwkvtbgc3FT22).
 
 #### NPM Packages
@@ -111,10 +111,9 @@ or refer to the [AirTable summary](https://airtable.com/shrkJwkvtbgc3FT22).
 <a href="https://www.npmjs.com/package/@paprika/tokens"><img src="https://img.shields.io/npm/v/@paprika/tokens?label=tokens" /></a>
 <a href="https://www.npmjs.com/package/@paprika/uploader"><img src="https://img.shields.io/npm/v/@paprika/uploader?label=Uploader" /></a>
 
-
 ## Testing
 
-There are a few layers to the testing pyramid in Paprika.  
+There are a few layers to the testing pyramid in Paprika.
 
 - Static analysis – [ESLint](https://eslint.org/) (with several plugins, namely [airbnb](https://www.npmjs.com/package/eslint-config-airbnb))
 - Unit testing – [Jest](https://jestjs.io/)
@@ -122,28 +121,26 @@ There are a few layers to the testing pyramid in Paprika.
 - End-to-end testing – [Cypress](https://testing-library.com/docs/react-testing-library/intro)
 - Visual regresstion testing – [Screener](https://screener.io/)
 
-
 ## Accessibility
 
-Paprika components are built with accessibility in mind from design through implementation. 
+Paprika components are built with accessibility in mind from design through implementation.
 Compliance with [WCAG 2.1 level AA](https://www.w3.org/TR/WCAG21/)
 by following [WAI-ARIA Authoring Practices 1.1](https://www.w3.org/TR/wai-aria-practices-1.1/)
-is a priority.  
+is a priority.
 
 In practice this ensures the usability of Paprika components
- - with keyboard, mouse or touch inputs
- - at various zoom levels up to 200% on a variety of screen sizes
- - with sufficent colour contrast for all essential elements
- - with meaningful and semantic markup
- - with support for assistive technology (screen readers like VoiceOver, NVDA, and Jaws)
+
+- with keyboard, mouse or touch inputs
+- at various zoom levels up to 200% on a variety of screen sizes
+- with sufficent colour contrast for all essential elements
+- with meaningful and semantic markup
+- with support for assistive technology (screen readers like VoiceOver, NVDA, and Jaws)
 
 For more information about how these goals are achieve, please read our [guildelines for developers](https://design.wegalvanize.com/p/guidelines/accessibility#guidelines-for-developers-tab-3).
-
 
 ## Support
 
 Have a question for the development team? [Ask us](https://github.com/acl-services/paprika/issues/new?assignees=&labels=Help+wanted+%E2%9D%93&template=help_wanted.md).
-
 
 ## License
 
