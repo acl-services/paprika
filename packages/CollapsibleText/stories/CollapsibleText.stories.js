@@ -3,7 +3,7 @@ import { withKnobs } from "@storybook/addon-knobs";
 
 import Variations from "./examples/Variations";
 import Showcase from "./examples/Showcase";
-import Props from "./CollapsibleText.mdx";
+// import Props from "./CollapsibleText.mdx";
 
 import CollapsibleText from "../src";
 
@@ -16,7 +16,7 @@ export const showcase = Showcase;
 showcase.story = {
   decorators: [withKnobs],
   parameters: {
-    docs: { page: Props },
+    docs: { disable: true },
     options: {
       isToolshown: true,
       showPanel: true,
@@ -27,7 +27,7 @@ showcase.story = {
 export const variations = () => <Variations />;
 variations.story = {
   parameters: {
-    docs: { page: Variations },
+    docs: { disable: true },
     options: {
       isToolshown: true,
       showPanel: false,
