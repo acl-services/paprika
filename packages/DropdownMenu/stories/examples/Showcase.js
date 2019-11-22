@@ -20,14 +20,8 @@ const ExampleStory = () => (
     <Tagline>Play with the controls to change the dropdown.</Tagline>
     <Rule />
     <L10n locale={select("locale", ["en", "de", "es", "fr", "ja", "pt", "zh"], "en")}>
-      <DropdownMenu
-        align="bottom"
-        renderTrigger={({ isOpen, handleOpenMenu }) => (
-          <DropdownMenu.Trigger id="triggerElement" isOpen={isOpen} onOpenMenu={handleOpenMenu}>
-            Trigger
-          </DropdownMenu.Trigger>
-        )}
-      >
+      <DropdownMenu edge="left" align="bottom">
+        <DropdownMenu.Trigger>Trigger</DropdownMenu.Trigger>
         <DropdownMenu.Item onClick={() => {}}>Edit</DropdownMenu.Item>
         <DropdownMenu.Item onClick={() => {}}>Duplicate</DropdownMenu.Item>
         <DropdownMenu.Item isDestructive isDisabled onClick={() => {}}>
@@ -55,6 +49,7 @@ const ExampleStory = () => (
                 body={
                   <p>Lorem ipsum dolor amet vexillologist tacos selvage narwhal butcher twee ethical hot chicken.</p>
                 }
+                edge="left"
                 confirmLabel="Delete filter"
                 getPositioningElement={() => document.getElementById("triggerElement")}
                 heading="Delete filter?"

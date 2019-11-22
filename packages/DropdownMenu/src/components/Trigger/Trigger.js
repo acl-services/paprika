@@ -5,9 +5,9 @@ import Button from "@paprika/button";
 const propTypes = {
   children: PropTypes.node,
   icon: PropTypes.node,
-  isOpen: PropTypes.bool.isRequired,
+  isOpen: PropTypes.bool,
   menuRefId: PropTypes.string,
-  onOpenMenu: PropTypes.func.isRequired,
+  onOpenMenu: PropTypes.func,
   triggerRef: PropTypes.shape({ current: PropTypes.instanceOf(Object) }) || null,
 };
 
@@ -16,6 +16,8 @@ const defaultProps = {
   icon: null,
   menuRefId: "",
   triggerRef: null,
+  isOpen: false,
+  onOpenMenu: () => {},
 };
 
 const Trigger = props => {

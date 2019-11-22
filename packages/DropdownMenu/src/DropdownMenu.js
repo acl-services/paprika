@@ -3,6 +3,7 @@ import PropTypes from "prop-types";
 import uuid from "uuid/v4";
 import { AlignTypes } from "@paprika/helpers/lib/customPropTypes";
 import Popover from "@paprika/popover";
+import extractChildren from "@paprika/helpers/lib/extractChildren";
 import Divider from "./components/Divider";
 import Trigger from "./components/Trigger";
 import LinkItem from "./components/LinkItem";
@@ -16,18 +17,18 @@ const propTypes = {
   /** Children should consist of <Dropdown.Item /> */
   children: PropTypes.node.isRequired,
 
-  /** Render prop for rendering the trigger element that toggles the dropdown */
-  renderTrigger: PropTypes.func.isRequired,
+  edge: PropTypes.oneOf([AlignTypes.LEFT, AlignTypes.RIGHT, null]),
 };
 
 const defaultProps = {
   align: AlignTypes.BOTTOM,
+  edge: AlignTypes.LEFT,
 };
 
 const popoverOffset = 4;
 
 const DropdownMenu = props => {
-  const { align, children, ...moreProps } = props;
+  const { align, children, edge, ...moreProps } = props;
   const [isOpen, setIsOpen] = React.useState(false);
   const [isConfirming, setIsConfirming] = React.useState(false);
   const [renderConfirmation, setRenderConfirmation] = React.useState(null);
@@ -53,10 +54,7 @@ const DropdownMenu = props => {
     setIsOpen(true);
   };
 
-  const triggerProps = {
-    isOpen,
-    handleOpenMenu,
-  };
+  const extractedChildren = extractChildren(children, ["DropdownMenu.Trigger"]);
 
   const handleShowConfirmation = renderConfirmation => () => {
     setIsConfirming(prevIsConfirmingState => !prevIsConfirmingState);
@@ -64,11 +62,12 @@ const DropdownMenu = props => {
   };
 
   const renderTrigger = () => {
-    const triggerComponent = props.renderTrigger(triggerProps);
     // wrapping the returned item in a function to avoid needing to tab twice
     // https://github.com/acl-services/paprika/issues/126
     return () =>
-      React.cloneElement(triggerComponent, {
+      React.cloneElement(extractedChildren["DropdownMenu.Trigger"], {
+        isOpen,
+        onOpenMenu: handleOpenMenu,
         triggerRef,
         menuId: menuId.current,
         id: triggerId.current,
@@ -88,7 +87,7 @@ const DropdownMenu = props => {
 
     return (
       <div css={contentStyles}>
-        {React.Children.map(children, (child, index) => {
+        {extractedChildren.children.map((child, index) => {
           if (child && child.type && child.type.displayName === "DropdownMenu.Item") {
             const childKey = { key: `DropdownMenuItem${index}` };
             if (child.props.renderConfirmation) {
@@ -116,6 +115,7 @@ const DropdownMenu = props => {
       onClose={() => {
         if (!isConfirming) handleCloseMenu();
       }}
+      edge={edge}
       {...moreProps}
     >
       <Popover.Trigger>{renderTrigger()}</Popover.Trigger>
