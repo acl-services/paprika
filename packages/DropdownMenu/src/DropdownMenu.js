@@ -32,7 +32,6 @@ const DropdownMenu = props => {
   const [isOpen, setIsOpen] = React.useState(false);
   const [isConfirming, setIsConfirming] = React.useState(false);
   const [renderConfirmation, setRenderConfirmation] = React.useState(null);
-
   const triggerRef = React.useRef(null);
   const menuId = React.useRef(uuid());
   const triggerId = React.useRef(uuid());
@@ -41,10 +40,8 @@ const DropdownMenu = props => {
     setIsOpen(false);
 
     if (isConfirming) {
-      setTimeout(() => {
-        setIsConfirming(false);
-        setRenderConfirmation(null);
-      }, 0);
+      setIsConfirming(false);
+      setRenderConfirmation(null);
     }
 
     if (triggerRef.current) triggerRef.current.focus();
