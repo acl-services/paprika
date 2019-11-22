@@ -19,7 +19,7 @@ const SidePanelStory = props => {
         <SidePanel.Trigger kind="primary" onClick={toggle}>
           {isOpen ? "close" : "open"}
         </SidePanel.Trigger>
-        <SidePanel.Header>Header</SidePanel.Header>
+        <SidePanel.Header kind="primary">Header</SidePanel.Header>
         <TextLine repeat={100} />
         <SidePanel.Footer>
           <Button>Default action</Button>

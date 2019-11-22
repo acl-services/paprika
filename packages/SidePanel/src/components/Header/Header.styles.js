@@ -39,7 +39,7 @@ export const headerCSS = props => `
   }
 
  [data-pka-anchor="button.icon"] {
-    ${props.kind === [Button.Kinds.PRIMARY] ? "color: white" : "color: inherit"}
+    ${props.kind === [Button.Kinds.PRIMARY] ? `color: ${tokens.color.white}` : "color: inherit"}
  }
 
 
