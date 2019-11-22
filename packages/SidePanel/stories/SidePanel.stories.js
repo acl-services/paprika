@@ -110,6 +110,7 @@ const SidePanelStoryGroup = () => {
         </div>
       </div>
       <SidePanel.Group offsetY={40}>
+        <SidePanel.Group.Overlay />
         <SidePanel data-pka-anchor="sidepanel1" width={400} onClose={handleParent1} isOpen={spParent1}>
           <SidePanel.Header kind="primary">Parent 1</SidePanel.Header>
           <TextLine repeat={100} />
