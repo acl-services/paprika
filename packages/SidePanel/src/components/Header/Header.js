@@ -11,13 +11,14 @@ const propTypes = {
   hasCloseButton: PropTypes.bool,
   isCompact: PropTypes.bool,
   kind: PropTypes.oneOf([Button.Kinds.DEFAULT, Button.Kinds.PRIMARY]),
-  level: PropTypes.oneOf([1, 2, 3, 4, 5, 6]).isRequired,
+  level: PropTypes.oneOf([1, 2, 3, 4, 5, 6]),
   onClose: PropTypes.func,
 };
 
 const defaultProps = {
   hasCloseButton: true,
   kind: Button.Kinds.DEFAULT,
+  level: 2,
   isCompact: false,
   onClose: () => {},
 };
@@ -43,7 +44,7 @@ const Header = React.forwardRef((props, ref) => {
 
   return (
     <div data-pka-anchor="sidepanel.header" ref={ref} css={headerCSS} kind={kind} isCompact={isCompact} {...moreProps}>
-      <Heading tabIndex="-1" level={level || 2}>
+      <Heading tabIndex="-1" level={level}>
         {props.children}
       </Heading>
       <div>
