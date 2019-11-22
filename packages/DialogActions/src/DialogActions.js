@@ -44,7 +44,7 @@ const defaultProps = {
   className: "",
   hasCancel: true,
   hasConfirm: true,
-  hasDecline: false,
+  hasDecline: true,
   isDestructive: false,
   isDisabled: false,
   labelCancel: "Cancel", // TODO: i18n

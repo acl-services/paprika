@@ -13,7 +13,7 @@ const DialogActionsProps = () => ({
   isDisabled: boolean("isDisabled", false),
   labelCancel: text("labelCancel", "Cancel"),
   labelConfirm: text("labelConfirm", "Save"),
-  labelDecline: text("labelDecline", "Dont Save"),
+  labelDecline: text("labelDecline", "Don't Save"),
   onCancel: action("Cancel Clicked"),
   onConfirm: action("Confirm Clicked"),
   onDecline: action("Decline Clicked"),
