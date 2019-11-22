@@ -180,13 +180,19 @@ class Popover extends React.Component {
     }
   }
 
-  componentWillReceiveProps(nextProps) {
-    if (!this.props.isOpen && nextProps.isOpen) {
-      this.open();
+  static getDerivedStateFromProps(nextProps, prevState) {
+    if (!prevState.isOpen && nextProps.isOpen) {
+      return { isOpen: true };
     }
+
+    return null;
   }
 
   componentDidUpdate(prevProps) {
+    if (!prevProps.isOpen && this.props.isOpen) {
+      this.open();
+    }
+
     if (this.isOpen() && !this.hasListeners) {
       this.focusableElements = document.querySelectorAll(focusableElementSelector);
       this.addListeners();
