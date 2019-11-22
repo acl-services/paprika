@@ -1,6 +1,7 @@
 import React from "react";
 import PropTypes from "prop-types";
 import Button from "@paprika/button";
+import Heading from "@paprika/heading";
 import { ShirtSizes } from "@paprika/helpers/lib/customPropTypes";
 
 import { headerCSS } from "./Header.styles";
@@ -10,6 +11,7 @@ const propTypes = {
   hasCloseButton: PropTypes.bool,
   isCompact: PropTypes.bool,
   kind: PropTypes.oneOf([Button.Kinds.DEFAULT, Button.Kinds.PRIMARY]),
+  level: PropTypes.oneOf([1, 2, 3, 4, 5, 6]).isRequired,
   onClose: PropTypes.func,
 };
 
@@ -31,8 +33,9 @@ function darkBackgroundProps(kind) {
 const Header = React.forwardRef((props, ref) => {
   const {
     hasCloseButton,
-    kind,
     isCompact,
+    kind,
+    level,
     // injected by Dialog.js
     onClose,
     ...moreProps
@@ -40,7 +43,9 @@ const Header = React.forwardRef((props, ref) => {
 
   return (
     <div data-pka-anchor="sidepanel.header" ref={ref} css={headerCSS} kind={kind} isCompact={isCompact} {...moreProps}>
-      <div tabIndex="-1">{props.children}</div>
+      <Heading tabIndex="-1" level={level || 2}>
+        {props.children}
+      </Heading>
       <div>
         {hasCloseButton ? (
           <Button.Close
@@ -48,7 +53,7 @@ const Header = React.forwardRef((props, ref) => {
             isSemantic={false}
             onClick={onClose}
             {...darkBackgroundProps(kind)}
-            size={ShirtSizes.SMALL}
+            size={isCompact ? ShirtSizes.SMALL : ShirtSizes.MEDIUM}
           />
         ) : null}
       </div>

@@ -6,7 +6,7 @@ const childPanel = css`
   border-bottom-left-radius: ${stylers.spaceSm};
   border-top-left-radius: ${stylers.spaceSm};
   height: calc(100% - ${stylers.spacer(8)});
-  margin-top: ${stylers.spacer(8)};
+  margin-top: ${stylers.spacer(4)};
 `;
 
 function slideIn() {

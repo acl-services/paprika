@@ -8,8 +8,8 @@ const kind = {
 };
 
 const compactStyles = `
-  height: ${spacer(7)};
-  padding: 0 ${spacer(2)};
+  height: ${spacer(6)};
+  padding: ${tokens.spaceLg} ${spacer(2)};
   
   [data-pka-anchor="heading"] {
     ${fontSize(1)};
@@ -37,6 +37,11 @@ export const headerCSS = props => `
     font-weight: 700;
     margin: 0;
   }
+
+ [data-pka-anchor="button.icon"] {
+    ${props.kind === [Button.Kinds.PRIMARY] ? "color: white" : "color: inherit"}
+ }
+
 
   ${props.isCompact ? compactStyles : ""}
   ${props.kind ? kind[props.kind] : ""}
