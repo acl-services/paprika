@@ -79,6 +79,8 @@ const DropdownMenu = props => {
       const confirmationComponent = renderConfirmation(handleCloseMenu);
       return React.cloneElement(confirmationComponent, {
         align,
+        edge,
+        defaultIsOpen: true,
         getPositioningElement: () => document.getElementById(triggerId.current),
         offset: popoverOffset,
         onClose: handleCloseMenu,
