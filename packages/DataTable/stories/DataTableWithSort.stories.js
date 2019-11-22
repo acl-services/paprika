@@ -1,7 +1,7 @@
 import React from "react";
 import { storiesOf } from "@storybook/react";
 import Button from "@paprika/button";
-import DataTable from "../src";
+import DataTable, { RowHeight, Sort } from "../src";
 import fixtures from "./fixtures";
 
 const flags = {
@@ -39,6 +39,10 @@ function App() {
         Clear data
       </Button>
       <DataTable keygen="id" data={data} height={window.innerHeight}>
+        <DataTable.Navigation>
+          <Sort />
+          <RowHeight />
+        </DataTable.Navigation>
         <DataTable.ColumnDefinition id="country" width="190" header="Country" cell={cell => getFlag(cell)} />
         <DataTable.ColumnDefinition
           id="name"

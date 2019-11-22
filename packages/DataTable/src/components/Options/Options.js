@@ -1,20 +1,12 @@
-/* eslint-disable react/jsx-indent */
 import React from "react";
 import PropTypes from "prop-types";
 import DropdownMenu from "@paprika/dropdown-menu";
 import ArrowDown from "@paprika/icon/lib/ArrowDown";
-import useSort from "../../hooks/useSort";
 import { sortDirections } from "../../constants";
+import SortOption from "./SortOption";
 
 export default function Options(props) {
   const { sortDirections, columnId } = props;
-  const sort = useSort();
-
-  function handleSortBy(direction) {
-    return () => {
-      sort(columnId, direction);
-    };
-  }
 
   return (
     <DropdownMenu
@@ -30,11 +22,7 @@ export default function Options(props) {
       )}
     >
       {sortDirections
-        ? sortDirections.map(direction => (
-            <DropdownMenu.Item key={direction} onClick={handleSortBy(direction)}>
-              {`Sort by ${direction}`}
-            </DropdownMenu.Item>
-          ))
+        ? sortDirections.map(direction => <SortOption key={direction} columnId={columnId} direction={direction} />)
         : null}
     </DropdownMenu>
   );
