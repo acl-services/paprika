@@ -315,11 +315,9 @@ class Popover extends React.Component {
 
       if (event.shiftKey && isFocusOnFirst) {
         event.preventDefault();
-        this.restoreTabIndexes();
         this.focusableElements[this.triggerFocusIndex].focus();
       } else if (!event.shiftKey && isFocusOnLast) {
         event.preventDefault();
-        this.restoreTabIndexes();
         this.focusableElements[this.triggerFocusIndex + 1].focus();
       }
     }
@@ -346,7 +344,7 @@ class Popover extends React.Component {
   restoreTabIndexes = () => {
     this.focusableElements.forEach(focusableElement => {
       if (focusableElement !== this.$trigger && !this.elementIsDescendentOfPopover(focusableElement)) {
-        focusableElement.tabIndex = this.originalTabIndexes.reverse().pop(); // eslint-disable-line no-param-reassign
+        focusableElement.tabIndex = this.originalTabIndexes.shift(); // eslint-disable-line no-param-reassign
       }
     });
   };
@@ -416,7 +414,10 @@ class Popover extends React.Component {
 
   close() {
     // NOTE: Even if uncontrolled, the app may want to be notified when closed via the onClose callback
-    if (this.props.onClose !== null) this.props.onClose();
+    if (this.props.onClose !== null) {
+      this.restoreTabIndexes();
+      this.props.onClose();
+    }
 
     if (this.props.isOpen === null) {
       this.setState({ isOpen: false });
