@@ -39,7 +39,7 @@ const Header = React.forwardRef((props, ref) => {
   } = props;
 
   return (
-    <div ref={ref} css={headerCSS} kind={kind} isCompact={isCompact} {...moreProps}>
+    <div data-pka-anchor="sidepanel.header" ref={ref} css={headerCSS} kind={kind} isCompact={isCompact} {...moreProps}>
       <div tabIndex="-1">{props.children}</div>
       <div>
         {hasCloseButton ? (

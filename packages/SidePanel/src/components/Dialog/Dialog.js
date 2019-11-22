@@ -65,6 +65,7 @@ function Dialog(props) {
     >
       {header ? React.cloneElement(header, { ref: refHeader, isCompact, onClose }) : null}
       <div
+        data-pka-anchor="sidepanel.content"
         css={dialogContentStyles}
         isCompact={isCompact}
         isOpen={isOpen}

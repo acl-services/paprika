@@ -134,19 +134,20 @@ function SidePanel(props) {
   if (isVisible) {
     const dialog = (
       <Dialog
-        onAnimationEnd={handleAnimationEnd}
-        header={headerExtracted}
+        data-pka-anchor="sidepanel"
         footer={footerExtracted}
-        onClose={onClose}
-        refSidePanelContent={refSidePanelContent}
-        width={width}
-        kind={kind}
+        header={headerExtracted}
         isCompact={isCompact}
         isInline={isInline}
-        refHeader={refHeader}
-        offsetY={offsetScroll}
         isOpen={isOpen}
+        kind={kind}
+        offsetY={offsetScroll}
+        onAnimationEnd={handleAnimationEnd}
+        onClose={onClose}
         onKeyDown={handleEscKey}
+        refSidePanelContent={refSidePanelContent}
+        refHeader={refHeader}
+        width={width}
         {...moreProps}
       >
         {children}
