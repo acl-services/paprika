@@ -1,14 +1,14 @@
 import stylers from "@paprika/stylers";
+import tokens from "@paprika/tokens";
 import { css, keyframes } from "styled-components";
-import tokens from "@paprika/tokens/lib/tokens";
 
 const childPanel = css`
   ${props => {
     const totalOffset = props.isCompact ? 48 : 64;
     const childBottomOffsetY = totalOffset + props.groupOffsetY + props.offsetY;
     return css`
-      border-bottom-left-radius: ${stylers.spaceSm};
-      border-top-left-radius: ${stylers.spaceSm};
+      border-bottom-left-radius: ${tokens.spaceSm};
+      border-top-left-radius: ${tokens.spaceSm};
       height: calc(100% - ${childBottomOffsetY}px);
       margin-top: ${props.isCompact ? `${stylers.spacer(3)}` : `${stylers.spacer(4)}`};
     `;

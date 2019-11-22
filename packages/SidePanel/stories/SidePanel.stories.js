@@ -138,7 +138,9 @@ const SidePanelStoryGroup = () => {
         >
           <SidePanel.Header>Child of Parent 2</SidePanel.Header>
           <TextLine repeat={100} />
-          <Button>Test button</Button>
+          <SidePanel.Footer>
+            <Button>Test button</Button>
+          </SidePanel.Footer>
         </SidePanel>
       </SidePanel.Group>
     </React.Fragment>
