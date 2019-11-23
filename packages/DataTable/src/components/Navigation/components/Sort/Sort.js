@@ -22,13 +22,15 @@ const noop = () => {};
 export default function Sort(props) {
   const dispatch = useDispatch();
   const { sortColumn, sortDirection } = useDataTableState();
-  const { ColumnsDefinition } = props;
-  const hasSortDirections = ColumnsDefinition.find(
-    ({ props: columnProp }) => columnProp.sortDirections && columnProp.sortDirections.length > 0
-  );
+  const { ColumnsDefinition, columns } = props;
+  const hasSortDirections = columns.find(({ sortDirections }) => sortDirections && sortDirections.length > 0);
 
   function handleSort(columnId, direction) {
-    return () => dispatch({ type: actions.SORT, payload: { columnId, direction } });
+    return () =>
+      dispatch({
+        type: actions.SORT,
+        payload: { columnId, direction, columnType: columns.find(column => columnId === column.id).type },
+      });
   }
 
   if (!hasSortDirections) return null;
@@ -42,9 +44,7 @@ export default function Sort(props) {
         </DropdownMenu.Trigger>
       )}
     >
-      {ColumnsDefinition.map(({ props: columnProp }) => {
-        const { id: columnId, header, sortDirections } = columnProp;
-
+      {columns.map(({ id: columnId, header, sortDirections }) => {
         if (!sortDirections || sortDirections.length === 0) return null;
 
         return (
@@ -77,6 +77,7 @@ Sort.reducer = (state, action) => {
         data: action.changes.data,
         columnId: action.payload.columnId,
         direction: action.payload.direction,
+        columnType: action.payload.columnType,
       }).map(item => item[state.keygen]),
     };
 
