@@ -1,4 +1,4 @@
-import { fontSize, spacer } from "@paprika/stylers/lib/helpers";
+import { spacer } from "@paprika/stylers/lib/helpers";
 import tokens from "@paprika/tokens/lib/tokens";
 import Button from "@paprika/button";
 
@@ -12,8 +12,6 @@ const compactStyles = `
   padding: ${tokens.spaceLg} ${spacer(2)};
   
   [data-pka-anchor="heading"] {
-    ${fontSize(1)};
-    font-weight: 700;
     margin: 0;
   }
 `;
@@ -33,8 +31,6 @@ export const headerCSS = props => `
   }
 
   [data-pka-anchor="heading"] {
-    ${fontSize(3)};
-    font-weight: 700;
     margin: 0;
   }
 

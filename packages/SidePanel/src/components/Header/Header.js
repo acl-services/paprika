@@ -44,7 +44,7 @@ const Header = React.forwardRef((props, ref) => {
 
   return (
     <div data-pka-anchor="sidepanel.header" ref={ref} css={headerCSS} kind={kind} isCompact={isCompact} {...moreProps}>
-      <Heading tabIndex="-1" level={level}>
+      <Heading tabIndex="-1" level={level} displayLevel={isCompact ? 4 : 3}>
         {props.children}
       </Heading>
       <div>
