@@ -1,11 +1,11 @@
 import React from "react";
 import PropTypes from "prop-types";
-import Button from "@paprika/button";
 import DropdownMenu from "@paprika/dropdown-menu";
 import sort from "../../../../helpers/sort";
 import { actions } from "../../../../constants";
 
-import { useDispatch, useDataTableState } from "../../../..";
+import { useDataTableState } from "../../../..";
+import SortTrigger from "./SortTrigger";
 
 const propTypes = {
   ColumnsDefinition: PropTypes.arrayOf(
@@ -20,16 +20,11 @@ const defaultProps = { ColumnsDefinition: [] };
 const noop = () => {};
 
 export default function Sort(props) {
-  const dispatch = useDispatch();
   const { sortColumn, sortDirection } = useDataTableState();
   const { ColumnsDefinition } = props;
   const hasSortDirections = ColumnsDefinition.find(
     ({ props: columnProp }) => columnProp.sortDirections && columnProp.sortDirections.length > 0
   );
-
-  function handleSort(columnId, direction) {
-    return () => dispatch({ type: actions.SORT, payload: { columnId, direction } });
-  }
 
   if (!hasSortDirections) return null;
 
@@ -52,9 +47,7 @@ export default function Sort(props) {
             Sort {header} by
             {sortDirections &&
               sortDirections.map(direction => (
-                <Button key={direction} onClick={handleSort(columnId, direction)} kind="minor">
-                  {direction}
-                </Button>
+                <SortTrigger key={direction} columnId={columnId} direction={direction} />
               ))}
           </DropdownMenu.Item>
         );
@@ -65,7 +58,6 @@ export default function Sort(props) {
 
 Sort.propTypes = propTypes;
 Sort.defaultProps = defaultProps;
-Sort.displayName = "DataTable.Navigation.Sort";
 
 Sort.reducer = (state, action) => {
   if (action.type === actions.SORT)
