@@ -25,9 +25,8 @@ const defaultProps = {
   size: ShirtSizes.MEDIUM,
 };
 
-const Radio = props => {
+function Radio(props) {
   const { a11yText, children, isChecked, canDeselect, isDisabled, size, onClick, ...moreProps } = props;
-
   const radioId = React.useRef(uuid()).current;
   const inputRef = React.useRef(null);
 
@@ -81,7 +80,7 @@ const Radio = props => {
       </label>
     </div>
   );
-};
+}
 
 Radio.displayName = "Radio";
 Radio.propTypes = propTypes;

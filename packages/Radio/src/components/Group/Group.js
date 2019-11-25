@@ -6,20 +6,20 @@ const propTypes = {
   /** aria-labelledby prop on the containing group element */
   a11yLabelledByText: PropTypes.string,
 
-  /** Are all radios disabled */
-  isDisabled: PropTypes.bool,
+  /** Can deselect any radio */
+  canDeselect: PropTypes.bool,
 
   /** Function used to evaluate which radio is selected by default. */
   defaultCheck: PropTypes.func,
 
-  /** Can deselect any radio */
-  canDeselect: PropTypes.bool,
+  /** The individual radio itemss. */
+  children: PropTypes.node,
+
+  /** Are all radios disabled */
+  isDisabled: PropTypes.bool,
 
   /** On change of radio selection. */
   onChange: PropTypes.func.isRequired,
-
-  /** The individual radio itemss. */
-  children: PropTypes.node,
 
   /** The size for all radio components. */
   size: PropTypes.oneOf(ShirtSizes.DEFAULT),
@@ -34,7 +34,8 @@ const defaultProps = {
   size: ShirtSizes.MEDIUM,
 };
 
-const Group = ({ a11yLabelledByText, canDeselect, children, defaultCheck, ...moreGroupProps }) => {
+function Group(props) {
+  const { a11yLabelledByText, canDeselect, children, defaultCheck, ...moreGroupProps } = props;
   const defaultCheckedId = React.Children.toArray(children).find(defaultCheck).props.value.id;
   const [checkedId, setCheckedId] = React.useState(defaultCheckedId || null);
   const deselectableId = id => (checkedId === id ? null : id);
@@ -59,7 +60,7 @@ const Group = ({ a11yLabelledByText, canDeselect, children, defaultCheck, ...mor
       })}
     </div>
   );
-};
+}
 
 Group.displayName = "Radio.Group";
 Group.propTypes = propTypes;
