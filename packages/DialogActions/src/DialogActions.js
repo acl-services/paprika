@@ -1,6 +1,7 @@
 import React from "react";
 import PropTypes from "prop-types";
 import Button from "../../Button/src/Button";
+import ButtonStyles from "./DialogActions.styles";
 
 const propTypes = {
   /** Optional custom classes. */
@@ -58,7 +59,7 @@ const defaultProps = {
 function renderCancelButton(hasCancel, onCancel, labelCancel) {
   if (!hasCancel) return null;
   return (
-    <Button data-pka-anchor="aclui-dialog-actions__cancel" size="large" kind="minor" onClick={onCancel}>
+    <Button data-pka-anchor="dialog-actions__cancel" size="large" kind="minor" onClick={onCancel}>
       {labelCancel}
     </Button>
   );
@@ -68,7 +69,7 @@ function renderConfirmButton(hasConfirm, isDisabled, onConfirm, isDestructive, l
   if (!hasConfirm) return null;
   return (
     <Button
-      data-pka-anchor="aclui-dialog-actions__confirm"
+      data-pka-anchor="dialog-actions__confirm"
       isDisabled={isDisabled}
       onClick={onConfirm}
       size="large"
@@ -82,7 +83,13 @@ function renderConfirmButton(hasConfirm, isDisabled, onConfirm, isDestructive, l
 function renderDeclineButton(hasDecline, isDisabled, onDecline, labelDecline) {
   if (!hasDecline) return null;
   return (
-    <Button data-pka-anchor="aclui-dialog-actions__decline" isDisabled={isDisabled} onClick={onDecline} size="large">
+    <Button
+      data-pka-anchor="dialog-actions__decline"
+      isDisabled={isDisabled}
+      onClick={onDecline}
+      size="large"
+      css={ButtonStyles}
+    >
       {labelDecline}
     </Button>
   );
@@ -91,7 +98,7 @@ function renderDeclineButton(hasDecline, isDisabled, onDecline, labelDecline) {
 function DialogActions(props) {
   if (!props.hasConfirm && !props.hasCancel && !props.hasDecline) return null;
   return (
-    <div data-pka-anchor={`aclui-dialog-actions ${props.className}`}>
+    <div data-pka-anchor={`dialog-actions ${props.className}`}>
       {renderConfirmButton(
         props.hasConfirm,
         props.isDisabled,
@@ -99,7 +106,6 @@ function DialogActions(props) {
         props.isDestructive,
         props.labelConfirm
       )}
-      &nbsp;
       {renderDeclineButton(props.hasDecline, props.isDisabled, props.onDecline, props.labelDecline)}
       {renderCancelButton(props.hasCancel, props.onCancel, props.labelCancel)}
     </div>

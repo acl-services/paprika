@@ -27,9 +27,9 @@ describe("DialogActions", () => {
     const onCancel = jest.fn();
     const onConfirm = jest.fn();
     const onDecline = jest.fn();
-    const { getByText } = renderComponent({ onCancel, onConfirm, onDecline, labelConfirm: "Confirm" });
+    const { getByText } = renderComponent({ onCancel, onConfirm, onDecline });
 
-    fireEvent.click(getByText(/Confirm/i));
+    fireEvent.click(getByText("Save"));
     expect(onConfirm).toHaveBeenCalled();
 
     fireEvent.click(getByText(/Don't Save/i));
