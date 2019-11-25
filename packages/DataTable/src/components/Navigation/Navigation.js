@@ -20,14 +20,7 @@ export default function Navigation(props) {
   const { children, ColumnsDefinition, columns } = props;
   return (
     <styled.Navigation>
-      {React.Children.map(children, child => {
-        switch (child.type.displayName) {
-          case "DataTable.Navigation.Sort":
-            return React.cloneElement(child, { ColumnsDefinition, columns });
-          default:
-            return child;
-        }
-      })}
+      {React.Children.map(children, child => React.cloneElement(child, { ColumnsDefinition, columns }))}
     </styled.Navigation>
   );
 }

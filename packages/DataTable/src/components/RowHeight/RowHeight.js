@@ -61,7 +61,6 @@ export default function RowHeight(props) {
 
 RowHeight.propTypes = propTypes;
 RowHeight.defaultProps = defaultProps;
-RowHeight.displayName = "DataTable.Navigation.RowHeight";
 
 RowHeight.reducer = (state, action) => {
   if (action.type === "ROW_HEIGHT") {
