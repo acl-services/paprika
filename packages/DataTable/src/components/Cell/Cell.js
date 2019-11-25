@@ -1,9 +1,6 @@
 import React from "react";
 import PropTypes from "prop-types";
-
 import * as styled from "../VirtualizedTable/VirtualizedTable.styles";
-import moment from "moment";
-import Date from "./Date";
 
 export default function Cell(props) {
   const {
@@ -11,30 +8,23 @@ export default function Cell(props) {
     activeCellIndex,
     cellIndex,
     children,
+    data,
     dataRow,
     height,
-    onClick,
-    row,
     rowIndex,
-    type,
+    setActiveCell,
     width,
-    cell,
-    columnId,
   } = props;
-  function renderCellContent(text) {
-    switch (type) {
-      case "DATE":
-        return <Date text={text} format={row.format} />;
-      default:
-        return text;
-    }
-  }
-  const cellContent = typeof cell === "function" ? cell(row[columnId]) : renderCellContent(row[cell]);
-
-  // console.log(props);
 
   function handleClickCell() {
-    onClick({ index: cellIndex, data: row, dataRow, rowIndex });
+    if (activeCellIndex !== cellIndex) {
+      setActiveCell({
+        index: cellIndex,
+        data,
+        dataRow,
+        rowIndex,
+      });
+    }
   }
 
   return (
@@ -47,7 +37,7 @@ export default function Cell(props) {
       activeCellIndex={activeCellIndex}
       onClick={handleClickCell}
     >
-      {cellContent}
+      {children}
     </styled.Cell>
   );
 }
@@ -57,11 +47,11 @@ Cell.propTypes = {
   activeCellIndex: PropTypes.string.isRequired,
   cellIndex: PropTypes.string.isRequired,
   children: PropTypes.node.isRequired,
+  data: PropTypes.shape({}).isRequired,
   dataRow: PropTypes.shape({}).isRequired,
   height: PropTypes.number.isRequired,
-  onClick: PropTypes.func.isRequired,
-  row: PropTypes.shape({}).isRequired,
   rowIndex: PropTypes.number.isRequired,
+  setActiveCell: PropTypes.func.isRequired,
   width: PropTypes.string,
 };
 

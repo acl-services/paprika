@@ -42,13 +42,8 @@ export default function DataTable(props) {
   return (
     <TableProvider data={data} keygen={keygen} reducers={navigationReducers.concat(reducers)}>
       <div>{isLoading ? "Loading..." : null}</div>
-      {Navigation
-        ? React.cloneElement(Navigation, {
-            ColumnsDefinition,
-            columns,
-          })
-        : null}
-      <VirtualizedTable ColumnsDefinition={ColumnsDefinition} columns={columns} height={height} rowHeight={rowHeight} width={width} />
+      {Navigation ? React.cloneElement(Navigation, { columns }) : null}
+      <VirtualizedTable columns={columns} height={height} rowHeight={rowHeight} width={width} />
     </TableProvider>
   );
 }

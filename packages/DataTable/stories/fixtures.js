@@ -27,7 +27,7 @@ export default function fixtures(times = 0) {
     { country: "Sweden", name: "Gunnar Nordahl ‡", goals: 513, status: "inactive", joined: "10/01/2014" },
     { country: "Brazil", name: "Roberto Dinamite", goals: 512, status: "inactive", joined: "10/01/2019" },
     { country: "England", name: "Jimmy Greaves", goals: 511, status: "inactive", joined: "03/21/2012" },
-    { country: "Hungary", name: "Ferenc Bene ‡", goals: 508, status: "inactive", joined: "12/18/2020" },
+    { country: "Hungary", name: "Ferenc Bene ‡", goals: 508, status: "inactive", joined: "12/18/2020", date: "" },
   ];
 
   let newData = [];

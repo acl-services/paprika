@@ -2,6 +2,7 @@ import React from "react";
 import { storiesOf } from "@storybook/react";
 import DataTable from "../src";
 import fixtures from "./fixtures";
+import sort from "../src/helpers/sort";
 
 const flags = {
   Austria: "🇦🇹",
@@ -39,7 +40,9 @@ function App() {
             ...action.changes,
             sortColumn: action.payload.columnId,
             sortDirection: action.payload.direction,
-            sortedOrder: [...mockData].sort(() => 0.5 - Math.random()).map(item => item.id),
+            sortedOrder: sort({ mockData, columnId: action.payload.columnId, direction: action.payload.direction }).map(
+              item => item.id
+            ),
           });
         }, 1000);
       }

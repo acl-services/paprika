@@ -4,27 +4,17 @@ import * as styled from "./Navigation.styles";
 
 const propTypes = {
   children: PropTypes.node.isRequired,
-  ColumnsDefinition: PropTypes.arrayOf(
-    PropTypes.shape({
-      props: PropTypes.object.isRequired,
-      type: PropTypes.func.isRequired,
-    })
-  ),
-};
-
-const defaultProps = {
-  ColumnsDefinition: [],
+  columns: PropTypes.arrayOf(PropTypes.shape({})).isRequired,
 };
 
 export default function Navigation(props) {
-  const { children, ColumnsDefinition, columns } = props;
+  const { children, columns } = props;
   return (
     <styled.Navigation>
-      {React.Children.map(children, child => React.cloneElement(child, { ColumnsDefinition, columns }))}
+      {React.Children.map(children, child => React.cloneElement(child, { columns }))}
     </styled.Navigation>
   );
 }
 
 Navigation.propTypes = propTypes;
-Navigation.defaultProps = defaultProps;
 Navigation.displayName = "DataTable.Navigation";

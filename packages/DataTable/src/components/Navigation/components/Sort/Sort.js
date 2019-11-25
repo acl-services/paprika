@@ -3,25 +3,18 @@ import PropTypes from "prop-types";
 import DropdownMenu from "@paprika/dropdown-menu";
 import sort from "../../../../helpers/sort";
 import { actions } from "../../../../constants";
-
 import { useDataTableState } from "../../../..";
 import SortTrigger from "./SortTrigger";
 
 const propTypes = {
-  ColumnsDefinition: PropTypes.arrayOf(
-    PropTypes.shape({
-      props: PropTypes.object.isRequired,
-      type: PropTypes.func.isRequired,
-    })
-  ),
+  columns: PropTypes.arrayOf(PropTypes.shape({})).isRequired,
 };
-const defaultProps = { ColumnsDefinition: [] };
 
 const noop = () => {};
 
 export default function Sort(props) {
   const { sortColumn, sortDirection } = useDataTableState();
-  const { ColumnsDefinition, columns } = props;
+  const { columns } = props;
   const hasSortDirections = columns.find(({ sortDirections }) => sortDirections && sortDirections.length > 0);
 
   if (!hasSortDirections) return null;
@@ -43,7 +36,12 @@ export default function Sort(props) {
             Sort {header} by
             {sortDirections &&
               sortDirections.map(direction => (
-                <SortTrigger key={direction} columnId={columnId} direction={direction} />
+                <SortTrigger
+                  key={direction}
+                  columnId={columnId}
+                  direction={direction}
+                  columnType={columns.find(column => columnId === column.id).type}
+                />
               ))}
           </DropdownMenu.Item>
         );
@@ -53,7 +51,6 @@ export default function Sort(props) {
 }
 
 Sort.propTypes = propTypes;
-Sort.defaultProps = defaultProps;
 
 Sort.reducer = (state, action) => {
   if (action.type === actions.SORT)

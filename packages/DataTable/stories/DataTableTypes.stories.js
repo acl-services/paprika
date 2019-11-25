@@ -51,8 +51,9 @@ function App() {
       <DataTable.ColumnDefinition
         id="joined"
         header="Joined since"
-        cell="joined"
+        cell={dateString => dateString}
         type="DATE"
+        parsingFormat="DD/MM/YYYY"
         sortDirections={DataTable.SortDirections.DEFAULT}
       />
     </DataTable>

@@ -5,7 +5,7 @@
     "jest": true,
     "cypress/globals": true
   },
-  "extends": ["airbnb", "prettier"],
+  "extends": ["airbnb", "prettier", "prettier/react"],
   "globals": { "renderWithL10n": true },
   "parser": "babel-eslint",
   "parserOptions": {

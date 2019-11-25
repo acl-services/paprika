@@ -8,14 +8,15 @@ import { useDispatch } from "../../../..";
 const propTypes = {
   columnId: PropTypes.oneOfType([PropTypes.number, PropTypes.string]).isRequired,
   direction: PropTypes.oneOf([sortDirections.ASCEND, sortDirections.DESCEND]).isRequired,
+  columnType: PropTypes.string.isRequired,
 };
 
 export default function SortTrigger(props) {
-  const { columnId, direction } = props;
+  const { columnId, direction, columnType } = props;
   const dispatch = useDispatch();
 
   function handleSort() {
-    dispatch({ type: actions.SORT, payload: { columnId, direction } });
+    dispatch({ type: actions.SORT, payload: { columnId, direction, columnType } });
   }
 
   return (

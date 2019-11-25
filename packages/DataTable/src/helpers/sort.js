@@ -1,6 +1,6 @@
 import isString from "lodash.isstring";
-import { sortDirections } from "../constants";
 import moment from "moment";
+import { sortDirections } from "../constants";
 
 function compareString(a, b) {
   return a.localeCompare(b);
@@ -21,25 +21,7 @@ const compareFunctions = {
 };
 
 export default function sort({ data, columnId, direction, columnType }) {
-  // switch (direction) {
-  //   case sortDirections.ASCEND:
-  //     return [...data].sort((rowA, rowB) =>
-  //       isString(rowA[columnId])
-  //         ? compareString(rowA[columnId], rowB[columnId])
-  //         : compareNumber(rowA[columnId], rowB[columnId])
-  //     );
-  //   case sortDirections.DESCEND:
-  //     return [...data].sort((rowA, rowB) =>
-  //       isString(rowA[columnId])
-  //         ? -compareString(rowA[columnId], rowB[columnId])
-  //         : -compareNumber(rowA[columnId], rowB[columnId])
-  //     );
-  //   default:
-  //     return data;
-  // }
-
-  // eslint-disable-next-line no-nested-ternary
-  const type = columnType ? columnType : isString(data[0][columnId]) ? "STRING" : "NUMBER";
+  const type = columnType || isString(data[0][columnId]) ? "TEXT" : "NUMBER";
   const isAscend = direction === sortDirections.ASCEND;
   const indicator = isAscend ? 1 : -1;
 
