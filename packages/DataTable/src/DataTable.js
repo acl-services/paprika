@@ -2,19 +2,17 @@
 import React from "react";
 import PropTypes from "prop-types";
 import ColumnDefinition from "./components/ColumnDefinition";
-import Controls from "./components/Controls";
 import Navigation from "./components/Navigation";
 import VirtualizedTable from "./components/VirtualizedTable";
 import { extractChildren } from "./helpers";
 import { sortDirections } from "./constants";
 import { TableProvider } from "./context";
-import { sortReducer } from "./reducers";
 
 const propTypes = {
   height: PropTypes.number,
   width: PropTypes.number,
   rowHeight: PropTypes.number,
-  plugins: PropTypes.arrayOf(PropTypes.func),
+  reducers: PropTypes.arrayOf(PropTypes.func),
   isLoading: PropTypes.bool,
 };
 
@@ -22,12 +20,12 @@ const defaultProps = {
   height: 600,
   width: null,
   rowHeight: 32,
-  plugins: [sortReducer],
+  reducers: [],
   isLoading: false,
 };
 
 export default function DataTable(props) {
-  const { data, children: childrenProps, height, rowHeight, width, keygen, plugins, isLoading } = props;
+  const { data, children: childrenProps, height, rowHeight, width, keygen, reducers, isLoading } = props;
   const { "DataTable.ColumnDefinition": ColumnsDefinition, "DataTable.Navigation": Navigation } = extractChildren(
     childrenProps,
     ["DataTable.ColumnDefinition", "DataTable.Navigation"]
@@ -41,10 +39,13 @@ export default function DataTable(props) {
   }
 
   return (
-    <TableProvider data={data} keygen={keygen} plugins={navigationReducers.concat(plugins)}>
+    <TableProvider data={data} keygen={keygen} reducers={navigationReducers.concat(reducers)}>
       <div>{isLoading ? "Loading..." : null}</div>
-      <Controls ColumnsDefinition={ColumnsDefinition} />
-      {Navigation}
+      {Navigation
+        ? React.cloneElement(Navigation, {
+            ColumnsDefinition,
+          })
+        : null}
       <VirtualizedTable ColumnsDefinition={ColumnsDefinition} height={height} rowHeight={rowHeight} width={width} />
     </TableProvider>
   );

@@ -8,7 +8,7 @@ const TableStateContext = React.createContext();
 const TableDispatchContext = React.createContext();
 
 function TableProvider(props) {
-  const { data, keygen, plugins } = props;
+  const { data, keygen, reducers } = props;
   const initialState = {
     data,
     keygen,
@@ -22,7 +22,7 @@ function TableProvider(props) {
       const changes = tableReducer(state, action);
       return new Promise(resolve => {
         resolve(
-          plugins.reduce(async (previousPromise, reducer) => {
+          reducers.reduce(async (previousPromise, reducer) => {
             const prevChanges = await previousPromise;
             const result = reducer(state, { ...action, changes: prevChanges });
             if (typeof result.then === "function") {
@@ -34,7 +34,7 @@ function TableProvider(props) {
         );
       });
     },
-    [plugins]
+    [reducers]
   );
   const [state, dispatch] = useAsyncReducer(memorizedReducer, initialState);
 
@@ -66,7 +66,7 @@ TableProvider.propTypes = {
   children: PropTypes.node.isRequired,
   data: PropTypes.arrayOf(PropTypes.objectOf(PropTypes.any)).isRequired,
   keygen: PropTypes.string.isRequired,
-  plugins: PropTypes.arrayOf(PropTypes.func).isRequired,
+  reducers: PropTypes.arrayOf(PropTypes.func).isRequired,
 };
 
 export { TableProvider, useDataTableState, useDispatch };

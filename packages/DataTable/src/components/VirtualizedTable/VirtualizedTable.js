@@ -11,7 +11,7 @@ import CheckBox from "../CheckBox";
 import { useDataTableState } from "../../context";
 
 export default function VirtualizedTable(props) {
-  const { ColumnsDefinition, height, rowHeight, width, onSort } = props;
+  const { ColumnsDefinition, height, rowHeight, width } = props;
   const [activeRowOnMouseEnter, setActiveRowOnMouseEnter] = React.useState({ index: null, data: null });
   const [activeCell, setActiveCell] = React.useState({ rowIndex: null, dataRow: null, index: null, data: null });
 
@@ -115,7 +115,7 @@ export default function VirtualizedTable(props) {
           return (
             <styled.Cell isHeaderCell key={`cell_${headerIndex}`} $width={width} $height={rowHeightValue}>
               {typeof headerProp === "function" ? headerProp(header.props) : headerProp}
-              {sortDirections ? <Options sortDirections={sortDirections} columnId={id} onSort={onSort} /> : null}
+              {sortDirections ? <Options sortDirections={sortDirections} columnId={id} /> : null}
             </styled.Cell>
           );
         })}
@@ -197,13 +197,11 @@ VirtualizedTable.propTypes = {
       type: PropTypes.func.isRequired,
     })
   ).isRequired,
-  onSort: PropTypes.func,
   height: PropTypes.number.isRequired,
   width: PropTypes.number,
   rowHeight: PropTypes.number.isRequired,
 };
 
 VirtualizedTable.defaultProps = {
-  onSort: null,
   width: null,
 };

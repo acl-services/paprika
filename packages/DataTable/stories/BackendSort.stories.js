@@ -53,7 +53,7 @@ function App() {
         keygen="id"
         data={mockData}
         height={window.innerHeight}
-        plugins={[customReducer]}
+        reducers={[customReducer]}
         isLoading={isLoading}
       >
         <DataTable.ColumnDefinition id="country" width="190" header="Country" cell={cell => getFlag(cell)} />
