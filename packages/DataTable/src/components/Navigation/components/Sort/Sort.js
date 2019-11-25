@@ -7,7 +7,15 @@ import { useDataTableState } from "../../../..";
 import SortTrigger from "./SortTrigger";
 
 const propTypes = {
-  columns: PropTypes.arrayOf(PropTypes.shape({})).isRequired,
+  columns: PropTypes.arrayOf(
+    PropTypes.shape({
+      id: PropTypes.oneOfType([PropTypes.number, PropTypes.string]).isRequired,
+    })
+  ),
+};
+
+const defaultProps = {
+  columns: [],
 };
 
 const noop = () => {};
@@ -28,7 +36,7 @@ export default function Sort(props) {
         </DropdownMenu.Trigger>
       )}
     >
-      {columns.map(({ id: columnId, header, sortDirections }) => {
+      {columns.map(({ id: columnId, header, sortDirections, parsingFormat }) => {
         if (!sortDirections || sortDirections.length === 0) return null;
 
         return (
@@ -41,6 +49,7 @@ export default function Sort(props) {
                   columnId={columnId}
                   direction={direction}
                   columnType={columns.find(column => columnId === column.id).type}
+                  parsingFormat={parsingFormat}
                 />
               ))}
           </DropdownMenu.Item>
@@ -51,6 +60,7 @@ export default function Sort(props) {
 }
 
 Sort.propTypes = propTypes;
+Sort.defaultProps = defaultProps;
 
 Sort.reducer = (state, action) => {
   if (action.type === actions.SORT)
@@ -63,6 +73,7 @@ Sort.reducer = (state, action) => {
         columnId: action.payload.columnId,
         direction: action.payload.direction,
         columnType: action.payload.columnType,
+        parsingFormat: action.payload.parsingFormat,
       }).map(item => item[state.keygen]),
     };
 

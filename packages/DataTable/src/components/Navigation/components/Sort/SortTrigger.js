@@ -8,15 +8,21 @@ import { useDispatch } from "../../../..";
 const propTypes = {
   columnId: PropTypes.oneOfType([PropTypes.number, PropTypes.string]).isRequired,
   direction: PropTypes.oneOf([sortDirections.ASCEND, sortDirections.DESCEND]).isRequired,
-  columnType: PropTypes.string.isRequired,
+  columnType: PropTypes.string,
+  parsingFormat: PropTypes.string,
+};
+
+const defaultProps = {
+  columnType: null,
+  parsingFormat: null,
 };
 
 export default function SortTrigger(props) {
-  const { columnId, direction, columnType } = props;
+  const { columnId, direction, columnType, parsingFormat } = props;
   const dispatch = useDispatch();
 
   function handleSort() {
-    dispatch({ type: actions.SORT, payload: { columnId, direction, columnType } });
+    dispatch({ type: actions.SORT, payload: { columnId, direction, columnType, parsingFormat } });
   }
 
   return (
@@ -27,3 +33,4 @@ export default function SortTrigger(props) {
 }
 
 SortTrigger.propTypes = propTypes;
+SortTrigger.defaultProps = defaultProps;

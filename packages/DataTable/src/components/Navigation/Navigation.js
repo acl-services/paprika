@@ -4,7 +4,15 @@ import * as styled from "./Navigation.styles";
 
 const propTypes = {
   children: PropTypes.node.isRequired,
-  columns: PropTypes.arrayOf(PropTypes.shape({})).isRequired,
+  columns: PropTypes.arrayOf(
+    PropTypes.shape({
+      id: PropTypes.oneOfType([PropTypes.number, PropTypes.string]).isRequired,
+    })
+  ),
+};
+
+const defaultProps = {
+  columns: [],
 };
 
 export default function Navigation(props) {
@@ -17,4 +25,5 @@ export default function Navigation(props) {
 }
 
 Navigation.propTypes = propTypes;
+Navigation.defaultProps = defaultProps;
 Navigation.displayName = "DataTable.Navigation";

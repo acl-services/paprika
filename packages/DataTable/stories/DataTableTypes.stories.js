@@ -45,7 +45,7 @@ function App() {
         id="goals"
         header="Goals"
         cell="goals"
-        sortDirections={DataTable.SortDirections.DEFAULT}
+        sortDirections={[DataTable.SortDirections.ASCEND, DataTable.SortDirections.DESCEND]}
         type="NUMBER"
       />
       <DataTable.ColumnDefinition
@@ -53,8 +53,8 @@ function App() {
         header="Joined since"
         cell={dateString => dateString}
         type="DATE"
-        parsingFormat="DD/MM/YYYY"
-        sortDirections={DataTable.SortDirections.DEFAULT}
+        parsingFormat="MM/DD/YYYY"
+        sortDirections={[DataTable.SortDirections.ASCEND, DataTable.SortDirections.DESCEND]}
       />
     </DataTable>
   );

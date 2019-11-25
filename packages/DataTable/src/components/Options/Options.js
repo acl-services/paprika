@@ -6,7 +6,7 @@ import { sortDirections } from "../../constants";
 import SortOption from "./SortOption";
 
 export default function Options(props) {
-  const { sortDirections, id, type } = props;
+  const { sortDirections, id, type, parsingFormat } = props;
 
   // TODO: Checking if need to show options icon, later we need to check filtering rules..
   if (!sortDirections || sortDirections.length === 0) return null;
@@ -26,7 +26,13 @@ export default function Options(props) {
     >
       {sortDirections
         ? sortDirections.map(direction => (
-            <SortOption key={direction} columnId={id} direction={direction} columnType={type} />
+            <SortOption
+              key={direction}
+              columnId={id}
+              direction={direction}
+              columnType={type}
+              parsingFormat={parsingFormat}
+            />
           ))
         : null}
     </DropdownMenu>
@@ -36,9 +42,12 @@ export default function Options(props) {
 Options.propTypes = {
   id: PropTypes.string.isRequired,
   sortDirections: PropTypes.arrayOf(PropTypes.oneOf([sortDirections.ASCEND, sortDirections.DESCEND])),
-  type: PropTypes.oneOf([sortDirections.DESCEND, sortDirections.ASCEND]).isRequired,
+  type: PropTypes.oneOf(["TEXT", "NUMBER", "DATE"]),
+  parsingFormat: PropTypes.string,
 };
 
 Options.defaultProps = {
   sortDirections: [],
+  type: null,
+  parsingFormat: null,
 };

@@ -51,5 +51,5 @@ export default function DataTable(props) {
 DataTable.prpoTypes = propTypes;
 DataTable.defaultProps = defaultProps;
 DataTable.ColumnDefinition = ColumnDefinition;
-DataTable.SortDirections = { ...sortDirections, DEFAULT: Object.values(sortDirections) };
+DataTable.SortDirections = { ...sortDirections };
 DataTable.Navigation = Navigation;

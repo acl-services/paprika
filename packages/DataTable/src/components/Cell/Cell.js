@@ -44,10 +44,10 @@ export default function Cell(props) {
 
 Cell.propTypes = {
   a11yProps: PropTypes.shape({}).isRequired,
-  activeCellIndex: PropTypes.string.isRequired,
+  activeCellIndex: PropTypes.string,
   cellIndex: PropTypes.string.isRequired,
   children: PropTypes.node.isRequired,
-  data: PropTypes.shape({}).isRequired,
+  data: PropTypes.arrayOf(PropTypes.shape({})).isRequired,
   dataRow: PropTypes.shape({}).isRequired,
   height: PropTypes.number.isRequired,
   rowIndex: PropTypes.number.isRequired,
@@ -57,4 +57,5 @@ Cell.propTypes = {
 
 Cell.defaultProps = {
   width: null,
+  activeCellIndex: null,
 };
