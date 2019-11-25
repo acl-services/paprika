@@ -37,13 +37,21 @@ export const Tagline = styled.div`
   font-style: italic;
 `;
 
-export const Gap = styled.div`
+const LargeGap = styled.div`
   height: 120px;
 `;
-
-export const HorizontalSmallGap = styled.div`
+const SmallGap = styled.div`
+  height: ${stylers.spacer(2)};
+`;
+const InlineGap = styled.div`
   display: inline-flex;
   width: ${tokens.space};
 `;
+export const Gap = styled.div`
+  height: ${stylers.spacer(5)};
+`;
+Gap.Large = LargeGap;
+Gap.Small = SmallGap;
+Gap.Inline = InlineGap;
 
 export const breaklines = num => [...Array(num).keys()].map(index => <br key={index} />);

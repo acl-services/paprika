@@ -1,13 +1,9 @@
 import React from "react";
-import styled from "styled-components";
+import { Gap, Story } from "storybook/assets/styles/common.styles";
 import Popover from "../../src";
 
-const Gap = styled.div`
-  height: 200px;
-`;
-
 const ExampleStory = () => (
-  <React.Fragment>
+  <Story>
     <Popover isOpen>
       <Popover.Trigger>Open Popover</Popover.Trigger>
       <Popover.Content>
@@ -15,7 +11,7 @@ const ExampleStory = () => (
       </Popover.Content>
       <Popover.Tip />
     </Popover>
-    <Gap />
+    <Gap.Large />
     <Popover isOpen isDark>
       <Popover.Trigger>Open Popover</Popover.Trigger>
       <Popover.Content>
@@ -23,7 +19,7 @@ const ExampleStory = () => (
       </Popover.Content>
       <Popover.Tip />
     </Popover>
-  </React.Fragment>
+  </Story>
 );
 
 export default ExampleStory;

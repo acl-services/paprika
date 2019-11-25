@@ -8,6 +8,7 @@ import { headerCSS } from "./Header.styles";
 const propTypes = {
   children: PropTypes.node.isRequired,
   hasCloseButton: PropTypes.bool,
+  isCompact: PropTypes.bool,
   kind: PropTypes.oneOf([Button.Kinds.DEFAULT, Button.Kinds.PRIMARY]),
   onClose: PropTypes.func,
 };
@@ -15,6 +16,7 @@ const propTypes = {
 const defaultProps = {
   hasCloseButton: true,
   kind: Button.Kinds.DEFAULT,
+  isCompact: false,
   onClose: () => {},
 };
 
@@ -30,13 +32,14 @@ const Header = React.forwardRef((props, ref) => {
   const {
     hasCloseButton,
     kind,
+    isCompact,
     // injected by Dialog.js
     onClose,
     ...moreProps
   } = props;
 
   return (
-    <div ref={ref} css={headerCSS} kind={kind} {...moreProps}>
+    <div data-pka-anchor="sidepanel.header" ref={ref} css={headerCSS} kind={kind} isCompact={isCompact} {...moreProps}>
       <div tabIndex="-1">{props.children}</div>
       <div>
         {hasCloseButton ? (
@@ -55,6 +58,6 @@ const Header = React.forwardRef((props, ref) => {
 
 Header.propTypes = propTypes;
 Header.defaultProps = defaultProps;
-Header.componentType = "SidePanel.Header";
+Header.displayName = "SidePanel.Header";
 
 export default Header;

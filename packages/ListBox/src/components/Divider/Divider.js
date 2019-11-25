@@ -26,4 +26,4 @@ export default function Divider(props) {
 
 Divider.propTypes = propTypes;
 Divider.defaultProps = defaultProps;
-Divider.componentType = "ListBox.Divider";
+Divider.displayName = "ListBox.Divider";
