@@ -65,9 +65,13 @@ function useDispatch() {
 
 TableProvider.propTypes = {
   children: PropTypes.node.isRequired,
-  data: PropTypes.arrayOf(PropTypes.objectOf(PropTypes.any)).isRequired,
+  data: PropTypes.arrayOf(PropTypes.objectOf(PropTypes.any)),
   keygen: PropTypes.string.isRequired,
   reducers: PropTypes.arrayOf(PropTypes.func).isRequired,
+};
+
+TableProvider.defaultProps = {
+  data: [],
 };
 
 export { TableProvider, useDataTableState, useDispatch };

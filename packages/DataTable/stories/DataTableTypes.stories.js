@@ -18,14 +18,13 @@ function App() {
         header="Name"
         cell="name"
         sortDirections={[DataTable.SortDirections.ASCEND]}
-        type="TEXT"
       />
       <DataTable.ColumnDefinition
         id="goals"
         header="Goals"
         cell="goals"
         sortDirections={[DataTable.SortDirections.ASCEND, DataTable.SortDirections.DESCEND]}
-        type="NUMBER"
+        type={DataTable.ColumnTypes.NUMBER}
       />
       <DataTable.ColumnDefinition
         id="status"
@@ -36,8 +35,8 @@ function App() {
       <DataTable.ColumnDefinition
         id="joined"
         header="Joined since"
+        type={DataTable.ColumnTypes.DATE}
         cell={row => row.joined}
-        type="DATE"
         momentParsingFormat="MM/DD/YYYY"
         sortDirections={[DataTable.SortDirections.ASCEND, DataTable.SortDirections.DESCEND]}
       />

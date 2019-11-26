@@ -26,6 +26,7 @@ describe("helpers/sort", () => {
         data: originalData,
         columnId: "salary",
         direction: sortDirections.ASCEND,
+        columnType: "NUMBER",
       })
     ).toMatchSnapshot();
   });
@@ -36,6 +37,7 @@ describe("helpers/sort", () => {
         data: originalData,
         columnId: "salary",
         direction: sortDirections.DESCEND,
+        columnType: "NUMBER",
       })
     ).toMatchSnapshot();
   });
@@ -46,6 +48,7 @@ describe("helpers/sort", () => {
         data: originalData,
         columnId: "name",
         direction: sortDirections.ASCEND,
+        columnType: "TEXT",
       })
     ).toMatchSnapshot();
   });
@@ -56,6 +59,7 @@ describe("helpers/sort", () => {
         data: originalData,
         columnId: "name",
         direction: sortDirections.DESCEND,
+        columnType: "TEXT",
       })
     ).toMatchSnapshot();
   });

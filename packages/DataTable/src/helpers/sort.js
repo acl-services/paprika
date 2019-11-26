@@ -1,4 +1,3 @@
-import isString from "lodash.isstring";
 import moment from "moment";
 import { sortDirections } from "../constants";
 
@@ -21,7 +20,6 @@ const compareFunctions = {
 };
 
 export default function sort({ data, columnId, direction, columnType, momentParsingFormat }) {
-  const type = columnType || (isString(data[0][columnId]) ? "TEXT" : "NUMBER");
   const isAscend = direction === sortDirections.ASCEND;
   const indicator = isAscend ? 1 : -1;
 
@@ -29,6 +27,6 @@ export default function sort({ data, columnId, direction, columnType, momentPars
     return [...data].sort((rowA, rowB) => fn(rowA[columnId], rowB[columnId], momentParsingFormat) * indicator);
   }
 
-  if (compareFunctions[type]) return getSortedData(compareFunctions[type]);
+  if (compareFunctions[columnType]) return getSortedData(compareFunctions[columnType]);
   return data;
 }
