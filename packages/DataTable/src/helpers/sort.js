@@ -10,8 +10,8 @@ function compareNumber(a, b) {
   return a - b;
 }
 
-function compareDate(a, b, parsingFormat) {
-  return moment(a, parsingFormat).unix() - moment(b, parsingFormat).unix();
+function compareDate(a, b, momentParsingFormat) {
+  return moment(a, momentParsingFormat).unix() - moment(b, momentParsingFormat).unix();
 }
 
 const compareFunctions = {
@@ -20,13 +20,13 @@ const compareFunctions = {
   TEXT: compareString,
 };
 
-export default function sort({ data, columnId, direction, columnType, parsingFormat }) {
+export default function sort({ data, columnId, direction, columnType, momentParsingFormat }) {
   const type = columnType || (isString(data[0][columnId]) ? "TEXT" : "NUMBER");
   const isAscend = direction === sortDirections.ASCEND;
   const indicator = isAscend ? 1 : -1;
 
   function getSortedData(fn) {
-    return [...data].sort((rowA, rowB) => fn(rowA[columnId], rowB[columnId], parsingFormat) * indicator);
+    return [...data].sort((rowA, rowB) => fn(rowA[columnId], rowB[columnId], momentParsingFormat) * indicator);
   }
 
   if (compareFunctions[type]) return getSortedData(compareFunctions[type]);

@@ -36,7 +36,7 @@ export default function Sort(props) {
         </DropdownMenu.Trigger>
       )}
     >
-      {columns.map(({ id: columnId, header, sortDirections, parsingFormat }) => {
+      {columns.map(({ id: columnId, header, sortDirections, momentParsingFormat }) => {
         if (!sortDirections || sortDirections.length === 0) return null;
 
         return (
@@ -49,7 +49,7 @@ export default function Sort(props) {
                   columnId={columnId}
                   direction={direction}
                   columnType={columns.find(column => columnId === column.id).type}
-                  parsingFormat={parsingFormat}
+                  momentParsingFormat={momentParsingFormat}
                 />
               ))}
           </DropdownMenu.Item>
@@ -73,7 +73,7 @@ Sort.reducer = (state, action) => {
         columnId: action.payload.columnId,
         direction: action.payload.direction,
         columnType: action.payload.columnType,
-        parsingFormat: action.payload.parsingFormat,
+        momentParsingFormat: action.payload.momentParsingFormat,
       }).map(item => item[state.keygen]),
     };
 

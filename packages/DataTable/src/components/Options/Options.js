@@ -6,7 +6,7 @@ import { sortDirections } from "../../constants";
 import SortOption from "./SortOption";
 
 export default function Options(props) {
-  const { sortDirections, id, type, parsingFormat } = props;
+  const { sortDirections, id, type, momentParsingFormat } = props;
 
   // TODO: Checking if need to show options icon, later we need to check filtering rules..
   if (!sortDirections || sortDirections.length === 0) return null;
@@ -31,7 +31,7 @@ export default function Options(props) {
               columnId={id}
               direction={direction}
               columnType={type}
-              parsingFormat={parsingFormat}
+              momentParsingFormat={momentParsingFormat}
             />
           ))
         : null}
@@ -43,11 +43,11 @@ Options.propTypes = {
   id: PropTypes.string.isRequired,
   sortDirections: PropTypes.arrayOf(PropTypes.oneOf([sortDirections.ASCEND, sortDirections.DESCEND])),
   type: PropTypes.oneOf(["TEXT", "NUMBER", "DATE"]),
-  parsingFormat: PropTypes.string,
+  momentParsingFormat: PropTypes.string,
 };
 
 Options.defaultProps = {
   sortDirections: [],
   type: null,
-  parsingFormat: null,
+  momentParsingFormat: null,
 };

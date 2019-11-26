@@ -49,11 +49,17 @@ function App() {
         type="NUMBER"
       />
       <DataTable.ColumnDefinition
+        id="status"
+        header="Status"
+        cell="status"
+        sortDirections={[DataTable.SortDirections.ASCEND, DataTable.SortDirections.DESCEND]}
+      />
+      <DataTable.ColumnDefinition
         id="joined"
         header="Joined since"
         cell={dateString => dateString}
         type="DATE"
-        parsingFormat="MM/DD/YYYY"
+        momentParsingFormat="MM/DD/YYYY"
         sortDirections={[DataTable.SortDirections.ASCEND, DataTable.SortDirections.DESCEND]}
       />
     </DataTable>

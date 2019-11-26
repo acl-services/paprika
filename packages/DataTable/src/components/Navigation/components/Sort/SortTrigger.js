@@ -9,20 +9,20 @@ const propTypes = {
   columnId: PropTypes.oneOfType([PropTypes.number, PropTypes.string]).isRequired,
   direction: PropTypes.oneOf([sortDirections.ASCEND, sortDirections.DESCEND]).isRequired,
   columnType: PropTypes.string,
-  parsingFormat: PropTypes.string,
+  momentParsingFormat: PropTypes.string,
 };
 
 const defaultProps = {
   columnType: null,
-  parsingFormat: null,
+  momentParsingFormat: null,
 };
 
 export default function SortTrigger(props) {
-  const { columnId, direction, columnType, parsingFormat } = props;
+  const { columnId, direction, columnType, momentParsingFormat } = props;
   const dispatch = useDispatch();
 
   function handleSort() {
-    dispatch({ type: actions.SORT, payload: { columnId, direction, columnType, parsingFormat } });
+    dispatch({ type: actions.SORT, payload: { columnId, direction, columnType, momentParsingFormat } });
   }
 
   return (
