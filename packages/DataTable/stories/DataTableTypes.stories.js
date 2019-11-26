@@ -4,28 +4,6 @@ import DataTable, { RowHeight, Sort } from "../src";
 import fixtures from "./fixtures";
 import { viewPortHeight } from "./helpers";
 
-const flags = {
-  Austria: "🇦🇹",
-  Mexico: "🇲🇽",
-  Brazil: "🇧🇷",
-  Hungary: "🇭🇺",
-  Germany: "🇩🇪",
-  Portugal: "🇵🇹",
-  Argentina: "🇦🇷",
-  Scotland: "🏴󠁧󠁢󠁳󠁣󠁴󠁿",
-  Sweden: "🇸🇪",
-  England: "🏴󠁧󠁢󠁥󠁮󠁧󠁿",
-  Poland: "🇵🇱",
-};
-
-function getFlag(cell) {
-  if (cell in flags) {
-    return flags[cell];
-  }
-
-  return cell;
-}
-
 const mockData = fixtures(1);
 function App() {
   return (
@@ -34,7 +12,7 @@ function App() {
         <Sort />
         <RowHeight />
       </DataTable.Navigation>
-      <DataTable.ColumnDefinition id="country" width="190" header="Country" cell={cell => getFlag(cell)} />
+      <DataTable.ColumnDefinition id="country" width="190" header="Country" cell="country" />
       <DataTable.ColumnDefinition
         id="name"
         header="Name"
@@ -58,7 +36,7 @@ function App() {
       <DataTable.ColumnDefinition
         id="joined"
         header="Joined since"
-        cell={dateString => dateString}
+        cell={row => row.joined}
         type="DATE"
         momentParsingFormat="MM/DD/YYYY"
         sortDirections={[DataTable.SortDirections.ASCEND, DataTable.SortDirections.DESCEND]}

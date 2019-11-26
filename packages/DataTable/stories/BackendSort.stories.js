@@ -9,7 +9,6 @@ const mockData = fixtures(1);
 
 function App() {
   const [isLoading, setIsLoading] = React.useState(false);
-  const [data, setData] = React.useState(null);
   const customReducer = async (state, action) => {
     return new Promise(resolve => {
       if (action.type === "SORT") {
@@ -30,15 +29,9 @@ function App() {
     });
   };
 
-  React.useEffect(() => {
-    setTimeout(() => {
-      setData(mockData);
-    }, 500);
-  }, []);
-
   return (
     <React.Fragment>
-      <DataTable keygen="id" data={data} height={viewPortHeight()} reducers={[customReducer]} isLoading={isLoading}>
+      <DataTable keygen="id" data={mockData} height={viewPortHeight()} reducers={[customReducer]} isLoading={isLoading}>
         <DataTable.ColumnDefinition id="country" width="190" header="Country" cell="country" />
         <DataTable.ColumnDefinition
           id="name"

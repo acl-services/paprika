@@ -54,7 +54,8 @@ export default function VirtualizedTable(props) {
   const dataForRendering = sortedOrder
     ? sortedOrder.map(keygenValue => data.find(item => item[keygen] === keygenValue))
     : data;
-  const rowsLength = dataForRendering.length;
+
+  const rowsLength = dataForRendering && dataForRendering.length;
 
   const handleMouseEnter = (data, rowIndex, keys) => () => {
     setActiveRowOnMouseEnter(() => ({ index: keys[rowIndex], data }));

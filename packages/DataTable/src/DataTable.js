@@ -32,6 +32,7 @@ export default function DataTable(props) {
     childrenProps,
     ["DataTable.ColumnDefinition", "DataTable.Navigation"]
   );
+
   const columns = ColumnsDefinition.map(Column => Column.props);
 
   let navigationReducers = [];
