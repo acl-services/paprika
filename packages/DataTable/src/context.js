@@ -27,10 +27,8 @@ function TableProvider(props) {
             const result = reducer(state, { ...action, changes: prevChanges });
             if (typeof result.then === "function") {
               const finalResult = await result;
-              console.log("-----", action.type, finalResult);
               return finalResult;
             }
-            console.log("nnnnnnnnn", action.type, result);
             return result;
           }, changes)
         );
