@@ -156,7 +156,7 @@ export default function VirtualizedTable(props) {
                           cellIndex={index}
                           activeCellIndex={activeCell.index}
                           setActiveCell={setActiveCell}
-                          data={data}
+                          // data={dataForRendering}
                           dataRow={row}
                           rowIndex={keys[rowIndex]}
                           type={type}

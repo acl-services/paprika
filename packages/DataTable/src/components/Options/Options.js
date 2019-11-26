@@ -2,7 +2,7 @@ import React from "react";
 import PropTypes from "prop-types";
 import DropdownMenu from "@paprika/dropdown-menu";
 import ArrowDown from "@paprika/icon/lib/ArrowDown";
-import { sortDirections } from "../../constants";
+import { sortDirections, columnTypes } from "../../constants";
 import SortOption from "./SortOption";
 
 export default function Options(props) {
@@ -41,13 +41,12 @@ export default function Options(props) {
 
 Options.propTypes = {
   id: PropTypes.string.isRequired,
-  sortDirections: PropTypes.arrayOf(PropTypes.oneOf([sortDirections.ASCEND, sortDirections.DESCEND])),
-  type: PropTypes.oneOf(["TEXT", "NUMBER", "DATE"]),
+  sortDirections: PropTypes.arrayOf(PropTypes.oneOf([sortDirections.ASCEND, sortDirections.DESCEND])).isRequired,
+  type: PropTypes.oneOf([columnTypes.TEXT, columnTypes.NUMBER, columnTypes.DATE]),
   momentParsingFormat: PropTypes.string,
 };
 
 Options.defaultProps = {
-  sortDirections: [],
   type: null,
   momentParsingFormat: null,
 };

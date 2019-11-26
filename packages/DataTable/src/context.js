@@ -10,7 +10,7 @@ const TableDispatchContext = React.createContext();
 function TableProvider(props) {
   const { data, keygen, reducers } = props;
   const initialState = {
-    data,
+    data: data || [],
     keygen,
     sortColumn: null,
     sortDirection: null,

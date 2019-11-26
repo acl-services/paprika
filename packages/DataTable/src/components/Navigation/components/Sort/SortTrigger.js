@@ -1,9 +1,9 @@
 import React from "react";
 import PropTypes from "prop-types";
 import Button from "@paprika/button";
-import { actions, sortDirections } from "../../../../constants";
+import { actions, sortDirections, columnTypes } from "../../../../constants";
 
-import { useDispatch } from "../../../..";
+import { useDataTableState, useDispatch } from "../../../..";
 
 const propTypes = {
   columnId: PropTypes.oneOfType([PropTypes.number, PropTypes.string]).isRequired,
@@ -20,9 +20,17 @@ const defaultProps = {
 export default function SortTrigger(props) {
   const { columnId, direction, columnType, momentParsingFormat } = props;
   const dispatch = useDispatch();
+  const { data } = useDataTableState();
+
+  function getColumnType() {
+    return columnType || (typeof data[0][columnId] === "number" ? columnTypes.NUMBER : columnTypes.TEXT);
+  }
 
   function handleSort() {
-    dispatch({ type: actions.SORT, payload: { columnId, direction, columnType, momentParsingFormat } });
+    dispatch({
+      type: actions.SORT,
+      payload: { columnId, direction, columnType: getColumnType(), momentParsingFormat },
+    });
   }
 
   return (

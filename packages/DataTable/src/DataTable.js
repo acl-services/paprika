@@ -5,7 +5,7 @@ import ColumnDefinition from "./components/ColumnDefinition";
 import Navigation from "./components/Navigation";
 import VirtualizedTable from "./components/VirtualizedTable";
 import { extractChildren } from "./helpers";
-import { sortDirections } from "./constants";
+import { sortDirections, columnTypes } from "./constants";
 import { TableProvider } from "./context";
 
 const propTypes = {
@@ -55,3 +55,4 @@ DataTable.defaultProps = defaultProps;
 DataTable.ColumnDefinition = ColumnDefinition;
 DataTable.SortDirections = { ...sortDirections };
 DataTable.Navigation = Navigation;
+DataTable.ColumnTypes = columnTypes;

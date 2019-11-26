@@ -29,7 +29,16 @@ function getFlag(cell) {
 const mockData = fixtures(1);
 
 function App() {
-  const [isLoading, setIsLoading] = React.useState(false);
+  const [isLoading, setIsLoading] = React.useState(true);
+  const [data, setData] = React.useState(null);
+
+  React.useEffect(() => {
+    setTimeout(() => {
+      setIsLoading(false);
+      setData(mockData);
+    }, 1000);
+  }, []);
+
   const customReducer = async (state, action) => {
     return new Promise(resolve => {
       if (action.type === "SORT") {
@@ -40,25 +49,22 @@ function App() {
             ...action.changes,
             sortColumn: action.payload.columnId,
             sortDirection: action.payload.direction,
-            sortedOrder: sort({ mockData, columnId: action.payload.columnId, direction: action.payload.direction }).map(
-              item => item.id
-            ),
+            sortedOrder: sort({
+              data: mockData,
+              columnId: action.payload.columnId,
+              direction: action.payload.direction,
+              columnType: action.payload.columnId === "goals" ? "NUMBER" : "TEXT",
+            }).map(item => item.id),
           });
         }, 1000);
       }
-      return action.changes;
+      return resolve(action.changes);
     });
   };
 
   return (
     <React.Fragment>
-      <DataTable
-        keygen="id"
-        data={mockData}
-        height={window.innerHeight}
-        reducers={[customReducer]}
-        isLoading={isLoading}
-      >
+      <DataTable keygen="id" data={data} height={window.innerHeight} reducers={[customReducer]} isLoading={isLoading}>
         <DataTable.ColumnDefinition id="country" width="190" header="Country" cell={cell => getFlag(cell)} />
         <DataTable.ColumnDefinition
           id="name"
