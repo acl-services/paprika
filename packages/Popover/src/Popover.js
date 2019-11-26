@@ -102,7 +102,6 @@ class Popover extends React.Component {
     this.$portal = document.body.appendChild(portalNode);
 
     this.focusableElements = [];
-    this.originalTabIndexes = [];
     this.triggerFocusIndex = null;
 
     this.state = {
@@ -341,21 +340,10 @@ class Popover extends React.Component {
     return false;
   };
 
-  restoreTabIndexes = () => {
-    this.focusableElements.forEach(focusableElement => {
-      if (focusableElement !== this.$trigger && !this.elementIsDescendentOfPopover(focusableElement)) {
-        focusableElement.tabIndex = this.originalTabIndexes.shift(); // eslint-disable-line no-param-reassign
-      }
-    });
-  };
-
-  removeTabIndexes = () => {
+  getPopoverTriggerFocusIndex = () => {
     this.focusableElements.forEach((focusableElement, index) => {
       if (focusableElement === this.$trigger) {
         this.triggerFocusIndex = index;
-      } else if (!this.elementIsDescendentOfPopover(focusableElement)) {
-        this.originalTabIndexes.push(focusableElement.tabIndex);
-        focusableElement.tabIndex = -1; // eslint-disable-line no-param-reassign
       }
     });
   };
@@ -365,7 +353,7 @@ class Popover extends React.Component {
     //       find the first focusable element like button, input, etc?
     //       can focus automatically
     if (!this.props.shouldKeepFocus && !this.props.isEager && this.isOpen() && event.propertyName === "visibility") {
-      this.removeTabIndexes();
+      this.getPopoverTriggerFocusIndex();
       event.target.focus();
     }
   };
@@ -415,13 +403,11 @@ class Popover extends React.Component {
   close() {
     // NOTE: Even if uncontrolled, the app may want to be notified when closed via the onClose callback
     if (this.props.onClose !== null) {
-      this.restoreTabIndexes();
       this.props.onClose();
     }
 
     if (this.props.isOpen === null) {
       this.setState({ isOpen: false });
-      this.restoreTabIndexes();
       this.removeListeners();
     }
   }
