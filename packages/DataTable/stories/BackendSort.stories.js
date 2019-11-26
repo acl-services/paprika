@@ -3,33 +3,13 @@ import { storiesOf } from "@storybook/react";
 import DataTable from "../src";
 import fixtures from "./fixtures";
 import sort from "../src/helpers/sort";
-
-const flags = {
-  Austria: "🇦🇹",
-  Mexico: "🇲🇽",
-  Brazil: "🇧🇷",
-  Hungary: "🇭🇺",
-  Germany: "🇩🇪",
-  Portugal: "🇵🇹",
-  Argentina: "🇦🇷",
-  Scotland: "🏴󠁧󠁢󠁳󠁣󠁴󠁿",
-  Sweden: "🇸🇪",
-  England: "🏴󠁧󠁢󠁥󠁮󠁧󠁿",
-  Poland: "🇵🇱",
-};
-
-function getFlag(cell) {
-  if (cell in flags) {
-    return flags[cell];
-  }
-
-  return cell;
-}
+import { viewPortHeight } from "./helpers";
 
 const mockData = fixtures(1);
 
 function App() {
   const [isLoading, setIsLoading] = React.useState(false);
+  const [data, setData] = React.useState(null);
   const customReducer = async (state, action) => {
     return new Promise(resolve => {
       if (action.type === "SORT") {
@@ -50,16 +30,16 @@ function App() {
     });
   };
 
+  React.useEffect(() => {
+    setTimeout(() => {
+      setData(mockData);
+    }, 500);
+  }, []);
+
   return (
     <React.Fragment>
-      <DataTable
-        keygen="id"
-        data={mockData}
-        height={window.innerHeight}
-        reducers={[customReducer]}
-        isLoading={isLoading}
-      >
-        <DataTable.ColumnDefinition id="country" width="190" header="Country" cell={cell => getFlag(cell)} />
+      <DataTable keygen="id" data={data} height={viewPortHeight()} reducers={[customReducer]} isLoading={isLoading}>
+        <DataTable.ColumnDefinition id="country" width="190" header="Country" cell="country" />
         <DataTable.ColumnDefinition
           id="name"
           header="Name"

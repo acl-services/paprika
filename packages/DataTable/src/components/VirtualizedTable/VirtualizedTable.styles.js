@@ -19,39 +19,11 @@ export const Row = styled.div.attrs(({ $height, isHeaderRow = false }) => {
   display: flex;
 `;
 
-export const Cell = styled.div.attrs(({ cellIndex, activeCellIndex, $height, $width, isHeaderCell = false }) => {
-  const style = {};
-  if (cellIndex && activeCellIndex && cellIndex === activeCellIndex) {
-    style.outline = "3px solid #2c7ff9";
-  }
-
-  if ($height) {
-    style.height = isHeaderCell ? "32px" : `${$height}px`;
-    style.alignItems = "center";
-    style.display = "flex";
-  }
-
-  if ($width) {
-    style.flexBasis = `${$width}px`;
-  }
-
-  return {
-    style,
-  };
-})`
-  border-left: 1px solid #dde1e3;
-  overflow: hidden;
-  padding-left: 8px;
-  position: relative;
-  text-overflow: ellipsis;
-  white-space: nowrap;
-  width: 100%;
-`;
-
 export const HeaderRow = styled(Row)`
   background: #f5f5f5;
   font-size: 13px;
   font-weight: bold;
+  overflow: hidden;
 `;
 
 export const Counter = styled.div`
@@ -110,4 +82,34 @@ export const Expand = styled.div`
     opacity: 0;
   }
   /* Ignore this will be replace with an svg icon */
+`;
+
+export const Cell = styled.div.attrs(({ cellIndex, activeCellIndex, $height, $width, isHeaderCell = false }) => {
+  const style = {};
+  if (cellIndex && activeCellIndex && cellIndex === activeCellIndex) {
+    style.outline = "3px solid #2c7ff9";
+  }
+
+  if ($height) {
+    style.height = isHeaderCell ? "32px" : `${$height}px`;
+    style.alignItems = "center";
+    style.display = "flex";
+  }
+
+  if ($width) {
+    style.flexBasis = `${$width}px`;
+  }
+
+  return {
+    style,
+  };
+})`
+  border-left: 1px solid #dde1e3;
+  overflow: hidden;
+  flex-grow: 0;
+  padding-left: 8px;
+  position: relative;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  width: 100%;
 `;

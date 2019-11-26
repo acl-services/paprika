@@ -2,6 +2,7 @@ import React from "react";
 import { storiesOf } from "@storybook/react";
 import DataTable, { RowHeight, Sort } from "../src";
 import fixtures from "./fixtures";
+import { viewPortHeight } from "./helpers";
 
 const flags = {
   Austria: "🇦🇹",
@@ -28,7 +29,7 @@ function getFlag(cell) {
 const mockData = fixtures(1);
 function App() {
   return (
-    <DataTable keygen="id" data={mockData} height={window.innerHeight}>
+    <DataTable keygen="id" data={mockData} height={viewPortHeight()}>
       <DataTable.Navigation>
         <Sort />
         <RowHeight />

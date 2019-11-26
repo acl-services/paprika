@@ -8,7 +8,6 @@ const propTypes = {
   gridRowHeight: PropTypes.number.isRequired,
   gridHeight: PropTypes.number.isRequired,
   gridWidth: PropTypes.number,
-  gridRowsOffset: PropTypes.number.isRequired,
   data: PropTypes.arrayOf(PropTypes.any).isRequired,
   children: PropTypes.func.isRequired,
 };
@@ -19,17 +18,7 @@ const defaultProps = {
 };
 
 const VirtualizeRows = React.forwardRef((props, ref) => {
-  const {
-    data,
-    index: $index,
-    gridLength,
-    gridRowHeight,
-    gridHeight,
-    gridWidth,
-    children,
-    gridRowsOffset,
-    ...moreProps
-  } = props;
+  const { data, index: $index, gridLength, gridRowHeight, gridHeight, gridWidth, children, ...moreProps } = props;
   const [state, setState] = React.useState({ index: $index, top: 0 });
   const refElementToScroll = React.useRef(null);
 
@@ -43,7 +32,7 @@ const VirtualizeRows = React.forwardRef((props, ref) => {
   React.useEffect(() => {
     function handleScroll(event) {
       const top = event.target.scrollTop;
-      const index = Math.floor(top / gridRowHeight);
+      const index = Math.ceil(top / gridRowHeight);
       setState(() => ({ index, top }));
     }
 
@@ -60,12 +49,11 @@ const VirtualizeRows = React.forwardRef((props, ref) => {
   */
   const pageSize = React.useMemo(() => {
     if (gridRowHeight && gridHeight) {
-      const page = Math.floor(gridHeight / gridRowHeight) + gridRowsOffset;
-      console.log("page:", page);
+      const page = Math.ceil(gridHeight / gridRowHeight);
       return page;
     }
     return null;
-  }, [gridHeight, gridRowHeight, gridRowsOffset]);
+  }, [gridHeight, gridRowHeight]);
 
   /**
     returns the number of items to render on the virtualize list depending
@@ -100,7 +88,6 @@ const VirtualizeRows = React.forwardRef((props, ref) => {
     <styled.Virtualize
       width={gridWidth}
       height={gridHeight}
-      rowHeight={gridRowHeight}
       data-pka-anchor="virtualize-rows-root"
       ref={refElementToScroll}
       {...moreProps}

@@ -9,27 +9,15 @@ import "@paprika/helpers/lib/dom/elementScrollToPolyfill";
 import Options from "../Options";
 import CheckBox from "../CheckBox";
 import Cell from "../Cell";
+import { Cell as CellStyled } from "../Cell/Cell.styles";
 import { useDataTableState } from "../../context";
 
 export default function VirtualizedTable(props) {
   const { columns, height, rowHeight, width } = props;
   const [activeRowOnMouseEnter, setActiveRowOnMouseEnter] = React.useState({ index: null, data: null });
   const [activeCell, setActiveCell] = React.useState({ rowIndex: null, dataRow: null, index: null, data: null });
-
   const refActivePage = React.useRef({ from: null, to: null });
   const refVirtualizeRows = React.useRef(null);
-  const columnsLength = columns.length;
-
-  // this will inject 20 rows below the visible table to helps with the navigation and scrolling flickering
-  const tableRowsOffset = 20;
-
-  const { data, sortedOrder, keygen, rowHeight: stateRowHeigth } = useDataTableState();
-
-  const dataForRendering = sortedOrder
-    ? sortedOrder.map(keygenValue => data.find(item => item[keygen] === keygenValue))
-    : data;
-  const rowsLength = dataForRendering.length;
-
   const delayedKeyDown = React.useRef(
     debounce(
       ({
@@ -41,7 +29,6 @@ export default function VirtualizedTable(props) {
         refVirtualizeRows,
         rowHeight,
         rowsLength,
-        rowsOffset,
         setActiveCell,
       }) =>
         handleArrowKeys({
@@ -53,12 +40,21 @@ export default function VirtualizedTable(props) {
           refVirtualizeRows,
           rowHeight,
           rowsLength,
-          rowsOffset,
           setActiveCell,
         }),
       15
     )
   ).current;
+
+  // this will inject 20 rows below the visible table to helps with the navigation and scrolling flickering
+  const columnsLength = columns.length;
+
+  const { data, sortedOrder, keygen, rowHeight: stateRowHeigth } = useDataTableState();
+
+  const dataForRendering = sortedOrder
+    ? sortedOrder.map(keygenValue => data.find(item => item[keygen] === keygenValue))
+    : data;
+  const rowsLength = dataForRendering.length;
 
   const handleMouseEnter = (data, rowIndex, keys) => () => {
     setActiveRowOnMouseEnter(() => ({ index: keys[rowIndex], data }));
@@ -79,7 +75,6 @@ export default function VirtualizedTable(props) {
         rowHeight: rowHeightValue,
         rowsLength,
         setActiveCell,
-        rowsOffset: tableRowsOffset,
       });
       event.persist();
     }
@@ -103,10 +98,10 @@ export default function VirtualizedTable(props) {
         {columns.map((column, columnIndex) => {
           const { header: headerProp, width } = column;
           return (
-            <styled.Cell isHeaderCell key={`cell_${columnIndex}`} $width={width} $height={rowHeightValue}>
+            <CellStyled isHeaderStyledCell key={`cell_${columnIndex}`} $width={width} $height={rowHeightValue}>
               {typeof headerProp === "function" ? headerProp(column) : headerProp}
               <Options {...column} />
-            </styled.Cell>
+            </CellStyled>
           );
         })}
       </styled.HeaderRow>
@@ -116,7 +111,6 @@ export default function VirtualizedTable(props) {
         gridLength={data.length}
         gridHeight={height}
         gridWidth={width}
-        gridRowsOffset={tableRowsOffset}
         ref={refVirtualizeRows}
       >
         {(subset, keys, a11y) => {
@@ -145,7 +139,8 @@ export default function VirtualizedTable(props) {
                       </styled.Expand>
                     </styled.Counter>
                     {columns.map((column, cellIndex) => {
-                      const { id, cell, width, type } = column;
+                      const { cell, width } = column;
+
                       const index = `${keys[rowIndex]}_${cellIndex}`;
                       return (
                         <Cell
@@ -156,14 +151,9 @@ export default function VirtualizedTable(props) {
                           cellIndex={index}
                           activeCellIndex={activeCell.index}
                           setActiveCell={setActiveCell}
-                          data={data}
-                          dataRow={row}
-                          rowIndex={keys[rowIndex]}
-                          type={type}
                           cell={cell}
-                          columnId={id}
                         >
-                          {typeof cell === "function" ? cell(row[id]) : row[cell]}
+                          {typeof cell === "function" ? cell(row) : row[cell]}
                         </Cell>
                       );
                     })}
