@@ -27,14 +27,22 @@ const defaultProps = {
 
 const popoverOffset = 4;
 
-const DropdownMenu = props => {
+function DropdownMenu(props) {
   const { align, children, edge, ...moreProps } = props;
   const [isOpen, setIsOpen] = React.useState(false);
   const [isConfirming, setIsConfirming] = React.useState(false);
   const [renderConfirmation, setRenderConfirmation] = React.useState(null);
+  const [currentFocusIndex, setFocusIndex] = React.useState(0);
   const triggerRef = React.useRef(null);
   const menuId = React.useRef(uuid());
   const triggerId = React.useRef(uuid());
+
+  const dropdownListRef = React.useRef(null);
+
+  function focusAndSetIndex(index) {
+    dropdownListRef.current.querySelectorAll(".dropdown-item")[index].focus();
+    setFocusIndex(index);
+  }
 
   const handleCloseMenu = () => {
     setIsOpen(false);
@@ -52,6 +60,29 @@ const DropdownMenu = props => {
   };
 
   const extractedChildren = extractChildren(children, ["DropdownMenu.Trigger"]);
+
+  const dropdownLastItemIndex =
+    React.Children.toArray(
+      extractedChildren.children.filter(
+        child =>
+          child.type &&
+          (child.type.displayName === "DropdownMenu.Item" || child.type.displayName === "DropdownMenu.LinkItem")
+      )
+    ).length - 1;
+
+  const onKeyDown = (event, currentIndex) => {
+    if (event.key === "ArrowRight" || event.key === "ArrowDown") {
+      const indexToFocus = currentIndex === dropdownLastItemIndex ? 0 : currentIndex + 1;
+      focusAndSetIndex(indexToFocus);
+    } else if (event.key === "ArrowLeft" || event.key === "ArrowUp") {
+      const indexToFocus = currentIndex === 0 ? dropdownLastItemIndex : currentIndex - 1;
+      focusAndSetIndex(indexToFocus);
+    } else if (event.key === "Home") {
+      focusAndSetIndex(0);
+    } else if (event.key === "End") {
+      focusAndSetIndex(dropdownLastItemIndex);
+    }
+  };
 
   const handleShowConfirmation = renderConfirmation => () => {
     setIsConfirming(prevIsConfirmingState => !prevIsConfirmingState);
@@ -71,6 +102,13 @@ const DropdownMenu = props => {
       });
   };
 
+  const getClonedChild = (child, childKey, additionalProps = {}) =>
+    React.cloneElement(child, {
+      onKeyDown: e => onKeyDown(e, currentFocusIndex),
+      ...childKey,
+      ...additionalProps,
+    });
+
   const renderContent = () => {
     if (isConfirming) {
       const confirmationComponent = renderConfirmation(handleCloseMenu);
@@ -85,22 +123,20 @@ const DropdownMenu = props => {
     }
 
     return (
-      <div css={contentStyles}>
+      <div css={contentStyles} ref={dropdownListRef}>
         {extractedChildren.children.map((child, index) => {
+          const childKey = { key: `DropdownMenuItem${index}` };
           if (child && child.type && child.type.displayName === "DropdownMenu.Item") {
-            const childKey = { key: `DropdownMenuItem${index}` };
             if (child.props.renderConfirmation) {
-              return React.cloneElement(child, {
+              return getClonedChild(child, childKey, {
                 onShowConfirmation: handleShowConfirmation(child.props.renderConfirmation),
-                ...childKey,
               });
             }
-            return React.cloneElement(child, {
+            return getClonedChild(child, childKey, {
               onClose: handleCloseMenu,
-              ...childKey,
             });
           }
-          return child;
+          return getClonedChild(child, childKey);
         })}
       </div>
     );
@@ -123,7 +159,7 @@ const DropdownMenu = props => {
       </Popover.Content>
     </Popover>
   );
-};
+}
 
 DropdownMenu.displayName = "DropdownMenu";
 DropdownMenu.propTypes = propTypes;
