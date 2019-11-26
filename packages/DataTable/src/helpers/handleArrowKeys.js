@@ -1,3 +1,5 @@
+import closest from "@paprika/helpers/lib/dom/closest";
+
 export const arrowKeys = ["ArrowDown", "ArrowUp", "ArrowRight", "ArrowLeft"];
 const isOutOfBoundaries = (nextRow, boundaries) => nextRow < boundaries.top || nextRow > boundaries.bottom;
 
@@ -10,7 +12,6 @@ export default function handleArrowKeys({
   rowHeight,
   rowsLength,
   setActiveCell,
-  rowsOffset,
 }) {
   if (arrowKeys.includes(event.key)) {
     if (activeCell.index) {
@@ -53,11 +54,13 @@ export default function handleArrowKeys({
           setActiveCell(activeCell => ({ ...activeCell, index: nextIndex }));
         },
         ArrowDown: () => {
-          const { top, end, bottom } = boundaries;
+          const { top, end } = boundaries;
           const nextRow = row + 1;
+          const $scrollableElement = refVirtualizeRows.current.getScrollableElement();
           nextIndex = `${nextRow}_${cell}`;
 
           if (nextRow >= end) {
+            $scrollableElement.scrollTo({ top: rowHeight * (top + 1) });
             return;
           }
 
@@ -65,9 +68,20 @@ export default function handleArrowKeys({
             nextIndex = `${boundaries.top}_${cell}`;
           }
 
-          // if we are approaching to the bottom start scrolling
-          if (nextRow >= bottom - rowsOffset) {
-            const $scrollableElement = refVirtualizeRows.current.getScrollableElement();
+          /*
+            there are three cases where we want to scroll down:
+            1.- if the user
+          */
+          const nextElement = document.querySelector(`[data-pka-cell-index='${nextIndex}']`);
+          const nextElementBottom = nextElement.getBoundingClientRect().bottom;
+
+          // where 32 is the header row
+          const viewPortHeight = Math.max(document.documentElement.clientHeight, window.innerHeight || 0);
+          const virtualizeElement = closest(nextElement, '[data-pka-anchor="virtualize-rows-root"]');
+          const virtualizeRect = virtualizeElement.getBoundingClientRect();
+          const virtualizeGap = virtualizeRect.height + virtualizeRect.top;
+
+          if (nextElementBottom >= virtualizeGap || nextElementBottom > viewPortHeight) {
             $scrollableElement.scrollTo({ top: rowHeight * (top + 1) });
           }
 

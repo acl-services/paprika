@@ -2,6 +2,7 @@ import React from "react";
 import { storiesOf } from "@storybook/react";
 import DataTable from "../src";
 import fixtures from "./fixtures";
+import { viewPortHeight } from "./helpers";
 
 const flags = {
   Austria: "🇦🇹",
@@ -17,20 +18,16 @@ const flags = {
   Poland: "🇵🇱",
 };
 
-function getFlag(cell) {
-  if (cell in flags) {
-    return flags[cell];
-  }
-
-  return cell;
+function getFlag(row) {
+  return flags[row.country] || row.country;
 }
 
 const data = fixtures(1000);
 function App() {
   return (
     <React.Fragment>
-      <DataTable keygen="id" data={data} height={window.innerHeight}>
-        <DataTable.ColumnDefinition id="country" width="190" header="Country" cell={cell => getFlag(cell)} />
+      <DataTable keygen="id" data={data} height={viewPortHeight()}>
+        <DataTable.ColumnDefinition id="country" width="190" header="Country" cell={row => getFlag(row)} />
         <DataTable.ColumnDefinition id="name" header="Name" cell="name" />
         <DataTable.ColumnDefinition id="goals" header="Goals" cell="goals" />
         <DataTable.ColumnDefinition id="status" header="Status" cell="status" />

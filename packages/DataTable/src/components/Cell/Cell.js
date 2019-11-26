@@ -1,28 +1,29 @@
 import React from "react";
 import PropTypes from "prop-types";
-import * as styled from "../VirtualizedTable/VirtualizedTable.styles";
+import * as styled from "./Cell.styles";
+
+const propTypes = {
+  a11yProps: PropTypes.shape({}).isRequired,
+  activeCellIndex: PropTypes.string,
+  cellIndex: PropTypes.string.isRequired,
+  children: PropTypes.node.isRequired,
+  height: PropTypes.number.isRequired,
+  setActiveCell: PropTypes.func.isRequired,
+  width: PropTypes.string,
+};
+
+const defaultProps = {
+  width: null,
+  activeCellIndex: null,
+};
 
 export default function Cell(props) {
-  const {
-    a11yProps,
-    activeCellIndex,
-    cellIndex,
-    children,
-    data,
-    dataRow,
-    height,
-    rowIndex,
-    setActiveCell,
-    width,
-  } = props;
+  const { a11yProps, activeCellIndex, cellIndex, children, height, setActiveCell, width } = props;
 
   function handleClickCell() {
     if (activeCellIndex !== cellIndex) {
       setActiveCell({
         index: cellIndex,
-        data,
-        dataRow,
-        rowIndex,
       });
     }
   }
@@ -42,20 +43,5 @@ export default function Cell(props) {
   );
 }
 
-Cell.propTypes = {
-  a11yProps: PropTypes.shape({}).isRequired,
-  activeCellIndex: PropTypes.string,
-  cellIndex: PropTypes.string.isRequired,
-  children: PropTypes.node.isRequired,
-  data: PropTypes.arrayOf(PropTypes.shape({})).isRequired,
-  dataRow: PropTypes.shape({}).isRequired,
-  height: PropTypes.number.isRequired,
-  rowIndex: PropTypes.number.isRequired,
-  setActiveCell: PropTypes.func.isRequired,
-  width: PropTypes.string,
-};
-
-Cell.defaultProps = {
-  width: null,
-  activeCellIndex: null,
-};
+Cell.propTypes = propTypes;
+Cell.defaultProps = defaultProps;
