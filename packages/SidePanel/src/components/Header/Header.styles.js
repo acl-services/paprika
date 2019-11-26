@@ -1,4 +1,4 @@
-import { fontSize, spacer } from "@paprika/stylers/lib/helpers";
+import { spacer } from "@paprika/stylers/lib/helpers";
 import tokens from "@paprika/tokens/lib/tokens";
 import Button from "@paprika/button";
 
@@ -8,12 +8,10 @@ const kind = {
 };
 
 const compactStyles = `
-  height: ${spacer(7)};
-  padding: 0 ${spacer(2)};
+  height: ${spacer(6)};
+  padding: ${tokens.spaceLg} ${spacer(2)};
   
   [data-pka-anchor="heading"] {
-    ${fontSize(1)};
-    font-weight: 700;
     margin: 0;
   }
 `;
@@ -33,10 +31,13 @@ export const headerCSS = props => `
   }
 
   [data-pka-anchor="heading"] {
-    ${fontSize(3)};
-    font-weight: 700;
     margin: 0;
   }
+
+ [data-pka-anchor="button.icon"] {
+    ${props.kind === [Button.Kinds.PRIMARY] ? `color: ${tokens.color.white}` : "color: inherit"}
+ }
+
 
   ${props.isCompact ? compactStyles : ""}
   ${props.kind ? kind[props.kind] : ""}
