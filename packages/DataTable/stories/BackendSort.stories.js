@@ -36,8 +36,9 @@ function App() {
             }).map(item => item.id),
           });
         }, 1000);
+      } else {
+        return resolve(action.changes);
       }
-      return resolve(action.changes);
     });
   };
 

@@ -27,8 +27,10 @@ function TableProvider(props) {
             const result = reducer(state, { ...action, changes: prevChanges });
             if (typeof result.then === "function") {
               const finalResult = await result;
+              console.log("-----", action.type, finalResult);
               return finalResult;
             }
+            console.log("nnnnnnnnn", action.type, result);
             return result;
           }, changes)
         );
@@ -65,9 +67,13 @@ function useDispatch() {
 
 TableProvider.propTypes = {
   children: PropTypes.node.isRequired,
-  data: PropTypes.arrayOf(PropTypes.objectOf(PropTypes.any)).isRequired,
+  data: PropTypes.arrayOf(PropTypes.objectOf(PropTypes.any)),
   keygen: PropTypes.string.isRequired,
   reducers: PropTypes.arrayOf(PropTypes.func).isRequired,
+};
+
+TableProvider.defaultProps = {
+  data: [],
 };
 
 export { TableProvider, useDataTableState, useDispatch };
