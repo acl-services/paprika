@@ -1,6 +1,5 @@
 import React from "react";
 import { storiesOf } from "@storybook/react";
-import Heading from "@paprika/heading";
 import SidePanel from "../src";
 
 storiesOf("SidePanel / Header", module).add("SidePanel.Header", () => (
@@ -10,8 +9,8 @@ storiesOf("SidePanel / Header", module).add("SidePanel.Header", () => (
     }}
     isOpen
   >
-    <SidePanel.Header kind="primary">
-      <Heading level={2}>With Header</Heading>
+    <SidePanel.Header kind="primary" level={1}>
+      With Header
     </SidePanel.Header>
   </SidePanel>
 ));
@@ -24,16 +23,12 @@ storiesOf("SidePanel / Header", module).add("SidePanel.Header isCompact", () => 
     isCompact
     isOpen
   >
-    <SidePanel.Header>
-      <Heading level={2}>With Header Compact</Heading>
-    </SidePanel.Header>
+    <SidePanel.Header>With Header Compact</SidePanel.Header>
   </SidePanel>
 ));
 
 storiesOf("SidePanel / Header", module).add("SidePanel.Header without close button", () => (
   <SidePanel isOpen>
-    <SidePanel.Header hasCloseButton={false}>
-      <Heading level={2}>With Header and no Close Button</Heading>
-    </SidePanel.Header>
+    <SidePanel.Header hasCloseButton={false}>With Header and no Close Button</SidePanel.Header>
   </SidePanel>
 ));
