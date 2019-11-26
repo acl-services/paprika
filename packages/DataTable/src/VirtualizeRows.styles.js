@@ -1,21 +1,21 @@
 import styled from "styled-components";
 
-export const Virtualize = styled.div.attrs(({ height, width, rowHeight }) => ({
+export const Virtualize = styled.div.attrs(({ height, width }) => ({
   style: {
     width: `${width}px`,
-    height: `${height + rowHeight / 3}px`,
+    height: `${height}px`,
   },
 }))`
   background: #fff;
   box-sizing: border-box;
   overflow: scroll;
   width: 100%;
+  padding-bottom: 80px;
 `;
 
 export const VirtualizeContent = styled.div.attrs(({ height }) => ({
   style: {
-    // this should be height + rowHeight + footer in case we put it
-    height: `${height + 64}px`,
+    height: `${height}px`,
   },
 }))`
   display: block;

@@ -43,6 +43,7 @@ function TableProvider(props) {
       isFirstRender.current = false;
       return;
     }
+
     dispatch({ type: actions.RESET_DATA, payload: data });
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [data, isFirstRender]);
