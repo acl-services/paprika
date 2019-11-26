@@ -3,28 +3,27 @@ import PropTypes from "prop-types";
 import DropdownMenu from "@paprika/dropdown-menu";
 import sort from "../../../../helpers/sort";
 import { actions } from "../../../../constants";
-
 import { useDataTableState } from "../../../..";
 import SortTrigger from "./SortTrigger";
 
 const propTypes = {
-  ColumnsDefinition: PropTypes.arrayOf(
+  columns: PropTypes.arrayOf(
     PropTypes.shape({
-      props: PropTypes.object.isRequired,
-      type: PropTypes.func.isRequired,
+      id: PropTypes.oneOfType([PropTypes.number, PropTypes.string]).isRequired,
     })
   ),
 };
-const defaultProps = { ColumnsDefinition: [] };
+
+const defaultProps = {
+  columns: [],
+};
 
 const noop = () => {};
 
 export default function Sort(props) {
   const { sortColumn, sortDirection } = useDataTableState();
-  const { ColumnsDefinition } = props;
-  const hasSortDirections = ColumnsDefinition.find(
-    ({ props: columnProp }) => columnProp.sortDirections && columnProp.sortDirections.length > 0
-  );
+  const { columns } = props;
+  const hasSortDirections = columns.find(({ sortDirections }) => sortDirections && sortDirections.length > 0);
 
   if (!hasSortDirections) return null;
 
@@ -37,9 +36,7 @@ export default function Sort(props) {
         </DropdownMenu.Trigger>
       )}
     >
-      {ColumnsDefinition.map(({ props: columnProp }) => {
-        const { id: columnId, header, sortDirections } = columnProp;
-
+      {columns.map(({ id: columnId, header, sortDirections, momentParsingFormat }) => {
         if (!sortDirections || sortDirections.length === 0) return null;
 
         return (
@@ -47,7 +44,13 @@ export default function Sort(props) {
             Sort {header} by
             {sortDirections &&
               sortDirections.map(direction => (
-                <SortTrigger key={direction} columnId={columnId} direction={direction} />
+                <SortTrigger
+                  key={direction}
+                  columnId={columnId}
+                  direction={direction}
+                  columnType={columns.find(column => columnId === column.id).type}
+                  momentParsingFormat={momentParsingFormat}
+                />
               ))}
           </DropdownMenu.Item>
         );
@@ -69,6 +72,8 @@ Sort.reducer = (state, action) => {
         data: action.changes.data,
         columnId: action.payload.columnId,
         direction: action.payload.direction,
+        columnType: action.payload.columnType,
+        momentParsingFormat: action.payload.momentParsingFormat,
       }).map(item => item[state.keygen]),
     };
 

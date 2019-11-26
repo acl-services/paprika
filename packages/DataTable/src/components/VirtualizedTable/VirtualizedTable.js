@@ -8,16 +8,17 @@ import * as styled from "./VirtualizedTable.styles";
 import "@paprika/helpers/lib/dom/elementScrollToPolyfill";
 import Options from "../Options";
 import CheckBox from "../CheckBox";
+import Cell from "../Cell";
 import { useDataTableState } from "../../context";
 
 export default function VirtualizedTable(props) {
-  const { ColumnsDefinition, height, rowHeight, width } = props;
+  const { columns, height, rowHeight, width } = props;
   const [activeRowOnMouseEnter, setActiveRowOnMouseEnter] = React.useState({ index: null, data: null });
   const [activeCell, setActiveCell] = React.useState({ rowIndex: null, dataRow: null, index: null, data: null });
 
   const refActivePage = React.useRef({ from: null, to: null });
   const refVirtualizeRows = React.useRef(null);
-  const columnsLength = ColumnsDefinition.length;
+  const columnsLength = columns.length;
 
   // this will inject 20 rows below the visible table to helps with the navigation and scrolling flickering
   const tableRowsOffset = 20;
@@ -59,17 +60,6 @@ export default function VirtualizedTable(props) {
     )
   ).current;
 
-  const handleClickCell = ({ index, data, dataRow, rowIndex }) => () => {
-    if (activeCell.index !== index) {
-      setActiveCell(() => ({
-        index,
-        data,
-        dataRow,
-        rowIndex,
-      }));
-    }
-  };
-
   const handleMouseEnter = (data, rowIndex, keys) => () => {
     setActiveRowOnMouseEnter(() => ({ index: keys[rowIndex], data }));
   };
@@ -110,12 +100,12 @@ export default function VirtualizedTable(props) {
           </styled.Check>
           <styled.Expand />
         </styled.Counter>
-        {ColumnsDefinition.map((header, headerIndex) => {
-          const { header: headerProp, width, sortDirections, id } = header.props;
+        {columns.map((column, columnIndex) => {
+          const { header: headerProp, width } = column;
           return (
-            <styled.Cell isHeaderCell key={`cell_${headerIndex}`} $width={width} $height={rowHeightValue}>
-              {typeof headerProp === "function" ? headerProp(header.props) : headerProp}
-              {sortDirections ? <Options sortDirections={sortDirections} columnId={id} /> : null}
+            <styled.Cell isHeaderCell key={`cell_${columnIndex}`} $width={width} $height={rowHeightValue}>
+              {typeof headerProp === "function" ? headerProp(column) : headerProp}
+              <Options {...column} />
             </styled.Cell>
           );
         })}
@@ -154,28 +144,27 @@ export default function VirtualizedTable(props) {
                         <RawButton>⇗</RawButton>
                       </styled.Expand>
                     </styled.Counter>
-                    {ColumnsDefinition.map((Column, cellIndex) => {
-                      const { id, cell, width } = Column.props;
+                    {columns.map((column, cellIndex) => {
+                      const { id, cell, width, type } = column;
                       const index = `${keys[rowIndex]}_${cellIndex}`;
-                      const cellContent = typeof cell === "function" ? cell(row[id]) : row[cell];
                       return (
-                        <styled.Cell
+                        <Cell
                           key={`cell_${index}`}
-                          {...a11y.cell}
-                          $width={width}
-                          $height={rowHeightValue}
-                          data-pka-cell-index={index}
+                          a11yProps={a11y.cell}
+                          width={width}
+                          height={rowHeightValue}
                           cellIndex={index}
                           activeCellIndex={activeCell.index}
-                          onClick={handleClickCell({
-                            index,
-                            data: row,
-                            dataRow: row,
-                            rowIndex: keys[rowIndex],
-                          })}
+                          setActiveCell={setActiveCell}
+                          data={data}
+                          dataRow={row}
+                          rowIndex={keys[rowIndex]}
+                          type={type}
+                          cell={cell}
+                          columnId={id}
                         >
-                          {cellContent}
-                        </styled.Cell>
+                          {typeof cell === "function" ? cell(row[id]) : row[cell]}
+                        </Cell>
                       );
                     })}
                   </styled.Row>
@@ -191,10 +180,9 @@ export default function VirtualizedTable(props) {
 /* eslint-enable react/no-array-index-key */
 
 VirtualizedTable.propTypes = {
-  ColumnsDefinition: PropTypes.arrayOf(
+  columns: PropTypes.arrayOf(
     PropTypes.shape({
-      props: PropTypes.object.isRequired,
-      type: PropTypes.func.isRequired,
+      id: PropTypes.oneOfType([PropTypes.number, PropTypes.string]).isRequired,
     })
   ).isRequired,
   height: PropTypes.number.isRequired,

@@ -54,13 +54,13 @@ function App() {
           id="goals"
           header="Goals"
           cell="goals"
-          sortDirections={DataTable.SortDirections.DEFAULT}
+          sortDirections={[DataTable.SortDirections.ASCEND, DataTable.SortDirections.DESCEND]}
         />
         <DataTable.ColumnDefinition
           id="status"
           header="Status"
           cell="status"
-          sortDirections={DataTable.SortDirections.DEFAULT}
+          sortDirections={[DataTable.SortDirections.ASCEND, DataTable.SortDirections.DESCEND]}
         />
       </DataTable>
     </React.Fragment>

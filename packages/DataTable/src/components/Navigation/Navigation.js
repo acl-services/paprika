@@ -4,23 +4,22 @@ import * as styled from "./Navigation.styles";
 
 const propTypes = {
   children: PropTypes.node.isRequired,
-  ColumnsDefinition: PropTypes.arrayOf(
+  columns: PropTypes.arrayOf(
     PropTypes.shape({
-      props: PropTypes.object.isRequired,
-      type: PropTypes.func.isRequired,
+      id: PropTypes.oneOfType([PropTypes.number, PropTypes.string]).isRequired,
     })
   ),
 };
 
 const defaultProps = {
-  ColumnsDefinition: [],
+  columns: [],
 };
 
 export default function Navigation(props) {
-  const { children, ColumnsDefinition } = props;
+  const { children, columns } = props;
   return (
     <styled.Navigation>
-      {React.Children.map(children, child => React.cloneElement(child, { ColumnsDefinition }))}
+      {React.Children.map(children, child => React.cloneElement(child, { columns }))}
     </styled.Navigation>
   );
 }

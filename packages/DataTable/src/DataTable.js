@@ -9,6 +9,7 @@ import { sortDirections } from "./constants";
 import { TableProvider } from "./context";
 
 const propTypes = {
+  data: PropTypes.arrayOf(PropTypes.shape({})),
   height: PropTypes.number,
   width: PropTypes.number,
   rowHeight: PropTypes.number,
@@ -17,6 +18,7 @@ const propTypes = {
 };
 
 const defaultProps = {
+  data: [],
   height: 600,
   width: null,
   rowHeight: 32,
@@ -30,6 +32,7 @@ export default function DataTable(props) {
     childrenProps,
     ["DataTable.ColumnDefinition", "DataTable.Navigation"]
   );
+  const columns = ColumnsDefinition.map(Column => Column.props);
 
   let navigationReducers = [];
   if (Navigation && Navigation.props) {
@@ -41,12 +44,8 @@ export default function DataTable(props) {
   return (
     <TableProvider data={data} keygen={keygen} reducers={navigationReducers.concat(reducers)}>
       <div>{isLoading ? "Loading..." : null}</div>
-      {Navigation
-        ? React.cloneElement(Navigation, {
-            ColumnsDefinition,
-          })
-        : null}
-      <VirtualizedTable ColumnsDefinition={ColumnsDefinition} height={height} rowHeight={rowHeight} width={width} />
+      {Navigation ? React.cloneElement(Navigation, { columns }) : null}
+      <VirtualizedTable columns={columns} height={height} rowHeight={rowHeight} width={width} />
     </TableProvider>
   );
 }
@@ -54,5 +53,5 @@ export default function DataTable(props) {
 DataTable.prpoTypes = propTypes;
 DataTable.defaultProps = defaultProps;
 DataTable.ColumnDefinition = ColumnDefinition;
-DataTable.SortDirections = { ...sortDirections, DEFAULT: Object.values(sortDirections) };
+DataTable.SortDirections = { ...sortDirections };
 DataTable.Navigation = Navigation;

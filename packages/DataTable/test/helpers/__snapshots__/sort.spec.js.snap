@@ -1,0 +1,81 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`helpers/sort sorts an array of items with number ascend 1`] = `
+Array [
+  Object {
+    "id": 2,
+    "name": "Cba",
+    "salary": 1000,
+  },
+  Object {
+    "id": 3,
+    "name": "Acb",
+    "salary": 2000,
+  },
+  Object {
+    "id": 1,
+    "name": "Abc",
+    "salary": 3000,
+  },
+]
+`;
+
+exports[`helpers/sort sorts an array of items with number descend 1`] = `
+Array [
+  Object {
+    "id": 1,
+    "name": "Abc",
+    "salary": 3000,
+  },
+  Object {
+    "id": 3,
+    "name": "Acb",
+    "salary": 2000,
+  },
+  Object {
+    "id": 2,
+    "name": "Cba",
+    "salary": 1000,
+  },
+]
+`;
+
+exports[`helpers/sort sorts an array of items with string ascend 1`] = `
+Array [
+  Object {
+    "id": 1,
+    "name": "Abc",
+    "salary": 3000,
+  },
+  Object {
+    "id": 3,
+    "name": "Acb",
+    "salary": 2000,
+  },
+  Object {
+    "id": 2,
+    "name": "Cba",
+    "salary": 1000,
+  },
+]
+`;
+
+exports[`helpers/sort sorts an array of items with string descend 1`] = `
+Array [
+  Object {
+    "id": 2,
+    "name": "Cba",
+    "salary": 1000,
+  },
+  Object {
+    "id": 3,
+    "name": "Acb",
+    "salary": 2000,
+  },
+  Object {
+    "id": 1,
+    "name": "Abc",
+    "salary": 3000,
+  },
+]
+`;
