@@ -16,7 +16,7 @@ describe("DialogActions", () => {
   });
 
   it("should not display the buttons when the props are empty", () => {
-    const { queryByText } = renderComponent({ hasConfirm: false, hasDecline: false, hasCancel: false });
+    const { queryByText } = renderComponent({ onCancel: null, onConfirm: null, onDecline: null });
 
     expect(queryByText(/Save/i)).not.toBeInTheDocument();
     expect(queryByText(/Don't Save/i)).not.toBeInTheDocument();

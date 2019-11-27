@@ -1,19 +1,21 @@
 import React from "react";
-import { boolean, text } from "@storybook/addon-knobs";
+import { boolean, text, select } from "@storybook/addon-knobs";
 import { action } from "@storybook/addon-actions";
 import { Story } from "storybook/assets/styles/common.styles";
 import Heading from "@paprika/heading";
 import DialogActions from "../../src";
 
+const selections = {
+  default: "primary",
+  destructive: "destructive",
+};
+
 const DialogActionsProps = () => ({
-  hasCancel: boolean("hasCancel", true),
-  hasConfirm: boolean("hasConfirm", true),
-  hasDecline: boolean("hasDecline", true),
-  isDestructive: boolean("isDestructive", false),
+  confirmKind: selections[select("confirmKind", Object.keys(selections), null)],
   isDisabled: boolean("isDisabled", false),
   labelCancel: text("labelCancel", "Cancel"),
   labelConfirm: text("labelConfirm", "Save"),
-  labelDecline: text("labelDecline", "Don't Save"),
+  labelDecline: text("labelDecline", "Don’t Save"),
   onCancel: action("Cancel Clicked"),
   onConfirm: action("Confirm Clicked"),
   onDecline: action("Decline Clicked"),

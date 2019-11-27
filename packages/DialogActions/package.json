@@ -18,7 +18,6 @@
     "@paprika/raw-button": "^0.2.2",
     "@paprika/stylers": "^0.2.2",
     "@paprika/tokens": "^0.1.9",
-    "class-names": "^1.0.0",
     "prop-types": "^15.7.2"
   },
   "peerDependencies": {

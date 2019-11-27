@@ -1,5 +1,7 @@
 import React from "react";
 import PropTypes from "prop-types";
+import L10n from "@paprika/l10n";
+import useI18n from "@paprika/l10n/lib/useI18n";
 import Button from "../../Button/src/Button";
 import ButtonStyles from "./DialogActions.styles";
 
@@ -7,29 +9,20 @@ const propTypes = {
   /** Optional custom classes. */
   className: PropTypes.string,
 
-  /** If a cancel button should be shown. */
-  hasCancel: PropTypes.bool,
-
-  /** If a primary action button should be shown. */
-  hasConfirm: PropTypes.bool,
-
-  /** If a secondary generic button should be shown. */
-  hasDecline: PropTypes.bool,
-
   /** If the primary button is a destructive action. */
-  isDestructive: PropTypes.bool,
+  confirmKind: PropTypes.string,
 
   /** If the primary and secondary buttons are disabled. */
   isDisabled: PropTypes.bool,
 
   /** Text for cancel button. */
-  labelCancel: PropTypes.string,
+  labelCancel: PropTypes.string.isRequired,
 
   /** Text for primary action button. */
-  labelConfirm: PropTypes.string,
+  labelConfirm: PropTypes.string.isRequired,
 
   /** Text for a secondary generic button. */
-  labelDecline: PropTypes.string,
+  labelDecline: PropTypes.string.isRequired,
 
   /** Function to call when cancel button is clicked. */
   onCancel: PropTypes.func,
@@ -43,72 +36,70 @@ const propTypes = {
 
 const defaultProps = {
   className: "",
-  hasCancel: true,
-  hasConfirm: true,
-  hasDecline: true,
-  isDestructive: false,
+  confirmKind: "primary",
   isDisabled: false,
-  labelCancel: "Cancel", // TODO: i18n
-  labelConfirm: "Save", // TODO: i18n
-  labelDecline: "Don't Save", // TODO: i18n
   onCancel: () => {},
   onConfirm: () => {},
   onDecline: () => {},
 };
 
-function renderCancelButton(hasCancel, onCancel, labelCancel) {
-  if (!hasCancel) return null;
-  return (
-    <Button data-pka-anchor="dialog-actions__cancel" size="large" kind="minor" onClick={onCancel}>
-      {labelCancel}
-    </Button>
-  );
-}
-
-function renderConfirmButton(hasConfirm, isDisabled, onConfirm, isDestructive, labelConfirm) {
-  if (!hasConfirm) return null;
-  return (
-    <Button
-      data-pka-anchor="dialog-actions__confirm"
-      isDisabled={isDisabled}
-      onClick={onConfirm}
-      size="large"
-      kind={isDestructive ? "destructive" : "primary"}
-    >
-      {labelConfirm}
-    </Button>
-  );
-}
-
-function renderDeclineButton(hasDecline, isDisabled, onDecline, labelDecline) {
-  if (!hasDecline) return null;
-  return (
-    <Button
-      data-pka-anchor="dialog-actions__decline"
-      isDisabled={isDisabled}
-      onClick={onDecline}
-      size="large"
-      css={ButtonStyles}
-    >
-      {labelDecline}
-    </Button>
-  );
-}
-
 function DialogActions(props) {
-  if (!props.hasConfirm && !props.hasCancel && !props.hasDecline) return null;
+  const I18n = useI18n();
+  const { confirmKind, isDisabled, labelCancel, labelConfirm, labelDecline, onCancel, onConfirm, onDecline } = props;
+
+  function renderCancelButton() {
+    if (!onCancel) return null;
+    return (
+      <Button
+        data-pka-anchor="dialog-actions__cancel"
+        isDisabled={isDisabled}
+        size="large"
+        kind="minor"
+        onClick={onCancel}
+        css={ButtonStyles}
+      >
+        {labelCancel || I18n.t("actions.cancel")}
+      </Button>
+    );
+  }
+  function renderConfirmButton() {
+    if (!onConfirm) return null;
+    return (
+      <Button
+        data-pka-anchor="dialog-actions__confirm"
+        isDisabled={isDisabled}
+        onClick={onConfirm}
+        size="large"
+        kind={confirmKind}
+      >
+        {labelConfirm || I18n.t("actions.confirm")}
+      </Button>
+    );
+  }
+
+  function renderDeclineButton() {
+    if (!onDecline) return null;
+    return (
+      <Button
+        data-pka-anchor="dialog-actions__decline"
+        isDisabled={isDisabled}
+        onClick={onDecline}
+        size="large"
+        css={ButtonStyles}
+      >
+        {labelDecline || I18n.t("actions.decline")}
+      </Button>
+    );
+  }
+
   return (
-    <div data-pka-anchor={`dialog-actions ${props.className}`}>
-      {renderConfirmButton(
-        props.hasConfirm,
-        props.isDisabled,
-        props.onConfirm,
-        props.isDestructive,
-        props.labelConfirm
-      )}
-      {renderDeclineButton(props.hasDecline, props.isDisabled, props.onDecline, props.labelDecline)}
-      {renderCancelButton(props.hasCancel, props.onCancel, props.labelCancel)}
-    </div>
+    <L10n>
+      <div data-pka-anchor={`dialog-actions ${props.className}`}>
+        {renderConfirmButton()}
+        {renderDeclineButton()}
+        {renderCancelButton()}
+      </div>
+    </L10n>
   );
 }
 
