@@ -30,9 +30,9 @@ export default function ExampleStory() {
           </p>
           <p>The Popover gets added at the end of the DOM when created, and the Takeover traps focus.</p>
           <p>
-            A work-around is to add either `isEager` or `shouldKeepFocus` to the Popover. This will keep it open (but as
-            a side effect, screenreaders will not read its content, and you cannot tab into its content to click on any
-            links).
+            A work-around is to add either `isEager` or `shouldKeepFocus` to the Popover. This will keep it open, but:
+            screenreaders will not read its content, and you cannot interact with its content with the mouse or
+            keyboard.
           </p>
           <hr />
           <h3>Popover with `shouldKeepFocus` or `isEager`:</h3>
