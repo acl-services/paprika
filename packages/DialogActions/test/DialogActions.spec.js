@@ -11,7 +11,7 @@ describe("DialogActions", () => {
     const { getByText } = renderComponent({ labelConfirm: "Confirm" });
 
     expect(getByText(/Confirm/i)).toBeInTheDocument();
-    expect(getByText(/Don't Save/i)).toBeInTheDocument();
+    expect(getByText(/Decline/i)).toBeInTheDocument();
     expect(getByText(/Cancel/i)).toBeInTheDocument();
   });
 
@@ -32,7 +32,7 @@ describe("DialogActions", () => {
     fireEvent.click(getByText("Save"));
     expect(onConfirm).toHaveBeenCalled();
 
-    fireEvent.click(getByText(/Don't Save/i));
+    fireEvent.click(getByText(/Decline/i));
     expect(onDecline).toHaveBeenCalled();
 
     fireEvent.click(getByText(/Cancel/i));
