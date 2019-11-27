@@ -8,14 +8,17 @@ const TableStateContext = React.createContext();
 const TableDispatchContext = React.createContext();
 
 function TableProvider(props) {
-  const { data, keygen, reducers } = props;
+  const { data, keygen, reducers, columns } = props;
   const initialState = {
     data: data || [],
     keygen,
     sortColumn: null,
     sortDirection: null,
     sortedOrder: null,
+    columnsOrder: columns.map(column => column.id),
+    columns: columns.reduce((columnsObject, column) => ({ ...columnsObject, [column.id]: column }), {}),
   };
+
   const isFirstRender = React.useRef(true);
   const memorizedReducer = React.useCallback(
     (state, action) => {

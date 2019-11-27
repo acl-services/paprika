@@ -13,7 +13,7 @@ import { Cell as CellStyled } from "../Cell/Cell.styles";
 import { useDataTableState } from "../../context";
 
 export default function VirtualizedTable(props) {
-  const { columns, height, rowHeight, width } = props;
+  const { height, rowHeight, width } = props;
   const [activeRowOnMouseEnter, setActiveRowOnMouseEnter] = React.useState({ index: null, data: null });
   const [activeCell, setActiveCell] = React.useState({ rowIndex: null, dataRow: null, index: null, data: null });
   const refActivePage = React.useRef({ from: null, to: null });
@@ -47,9 +47,12 @@ export default function VirtualizedTable(props) {
   ).current;
 
   // this will inject 20 rows below the visible table to helps with the navigation and scrolling flickering
-  const columnsLength = columns.length;
 
-  const { data, sortedOrder, keygen, rowHeight: stateRowHeigth } = useDataTableState();
+  const { data, sortedOrder, keygen, rowHeight: stateRowHeigth, columns, columnsOrder } = useDataTableState();
+
+  console.log("columnsOrder", columnsOrder);
+
+  const columnsLength = columns.length;
 
   const dataForRendering = sortedOrder
     ? sortedOrder.map(keygenValue => data.find(item => item[keygen] === keygenValue))
@@ -96,8 +99,10 @@ export default function VirtualizedTable(props) {
           </styled.Check>
           <styled.Expand />
         </styled.Counter>
-        {columns.map((column, columnIndex) => {
-          const { header: headerProp, width } = column;
+        {columnsOrder.map((columnId, columnIndex) => {
+          const column = columns[columnId];
+          const { header: headerProp, width, isHidden } = column;
+          if (isHidden) return null;
           return (
             <CellStyled isHeaderStyledCell key={`cell_${columnIndex}`} $width={width} $height={rowHeightValue}>
               {typeof headerProp === "function" ? headerProp(column) : headerProp}
@@ -139,10 +144,11 @@ export default function VirtualizedTable(props) {
                         <RawButton>⇗</RawButton>
                       </styled.Expand>
                     </styled.Counter>
-                    {columns.map((column, cellIndex) => {
-                      const { cell, width } = column;
-
+                    {columnsOrder.map((columnId, cellIndex) => {
+                      const column = columns[columnId];
+                      const { cell, width, isHidden } = column;
                       const index = `${keys[rowIndex]}_${cellIndex}`;
+                      if (isHidden) return null;
                       return (
                         <Cell
                           key={`cell_${index}`}

@@ -4,9 +4,11 @@ import DropdownMenu from "@paprika/dropdown-menu";
 import ArrowDown from "@paprika/icon/lib/ArrowDown";
 import { sortDirections, columnTypes } from "../../constants";
 import SortOption from "./SortOption";
+import { useDispatch } from "../../context";
 
 export default function Options(props) {
-  const { sortDirections, id, type, momentParsingFormat } = props;
+  const { sortDirections, id, type, momentParsingFormat, canHide } = props;
+  const dispatch = useDispatch();
 
   // TODO: Checking if need to show options icon, later we need to check filtering rules..
   if (!sortDirections || sortDirections.length === 0) return null;
@@ -35,6 +37,15 @@ export default function Options(props) {
             />
           ))
         : null}
+      {canHide ? (
+        <DropdownMenu.Item
+          onClick={() => {
+            dispatch({ type: "TOGGLE_COLUMN", payload: id });
+          }}
+        >
+          Hide this column
+        </DropdownMenu.Item>
+      ) : null}
     </DropdownMenu>
   );
 }

@@ -10,12 +10,16 @@ ColumnDefinition.propTypes = {
   momentParsingFormat: PropTypes.string,
   sortDirections: PropTypes.arrayOf(PropTypes.oneOf([sortDirections.ASCEND, sortDirections.DESCEND])),
   type: PropTypes.oneOf([columnTypes.TEXT, columnTypes.NUMBER, columnTypes.DATE]),
+  canHide: PropTypes.bool,
+  isHidden: PropTypes.bool,
 };
 
 ColumnDefinition.defaultProps = {
   momentParsingFormat: null,
   sortDirections: [],
   type: null,
+  canHide: true,
+  isHidden: false,
 };
 
 ColumnDefinition.displayName = "DataTable.ColumnDefinition";
