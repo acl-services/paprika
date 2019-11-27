@@ -30,11 +30,6 @@ function Radio(props) {
   const radioId = React.useRef(nanoid()).current;
   const inputRef = React.useRef(null);
 
-  const styleProps = {
-    hasLabel: !!children,
-    size,
-  };
-
   const handleKeyDown = event => {
     if (
       // Prevent scrolling the page with a spacerbar keypress
@@ -53,22 +48,26 @@ function Radio(props) {
     }
   };
 
-  const inputProps = {};
+  const styleProps = {
+    hasLabel: !!children,
+    size,
+  };
+
+  const inputProps = {
+    readOnly: true,
+    onClick,
+    checked: isChecked,
+    disabled: isDisabled,
+    id: radioId,
+    onKeyUp: handleKeyUp,
+    onKeyDown: handleKeyDown,
+    ref: inputRef,
+    type: "radio",
+  };
   if (a11yText) inputProps["aria-label"] = a11yText;
   return (
     <div data-pka-anchor="radio" css={radioStyles} {...styleProps} {...moreProps}>
-      <input
-        onChange={() => {}}
-        onClick={onClick}
-        checked={isChecked}
-        disabled={isDisabled}
-        id={radioId}
-        onKeyUp={handleKeyUp}
-        onKeyDown={handleKeyDown}
-        ref={inputRef}
-        type="radio"
-        {...inputProps}
-      />
+      <input {...inputProps} />
       <label onKeyUp={handleKeyUp} className={canDeselect ? "deselectable" : ""} htmlFor={radioId}>
         {children}
 
