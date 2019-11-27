@@ -1,26 +1,44 @@
 import React from "react";
 import PropTypes from "prop-types";
+import RawButton from "@paprika/raw-button";
 import Button from "@paprika/button";
+
+export const ButtonTypes = {
+  ICON: "icon",
+  RAW: "raw",
+  SIMPLE: "simple",
+};
+
+const ButtonComponentMap = {
+  icon: Button.Icon,
+  raw: RawButton,
+  simple: Button,
+};
+
+ButtonTypes.ALL = Object.values(ButtonTypes);
 
 const propTypes = {
   children: PropTypes.node,
-  icon: PropTypes.node,
-  isOpen: PropTypes.bool.isRequired,
+  buttonType: PropTypes.oneOf(ButtonTypes.ALL),
+  isOpen: PropTypes.bool,
   menuRefId: PropTypes.string,
-  onOpenMenu: PropTypes.func.isRequired,
+  onOpenMenu: PropTypes.func,
   triggerRef: PropTypes.shape({ current: PropTypes.instanceOf(Object) }) || null,
 };
 
 const defaultProps = {
+  buttonType: ButtonTypes.SIMPLE,
   children: null,
-  icon: null,
   menuRefId: "",
   triggerRef: null,
+  isOpen: false,
+  onOpenMenu: () => {},
 };
 
 const Trigger = props => {
-  const { icon, children, isOpen, onOpenMenu, menuRefId, triggerRef, ...otherProps } = props;
-  const TriggerComponent = icon ? Button.Icon : Button;
+  const { children, isOpen, onOpenMenu, menuRefId, triggerRef, buttonType, ...otherProps } = props;
+  const TriggerComponent = ButtonComponentMap[buttonType];
+
   return (
     <TriggerComponent
       ref={triggerRef}
@@ -28,11 +46,10 @@ const Trigger = props => {
       aria-expanded={isOpen}
       aria-haspopup="true"
       onClick={onOpenMenu}
-      isSquare
       isSemantic={false}
       {...otherProps}
     >
-      {icon || children}
+      {children}
     </TriggerComponent>
   );
 };

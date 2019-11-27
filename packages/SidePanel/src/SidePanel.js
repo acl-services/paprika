@@ -18,6 +18,9 @@ const propTypes = {
   /** The content for the SidePanel. */
   children: PropTypes.node.isRequired,
 
+  /** Y offset that is passed down from <SidePanel.Group> */
+  groupOffsetY: PropTypes.number,
+
   /** The width of the open panel. */
   width: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
 
@@ -50,6 +53,7 @@ const propTypes = {
 };
 
 const defaultProps = {
+  groupOffsetY: 0,
   isCompact: false,
   isInline: false,
   kind: "default",
@@ -63,7 +67,19 @@ const defaultProps = {
 
 function SidePanel(props) {
   // Props
-  const { onAfterClose, onAfterOpen, onClose, width, isCompact, isInline, kind, offsetY, isOpen, ...moreProps } = props;
+  const {
+    onAfterClose,
+    onAfterOpen,
+    onClose,
+    groupOffsetY,
+    width,
+    isCompact,
+    isInline,
+    kind,
+    offsetY,
+    isOpen,
+    ...moreProps
+  } = props;
 
   // Hooks
   const [isVisible, setIsVisible] = React.useState(props.isOpen);
@@ -136,6 +152,7 @@ function SidePanel(props) {
       <Dialog
         data-pka-anchor="sidepanel"
         footer={footerExtracted}
+        groupOffsetY={groupOffsetY}
         header={headerExtracted}
         isCompact={isCompact}
         isInline={isInline}

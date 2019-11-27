@@ -3,14 +3,8 @@ import DropdownMenu from "../../src";
 
 const DropdownMenuDividersExample = () => {
   return (
-    <DropdownMenu
-      align="bottom"
-      renderTrigger={({ isOpen, handleOpenMenu }) => (
-        <DropdownMenu.Trigger isOpen={isOpen} onOpenMenu={handleOpenMenu}>
-          Trigger
-        </DropdownMenu.Trigger>
-      )}
-    >
+    <DropdownMenu align="bottom">
+      <DropdownMenu.Trigger>Trigger</DropdownMenu.Trigger>
       <DropdownMenu.Item onClick={() => {}}>Item 1</DropdownMenu.Item>
       <DropdownMenu.Item onClick={() => {}}>Item 2</DropdownMenu.Item>
       <DropdownMenu.Divider />
