@@ -5,6 +5,7 @@ import { dialogStyles, dialogContentStyles } from "./Dialog.styles";
 const propTypes = {
   children: PropTypes.node.isRequired,
   footer: PropTypes.node,
+  groupOffsetY: PropTypes.number,
   header: PropTypes.node,
   kind: PropTypes.oneOf(["default", "child"]),
   isCompact: PropTypes.bool,
@@ -20,6 +21,7 @@ const propTypes = {
 
 const defaultProps = {
   footer: null,
+  groupOffsetY: 0,
   header: null,
   kind: "default",
   isCompact: false,
@@ -34,6 +36,7 @@ function Dialog(props) {
   const {
     children,
     footer,
+    groupOffsetY,
     onAnimationEnd,
     header,
     kind,
@@ -52,10 +55,12 @@ function Dialog(props) {
     <div
       aria-modal={isInline ? null : "true"}
       css={dialogStyles}
+      groupOffsetY={groupOffsetY}
       kind={kind}
+      isCompact={isCompact}
       isInline={isInline}
       isOpen={isOpen}
-      offsetY={props.offsetY}
+      offsetY={offsetY}
       onAnimationEnd={onAnimationEnd}
       ref={refSidePanel}
       role="dialog"
