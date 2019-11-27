@@ -2,16 +2,17 @@ import React from "react";
 import PropTypes from "prop-types";
 import DropdownMenu from "@paprika/dropdown-menu";
 import ArrowDown from "@paprika/icon/lib/ArrowDown";
-import { sortDirections, columnTypes } from "../../constants";
 import SortOption from "./SortOption";
-import { useDispatch } from "../../context";
+import { useDispatch, useDataTableState } from "../../context";
 
 export default function Options(props) {
-  const { sortDirections, id, type, momentParsingFormat, canHide } = props;
+  const { columnId } = props;
   const dispatch = useDispatch();
+  const { sortDirections, type, momentParsingFormat, canHide } = useDataTableState().columns[columnId];
 
   // TODO: Checking if need to show options icon, later we need to check filtering rules..
-  if (!sortDirections || sortDirections.length === 0) return null;
+  const hasOptions = canHide || (sortDirections && sortDirections.length > 0);
+  if (!hasOptions) return null;
 
   return (
     <DropdownMenu
@@ -30,7 +31,7 @@ export default function Options(props) {
         ? sortDirections.map(direction => (
             <SortOption
               key={direction}
-              columnId={id}
+              columnId={columnId}
               direction={direction}
               columnType={type}
               momentParsingFormat={momentParsingFormat}
@@ -40,7 +41,7 @@ export default function Options(props) {
       {canHide ? (
         <DropdownMenu.Item
           onClick={() => {
-            dispatch({ type: "TOGGLE_COLUMN", payload: id });
+            dispatch({ type: "TOGGLE_COLUMN", payload: columnId });
           }}
         >
           Hide this column
@@ -51,13 +52,7 @@ export default function Options(props) {
 }
 
 Options.propTypes = {
-  id: PropTypes.string.isRequired,
-  sortDirections: PropTypes.arrayOf(PropTypes.oneOf([sortDirections.ASCEND, sortDirections.DESCEND])).isRequired,
-  type: PropTypes.oneOf([columnTypes.TEXT, columnTypes.NUMBER, columnTypes.DATE]),
-  momentParsingFormat: PropTypes.string,
+  columnId: PropTypes.oneOfType([PropTypes.string, PropTypes.number]).isRequired,
 };
 
-Options.defaultProps = {
-  type: null,
-  momentParsingFormat: null,
-};
+Options.defaultProps = {};

@@ -37,16 +37,17 @@ const DropdownMenu = props => {
   const triggerId = React.useRef(uuid());
 
   const handleCloseMenu = () => {
-    setIsOpen(false);
+    if (triggerRef.current) {
+      setIsOpen(false);
 
-    if (isConfirming) {
-      setTimeout(() => {
-        setIsConfirming(false);
-        setRenderConfirmation(null);
-      }, 0);
+      if (isConfirming) {
+        setTimeout(() => {
+          setIsConfirming(false);
+          setRenderConfirmation(null);
+        }, 0);
+      }
+      triggerRef.current.focus();
     }
-
-    if (triggerRef.current) triggerRef.current.focus();
   };
 
   const handleOpenMenu = () => {

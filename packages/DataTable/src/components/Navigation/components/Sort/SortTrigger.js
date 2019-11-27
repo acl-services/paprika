@@ -1,7 +1,7 @@
 import React from "react";
 import PropTypes from "prop-types";
 import Button from "@paprika/button";
-import { actions, sortDirections, columnTypes } from "../../../../constants";
+import { sortDirections, columnTypes } from "../../../../constants";
 
 import { useDataTableState, useDispatch } from "../../../..";
 
@@ -28,7 +28,7 @@ export default function SortTrigger(props) {
 
   function handleSort() {
     dispatch({
-      type: actions.SORT,
+      type: "SORT",
       payload: { columnId, direction, columnType: getColumnType(), momentParsingFormat },
     });
   }

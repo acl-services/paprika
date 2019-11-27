@@ -1,25 +1,9 @@
 import React from "react";
-import PropTypes from "prop-types";
 import DropdownMenu from "@paprika/dropdown-menu";
-import sort from "../../../../helpers/sort";
-import { actions } from "../../../../constants";
-import { useDataTableState, useDispatch } from "../../../..";
-import Switch from "@paprika/switch";
+import { useDataTableState } from "../../../..";
 import ColumnManagingItem from "./ColumnManagingItem";
 
-const propTypes = {
-  columns: PropTypes.arrayOf(
-    PropTypes.shape({
-      id: PropTypes.oneOfType([PropTypes.number, PropTypes.string]).isRequired,
-    })
-  ),
-};
-
-const defaultProps = {
-  columns: [],
-};
-
-export default function ColumnManaging(props) {
+export default function ColumnManaging() {
   const { columns, columnsOrder } = useDataTableState();
 
   return (
@@ -41,19 +25,18 @@ export default function ColumnManaging(props) {
   );
 }
 
-ColumnManaging.propTypes = propTypes;
-ColumnManaging.defaultProps = defaultProps;
-
 ColumnManaging.reducer = (state, action) => {
   if (action.type === "TOGGLE_COLUMN") {
+    const columns = action.changes.columns;
+    const newColumn = {
+      ...columns[action.payload],
+      isHidden: !columns[action.payload].isHidden,
+    };
     return {
       ...action.changes,
       columns: {
-        ...action.changes.columns,
-        [action.payload]: {
-          ...action.changes.columns[action.payload],
-          isHidden: !action.changes.columns[action.payload].isHidden,
-        },
+        ...columns,
+        [action.payload]: newColumn,
       },
     };
   }

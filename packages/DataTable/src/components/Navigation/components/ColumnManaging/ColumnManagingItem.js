@@ -1,23 +1,17 @@
 import React from "react";
 import PropTypes from "prop-types";
 import DropdownMenu from "@paprika/dropdown-menu";
-import sort from "../../../../helpers/sort";
-import { actions } from "../../../../constants";
-import { useDataTableState, useDispatch } from "../../../..";
 import Switch from "@paprika/switch";
+import { useDataTableState, useDispatch } from "../../../..";
 
 const propTypes = {
   columnId: PropTypes.oneOfType([PropTypes.string, PropTypes.number]).isRequired,
-};
-
-const defaultProps = {
-  // columns: [],
+  header: PropTypes.oneOfType([PropTypes.string, PropTypes.func]).isRequired,
 };
 
 const noop = () => {};
 
 export default function ColumnManagingItem(props) {
-  // const { sortColumn, sortDirection } = useDataTableState();
   const { columnId, header } = props;
   const dispatch = useDispatch();
   const { columns } = useDataTableState();
@@ -35,4 +29,3 @@ export default function ColumnManagingItem(props) {
 }
 
 ColumnManagingItem.propTypes = propTypes;
-ColumnManagingItem.defaultProps = defaultProps;

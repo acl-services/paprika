@@ -1,7 +1,6 @@
 import React from "react";
 import PropTypes from "prop-types";
 import tableReducer from "./reducers/table";
-import { actions } from "./constants";
 import useAsyncReducer from "./hooks/useAsyncReducer";
 
 const TableStateContext = React.createContext();
@@ -47,9 +46,20 @@ function TableProvider(props) {
       return;
     }
 
-    dispatch({ type: actions.RESET_DATA, payload: data });
+    dispatch({ type: "RESET_STATE", payload: { data } });
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [data, isFirstRender]);
+
+  React.useEffect(() => {
+    dispatch({
+      type: "RESET_STATE",
+      payload: {
+        columnsOrder: columns.map(column => column.id),
+        columns: columns.reduce((columnsObject, column) => ({ ...columnsObject, [column.id]: column }), {}),
+      },
+    });
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [columns]);
 
   return (
     <TableStateContext.Provider value={state}>
@@ -71,10 +81,16 @@ TableProvider.propTypes = {
   data: PropTypes.arrayOf(PropTypes.objectOf(PropTypes.any)),
   keygen: PropTypes.string.isRequired,
   reducers: PropTypes.arrayOf(PropTypes.func).isRequired,
+  columns: PropTypes.arrayOf(
+    PropTypes.shape({
+      id: PropTypes.oneOfType([PropTypes.number, PropTypes.string]).isRequired,
+    })
+  ),
 };
 
 TableProvider.defaultProps = {
   data: [],
+  columns: [],
 };
 
 export { TableProvider, useDataTableState, useDispatch };

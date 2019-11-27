@@ -25,7 +25,7 @@ export default function App() {
   }, [offset, offsetLetter]);
 
   function renderSeries(cell) {
-    return cell.series.items.map(item => <span>{item.name}</span>);
+    return cell.series.items.map(item => <span key={item.name}>{item.name}</span>);
   }
 
   function renderThumbnail(cell) {
