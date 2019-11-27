@@ -1,6 +1,6 @@
 import React from "react";
 import PropTypes from "prop-types";
-import uuid from "uuid/v4";
+import nanoid from "nanoid";
 import { ShirtSizes } from "@paprika/helpers/lib/customPropTypes";
 import CheckIcon from "@paprika/icon/lib/Check";
 import radioStyles from "./Radio.styles";
@@ -27,7 +27,7 @@ const defaultProps = {
 
 function Radio(props) {
   const { a11yText, children, isChecked, canDeselect, isDisabled, size, onClick, ...moreProps } = props;
-  const radioId = React.useRef(uuid()).current;
+  const radioId = React.useRef(nanoid()).current;
   const inputRef = React.useRef(null);
 
   const styleProps = {
