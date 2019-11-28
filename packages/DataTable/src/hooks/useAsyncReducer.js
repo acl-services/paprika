@@ -5,8 +5,6 @@ const useAsyncReducer = (reducer, initialState = null) => {
 
   const dispatch = async action => {
     const result = reducer(state, action);
-
-    console.log("dispatch setState");
     try {
       const newState = await result;
       setState(newState);
