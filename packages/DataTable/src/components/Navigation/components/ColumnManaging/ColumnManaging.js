@@ -29,7 +29,7 @@ export default function ColumnManaging() {
             {columnsOrder.map(columnId => {
               const { header, canHide } = columns[columnId];
               return (
-                <Sortable.Item sortId={columnId}>
+                <Sortable.Item key={columnId} sortId={columnId}>
                   <ColumnManagingItem canHide={canHide} key={columnId} header={header} columnId={columnId} />
                 </Sortable.Item>
               );
