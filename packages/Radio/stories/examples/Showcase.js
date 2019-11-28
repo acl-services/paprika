@@ -11,7 +11,7 @@ const radioProps = () => ({
   size: select("size", ShirtSizes.DEFAULT, "medium"),
   isDisabled: boolean("isDisabled", false),
   canDeselect: boolean("canDeselect", false),
-  a11yLabelledByText: text("a11yLabelledByText", ""),
+  a11yText: text("a11yText", ""),
 });
 
 const ExampleStory = props => {

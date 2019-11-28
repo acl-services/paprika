@@ -4,7 +4,7 @@ import { ShirtSizes } from "@paprika/helpers/lib/customPropTypes";
 
 const propTypes = {
   /** aria-labelledby prop on the containing group element */
-  a11yLabelledByText: PropTypes.string,
+  a11yText: PropTypes.string,
 
   /** Can deselect any radio */
   canDeselect: PropTypes.bool,
@@ -12,7 +12,7 @@ const propTypes = {
   /** Function used to evaluate which radio is selected by default. */
   defaultCheck: PropTypes.func,
 
-  /** The individual radio itemss. */
+  /** The individual radio items. */
   children: PropTypes.node,
 
   /** Are all radios disabled */
@@ -26,7 +26,7 @@ const propTypes = {
 };
 
 const defaultProps = {
-  a11yLabelledByText: "",
+  a11yText: "",
   canDeselect: false,
   children: null,
   defaultCheck: () => {},
@@ -35,7 +35,7 @@ const defaultProps = {
 };
 
 function Group(props) {
-  const { a11yLabelledByText, canDeselect, children, defaultCheck, onChange, ...moreGroupProps } = props;
+  const { a11yText, canDeselect, children, defaultCheck, onChange, ...moreGroupProps } = props;
   const defaultCheckedId = React.Children.toArray(children).find(defaultCheck).props.value.id;
   const [checkedId, setCheckedId] = React.useState(defaultCheckedId || null);
   const deselectableId = id => (checkedId === id ? null : id);
@@ -46,7 +46,7 @@ function Group(props) {
   };
 
   return (
-    <div role="radiogroup" aria-labelledby={a11yLabelledByText} data-pka-anchor="radio.group">
+    <div role="radiogroup" aria-labelledby={a11yText} data-pka-anchor="radio.group">
       {children.map((child, index) => {
         if (child && child.type && child.type.displayName === "Radio") {
           const childKey = { key: `Radio${index}` };
