@@ -86,6 +86,8 @@ function DropdownMenu(props) {
       focusAndSetIndex(0);
     } else if (event.key === "End") {
       focusAndSetIndex(dropdownLastItemIndex);
+    } else if (event.key === "Enter" || event.key === " ") {
+      // do nothing
     } else {
       handleCloseMenu();
     }
@@ -154,12 +156,6 @@ function DropdownMenu(props) {
       align={align}
       offset={popoverOffset}
       isOpen={isOpen}
-      onOpen={() => {
-        console.log("calling on open dropdown");
-      }}
-      onDelayedOpen={() => {
-        console.log("calling on delayed open dropdown");
-      }}
       onClose={() => {
         if (!isConfirming) handleCloseMenu();
       }}
@@ -167,16 +163,7 @@ function DropdownMenu(props) {
       {...moreProps}
     >
       <Popover.Trigger>{renderTrigger()}</Popover.Trigger>
-      <Popover.Content
-        onOpen={() => {
-          console.log("calling on open content dropdown");
-        }}
-        onDelayedOpen={() => {
-          console.log("calling on delayed open content dropdown");
-        }}
-        id={menuId.current}
-        role={!isConfirming ? "menu" : null}
-      >
+      <Popover.Content id={menuId.current} role={!isConfirming ? "menu" : null}>
         {isOpen && <Popover.Card>{renderContent()}</Popover.Card>}
       </Popover.Content>
     </Popover>

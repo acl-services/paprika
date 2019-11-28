@@ -50,7 +50,7 @@ const Item = props => {
   } = props;
 
   const handleClickItem = () => {
-    onClick();
+    onClick(children);
     onClose();
   };
 
