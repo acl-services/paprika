@@ -102,7 +102,6 @@ export default function VirtualizedTable(props) {
         {columnsOrder.map((columnId, columnIndex) => {
           const column = columns[columnId];
           const { header: headerProp, width, isHidden } = column;
-          console.log("Cell render", headerProp);
           if (isHidden) return null;
           return (
             <CellStyled isHeaderStyledCell key={`cell_${columnIndex}`} $width={width} $height={rowHeightValue}>
