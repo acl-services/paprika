@@ -12,6 +12,7 @@ export default function ColumnManagingItem(props) {
   const { columnId, header } = props;
   const dispatch = useDispatch();
   const { columns } = useDataTableState();
+  const column = columns[columnId];
 
   function handleClick() {
     dispatch({ type: "TOGGLE_COLUMN", payload: columnId });
@@ -19,7 +20,7 @@ export default function ColumnManagingItem(props) {
 
   return (
     <React.Fragment>
-      <Switch onClick={handleClick} isChecked={!columns[columnId].isHidden} />
+      <Switch onClick={handleClick} isChecked={!column.isHidden} isDisabled={!column.canHide} />
       {header}
     </React.Fragment>
   );
