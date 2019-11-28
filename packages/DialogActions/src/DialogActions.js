@@ -16,13 +16,13 @@ const propTypes = {
   isDisabled: PropTypes.bool,
 
   /** Text for cancel button. */
-  labelCancel: PropTypes.string.isRequired,
+  labelCancel: PropTypes.string,
 
   /** Text for primary action button. */
-  labelConfirm: PropTypes.string.isRequired,
+  labelConfirm: PropTypes.string,
 
   /** Text for a secondary generic button. */
-  labelDecline: PropTypes.string.isRequired,
+  labelDecline: PropTypes.string,
 
   /** Function to call when cancel button is clicked. */
   onCancel: PropTypes.func,
@@ -38,6 +38,9 @@ const defaultProps = {
   className: "",
   confirmKind: "primary",
   isDisabled: false,
+  labelCancel: "",
+  labelConfirm: "",
+  labelDecline: "",
   onCancel: () => {},
   onConfirm: () => {},
   onDecline: () => {},
@@ -58,7 +61,7 @@ function DialogActions(props) {
         onClick={onCancel}
         css={ButtonStyles}
       >
-        {labelCancel || I18n.t("actions.cancel")}
+        {labelCancel === "" ? I18n.t("actions.cancel") : labelCancel}
       </Button>
     );
   }
@@ -72,7 +75,7 @@ function DialogActions(props) {
         size="large"
         kind={confirmKind}
       >
-        {labelConfirm || I18n.t("actions.confirm")}
+        {labelConfirm === "" ? I18n.t("actions.confirm") : labelConfirm}
       </Button>
     );
   }
@@ -87,7 +90,7 @@ function DialogActions(props) {
         size="large"
         css={ButtonStyles}
       >
-        {labelDecline || I18n.t("actions.decline")}
+        {labelDecline === "" ? I18n.t("actions.decline") : labelDecline}
       </Button>
     );
   }

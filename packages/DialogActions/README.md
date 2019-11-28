@@ -4,6 +4,8 @@ The `<DialogActions>` component renders three buttons, Save (hasConfirm), Don't 
 
 ### Installation
 
+`> npm install --save @paprika/l10n`
+and
 `> npm install --save @paprika/dialog-actions`
 or
 `> yarn add @paprika/dialog-actions`
