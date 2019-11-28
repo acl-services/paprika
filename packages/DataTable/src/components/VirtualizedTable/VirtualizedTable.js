@@ -36,7 +36,8 @@ export default function VirtualizedTable(props) {
   const [activeCell, setActiveCell] = React.useState({ rowIndex: null, dataRow: null, index: null, data: null });
   const refActivePage = React.useRef({ from: null, to: null, subset: null });
   const refVirtualizeRows = React.useRef(null);
-
+  const { data, sortedOrder, keygen, rowHeight: stateRowHeigth, columns, columnsOrder } = useDataTableState();
+  const columnsLength = columnsOrder.length;
   const delayedKeyDown = React.useRef(
     debounce(
       ({
@@ -68,10 +69,6 @@ export default function VirtualizedTable(props) {
   ).current;
 
   // this will inject 20 rows below the visible table to helps with the navigation and scrolling flickering
-
-  const { data, sortedOrder, keygen, rowHeight: stateRowHeigth, columns, columnsOrder } = useDataTableState();
-
-  const columnsLength = columns.length;
 
   const dataForRendering = sortedOrder
     ? sortedOrder.map(keygenValue => data.find(item => item[keygen] === keygenValue))
