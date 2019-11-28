@@ -57,8 +57,8 @@ function DropdownMenu(props) {
 
   const handleOpenMenu = () => {
     setIsOpen(true);
-    // https://github.com/acl-services/paprika/issues/131 #6
-    // Todo should be called via an onOpen callback via popover mounting content rather than timeout.
+    // https://github.com/acl-services/paprika/issues/316
+    // Todo Should focus the first item via an onAfterOpen event callback in popover
     setTimeout(() => {
       focusAndSetIndex(0);
     }, 250);
