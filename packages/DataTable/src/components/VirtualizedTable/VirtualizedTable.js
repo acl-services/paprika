@@ -12,12 +12,36 @@ import Cell from "../Cell";
 import { Cell as CellStyled } from "../Cell/Cell.styles";
 import { useDataTableState } from "../../context";
 
+const propTypes = {
+  columns: PropTypes.arrayOf(
+    PropTypes.shape({
+      id: PropTypes.oneOfType([PropTypes.number, PropTypes.string]).isRequired,
+    })
+  ).isRequired,
+  height: PropTypes.number.isRequired,
+  LoadMoreButton: PropTypes.node,
+  onClickCell: PropTypes.func,
+  onKeyDownArrow: PropTypes.func,
+  onExpandedRow: PropTypes.func,
+  rowHeight: PropTypes.number.isRequired,
+  width: PropTypes.number,
+};
+
+const defaultProps = {
+  LoadMoreButton: null,
+  onClickCell: () => {},
+  onKeyDownArrow: () => {},
+  onExpandedRow: () => {},
+  width: null,
+};
+
 export default function VirtualizedTable(props) {
-  const { columns, height, rowHeight, width } = props;
+  const { columns, height, rowHeight, width, onExpandedRow, onKeyDownArrow, onClickCell, LoadMoreButton } = props;
   const [activeRowOnMouseEnter, setActiveRowOnMouseEnter] = React.useState({ index: null, data: null });
   const [activeCell, setActiveCell] = React.useState({ rowIndex: null, dataRow: null, index: null, data: null });
-  const refActivePage = React.useRef({ from: null, to: null });
+  const refActivePage = React.useRef({ from: null, to: null, subset: null });
   const refVirtualizeRows = React.useRef(null);
+
   const delayedKeyDown = React.useRef(
     debounce(
       ({
@@ -25,6 +49,7 @@ export default function VirtualizedTable(props) {
         columnsLength,
         delayedKeyDown,
         event,
+        onKeyDownArrow,
         refActivePage,
         refVirtualizeRows,
         rowHeight,
@@ -36,6 +61,7 @@ export default function VirtualizedTable(props) {
           columnsLength,
           delayedKeyDown,
           event,
+          onKeyDownArrow,
           refActivePage,
           refVirtualizeRows,
           rowHeight,
@@ -67,6 +93,7 @@ export default function VirtualizedTable(props) {
   function handleKeyDown(event) {
     if (arrowKeys.includes(event.key)) {
       event.preventDefault();
+      event.persist();
       delayedKeyDown({
         activeCell,
         columnsLength,
@@ -76,10 +103,14 @@ export default function VirtualizedTable(props) {
         rowHeight: rowHeightValue,
         rowsLength,
         setActiveCell,
+        onKeyDownArrow,
       });
-      event.persist();
     }
   }
+
+  const handleRowExpand = row => () => {
+    onExpandedRow(row);
+  };
 
   /* eslint-disable jsx-a11y/no-static-element-interactions */
   /* eslint-disable jsx-a11y/no-noninteractive-tabindex  */
@@ -99,7 +130,13 @@ export default function VirtualizedTable(props) {
         {columns.map((column, columnIndex) => {
           const { header: headerProp, width } = column;
           return (
-            <CellStyled isHeaderStyledCell key={`cell_${columnIndex}`} $width={width} $height={rowHeightValue}>
+            <CellStyled
+              role="columnheader"
+              isHeaderStyledCell
+              key={`cell_${columnIndex}`}
+              $width={width}
+              $height={rowHeightValue}
+            >
               {typeof headerProp === "function" ? headerProp(column) : headerProp}
               <Options {...column} />
             </CellStyled>
@@ -112,12 +149,14 @@ export default function VirtualizedTable(props) {
         gridLength={data.length}
         gridHeight={height}
         gridWidth={width}
+        gridFooter={LoadMoreButton}
         ref={refVirtualizeRows}
       >
         {(subset, keys, a11y) => {
           // this information will help to calculated next and previous ArrowUp and ArrowDown
           refActivePage.current.from = keys[0];
           refActivePage.current.to = keys[keys.length - 1];
+          refActivePage.current.subset = subset;
 
           return (
             <>
@@ -136,7 +175,7 @@ export default function VirtualizedTable(props) {
                         <CheckBox indexRowOnMouseEnter={activeRowOnMouseEnter.index} index={keys[rowIndex]} />
                       </styled.Check>
                       <styled.Expand>
-                        <RawButton>⇗</RawButton>
+                        <RawButton onClick={handleRowExpand(row)}>⇗</RawButton>
                       </styled.Expand>
                     </styled.Counter>
                     {columns.map((column, cellIndex) => {
@@ -153,6 +192,8 @@ export default function VirtualizedTable(props) {
                           activeCellIndex={activeCell.index}
                           setActiveCell={setActiveCell}
                           cell={cell}
+                          onClickCell={onClickCell}
+                          refActivePage={refActivePage}
                         >
                           {typeof cell === "function" ? cell(row) : row[cell]}
                         </Cell>
@@ -170,17 +211,5 @@ export default function VirtualizedTable(props) {
 }
 /* eslint-enable react/no-array-index-key */
 
-VirtualizedTable.propTypes = {
-  columns: PropTypes.arrayOf(
-    PropTypes.shape({
-      id: PropTypes.oneOfType([PropTypes.number, PropTypes.string]).isRequired,
-    })
-  ).isRequired,
-  height: PropTypes.number.isRequired,
-  width: PropTypes.number,
-  rowHeight: PropTypes.number.isRequired,
-};
-
-VirtualizedTable.defaultProps = {
-  width: null,
-};
+VirtualizedTable.propTypes = propTypes;
+VirtualizedTable.defaultProps = defaultProps;

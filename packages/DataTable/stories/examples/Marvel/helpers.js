@@ -1,4 +1,4 @@
-export async function fetchMarvelAPI(term, offset = null, limit = 100) {
+export async function fetchMarvelAPI(term, offset = null, limit = 20) {
   const url = "https://gateway.marvel.com:443/v1/public/characters?nameStartsWith=";
   const offsetParameter = offset ? `&offset=${offset * limit}` : "";
   // low risk to share api key for now, I can invalidate it later and extracted it to an env variable
