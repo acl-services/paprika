@@ -57,6 +57,11 @@ function DropdownMenu(props) {
 
   const handleOpenMenu = () => {
     setIsOpen(true);
+    // https://github.com/acl-services/paprika/issues/131 #6
+    // Todo should be called via an onOpen callback via popover mounting content rather than timeout.
+    setTimeout(() => {
+      focusAndSetIndex(0);
+    }, 250);
   };
 
   const extractedChildren = extractChildren(children, ["DropdownMenu.Trigger"]);
@@ -71,16 +76,18 @@ function DropdownMenu(props) {
     ).length - 1;
 
   const onKeyDown = (event, currentIndex) => {
-    if (event.key === "ArrowRight" || event.key === "ArrowDown") {
+    if (event.key === "ArrowDown") {
       const indexToFocus = currentIndex === dropdownLastItemIndex ? 0 : currentIndex + 1;
       focusAndSetIndex(indexToFocus);
-    } else if (event.key === "ArrowLeft" || event.key === "ArrowUp") {
+    } else if (event.key === "ArrowUp") {
       const indexToFocus = currentIndex === 0 ? dropdownLastItemIndex : currentIndex - 1;
       focusAndSetIndex(indexToFocus);
     } else if (event.key === "Home") {
       focusAndSetIndex(0);
     } else if (event.key === "End") {
       focusAndSetIndex(dropdownLastItemIndex);
+    } else {
+      handleCloseMenu();
     }
   };
 
@@ -147,6 +154,12 @@ function DropdownMenu(props) {
       align={align}
       offset={popoverOffset}
       isOpen={isOpen}
+      onOpen={() => {
+        console.log("calling on open dropdown");
+      }}
+      onDelayedOpen={() => {
+        console.log("calling on delayed open dropdown");
+      }}
       onClose={() => {
         if (!isConfirming) handleCloseMenu();
       }}
@@ -154,7 +167,16 @@ function DropdownMenu(props) {
       {...moreProps}
     >
       <Popover.Trigger>{renderTrigger()}</Popover.Trigger>
-      <Popover.Content id={menuId.current} role={!isConfirming ? "menu" : null}>
+      <Popover.Content
+        onOpen={() => {
+          console.log("calling on open content dropdown");
+        }}
+        onDelayedOpen={() => {
+          console.log("calling on delayed open content dropdown");
+        }}
+        id={menuId.current}
+        role={!isConfirming ? "menu" : null}
+      >
         {isOpen && <Popover.Card>{renderContent()}</Popover.Card>}
       </Popover.Content>
     </Popover>
