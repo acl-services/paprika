@@ -29,3 +29,11 @@ export const VirtualizeRows = styled.div.attrs(({ top }) => ({
 }))`
   position: relative;
 `;
+
+export const VirtualizeFooter = styled.div`
+  align-items: center;
+  display: flex;
+  justify-items: center;
+  padding: 8px;
+  width: 100%;
+`;

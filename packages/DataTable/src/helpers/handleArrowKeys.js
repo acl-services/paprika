@@ -1,12 +1,23 @@
 import closest from "@paprika/helpers/lib/dom/closest";
+import getRow from "./getRow";
 
 export const arrowKeys = ["ArrowDown", "ArrowUp", "ArrowRight", "ArrowLeft"];
 const isOutOfBoundaries = (nextRow, boundaries) => nextRow < boundaries.top || nextRow > boundaries.bottom;
+
+function handleArrowKeyDown({ event, onKeyDownArrow, row, refActivePage }) {
+  // wait until the next repaint and let the scroll happens with the new virtualizes subset then
+  // get the value of the next loaded row.
+  window.requestAnimationFrame(() => {
+    const rowData = getRow({ row, refActivePage });
+    onKeyDownArrow(event, rowData);
+  });
+}
 
 export default function handleArrowKeys({
   activeCell,
   columnsLength,
   event,
+  onKeyDownArrow,
   refActivePage,
   refVirtualizeRows,
   rowHeight,
@@ -45,13 +56,13 @@ export default function handleArrowKeys({
           // if we are approaching to the top start scrolling
           if (nextRow <= top - 1) {
             const $scrollableElement = refVirtualizeRows.current.getScrollableElement();
-            // from + 3 indicate will show 4 new row once start navigating out of the area
             const _top = top - 1 === 0 ? 0 : top - 1;
 
             $scrollableElement.scrollTo({ top: rowHeight * _top });
           }
 
           setActiveCell(activeCell => ({ ...activeCell, index: nextIndex }));
+          handleArrowKeyDown({ event, onKeyDownArrow, row: nextRow, refActivePage });
         },
         ArrowDown: () => {
           const { top, end } = boundaries;
@@ -86,6 +97,7 @@ export default function handleArrowKeys({
           }
 
           setActiveCell(activeCell => ({ ...activeCell, index: nextIndex }));
+          handleArrowKeyDown({ event, onKeyDownArrow, row: nextRow, refActivePage });
         },
         ArrowRight: () => {
           if (cell + 1 < boundaries.right) {
@@ -97,6 +109,7 @@ export default function handleArrowKeys({
           }
 
           setActiveCell(activeCell => ({ ...activeCell, index: nextIndex }));
+          handleArrowKeyDown({ event, onKeyDownArrow, row, refActivePage });
         },
         ArrowLeft: () => {
           if (cell - 1 >= boundaries.left) {
@@ -108,6 +121,7 @@ export default function handleArrowKeys({
           }
 
           setActiveCell(activeCell => ({ ...activeCell, index: nextIndex }));
+          handleArrowKeyDown({ event, onKeyDownArrow, row, refActivePage });
         },
       };
 
