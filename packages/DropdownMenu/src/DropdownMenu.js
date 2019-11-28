@@ -40,7 +40,8 @@ function DropdownMenu(props) {
   const dropdownListRef = React.useRef(null);
 
   function focusAndSetIndex(index) {
-    dropdownListRef.current.querySelectorAll(".dropdown-item")[index].focus();
+    if (dropdownListRef && dropdownListRef.current && index !== undefined)
+      dropdownListRef.current.querySelectorAll(".dropdown-item")[index].focus();
     setFocusIndex(index);
   }
 
