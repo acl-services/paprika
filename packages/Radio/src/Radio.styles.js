@@ -111,11 +111,6 @@ const radioStyles = css`
   input[type="radio"] {
     ${visuallyHidden};
 
-    &:focus + label::before {
-      box-shadow: ${tokens.highlight.active.noBorder.boxShadow};
-      border-color: ${tokens.highlight.active.noBorder.borderColor};
-    }
-
     & + label {
       cursor: pointer;
       display: inline-block;
@@ -189,6 +184,11 @@ const radioStyles = css`
       & + label:hover::before {
         border: 2px solid ${tokens.color.blackLighten60};
       }
+    }
+
+    &:focus + label::before {
+      border-color: ${tokens.highlight.active.noBorder.borderColor};
+      box-shadow: ${tokens.highlight.active.noBorder.boxShadow};
     }
   }
 `;
