@@ -35,21 +35,23 @@ const defaultProps = {
 };
 
 function Group(props) {
-  const { a11yLabelledByText, canDeselect, children, defaultCheck, ...moreGroupProps } = props;
+  const { a11yLabelledByText, canDeselect, children, defaultCheck, onChange, ...moreGroupProps } = props;
   const defaultCheckedId = React.Children.toArray(children).find(defaultCheck).props.value.id;
   const [checkedId, setCheckedId] = React.useState(defaultCheckedId || null);
   const deselectableId = id => (checkedId === id ? null : id);
-  const handleRadioClick = id => {
+  const handleRadioClick = child => {
+    const id = child.props.value.id;
+    onChange(id);
     setCheckedId(canDeselect ? deselectableId(id) : id);
   };
 
   return (
     <div role="radiogroup" aria-labelledby={a11yLabelledByText} data-pka-anchor="radio.group">
-      {React.Children.map(children, (child, index) => {
+      {children.map((child, index) => {
         if (child && child.type && child.type.displayName === "Radio") {
           const childKey = { key: `Radio${index}` };
           return React.cloneElement(child, {
-            onClick: () => handleRadioClick(child.props.value.id),
+            onClick: () => handleRadioClick(child),
             isChecked: checkedId === child.props.value.id,
             canDeselect,
             ...childKey,

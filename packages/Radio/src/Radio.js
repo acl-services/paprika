@@ -59,6 +59,7 @@ function Radio(props) {
     checked: isChecked,
     disabled: isDisabled,
     id: radioId,
+    name: children,
     onKeyUp: handleKeyUp,
     onKeyDown: handleKeyDown,
     ref: inputRef,

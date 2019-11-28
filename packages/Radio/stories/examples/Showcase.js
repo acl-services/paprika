@@ -1,5 +1,6 @@
 import React from "react";
 import { boolean, select, text } from "@storybook/addon-knobs";
+import { action } from "@storybook/addon-actions";
 import { Rule, Tagline } from "storybook/assets/styles/common.styles";
 import { ShirtSizes } from "@paprika/helpers/lib/customPropTypes";
 import Heading from "@paprika/heading";
@@ -24,7 +25,7 @@ const ExampleStory = props => {
       <Radio.Group
         defaultCheck={check => check.props.value.id === "value 1"}
         onChange={value => {
-          console.log(value);
+          action("Radio selection changed to ")(value);
         }}
         {...props}
       >
