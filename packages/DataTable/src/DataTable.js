@@ -32,7 +32,6 @@ export default function DataTable(props) {
     childrenProps,
     ["DataTable.ColumnDefinition", "DataTable.Navigation"]
   );
-
   const columns = ColumnsDefinition.map(Column => Column.props);
 
   let navigationReducers = [];
@@ -45,7 +44,7 @@ export default function DataTable(props) {
   return (
     <TableProvider data={data} keygen={keygen} reducers={navigationReducers.concat(reducers)} columns={columns}>
       <div>{isLoading ? "Loading..." : null}</div>
-      {Navigation ? React.cloneElement(Navigation, { columns }) : null}
+      {Navigation}
       <VirtualizedTable height={height} rowHeight={rowHeight} width={width} />
     </TableProvider>
   );

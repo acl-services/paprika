@@ -175,11 +175,6 @@ export default function VirtualizedTable(props) {
 /* eslint-enable react/no-array-index-key */
 
 VirtualizedTable.propTypes = {
-  columns: PropTypes.arrayOf(
-    PropTypes.shape({
-      id: PropTypes.oneOfType([PropTypes.number, PropTypes.string]).isRequired,
-    })
-  ).isRequired,
   height: PropTypes.number.isRequired,
   width: PropTypes.number,
   rowHeight: PropTypes.number.isRequired,

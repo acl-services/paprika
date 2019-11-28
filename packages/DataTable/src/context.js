@@ -1,5 +1,6 @@
 import React from "react";
 import PropTypes from "prop-types";
+import isMatchWith from "lodash.ismatchwith";
 import tableReducer from "./reducers/table";
 import useAsyncReducer from "./hooks/useAsyncReducer";
 
@@ -47,17 +48,25 @@ function TableProvider(props) {
     }
 
     dispatch({ type: "RESET_STATE", payload: { data } });
+    // Watching data
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [data, isFirstRender]);
 
   React.useEffect(() => {
-    dispatch({
-      type: "RESET_STATE",
-      payload: {
-        columnsOrder: columns.map(column => column.id),
-        columns: columns.reduce((columnsObject, column) => ({ ...columnsObject, [column.id]: column }), {}),
-      },
+    const newColumns = columns.reduce((columnsObject, column) => ({ ...columnsObject, [column.id]: column }), {});
+    const isVisibilityChanged = !isMatchWith(newColumns, state.columns, (newColumn, column) => {
+      return newColumn.id === column.id && newColumn.isHidden === column.isHidden;
     });
+
+    if (isVisibilityChanged) {
+      dispatch({
+        type: "RESET_STATE",
+        payload: {
+          columns: newColumns,
+        },
+      });
+    }
+    // Watching isHidden
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [columns]);
 
