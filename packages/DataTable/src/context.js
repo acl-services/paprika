@@ -1,21 +1,24 @@
 import React from "react";
 import PropTypes from "prop-types";
+import isMatchWith from "lodash.ismatchwith";
 import tableReducer from "./reducers/table";
-import { actions } from "./constants";
 import useAsyncReducer from "./hooks/useAsyncReducer";
 
 const TableStateContext = React.createContext();
 const TableDispatchContext = React.createContext();
 
 function TableProvider(props) {
-  const { data, keygen, reducers } = props;
+  const { data, keygen, reducers, columns } = props;
   const initialState = {
     data: data || [],
     keygen,
     sortColumn: null,
     sortDirection: null,
     sortedOrder: null,
+    columnsOrder: columns.map(column => column.id),
+    columns: columns.reduce((columnsObject, column) => ({ ...columnsObject, [column.id]: column }), {}),
   };
+
   const isFirstRender = React.useRef(true);
   const memorizedReducer = React.useCallback(
     (state, action) => {
@@ -44,9 +47,28 @@ function TableProvider(props) {
       return;
     }
 
-    dispatch({ type: actions.RESET_DATA, payload: data });
+    dispatch({ type: "RESET_STATE", payload: { data } });
+    // Watching data
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [data, isFirstRender]);
+
+  React.useEffect(() => {
+    const newColumns = columns.reduce((columnsObject, column) => ({ ...columnsObject, [column.id]: column }), {});
+    const isVisibilityChanged = !isMatchWith(newColumns, state.columns, (newColumn, column) => {
+      return newColumn.id === column.id && newColumn.isHidden === column.isHidden;
+    });
+
+    if (isVisibilityChanged) {
+      dispatch({
+        type: "RESET_STATE",
+        payload: {
+          columns: newColumns,
+        },
+      });
+    }
+    // Watching isHidden
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [columns]);
 
   return (
     <TableStateContext.Provider value={state}>
@@ -68,10 +90,16 @@ TableProvider.propTypes = {
   data: PropTypes.arrayOf(PropTypes.objectOf(PropTypes.any)),
   keygen: PropTypes.string.isRequired,
   reducers: PropTypes.arrayOf(PropTypes.func).isRequired,
+  columns: PropTypes.arrayOf(
+    PropTypes.shape({
+      id: PropTypes.oneOfType([PropTypes.number, PropTypes.string]).isRequired,
+    })
+  ),
 };
 
 TableProvider.defaultProps = {
   data: [],
+  columns: [],
 };
 
 export { TableProvider, useDataTableState, useDispatch };

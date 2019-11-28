@@ -1,29 +1,16 @@
 import React from "react";
-import PropTypes from "prop-types";
 import DropdownMenu from "@paprika/dropdown-menu";
 import sort from "../../../../helpers/sort";
-import { actions } from "../../../../constants";
 import { useDataTableState } from "../../../..";
 import SortTrigger from "./SortTrigger";
 
-const propTypes = {
-  columns: PropTypes.arrayOf(
-    PropTypes.shape({
-      id: PropTypes.oneOfType([PropTypes.number, PropTypes.string]).isRequired,
-    })
-  ),
-};
-
-const defaultProps = {
-  columns: [],
-};
-
 const noop = () => {};
 
-export default function Sort(props) {
-  const { sortColumn, sortDirection } = useDataTableState();
-  const { columns } = props;
-  const hasSortDirections = columns.find(({ sortDirections }) => sortDirections && sortDirections.length > 0);
+export default function Sort() {
+  const { sortColumn, sortDirection, columns, columnsOrder } = useDataTableState();
+  const hasSortDirections = !!columnsOrder.find(
+    columnId => columns[columnId].sortDirections && columns[columnId].sortDirections.length > 0
+  );
 
   if (!hasSortDirections) return null;
 
@@ -36,7 +23,8 @@ export default function Sort(props) {
         </DropdownMenu.Trigger>
       )}
     >
-      {columns.map(({ id: columnId, header, sortDirections, momentParsingFormat }) => {
+      {columnsOrder.map(columnId => {
+        const { header, sortDirections, momentParsingFormat, type } = columns[columnId];
         if (!sortDirections || sortDirections.length === 0) return null;
 
         return (
@@ -48,7 +36,7 @@ export default function Sort(props) {
                   key={direction}
                   columnId={columnId}
                   direction={direction}
-                  columnType={columns.find(column => columnId === column.id).type}
+                  columnType={type}
                   momentParsingFormat={momentParsingFormat}
                 />
               ))}
@@ -59,11 +47,8 @@ export default function Sort(props) {
   );
 }
 
-Sort.propTypes = propTypes;
-Sort.defaultProps = defaultProps;
-
 Sort.reducer = (state, action) => {
-  if (action.type === actions.SORT)
+  if (action.type === "SORT")
     return {
       ...action.changes,
       sortColumn: action.payload.columnId,

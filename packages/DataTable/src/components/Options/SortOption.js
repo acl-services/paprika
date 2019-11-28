@@ -1,7 +1,7 @@
 import React from "react";
 import PropTypes from "prop-types";
 import DropdownMenu from "@paprika/dropdown-menu";
-import { actions, columnTypes } from "../../constants";
+import { columnTypes } from "../../constants";
 import { useDataTableState, useDispatch } from "../../context";
 
 export default function SortOption(props) {
@@ -15,7 +15,7 @@ export default function SortOption(props) {
 
   function handleSortBy() {
     dispatch({
-      type: actions.SORT,
+      type: "SORT",
       payload: { columnId, direction, columnType: getColumnType(), momentParsingFormat },
     });
   }

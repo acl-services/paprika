@@ -51,9 +51,7 @@ export default function RowHeight(props) {
 
   return (
     <RawButton a11yText="L10n: Change row height" onClick={handleClick}>
-      <span role="img" aria-label="Row height">
-        🐶
-      </span>
+      Row height
     </RawButton>
   );
 }

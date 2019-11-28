@@ -13,11 +13,6 @@ import { Cell as CellStyled } from "../Cell/Cell.styles";
 import { useDataTableState } from "../../context";
 
 const propTypes = {
-  columns: PropTypes.arrayOf(
-    PropTypes.shape({
-      id: PropTypes.oneOfType([PropTypes.number, PropTypes.string]).isRequired,
-    })
-  ).isRequired,
   height: PropTypes.number.isRequired,
   LoadMoreButton: PropTypes.node,
   onClickCell: PropTypes.func,
@@ -36,12 +31,13 @@ const defaultProps = {
 };
 
 export default function VirtualizedTable(props) {
-  const { columns, height, rowHeight, width, onExpandedRow, onKeyDownArrow, onClickCell, LoadMoreButton } = props;
+  const { height, rowHeight, width, onExpandedRow, onKeyDownArrow, onClickCell, LoadMoreButton } = props;
   const [activeRowOnMouseEnter, setActiveRowOnMouseEnter] = React.useState({ index: null, data: null });
   const [activeCell, setActiveCell] = React.useState({ rowIndex: null, dataRow: null, index: null, data: null });
   const refActivePage = React.useRef({ from: null, to: null, subset: null });
   const refVirtualizeRows = React.useRef(null);
-
+  const { data, sortedOrder, keygen, rowHeight: stateRowHeigth, columns, columnsOrder } = useDataTableState();
+  const columnsLength = columnsOrder.length;
   const delayedKeyDown = React.useRef(
     debounce(
       ({
@@ -73,9 +69,6 @@ export default function VirtualizedTable(props) {
   ).current;
 
   // this will inject 20 rows below the visible table to helps with the navigation and scrolling flickering
-  const columnsLength = columns.length;
-
-  const { data, sortedOrder, keygen, rowHeight: stateRowHeigth } = useDataTableState();
 
   const dataForRendering = sortedOrder
     ? sortedOrder.map(keygenValue => data.find(item => item[keygen] === keygenValue))
@@ -127,8 +120,10 @@ export default function VirtualizedTable(props) {
           </styled.Check>
           <styled.Expand />
         </styled.Counter>
-        {columns.map((column, columnIndex) => {
-          const { header: headerProp, width } = column;
+        {columnsOrder.map((columnId, columnIndex) => {
+          const column = columns[columnId];
+          const { header: headerProp, width, isHidden } = column;
+          if (isHidden) return null;
           return (
             <CellStyled
               role="columnheader"
@@ -138,7 +133,7 @@ export default function VirtualizedTable(props) {
               $height={rowHeightValue}
             >
               {typeof headerProp === "function" ? headerProp(column) : headerProp}
-              <Options {...column} />
+              <Options columnId={columnId} />
             </CellStyled>
           );
         })}
@@ -178,10 +173,11 @@ export default function VirtualizedTable(props) {
                         <RawButton onClick={handleRowExpand(row)}>⇗</RawButton>
                       </styled.Expand>
                     </styled.Counter>
-                    {columns.map((column, cellIndex) => {
-                      const { cell, width } = column;
-
+                    {columnsOrder.map((columnId, cellIndex) => {
+                      const column = columns[columnId];
+                      const { cell, width, isHidden } = column;
                       const index = `${keys[rowIndex]}_${cellIndex}`;
+                      if (isHidden) return null;
                       return (
                         <Cell
                           key={`cell_${index}`}

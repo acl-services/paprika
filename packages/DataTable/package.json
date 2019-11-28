@@ -21,8 +21,10 @@
     "@paprika/raw-button": "^0.2.2",
     "@paprika/sidepanel": "^0.2.6",
     "@paprika/stylers": "^0.2.2",
+    "@paprika/switch": "^0.2.4",
     "@paprika/tokens": "^0.1.9",
     "lodash.debounce": "^4.0.8",
+    "lodash.ismatchwith": "^4.4.0",
     "lodash.isstring": "^4.0.1",
     "prop-types": "^15.7.2"
   },
