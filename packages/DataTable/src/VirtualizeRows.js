@@ -8,6 +8,7 @@ const propTypes = {
   gridRowHeight: PropTypes.number.isRequired,
   gridHeight: PropTypes.number.isRequired,
   gridWidth: PropTypes.number,
+  gridFooter: PropTypes.node,
   data: PropTypes.arrayOf(PropTypes.any).isRequired,
   children: PropTypes.func.isRequired,
 };
@@ -15,10 +16,21 @@ const propTypes = {
 const defaultProps = {
   index: 0,
   gridWidth: null,
+  gridFooter: null,
 };
 
 const VirtualizeRows = React.forwardRef((props, ref) => {
-  const { data, index: $index, gridLength, gridRowHeight, gridHeight, gridWidth, children, ...moreProps } = props;
+  const {
+    children,
+    data,
+    gridFooter,
+    gridHeight,
+    gridLength,
+    gridRowHeight,
+    gridWidth,
+    index: $index,
+    ...moreProps
+  } = props;
   const [state, setState] = React.useState({ index: $index, top: 0 });
   const refElementToScroll = React.useRef(null);
 
@@ -85,20 +97,23 @@ const VirtualizeRows = React.forwardRef((props, ref) => {
 
   // need more a11y love https://developer.mozilla.org/en-US/docs/Web/Accessibility/ARIA/Roles/Row_Role
   return (
-    <styled.Virtualize
-      width={gridWidth}
-      height={gridHeight}
-      data-pka-anchor="virtualize-rows-root"
-      ref={refElementToScroll}
-      {...moreProps}
-      tabIndex="0"
-    >
-      <styled.VirtualizeContent role="grid" height={memoHeight}>
-        <styled.VirtualizeRows role="rowgroup" top={state.top}>
-          {children(subsetToRender, keys, { row: { role: "row" }, cell: { role: "cell" } })}
-        </styled.VirtualizeRows>
-      </styled.VirtualizeContent>
-    </styled.Virtualize>
+    <>
+      <styled.Virtualize
+        width={gridWidth}
+        height={gridHeight}
+        data-pka-anchor="virtualize-rows-root"
+        ref={refElementToScroll}
+        {...moreProps}
+        tabIndex="0"
+      >
+        <styled.VirtualizeContent role="grid" height={memoHeight}>
+          <styled.VirtualizeRows role="rowgroup" top={state.top}>
+            {children(subsetToRender, keys, { row: { role: "row" }, cell: { role: "cell" } })}
+            {gridLength && gridFooter ? <styled.VirtualizeFooter>{gridFooter}</styled.VirtualizeFooter> : null}
+          </styled.VirtualizeRows>
+        </styled.VirtualizeContent>
+      </styled.Virtualize>
+    </>
   );
 });
 

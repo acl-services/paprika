@@ -4,6 +4,7 @@ import PropTypes from "prop-types";
 import ColumnDefinition from "./components/ColumnDefinition";
 import Navigation from "./components/Navigation";
 import VirtualizedTable from "./components/VirtualizedTable";
+import LoadMoreButton from "./components/LoadMoreButton";
 import { extractChildren } from "./helpers";
 import { sortDirections, columnTypes } from "./constants";
 import { TableProvider } from "./context";
@@ -15,6 +16,9 @@ const propTypes = {
   rowHeight: PropTypes.number,
   reducers: PropTypes.arrayOf(PropTypes.func),
   isLoading: PropTypes.bool,
+  onExpandedRow: PropTypes.func,
+  onKeyDownArrow: PropTypes.func,
+  onClickCell: PropTypes.func,
 };
 
 const defaultProps = {
@@ -24,14 +28,34 @@ const defaultProps = {
   rowHeight: 32,
   reducers: [],
   isLoading: false,
+  onExpandedRow: () => {},
+  onKeyDownArrow: () => {},
+  onClickCell: () => {},
 };
 
 export default function DataTable(props) {
-  const { data, children: childrenProps, height, rowHeight, width, keygen, reducers, isLoading } = props;
-  const { "DataTable.ColumnDefinition": ColumnsDefinition, "DataTable.Navigation": Navigation } = extractChildren(
-    childrenProps,
-    ["DataTable.ColumnDefinition", "DataTable.Navigation"]
-  );
+  const {
+    children: childrenProps,
+    data,
+    height,
+    isLoading,
+    keygen,
+    onKeyDownArrow,
+    onClickCell,
+    onExpandedRow,
+    reducers,
+    rowHeight,
+    width,
+  } = props;
+  const {
+    "DataTable.ColumnDefinition": ColumnsDefinition,
+    "DataTable.Navigation": Navigation,
+    "DataTable.LoadMoreButton": LoadMoreButton,
+  } = extractChildren(childrenProps, [
+    "DataTable.ColumnDefinition",
+    "DataTable.Navigation",
+    "DataTable.LoadMoreButton",
+  ]);
 
   const columns = ColumnsDefinition.map(Column => Column.props);
 
@@ -45,8 +69,17 @@ export default function DataTable(props) {
   return (
     <TableProvider data={data} keygen={keygen} reducers={navigationReducers.concat(reducers)} columns={columns}>
       <div>{isLoading ? "Loading..." : null}</div>
-      {Navigation ? React.cloneElement(Navigation, { columns }) : null}
-      <VirtualizedTable height={height} rowHeight={rowHeight} width={width} />
+      {Navigation}
+      <VirtualizedTable
+        onExpandedRow={onExpandedRow}
+        columns={columns}
+        height={height}
+        rowHeight={rowHeight}
+        width={width}
+        LoadMoreButton={LoadMoreButton}
+        onKeyDownArrow={onKeyDownArrow}
+        onClickCell={onClickCell}
+      />
     </TableProvider>
   );
 }
@@ -57,3 +90,4 @@ DataTable.ColumnDefinition = ColumnDefinition;
 DataTable.SortDirections = { ...sortDirections };
 DataTable.Navigation = Navigation;
 DataTable.ColumnTypes = columnTypes;
+DataTable.LoadMoreButton = LoadMoreButton;
