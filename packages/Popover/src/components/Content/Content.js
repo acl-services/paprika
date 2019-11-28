@@ -1,6 +1,7 @@
 import React from "react";
 import ReactDOM from "react-dom";
 import PropTypes from "prop-types";
+import { Transition } from "react-transition-group";
 import isElementContainsFocus from "../../helpers/isElementContainsFocus";
 import PopoverContext from "../../PopoverContext";
 import { consts as PopoverConstants } from "../../Popover.styles";
@@ -104,7 +105,20 @@ const Content = React.forwardRef((props, ref) => {
       zIndex={content.zIndex}
       {...moreProps}
     >
-      {props.children}
+      <Transition
+        mountOnEnter
+        unmountOnExit
+        in={isOpen}
+        timeout={0}
+        onEntered={() => {
+          console.log("on after open");
+        }}
+        onExited={() => {
+          console.log("on after clsoe");
+        }}
+      >
+        {props.children}
+      </Transition>
     </ContentStyled>,
     portalElement
   );
