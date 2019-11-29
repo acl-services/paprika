@@ -32,7 +32,15 @@ const ExampleStory = () => (
         <Button>Open Popover</Button>
       </Popover.Trigger>
       <Popover.Content>
-        <Popover.Card>{sampleText.long}</Popover.Card>
+        <Popover.Card>
+          <p>
+            Some copy with a{" "}
+            <a href="http://www.google.ca" target="_blank" rel="noopener noreferrer">
+              link
+            </a>
+          </p>
+          <button type="button">Submit</button>
+        </Popover.Card>
       </Popover.Content>
       <Popover.Tip />
     </Popover>
