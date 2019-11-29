@@ -9,14 +9,8 @@ const DropdownMenuExample = () => {
   };
 
   return (
-    <DropdownMenu
-      align="bottom"
-      renderTrigger={({ isOpen, handleOpenMenu }) => (
-        <DropdownMenu.Trigger isOpen={isOpen} onOpenMenu={handleOpenMenu}>
-          Trigger
-        </DropdownMenu.Trigger>
-      )}
-    >
+    <DropdownMenu align="bottom">
+      <DropdownMenu.Trigger>Trigger</DropdownMenu.Trigger>
       <DropdownMenu.Item onClick={() => {}}>Edit</DropdownMenu.Item>
       <DropdownMenu.Item onClick={() => {}}>Duplicate</DropdownMenu.Item>
       <DropdownMenu.Item isDestructive isDisabled onClick={() => {}}>
@@ -29,7 +23,6 @@ const DropdownMenuExample = () => {
             <Confirmation
               body="Lorem ipsum dolor amet vexillologist tacos selvage narwhal butcher twee ethical hot chicken."
               confirmLabel="Delete filter"
-              defaultIsOpen
               heading="Delete filter 1?"
               onConfirm={handleConfirm(onCloseMenu)}
             />
@@ -50,7 +43,6 @@ const DropdownMenuExample = () => {
             <Confirmation
               body="Lorem ipsum dolor amet vexillologist tacos selvage narwhal butcher twee ethical hot chicken."
               confirmLabel="Delete filter"
-              defaultIsOpen
               heading="Delete filter 2?"
               onConfirm={handleConfirm(onCloseMenu)}
             />

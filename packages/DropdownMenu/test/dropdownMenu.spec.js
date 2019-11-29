@@ -13,13 +13,8 @@ function renderComponent(props = {}) {
   };
   const renderedComponent = render(
     <L10n>
-      <DropdownMenu
-        renderTrigger={({ isOpen, handleOpenMenu }) => (
-          <DropdownMenu.Trigger isOpen={isOpen} onOpenMenu={handleOpenMenu} {...props}>
-            Trigger
-          </DropdownMenu.Trigger>
-        )}
-      >
+      <DropdownMenu {...props}>
+        <DropdownMenu.Trigger>Trigger</DropdownMenu.Trigger>
         <DropdownMenu.Item onClick={() => {}}>Edit</DropdownMenu.Item>
         <DropdownMenu.Item onClick={() => {}}>Filter</DropdownMenu.Item>
         <DropdownMenu.Item
@@ -28,7 +23,6 @@ function renderComponent(props = {}) {
             return (
               <Confirmation
                 body="description"
-                defaultIsOpen
                 confirmLabel="Confirm Delete"
                 onConfirm={handleConfirm(onCloseMenu)}
                 heading="Delete Button?"

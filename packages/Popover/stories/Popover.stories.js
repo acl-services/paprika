@@ -7,6 +7,7 @@ import WithTriggers from "./examples/WithTriggers";
 import PositioningElement from "./examples/PositioningElement";
 import ScrollContainer from "./examples/ScrollContainer";
 import Transformed from "./examples/Transformed";
+import FocusTest from "./examples/FocusTest";
 import A11y from "./examples/A11y";
 import Cypress, { propHandles } from "./examples/Cypress";
 import Screener from "./examples/Screener";
@@ -21,7 +22,9 @@ storiesOf("Popover", module)
   .add("With Scroll Container", ScrollContainer)
   .add("With Dynamic Content", DynamicContent);
 
-storiesOf("Popover/Dev", module).add("Has container with a CSS transform", () => <Transformed />);
+storiesOf("Popover/Dev", module)
+  .add("Has container with a CSS transform", () => <Transformed />)
+  .add("Testing Focus Management", () => <FocusTest />);
 
 storiesOf("Popover/Automation Tests", module)
   .add("Accessibility", () => <A11y />)
