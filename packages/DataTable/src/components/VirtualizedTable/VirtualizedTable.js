@@ -37,7 +37,8 @@ export default function VirtualizedTable(props) {
   const refActivePage = React.useRef({ from: null, to: null, subset: null });
   const refVirtualizeRows = React.useRef(null);
   const { data, sortedOrder, keygen, rowHeight: stateRowHeigth, columns, columnsOrder } = useDataTableState();
-  const columnsLength = columnsOrder.length;
+  const visibleColumnsOrder = columnsOrder.filter(columnId => !columns[columnId].isHidden);
+  const columnsLength = visibleColumnsOrder.length;
   const delayedKeyDown = React.useRef(
     debounce(
       ({
@@ -120,7 +121,7 @@ export default function VirtualizedTable(props) {
           </styled.Check>
           <styled.Expand />
         </styled.Counter>
-        {columnsOrder.map((columnId, columnIndex) => {
+        {visibleColumnsOrder.map((columnId, columnIndex) => {
           const column = columns[columnId];
           const { header: headerProp, width, isHidden } = column;
           if (isHidden) return null;
@@ -173,7 +174,7 @@ export default function VirtualizedTable(props) {
                         <RawButton onClick={handleRowExpand(row)}>⇗</RawButton>
                       </styled.Expand>
                     </styled.Counter>
-                    {columnsOrder.map((columnId, cellIndex) => {
+                    {visibleColumnsOrder.map((columnId, cellIndex) => {
                       const column = columns[columnId];
                       const { cell, width, isHidden } = column;
                       const index = `${keys[rowIndex]}_${cellIndex}`;

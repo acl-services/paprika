@@ -1,27 +1,43 @@
 import React from "react";
-import DropdownMenu from "@paprika/dropdown-menu";
-import { useDataTableState } from "../../../..";
+import Popover from "@paprika/popover";
+import Sortable from "@paprika/sortable";
+import { useDataTableState, useDispatch } from "../../../..";
 import ColumnManagingItem from "./ColumnManagingItem";
 
 export default function ColumnManaging() {
   const { columns, columnsOrder } = useDataTableState();
+  const dispatch = useDispatch();
+
+  const handleChangeOrder = result => {
+    const { source, destination } = result;
+
+    if (destination === null || source === destination) return;
+
+    const newOrder = [...columnsOrder];
+    const movedChild = newOrder.splice(source, 1);
+    newOrder.splice(destination, 0, ...movedChild);
+
+    dispatch({ type: "REORDER__COLUMNS", payload: newOrder });
+  };
 
   return (
-    <DropdownMenu
-      align="bottom"
-      renderTrigger={({ isOpen, handleOpenMenu }) => (
-        <DropdownMenu.Trigger isOpen={isOpen} onOpenMenu={handleOpenMenu}>
-          Show/hide column
-        </DropdownMenu.Trigger>
-      )}
-    >
-      {columnsOrder.map(columnId => {
-        const { header, canHide } = columns[columnId];
-        if (!canHide) return null;
-
-        return <ColumnManagingItem key={columnId} header={header} columnId={columnId} />;
-      })}
-    </DropdownMenu>
+    <Popover align="bottom">
+      <Popover.Trigger>Show/hide column</Popover.Trigger>
+      <Popover.Content>
+        <Popover.Card>
+          <Sortable onChange={handleChangeOrder}>
+            {columnsOrder.map(columnId => {
+              const { header, canHide } = columns[columnId];
+              return (
+                <Sortable.Item key={columnId} sortId={columnId}>
+                  <ColumnManagingItem canHide={canHide} key={columnId} header={header} columnId={columnId} />
+                </Sortable.Item>
+              );
+            })}
+          </Sortable>
+        </Popover.Card>
+      </Popover.Content>
+    </Popover>
   );
 }
 
@@ -38,6 +54,13 @@ ColumnManaging.reducer = (state, action) => {
         ...columns,
         [action.payload]: newColumn,
       },
+    };
+  }
+
+  if (action.type === "REORDER__COLUMNS") {
+    return {
+      ...action.changes,
+      columnsOrder: action.payload,
     };
   }
 
