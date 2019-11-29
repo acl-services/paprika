@@ -1,5 +1,6 @@
 import React from "react";
 import PropTypes from "prop-types";
+import nanoid from "nanoid";
 import { ShirtSizes } from "@paprika/helpers/lib/customPropTypes";
 
 const propTypes = {
@@ -39,6 +40,7 @@ function Group(props) {
   const defaultCheckedId = React.Children.toArray(children).find(defaultCheck).props.value.id;
   const [checkedId, setCheckedId] = React.useState(defaultCheckedId || null);
   const deselectableId = id => (checkedId === id ? null : id);
+  const name = nanoid();
   const handleRadioClick = child => {
     const id = child.props.value.id;
     onChange(id);
@@ -54,6 +56,7 @@ function Group(props) {
             onClick: () => handleRadioClick(child),
             isChecked: checkedId === child.props.value.id,
             canDeselect,
+            name,
             ...childKey,
             ...moreGroupProps,
           });

@@ -12,8 +12,9 @@ const propTypes = {
   isChecked: PropTypes.bool,
   isDisabled: PropTypes.bool,
   canDeselect: PropTypes.bool,
-  onClick: PropTypes.func.isRequired,
+  onClick: PropTypes.func,
   size: PropTypes.oneOf(ShirtSizes.DEFAULT),
+  value: PropTypes.shape({ id: PropTypes.string }).isRequired,
 };
 
 const defaultProps = {
@@ -23,6 +24,7 @@ const defaultProps = {
   children: null,
   isDisabled: false,
   size: ShirtSizes.MEDIUM,
+  onClick: () => {},
 };
 
 function Radio(props) {
@@ -59,7 +61,6 @@ function Radio(props) {
     checked: isChecked,
     disabled: isDisabled,
     id: radioId,
-    name: children,
     onKeyUp: handleKeyUp,
     onKeyDown: handleKeyDown,
     ref: inputRef,
