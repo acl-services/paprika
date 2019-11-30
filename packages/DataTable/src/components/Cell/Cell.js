@@ -1,37 +1,37 @@
 import React from "react";
 import PropTypes from "prop-types";
 import * as styled from "./Cell.styles";
-import getRow, { getCoordinatesByCellIndex } from "../../helpers/getRow";
 
 const propTypes = {
   a11yProps: PropTypes.shape({}).isRequired,
   activeCellIndex: PropTypes.string,
   cellIndex: PropTypes.string.isRequired,
   children: PropTypes.node.isRequired,
-  height: PropTypes.number.isRequired,
   setActiveCell: PropTypes.func.isRequired,
-  width: PropTypes.string,
+  style: PropTypes.shape({}).isRequired,
+  rowIndex: PropTypes.number.isRequired,
+  columnIndex: PropTypes.number.isRequired,
+  refData: PropTypes.shape({ current: PropTypes.shape({}) }).isRequired,
   onClickCell: PropTypes.func,
   refActivePage: PropTypes.shape({ current: PropTypes.shape({}) }).isRequired,
 };
 
 const defaultProps = {
-  width: null,
   activeCellIndex: null,
   onClickCell: () => {},
 };
 
 export default function Cell(props) {
   const {
-    a11yProps,
     activeCellIndex,
     cellIndex,
-    refActivePage,
     children,
-    height,
     setActiveCell,
-    width,
     onClickCell,
+    style,
+    rowIndex,
+    columnIndex,
+    refData,
   } = props;
 
   function handleClickCell() {
@@ -41,21 +41,16 @@ export default function Cell(props) {
       });
     }
 
-    const coordinate = getCoordinatesByCellIndex(cellIndex);
-    const row = getRow({ row: coordinate.row, refActivePage });
-    // coordinate includes row number and cell number
-    onClickCell(coordinate, row);
+    onClickCell({ row: rowIndex, column: columnIndex }, refData[rowIndex]);
   }
 
   return (
     <styled.Cell
-      {...a11yProps}
-      $width={width}
-      $height={height}
-      data-pka-cell-index={cellIndex}
+      id={`${cellIndex}`}
       cellIndex={cellIndex}
       activeCellIndex={activeCellIndex}
       onClick={handleClickCell}
+      style={style}
     >
       {children}
     </styled.Cell>

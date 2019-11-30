@@ -1,6 +1,7 @@
 /* eslint-disable react/prop-types */
 import React from "react";
 import PropTypes from "prop-types";
+import nanoid from "nanoid";
 import ColumnDefinition from "./components/ColumnDefinition";
 import Navigation from "./components/Navigation";
 import VirtualizedTable from "./components/VirtualizedTable";
@@ -24,7 +25,7 @@ const propTypes = {
 const defaultProps = {
   data: [],
   height: 600,
-  width: null,
+  width: 640,
   rowHeight: 32,
   reducers: [],
   isLoading: false,
@@ -34,6 +35,7 @@ const defaultProps = {
 };
 
 export default function DataTable(props) {
+  const dataTableID = React.useRef(`DT${nanoid()}DTCELL`).current;
   const {
     children: childrenProps,
     data,
@@ -71,6 +73,7 @@ export default function DataTable(props) {
       <div>{isLoading ? "Loading..." : null}</div>
       {Navigation}
       <VirtualizedTable
+        dataTableID={dataTableID}
         onExpandedRow={onExpandedRow}
         columns={columns}
         height={height}

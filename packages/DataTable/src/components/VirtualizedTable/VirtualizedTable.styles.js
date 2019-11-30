@@ -19,13 +19,6 @@ export const Row = styled.div.attrs(({ $height, isHeaderRow = false }) => {
   display: flex;
 `;
 
-export const HeaderRow = styled(Row)`
-  background: #f5f5f5;
-  font-size: 13px;
-  font-weight: bold;
-  overflow: hidden;
-`;
-
 export const Counter = styled.div`
   align-items: center;
   color: #4d4d4d;
@@ -61,6 +54,7 @@ export const Check = styled.div`
     position: relative;
   }
 `;
+
 export const Expand = styled.div`
   align-items: center;
   display: flex;
