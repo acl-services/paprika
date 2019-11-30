@@ -7,24 +7,36 @@ import radioStyles from "./Radio.styles";
 import Group from "./components/Group";
 
 const propTypes = {
+  /** Used for aria-label on the radio input  */
   a11yText: PropTypes.string,
+  /** Used for label contents */
   children: PropTypes.node,
+  /** Describe if the radio is checked or not */
   isChecked: PropTypes.bool,
+  /** Describe if the radio is disabled or not */
   isDisabled: PropTypes.bool,
+  /* Controls if the radio is selected or not, never combine it with defaultIsSelected */
+  isSelected: PropTypes.bool,
+  /** Describe if the radio started as selected or not */
+  defaultIsSelected: PropTypes.bool,
+  /** Describe if the radio started as selected or not */
   canDeselect: PropTypes.bool,
+  /** On click prop added by Group component */
   onClick: PropTypes.func,
+  /** On click prop added by Group component */
   size: PropTypes.oneOf(ShirtSizes.DEFAULT),
-  value: PropTypes.shape({ id: PropTypes.string }).isRequired,
 };
 
 const defaultProps = {
   a11yText: null,
-  isChecked: false,
   canDeselect: false,
   children: null,
+  isChecked: false,
   isDisabled: false,
-  size: ShirtSizes.MEDIUM,
+  isSelected: false,
+  defaultIsSelected: false,
   onClick: () => {},
+  size: ShirtSizes.MEDIUM,
 };
 
 function Radio(props) {

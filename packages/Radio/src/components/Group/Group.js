@@ -10,9 +10,6 @@ const propTypes = {
   /** Can deselect any radio */
   canDeselect: PropTypes.bool,
 
-  /** Function used to evaluate which radio is selected by default. */
-  defaultCheck: PropTypes.func,
-
   /** The individual radio items. */
   children: PropTypes.node,
 
@@ -30,21 +27,33 @@ const defaultProps = {
   a11yText: "",
   canDeselect: false,
   children: null,
-  defaultCheck: () => {},
   isDisabled: false,
   size: ShirtSizes.MEDIUM,
 };
 
 function Group(props) {
-  const { a11yText, canDeselect, children, defaultCheck, onChange, ...moreGroupProps } = props;
-  const defaultCheckedId = React.Children.toArray(children).find(defaultCheck).props.value.id;
-  const [checkedId, setCheckedId] = React.useState(defaultCheckedId || null);
-  const deselectableId = id => (checkedId === id ? null : id);
+  const { a11yText, canDeselect, children, onChange, ...moreGroupProps } = props;
+  const defaultCheckedIndex = React.Children.toArray(children).findIndex(child => child.props.defaultIsSelected);
+  const selectedIndex = React.Children.toArray(children).findIndex(child => child.props.isSelected);
+
+  const defaultIndex = () => {
+    if (defaultCheckedIndex !== -1) {
+      return defaultCheckedIndex;
+    }
+
+    return false;
+  };
+
+  const [checkedIndex, setCheckedIndex] = React.useState(defaultIndex());
+  if (selectedIndex !== -1 && selectedIndex !== checkedIndex) {
+    setCheckedIndex(selectedIndex);
+  }
+
+  const deselectableIndex = index => (checkedIndex === index ? null : index);
   const name = nanoid();
-  const handleRadioClick = child => {
-    const id = child.props.value.id;
-    onChange(id);
-    setCheckedId(canDeselect ? deselectableId(id) : id);
+  const handleRadioClick = index => {
+    onChange(index);
+    setCheckedIndex(canDeselect ? deselectableIndex(index) : index);
   };
 
   return (
@@ -53,8 +62,8 @@ function Group(props) {
         if (child && child.type && child.type.displayName === "Radio") {
           const childKey = { key: `Radio${index}` };
           return React.cloneElement(child, {
-            onClick: () => handleRadioClick(child),
-            isChecked: checkedId === child.props.value.id,
+            onClick: () => handleRadioClick(index),
+            isChecked: checkedIndex === index,
             canDeselect,
             name,
             ...childKey,

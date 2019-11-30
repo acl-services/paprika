@@ -23,16 +23,15 @@ const ExampleStory = props => {
       <Tagline>Use the knobs to tinker with the props.</Tagline>
       <Rule />
       <Radio.Group
-        defaultCheck={check => check.props.value.id === "value 1"}
-        onChange={value => {
-          action("Radio selection changed to ")(value);
+        onChange={activeIndex => {
+          action("Radio selection changed to index ")(activeIndex);
         }}
         {...props}
       >
-        <Radio value={{ id: "value 1" }}>Radio 1</Radio>
-        <Radio value={{ id: "value 2" }}>Radio 2</Radio>
-        <Radio value={{ id: "value 3" }}>Radio 3</Radio>
-        <Radio value={{ id: "value 4" }}>Radio 4</Radio>
+        <Radio defaultIsSelected>Radio 1</Radio>
+        <Radio>Radio 2</Radio>
+        <Radio>Radio 3</Radio>
+        <Radio>Radio 4</Radio>
       </Radio.Group>
       <Rule />
     </RadioStory>
