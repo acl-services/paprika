@@ -55,9 +55,9 @@ const ExampleStory = props => {
       <br />
       Set Selected Index
       <br />
-      <select onChange={handleIndexChange}>
+      <select value={selectedIndex} onChange={handleIndexChange}>
         {radioItems.map((item, index) => (
-          <option selected={index === selectedIndex} value={index}>
+          <option key={item} value={index}>
             {item}
           </option>
         ))}
