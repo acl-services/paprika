@@ -1,6 +1,5 @@
 import React from "react";
 import PropTypes from "prop-types";
-import DropdownMenu from "@paprika/dropdown-menu";
 import Switch from "@paprika/switch";
 import { useDataTableState, useDispatch } from "../../../..";
 
@@ -9,22 +8,21 @@ const propTypes = {
   header: PropTypes.oneOfType([PropTypes.string, PropTypes.func]).isRequired,
 };
 
-const noop = () => {};
-
 export default function ColumnManagingItem(props) {
   const { columnId, header } = props;
   const dispatch = useDispatch();
   const { columns } = useDataTableState();
+  const column = columns[columnId];
 
   function handleClick() {
     dispatch({ type: "TOGGLE_COLUMN", payload: columnId });
   }
 
   return (
-    <DropdownMenu.Item onClick={noop}>
-      <Switch onClick={handleClick} isChecked={!columns[columnId].isHidden} />
+    <React.Fragment>
+      <Switch onClick={handleClick} isChecked={!column.isHidden} isDisabled={!column.canHide} />
       {header}
-    </DropdownMenu.Item>
+    </React.Fragment>
   );
 }
 
