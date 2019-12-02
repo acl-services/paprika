@@ -122,13 +122,13 @@ export default function VirtualizedTable(props) {
       >
         {propsReactWindow => {
           const { columnIndex, rowIndex, style } = propsReactWindow;
-          const { cell } = columns[visibleColumns[columnIndex]];
+
+          const { cell, header } = columns[columnsOrder[columnIndex]];
           const index = `${dataTableID}${rowIndex}_${columnIndex}`;
           if (rowIndex === 0) {
-            // header row
             return (
               <CellHeader key={`cell_${index}`} style={style}>
-                column {columnIndex}
+                {header}
               </CellHeader>
             );
           }
