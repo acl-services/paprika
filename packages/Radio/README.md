@@ -14,15 +14,14 @@ or
 import Radio from "@paprika/radio";
 
 <Radio.Group
-  defaultCheck={check => check.props.value.id === "id-1"}
-  onChange={value => {
-    // do something with value
+  onChange={activeIndex => {
+    // get values from the data using index
   }}
 >
-  <Radio value={{ id: "id-1" }}>Radio 1</Radio>
-  <Radio value={{ id: "id-2" }}>Radio 2</Radio>
-  <Radio value={{ id: "id-3" }}>Radio 3</Radio>
-  <Radio value={{ id: "id-4" }}>Radio 4</Radio>
+  <Radio>Radio 1</Radio>
+  <Radio>Radio 2</Radio>
+  <Radio>Radio 3</Radio>
+  <Radio>Radio 4</Radio>
 </Radio.Group>;
 ```
 
@@ -30,16 +29,22 @@ import Radio from "@paprika/radio";
 
 #### Radio.Group
 
-- a11yLabelledByText
-- canDeselect
-- defaultCheck
-- children
-- isDisabled
-- onChange
-- size
+-a11yText
+-canDeselect
+-children
+-isDisabled
+-onChange
+-size
+
+[More detail about these props](https://github.com/acl-services/paprika/blob/master/packages/Radio/src/components/Group/Group.js)
 
 #### Radio
 
-- value
+-a11yText
+-canDeselect
+-children
+-isChecked
+-isDisabled
+-defaultIsChecked
 
 [More detail about these props](https://github.com/acl-services/paprika/blob/master/packages/Radio/src/Radio.js)
