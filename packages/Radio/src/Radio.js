@@ -1,10 +1,10 @@
 import React from "react";
 import PropTypes from "prop-types";
 import nanoid from "nanoid";
-import { ShirtSizes } from "@paprika/helpers/lib/customPropTypes";
 import CheckIcon from "@paprika/icon/lib/Check";
 import radioStyles from "./Radio.styles";
 import Group from "./components/Group";
+import RadioContext from "./RadioContext";
 
 const propTypes = {
   /** Used for aria-label on the radio input  */
@@ -19,10 +19,6 @@ const propTypes = {
   defaultIsChecked: PropTypes.bool,
   /** Describe if the radio started as selected or not */
   canDeselect: PropTypes.bool,
-  /** On click prop added by Group component */
-  onClick: PropTypes.func,
-  /** On click prop added by Group component */
-  size: PropTypes.oneOf(ShirtSizes.DEFAULT),
 };
 
 const defaultProps = {
@@ -32,12 +28,13 @@ const defaultProps = {
   isChecked: false,
   isDisabled: false,
   defaultIsChecked: false,
-  onClick: () => {},
-  size: ShirtSizes.MEDIUM,
 };
 
 function Radio(props) {
-  const { a11yText, children, isChecked, canDeselect, isDisabled, size, onClick, ...moreProps } = props;
+  const { a11yText, children, isChecked, isDisabled, ...moreProps } = props;
+  const { handleRadioClick, index, checkedIndex, isGroupDisabled, canDeselect, name, size } = React.useContext(
+    RadioContext
+  );
   const radioId = React.useRef(nanoid()).current;
   const inputRef = React.useRef(null);
 
@@ -55,7 +52,7 @@ function Radio(props) {
   const handleKeyUp = event => {
     const isTriggerKey = event.key === " "; // space key
     if (!isDisabled && isTriggerKey) {
-      onClick(event);
+      handleRadioClick(index);
     }
   };
 
@@ -66,12 +63,13 @@ function Radio(props) {
 
   const inputProps = {
     readOnly: true,
-    onClick,
-    checked: isChecked,
-    disabled: isDisabled,
+    onClick: () => handleRadioClick(index),
+    checked: checkedIndex === index,
+    disabled: isGroupDisabled || isDisabled,
     id: radioId,
-    onKeyUp: handleKeyUp,
+    name,
     onKeyDown: handleKeyDown,
+    onKeyUp: handleKeyUp,
     ref: inputRef,
     type: "radio",
   };

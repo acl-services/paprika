@@ -9,7 +9,7 @@ import Radio from "../../src/Radio";
 
 const radioProps = () => ({
   size: select("size", ShirtSizes.DEFAULT, "medium"),
-  isDisabled: boolean("isDisabled", false),
+  isDisabled: boolean("Is Group Disabled", false),
   canDeselect: boolean("canDeselect", false),
   a11yText: text("a11yText", ""),
 });
@@ -31,7 +31,7 @@ const ExampleStory = props => {
         <Radio defaultIsChecked>Radio 1</Radio>
         <Radio>Radio 2</Radio>
         <Radio>Radio 3</Radio>
-        <Radio>Radio 4</Radio>
+        <Radio isDisabled>Radio 4</Radio>
       </Radio.Group>
       <Rule />
     </RadioStory>

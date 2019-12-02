@@ -26,7 +26,7 @@ const ExampleStory = props => {
       >
         {radioItems.map((item, index) => {
           return (
-            <Radio key={item} defaultIsChecked={index === 2}>
+            <Radio key={item} isDisabled={index === 1} defaultIsChecked={index === 2}>
               {item}
             </Radio>
           );

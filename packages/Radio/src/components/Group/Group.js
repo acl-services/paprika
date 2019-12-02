@@ -2,6 +2,7 @@ import React from "react";
 import PropTypes from "prop-types";
 import nanoid from "nanoid";
 import { ShirtSizes } from "@paprika/helpers/lib/customPropTypes";
+import RadioContext from "../../RadioContext";
 
 const propTypes = {
   /** aria-labelledby prop on the containing group element */
@@ -32,7 +33,7 @@ const defaultProps = {
 };
 
 function Group(props) {
-  const { a11yText, canDeselect, children, onChange, ...moreGroupProps } = props;
+  const { a11yText, canDeselect, children, isDisabled, onChange, ...moreGroupProps } = props;
   const defaultCheckedIndex = React.Children.toArray(children).findIndex(child => child.props.defaultIsChecked);
   const selectedIndex = React.Children.toArray(children).findIndex(child => child.props.isChecked);
 
@@ -58,20 +59,21 @@ function Group(props) {
 
   return (
     <div role="radiogroup" aria-labelledby={a11yText} data-pka-anchor="radio.group">
-      {children.map((child, index) => {
-        if (child && child.type && child.type.displayName === "Radio") {
-          const childKey = { key: `Radio${index}` };
-          return React.cloneElement(child, {
-            onClick: () => handleRadioClick(index),
-            isChecked: checkedIndex === index,
+      {React.Children.map(children, (child, index) => (
+        <RadioContext.Provider
+          value={{
+            isGroupDisabled: isDisabled,
+            handleRadioClick,
+            index,
+            checkedIndex,
             canDeselect,
             name,
-            ...childKey,
             ...moreGroupProps,
-          });
-        }
-        return child;
-      })}
+          }}
+        >
+          {child}
+        </RadioContext.Provider>
+      ))}
     </div>
   );
 }
