@@ -37,15 +37,7 @@ function Group(props) {
   const defaultCheckedIndex = React.Children.toArray(children).findIndex(child => child.props.defaultIsChecked);
   const selectedIndex = React.Children.toArray(children).findIndex(child => child.props.isChecked);
 
-  const defaultIndex = () => {
-    if (defaultCheckedIndex !== -1) {
-      return defaultCheckedIndex;
-    }
-
-    return false;
-  };
-
-  const [checkedIndex, setCheckedIndex] = React.useState(defaultIndex());
+  const [checkedIndex, setCheckedIndex] = React.useState(defaultCheckedIndex);
   if (selectedIndex !== -1 && selectedIndex !== checkedIndex) {
     setCheckedIndex(selectedIndex);
   }
