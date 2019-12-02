@@ -53,13 +53,6 @@ Sort.reducer = (state, action) => {
       ...action.changes,
       sortColumn: action.payload.columnId,
       sortDirection: action.payload.direction,
-      sortedOrder: sort({
-        data: action.changes.data,
-        columnId: action.payload.columnId,
-        direction: action.payload.direction,
-        columnType: action.payload.columnType,
-        momentParsingFormat: action.payload.momentParsingFormat,
-      }).map(item => item[state.keygen]),
     };
 
   return action.changes;

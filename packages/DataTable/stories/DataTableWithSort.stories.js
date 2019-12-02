@@ -4,6 +4,7 @@ import Button from "@paprika/button";
 import DataTable, { RowHeight, Sort } from "../src";
 import fixtures from "./fixtures";
 import { viewPortHeight } from "./helpers";
+import Filters from "../src/components/Navigation/components/Filters/Filters";
 
 const mockData = fixtures(1);
 function App() {
@@ -21,6 +22,7 @@ function App() {
         <DataTable.Navigation>
           <Sort />
           <RowHeight />
+          <Filters />
         </DataTable.Navigation>
         <DataTable.ColumnDefinition id="country" width="190" header="Country" cell="country" />
         <DataTable.ColumnDefinition

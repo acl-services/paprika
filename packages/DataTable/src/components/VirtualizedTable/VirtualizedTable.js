@@ -10,7 +10,7 @@ import Options from "../Options";
 import CheckBox from "../CheckBox";
 import Cell from "../Cell";
 import { Cell as CellStyled } from "../Cell/Cell.styles";
-import { useDataTableState } from "../../context";
+import { useDataTableState, useSortedAndFilteredData } from "../../context";
 
 const propTypes = {
   height: PropTypes.number.isRequired,
@@ -36,7 +36,7 @@ export default function VirtualizedTable(props) {
   const [activeCell, setActiveCell] = React.useState({ rowIndex: null, dataRow: null, index: null, data: null });
   const refActivePage = React.useRef({ from: null, to: null, subset: null });
   const refVirtualizeRows = React.useRef(null);
-  const { data, sortedOrder, keygen, rowHeight: stateRowHeigth, columns, columnsOrder } = useDataTableState();
+  const { rowHeight: stateRowHeigth, columns, columnsOrder } = useDataTableState();
   const visibleColumnsOrder = columnsOrder.filter(columnId => !columns[columnId].isHidden);
   const columnsLength = visibleColumnsOrder.length;
   const delayedKeyDown = React.useRef(
@@ -71,9 +71,7 @@ export default function VirtualizedTable(props) {
 
   // this will inject 20 rows below the visible table to helps with the navigation and scrolling flickering
 
-  const dataForRendering = sortedOrder
-    ? sortedOrder.map(keygenValue => data.find(item => item[keygen] === keygenValue))
-    : data;
+  const dataForRendering = useSortedAndFilteredData();
 
   const rowsLength = dataForRendering && dataForRendering.length;
 
@@ -142,7 +140,7 @@ export default function VirtualizedTable(props) {
       <VirtualizeRows
         data={dataForRendering}
         gridRowHeight={rowHeightValue}
-        gridLength={data.length}
+        gridLength={dataForRendering.length}
         gridHeight={height}
         gridWidth={width}
         gridFooter={LoadMoreButton}

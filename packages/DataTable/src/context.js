@@ -3,6 +3,9 @@ import PropTypes from "prop-types";
 import isMatchWith from "lodash.ismatchwith";
 import tableReducer from "./reducers/table";
 import useAsyncReducer from "./hooks/useAsyncReducer";
+import ruleTesters from "./components/Navigation/components/Filters/ruleTesters";
+import sort from "./helpers/sort";
+import { columnTypes } from "./constants";
 
 const TableStateContext = React.createContext();
 const TableDispatchContext = React.createContext();
@@ -11,12 +14,13 @@ function TableProvider(props) {
   const { data, keygen, reducers, columns } = props;
   const initialState = {
     data: data || [],
+    dataForRendering: data || [],
     keygen,
     sortColumn: null,
     sortDirection: null,
-    sortedOrder: null,
     columnsOrder: columns.map(column => column.id),
     columns: columns.reduce((columnsObject, column) => ({ ...columnsObject, [column.id]: column }), {}),
+    filters: [],
   };
 
   const isFirstRender = React.useRef(true);
@@ -85,6 +89,42 @@ function useDispatch() {
   return React.useContext(TableDispatchContext);
 }
 
+function useSortedAndFilteredData() {
+  const { data, columns, filters, sortColumn, sortDirection, keygen } = useDataTableState();
+  let sortedData = [];
+  let filteredData = [];
+
+  function calculateResult() {
+    if (sortColumn && sortDirection) {
+      sortedData = sort({
+        data,
+        columnId: sortColumn,
+        direction: sortDirection,
+        columnType:
+          columns[sortColumn].type || (typeof data[0][sortColumn] === "number" ? columnTypes.NUMBER : columnTypes.TEXT),
+        momentParsingFormat: columns[sortColumn].momentParsingFormat,
+      });
+    }
+
+    if (filters.length > 0) {
+      filteredData = data.filter(row =>
+        filters.every(filter => ruleTesters[filter.rule](row[filter.columnId], filter.value))
+      );
+    }
+
+    if (sortedData.length === 0 && filteredData.length === 0) return data;
+
+    if (sortedData.length > 0 && filteredData.length > 0)
+      return sortedData.filter(row => filteredData.find(filteredRow => row[keygen] === filteredRow[keygen]));
+
+    return sortedData.length > 0 ? sortedData : filteredData;
+  }
+
+  const result = React.useMemo(calculateResult, [data, columns, filters, sortColumn, sortDirection, keygen]);
+
+  return result;
+}
+
 TableProvider.propTypes = {
   children: PropTypes.node.isRequired,
   data: PropTypes.arrayOf(PropTypes.objectOf(PropTypes.any)),
@@ -102,4 +142,4 @@ TableProvider.defaultProps = {
   columns: [],
 };
 
-export { TableProvider, useDataTableState, useDispatch };
+export { TableProvider, useDataTableState, useDispatch, useSortedAndFilteredData };
