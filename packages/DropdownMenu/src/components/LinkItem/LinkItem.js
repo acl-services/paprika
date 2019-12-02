@@ -39,7 +39,11 @@ const LinkItem = props => {
   }
 
   return (
-    <a aria-label={isExternal ? I18n.t("dropdownMenu.isExternal") : ""} css={linkItemStyles} {...linkItemProps}>
+    <a
+      aria-label={isExternal ? I18n.t("dropdownMenu.isExternal", { link: children }) : ""}
+      css={linkItemStyles}
+      {...linkItemProps}
+    >
       {children}
     </a>
   );
