@@ -8,14 +8,14 @@ import Radio from "../../src/Radio";
 export const radioItems = ["Radio 1", "Radio 2 label", "Radio 3 option"];
 
 const ExampleStory = props => {
-  const [selectedIndex, setSelectedIndex] = React.useState(1);
+  const [checkedIndex, setCheckedIndex] = React.useState(1);
   const handleIndexChange = e => {
-    setSelectedIndex(Number(e.target.value));
+    setCheckedIndex(Number(e.target.value));
   };
   return (
     <RadioStory>
       <Heading level={2} displayLevel={3} isLight>
-        Setting a item as default selected
+        Setting a item as default checked
       </Heading>
       <Rule />
       <Radio.Group
@@ -26,7 +26,7 @@ const ExampleStory = props => {
       >
         {radioItems.map((item, index) => {
           return (
-            <Radio key={item} defaultIsSelected={index === 2}>
+            <Radio key={item} defaultIsChecked={index === 2}>
               {item}
             </Radio>
           );
@@ -34,28 +34,28 @@ const ExampleStory = props => {
       </Radio.Group>
       <Rule />
       <Heading level={2} displayLevel={3} isLight>
-        Controlling which item is selected
+        Controlling which item is checked
       </Heading>
       <Rule />
       <Radio.Group
         onChange={activeIndex => {
-          setSelectedIndex(activeIndex);
+          setCheckedIndex(activeIndex);
           action("Radio selection changed to index ")(activeIndex);
         }}
         {...props}
       >
         {radioItems.map((item, index) => {
           return (
-            <Radio key={item} isSelected={index === selectedIndex}>
+            <Radio key={item} isChecked={index === checkedIndex}>
               {item}
             </Radio>
           );
         })}
       </Radio.Group>
       <br />
-      Set Selected Index
+      Set Checked Index
       <br />
-      <select value={selectedIndex} onChange={handleIndexChange}>
+      <select value={checkedIndex} onChange={handleIndexChange}>
         {radioItems.map((item, index) => (
           <option key={item} value={index}>
             {item}

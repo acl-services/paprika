@@ -33,8 +33,8 @@ const defaultProps = {
 
 function Group(props) {
   const { a11yText, canDeselect, children, onChange, ...moreGroupProps } = props;
-  const defaultCheckedIndex = React.Children.toArray(children).findIndex(child => child.props.defaultIsSelected);
-  const selectedIndex = React.Children.toArray(children).findIndex(child => child.props.isSelected);
+  const defaultCheckedIndex = React.Children.toArray(children).findIndex(child => child.props.defaultIsChecked);
+  const selectedIndex = React.Children.toArray(children).findIndex(child => child.props.isChecked);
 
   const defaultIndex = () => {
     if (defaultCheckedIndex !== -1) {
@@ -49,11 +49,11 @@ function Group(props) {
     setCheckedIndex(selectedIndex);
   }
 
-  const deselectableIndex = index => (checkedIndex === index ? null : index);
+  const deSelectableIndex = index => (checkedIndex === index ? null : index);
   const name = nanoid();
   const handleRadioClick = index => {
     onChange(index);
-    setCheckedIndex(canDeselect ? deselectableIndex(index) : index);
+    setCheckedIndex(canDeselect ? deSelectableIndex(index) : index);
   };
 
   return (

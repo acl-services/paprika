@@ -28,7 +28,7 @@ const ExampleStory = props => {
         }}
         {...props}
       >
-        <Radio defaultIsSelected>Radio 1</Radio>
+        <Radio defaultIsChecked>Radio 1</Radio>
         <Radio>Radio 2</Radio>
         <Radio>Radio 3</Radio>
         <Radio>Radio 4</Radio>

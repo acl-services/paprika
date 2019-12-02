@@ -11,14 +11,12 @@ const propTypes = {
   a11yText: PropTypes.string,
   /** Used for label contents */
   children: PropTypes.node,
-  /** Describe if the radio is checked or not */
+  /* Controls if the radio is checked or not, never combine it with defaultIsChecked */
   isChecked: PropTypes.bool,
   /** Describe if the radio is disabled or not */
   isDisabled: PropTypes.bool,
-  /* Controls if the radio is selected or not, never combine it with defaultIsSelected */
-  isSelected: PropTypes.bool,
-  /** Describe if the radio started as selected or not */
-  defaultIsSelected: PropTypes.bool,
+  /** Describe if the radio started as checked or not */
+  defaultIsChecked: PropTypes.bool,
   /** Describe if the radio started as selected or not */
   canDeselect: PropTypes.bool,
   /** On click prop added by Group component */
@@ -33,8 +31,7 @@ const defaultProps = {
   children: null,
   isChecked: false,
   isDisabled: false,
-  isSelected: false,
-  defaultIsSelected: false,
+  defaultIsChecked: false,
   onClick: () => {},
   size: ShirtSizes.MEDIUM,
 };
