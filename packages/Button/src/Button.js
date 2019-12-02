@@ -107,6 +107,7 @@ const Button = React.forwardRef((props, ref) => {
     children,
     icon,
     isDisabled,
+    isActive,
     isDropdown,
     isPending,
     isSemantic,
@@ -136,10 +137,25 @@ const Button = React.forwardRef((props, ref) => {
     if (!isButtonDisabled) onClick(event);
   };
 
+  const handleKeyDown = event => {
+    if (event.key === "Enter") {
+      console.log(event.currentTarget);
+      event.currentTarget.classList.add("activeButton");
+    }
+  };
+
+  const handleKeyUp = event => {
+    if (event.key === "Enter") {
+      event.currentTarget.classList.remove("activeButton");
+    }
+  };
+
   const buttonProps = {
     isDisabled: isButtonDisabled,
     kind,
     onClick: handleClick,
+    onKeyDown: handleKeyDown,
+    onKeyUp: handleKeyUp,
     ref: buttonRef,
     tabIndex,
     ...moreProps,
@@ -153,7 +169,6 @@ const Button = React.forwardRef((props, ref) => {
     buttonProps.tabIndex = isButtonDisabled ? -1 : tabIndex;
     buttonProps.role = role;
   }
-
   const iconProps = {
     isDisabled: isButtonDisabled,
     kind,

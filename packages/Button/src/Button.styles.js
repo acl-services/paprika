@@ -4,6 +4,12 @@ import { css, keyframes } from "styled-components";
 import { ShirtSizes } from "@paprika/helpers/lib/customPropTypes";
 import Kinds from "./ButtonKinds";
 
+const activeButtonStyles = `
+   box-shadow: ${tokens.highlight.active.noBorder.boxShadow}, inset 0 1px 1px 0 rgba(0, 0, 0, 0.1),
+      inset 0 1px 4px 0 rgba(0, 0, 0, 0.3);
+    transform: scale(0.98);
+`;
+
 // Common
 
 const commonStyles = `
@@ -29,9 +35,11 @@ const commonStyles = `
   }
 
   &:active {
-    box-shadow: ${tokens.highlight.active.noBorder.boxShadow}, inset 0 1px 1px 0 rgba(0, 0, 0, 0.1),
-      inset 0 1px 4px 0 rgba(0, 0, 0, 0.3);
-    transform: scale(0.98);
+    ${activeButtonStyles}
+  }
+
+  &.activeButton {
+    ${activeButtonStyles}
   }
 `;
 
