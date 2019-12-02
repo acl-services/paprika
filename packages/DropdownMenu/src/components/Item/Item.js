@@ -57,7 +57,7 @@ const Item = props => {
   const itemProps = {
     onClick: renderConfirmation !== null ? onShowConfirmation : handleClickItem,
     role: "menuitem",
-    className: "dropdown-item",
+    "data-pka-anchor": "dropdown.item",
     onKeyDown,
     isDestructive,
   };

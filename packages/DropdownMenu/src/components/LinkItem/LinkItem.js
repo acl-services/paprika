@@ -25,7 +25,7 @@ const LinkItem = props => {
 
   const linkItemProps = {
     role: "menuitem",
-    className: "dropdown-item",
+    "data-pka-anchor": "dropdown.item",
     href: link,
     onKeyDown,
     ...moreProps,

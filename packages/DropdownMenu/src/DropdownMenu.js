@@ -41,7 +41,7 @@ function DropdownMenu(props) {
 
   function focusAndSetIndex(index) {
     if (dropdownListRef && dropdownListRef.current && index !== undefined)
-      dropdownListRef.current.querySelectorAll(".dropdown-item")[index].focus();
+      dropdownListRef.current.querySelectorAll('[data-pka-anchor="dropdown.item"]')[index].focus();
     setFocusIndex(index);
   }
 
