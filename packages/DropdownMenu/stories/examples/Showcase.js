@@ -1,6 +1,7 @@
 import React from "react";
 import { Rule, Tagline } from "storybook/assets/styles/common.styles";
 import { select, text } from "@storybook/addon-knobs";
+import { action } from "@storybook/addon-actions";
 import { AlignTypes } from "@paprika/helpers/lib/customPropTypes";
 import L10n from "@paprika/l10n";
 import Heading from "@paprika/heading";
@@ -30,6 +31,10 @@ const confirmationComponentProps = () => ({
   heading: text("confirmation heading", "Delete filter?"),
 });
 
+const handleItemClick = val => {
+  action("Clicked a item")(val);
+};
+
 const ExampleStory = () => (
   <DropdownMenuStory>
     <Heading level={1} displayLevel={2} isLight>
@@ -44,21 +49,21 @@ const ExampleStory = () => (
         align={dropdownComponentProps().align}
       >
         <DropdownMenu.Trigger>{dropdownComponentProps().triggerContent}</DropdownMenu.Trigger>
-        <DropdownMenu.Item onClick={() => {}}>Edit</DropdownMenu.Item>
-        <DropdownMenu.Item onClick={() => {}}>Duplicate</DropdownMenu.Item>
-        <DropdownMenu.Item isDestructive isDisabled onClick={() => {}}>
+        <DropdownMenu.Item onClick={handleItemClick}>Edit</DropdownMenu.Item>
+        <DropdownMenu.Item onClick={handleItemClick}>Duplicate</DropdownMenu.Item>
+        <DropdownMenu.Item isDestructive isDisabled onClick={handleItemClick}>
           Galvanize item
         </DropdownMenu.Item>
-        <DropdownMenu.Item isDisabled onClick={() => {}}>
+        <DropdownMenu.Item isDisabled onClick={handleItemClick}>
           Galvanize item
         </DropdownMenu.Item>
-        <DropdownMenu.LinkItem link="http://www.wegalvanize.com">
+        <DropdownMenu.LinkItem isExternal link="http://www.wegalvanize.com">
           {dropdownComponentProps().itemContent}
         </DropdownMenu.LinkItem>
         <DropdownMenu.LinkItem isExternal link="http://www.bbc.com">
           External link
         </DropdownMenu.LinkItem>
-        <DropdownMenu.Item isDisabled onClick={() => {}}>
+        <DropdownMenu.Item isDisabled onClick={handleItemClick}>
           Galvanize
         </DropdownMenu.Item>
         <DropdownMenu.Divider />
