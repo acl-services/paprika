@@ -1,5 +1,6 @@
 import React from "react";
 import PropTypes from "prop-types";
+import useI18n from "@paprika/l10n/lib/useI18n";
 import linkItemStyles from "../../Item.styles";
 
 const { bool, node, string, func } = PropTypes;
@@ -22,6 +23,7 @@ const defaultProps = {
 
 const LinkItem = props => {
   const { children, onKeyDown, isExternal, link, ...moreProps } = props;
+  const I18n = useI18n();
 
   const linkItemProps = {
     role: "menuitem",
@@ -37,7 +39,7 @@ const LinkItem = props => {
   }
 
   return (
-    <a css={linkItemStyles} {...linkItemProps}>
+    <a aria-label={isExternal ? I18n.t("dropdownMenu.isExternal") : ""} css={linkItemStyles} {...linkItemProps}>
       {children}
     </a>
   );

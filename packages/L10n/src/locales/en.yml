@@ -40,6 +40,8 @@ en:
       last_month: Last Month
       start_date: Start Date
       end_date: End Date
+    dropdownMenu:
+      isExternal: Is an External Link
     comment:
       delete: Delete comment
     pagination:
@@ -56,7 +58,7 @@ en:
       arrowup: up
       arrowdown: down
       escape: escape
-    externalLink:
+    externaLink:
       view: view
     collapsible:
       ariaText: collapsible section

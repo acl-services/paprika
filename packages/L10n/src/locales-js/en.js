@@ -50,6 +50,9 @@ const locales = {
         "start_date": "Start Date",
         "end_date": "End Date"
       },
+      "dropdownMenu": {
+        "isExternal": "Is an External Link"
+      },
       "comment": {
         "delete": "Delete comment"
       },
@@ -70,7 +73,7 @@ const locales = {
         "arrowdown": "down",
         "escape": "escape"
       },
-      "externalLink": {
+      "externaLink": {
         "view": "view"
       },
       "collapsible": {
