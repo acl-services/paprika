@@ -6,21 +6,21 @@ import Button from "./Button";
 
 const iconButtonSizes = {
   [ShirtSizes.SMALL]: css`
-    ${stylers.fontSize(-2)};
+    font-size: 14px;
     height: ${stylers.spacer(3)};
     line-height: ${Number.parseInt(tokens.space, 10) * 3 - 2}px;
     padding: 0;
     width: ${stylers.spacer(3)};
   `,
   [ShirtSizes.MEDIUM]: css`
-    ${stylers.fontSize(1)};
+    font-size: 18px;
     height: ${stylers.spacer(4)};
     line-height: ${Number.parseInt(tokens.space, 10) * 4 - 2}px;
     padding: 0;
     width: ${stylers.spacer(4)};
   `,
   [ShirtSizes.LARGE]: css`
-    ${stylers.fontSize(3)};
+    font-size: 22px;
     height: ${stylers.spacer(5)};
     line-height: ${Number.parseInt(tokens.space, 10) * 5 - 2}px;
     padding: 0;
