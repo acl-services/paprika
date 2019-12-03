@@ -1,6 +1,5 @@
 import React from "react";
 import DropdownMenu from "@paprika/dropdown-menu";
-import sort from "../../../../helpers/sort";
 import { useDataTableState } from "../../../..";
 import SortTrigger from "./SortTrigger";
 

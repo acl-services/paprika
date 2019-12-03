@@ -1,10 +1,9 @@
 import React from "react";
 import { storiesOf } from "@storybook/react";
 import Button from "@paprika/button";
-import DataTable, { RowHeight, Sort } from "../src";
+import DataTable, { RowHeight, Sort, Filters } from "../src";
 import fixtures from "./fixtures";
 import { viewPortHeight } from "./helpers";
-import Filters from "../src/components/Navigation/components/Filters/Filters";
 
 const mockData = fixtures(1);
 function App() {
@@ -29,12 +28,14 @@ function App() {
           id="name"
           header="Name"
           cell="name"
+          type="TEXT"
           sortDirections={[DataTable.SortDirections.ASCEND]}
         />
         <DataTable.ColumnDefinition
           id="goals"
           header="Goals"
           cell="goals"
+          type="NUMBER"
           sortDirections={[DataTable.SortDirections.ASCEND, DataTable.SortDirections.DESCEND]}
         />
         <DataTable.ColumnDefinition

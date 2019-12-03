@@ -3,8 +3,7 @@ import Button from "@paprika/button";
 import ListBox from "@paprika/listbox";
 import Input from "@paprika/input";
 import { useDataTableState, useDispatch } from "../../../..";
-
-const rules = ["is", "is_not", "contains", "does_not_contain", "is_blank", "is_not_blank"];
+import rules from "./rules";
 
 export default function FilterItem(prop) {
   const { columnId: selectedColumnId, rule: selectedRule, id, value } = prop;
@@ -32,7 +31,7 @@ export default function FilterItem(prop) {
       payload: {
         id,
         attribute: "rule",
-        value: rules[activeOptionIndex],
+        value: rules.TEXT[activeOptionIndex],
       },
     });
   }
@@ -48,20 +47,35 @@ export default function FilterItem(prop) {
     });
   }
 
+  console.log(rules[columns[selectedColumnId].type || "TEXT"]);
+
   return (
-    <li>
-      <Button onClick={handleRemoveFilter}>X</Button>
+    <li
+      style={{
+        alignItems: "center",
+        display: "flex",
+        flexWrap: "nowrap",
+        width: "600px",
+      }}
+    >
+      <Button onClick={handleRemoveFilter} kind="minor">
+        X
+      </Button>
       Where
       <ListBox onChange={handleChangeColumn}>
         <ListBox.Trigger hasClearButton={false} />
         {columnsOrder.map(columnId => (
-          <ListBox.Option isSelected={columnId === selectedColumnId}>{columns[columnId].header}</ListBox.Option>
+          <ListBox.Option key={columnId} isSelected={columnId === selectedColumnId}>
+            {columns[columnId].header}
+          </ListBox.Option>
         ))}
       </ListBox>
       <ListBox onChange={handleChangeRule}>
         <ListBox.Trigger hasClearButton={false} />
-        {rules.map(rule => (
-          <ListBox.Option isSelected={rule === selectedRule}>{rule}</ListBox.Option>
+        {rules[columns[selectedColumnId].type || "TEXT"].map(rule => (
+          <ListBox.Option key={rule} isSelected={rule === selectedRule}>
+            {rule}
+          </ListBox.Option>
         ))}
       </ListBox>
       <Input onChange={handleChangeValue} value={value} />

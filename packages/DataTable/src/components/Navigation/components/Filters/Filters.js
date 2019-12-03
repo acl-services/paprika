@@ -1,23 +1,44 @@
 import React from "react";
 import Popover from "@paprika/popover";
 import Button from "@paprika/button";
-import uuid from "uuid/v4";
+import nanoid from "nanoid";
 import { useDataTableState, useDispatch } from "../../../..";
 import FilterItem from "./FilterItem";
+import rules from "./rules";
 
 export default function Filters() {
-  const { columns, columnsOrder, filters } = useDataTableState();
+  const { filters, logicalFilterOperator } = useDataTableState();
   const dispatch = useDispatch();
 
   function handleAddFilter() {
     dispatch({ type: "ADD_FILTER" });
   }
 
+  function handleClickCondition(e) {
+    dispatch({ type: "UPDATE_LOGICAL_FILTER_OPERATOR", payload: e.target.value });
+  }
+
   return (
-    <Popover align="bottom">
+    <Popover align="bottom" edge="left" isOpen onClose={() => {}} maxWidth={1200}>
       <Popover.Trigger>Filters</Popover.Trigger>
       <Popover.Content>
         <Popover.Card>
+          <input
+            type="radio"
+            name="condition"
+            value="and"
+            checked={logicalFilterOperator === "and"}
+            onClick={handleClickCondition}
+          />
+          And
+          <input
+            type="radio"
+            name="condition"
+            value="or"
+            checked={logicalFilterOperator === "or"}
+            onClick={handleClickCondition}
+          />
+          Or
           {filters.map(filter => (
             <FilterItem key={filter.id} {...filter} />
           ))}
@@ -38,9 +59,9 @@ Filters.reducer = (state, action) => {
         filters: [
           ...action.changes.filters,
           {
-            id: uuid(),
+            id: `FILTER_ID__${nanoid()}`,
             columnId: action.changes.columnsOrder[0],
-            rule: "is",
+            rule: rules[action.changes.columns[action.changes.columnsOrder[0]].type][0],
             value: "",
           },
         ],
@@ -59,6 +80,12 @@ Filters.reducer = (state, action) => {
       return {
         ...action.changes,
         filters: newFilters,
+      };
+    }
+    case "UPDATE_LOGICAL_FILTER_OPERATOR": {
+      return {
+        ...action.changes,
+        logicalFilterOperator: action.payload,
       };
     }
     default:

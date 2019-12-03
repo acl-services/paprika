@@ -18,6 +18,8 @@
     "@paprika/dropdown-menu": "^1.1.3",
     "@paprika/helpers": "^0.2.3",
     "@paprika/icon": "^0.2.5",
+    "@paprika/input": "^0.2.4",
+    "@paprika/listbox": "^0.7.4",
     "@paprika/popover": "^0.3.4",
     "@paprika/raw-button": "^0.2.2",
     "@paprika/sidepanel": "^0.2.6",
@@ -28,6 +30,7 @@
     "lodash.debounce": "^4.0.8",
     "lodash.ismatchwith": "^4.4.0",
     "lodash.isstring": "^4.0.1",
+    "nanoid": "^2.1.7",
     "prop-types": "^15.7.2"
   },
   "peerDependencies": {

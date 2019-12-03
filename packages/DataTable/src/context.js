@@ -21,6 +21,7 @@ function TableProvider(props) {
     columnsOrder: columns.map(column => column.id),
     columns: columns.reduce((columnsObject, column) => ({ ...columnsObject, [column.id]: column }), {}),
     filters: [],
+    logicalFilterOperator: "and",
   };
 
   const isFirstRender = React.useRef(true);
@@ -90,7 +91,7 @@ function useDispatch() {
 }
 
 function useSortedAndFilteredData() {
-  const { data, columns, filters, sortColumn, sortDirection, keygen } = useDataTableState();
+  const { data, columns, filters, sortColumn, sortDirection, keygen, logicalFilterOperator } = useDataTableState();
   let sortedData = [];
   let filteredData = [];
 
@@ -107,9 +108,18 @@ function useSortedAndFilteredData() {
     }
 
     if (filters.length > 0) {
-      filteredData = data.filter(row =>
-        filters.every(filter => ruleTesters[filter.rule](row[filter.columnId], filter.value))
-      );
+      filteredData = data.filter(row => {
+        const tester = filter => ruleTesters[filter.rule](row[filter.columnId], filter.value);
+
+        switch (logicalFilterOperator) {
+          case "and":
+            return filters.every(tester);
+          case "or":
+            return filters.some(tester);
+          default:
+            return true;
+        }
+      });
     }
 
     if (sortedData.length === 0 && filteredData.length === 0) return data;
@@ -120,7 +130,15 @@ function useSortedAndFilteredData() {
     return sortedData.length > 0 ? sortedData : filteredData;
   }
 
-  const result = React.useMemo(calculateResult, [data, columns, filters, sortColumn, sortDirection, keygen]);
+  const result = React.useMemo(calculateResult, [
+    data,
+    columns,
+    filters,
+    sortColumn,
+    sortDirection,
+    keygen,
+    logicalFilterOperator,
+  ]);
 
   return result;
 }
