@@ -13,11 +13,11 @@ import Kinds from "./ToastKinds";
 import toastStyles, { contentStyles, IconStyled, CloseButtonStyled } from "./Toast.styles";
 
 const propTypes = {
-  /** Will automatically close after 1500ms (or longer if provided by autoCloseDelay) */
-  canAutoClose: PropTypes.bool,
-
   /** Duration (in ms) before Toast will automaticall close (if canAutoClose is true) */
   autoCloseDelay: PropTypes.number,
+
+  /** Will automatically close after 1500ms (or longer if provided by autoCloseDelay) */
+  canAutoClose: PropTypes.bool,
 
   /** Content of the Toast */
   children: PropTypes.node,

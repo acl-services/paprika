@@ -22,8 +22,8 @@ import Toast from "@paprika/toast";
 
 #### Toast
 
-- `canAutoClose`
 - `autoCloseDelay`
+- `canAutoClose`
 - `children`
 - `hasCloseButton`
 - `isOpen`
