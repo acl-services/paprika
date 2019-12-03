@@ -44,7 +44,7 @@ storiesOf("Modal", module)
   .add("Basic", () => (
     <ModalStory>
       <Modal.Content>
-        {Array(100)
+        {Array(25)
           .fill(null)
           .map((_, i) => (
             // eslint-disable-next-line react/no-array-index-key

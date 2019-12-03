@@ -141,6 +141,12 @@ modal:
   backdrop:
     background-color: rgba($color--black, 0.5)
   shadow: 0 8px 12px -4px rgba(63, 61, 60, 0.2), 0 1px 3px 0 rgba(63, 61, 60, 0.1)
+  sizes:
+    sm: 450px
+    md: 675px
+    lg: 900px
+  margin: 24px
+  top: 100px
 #
 border:
   radius: 3px

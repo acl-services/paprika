@@ -76,23 +76,26 @@ const Modal = props => {
           onExited={onAfterClose}
         >
           {state => (
-            <FocusTrapLibrary focusTrapOptions={focusTrapOptions}>
-              <styled.Wrapper
-                state={state}
-                role="dialog"
-                tabIndex="-1"
-                onKeyDown={handleEscKey}
-                data-pka-anchor="modal"
-              >
-                {headerExtracted && <styled.Header {...headerExtracted.props} onClose={onClose} />}
-                {contentExtracted && (
-                  <styled.ContentWrapper role="region" tabIndex="0">
-                    {contentExtracted}
-                  </styled.ContentWrapper>
-                )}
-                {children}
-              </styled.Wrapper>
-            </FocusTrapLibrary>
+            <styled.Overlay>
+              <styled.Backdrop state={state} onClick={onClose} />
+              <FocusTrapLibrary focusTrapOptions={focusTrapOptions}>
+                <styled.Wrapper
+                  state={state}
+                  role="dialog"
+                  tabIndex="-1"
+                  onKeyDown={handleEscKey}
+                  data-pka-anchor="modal"
+                >
+                  {headerExtracted && <styled.Header {...headerExtracted.props} onClose={onClose} />}
+                  {contentExtracted && (
+                    <styled.ContentWrapper role="region" tabIndex="0">
+                      {contentExtracted}
+                    </styled.ContentWrapper>
+                  )}
+                  {children}
+                </styled.Wrapper>
+              </FocusTrapLibrary>
+            </styled.Overlay>
           )}
         </Transition>
       </Portal>
