@@ -11,7 +11,7 @@ const selections = {
 };
 
 const DialogActionsProps = () => ({
-  confirmKind: selections[select("confirmKind", Object.keys(selections), null)],
+  kindConfirm: selections[select("kindConfirm", Object.keys(selections), null)],
   isDisabled: boolean("isDisabled", false),
   labelCancel: text("labelCancel", "Cancel"),
   labelConfirm: text("labelConfirm", "Save"),

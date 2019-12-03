@@ -6,11 +6,8 @@ import Button from "../../Button/src/Button";
 import ButtonStyles from "./DialogActions.styles";
 
 const propTypes = {
-  /** Optional custom classes. */
-  className: PropTypes.string,
-
   /** If the primary button is a destructive action. */
-  confirmKind: PropTypes.string,
+  kindConfirm: PropTypes.string,
 
   /** If the primary and secondary buttons are disabled. */
   isDisabled: PropTypes.bool,
@@ -35,8 +32,7 @@ const propTypes = {
 };
 
 const defaultProps = {
-  className: "",
-  confirmKind: "primary",
+  kindConfirm: "primary",
   isDisabled: false,
   labelCancel: "",
   labelConfirm: "",
@@ -48,7 +44,17 @@ const defaultProps = {
 
 function DialogActions(props) {
   const I18n = useI18n();
-  const { confirmKind, isDisabled, labelCancel, labelConfirm, labelDecline, onCancel, onConfirm, onDecline } = props;
+  const {
+    kindConfirm,
+    isDisabled,
+    labelCancel,
+    labelConfirm,
+    labelDecline,
+    onCancel,
+    onConfirm,
+    onDecline,
+    ...moreProps
+  } = props;
 
   function renderCancelButton() {
     if (!onCancel) return null;
@@ -73,7 +79,7 @@ function DialogActions(props) {
         isDisabled={isDisabled}
         onClick={onConfirm}
         size="large"
-        kind={confirmKind}
+        kind={kindConfirm}
       >
         {labelConfirm === "" ? I18n.t("actions.confirm") : labelConfirm}
       </Button>
@@ -97,7 +103,7 @@ function DialogActions(props) {
 
   return (
     <L10n>
-      <div data-pka-anchor={`dialog-actions ${props.className}`}>
+      <div {...moreProps}>
         {renderConfirmButton()}
         {renderDeclineButton()}
         {renderCancelButton()}
