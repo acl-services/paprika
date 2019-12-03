@@ -7,31 +7,35 @@ const propTypes = {
   children: PropTypes.node.isRequired,
   hasCloseButton: PropTypes.bool,
   kind: PropTypes.oneOf(["default", "primary"]),
+  level: PropTypes.oneOf([1, 2, 3, 4, 5, 6]),
   onClose: PropTypes.func,
 };
 
 const defaultProps = {
   hasCloseButton: true,
+  level: 3,
   kind: "default",
   onClose: () => {},
 };
 
 const Header = React.forwardRef((props, ref) => {
-  const { children, hasCloseButton, kind, onClose, ...moreProps } = props;
+  const { children, level, hasCloseButton, kind, onClose, ...moreProps } = props;
 
   return (
     <styled.Wrapper ref={ref} kind={kind} {...moreProps}>
-      <div tabIndex="-1">{children}</div>
-      <div>
+      <styled.Heading tabIndex="-1" level={level} displayLevel={3} isLight>
+        {children}
+      </styled.Heading>
+      <styled.CloseButtonWrapper>
         {hasCloseButton && (
           <Button.Close
             data-pka-anchor="takeover.header.close-button"
             onClick={onClose}
             isDark={kind === "primary" || undefined}
-            size="small"
+            size="medium"
           />
         )}
-      </div>
+      </styled.CloseButtonWrapper>
     </styled.Wrapper>
   );
 });
