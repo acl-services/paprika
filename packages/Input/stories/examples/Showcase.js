@@ -1,7 +1,7 @@
 import React from "react";
 import { boolean, select, text } from "@storybook/addon-knobs";
 import { Rule, Tagline } from "storybook/assets/styles/common.styles";
-import { ShirtSizes, inputValidTypes } from "@paprika/helpers/lib/customPropTypes";
+import { ShirtSizes, InputValidTypes } from "@paprika/helpers/lib/customPropTypes";
 import SearchIcon from "@paprika/icon/lib/Search";
 import InfoIcon from "@paprika/icon/lib/InfoCircle";
 import Heading from "@paprika/heading";
@@ -22,7 +22,7 @@ const inputProps = () => ({
   isDisabled: boolean("isDisabled", false),
   isReadOnly: boolean("isReadOnly", false),
   hasError: boolean("hasError", false),
-  type: select("type", inputValidTypes.ALL),
+  type: select("type", InputValidTypes.ALL),
   a11yText: text("a11yText", ""),
 });
 

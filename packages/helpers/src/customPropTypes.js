@@ -26,7 +26,7 @@ export const deprecated = name => (props, propName, component) => {
   return null;
 };
 
-export const inputValidTypes = {
+export const InputValidTypes = {
   EMAIL: "email",
   NUMBER: "number",
   PASSWORD: "password",
@@ -36,4 +36,4 @@ export const inputValidTypes = {
   URL: "url",
 };
 
-inputValidTypes.ALL = Object.values(inputValidTypes);
+InputValidTypes.ALL = Object.values(InputValidTypes);
