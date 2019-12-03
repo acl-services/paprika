@@ -1,7 +1,7 @@
 import React from "react";
 import PropTypes from "prop-types";
 import classNames from "classnames";
-import { ShirtSizes } from "@paprika/helpers/lib/customPropTypes";
+import { ShirtSizes, inputValidTypes } from "@paprika/helpers/lib/customPropTypes";
 import TimesCircleIcon from "@paprika/icon/lib/TimesCircle";
 import Button from "@paprika/button";
 import inputStyles from "./Input.styles";
@@ -18,7 +18,7 @@ const propTypes = {
   onChange: PropTypes.func.isRequired,
   onClear: PropTypes.func,
   size: PropTypes.oneOf(ShirtSizes.DEFAULT),
-  type: PropTypes.oneOf(["number", "password", "text"]),
+  type: PropTypes.oneOf(inputValidTypes.ALL),
   value: PropTypes.string,
 };
 
