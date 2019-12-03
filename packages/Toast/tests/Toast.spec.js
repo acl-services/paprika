@@ -30,7 +30,7 @@ describe("Toast", () => {
     const { getByText, getByTestId, getByLabelText } = renderComponent();
 
     expect(getByText(/content/i)).toBeVisible();
-    expect(getByTestId("Toast")).toHaveAttribute("aria-live", "polite");
+    expect(getByTestId("Toast")).toHaveAttribute("role", "status");
     expect(getByLabelText(/close/i)).toBeVisible();
   });
 
@@ -63,5 +63,10 @@ describe("Toast", () => {
     });
     expect(queryByText(/content/i)).not.toBeInTheDocument();
     expect(handleClose).toHaveBeenCalledTimes(1);
+  });
+
+  it("should render as role alert if isPolite is false", () => {
+    const { getByTestId } = renderComponent({ isPolite: false });
+    expect(getByTestId("Toast")).toHaveAttribute("role", "alert");
   });
 });

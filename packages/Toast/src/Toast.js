@@ -71,20 +71,20 @@ const icons = {
 
 function Toast(props) {
   const {
-    ariaAlert,
-    canAutoClose,
     autoCloseDelay,
+    canAutoClose,
     children,
     hasCloseButton,
-    isOpen,
-    onClose,
     isFixed,
+    isOpen,
+    isPolite,
     kind,
+    onClose,
     zIndex,
     ...moreProps
   } = props;
 
-  const ariaRole = ariaAlert ? "alert" : "status";
+  const ariaRole = isPolite ? "status" : "alert";
   const [isToastOpen, setIsToastOpen] = React.useState(isOpen === undefined ? true : isOpen);
   const timerRef = React.useRef(null);
   const defaultZIndex = isFixed ? zIndexPlaceholder : null;
