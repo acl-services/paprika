@@ -4,6 +4,13 @@ import ControlledToastExample from "./examples/ControlledToastExample";
 import FixedToastExample from "./examples/FixedToastExample";
 import UncontrolledToastExample from "./examples/UncontrolledToastExample";
 
+const toastStoryParameters = {
+  options: {
+    isToolshown: false,
+    showPanel: true,
+  },
+};
+
 export default {
   title: "Toast/Examples",
   component: Toast,
@@ -11,30 +18,15 @@ export default {
 
 export const controlledToast = () => <ControlledToastExample />;
 controlledToast.story = {
-  parameters: {
-    options: {
-      isToolshown: true,
-      showPanel: true,
-    },
-  },
+  parameters: toastStoryParameters,
 };
 
 export const uncontrolledToast = () => <UncontrolledToastExample />;
 uncontrolledToast.story = {
-  parameters: {
-    options: {
-      isToolshown: true,
-      showPanel: false,
-    },
-  },
+  parameters: toastStoryParameters,
 };
 
 export const fixedToast = () => <FixedToastExample />;
 fixedToast.story = {
-  parameters: {
-    options: {
-      isToolshown: true,
-      showPanel: false,
-    },
-  },
+  parameters: toastStoryParameters,
 };

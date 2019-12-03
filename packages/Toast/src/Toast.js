@@ -59,7 +59,7 @@ const defaultProps = {
 
 const minimumCloseTimeout = 1500;
 
-const zIndexPlaceholder = 1;
+const zIndexPlaceholder = 10;
 
 const icons = {
   [Kinds.SUCCESS]: CheckIcon,

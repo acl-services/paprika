@@ -38,7 +38,6 @@ const fixedStyles = css`
   top: ${stylers.spacer(2)};
   transform: translateX(-50%);
   width: calc(100% - ${stylers.spacer(4)});
-  z-index: 10;
 `;
 
 const iconColors = {
@@ -88,13 +87,12 @@ const toastStyles = css`
   position: relative;
   text-align: left;
   transition: opacity 0.3s ease-out;
+  z-index: ${({ zIndex }) => zIndex};
 
   ${stylers.fontSize()}
   ${stylers.lineHeight()}
   ${({ isFixed }) => isFixed && fixedStyles}
   ${({ kind }) => kind === "visually-hidden" && visuallyHidden}
-  
-  z-index: ${({ zIndex }) => zIndex};
 `;
 
 export default toastStyles;
