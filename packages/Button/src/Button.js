@@ -139,7 +139,6 @@ const Button = React.forwardRef((props, ref) => {
 
   const handleKeyDown = event => {
     if (event.key === "Enter") {
-      console.log(event.currentTarget);
       event.currentTarget.classList.add("activeButton");
     }
   };
