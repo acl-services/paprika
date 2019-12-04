@@ -30,7 +30,7 @@ export default function Columns() {
   };
 
   React.useEffect(() => {
-    if (selectedComic !== null && (selectedCharacter && selectedCharacter.length)) {
+    if (selectedComic !== null && selectedCharacter && selectedCharacter.length) {
       const output = `You selected comic: ${
         comics[selectedComic]
       } with the following characters: ${selectedCharacter.map(index => characters[comics[selectedComic]][index])}`;
@@ -64,7 +64,7 @@ export default function Columns() {
           <span>empty</span>
         )}
       </div>
-      {selectedComic && (selectedCharacter && selectedCharacter.length) ? <div>{output}</div> : null}
+      {selectedComic && selectedCharacter && selectedCharacter.length ? <div>{output}</div> : null}
     </div>
   );
 }
