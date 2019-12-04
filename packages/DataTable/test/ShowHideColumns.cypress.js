@@ -64,7 +64,7 @@ describe("Show/hide columns in <DataTable />", () => {
     };
     const getByCellIndex = cellIndex => cy.get(`[data-pka-cell-index="${cellIndex}"]`);
     getByCellIndex("0_0").contains("Austria");
-    getByCellIndex("0_1").contains("Josef Bican ‡");
+    getByCellIndex("0_1").contains("Josef Bican");
     getByCellIndex("0_2").contains("805");
     getByCellIndex("0_3").contains("inactive");
     getByCellIndex("0_4").contains("December 12, 2019");
@@ -72,9 +72,9 @@ describe("Show/hide columns in <DataTable />", () => {
       .first()
       .trigger("keydown", keyEvent.space)
       .trigger("keydown", keyEvent.down)
-      .wait(400)
-      .trigger("keydown", keyEvent.space);
-    getByCellIndex("0_0").contains("Josef Bican ‡");
+      .trigger("keydown", keyEvent.space)
+      .wait(400);
+    getByCellIndex("0_0").contains("Josef Bican");
     getByCellIndex("0_1").contains("Austria");
     getByCellIndex("0_2").contains("805");
     getByCellIndex("0_3").contains("inactive");
