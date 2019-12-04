@@ -1,37 +1,31 @@
 import React from "react";
 import PropTypes from "prop-types";
 import Button from "@paprika/button";
+import Heading from "@paprika/heading";
 import * as styled from "./Header.styles";
 
 const propTypes = {
   children: PropTypes.node.isRequired,
   hasCloseButton: PropTypes.bool,
-  kind: PropTypes.oneOf(["default", "primary"]),
+  level: PropTypes.oneOf([1, 2, 3, 4, 5, 6]),
   onClose: PropTypes.func,
 };
 
 const defaultProps = {
   hasCloseButton: true,
-  kind: "default",
+  level: 3,
   onClose: () => {},
 };
 
 const Header = React.forwardRef((props, ref) => {
-  const { children, hasCloseButton, kind, onClose, ...moreProps } = props;
+  const { children, level, hasCloseButton, onClose, ...moreProps } = props;
 
   return (
-    <styled.Wrapper ref={ref} kind={kind} {...moreProps}>
-      <div tabIndex="-1">{children}</div>
-      <div>
-        {hasCloseButton && (
-          <Button.Close
-            data-pka-anchor="modal.header.close-button"
-            onClick={onClose}
-            isDark={kind === "primary" || undefined}
-            size="small"
-          />
-        )}
-      </div>
+    <styled.Wrapper ref={ref} {...moreProps}>
+      <Heading tabIndex="-1" level={level} displayLevel={3} isLight>
+        {children}
+      </Heading>
+      {hasCloseButton && <Button.Close data-pka-anchor="modal.header.close-button" onClick={onClose} size="medium" />}
     </styled.Wrapper>
   );
 });

@@ -3,12 +3,13 @@ import tokens from "@paprika/tokens";
 import { ShirtSizes } from "@paprika/helpers/lib/customPropTypes";
 import { animationDuration } from "./helpers/tokens";
 import OriginalHeader from "./components/Header";
+import OriginalFooter from "./components/Footer";
 
 /*
 Some comments according modal positioning:
-1. Modals always have have margin 24px (to have some space from screen edges)
+1. Modals always have margin 24px (to have some space from screen edges)
 2. We do NOT do vertical centering.
-   Vertical centering leads to visual jumping on opening (one by one or one after another) modals with different heights.
+   Vertical centering leads to visual jumping on opening multiple (one by one or one after another) modals with different heights.
    Instead ...
 3. Every modal opens on 124px from top edge of screen (100px flex block + 24px fixed margin (see 1))
 4. While we add more content to modal, it expands
@@ -68,19 +69,26 @@ const mapShirtSizesToValues = {
   [ShirtSizes.LARGE]: tokens.modal.sizes.lg,
 };
 
-export const Wrapper = styled.div`
-  z-index: 1;
-  width: calc(100% - ${tokens.modal.margin} - ${tokens.modal.margin});
-  max-height: calc(100% - ${tokens.modal.margin} - ${tokens.modal.margin});
-  max-width: ${({ size }) => mapShirtSizesToValues[size] || mapShirtSizesToValues[ShirtSizes.MEDIUM]};
-  flex: 0 1 auto;
-  background-color: ${tokens.backgroundColor.level0};
-  margin: ${tokens.modal.margin};
+export const Dialog = styled.div`
+  width: 100%;
+  height: 100%;
+  background-color: ${tokens.modal.backgroundColor};
   transition: all ${animationDuration}ms ease;
   ${({ state }) => states[state]};
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
+  border-radius: ${tokens.modal.borderRadius};
+  overflow: auto;
+`;
+
+export const Wrapper = styled.div`
+  z-index: 1;
+  flex: 0 1 auto;
+  width: calc(100% - ${tokens.modal.margin} - ${tokens.modal.margin});
+  max-height: calc(100% - ${tokens.modal.margin} - ${tokens.modal.margin});
+  max-width: ${({ size }) => mapShirtSizesToValues[size] || mapShirtSizesToValues[ShirtSizes.MEDIUM]};
+  margin: ${tokens.modal.margin};
 `;
 
 export const Header = styled(OriginalHeader)`
@@ -89,4 +97,8 @@ export const Header = styled(OriginalHeader)`
 
 export const ContentWrapper = styled.div`
   overflow-y: auto;
+`;
+
+export const Footer = styled(OriginalFooter)`
+  flex: none;
 `;

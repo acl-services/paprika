@@ -1,6 +1,6 @@
 import React from "react";
 import { storiesOf } from "@storybook/react";
-import { withKnobs, boolean, select } from "@storybook/addon-knobs";
+import { withKnobs, boolean } from "@storybook/addon-knobs";
 import styled from "styled-components";
 import Button from "@paprika/button";
 import Heading from "@paprika/heading";
@@ -27,13 +27,15 @@ const ModalStory = ({ children }) => {
     <LongBlock>
       <Button onClick={toggle}>Open</Button>
       <Modal isOpen={isOpen} onClose={toggle}>
-        <Modal.Header
-          hasCloseButton={boolean("Has close button", true, "Modal.Header")}
-          kind={select("Kind", ["default", "primary"], "default", "Modal.Header")}
-        >
-          Header
-        </Modal.Header>
+        <Modal.Header hasCloseButton={boolean("Has close button", true, "Modal.Header")}>Header</Modal.Header>
         {children}
+        <Modal.Footer>
+          <Button kind="primary">Primary</Button>
+          <Button>Secondary</Button>
+          <Button kind="minor" onClick={toggle}>
+            Cancel
+          </Button>
+        </Modal.Footer>
       </Modal>
     </LongBlock>
   );

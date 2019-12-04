@@ -44,8 +44,9 @@ const Modal = props => {
     "Modal.FocusTrap": focusTrapExtracted,
     "Modal.Header": headerExtracted,
     "Modal.Content": contentExtracted,
+    "Modal.Footer": footerExtracted,
     children,
-  } = extractChildren(moreProps.children, ["Modal.FocusTrap", "Modal.Header", "Modal.Content"]);
+  } = extractChildren(moreProps.children, ["Modal.FocusTrap", "Modal.Header", "Modal.Content", "Modal.Footer"]);
 
   const extendedFocusTrapOptions = focusTrapExtracted ? focusTrapExtracted.props : {};
 
@@ -79,20 +80,17 @@ const Modal = props => {
             <styled.Overlay>
               <styled.Backdrop state={state} onClick={onClose} />
               <FocusTrapLibrary focusTrapOptions={focusTrapOptions}>
-                <styled.Wrapper
-                  state={state}
-                  role="dialog"
-                  tabIndex="-1"
-                  onKeyDown={handleEscKey}
-                  data-pka-anchor="modal"
-                >
-                  {headerExtracted && <styled.Header {...headerExtracted.props} onClose={onClose} />}
-                  {contentExtracted && (
-                    <styled.ContentWrapper role="region" tabIndex="0">
-                      {contentExtracted}
-                    </styled.ContentWrapper>
-                  )}
-                  {children}
+                <styled.Wrapper>
+                  <styled.Dialog state={state} role="dialog" onKeyDown={handleEscKey} data-pka-anchor="modal">
+                    {headerExtracted && <styled.Header {...headerExtracted.props} onClose={onClose} />}
+                    {contentExtracted && (
+                      <styled.ContentWrapper role="region" tabIndex="0">
+                        {contentExtracted}
+                      </styled.ContentWrapper>
+                    )}
+                    {children}
+                    {footerExtracted && <styled.Footer {...footerExtracted.props} />}
+                  </styled.Dialog>
                 </styled.Wrapper>
               </FocusTrapLibrary>
             </styled.Overlay>

@@ -1,5 +1,5 @@
 color:
-  black: '#3f3d3c'
+  black: "#3f3d3c"
   black-lighten-10: desaturate(lighten($color--black, 10), 5)
   black-lighten-20: desaturate(lighten($color--black, 20), 5)
   black-lighten-30: desaturate(lighten($color--black, 30), 5)
@@ -7,28 +7,28 @@ color:
   black-lighten-50: desaturate(lighten($color--black, 50), 5)
   black-lighten-60: desaturate(lighten($color--black, 60), 5)
   black-lighten-70: desaturate(lighten($color--black, 70), 5)
-  black-lighten-80: '#f7f7f7'
-  black-lighten-90: '#fcfcfc'
+  black-lighten-80: "#f7f7f7"
+  black-lighten-90: "#fcfcfc"
   black-disabled: $color--black-lighten-40
-  black-pure: '#000000'
+  black-pure: "#000000"
   #
-  blue: '#276cf5'
-  blue-darken-20: '#004a94'
-  blue-darken-10: '#0063c5'
-  blue-lighten-10: '#3396f9'
-  blue-lighten-20: '#66b0fa'
-  blue-lighten-30: '#99cbfc'
-  blue-lighten-40: '#cce5fd'
-  blue-lighten-50: '#e5f1fe'
+  blue: "#276cf5"
+  blue-darken-20: "#004a94"
+  blue-darken-10: "#0063c5"
+  blue-lighten-10: "#3396f9"
+  blue-lighten-20: "#66b0fa"
+  blue-lighten-30: "#99cbfc"
+  blue-lighten-40: "#cce5fd"
+  blue-lighten-50: "#e5f1fe"
   #
-  creme: '#e6e3df'
+  creme: "#e6e3df"
   creme-darken-30: darken($color--creme, 30)
   creme-darken-20: darken($color--creme, 20)
   creme-darken-10: darken($color--creme, 10)
   creme-lighten-5: lighten($color--creme, 5)
   creme-lighten-10: lighten($color--creme, 10)
   #
-  green: '#42996d'
+  green: "#42996d"
   green-darken-10: darken($color--green, 10)
   green-darken-20: darken($color--green, 20)
   green-lighten-10: desaturate(lighten($color--green, 10), 5)
@@ -37,9 +37,9 @@ color:
   green-lighten-40: desaturate(lighten($color--green, 40), 5)
   green-lighten-50: desaturate(lighten($color--green, 50), 5)
   #
-  off-white: '#f0f0f0'
+  off-white: "#f0f0f0"
   #
-  orange: '#de4d33'
+  orange: "#de4d33"
   orange-darken-10: darken($color--orange, 10)
   orange-darken-20: darken($color--orange, 20)
   orange-darken-30: darken($color--orange, 30)
@@ -48,9 +48,9 @@ color:
   orange-lighten-30: desaturate(lighten($color--orange, 30), 5)
   orange-lighten-40: desaturate(lighten($color--orange, 40), 5)
   orange-disabled: $color--orange-lighten-20
-  orange-highlight: '#e1624b'
+  orange-highlight: "#e1624b"
   #
-  purple: '#785cba'
+  purple: "#785cba"
   purple-darken-10: darken($color--purple, 10)
   purple-darken-20: darken($color--purple, 20)
   purple-lighten-10: desaturate(lighten($color--purple, 10), 5)
@@ -59,9 +59,9 @@ color:
   purple-lighten-40: desaturate(lighten($color--purple, 40), 5)
   purple-lighten-50: desaturate(lighten($color--purple, 44), 5)
   #
-  white: '#ffffff'
+  white: "#ffffff"
   #
-  yellow: '#eaba51'
+  yellow: "#eaba51"
   yellow-darken-10: darken($color--yellow, 10)
   yellow-darken-20: darken($color--yellow, 20)
   yellow-darken-30: darken($color--yellow, 30)
@@ -70,27 +70,27 @@ color:
   yellow-lighten-20: desaturate(lighten($color--yellow, 20), 5)
   yellow-lighten-30: desaturate(lighten($color--yellow, 30), 5)
   #
-  gold: '#f0a117'
+  gold: "#f0a117"
   #
-  silver: '#cfcfcf'
+  silver: "#cfcfcf"
   #
-  eggplant: '#2e143d'
-  eggplant-lighten-10: '#4b2164'
-  eggplant-lighten-20: '#682e8b'
-  eggplant-lighten-30: '#853AB1'
+  eggplant: "#2e143d"
+  eggplant-lighten-10: "#4b2164"
+  eggplant-lighten-20: "#682e8b"
+  eggplant-lighten-30: "#853AB1"
   #
-  chart-color-01: '#cd3c44'
-  chart-color-02: '#cb8133'
-  chart-color-03: '#eaba51'
-  chart-color-04: '#79a551'
-  chart-color-05: '#299a7a'
-  chart-color-06: '#8c6d68'
-  chart-color-07: '#ec848f'
-  chart-color-08: '#b9668f'
-  chart-color-09: '#785cba'
-  chart-color-10: '#2b82bf'
-  chart-color-11: '#7ec0cc'
-  chart-color-12: '#d1cbc2'
+  chart-color-01: "#cd3c44"
+  chart-color-02: "#cb8133"
+  chart-color-03: "#eaba51"
+  chart-color-04: "#79a551"
+  chart-color-05: "#299a7a"
+  chart-color-06: "#8c6d68"
+  chart-color-07: "#ec848f"
+  chart-color-08: "#b9668f"
+  chart-color-09: "#785cba"
+  chart-color-10: "#2b82bf"
+  chart-color-11: "#7ec0cc"
+  chart-color-12: "#d1cbc2"
 #
 placeholder:
   color: $color--black-lighten-20
@@ -113,7 +113,7 @@ highlight:
       background: $color--orange-lighten-40
       font: $color--orange-darken-20
     yellow:
-      background: '#f7f3ba'
+      background: "#f7f3ba"
       font: $color--yellow-darken-40
 #
 text-color:
@@ -131,13 +131,25 @@ font-family:
 #
 table:
   header:
-    background-color: '#edebe8'
+    background-color: "#edebe8"
   row:
     background-color: white
   row-even:
-    background-color: '#f5f5f5'
+    background-color: "#f5f5f5"
+#
+border:
+  radius: 3px
+  color: $color--black-lighten-60
+  hover-color: $color--black-lighten-40
+  color-transition: border-color 0.2s
+#
+card:
+  border-radius: ($border--radius * 2)
+  shadow: 0 0 0 1px rgba(63, 61, 60, 0.05), 0 1px 3px 0 rgba(63, 61, 60, 0.15)
 #
 modal:
+  background-color: $color--white
+  border-radius: $card--border-radius
   backdrop:
     background-color: rgba($color--black, 0.5)
   shadow: 0 8px 12px -4px rgba(63, 61, 60, 0.2), 0 1px 3px 0 rgba(63, 61, 60, 0.1)
@@ -147,19 +159,11 @@ modal:
     lg: 900px
   margin: 24px
   top: 100px
-#
-border:
-  radius: 3px
-  color: $color--black-lighten-60
-  hover-color: $color--black-lighten-40
-  color-transition: border-color 0.2s
+  footer:
+    background-color: $color--black-lighten-80
 #
 button:
   border-radius: 4px
-#
-card:
-  border-radius: ($border--radius * 2)
-  shadow: 0 0 0 1px rgba(63, 61, 60, 0.05), 0 1px 3px 0 rgba(63, 61, 60, 0.15)
 #
 checkbox:
   size-sm: 16px
