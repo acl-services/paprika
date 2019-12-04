@@ -50,7 +50,7 @@ function Group(props) {
 
   return (
     <div role="radiogroup" aria-labelledby={a11yText} data-pka-anchor="radio.group">
-      {children.map((child, index) => {
+      {React.Children.map(children, (child, index) => {
         if (child && child.type && child.type.displayName === "Radio") {
           const childKey = { key: `Radio${index}` };
           return React.cloneElement(child, {
