@@ -41,11 +41,11 @@ function Group(props) {
     setCheckedIndex(selectedIndex);
   }
 
-  const deSelectableIndex = index => (checkedIndex === index ? null : index);
+  const getDeselectableIndex = index => (checkedIndex === index ? null : index);
   const name = nanoid();
   const handleRadioClick = index => {
     onChange(index);
-    setCheckedIndex(canDeselect ? deSelectableIndex(index) : index);
+    setCheckedIndex(canDeselect ? getDeselectableIndex(index) : index);
   };
 
   return (
