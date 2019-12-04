@@ -143,6 +143,9 @@ border:
   hover-color: $color--black-lighten-40
   color-transition: border-color 0.2s
 #
+button:
+  border-radius: 4px
+#
 card:
   border-radius: ($border--radius * 2)
   shadow: 0 0 0 1px rgba(63, 61, 60, 0.05), 0 1px 3px 0 rgba(63, 61, 60, 0.15)
@@ -161,9 +164,6 @@ modal:
   top: 100px
   footer:
     background-color: $color--black-lighten-80
-#
-button:
-  border-radius: 4px
 #
 checkbox:
   size-sm: 16px
