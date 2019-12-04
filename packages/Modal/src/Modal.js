@@ -56,7 +56,7 @@ const Modal = props => {
   };
 
   function handleEscKey(event) {
-    if (event.key === "Escape") {
+    if (event.key === "Escape" && isOpen) {
       event.stopPropagation();
 
       onClose();
