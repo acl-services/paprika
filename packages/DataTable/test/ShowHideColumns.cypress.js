@@ -57,7 +57,7 @@ describe("Show/hide columns in <DataTable />", () => {
     cy.contains("805").should("not.exist");
   });
 
-  it.only("renders re-ordered columns", () => {
+  it("renders re-ordered columns", () => {
     const keyEvent = {
       space: { keyCode: 32, force: true },
       down: { keyCode: 40, force: true },
