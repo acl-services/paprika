@@ -1,4 +1,4 @@
-/* eslint-disable jsx-a11y/no-noninteractive-tabindex, jsx-a11y/no-static-element-interactions */
+/* eslint-disable jsx-a11y/no-static-element-interactions */
 
 import React from "react";
 import PropTypes from "prop-types";
@@ -77,6 +77,16 @@ const RawButton = React.forwardRef((props, ref) => {
     }
   };
 
+  const getTabIndex = () => {
+    if (tabIndex >= 0) {
+      return tabIndex;
+    }
+    if (isDisabled) {
+      return -1;
+    }
+    return tabIndex;
+  };
+
   return (
     <span
       aria-disabled={isDisabled}
@@ -86,7 +96,7 @@ const RawButton = React.forwardRef((props, ref) => {
       onKeyDown={handleKeyDown}
       onKeyUp={handleKeyUp}
       ref={rawButtonRef}
-      tabIndex={isDisabled ? null : tabIndex}
+      tabIndex={getTabIndex()}
       {...moreProps}
     >
       {children}
