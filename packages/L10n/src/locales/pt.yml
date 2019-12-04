@@ -40,6 +40,8 @@ pt:
       last_month: Mês Passado
       start_date: Data de Início
       end_date: Data de Término
+    dropdownMenu:
+      isExternal: "{{link}} abre em uma nova guia."
     comment:
       delete: Excluir comentário
     pagination:
@@ -56,7 +58,7 @@ pt:
       arrowup: para cima
       arrowdown: para baixo
       escape: ESC
-    externalLink:
+    externaLink:
       view: exibir
     collapsible:
       ariaText: seção recolhível
