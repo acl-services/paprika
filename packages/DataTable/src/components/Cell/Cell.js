@@ -32,6 +32,7 @@ export default function Cell(props) {
     rowIndex,
     columnIndex,
     refData,
+    ...moreProps
   } = props;
 
   function handleClickCell() {
@@ -46,6 +47,7 @@ export default function Cell(props) {
 
   return (
     <styled.Cell
+      {...moreProps}
       id={`${cellIndex}`}
       cellIndex={cellIndex}
       activeCellIndex={activeCellIndex}

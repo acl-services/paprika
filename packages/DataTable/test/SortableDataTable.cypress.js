@@ -57,14 +57,25 @@ describe("Sortable <DataTable />", () => {
     getByCellIndex("2_4").contains("10/01/2019");
   });
 
-  it("can sort by clicking optional button", () => {
+  it.only("can sort by clicking optional button", () => {
     cy.contains("Joined since")
-      .children()
-      .click();
+      .find("[role='button']")
+      .invoke("width")
+      .should("be.gt", 0);
+
+    /** cypress expecting weirdly require to click twice to make the dropdown menu appear */
+    cy.contains("Joined since")
+      .find("[role='button']")
+      .click({ force: true });
+    cy.contains("Joined since")
+      .find("[role='button']")
+      .click({ force: true });
+    /** cypress expecting weirdly require to click twice to make the dropdown menu appear */
+
     cy.contains("Sort by ASCEND").click();
 
-    getByCellIndex("0_4").contains("03/21/2012");
-    getByCellIndex("1_4").contains("02/02/2013");
-    getByCellIndex("2_4").contains("01/12/2014");
+    getByCellIndex("0_0").contains("03/21/2012");
+    getByCellIndex("1_0").contains("02/02/2013");
+    getByCellIndex("2_0").contains("01/12/2014");
   });
 });

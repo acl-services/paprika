@@ -5,13 +5,15 @@ describe("Show/hide columns in <DataTable />", () => {
 
   it("shows hide column button in options dropdown base on canHide", () => {
     cy.contains("Name")
-      .children()
-      .click();
+      .find('[role="button"]')
+      .click({ force: true });
+
     cy.contains("Hide this column").should("not.exist");
 
     cy.contains("Goals")
-      .children()
-      .click();
+      .find('[role="button"]')
+      .click({ force: true });
+
     cy.contains("Hide this column");
   });
 
@@ -42,9 +44,15 @@ describe("Show/hide columns in <DataTable />", () => {
 
   it("can hide column by options dropdown", () => {
     cy.contains("805");
+
+    // is catching cypress with the wrong dom representation
+    // can't perform search like the one with .find("[role=button]")
+    // adding wait aliviate the problem
+    cy.wait(0);
     cy.contains("Goals")
-      .children()
-      .click();
+      .find('[role="button"]')
+      .click({ force: true });
+
     cy.contains("Hide this column").click();
     cy.contains("805").should("not.exist");
   });

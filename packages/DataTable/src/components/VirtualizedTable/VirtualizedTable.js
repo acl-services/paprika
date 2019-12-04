@@ -2,12 +2,11 @@ import React from "react";
 import PropTypes from "prop-types";
 import { VariableSizeGrid as Grid } from "react-window";
 import debounce from "lodash.debounce";
-// import RawButton from "@paprika/raw-button";
 import handleArrowKeys, { arrowKeys } from "../../helpers/handleArrowKeys";
-// import VirtualizeRows from "../../VirtualizeRows";
 import "@paprika/helpers/lib/dom/elementScrollToPolyfill";
 // import CheckBox from "../CheckBox";
 import Cell from "../Cell";
+import Options from "../Options";
 import { CellHeader } from "../Cell/Cell.styles";
 import { useDataTableState } from "../../context";
 
@@ -38,7 +37,6 @@ function getColumnByCellIndex({ columnIndex, columnsOrder, columns }) {
 
 function getVisibleColumns(columns) {
   const visibleColumns = Object.keys(columns).filter(key => {
-    console.log("isHidden", columns[key].isHidden);
     return !columns[key].isHidden;
   });
   return visibleColumns;
@@ -76,6 +74,7 @@ export default function VirtualizedTable(props) {
   // };
 
   // const handleMouseLeave = (/* row, rowIndex */) => () => {};
+
   const rowHeightValue = (stateRowHeigth && stateRowHeigth.value) || rowHeight;
   const visibleColumns = getVisibleColumns(columns);
 
@@ -104,6 +103,13 @@ export default function VirtualizedTable(props) {
   /* eslint-disable jsx-a11y/no-noninteractive-tabindex  */
 
   const totalRows = dataForRendering.length + 1;
+
+  const visibleColumnsInCorrectOrder = React.useMemo(() => {
+    return columnsOrder.reduce((accumulator, item) => {
+      return visibleColumns.includes(item) ? [...accumulator, item] : accumulator;
+    }, []);
+  }, [columnsOrder, visibleColumns]);
+
   return (
     <div onKeyDown={handleKeyDown} tabIndex="0">
       <Grid
@@ -114,7 +120,7 @@ export default function VirtualizedTable(props) {
         }}
         height={height}
         rowCount={totalRows}
-        rowHeight={() => rowHeight}
+        rowHeight={() => rowHeightValue}
         width={width}
         className="virtualize-rows-root"
         overscanRowCount={20}
@@ -122,18 +128,19 @@ export default function VirtualizedTable(props) {
       >
         {propsReactWindow => {
           const { columnIndex, rowIndex, style } = propsReactWindow;
-
-          const { cell, header } = columns[columnsOrder[columnIndex]];
+          const column = columns[visibleColumnsInCorrectOrder[columnIndex]];
+          const { id, cell, header } = column;
           const index = `${dataTableID}${rowIndex}_${columnIndex}`;
           if (rowIndex === 0) {
             return (
               <CellHeader key={`cell_${index}`} style={style}>
-                {header}
+                {typeof header === "function" ? header(column) : header}
+                <Options columnId={id} />
               </CellHeader>
             );
           }
 
-          // rowIndex-1 is because we are adding the header
+          // dataForRendering[rowIndex - 1] we need to remove 1 because we added the header
           return (
             <Cell
               key={`cell_${index}`}
@@ -145,6 +152,7 @@ export default function VirtualizedTable(props) {
               rowIndex={rowIndex}
               style={style}
               refData={refData}
+              data-pka-cell-index={`${rowIndex - 1}_${columnIndex}`}
             >
               {typeof cell === "function" ? cell(dataForRendering[rowIndex - 1]) : dataForRendering[rowIndex - 1][cell]}
             </Cell>

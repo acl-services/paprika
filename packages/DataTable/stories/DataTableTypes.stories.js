@@ -7,11 +7,19 @@ import { viewPortHeight } from "./helpers";
 const mockData = fixtures(1);
 function App() {
   return (
-    <DataTable keygen="id" data={mockData} height={viewPortHeight()}>
+    <DataTable keygen="id" data={mockData} width={1024} height={viewPortHeight()}>
       <DataTable.Navigation>
         <Sort />
         <RowHeight />
       </DataTable.Navigation>
+      <DataTable.ColumnDefinition
+        id="joined"
+        header="Joined since"
+        type={DataTable.ColumnTypes.DATE}
+        cell={row => row.joined}
+        momentParsingFormat="MM/DD/YYYY"
+        sortDirections={[DataTable.SortDirections.ASCEND, DataTable.SortDirections.DESCEND]}
+      />
       <DataTable.ColumnDefinition id="country" width="190" header="Country" cell="country" />
       <DataTable.ColumnDefinition
         id="name"
@@ -30,14 +38,6 @@ function App() {
         id="status"
         header="Status"
         cell="status"
-        sortDirections={[DataTable.SortDirections.ASCEND, DataTable.SortDirections.DESCEND]}
-      />
-      <DataTable.ColumnDefinition
-        id="joined"
-        header="Joined since"
-        type={DataTable.ColumnTypes.DATE}
-        cell={row => row.joined}
-        momentParsingFormat="MM/DD/YYYY"
         sortDirections={[DataTable.SortDirections.ASCEND, DataTable.SortDirections.DESCEND]}
       />
     </DataTable>

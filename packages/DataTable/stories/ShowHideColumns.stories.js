@@ -20,7 +20,7 @@ function App() {
       >
         Toggle Country
       </Button>
-      <DataTable keygen="id" data={mockData} height={viewPortHeight()}>
+      <DataTable width={1024} keygen="id" data={mockData} height={viewPortHeight()}>
         <DataTable.Navigation>
           <Sort />
           <RowHeight />
