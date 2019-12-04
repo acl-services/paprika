@@ -2,13 +2,15 @@ import React from "react";
 import PropTypes from "prop-types";
 import nanoid from "nanoid";
 import CheckIcon from "@paprika/icon/lib/Check";
+import { ShirtSizes } from "@paprika/helpers/lib/customPropTypes";
 import radioStyles from "./Radio.styles";
 import Group from "./components/Group";
-import RadioContext from "./RadioContext";
 
 const propTypes = {
   /** Used for aria-label on the radio input  */
   a11yText: PropTypes.string,
+  /** Describe if the radio started as selected or not */
+  canDeselect: PropTypes.bool,
   /** Used for label contents */
   children: PropTypes.node,
   /* Controls if the radio is checked or not, never combine it with defaultIsChecked */
@@ -17,24 +19,28 @@ const propTypes = {
   isDisabled: PropTypes.bool,
   /** Describe if the radio started as checked or not */
   defaultIsChecked: PropTypes.bool,
-  /** Describe if the radio started as selected or not */
-  canDeselect: PropTypes.bool,
+  /* Name provided for accessibility */
+  name: PropTypes.string,
+  /* onClick provided by parent Group component */
+  onClick: () => {},
+  /* Size provided by parent Group component */
+  size: PropTypes.oneOf(ShirtSizes.DEFAULT),
 };
 
 const defaultProps = {
   a11yText: null,
   canDeselect: false,
   children: null,
+  defaultIsChecked: false,
   isChecked: false,
   isDisabled: false,
-  defaultIsChecked: false,
+  name: "",
+  onClick: () => {},
+  size: ShirtSizes.MEDIUM,
 };
 
 function Radio(props) {
-  const { a11yText, children, isChecked, isDisabled, ...moreProps } = props;
-  const { handleRadioClick, index, checkedIndex, isGroupDisabled, canDeselect, name, size } = React.useContext(
-    RadioContext
-  );
+  const { a11yText, children, isChecked, isDisabled, name, canDeselect, onClick, size, ...moreProps } = props;
   const radioId = React.useRef(nanoid()).current;
   const inputRef = React.useRef(null);
 
@@ -52,7 +58,7 @@ function Radio(props) {
   const handleKeyUp = event => {
     const isTriggerKey = event.key === " "; // space key
     if (!isDisabled && isTriggerKey) {
-      handleRadioClick(index);
+      onClick();
     }
   };
 
@@ -63,9 +69,9 @@ function Radio(props) {
 
   const inputProps = {
     readOnly: true,
-    onClick: () => handleRadioClick(index),
-    checked: checkedIndex === index,
-    disabled: isGroupDisabled || isDisabled,
+    onClick,
+    checked: isChecked,
+    disabled: isDisabled,
     id: radioId,
     name,
     onKeyDown: handleKeyDown,
