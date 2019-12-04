@@ -40,6 +40,8 @@ pl:
       last_month: Poprzedni miesiąc
       start_date: Data Początkowa
       end_date: Data Końcowa
+    dropdownMenu:
+      isExternal: "{{link}} otwarty zostanie w nowej zakładce."
     comment:
       delete: Usuń komentarz
     pagination:
@@ -56,7 +58,7 @@ pl:
       arrowup: w górę
       arrowdown: w dół
       escape: escape
-    externalLink:
+    externaLink:
       view: zobacz
     collapsible:
       ariaText: zwiń sekcję
