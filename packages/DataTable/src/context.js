@@ -10,6 +10,7 @@ const TableDispatchContext = React.createContext();
 function TableProvider(props) {
   const { data, keygen, reducers, columns } = props;
   const initialState = {
+    keyGrid: 0,
     data: data || [],
     keygen,
     sortColumn: null,

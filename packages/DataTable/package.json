@@ -28,7 +28,9 @@
     "lodash.debounce": "^4.0.8",
     "lodash.ismatchwith": "^4.4.0",
     "lodash.isstring": "^4.0.1",
-    "prop-types": "^15.7.2"
+    "nanoid": "^2.1.7",
+    "prop-types": "^15.7.2",
+    "react-window": "^1.8.5"
   },
   "peerDependencies": {
     "moment": "^2.18.1",

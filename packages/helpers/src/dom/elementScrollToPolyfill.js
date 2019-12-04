@@ -1,5 +1,6 @@
 // https://github.com/idmadj/element-scroll-polyfill/blob/master/index.js
 /* eslint-disable */
+/* prettier-ignore */
 (function() {
   const normalizeNonFiniteValue = function normalizeNonFiniteValue(value) {
     value = +value;
