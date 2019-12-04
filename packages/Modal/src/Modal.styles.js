@@ -85,9 +85,9 @@ export const Dialog = styled.div`
 export const Wrapper = styled.div`
   z-index: 1;
   flex: 0 1 auto;
-  width: calc(100% - ${tokens.modal.margin} - ${tokens.modal.margin});
+  width: ${({ size }) => mapShirtSizesToValues[size] || mapShirtSizesToValues[ShirtSizes.MEDIUM]};
+  max-width: calc(100% - ${tokens.modal.margin} - ${tokens.modal.margin});
   max-height: calc(100% - ${tokens.modal.margin} - ${tokens.modal.margin});
-  max-width: ${({ size }) => mapShirtSizesToValues[size] || mapShirtSizesToValues[ShirtSizes.MEDIUM]};
   margin: ${tokens.modal.margin};
 `;
 
