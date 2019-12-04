@@ -57,7 +57,7 @@ describe("Show/hide columns in <DataTable />", () => {
     cy.contains("805").should("not.exist");
   });
 
-  it("renders re-ordered columns", () => {
+  it.only("renders re-ordered columns", () => {
     const keyEvent = {
       space: { keyCode: 32, force: true },
       down: { keyCode: 40, force: true },
@@ -72,7 +72,7 @@ describe("Show/hide columns in <DataTable />", () => {
       .first()
       .trigger("keydown", keyEvent.space)
       .trigger("keydown", keyEvent.down)
-      .wait(200)
+      .wait(400)
       .trigger("keydown", keyEvent.space);
     getByCellIndex("0_0").contains("Josef Bican ‡");
     getByCellIndex("0_1").contains("Austria");
