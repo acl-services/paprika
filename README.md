@@ -124,11 +124,11 @@ There are a few layers to the testing pyramid in Paprika.
 ## Accessibility
 
 Paprika components are built with accessibility in mind from design through implementation.
-Compliance with [WCAG 2.1 level AA](https://www.w3.org/TR/WCAG21/)
-by following [WAI-ARIA Authoring Practices 1.1](https://www.w3.org/TR/wai-aria-practices-1.1/)
+Compliance with [WCAG 2.0 level AA](https://www.w3.org/TR/WCAG20/)
+by following [WAI-ARIA Authoring Practices](https://www.w3.org/TR/wai-aria-practices/)
 is a priority.
 
-In practice this ensures the usability of Paprika components
+In practice this ensures the usability of Paprika components:
 
 - with keyboard, mouse or touch inputs
 - at various zoom levels up to 200% on a variety of screen sizes
@@ -136,7 +136,7 @@ In practice this ensures the usability of Paprika components
 - with meaningful and semantic markup
 - with support for assistive technology (screen readers like VoiceOver, NVDA, and Jaws)
 
-For more information about how these goals are achieve, please read our [guildelines for developers](https://design.wegalvanize.com/p/guidelines/accessibility#guidelines-for-developers-tab-3).
+For more information about how these goals are achieved, please read our [guidelines for developers](https://design.wegalvanize.com/p/guidelines/accessibility#guidelines-for-developers-tab-3).
 
 ## Support
 

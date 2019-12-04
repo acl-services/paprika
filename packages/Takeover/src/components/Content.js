@@ -4,9 +4,8 @@ import tokens from "@paprika/tokens/lib/tokens";
 
 const Content = styled.div`
   background-color: ${tokens.color.white};
-  border: 1px solid ${tokens.border.color};
-  border-radius: ${tokens.border.radius};
-  box-shadow: ${tokens.shadow};
+  border-radius: ${tokens.card.borderRadius};
+  box-shadow: ${tokens.card.shadow};
   margin: ${spacer(2)};
   padding: ${spacer(2)};
 `;
