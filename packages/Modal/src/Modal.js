@@ -48,8 +48,8 @@ const Modal = props => {
     <styled.Overlay
       isOpen={isOpen}
       onClose={onClose}
-      onEntered={onAfterOpen}
-      onExited={onAfterClose}
+      onAfterOpen={onAfterOpen}
+      onAfterClose={onAfterClose}
       focusTrapOptions={extendedFocusTrapOptions}
     >
       {state => (
