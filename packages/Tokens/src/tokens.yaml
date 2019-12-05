@@ -150,11 +150,14 @@ card:
   border-radius: ($border--radius * 2)
   shadow: 0 0 0 1px rgba(63, 61, 60, 0.05), 0 1px 3px 0 rgba(63, 61, 60, 0.15)
 #
+overlay:
+  animation-duration: '700'
+  backdrop:
+    background-color: rgba($color--black, 0.5)
+#
 modal:
   background-color: $color--white
   border-radius: $card--border-radius
-  backdrop:
-    background-color: rgba($color--black, 0.5)
   shadow: 0 8px 12px -4px rgba(63, 61, 60, 0.2), 0 1px 3px 0 rgba(63, 61, 60, 0.1)
   sizes:
     sm: 450px
