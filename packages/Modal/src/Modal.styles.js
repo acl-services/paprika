@@ -35,14 +35,14 @@ const states = {
 };
 
 export const Overlay = styled.div`
-  position: fixed;
-  top: 0;
-  right: 0;
+  align-items: center;
   bottom: 0;
-  left: 0;
   display: flex;
   flex-direction: column;
-  align-items: center;
+  left: 0;
+  position: fixed;
+  right: 0;
+  top: 0;
 
   &::before,
   &::after {
@@ -53,12 +53,12 @@ export const Overlay = styled.div`
 `;
 
 export const Backdrop = styled.div`
-  position: fixed;
-  top: 0;
-  right: 0;
+  background-color: ${tokens.modal.backdrop.backgroundColor};
   bottom: 0;
   left: 0;
-  background-color: ${tokens.modal.backdrop.backgroundColor};
+  position: fixed;
+  right: 0;
+  top: 0;
   transition: all ${animationDuration}ms ease;
   ${({ state }) => states[state]};
 `;
@@ -70,25 +70,25 @@ const mapShirtSizesToValues = {
 };
 
 export const Dialog = styled.div`
-  width: 100%;
-  height: 100%;
   background-color: ${tokens.modal.backgroundColor};
-  transition: all ${animationDuration}ms ease;
-  ${({ state }) => states[state]};
+  border-radius: ${tokens.modal.borderRadius};
   display: flex;
   flex-direction: column;
+  height: 100%;
   justify-content: flex-start;
-  border-radius: ${tokens.modal.borderRadius};
   overflow: auto;
+  transition: all ${animationDuration}ms ease;
+  width: 100%;
+  ${({ state }) => states[state]};
 `;
 
 export const Wrapper = styled.div`
-  z-index: 1;
   flex: 0 1 auto;
-  width: ${({ size }) => mapShirtSizesToValues[size] || mapShirtSizesToValues[ShirtSizes.MEDIUM]};
-  max-width: calc(100% - ${tokens.modal.margin} - ${tokens.modal.margin});
-  max-height: calc(100% - ${tokens.modal.margin} - ${tokens.modal.margin});
   margin: ${tokens.modal.margin};
+  max-height: calc(100% - ${tokens.modal.margin} - ${tokens.modal.margin});
+  max-width: calc(100% - ${tokens.modal.margin} - ${tokens.modal.margin});
+  width: ${({ size }) => mapShirtSizesToValues[size] || mapShirtSizesToValues[ShirtSizes.MEDIUM]};
+  z-index: 1;
 `;
 
 export const Header = styled(OriginalHeader)`
