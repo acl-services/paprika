@@ -44,8 +44,8 @@ const Takeover = props => {
       showBackdrop={false}
       isOpen={isOpen}
       onClose={onClose}
-      onEntered={onAfterOpen}
-      onExited={onAfterClose}
+      onAfterOpen={onAfterOpen}
+      onAfterClose={onAfterClose}
       focusTrapOptions={extendedFocusTrapOptions}
     >
       {state => (
