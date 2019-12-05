@@ -94,3 +94,36 @@ storiesOf("Modal", module)
       );
     })
   );
+
+storiesOf("Modal / screener", module)
+  .add("when little content", () => (
+    <ModalStory>
+      <Modal.Content>
+        <p>Some content here</p>
+      </Modal.Content>
+    </ModalStory>
+  ))
+  .add("when height bigger than (100% - (124px * 2)) on 1280x1024", () => (
+    <ModalStory>
+      <Modal.Content>
+        {Array(18)
+          .fill(null)
+          .map((_, i) => (
+            // eslint-disable-next-line react/no-array-index-key
+            <p key={i}>Some content here</p>
+          ))}
+      </Modal.Content>
+    </ModalStory>
+  ))
+  .add("when height bigger than (100% - (24px * 2)) on 1280x1024", () => (
+    <ModalStory>
+      <Modal.Content>
+        {Array(25)
+          .fill(null)
+          .map((_, i) => (
+            // eslint-disable-next-line react/no-array-index-key
+            <p key={i}>Some content here</p>
+          ))}
+      </Modal.Content>
+    </ModalStory>
+  ));
