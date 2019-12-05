@@ -1,7 +1,7 @@
 import styled, { css } from "styled-components";
 import tokens from "@paprika/tokens";
 import { ShirtSizes } from "@paprika/helpers/lib/customPropTypes";
-import { animationDuration } from "./helpers/tokens";
+import OriginalOverlay from "@paprika/overlay";
 import OriginalHeader from "./components/Header";
 import OriginalFooter from "./components/Footer";
 
@@ -34,15 +34,10 @@ const states = {
   exited: closedCss,
 };
 
-export const Overlay = styled.div`
+export const Overlay = styled(OriginalOverlay)`
   align-items: center;
-  bottom: 0;
   display: flex;
   flex-direction: column;
-  left: 0;
-  position: fixed;
-  right: 0;
-  top: 0;
 
   &::before,
   &::after {
@@ -50,17 +45,6 @@ export const Overlay = styled.div`
     display: block;
     flex: 0 1 ${tokens.modal.top};
   }
-`;
-
-export const Backdrop = styled.div`
-  background-color: ${tokens.modal.backdrop.backgroundColor};
-  bottom: 0;
-  left: 0;
-  position: fixed;
-  right: 0;
-  top: 0;
-  transition: all ${animationDuration}ms ease;
-  ${({ state }) => states[state]};
 `;
 
 const mapShirtSizesToValues = {
@@ -77,7 +61,7 @@ export const Dialog = styled.div`
   height: 100%;
   justify-content: flex-start;
   overflow: auto;
-  transition: all ${animationDuration}ms ease;
+  transition: all ${tokens.overlay.animationDuration}ms ease;
   width: 100%;
   ${({ state }) => states[state]};
 `;
