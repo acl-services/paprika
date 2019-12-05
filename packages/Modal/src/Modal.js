@@ -25,6 +25,7 @@ const propTypes = {
   /** Callback once the modal has been closed event */
   onAfterClose: PropTypes.func,
 
+  /* Control the size (max-width) of the modal */
   size: PropTypes.oneOf(ShirtSizes.DEFAULT),
 };
 
@@ -87,12 +88,10 @@ const Modal = props => {
                 <styled.Wrapper size={size}>
                   <styled.Dialog state={state} role="dialog" onKeyDown={handleEscKey} data-pka-anchor="modal">
                     {headerExtracted && <styled.Header {...headerExtracted.props} onClose={onClose} />}
-                    {contentExtracted && (
-                      <styled.ContentWrapper role="region" tabIndex="0">
-                        {contentExtracted}
-                      </styled.ContentWrapper>
-                    )}
-                    {children}
+                    <styled.ContentWrapper role="region" tabIndex="0">
+                      {contentExtracted}
+                      {children}
+                    </styled.ContentWrapper>
                     {footerExtracted && <styled.Footer {...footerExtracted.props} />}
                   </styled.Dialog>
                 </styled.Wrapper>

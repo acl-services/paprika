@@ -15,7 +15,7 @@ const LongBlock = styled.div`
 
 const DemoFullWidthContent = styled.div`
   background-image: linear-gradient(to bottom, #79ff85, #70b3ff);
-  flex: 1 1 auto;
+  height: 1000px;
 `;
 
 const ModalStory = ({ children }) => {
