@@ -94,7 +94,7 @@ export function getOptionByKey(data, path) {
   let node = null;
   function runner(data, path) {
     return data.map(option => {
-      if (!option.$$key.includes("/") && (typeof data[path] !== "undefined" && option.$$key === path)) {
+      if (!option.$$key.includes("/") && typeof data[path] !== "undefined" && option.$$key === path) {
         node = option;
         throw new Error("option found");
       }

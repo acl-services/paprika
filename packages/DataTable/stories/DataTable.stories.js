@@ -27,7 +27,7 @@ function App() {
   return (
     <React.Fragment>
       <DataTable keygen="id" data={data} height={viewPortHeight()}>
-        <DataTable.ColumnDefinition id="country" width="190" header="Country" cell={row => getFlag(row)} />
+        <DataTable.ColumnDefinition id="country" width="60" header="Country" cell={row => getFlag(row)} />
         <DataTable.ColumnDefinition id="name" header="Name" cell="name" />
         <DataTable.ColumnDefinition id="goals" header="Goals" cell="goals" />
         <DataTable.ColumnDefinition id="status" header="Status" cell="status" />

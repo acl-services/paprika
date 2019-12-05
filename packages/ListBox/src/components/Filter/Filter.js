@@ -27,7 +27,7 @@ const defaultProps = {
 };
 
 function hasNoResults(textSearchValue, filteredOptions) {
-  return textSearchValue && (filteredOptions && filteredOptions.length === 0);
+  return textSearchValue && filteredOptions && filteredOptions.length === 0;
 }
 
 export default function Filter(props) {

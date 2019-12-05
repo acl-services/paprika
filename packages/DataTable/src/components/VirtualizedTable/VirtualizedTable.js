@@ -1,86 +1,80 @@
 import React from "react";
 import PropTypes from "prop-types";
+import { VariableSizeGrid as Grid } from "react-window";
 import debounce from "lodash.debounce";
-import RawButton from "@paprika/raw-button";
 import handleArrowKeys, { arrowKeys } from "../../helpers/handleArrowKeys";
-import VirtualizeRows from "../../VirtualizeRows";
-import * as styled from "./VirtualizedTable.styles";
 import "@paprika/helpers/lib/dom/elementScrollToPolyfill";
-import Options from "../Options";
-import CheckBox from "../CheckBox";
+// import CheckBox from "../CheckBox";
 import Cell from "../Cell";
-import { Cell as CellStyled } from "../Cell/Cell.styles";
+import { CellHeader } from "../Cell/Cell.styles";
+import Options from "../Options";
 import { useDataTableState, useSortedAndFilteredData } from "../../context";
 
 const propTypes = {
+  dataTableID: PropTypes.string.isRequired,
   height: PropTypes.number.isRequired,
-  LoadMoreButton: PropTypes.node,
+  // LoadMoreButton: PropTypes.node,
   onClickCell: PropTypes.func,
+  // onExpandedRow: PropTypes.func,
   onKeyDownArrow: PropTypes.func,
-  onExpandedRow: PropTypes.func,
   rowHeight: PropTypes.number.isRequired,
   width: PropTypes.number,
 };
 
 const defaultProps = {
-  LoadMoreButton: null,
+  // LoadMoreButton: null,
   onClickCell: () => {},
   onKeyDownArrow: () => {},
-  onExpandedRow: () => {},
-  width: null,
+  // onExpandedRow: () => {},
+  width: 640,
 };
 
+function getColumnByCellIndex({ columnIndex, columnsOrder, columns }) {
+  const columnKey = columnsOrder[columnIndex];
+  const column = columns[columnKey];
+  return column;
+}
+
+function getVisibleColumns(columns) {
+  const visibleColumns = Object.keys(columns).filter(key => {
+    return !columns[key].isHidden;
+  });
+  return visibleColumns;
+}
+
 export default function VirtualizedTable(props) {
-  const { height, rowHeight, width, onExpandedRow, onKeyDownArrow, onClickCell, LoadMoreButton } = props;
-  const [activeRowOnMouseEnter, setActiveRowOnMouseEnter] = React.useState({ index: null, data: null });
-  const [activeCell, setActiveCell] = React.useState({ rowIndex: null, dataRow: null, index: null, data: null });
-  const refActivePage = React.useRef({ from: null, to: null, subset: null });
-  const refVirtualizeRows = React.useRef(null);
-  const { rowHeight: stateRowHeigth, columns, columnsOrder } = useDataTableState();
-  const visibleColumnsOrder = columnsOrder.filter(columnId => !columns[columnId].isHidden);
-  const columnsLength = visibleColumnsOrder.length;
-  const delayedKeyDown = React.useRef(
-    debounce(
-      ({
-        activeCell,
-        columnsLength,
-        delayedKeyDown,
-        event,
-        onKeyDownArrow,
-        refActivePage,
-        refVirtualizeRows,
-        rowHeight,
-        rowsLength,
-        setActiveCell,
-      }) =>
-        handleArrowKeys({
-          activeCell,
-          columnsLength,
-          delayedKeyDown,
-          event,
-          onKeyDownArrow,
-          refActivePage,
-          refVirtualizeRows,
-          rowHeight,
-          rowsLength,
-          setActiveCell,
-        }),
-      15
-    )
-  ).current;
+  const {
+    height,
+    rowHeight,
+    width,
+    /* onExpandedRow, */
+    onKeyDownArrow,
+    onClickCell,
+    /* LoadMoreButton, */
+    dataTableID,
+  } = props;
+  // const [activeRowOnMouseEnter, setActiveRowOnMouseEnter] = React.useState({ index: null, data: null });
+  const [activeCell, setActiveCell] = React.useState({ index: null });
+  const refData = React.useRef(null);
+  const refGrid = React.useRef(null);
+  const { data, rowHeight: stateRowHeigth, columns, columnsOrder } = useDataTableState();
+  refData.current = data;
+
+  const delayedKeyDown = React.useRef(debounce((...args) => handleArrowKeys(...args), 15)).current;
 
   // this will inject 20 rows below the visible table to helps with the navigation and scrolling flickering
 
   const dataForRendering = useSortedAndFilteredData();
 
-  const rowsLength = dataForRendering && dataForRendering.length;
+  //
+  // const handleMouseEnter = (data, rowIndex, keys) => () => {
+  //   setActiveRowOnMouseEnter(() => ({ index: keys[rowIndex], data }));
+  // };
 
-  const handleMouseEnter = (data, rowIndex, keys) => () => {
-    setActiveRowOnMouseEnter(() => ({ index: keys[rowIndex], data }));
-  };
+  // const handleMouseLeave = (/* row, rowIndex */) => () => {};
 
-  const handleMouseLeave = (/* row, rowIndex */) => () => {};
   const rowHeightValue = (stateRowHeigth && stateRowHeigth.value) || rowHeight;
+  const visibleColumns = getVisibleColumns(columns);
 
   function handleKeyDown(event) {
     if (arrowKeys.includes(event.key)) {
@@ -88,119 +82,82 @@ export default function VirtualizedTable(props) {
       event.persist();
       delayedKeyDown({
         activeCell,
-        columnsLength,
+        columnsLength: visibleColumns.length,
+        dataTableID,
         event,
-        refActivePage,
-        refVirtualizeRows,
-        rowHeight: rowHeightValue,
-        rowsLength,
-        setActiveCell,
         onKeyDownArrow,
+        refData,
+        rowHeight: rowHeightValue,
+        setActiveCell,
       });
     }
   }
 
-  const handleRowExpand = row => () => {
-    onExpandedRow(row);
-  };
+  // const handleRowExpand = row => () => {
+  //   onExpandedRow(row);
+  // };
 
   /* eslint-disable jsx-a11y/no-static-element-interactions */
   /* eslint-disable jsx-a11y/no-noninteractive-tabindex  */
-  // need more research about how to treat this case we is not a button but we need the click
-  /* eslint-disable react/no-array-index-key */
-  // when rendering the keys for the cell we need to use the index no other way to have an unique key
+
+  const totalRows = dataForRendering.length + 1;
+
+  const visibleColumnsInCorrectOrder = React.useMemo(() => {
+    return columnsOrder.reduce((accumulator, item) => {
+      return visibleColumns.includes(item) ? [...accumulator, item] : accumulator;
+    }, []);
+  }, [columnsOrder, visibleColumns]);
 
   return (
     <div onKeyDown={handleKeyDown} tabIndex="0">
-      <styled.HeaderRow isHeaderRow $height={rowHeightValue}>
-        <styled.Counter>
-          <styled.Check>
-            <input type="checkbox" />
-          </styled.Check>
-          <styled.Expand />
-        </styled.Counter>
-        {visibleColumnsOrder.map((columnId, columnIndex) => {
-          const column = columns[columnId];
-          const { header: headerProp, width, isHidden } = column;
-          if (isHidden) return null;
-          return (
-            <CellStyled
-              role="columnheader"
-              isHeaderStyledCell
-              key={`cell_${columnIndex}`}
-              $width={width}
-              $height={rowHeightValue}
-            >
-              {typeof headerProp === "function" ? headerProp(column) : headerProp}
-              <Options columnId={columnId} />
-            </CellStyled>
-          );
-        })}
-      </styled.HeaderRow>
-      <VirtualizeRows
-        data={dataForRendering}
-        gridRowHeight={rowHeightValue}
-        gridLength={dataForRendering.length}
-        gridHeight={height}
-        gridWidth={width}
-        gridFooter={LoadMoreButton}
-        ref={refVirtualizeRows}
+      <Grid
+        columnCount={visibleColumns.length}
+        columnWidth={columnIndex => {
+          const { width } = getColumnByCellIndex({ columnIndex, columnsOrder, columns });
+          return Number.parseInt(width, 10) || 160;
+        }}
+        height={height}
+        rowCount={totalRows}
+        rowHeight={() => rowHeightValue}
+        width={width}
+        className="virtualize-rows-root"
+        overscanRowCount={20}
+        ref={refGrid}
       >
-        {(subset, keys, a11y) => {
-          // this information will help to calculated next and previous ArrowUp and ArrowDown
-          refActivePage.current.from = keys[0];
-          refActivePage.current.to = keys[keys.length - 1];
-          refActivePage.current.subset = subset;
+        {propsReactWindow => {
+          const { columnIndex, rowIndex, style } = propsReactWindow;
+          const column = columns[visibleColumnsInCorrectOrder[columnIndex]];
+          const { id, cell, header, isHidden } = column;
+          const index = `${dataTableID}${rowIndex}_${columnIndex}`;
+          if (isHidden) return null;
+          if (rowIndex === 0) {
+            return (
+              <CellHeader key={`cell_${index}`} style={style}>
+                {typeof header === "function" ? header(column) : header}
+                <Options columnId={id} />
+              </CellHeader>
+            );
+          }
 
+          // dataForRendering[rowIndex - 1] we need to remove 1 because we added the header
           return (
-            <>
-              {subset.map((row, rowIndex) => {
-                const rowKey = `row_${keys[rowIndex]}`;
-                return (
-                  <styled.Row
-                    onMouseEnter={handleMouseEnter(row, rowIndex, keys)}
-                    onMouseLeave={handleMouseLeave(row, rowIndex, keys)}
-                    {...a11y.row}
-                    $height={rowHeightValue}
-                    key={rowKey}
-                  >
-                    <styled.Counter key={`row_index_${keys[rowIndex]}`}>
-                      <styled.Check>
-                        <CheckBox indexRowOnMouseEnter={activeRowOnMouseEnter.index} index={keys[rowIndex]} />
-                      </styled.Check>
-                      <styled.Expand>
-                        <RawButton onClick={handleRowExpand(row)}>⇗</RawButton>
-                      </styled.Expand>
-                    </styled.Counter>
-                    {visibleColumnsOrder.map((columnId, cellIndex) => {
-                      const column = columns[columnId];
-                      const { cell, width, isHidden } = column;
-                      const index = `${keys[rowIndex]}_${cellIndex}`;
-                      if (isHidden) return null;
-                      return (
-                        <Cell
-                          key={`cell_${index}`}
-                          a11yProps={a11y.cell}
-                          width={width}
-                          height={rowHeightValue}
-                          cellIndex={index}
-                          activeCellIndex={activeCell.index}
-                          setActiveCell={setActiveCell}
-                          cell={cell}
-                          onClickCell={onClickCell}
-                          refActivePage={refActivePage}
-                        >
-                          {typeof cell === "function" ? cell(row) : row[cell]}
-                        </Cell>
-                      );
-                    })}
-                  </styled.Row>
-                );
-              })}
-            </>
+            <Cell
+              key={`cell_${index}`}
+              cellIndex={index}
+              activeCellIndex={activeCell.index}
+              setActiveCell={setActiveCell}
+              onClickCell={onClickCell}
+              columnIndex={columnIndex}
+              rowIndex={rowIndex}
+              style={style}
+              refData={refData}
+              data-pka-cell-index={`${rowIndex - 1}_${columnIndex}`}
+            >
+              {typeof cell === "function" ? cell(dataForRendering[rowIndex - 1]) : dataForRendering[rowIndex - 1][cell]}
+            </Cell>
           );
         }}
-      </VirtualizeRows>
+      </Grid>
     </div>
   );
 }

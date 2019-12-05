@@ -22,6 +22,7 @@ describe("Using back-end with <DataTable />", () => {
       .click();
     cy.contains("Sort by ASCEND").click();
     cy.contains("Loading");
+    cy.contains("Loading").should("not.exist");
     getByCellIndex("0_1").contains("Alfredo");
     getByCellIndex("1_1").contains("Arthur");
     getByCellIndex("2_1").contains("Cristiano");

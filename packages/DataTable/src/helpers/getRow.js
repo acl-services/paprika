@@ -3,8 +3,7 @@ export default function getRow({ row, refActivePage }) {
 }
 
 export function getCoordinatesByCellIndex(cellIndex) {
-  const coordinate = cellIndex.split("_");
-  const row = coordinate[0];
-  const cell = coordinate[1];
-  return { row, cell };
+  const [, index] = cellIndex.split("DTCELL");
+  const [row, column] = index.split("_");
+  return { row: Number.parseInt(row, 10), column: Number.parseInt(column, 10) };
 }

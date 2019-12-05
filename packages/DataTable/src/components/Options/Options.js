@@ -5,6 +5,10 @@ import ArrowDown from "@paprika/icon/lib/ArrowDown";
 import SortOption from "./SortOption";
 import { useDispatch, useDataTableState } from "../../context";
 
+const propTypes = {
+  columnId: PropTypes.oneOfType([PropTypes.string, PropTypes.number]).isRequired,
+};
+
 export default function Options(props) {
   const { columnId } = props;
   const dispatch = useDispatch();
@@ -17,6 +21,7 @@ export default function Options(props) {
   return (
     <DropdownMenu
       align="bottom"
+      data-pka-anchor="datatable-dropdown"
       renderTrigger={({ isOpen, handleOpenMenu }) => (
         <DropdownMenu.Trigger
           isOpen={isOpen}
@@ -51,8 +56,4 @@ export default function Options(props) {
   );
 }
 
-Options.propTypes = {
-  columnId: PropTypes.oneOfType([PropTypes.string, PropTypes.number]).isRequired,
-};
-
-Options.defaultProps = {};
+Options.propTypes = propTypes;
