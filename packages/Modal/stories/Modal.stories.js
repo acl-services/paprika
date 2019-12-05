@@ -1,10 +1,11 @@
 import React from "react";
 import { storiesOf } from "@storybook/react";
-import { withKnobs, boolean } from "@storybook/addon-knobs";
+import { withKnobs, boolean, select } from "@storybook/addon-knobs";
 import styled from "styled-components";
 import Button from "@paprika/button";
 import Heading from "@paprika/heading";
 import SidePanel from "@paprika/sidepanel";
+import { ShirtSizes } from "@paprika/helpers/lib/customPropTypes";
 import Modal from "../src";
 
 /* Long block to test body scroll locking */
@@ -26,7 +27,7 @@ const ModalStory = ({ children }) => {
   return (
     <LongBlock>
       <Button onClick={toggle}>Open</Button>
-      <Modal isOpen={isOpen} onClose={toggle}>
+      <Modal isOpen={isOpen} onClose={toggle} size={select("Size", ShirtSizes.DEFAULT, ShirtSizes.MEDIUM, "Modal")}>
         <Modal.Header hasCloseButton={boolean("Has close button", true, "Modal.Header")}>Header</Modal.Header>
         {children}
         <Modal.Footer>
