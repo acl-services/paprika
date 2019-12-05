@@ -40,6 +40,8 @@ ja:
       last_month: 先月
       start_date: 開始日
       end_date: 終了日
+    dropdownMenu:
+      isExternal: "{{link}} が新しいタブで開きます。"
     comment:
       delete: コメントを削除
     pagination:
@@ -56,7 +58,7 @@ ja:
       arrowup: 上
       arrowdown: 下
       escape: エスケープ
-    externalLink:
+    externaLink:
       view: 表示
     collapsible:
       ariaText: 縮小可能セクション
