@@ -3,7 +3,6 @@ import { storiesOf } from "@storybook/react";
 import { withKnobs, boolean, select } from "@storybook/addon-knobs";
 import styled from "styled-components";
 import Button from "@paprika/button";
-import Heading from "@paprika/heading";
 import SidePanel from "@paprika/sidepanel";
 import Takeover from "../src";
 
@@ -85,9 +84,7 @@ storiesOf("Takeover", module)
               <SidePanel.Trigger kind="primary" onClick={toggle}>
                 {isOpen ? "close" : "open side panel"}
               </SidePanel.Trigger>
-              <SidePanel.Header>
-                <Heading level={2}>Header</Heading>
-              </SidePanel.Header>
+              <SidePanel.Header>Header</SidePanel.Header>
             </SidePanel>
           </Takeover.Content>
         </TakeoverStory>

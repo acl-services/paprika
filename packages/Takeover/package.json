@@ -17,6 +17,7 @@
     "@paprika/button": "^0.2.5",
     "@paprika/heading": "^0.2.2",
     "@paprika/helpers": "^0.2.5",
+    "@paprika/overlay": "^0.1.0",
     "@paprika/stylers": "^0.2.3",
     "@paprika/tokens": "^0.1.10",
     "focus-trap-react": "^6.0.0",
