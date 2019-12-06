@@ -92,6 +92,10 @@ color:
   chart-color-11: '#7ec0cc'
   chart-color-12: '#d1cbc2'
 #
+space: 8px
+space-sm: 4px
+space-lg: 12px
+#
 placeholder:
   color: $color--black-lighten-20
   font-style: italic
@@ -163,7 +167,7 @@ modal:
     sm: 450px
     md: 675px
     lg: 900px
-  margin: 24px
+  margin: ($space * 3)
   top: 100px
   footer:
     background-color: $color--black-lighten-80
@@ -193,9 +197,5 @@ background-color:
 #
 font-size:
   default: 16px
-#
-space: 8px
-space-sm: 4px
-space-lg: 12px
 #
 shadow: 0px 1px 5px rgba(0, 0, 0, 0.07), 0px 7px 17px rgba(0, 0, 0, 0.1)
