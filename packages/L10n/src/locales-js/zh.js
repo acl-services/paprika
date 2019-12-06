@@ -73,7 +73,7 @@ const locales = {
         "arrowdown": "下",
         "escape": "Esc 键"
       },
-      "externaLink": {
+      "externalLink": {
         "view": "查看"
       },
       "collapsible": {

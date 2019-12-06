@@ -58,7 +58,7 @@ es:
       arrowup: arriba
       arrowdown: abajo
       escape: escape
-    externaLink:
+    externalLink:
       view: ver
     collapsible:
       ariaText: sección contraíble

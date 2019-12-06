@@ -73,7 +73,7 @@ const locales = {
         "arrowdown": "bas",
         "escape": "Échap"
       },
-      "externaLink": {
+      "externalLink": {
         "view": "voir"
       },
       "collapsible": {
