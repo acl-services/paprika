@@ -40,6 +40,8 @@ de:
       last_month: Letzten Monat
       start_date: Anfangsdatum
       end_date: Enddatum
+    dropdownMenu:
+      isExternal: "{{link}} wird auf einer neuen Registerkarte geöffnet."
     comment:
       delete: Anmerkung löschen
     pagination:
@@ -56,7 +58,7 @@ de:
       arrowup: Auf
       arrowdown: Ab
       escape: Escape
-    externalLink:
+    externaLink:
       view: anzeigen
     collapsible:
       ariaText: ausblendbarer Bereich
