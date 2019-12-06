@@ -1,12 +1,12 @@
 import Modal from "./Modal";
-import FocusTrap from "./components/FocusTrap";
+import Overlay from "./components/Overlay";
 import Header from "./components/Header";
 import Content from "./components/Content";
 import Footer from "./components/Footer";
 
-Modal.FocusTrap = FocusTrap;
+Modal.Overlay = Overlay;
 Modal.Header = Header;
 Modal.Content = Content;
 Modal.Footer = Footer;
 
-export { Modal as default, FocusTrap, Header, Content, Footer };
+export { Modal as default, Overlay, Header, Content, Footer };

@@ -35,14 +35,14 @@ const Modal = props => {
   const { isOpen, onClose, onAfterClose, onAfterOpen, size, ...moreProps } = props;
 
   const {
-    "Modal.FocusTrap": focusTrapExtracted,
+    "Modal.Overlay": overlayExtracted,
     "Modal.Header": headerExtracted,
     "Modal.Content": contentExtracted,
     "Modal.Footer": footerExtracted,
     children,
-  } = extractChildren(moreProps.children, ["Modal.FocusTrap", "Modal.Header", "Modal.Content", "Modal.Footer"]);
+  } = extractChildren(moreProps.children, ["Modal.Overlay", "Modal.Header", "Modal.Content", "Modal.Footer"]);
 
-  const extendedFocusTrapOptions = focusTrapExtracted ? focusTrapExtracted.props : {};
+  const overlayProps = overlayExtracted ? overlayExtracted.props : {};
 
   return (
     <styled.Overlay
@@ -50,7 +50,7 @@ const Modal = props => {
       onClose={onClose}
       onAfterOpen={onAfterOpen}
       onAfterClose={onAfterClose}
-      focusTrapOptions={extendedFocusTrapOptions}
+      {...overlayProps}
     >
       {state => (
         <styled.Wrapper size={size}>
