@@ -58,7 +58,7 @@ zh:
       arrowup: 上
       arrowdown: 下
       escape: Esc 键
-    externaLink:
+    externalLink:
       view: 查看
     collapsible:
       ariaText: 可折叠部分

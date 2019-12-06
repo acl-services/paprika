@@ -58,7 +58,7 @@ pt:
       arrowup: para cima
       arrowdown: para baixo
       escape: ESC
-    externaLink:
+    externalLink:
       view: exibir
     collapsible:
       ariaText: seção recolhível

@@ -58,7 +58,7 @@ ja:
       arrowup: 上
       arrowdown: 下
       escape: エスケープ
-    externaLink:
+    externalLink:
       view: 表示
     collapsible:
       ariaText: 縮小可能セクション
