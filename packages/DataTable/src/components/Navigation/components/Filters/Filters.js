@@ -1,3 +1,4 @@
+/* eslint-disable jsx-a11y/label-has-associated-control */
 import React from "react";
 import Popover from "@paprika/popover";
 import Button from "@paprika/button";
@@ -9,41 +10,43 @@ import { FiltersPanelStyled } from "./Filters.styles";
 import { columnTypes, logicalFilterOperators } from "../../../../constants";
 
 export default function Filters() {
-  const { filters, logicalFilterOperator } = useDataTableState();
+  const { filters, logicalFilterOperator, columnsOrder } = useDataTableState();
   const dispatch = useDispatch();
 
   function handleAddFilter() {
-    dispatch({ type: "ADD_FILTER" });
+    dispatch({ type: "ADD_FILTER", payload: columnsOrder[0] });
   }
 
   function handleClickCondition(e) {
     dispatch({ type: "UPDATE_LOGICAL_FILTER_OPERATOR", payload: e.target.value });
   }
 
-  console.log(filters);
-
   return (
-    <Popover align="bottom" edge="left" maxWidth={1200}>
+    <Popover align="bottom" edge="left" isOpen maxWidth={1200}>
       <Popover.Trigger>Filters</Popover.Trigger>
       <Popover.Content>
         <Popover.Card>
           <FiltersPanelStyled>
-            <input
-              type="radio"
-              name="condition"
-              value={logicalFilterOperators.AND}
-              defaultChecked={logicalFilterOperator === logicalFilterOperators.AND}
-              onChange={handleClickCondition}
-            />
-            And
-            <input
-              type="radio"
-              name="condition"
-              value={logicalFilterOperators.OR}
-              defaultChecked={logicalFilterOperator === logicalFilterOperators.OR}
-              onChange={handleClickCondition}
-            />
-            Or
+            <fieldset>
+              <legend>Condition: </legend>
+              <input
+                type="radio"
+                name="condition"
+                value={logicalFilterOperators.AND}
+                defaultChecked={logicalFilterOperator === logicalFilterOperators.AND}
+                onChange={handleClickCondition}
+              />
+              <label htmlFor={logicalFilterOperators.AND}>And</label>
+              <input
+                type="radio"
+                name="condition"
+                value={logicalFilterOperators.OR}
+                defaultChecked={logicalFilterOperator === logicalFilterOperators.OR}
+                onChange={handleClickCondition}
+              />
+              <label htmlFor={logicalFilterOperators.OR}>Or</label>
+            </fieldset>
+
             {filters.map(filter => (
               <FilterItem key={filter.id} {...filter} />
             ))}
@@ -73,8 +76,8 @@ Filters.reducer = (state, action) => {
           ...action.changes.filters,
           {
             id: `FILTER_ID__${nanoid()}`,
-            columnId: action.changes.columnsOrder[0],
-            rule: rulesByType[getColumnType([action.changes.columnsOrder[0]])][0],
+            columnId: action.payload,
+            rule: rulesByType[getColumnType([action.payload])][0],
             value: "",
           },
         ],

@@ -110,7 +110,8 @@ function useSortedAndFilteredData() {
 
     if (filters.length > 0) {
       filteredData = data.filter(row => {
-        const tester = filter => ruleTesters[filter.rule](row[filter.columnId], filter.value);
+        // checking if filter.rule exist, will removed after having all the rules
+        const tester = filter => (filter.rule ? ruleTesters[filter.rule](row[filter.columnId], filter.value) : true);
 
         switch (logicalFilterOperator) {
           case logicalFilterOperators.AND:

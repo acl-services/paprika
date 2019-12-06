@@ -1,7 +1,7 @@
 import React from "react";
 import { storiesOf } from "@storybook/react";
 import Button from "@paprika/button";
-import DataTable, { RowHeight, Sort, Filters } from "../src";
+import DataTable, { RowHeight, Sort } from "../src";
 import fixtures from "./fixtures";
 import { viewPortHeight } from "./helpers";
 
@@ -21,7 +21,6 @@ function App() {
         <DataTable.Navigation>
           <Sort />
           <RowHeight />
-          <Filters />
         </DataTable.Navigation>
         <DataTable.ColumnDefinition id="country" width="190" header="Country" cell="country" type="TEXT" />
         <DataTable.ColumnDefinition

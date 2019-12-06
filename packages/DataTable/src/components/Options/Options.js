@@ -18,6 +18,14 @@ export default function Options(props) {
   const hasOptions = canHide || (sortDirections && sortDirections.length > 0);
   if (!hasOptions) return null;
 
+  function handleClickAddFilter() {
+    dispatch({ type: "ADD_FILTER", payload: columnId });
+  }
+
+  function handleToggleColumn() {
+    dispatch({ type: "TOGGLE_COLUMN", payload: columnId });
+  }
+
   return (
     <DropdownMenu
       align="bottom"
@@ -43,15 +51,8 @@ export default function Options(props) {
             />
           ))
         : null}
-      {canHide ? (
-        <DropdownMenu.Item
-          onClick={() => {
-            dispatch({ type: "TOGGLE_COLUMN", payload: columnId });
-          }}
-        >
-          Hide this column
-        </DropdownMenu.Item>
-      ) : null}
+      {canHide ? <DropdownMenu.Item onClick={handleToggleColumn}>Hide this column</DropdownMenu.Item> : null}
+      <DropdownMenu.Item onClick={handleClickAddFilter}>Add filter</DropdownMenu.Item>
     </DropdownMenu>
   );
 }

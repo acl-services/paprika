@@ -60,16 +60,16 @@ export default function FilterItem(prop) {
       <Button onClick={handleRemoveFilter} kind="minor">
         X
       </Button>
-      <select onChange={handleChangeColumn}>
+      <select onChange={handleChangeColumn} value={selectedColumnId}>
         {columnsOrder.map(columnId => (
-          <option key={columnId} value={columnId} isselected={`${columnId === selectedColumnId}`}>
+          <option key={columnId} value={columnId}>
             {columnId}
           </option>
         ))}
       </select>
-      <select onChange={handleChangeRule}>
+      <select onChange={handleChangeRule} value={selectedRule}>
         {rulesByType[getColumnType()].map(rule => (
-          <option key={rule} value={rule} isselected={`${rule === selectedRule}`}>
+          <option key={rule} value={rule}>
             {rule}
           </option>
         ))}
