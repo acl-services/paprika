@@ -5,6 +5,7 @@ import styled from "styled-components";
 import Button from "@paprika/button";
 import SidePanel from "@paprika/sidepanel";
 import { ShirtSizes } from "@paprika/helpers/lib/customPropTypes";
+import { repeat } from "storybook/assets/styles/common.styles";
 import Modal from "../src";
 
 /* Long block to test body scroll locking */
@@ -46,12 +47,7 @@ storiesOf("Modal", module)
   .add("Basic", () => (
     <ModalStory>
       <Modal.Content>
-        {Array(25)
-          .fill(null)
-          .map((_, i) => (
-            // eslint-disable-next-line react/no-array-index-key
-            <p key={i}>Some content here</p>
-          ))}
+        {repeat(25, (key) => <p key={key}>Some content here</p>)}
       </Modal.Content>
     </ModalStory>
   ))
@@ -108,24 +104,14 @@ storiesOf("Modal / screener", module)
   .add("when height bigger than (100% - (124px * 2)) on 1280x1024", () => (
     <ModalStory>
       <Modal.Content>
-        {Array(18)
-          .fill(null)
-          .map((_, i) => (
-            // eslint-disable-next-line react/no-array-index-key
-            <p key={i}>Some content here</p>
-          ))}
+        {repeat(18, (key) => <p key={key}>Some content here</p>)}
       </Modal.Content>
     </ModalStory>
   ))
   .add("when height bigger than (100% - (24px * 2)) on 1280x1024", () => (
     <ModalStory>
       <Modal.Content>
-        {Array(25)
-          .fill(null)
-          .map((_, i) => (
-            // eslint-disable-next-line react/no-array-index-key
-            <p key={i}>Some content here</p>
-          ))}
+        {repeat(25, (key) => <p key={key}>Some content here</p>)}
       </Modal.Content>
     </ModalStory>
   ));

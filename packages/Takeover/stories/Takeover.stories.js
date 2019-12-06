@@ -4,6 +4,7 @@ import { withKnobs, boolean, select } from "@storybook/addon-knobs";
 import styled from "styled-components";
 import Button from "@paprika/button";
 import SidePanel from "@paprika/sidepanel";
+import { repeat } from "storybook/assets/styles/common.styles";
 import Takeover from "../src";
 
 /* Long block to test body scroll locking */
@@ -43,12 +44,7 @@ storiesOf("Takeover", module)
   .add("Basic", () => (
     <TakeoverStory>
       <Takeover.Content>
-        {Array(100)
-          .fill(null)
-          .map((_, i) => (
-            // eslint-disable-next-line react/no-array-index-key
-            <p key={i}>Some content here</p>
-          ))}
+        {repeat(100, (key) => <p key={key}>Some content here</p>)}
       </Takeover.Content>
     </TakeoverStory>
   ))
