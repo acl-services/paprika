@@ -19,7 +19,6 @@
     "@paprika/helpers": "^0.2.3",
     "@paprika/icon": "^0.2.5",
     "@paprika/input": "^0.2.4",
-    "@paprika/listbox": "^0.7.4",
     "@paprika/popover": "^0.3.4",
     "@paprika/raw-button": "^0.2.2",
     "@paprika/sidepanel": "^0.2.6",

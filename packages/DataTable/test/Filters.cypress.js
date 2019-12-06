@@ -39,12 +39,7 @@ describe("<DataTable /> with filters", () => {
 
     cy.getByTestId("filter.delete-button").click({ multiple: true });
 
-    cy.getByTestId("filter.filter-item")
-      .contains(/country/i)
-      .should("not.exist");
-    cy.getByTestId("filter.filter-item")
-      .contains(/status/i)
-      .should("not.exist");
+    cy.getByTestId("filter.filter-item").should("not.exist");
   });
 
   it("works with different condition", () => {
