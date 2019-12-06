@@ -41,7 +41,7 @@ const Takeover = props => {
 
   return (
     <Overlay
-      showBackdrop={false}
+      hasBackdrop={false}
       isOpen={isOpen}
       onClose={onClose}
       onAfterOpen={onAfterOpen}

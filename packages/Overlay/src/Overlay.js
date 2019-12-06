@@ -13,7 +13,7 @@ const propTypes = {
   backdropClassName: PropTypes.string,
   isOpen: PropTypes.bool.isRequired,
   children: PropTypes.func,
-  showBackdrop: PropTypes.bool,
+  hasBackdrop: PropTypes.bool,
   onClose: PropTypes.func,
   onAfterOpen: PropTypes.func,
   onAfterClose: PropTypes.func,
@@ -75,7 +75,7 @@ const defaultProps = {
   className: null,
   backdropClassName: null,
   children: () => {},
-  showBackdrop: true,
+  hasBackdrop: true,
   onClose: () => {},
   onAfterOpen: () => {},
   onAfterClose: () => {},
@@ -87,7 +87,7 @@ const Overlay = props => {
     backdropClassName,
     isOpen,
     children,
-    showBackdrop,
+    hasBackdrop,
     onClose,
     onAfterOpen,
     onAfterClose,
@@ -129,7 +129,7 @@ const Overlay = props => {
         >
           {state => (
             <Wrapper {...moreProps} onKeyDown={handleEscKey}>
-              {showBackdrop && <Backdrop className={backdropClassName} state={state} onClick={onClose} />}
+              {hasBackdrop && <Backdrop className={backdropClassName} state={state} onClick={onClose} />}
               <FocusTrap focusTrapOptions={_focusTrapOptions}>{children && children(state)}</FocusTrap>
             </Wrapper>
           )}
