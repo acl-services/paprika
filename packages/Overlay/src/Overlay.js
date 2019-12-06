@@ -9,7 +9,6 @@ import Wrapper from "./Wrapper";
 import Backdrop from "./Backdrop";
 
 const propTypes = {
-  className: PropTypes.string,
   backdropClassName: PropTypes.string,
   isOpen: PropTypes.bool.isRequired,
   children: PropTypes.func,
@@ -72,7 +71,6 @@ const propTypes = {
 };
 
 const defaultProps = {
-  className: null,
   backdropClassName: null,
   children: () => {},
   hasBackdrop: true,
