@@ -31,13 +31,13 @@ const Takeover = props => {
   const { isOpen, onClose, onAfterClose, onAfterOpen, ...moreProps } = props;
 
   const {
-    "Takeover.FocusTrap": focusTrapExtracted,
+    "Takeover.Overlay": overlayExtracted,
     "Takeover.Header": headerExtracted,
     "Takeover.Content": contentExtracted,
     children,
-  } = extractChildren(moreProps.children, ["Takeover.FocusTrap", "Takeover.Header", "Takeover.Content"]);
+  } = extractChildren(moreProps.children, ["Takeover.Overlay", "Takeover.Header", "Takeover.Content"]);
 
-  const extendedFocusTrapOptions = focusTrapExtracted ? focusTrapExtracted.props : {};
+  const overlayProps = overlayExtracted ? overlayExtracted.props : {};
 
   return (
     <Overlay
@@ -46,7 +46,7 @@ const Takeover = props => {
       onClose={onClose}
       onAfterOpen={onAfterOpen}
       onAfterClose={onAfterClose}
-      focusTrapOptions={extendedFocusTrapOptions}
+      {...overlayProps}
     >
       {state => (
         <styled.Wrapper state={state} role="dialog" data-pka-anchor="takeover">

@@ -54,9 +54,11 @@ storiesOf("Takeover", module)
   ))
   .add("with overridden FocusTrap", () => (
     <TakeoverStory>
-      <Takeover.FocusTrap
-        initialFocus={() => {
-          return document.querySelector("[data-pka-anchor='takeover.focustrap.input']");
+      <Takeover.Overlay
+        focusTrapOptions={{
+          initialFocus: () => {
+            return document.querySelector("[data-pka-anchor='takeover.focustrap.input']");
+          }
         }}
       />
       <Takeover.Content>
