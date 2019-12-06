@@ -6,7 +6,7 @@ import OriginalHeader from "./components/Header";
 import OriginalFooter from "./components/Footer";
 
 /*
-Some comments according modal positioning:
+Some comments concerning modal positioning:
 1. Modals always have margin 24px (to have some space from screen edges)
 2. We do NOT do vertical centering.
    Vertical centering leads to visual jumping on opening multiple (one by one or one after another) modals with different heights.
