@@ -4,7 +4,9 @@ import Button from "@paprika/button";
 import nanoid from "nanoid";
 import { useDataTableState, useDispatch } from "../../../..";
 import FilterItem from "./FilterItem";
-import rules from "./rules";
+import { rulesByType } from "./rules";
+import { FiltersPanelStyled } from "./Filters.styles";
+import { columnTypes, logicalFilterOperators } from "../../../../constants";
 
 export default function Filters() {
   const { filters, logicalFilterOperator } = useDataTableState();
@@ -18,33 +20,37 @@ export default function Filters() {
     dispatch({ type: "UPDATE_LOGICAL_FILTER_OPERATOR", payload: e.target.value });
   }
 
+  console.log(filters);
+
   return (
-    <Popover align="bottom" edge="left" isOpen onClose={() => {}} maxWidth={1200}>
+    <Popover align="bottom" edge="left" maxWidth={1200}>
       <Popover.Trigger>Filters</Popover.Trigger>
       <Popover.Content>
         <Popover.Card>
-          <input
-            type="radio"
-            name="condition"
-            value="and"
-            checked={logicalFilterOperator === "and"}
-            onClick={handleClickCondition}
-          />
-          And
-          <input
-            type="radio"
-            name="condition"
-            value="or"
-            checked={logicalFilterOperator === "or"}
-            onClick={handleClickCondition}
-          />
-          Or
-          {filters.map(filter => (
-            <FilterItem key={filter.id} {...filter} />
-          ))}
-          <Button onClick={handleAddFilter} kind="minor">
-            + Add filter
-          </Button>
+          <FiltersPanelStyled>
+            <input
+              type="radio"
+              name="condition"
+              value={logicalFilterOperators.AND}
+              defaultChecked={logicalFilterOperator === logicalFilterOperators.AND}
+              onChange={handleClickCondition}
+            />
+            And
+            <input
+              type="radio"
+              name="condition"
+              value={logicalFilterOperators.OR}
+              defaultChecked={logicalFilterOperator === logicalFilterOperators.OR}
+              onChange={handleClickCondition}
+            />
+            Or
+            {filters.map(filter => (
+              <FilterItem key={filter.id} {...filter} />
+            ))}
+            <Button onClick={handleAddFilter} kind="minor">
+              + Add filter
+            </Button>
+          </FiltersPanelStyled>
         </Popover.Card>
       </Popover.Content>
     </Popover>
@@ -52,6 +58,13 @@ export default function Filters() {
 }
 
 Filters.reducer = (state, action) => {
+  function getColumnType(columnId) {
+    return (
+      action.changes.columns[columnId].type ||
+      (typeof action.changes.data[0][columnId] === "number" ? columnTypes.NUMBER : columnTypes.TEXT)
+    );
+  }
+
   switch (action.type) {
     case "ADD_FILTER": {
       return {
@@ -61,7 +74,7 @@ Filters.reducer = (state, action) => {
           {
             id: `FILTER_ID__${nanoid()}`,
             columnId: action.changes.columnsOrder[0],
-            rule: rules[action.changes.columns[action.changes.columnsOrder[0]].type][0],
+            rule: rulesByType[getColumnType([action.changes.columnsOrder[0]])][0],
             value: "",
           },
         ],

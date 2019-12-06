@@ -1,37 +1,38 @@
 import React from "react";
 import Button from "@paprika/button";
-import ListBox from "@paprika/listbox";
 import Input from "@paprika/input";
 import { useDataTableState, useDispatch } from "../../../..";
-import rules from "./rules";
+import { rulesByType } from "./rules";
+import { columnTypes } from "../../../../constants";
+import { FilterItemStyled } from "./Filters.styles";
 
 export default function FilterItem(prop) {
   const { columnId: selectedColumnId, rule: selectedRule, id, value } = prop;
-  const { columns, columnsOrder } = useDataTableState();
+  const { columns, columnsOrder, data } = useDataTableState();
   const dispatch = useDispatch();
 
   function handleRemoveFilter() {
     dispatch({ type: "REMOVE_FILTER", payload: id });
   }
 
-  function handleChangeColumn(activeOptionIndex) {
+  function handleChangeColumn(event) {
     dispatch({
       type: "UPDATE_FILTER",
       payload: {
         id,
         attribute: "columnId",
-        value: columnsOrder[activeOptionIndex],
+        value: event.target.value,
       },
     });
   }
 
-  function handleChangeRule(activeOptionIndex) {
+  function handleChangeRule(event) {
     dispatch({
       type: "UPDATE_FILTER",
       payload: {
         id,
         attribute: "rule",
-        value: rules.TEXT[activeOptionIndex],
+        value: event.target.value,
       },
     });
   }
@@ -47,38 +48,33 @@ export default function FilterItem(prop) {
     });
   }
 
-  console.log(rules[columns[selectedColumnId].type || "TEXT"]);
+  function getColumnType() {
+    return (
+      columns[selectedColumnId].type ||
+      (typeof data[0][selectedColumnId] === "number" ? columnTypes.NUMBER : columnTypes.TEXT)
+    );
+  }
 
   return (
-    <li
-      style={{
-        alignItems: "center",
-        display: "flex",
-        flexWrap: "nowrap",
-        width: "600px",
-      }}
-    >
+    <FilterItemStyled>
       <Button onClick={handleRemoveFilter} kind="minor">
         X
       </Button>
-      Where
-      <ListBox onChange={handleChangeColumn}>
-        <ListBox.Trigger hasClearButton={false} />
+      <select onChange={handleChangeColumn}>
         {columnsOrder.map(columnId => (
-          <ListBox.Option key={columnId} isSelected={columnId === selectedColumnId}>
-            {columns[columnId].header}
-          </ListBox.Option>
+          <option key={columnId} value={columnId} isselected={`${columnId === selectedColumnId}`}>
+            {columnId}
+          </option>
         ))}
-      </ListBox>
-      <ListBox onChange={handleChangeRule}>
-        <ListBox.Trigger hasClearButton={false} />
-        {rules[columns[selectedColumnId].type || "TEXT"].map(rule => (
-          <ListBox.Option key={rule} isSelected={rule === selectedRule}>
+      </select>
+      <select onChange={handleChangeRule}>
+        {rulesByType[getColumnType()].map(rule => (
+          <option key={rule} value={rule} isselected={`${rule === selectedRule}`}>
             {rule}
-          </ListBox.Option>
+          </option>
         ))}
-      </ListBox>
-      <Input onChange={handleChangeValue} value={value} />
-    </li>
+      </select>
+      <Input value={value} onChange={handleChangeValue} />
+    </FilterItemStyled>
   );
 }

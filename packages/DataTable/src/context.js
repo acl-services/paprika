@@ -5,7 +5,7 @@ import tableReducer from "./reducers/table";
 import useAsyncReducer from "./hooks/useAsyncReducer";
 import ruleTesters from "./components/Navigation/components/Filters/ruleTesters";
 import sort from "./helpers/sort";
-import { columnTypes } from "./constants";
+import { columnTypes, logicalFilterOperators } from "./constants";
 
 const TableStateContext = React.createContext();
 const TableDispatchContext = React.createContext();
@@ -22,7 +22,7 @@ function TableProvider(props) {
     columnsOrder: columns.map(column => column.id),
     columns: columns.reduce((columnsObject, column) => ({ ...columnsObject, [column.id]: column }), {}),
     filters: [],
-    logicalFilterOperator: "and",
+    logicalFilterOperator: logicalFilterOperators.AND,
   };
 
   const isFirstRender = React.useRef(true);
@@ -113,9 +113,9 @@ function useSortedAndFilteredData() {
         const tester = filter => ruleTesters[filter.rule](row[filter.columnId], filter.value);
 
         switch (logicalFilterOperator) {
-          case "and":
+          case logicalFilterOperators.AND:
             return filters.every(tester);
-          case "or":
+          case logicalFilterOperators.OR:
             return filters.some(tester);
           default:
             return true;
@@ -123,7 +123,7 @@ function useSortedAndFilteredData() {
       });
     }
 
-    if (sortedData.length === 0 && filteredData.length === 0) return data;
+    if (sortedData.length === 0 && filters.length === 0) return data;
 
     if (sortedData.length > 0 && filteredData.length > 0)
       return sortedData.filter(row => filteredData.find(filteredRow => row[keygen] === filteredRow[keygen]));

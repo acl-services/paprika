@@ -23,7 +23,7 @@ function App() {
           <RowHeight />
           <Filters />
         </DataTable.Navigation>
-        <DataTable.ColumnDefinition id="country" width="190" header="Country" cell="country" />
+        <DataTable.ColumnDefinition id="country" width="190" header="Country" cell="country" type="TEXT" />
         <DataTable.ColumnDefinition
           id="name"
           header="Name"
@@ -42,6 +42,7 @@ function App() {
           id="status"
           header="Status"
           cell="status"
+          type="TEXT"
           sortDirections={[DataTable.SortDirections.ASCEND, DataTable.SortDirections.DESCEND]}
         />
       </DataTable>

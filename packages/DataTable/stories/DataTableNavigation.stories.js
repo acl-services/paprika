@@ -4,7 +4,7 @@ import DataTable, { RowHeight } from "../src";
 import fixtures from "./fixtures";
 import { viewPortHeight } from "./helpers";
 
-const data = fixtures(1000);
+const data = fixtures(1);
 
 function App() {
   return (
