@@ -40,6 +40,8 @@ fr:
       last_month: Le mois dernier
       start_date: Date de début
       end_date: Date de fin
+    dropdownMenu:
+      isExternal: "{{link}} s'ouvre dans un nouvel onglet."
     comment:
       delete: Supprimer le commentaire
     pagination:
@@ -56,7 +58,7 @@ fr:
       arrowup: haut
       arrowdown: bas
       escape: Échap
-    externalLink:
+    externaLink:
       view: voir
     collapsible:
       ariaText: section compressible
