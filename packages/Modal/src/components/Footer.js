@@ -1,5 +1,4 @@
 import styled from "styled-components";
-import { spacer } from "@paprika/stylers/lib/helpers";
 import tokens from "@paprika/tokens";
 
 const Footer = styled.div`
@@ -8,10 +7,10 @@ const Footer = styled.div`
   display: flex;
   flex-wrap: wrap;
   justify-content: flex-end;
-  padding: ${spacer(1.5)};
+  padding: ${tokens.spaceLg};
 
   & > * {
-    margin: ${spacer(0.5)};
+    margin: ${tokens.spaceSm};
   }
 `;
 

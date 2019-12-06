@@ -1,5 +1,6 @@
 import styled, { css } from "styled-components";
 import tokens from "@paprika/tokens";
+import stylers from "@paprika/stylers";
 import { ShirtSizes } from "@paprika/helpers/lib/customPropTypes";
 import OriginalOverlay from "@paprika/overlay";
 import OriginalHeader from "./components/Header";
@@ -64,6 +65,7 @@ export const Dialog = styled.div`
   transition: all ${tokens.overlay.animationDuration}ms ease;
   width: 100%;
   ${({ state }) => states[state]};
+  ${stylers.boxSizingStyles};
 `;
 
 export const Wrapper = styled.div`
@@ -72,7 +74,7 @@ export const Wrapper = styled.div`
   max-height: calc(100% - ${tokens.modal.margin} - ${tokens.modal.margin});
   max-width: calc(100% - ${tokens.modal.margin} - ${tokens.modal.margin});
   width: ${({ size }) => mapShirtSizesToValues[size] || mapShirtSizesToValues[ShirtSizes.MEDIUM]};
-  z-index: 1;
+  ${stylers.z(1)};
 `;
 
 export const Header = styled(OriginalHeader)`
