@@ -94,24 +94,26 @@ storiesOf("Modal", module)
   );
 
 storiesOf("Modal / screener", module)
-  .add("when little content", () => (
+  .add("small", () => (
     <ModalStory>
       <Modal.Content>
         <p>Some content here</p>
       </Modal.Content>
     </ModalStory>
   ))
-  .add("when height bigger than (100% - (124px * 2)) on 1280x1024", () => (
+  .add("symmetric reducing of &::before and &::after", () => (
     <ModalStory>
       <Modal.Content>
-        {repeat(18, (key) => <p key={key}>Some content here</p>)}
+        <p>height of this modal bigger than (100% - (124px * 2)) on 1280x1024</p>
+        {repeat(17, (key) => <p key={key}>Some content here</p>)}
       </Modal.Content>
     </ModalStory>
   ))
-  .add("when height bigger than (100% - (24px * 2)) on 1280x1024", () => (
+  .add("scroll in content area", () => (
     <ModalStory>
       <Modal.Content>
-        {repeat(25, (key) => <p key={key}>Some content here</p>)}
+        <p>height of this modal bigger than (100% - (24px * 2)) on 1280x1024</p>
+        {repeat(24, (key) => <p key={key}>Some content here</p>)}
       </Modal.Content>
     </ModalStory>
   ));
