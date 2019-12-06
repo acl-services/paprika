@@ -52,7 +52,7 @@ export default function Options(props) {
           ))
         : null}
       {canHide ? <DropdownMenu.Item onClick={handleToggleColumn}>Hide this column</DropdownMenu.Item> : null}
-      <DropdownMenu.Item onClick={handleClickAddFilter}>Add filter</DropdownMenu.Item>
+      <DropdownMenu.Item onClick={handleClickAddFilter}>Add filter for this column</DropdownMenu.Item>
     </DropdownMenu>
   );
 }

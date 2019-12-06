@@ -57,7 +57,7 @@ describe("Sortable <DataTable />", () => {
     getByCellIndex("2_4").contains("10/01/2019");
   });
 
-  it.only("can sort by clicking optional button", () => {
+  it("can sort by clicking optional button", () => {
     cy.contains("Joined since")
       .find("[role='button']")
       .invoke("width")

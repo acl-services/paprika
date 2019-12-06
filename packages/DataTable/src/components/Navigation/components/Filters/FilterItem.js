@@ -62,8 +62,8 @@ export default function FilterItem(prop) {
   }
 
   return (
-    <FilterItemStyled>
-      <Button onClick={handleRemoveFilter} kind="minor">
+    <FilterItemStyled data-pka-anchor="filter.filter-item">
+      <Button data-pka-anchor="filter.delete-button" onClick={handleRemoveFilter} kind="minor">
         X
       </Button>
       <select onChange={handleChangeColumn} value={selectedColumnId}>
