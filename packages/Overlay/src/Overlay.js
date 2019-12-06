@@ -127,7 +127,14 @@ const Overlay = props => {
         >
           {state => (
             <Wrapper {...moreProps} onKeyDown={handleEscKey}>
-              {hasBackdrop && <Backdrop className={backdropClassName} state={state} onClick={onClose} />}
+              {hasBackdrop && (
+                <Backdrop
+                  className={backdropClassName}
+                  state={state}
+                  onClick={onClose}
+                  data-pka-anchor="overlay.backdrop"
+                />
+              )}
               <FocusTrap focusTrapOptions={_focusTrapOptions}>{children && children(state)}</FocusTrap>
             </Wrapper>
           )}
