@@ -91,8 +91,15 @@ Filters.reducer = (state, action) => {
       };
     }
     case "UPDATE_FILTER": {
-      const newFilters = [...action.changes.filters];
-      newFilters.find(filter => filter.id === action.payload.id)[action.payload.attribute] = action.payload.value;
+      const newFilters = action.changes.filters.map(filter => {
+        if (filter.id === action.payload.id) {
+          return {
+            ...filter,
+            ...action.payload.changes,
+          };
+        }
+        return filter;
+      });
       return {
         ...action.changes,
         filters: newFilters,

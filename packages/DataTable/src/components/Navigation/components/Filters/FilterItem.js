@@ -11,6 +11,13 @@ export default function FilterItem(prop) {
   const { columns, columnsOrder, data } = useDataTableState();
   const dispatch = useDispatch();
 
+  function getColumnType() {
+    return (
+      columns[selectedColumnId].type ||
+      (typeof data[0][selectedColumnId] === "number" ? columnTypes.NUMBER : columnTypes.TEXT)
+    );
+  }
+
   function handleRemoveFilter() {
     dispatch({ type: "REMOVE_FILTER", payload: id });
   }
@@ -20,8 +27,11 @@ export default function FilterItem(prop) {
       type: "UPDATE_FILTER",
       payload: {
         id,
-        attribute: "columnId",
-        value: event.target.value,
+        changes: {
+          columnId: event.target.value,
+          rule: rulesByType[getColumnType()][0],
+          value: "",
+        },
       },
     });
   }
@@ -31,8 +41,10 @@ export default function FilterItem(prop) {
       type: "UPDATE_FILTER",
       payload: {
         id,
-        attribute: "rule",
-        value: event.target.value,
+        changes: {
+          rule: event.target.value,
+          value: "",
+        },
       },
     });
   }
@@ -42,17 +54,11 @@ export default function FilterItem(prop) {
       type: "UPDATE_FILTER",
       payload: {
         id,
-        attribute: "value",
-        value: e.target.value,
+        changes: {
+          value: e.target.value,
+        },
       },
     });
-  }
-
-  function getColumnType() {
-    return (
-      columns[selectedColumnId].type ||
-      (typeof data[0][selectedColumnId] === "number" ? columnTypes.NUMBER : columnTypes.TEXT)
-    );
   }
 
   return (
