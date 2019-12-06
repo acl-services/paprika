@@ -22,6 +22,8 @@ const propTypes = {
 
   /* Control the size (max-width) of the modal */
   size: PropTypes.oneOf(ShirtSizes.DEFAULT),
+
+  a11yText: PropTypes.string,
 };
 
 const defaultProps = {
@@ -29,10 +31,11 @@ const defaultProps = {
   onClose: () => {},
   onAfterOpen: () => {},
   size: ShirtSizes.MEDIUM,
+  a11yText: null,
 };
 
 const Modal = props => {
-  const { isOpen, onClose, onAfterClose, onAfterOpen, size, ...moreProps } = props;
+  const { isOpen, onClose, onAfterClose, onAfterOpen, size, a11yText, ...moreProps } = props;
 
   const {
     "Modal.Overlay": overlayExtracted,
@@ -44,6 +47,8 @@ const Modal = props => {
 
   const overlayProps = overlayExtracted ? overlayExtracted.props : {};
 
+  const ariaLabel = a11yText || (headerExtracted ? headerExtracted.props.children : null);
+
   return (
     <styled.Overlay
       isOpen={isOpen}
@@ -54,7 +59,7 @@ const Modal = props => {
     >
       {state => (
         <styled.Wrapper size={size}>
-          <styled.Dialog state={state} role="dialog" data-pka-anchor="modal">
+          <styled.Dialog state={state} role="dialog" aria-modal="true" aria-label={ariaLabel} data-pka-anchor="modal">
             {headerExtracted && <styled.Header {...headerExtracted.props} onClose={onClose} />}
             <styled.ContentWrapper role="region" tabIndex="0">
               {contentExtracted}
