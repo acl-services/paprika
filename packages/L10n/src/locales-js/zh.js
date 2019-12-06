@@ -50,6 +50,9 @@ const locales = {
         "start_date": "开始日期",
         "end_date": "结束日期"
       },
+      "dropdownMenu": {
+        "isExternal": "{{link}} 在新选项卡中打开。"
+      },
       "comment": {
         "delete": "删除评论"
       },
@@ -70,7 +73,7 @@ const locales = {
         "arrowdown": "下",
         "escape": "Esc 键"
       },
-      "externalLink": {
+      "externaLink": {
         "view": "查看"
       },
       "collapsible": {
