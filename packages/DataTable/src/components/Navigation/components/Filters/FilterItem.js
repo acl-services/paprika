@@ -1,6 +1,6 @@
 import React from "react";
 import Button from "@paprika/button";
-import Input from "@paprika/input";
+import Input from "./Input";
 import { useDataTableState, useDispatch } from "../../../..";
 import { rulesByType } from "./rules";
 import { columnTypes } from "../../../../constants";
@@ -49,13 +49,13 @@ export default function FilterItem(prop) {
     });
   }
 
-  function handleChangeValue(e) {
+  function handleChangeValue(newValue) {
     dispatch({
       type: "UPDATE_FILTER",
       payload: {
         id,
         changes: {
-          value: e.target.value,
+          value: newValue,
         },
       },
     });
@@ -80,7 +80,7 @@ export default function FilterItem(prop) {
           </option>
         ))}
       </select>
-      <Input value={value} onChange={handleChangeValue} />
+      <Input initialValue={value} onChange={handleChangeValue} />
     </FilterItemStyled>
   );
 }
