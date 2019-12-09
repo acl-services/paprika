@@ -12,7 +12,6 @@ import { TableProvider } from "./context";
 
 const propTypes = {
   data: PropTypes.arrayOf(PropTypes.shape({})),
-  defaultData: PropTypes.arrayOf(PropTypes.shape({})),
   height: PropTypes.number,
   width: PropTypes.number,
   rowHeight: PropTypes.number,
@@ -24,8 +23,7 @@ const propTypes = {
 };
 
 const defaultProps = {
-  data: null,
-  defaultData: null,
+  data: [],
   height: 600,
   width: 640,
   rowHeight: 32,
@@ -41,7 +39,6 @@ export default function DataTable(props) {
   const {
     children: childrenProps,
     data,
-    defaultData,
     height,
     isLoading,
     keygen,
@@ -63,19 +60,22 @@ export default function DataTable(props) {
   ]);
 
   const columns = ColumnsDefinition.map(Column => Column.props);
-  const isControlled = data && data.length > 0;
 
   let navigationReducers = [];
+  let isControlled = false;
   if (Navigation && Navigation.props) {
     navigationReducers = React.Children.map(Navigation.props.children, child => child.type.reducer).filter(
       chunk => chunk
     );
+    React.Children.forEach(Navigation.props.children, child => {
+      if (child.props.onFilter || child.props.onSort) isControlled = true;
+    });
   }
 
   return (
     <TableProvider
       isControlled={isControlled}
-      data={isControlled ? data : defaultData}
+      data={data}
       keygen={keygen}
       reducers={navigationReducers.concat(reducers)}
       columns={columns}

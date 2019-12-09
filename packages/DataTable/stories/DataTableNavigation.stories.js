@@ -9,7 +9,7 @@ const data = fixtures(1);
 function App() {
   return (
     <React.Fragment>
-      <DataTable keygen="id" defaultData={data} height={viewPortHeight()}>
+      <DataTable keygen="id" data={data} height={viewPortHeight()}>
         <DataTable.Navigation>
           <RowHeight />
         </DataTable.Navigation>

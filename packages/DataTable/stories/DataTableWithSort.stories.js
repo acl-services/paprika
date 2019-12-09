@@ -17,7 +17,7 @@ function App() {
       >
         Clear data
       </Button>
-      <DataTable keygen="id" defaultData={data} height={viewPortHeight()}>
+      <DataTable keygen="id" data={data} height={viewPortHeight()}>
         <DataTable.Navigation>
           <Sort />
           <RowHeight />
