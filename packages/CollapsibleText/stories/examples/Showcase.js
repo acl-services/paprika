@@ -43,8 +43,8 @@ const ExampleStory = props => {
       <Tagline>
         <big>
           <strong>Showcase</strong>
-        </big>{" "}
-        – Interact with the props API
+        </big>
+        <span> – Interact with the props API</span>
       </Tagline>
       <Rule />
       <CollapsibleText {...props}>{exampleChildren[props.children]}</CollapsibleText>

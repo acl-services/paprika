@@ -1,15 +1,15 @@
 import { Meta, Story } from "@storybook/addon-docs/blocks";
-import MDX from "./CollapsibleText.mdx";
+import { Props, Description } from "@storybook/addon-docs/blocks";
+import { Gap } from "storybook/assets/styles/common.styles";
+import Readme from "../README.md";
 import CollapsibleText from "../src";
 
-export const params = {
-  docs: { disable: true  },
-  options: {
-    isToolshown: true, 
-    showPanel: false,
-  },
-}
+<Meta title=" | CollapsibleText/ Props" component={CollapsibleText} parameters={{ options: { showPanel: false } }} />
 
-<Meta title="CollapsibleText/ Props" component={CollapsibleText} parameters={params} />
+## &lt;CollapsibleText&gt; Props
 
-<MDX />
+<Props of={CollapsibleText} />
+
+<Gap />
+
+<Description markdown={Readme} />
