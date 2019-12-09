@@ -26,7 +26,7 @@ const data = fixtures(1);
 function App() {
   return (
     <React.Fragment>
-      <DataTable keygen="id" data={data} height={viewPortHeight()}>
+      <DataTable keygen="id" defaultData={data} height={viewPortHeight()}>
         <DataTable.ColumnDefinition id="country" width="60" header="Country" cell={row => getFlag(row)} />
         <DataTable.ColumnDefinition id="name" header="Name" cell="name" />
         <DataTable.ColumnDefinition id="goals" header="Goals" cell="goals" />

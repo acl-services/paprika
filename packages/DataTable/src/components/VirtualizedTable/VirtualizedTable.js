@@ -8,7 +8,7 @@ import "@paprika/helpers/lib/dom/elementScrollToPolyfill";
 import Cell from "../Cell";
 import { CellHeader } from "../Cell/Cell.styles";
 import Options from "../Options";
-import { useDataTableState, useSortedAndFilteredData } from "../../context";
+import { useDataTableState, useData } from "../../context";
 
 const propTypes = {
   dataTableID: PropTypes.string.isRequired,
@@ -64,7 +64,7 @@ export default function VirtualizedTable(props) {
 
   // this will inject 20 rows below the visible table to helps with the navigation and scrolling flickering
 
-  const dataForRendering = useSortedAndFilteredData();
+  const dataForRendering = useData();
 
   //
   // const handleMouseEnter = (data, rowIndex, keys) => () => {

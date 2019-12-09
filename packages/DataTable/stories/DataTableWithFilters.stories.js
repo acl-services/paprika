@@ -7,7 +7,7 @@ import { viewPortHeight } from "./helpers";
 const mockData = fixtures(1);
 function App() {
   return (
-    <DataTable keygen="id" data={mockData} height={viewPortHeight()}>
+    <DataTable keygen="id" defaultData={mockData} height={viewPortHeight()}>
       <DataTable.Navigation>
         <Filters />
       </DataTable.Navigation>

@@ -12,6 +12,7 @@ import { TableProvider } from "./context";
 
 const propTypes = {
   data: PropTypes.arrayOf(PropTypes.shape({})),
+  defaultData: PropTypes.arrayOf(PropTypes.shape({})),
   height: PropTypes.number,
   width: PropTypes.number,
   rowHeight: PropTypes.number,
@@ -23,7 +24,8 @@ const propTypes = {
 };
 
 const defaultProps = {
-  data: [],
+  data: null,
+  defaultData: null,
   height: 600,
   width: 640,
   rowHeight: 32,
@@ -39,6 +41,7 @@ export default function DataTable(props) {
   const {
     children: childrenProps,
     data,
+    defaultData,
     height,
     isLoading,
     keygen,
@@ -60,6 +63,7 @@ export default function DataTable(props) {
   ]);
 
   const columns = ColumnsDefinition.map(Column => Column.props);
+  const isControlled = data && data.length > 0;
 
   let navigationReducers = [];
   if (Navigation && Navigation.props) {
@@ -69,7 +73,13 @@ export default function DataTable(props) {
   }
 
   return (
-    <TableProvider data={data} keygen={keygen} reducers={navigationReducers.concat(reducers)} columns={columns}>
+    <TableProvider
+      isControlled={isControlled}
+      data={isControlled ? data : defaultData}
+      keygen={keygen}
+      reducers={navigationReducers.concat(reducers)}
+      columns={columns}
+    >
       <div>{isLoading ? "Loading..." : null}</div>
       {Navigation}
       <VirtualizedTable

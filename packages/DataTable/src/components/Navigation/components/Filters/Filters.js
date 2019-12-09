@@ -1,17 +1,31 @@
 /* eslint-disable jsx-a11y/label-has-associated-control */
 import React from "react";
+import PropTypes from "prop-types";
+import isEqual from "lodash.isequal";
+import nanoid from "nanoid";
 import Popover from "@paprika/popover";
 import Button from "@paprika/button";
-import nanoid from "nanoid";
+import usePrevious from "@paprika/helpers/lib/hooks/usePrevious";
 import { useDataTableState, useDispatch } from "../../../..";
 import FilterItem from "./FilterItem";
 import { rulesByType } from "./rules";
 import { FiltersPanelStyled } from "./Filters.styles";
 import { columnTypes, logicalFilterOperators } from "../../../../constants";
 
-export default function Filters() {
+const propTypes = {
+  onFilter: PropTypes.func,
+};
+
+const defaultProps = {
+  onFilter: null,
+};
+
+export default function Filters(props) {
+  const { onFilter } = props;
   const { filters, logicalFilterOperator, columnsOrder } = useDataTableState();
   const dispatch = useDispatch();
+  const prevFilters = usePrevious(filters);
+  const isFirstTime = React.useRef(true);
 
   function handleAddFilter() {
     dispatch({ type: "ADD_FILTER", payload: columnsOrder[0] });
@@ -20,6 +34,15 @@ export default function Filters() {
   function handleClickCondition(e) {
     dispatch({ type: "UPDATE_LOGICAL_FILTER_OPERATOR", payload: e.target.value });
   }
+
+  React.useEffect(() => {
+    if (isFirstTime.current) {
+      isFirstTime.current = false;
+      return;
+    }
+    if (onFilter && !isEqual(filters, prevFilters)) onFilter(filters);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [filters]);
 
   return (
     <Popover align="bottom" edge="left" isOpen maxWidth={1200}>
@@ -115,3 +138,6 @@ Filters.reducer = (state, action) => {
       return action.changes;
   }
 };
+
+Filters.propTypes = propTypes;
+Filters.defaultProps = defaultProps;

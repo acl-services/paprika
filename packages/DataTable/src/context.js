@@ -11,9 +11,10 @@ const TableStateContext = React.createContext();
 const TableDispatchContext = React.createContext();
 
 function TableProvider(props) {
-  const { data, keygen, reducers, columns } = props;
+  const { isControlled, data, keygen, reducers, columns } = props;
   const initialState = {
     keyGrid: 0,
+    isControlled,
     data: data || [],
     dataForRendering: data || [],
     keygen,
@@ -91,12 +92,22 @@ function useDispatch() {
   return React.useContext(TableDispatchContext);
 }
 
-function useSortedAndFilteredData() {
-  const { data, columns, filters, sortColumn, sortDirection, keygen, logicalFilterOperator } = useDataTableState();
+function useData() {
+  const {
+    isControlled,
+    data,
+    columns,
+    filters,
+    sortColumn,
+    sortDirection,
+    keygen,
+    logicalFilterOperator,
+  } = useDataTableState();
   let sortedData = [];
   let filteredData = [];
 
   function calculateResult() {
+    if (isControlled) return data;
     if (sortColumn && sortDirection) {
       sortedData = sort({
         data,
@@ -147,6 +158,7 @@ function useSortedAndFilteredData() {
 
 TableProvider.propTypes = {
   children: PropTypes.node.isRequired,
+  isControlled: PropTypes.bool.isRequired,
   data: PropTypes.arrayOf(PropTypes.objectOf(PropTypes.any)),
   keygen: PropTypes.string.isRequired,
   reducers: PropTypes.arrayOf(PropTypes.func).isRequired,
@@ -162,4 +174,4 @@ TableProvider.defaultProps = {
   columns: [],
 };
 
-export { TableProvider, useDataTableState, useDispatch, useSortedAndFilteredData };
+export { TableProvider, useDataTableState, useDispatch, useData };
