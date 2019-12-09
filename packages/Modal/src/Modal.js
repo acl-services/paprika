@@ -62,7 +62,7 @@ const Modal = props => {
           <styled.Dialog state={state} role="dialog" aria-modal="true" aria-label={ariaLabel} data-pka-anchor="modal">
             {headerExtracted && <styled.Header {...headerExtracted.props} onClose={onClose} />}
             <styled.ContentWrapper role="region" tabIndex="0">
-              {contentExtracted}
+              {contentExtracted && <styled.Content {...contentExtracted.props} />}
               {children}
             </styled.ContentWrapper>
             {footerExtracted && <styled.Footer {...footerExtracted.props} />}

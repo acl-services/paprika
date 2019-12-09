@@ -4,6 +4,7 @@ import stylers from "@paprika/stylers";
 import { ShirtSizes } from "@paprika/helpers/lib/customPropTypes";
 import OriginalOverlay from "@paprika/overlay";
 import OriginalHeader from "./components/Header";
+import OriginalContent from "./components/Content";
 import OriginalFooter from "./components/Footer";
 
 /*
@@ -83,6 +84,12 @@ export const Header = styled(OriginalHeader)`
 
 export const ContentWrapper = styled.div`
   overflow-y: auto;
+`;
+
+export const Content = styled(OriginalContent)`
+  ${Header} + ${ContentWrapper} > & {
+    margin-top: -${OriginalContent.SPACE};
+  }
 `;
 
 export const Footer = styled(OriginalFooter)`

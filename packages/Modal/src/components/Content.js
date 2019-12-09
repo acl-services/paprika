@@ -1,10 +1,13 @@
 import styled from "styled-components";
 import { spacer } from "@paprika/stylers/lib/helpers";
 
+const SPACE = spacer(2);
+
 const Content = styled.div`
-  padding: 0 ${spacer(2)} ${spacer(2)};
+  padding: ${SPACE};
 `;
 
+Content.SPACE = SPACE;
 Content.displayName = "Modal.Content";
 
 export default Content;
