@@ -1,6 +1,6 @@
 import toNumber from "lodash.tonumber";
 import moment from "moment";
-import rules from "./rules";
+import rules from "../components/Navigation/components/Filters/rules";
 
 const is = (value, testValue) => (testValue === "" ? true : value === testValue);
 
@@ -17,6 +17,7 @@ const processNumber = (value, testValue, testFunction) => {
 };
 
 const processDate = (momentParsingFormat, value, testValue, testFunction) => {
+  if (testValue === "") return true;
   const testDate = moment(testValue, momentParsingFormat);
   if (testDate.isValid()) return testFunction(moment(value, momentParsingFormat), testDate);
   return false;

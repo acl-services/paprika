@@ -3,7 +3,7 @@ import PropTypes from "prop-types";
 import isMatchWith from "lodash.ismatchwith";
 import tableReducer from "./reducers/table";
 import useAsyncReducer from "./hooks/useAsyncReducer";
-import ruleTesters from "./components/Navigation/components/Filters/ruleTesters";
+import filterTesters from "./helpers/filterTesters";
 import sort from "./helpers/sort";
 import { columnTypes, logicalFilterOperators } from "./constants";
 
@@ -123,7 +123,7 @@ function useData() {
       filteredData = data.filter(row => {
         // checking if filter.rule exist, will removed after having all the rules
         const tester = filter =>
-          filter.rule ? ruleTesters[filter.rule](row[filter.columnId], filter.value, columns[filter.columnId]) : true;
+          filter.rule ? filterTesters[filter.rule](row[filter.columnId], filter.value, columns[filter.columnId]) : true;
 
         switch (logicalFilterOperator) {
           case logicalFilterOperators.AND:
