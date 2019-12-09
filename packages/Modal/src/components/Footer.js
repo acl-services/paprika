@@ -1,26 +1,29 @@
 import React from "react";
-import styled from "styled-components";
-import tokens from "@paprika/tokens";
+import PropTypes from "prop-types";
+import { Wrapper, ChildWrapper } from "./Footer.styles";
 
-const Footer = styled(({ className, children }) => (
-  <div className={className}>
-    {React.Children.map(children, child => (
-      <div key={child.key}>{child}</div>
-    ))}
-  </div>
-))`
-  align-items: center;
-  background-color: ${tokens.modal.footer.backgroundColor};
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: flex-end;
-  padding: ${tokens.spaceLg};
+const propTypes = {
+  children: PropTypes.node,
+};
 
-  & > * {
-    margin: ${tokens.spaceSm};
-  }
-`;
+const defaultProps = {
+  children: null,
+};
+
+const Footer = props => {
+  const { children, ...moreProps } = props;
+
+  return (
+    <Wrapper {...moreProps}>
+      {React.Children.map(children, child => (
+        <ChildWrapper key={child.key}>{child}</ChildWrapper>
+      ))}
+    </Wrapper>
+  );
+};
 
 Footer.displayName = "Modal.Footer";
+Footer.propTypes = propTypes;
+Footer.defaultProps = defaultProps;
 
 export default Footer;
