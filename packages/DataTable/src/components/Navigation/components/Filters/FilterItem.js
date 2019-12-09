@@ -11,11 +11,8 @@ export default function FilterItem(prop) {
   const { columns, columnsOrder, data } = useDataTableState();
   const dispatch = useDispatch();
 
-  function getColumnType() {
-    return (
-      columns[selectedColumnId].type ||
-      (typeof data[0][selectedColumnId] === "number" ? columnTypes.NUMBER : columnTypes.TEXT)
-    );
+  function getColumnType(columnId) {
+    return columns[columnId].type || (typeof data[0][columnId] === "number" ? columnTypes.NUMBER : columnTypes.TEXT);
   }
 
   function handleRemoveFilter() {
@@ -23,13 +20,14 @@ export default function FilterItem(prop) {
   }
 
   function handleChangeColumn(event) {
+    const newColumnId = event.target.value;
     dispatch({
       type: "UPDATE_FILTER",
       payload: {
         id,
         changes: {
-          columnId: event.target.value,
-          rule: rulesByType[getColumnType()][0],
+          columnId: newColumnId,
+          rule: rulesByType[getColumnType(newColumnId)][0],
           value: "",
         },
       },
@@ -43,7 +41,6 @@ export default function FilterItem(prop) {
         id,
         changes: {
           rule: event.target.value,
-          value: "",
         },
       },
     });
@@ -74,7 +71,7 @@ export default function FilterItem(prop) {
         ))}
       </select>
       <select onChange={handleChangeRule} value={selectedRule}>
-        {rulesByType[getColumnType()].map(rule => (
+        {rulesByType[getColumnType(selectedColumnId)].map(rule => (
           <option key={rule} value={rule}>
             {rule}
           </option>

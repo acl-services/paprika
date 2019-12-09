@@ -19,6 +19,10 @@ export default function Input(props) {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [debouncedValue]);
 
+  React.useEffect(() => {
+    setInputtedValue(initialValue);
+  }, [initialValue]);
+
   function handleChange(e) {
     const newInputtedValue = e.target.value;
     setInputtedValue(newInputtedValue);

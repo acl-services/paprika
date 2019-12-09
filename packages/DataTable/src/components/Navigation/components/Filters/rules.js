@@ -5,11 +5,28 @@ const rules = {
   DOES_NOT_CONTAIN: "DOES_NOT_CONTAIN",
   IS_BLANK: "IS_BLANK",
   IS_NOT_BLANK: "IS_NOT_BLANK",
+  EQUALS: "EQUALS",
+  NOT_EQUAL_TO: "NOT_EQUAL_TO",
+  GREATER_THAN: "GREATER_THAN",
+  LESS_THAN: "LESS_THAN",
+  GREATER_THAN_OR_EQUAL_TO: "GREATER_THAN_OR_EQUAL_TO",
+  LESS_THAN_OR_EQUAL_TO: "LESS_THAN_OR_EQUAL_TO",
+  IS_EMPTY: "IS_EMPTY",
+  IS_NOT_EMPTY: "IS_NOT_EMPTY",
 };
 
 export const rulesByType = {
   DATE: [],
-  NUMBER: [],
+  NUMBER: [
+    rules.EQUALS,
+    rules.NOT_EQUAL_TO,
+    rules.GREATER_THAN,
+    rules.GREATER_THAN_OR_EQUAL_TO,
+    rules.LESS_THAN,
+    rules.LESS_THAN_OR_EQUAL_TO,
+    rules.IS_EMPTY,
+    rules.IS_NOT_EMPTY,
+  ],
   TEXT: [rules.IS, rules.IS_NOT, rules.CONTAINS, rules.DOES_NOT_CONTAIN, rules.IS_BLANK, rules.IS_NOT_BLANK],
 };
 
