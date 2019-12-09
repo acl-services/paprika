@@ -44,7 +44,9 @@ storiesOf("Takeover", module)
   .add("Basic", () => (
     <TakeoverStory>
       <Takeover.Content>
-        {repeat(100, (key) => <p key={key}>Some content here</p>)}
+        {repeat(100, key => (
+          <p key={key}>Some content here</p>
+        ))}
       </Takeover.Content>
     </TakeoverStory>
   ))
@@ -54,7 +56,7 @@ storiesOf("Takeover", module)
         focusTrapOptions={{
           initialFocus: () => {
             return document.querySelector("[data-pka-anchor='takeover.focustrap.input']");
-          }
+          },
         }}
       />
       <Takeover.Content>

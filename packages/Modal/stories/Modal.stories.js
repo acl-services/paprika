@@ -47,7 +47,9 @@ storiesOf("Modal", module)
   .add("Basic", () => (
     <ModalStory>
       <Modal.Content>
-        {repeat(25, (key) => <p key={key}>Some content here</p>)}
+        {repeat(25, key => (
+          <p key={key}>Some content here</p>
+        ))}
       </Modal.Content>
     </ModalStory>
   ))
@@ -105,7 +107,9 @@ storiesOf("Modal / screener", module)
     <ModalStory>
       <Modal.Content>
         <p>height of this modal bigger than (100% - (124px * 2)) on 1280x1024</p>
-        {repeat(17, (key) => <p key={key}>Some content here</p>)}
+        {repeat(17, key => (
+          <p key={key}>Some content here</p>
+        ))}
       </Modal.Content>
     </ModalStory>
   ))
@@ -113,7 +117,9 @@ storiesOf("Modal / screener", module)
     <ModalStory>
       <Modal.Content>
         <p>height of this modal bigger than (100% - (24px * 2)) on 1280x1024</p>
-        {repeat(24, (key) => <p key={key}>Some content here</p>)}
+        {repeat(24, key => (
+          <p key={key}>Some content here</p>
+        ))}
       </Modal.Content>
     </ModalStory>
   ));

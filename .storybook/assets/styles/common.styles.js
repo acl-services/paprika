@@ -54,6 +54,9 @@ Gap.Large = LargeGap;
 Gap.Small = SmallGap;
 Gap.Inline = InlineGap;
 
-export const repeat = (num, f) => Array(num).fill(null).map((_, i) => f(i));
+export const repeat = (num, f) =>
+  Array(num)
+    .fill(null)
+    .map((_, i) => f(i));
 
 export const breaklines = num => repeat(num, index => <br key={index} />);
