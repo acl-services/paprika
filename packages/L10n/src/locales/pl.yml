@@ -58,7 +58,7 @@ pl:
       arrowup: w górę
       arrowdown: w dół
       escape: escape
-    externaLink:
+    externalLink:
       view: zobacz
     collapsible:
       ariaText: zwiń sekcję
