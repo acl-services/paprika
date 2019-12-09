@@ -18,7 +18,7 @@ Some comments concerning modal positioning:
 5. It expands till we have symmetric 124px from bottom edge of screen
 6. If modal becomes bigger and there is no space for 124px top and 124px bottom indents, indents (top+bottom) start to decrease __proportionally__
 7. Indents decrease till there is no more space (except fixed margins).
-8. If there is no more space for expanding (dymanic idents are exhausted) modal enables internal scroll for content
+8. If there is no more space for expanding (dynamic indents are exhausted) modal enables internal scroll for content
 */
 
 const openedCss = css`
