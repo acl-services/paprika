@@ -1,7 +1,14 @@
+import React from "react";
 import styled from "styled-components";
 import tokens from "@paprika/tokens";
 
-const Footer = styled.div`
+const Footer = styled(({ className, children }) => (
+  <div className={className}>
+    {React.Children.map(children, child => (
+      <div key={child.key}>{child}</div>
+    ))}
+  </div>
+))`
   align-items: center;
   background-color: ${tokens.modal.footer.backgroundColor};
   display: flex;
