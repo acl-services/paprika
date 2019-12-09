@@ -1,5 +1,6 @@
 import React from "react";
 import Button from "@paprika/button";
+import DatePicker from "./DatePicker";
 import Input from "./Input";
 import { useDataTableState, useDispatch } from "../../../..";
 import { rulesByType } from "./rules";
@@ -77,7 +78,14 @@ export default function FilterItem(prop) {
           </option>
         ))}
       </select>
-      <Input initialValue={value} onChange={handleChangeValue} />
+      {getColumnType(selectedColumnId) === columnTypes.DATE ? (
+        <DatePicker
+          onChange={momentDate => handleChangeValue(momentDate.format(columns[selectedColumnId].momentParsingFormat))}
+          parsingFormat={columns[selectedColumnId].momentParsingFormat}
+        />
+      ) : (
+        <Input initialValue={value} onChange={handleChangeValue} />
+      )}
     </FilterItemStyled>
   );
 }

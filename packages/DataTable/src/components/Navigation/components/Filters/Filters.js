@@ -25,6 +25,7 @@ export default function Filters(props) {
   const { filters, logicalFilterOperator, columnsOrder } = useDataTableState();
   const dispatch = useDispatch();
   const prevFilters = usePrevious(filters);
+  const prevLogicalFilterOperator = usePrevious(logicalFilterOperators);
   const isFirstTime = React.useRef(true);
 
   function handleAddFilter() {
@@ -40,9 +41,12 @@ export default function Filters(props) {
       isFirstTime.current = false;
       return;
     }
-    if (onFilter && !isEqual(filters, prevFilters)) onFilter(filters);
+
+    const hasFilterChanged =
+      !isEqual(filters, prevFilters) || !isEqual(logicalFilterOperator, prevLogicalFilterOperator);
+    if (onFilter && hasFilterChanged) onFilter(filters, logicalFilterOperator);
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [filters]);
+  }, [filters, logicalFilterOperator]);
 
   return (
     <Popover align="bottom" edge="left" isOpen maxWidth={1200}>

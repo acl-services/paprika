@@ -1,4 +1,5 @@
 import toNumber from "lodash.tonumber";
+import moment from "moment";
 import rules from "./rules";
 
 const is = (value, testValue) => (testValue === "" ? true : value === testValue);
@@ -13,6 +14,12 @@ const processNumber = (value, testValue, testFunction) => {
   if (testValue === "") return true;
   const testNumber = toNumber(testValue);
   return Number.isNaN(testNumber) ? false : testFunction(value, testNumber);
+};
+
+const processDate = (momentParsingFormat, value, testValue, testFunction) => {
+  const testDate = moment(testValue, momentParsingFormat);
+  if (testDate.isValid()) return testFunction(moment(value, momentParsingFormat), testDate);
+  return false;
 };
 
 export default {
@@ -30,4 +37,8 @@ export default {
   [rules.LESS_THAN_OR_EQUAL_TO]: (value, testValue) => processNumber(value, testValue, (a, b) => a <= b),
   [rules.IS_EMPTY]: isBlank,
   [rules.IS_NOT_EMPTY]: isNotBlank,
+  [rules.IS_BEFORE]: (value, testValue, { momentParsingFormat }) =>
+    processDate(momentParsingFormat, value, testValue, (a, b) => a.isBefore(b)),
+  [rules.IS_AFTER]: (value, testValue, { momentParsingFormat }) =>
+    processDate(momentParsingFormat, value, testValue, (a, b) => a.isAfter(b)),
 };

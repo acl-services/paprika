@@ -122,7 +122,8 @@ function useData() {
     if (filters.length > 0) {
       filteredData = data.filter(row => {
         // checking if filter.rule exist, will removed after having all the rules
-        const tester = filter => (filter.rule ? ruleTesters[filter.rule](row[filter.columnId], filter.value) : true);
+        const tester = filter =>
+          filter.rule ? ruleTesters[filter.rule](row[filter.columnId], filter.value, columns[filter.columnId]) : true;
 
         switch (logicalFilterOperator) {
           case logicalFilterOperators.AND:

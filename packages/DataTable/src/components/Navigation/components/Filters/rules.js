@@ -13,10 +13,12 @@ const rules = {
   LESS_THAN_OR_EQUAL_TO: "LESS_THAN_OR_EQUAL_TO",
   IS_EMPTY: "IS_EMPTY",
   IS_NOT_EMPTY: "IS_NOT_EMPTY",
+  IS_BEFORE: "IS_BEFORE",
+  IS_AFTER: "IS_AFTER",
 };
 
 export const rulesByType = {
-  DATE: [],
+  DATE: [rules.IS, rules.IS_NOT, rules.IS_BEFORE, rules.IS_AFTER],
   NUMBER: [
     rules.EQUALS,
     rules.NOT_EQUAL_TO,
