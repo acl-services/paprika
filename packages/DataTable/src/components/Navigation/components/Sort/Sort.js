@@ -23,7 +23,7 @@ export default function Sort() {
       )}
     >
       {columnsOrder.map(columnId => {
-        const { header, sortDirections, momentParsingFormat, type } = columns[columnId];
+        const { header, sortDirections, momentParsingFormat } = columns[columnId];
         if (!sortDirections || sortDirections.length === 0) return null;
 
         return (
@@ -35,7 +35,6 @@ export default function Sort() {
                   key={direction}
                   columnId={columnId}
                   direction={direction}
-                  columnType={type}
                   momentParsingFormat={momentParsingFormat}
                 />
               ))}

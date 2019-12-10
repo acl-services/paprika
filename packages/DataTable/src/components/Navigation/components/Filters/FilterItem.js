@@ -3,18 +3,16 @@ import Button from "@paprika/button";
 import DatePicker from "./DatePicker";
 import Input from "./Input";
 import { useDataTableState, useDispatch } from "../../../..";
-import { rulesByType } from "./rules";
+import rules, { rulesByType } from "./rules";
 import { columnTypes } from "../../../../constants";
 import { FilterItemStyled } from "./Filters.styles";
+import getColumnType from "../../../../helpers/getColumnType";
 
 export default function FilterItem(prop) {
   const { columnId: selectedColumnId, rule: selectedRule, id, value } = prop;
   const { columns, columnsOrder, data } = useDataTableState();
   const dispatch = useDispatch();
-
-  function getColumnType(columnId) {
-    return columns[columnId].type || (typeof data[0][columnId] === "number" ? columnTypes.NUMBER : columnTypes.TEXT);
-  }
+  const selectedColumnType = getColumnType(data, columns, selectedColumnId);
 
   function handleRemoveFilter() {
     dispatch({ type: "REMOVE_FILTER", payload: id });
@@ -28,7 +26,7 @@ export default function FilterItem(prop) {
         id,
         changes: {
           columnId: newColumnId,
-          rule: rulesByType[getColumnType(newColumnId)][0],
+          rule: rulesByType[getColumnType(data, columns, newColumnId)][0],
           value: "",
         },
       },
@@ -59,6 +57,17 @@ export default function FilterItem(prop) {
     });
   }
 
+  function renderTextInput() {
+    if (
+      selectedRule === rules.IS_BLANK ||
+      selectedRule === rules.IS_NOT_BLANK ||
+      selectedRule === rules.IS_EMPTY ||
+      selectedRule === rules.IS_NOT_EMPTY
+    )
+      return null;
+    return <Input initialValue={value} onChange={handleChangeValue} />;
+  }
+
   return (
     <FilterItemStyled data-pka-anchor="filter.filter-item">
       <Button data-pka-anchor="filter.delete-button" onClick={handleRemoveFilter} kind="minor">
@@ -72,19 +81,19 @@ export default function FilterItem(prop) {
         ))}
       </select>
       <select onChange={handleChangeRule} value={selectedRule}>
-        {rulesByType[getColumnType(selectedColumnId)].map(rule => (
+        {rulesByType[selectedColumnType].map(rule => (
           <option key={rule} value={rule}>
             {rule}
           </option>
         ))}
       </select>
-      {getColumnType(selectedColumnId) === columnTypes.DATE ? (
+      {selectedColumnType === columnTypes.DATE ? (
         <DatePicker
           onChange={momentDate => handleChangeValue(momentDate.format(columns[selectedColumnId].momentParsingFormat))}
           parsingFormat={columns[selectedColumnId].momentParsingFormat}
         />
       ) : (
-        <Input initialValue={value} onChange={handleChangeValue} />
+        renderTextInput()
       )}
     </FilterItemStyled>
   );

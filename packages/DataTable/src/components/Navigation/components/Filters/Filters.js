@@ -10,7 +10,8 @@ import { useDataTableState, useDispatch } from "../../../..";
 import FilterItem from "./FilterItem";
 import { rulesByType } from "./rules";
 import { FiltersPanelStyled } from "./Filters.styles";
-import { columnTypes, logicalFilterOperators } from "../../../../constants";
+import { logicalFilterOperators } from "../../../../constants";
+import getColumnType from "../../../../helpers/getColumnType";
 
 const propTypes = {
   onFilter: PropTypes.func,
@@ -88,13 +89,6 @@ export default function Filters(props) {
 }
 
 Filters.reducer = (state, action) => {
-  function getColumnType(columnId) {
-    return (
-      action.changes.columns[columnId].type ||
-      (typeof action.changes.data[0][columnId] === "number" ? columnTypes.NUMBER : columnTypes.TEXT)
-    );
-  }
-
   switch (action.type) {
     case "ADD_FILTER": {
       return {
@@ -104,7 +98,7 @@ Filters.reducer = (state, action) => {
           {
             id: `FILTER_ID__${nanoid()}`,
             columnId: action.payload,
-            rule: rulesByType[getColumnType([action.payload])][0],
+            rule: rulesByType[getColumnType(action.changes.data, action.changes.columns, action.payload)][0],
             value: "",
           },
         ],

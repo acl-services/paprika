@@ -12,7 +12,7 @@ const propTypes = {
 export default function Options(props) {
   const { columnId } = props;
   const dispatch = useDispatch();
-  const { sortDirections, type, momentParsingFormat, canHide } = useDataTableState().columns[columnId];
+  const { sortDirections, momentParsingFormat, canHide } = useDataTableState().columns[columnId];
 
   // TODO: Checking if need to show options icon, later we need to check filtering rules..
   const hasOptions = canHide || (sortDirections && sortDirections.length > 0);
@@ -46,7 +46,6 @@ export default function Options(props) {
               key={direction}
               columnId={columnId}
               direction={direction}
-              columnType={type}
               momentParsingFormat={momentParsingFormat}
             />
           ))
