@@ -77,7 +77,7 @@ const Confirmation = props => {
     if (isConfirmOpen) {
       setIsConfirmOpen(false);
       if (triggerRef.current) triggerRef.current.focus();
-      setTimeout(onClose, 0);
+      setTimeout(onClose, 250);
     }
   };
 
@@ -98,32 +98,28 @@ const Confirmation = props => {
 
   const I18n = useI18n();
 
-  // note: In future could support a node instead of just function
-  const triggerComponent = children ? children(triggerProps) : null;
-
-  return (
-    <Popover isOpen={isConfirmOpen} onClose={handleCloseConfirm} {...moreProps}>
-      {triggerComponent && <Popover.Trigger>{renderTrigger(triggerComponent)}</Popover.Trigger>}
-      <Popover.Content id={confirmId.current}>
-        <Popover.Card>
-          <div css={confirmStyles}>
-            {heading && (
-              <Heading displayLevel={5} level={2}>
-                {heading}
-              </Heading>
-            )}
-            {body && <div css={confirmBodyStyles}>{body}</div>}
-            <div css={confirmFooterStyles}>
-              <Button
-                isPending={isPending}
-                isSemantic={false}
-                ref={confirmButtonRef}
-                kind={confirmButtonType}
-                size={buttonSize}
-                onClick={handleOnConfirm}
-              >
-                {confirmLabel}
-              </Button>
+  const popoverContent = (
+    <Popover.Content id={confirmId.current}>
+      <Popover.Card>
+        <div css={confirmStyles}>
+          {heading && (
+            <Heading displayLevel={5} level={2}>
+              {heading}
+            </Heading>
+          )}
+          {body && <div css={confirmBodyStyles}>{body}</div>}
+          <div css={confirmFooterStyles}>
+            <Button
+              isPending={isPending}
+              isSemantic={false}
+              ref={confirmButtonRef}
+              kind={confirmButtonType}
+              size={buttonSize}
+              onClick={handleOnConfirm}
+            >
+              {confirmLabel}
+            </Button>
+            {!isPending ? (
               <Button
                 isDisabled={isPending}
                 isSemantic={false}
@@ -133,10 +129,20 @@ const Confirmation = props => {
               >
                 {I18n.t("actions.cancel")}
               </Button>
-            </div>
+            ) : null}
           </div>
-        </Popover.Card>
-      </Popover.Content>
+        </div>
+      </Popover.Card>
+    </Popover.Content>
+  );
+
+  // note: In future could support a node instead of just function
+  const triggerComponent = children ? children(triggerProps) : null;
+
+  return (
+    <Popover isOpen={isConfirmOpen} onClose={handleCloseConfirm} {...moreProps}>
+      {triggerComponent && <Popover.Trigger>{renderTrigger(triggerComponent)}</Popover.Trigger>}
+      {popoverContent}
     </Popover>
   );
 };

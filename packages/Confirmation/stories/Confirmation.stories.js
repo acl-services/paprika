@@ -7,6 +7,7 @@ import ShowcaseStory from "./examples/Showcase";
 import ConfirmationExample from "./examples/ConfirmationExample";
 import ConfirmationExampleWithTrigger from "./examples/ConfirmationExampleWithTrigger";
 import ConfirmationExampleWithTriggerIcon from "./examples/ConfirmationExampleWithTriggerIcon";
+import ConfirmationExampleWithAsyncAction from "./examples/ConfirmationExampleWithAsyncAction";
 
 storiesOf("Confirmation", module)
   .addDecorator(withKnobs)
@@ -28,5 +29,10 @@ storiesOf("Confirmation", module)
       <ConfirmationExampleWithTrigger />
       <br />
       <ConfirmationExampleWithTriggerIcon />
+    </Story>
+  ))
+  .add("ConfirmationExample with async action", () => (
+    <Story>
+      <ConfirmationExampleWithAsyncAction />
     </Story>
   ));
