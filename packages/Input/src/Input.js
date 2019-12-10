@@ -85,6 +85,7 @@ const Input = props => {
     ...moreProps
   } = props;
 
+  // Must remove so React does not complain about a component trying to be both controlled and uncontrolled.
   delete moreProps.value;
   delete moreProps.defaultValue;
 
