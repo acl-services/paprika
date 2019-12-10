@@ -33,7 +33,8 @@ import Confirmation from "@paprika/confirmation";
           confirmLabel="Delete filter"
           defaultIsOpen
           heading="Delete filter?"
-          onConfirm={handleConfirm(onCloseMenu)}
+          onConfirm={handleConfirm}
+          onClose={handleCloseConfirm(onCloseMenu)}
         />
       );
     }}
