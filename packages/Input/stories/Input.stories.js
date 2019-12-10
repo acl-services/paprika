@@ -11,6 +11,7 @@ import WithIconStory from "./examples/WithIcon";
 import WithDisabledReadOnlyStory from "./examples/WithDisabledReadOnly";
 import TypesStory from "./examples/Types";
 import WithRef from "./examples/WithRef";
+import Uncontrolled from "./examples/Uncontrolled";
 
 storiesOf("Input", module)
   .addDecorator(withKnobs)
@@ -20,7 +21,8 @@ storiesOf("Input", module)
   .add("With decorative icon", () => <WithIconStory />)
   .add("With isDisabled / isReadOnly", () => <WithDisabledReadOnlyStory />)
   .add("Types", () => <TypesStory />)
-  .add("With Ref", () => <WithRef />);
+  .add("With Ref", () => <WithRef />)
+  .add("Uncontrolled", () => <Uncontrolled />);
 
 storiesOf("Input/Automation Tests/Screener", module).add("InputExample", () => (
   <InputStory>
