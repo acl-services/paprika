@@ -8,8 +8,6 @@ or
 
 ### Usage
 
-Please use `<L10n />` component to wrap `<Input />` or your application.
-
 The Input can be used as a controlled or an un-controlled component.
 
 To use it as controlled:
