@@ -25,7 +25,7 @@ describe("Checkbox", () => {
     expect(getByRole("checkbox")).not.toHaveAttribute("checked");
   });
 
-  it("Renders checkedState is INDETERMINATE", () => {
+  it("Renders checkedState is indeterminate", () => {
     const { getByRole } = renderComponent({ checkedState: checkboxStates.INDETERMINATE });
     expect(getByRole("checkbox").indeterminate).toBe(true);
   });
