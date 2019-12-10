@@ -12,7 +12,8 @@ const propTypes = {
 export default function Options(props) {
   const { columnId } = props;
   const dispatch = useDispatch();
-  const { sortDirections, momentParsingFormat, canHide } = useDataTableState().columns[columnId];
+  const { columns, enabledPlugins } = useDataTableState();
+  const { sortDirections, momentParsingFormat, canHide } = columns[columnId];
 
   // TODO: Checking if need to show options icon, later we need to check filtering rules..
   const hasOptions = canHide || (sortDirections && sortDirections.length > 0);

@@ -1,6 +1,6 @@
 describe("Using back-end with <DataTable />", () => {
   beforeEach(() => {
-    cy.visitStorybook("datatable--sortable-datatable-back-end");
+    cy.visitStorybook("datatable--using-onsort");
   });
 
   const getByCellIndex = cellIndex => cy.get(`[data-pka-cell-index="${cellIndex}"]`);

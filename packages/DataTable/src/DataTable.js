@@ -62,12 +62,19 @@ export default function DataTable(props) {
   const columns = ColumnsDefinition.map(Column => Column.props);
 
   let navigationReducers = [];
+  let enabledPlugins = [];
   let isControlled = false;
   if (Navigation && Navigation.props) {
     navigationReducers = React.Children.map(Navigation.props.children, child => child.type.reducer).filter(
       chunk => chunk
     );
+    enabledPlugins = React.Children.map(
+      Navigation.props.children,
+      child =>
+        child.type.displayName && ["Sort", "RowHeight", "Filter", "ColumnManaging"].includes(child.type.displayName)
+    );
     React.Children.forEach(Navigation.props.children, child => {
+      // Using onFilter and onSort prop for now
       if (child.props.onFilter || child.props.onSort) isControlled = true;
     });
   }
@@ -79,6 +86,7 @@ export default function DataTable(props) {
       keygen={keygen}
       reducers={navigationReducers.concat(reducers)}
       columns={columns}
+      enabledPlugins={enabledPlugins}
     >
       <div>{isLoading ? "Loading..." : null}</div>
       {Navigation}

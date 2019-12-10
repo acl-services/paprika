@@ -1,6 +1,6 @@
 import React from "react";
 import { storiesOf } from "@storybook/react";
-import DataTable from "../src";
+import DataTable, { Sort } from "../src";
 import fixtures from "./fixtures";
 import sort from "../src/helpers/sort";
 import { viewPortHeight } from "./helpers";
@@ -44,6 +44,9 @@ function App() {
   return (
     <React.Fragment>
       <DataTable keygen="id" data={data} height={viewPortHeight()} reducers={[customReducer]} isLoading={isLoading}>
+        <DataTable.Navigation>
+          <Sort></Sort>
+        </DataTable.Navigation>
         <DataTable.ColumnDefinition id="country" width="190" header="Country" cell="country" />
         <DataTable.ColumnDefinition
           id="name"
@@ -68,4 +71,4 @@ function App() {
   );
 }
 
-storiesOf("DataTable", module).add("Sortable DataTable(back-end)", () => <App />);
+storiesOf("DataTable", module).add("Using custom reducers", () => <App />);
