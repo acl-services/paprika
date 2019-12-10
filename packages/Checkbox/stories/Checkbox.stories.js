@@ -20,3 +20,5 @@ storiesOf("Checkbox", module)
       <CheckboxAlign />
     </Story>
   ));
+
+storiesOf("Checkbox/Automation Tests", module).add("Cypress", () => <ShowcaseStory />);
