@@ -47,7 +47,6 @@ export default function Content(props) {
   const { refListBoxContainer } = state;
 
   /* NOTE no idea what ROLE should be this div when the ListBox is INLINE */
-  /* eslint-disable jsx-a11y/no-static-element-interactions */
   if (state.isInline) {
     return (
       <ContentStyled
@@ -60,7 +59,6 @@ export default function Content(props) {
       </ContentStyled>
     );
   }
-  /* eslint-enable jsx-a11y/no-static-element-interactions */
 
   return (
     <Popover.Content
