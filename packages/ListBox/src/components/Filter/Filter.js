@@ -30,10 +30,16 @@ function hasNoResults(textSearchValue, filteredOptions) {
   return textSearchValue && (filteredOptions && filteredOptions.length === 0);
 }
 
-export default function Filter(props) {
+const Filter = React.forwardRef((props, ref) => {
   const [state, dispatch] = useListBox();
   const [textSearch, setTextSearch] = React.useState(props.value);
   const applyFilterType = useListBox.types.applyFilter;
+
+  React.useImperativeHandle(ref, () => ({
+    clear: () => {
+      setTextSearch(() => "");
+    },
+  }));
 
   const handleChangeFilter = event => {
     const textSearchValue = event.target.value;
@@ -135,8 +141,9 @@ export default function Filter(props) {
   }
 
   return null;
-}
+});
 
+export default Filter;
 Filter.propTypes = propTypes;
 Filter.defaultProps = defaultProps;
 Filter.displayName = "ListBox.Filter";
