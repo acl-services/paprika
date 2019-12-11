@@ -4,6 +4,7 @@ import Popover from "@paprika/popover";
 import { getDOMAttributesForListBoxContainer } from "../../helpers/DOMAttributes";
 import handleKeyboardKeys from "../../helpers/handleKeyboardKeys";
 import useListBox from "../../useListBox";
+import { ContentStyled } from "./Content.styles";
 
 const propTypes = {
   children: PropTypes.node.isRequired,
@@ -49,14 +50,14 @@ export default function Content(props) {
   /* eslint-disable jsx-a11y/no-static-element-interactions */
   if (state.isInline) {
     return (
-      <div
+      <ContentStyled
         {...getDOMAttributesForListBoxContainer({ isInline: true })}
         onKeyDown={handleKeyboardKeys(state, dispatch)}
         ref={refListBoxContainer}
         data-pka-anchor="listbox-content-inline"
       >
         {props.children}
-      </div>
+      </ContentStyled>
     );
   }
   /* eslint-enable jsx-a11y/no-static-element-interactions */
