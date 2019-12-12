@@ -12,34 +12,15 @@ function App() {
         <Filters />
       </DataTable.Navigation>
       <DataTable.ColumnDefinition id="country" width="190" header="Country" cell="country" type="TEXT" />
-      <DataTable.ColumnDefinition
-        id="name"
-        header="Name"
-        cell="name"
-        type="TEXT"
-        sortDirections={[DataTable.SortDirections.ASCEND]}
-      />
-      <DataTable.ColumnDefinition
-        id="goals"
-        header="Goals"
-        cell="goals"
-        type="NUMBER"
-        sortDirections={[DataTable.SortDirections.ASCEND, DataTable.SortDirections.DESCEND]}
-      />
-      <DataTable.ColumnDefinition
-        id="status"
-        header="Status"
-        cell="status"
-        type="TEXT"
-        sortDirections={[DataTable.SortDirections.ASCEND, DataTable.SortDirections.DESCEND]}
-      />
+      <DataTable.ColumnDefinition id="name" header="Name" cell="name" type="TEXT" />
+      <DataTable.ColumnDefinition id="goals" header="Goals" cell="goals" type="NUMBER" />
+      <DataTable.ColumnDefinition id="status" header="Status" cell="status" type="TEXT" />
       <DataTable.ColumnDefinition
         id="joined"
         header="Joined since"
         type={DataTable.ColumnTypes.DATE}
         cell={row => row.joined}
         momentParsingFormat="MM/DD/YYYY"
-        sortDirections={[DataTable.SortDirections.ASCEND, DataTable.SortDirections.DESCEND]}
       />
     </DataTable>
   );

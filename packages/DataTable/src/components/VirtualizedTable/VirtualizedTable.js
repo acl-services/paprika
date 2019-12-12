@@ -8,7 +8,8 @@ import "@paprika/helpers/lib/dom/elementScrollToPolyfill";
 import Cell from "../Cell";
 import { CellHeader } from "../Cell/Cell.styles";
 import Options from "../Options";
-import { useDataTableState, useData } from "../../context";
+import { useDataTableState } from "../../context";
+import useData from "../../hooks/useData";
 
 const propTypes = {
   dataTableID: PropTypes.string.isRequired,

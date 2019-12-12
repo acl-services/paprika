@@ -10,7 +10,7 @@ import { useDataTableState, useDispatch } from "../../../..";
 import FilterItem from "./FilterItem";
 import { rulesByType } from "./rules";
 import { FiltersPanelStyled } from "./Filters.styles";
-import { logicalFilterOperators } from "../../../../constants";
+import { logicalFilterOperators, plugins } from "../../../../constants";
 import getColumnType from "../../../../helpers/getColumnType";
 import { useLocalStorage } from "../../../../context";
 
@@ -24,7 +24,7 @@ const defaultProps = {
 
 export default function Filters(props) {
   const { onFilter } = props;
-  const { filters, logicalFilterOperator, columnsOrder } = useDataTableState();
+  const { filters, logicalFilterOperator, columnsOrder, columns } = useDataTableState();
   const dispatch = useDispatch();
   const prevFilters = usePrevious(filters);
   const prevLogicalFilterOperator = usePrevious(logicalFilterOperators);
@@ -48,7 +48,7 @@ export default function Filters(props) {
     const hasFilterChanged =
       !isEqual(filters, prevFilters) || !isEqual(logicalFilterOperator, prevLogicalFilterOperator);
     if (hasFilterChanged) {
-      if (onFilter) onFilter(filters, logicalFilterOperator);
+      if (onFilter) onFilter(filters, logicalFilterOperator, columns);
       updateLocalStorage({ filters, logicalFilterOperator });
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -144,3 +144,4 @@ Filters.reducer = (state, action) => {
 
 Filters.propTypes = propTypes;
 Filters.defaultProps = defaultProps;
+Filters.displayName = plugins.FILTERS;

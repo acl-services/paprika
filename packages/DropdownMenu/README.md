@@ -14,13 +14,8 @@ or
 import DropdownMenu from "@paprika/dropdown-menu";
 import Confirmation from "@paprika/confirmation";
 
-<DropdownMenu
-  renderTrigger={({ isOpen, handleOpenMenu }) => (
-    <DropdownMenu.Trigger isOpen={isOpen} handleOpenMenu={handleOpenMenu}>
-      Trigger
-    </DropdownMenu.Trigger>
-  )}
->
+<DropdownMenu>
+  <DropdownMenu.Trigger>Trigger</DropdownMenu.Trigger>
   <DropdownMenu.Item onClick={() => {}}>Edit</DropdownMenu.Item>
   <DropdownMenu.LinkItem isExternal link="http://www.wegalvanize.com">
     External link
@@ -52,31 +47,25 @@ import Confirmation from "@paprika/confirmation";
 
 - align
 - children
-- renderTrigger
+- edge
 
 [More detail about these props](https://github.com/acl-services/paprika/blob/master/packages/DropdownMenu/src/DropdownMenu.js)
 
 #### DropdownMenu.Trigger
 
-- isOpen
-- handleOpenMenu
+- buttonType
 
 [More detail about these props](https://github.com/acl-services/paprika/blob/master/packages/DropdownMenu/src/components/Trigger/Trigger.js)
 
 #### DropdownMenu.Item
 
-- children
 - isDestructive
-- onClick
-- onClose
-- onShowConfirmation
 - renderConfirmation
 
 [More detail about these props](https://github.com/acl-services/paprika/blob/master/packages/DropdownMenu/src/components/Item/Item.js)
 
 #### DropdownMenu.LinkItem
 
-- children
 - link
 - isExternal
 

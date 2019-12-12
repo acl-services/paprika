@@ -15,9 +15,7 @@ describe("Sortable <DataTable />", () => {
     cy.contains("Sort").click();
     cy.contains("Sort Country by").should("not.exist");
     cy.contains("Sort Name by").contains("ASCEND");
-    cy.contains("Sort Name by")
-      .contains("DESCEND")
-      .should("not.exist");
+    cy.contains("Sort Name by").contains("DESCEND");
     cy.contains("Sort Goals by").contains("ASCEND");
     cy.contains("Sort Goals by").contains("DESCEND");
     cy.contains("Sort Status by").contains("ASCEND");

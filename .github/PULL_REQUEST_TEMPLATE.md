@@ -6,8 +6,8 @@ _details of code change / secondary purposes of this PR_
 
 ### Updates 📦
 - [ ] MAJOR (breaking) change to _these packages_
-- [ ] MINOR (backward compatible) change to _these packages_ 
-- [ ] PATCH (big fix) change to _these packages_
+- [ ] MINOR (backward compatible) change to _these packages_
+- [ ] PATCH (bug fix) change to _these packages_
 
 ### Storybook 📕
 http://storybooks.highbond-s3.com/paprika/your-branch-name

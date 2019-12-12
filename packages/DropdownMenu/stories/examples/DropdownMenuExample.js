@@ -9,14 +9,8 @@ const handleConfirm = onCloseMenu => onCloseConfirm => {
 
 const DropdownMenuExample = () => {
   return (
-    <DropdownMenu
-      align="bottom"
-      renderTrigger={({ isOpen, handleOpenMenu }) => (
-        <DropdownMenu.Trigger data-pka-anchor="dropdown-menu__trigger" isOpen={isOpen} onOpenMenu={handleOpenMenu}>
-          Trigger
-        </DropdownMenu.Trigger>
-      )}
-    >
+    <DropdownMenu align="bottom">
+      <DropdownMenu.Trigger data-pka-anchor="dropdown-menu__trigger">Trigger</DropdownMenu.Trigger>
       <DropdownMenu.Item data-pka-anchor="edit-item-data-anchor" onClick={() => {}}>
         Edit
       </DropdownMenu.Item>
@@ -39,7 +33,6 @@ const DropdownMenuExample = () => {
             <Confirmation
               body="Lorem ipsum dolor amet vexillologist tacos selvage narwhal butcher twee ethical hot chicken."
               confirmLabel="Delete filter"
-              defaultIsOpen
               heading="Delete filter?"
               onConfirm={handleConfirm(onCloseMenu)}
             />

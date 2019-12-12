@@ -100,7 +100,7 @@ const Content = React.forwardRef((props, ref) => {
       onMouseOut={handleMouseEvent}
       onMouseOver={handleMouseEvent}
       style={contentStyles}
-      tabIndex={isOpen ? 0 : -1}
+      tabIndex="-1"
       zIndex={content.zIndex}
       {...moreProps}
     >

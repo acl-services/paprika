@@ -4,6 +4,7 @@ import DropdownMenu from "@paprika/dropdown-menu";
 import ArrowDown from "@paprika/icon/lib/ArrowDown";
 import SortOption from "./SortOption";
 import { useDispatch, useDataTableState } from "../../context";
+import { sortDirections, plugins } from "../../constants";
 
 const propTypes = {
   columnId: PropTypes.oneOfType([PropTypes.string, PropTypes.number]).isRequired,
@@ -12,11 +13,20 @@ const propTypes = {
 export default function Options(props) {
   const { columnId } = props;
   const dispatch = useDispatch();
-  const { sortDirections, momentParsingFormat, canHide } = useDataTableState().columns[columnId];
-
-  // TODO: Checking if need to show options icon, later we need to check filtering rules..
-  const hasOptions = canHide || (sortDirections && sortDirections.length > 0);
-  if (!hasOptions) return null;
+  const { columns, enabledPlugins } = useDataTableState();
+  const { momentParsingFormat, canHide, canSort } = columns[columnId];
+  const enabledPluginsAppliedToThisColumn = enabledPlugins.filter(plugin => {
+    switch (plugin) {
+      case plugins.SORT:
+        return canSort;
+      case plugins.FILTERS:
+        return true;
+      case plugins.COLUMN_MANAGING:
+        return canHide;
+      default:
+        return false;
+    }
+  });
 
   function handleClickAddFilter() {
     dispatch({ type: "ADD_FILTER", payload: columnId });
@@ -26,32 +36,29 @@ export default function Options(props) {
     dispatch({ type: "TOGGLE_COLUMN", payload: columnId });
   }
 
+  if (enabledPluginsAppliedToThisColumn.length === 0) return null;
+
   return (
-    <DropdownMenu
-      align="bottom"
-      data-pka-anchor="datatable-dropdown"
-      renderTrigger={({ isOpen, handleOpenMenu }) => (
-        <DropdownMenu.Trigger
-          isOpen={isOpen}
-          onOpenMenu={handleOpenMenu}
-          icon={<ArrowDown />}
-          kind="minor"
-          size="small"
-        />
-      )}
-    >
-      {sortDirections
-        ? sortDirections.map(direction => (
+    <DropdownMenu align="bottom" data-pka-anchor="datatable-dropdown">
+      <DropdownMenu.Trigger buttonType="icon" kind="minor" size="small">
+        <ArrowDown />
+      </DropdownMenu.Trigger>
+      {enabledPluginsAppliedToThisColumn.includes(plugins.SORT)
+        ? Object.keys(sortDirections).map(key => (
             <SortOption
-              key={direction}
+              key={sortDirections[key]}
               columnId={columnId}
-              direction={direction}
+              direction={sortDirections[key]}
               momentParsingFormat={momentParsingFormat}
             />
           ))
         : null}
-      {canHide ? <DropdownMenu.Item onClick={handleToggleColumn}>Hide this column</DropdownMenu.Item> : null}
-      <DropdownMenu.Item onClick={handleClickAddFilter}>Add filter for this column</DropdownMenu.Item>
+      {enabledPluginsAppliedToThisColumn.includes(plugins.COLUMN_MANAGING) ? (
+        <DropdownMenu.Item onClick={handleToggleColumn}>Hide this column</DropdownMenu.Item>
+      ) : null}
+      {enabledPluginsAppliedToThisColumn.includes(plugins.FILTERS) ? (
+        <DropdownMenu.Item onClick={handleClickAddFilter}>Add filter for this column</DropdownMenu.Item>
+      ) : null}
     </DropdownMenu>
   );
 }

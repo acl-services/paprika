@@ -153,8 +153,13 @@ button:
 #
 card:
   border-radius: ($border--radius * 2)
+  shadow: 0 0 0 1px rgba(63, 61, 60, 0.05), 0 1px 3px 0 rgba(63, 61, 60, 0.15)
 #
 checkbox:
+  size-sm: 16px
+  size-md: 20px
+  size-lg: 24px
+radio:
   size-sm: 16px
   size-md: 20px
   size-lg: 24px

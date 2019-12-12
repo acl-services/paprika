@@ -107,6 +107,13 @@ export function useOnScrolled() {
           offsetTop = 0;
         }
 
+        if (
+          state.activeOption - 1 === 0 &&
+          state.options[state.activeOption - 1].content.type.displayName === "ListBox.Divider"
+        ) {
+          offsetTop = 0;
+        }
+
         if (state.refListBox.current && Element.prototype.scrollTo) {
           state.refListBox.current.scrollTo(0, offsetTop - 10);
         }
