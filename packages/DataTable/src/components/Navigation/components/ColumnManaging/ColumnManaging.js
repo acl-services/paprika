@@ -7,7 +7,7 @@ import { useLocalStorage } from "../../../../context";
 import { plugins } from "../../../../constants";
 
 export default function ColumnManaging() {
-  const { columns, columnsOrder } = useDataTableState();
+  const { columnsOrder } = useDataTableState();
   const dispatch = useDispatch();
   const updateLocalStorage = useLocalStorage();
 
@@ -30,14 +30,11 @@ export default function ColumnManaging() {
       <Popover.Content>
         <Popover.Card>
           <Sortable onChange={handleChangeOrder}>
-            {columnsOrder.map(columnId => {
-              const { header, canHide } = columns[columnId];
-              return (
-                <Sortable.Item key={columnId} sortId={columnId}>
-                  <ColumnManagingItem canHide={canHide} key={columnId} header={header} columnId={columnId} />
-                </Sortable.Item>
-              );
-            })}
+            {columnsOrder.map(columnId => (
+              <Sortable.Item key={columnId} sortId={columnId}>
+                <ColumnManagingItem key={columnId} columnId={columnId} />
+              </Sortable.Item>
+            ))}
           </Sortable>
         </Popover.Card>
       </Popover.Content>

@@ -62,7 +62,10 @@ export default function DataTable(props) {
     "DataTable.LoadMoreButton",
   ]);
 
-  const columns = ColumnsDefinition.map(Column => Column.props);
+  const columns = ColumnsDefinition.map(({ props }) => {
+    const { id, momentParsingFormat, canSort, type, canHide, isHidden } = props;
+    return { id, momentParsingFormat, canSort, type, canHide, isHidden };
+  });
   const availablePlugins = Object.keys(plugins).map(key => plugins[key]);
 
   let navigationReducers = [];
@@ -103,7 +106,9 @@ export default function DataTable(props) {
         LoadMoreButton={LoadMoreButton}
         onKeyDownArrow={onKeyDownArrow}
         onClickCell={onClickCell}
-      />
+      >
+        {ColumnsDefinition}
+      </VirtualizedTable>
     </TableProvider>
   );
 }

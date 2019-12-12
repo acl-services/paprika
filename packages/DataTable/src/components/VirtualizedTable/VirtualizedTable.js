@@ -12,6 +12,7 @@ import { useDataTableState } from "../../context";
 import useData from "../../hooks/useData";
 
 const propTypes = {
+  children: PropTypes.node.isRequired,
   dataTableID: PropTypes.string.isRequired,
   height: PropTypes.number.isRequired,
   // LoadMoreButton: PropTypes.node,
@@ -128,8 +129,11 @@ export default function VirtualizedTable(props) {
         {propsReactWindow => {
           const { columnIndex, rowIndex, style } = propsReactWindow;
           const column = columns[visibleColumnsInCorrectOrder[columnIndex]];
-          const { id, cell, header, isHidden } = column;
+          const { id, isHidden } = column;
+          const columnDefinition = React.Children.toArray(props.children).find(child => child.props.id === id);
           const index = `${dataTableID}${rowIndex}_${columnIndex}`;
+          const cell = columnDefinition.props.cell;
+          const header = columnDefinition.props.header;
           if (isHidden) return null;
           if (rowIndex === 0) {
             return (

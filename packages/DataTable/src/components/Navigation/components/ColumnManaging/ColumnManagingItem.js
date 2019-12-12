@@ -6,11 +6,10 @@ import { useLocalStorage } from "../../../../context";
 
 const propTypes = {
   columnId: PropTypes.oneOfType([PropTypes.string, PropTypes.number]).isRequired,
-  header: PropTypes.oneOfType([PropTypes.string, PropTypes.func]).isRequired,
 };
 
 export default function ColumnManagingItem(props) {
-  const { columnId, header } = props;
+  const { columnId } = props;
   const dispatch = useDispatch();
   const { columns } = useDataTableState();
   const column = columns[columnId];
@@ -27,8 +26,8 @@ export default function ColumnManagingItem(props) {
 
   return (
     <React.Fragment>
+      {columnId}
       <Switch onClick={handleClick} isChecked={!column.isHidden} isDisabled={!column.canHide} />
-      {header}
     </React.Fragment>
   );
 }

@@ -136,7 +136,7 @@ TableProvider.propTypes = {
   localStorageId: PropTypes.string,
   children: PropTypes.node.isRequired,
   isControlled: PropTypes.bool.isRequired,
-  enabledPlugins: PropTypes.arrayOf(PropTypes.oneOf(plugins)).isRequired,
+  enabledPlugins: PropTypes.arrayOf(PropTypes.oneOf(Object.keys(plugins).map(key => plugins[key]))).isRequired,
   data: PropTypes.arrayOf(PropTypes.objectOf(PropTypes.any)),
   keygen: PropTypes.string.isRequired,
   reducers: PropTypes.arrayOf(PropTypes.func).isRequired,
