@@ -1,4 +1,3 @@
-import toNumber from "lodash.tonumber";
 import moment from "moment";
 import rules from "../components/Navigation/components/Filters/rules";
 
@@ -12,7 +11,7 @@ const isNotBlank = value => value !== null && value !== undefined && value !== "
 
 const processNumber = (value, testValue, testFunction) => {
   if (testValue === "") return true;
-  const testNumber = toNumber(testValue);
+  const testNumber = parseFloat(testValue, 10);
   return Number.isNaN(testNumber) ? false : testFunction(value, testNumber);
 };
 
