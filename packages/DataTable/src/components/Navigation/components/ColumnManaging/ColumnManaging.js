@@ -3,10 +3,12 @@ import Popover from "@paprika/popover";
 import Sortable from "@paprika/sortable";
 import { useDataTableState, useDispatch } from "../../../..";
 import ColumnManagingItem from "./ColumnManagingItem";
+import { useLocalStorage } from "../../../../context";
 
 export default function ColumnManaging() {
   const { columns, columnsOrder } = useDataTableState();
   const dispatch = useDispatch();
+  const updateLocalStorage = useLocalStorage();
 
   const handleChangeOrder = result => {
     const { source, destination } = result;
@@ -18,6 +20,7 @@ export default function ColumnManaging() {
     newOrder.splice(destination, 0, ...movedChild);
 
     dispatch({ type: "REORDER__COLUMNS", payload: newOrder });
+    updateLocalStorage({ columnsOrder: newOrder });
   };
 
   return (

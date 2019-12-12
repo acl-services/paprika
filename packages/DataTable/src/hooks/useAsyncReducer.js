@@ -2,6 +2,7 @@ import React from "react";
 
 const useAsyncReducer = (reducer, initialState = null) => {
   const [state, setState] = React.useState(initialState);
+  console.log("initialize reducer");
   let isUpdatingState = false;
   const [pendingActions, setPendingActions] = React.useState([]);
 

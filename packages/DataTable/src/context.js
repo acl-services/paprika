@@ -9,22 +9,50 @@ import { columnTypes, logicalFilterOperators } from "./constants";
 
 const TableStateContext = React.createContext();
 const TableDispatchContext = React.createContext();
+const TableLocalStorageContext = React.createContext();
 
 function TableProvider(props) {
-  const { isControlled, data, keygen, reducers, columns } = props;
-  const initialState = {
-    keyGrid: 0,
-    isControlled,
-    data: data || [],
-    dataForRendering: data || [],
-    keygen,
-    sortColumn: null,
-    sortDirection: null,
-    columnsOrder: columns.map(column => column.id),
-    columns: columns.reduce((columnsObject, column) => ({ ...columnsObject, [column.id]: column }), {}),
-    filters: [],
-    logicalFilterOperator: logicalFilterOperators.AND,
-  };
+  const { isControlled, data, keygen, reducers, columns, tableId } = props;
+  const storageKey = `pka-data-table__${tableId}`;
+
+  function getInitialState() {
+    const initialState = {
+      keyGrid: 0,
+      isControlled,
+      data: data || [],
+      dataForRendering: data || [],
+      keygen,
+      sortColumn: null,
+      sortDirection: null,
+      columnsOrder: columns.map(column => column.id),
+      columns: columns.reduce((columnsObject, column) => ({ ...columnsObject, [column.id]: column }), {}),
+      filters: [],
+      logicalFilterOperator: logicalFilterOperators.AND,
+    };
+    let currentTableState = {};
+    const storedStatus = localStorage.getItem(storageKey);
+    if (!storedStatus) {
+      localStorage.setItem(
+        storageKey,
+        JSON.stringify({
+          sortColumn: initialState.sortColumn,
+          sortDirection: initialState.sortDirection,
+          columnsOrder: initialState.columnsOrder,
+          filters: initialState.filters,
+          logicalFilterOperator: initialState.logicalFilterOperator,
+          columns: initialState.columns,
+        })
+      );
+    } else {
+      currentTableState = JSON.parse(storedStatus);
+      console.log(currentTableState);
+    }
+
+    return {
+      ...initialState,
+      ...currentTableState,
+    };
+  }
 
   const isFirstRender = React.useRef(true);
   const memorizedReducer = React.useCallback(
@@ -46,7 +74,7 @@ function TableProvider(props) {
     },
     [reducers]
   );
-  const [state, dispatch] = useAsyncReducer(memorizedReducer, initialState);
+  const [state, dispatch] = useAsyncReducer(memorizedReducer, getInitialState);
 
   React.useEffect(() => {
     if (isFirstRender.current) {
@@ -77,9 +105,18 @@ function TableProvider(props) {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [columns]);
 
+  function updateLocalStorage(changes) {
+    const originalStatus = JSON.parse(localStorage.getItem(storageKey));
+    localStorage.setItem(storageKey, JSON.stringify({ ...originalStatus, ...changes }));
+  }
+
   return (
     <TableStateContext.Provider value={state}>
-      <TableDispatchContext.Provider value={dispatch}>{props.children}</TableDispatchContext.Provider>
+      <TableDispatchContext.Provider value={dispatch}>
+        <TableLocalStorageContext.Provider value={updateLocalStorage}>
+          {props.children}
+        </TableLocalStorageContext.Provider>
+      </TableDispatchContext.Provider>
     </TableStateContext.Provider>
   );
 }
@@ -90,6 +127,10 @@ function useDataTableState() {
 
 function useDispatch() {
   return React.useContext(TableDispatchContext);
+}
+
+function useLocalStorage() {
+  return React.useContext(TableLocalStorageContext);
 }
 
 function useData() {
@@ -175,4 +216,4 @@ TableProvider.defaultProps = {
   columns: [],
 };
 
-export { TableProvider, useDataTableState, useDispatch, useData };
+export { TableProvider, useDataTableState, useDispatch, useData, useLocalStorage };

@@ -12,6 +12,7 @@ import { rulesByType } from "./rules";
 import { FiltersPanelStyled } from "./Filters.styles";
 import { logicalFilterOperators } from "../../../../constants";
 import getColumnType from "../../../../helpers/getColumnType";
+import { useLocalStorage } from "../../../../context";
 
 const propTypes = {
   onFilter: PropTypes.func,
@@ -28,6 +29,7 @@ export default function Filters(props) {
   const prevFilters = usePrevious(filters);
   const prevLogicalFilterOperator = usePrevious(logicalFilterOperators);
   const isFirstTime = React.useRef(true);
+  const updateLocalStorage = useLocalStorage();
 
   function handleAddFilter() {
     dispatch({ type: "ADD_FILTER", payload: columnsOrder[0] });
@@ -45,7 +47,10 @@ export default function Filters(props) {
 
     const hasFilterChanged =
       !isEqual(filters, prevFilters) || !isEqual(logicalFilterOperator, prevLogicalFilterOperator);
-    if (onFilter && hasFilterChanged) onFilter(filters, logicalFilterOperator);
+    if (hasFilterChanged) {
+      if (onFilter) onFilter(filters, logicalFilterOperator);
+      updateLocalStorage({ filters, logicalFilterOperator });
+    }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [filters, logicalFilterOperator]);
 
