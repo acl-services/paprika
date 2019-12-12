@@ -50,6 +50,9 @@ const locales = {
         "start_date": "Date de début",
         "end_date": "Date de fin"
       },
+      "dropdownMenu": {
+        "isExternal": "{{link}} s'ouvre dans un nouvel onglet."
+      },
       "comment": {
         "delete": "Supprimer le commentaire"
       },

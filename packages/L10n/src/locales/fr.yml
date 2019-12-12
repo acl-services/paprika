@@ -58,7 +58,7 @@ fr:
       arrowup: haut
       arrowdown: bas
       escape: Échap
-    externaLink:
+    externalLink:
       view: voir
     collapsible:
       ariaText: section compressible

@@ -63,7 +63,12 @@ export function getNextOptionActiveIndex(state, isAscending = true) {
 
   if (state.noResultsFound) return null;
 
-  if (optionsKeys.length === 1) return 0;
+  if (optionsKeys.length === 1) {
+    if (state.options[0].isDisabled) {
+      return null;
+    }
+    return 0;
+  }
 
   if (optionsKeys.length - 1 < activeOption) return 0;
 
@@ -184,7 +189,7 @@ export function handleEnterOrSpace({ event, state, dispatch }) {
   const option = state.options[state.activeOption];
 
   if (option && (option.isDisabled || option.preventDefaultOnSelect)) {
-    if (state.options[state.activeOption].onClick) {
+    if (typeof state.options[state.activeOption] !== "undefined" && state.options[state.activeOption].onClick) {
       // no sure if this is the state they want
       // since haven't run the entire cycle befor executing it
       state.options[state.activeOption].onClick(event, state.activeOption, state.options, state, dispatch);
@@ -209,7 +214,7 @@ export function handleEnterOrSpace({ event, state, dispatch }) {
   }
 
   if (state.isOpen || state.isInline) {
-    if (state.options[state.activeOption].onClick) {
+    if (typeof state.options[state.activeOption] !== "undefined" && state.options[state.activeOption].onClick) {
       state.options[state.activeOption].onClick();
     }
 
