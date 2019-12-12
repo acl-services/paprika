@@ -23,7 +23,7 @@ const defaultProps = {
 
 export default function Filters(props) {
   const { onFilter } = props;
-  const { filters, logicalFilterOperator, columnsOrder } = useDataTableState();
+  const { filters, logicalFilterOperator, columnsOrder, columns } = useDataTableState();
   const dispatch = useDispatch();
   const prevFilters = usePrevious(filters);
   const prevLogicalFilterOperator = usePrevious(logicalFilterOperators);
@@ -45,7 +45,7 @@ export default function Filters(props) {
 
     const hasFilterChanged =
       !isEqual(filters, prevFilters) || !isEqual(logicalFilterOperator, prevLogicalFilterOperator);
-    if (onFilter && hasFilterChanged) onFilter(filters, logicalFilterOperator);
+    if (onFilter && hasFilterChanged) onFilter(filters, logicalFilterOperator, columns);
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [filters, logicalFilterOperator]);
 

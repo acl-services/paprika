@@ -15,6 +15,9 @@ const propTypes = {
   /** Callback to be executed when button is clicked */
   onClick: func,
 
+  /** Callback to be executed when key is pressed */
+  onKeyDown: func,
+
   /** Callback to be executed when dropdown needs to be closed */
   onClose: func,
 
@@ -28,27 +31,39 @@ const propTypes = {
 const defaultProps = {
   isDestructive: false,
   onClick: () => {},
+  onKeyDown: () => {},
   onClose: () => {},
   onShowConfirmation: () => {},
   renderConfirmation: null,
 };
 
 const Item = props => {
-  const { children, isDestructive, onClick, onClose, onShowConfirmation, renderConfirmation, ...moreProps } = props;
+  const {
+    children,
+    isDestructive,
+    onClick,
+    onClose,
+    onShowConfirmation,
+    renderConfirmation,
+    onKeyDown,
+    ...moreProps
+  } = props;
 
   const handleClickItem = () => {
-    onClick();
+    onClick(children);
     onClose();
   };
 
   const itemProps = {
     onClick: renderConfirmation !== null ? onShowConfirmation : handleClickItem,
     role: "menuitem",
+    "data-pka-anchor": "dropdown.item",
+    onKeyDown,
     isDestructive,
   };
 
   return (
-    <RawButton hasInsetFocusStyle css={ItemStyles} {...itemProps} {...moreProps}>
+    <RawButton tabIndex={0} hasInsetFocusStyle css={ItemStyles} {...itemProps} {...moreProps}>
       {children}
     </RawButton>
   );

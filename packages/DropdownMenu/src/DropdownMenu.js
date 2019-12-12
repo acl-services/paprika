@@ -3,6 +3,7 @@ import PropTypes from "prop-types";
 import uuid from "uuid/v4";
 import { AlignTypes } from "@paprika/helpers/lib/customPropTypes";
 import Popover from "@paprika/popover";
+import extractChildren from "@paprika/helpers/lib/extractChildren";
 import Divider from "./components/Divider";
 import Trigger from "./components/Trigger";
 import LinkItem from "./components/LinkItem";
@@ -16,47 +17,79 @@ const propTypes = {
   /** Children should consist of <Dropdown.Item /> */
   children: PropTypes.node.isRequired,
 
-  /** Render prop for rendering the trigger element that toggles the dropdown */
-  renderTrigger: PropTypes.func.isRequired,
+  edge: PropTypes.oneOf([AlignTypes.LEFT, AlignTypes.RIGHT, null]),
 };
 
 const defaultProps = {
   align: AlignTypes.BOTTOM,
+  edge: AlignTypes.LEFT,
 };
 
 const popoverOffset = 4;
 
-const DropdownMenu = props => {
-  const { align, children, ...moreProps } = props;
+function DropdownMenu(props) {
+  const { align, children, edge, ...moreProps } = props;
   const [isOpen, setIsOpen] = React.useState(false);
   const [isConfirming, setIsConfirming] = React.useState(false);
   const [renderConfirmation, setRenderConfirmation] = React.useState(null);
-
+  const [currentFocusIndex, setFocusIndex] = React.useState(0);
   const triggerRef = React.useRef(null);
   const menuId = React.useRef(uuid());
   const triggerId = React.useRef(uuid());
 
-  const handleCloseMenu = () => {
-    if (triggerRef.current) {
-      setIsOpen(false);
+  const dropdownListRef = React.useRef(null);
 
-      if (isConfirming) {
-        setTimeout(() => {
-          setIsConfirming(false);
-          setRenderConfirmation(null);
-        }, 0);
-      }
-      triggerRef.current.focus();
+  function focusAndSetIndex(index) {
+    if (dropdownListRef && dropdownListRef.current && index !== undefined)
+      dropdownListRef.current.querySelectorAll('[data-pka-anchor="dropdown.item"]')[index].focus();
+    setFocusIndex(index);
+  }
+
+  const handleCloseMenu = () => {
+    setIsOpen(false);
+
+    if (isConfirming) {
+      setIsConfirming(false);
+      setRenderConfirmation(null);
     }
   };
 
   const handleOpenMenu = () => {
     setIsOpen(true);
+    // https://github.com/acl-services/paprika/issues/316
+    // Todo Should focus the first item via an onAfterOpen event callback in popover
+    setTimeout(() => {
+      focusAndSetIndex(0);
+    }, 250);
   };
 
-  const triggerProps = {
-    isOpen,
-    handleOpenMenu,
+  const extractedChildren = extractChildren(children, ["DropdownMenu.Trigger"]);
+
+  const dropdownLastItemIndex =
+    React.Children.toArray(
+      extractedChildren.children.filter(
+        child =>
+          child.type &&
+          (child.type.displayName === "DropdownMenu.Item" || child.type.displayName === "DropdownMenu.LinkItem")
+      )
+    ).length - 1;
+
+  const onKeyDown = (event, currentIndex) => {
+    if (event.key === "ArrowDown") {
+      const indexToFocus = currentIndex === dropdownLastItemIndex ? 0 : currentIndex + 1;
+      focusAndSetIndex(indexToFocus);
+    } else if (event.key === "ArrowUp") {
+      const indexToFocus = currentIndex === 0 ? dropdownLastItemIndex : currentIndex - 1;
+      focusAndSetIndex(indexToFocus);
+    } else if (event.key === "Home") {
+      focusAndSetIndex(0);
+    } else if (event.key === "End") {
+      focusAndSetIndex(dropdownLastItemIndex);
+    } else if (event.key === "Enter" || event.key === " ") {
+      // do nothing
+    } else {
+      handleCloseMenu();
+    }
   };
 
   const handleShowConfirmation = renderConfirmation => () => {
@@ -65,22 +98,32 @@ const DropdownMenu = props => {
   };
 
   const renderTrigger = () => {
-    const triggerComponent = props.renderTrigger(triggerProps);
     // wrapping the returned item in a function to avoid needing to tab twice
     // https://github.com/acl-services/paprika/issues/126
     return () =>
-      React.cloneElement(triggerComponent, {
+      React.cloneElement(extractedChildren["DropdownMenu.Trigger"], {
+        isOpen,
+        onOpenMenu: handleOpenMenu,
         triggerRef,
         menuId: menuId.current,
         id: triggerId.current,
       });
   };
 
+  const getClonedChild = (child, childKey, additionalProps = {}) =>
+    React.cloneElement(child, {
+      onKeyDown: e => onKeyDown(e, currentFocusIndex),
+      ...childKey,
+      ...additionalProps,
+    });
+
   const renderContent = () => {
     if (isConfirming) {
       const confirmationComponent = renderConfirmation(handleCloseMenu);
       return React.cloneElement(confirmationComponent, {
         align,
+        edge,
+        defaultIsOpen: true,
         getPositioningElement: () => document.getElementById(triggerId.current),
         offset: popoverOffset,
         onClose: handleCloseMenu,
@@ -88,22 +131,20 @@ const DropdownMenu = props => {
     }
 
     return (
-      <div css={contentStyles}>
-        {React.Children.map(children, (child, index) => {
+      <div css={contentStyles} ref={dropdownListRef}>
+        {extractedChildren.children.map((child, index) => {
+          const childKey = { key: `DropdownMenuItem${index}` };
           if (child && child.type && child.type.displayName === "DropdownMenu.Item") {
-            const childKey = { key: `DropdownMenuItem${index}` };
             if (child.props.renderConfirmation) {
-              return React.cloneElement(child, {
+              return getClonedChild(child, childKey, {
                 onShowConfirmation: handleShowConfirmation(child.props.renderConfirmation),
-                ...childKey,
               });
             }
-            return React.cloneElement(child, {
+            return getClonedChild(child, childKey, {
               onClose: handleCloseMenu,
-              ...childKey,
             });
           }
-          return child;
+          return getClonedChild(child, childKey);
         })}
       </div>
     );
@@ -117,6 +158,7 @@ const DropdownMenu = props => {
       onClose={() => {
         if (!isConfirming) handleCloseMenu();
       }}
+      edge={edge}
       {...moreProps}
     >
       <Popover.Trigger>{renderTrigger()}</Popover.Trigger>
@@ -125,7 +167,7 @@ const DropdownMenu = props => {
       </Popover.Content>
     </Popover>
   );
-};
+}
 
 DropdownMenu.displayName = "DropdownMenu";
 DropdownMenu.propTypes = propTypes;

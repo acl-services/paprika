@@ -31,7 +31,7 @@ const TakeoverStory = ({ children }) => {
           hasCloseButton={boolean("Has close button", true, "Takeover.Header")}
           kind={select("Kind", ["default", "primary"], "default", "Takeover.Header")}
         >
-          <Heading level={2}>Header</Heading>
+          Header
         </Takeover.Header>
         {children}
       </Takeover>
