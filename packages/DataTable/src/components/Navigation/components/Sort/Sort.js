@@ -38,12 +38,12 @@ export default function Sort(props) {
         {sortColumn && sortDirection ? `Sort ${sortColumn} by ${sortDirection}` : "Sort"}
       </DropdownMenu.Trigger>
       {columnsOrder.map(columnId => {
-        const { header, canSort, momentParsingFormat } = columns[columnId];
+        const { id, canSort, momentParsingFormat } = columns[columnId];
         if (!canSort) return null;
 
         return (
           <DropdownMenu.Item key={columnId} onClick={noop}>
-            Sort {header} by
+            Sort {id} by
             {Object.keys(sortDirections).map(key => (
               <SortTrigger
                 key={sortDirections[key]}
