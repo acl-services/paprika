@@ -3,6 +3,7 @@ import PropTypes from "prop-types";
 import DropdownMenu from "@paprika/dropdown-menu";
 import { useDataTableState } from "../../../..";
 import SortTrigger from "./SortTrigger";
+import { sortDirections, plugins } from "../../../../constants";
 
 const propTypes = {
   onSort: PropTypes.func,
@@ -17,9 +18,7 @@ const noop = () => {};
 export default function Sort(props) {
   const { onSort } = props;
   const { sortColumn, sortDirection, columns, columnsOrder } = useDataTableState();
-  const hasSortDirections = !!columnsOrder.find(
-    columnId => columns[columnId].sortDirections && columns[columnId].sortDirections.length > 0
-  );
+  const hasColumnCanBeSorted = !!columnsOrder.find(columnId => columns[columnId].canSort);
   const isFirstRender = React.useRef(true);
 
   React.useEffect(() => {
@@ -28,10 +27,10 @@ export default function Sort(props) {
     } else if (onSort) {
       onSort({ columnId: sortColumn, direction: sortDirection });
     }
-  // eslint-disable-next-line react-hooks/exhaustive-deps
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [sortColumn, sortDirection]);
 
-  if (!hasSortDirections) return null;
+  if (!hasColumnCanBeSorted) return null;
 
   return (
     <DropdownMenu
@@ -43,21 +42,20 @@ export default function Sort(props) {
       )}
     >
       {columnsOrder.map(columnId => {
-        const { header, sortDirections, momentParsingFormat } = columns[columnId];
-        if (!sortDirections || sortDirections.length === 0) return null;
+        const { header, canSort, momentParsingFormat } = columns[columnId];
+        if (!canSort) return null;
 
         return (
           <DropdownMenu.Item key={columnId} onClick={noop}>
             Sort {header} by
-            {sortDirections &&
-              sortDirections.map(direction => (
-                <SortTrigger
-                  key={direction}
-                  columnId={columnId}
-                  direction={direction}
-                  momentParsingFormat={momentParsingFormat}
-                />
-              ))}
+            {Object.keys(sortDirections).map(key => (
+              <SortTrigger
+                key={sortDirections[key]}
+                columnId={columnId}
+                direction={sortDirections[key]}
+                momentParsingFormat={momentParsingFormat}
+              />
+            ))}
           </DropdownMenu.Item>
         );
       })}
@@ -78,3 +76,4 @@ Sort.reducer = (state, action) => {
 
 Sort.propTypes = propTypes;
 Sort.defaultProps = defaultProps;
+Sort.displayName = plugins.SORT;

@@ -3,6 +3,7 @@ import Popover from "@paprika/popover";
 import Sortable from "@paprika/sortable";
 import { useDataTableState, useDispatch } from "../../../..";
 import ColumnManagingItem from "./ColumnManagingItem";
+import { plugins } from "../../../../constants";
 
 export default function ColumnManaging() {
   const { columns, columnsOrder } = useDataTableState();
@@ -66,3 +67,5 @@ ColumnManaging.reducer = (state, action) => {
 
   return action.changes;
 };
+
+ColumnManaging.displayName = plugins.COLUMN_MANAGING;

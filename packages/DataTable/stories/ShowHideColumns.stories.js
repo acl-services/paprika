@@ -33,33 +33,15 @@ function App() {
           cell="country"
           isHidden={!columnVisibility}
         />
-        <DataTable.ColumnDefinition
-          id="name"
-          header="Name"
-          cell="name"
-          sortDirections={[DataTable.SortDirections.ASCEND]}
-          canHide={false}
-        />
-        <DataTable.ColumnDefinition
-          id="goals"
-          header="Goals"
-          cell="goals"
-          sortDirections={[DataTable.SortDirections.ASCEND, DataTable.SortDirections.DESCEND]}
-          type={DataTable.ColumnTypes.NUMBER}
-        />
-        <DataTable.ColumnDefinition
-          id="status"
-          header="Status"
-          cell="status"
-          sortDirections={[DataTable.SortDirections.ASCEND, DataTable.SortDirections.DESCEND]}
-        />
+        <DataTable.ColumnDefinition id="name" header="Name" cell="name" canHide={false} />
+        <DataTable.ColumnDefinition id="goals" header="Goals" cell="goals" type={DataTable.ColumnTypes.NUMBER} />
+        <DataTable.ColumnDefinition id="status" header="Status" cell="status" />
         <DataTable.ColumnDefinition
           id="joined"
           header="Joined since"
           type={DataTable.ColumnTypes.DATE}
           cell={row => moment(row.joined, "MM/DD/YYYY").format("MMMM DD, YYYY")}
           momentParsingFormat="MM/DD/YYYY"
-          sortDirections={[DataTable.SortDirections.ASCEND, DataTable.SortDirections.DESCEND]}
         />
       </DataTable>
     </React.Fragment>

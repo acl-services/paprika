@@ -39,24 +39,9 @@ function App() {
           <Sort onSort={handleSort}></Sort>
         </DataTable.Navigation>
         <DataTable.ColumnDefinition id="country" width="190" header="Country" cell="country" />
-        <DataTable.ColumnDefinition
-          id="name"
-          header="Name"
-          cell="name"
-          sortDirections={[DataTable.SortDirections.ASCEND]}
-        />
-        <DataTable.ColumnDefinition
-          id="goals"
-          header="Goals"
-          cell="goals"
-          sortDirections={[DataTable.SortDirections.ASCEND, DataTable.SortDirections.DESCEND]}
-        />
-        <DataTable.ColumnDefinition
-          id="status"
-          header="Status"
-          cell="status"
-          sortDirections={[DataTable.SortDirections.ASCEND, DataTable.SortDirections.DESCEND]}
-        />
+        <DataTable.ColumnDefinition id="name" header="Name" cell="name" />
+        <DataTable.ColumnDefinition id="goals" header="Goals" cell="goals" />
+        <DataTable.ColumnDefinition id="status" header="Status" cell="status" />
       </DataTable>
     </React.Fragment>
   );

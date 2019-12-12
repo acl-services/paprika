@@ -4,6 +4,7 @@ import RawButton from "@paprika/raw-button";
 import { size } from "@paprika/helpers/lib/types";
 
 import { useDispatch, useDataTableState } from "../..";
+import { plugins } from "../../constants";
 
 const propTypes = {
   defaultHeight: PropTypes.oneOf([size.XSMALL, size.SMALL, size.MEDIUM, size.LARGE]),
@@ -58,6 +59,7 @@ export default function RowHeight(props) {
 
 RowHeight.propTypes = propTypes;
 RowHeight.defaultProps = defaultProps;
+RowHeight.displayName = plugins.ROW_HEIGHT;
 
 RowHeight.reducer = (state, action) => {
   if (action.type === "ROW_HEIGHT") {

@@ -4,6 +4,7 @@ import DropdownMenu from "@paprika/dropdown-menu";
 import ArrowDown from "@paprika/icon/lib/ArrowDown";
 import SortOption from "./SortOption";
 import { useDispatch, useDataTableState } from "../../context";
+import { sortDirections } from "../../constants";
 
 const propTypes = {
   columnId: PropTypes.oneOfType([PropTypes.string, PropTypes.number]).isRequired,
@@ -13,11 +14,7 @@ export default function Options(props) {
   const { columnId } = props;
   const dispatch = useDispatch();
   const { columns, enabledPlugins } = useDataTableState();
-  const { sortDirections, momentParsingFormat, canHide } = columns[columnId];
-
-  // TODO: Checking if need to show options icon, later we need to check filtering rules..
-  const hasOptions = canHide || (sortDirections && sortDirections.length > 0);
-  if (!hasOptions) return null;
+  const { momentParsingFormat, canHide, canSort } = columns[columnId];
 
   function handleClickAddFilter() {
     dispatch({ type: "ADD_FILTER", payload: columnId });
@@ -26,6 +23,8 @@ export default function Options(props) {
   function handleToggleColumn() {
     dispatch({ type: "TOGGLE_COLUMN", payload: columnId });
   }
+
+  if (enabledPlugins.length === 0) return null;
 
   return (
     <DropdownMenu
@@ -41,18 +40,22 @@ export default function Options(props) {
         />
       )}
     >
-      {sortDirections
-        ? sortDirections.map(direction => (
+      {enabledPlugins.includes("Sort") && canSort
+        ? Object.keys(sortDirections).map(key => (
             <SortOption
-              key={direction}
+              key={sortDirections[key]}
               columnId={columnId}
-              direction={direction}
+              direction={sortDirections[key]}
               momentParsingFormat={momentParsingFormat}
             />
           ))
         : null}
-      {canHide ? <DropdownMenu.Item onClick={handleToggleColumn}>Hide this column</DropdownMenu.Item> : null}
-      <DropdownMenu.Item onClick={handleClickAddFilter}>Add filter for this column</DropdownMenu.Item>
+      {enabledPlugins.includes("ColumnManaging") && canHide ? (
+        <DropdownMenu.Item onClick={handleToggleColumn}>Hide this column</DropdownMenu.Item>
+      ) : null}
+      {enabledPlugins.includes("Filters") ? (
+        <DropdownMenu.Item onClick={handleClickAddFilter}>Add filter for this column</DropdownMenu.Item>
+      ) : null}
     </DropdownMenu>
   );
 }

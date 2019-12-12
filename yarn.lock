@@ -2187,6 +2187,22 @@
   dependencies:
     "@types/node" ">= 8"
 
+"@paprika/dropdown-menu@^1.1.3":
+  version "1.1.5"
+  resolved "https://registry.yarnpkg.com/@paprika/dropdown-menu/-/dropdown-menu-1.1.5.tgz#03359778a27a65d5ab0e3c43336f66de12c16983"
+  integrity sha512-1cKNr9KvLnB4v8o98BifKENRo9mlc3XkRFnsUm6B0/YaLOsU5z6z9jqdKQA3FL2pjxVv0YfKEsl9eGUPe/ltNg==
+  dependencies:
+    "@babel/runtime-corejs2" "^7.3.1"
+    "@paprika/button" "^0.2.4"
+    "@paprika/confirmation" "^0.2.5"
+    "@paprika/helpers" "^0.2.5"
+    "@paprika/popover" "^0.3.4"
+    "@paprika/raw-button" "^0.2.2"
+    "@paprika/stylers" "^0.2.2"
+    "@paprika/tokens" "^0.1.9"
+    prop-types "^15.7.2"
+    uuid "^3.3.2"
+
 "@paprika/heading@^0.2.2":
   version "0.2.2"
   resolved "https://registry.yarnpkg.com/@paprika/heading/-/heading-0.2.2.tgz#66c9fbbc27aea5a8a56915cd4557e78661ca598a"

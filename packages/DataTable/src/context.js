@@ -3,16 +3,17 @@ import PropTypes from "prop-types";
 import isMatchWith from "lodash.ismatchwith";
 import tableReducer from "./reducers/table";
 import useAsyncReducer from "./hooks/useAsyncReducer";
-import { logicalFilterOperators } from "./constants";
+import { logicalFilterOperators, plugins } from "./constants";
 
 const TableStateContext = React.createContext();
 const TableDispatchContext = React.createContext();
 
 function TableProvider(props) {
-  const { isControlled, data, keygen, reducers, columns } = props;
+  const { isControlled, data, keygen, reducers, columns, enabledPlugins } = props;
   const initialState = {
     keyGrid: 0,
     isControlled,
+    enabledPlugins,
     data: data || [],
     dataForRendering: data || [],
     keygen,
@@ -93,6 +94,7 @@ function useDispatch() {
 TableProvider.propTypes = {
   children: PropTypes.node.isRequired,
   isControlled: PropTypes.bool.isRequired,
+  enabledPlugins: PropTypes.arrayOf(PropTypes.oneOf(plugins)).isRequired,
   data: PropTypes.arrayOf(PropTypes.objectOf(PropTypes.any)),
   keygen: PropTypes.string.isRequired,
   reducers: PropTypes.arrayOf(PropTypes.func).isRequired,
