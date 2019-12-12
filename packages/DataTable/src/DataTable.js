@@ -7,7 +7,7 @@ import Navigation from "./components/Navigation";
 import VirtualizedTable from "./components/VirtualizedTable";
 import LoadMoreButton from "./components/LoadMoreButton";
 import { extractChildren } from "./helpers";
-import { columnTypes } from "./constants";
+import { columnTypes, plugins } from "./constants";
 import { TableProvider } from "./context";
 
 const propTypes = {
@@ -69,9 +69,7 @@ export default function DataTable(props) {
       chunk => chunk
     );
     enabledPlugins = React.Children.map(Navigation.props.children, child =>
-      child.type.displayName && ["Sort", "RowHeight", "Filters", "ColumnManaging"].includes(child.type.displayName)
-        ? child.type.displayName
-        : null
+      child.type.displayName && plugins.includes(child.type.displayName) ? child.type.displayName : null
     ).filter(item => item !== null);
     React.Children.forEach(Navigation.props.children, child => {
       // Using onFilter and onSort prop for now

@@ -4,7 +4,7 @@ import DropdownMenu from "@paprika/dropdown-menu";
 import ArrowDown from "@paprika/icon/lib/ArrowDown";
 import SortOption from "./SortOption";
 import { useDispatch, useDataTableState } from "../../context";
-import { sortDirections } from "../../constants";
+import { sortDirections, plugins } from "../../constants";
 
 const propTypes = {
   columnId: PropTypes.oneOfType([PropTypes.string, PropTypes.number]).isRequired,
@@ -40,7 +40,7 @@ export default function Options(props) {
         />
       )}
     >
-      {enabledPlugins.includes("Sort") && canSort
+      {enabledPlugins.includes(plugins.SORT) && canSort
         ? Object.keys(sortDirections).map(key => (
             <SortOption
               key={sortDirections[key]}
@@ -50,10 +50,10 @@ export default function Options(props) {
             />
           ))
         : null}
-      {enabledPlugins.includes("ColumnManaging") && canHide ? (
+      {enabledPlugins.includes(plugins.COLUMN_MANAGING) && canHide ? (
         <DropdownMenu.Item onClick={handleToggleColumn}>Hide this column</DropdownMenu.Item>
       ) : null}
-      {enabledPlugins.includes("Filters") ? (
+      {enabledPlugins.includes(plugins.FILTERS) ? (
         <DropdownMenu.Item onClick={handleClickAddFilter}>Add filter for this column</DropdownMenu.Item>
       ) : null}
     </DropdownMenu>
