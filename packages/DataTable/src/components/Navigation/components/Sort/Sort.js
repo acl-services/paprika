@@ -33,14 +33,10 @@ export default function Sort(props) {
   if (!hasColumnCanBeSorted) return null;
 
   return (
-    <DropdownMenu
-      align="bottom"
-      renderTrigger={({ isOpen, handleOpenMenu }) => (
-        <DropdownMenu.Trigger isOpen={isOpen} onOpenMenu={handleOpenMenu}>
-          {sortColumn && sortDirection ? `Sort ${sortColumn} by ${sortDirection}` : "Sort"}
-        </DropdownMenu.Trigger>
-      )}
-    >
+    <DropdownMenu align="bottom">
+      <DropdownMenu.Trigger>
+        {sortColumn && sortDirection ? `Sort ${sortColumn} by ${sortDirection}` : "Sort"}
+      </DropdownMenu.Trigger>
       {columnsOrder.map(columnId => {
         const { header, canSort, momentParsingFormat } = columns[columnId];
         if (!canSort) return null;

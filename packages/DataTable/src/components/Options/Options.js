@@ -39,19 +39,10 @@ export default function Options(props) {
   if (enabledPluginsAppliedToThisColumn.length === 0) return null;
 
   return (
-    <DropdownMenu
-      align="bottom"
-      data-pka-anchor="datatable-dropdown"
-      renderTrigger={({ isOpen, handleOpenMenu }) => (
-        <DropdownMenu.Trigger
-          isOpen={isOpen}
-          onOpenMenu={handleOpenMenu}
-          icon={<ArrowDown />}
-          kind="minor"
-          size="small"
-        />
-      )}
-    >
+    <DropdownMenu align="bottom" data-pka-anchor="datatable-dropdown">
+      <DropdownMenu.Trigger buttonType="icon" kind="minor" size="small">
+        <ArrowDown />
+      </DropdownMenu.Trigger>
       {enabledPluginsAppliedToThisColumn.includes(plugins.SORT)
         ? Object.keys(sortDirections).map(key => (
             <SortOption
