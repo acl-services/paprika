@@ -10,8 +10,9 @@ const TableDispatchContext = React.createContext();
 const TableLocalStorageContext = React.createContext();
 
 function TableProvider(props) {
-  const { isControlled, data, keygen, reducers, columns, tableId, enabledPlugins } = props;
-  const storageKey = `pka-data-table__${tableId}`;
+  const { isControlled, data, keygen, reducers, columns, localStorageId, enabledPlugins } = props;
+  // if a released version is wrong, we have to change the storage key pre-fix next time to fix the errors on clients side, they'll lose the history as well
+  const storageKey = `pka-data-table__${localStorageId}`;
 
   function getInitialState() {
     const initialState = {
@@ -44,7 +45,6 @@ function TableProvider(props) {
       );
     } else {
       currentTableState = JSON.parse(storedStatus);
-      console.log(currentTableState);
     }
 
     return {
@@ -133,6 +133,7 @@ function useLocalStorage() {
 }
 
 TableProvider.propTypes = {
+  localStorageId: PropTypes.string,
   children: PropTypes.node.isRequired,
   isControlled: PropTypes.bool.isRequired,
   enabledPlugins: PropTypes.arrayOf(PropTypes.oneOf(plugins)).isRequired,
@@ -147,6 +148,7 @@ TableProvider.propTypes = {
 };
 
 TableProvider.defaultProps = {
+  localStorageId: null,
   data: [],
   columns: [],
 };

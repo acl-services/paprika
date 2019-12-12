@@ -4,6 +4,7 @@ import DropdownMenu from "@paprika/dropdown-menu";
 import { useDataTableState } from "../../../..";
 import SortTrigger from "./SortTrigger";
 import { sortDirections, plugins } from "../../../../constants";
+import { useLocalStorage } from "../../../../context";
 
 const propTypes = {
   onSort: PropTypes.func,
@@ -20,12 +21,14 @@ export default function Sort(props) {
   const { sortColumn, sortDirection, columns, columnsOrder } = useDataTableState();
   const hasColumnCanBeSorted = !!columnsOrder.find(columnId => columns[columnId].canSort);
   const isFirstRender = React.useRef(true);
+  const updateLocalStorage = useLocalStorage();
 
   React.useEffect(() => {
     if (isFirstRender.current) {
       isFirstRender.current = false;
-    } else if (onSort) {
-      onSort({ columnId: sortColumn, direction: sortDirection });
+    } else {
+      updateLocalStorage({ sortColumn, sortDirection });
+      if (onSort) onSort({ columnId: sortColumn, direction: sortDirection });
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [sortColumn, sortDirection]);

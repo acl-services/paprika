@@ -20,7 +20,7 @@ const propTypes = {
   onExpandedRow: PropTypes.func,
   onKeyDownArrow: PropTypes.func,
   onClickCell: PropTypes.func,
-  tableId: PropTypes.string,
+  localStorageId: PropTypes.string,
 };
 
 const defaultProps = {
@@ -33,7 +33,7 @@ const defaultProps = {
   onExpandedRow: () => {},
   onKeyDownArrow: () => {},
   onClickCell: () => {},
-  tableId: null,
+  localStorageId: null,
 };
 
 export default function DataTable(props) {
@@ -50,7 +50,7 @@ export default function DataTable(props) {
     reducers,
     rowHeight,
     width,
-    tableId,
+    localStorageId,
   } = props;
   const {
     "DataTable.ColumnDefinition": ColumnsDefinition,
@@ -88,7 +88,7 @@ export default function DataTable(props) {
       keygen={keygen}
       reducers={navigationReducers.concat(reducers)}
       columns={columns}
-      tableId={tableId}
+      localStorageId={localStorageId}
       enabledPlugins={enabledPlugins}
     >
       <div>{isLoading ? "Loading..." : null}</div>
