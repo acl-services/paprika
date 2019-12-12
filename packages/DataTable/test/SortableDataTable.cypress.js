@@ -13,18 +13,18 @@ describe("Sortable <DataTable />", () => {
 
   it("has multiple options in sorting panel inside the central control", () => {
     cy.contains("Sort").click();
-    cy.contains("Sort Country by").should("not.exist");
-    cy.contains("Sort Name by").contains("ASCEND");
-    cy.contains("Sort Name by").contains("DESCEND");
-    cy.contains("Sort Goals by").contains("ASCEND");
-    cy.contains("Sort Goals by").contains("DESCEND");
-    cy.contains("Sort Status by").contains("ASCEND");
-    cy.contains("Sort Status by").contains("DESCEND");
+    cy.contains(/Sort Country by/i).should("not.exist");
+    cy.contains(/Sort Name by/i).contains("ASCEND");
+    cy.contains(/Sort Name by/i).contains("DESCEND");
+    cy.contains(/Sort Goals by/i).contains("ASCEND");
+    cy.contains(/Sort Goals by/i).contains("DESCEND");
+    cy.contains(/Sort Status by/i).contains("ASCEND");
+    cy.contains(/Sort Status by/i).contains("DESCEND");
   });
 
   it("can sort by ASCEND", () => {
     cy.contains("Sort").click();
-    cy.contains("Sort Name by")
+    cy.contains(/Sort Name by/i)
       .contains("ASCEND")
       .click();
 
@@ -35,7 +35,7 @@ describe("Sortable <DataTable />", () => {
 
   it("can sort by DESCEND", () => {
     cy.contains("Sort").click();
-    cy.contains("Sort Goals by")
+    cy.contains(/Sort Goals by/i)
       .contains("DESCEND")
       .click();
 
@@ -46,7 +46,7 @@ describe("Sortable <DataTable />", () => {
 
   it("can sort by DATE type", () => {
     cy.contains("Sort").click();
-    cy.contains("Sort Joined since by")
+    cy.contains(/Sort Joined by/i)
       .contains("DESCEND")
       .click();
 
