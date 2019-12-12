@@ -51,7 +51,8 @@ const Confirmation = props => {
   } = props;
   const confirmButtonRef = React.useRef(null);
   const triggerRef = React.useRef(null);
-  const confirmId = React.useRef(uuid());
+  const confirmId = React.useRef(uuid()).current;
+  let popoverKey = uuid();
 
   const focusConfirmButton = () => {
     if (confirmButtonRef.current) confirmButtonRef.current.focus();
@@ -67,6 +68,10 @@ const Confirmation = props => {
       handleOpenConfirm();
     }
   }, [confirmButtonRef, defaultIsOpen]);
+
+  React.useEffect(() => {
+    popoverKey = uuid();
+  }, [isPending]);
 
   const triggerProps = {
     isConfirmOpen,
@@ -92,14 +97,14 @@ const Confirmation = props => {
     return () =>
       React.cloneElement(triggerComponent, {
         triggerRef,
-        confirmId: confirmId.current,
+        confirmId,
       });
   };
 
   const I18n = useI18n();
 
   const popoverContent = (
-    <Popover.Content id={confirmId.current}>
+    <Popover.Content id={confirmId}>
       <Popover.Card>
         <div css={confirmStyles}>
           {heading && (
@@ -119,17 +124,15 @@ const Confirmation = props => {
             >
               {confirmLabel}
             </Button>
-            {!isPending ? (
-              <Button
-                isDisabled={isPending}
-                isSemantic={false}
-                kind={Button.Kinds.MINOR}
-                size={buttonSize}
-                onClick={handleCloseConfirm}
-              >
-                {I18n.t("actions.cancel")}
-              </Button>
-            ) : null}
+            <Button
+              isDisabled={isPending}
+              isSemantic={false}
+              kind={Button.Kinds.MINOR}
+              size={buttonSize}
+              onClick={handleCloseConfirm}
+            >
+              {I18n.t("actions.cancel")}
+            </Button>
           </div>
         </div>
       </Popover.Card>
@@ -140,7 +143,7 @@ const Confirmation = props => {
   const triggerComponent = children ? children(triggerProps) : null;
 
   return (
-    <Popover isOpen={isConfirmOpen} onClose={handleCloseConfirm} {...moreProps}>
+    <Popover key={popoverKey} isOpen={isConfirmOpen} onClose={handleCloseConfirm} {...moreProps}>
       {triggerComponent && <Popover.Trigger>{renderTrigger(triggerComponent)}</Popover.Trigger>}
       {popoverContent}
     </Popover>
