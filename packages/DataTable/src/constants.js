@@ -8,3 +8,8 @@ export const columnTypes = {
   NUMBER: "NUMBER",
   DATE: "DATE",
 };
+
+export const logicalFilterOperators = {
+  AND: "AND",
+  OR: "OR",
+};

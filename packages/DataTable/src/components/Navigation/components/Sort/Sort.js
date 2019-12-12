@@ -1,6 +1,5 @@
 import React from "react";
 import DropdownMenu from "@paprika/dropdown-menu";
-import sort from "../../../../helpers/sort";
 import { useDataTableState } from "../../../..";
 import SortTrigger from "./SortTrigger";
 
@@ -24,7 +23,7 @@ export default function Sort() {
       )}
     >
       {columnsOrder.map(columnId => {
-        const { header, sortDirections, momentParsingFormat, type } = columns[columnId];
+        const { header, sortDirections, momentParsingFormat } = columns[columnId];
         if (!sortDirections || sortDirections.length === 0) return null;
 
         return (
@@ -36,7 +35,6 @@ export default function Sort() {
                   key={direction}
                   columnId={columnId}
                   direction={direction}
-                  columnType={type}
                   momentParsingFormat={momentParsingFormat}
                 />
               ))}
@@ -53,13 +51,6 @@ Sort.reducer = (state, action) => {
       ...action.changes,
       sortColumn: action.payload.columnId,
       sortDirection: action.payload.direction,
-      sortedOrder: sort({
-        data: action.changes.data,
-        columnId: action.payload.columnId,
-        direction: action.payload.direction,
-        columnType: action.payload.columnType,
-        momentParsingFormat: action.payload.momentParsingFormat,
-      }).map(item => item[state.keygen]),
     };
 
   return action.changes;

@@ -6,9 +6,10 @@ import handleArrowKeys, { arrowKeys } from "../../helpers/handleArrowKeys";
 import "@paprika/helpers/lib/dom/elementScrollToPolyfill";
 // import CheckBox from "../CheckBox";
 import Cell from "../Cell";
-import Options from "../Options";
 import { CellHeader } from "../Cell/Cell.styles";
+import Options from "../Options";
 import { useDataTableState } from "../../context";
+import useData from "../../hooks/useData";
 
 const propTypes = {
   dataTableID: PropTypes.string.isRequired,
@@ -57,16 +58,14 @@ export default function VirtualizedTable(props) {
   const [activeCell, setActiveCell] = React.useState({ index: null });
   const refData = React.useRef(null);
   const refGrid = React.useRef(null);
-  const { data, sortedOrder, keygen, rowHeight: stateRowHeigth, columns, columnsOrder } = useDataTableState();
+  const { data, rowHeight: stateRowHeigth, columns, columnsOrder } = useDataTableState();
   refData.current = data;
 
   const delayedKeyDown = React.useRef(debounce((...args) => handleArrowKeys(...args), 15)).current;
 
   // this will inject 20 rows below the visible table to helps with the navigation and scrolling flickering
 
-  const dataForRendering = sortedOrder
-    ? sortedOrder.map(keygenValue => data.find(item => item[keygen] === keygenValue))
-    : data;
+  const dataForRendering = useData();
 
   //
   // const handleMouseEnter = (data, rowIndex, keys) => () => {
@@ -129,8 +128,9 @@ export default function VirtualizedTable(props) {
         {propsReactWindow => {
           const { columnIndex, rowIndex, style } = propsReactWindow;
           const column = columns[visibleColumnsInCorrectOrder[columnIndex]];
-          const { id, cell, header } = column;
+          const { id, cell, header, isHidden } = column;
           const index = `${dataTableID}${rowIndex}_${columnIndex}`;
+          if (isHidden) return null;
           if (rowIndex === 0) {
             return (
               <CellHeader key={`cell_${index}`} style={style}>

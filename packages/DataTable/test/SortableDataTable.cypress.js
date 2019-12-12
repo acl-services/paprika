@@ -6,9 +6,9 @@ describe("Sortable <DataTable />", () => {
   const getByCellIndex = cellIndex => cy.get(`[data-pka-cell-index="${cellIndex}"]`);
 
   it("shows data by original order", () => {
-    getByCellIndex("0_1").contains("Josef");
-    getByCellIndex("1_1").contains("Romário");
-    getByCellIndex("2_1").contains("Pelé");
+    getByCellIndex("0_2").contains("Josef");
+    getByCellIndex("1_2").contains("Romário");
+    getByCellIndex("2_2").contains("Pelé");
   });
 
   it("has multiple options in sorting panel inside the central control", () => {
@@ -30,9 +30,9 @@ describe("Sortable <DataTable />", () => {
       .contains("ASCEND")
       .click();
 
-    getByCellIndex("0_1").contains("Alfredo");
-    getByCellIndex("1_1").contains("Arthur");
-    getByCellIndex("2_1").contains("Cristiano");
+    getByCellIndex("0_2").contains("Alfredo");
+    getByCellIndex("1_2").contains("Arthur");
+    getByCellIndex("2_2").contains("Cristiano");
   });
 
   it("can sort by DESCEND", () => {
@@ -41,9 +41,9 @@ describe("Sortable <DataTable />", () => {
       .contains("DESCEND")
       .click();
 
-    getByCellIndex("0_2").contains("805");
-    getByCellIndex("1_2").contains("772");
-    getByCellIndex("2_2").contains("767");
+    getByCellIndex("0_3").contains("805");
+    getByCellIndex("1_3").contains("772");
+    getByCellIndex("2_3").contains("767");
   });
 
   it("can sort by DATE type", () => {
@@ -52,12 +52,12 @@ describe("Sortable <DataTable />", () => {
       .contains("DESCEND")
       .click();
 
-    getByCellIndex("0_4").contains("12/18/2020");
-    getByCellIndex("1_4").contains("12/12/2019");
-    getByCellIndex("2_4").contains("10/01/2019");
+    getByCellIndex("0_0").contains("12/18/2020");
+    getByCellIndex("1_0").contains("12/12/2019");
+    getByCellIndex("2_0").contains("10/01/2019");
   });
 
-  it.only("can sort by clicking optional button", () => {
+  it("can sort by clicking optional button", () => {
     cy.contains("Joined since")
       .find("[role='button']")
       .invoke("width")

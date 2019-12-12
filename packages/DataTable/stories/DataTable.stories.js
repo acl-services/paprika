@@ -22,7 +22,7 @@ function getFlag(row) {
   return flags[row.country] || row.country;
 }
 
-const data = fixtures(1000);
+const data = fixtures(1);
 function App() {
   return (
     <React.Fragment>

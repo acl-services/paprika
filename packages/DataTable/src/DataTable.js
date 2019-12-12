@@ -62,14 +62,24 @@ export default function DataTable(props) {
   const columns = ColumnsDefinition.map(Column => Column.props);
 
   let navigationReducers = [];
+  let isControlled = false;
   if (Navigation && Navigation.props) {
     navigationReducers = React.Children.map(Navigation.props.children, child => child.type.reducer).filter(
       chunk => chunk
     );
+    React.Children.forEach(Navigation.props.children, child => {
+      if (child.props.onFilter || child.props.onSort) isControlled = true;
+    });
   }
 
   return (
-    <TableProvider data={data} keygen={keygen} reducers={navigationReducers.concat(reducers)} columns={columns}>
+    <TableProvider
+      isControlled={isControlled}
+      data={data}
+      keygen={keygen}
+      reducers={navigationReducers.concat(reducers)}
+      columns={columns}
+    >
       <div>{isLoading ? "Loading..." : null}</div>
       {Navigation}
       <VirtualizedTable

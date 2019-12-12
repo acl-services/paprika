@@ -23,17 +23,16 @@ function App() {
       if (action.type === "SORT") {
         setIsLoading(true);
         setTimeout(() => {
+          const backendSortResult = sort({
+            data: fixtures(1),
+            columnId: action.payload.columnId,
+            direction: action.payload.direction,
+            columnType: action.payload.columnId === "goals" ? "NUMBER" : "TEXT",
+          });
           setIsLoading(false);
           resolve({
             ...action.changes,
-            sortColumn: action.payload.columnId,
-            sortDirection: action.payload.direction,
-            sortedOrder: sort({
-              data: mockData,
-              columnId: action.payload.columnId,
-              direction: action.payload.direction,
-              columnType: action.payload.columnId === "goals" ? "NUMBER" : "TEXT",
-            }).map(item => item.id),
+            data: backendSortResult,
           });
         }, 1000);
       } else {
