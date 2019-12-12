@@ -4,13 +4,13 @@ describe("Show/hide columns in <DataTable />", () => {
   });
 
   it("shows hide column button in options dropdown base on canHide", () => {
-    cy.contains("Name")
+    cy.contains(/Name/i)
       .find('[role="button"]')
       .click({ force: true });
 
     cy.contains("Hide this column").should("not.exist");
 
-    cy.contains("Goals")
+    cy.contains(/Goals/i)
       .find('[role="button"]')
       .click({ force: true });
 
@@ -20,26 +20,26 @@ describe("Show/hide columns in <DataTable />", () => {
   it("shows column toggle in central control base on canHide", () => {
     cy.contains("Show/hide column").click();
     cy.getByTestId("popover.card")
-      .contains("Name")
+      .contains(/Name/i)
       .children('[role="switch"]')
       .click();
     cy.contains("Josef Bican");
-    cy.getByTestId("popover.card").contains("Country");
+    cy.getByTestId("popover.card").contains(/Country/i);
   });
 
   it("can toggle column visibility by in central control", () => {
-    cy.contains("Austria");
+    cy.contains(/Austria/i);
     cy.contains("Show/hide column").click();
     cy.getByTestId("popover.card")
-      .contains("Country")
+      .contains(/Country/i)
       .children('[role="switch"]')
       .click();
-    cy.contains("Austria").should("not.exist");
+    cy.contains(/Austria/i).should("not.exist");
     cy.getByTestId("popover.card")
-      .contains("Country")
+      .contains(/Country/i)
       .children('[role="switch"]')
       .click();
-    cy.contains("Austria");
+    cy.contains(/Austria/i);
   });
 
   it("can hide column by options dropdown", () => {
@@ -49,7 +49,7 @@ describe("Show/hide columns in <DataTable />", () => {
     // can't perform search like the one with .find("[role=button]")
     // adding wait aliviate the problem
     cy.wait(0);
-    cy.contains("Goals")
+    cy.contains(/Goals/i)
       .find('[role="button"]')
       .click({ force: true });
 
