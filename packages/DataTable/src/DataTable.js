@@ -60,6 +60,7 @@ export default function DataTable(props) {
   ]);
 
   const columns = ColumnsDefinition.map(Column => Column.props);
+  const availablePlugins = Object.keys(plugins).map(key => plugins[key]);
 
   let navigationReducers = [];
   let enabledPlugins = [];
@@ -69,7 +70,7 @@ export default function DataTable(props) {
       chunk => chunk
     );
     enabledPlugins = React.Children.map(Navigation.props.children, child =>
-      child.type.displayName && plugins.includes(child.type.displayName) ? child.type.displayName : null
+      child.type.displayName && availablePlugins.includes(child.type.displayName) ? child.type.displayName : null
     ).filter(item => item !== null);
     React.Children.forEach(Navigation.props.children, child => {
       // Using onFilter and onSort prop for now

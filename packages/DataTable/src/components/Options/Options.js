@@ -15,6 +15,18 @@ export default function Options(props) {
   const dispatch = useDispatch();
   const { columns, enabledPlugins } = useDataTableState();
   const { momentParsingFormat, canHide, canSort } = columns[columnId];
+  const enabledPluginsAppliedToThisColumn = enabledPlugins.filter(plugin => {
+    switch (plugin) {
+      case plugins.SORT:
+        return canSort;
+      case plugins.FILTERS:
+        return true;
+      case plugins.COLUMN_MANAGING:
+        return canHide;
+      default:
+        return false;
+    }
+  });
 
   function handleClickAddFilter() {
     dispatch({ type: "ADD_FILTER", payload: columnId });
@@ -24,7 +36,7 @@ export default function Options(props) {
     dispatch({ type: "TOGGLE_COLUMN", payload: columnId });
   }
 
-  if (enabledPlugins.length === 0) return null;
+  if (enabledPluginsAppliedToThisColumn.length === 0) return null;
 
   return (
     <DropdownMenu
@@ -40,7 +52,7 @@ export default function Options(props) {
         />
       )}
     >
-      {enabledPlugins.includes(plugins.SORT) && canSort
+      {enabledPluginsAppliedToThisColumn.includes(plugins.SORT)
         ? Object.keys(sortDirections).map(key => (
             <SortOption
               key={sortDirections[key]}
@@ -50,10 +62,10 @@ export default function Options(props) {
             />
           ))
         : null}
-      {enabledPlugins.includes(plugins.COLUMN_MANAGING) && canHide ? (
+      {enabledPluginsAppliedToThisColumn.includes(plugins.COLUMN_MANAGING) ? (
         <DropdownMenu.Item onClick={handleToggleColumn}>Hide this column</DropdownMenu.Item>
       ) : null}
-      {enabledPlugins.includes(plugins.FILTERS) ? (
+      {enabledPluginsAppliedToThisColumn.includes(plugins.FILTERS) ? (
         <DropdownMenu.Item onClick={handleClickAddFilter}>Add filter for this column</DropdownMenu.Item>
       ) : null}
     </DropdownMenu>

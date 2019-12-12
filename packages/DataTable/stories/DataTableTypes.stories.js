@@ -19,7 +19,7 @@ function App() {
         cell={row => row.joined}
         momentParsingFormat="MM/DD/YYYY"
       />
-      <DataTable.ColumnDefinition id="country" width="190" header="Country" cell="country" />
+      <DataTable.ColumnDefinition id="country" width="190" header="Country" cell="country" canSort={false} />
       <DataTable.ColumnDefinition id="name" header="Name" cell="name" />
       <DataTable.ColumnDefinition id="goals" header="Goals" cell="goals" type={DataTable.ColumnTypes.NUMBER} />
       <DataTable.ColumnDefinition id="status" header="Status" cell="status" />

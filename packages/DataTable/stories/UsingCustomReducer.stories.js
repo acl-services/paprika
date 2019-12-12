@@ -45,7 +45,7 @@ function App() {
     <React.Fragment>
       <DataTable keygen="id" data={data} height={viewPortHeight()} reducers={[customReducer]} isLoading={isLoading}>
         <DataTable.Navigation>
-          <Sort></Sort>
+          <Sort />
         </DataTable.Navigation>
         <DataTable.ColumnDefinition id="country" width="190" header="Country" cell="country" />
         <DataTable.ColumnDefinition id="name" header="Name" cell="name" />
