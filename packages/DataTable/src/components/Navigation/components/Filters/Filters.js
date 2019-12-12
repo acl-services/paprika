@@ -10,7 +10,7 @@ import { useDataTableState, useDispatch } from "../../../..";
 import FilterItem from "./FilterItem";
 import { rulesByType } from "./rules";
 import { FiltersPanelStyled } from "./Filters.styles";
-import { logicalFilterOperators } from "../../../../constants";
+import { logicalFilterOperators, plugins } from "../../../../constants";
 import getColumnType from "../../../../helpers/getColumnType";
 
 const propTypes = {
@@ -139,3 +139,4 @@ Filters.reducer = (state, action) => {
 
 Filters.propTypes = propTypes;
 Filters.defaultProps = defaultProps;
+Filters.displayName = plugins.FILTERS;

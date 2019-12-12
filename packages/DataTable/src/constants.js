@@ -13,3 +13,10 @@ export const logicalFilterOperators = {
   AND: "AND",
   OR: "OR",
 };
+
+export const plugins = {
+  SORT: "Sort",
+  FILTERS: "Filters",
+  COLUMN_MANAGING: "ColumnManaging",
+  ROW_HEIGHT: "RowHeight",
+};

@@ -52,6 +52,8 @@ function DropdownMenu(props) {
       setIsConfirming(false);
       setRenderConfirmation(null);
     }
+
+    if (triggerRef.current) triggerRef.current.focus();
   };
 
   const handleOpenMenu = () => {

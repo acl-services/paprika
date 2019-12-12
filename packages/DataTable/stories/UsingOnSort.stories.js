@@ -1,7 +1,8 @@
 import React from "react";
 import { storiesOf } from "@storybook/react";
-import DataTable, { Filters } from "../src";
+import DataTable, { Sort } from "../src";
 import fixtures from "./fixtures";
+import sort from "../src/helpers/sort";
 import { viewPortHeight } from "./helpers";
 
 const mockData = fixtures(1);
@@ -17,12 +18,17 @@ function App() {
     }, 1000);
   }, []);
 
-  function handleFilter(filters) {
-    console.log(filters);
+  function handleSort({ columnId, direction }) {
     setIsLoading(true);
     setTimeout(() => {
+      const backendSortResult = sort({
+        data: fixtures(1),
+        columnId,
+        direction,
+        columnType: columnId === "goals" ? "NUMBER" : "TEXT",
+      });
       setIsLoading(false);
-      setData([{ country: "Brazil", name: "Roberto Dinamite", goals: 512, status: "inactive", joined: "10/01/2019" }]);
+      setData(backendSortResult);
     }, 1000);
   }
 
@@ -30,7 +36,7 @@ function App() {
     <React.Fragment>
       <DataTable keygen="id" data={data} height={viewPortHeight()} isLoading={isLoading}>
         <DataTable.Navigation>
-          <Filters onFilter={handleFilter} />
+          <Sort onSort={handleSort}></Sort>
         </DataTable.Navigation>
         <DataTable.ColumnDefinition id="country" width="190" header="Country" cell="country" />
         <DataTable.ColumnDefinition id="name" header="Name" cell="name" />
@@ -41,4 +47,4 @@ function App() {
   );
 }
 
-storiesOf("DataTable", module).add("Back-end filtering", () => <App />);
+storiesOf("DataTable", module).add("Using onSort", () => <App />);

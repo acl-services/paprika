@@ -1,5 +1,5 @@
 import PropTypes from "prop-types";
-import { columnTypes, sortDirections } from "../../constants";
+import { columnTypes } from "../../constants";
 
 export default function ColumnDefinition() {
   return null;
@@ -8,7 +8,7 @@ export default function ColumnDefinition() {
 ColumnDefinition.propTypes = {
   id: PropTypes.oneOfType([PropTypes.string, PropTypes.number]).isRequired,
   momentParsingFormat: PropTypes.string,
-  sortDirections: PropTypes.arrayOf(PropTypes.oneOf([sortDirections.ASCEND, sortDirections.DESCEND])),
+  canSort: PropTypes.bool,
   type: PropTypes.oneOf([columnTypes.TEXT, columnTypes.NUMBER, columnTypes.DATE]),
   canHide: PropTypes.bool,
   isHidden: PropTypes.bool,
@@ -16,7 +16,7 @@ ColumnDefinition.propTypes = {
 
 ColumnDefinition.defaultProps = {
   momentParsingFormat: null,
-  sortDirections: [],
+  canSort: true,
   type: null,
   canHide: true,
   isHidden: false,
