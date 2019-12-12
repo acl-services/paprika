@@ -23,6 +23,9 @@ const handleImperative = (state, dispatch) => () => {
     },
     selected: state.isMulti ? state.selectedOptions : state.selectedOptions[0],
     options: state.options,
+    close: () => {
+      dispatch({ type: useListBox.types.closePopover });
+    },
   };
 };
 
