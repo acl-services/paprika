@@ -2,6 +2,7 @@
 import React from "react";
 import PropTypes from "prop-types";
 import nanoid from "nanoid";
+// import useMountedRef from "@paprika/helpers/lib/hooks/useMountedRef";
 import ColumnDefinition from "./components/ColumnDefinition";
 import Navigation from "./components/Navigation";
 import VirtualizedTable from "./components/VirtualizedTable";
@@ -63,10 +64,11 @@ export default function DataTable(props) {
   ]);
 
   const columns = ColumnsDefinition.map(({ props }) => {
-    const { id, momentParsingFormat, canSort, type, canHide, isHidden } = props;
-    return { id, momentParsingFormat, canSort, type, canHide, isHidden };
+    const { id, momentParsingFormat, canSort, type, canHide, isHidden, width } = props;
+    return { id, momentParsingFormat, canSort, type, canHide, isHidden, width };
   });
   const availablePlugins = Object.keys(plugins).map(key => plugins[key]);
+  // const mountedRef = useMountedRef();
 
   let navigationReducers = [];
   let enabledPlugins = [];
@@ -99,7 +101,6 @@ export default function DataTable(props) {
       <VirtualizedTable
         dataTableID={dataTableID}
         onExpandedRow={onExpandedRow}
-        columns={columns}
         height={height}
         rowHeight={rowHeight}
         width={width}

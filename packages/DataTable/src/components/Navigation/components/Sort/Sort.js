@@ -5,6 +5,7 @@ import { useDataTableState } from "../../../..";
 import SortTrigger from "./SortTrigger";
 import { sortDirections, plugins } from "../../../../constants";
 import { useLocalStorage } from "../../../../context";
+import useIsUpdated from "../../../../hooks/useIsUpdated";
 
 const propTypes = {
   onSort: PropTypes.func,
@@ -20,16 +21,15 @@ export default function Sort(props) {
   const { onSort } = props;
   const { sortColumn, sortDirection, columns, columnsOrder } = useDataTableState();
   const hasColumnCanBeSorted = !!columnsOrder.find(columnId => columns[columnId].canSort);
-  const isFirstRender = React.useRef(true);
   const updateLocalStorage = useLocalStorage();
+  const isSortColumnUpdated = useIsUpdated(sortColumn);
+  const isSortDirectionUpdated = useIsUpdated(sortDirection);
 
   React.useEffect(() => {
-    if (isFirstRender.current) {
-      isFirstRender.current = false;
-    } else {
-      updateLocalStorage({ sortColumn, sortDirection });
-      if (onSort) onSort({ columnId: sortColumn, direction: sortDirection });
-    }
+    if (!isSortColumnUpdated && !isSortDirectionUpdated) return;
+
+    updateLocalStorage({ sortColumn, sortDirection });
+    if (onSort) onSort({ columnId: sortColumn, direction: sortDirection });
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [sortColumn, sortDirection]);
 

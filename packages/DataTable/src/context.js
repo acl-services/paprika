@@ -4,6 +4,7 @@ import isMatchWith from "lodash.ismatchwith";
 import tableReducer from "./reducers/table";
 import useAsyncReducer from "./hooks/useAsyncReducer";
 import { logicalFilterOperators, plugins } from "./constants";
+import useIsUpdated from "./hooks/useIsUpdated";
 
 const TableStateContext = React.createContext();
 const TableDispatchContext = React.createContext();
@@ -13,6 +14,10 @@ function TableProvider(props) {
   const { isControlled, data, keygen, reducers, columns, localStorageId, enabledPlugins } = props;
   // if a released version is wrong, we have to change the storage key pre-fix next time to fix the errors on clients side, they'll lose the history as well
   const storageKey = `pka-data-table__${localStorageId}`;
+  console.log("table provider render--------------------");
+  // const isMounedRef = React.useRef(false);
+  const isDataUpdated = useIsUpdated(data);
+  const isColumnsUpdated = useIsUpdated(columns);
 
   function getInitialState() {
     const initialState = {
@@ -30,21 +35,23 @@ function TableProvider(props) {
       logicalFilterOperator: logicalFilterOperators.AND,
     };
     let currentTableState = {};
-    const storedStatus = localStorage.getItem(storageKey);
-    if (!storedStatus) {
-      localStorage.setItem(
-        storageKey,
-        JSON.stringify({
-          sortColumn: initialState.sortColumn,
-          sortDirection: initialState.sortDirection,
-          columnsOrder: initialState.columnsOrder,
-          filters: initialState.filters,
-          logicalFilterOperator: initialState.logicalFilterOperator,
-          columns: initialState.columns,
-        })
-      );
-    } else {
-      currentTableState = JSON.parse(storedStatus);
+    if (localStorageId) {
+      const storedStatus = localStorage.getItem(storageKey);
+      if (!storedStatus) {
+        localStorage.setItem(
+          storageKey,
+          JSON.stringify({
+            sortColumn: initialState.sortColumn,
+            sortDirection: initialState.sortDirection,
+            columnsOrder: initialState.columnsOrder,
+            filters: initialState.filters,
+            logicalFilterOperator: initialState.logicalFilterOperator,
+            columns: initialState.columns,
+          })
+        );
+      } else {
+        currentTableState = JSON.parse(storedStatus);
+      }
     }
 
     return {
@@ -53,7 +60,6 @@ function TableProvider(props) {
     };
   }
 
-  const isFirstRender = React.useRef(true);
   const memorizedReducer = React.useCallback(
     (state, action) => {
       const changes = tableReducer(state, action);
@@ -73,20 +79,31 @@ function TableProvider(props) {
     },
     [reducers]
   );
-  const [state, dispatch] = useAsyncReducer(memorizedReducer, getInitialState);
+
+  // const memorizedReducer = React.useCallback(
+  //   (state, action) => {
+  //     const changes = tableReducer(state, action);
+  //     return reducers.reduce((prevChanges, reducer) => {
+  //       return reducer(state, { ...action, changes: prevChanges });
+  //     }, changes);
+  //   },
+  //   [reducers]
+  // );
+
+  // const [state, dispatch] = React.useReducer(memorizedReducer, getInitialState());
+  const [state, dispatch] = useAsyncReducer(memorizedReducer, getInitialState());
 
   React.useEffect(() => {
-    if (isFirstRender.current) {
-      isFirstRender.current = false;
-      return;
+    if (isDataUpdated) {
+      dispatch({ type: "RESET_STATE", payload: { data } });
     }
-
-    dispatch({ type: "RESET_STATE", payload: { data } });
     // Watching data
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [data, isFirstRender]);
+  }, [data]);
 
   React.useEffect(() => {
+    if (!isColumnsUpdated) return;
+
     const newColumns = columns.reduce((columnsObject, column) => ({ ...columnsObject, [column.id]: column }), {});
     const isVisibilityChanged = !isMatchWith(newColumns, state.columns, (newColumn, column) => {
       return newColumn.id === column.id && newColumn.isHidden === column.isHidden;

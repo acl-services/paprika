@@ -1,11 +1,9 @@
 /* eslint-disable jsx-a11y/label-has-associated-control */
 import React from "react";
 import PropTypes from "prop-types";
-import isEqual from "lodash.isequal";
 import nanoid from "nanoid";
 import Popover from "@paprika/popover";
 import Button from "@paprika/button";
-import usePrevious from "@paprika/helpers/lib/hooks/usePrevious";
 import { useDataTableState, useDispatch } from "../../../..";
 import FilterItem from "./FilterItem";
 import { rulesByType } from "./rules";
@@ -13,6 +11,7 @@ import { FiltersPanelStyled } from "./Filters.styles";
 import { logicalFilterOperators, plugins } from "../../../../constants";
 import getColumnType from "../../../../helpers/getColumnType";
 import { useLocalStorage } from "../../../../context";
+import useIsUpdated from "../../../../hooks/useIsUpdated";
 
 const propTypes = {
   onFilter: PropTypes.func,
@@ -26,10 +25,9 @@ export default function Filters(props) {
   const { onFilter } = props;
   const { filters, logicalFilterOperator, columnsOrder, columns } = useDataTableState();
   const dispatch = useDispatch();
-  const prevFilters = usePrevious(filters);
-  const prevLogicalFilterOperator = usePrevious(logicalFilterOperators);
-  const isFirstTime = React.useRef(true);
   const updateLocalStorage = useLocalStorage();
+  const isFiltersUpdated = useIsUpdated(filters);
+  const isLogicalFilterOperatorUpdated = useIsUpdated(filters);
 
   function handleAddFilter() {
     dispatch({ type: "ADD_FILTER", payload: columnsOrder[0] });
@@ -40,17 +38,10 @@ export default function Filters(props) {
   }
 
   React.useEffect(() => {
-    if (isFirstTime.current) {
-      isFirstTime.current = false;
-      return;
-    }
+    if (!isFiltersUpdated && !isLogicalFilterOperatorUpdated) return;
 
-    const hasFilterChanged =
-      !isEqual(filters, prevFilters) || !isEqual(logicalFilterOperator, prevLogicalFilterOperator);
-    if (hasFilterChanged) {
-      if (onFilter) onFilter(filters, logicalFilterOperator, columns);
-      updateLocalStorage({ filters, logicalFilterOperator });
-    }
+    if (onFilter) onFilter(filters, logicalFilterOperator, columns);
+    updateLocalStorage({ filters, logicalFilterOperator });
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [filters, logicalFilterOperator]);
 
