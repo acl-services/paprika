@@ -1,0 +1,30 @@
+{
+  "name": "kanban",
+  "version": "0.1.0",
+  "description": "React Kanban board for Galvanize ",
+  "author": "nahumzs <nahum_zsilva@acl.com>",
+  "homepage": "https://github.com/acl-services/paprika#readme",
+  "license": "MIT",
+  "main": "index.js",
+  "directories": {
+    "lib": "lib",
+    "test": "__tests__"
+  },
+  "files": [
+    "lib"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/acl-services/paprika.git"
+  },
+  "scripts": {
+    "test": "echo \"Error: run tests from root\" && exit 1"
+  },
+  "bugs": {
+    "url": "https://github.com/acl-services/paprika/issues"
+  },
+  "dependencies": {
+    "@lourenci/react-kanban": "^0.15.0",
+    "airtable": "^0.8.1"
+  }
+}

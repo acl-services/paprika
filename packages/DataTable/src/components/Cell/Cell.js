@@ -42,7 +42,8 @@ export default function Cell(props) {
       });
     }
 
-    onClickCell({ row: rowIndex, column: columnIndex }, refData[rowIndex]);
+    // removing header from rowIndex-1
+    onClickCell(refData.current[rowIndex - 1], rowIndex);
   }
 
   return (

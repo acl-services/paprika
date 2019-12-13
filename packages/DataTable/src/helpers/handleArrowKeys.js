@@ -3,11 +3,12 @@ import { getCoordinatesByCellIndex } from "./getRow";
 
 export const arrowKeys = ["ArrowDown", "ArrowUp", "ArrowRight", "ArrowLeft"];
 
-function handleArrowKeyDown({ event, onKeyDownArrow, row, refData }) {
+function handleArrowKeyDown({ event, onKeyDownArrow, row: rowIndex, refData }) {
   // wait until the next repaint and let the scroll happens with the new virtualizes subset then
   // get the value of the next loaded row.
   window.requestAnimationFrame(() => {
-    onKeyDownArrow(event, refData[row]);
+    // rowIndex-1 removign header
+    onKeyDownArrow(refData.current[rowIndex - 1], rowIndex, event);
   });
 }
 
