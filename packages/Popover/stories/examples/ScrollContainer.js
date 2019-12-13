@@ -1,5 +1,4 @@
 import React from "react";
-import { addParameters } from "@storybook/react";
 import { select } from "@storybook/addon-knobs";
 import { action } from "@storybook/addon-actions";
 import styled from "styled-components";
@@ -10,8 +9,7 @@ import Popover from "../../src";
 
 const PopoverContainer = styled.div`
   height: 1024px;
-  padding: 512px 0 0 0;
-  text-align: center;
+  padding: 512px 0 0 1536px;
   width: 3072px;
 `;
 
@@ -59,39 +57,10 @@ function PopoverBox(props) {
   );
 }
 
-function setKnobsTab() {
-  setTimeout(() => {
-    const $knobsTab = window.parent.document.querySelector("#storybook-panel-root .simplebar-content button");
-    if ($knobsTab) $knobsTab.click();
-  });
-}
-
-function togglePanelPosition() {
-  setTimeout(() => {
-    const $panelButtons = window.parent.document.querySelectorAll("#storybook-panel-root .simplebar-content button");
-    if ($panelButtons && $panelButtons.length) $panelButtons[$panelButtons.length - 2].click();
-  });
-}
-
-function noActionsMessage() {
+const ExampleStory = props => {
   setTimeout(() => {
     action("There are no actions for this story.")();
-    setKnobsTab();
-  });
-}
-
-const ExampleStory = props => {
-  noActionsMessage();
-  togglePanelPosition();
-
-  setTimeout(() => {
-    document.getElementById("scroll-container").scrollTo(1080, 320);
-  });
-
-  addParameters({
-    options: {
-      panelPosition: "bottom",
-    },
+    document.getElementById("scroll-container").scrollTo(1420, 320);
   });
 
   return (
