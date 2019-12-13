@@ -10,6 +10,7 @@ import SidePanel from "../../SidePanel/src";
 import Button from "../../Button/src";
 import FormElement from "../../FormElement/src";
 import Heading from "../../Heading/src";
+import RawButton from "../../RawButton/src";
 
 // import Kanban from "../src";
 
@@ -22,7 +23,27 @@ const ViewsContainer = styled.div`
   width: 320px;
 `;
 
-function createKanBanStructure({ data, keys, columnPivot }) {
+const Card = styled.div`
+  background: #fff;
+  border: 2px solid #ccc;
+  border-radius: 4px;
+  margin-bottom: 8px;
+  padding: 8px;
+  width: 240px;
+`;
+const CardItem = styled.div`
+  font-size: 14px;
+  font-weight: bold;
+  padding: 4px;
+`;
+
+const CardItemSub = styled.div`
+  font-size: 12px;
+  font-weight: bold;
+  padding: 4px;
+`;
+
+function createKanBanStructure({ data, columnPivot }) {
   const kanbanColumns = [...new Set([...data.map(record => record[columnPivot])])].filter(chunk => chunk);
 
   const board = { lanes: [] };
@@ -69,6 +90,20 @@ function App() {
   const [isTableVisible, setIsTableVisible] = React.useState(true);
   const [isBoardVisible, setIsBoardVisible] = React.useState(false);
   const [recordActive, setRecordActive] = React.useState(null);
+
+  React.useEffect(() => {
+    function handleKeyDown(event) {
+      console.log(event.key);
+      if (event.key === "Escape") {
+        setIsSidePanelVisible(() => false);
+        setRecordActive(() => null);
+      }
+    }
+    document.addEventListener("keydown", handleKeyDown);
+    return () => {
+      document.removeEventListener("keydown", handleKeyDown);
+    };
+  }, []);
 
   React.useEffect(() => {
     const base = Airtable.base("app3VXQT24V5H63Yw");
@@ -159,7 +194,7 @@ function App() {
 
   return (
     <>
-      <SidePanel isOpen={recordActive}>
+      <SidePanel isOpen={recordActive} onClose={() => {}}>
         <>
           {recordActive ? (
             <>
@@ -167,7 +202,7 @@ function App() {
               {Object.keys(recordActive.record).map(key => {
                 return (
                   <FormElement label={key}>
-                    <input type="text" value={recordActive.record[key]} />
+                    <p>{recordActive.record[key]}</p>
                   </FormElement>
                 );
               })}
@@ -175,7 +210,7 @@ function App() {
           ) : null}
         </>
       </SidePanel>
-      <SidePanel isOpen={isSidePanelVisible} onClose={() => setIsSidePanelVisible(() => false)}>
+      <SidePanel isOpen={isSidePanelVisible} onClose={() => {}}>
         <Heading level="3">Kanban field</Heading>
         <FormElement>
           <FormElement.Instructions>
@@ -233,7 +268,7 @@ function App() {
               data={data}
               height={527}
             >
-              {refDataArray.current.map(record => {
+              {refDataArray.current.map(() => {
                 return refFieldKeys.current.map(key => {
                   return <DataTable.ColumnDefinition id={key} width="180" header={key} cell={key} />;
                 });
@@ -242,7 +277,32 @@ function App() {
           ) : null}
         </>
       ) : null}
-      {kanbanBoard.board && isBoardVisible ? <Board key={kanbanBoard.key} initialBoard={kanbanBoard.board} /> : null}
+      {kanbanBoard.board && isBoardVisible ? (
+        <Board
+          key={kanbanBoard.key}
+          renderCard={({ content }, { dragging }) => {
+            const {
+              Complaint: complaint,
+              "Program Name": programName,
+              "Reason for Complaint": reasonForComplain,
+            } = content;
+            return (
+              <Card dragging={dragging}>
+                <RawButton
+                  onClick={() => {
+                    setRecordActive(() => ({ record: content }));
+                  }}
+                >
+                  <CardItem>{complaint}</CardItem>
+                  <CardItemSub>{programName}</CardItemSub>
+                  <CardItemSub>{reasonForComplain}</CardItemSub>
+                </RawButton>
+              </Card>
+            );
+          }}
+          initialBoard={kanbanBoard.board}
+        />
+      ) : null}
     </>
   );
 }
