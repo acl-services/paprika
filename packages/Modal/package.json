@@ -12,10 +12,6 @@
   "publishConfig": {
     "access": "public"
   },
-  "directories": {
-    "lib": "lib",
-    "test": "tests"
-  },
   "peerDependencies": {
     "react": "^16.12.0",
     "react-dom": "^16.12.0",
