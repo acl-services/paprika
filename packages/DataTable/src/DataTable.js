@@ -2,7 +2,6 @@
 import React from "react";
 import PropTypes from "prop-types";
 import nanoid from "nanoid";
-// import useMountedRef from "@paprika/helpers/lib/hooks/useMountedRef";
 import ColumnDefinition from "./components/ColumnDefinition";
 import Navigation from "./components/Navigation";
 import VirtualizedTable from "./components/VirtualizedTable";
@@ -68,7 +67,6 @@ export default function DataTable(props) {
     return { id, momentParsingFormat, canSort, type, canHide, isHidden, width };
   });
   const availablePlugins = Object.keys(plugins).map(key => plugins[key]);
-  // const mountedRef = useMountedRef();
 
   let navigationReducers = [];
   let enabledPlugins = [];

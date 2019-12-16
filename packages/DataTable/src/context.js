@@ -122,6 +122,7 @@ function TableProvider(props) {
   }, [columns]);
 
   function updateLocalStorage(changes) {
+    if (!localStorageId) return;
     const originalStatus = JSON.parse(localStorage.getItem(storageKey));
     localStorage.setItem(storageKey, JSON.stringify({ ...originalStatus, ...changes }));
   }
