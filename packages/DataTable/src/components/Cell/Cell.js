@@ -54,7 +54,7 @@ export default function Cell(props) {
       onClick={handleClickCell}
       style={style}
     >
-      {children}
+      <styled.InnerCell>{children}</styled.InnerCell>
     </styled.Cell>
   );
 }
