@@ -6,8 +6,8 @@ const propTypes = {
   children: PropTypes.node,
   confirmId: PropTypes.string,
   icon: PropTypes.node,
-  isConfirmOpen: PropTypes.bool.isRequired,
-  onOpenConfirm: PropTypes.func.isRequired,
+  isConfirmOpen: PropTypes.bool,
+  onOpenConfirm: PropTypes.func,
   triggerRef: PropTypes.shape({ current: PropTypes.instanceOf(Object) }),
 };
 
@@ -15,6 +15,8 @@ const defaultProps = {
   children: null,
   confirmId: null,
   icon: null,
+  isConfirmOpen: false,
+  onOpenConfirm: () => {},
   triggerRef: null,
 };
 

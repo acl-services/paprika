@@ -12,7 +12,7 @@ import { confirmStyles, confirmBodyStyles, confirmFooterStyles } from "./Confirm
 const propTypes = {
   buttonSize: PropTypes.oneOf(ShirtSizes.DEFAULT),
   /** Children should be a render prop in the form of a function to display trigger */
-  children: PropTypes.func,
+  children: PropTypes.node,
   confirmButtonType: PropTypes.oneOf([Button.Kinds.PRIMARY, Button.Kinds.DESTRUCTIVE]),
   confirmLabel: PropTypes.string.isRequired,
   body: PropTypes.node,
@@ -73,11 +73,6 @@ const Confirmation = props => {
     popoverKey = uuid();
   }, [isPending]);
 
-  const triggerProps = {
-    isConfirmOpen,
-    handleOpenConfirm,
-  };
-
   const handleCloseConfirm = () => {
     if (isConfirmOpen) {
       setIsConfirmOpen(false);
@@ -90,12 +85,13 @@ const Confirmation = props => {
     onConfirm(handleCloseConfirm);
   };
 
-  const renderTrigger = triggerComponent => {
-    // const triggerComponent = renderTriggerFunction(triggerProps);
+  const renderTrigger = () => {
     // wrapping the returned item in a function to avoid needing to tab twice
     // https://github.com/acl-services/paprika/issues/126
     return () =>
-      React.cloneElement(triggerComponent, {
+      React.cloneElement(children, {
+        isConfirmOpen,
+        onOpenConfirm: handleOpenConfirm,
         triggerRef,
         confirmId,
       });
@@ -139,12 +135,9 @@ const Confirmation = props => {
     </Popover.Content>
   );
 
-  // note: In future could support a node instead of just function
-  const triggerComponent = children ? children(triggerProps) : null;
-
   return (
     <Popover key={popoverKey} isOpen={isConfirmOpen} onClose={handleCloseConfirm} {...moreProps}>
-      {triggerComponent && <Popover.Trigger>{renderTrigger(triggerComponent)}</Popover.Trigger>}
+      {children && <Popover.Trigger>{renderTrigger()}</Popover.Trigger>}
       {popoverContent}
     </Popover>
   );
