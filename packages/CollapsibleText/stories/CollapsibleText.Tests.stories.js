@@ -1,18 +1,10 @@
 import React from "react";
 import Screener from "./examples/Screener";
+import { defaultParameters } from "./CollapsibleText.stories.helpers";
 
 export default {
-  title: "CollapsibleText/Automation Tests",
+  title: " | CollapsibleText/ Automation Tests",
 };
 
 export const screener = () => <Screener />;
-
-screener.story = {
-  parameters: {
-    docs: { page: null },
-    options: {
-      isToolshown: true,
-      showPanel: false,
-    },
-  },
-};
+screener.story = { parameters: defaultParameters };
