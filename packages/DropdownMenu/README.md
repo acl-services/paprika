@@ -26,14 +26,15 @@ import Confirmation from "@paprika/confirmation";
   <DropdownMenu.Divider />
   <DropdownMenu.Item
     isDestructive
-    renderConfirmation={onClose => {
+    renderConfirmation={onCloseMenu => {
       return (
         <Confirmation
           body="Lorem ipsum dolor amet vexillologist tacos selvage narwhal butcher twee ethical hot chicken."
           confirmLabel="Delete filter"
           defaultIsOpen
           heading="Delete filter?"
-          onConfirm={handleConfirm(onCloseMenu)}
+          onConfirm={handleConfirm}
+          onClose={handleCloseConfirm(onCloseMenu)}
         />
       );
     }}
