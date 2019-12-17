@@ -76,11 +76,11 @@ describe("SidePanel", () => {
   describe("SidePanel.Overlay", () => {
     it("should triggered onClose when clicking on the Overlay", () => {
       const fn = jest.fn();
-      const { getByRole, debug } = render({
+      const { getByRole } = render({
         onClose: fn,
         children: <SidePanel.Overlay />,
       });
-      debug();
+
       // overlay is a RawButton
       fireEvent.click(getByRole(/button/i));
 
@@ -108,16 +108,43 @@ describe("SidePanel", () => {
       );
       expect(getAllByText(/With Header/)).toHaveLength(3);
     });
+
     it("throws the error when sidepanel has only one panel", () => {
-      const { container } = renderReactTestingLibrary(
+      const fn = () =>
+        renderReactTestingLibrary(
+          <SidePanel.Group>
+            <SidePanel onClose={noop} isOpen width={350}>
+              <SidePanel.Header>With Header</SidePanel.Header>
+              <SidePanel.Overlay />
+            </SidePanel>
+          </SidePanel.Group>
+        );
+      expect(fn).toThrow(Error);
+    });
+
+    it("should trigger onClick when clicking the x button", () => {
+      const noop = jest.fn();
+      const { getAllByRole } = renderReactTestingLibrary(
         <SidePanel.Group>
           <SidePanel onClose={noop} isOpen width={350}>
             <SidePanel.Header>With Header</SidePanel.Header>
             <SidePanel.Overlay />
           </SidePanel>
+          <SidePanel onClose={noop} isOpen width={350}>
+            <SidePanel.Header>With Header</SidePanel.Header>
+            <SidePanel.Overlay />
+          </SidePanel>
+          <SidePanel onClose={noop} isOpen width={350}>
+            <SidePanel.Header kind="primary">With Header</SidePanel.Header>
+            <SidePanel.Overlay />
+          </SidePanel>
         </SidePanel.Group>
       );
-      expect(container).toThrow(Error);
+      fireEvent.click(getAllByRole(/button/i)[0]);
+      fireEvent.click(getAllByRole(/button/i)[1]);
+      fireEvent.click(getAllByRole(/button/i)[2]);
+
+      expect(noop).toBeCalledTimes(3);
     });
   });
 
