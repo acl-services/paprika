@@ -14,8 +14,6 @@ function TableProvider(props) {
   const { isControlled, data, keygen, reducers, columns, localStorageId, enabledPlugins } = props;
   // if a released version is wrong, we have to change the storage key pre-fix next time to fix the errors on clients side, they'll lose the history as well
   const storageKey = `pka-data-table__${localStorageId}`;
-  console.log("table provider render--------------------");
-  // const isMounedRef = React.useRef(false);
   const isDataUpdated = useIsUpdated(data);
   const isColumnsUpdated = useIsUpdated(columns);
 
@@ -80,6 +78,7 @@ function TableProvider(props) {
     [reducers]
   );
 
+  // leave here for clean up ticket https://aclgrc.atlassian.net/browse/STAR-51
   // const memorizedReducer = React.useCallback(
   //   (state, action) => {
   //     const changes = tableReducer(state, action);
@@ -89,8 +88,8 @@ function TableProvider(props) {
   //   },
   //   [reducers]
   // );
-
   // const [state, dispatch] = React.useReducer(memorizedReducer, getInitialState());
+
   const [state, dispatch] = useAsyncReducer(memorizedReducer, getInitialState());
 
   React.useEffect(() => {
