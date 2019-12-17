@@ -17,8 +17,8 @@ function App() {
     }, 1000);
   }, []);
 
-  function handleFilter(filters) {
-    console.log(filters);
+  function handleFilter(filters, operator, columns) {
+    console.log(filters, operator, columns);
     setIsLoading(true);
     setTimeout(() => {
       setIsLoading(false);

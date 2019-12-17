@@ -53,7 +53,7 @@ export default function useData() {
     if (sortedData.length > 0 && filteredData.length > 0)
       return sortedData.filter(row => filteredData.find(filteredRow => row[keygen] === filteredRow[keygen]));
 
-    return sortedData.length > 0 ? sortedData : filteredData;
+    return filters.length > 0 ? filteredData : sortedData;
   }
 
   const result = React.useMemo(calculateResult, [

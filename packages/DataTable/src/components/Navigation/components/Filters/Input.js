@@ -1,6 +1,7 @@
 import React from "react";
 import PropTypes from "prop-types";
 import useDebounce from "@paprika/helpers/lib/hooks/useDebounce";
+import usePrevious from "@paprika/helpers/lib/hooks/usePrevious";
 import PaprikaInput from "@paprika/input";
 
 const propTypes = {
@@ -12,8 +13,10 @@ export default function Input(props) {
   const { initialValue, onChange } = props;
   const [inputtedValue, setInputtedValue] = React.useState(initialValue);
   const debouncedValue = useDebounce(inputtedValue, 300);
+  const prevValue = usePrevious(debouncedValue);
 
   React.useEffect(() => {
+    if (prevValue === undefined || prevValue === debouncedValue) return;
     onChange(debouncedValue);
     // Just want to watch the value change
     // eslint-disable-next-line react-hooks/exhaustive-deps

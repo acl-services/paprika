@@ -20,6 +20,7 @@ const propTypes = {
   onExpandedRow: PropTypes.func,
   onKeyDownArrow: PropTypes.func,
   onClickCell: PropTypes.func,
+  idKey: PropTypes.string,
 };
 
 const defaultProps = {
@@ -32,6 +33,7 @@ const defaultProps = {
   onExpandedRow: () => {},
   onKeyDownArrow: () => {},
   onClickCell: () => {},
+  idKey: null,
 };
 
 export default function DataTable(props) {
@@ -48,6 +50,7 @@ export default function DataTable(props) {
     reducers,
     rowHeight,
     width,
+    idKey,
   } = props;
   const {
     "DataTable.ColumnDefinition": ColumnsDefinition,
@@ -60,8 +63,8 @@ export default function DataTable(props) {
   ]);
 
   const columns = ColumnsDefinition.map(({ props }) => {
-    const { id, momentParsingFormat, canSort, type, canHide, isHidden } = props;
-    return { id, momentParsingFormat, canSort, type, canHide, isHidden };
+    const { id, momentParsingFormat, canSort, type, canHide, isHidden, width } = props;
+    return { id, momentParsingFormat, canSort, type, canHide, isHidden, width };
   });
   const availablePlugins = Object.keys(plugins).map(key => plugins[key]);
 
@@ -88,6 +91,7 @@ export default function DataTable(props) {
       keygen={keygen}
       reducers={navigationReducers.concat(reducers)}
       columns={columns}
+      idKey={idKey}
       enabledPlugins={enabledPlugins}
     >
       <div>{isLoading ? "Loading..." : null}</div>
@@ -95,7 +99,6 @@ export default function DataTable(props) {
       <VirtualizedTable
         dataTableID={dataTableID}
         onExpandedRow={onExpandedRow}
-        columns={columns}
         height={height}
         rowHeight={rowHeight}
         width={width}

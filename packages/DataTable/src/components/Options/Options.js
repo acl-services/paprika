@@ -5,6 +5,7 @@ import ArrowDown from "@paprika/icon/lib/ArrowDown";
 import SortOption from "./SortOption";
 import { useDispatch, useDataTableState } from "../../context";
 import { sortDirections, plugins } from "../../constants";
+import useToggleColumn from "../../hooks/useToggleColumn";
 
 const propTypes = {
   columnId: PropTypes.oneOfType([PropTypes.string, PropTypes.number]).isRequired,
@@ -27,13 +28,14 @@ export default function Options(props) {
         return false;
     }
   });
+  const toggleColumn = useToggleColumn();
 
   function handleClickAddFilter() {
     dispatch({ type: "ADD_FILTER", payload: columnId });
   }
 
   function handleToggleColumn() {
-    dispatch({ type: "TOGGLE_COLUMN", payload: columnId });
+    toggleColumn(columnId);
   }
 
   if (enabledPluginsAppliedToThisColumn.length === 0) return null;

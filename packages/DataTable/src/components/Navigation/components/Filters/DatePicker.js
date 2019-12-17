@@ -11,11 +11,17 @@ const propTypes = {
 
 export default function DatePicker(props) {
   const { initialDate, onChange, parsingFormat } = props;
-  const [date, setDate] = React.useState(moment(initialDate, parsingFormat));
+
+  function getMomentDate(dateStr) {
+    return dateStr === "" ? null : moment(dateStr, parsingFormat);
+  }
+
+  const memorizedGetMomentDate = React.useCallback(getMomentDate, [parsingFormat]);
+  const [date, setDate] = React.useState(memorizedGetMomentDate(initialDate));
 
   React.useEffect(() => {
-    setDate(moment(initialDate, parsingFormat));
-  }, [initialDate, parsingFormat]);
+    setDate(memorizedGetMomentDate(initialDate));
+  }, [initialDate, parsingFormat, memorizedGetMomentDate]);
 
   function handleChange(newDate) {
     setDate(newDate);
