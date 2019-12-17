@@ -78,6 +78,7 @@ const Confirmation = props => {
   const handleCloseConfirm = () => {
     setIsConfirmOpen(prevIsConfirmOpen => {
       if (prevIsConfirmOpen) {
+        if (triggerRef.current) triggerRef.current.focus();
         setTimeout(onClose, 250);
       }
       return false;
