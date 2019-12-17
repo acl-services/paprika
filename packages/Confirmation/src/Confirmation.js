@@ -54,6 +54,8 @@ const Confirmation = props => {
   const confirmId = React.useRef(uuid()).current;
   let popoverKey = uuid();
 
+  const popoverOffset = 4;
+
   const focusConfirmButton = () => {
     if (confirmButtonRef.current) confirmButtonRef.current.focus();
   };
@@ -74,12 +76,12 @@ const Confirmation = props => {
   }, [isPending]);
 
   const handleCloseConfirm = () => {
-    if (isConfirmOpen) {
-      setIsConfirmOpen(false);
-      // being called repeatedly by popoverclose and cancel button?
-      console.log("calling close confirm");
-      setTimeout(onClose, 250);
-    }
+    setIsConfirmOpen(prevIsConfirmOpen => {
+      if (prevIsConfirmOpen) {
+        setTimeout(onClose, 250);
+      }
+      return false;
+    });
   };
 
   const handleOnConfirm = () => {
@@ -137,7 +139,7 @@ const Confirmation = props => {
   );
 
   return (
-    <Popover key={popoverKey} isOpen={isConfirmOpen} onClose={handleCloseConfirm} {...moreProps}>
+    <Popover key={popoverKey} offset={popoverOffset} isOpen={isConfirmOpen} onClose={handleCloseConfirm} {...moreProps}>
       {children && <Popover.Trigger>{renderTrigger()}</Popover.Trigger>}
       {popoverContent}
     </Popover>
