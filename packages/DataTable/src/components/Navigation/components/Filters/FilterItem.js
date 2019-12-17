@@ -57,6 +57,14 @@ export default function FilterItem(prop) {
     });
   }
 
+  function handleChangeDatePicker(momentDate) {
+    if (momentDate === null) {
+      handleChangeValue("");
+    } else {
+      handleChangeValue(momentDate.format(columns[selectedColumnId].momentParsingFormat));
+    }
+  }
+
   function renderTextInput() {
     if (
       selectedRule === rules.IS_BLANK ||
@@ -89,7 +97,8 @@ export default function FilterItem(prop) {
       </select>
       {selectedColumnType === columnTypes.DATE ? (
         <DatePicker
-          onChange={momentDate => handleChangeValue(momentDate.format(columns[selectedColumnId].momentParsingFormat))}
+          initialDate={value}
+          onChange={handleChangeDatePicker}
           parsingFormat={columns[selectedColumnId].momentParsingFormat}
         />
       ) : (
