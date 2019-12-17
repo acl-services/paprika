@@ -76,7 +76,8 @@ const Confirmation = props => {
   const handleCloseConfirm = () => {
     if (isConfirmOpen) {
       setIsConfirmOpen(false);
-      if (triggerRef.current) triggerRef.current.focus();
+      // being called repeatedly by popoverclose and cancel button?
+      console.log("calling close confirm");
       setTimeout(onClose, 250);
     }
   };
