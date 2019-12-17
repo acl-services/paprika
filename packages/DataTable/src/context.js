@@ -11,9 +11,9 @@ const TableDispatchContext = React.createContext();
 const TableLocalStorageContext = React.createContext();
 
 function TableProvider(props) {
-  const { isControlled, data, keygen, reducers, columns, localStorageId, enabledPlugins } = props;
+  const { isControlled, data, keygen, reducers, columns, idKey, enabledPlugins } = props;
   // if a released version is wrong, we have to change the storage key pre-fix next time to fix the errors on clients side, they'll lose the history as well
-  const storageKey = `pka-data-table__${localStorageId}`;
+  const storageKey = `pka-data-table__${idKey}`;
   const isDataUpdated = useIsUpdated(data);
   const isColumnsUpdated = useIsUpdated(columns);
 
@@ -33,7 +33,7 @@ function TableProvider(props) {
       logicalFilterOperator: logicalFilterOperators.AND,
     };
     let currentTableState = {};
-    if (localStorageId) {
+    if (idKey) {
       const storedStatus = localStorage.getItem(storageKey);
       if (!storedStatus) {
         localStorage.setItem(
@@ -121,7 +121,7 @@ function TableProvider(props) {
   }, [columns]);
 
   function updateLocalStorage(changes) {
-    if (!localStorageId) return;
+    if (!idKey) return;
     const originalStatus = JSON.parse(localStorage.getItem(storageKey));
     localStorage.setItem(storageKey, JSON.stringify({ ...originalStatus, ...changes }));
   }
@@ -150,7 +150,7 @@ function useLocalStorage() {
 }
 
 TableProvider.propTypes = {
-  localStorageId: PropTypes.string,
+  idKey: PropTypes.string,
   children: PropTypes.node.isRequired,
   isControlled: PropTypes.bool.isRequired,
   enabledPlugins: PropTypes.arrayOf(PropTypes.oneOf(Object.keys(plugins).map(key => plugins[key]))).isRequired,
@@ -165,7 +165,7 @@ TableProvider.propTypes = {
 };
 
 TableProvider.defaultProps = {
-  localStorageId: null,
+  idKey: null,
   data: [],
   columns: [],
 };
