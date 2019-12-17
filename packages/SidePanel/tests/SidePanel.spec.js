@@ -9,7 +9,6 @@ const noop = () => {};
 function render(props) {
   const onClose = props.onClose || noop;
   const rendered = renderReactTestingLibrary(<SidePanel isOpen onClose={onClose} {...props} />);
-
   return {
     ...rendered,
   };
@@ -90,59 +89,60 @@ describe("SidePanel", () => {
 
   describe("SidePanel.Group", () => {
     it("should render with multiple sidepanels", () => {
-      const { getAllByText } = renderReactTestingLibrary(
+      const { getAllByTestId } = renderReactTestingLibrary(
         <SidePanel.Group>
-          <SidePanel onClose={noop} isOpen width={350}>
+          <SidePanel onClose={noop} isOpen>
             <SidePanel.Header>With Header</SidePanel.Header>
             <SidePanel.Overlay />
           </SidePanel>
-          <SidePanel onClose={noop} isOpen width={350}>
+          <SidePanel onClose={noop} isOpen>
             <SidePanel.Header>With Header</SidePanel.Header>
             <SidePanel.Overlay />
           </SidePanel>
-          <SidePanel onClose={noop} isOpen width={350}>
+          <SidePanel onClose={noop} isOpen>
             <SidePanel.Header kind="primary">With Header</SidePanel.Header>
             <SidePanel.Overlay />
           </SidePanel>
         </SidePanel.Group>
       );
-      expect(getAllByText(/With Header/)).toHaveLength(3);
+      // data-pka-anchor
+      expect(getAllByTestId("heading")).toHaveLength(3);
     });
 
     it("throws the error when sidepanel has only one panel", () => {
-      const fn = () =>
+      const sidePanelGroup = () =>
         renderReactTestingLibrary(
           <SidePanel.Group>
-            <SidePanel onClose={noop} isOpen width={350}>
+            <SidePanel onClose={noop} isOpen>
               <SidePanel.Header>With Header</SidePanel.Header>
               <SidePanel.Overlay />
             </SidePanel>
           </SidePanel.Group>
         );
-      expect(fn).toThrow(Error);
+      expect(sidePanelGroup).toThrow(Error);
     });
 
     it("should trigger onClick when clicking the x button", () => {
       const noop = jest.fn();
-      const { getAllByRole } = renderReactTestingLibrary(
+      const { getAllByTestId } = renderReactTestingLibrary(
         <SidePanel.Group>
-          <SidePanel onClose={noop} isOpen width={350}>
+          <SidePanel onClose={noop} isOpen>
             <SidePanel.Header>With Header</SidePanel.Header>
             <SidePanel.Overlay />
           </SidePanel>
-          <SidePanel onClose={noop} isOpen width={350}>
+          <SidePanel onClose={noop} isOpen>
             <SidePanel.Header>With Header</SidePanel.Header>
             <SidePanel.Overlay />
           </SidePanel>
-          <SidePanel onClose={noop} isOpen width={350}>
+          <SidePanel onClose={noop} isOpen>
             <SidePanel.Header kind="primary">With Header</SidePanel.Header>
             <SidePanel.Overlay />
           </SidePanel>
         </SidePanel.Group>
       );
-      fireEvent.click(getAllByRole(/button/i)[0]);
-      fireEvent.click(getAllByRole(/button/i)[1]);
-      fireEvent.click(getAllByRole(/button/i)[2]);
+      fireEvent.click(getAllByTestId(/button/i)[0]);
+      fireEvent.click(getAllByTestId(/button/i)[1]);
+      fireEvent.click(getAllByTestId(/button/i)[2]);
 
       expect(noop).toBeCalledTimes(3);
     });
@@ -153,7 +153,7 @@ describe("SidePanel", () => {
       const fn = jest.fn();
       const { getByTestId } = render({
         onClose: fn,
-        children: <SidePanel.Footer data-pka-anchor="sidepanel.footer">Footer</SidePanel.Footer>,
+        children: <SidePanel.Footer>Footer</SidePanel.Footer>,
       });
 
       expect(getByTestId("sidepanel.footer")).toBeVisible();
@@ -162,17 +162,21 @@ describe("SidePanel", () => {
 
   describe("SidePanel.Trigger", () => {
     it("renders with a default props", () => {
-      const defaultProps = { children: <SidePanel.Trigger>Button</SidePanel.Trigger> };
+      const defaultProps = {
+        children: <SidePanel.Trigger>Button</SidePanel.Trigger>,
+      };
       const { getByRole } = render(defaultProps);
       expect(getByRole(/button/)).toBeInTheDocument();
     });
+
     it("should tigger or render a button", () => {
       const onClick = jest.fn();
       const { getByRole } = render({
         onClick,
-        children: <SidePanel.Trigger data-pka-anchor="button">Button</SidePanel.Trigger>,
+        children: <SidePanel.Trigger>Button</SidePanel.Trigger>,
       });
-      expect(getByRole(/button/)).toBeInTheDocument();
+
+      expect(getByRole("button")).toBeInTheDocument();
     });
   });
 });
