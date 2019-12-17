@@ -27,7 +27,7 @@ export default function Filters(props) {
   const dispatch = useDispatch();
   const updateLocalStorage = useLocalStorage();
   const isFiltersUpdated = useIsUpdated(filters);
-  const isLogicalFilterOperatorUpdated = useIsUpdated(filters);
+  const isLogicalFilterOperatorUpdated = useIsUpdated(logicalFilterOperator);
 
   function handleAddFilter() {
     dispatch({ type: "ADD_FILTER", payload: columnsOrder[0] });

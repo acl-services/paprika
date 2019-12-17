@@ -15,7 +15,3 @@
 
 import "./commands";
 import "cypress-plugin-tab";
-
-before(() => {
-  localStorage.clear();
-});
