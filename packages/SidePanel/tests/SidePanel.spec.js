@@ -76,15 +76,48 @@ describe("SidePanel", () => {
   describe("SidePanel.Overlay", () => {
     it("should triggered onClose when clicking on the Overlay", () => {
       const fn = jest.fn();
-      const { getByRole } = render({
+      const { getByRole, debug } = render({
         onClose: fn,
         children: <SidePanel.Overlay />,
       });
-
+      debug();
       // overlay is a RawButton
       fireEvent.click(getByRole(/button/i));
 
       expect(fn).toHaveBeenCalled();
+    });
+  });
+
+  describe("SidePanel.Group", () => {
+    it("should render with multiple sidepanels", () => {
+      const { getAllByText } = renderReactTestingLibrary(
+        <SidePanel.Group>
+          <SidePanel onClose={noop} isOpen width={350}>
+            <SidePanel.Header>With Header</SidePanel.Header>
+            <SidePanel.Overlay />
+          </SidePanel>
+          <SidePanel onClose={noop} isOpen width={350}>
+            <SidePanel.Header>With Header</SidePanel.Header>
+            <SidePanel.Overlay />
+          </SidePanel>
+          <SidePanel onClose={noop} isOpen width={350}>
+            <SidePanel.Header kind="primary">With Header</SidePanel.Header>
+            <SidePanel.Overlay />
+          </SidePanel>
+        </SidePanel.Group>
+      );
+      expect(getAllByText(/With Header/)).toHaveLength(3);
+    });
+    it("throws the error when sidepanel has only one panel", () => {
+      const { container } = renderReactTestingLibrary(
+        <SidePanel.Group>
+          <SidePanel onClose={noop} isOpen width={350}>
+            <SidePanel.Header>With Header</SidePanel.Header>
+            <SidePanel.Overlay />
+          </SidePanel>
+        </SidePanel.Group>
+      );
+      expect(container).toThrow(Error);
     });
   });
 
@@ -97,6 +130,22 @@ describe("SidePanel", () => {
       });
 
       expect(getByTestId("sidepanel.footer")).toBeVisible();
+    });
+  });
+
+  describe("SidePanel.Trigger", () => {
+    it("renders with a default props", () => {
+      const defaultProps = { children: <SidePanel.Trigger>Button</SidePanel.Trigger> };
+      const { getByRole } = render(defaultProps);
+      expect(getByRole(/button/)).toBeInTheDocument();
+    });
+    it("should tigger or render a button", () => {
+      const onClick = jest.fn();
+      const { getByRole } = render({
+        onClick,
+        children: <SidePanel.Trigger data-pka-anchor="button">Button</SidePanel.Trigger>,
+      });
+      expect(getByRole(/button/)).toBeInTheDocument();
     });
   });
 });
