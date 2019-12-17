@@ -105,7 +105,7 @@ describe("SidePanel", () => {
           </SidePanel>
         </SidePanel.Group>
       );
-      // data-pka-anchor
+
       expect(getAllByTestId("heading")).toHaveLength(3);
     });
 
