@@ -1,8 +1,8 @@
 import React from "react";
 import PropTypes from "prop-types";
 import Switch from "@paprika/switch";
-import { useDataTableState, useDispatch } from "../../../..";
-import { useLocalStorage } from "../../../../context";
+import { useDataTableState } from "../../../..";
+import useToggleColumn from "../../../../hooks/useToggleColumn";
 
 const propTypes = {
   columnId: PropTypes.oneOfType([PropTypes.string, PropTypes.number]).isRequired,
@@ -10,18 +10,12 @@ const propTypes = {
 
 export default function ColumnManagingItem(props) {
   const { columnId } = props;
-  const dispatch = useDispatch();
   const { columns } = useDataTableState();
   const column = columns[columnId];
-  const updateLocalStorage = useLocalStorage();
+  const toggleColumn = useToggleColumn();
 
   function handleClick() {
-    dispatch({ type: "TOGGLE_COLUMN", payload: columnId });
-    const newColumn = {
-      ...columns[columnId],
-      isHidden: !columns[columnId].isHidden,
-    };
-    updateLocalStorage({ columns: { ...columns, [columnId]: newColumn } });
+    toggleColumn(columnId);
   }
 
   return (

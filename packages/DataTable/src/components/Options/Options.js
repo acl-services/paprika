@@ -3,8 +3,9 @@ import PropTypes from "prop-types";
 import DropdownMenu from "@paprika/dropdown-menu";
 import ArrowDown from "@paprika/icon/lib/ArrowDown";
 import SortOption from "./SortOption";
-import { useDispatch, useDataTableState, useLocalStorage } from "../../context";
+import { useDispatch, useDataTableState } from "../../context";
 import { sortDirections, plugins } from "../../constants";
+import useToggleColumn from "../../hooks/useToggleColumn";
 
 const propTypes = {
   columnId: PropTypes.oneOfType([PropTypes.string, PropTypes.number]).isRequired,
@@ -14,7 +15,6 @@ export default function Options(props) {
   const { columnId } = props;
   const dispatch = useDispatch();
   const { columns, enabledPlugins } = useDataTableState();
-  const updateLocalStorage = useLocalStorage();
   const { momentParsingFormat, canHide, canSort } = columns[columnId];
   const enabledPluginsAppliedToThisColumn = enabledPlugins.filter(plugin => {
     switch (plugin) {
@@ -28,19 +28,14 @@ export default function Options(props) {
         return false;
     }
   });
+  const toggleColumn = useToggleColumn();
 
   function handleClickAddFilter() {
     dispatch({ type: "ADD_FILTER", payload: columnId });
   }
 
   function handleToggleColumn() {
-    dispatch({ type: "TOGGLE_COLUMN", payload: columnId });
-
-    const newColumn = {
-      ...columns[columnId],
-      isHidden: !columns[columnId].isHidden,
-    };
-    updateLocalStorage({ columns: { ...columns, [columnId]: newColumn } });
+    toggleColumn(columnId);
   }
 
   if (enabledPluginsAppliedToThisColumn.length === 0) return null;
