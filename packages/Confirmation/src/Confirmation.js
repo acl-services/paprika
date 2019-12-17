@@ -11,7 +11,6 @@ import { confirmStyles, confirmBodyStyles, confirmFooterStyles } from "./Confirm
 
 const propTypes = {
   buttonSize: PropTypes.oneOf(ShirtSizes.DEFAULT),
-  /** Children should be a render prop in the form of a function to display trigger */
   children: PropTypes.node,
   confirmButtonType: PropTypes.oneOf([Button.Kinds.PRIMARY, Button.Kinds.DESTRUCTIVE]),
   confirmLabel: PropTypes.string.isRequired,
