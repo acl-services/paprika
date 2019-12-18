@@ -15,6 +15,8 @@ const ButtonComponentMap = {
   simple: Button,
 };
 
+ButtonTypes.ALL = Object.values(ButtonTypes);
+
 const propTypes = {
   children: PropTypes.node,
   confirmId: PropTypes.string,
