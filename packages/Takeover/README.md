@@ -17,9 +17,7 @@ You can use any of the following components to compose the Takeover:
 
 ```jsx
 <Takeover isOpen={isOpen} onClose={toggle}>
-  <Takeover.Header>
-    <Heading level={2}>Header</Heading>
-  </Takeover.Header>
+  <Takeover.Header>Header</Takeover.Header>
   <Takeover.Content>My content</Takeover.Content>
 </Takeover>
 ```
@@ -31,4 +29,3 @@ You can use any of the following components to compose the Takeover:
 - `onClose`
 - `onAfterOpen`
 - `onAfterClose`
-- `isInline`

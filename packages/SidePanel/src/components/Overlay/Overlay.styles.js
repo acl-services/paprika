@@ -2,7 +2,7 @@ import tokens from "@paprika/tokens/lib/tokens";
 import { css } from "styled-components";
 
 export const overlayCSS = css`
-  background-color: ${tokens.modal.backdrop.backgroundColor};
+  background-color: ${tokens.overlay.backdrop.backgroundColor};
   box-sizing: content-box;
   display: block;
   height: 100%;
