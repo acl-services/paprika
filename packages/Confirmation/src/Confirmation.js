@@ -34,7 +34,7 @@ const defaultProps = {
 };
 
 const Confirmation = props => {
-  const [isConfirmOpen, setIsConfirmOpen] = React.useState(false);
+  const [isConfirmOpen, setIsConfirmOpen] = React.useState(null);
   const {
     heading,
     buttonSize,
@@ -74,14 +74,15 @@ const Confirmation = props => {
     popoverKey = uuid();
   }, [isPending]);
 
+  React.useEffect(() => {
+    if (isConfirmOpen === false) {
+      if (triggerRef.current) triggerRef.current.focus();
+      setTimeout(onClose, 250);
+    }
+  }, [isConfirmOpen]);
+
   const handleCloseConfirm = () => {
-    setIsConfirmOpen(prevIsConfirmOpen => {
-      if (prevIsConfirmOpen) {
-        if (triggerRef.current) triggerRef.current.focus();
-        setTimeout(onClose, 250);
-      }
-      return false;
-    });
+    setIsConfirmOpen(false);
   };
 
   const handleOnConfirm = () => {
