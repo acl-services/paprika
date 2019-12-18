@@ -19,7 +19,7 @@ function renderComponent(props = {}) {
 describe("Confirmation", () => {
   it("should show confirmation panel by default when mounted ", () => {
     const { getByText } = renderComponent({ defaultIsOpen: true });
-    expect(getByText(/confirm delete/)).toBeVisible();
+    expect(getByText(/confirm delete/i)).toBeVisible();
   });
 
   it("should trigger the confirm callback when confirm button is clicked and on Close to not have been called", async () => {
