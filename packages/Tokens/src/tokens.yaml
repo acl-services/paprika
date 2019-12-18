@@ -92,6 +92,10 @@ color:
   chart-color-11: '#7ec0cc'
   chart-color-12: '#d1cbc2'
 #
+space: 8px
+space-sm: 4px
+space-lg: 12px
+#
 placeholder:
   color: $color--black-lighten-20
   font-style: italic
@@ -137,11 +141,6 @@ table:
   row-even:
     background-color: '#f5f5f5'
 #
-modal:
-  backdrop:
-    background-color: rgba($color--black, 0.5)
-  shadow: 0 8px 12px -4px rgba(63, 61, 60, 0.2), 0 1px 3px 0 rgba(63, 61, 60, 0.1)
-#
 border:
   radius: 3px
   color: $color--black-lighten-60
@@ -154,6 +153,24 @@ button:
 card:
   border-radius: ($border--radius * 2)
   shadow: 0 0 0 1px rgba(63, 61, 60, 0.05), 0 1px 3px 0 rgba(63, 61, 60, 0.15)
+#
+overlay:
+  animation-duration: '700'
+  backdrop:
+    background-color: rgba($color--black, 0.5)
+#
+modal:
+  background-color: $color--white
+  border-radius: $card--border-radius
+  shadow: 0 8px 12px -4px rgba(63, 61, 60, 0.2), 0 1px 3px 0 rgba(63, 61, 60, 0.1)
+  sizes:
+    sm: 450px
+    md: 675px
+    lg: 900px
+  margin: ($space * 3)
+  top: 100px
+  footer:
+    background-color: $color--black-lighten-80
 #
 checkbox:
   size-sm: 16px
@@ -180,9 +197,5 @@ background-color:
 #
 font-size:
   default: 16px
-#
-space: 8px
-space-sm: 4px
-space-lg: 12px
 #
 shadow: 0px 1px 5px rgba(0, 0, 0, 0.07), 0px 7px 17px rgba(0, 0, 0, 0.1)
