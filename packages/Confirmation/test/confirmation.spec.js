@@ -19,7 +19,7 @@ function renderComponent(props = {}) {
 describe("Confirmation", () => {
   it("should show confirmation panel by default when mounted ", () => {
     const { getByText } = renderComponent({ defaultIsOpen: true });
-    expect(getByText(/Confirm Delete/)).toBeVisible();
+    expect(getByText(/confirm delete/)).toBeVisible();
   });
 
   it("should trigger the confirm callback when confirm button is clicked and on Close to not have been called", async () => {
@@ -30,7 +30,7 @@ describe("Confirmation", () => {
       onClose: onCloseFunc,
     });
     fireEvent.click(getByText(/trigger/i));
-    fireEvent.click(getByText(/Confirm Delete/i));
+    fireEvent.click(getByText(/confirm delete/i));
     expect(onConfirmFunc).toHaveBeenCalled();
     await wait(() => {
       expect(onCloseFunc).not.toHaveBeenCalled();
@@ -43,7 +43,7 @@ describe("Confirmation", () => {
       onClose: onCloseFunc,
     });
     fireEvent.click(getByText(/trigger/i));
-    fireEvent.click(getByText(/Cancel/i));
+    fireEvent.click(getByText(/cancel/i));
     await wait(() => {
       expect(onCloseFunc).toHaveBeenCalled();
     });
