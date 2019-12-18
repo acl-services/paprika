@@ -19,8 +19,8 @@ const propTypes = {
   children: PropTypes.node,
   confirmId: PropTypes.string,
   buttonType: PropTypes.oneOf(ButtonTypes.ALL),
-  isConfirmOpen: PropTypes.bool.isRequired,
-  onOpenConfirm: PropTypes.func.isRequired,
+  isConfirmOpen: PropTypes.bool,
+  onOpenConfirm: PropTypes.func,
   triggerRef: PropTypes.shape({ current: PropTypes.instanceOf(Object) }),
 };
 
@@ -28,6 +28,8 @@ const defaultProps = {
   buttonType: ButtonTypes.SIMPLE,
   children: null,
   confirmId: null,
+  isConfirmOpen: false,
+  onOpenConfirm: () => {},
   triggerRef: null,
 };
 
