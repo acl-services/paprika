@@ -6,6 +6,7 @@ import ColumnDefinition from "./components/ColumnDefinition";
 import Navigation from "./components/Navigation";
 import VirtualizedTable from "./components/VirtualizedTable";
 import LoadMoreButton from "./components/LoadMoreButton";
+import RowIndicator from "./components/RowIndicator";
 import { extractChildren } from "./helpers";
 import { columnTypes, plugins } from "./constants";
 import { TableProvider } from "./context";
@@ -26,7 +27,7 @@ const propTypes = {
 const defaultProps = {
   data: [],
   height: 600,
-  width: 640,
+  width: 720,
   rowHeight: 32,
   reducers: [],
   isLoading: false,
@@ -71,13 +72,16 @@ export default function DataTable(props) {
   let navigationReducers = [];
   let enabledPlugins = [];
   let isControlled = false;
+
   if (Navigation && Navigation.props) {
     navigationReducers = React.Children.map(Navigation.props.children, child => child.type.reducer).filter(
       chunk => chunk
     );
+
     enabledPlugins = React.Children.map(Navigation.props.children, child =>
       child.type.displayName && availablePlugins.includes(child.type.displayName) ? child.type.displayName : null
     ).filter(item => item !== null);
+
     React.Children.forEach(Navigation.props.children, child => {
       // Using onFilter and onSort prop for now
       if (child.props.onFilter || child.props.onSort) isControlled = true;
@@ -113,6 +117,7 @@ export default function DataTable(props) {
 }
 
 DataTable.prpoTypes = propTypes;
+DataTable.RowIndicator = RowIndicator;
 DataTable.defaultProps = defaultProps;
 DataTable.ColumnDefinition = ColumnDefinition;
 DataTable.Navigation = Navigation;

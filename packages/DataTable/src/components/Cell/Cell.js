@@ -3,7 +3,6 @@ import PropTypes from "prop-types";
 import * as styled from "./Cell.styles";
 
 const propTypes = {
-  a11yProps: PropTypes.shape({}).isRequired,
   activeCellIndex: PropTypes.string,
   cellIndex: PropTypes.string.isRequired,
   children: PropTypes.node.isRequired,
@@ -42,7 +41,7 @@ export default function Cell(props) {
       });
     }
 
-    onClickCell({ row: rowIndex, column: columnIndex }, refData[rowIndex]);
+    onClickCell(refData[rowIndex], rowIndex, columnIndex);
   }
 
   return (
@@ -54,7 +53,7 @@ export default function Cell(props) {
       onClick={handleClickCell}
       style={style}
     >
-      {children}
+      <styled.InnerCell>{children}</styled.InnerCell>
     </styled.Cell>
   );
 }
