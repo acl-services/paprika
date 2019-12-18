@@ -26,7 +26,7 @@ const propTypes = {
 const defaultProps = {
   data: [],
   height: 600,
-  width: 640,
+  width: 720,
   rowHeight: 32,
   reducers: [],
   isLoading: false,
@@ -69,13 +69,16 @@ export default function DataTable(props) {
   let navigationReducers = [];
   let enabledPlugins = [];
   let isControlled = false;
+
   if (Navigation && Navigation.props) {
     navigationReducers = React.Children.map(Navigation.props.children, child => child.type.reducer).filter(
       chunk => chunk
     );
+
     enabledPlugins = React.Children.map(Navigation.props.children, child =>
       child.type.displayName && availablePlugins.includes(child.type.displayName) ? child.type.displayName : null
     ).filter(item => item !== null);
+
     React.Children.forEach(Navigation.props.children, child => {
       // Using onFilter and onSort prop for now
       if (child.props.onFilter || child.props.onSort) isControlled = true;

@@ -6,7 +6,7 @@ import handleArrowKeys, { arrowKeys } from "../../helpers/handleArrowKeys";
 import "@paprika/helpers/lib/dom/elementScrollToPolyfill";
 // import CheckBox from "../CheckBox";
 import Cell from "../Cell";
-import { CellHeader } from "../Cell/Cell.styles";
+import { CellHeader, InnerCell } from "../Cell/Cell.styles";
 import Options from "../Options";
 import { useDataTableState } from "../../context";
 import useData from "../../hooks/useData";
@@ -153,8 +153,10 @@ export default function VirtualizedTable(props) {
           if (rowIndex === 0) {
             return (
               <CellHeader key={`cell_${index}`} style={style}>
-                {typeof header === "function" ? header(null, null, refPageActiveIndex, column) : header}
-                <Options columnId={id} />
+                <InnerCell>
+                  {typeof header === "function" ? header(null, null, refPageActiveIndex, column) : header}
+                  <Options columnId={id} />
+                </InnerCell>
               </CellHeader>
             );
           }

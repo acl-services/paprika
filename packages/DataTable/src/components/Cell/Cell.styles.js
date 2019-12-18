@@ -27,6 +27,9 @@ export const CellHeader = styled.div`
 
 export const InnerCell = styled.div`
   /* padding-left: ${stylers.spacer(1)}; */
+  align-items: center;
+  display: flex;
+  justify-content: space-between;
   line-height: 1.6;
   overflow: hidden;
   padding: 0 8px;
