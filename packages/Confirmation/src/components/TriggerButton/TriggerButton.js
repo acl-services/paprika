@@ -1,27 +1,44 @@
 import React from "react";
 import PropTypes from "prop-types";
 import Button from "@paprika/button";
+import RawButton from "@paprika/raw-button";
+
+export const ButtonTypes = {
+  ICON: "icon",
+  RAW: "raw",
+  SIMPLE: "simple",
+};
+
+const ButtonComponentMap = {
+  icon: Button.Icon,
+  raw: RawButton,
+  simple: Button,
+};
+
+ButtonTypes.ALL = Object.values(ButtonTypes);
 
 const propTypes = {
   children: PropTypes.node,
   confirmId: PropTypes.string,
-  icon: PropTypes.node,
-  isConfirmOpen: PropTypes.bool.isRequired,
-  onOpenConfirm: PropTypes.func.isRequired,
+  buttonType: PropTypes.oneOf(ButtonTypes.ALL),
+  isConfirmOpen: PropTypes.bool,
+  onOpenConfirm: PropTypes.func,
   triggerRef: PropTypes.shape({ current: PropTypes.instanceOf(Object) }),
 };
 
 const defaultProps = {
+  buttonType: ButtonTypes.SIMPLE,
   children: null,
   confirmId: null,
-  icon: null,
+  isConfirmOpen: false,
+  onOpenConfirm: () => {},
   triggerRef: null,
 };
 
 const TriggerButton = props => {
-  const { icon, isConfirmOpen, children, onOpenConfirm, confirmId, triggerRef, ...moreProps } = props;
+  const { isConfirmOpen, children, onOpenConfirm, confirmId, triggerRef, buttonType, ...moreProps } = props;
 
-  const TriggerComponent = icon ? Button.Icon : Button;
+  const TriggerComponent = ButtonComponentMap[buttonType];
 
   return (
     <TriggerComponent
@@ -29,12 +46,11 @@ const TriggerButton = props => {
       aria-controls={confirmId}
       aria-expanded={isConfirmOpen}
       aria-haspopup="true"
-      isSquare
       isSemantic={false}
       onClick={onOpenConfirm}
       {...moreProps}
     >
-      {icon || children}
+      {children}
     </TriggerComponent>
   );
 };

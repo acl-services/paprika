@@ -20,11 +20,7 @@ const ConfirmationExampleWithAsyncAction = () => {
       isPending={isPending}
       heading="Delete filter?"
     >
-      {({ isConfirmOpen, handleOpenConfirm }) => (
-        <Confirmation.TriggerButton isConfirmOpen={isConfirmOpen} onOpenConfirm={handleOpenConfirm}>
-          Trigger
-        </Confirmation.TriggerButton>
-      )}
+      <Confirmation.TriggerButton>Trigger</Confirmation.TriggerButton>
     </Confirmation>
   );
 };

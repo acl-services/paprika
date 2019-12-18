@@ -230,7 +230,7 @@ const buttonStyles = props => `
   ${commonStyles}
   ${sizeStyles[props.size]}
   ${kindStyles(props)[props.kind]}
-  ${props.isFullWidth && !props.isSquare ? fullWidthStyles : ""}
+  ${props.isFullWidth ? fullWidthStyles : ""}
   ${props.isActive ? activeStyles : ""}
 `;
 

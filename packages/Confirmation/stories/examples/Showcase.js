@@ -37,11 +37,7 @@ const ExampleStory = props => (
       <Rule />
       <L10n locale={select("locale", ["en", "de", "es", "fr", "ja", "pt", "zh"], "en")}>
         <Confirmation onConfirm={handleConfirm} onClose={handleClose} {...props}>
-          {({ isConfirmOpen, handleOpenConfirm }) => (
-            <Confirmation.TriggerButton isConfirmOpen={isConfirmOpen} onOpenConfirm={handleOpenConfirm}>
-              Trigger
-            </Confirmation.TriggerButton>
-          )}
+          <Confirmation.TriggerButton>Trigger</Confirmation.TriggerButton>
         </Confirmation>
       </L10n>
     </Story>
