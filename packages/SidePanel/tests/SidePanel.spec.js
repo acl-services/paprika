@@ -106,10 +106,10 @@ describe("SidePanel", () => {
         </SidePanel.Group>
       );
 
-      expect(getAllByTestId("heading")).toHaveLength(3);
+      expect(getAllByTestId("sidepanel")).toHaveLength(3);
     });
 
-    it("throws the error when sidepanel has only one panel", () => {
+    it("throws an error when there is only one side panel in a group", () => {
       const sidePanelGroup = () =>
         renderReactTestingLibrary(
           <SidePanel.Group>
@@ -140,9 +140,9 @@ describe("SidePanel", () => {
           </SidePanel>
         </SidePanel.Group>
       );
-      fireEvent.click(getAllByTestId(/button/i)[0]);
-      fireEvent.click(getAllByTestId(/button/i)[1]);
-      fireEvent.click(getAllByTestId(/button/i)[2]);
+      fireEvent.click(getAllByTestId("sidepanel-header-close")[0]);
+      fireEvent.click(getAllByTestId("sidepanel-header-close")[1]);
+      fireEvent.click(getAllByTestId("sidepanel-header-close")[2]);
 
       expect(noop).toBeCalledTimes(3);
     });
@@ -167,16 +167,6 @@ describe("SidePanel", () => {
       };
       const { getByRole } = render(defaultProps);
       expect(getByRole(/button/)).toBeInTheDocument();
-    });
-
-    it("should tigger or render a button", () => {
-      const onClick = jest.fn();
-      const { getByRole } = render({
-        onClick,
-        children: <SidePanel.Trigger>Button</SidePanel.Trigger>,
-      });
-
-      expect(getByRole("button")).toBeInTheDocument();
     });
   });
 });
