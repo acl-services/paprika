@@ -2,8 +2,15 @@ import React from "react";
 import { storiesOf } from "@storybook/react";
 import { WelcomePage, WelcomeBody, Heading1, Heading2, Bar } from "./welcome.story.styles";
 
-storiesOf("Welcome", module)
-  .addParameters({ options: { showPanel: false, isToolshown: false } })
+const parameters = {
+  options: {
+    showPanel: false,
+    isToolshown: false,
+  },
+};
+
+storiesOf(" | Welcome", module)
+  .addParameters(parameters)
   .add("Paprika", () => (
     <WelcomePage>
       <WelcomeBody>
