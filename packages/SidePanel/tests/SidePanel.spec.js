@@ -86,6 +86,34 @@ describe("SidePanel", () => {
       expect(fn).toHaveBeenCalled();
     });
   });
+  describe("SidePanel.Group", () => {
+    it("should triggered onClose when clicking on the Overlay", () => {
+      const fn = jest.fn();
+      const { getByRole } = render({
+        onClose: fn,
+        children: <SidePanel.Overlay />,
+      });
+
+      // overlay is a RawButton
+      fireEvent.click(getByRole(/button/i));
+
+      expect(fn).toHaveBeenCalled();
+    });
+  });
+  describe("SidePanel.Trigger", () => {
+    it("should triggered onClose when clicking on the Overlay", () => {
+      const fn = jest.fn();
+      const { getByRole } = render({
+        onClose: fn,
+        children: <SidePanel.Overlay />,
+      });
+
+      // overlay is a RawButton
+      fireEvent.click(getByRole(/button/i));
+
+      expect(fn).toHaveBeenCalled();
+    });
+  });
 
   describe("SidePanel.Group", () => {
     it("should render with multiple sidepanels", () => {
