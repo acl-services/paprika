@@ -15,6 +15,7 @@
   "dependencies": {
     "@babel/runtime-corejs2": "^7.3.1",
     "@paprika/button": "^0.2.2",
+    "@paprika/checkbox": "^0.1.7",
     "@paprika/date-picker": "^0.5.4",
     "@paprika/dropdown-menu": "^2.0.2",
     "@paprika/helpers": "^0.2.3",

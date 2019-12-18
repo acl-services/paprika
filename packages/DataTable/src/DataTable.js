@@ -6,6 +6,7 @@ import ColumnDefinition from "./components/ColumnDefinition";
 import Navigation from "./components/Navigation";
 import VirtualizedTable from "./components/VirtualizedTable";
 import LoadMoreButton from "./components/LoadMoreButton";
+import RowIndicator from "./components/RowIndicator";
 import { extractChildren } from "./helpers";
 import { columnTypes, plugins } from "./constants";
 import { TableProvider } from "./context";
@@ -110,6 +111,7 @@ export default function DataTable(props) {
 }
 
 DataTable.prpoTypes = propTypes;
+DataTable.RowIndicator = RowIndicator;
 DataTable.defaultProps = defaultProps;
 DataTable.ColumnDefinition = ColumnDefinition;
 DataTable.Navigation = Navigation;

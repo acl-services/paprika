@@ -31,10 +31,11 @@ const defaultProps = {
   width: 640,
 };
 
-function getColumnByCellIndex({ columnIndex, columnsOrder, columns }) {
-  const columnKey = columnsOrder[columnIndex];
-  const column = columns[columnKey];
-  return column;
+function getColumnPropsByCellIndex({ columnIndex, visibleColumnsInCorrectOrder, children }) {
+  const value = visibleColumnsInCorrectOrder[columnIndex];
+  const index = visibleColumnsInCorrectOrder.indexOf(visibleColumnsInCorrectOrder.find(item => item === value));
+
+  return children[index].props;
 }
 
 function getVisibleColumns(columns) {
@@ -54,27 +55,19 @@ export default function VirtualizedTable(props) {
     onClickCell,
     /* LoadMoreButton, */
     dataTableID,
+    children,
   } = props;
-  // const [activeRowOnMouseEnter, setActiveRowOnMouseEnter] = React.useState({ index: null, data: null });
   const [activeCell, setActiveCell] = React.useState({ index: null });
   const refData = React.useRef(null);
   const refGrid = React.useRef(null);
+  const refGridContainer = React.useRef(null);
+  const refPageActiveIndex = React.useRef({ start: null, end: null });
+
   const { data, rowHeight: stateRowHeigth, columns, columnsOrder } = useDataTableState();
   refData.current = data;
 
   const delayedKeyDown = React.useRef(debounce((...args) => handleArrowKeys(...args), 15)).current;
-
-  // this will inject 20 rows below the visible table to helps with the navigation and scrolling flickering
-
   const dataForRendering = useData();
-
-  //
-  // const handleMouseEnter = (data, rowIndex, keys) => () => {
-  //   setActiveRowOnMouseEnter(() => ({ index: keys[rowIndex], data }));
-  // };
-
-  // const handleMouseLeave = (/* row, rowIndex */) => () => {};
-
   const rowHeightValue = (stateRowHeigth && stateRowHeigth.value) || rowHeight;
   const visibleColumns = getVisibleColumns(columns);
 
@@ -110,13 +103,35 @@ export default function VirtualizedTable(props) {
     }, []);
   }, [columnsOrder, visibleColumns]);
 
+  function updatePageActiveIndex() {
+    if (refGridContainer.current) {
+      const items = refGridContainer.current.querySelectorAll("[data-pka-cell-index]");
+      if (items[0] && items[0].dataset) {
+        // -1 is substracting the header row
+        const start = Number.parseInt(items[0].dataset.pkaCellIndex.split("_")[0], 10);
+        refPageActiveIndex.current.start = start >= 0 ? 0 : start - 1;
+        refPageActiveIndex.current.end =
+          Number.parseInt(items[items.length - 1].dataset.pkaCellIndex.split("_")[0], 10) - 1;
+      }
+    }
+  }
+
+  function handleScroll() {
+    updatePageActiveIndex();
+  }
+
+  React.useEffect(() => {
+    updatePageActiveIndex();
+  }, [refGridContainer]);
+
   return (
-    <div onKeyDown={handleKeyDown} tabIndex="0">
+    <div onKeyDown={handleKeyDown} tabIndex="0" ref={refGridContainer}>
       <Grid
+        onScroll={handleScroll}
         columnCount={visibleColumns.length}
         columnWidth={columnIndex => {
-          const { width } = getColumnByCellIndex({ columnIndex, columnsOrder, columns });
-          return Number.parseInt(width, 10) || 160;
+          const column = getColumnPropsByCellIndex({ columnIndex, visibleColumnsInCorrectOrder, children });
+          return Number.parseInt(column && column.width, 10) || 160;
         }}
         height={height}
         rowCount={totalRows}
@@ -130,7 +145,7 @@ export default function VirtualizedTable(props) {
           const { columnIndex, rowIndex, style } = propsReactWindow;
           const column = columns[visibleColumnsInCorrectOrder[columnIndex]];
           const { id, isHidden } = column;
-          const columnDefinition = React.Children.toArray(props.children).find(child => child.props.id === id);
+          const columnDefinition = React.Children.toArray(children).find(child => child.props.id === id);
           const index = `${dataTableID}${rowIndex}_${columnIndex}`;
           const cell = columnDefinition.props.cell;
           const header = columnDefinition.props.header;
@@ -138,7 +153,7 @@ export default function VirtualizedTable(props) {
           if (rowIndex === 0) {
             return (
               <CellHeader key={`cell_${index}`} style={style}>
-                {typeof header === "function" ? header(column) : header}
+                {typeof header === "function" ? header(null, null, refPageActiveIndex, column) : header}
                 <Options columnId={id} />
               </CellHeader>
             );
@@ -158,7 +173,9 @@ export default function VirtualizedTable(props) {
               refData={refData}
               data-pka-cell-index={`${rowIndex - 1}_${columnIndex}`}
             >
-              {typeof cell === "function" ? cell(dataForRendering[rowIndex - 1]) : dataForRendering[rowIndex - 1][cell]}
+              {typeof cell === "function"
+                ? cell(dataForRendering[rowIndex - 1], rowIndex - 1, refPageActiveIndex)
+                : dataForRendering[rowIndex - 1][cell]}
             </Cell>
           );
         }}
