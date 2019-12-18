@@ -1,5 +1,4 @@
 import React from "react";
-import Add from "@paprika/icon/lib/Add";
 import Confirmation from "../../src";
 
 const handleConfirm = handleCloseConfirm => {
@@ -18,8 +17,8 @@ const ConfirmationExample = () => {
         onClose={() => {}}
         heading="Delete filter?"
       >
-        <Confirmation.TriggerButton buttonType="icon">
-          <Add />
+        <Confirmation.TriggerButton buttonType="raw">
+          <p>I am a paragraph tag</p>
         </Confirmation.TriggerButton>
       </Confirmation>
     </div>
