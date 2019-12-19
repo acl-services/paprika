@@ -34,6 +34,12 @@ or
 />;
 ```
 
+## Components
+
+You can use the following components to compose the Confirmation:
+
+<Confirmation.TriggerButton>
+
 ### Props
 
 - buttonSize
