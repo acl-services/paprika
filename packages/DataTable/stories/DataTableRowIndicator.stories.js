@@ -1,6 +1,6 @@
 import React from "react";
 import { storiesOf } from "@storybook/react";
-import DataTable from "../src";
+import DataTable, { Filters, Sort, ColumnManaging } from "../src";
 import fixtures from "./fixtures";
 import { viewPortHeight } from "./helpers";
 
@@ -56,8 +56,15 @@ function App() {
         select all row not only the ones that are visible/load on the dom you can do it implementing your own logic.
       </p>
       <DataTable keygen="id" data={data} height={viewPortHeight()}>
+        <DataTable.Navigation>
+          <Filters></Filters>
+          <Sort></Sort>
+          <ColumnManaging />
+        </DataTable.Navigation>
         <DataTable.ColumnDefinition
           id="rowIndicator"
+          canFilter={false}
+          canSort={false}
           header={(...args) => (
             <DataTable.RowIndicator
               {...args}

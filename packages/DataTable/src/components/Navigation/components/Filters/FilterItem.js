@@ -82,11 +82,13 @@ export default function FilterItem(prop) {
         X
       </Button>
       <select onChange={handleChangeColumn} value={selectedColumnId}>
-        {columnsOrder.map(columnId => (
-          <option key={columnId} value={columnId}>
-            {columnId}
-          </option>
-        ))}
+        {columnsOrder
+          .filter(columnId => columns[columnId].canFilter)
+          .map(columnId => (
+            <option key={columnId} value={columnId}>
+              {columnId}
+            </option>
+          ))}
       </select>
       <select onChange={handleChangeRule} value={selectedRule}>
         {rulesByType[selectedColumnType].map(rule => (

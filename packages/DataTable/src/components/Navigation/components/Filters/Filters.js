@@ -30,7 +30,7 @@ export default function Filters(props) {
   const isLogicalFilterOperatorUpdated = useIsUpdated(logicalFilterOperator);
 
   function handleAddFilter() {
-    dispatch({ type: "ADD_FILTER", payload: columnsOrder[0] });
+    dispatch({ type: "ADD_FILTER", payload: columnsOrder.find(columnId => columns[columnId].canFilter) });
   }
 
   function handleClickCondition(e) {

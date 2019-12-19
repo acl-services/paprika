@@ -8,6 +8,7 @@ export default function ColumnDefinition() {
 ColumnDefinition.propTypes = {
   id: PropTypes.oneOfType([PropTypes.string, PropTypes.number]).isRequired,
   momentParsingFormat: PropTypes.string,
+  canFilter: PropTypes.bool,
   canSort: PropTypes.bool,
   type: PropTypes.oneOf([columnTypes.TEXT, columnTypes.NUMBER, columnTypes.DATE]),
   canHide: PropTypes.bool,
@@ -16,6 +17,7 @@ ColumnDefinition.propTypes = {
 
 ColumnDefinition.defaultProps = {
   momentParsingFormat: null,
+  canFilter: true,
   canSort: true,
   type: null,
   canHide: true,
