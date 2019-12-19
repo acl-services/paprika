@@ -64,8 +64,8 @@ export default function DataTable(props) {
   ]);
 
   const columns = ColumnsDefinition.map(({ props }) => {
-    const { id, momentParsingFormat, canSort, type, canHide, isHidden, width } = props;
-    return { id, momentParsingFormat, canSort, type, canHide, isHidden, width };
+    const { id, momentParsingFormat, canFilter, canSort, type, canHide, isHidden, width } = props;
+    return { id, momentParsingFormat, canFilter, canSort, type, canHide, isHidden, width };
   });
   const availablePlugins = Object.keys(plugins).map(key => plugins[key]);
 

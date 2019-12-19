@@ -15,13 +15,13 @@ export default function Options(props) {
   const { columnId } = props;
   const dispatch = useDispatch();
   const { columns, enabledPlugins } = useDataTableState();
-  const { momentParsingFormat, canHide, canSort } = columns[columnId];
+  const { canFilter, canHide, canSort, momentParsingFormat } = columns[columnId];
   const enabledPluginsAppliedToThisColumn = enabledPlugins.filter(plugin => {
     switch (plugin) {
       case plugins.SORT:
         return canSort;
       case plugins.FILTERS:
-        return true;
+        return canFilter;
       case plugins.COLUMN_MANAGING:
         return canHide;
       default:
