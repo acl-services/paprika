@@ -4,10 +4,21 @@ import { Rule, Tagline } from "storybook/assets/styles/common.styles";
 import Input from "@paprika/input";
 import Checkbox from "@paprika/checkbox";
 import DatePicker from "@paprika/date-picker";
+import ListBox from "@paprika/listbox";
 import FormElement from "../../src";
 import { FormElementStory } from "../FormElement.stories.styles";
 
 const ExampleStory = () => {
+  const listboxOptions = [
+    "Black Panther",
+    "Wonder Woman",
+    "Spiderman",
+    "The Incredibles",
+    "Thor",
+    "Batman",
+    "Iron Man",
+    "Doctor Strange",
+  ].map(hero => <ListBox.Option key={hero}>{hero}</ListBox.Option>);
   const [value, setValue] = React.useState("");
 
   function handleChange(e) {
@@ -56,10 +67,26 @@ const ExampleStory = () => {
       </FormElement>
 
       <Rule />
+
       <Tagline>Form Element with Date Picker.</Tagline>
       <Rule />
       <FormElement label="Form Label">
         <DatePicker onChange={() => {}} />
+        <FormElement.Description>
+          <span>Description of this field.</span>
+        </FormElement.Description>
+        <FormElement.Error>This field cannot be blank</FormElement.Error>
+        <FormElement.Help>
+          Give me some help. <a href="wegalvanize.com">Learn more</a>.
+        </FormElement.Help>
+      </FormElement>
+
+      <Rule />
+
+      <Tagline>Form Element with Listbox.</Tagline>
+      <Rule />
+      <FormElement label="Form Label">
+        <ListBox>{listboxOptions}</ListBox>
         <FormElement.Description>
           <span>Description of this field.</span>
         </FormElement.Description>

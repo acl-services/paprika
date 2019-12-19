@@ -38,7 +38,7 @@ const defaultProps = {
 export default function Trigger(props) {
   const [state, dispatch] = useListBox();
   const { placeholder, hasClearButton, onClickFooterAccept, children, isHidden } = props;
-  const { isDisabled, refTriggerContainer, refTrigger, isMulti, idListBox } = state;
+  const { isDisabled, refTriggerContainer, refTrigger, isMulti, idListBox, refLabel } = state;
 
   const handleClick = () => {
     if (isDisabled) {
@@ -47,6 +47,23 @@ export default function Trigger(props) {
 
     dispatch({ type: useListBox.types.togglePopover });
   };
+
+  React.useEffect(() => {
+    const $label = refLabel && refLabel.current;
+
+    if (!$label) return;
+
+    function handleClickLabel() {
+      refTrigger.current.focus();
+    }
+
+    $label.addEventListener("click", handleClickLabel);
+
+    return () => {
+      $label.removeEventListener("click", handleClickLabel);
+    };
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
 
   const handleClickClear = () => {
     if (isDisabled) {
@@ -89,6 +106,7 @@ export default function Trigger(props) {
       />
     ) : (
       <RawButton
+        a11yText={`${refTrigger.current && refTrigger.current.innerText}, `}
         onClick={handleClick}
         ref={refTrigger}
         onKeyDown={handleKeyboardKeys(state, dispatch)}

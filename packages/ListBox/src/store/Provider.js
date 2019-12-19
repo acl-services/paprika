@@ -22,6 +22,7 @@ function initializeState(props) {
     refListBoxContainer,
     refTrigger,
     refTriggerContainer,
+    refLabel,
   } = props;
 
   // initialize state for options and groups
@@ -60,6 +61,7 @@ function initializeState(props) {
     selectedOptions,
     shouldContentScroll: true,
     triggerWidth: 0,
+    refLabel,
   };
 
   return {
