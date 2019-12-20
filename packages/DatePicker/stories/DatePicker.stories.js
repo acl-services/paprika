@@ -13,12 +13,12 @@ storiesOf("DatePicker", module)
       humanFormat: select("humanFormat", ["MMMM DD, YYYY", "YYYY-MM-DD"], "MMMM DD, YYYY"),
       isDisabled: boolean("isDisabled", false),
       isReadOnly: boolean("isReadOnly", false),
+      hasError: boolean("hasError", false),
     });
 
     const inputProps = () => ({
       size: select("size", ["small", "medium", "large"], "medium"),
       placeholder: text("placeholder", ""),
-      hasError: boolean("hasError", false),
     });
     return (
       <Example locale="en" {...datePickerProps()}>
