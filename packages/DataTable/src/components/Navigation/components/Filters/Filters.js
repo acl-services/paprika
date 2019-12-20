@@ -9,25 +9,36 @@ import FilterItem from "./FilterItem";
 import { rulesByType } from "./rules";
 import { FiltersPanelStyled } from "./Filters.styles";
 import { logicalFilterOperators, plugins } from "../../../../constants";
-import getColumnType from "../../../../helpers/getColumnType";
 import { useLocalStorage } from "../../../../context";
 import useIsUpdated from "../../../../hooks/useIsUpdated";
 
 const propTypes = {
   onFilter: PropTypes.func,
+  defaultFilters: PropTypes.arrayOf(
+    PropTypes.shape({
+      id: PropTypes.string.isRequired,
+      columnId: PropTypes.string.isRequired,
+      rule: PropTypes.string.isRequired,
+      value: PropTypes.string,
+    })
+  ),
+  defaultLogicalFilterOperator: PropTypes.string,
 };
 
 const defaultProps = {
   onFilter: null,
+  defaultFilters: null,
+  defaultLogicalFilterOperator: null,
 };
 
 export default function Filters(props) {
-  const { onFilter } = props;
+  const { onFilter, defaultFilters, defaultLogicalFilterOperator } = props;
   const { filters, logicalFilterOperator, columnsOrder, columns } = useDataTableState();
   const dispatch = useDispatch();
   const updateLocalStorage = useLocalStorage();
   const isFiltersUpdated = useIsUpdated(filters);
   const isLogicalFilterOperatorUpdated = useIsUpdated(logicalFilterOperator);
+  const defaultCheckedOperator = defaultLogicalFilterOperator || logicalFilterOperator;
 
   function handleAddFilter() {
     dispatch({ type: "ADD_FILTER", payload: columnsOrder.find(columnId => columns[columnId].canFilter) });
@@ -36,6 +47,20 @@ export default function Filters(props) {
   function handleClickCondition(e) {
     dispatch({ type: "UPDATE_LOGICAL_FILTER_OPERATOR", payload: e.target.value });
   }
+
+  React.useEffect(() => {
+    if (defaultFilters || defaultLogicalFilterOperator) {
+      dispatch({
+        type: "RESET_FILTERS",
+        payload: {
+          filters: defaultFilters || [],
+          logicalFilterOperator: defaultLogicalFilterOperator,
+        },
+      });
+    }
+    // Only runs for first time
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
 
   React.useEffect(() => {
     if (!isFiltersUpdated && !isLogicalFilterOperatorUpdated) return;
@@ -57,7 +82,7 @@ export default function Filters(props) {
                 type="radio"
                 name="condition"
                 value={logicalFilterOperators.AND}
-                defaultChecked={logicalFilterOperator === logicalFilterOperators.AND}
+                defaultChecked={defaultCheckedOperator === logicalFilterOperators.AND}
                 onChange={handleClickCondition}
               />
               <label htmlFor={logicalFilterOperators.AND}>And</label>
@@ -65,7 +90,7 @@ export default function Filters(props) {
                 type="radio"
                 name="condition"
                 value={logicalFilterOperators.OR}
-                defaultChecked={logicalFilterOperator === logicalFilterOperators.OR}
+                defaultChecked={defaultCheckedOperator === logicalFilterOperators.OR}
                 onChange={handleClickCondition}
               />
               <label htmlFor={logicalFilterOperators.OR}>Or</label>
@@ -87,14 +112,15 @@ export default function Filters(props) {
 Filters.reducer = (state, action) => {
   switch (action.type) {
     case "ADD_FILTER": {
+      const columnId = action.payload;
       return {
         ...action.changes,
         filters: [
           ...action.changes.filters,
           {
             id: `FILTER_ID__${nanoid()}`,
-            columnId: action.payload,
-            rule: rulesByType[getColumnType(action.changes.data, action.changes.columns, action.payload)][0],
+            columnId,
+            rule: rulesByType[action.changes.columns[columnId].type][0],
             value: "",
           },
         ],
@@ -126,6 +152,13 @@ Filters.reducer = (state, action) => {
       return {
         ...action.changes,
         logicalFilterOperator: action.payload,
+      };
+    }
+    case "RESET_FILTERS": {
+      return {
+        ...action.changes,
+        logicalFilterOperator: action.payload.logicalFilterOperator,
+        filters: action.payload.filters,
       };
     }
     default:

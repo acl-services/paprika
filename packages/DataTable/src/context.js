@@ -28,7 +28,16 @@ function TableProvider(props) {
       sortColumn: null,
       sortDirection: null,
       columnsOrder: columns.map(column => column.id),
-      columns: columns.reduce((columnsObject, column) => ({ ...columnsObject, [column.id]: column }), {}),
+      columns: columns.reduce(
+        (columnsObject, column) => ({
+          ...columnsObject,
+          [column.id]: {
+            ...column,
+            isHidden: column.defaultIsHidden,
+          },
+        }),
+        {}
+      ),
       filters: [],
       logicalFilterOperator: logicalFilterOperators.AND,
     };

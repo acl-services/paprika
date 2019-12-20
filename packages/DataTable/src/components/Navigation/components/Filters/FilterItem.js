@@ -6,13 +6,12 @@ import { useDataTableState, useDispatch } from "../../../..";
 import rules, { rulesByType } from "./rules";
 import { columnTypes } from "../../../../constants";
 import { FilterItemStyled } from "./Filters.styles";
-import getColumnType from "../../../../helpers/getColumnType";
 
 export default function FilterItem(prop) {
   const { columnId: selectedColumnId, rule: selectedRule, id, value } = prop;
-  const { columns, columnsOrder, data } = useDataTableState();
+  const { columns, columnsOrder } = useDataTableState();
   const dispatch = useDispatch();
-  const selectedColumnType = getColumnType(data, columns, selectedColumnId);
+  const selectedColumnType = columns[selectedColumnId].type;
 
   function handleRemoveFilter() {
     dispatch({ type: "REMOVE_FILTER", payload: id });
@@ -26,7 +25,7 @@ export default function FilterItem(prop) {
         id,
         changes: {
           columnId: newColumnId,
-          rule: rulesByType[getColumnType(data, columns, newColumnId)][0],
+          rule: rulesByType[columns(newColumnId)][0],
           value: "",
         },
       },
