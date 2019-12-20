@@ -48,6 +48,7 @@ import DatePicker from "@paprika/date-picker";
 - `a11yText`
 - `placeholder`
 - `size` `["small", "medium", "large"]`
+- `hasError`
 
 #### DatePicker.Popover
 

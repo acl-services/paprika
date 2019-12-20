@@ -206,7 +206,9 @@ function DatePicker(props) {
     handleChange(selectedDate);
   }
 
-  const hasErrorValue = hasError || hasParsingError;
+  const hasInputError = extendedInputProps && extendedInputProps.hasError;
+
+  const hasErrorValue = hasError || hasParsingError || hasInputError;
 
   const inputText =
     (inputRef && isElementContainsFocus(inputRef.current)) || hasErrorValue

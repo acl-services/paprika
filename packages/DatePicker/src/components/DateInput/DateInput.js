@@ -11,12 +11,16 @@ const propTypes = {
 
   /** Size of input. */
   size: PropTypes.oneOf(ShirtSizes.DEFAULT),
+
+  /** If the value of <input> is valid or not. */
+  hasError: PropTypes.bool,
 };
 
 const defaultProps = {
   a11yText: null,
   placeholder: "",
   size: ShirtSizes.MEDIUM,
+  hasError: false,
 };
 
 // shell component for enhancing development experience
