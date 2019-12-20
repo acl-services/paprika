@@ -44,14 +44,18 @@ const propTypes = {
   /** Callback when date is selected or input. */
   onChange: PropTypes.func.isRequired,
 
-  /** Errors callback */
+  /** Internal errors callback */
   onError: PropTypes.func,
+
+  /** If there is an external error or not. Not required when wrapped with <FormElement>. */
+  hasError: PropTypes.bool,
 };
 
 const defaultProps = {
   children: null,
   dataFormat: "MM/DD/YYYY",
   date: null,
+  hasError: false,
   humanFormat: undefined,
   id: null,
   isDisabled: false,
@@ -73,6 +77,7 @@ function DatePicker(props) {
     isReadOnly,
     onChange,
     onError,
+    hasError,
   } = props;
 
   const formatDateProp = React.useCallback(
@@ -200,8 +205,6 @@ function DatePicker(props) {
     hideCalendar();
     handleChange(selectedDate);
   }
-
-  const hasError = extendedInputProps && extendedInputProps.hasError;
 
   const hasErrorValue = hasError || hasParsingError;
 
