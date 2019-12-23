@@ -18,7 +18,7 @@ const defaultProps = {
 
 export default function Divider(props) {
   return (
-    <li css={dividerCSS} hasChildren={!!props.children}>
+    <li data-pka-anchor="listbox-divider" css={dividerCSS} hasChildren={!!props.children}>
       {props.children}
     </li>
   );

@@ -42,6 +42,7 @@ export default function Tab(props) {
       <a
         css={tabStyles}
         className="tab tab-link"
+        data-pka-anchor="tab"
         href={href}
         onKeyDown={e => handleKeyDown(e, context.currentFocusIndex)}
         role="tab"
@@ -59,6 +60,7 @@ export default function Tab(props) {
       kind={context.kind}
       className="tab"
       css={tabStyles}
+      data-pka-anchor="tab"
       isDisabled={isDisabled}
       isSelected={isSelected}
       onClick={e => handleClick(e, context.activeIndex)}

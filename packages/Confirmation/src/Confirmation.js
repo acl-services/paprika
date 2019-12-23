@@ -140,7 +140,14 @@ const Confirmation = props => {
   );
 
   return (
-    <Popover key={popoverKey} offset={popoverOffset} isOpen={isConfirmOpen} onClose={handleCloseConfirm} {...moreProps}>
+    <Popover
+      key={popoverKey}
+      offset={popoverOffset}
+      isOpen={isConfirmOpen}
+      onClose={handleCloseConfirm}
+      data-pka-anchor="confirmation"
+      {...moreProps}
+    >
       {children && <Popover.Trigger>{renderTrigger()}</Popover.Trigger>}
       {popoverContent}
     </Popover>

@@ -89,6 +89,7 @@ class Textarea extends React.Component {
       <div className={rootClasses} css={textareaStyles}>
         <textarea
           className="form-textarea__textarea"
+          data-pka-anchor="textarea"
           disabled={isDisabled}
           readOnly={isReadOnly}
           ref={this.setRef}

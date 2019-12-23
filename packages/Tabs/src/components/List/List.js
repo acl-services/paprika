@@ -33,7 +33,7 @@ const List = props => {
   if (a11yText) moreProps["aria-label"] = a11yText;
 
   return (
-    <div css={tabsListStyles} role="tablist" ref={ref => setTabListRef(ref)} {...moreProps}>
+    <div css={tabsListStyles} role="tablist" ref={ref => setTabListRef(ref)} {...moreProps} data-pka-anchor="list">
       {childrenWithProps}
     </div>
   );
