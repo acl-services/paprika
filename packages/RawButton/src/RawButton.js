@@ -91,7 +91,7 @@ const RawButton = React.forwardRef((props, ref) => {
     <span
       aria-disabled={isDisabled}
       css={rawButtonStyles}
-      data-pka-anchor="rawbutton"
+      data-pka-anchor="raw-button"
       isDisabled={isDisabled}
       onClick={handleClick}
       onKeyDown={handleKeyDown}

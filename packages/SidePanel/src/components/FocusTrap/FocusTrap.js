@@ -35,11 +35,7 @@ const defaultProps = FocusTrapLibrary.defaultProps;
 export default function FocusTrap(props) {
   // internal use
   const { focusTrapOptions } = props; // eslint-disable-line
-  return (
-    <FocusTrapLibrary data-pka-anchor="sidepanel.focustrap" focusTrapOptions={focusTrapOptions}>
-      {props.children}
-    </FocusTrapLibrary>
-  );
+  return <FocusTrapLibrary focusTrapOptions={focusTrapOptions}>{props.children}</FocusTrapLibrary>;
 }
 
 FocusTrap.propTypes = propTypes;

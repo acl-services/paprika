@@ -60,7 +60,7 @@ export default function Tab(props) {
       kind={context.kind}
       className="tab"
       css={tabStyles}
-      data-pka-anchor="tab"
+      data-pka-anchor="tab-link"
       isDisabled={isDisabled}
       isSelected={isSelected}
       onClick={e => handleClick(e, context.activeIndex)}
