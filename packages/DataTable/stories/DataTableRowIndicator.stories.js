@@ -9,6 +9,20 @@ const data = fixtures(8);
 function App() {
   const [selected, setSelected] = React.useState([]);
   const [selectedAll, setSelectedAll] = React.useState(false);
+  const [multipleColums] = React.useState(() => {
+    return Array(20)
+      .fill(null)
+      .map((_, index) => {
+        return (
+          <DataTable.ColumnDefinition
+            key={index}
+            id={`col_definition${index}`}
+            header={() => index}
+            cell={() => index}
+          />
+        );
+      });
+  });
   function isSelected(row, rowIndex) {
     return selected.includes(rowIndex) ? "checked" : "unchecked";
   }
@@ -73,7 +87,7 @@ function App() {
         />
         <DataTable.ColumnDefinition id="name" header="Name" cell="name" />
         <DataTable.ColumnDefinition id="goals" header="Goals" cell="goals" />
-        <DataTable.ColumnDefinition id="status" header="Status" cell="status" />
+        {multipleColums}
       </DataTable>
     </React.Fragment>
   );

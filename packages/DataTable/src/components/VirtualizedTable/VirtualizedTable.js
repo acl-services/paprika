@@ -62,6 +62,8 @@ export default function VirtualizedTable(props) {
   const refGrid = React.useRef(null);
   const refGridContainer = React.useRef(null);
   const refPageActiveIndex = React.useRef({ start: null, end: null });
+  const refGridHeader = React.useRef(null);
+  const refGridFixedColumns = React.useRef(null);
 
   const { data, rowHeight: stateRowHeigth, columns, columnsOrder } = useDataTableState();
   refData.current = data;
@@ -116,41 +118,92 @@ export default function VirtualizedTable(props) {
     }
   }
 
-  function handleScroll() {
+  // function handleScroll({ scrollLeft, scrollTop }) {
+  //   const x = scrollLeft;
+  //   const y = scrollTop;
+  //   debugger;
+  //   // refGridHeader
+  //   updatePageActiveIndex();
+  // }
+
+  const handleScroll = React.useCallback(({ scrollLeft, scrollTop, scrollUpdateWasRequested }) => {
+    if (!scrollUpdateWasRequested) {
+      refGridHeader.current.scrollTo({ scrollLeft, scrollTop: 0 });
+      refGridFixedColumns.current.scrollTo({ scrollLeft: 0, scrollTop });
+    }
+
     updatePageActiveIndex();
-  }
+  }, []);
 
   React.useEffect(() => {
     updatePageActiveIndex();
   }, [refGridContainer]);
 
+  const stickyColumns = ["rowIndicator", "name", "goals"];
+
   return (
     <div onKeyDown={handleKeyDown} tabIndex="0" ref={refGridContainer}>
-      <Grid
-        onScroll={handleScroll}
-        columnCount={visibleColumns.length}
-        columnWidth={columnIndex => {
-          const column = getColumnPropsByCellIndex({ columnIndex, visibleColumnsInCorrectOrder, children });
-          return Number.parseInt(column && column.width, 10) || 160;
-        }}
-        height={height}
-        rowCount={totalRows}
-        rowHeight={() => rowHeightValue}
-        width={width}
-        className="virtualize-rows-root"
-        overscanRowCount={20}
-        ref={refGrid}
-      >
-        {propsReactWindow => {
-          const { columnIndex, rowIndex, style } = propsReactWindow;
-          const column = columns[visibleColumnsInCorrectOrder[columnIndex]];
-          const { id, isHidden } = column;
-          const columnDefinition = React.Children.toArray(children).find(child => child.props.id === id);
-          const index = `${dataTableID}${rowIndex}_${columnIndex}`;
-          const cell = columnDefinition.props.cell;
-          const header = columnDefinition.props.header;
-          if (isHidden) return null;
-          if (rowIndex === 0) {
+      <div style={{ display: "flex", flexDirection: "row" }}>
+        <Grid
+          columnCount={3}
+          columnWidth={columnIndex => {
+            const column = getColumnPropsByCellIndex({ columnIndex, visibleColumnsInCorrectOrder, children });
+            return Number.parseInt(column && column.width, 10) || 160;
+          }}
+          ref={refGridHeader}
+          height={rowHeight}
+          rowCount={1}
+          rowHeight={() => rowHeightValue}
+          width={280}
+          className="virtualize-header-root"
+          style={{ overflow: "hidden" }}
+        >
+          {propsReactWindow => {
+            const { columnIndex, rowIndex, style } = propsReactWindow;
+            const id = stickyColumns[columnIndex];
+            const columnDefinition = React.Children.toArray(children).find(child => child.props.id === id);
+            const index = `${dataTableID}_header_fixed_${rowIndex}_${columnIndex}`;
+            const header = columnDefinition.props.header;
+
+            return (
+              <CellHeader key={`cell_${index}`} style={style}>
+                <InnerCell>
+                  {typeof header === "function" ? header(null, null, refPageActiveIndex, columns[id]) : header}
+                  <Options columnId={id} />
+                </InnerCell>
+              </CellHeader>
+            );
+          }}
+        </Grid>
+        <Grid
+          columnCount={visibleColumns.length}
+          columnWidth={columnIndex => {
+            const column = getColumnPropsByCellIndex({ columnIndex, visibleColumnsInCorrectOrder, children });
+            if (stickyColumns.includes(column.id)) {
+              return 0;
+            }
+            return Number.parseInt(column && column.width, 10) || 160;
+          }}
+          ref={refGridHeader}
+          height={rowHeight}
+          rowCount={1}
+          rowHeight={() => rowHeightValue}
+          width={width}
+          className="virtualize-header-root"
+          style={{ overflow: "hidden" }}
+        >
+          {propsReactWindow => {
+            const { columnIndex, rowIndex, style } = propsReactWindow;
+            const column = columns[visibleColumnsInCorrectOrder[columnIndex]];
+            const { id, isHidden } = column;
+            if (stickyColumns.includes(id)) {
+              return null;
+            }
+
+            const columnDefinition = React.Children.toArray(children).find(child => child.props.id === id);
+            const index = `${dataTableID}_header_${rowIndex}_${columnIndex}`;
+            const header = columnDefinition.props.header;
+            if (isHidden) return null;
             return (
               <CellHeader key={`cell_${index}`} style={style}>
                 <InnerCell>
@@ -159,29 +212,125 @@ export default function VirtualizedTable(props) {
                 </InnerCell>
               </CellHeader>
             );
-          }
+          }}
+        </Grid>
+      </div>
 
-          // dataForRendering[rowIndex - 1] we need to remove 1 because we added the header
-          return (
-            <Cell
-              key={`cell_${index}`}
-              cellIndex={index}
-              activeCellIndex={activeCell.index}
-              setActiveCell={setActiveCell}
-              onClickCell={onClickCell}
-              columnIndex={columnIndex}
-              rowIndex={rowIndex}
-              style={style}
-              refData={refData}
-              data-pka-cell-index={`${rowIndex - 1}_${columnIndex}`}
-            >
-              {typeof cell === "function"
-                ? cell(dataForRendering[rowIndex - 1], rowIndex - 1, refPageActiveIndex)
-                : dataForRendering[rowIndex - 1][cell]}
-            </Cell>
-          );
-        }}
-      </Grid>
+      <div style={{ display: "flex", flexDirection: "row" }}>
+        <Grid
+          columnCount={3}
+          columnWidth={columnIndex => {
+            const column = getColumnPropsByCellIndex({ columnIndex, visibleColumnsInCorrectOrder, children });
+            return Number.parseInt(column && column.width, 10) || 160;
+          }}
+          ref={refGridFixedColumns}
+          height={height}
+          rowCount={totalRows}
+          rowHeight={rowIndex => {
+            if (rowIndex === 0) return 0;
+            return rowHeightValue;
+          }}
+          width={280}
+          style={{ overflow: "hidden" }}
+        >
+          {propsReactWindow => {
+            const { columnIndex, rowIndex, style } = propsReactWindow;
+            const columnDefinition = React.Children.toArray(children).find(
+              child => child.props.id === stickyColumns[columnIndex]
+            );
+
+            const index = `${dataTableID}_fixed_${rowIndex}_${columnIndex}`;
+            const cell = columnDefinition.props.cell;
+            if (rowIndex === 0) {
+              return null;
+            }
+
+            // dataForRendering[rowIndex - 1] we need to remove 1 because we added the header
+            return (
+              <Cell
+                key={`cell_${index}`}
+                cellIndex={index}
+                activeCellIndex={activeCell.index}
+                setActiveCell={setActiveCell}
+                onClickCell={onClickCell}
+                columnIndex={columnIndex}
+                rowIndex={rowIndex}
+                style={style}
+                refData={refData}
+                data-pka-cell-index={`${rowIndex - 1}_${columnIndex}`}
+              >
+                {typeof cell === "function"
+                  ? cell(dataForRendering[rowIndex - 1], rowIndex - 1, refPageActiveIndex)
+                  : dataForRendering[rowIndex - 1][cell]}
+              </Cell>
+            );
+          }}
+        </Grid>
+        <Grid
+          onScroll={handleScroll}
+          columnCount={visibleColumns.length}
+          columnWidth={columnIndex => {
+            const column = getColumnPropsByCellIndex({ columnIndex, visibleColumnsInCorrectOrder, children });
+            if (stickyColumns.includes(column.id)) {
+              return 0;
+            }
+
+            return Number.parseInt(column && column.width, 10) || 160;
+          }}
+          height={height}
+          rowCount={totalRows}
+          rowHeight={rowIndex => {
+            if (rowIndex === 0) return 0;
+            return rowHeightValue;
+          }}
+          width={width}
+          className="virtualize-rows-root"
+          overscanRowCount={20}
+          ref={refGrid}
+        >
+          {propsReactWindow => {
+            const { columnIndex, rowIndex, style } = propsReactWindow;
+            const column = columns[visibleColumnsInCorrectOrder[columnIndex]];
+            const { id, isHidden } = column;
+
+            const columnDefinition = React.Children.toArray(children).find(child => child.props.id === id);
+
+            const index = `${dataTableID}${rowIndex}_${columnIndex}`;
+            const cell = columnDefinition.props.cell;
+            const header = columnDefinition.props.header;
+            if (isHidden) return null;
+
+            if (stickyColumns.includes(column.id)) {
+              return null;
+            }
+
+            if (rowIndex === 0) {
+              return null;
+            }
+
+            // dataForRendering[rowIndex - 1] we need to remove 1 because we added the header
+
+            return (
+              <Cell
+                key={`cell_${index}`}
+                cellIndex={index}
+                activeCellIndex={activeCell.index}
+                setActiveCell={setActiveCell}
+                onClickCell={onClickCell}
+                columnIndex={columnIndex}
+                rowIndex={rowIndex}
+                style={style}
+                refData={refData}
+                data-pka-cell-index={`${rowIndex - 1}_${columnIndex}`}
+              >
+                {typeof cell === "function"
+                  ? cell(dataForRendering[rowIndex - 1], rowIndex - 1, refPageActiveIndex)
+                  : dataForRendering[rowIndex - 1][cell]}
+              </Cell>
+            );
+          }}
+        </Grid>
+      </div>
     </div>
   );
 }
