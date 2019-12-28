@@ -10,17 +10,17 @@ const commonStyles = `
   ${stylers.alignMiddle}
   ${stylers.lineHeight(-1)}
   appearance: none;
-  border-radius: ${tokens.button.borderRadius};
-  border-style: solid;
-  border-width: 1px;
-  box-sizing: border-box;
+  xborder-radius: ${tokens.button.borderRadius};
+  xborder-style: solid;
+  xborder-width: 1px;
+  xbox-sizing: border-box;
   cursor: pointer;
-  display: inline-flex;
-  font-family: ${tokens.fontFamily.default};
-  font-weight: bold;
-  text-align: center;
-  vertical-align: middle;
-  text-decoration: none;
+  xdisplay: inline-flex;
+  xfont-family: ${tokens.fontFamily.default};
+  xfont-weight: bold;
+  xtext-align: center;
+  xvertical-align: middle;
+  xtext-decoration: none;
 
   &:focus {
     box-shadow: ${tokens.highlight.active.noBorder.boxShadow};
