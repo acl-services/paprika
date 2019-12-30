@@ -7,7 +7,8 @@
   "license": "MIT",
   "repository": {
     "type": "git",
-    "url": "https://github.com/acl-services/paprika/tree/master/packages/Modal"
+    "url": "https://github.com/acl-services/paprika.git",
+    "directory": "packages/Modal"
   },
   "publishConfig": {
     "access": "public"

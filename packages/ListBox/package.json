@@ -25,7 +25,8 @@
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/acl-services/paprika/tree/master/packages/ListBox"
+    "url": "https://github.com/acl-services/paprika.git",
+    "directory": "packages/ListBox"
   },
   "publishConfig": {
     "access": "public"

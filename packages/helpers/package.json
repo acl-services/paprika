@@ -6,7 +6,8 @@
   "license": "MIT",
   "repository": {
     "type": "git",
-    "url": "https://github.com/acl-services/paprika/tree/master/packages/helpers"
+    "url": "https://github.com/acl-services/paprika.git",
+    "directory": "packages/helpers"
   },
   "publishConfig": {
     "access": "public"
