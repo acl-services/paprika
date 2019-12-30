@@ -89,6 +89,6 @@ export const ClearButtonStyled = styled(Button.Icon)`
   }
 `;
 
-export const visuallyHiddenFormLabel = styled.span`
+export const VisuallyHiddenFormLabelStyled = styled.span`
   ${visuallyHidden};
 `;

@@ -15,7 +15,7 @@ import invokeOnChange, {
   getSelectedOptionsMulti,
 } from "../../helpers/invokeOnChange";
 
-import { ListBoxTriggerStyled, ClearButtonStyled, iconStyles, visuallyHiddenFormLabel } from "./Trigger.styles";
+import { ListBoxTriggerStyled, ClearButtonStyled, iconStyles, VisuallyHiddenFormLabelStyled } from "./Trigger.styles";
 import { getDOMAttributesForListBoxButton } from "../../helpers/DOMAttributes";
 
 const propTypes = {
@@ -126,6 +126,9 @@ export default function Trigger(props) {
         aria-describedby={formElementLabelDescribedBy}
         aria-labelledby={triggerButtonId}
       >
+        {refLabel.current ? (
+          <VisuallyHiddenFormLabelStyled>{refLabel.current.innerText}</VisuallyHiddenFormLabelStyled>
+        ) : null}
         <Label
           activeOption={state.options[state.activeOption]}
           isMulti={isMulti}
@@ -133,8 +136,6 @@ export default function Trigger(props) {
           placeholder={placeholder}
           selectedOptions={state.selectedOptions}
         />
-
-        {refLabel.current ? <visuallyHiddenFormLabel>{refLabel.current.innerText}</visuallyHiddenFormLabel> : null}
       </RawButton>
     );
   }
