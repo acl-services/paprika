@@ -92,3 +92,5 @@ blocks:
             - npx lerna bootstrap
             - yarn storybook:build
             - yarn storybook:screener
+      secrets:
+        - name: screener-api-key
