@@ -1,5 +1,6 @@
 import React from "react";
 import PropTypes from "prop-types";
+import nanoid from "nanoid";
 import RawButton from "@paprika/raw-button";
 import Button from "@paprika/button";
 import CaretDownIcon from "@paprika/icon/lib/CaretDown";
@@ -14,7 +15,7 @@ import invokeOnChange, {
   getSelectedOptionsMulti,
 } from "../../helpers/invokeOnChange";
 
-import { ListBoxTriggerStyled, ClearButtonStyled, iconStyles } from "./Trigger.styles";
+import { ListBoxTriggerStyled, ClearButtonStyled, iconStyles, VisuallyHiddenFormLabelStyled } from "./Trigger.styles";
 import { getDOMAttributesForListBoxButton } from "../../helpers/DOMAttributes";
 
 const propTypes = {
@@ -38,7 +39,16 @@ const defaultProps = {
 export default function Trigger(props) {
   const [state, dispatch] = useListBox();
   const { placeholder, hasClearButton, onClickFooterAccept, children, isHidden } = props;
-  const { isDisabled, refTriggerContainer, refTrigger, isMulti, idListBox } = state;
+  const {
+    isDisabled,
+    formElementLabelDescribedBy,
+    refTriggerContainer,
+    refTrigger,
+    isMulti,
+    idListBox,
+    refLabel,
+  } = state;
+  const triggerButtonId = React.useRef(nanoid());
 
   const handleClick = () => {
     if (isDisabled) {
@@ -47,6 +57,23 @@ export default function Trigger(props) {
 
     dispatch({ type: useListBox.types.togglePopover });
   };
+
+  React.useEffect(() => {
+    const $label = refLabel && refLabel.current;
+
+    if (!$label) return;
+
+    function handleClickLabel() {
+      refTrigger.current.focus();
+    }
+
+    $label.addEventListener("click", handleClickLabel);
+
+    return () => {
+      $label.removeEventListener("click", handleClickLabel);
+    };
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
 
   const handleClickClear = () => {
     if (isDisabled) {
@@ -89,13 +116,19 @@ export default function Trigger(props) {
       />
     ) : (
       <RawButton
+        id={triggerButtonId}
         onClick={handleClick}
         ref={refTrigger}
         onKeyDown={handleKeyboardKeys(state, dispatch)}
         onKeyUp={() => {}}
         isDisabled={isDisabled}
         data-pka-anchor="listbox-trigger"
+        aria-describedby={formElementLabelDescribedBy}
+        aria-labelledby={triggerButtonId}
       >
+        {refLabel && refLabel.current ? (
+          <VisuallyHiddenFormLabelStyled>{refLabel.current.innerText}</VisuallyHiddenFormLabelStyled>
+        ) : null}
         <Label
           activeOption={state.options[state.activeOption]}
           isMulti={isMulti}
