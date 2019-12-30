@@ -4,20 +4,25 @@ agent:
   machine:
     type: e1-standard-2
     os_image: ubuntu1804
-
 blocks:
-  - name: "🎩 Yarn"
+  - name: "\U0001F3A9 Yarn"
     task:
       jobs:
-      - name: "🎩 Yarn & caching"
-        commands:
-          - checkout
-          - cache restore client-node-modules-$SEMAPHORE_GIT_BRANCH-$(checksum yarn.lock),client-node-modules-$SEMAPHORE_GIT_BRANCH,client-node-modules-master
-          - yarn install --frozen-lockfile
-          - npx lerna bootstrap
-          - cache store client-node-modules-$SEMAPHORE_GIT_BRANCH-$(checksum yarn.lock) node_modules
-          - cache store cypress-$SEMAPHORE_GIT_BRANCH ~/.cache/Cypress
-  - name: "🔗 Storybook link"
+        - name: "\U0001F3A9 Yarn & caching"
+          commands:
+            - checkout
+            - >-
+              cache restore client-node-modules-$SEMAPHORE_GIT_BRANCH-$(checksum
+              yarn.lock),client-node-modules-$SEMAPHORE_GIT_BRANCH,client-node-modules-master
+            - yarn install --frozen-lockfile
+            - npx lerna bootstrap
+            - >-
+              cache store client-node-modules-$SEMAPHORE_GIT_BRANCH-$(checksum
+              yarn.lock) node_modules
+            - cache store cypress-$SEMAPHORE_GIT_BRANCH ~/.cache/Cypress
+      secrets:
+        - name: screener-api-key
+  - name: "\U0001F517 Storybook link"
     task:
       secrets:
         - name: paprika-env
@@ -29,48 +34,55 @@ blocks:
         - name: Insert Storybook link into PR Body Message
           commands:
             - node scripts/storybookLink.js
-  - name: "💅 Format"
+  - name: "\U0001F485 Format"
     task:
       prologue:
         commands:
           - checkout
-          - cache restore client-node-modules-$SEMAPHORE_GIT_BRANCH-$(checksum yarn.lock),client-node-modules-$SEMAPHORE_GIT_BRANCH,client-node-modules-master
+          - >-
+            cache restore client-node-modules-$SEMAPHORE_GIT_BRANCH-$(checksum
+            yarn.lock),client-node-modules-$SEMAPHORE_GIT_BRANCH,client-node-modules-master
       jobs:
         - name: Lint && prettier
           commands:
             - yarn add eslint-plugin-react-hooks -D -W
             - yarn lint && yarn prettier -- --list-different
-
-  - name: "♿️ Accessibility"
+  - name: ♿️ Accessibility
     task:
       prologue:
         commands:
           - checkout
-          - cache restore client-node-modules-$SEMAPHORE_GIT_BRANCH-$(checksum yarn.lock),client-node-modules-$SEMAPHORE_GIT_BRANCH,client-node-modules-master
+          - >-
+            cache restore client-node-modules-$SEMAPHORE_GIT_BRANCH-$(checksum
+            yarn.lock),client-node-modules-$SEMAPHORE_GIT_BRANCH,client-node-modules-master
       jobs:
         - name: Axe test
           commands:
-            - yarn test:a11y
-
-  - name: "⚡️ Integration/Unit"
+            - 'yarn test:a11y'
+  - name: ⚡️ Integration/Unit
     task:
       prologue:
         commands:
           - checkout
-          - cache restore client-node-modules-$SEMAPHORE_GIT_BRANCH-$(checksum yarn.lock),client-node-modules-$SEMAPHORE_GIT_BRANCH,client-node-modules-master
+          - >-
+            cache restore client-node-modules-$SEMAPHORE_GIT_BRANCH-$(checksum
+            yarn.lock),client-node-modules-$SEMAPHORE_GIT_BRANCH,client-node-modules-master
           - yarn
       jobs:
         - name: JEST
           commands:
             - yarn test
-
-  - name: "⛰ E2E"
+  - name: ⛰ E2E
     task:
       prologue:
         commands:
           - checkout
-          - sudo apt-get -y install xvfb libgtk2.0-0 libnotify-dev libgconf-2-4 libnss3 libxss1 libasound2
-          - cache restore client-node-modules-$SEMAPHORE_GIT_BRANCH-$(checksum yarn.lock),client-node-modules-$SEMAPHORE_GIT_BRANCH,client-node-modules-master
+          - >-
+            sudo apt-get -y install xvfb libgtk2.0-0 libnotify-dev libgconf-2-4
+            libnss3 libxss1 libasound2
+          - >-
+            cache restore client-node-modules-$SEMAPHORE_GIT_BRANCH-$(checksum
+            yarn.lock),client-node-modules-$SEMAPHORE_GIT_BRANCH,client-node-modules-master
           - cache restore cypress-$SEMAPHORE_GIT_BRANCH
           - sudo sysctl fs.inotify.max_user_watches=1048576
       jobs:
@@ -78,17 +90,18 @@ blocks:
           commands:
             - npx lerna bootstrap
             - yarn
-            - yarn cypress:ci
-
-  - name: "🔎 Visual Regression"
+            - 'yarn cypress:ci'
+  - name: "\U0001F50E Visual Regression"
     task:
       prologue:
         commands:
           - checkout
-          - cache restore client-node-modules-$SEMAPHORE_GIT_BRANCH-$(checksum yarn.lock),client-node-modules-$SEMAPHORE_GIT_BRANCH,client-node-modules-master
+          - >-
+            cache restore client-node-modules-$SEMAPHORE_GIT_BRANCH-$(checksum
+            yarn.lock),client-node-modules-$SEMAPHORE_GIT_BRANCH,client-node-modules-master
       jobs:
         - name: Screener
           commands:
             - npx lerna bootstrap
-            - yarn storybook:build
-            - yarn storybook:screener
+            - 'yarn storybook:build'
+            - 'yarn storybook:screener'
