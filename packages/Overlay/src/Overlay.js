@@ -1,7 +1,7 @@
 import React from "react";
 import PropTypes from "prop-types";
 import { Transition } from "react-transition-group";
-import FocusTrap from "focus-trap-react";
+import FocusLock from "react-focus-lock";
 import LockBodyScroll from "@paprika/helpers/lib/components/LockBodyScroll";
 import Portal from "@paprika/helpers/lib/components/Portal";
 import tokens from "@paprika/tokens";
@@ -16,57 +16,32 @@ const propTypes = {
   onClose: PropTypes.func,
   onAfterOpen: PropTypes.func,
   onAfterClose: PropTypes.func,
-  focusTrapOptions: PropTypes.shape({
-    // properties copy from https://github.com/davidtheclark/focus-trap
+  focusLockOptions: PropTypes.shape({
+    // properties copy from https://github.com/theKashey/react-focus-lock/blob/dee9b4c625eba0ca183fbda89005a5d09053086f/src/Lock.js#L160
+    // see description for props here: https://github.com/theKashey/react-focus-lock/blob/dee9b4c625eba0ca183fbda89005a5d09053086f/interfaces.d.ts#L4
 
-    /** A function that will be called when the focus trap activates. */
-    onActivate: PropTypes.func,
-    /** A function that will be called when the focus trap deactivates */
-    onDeactivate: PropTypes.func,
+    children: PropTypes.node,
+    disabled: PropTypes.bool,
+    returnFocus: PropTypes.oneOfType([PropTypes.bool, PropTypes.object]),
+    noFocusGuards: PropTypes.bool,
 
-    /**
-     * By default, when a focus trap is activated the first element in the
-     * focus trap's tab order will receive focus. With this option you can
-     * specify a different element to receive that initial focus.
-     */
-    initialFocus: PropTypes.oneOfType([PropTypes.node, PropTypes.string, PropTypes.func, HTMLElement]),
+    allowTextSelection: PropTypes.bool,
+    autoFocus: PropTypes.bool,
+    persistentFocus: PropTypes.bool,
 
-    /**
-     * By default, an error will be thrown if the focus trap contains no
-     * elements in its tab order. With this option you can specify a
-     * fallback element to programmatically receive focus if no other
-     * tabbable elements are found. For example, you may want a popover's
-     * `<div>` to receive focus if the popover's content includes no
-     * tabbable elements. *Make sure the fallback element has a negative
-     * `tabindex` so it can be programmatically focused.*
-     */
-    fallbackFocus: PropTypes.oneOfType([PropTypes.node, PropTypes.string, PropTypes.func, HTMLElement]),
+    group: PropTypes.string,
+    className: PropTypes.string,
 
-    /**
-     * Default: `true`. If `false`, when the trap is deactivated,
-     * focus will *not* return to the element that had focus before activation.
-     */
-    returnFocusOnDeactivate: PropTypes.bool,
+    whiteList: PropTypes.func,
+    shards: PropTypes.arrayOf(PropTypes.any),
 
-    /**
-     * By default, focus trap on deactivation will return to the element
-     * that was focused before activation.
-     */
-    setReturnFocus: PropTypes.oneOfType([PropTypes.node, PropTypes.string, PropTypes.func, HTMLElement]),
+    as: PropTypes.oneOfType([PropTypes.string, PropTypes.func, PropTypes.object]),
+    lockProps: PropTypes.object,
 
-    /**
-     * Default: `true`. If `false`, the `Escape` key will not trigger
-     * deactivation of the focus trap. This can be useful if you want
-     * to force the user to make a decision instead of allowing an easy
-     * way out.
-     */
-    escapeDeactivates: PropTypes.bool,
+    onActivation: PropTypes.func,
+    onDeactivation: PropTypes.func,
 
-    /**
-     * Default: `false`. If `true`, a click outside the focus trap will
-     * deactivate the focus trap and allow the click event to do its thing.
-     */
-    clickOutsideDeactivates: PropTypes.bool,
+    sideCar: PropTypes.any,
   }),
 };
 
@@ -77,7 +52,7 @@ const defaultProps = {
   onClose: () => {},
   onAfterOpen: () => {},
   onAfterClose: () => {},
-  focusTrapOptions: {},
+  focusLockOptions: {},
 };
 
 const Overlay = props => {
@@ -89,7 +64,7 @@ const Overlay = props => {
     onClose,
     onAfterOpen,
     onAfterClose,
-    focusTrapOptions,
+    focusLockOptions,
     ...moreProps
   } = props;
 
@@ -99,11 +74,6 @@ const Overlay = props => {
     node.scrollTop;
   }
 
-  const _focusTrapOptions = {
-    fallbackFocus: () => document.createElement("div"),
-    ...focusTrapOptions,
-  };
-
   function handleEscKey(event) {
     if (event.key === "Escape" && isOpen) {
       event.stopPropagation();
@@ -111,6 +81,11 @@ const Overlay = props => {
       onClose();
     }
   }
+
+  const _focusLockOptions = {
+    returnFocus: true,
+    ...focusLockOptions,
+  };
 
   return (
     <>
@@ -135,7 +110,9 @@ const Overlay = props => {
                   data-pka-anchor="overlay.backdrop"
                 />
               )}
-              <FocusTrap focusTrapOptions={_focusTrapOptions}>{children && children(state)}</FocusTrap>
+              <FocusLock disabled={state === "exiting" || state === "exited"} {..._focusLockOptions}>
+                {children && children(state)}
+              </FocusLock>
             </Wrapper>
           )}
         </Transition>
