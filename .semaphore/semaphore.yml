@@ -20,8 +20,6 @@ blocks:
               cache store client-node-modules-$SEMAPHORE_GIT_BRANCH-$(checksum
               yarn.lock) node_modules
             - cache store cypress-$SEMAPHORE_GIT_BRANCH ~/.cache/Cypress
-      secrets:
-        - name: screener-api-key
   - name: "\U0001F517 Storybook link"
     task:
       secrets:
@@ -105,3 +103,5 @@ blocks:
             - npx lerna bootstrap
             - 'yarn storybook:build'
             - 'yarn storybook:screener'
+      secrets:
+        - name: screener-api-key
