@@ -7,7 +7,7 @@
   "license": "MIT",
   "repository": {
     "type": "git",
-    "url": "https://github.com/acl-services/paprika/tree/master/packages/guard"
+    "url": "https://github.com/acl-services/paprika/tree/master/packages/Guard"
   },
   "publishConfig": {
     "access": "public"

@@ -7,7 +7,7 @@
   "license": "MIT",
   "repository": {
     "type": "git",
-    "url": "https://github.com/acl-services/paprika/tree/master/packages/stylers"
+    "url": "https://github.com/acl-services/paprika/tree/master/packages/Stylers"
   },
   "publishConfig": {
     "access": "public"

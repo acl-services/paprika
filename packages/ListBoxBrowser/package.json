@@ -7,7 +7,7 @@
   "license": "MIT",
   "repository": {
     "type": "git",
-    "url": "https://github.com/acl-services/paprika/tree/master/packages/listbox-browser"
+    "url": "https://github.com/acl-services/paprika/tree/master/packages/ListBoxBrowser"
   },
   "publishConfig": {
     "access": "public"

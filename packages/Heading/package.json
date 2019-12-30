@@ -7,7 +7,7 @@
   "main": "lib/index.js",
   "repository": {
     "type": "git",
-    "url": "https://github.com/acl-services/paprika/tree/master/packages/heading"
+    "url": "https://github.com/acl-services/paprika/tree/master/packages/Heading"
   },
   "publishConfig": {
     "access": "public"

@@ -7,7 +7,7 @@
   "license": "MIT",
   "repository": {
     "type": "git",
-    "url": "https://github.com/acl-services/paprika/tree/master/packages/l10n"
+    "url": "https://github.com/acl-services/paprika/tree/master/packages/L10n"
   },
   "publishConfig": {
     "access": "public"

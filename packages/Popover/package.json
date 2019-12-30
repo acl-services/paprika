@@ -7,7 +7,7 @@
   "license": "MIT",
   "repository": {
     "type": "git",
-    "url": "https://github.com/acl-services/paprika/tree/master/packages/popover"
+    "url": "https://github.com/acl-services/paprika/tree/master/packages/Popover"
   },
   "gitHead": "4aaee03aeeaa6af3c9b29b548e0490e1589153e8",
   "publishConfig": {

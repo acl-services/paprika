@@ -7,7 +7,7 @@
   "main": "lib/index.js",
   "repository": {
     "type": "git",
-    "url": "https://github.com/acl-services/paprika/tree/master/packages/counter"
+    "url": "https://github.com/acl-services/paprika/tree/master/packages/Counter"
   },
   "publishConfig": {
     "access": "public"

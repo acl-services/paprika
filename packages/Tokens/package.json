@@ -7,7 +7,7 @@
   "license": "MIT",
   "repository": {
     "type": "git",
-    "url": "https://github.com/acl-services/paprika/tree/master/packages/tokens"
+    "url": "https://github.com/acl-services/paprika/tree/master/packages/Tokens"
   },
   "publishConfig": {
     "access": "public"

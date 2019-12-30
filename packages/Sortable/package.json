@@ -7,7 +7,7 @@
   "main": "lib/index.js",
   "repository": {
     "type": "git",
-    "url": "https://github.com/acl-services/paprika/tree/master/packages/sortable"
+    "url": "https://github.com/acl-services/paprika/tree/master/packages/Sortable"
   },
   "publishConfig": {
     "access": "public"

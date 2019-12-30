@@ -7,7 +7,7 @@
   "main": "lib/index.js",
   "repository": {
     "type": "git",
-    "url": "https://github.com/acl-services/paprika/tree/master/packages/confirmation"
+    "url": "https://github.com/acl-services/paprika/tree/master/packages/Confirmation"
   },
   "publishConfig": {
     "access": "public"

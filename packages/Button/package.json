@@ -7,7 +7,7 @@
   "license": "MIT",
   "repository": {
     "type": "git",
-    "url": "https://github.com/acl-services/paprika/tree/master/packages/button"
+    "url": "https://github.com/acl-services/paprika/tree/master/packages/Button"
   },
   "publishConfig": {
     "access": "public"
