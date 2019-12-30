@@ -70,7 +70,7 @@ const Select = props => {
   );
 
   return (
-    <div css={selectStyles} className={rootClasses}>
+    <div css={selectStyles} className={rootClasses} data-pka-anchor="select">
       <select
         className="form-select__select"
         disabled={isDisabled || isReadOnly}
