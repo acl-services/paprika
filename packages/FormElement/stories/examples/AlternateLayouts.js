@@ -90,7 +90,6 @@ const ExampleStory = () => {
         <FormElement.Description>
           <span>Description of this field.</span>
         </FormElement.Description>
-        <FormElement.Error>This field cannot be blank</FormElement.Error>
         <FormElement.Help>
           Give me some help. <a href="wegalvanize.com">Learn more</a>.
         </FormElement.Help>

@@ -1,5 +1,6 @@
 import React from "react";
 import PropTypes from "prop-types";
+import nanoid from "nanoid";
 import RawButton from "@paprika/raw-button";
 import Button from "@paprika/button";
 import CaretDownIcon from "@paprika/icon/lib/CaretDown";
@@ -14,7 +15,7 @@ import invokeOnChange, {
   getSelectedOptionsMulti,
 } from "../../helpers/invokeOnChange";
 
-import { ListBoxTriggerStyled, ClearButtonStyled, iconStyles } from "./Trigger.styles";
+import { ListBoxTriggerStyled, ClearButtonStyled, iconStyles, visuallyHiddenFormLabel } from "./Trigger.styles";
 import { getDOMAttributesForListBoxButton } from "../../helpers/DOMAttributes";
 
 const propTypes = {
@@ -38,7 +39,16 @@ const defaultProps = {
 export default function Trigger(props) {
   const [state, dispatch] = useListBox();
   const { placeholder, hasClearButton, onClickFooterAccept, children, isHidden } = props;
-  const { isDisabled, refTriggerContainer, refTrigger, isMulti, idListBox, refLabel } = state;
+  const {
+    isDisabled,
+    formElementLabelDescribedBy,
+    refTriggerContainer,
+    refTrigger,
+    isMulti,
+    idListBox,
+    refLabel,
+  } = state;
+  const triggerButtonId = React.useRef(nanoid());
 
   const handleClick = () => {
     if (isDisabled) {
@@ -106,13 +116,15 @@ export default function Trigger(props) {
       />
     ) : (
       <RawButton
-        a11yText={`${refTrigger.current && refTrigger.current.innerText}, `}
+        id={triggerButtonId}
         onClick={handleClick}
         ref={refTrigger}
         onKeyDown={handleKeyboardKeys(state, dispatch)}
         onKeyUp={() => {}}
         isDisabled={isDisabled}
         data-pka-anchor="listbox-trigger"
+        aria-describedby={formElementLabelDescribedBy}
+        aria-labelledby={triggerButtonId}
       >
         <Label
           activeOption={state.options[state.activeOption]}
@@ -121,6 +133,8 @@ export default function Trigger(props) {
           placeholder={placeholder}
           selectedOptions={state.selectedOptions}
         />
+
+        {refLabel.current ? <visuallyHiddenFormLabel>{refLabel.current.innerText}</visuallyHiddenFormLabel> : null}
       </RawButton>
     );
   }

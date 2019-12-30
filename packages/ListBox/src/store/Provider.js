@@ -24,6 +24,8 @@ function initializeState(props) {
     refTriggerContainer,
     refLabel,
   } = props;
+  const formElementId = props.id;
+  const formElementLabelDescribedBy = props["aria-describedby"];
 
   // initialize state for options and groups
   const options = getDataOptions(childrenOptions);
@@ -62,6 +64,8 @@ function initializeState(props) {
     shouldContentScroll: true,
     triggerWidth: 0,
     refLabel,
+    formElementId,
+    formElementLabelDescribedBy,
   };
 
   return {
