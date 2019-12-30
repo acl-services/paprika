@@ -42,6 +42,7 @@ const TriggerButton = props => {
 
   return (
     <TriggerComponent
+      data-pka-anchor="button"
       ref={triggerRef}
       aria-controls={confirmId}
       aria-expanded={isConfirmOpen}

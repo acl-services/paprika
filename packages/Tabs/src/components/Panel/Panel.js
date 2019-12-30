@@ -21,7 +21,7 @@ const Panel = props => {
   }
 
   return (
-    <div {...moreProps} css={panelStyles} role="tabpanel">
+    <div {...moreProps} css={panelStyles} role="tabpanel" data-pka-anchor="tabs.panel">
       {children}
     </div>
   );
