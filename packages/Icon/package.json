@@ -7,7 +7,7 @@
   "license": "MIT",
   "repository": {
     "type": "git",
-    "url": "https://github.com/acl-services/paprika/tree/master/packages/icon"
+    "url": "https://github.com/acl-services/paprika/tree/master/packages/Icon"
   },
   "publishConfig": {
     "access": "public"
