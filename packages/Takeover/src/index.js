@@ -1,10 +1,10 @@
 import Takeover from "./Takeover";
-import FocusTrap from "./components/FocusTrap";
+import Overlay from "./components/Overlay";
 import Header from "./components/Header";
 import Content from "./components/Content";
 
-Takeover.FocusTrap = FocusTrap;
+Takeover.Overlay = Overlay;
 Takeover.Header = Header;
 Takeover.Content = Content;
 
-export { Takeover as default, FocusTrap, Header, Content };
+export { Takeover as default, Overlay, Header, Content };

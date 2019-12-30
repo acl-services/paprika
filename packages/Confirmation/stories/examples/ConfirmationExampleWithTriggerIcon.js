@@ -18,9 +18,9 @@ const ConfirmationExample = () => {
         onClose={() => {}}
         heading="Delete filter?"
       >
-        {({ isConfirmOpen, handleOpenConfirm }) => (
-          <Confirmation.TriggerButton icon={<Add />} isConfirmOpen={isConfirmOpen} onOpenConfirm={handleOpenConfirm} />
-        )}
+        <Confirmation.TriggerButton buttonType="icon">
+          <Add />
+        </Confirmation.TriggerButton>
       </Confirmation>
     </div>
   );

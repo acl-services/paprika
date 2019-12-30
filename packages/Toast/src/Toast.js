@@ -125,6 +125,7 @@ function Toast(props) {
     <div
       aria-live={ariaLive}
       css={toastStyles}
+      data-pka-anchor="toast"
       hasCloseButton={hasCloseButton}
       isFixed={isFixed}
       role="alert"

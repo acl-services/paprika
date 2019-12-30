@@ -40,6 +40,7 @@ function Switch(props) {
   return (
     <RawButton
       css={switchStyles}
+      data-pka-anchor="switch"
       role="switch"
       a11yText={a11yText}
       aria-checked={isChecked}
