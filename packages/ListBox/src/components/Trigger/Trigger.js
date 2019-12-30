@@ -126,7 +126,7 @@ export default function Trigger(props) {
         aria-describedby={formElementLabelDescribedBy}
         aria-labelledby={triggerButtonId}
       >
-        {refLabel.current ? (
+        {refLabel && refLabel.current ? (
           <VisuallyHiddenFormLabelStyled>{refLabel.current.innerText}</VisuallyHiddenFormLabelStyled>
         ) : null}
         <Label
