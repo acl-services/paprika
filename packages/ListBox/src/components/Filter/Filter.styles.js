@@ -6,29 +6,32 @@ export const FilterContainerStyled = styled.div`
 `;
 
 export const FilterInputStyled = styled.input`
-  background-color: white;
-  border: 1px solid #d7d7d7;
-  border-radius: 3px;
-  box-shadow: none;
-  box-sizing: border-box;
-  font-size: 14px;
-  height: 32px;
-  margin: 8px;
-  outline: none;
-  padding-left: 28px;
-  width: calc(100% - 16px);
+  && {
+    background-color: white;
+    border: 1px solid #d7d7d7;
+    border-radius: 3px;
+    box-shadow: none;
+    box-sizing: border-box;
+    display: inline-block;
+    font-size: 14px;
+    height: 32px;
+    margin: 8px;
+    outline: none;
+    padding-left: 28px;
+    width: calc(100% - 16px);
 
-  &:focus {
-    background-color: #ffffff;
-    border-color: #276cf5;
-    box-shadow: 0 0 0 2px #99cbfc;
+    &:focus {
+      background-color: #ffffff;
+      border-color: #276cf5;
+      box-shadow: 0 0 0 2px #99cbfc;
+    }
+
+    ${props => {
+      return props.isDisabled
+        ? ` color: ${tokens.color.blackLighten60}; background: ${tokens.color.blackLighten60};`
+        : "";
+    }}
   }
-
-  ${props => {
-    return props.isDisabled
-      ? ` color: ${tokens.color.blackLighten60}; background: ${tokens.color.blackLighten60};`
-      : "";
-  }}
 `;
 
 export const FilterGroupFilterLabel = styled.label`
