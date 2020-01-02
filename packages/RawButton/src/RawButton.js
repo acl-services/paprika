@@ -2,7 +2,8 @@
 
 import React from "react";
 import PropTypes from "prop-types";
-import rawButtonStyles from "./RawButton.styles";
+import "what-input";
+import rawButtonStyles, { GlobalStyle } from "./RawButton.styles";
 
 const propTypes = {
   /** Descriptive a11y text for assistive technologies. By default, text from children node will be used. */
@@ -88,20 +89,24 @@ const RawButton = React.forwardRef((props, ref) => {
   };
 
   return (
-    <span
-      aria-disabled={isDisabled}
-      css={rawButtonStyles}
-      data-pka-anchor="raw-button"
-      isDisabled={isDisabled}
-      onClick={handleClick}
-      onKeyDown={handleKeyDown}
-      onKeyUp={handleKeyUp}
-      ref={rawButtonRef}
-      tabIndex={getTabIndex()}
-      {...moreProps}
-    >
-      {children}
-    </span>
+    <React.Fragment>
+      <GlobalStyle />
+      <span
+        aria-disabled={isDisabled}
+        css={rawButtonStyles}
+        data-pka-anchor="raw-button"
+        isDisabled={isDisabled}
+        onClick={handleClick}
+        onKeyDown={handleKeyDown}
+        onKeyUp={handleKeyUp}
+        ref={rawButtonRef}
+        tabIndex={getTabIndex()}
+        {...moreProps}
+        data-pka-type="raw-button"
+      >
+        {children}
+      </span>
+    </React.Fragment>
   );
 });
 

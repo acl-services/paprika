@@ -1,6 +1,6 @@
 import tokens from "@paprika/tokens";
 import stylers from "@paprika/stylers";
-import { css, keyframes } from "styled-components";
+import { createGlobalStyle, css, keyframes } from "styled-components";
 import { ShirtSizes } from "@paprika/helpers/lib/customPropTypes";
 import Kinds from "./ButtonKinds";
 
@@ -265,6 +265,13 @@ function getIconColor(props) {
   if (props.isDisabled) return tokens.color.blackDisabled;
   return iconColors[props.kind];
 }
+
+export const GlobalStyle = createGlobalStyle`
+  [data-whatinput="mouse"] [data-pka-type="button"]:focus {
+    box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.1);
+    border-color: ${tokens.border.color};
+  }
+`;
 
 export const iconStyles = props => css`
   align-items: center;
