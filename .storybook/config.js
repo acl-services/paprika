@@ -21,7 +21,7 @@ const stories = [
 
   // CollapsibleText
   require.context("../packages/CollapsibleText", true, /CollapsibleText.stories.(js|mdx)$/),
-  require.context("../packages/CollapsibleText", true, /CollapsibleText.Tests.stories.(js|mdx)$/),
+  require.context("../packages/CollapsibleText", true, /CollapsibleText.Tests.stories.js$/),
 
   // Remaining
   require.context("../packages", true, /\.stories\.js$/),

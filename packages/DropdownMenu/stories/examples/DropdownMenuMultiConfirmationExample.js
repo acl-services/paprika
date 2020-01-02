@@ -3,8 +3,11 @@ import Confirmation from "@paprika/confirmation";
 import DropdownMenu from "../../src";
 
 const DropdownMenuExample = () => {
-  const handleConfirm = onCloseMenu => onCloseConfirm => {
-    onCloseConfirm();
+  const handleConfirm = onConfirm => {
+    onConfirm();
+  };
+
+  const handleCloseConfirm = onCloseMenu => () => {
     onCloseMenu();
   };
 
@@ -24,7 +27,8 @@ const DropdownMenuExample = () => {
               body="Lorem ipsum dolor amet vexillologist tacos selvage narwhal butcher twee ethical hot chicken."
               confirmLabel="Delete filter"
               heading="Delete filter 1?"
-              onConfirm={handleConfirm(onCloseMenu)}
+              onConfirm={handleConfirm}
+              onClose={handleCloseConfirm(onCloseMenu)}
             />
           );
         }}
@@ -44,7 +48,8 @@ const DropdownMenuExample = () => {
               body="Lorem ipsum dolor amet vexillologist tacos selvage narwhal butcher twee ethical hot chicken."
               confirmLabel="Delete filter"
               heading="Delete filter 2?"
-              onConfirm={handleConfirm(onCloseMenu)}
+              onConfirm={handleConfirm}
+              onClose={handleCloseConfirm(onCloseMenu)}
             />
           );
         }}

@@ -133,22 +133,24 @@ function DropdownMenu(props) {
     }
 
     return (
-      <div css={contentStyles} ref={dropdownListRef}>
-        {extractedChildren.children.map((child, index) => {
-          const childKey = { key: `DropdownMenuItem${index}` };
-          if (child && child.type && child.type.displayName === "DropdownMenu.Item") {
-            if (child.props.renderConfirmation) {
+      <Popover.Card>
+        <div css={contentStyles} ref={dropdownListRef}>
+          {extractedChildren.children.map((child, index) => {
+            const childKey = { key: `DropdownMenuItem${index}` };
+            if (child && child.type && child.type.displayName === "DropdownMenu.Item") {
+              if (child.props.renderConfirmation) {
+                return getClonedChild(child, childKey, {
+                  onShowConfirmation: handleShowConfirmation(child.props.renderConfirmation),
+                });
+              }
               return getClonedChild(child, childKey, {
-                onShowConfirmation: handleShowConfirmation(child.props.renderConfirmation),
+                onClose: handleCloseMenu,
               });
             }
-            return getClonedChild(child, childKey, {
-              onClose: handleCloseMenu,
-            });
-          }
-          return getClonedChild(child, childKey);
-        })}
-      </div>
+            return getClonedChild(child, childKey);
+          })}
+        </div>
+      </Popover.Card>
     );
   };
 
@@ -165,7 +167,7 @@ function DropdownMenu(props) {
     >
       <Popover.Trigger>{renderTrigger()}</Popover.Trigger>
       <Popover.Content id={menuId.current} role={!isConfirming ? "menu" : null}>
-        {isOpen && <Popover.Card>{renderContent()}</Popover.Card>}
+        {isOpen && renderContent()}
       </Popover.Content>
     </Popover>
   );

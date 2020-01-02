@@ -1,36 +1,28 @@
 import React from "react";
 import { withKnobs } from "@storybook/addon-knobs";
-
 import Variations from "./examples/Variations";
 import Showcase from "./examples/Showcase";
-import Props from "./CollapsibleText.mdx";
-
+import { defaultParameters } from "./CollapsibleText.stories.helpers";
 import CollapsibleText from "../src";
 
 export default {
-  title: "CollapsibleText",
+  title: " | CollapsibleText",
   component: CollapsibleText,
 };
+
+const showcaseParameters = Object.assign({}, defaultParameters, {
+  options: {
+    showPanel: true,
+    selectedPanel: "storybook/knobs/panel",
+    panelPosition: "right",
+  },
+});
 
 export const showcase = Showcase;
 showcase.story = {
   decorators: [withKnobs],
-  parameters: {
-    docs: { page: Props },
-    options: {
-      isToolshown: true,
-      showPanel: true,
-    },
-  },
+  parameters: showcaseParameters,
 };
 
 export const variations = () => <Variations />;
-variations.story = {
-  parameters: {
-    docs: { page: Variations },
-    options: {
-      isToolshown: true,
-      showPanel: false,
-    },
-  },
-};
+variations.story = { parameters: defaultParameters };

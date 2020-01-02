@@ -3,8 +3,8 @@ import { storiesOf } from "@storybook/react";
 import { withKnobs, boolean, select } from "@storybook/addon-knobs";
 import styled from "styled-components";
 import Button from "@paprika/button";
-import Heading from "@paprika/heading";
 import SidePanel from "@paprika/sidepanel";
+import { repeat } from "storybook/assets/styles/common.styles";
 import Takeover from "../src";
 
 /* Long block to test body scroll locking */
@@ -44,20 +44,19 @@ storiesOf("Takeover", module)
   .add("Basic", () => (
     <TakeoverStory>
       <Takeover.Content>
-        {Array(100)
-          .fill(null)
-          .map((_, i) => (
-            // eslint-disable-next-line react/no-array-index-key
-            <p key={i}>Some content here</p>
-          ))}
+        {repeat(100, key => (
+          <p key={key}>Some content here</p>
+        ))}
       </Takeover.Content>
     </TakeoverStory>
   ))
   .add("with overridden FocusTrap", () => (
     <TakeoverStory>
-      <Takeover.FocusTrap
-        initialFocus={() => {
-          return document.querySelector("[data-pka-anchor='takeover.focustrap.input']");
+      <Takeover.Overlay
+        focusTrapOptions={{
+          initialFocus: () => {
+            return document.querySelector("[data-pka-anchor='takeover.focustrap.input']");
+          },
         }}
       />
       <Takeover.Content>
@@ -85,9 +84,7 @@ storiesOf("Takeover", module)
               <SidePanel.Trigger kind="primary" onClick={toggle}>
                 {isOpen ? "close" : "open side panel"}
               </SidePanel.Trigger>
-              <SidePanel.Header>
-                <Heading level={2}>Header</Heading>
-              </SidePanel.Header>
+              <SidePanel.Header>Header</SidePanel.Header>
             </SidePanel>
           </Takeover.Content>
         </TakeoverStory>

@@ -10,6 +10,21 @@ or
 
 Please use `<L10n />` component to wrap `<DatePicker />` or you application.
 
+#### DatePicker
+
+Props:
+
+- `children`
+- `dataFormat`
+- `date`
+- `humanFormat`
+- `id`
+- `isDisabled`
+- `isReadOnly`
+- `onChange`
+- `onError`
+- `hasError`
+
 For a basic date picker
 
 ```js
@@ -33,6 +48,7 @@ import DatePicker from "@paprika/date-picker";
 - `a11yText`
 - `placeholder`
 - `size` `["small", "medium", "large"]`
+- `hasError`
 
 #### DatePicker.Popover
 

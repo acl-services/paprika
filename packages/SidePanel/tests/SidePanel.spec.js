@@ -9,7 +9,6 @@ const noop = () => {};
 function render(props) {
   const onClose = props.onClose || noop;
   const rendered = renderReactTestingLibrary(<SidePanel isOpen onClose={onClose} {...props} />);
-
   return {
     ...rendered,
   };
@@ -87,16 +86,115 @@ describe("SidePanel", () => {
       expect(fn).toHaveBeenCalled();
     });
   });
+  describe("SidePanel.Group", () => {
+    it("should triggered onClose when clicking on the Overlay", () => {
+      const fn = jest.fn();
+      const { getByRole } = render({
+        onClose: fn,
+        children: <SidePanel.Overlay />,
+      });
+
+      // overlay is a RawButton
+      fireEvent.click(getByRole(/button/i));
+
+      expect(fn).toHaveBeenCalled();
+    });
+  });
+  describe("SidePanel.Trigger", () => {
+    it("should triggered onClose when clicking on the Overlay", () => {
+      const fn = jest.fn();
+      const { getByRole } = render({
+        onClose: fn,
+        children: <SidePanel.Overlay />,
+      });
+
+      // overlay is a RawButton
+      fireEvent.click(getByRole(/button/i));
+
+      expect(fn).toHaveBeenCalled();
+    });
+  });
+
+  describe("SidePanel.Group", () => {
+    it("should render with multiple sidepanels", () => {
+      const { getAllByTestId } = renderReactTestingLibrary(
+        <SidePanel.Group>
+          <SidePanel onClose={noop} isOpen>
+            <SidePanel.Header>With Header</SidePanel.Header>
+            <SidePanel.Overlay />
+          </SidePanel>
+          <SidePanel onClose={noop} isOpen>
+            <SidePanel.Header>With Header</SidePanel.Header>
+            <SidePanel.Overlay />
+          </SidePanel>
+          <SidePanel onClose={noop} isOpen>
+            <SidePanel.Header kind="primary">With Header</SidePanel.Header>
+            <SidePanel.Overlay />
+          </SidePanel>
+        </SidePanel.Group>
+      );
+
+      expect(getAllByTestId("sidepanel")).toHaveLength(3);
+    });
+
+    it("throws an error when there is only one side panel in a group", () => {
+      const sidePanelGroup = () =>
+        renderReactTestingLibrary(
+          <SidePanel.Group>
+            <SidePanel onClose={noop} isOpen>
+              <SidePanel.Header>With Header</SidePanel.Header>
+              <SidePanel.Overlay />
+            </SidePanel>
+          </SidePanel.Group>
+        );
+      expect(sidePanelGroup).toThrow(Error);
+    });
+
+    it("should trigger onClick when clicking the x button", () => {
+      const noop = jest.fn();
+      const { getAllByTestId } = renderReactTestingLibrary(
+        <SidePanel.Group>
+          <SidePanel onClose={noop} isOpen>
+            <SidePanel.Header>With Header</SidePanel.Header>
+            <SidePanel.Overlay />
+          </SidePanel>
+          <SidePanel onClose={noop} isOpen>
+            <SidePanel.Header>With Header</SidePanel.Header>
+            <SidePanel.Overlay />
+          </SidePanel>
+          <SidePanel onClose={noop} isOpen>
+            <SidePanel.Header kind="primary">With Header</SidePanel.Header>
+            <SidePanel.Overlay />
+          </SidePanel>
+        </SidePanel.Group>
+      );
+      fireEvent.click(getAllByTestId("sidepanel-header-close")[0]);
+      fireEvent.click(getAllByTestId("sidepanel-header-close")[1]);
+      fireEvent.click(getAllByTestId("sidepanel-header-close")[2]);
+
+      expect(noop).toBeCalledTimes(3);
+    });
+  });
 
   describe("SidePanel.Footer", () => {
     it("should included footer", () => {
       const fn = jest.fn();
       const { getByTestId } = render({
         onClose: fn,
-        children: <SidePanel.Footer data-pka-anchor="sidepanel.footer">Footer</SidePanel.Footer>,
+        children: <SidePanel.Footer>Footer</SidePanel.Footer>,
       });
 
       expect(getByTestId("sidepanel.footer")).toBeVisible();
+    });
+  });
+
+  describe("SidePanel.Trigger", () => {
+    it("renders with a default props", () => {
+      const defaultProps = {
+        children: <SidePanel.Trigger>Button</SidePanel.Trigger>,
+      };
+      const { getByRole } = render(defaultProps);
+      expect(getByRole(/button/)).toBeInTheDocument();
     });
   });
 });

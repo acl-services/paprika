@@ -48,7 +48,7 @@ function Pill(props) {
   }
 
   return (
-    <div css={pillStyles} {...styleProps} {...moreProps}>
+    <div css={pillStyles} {...styleProps} {...moreProps} data-pka-anchor="pill">
       <span css={pillTextStyles}>{props.children}</span>
     </div>
   );

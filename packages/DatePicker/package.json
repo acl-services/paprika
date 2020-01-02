@@ -1,26 +1,27 @@
 {
   "name": "@paprika/date-picker",
-  "version": "0.5.7",
+  "version": "0.5.9",
   "description": "DatePicker component",
   "main": "lib/index.js",
   "author": "@paprika",
   "license": "MIT",
   "repository": {
     "type": "git",
-    "url": "https://github.com/acl-services/paprika/tree/master/packages/DatePicker"
+    "url": "https://github.com/acl-services/paprika.git",
+    "directory": "packages/DatePicker"
   },
   "publishConfig": {
     "access": "public"
   },
   "dependencies": {
     "@babel/runtime-corejs2": "^7.3.1",
-    "@paprika/button": "^0.2.6",
+    "@paprika/button": "^0.2.7",
     "@paprika/helpers": "^0.2.6",
-    "@paprika/icon": "^0.2.6",
-    "@paprika/input": "^0.2.6",
-    "@paprika/popover": "^0.3.7",
-    "@paprika/stylers": "^0.2.3",
-    "@paprika/tokens": "^0.1.10",
+    "@paprika/icon": "^0.2.7",
+    "@paprika/input": "^0.2.7",
+    "@paprika/popover": "^0.3.8",
+    "@paprika/stylers": "^0.2.4",
+    "@paprika/tokens": "^0.1.11",
     "prop-types": "^15.7.2",
     "react-dates": "^20.1.0",
     "react-moment-proptypes": "^1.6.0"

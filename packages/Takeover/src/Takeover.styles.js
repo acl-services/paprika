@@ -1,6 +1,5 @@
 import styled, { css } from "styled-components";
 import tokens from "@paprika/tokens";
-import { animationDuration } from "./helpers/tokens";
 import OriginalHeader from "./components/Header";
 
 const openedCss = css`
@@ -27,7 +26,7 @@ export const Wrapper = styled.div`
   position: fixed;
   right: 0;
   top: 0;
-  transition: all ${animationDuration}ms ease;
+  transition: all ${tokens.overlay.animationDuration}ms ease;
   ${({ state }) => states[state]};
 `;
 

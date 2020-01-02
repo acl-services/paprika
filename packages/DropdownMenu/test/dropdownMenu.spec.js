@@ -7,10 +7,14 @@ import DropdownMenu from "../src";
 configure({ testIdAttribute: "data-pka-anchor" });
 
 function renderComponent(props = {}) {
-  const handleConfirm = onCloseMenu => onCloseConfirm => {
-    onCloseConfirm();
+  const handleConfirm = onConfirm => {
+    onConfirm();
+  };
+
+  const handleCloseConfirm = onCloseMenu => () => {
     onCloseMenu();
   };
+
   const renderedComponent = render(
     <L10n>
       <DropdownMenu {...props}>
@@ -24,7 +28,8 @@ function renderComponent(props = {}) {
               <Confirmation
                 body="description"
                 confirmLabel="Confirm Delete"
-                onConfirm={handleConfirm(onCloseMenu)}
+                onConfirm={handleConfirm}
+                onClose={handleCloseConfirm(onCloseMenu)}
                 heading="Delete Button?"
               />
             );

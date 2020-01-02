@@ -11,8 +11,7 @@ import { confirmStyles, confirmBodyStyles, confirmFooterStyles } from "./Confirm
 
 const propTypes = {
   buttonSize: PropTypes.oneOf(ShirtSizes.DEFAULT),
-  /** Children should be a render prop in the form of a function to display trigger */
-  children: PropTypes.func,
+  children: PropTypes.node,
   confirmButtonType: PropTypes.oneOf([Button.Kinds.PRIMARY, Button.Kinds.DESTRUCTIVE]),
   confirmLabel: PropTypes.string.isRequired,
   body: PropTypes.node,
@@ -35,7 +34,7 @@ const defaultProps = {
 };
 
 const Confirmation = props => {
-  const [isConfirmOpen, setIsConfirmOpen] = React.useState(false);
+  const [isConfirmOpen, setIsConfirmOpen] = React.useState(null);
   const {
     heading,
     buttonSize,
@@ -51,7 +50,10 @@ const Confirmation = props => {
   } = props;
   const confirmButtonRef = React.useRef(null);
   const triggerRef = React.useRef(null);
-  const confirmId = React.useRef(uuid());
+  const confirmId = React.useRef(uuid()).current;
+  let popoverKey = uuid();
+
+  const popoverOffset = 4;
 
   const focusConfirmButton = () => {
     if (confirmButtonRef.current) confirmButtonRef.current.focus();
@@ -68,75 +70,86 @@ const Confirmation = props => {
     }
   }, [confirmButtonRef, defaultIsOpen]);
 
-  const triggerProps = {
-    isConfirmOpen,
-    handleOpenConfirm,
-  };
+  React.useEffect(() => {
+    popoverKey = uuid();
+  }, [isPending]);
+
+  React.useEffect(() => {
+    if (isConfirmOpen === false) {
+      if (triggerRef.current) triggerRef.current.focus();
+      setTimeout(onClose, 250);
+    }
+  }, [isConfirmOpen]);
 
   const handleCloseConfirm = () => {
-    if (isConfirmOpen) {
-      setIsConfirmOpen(false);
-      if (triggerRef.current) triggerRef.current.focus();
-      setTimeout(onClose, 0);
-    }
+    setIsConfirmOpen(false);
   };
 
   const handleOnConfirm = () => {
     onConfirm(handleCloseConfirm);
   };
 
-  const renderTrigger = triggerComponent => {
-    // const triggerComponent = renderTriggerFunction(triggerProps);
+  const renderTrigger = () => {
     // wrapping the returned item in a function to avoid needing to tab twice
     // https://github.com/acl-services/paprika/issues/126
     return () =>
-      React.cloneElement(triggerComponent, {
+      React.cloneElement(children, {
+        isConfirmOpen,
+        onOpenConfirm: handleOpenConfirm,
         triggerRef,
-        confirmId: confirmId.current,
+        confirmId,
       });
   };
 
   const I18n = useI18n();
 
-  // note: In future could support a node instead of just function
-  const triggerComponent = children ? children(triggerProps) : null;
+  const popoverContent = (
+    <Popover.Content id={confirmId}>
+      <Popover.Card>
+        <div css={confirmStyles}>
+          {heading && (
+            <Heading displayLevel={5} level={2}>
+              {heading}
+            </Heading>
+          )}
+          {body && <div css={confirmBodyStyles}>{body}</div>}
+          <div css={confirmFooterStyles}>
+            <Button
+              isPending={isPending}
+              isSemantic={false}
+              ref={confirmButtonRef}
+              kind={confirmButtonType}
+              size={buttonSize}
+              onClick={handleOnConfirm}
+            >
+              {confirmLabel}
+            </Button>
+            <Button
+              isDisabled={isPending}
+              isSemantic={false}
+              kind={Button.Kinds.MINOR}
+              size={buttonSize}
+              onClick={handleCloseConfirm}
+            >
+              {I18n.t("actions.cancel")}
+            </Button>
+          </div>
+        </div>
+      </Popover.Card>
+    </Popover.Content>
+  );
 
   return (
-    <Popover isOpen={isConfirmOpen} onClose={handleCloseConfirm} {...moreProps}>
-      {triggerComponent && <Popover.Trigger>{renderTrigger(triggerComponent)}</Popover.Trigger>}
-      <Popover.Content id={confirmId.current}>
-        <Popover.Card>
-          <div css={confirmStyles}>
-            {heading && (
-              <Heading displayLevel={5} level={2}>
-                {heading}
-              </Heading>
-            )}
-            {body && <div css={confirmBodyStyles}>{body}</div>}
-            <div css={confirmFooterStyles}>
-              <Button
-                isPending={isPending}
-                isSemantic={false}
-                ref={confirmButtonRef}
-                kind={confirmButtonType}
-                size={buttonSize}
-                onClick={handleOnConfirm}
-              >
-                {confirmLabel}
-              </Button>
-              <Button
-                isDisabled={isPending}
-                isSemantic={false}
-                kind={Button.Kinds.MINOR}
-                size={buttonSize}
-                onClick={handleCloseConfirm}
-              >
-                {I18n.t("actions.cancel")}
-              </Button>
-            </div>
-          </div>
-        </Popover.Card>
-      </Popover.Content>
+    <Popover
+      key={popoverKey}
+      offset={popoverOffset}
+      isOpen={isConfirmOpen}
+      onClose={handleCloseConfirm}
+      data-pka-anchor="confirmation"
+      {...moreProps}
+    >
+      {children && <Popover.Trigger>{renderTrigger()}</Popover.Trigger>}
+      {popoverContent}
     </Popover>
   );
 };
