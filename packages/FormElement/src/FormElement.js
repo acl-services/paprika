@@ -131,6 +131,14 @@ function FormElement(props) {
     "aria-invalid": hasError,
   };
 
+  const supportedComponents = ["DatePicker", "Input"];
+  const isSupportedComponent = child => {
+    if (child.type && child.type.name) {
+      return supportedComponents.includes(child.type.name);
+    }
+    return false;
+  };
+
   return (
     <div css={formElementStyles} isInline={isInline} size={size} isDisabled={isDisabled} {...moreProps}>
       <Label
@@ -145,22 +153,24 @@ function FormElement(props) {
       <div css={isInline ? inlineContainerStyles : null}>
         {renderInstructions()}
         {extractedChildren.children.map(child => {
-          const extendedProps = isNativeElement(child)
-            ? {
-                ...childExtendedProps,
-                disabled: isDisabled,
-                readOnly: isReadOnly,
-              }
-            : {
-                ...childExtendedProps,
-                hasError,
-                isDisabled,
-                isReadOnly,
-                size,
-                "aria-disabled": isDisabled,
-                "aria-readonly": isReadOnly,
-              };
-
+          let extendedProps = {};
+          if (isNativeElement(child)) {
+            extendedProps = {
+              ...childExtendedProps,
+              disabled: isDisabled,
+              readOnly: isReadOnly,
+            };
+          } else if (isSupportedComponent(child)) {
+            extendedProps = {
+              ...childExtendedProps,
+              hasError,
+              isDisabled,
+              isReadOnly,
+              size,
+              "aria-disabled": isDisabled,
+              "aria-readonly": isReadOnly,
+            };
+          }
           return renderFormElementChild(React.cloneElement(child, extendedProps));
         })}
         {renderFooter()}
