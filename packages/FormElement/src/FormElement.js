@@ -84,6 +84,7 @@ function FormElement(props) {
   const hasError = !!extractedChildren["FormElement.Error"] && !!extractedChildren["FormElement.Error"].props.children;
   const uniqueInputId = React.useRef(uuidv4()).current;
   const inputId = isNil(id) || id === "" ? uniqueInputId : id;
+  const refLabel = React.useRef(null);
 
   function renderFooter() {
     if (hasError) {
@@ -149,6 +150,7 @@ function FormElement(props) {
         isInline={isInline}
         isVisuallyHidden={isLabelVisuallyHidden}
         label={label}
+        ref={refLabel}
       />
       <div css={isInline ? inlineContainerStyles : null}>
         {renderInstructions()}
@@ -163,6 +165,7 @@ function FormElement(props) {
           } else if (isSupportedComponent(child)) {
             extendedProps = {
               ...childExtendedProps,
+              refLabel,
               hasError,
               isDisabled,
               isReadOnly,

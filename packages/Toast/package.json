@@ -7,7 +7,8 @@
   "license": "MIT",
   "repository": {
     "type": "git",
-    "url": "https://github.com/acl-services/paprika/tree/master/packages/Toast"
+    "url": "https://github.com/acl-services/paprika.git",
+    "directory": "packages/Toast"
   },
   "publishConfig": {
     "access": "public"
