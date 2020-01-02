@@ -105,7 +105,35 @@ $leading-scale-ratio: 1.125;
   overflow: hidden;
   padding: 0 !important;
   position: absolute !important;
+  white-space: nowrap;
   width: 1px !important;
+}
+
+@mixin focusIndicator() {
+  box-shadow: $highlight--active--with-border--box-shadow;
+  outline: none;
+}
+
+@mixin insetFocusIndicator() {
+  box-shadow: $highlight--active--with-border--inset-box-shadow;
+  outline: none;
+}
+
+@mixin compositeFocusIndicator() {
+  border-color: $highlight--active--no-border--border-color;
+  box-shadow: $highlight--active--no-border--box-shadow;
+  outline: none;
+}
+
+@mixin compositeInsetFocusIndicator() {
+  border-color: $highlight--active--no-border--border-color;
+  box-shadow: $highlight--active--no-border--inset-box-shadow;
+  outline: none;
+}
+
+@mixin subtleFocusIndicator() {
+  outline: $highlight--active--nonInteractive--outline;
+  outline-offset: -2px;
 }
 
 // Forms

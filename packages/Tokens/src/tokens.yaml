@@ -109,6 +109,8 @@ highlight:
     with-border:
       box-shadow: 0 0 0 1px $color--blue, 0 0 0 3px $color--blue-lighten-30
       inset-box-shadow: inset 0 0 0 1px $color--blue, inset 0 0 0 3px $color--blue-lighten-30
+    non-interactive:
+      outline: 2px dotted $color--black-lighten-30
   text:
     green:
       background: $color--green-lighten-50

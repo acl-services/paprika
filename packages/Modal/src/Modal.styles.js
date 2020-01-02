@@ -85,8 +85,7 @@ export const ContentWrapper = styled.div`
   overflow-y: auto;
 
   &:focus {
-    outline: 2px dotted #8a8a8a;
-    outline-offset: -2px;
+    ${stylers.subtleFocusIndicator};
   }
 `;
 
