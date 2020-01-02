@@ -132,13 +132,23 @@ function FormElement(props) {
     "aria-invalid": hasError,
   };
 
-  const supportedComponents = ["DatePicker", "Input"];
+  const componentNameMap = {
+    DATEPICKER: "DatePicker",
+    INPUT: "Input",
+    LISTBOX: "ListBox",
+  };
+
+  const supportedComponents = [componentNameMap.DATEPICKER, componentNameMap.INPUT, componentNameMap.LISTBOX];
   const isSupportedComponent = child => {
     if (child.type && child.type.name) {
       return supportedComponents.includes(child.type.name);
     }
     return false;
   };
+
+  const objectHasProps = obj => Object.entries(obj).length > 0 && obj.constructor === Object;
+
+  let inputFound = false;
 
   return (
     <div css={formElementStyles} isInline={isInline} size={size} isDisabled={isDisabled} {...moreProps}>
@@ -156,24 +166,33 @@ function FormElement(props) {
         {renderInstructions()}
         {extractedChildren.children.map(child => {
           let extendedProps = {};
-          if (isNativeElement(child)) {
-            extendedProps = {
-              ...childExtendedProps,
-              disabled: isDisabled,
-              readOnly: isReadOnly,
-            };
-          } else if (isSupportedComponent(child)) {
-            extendedProps = {
-              ...childExtendedProps,
-              refLabel,
-              hasError,
-              isDisabled,
-              isReadOnly,
-              size,
-              "aria-disabled": isDisabled,
-              "aria-readonly": isReadOnly,
-            };
+          if (!inputFound) {
+            if (isNativeElement(child)) {
+              extendedProps = {
+                ...childExtendedProps,
+                disabled: isDisabled,
+                readOnly: isReadOnly,
+              };
+            } else if (isSupportedComponent(child)) {
+              extendedProps = {
+                ...childExtendedProps,
+                hasError,
+                isDisabled,
+                isReadOnly,
+                size,
+                "aria-disabled": isDisabled,
+                "aria-readonly": isReadOnly,
+              };
+
+              if (child.type.name === componentNameMap.LISTBOX) {
+                extendedProps.refLabel = refLabel;
+              }
+            }
+            if (objectHasProps(extendedProps)) {
+              inputFound = true;
+            }
           }
+
           return renderFormElementChild(React.cloneElement(child, extendedProps));
         })}
         {renderFooter()}
