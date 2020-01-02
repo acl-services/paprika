@@ -82,10 +82,18 @@ storiesOf("Modal", module)
       }}
     >
       <Modal.Content>
-        <input type="text" deafultValue="your text" />
+        <input type="text" defaultValue="your text" />
       </Modal.Content>
       <Modal.Footer>
-        <Button type="submit">Submit</Button>
+        <Button
+          isSubmit
+          onClick={() => {
+            console.log("clicked");
+          }}
+          isSemantic={false}
+        >
+          Submit
+        </Button>
       </Modal.Footer>
     </Modal>
   ))
