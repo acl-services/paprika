@@ -3,7 +3,7 @@ import tokens from "@paprika/tokens";
 
 export const ContentStyled = styled.div`
   :focus {
-    outline: 2px ${tokens.color.blackLighten40} dotted;
+    outline: 2px ${tokens.color.blackLighten30} dotted;
     z-index: 1;
   }
 `;
