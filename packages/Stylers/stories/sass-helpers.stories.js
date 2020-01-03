@@ -1,3 +1,5 @@
+/* eslint-disable jsx-a11y/no-noninteractive-tabindex */
+
 import React from "react";
 import { storiesOf } from "@storybook/react";
 import { Story, Rule } from "storybook/assets/styles/common.styles";
@@ -36,6 +38,32 @@ storiesOf("Stylers", module)
         <br />
         <input placeholder="placeholder" disabled />
       </Box>
+
+      <h3>Focus Indicators</h3>
+      <h4>
+        <code>@focus-indicator</code>
+      </h4>
+      <div className="focus-box focus-box--default" tabIndex={0} />
+      <h4>
+        <code>@inset-focus-indicator</code>
+      </h4>
+      <div className="focus-box focus-box--inset" tabIndex={0} />
+      <h4>
+        <code>@composite-focus-indicator</code>
+      </h4>
+      <div className="focus-box focus-box--composite" tabIndex={0} />
+      <h4>
+        <code>@composite-inset-focus-indicator</code>
+      </h4>
+      <div className="focus-box focus-box--composite-inset" tabIndex={0} />
+      <h4>
+        <code>@subtle-focus-indicator</code>
+      </h4>
+      <div className="focus-box focus-box--subtle" tabIndex={0} />
+      <h4>
+        <code>@subtle-inset-focus-indicator</code>
+      </h4>
+      <div className="focus-box focus-box--subtle-inset" tabIndex={0} />
     </Story>
   ))
 

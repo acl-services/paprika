@@ -109,34 +109,34 @@ $leading-scale-ratio: 1.125;
   width: 1px !important;
 }
 
-@mixin focusIndicator() {
+@mixin focus-indicator() {
   box-shadow: $highlight--active--with-border--box-shadow;
   outline: none;
 }
 
-@mixin insetFocusIndicator() {
+@mixin inset-focus-indicator() {
   box-shadow: $highlight--active--with-border--inset-box-shadow;
   outline: none;
 }
 
-@mixin compositeFocusIndicator() {
+@mixin composite-focus-indicator() {
   border-color: $highlight--active--no-border--border-color;
   box-shadow: $highlight--active--no-border--box-shadow;
   outline: none;
 }
 
-@mixin compositeInsetFocusIndicator() {
+@mixin composite-inset-focus-indicator() {
   border-color: $highlight--active--no-border--border-color;
   box-shadow: $highlight--active--no-border--inset-box-shadow;
   outline: none;
 }
 
-@mixin subtleFocusIndicator() {
-  outline: $highlight--active--nonInteractive--outline;
+@mixin subtle-focus-indicator() {
+  outline: $highlight--active--non-interactive--outline;
 }
 
-@mixin subtleInsetFocusIndicator() {
-  outline: $highlight--active--nonInteractive--outline;
+@mixin subtle-inset-focus-indicator() {
+  outline: $highlight--active--non-interactive--outline;
   outline-offset: -2px;
 }
 
