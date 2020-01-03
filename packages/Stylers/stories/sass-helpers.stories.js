@@ -41,29 +41,29 @@ storiesOf("Stylers", module)
 
       <h3>Focus Indicators</h3>
       <h4>
-        <code>@focus-indicator</code>
+        <code>@focus-ring()</code>
       </h4>
       <div className="focus-box focus-box--default" tabIndex={0} />
       <h4>
-        <code>@inset-focus-indicator</code>
+        <code>@focus-ring(true)</code>
       </h4>
       <div className="focus-box focus-box--inset" tabIndex={0} />
       <h4>
-        <code>@composite-focus-indicator</code>
+        <code>@focus-ring--bordered()</code>
       </h4>
-      <div className="focus-box focus-box--composite" tabIndex={0} />
+      <div className="focus-box focus-box--bordered" tabIndex={0} />
       <h4>
-        <code>@composite-inset-focus-indicator</code>
+        <code>@focus-ring--bordered(true)</code>
       </h4>
-      <div className="focus-box focus-box--composite-inset" tabIndex={0} />
+      <div className="focus-box focus-box--bordered--inset" tabIndex={0} />
       <h4>
-        <code>@subtle-focus-indicator</code>
+        <code>@focus-ring--subtle()</code>
       </h4>
       <div className="focus-box focus-box--subtle" tabIndex={0} />
       <h4>
-        <code>@subtle-inset-focus-indicator</code>
+        <code>@focus-ring--subtle(true)</code>
       </h4>
-      <div className="focus-box focus-box--subtle-inset" tabIndex={0} />
+      <div className="focus-box focus-box--subtle--inset" tabIndex={0} />
     </Story>
   ))
 

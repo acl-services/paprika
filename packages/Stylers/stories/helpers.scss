@@ -86,44 +86,44 @@
   .focus-box--default {
     &:focus,
     &:hover {
-      @include focus-indicator;
+      @include focus-ring;
     }
   }
 
   .focus-box--inset {
     &:focus,
     &:hover {
-      @include inset-focus-indicator;
+      @include focus-ring(true);
     }
   }
 
-  .focus-box--composite {
+  .focus-box--bordered {
     border: 1px solid $border--color;
     &:focus,
     &:hover {
-      @include composite-focus-indicator;
+      @include focus-ring--bordered;
     }
   }
 
-  .focus-box--composite-inset {
+  .focus-box--bordered--inset {
     border: 1px solid $border--color;
     &:focus,
     &:hover {
-      @include composite-inset-focus-indicator;
+      @include focus-ring--bordered(true);
     }
   }
 
   .focus-box--subtle {
     &:focus,
     &:hover {
-      @include subtle-focus-indicator;
+      @include focus-ring--subtle;
     }
   }
 
-  .focus-box--subtle-inset {
+  .focus-box--subtle--inset {
     &:focus,
     &:hover {
-      @include subtle-inset-focus-indicator;
+      @include focus-ring--subtle(true);
     }
   }
 }

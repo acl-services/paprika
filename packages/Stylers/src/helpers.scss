@@ -109,35 +109,35 @@ $leading-scale-ratio: 1.125;
   width: 1px !important;
 }
 
-@mixin focus-indicator() {
-  box-shadow: $highlight--active--with-border--box-shadow;
-  outline: none;
+@mixin focus-ring($inset: false) {
+  @if $inset {
+    box-shadow: $highlight--active--with-border--inset-box-shadow;
+    outline: none;
+  } @else {
+    box-shadow: $highlight--active--with-border--box-shadow;
+    outline: none;
+  }
 }
 
-@mixin inset-focus-indicator() {
-  box-shadow: $highlight--active--with-border--inset-box-shadow;
-  outline: none;
+@mixin focus-ring--bordered($inset: false) {
+  @if $inset {
+    border-color: $highlight--active--no-border--border-color;
+    box-shadow: $highlight--active--no-border--inset-box-shadow;
+    outline: none;
+  } @else {
+    border-color: $highlight--active--no-border--border-color;
+    box-shadow: $highlight--active--no-border--box-shadow;
+    outline: none;
+  }
 }
 
-@mixin composite-focus-indicator() {
-  border-color: $highlight--active--no-border--border-color;
-  box-shadow: $highlight--active--no-border--box-shadow;
-  outline: none;
-}
-
-@mixin composite-inset-focus-indicator() {
-  border-color: $highlight--active--no-border--border-color;
-  box-shadow: $highlight--active--no-border--inset-box-shadow;
-  outline: none;
-}
-
-@mixin subtle-focus-indicator() {
-  outline: $highlight--active--non-interactive--outline;
-}
-
-@mixin subtle-inset-focus-indicator() {
-  outline: $highlight--active--non-interactive--outline;
-  outline-offset: -2px;
+@mixin focus-ring--subtle($inset: false) {
+  @if $inset {
+    outline: $highlight--active--non-interactive--outline;
+    outline-offset: -2px;
+  } @else {
+    outline: $highlight--active--non-interactive--outline;
+  }
 }
 
 // Forms
