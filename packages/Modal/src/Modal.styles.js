@@ -2,7 +2,6 @@ import styled, { css } from "styled-components";
 import tokens from "@paprika/tokens";
 import stylers from "@paprika/stylers";
 import { ShirtSizes } from "@paprika/helpers/lib/customPropTypes";
-import OriginalOverlay from "@paprika/overlay";
 import OriginalHeader from "./components/Header";
 import OriginalContent from "./components/Content";
 import OriginalFooter from "./components/Footer";
@@ -36,10 +35,11 @@ const states = {
   exited: closedCss,
 };
 
-export const Overlay = styled(OriginalOverlay)`
+export const FocusLock = styled.div`
   align-items: center;
   display: flex;
   flex-direction: column;
+  height: 100%;
 
   &::before,
   &::after {
