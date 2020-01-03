@@ -86,34 +86,34 @@ function Toast(props) {
 
   const [isToastOpen, setIsToastOpen] = React.useState(isOpen === undefined ? true : isOpen);
   const [shouldRender, setShouldRender] = React.useState(!isPolite);
-  let autoCloseTimer = React.useRef(null).current;
-  let renderTimer = React.useRef(null).current;
+  const autoCloseTimer = React.useRef(null);
+  const renderTimer = React.useRef(null);
   const ariaRole = isPolite ? "status" : "alert";
   const defaultZIndex = isFixed ? zValue(7) : null;
   const isVisuallyHidden = kind === Kinds.VISUALLY_HIDDEN;
 
   const memoizedStartAutoCloseTimer = React.useCallback(() => {
     function handleDelayedClose() {
-      clearTimeout(autoCloseTimer);
+      clearTimeout(autoCloseTimer.current);
       if (isOpen === undefined) setIsToastOpen(false);
       onClose();
     }
 
-    autoCloseTimer = setTimeout(handleDelayedClose, Math.max(autoCloseDelay, minimumCloseTimeout));
+    autoCloseTimer.current = setTimeout(handleDelayedClose, Math.max(autoCloseDelay, minimumCloseTimeout));
   }, [autoCloseDelay, isOpen, onClose]);
 
   const memoizedStartRenderTimer = React.useCallback(() => {
     function handleDelayedRender() {
-      clearTimeout(renderTimer);
+      clearTimeout(renderTimer.current);
       setShouldRender(true);
     }
 
-    renderTimer = setTimeout(handleDelayedRender, renderTimeout);
+    renderTimer.current = setTimeout(handleDelayedRender, renderTimeout);
   }, [isPolite]);
 
   function handleClose() {
-    if (autoCloseTimer) clearTimeout(autoCloseTimer);
-    if (renderTimer) clearTimeout(renderTimer);
+    if (autoCloseTimer.current) clearTimeout(autoCloseTimer.current);
+    if (renderTimer.current) clearTimeout(renderTimer.current);
 
     if (isOpen === undefined) {
       setIsToastOpen(false);
@@ -155,7 +155,7 @@ function Toast(props) {
     if (canAutoClose || isVisuallyHidden) {
       memoizedStartAutoCloseTimer();
       return () => {
-        clearTimeout(autoCloseTimer);
+        clearTimeout(autoCloseTimer.current);
       };
     }
   }, [canAutoClose, isVisuallyHidden, memoizedStartAutoCloseTimer]);
@@ -164,7 +164,7 @@ function Toast(props) {
     if (isPolite && isToastOpen) {
       memoizedStartRenderTimer();
       return () => {
-        clearTimeout(renderTimer);
+        clearTimeout(renderTimer.current);
       };
     }
   }, [isPolite, isToastOpen, memoizedStartRenderTimer]);
