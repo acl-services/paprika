@@ -11,6 +11,7 @@ import CloseButtonRef from "./examples/CloseButtonRef";
 import CommonButtons from "./examples/CommonButtons";
 import ButtonStates from "./examples/ButtonStates";
 import ButtonVariations from "./examples/ButtonVariations";
+import ButtonSubmit from "./examples/ButtonSubmit";
 
 storiesOf("Button", module)
   .addDecorator(withKnobs)
@@ -20,7 +21,8 @@ storiesOf("Button/Examples", module)
   .add("Basic", () => <Basic />)
   .add("Ref", () => <NewRef />)
   .add("Old Ref", () => <OldRef />)
-  .add("Button.Close Ref", () => <CloseButtonRef />);
+  .add("Button.Close Ref", () => <CloseButtonRef />)
+  .add("Button onSubmit", () => <ButtonSubmit />);
 
 storiesOf("Button/Starling", module)
   .add("Common Buttons", () => <CommonButtons />)
