@@ -12,6 +12,7 @@
     "@paprika/raw-button": "^0.2.4",
     "@paprika/stylers": "^0.2.4",
     "@paprika/tokens": "^0.1.11",
+    "nanoid": "^2.1.8",
     "prop-types": "15.7.2",
     "uuid": "^3.3.2"
   },
@@ -25,7 +26,8 @@
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/acl-services/paprika/tree/master/packages/listbox"
+    "url": "https://github.com/acl-services/paprika.git",
+    "directory": "packages/ListBox"
   },
   "publishConfig": {
     "access": "public"
