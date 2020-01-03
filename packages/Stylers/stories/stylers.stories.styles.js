@@ -80,3 +80,53 @@ export const ZStep = styled.span`
 
   ${zStyles}
 `;
+
+export const FocusBox = styled.div`
+  background: ${tokens.color.blackLighten70};
+  height: ${stylers.spacer(4)};
+  width: ${stylers.spacer(4)};
+`;
+
+FocusBox.focusIndicator = styled(FocusBox)`
+  &:focus,
+  &:hover {
+    ${stylers.focusIndicator};
+  }
+`;
+
+FocusBox.insetFocusIndicator = styled(FocusBox)`
+  &:focus,
+  &:hover {
+    ${stylers.insetFocusIndicator};
+  }
+`;
+
+FocusBox.compositeFocusIndicator = styled(FocusBox)`
+  border: 1px solid ${tokens.border.color};
+  &:focus,
+  &:hover {
+    ${stylers.compositeFocusIndicator}
+  }
+`;
+
+FocusBox.compositeInsetFocusIndicator = styled(FocusBox)`
+  border: 1px solid ${tokens.border.color};
+  &:focus,
+  &:hover {
+    ${stylers.compositeInsetFocusIndicator}
+  }
+`;
+
+FocusBox.subtleFocusIndicator = styled(FocusBox)`
+  &:focus,
+  &:hover {
+    ${stylers.subtleFocusIndicator};
+  }
+`;
+
+FocusBox.subtleInsetFocusIndicator = styled(FocusBox)`
+  &:focus,
+  &:hover {
+    ${stylers.subtleInsetFocusIndicator};
+  }
+`;

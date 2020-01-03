@@ -12,6 +12,7 @@ import {
   LeadingStep,
   ZBox,
   ZStep,
+  FocusBox,
 } from "./stylers.stories.styles";
 
 storiesOf("Stylers", module)
@@ -47,6 +48,32 @@ storiesOf("Stylers", module)
         <br />
         <InputWithPlaceholder placeholder="placeholder" disabled />
       </Box>
+
+      <h3>Focus Indicators</h3>
+      <h4>
+        <code>stylers.focusIndicator</code>
+      </h4>
+      <FocusBox.focusIndicator tabIndex={0} />
+      <h4>
+        <code>stylers.insetFocusIndicator</code>
+      </h4>
+      <FocusBox.insetFocusIndicator tabIndex={0} />
+      <h4>
+        <code>stylers.compositeFocusIndicator</code>
+      </h4>
+      <FocusBox.compositeFocusIndicator tabIndex={0} />
+      <h4>
+        <code>stylers.compositeInsetFocusIndicator</code>
+      </h4>
+      <FocusBox.compositeInsetFocusIndicator tabIndex={0} />
+      <h4>
+        <code>stylers.subtleFocusIndicator</code>
+      </h4>
+      <FocusBox.subtleFocusIndicator tabIndex={0} />
+      <h4>
+        <code>stylers.subtleInsetFocusIndicator</code>
+      </h4>
+      <FocusBox.subtleInsetFocusIndicator tabIndex={0} />
     </Story>
   ))
 
