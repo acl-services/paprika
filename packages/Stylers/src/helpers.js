@@ -1,3 +1,4 @@
+import { css } from "styled-components";
 import tokens from "@paprika/tokens";
 
 //
@@ -60,3 +61,44 @@ export function rgb(hex) {
 export function alpha(colorValue, alphaValue = 1) {
   return `rgba(${rgb(colorValue)}, ${alphaValue})`;
 }
+
+//
+// Accessibility
+//
+
+export const focusRing = (inset = false) => {
+  return inset === true
+    ? css`
+        box-shadow: ${tokens.highlight.active.withBorder.insetBoxShadow};
+        outline: none;
+      `
+    : css`
+        box-shadow: ${tokens.highlight.active.withBorder.boxShadow};
+        outline: none;
+      `;
+};
+
+focusRing.bordered = (inset = false) => {
+  return inset === true
+    ? css`
+        border-color: ${tokens.highlight.active.noBorder.borderColor};
+        box-shadow: ${tokens.highlight.active.noBorder.insetBoxShadow};
+        outline: none;
+      `
+    : css`
+        border-color: ${tokens.highlight.active.noBorder.borderColor};
+        box-shadow: ${tokens.highlight.active.noBorder.boxShadow};
+        outline: none;
+      `;
+};
+
+focusRing.subtle = (inset = false) => {
+  return inset === true
+    ? css`
+        outline: ${tokens.highlight.active.nonInteractive.outline};
+        outline-offset: -2px;
+      `
+    : css`
+        outline: ${tokens.highlight.active.nonInteractive.outline};
+      `;
+};

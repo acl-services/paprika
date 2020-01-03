@@ -51,37 +51,6 @@ export const visuallyHidden = css`
   width: 1px !important;
 `;
 
-export const focusIndicator = css`
-  box-shadow: ${tokens.highlight.active.withBorder.boxShadow};
-  outline: none;
-`;
-
-export const insetFocusIndicator = css`
-  box-shadow: ${tokens.highlight.active.withBorder.insetBoxShadow};
-  outline: none;
-`;
-
-export const compositeFocusIndicator = css`
-  border-color: ${tokens.highlight.active.noBorder.borderColor};
-  box-shadow: ${tokens.highlight.active.noBorder.boxShadow};
-  outline: none;
-`;
-
-export const compositeInsetFocusIndicator = css`
-  border-color: ${tokens.highlight.active.noBorder.borderColor};
-  box-shadow: ${tokens.highlight.active.noBorder.insetBoxShadow};
-  outline: none;
-`;
-
-export const subtleFocusIndicator = css`
-  outline: ${tokens.highlight.active.nonInteractive.outline};
-`;
-
-export const subtleInsetFocusIndicator = css`
-  outline: ${tokens.highlight.active.nonInteractive.outline};
-  outline-offset: -2px;
-`;
-
 //
 // Forms
 //

@@ -1,6 +1,6 @@
 import styled from "styled-components";
 import tokens from "@paprika/tokens";
-import stylers from "@paprika/stylers";
+import stylers from "../src";
 
 export const Box = styled.div`
   border: 1px solid ${tokens.border.color};
@@ -87,46 +87,46 @@ export const FocusBox = styled.div`
   width: ${stylers.spacer(4)};
 `;
 
-FocusBox.focusIndicator = styled(FocusBox)`
+FocusBox.default = styled(FocusBox)`
   &:focus,
   &:hover {
-    ${stylers.focusIndicator};
+    ${stylers.focusRing};
   }
 `;
 
-FocusBox.insetFocusIndicator = styled(FocusBox)`
+FocusBox.inset = styled(FocusBox)`
   &:focus,
   &:hover {
-    ${stylers.insetFocusIndicator};
+    ${stylers.focusRing(true)};
   }
 `;
 
-FocusBox.compositeFocusIndicator = styled(FocusBox)`
+FocusBox.bordered = styled(FocusBox)`
   border: 1px solid ${tokens.border.color};
   &:focus,
   &:hover {
-    ${stylers.compositeFocusIndicator}
+    ${stylers.focusRing.bordered}
   }
 `;
 
-FocusBox.compositeInsetFocusIndicator = styled(FocusBox)`
+FocusBox.bordered.inset = styled(FocusBox)`
   border: 1px solid ${tokens.border.color};
   &:focus,
   &:hover {
-    ${stylers.compositeInsetFocusIndicator}
+    ${stylers.focusRing.bordered(true)}
   }
 `;
 
-FocusBox.subtleFocusIndicator = styled(FocusBox)`
+FocusBox.subtle = styled(FocusBox)`
   &:focus,
   &:hover {
-    ${stylers.subtleFocusIndicator};
+    ${stylers.focusRing.subtle}
   }
 `;
 
-FocusBox.subtleInsetFocusIndicator = styled(FocusBox)`
+FocusBox.subtle.inset = styled(FocusBox)`
   &:focus,
   &:hover {
-    ${stylers.subtleInsetFocusIndicator};
+    ${stylers.focusRing.subtle(true)}
   }
 `;

@@ -19,6 +19,7 @@ storiesOf("Stylers", module)
   .add("JS Include Examples", () => (
     <Story>
       <h1>Includes</h1>
+
       <h4>
         <code>stylers.truncateText()</code>
       </h4>
@@ -48,38 +49,13 @@ storiesOf("Stylers", module)
         <br />
         <InputWithPlaceholder placeholder="placeholder" disabled />
       </Box>
-
-      <h3>Focus Indicators</h3>
-      <h4>
-        <code>stylers.focusIndicator</code>
-      </h4>
-      <FocusBox.focusIndicator tabIndex={0} />
-      <h4>
-        <code>stylers.insetFocusIndicator</code>
-      </h4>
-      <FocusBox.insetFocusIndicator tabIndex={0} />
-      <h4>
-        <code>stylers.compositeFocusIndicator</code>
-      </h4>
-      <FocusBox.compositeFocusIndicator tabIndex={0} />
-      <h4>
-        <code>stylers.compositeInsetFocusIndicator</code>
-      </h4>
-      <FocusBox.compositeInsetFocusIndicator tabIndex={0} />
-      <h4>
-        <code>stylers.subtleFocusIndicator</code>
-      </h4>
-      <FocusBox.subtleFocusIndicator tabIndex={0} />
-      <h4>
-        <code>stylers.subtleInsetFocusIndicator</code>
-      </h4>
-      <FocusBox.subtleInsetFocusIndicator tabIndex={0} />
     </Story>
   ))
 
   .add("JS Helper Examples", () => (
     <Story>
       <h1>Helpers</h1>
+
       <h4>
         <code>stylers.fontSize()</code>
       </h4>
@@ -138,6 +114,7 @@ storiesOf("Stylers", module)
         </FontStep>
       </FontScale>
       <Rule />
+
       <h4>
         <code>stylers.lineHeight()</code>
       </h4>
@@ -170,6 +147,7 @@ storiesOf("Stylers", module)
         <br /> Hexagon street art selfies locavore ethical mixtape.
       </LeadingStep>
       <Rule />
+
       <h4>
         <code>stylers.z()</code>
       </h4>
@@ -180,5 +158,31 @@ storiesOf("Stylers", module)
           </ZStep>
         ))}
       </ZBox>
+
+      <h3>Focus Indicators</h3>
+      <h4>
+        <code>stylers.focusRing()</code>
+      </h4>
+      <FocusBox.default tabIndex={0} />
+      <h4>
+        <code>stylers.focusRing(true)</code>
+      </h4>
+      <FocusBox.inset tabIndex={0} />
+      <h4>
+        <code>stylers.focusRing.bordered()</code>
+      </h4>
+      <FocusBox.bordered tabIndex={0} />
+      <h4>
+        <code>stylers.focusRing.bordered(true)</code>
+      </h4>
+      <FocusBox.bordered.inset tabIndex={0} />
+      <h4>
+        <code>stylers.focusRing.subtle()</code>
+      </h4>
+      <FocusBox.subtle tabIndex={0} />
+      <h4>
+        <code>stylers.focusRing.subtle(true)</code>
+      </h4>
+      <FocusBox.subtle.inset tabIndex={0} />
     </Story>
   ));
