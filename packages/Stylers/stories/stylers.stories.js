@@ -53,6 +53,34 @@ storiesOf("Stylers", module)
         <br />
         <InputWithPlaceholder placeholder="placeholder" disabled />
       </Box>
+
+      <Rule />
+
+      <h3>Focus Indicators</h3>
+      <h4>
+        <code>stylers.focusRing()</code>
+      </h4>
+      <FocusBox.default tabIndex={0} />
+      <h4>
+        <code>stylers.focusRing(true)</code>
+      </h4>
+      <FocusBox.inset tabIndex={0} />
+      <h4>
+        <code>stylers.focusRing.bordered()</code>
+      </h4>
+      <FocusBox.bordered tabIndex={0} />
+      <h4>
+        <code>stylers.focusRing.bordered(true)</code>
+      </h4>
+      <FocusBox.bordered.inset tabIndex={0} />
+      <h4>
+        <code>stylers.focusRing.subtle()</code>
+      </h4>
+      <FocusBox.subtle tabIndex={0} />
+      <h4>
+        <code>stylers.focusRing.subtle(true)</code>
+      </h4>
+      <FocusBox.subtle.inset tabIndex={0} />
     </Story>
   ))
 
@@ -153,8 +181,6 @@ storiesOf("Stylers", module)
       </LeadingStep>
       <Rule />
 
-      <Rule />
-
       <h4>
         <code>stylers.z()</code>
       </h4>
@@ -165,33 +191,5 @@ storiesOf("Stylers", module)
           </ZStep>
         ))}
       </ZBox>
-
-      <Rule />
-
-      <h3>Focus Indicators</h3>
-      <h4>
-        <code>stylers.focusRing()</code>
-      </h4>
-      <FocusBox.default tabIndex={0} />
-      <h4>
-        <code>stylers.focusRing(true)</code>
-      </h4>
-      <FocusBox.inset tabIndex={0} />
-      <h4>
-        <code>stylers.focusRing.bordered()</code>
-      </h4>
-      <FocusBox.bordered tabIndex={0} />
-      <h4>
-        <code>stylers.focusRing.bordered(true)</code>
-      </h4>
-      <FocusBox.bordered.inset tabIndex={0} />
-      <h4>
-        <code>stylers.focusRing.subtle()</code>
-      </h4>
-      <FocusBox.subtle tabIndex={0} />
-      <h4>
-        <code>stylers.focusRing.subtle(true)</code>
-      </h4>
-      <FocusBox.subtle.inset tabIndex={0} />
     </Story>
   ));

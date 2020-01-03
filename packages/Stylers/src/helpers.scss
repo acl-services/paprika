@@ -109,6 +109,8 @@ $leading-scale-ratio: 1.125;
   width: 1px !important;
 }
 
+// Focus Indicators
+
 @mixin focus-ring($inset: false) {
   @if $inset {
     box-shadow: $highlight--active--with-border--inset-box-shadow;
