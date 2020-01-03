@@ -42,6 +42,9 @@ const handleBlur = (state, dispatch) => () => {
   });
 };
 
+const handleContentFocusChange = (hasFocus, dispatch) =>
+  dispatch({ type: useListBox.types.setListBoxHasFocus, payload: { hasFocus } });
+
 export default function Content(props) {
   const [state, dispatch] = useListBox();
   const { refListBoxContainer } = state;
@@ -51,6 +54,12 @@ export default function Content(props) {
     return (
       <ContentStyled
         {...getDOMAttributesForListBoxContainer({ isInline: true })}
+        onFocus={() => {
+          handleContentFocusChange(true, dispatch);
+        }}
+        onBlur={() => {
+          handleContentFocusChange(false, dispatch);
+        }}
         onKeyDown={handleKeyboardKeys(state, dispatch)}
         ref={refListBoxContainer}
         data-pka-anchor="listbox-content-inline"
