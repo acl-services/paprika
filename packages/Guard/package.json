@@ -1,6 +1,6 @@
 {
   "name": "@paprika/guard",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "Guard component helps to prevent a user from losing unsaved data",
   "author": "@paprika",
   "main": "lib/index.js",

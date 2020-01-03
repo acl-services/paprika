@@ -1,6 +1,6 @@
 {
   "name": "@paprika/collapsible-text",
-  "version": "0.2.7",
+  "version": "0.2.8",
   "description": "CollapsibleText component",
   "author": "@paprika",
   "license": "MIT",
@@ -15,8 +15,8 @@
   },
   "dependencies": {
     "@babel/runtime-corejs2": "^7.3.1",
-    "@paprika/button": "^0.2.7",
-    "@paprika/tokens": "^0.1.11",
+    "@paprika/button": "^0.2.8",
+    "@paprika/tokens": "^0.1.12",
     "lodash.truncate": "^4.4.2",
     "prop-types": "^15.7.2",
     "uuid": "^3.3.2"
