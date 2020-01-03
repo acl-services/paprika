@@ -90,7 +90,7 @@ const toastStyles = css`
   ${stylers.fontSize()}
   ${stylers.lineHeight()}
   ${({ isFixed }) => isFixed && fixedStyles}
-  ${({ kind }) => kind === "visually-hidden" && visuallyHidden}
+  ${({ kind }) => kind === Kinds.VISUALLY_HIDDEN && visuallyHidden}
 `;
 
 export default toastStyles;

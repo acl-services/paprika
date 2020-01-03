@@ -47,7 +47,7 @@ const propTypes = {
 
 const defaultProps = {
   canAutoClose: false,
-  autoCloseDelay: 1500,
+  autoCloseDelay: 5000,
   children: null,
   hasCloseButton: true,
   isOpen: undefined,
@@ -59,7 +59,6 @@ const defaultProps = {
 };
 
 const minimumCloseTimeout = 1500;
-
 const renderTimeout = 20;
 
 const icons = {
@@ -91,6 +90,7 @@ function Toast(props) {
   let renderTimer = React.useRef(null).current;
   const ariaRole = isPolite ? "status" : "alert";
   const defaultZIndex = isFixed ? zValue(7) : null;
+  const isVisuallyHidden = kind === Kinds.VISUALLY_HIDDEN;
 
   const memoizedStartAutoCloseTimer = React.useCallback(() => {
     function handleDelayedClose() {
@@ -125,8 +125,6 @@ function Toast(props) {
   function renderContent() {
     if (!shouldRender) return null;
 
-    const isVisuallyHidden = kind === Kinds.VISUALLY_HIDDEN;
-
     return (
       <>
         {!isVisuallyHidden && <IconStyled as={icons[kind]} kind={kind} />}
@@ -154,13 +152,13 @@ function Toast(props) {
   }
 
   React.useEffect(() => {
-    if (canAutoClose) {
+    if (canAutoClose || isVisuallyHidden) {
       memoizedStartAutoCloseTimer();
       return () => {
         clearTimeout(autoCloseTimer);
       };
     }
-  }, [canAutoClose, memoizedStartAutoCloseTimer]);
+  }, [canAutoClose, isVisuallyHidden, memoizedStartAutoCloseTimer]);
 
   React.useEffect(() => {
     if (isPolite && isToastOpen) {
@@ -179,8 +177,8 @@ function Toast(props) {
 
   React.useEffect(() => {
     if (isOpen === undefined) return;
-    if (isOpen !== isToastOpen && !canAutoClose) setIsToastOpen(isOpen);
-  }, [isOpen, isToastOpen, canAutoClose]);
+    if (isOpen !== isToastOpen && !canAutoClose && !isVisuallyHidden) setIsToastOpen(isOpen);
+  }, [isOpen, isToastOpen, canAutoClose, isVisuallyHidden]);
 
   if (!isToastOpen) return null;
 
