@@ -85,7 +85,7 @@ export const ContentWrapper = styled.div`
   overflow-y: auto;
 
   &:focus {
-    ${stylers.subtleFocusIndicator};
+    ${stylers.subtleInsetFocusIndicator};
   }
 `;
 

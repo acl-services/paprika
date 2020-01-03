@@ -133,6 +133,10 @@ $leading-scale-ratio: 1.125;
 
 @mixin subtleFocusIndicator() {
   outline: $highlight--active--nonInteractive--outline;
+}
+
+@mixin subtleInsetFocusIndicator() {
+  outline: $highlight--active--nonInteractive--outline;
   outline-offset: -2px;
 }
 

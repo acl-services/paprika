@@ -75,6 +75,10 @@ export const compositeInsetFocusIndicator = css`
 
 export const subtleFocusIndicator = css`
   outline: ${tokens.highlight.active.nonInteractive.outline};
+`;
+
+export const subtleInsetFocusIndicator = css`
+  outline: ${tokens.highlight.active.nonInteractive.outline};
   outline-offset: -2px;
 `;
 
