@@ -1,6 +1,6 @@
 import tokens from "@paprika/tokens";
 import stylers from "@paprika/stylers";
-import { createGlobalStyle, css, keyframes } from "styled-components";
+import { css, keyframes } from "styled-components";
 import { ShirtSizes } from "@paprika/helpers/lib/customPropTypes";
 import Kinds from "./ButtonKinds";
 
@@ -28,11 +28,17 @@ const commonStyles = `
     outline: none;
   }
 
+  [data-whatinput="mouse"] &:focus {
+    box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.1);
+    border-color: ${tokens.border.color};
+  }
+
   &:active {
     box-shadow: ${tokens.highlight.active.noBorder.boxShadow}, inset 0 1px 1px 0 rgba(0, 0, 0, 0.1),
       inset 0 1px 4px 0 rgba(0, 0, 0, 0.3);
     transform: scale(0.98);
   }
+
 `;
 
 const skeuomorphicStyles = `
@@ -265,13 +271,6 @@ function getIconColor(props) {
   if (props.isDisabled) return tokens.color.blackDisabled;
   return iconColors[props.kind];
 }
-
-export const GlobalStyle = createGlobalStyle`
-  [data-whatinput="mouse"] [data-pka-type="button"]:focus {
-    box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.1);
-    border-color: ${tokens.border.color};
-  }
-`;
 
 export const iconStyles = props => css`
   align-items: center;

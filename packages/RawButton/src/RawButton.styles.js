@@ -1,4 +1,4 @@
-import { createGlobalStyle, css } from "styled-components";
+import { css } from "styled-components";
 import tokens from "@paprika/tokens";
 
 const focusStyle = tokens.highlight.active.withBorder.boxShadow;
@@ -9,18 +9,16 @@ const focusStyles = isInset => css`
     box-shadow: ${isInset ? insetFocusStyle : focusStyle};
     outline: none;
   }
+
+  [data-whatinput="mouse"] &:focus {
+    box-shadow: none;
+  }
 `;
 
 const disabledStyles = css`
   cursor: not-allowed;
 
   &:focus {
-    box-shadow: none;
-  }
-`;
-
-export const GlobalStyle = createGlobalStyle`
-  [data-whatinput="mouse"] [data-pka-type="raw-button"]:focus {
     box-shadow: none;
   }
 `;

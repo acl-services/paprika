@@ -5,7 +5,7 @@ import RawButton from "@paprika/raw-button";
 import RefreshIcon from "@paprika/icon/lib/Refresh";
 import DownIcon from "@paprika/icon/lib/CaretDown";
 import { ShirtSizes } from "@paprika/helpers/lib/customPropTypes";
-import buttonStyles, { GlobalStyle, iconStyles } from "./Button.styles";
+import buttonStyles, { iconStyles } from "./Button.styles";
 
 import Kinds from "./ButtonKinds";
 
@@ -161,24 +161,15 @@ const Button = React.forwardRef((props, ref) => {
   };
 
   return (
-    <React.Fragment>
-      <GlobalStyle />
-      <span
-        css={buttonStyles}
-        data-pka-anchor="button"
-        {...buttonProps}
-        data-pka-type="button"
-        as={isSemantic ? "button" : RawButton}
-      >
-        <ButtonIcon {...iconProps} isPending={isPending} data-pka-anchor="button.icon">
-          {isPending ? <RefreshIcon /> : icon}
-        </ButtonIcon>
-        {children}
-        <ButtonIcon {...iconProps} isDropdown data-pka-anchor="button.icon">
-          {isDropdown && <DownIcon />}
-        </ButtonIcon>
-      </span>
-    </React.Fragment>
+    <span css={buttonStyles} data-pka-anchor="button" {...buttonProps} as={isSemantic ? "button" : RawButton}>
+      <ButtonIcon {...iconProps} isPending={isPending} data-pka-anchor="button.icon">
+        {isPending ? <RefreshIcon /> : icon}
+      </ButtonIcon>
+      {children}
+      <ButtonIcon {...iconProps} isDropdown data-pka-anchor="button.icon">
+        {isDropdown && <DownIcon />}
+      </ButtonIcon>
+    </span>
   );
 });
 
