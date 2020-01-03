@@ -12,6 +12,7 @@ describe("Toast", () => {
         Content
       </Toast>
     );
+
     const rerenderComponent = newProps => {
       renderedComponent.rerender(
         <Toast {...newProps} data-pka-anchor="Toast">
@@ -30,7 +31,7 @@ describe("Toast", () => {
     const { getByText, getByTestId, getByLabelText } = renderComponent();
 
     expect(getByText(/content/i)).toBeVisible();
-    expect(getByTestId("Toast")).toHaveAttribute("role", "status");
+    expect(getByTestId("Toast")).toHaveAttribute("role", "alert");
     expect(getByLabelText(/close/i)).toBeVisible();
   });
 
@@ -43,7 +44,7 @@ describe("Toast", () => {
     expect(handleClose).toHaveBeenCalledTimes(1);
   });
 
-  it("should controlled by props", () => {
+  it("should be controlled by props", () => {
     const handleClose = jest.fn();
     const { getByText, queryByText, rerenderComponent } = renderComponent({ isOpen: true, onClose: handleClose });
 
@@ -65,8 +66,13 @@ describe("Toast", () => {
     expect(handleClose).toHaveBeenCalledTimes(1);
   });
 
-  it("should render as role alert if isPolite is false", () => {
-    const { getByTestId } = renderComponent({ isPolite: false });
-    expect(getByTestId("Toast")).toHaveAttribute("role", "alert");
+  it("should render after delay as role status if isPolite", () => {
+    const { getByText, getByTestId } = renderComponent({ isPolite: true });
+
+    act(() => {
+      jest.runAllTimers();
+    });
+    expect(getByText(/content/i)).toBeVisible();
+    expect(getByTestId("Toast")).toHaveAttribute("role", "status");
   });
 });

@@ -52,7 +52,7 @@ const defaultProps = {
   hasCloseButton: true,
   isOpen: undefined,
   isFixed: false,
-  isPolite: true,
+  isPolite: false,
   kind: Kinds.INFO,
   onClose: () => {},
   zIndex: null,
