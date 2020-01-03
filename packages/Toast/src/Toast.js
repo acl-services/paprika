@@ -1,6 +1,7 @@
 import React from "react";
 import PropTypes from "prop-types";
 import { ShirtSizes } from "@paprika/helpers/lib/customPropTypes";
+import { zValue } from "@paprika/stylers/lib/helpers";
 import CheckIcon from "@paprika/icon/lib/Check";
 import CautionIcon from "@paprika/icon/lib/Caution";
 import ExclamationCircleIcon from "@paprika/icon/lib/ExclamationCircle";
@@ -61,8 +62,6 @@ const minimumCloseTimeout = 1500;
 
 const renderTimeout = 20;
 
-const zIndexPlaceholder = 10;
-
 const icons = {
   [Kinds.SUCCESS]: CheckIcon,
   [Kinds.WARNING]: CautionIcon,
@@ -86,12 +85,12 @@ function Toast(props) {
     ...moreProps
   } = props;
 
-  const ariaRole = isPolite ? "status" : "alert";
   const [isToastOpen, setIsToastOpen] = React.useState(isOpen === undefined ? true : isOpen);
   const [shouldRender, setShouldRender] = React.useState(!isPolite);
   let autoCloseTimer = React.useRef(null).current;
   let renderTimer = React.useRef(null).current;
-  const defaultZIndex = isFixed ? zIndexPlaceholder : null;
+  const ariaRole = isPolite ? "status" : "alert";
+  const defaultZIndex = isFixed ? zValue(7) : null;
 
   const memoizedStartAutoCloseTimer = React.useCallback(() => {
     function handleDelayedClose() {
@@ -146,7 +145,7 @@ function Toast(props) {
         isFixed={isFixed}
         role={ariaRole}
         kind={kind}
-        zIndex={zIndex !== null ? zIndex : defaultZIndex}
+        zIndex={zIndex || defaultZIndex}
         {...moreProps}
       >
         {renderContent()}

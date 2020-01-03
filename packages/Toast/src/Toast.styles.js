@@ -1,10 +1,8 @@
 import styled, { css } from "styled-components";
-
 import stylers from "@paprika/stylers";
 import tokens from "@paprika/tokens";
 import Button from "@paprika/button";
 import { visuallyHidden } from "@paprika/stylers/lib/includes";
-
 import Kinds from "./ToastKinds";
 
 const backgroundColors = {
