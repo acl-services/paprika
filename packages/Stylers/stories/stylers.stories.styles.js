@@ -68,15 +68,15 @@ export const ZBox = styled(Box)`
 `;
 
 export const ZStep = styled.span`
-  position: absolute;
-  width: ${stylers.spacer(6)};
-  height: ${stylers.spacer(6)};
-  margin: ${tokens.space} 0 0 ${tokens.space};
-  background: rgba(164, 164, 164, 0.9); // TODO: need rgba mixin
+  background: ${stylers.alpha(tokens.color.blackLighten40, 0.8)};
   border: 1px solid ${tokens.color.blackLighten20};
   color: ${tokens.color.white};
+  height: ${stylers.spacer(6)};
   line-height: ${stylers.spacer(6)};
+  margin: ${tokens.space} 0 0 ${tokens.space};
+  position: absolute;
   text-align: center;
+  width: ${stylers.spacer(6)};
 
   ${zStyles}
 `;

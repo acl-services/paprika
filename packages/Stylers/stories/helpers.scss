@@ -57,15 +57,15 @@
     height: $space * 15;
 
     > span {
-      position: absolute;
-      width: $space * 6;
-      height: $space * 6;
-      margin: $space 0 0 $space;
-      background: rgba($color--black-lighten-40, 0.9);
+      background: rgba($color--black-lighten-40, 0.8);
       border: 1px solid $color--black-lighten-20;
       color: $color--white;
+      height: $space * 6;
       line-height: $space * 6;
+      margin: $space 0 0 $space;
+      position: absolute;
       text-align: center;
+      width: $space * 6;
 
       @for $i from 0 through 7 {
         &:nth-child(#{$i + 1}) {
