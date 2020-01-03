@@ -6,10 +6,11 @@ import { Story, Rule } from "storybook/assets/styles/common.styles";
 import { Box } from "./stylers.stories.styles";
 import "./helpers.scss";
 
-storiesOf("Stylers", module)
-  .add("Sass Mixins", () => (
+storiesOf("Stylers/Sass", module)
+  .add("Mixins", () => (
     <Story className="story--stylers">
       <h1>Mixin Examples</h1>
+
       <h4>
         <code>@truncate-text</code>
       </h4>
@@ -22,6 +23,9 @@ storiesOf("Stylers", module)
       <Box className="truncated-box untruncated-box">
         Lorem ipsum hexagon street art paleo selfies locavore ethical single-origin vaporware mixtape.
       </Box>
+
+      <Rule />
+
       <h4>
         <code>@is-visually-hidden</code>
       </h4>
@@ -30,6 +34,9 @@ storiesOf("Stylers", module)
           👻
         </span>
       </Box>
+
+      <Rule />
+
       <h4>
         <code>@placeholders</code>
       </h4>
@@ -38,6 +45,8 @@ storiesOf("Stylers", module)
         <br />
         <input placeholder="placeholder" disabled />
       </Box>
+
+      <Rule />
 
       <h3>Focus Indicators</h3>
       <h4>
@@ -67,9 +76,10 @@ storiesOf("Stylers", module)
     </Story>
   ))
 
-  .add("Sass Functions", () => (
+  .add("Functions", () => (
     <Story className="story--stylers">
       <h1>Function Examples</h1>
+
       <h4>
         <code>font-scale()</code>
       </h4>
@@ -127,7 +137,9 @@ storiesOf("Stylers", module)
           <span>36px</span>
         </span>
       </div>
+
       <Rule />
+
       <h4>
         <code>line-height-scale()</code>
       </h4>
@@ -159,7 +171,9 @@ storiesOf("Stylers", module)
         <code>line-height(3) === 1.99</code>
         <br /> Hexagon street art selfies locavore ethical mixtape.
       </Box>
+
       <Rule />
+
       <h4>
         <code>z()</code>
       </h4>

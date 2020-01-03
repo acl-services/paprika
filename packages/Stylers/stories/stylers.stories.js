@@ -16,9 +16,9 @@ import {
 } from "./stylers.stories.styles";
 
 storiesOf("Stylers", module)
-  .add("JS Include Examples", () => (
+  .add("Includes", () => (
     <Story>
-      <h1>Includes</h1>
+      <h1>Include Examples</h1>
 
       <h4>
         <code>stylers.truncateText()</code>
@@ -32,6 +32,8 @@ storiesOf("Stylers", module)
         Lorem ipsum tumeric direct trade snackwave locavore taxidermy live-edge wolf mixtape.
       </UntruncatedBox>
 
+      <Rule />
+
       <h4>
         <code>stylers.visuallyHidden</code>
       </h4>
@@ -40,6 +42,8 @@ storiesOf("Stylers", module)
           👻
         </span>
       </InvisibleBox>
+
+      <Rule />
 
       <h4>
         <code>stylers.placeholders()</code>
@@ -52,9 +56,9 @@ storiesOf("Stylers", module)
     </Story>
   ))
 
-  .add("JS Helper Examples", () => (
+  .add("Helpers", () => (
     <Story>
-      <h1>Helpers</h1>
+      <h1>Helper Examples</h1>
 
       <h4>
         <code>stylers.fontSize()</code>
@@ -113,6 +117,7 @@ storiesOf("Stylers", module)
           <span>36px</span>
         </FontStep>
       </FontScale>
+
       <Rule />
 
       <h4>
@@ -148,6 +153,8 @@ storiesOf("Stylers", module)
       </LeadingStep>
       <Rule />
 
+      <Rule />
+
       <h4>
         <code>stylers.z()</code>
       </h4>
@@ -158,6 +165,8 @@ storiesOf("Stylers", module)
           </ZStep>
         ))}
       </ZBox>
+
+      <Rule />
 
       <h3>Focus Indicators</h3>
       <h4>
