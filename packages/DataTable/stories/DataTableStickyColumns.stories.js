@@ -4,13 +4,13 @@ import DataTable from "../src";
 import fixtures from "./fixtures";
 import { viewPortHeight } from "./helpers";
 
-const data = fixtures(18);
+const data = fixtures(2);
 
 function App() {
   const [selected, setSelected] = React.useState([]);
   const [selectedAll, setSelectedAll] = React.useState(false);
   const [multipleColums] = React.useState(() => {
-    return Array(20)
+    return Array(40)
       .fill(null)
       .map((_, index) => {
         return (
@@ -23,7 +23,6 @@ function App() {
         );
       });
   });
-
   function isSelected(row, rowIndex) {
     return selected.includes(rowIndex) ? "checked" : "unchecked";
   }
@@ -72,8 +71,8 @@ function App() {
       </p>
       <DataTable keygen="id" data={data} height={viewPortHeight()}>
         <DataTable.ColumnDefinition
-          isSticky
           id="rowIndicator"
+          isSticky
           header={(...args) => (
             <DataTable.RowIndicator
               {...args}
@@ -87,12 +86,12 @@ function App() {
             return <DataTable.RowIndicator {...args} isSelected={isSelected} onSelected={handleSelected} />;
           }}
         />
-        <DataTable.ColumnDefinition id="name" header="Name" cell="name" isSticky width={130} />
-        <DataTable.ColumnDefinition id="goals" header="Goals" cell="goals" />
+        <DataTable.ColumnDefinition isSticky id="name" header="Name" cell="name" />
+        <DataTable.ColumnDefinition isSticky id="goals" header="Goals" cell="goals" />
         {multipleColums}
       </DataTable>
     </React.Fragment>
   );
 }
 
-storiesOf("DataTable", module).add("Row Indicator", () => <App />);
+storiesOf("DataTable", module).add("Sticky Columns", () => <App />);

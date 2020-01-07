@@ -6,20 +6,22 @@ export default function ColumnDefinition() {
 }
 
 ColumnDefinition.propTypes = {
-  id: PropTypes.oneOfType([PropTypes.string, PropTypes.number]).isRequired,
-  momentParsingFormat: PropTypes.string,
-  canSort: PropTypes.bool,
-  type: PropTypes.oneOf([columnTypes.TEXT, columnTypes.NUMBER, columnTypes.DATE]),
   canHide: PropTypes.bool,
+  canSort: PropTypes.bool,
+  id: PropTypes.oneOfType([PropTypes.string, PropTypes.number]).isRequired,
   isHidden: PropTypes.bool,
+  isSticky: PropTypes.bool,
+  momentParsingFormat: PropTypes.string,
+  type: PropTypes.oneOf([columnTypes.TEXT, columnTypes.NUMBER, columnTypes.DATE]),
 };
 
 ColumnDefinition.defaultProps = {
-  momentParsingFormat: null,
-  canSort: true,
-  type: null,
   canHide: true,
+  canSort: true,
   isHidden: false,
+  isSticky: false,
+  momentParsingFormat: null,
+  type: null,
 };
 
 ColumnDefinition.displayName = "DataTable.ColumnDefinition";

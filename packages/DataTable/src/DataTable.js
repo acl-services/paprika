@@ -38,7 +38,8 @@ const defaultProps = {
 };
 
 export default function DataTable(props) {
-  const dataTableID = React.useRef(`DT${nanoid()}DTCELL`).current;
+  const [dataTableID] = React.useState(() => `DT${nanoid()}DTCELL`);
+
   const {
     children: childrenProps,
     data,

@@ -10,9 +10,8 @@ const propTypes = {
   style: PropTypes.shape({}).isRequired,
   rowIndex: PropTypes.number.isRequired,
   columnIndex: PropTypes.number.isRequired,
-  refData: PropTypes.shape({ current: PropTypes.shape({}) }).isRequired,
+  refData: PropTypes.shape({ current: PropTypes.shape([]) }).isRequired,
   onClickCell: PropTypes.func,
-  refActivePage: PropTypes.shape({ current: PropTypes.shape({}) }).isRequired,
 };
 
 const defaultProps = {
