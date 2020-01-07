@@ -72,6 +72,14 @@ export default function reducer(state, { type, payload }) {
       };
     }
 
+    case useListBox.types.setListBoxHasFocus: {
+      const { hasFocus } = payload;
+      return {
+        ...state,
+        listBoxHasFocus: hasFocus,
+      };
+    }
+
     case useListBox.types.toggleMultipleOption: {
       const selectedOptionsArray = state.selectedOptions.slice();
       const { activeOptionIndex } = payload;

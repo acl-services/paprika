@@ -12,12 +12,14 @@ import {
   LeadingStep,
   ZBox,
   ZStep,
+  FocusBox,
 } from "./stylers.stories.styles";
 
 storiesOf("Stylers", module)
-  .add("JS Include Examples", () => (
+  .add("Includes", () => (
     <Story>
-      <h1>Includes</h1>
+      <h1>Include Examples</h1>
+
       <h4>
         <code>stylers.truncateText()</code>
       </h4>
@@ -30,6 +32,8 @@ storiesOf("Stylers", module)
         Lorem ipsum tumeric direct trade snackwave locavore taxidermy live-edge wolf mixtape.
       </UntruncatedBox>
 
+      <Rule />
+
       <h4>
         <code>stylers.visuallyHidden</code>
       </h4>
@@ -39,6 +43,8 @@ storiesOf("Stylers", module)
         </span>
       </InvisibleBox>
 
+      <Rule />
+
       <h4>
         <code>stylers.placeholders()</code>
       </h4>
@@ -47,12 +53,41 @@ storiesOf("Stylers", module)
         <br />
         <InputWithPlaceholder placeholder="placeholder" disabled />
       </Box>
+
+      <Rule />
+
+      <h3>Focus Indicators</h3>
+      <h4>
+        <code>stylers.focusRing()</code>
+      </h4>
+      <FocusBox.default tabIndex={0} />
+      <h4>
+        <code>stylers.focusRing(true)</code>
+      </h4>
+      <FocusBox.inset tabIndex={0} />
+      <h4>
+        <code>stylers.focusRing.bordered()</code>
+      </h4>
+      <FocusBox.bordered tabIndex={0} />
+      <h4>
+        <code>stylers.focusRing.bordered(true)</code>
+      </h4>
+      <FocusBox.bordered.inset tabIndex={0} />
+      <h4>
+        <code>stylers.focusRing.subtle()</code>
+      </h4>
+      <FocusBox.subtle tabIndex={0} />
+      <h4>
+        <code>stylers.focusRing.subtle(true)</code>
+      </h4>
+      <FocusBox.subtle.inset tabIndex={0} />
     </Story>
   ))
 
-  .add("JS Helper Examples", () => (
+  .add("Helpers", () => (
     <Story>
-      <h1>Helpers</h1>
+      <h1>Helper Examples</h1>
+
       <h4>
         <code>stylers.fontSize()</code>
       </h4>
@@ -110,7 +145,9 @@ storiesOf("Stylers", module)
           <span>36px</span>
         </FontStep>
       </FontScale>
+
       <Rule />
+
       <h4>
         <code>stylers.lineHeight()</code>
       </h4>
@@ -143,6 +180,7 @@ storiesOf("Stylers", module)
         <br /> Hexagon street art selfies locavore ethical mixtape.
       </LeadingStep>
       <Rule />
+
       <h4>
         <code>stylers.z()</code>
       </h4>

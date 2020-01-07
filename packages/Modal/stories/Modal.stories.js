@@ -72,6 +72,25 @@ storiesOf("Modal", module)
       <DemoFullWidthContent />
     </ModalStory>
   ))
+  .add("with form render", () => (
+    <Modal
+      isOpen
+      as="form"
+      onSubmit={event => {
+        alert("submit");
+        event.preventDefault();
+      }}
+    >
+      <Modal.Content>
+        <input type="text" defaultValue="your text" />
+      </Modal.Content>
+      <Modal.Footer>
+        <Button isSubmit isSemantic={false}>
+          Submit
+        </Button>
+      </Modal.Footer>
+    </Modal>
+  ))
   .add("with nested SidePanel", () =>
     React.createElement(() => {
       const [isOpen, setIsOpen] = React.useState(false);

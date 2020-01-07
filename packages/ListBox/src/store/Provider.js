@@ -42,6 +42,7 @@ function initializeState(props) {
   const initialState = {
     idListBox: `listBoxId_${uuidv4()}`,
     activeOption,
+    listBoxHasFocus: true,
     filteredOptions: [],
     hasFooter: false,
     hasPopupOpened: false,

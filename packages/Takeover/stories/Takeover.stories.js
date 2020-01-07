@@ -4,6 +4,8 @@ import { withKnobs, boolean, select } from "@storybook/addon-knobs";
 import styled from "styled-components";
 import Button from "@paprika/button";
 import SidePanel from "@paprika/sidepanel";
+import Popover from "@paprika/popover";
+import InfoIcon from "@paprika/icon/lib/InfoCircle";
 import { repeat } from "storybook/assets/styles/common.styles";
 import Takeover from "../src";
 
@@ -90,4 +92,27 @@ storiesOf("Takeover", module)
         </TakeoverStory>
       );
     })
-  );
+  )
+  .add("with nested Popover", () => (
+    <TakeoverStory>
+      <Takeover.Content>
+        <p>
+          This example demonstrates how the Popover handles focus when created inside of a Takeover. Click the icons
+          below to see how the popovers behave.
+        </p>
+        <Popover>
+          <Popover.Trigger>
+            <InfoIcon />
+          </Popover.Trigger>
+          <Popover.Content>
+            <Popover.Card>
+              <p>
+                Try <a href="http://www.google.ca">clicking this</a> with the mouse or keyboard...
+              </p>
+            </Popover.Card>
+          </Popover.Content>
+          <Popover.Tip />
+        </Popover>
+      </Takeover.Content>
+    </TakeoverStory>
+  ));
