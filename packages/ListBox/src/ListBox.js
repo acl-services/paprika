@@ -8,6 +8,7 @@ import Options from "./components/Options";
 import Popover from "./components/Popover";
 import Trigger from "./components/Trigger";
 import useListBox from "./useListBox";
+import { OnChangeContext } from "./store/OnChangeProvider";
 import handleImperative from "./imperative";
 import "@paprika/helpers/lib/dom/elementScrollToPolyfill";
 
@@ -104,6 +105,7 @@ ListBox.propTypes = {
 
 const ListBoxContainer = React.forwardRef((props, ref) => {
   const [state, dispatch] = useListBox();
+  const onChangeContext = React.useContext(OnChangeContext);
 
   const {
     children,
@@ -117,7 +119,7 @@ const ListBoxContainer = React.forwardRef((props, ref) => {
   } = props;
 
   // IMPERATIVE API
-  const imperativeHandle = handleImperative(state, dispatch);
+  const imperativeHandle = handleImperative({ state, dispatch, onChangeContext });
   React.useImperativeHandle(ref, imperativeHandle);
 
   // HOOKS
