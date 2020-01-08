@@ -265,7 +265,7 @@ describe("Listbox single select", () => {
     expect(getByTestId("list-option--is-selected").textContent).toBe("Spiderman");
   });
 
-  it("should not create a stale state when using reading the state on handleChange", () => {
+  it("should not create a stale state when reading the state on handleChange", () => {
     const log = [];
     const storeLog = msg => log.push(msg);
     const originalConsoleLog = console.log;
