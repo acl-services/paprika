@@ -121,7 +121,7 @@ const Confirmation = props => {
               kind={confirmButtonType}
               size={buttonSize}
               onClick={handleOnConfirm}
-              data-pka-anchor="confirmation__confirm-button"
+              data-pka-anchor="confirmation.confirm-button"
             >
               {confirmLabel}
             </Button>
@@ -131,7 +131,7 @@ const Confirmation = props => {
               kind={Button.Kinds.MINOR}
               size={buttonSize}
               onClick={handleCloseConfirm}
-              data-pka-anchor="confirmation__cancel-button"
+              data-pka-anchor="confirmation.cancel-button"
             >
               {I18n.t("actions.cancel")}
             </Button>
