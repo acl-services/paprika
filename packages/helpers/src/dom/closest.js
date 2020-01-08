@@ -1,27 +1,19 @@
-// https://github.com/yomotsu/dom-ponyfills/blob/master/dist/dom-ponyfills.js#L13
+// https://developer.mozilla.org/en-US/docs/Web/API/Element/closest
 
-function matches(el, selector) {
-  if (Element.prototype.matches) {
-    return el.matches(selector);
-  }
-  if (Element.prototype.webkitMatchesSelector) {
-    return el.webkitMatchesSelector(selector);
-  }
-  if (Element.prototype.msMatchesSelector) {
-    return el.msMatchesSelector(selector);
-  }
-  return false;
+/* eslint-disable func-names */
+if (!Element.prototype.matches) {
+  Element.prototype.matches = Element.prototype.msMatchesSelector || Element.prototype.webkitMatchesSelector;
 }
 
-export default function closest(el, selector) {
-  if (Element.prototype.closest) {
-    return el.closest(selector);
-  }
+if (!Element.prototype.closest) {
+  Element.prototype.closest = function(s) {
+    let el = this;
 
-  let parent = el.parentNode;
-  while (parent && parent !== document) {
-    if (matches(parent, selector)) return parent;
-    parent = parent.parentNode;
-  }
-  return null;
+    do {
+      if (el.matches(s)) return el;
+      el = el.parentElement || el.parentNode;
+    } while (el !== null && el.nodeType === 1);
+    return null;
+  };
 }
+/* eslint-enable func-names */

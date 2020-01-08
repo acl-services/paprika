@@ -19,13 +19,13 @@ const defaultProps = {
   help: null,
 };
 
-function Label(props) {
+const Label = React.forwardRef((props, ref) => {
   const { hasOptionalLabel, hasRequiredLabel, help, id, isInline, isVisuallyHidden, label } = props;
   const I18n = useI18n();
 
   return (
     <div css={labelStyles} isInline={isInline} isVisuallyHidden={isVisuallyHidden}>
-      <label htmlFor={id} data-pka-anchor="formElement.label">
+      <label htmlFor={id} data-pka-anchor="formElement.label" ref={ref}>
         {label}
         {hasOptionalLabel || hasRequiredLabel ? (
           <span css={ruleStyles}>
@@ -38,7 +38,7 @@ function Label(props) {
       {help}
     </div>
   );
-}
+});
 
 Label.displayName = "FormElement.Label";
 

@@ -1,22 +1,23 @@
 {
   "name": "@paprika/textarea",
-  "version": "0.2.6",
+  "version": "0.2.8",
   "description": "Textarea component",
   "author": "@paprika",
   "main": "lib/index.js",
   "license": "MIT",
   "repository": {
     "type": "git",
-    "url": "https://github.com/acl-services/paprika/tree/master/packages/textarea"
+    "url": "https://github.com/acl-services/paprika.git",
+    "directory": "packages/Textarea"
   },
   "publishConfig": {
     "access": "public"
   },
   "dependencies": {
     "@babel/runtime-corejs2": "^7.3.1",
-    "@paprika/helpers": "^0.2.6",
-    "@paprika/stylers": "^0.2.3",
-    "@paprika/tokens": "^0.1.10",
+    "@paprika/helpers": "^0.2.7",
+    "@paprika/stylers": "^0.2.5",
+    "@paprika/tokens": "^0.1.12",
     "classnames": "^2.2.6",
     "prop-types": "^15.7.2"
   },

@@ -54,7 +54,7 @@ describe("DatePicker", () => {
   });
 
   it("should render input as error state hasError", () => {
-    render({ date: moment("2019-01-02") }, { hasError: true });
+    render({ date: moment("2019-01-02"), hasError: true });
 
     expect(document.getElementsByClassName("form-input--has-error").length).toEqual(1);
   });

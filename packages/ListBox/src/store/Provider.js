@@ -22,7 +22,10 @@ function initializeState(props) {
     refListBoxContainer,
     refTrigger,
     refTriggerContainer,
+    refLabel,
   } = props;
+  const formElementId = props.id;
+  const formElementLabelDescribedBy = props["aria-describedby"];
 
   // initialize state for options and groups
   const options = getDataOptions(childrenOptions);
@@ -39,6 +42,7 @@ function initializeState(props) {
   const initialState = {
     idListBox: `listBoxId_${uuidv4()}`,
     activeOption,
+    listBoxHasFocus: true,
     filteredOptions: [],
     hasFooter: false,
     hasPopupOpened: false,
@@ -60,6 +64,9 @@ function initializeState(props) {
     selectedOptions,
     shouldContentScroll: true,
     triggerWidth: 0,
+    refLabel,
+    formElementId,
+    formElementLabelDescribedBy,
   };
 
   return {

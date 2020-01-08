@@ -1,28 +1,24 @@
 import React from "react";
 import PropTypes from "prop-types";
 import { ShirtSizes } from "@paprika/helpers/lib/customPropTypes";
+import { zValue } from "@paprika/stylers/lib/helpers";
 import CheckIcon from "@paprika/icon/lib/Check";
 import CautionIcon from "@paprika/icon/lib/Caution";
 import ExclamationCircleIcon from "@paprika/icon/lib/ExclamationCircle";
 import InfoCircleIcon from "@paprika/icon/lib/InfoCircle";
 import LockIcon from "@paprika/icon/lib/Lock";
+import Portal from "@paprika/helpers/lib/components/Portal";
 
 import Kinds from "./ToastKinds";
 
 import toastStyles, { contentStyles, IconStyled, CloseButtonStyled } from "./Toast.styles";
 
 const propTypes = {
-  /**
-   * Will make this an "assertive" alert that will interrupt immediately.
-   * Default behaviour is to be "polite" and wait until the user is idle.
-   */
-  ariaAlert: PropTypes.bool,
+  /** Duration (in ms) before Toast will automaticall close (if canAutoClose is true) */
+  autoCloseDelay: PropTypes.number,
 
   /** Will automatically close after 1500ms (or longer if provided by autoCloseDelay) */
   canAutoClose: PropTypes.bool,
-
-  /** Duration (in ms) before Toast will automaticall close (if canAutoClose is true) */
-  autoCloseDelay: PropTypes.number,
 
   /** Content of the Toast */
   children: PropTypes.node,
@@ -33,35 +29,37 @@ const propTypes = {
   /** How "controlled" toast is shown / hidden. */
   isOpen: PropTypes.bool,
 
-  /** Callback that is executed after clicking the 'close' button */
-  onClose: PropTypes.func,
-
-  /** If the Toast is fixed to the top of the viewport */
+  /** If the Toast is fixed to the top of the viewport. This will render the Toast as a Portal. */
   isFixed: PropTypes.bool,
+
+  /** A11y: If the toast is polite or not. If false, then the toast will be assertive. */
+  isPolite: PropTypes.bool,
 
   /** Determines the styling of the Toast */
   kind: PropTypes.oneOf(Kinds.ALL),
+
+  /** Callback that is executed after clicking the 'close' button */
+  onClose: PropTypes.func,
 
   /** The z-index of the Toast */
   zIndex: PropTypes.number,
 };
 
 const defaultProps = {
-  ariaAlert: false,
   canAutoClose: false,
-  autoCloseDelay: 1500,
+  autoCloseDelay: 5000,
   children: null,
   hasCloseButton: true,
   isOpen: undefined,
-  onClose: () => {},
   isFixed: false,
+  isPolite: false,
   kind: Kinds.INFO,
+  onClose: () => {},
   zIndex: null,
 };
 
 const minimumCloseTimeout = 1500;
-
-const zIndexPlaceholder = 1;
+const renderTimeout = 20;
 
 const icons = {
   [Kinds.SUCCESS]: CheckIcon,
@@ -73,76 +71,125 @@ const icons = {
 
 function Toast(props) {
   const {
-    ariaAlert,
-    canAutoClose,
     autoCloseDelay,
+    canAutoClose,
     children,
     hasCloseButton,
-    isOpen,
-    onClose,
     isFixed,
+    isOpen,
+    isPolite,
     kind,
+    onClose,
     zIndex,
     ...moreProps
   } = props;
 
-  const ariaLive = ariaAlert ? "assertive" : "polite";
   const [isToastOpen, setIsToastOpen] = React.useState(isOpen === undefined ? true : isOpen);
-  const timerRef = React.useRef(null);
-  const defaultZIndex = isFixed ? zIndexPlaceholder : null;
+  const [shouldRender, setShouldRender] = React.useState(!isPolite);
+  const autoCloseTimer = React.useRef(null);
+  const renderTimer = React.useRef(null);
+  const ariaRole = isPolite ? "status" : "alert";
+  const defaultZIndex = isFixed ? zValue(7) : null;
+  const isVisuallyHidden = kind === Kinds.VISUALLY_HIDDEN;
 
-  const memoizedStartTimer = React.useCallback(() => {
+  const memoizedStartAutoCloseTimer = React.useCallback(() => {
     function handleDelayedClose() {
-      clearTimeout(timerRef.current);
+      clearTimeout(autoCloseTimer.current);
       if (isOpen === undefined) setIsToastOpen(false);
       onClose();
     }
 
-    timerRef.current = setTimeout(handleDelayedClose, Math.max(autoCloseDelay, minimumCloseTimeout));
+    autoCloseTimer.current = setTimeout(handleDelayedClose, Math.max(autoCloseDelay, minimumCloseTimeout));
   }, [autoCloseDelay, isOpen, onClose]);
 
+  const memoizedStartRenderTimer = React.useCallback(() => {
+    function handleDelayedRender() {
+      clearTimeout(renderTimer.current);
+      setShouldRender(true);
+    }
+
+    renderTimer.current = setTimeout(handleDelayedRender, renderTimeout);
+  }, [isPolite]);
+
   function handleClose() {
-    if (timerRef.current) clearTimeout(timerRef.current);
-    if (isOpen === undefined) setIsToastOpen(false);
+    if (autoCloseTimer.current) clearTimeout(autoCloseTimer.current);
+    if (renderTimer.current) clearTimeout(renderTimer.current);
+
+    if (isOpen === undefined) {
+      setIsToastOpen(false);
+      if (isPolite) setShouldRender(false);
+    }
     onClose();
   }
 
+  function renderContent() {
+    if (!shouldRender) return null;
+
+    return (
+      <>
+        {!isVisuallyHidden && <IconStyled as={icons[kind]} kind={kind} />}
+        <div css={contentStyles}>{children}</div>
+        {hasCloseButton && !isVisuallyHidden && <CloseButtonStyled onClick={handleClose} size={ShirtSizes.SMALL} />}
+      </>
+    );
+  }
+
+  function renderToast() {
+    return (
+      <div
+        css={toastStyles}
+        data-pka-anchor="toast"
+        hasCloseButton={hasCloseButton}
+        isFixed={isFixed}
+        role={ariaRole}
+        kind={kind}
+        zIndex={zIndex || defaultZIndex}
+        {...moreProps}
+      >
+        {renderContent()}
+      </div>
+    );
+  }
+
   React.useEffect(() => {
-    if (canAutoClose) {
-      memoizedStartTimer();
-      return () => clearTimeout(timerRef.current);
+    if (canAutoClose || isVisuallyHidden) {
+      memoizedStartAutoCloseTimer();
+      return () => {
+        clearTimeout(autoCloseTimer.current);
+      };
     }
-  }, [canAutoClose, memoizedStartTimer]);
+  }, [canAutoClose, isVisuallyHidden, memoizedStartAutoCloseTimer]);
+
+  React.useEffect(() => {
+    if (isPolite && isToastOpen) {
+      memoizedStartRenderTimer();
+      return () => {
+        clearTimeout(renderTimer.current);
+      };
+    }
+  }, [isPolite, isToastOpen, memoizedStartRenderTimer]);
+
+  React.useEffect(() => {
+    if (isPolite && !isOpen) {
+      setShouldRender(false);
+    }
+  }, [isPolite, isOpen]);
 
   React.useEffect(() => {
     if (isOpen === undefined) return;
-    if (isOpen !== isToastOpen && !canAutoClose) setIsToastOpen(isOpen);
-  }, [isOpen, isToastOpen, canAutoClose]);
+    if (isOpen !== isToastOpen && !canAutoClose && !isVisuallyHidden) setIsToastOpen(isOpen);
+  }, [isOpen, isToastOpen, canAutoClose, isVisuallyHidden]);
 
   if (!isToastOpen) return null;
 
-  return (
-    <div
-      aria-live={ariaLive}
-      css={toastStyles}
-      hasCloseButton={hasCloseButton}
-      isFixed={isFixed}
-      role="alert"
-      kind={kind}
-      zIndex={zIndex !== null ? zIndex : defaultZIndex}
-      {...moreProps}
-    >
-      {kind === Kinds.VISUALLY_HIDDEN ? null : <IconStyled as={icons[kind]} kind={kind} />}
-      <div css={contentStyles}>{children}</div>
-      {hasCloseButton && kind !== Kinds.VISUALLY_HIDDEN ? (
-        <CloseButtonStyled onClick={handleClose} size={ShirtSizes.SMALL} />
-      ) : null}
-    </div>
-  );
+  if (isFixed) {
+    return <Portal>{renderToast()}</Portal>;
+  }
+
+  return renderToast();
 }
 
 Toast.displayName = "Toast";
-
 Toast.propTypes = propTypes;
 Toast.defaultProps = defaultProps;
 

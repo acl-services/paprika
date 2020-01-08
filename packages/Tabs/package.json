@@ -1,22 +1,23 @@
 {
   "name": "@paprika/tabs",
-  "version": "0.2.3",
+  "version": "0.2.5",
   "description": "Tabs component",
   "author": "@paprika",
   "license": "MIT",
   "main": "lib/index.js",
   "repository": {
     "type": "git",
-    "url": "https://github.com/acl-services/paprika/tree/master/packages/tabs"
+    "url": "https://github.com/acl-services/paprika.git",
+    "directory": "packages/Tabs"
   },
   "publishConfig": {
     "access": "public"
   },
   "dependencies": {
     "@babel/runtime-corejs2": "^7.3.1",
-    "@paprika/raw-button": "^0.2.3",
-    "@paprika/stylers": "^0.2.3",
-    "@paprika/tokens": "^0.1.10",
+    "@paprika/raw-button": "^0.2.5",
+    "@paprika/stylers": "^0.2.5",
+    "@paprika/tokens": "^0.1.12",
     "classnames": "^2.2.6",
     "prop-types": "^15.7.2"
   },

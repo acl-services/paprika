@@ -1,5 +1,7 @@
 ## Toast
 
+A controlled or uncontrolled component that provides a easy way to commmunicate to users regarding success, warning, info, and error messages.
+
 ### Installation
 
 `> npm install --save @paprika/toast`
@@ -15,18 +17,18 @@ Example:
 ```js
 import Toast from "@paprika/toast";
 
-<Toast>Toast message.</Toast>;
+<Toast>Notification</Toast>;
 ```
 
 #### Toast
 
-- `ariaAlert`
-- `canAutoClose`
 - `autoCloseDelay`
+- `canAutoClose`
 - `children`
 - `hasCloseButton`
 - `isOpen`
 - `isFixed`
+- `isPolite`
 - `kind`
 - `zIndex`
 

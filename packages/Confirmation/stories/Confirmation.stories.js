@@ -1,12 +1,14 @@
 import React from "react";
 import { storiesOf } from "@storybook/react";
-import { Story } from "storybook/assets/styles/common.styles";
+import { Story, Rule } from "storybook/assets/styles/common.styles";
 import { withKnobs } from "@storybook/addon-knobs";
 import L10n from "@paprika/l10n";
+import Heading from "@paprika/heading";
 import ShowcaseStory from "./examples/Showcase";
 import ConfirmationExample from "./examples/ConfirmationExample";
 import ConfirmationExampleWithTrigger from "./examples/ConfirmationExampleWithTrigger";
 import ConfirmationExampleWithTriggerIcon from "./examples/ConfirmationExampleWithTriggerIcon";
+import ConfirmationExampleWithTriggerRaw from "./examples/ConfirmationExampleWithTriggerRaw";
 import ConfirmationExampleWithAsyncAction from "./examples/ConfirmationExampleWithAsyncAction";
 
 storiesOf("Confirmation", module)
@@ -26,9 +28,23 @@ storiesOf("Confirmation", module)
   ))
   .add("ConfirmationExample with trigger", () => (
     <Story>
+      <Heading level={1} displayLevel={4} isLight>
+        Trigger example with default simple button
+      </Heading>
       <ConfirmationExampleWithTrigger />
+      <Rule />
       <br />
+      <Heading level={1} displayLevel={4} isLight>
+        Trigger example with icon button
+      </Heading>
       <ConfirmationExampleWithTriggerIcon />
+      <Rule />
+      <br />
+      <Heading level={1} displayLevel={4} isLight>
+        Trigger example with raw button
+      </Heading>
+      <ConfirmationExampleWithTriggerRaw />
+      <Rule />
     </Story>
   ))
   .add("ConfirmationExample with async action", () => (

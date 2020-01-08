@@ -27,9 +27,9 @@ const propTypes = {
    */
   canChooseMultiple: PropTypes.bool,
   /**
-    render children function, please read the `README.md` file for futher information about the parameters
+    children nodes
   */
-  children: PropTypes.func.isRequired,
+  children: PropTypes.node.isRequired,
   /**
     initial disable state for the uploader
   */
@@ -156,7 +156,7 @@ const Uploader = React.forwardRef((props, ref) => {
     function FileInput(props) {
       const { children } = props;
       return (
-        <div css={containerStyles} ref={refContainer}>
+        <div css={containerStyles} ref={refContainer} data-pka-anchor="uploader">
           <input
             multiple={canChooseMultiple}
             onChange={handleChange}

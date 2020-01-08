@@ -19,6 +19,12 @@ const stories = [
   // Welcome
   require.context("./", false, /welcome.story.js/),
 
+  // Toast
+  require.context("../packages/Toast", true, /Toast.stories.(js|mdx)$/),
+  require.context("../packages/Toast", true, /Toast.examples.stories.(js|mdx)$/),
+  require.context("../packages/Toast", true, /Toast.backyard.stories.(js|mdx)$/),
+  require.context("../packages/Toast", true, /Toast.Tests.stories.(js|mdx)$/),
+
   // CollapsibleText
   require.context("../packages/CollapsibleText", true, /CollapsibleText.stories.(js|mdx)$/),
   require.context("../packages/CollapsibleText", true, /CollapsibleText.Tests.stories.js$/),

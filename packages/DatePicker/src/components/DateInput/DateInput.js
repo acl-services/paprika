@@ -12,7 +12,7 @@ const propTypes = {
   /** Size of input. */
   size: PropTypes.oneOf(ShirtSizes.DEFAULT),
 
-  /** If the value of <input> is valid or not. Not required when wrapped with <FormElement>. */
+  /** If the value of <input> is valid or not. */
   hasError: PropTypes.bool,
 };
 

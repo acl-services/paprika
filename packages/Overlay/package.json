@@ -1,0 +1,32 @@
+{
+  "name": "@paprika/overlay",
+  "version": "0.2.0",
+  "description": "Overlay component",
+  "author": "@paprika",
+  "main": "lib/index.js",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/acl-services/paprika.git",
+    "directory": "packages/Overlay"
+  },
+  "publishConfig": {
+    "access": "public"
+  },
+  "directories": {
+    "lib": "lib",
+    "test": "tests"
+  },
+  "peerDependencies": {
+    "react": "^16.12.0",
+    "react-dom": "^16.12.0",
+    "styled-components": "^4.4.1"
+  },
+  "dependencies": {
+    "@paprika/helpers": "^0.2.7",
+    "@paprika/tokens": "^0.1.12",
+    "prop-types": "^15.7.2",
+    "react-focus-lock": "^2.2.1",
+    "react-transition-group": "^4.3.0"
+  }
+}

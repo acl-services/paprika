@@ -1,19 +1,20 @@
 {
   "name": "@paprika/stylers",
-  "version": "0.2.3",
+  "version": "0.2.5",
   "description": "Helpers and includes for styled-components",
   "author": "@paprika",
   "main": "lib/index.js",
   "license": "MIT",
   "repository": {
     "type": "git",
-    "url": "https://github.com/acl-services/paprika/tree/master/packages/stylers"
+    "url": "https://github.com/acl-services/paprika.git",
+    "directory": "packages/Stylers"
   },
   "publishConfig": {
     "access": "public"
   },
   "dependencies": {
-    "@paprika/tokens": "^0.1.10"
+    "@paprika/tokens": "^0.1.12"
   },
   "peerDependencies": {
     "styled-components": "^4.2.0"

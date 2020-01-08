@@ -1,24 +1,25 @@
 {
   "name": "@paprika/toast",
-  "version": "0.2.6",
+  "version": "0.2.8",
   "description": "Toast component",
   "main": "lib/index.js",
   "author": "@paprika",
   "license": "MIT",
   "repository": {
     "type": "git",
-    "url": "https://github.com/acl-services/paprika/tree/master/packages/Toast"
+    "url": "https://github.com/acl-services/paprika.git",
+    "directory": "packages/Toast"
   },
   "publishConfig": {
     "access": "public"
   },
   "dependencies": {
     "@babel/runtime-corejs2": "^7.3.1",
-    "@paprika/button": "^0.2.6",
-    "@paprika/helpers": "^0.2.6",
+    "@paprika/button": "^0.2.8",
+    "@paprika/helpers": "^0.2.7",
     "@paprika/icon": "^0.1.6",
-    "@paprika/stylers": "^0.2.3",
-    "@paprika/tokens": "^0.1.10",
+    "@paprika/stylers": "^0.2.5",
+    "@paprika/tokens": "^0.1.12",
     "prop-types": "^15.7.2"
   },
   "peerDependencies": {

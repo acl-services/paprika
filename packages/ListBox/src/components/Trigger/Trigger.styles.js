@@ -1,6 +1,7 @@
 import styled, { css } from "styled-components";
 import Button from "@paprika/button";
 import stylers from "@paprika/stylers";
+import { visuallyHidden } from "@paprika/stylers/lib/includes";
 import tokens from "@paprika/tokens";
 
 const triggerStyles = `
@@ -86,4 +87,8 @@ export const ClearButtonStyled = styled(Button.Icon)`
   &:hover {
     background-color: transparent;
   }
+`;
+
+export const VisuallyHiddenFormLabelStyled = styled.span`
+  ${visuallyHidden};
 `;

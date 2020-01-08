@@ -1,26 +1,27 @@
 {
   "name": "@paprika/listbox-browser",
-  "version": "0.1.6",
+  "version": "0.1.8",
   "description": "ListBox Browser component lets you select options in a multi level environment",
   "author": "@paprika",
   "main": "lib/index.js",
   "license": "MIT",
   "repository": {
     "type": "git",
-    "url": "https://github.com/acl-services/paprika/tree/master/packages/listbox-browser"
+    "url": "https://github.com/acl-services/paprika.git",
+    "directory": "packages/ListBoxBrowser"
   },
   "publishConfig": {
     "access": "public"
   },
   "dependencies": {
     "@babel/runtime-corejs2": "^7.3.1",
-    "@paprika/helpers": "^0.2.6",
-    "@paprika/icon": "^0.2.6",
-    "@paprika/listbox": "^0.7.7",
-    "@paprika/raw-button": "^0.2.3",
-    "@paprika/spinner": "^0.2.6",
+    "@paprika/helpers": "^0.2.7",
+    "@paprika/icon": "^0.2.8",
+    "@paprika/listbox": "^0.7.9",
+    "@paprika/raw-button": "^0.2.5",
+    "@paprika/spinner": "^0.2.8",
     "@paprika/stylers": "^0.1.5",
-    "@paprika/tokens": "^0.1.10",
+    "@paprika/tokens": "^0.1.12",
     "prop-types": "^15.7.2"
   },
   "peerDependencies": {

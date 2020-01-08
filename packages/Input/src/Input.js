@@ -118,6 +118,7 @@ const Input = props => {
       {renderIcon()}
       <input
         className="form-input__input"
+        data-pka-anchor="input"
         disabled={isDisabled}
         onChange={handleChange}
         readOnly={isReadOnly}

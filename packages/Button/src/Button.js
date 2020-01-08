@@ -4,6 +4,8 @@ import RawButton from "@paprika/raw-button";
 import RefreshIcon from "@paprika/icon/lib/Refresh";
 import DownIcon from "@paprika/icon/lib/CaretDown";
 import { ShirtSizes } from "@paprika/helpers/lib/customPropTypes";
+// support for IE11
+import "@paprika/helpers/lib/dom/closest";
 import buttonStyles, { iconStyles } from "./Button.styles";
 
 import Kinds from "./ButtonKinds";
@@ -131,7 +133,20 @@ const Button = React.forwardRef((props, ref) => {
 
   const isButtonDisabled = isDisabled || isPending;
 
+  function handleSubmit(event) {
+    const $form = event.target.closest("form");
+    const button = $form.ownerDocument.createElement("input");
+    button.style.display = "none";
+    button.type = "submit";
+    $form.appendChild(button).click();
+    $form.removeChild(button);
+  }
+
   const handleClick = event => {
+    if (isSubmit && !isSemantic) {
+      handleSubmit(event);
+    }
+
     if (!canPropagate) event.stopPropagation();
     if (!isButtonDisabled) onClick(event);
   };

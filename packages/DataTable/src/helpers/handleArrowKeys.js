@@ -1,4 +1,4 @@
-import closest from "@paprika/helpers/lib/dom/closest";
+import "@paprika/helpers/lib/dom/closest";
 import { getCoordinatesByCellIndex } from "./getRow";
 
 export const arrowKeys = ["ArrowDown", "ArrowUp", "ArrowRight", "ArrowLeft"];
@@ -27,7 +27,7 @@ export default function handleArrowKeys({
   if (arrowKeys.includes(event.key)) {
     if (activeCell.index) {
       const getRootElement = nextElement => {
-        return closest(nextElement, ".virtualize-rows-root");
+        return nextElement.closest(".virtualize-rows-root");
       };
       const getNextElement = nextIndex => {
         return document.getElementById(`${nextIndex}`);
@@ -42,7 +42,7 @@ export default function handleArrowKeys({
 
           if (nextRow <= 0) {
             const topElement = document.getElementById(nextIndex);
-            const $scrollableElement = closest(topElement, ".virtualize-rows-root");
+            const $scrollableElement = topElement.closest(".virtualize-rows-root");
             $scrollableElement.scrollTo({
               top: 0,
             });

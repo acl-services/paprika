@@ -3,8 +3,10 @@ import { storiesOf } from "@storybook/react";
 import { withKnobs, boolean, select } from "@storybook/addon-knobs";
 import styled from "styled-components";
 import Button from "@paprika/button";
-import Heading from "@paprika/heading";
 import SidePanel from "@paprika/sidepanel";
+import Popover from "@paprika/popover";
+import InfoIcon from "@paprika/icon/lib/InfoCircle";
+import { repeat } from "storybook/assets/styles/common.styles";
 import Takeover from "../src";
 
 /* Long block to test body scroll locking */
@@ -44,20 +46,19 @@ storiesOf("Takeover", module)
   .add("Basic", () => (
     <TakeoverStory>
       <Takeover.Content>
-        {Array(100)
-          .fill(null)
-          .map((_, i) => (
-            // eslint-disable-next-line react/no-array-index-key
-            <p key={i}>Some content here</p>
-          ))}
+        {repeat(100, key => (
+          <p key={key}>Some content here</p>
+        ))}
       </Takeover.Content>
     </TakeoverStory>
   ))
   .add("with overridden FocusTrap", () => (
     <TakeoverStory>
-      <Takeover.FocusTrap
-        initialFocus={() => {
-          return document.querySelector("[data-pka-anchor='takeover.focustrap.input']");
+      <Takeover.Overlay
+        focusTrapOptions={{
+          initialFocus: () => {
+            return document.querySelector("[data-pka-anchor='takeover.focustrap.input']");
+          },
         }}
       />
       <Takeover.Content>
@@ -85,12 +86,33 @@ storiesOf("Takeover", module)
               <SidePanel.Trigger kind="primary" onClick={toggle}>
                 {isOpen ? "close" : "open side panel"}
               </SidePanel.Trigger>
-              <SidePanel.Header>
-                <Heading level={2}>Header</Heading>
-              </SidePanel.Header>
+              <SidePanel.Header>Header</SidePanel.Header>
             </SidePanel>
           </Takeover.Content>
         </TakeoverStory>
       );
     })
-  );
+  )
+  .add("with nested Popover", () => (
+    <TakeoverStory>
+      <Takeover.Content>
+        <p>
+          This example demonstrates how the Popover handles focus when created inside of a Takeover. Click the icons
+          below to see how the popovers behave.
+        </p>
+        <Popover>
+          <Popover.Trigger>
+            <InfoIcon />
+          </Popover.Trigger>
+          <Popover.Content>
+            <Popover.Card>
+              <p>
+                Try <a href="http://www.google.ca">clicking this</a> with the mouse or keyboard...
+              </p>
+            </Popover.Card>
+          </Popover.Content>
+          <Popover.Tip />
+        </Popover>
+      </Takeover.Content>
+    </TakeoverStory>
+  ));

@@ -1,0 +1,31 @@
+{
+  "name": "@paprika/modal",
+  "version": "0.2.0",
+  "description": "Modal component",
+  "author": "@paprika",
+  "main": "lib/index.js",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/acl-services/paprika.git",
+    "directory": "packages/Modal"
+  },
+  "publishConfig": {
+    "access": "public"
+  },
+  "peerDependencies": {
+    "react": "^16.12.0",
+    "react-dom": "^16.12.0",
+    "styled-components": "^4.4.1"
+  },
+  "dependencies": {
+    "@paprika/button": "^0.2.8",
+    "@paprika/heading": "^0.3.4",
+    "@paprika/helpers": "^0.2.7",
+    "@paprika/overlay": "^0.2.0",
+    "@paprika/stylers": "^0.2.5",
+    "@paprika/tokens": "^0.1.12",
+    "prop-types": "^15.7.2",
+    "react-transition-group": "^4.3.0"
+  }
+}

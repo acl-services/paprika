@@ -1,12 +1,13 @@
 {
   "name": "@paprika/helpers",
-  "version": "0.2.6",
+  "version": "0.2.7",
   "description": "Testing helpers for the components",
   "author": "@paprika",
   "license": "MIT",
   "repository": {
     "type": "git",
-    "url": "https://github.com/acl-services/paprika/tree/master/packages/helpers"
+    "url": "https://github.com/acl-services/paprika.git",
+    "directory": "packages/helpers"
   },
   "publishConfig": {
     "access": "public"

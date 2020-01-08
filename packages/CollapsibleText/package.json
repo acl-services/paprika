@@ -1,21 +1,22 @@
 {
   "name": "@paprika/collapsible-text",
-  "version": "0.2.6",
+  "version": "0.2.8",
   "description": "CollapsibleText component",
   "author": "@paprika",
   "license": "MIT",
   "main": "lib/index.js",
   "repository": {
     "type": "git",
-    "url": "https://github.com/acl-services/paprika/tree/master/packages/CollapsibleText"
+    "url": "https://github.com/acl-services/paprika.git",
+    "directory": "packages/CollapsibleText"
   },
   "publishConfig": {
     "access": "public"
   },
   "dependencies": {
     "@babel/runtime-corejs2": "^7.3.1",
-    "@paprika/button": "^0.2.6",
-    "@paprika/tokens": "^0.1.10",
+    "@paprika/button": "^0.2.8",
+    "@paprika/tokens": "^0.1.12",
     "lodash.truncate": "^4.4.2",
     "prop-types": "^15.7.2",
     "uuid": "^3.3.2"

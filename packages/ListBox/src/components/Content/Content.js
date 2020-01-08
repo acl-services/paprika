@@ -4,6 +4,7 @@ import Popover from "@paprika/popover";
 import { getDOMAttributesForListBoxContainer } from "../../helpers/DOMAttributes";
 import handleKeyboardKeys from "../../helpers/handleKeyboardKeys";
 import useListBox from "../../useListBox";
+import { ContentStyled } from "./Content.styles";
 
 const propTypes = {
   children: PropTypes.node.isRequired,
@@ -41,25 +42,32 @@ const handleBlur = (state, dispatch) => () => {
   });
 };
 
+const handleContentFocusChange = (hasFocus, dispatch) =>
+  dispatch({ type: useListBox.types.setListBoxHasFocus, payload: { hasFocus } });
+
 export default function Content(props) {
   const [state, dispatch] = useListBox();
   const { refListBoxContainer } = state;
 
   /* NOTE no idea what ROLE should be this div when the ListBox is INLINE */
-  /* eslint-disable jsx-a11y/no-static-element-interactions */
   if (state.isInline) {
     return (
-      <div
+      <ContentStyled
         {...getDOMAttributesForListBoxContainer({ isInline: true })}
+        onFocus={() => {
+          handleContentFocusChange(true, dispatch);
+        }}
+        onBlur={() => {
+          handleContentFocusChange(false, dispatch);
+        }}
         onKeyDown={handleKeyboardKeys(state, dispatch)}
         ref={refListBoxContainer}
         data-pka-anchor="listbox-content-inline"
       >
         {props.children}
-      </div>
+      </ContentStyled>
     );
   }
-  /* eslint-enable jsx-a11y/no-static-element-interactions */
 
   return (
     <Popover.Content

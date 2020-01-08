@@ -38,10 +38,12 @@ export const OptionStyled = styled.li`
 
   ${props => {
     const hasPreventDefaultOnSelect =
-      props.isActive && props.hasPreventDefaultOnSelect ? `border-color: ${tokens.color.blackLighten60}` : "";
+      props.isActive && props.listBoxHasFocus && props.hasPreventDefaultOnSelect
+        ? `border-color: ${tokens.color.blackLighten60}`
+        : "";
 
     return `
-      ${props.isActive ? activeStyles : ""}
+      ${props.isActive && props.listBoxHasFocus ? activeStyles : ""}
       ${hasPreventDefaultOnSelect}
       ${props.isSelected ? `background: ${blueSelected};` : ""}
       ${props.isDisabled ? disabledStyles : ""}
