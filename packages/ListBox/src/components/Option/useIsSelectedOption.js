@@ -13,7 +13,6 @@ export default function useIsSelectedOption({ index, props }) {
       if (state.isMulti) {
         selectMultipleOption({
           activeOptionIndex: index,
-          state,
           dispatch,
           isSelected: props.isSelected,
           onChange: noop,

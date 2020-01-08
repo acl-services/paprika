@@ -62,15 +62,8 @@ export const defaultProps = {
 };
 
 export function ListBox(props) {
-  const [state, dispatch] = useListBox();
-  const { children, height, placeholder, trigger: _trigger, footer, filter, onChange } = props;
-
-  React.useEffect(() => {
-    dispatch({
-      type: useListBox.types.updateOnChange,
-      payload: onChange,
-    });
-  }, [dispatch, onChange]);
+  const [state] = useListBox();
+  const { children, height, placeholder, trigger: _trigger, footer, filter } = props;
 
   const propsForTrigger = {
     hasClearButton: true,
@@ -117,7 +110,6 @@ const ListBoxContainer = React.forwardRef((props, ref) => {
     height,
     isInline,
     placeholder,
-    onChange,
     filter, // eslint-disable-line
     trigger, // eslint-disable-line
     footer, // eslint-disable-line
@@ -147,7 +139,6 @@ const ListBoxContainer = React.forwardRef((props, ref) => {
     height,
     placeholder,
     trigger,
-    onChange,
   };
 
   const listBox = <ListBox {...propsForListBox}>{children}</ListBox>;

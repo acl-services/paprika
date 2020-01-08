@@ -24,4 +24,3 @@ export const unselectOptions = "UNSELECT_OPTION";
 export const updateOptions = "UPDATE_OPTIONS";
 export const cleanOnChangeFn = "CLEAN_ON_CHANGE_FN";
 export const hasFilter = "HAS_FILTER";
-export const updateOnChange = "UPDATE_ON_CHANGE";

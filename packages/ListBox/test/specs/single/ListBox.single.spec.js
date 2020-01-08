@@ -278,7 +278,10 @@ describe("Listbox single select", () => {
     fireEvent.click(options[1]);
     fireEvent.click(options[2]);
 
-    expect(log.includes(null, "Wonder Woman", "Thor")).toBe(true);
+    expect(log.includes(null)).toBe(true);
+    expect(log.includes("Wonder Woman")).toBe(true);
+    expect(log.includes("Thor")).toBe(true);
+    expect(log.includes("Batman")).toBe(false);
     console.log = originalConsoleLog;
   });
 });
