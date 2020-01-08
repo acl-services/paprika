@@ -263,6 +263,13 @@ export default function reducer(state, { type, payload }) {
       };
     }
 
+    case useListBox.types.updateOnChange: {
+      return {
+        ...state,
+        onChange: payload,
+      };
+    }
+
     default:
       return state;
   }
