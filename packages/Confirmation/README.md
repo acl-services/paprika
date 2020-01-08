@@ -51,5 +51,6 @@ You can use the following components to compose the Confirmation:
 - onClose
 - onConfirm
 - heading
+- popoverContentAnchor
 
 [More detail about these props](https://github.com/acl-services/paprika/blob/master/packages/Confirmation/src/Confirmation.js)
