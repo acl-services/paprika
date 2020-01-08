@@ -20,6 +20,7 @@ const propTypes = {
   isPending: PropTypes.bool,
   onClose: PropTypes.func,
   onConfirm: PropTypes.func.isRequired,
+  popoverContentAnchor: PropTypes.string,
 };
 
 const defaultProps = {
@@ -31,6 +32,7 @@ const defaultProps = {
   heading: null,
   isPending: false,
   onClose: () => {},
+  popoverContentAnchor: null,
 };
 
 const Confirmation = props => {
@@ -46,6 +48,7 @@ const Confirmation = props => {
     isPending,
     onConfirm,
     onClose,
+    popoverContentAnchor,
     ...moreProps
   } = props;
   const confirmButtonRef = React.useRef(null);
@@ -104,7 +107,7 @@ const Confirmation = props => {
   const I18n = useI18n();
 
   const popoverContent = (
-    <Popover.Content id={confirmId}>
+    <Popover.Content id={confirmId} data-pka-anchor={popoverContentAnchor}>
       <Popover.Card>
         <div css={confirmStyles}>
           {heading && (
