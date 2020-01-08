@@ -1,12 +1,8 @@
 import useListBox from "../../../useListBox";
 import invokeOnChange from "../../../helpers/invokeOnChange";
 
-function getOnChangeFn(state) {
-  return invokeOnChange(state.onChange, "listbox:option-selected");
-}
-
-export function selectSingleOption({ activeOptionIndex, isOpen, state, dispatch, onChange = null }) {
-  const onChangeFn = onChange || getOnChangeFn(state, activeOptionIndex);
+export function selectSingleOption({ activeOptionIndex, isOpen, dispatch, onChange = null, onChangeContext }) {
+  const onChangeFn = onChange || invokeOnChange(onChangeContext, "listbox:option-selected");
 
   dispatch({
     type: useListBox.types.selectSingleOption,
@@ -14,15 +10,15 @@ export function selectSingleOption({ activeOptionIndex, isOpen, state, dispatch,
   });
 }
 
-export function toggleMultipleOption({ activeOptionIndex, state, dispatch }) {
+export function toggleMultipleOption({ activeOptionIndex, dispatch, onChangeContext }) {
   dispatch({
     type: useListBox.types.toggleMultipleOption,
-    payload: { activeOptionIndex, onChangeFn: getOnChangeFn(state, activeOptionIndex) },
+    payload: { activeOptionIndex, onChangeFn: invokeOnChange(onChangeContext, "listbox:option-selected") },
   });
 }
 
-export function selectMultipleOption({ activeOptionIndex, state, dispatch, isSelected, onChange = null }) {
-  const onChangeFn = onChange || getOnChangeFn(state, activeOptionIndex);
+export function selectMultipleOption({ activeOptionIndex, dispatch, isSelected, onChange = null, onChangeContext }) {
+  const onChangeFn = onChange || invokeOnChange(onChangeContext, "listbox:option-selected");
   dispatch({
     type: useListBox.types.selectMultipleOption,
     payload: { activeOptionIndex, onChangeFn, isSelected },
@@ -108,7 +104,7 @@ export function getNextOptionActiveIndexLooping(state) {
   return getNextOptionActiveIndex(state) || getNextOptionActiveIndex(state, false);
 }
 
-export function handleArrowKeys({ event, state, dispatch, isArrowDown = null }) {
+export function handleArrowKeys({ event, state, dispatch, isArrowDown = null, onChangeContext }) {
   if (!state.isInline && !state.isOpen) {
     dispatch({ type: useListBox.types.openPopover });
     return;
@@ -123,12 +119,12 @@ export function handleArrowKeys({ event, state, dispatch, isArrowDown = null }) 
         payload: { activeOptionIndex: next, isOpen: true },
       });
     } else {
-      selectSingleOption({ activeOptionIndex: next, isOpen: true, state, dispatch });
+      selectSingleOption({ activeOptionIndex: next, isOpen: true, dispatch, onChangeContext });
     }
   }
 }
 
-export const handleClickOption = ({ props, state, dispatch }) => event => {
+export const handleClickOption = ({ props, state, dispatch, onChangeContext }) => event => {
   const { index } = props;
   const { options, hasFilter, isMulti, refFilterInput } = state;
   const hasPreventDefaultOnSelect = options[index].preventDefaultOnSelect;
@@ -163,17 +159,17 @@ export const handleClickOption = ({ props, state, dispatch }) => event => {
   if (isMulti) {
     toggleMultipleOption({
       activeOptionIndex: index,
-      state,
       dispatch,
+      onChangeContext,
     });
 
     return;
   }
 
-  selectSingleOption({ activeOptionIndex: index, isOpen: false, state, dispatch });
+  selectSingleOption({ activeOptionIndex: index, isOpen: false, dispatch, onChangeContext });
 };
 
-export function handleEnterOrSpace({ event, state, dispatch }) {
+export function handleEnterOrSpace({ event, state, dispatch, onChangeContext }) {
   const pressedSpaceKeyWhileHavingFilter = state.hasFilter && event.key === " " && event.target.value !== "";
 
   const isEventOnFooter = state.refFooterContainer.current
@@ -221,8 +217,8 @@ export function handleEnterOrSpace({ event, state, dispatch }) {
     if (state.isMulti) {
       toggleMultipleOption({
         activeOptionIndex: state.activeOption,
-        state,
         dispatch,
+        onChangeContext,
       });
       return;
     }

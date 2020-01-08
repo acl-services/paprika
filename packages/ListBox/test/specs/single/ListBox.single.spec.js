@@ -1,7 +1,7 @@
 import React from "react";
 import { render, fireEvent, configure } from "@testing-library/react";
 import ListBox from "../../../src";
-import { ControlledIsSelected as ListBoxControlled } from "../../../stories/examples/single";
+import { ControlledIsSelected as ListBoxControlled, OnChange } from "../../../stories/examples/single";
 
 configure({ testIdAttribute: "data-pka-anchor" });
 
@@ -263,5 +263,25 @@ describe("Listbox single select", () => {
 
     expect(getAllByTestId("list-option--is-selected").length).toBe(1);
     expect(getByTestId("list-option--is-selected").textContent).toBe("Spiderman");
+  });
+
+  it("should not create a stale state when reading the state on handleChange", () => {
+    const log = [];
+    const storeLog = msg => log.push(msg);
+    const originalConsoleLog = console.log;
+    console.log = jest.fn(storeLog);
+
+    const { getByText } = render(<OnChange />);
+
+    const options = [getByText(/Wonder Woman/), getByText(/Thor/), getByText(/Batman/)];
+    fireEvent.click(options[0]);
+    fireEvent.click(options[1]);
+    fireEvent.click(options[2]);
+
+    expect(log.includes(null)).toBe(true);
+    expect(log.includes("Wonder Woman")).toBe(true);
+    expect(log.includes("Thor")).toBe(true);
+    expect(log.includes("Batman")).toBe(false);
+    console.log = originalConsoleLog;
   });
 });

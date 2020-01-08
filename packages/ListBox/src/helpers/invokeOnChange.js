@@ -31,18 +31,14 @@ const invokeOnChange = (onChangeCallback = () => {}, eventType = "", event) => (
   }
 
   if (state.isMulti) {
-    onChangeCallback.apply(null, [
-      ...getSelectedOptionsMulti(state),
-      { dispatch, actionTypes: sanitizeActionTypes(), eventType, ...event },
-    ]);
+    const [selected, options, current] = getSelectedOptionsMulti(state);
+    onChangeCallback(selected, options, current, { dispatch, actionTypes: sanitizeActionTypes(), eventType, ...event });
     dispatch({ type: useListBox.types.cleanOnChangeFn });
     return;
   }
 
-  onChangeCallback.apply(null, [
-    ...getSelectedOptionSingle(state),
-    { dispatch, actionTypes: sanitizeActionTypes(), eventType, ...event },
-  ]);
+  const [selected, options] = getSelectedOptionSingle(state);
+  onChangeCallback(selected, options, { dispatch, actionTypes: sanitizeActionTypes(), eventType, ...event });
   dispatch({ type: useListBox.types.cleanOnChangeFn });
 };
 
