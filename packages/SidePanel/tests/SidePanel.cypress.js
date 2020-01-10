@@ -21,11 +21,17 @@ describe("<SidePanel />", () => {
     });
   });
 
-  it("should SidePanel.FocusTrap have a different initial focus", () => {
-    cy.visitStorybook("sidepanel-focustrap--sidepanel-focustrap");
-    const input = cy.getByTestId("sidepanel.focustrap.input");
+  it("should put focus on element with data-autofocus", () => {
+    cy.visitStorybook("sidepanel-focuslock--with-autofocus-on-input");
+    const input = cy.get("[data-autofocus]");
     const testString = "hello world";
     input.type(testString).should("have.value", testString);
+  });
+
+  it("should have no focused element if pass autofocus=false to SidePanel.FocusLock", () => {
+    cy.visitStorybook("sidepanel-focuslock--with-disabled-autofocus");
+    cy.getByTestId("sidepanel").should("be.visible");
+    cy.focused().should("not.exist");
   });
 
   it("should be possible to interact with multiple sidepanels in a group", () => {
