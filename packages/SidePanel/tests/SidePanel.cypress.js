@@ -31,7 +31,7 @@ describe("<SidePanel />", () => {
   it("should have no focused element if pass autofocus=false to SidePanel.FocusLock", () => {
     cy.visitStorybook("sidepanel-focuslock--with-disabled-autofocus");
     cy.getByTestId("sidepanel").should("be.visible");
-    cy.focused().should('not.exist');
+    cy.focused().should("not.exist");
   });
 
   it("should be possible to interact with multiple sidepanels in a group", () => {
