@@ -1,3 +1,4 @@
+/* eslint-disable react/require-default-props */
 import React from 'react';
 import PropTypes from "prop-types";
 import FocusLockLibrary from "react-focus-lock";
@@ -22,11 +23,13 @@ const propTypes = {
   shards: PropTypes.arrayOf(PropTypes.any),
 
   as: PropTypes.oneOfType([PropTypes.string, PropTypes.func, PropTypes.object]),
+  // eslint-disable-next-line react/forbid-prop-types
   lockProps: PropTypes.object,
 
   onActivation: PropTypes.func,
   onDeactivation: PropTypes.func,
 
+  // eslint-disable-next-line react/forbid-prop-types
   sideCar: PropTypes.any,
 };
 
@@ -41,3 +44,4 @@ FocusLock.defaultProps = defaultProps;
 FocusLock.displayName = "SidePanel.FocusLock";
 
 export default FocusLock;
+/* eslint-enable react/require-default-props */
