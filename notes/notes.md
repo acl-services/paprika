@@ -35,15 +35,9 @@ To help our consumer developers to build faster apps. Our components should be f
 
 During the Paprika project, our intention is to _redesign_ all our component to behave as Controlled or Uncontrolled Components doing our best to improve the consumer developer experience.
 
-Components to be Refactor
+Components status:
 
-| .           | Implementation | Technical Pitch | A11y | Documentation |
-| ----------- | :------------: | :-------------: | :--: | :-----------: |
-| Popover     |       ✅       |                 |      |               |
-| Sidepanel   |                |                 |      |               |
-| Multiselect |                |                 |      |               |
-| Button      |                |                 |      |               |
-| L10n        |                |                 |      |               |
+[air table component list](https://airtable.com/invite/l?inviteId=invOhtbPh5cWHjucq&inviteToken=a546e39a0d13cb031eee77885f7c21f1abe8a8f103c59165d96a1308958fb175)
 
 #### Accessibility as a second class citizen
 
