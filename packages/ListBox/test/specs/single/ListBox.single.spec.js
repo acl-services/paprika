@@ -141,9 +141,34 @@ describe("Listbox single select", () => {
     }, 350);
   });
 
+  it.only("calls renderTrigger and changes the render method for label", () => {
+    const togglePopover = (dispatch, types) => () => {
+      dispatch({ type: types.togglePopover });
+    };
+
+    const onRenderTrigger = jest.fn((selected, options, { dispatch, propsForTrigger, types, refTrigger }) => {
+      return (
+        <button type="button" {...propsForTrigger()} onClick={togglePopover(dispatch, types)} ref={refTrigger}>
+          Toggle Listbox
+        </button>
+      );
+    });
+
+    const { getByText } = renderComponent({}, [
+      <ListBox.Trigger key="trigger">{onRenderTrigger}</ListBox.Trigger>,
+      [...childrenContent],
+    ]);
+
+    expect(onRenderTrigger).toHaveBeenCalled();
+    expect(getByText(/toggle listbox/i)).toBeInTheDocument();
+    fireEvent.click(getByText(/toggle listbox/i));
+    expect(getByText(/venus/i)).toBeInTheDocument();
+    expect(getByText(/jupiter/i)).toBeInTheDocument();
+  });
+
   it("should display message when filter input does not find a match", () => {
     const { getByTestId, getByText } = render(
-      <ListBox>
+      <ListBox isMulti>
         <ListBox.Filter noResultsMessage="No match" />
         <ListBox.Option>Venus</ListBox.Option>
         <ListBox.Option>Jupiter</ListBox.Option>
