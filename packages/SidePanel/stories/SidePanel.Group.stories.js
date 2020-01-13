@@ -7,7 +7,7 @@ function onClose() {
   alert("callback onClose");
 }
 
-storiesOf("SidePanel / SidePanel.Group", module).add("SidePanel.Group", () => (
+storiesOf("SidePanel / Group", module).add("SidePanel.Group", () => (
   <SidePanel.Group>
     <SidePanel onClose={onClose} isOpen width={350}>
       <SidePanel.Header>With Header</SidePanel.Header>
@@ -24,7 +24,7 @@ storiesOf("SidePanel / SidePanel.Group", module).add("SidePanel.Group", () => (
   </SidePanel.Group>
 ));
 
-storiesOf("SidePanel / SidePanel.Group", module).add("SidePanel.Group has offsetY", () => (
+storiesOf("SidePanel / Group", module).add("SidePanel.Group has offsetY", () => (
   <SidePanel.Group offsetY={40}>
     <Nav />
     <TextLine repeat={100} />
@@ -39,7 +39,7 @@ storiesOf("SidePanel / SidePanel.Group", module).add("SidePanel.Group has offset
   </SidePanel.Group>
 ));
 
-storiesOf("SidePanel / SidePanel.Group", module).add("SidePanel.Group has offsetY and Overlay", () => (
+storiesOf("SidePanel / Group", module).add("SidePanel.Group has offsetY and Overlay", () => (
   <React.Fragment>
     <Nav />
     <TextLine repeat={100} />
