@@ -9,7 +9,7 @@ import Header from "./components/Header";
 import Overlay from "./components/Overlay";
 import Trigger from "./components/Trigger";
 import Group from "./components/Group";
-import FocusTrap from "./components/FocusTrap";
+import FocusLock from "./components/FocusLock";
 
 import { extractChildren } from "./helpers";
 import { useOffsetScroll } from "./hooks";
@@ -92,14 +92,14 @@ function SidePanel(props) {
 
   // Extracts
   const {
-    "SidePanel.FocusTrap": focusTrapExtracted,
+    "SidePanel.FocusLock": focusLockExtracted,
     "SidePanel.Footer": footerExtracted,
     "SidePanel.Header": headerExtracted,
     "SidePanel.Overlay": overlayExtracted,
     "SidePanel.Trigger": triggerExtracted,
     children,
   } = extractChildren(props.children, [
-    "SidePanel.FocusTrap",
+    "SidePanel.FocusLock",
     "SidePanel.Footer",
     "SidePanel.Header",
     "SidePanel.Overlay",
@@ -126,16 +126,7 @@ function SidePanel(props) {
     }
   }, [props.isOpen]);
 
-  const extendedFocusTrapOptions = focusTrapExtracted ? focusTrapExtracted.props : {};
-  const fallbackFocus = () => {
-    return refHeader.current || refSidePanelContent.current;
-  };
-
-  const focusTrapOptions = {
-    fallbackFocus,
-    clickOutsideDeactivates: true,
-    ...extendedFocusTrapOptions,
-  };
+  const focusLockProps = focusLockExtracted ? focusLockExtracted.props : {};
 
   function handleEscKey(event) {
     if (event.key === "Escape") {
@@ -177,9 +168,9 @@ function SidePanel(props) {
       sidePanel = (
         <Portal active={!isInline}>
           <React.Fragment>
-            <FocusTrap focusTrapOptions={focusTrapOptions}>
-              <div>{dialog}</div>
-            </FocusTrap>
+            <FocusLock as="div" {...focusLockProps}>
+              {dialog}
+            </FocusLock>
             {overlayExtracted ? React.cloneElement(overlayExtracted, { onClose }) : null}
           </React.Fragment>
         </Portal>
@@ -200,7 +191,7 @@ function SidePanel(props) {
 }
 
 SidePanel.defaultProps = defaultProps;
-SidePanel.FocusTrap = FocusTrap;
+SidePanel.FocusLock = FocusLock;
 SidePanel.Footer = Footer;
 SidePanel.Group = Group;
 SidePanel.Header = Header;

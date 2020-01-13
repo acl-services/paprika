@@ -1,6 +1,6 @@
 {
   "name": "@paprika/sidepanel",
-  "version": "0.2.11",
+  "version": "0.3.0",
   "description": "SidePanel component",
   "author": "@paprika",
   "main": "lib/index.js",
@@ -22,9 +22,9 @@
     "@paprika/raw-button": "^0.2.5",
     "@paprika/stylers": "^0.2.5",
     "@paprika/tokens": "^0.1.12",
-    "focus-trap-react": "^6.0.0",
     "lodash.debounce": "^4.0.8",
-    "prop-types": "^15.7.2"
+    "prop-types": "^15.7.2",
+    "react-focus-lock": "^2.2.1"
   },
   "peerDependencies": {
     "@paprika/l10n": "^0.2.5",
