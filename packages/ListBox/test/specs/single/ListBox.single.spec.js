@@ -141,7 +141,7 @@ describe("Listbox single select", () => {
     }, 350);
   });
 
-  it.only("calls renderTrigger and changes the render method for label", () => {
+  it("calls renderTrigger and changes the render method for label", () => {
     const togglePopover = (dispatch, types) => () => {
       dispatch({ type: types.togglePopover });
     };
