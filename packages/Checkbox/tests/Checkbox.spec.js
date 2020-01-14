@@ -1,11 +1,11 @@
 import { render } from "@testing-library/react";
 import React from "react";
-import Checkbox, { checkboxStates } from "../src/Checkbox";
+import Checkbox from "../src/Checkbox";
 
 function renderComponent(props = {}) {
   const defaultProps = {
     a11yText: null,
-    checkedState: checkboxStates.CHECKED,
+    checkedState: Checkbox.States.CHECKED,
     children: null,
     isDisabled: false,
     onChange: () => {},
@@ -21,12 +21,12 @@ describe("Checkbox", () => {
   });
 
   it("Renders checkedState is unchecked", () => {
-    const { getByRole } = renderComponent({ checkedState: checkboxStates.UNCHECKED });
+    const { getByRole } = renderComponent({ checkedState: Checkbox.States.UNCHECKED });
     expect(getByRole("checkbox")).not.toHaveAttribute("checked");
   });
 
   it("Renders checkedState is indeterminate", () => {
-    const { getByRole } = renderComponent({ checkedState: checkboxStates.INDETERMINATE });
+    const { getByRole } = renderComponent({ checkedState: Checkbox.States.INDETERMINATE });
     expect(getByRole("checkbox").indeterminate).toBe(true);
   });
 

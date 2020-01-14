@@ -1,9 +1,9 @@
 import React from "react";
 import { Rule } from "storybook/assets/styles/common.styles";
 import Heading from "@paprika/heading";
-import Checkbox, { checkboxStates } from "../../src/Checkbox";
+import Checkbox from "../../src/Checkbox";
 
-const { CHECKED, UNCHECKED } = checkboxStates;
+const { CHECKED, UNCHECKED } = Checkbox.States;
 
 const CheckboxExample = props => {
   const [checkedState, setCheckedState] = React.useState(props.value || UNCHECKED);

@@ -4,14 +4,14 @@ import { Rule, Tagline } from "storybook/assets/styles/common.styles";
 import { ShirtSizes } from "@paprika/helpers/lib/customPropTypes";
 import Heading from "@paprika/heading";
 import { CheckboxStory } from "../Checkbox.stories.styles";
-import Checkbox, { checkboxStates } from "../../src/Checkbox";
+import Checkbox from "../../src/Checkbox";
 
-const { CHECKED, UNCHECKED } = checkboxStates;
+const { CHECKED, UNCHECKED } = Checkbox.States;
 
 const checkboxProps = () => ({
   size: select("size", ShirtSizes.DEFAULT, "medium"),
   isDisabled: boolean("isDisabled", false),
-  checkedState: select("checkedState", Object.values(checkboxStates), UNCHECKED),
+  checkedState: select("checkedState", Object.values(Checkbox.States), UNCHECKED),
   a11yText: text("a11yText", ""),
 });
 

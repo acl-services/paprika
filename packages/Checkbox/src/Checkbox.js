@@ -6,7 +6,7 @@ import CheckIcon from "@paprika/icon/lib/Check";
 import DashIcon from "@paprika/icon/lib/Dash";
 import checkboxStyles from "./Checkbox.styles";
 
-export const checkboxStates = {
+const checkboxStates = {
   CHECKED: "checked",
   UNCHECKED: "unchecked",
   INDETERMINATE: "indeterminate",
@@ -74,8 +74,9 @@ const Checkbox = props => {
   );
 };
 
+Checkbox.States = checkboxStates;
+
 Checkbox.displayName = "Checkbox";
 Checkbox.propTypes = propTypes;
 Checkbox.defaultProps = defaultProps;
-
 export default Checkbox;
