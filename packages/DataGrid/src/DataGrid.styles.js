@@ -4,6 +4,10 @@ export const Grid = styled.div`
   .grid--is-active {
     outline: 2px solid blue;
   }
+
+  [class*="-header"] {
+    overflow: hidden !important;
+  }
 `;
 
 export const Cell = styled.div`

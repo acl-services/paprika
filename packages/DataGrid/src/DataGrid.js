@@ -86,6 +86,7 @@ export default function DataGrid(props) {
       aria-colcount={columnCount}
       role="grid"
       onKeyDown={handleKeyDown}
+      gridId={gridId}
       {...moreProps}
     >
       <Grid
