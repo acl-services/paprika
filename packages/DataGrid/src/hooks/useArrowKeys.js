@@ -1,5 +1,6 @@
 import React from "react";
 import nanoid from "nanoid";
+import isDevEnv from "@paprika/helpers/lib/isDevEnv";
 
 const getDataCell = event => {
   let dataCell = event.target.dataset.cell;
@@ -8,6 +9,12 @@ const getDataCell = event => {
   }
   return dataCell;
 };
+
+export function timeDiff(t1, t2) {
+  if (isDevEnv()) {
+    console.log(`%c diff: ${t2 - t1}`, "color: yellow; background: #333;");
+  }
+}
 
 export default function useArrowKeys({ refGrid, refContainer, columnCount, rowCount, rowHeight }) {
   const [gridId] = React.useState(() => `PKA${nanoid()}`);
@@ -60,6 +67,7 @@ export default function useArrowKeys({ refGrid, refContainer, columnCount, rowCo
   }
 
   function scroll() {
+    const t1 = performance.now();
     const $cell = $getCell({ refContainer, gridId, cell });
 
     const cellBoundClientRect = $cell.getBoundingClientRect();
@@ -70,6 +78,7 @@ export default function useArrowKeys({ refGrid, refContainer, columnCount, rowCo
       const left = refScroll.current.scrollLeft + cellBoundClientRect.width;
       focus($cell);
       refScroll.current.scrollTo(left, refScroll.current.scrollTop);
+      timeDiff(t1, performance.now());
       return;
     }
 
@@ -77,6 +86,7 @@ export default function useArrowKeys({ refGrid, refContainer, columnCount, rowCo
       const left = refScroll.current.scrollLeft - cellBoundClientRect.width;
       focus($cell);
       refScroll.current.scrollTo(left, refScroll.current.scrollTop);
+      timeDiff(t1, performance.now());
       return;
     }
 
@@ -103,6 +113,7 @@ export default function useArrowKeys({ refGrid, refContainer, columnCount, rowCo
         );
 
         focus($cell);
+        timeDiff(t1, performance.now());
         return;
       }
 
@@ -110,6 +121,7 @@ export default function useArrowKeys({ refGrid, refContainer, columnCount, rowCo
     }
 
     focus($cell);
+    timeDiff(t1, performance.now());
   }
 
   function toCellState(column, index) {
