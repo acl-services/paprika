@@ -53,8 +53,8 @@ export default function DataGrid(props) {
 
   const rowCount = 1000; // this should be props
   const columnCount = 20; // this should be props
-  const cellRef = React.useRef(null);
-  // const prevRef = React.useRef(null);
+  const refCell = React.useRef(null);
+  const refScrollHeader = React.useRef(null);
   const refContainer = React.useRef(null);
   const refGrid = React.useRef(null);
   const { handleKeyDown, gridId } = useArrowKeys({
@@ -65,9 +65,23 @@ export default function DataGrid(props) {
     rowHeight,
   });
 
+  const handleScroll = React.useCallback(
+    parameters => {
+      const { scrollLeft /* scrollUpdateWasRequested */ } = parameters;
+      if (refScrollHeader.current) {
+        refScrollHeader.current.scrollTo({ left: scrollLeft, top: 0 });
+      }
+    },
+    [refScrollHeader]
+  );
+
+  React.useEffect(() => {
+    refScrollHeader.current = refContainer.current.querySelector(`.${gridId}-header`);
+  }, [gridId]);
+
   return (
     <styled.Grid
-      tabIndex={0}
+      tabIndex={-1}
       ref={refContainer}
       aria-colcount={columnCount}
       role="grid"
@@ -83,8 +97,8 @@ export default function DataGrid(props) {
         width={640}
         overscanColumnCount={20}
         overscanRowCount={20}
-        outerElementType={outerElementType}
         innerElementType={innerElementType}
+        className={`${gridId}-header`}
       >
         {({ columnIndex, style }) => {
           return (
@@ -107,6 +121,7 @@ export default function DataGrid(props) {
         innerElementType={innerElementType}
         ref={refGrid}
         className={`grid-${gridId}`}
+        onScroll={handleScroll}
       >
         {({ columnIndex, rowIndex, style }) => {
           return (
@@ -114,7 +129,7 @@ export default function DataGrid(props) {
               onKeyDown={event => {
                 event.preventDefault();
               }}
-              ref={cellRef}
+              ref={refCell}
               tabIndex={-1}
               style={style}
               data-cell={`${gridId}.${columnIndex}.${rowIndex}`}
@@ -124,7 +139,7 @@ export default function DataGrid(props) {
                 {columnIndex}
               </div>
               <styled.GridCell role="gridcell">
-                {`you are on row ${rowIndex}, column ${columnIndex}, cell value ${rowIndex}${columnIndex}`}
+                {`${rowIndex}${columnIndex}. You are on row ${rowIndex}, column ${columnIndex}. Disregard the following information:`}
               </styled.GridCell>
             </styled.Cell>
           );
