@@ -22,3 +22,4 @@ storiesOf("ListBox / single", module).add("Has scroll connected to element", () 
 
 storiesOf("ListBox / single", module).add("Controlled isSelected listbox", () => <Single.ControlledIsSelected />);
 storiesOf("ListBox / single", module).add("UnControlled defaultIsSelected listbox", () => <Single.DefaultIsSelected />);
+storiesOf("ListBox / single", module).add("onChange listbox", () => <Single.OnChange />);

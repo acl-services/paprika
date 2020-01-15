@@ -9,6 +9,8 @@ import TimesCircleIcon from "@paprika/icon/lib/TimesCircle";
 import Label from "../Label";
 import handleKeyboardKeys from "../../helpers/handleKeyboardKeys";
 import useListBox from "../../useListBox";
+import OnChangeContext from "../../store/OnChangeProvider";
+
 import invokeOnChange, {
   sanitizeActionTypes,
   getSelectedOptionSingle,
@@ -38,6 +40,7 @@ const defaultProps = {
 
 export default function Trigger(props) {
   const [state, dispatch] = useListBox();
+  const onChangeContext = React.useContext(OnChangeContext);
   const { placeholder, hasClearButton, onClickFooterAccept, children, isHidden } = props;
   const {
     isDisabled,
@@ -119,7 +122,7 @@ export default function Trigger(props) {
         id={triggerButtonId}
         onClick={handleClick}
         ref={refTrigger}
-        onKeyDown={handleKeyboardKeys(state, dispatch)}
+        onKeyDown={handleKeyboardKeys({ state, dispatch, onChangeContext })}
         onKeyUp={() => {}}
         isDisabled={isDisabled}
         data-pka-anchor="listbox-trigger"
@@ -145,7 +148,20 @@ export default function Trigger(props) {
   let renderChildrenProps = null;
   renderChildrenProps = React.useMemo(() => {
     if (hasRenderTrigger) {
-      return children(isMulti ? getSelectedOptionsMulti(state) : getSelectedOptionSingle(state), dispatch, {
+      if (isMulti) {
+        const [selected, options, current] = getSelectedOptionsMulti(state);
+
+        return children(selected, options, current, {
+          dispatch,
+          propsForTrigger: getDOMAttributesForListBoxButton(idListBox),
+          types: sanitizeActionTypes(useListBox.types),
+          refTrigger,
+        });
+      }
+
+      const [selected, options] = getSelectedOptionSingle(state);
+      return children(selected, options, {
+        dispatch,
         propsForTrigger: getDOMAttributesForListBoxButton(idListBox),
         types: sanitizeActionTypes(useListBox.types),
         refTrigger,

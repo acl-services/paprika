@@ -53,17 +53,10 @@ storiesOf("Modal", module)
       </Modal.Content>
     </ModalStory>
   ))
-  .add("with overridden FocusTrap", () => (
+  .add("with autofocus on input", () => (
     <ModalStory>
-      <Modal.Overlay
-        focusTrapOptions={{
-          initialFocus: () => {
-            return document.querySelector("[data-pka-anchor='modal.focustrap.input']");
-          },
-        }}
-      />
       <Modal.Content>
-        <input type="text" data-pka-anchor="modal.focustrap.input" />
+        <input type="text" data-autofocus />
       </Modal.Content>
     </ModalStory>
   ))

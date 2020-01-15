@@ -9,6 +9,7 @@ import Popover from "./components/Popover";
 import RawItem from "./components/RawItem";
 import Trigger from "./components/Trigger";
 import Provider from "./store/Provider";
+import OnChangeProvider from "./store/OnChangeProvider";
 
 const ListBoxWithProvider = React.forwardRef((props, ref) => {
   const { children, ...moreProps } = props;
@@ -44,9 +45,11 @@ const ListBoxWithProvider = React.forwardRef((props, ref) => {
 
   return (
     <Provider {...moreProps} childrenOptions={options}>
-      <ListBox {...moreProps} ref={ref} filter={filter} footer={footer} popover={popover} trigger={trigger}>
-        {options}
-      </ListBox>
+      <OnChangeProvider onChange={props.onChange}>
+        <ListBox {...moreProps} ref={ref} filter={filter} footer={footer} popover={popover} trigger={trigger}>
+          {options}
+        </ListBox>
+      </OnChangeProvider>
     </Provider>
   );
 });
