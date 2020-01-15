@@ -74,7 +74,7 @@ const Checkbox = props => {
   );
 };
 
-Checkbox.States = checkboxStates;
+Checkbox.states = checkboxStates;
 
 Checkbox.displayName = "Checkbox";
 Checkbox.propTypes = propTypes;
