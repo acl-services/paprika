@@ -1,8 +1,8 @@
 import React from "react";
 import PropTypes from "prop-types";
 import { FixedSizeGrid as Grid } from "react-window";
-import styled from "styled-components";
-import nanoid from "nanoid";
+import useArrowKeys from "./hooks/useArrowKeys";
+import * as styled from "./DataGrid.styles";
 
 const propTypes = {
   data: PropTypes.arrayOf(PropTypes.shape({})),
@@ -31,79 +31,9 @@ const defaultProps = {
   onKeyDown: () => {},
 };
 
-const Cell = styled.div`
-  position: relative;
-  .grid--is-active {
-    border: 1px solid blue;
-  }
-`;
-
-const GridCell = styled.div`
-  height: 1px;
-  left: 0;
-  overflow: hidden;
-  position: absolute;
-  top: 0;
-  whitespace: nowrap;
-  width: 1px;
-`;
-
 const outerElementType = React.forwardRef((props, ref) => <div role="rowgroup" ref={ref} {...props} />);
 
 const innerElementType = React.forwardRef((props, ref) => <div role="row" ref={ref} {...props} />);
-
-function useNextPrev({ refGrid, refContainer, gridId }) {
-  const [cell, setCell] = React.useState(null);
-  const [prevCell, setPrevCell] = React.useState(null);
-
-  const handleKeyDown = React.useCallback(event => {
-    // const keyboardKeys = {
-    //   ArrowUp: () => {
-    //     console.log("up");
-    //   },
-    //   ArrowRight: () => {
-    //     console.log("right");
-    //   },
-    //   ArrowDown: () => {
-    //     console.log("down");
-    //   },
-    //   ArrowLeft: () => {
-    //     console.log("left");
-    //   },
-    // };
-    //
-    // if (event.key in keyboardKeys) {
-    //   if (!cell) {
-    //     setCell({ columnIndex: 0, rowIndex: 0 });
-    //     return;
-    //   }
-    //   keyboardKeys[event.key]();
-    // }
-  }, []);
-
-  const handleClick = React.useCallback(event => {
-    const dataCell = event.target.dataset.cell;
-    console.log(dataCell);
-  }, []);
-
-  function nextUp() {}
-
-  function nextRight() {}
-
-  function nextBottom() {}
-
-  function nextLeft() {}
-
-  React.useEffect(() => {
-    if (cell && refGrid && refGrid.current) {
-      refGrid.current.scrollToItem({ align: "smart", columnIndex: cell.columnIndex, rowIndex: cell.rowIndex });
-      const $cell = refContainer.current.querySelector(`[cell='${gridId}.${cell.columnIndex}.${cell.rowIndex}']`);
-      $cell.classList.toggle("grid--is-active");
-    }
-  }, [cell, gridId, refContainer, refGrid]);
-
-  return { nextUp, nextRight, nextBottom, nextLeft, cell, prevCell, handleKeyDown, handleClick };
-}
 
 export default function DataGrid(props) {
   const {
@@ -121,36 +51,23 @@ export default function DataGrid(props) {
     ...moreProps
   } = props;
 
+  const rowCount = 1000; // this should be props
+  const columnCount = 20; // this should be props
   const cellRef = React.useRef(null);
-  const prevRef = React.useRef(null);
+  // const prevRef = React.useRef(null);
   const refContainer = React.useRef(null);
   const refGrid = React.useRef(null);
-  const gridId = React.useState(() => `PKA${nanoid()}`);
-  const { handleKeyDown, handleClick: handleClickNextPrev } = useNextPrev({ gridId, refGrid, refContainer });
-
-  const rowCount = 1000;
-  const columnCount = 20;
-  const handleClick = React.useCallback(
-    event => {
-      if (prevRef.current) {
-        prevRef.current.tabIndex = "-1";
-      }
-
-      const qs = "[role='gridcell']";
-      const $gridcell = event.target.hasAttribute("aria-hidden")
-        ? event.target.parentElement.querySelector(qs)
-        : event.target.querySelector(qs);
-      prevRef.current = $gridcell;
-      $gridcell.tabIndex = 0;
-      $gridcell.focus();
-      handleClickNextPrev(event);
-    },
-    [handleClickNextPrev]
-  );
+  const { handleKeyDown, gridId } = useArrowKeys({
+    refGrid,
+    refContainer,
+    columnCount,
+    rowCount,
+    rowHeight,
+  });
 
   return (
-    <div
-      tabIndex={-1}
+    <styled.Grid
+      tabIndex={0}
       ref={refContainer}
       aria-colcount={columnCount}
       role="grid"
@@ -165,14 +82,15 @@ export default function DataGrid(props) {
         height={48}
         width={640}
         overscanColumnCount={20}
+        overscanRowCount={20}
         outerElementType={outerElementType}
         innerElementType={innerElementType}
       >
         {({ columnIndex, style }) => {
           return (
-            <Cell role="columnheader" style={style}>
+            <styled.Cell role="columnheader" style={style}>
               Column {columnIndex}
-            </Cell>
+            </styled.Cell>
           );
         }}
       </Grid>
@@ -188,28 +106,31 @@ export default function DataGrid(props) {
         outerElementType={outerElementType}
         innerElementType={innerElementType}
         ref={refGrid}
+        className={`grid-${gridId}`}
       >
         {({ columnIndex, rowIndex, style }) => {
           return (
-            <Cell
+            <styled.Cell
+              onKeyDown={event => {
+                event.preventDefault();
+              }}
               ref={cellRef}
               tabIndex={-1}
-              onClick={handleClick}
               style={style}
-              data-cell={`${columnIndex}_${rowIndex}`}
+              data-cell={`${gridId}.${columnIndex}.${rowIndex}`}
             >
               <div aria-hidden="true">
                 {rowIndex}
                 {columnIndex}
               </div>
-              <GridCell role="gridcell">
-                {`you are on row ${rowIndex}, column ${columnIndex}. cell value ${rowIndex}${columnIndex}`}
-              </GridCell>
-            </Cell>
+              <styled.GridCell role="gridcell">
+                {`you are on row ${rowIndex}, column ${columnIndex}, cell value ${rowIndex}${columnIndex}`}
+              </styled.GridCell>
+            </styled.Cell>
           );
         }}
       </Grid>
-    </div>
+    </styled.Grid>
   );
 }
 

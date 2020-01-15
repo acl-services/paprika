@@ -1,7 +1,6 @@
 import React from "react";
 import { storiesOf } from "@storybook/react";
 import DataGrid from "../src";
-import fixtures from "./helpers/fixtures";
 // import { viewPortHeight } from "./helpers";
 
 // const flags = {
