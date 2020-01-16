@@ -8,11 +8,23 @@ configure({ testIdAttribute: "data-pka-anchor" });
 const defaultLabel = "Form Element";
 
 function renderComponent(props = {}) {
-  const { children, label, ...moreProps } = props;
+  const { children, label, isDisabled, isReadOnly, ...moreProps } = props;
   return render(
     <L10n>
       <FormElement label={label || defaultLabel} {...moreProps}>
-        {children || <input data-pka-anchor="formElement.input" />}
+        {children || (
+          <FormElement.Content>
+            {({ idForLabel, ariaDescribedBy }) => (
+              <input
+                aria-describedby={ariaDescribedBy}
+                readOnly={isReadOnly}
+                disabled={isDisabled}
+                data-pka-anchor="formElement.input"
+                id={idForLabel}
+              />
+            )}
+          </FormElement.Content>
+        )}
       </FormElement>
     </L10n>
   );
@@ -57,7 +69,11 @@ describe("FormElement", () => {
     const { getByTestId } = render(
       <L10n>
         <FormElement label={defaultLabel}>
-          <input data-pka-anchor="formElement.input" />
+          <FormElement.Content>
+            {({ idForLabel, ariaDescribedBy }) => (
+              <input aria-describedby={ariaDescribedBy} data-pka-anchor="formElement.input" id={idForLabel} />
+            )}
+          </FormElement.Content>
           <FormElement.Description>Sample description</FormElement.Description>
           <FormElement.Help>Sample help</FormElement.Help>
         </FormElement>
@@ -72,7 +88,11 @@ describe("FormElement", () => {
     const { getByTestId } = render(
       <L10n>
         <FormElement label={defaultLabel}>
-          <input data-pka-anchor="formElement.input" />
+          <FormElement.Content>
+            {({ idForLabel, ariaDescribedBy }) => (
+              <input aria-describedby={ariaDescribedBy} data-pka-anchor="formElement.input" id={idForLabel} />
+            )}
+          </FormElement.Content>
           <FormElement.Instructions>
             Instructions Panel Content Instructions Panel Content Instructions Panel Content
           </FormElement.Instructions>
@@ -91,7 +111,11 @@ describe("FormElement", () => {
     const { getByTestId, queryByTestId } = render(
       <L10n>
         <FormElement label={defaultLabel}>
-          <input data-pka-anchor="formElement.input" />
+          <FormElement.Content>
+            {({ idForLabel, ariaDescribedBy }) => (
+              <input aria-describedby={ariaDescribedBy} data-pka-anchor="formElement.input" id={idForLabel} />
+            )}
+          </FormElement.Content>
           <FormElement.Description>Sample description</FormElement.Description>
           <FormElement.Error>Sample error</FormElement.Error>
         </FormElement>
