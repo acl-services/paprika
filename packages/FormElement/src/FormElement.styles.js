@@ -1,6 +1,6 @@
 import { css } from "styled-components";
 
-import tokens from "@paprika/tokens";
+// import tokens from "@paprika/tokens";
 import stylers from "@paprika/stylers";
 
 const FontSizes = {
@@ -16,10 +16,6 @@ export const inlineContainerStyles = css`
 const inlineFormElementStyles = css`
   align-items: baseline;
   display: flex;
-`;
-
-export const formElementChildStyle = css`
-  margin: ${tokens.space} 0;
 `;
 
 const formElementStyles = css`

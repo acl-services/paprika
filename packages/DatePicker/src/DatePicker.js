@@ -32,7 +32,7 @@ const propTypes = {
   /** Date format used while displaying date. It should be human-friendly and spelled out, default is MMMM DD,YYYY */
   humanFormat: PropTypes.string,
 
-  /** ID for the <input>.  Not required when wrapped with <FormElement>. */
+  /** ID for the <input>. */
   id: PropTypes.string,
 
   /** Should be disabled or not, default is false. */
@@ -47,7 +47,7 @@ const propTypes = {
   /** Internal errors callback */
   onError: PropTypes.func,
 
-  /** If there is an external error or not. Not required when wrapped with <FormElement>. */
+  /** If there is an external error or not. */
   hasError: PropTypes.bool,
 };
 

@@ -117,6 +117,9 @@ const Input = props => {
     <div css={inputStyles} {...styleProps} className={rootClasses}>
       {renderIcon()}
       <input
+        aria-invalid={hasError}
+        aria-disabled={isDisabled}
+        aria-readonly={isReadOnly}
         className="form-input__input"
         data-pka-anchor="input"
         disabled={isDisabled}
