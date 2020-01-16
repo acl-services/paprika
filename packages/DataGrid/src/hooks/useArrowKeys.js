@@ -21,8 +21,7 @@ export default function useArrowKeys({ refGrid, refContainer, columnCount, rowCo
   const refContainerBoundClientRect = React.useRef(null);
   const refScroll = React.useRef(null);
   const refPrevCell = React.useRef(null);
-  // const [cell, setCell] = React.useState(null);
-  // const [prevCell, setPrevCell] = React.useState(null);
+  const refHasHorizontalScrollBar = React.useRef(false);
 
   const cell = React.useRef(null);
   const prevCell = React.useRef(null);
@@ -66,12 +65,20 @@ export default function useArrowKeys({ refGrid, refContainer, columnCount, rowCo
     });
   }
 
-  function scroll() {
+  function scrollToTheBottom() {
+    const $cell = $getCell({ refContainer, gridId, cell });
+    refScroll.current.scrollTo(refScroll.current.scrollLeft, refScroll.current.scrollHeight);
+    focus($cell);
+  }
+
+  // This handle the cases where the Grid needs to scroll to a
+  // new position outside of refContainer's boundaries
+  function scroll(columnIndex, rowIndex) {
     const t1 = performance.now();
     const $cell = $getCell({ refContainer, gridId, cell });
 
     const cellBoundClientRect = $cell.getBoundingClientRect();
-    const scrollbarThickness = 17; // there is not a proper way to calculate the height/width of a scrollbar so I'm using the standard size
+    const scrollbarThickness = refHasHorizontalScrollBar.current ? 17 : 0; // there is not a proper way to calculate the height/width of a scrollbar so I'm using the standard size
 
     // left right
     if (cellBoundClientRect.right > refContainerBoundClientRect.current.right) {
@@ -97,13 +104,28 @@ export default function useArrowKeys({ refGrid, refContainer, columnCount, rowCo
         cellBoundClientRect.bottom > refContainerBoundClientRect.current.height) ||
       cellBoundClientRect.y < refContainerBoundClientRect.current.y
     ) {
-      let top = refScroll.current.scrollTop + rowHeight;
       if (cellBoundClientRect.bottom > refContainerBoundClientRect.current.height) {
-        top =
+        const top =
           refScroll.current.scrollTop +
           scrollbarThickness +
           cellBoundClientRect.bottom -
           refContainerBoundClientRect.current.bottom;
+
+        /**
+          it's necessary to scroll to the bottom of the container at the last row,
+          in case we don't do it cellBoundClientRect.bottom > refContainerBoundClientRect.current.height will be true
+          creating an undesire navigating experience using the keyboard while pressing the ArrowUp
+          */
+
+        if (rowIndex + 1 === rowCount) {
+          scrollToTheBottom();
+          focus($cell);
+          return;
+        }
+
+        refScroll.current.scrollTo(refScroll.current.scrollLeft, top);
+        focus($cell);
+        return;
       }
 
       if (cellBoundClientRect.top < refContainerBoundClientRect.current.top) {
@@ -116,8 +138,6 @@ export default function useArrowKeys({ refGrid, refContainer, columnCount, rowCo
         timeDiff(t1, performance.now());
         return;
       }
-
-      refScroll.current.scrollTo(refScroll.current.scrollLeft, top);
     }
 
     focus($cell);
@@ -131,6 +151,7 @@ export default function useArrowKeys({ refGrid, refContainer, columnCount, rowCo
     };
   }
 
+  // This in charge of highlight and assigned the cell while using the keyboard
   const handleKeyDown = event => {
     event.preventDefault();
 
@@ -155,6 +176,9 @@ export default function useArrowKeys({ refGrid, refContainer, columnCount, rowCo
           setHighlight();
           setRefPrevCell();
           scroll(nextColumnIndex, 0);
+          if (rowIndex + 1 === rowCount) {
+            scrollToTheBottom();
+          }
         }
       },
       ArrowDown: () => {
@@ -179,6 +203,9 @@ export default function useArrowKeys({ refGrid, refContainer, columnCount, rowCo
           setHighlight();
           setRefPrevCell();
           scroll(nextColumnIndex, 0);
+          if (rowIndex + 1 === rowCount) {
+            scrollToTheBottom();
+          }
         }
       },
     };
@@ -216,6 +243,11 @@ export default function useArrowKeys({ refGrid, refContainer, columnCount, rowCo
     refContainerBoundClientRect.current = refContainer.current.querySelector(`.grid-${gridId}`).getBoundingClientRect();
     refScroll.current = refContainer.current.querySelector(`.grid-${gridId} [role="row"]`).parentElement;
   }, [gridId, refContainer]);
+
+  React.useEffect(() => {
+    refHasHorizontalScrollBar.current = refScroll.current.scrollWidth > refScroll.current.clientWidth;
+    console.log("hasHorizontal", refHasHorizontalScrollBar.current);
+  }, [refScroll]);
 
   return { cell, prevCell, handleKeyDown, gridId };
 }

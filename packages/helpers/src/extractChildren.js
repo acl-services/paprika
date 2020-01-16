@@ -8,8 +8,8 @@ export default function extractChildren(children, types) {
       if (child.type && types.includes(child.type.displayName)) {
         if (Object.prototype.hasOwnProperty.call(components, child.type.displayName)) {
           const childs = Array.isArray(components[child.type.displayName])
-            ? [child, ...components[child.type.displayName]]
-            : [child, components[child.type.displayName]];
+            ? [...components[child.type.displayName], child]
+            : [components[child.type.displayName], child];
 
           components[child.type.displayName] = childs;
         } else {

@@ -1,7 +1,9 @@
 import React from "react";
 import PropTypes from "prop-types";
-import { FixedSizeGrid as Grid } from "react-window";
+import { VariableSizeGrid as Grid } from "react-window";
+import extractChildren from "@paprika/helpers/lib/extractChildren";
 import useArrowKeys from "./hooks/useArrowKeys";
+import ColumnDefinition from "./components/ColumnDefinition";
 import * as styled from "./DataGrid.styles";
 
 const propTypes = {
@@ -15,25 +17,28 @@ const propTypes = {
   hasVerticalBorder: PropTypes.bool,
   hasHorizontalBorder: PropTypes.bool,
   whileOnScrolling: PropTypes.func,
-  hasAutoFit: PropTypes.bool,
+  fillAvailableSpace: PropTypes.bool,
+  children: PropTypes.node.isRequired,
 };
 const defaultProps = {
   data: [],
   height: 600,
-  width: 720,
-  rowHeight: 32,
+  width: null,
+  rowHeight: 40,
   hasZebra: false,
   hasVerticalBorder: true,
   hasHorizontalBorder: true,
   whileOnScrolling: null,
-  hasAutoFit: true,
+  fillAvailableSpace: false,
   onClick: () => {},
   onKeyDown: () => {},
 };
 
 const outerElementType = React.forwardRef((props, ref) => <div role="rowgroup" ref={ref} {...props} />);
-
 const innerElementType = React.forwardRef((props, ref) => <div role="row" ref={ref} {...props} />);
+const innerElementTypeMainGrid = React.forwardRef((props, ref) => (
+  <styled.InnerElementTypeMainGrid role="row" ref={ref} {...props} />
+));
 
 export default function DataGrid(props) {
   const {
@@ -46,17 +51,41 @@ export default function DataGrid(props) {
     hasVerticalBorder,
     hasHorizontalBorder,
     whileOnScrolling,
-    hasAutoFit,
+    fillAvailableSpace,
     onKeyDown,
+    children,
     ...moreProps
   } = props;
 
-  const rowCount = 1000; // this should be props
-  const columnCount = 20; // this should be props
   const refCell = React.useRef(null);
   const refScrollHeader = React.useRef(null);
   const refContainer = React.useRef(null);
   const refGrid = React.useRef(null);
+
+  const rowCount = React.useMemo(() => {
+    return data.length;
+  }, [data.length]);
+
+  const ColumnDefinitions = React.useMemo(() => {
+    const { "DataGrid.ColumnDefinition": ColumnDefinitions } = extractChildren(children, ["DataGrid.ColumnDefinition"]);
+
+    return ColumnDefinitions;
+  }, [children]);
+
+  const columnCount = React.useMemo(() => {
+    return ColumnDefinitions.length;
+  }, [ColumnDefinitions]);
+
+  const calculatedTableWidth = React.useMemo(() => {
+    let width = 0;
+    ColumnDefinitions.forEach(columnDefinition => {
+      width += Number.parseInt(columnDefinition.props.width, 10);
+    });
+    return width + width * 0.12;
+  }, [ColumnDefinitions]);
+
+  const tableWidth = width === null ? calculatedTableWidth : width;
+
   const { handleKeyDown, gridId } = useArrowKeys({
     refGrid,
     refContainer,
@@ -91,13 +120,14 @@ export default function DataGrid(props) {
     >
       <Grid
         columnCount={columnCount}
-        columnWidth={80}
+        columnWidth={() => 80}
         rowCount={1}
-        rowHeight={48}
+        rowHeight={() => rowHeight}
         height={48}
-        width={640}
+        width={tableWidth}
         overscanColumnCount={20}
         overscanRowCount={20}
+        outerElementType={outerElementType}
         innerElementType={innerElementType}
         className={`${gridId}-header`}
       >
@@ -111,15 +141,15 @@ export default function DataGrid(props) {
       </Grid>
       <Grid
         columnCount={columnCount}
-        columnWidth={80}
+        columnWidth={() => 80}
         height={500}
         rowCount={rowCount}
-        rowHeight={48}
-        width={640}
+        rowHeight={() => rowHeight}
+        width={tableWidth}
         overscanColumnCount={20}
         overscanRowCount={20}
         outerElementType={outerElementType}
-        innerElementType={innerElementType}
+        innerElementType={innerElementTypeMainGrid}
         ref={refGrid}
         className={`grid-${gridId}`}
         onScroll={handleScroll}
@@ -152,3 +182,4 @@ export default function DataGrid(props) {
 
 DataGrid.propTypes = propTypes;
 DataGrid.defaultProps = defaultProps;
+DataGrid.ColumnDefinition = ColumnDefinition;

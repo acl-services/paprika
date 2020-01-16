@@ -1,8 +1,10 @@
 import styled from "styled-components";
+import tokens from "@paprika/tokens";
 
 export const Grid = styled.div`
   .grid--is-active {
-    outline: 2px solid blue;
+    box-shadow: ${tokens.highlight.active.withBorder.insetBoxShadow};
+    /* border: 2px solid blue; */
   }
 
   [class*="-header"] {
@@ -12,9 +14,10 @@ export const Grid = styled.div`
 
 export const Cell = styled.div`
   position: relative;
-  .grid--is-active {
-    border: 1px solid blue;
-  }
+`;
+
+export const InnerElementTypeMainGrid = styled.div`
+  margin: 8px 0;
 `;
 
 export const GridCell = styled.div`

@@ -9,11 +9,13 @@ ColumnDefinition.propTypes = {
   cell: PropTypes.oneOfType([PropTypes.string, PropTypes.func]).isRequired,
   isHidden: PropTypes.bool,
   isSticky: PropTypes.bool,
+  width: PropTypes.number,
 };
 
 ColumnDefinition.defaultProps = {
   isHidden: false,
   isSticky: false,
+  width: 80,
 };
 
-ColumnDefinition.displayName = "DataTable.ColumnDefinition";
+ColumnDefinition.displayName = "DataGrid.ColumnDefinition";
