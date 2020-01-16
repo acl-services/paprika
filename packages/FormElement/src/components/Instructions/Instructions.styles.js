@@ -3,7 +3,7 @@ import tokens from "@paprika/tokens";
 import stylers from "@paprika/stylers";
 
 const InstructionsStyled = styled.div`
-${stylers.lineHeight(-1)}
+  ${stylers.lineHeight(-1)}
   color: ${tokens.color.blackLighten20};
   margin: ${tokens.spaceSm} 0 0 0;
 `;
