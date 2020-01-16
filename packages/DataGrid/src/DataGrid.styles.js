@@ -7,6 +7,14 @@ export const Grid = styled.div`
     /* border: 2px solid blue; */
   }
 
+  [role="gridcell"] {
+    /* this hide the aria "voice over" focus message */
+    &:focus {
+      border: 0;
+      outline: 0;
+    }
+  }
+
   [class*="-header"] {
     overflow: hidden !important;
   }

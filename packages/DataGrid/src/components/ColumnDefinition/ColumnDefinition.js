@@ -5,7 +5,6 @@ export default function ColumnDefinition() {
 }
 
 ColumnDefinition.propTypes = {
-  id: PropTypes.oneOfType([PropTypes.string, PropTypes.number]).isRequired,
   cell: PropTypes.oneOfType([PropTypes.string, PropTypes.func]).isRequired,
   isHidden: PropTypes.bool,
   isSticky: PropTypes.bool,

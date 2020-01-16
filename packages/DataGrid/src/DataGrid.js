@@ -40,6 +40,28 @@ const innerElementTypeMainGrid = React.forwardRef((props, ref) => (
   <styled.InnerElementTypeMainGrid role="row" ref={ref} {...props} />
 ));
 
+const row = ({ ref, gridId }) => ({ columnIndex, rowIndex, style }) => {
+  return (
+    <styled.Cell
+      onKeyDown={event => {
+        event.preventDefault();
+      }}
+      ref={ref}
+      tabIndex={-1}
+      style={style}
+      data-cell={`${gridId}.${columnIndex}.${rowIndex}`}
+    >
+      <div aria-hidden="true">
+        {rowIndex}
+        {columnIndex}
+      </div>
+      <styled.GridCell role="gridcell">
+        {`${rowIndex}${columnIndex}. You are on row ${rowIndex}, column ${columnIndex}. Disregard the following information:`}
+      </styled.GridCell>
+    </styled.Cell>
+  );
+};
+
 export default function DataGrid(props) {
   const {
     data,
@@ -154,27 +176,7 @@ export default function DataGrid(props) {
         className={`grid-${gridId}`}
         onScroll={handleScroll}
       >
-        {({ columnIndex, rowIndex, style }) => {
-          return (
-            <styled.Cell
-              onKeyDown={event => {
-                event.preventDefault();
-              }}
-              ref={refCell}
-              tabIndex={-1}
-              style={style}
-              data-cell={`${gridId}.${columnIndex}.${rowIndex}`}
-            >
-              <div aria-hidden="true">
-                {rowIndex}
-                {columnIndex}
-              </div>
-              <styled.GridCell role="gridcell">
-                {`${rowIndex}${columnIndex}. You are on row ${rowIndex}, column ${columnIndex}. Disregard the following information:`}
-              </styled.GridCell>
-            </styled.Cell>
-          );
-        }}
+        {row({ refCell, gridId })}
       </Grid>
     </styled.Grid>
   );

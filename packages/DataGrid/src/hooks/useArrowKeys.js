@@ -222,7 +222,11 @@ export default function useArrowKeys({ refGrid, refContainer, columnCount, rowCo
 
   React.useEffect(() => {
     const handleClick = event => {
-      const [, columnIndex, rowIndex] = getDataCell(event).split(".");
+      const dataCell = getDataCell(event);
+
+      if (!dataCell) return;
+
+      const [, columnIndex, rowIndex] = dataCell.split(".");
 
       cell.current = toCellState(columnIndex, rowIndex);
       setHighlight();
@@ -246,7 +250,6 @@ export default function useArrowKeys({ refGrid, refContainer, columnCount, rowCo
 
   React.useEffect(() => {
     refHasHorizontalScrollBar.current = refScroll.current.scrollWidth > refScroll.current.clientWidth;
-    console.log("hasHorizontal", refHasHorizontalScrollBar.current);
   }, [refScroll]);
 
   return { cell, prevCell, handleKeyDown, gridId };

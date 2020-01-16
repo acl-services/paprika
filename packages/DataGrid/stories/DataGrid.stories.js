@@ -10,12 +10,12 @@ function App() {
   return (
     <React.Fragment>
       <DataGrid data={data}>
-        <DataGrid.ColumnDefinition width="60" header="Country" />
+        <DataGrid.ColumnDefinition header="Country" cell="country" />
         <DataGrid.ColumnDefinition header="Name" cell="name" />
         <DataGrid.ColumnDefinition header="Goals" cell="goals" />
         <DataGrid.ColumnDefinition header="Status" cell="status" />
-        <DataGrid.ColumnDefinition header="Status 2" cell="status 2" />
-        <DataGrid.ColumnDefinition header="Status 3" cell="status 3" />
+        <DataGrid.ColumnDefinition header="Status 2" cell="status" />
+        <DataGrid.ColumnDefinition header="Status 3" cell="status" />
       </DataGrid>
     </React.Fragment>
   );
