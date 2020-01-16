@@ -104,7 +104,7 @@ export default function useArrowKeys({ refGrid, refContainer, columnCount, rowCo
         cellBoundClientRect.bottom > refContainerBoundClientRect.current.height) ||
       cellBoundClientRect.y < refContainerBoundClientRect.current.y
     ) {
-      if (cellBoundClientRect.bottom > refContainerBoundClientRect.current.height) {
+      if (cellBoundClientRect.bottom > refContainerBoundClientRect.current.bottom) {
         const top =
           refScroll.current.scrollTop +
           scrollbarThickness +

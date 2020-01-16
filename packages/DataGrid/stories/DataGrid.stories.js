@@ -10,7 +10,12 @@ function App() {
   return (
     <React.Fragment>
       <DataGrid data={data}>
-        <DataGrid.ColumnDefinition header="Country" cell="country" />
+        <DataGrid.ColumnDefinition
+          header={() => "header"}
+          headerA11yText={() => "header"}
+          cell={() => "country"}
+          cellA11yText={() => "country"}
+        />
         <DataGrid.ColumnDefinition header="Name" cell="name" />
         <DataGrid.ColumnDefinition header="Goals" cell="goals" />
         <DataGrid.ColumnDefinition header="Status" cell="status" />
