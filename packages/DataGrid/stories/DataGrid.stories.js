@@ -2,19 +2,31 @@ import React from "react";
 import { storiesOf } from "@storybook/react";
 import DataGrid from "../src";
 import fixtures from "./helpers/fixtures";
-// import { viewPortHeight } from "./helpers";
 
 const data = fixtures(1);
+const flags = {
+  Austria: "🇦🇹",
+  Mexico: "🇲🇽",
+  Brazil: "🇧🇷",
+  Hungary: "🇭🇺",
+  Germany: "🇩🇪",
+  Portugal: "🇵🇹",
+  Argentina: "🇦🇷",
+  Scotland: "🏴󠁧󠁢󠁳󠁣󠁴󠁿",
+  Sweden: "🇸🇪",
+  England: "🏴󠁧󠁢󠁥󠁮󠁧󠁿",
+  Poland: "🇵🇱",
+};
 
 function App() {
   return (
     <React.Fragment>
       <DataGrid data={data}>
         <DataGrid.ColumnDefinition
-          header={() => "header"}
-          headerA11yText={() => "header"}
-          cell={() => "country"}
-          cellA11yText={() => "country"}
+          header={() => "country"}
+          headerA11yText={() => "Countries"}
+          cell={row => flags[row.country]}
+          cellA11yText={row => row.country}
         />
         <DataGrid.ColumnDefinition header="Name" cell="name" />
         <DataGrid.ColumnDefinition header="Goals" cell="goals" />

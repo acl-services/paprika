@@ -40,28 +40,6 @@ const innerElementTypeMainGrid = React.forwardRef((props, ref) => (
   <styled.InnerElementTypeMainGrid role="row" ref={ref} {...props} />
 ));
 
-const row = ({ ref, gridId }) => ({ columnIndex, rowIndex, style }) => {
-  return (
-    <styled.Cell
-      onKeyDown={event => {
-        event.preventDefault();
-      }}
-      ref={ref}
-      tabIndex={-1}
-      style={style}
-      data-cell={`${gridId}.${columnIndex}.${rowIndex}`}
-    >
-      <div aria-hidden="true">
-        {rowIndex}
-        {columnIndex}
-      </div>
-      <styled.GridCell role="gridcell">
-        {`${rowIndex}${columnIndex}. You are on row ${rowIndex}, column ${columnIndex}. Disregard the following information:`}
-      </styled.GridCell>
-    </styled.Cell>
-  );
-};
-
 export default function DataGrid(props) {
   const {
     data,
@@ -98,10 +76,17 @@ export default function DataGrid(props) {
     return ColumnDefinitions.length;
   }, [ColumnDefinitions]);
 
+  const columnHeadersA11yText = React.useMemo(() => {
+    return ColumnDefinitions.map(ColumnDefinition => {
+      const { header, headerA11yText } = ColumnDefinition.props;
+      return typeof header === "function" ? headerA11yText() : header;
+    });
+  }, [ColumnDefinitions]);
+
   const calculatedTableWidth = React.useMemo(() => {
     let width = 0;
-    ColumnDefinitions.forEach(columnDefinition => {
-      width += Number.parseInt(columnDefinition.props.width, 10);
+    ColumnDefinitions.forEach(ColumnDefinition => {
+      width += Number.parseInt(ColumnDefinition.props.width, 10);
     });
     return width + width * 0.12;
   }, [ColumnDefinitions]);
@@ -115,6 +100,10 @@ export default function DataGrid(props) {
     rowCount,
     rowHeight,
   });
+
+  const a11yTextMessage = (value, column, rowIndex) => {
+    return `${value}. You are on row ${rowIndex}, column ${column}. Disregard the following information:`;
+  };
 
   const handleScroll = React.useCallback(
     parameters => {
@@ -156,7 +145,7 @@ export default function DataGrid(props) {
         {({ columnIndex, style }) => {
           return (
             <styled.Cell role="columnheader" style={style}>
-              Column {columnIndex}
+              {columnHeadersA11yText[columnIndex]}
             </styled.Cell>
           );
         }}
@@ -176,7 +165,30 @@ export default function DataGrid(props) {
         className={`grid-${gridId}`}
         onScroll={handleScroll}
       >
-        {row({ refCell, gridId })}
+        {({ columnIndex, rowIndex, style }) => {
+          const column = ColumnDefinitions[columnIndex].props;
+          const cellA11yText =
+            typeof column.cell === "function" ? column.cellA11yText(data[rowIndex]) : data[rowIndex][column.cell];
+          const headerA11yText = typeof column.header === "function" ? column.headerA11yText() : column.header;
+          const a11yText = a11yTextMessage(cellA11yText, headerA11yText, rowIndex);
+
+          return (
+            <styled.Cell
+              onKeyDown={event => {
+                event.preventDefault();
+              }}
+              ref={refCell}
+              tabIndex={-1}
+              style={style}
+              data-cell={`${gridId}.${columnIndex}.${rowIndex}`}
+            >
+              <div aria-hidden="true">
+                {typeof column.cell === "function" ? column.cell(data[rowIndex]) : data[rowIndex][column.cell]}
+              </div>
+              <styled.GridCell role="gridcell">{a11yText}</styled.GridCell>
+            </styled.Cell>
+          );
+        }}
       </Grid>
     </styled.Grid>
   );
