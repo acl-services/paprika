@@ -16,7 +16,7 @@ export function timeDiff(t1, t2) {
   }
 }
 
-export default function useArrowKeys({ refGrid, refContainer, columnCount, rowCount, rowHeight }) {
+export default function useArrowKeys({ refGrid, refContainer, columnCount, rowCount, scrollBarWidth }) {
   const [gridId] = React.useState(() => `PKA${nanoid()}`);
   const refContainerBoundClientRect = React.useRef(null);
   const refScroll = React.useRef(null);
@@ -78,7 +78,7 @@ export default function useArrowKeys({ refGrid, refContainer, columnCount, rowCo
     const $cell = $getCell({ refContainer, gridId, cell });
 
     const cellBoundClientRect = $cell.getBoundingClientRect();
-    const scrollbarThickness = refHasHorizontalScrollBar.current ? 17 : 0; // there is not a proper way to calculate the height/width of a scrollbar so I'm using the standard size
+    const scrollbarThickness = refHasHorizontalScrollBar.current ? scrollBarWidth : 0;
 
     // left right
     if (cellBoundClientRect.right > refContainerBoundClientRect.current.right) {
@@ -112,14 +112,23 @@ export default function useArrowKeys({ refGrid, refContainer, columnCount, rowCo
           refContainerBoundClientRect.current.bottom;
 
         /**
-          it's necessary to scroll to the bottom of the container at the last row,
-          in case we don't do it cellBoundClientRect.bottom > refContainerBoundClientRect.current.height will be true
-          creating an undesire navigating experience using the keyboard while pressing the ArrowUp
+           on last row scroll to the bottom in case we have custom content like a load more button
           */
 
         if (rowIndex + 1 === rowCount) {
           scrollToTheBottom();
           focus($cell);
+          return;
+        }
+
+        // adjust the next element to fit exactly inside of the container so the next element will scroll exactly the height
+        // of the cell
+        const bottomGap = cellBoundClientRect.bottom - refContainerBoundClientRect.current.bottom;
+        if (bottomGap > 0) {
+          refScroll.current.scrollTo(refScroll.current.scrollLeft, refScroll.current.scrollTop + bottomGap);
+
+          focus($cell);
+          timeDiff(t1, performance.now());
           return;
         }
 
@@ -129,9 +138,18 @@ export default function useArrowKeys({ refGrid, refContainer, columnCount, rowCo
       }
 
       if (cellBoundClientRect.top < refContainerBoundClientRect.current.top) {
+        const topGap = refContainerBoundClientRect.current.top - cellBoundClientRect.top;
+        if (topGap > 0) {
+          refScroll.current.scrollTo(refScroll.current.scrollLeft, refScroll.current.scrollTop - topGap);
+
+          focus($cell);
+          timeDiff(t1, performance.now());
+          return;
+        }
+
         refScroll.current.scrollTo(
           refScroll.current.scrollLeft,
-          refScroll.current.scrollTop - scrollbarThickness - rowHeight
+          refScroll.current.scrollTop - topGap - scrollbarThickness - cellBoundClientRect.height
         );
 
         focus($cell);

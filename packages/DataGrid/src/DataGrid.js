@@ -24,7 +24,7 @@ const defaultProps = {
   data: [],
   height: 600,
   width: null,
-  rowHeight: 40,
+  rowHeight: 36,
   hasZebra: false,
   hasVerticalBorder: true,
   hasHorizontalBorder: true,
@@ -36,24 +36,28 @@ const defaultProps = {
 
 const outerElementType = React.forwardRef((props, ref) => <div role="rowgroup" ref={ref} {...props} />);
 const innerElementType = React.forwardRef((props, ref) => <div role="row" ref={ref} {...props} />);
+const outerElementTypeMainGrid = React.forwardRef((props, ref) => (
+  <styled.OuterElementTypeMainGrid role="row" ref={ref} {...props} />
+));
+
 const innerElementTypeMainGrid = React.forwardRef((props, ref) => (
   <styled.InnerElementTypeMainGrid role="row" ref={ref} {...props} />
 ));
 
 export default function DataGrid(props) {
   const {
-    data,
-    height,
-    width,
-    rowHeight,
-    onClick,
-    hasZebra,
-    hasVerticalBorder,
-    hasHorizontalBorder,
-    whileOnScrolling,
-    fillAvailableSpace,
-    onKeyDown,
     children,
+    data,
+    fillAvailableSpace,
+    hasHorizontalBorder,
+    hasVerticalBorder,
+    hasZebra,
+    height,
+    onClick,
+    onKeyDown,
+    rowHeight,
+    whileOnScrolling,
+    width,
     ...moreProps
   } = props;
 
@@ -61,6 +65,7 @@ export default function DataGrid(props) {
   const refScrollHeader = React.useRef(null);
   const refContainer = React.useRef(null);
   const refGrid = React.useRef(null);
+  const [scrollBarWidth, setScrollBarWidth] = React.useState(0);
 
   const rowCount = React.useMemo(() => {
     return data.length;
@@ -88,8 +93,9 @@ export default function DataGrid(props) {
     ColumnDefinitions.forEach(ColumnDefinition => {
       width += Number.parseInt(ColumnDefinition.props.width, 10);
     });
-    return width + width * 0.12;
-  }, [ColumnDefinitions]);
+
+    return width + scrollBarWidth;
+  }, [ColumnDefinitions, scrollBarWidth]);
 
   const tableWidth = width === null ? calculatedTableWidth : width;
 
@@ -99,6 +105,7 @@ export default function DataGrid(props) {
     columnCount,
     rowCount,
     rowHeight,
+    scrollBarWidth,
   });
 
   const a11yTextMessage = (value, column, rowIndex) => {
@@ -119,6 +126,14 @@ export default function DataGrid(props) {
     refScrollHeader.current = refContainer.current.querySelector(`.${gridId}-header`);
   }, [gridId]);
 
+  React.useEffect(() => {
+    const scrollContainer = refContainer.current.querySelector(`.grid-${gridId} [role="row"]`).parentElement;
+    // https://stackoverflow.com/questions/21064101/understanding-offsetwidth-clientwidth-scrollwidth-and-height-respectively
+    // https://davidwalsh.name/detect-scrollbar-width
+    setScrollBarWidth(() => scrollContainer.offsetWidth - scrollContainer.clientWidth);
+  }, []); // eslint-disable-line
+  // ^ we want to run the effect only one time, the scrollbar width will not change
+
   return (
     <styled.Grid
       tabIndex={-1}
@@ -128,13 +143,14 @@ export default function DataGrid(props) {
       onKeyDown={handleKeyDown}
       gridId={gridId}
       {...moreProps}
+      $width={tableWidth}
     >
       <Grid
         columnCount={columnCount}
-        columnWidth={() => 80}
+        columnWidth={columnIndex => ColumnDefinitions[columnIndex].props.width}
         rowCount={1}
         rowHeight={() => rowHeight}
-        height={48}
+        height={rowHeight}
         width={tableWidth}
         overscanColumnCount={20}
         overscanRowCount={20}
@@ -143,23 +159,24 @@ export default function DataGrid(props) {
         className={`${gridId}-header`}
       >
         {({ columnIndex, style }) => {
+          const { header } = ColumnDefinitions[columnIndex].props;
           return (
-            <styled.Cell role="columnheader" style={style}>
-              {columnHeadersA11yText[columnIndex]}
-            </styled.Cell>
+            <styled.CellHeader role="columnheader" style={style}>
+              {typeof header === "function" ? header() : header}
+            </styled.CellHeader>
           );
         }}
       </Grid>
       <Grid
         columnCount={columnCount}
-        columnWidth={() => 80}
+        columnWidth={columnIndex => ColumnDefinitions[columnIndex].props.width}
         height={500}
         rowCount={rowCount}
         rowHeight={() => rowHeight}
         width={tableWidth}
         overscanColumnCount={20}
         overscanRowCount={20}
-        outerElementType={outerElementType}
+        outerElementType={outerElementTypeMainGrid}
         innerElementType={innerElementTypeMainGrid}
         ref={refGrid}
         className={`grid-${gridId}`}
@@ -169,7 +186,7 @@ export default function DataGrid(props) {
           const column = ColumnDefinitions[columnIndex].props;
           const cellA11yText =
             typeof column.cell === "function" ? column.cellA11yText(data[rowIndex]) : data[rowIndex][column.cell];
-          const headerA11yText = typeof column.header === "function" ? column.headerA11yText() : column.header;
+          const headerA11yText = columnHeadersA11yText[columnIndex];
           const a11yText = a11yTextMessage(cellA11yText, headerA11yText, rowIndex);
 
           return (
@@ -182,14 +199,15 @@ export default function DataGrid(props) {
               style={style}
               data-cell={`${gridId}.${columnIndex}.${rowIndex}`}
             >
-              <div aria-hidden="true">
+              <styled.InnerCell aria-hidden="true">
                 {typeof column.cell === "function" ? column.cell(data[rowIndex]) : data[rowIndex][column.cell]}
-              </div>
+              </styled.InnerCell>
               <styled.GridCell role="gridcell">{a11yText}</styled.GridCell>
             </styled.Cell>
           );
         }}
       </Grid>
+      <styled.Filler rowHeight={rowHeight} scrollBarWidth={scrollBarWidth} />
     </styled.Grid>
   );
 }
