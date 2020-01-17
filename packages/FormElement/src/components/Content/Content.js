@@ -24,7 +24,7 @@ function Content(props) {
   }
 
   return (
-    <ContentContainerStyled data-pka-anchor="formElement.content" {...moreProps}>
+    <ContentContainerStyled data-pka-anchor="form-element.content" {...moreProps}>
       {typeof children === "function" ? children({ idForLabel, refLabel, ariaDescribedBy }) : children}
     </ContentContainerStyled>
   );
