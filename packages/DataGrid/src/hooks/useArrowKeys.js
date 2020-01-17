@@ -16,11 +16,19 @@ export function timeDiff(t1, t2) {
   }
 }
 
-export default function useArrowKeys({ refGrid, refContainer, columnCount, rowCount, scrollBarWidth }) {
+export default function useArrowKeys({
+  refGrid,
+  refContainer,
+  columnCount,
+  rowCount,
+  scrollBarWidth,
+  stickyColumnsIndexes,
+}) {
   const [gridId] = React.useState(() => `PKA${nanoid()}`);
   const refContainerBoundClientRect = React.useRef(null);
   const refScroll = React.useRef(null);
   const refPrevCell = React.useRef(null);
+
   const refHasHorizontalScrollBar = React.useRef(false);
 
   const cell = React.useRef(null);
@@ -71,11 +79,13 @@ export default function useArrowKeys({ refGrid, refContainer, columnCount, rowCo
     focus($cell);
   }
 
-  // This handle the cases where the Grid needs to scroll to a
-  // new position outside of refContainer's boundaries
+  // This is in charge of scrolling the Grid in case the content has overflow
+  // it's responsible of the sticky columns as well in case include any.
   function scroll(columnIndex, rowIndex) {
     const t1 = performance.now();
     const $cell = $getCell({ refContainer, gridId, cell });
+
+    if (!$cell) return;
 
     const cellBoundClientRect = $cell.getBoundingClientRect();
     const scrollbarThickness = refHasHorizontalScrollBar.current ? scrollBarWidth : 0;
@@ -105,6 +115,20 @@ export default function useArrowKeys({ refGrid, refContainer, columnCount, rowCo
       cellBoundClientRect.y < refContainerBoundClientRect.current.y
     ) {
       if (cellBoundClientRect.bottom > refContainerBoundClientRect.current.bottom) {
+        // adjust the next element to fit exactly inside of the container so the next element will scroll exactly the height
+        // of the cell
+        const bottomGap = cellBoundClientRect.bottom - refContainerBoundClientRect.current.bottom;
+        if (bottomGap > 0) {
+          refScroll.current.scrollTo(
+            refScroll.current.scrollLeft,
+            refScroll.current.scrollTop + bottomGap + scrollBarWidth
+          );
+
+          focus($cell);
+          timeDiff(t1, performance.now());
+          return;
+        }
+
         const top =
           refScroll.current.scrollTop +
           scrollbarThickness +
@@ -118,17 +142,6 @@ export default function useArrowKeys({ refGrid, refContainer, columnCount, rowCo
         if (rowIndex + 1 === rowCount) {
           scrollToTheBottom();
           focus($cell);
-          return;
-        }
-
-        // adjust the next element to fit exactly inside of the container so the next element will scroll exactly the height
-        // of the cell
-        const bottomGap = cellBoundClientRect.bottom - refContainerBoundClientRect.current.bottom;
-        if (bottomGap > 0) {
-          refScroll.current.scrollTo(refScroll.current.scrollLeft, refScroll.current.scrollTop + bottomGap);
-
-          focus($cell);
-          timeDiff(t1, performance.now());
           return;
         }
 
@@ -169,7 +182,33 @@ export default function useArrowKeys({ refGrid, refContainer, columnCount, rowCo
     };
   }
 
-  // This in charge of highlight and assigned the cell while using the keyboard
+  const $getGrid = React.useCallback(() => {
+    return refContainer.current.querySelector(`.grid-${gridId} [role="row"]`).parentElement;
+  }, [gridId, refContainer]);
+
+  const $getStickyColumnGrid = React.useCallback(() => {
+    return refContainer.current.querySelector(`.${gridId}-sticky-columns [role="row"]`).parentElement;
+  }, [gridId, refContainer]);
+
+  const $getGridBoundingRect = React.useCallback(() => {
+    return refContainer.current.querySelector(`.grid-${gridId}`).getBoundingClientRect();
+  }, [gridId, refContainer]);
+
+  const $getStickyColumnGridBoundingRect = React.useCallback(() => {
+    return refContainer.current.querySelector(`.${gridId}-sticky-columns`).getBoundingClientRect();
+  }, [gridId, refContainer]);
+
+  function $setRefs(columnIndex) {
+    if (stickyColumnsIndexes.includes(columnIndex)) {
+      refContainerBoundClientRect.current = $getStickyColumnGridBoundingRect();
+      refScroll.current = $getStickyColumnGrid();
+    } else {
+      refContainerBoundClientRect.current = $getGridBoundingRect();
+      refScroll.current = $getGrid();
+    }
+  }
+
+  // This in charge of highlight the cell but will not scroll the table in case there is overflow
   const handleKeyDown = event => {
     event.preventDefault();
 
@@ -179,6 +218,7 @@ export default function useArrowKeys({ refGrid, refContainer, columnCount, rowCo
         const rowIndex = cell.current.rowIndex;
         const nextRowIndex = Number.parseInt(rowIndex, 10) - 1;
         if (nextRowIndex >= 0) {
+          $setRefs(columnIndex);
           cell.current = toCellState(columnIndex, nextRowIndex);
           setHighlight();
           setRefPrevCell();
@@ -206,6 +246,7 @@ export default function useArrowKeys({ refGrid, refContainer, columnCount, rowCo
         const rowIndex = cell.current.rowIndex;
         const nextRowIndex = Number.parseInt(rowIndex, 10) + 1;
         if (nextRowIndex < rowCount) {
+          $setRefs(columnIndex);
           cell.current = toCellState(columnIndex, nextRowIndex);
           setHighlight();
           setRefPrevCell();
@@ -262,13 +303,13 @@ export default function useArrowKeys({ refGrid, refContainer, columnCount, rowCo
   }, [gridId, refContainer, setHighlight]);
 
   React.useEffect(() => {
-    refContainerBoundClientRect.current = refContainer.current.querySelector(`.grid-${gridId}`).getBoundingClientRect();
-    refScroll.current = refContainer.current.querySelector(`.grid-${gridId} [role="row"]`).parentElement;
-  }, [gridId, refContainer]);
+    refContainerBoundClientRect.current = $getGridBoundingRect();
+  }, [$getGridBoundingRect]);
 
   React.useEffect(() => {
+    refScroll.current = $getGrid();
     refHasHorizontalScrollBar.current = refScroll.current.scrollWidth > refScroll.current.clientWidth;
-  }, [refScroll]);
+  }, [$getGrid, refScroll]);
 
   return { cell, prevCell, handleKeyDown, gridId };
 }

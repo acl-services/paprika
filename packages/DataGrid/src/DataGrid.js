@@ -37,7 +37,7 @@ const defaultProps = {
 const outerElementType = React.forwardRef((props, ref) => <div role="rowgroup" ref={ref} {...props} />);
 const innerElementType = React.forwardRef((props, ref) => <div role="row" ref={ref} {...props} />);
 const outerElementTypeMainGrid = React.forwardRef((props, ref) => (
-  <styled.OuterElementTypeMainGrid role="row" ref={ref} {...props} />
+  <styled.OuterElementTypeMainGrid role="rowgroup" ref={ref} {...props} />
 ));
 
 const innerElementTypeMainGrid = React.forwardRef((props, ref) => (
@@ -65,7 +65,14 @@ export default function DataGrid(props) {
   const refScrollHeader = React.useRef(null);
   const refContainer = React.useRef(null);
   const refGrid = React.useRef(null);
+  const refScrollStickyColumns = React.useRef(null);
+  const refScrollGrid = React.useRef(null);
+  const refScrollHappenedBy = React.useRef(null);
+
   const [scrollBarWidth, setScrollBarWidth] = React.useState(0);
+
+  const overscanRowCount = 20;
+  const overscanColumnCount = 20;
 
   const rowCount = React.useMemo(() => {
     return data.length;
@@ -91,13 +98,26 @@ export default function DataGrid(props) {
   const calculatedTableWidth = React.useMemo(() => {
     let width = 0;
     ColumnDefinitions.forEach(ColumnDefinition => {
-      width += Number.parseInt(ColumnDefinition.props.width, 10);
+      if (!ColumnDefinition.props.isSticky) {
+        width += Number.parseInt(ColumnDefinition.props.width, 10);
+      }
     });
 
     return width + scrollBarWidth;
   }, [ColumnDefinitions, scrollBarWidth]);
 
-  const tableWidth = width === null ? calculatedTableWidth : width;
+  const gridWidth = width === null ? calculatedTableWidth : width;
+
+  const stickyColumnsIndexes = ColumnDefinitions.map((ColumnDefinition, index) => {
+    return ColumnDefinition.props.isSticky ? index : null;
+  }).filter(chunk => chunk !== null);
+
+  const stickyGridWidth =
+    (stickyColumnsIndexes.length &&
+      stickyColumnsIndexes.reduce((accum, index) => {
+        return accum + ColumnDefinitions[index].props.width;
+      }, 0)) ||
+    0;
 
   const { handleKeyDown, gridId } = useArrowKeys({
     refGrid,
@@ -106,6 +126,7 @@ export default function DataGrid(props) {
     rowCount,
     rowHeight,
     scrollBarWidth,
+    stickyColumnsIndexes,
   });
 
   const a11yTextMessage = (value, column, rowIndex) => {
@@ -114,16 +135,45 @@ export default function DataGrid(props) {
 
   const handleScroll = React.useCallback(
     parameters => {
-      const { scrollLeft /* scrollUpdateWasRequested */ } = parameters;
-      if (refScrollHeader.current) {
-        refScrollHeader.current.scrollTo({ left: scrollLeft, top: 0 });
+      const { scrollLeft, scrollTop /* scrollUpdateWasRequested */ } = parameters;
+
+      if (refScrollHappenedBy.current === null) {
+        console.log(refScrollHappenedBy.current);
+        refScrollHappenedBy.current = "handleScroll";
+        if (refScrollHeader.current) {
+          refScrollHeader.current.scrollTo({ left: scrollLeft, top: 0 });
+        }
+
+        if (refScrollStickyColumns.current) {
+          refScrollStickyColumns.current.scrollTo({ left: 0, top: scrollTop });
+        }
+      } else {
+        refScrollHappenedBy.current = null;
       }
     },
-    [refScrollHeader]
+    [refScrollHeader, refScrollStickyColumns]
+  );
+
+  const handleScrollStickyColumns = React.useCallback(
+    parameters => {
+      const { scrollTop /* scrollUpdateWasRequested */ } = parameters;
+      if (refScrollHappenedBy.current === null) {
+        refScrollHappenedBy.current = "handleScrollStickyColumns";
+        console.log(refScrollHappenedBy.current);
+        if (refScrollGrid.current) {
+          refScrollGrid.current.scrollTo({ left: 0, top: scrollTop });
+        }
+      } else {
+        refScrollHappenedBy.current = null;
+      }
+    },
+    [refScrollGrid]
   );
 
   React.useEffect(() => {
     refScrollHeader.current = refContainer.current.querySelector(`.${gridId}-header`);
+    refScrollStickyColumns.current = refContainer.current.querySelector(`.${gridId}-sticky-columns`);
+    refScrollGrid.current = refContainer.current.querySelector(`.grid-${gridId}`);
   }, [gridId]);
 
   React.useEffect(() => {
@@ -143,17 +193,21 @@ export default function DataGrid(props) {
       onKeyDown={handleKeyDown}
       gridId={gridId}
       {...moreProps}
-      $width={tableWidth}
+      $width={gridWidth + stickyGridWidth}
     >
+      {/** STICKY HEADER */}
+
+      {/** HEADER */}
+
       <Grid
         columnCount={columnCount}
         columnWidth={columnIndex => ColumnDefinitions[columnIndex].props.width}
         rowCount={1}
         rowHeight={() => rowHeight}
         height={rowHeight}
-        width={tableWidth}
-        overscanColumnCount={20}
-        overscanRowCount={20}
+        width={gridWidth}
+        overscanColumnCount={overscanColumnCount}
+        overscanRowCount={overscanRowCount}
         outerElementType={outerElementType}
         innerElementType={innerElementType}
         className={`${gridId}-header`}
@@ -167,46 +221,89 @@ export default function DataGrid(props) {
           );
         }}
       </Grid>
-      <Grid
-        columnCount={columnCount}
-        columnWidth={columnIndex => ColumnDefinitions[columnIndex].props.width}
-        height={500}
-        rowCount={rowCount}
-        rowHeight={() => rowHeight}
-        width={tableWidth}
-        overscanColumnCount={20}
-        overscanRowCount={20}
-        outerElementType={outerElementTypeMainGrid}
-        innerElementType={innerElementTypeMainGrid}
-        ref={refGrid}
-        className={`grid-${gridId}`}
-        onScroll={handleScroll}
-      >
-        {({ columnIndex, rowIndex, style }) => {
-          const column = ColumnDefinitions[columnIndex].props;
-          const cellA11yText =
-            typeof column.cell === "function" ? column.cellA11yText(data[rowIndex]) : data[rowIndex][column.cell];
-          const headerA11yText = columnHeadersA11yText[columnIndex];
-          const a11yText = a11yTextMessage(cellA11yText, headerA11yText, rowIndex);
 
-          return (
-            <styled.Cell
-              onKeyDown={event => {
-                event.preventDefault();
-              }}
-              ref={refCell}
-              tabIndex={-1}
-              style={style}
-              data-cell={`${gridId}.${columnIndex}.${rowIndex}`}
-            >
-              <styled.InnerCell aria-hidden="true">
-                {typeof column.cell === "function" ? column.cell(data[rowIndex]) : data[rowIndex][column.cell]}
-              </styled.InnerCell>
-              <styled.GridCell role="gridcell">{a11yText}</styled.GridCell>
-            </styled.Cell>
-          );
-        }}
-      </Grid>
+      {/** STICKY COLUMNS */}
+      <styled.Flex>
+        <Grid
+          columnCount={stickyColumnsIndexes.length}
+          columnWidth={columnIndex => {
+            return ColumnDefinitions[columnIndex].props.width;
+          }}
+          height={height}
+          rowCount={rowCount}
+          rowHeight={() => rowHeight}
+          width={stickyGridWidth}
+          overscanColumnCount={overscanColumnCount}
+          overscanRowCount={overscanRowCount}
+          outerElementType={outerElementType}
+          innerElementType={innerElementType}
+          className={`${gridId}-sticky-columns`}
+          onScroll={handleScrollStickyColumns}
+        >
+          {({ columnIndex, rowIndex, style }) => {
+            const column = ColumnDefinitions[columnIndex].props;
+            const cellA11yText =
+              typeof column.cell === "function"
+                ? column.cellA11yText && column.cellA11yText(data[rowIndex])
+                : data[rowIndex][column.cell];
+            const headerA11yText = columnHeadersA11yText[columnIndex];
+            const a11yText = a11yTextMessage(cellA11yText, headerA11yText, rowIndex);
+
+            return (
+              <styled.Cell ref={refCell} tabIndex={-1} style={style} data-cell={`${gridId}.${columnIndex}.${rowIndex}`}>
+                <styled.InnerCell aria-hidden="true">
+                  {typeof column.cell === "function" ? column.cell(data[rowIndex]) : data[rowIndex][column.cell]}
+                </styled.InnerCell>
+                <styled.GridCell role="gridcell">{a11yText}</styled.GridCell>
+              </styled.Cell>
+            );
+          }}
+        </Grid>
+
+        {/** COLUMS */}
+
+        <Grid
+          columnCount={columnCount}
+          columnWidth={columnIndex => {
+            if (stickyColumnsIndexes.includes(columnIndex)) return 0;
+            return ColumnDefinitions[columnIndex].props.width;
+          }}
+          height={height}
+          rowCount={rowCount}
+          rowHeight={() => rowHeight}
+          width={gridWidth}
+          overscanColumnCount={overscanColumnCount}
+          overscanRowCount={overscanRowCount}
+          outerElementType={outerElementTypeMainGrid}
+          innerElementType={innerElementTypeMainGrid}
+          ref={refGrid}
+          className={`grid-${gridId}`}
+          onScroll={handleScroll}
+        >
+          {({ columnIndex, rowIndex, style }) => {
+            const column = ColumnDefinitions[columnIndex].props;
+            const cellA11yText =
+              typeof column.cell === "function"
+                ? column.cellA11yText && column.cellA11yText(data[rowIndex])
+                : data[rowIndex][column.cell];
+            const headerA11yText = columnHeadersA11yText[columnIndex];
+            const a11yText = a11yTextMessage(cellA11yText, headerA11yText, rowIndex);
+
+            if (stickyColumnsIndexes.includes(columnIndex)) {
+              return null;
+            }
+
+            return (
+              <styled.Cell ref={refCell} tabIndex={-1} style={style} data-cell={`${gridId}.${columnIndex}.${rowIndex}`}>
+                <styled.InnerCell aria-hidden="true">
+                  {typeof column.cell === "function" ? column.cell(data[rowIndex]) : data[rowIndex][column.cell]}
+                </styled.InnerCell>
+                <styled.GridCell role="gridcell">{a11yText}</styled.GridCell>
+              </styled.Cell>
+            );
+          }}
+        </Grid>
+      </styled.Flex>
       <styled.Filler rowHeight={rowHeight} scrollBarWidth={scrollBarWidth} />
     </styled.Grid>
   );

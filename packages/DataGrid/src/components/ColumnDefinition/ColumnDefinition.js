@@ -21,7 +21,7 @@ export default function ColumnDefinition() {
 
 ColumnDefinition.propTypes = {
   cell: PropTypes.oneOfType([PropTypes.string, PropTypes.func]).isRequired,
-  isHidden: PropTypes.bool,
+  header: PropTypes.oneOfType([PropTypes.string, PropTypes.func]).isRequired,
   isSticky: PropTypes.bool,
   width: PropTypes.number,
   cellA11yText: customA11yTextPropTypeValidation,
@@ -29,9 +29,10 @@ ColumnDefinition.propTypes = {
 };
 
 ColumnDefinition.defaultProps = {
-  isHidden: false,
   isSticky: false,
   width: 80,
+  cellA11yText: null,
+  headerA11yText: null,
 };
 
 ColumnDefinition.displayName = "DataGrid.ColumnDefinition";

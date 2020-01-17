@@ -21,6 +21,16 @@ export const Grid = styled.div`
     overflow: hidden !important;
   }
 
+  [class*="-sticky-columns"] {
+    /*
+    The arrow navigatoion is border sensible, please avoid adding a border to this styled components
+    doing it will create a incorrect navigation while using the arrow keys.
+    */
+    box-shadow: 0px 1px 0px 0px ${tokens.border.color}, 4px 0px 0px 0px ${tokens.border.color};
+
+    overflow: hidden !important;
+  }
+
   position: relative;
 
   ${({ $width }) => {
@@ -98,4 +108,8 @@ export const Filler = styled.div`
       height: ${rowHeight}px;
     `;
   }}
+`;
+
+export const Flex = styled.div`
+  display: flex;
 `;
