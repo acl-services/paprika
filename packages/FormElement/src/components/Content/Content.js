@@ -11,8 +11,8 @@ const propTypes = {
 };
 
 const defaultProps = {
-  idForLabel: "",
-  ariaDescribedBy: "",
+  idForLabel: null,
+  ariaDescribedBy: null,
   refLabel: null,
 };
 
