@@ -2,6 +2,9 @@ import PropTypes from "prop-types";
 
 function customA11yTextPropTypeValidation(props, propName) {
   const nameOfRenderProp = propName === "cellA11yText" ? "cell" : "header";
+
+  if (typeof props[propName] === "string") return;
+
   if (!(propName in props) && typeof props[nameOfRenderProp] === "function") {
     return new Error(
       `When using a render function as a value for the ${nameOfRenderProp} prop, you must provide an ${propName} prop describing the cell content`

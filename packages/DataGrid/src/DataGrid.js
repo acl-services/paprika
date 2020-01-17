@@ -28,7 +28,7 @@ const defaultProps = {
   hasZebra: false,
   hasVerticalBorder: true,
   hasHorizontalBorder: true,
-  whileOnScrolling: null,
+  whileOnScrolling: false,
   fillAvailableSpace: false,
   onClick: () => {},
   onKeyDown: () => {},
@@ -95,7 +95,7 @@ export default function DataGrid(props) {
     });
   }, [ColumnDefinitions]);
 
-  const calculatedTableWidth = React.useMemo(() => {
+  const calculatedTableWidth = React.useCallback(() => {
     let width = 0;
     ColumnDefinitions.forEach(ColumnDefinition => {
       if (!ColumnDefinition.props.isSticky) {
@@ -106,11 +106,15 @@ export default function DataGrid(props) {
     return width + scrollBarWidth;
   }, [ColumnDefinitions, scrollBarWidth]);
 
-  const gridWidth = width === null ? calculatedTableWidth : width;
+  const gridWidth = width === null ? calculatedTableWidth() : width;
 
-  const stickyColumnsIndexes = ColumnDefinitions.map((ColumnDefinition, index) => {
-    return ColumnDefinition.props.isSticky ? index : null;
-  }).filter(chunk => chunk !== null);
+  const stickyColumnsIndexes = React.useMemo(
+    () =>
+      ColumnDefinitions.map((ColumnDefinition, index) => {
+        return ColumnDefinition.props.isSticky ? index : null;
+      }).filter(chunk => chunk !== null),
+    [ColumnDefinitions]
+  );
 
   const stickyGridWidth =
     (stickyColumnsIndexes.length &&
@@ -185,152 +189,183 @@ export default function DataGrid(props) {
   // ^ we want to run the effect only one time, the scrollbar width will not change
 
   return (
-    <styled.Grid
-      tabIndex={-1}
-      ref={refContainer}
-      aria-colcount={columnCount}
-      role="grid"
-      onKeyDown={handleKeyDown}
-      gridId={gridId}
-      {...moreProps}
-      $width={gridWidth + stickyGridWidth}
-    >
-      <styled.Flex>
-        {/** STICKY HEADER */}
-        <Grid
-          columnCount={stickyColumnsIndexes.length}
-          columnWidth={columnIndex => {
-            return ColumnDefinitions[columnIndex].props.width;
-          }}
-          height={rowHeight}
-          rowCount={1}
-          rowHeight={() => rowHeight}
-          width={stickyGridWidth}
-          overscanColumnCount={overscanColumnCount}
-          overscanRowCount={overscanRowCount}
-        >
-          {({ columnIndex, style }) => {
-            const { header } = ColumnDefinitions[stickyColumnsIndexes[columnIndex]].props;
-            return (
-              <styled.CellHeader role="columnheader" style={style}>
-                {typeof header === "function" ? header() : header}
-              </styled.CellHeader>
-            );
-          }}
-        </Grid>
+    <>
+      <styled.Grid
+        tabIndex={-1}
+        ref={refContainer}
+        aria-colcount={columnCount}
+        role="grid"
+        onKeyDown={handleKeyDown}
+        gridId={gridId}
+        {...moreProps}
+        $width={gridWidth + stickyGridWidth}
+      >
+        <styled.Flex>
+          {/** STICKY HEADER */}
+          <Grid
+            columnCount={stickyColumnsIndexes.length}
+            columnWidth={columnIndex => {
+              return ColumnDefinitions[columnIndex].props.width;
+            }}
+            height={rowHeight}
+            rowCount={1}
+            rowHeight={() => rowHeight}
+            width={stickyGridWidth}
+            overscanColumnCount={overscanColumnCount}
+            overscanRowCount={overscanRowCount}
+          >
+            {({ columnIndex, style }) => {
+              const { header } = ColumnDefinitions[stickyColumnsIndexes[columnIndex]].props;
+              return (
+                <styled.CellHeader role="columnheader" style={style}>
+                  {typeof header === "function" ? header() : header}
+                </styled.CellHeader>
+              );
+            }}
+          </Grid>
 
-        {/** HEADER */}
+          {/** HEADER */}
 
-        <Grid
-          columnCount={columnCount}
-          columnWidth={columnIndex => {
-            if (stickyColumnsIndexes.includes(columnIndex)) return 0;
-            return ColumnDefinitions[columnIndex].props.width;
-          }}
-          rowCount={1}
-          rowHeight={() => rowHeight}
-          height={rowHeight}
-          width={gridWidth - scrollBarWidth}
-          overscanColumnCount={overscanColumnCount}
-          overscanRowCount={overscanRowCount}
-          outerElementType={outerElementType}
-          innerElementType={innerElementType}
-          className={`${gridId}-header`}
-        >
-          {({ columnIndex, style }) => {
-            const { header } = ColumnDefinitions[columnIndex].props;
-            return (
-              <styled.CellHeader role="columnheader" style={style}>
-                {typeof header === "function" ? header() : header}
-              </styled.CellHeader>
-            );
-          }}
-        </Grid>
-      </styled.Flex>
-      {/** STICKY COLUMNS */}
-      <styled.Flex>
-        <Grid
-          columnCount={stickyColumnsIndexes.length}
-          columnWidth={columnIndex => {
-            return ColumnDefinitions[columnIndex].props.width;
-          }}
-          height={height - scrollBarWidth}
-          rowCount={rowCount}
-          rowHeight={() => rowHeight}
-          width={stickyGridWidth}
-          overscanColumnCount={overscanColumnCount}
-          overscanRowCount={overscanRowCount}
-          outerElementType={outerElementType}
-          innerElementType={innerElementType}
-          className={`${gridId}-sticky-columns`}
-          onScroll={handleScrollStickyColumns}
-        >
-          {({ columnIndex, rowIndex, style }) => {
-            const column = ColumnDefinitions[stickyColumnsIndexes[columnIndex]].props;
-            const cellA11yText =
-              typeof column.cell === "function"
-                ? column.cellA11yText && column.cellA11yText(data[rowIndex])
-                : data[rowIndex][column.cell];
-            const headerA11yText = columnHeadersA11yText[columnIndex];
-            const a11yText = a11yTextMessage(cellA11yText, headerA11yText, rowIndex);
+          <Grid
+            columnCount={columnCount}
+            columnWidth={columnIndex => {
+              if (stickyColumnsIndexes.includes(columnIndex)) return 0;
+              return ColumnDefinitions[columnIndex].props.width;
+            }}
+            rowCount={1}
+            rowHeight={() => rowHeight}
+            height={rowHeight}
+            width={gridWidth - scrollBarWidth}
+            overscanColumnCount={overscanColumnCount}
+            overscanRowCount={overscanRowCount}
+            outerElementType={outerElementType}
+            innerElementType={innerElementType}
+            className={`${gridId}-header`}
+          >
+            {({ columnIndex, style }) => {
+              const { header } = ColumnDefinitions[columnIndex].props;
+              return (
+                <styled.CellHeader role="columnheader" style={style}>
+                  {typeof header === "function" ? header() : header}
+                </styled.CellHeader>
+              );
+            }}
+          </Grid>
+        </styled.Flex>
+        {/** STICKY COLUMNS */}
+        <styled.Flex>
+          <Grid
+            columnCount={stickyColumnsIndexes.length}
+            columnWidth={columnIndex => {
+              return ColumnDefinitions[columnIndex].props.width;
+            }}
+            height={height - scrollBarWidth}
+            rowCount={rowCount}
+            rowHeight={() => rowHeight}
+            width={stickyGridWidth}
+            overscanColumnCount={overscanColumnCount}
+            overscanRowCount={overscanRowCount}
+            outerElementType={outerElementType}
+            innerElementType={innerElementType}
+            className={`${gridId}-sticky-columns`}
+            onScroll={handleScrollStickyColumns}
+          >
+            {({ columnIndex, rowIndex, style }) => {
+              const column = ColumnDefinitions[stickyColumnsIndexes[columnIndex]].props;
+              const cellA11yText =
+                typeof column.cell === "function"
+                  ? column.cellA11yText && column.cellA11yText(data[rowIndex])
+                  : data[rowIndex][column.cell];
+              const headerA11yText = columnHeadersA11yText[columnIndex];
+              const a11yText = a11yTextMessage(cellA11yText, headerA11yText, rowIndex);
 
-            return (
-              <styled.Cell ref={refCell} tabIndex={-1} style={style} data-cell={`${gridId}.${columnIndex}.${rowIndex}`}>
-                <styled.InnerCell aria-hidden="true">
-                  {typeof column.cell === "function" ? column.cell(data[rowIndex]) : data[rowIndex][column.cell]}
-                </styled.InnerCell>
-                <styled.GridCell role="gridcell">{a11yText}</styled.GridCell>
-              </styled.Cell>
-            );
-          }}
-        </Grid>
+              return (
+                <styled.Cell
+                  ref={refCell}
+                  tabIndex={-1}
+                  style={style}
+                  data-cell={`${gridId}.${columnIndex}.${rowIndex}`}
+                >
+                  <styled.InnerCell aria-hidden="true">
+                    {typeof column.cell === "function" ? column.cell(data[rowIndex]) : data[rowIndex][column.cell]}
+                  </styled.InnerCell>
+                  <styled.GridCell role="gridcell">{a11yText}</styled.GridCell>
+                </styled.Cell>
+              );
+            }}
+          </Grid>
 
-        {/** COLUMS */}
+          {/** COLUMS */}
 
-        <Grid
-          columnCount={columnCount}
-          columnWidth={columnIndex => {
-            if (stickyColumnsIndexes.includes(columnIndex)) return 0;
-            return ColumnDefinitions[columnIndex].props.width;
-          }}
-          height={height}
-          rowCount={rowCount}
-          rowHeight={() => rowHeight}
-          width={gridWidth}
-          overscanColumnCount={overscanColumnCount}
-          overscanRowCount={overscanRowCount}
-          outerElementType={outerElementTypeMainGrid}
-          innerElementType={innerElementTypeMainGrid}
-          ref={refGrid}
-          className={`grid-${gridId}`}
-          onScroll={handleScroll}
-        >
-          {({ columnIndex, rowIndex, style }) => {
-            const column = ColumnDefinitions[columnIndex].props;
-            const cellA11yText =
-              typeof column.cell === "function"
-                ? column.cellA11yText && column.cellA11yText(data[rowIndex])
-                : data[rowIndex][column.cell];
-            const headerA11yText = columnHeadersA11yText[columnIndex];
-            const a11yText = a11yTextMessage(cellA11yText, headerA11yText, rowIndex);
+          <Grid
+            columnCount={columnCount}
+            columnWidth={columnIndex => {
+              if (stickyColumnsIndexes.includes(columnIndex)) return 0;
+              return ColumnDefinitions[columnIndex].props.width;
+            }}
+            height={height}
+            rowCount={rowCount}
+            rowHeight={() => rowHeight}
+            width={gridWidth}
+            overscanColumnCount={overscanColumnCount}
+            overscanRowCount={overscanRowCount}
+            outerElementType={outerElementTypeMainGrid}
+            innerElementType={innerElementTypeMainGrid}
+            ref={refGrid}
+            useIsScrolling={whileOnScrolling}
+            className={`grid-${gridId}`}
+            onScroll={handleScroll}
+          >
+            {({ columnIndex, rowIndex, style, isScrolling }) => {
+              const column = ColumnDefinitions[columnIndex].props;
+              const cellA11yText =
+                typeof column.cell === "function"
+                  ? column.cellA11yText && column.cellA11yText(data[rowIndex])
+                  : data[rowIndex][column.cell];
+              const headerA11yText = columnHeadersA11yText[columnIndex];
+              const a11yText = a11yTextMessage(cellA11yText, headerA11yText, rowIndex);
 
-            if (stickyColumnsIndexes.includes(columnIndex)) {
-              return null;
-            }
+              if (stickyColumnsIndexes.includes(columnIndex)) {
+                return null;
+              }
 
-            return (
-              <styled.Cell ref={refCell} tabIndex={-1} style={style} data-cell={`${gridId}.${columnIndex}.${rowIndex}`}>
-                <styled.InnerCell aria-hidden="true">
-                  {typeof column.cell === "function" ? column.cell(data[rowIndex]) : data[rowIndex][column.cell]}
-                </styled.InnerCell>
-                <styled.GridCell role="gridcell">{a11yText}</styled.GridCell>
-              </styled.Cell>
-            );
-          }}
-        </Grid>
-      </styled.Flex>
-      <styled.Filler rowHeight={rowHeight} scrollBarWidth={scrollBarWidth} />
-    </styled.Grid>
+              if (whileOnScrolling && isScrolling) {
+                return (
+                  <styled.Cell
+                    ref={refCell}
+                    tabIndex={-1}
+                    style={style}
+                    data-cell={`${gridId}.${columnIndex}.${rowIndex}`}
+                  >
+                    <styled.InnerCell aria-hidden="true">
+                      <styled.WhileOnScrolling />
+                    </styled.InnerCell>
+                    <styled.GridCell role="gridcell">Loading</styled.GridCell>
+                  </styled.Cell>
+                );
+              }
+
+              return (
+                <styled.Cell
+                  ref={refCell}
+                  tabIndex={-1}
+                  style={style}
+                  data-cell={`${gridId}.${columnIndex}.${rowIndex}`}
+                >
+                  <styled.InnerCell aria-hidden="true">
+                    {typeof column.cell === "function" ? column.cell(data[rowIndex]) : data[rowIndex][column.cell]}
+                  </styled.InnerCell>
+                  <styled.GridCell role="gridcell">{a11yText}</styled.GridCell>
+                </styled.Cell>
+              );
+            }}
+          </Grid>
+        </styled.Flex>
+        <styled.FillerTopRigth rowHeight={rowHeight} scrollBarWidth={scrollBarWidth} />
+        <styled.FillerBottomLeft stickyGridWidth={stickyGridWidth} scrollBarWidth={scrollBarWidth} />
+      </styled.Grid>
+      <styled.RowCount>Rows:{rowCount}</styled.RowCount>
+    </>
   );
 }
 

@@ -1,7 +1,13 @@
-import styled from "styled-components";
+import styled, { css } from "styled-components";
 import tokens from "@paprika/tokens";
 
-export const Grid = styled.div`
+const experimentalGrey = "#e7e7e7"; /* experimental */
+
+export const Grid = styled.div.attrs(({ $width }) => {
+  return {
+    style: { width: `${$width}px` },
+  };
+})`
   * {
     box-sizing: border-box;
   }
@@ -17,24 +23,23 @@ export const Grid = styled.div`
     }
   }
 
-  [class*="-header"] {
-    overflow: hidden !important;
-  }
-
-  [class*="-sticky-columns"] {
-    /*
-    The arrow navigatoion is border sensible, please avoid adding a border to this styled components
-    doing it will create a incorrect navigation while using the arrow keys.
-    */
-    box-shadow: 0px 1px 0px 0px ${tokens.border.color}, 4px 0px 0px 0px ${tokens.border.color};
-
-    overflow: hidden !important;
-  }
-
   position: relative;
 
-  ${({ $width }) => {
-    return `width: ${$width}px;`;
+  ${({ gridId }) => {
+    return css`
+      .${gridId}-header {
+        overflow: hidden !important;
+      }
+
+      .${gridId}-sticky-columns {
+        /*
+          The arrow navigatoion is border sensible, please avoid adding a border to this styled components
+          doing it will create a incorrect navigation while using the arrow keys.
+        */
+        box-shadow: 0px 1px 0px 0px ${tokens.border.color}, 4px 0px 0px 0px ${tokens.border.color};
+        overflow: hidden !important;
+      }
+    `;
   }}
 `;
 
@@ -49,7 +54,7 @@ export const Cell = styled.div`
 `;
 
 export const CellHeader = styled(Cell)`
-  background: #e7e7e7; /* experimental */
+  background: ${experimentalGrey};
   border-bottom: 1px solid ${tokens.border.color};
   border-left: 1px solid ${tokens.border.color};
   border-top: 1px solid ${tokens.border.color};
@@ -93,9 +98,10 @@ export const GridCell = styled.div`
   width: 1px;
 `;
 
-export const Filler = styled.div`
-  /* this is a small square filler on the right top corner of the table */
-  background: ${tokens.border.color};
+export const FillerTopRigth = styled.div`
+  background: ${experimentalGrey};
+  border: 1px solid ${tokens.border.color};
+  border-bottom: 0;
   position: absolute;
   right: 0;
   top: 0;
@@ -110,6 +116,36 @@ export const Filler = styled.div`
   }}
 `;
 
+export const FillerBottomLeft = styled.div`
+  /* this is a small square filler on the right top corner of the table */
+  background: ${experimentalGrey};
+  border: 1px solid ${tokens.border.color};
+  bottom: 0;
+  left: 0;
+  position: absolute;
+  z-index: 3;
+  ${({ stickyGridWidth, scrollBarWidth }) => {
+    const displayBlock = scrollBarWidth > 0 ? "" : "display: none;";
+
+    return `
+      ${displayBlock}
+      height: ${scrollBarWidth}px;
+      width: ${stickyGridWidth}px;
+    `;
+  }}
+`;
+
 export const Flex = styled.div`
   display: flex;
+`;
+
+export const RowCount = styled.div`
+  font-color: ${tokens.color.blackLighten40};
+  font-size: 13px;
+`;
+
+export const WhileOnScrolling = styled.div`
+  background: ${tokens.color.cremeLighten5};
+  height: 16px;
+  width: 100%;
 `;

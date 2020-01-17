@@ -3,9 +3,12 @@ import { storiesOf } from "@storybook/react";
 import * as Sbook from "storybook/assets/styles/common.styles";
 import Button from "@paprika/button";
 import DataGrid from "../src";
+
 import fixtures from "./helpers/fixtures";
 
-const data = fixtures(10000);
+const data = fixtures(10);
+const dataSticky = fixtures(1000);
+
 const flags = {
   Austria: "🇦🇹",
   Mexico: "🇲🇽",
@@ -24,7 +27,25 @@ function App() {
   return (
     <React.Fragment>
       <Sbook.Story>
-        <DataGrid data={data} width={650}>
+        <h1>DataGrid</h1>
+        <h2>Simple with headerA11yText and cellA11yText example</h2>
+        <DataGrid data={data}>
+          <DataGrid.ColumnDefinition
+            width={80}
+            header={() => "Countries"}
+            headerA11yText={() => "Countries"}
+            cell={row => flags[row.country]}
+            cellA11yText={row => row.country}
+          />
+          <DataGrid.ColumnDefinition header="Name" cell="name" />
+          <DataGrid.ColumnDefinition header="Goals" cell="goals" />
+          <DataGrid.ColumnDefinition header="Status" cell="status" />
+          <DataGrid.ColumnDefinition header="Status 2" cell="status" />
+          <DataGrid.ColumnDefinition header="Status 3" cell="status" />
+        </DataGrid>
+
+        <h2>Basic with Sticky columns</h2>
+        <DataGrid data={dataSticky} width={650}>
           <DataGrid.ColumnDefinition
             width={80}
             header="Countries"
@@ -54,4 +75,4 @@ function App() {
   );
 }
 
-storiesOf("DataGrid", module).add("Sticky columns", () => <App />);
+storiesOf("DataGrid", module).add("ShowCase", () => <App />);
