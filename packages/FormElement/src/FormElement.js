@@ -148,7 +148,7 @@ function FormElement(props) {
 FormElement.displayName = "FormElement";
 FormElement.propTypes = propTypes;
 FormElement.defaultProps = defaultProps;
-FormElement.SubComponentDisplayNames = subComponentDisplayNames;
+FormElement.subComponentDisplayNames = subComponentDisplayNames;
 FormElement.Content = Content;
 FormElement.Instructions = Instructions;
 FormElement.Description = Description;
