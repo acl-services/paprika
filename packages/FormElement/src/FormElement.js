@@ -75,13 +75,7 @@ function FormElement(props) {
     ...moreProps
   } = props;
 
-  const extractedChildren = extractChildren(children, [
-    subComponentDisplayNames.Description,
-    subComponentDisplayNames.Error,
-    subComponentDisplayNames.Help,
-    subComponentDisplayNames.Instructions,
-    subComponentDisplayNames.Content,
-  ]);
+  const extractedChildren = extractChildren(children, Object.values(subComponentDisplayNames));
   const ariaDescriptionId = React.useRef(uuidv4()).current;
   const ariaErrorId = React.useRef(uuidv4()).current;
   const ariaInstructionsId = React.useRef(uuidv4()).current;
