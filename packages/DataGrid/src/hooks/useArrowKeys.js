@@ -94,6 +94,13 @@ export default function useArrowKeys({
     if (cellBoundClientRect.right > refContainerBoundClientRect.current.right) {
       const left = refScroll.current.scrollLeft + cellBoundClientRect.width;
       focus($cell);
+
+      if (columnIndex + 1 === columnCount) {
+        refScroll.current.scrollTo(refScroll.current.scrollWidth, refScroll.current.scrollTop);
+        timeDiff(t1, performance.now());
+        return;
+      }
+
       refScroll.current.scrollTo(left, refScroll.current.scrollTop);
       timeDiff(t1, performance.now());
       return;

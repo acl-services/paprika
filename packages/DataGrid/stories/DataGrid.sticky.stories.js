@@ -24,7 +24,7 @@ function App() {
   return (
     <React.Fragment>
       <Sbook.Story>
-        <DataGrid data={data} width={250}>
+        <DataGrid data={data} width={420}>
           <DataGrid.ColumnDefinition
             width={80}
             header="Countries"
@@ -42,10 +42,12 @@ function App() {
                 {row.link}
               </Button.Link>
             )}
+            width={180}
           />
           <DataGrid.ColumnDefinition header="Status" cell="status" />
           <DataGrid.ColumnDefinition header="Status 2" cell="status" />
           <DataGrid.ColumnDefinition header="Status 3" cell="status" />
+          <DataGrid.ColumnDefinition width={210} header="Description" cell="description" />
         </DataGrid>
       </Sbook.Story>
     </React.Fragment>

@@ -137,13 +137,13 @@ export default function DataGrid(props) {
     parameters => {
       const { scrollLeft, scrollTop /* scrollUpdateWasRequested */ } = parameters;
 
-      if (refScrollHappenedBy.current === null) {
-        console.log(refScrollHappenedBy.current);
-        refScrollHappenedBy.current = "handleScroll";
-        if (refScrollHeader.current) {
-          refScrollHeader.current.scrollTo({ left: scrollLeft, top: 0 });
-        }
+      if (refScrollHeader.current) {
+        refScrollHeader.current.scrollTo({ left: scrollLeft, top: 0 });
+      }
 
+      // prevent rescrolling when this scrollbar gets sync with the one in the sticky column
+      if (refScrollHappenedBy.current === null) {
+        refScrollHappenedBy.current = "handleScroll";
         if (refScrollStickyColumns.current) {
           refScrollStickyColumns.current.scrollTo({ left: 0, top: scrollTop });
         }
@@ -195,33 +195,58 @@ export default function DataGrid(props) {
       {...moreProps}
       $width={gridWidth + stickyGridWidth}
     >
-      {/** STICKY HEADER */}
+      <styled.Flex>
+        {/** STICKY HEADER */}
+        <Grid
+          columnCount={stickyColumnsIndexes.length}
+          columnWidth={columnIndex => {
+            return ColumnDefinitions[columnIndex].props.width;
+          }}
+          height={rowHeight}
+          rowCount={1}
+          rowHeight={() => rowHeight}
+          width={stickyGridWidth}
+          overscanColumnCount={overscanColumnCount}
+          overscanRowCount={overscanRowCount}
+        >
+          {({ columnIndex, style }) => {
+            const { header } = ColumnDefinitions[stickyColumnsIndexes[columnIndex]].props;
+            return (
+              <styled.CellHeader role="columnheader" style={style}>
+                {typeof header === "function" ? header() : header}
+              </styled.CellHeader>
+            );
+          }}
+        </Grid>
 
-      {/** HEADER */}
+        {/** HEADER */}
 
-      <Grid
-        columnCount={columnCount}
-        columnWidth={columnIndex => ColumnDefinitions[columnIndex].props.width}
-        rowCount={1}
-        rowHeight={() => rowHeight}
-        height={rowHeight}
-        width={gridWidth}
-        overscanColumnCount={overscanColumnCount}
-        overscanRowCount={overscanRowCount}
-        outerElementType={outerElementType}
-        innerElementType={innerElementType}
-        className={`${gridId}-header`}
-      >
-        {({ columnIndex, style }) => {
-          const { header } = ColumnDefinitions[columnIndex].props;
-          return (
-            <styled.CellHeader role="columnheader" style={style}>
-              {typeof header === "function" ? header() : header}
-            </styled.CellHeader>
-          );
-        }}
-      </Grid>
-
+        <Grid
+          columnCount={columnCount}
+          columnWidth={columnIndex => {
+            if (stickyColumnsIndexes.includes(columnIndex)) return 0;
+            return ColumnDefinitions[columnIndex].props.width;
+          }}
+          rowCount={1}
+          rowHeight={() => rowHeight}
+          height={rowHeight}
+          width={gridWidth - scrollBarWidth}
+          overscanColumnCount={overscanColumnCount}
+          overscanRowCount={overscanRowCount}
+          outerElementType={outerElementType}
+          innerElementType={innerElementType}
+          className={`${gridId}-header`}
+        >
+          {({ columnIndex, style }) => {
+            const { header } = ColumnDefinitions[columnIndex].props;
+            return (
+              <styled.CellHeader role="columnheader" style={style}>
+                {typeof header === "function" ? header() : header}
+              </styled.CellHeader>
+            );
+          }}
+        </Grid>
+      </styled.Flex>
       {/** STICKY COLUMNS */}
       <styled.Flex>
         <Grid
@@ -229,7 +254,7 @@ export default function DataGrid(props) {
           columnWidth={columnIndex => {
             return ColumnDefinitions[columnIndex].props.width;
           }}
-          height={height}
+          height={height - scrollBarWidth}
           rowCount={rowCount}
           rowHeight={() => rowHeight}
           width={stickyGridWidth}
@@ -241,7 +266,7 @@ export default function DataGrid(props) {
           onScroll={handleScrollStickyColumns}
         >
           {({ columnIndex, rowIndex, style }) => {
-            const column = ColumnDefinitions[columnIndex].props;
+            const column = ColumnDefinitions[stickyColumnsIndexes[columnIndex]].props;
             const cellA11yText =
               typeof column.cell === "function"
                 ? column.cellA11yText && column.cellA11yText(data[rowIndex])
