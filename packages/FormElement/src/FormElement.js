@@ -41,6 +41,9 @@ const propTypes = {
 
   /** Size of the label, error, help and description (font size, min-height, padding, etc). */
   size: PropTypes.oneOf(ShirtSizes.DEFAULT),
+
+  /** FormElement contains multiple children so Renders a legend element instead of label. */
+  hasFieldset: PropTypes.bool,
 };
 
 const defaultProps = {
@@ -51,6 +54,7 @@ const defaultProps = {
   isInline: false,
   isLabelVisuallyHidden: false,
   size: ShirtSizes.MEDIUM,
+  hasFieldset: false,
 };
 
 const subComponentDisplayNames = {
@@ -72,6 +76,7 @@ function FormElement(props) {
     isLabelVisuallyHidden,
     label,
     size,
+    hasFieldset,
     ...moreProps
   } = props;
 
@@ -135,6 +140,7 @@ function FormElement(props) {
         isVisuallyHidden={isLabelVisuallyHidden}
         label={label}
         ref={refLabel}
+        hasFieldset={hasFieldset}
       />
       <div css={isInline ? inlineContainerStyles : null}>
         {renderInstructions()}

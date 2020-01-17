@@ -18,7 +18,7 @@ const labelStyles = css`
 
   ${({ isVisuallyHidden }) => isVisuallyHidden && stylers.visuallyHidden}
 
-  label {
+  label, legend {
     margin-right: ${tokens.spaceSm};
   }
 `;
