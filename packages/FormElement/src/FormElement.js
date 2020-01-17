@@ -87,6 +87,7 @@ function FormElement(props) {
   const refLabel = React.useRef(null);
 
   const getClonedElement = (displayName, extraProps = {}) => {
+    if (!extractedChildren[displayName]) return null;
     return React.cloneElement(extractedChildren[displayName], extraProps);
   };
 
@@ -136,8 +137,8 @@ function FormElement(props) {
         ref={refLabel}
       />
       <div css={isInline ? inlineContainerStyles : null}>
-        {extractedChildren[subComponentDisplayNames.Instructions] ? renderInstructions() : null}
-        {extractedChildren[subComponentDisplayNames.Content] ? renderContent() : null}
+        {renderInstructions()}
+        {renderContent()}
         {renderFooter()}
       </div>
     </div>
