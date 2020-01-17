@@ -1,11 +1,12 @@
 import React from "react";
 import PropTypes from "prop-types";
+import { RefPropType } from "@paprika/helpers/lib/customPropTypes";
 import ContentContainerStyled from "./Content.styles";
 
 const propTypes = {
   children: PropTypes.oneOfType([PropTypes.func, PropTypes.node]).isRequired,
   idForLabel: PropTypes.string,
-  refLabel: PropTypes.shape({ current: PropTypes.instanceOf(Object) }),
+  refLabel: RefPropType,
   ariaDescribedBy: PropTypes.string,
 };
 

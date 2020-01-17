@@ -1,4 +1,5 @@
 // NOTE: Maybe this should be provided as a consumable package?
+import PropTypes from "prop-types";
 
 export const ShirtSizes = {
   XSMALL: "xsmall",
@@ -37,3 +38,5 @@ export const InputValidTypes = {
 };
 
 InputValidTypes.ALL = Object.values(InputValidTypes);
+
+export const RefPropType = PropTypes.shape({ current: PropTypes.instanceOf(Object) });
