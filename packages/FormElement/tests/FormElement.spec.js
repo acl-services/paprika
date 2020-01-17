@@ -19,7 +19,7 @@ function renderComponent(props = {}) {
                 aria-describedby={ariaDescribedBy}
                 readOnly={isReadOnly}
                 disabled={isDisabled}
-                data-pka-anchor="formElement.input"
+                data-pka-anchor="form-element.input"
                 id={idForLabel}
               />
             )}
@@ -34,35 +34,35 @@ describe("FormElement", () => {
   it("renders default props", () => {
     const { getByTestId, queryByTestId } = renderComponent();
 
-    expect(getByTestId("formElement.label")).toHaveTextContent(defaultLabel);
-    expect(getByTestId("formElement.input")).toBeInTheDocument();
-    expect(getByTestId("formElement.input")).not.toHaveAttribute("disabled");
-    expect(getByTestId("formElement.input")).not.toHaveAttribute("readonly");
-    expect(queryByTestId("formElement.description")).not.toBeInTheDocument();
-    expect(queryByTestId("formElement.error")).not.toBeInTheDocument();
-    expect(queryByTestId("formElement.help")).not.toBeInTheDocument();
-    expect(queryByTestId("formElement.instructions")).not.toBeInTheDocument();
+    expect(getByTestId("form-element.label")).toHaveTextContent(defaultLabel);
+    expect(getByTestId("form-element.input")).toBeInTheDocument();
+    expect(getByTestId("form-element.input")).not.toHaveAttribute("disabled");
+    expect(getByTestId("form-element.input")).not.toHaveAttribute("readonly");
+    expect(queryByTestId("form-element.description")).not.toBeInTheDocument();
+    expect(queryByTestId("form-element.error")).not.toBeInTheDocument();
+    expect(queryByTestId("form-element.help")).not.toBeInTheDocument();
+    expect(queryByTestId("form-element.instructions")).not.toBeInTheDocument();
   });
 
   it("renders id", () => {
     const { getByTestId } = renderComponent({ id: "test-id" });
 
-    expect(getByTestId("formElement.input").id).toEqual("test-id");
-    expect(getByTestId("formElement.label")).toHaveAttribute("for", "test-id");
+    expect(getByTestId("form-element.input").id).toEqual("test-id");
+    expect(getByTestId("form-element.label")).toHaveAttribute("for", "test-id");
   });
 
   it("renders hasOptionalLabel and hasRequiredLabel prop", () => {
     const { getByTestId } = renderComponent({ hasOptionalLabel: true, hasRequiredLabel: true });
 
-    expect(getByTestId("formElement.label")).toHaveTextContent(/optional/i);
-    expect(getByTestId("formElement.label")).toHaveTextContent(/required/i);
+    expect(getByTestId("form-element.label")).toHaveTextContent(/optional/i);
+    expect(getByTestId("form-element.label")).toHaveTextContent(/required/i);
   });
 
   it("passes disabled readonly props to child", () => {
     const { getByTestId } = renderComponent({ isDisabled: true, isReadOnly: true });
 
-    expect(getByTestId("formElement.input")).toHaveAttribute("disabled");
-    expect(getByTestId("formElement.input")).toHaveAttribute("readonly");
+    expect(getByTestId("form-element.input")).toHaveAttribute("disabled");
+    expect(getByTestId("form-element.input")).toHaveAttribute("readonly");
   });
 
   it("renders help and description", () => {
@@ -71,7 +71,7 @@ describe("FormElement", () => {
         <FormElement label={defaultLabel}>
           <FormElement.Content>
             {({ idForLabel, ariaDescribedBy }) => (
-              <input aria-describedby={ariaDescribedBy} data-pka-anchor="formElement.input" id={idForLabel} />
+              <input aria-describedby={ariaDescribedBy} data-pka-anchor="form-element.input" id={idForLabel} />
             )}
           </FormElement.Content>
           <FormElement.Description>Sample description</FormElement.Description>
@@ -80,8 +80,8 @@ describe("FormElement", () => {
       </L10n>
     );
 
-    expect(getByTestId("formElement.description")).toHaveTextContent(/sample description/i);
-    expect(getByTestId("formElement.help")).toBeInTheDocument();
+    expect(getByTestId("form-element.description")).toHaveTextContent(/sample description/i);
+    expect(getByTestId("form-element.help")).toBeInTheDocument();
   });
 
   it("renders extra panel", () => {
@@ -90,7 +90,7 @@ describe("FormElement", () => {
         <FormElement label={defaultLabel}>
           <FormElement.Content>
             {({ idForLabel, ariaDescribedBy }) => (
-              <input aria-describedby={ariaDescribedBy} data-pka-anchor="formElement.input" id={idForLabel} />
+              <input aria-describedby={ariaDescribedBy} data-pka-anchor="form-element.input" id={idForLabel} />
             )}
           </FormElement.Content>
           <FormElement.Instructions>
@@ -102,7 +102,7 @@ describe("FormElement", () => {
       </L10n>
     );
 
-    expect(getByTestId("formElement.instructions")).toHaveTextContent(
+    expect(getByTestId("form-element.instructions")).toHaveTextContent(
       /Instructions Panel Content Instructions Panel Content Instructions Panel Content/i
     );
   });
@@ -113,7 +113,7 @@ describe("FormElement", () => {
         <FormElement label={defaultLabel}>
           <FormElement.Content>
             {({ idForLabel, ariaDescribedBy }) => (
-              <input aria-describedby={ariaDescribedBy} data-pka-anchor="formElement.input" id={idForLabel} />
+              <input aria-describedby={ariaDescribedBy} data-pka-anchor="form-element.input" id={idForLabel} />
             )}
           </FormElement.Content>
           <FormElement.Description>Sample description</FormElement.Description>
@@ -122,7 +122,7 @@ describe("FormElement", () => {
       </L10n>
     );
 
-    expect(queryByTestId("formElement.description")).not.toBeInTheDocument();
-    expect(getByTestId("formElement.error")).toHaveTextContent(/sample error/i);
+    expect(queryByTestId("form-element.description")).not.toBeInTheDocument();
+    expect(getByTestId("form-element.error")).toHaveTextContent(/sample error/i);
   });
 });
