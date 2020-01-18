@@ -111,8 +111,10 @@ const ExampleStory = () => {
       <br />
       <FormElement label="Form Label">
         <FormElement.Content>
-          {({ idForLabel }) => (
-            <DatePicker onError={() => {}} hasError={Boolean(errorText.length)} id={idForLabel} onChange={() => {}} />
+          {({ idForLabel, ariaDescribedBy }) => (
+            <DatePicker onError={() => {}} hasError={Boolean(errorText.length)} id={idForLabel} onChange={() => {}}>
+              <DatePicker.Input aria-describedby={ariaDescribedBy} />
+            </DatePicker>
           )}
         </FormElement.Content>
         <FormElement.Description>

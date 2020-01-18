@@ -45,18 +45,9 @@ import FormElement from "@paprika/form-element";
 <FormElement label="Name">
   <FormElement.Content>
     {({ idForLabel, ariaDescribedBy }) => (
-      <DatePicker
-        id={idForLabel}
-        onChange={handleChange}
-        value={value}
-        placeholder="Form placeholder"
-        aria-describedby={ariaDescribedBy}
-        aria-required={hasRequiredLabel}
-        hasError={false}
-        isDisabled={isDisabled}
-        isReadOnly={isReadOnly}
-        size={size}
-      />
+      <DatePicker onError={() => {}} hasError={Boolean(errorText.length)} id={idForLabel} onChange={() => {}}>
+        <DatePicker.Input aria-describedby={ariaDescribedBy} />
+      </DatePicker>
     )}
   </FormElement.Content>
 </FormElement>;
