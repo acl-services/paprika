@@ -4,6 +4,8 @@ import { VariableSizeGrid as Grid } from "react-window";
 import extractChildren from "@paprika/helpers/lib/extractChildren";
 import useArrowKeys from "./hooks/useArrowKeys";
 import ColumnDefinition from "./components/ColumnDefinition";
+import RowIndicator from "./components/RowIndicator";
+
 import * as styled from "./DataGrid.styles";
 
 const propTypes = {
@@ -16,7 +18,7 @@ const propTypes = {
   hasZebra: PropTypes.bool,
   hasVerticalBorder: PropTypes.bool,
   hasHorizontalBorder: PropTypes.bool,
-  whileOnScrolling: PropTypes.func,
+  whileOnScrolling: PropTypes.bool,
   fillAvailableSpace: PropTypes.bool,
   children: PropTypes.node.isRequired,
 };
@@ -91,7 +93,7 @@ export default function DataGrid(props) {
   const columnHeadersA11yText = React.useMemo(() => {
     return ColumnDefinitions.map(ColumnDefinition => {
       const { header, headerA11yText } = ColumnDefinition.props;
-      return typeof header === "function" ? headerA11yText() : header;
+      return typeof header === "function" ? headerA11yText && headerA11yText() : header;
     });
   }, [ColumnDefinitions]);
 
@@ -161,9 +163,10 @@ export default function DataGrid(props) {
   const handleScrollStickyColumns = React.useCallback(
     parameters => {
       const { scrollTop /* scrollUpdateWasRequested */ } = parameters;
+
+      // prevent rescrolling when this scrollbar gets sync with the one in the main grid
       if (refScrollHappenedBy.current === null) {
         refScrollHappenedBy.current = "handleScrollStickyColumns";
-        console.log(refScrollHappenedBy.current);
         if (refScrollGrid.current) {
           refScrollGrid.current.scrollTo({ left: 0, top: scrollTop });
         }
@@ -274,7 +277,7 @@ export default function DataGrid(props) {
               const column = ColumnDefinitions[stickyColumnsIndexes[columnIndex]].props;
               const cellA11yText =
                 typeof column.cell === "function"
-                  ? column.cellA11yText && column.cellA11yText(data[rowIndex])
+                  ? column.cellA11yText && column.cellA11yText({ row: data[rowIndex], rowIndex, columnIndex })
                   : data[rowIndex][column.cell];
               const headerA11yText = columnHeadersA11yText[columnIndex];
               const a11yText = a11yTextMessage(cellA11yText, headerA11yText, rowIndex);
@@ -283,11 +286,13 @@ export default function DataGrid(props) {
                 <styled.Cell
                   ref={refCell}
                   tabIndex={-1}
-                  style={style}
+                  style={{ ...style }}
                   data-cell={`${gridId}.${columnIndex}.${rowIndex}`}
                 >
-                  <styled.InnerCell aria-hidden="true">
-                    {typeof column.cell === "function" ? column.cell(data[rowIndex]) : data[rowIndex][column.cell]}
+                  <styled.InnerCell $style={column.cellStyle} aria-hidden="true">
+                    {typeof column.cell === "function"
+                      ? column.cell({ row: data[rowIndex], rowIndex, columnIndex })
+                      : data[rowIndex][column.cell]}
                   </styled.InnerCell>
                   <styled.GridCell role="gridcell">{a11yText}</styled.GridCell>
                 </styled.Cell>
@@ -320,7 +325,7 @@ export default function DataGrid(props) {
               const column = ColumnDefinitions[columnIndex].props;
               const cellA11yText =
                 typeof column.cell === "function"
-                  ? column.cellA11yText && column.cellA11yText(data[rowIndex])
+                  ? column.cellA11yText && column.cellA11yText({ row: data[rowIndex], rowIndex, columnIndex })
                   : data[rowIndex][column.cell];
               const headerA11yText = columnHeadersA11yText[columnIndex];
               const a11yText = a11yTextMessage(cellA11yText, headerA11yText, rowIndex);
@@ -352,8 +357,10 @@ export default function DataGrid(props) {
                   style={style}
                   data-cell={`${gridId}.${columnIndex}.${rowIndex}`}
                 >
-                  <styled.InnerCell aria-hidden="true">
-                    {typeof column.cell === "function" ? column.cell(data[rowIndex]) : data[rowIndex][column.cell]}
+                  <styled.InnerCell $style={column.cellStyle} aria-hidden="true">
+                    {typeof column.cell === "function"
+                      ? column.cell({ row: data[rowIndex], rowIndex, columnIndex })
+                      : data[rowIndex][column.cell]}
                   </styled.InnerCell>
                   <styled.GridCell role="gridcell">{a11yText}</styled.GridCell>
                 </styled.Cell>
@@ -372,3 +379,4 @@ export default function DataGrid(props) {
 DataGrid.propTypes = propTypes;
 DataGrid.defaultProps = defaultProps;
 DataGrid.ColumnDefinition = ColumnDefinition;
+DataGrid.RowIndicator = RowIndicator;

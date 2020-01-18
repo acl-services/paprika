@@ -51,6 +51,10 @@ export const Cell = styled.div`
   justify-content: flex-start;
   line-height: 1;
   position: relative;
+  &:focus {
+    border: 1px solid ${tokens.border.color};
+    outline: 0;
+  }
 `;
 
 export const CellHeader = styled(Cell)`
@@ -68,8 +72,13 @@ export const CellHeader = styled(Cell)`
   width: 100%;
 `;
 
-export const InnerCell = styled.div`
+export const InnerCell = styled.div.attrs(({ $style }) => {
+  return {
+    style: $style,
+  };
+})`
   display: block;
+  height: 100%;
   overflow: hidden;
   padding: 8px;
   text-overflow: ellipsis;

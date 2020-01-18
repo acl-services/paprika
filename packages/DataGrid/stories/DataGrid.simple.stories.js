@@ -19,7 +19,7 @@ const flags = {
   Poland: "🇵🇱",
 };
 
-function App() {
+export function App() {
   return (
     <React.Fragment>
       <Sbook.Story>
@@ -28,8 +28,8 @@ function App() {
             width={80}
             header={() => "Countries"}
             headerA11yText={() => "Countries"}
-            cell={row => flags[row.country]}
-            cellA11yText={row => row.country}
+            cell={({ row }) => flags[row.country]}
+            cellA11yText={({ row }) => row.country}
           />
           <DataGrid.ColumnDefinition header="Name" cell="name" />
           <DataGrid.ColumnDefinition header="Goals" cell="goals" />
@@ -42,4 +42,4 @@ function App() {
   );
 }
 
-storiesOf("DataGrid", module).add("Simple", () => <App />);
+storiesOf("DataGrid / regular", module).add("Basic", () => <App />);

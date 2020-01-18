@@ -20,7 +20,7 @@ const flags = {
   Poland: "🇵🇱",
 };
 
-function App() {
+export function App() {
   return (
     <React.Fragment>
       <Sbook.Story>
@@ -28,16 +28,16 @@ function App() {
           <DataGrid.ColumnDefinition
             width={80}
             header="Countries"
-            cell={row => flags[row.country]}
-            cellA11yText={row => row.country}
+            cell={({ row }) => flags[row.country]}
+            cellA11yText={({ row }) => row.country}
             isSticky
           />
           <DataGrid.ColumnDefinition width={180} isSticky header="Name" cell="name" />
           <DataGrid.ColumnDefinition header="Goals" cell="goals" />
           <DataGrid.ColumnDefinition
             header="Link"
-            cellA11yText={row => row.link}
-            cell={row => (
+            cellA11yText={({ row }) => row.link}
+            cell={({ row }) => (
               <Button.Link href={row.link} kind="link" size="small">
                 {row.link}
               </Button.Link>
@@ -54,4 +54,4 @@ function App() {
   );
 }
 
-storiesOf("DataGrid", module).add("Sticky columns", () => <App />);
+storiesOf("DataGrid / sticky", module).add("basic", () => <App />);
