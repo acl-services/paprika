@@ -89,7 +89,7 @@ import FormElement from "@paprika/form-element";
 
 #### FormElement.Content
 
-- `children` (required)
+- `children` (required) (returns renderFunction with arguments idForLabel, refLabel, ariaDescribedBy available)
 
 #### FormElement.Description
 
