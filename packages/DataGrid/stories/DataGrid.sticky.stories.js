@@ -5,7 +5,7 @@ import Button from "@paprika/button";
 import DataGrid from "../src";
 import fixtures from "./helpers/fixtures";
 
-const data = fixtures(10000);
+const data = fixtures(100);
 const flags = {
   Austria: "🇦🇹",
   Mexico: "🇲🇽",
