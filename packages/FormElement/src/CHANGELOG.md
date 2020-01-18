@@ -8,4 +8,4 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 
 ### Added
 
-- FormElement.Content component with render function to handle children [@oscarkwan](https://github.com/tristanjasper).
+- FormElement.Content component with render function to handle children [@tristanjasper](https://github.com/tristanjasper).
