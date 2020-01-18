@@ -83,7 +83,7 @@ export const dialogStyles = css`
 `;
 
 export const dialogContentStyles = css`
-  flex: 1;
+  flex-grow: 1;
   padding: ${stylers.spacer(3)};
 
   ${props => (props.isCompact || props.kind === "child" ? compactStyles : "")}
