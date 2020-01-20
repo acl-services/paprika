@@ -17,7 +17,22 @@ import FormElement from "@paprika/form-element";
 import Input from "@paprika/input";
 
 <FormElement label="Name">
-  <Input onChange={changeHandler} />
+  <FormElement.Content>
+    {({ idForLabel, ariaDescribedBy }) => (
+      <Input
+        id={idForLabel}
+        onChange={handleChange}
+        value={value}
+        placeholder="Form placeholder"
+        aria-describedby={ariaDescribedBy}
+        aria-required={hasRequiredLabel}
+        hasError={false}
+        isDisabled={isDisabled}
+        isReadOnly={isReadOnly}
+        size={size}
+      />
+    )}
+  </FormElement.Content>
 </FormElement>;
 ```
 
@@ -28,7 +43,13 @@ import DatePicker from "@paprika/date-picker";
 import FormElement from "@paprika/form-element";
 
 <FormElement label="Name">
-  <DatePicker onChange={changeHandler} />
+  <FormElement.Content>
+    {({ idForLabel, ariaDescribedBy }) => (
+      <DatePicker onError={() => {}} hasError={Boolean(errorText.length)} id={idForLabel} onChange={() => {}}>
+        <DatePicker.Input aria-describedby={ariaDescribedBy} />
+      </DatePicker>
+    )}
+  </FormElement.Content>
 </FormElement>;
 ```
 
@@ -37,19 +58,19 @@ Using with DOM input
 ```js
 import FormElement from "@paprika/form-element";
 
-<FormElement label="Name">
-  <input onChange={changeHandler} />
-</FormElement>;
-```
-
-Using with your component, you'll get `aria-describedby`, `hasError`, `isDisabled`, `isReadOnly` and `size` as additional props.
-
-```js
-import FormElement from "@paprika/form-element";
-import MyInput from "./MyInput";
-
-<FormElement label="Name">
-  <MyInput />
+<FormElement hasRequiredLabel={hasRequiredLabel} label="Name">
+  <FormElement.Content>
+    {({ idForLabel, ariaDescribedBy }) => (
+      <input
+        aria-required={hasRequiredLabel}
+        aria-describedby={ariaDescribedBy}
+        aria-invalid={Boolean(errorText.length)}
+        disabled={isDisabled}
+        id={idForLabel}
+        readOnly={isReadOnly}
+      />
+    )}
+  </FormElement.Content>
 </FormElement>;
 ```
 
@@ -66,10 +87,17 @@ import MyInput from "./MyInput";
 - `label` (required)
 - `size`
 
+#### FormElement.Content
+
+- `children` (required) (returns renderFunction with arguments idForLabel, refLabel, ariaDescribedBy available)
+
 #### FormElement.Description
 
 - `children` (required)
-- `ariaDescriptionId`
+
+#### FormElement.Instructions
+
+- `children` (required)
 
 #### FormElement.Error
 
