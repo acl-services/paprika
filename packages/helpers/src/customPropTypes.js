@@ -39,4 +39,5 @@ export const InputValidTypes = {
 
 InputValidTypes.ALL = Object.values(InputValidTypes);
 
-export const RefOf = PropTypes.oneOfType([PropTypes.func, PropTypes.shape({ current: PropTypes.any })]);
+export const RefOf = (propType = PropTypes.any) =>
+  PropTypes.oneOfType([PropTypes.func, PropTypes.shape({ current: propType })]);
