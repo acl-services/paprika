@@ -6,7 +6,7 @@ import * as styled from "./Content.styles";
 const propTypes = {
   children: PropTypes.oneOfType([PropTypes.func, PropTypes.node]).isRequired,
   idForLabel: PropTypes.string,
-  refLabel: RefOf(PropTypes.instanceOf(Element)),
+  refLabel: RefOf(),
   ariaDescribedBy: PropTypes.string,
 };
 
