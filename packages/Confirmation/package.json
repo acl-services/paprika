@@ -1,6 +1,6 @@
 {
   "name": "@paprika/confirmation",
-  "version": "0.3.2",
+  "version": "0.3.3",
   "description": "Confirmation component",
   "author": "@paprika",
   "license": "MIT",
@@ -15,10 +15,10 @@
   },
   "dependencies": {
     "@babel/runtime-corejs2": "^7.3.1",
-    "@paprika/button": "^0.2.8",
+    "@paprika/button": "^0.2.9",
     "@paprika/heading": "^0.3.4",
-    "@paprika/helpers": "^0.2.7",
-    "@paprika/popover": "^0.3.9",
+    "@paprika/helpers": "^0.2.8",
+    "@paprika/popover": "^0.3.10",
     "@paprika/raw-button": "^0.2.5",
     "@paprika/stylers": "^0.2.5",
     "@paprika/tokens": "^0.1.12",
