@@ -1,7 +1,6 @@
 import React from "react";
 import PropTypes from "prop-types";
-
-import descriptionStyles from "./Description.styles";
+import * as styled from "./Description.styles";
 
 const propTypes = {
   ariaDescriptionId: PropTypes.string,
@@ -16,9 +15,9 @@ function Description(props) {
   const { children, ariaDescriptionId, ...moreProps } = props;
 
   return (
-    <div id={ariaDescriptionId} css={descriptionStyles} data-pka-anchor="formElement.description" {...moreProps}>
+    <styled.DescriptionStyled id={ariaDescriptionId} data-pka-anchor="form-element.description" {...moreProps}>
       {children}
-    </div>
+    </styled.DescriptionStyled>
   );
 }
 

@@ -5,15 +5,15 @@ import { ShirtSizes } from "@paprika/helpers/lib/customPropTypes";
 import extractChildren from "@paprika/helpers/lib/extractChildren";
 import isNil from "lodash/isNil";
 import uuidv4 from "uuid/v4";
-import isString from "lodash/isString";
 
 import Description from "./components/Description";
 import Instructions from "./components/Instructions";
+import Content from "./components/Content";
 import ErrorMessage from "./components/ErrorMessage";
 import Help from "./components/Help";
 import Label from "./components/Label";
 
-import formElementStyles, { inlineContainerStyles, formElementChildStyle } from "./FormElement.styles";
+import formElementStyles, { inlineContainerStyles } from "./FormElement.styles";
 
 const propTypes = {
   children: PropTypes.node.isRequired,
@@ -36,13 +36,10 @@ const propTypes = {
   /** Should label be hidden, default is false. Note: this is discouraged because of accessibility requirements. */
   isLabelVisuallyHidden: PropTypes.bool,
 
-  /** Should be read-only or not, default is false. */
-  isReadOnly: PropTypes.bool,
-
   /** Label text of this field. */
   label: PropTypes.string.isRequired,
 
-  /** Size of the label, child component, error, help and description (font size, min-height, padding, etc). */
+  /** Size of the label, error, help and description (font size, min-height, padding, etc). */
   size: PropTypes.oneOf(ShirtSizes.DEFAULT),
 };
 
@@ -53,8 +50,15 @@ const defaultProps = {
   isDisabled: false,
   isInline: false,
   isLabelVisuallyHidden: false,
-  isReadOnly: false,
   size: ShirtSizes.MEDIUM,
+};
+
+const subComponentDisplayNames = {
+  Error: "FormElement.Error",
+  Description: "FormElement.Description",
+  Content: "FormElement.Content",
+  Instructions: "FormElement.Instructions",
+  Help: "FormElement.Help",
 };
 
 function FormElement(props) {
@@ -66,39 +70,40 @@ function FormElement(props) {
     isDisabled,
     isInline,
     isLabelVisuallyHidden,
-    isReadOnly,
     label,
     size,
     ...moreProps
   } = props;
 
-  const extractedChildren = extractChildren(children, [
-    "FormElement.Description",
-    "FormElement.Error",
-    "FormElement.Help",
-    "FormElement.Instructions",
-  ]);
+  const extractedChildren = extractChildren(children, Object.values(subComponentDisplayNames));
   const ariaDescriptionId = React.useRef(uuidv4()).current;
   const ariaErrorId = React.useRef(uuidv4()).current;
   const ariaInstructionsId = React.useRef(uuidv4()).current;
-  const hasError = !!extractedChildren["FormElement.Error"] && !!extractedChildren["FormElement.Error"].props.children;
   const uniqueInputId = React.useRef(uuidv4()).current;
-  const inputId = isNil(id) || id === "" ? uniqueInputId : id;
+  const hasError =
+    !!extractedChildren[subComponentDisplayNames.Error] &&
+    !!extractedChildren[subComponentDisplayNames.Error].props.children;
+  const idForLabel = isNil(id) || id === "" ? uniqueInputId : id;
   const refLabel = React.useRef(null);
+
+  const getClonedElement = (displayName, extraProps = {}) => {
+    if (!extractedChildren[displayName]) return null;
+    return React.cloneElement(extractedChildren[displayName], extraProps);
+  };
 
   function renderFooter() {
     if (hasError) {
       return (
         <div role="alert">
-          {React.cloneElement(extractedChildren["FormElement.Error"], {
+          {getClonedElement(subComponentDisplayNames.Error, {
             id: ariaErrorId,
           })}
         </div>
       );
     }
 
-    if (extractedChildren["FormElement.Description"]) {
-      return React.cloneElement(extractedChildren["FormElement.Description"], {
+    if (extractedChildren[subComponentDisplayNames.Description]) {
+      return getClonedElement(subComponentDisplayNames.Description, {
         id: ariaDescriptionId,
       });
     }
@@ -106,39 +111,26 @@ function FormElement(props) {
     return null;
   }
 
-  function renderInstructions() {
-    if (extractedChildren["FormElement.Instructions"]) {
-      return React.cloneElement(extractedChildren["FormElement.Instructions"], {
-        id: ariaInstructionsId,
-      });
-    }
-    return null;
+  function renderContent() {
+    return getClonedElement(subComponentDisplayNames.Content, {
+      idForLabel,
+      refLabel,
+      ariaDescribedBy: `${ariaErrorId} ${ariaInstructionsId} ${ariaDescriptionId}`,
+    });
   }
 
-  const nativeChildTypes = ["input", "textarea", "select"];
-
-  const renderFormElementChild = child => (
-    <div data-pka-anchor="form-element.child" key={child.key} css={formElementChildStyle}>
-      {child}
-    </div>
-  );
-
-  const isNativeElement = child => isString(child.type) && nativeChildTypes.includes(child.type);
-
-  const childExtendedProps = {
-    "aria-describedby": `${ariaErrorId} ${ariaInstructionsId} ${ariaDescriptionId}`,
-    id: inputId,
-    "aria-required": hasRequiredLabel,
-    "aria-invalid": hasError,
-  };
-
+  function renderInstructions() {
+    return getClonedElement(subComponentDisplayNames.Instructions, {
+      id: ariaInstructionsId,
+    });
+  }
   return (
     <div css={formElementStyles} isInline={isInline} size={size} isDisabled={isDisabled} {...moreProps}>
       <Label
         hasOptionalLabel={hasOptionalLabel}
         hasRequiredLabel={hasRequiredLabel}
-        help={extractedChildren["FormElement.Help"]}
-        id={inputId}
+        help={extractedChildren[subComponentDisplayNames.Help]}
+        id={idForLabel}
         isInline={isInline}
         isVisuallyHidden={isLabelVisuallyHidden}
         label={label}
@@ -146,26 +138,7 @@ function FormElement(props) {
       />
       <div css={isInline ? inlineContainerStyles : null}>
         {renderInstructions()}
-        {extractedChildren.children.map(child => {
-          const extendedProps = isNativeElement(child)
-            ? {
-                ...childExtendedProps,
-                disabled: isDisabled,
-                readOnly: isReadOnly,
-              }
-            : {
-                ...childExtendedProps,
-                refLabel,
-                hasError,
-                isDisabled,
-                isReadOnly,
-                size,
-                "aria-disabled": isDisabled,
-                "aria-readonly": isReadOnly,
-              };
-
-          return renderFormElementChild(React.cloneElement(child, extendedProps));
-        })}
+        {renderContent()}
         {renderFooter()}
       </div>
     </div>
@@ -173,10 +146,10 @@ function FormElement(props) {
 }
 
 FormElement.displayName = "FormElement";
-
 FormElement.propTypes = propTypes;
 FormElement.defaultProps = defaultProps;
-
+FormElement.subComponentDisplayNames = subComponentDisplayNames;
+FormElement.Content = Content;
 FormElement.Instructions = Instructions;
 FormElement.Description = Description;
 FormElement.Error = ErrorMessage;
