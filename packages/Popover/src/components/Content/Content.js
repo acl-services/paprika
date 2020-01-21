@@ -23,6 +23,7 @@ const Content = React.forwardRef((props, ref) => {
     content,
     isEager,
     isOpen,
+    isPortal,
     onClose,
     onDelayedClose,
     onDelayedOpen,
@@ -87,8 +88,31 @@ const Content = React.forwardRef((props, ref) => {
     contentStyles.width = content.width;
   }
 
-  /* eslint-disable jsx-a11y/mouse-events-have-key-events */
-  return ReactDOM.createPortal(
+  if (isPortal) {
+    /* eslint-disable jsx-a11y/mouse-events-have-key-events */
+    return ReactDOM.createPortal(
+      <ContentStyled
+        aria-hidden={!isOpen}
+        data-component-name="PopoverContent"
+        data-pka-anchor="popover.content"
+        ref={handleRef}
+        id={isEager ? content.ariaId : null}
+        isOpen={isOpen}
+        onBlur={handleBlur}
+        onMouseOut={handleMouseEvent}
+        onMouseOver={handleMouseEvent}
+        style={contentStyles}
+        tabIndex="-1"
+        zIndex={content.zIndex}
+        {...moreProps}
+      >
+        {props.children}
+      </ContentStyled>,
+      portalElement
+    );
+  }
+
+  return (
     <ContentStyled
       aria-hidden={!isOpen}
       data-component-name="PopoverContent"
@@ -105,8 +129,7 @@ const Content = React.forwardRef((props, ref) => {
       {...moreProps}
     >
       {props.children}
-    </ContentStyled>,
-    portalElement
+    </ContentStyled>
   );
 });
 /* eslint-enable jsx-a11y/mouse-events-have-key-events */
