@@ -76,6 +76,7 @@ export default function DataGrid(props) {
   const refScrollHappenedBy = React.useRef(null);
 
   const [scrollBarWidth, setScrollBarWidth] = React.useState(0);
+  const [gridShouldHaveFocus, setGridShouldHaveFocus] = React.useState(true);
 
   const overscanRowCount = 20;
   const overscanColumnCount = 20;
@@ -129,7 +130,7 @@ export default function DataGrid(props) {
       }, 0)) ||
     0;
 
-  const { handleKeyDown, gridId } = useGridEventHandler({
+  const { handleKeyDown, gridId, restoreHighlightFocus } = useGridEventHandler({
     refGrid,
     refContainer,
     columnCount,
@@ -199,6 +200,29 @@ export default function DataGrid(props) {
     setScrollBarWidth(() => scrollContainer.offsetWidth - scrollContainer.clientWidth);
   }, [gridId, isIdle]);
 
+  function handleFocusGrid() {
+    if (gridShouldHaveFocus) {
+      setGridShouldHaveFocus(() => {
+        return false;
+      });
+      return;
+    }
+
+    const $isBlur = refContainer.current.querySelector(".grid--is-blur");
+    if ($isBlur) $isBlur.classList.remove("grid--is-blur");
+  }
+
+  function handleBlurGrid() {
+    const $isActive = refContainer.current.querySelector(".grid--is-active");
+    if ($isActive) $isActive.classList.toggle("grid--is-blur");
+  }
+
+  React.useEffect(() => {
+    restoreHighlightFocus();
+  }, [gridShouldHaveFocus]); // eslint-disable-line
+
+  restoreHighlightFocus();
+
   return (
     <>
       {isIdle && (
@@ -209,7 +233,9 @@ export default function DataGrid(props) {
         </styled.Idle>
       )}
       <styled.Grid
-        tabIndex={0}
+        tabIndex={gridShouldHaveFocus ? 0 : -1}
+        onFocus={handleFocusGrid}
+        onBlur={handleBlurGrid}
         ref={refContainer}
         aria-colcount={columnCount}
         role="grid"

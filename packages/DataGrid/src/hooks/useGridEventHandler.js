@@ -26,27 +26,26 @@ export default function useGridEventHandler({
   const refContainerBoundClientRect = React.useRef(null);
   const refScroll = React.useRef(null);
   const refPrevCell = React.useRef(null);
-
   const refHasHorizontalScrollBar = React.useRef(false);
 
   const cell = React.useRef(null);
   const prevCell = React.useRef(null);
 
-  function $getCell({ refContainer, gridId, cell }) {
-    if (!refContainer) return;
+  const $getCell = React.useCallback(() => {
+    if (!refContainer.current && cell !== null) return;
 
     return refContainer.current.querySelector(
       `[data-cell='${gridId}.${cell.current.columnIndex}.${cell.current.rowIndex}']`
     );
-  }
+  }, [gridId, refContainer]);
 
   function setRefPrevCell() {
-    refPrevCell.current = $getCell({ refContainer, gridId, cell });
+    refPrevCell.current = $getCell();
   }
 
   const setHighlight = React.useCallback(() => {
     if (cell && cell.current && refGrid && refGrid.current) {
-      const $cell = $getCell({ refContainer, gridId, cell });
+      const $cell = $getCell();
 
       if ($cell) {
         const classNameStr = "grid--is-active";
@@ -59,14 +58,13 @@ export default function useGridEventHandler({
         $cell.classList.toggle(classNameStr);
       }
     }
-  }, [gridId, refContainer, refGrid]);
+  }, [$getCell, refContainer, refGrid]);
 
   function focus($cell) {
     window.requestAnimationFrame(() => {
       const $prev = refPrevCell.current;
       if ($prev) {
         $prev.querySelector("[role=gridcell]").tabIndex = "-1";
-        console.log("prev", $prev);
       }
 
       if ($cell.hasAttribute("data-cell")) {
@@ -84,8 +82,14 @@ export default function useGridEventHandler({
   }
 
   function scrollToTheBottom() {
-    const $cell = $getCell({ refContainer, gridId, cell });
+    const $cell = $getCell();
     refScroll.current.scrollTo(refScroll.current.scrollLeft, refScroll.current.scrollHeight);
+    focus($cell);
+  }
+
+  function scrollToTheRightEdge() {
+    const $cell = $getCell();
+    refScroll.current.scrollTo(refScroll.current.scrollWidth, refScroll.current.scrollTop);
     focus($cell);
   }
 
@@ -93,7 +97,7 @@ export default function useGridEventHandler({
   // it's responsible of the sticky columns as well in case include any.
   function scroll(columnIndex, rowIndex) {
     const t1 = performance.now();
-    const $cell = $getCell({ refContainer, gridId, cell });
+    const $cell = $getCell();
 
     if (!$cell) return;
 
@@ -224,82 +228,76 @@ export default function useGridEventHandler({
     }
   }
 
+  const keyboardKeys = {
+    ArrowUp: () => {
+      const columnIndex = cell.current.columnIndex;
+      const rowIndex = cell.current.rowIndex;
+      const nextRowIndex = Number.parseInt(rowIndex, 10) - 1;
+      if (nextRowIndex >= 0) {
+        $setRefs(columnIndex);
+        setRefPrevCell();
+        cell.current = toCellState(columnIndex, nextRowIndex);
+        setHighlight();
+        scroll(0, nextRowIndex);
+      }
+    },
+    ArrowRight: () => {
+      const columnIndex = cell.current.columnIndex;
+      const rowIndex = cell.current.rowIndex;
+      const nextColumnIndex = Number.parseInt(columnIndex, 10) + 1;
+
+      if (nextColumnIndex < columnCount) {
+        setRefPrevCell();
+        cell.current = toCellState(nextColumnIndex, rowIndex);
+        setHighlight();
+        $setRefs(columnIndex);
+        scroll(nextColumnIndex, 0);
+
+        if (nextColumnIndex === columnCount - 1) {
+          scrollToTheRightEdge();
+        }
+
+        if (rowIndex + 1 === rowCount) {
+          scrollToTheBottom();
+        }
+      }
+    },
+    ArrowDown: () => {
+      if (cell === null) return;
+
+      const columnIndex = cell.current.columnIndex;
+      const rowIndex = cell.current.rowIndex;
+      const nextRowIndex = Number.parseInt(rowIndex, 10) + 1;
+      if (nextRowIndex < rowCount) {
+        setRefPrevCell();
+        $setRefs(columnIndex);
+        cell.current = toCellState(columnIndex, nextRowIndex);
+        setHighlight();
+        scroll(0, nextRowIndex);
+      }
+    },
+    ArrowLeft: () => {
+      const columnIndex = cell.current.columnIndex;
+      const rowIndex = cell.current.rowIndex;
+      const nextColumnIndex = Number.parseInt(columnIndex, 10) - 1;
+      if (nextColumnIndex >= 0) {
+        setRefPrevCell();
+        cell.current = toCellState(nextColumnIndex, rowIndex);
+        setHighlight();
+        $setRefs(columnIndex);
+        scroll(nextColumnIndex, 0);
+        if (rowIndex + 1 === rowCount) {
+          scrollToTheBottom();
+        }
+      }
+    },
+  };
+
   // This in charge of highlight the cell but will not scroll the table in case there is overflow
   const handleKeyDown = event => {
-    const keyboardKeys = {
-      ArrowUp: () => {
-        const columnIndex = cell.current.columnIndex;
-        const rowIndex = cell.current.rowIndex;
-        const nextRowIndex = Number.parseInt(rowIndex, 10) - 1;
-        if (nextRowIndex >= 0) {
-          $setRefs(columnIndex);
-          cell.current = toCellState(columnIndex, nextRowIndex);
-          setHighlight();
-          setRefPrevCell();
-          scroll(0, nextRowIndex);
-        }
-      },
-      ArrowRight: () => {
-        const columnIndex = cell.current.columnIndex;
-        const rowIndex = cell.current.rowIndex;
-        const nextColumnIndex = Number.parseInt(columnIndex, 10) + 1;
-        if (nextColumnIndex < columnCount) {
-          cell.current = toCellState(nextColumnIndex, rowIndex);
-          setHighlight();
-          setRefPrevCell();
-          $setRefs(columnIndex);
-          scroll(nextColumnIndex, 0);
-          if (rowIndex + 1 === rowCount) {
-            scrollToTheBottom();
-          }
-        }
-      },
-      ArrowDown: () => {
-        if (cell === null) return;
-
-        const columnIndex = cell.current.columnIndex;
-        const rowIndex = cell.current.rowIndex;
-        const nextRowIndex = Number.parseInt(rowIndex, 10) + 1;
-        if (nextRowIndex < rowCount) {
-          $setRefs(columnIndex);
-          cell.current = toCellState(columnIndex, nextRowIndex);
-          setHighlight();
-          setRefPrevCell();
-          scroll(0, nextRowIndex);
-        }
-      },
-      ArrowLeft: () => {
-        const columnIndex = cell.current.columnIndex;
-        const rowIndex = cell.current.rowIndex;
-        const nextColumnIndex = Number.parseInt(columnIndex, 10) - 1;
-        if (nextColumnIndex >= 0) {
-          cell.current = toCellState(nextColumnIndex, rowIndex);
-          setHighlight();
-          setRefPrevCell();
-          $setRefs(columnIndex);
-          scroll(nextColumnIndex, 0);
-          if (rowIndex + 1 === rowCount) {
-            scrollToTheBottom();
-          }
-        }
-      },
-    };
-
     if (event.key in keyboardKeys) {
       event.preventDefault();
       if (!cell) {
-        return;
-      }
-
-      // if the user is using the tab key and arrive to the table we should select the first cell
-      if (event.target.hasAttribute("role") && event.target.getAttribute("role") === "grid") {
-        cell.current = {
-          columnIndex: 0,
-          rowIndex: 1,
-        };
-
-        prevCell.current = cell.current;
-        keyboardKeys.ArrowUp();
         return;
       }
 
@@ -340,5 +338,19 @@ export default function useGridEventHandler({
     refHasHorizontalScrollBar.current = refScroll.current.scrollWidth > refScroll.current.clientWidth;
   }, [$getGrid, refScroll]);
 
-  return { cell, prevCell, handleKeyDown, gridId };
+  function restoreHighlightFocus(columnIndex = 0, rowIndex = 0) {
+    if (cell.current === null) {
+      cell.current = {
+        columnIndex,
+        rowIndex,
+      };
+    }
+
+    const $cell = $getCell();
+    setRefPrevCell();
+    setHighlight();
+    focus($cell);
+  }
+
+  return { cell, prevCell, handleKeyDown, gridId, restoreHighlightFocus };
 }

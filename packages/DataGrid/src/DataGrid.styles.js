@@ -17,10 +17,13 @@ export const Grid = styled.div.attrs(({ $width, isIdle }) => {
     box-shadow: ${tokens.highlight.active.withBorder.insetBoxShadow};
   }
 
+  .grid--is-blur {
+    box-shadow: 0 0 0;
+  }
+
   [role="gridcell"] {
     /* this hide the aria "voice over" focus message */
     &:focus {
-      border: 0;
       outline: 0;
     }
   }
@@ -38,7 +41,7 @@ export const Grid = styled.div.attrs(({ $width, isIdle }) => {
           The arrow navigatoion is border sensible, please avoid adding a border to this styled components
           doing it will create a incorrect navigation while using the arrow keys.
         */
-        box-shadow: 0px 1px 0px 0px ${tokens.border.color}, 4px 0px 0px 0px ${tokens.border.color};
+        box-shadow: 0px 0px 12px 4px ${tokens.border.color};
         overflow: hidden !important;
       }
     `;
