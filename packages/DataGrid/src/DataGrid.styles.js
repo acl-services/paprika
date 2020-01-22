@@ -3,9 +3,11 @@ import tokens from "@paprika/tokens";
 
 const experimentalGrey = "#e7e7e7"; /* experimental */
 
-export const Grid = styled.div.attrs(({ $width }) => {
+export const Grid = styled.div.attrs(({ $width, isIdle }) => {
+  const _isIdle = isIdle ? { opacity: 0 } : { opacity: 100 };
+
   return {
-    style: { width: `${$width}px` },
+    style: { width: `${$width}px`, ..._isIdle },
   };
 })`
   * {
@@ -155,6 +157,46 @@ export const RowCount = styled.div`
 
 export const WhileOnScrolling = styled.div`
   background: ${tokens.color.cremeLighten5};
-  height: 16px;
+  border-radius: ${tokens.border.radius};
+  height: 10px;
   width: 100%;
+`;
+
+export const Idle = styled.div`
+  background: white;
+  border: 0;
+  cursor: progress;
+  opacity: 0;
+  position: absolute;
+  z-index: 100;
+
+  ${({ $height, $width, gridId }) => {
+    return `
+      width: ${$width}px;
+      height: ${$height}px;
+      opacity: 1;
+      .${gridId}-idle {
+        overflow: hidden !important;
+      }
+    `;
+  }}
+`;
+
+export const IdleBlocker = styled.div`
+  align-items: center;
+  background: transparent;
+  border: 1px solid ${tokens.border.color};
+  display: Flex;
+  justify-content: center;
+  left: 0;
+  position: absolute;
+  top: 0;
+  z-index: 4;
+
+  ${({ $height, $width }) => {
+    return `
+      width: ${$width}px;
+      height: ${$height}px;
+    `;
+  }}
 `;

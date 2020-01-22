@@ -1,13 +1,11 @@
 import React from "react";
 import nanoid from "nanoid";
 import isDevEnv from "@paprika/helpers/lib/isDevEnv";
+import "@paprika/helpers/lib/dom/closest";
 
 const getDataCell = event => {
-  let dataCell = event.target.dataset.cell;
-  if (!dataCell) {
-    dataCell = event.target.parentElement.dataset.cell;
-  }
-  return dataCell;
+  const $cell = event.target.closest("[data-cell]");
+  return $cell && $cell.dataset.cell;
 };
 
 export function timeDiff(t1, t2) {
@@ -16,7 +14,7 @@ export function timeDiff(t1, t2) {
   }
 }
 
-export default function useArrowKeys({
+export default function useGridEventHandler({
   refGrid,
   refContainer,
   columnCount,
@@ -35,6 +33,8 @@ export default function useArrowKeys({
   const prevCell = React.useRef(null);
 
   function $getCell({ refContainer, gridId, cell }) {
+    if (!refContainer) return;
+
     return refContainer.current.querySelector(
       `[data-cell='${gridId}.${cell.current.columnIndex}.${cell.current.rowIndex}']`
     );
@@ -63,13 +63,23 @@ export default function useArrowKeys({
 
   function focus($cell) {
     window.requestAnimationFrame(() => {
-      if (refPrevCell.current) {
-        refPrevCell.current.children[1].tabIndex = "-1";
+      const $prev = refPrevCell.current;
+      if ($prev) {
+        $prev.querySelector("[role=gridcell]").tabIndex = "-1";
+        console.log("prev", $prev);
       }
 
-      const $gridCell = $cell.children[1];
-      $gridCell.tabIndex = 0;
-      $gridCell.focus();
+      if ($cell.hasAttribute("data-cell")) {
+        const $a11Txt = $cell.querySelector("[role=gridcell]");
+        $a11Txt.tabIndex = 0;
+        $a11Txt.focus();
+        return;
+      }
+
+      const $gridCell = $cell.closest("[data-cell]");
+      const $a11Txt = $gridCell.querySelector("[role=gridcell]");
+      $a11Txt.tabIndex = 0;
+      $a11Txt.focus();
     });
   }
 
@@ -185,19 +195,23 @@ export default function useArrowKeys({
   }
 
   const $getGrid = React.useCallback(() => {
-    return refContainer.current.querySelector(`.grid-${gridId} [role="row"]`).parentElement;
+    return refContainer.current && refContainer.current.querySelector(`.grid-${gridId} [role="row"]`).parentElement;
   }, [gridId, refContainer]);
 
   const $getStickyColumnGrid = React.useCallback(() => {
-    return refContainer.current.querySelector(`.${gridId}-sticky-columns [role="row"]`).parentElement;
+    return (
+      refContainer.current && refContainer.current.querySelector(`.${gridId}-sticky-columns [role="row"]`).parentElement
+    );
   }, [gridId, refContainer]);
 
   const $getGridBoundingRect = React.useCallback(() => {
-    return refContainer.current.querySelector(`.grid-${gridId}`).getBoundingClientRect();
+    return refContainer.current && refContainer.current.querySelector(`.grid-${gridId}`).getBoundingClientRect();
   }, [gridId, refContainer]);
 
   const $getStickyColumnGridBoundingRect = React.useCallback(() => {
-    return refContainer.current.querySelector(`.${gridId}-sticky-columns`).getBoundingClientRect();
+    return (
+      refContainer.current && refContainer.current.querySelector(`.${gridId}-sticky-columns`).getBoundingClientRect()
+    );
   }, [gridId, refContainer]);
 
   function $setRefs(columnIndex) {
@@ -212,8 +226,6 @@ export default function useArrowKeys({
 
   // This in charge of highlight the cell but will not scroll the table in case there is overflow
   const handleKeyDown = event => {
-    event.preventDefault();
-
     const keyboardKeys = {
       ArrowUp: () => {
         const columnIndex = cell.current.columnIndex;
@@ -274,7 +286,20 @@ export default function useArrowKeys({
     };
 
     if (event.key in keyboardKeys) {
+      event.preventDefault();
       if (!cell) {
+        return;
+      }
+
+      // if the user is using the tab key and arrive to the table we should select the first cell
+      if (event.target.hasAttribute("role") && event.target.getAttribute("role") === "grid") {
+        cell.current = {
+          columnIndex: 0,
+          rowIndex: 1,
+        };
+
+        prevCell.current = cell.current;
+        keyboardKeys.ArrowUp();
         return;
       }
 
@@ -286,9 +311,6 @@ export default function useArrowKeys({
   React.useEffect(() => {
     const handleClick = event => {
       const dataCell = getDataCell(event);
-
-      if (!dataCell) return;
-
       const [, columnIndex, rowIndex] = dataCell.split(".");
 
       cell.current = toCellState(columnIndex, rowIndex);
@@ -299,10 +321,12 @@ export default function useArrowKeys({
     };
 
     const ref = refContainer.current;
-    ref.addEventListener("click", handleClick);
+    if (!ref) return;
+
+    ref.addEventListener("click", handleClick, true);
 
     return () => {
-      ref.removeEventListener("click", handleClick);
+      ref.removeEventListener("click", handleClick, true);
     };
   }, [gridId, refContainer, setHighlight]);
 
@@ -312,6 +336,7 @@ export default function useArrowKeys({
 
   React.useEffect(() => {
     refScroll.current = $getGrid();
+    if (!refScroll.current) return;
     refHasHorizontalScrollBar.current = refScroll.current.scrollWidth > refScroll.current.clientWidth;
   }, [$getGrid, refScroll]);
 

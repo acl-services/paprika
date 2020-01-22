@@ -2,7 +2,8 @@ import React from "react";
 import PropTypes from "prop-types";
 import { VariableSizeGrid as Grid } from "react-window";
 import extractChildren from "@paprika/helpers/lib/extractChildren";
-import useArrowKeys from "./hooks/useArrowKeys";
+import Spinner from "@paprika/spinner";
+import useGridEventHandler from "./hooks/useGridEventHandler";
 import ColumnDefinition from "./components/ColumnDefinition";
 import RowIndicator from "./components/RowIndicator";
 
@@ -21,6 +22,7 @@ const propTypes = {
   whileOnScrolling: PropTypes.bool,
   fillAvailableSpace: PropTypes.bool,
   children: PropTypes.node.isRequired,
+  isIdle: PropTypes.bool,
 };
 const defaultProps = {
   data: [],
@@ -34,6 +36,7 @@ const defaultProps = {
   fillAvailableSpace: false,
   onClick: () => {},
   onKeyDown: () => {},
+  isIdle: false,
 };
 
 const outerElementType = React.forwardRef((props, ref) => <div role="rowgroup" ref={ref} {...props} />);
@@ -55,6 +58,7 @@ export default function DataGrid(props) {
     hasVerticalBorder,
     hasZebra,
     height,
+    isIdle,
     onClick,
     onKeyDown,
     rowHeight,
@@ -125,7 +129,7 @@ export default function DataGrid(props) {
       }, 0)) ||
     0;
 
-  const { handleKeyDown, gridId } = useArrowKeys({
+  const { handleKeyDown, gridId } = useGridEventHandler({
     refGrid,
     refContainer,
     columnCount,
@@ -178,29 +182,41 @@ export default function DataGrid(props) {
   );
 
   React.useEffect(() => {
+    if (!refContainer.current) return;
+
     refScrollHeader.current = refContainer.current.querySelector(`.${gridId}-header`);
     refScrollStickyColumns.current = refContainer.current.querySelector(`.${gridId}-sticky-columns`);
     refScrollGrid.current = refContainer.current.querySelector(`.grid-${gridId}`);
   }, [gridId]);
 
   React.useEffect(() => {
-    const scrollContainer = refContainer.current.querySelector(`.grid-${gridId} [role="row"]`).parentElement;
+    const scrollContainer =
+      refContainer.current && refContainer.current.querySelector(`.grid-${gridId} [role="row"]`).parentElement;
+
+    if (!scrollContainer) return;
     // https://stackoverflow.com/questions/21064101/understanding-offsetwidth-clientwidth-scrollwidth-and-height-respectively
     // https://davidwalsh.name/detect-scrollbar-width
     setScrollBarWidth(() => scrollContainer.offsetWidth - scrollContainer.clientWidth);
-  }, []); // eslint-disable-line
-  // ^ we want to run the effect only one time, the scrollbar width will not change
+  }, [gridId, isIdle]);
 
   return (
     <>
+      {isIdle && (
+        <styled.Idle gridId={gridId} $width={gridWidth + stickyGridWidth} $height={height}>
+          <styled.IdleBlocker $width={gridWidth + stickyGridWidth} $height={height}>
+            <Spinner />
+          </styled.IdleBlocker>
+        </styled.Idle>
+      )}
       <styled.Grid
-        tabIndex={-1}
+        tabIndex={0}
         ref={refContainer}
         aria-colcount={columnCount}
         role="grid"
         onKeyDown={handleKeyDown}
         gridId={gridId}
         {...moreProps}
+        isIdle={isIdle}
         $width={gridWidth + stickyGridWidth}
       >
         <styled.Flex>

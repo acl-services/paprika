@@ -17,6 +17,7 @@
     "@paprika/button": "^0.2.8",
     "@paprika/checkbox": "^0.1.9",
     "@paprika/helpers": "^0.2.7",
+    "@paprika/spinner": "^0.2.9",
     "@paprika/stylers": "^0.2.2",
     "@paprika/tokens": "^0.1.9",
     "nanoid": "^2.1.9",
