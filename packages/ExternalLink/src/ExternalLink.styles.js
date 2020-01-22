@@ -43,6 +43,4 @@ export const ExternalLinkIconStyles = `
   margin-left: ${tokens.spaceSm};
   position: absolute;
   top: 0;
-
-
 `;
