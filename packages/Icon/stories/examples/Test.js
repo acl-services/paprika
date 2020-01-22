@@ -12,6 +12,7 @@ import ArrowIcon from "@paprika/icon/lib/ArrowRight";
 import ArrowUp from "@paprika/icon/lib/ArrowUp";
 import EllipsisIcon from "@paprika/icon/lib/Ellipsis";
 import UnlinkIcon from "@paprika/icon/lib/Unlink";
+import NewTabIcon from "@paprika/icon/lib/NewTab";
 
 const ExampleStory = () => (
   <Story
@@ -35,6 +36,7 @@ const ExampleStory = () => (
       party copper mug try-hard <RefreshIcon aria-label="cycle" title="cycle" role="img" /> put a bird on it. Adaptogen
       mumblecore yr mustache selfies <SearchIcon role="none" /> jean shorts listicle man braid VHS kitsch drinking
       vinegar polaroid unicorn&nbsp;
+      <NewTabIcon />
       <TrashIcon
         aria-label="rubbish"
         title="garbage"
