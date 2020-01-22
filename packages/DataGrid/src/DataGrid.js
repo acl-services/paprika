@@ -331,12 +331,12 @@ export default function DataGrid(props) {
                   style={{ ...style }}
                   data-cell={`${gridId}.${columnIndex}.${rowIndex}`}
                 >
+                  <styled.GridCell role="gridcell">{a11yText}</styled.GridCell>
                   <styled.InnerCell $style={column.cellStyle} aria-hidden="true">
                     {typeof column.cell === "function"
                       ? column.cell({ row: data[rowIndex], rowIndex, columnIndex })
                       : data[rowIndex][column.cell]}
                   </styled.InnerCell>
-                  <styled.GridCell role="gridcell">{a11yText}</styled.GridCell>
                 </styled.Cell>
               );
             }}
@@ -399,12 +399,12 @@ export default function DataGrid(props) {
                   style={style}
                   data-cell={`${gridId}.${columnIndex}.${rowIndex}`}
                 >
+                  <styled.GridCell role="gridcell">{a11yText}</styled.GridCell>
                   <styled.InnerCell $style={column.cellStyle} aria-hidden="true">
                     {typeof column.cell === "function"
                       ? column.cell({ row: data[rowIndex], rowIndex, columnIndex })
                       : data[rowIndex][column.cell]}
                   </styled.InnerCell>
-                  <styled.GridCell role="gridcell">{a11yText}</styled.GridCell>
                 </styled.Cell>
               );
             }}
