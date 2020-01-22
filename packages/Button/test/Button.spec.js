@@ -23,7 +23,6 @@ describe("Button", () => {
     const { getByText, container } = renderComponent();
     expect(getByText(/happy button/i)).toBeInTheDocument();
     expect(container.querySelector("button")).toBeInTheDocument();
-    expect(container.querySelector("button")).toBeInTheDocument();
     expect(container.querySelector('[type="button"]')).toBeInTheDocument();
     expect(container.querySelector('[tabindex="0"]')).toBeInTheDocument();
   });
