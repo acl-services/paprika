@@ -28,6 +28,12 @@ const ExampleStory = () => (
       This is <code>ExternalLink</code> that forwards <code>data-testid</code>:{" "}
       <ExternalLink href="http://acl-ui.aclgrc-s1.com" data-testid="foo" />
     </p>
+    <p>
+      This is <code>ExternalLink</code> with a low width <br />
+      <ExternalLink href="http://acl-ui.aclgrc-s1.com" style={{ width: "198px" }} data-testid="low-width">
+        This is a long fieldfdsfdasfsdfdafafafdf fsadf sdfad fda fds
+      </ExternalLink>
+    </p>
   </Story>
 );
 export default () => <ExampleStory />;

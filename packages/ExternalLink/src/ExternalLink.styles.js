@@ -1,14 +1,17 @@
 import styled from "styled-components";
 import tokens from "@paprika/tokens";
 import { truncateText } from "@paprika/stylers/lib/includes";
+import { toInt } from "@paprika/stylers/lib/helpers";
 
 export const ExternalLinkStyled = styled.a`
   border-radius: ${tokens.border.radius};
   color: ${tokens.textColor.link};
   display: inline-block;
-  line-height: 1;
-  padding: 1px 1px 1px ${tokens.spaceSm};
-  text-decoration: none;
+  position: relative;
+
+  ${props => {
+    return `padding: 1px ${props.externalLinkIconSize + toInt(tokens.spaceSm)}px 1px ${tokens.spaceSm};`;
+  }}
 
   &:focus,
   &:active {
@@ -27,15 +30,19 @@ const externalLinkContentHoverFocus = `
 export const ExternalLinkContentStyled = styled.span`
   display: inline-block;
   ${truncateText}
-  width: calc(100% - 20px);
+  vertical-align: bottom;
+  width: 100%;
 
   ${props => {
     return props.hasUnderline ? "text-decoration: underline" : externalLinkContentHoverFocus;
-  }}
+  }};
 `;
 
 export const ExternalLinkIconStyles = `
   display: inline-block;
   margin-left: ${tokens.spaceSm};
-  vertical-align: top;
+  position: absolute;
+  top: 0;
+
+
 `;

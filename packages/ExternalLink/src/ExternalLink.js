@@ -26,6 +26,7 @@ const defaultProps = {
 };
 
 function ExternalLink(props) {
+  const externalLinkIconSize = 11;
   const I18n = useI18n();
   const { ariaText, children, hasUnderline, ...moreProps } = props;
 
@@ -43,12 +44,17 @@ function ExternalLink(props) {
       onClick={handleSwallowClick}
       rel="noopener noreferrer"
       target="_blank"
+      externalLinkIconSize={externalLinkIconSize}
       {...moreProps}
     >
       <styled.ExternalLinkContentStyled hasUnderline={hasUnderline}>
         {getContentText()}
       </styled.ExternalLinkContentStyled>
-      <NewTabIcon css={styled.ExternalLinkIconStyles} color={tokens.textColor.icon} size={11} />
+      <NewTabIcon
+        css={styled.ExternalLinkIconStyles}
+        color={tokens.textColor.icon}
+        size={`${externalLinkIconSize}px`}
+      />
     </styled.ExternalLinkStyled>
   );
 }
