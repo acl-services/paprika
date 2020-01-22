@@ -63,6 +63,8 @@ export default function useGridEventHandler({
   function focus($cell) {
     window.requestAnimationFrame(() => {
       const $prev = refPrevCell.current;
+      if (!$cell) return;
+
       if ($prev) {
         $prev.querySelector("[role=gridcell]").tabIndex = "-1";
       }

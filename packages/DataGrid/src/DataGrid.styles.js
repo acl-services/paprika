@@ -91,6 +91,8 @@ export const InnerCell = styled.div.attrs(({ $style }) => {
   width: 100%;
 `;
 
+export const InnerElementType = styled.div``;
+
 export const InnerElementTypeMainGrid = styled.div``;
 
 export const OuterElementTypeMainGrid = styled.div`
@@ -201,5 +203,27 @@ export const IdleBlocker = styled.div`
       width: ${$width}px;
       height: ${$height}px;
     `;
+  }}
+`;
+
+export const Footer = styled.div`
+  ${({ $width }) => {
+    return `
+      padding: 8px;
+      border: 1px solid ${tokens.border.color};
+      width: ${$width - 17}px;
+  `;
+  }}
+`;
+
+export const FooterLoadMore = styled.div`
+  align-items: center;
+  display: flex;
+  justify-content: center;
+  padding: ${tokens.space};
+  ${({ $width }) => {
+    return `
+      width: ${$width - 17}px;
+  `;
   }}
 `;

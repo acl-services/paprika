@@ -3,6 +3,7 @@ import { storiesOf } from "@storybook/react";
 import * as Sbook from "storybook/assets/styles/common.styles";
 import SidePanel from "@paprika/sidepanel";
 import styled from "styled-components";
+import Button from "@paprika/button";
 import DataGrid from "../src";
 
 const ImgWrapper = styled.div`
@@ -136,11 +137,13 @@ export function App() {
         <DataGrid.ColumnDefinition width={180} id="3" header="Modified" cell="modified" />
         <DataGrid.ColumnDefinition width={120} id="4" header="URI" cell="resourceURI" />
         <DataGrid.ColumnDefinition width={220} id="5" header="Series" cell={renderSeries} />
+        <DataGrid.EndOFScrollingFooter>
+          <Button>Load more</Button>
+        </DataGrid.EndOFScrollingFooter>
       </DataGrid>
-      <br />
-      <br />
-      <br />
-      <a href="http://marvel.com">Data provided by Marvel. © 2019 MARVEL</a>
+      <a href="http://marvel.com" style={{ fontSize: "12px", color: "#777" }}>
+        Data provided by Marvel. © 2019 MARVEL
+      </a>
     </Sbook.Story>
   );
 }

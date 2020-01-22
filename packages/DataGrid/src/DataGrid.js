@@ -6,7 +6,7 @@ import Spinner from "@paprika/spinner";
 import useGridEventHandler from "./hooks/useGridEventHandler";
 import ColumnDefinition from "./components/ColumnDefinition";
 import RowIndicator from "./components/RowIndicator";
-
+import EndOFScrollingFooter from "./components/EndOFScrollingFooter";
 import * as styled from "./DataGrid.styles";
 
 const propTypes = {
@@ -40,13 +40,13 @@ const defaultProps = {
 };
 
 const outerElementType = React.forwardRef((props, ref) => <div role="rowgroup" ref={ref} {...props} />);
-const innerElementType = React.forwardRef((props, ref) => <div role="row" ref={ref} {...props} />);
+const innerElementType = React.forwardRef((props, ref) => <styled.InnerElementType role="row" ref={ref} {...props} />);
 const outerElementTypeMainGrid = React.forwardRef((props, ref) => (
   <styled.OuterElementTypeMainGrid role="rowgroup" ref={ref} {...props} />
 ));
 
 const innerElementTypeMainGrid = React.forwardRef((props, ref) => (
-  <styled.InnerElementTypeMainGrid role="row" ref={ref} {...props} />
+  <styled.InnerElementTypeMainGrid className="inner-element-type-main-grid" role="row" ref={ref} {...props} />
 ));
 
 export default function DataGrid(props) {
@@ -77,6 +77,7 @@ export default function DataGrid(props) {
 
   const [scrollBarWidth, setScrollBarWidth] = React.useState(0);
   const [gridShouldHaveFocus, setGridShouldHaveFocus] = React.useState(true);
+  const [isEndOFScrollingFooterVisible, setIsEndOFScrollingFooterVisible] = React.useState(false);
 
   const overscanRowCount = 20;
   const overscanColumnCount = 20;
@@ -85,10 +86,13 @@ export default function DataGrid(props) {
     return data.length;
   }, [data.length]);
 
-  const ColumnDefinitions = React.useMemo(() => {
-    const { "DataGrid.ColumnDefinition": ColumnDefinitions } = extractChildren(children, ["DataGrid.ColumnDefinition"]);
+  const { ColumnDefinitions, EndOFScrollingFooter } = React.useMemo(() => {
+    const {
+      "DataGrid.ColumnDefinition": ColumnDefinitions,
+      "DataGrid.EndOFScrollingFooter": EndOFScrollingFooter,
+    } = extractChildren(children, ["DataGrid.ColumnDefinition", "DataGrid.EndOFScrollingFooter"]);
 
-    return ColumnDefinitions;
+    return { ColumnDefinitions, EndOFScrollingFooter };
   }, [children]);
 
   const columnCount = React.useMemo(() => {
@@ -147,6 +151,15 @@ export default function DataGrid(props) {
   const handleScroll = React.useCallback(
     parameters => {
       const { scrollLeft, scrollTop /* scrollUpdateWasRequested */ } = parameters;
+
+      if (
+        refScrollGrid.current &&
+        refScrollGrid.current.scrollTop + refScrollGrid.current.offsetHeight >= refScrollGrid.current.scrollHeight
+      ) {
+        setIsEndOFScrollingFooterVisible(() => true);
+      } else {
+        setIsEndOFScrollingFooterVisible(() => false);
+      }
 
       if (refScrollHeader.current) {
         refScrollHeader.current.scrollTo({ left: scrollLeft, top: 0 });
@@ -218,10 +231,8 @@ export default function DataGrid(props) {
   }
 
   React.useEffect(() => {
-    restoreHighlightFocus();
-  }, [gridShouldHaveFocus]); // eslint-disable-line
-
-  restoreHighlightFocus();
+    restoreHighlightFocus(); // this doesn't need to be on the array dependencies
+  }, [gridShouldHaveFocus, isEndOFScrollingFooterVisible]); // eslint-disable-line
 
   return (
     <>
@@ -413,7 +424,14 @@ export default function DataGrid(props) {
         <styled.FillerTopRigth rowHeight={rowHeight} scrollBarWidth={scrollBarWidth} />
         <styled.FillerBottomLeft stickyGridWidth={stickyGridWidth} scrollBarWidth={scrollBarWidth} />
       </styled.Grid>
-      <styled.RowCount>Rows:{rowCount}</styled.RowCount>
+      {!isIdle ? (
+        <styled.Footer $width={gridWidth + stickyGridWidth}>
+          <styled.RowCount>Rows:{rowCount}</styled.RowCount>
+        </styled.Footer>
+      ) : null}
+      {EndOFScrollingFooter && isEndOFScrollingFooterVisible ? (
+        <styled.FooterLoadMore $width={gridWidth + stickyGridWidth}>{EndOFScrollingFooter}</styled.FooterLoadMore>
+      ) : null}
     </>
   );
 }
@@ -422,3 +440,4 @@ DataGrid.propTypes = propTypes;
 DataGrid.defaultProps = defaultProps;
 DataGrid.ColumnDefinition = ColumnDefinition;
 DataGrid.RowIndicator = RowIndicator;
+DataGrid.EndOFScrollingFooter = EndOFScrollingFooter;
