@@ -1,5 +1,5 @@
 import React from "react";
-import { text, number, select } from "@storybook/addon-knobs";
+import { boolean, text, number, select } from "@storybook/addon-knobs";
 import styled from "styled-components";
 import { CenteredStory } from "storybook/assets/styles/common.styles";
 import Button from "@paprika/button";
@@ -22,6 +22,7 @@ export const popoverProps = () => ({
   edge: select("edge", { left: "left", right: "right", none: null }, null),
   maxWidth: text("maxWidth", "320"),
   minWidth: text("minWidth", "0"),
+  isPortal: boolean("isPortal", true),
   offset: number("offset", 12),
 });
 
