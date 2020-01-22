@@ -41,7 +41,7 @@ const propTypes = {
   /** How "controlled" popovers are shown / hidden. */
   isOpen: PropTypes.bool,
 
-  /** This renders the popover inline in the DOM and not in a react portal. WARNING: may have side effects, use with caution. */
+  /** This renders the popover inline in the DOM and not in a react portal. WARNING: will have side effects with paprika side panels and modals, use with caution. */
   isPortal: PropTypes.bool,
 
   /** How "uncontrolled" popovers can be rendered open by default. */
