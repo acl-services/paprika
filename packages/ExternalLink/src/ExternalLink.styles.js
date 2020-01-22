@@ -1,5 +1,6 @@
 import styled from "styled-components";
 import tokens from "@paprika/tokens";
+import { truncateText } from "@paprika/stylers/lib/includes";
 
 export const ExternalLinkStyled = styled.a`
   border-radius: ${tokens.border.radius};
@@ -16,16 +17,20 @@ export const ExternalLinkStyled = styled.a`
   }
 `;
 
-export const ExternalLinkContentStyled = styled.span`
-  color: ${tokens.textColor.icon};
-
+const externalLinkContentHoverFocus = `
   &:hover,
   &:focus {
     text-decoration: underline;
   }
+`;
+
+export const ExternalLinkContentStyled = styled.span`
+  display: inline-block;
+  ${truncateText}
+  width: calc(100% - 20px);
 
   ${props => {
-    return props.hasUnderline ? "text-decoration: underline" : "";
+    return props.hasUnderline ? "text-decoration: underline" : externalLinkContentHoverFocus;
   }}
 `;
 
