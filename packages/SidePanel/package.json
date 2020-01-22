@@ -1,6 +1,6 @@
 {
   "name": "@paprika/sidepanel",
-  "version": "0.3.1",
+  "version": "0.3.2",
   "description": "SidePanel component",
   "author": "@paprika",
   "main": "lib/index.js",
