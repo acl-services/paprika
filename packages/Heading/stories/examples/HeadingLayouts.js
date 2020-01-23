@@ -8,14 +8,14 @@ const renderExternalLink = () => <ExternalLink href="http://wegalvanize.com">Ext
 const HeadingStylesStory = () => {
   return (
     <Story>
-      <h5>&lt;Heading&gt; with externalLink component</h5>
+      <h5>&lt;Heading&gt; with &lt;ExternalLink&gt; component</h5>
       <Heading level={1}>{renderExternalLink()}</Heading>
       <Heading level={2}>{renderExternalLink()}</Heading>
       <Heading level={3}>{renderExternalLink()}</Heading>
       <Heading level={4}>{renderExternalLink()}</Heading>
       <br />
 
-      <h5>&lt;Heading with set width&gt; and externalLink component</h5>
+      <h5>&lt;Heading&gt; with set width and &lt;ExternalLink&gt; component</h5>
       <Heading style={{ width: "160px" }} level={1}>
         {renderExternalLink()}
       </Heading>

@@ -1,7 +1,6 @@
 import React from "react";
 import PropTypes from "prop-types";
 import NewTabIcon from "@paprika/icon/lib/NewTab";
-import useI18n from "@paprika/l10n/lib/useI18n";
 import * as sc from "./ExternalLink.styles";
 
 const propTypes = {
@@ -9,7 +8,7 @@ const propTypes = {
   ariaText: PropTypes.string,
 
   /** Link text for showing. */
-  children: PropTypes.string,
+  children: PropTypes.string.isRequired,
 
   /** It should not show the underline on text content */
   hasNoUnderline: PropTypes.bool,
@@ -20,18 +19,12 @@ const propTypes = {
 
 const defaultProps = {
   ariaText: null,
-  children: null,
   hasNoUnderline: false,
 };
 
 function ExternalLink(props) {
   const iconFontSize = 11;
-  const I18n = useI18n();
   const { ariaText, children, hasNoUnderline, ...moreProps } = props;
-
-  const getContentText = () => {
-    return children || I18n.t("externalLink.view");
-  };
 
   const handleSwallowClick = e => {
     e.stopPropagation();
@@ -39,14 +32,14 @@ function ExternalLink(props) {
 
   return (
     <sc.ExternalLink
-      aria-label={ariaText || getContentText()}
+      aria-label={ariaText || children}
       onClick={handleSwallowClick}
       rel="noopener noreferrer"
       target="_blank"
       iconFontSize={iconFontSize}
       {...moreProps}
     >
-      <sc.ExternalLinkContent hasNoUnderline={hasNoUnderline}>{getContentText()}</sc.ExternalLinkContent>
+      <sc.ExternalLinkContent hasNoUnderline={hasNoUnderline}>{children}</sc.ExternalLinkContent>
       <NewTabIcon css={sc.ExternalLinkIconStyles} size={`${iconFontSize}px`} />
     </sc.ExternalLink>
   );
