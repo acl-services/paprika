@@ -3,7 +3,7 @@ import tokens from "@paprika/tokens";
 import { truncateText } from "@paprika/stylers/lib/includes";
 import { toInt } from "@paprika/stylers/lib/helpers";
 
-export const ExternalLinkStyled = styled.a`
+export const ExternalLink = styled.a`
   border-radius: ${tokens.border.radius};
   color: ${tokens.textColor.link};
   display: inline-block;
@@ -28,7 +28,7 @@ const contentHoverFocusStyles = `
   }
 `;
 
-export const ExternalLinkContentStyled = styled.span`
+export const ExternalLinkContent = styled.span`
   display: inline-block;
   ${truncateText}
   vertical-align: bottom;
@@ -40,6 +40,7 @@ export const ExternalLinkContentStyled = styled.span`
 `;
 
 export const ExternalLinkIconStyles = `
+  color: ${tokens.textColor.icon};
   display: inline-block;
   margin-left: ${tokens.spaceSm};
   position: absolute;

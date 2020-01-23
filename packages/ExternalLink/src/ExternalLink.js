@@ -1,9 +1,8 @@
 import React from "react";
 import PropTypes from "prop-types";
-import tokens from "@paprika/tokens";
 import NewTabIcon from "@paprika/icon/lib/NewTab";
 import useI18n from "@paprika/l10n/lib/useI18n";
-import * as styled from "./ExternalLink.styles";
+import * as sc from "./ExternalLink.styles";
 
 const propTypes = {
   /** Text for aria-label. */
@@ -39,7 +38,7 @@ function ExternalLink(props) {
   };
 
   return (
-    <styled.ExternalLinkStyled
+    <sc.ExternalLink
       aria-label={ariaText || getContentText()}
       onClick={handleSwallowClick}
       rel="noopener noreferrer"
@@ -47,11 +46,9 @@ function ExternalLink(props) {
       iconFontSize={iconFontSize}
       {...moreProps}
     >
-      <styled.ExternalLinkContentStyled hasUnderline={hasUnderline}>
-        {getContentText()}
-      </styled.ExternalLinkContentStyled>
-      <NewTabIcon css={styled.ExternalLinkIconStyles} color={tokens.textColor.icon} size={`${iconFontSize}px`} />
-    </styled.ExternalLinkStyled>
+      <sc.ExternalLinkContent hasUnderline={hasUnderline}>{getContentText()}</sc.ExternalLinkContent>
+      <NewTabIcon css={sc.ExternalLinkIconStyles} size={`${iconFontSize}px`} />
+    </sc.ExternalLink>
   );
 }
 
