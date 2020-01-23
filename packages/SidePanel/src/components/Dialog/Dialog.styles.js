@@ -90,4 +90,8 @@ export const dialogContentStyles = css`
   ${props => {
     return props.isSticky ? `margin-bottom: ${props.footerHeight}px;` : "";
   }}
+
+  &:focus {
+    ${stylers.focusRing.subtle(true)};
+  }
 `;
