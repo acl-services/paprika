@@ -26,7 +26,7 @@
 
 #### Dependencies
 
-If you want spice up your application with Paprika, you will need to start by adding the required dependencies. Paprika has a `peerDependency` on `React v16.8`, `styled-components` and most packages also have a `peerDependency` on the [Paprika L10n component](https://github.com/acl-services/paprika/blob/master/packages/L10n/README.md) (`@paprika/l10n`) for localization. 
+If you want to spice up your application with Paprika, you will need to start by adding the required dependencies. Paprika has a `peerDependency` on `React v16.8`, `styled-components` and most packages also have a `peerDependency` on the [Paprika L10n component](https://github.com/acl-services/paprika/blob/master/packages/L10n/README.md) (`@paprika/l10n`) for localization. 
 
 You will need to include them as dependencies in your project.
 
