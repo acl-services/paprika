@@ -7,6 +7,7 @@ export const ExternalLinkStyled = styled.a`
   border-radius: ${tokens.border.radius};
   color: ${tokens.textColor.link};
   display: inline-block;
+  max-width: 100%;
   position: relative;
 
   ${props => {
