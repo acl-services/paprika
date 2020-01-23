@@ -8,8 +8,6 @@ or
 
 ### Usage
 
-Please use `<L10n />` component to wrap `<ExternalLink />` or you application.
-
 Using with paprika `<ExternalLink />`
 
 ```js
@@ -23,5 +21,6 @@ import ExternalLink from "@paprika/external-link";
 - `children`
 - `ariaText`
 - `hasUnderline`
+- `href` (required)
 
 [More detail about these props](https://github.com/acl-services/paprika/blob/master/packages/ExternalLink/src/ExternalLink.js)

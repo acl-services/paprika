@@ -11,7 +11,7 @@ export const ExternalLinkStyled = styled.a`
   position: relative;
 
   ${props => {
-    return `padding: 1px ${props.externalLinkIconSize + toInt(tokens.spaceSm)}px 1px ${tokens.spaceSm};`;
+    return `padding: 1px ${props.iconFontSize + toInt(tokens.spaceSm)}px 1px ${tokens.spaceSm};`;
   }}
 
   &:focus,
@@ -21,7 +21,7 @@ export const ExternalLinkStyled = styled.a`
   }
 `;
 
-const externalLinkContentHoverFocus = `
+const contentHoverFocusStyles = `
   &:hover,
   &:focus {
     text-decoration: underline;
@@ -35,7 +35,7 @@ export const ExternalLinkContentStyled = styled.span`
   width: 100%;
 
   ${props => {
-    return props.hasUnderline ? "text-decoration: underline" : externalLinkContentHoverFocus;
+    return props.hasUnderline ? "text-decoration: underline" : contentHoverFocusStyles;
   }};
 `;
 
