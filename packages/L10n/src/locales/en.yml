@@ -83,3 +83,36 @@ en:
       explore: Explore more options
       selected: selected options
       selectOne: Select one or more items...
+    navigation:
+      columns_arrangement:
+        hide_all: Hide all
+        show_all: Show all
+        label: Arrange columns
+        singular_label: 1 column hidden
+        plural_label: "{{numberOfHiddenColumn}} columns hidden"
+      no_results: No results
+      filter:
+        label: Filter
+        singular_label: 1 filter applied
+        plural_label: "{{numberOfFilters}} filters applied"
+        add_filter: Add a field to filter by
+        and: and
+        where: Where
+        rules:
+          is: is
+          is_not: is not
+          contains: contains
+          does_not_contain: does not contain
+          is_blank: is blank
+          is_not_blank: is not blank
+          equals: equals
+          not_equal_to: not equal to
+          greater_than: ">"
+          less_than: "<"
+          greater_than_or_equal_to: "≥"
+          less_than_or_equal_to: "≤"
+          is_empty: is empty
+          is_not_empty: is not empty
+          is_before: is before
+          is_after: is after
+      search_placeholder: Filter...
