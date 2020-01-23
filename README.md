@@ -106,7 +106,7 @@ Before contributing, please read our [Code of Conduct](https://github.com/acl-se
 Contributors are welcome to [submit a bug report](https://github.com/acl-services/paprika/issues/new?assignees=&labels=Bug+%F0%9F%90%9B&template=bug_report.md),
 [make a feature request](https://github.com/acl-services/paprika/issues/new?assignees=&labels=Feature+request+%F0%9F%92%A1&template=feature_request.md),
 or open a pull request.
-If you're just getting started, check out the [Help Wanted](https://github.com/acl-services/paprika/issues?q=is%3Aissue+is%3Aopen+label%3A%22Help+Wanted%22) or [Good First Issues](https://github.com/acl-services/paprika/issues?q=is%3Aissue+is%3Aopen+label%3A%22Good+First+Issue%22).
+If you’re just getting started, check out the [Help Wanted](https://github.com/acl-services/paprika/issues?q=is%3Aissue+is%3Aopen+label%3A%22Help+Wanted%22) or [Good First Issues](https://github.com/acl-services/paprika/issues?q=is%3Aissue+is%3Aopen+label%3A%22Good+First+Issue%22).
 
 #### More Information
 
