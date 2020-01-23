@@ -43,6 +43,17 @@ const ExampleStory = () => (
         This is a long fieldfdsfdasfsdfdafafafdf fsadf sdfad fda fds
       </ExternalLink>
     </p>
+    <p>
+      This is <code>ExternalLink</code> used in the flow of a block of text
+      <br />
+      <p>
+        This is descriptive text{" "}
+        <ExternalLink href={mockUrl} style={{ width: "198px" }} data-testid="low-width">
+          This is a long fieldfdsfdasfsdfdafafafdf fsadf sdfad fda fds
+        </ExternalLink>
+        this is descriptive text This is descriptive text
+      </p>
+    </p>
   </Story>
 );
 export default () => <ExampleStory />;

@@ -11,7 +11,7 @@ export const ExternalLink = styled.a`
   position: relative;
 
   ${props => {
-    return `padding: 1px ${props.iconFontSize + toInt(tokens.spaceSm)}px 1px ${tokens.spaceSm};`;
+    return `padding: 1px ${props.iconFontSize + toInt(tokens.spaceLg)}px 1px ${tokens.spaceSm};`;
   }}
 
   &:focus,
