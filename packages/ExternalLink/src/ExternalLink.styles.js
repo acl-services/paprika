@@ -10,9 +10,7 @@ export const ExternalLink = styled.a`
   max-width: 100%;
   position: relative;
 
-  ${props => {
-    return `padding: 1px ${props.iconFontSize + toInt(tokens.spaceLg)}px 1px ${tokens.spaceSm};`;
-  }}
+  ${({ iconFontSize }) => `padding: 1px ${iconFontSize + toInt(tokens.spaceLg)}px 1px ${tokens.spaceSm};`}
 
   &:focus,
   &:active {
