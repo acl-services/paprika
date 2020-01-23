@@ -8,5 +8,5 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 
 ### Added
 
-- ExteralLink component created (some aspects ported from acl-ui version) [@tristanjasper](https://github.com/tristanjasper).
+- ExternalLink component created (some aspects ported from acl-ui version) [@tristanjasper](https://github.com/tristanjasper).
 - New feature - Supports text truncating
