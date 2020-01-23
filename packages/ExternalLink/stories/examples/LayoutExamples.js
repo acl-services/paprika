@@ -18,7 +18,7 @@ const ExampleStory = () => (
     </h2>
     <p>
       This is <code>ExternalLink</code> without underline:{" "}
-      <ExternalLink hasUnderline={false} href="http://acl-ui.aclgrc-s1.com" />
+      <ExternalLink hasNoUnderline href="http://acl-ui.aclgrc-s1.com" />
     </p>
     <p>
       This is <code>ExternalLink</code> with <code>aria-label</code>:{" "}

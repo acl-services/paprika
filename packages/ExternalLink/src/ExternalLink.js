@@ -11,8 +11,8 @@ const propTypes = {
   /** Link text for showing. */
   children: PropTypes.string,
 
-  /** Should have an underline, by default it's true */
-  hasUnderline: PropTypes.bool,
+  /** It should not show the underline on text content */
+  hasNoUnderline: PropTypes.bool,
 
   /** Link url for the target. */
   href: PropTypes.string.isRequired,
@@ -21,13 +21,13 @@ const propTypes = {
 const defaultProps = {
   ariaText: null,
   children: null,
-  hasUnderline: true,
+  hasNoUnderline: false,
 };
 
 function ExternalLink(props) {
   const iconFontSize = 11;
   const I18n = useI18n();
-  const { ariaText, children, hasUnderline, ...moreProps } = props;
+  const { ariaText, children, hasNoUnderline, ...moreProps } = props;
 
   const getContentText = () => {
     return children || I18n.t("externalLink.view");
@@ -46,7 +46,7 @@ function ExternalLink(props) {
       iconFontSize={iconFontSize}
       {...moreProps}
     >
-      <sc.ExternalLinkContent hasUnderline={hasUnderline}>{getContentText()}</sc.ExternalLinkContent>
+      <sc.ExternalLinkContent hasNoUnderline={hasNoUnderline}>{getContentText()}</sc.ExternalLinkContent>
       <NewTabIcon css={sc.ExternalLinkIconStyles} size={`${iconFontSize}px`} />
     </sc.ExternalLink>
   );

@@ -20,7 +20,7 @@ import ExternalLink from "@paprika/external-link";
 
 - `children`
 - `ariaText`
-- `hasUnderline`
+- `hasNoUnderline`
 - `href` (required)
 
 [More detail about these props](https://github.com/acl-services/paprika/blob/master/packages/ExternalLink/src/ExternalLink.js)

@@ -22,6 +22,7 @@ export const ExternalLink = styled.a`
 `;
 
 const contentHoverFocusStyles = `
+  text-decoration: none;
   &:hover,
   &:focus {
     text-decoration: underline;
@@ -30,12 +31,13 @@ const contentHoverFocusStyles = `
 
 export const ExternalLinkContent = styled.span`
   display: inline-block;
+  text-decoration: underline;
   ${truncateText}
   vertical-align: bottom;
   width: 100%;
 
   ${props => {
-    return props.hasUnderline ? "text-decoration: underline" : contentHoverFocusStyles;
+    return props.hasNoUnderline ? contentHoverFocusStyles : "";
   }};
 `;
 

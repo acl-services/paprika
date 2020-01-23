@@ -7,7 +7,7 @@ import ExternalLink from "../../src";
 const externalLinkProps = () => ({
   children: text("label", "External Link text example"),
   ariaText: text("ariaText", ""),
-  hasUnderline: boolean("hasUnderline", false),
+  hasNoUnderline: boolean("hasNoUnderline", false),
   href: text("href", "http://www.wegalvanize.com"),
   style: { width: text("Inline Width Style", "120px") },
 });
