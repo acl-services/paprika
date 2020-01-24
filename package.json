@@ -85,6 +85,7 @@
     "react": "^16.8.2",
     "react-dom": "^16.8.2",
     "react-is": "^16.11.0",
+    "react-syntax-highlighter": "^12.2.1",
     "react-test-renderer": "^16.8.6",
     "sass-loader": "^7.1.0",
     "screener-storybook": "^0.18.7",
