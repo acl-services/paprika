@@ -50,7 +50,19 @@ const filterColumns = [
     label: "Joined by",
     momentParsingFormat: "MM/DD/YYYY",
   },
+  {
+    id: "shareable",
+    type: "BOOLEAN",
+    label: "Shareable",
+  },
 ];
+
+const initialValueByType = {
+  BOOLEAN: true,
+  NUMBER: "",
+  TEXT: "",
+  DATE: "",
+};
 
 function App() {
   const [filters, setFilters] = React.useState([]);
@@ -59,12 +71,14 @@ function App() {
 
   function handleFilterChange({ filter, rule, value, columnId }) {
     let newFilter;
+
     if (columnId) {
+      const columnType = filterColumns.find(column => column.id === columnId).type;
       newFilter = {
         ...filter,
         columnId,
-        rule: Filter.rulesByType[filterColumns.find(column => column.id === columnId).type][0],
-        value: "",
+        rule: Filter.rulesByType[columnType][0],
+        value: initialValueByType[columnType],
       };
     } else if (rule) {
       newFilter = {

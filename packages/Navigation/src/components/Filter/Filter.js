@@ -33,6 +33,7 @@ const defaultProps = {
 export default function Filter(props) {
   const { onDeleteFilter, onAddFilter, filters, columns, onChange } = props;
   const I18n = useI18n();
+  const filtersRef = React.useRef(null);
 
   function getLabelText(numberOfFilters) {
     switch (numberOfFilters) {
@@ -56,7 +57,7 @@ export default function Filter(props) {
       </Popover.Trigger>
       <Popover.Content>
         <Popover.Card>
-          <FiltersPanelStyled>
+          <FiltersPanelStyled ref={filtersRef} tabIndex={-1}>
             {filters.map((filter, index) => (
               <FilterItem
                 key={filter.id}
@@ -65,12 +66,13 @@ export default function Filter(props) {
                 onDeleteFilter={onDeleteFilter}
                 onChange={onChange}
                 isFirst={index === 0}
+                filtersRef={filtersRef}
               />
             ))}
-            <Button onClick={onAddFilter} kind="minor">
-              {I18n.t(`navigation.filter.add_filter`)}
-            </Button>
           </FiltersPanelStyled>
+          <Button onClick={onAddFilter} kind="minor">
+            {I18n.t(`navigation.filter.add_filter`)}
+          </Button>
         </Popover.Card>
         <Popover.Tip />
       </Popover.Content>

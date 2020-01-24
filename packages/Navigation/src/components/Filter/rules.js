@@ -15,6 +15,8 @@ const rules = {
   IS_NOT_EMPTY: "is_not_empty",
   IS_BEFORE: "is_before",
   IS_AFTER: "is_after",
+  TRUE: "true",
+  FALSE: "false",
 };
 
 export const rulesByType = {
@@ -30,6 +32,7 @@ export const rulesByType = {
     rules.IS_NOT_EMPTY,
   ],
   TEXT: [rules.IS, rules.IS_NOT, rules.CONTAINS, rules.DOES_NOT_CONTAIN, rules.IS_BLANK, rules.IS_NOT_BLANK],
+  BOOLEAN: [rules.IS],
 };
 
 export default rules;

@@ -6,17 +6,26 @@ import { sortDirections } from "../../constants";
 import { SortItemStyled } from "./Sort.styles";
 
 const propTypes = {
+  columns: PropTypes.arrayOf(
+    PropTypes.shape({
+      label: PropTypes.string.isRequired,
+    })
+  ).isRequired,
   field: PropTypes.shape({
     columnId: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
     direction: PropTypes.oneOf([sortDirections.ASCEND, sortDirections.DESCEND]),
   }).isRequired,
+  fieldsRef: PropTypes.shape({ current: PropTypes.instanceOf(Object) }).isRequired,
+  onChange: PropTypes.func.isRequired,
+  onDeleteField: PropTypes.func.isRequired,
 };
 
-export default function SortItem(prop) {
-  const { field, columns, onDeleteField, onChange } = prop;
+export default function SortItem(props) {
+  const { field, columns, onDeleteField, onChange, fieldsRef } = props;
   const { columnId: selectedColumnId, direction } = field;
 
   function handleRemoveFilter() {
+    fieldsRef.current.focus();
     onDeleteField(field);
   }
 

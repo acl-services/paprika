@@ -30,6 +30,7 @@ const defaultProps = {};
 
 export default function Sort(props) {
   const { fields, onDeleteField, onChange, columns, onAddField } = props;
+  const fieldsRef = React.useRef(null);
 
   return (
     <Popover align="bottom" edge="left" maxWidth={1200}>
@@ -42,7 +43,7 @@ export default function Sort(props) {
       </Popover.Trigger>
       <Popover.Content>
         <Popover.Card>
-          <FieldsPanelStyled>
+          <FieldsPanelStyled ref={fieldsRef} tabIndex={-1}>
             {fields.map(field => (
               <SortItem
                 key={field.fieldId}
@@ -50,12 +51,13 @@ export default function Sort(props) {
                 columns={columns}
                 onDeleteField={onDeleteField}
                 onChange={onChange}
+                fieldsRef={fieldsRef}
               />
             ))}
-            <Button onClick={onAddField} kind="minor" isDisabled={fields.length === columns.length}>
-              Add a field to sort by
-            </Button>
           </FieldsPanelStyled>
+          <Button onClick={onAddField} kind="minor" isDisabled={fields.length === columns.length}>
+            Add a field to sort by
+          </Button>
         </Popover.Card>
         <Popover.Tip />
       </Popover.Content>

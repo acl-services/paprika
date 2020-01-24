@@ -1,15 +1,14 @@
 import React from "react";
 import PropTypes from "prop-types";
 import DropdownMenu from "@paprika/dropdown-menu";
-import { size } from "@paprika/helpers/lib/types";
 
 const propTypes = {
   onChange: PropTypes.func.isRequired,
-  value: PropTypes.oneOf([size.SMALL, size.MEDIUM, size.LARGE]),
+  value: PropTypes.oneOf(["small", "medium", "large"]),
 };
 
 const defaultProps = {
-  value: size.SMALL,
+  value: "small",
 };
 
 export default function Density(props) {
@@ -23,9 +22,9 @@ export default function Density(props) {
   return (
     <DropdownMenu>
       <DropdownMenu.Trigger kind="flat">Density</DropdownMenu.Trigger>
-      <DropdownMenu.Item onClick={handleClick(size.SMALL)}>Dense</DropdownMenu.Item>
-      <DropdownMenu.Item onClick={handleClick(size.MEDIUM)}>Default</DropdownMenu.Item>
-      <DropdownMenu.Item onClick={handleClick(size.LARGE)}>Loose</DropdownMenu.Item>
+      <DropdownMenu.Item onClick={handleClick("small")}>Dense</DropdownMenu.Item>
+      <DropdownMenu.Item onClick={handleClick("medium")}>Default</DropdownMenu.Item>
+      <DropdownMenu.Item onClick={handleClick("large")}>Loose</DropdownMenu.Item>
     </DropdownMenu>
   );
 }

@@ -4,17 +4,18 @@ import Select from "@paprika/select";
 import useI18n from "@paprika/l10n/lib/useI18n";
 import rules, { rulesByType } from "./rules";
 import { columnTypes } from "../../constants";
-import Input from "./Input";
 import DatePicker from "./DatePicker";
+import Input from "./Input";
 import { FilterItemStyled } from "./Filter.styles";
 
 export default function FilterItem(prop) {
-  const { filter, columns, onDeleteFilter, onChange, isFirst } = prop;
+  const { filter, columns, onDeleteFilter, onChange, isFirst, filtersRef } = prop;
   const I18n = useI18n();
   const { columnId: selectedColumnId, rule: selectedRule, value } = filter;
   const selectedColumnType = columns.find(({ id }) => id === selectedColumnId).type;
 
   function handleRemoveFilter() {
+    filtersRef.current.focus();
     onDeleteFilter(filter);
   }
 
@@ -39,15 +40,57 @@ export default function FilterItem(prop) {
     }
   }
 
-  function renderTextInput() {
-    if (
+  function renderRuleField() {
+    switch (selectedColumnType) {
+      case columnTypes.BOOLEAN:
+        return I18n.t("navigation.filter.rules.is");
+      default:
+        return (
+          <Select onChange={handleChangeRule} value={selectedRule}>
+            {rulesByType[selectedColumnType].map(rule => (
+              <option key={rule} value={rule}>
+                {I18n.t(`navigation.filter.rules.${rule}`)}
+              </option>
+            ))}
+          </Select>
+        );
+    }
+  }
+
+  function renderValueField() {
+    const shouldNotShowValueField =
       selectedRule === rules.IS_BLANK ||
       selectedRule === rules.IS_NOT_BLANK ||
       selectedRule === rules.IS_EMPTY ||
-      selectedRule === rules.IS_NOT_EMPTY
-    )
-      return null;
-    return <Input initialValue={value} onChange={handleChangeValue} />;
+      selectedRule === rules.IS_NOT_EMPTY;
+
+    if (shouldNotShowValueField) return null;
+
+    switch (selectedColumnType) {
+      case columnTypes.BOOLEAN:
+        return (
+          <Select
+            value={value}
+            onChange={e => {
+              console.log(filter, e.target.value);
+              onChange({ filter, value: e.target.value === "true" });
+            }}
+          >
+            <option value="true">true</option>
+            <option value="false">false</option>
+          </Select>
+        );
+      case columnTypes.DATE:
+        return (
+          <DatePicker
+            initialDate={value}
+            onChange={handleChangeDatePicker}
+            parsingFormat={columns.find(({ id }) => id === selectedColumnId).momentParsingFormat}
+          />
+        );
+      default:
+        return <Input initialValue={value} onChange={handleChangeValue} />;
+    }
   }
 
   return (
@@ -61,22 +104,8 @@ export default function FilterItem(prop) {
           </option>
         ))}
       </Select>
-      <Select onChange={handleChangeRule} value={selectedRule}>
-        {rulesByType[selectedColumnType].map(rule => (
-          <option key={rule} value={rule}>
-            {I18n.t(`navigation.filter.rules.${rule}`)}
-          </option>
-        ))}
-      </Select>
-      {selectedColumnType === columnTypes.DATE ? (
-        <DatePicker
-          initialDate={value}
-          onChange={handleChangeDatePicker}
-          parsingFormat={columns.find(({ id }) => id === selectedColumnId).momentParsingFormat}
-        />
-      ) : (
-        renderTextInput()
-      )}
+      {renderRuleField()}
+      {renderValueField()}
     </FilterItemStyled>
   );
 }
