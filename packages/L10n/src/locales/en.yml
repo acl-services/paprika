@@ -58,8 +58,6 @@ en:
       arrowup: up
       arrowdown: down
       escape: escape
-    externalLink:
-      view: view
     collapsible:
       ariaText: collapsible section
     sortable:
