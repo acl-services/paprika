@@ -94,19 +94,16 @@ const ExampleStory = () => {
 
       <Tagline>Form Element with radios.</Tagline>
       <br />
-      <fieldset>
-        <FormElement hasFieldset label="Form Label">
-          <FormElement.Content>{radioOptions}</FormElement.Content>
-          <FormElement.Description>
-            <span>Description of this field.</span>
-          </FormElement.Description>
-          <FormElement.Error>{errorText}</FormElement.Error>
-          <FormElement.Help>
-            Give me some help. <a href="wegalvanize.com">Learn more</a>.
-          </FormElement.Help>
-        </FormElement>
-      </fieldset>
-
+      <FormElement hasFieldSet label="Form Label">
+        <FormElement.Content>{radioOptions}</FormElement.Content>
+        <FormElement.Description>
+          <span>Description of this field.</span>
+        </FormElement.Description>
+        <FormElement.Error>{errorText}</FormElement.Error>
+        <FormElement.Help>
+          Give me some help. <a href="wegalvanize.com">Learn more</a>.
+        </FormElement.Help>
+      </FormElement>
       <Rule />
 
       <Tagline>Form Element with Date Picker.</Tagline>

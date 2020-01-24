@@ -43,7 +43,7 @@ const propTypes = {
   size: PropTypes.oneOf(ShirtSizes.DEFAULT),
 
   /** FormElement contains multiple children so Renders a legend element instead of label. */
-  hasFieldset: PropTypes.bool,
+  hasFieldSet: PropTypes.bool,
 };
 
 const defaultProps = {
@@ -54,7 +54,7 @@ const defaultProps = {
   isInline: false,
   isLabelVisuallyHidden: false,
   size: ShirtSizes.MEDIUM,
-  hasFieldset: false,
+  hasFieldSet: false,
 };
 
 const subComponentDisplayNames = {
@@ -76,7 +76,7 @@ function FormElement(props) {
     isLabelVisuallyHidden,
     label,
     size,
-    hasFieldset,
+    hasFieldSet,
     ...moreProps
   } = props;
 
@@ -130,18 +130,29 @@ function FormElement(props) {
     });
   }
   return (
-    <div css={formElementStyles} isInline={isInline} size={size} isDisabled={isDisabled} {...moreProps}>
-      <Label
-        hasOptionalLabel={hasOptionalLabel}
-        hasRequiredLabel={hasRequiredLabel}
-        help={extractedChildren[subComponentDisplayNames.Help]}
-        id={idForLabel}
-        isInline={isInline}
-        isVisuallyHidden={isLabelVisuallyHidden}
-        label={label}
-        ref={refLabel}
-        hasFieldset={hasFieldset}
-      />
+    <div
+      as={hasFieldSet ? "fieldset" : "div"}
+      css={formElementStyles}
+      isInline={isInline}
+      size={size}
+      isDisabled={isDisabled}
+      {...moreProps}
+    >
+      {hasFieldSet ? (
+        <legend>{label}</legend>
+      ) : (
+        <Label
+          hasOptionalLabel={hasOptionalLabel}
+          hasRequiredLabel={hasRequiredLabel}
+          help={extractedChildren[subComponentDisplayNames.Help]}
+          id={idForLabel}
+          isInline={isInline}
+          isVisuallyHidden={isLabelVisuallyHidden}
+          label={label}
+          ref={refLabel}
+        />
+      )}
+
       <div css={isInline ? inlineContainerStyles : null}>
         {renderInstructions()}
         {renderContent()}

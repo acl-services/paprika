@@ -13,7 +13,6 @@ const propTypes = {
   isInline: PropTypes.bool.isRequired,
   isVisuallyHidden: PropTypes.bool.isRequired,
   label: PropTypes.string.isRequired,
-  hasFieldset: PropTypes.bool.isRequired,
 };
 
 const defaultProps = {
@@ -21,12 +20,12 @@ const defaultProps = {
 };
 
 const Label = React.forwardRef((props, ref) => {
-  const { hasOptionalLabel, hasRequiredLabel, help, id, isInline, isVisuallyHidden, hasFieldset, label } = props;
+  const { hasOptionalLabel, hasRequiredLabel, help, id, isInline, isVisuallyHidden, label } = props;
   const I18n = useI18n();
 
-  const renderLabelContents = () => {
-    return (
-      <>
+  return (
+    <div css={labelStyles} isInline={isInline} isVisuallyHidden={isVisuallyHidden}>
+      <label htmlFor={id} data-pka-anchor="form-element.label" ref={ref}>
         {label}
         {hasOptionalLabel || hasRequiredLabel ? (
           <span css={ruleStyles}>
@@ -35,25 +34,7 @@ const Label = React.forwardRef((props, ref) => {
             {hasOptionalLabel ? I18n.t("formElement.optional") : null}
           </span>
         ) : null}
-      </>
-    );
-  };
-
-  const renderLegend = () => {
-    return <legend>{renderLabelContents()}</legend>;
-  };
-
-  const renderLabel = () => {
-    return (
-      <label htmlFor={id} data-pka-anchor="form-element.label" ref={ref}>
-        {renderLabelContents()}
       </label>
-    );
-  };
-
-  return (
-    <div css={labelStyles} isInline={isInline} isVisuallyHidden={isVisuallyHidden}>
-      {hasFieldset ? renderLegend() : renderLabel()}
       {help}
     </div>
   );
