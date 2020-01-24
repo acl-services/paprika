@@ -24,7 +24,7 @@ ColumnDefinition.propTypes = {
   width: PropTypes.number,
   cellA11yText: customA11yTextPropTypeValidation,
   headerA11yText: customA11yTextPropTypeValidation,
-  cellStyle: PropTypes.shape({}),
+  cellProps: PropTypes.func,
 };
 
 ColumnDefinition.defaultProps = {
@@ -32,7 +32,7 @@ ColumnDefinition.defaultProps = {
   width: 80,
   cellA11yText: null,
   headerA11yText: null,
-  cellStyle: {},
+  cellProps: () => ({}),
 };
 
 ColumnDefinition.displayName = "DataGrid.ColumnDefinition";

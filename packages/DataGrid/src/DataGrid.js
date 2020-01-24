@@ -152,15 +152,6 @@ export default function DataGrid(props) {
     parameters => {
       const { scrollLeft, scrollTop /* scrollUpdateWasRequested */ } = parameters;
 
-      if (
-        refScrollGrid.current &&
-        refScrollGrid.current.scrollTop + refScrollGrid.current.offsetHeight >= refScrollGrid.current.scrollHeight
-      ) {
-        setIsEndOFScrollingFooterVisible(() => true);
-      } else {
-        setIsEndOFScrollingFooterVisible(() => false);
-      }
-
       if (refScrollHeader.current) {
         refScrollHeader.current.scrollTo({ left: scrollLeft, top: 0 });
       }
@@ -173,6 +164,15 @@ export default function DataGrid(props) {
         }
       } else {
         refScrollHappenedBy.current = null;
+      }
+
+      if (
+        refScrollGrid.current &&
+        refScrollGrid.current.scrollTop + refScrollGrid.current.offsetHeight >= refScrollGrid.current.scrollHeight
+      ) {
+        setIsEndOFScrollingFooterVisible(() => true);
+      } else {
+        setIsEndOFScrollingFooterVisible(() => false);
       }
     },
     [refScrollHeader, refScrollStickyColumns]
@@ -195,7 +195,7 @@ export default function DataGrid(props) {
     [refScrollGrid]
   );
 
-  React.useEffect(() => {
+  React.useLayoutEffect(() => {
     if (!refContainer.current) return;
 
     refScrollHeader.current = refContainer.current.querySelector(`.${gridId}-header`);
@@ -203,7 +203,7 @@ export default function DataGrid(props) {
     refScrollGrid.current = refContainer.current.querySelector(`.grid-${gridId}`);
   }, [gridId]);
 
-  React.useEffect(() => {
+  React.useLayoutEffect(() => {
     const scrollContainer =
       refContainer.current && refContainer.current.querySelector(`.grid-${gridId} [role="row"]`).parentElement;
 
@@ -230,7 +230,7 @@ export default function DataGrid(props) {
     if ($isActive) $isActive.classList.toggle("grid--is-blur");
   }
 
-  React.useEffect(() => {
+  React.useLayoutEffect(() => {
     restoreHighlightFocus(); // this doesn't need to be on the array dependencies
   }, [gridShouldHaveFocus, isEndOFScrollingFooterVisible]); // eslint-disable-line
 
@@ -343,7 +343,10 @@ export default function DataGrid(props) {
                   data-cell={`${gridId}.${columnIndex}.${rowIndex}`}
                 >
                   <styled.GridCell role="gridcell">{a11yText}</styled.GridCell>
-                  <styled.InnerCell $style={column.cellStyle} aria-hidden="true">
+                  <styled.InnerCell
+                    {...column.cellProps({ row: data[rowIndex], rowIndex, columnIndex })}
+                    aria-hidden="true"
+                  >
                     {typeof column.cell === "function"
                       ? column.cell({ row: data[rowIndex], rowIndex, columnIndex })
                       : data[rowIndex][column.cell]}
@@ -411,7 +414,10 @@ export default function DataGrid(props) {
                   data-cell={`${gridId}.${columnIndex}.${rowIndex}`}
                 >
                   <styled.GridCell role="gridcell">{a11yText}</styled.GridCell>
-                  <styled.InnerCell $style={column.cellStyle} aria-hidden="true">
+                  <styled.InnerCell
+                    {...column.cellProps({ row: data[rowIndex], rowIndex, columnIndex })}
+                    aria-hidden="true"
+                  >
                     {typeof column.cell === "function"
                       ? column.cell({ row: data[rowIndex], rowIndex, columnIndex })
                       : data[rowIndex][column.cell]}

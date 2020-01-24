@@ -311,13 +311,15 @@ export default function useGridEventHandler({
   React.useEffect(() => {
     const handleClick = event => {
       const dataCell = getDataCell(event);
-      const [, columnIndex, rowIndex] = dataCell.split(".");
+      if (dataCell) {
+        const [, columnIndex, rowIndex] = dataCell.split(".");
 
-      cell.current = toCellState(columnIndex, rowIndex);
-      setHighlight();
+        cell.current = toCellState(columnIndex, rowIndex);
+        setHighlight();
 
-      const $cell = event.target.hasAttribute("data-cell") ? event.target : event.target.parentElement;
-      focus($cell);
+        const $cell = event.target.hasAttribute("data-cell") ? event.target : event.target.parentElement;
+        focus($cell);
+      }
     };
 
     const ref = refContainer.current;

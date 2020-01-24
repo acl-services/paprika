@@ -57,8 +57,8 @@ export const Cell = styled.div`
   line-height: 1;
   position: relative;
   &:focus {
-    border: 1px solid ${tokens.border.color};
-    outline: 0;
+    outline: 1px solid transparent;
+    /* outline: 0; */
   }
 `;
 
@@ -77,11 +77,7 @@ export const CellHeader = styled(Cell)`
   width: 100%;
 `;
 
-export const InnerCell = styled.div.attrs(({ $style }) => {
-  return {
-    style: $style,
-  };
-})`
+export const InnerCell = styled.div`
   display: block;
   height: 100%;
   overflow: hidden;
