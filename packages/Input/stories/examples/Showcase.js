@@ -1,12 +1,12 @@
 import React from "react";
 import { boolean, select, text } from "@storybook/addon-knobs";
-import { Rule, Tagline } from "storybook/assets/styles/common.styles";
+import { Story, Rule, Tagline } from "storybook/assets/styles/common.styles";
 import { ShirtSizes, InputValidTypes } from "@paprika/helpers/lib/customPropTypes";
 import SearchIcon from "@paprika/icon/lib/Search";
 import InfoIcon from "@paprika/icon/lib/InfoCircle";
 import Heading from "@paprika/heading";
-import { InputStory } from "../Input.stories.styles";
-import InputExample from "./InputExample";
+import CodeViewer from "storybook/assets/components/CodeViewer";
+import Input from "../../src";
 
 const iconSelections = {
   none: null,
@@ -14,7 +14,8 @@ const iconSelections = {
   info: <InfoIcon />,
 };
 
-const inputProps = () => ({
+const getKnobs = () => ({
+  isShowingCode: boolean("SHOW SOURCE CODE", false),
   size: select("size", ShirtSizes.DEFAULT, "medium"),
   placeholder: text("placeholder", "Enter some text"),
   icon: iconSelections[select("icon", Object.keys(iconSelections), null)],
@@ -23,18 +24,26 @@ const inputProps = () => ({
   isReadOnly: boolean("isReadOnly", false),
   hasError: boolean("hasError", false),
   type: select("type", InputValidTypes.ALL),
-  a11yText: text("a11yText", ""),
+  a11yText: text("a11yText", null),
 });
 
-const ExampleStory = props => (
-  <InputStory>
-    <Heading level={1} displayLevel={2} isLight>
-      Showcase
-    </Heading>
-    <Tagline>Use the knobs to tinker with the props.</Tagline>
-    <Rule />
-    <InputExample {...props} />
-  </InputStory>
-);
+const ExampleStory = props => {
+  const { isShowingCode, ...inputProps } = props;
 
-export default () => <ExampleStory {...inputProps()} />;
+  return (
+    <Story>
+      <Heading level={1} displayLevel={2} isLight>
+        Showcase
+      </Heading>
+      <Tagline>Use the knobs to tinker with the props.</Tagline>
+      <Rule />
+      <CodeViewer isShown={isShowingCode}>
+        <Input {...inputProps} />
+      </CodeViewer>
+    </Story>
+  );
+};
+
+export default ({ onChange, onClear, value }) => (
+  <ExampleStory onChange={onChange} onClear={onClear} value={value} {...getKnobs()} />
+);
