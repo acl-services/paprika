@@ -5,7 +5,7 @@ import Button from "@paprika/button";
 import useI18n from "@paprika/l10n/lib/useI18n";
 import FilterItem from "./FilterItem";
 import { rulesByType } from "./rules";
-import { FiltersPanelStyled } from "./Filter.styles";
+import * as styled from "./Filter.styles";
 
 const propTypes = {
   onChange: PropTypes.func,
@@ -57,10 +57,10 @@ export default function Filter(props) {
       </Popover.Trigger>
       <Popover.Content>
         <Popover.Card>
-          <FiltersPanelStyled ref={filtersRef} tabIndex={-1}>
+          <styled.FiltersPanel ref={filtersRef} tabIndex={-1}>
             {filters.map((filter, index) => (
               <FilterItem
-                key={filter.id}
+                key={filter.filterId}
                 filter={filter}
                 columns={columns}
                 onDeleteFilter={onDeleteFilter}
@@ -69,7 +69,7 @@ export default function Filter(props) {
                 filtersRef={filtersRef}
               />
             ))}
-          </FiltersPanelStyled>
+          </styled.FiltersPanel>
           <Button onClick={onAddFilter} kind="minor">
             {I18n.t(`navigation.filter.add_filter`)}
           </Button>

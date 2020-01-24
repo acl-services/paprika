@@ -3,7 +3,7 @@ import PropTypes from "prop-types";
 import Select from "@paprika/select";
 import Button from "@paprika/button";
 import { sortDirections } from "../../constants";
-import { SortItemStyled } from "./Sort.styles";
+import * as styled from "./Sort.styles";
 
 const propTypes = {
   columns: PropTypes.arrayOf(
@@ -38,7 +38,7 @@ export default function SortItem(props) {
   }
 
   return (
-    <SortItemStyled data-pka-anchor="filter.filter-item">
+    <styled.SortItem data-pka-anchor="filter.filter-item">
       <Button.Close data-pka-anchor="filter.delete-button" onClick={handleRemoveFilter} size="small" />
       <Select onChange={handleChangeColumn} value={selectedColumnId}>
         {columns.map(column => (
@@ -51,7 +51,7 @@ export default function SortItem(props) {
         <option value={sortDirections.ASCEND}>Ascend</option>
         <option value={sortDirections.DESCEND}>Descend</option>
       </Select>
-    </SortItemStyled>
+    </styled.SortItem>
   );
 }
 

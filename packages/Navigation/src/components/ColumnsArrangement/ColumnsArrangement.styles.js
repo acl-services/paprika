@@ -1,18 +1,29 @@
-import styled, { css } from "styled-components";
+import styled from "styled-components";
+import stylers from "@paprika/stylers";
 import tokens from "@paprika/tokens";
+import PaprikaSortable from "@paprika/sortable";
+import PaprikaSwitch from "@paprika/switch";
 
-export const ItemStyled = styled.div`
+export const Item = styled.div`
   display: flex;
   justify-content: space-between;
   width: 100%;
 `;
 
-export const FooterStyled = styled.div`
+export const Footer = styled.div`
   display: flex;
   justify-content: space-between;
   margin: 0 -${tokens.space};
 `;
 
-export const sortableStyles = css`
+export const Sortable = styled(PaprikaSortable)`
   padding-top: ${tokens.spaceSm};
+`;
+
+export const ColumnLabel = styled.span`
+  ${stylers.truncateText}
+`;
+
+export const Switch = styled(PaprikaSwitch)`
+  flex-shrink: 0;
 `;

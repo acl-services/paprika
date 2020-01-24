@@ -15,8 +15,6 @@ const rules = {
   IS_NOT_EMPTY: "is_not_empty",
   IS_BEFORE: "is_before",
   IS_AFTER: "is_after",
-  TRUE: "true",
-  FALSE: "false",
 };
 
 export const rulesByType = {

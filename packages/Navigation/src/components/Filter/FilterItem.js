@@ -6,7 +6,7 @@ import rules, { rulesByType } from "./rules";
 import { columnTypes } from "../../constants";
 import DatePicker from "./DatePicker";
 import Input from "./Input";
-import { FilterItemStyled } from "./Filter.styles";
+import * as styled from "./Filter.styles";
 
 export default function FilterItem(prop) {
   const { filter, columns, onDeleteFilter, onChange, isFirst, filtersRef } = prop;
@@ -71,13 +71,12 @@ export default function FilterItem(prop) {
         return (
           <Select
             value={value}
-            onChange={e => {
-              console.log(filter, e.target.value);
-              onChange({ filter, value: e.target.value === "true" });
+            onChange={event => {
+              onChange({ filter, value: event.target.value === "true" });
             }}
           >
-            <option value="true">true</option>
-            <option value="false">false</option>
+            <option value="true">{I18n.t("navigation.filter.rules.true")}</option>
+            <option value="false">{I18n.t("navigation.filter.rules.false")}</option>
           </Select>
         );
       case columnTypes.DATE:
@@ -94,7 +93,7 @@ export default function FilterItem(prop) {
   }
 
   return (
-    <FilterItemStyled data-pka-anchor="filter.filter-item">
+    <styled.FilterItem data-pka-anchor="filter.filter-item">
       <Button.Close data-pka-anchor="filter.delete-button" onClick={handleRemoveFilter} size="small" />
       {isFirst ? I18n.t("navigation.filter.where") : I18n.t("navigation.filter.and")}
       <Select onChange={handleChangeColumn} value={selectedColumnId}>
@@ -106,6 +105,6 @@ export default function FilterItem(prop) {
       </Select>
       {renderRuleField()}
       {renderValueField()}
-    </FilterItemStyled>
+    </styled.FilterItem>
   );
 }

@@ -136,7 +136,9 @@ const locales = {
             "is_empty": "is empty",
             "is_not_empty": "is not empty",
             "is_before": "is before",
-            "is_after": "is after"
+            "is_after": "is after",
+            "true": "true",
+            "false": "false"
           }
         },
         "search_placeholder": "Filter..."

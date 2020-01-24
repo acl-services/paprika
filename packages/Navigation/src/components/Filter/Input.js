@@ -3,7 +3,7 @@ import PropTypes from "prop-types";
 import useDebounce from "@paprika/helpers/lib/hooks/useDebounce";
 import usePrevious from "@paprika/helpers/lib/hooks/usePrevious";
 
-import { InputStyled } from "./Filter.styles";
+import * as styled from "./Filter.styles";
 
 const propTypes = {
   initialValue: PropTypes.string.isRequired,
@@ -31,7 +31,7 @@ export default function Input(props) {
     const newInputtedValue = e.target.value;
     setInputtedValue(newInputtedValue);
   }
-  return <InputStyled onChange={handleChange} value={inputtedValue} />;
+  return <styled.Input onChange={handleChange} value={inputtedValue} />;
 }
 
 Input.propTypes = propTypes;

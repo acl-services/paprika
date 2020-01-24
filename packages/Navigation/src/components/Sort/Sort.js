@@ -6,7 +6,7 @@ import Popover from "@paprika/popover";
 import SortItem from "./SortItem";
 import { sortDirections } from "../../constants";
 
-import { FieldsPanelStyled } from "./Sort.styles";
+import * as styled from "./Sort.styles";
 
 const propTypes = {
   onChange: PropTypes.func.isRequired,
@@ -43,7 +43,7 @@ export default function Sort(props) {
       </Popover.Trigger>
       <Popover.Content>
         <Popover.Card>
-          <FieldsPanelStyled ref={fieldsRef} tabIndex={-1}>
+          <styled.FieldsPanel ref={fieldsRef} tabIndex={-1}>
             {fields.map(field => (
               <SortItem
                 key={field.fieldId}
@@ -54,7 +54,7 @@ export default function Sort(props) {
                 fieldsRef={fieldsRef}
               />
             ))}
-          </FieldsPanelStyled>
+          </styled.FieldsPanel>
           <Button onClick={onAddField} kind="minor" isDisabled={fields.length === columns.length}>
             Add a field to sort by
           </Button>
