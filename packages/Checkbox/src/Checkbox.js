@@ -13,16 +13,25 @@ const checkboxStates = {
 };
 
 const propTypes = {
+  /** Used for aria-describedby on the checkbox input  */
+  ariaDescribedBy: PropTypes.string,
+  /** Used for aria-label on the checkbox input  */
   a11yText: PropTypes.string,
+  /** The checkbox state */
   checkedState: PropTypes.oneOf(Object.values(checkboxStates)),
+  /** Used for label contents */
   children: PropTypes.node,
+  /** Describe if the checkbox is disabled or not */
   isDisabled: PropTypes.bool,
+  /** Callback triggered when the input state is changed */
   onChange: PropTypes.func.isRequired,
+  /* Size provided by parent Group component */
   size: PropTypes.oneOf(ShirtSizes.DEFAULT),
 };
 
 const defaultProps = {
   a11yText: null,
+  ariaDescribedBy: null,
   checkedState: checkboxStates.UNCHECKED,
   children: null,
   isDisabled: false,
@@ -30,7 +39,7 @@ const defaultProps = {
 };
 
 const Checkbox = props => {
-  const { a11yText, children, isDisabled, checkedState, size, onChange, ...moreProps } = props;
+  const { a11yText, children, isDisabled, checkedState, size, onChange, ariaDescribedBy, ...moreProps } = props;
   const { CHECKED, INDETERMINATE } = checkboxStates;
 
   const checkboxId = React.useRef(uuid()).current;
@@ -57,6 +66,7 @@ const Checkbox = props => {
   return (
     <div data-pka-anchor="checkbox" css={checkboxStyles} {...styleProps} {...moreProps}>
       <input
+        aria-describedby={ariaDescribedBy}
         checked={checkedState === CHECKED}
         disabled={isDisabled}
         id={checkboxId}

@@ -41,6 +41,7 @@ import Radio from "@paprika/radio";
 #### Radio
 
 -a11yText
+-ariaDescribedBy
 -canDeselect
 -children
 -isChecked

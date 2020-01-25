@@ -85,11 +85,14 @@ function FormElement(props) {
   const ariaErrorId = React.useRef(uuidv4()).current;
   const ariaInstructionsId = React.useRef(uuidv4()).current;
   const uniqueInputId = React.useRef(uuidv4()).current;
+  const labelRef = React.useRef(null);
   const hasError =
     !!extractedChildren[subComponentDisplayNames.Error] &&
     !!extractedChildren[subComponentDisplayNames.Error].props.children;
-  const idForLabel = isNil(id) || id === "" ? uniqueInputId : id;
-  const refLabel = React.useRef(null);
+
+  const generateLabelId = id => (isNil(id) || id === "" ? uniqueInputId : id);
+  const idForLabel = hasFieldSet ? null : generateLabelId();
+  const refLabel = hasFieldSet ? null : labelRef;
 
   const getClonedElement = (displayName, extraProps = {}) => {
     if (!extractedChildren[displayName]) return null;
@@ -138,20 +141,17 @@ function FormElement(props) {
       isDisabled={isDisabled}
       {...moreProps}
     >
-      {hasFieldSet ? (
-        <legend>{label}</legend>
-      ) : (
-        <Label
-          hasOptionalLabel={hasOptionalLabel}
-          hasRequiredLabel={hasRequiredLabel}
-          help={extractedChildren[subComponentDisplayNames.Help]}
-          id={idForLabel}
-          isInline={isInline}
-          isVisuallyHidden={isLabelVisuallyHidden}
-          label={label}
-          ref={refLabel}
-        />
-      )}
+      <Label
+        hasOptionalLabel={hasRequiredLabel ? false : hasOptionalLabel}
+        hasRequiredLabel={hasRequiredLabel}
+        help={extractedChildren[subComponentDisplayNames.Help]}
+        id={idForLabel}
+        isInline={isInline}
+        isVisuallyHidden={isLabelVisuallyHidden}
+        label={label}
+        ref={refLabel}
+        hasFieldSet={hasFieldSet}
+      />
 
       <div css={isInline ? inlineContainerStyles : null}>
         {renderInstructions()}

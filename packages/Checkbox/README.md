@@ -21,6 +21,7 @@ import Checkbox from "@paprika/checkbox";
 ### Props
 
 - a11yText
+- ariaDescribedBy
 - children
 - isDisabled
 - checkedState ("checked", "unchecked", "indeterminate")

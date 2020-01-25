@@ -9,32 +9,35 @@ const propTypes = {
   hasOptionalLabel: PropTypes.bool.isRequired,
   hasRequiredLabel: PropTypes.bool.isRequired,
   help: PropTypes.node,
-  id: PropTypes.string.isRequired,
+  id: PropTypes.string,
   isInline: PropTypes.bool.isRequired,
   isVisuallyHidden: PropTypes.bool.isRequired,
   label: PropTypes.string.isRequired,
+  hasFieldSet: PropTypes.bool.isRequired,
 };
 
 const defaultProps = {
   help: null,
+  id: null,
 };
 
 const Label = React.forwardRef((props, ref) => {
-  const { hasOptionalLabel, hasRequiredLabel, help, id, isInline, isVisuallyHidden, label } = props;
+  const { hasOptionalLabel, hasRequiredLabel, help, id, hasFieldSet, label, ...moreProps } = props;
   const I18n = useI18n();
 
+  const labelProps = hasFieldSet ? { as: "legend" } : { as: "label", htmlFor: id, ref };
+
   return (
-    <div css={labelStyles} isInline={isInline} isVisuallyHidden={isVisuallyHidden}>
-      <label htmlFor={id} data-pka-anchor="form-element.label" ref={ref}>
-        {label}
-        {hasOptionalLabel || hasRequiredLabel ? (
-          <span css={ruleStyles}>
-            {" "}
-            {hasRequiredLabel ? I18n.t("formElement.required") : null}
-            {hasOptionalLabel ? I18n.t("formElement.optional") : null}
-          </span>
-        ) : null}
-      </label>
+    <div data-pka-anchor="form-element.label" css={labelStyles} {...labelProps} {...moreProps}>
+      {label}
+      {hasOptionalLabel || hasRequiredLabel ? (
+        <span css={ruleStyles}>
+          {" "}
+          {hasRequiredLabel ? I18n.t("formElement.required") : null}
+          {hasOptionalLabel ? I18n.t("formElement.optional") : null}
+        </span>
+      ) : null}
+
       {help}
     </div>
   );

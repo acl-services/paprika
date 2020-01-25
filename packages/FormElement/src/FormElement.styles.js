@@ -18,10 +18,10 @@ const inlineFormElementStyles = css`
 
 const formElementStyles = css`
   ${({ size }) => FontSizes[size]}
-
   ${({ isInline }) => isInline && inlineFormElementStyles};
-
   ${({ isDisabled }) => isDisabled && `opacity: 0.5;`}
+  border: none;
+  padding: 0;
 `;
 
 export default formElementStyles;
