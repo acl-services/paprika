@@ -4,7 +4,7 @@ import * as Sbook from "storybook/assets/styles/common.styles";
 import SidePanel from "@paprika/sidepanel";
 import styled from "styled-components";
 import Button from "@paprika/button";
-import DataGrid from "../src";
+import DataGrid, { renderColumnIndicator, renderColumnExpand } from "../src";
 
 const ImgWrapper = styled.div`
   height: 28px;
@@ -89,6 +89,10 @@ export function App() {
     setOffsetLetter(off => off + 1);
   }
 
+  function handleClickColumnExpand({ row }) {
+    console.log("row:", row);
+  }
+
   // function handleKeyDownArrow({ row }) {
   //   setRow(() => row);
   // }
@@ -108,6 +112,12 @@ export function App() {
     setIsPending(() => false);
   }, [data.length]);
 
+  function handleOnSelect() {}
+
+  function isChecked() {
+    return "unchecked";
+  }
+
   return (
     <Sbook.Story>
       {row && (
@@ -124,27 +134,22 @@ export function App() {
           <div>{row.description}</div>
         </SidePanel>
       )}
-      <input type="text" />
-      <select>
-        <option>1</option>
-        <option>2</option>
-        <option>3</option>
-      </select>
-      <DataGrid data={data} isIdle={isIdle} keygen="id" width={900}>
-        <DataGrid.ColumnDefinition isSticky id="0" header="Key" cell="id" />
+      <DataGrid data={data} isIdle={isIdle} keygen="id" width={640}>
+        {renderColumnIndicator({ onSelect: handleOnSelect, isChecked })}
+        {renderColumnExpand({ onClick: handleClickColumnExpand })}
         <DataGrid.ColumnDefinition
           isSticky
           width={50}
-          id="6"
           header="Img"
           cell={renderThumbnail}
           cellProps={() => ({ style: { padding: "4px" } })}
         />
-        <DataGrid.ColumnDefinition isSticky width={160} id="1" header="Name" cell="name" />
-        <DataGrid.ColumnDefinition width={320} id="2" header="Description" cell="description" />
-        <DataGrid.ColumnDefinition width={180} id="3" header="Modified" cell="modified" />
-        <DataGrid.ColumnDefinition width={120} id="4" header="URI" cell="resourceURI" />
-        <DataGrid.ColumnDefinition width={420} id="5" header="Series" cell={renderSeries} />
+        <DataGrid.ColumnDefinition isSticky width={160} header="Name" cell="name" />
+        <DataGrid.ColumnDefinition header="Key" cell="id" />
+        <DataGrid.ColumnDefinition width={240} header="Description" cell="description" />
+        <DataGrid.ColumnDefinition width={180} header="Modified" cell="modified" />
+        <DataGrid.ColumnDefinition width={120} header="URI" cell="resourceURI" />
+        <DataGrid.ColumnDefinition width={420} header="Series" cell={renderSeries} />
         <DataGrid.EndOFScrollingFooter>
           <Button isPending={isPending} onClick={handleLoadMore}>
             Load more

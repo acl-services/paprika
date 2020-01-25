@@ -5,21 +5,21 @@ import DataGrid from "../src";
 import fixtures from "./helpers/fixtures";
 
 const data = fixtures(10);
+// <DataGrid.ColumnDefinition
+//   width={40}
+//   headerA11yText={() => "unchecked"}
+//   cellA11yText={() => "unchecked"}
+//   header={props => (
+//     <DataGrid.RowIndicator hasIndexIndicator={false} isChecked={() => "unchecked"} {...props} />
+//   )}
+//   cell={props => <DataGrid.RowIndicator isChecked={() => "unchecked"} {...props} />}
+// />
 
 export function App() {
   return (
     <React.Fragment>
       <Sbook.Story>
         <DataGrid data={data}>
-          <DataGrid.ColumnDefinition
-            width={40}
-            headerA11yText={() => "unchecked"}
-            cellA11yText={() => "unchecked"}
-            header={props => (
-              <DataGrid.RowIndicator hasIndexIndicator={false} isChecked={() => "unchecked"} {...props} />
-            )}
-            cell={props => <DataGrid.RowIndicator isChecked={() => "unchecked"} {...props} />}
-          />
           <DataGrid.ColumnDefinition header="Countries" cell="country" />
           <DataGrid.ColumnDefinition header="Name" cell="name" />
           <DataGrid.ColumnDefinition header="Goals" cell="goals" />

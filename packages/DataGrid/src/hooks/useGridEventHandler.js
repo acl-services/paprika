@@ -308,18 +308,17 @@ export default function useGridEventHandler({
     }
   };
 
-  React.useEffect(() => {
+  React.useLayoutEffect(() => {
     const handleClick = event => {
       const dataCell = getDataCell(event);
-      if (dataCell) {
-        const [, columnIndex, rowIndex] = dataCell.split(".");
 
-        cell.current = toCellState(columnIndex, rowIndex);
-        setHighlight();
+      const [, columnIndex, rowIndex] = dataCell.split(".");
 
-        const $cell = event.target.hasAttribute("data-cell") ? event.target : event.target.parentElement;
-        focus($cell);
-      }
+      cell.current = toCellState(columnIndex, rowIndex);
+      setHighlight();
+
+      const $cell = event.target.hasAttribute("data-cell") ? event.target : event.target.parentElement;
+      focus($cell);
     };
 
     const ref = refContainer.current;
@@ -332,11 +331,11 @@ export default function useGridEventHandler({
     };
   }, [gridId, refContainer, setHighlight]);
 
-  React.useEffect(() => {
+  React.useLayoutEffect(() => {
     refContainerBoundClientRect.current = $getGridBoundingRect();
   }, [$getGridBoundingRect]);
 
-  React.useEffect(() => {
+  React.useLayoutEffect(() => {
     refScroll.current = $getGrid();
     if (!refScroll.current) return;
     refHasHorizontalScrollBar.current = refScroll.current.scrollWidth > refScroll.current.clientWidth;

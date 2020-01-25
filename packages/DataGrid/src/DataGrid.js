@@ -5,7 +5,6 @@ import extractChildren from "@paprika/helpers/lib/extractChildren";
 import Spinner from "@paprika/spinner";
 import useGridEventHandler from "./hooks/useGridEventHandler";
 import ColumnDefinition from "./components/ColumnDefinition";
-import RowIndicator from "./components/RowIndicator";
 import EndOFScrollingFooter from "./components/EndOFScrollingFooter";
 import * as styled from "./DataGrid.styles";
 
@@ -231,7 +230,7 @@ export default function DataGrid(props) {
   }
 
   React.useLayoutEffect(() => {
-    restoreHighlightFocus(); // this doesn't need to be on the array dependencies
+    restoreHighlightFocus(); // this can't be on the dependencies array
   }, [gridShouldHaveFocus, isEndOFScrollingFooterVisible]); // eslint-disable-line
 
   return (
@@ -261,7 +260,7 @@ export default function DataGrid(props) {
           <Grid
             columnCount={stickyColumnsIndexes.length}
             columnWidth={columnIndex => {
-              return ColumnDefinitions[columnIndex].props.width;
+              return ColumnDefinitions[stickyColumnsIndexes[columnIndex]].props.width;
             }}
             height={rowHeight}
             rowCount={1}
@@ -313,7 +312,7 @@ export default function DataGrid(props) {
           <Grid
             columnCount={stickyColumnsIndexes.length}
             columnWidth={columnIndex => {
-              return ColumnDefinitions[columnIndex].props.width;
+              return ColumnDefinitions[stickyColumnsIndexes[columnIndex]].props.width;
             }}
             height={height - scrollBarWidth}
             rowCount={rowCount}
@@ -445,5 +444,4 @@ export default function DataGrid(props) {
 DataGrid.propTypes = propTypes;
 DataGrid.defaultProps = defaultProps;
 DataGrid.ColumnDefinition = ColumnDefinition;
-DataGrid.RowIndicator = RowIndicator;
 DataGrid.EndOFScrollingFooter = EndOFScrollingFooter;
