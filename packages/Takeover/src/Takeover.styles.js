@@ -1,5 +1,6 @@
 import styled, { css } from "styled-components";
 import tokens from "@paprika/tokens";
+import stylers from "@paprika/stylers";
 import OriginalHeader from "./components/Header";
 
 const openedCss = css`
@@ -37,4 +38,8 @@ export const Header = styled(OriginalHeader)`
 export const ContentWrapper = styled.div`
   flex-grow: 1;
   overflow-y: auto;
+
+  &:focus {
+    ${stylers.focusRing.subtle(true)};
+  }
 `;
