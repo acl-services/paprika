@@ -3,6 +3,7 @@ import PropTypes from "prop-types";
 import { VariableSizeGrid as Grid } from "react-window";
 import extractChildren from "@paprika/helpers/lib/extractChildren";
 import Spinner from "@paprika/spinner";
+import Cell from "./components/Cell";
 import useGridEventHandler from "./hooks/useGridEventHandler";
 import ColumnDefinition from "./components/ColumnDefinition";
 import EndOFScrollingFooter from "./components/EndOFScrollingFooter";
@@ -66,7 +67,8 @@ export default function DataGrid(props) {
     ...moreProps
   } = props;
 
-  const refCell = React.useRef(null);
+  const refsCell = React.useRef({});
+  const refPrevActiveCell = React.useRef(null);
   const refScrollHeader = React.useRef(null);
   const refContainer = React.useRef(null);
   const refGrid = React.useRef(null);
@@ -133,7 +135,18 @@ export default function DataGrid(props) {
       }, 0)) ||
     0;
 
-  const { handleKeyDown, gridId, restoreHighlightFocus } = useGridEventHandler({
+  function onChangeActiveCell({ columnIndex, rowIndex }) {
+    const key = `${columnIndex}${rowIndex}`;
+
+    if (refPrevActiveCell.current && refPrevActiveCell.current in refsCell.current) {
+      refsCell.current[refPrevActiveCell.current].isActiveCell(false);
+    }
+
+    refPrevActiveCell.current = key;
+    refsCell.current[key].isActiveCell(true);
+  }
+
+  const { handleKeyDown, handleClick, gridId, restoreHighlightFocus } = useGridEventHandler({
     refGrid,
     refContainer,
     columnCount,
@@ -141,6 +154,7 @@ export default function DataGrid(props) {
     rowHeight,
     scrollBarWidth,
     stickyColumnsIndexes,
+    onChangeActiveCell,
   });
 
   const a11yTextMessage = (value, column, rowIndex) => {
@@ -212,16 +226,19 @@ export default function DataGrid(props) {
     setScrollBarWidth(() => scrollContainer.offsetWidth - scrollContainer.clientWidth);
   }, [gridId, isIdle]);
 
+  const refCellHandler = ({ columnIndex, rowIndex }) => ref => {
+    refsCell.current[`${columnIndex}${rowIndex}`] = ref;
+  };
+
   function handleFocusGrid() {
+    const $isBlur = refContainer.current.querySelector(".grid--is-blur");
+    if ($isBlur) $isBlur.classList.remove("grid--is-blur");
+
     if (gridShouldHaveFocus) {
       setGridShouldHaveFocus(() => {
         return false;
       });
-      return;
     }
-
-    const $isBlur = refContainer.current.querySelector(".grid--is-blur");
-    if ($isBlur) $isBlur.classList.remove("grid--is-blur");
   }
 
   function handleBlurGrid() {
@@ -229,9 +246,9 @@ export default function DataGrid(props) {
     if ($isActive) $isActive.classList.toggle("grid--is-blur");
   }
 
-  React.useLayoutEffect(() => {
+  React.useEffect(() => {
     restoreHighlightFocus(); // this can't be on the dependencies array
-  }, [gridShouldHaveFocus, isEndOFScrollingFooterVisible]); // eslint-disable-line
+  }, [isEndOFScrollingFooterVisible]); // eslint-disable-line
 
   return (
     <>
@@ -246,6 +263,7 @@ export default function DataGrid(props) {
         tabIndex={gridShouldHaveFocus ? 0 : -1}
         onFocus={handleFocusGrid}
         onBlur={handleBlurGrid}
+        onMouseDown={handleClick}
         ref={refContainer}
         aria-colcount={columnCount}
         role="grid"
@@ -299,6 +317,9 @@ export default function DataGrid(props) {
           >
             {({ columnIndex, style }) => {
               const { header } = ColumnDefinitions[columnIndex].props;
+
+              if (stickyColumnsIndexes.includes(columnIndex)) return null;
+
               return (
                 <styled.CellHeader role="columnheader" style={style}>
                   {typeof header === "function" ? header() : header}
@@ -335,22 +356,16 @@ export default function DataGrid(props) {
               const a11yText = a11yTextMessage(cellA11yText, headerA11yText, rowIndex);
 
               return (
-                <styled.Cell
-                  ref={refCell}
-                  tabIndex={-1}
-                  style={{ ...style }}
-                  data-cell={`${gridId}.${columnIndex}.${rowIndex}`}
-                >
-                  <styled.GridCell role="gridcell">{a11yText}</styled.GridCell>
-                  <styled.InnerCell
-                    {...column.cellProps({ row: data[rowIndex], rowIndex, columnIndex })}
-                    aria-hidden="true"
-                  >
-                    {typeof column.cell === "function"
-                      ? column.cell({ row: data[rowIndex], rowIndex, columnIndex })
-                      : data[rowIndex][column.cell]}
-                  </styled.InnerCell>
-                </styled.Cell>
+                <Cell
+                  ref={refCellHandler({ columnIndex, rowIndex })}
+                  style={style}
+                  gridId={gridId}
+                  columnIndex={columnIndex}
+                  rowIndex={rowIndex}
+                  column={column}
+                  data={data}
+                  a11yText={a11yText}
+                />
               );
             }}
           </Grid>
@@ -376,7 +391,7 @@ export default function DataGrid(props) {
             className={`grid-${gridId}`}
             onScroll={handleScroll}
           >
-            {({ columnIndex, rowIndex, style, isScrolling }) => {
+            {({ columnIndex, rowIndex, style }) => {
               const column = ColumnDefinitions[columnIndex].props;
               const cellA11yText =
                 typeof column.cell === "function"
@@ -389,39 +404,17 @@ export default function DataGrid(props) {
                 return null;
               }
 
-              if (whileOnScrolling && isScrolling) {
-                return (
-                  <styled.Cell
-                    ref={refCell}
-                    tabIndex={-1}
-                    style={style}
-                    data-cell={`${gridId}.${columnIndex}.${rowIndex}`}
-                  >
-                    <styled.InnerCell aria-hidden="true">
-                      <styled.WhileOnScrolling />
-                    </styled.InnerCell>
-                    <styled.GridCell role="gridcell">Loading</styled.GridCell>
-                  </styled.Cell>
-                );
-              }
-
               return (
-                <styled.Cell
-                  ref={refCell}
-                  tabIndex={-1}
+                <Cell
+                  ref={refCellHandler({ columnIndex, rowIndex })}
                   style={style}
-                  data-cell={`${gridId}.${columnIndex}.${rowIndex}`}
-                >
-                  <styled.GridCell role="gridcell">{a11yText}</styled.GridCell>
-                  <styled.InnerCell
-                    {...column.cellProps({ row: data[rowIndex], rowIndex, columnIndex })}
-                    aria-hidden="true"
-                  >
-                    {typeof column.cell === "function"
-                      ? column.cell({ row: data[rowIndex], rowIndex, columnIndex })
-                      : data[rowIndex][column.cell]}
-                  </styled.InnerCell>
-                </styled.Cell>
+                  gridId={gridId}
+                  columnIndex={columnIndex}
+                  rowIndex={rowIndex}
+                  column={column}
+                  data={data}
+                  a11yText={a11yText}
+                />
               );
             }}
           </Grid>

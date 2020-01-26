@@ -21,6 +21,7 @@ export default function useGridEventHandler({
   rowCount,
   scrollBarWidth,
   stickyColumnsIndexes,
+  onChangeActiveCell,
 }) {
   const [gridId] = React.useState(() => `PKA${nanoid()}`);
   const refContainerBoundClientRect = React.useRef(null);
@@ -194,10 +195,13 @@ export default function useGridEventHandler({
   }
 
   function toCellState(column, index) {
-    return {
+    const cell = {
       columnIndex: Number.parseInt(column, 10),
       rowIndex: Number.parseInt(index, 10),
     };
+
+    onChangeActiveCell(cell);
+    return cell;
   }
 
   const $getGrid = React.useCallback(() => {
@@ -308,28 +312,17 @@ export default function useGridEventHandler({
     }
   };
 
-  React.useLayoutEffect(() => {
-    const handleClick = event => {
-      const dataCell = getDataCell(event);
+  const handleClick = event => {
+    const dataCell = getDataCell(event);
 
-      const [, columnIndex, rowIndex] = dataCell.split(".");
+    const [, columnIndex, rowIndex] = dataCell.split(".");
 
-      cell.current = toCellState(columnIndex, rowIndex);
-      setHighlight();
+    cell.current = toCellState(columnIndex, rowIndex);
+    setHighlight();
 
-      const $cell = event.target.hasAttribute("data-cell") ? event.target : event.target.parentElement;
-      focus($cell);
-    };
-
-    const ref = refContainer.current;
-    if (!ref) return;
-
-    ref.addEventListener("click", handleClick, true);
-
-    return () => {
-      ref.removeEventListener("click", handleClick, true);
-    };
-  }, [gridId, refContainer, setHighlight]);
+    const $cell = event.target.hasAttribute("data-cell") ? event.target : event.target.parentElement;
+    focus($cell);
+  };
 
   React.useLayoutEffect(() => {
     refContainerBoundClientRect.current = $getGridBoundingRect();
@@ -355,5 +348,5 @@ export default function useGridEventHandler({
     focus($cell);
   }
 
-  return { cell, prevCell, handleKeyDown, gridId, restoreHighlightFocus };
+  return { cell, prevCell, handleKeyDown, gridId, restoreHighlightFocus, handleClick };
 }

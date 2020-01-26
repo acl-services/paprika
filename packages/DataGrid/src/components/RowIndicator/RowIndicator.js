@@ -10,7 +10,9 @@ const propTypes = {
   onSelect: PropTypes.func,
   row: PropTypes.shape({}),
   rowIndex: PropTypes.number,
+  isActiveCell: PropTypes.bool,
 };
+
 const defaultProps = {
   columnIndex: null,
   hasIndexIndicator: true,
@@ -20,6 +22,7 @@ const defaultProps = {
   isChecked: () => {
     return "unchecked";
   },
+  isActiveCell: false,
 };
 
 function isValueNotUnchecked(value) {
@@ -28,7 +31,7 @@ function isValueNotUnchecked(value) {
 
 export default function RowIndicator(props) {
   const [isActive, setIsActive] = React.useState(false);
-  const { row, rowIndex, isChecked, columnIndex, hasIndexIndicator, onSelect } = props;
+  const { row, rowIndex, isChecked, columnIndex, hasIndexIndicator, onSelect, isActiveCell } = props;
 
   function handleMouseOver() {
     setIsActive(() => true);
@@ -49,7 +52,7 @@ export default function RowIndicator(props) {
       onBlur={handleMouseLeave}
       onMouseLeave={handleMouseLeave}
     >
-      {isActive || isValueNotUnchecked(isChecked()) || !hasIndexIndicator ? (
+      {isActive || isActiveCell || isValueNotUnchecked(isChecked()) || !hasIndexIndicator ? (
         <CheckBox onClick={handleClick(row, rowIndex, columnIndex)} checkedState={isChecked()} onChange={() => {}} />
       ) : (
         <styles.RowIndexText>{rowIndex}</styles.RowIndexText>
