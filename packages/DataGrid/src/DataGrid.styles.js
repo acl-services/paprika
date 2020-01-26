@@ -203,20 +203,9 @@ export const IdleBlocker = styled.div`
 `;
 
 export const Footer = styled.div`
-  ${({ $width }) => {
-    return `
-      padding: 8px;
-      border: 1px solid ${tokens.border.color};
-      width: ${$width - 17}px;
-  `;
-  }}
-`;
-
-export const FooterLoadMore = styled.div`
-  align-items: center;
-  display: flex;
-  justify-content: center;
-  padding: ${tokens.space};
+  border: 1px solid ${tokens.border.color};
+  font-size: 12px;
+  padding: 4px;
   ${({ $width }) => {
     return `
       width: ${$width - 17}px;

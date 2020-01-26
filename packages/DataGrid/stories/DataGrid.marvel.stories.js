@@ -35,12 +35,14 @@ export function App() {
   const [isOpen, setIsOpen] = React.useState(false);
   const [isIdle, setIsIdle] = React.useState(true);
   const [isPending, setIsPending] = React.useState(false);
+  const [isAtTheBottom, setIsAtTheBottom] = React.useState(false);
 
   React.useEffect(() => {
     async function getData() {
       // will search by "a" then by "b" .... "z" try String.fromCharCode(97 + 0) on devtools
       const letter = String.fromCharCode(97 + offsetLetter);
       const data = await fetchMarvelAPI(letter, offset);
+
       setLetters(letters => {
         const { count, limit, offset, total } = data.data;
         return { ...letters, [letter]: { count, limit, offset, total } };
@@ -81,7 +83,7 @@ export function App() {
     setIsPending(() => true);
     const currentLetter = String.fromCharCode(97 + offsetLetter);
     const { offset: currentOffset, total, count } = letters[currentLetter];
-    if (currentOffset + count <= total) {
+    if (currentOffset + count < total) {
       setOffset(off => off + 1);
       return;
     }
@@ -118,6 +120,16 @@ export function App() {
     return "unchecked";
   }
 
+  function handlecrollBarReachedBottom(hasReachedBottom) {
+    console.log("hasReachedBottom", hasReachedBottom);
+    if (hasReachedBottom) {
+      setIsAtTheBottom(() => true);
+      return;
+    }
+
+    setIsAtTheBottom(() => false);
+  }
+
   return (
     <Sbook.Story>
       {row && (
@@ -134,7 +146,13 @@ export function App() {
           <div>{row.description}</div>
         </SidePanel>
       )}
-      <DataGrid data={data} isIdle={isIdle} keygen="id" width={640}>
+      <DataGrid
+        data={data}
+        isIdle={isIdle}
+        keygen="id"
+        width={640}
+        onScrollBarReachedBottom={handlecrollBarReachedBottom}
+      >
         {renderColumnIndicator({ onSelect: handleOnSelect, isChecked })}
         {renderColumnExpand({ onClick: handleClickColumnExpand })}
         <DataGrid.ColumnDefinition
@@ -150,12 +168,14 @@ export function App() {
         <DataGrid.ColumnDefinition width={180} header="Modified" cell="modified" />
         <DataGrid.ColumnDefinition width={120} header="URI" cell="resourceURI" />
         <DataGrid.ColumnDefinition width={420} header="Series" cell={renderSeries} />
-        <DataGrid.EndOFScrollingFooter>
+      </DataGrid>
+      {isAtTheBottom ? (
+        <div css="width: 100%; padding: 16px 0">
           <Button isPending={isPending} onClick={handleLoadMore}>
             Load more
           </Button>
-        </DataGrid.EndOFScrollingFooter>
-      </DataGrid>
+        </div>
+      ) : null}
       <a href="http://marvel.com" style={{ fontSize: "12px", color: "#777" }}>
         Data provided by Marvel. © 2019 MARVEL
       </a>

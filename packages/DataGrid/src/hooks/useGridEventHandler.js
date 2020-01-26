@@ -334,18 +334,15 @@ export default function useGridEventHandler({
     refHasHorizontalScrollBar.current = refScroll.current.scrollWidth > refScroll.current.clientWidth;
   }, [$getGrid, refScroll]);
 
-  function restoreHighlightFocus(columnIndex = 0, rowIndex = 0) {
-    if (cell.current === null) {
-      cell.current = {
-        columnIndex,
-        rowIndex,
-      };
-    }
+  function restoreHighlightFocus() {
+    if (cell.current && (cell.current.columnIndex !== null && cell.current.rowIndex !== null)) {
+      const $cell = $getCell();
 
-    const $cell = $getCell();
-    setRefPrevCell();
-    setHighlight();
-    focus($cell);
+      if (!$cell) return;
+      setRefPrevCell();
+      setHighlight();
+      focus($cell);
+    }
   }
 
   return { cell, prevCell, handleKeyDown, gridId, restoreHighlightFocus, handleClick };

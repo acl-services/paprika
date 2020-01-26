@@ -9,35 +9,37 @@ const propTypes = {
   isActiveCell: PropTypes.bool.isRequired,
 };
 
-const Expand = React.forwardRef((props, ref) => {
-  const [opacity, setOpacity] = React.useState(0);
-  const { onClick, isActiveCell, ...moreProps } = props;
-  const handleClick = React.useCallback(() => {
-    onClick({ ...moreProps });
-  }, [moreProps, onClick]);
+const Expand = React.memo(
+  React.forwardRef((props, ref) => {
+    const [opacity, setOpacity] = React.useState(0);
+    const { onClick, isActiveCell, ...moreProps } = props;
+    const handleClick = React.useCallback(() => {
+      onClick({ ...moreProps });
+    }, [moreProps, onClick]);
 
-  function show() {
-    setOpacity(() => 1);
-  }
+    function show() {
+      setOpacity(() => 1);
+    }
 
-  function hide() {
-    setOpacity(() => 0);
-  }
+    function hide() {
+      setOpacity(() => 0);
+    }
 
-  return (
-    <div
-      style={{ opacity: opacity || isActiveCell ? 1 : 0, width: "100%", height: "100%" }}
-      onMouseOver={show}
-      onMouseLeave={hide}
-      onFocus={show}
-      onBlur={hide}
-    >
-      <RawButton ref={ref} onClick={handleClick}>
-        <Maximize />
-      </RawButton>
-    </div>
-  );
-});
+    return (
+      <div
+        style={{ opacity: opacity || isActiveCell ? 1 : 0, width: "100%", height: "100%" }}
+        onMouseOver={show}
+        onMouseLeave={hide}
+        onFocus={show}
+        onBlur={hide}
+      >
+        <RawButton ref={ref} onClick={handleClick}>
+          <Maximize />
+        </RawButton>
+      </div>
+    );
+  })
+);
 
 Expand.propTypes = propTypes;
 

@@ -6,37 +6,36 @@ import Spinner from "@paprika/spinner";
 import Cell from "./components/Cell";
 import useGridEventHandler from "./hooks/useGridEventHandler";
 import ColumnDefinition from "./components/ColumnDefinition";
-import EndOFScrollingFooter from "./components/EndOFScrollingFooter";
 import * as styled from "./DataGrid.styles";
 
 const propTypes = {
+  children: PropTypes.node.isRequired,
   data: PropTypes.arrayOf(PropTypes.shape({})),
+  fillAvailableSpace: PropTypes.bool,
+  hasHorizontalBorder: PropTypes.bool,
+  hasVerticalBorder: PropTypes.bool,
+  hasZebra: PropTypes.bool,
   height: PropTypes.number,
-  width: PropTypes.number,
-  rowHeight: PropTypes.number,
+  isIdle: PropTypes.bool,
   onClick: PropTypes.func,
   onKeyDown: PropTypes.func,
-  hasZebra: PropTypes.bool,
-  hasVerticalBorder: PropTypes.bool,
-  hasHorizontalBorder: PropTypes.bool,
-  whileOnScrolling: PropTypes.bool,
-  fillAvailableSpace: PropTypes.bool,
-  children: PropTypes.node.isRequired,
-  isIdle: PropTypes.bool,
+  onScrollBarReachedBottom: PropTypes.func,
+  rowHeight: PropTypes.number,
+  width: PropTypes.number,
 };
 const defaultProps = {
   data: [],
-  height: 600,
-  width: null,
-  rowHeight: 36,
-  hasZebra: false,
-  hasVerticalBorder: true,
-  hasHorizontalBorder: true,
-  whileOnScrolling: false,
   fillAvailableSpace: false,
+  hasHorizontalBorder: true,
+  hasVerticalBorder: true,
+  hasZebra: false,
+  height: 600,
+  isIdle: false,
   onClick: () => {},
   onKeyDown: () => {},
-  isIdle: false,
+  onScrollBarReachedBottom: () => {},
+  rowHeight: 36,
+  width: null,
 };
 
 const outerElementType = React.forwardRef((props, ref) => <div role="rowgroup" ref={ref} {...props} />);
@@ -62,8 +61,8 @@ export default function DataGrid(props) {
     onClick,
     onKeyDown,
     rowHeight,
-    whileOnScrolling,
     width,
+    onScrollBarReachedBottom,
     ...moreProps
   } = props;
 
@@ -78,7 +77,6 @@ export default function DataGrid(props) {
 
   const [scrollBarWidth, setScrollBarWidth] = React.useState(0);
   const [gridShouldHaveFocus, setGridShouldHaveFocus] = React.useState(true);
-  const [isEndOFScrollingFooterVisible, setIsEndOFScrollingFooterVisible] = React.useState(false);
 
   const overscanRowCount = 20;
   const overscanColumnCount = 20;
@@ -87,13 +85,10 @@ export default function DataGrid(props) {
     return data.length;
   }, [data.length]);
 
-  const { ColumnDefinitions, EndOFScrollingFooter } = React.useMemo(() => {
-    const {
-      "DataGrid.ColumnDefinition": ColumnDefinitions,
-      "DataGrid.EndOFScrollingFooter": EndOFScrollingFooter,
-    } = extractChildren(children, ["DataGrid.ColumnDefinition", "DataGrid.EndOFScrollingFooter"]);
+  const { ColumnDefinitions } = React.useMemo(() => {
+    const { "DataGrid.ColumnDefinition": ColumnDefinitions } = extractChildren(children, ["DataGrid.ColumnDefinition"]);
 
-    return { ColumnDefinitions, EndOFScrollingFooter };
+    return { ColumnDefinitions };
   }, [children]);
 
   const columnCount = React.useMemo(() => {
@@ -139,7 +134,10 @@ export default function DataGrid(props) {
     const key = `${columnIndex}${rowIndex}`;
 
     if (refPrevActiveCell.current && refPrevActiveCell.current in refsCell.current) {
-      refsCell.current[refPrevActiveCell.current].isActiveCell(false);
+      const prevCell = refsCell.current[refPrevActiveCell.current];
+      if (prevCell) {
+        refsCell.current[refPrevActiveCell.current].isActiveCell(false);
+      }
     }
 
     refPrevActiveCell.current = key;
@@ -183,12 +181,12 @@ export default function DataGrid(props) {
         refScrollGrid.current &&
         refScrollGrid.current.scrollTop + refScrollGrid.current.offsetHeight >= refScrollGrid.current.scrollHeight
       ) {
-        setIsEndOFScrollingFooterVisible(() => true);
+        onScrollBarReachedBottom(true);
       } else {
-        setIsEndOFScrollingFooterVisible(() => false);
+        onScrollBarReachedBottom(false);
       }
     },
-    [refScrollHeader, refScrollStickyColumns]
+    [onScrollBarReachedBottom]
   );
 
   const handleScrollStickyColumns = React.useCallback(
@@ -241,14 +239,16 @@ export default function DataGrid(props) {
     }
   }
 
+  React.useEffect(() => {
+    // this is required to readjust the active highlight
+    // after any rerender
+    restoreHighlightFocus();
+  });
+
   function handleBlurGrid() {
     const $isActive = refContainer.current.querySelector(".grid--is-active");
     if ($isActive) $isActive.classList.toggle("grid--is-blur");
   }
-
-  React.useEffect(() => {
-    restoreHighlightFocus(); // this can't be on the dependencies array
-  }, [isEndOFScrollingFooterVisible]); // eslint-disable-line
 
   return (
     <>
@@ -387,7 +387,6 @@ export default function DataGrid(props) {
             outerElementType={outerElementTypeMainGrid}
             innerElementType={innerElementTypeMainGrid}
             ref={refGrid}
-            useIsScrolling={whileOnScrolling}
             className={`grid-${gridId}`}
             onScroll={handleScroll}
           >
@@ -427,9 +426,6 @@ export default function DataGrid(props) {
           <styled.RowCount>Rows:{rowCount}</styled.RowCount>
         </styled.Footer>
       ) : null}
-      {EndOFScrollingFooter && isEndOFScrollingFooterVisible ? (
-        <styled.FooterLoadMore $width={gridWidth + stickyGridWidth}>{EndOFScrollingFooter}</styled.FooterLoadMore>
-      ) : null}
     </>
   );
 }
@@ -437,4 +433,3 @@ export default function DataGrid(props) {
 DataGrid.propTypes = propTypes;
 DataGrid.defaultProps = defaultProps;
 DataGrid.ColumnDefinition = ColumnDefinition;
-DataGrid.EndOFScrollingFooter = EndOFScrollingFooter;

@@ -13,7 +13,7 @@ export default function renderColumnIndicator(props = {}) {
       cell={propsCell => <RowIndicator isChecked={isChecked} onSelect={onSelect} {...propsCell} />}
       isSticky
       {...props}
-      width={40}
+      width={34}
     />
   );
 }

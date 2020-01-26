@@ -53,7 +53,12 @@ export default function RowIndicator(props) {
       onMouseLeave={handleMouseLeave}
     >
       {isActive || isActiveCell || isValueNotUnchecked(isChecked()) || !hasIndexIndicator ? (
-        <CheckBox onClick={handleClick(row, rowIndex, columnIndex)} checkedState={isChecked()} onChange={() => {}} />
+        <CheckBox
+          size="small"
+          onClick={handleClick(row, rowIndex, columnIndex)}
+          checkedState={isChecked()}
+          onChange={() => {}}
+        />
       ) : (
         <styles.RowIndexText>{rowIndex}</styles.RowIndexText>
       )}
