@@ -36,20 +36,22 @@ function customA11yTextPropTypeValidation(props, propName) {
 
 export const propTypes = {
   cell: customA11yTextPropTypeValidation,
-  header: customA11yTextPropTypeValidation,
-  isSticky: PropTypes.bool,
-  width: PropTypes.number,
   cellA11yText: PropTypes.func,
-  headerA11yText: PropTypes.func,
   cellProps: PropTypes.func,
+  header: customA11yTextPropTypeValidation,
+  headerA11yText: PropTypes.func,
+  isSticky: PropTypes.bool,
+  onClick: PropTypes.func,
+  width: PropTypes.number,
 };
 
 export const defaultProps = {
-  isSticky: false,
-  width: 80,
   cellA11yText: null,
-  headerA11yText: null,
   cellProps: () => ({}),
+  headerA11yText: null,
+  isSticky: false,
+  onClick: () => {},
+  width: 80,
 };
 
 export default function ColumnDefinition() {

@@ -11,7 +11,6 @@ const propTypes = {
     .isRequired,
   data: PropTypes.arrayOf(PropTypes.shape({})).isRequired,
   a11yText: PropTypes.string.isRequired,
-  isActiveCell: PropTypes.func.isRequired,
 };
 
 const Cell = React.forwardRef((props, ref) => {

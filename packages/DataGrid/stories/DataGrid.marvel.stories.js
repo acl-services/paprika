@@ -35,7 +35,6 @@ export function App() {
   const [isOpen, setIsOpen] = React.useState(false);
   const [isIdle, setIsIdle] = React.useState(true);
   const [isPending, setIsPending] = React.useState(false);
-  const [isAtTheBottom, setIsAtTheBottom] = React.useState(false);
 
   React.useEffect(() => {
     async function getData() {
@@ -120,16 +119,6 @@ export function App() {
     return "unchecked";
   }
 
-  function handlecrollBarReachedBottom(hasReachedBottom) {
-    console.log("hasReachedBottom", hasReachedBottom);
-    if (hasReachedBottom) {
-      setIsAtTheBottom(() => true);
-      return;
-    }
-
-    setIsAtTheBottom(() => false);
-  }
-
   return (
     <Sbook.Story>
       {row && (
@@ -146,13 +135,7 @@ export function App() {
           <div>{row.description}</div>
         </SidePanel>
       )}
-      <DataGrid
-        data={data}
-        isIdle={isIdle}
-        keygen="id"
-        width={640}
-        onScrollBarReachedBottom={handlecrollBarReachedBottom}
-      >
+      <DataGrid data={data} isIdle={isIdle} keygen="id" width={640}>
         {renderColumnIndicator({ onSelect: handleOnSelect, isChecked })}
         {renderColumnExpand({ onClick: handleClickColumnExpand })}
         <DataGrid.ColumnDefinition
@@ -168,14 +151,13 @@ export function App() {
         <DataGrid.ColumnDefinition width={180} header="Modified" cell="modified" />
         <DataGrid.ColumnDefinition width={120} header="URI" cell="resourceURI" />
         <DataGrid.ColumnDefinition width={420} header="Series" cell={renderSeries} />
-      </DataGrid>
-      {isAtTheBottom ? (
-        <div css="width: 100%; padding: 16px 0">
+        <DataGrid.WhenScrollBarReachedBottom>
           <Button isPending={isPending} onClick={handleLoadMore}>
             Load more
           </Button>
-        </div>
-      ) : null}
+        </DataGrid.WhenScrollBarReachedBottom>
+      </DataGrid>
+
       <a href="http://marvel.com" style={{ fontSize: "12px", color: "#777" }}>
         Data provided by Marvel. © 2019 MARVEL
       </a>

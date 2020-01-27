@@ -312,7 +312,7 @@ export default function useGridEventHandler({
     }
   };
 
-  const handleClick = event => {
+  const handleClick = ({ data, ColumnDefinitions }) => event => {
     const dataCell = getDataCell(event);
 
     const [, columnIndex, rowIndex] = dataCell.split(".");
@@ -322,6 +322,8 @@ export default function useGridEventHandler({
 
     const $cell = event.target.hasAttribute("data-cell") ? event.target : event.target.parentElement;
     focus($cell);
+
+    ColumnDefinitions[columnIndex].props.onClick({ row: data[rowIndex], rowIndex, columnIndex });
   };
 
   React.useLayoutEffect(() => {

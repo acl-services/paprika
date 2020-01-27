@@ -1,53 +1,45 @@
 import React from "react";
-import RawButton from "@paprika/raw-button";
 import PropTypes from "prop-types";
 import Maximize from "@paprika/icon/lib/Maximize";
 import ColumnDefinition from "../ColumnDefinition";
 
 const propTypes = {
-  onClick: PropTypes.func.isRequired,
-  isActiveCell: PropTypes.bool.isRequired,
+  isActiveCell: PropTypes.bool,
 };
 
-const Expand = React.memo(
-  React.forwardRef((props, ref) => {
-    const [opacity, setOpacity] = React.useState(0);
-    const { onClick, isActiveCell, ...moreProps } = props;
-    const handleClick = React.useCallback(() => {
-      onClick({ ...moreProps });
-    }, [moreProps, onClick]);
+const defaultProps = {
+  isActiveCell: false,
+};
 
-    function show() {
-      setOpacity(() => 1);
-    }
+const Expand = React.memo(props => {
+  const [opacity, setOpacity] = React.useState(0);
+  const { isActiveCell } = props;
 
-    function hide() {
-      setOpacity(() => 0);
-    }
+  function show() {
+    setOpacity(() => 1);
+  }
 
-    return (
-      <div
-        style={{ opacity: opacity || isActiveCell ? 1 : 0, width: "100%", height: "100%" }}
-        onMouseOver={show}
-        onMouseLeave={hide}
-        onFocus={show}
-        onBlur={hide}
-      >
-        <RawButton ref={ref} onClick={handleClick}>
-          <Maximize />
-        </RawButton>
-      </div>
-    );
-  })
-);
+  function hide() {
+    setOpacity(() => 0);
+  }
+
+  return (
+    <div
+      style={{ opacity: opacity || isActiveCell ? 1 : 0, width: "100%", height: "100%" }}
+      onMouseOver={show}
+      onMouseLeave={hide}
+      onFocus={show}
+      onBlur={hide}
+    >
+      <Maximize />
+    </div>
+  );
+});
 
 Expand.propTypes = propTypes;
+Expand.defaultProps = defaultProps;
 
 export default function renderColumnExpand(props = {}) {
-  /* eslint-disable react-hooks/rules-of-hooks */
-  const refButton = React.useRef(null);
-  /* eslint-enable react-hooks/rules-of-hooks */
-
   const { onClick = () => {} } = props; // eslint-disable-line
 
   return (
@@ -55,10 +47,12 @@ export default function renderColumnExpand(props = {}) {
       header={() => null}
       headerA11yText={() => "Expand Row"}
       cellA11yText={({ rowIndex }) => `expand row ${rowIndex}`}
-      cell={propsCell => <Expand ref={refButton} onClick={onClick} {...propsCell} />}
+      cell={propsCell => <Expand {...propsCell} />}
       isSticky
       {...props}
-      onClickCell={() => refButton.current.click()}
+      onClick={({ row }) => {
+        console.log("row:", row);
+      }}
       width={26}
       cellProps={() => ({
         style: {

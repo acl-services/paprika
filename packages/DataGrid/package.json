@@ -19,6 +19,7 @@
     "@paprika/helpers": "^0.2.7",
     "@paprika/icon": "^0.2.8",
     "@paprika/raw-button": "^0.2.5",
+    "@paprika/sidepanel": "^0.3.2",
     "@paprika/spinner": "^0.2.9",
     "@paprika/stylers": "^0.2.2",
     "@paprika/tokens": "^0.1.9",

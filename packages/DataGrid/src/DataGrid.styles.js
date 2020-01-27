@@ -42,7 +42,15 @@ export const Grid = styled.div.attrs(({ $width, isIdle }) => {
           doing it will create a incorrect navigation while using the arrow keys.
         */
         box-shadow: 0px 0px 12px 4px ${tokens.border.color};
-        overflow: hidden !important;
+        /* overflow: hidden !important; */
+        overflow-x: hidden !important;
+        ::-webkit-scrollbar {
+          width: 0px;
+        }
+        ::-webkit-scrollbar-track-piece {
+          -webkit-border-radius: 6px;
+          background-color: transparent;
+        }
       }
     `;
   }}
@@ -204,11 +212,12 @@ export const IdleBlocker = styled.div`
 
 export const Footer = styled.div`
   border: 1px solid ${tokens.border.color};
+  box-sizing: border-box;
   font-size: 12px;
   padding: 4px;
   ${({ $width }) => {
     return `
-      width: ${$width - 17}px;
+      max-width: ${$width + 1}px;
   `;
   }}
 `;

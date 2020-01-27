@@ -7,6 +7,7 @@ import Cell from "./components/Cell";
 import useGridEventHandler from "./hooks/useGridEventHandler";
 import ColumnDefinition from "./components/ColumnDefinition";
 import * as styled from "./DataGrid.styles";
+import WhenScrollBarReachedBottom, { End } from "./components/WhenScrollBarReachedBottom";
 
 const propTypes = {
   children: PropTypes.node.isRequired,
@@ -17,9 +18,7 @@ const propTypes = {
   hasZebra: PropTypes.bool,
   height: PropTypes.number,
   isIdle: PropTypes.bool,
-  onClick: PropTypes.func,
   onKeyDown: PropTypes.func,
-  onScrollBarReachedBottom: PropTypes.func,
   rowHeight: PropTypes.number,
   width: PropTypes.number,
 };
@@ -31,9 +30,7 @@ const defaultProps = {
   hasZebra: false,
   height: 600,
   isIdle: false,
-  onClick: () => {},
   onKeyDown: () => {},
-  onScrollBarReachedBottom: () => {},
   rowHeight: 36,
   width: null,
 };
@@ -58,11 +55,9 @@ export default function DataGrid(props) {
     hasZebra,
     height,
     isIdle,
-    onClick,
     onKeyDown,
     rowHeight,
     width,
-    onScrollBarReachedBottom,
     ...moreProps
   } = props;
 
@@ -74,6 +69,8 @@ export default function DataGrid(props) {
   const refScrollStickyColumns = React.useRef(null);
   const refScrollGrid = React.useRef(null);
   const refScrollHappenedBy = React.useRef(null);
+  const refEnd = React.useRef(null);
+  const refPrevLastScrollHeight = React.useRef(null);
 
   const [scrollBarWidth, setScrollBarWidth] = React.useState(0);
   const [gridShouldHaveFocus, setGridShouldHaveFocus] = React.useState(true);
@@ -85,10 +82,13 @@ export default function DataGrid(props) {
     return data.length;
   }, [data.length]);
 
-  const { ColumnDefinitions } = React.useMemo(() => {
-    const { "DataGrid.ColumnDefinition": ColumnDefinitions } = extractChildren(children, ["DataGrid.ColumnDefinition"]);
+  const { ColumnDefinitions, WhenScrollBarReachedBottom } = React.useMemo(() => {
+    const {
+      "DataGrid.ColumnDefinition": ColumnDefinitions,
+      "DataGrid.WhenScrollBarReachedBottom": WhenScrollBarReachedBottom,
+    } = extractChildren(children, ["DataGrid.ColumnDefinition", "DataGrid.WhenScrollBarReachedBottom"]);
 
-    return { ColumnDefinitions };
+    return { ColumnDefinitions, WhenScrollBarReachedBottom };
   }, [children]);
 
   const columnCount = React.useMemo(() => {
@@ -159,35 +159,33 @@ export default function DataGrid(props) {
     return `${value}. You are on row ${rowIndex}, column ${column}. Disregard the following information:`;
   };
 
-  const handleScroll = React.useCallback(
-    parameters => {
-      const { scrollLeft, scrollTop /* scrollUpdateWasRequested */ } = parameters;
+  const handleScroll = React.useCallback(parameters => {
+    const { scrollLeft, scrollTop /* scrollUpdateWasRequested */ } = parameters;
 
-      if (refScrollHeader.current) {
-        refScrollHeader.current.scrollTo({ left: scrollLeft, top: 0 });
-      }
+    if (refScrollHeader.current) {
+      refScrollHeader.current.scrollTo({ left: scrollLeft, top: 0 });
+    }
 
-      // prevent rescrolling when this scrollbar gets sync with the one in the sticky column
-      if (refScrollHappenedBy.current === null) {
-        refScrollHappenedBy.current = "handleScroll";
-        if (refScrollStickyColumns.current) {
-          refScrollStickyColumns.current.scrollTo({ left: 0, top: scrollTop });
-        }
-      } else {
-        refScrollHappenedBy.current = null;
+    // prevent rescrolling when this scrollbar gets sync with the one in the sticky column
+    if (refScrollHappenedBy.current === null) {
+      refScrollHappenedBy.current = "handleScroll";
+      if (refScrollStickyColumns.current) {
+        refScrollStickyColumns.current.scrollTo({ left: 0, top: scrollTop });
       }
+    } else {
+      refScrollHappenedBy.current = null;
+    }
 
-      if (
-        refScrollGrid.current &&
-        refScrollGrid.current.scrollTop + refScrollGrid.current.offsetHeight >= refScrollGrid.current.scrollHeight
-      ) {
-        onScrollBarReachedBottom(true);
-      } else {
-        onScrollBarReachedBottom(false);
-      }
-    },
-    [onScrollBarReachedBottom]
-  );
+    if (
+      refScrollGrid.current &&
+      refEnd.current &&
+      refScrollGrid.current.scrollTop + refScrollGrid.current.offsetHeight >= refScrollGrid.current.scrollHeight
+    ) {
+      refEnd.current.onScrollBarReachedBottom(true);
+    } else if (refEnd.current) {
+      refEnd.current.onScrollBarReachedBottom(false);
+    }
+  }, []);
 
   const handleScrollStickyColumns = React.useCallback(
     parameters => {
@@ -206,6 +204,10 @@ export default function DataGrid(props) {
     [refScrollGrid]
   );
 
+  const refCellHandler = ({ columnIndex, rowIndex }) => ref => {
+    refsCell.current[`${columnIndex}${rowIndex}`] = ref;
+  };
+
   React.useLayoutEffect(() => {
     if (!refContainer.current) return;
 
@@ -214,7 +216,7 @@ export default function DataGrid(props) {
     refScrollGrid.current = refContainer.current.querySelector(`.grid-${gridId}`);
   }, [gridId]);
 
-  React.useLayoutEffect(() => {
+  React.useEffect(() => {
     const scrollContainer =
       refContainer.current && refContainer.current.querySelector(`.grid-${gridId} [role="row"]`).parentElement;
 
@@ -223,10 +225,6 @@ export default function DataGrid(props) {
     // https://davidwalsh.name/detect-scrollbar-width
     setScrollBarWidth(() => scrollContainer.offsetWidth - scrollContainer.clientWidth);
   }, [gridId, isIdle]);
-
-  const refCellHandler = ({ columnIndex, rowIndex }) => ref => {
-    refsCell.current[`${columnIndex}${rowIndex}`] = ref;
-  };
 
   function handleFocusGrid() {
     const $isBlur = refContainer.current.querySelector(".grid--is-blur");
@@ -242,12 +240,23 @@ export default function DataGrid(props) {
   React.useEffect(() => {
     // this is required to readjust the active highlight
     // after any rerender
+    if (refPrevLastScrollHeight.current && refPrevLastScrollHeight.current < refScrollGrid.current.scrollHeight) {
+      refScrollGrid.current.scrollTo(0, refScrollGrid.current.scrollTop + 1);
+    }
     restoreHighlightFocus();
   });
+
+  React.useEffect(() => {
+    refPrevLastScrollHeight.current = refScrollGrid.current.scrollHeight;
+  }, []);
 
   function handleBlurGrid() {
     const $isActive = refContainer.current.querySelector(".grid--is-active");
     if ($isActive) $isActive.classList.toggle("grid--is-blur");
+  }
+
+  function handleMouseDown(event) {
+    handleClick({ data, ColumnDefinitions })(event);
   }
 
   return (
@@ -260,18 +269,18 @@ export default function DataGrid(props) {
         </styled.Idle>
       )}
       <styled.Grid
-        tabIndex={gridShouldHaveFocus ? 0 : -1}
-        onFocus={handleFocusGrid}
-        onBlur={handleBlurGrid}
-        onMouseDown={handleClick}
-        ref={refContainer}
         aria-colcount={columnCount}
-        role="grid"
-        onKeyDown={handleKeyDown}
         gridId={gridId}
-        {...moreProps}
-        isIdle={isIdle}
+        onBlur={handleBlurGrid}
+        onFocus={handleFocusGrid}
+        onKeyDown={handleKeyDown}
+        onMouseDown={handleMouseDown}
+        ref={refContainer}
+        role="grid"
+        tabIndex={gridShouldHaveFocus ? 0 : -1}
         $width={gridWidth + stickyGridWidth}
+        isIdle={isIdle}
+        {...moreProps}
       >
         <styled.Flex>
           {/** STICKY HEADER */}
@@ -422,9 +431,16 @@ export default function DataGrid(props) {
         <styled.FillerBottomLeft stickyGridWidth={stickyGridWidth} scrollBarWidth={scrollBarWidth} />
       </styled.Grid>
       {!isIdle ? (
-        <styled.Footer $width={gridWidth + stickyGridWidth}>
-          <styled.RowCount>Rows:{rowCount}</styled.RowCount>
-        </styled.Footer>
+        <>
+          <styled.Footer $width={gridWidth + stickyGridWidth}>
+            <styled.RowCount>Rows:{rowCount}</styled.RowCount>
+          </styled.Footer>
+          {WhenScrollBarReachedBottom ? (
+            <End width={gridWidth + stickyGridWidth} ref={refEnd}>
+              {WhenScrollBarReachedBottom}
+            </End>
+          ) : null}
+        </>
       ) : null}
     </>
   );
@@ -433,3 +449,4 @@ export default function DataGrid(props) {
 DataGrid.propTypes = propTypes;
 DataGrid.defaultProps = defaultProps;
 DataGrid.ColumnDefinition = ColumnDefinition;
+DataGrid.WhenScrollBarReachedBottom = WhenScrollBarReachedBottom;
