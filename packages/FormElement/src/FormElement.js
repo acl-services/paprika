@@ -17,10 +17,10 @@ import * as sc from "./FormElement.styles";
 const propTypes = {
   children: PropTypes.node.isRequired,
 
-  /** Should show is optional text besides the label or not. */
+  /** Should show is optional text besides the label or not. Will not show if hasRequiredLabel prop is true */
   hasOptionalLabel: PropTypes.bool,
 
-  /** Should show is required text besides the label or not. */
+  /** Should show is required text besides the label or not. Takes presendence over hasOptionalLabel prop */
   hasRequiredLabel: PropTypes.bool,
 
   /** ID for the child element. */
