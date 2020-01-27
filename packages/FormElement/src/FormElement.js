@@ -12,8 +12,7 @@ import Content from "./components/Content";
 import ErrorMessage from "./components/ErrorMessage";
 import Help from "./components/Help";
 import Label from "./components/Label";
-
-import formElementStyles, { inlineContainerStyles } from "./FormElement.styles";
+import * as sc from "./FormElement.styles";
 
 const propTypes = {
   children: PropTypes.node.isRequired,
@@ -85,14 +84,13 @@ function FormElement(props) {
   const ariaErrorId = React.useRef(uuidv4()).current;
   const ariaInstructionsId = React.useRef(uuidv4()).current;
   const uniqueInputId = React.useRef(uuidv4()).current;
-  const labelRef = React.useRef(null);
   const hasError =
     !!extractedChildren[subComponentDisplayNames.Error] &&
     !!extractedChildren[subComponentDisplayNames.Error].props.children;
 
   const generateLabelId = id => (isNil(id) || id === "" ? uniqueInputId : id);
-  const idForLabel = hasFieldSet ? null : generateLabelId();
-  const refLabel = hasFieldSet ? null : labelRef;
+  const idForLabel = generateLabelId(id);
+  const refLabel = React.useRef(null);
 
   const getClonedElement = (displayName, extraProps = {}) => {
     if (!extractedChildren[displayName]) return null;
@@ -133,9 +131,8 @@ function FormElement(props) {
     });
   }
   return (
-    <div
+    <sc.FormElement
       as={hasFieldSet ? "fieldset" : "div"}
-      css={formElementStyles}
       isInline={isInline}
       size={size}
       isDisabled={isDisabled}
@@ -152,13 +149,12 @@ function FormElement(props) {
         ref={refLabel}
         hasFieldSet={hasFieldSet}
       />
-
-      <div css={isInline ? inlineContainerStyles : null}>
+      <sc.SectionsContainer isInline={isInline}>
         {renderInstructions()}
         {renderContent()}
         {renderFooter()}
-      </div>
-    </div>
+      </sc.SectionsContainer>
+    </sc.FormElement>
   );
 }
 
