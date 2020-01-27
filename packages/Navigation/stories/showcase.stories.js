@@ -6,7 +6,7 @@ import Navigation, { Density, Filter, ColumnsArrangement, Sort } from "../src";
 const getDefaultFilter = () => {
   return {
     columnId: "goals",
-    rule: "LESS_THAN",
+    rule: "less_than",
     value: "0",
     filterId: nanoid(),
   };

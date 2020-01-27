@@ -6,13 +6,15 @@ import Popover from "@paprika/popover";
 import Sortable from "@paprika/sortable";
 import useI18n from "@paprika/l10n/lib/useI18n";
 import ColumnManagingItem from "./ColumnsArrangementItem";
-
 import * as styled from "./ColumnsArrangement.styles";
 
 const propTypes = {
   columns: PropTypes.arrayOf(
     PropTypes.shape({
       label: PropTypes.string.isRequired,
+      id: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
+      isDisabled: PropTypes.bool,
+      isHidden: PropTypes.bool,
     })
   ).isRequired,
   onChangeOrder: PropTypes.func.isRequired,

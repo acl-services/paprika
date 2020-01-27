@@ -14,7 +14,7 @@ const propTypes = {
       filterId: PropTypes.string,
       columnId: PropTypes.string.isRequired,
       rule: PropTypes.string.isRequired,
-      value: PropTypes.string,
+      value: PropTypes.oneOfType([PropTypes.string, PropTypes.bool]),
     })
   ).isRequired,
   columns: PropTypes.arrayOf(
@@ -47,7 +47,7 @@ export default function Filter(props) {
   }
 
   return (
-    <Popover align="bottom" edge="left" maxWidth={1200} offset={8}>
+    <Popover align="bottom" edge="left" maxWidth={600} offset={8}>
       <Popover.Trigger kind="flat">
         {handler => (
           <Button kind="flat" onClick={handler}>

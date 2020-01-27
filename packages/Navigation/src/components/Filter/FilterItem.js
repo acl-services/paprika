@@ -1,15 +1,33 @@
 import React from "react";
+import PropTypes from "prop-types";
 import Button from "@paprika/button";
-import Select from "@paprika/select";
 import useI18n from "@paprika/l10n/lib/useI18n";
+import DatePicker from "./DatePicker";
+import InlineSelect from "../InlineSelect/InlineSelect";
+import Input from "./Input";
 import rules, { rulesByType } from "./rules";
 import { columnTypes } from "../../constants";
-import DatePicker from "./DatePicker";
-import Input from "./Input";
 import * as styled from "./Filter.styles";
 
-export default function FilterItem(prop) {
-  const { filter, columns, onDeleteFilter, onChange, isFirst, filtersRef } = prop;
+const propTypes = {
+  columns: PropTypes.arrayOf(
+    PropTypes.shape({
+      label: PropTypes.string.isRequired,
+    })
+  ).isRequired,
+  filter: PropTypes.shape({
+    columnId: PropTypes.string.isRequired,
+    rule: PropTypes.string.isRequired,
+    value: PropTypes.oneOfType([PropTypes.string, PropTypes.bool]).isRequired,
+  }).isRequired,
+  filtersRef: PropTypes.shape({ current: PropTypes.instanceOf(Object) }).isRequired,
+  isFirst: PropTypes.bool.isRequired,
+  onChange: PropTypes.func.isRequired,
+  onDeleteFilter: PropTypes.func.isRequired,
+};
+
+export default function FilterItem(props) {
+  const { columns, filter, filtersRef, isFirst, onChange, onDeleteFilter } = props;
   const I18n = useI18n();
   const { columnId: selectedColumnId, rule: selectedRule, value } = filter;
   const selectedColumnType = columns.find(({ id }) => id === selectedColumnId).type;
@@ -46,13 +64,19 @@ export default function FilterItem(prop) {
         return I18n.t("navigation.filter.rules.is");
       default:
         return (
-          <Select onChange={handleChangeRule} value={selectedRule}>
+          <InlineSelect
+            onChange={handleChangeRule}
+            value={selectedRule}
+            selectedLabel={I18n.t(
+              `navigation.filter.rules.${rulesByType[selectedColumnType].find(rule => rule === selectedRule)}`
+            )}
+          >
             {rulesByType[selectedColumnType].map(rule => (
               <option key={rule} value={rule}>
                 {I18n.t(`navigation.filter.rules.${rule}`)}
               </option>
             ))}
-          </Select>
+          </InlineSelect>
         );
     }
   }
@@ -69,15 +93,16 @@ export default function FilterItem(prop) {
     switch (selectedColumnType) {
       case columnTypes.BOOLEAN:
         return (
-          <Select
+          <InlineSelect
             value={value}
             onChange={event => {
               onChange({ filter, value: event.target.value === "true" });
             }}
+            selectedLabel={I18n.t(`navigation.filter.rules.${value}`)}
           >
             <option value="true">{I18n.t("navigation.filter.rules.true")}</option>
             <option value="false">{I18n.t("navigation.filter.rules.false")}</option>
-          </Select>
+          </InlineSelect>
         );
       case columnTypes.DATE:
         return (
@@ -96,15 +121,22 @@ export default function FilterItem(prop) {
     <styled.FilterItem data-pka-anchor="filter.filter-item">
       <Button.Close data-pka-anchor="filter.delete-button" onClick={handleRemoveFilter} size="small" />
       {isFirst ? I18n.t("navigation.filter.where") : I18n.t("navigation.filter.and")}
-      <Select onChange={handleChangeColumn} value={selectedColumnId}>
+      <InlineSelect
+        onChange={handleChangeColumn}
+        value={selectedColumnId}
+        selectedLabel={columns.find(column => column.id === selectedColumnId).label}
+      >
         {columns.map(column => (
           <option key={column.id} value={column.id}>
             {column.label}
           </option>
         ))}
-      </Select>
+      </InlineSelect>
+
       {renderRuleField()}
       {renderValueField()}
     </styled.FilterItem>
   );
 }
+
+FilterItem.propTypes = propTypes;
