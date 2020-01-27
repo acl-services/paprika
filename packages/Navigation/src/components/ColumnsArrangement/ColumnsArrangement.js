@@ -65,7 +65,7 @@ export default function ColumnsArrangement(props) {
       <Popover.Trigger>
         {handler => (
           <Button kind="flat" onClick={handler}>
-            {getLabelText(filteredColumns.filter(column => column.isHidden).length)}
+            {getLabelText(columns.filter(column => column.isHidden).length)}
           </Button>
         )}
       </Popover.Trigger>

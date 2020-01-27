@@ -113,7 +113,7 @@ export default function FilterItem(props) {
           />
         );
       default:
-        return <Input initialValue={value} onChange={handleChangeValue} />;
+        return <Input value={value} onChange={handleChangeValue} />;
     }
   }
 
