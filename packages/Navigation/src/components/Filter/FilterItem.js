@@ -5,7 +5,7 @@ import useI18n from "@paprika/l10n/lib/useI18n";
 import DatePicker from "./DatePicker";
 import InlineSelect from "../InlineSelect/InlineSelect";
 import Input from "./Input";
-import rules, { rulesByType } from "./rules";
+import rules, { rulesByType, localeKeysByRule } from "./rules";
 import { columnTypes } from "../../constants";
 import * as styled from "./Filter.styles";
 
@@ -19,6 +19,7 @@ const propTypes = {
     columnId: PropTypes.string.isRequired,
     rule: PropTypes.string.isRequired,
     value: PropTypes.oneOfType([PropTypes.string, PropTypes.bool]).isRequired,
+    renderValueField: PropTypes.func,
   }).isRequired,
   filtersRef: PropTypes.shape({ current: PropTypes.instanceOf(Object) }).isRequired,
   isFirst: PropTypes.bool.isRequired,
@@ -26,10 +27,10 @@ const propTypes = {
   onDeleteFilter: PropTypes.func.isRequired,
 };
 
-export default function FilterItem(props) {
+function FilterItem(props) {
   const { columns, filter, filtersRef, isFirst, onChange, onDeleteFilter } = props;
   const I18n = useI18n();
-  const { columnId: selectedColumnId, rule: selectedRule, value } = filter;
+  const { columnId: selectedColumnId, rule: selectedRule, value, renderValueField: renderCustomValueField } = filter;
   const selectedColumnType = columns.find(({ id }) => id === selectedColumnId).type;
 
   function handleRemoveFilter() {
@@ -67,13 +68,11 @@ export default function FilterItem(props) {
           <InlineSelect
             onChange={handleChangeRule}
             value={selectedRule}
-            selectedLabel={I18n.t(
-              `navigation.filter.rules.${rulesByType[selectedColumnType].find(rule => rule === selectedRule)}`
-            )}
+            selectedLabel={I18n.t(`navigation.filter.rules.${localeKeysByRule[selectedRule]}`)}
           >
             {rulesByType[selectedColumnType].map(rule => (
               <option key={rule} value={rule}>
-                {I18n.t(`navigation.filter.rules.${rule}`)}
+                {I18n.t(`navigation.filter.rules.${localeKeysByRule[rule]}`)}
               </option>
             ))}
           </InlineSelect>
@@ -89,6 +88,8 @@ export default function FilterItem(props) {
       selectedRule === rules.IS_NOT_EMPTY;
 
     if (shouldNotShowValueField) return null;
+
+    if (renderCustomValueField) return renderCustomValueField();
 
     switch (selectedColumnType) {
       case columnTypes.BOOLEAN:
@@ -140,3 +141,5 @@ export default function FilterItem(props) {
 }
 
 FilterItem.propTypes = propTypes;
+
+export default React.memo(FilterItem);

@@ -8,6 +8,7 @@ export const columnTypes = {
   NUMBER: "NUMBER",
   DATE: "DATE",
   BOOLEAN: "BOOLEAN",
+  SINGLE_SELECT: "SINGLE_SELECT",
 };
 
 export const logicalFilterOperators = {

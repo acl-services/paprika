@@ -8,7 +8,7 @@ import { rulesByType } from "./rules";
 import * as styled from "./Filter.styles";
 
 const propTypes = {
-  onChange: PropTypes.func,
+  onChange: PropTypes.func.isRequired,
   filters: PropTypes.arrayOf(
     PropTypes.shape({
       filterId: PropTypes.string,
@@ -24,10 +24,6 @@ const propTypes = {
   ).isRequired,
   onDeleteFilter: PropTypes.func.isRequired,
   onAddFilter: PropTypes.func.isRequired,
-};
-
-const defaultProps = {
-  onChange: null,
 };
 
 export default function Filter(props) {
@@ -49,10 +45,11 @@ export default function Filter(props) {
   return (
     <Popover align="bottom" edge="left" maxWidth={600} offset={8}>
       <Popover.Trigger kind="flat">
-        {handler => (
-          <Button kind="flat" onClick={handler}>
+        {(handler, attributes) => (
+          <styled.Trigger {...attributes} isSemantic={false} onClick={handler} hasFilterApplied={filters.length > 0}>
+            <styled.Icon />
             {getLabelText(filters.length)}
-          </Button>
+          </styled.Trigger>
         )}
       </Popover.Trigger>
       <Popover.Content>
@@ -81,6 +78,5 @@ export default function Filter(props) {
 }
 
 Filter.propTypes = propTypes;
-Filter.defaultProps = defaultProps;
 Filter.displayName = "Navigation.Filter";
 Filter.rulesByType = rulesByType;

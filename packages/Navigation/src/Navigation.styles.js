@@ -5,6 +5,7 @@ export const Navigation = styled.div`
   align-items: center;
   border-bottom: 2px solid rgba(0, 0, 0, 0.1);
   display: flex;
+  font-family: inherit;
   height: 44px;
   justify-content: flex-start;
   padding: ${stylers.spacer(1)};

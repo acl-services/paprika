@@ -64,9 +64,10 @@ export default function ColumnsArrangement(props) {
     <Popover align="bottom" edge="left" minWidth={230}>
       <Popover.Trigger>
         {handler => (
-          <Button kind="flat" onClick={handler}>
+          <styled.Trigger onClick={handler} hasColumnsHidden={columns.filter(column => column.isHidden).length > 0}>
+            <styled.Icon />
             {getLabelText(columns.filter(column => column.isHidden).length)}
-          </Button>
+          </styled.Trigger>
         )}
       </Popover.Trigger>
 
