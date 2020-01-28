@@ -10,9 +10,9 @@ function Instructions(props) {
   const { children, ...moreProps } = props;
 
   return (
-    <styled.InstructionsStyled data-pka-anchor="form-element.instructions" {...moreProps}>
+    <styled.Instructions data-pka-anchor="form-element.instructions" {...moreProps}>
       {children}
-    </styled.InstructionsStyled>
+    </styled.Instructions>
   );
 }
 
