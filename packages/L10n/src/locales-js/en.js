@@ -141,7 +141,12 @@ const locales = {
             "false": "false"
           }
         },
-        "search_placeholder": "Filter..."
+        "search_placeholder": "Filter...",
+        "sort": {
+          "label": "Sort",
+          "singular_label": "1 column sorted",
+          "plural_label": "{{numberOfFields}} columns sorted"
+        }
       }
     }
   }

@@ -2,6 +2,7 @@ import React from "react";
 import PropTypes from "prop-types";
 import Button from "@paprika/button";
 import Popover from "@paprika/popover";
+import useI18n from "@paprika/l10n/lib/useI18n";
 
 import SortItem from "./SortItem";
 import { sortDirections } from "../../constants";
@@ -30,15 +31,28 @@ const defaultProps = {};
 
 export default function Sort(props) {
   const { fields, onDeleteField, onChange, columns, onAddField } = props;
+  const I18n = useI18n();
   const fieldsRef = React.useRef(null);
+
+  function getLabelText(numberOfFields) {
+    switch (numberOfFields) {
+      case 0:
+        return I18n.t("navigation.sort.label");
+      case 1:
+        return I18n.t("navigation.sort.singular_label");
+      default:
+        return I18n.t("navigation.sort.plural_label", { numberOfFields });
+    }
+  }
 
   return (
     <Popover align="bottom" edge="left" maxWidth={1200}>
       <Popover.Trigger kind="flat">
-        {handler => (
-          <Button kind="flat" onClick={handler}>
-            Sort
-          </Button>
+        {(handler, attributes) => (
+          <styled.Trigger {...attributes} isSemantic={false} onClick={handler} hasField={fields.length > 0}>
+            <styled.Icon />
+            {getLabelText(fields.length)}
+          </styled.Trigger>
         )}
       </Popover.Trigger>
       <Popover.Content>

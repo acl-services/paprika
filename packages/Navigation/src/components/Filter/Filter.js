@@ -44,7 +44,7 @@ export default function Filter(props) {
 
   return (
     <Popover align="bottom" edge="left" maxWidth={600} offset={8}>
-      <Popover.Trigger kind="flat">
+      <Popover.Trigger>
         {(handler, attributes) => (
           <styled.Trigger {...attributes} isSemantic={false} onClick={handler} hasFilterApplied={filters.length > 0}>
             <styled.Icon />

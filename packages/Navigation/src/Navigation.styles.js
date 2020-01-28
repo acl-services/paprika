@@ -1,5 +1,7 @@
-import styled from "styled-components";
+import styled, { css } from "styled-components";
 import stylers from "@paprika/stylers";
+import tokens from "@paprika/tokens";
+import RawButton from "@paprika/raw-button";
 
 export const Navigation = styled.div`
   align-items: center;
@@ -11,3 +13,32 @@ export const Navigation = styled.div`
   padding: ${stylers.spacer(1)};
   width: 100%;
 `;
+
+const genericIsOpenStyles = css`
+  background-color: ${stylers.alpha(tokens.color.black, 0.1)};
+`;
+
+export const GenericTrigger = styled(RawButton)`
+  ${stylers.fontSize()}
+  align-items: center;
+  border-radius: ${tokens.button.borderRadius};
+  color: ${tokens.textColor.default};
+  display: flex;
+  font-weight: bold;
+  margin-right: ${tokens.spaceSm};
+  padding: ${tokens.spaceSm};
+  transition-duration: 0.2s;
+  transition-property: "background-color";
+
+  &:hover {
+    ${genericIsOpenStyles}
+  }
+
+  ${({ isOpen }) => (isOpen ? genericIsOpenStyles : "")}
+`;
+
+export const getGenericTriggerIcon = Icon => {
+  return styled(Icon)`
+    margin-right: ${tokens.spaceSm};
+  `;
+};
