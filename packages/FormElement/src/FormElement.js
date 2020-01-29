@@ -36,7 +36,7 @@ const propTypes = {
   isLabelVisuallyHidden: PropTypes.bool,
 
   /** Label text of this field. */
-  label: PropTypes.string.isRequired,
+  label: PropTypes.node.isRequired,
 
   /** Size of the label, error, help and description (font size, min-height, padding, etc). */
   size: PropTypes.oneOf(ShirtSizes.DEFAULT),
@@ -145,7 +145,7 @@ function FormElement(props) {
         id={idForLabel}
         isInline={isInline}
         isVisuallyHidden={isLabelVisuallyHidden}
-        label={label}
+        labelText={label}
         ref={refLabel}
         hasFieldSet={hasFieldSet}
       />
