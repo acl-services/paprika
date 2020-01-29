@@ -1,5 +1,6 @@
 import React from "react";
 import PropTypes from "prop-types";
+import useI18n from "@paprika/l10n/lib/useI18n";
 import Box from "./components/Box";
 import Content from "./components/Content";
 import List from "./components/List";
@@ -58,18 +59,18 @@ export const defaultProps = {
   isMulti: false,
   isOpen: null,
   onChange: () => {},
-  placeholder: "Select...",
+  placeholder: null,
   trigger: null, // eslint-disable-line
 };
 
 export function ListBox(props) {
   const [state] = useListBox();
   const { children, height, placeholder, trigger: _trigger, footer, filter } = props;
-
+  const I18n = useI18n();
   const propsForTrigger = {
     hasClearButton: true,
     onClickClear: null,
-    placeholder,
+    placeholder: placeholder || I18n.t("listBox.trigger.placeholder"),
     onFooterClickAccept: footer ? footer.props.onClickAccept : null,
   };
 
@@ -88,7 +89,9 @@ export function ListBox(props) {
           <List height={height}>
             <Options>{children}</Options>
           </List>
-          {filter ? <NoResults label={filter.props.noResultsMessage} /> : null}
+          {filter ? (
+            <NoResults label={filter.props.noResultsMessage || I18n.t("listBox.filter.no_results_message")} />
+          ) : null}
           {footer ? React.cloneElement(footer, { ref: state.refFooterContainer }) : null}
         </Box>
       </Content>
@@ -106,6 +109,7 @@ ListBox.propTypes = {
 const ListBoxContainer = React.forwardRef((props, ref) => {
   const [state, dispatch] = useListBox();
   const onChangeContext = React.useContext(OnChangeContext);
+  const I18n = useI18n();
 
   const {
     children,
@@ -139,7 +143,7 @@ const ListBoxContainer = React.forwardRef((props, ref) => {
     filter,
     footer,
     height,
-    placeholder,
+    placeholder: placeholder || I18n.t("listBox.trigger.placeholder"),
     trigger,
   };
 

@@ -4,7 +4,7 @@ export function getDOMAttributesForListBoxContainer({ isInline = false } = {}) {
 }
 
 export function getDOMAttributesForListBox(state) {
-  let activedescendant = "none";
+  let activedescendant = "";
   const { activeOption } = state;
 
   if (activeOption && activeOption < Object.keys(state.options).length) {
