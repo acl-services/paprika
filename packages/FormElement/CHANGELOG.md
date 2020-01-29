@@ -20,3 +20,4 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 
 - FormElement component adds new isFieldSet prop to support rendering of fieldset and legend elements for multiple children
 - Only renders required label if both hasRequiredLabel and hasOptionalLabel are true [@tristanjasper](https://github.com/tristanjasper).
+- Ensures children can be rendered as html in the label sub component
