@@ -31,10 +31,11 @@ export function App() {
   const [offset, setOffset] = React.useState(0);
   const [letters, setLetters] = React.useState({});
   const [data, setData] = React.useState([]);
-  const [row /* setRow */] = React.useState(null);
+  const [row, setRow] = React.useState(null);
   const [isOpen, setIsOpen] = React.useState(false);
   const [isIdle, setIsIdle] = React.useState(true);
   const [isPending, setIsPending] = React.useState(false);
+  const refDataGrid = React.useRef(null);
 
   React.useEffect(() => {
     async function getData() {
@@ -69,10 +70,10 @@ export function App() {
     );
   }
 
-  // function handleExpandedRow({ row }) {
-  //   setRow({ row });
-  //   setIsOpen(() => true);
-  // }
+  function handleOpenSidepanel({ row }) {
+    setRow(() => row);
+    setIsOpen(() => true);
+  }
 
   function handleSidePanelClose() {
     setIsOpen(() => false);
@@ -94,18 +95,6 @@ export function App() {
     console.log("row:", row);
   }
 
-  // function handleKeyDownArrow({ row }) {
-  //   setRow(() => row);
-  // }
-  //
-  // function handleClickCell({ row }) {
-  //   setRow(() => row);
-  // }
-
-  // onClickCell={handleClickCell}
-  // onExpandedRow={handleExpandedRow}
-  // onKeyDownArrow={handleKeyDownArrow}
-
   React.useEffect(() => {
     if (data.length > 0) {
       setIsIdle(() => false);
@@ -119,23 +108,46 @@ export function App() {
     return "unchecked";
   }
 
+  function renderSidepanel({ row }) {
+    return (
+      <SidePanel onClose={handleSidePanelClose} isOpen={isOpen}>
+        <SidePanel.FocusLock
+          onDeactivation={() => {
+            // https://github.com/theKashey/react-focus-lock#unmounting-and-focus-management
+            setTimeout(() => {
+              refDataGrid.current.focus();
+            }, 0);
+          }}
+        />
+        <SidePanel.Header>{row.name}</SidePanel.Header>
+        <div
+          css={`
+            width: 300px;
+            overflow: hidden;
+          `}
+        >
+          <img src={`${row.thumbnail.path}.${row.thumbnail.extension}`} width="100%" alt={row.name} />
+        </div>
+        <div>{row.description}</div>
+      </SidePanel>
+    );
+  }
+
   return (
     <Sbook.Story>
-      {row && (
-        <SidePanel onClose={handleSidePanelClose} isOpen={isOpen}>
-          <SidePanel.Header>{row.name}</SidePanel.Header>
-          <div
-            css={`
-              width: 300px;
-              overflow: hidden;
-            `}
-          >
-            <img src={`${row.thumbnail.path}.${row.thumbnail.extension}`} width="100%" alt={row.name} />
-          </div>
-          <div>{row.description}</div>
-        </SidePanel>
-      )}
-      <DataGrid data={data} isIdle={isIdle} keygen="id" width={640}>
+      <p>
+        <Button>Start</Button>
+      </p>
+      {row && renderSidepanel({ row })}
+      <DataGrid
+        ref={refDataGrid}
+        data={data}
+        isIdle={isIdle}
+        keygen="id"
+        width={640}
+        onEnter={handleOpenSidepanel}
+        onSpaceBar={handleOpenSidepanel}
+      >
         {renderColumnIndicator({ onSelect: handleOnSelect, isChecked })}
         {renderColumnExpand({ onClick: handleClickColumnExpand })}
         <DataGrid.ColumnDefinition
@@ -161,6 +173,9 @@ export function App() {
       <a href="http://marvel.com" style={{ fontSize: "12px", color: "#777" }}>
         Data provided by Marvel. © 2019 MARVEL
       </a>
+      <p>
+        <Button>End</Button>
+      </p>
     </Sbook.Story>
   );
 }

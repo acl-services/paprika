@@ -13,24 +13,24 @@ const propTypes = {
   children: PropTypes.node.isRequired,
   data: PropTypes.arrayOf(PropTypes.shape({})),
   fillAvailableSpace: PropTypes.bool,
-  hasHorizontalBorder: PropTypes.bool,
-  hasVerticalBorder: PropTypes.bool,
-  hasZebra: PropTypes.bool,
   height: PropTypes.number,
   isIdle: PropTypes.bool,
   onKeyDown: PropTypes.func,
+  onEnter: PropTypes.func,
+  onShiftSpaceBar: PropTypes.func,
+  onSpaceBar: PropTypes.func,
   rowHeight: PropTypes.number,
   width: PropTypes.number,
 };
 const defaultProps = {
   data: [],
   fillAvailableSpace: false,
-  hasHorizontalBorder: true,
-  hasVerticalBorder: true,
-  hasZebra: false,
   height: 600,
   isIdle: false,
   onKeyDown: () => {},
+  onEnter: () => {},
+  onShiftSpaceBar: () => {},
+  onSpaceBar: () => {},
   rowHeight: 36,
   width: null,
 };
@@ -45,17 +45,17 @@ const innerElementTypeMainGrid = React.forwardRef((props, ref) => (
   <styled.InnerElementTypeMainGrid className="inner-element-type-main-grid" role="row" ref={ref} {...props} />
 ));
 
-export default function DataGrid(props) {
+const DataGrid = React.forwardRef((props, ref) => {
   const {
     children,
     data,
     fillAvailableSpace,
-    hasHorizontalBorder,
-    hasVerticalBorder,
-    hasZebra,
     height,
     isIdle,
+    onEnter,
     onKeyDown,
+    onSpaceBar,
+    onShiftSpaceBar,
     rowHeight,
     width,
     ...moreProps
@@ -144,15 +144,19 @@ export default function DataGrid(props) {
     refsCell.current[key].isActiveCell(true);
   }
 
-  const { handleKeyDown, handleClick, gridId, restoreHighlightFocus } = useGridEventHandler({
-    refGrid,
-    refContainer,
+  const { handleKeyDown, handleKeyUp, handleClick, gridId, restoreHighlightFocus } = useGridEventHandler({
     columnCount,
+    onChangeActiveCell,
+    onEnter,
+    onKeyDown,
+    onSpaceBar,
+    onShiftSpaceBar,
+    refContainer,
+    refGrid,
     rowCount,
     rowHeight,
     scrollBarWidth,
     stickyColumnsIndexes,
-    onChangeActiveCell,
   });
 
   const a11yTextMessage = (value, column, rowIndex) => {
@@ -250,6 +254,18 @@ export default function DataGrid(props) {
     refPrevLastScrollHeight.current = refScrollGrid.current.scrollHeight;
   }, []);
 
+  React.useImperativeHandle(
+    ref,
+    () => {
+      return {
+        focus: () => {
+          restoreHighlightFocus();
+        },
+      };
+    },
+    [restoreHighlightFocus]
+  );
+
   function handleBlurGrid() {
     const $isActive = refContainer.current.querySelector(".grid--is-active");
     if ($isActive) $isActive.classList.toggle("grid--is-blur");
@@ -257,6 +273,14 @@ export default function DataGrid(props) {
 
   function handleMouseDown(event) {
     handleClick({ data, ColumnDefinitions })(event);
+  }
+
+  function handleKeyDownGrid(event) {
+    handleKeyDown({ data, ColumnDefinitions })(event);
+  }
+
+  function handleKeyUpGrid(event) {
+    handleKeyUp({ data, ColumnDefinitions })(event);
   }
 
   return (
@@ -273,7 +297,8 @@ export default function DataGrid(props) {
         gridId={gridId}
         onBlur={handleBlurGrid}
         onFocus={handleFocusGrid}
-        onKeyDown={handleKeyDown}
+        onKeyDown={handleKeyDownGrid}
+        onKeyUp={handleKeyUpGrid}
         onMouseDown={handleMouseDown}
         ref={refContainer}
         role="grid"
@@ -444,9 +469,10 @@ export default function DataGrid(props) {
       ) : null}
     </>
   );
-}
+});
 
 DataGrid.propTypes = propTypes;
 DataGrid.defaultProps = defaultProps;
 DataGrid.ColumnDefinition = ColumnDefinition;
 DataGrid.WhenScrollBarReachedBottom = WhenScrollBarReachedBottom;
+export default DataGrid;

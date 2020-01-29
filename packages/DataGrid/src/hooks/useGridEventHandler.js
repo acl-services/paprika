@@ -15,13 +15,17 @@ export function timeDiff(t1, t2) {
 }
 
 export default function useGridEventHandler({
-  refGrid,
-  refContainer,
   columnCount,
+  onChangeActiveCell,
+  onEnter,
+  onKeyDown,
+  onSpaceBar,
+  onShiftSpaceBar,
+  refContainer,
+  refGrid,
   rowCount,
   scrollBarWidth,
   stickyColumnsIndexes,
-  onChangeActiveCell,
 }) {
   const [gridId] = React.useState(() => `PKA${nanoid()}`);
   const refContainerBoundClientRect = React.useRef(null);
@@ -234,7 +238,7 @@ export default function useGridEventHandler({
     }
   }
 
-  const keyboardKeys = {
+  const keyboardDownKeys = {
     ArrowUp: () => {
       const columnIndex = cell.current.columnIndex;
       const rowIndex = cell.current.rowIndex;
@@ -297,18 +301,60 @@ export default function useGridEventHandler({
         }
       }
     },
+    // keydown will not trigger spacebar, keyup will, but we want to prevent scrolling.
+    " ": () => {},
   };
 
   // This in charge of highlight the cell but will not scroll the table in case there is overflow
-  const handleKeyDown = event => {
-    if (event.key in keyboardKeys) {
+  const handleKeyDown = ({ data, ColumnDefinitions }) => event => {
+    onKeyDown(event);
+    if (event.key in keyboardDownKeys) {
       event.preventDefault();
       if (!cell) {
         return;
       }
 
       prevCell.current = cell.current;
-      keyboardKeys[event.key](getDataCell(event));
+      if (event.shiftKey && event.key === " ") {
+        keyboardDownKeys["space+shift"]({ data, ColumnDefinitions });
+        return;
+      }
+
+      keyboardDownKeys[event.key]({ data, ColumnDefinitions });
+    }
+  };
+
+  const keyboardUpKeys = {
+    // space bar
+    " ": ({ data, ColumnDefinitions, columnIndex, rowIndex }) => {
+      onSpaceBar({ row: data[rowIndex], column: ColumnDefinitions[columnIndex].props, rowIndex, columnIndex });
+    },
+    Enter: ({ data, ColumnDefinitions, columnIndex, rowIndex }) => {
+      onEnter({ row: data[rowIndex], column: ColumnDefinitions[columnIndex].props, rowIndex, columnIndex });
+    },
+    "space+shift": ({ data, ColumnDefinitions, columnIndex, rowIndex }) => {
+      onShiftSpaceBar({ row: data[rowIndex], column: ColumnDefinitions[columnIndex].props, rowIndex, columnIndex });
+    },
+  };
+
+  const handleKeyUp = ({ data, ColumnDefinitions }) => event => {
+    if (event.key in keyboardUpKeys) {
+      event.preventDefault();
+      if (!cell) {
+        return;
+      }
+
+      if (event.shiftKey && event.key === " ") {
+        keyboardUpKeys["space+shift"]({ data, ColumnDefinitions });
+        return;
+      }
+
+      keyboardUpKeys[event.key]({
+        columnIndex: cell.current.columnIndex,
+        rowIndex: cell.current.rowIndex,
+        data,
+        ColumnDefinitions,
+      });
     }
   };
 
@@ -347,5 +393,5 @@ export default function useGridEventHandler({
     }
   }
 
-  return { cell, prevCell, handleKeyDown, gridId, restoreHighlightFocus, handleClick };
+  return { cell, prevCell, handleKeyDown, handleKeyUp, gridId, restoreHighlightFocus, handleClick };
 }

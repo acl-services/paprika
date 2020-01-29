@@ -42,6 +42,9 @@ export const propTypes = {
   headerA11yText: PropTypes.func,
   isSticky: PropTypes.bool,
   onClick: PropTypes.func,
+  onEnter: PropTypes.func,
+  onShiftSpaceBar: PropTypes.func,
+  onSpaceBar: PropTypes.func,
   width: PropTypes.number,
 };
 
