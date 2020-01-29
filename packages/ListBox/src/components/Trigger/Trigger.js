@@ -119,7 +119,7 @@ export default function Trigger(props) {
       />
     ) : (
       <RawButton
-        id={triggerButtonId}
+        id={triggerButtonId.current}
         onClick={handleClick}
         ref={refTrigger}
         onKeyDown={handleKeyboardKeys({ state, dispatch, onChangeContext })}
@@ -127,7 +127,7 @@ export default function Trigger(props) {
         isDisabled={isDisabled}
         data-pka-anchor="listbox-trigger"
         aria-describedby={formElementLabelDescribedBy}
-        aria-labelledby={triggerButtonId}
+        aria-labelledby={triggerButtonId.current}
       >
         {refLabel && refLabel.current ? (
           <VisuallyHiddenFormLabelStyled>{refLabel.current.innerText}</VisuallyHiddenFormLabelStyled>

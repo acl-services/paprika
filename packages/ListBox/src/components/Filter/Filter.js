@@ -1,10 +1,12 @@
 import React from "react";
 import PropTypes from "prop-types";
+import useI18n from "@paprika/l10n/lib/useI18n";
 import useListBox from "../../useListBox";
 import { filter, applyFilter } from "./helpers";
 import { FilterContainerStyled, FilterInputStyled, FilterSearchIconStyled } from "./Filter.styles";
 
 const propTypes = {
+  a11yText: PropTypes.string,
   filter: PropTypes.func,
   hasSearchIcon: PropTypes.bool,
   noResultsMessage: PropTypes.string,
@@ -16,12 +18,13 @@ const propTypes = {
 };
 
 const defaultProps = {
+  a11yText: null,
   filter: null,
   hasSearchIcon: true,
   onChangeFilter: null,
   onKeyDown: null,
-  placeholder: "Filter...",
-  noResultsMessage: "Your search did not match any options.",
+  placeholder: null,
+  noResultsMessage: null,
   renderFilter: null,
   value: null,
 };
@@ -34,6 +37,7 @@ const Filter = React.forwardRef((props, ref) => {
   const [state, dispatch] = useListBox();
   const [textSearch, setTextSearch] = React.useState(props.value);
   const applyFilterType = useListBox.types.applyFilter;
+  const I18n = useI18n();
 
   React.useImperativeHandle(ref, () => ({
     clear: () => {
@@ -125,12 +129,13 @@ const Filter = React.forwardRef((props, ref) => {
       <FilterContainerStyled data-pka-anchor="list-filter">
         {props.hasSearchIcon ? <FilterSearchIconStyled /> : null}
         <FilterInputStyled
+          aria-label={props.a11yText || I18n.t("listBox.filter.a11y_text")}
           data-pka-anchor="list-filter-input"
           isDisabled={state.isDisabled}
           onBlur={handleBlur}
           onChange={handleChangeFilter}
           onKeyDown={props.onKeyDown}
-          placeholder={placeholder}
+          placeholder={placeholder || I18n.t("listBox.filter.placeholder")}
           ref={state.refFilterInput}
           type="text"
           value={value || textSearch || ""}
