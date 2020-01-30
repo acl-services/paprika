@@ -80,7 +80,7 @@ const DataGrid = React.forwardRef((props, ref) => {
 
   // these two value are sensitive in Grids with lots of columns and can degradate performance alot.
   // be caution when using them.
-  const overscanRowCount = 16;
+  const overscanRowCount = 10;
   const overscanColumnCount = 2;
 
   const rowCount = React.useMemo(() => {
