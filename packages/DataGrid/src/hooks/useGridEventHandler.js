@@ -199,10 +199,10 @@ export default function useGridEventHandler({
     timeDiff(t1, performance.now());
   }
 
-  function toCellState(column, index) {
+  function toCellState(column, row) {
     const cell = {
       columnIndex: Number.parseInt(column, 10),
-      rowIndex: Number.parseInt(index, 10),
+      rowIndex: Number.parseInt(row, 10),
     };
 
     onChangeActiveCell(cell);

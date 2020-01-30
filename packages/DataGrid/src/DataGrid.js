@@ -78,8 +78,10 @@ const DataGrid = React.forwardRef((props, ref) => {
   const [scrollBarWidth, setScrollBarWidth] = React.useState(0);
   const [gridShouldHaveFocus, setGridShouldHaveFocus] = React.useState(true);
 
-  const overscanRowCount = 20;
-  const overscanColumnCount = 20;
+  // these two value are sensitive in Grids with lots of columns and can degradate performance alot.
+  // be caution when using them.
+  const overscanRowCount = 4;
+  const overscanColumnCount = 4;
 
   const rowCount = React.useMemo(() => {
     return data.length;
@@ -307,7 +309,7 @@ const DataGrid = React.forwardRef((props, ref) => {
         ref={refContainer}
         role="grid"
         tabIndex={gridShouldHaveFocus ? 0 : -1}
-        $width={gridWidth + stickyGridWidth}
+        $width={gridWidth}
         isIdle={isIdle}
         {...moreProps}
       >
@@ -346,7 +348,7 @@ const DataGrid = React.forwardRef((props, ref) => {
             rowCount={1}
             rowHeight={() => rowHeight}
             height={rowHeight}
-            width={gridWidth - scrollBarWidth}
+            width={gridWidth - stickyGridWidth - scrollBarWidth}
             overscanColumnCount={overscanColumnCount}
             overscanRowCount={overscanRowCount}
             outerElementType={outerElementType}
@@ -419,7 +421,7 @@ const DataGrid = React.forwardRef((props, ref) => {
             height={height}
             rowCount={rowCount}
             rowHeight={() => rowHeight}
-            width={gridWidth}
+            width={gridWidth - stickyGridWidth}
             overscanColumnCount={overscanColumnCount}
             overscanRowCount={overscanRowCount}
             outerElementType={outerElementTypeMainGrid}
@@ -461,11 +463,11 @@ const DataGrid = React.forwardRef((props, ref) => {
       </styled.Grid>
       {!isIdle ? (
         <>
-          <styled.Footer $width={gridWidth + stickyGridWidth}>
+          <styled.Footer $width={gridWidth}>
             <styled.RowCount>Rows:{rowCount}</styled.RowCount>
           </styled.Footer>
           {WhenScrollBarReachedBottom ? (
-            <End width={gridWidth + stickyGridWidth} ref={refEnd}>
+            <End width={gridWidth} ref={refEnd}>
               {WhenScrollBarReachedBottom}
             </End>
           ) : null}
@@ -479,4 +481,5 @@ DataGrid.propTypes = propTypes;
 DataGrid.defaultProps = defaultProps;
 DataGrid.ColumnDefinition = ColumnDefinition;
 DataGrid.WhenScrollBarReachedBottom = WhenScrollBarReachedBottom;
+
 export default DataGrid;

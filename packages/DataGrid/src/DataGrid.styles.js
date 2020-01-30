@@ -2,7 +2,7 @@ import styled, { css } from "styled-components";
 import tokens from "@paprika/tokens";
 
 const experimentalGrey = "#e7e7e7"; /* experimental */
-
+const experimentalDarkGrey = "#dadada"; /* experimental */
 export const Grid = styled.div.attrs(({ $width, isIdle }) => {
   const _isIdle = isIdle ? { opacity: 0 } : { opacity: 100 };
 
@@ -28,10 +28,17 @@ export const Grid = styled.div.attrs(({ $width, isIdle }) => {
     }
   }
 
+  border-top: 1px solid ${tokens.border.color};
+  background: ${experimentalDarkGrey};
+
   position: relative;
 
   ${({ gridId }) => {
     return css`
+      .grid-${gridId} {
+        overflow-x: scroll !important;
+      }
+
       .${gridId}-header {
         overflow: hidden !important;
       }
@@ -57,6 +64,7 @@ export const Grid = styled.div.attrs(({ $width, isIdle }) => {
 `;
 
 export const Cell = styled.div`
+  background: ${tokens.color.white};
   border-bottom: 1px solid ${tokens.border.color};
   border-left: 1px solid ${tokens.border.color};
   display: flex;
@@ -74,7 +82,6 @@ export const CellHeader = styled(Cell)`
   background: ${experimentalGrey};
   border-bottom: 1px solid ${tokens.border.color};
   border-left: 1px solid ${tokens.border.color};
-  border-top: 1px solid ${tokens.border.color};
   color: ${tokens.color.black};
   display: block;
   font-weight: 600;
