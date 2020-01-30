@@ -292,8 +292,8 @@ const DataGrid = React.forwardRef((props, ref) => {
   return (
     <>
       {isIdle && (
-        <styled.Idle gridId={gridId} $width={gridWidth + stickyGridWidth} $height={height}>
-          <styled.IdleBlocker $width={gridWidth + stickyGridWidth} $height={height}>
+        <styled.Idle gridId={gridId} $width={gridWidth} $height={height}>
+          <styled.IdleBlocker $width={gridWidth} $height={height}>
             <Spinner />
           </styled.IdleBlocker>
         </styled.Idle>
