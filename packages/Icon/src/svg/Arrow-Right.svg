@@ -1,15 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <svg width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
-    <!-- Generator: Sketch 53 (72520) - https://sketchapp.com -->
-    <title>Arrow-Right</title>
-    <desc>Created with Sketch.</desc>
-    <defs>
-        <path d="M10.4934342,17.313764 C11.3139707,18.1341953 12.6442043,18.1341953 13.4647408,17.313764 C16.3604123,14.4179878 22.4790875,8.29941846 22.4790875,8.29941846 L20.2505812,6.0709125 L11.97914,14.3424577 L3.70759376,6.0709125 L1.4790875,8.29941846 C1.4790875,8.29941846 7.59776268,14.4179878 10.4934342,17.313764 L10.4934342,17.313764 Z" id="path-1"></path>
-    </defs>
-    <g id="Arrow-Right" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
-        <mask id="mask-2" fill="white">
-            <use xlink:href="#path-1"></use>
-        </mask>
-        <use id="🌈-Color" fill="#717171" transform="translate(11.979088, 12.000000) rotate(-90.000000) translate(-11.979088, -12.000000) " xlink:href="#path-1"></use>
-    </g>
+    <path
+        d="M10.4934342,17.313764 C11.3139707,18.1341953 12.6442043,18.1341953 13.4647408,17.313764 C16.3604123,14.4179878 22.4790875,8.29941846 22.4790875,8.29941846 L20.2505812,6.0709125 L11.97914,14.3424577 L3.70759376,6.0709125 L1.4790875,8.29941846 C1.4790875,8.29941846 7.59776268,14.4179878 10.4934342,17.313764 L10.4934342,17.313764 Z"
+        fill="#717171"
+        fill-rule="evenodd"
+        transform="translate(11.979088, 12.000000) rotate(-90.000000) translate(-11.979088, -12.000000) "
+    />
 </svg>
