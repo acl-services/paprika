@@ -62,7 +62,7 @@ const _faker = [
   "finance:bic",
 ];
 
-export function getDataFromWorker(rows = 100, columns = 10) {
+export function getDataFromWorker(rows = 1000, columns = 100) {
   // block for half a second to demonstrate asynchronicity
   const data = Array(rows).fill(null);
   const l = _faker.length;
