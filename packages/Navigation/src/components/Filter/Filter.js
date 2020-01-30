@@ -11,8 +11,9 @@ const propTypes = {
   onChange: PropTypes.func.isRequired,
   filters: PropTypes.arrayOf(
     PropTypes.shape({
-      filterId: PropTypes.string,
       columnId: PropTypes.string.isRequired,
+      filterId: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
+      renderValueField: PropTypes.func,
       rule: PropTypes.string.isRequired,
       value: PropTypes.oneOfType([PropTypes.string, PropTypes.bool]),
     })
@@ -24,10 +25,17 @@ const propTypes = {
   ).isRequired,
   onDeleteFilter: PropTypes.func.isRequired,
   onAddFilter: PropTypes.func.isRequired,
+  operator: PropTypes.oneOf(["AND", "OR"]),
+  onChangeOperator: PropTypes.func,
+};
+
+const defaultProps = {
+  operator: "AND",
+  onChangeOperator: null,
 };
 
 export default function Filter(props) {
-  const { onDeleteFilter, onAddFilter, filters, columns, onChange } = props;
+  const { onDeleteFilter, onAddFilter, filters, columns, onChange, operator, onChangeOperator } = props;
   const I18n = useI18n();
   const filtersRef = React.useRef(null);
 
@@ -62,12 +70,14 @@ export default function Filter(props) {
                 columns={columns}
                 onDeleteFilter={onDeleteFilter}
                 onChange={onChange}
-                isFirst={index === 0}
+                index={index}
                 filtersRef={filtersRef}
+                operator={operator}
+                onChangeOperator={onChangeOperator}
               />
             ))}
           </styled.FiltersPanel>
-          <Button onClick={onAddFilter} kind="minor">
+          <Button onClick={onAddFilter} kind="minor" data-pka-anchor="navigation.filter.addFilterButton">
             {I18n.t(`navigation.filter.add_filter`)}
           </Button>
         </Popover.Card>
@@ -78,5 +88,6 @@ export default function Filter(props) {
 }
 
 Filter.propTypes = propTypes;
+Filter.defaultProps = defaultProps;
 Filter.displayName = "Navigation.Filter";
 Filter.rulesByType = rulesByType;

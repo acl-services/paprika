@@ -10,11 +10,11 @@ const propTypes = {
 };
 
 export default function InlineSelect(props) {
-  const { children, onChange, selectedLabel, value } = props;
+  const { children, onChange, selectedLabel, value, ...moreProps } = props;
 
   return (
     <styled.Wrapper data-pka-anchor="filter.filter-item">
-      <styled.Select onChange={onChange} value={value}>
+      <styled.Select onChange={onChange} value={value} {...moreProps}>
         {children}
       </styled.Select>
       <styled.Trigger>{selectedLabel}</styled.Trigger>

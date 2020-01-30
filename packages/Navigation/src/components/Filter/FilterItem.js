@@ -17,18 +17,25 @@ const propTypes = {
   ).isRequired,
   filter: PropTypes.shape({
     columnId: PropTypes.string.isRequired,
+    filterId: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
+    renderValueField: PropTypes.func,
     rule: PropTypes.string.isRequired,
     value: PropTypes.oneOfType([PropTypes.string, PropTypes.bool]).isRequired,
-    renderValueField: PropTypes.func,
   }).isRequired,
   filtersRef: PropTypes.shape({ current: PropTypes.instanceOf(Object) }).isRequired,
-  isFirst: PropTypes.bool.isRequired,
+  index: PropTypes.number.isRequired,
   onChange: PropTypes.func.isRequired,
   onDeleteFilter: PropTypes.func.isRequired,
+  operator: PropTypes.oneOf(["AND", "OR"]).isRequired,
+  onChangeOperator: PropTypes.func,
+};
+
+const defaultProps = {
+  onChangeOperator: null,
 };
 
 function FilterItem(props) {
-  const { columns, filter, filtersRef, isFirst, onChange, onDeleteFilter } = props;
+  const { columns, filter, filtersRef, index, onChange, onDeleteFilter, operator, onChangeOperator } = props;
   const I18n = useI18n();
   const { columnId: selectedColumnId, rule: selectedRule, value, renderValueField: renderCustomValueField } = filter;
   const selectedColumnType = columns.find(({ id }) => id === selectedColumnId).type;
@@ -69,6 +76,7 @@ function FilterItem(props) {
             onChange={handleChangeRule}
             value={selectedRule}
             selectedLabel={I18n.t(`navigation.filter.rules.${localeKeysByRule[selectedRule]}`)}
+            data-pka-anchor="navigation.filter.ruleSelector"
           >
             {rulesByType[selectedColumnType].map(rule => (
               <option key={rule} value={rule}>
@@ -95,7 +103,7 @@ function FilterItem(props) {
       case columnTypes.BOOLEAN:
         return (
           <InlineSelect
-            value={value}
+            value={`${value}`}
             onChange={event => {
               onChange({ filter, value: event.target.value === "true" });
             }}
@@ -118,10 +126,33 @@ function FilterItem(props) {
     }
   }
 
+  function renderPrefix() {
+    switch (index) {
+      case 0:
+        return I18n.t("navigation.filter.where");
+      case 1:
+        if (onChangeOperator) {
+          return (
+            <InlineSelect
+              onChange={onChangeOperator}
+              value={operator}
+              selectedLabel={operator === "AND" ? I18n.t("navigation.filter.and") : I18n.t("navigation.filter.or")}
+            >
+              <option value="AND">{I18n.t("navigation.filter.and")}</option>
+              <option value="OR">{I18n.t("navigation.filter.or")}</option>
+            </InlineSelect>
+          );
+        }
+        return I18n.t(`navigation.filter.${operator === "AND" ? "and" : "or"}`);
+      default:
+        return I18n.t(`navigation.filter.${operator === "AND" ? "and" : "or"}`);
+    }
+  }
+
   return (
-    <styled.FilterItem data-pka-anchor="filter.filter-item">
-      <Button.Close data-pka-anchor="filter.delete-button" onClick={handleRemoveFilter} size="small" />
-      {isFirst ? I18n.t("navigation.filter.where") : I18n.t("navigation.filter.and")}
+    <styled.FilterItem data-pka-anchor="navigation.filter.filterItem">
+      <Button.Close data-pka-anchor="navigation.filter.deleteFilterButton" onClick={handleRemoveFilter} size="small" />
+      {renderPrefix()}
       <InlineSelect
         onChange={handleChangeColumn}
         value={selectedColumnId}
@@ -141,5 +172,6 @@ function FilterItem(props) {
 }
 
 FilterItem.propTypes = propTypes;
+FilterItem.defaultProps = defaultProps;
 
 export default React.memo(FilterItem);

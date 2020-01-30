@@ -39,6 +39,7 @@ const getLevelFilter = () => {
 
 export default function MyFilter({ columns }) {
   const [filters, setFilters] = React.useState([]);
+  const [operator, setOperator] = React.useState("AND");
 
   function handleFilterChange({ filter, rule, value, columnId }) {
     let newFilter;
@@ -87,6 +88,12 @@ export default function MyFilter({ columns }) {
 
   const memorizedDeleteFilter = React.useCallback(handleDeleteFilter, [setFilters]);
 
+  function handleChangeOperator() {
+    setOperator(prevOperator => (prevOperator === "AND" ? "OR" : "AND"));
+  }
+
+  const memorizedHandleChangeOperator = React.useCallback(handleChangeOperator, [setOperator]);
+
   return (
     <Filter
       onChange={memorizedHandleChange}
@@ -94,6 +101,8 @@ export default function MyFilter({ columns }) {
       onDeleteFilter={memorizedDeleteFilter}
       filters={filters}
       columns={columns}
+      operator={operator}
+      onChangeOperator={memorizedHandleChangeOperator}
     />
   );
 }
