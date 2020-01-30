@@ -69,7 +69,13 @@ export default function Sort(props) {
               />
             ))}
           </styled.FieldsPanel>
-          <Button onClick={onAddField} kind="minor" isDisabled={fields.length === columns.length}>
+          <Button
+            onClick={() => {
+              fieldsRef.current.focus();
+              onAddField();
+            }}
+            kind="minor"
+          >
             Add a field to sort by
           </Button>
         </Popover.Card>

@@ -145,7 +145,22 @@ const locales = {
         "sort": {
           "label": "Sort",
           "singular_label": "1 column sorted",
-          "plural_label": "{{numberOfFields}} columns sorted"
+          "plural_label": "{{numberOfFields}} columns sorted",
+          "add_field": "Add a field to sort by",
+          "rules": {
+            "ascending": {
+              "boolean": "Sort ascending (true → false)",
+              "number": "Sort ascending (1 → 9)",
+              "text": "Sort ascending (A → Z)",
+              "date": "Sort ascending (1 → 9)"
+            },
+            "descending": {
+              "boolean": "Sort descending (false → true)",
+              "number": "Sort descending (1 → 9)",
+              "text": "Sort descending (Z → A)",
+              "date": "Sort descending (9 → 1)"
+            }
+          }
         }
       }
     }

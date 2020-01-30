@@ -2,6 +2,7 @@ import styled, { css } from "styled-components";
 import stylers from "@paprika/stylers";
 import tokens from "@paprika/tokens";
 import PlaceholderIcon from "@paprika/icon/lib/Search";
+import { Wrapper } from "../InlineSelect/InlineSelect.styles";
 import { getGenericTriggerIcon, GenericTrigger } from "../../Navigation.styles";
 
 export const FieldsPanel = styled.div`
@@ -16,6 +17,11 @@ export const SortItem = styled.li`
   align-items: center;
   display: flex;
   flex-wrap: nowrap;
+  margin-bottom: ${tokens.spaceSm};
+
+  ${Wrapper} {
+    margin-right: ${tokens.spaceSm};
+  }
 `;
 
 const hasFieldStyles = css`
