@@ -174,4 +174,4 @@ function FilterItem(props) {
 FilterItem.propTypes = propTypes;
 FilterItem.defaultProps = defaultProps;
 
-export default React.memo(FilterItem);
+export default FilterItem;

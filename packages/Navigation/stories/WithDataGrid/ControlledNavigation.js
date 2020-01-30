@@ -1,17 +1,7 @@
 import React from "react";
 import nanoid from "nanoid";
-import Navigation, { Density, Filter, ColumnsArrangement, Sort } from "../../src";
-import { DataContext } from "./index";
-import getSubset from "./helpers/getSubset";
-
-const getDefaultFilter = () => {
-  return {
-    columnId: "goals",
-    rule: "less_than",
-    value: "0",
-    filterId: nanoid(),
-  };
-};
+import Navigation, { Density, ColumnsArrangement, Sort } from "../../src";
+import MyFilter from "./MyFilter";
 
 const getDefaultField = () => {
   return {
@@ -20,13 +10,6 @@ const getDefaultField = () => {
     direction: "ASCEND",
   };
 };
-
-const defaultColumnsForArrangement = [
-  { id: "goals", label: "Goals", isHidden: false, isDisabled: false },
-  { id: "name", label: "Name", isHidden: false, isDisabled: false },
-  { id: "status", label: "Status", isHidden: false, isDisabled: false },
-  { id: "country", label: "Country", isHidden: false, isDisabled: false },
-];
 
 const filterColumns = [
   {
@@ -55,35 +38,6 @@ const filterColumns = [
 
 export default function ControlledNavigation(props) {
   const { setColumns, columns, setFilters, setSortedFields, filters, sortedFields } = props;
-  // const [filters, setFilters] = React.useState([]);
-  // const [columns, setColumns] = React.useState(defaultColumnsForArrangement);
-  // const [sortedFields, setSortedFields] = React.useState([]);
-
-  function handleFilterChange({ filter, rule, value, columnId }) {
-    let newFilter;
-    if (columnId) {
-      newFilter = {
-        ...filter,
-        columnId,
-        rule: Filter.rulesByType[filterColumns.find(column => column.id === columnId).type][0],
-        value: "",
-      };
-    } else if (rule) {
-      newFilter = {
-        ...filter,
-        rule,
-        value: "",
-      };
-    } else {
-      newFilter = {
-        ...filter,
-        value,
-      };
-    }
-    setFilters(prevFilters =>
-      prevFilters.map(filterItem => (filterItem.filterId === filter.filterId ? newFilter : filterItem))
-    );
-  }
 
   function handleSortFieldChange({ field, direction, columnId }) {
     let newField;
@@ -101,17 +55,7 @@ export default function ControlledNavigation(props) {
   return (
     <Navigation>
       <Density />
-      <Filter
-        onChange={handleFilterChange}
-        onAddFilter={() => {
-          setFilters(prevFilters => [...prevFilters, getDefaultFilter()]);
-        }}
-        onDeleteFilter={deletedFilter => {
-          setFilters(prevFilters => [...prevFilters].filter(filter => filter.filterId !== deletedFilter.filterId));
-        }}
-        filters={filters}
-        columns={filterColumns}
-      />
+      <MyFilter filters={filters} setFilters={setFilters} columns={filterColumns} />
       <Sort
         onChange={handleSortFieldChange}
         columns={filterColumns}
