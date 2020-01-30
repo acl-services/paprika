@@ -5,16 +5,17 @@ import Button from "@paprika/button";
 import useI18n from "@paprika/l10n/lib/useI18n";
 import FilterItem from "./FilterItem";
 import { rulesByType } from "./rules";
-import { FiltersPanelStyled } from "./Filter.styles";
+import * as styled from "./Filter.styles";
 
 const propTypes = {
-  onChange: PropTypes.func,
+  onChange: PropTypes.func.isRequired,
   filters: PropTypes.arrayOf(
     PropTypes.shape({
-      filterId: PropTypes.string,
       columnId: PropTypes.string.isRequired,
+      filterId: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
+      renderValueField: PropTypes.func,
       rule: PropTypes.string.isRequired,
-      value: PropTypes.string,
+      value: PropTypes.oneOfType([PropTypes.string, PropTypes.bool]),
     })
   ).isRequired,
   columns: PropTypes.arrayOf(
@@ -24,15 +25,19 @@ const propTypes = {
   ).isRequired,
   onDeleteFilter: PropTypes.func.isRequired,
   onAddFilter: PropTypes.func.isRequired,
+  operator: PropTypes.oneOf(["AND", "OR"]),
+  onChangeOperator: PropTypes.func,
 };
 
 const defaultProps = {
-  onChange: null,
+  operator: "AND",
+  onChangeOperator: null,
 };
 
 export default function Filter(props) {
-  const { onDeleteFilter, onAddFilter, filters, columns, onChange } = props;
+  const { onDeleteFilter, onAddFilter, filters, columns, onChange, operator, onChangeOperator } = props;
   const I18n = useI18n();
+  const filtersRef = React.useRef(null);
 
   function getLabelText(numberOfFilters) {
     switch (numberOfFilters) {
@@ -46,31 +51,35 @@ export default function Filter(props) {
   }
 
   return (
-    <Popover align="bottom" edge="left" maxWidth={1200} offset={8}>
-      <Popover.Trigger kind="flat">
-        {handler => (
-          <Button kind="flat" onClick={handler}>
+    <Popover align="bottom" edge="left" maxWidth={600} offset={8}>
+      <Popover.Trigger>
+        {(handler, attributes) => (
+          <styled.Trigger {...attributes} isSemantic={false} onClick={handler} hasFilterApplied={filters.length > 0}>
+            <styled.Icon />
             {getLabelText(filters.length)}
-          </Button>
+          </styled.Trigger>
         )}
       </Popover.Trigger>
       <Popover.Content>
         <Popover.Card>
-          <FiltersPanelStyled>
+          <styled.FiltersPanel ref={filtersRef} tabIndex={-1}>
             {filters.map((filter, index) => (
               <FilterItem
-                key={filter.id}
+                key={filter.filterId}
                 filter={filter}
                 columns={columns}
                 onDeleteFilter={onDeleteFilter}
                 onChange={onChange}
-                isFirst={index === 0}
+                index={index}
+                filtersRef={filtersRef}
+                operator={operator}
+                onChangeOperator={onChangeOperator}
               />
             ))}
-            <Button onClick={onAddFilter} kind="minor">
-              {I18n.t(`navigation.filter.add_filter`)}
-            </Button>
-          </FiltersPanelStyled>
+          </styled.FiltersPanel>
+          <Button onClick={onAddFilter} kind="minor" data-pka-anchor="navigation.filter.addFilterButton">
+            {I18n.t(`navigation.filter.add_filter`)}
+          </Button>
         </Popover.Card>
         <Popover.Tip />
       </Popover.Content>

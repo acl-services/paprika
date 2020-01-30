@@ -1,7 +1,6 @@
 import React from "react";
 import PropTypes from "prop-types";
 import DropdownMenu from "@paprika/dropdown-menu";
-// import { size } from "@paprika/helpers/lib/types";
 
 const propTypes = {
   onChange: PropTypes.func.isRequired,

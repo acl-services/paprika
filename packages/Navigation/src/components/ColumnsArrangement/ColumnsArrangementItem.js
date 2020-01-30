@@ -1,8 +1,7 @@
 import React from "react";
 import PropTypes from "prop-types";
-import Switch from "@paprika/switch";
 
-import { ItemStyled } from "./ColumnsArrangement.styles";
+import * as styled from "./ColumnsArrangement.styles";
 
 const propTypes = {
   id: PropTypes.oneOfType([PropTypes.string, PropTypes.number]).isRequired,
@@ -25,10 +24,10 @@ export default function ColumnsArrangementItem(props) {
   }
 
   return (
-    <ItemStyled>
-      {label}
-      <Switch onClick={handleClick} isChecked={!isHidden} isDisabled={isDisabled} size="small" />
-    </ItemStyled>
+    <styled.Item>
+      <styled.ColumnLabel>{label}</styled.ColumnLabel>
+      <styled.Switch onClick={handleClick} isChecked={!isHidden} isDisabled={isDisabled} size="small" />
+    </styled.Item>
   );
 }
 

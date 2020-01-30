@@ -6,13 +6,15 @@ import Popover from "@paprika/popover";
 import Sortable from "@paprika/sortable";
 import useI18n from "@paprika/l10n/lib/useI18n";
 import ColumnManagingItem from "./ColumnsArrangementItem";
-
-import { FooterStyled, sortableStyles } from "./ColumnsArrangement.styles";
+import * as styled from "./ColumnsArrangement.styles";
 
 const propTypes = {
   columns: PropTypes.arrayOf(
     PropTypes.shape({
       label: PropTypes.string.isRequired,
+      id: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
+      isDisabled: PropTypes.bool,
+      isHidden: PropTypes.bool,
     })
   ).isRequired,
   onChangeOrder: PropTypes.func.isRequired,
@@ -62,9 +64,10 @@ export default function ColumnsArrangement(props) {
     <Popover align="bottom" edge="left" minWidth={230}>
       <Popover.Trigger>
         {handler => (
-          <Button kind="flat" onClick={handler}>
-            {getLabelText(filteredColumns.filter(column => column.isHidden).length)}
-          </Button>
+          <styled.Trigger onClick={handler} hasColumnsHidden={columns.filter(column => column.isHidden).length > 0}>
+            <styled.Icon />
+            {getLabelText(columns.filter(column => column.isHidden).length)}
+          </styled.Trigger>
         )}
       </Popover.Trigger>
 
@@ -79,7 +82,7 @@ export default function ColumnsArrangement(props) {
           {filteredColumns.length === 0 ? (
             I18n.t("navigation.no_results")
           ) : (
-            <Sortable css={sortableStyles} onChange={handleChangeOrder} hasNumbers={false}>
+            <styled.Sortable onChange={handleChangeOrder} hasNumbers={false}>
               {filteredColumns.map(column => (
                 <Sortable.Item key={column.id} sortId={column.id}>
                   <ColumnManagingItem
@@ -92,17 +95,17 @@ export default function ColumnsArrangement(props) {
                   />
                 </Sortable.Item>
               ))}
-            </Sortable>
+            </styled.Sortable>
           )}
           {searchTerm.length ? null : (
-            <FooterStyled>
+            <styled.Footer>
               <Button kind="minor" onClick={onHideAll}>
                 {I18n.t("navigation.columns_arrangement.hide_all")}
               </Button>
               <Button kind="minor" onClick={onShowAll}>
                 {I18n.t("navigation.columns_arrangement.show_all")}
               </Button>
-            </FooterStyled>
+            </styled.Footer>
           )}
         </Popover.Card>
         <Popover.Tip />

@@ -2,11 +2,12 @@ import React from "react";
 import PropTypes from "prop-types";
 import Button from "@paprika/button";
 import Popover from "@paprika/popover";
+import useI18n from "@paprika/l10n/lib/useI18n";
 
 import SortItem from "./SortItem";
 import { sortDirections } from "../../constants";
 
-import { FieldsPanelStyled } from "./Sort.styles";
+import * as styled from "./Sort.styles";
 
 const propTypes = {
   onChange: PropTypes.func.isRequired,
@@ -30,19 +31,33 @@ const defaultProps = {};
 
 export default function Sort(props) {
   const { fields, onDeleteField, onChange, columns, onAddField } = props;
+  const I18n = useI18n();
+  const fieldsRef = React.useRef(null);
+
+  function getLabelText(numberOfFields) {
+    switch (numberOfFields) {
+      case 0:
+        return I18n.t("navigation.sort.label");
+      case 1:
+        return I18n.t("navigation.sort.singular_label");
+      default:
+        return I18n.t("navigation.sort.plural_label", { numberOfFields });
+    }
+  }
 
   return (
     <Popover align="bottom" edge="left" maxWidth={1200}>
       <Popover.Trigger kind="flat">
-        {handler => (
-          <Button kind="flat" onClick={handler}>
-            Sort
-          </Button>
+        {(handler, attributes) => (
+          <styled.Trigger {...attributes} isSemantic={false} onClick={handler} hasField={fields.length > 0}>
+            <styled.Icon />
+            {getLabelText(fields.length)}
+          </styled.Trigger>
         )}
       </Popover.Trigger>
       <Popover.Content>
         <Popover.Card>
-          <FieldsPanelStyled>
+          <styled.FieldsPanel ref={fieldsRef} tabIndex={-1}>
             {fields.map(field => (
               <SortItem
                 key={field.fieldId}
@@ -50,12 +65,19 @@ export default function Sort(props) {
                 columns={columns}
                 onDeleteField={onDeleteField}
                 onChange={onChange}
+                fieldsRef={fieldsRef}
               />
             ))}
-            <Button onClick={onAddField} kind="minor" isDisabled={fields.length === columns.length}>
-              Add a field to sort by
-            </Button>
-          </FieldsPanelStyled>
+          </styled.FieldsPanel>
+          <Button
+            onClick={() => {
+              fieldsRef.current.focus();
+              onAddField();
+            }}
+            kind="minor"
+          >
+            Add a field to sort by
+          </Button>
         </Popover.Card>
         <Popover.Tip />
       </Popover.Content>

@@ -1,22 +1,34 @@
 import React from "react";
 import PropTypes from "prop-types";
-import Select from "@paprika/select";
 import Button from "@paprika/button";
-import { sortDirections } from "../../constants";
-import { SortItemStyled } from "./Sort.styles";
+import useI18n from "@paprika/l10n/lib/useI18n";
+import InlineSelect from "../InlineSelect/InlineSelect";
+import { sortDirections, localeTypeKeys } from "../../constants";
+import * as styled from "./Sort.styles";
 
 const propTypes = {
+  columns: PropTypes.arrayOf(
+    PropTypes.shape({
+      label: PropTypes.string.isRequired,
+    })
+  ).isRequired,
   field: PropTypes.shape({
     columnId: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
     direction: PropTypes.oneOf([sortDirections.ASCEND, sortDirections.DESCEND]),
   }).isRequired,
+  fieldsRef: PropTypes.shape({ current: PropTypes.instanceOf(Object) }).isRequired,
+  onChange: PropTypes.func.isRequired,
+  onDeleteField: PropTypes.func.isRequired,
 };
 
-export default function SortItem(prop) {
-  const { field, columns, onDeleteField, onChange } = prop;
+function SortItem(props) {
+  const { field, columns, onDeleteField, onChange, fieldsRef } = props;
   const { columnId: selectedColumnId, direction } = field;
+  const I18n = useI18n();
+  const columnTypeTranslationKey = localeTypeKeys[columns.find(column => column.id === selectedColumnId).type];
 
   function handleRemoveFilter() {
+    fieldsRef.current.focus();
     onDeleteField(field);
   }
 
@@ -29,21 +41,39 @@ export default function SortItem(prop) {
   }
 
   return (
-    <SortItemStyled data-pka-anchor="filter.filter-item">
-      <Button.Close data-pka-anchor="filter.delete-button" onClick={handleRemoveFilter} size="small" />
-      <Select onChange={handleChangeColumn} value={selectedColumnId}>
+    <styled.SortItem data-pka-anchor="sort.sort-field">
+      <Button.Close data-pka-anchor="sort.delete-button" onClick={handleRemoveFilter} size="small" />
+      <InlineSelect
+        onChange={handleChangeColumn}
+        value={selectedColumnId}
+        selectedLabel={columns.find(column => column.id === selectedColumnId).label}
+      >
         {columns.map(column => (
           <option key={column.id} value={column.id}>
             {column.label}
           </option>
         ))}
-      </Select>
-      <Select onChange={handleChangeRule} value={direction}>
-        <option value={sortDirections.ASCEND}>Ascend</option>
-        <option value={sortDirections.DESCEND}>Descend</option>
-      </Select>
-    </SortItemStyled>
+      </InlineSelect>
+      <InlineSelect
+        onChange={handleChangeRule}
+        value={direction}
+        selectedLabel={I18n.t(
+          `navigation.sort.rules.${
+            direction === sortDirections.ASCEND ? "ascending" : "descending"
+          }.${columnTypeTranslationKey}`
+        )}
+      >
+        <option value={sortDirections.ASCEND}>
+          {I18n.t(`navigation.sort.rules.ascending.${columnTypeTranslationKey}`)}
+        </option>
+        <option value={sortDirections.DESCEND}>
+          {I18n.t(`navigation.sort.rules.descending.${columnTypeTranslationKey}`)}
+        </option>
+      </InlineSelect>
+    </styled.SortItem>
   );
 }
 
 SortItem.propTypes = propTypes;
+
+export default React.memo(SortItem);

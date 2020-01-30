@@ -1,12 +1,35 @@
-import styled from "styled-components";
+import styled, { css } from "styled-components";
+import stylers from "@paprika/stylers";
+import tokens from "@paprika/tokens";
+import PlaceholderIcon from "@paprika/icon/lib/Search";
+import { Wrapper } from "../InlineSelect/InlineSelect.styles";
+import { getGenericTriggerIcon, GenericTrigger } from "../../Navigation.styles";
 
-export const FieldsPanelStyled = styled.div`
+export const FieldsPanel = styled.div`
   width: 420px;
+
+  &:focus {
+    outline: none;
+  }
 `;
 
-export const SortItemStyled = styled.li`
+export const SortItem = styled.li`
   align-items: center;
   display: flex;
   flex-wrap: nowrap;
-  width: 600px;
+  margin-bottom: ${tokens.spaceSm};
+
+  ${Wrapper} {
+    margin-right: ${tokens.spaceSm};
+  }
 `;
+
+const hasFieldStyles = css`
+  background-color: ${stylers.alpha(tokens.color.chartColor07, 0.3)};
+`;
+
+export const Trigger = styled(GenericTrigger)`
+  ${({ hasField }) => (hasField ? hasFieldStyles : "")}
+`;
+
+export const Icon = getGenericTriggerIcon(PlaceholderIcon);
