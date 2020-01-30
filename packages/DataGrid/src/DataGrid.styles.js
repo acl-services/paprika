@@ -2,7 +2,7 @@ import styled, { css } from "styled-components";
 import tokens from "@paprika/tokens";
 
 const experimentalGrey = "#e7e7e7"; /* experimental */
-
+const experimentalDarkGrey = "#dadada"; /* experimental */
 export const Grid = styled.div.attrs(({ $width, isIdle }) => {
   const _isIdle = isIdle ? { opacity: 0 } : { opacity: 100 };
 
@@ -28,10 +28,17 @@ export const Grid = styled.div.attrs(({ $width, isIdle }) => {
     }
   }
 
+  border-top: 1px solid ${tokens.border.color};
+  background: ${experimentalDarkGrey};
+
   position: relative;
 
   ${({ gridId }) => {
     return css`
+      .grid-${gridId} {
+        overflow-x: scroll !important;
+      }
+
       .${gridId}-header {
         overflow: hidden !important;
       }
@@ -42,13 +49,22 @@ export const Grid = styled.div.attrs(({ $width, isIdle }) => {
           doing it will create a incorrect navigation while using the arrow keys.
         */
         box-shadow: 0px 0px 12px 4px ${tokens.border.color};
-        overflow: hidden !important;
+        /* overflow: hidden !important; */
+        overflow-x: hidden !important;
+        ::-webkit-scrollbar {
+          width: 0px;
+        }
+        ::-webkit-scrollbar-track-piece {
+          -webkit-border-radius: 6px;
+          background-color: transparent;
+        }
       }
     `;
   }}
 `;
 
 export const Cell = styled.div`
+  background: ${tokens.color.white};
   border-bottom: 1px solid ${tokens.border.color};
   border-left: 1px solid ${tokens.border.color};
   display: flex;
@@ -57,8 +73,8 @@ export const Cell = styled.div`
   line-height: 1;
   position: relative;
   &:focus {
-    border: 1px solid ${tokens.border.color};
-    outline: 0;
+    outline: 1px solid transparent;
+    /* outline: 0; */
   }
 `;
 
@@ -66,7 +82,6 @@ export const CellHeader = styled(Cell)`
   background: ${experimentalGrey};
   border-bottom: 1px solid ${tokens.border.color};
   border-left: 1px solid ${tokens.border.color};
-  border-top: 1px solid ${tokens.border.color};
   color: ${tokens.color.black};
   display: block;
   font-weight: 600;
@@ -77,11 +92,7 @@ export const CellHeader = styled(Cell)`
   width: 100%;
 `;
 
-export const InnerCell = styled.div.attrs(({ $style }) => {
-  return {
-    style: $style,
-  };
-})`
+export const InnerCell = styled.div`
   display: block;
   height: 100%;
   overflow: hidden;
@@ -207,23 +218,13 @@ export const IdleBlocker = styled.div`
 `;
 
 export const Footer = styled.div`
+  border: 1px solid ${tokens.border.color};
+  box-sizing: border-box;
+  font-size: 12px;
+  padding: 4px;
   ${({ $width }) => {
     return `
-      padding: 8px;
-      border: 1px solid ${tokens.border.color};
-      width: ${$width - 17}px;
-  `;
-  }}
-`;
-
-export const FooterLoadMore = styled.div`
-  align-items: center;
-  display: flex;
-  justify-content: center;
-  padding: ${tokens.space};
-  ${({ $width }) => {
-    return `
-      width: ${$width - 17}px;
+      max-width: ${$width + 1}px;
   `;
   }}
 `;

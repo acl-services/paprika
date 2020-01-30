@@ -4,7 +4,7 @@ import * as Sbook from "storybook/assets/styles/common.styles";
 import SidePanel from "@paprika/sidepanel";
 import styled from "styled-components";
 import Button from "@paprika/button";
-import DataGrid from "../src";
+import DataGrid, { renderColumnIndicator, renderColumnExpand } from "../src";
 
 const ImgWrapper = styled.div`
   height: 28px;
@@ -27,13 +27,15 @@ export async function fetchMarvelAPI(term, offset = null, limit = 20) {
 }
 
 export function App() {
-  const [offsetLetter /* setOffsetLetter */] = React.useState(0);
-  const [offset /* setOffset */] = React.useState(0);
-  const [, /* letters */ setLetters] = React.useState({});
+  const [offsetLetter, setOffsetLetter] = React.useState(0);
+  const [offset, setOffset] = React.useState(0);
+  const [letters, setLetters] = React.useState({});
   const [data, setData] = React.useState([]);
-  const [row /* setRow */] = React.useState(null);
+  const [row, setRow] = React.useState(null);
   const [isOpen, setIsOpen] = React.useState(false);
   const [isIdle, setIsIdle] = React.useState(true);
+  const [isPending, setIsPending] = React.useState(false);
+  const refDataGrid = React.useRef(null);
 
   React.useEffect(() => {
     async function getData() {
@@ -46,18 +48,17 @@ export function App() {
       });
 
       setData(state => {
-        return state.concat(data.data.results);
+        const _stateArray = state === null ? [] : state;
+        return _stateArray.concat(data.data.results);
       });
-
-      setIsIdle(() => false);
     }
 
-    setIsIdle(() => true);
     getData();
-  }, [offset, offsetLetter]);
+  }, [offset, offsetLetter, setLetters]);
+  // ^ we don't want to track data dependency
 
   function renderSeries({ row }) {
-    return row.series.items.map(item => <span key={item.name}>{item.name}</span>);
+    return row.series.items.map((item, index) => <span key={index /* eslint-disable-line */}>{item.name}</span>);
   }
 
   function renderThumbnail({ row }) {
@@ -68,82 +69,111 @@ export function App() {
     );
   }
 
-  // function handleExpandedRow({ row }) {
-  //   setRow({ row });
-  //   setIsOpen(() => true);
-  // }
+  function handleOpenSidepanel({ row }) {
+    setRow(() => row);
+    setIsOpen(() => true);
+  }
 
   function handleSidePanelClose() {
     setIsOpen(() => false);
   }
 
-  // function handleLoadMore() {
-  //   const currentLetter = String.fromCharCode(97 + offsetLetter);
-  //   const { offset: currentOffset, total, count } = letters[currentLetter];
-  //   if (currentOffset + count <= total) {
-  //     setOffset(off => off + 1);
-  //     return;
-  //   }
-  //   setOffset(() => 0);
-  //   setOffsetLetter(off => off + 1);
-  // }
+  function handleLoadMore() {
+    setIsPending(() => true);
+    const currentLetter = String.fromCharCode(97 + offsetLetter);
+    const { offset: currentOffset, total, count } = letters[currentLetter];
+    if (currentOffset + count < total) {
+      setOffset(off => off + 1);
+      return;
+    }
+    setOffset(() => 0);
+    setOffsetLetter(off => off + 1);
+  }
 
-  // function handleKeyDownArrow({ row }) {
-  //   setRow(() => row);
-  // }
-  //
-  // function handleClickCell({ row }) {
-  //   setRow(() => row);
-  // }
+  React.useEffect(() => {
+    if (data.length > 0) {
+      setIsIdle(() => false);
+    }
+    setIsPending(() => false);
+  }, [data.length]);
 
-  // onClickCell={handleClickCell}
-  // onExpandedRow={handleExpandedRow}
-  // onKeyDownArrow={handleKeyDownArrow}
+  function handleOnSelect() {
+    console.log("handleOnSelect");
+  }
+
+  function isChecked() {
+    return "unchecked";
+  }
+
+  function renderSidepanel({ row }) {
+    return (
+      <SidePanel onClose={handleSidePanelClose} isOpen={isOpen}>
+        <SidePanel.FocusLock
+          onDeactivation={() => {
+            // https://github.com/theKashey/react-focus-lock#unmounting-and-focus-management
+            setTimeout(() => {
+              refDataGrid.current.focus();
+            }, 0);
+          }}
+        />
+        <SidePanel.Header>{row.name}</SidePanel.Header>
+        <div
+          css={`
+            width: 300px;
+            overflow: hidden;
+          `}
+        >
+          <img src={`${row.thumbnail.path}.${row.thumbnail.extension}`} width="100%" alt={row.name} />
+        </div>
+        <div>{row.description}</div>
+      </SidePanel>
+    );
+  }
 
   return (
     <Sbook.Story>
-      {row && (
-        <SidePanel onClose={handleSidePanelClose} isOpen={isOpen}>
-          <SidePanel.Header>{row.name}</SidePanel.Header>
-          <div
-            css={`
-              width: 300px;
-              overflow: hidden;
-            `}
-          >
-            <img src={`${row.thumbnail.path}.${row.thumbnail.extension}`} width="100%" alt={row.name} />
-          </div>
-          <div>{row.description}</div>
-        </SidePanel>
-      )}
-      <input type="text" />
-      <select>
-        <option>1</option>
-        <option>2</option>
-        <option>3</option>
-      </select>
-      <DataGrid data={data} isIdle={isIdle} keygen="id" width={440}>
-        <DataGrid.ColumnDefinition isSticky id="0" header="Key" cell="id" />
+      <p>
+        <Button>Start</Button>
+      </p>
+      {row && renderSidepanel({ row })}
+      <DataGrid
+        ref={refDataGrid}
+        data={data}
+        isIdle={isIdle}
+        keygen="id"
+        width={640}
+        onClick={handleOpenSidepanel}
+        onEnter={handleOpenSidepanel}
+        onSpaceBar={handleOpenSidepanel}
+      >
+        {renderColumnIndicator({ onSelect: handleOnSelect, isChecked })}
+        {renderColumnExpand()}
         <DataGrid.ColumnDefinition
           isSticky
           width={50}
-          id="6"
           header="Img"
           cell={renderThumbnail}
-          cellStyle={{ padding: "4px" }}
+          cellProps={() => ({ style: { padding: "4px" } })}
         />
-        <DataGrid.ColumnDefinition isSticky width={160} id="1" header="Name" cell="name" />
-        <DataGrid.ColumnDefinition width={320} id="2" header="Description" cell="description" />
-        <DataGrid.ColumnDefinition width={180} id="3" header="Modified" cell="modified" />
-        <DataGrid.ColumnDefinition width={120} id="4" header="URI" cell="resourceURI" />
-        <DataGrid.ColumnDefinition width={220} id="5" header="Series" cell={renderSeries} />
-        <DataGrid.EndOFScrollingFooter>
-          <Button>Load more</Button>
-        </DataGrid.EndOFScrollingFooter>
+        <DataGrid.ColumnDefinition isSticky width={160} header="Name" cell="name" />
+        <DataGrid.ColumnDefinition header="Key" cell="id" />
+        <DataGrid.ColumnDefinition width={240} header="Description" cell="description" />
+        <DataGrid.ColumnDefinition width={180} header="Modified" cell="modified" />
+        <DataGrid.ColumnDefinition width={120} header="URI" cell="resourceURI" />
+        <DataGrid.ColumnDefinition width={420} header="Series" cell={renderSeries} />
+        <DataGrid.WhenScrollBarReachedBottom>
+          <Button isPending={isPending} onClick={handleLoadMore}>
+            Load more
+          </Button>
+        </DataGrid.WhenScrollBarReachedBottom>
       </DataGrid>
+
       <a href="http://marvel.com" style={{ fontSize: "12px", color: "#777" }}>
         Data provided by Marvel. © 2019 MARVEL
       </a>
+      <p>
+        <Button>End</Button>
+      </p>
     </Sbook.Story>
   );
 }

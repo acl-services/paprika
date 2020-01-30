@@ -15,9 +15,15 @@ export function timeDiff(t1, t2) {
 }
 
 export default function useGridEventHandler({
-  refGrid,
-  refContainer,
   columnCount,
+  onChangeActiveCell,
+  onEnter,
+  onKeyDown,
+  onSpaceBar,
+  onShiftSpaceBar,
+  onClick,
+  refContainer,
+  refGrid,
   rowCount,
   scrollBarWidth,
   stickyColumnsIndexes,
@@ -193,11 +199,14 @@ export default function useGridEventHandler({
     timeDiff(t1, performance.now());
   }
 
-  function toCellState(column, index) {
-    return {
+  function toCellState(column, row) {
+    const cell = {
       columnIndex: Number.parseInt(column, 10),
-      rowIndex: Number.parseInt(index, 10),
+      rowIndex: Number.parseInt(row, 10),
     };
+
+    onChangeActiveCell(cell);
+    return cell;
   }
 
   const $getGrid = React.useCallback(() => {
@@ -230,7 +239,7 @@ export default function useGridEventHandler({
     }
   }
 
-  const keyboardKeys = {
+  const keyboardDownKeys = {
     ArrowUp: () => {
       const columnIndex = cell.current.columnIndex;
       const rowIndex = cell.current.rowIndex;
@@ -293,66 +302,123 @@ export default function useGridEventHandler({
         }
       }
     },
+    // keydown will not trigger spacebar, keyup will, but we want to prevent scrolling.
+    " ": () => {},
   };
 
   // This in charge of highlight the cell but will not scroll the table in case there is overflow
-  const handleKeyDown = event => {
-    if (event.key in keyboardKeys) {
+  const handleKeyDown = ({ data, ColumnDefinitions }) => event => {
+    onKeyDown(event);
+    if (event.key in keyboardDownKeys) {
       event.preventDefault();
       if (!cell) {
         return;
       }
 
-      prevCell.current = cell.current;
-      keyboardKeys[event.key](getDataCell(event));
+      keyboardDownKeys[event.key]({ data, ColumnDefinitions });
     }
   };
 
-  React.useEffect(() => {
-    const handleClick = event => {
-      const dataCell = getDataCell(event);
-      const [, columnIndex, rowIndex] = dataCell.split(".");
+  const keyboardUpKeys = {
+    // space bar
+    " ": ({ data, ColumnDefinitions, columnIndex, rowIndex, event }) => {
+      const column = ColumnDefinitions[columnIndex].props;
+      const options = { row: data[rowIndex], column, rowIndex, columnIndex, event };
+      if (column.onSpaceBar !== null) {
+        column.onSpaceBar(options);
+        return;
+      }
+      return onSpaceBar && onSpaceBar(options);
+    },
+    Enter: ({ data, ColumnDefinitions, columnIndex, rowIndex, event }) => {
+      const column = ColumnDefinitions[columnIndex].props;
+      const options = { row: data[rowIndex], column, rowIndex, columnIndex, event };
+      if (column.onEnter !== null) {
+        column.onEnter(options);
+        return;
+      }
+      return onEnter && onEnter(options);
+    },
+    "space+shift": ({ data, ColumnDefinitions, columnIndex, rowIndex, event }) => {
+      const column = ColumnDefinitions[columnIndex].props;
+      const options = { row: data[rowIndex], column, rowIndex, columnIndex, event };
+      if (column.onShiftSpaceBar !== null) {
+        column.onShiftSpaceBar(options);
+        return;
+      }
 
-      cell.current = toCellState(columnIndex, rowIndex);
-      setHighlight();
+      return onShiftSpaceBar && onShiftSpaceBar(options);
+    },
+  };
 
-      const $cell = event.target.hasAttribute("data-cell") ? event.target : event.target.parentElement;
-      focus($cell);
-    };
+  const handleKeyUp = ({ data, ColumnDefinitions }) => event => {
+    if (event.key in keyboardUpKeys) {
+      event.preventDefault();
+      if (!cell) {
+        return;
+      }
 
-    const ref = refContainer.current;
-    if (!ref) return;
+      if (event.shiftKey && event.key === " ") {
+        keyboardUpKeys["space+shift"]({
+          ColumnDefinitions,
+          columnIndex: cell.current.columnIndex,
+          data,
+          event,
+          rowIndex: cell.current.rowIndex,
+        });
+        return;
+      }
 
-    ref.addEventListener("click", handleClick, true);
+      keyboardUpKeys[event.key]({
+        ColumnDefinitions,
+        columnIndex: cell.current.columnIndex,
+        data,
+        event,
+        rowIndex: cell.current.rowIndex,
+      });
+    }
+  };
 
-    return () => {
-      ref.removeEventListener("click", handleClick, true);
-    };
-  }, [gridId, refContainer, setHighlight]);
+  const handleClick = ({ data, ColumnDefinitions }) => event => {
+    const dataCell = getDataCell(event);
 
-  React.useEffect(() => {
+    const [, columnIndex, rowIndex] = dataCell.split(".");
+
+    cell.current = toCellState(columnIndex, rowIndex);
+    setHighlight();
+
+    const $cell = event.target.hasAttribute("data-cell") ? event.target : event.target.parentElement;
+    focus($cell);
+
+    const column = ColumnDefinitions[columnIndex].props;
+    const options = { row: data[rowIndex], column, rowIndex, columnIndex, event };
+    if (column.onClick !== null) {
+      column.onClick(options);
+    } else {
+      onClick(options);
+    }
+  };
+
+  React.useLayoutEffect(() => {
     refContainerBoundClientRect.current = $getGridBoundingRect();
   }, [$getGridBoundingRect]);
 
-  React.useEffect(() => {
+  React.useLayoutEffect(() => {
     refScroll.current = $getGrid();
     if (!refScroll.current) return;
     refHasHorizontalScrollBar.current = refScroll.current.scrollWidth > refScroll.current.clientWidth;
   }, [$getGrid, refScroll]);
 
-  function restoreHighlightFocus(columnIndex = 0, rowIndex = 0) {
-    if (cell.current === null) {
-      cell.current = {
-        columnIndex,
-        rowIndex,
-      };
-    }
+  function restoreHighlightFocus() {
+    if (cell.current && (cell.current.columnIndex !== null && cell.current.rowIndex !== null)) {
+      const $cell = $getCell();
 
-    const $cell = $getCell();
-    setRefPrevCell();
-    setHighlight();
-    focus($cell);
+      if (!$cell) return;
+      setRefPrevCell();
+      setHighlight();
+      focus($cell);
+    }
   }
 
-  return { cell, prevCell, handleKeyDown, gridId, restoreHighlightFocus };
+  return { cell, prevCell, handleKeyDown, handleKeyUp, gridId, restoreHighlightFocus, handleClick };
 }
