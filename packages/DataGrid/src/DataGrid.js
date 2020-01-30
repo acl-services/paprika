@@ -15,8 +15,9 @@ const propTypes = {
   fillAvailableSpace: PropTypes.bool,
   height: PropTypes.number,
   isIdle: PropTypes.bool,
-  onKeyDown: PropTypes.func,
+  onClick: PropTypes.func,
   onEnter: PropTypes.func,
+  onKeyDown: PropTypes.func,
   onShiftSpaceBar: PropTypes.func,
   onSpaceBar: PropTypes.func,
   rowHeight: PropTypes.number,
@@ -27,10 +28,11 @@ const defaultProps = {
   fillAvailableSpace: false,
   height: 600,
   isIdle: false,
+  onClick: null,
+  onEnter: null,
   onKeyDown: () => {},
-  onEnter: () => {},
-  onShiftSpaceBar: () => {},
-  onSpaceBar: () => {},
+  onShiftSpaceBar: null,
+  onSpaceBar: null,
   rowHeight: 36,
   width: null,
 };
@@ -52,10 +54,11 @@ const DataGrid = React.forwardRef((props, ref) => {
     fillAvailableSpace,
     height,
     isIdle,
+    onClick,
     onEnter,
     onKeyDown,
-    onSpaceBar,
     onShiftSpaceBar,
+    onSpaceBar,
     rowHeight,
     width,
     ...moreProps
@@ -147,10 +150,11 @@ const DataGrid = React.forwardRef((props, ref) => {
   const { handleKeyDown, handleKeyUp, handleClick, gridId, restoreHighlightFocus } = useGridEventHandler({
     columnCount,
     onChangeActiveCell,
+    onClick,
     onEnter,
     onKeyDown,
-    onSpaceBar,
     onShiftSpaceBar,
+    onSpaceBar,
     refContainer,
     refGrid,
     rowCount,
@@ -271,7 +275,7 @@ const DataGrid = React.forwardRef((props, ref) => {
     if ($isActive) $isActive.classList.toggle("grid--is-blur");
   }
 
-  function handleMouseDown(event) {
+  function handleMouseUpGrid(event) {
     handleClick({ data, ColumnDefinitions })(event);
   }
 
@@ -299,7 +303,7 @@ const DataGrid = React.forwardRef((props, ref) => {
         onFocus={handleFocusGrid}
         onKeyDown={handleKeyDownGrid}
         onKeyUp={handleKeyUpGrid}
-        onMouseDown={handleMouseDown}
+        onMouseUp={handleMouseUpGrid}
         ref={refContainer}
         role="grid"
         tabIndex={gridShouldHaveFocus ? 0 : -1}
@@ -391,14 +395,14 @@ const DataGrid = React.forwardRef((props, ref) => {
 
               return (
                 <Cell
-                  ref={refCellHandler({ columnIndex, rowIndex })}
-                  style={style}
-                  gridId={gridId}
-                  columnIndex={columnIndex}
-                  rowIndex={rowIndex}
-                  column={column}
-                  data={data}
                   a11yText={a11yText}
+                  column={column}
+                  columnIndex={columnIndex}
+                  data={data}
+                  gridId={gridId}
+                  ref={refCellHandler({ columnIndex, rowIndex })}
+                  rowIndex={rowIndex}
+                  style={style}
                 />
               );
             }}
@@ -439,14 +443,14 @@ const DataGrid = React.forwardRef((props, ref) => {
 
               return (
                 <Cell
-                  ref={refCellHandler({ columnIndex, rowIndex })}
-                  style={style}
-                  gridId={gridId}
-                  columnIndex={columnIndex}
-                  rowIndex={rowIndex}
-                  column={column}
-                  data={data}
                   a11yText={a11yText}
+                  column={column}
+                  columnIndex={columnIndex}
+                  data={data}
+                  gridId={gridId}
+                  ref={refCellHandler({ columnIndex, rowIndex })}
+                  rowIndex={rowIndex}
+                  style={style}
                 />
               );
             }}

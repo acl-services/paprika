@@ -3,14 +3,14 @@ import PropTypes from "prop-types";
 import * as styled from "../../DataGrid.styles";
 
 const propTypes = {
-  style: PropTypes.shape({}).isRequired,
-  gridId: PropTypes.string.isRequired,
-  columnIndex: PropTypes.number.isRequired,
-  rowIndex: PropTypes.number.isRequired,
+  a11yText: PropTypes.string.isRequired,
   column: PropTypes.shape({ cellProps: PropTypes.func, cell: PropTypes.oneOfType([PropTypes.string, PropTypes.func]) })
     .isRequired,
+  columnIndex: PropTypes.number.isRequired,
   data: PropTypes.arrayOf(PropTypes.shape({})).isRequired,
-  a11yText: PropTypes.string.isRequired,
+  gridId: PropTypes.string.isRequired,
+  rowIndex: PropTypes.number.isRequired,
+  style: PropTypes.shape({}).isRequired,
 };
 
 const Cell = React.forwardRef((props, ref) => {

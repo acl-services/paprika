@@ -4,21 +4,17 @@ import CheckBox from "@paprika/checkbox";
 import * as styles from "./RowIndicator.styles";
 
 const propTypes = {
-  columnIndex: PropTypes.number,
   hasIndexIndicator: PropTypes.bool,
   isChecked: PropTypes.func,
-  onSelect: PropTypes.func,
   row: PropTypes.shape({}),
   rowIndex: PropTypes.number,
   isActiveCell: PropTypes.bool,
 };
 
 const defaultProps = {
-  columnIndex: null,
   hasIndexIndicator: true,
   row: null,
   rowIndex: null,
-  onSelect: () => {},
   isChecked: () => {
     return "unchecked";
   },
@@ -31,7 +27,7 @@ function isValueNotUnchecked(value) {
 
 export default function RowIndicator(props) {
   const [isActive, setIsActive] = React.useState(false);
-  const { row, rowIndex, isChecked, columnIndex, hasIndexIndicator, onSelect, isActiveCell } = props;
+  const { rowIndex, isChecked, hasIndexIndicator, isActiveCell } = props;
 
   function handleMouseOver() {
     setIsActive(() => true);
@@ -41,10 +37,6 @@ export default function RowIndicator(props) {
     setIsActive(() => false);
   }
 
-  const handleClick = (row, rowIndex, columnIndex) => () => {
-    onSelect(row, rowIndex, columnIndex);
-  };
-
   return (
     <div
       onMouseOver={handleMouseOver}
@@ -53,12 +45,7 @@ export default function RowIndicator(props) {
       onMouseLeave={handleMouseLeave}
     >
       {isActive || isActiveCell || isValueNotUnchecked(isChecked()) || !hasIndexIndicator ? (
-        <CheckBox
-          size="small"
-          onClick={handleClick(row, rowIndex, columnIndex)}
-          checkedState={isChecked()}
-          onChange={() => {}}
-        />
+        <CheckBox tabIndex="-1" size="small" checkedState={isChecked()} onChange={() => {}} />
       ) : (
         <styles.RowIndexText>{rowIndex}</styles.RowIndexText>
       )}

@@ -54,6 +54,9 @@ export const defaultProps = {
   headerA11yText: null,
   isSticky: false,
   onClick: () => {},
+  onEnter: null,
+  onShiftSpaceBar: null,
+  onSpaceBar: null,
   width: 80,
 };
 

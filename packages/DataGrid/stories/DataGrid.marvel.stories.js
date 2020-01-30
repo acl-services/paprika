@@ -91,10 +91,6 @@ export function App() {
     setOffsetLetter(off => off + 1);
   }
 
-  function handleClickColumnExpand({ row }) {
-    console.log("row:", row);
-  }
-
   React.useEffect(() => {
     if (data.length > 0) {
       setIsIdle(() => false);
@@ -102,7 +98,9 @@ export function App() {
     setIsPending(() => false);
   }, [data.length]);
 
-  function handleOnSelect() {}
+  function handleOnSelect() {
+    console.log("handleOnSelect");
+  }
 
   function isChecked() {
     return "unchecked";
@@ -145,11 +143,12 @@ export function App() {
         isIdle={isIdle}
         keygen="id"
         width={640}
+        onClick={handleOpenSidepanel}
         onEnter={handleOpenSidepanel}
         onSpaceBar={handleOpenSidepanel}
       >
         {renderColumnIndicator({ onSelect: handleOnSelect, isChecked })}
-        {renderColumnExpand({ onClick: handleClickColumnExpand })}
+        {renderColumnExpand()}
         <DataGrid.ColumnDefinition
           isSticky
           width={50}

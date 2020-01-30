@@ -25,7 +25,7 @@ const Expand = React.memo(props => {
 
   return (
     <div
-      style={{ opacity: opacity || isActiveCell ? 1 : 0, width: "100%", height: "100%" }}
+      style={{ opacity: opacity || isActiveCell ? 1 : 0, width: "100%", height: "100%", cursor: "pointer" }}
       onMouseOver={show}
       onMouseLeave={hide}
       onFocus={show}
@@ -39,8 +39,8 @@ const Expand = React.memo(props => {
 Expand.propTypes = propTypes;
 Expand.defaultProps = defaultProps;
 
-export default function renderColumnExpand(props = {}) {
-  const { onClick = () => {} } = props; // eslint-disable-line
+export default function renderColumnExpand(options = {}) {
+  const { onClick = null } = options;
 
   return (
     <ColumnDefinition
@@ -49,10 +49,8 @@ export default function renderColumnExpand(props = {}) {
       cellA11yText={({ rowIndex }) => `expand row ${rowIndex}`}
       cell={propsCell => <Expand {...propsCell} />}
       isSticky
-      {...props}
-      onClick={({ row }) => {
-        console.log("row:", row);
-      }}
+      {...options}
+      onClick={onClick}
       width={26}
       cellProps={() => ({
         style: {

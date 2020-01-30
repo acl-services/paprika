@@ -21,6 +21,7 @@ export default function useGridEventHandler({
   onKeyDown,
   onSpaceBar,
   onShiftSpaceBar,
+  onClick,
   refContainer,
   refGrid,
   rowCount,
@@ -314,26 +315,39 @@ export default function useGridEventHandler({
         return;
       }
 
-      prevCell.current = cell.current;
-      if (event.shiftKey && event.key === " ") {
-        keyboardDownKeys["space+shift"]({ data, ColumnDefinitions });
-        return;
-      }
-
       keyboardDownKeys[event.key]({ data, ColumnDefinitions });
     }
   };
 
   const keyboardUpKeys = {
     // space bar
-    " ": ({ data, ColumnDefinitions, columnIndex, rowIndex }) => {
-      onSpaceBar({ row: data[rowIndex], column: ColumnDefinitions[columnIndex].props, rowIndex, columnIndex });
+    " ": ({ data, ColumnDefinitions, columnIndex, rowIndex, event }) => {
+      const column = ColumnDefinitions[columnIndex].props;
+      const options = { row: data[rowIndex], column, rowIndex, columnIndex, event };
+      if (column.onSpaceBar !== null) {
+        column.onSpaceBar(options);
+        return;
+      }
+      return onSpaceBar && onSpaceBar(options);
     },
-    Enter: ({ data, ColumnDefinitions, columnIndex, rowIndex }) => {
-      onEnter({ row: data[rowIndex], column: ColumnDefinitions[columnIndex].props, rowIndex, columnIndex });
+    Enter: ({ data, ColumnDefinitions, columnIndex, rowIndex, event }) => {
+      const column = ColumnDefinitions[columnIndex].props;
+      const options = { row: data[rowIndex], column, rowIndex, columnIndex, event };
+      if (column.onEnter !== null) {
+        column.onEnter(options);
+        return;
+      }
+      return onEnter && onEnter(options);
     },
-    "space+shift": ({ data, ColumnDefinitions, columnIndex, rowIndex }) => {
-      onShiftSpaceBar({ row: data[rowIndex], column: ColumnDefinitions[columnIndex].props, rowIndex, columnIndex });
+    "space+shift": ({ data, ColumnDefinitions, columnIndex, rowIndex, event }) => {
+      const column = ColumnDefinitions[columnIndex].props;
+      const options = { row: data[rowIndex], column, rowIndex, columnIndex, event };
+      if (column.onShiftSpaceBar !== null) {
+        column.onShiftSpaceBar(options);
+        return;
+      }
+
+      return onShiftSpaceBar && onShiftSpaceBar(options);
     },
   };
 
@@ -345,15 +359,22 @@ export default function useGridEventHandler({
       }
 
       if (event.shiftKey && event.key === " ") {
-        keyboardUpKeys["space+shift"]({ data, ColumnDefinitions });
+        keyboardUpKeys["space+shift"]({
+          ColumnDefinitions,
+          columnIndex: cell.current.columnIndex,
+          data,
+          event,
+          rowIndex: cell.current.rowIndex,
+        });
         return;
       }
 
       keyboardUpKeys[event.key]({
-        columnIndex: cell.current.columnIndex,
-        rowIndex: cell.current.rowIndex,
-        data,
         ColumnDefinitions,
+        columnIndex: cell.current.columnIndex,
+        data,
+        event,
+        rowIndex: cell.current.rowIndex,
       });
     }
   };
@@ -369,7 +390,13 @@ export default function useGridEventHandler({
     const $cell = event.target.hasAttribute("data-cell") ? event.target : event.target.parentElement;
     focus($cell);
 
-    ColumnDefinitions[columnIndex].props.onClick({ row: data[rowIndex], rowIndex, columnIndex });
+    const column = ColumnDefinitions[columnIndex].props;
+    const options = { row: data[rowIndex], column, rowIndex, columnIndex, event };
+    if (column.onClick !== null) {
+      column.onClick(options);
+    } else {
+      onClick(options);
+    }
   };
 
   React.useLayoutEffect(() => {
