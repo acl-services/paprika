@@ -2,7 +2,6 @@ import styled, { css } from "styled-components";
 import tokens from "@paprika/tokens";
 
 const experimentalGrey = "#e7e7e7"; /* experimental */
-const experimentalDarkGrey = "#dadada"; /* experimental */
 export const Grid = styled.div.attrs(({ $width, isIdle }) => {
   const _isIdle = isIdle ? { opacity: 0 } : { opacity: 100 };
 
@@ -29,7 +28,7 @@ export const Grid = styled.div.attrs(({ $width, isIdle }) => {
   }
 
   border-top: 1px solid ${tokens.border.color};
-  background: ${experimentalDarkGrey};
+  background: {tokens.color.white};
 
   position: relative;
 
