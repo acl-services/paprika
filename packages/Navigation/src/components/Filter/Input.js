@@ -11,7 +11,7 @@ const propTypes = {
 export default function Input(props) {
   const { value, onChange } = props;
 
-  const delayedOnChange = React.useRef(debounce(onChange, 300)).current;
+  const delayedOnChange = React.useCallback(debounce(onChange, 300), [onChange]);
 
   function handleChange(e) {
     const newInputtedValue = e.target.value;

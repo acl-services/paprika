@@ -53,8 +53,14 @@ export default function Filter(props) {
   return (
     <Popover align="bottom" edge="left" maxWidth={600} offset={8}>
       <Popover.Trigger>
-        {(handler, attributes) => (
-          <styled.Trigger {...attributes} isSemantic={false} onClick={handler} hasFilterApplied={filters.length > 0}>
+        {(handler, attributes, isOpen) => (
+          <styled.Trigger
+            {...attributes}
+            isSemantic={false}
+            onClick={handler}
+            hasFilterApplied={filters.length > 0}
+            isOpen={isOpen}
+          >
             <styled.Icon />
             {getLabelText(filters.length)}
           </styled.Trigger>

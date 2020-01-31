@@ -126,6 +126,7 @@ const locales = {
           "plural_label": "{{numberOfFilters}} filters applied",
           "add_filter": "Add a field to filter by",
           "and": "and",
+          "or": "or",
           "where": "Where",
           "rules": {
             "is": "is",

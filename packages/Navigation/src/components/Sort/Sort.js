@@ -48,8 +48,14 @@ export default function Sort(props) {
   return (
     <Popover align="bottom" edge="left" maxWidth={1200}>
       <Popover.Trigger kind="flat">
-        {(handler, attributes) => (
-          <styled.Trigger {...attributes} isSemantic={false} onClick={handler} hasField={fields.length > 0}>
+        {(handler, attributes, isOpen) => (
+          <styled.Trigger
+            {...attributes}
+            isSemantic={false}
+            onClick={handler}
+            hasField={fields.length > 0}
+            isOpen={isOpen}
+          >
             <styled.Icon />
             {getLabelText(fields.length)}
           </styled.Trigger>

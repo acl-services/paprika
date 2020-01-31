@@ -59,6 +59,8 @@ function FilterItem(props) {
   }
 
   function handleChangeDatePicker(momentDate) {
+    filtersRef.current.focus();
+
     if (momentDate === null) {
       handleChangeValue("");
     } else {
