@@ -25,7 +25,7 @@ const Label = React.forwardRef((props, ref) => {
 
   return (
     <div css={labelStyles} isInline={isInline} isVisuallyHidden={isVisuallyHidden}>
-      <label htmlFor={id} data-pka-anchor="formElement.label" ref={ref}>
+      <label htmlFor={id} data-pka-anchor="form-element.label" ref={ref}>
         {label}
         {hasOptionalLabel || hasRequiredLabel ? (
           <span css={ruleStyles}>

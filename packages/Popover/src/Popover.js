@@ -13,8 +13,7 @@ import Content from "./components/Content/Content";
 import Card from "./components/Card/Card";
 import Trigger from "./components/Trigger/Trigger";
 import Tip from "./components/Tip/Tip";
-
-import PopoverStyled from "./Popover.styles";
+import * as styled from "./Popover.styles";
 
 const openDelay = 350;
 const closeDelay = 150;
@@ -40,6 +39,9 @@ const propTypes = {
 
   /** How "controlled" popovers are shown / hidden. */
   isOpen: PropTypes.bool,
+
+  /** This renders the popover inline in the DOM and not in a react portal. WARNING: will have side effects with paprika side panels and modals, use with caution. */
+  isPortal: PropTypes.bool,
 
   /** How "uncontrolled" popovers can be rendered open by default. */
   defaultIsOpen: PropTypes.bool,
@@ -77,6 +79,7 @@ const defaultProps = {
   isDark: false,
   isEager: false,
   isOpen: null,
+  isPortal: true,
   defaultIsOpen: null,
   edge: null,
   maxWidth: 320,
@@ -98,8 +101,10 @@ class Popover extends React.Component {
     this.$trigger = null;
     this.$tip = null; // this ref comes from a callback of the <Tip /> component
 
-    const portalNode = document.createElement("div");
-    this.$portal = document.body.appendChild(portalNode);
+    if (props.isPortal) {
+      const portalNode = document.createElement("div");
+      this.$portal = document.body.appendChild(portalNode);
+    }
 
     this.focusableElements = [];
     this.triggerFocusIndex = null;
@@ -138,6 +143,7 @@ class Popover extends React.Component {
       width,
       isEager,
       isOpen,
+      isPortal,
       portalElement,
       refContent,
       refTip,
@@ -161,6 +167,7 @@ class Popover extends React.Component {
       onDelayedClose: this.handleDelayedClose,
       onDelayedOpen: this.handleDelayedOpen,
       onOpen: this.handleOpen,
+      isPortal,
       portalElement,
       refContent,
       refTip,
@@ -208,7 +215,9 @@ class Popover extends React.Component {
     clearTimeout(this.closeTimer);
     this.closeTimer = null;
 
-    document.body.removeChild(this.$portal);
+    if (this.props.isPortal) {
+      document.body.removeChild(this.$portal);
+    }
   }
 
   getContentWidth() {
@@ -472,6 +481,7 @@ class Popover extends React.Component {
       isDark,
       isEager,
       isOpen,
+      isPortal,
       defaultIsOpen,
       maxWidth,
       minWidth,
@@ -490,6 +500,7 @@ class Popover extends React.Component {
       this.state.width,
       isEager,
       this.isOpen(),
+      isPortal,
       this.$portal,
       this.refContent,
       this.refTip,
@@ -502,9 +513,9 @@ class Popover extends React.Component {
     return (
       <ThemeContext.Provider value={isDark}>
         <PopoverContext.Provider value={contextValue}>
-          <PopoverStyled data-pka-anchor="popover" {...moreProps} ref={this.$popover}>
+          <styled.Popover data-pka-anchor="popover" {...moreProps} ref={this.$popover}>
             <PopoverChildren onChildChange={this.handleChildChange}>{this.props.children}</PopoverChildren>
-          </PopoverStyled>
+          </styled.Popover>
         </PopoverContext.Provider>
       </ThemeContext.Provider>
     );

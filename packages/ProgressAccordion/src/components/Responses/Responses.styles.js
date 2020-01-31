@@ -15,6 +15,10 @@ const responsesStyles = css`
   overflow: auto;
   padding: 0 ${tokens.space} 0 0;
 
+  &:focus {
+    ${stylers.focusRing.subtle()};
+  }
+
   dt {
     ${stylers.fontSize(-1)}
     

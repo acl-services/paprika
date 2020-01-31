@@ -1,6 +1,6 @@
 {
   "name": "@paprika/input",
-  "version": "0.2.8",
+  "version": "0.2.10",
   "description": "Input component",
   "author": "@paprika",
   "license": "MIT",
@@ -15,9 +15,9 @@
   },
   "dependencies": {
     "@babel/runtime-corejs2": "^7.3.1",
-    "@paprika/button": "^0.2.8",
-    "@paprika/helpers": "^0.2.7",
-    "@paprika/icon": "^0.2.8",
+    "@paprika/button": "^0.2.10",
+    "@paprika/helpers": "^0.2.8",
+    "@paprika/icon": "^0.2.9",
     "@paprika/raw-button": "^0.2.5",
     "@paprika/stylers": "^0.2.5",
     "@paprika/tokens": "^0.1.12",

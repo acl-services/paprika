@@ -17,11 +17,11 @@ function Tip(props) {
   const { zIndex, ...moreProps } = props;
 
   const isDark = React.useContext(ThemeContext);
-  const { content, tip, refTip, isOpen, portalElement } = React.useContext(PopoverContext);
+  const { content, tip, refTip, isOpen, isPortal, portalElement } = React.useContext(PopoverContext);
   const borderColor = isDark ? tokens.color.black : tokens.border.color;
   const backgroundColor = isDark ? tokens.color.black : tokens.color.white;
 
-  return ReactDOM.createPortal(
+  const TipStyledComponent = (
     <TipStyled
       isOpen={isOpen}
       data-pka-anchor="popover.tip"
@@ -35,9 +35,14 @@ function Tip(props) {
         <polygon points="0 12 12 12 6 6" fill={borderColor} />
         <polygon points="1 12 11 12 6 7" fill={backgroundColor} />
       </svg>
-    </TipStyled>,
-    portalElement
+    </TipStyled>
   );
+
+  if (isPortal) {
+    return ReactDOM.createPortal(TipStyledComponent, portalElement);
+  }
+
+  return TipStyledComponent;
 }
 
 Tip.displayName = "Popover.Tip";

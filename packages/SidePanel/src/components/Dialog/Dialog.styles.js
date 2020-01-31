@@ -49,6 +49,8 @@ export const dialogStyles = css`
   background: ${tokens.color.white};
   box-shadow: ${tokens.modal.shadow};
   box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
   height: 100%;
   overflow: auto;
   top: 0;
@@ -81,10 +83,15 @@ export const dialogStyles = css`
 `;
 
 export const dialogContentStyles = css`
+  flex-grow: 1;
   padding: ${stylers.spacer(3)};
 
   ${props => (props.isCompact || props.kind === "child" ? compactStyles : "")}
   ${props => {
     return props.isSticky ? `margin-bottom: ${props.footerHeight}px;` : "";
   }}
+
+  &:focus {
+    ${stylers.focusRing.subtle(true)};
+  }
 `;

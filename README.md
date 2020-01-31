@@ -22,24 +22,19 @@
 
 ---
 
-## Getting Started
+## Getting Started Using Paprika
 
-#### Environment
+#### Dependencies
 
-- Node v10.0.0+
-- Yarn v1.12.3+
+If you want to spice up your application with Paprika, you will need to start by adding the required dependencies. Paprika has a `peerDependency` on `React v16.8`, `styled-components` and most packages also have a `peerDependency` on the [Paprika L10n component](https://github.com/acl-services/paprika/blob/master/packages/L10n/README.md) (`@paprika/l10n`) for localization. 
 
-Paprika has a `peerDependency` on `styled-components` and most packages also have a `peerDependency` on `@paprika/l10n` (for localization).
 You will need to include them as dependencies in your project.
 
 ```sh
-$ yarn add styled-components
-$ yarn add @paprika/l10n
+$ yarn add react styled-components @paprika/l10n
 ```
 
-[More details about using the L10n component](https://github.com/acl-services/paprika/blob/master/packages/L10n/README.md).
-
-#### Installing a Component
+#### Adding a Component
 
 For example, to install the `<Button>` component:
 
@@ -56,15 +51,9 @@ import Button from "@paprika/button";
 export default () => <Button>Hello</Button>;
 ```
 
-## Contributing
+#### More Information
 
-Before contributing, please read our [Code of Conduct](https://github.com/acl-services/paprika/blob/master/CODE_OF_CONDUCT.md)
-Contributors are welcome to [submit a bug report](https://github.com/acl-services/paprika/issues/new?assignees=&labels=Bug+%F0%9F%90%9B&template=bug_report.md),
-[make a feature request](https://github.com/acl-services/paprika/issues/new?assignees=&labels=Feature+request+%F0%9F%92%A1&template=feature_request.md),
-or open a pull request.
-If you're just getting started, check out the [Help Wanted](https://github.com/acl-services/paprika/issues?q=is%3Aissue+is%3Aopen+label%3A%22Help+Wanted%22) or [Good First Issues](https://github.com/acl-services/paprika/issues?q=is%3Aissue+is%3Aopen+label%3A%22Good+First+Issue%22).
-
-For more information please check out our [Contributing Guidelines](https://github.com/acl-services/paprika/wiki/Contributing-Guidelines). You may want to start with the [Getting Started Guide](https://github.com/acl-services/paprika/wiki/Getting-Started)
+For more information about using Paprika in your project, including code examples and FAQs, visit the [Using Paprika wiki pages](https://github.com/acl-services/paprika/wiki/Using-Paprika).
 
 ## Components
 
@@ -111,7 +100,19 @@ or refer to the [AirTable summary](https://airtable.com/shrkJwkvtbgc3FT22).
 <a href="https://www.npmjs.com/package/@paprika/tokens"><img src="https://img.shields.io/npm/v/@paprika/tokens?label=tokens" /></a>
 <a href="https://www.npmjs.com/package/@paprika/uploader"><img src="https://img.shields.io/npm/v/@paprika/uploader?label=Uploader" /></a>
 
-## Testing
+## Contributing
+
+Before contributing, please read our [Code of Conduct](https://github.com/acl-services/paprika/blob/master/CODE_OF_CONDUCT.md)
+Contributors are welcome to [submit a bug report](https://github.com/acl-services/paprika/issues/new?assignees=&labels=Bug+%F0%9F%90%9B&template=bug_report.md),
+[make a feature request](https://github.com/acl-services/paprika/issues/new?assignees=&labels=Feature+request+%F0%9F%92%A1&template=feature_request.md),
+or open a pull request.
+If you’re just getting started, check out the [Help Wanted](https://github.com/acl-services/paprika/issues?q=is%3Aissue+is%3Aopen+label%3A%22Help+Wanted%22) or [Good First Issues](https://github.com/acl-services/paprika/issues?q=is%3Aissue+is%3Aopen+label%3A%22Good+First+Issue%22).
+
+#### More Information
+
+For more information please check out our [Contributing Guidelines](https://github.com/acl-services/paprika/wiki/Contributing-Guidelines). You may want to start with the [Getting Started Guide](https://github.com/acl-services/paprika/wiki/Getting-Started)
+
+### Testing
 
 There are a few layers to the testing pyramid in Paprika.
 

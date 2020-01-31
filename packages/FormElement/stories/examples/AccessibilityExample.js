@@ -37,7 +37,18 @@ const ExampleStory = () => {
             text for extra panel for questionnaires. Example text for extra panel for questionnaires
           </span>
         </FormElement.Instructions>
-        <Input onChange={handleChange} value={value} placeholder="Form placeholder" />
+        <FormElement.Content>
+          {({ idForLabel, ariaDescribedBy }) => (
+            <Input
+              id={idForLabel}
+              onChange={handleChange}
+              value={value}
+              placeholder="Form placeholder"
+              aria-describedby={ariaDescribedBy}
+              hasError={Boolean(errorText.length)}
+            />
+          )}
+        </FormElement.Content>
         <FormElement.Description>
           <span>This is description text</span>
         </FormElement.Description>
