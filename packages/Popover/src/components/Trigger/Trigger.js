@@ -50,7 +50,6 @@ function Trigger(props) {
   const { children, a11yText, ...moreProps } = props;
 
   if (typeof children === "function") {
-    console.log("isoPEN", isOpen);
     return (
       <React.Fragment>
         {React.cloneElement(children(handleTriggerEvent, { "aria-describedby": content.ariaId }, isOpen), {
