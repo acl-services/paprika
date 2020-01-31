@@ -90,9 +90,12 @@ blocks:
           - cache restore client-node-modules-$SEMAPHORE_GIT_BRANCH-$(checksum yarn.lock),client-node-modules-$SEMAPHORE_GIT_BRANCH,client-node-modules-master
       jobs:
         - name: Screener
+          env_vars:
+            - name: SEMAPHORE_BUILD_NUMBER
+              value: $SEMAPHORE_WORKFLOW_ID
           commands:
             - npx lerna bootstrap
             - yarn storybook:build
-            - yarn storybook:screener
+            - yarn storybook:screener:ci
       secrets:
         - name: screener-api-key

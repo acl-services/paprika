@@ -17,6 +17,7 @@
     "registrymock": "run-p -l registrymock:start registrymock:publish",
     "storybook:build": "build-storybook -s ./.storybook/public -c .storybook -o storybook-dist",
     "storybook:screener": "screener-storybook --conf screener.config.js",
+    "storybook:screener:ci": "CI=true SEMAPHORE=true screener-storybook --conf screener.config.js",
     "storybook:start": "start-storybook -p 9009 -c .storybook",
     "storybook:uploadserver": "node scripts/uploaderServer",
     "storybook": "run-p storybook:start storybook:uploadserver",
