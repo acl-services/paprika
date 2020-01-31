@@ -172,6 +172,19 @@ const ExampleStory = () => (
         <Popover.Tip />
       </Popover>
       <Gap />
+      <h5>Render prop: &lt;a&gt; Button with different state</h5>
+      <Popover>
+        <Popover.Trigger data-test-attr="propagated">
+          {(handler, attributes, isOpen) => (
+            <Button onClick={handler}>{isOpen ? "Click to close" : "Click to open"}</Button>
+          )}
+        </Popover.Trigger>
+        <Popover.Content>
+          <Popover.Card>Lorem ipsum single-origin kombucha.</Popover.Card>
+        </Popover.Content>
+        <Popover.Tip />
+      </Popover>
+      <Gap />
     </div>
   </CenteredStory>
 );
