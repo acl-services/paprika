@@ -11,15 +11,16 @@ export default function App() {
   // const [subset, setSubset] = React.useState(dataSource);
 
   const [columns, setColumns] = React.useState([
-    { id: "country", label: "Country", isHidden: false },
-    { id: "name", label: "Name", isHidden: false },
-    { id: "goals", label: "Goals", isHidden: false },
-    { id: "status", label: "Status", isHidden: false },
-    { id: "joined", label: "Joined", isHidden: false, momentParsingFormat: "MM/DD/YYYY" },
+    { id: "country", label: "Country", isHidden: false, type: "TEXT" },
+    { id: "name", label: "Name", isHidden: false, type: "TEXT" },
+    { id: "goals", label: "Goals", isHidden: false, type: "NUMBER" },
+    { id: "status", label: "Status", isHidden: false, type: "TEXT" },
+    { id: "joined", label: "Joined", isHidden: false, momentParsingFormat: "MM/DD/YYYY", type: "DATE" },
   ]);
   const [filters, setFilters] = React.useState([]);
   const [sortedFields, setSortedFields] = React.useState([]);
-  const subset = getSubset({ sortedFields, filters, source: dataSource, columns });
+  const [operator, setOperator] = React.useState("AND");
+  const subset = getSubset({ sortedFields, filters, source: dataSource, columns, operator });
 
   return (
     <React.Fragment>
@@ -31,6 +32,8 @@ export default function App() {
         setSortedFields={setSortedFields}
         sortedFields={sortedFields}
         source={dataSource}
+        operator={operator}
+        setOperator={setOperator}
       />
       <DataGrid data={subset} columns={columns} />
     </React.Fragment>

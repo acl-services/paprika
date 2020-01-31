@@ -37,7 +37,7 @@ const filterColumns = [
 ];
 
 export default function ControlledNavigation(props) {
-  const { setColumns, columns, setFilters, setSortedFields, filters, sortedFields } = props;
+  const { setColumns, columns, setFilters, setSortedFields, filters, sortedFields, operator, setOperator } = props;
 
   function handleSortFieldChange({ field, direction, columnId }) {
     let newField;
@@ -54,7 +54,13 @@ export default function ControlledNavigation(props) {
 
   return (
     <Navigation>
-      <MyFilter filters={filters} setFilters={setFilters} columns={filterColumns} />
+      <MyFilter
+        filters={filters}
+        setFilters={setFilters}
+        columns={filterColumns}
+        operator={operator}
+        setOperator={setOperator}
+      />
       <Sort
         onChange={handleSortFieldChange}
         columns={filterColumns}

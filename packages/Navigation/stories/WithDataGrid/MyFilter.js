@@ -37,9 +37,7 @@ const getLevelFilter = () => {
   };
 };
 
-export default function MyFilter({ filters, setFilters, columns }) {
-  const [operator, setOperator] = React.useState("AND");
-
+export default function MyFilter({ filters, setFilters, columns, setOperator, operator }) {
   function handleFilterChange({ filter, rule, value, columnId }) {
     let newFilter;
 
@@ -57,14 +55,12 @@ export default function MyFilter({ filters, setFilters, columns }) {
         };
       }
     } else if (rule) {
-      console.log(filter, rule);
       newFilter = {
         ...filter,
         rule,
         value: "",
       };
     } else {
-      console.log(filter, rule, value);
       newFilter = {
         ...filter,
         value,
