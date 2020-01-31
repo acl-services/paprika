@@ -20,6 +20,7 @@ function Trigger(props) {
   const {
     content,
     isEager,
+    isOpen,
     onClick,
     onClose,
     onDelayedClose,
@@ -51,7 +52,9 @@ function Trigger(props) {
   if (typeof children === "function") {
     return (
       <React.Fragment>
-        {React.cloneElement(children(handleTriggerEvent, { "aria-describedby": content.ariaId }), { ...moreProps })}
+        {React.cloneElement(children(handleTriggerEvent, { "aria-describedby": content.ariaId }, isOpen), {
+          ...moreProps,
+        })}
       </React.Fragment>
     );
   }

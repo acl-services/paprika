@@ -15,15 +15,11 @@ const SvgCaretDown = ({ title, ...props }) => (
     {...props}
   >
     {title ? <title>{title}</title> : null}
-    <defs>
-      <path
-        d="M8.71 10.87a1.501 1.501 0 000 2.222l5.79 5.256a.753.753 0 001.257-.556V6.17a.751.751 0 00-1.258-.555c-1.57 1.424-4.235 3.845-5.789 5.256z"
-        id="caret-down_svg__a"
-      />
-    </defs>
-    <g fill="none" fillRule="evenodd">
-      <use fill="currentColor" transform="scale(1 -1) rotate(90 23.968 0)" xlinkHref="#caret-down_svg__a" />
-    </g>
+    <path
+      d="M13.099 15.258a1.501 1.501 0 01-2.223 0c-1.41-1.554-3.83-4.22-5.256-5.789a.753.753 0 01.556-1.257h11.623a.751.751 0 01.556 1.257l-5.256 5.789z"
+      fillRule="evenodd"
+      fill="currentColor"
+    />
   </svg>
 );
 

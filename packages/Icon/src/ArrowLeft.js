@@ -15,13 +15,11 @@ const SvgArrowLeft = ({ title, ...props }) => (
     {...props}
   >
     {title ? <title>{title}</title> : null}
-    <defs>
-      <path
-        d="M10.535 17.314c.82.82 2.151.82 2.972 0l9.014-9.015-2.229-2.228-8.271 8.271-8.272-8.271-2.228 2.228 9.014 9.015z"
-        id="Arrow-Left_svg__a"
-      />
-    </defs>
-    <use fill="currentColor" transform="rotate(90 12.02 12)" xlinkHref="#Arrow-Left_svg__a" fillRule="evenodd" />
+    <path
+      d="M6.707 10.514c-.82.82-.82 2.151 0 2.972l9.014 9.014 2.229-2.229-8.272-8.27 8.272-8.272L15.721 1.5l-9.014 9.014z"
+      fillRule="evenodd"
+      fill="currentColor"
+    />
   </svg>
 );
 
