@@ -79,10 +79,10 @@ fr:
       less_about: Afficher moins sur {{topic}}
     listBox:
       trigger:
-        placeholder: Selectionner...
+        placeholder: Sélectionner...
       filter:
         a11y_text: Filtrer
-        no_results_message: Vos résultats ne recherche ne correspondaient à aucune option.
+        no_results_message: Vos résultats de recherche ne correspondaient à aucune option.
         placeholder: Filtrer...
     listBoxBrowser:
       explore: Découvrir d'autres options
