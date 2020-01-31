@@ -58,8 +58,6 @@ fr:
       arrowup: haut
       arrowdown: bas
       escape: Échap
-    externalLink:
-      view: voir
     collapsible:
       ariaText: section compressible
     sortable:
@@ -79,6 +77,13 @@ fr:
       less: Afficher moins
       more_about: Afficher plus sur {{topic}}
       less_about: Afficher moins sur {{topic}}
+    listBox:
+      trigger:
+        placeholder: Selectionner...
+      filter:
+        a11y_text: Filtrer
+        no_results_message: Vos résultats ne recherche ne correspondaient à aucune option.
+        placeholder: Filtrer...
     listBoxBrowser:
       explore: Découvrir d'autres options
       selected: options sélectionnées
