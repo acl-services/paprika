@@ -93,6 +93,6 @@ blocks:
           commands:
             - npx lerna bootstrap
             - yarn storybook:build
-            - SEMAPHORE_BUILD_NUMBER=$SEMAPHORE_WORKFLOW_ID yarn storybook:screener:ci
+            - BRANCH_NAME=$SEMAPHORE_GIT_BRANCH REVISION=$SEMAPHORE_GIT_PR_SHA SEMAPHORE_BUILD_NUMBER=$SEMAPHORE_WORKFLOW_ID yarn storybook:screener:ci
       secrets:
         - name: screener-api-key
