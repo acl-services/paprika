@@ -1,3 +1,5 @@
+/* eslint-disable jsx-a11y/no-noninteractive-tabindex */
+
 import React from "react";
 import PropTypes from "prop-types";
 import { dialogStyles, dialogContentStyles } from "./Dialog.styles";
@@ -77,7 +79,7 @@ function Dialog(props) {
         isSticky={footer ? footer.props.isSticky : undefined}
         footerHeight={footer ? footer.props.height : undefined}
         kind={kind}
-        tabIndex="-1"
+        tabIndex="0"
         ref={refSidePanelContent}
       >
         {children}

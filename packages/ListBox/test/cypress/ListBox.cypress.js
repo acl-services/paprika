@@ -12,7 +12,6 @@ describe("ListBox single select", () => {
     cy.contains(character).click();
     cy.get(selectors.trigger).should("contain", character);
     cy.get(selectors.clearButton).click();
-
     cy.get(selectors.trigger).should("contain", "Select...");
     cy.get(selectors.clearButton).should("not.be.visible");
   });
@@ -107,7 +106,7 @@ describe("ListBox single select custom filter", () => {
       expect($e.find("ul").children().length).to.be.equal(0);
     });
 
-    cy.get(selectors.noResults).should("contain", "Your search did not match any options.");
+    cy.get(selectors.noResults).should("contain", "Your search result did not match any options.");
   });
 });
 

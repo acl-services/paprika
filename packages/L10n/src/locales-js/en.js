@@ -73,9 +73,6 @@ const locales = {
         "arrowdown": "down",
         "escape": "escape"
       },
-      "externalLink": {
-        "view": "view"
-      },
       "collapsible": {
         "ariaText": "collapsible section"
       },
@@ -99,6 +96,16 @@ const locales = {
         "more_about": "show more about {{topic}}",
         "less_about": "show less about {{topic}}"
       },
+      "listBox": {
+        "trigger": {
+          "placeholder": "Select..."
+        },
+        "filter": {
+          "a11y_text": "Filter",
+          "no_results_message": "Your search result did not match any options.",
+          "placeholder": "Filter..."
+        }
+      },
       "listBoxBrowser": {
         "explore": "Explore more options",
         "selected": "selected options",
@@ -119,6 +126,7 @@ const locales = {
           "plural_label": "{{numberOfFilters}} filters applied",
           "add_filter": "Add a field to filter by",
           "and": "and",
+          "or": "or",
           "where": "Where",
           "rules": {
             "is": "is",

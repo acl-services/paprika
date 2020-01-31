@@ -15,13 +15,11 @@ const SvgCaretUp = ({ title, ...props }) => (
     {...props}
   >
     {title ? <title>{title}</title> : null}
-    <defs>
-      <path
-        d="M8.71 10.908a1.501 1.501 0 000 2.222l5.79 5.256a.753.753 0 001.257-.555V6.208a.751.751 0 00-1.258-.556L8.71 10.908z"
-        id="caret-up_svg__a"
-      />
-    </defs>
-    <use fill="currentColor" transform="rotate(90 11.988 12.02)" xlinkHref="#caret-up_svg__a" fillRule="evenodd" />
+    <path
+      d="M13.099 8.742a1.501 1.501 0 00-2.223 0c-1.41 1.554-3.83 4.22-5.256 5.789a.753.753 0 00.556 1.257h11.623a.751.751 0 00.556-1.257l-5.256-5.789z"
+      fillRule="evenodd"
+      fill="currentColor"
+    />
   </svg>
 );
 

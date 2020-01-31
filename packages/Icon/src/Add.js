@@ -15,13 +15,11 @@ const SvgAdd = ({ title, ...props }) => (
     {...props}
   >
     {title ? <title>{title}</title> : null}
-    <defs>
-      <path
-        d="M1.5 10.425h7.875a1.05 1.05 0 001.05-1.05V1.5h3.15v7.875a1.05 1.05 0 001.05 1.05H22.5v3.15h-7.875a1.05 1.05 0 00-1.05 1.05V22.5h-3.15v-7.875a1.05 1.05 0 00-1.05-1.05H1.5v-3.15z"
-        id="add_svg__a"
-      />
-    </defs>
-    <use fill="currentColor" xlinkHref="#add_svg__a" fillRule="evenodd" />
+    <path
+      d="M1.5 10.425h7.875a1.05 1.05 0 001.05-1.05V1.5h3.15v7.875a1.05 1.05 0 001.05 1.05H22.5v3.15h-7.875a1.05 1.05 0 00-1.05 1.05V22.5h-3.15v-7.875a1.05 1.05 0 00-1.05-1.05H1.5v-3.15z"
+      fill="currentColor"
+      fillRule="evenodd"
+    />
   </svg>
 );
 

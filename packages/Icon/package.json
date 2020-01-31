@@ -1,6 +1,6 @@
 {
   "name": "@paprika/icon",
-  "version": "0.2.8",
+  "version": "0.2.9",
   "description": "Icon component",
   "author": "@paprika",
   "main": "lib/index.js",
@@ -14,7 +14,7 @@
     "access": "public"
   },
   "scripts": {
-    "svgr": "npx @svgr/cli -d . src/svg --out-dir src/"
+    "svgr": "svgr -d . src/svg --out-dir src/"
   },
   "dependencies": {
     "@babel/runtime-corejs2": "^7.3.1",

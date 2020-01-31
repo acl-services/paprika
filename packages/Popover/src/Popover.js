@@ -13,8 +13,7 @@ import Content from "./components/Content/Content";
 import Card from "./components/Card/Card";
 import Trigger from "./components/Trigger/Trigger";
 import Tip from "./components/Tip/Tip";
-
-import PopoverStyled from "./Popover.styles";
+import * as styled from "./Popover.styles";
 
 const openDelay = 350;
 const closeDelay = 150;
@@ -514,9 +513,9 @@ class Popover extends React.Component {
     return (
       <ThemeContext.Provider value={isDark}>
         <PopoverContext.Provider value={contextValue}>
-          <PopoverStyled data-pka-anchor="popover" {...moreProps} ref={this.$popover}>
+          <styled.Popover data-pka-anchor="popover" {...moreProps} ref={this.$popover}>
             <PopoverChildren onChildChange={this.handleChildChange}>{this.props.children}</PopoverChildren>
-          </PopoverStyled>
+          </styled.Popover>
         </PopoverContext.Provider>
       </ThemeContext.Provider>
     );
