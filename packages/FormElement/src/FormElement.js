@@ -145,7 +145,7 @@ function FormElement(props) {
         id={idForLabel}
         isInline={isInline}
         isVisuallyHidden={isLabelVisuallyHidden}
-        labelText={label}
+        label={label}
         ref={refLabel}
         hasFieldSet={hasFieldSet}
       />

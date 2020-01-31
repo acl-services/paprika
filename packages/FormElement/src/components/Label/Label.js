@@ -12,7 +12,7 @@ const propTypes = {
   id: PropTypes.string,
   isInline: PropTypes.bool.isRequired,
   isVisuallyHidden: PropTypes.bool.isRequired,
-  labelText: PropTypes.node.isRequired,
+  label: PropTypes.node.isRequired,
   hasFieldSet: PropTypes.bool.isRequired,
 };
 
@@ -22,14 +22,14 @@ const defaultProps = {
 };
 
 const Label = React.forwardRef((props, ref) => {
-  const { hasOptionalLabel, hasRequiredLabel, help, id, hasFieldSet, labelText, ...moreProps } = props;
+  const { hasOptionalLabel, hasRequiredLabel, help, id, hasFieldSet, label, ...moreProps } = props;
   const I18n = useI18n();
 
   const labelProps = hasFieldSet ? { as: "legend" } : { as: "label", htmlFor: id, ref };
 
   return (
     <div data-pka-anchor="form-element.label" css={labelStyles} {...labelProps} {...moreProps}>
-      {labelText}
+      {label}
       {hasOptionalLabel || hasRequiredLabel ? (
         <span css={ruleStyles}>
           {" "}
