@@ -15,7 +15,7 @@ export default function App() {
     { id: "name", label: "Name", isHidden: false },
     { id: "goals", label: "Goals", isHidden: false },
     { id: "status", label: "Status", isHidden: false },
-    { id: "joined", label: "Joined", isHidden: false },
+    { id: "joined", label: "Joined", isHidden: false, momentParsingFormat: "MM/DD/YYYY" },
   ]);
   const [filters, setFilters] = React.useState([]);
   const [sortedFields, setSortedFields] = React.useState([]);

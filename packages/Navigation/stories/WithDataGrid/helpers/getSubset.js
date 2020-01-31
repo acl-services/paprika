@@ -18,8 +18,8 @@ export default function getSubset({ sortedFields, filters, source, columns }) {
   if (filters.length > 0) {
     filteredData = source.filter(row => {
       // checking if filter.rule exist, will removed after having all the rules
+
       const tester = filter => {
-        // console.log(filter.rule, filterTesters[filter.rule]);
         return filter.rule
           ? filterTesters[filter.rule](
               row[filter.columnId],

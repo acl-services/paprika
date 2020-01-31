@@ -1,6 +1,6 @@
 import React from "react";
 import nanoid from "nanoid";
-import Navigation, { Density, ColumnsArrangement, Sort } from "../../src";
+import Navigation, { ColumnsArrangement, Sort } from "../../src";
 import MyFilter from "./MyFilter";
 
 const getDefaultField = () => {
@@ -29,7 +29,7 @@ const filterColumns = [
   },
   { id: "country", label: "Country", type: "TEXT" },
   {
-    id: "joinedDate",
+    id: "joined",
     type: "DATE",
     label: "Joined by",
     momentParsingFormat: "MM/DD/YYYY",
@@ -54,7 +54,6 @@ export default function ControlledNavigation(props) {
 
   return (
     <Navigation>
-      <Density />
       <MyFilter filters={filters} setFilters={setFilters} columns={filterColumns} />
       <Sort
         onChange={handleSortFieldChange}
