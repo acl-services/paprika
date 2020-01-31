@@ -27,5 +27,6 @@ import Checkbox from "@paprika/checkbox";
 - checkedState ("checked", "unchecked", "indeterminate")
 - onChange
 - size ("small, "medium", "large")
+- tabIndex
 
 [More detail about these props](https://github.com/acl-services/paprika/blob/master/packages/Checkbox/src/Checkbox.js)

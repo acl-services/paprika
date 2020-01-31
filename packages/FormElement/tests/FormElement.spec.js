@@ -139,4 +139,43 @@ describe("FormElement", () => {
     expect(queryByTestId("form-element.description")).not.toBeInTheDocument();
     expect(getByTestId("form-element.error")).toHaveTextContent(/sample error/i);
   });
+
+  it("renders fieldset, legend and not label element", () => {
+    const { container } = render(
+      <L10n>
+        <FormElement label={defaultLabel} hasFieldSet>
+          <FormElement.Content>
+            {({ idForLabel, ariaDescribedBy }) => (
+              <input aria-describedby={ariaDescribedBy} data-pka-anchor="form-element.input" id={idForLabel} />
+            )}
+          </FormElement.Content>
+          <FormElement.Description>Sample description</FormElement.Description>
+          <FormElement.Error>Sample error</FormElement.Error>
+        </FormElement>
+      </L10n>
+    );
+    expect(container.querySelector("fieldset")).toBeInTheDocument();
+    expect(container.querySelector("legend")).toBeInTheDocument();
+    expect(container.querySelector("label")).not.toBeInTheDocument();
+  });
+
+  it("renders fieldset and label element", () => {
+    const { container } = render(
+      <L10n>
+        <FormElement label={defaultLabel}>
+          <FormElement.Content>
+            {({ idForLabel, ariaDescribedBy }) => (
+              <input aria-describedby={ariaDescribedBy} data-pka-anchor="form-element.input" id={idForLabel} />
+            )}
+          </FormElement.Content>
+          <FormElement.Description>Sample description</FormElement.Description>
+          <FormElement.Error>Sample error</FormElement.Error>
+        </FormElement>
+      </L10n>
+    );
+
+    expect(container.querySelector("fieldset")).not.toBeInTheDocument();
+    expect(container.querySelector("legend")).not.toBeInTheDocument();
+    expect(container.querySelector("label")).toBeInTheDocument();
+  });
 });

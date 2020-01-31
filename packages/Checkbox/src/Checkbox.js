@@ -27,6 +27,8 @@ const propTypes = {
   onChange: PropTypes.func.isRequired,
   /* Size provided by parent Group component */
   size: PropTypes.oneOf(ShirtSizes.DEFAULT),
+  /** Value for tabindex attribute to override the default of 0. */
+  tabIndex: PropTypes.number,
 };
 
 const defaultProps = {
@@ -36,10 +38,21 @@ const defaultProps = {
   children: null,
   isDisabled: false,
   size: ShirtSizes.MEDIUM,
+  tabIndex: 0,
 };
 
 const Checkbox = props => {
-  const { a11yText, children, isDisabled, checkedState, size, onChange, ariaDescribedBy, ...moreProps } = props;
+  const {
+    a11yText,
+    children,
+    isDisabled,
+    checkedState,
+    size,
+    onChange,
+    ariaDescribedBy,
+    tabIndex,
+    ...moreProps
+  } = props;
   const { CHECKED, INDETERMINATE } = checkboxStates;
 
   const checkboxId = React.useRef(uuid()).current;
@@ -73,6 +86,7 @@ const Checkbox = props => {
         ref={inputRef}
         type="checkbox"
         onChange={onChange}
+        tabIndex={tabIndex}
         {...inputProps}
       />
       <label htmlFor={checkboxId}>

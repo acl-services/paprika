@@ -27,6 +27,8 @@ const propTypes = {
   onClick: () => {},
   /* Size provided by parent Group component */
   size: PropTypes.oneOf(ShirtSizes.DEFAULT),
+  /** Value for tabindex attribute to override the default of 0. */
+  tabIndex: PropTypes.number,
 };
 
 const defaultProps = {
@@ -40,6 +42,7 @@ const defaultProps = {
   name: "",
   onClick: () => {},
   size: ShirtSizes.MEDIUM,
+  tabIndex: 0,
 };
 
 function Radio(props) {
@@ -53,6 +56,7 @@ function Radio(props) {
     canDeselect,
     onClick,
     size,
+    tabIndex,
     ...moreProps
   } = props;
   const radioId = React.useRef(nanoid()).current;
@@ -97,7 +101,7 @@ function Radio(props) {
   if (a11yText) inputProps["aria-label"] = a11yText;
   return (
     <div data-pka-anchor="radio" css={radioStyles} {...styleProps} {...moreProps}>
-      <input {...inputProps} />
+      <input {...inputProps} tabIndex={tabIndex} />
       <label onKeyUp={handleKeyUp} className={canDeselect ? "deselectable" : ""} htmlFor={radioId}>
         {children}
 

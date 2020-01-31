@@ -35,6 +35,7 @@ import Radio from "@paprika/radio";
 -isDisabled
 -onChange
 -size
+-tabIndex
 
 [More detail about these props](https://github.com/acl-services/paprika/blob/master/packages/Radio/src/components/Group/Group.js)
 
