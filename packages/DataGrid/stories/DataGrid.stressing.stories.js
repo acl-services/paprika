@@ -136,8 +136,6 @@ export function App() {
       >
         {renderColumnIndicator({ onSelect: handleOnSelect, isChecked })}
         {renderColumnExpand()}
-        <DataGrid.ColumnDefinition isSticky header="first name" cell="0-firstName" />
-        <DataGrid.ColumnDefinition isSticky header="last name" cell="1-lastName" />
         {data.length
           ? Object.keys(data[0]).map(key => {
               return <DataGrid.ColumnDefinition header={key} cell={key} />;

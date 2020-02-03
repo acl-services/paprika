@@ -142,7 +142,7 @@ export function App() {
         data={data}
         isIdle={isIdle}
         keygen="id"
-        width={640}
+        width={1024}
         onClick={handleOpenSidepanel}
         onEnter={handleOpenSidepanel}
         onSpaceBar={handleOpenSidepanel}
