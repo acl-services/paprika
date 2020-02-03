@@ -161,7 +161,7 @@ export function App() {
         <DataGrid.ColumnDefinition width={240} header="Description" cell="description" />
         <DataGrid.ColumnDefinition width={180} header="Modified" cell="modified" />
         <DataGrid.ColumnDefinition width={120} header="URI" cell="resourceURI" />
-        <DataGrid.ColumnDefinition width={420} header="Series" cell={renderSeries} />
+        <DataGrid.ColumnDefinition width={220} header="Series" cell={renderSeries} />
         <DataGrid.WhenScrollBarReachedBottom>
           <Button isPending={isPending} onClick={handleLoadMore}>
             Load more

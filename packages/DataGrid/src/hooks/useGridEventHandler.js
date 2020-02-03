@@ -45,9 +45,9 @@ export default function useGridEventHandler({
     );
   }, [gridId, refContainer]);
 
-  function setRefPrevCell() {
+  const setRefPrevCell = React.useCallback(() => {
     refPrevCell.current = $getCell();
-  }
+  }, [$getCell]);
 
   const setHighlight = React.useCallback(() => {
     if (cell && cell.current && refGrid && refGrid.current) {
@@ -67,26 +67,24 @@ export default function useGridEventHandler({
   }, [$getCell, refContainer, refGrid]);
 
   function focus($cell) {
-    window.requestAnimationFrame(() => {
-      const $prev = refPrevCell.current;
-      if (!$cell) return;
+    const $prev = refPrevCell.current;
+    if (!$cell) return;
 
-      if ($prev) {
-        $prev.querySelector("[role=gridcell]").tabIndex = "-1";
-      }
+    if ($prev) {
+      $prev.querySelector("[role=gridcell]").tabIndex = "-1";
+    }
 
-      if ($cell.hasAttribute("data-cell")) {
-        const $a11Txt = $cell.querySelector("[role=gridcell]");
-        $a11Txt.tabIndex = 0;
-        $a11Txt.focus();
-        return;
-      }
-
-      const $gridCell = $cell.closest("[data-cell]");
-      const $a11Txt = $gridCell.querySelector("[role=gridcell]");
+    if ($cell.hasAttribute("data-cell")) {
+      const $a11Txt = $cell.querySelector("[role=gridcell]");
       $a11Txt.tabIndex = 0;
       $a11Txt.focus();
-    });
+      return;
+    }
+
+    const $gridCell = $cell.closest("[data-cell]");
+    const $a11Txt = $gridCell.querySelector("[role=gridcell]");
+    $a11Txt.tabIndex = 0;
+    $a11Txt.focus();
   }
 
   function scrollToTheBottom() {
@@ -114,7 +112,10 @@ export default function useGridEventHandler({
 
     // left right
     if (cellBoundClientRect.right > refContainerBoundClientRect.current.right) {
-      const left = refScroll.current.scrollLeft + cellBoundClientRect.width;
+      let left = refScroll.current.scrollLeft + cellBoundClientRect.width;
+      if (columnIndex + 1 >= columnCount) {
+        left = refScroll.current.scrollWidth;
+      }
 
       refScroll.current.scrollTo(left, refScroll.current.scrollTop);
 
@@ -249,7 +250,7 @@ export default function useGridEventHandler({
         setRefPrevCell();
         cell.current = toCellState(columnIndex, nextRowIndex);
         setHighlight();
-        scroll(0, nextRowIndex);
+        scroll(columnIndex, nextRowIndex);
       }
     },
     ArrowRight: () => {
@@ -284,7 +285,7 @@ export default function useGridEventHandler({
         $setRefs(columnIndex);
         cell.current = toCellState(columnIndex, nextRowIndex);
         setHighlight();
-        scroll(0, nextRowIndex);
+        scroll(columnIndex, nextRowIndex);
       }
     },
     ArrowLeft: () => {
@@ -403,13 +404,13 @@ export default function useGridEventHandler({
     refContainerBoundClientRect.current = $getGridBoundingRect();
   }, [$getGridBoundingRect]);
 
-  React.useLayoutEffect(() => {
+  React.useEffect(() => {
     refScroll.current = $getGrid();
     if (!refScroll.current) return;
     refHasHorizontalScrollBar.current = refScroll.current.scrollWidth > refScroll.current.clientWidth;
   }, [$getGrid, refScroll]);
 
-  function restoreHighlightFocus() {
+  const restoreHighlightFocus = React.useCallback(() => {
     if (cell.current && (cell.current.columnIndex !== null && cell.current.rowIndex !== null)) {
       const $cell = $getCell();
 
@@ -418,7 +419,7 @@ export default function useGridEventHandler({
       setHighlight();
       focus($cell);
     }
-  }
+  }, [$getCell, setHighlight, setRefPrevCell]);
 
   return { cell, prevCell, handleKeyDown, handleKeyUp, gridId, restoreHighlightFocus, handleClick };
 }

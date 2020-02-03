@@ -18,17 +18,19 @@ export async function fetchMarvelAPI(term, offset = null, limit = 20) {
 
 export function App() {
   const [data, setData] = React.useState([]);
-  const [row, setRow] = React.useState(null);
-  const [isOpen, setIsOpen] = React.useState(false);
   const [isIdle, setIsIdle] = React.useState(true);
+  const [isOpen, setIsOpen] = React.useState(false);
+  const [page, setPage] = React.useState(0);
+  const [row, setRow] = React.useState(null);
   const [size, setSize] = React.useState({ width: 740, height: 500 });
   const refDataGrid = React.useRef(null);
+  const refPage = React.useRef([0]);
   const refSBookStory = React.useRef(null);
 
   React.useEffect(() => {
     async function loadData() {
       const w = worker();
-      const data = await w.getDataFromWorker();
+      const data = await w.getDataFromWorker(300, 30);
       setData(() => data);
       setIsIdle(() => false);
     }
@@ -66,12 +68,31 @@ export function App() {
     }
   }, [refSBookStory]);
 
+  React.useEffect(() => {
+    async function loadData() {
+      const w = worker();
+      const nextData = await w.getDataFromWorker(300, 30);
+      setData(data => data.concat(nextData));
+    }
+
+    if (page > 0) {
+      loadData();
+    }
+  }, [page]);
+
   function handleOnSelect() {
     console.log("handleOnSelect");
   }
 
   function isChecked() {
     return "unchecked";
+  }
+
+  function handleInfinityScrollReached({ nextPage }) {
+    if (!refPage.current.includes(nextPage)) {
+      refPage.current = refPage.current.concat(nextPage);
+      setPage(() => nextPage);
+    }
   }
 
   function renderSidepanel({ row }) {
@@ -115,11 +136,14 @@ export function App() {
       >
         {renderColumnIndicator({ onSelect: handleOnSelect, isChecked })}
         {renderColumnExpand()}
+        <DataGrid.ColumnDefinition isSticky header="first name" cell="0-firstName" />
+        <DataGrid.ColumnDefinition isSticky header="last name" cell="1-lastName" />
         {data.length
           ? Object.keys(data[0]).map(key => {
               return <DataGrid.ColumnDefinition header={key} cell={key} />;
             })
           : null}
+        <DataGrid.InfinityScroll rowsOffset={50} onReached={handleInfinityScrollReached} />
       </DataGrid>
     </Sbook.Story>
   );

@@ -3,7 +3,8 @@ import faker from "faker";
 const _faker = [
   "name:firstName",
   "name:lastName",
-  "name:findName",
+  "lorem:paragraph",
+  "lorem:sentences",
   "name:jobTitle",
   "name:prefix",
   "name:suffix",
@@ -62,7 +63,7 @@ const _faker = [
   "finance:bic",
 ];
 
-export function getDataFromWorker(rows = 1500, columns = 50) {
+export function getDataFromWorker(rows = 400, columns = 10) {
   // block for half a second to demonstrate asynchronicity
   const data = Array(rows).fill(null);
   const l = _faker.length;

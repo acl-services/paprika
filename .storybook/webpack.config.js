@@ -15,6 +15,9 @@ module.exports = {
       },
     ],
   },
+  output: {
+    globalObject: "self",
+  },
   resolve: {
     alias: {
       storybook: path.resolve("./.storybook/"),
