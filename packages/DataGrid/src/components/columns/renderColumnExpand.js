@@ -25,13 +25,23 @@ const Expand = React.memo(props => {
 
   return (
     <div
-      style={{ opacity: opacity || isActiveCell ? 1 : 0, width: "100%", height: "100%", cursor: "pointer" }}
+      style={{ opacity: opacity || isActiveCell ? 1 : 0 }}
+      css={`
+        cursor: pointer;
+        width: 100%;
+        height: 100%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+      `}
       onMouseOver={show}
       onMouseLeave={hide}
       onFocus={show}
       onBlur={hide}
     >
-      <Maximize />
+      <div>
+        <Maximize />
+      </div>
     </div>
   );
 });
@@ -54,12 +64,12 @@ export default function renderColumnExpand(options = {}) {
       width={26}
       cellProps={() => ({
         style: {
+          padding: 0,
           display: "flex",
-          alignItem: "center",
+          justifyContent: "center",
+          alignItems: "center",
           boxShadow: "-1px 0px 0px 0px rgba(255,255,255,1)",
-          padding: "4px",
-          paddingTop: "9px",
-          paddingBottom: "9px",
+          cursor: "pointer",
         },
       })}
     />

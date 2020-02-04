@@ -47,7 +47,7 @@ export const Grid = styled.div.attrs(({ $width, isIdle }) => {
           The arrow navigatoion is border sensible, please avoid adding a border to this styled components
           doing it will create a incorrect navigation while using the arrow keys.
         */
-        box-shadow: 6px 0px 6px 0px ${tokens.border.color};
+        box-shadow: 3px 0px 0px 0px ${tokens.border.color};
         overflow-x: hidden !important;
         /* overflow: hidden !important; */
         z-index: 100;

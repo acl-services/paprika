@@ -1,7 +1,7 @@
 import React from "react";
 import PropTypes from "prop-types";
 import CheckBox from "@paprika/checkbox";
-import * as styles from "./RowIndicator.styles";
+import * as styled from "./RowIndicator.styles";
 
 const propTypes = {
   hasIndexIndicator: PropTypes.bool,
@@ -38,18 +38,20 @@ export default function RowIndicator(props) {
   }
 
   return (
-    <div
+    <styled.RowContainer
       onMouseOver={handleMouseOver}
       onFocus={handleMouseOver}
       onBlur={handleMouseLeave}
       onMouseLeave={handleMouseLeave}
     >
       {isActive || isActiveCell || isValueNotUnchecked(isChecked()) || !hasIndexIndicator ? (
-        <CheckBox tabIndex="-1" size="small" checkedState={isChecked()} onChange={() => {}} />
+        <styled.Checkbox>
+          <CheckBox tabIndex="-1" size="small" checkedState={isChecked()} onChange={() => {}} />
+        </styled.Checkbox>
       ) : (
-        <styles.RowIndexText>{rowIndex}</styles.RowIndexText>
+        <styled.RowIndexText>{rowIndex}</styled.RowIndexText>
       )}
-    </div>
+    </styled.RowContainer>
   );
 }
 

@@ -21,6 +21,11 @@ export default function renderColumnIndicator(options = {}) {
       onEnter={handleOnSelect}
       onClick={handleOnSelect}
       width={34}
+      cellProps={() => ({
+        style: {
+          padding: 0,
+        },
+      })}
     />
   );
 }
