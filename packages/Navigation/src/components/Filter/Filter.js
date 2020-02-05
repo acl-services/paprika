@@ -6,6 +6,7 @@ import useI18n from "@paprika/l10n/lib/useI18n";
 import FilterItem from "./FilterItem";
 import { rulesByType } from "./rules";
 import * as styled from "./Filter.styles";
+import { GenericPopoverPlaceholder } from "../../Navigation.styles";
 
 const propTypes = {
   onChange: PropTypes.func.isRequired,
@@ -69,6 +70,9 @@ export default function Filter(props) {
       <Popover.Content>
         <Popover.Card>
           <styled.FiltersPanel ref={filtersRef} tabIndex={-1}>
+            {filters.length === 0 ? (
+              <GenericPopoverPlaceholder>{I18n.t("navigation.filter.no_filters_applied")}</GenericPopoverPlaceholder>
+            ) : null}
             {filters.map((filter, index) => (
               <FilterItem
                 key={filter.filterId}
