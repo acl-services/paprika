@@ -121,6 +121,7 @@ const locales = {
         },
         "no_results": "No results",
         "filter": {
+          "no_filters_applied": "No filters applied to this view",
           "label": "Filter",
           "singular_label": "1 filter applied",
           "plural_label": "{{numberOfFilters}} filters applied",
@@ -151,6 +152,7 @@ const locales = {
         },
         "search_placeholder": "Filter...",
         "sort": {
+          "no_sorts_applied": "No sorts applied to this view",
           "label": "Sort",
           "singular_label": "1 column sorted",
           "plural_label": "{{numberOfFields}} columns sorted",

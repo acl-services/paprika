@@ -8,6 +8,7 @@ import SortItem from "./SortItem";
 import { sortDirections } from "../../constants";
 
 import * as styled from "./Sort.styles";
+import { GenericPopoverPlaceholder } from "../../Navigation.styles";
 
 const propTypes = {
   onChange: PropTypes.func.isRequired,
@@ -64,6 +65,9 @@ export default function Sort(props) {
       <Popover.Content>
         <Popover.Card>
           <styled.FieldsPanel ref={fieldsRef} tabIndex={-1}>
+            {fields.length === 0 ? (
+              <GenericPopoverPlaceholder>{I18n.t("navigation.sort.no_sorts_applied")}</GenericPopoverPlaceholder>
+            ) : null}
             {fields.map(field => (
               <SortItem
                 key={field.fieldId}

@@ -42,3 +42,8 @@ export const getGenericTriggerIcon = Icon => {
     margin-right: ${tokens.spaceSm};
   `;
 };
+
+export const GenericPopoverPlaceholder = styled.div`
+  color: ${tokens.placeholder.color};
+  padding: ${tokens.spaceSm} ${tokens.spaceLg};
+`;
