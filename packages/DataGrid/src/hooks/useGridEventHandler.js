@@ -27,6 +27,7 @@ export default function useGridEventHandler({
   rowCount,
   scrollBarWidth,
   stickyColumnsIndexes,
+  highlightRow,
 }) {
   const [gridId] = React.useState(() => `PKA${nanoid()}`);
   const refContainerBoundClientRect = React.useRef(null);
@@ -250,6 +251,7 @@ export default function useGridEventHandler({
         setRefPrevCell();
         cell.current = toCellState(columnIndex, nextRowIndex);
         setHighlight();
+        highlightRow({ rowIndex: nextRowIndex });
         scroll(columnIndex, nextRowIndex);
       }
     },
@@ -264,7 +266,7 @@ export default function useGridEventHandler({
         setHighlight();
         $setRefs(columnIndex);
         scroll(nextColumnIndex, 0);
-
+        highlightRow({ rowIndex });
         if (nextColumnIndex === columnCount - 1) {
           scrollToTheRightEdge();
         }
@@ -285,6 +287,7 @@ export default function useGridEventHandler({
         $setRefs(columnIndex);
         cell.current = toCellState(columnIndex, nextRowIndex);
         setHighlight();
+        highlightRow({ rowIndex: nextRowIndex });
         scroll(columnIndex, nextRowIndex);
       }
     },
@@ -292,6 +295,7 @@ export default function useGridEventHandler({
       const columnIndex = cell.current.columnIndex;
       const rowIndex = cell.current.rowIndex;
       const nextColumnIndex = Number.parseInt(columnIndex, 10) - 1;
+      highlightRow({ rowIndex });
       if (nextColumnIndex >= 0) {
         setRefPrevCell();
         cell.current = toCellState(nextColumnIndex, rowIndex);
@@ -382,6 +386,7 @@ export default function useGridEventHandler({
 
   const handleClick = ({ data, ColumnDefinitions }) => event => {
     const dataCell = getDataCell(event);
+    if (!dataCell) return;
 
     const [, columnIndex, rowIndex] = dataCell.split(".");
 

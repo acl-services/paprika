@@ -1,12 +1,13 @@
 import PropTypes from "prop-types";
 
 const propTypes = {
-  onReachedPageSize: PropTypes.func,
-  pageSize: PropTypes.number.isRequired,
+  rowsOffset: PropTypes.number,
+  onReached: PropTypes.func,
 };
 
 const defaultProps = {
-  onReachedPageSize: () => {},
+  rowsOffset: 25,
+  onReached: () => {},
 };
 
 export default function InfinityScroll() {

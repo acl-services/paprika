@@ -4,16 +4,20 @@ import Maximize from "@paprika/icon/lib/Maximize";
 import ColumnDefinition from "../ColumnDefinition";
 
 const propTypes = {
+  attrs: PropTypes.shape({}),
   isActiveCell: PropTypes.bool,
+  isActiveRow: PropTypes.bool,
 };
 
 const defaultProps = {
+  attrs: {},
   isActiveCell: false,
+  isActiveRow: false,
 };
 
-const Expand = React.memo(props => {
+function Expand(props) {
+  const { attrs, isActiveCell, isActiveRow } = props;
   const [opacity, setOpacity] = React.useState(0);
-  const { isActiveCell } = props;
 
   function show() {
     setOpacity(() => 1);
@@ -23,9 +27,11 @@ const Expand = React.memo(props => {
     setOpacity(() => 0);
   }
 
+  console.log(`render: activeCell:${isActiveCell} && acitveRow:${isActiveRow}`);
+
   return (
     <div
-      style={{ opacity: opacity || isActiveCell ? 1 : 0 }}
+      style={{ opacity: opacity || isActiveCell || isActiveRow ? 1 : 0 }}
       css={`
         cursor: pointer;
         width: 100%;
@@ -38,13 +44,14 @@ const Expand = React.memo(props => {
       onMouseLeave={hide}
       onFocus={show}
       onBlur={hide}
+      {...attrs}
     >
       <div>
         <Maximize />
       </div>
     </div>
   );
-});
+}
 
 Expand.propTypes = propTypes;
 Expand.defaultProps = defaultProps;

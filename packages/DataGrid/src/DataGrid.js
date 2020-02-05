@@ -65,7 +65,7 @@ const DataGrid = React.forwardRef((props, ref) => {
     ...moreProps
   } = props;
 
-  const refsCell = React.useRef({});
+  const refsCell = React.useRef({ keys: {}, rows: {} });
   const refPrevActiveCell = React.useRef(null);
   const refScrollHeader = React.useRef(null);
   const refContainer = React.useRef(null);
@@ -76,6 +76,8 @@ const DataGrid = React.forwardRef((props, ref) => {
   const refEnd = React.useRef(null);
   const refPrevLastScrollHeight = React.useRef(null);
   const refCurrentPage = React.useRef(null);
+  const refActiveRow = React.useRef(null);
+  const refPrevActiveRow = React.useRef(null);
 
   const [scrollBarWidth, setScrollBarWidth] = React.useState(0);
   const [gridShouldHaveFocus, setGridShouldHaveFocus] = React.useState(true);
@@ -142,18 +144,48 @@ const DataGrid = React.forwardRef((props, ref) => {
       }, 0)) ||
     0;
 
+  function highlightRow({ rowIndex = null }) {
+    if (rowIndex !== null) {
+      if (refPrevActiveRow.current !== null) {
+        const rowIndex = refPrevActiveRow.current;
+        refsCell.current.rows[rowIndex].forEach(key => {
+          if (refsCell.current.keys[key]) refsCell.current.keys[key].deemphasizeOnrow(rowIndex);
+        });
+      }
+
+      refActiveRow.current = rowIndex;
+      refPrevActiveRow.current = rowIndex;
+
+      refsCell.current.rows[rowIndex].forEach(key => {
+        if (refsCell.current.keys[key]) refsCell.current.keys[key].highlightOnRow(rowIndex);
+      });
+    }
+  }
+
+  function deemphasizeRow() {
+    if (refPrevActiveRow.current) {
+      const rowIndex = refPrevActiveRow.current;
+      refsCell.current.rows[rowIndex].forEach(key => {
+        if (refsCell.current.keys[key]) refsCell.current.keys[key].deemphasizeOnrow(rowIndex);
+      });
+    }
+
+    refActiveRow.current = null;
+    refPrevActiveRow.current = null;
+  }
+
   function onChangeActiveCell({ columnIndex, rowIndex }) {
     const key = `${columnIndex}${rowIndex}`;
 
-    if (refPrevActiveCell.current && refPrevActiveCell.current in refsCell.current) {
-      const prevCell = refsCell.current[refPrevActiveCell.current];
+    if (refPrevActiveCell.current && refPrevActiveCell.current in refsCell.current.keys) {
+      const prevCell = refsCell.current.keys[refPrevActiveCell.current];
       if (prevCell) {
-        refsCell.current[refPrevActiveCell.current].isActiveCell(false);
+        refsCell.current.keys[refPrevActiveCell.current].isActiveCell(false);
       }
     }
 
     refPrevActiveCell.current = key;
-    refsCell.current[key].isActiveCell(true);
+    refsCell.current.keys[key].isActiveCell(true);
   }
 
   const { handleKeyDown, handleKeyUp, handleClick, gridId, restoreHighlightFocus } = useGridEventHandler({
@@ -170,6 +202,7 @@ const DataGrid = React.forwardRef((props, ref) => {
     rowHeight,
     scrollBarWidth,
     stickyColumnsIndexes,
+    highlightRow,
   });
 
   const a11yTextMessage = (value, column, rowIndex) => {
@@ -221,8 +254,12 @@ const DataGrid = React.forwardRef((props, ref) => {
     [refScrollGrid]
   );
 
-  const refCellHandler = ({ columnIndex, rowIndex }) => ref => {
-    refsCell.current[`${columnIndex}${rowIndex}`] = ref;
+  const handleRefCell = ({ columnIndex, rowIndex }) => ref => {
+    const key = `${columnIndex}${rowIndex}`;
+    refsCell.current.keys[key] = ref;
+    refsCell.current.rows[rowIndex] = Array.isArray(refsCell.current.rows[rowIndex])
+      ? refsCell.current.rows[rowIndex].concat(key)
+      : [key];
   };
 
   React.useEffect(() => {
@@ -317,6 +354,14 @@ const DataGrid = React.forwardRef((props, ref) => {
     }
   }
 
+  function handleMouseOver(event) {
+    highlightRow({ rowIndex: event.target.dataset.rowIndex });
+  }
+
+  function handleMouseLeave() {
+    deemphasizeRow();
+  }
+
   return (
     <>
       {isIdle && (
@@ -334,6 +379,8 @@ const DataGrid = React.forwardRef((props, ref) => {
         onKeyDown={handleKeyDownGrid}
         onKeyUp={handleKeyUpGrid}
         onMouseUp={handleMouseUpGrid}
+        onMouseOver={handleMouseOver}
+        onMouseLeave={handleMouseLeave}
         ref={refContainer}
         role="grid"
         tabIndex={gridShouldHaveFocus ? 0 : -1}
@@ -431,7 +478,7 @@ const DataGrid = React.forwardRef((props, ref) => {
                   columnIndex={columnIndex}
                   data={data}
                   gridId={gridId}
-                  ref={refCellHandler({ columnIndex, rowIndex })}
+                  ref={handleRefCell({ columnIndex, rowIndex })}
                   rowIndex={rowIndex}
                   style={style}
                 />
@@ -480,7 +527,7 @@ const DataGrid = React.forwardRef((props, ref) => {
                   columnIndex={columnIndex}
                   data={data}
                   gridId={gridId}
-                  ref={refCellHandler({ columnIndex, rowIndex })}
+                  ref={handleRefCell({ columnIndex, rowIndex })}
                   rowIndex={rowIndex}
                   style={style}
                 />
@@ -494,7 +541,9 @@ const DataGrid = React.forwardRef((props, ref) => {
       {!isIdle ? (
         <>
           <styled.Footer $width={gridWidth}>
-            <styled.RowCount>Rows:{rowCount}</styled.RowCount>
+            <styled.RowCount>
+              Rows:{rowCount} Columns:{columnCount}
+            </styled.RowCount>
           </styled.Footer>
           {WhenScrollBarReachedBottom ? (
             <End width={gridWidth} ref={refEnd}>

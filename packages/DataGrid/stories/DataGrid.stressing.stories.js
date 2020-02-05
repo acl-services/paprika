@@ -30,7 +30,7 @@ export function App() {
   React.useEffect(() => {
     async function loadData() {
       const w = worker();
-      const data = await w.getDataFromWorker(300, 30);
+      const data = await w.getDataFromWorker(300, 500);
       setData(() => data);
       setIsIdle(() => false);
     }
@@ -71,7 +71,7 @@ export function App() {
   React.useEffect(() => {
     async function loadData() {
       const w = worker();
-      const nextData = await w.getDataFromWorker(300, 30);
+      const nextData = await w.getDataFromWorker(300, 500);
       setData(data => data.concat(nextData));
     }
 
@@ -138,7 +138,7 @@ export function App() {
         {renderColumnExpand()}
         {data.length
           ? Object.keys(data[0]).map(key => {
-              return <DataGrid.ColumnDefinition header={key} cell={key} />;
+              return <DataGrid.ColumnDefinition key={key} header={key} cell={key} />;
             })
           : null}
         <DataGrid.InfinityScroll rowsOffset={50} onReached={handleInfinityScrollReached} />
