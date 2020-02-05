@@ -89,8 +89,8 @@ export default function Sort(props) {
             Add a field to sort by
           </Button>
         </Popover.Card>
-        <Popover.Tip />
       </Popover.Content>
+      <Popover.Tip />
     </Popover>
   );
 }

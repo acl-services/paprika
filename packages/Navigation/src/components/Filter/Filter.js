@@ -91,8 +91,8 @@ export default function Filter(props) {
             {I18n.t(`navigation.filter.add_filter`)}
           </Button>
         </Popover.Card>
-        <Popover.Tip />
       </Popover.Content>
+      <Popover.Tip />
     </Popover>
   );
 }

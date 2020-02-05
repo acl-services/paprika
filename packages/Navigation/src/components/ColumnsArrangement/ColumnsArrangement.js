@@ -113,8 +113,8 @@ export default function ColumnsArrangement(props) {
             </styled.Footer>
           )}
         </Popover.Card>
-        <Popover.Tip />
       </Popover.Content>
+      <Popover.Tip />
     </Popover>
   );
 }
