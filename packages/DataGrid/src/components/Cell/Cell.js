@@ -1,6 +1,5 @@
 import React from "react";
 import PropTypes from "prop-types";
-import tokens from "@paprika/tokens";
 import * as styled from "../../DataGrid.styles";
 
 const propTypes = {
@@ -21,7 +20,6 @@ const Cell = React.forwardRef((props, ref) => {
 
   React.useImperativeHandle(ref, () => ({
     isActiveCell: isActive => {
-      console.log(`>>>>> useImperativeHandle: isActiveCell(${isActive})`);
       setIsActiveCell(() => isActive);
     },
     highlightOnRow: _rowIndex => {
@@ -55,7 +53,8 @@ const Cell = React.forwardRef((props, ref) => {
     <styled.Cell
       ref={ref}
       tabIndex={-1}
-      style={{ ...style, background: `${isActiveRow ? tokens.color.blackLighten80 : tokens.color.white}` }}
+      style={{ ...style }}
+      hasActiveRowShadow={isActiveRow && columnIndex === 0}
       data-cell={`${gridId}.${columnIndex}.${rowIndex}`}
     >
       <styled.GridCell role="gridcell">{a11yText}</styled.GridCell>

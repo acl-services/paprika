@@ -9,6 +9,7 @@ const propTypes = {
   row: PropTypes.shape({}),
   rowIndex: PropTypes.number,
   isActiveCell: PropTypes.bool,
+  isActiveRow: PropTypes.bool,
 };
 
 const defaultProps = {
@@ -19,6 +20,7 @@ const defaultProps = {
     return "unchecked";
   },
   isActiveCell: false,
+  isActiveRow: false,
 };
 
 function isValueNotUnchecked(value) {
@@ -27,7 +29,7 @@ function isValueNotUnchecked(value) {
 
 export default function RowIndicator(props) {
   const [isActive, setIsActive] = React.useState(false);
-  const { rowIndex, isChecked, hasIndexIndicator, isActiveCell } = props;
+  const { rowIndex, isChecked, hasIndexIndicator, isActiveCell, isActiveRow } = props;
 
   function handleMouseOver() {
     setIsActive(() => true);
@@ -44,12 +46,12 @@ export default function RowIndicator(props) {
       onBlur={handleMouseLeave}
       onMouseLeave={handleMouseLeave}
     >
-      {isActive || isActiveCell || isValueNotUnchecked(isChecked()) || !hasIndexIndicator ? (
+      {isActive || isActiveCell || isActiveRow || isValueNotUnchecked(isChecked()) || !hasIndexIndicator ? (
         <styled.Checkbox>
           <CheckBox tabIndex="-1" size="small" checkedState={isChecked()} onChange={() => {}} />
         </styled.Checkbox>
       ) : (
-        <styled.RowIndexText>{rowIndex}</styled.RowIndexText>
+        <styled.RowIndexText hasFourDigitsOrMore={rowIndex > 999}>{rowIndex}</styled.RowIndexText>
       )}
     </styled.RowContainer>
   );

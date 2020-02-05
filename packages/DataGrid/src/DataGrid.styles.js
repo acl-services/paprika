@@ -67,15 +67,33 @@ export const Cell = styled.div`
   background: ${tokens.color.white};
   border-bottom: 1px solid ${tokens.border.color};
   border-left: 1px solid ${tokens.border.color};
+  box-sizing: border-box;
   display: flex;
   font-size: 16px;
   justify-content: flex-start;
   line-height: 1;
   position: relative;
+
   &:focus {
     outline: 1px solid transparent;
     /* outline: 0; */
   }
+  ${({ hasActiveRowShadow }) => {
+    return hasActiveRowShadow
+      ? css`
+          &:before {
+            background: ${tokens.color.blue};
+            content: "";
+            height: 100%;
+            left: 0;
+            position: absolute;
+            top: 0;
+            width: 3px;
+            z-index: 100;
+          }
+        `
+      : "";
+  }}
 `;
 
 export const CellHeader = styled(Cell)`

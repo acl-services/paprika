@@ -1,4 +1,5 @@
 import styled from "styled-components";
+import tokens from "@paprika/tokens";
 
 export const RowContainer = styled.div`
   align-items: center;
@@ -10,11 +11,23 @@ export const RowContainer = styled.div`
   width: 100%;
 `;
 
-export const RowIndexText = styled.div`
-  color: #aaa;
+export const RowIndexText = styled.div.attrs(({ hasFourDigitsOrMore }) => {
+  const style = hasFourDigitsOrMore
+    ? {
+        fontSize: "11px",
+        padding: "4px",
+      }
+    : {
+        fontSize: "13px",
+        padding: "6px",
+      };
+
+  return {
+    style,
+  };
+})`
+  color: ${tokens.color.blackLighten40};
   display: inline-block;
-  font-size: 12px;
-  padding-left: 6px;
 `;
 
 export const Checkbox = styled.div`
