@@ -4,12 +4,13 @@ import debounce from "lodash.debounce";
 import * as styled from "./Filter.styles";
 
 const propTypes = {
+  inputKey: PropTypes.string.isRequired,
   value: PropTypes.string.isRequired,
   onChange: PropTypes.func.isRequired,
 };
 
 export default function Input(props) {
-  const { value, onChange } = props;
+  const { inputKey, value, onChange } = props;
 
   const delayedOnChange = React.useCallback(debounce(onChange, 300), [onChange]);
 
@@ -17,7 +18,7 @@ export default function Input(props) {
     const newInputtedValue = e.target.value;
     delayedOnChange(newInputtedValue);
   }
-  return <styled.Input onChange={handleChange} defaultValue={value} />;
+  return <styled.Input key={inputKey} onChange={handleChange} defaultValue={value} />;
 }
 
 Input.propTypes = propTypes;
