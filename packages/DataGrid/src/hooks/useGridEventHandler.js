@@ -16,18 +16,19 @@ export function timeDiff(t1, t2) {
 
 export default function useGridEventHandler({
   columnCount,
+  highlightRow,
   onChangeActiveCell,
+  onClick,
   onEnter,
   onKeyDown,
-  onSpaceBar,
+  onRowChecked,
   onShiftSpaceBar,
-  onClick,
+  onSpaceBar,
   refContainer,
   refGrid,
   rowCount,
   scrollBarWidth,
   stickyColumnsIndexes,
-  highlightRow,
 }) {
   const [gridId] = React.useState(() => `PKA${nanoid()}`);
   const refContainerBoundClientRect = React.useRef(null);
@@ -309,18 +310,32 @@ export default function useGridEventHandler({
     },
     // keydown will not trigger spacebar, keyup will, but we want to prevent scrolling.
     " ": () => {},
+    // we move f (checked row) because this actions doesn't open a sidepanel and we want it
+    // to fire it as soon as the user click the key to have a smoother experience
+    f: ({ data, ColumnDefinitions, columnIndex, rowIndex, event }) => {
+      const column = ColumnDefinitions[columnIndex].props;
+      const options = { row: data[rowIndex], column, rowIndex, columnIndex, event };
+      return onRowChecked && onRowChecked(options);
+    },
   };
 
   // This in charge of highlight the cell but will not scroll the table in case there is overflow
   const handleKeyDown = ({ data, ColumnDefinitions }) => event => {
     onKeyDown(event);
     if (event.key in keyboardDownKeys) {
+      document.body.style.pointerEvents = "none";
       event.preventDefault();
       if (!cell) {
         return;
       }
 
-      keyboardDownKeys[event.key]({ data, ColumnDefinitions });
+      keyboardDownKeys[event.key]({
+        ColumnDefinitions,
+        columnIndex: cell.current.columnIndex,
+        data,
+        event,
+        rowIndex: cell.current.rowIndex,
+      });
     }
   };
 
@@ -405,7 +420,20 @@ export default function useGridEventHandler({
     }
   };
 
-  React.useLayoutEffect(() => {
+  React.useEffect(() => {
+    // this helps "enable" the mouse after being disable when using the keyboard
+    // search for document.body.style.pointerEvents
+    function handleMouseMove() {
+      document.body.style.pointerEvents = "auto";
+    }
+    document.addEventListener("mousemove", handleMouseMove);
+
+    return () => {
+      document.removeEventListener("mousemove", handleMouseMove);
+    };
+  }, []);
+
+  React.useEffect(() => {
     refContainerBoundClientRect.current = $getGridBoundingRect();
   }, [$getGridBoundingRect]);
 

@@ -39,3 +39,10 @@ export const Checkbox = styled.div`
   padding: 0;
   width: 100%;
 `;
+
+export const Void = styled.div`
+  border: 1px solid ${tokens.color.blackLighten50};
+  border-radius: 50%;
+  height: 6px;
+  width: 6px;
+`;

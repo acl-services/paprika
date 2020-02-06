@@ -27,8 +27,6 @@ function Expand(props) {
     setOpacity(() => 0);
   }
 
-  console.log(`render: activeCell:${isActiveCell} && acitveRow:${isActiveRow}`);
-
   return (
     <div
       style={{ opacity: opacity || isActiveCell || isActiveRow ? 1 : 0 }}

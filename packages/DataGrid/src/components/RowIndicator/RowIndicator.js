@@ -5,22 +5,26 @@ import * as styled from "./RowIndicator.styles";
 
 const propTypes = {
   hasIndexIndicator: PropTypes.bool,
-  isChecked: PropTypes.func,
-  row: PropTypes.shape({}),
-  rowIndex: PropTypes.number,
+  hasNumber: PropTypes.bool,
   isActiveCell: PropTypes.bool,
   isActiveRow: PropTypes.bool,
+  isChecked: PropTypes.func,
+  onCheck: PropTypes.func,
+  row: PropTypes.shape({}),
+  rowIndex: PropTypes.number,
 };
 
 const defaultProps = {
   hasIndexIndicator: true,
+  hasNumber: false,
+  isActiveCell: false,
+  isActiveRow: false,
   row: null,
   rowIndex: null,
+  onCheck: () => {},
   isChecked: () => {
     return "unchecked";
   },
-  isActiveCell: false,
-  isActiveRow: false,
 };
 
 function isValueNotUnchecked(value) {
@@ -29,7 +33,11 @@ function isValueNotUnchecked(value) {
 
 export default function RowIndicator(props) {
   const [isActive, setIsActive] = React.useState(false);
-  const { rowIndex, isChecked, hasIndexIndicator, isActiveCell, isActiveRow } = props;
+  const { rowIndex, isChecked, hasIndexIndicator, onCheck, isActiveCell, isActiveRow, hasNumber } = props;
+
+  function handleCheck() {
+    onCheck({ rowIndex });
+  }
 
   function handleMouseOver() {
     setIsActive(() => true);
@@ -39,6 +47,14 @@ export default function RowIndicator(props) {
     setIsActive(() => false);
   }
 
+  const indicator = hasNumber ? (
+    <styled.RowIndexText hasFourDigitsOrMore={rowIndex > 999}>{rowIndex}</styled.RowIndexText>
+  ) : (
+    <styled.RowIndexText>
+      <styled.Void />
+    </styled.RowIndexText>
+  );
+
   return (
     <styled.RowContainer
       onMouseOver={handleMouseOver}
@@ -46,12 +62,18 @@ export default function RowIndicator(props) {
       onBlur={handleMouseLeave}
       onMouseLeave={handleMouseLeave}
     >
-      {isActive || isActiveCell || isActiveRow || isValueNotUnchecked(isChecked()) || !hasIndexIndicator ? (
+      {isActive || isActiveCell || isActiveRow || isValueNotUnchecked(isChecked({ rowIndex })) || !hasIndexIndicator ? (
         <styled.Checkbox>
-          <CheckBox tabIndex="-1" size="small" checkedState={isChecked()} onChange={() => {}} />
+          <CheckBox
+            tabIndex="-1"
+            size="small"
+            checkedState={isChecked({ rowIndex })}
+            onClick={handleCheck}
+            onChange={() => {}}
+          />
         </styled.Checkbox>
       ) : (
-        <styled.RowIndexText hasFourDigitsOrMore={rowIndex > 999}>{rowIndex}</styled.RowIndexText>
+        indicator
       )}
     </styled.RowContainer>
   );

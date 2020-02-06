@@ -66,14 +66,14 @@ const _faker = [
 export function getDataFromWorker(rows = 400, columns = 10) {
   // block for half a second to demonstrate asynchronicity
   const data = Array(rows).fill(null);
-  const l = _faker.length;
+  const len = _faker.length;
 
   return data.map((_, index) => {
     const f = faker;
     const columnsObj = {};
     let i = 0;
     while (i < columns) {
-      const index = i % l;
+      const index = i % len;
       const split = _faker[index].split(":");
 
       columnsObj[`${i}-${split[1]}`] = f[split[0]][split[1]]();

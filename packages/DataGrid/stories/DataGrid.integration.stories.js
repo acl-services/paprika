@@ -2,7 +2,7 @@ import React from "react";
 import { storiesOf } from "@storybook/react";
 import * as Sbook from "storybook/assets/styles/common.styles";
 import SidePanel from "@paprika/sidepanel";
-import worker from "workerize-loader!./helpers/data.worker"; // eslint-disable-line import/no-webpack-loader-syntax
+import worker from "workerize-loader!./helpers/data.integration.worker"; // eslint-disable-line import/no-webpack-loader-syntax
 import DataGrid, { renderColumnIndicator, renderColumnExpand } from "../src";
 
 export function App() {
@@ -10,6 +10,8 @@ export function App() {
   const [isIdle, setIsIdle] = React.useState(true);
   const [isOpen, setIsOpen] = React.useState(false);
   const [page, setPage] = React.useState(0);
+  const [checked, setChecked] = React.useState([]);
+  const [isAllChecked, setIsAllChecked] = React.useState(false);
   const [row, setRow] = React.useState(null);
   const [size, setSize] = React.useState({ width: 740, height: 500 });
   const refDataGrid = React.useRef(null);
@@ -19,7 +21,7 @@ export function App() {
   React.useEffect(() => {
     async function loadData() {
       const w = worker();
-      const data = await w.getDataFromWorker(150, 10);
+      const data = await w.getDataFromWorker({ page: 0 });
       setData(() => data);
       setIsIdle(() => false);
     }
@@ -60,7 +62,7 @@ export function App() {
   React.useEffect(() => {
     async function loadData() {
       const w = worker();
-      const nextData = await w.getDataFromWorker(150, 10);
+      const nextData = await w.getDataFromWorker({ page });
       setData(data => data.concat(nextData));
     }
 
@@ -69,12 +71,28 @@ export function App() {
     }
   }, [page]);
 
-  function handleOnSelect() {
-    console.log("handleOnSelect");
+  function handleRowChecked({ rowIndex }) {
+    if (checked.includes(data[rowIndex].key)) {
+      setChecked(checked => {
+        return checked.filter(key => key !== data[rowIndex].key);
+      });
+
+      return;
+    }
+
+    setChecked(checked => {
+      return [...new Set([...checked, data[rowIndex].key])];
+    });
   }
 
-  function isChecked() {
-    return "unchecked";
+  function isChecked({ rowIndex }) {
+    if (data.length === 0) return "unchecked";
+
+    return rowIndex !== null && checked.includes(data[rowIndex].key) ? "checked" : "unchecked";
+  }
+
+  function handleCheckAll() {
+    setIsAllChecked(isChecked => (isChecked ? "unchecked" : "checked"));
   }
 
   function handleInfinityScrollReached({ nextPage }) {
@@ -86,7 +104,7 @@ export function App() {
 
   function renderSidepanel({ row }) {
     return (
-      <SidePanel onClose={handleSidePanelClose} isOpen={isOpen}>
+      <SidePanel onClose={handleSidePanelClose} isOpen={isOpen} width={450}>
         <SidePanel.FocusLock
           onDeactivation={() => {
             // https://github.com/theKashey/react-focus-lock#unmounting-and-focus-management
@@ -96,15 +114,13 @@ export function App() {
           }}
         />
         <SidePanel.Header>{row.name}</SidePanel.Header>
-        <div
-          css={`
-            width: 300px;
-            overflow: hidden;
-          `}
-        >
-          <img src={`${row.thumbnail.path}.${row.thumbnail.extension}`} width="100%" alt={row.name} />
-        </div>
-        <div>{row.description}</div>
+        {Object.keys(row).map(key => {
+          return (
+            <p>
+              {key} : {row[key]}
+            </p>
+          );
+        })}
       </SidePanel>
     );
   }
@@ -122,11 +138,19 @@ export function App() {
         onClick={handleOpenSidepanel}
         onEnter={handleOpenSidepanel}
         onSpaceBar={handleOpenSidepanel}
+        onRowChecked={handleRowChecked}
       >
-        {renderColumnIndicator({ onSelect: handleOnSelect, isChecked })}
+        {renderColumnIndicator({
+          onCheck: handleRowChecked,
+          onCheckAll: handleCheckAll,
+          isAllChecked,
+          isChecked,
+          hasNumber: false,
+        })}
         {renderColumnExpand()}
         {data.length
           ? Object.keys(data[0]).map(key => {
+              if (key === "key") return null;
               return <DataGrid.ColumnDefinition key={key} header={key} cell={key} />;
             })
           : null}

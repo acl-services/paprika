@@ -13,12 +13,12 @@ import InfinityScroll from "./components/InfinityScroll";
 const propTypes = {
   children: PropTypes.node.isRequired,
   data: PropTypes.arrayOf(PropTypes.shape({})),
-  fillAvailableSpace: PropTypes.bool,
   height: PropTypes.number,
   isIdle: PropTypes.bool,
   onClick: PropTypes.func,
   onEnter: PropTypes.func,
   onKeyDown: PropTypes.func,
+  onRowChecked: PropTypes.func,
   onShiftSpaceBar: PropTypes.func,
   onSpaceBar: PropTypes.func,
   rowHeight: PropTypes.number,
@@ -26,12 +26,12 @@ const propTypes = {
 };
 const defaultProps = {
   data: [],
-  fillAvailableSpace: false,
   height: 600,
   isIdle: false,
   onClick: null,
   onEnter: null,
   onKeyDown: () => {},
+  onRowChecked: () => {},
   onShiftSpaceBar: null,
   onSpaceBar: null,
   rowHeight: 36,
@@ -52,12 +52,12 @@ const DataGrid = React.forwardRef((props, ref) => {
   const {
     children,
     data,
-    fillAvailableSpace,
     height,
     isIdle,
     onClick,
     onEnter,
     onKeyDown,
+    onRowChecked,
     onShiftSpaceBar,
     onSpaceBar,
     rowHeight,
@@ -78,6 +78,10 @@ const DataGrid = React.forwardRef((props, ref) => {
   const refCurrentPage = React.useRef(null);
   const refActiveRow = React.useRef(null);
   const refPrevActiveRow = React.useRef(null);
+  const refVisibleIndexes = React.useRef({
+    start: null,
+    stop: null,
+  });
 
   const [scrollBarWidth, setScrollBarWidth] = React.useState(0);
   const [gridShouldHaveFocus, setGridShouldHaveFocus] = React.useState(true);
@@ -190,10 +194,12 @@ const DataGrid = React.forwardRef((props, ref) => {
 
   const { handleKeyDown, handleKeyUp, handleClick, gridId, restoreHighlightFocus } = useGridEventHandler({
     columnCount,
+    highlightRow,
     onChangeActiveCell,
     onClick,
     onEnter,
     onKeyDown,
+    onRowChecked,
     onShiftSpaceBar,
     onSpaceBar,
     refContainer,
@@ -202,7 +208,6 @@ const DataGrid = React.forwardRef((props, ref) => {
     rowHeight,
     scrollBarWidth,
     stickyColumnsIndexes,
-    highlightRow,
   });
 
   const a11yTextMessage = (value, column, rowIndex) => {
@@ -317,9 +322,16 @@ const DataGrid = React.forwardRef((props, ref) => {
         focus: () => {
           restoreHighlightFocus();
         },
+        getVisibleIndexes: () => {
+          return refVisibleIndexes.current;
+        },
+        getVisibleRows: () => {
+          const { start, stop } = refVisibleIndexes.current;
+          return data.slice(start, stop);
+        },
       };
     },
-    [restoreHighlightFocus]
+    [data, restoreHighlightFocus]
   );
 
   function handleBlurGrid() {
@@ -339,7 +351,12 @@ const DataGrid = React.forwardRef((props, ref) => {
     handleKeyUp({ data, ColumnDefinitions })(event);
   }
 
-  function handleItemsRedered({ visibleRowStopIndex }) {
+  function handleItemsRedered({ visibleRowStartIndex, visibleRowStopIndex }) {
+    refVisibleIndexes.current = {
+      start: visibleRowStartIndex,
+      stop: visibleRowStopIndex,
+    };
+
     if (refCurrentPage.current === null) {
       refCurrentPage.current = 0;
     }
