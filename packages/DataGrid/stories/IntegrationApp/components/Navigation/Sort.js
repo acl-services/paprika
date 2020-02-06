@@ -2,15 +2,15 @@ import React from "react";
 import nanoid from "nanoid";
 import { Sort } from "@paprika/navigation";
 
-const getDefaultField = () => {
-  return {
-    fieldId: nanoid(),
-    columnId: "goals",
-    direction: "ASCEND",
-  };
-};
-
 export default function MySort({ sortedFields, setSortedFields, columns }) {
+  function getDefaultField() {
+    return {
+      fieldId: nanoid(),
+      columnId: columns[0].id,
+      direction: "ASCEND",
+    };
+  }
+
   function handleSortFieldChange({ field, direction, columnId }) {
     let newField;
     if (columnId) {
@@ -30,7 +30,7 @@ export default function MySort({ sortedFields, setSortedFields, columns }) {
     setSortedFields(prevFields => [...prevFields, getDefaultField()]);
   }
 
-  const memorizedAddField = React.useCallback(handleAddField, [setSortedFields]);
+  const memorizedAddField = React.useCallback(handleAddField, [setSortedFields, columns]);
 
   function handleDeleteField(deletedField) {
     setSortedFields(prevFields => [...prevFields].filter(filter => filter.fieldId !== deletedField.fieldId));

@@ -4,10 +4,6 @@ import worker from "workerize-loader!../helpers/data.integration.worker"; // esl
 import Navigation from "./components/Navigation";
 import DataGrid, { renderColumnIndicator, renderColumnExpand } from "../../src";
 
-function MemorizedDataGrid() {
-  return React.memo(DataGrid);
-}
-
 export default function App({ size }) {
   // DataGrid
   const [data, setData] = React.useState([]);
@@ -21,13 +17,8 @@ export default function App({ size }) {
   const refPage = React.useRef([0]);
 
   // Navigation
-  const [columns, setColumns] = React.useState([
-    // { id: "country", label: "Country", isHidden: false, type: "TEXT" },
-    // { id: "name", label: "Name", isHidden: false, type: "TEXT" },
-    // { id: "goals", label: "Goals", isHidden: false, type: "NUMBER" },
-    // { id: "status", label: "Status", isHidden: false, type: "TEXT" },
-    // { id: "joined", label: "Joined", isHidden: false, momentParsingFormat: "MM/DD/YYYY", type: "DATE" },
-  ]);
+  const [columns, setColumns] = React.useState([]);
+  const [orderedColumns, setOrderedColumns] = React.useState([]);
   const [filters, setFilters] = React.useState([]);
   const [sortedFields, setSortedFields] = React.useState([]);
   const [operator, setOperator] = React.useState("AND");
@@ -36,7 +27,10 @@ export default function App({ size }) {
     async function loadData() {
       const w = worker();
       const data = await w.getDataFromWorker({ page: 0 });
+      const initialColumns = await w.getColumnsFromWorker();
       setData(() => data);
+      setColumns(() => initialColumns);
+      setOrderedColumns(() => initialColumns);
       setIsIdle(() => false);
     }
 
@@ -130,6 +124,7 @@ export default function App({ size }) {
       {row && renderSidepanel({ row })}
       <Navigation
         columns={columns}
+        orderedColumns={orderedColumns}
         filters={filters}
         operator={operator}
         setColumns={setColumns}
@@ -159,11 +154,13 @@ export default function App({ size }) {
         })}
         {renderColumnExpand()}
         {data.length
-          ? Object.keys(data[0]).map(key => {
-              if (key === "key") return null;
-              return <DataGrid.ColumnDefinition key={key} header={key} cell={key} />;
-            })
+          ? columns.map(column =>
+              column.isHidden ? null : (
+                <DataGrid.ColumnDefinition key={column.id} header={column.label} cell={column.id} />
+              )
+            )
           : null}
+
         <DataGrid.InfinityScroll rowsOffset={50} onReached={handleInfinityScrollReached} />
       </DataGrid>
     </React.Fragment>

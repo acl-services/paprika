@@ -2,15 +2,6 @@ import React from "react";
 import nanoid from "nanoid";
 import { Filter } from "@paprika/navigation";
 
-const getDefaultFilter = () => {
-  return {
-    columnId: "goals",
-    rule: "LESS_THAN",
-    value: "0",
-    filterId: nanoid(),
-  };
-};
-
 const initialValueByType = {
   BOOLEAN: true,
   NUMBER: "",
@@ -37,7 +28,18 @@ const getLevelFilter = () => {
   };
 };
 
-export default function MyFilter({ filters, setFilters, columns, setOperator, operator }) {
+export default function MyFilter(props) {
+  const { filters, setFilters, columns, setOperator, operator } = props;
+
+  function getDefaultFilter() {
+    return {
+      columnId: columns[0].id,
+      rule: "IS",
+      value: "",
+      filterId: nanoid(),
+    };
+  }
+
   function handleFilterChange({ filter, rule, value, columnId }) {
     let newFilter;
 
@@ -77,7 +79,7 @@ export default function MyFilter({ filters, setFilters, columns, setOperator, op
     setFilters(prevFilters => [...prevFilters, getDefaultFilter()]);
   }
 
-  const memorizedAddFilter = React.useCallback(handleAddFilter, [setFilters]);
+  const memorizedAddFilter = React.useCallback(handleAddFilter, [columns, setFilters]);
 
   function handleDeleteFilter(deletedFilter) {
     setFilters(prevFilters => [...prevFilters].filter(filter => filter.filterId !== deletedFilter.filterId));
