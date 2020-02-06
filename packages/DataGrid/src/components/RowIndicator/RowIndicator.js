@@ -1,24 +1,30 @@
 import React from "react";
 import PropTypes from "prop-types";
 import CheckBox from "@paprika/checkbox";
-import * as styles from "./RowIndicator.styles";
+import * as styled from "./RowIndicator.styles";
 
 const propTypes = {
   hasIndexIndicator: PropTypes.bool,
+  hasNumber: PropTypes.bool,
+  isActiveCell: PropTypes.bool,
+  isActiveRow: PropTypes.bool,
   isChecked: PropTypes.func,
+  onCheck: PropTypes.func,
   row: PropTypes.shape({}),
   rowIndex: PropTypes.number,
-  isActiveCell: PropTypes.bool,
 };
 
 const defaultProps = {
   hasIndexIndicator: true,
+  hasNumber: false,
+  isActiveCell: false,
+  isActiveRow: false,
   row: null,
   rowIndex: null,
+  onCheck: () => {},
   isChecked: () => {
     return "unchecked";
   },
-  isActiveCell: false,
 };
 
 function isValueNotUnchecked(value) {
@@ -27,7 +33,11 @@ function isValueNotUnchecked(value) {
 
 export default function RowIndicator(props) {
   const [isActive, setIsActive] = React.useState(false);
-  const { rowIndex, isChecked, hasIndexIndicator, isActiveCell } = props;
+  const { rowIndex, isChecked, hasIndexIndicator, onCheck, isActiveCell, isActiveRow, hasNumber } = props;
+
+  function handleCheck() {
+    onCheck({ rowIndex });
+  }
 
   function handleMouseOver() {
     setIsActive(() => true);
@@ -37,19 +47,35 @@ export default function RowIndicator(props) {
     setIsActive(() => false);
   }
 
+  const indicator = hasNumber ? (
+    <styled.RowIndexText hasFourDigitsOrMore={rowIndex > 999}>{rowIndex}</styled.RowIndexText>
+  ) : (
+    <styled.RowIndexText>
+      <styled.Void />
+    </styled.RowIndexText>
+  );
+
   return (
-    <div
+    <styled.RowContainer
       onMouseOver={handleMouseOver}
       onFocus={handleMouseOver}
       onBlur={handleMouseLeave}
       onMouseLeave={handleMouseLeave}
     >
-      {isActive || isActiveCell || isValueNotUnchecked(isChecked()) || !hasIndexIndicator ? (
-        <CheckBox tabIndex="-1" size="small" checkedState={isChecked()} onChange={() => {}} />
+      {isActive || isActiveCell || isActiveRow || isValueNotUnchecked(isChecked({ rowIndex })) || !hasIndexIndicator ? (
+        <styled.Checkbox>
+          <CheckBox
+            tabIndex="-1"
+            size="small"
+            checkedState={isChecked({ rowIndex })}
+            onClick={handleCheck}
+            onChange={() => {}}
+          />
+        </styled.Checkbox>
       ) : (
-        <styles.RowIndexText>{rowIndex}</styles.RowIndexText>
+        indicator
       )}
-    </div>
+    </styled.RowContainer>
   );
 }
 

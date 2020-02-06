@@ -8,16 +8,17 @@ import useGridEventHandler from "./hooks/useGridEventHandler";
 import ColumnDefinition from "./components/ColumnDefinition";
 import * as styled from "./DataGrid.styles";
 import WhenScrollBarReachedBottom, { End } from "./components/WhenScrollBarReachedBottom";
+import InfinityScroll from "./components/InfinityScroll";
 
 const propTypes = {
   children: PropTypes.node.isRequired,
   data: PropTypes.arrayOf(PropTypes.shape({})),
-  fillAvailableSpace: PropTypes.bool,
   height: PropTypes.number,
   isIdle: PropTypes.bool,
   onClick: PropTypes.func,
   onEnter: PropTypes.func,
   onKeyDown: PropTypes.func,
+  onRowChecked: PropTypes.func,
   onShiftSpaceBar: PropTypes.func,
   onSpaceBar: PropTypes.func,
   rowHeight: PropTypes.number,
@@ -25,12 +26,12 @@ const propTypes = {
 };
 const defaultProps = {
   data: [],
-  fillAvailableSpace: false,
   height: 600,
   isIdle: false,
   onClick: null,
   onEnter: null,
   onKeyDown: () => {},
+  onRowChecked: () => {},
   onShiftSpaceBar: null,
   onSpaceBar: null,
   rowHeight: 36,
@@ -51,12 +52,12 @@ const DataGrid = React.forwardRef((props, ref) => {
   const {
     children,
     data,
-    fillAvailableSpace,
     height,
     isIdle,
     onClick,
     onEnter,
     onKeyDown,
+    onRowChecked,
     onShiftSpaceBar,
     onSpaceBar,
     rowHeight,
@@ -64,7 +65,7 @@ const DataGrid = React.forwardRef((props, ref) => {
     ...moreProps
   } = props;
 
-  const refsCell = React.useRef({});
+  const refsCell = React.useRef({ keys: {}, rows: {} });
   const refPrevActiveCell = React.useRef(null);
   const refScrollHeader = React.useRef(null);
   const refContainer = React.useRef(null);
@@ -74,10 +75,17 @@ const DataGrid = React.forwardRef((props, ref) => {
   const refScrollHappenedBy = React.useRef(null);
   const refEnd = React.useRef(null);
   const refPrevLastScrollHeight = React.useRef(null);
+  const refCurrentPage = React.useRef(null);
+  const refActiveRow = React.useRef(null);
+  const refPrevActiveRow = React.useRef(null);
+  const refVisibleIndexes = React.useRef({
+    start: null,
+    stop: null,
+  });
 
   const [scrollBarWidth, setScrollBarWidth] = React.useState(0);
   const [gridShouldHaveFocus, setGridShouldHaveFocus] = React.useState(true);
-
+  const [pageSize, setPageSize] = React.useState(null);
   // these two value are sensitive in Grids with lots of columns and can degradate performance alot.
   // be caution when using them.
   const overscanRowCount = 10;
@@ -87,13 +95,18 @@ const DataGrid = React.forwardRef((props, ref) => {
     return data.length;
   }, [data.length]);
 
-  const { ColumnDefinitions, WhenScrollBarReachedBottom } = React.useMemo(() => {
+  const { ColumnDefinitions, WhenScrollBarReachedBottom, InfinityScroll } = React.useMemo(() => {
     const {
       "DataGrid.ColumnDefinition": ColumnDefinitions,
       "DataGrid.WhenScrollBarReachedBottom": WhenScrollBarReachedBottom,
-    } = extractChildren(children, ["DataGrid.ColumnDefinition", "DataGrid.WhenScrollBarReachedBottom"]);
+      "DataGrid.InfinityScroll": InfinityScroll,
+    } = extractChildren(children, [
+      "DataGrid.ColumnDefinition",
+      "DataGrid.WhenScrollBarReachedBottom",
+      "DataGrid.InfinityScroll",
+    ]);
 
-    return { ColumnDefinitions, WhenScrollBarReachedBottom };
+    return { ColumnDefinitions, WhenScrollBarReachedBottom, InfinityScroll };
   }, [children]);
 
   const columnCount = React.useMemo(() => {
@@ -135,26 +148,58 @@ const DataGrid = React.forwardRef((props, ref) => {
       }, 0)) ||
     0;
 
+  function highlightRow({ rowIndex = null }) {
+    if (rowIndex !== null) {
+      if (refPrevActiveRow.current !== null) {
+        const rowIndex = refPrevActiveRow.current;
+        refsCell.current.rows[rowIndex].forEach(key => {
+          if (refsCell.current.keys[key]) refsCell.current.keys[key].deemphasizeOnrow(rowIndex);
+        });
+      }
+
+      refActiveRow.current = rowIndex;
+      refPrevActiveRow.current = rowIndex;
+
+      refsCell.current.rows[rowIndex].forEach(key => {
+        if (refsCell.current.keys[key]) refsCell.current.keys[key].highlightOnRow(rowIndex);
+      });
+    }
+  }
+
+  function deemphasizeRow() {
+    if (refPrevActiveRow.current) {
+      const rowIndex = refPrevActiveRow.current;
+      refsCell.current.rows[rowIndex].forEach(key => {
+        if (refsCell.current.keys[key]) refsCell.current.keys[key].deemphasizeOnrow(rowIndex);
+      });
+    }
+
+    refActiveRow.current = null;
+    refPrevActiveRow.current = null;
+  }
+
   function onChangeActiveCell({ columnIndex, rowIndex }) {
     const key = `${columnIndex}${rowIndex}`;
 
-    if (refPrevActiveCell.current && refPrevActiveCell.current in refsCell.current) {
-      const prevCell = refsCell.current[refPrevActiveCell.current];
+    if (refPrevActiveCell.current && refPrevActiveCell.current in refsCell.current.keys) {
+      const prevCell = refsCell.current.keys[refPrevActiveCell.current];
       if (prevCell) {
-        refsCell.current[refPrevActiveCell.current].isActiveCell(false);
+        refsCell.current.keys[refPrevActiveCell.current].isActiveCell(false);
       }
     }
 
     refPrevActiveCell.current = key;
-    refsCell.current[key].isActiveCell(true);
+    refsCell.current.keys[key].isActiveCell(true);
   }
 
   const { handleKeyDown, handleKeyUp, handleClick, gridId, restoreHighlightFocus } = useGridEventHandler({
     columnCount,
+    highlightRow,
     onChangeActiveCell,
     onClick,
     onEnter,
     onKeyDown,
+    onRowChecked,
     onShiftSpaceBar,
     onSpaceBar,
     refContainer,
@@ -214,11 +259,15 @@ const DataGrid = React.forwardRef((props, ref) => {
     [refScrollGrid]
   );
 
-  const refCellHandler = ({ columnIndex, rowIndex }) => ref => {
-    refsCell.current[`${columnIndex}${rowIndex}`] = ref;
+  const handleRefCell = ({ columnIndex, rowIndex }) => ref => {
+    const key = `${columnIndex}${rowIndex}`;
+    refsCell.current.keys[key] = ref;
+    refsCell.current.rows[rowIndex] = Array.isArray(refsCell.current.rows[rowIndex])
+      ? refsCell.current.rows[rowIndex].concat(key)
+      : [key];
   };
 
-  React.useLayoutEffect(() => {
+  React.useEffect(() => {
     if (!refContainer.current) return;
 
     refScrollHeader.current = refContainer.current.querySelector(`.${gridId}-header`);
@@ -248,6 +297,16 @@ const DataGrid = React.forwardRef((props, ref) => {
   }
 
   React.useEffect(() => {
+    if (data.length && pageSize === null) {
+      setPageSize(() => data.length);
+    }
+  }, [data.length, pageSize]);
+
+  React.useEffect(() => {
+    refPrevLastScrollHeight.current = refScrollGrid.current.scrollHeight;
+  }, []);
+
+  React.useEffect(() => {
     // this is required to readjust the active highlight
     // after any rerender
     if (refPrevLastScrollHeight.current && refPrevLastScrollHeight.current < refScrollGrid.current.scrollHeight) {
@@ -256,10 +315,6 @@ const DataGrid = React.forwardRef((props, ref) => {
     restoreHighlightFocus();
   });
 
-  React.useEffect(() => {
-    refPrevLastScrollHeight.current = refScrollGrid.current.scrollHeight;
-  }, []);
-
   React.useImperativeHandle(
     ref,
     () => {
@@ -267,9 +322,16 @@ const DataGrid = React.forwardRef((props, ref) => {
         focus: () => {
           restoreHighlightFocus();
         },
+        getVisibleIndexes: () => {
+          return refVisibleIndexes.current;
+        },
+        getVisibleRows: () => {
+          const { start, stop } = refVisibleIndexes.current;
+          return data.slice(start, stop);
+        },
       };
     },
-    [restoreHighlightFocus]
+    [data, restoreHighlightFocus]
   );
 
   function handleBlurGrid() {
@@ -289,6 +351,34 @@ const DataGrid = React.forwardRef((props, ref) => {
     handleKeyUp({ data, ColumnDefinitions })(event);
   }
 
+  function handleItemsRedered({ visibleRowStartIndex, visibleRowStopIndex }) {
+    refVisibleIndexes.current = {
+      start: visibleRowStartIndex,
+      stop: visibleRowStopIndex,
+    };
+
+    if (refCurrentPage.current === null) {
+      refCurrentPage.current = 0;
+    }
+
+    if (InfinityScroll) {
+      const { rowsOffset, onReached } = InfinityScroll.props;
+      if (visibleRowStopIndex + rowsOffset > rowCount) {
+        const currentPage = Math.floor(visibleRowStopIndex / pageSize);
+        const nextPage = currentPage + 1;
+        onReached({ currentPage, nextPage });
+      }
+    }
+  }
+
+  function handleMouseOver(event) {
+    highlightRow({ rowIndex: event.target.dataset.rowIndex });
+  }
+
+  function handleMouseLeave() {
+    deemphasizeRow();
+  }
+
   return (
     <>
       {isIdle && (
@@ -306,6 +396,8 @@ const DataGrid = React.forwardRef((props, ref) => {
         onKeyDown={handleKeyDownGrid}
         onKeyUp={handleKeyUpGrid}
         onMouseUp={handleMouseUpGrid}
+        onMouseOver={handleMouseOver}
+        onMouseLeave={handleMouseLeave}
         ref={refContainer}
         role="grid"
         tabIndex={gridShouldHaveFocus ? 0 : -1}
@@ -371,20 +463,21 @@ const DataGrid = React.forwardRef((props, ref) => {
         {/** STICKY COLUMNS */}
         <styled.Flex>
           <Grid
+            className={`${gridId}-sticky-columns`}
             columnCount={stickyColumnsIndexes.length}
             columnWidth={columnIndex => {
               return ColumnDefinitions[stickyColumnsIndexes[columnIndex]].props.width;
             }}
             height={height - scrollBarWidth}
+            innerElementType={innerElementType}
+            onItemsRendered={handleItemsRedered}
+            onScroll={handleScrollStickyColumns}
+            outerElementType={outerElementType}
+            overscanColumnCount={overscanColumnCount}
+            overscanRowCount={overscanRowCount}
             rowCount={rowCount}
             rowHeight={() => rowHeight}
             width={stickyGridWidth}
-            overscanColumnCount={overscanColumnCount}
-            overscanRowCount={overscanRowCount}
-            outerElementType={outerElementType}
-            innerElementType={innerElementType}
-            className={`${gridId}-sticky-columns`}
-            onScroll={handleScrollStickyColumns}
           >
             {({ columnIndex, rowIndex, style }) => {
               const column = ColumnDefinitions[stickyColumnsIndexes[columnIndex]].props;
@@ -402,7 +495,7 @@ const DataGrid = React.forwardRef((props, ref) => {
                   columnIndex={columnIndex}
                   data={data}
                   gridId={gridId}
-                  ref={refCellHandler({ columnIndex, rowIndex })}
+                  ref={handleRefCell({ columnIndex, rowIndex })}
                   rowIndex={rowIndex}
                   style={style}
                 />
@@ -413,22 +506,23 @@ const DataGrid = React.forwardRef((props, ref) => {
           {/** COLUMS */}
 
           <Grid
+            className={`grid-${gridId}`}
             columnCount={columnCount}
             columnWidth={columnIndex => {
               if (stickyColumnsIndexes.includes(columnIndex)) return 0;
               return ColumnDefinitions[columnIndex].props.width;
             }}
             height={height}
+            innerElementType={innerElementTypeMainGrid}
+            onItemsRendered={handleItemsRedered}
+            onScroll={handleScroll}
+            outerElementType={outerElementTypeMainGrid}
+            overscanColumnCount={overscanColumnCount}
+            overscanRowCount={overscanRowCount}
+            ref={refGrid}
             rowCount={rowCount}
             rowHeight={() => rowHeight}
             width={gridWidth - stickyGridWidth}
-            overscanColumnCount={overscanColumnCount}
-            overscanRowCount={overscanRowCount}
-            outerElementType={outerElementTypeMainGrid}
-            innerElementType={innerElementTypeMainGrid}
-            ref={refGrid}
-            className={`grid-${gridId}`}
-            onScroll={handleScroll}
           >
             {({ columnIndex, rowIndex, style }) => {
               const column = ColumnDefinitions[columnIndex].props;
@@ -450,7 +544,7 @@ const DataGrid = React.forwardRef((props, ref) => {
                   columnIndex={columnIndex}
                   data={data}
                   gridId={gridId}
-                  ref={refCellHandler({ columnIndex, rowIndex })}
+                  ref={handleRefCell({ columnIndex, rowIndex })}
                   rowIndex={rowIndex}
                   style={style}
                 />
@@ -464,7 +558,9 @@ const DataGrid = React.forwardRef((props, ref) => {
       {!isIdle ? (
         <>
           <styled.Footer $width={gridWidth}>
-            <styled.RowCount>Rows:{rowCount}</styled.RowCount>
+            <styled.RowCount>
+              Rows:{rowCount} Columns:{columnCount}
+            </styled.RowCount>
           </styled.Footer>
           {WhenScrollBarReachedBottom ? (
             <End width={gridWidth} ref={refEnd}>
@@ -481,5 +577,6 @@ DataGrid.propTypes = propTypes;
 DataGrid.defaultProps = defaultProps;
 DataGrid.ColumnDefinition = ColumnDefinition;
 DataGrid.WhenScrollBarReachedBottom = WhenScrollBarReachedBottom;
+DataGrid.InfinityScroll = InfinityScroll;
 
 export default DataGrid;

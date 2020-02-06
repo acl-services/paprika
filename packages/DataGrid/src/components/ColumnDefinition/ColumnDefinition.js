@@ -57,7 +57,7 @@ export const defaultProps = {
   onEnter: null,
   onShiftSpaceBar: null,
   onSpaceBar: null,
-  width: 80,
+  width: 182,
 };
 
 export default function ColumnDefinition() {

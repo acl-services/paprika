@@ -16,12 +16,14 @@ export function timeDiff(t1, t2) {
 
 export default function useGridEventHandler({
   columnCount,
+  highlightRow,
   onChangeActiveCell,
+  onClick,
   onEnter,
   onKeyDown,
-  onSpaceBar,
+  onRowChecked,
   onShiftSpaceBar,
-  onClick,
+  onSpaceBar,
   refContainer,
   refGrid,
   rowCount,
@@ -45,9 +47,9 @@ export default function useGridEventHandler({
     );
   }, [gridId, refContainer]);
 
-  function setRefPrevCell() {
+  const setRefPrevCell = React.useCallback(() => {
     refPrevCell.current = $getCell();
-  }
+  }, [$getCell]);
 
   const setHighlight = React.useCallback(() => {
     if (cell && cell.current && refGrid && refGrid.current) {
@@ -67,26 +69,24 @@ export default function useGridEventHandler({
   }, [$getCell, refContainer, refGrid]);
 
   function focus($cell) {
-    window.requestAnimationFrame(() => {
-      const $prev = refPrevCell.current;
-      if (!$cell) return;
+    const $prev = refPrevCell.current;
+    if (!$cell) return;
 
-      if ($prev) {
-        $prev.querySelector("[role=gridcell]").tabIndex = "-1";
-      }
+    if ($prev) {
+      $prev.querySelector("[role=gridcell]").tabIndex = "-1";
+    }
 
-      if ($cell.hasAttribute("data-cell")) {
-        const $a11Txt = $cell.querySelector("[role=gridcell]");
-        $a11Txt.tabIndex = 0;
-        $a11Txt.focus();
-        return;
-      }
-
-      const $gridCell = $cell.closest("[data-cell]");
-      const $a11Txt = $gridCell.querySelector("[role=gridcell]");
+    if ($cell.hasAttribute("data-cell")) {
+      const $a11Txt = $cell.querySelector("[role=gridcell]");
       $a11Txt.tabIndex = 0;
       $a11Txt.focus();
-    });
+      return;
+    }
+
+    const $gridCell = $cell.closest("[data-cell]");
+    const $a11Txt = $gridCell.querySelector("[role=gridcell]");
+    $a11Txt.tabIndex = 0;
+    $a11Txt.focus();
   }
 
   function scrollToTheBottom() {
@@ -114,7 +114,10 @@ export default function useGridEventHandler({
 
     // left right
     if (cellBoundClientRect.right > refContainerBoundClientRect.current.right) {
-      const left = refScroll.current.scrollLeft + cellBoundClientRect.width;
+      let left = refScroll.current.scrollLeft + cellBoundClientRect.width;
+      if (columnIndex + 1 >= columnCount) {
+        left = refScroll.current.scrollWidth;
+      }
 
       refScroll.current.scrollTo(left, refScroll.current.scrollTop);
 
@@ -249,7 +252,8 @@ export default function useGridEventHandler({
         setRefPrevCell();
         cell.current = toCellState(columnIndex, nextRowIndex);
         setHighlight();
-        scroll(0, nextRowIndex);
+        highlightRow({ rowIndex: nextRowIndex });
+        scroll(columnIndex, nextRowIndex);
       }
     },
     ArrowRight: () => {
@@ -263,7 +267,7 @@ export default function useGridEventHandler({
         setHighlight();
         $setRefs(columnIndex);
         scroll(nextColumnIndex, 0);
-
+        highlightRow({ rowIndex });
         if (nextColumnIndex === columnCount - 1) {
           scrollToTheRightEdge();
         }
@@ -284,13 +288,15 @@ export default function useGridEventHandler({
         $setRefs(columnIndex);
         cell.current = toCellState(columnIndex, nextRowIndex);
         setHighlight();
-        scroll(0, nextRowIndex);
+        highlightRow({ rowIndex: nextRowIndex });
+        scroll(columnIndex, nextRowIndex);
       }
     },
     ArrowLeft: () => {
       const columnIndex = cell.current.columnIndex;
       const rowIndex = cell.current.rowIndex;
       const nextColumnIndex = Number.parseInt(columnIndex, 10) - 1;
+      highlightRow({ rowIndex });
       if (nextColumnIndex >= 0) {
         setRefPrevCell();
         cell.current = toCellState(nextColumnIndex, rowIndex);
@@ -304,18 +310,32 @@ export default function useGridEventHandler({
     },
     // keydown will not trigger spacebar, keyup will, but we want to prevent scrolling.
     " ": () => {},
+    // we move f (checked row) because this actions doesn't open a sidepanel and we want it
+    // to fire it as soon as the user click the key to have a smoother experience
+    f: ({ data, ColumnDefinitions, columnIndex, rowIndex, event }) => {
+      const column = ColumnDefinitions[columnIndex].props;
+      const options = { row: data[rowIndex], column, rowIndex, columnIndex, event };
+      return onRowChecked && onRowChecked(options);
+    },
   };
 
   // This in charge of highlight the cell but will not scroll the table in case there is overflow
   const handleKeyDown = ({ data, ColumnDefinitions }) => event => {
     onKeyDown(event);
     if (event.key in keyboardDownKeys) {
+      document.body.style.pointerEvents = "none";
       event.preventDefault();
       if (!cell) {
         return;
       }
 
-      keyboardDownKeys[event.key]({ data, ColumnDefinitions });
+      keyboardDownKeys[event.key]({
+        ColumnDefinitions,
+        columnIndex: cell.current.columnIndex,
+        data,
+        event,
+        rowIndex: cell.current.rowIndex,
+      });
     }
   };
 
@@ -381,6 +401,7 @@ export default function useGridEventHandler({
 
   const handleClick = ({ data, ColumnDefinitions }) => event => {
     const dataCell = getDataCell(event);
+    if (!dataCell) return;
 
     const [, columnIndex, rowIndex] = dataCell.split(".");
 
@@ -399,17 +420,30 @@ export default function useGridEventHandler({
     }
   };
 
-  React.useLayoutEffect(() => {
+  React.useEffect(() => {
+    // this helps "enable" the mouse after being disable when using the keyboard
+    // search for document.body.style.pointerEvents
+    function handleMouseMove() {
+      document.body.style.pointerEvents = "auto";
+    }
+    document.addEventListener("mousemove", handleMouseMove);
+
+    return () => {
+      document.removeEventListener("mousemove", handleMouseMove);
+    };
+  }, []);
+
+  React.useEffect(() => {
     refContainerBoundClientRect.current = $getGridBoundingRect();
   }, [$getGridBoundingRect]);
 
-  React.useLayoutEffect(() => {
+  React.useEffect(() => {
     refScroll.current = $getGrid();
     if (!refScroll.current) return;
     refHasHorizontalScrollBar.current = refScroll.current.scrollWidth > refScroll.current.clientWidth;
   }, [$getGrid, refScroll]);
 
-  function restoreHighlightFocus() {
+  const restoreHighlightFocus = React.useCallback(() => {
     if (cell.current && (cell.current.columnIndex !== null && cell.current.rowIndex !== null)) {
       const $cell = $getCell();
 
@@ -418,7 +452,7 @@ export default function useGridEventHandler({
       setHighlight();
       focus($cell);
     }
-  }
+  }, [$getCell, setHighlight, setRefPrevCell]);
 
   return { cell, prevCell, handleKeyDown, handleKeyUp, gridId, restoreHighlightFocus, handleClick };
 }

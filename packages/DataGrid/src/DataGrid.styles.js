@@ -47,9 +47,10 @@ export const Grid = styled.div.attrs(({ $width, isIdle }) => {
           The arrow navigatoion is border sensible, please avoid adding a border to this styled components
           doing it will create a incorrect navigation while using the arrow keys.
         */
-        box-shadow: 0px 0px 12px 4px ${tokens.border.color};
-        /* overflow: hidden !important; */
+        box-shadow: 3px 0px 0px 0px ${tokens.border.color};
         overflow-x: hidden !important;
+        /* overflow: hidden !important; */
+        z-index: 100;
         ::-webkit-scrollbar {
           width: 0px;
         }
@@ -66,15 +67,33 @@ export const Cell = styled.div`
   background: ${tokens.color.white};
   border-bottom: 1px solid ${tokens.border.color};
   border-left: 1px solid ${tokens.border.color};
+  box-sizing: border-box;
   display: flex;
   font-size: 16px;
   justify-content: flex-start;
   line-height: 1;
   position: relative;
+
   &:focus {
     outline: 1px solid transparent;
     /* outline: 0; */
   }
+  ${({ hasActiveRowShadow }) => {
+    return hasActiveRowShadow
+      ? css`
+          &:before {
+            background: ${tokens.color.blue};
+            content: "";
+            height: 100%;
+            left: 0;
+            position: absolute;
+            top: 0;
+            width: 3px;
+            z-index: 100;
+          }
+        `
+      : "";
+  }}
 `;
 
 export const CellHeader = styled(Cell)`

@@ -3,24 +3,42 @@ import RowIndicator from "../RowIndicator";
 import ColumnDefinition from "../ColumnDefinition";
 
 export default function renderColumnIndicator(options = {}) {
-  const { isChecked = () => "unchecked", onSelect = {} } = options;
-
-  function handleOnSelect(args) {
-    onSelect(args);
-  }
+  const {
+    isChecked = () => "unchecked",
+    isAllChecked = "unchecked",
+    onCheck = () => {},
+    onCheckAll = () => {},
+    hasNumber = true,
+    hasHeaderChecker = true,
+    ...moreOptions
+  } = options;
 
   return (
     <ColumnDefinition
       headerA11yText={() => "unchecked"}
       cellA11yText={() => "unchecked"}
-      header={propsHeader => <RowIndicator hasIndexIndicator={false} isChecked={isChecked} {...propsHeader} />}
-      cell={propsCell => <RowIndicator isChecked={isChecked} onSelect={handleOnSelect} {...propsCell} />}
+      header={propsHeader => {
+        return hasHeaderChecker ? (
+          <RowIndicator
+            hasIndexIndicator={false}
+            onCheck={onCheckAll}
+            isChecked={() => isAllChecked}
+            {...propsHeader}
+          />
+        ) : null;
+      }}
+      cell={propsCell => <RowIndicator hasNumber={hasNumber} isChecked={isChecked} onCheck={onCheck} {...propsCell} />}
       isSticky
-      {...options}
-      onSpaceBar={handleOnSelect}
-      onEnter={handleOnSelect}
-      onClick={handleOnSelect}
+      {...moreOptions}
+      onSpaceBar={onCheck}
+      onEnter={onCheck}
+      onClick={onCheck}
       width={34}
+      cellProps={() => ({
+        style: {
+          padding: 0,
+        },
+      })}
     />
   );
 }

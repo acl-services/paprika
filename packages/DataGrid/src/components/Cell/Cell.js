@@ -15,25 +15,56 @@ const propTypes = {
 
 const Cell = React.forwardRef((props, ref) => {
   const { style, gridId, columnIndex, rowIndex, column, data, a11yText } = props;
-  const [isActiveCell, setActiveCell] = React.useState(false);
-
-  function handleIsActiveCell(value) {
-    setActiveCell(() => value);
-  }
+  const [isActiveCell, setIsActiveCell] = React.useState(false);
+  const [isActiveRow, setIsRowActive] = React.useState(false);
 
   React.useImperativeHandle(ref, () => ({
-    isActiveCell: cell => {
-      handleIsActiveCell(cell);
+    isActiveCell: isActive => {
+      setIsActiveCell(() => isActive);
+    },
+    highlightOnRow: _rowIndex => {
+      setIsRowActive(() => {
+        return Number.parseInt(_rowIndex, 10) === rowIndex;
+      });
+    },
+    deemphasizeOnrow: _rowIndex => {
+      setIsRowActive(() => {
+        return !Number.parseInt(_rowIndex, 10) === rowIndex;
+      });
+    },
+    getIndexes: () => {
+      return { rowIndex, columnIndex };
     },
   }));
 
+  const options = {
+    row: data[rowIndex],
+    rowIndex,
+    columnIndex,
+    isActiveCell,
+    isActiveRow,
+    attrs: {
+      "data-row-index": rowIndex,
+      "data-column-index": columnIndex,
+    },
+  };
+
   return (
-    <styled.Cell ref={ref} tabIndex={-1} style={style} data-cell={`${gridId}.${columnIndex}.${rowIndex}`}>
+    <styled.Cell
+      ref={ref}
+      tabIndex={-1}
+      style={{ ...style }}
+      hasActiveRowShadow={isActiveRow && columnIndex === 0}
+      data-cell={`${gridId}.${columnIndex}.${rowIndex}`}
+    >
       <styled.GridCell role="gridcell">{a11yText}</styled.GridCell>
-      <styled.InnerCell {...column.cellProps({ row: data[rowIndex], rowIndex, columnIndex })} aria-hidden="true">
-        {typeof column.cell === "function"
-          ? column.cell({ row: data[rowIndex], rowIndex, columnIndex, isActiveCell })
-          : data[rowIndex][column.cell]}
+      <styled.InnerCell
+        {...column.cellProps(options)}
+        aria-hidden="true"
+        {...options.attrs}
+        className={`${gridId}_cell`}
+      >
+        {typeof column.cell === "function" ? column.cell(options) : data[rowIndex][column.cell]}
       </styled.InnerCell>
     </styled.Cell>
   );
