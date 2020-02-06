@@ -3,6 +3,7 @@ import PropTypes from "prop-types";
 import { VariableSizeGrid as Grid } from "react-window";
 import extractChildren from "@paprika/helpers/lib/extractChildren";
 import Spinner from "@paprika/spinner";
+import Bubbly from "@paprika/icon/lib/BubblySearchNoResults";
 import Cell from "./components/Cell";
 import useGridEventHandler from "./hooks/useGridEventHandler";
 import ColumnDefinition from "./components/ColumnDefinition";
@@ -13,6 +14,7 @@ import InfinityScroll from "./components/InfinityScroll";
 const propTypes = {
   children: PropTypes.node.isRequired,
   data: PropTypes.arrayOf(PropTypes.shape({})),
+  hasNoRecords: PropTypes.bool,
   height: PropTypes.number,
   isIdle: PropTypes.bool,
   onClick: PropTypes.func,
@@ -26,6 +28,7 @@ const propTypes = {
 };
 const defaultProps = {
   data: [],
+  hasNoRecords: false,
   height: 600,
   isIdle: false,
   onClick: null,
@@ -52,6 +55,7 @@ const DataGrid = React.forwardRef((props, ref) => {
   const {
     children,
     data,
+    hasNoRecords,
     height,
     isIdle,
     onClick,
@@ -381,11 +385,21 @@ const DataGrid = React.forwardRef((props, ref) => {
 
   return (
     <>
+      {hasNoRecords && (
+        <styled.BlockerItem gridId={gridId} $width={gridWidth} $height={height}>
+          <styled.Blocker $width={gridWidth} $height={height}>
+            <div>
+              <Bubbly width={120} height={120} />
+              <p>No records found</p>
+            </div>
+          </styled.Blocker>
+        </styled.BlockerItem>
+      )}
       {isIdle && (
         <styled.Idle gridId={gridId} $width={gridWidth} $height={height}>
-          <styled.IdleBlocker $width={gridWidth} $height={height}>
+          <styled.Blocker $width={gridWidth} $height={height}>
             <Spinner />
-          </styled.IdleBlocker>
+          </styled.Blocker>
         </styled.Idle>
       )}
       <styled.Grid
@@ -402,7 +416,7 @@ const DataGrid = React.forwardRef((props, ref) => {
         role="grid"
         tabIndex={gridShouldHaveFocus ? 0 : -1}
         $width={gridWidth}
-        isIdle={isIdle}
+        isVisible={isIdle || hasNoRecords}
         {...moreProps}
       >
         <styled.Flex>
@@ -555,7 +569,7 @@ const DataGrid = React.forwardRef((props, ref) => {
         <styled.FillerTopRigth rowHeight={rowHeight} scrollBarWidth={scrollBarWidth} />
         <styled.FillerBottomLeft stickyGridWidth={stickyGridWidth} scrollBarWidth={scrollBarWidth} />
       </styled.Grid>
-      {!isIdle ? (
+      {!isIdle && !hasNoRecords ? (
         <>
           <styled.Footer $width={gridWidth}>
             <styled.RowCount>
