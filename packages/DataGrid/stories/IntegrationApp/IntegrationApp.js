@@ -166,8 +166,8 @@ export default function App({ size }) {
         })}
         {renderColumnExpand()}
         {subset.length
-          ? columns.map(column =>
-              column.isHidden ? null : (
+          ? orderedColumns.map(column =>
+              orderedColumns.isHidden ? null : (
                 <DataGrid.ColumnDefinition key={column.id} header={column.label} cell={column.id} />
               )
             )
