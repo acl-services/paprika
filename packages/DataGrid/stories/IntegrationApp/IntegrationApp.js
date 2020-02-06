@@ -32,7 +32,7 @@ export default function App({ size }) {
       setData(() => data);
       setSubset(() => data);
       setColumns(() => initialColumns);
-      setOrderedColumns(() => initialColumns);
+      setOrderedColumns(() => initialColumns.map(column => ({ ...column, isHidden: false, isDisabled: false })));
       setIsIdle(() => false);
     }
 
@@ -139,7 +139,7 @@ export default function App({ size }) {
         orderedColumns={orderedColumns}
         filters={filters}
         operator={operator}
-        setColumns={setColumns}
+        setColumns={setOrderedColumns}
         setFilters={setFilters}
         setOperator={setOperator}
         setSortedFields={setSortedFields}
