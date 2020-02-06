@@ -73,22 +73,21 @@ const Checkbox = props => {
     size,
   };
 
-  const inputProps = {};
+  const inputProps = {
+    "aria-describedby": ariaDescribedBy,
+    checked: checkedState === CHECKED,
+    disabled: isDisabled,
+    id: checkboxId,
+    onChange,
+    ref: inputRef,
+    tabIndex,
+    type: "checkbox",
+  };
   if (a11yText) inputProps["aria-label"] = a11yText;
 
   return (
     <div data-pka-anchor="checkbox" css={checkboxStyles} {...styleProps} {...moreProps}>
-      <input
-        aria-describedby={ariaDescribedBy}
-        checked={checkedState === CHECKED}
-        disabled={isDisabled}
-        id={checkboxId}
-        ref={inputRef}
-        type="checkbox"
-        onChange={onChange}
-        tabIndex={tabIndex}
-        {...inputProps}
-      />
+      <input {...inputProps} />
       <label htmlFor={checkboxId}>
         {children}
         <CheckIcon className="checkbox-icon" aria-hidden data-pka-anchor="checkbox.icon.check" />
