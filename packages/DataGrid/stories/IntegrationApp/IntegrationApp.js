@@ -7,6 +7,7 @@ import DataGrid, { renderColumnIndicator, renderColumnExpand } from "../../src";
 export default function App({ size }) {
   // DataGrid
   const [data, setData] = React.useState([]);
+  const [subset, setSubset] = React.useState([]);
   const [isIdle, setIsIdle] = React.useState(true);
   const [isOpen, setIsOpen] = React.useState(false);
   const [page, setPage] = React.useState(0);
@@ -29,6 +30,7 @@ export default function App({ size }) {
       const data = await w.getDataFromWorker({ page: 0 });
       const initialColumns = await w.getColumnsFromWorker();
       setData(() => data);
+      setSubset(() => data);
       setColumns(() => initialColumns);
       setOrderedColumns(() => initialColumns);
       setIsIdle(() => false);
@@ -64,6 +66,16 @@ export default function App({ size }) {
       loadData();
     }
   }, [page]);
+
+  React.useEffect(() => {
+    async function getSubset() {
+      const w = worker();
+      const newSubset = await w.getSubsetFromWorker({ sortedFields, filters, source: data, columns, operator });
+      setSubset(() => newSubset);
+    }
+
+    getSubset();
+  }, [columns, data, filters, operator, sortedFields]);
 
   function handleRowChecked({ rowIndex }) {
     if (checked.includes(data[rowIndex].key)) {
@@ -135,7 +147,7 @@ export default function App({ size }) {
       />
       <DataGrid
         ref={refDataGrid}
-        data={data}
+        data={subset}
         isIdle={isIdle}
         keygen="id"
         width={size.width}
@@ -153,7 +165,7 @@ export default function App({ size }) {
           hasNumber: false,
         })}
         {renderColumnExpand()}
-        {data.length
+        {subset.length
           ? columns.map(column =>
               column.isHidden ? null : (
                 <DataGrid.ColumnDefinition key={column.id} header={column.label} cell={column.id} />
