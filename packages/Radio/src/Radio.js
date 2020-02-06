@@ -96,12 +96,14 @@ function Radio(props) {
     onKeyDown: handleKeyDown,
     onKeyUp: handleKeyUp,
     ref: inputRef,
+    tabIndex,
     type: "radio",
   };
   if (a11yText) inputProps["aria-label"] = a11yText;
+
   return (
     <div data-pka-anchor="radio" css={radioStyles} {...styleProps} {...moreProps}>
-      <input {...inputProps} tabIndex={tabIndex} />
+      <input {...inputProps} />
       <label onKeyUp={handleKeyUp} className={canDeselect ? "deselectable" : ""} htmlFor={radioId}>
         {children}
 

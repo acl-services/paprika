@@ -24,13 +24,13 @@ describe("Button", () => {
     expect(getByText(/happy button/i)).toBeInTheDocument();
     expect(container.querySelector("button")).toBeInTheDocument();
     expect(container.querySelector('[type="button"]')).toBeInTheDocument();
-    expect(container.querySelector('[tabindex="0"]')).toBeInTheDocument();
   });
 
   it("Renders a span when isSemantic=false", () => {
     const { container } = renderComponent({ isSemantic: false });
 
     expect(container.querySelector("span[role=button]")).toBeInTheDocument();
+    expect(container.querySelector('[tabindex="0"]')).toBeInTheDocument();
   });
 
   it("Renders with custom props", () => {
