@@ -4,8 +4,7 @@ import RawButton from "@paprika/raw-button";
 import RefreshIcon from "@paprika/icon/lib/Refresh";
 import DownIcon from "@paprika/icon/lib/CaretDown";
 import { ShirtSizes } from "@paprika/helpers/lib/customPropTypes";
-// support for IE11
-import "@paprika/helpers/lib/dom/closest";
+import "@paprika/helpers/lib/dom/closest"; // support for IE11
 import buttonStyles, { iconStyles } from "./Button.styles";
 
 import Kinds from "./ButtonKinds";
@@ -84,7 +83,7 @@ const defaultProps = {
   onClick: () => {},
   role: "button",
   size: ShirtSizes.MEDIUM,
-  tabIndex: 0,
+  tabIndex: null,
 };
 
 const buttonPropTypes = {
@@ -151,6 +150,8 @@ const Button = React.forwardRef((props, ref) => {
     if (!isButtonDisabled) onClick(event);
   };
 
+  const bestTabIndex = isButtonDisabled && tabIndex === null ? -1 : tabIndex || 0;
+
   const buttonProps = {
     isDisabled: isButtonDisabled,
     kind,
@@ -165,7 +166,7 @@ const Button = React.forwardRef((props, ref) => {
     buttonProps.type = isSubmit ? "submit" : "button";
     if (role !== "button") buttonProps.role = role;
   } else {
-    buttonProps.tabIndex = isButtonDisabled ? -1 : tabIndex;
+    buttonProps.tabIndex = bestTabIndex;
     buttonProps.role = role;
   }
 
