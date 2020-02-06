@@ -124,7 +124,7 @@ function FilterItem(props) {
           />
         );
       default:
-        return <Input value={value} onChange={handleChangeValue} />;
+        return <Input inputKey={`${selectedColumnId}-${selectedRule}`} value={value} onChange={handleChangeValue} />;
     }
   }
 
