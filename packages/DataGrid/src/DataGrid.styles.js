@@ -50,7 +50,7 @@ export const Grid = styled.div.attrs(({ $width, isVisible }) => {
         box-shadow: 3px 0px 0px 0px ${tokens.border.color};
         overflow-x: hidden !important;
         /* overflow: hidden !important; */
-        z-index: 100;
+        z-index: 1;
         ::-webkit-scrollbar {
           width: 0px;
         }
@@ -89,7 +89,7 @@ export const Cell = styled.div`
             position: absolute;
             top: 0;
             width: 3px;
-            z-index: 100;
+            z-index: 1;
           }
         `
       : "";
