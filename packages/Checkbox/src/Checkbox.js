@@ -13,24 +13,46 @@ const checkboxStates = {
 };
 
 const propTypes = {
+  /** Used for aria-describedby on the checkbox input  */
+  ariaDescribedBy: PropTypes.string,
+  /** Used for aria-label on the checkbox input  */
   a11yText: PropTypes.string,
+  /** The checkbox state */
   checkedState: PropTypes.oneOf(Object.values(checkboxStates)),
+  /** Used for label contents */
   children: PropTypes.node,
+  /** Describe if the checkbox is disabled or not */
   isDisabled: PropTypes.bool,
+  /** Callback triggered when the input state is changed */
   onChange: PropTypes.func.isRequired,
+  /* Size provided by parent Group component */
   size: PropTypes.oneOf(ShirtSizes.DEFAULT),
+  /** Value for tabindex attribute to override the default of 0. */
+  tabIndex: PropTypes.number,
 };
 
 const defaultProps = {
   a11yText: null,
+  ariaDescribedBy: null,
   checkedState: checkboxStates.UNCHECKED,
   children: null,
   isDisabled: false,
   size: ShirtSizes.MEDIUM,
+  tabIndex: 0,
 };
 
 const Checkbox = props => {
-  const { a11yText, children, isDisabled, checkedState, size, onChange, ...moreProps } = props;
+  const {
+    a11yText,
+    children,
+    isDisabled,
+    checkedState,
+    size,
+    onChange,
+    ariaDescribedBy,
+    tabIndex,
+    ...moreProps
+  } = props;
   const { CHECKED, INDETERMINATE } = checkboxStates;
 
   const checkboxId = React.useRef(uuid()).current;
@@ -51,20 +73,21 @@ const Checkbox = props => {
     size,
   };
 
-  const inputProps = {};
+  const inputProps = {
+    "aria-describedby": ariaDescribedBy,
+    checked: checkedState === CHECKED,
+    disabled: isDisabled,
+    id: checkboxId,
+    onChange,
+    ref: inputRef,
+    tabIndex,
+    type: "checkbox",
+  };
   if (a11yText) inputProps["aria-label"] = a11yText;
 
   return (
     <div data-pka-anchor="checkbox" css={checkboxStyles} {...styleProps} {...moreProps}>
-      <input
-        checked={checkedState === CHECKED}
-        disabled={isDisabled}
-        id={checkboxId}
-        ref={inputRef}
-        type="checkbox"
-        onChange={onChange}
-        {...inputProps}
-      />
+      <input {...inputProps} />
       <label htmlFor={checkboxId}>
         {children}
         <CheckIcon className="checkbox-icon" aria-hidden data-pka-anchor="checkbox.icon.check" />

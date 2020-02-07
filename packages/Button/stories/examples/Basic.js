@@ -28,6 +28,9 @@ const ExampleStory = () => (
       <Button onClick={clickHandler} isDisabled>
         disabled button
       </Button>
+      <Button onClick={clickHandler} isDisabled isSemantic={false} tabIndex="0">
+        disabled but tabbable
+      </Button>
     </p>
     <Rule />
     <p>

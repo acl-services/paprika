@@ -26,12 +26,14 @@ const propTypes = {
       label: PropTypes.string.isRequired,
     })
   ).isRequired,
+  onApply: PropTypes.func.isRequired,
+  onCancel: PropTypes.func.isRequired,
 };
 
 const defaultProps = {};
 
 export default function Sort(props) {
-  const { fields, onDeleteField, onChange, columns, onAddField } = props;
+  const { fields, onDeleteField, onChange, columns, onAddField, onApply, onCancel } = props;
   const I18n = useI18n();
   const fieldsRef = React.useRef(null);
 
@@ -79,15 +81,23 @@ export default function Sort(props) {
               />
             ))}
           </styled.FieldsPanel>
-          <Button
-            onClick={() => {
-              fieldsRef.current.focus();
-              onAddField();
-            }}
-            kind="minor"
-          >
-            Add a field to sort by
-          </Button>
+          <styled.Footer>
+            <Button
+              onClick={() => {
+                fieldsRef.current.focus();
+                onAddField();
+              }}
+              kind="minor"
+            >
+              Add a field to sort by
+            </Button>
+            <Button onClick={onApply} kind="primary">
+              Apply
+            </Button>
+            <Button onClick={onCancel} kind="minor">
+              Cancel
+            </Button>
+          </styled.Footer>
         </Popover.Card>
       </Popover.Content>
       <Popover.Tip />

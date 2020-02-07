@@ -77,19 +77,19 @@ import FormElement from "@paprika/form-element";
 #### FormElement
 
 - `children` (required)
+- `hasOptionalLabel`
+- `hasRequiredLabel`
 - `id`
 - `isDisabled`
 - `isInline`
 - `isLabelVisuallyHidden`
-- `hasOptionalLabel`
-- `isReadOnly`
-- `hasRequiredLabel`
 - `label` (required)
 - `size`
+- `hasFieldSet`
 
 #### FormElement.Content
 
-- `children` (required) (returns renderFunction with arguments idForLabel, refLabel, ariaDescribedBy available)
+- `children` (required) (returns renderFunction with arguments idForLabel, refLabel, ariaDescribedBy)
 
 #### FormElement.Description
 

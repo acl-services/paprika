@@ -19,6 +19,7 @@ blocks:
           - npx lerna bootstrap
           - cache store client-node-modules-$SEMAPHORE_GIT_BRANCH-$(checksum yarn.lock) node_modules
           - cache store cypress-$SEMAPHORE_GIT_BRANCH ~/.cache/Cypress
+  
   - name: "🔗 Storybook link"
     task:
       secrets:
@@ -31,6 +32,7 @@ blocks:
         - name: Insert Storybook link into PR Body Message
           commands:
             - node scripts/storybookLink.js
+  
   - name: "💅 Format"
     task:
       prologue:
@@ -93,6 +95,6 @@ blocks:
           commands:
             - npx lerna bootstrap
             - yarn storybook:build
-            - yarn storybook:screener
+            - BRANCH_NAME=$SEMAPHORE_GIT_BRANCH REVISION=$SEMAPHORE_GIT_SHA SEMAPHORE_BUILD_NUMBER=$SEMAPHORE_WORKFLOW_ID yarn storybook:screener
       secrets:
         - name: screener-api-key

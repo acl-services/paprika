@@ -1,3 +1,5 @@
+/* eslint-disable react/jsx-wrap-multilines */
+
 import React from "react";
 import Heading from "@paprika/heading";
 import { ShirtSizes } from "@paprika/helpers/lib/customPropTypes";
@@ -18,17 +20,20 @@ const ExampleStory = () => {
   const size = ShirtSizes.MEDIUM;
   const optionsArray = ["Black Panther", "Wonder Woman", "Spiderman", "The Incredibles", "Thor"];
   const listboxOptions = optionsArray.map(hero => <ListBox.Option key={hero}>{hero}</ListBox.Option>);
-  const checkboxOptions = optionsArray.map(hero => (
-    <Checkbox key={hero} onChange={() => {}} isDisabled={isDisabled} size={size}>
-      {hero}
-    </Checkbox>
-  ));
 
-  const radioOptions = optionsArray.map(hero => (
-    <Radio key={hero} onChange={() => {}} isDisabled={isDisabled} size={size}>
-      {hero}
-    </Radio>
-  ));
+  const getCheckboxOptions = ariaDescribedBy =>
+    optionsArray.map(hero => (
+      <Checkbox ariaDescribedBy={ariaDescribedBy} key={hero} onChange={() => {}} isDisabled={isDisabled} size={size}>
+        {hero}
+      </Checkbox>
+    ));
+
+  const getRadioOptions = ariaDescribedBy =>
+    optionsArray.map(hero => (
+      <Radio ariaDescribedBy={ariaDescribedBy} key={hero} onChange={() => {}} isDisabled={isDisabled} size={size}>
+        {hero}
+      </Radio>
+    ));
 
   const [value, setValue] = React.useState("");
 
@@ -79,8 +84,10 @@ const ExampleStory = () => {
 
       <Tagline>Form Element with checkboxes.</Tagline>
       <br />
-      <FormElement label="Form Label">
-        <FormElement.Content>{checkboxOptions}</FormElement.Content>
+      <FormElement hasFieldSet label="Form Label">
+        <FormElement.Content>
+          {({ ariaDescribedBy: ariaDescribedByOuter }) => getCheckboxOptions(ariaDescribedByOuter)}
+        </FormElement.Content>
         <FormElement.Description>
           <span>Description of this field.</span>
         </FormElement.Description>
@@ -94,8 +101,10 @@ const ExampleStory = () => {
 
       <Tagline>Form Element with radios.</Tagline>
       <br />
-      <FormElement label="Form Label">
-        <FormElement.Content>{radioOptions}</FormElement.Content>
+      <FormElement hasFieldSet label="Form Label">
+        <FormElement.Content>
+          {({ ariaDescribedBy: ariaDescribedByOuter }) => getRadioOptions(ariaDescribedByOuter)}
+        </FormElement.Content>
         <FormElement.Description>
           <span>Description of this field.</span>
         </FormElement.Description>
@@ -104,7 +113,6 @@ const ExampleStory = () => {
           Give me some help. <a href="wegalvanize.com">Learn more</a>.
         </FormElement.Help>
       </FormElement>
-
       <Rule />
 
       <Tagline>Form Element with Date Picker.</Tagline>
@@ -167,9 +175,150 @@ const ExampleStory = () => {
           Give me some help. <a href="wegalvanize.com">Learn more</a>.
         </FormElement.Help>
       </FormElement>
-    </FormElementStory>
 
-    // Additionally need to show with radio component example
+      <Rule />
+
+      <Tagline>Form Element nested Form Elements.</Tagline>
+      <br />
+      <FormElement hasFieldSet label="Form Legend">
+        <FormElement.Content>
+          {({ ariaDescribedBy: ariaDescribedByOuter }) => (
+            <>
+              <FormElement isInline label="Sub Label">
+                <FormElement.Content>
+                  {({ idForLabel, ariaDescribedBy }) => (
+                    <>
+                      <input
+                        aria-required={hasRequiredLabel}
+                        aria-describedby={ariaDescribedBy + ariaDescribedByOuter}
+                        aria-invalid={Boolean(errorText.length)}
+                        disabled={isDisabled}
+                        id={idForLabel}
+                        readOnly={isReadOnly}
+                      />
+                      <input
+                        aria-required={hasRequiredLabel}
+                        aria-describedby={ariaDescribedBy + ariaDescribedByOuter}
+                        aria-invalid={Boolean(errorText.length)}
+                        disabled={isDisabled}
+                        readOnly={isReadOnly}
+                      />
+                    </>
+                  )}
+                </FormElement.Content>
+                <FormElement.Error>{errorText}</FormElement.Error>
+                <FormElement.Help>
+                  Give me some help. <a href="wegalvanize.com">Learn more</a>.
+                </FormElement.Help>
+              </FormElement>
+              <FormElement isInline label="Sub Label 2">
+                <FormElement.Content>
+                  {({ idForLabel, ariaDescribedBy }) => (
+                    <>
+                      <input
+                        aria-required={hasRequiredLabel}
+                        aria-describedby={ariaDescribedBy + ariaDescribedByOuter}
+                        aria-invalid={Boolean(errorText.length)}
+                        disabled={isDisabled}
+                        id={idForLabel}
+                        readOnly={isReadOnly}
+                      />
+                      <input
+                        aria-required={hasRequiredLabel}
+                        aria-describedby={ariaDescribedBy + ariaDescribedByOuter}
+                        aria-invalid={Boolean(errorText.length)}
+                        disabled={isDisabled}
+                        readOnly={isReadOnly}
+                      />
+                    </>
+                  )}
+                </FormElement.Content>
+                <FormElement.Error>{errorText}</FormElement.Error>
+                <FormElement.Help>
+                  Give me some help. <a href="wegalvanize.com">Learn more</a>.
+                </FormElement.Help>
+              </FormElement>
+            </>
+          )}
+        </FormElement.Content>
+        <FormElement.Error>{errorText}</FormElement.Error>
+        <FormElement.Description>
+          <span>Description of this field.</span>
+        </FormElement.Description>
+        <FormElement.Help>
+          Give me some help. <a href="wegalvanize.com">Learn more</a>.
+        </FormElement.Help>
+      </FormElement>
+      <Rule />
+      <Tagline>Form Element using html in label</Tagline>
+      <br />
+      <FormElement
+        hasRequiredLabel={hasRequiredLabel}
+        label={<span dangerouslySetInnerHTML={{ __html: "<strong><i>Form Label</i></strong>" }} />}
+      >
+        <FormElement.Instructions>
+          <span>
+            Example text for extra panel for questionnaires. Example text for extra panel for questionnaires Example
+            text for extra panel for questionnaires. Example text for extra panel for questionnaires
+          </span>
+        </FormElement.Instructions>
+        <FormElement.Content>
+          {({ idForLabel, ariaDescribedBy }) => (
+            <Input
+              id={idForLabel}
+              onChange={handleChange}
+              value={value}
+              placeholder="Form placeholder"
+              aria-describedby={ariaDescribedBy}
+              aria-required={hasRequiredLabel}
+              hasError={Boolean(errorText.length)}
+              isDisabled={isDisabled}
+              isReadOnly={isReadOnly}
+              size={size}
+            />
+          )}
+        </FormElement.Content>
+      </FormElement>
+      <Rule />
+      <Tagline>Form Element using component in label</Tagline>
+      <br />
+      <FormElement
+        hasRequiredLabel={hasRequiredLabel}
+        label={
+          <Heading level={5}>
+            <strong>
+              <i>Form Label</i>
+            </strong>
+          </Heading>
+        }
+      >
+        <FormElement.Instructions>
+          <span>
+            Example text for extra panel for questionnaires. Example text for extra panel for questionnaires Example
+            text for extra panel for questionnaires. Example text for extra panel for questionnaires
+          </span>
+        </FormElement.Instructions>
+        <FormElement.Content>
+          {({ idForLabel, ariaDescribedBy }) => (
+            <Input
+              id={idForLabel}
+              onChange={handleChange}
+              value={value}
+              placeholder="Form placeholder"
+              aria-describedby={ariaDescribedBy}
+              aria-required={hasRequiredLabel}
+              hasError={Boolean(errorText.length)}
+              isDisabled={isDisabled}
+              isReadOnly={isReadOnly}
+              size={size}
+            />
+          )}
+        </FormElement.Content>
+        <FormElement.Help>
+          Give me some help. <a href="wegalvanize.com">Learn more</a>.
+        </FormElement.Help>
+      </FormElement>
+    </FormElementStory>
   );
 };
 

@@ -73,9 +73,6 @@ const locales = {
         "arrowdown": "下",
         "escape": "Esc 键"
       },
-      "externalLink": {
-        "view": "查看"
-      },
       "collapsible": {
         "ariaText": "可折叠部分"
       },
@@ -98,6 +95,16 @@ const locales = {
         "less": "显示更少",
         "more_about": "显示关于{{topic}}的更多信息",
         "less_about": "显示关于{{topic}}的更少信息"
+      },
+      "listBox": {
+        "trigger": {
+          "placeholder": "选择…"
+        },
+        "filter": {
+          "a11y_text": "筛选",
+          "no_results_message": "您的搜索结果没有匹配任何选项。",
+          "placeholder": "筛选…"
+        }
       },
       "listBoxBrowser": {
         "explore": "探索更多选项",

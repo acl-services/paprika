@@ -32,11 +32,13 @@ const CheckboxExample = props => {
         <Checkbox {...props} onChange={handleChange} checkedState={checkedState}>
           Locavore
         </Checkbox>
-        <Checkbox {...props} onChange={handleChange} checkedState={checkedState} />
-        <Checkbox {...props} onChange={handleChange} checkedState={checkedState}>
-          &nbsp;
+        <Checkbox {...props} tabIndex="-1" onChange={handleChange} checkedState={checkedState}>
+          Untabbable
         </Checkbox>
         <Checkbox {...props} onChange={handleChange} checkedState={checkedState} />
+        <Checkbox {...props} isDisabled onChange={handleChange} checkedState={checkedState}>
+          Disabled
+        </Checkbox>
       </div>
     </div>
   );

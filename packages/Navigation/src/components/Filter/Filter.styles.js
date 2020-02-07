@@ -38,3 +38,7 @@ export const Trigger = styled(GenericTrigger)`
 `;
 
 export const Icon = getGenericTriggerIcon(Filter);
+
+export const Footer = styled.div`
+  display: flex;
+`;

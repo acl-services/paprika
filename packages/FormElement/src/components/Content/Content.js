@@ -1,7 +1,7 @@
 import React from "react";
 import PropTypes from "prop-types";
 import { RefOf } from "@paprika/helpers/lib/customPropTypes";
-import * as styled from "./Content.styles";
+import * as sc from "./Content.styles";
 
 const propTypes = {
   children: PropTypes.oneOfType([PropTypes.func, PropTypes.node]).isRequired,
@@ -24,9 +24,9 @@ function Content(props) {
   }
 
   return (
-    <styled.ContentContainer data-pka-anchor="form-element.content" {...moreProps}>
+    <sc.ContentContainer data-pka-anchor="form-element.content" {...moreProps}>
       {typeof children === "function" ? children({ idForLabel, refLabel, ariaDescribedBy }) : children}
-    </styled.ContentContainer>
+    </sc.ContentContainer>
   );
 }
 
