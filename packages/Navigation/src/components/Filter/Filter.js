@@ -28,6 +28,8 @@ const propTypes = {
   onAddFilter: PropTypes.func.isRequired,
   operator: PropTypes.oneOf(["AND", "OR"]),
   onChangeOperator: PropTypes.func,
+  onApply: PropTypes.func.isRequired,
+  onCancel: PropTypes.func.isRequired,
 };
 
 const defaultProps = {
@@ -36,7 +38,17 @@ const defaultProps = {
 };
 
 export default function Filter(props) {
-  const { onDeleteFilter, onAddFilter, filters, columns, onChange, operator, onChangeOperator } = props;
+  const {
+    onDeleteFilter,
+    onAddFilter,
+    filters,
+    columns,
+    onChange,
+    operator,
+    onChangeOperator,
+    onApply,
+    onCancel,
+  } = props;
   const I18n = useI18n();
   const filtersRef = React.useRef(null);
 
@@ -87,9 +99,17 @@ export default function Filter(props) {
               />
             ))}
           </styled.FiltersPanel>
-          <Button onClick={onAddFilter} kind="minor" data-pka-anchor="navigation.filter.addFilterButton">
-            {I18n.t(`navigation.filter.add_filter`)}
-          </Button>
+          <styled.Footer>
+            <Button onClick={onAddFilter} kind="minor" data-pka-anchor="navigation.filter.addFilterButton">
+              {I18n.t(`navigation.filter.add_filter`)}
+            </Button>
+            <Button onClick={onApply} kind="primary">
+              Apply
+            </Button>
+            <Button onClick={onCancel} kind="minor">
+              Cancel
+            </Button>
+          </styled.Footer>
         </Popover.Card>
       </Popover.Content>
       <Popover.Tip />

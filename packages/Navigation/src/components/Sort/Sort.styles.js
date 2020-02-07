@@ -33,3 +33,7 @@ export const Trigger = styled(GenericTrigger)`
 `;
 
 export const Icon = getGenericTriggerIcon(PlaceholderIcon);
+
+export const Footer = styled.div`
+  display: flex;
+`;
