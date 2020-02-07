@@ -1,7 +1,7 @@
 import styled, { css } from "styled-components";
 import stylers from "@paprika/stylers";
 import tokens from "@paprika/tokens";
-import PlaceholderIcon from "@paprika/icon/lib/Search";
+import Sort from "@paprika/icon/lib/Sort";
 import { Wrapper } from "../InlineSelect/InlineSelect.styles";
 import { getGenericTriggerIcon, GenericTrigger } from "../../Navigation.styles";
 
@@ -32,4 +32,4 @@ export const Trigger = styled(GenericTrigger)`
   ${({ hasField }) => (hasField ? hasFieldStyles : "")}
 `;
 
-export const Icon = getGenericTriggerIcon(PlaceholderIcon);
+export const Icon = getGenericTriggerIcon(Sort);
