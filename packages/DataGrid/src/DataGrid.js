@@ -156,26 +156,26 @@ const DataGrid = React.forwardRef((props, ref) => {
     if (rowIndex !== null) {
       if (refPrevActiveRow.current !== null) {
         const rowIndex = refPrevActiveRow.current;
-        refsCell.current.rows[rowIndex].forEach(key => {
-          if (refsCell.current.keys[key]) refsCell.current.keys[key].deemphasizeOnrow(rowIndex);
-        });
+        const key = `0${rowIndex}`;
+        if (refsCell.current.keys[key]) refsCell.current.keys[key].deemphasizeOnrow(rowIndex);
       }
 
       refActiveRow.current = rowIndex;
       refPrevActiveRow.current = rowIndex;
 
-      refsCell.current.rows[rowIndex].forEach(key => {
-        if (refsCell.current.keys[key]) refsCell.current.keys[key].highlightOnRow(rowIndex);
-      });
+      // first column nth row only
+      const key = `0${rowIndex}`;
+      if (refsCell.current.keys[key]) refsCell.current.keys[key].highlightOnRow(rowIndex);
     }
   }
 
   function deemphasizeRow() {
     if (refPrevActiveRow.current) {
       const rowIndex = refPrevActiveRow.current;
-      refsCell.current.rows[rowIndex].forEach(key => {
-        if (refsCell.current.keys[key]) refsCell.current.keys[key].deemphasizeOnrow(rowIndex);
-      });
+
+      // first column nth row only
+      const key = `0${rowIndex}`;
+      if (refsCell.current.keys[key]) refsCell.current.keys[key].deemphasizeOnrow(rowIndex);
     }
 
     refActiveRow.current = null;
