@@ -21,10 +21,12 @@ import Checkbox from "@paprika/checkbox";
 ### Props
 
 - a11yText
+- ariaDescribedBy
 - children
 - isDisabled
 - checkedState ("checked", "unchecked", "indeterminate")
 - onChange
 - size ("small, "medium", "large")
+- tabIndex
 
 [More detail about these props](https://github.com/acl-services/paprika/blob/master/packages/Checkbox/src/Checkbox.js)
