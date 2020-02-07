@@ -1,6 +1,6 @@
 {
   "name": "@paprika/icon",
-  "version": "0.2.9",
+  "version": "0.2.10",
   "description": "Icon component",
   "author": "@paprika",
   "main": "lib/index.js",
