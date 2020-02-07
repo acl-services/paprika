@@ -2,11 +2,11 @@ import styled, { css } from "styled-components";
 import tokens from "@paprika/tokens";
 
 const experimentalGrey = "#e7e7e7"; /* experimental */
-export const Grid = styled.div.attrs(({ $width, isIdle }) => {
-  const _isIdle = isIdle ? { opacity: 0 } : { opacity: 100 };
+export const Grid = styled.div.attrs(({ $width, isVisible }) => {
+  const _isVisible = isVisible ? { opacity: 0 } : { opacity: 100 };
 
   return {
-    style: { width: `${$width}px`, ..._isIdle },
+    style: { width: `${$width}px`, ..._isVisible },
   };
 })`
   * {
@@ -50,7 +50,7 @@ export const Grid = styled.div.attrs(({ $width, isIdle }) => {
         box-shadow: 3px 0px 0px 0px ${tokens.border.color};
         overflow-x: hidden !important;
         /* overflow: hidden !important; */
-        z-index: 100;
+        z-index: 1;
         ::-webkit-scrollbar {
           width: 0px;
         }
@@ -89,7 +89,7 @@ export const Cell = styled.div`
             position: absolute;
             top: 0;
             width: 3px;
-            z-index: 100;
+            z-index: 1;
           }
         `
       : "";
@@ -196,27 +196,35 @@ export const WhileOnScrolling = styled.div`
   width: 100%;
 `;
 
-export const Idle = styled.div`
+export const BlockerItem = styled.div`
   background: white;
   border: 0;
-  cursor: progress;
   opacity: 0;
   position: absolute;
   z-index: 100;
 
-  ${({ $height, $width, gridId }) => {
+  ${({ $height, $width }) => {
     return `
-      width: ${$width}px;
-      height: ${$height}px;
-      opacity: 1;
-      .${gridId}-idle {
-        overflow: hidden !important;
-      }
-    `;
+    width: ${$width}px;
+    height: ${$height}px;
+    opacity: 1;
+  `;
   }}
 `;
 
-export const IdleBlocker = styled.div`
+export const Idle = styled(BlockerItem)`
+  cursor: progress;
+
+  ${({ gridId }) => {
+    return `
+    .${gridId}-idle {
+      overflow: hidden !important;
+    }
+  `;
+  }}
+`;
+
+export const Blocker = styled.div`
   align-items: center;
   background: transparent;
   border: 1px solid ${tokens.border.color};
