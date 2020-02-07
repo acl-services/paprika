@@ -20,9 +20,6 @@ export default function App({ size }) {
   // Navigation
   const [columns, setColumns] = React.useState([]);
   const [orderedColumns, setOrderedColumns] = React.useState([]);
-  const [filters, setFilters] = React.useState([]);
-  const [sortedFields, setSortedFields] = React.useState([]);
-  const [operator, setOperator] = React.useState("AND");
 
   React.useEffect(() => {
     async function loadData() {
@@ -67,9 +64,9 @@ export default function App({ size }) {
     }
   }, [page]);
 
-  async function getSubset() {
+  async function getSubset({ sortedFields, filters, operator }) {
     const w = worker();
-    const newSubset = await w.getSubsetFromWorker({ sortedFields, filters, source: data, columns, operator });
+    const newSubset = await w.getSubsetFromWorker({ sortedFields, filters, columns, operator });
     setSubset(() => newSubset);
   }
 
@@ -127,24 +124,14 @@ export default function App({ size }) {
     );
   }
 
-  function handleApply() {
-    getSubset();
-  }
-
   return (
     <React.Fragment>
       {row && renderSidepanel({ row })}
       <Navigation
         columns={columns}
         orderedColumns={orderedColumns}
-        filters={filters}
-        operator={operator}
-        setColumns={setOrderedColumns}
-        setFilters={setFilters}
-        setOperator={setOperator}
-        setSortedFields={setSortedFields}
-        sortedFields={sortedFields}
-        onApply={handleApply}
+        setOrderedColumns={setOrderedColumns}
+        getSubset={getSubset}
       />
       <DataGrid
         ref={refDataGrid}

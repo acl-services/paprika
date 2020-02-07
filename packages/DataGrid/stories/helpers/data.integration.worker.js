@@ -51,16 +51,18 @@ export function getColumnsFromWorker() {
   ];
 }
 
-export function getSubsetFromWorker({ sortedFields, filters, source, columns, operator }) {
+export function getSubsetFromWorker({ sortedFields, filters, columns, operator }) {
   let sortedData = [];
   let filteredData = [];
 
-  if (filters.length === 0 && sortedFields.length === 0) return source;
+  const data = setDataIds();
+
+  if (filters.length === 0 && sortedFields.length === 0) return data;
 
   if (sortedFields.length > 0) {
     sortedFields.forEach(field => {
       sortedData = sort({
-        data: source,
+        data,
         columnId: field.columnId,
         direction: field.direction,
         columnType: columns.find(column => field.columnId === column.id).type,
@@ -69,7 +71,7 @@ export function getSubsetFromWorker({ sortedFields, filters, source, columns, op
     });
   }
   if (filters.length > 0) {
-    filteredData = source.filter(row => {
+    filteredData = data.filter(row => {
       // checking if filter.rule exist, will removed after having all the rules
 
       const tester = filter => {

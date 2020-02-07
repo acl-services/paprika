@@ -5,18 +5,15 @@ import Sort from "./Sort";
 import Columns from "./Columns";
 
 export default function ControlledNavigation(props) {
-  const {
-    orderedColumns,
-    columns,
-    filters,
-    operator,
-    setColumns,
-    setFilters,
-    setOperator,
-    setSortedFields,
-    sortedFields,
-    onApply,
-  } = props;
+  const { columns, orderedColumns, setOrderedColumns, getSubset } = props;
+
+  const [filters, setFilters] = React.useState([]);
+  const [sortedFields, setSortedFields] = React.useState([]);
+  const [operator, setOperator] = React.useState("AND");
+
+  function handleApply() {
+    getSubset({ sortedFields, filters, operator });
+  }
 
   return (
     <Navigation>
@@ -26,10 +23,10 @@ export default function ControlledNavigation(props) {
         operator={operator}
         setFilters={setFilters}
         setOperator={setOperator}
-        onApply={onApply}
+        onApply={handleApply}
       />
-      <Sort columns={columns} sortedFields={sortedFields} setSortedFields={setSortedFields} onApply={onApply} />
-      <Columns columns={orderedColumns} setColumns={setColumns} />
+      <Sort columns={columns} sortedFields={sortedFields} setSortedFields={setSortedFields} onApply={handleApply} />
+      <Columns columns={orderedColumns} setColumns={setOrderedColumns} />
     </Navigation>
   );
 }
