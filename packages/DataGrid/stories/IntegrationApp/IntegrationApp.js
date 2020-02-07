@@ -67,15 +67,11 @@ export default function App({ size }) {
     }
   }, [page]);
 
-  React.useEffect(() => {
-    async function getSubset() {
-      const w = worker();
-      const newSubset = await w.getSubsetFromWorker({ sortedFields, filters, source: data, columns, operator });
-      setSubset(() => newSubset);
-    }
-
-    getSubset();
-  }, [columns, data, filters, operator, sortedFields]);
+  async function getSubset() {
+    const w = worker();
+    const newSubset = await w.getSubsetFromWorker({ sortedFields, filters, source: data, columns, operator });
+    setSubset(() => newSubset);
+  }
 
   function handleRowChecked({ rowIndex }) {
     if (checked.includes(data[rowIndex].key)) {
@@ -131,6 +127,10 @@ export default function App({ size }) {
     );
   }
 
+  function handleApply() {
+    getSubset();
+  }
+
   return (
     <React.Fragment>
       {row && renderSidepanel({ row })}
@@ -144,6 +144,7 @@ export default function App({ size }) {
         setOperator={setOperator}
         setSortedFields={setSortedFields}
         sortedFields={sortedFields}
+        onApply={handleApply}
       />
       <DataGrid
         ref={refDataGrid}

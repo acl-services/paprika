@@ -2,7 +2,7 @@ import React from "react";
 import nanoid from "nanoid";
 import { Sort } from "@paprika/navigation";
 
-export default function MySort({ sortedFields, setSortedFields, columns }) {
+export default function MySort({ sortedFields, setSortedFields, columns, onApply }) {
   function getDefaultField() {
     return {
       fieldId: nanoid(),
@@ -45,6 +45,8 @@ export default function MySort({ sortedFields, setSortedFields, columns }) {
       fields={sortedFields}
       onAddField={memorizedAddField}
       onDeleteField={memorizedDeleteField}
+      onApply={onApply}
+      onCancel={() => {}}
     />
   );
 }

@@ -29,7 +29,7 @@ const getLevelFilter = () => {
 };
 
 export default function MyFilter(props) {
-  const { filters, setFilters, columns, setOperator, operator } = props;
+  const { filters, setFilters, columns, setOperator, operator, onApply } = props;
 
   function getDefaultFilter() {
     return {
@@ -102,6 +102,8 @@ export default function MyFilter(props) {
       columns={columns}
       operator={operator}
       onChangeOperator={memorizedHandleChangeOperator}
+      onApply={onApply}
+      onCancel={() => {}}
     />
   );
 }

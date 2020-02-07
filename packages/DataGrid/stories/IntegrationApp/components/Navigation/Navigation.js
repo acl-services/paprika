@@ -15,6 +15,7 @@ export default function ControlledNavigation(props) {
     setOperator,
     setSortedFields,
     sortedFields,
+    onApply,
   } = props;
 
   return (
@@ -25,8 +26,9 @@ export default function ControlledNavigation(props) {
         operator={operator}
         setFilters={setFilters}
         setOperator={setOperator}
+        onApply={onApply}
       />
-      <Sort columns={columns} sortedFields={sortedFields} setSortedFields={setSortedFields} />
+      <Sort columns={columns} sortedFields={sortedFields} setSortedFields={setSortedFields} onApply={onApply} />
       <Columns columns={orderedColumns} setColumns={setColumns} />
     </Navigation>
   );
