@@ -11,6 +11,7 @@ const SvgArrowLeft = ({ title, ...props }) => (
       height: ${props.size};
       vertical-align: text-top;
     `}
+    data-pka-anchor="icon"
     focusable={false}
     {...props}
   >
