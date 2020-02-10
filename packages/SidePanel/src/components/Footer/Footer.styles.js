@@ -20,12 +20,13 @@ function slideOut(width) {
 const fixedFooterStyles = css`
   ${props => {
     const animation = props.isOpen ? slideIn() : slideOut(props.width);
+
     return css`
       animation: ${animation} 0.7s ease;
+      position: fixed;
+      width: ${props.width};
     `;
   }}
-  position: fixed;
-  width: ${props => props.width};
 `;
 
 const relativeFooterStyles = css`

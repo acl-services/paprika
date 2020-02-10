@@ -32,9 +32,9 @@ export default function Footer(props) {
     <div
       data-pka-anchor="sidepanel.footer"
       css={footerCSS}
+      isOpen={isOpen}
       isSticky={isSticky}
       width={width}
-      isOpen={isOpen}
       {...moreProps}
     >
       {children}
