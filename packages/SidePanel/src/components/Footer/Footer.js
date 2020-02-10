@@ -1,6 +1,6 @@
 import React from "react";
 import PropTypes from "prop-types";
-import { footerCSS } from "./Footer.styles";
+import * as sc from "./Footer.styles";
 
 const propTypes = {
   children: PropTypes.node.isRequired,
@@ -29,16 +29,9 @@ export default function Footer(props) {
   } = props;
 
   return (
-    <div
-      data-pka-anchor="sidepanel.footer"
-      css={footerCSS}
-      isOpen={isOpen}
-      isSticky={isSticky}
-      width={width}
-      {...moreProps}
-    >
+    <sc.Footer data-pka-anchor="sidepanel.footer" isOpen={isOpen} isSticky={isSticky} width={width} {...moreProps}>
       {children}
-    </div>
+    </sc.Footer>
   );
 }
 

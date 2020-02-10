@@ -1,8 +1,6 @@
-/* eslint-disable jsx-a11y/no-noninteractive-tabindex */
-
 import React from "react";
 import PropTypes from "prop-types";
-import { dialogStyles, dialogContentStyles } from "./Dialog.styles";
+import * as sc from "./Dialog.styles";
 
 const propTypes = {
   children: PropTypes.node.isRequired,
@@ -54,9 +52,8 @@ function Dialog(props) {
   } = props;
 
   return (
-    <div
+    <sc.Dialog
       aria-modal={isInline ? null : "true"}
-      css={dialogStyles}
       groupOffsetY={groupOffsetY}
       kind={kind}
       isCompact={isCompact}
@@ -71,9 +68,8 @@ function Dialog(props) {
       {...moreProps}
     >
       {header ? React.cloneElement(header, { ref: refHeader, isCompact, onClose }) : null}
-      <div
+      <sc.DialogContent
         data-pka-anchor="sidepanel.content"
-        css={dialogContentStyles}
         isCompact={isCompact}
         isOpen={isOpen}
         isSticky={footer ? footer.props.isSticky : undefined}
@@ -83,9 +79,9 @@ function Dialog(props) {
         ref={refSidePanelContent}
       >
         {children}
-      </div>
+      </sc.DialogContent>
       {footer ? React.cloneElement(footer, { refSidePanel, isCompact, width, isOpen }) : null}
-    </div>
+    </sc.Dialog>
   );
 }
 

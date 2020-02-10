@@ -1,3 +1,4 @@
+import styled, { css } from "styled-components";
 import { spacer } from "@paprika/stylers/lib/helpers";
 import tokens from "@paprika/tokens/lib/tokens";
 import Button from "@paprika/button";
@@ -16,7 +17,7 @@ const compactStyles = `
   }
 `;
 
-export const headerCSS = props => `
+export const Header = styled.div`
   align-items: center;
   border-bottom: 1px solid ${tokens.border.color};
   box-sizing: border-box;
@@ -34,11 +35,12 @@ export const headerCSS = props => `
     margin: 0;
   }
 
- [data-pka-anchor="button.icon"] {
-    ${props.kind === [Button.Kinds.PRIMARY] ? `color: ${tokens.color.white}` : "color: inherit"}
- }
+  ${props => css`
+    [data-pka-anchor="button.icon"] {
+      ${props.kind === [Button.Kinds.PRIMARY] ? `color: ${tokens.color.white}` : "color: inherit"}
+    }
 
-
-  ${props.isCompact ? compactStyles : ""}
-  ${props.kind ? kind[props.kind] : ""}
+    ${props.isCompact ? compactStyles : ""}
+    ${props.kind ? kind[props.kind] : ""}
+  `}
 `;

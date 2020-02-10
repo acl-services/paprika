@@ -1,4 +1,4 @@
-import { css, keyframes } from "styled-components";
+import styled, { css, keyframes } from "styled-components";
 import stylers from "@paprika/stylers";
 import tokens from "@paprika/tokens/lib/tokens";
 
@@ -38,7 +38,7 @@ const compactStyles = css`
   padding: ${stylers.spacer(2)};
 `;
 
-export const footerCSS = css`
+export const Footer = styled.div`
   align-items: center;
   background: ${tokens.color.blackLighten80};
   bottom: 0;
