@@ -138,7 +138,9 @@ describe("SidePanel", () => {
     });
 
     it("throws an error when there is only one side panel in a group", () => {
-      const sidePanelGroup = () =>
+      console.error = () => {};
+
+      try {
         renderReactTestingLibrary(
           <SidePanel.Group>
             <SidePanel onClose={noop} isOpen>
@@ -147,7 +149,9 @@ describe("SidePanel", () => {
             </SidePanel>
           </SidePanel.Group>
         );
-      expect(sidePanelGroup).toThrow(Error);
+      } catch (e) {
+        expect(e.message).toBe("<SidePanel.Group /> is intented to be use with two or more SidePanels");
+      }
     });
 
     it("should trigger onClick when clicking the x button", () => {
