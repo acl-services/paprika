@@ -6,13 +6,13 @@ const propTypes = {
   children: PropTypes.node.isRequired,
   height: PropTypes.number,
   width: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
-  isAnimationDone: PropTypes.bool,
+  isOpen: PropTypes.bool,
   isSticky: PropTypes.bool,
 };
 
 const defaultProps = {
   height: 72,
-  isAnimationDone: false,
+  isOpen: false,
   isSticky: false,
   width: "33%",
 };
@@ -20,7 +20,7 @@ const defaultProps = {
 export default function Footer(props) {
   const {
     height,
-    isAnimationDone,
+    isOpen,
     isSticky,
     width,
     children,
@@ -28,10 +28,15 @@ export default function Footer(props) {
     ...moreProps
   } = props;
 
-  const calculatedWidth = isSticky && !isAnimationDone ? "100%" : width;
-
   return (
-    <div data-pka-anchor="sidepanel.footer" css={footerCSS} isSticky={isSticky} width={calculatedWidth} {...moreProps}>
+    <div
+      data-pka-anchor="sidepanel.footer"
+      css={footerCSS}
+      isSticky={isSticky}
+      width={width}
+      isOpen={isOpen}
+      {...moreProps}
+    >
       {children}
     </div>
   );

@@ -1,8 +1,29 @@
-import { css } from "styled-components";
+import { css, keyframes } from "styled-components";
 import stylers from "@paprika/stylers";
 import tokens from "@paprika/tokens/lib/tokens";
 
+function slideIn() {
+  return keyframes`
+    0% { width: 100%; }
+    100% { width: 100%; }
+  `;
+}
+
+function slideOut(width) {
+  return keyframes`
+    0% { width: 100%; }
+    99% { width: 100%; }
+    100% { width: ${width}; }
+  `;
+}
+
 const fixedFooterStyles = css`
+  ${props => {
+    const animation = props.isOpen ? slideIn() : slideOut(props.width);
+    return css`
+      animation: ${animation} 0.7s ease;
+    `;
+  }}
   position: fixed;
   width: ${props => props.width};
 `;

@@ -52,12 +52,6 @@ function Dialog(props) {
     isOpen,
     ...moreProps
   } = props;
-  const [isAnimationDone, setIsAnimationDone] = React.useState(false);
-
-  function handleAnimationEnd() {
-    if (!isAnimationDone) setIsAnimationDone(true);
-    onAnimationEnd();
-  }
 
   return (
     <div
@@ -69,7 +63,7 @@ function Dialog(props) {
       isInline={isInline}
       isOpen={isOpen}
       offsetY={offsetY}
-      onAnimationEnd={handleAnimationEnd}
+      onAnimationEnd={onAnimationEnd}
       ref={refSidePanel}
       role="dialog"
       tabIndex="-1"
@@ -90,7 +84,7 @@ function Dialog(props) {
       >
         {children}
       </div>
-      {footer ? React.cloneElement(footer, { refSidePanel, isCompact, width, isAnimationDone }) : null}
+      {footer ? React.cloneElement(footer, { refSidePanel, isCompact, width, isOpen }) : null}
     </div>
   );
 }
