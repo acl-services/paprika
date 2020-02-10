@@ -92,7 +92,7 @@ const DataGrid = React.forwardRef((props, ref) => {
   const [pageSize, setPageSize] = React.useState(null);
   // these two value are sensitive in Grids with lots of columns and can degradate performance alot.
   // be caution when using them.
-  const overscanRowCount = 10;
+  const overscanRowCount = 5;
   const overscanColumnCount = 2;
 
   const rowCount = React.useMemo(() => {
@@ -145,14 +145,17 @@ const DataGrid = React.forwardRef((props, ref) => {
     [ColumnDefinitions]
   );
 
-  const stickyGridWidth =
-    (stickyColumnsIndexes.length &&
-      stickyColumnsIndexes.reduce((accum, index) => {
-        return accum + ColumnDefinitions[index].props.width;
-      }, 0)) ||
-    0;
+  const stickyGridWidth = React.useMemo(() => {
+    let width = 0;
+    if (stickyColumnsIndexes.length) {
+      stickyColumnsIndexes.forEach(index => {
+        width += ColumnDefinitions[index].props.width;
+      });
+    }
+    return width;
+  }, [ColumnDefinitions, stickyColumnsIndexes]);
 
-  function highlightRow({ rowIndex = null }) {
+  const highlightRow = React.useCallback(({ rowIndex = null }) => {
     if (rowIndex !== null) {
       if (refPrevActiveRow.current !== null) {
         const rowIndex = refPrevActiveRow.current;
@@ -167,9 +170,9 @@ const DataGrid = React.forwardRef((props, ref) => {
       const key = `0${rowIndex}`;
       if (refsCell.current.keys[key]) refsCell.current.keys[key].highlightOnRow(rowIndex);
     }
-  }
+  }, []);
 
-  function deemphasizeRow() {
+  const deemphasizeRow = React.useCallback(() => {
     if (refPrevActiveRow.current) {
       const rowIndex = refPrevActiveRow.current;
 
@@ -180,9 +183,9 @@ const DataGrid = React.forwardRef((props, ref) => {
 
     refActiveRow.current = null;
     refPrevActiveRow.current = null;
-  }
+  }, []);
 
-  function onChangeActiveCell({ columnIndex, rowIndex }) {
+  const onChangeActiveCell = React.useCallback(({ columnIndex, rowIndex }) => {
     const key = `${columnIndex}${rowIndex}`;
 
     if (refPrevActiveCell.current && refPrevActiveCell.current in refsCell.current.keys) {
@@ -194,7 +197,7 @@ const DataGrid = React.forwardRef((props, ref) => {
 
     refPrevActiveCell.current = key;
     refsCell.current.keys[key].isActiveCell(true);
-  }
+  }, []);
 
   const { handleKeyDown, handleKeyUp, handleClick, gridId, restoreHighlightFocus } = useGridEventHandler({
     columnCount,
@@ -214,9 +217,9 @@ const DataGrid = React.forwardRef((props, ref) => {
     stickyColumnsIndexes,
   });
 
-  const a11yTextMessage = (value, column, rowIndex) => {
+  const a11yTextMessage = React.useCallback((value, column, rowIndex) => {
     return `${value}. You are on row ${rowIndex}, column ${column}. Disregard the following information:`;
-  };
+  }, []);
 
   const handleScroll = React.useCallback(parameters => {
     const { scrollLeft, scrollTop /* scrollUpdateWasRequested */ } = parameters;
@@ -263,13 +266,18 @@ const DataGrid = React.forwardRef((props, ref) => {
     [refScrollGrid]
   );
 
-  const handleRefCell = ({ columnIndex, rowIndex }) => ref => {
-    const key = `${columnIndex}${rowIndex}`;
-    refsCell.current.keys[key] = ref;
-    refsCell.current.rows[rowIndex] = Array.isArray(refsCell.current.rows[rowIndex])
-      ? refsCell.current.rows[rowIndex].concat(key)
-      : [key];
-  };
+  const handleRefCell = React.useCallback(({ columnIndex, rowIndex }) => {
+    return React.useCallback(
+      ref => {
+        const key = `${columnIndex}${rowIndex}`;
+        refsCell.current.keys[key] = ref;
+        refsCell.current.rows[rowIndex] = Array.isArray(refsCell.current.rows[rowIndex])
+          ? refsCell.current.rows[rowIndex].concat(key)
+          : [key];
+      },
+      [columnIndex, rowIndex]
+    );
+  }, []);
 
   React.useEffect(() => {
     if (!refContainer.current) return;
@@ -338,50 +346,65 @@ const DataGrid = React.forwardRef((props, ref) => {
     [data, restoreHighlightFocus]
   );
 
-  function handleBlurGrid() {
+  const handleBlurGrid = React.useCallback(() => {
     const $isActive = refContainer.current.querySelector(".grid--is-active");
     if ($isActive) $isActive.classList.toggle("grid--is-blur");
-  }
+  }, []);
 
-  function handleMouseUpGrid(event) {
-    handleClick({ data, ColumnDefinitions })(event);
-  }
+  const handleMouseUpGrid = React.useCallback(
+    event => {
+      handleClick({ data, ColumnDefinitions })(event);
+    },
+    [ColumnDefinitions, data, handleClick]
+  );
 
-  function handleKeyDownGrid(event) {
-    handleKeyDown({ data, ColumnDefinitions })(event);
-  }
+  const handleKeyDownGrid = React.useCallback(
+    event => {
+      handleKeyDown({ data, ColumnDefinitions })(event);
+    },
+    [ColumnDefinitions, data, handleKeyDown]
+  );
 
-  function handleKeyUpGrid(event) {
-    handleKeyUp({ data, ColumnDefinitions })(event);
-  }
+  const handleKeyUpGrid = React.useCallback(
+    event => {
+      handleKeyUp({ data, ColumnDefinitions })(event);
+    },
+    [ColumnDefinitions, data, handleKeyUp]
+  );
 
-  function handleItemsRedered({ visibleRowStartIndex, visibleRowStopIndex }) {
-    refVisibleIndexes.current = {
-      start: visibleRowStartIndex,
-      stop: visibleRowStopIndex,
-    };
+  const handleItemsRedered = React.useCallback(
+    ({ visibleRowStartIndex, visibleRowStopIndex }) => {
+      refVisibleIndexes.current = {
+        start: visibleRowStartIndex,
+        stop: visibleRowStopIndex,
+      };
 
-    if (refCurrentPage.current === null) {
-      refCurrentPage.current = 0;
-    }
-
-    if (InfinityScroll) {
-      const { rowsOffset, onReached } = InfinityScroll.props;
-      if (visibleRowStopIndex + rowsOffset > rowCount) {
-        const currentPage = Math.floor(visibleRowStopIndex / pageSize);
-        const nextPage = currentPage + 1;
-        onReached({ currentPage, nextPage });
+      if (refCurrentPage.current === null) {
+        refCurrentPage.current = 0;
       }
-    }
-  }
 
-  function handleMouseOver(event) {
-    highlightRow({ rowIndex: event.target.dataset.rowIndex });
-  }
+      if (InfinityScroll) {
+        const { rowsOffset, onReached } = InfinityScroll.props;
+        if (visibleRowStopIndex + rowsOffset > rowCount) {
+          const currentPage = Math.floor(visibleRowStopIndex / pageSize);
+          const nextPage = currentPage + 1;
+          onReached({ currentPage, nextPage });
+        }
+      }
+    },
+    [InfinityScroll, pageSize, rowCount]
+  );
 
-  function handleMouseLeave() {
+  const handleMouseOver = React.useCallback(
+    event => {
+      highlightRow({ rowIndex: event.target.dataset.rowIndex });
+    },
+    [highlightRow]
+  );
+
+  const handleMouseLeave = React.useCallback(() => {
     deemphasizeRow();
-  }
+  }, [deemphasizeRow]);
 
   return (
     <>
