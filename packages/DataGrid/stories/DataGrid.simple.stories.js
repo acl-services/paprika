@@ -2,35 +2,42 @@ import React from "react";
 import { storiesOf } from "@storybook/react";
 import * as Sbook from "storybook/assets/styles/common.styles";
 import DataGrid from "../src";
-import fixtures from "./helpers/fixtures";
 
-const data = fixtures(10);
-const flags = {
-  Austria: "🇦🇹",
-  Mexico: "🇲🇽",
-  Brazil: "🇧🇷",
-  Hungary: "🇭🇺",
-  Germany: "🇩🇪",
-  Portugal: "🇵🇹",
-  Argentina: "🇦🇷",
-  Scotland: "🏴󠁧󠁢󠁳󠁣󠁴󠁿",
-  Sweden: "🇸🇪",
-  England: "🏴󠁧󠁢󠁥󠁮󠁧󠁿",
-  Poland: "🇵🇱",
-};
+const data = [
+  {
+    country: "Austria",
+    name: "Josef Bican ‡",
+    goals: 805,
+    status: "inactive",
+    joined: "12/12/2019",
+    description: `Puppy kitty ipsum dolor sit good dog foot stick canary. Teeth Mittens furry treats fish.`,
+    link: "https://wegalvanize.com",
+  },
+  {
+    country: "Brazil",
+    name: "Romário",
+    goals: 772,
+    status: "inactive",
+    joined: "08/11/2019",
+    description: `Puppy kitty ipsum dolor sit good dog foot stick canary. Teeth Mittens furry treats fish.`,
+    link: "https://wegalvanize.com",
+  },
+  {
+    country: "Brazil",
+    name: "Pelé",
+    goals: 767,
+    status: "inactive",
+    joined: "04/01/2014",
+    description: `Puppy kitty ipsum dolor sit good dog foot stick canary. Teeth Mittens furry treats fish.`,
+    link: "https://wegalvanize.com",
+  },
+];
 
 export function App() {
   return (
     <React.Fragment>
       <Sbook.Story>
         <DataGrid data={data}>
-          <DataGrid.ColumnDefinition
-            width={80}
-            header={() => "Countries"}
-            headerA11yText={() => "Countries"}
-            cell={({ row }) => flags[row.country]}
-            cellA11yText={({ row }) => row.country}
-          />
           <DataGrid.ColumnDefinition header="Name" cell="name" />
           <DataGrid.ColumnDefinition header="Goals" cell="goals" />
           <DataGrid.ColumnDefinition header="Status" cell="status" />
@@ -42,4 +49,4 @@ export function App() {
   );
 }
 
-storiesOf("DataGrid / regular", module).add("Basic", () => <App />);
+storiesOf("DataGrid / regular", module).add("Simple", () => <App />);
