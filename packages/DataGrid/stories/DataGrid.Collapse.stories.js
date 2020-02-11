@@ -113,13 +113,25 @@ export function App() {
     return { style: { display: "flex", justifyContent: "center" } };
   }, []);
 
+  const cellA11yText = React.useCallback(key => {
+    return ({ row }) => {
+      if (row[key][0] === row[key][1]) {
+        return `All tasks has been checked`;
+      }
+      if (row[key][0] === 0) {
+        return `idle: ${row[key][0]} of ${row[key][1]} tasks`;
+      }
+
+      return `in progres: ${row[key][0]} of ${row[key][1]} tasks`;
+    };
+  }, []);
+
   return (
     <Sbook.Story>
       <DataGrid ref={refDataGrid} data={data} keygen="id" height={600} onEnter={toggleExpand}>
         <DataGrid.ColumnDefinition
           width={365}
           header="Objective"
-          headerA11yText={({ row }) => row.objective}
           cell={({ row }) => {
             return (
               <span>
@@ -128,6 +140,7 @@ export function App() {
               </span>
             );
           }}
+          cellA11yText={({ row }) => row.objective}
           cellProps={({ row }) => {
             return { style: { textIndent: `${row.indent * 16}px` } };
           }}
@@ -137,9 +150,7 @@ export function App() {
           width={156}
           header="Paper review"
           headerProps={headerStyle}
-          cellA11yText={({ row }) => {
-            return `${row.review[0]} of ${row.review[1]}`;
-          }}
+          cellA11yText={cellA11yText("review")}
           cell={({ row }) => {
             return <Pill start={row.review[0]} end={row.review[1]} />;
           }}
@@ -149,9 +160,7 @@ export function App() {
           width={156}
           header="Detail review"
           headerProps={headerStyle}
-          cellA11yText={({ row }) => {
-            return `${row.detail[0]} of ${row.detail[1]}`;
-          }}
+          cellA11yText={cellA11yText("detail")}
           cell={({ row }) => <Pill start={row.detail[0]} end={row.detail[1]} />}
           cellProps={cellStyle}
         />
@@ -159,9 +168,7 @@ export function App() {
           width={156}
           header="General review"
           headerProps={headerStyle}
-          cellA11yText={({ row }) => {
-            return `${row.general[0]} of ${row.general[1]}`;
-          }}
+          cellA11yText={cellA11yText("general")}
           cell={({ row }) => <Pill start={row.general[0]} end={row.general[1]} />}
           cellProps={cellStyle}
         />
