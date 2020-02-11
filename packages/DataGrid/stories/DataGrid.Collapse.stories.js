@@ -106,7 +106,7 @@ export function App() {
   }, [expandedRows]);
 
   const cellStyle = React.useCallback(() => {
-    return { style: { display: "flex", justifyContent: "center" } };
+    return { style: { display: "flex", justifyContent: "center", pointer: "cursor" } };
   }, []);
 
   const headerStyle = React.useCallback(() => {
