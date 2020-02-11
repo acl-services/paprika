@@ -17,12 +17,13 @@ const propTypes = {
     direction: PropTypes.oneOf([sortDirections.ASCEND, sortDirections.DESCEND]),
   }).isRequired,
   fieldsRef: PropTypes.shape({ current: PropTypes.instanceOf(Object) }).isRequired,
+  isFirstField: PropTypes.bool.isRequired,
   onChange: PropTypes.func.isRequired,
   onDeleteField: PropTypes.func.isRequired,
 };
 
 function SortItem(props) {
-  const { field, columns, onDeleteField, onChange, fieldsRef } = props;
+  const { field, columns, isFirstField, onDeleteField, onChange, fieldsRef } = props;
   const { columnId: selectedColumnId, direction } = field;
   const I18n = useI18n();
   const columnTypeTranslationKey = localeTypeKeys[columns.find(column => column.id === selectedColumnId).type];
@@ -43,6 +44,7 @@ function SortItem(props) {
   return (
     <styled.SortItem data-pka-anchor="sort.sort-field">
       <Button.Close data-pka-anchor="sort.delete-button" onClick={handleRemoveFilter} size="small" />
+      {isFirstField ? "Sort by" : "then by"}
       <InlineSelect
         onChange={handleChangeColumn}
         value={selectedColumnId}

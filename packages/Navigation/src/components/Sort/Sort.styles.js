@@ -36,4 +36,8 @@ export const Icon = getGenericTriggerIcon(PlaceholderIcon);
 
 export const Footer = styled.div`
   display: flex;
+
+  [data-pka-anchor="button"]:first-child {
+    margin-right: auto;
+  }
 `;

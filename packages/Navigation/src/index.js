@@ -1,4 +1,3 @@
-export { default as Density } from "./components/Density";
 export { default as Sort } from "./components/Sort";
 export { default as Filter } from "./components/Filter";
 export { default as ColumnsArrangement } from "./components/ColumnsArrangement";

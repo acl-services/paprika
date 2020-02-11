@@ -26,7 +26,12 @@ export const FilterItem = styled.li`
 `;
 
 export const Input = styled(PaprikaInput)`
-  width: 80px;
+  input[data-pka-anchor="input"] {
+    border: none;
+    border-bottom: 1px solid ${tokens.color.black};
+    border-radius: 0;
+    width: 80px;
+  }
 `;
 
 const hasFilterAppliedStyles = css`
@@ -41,4 +46,8 @@ export const Icon = getGenericTriggerIcon(PlaceholderIcon);
 
 export const Footer = styled.div`
   display: flex;
+
+  [data-pka-anchor="navigation.filter.addFilterButton"] {
+    margin-right: auto;
+  }
 `;

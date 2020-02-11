@@ -3,12 +3,14 @@ import PropTypes from "prop-types";
 import Popover from "@paprika/popover";
 import Button from "@paprika/button";
 import useI18n from "@paprika/l10n/lib/useI18n";
+import CheckIcon from "@paprika/icon/lib/Check";
 import FilterItem from "./FilterItem";
 import { rulesByType } from "./rules";
 import * as styled from "./Filter.styles";
 import { GenericPopoverPlaceholder } from "../../Navigation.styles";
 
 const propTypes = {
+  appliedNumber: PropTypes.number,
   onChange: PropTypes.func.isRequired,
   filters: PropTypes.arrayOf(
     PropTypes.shape({
@@ -33,12 +35,14 @@ const propTypes = {
 };
 
 const defaultProps = {
+  appliedNumber: 0,
   operator: "AND",
   onChangeOperator: null,
 };
 
 export default function Filter(props) {
   const {
+    appliedNumber,
     onDeleteFilter,
     onAddFilter,
     filters,
@@ -71,11 +75,11 @@ export default function Filter(props) {
             {...attributes}
             isSemantic={false}
             onClick={handler}
-            hasFilterApplied={filters.length > 0}
+            hasFilterApplied={appliedNumber > 0}
             isOpen={isOpen}
           >
             <styled.Icon />
-            {getLabelText(filters.length)}
+            {getLabelText(appliedNumber)}
           </styled.Trigger>
         )}
       </Popover.Trigger>
@@ -103,7 +107,7 @@ export default function Filter(props) {
             <Button onClick={onAddFilter} kind="minor" data-pka-anchor="navigation.filter.addFilterButton">
               {I18n.t(`navigation.filter.add_filter`)}
             </Button>
-            <Button onClick={onApply} kind="primary">
+            <Button onClick={onApply} kind="flat" icon={<CheckIcon />}>
               Apply
             </Button>
             <Button onClick={onCancel} kind="minor">
