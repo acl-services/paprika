@@ -314,7 +314,7 @@ export default function useGridEventHandler({
     // to fire it as soon as the user click the key to have a smoother experience
     f: ({ data, ColumnDefinitions, columnIndex, rowIndex, event }) => {
       const column = ColumnDefinitions[columnIndex].props;
-      const options = { row: data[rowIndex], column, rowIndex, columnIndex, event };
+      const options = { row: data[rowIndex], column, rowIndex: Number.parseInt(rowIndex, 10), columnIndex, event };
       return onRowChecked && onRowChecked(options);
     },
   };
@@ -343,7 +343,7 @@ export default function useGridEventHandler({
     // space bar
     " ": ({ data, ColumnDefinitions, columnIndex, rowIndex, event }) => {
       const column = ColumnDefinitions[columnIndex].props;
-      const options = { row: data[rowIndex], column, rowIndex, columnIndex, event };
+      const options = { row: data[rowIndex], column, rowIndex: Number.parseInt(rowIndex, 10), columnIndex, event };
       if (column.onSpaceBar !== null) {
         column.onSpaceBar(options);
         return;
@@ -352,7 +352,7 @@ export default function useGridEventHandler({
     },
     Enter: ({ data, ColumnDefinitions, columnIndex, rowIndex, event }) => {
       const column = ColumnDefinitions[columnIndex].props;
-      const options = { row: data[rowIndex], column, rowIndex, columnIndex, event };
+      const options = { row: data[rowIndex], column, rowIndex: Number.parseInt(rowIndex, 10), columnIndex, event };
       if (column.onEnter !== null) {
         column.onEnter(options);
         return;
@@ -361,7 +361,7 @@ export default function useGridEventHandler({
     },
     "space+shift": ({ data, ColumnDefinitions, columnIndex, rowIndex, event }) => {
       const column = ColumnDefinitions[columnIndex].props;
-      const options = { row: data[rowIndex], column, rowIndex, columnIndex, event };
+      const options = { row: data[rowIndex], column, rowIndex: Number.parseInt(rowIndex, 10), columnIndex, event };
       if (column.onShiftSpaceBar !== null) {
         column.onShiftSpaceBar(options);
         return;
@@ -412,7 +412,7 @@ export default function useGridEventHandler({
     focus($cell);
 
     const column = ColumnDefinitions[columnIndex].props;
-    const options = { row: data[rowIndex], column, rowIndex, columnIndex, event };
+    const options = { row: data[rowIndex], column, rowIndex: Number.parseInt(rowIndex, 10), columnIndex, event };
     if (column.onClick !== null) {
       column.onClick(options);
     } else {

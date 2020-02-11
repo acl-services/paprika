@@ -49,17 +49,14 @@ const Cell = React.forwardRef((props, ref) => {
     },
   };
 
+  const cellProps = typeof column.cellProps === "function" ? column.cellProps(options) : {};
+
   return (
-    <styled.Cell
-      ref={ref}
-      tabIndex={-1}
-      style={{ ...style }}
-      hasActiveRowShadow={isActiveRow && columnIndex === 0}
-      data-cell={`${gridId}.${columnIndex}.${rowIndex}`}
-    >
+    <styled.Cell ref={ref} tabIndex={-1} style={{ ...style }} data-cell={`${gridId}.${columnIndex}.${rowIndex}`}>
       <styled.GridCell role="gridcell">{a11yText}</styled.GridCell>
       <styled.InnerCell
-        {...column.cellProps(options)}
+        hasActiveRowShadow={isActiveRow}
+        {...cellProps}
         aria-hidden="true"
         {...options.attrs}
         className={`${gridId}_cell`}

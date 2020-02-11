@@ -40,6 +40,7 @@ export const propTypes = {
   cellProps: PropTypes.func,
   header: customA11yTextPropTypeValidation,
   headerA11yText: PropTypes.func,
+  headerProps: PropTypes.func,
   isSticky: PropTypes.bool,
   onClick: PropTypes.func,
   onEnter: PropTypes.func,
@@ -50,8 +51,9 @@ export const propTypes = {
 
 export const defaultProps = {
   cellA11yText: null,
-  cellProps: () => ({}),
+  cellProps: null,
   headerA11yText: null,
+  headerProps: null,
   isSticky: false,
   onClick: () => {},
   onEnter: null,

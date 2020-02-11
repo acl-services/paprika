@@ -35,7 +35,7 @@ export const Grid = styled.div.attrs(({ $width, isVisible }) => {
   ${({ gridId }) => {
     return css`
       .grid-${gridId} {
-        overflow-x: scroll !important;
+        overflow: scroll !important;
       }
 
       .${gridId}-header {
@@ -78,11 +78,13 @@ export const Cell = styled.div`
     outline: 1px solid transparent;
     /* outline: 0; */
   }
+
   ${({ hasActiveRowShadow }) => {
     return hasActiveRowShadow
       ? css`
-          &:before {
-            background: ${tokens.color.blue};
+          /* box-shadow: ${tokens.highlight.active.withBorder.insetBoxShadow}; */
+          &:after {
+            
             content: "";
             height: 100%;
             left: 0;

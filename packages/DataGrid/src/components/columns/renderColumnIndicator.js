@@ -35,6 +35,7 @@ export default function renderColumnIndicator(options = {}) {
       onClick={onCheck}
       width={34}
       cellProps={() => ({
+        isRowIndicator: true,
         style: {
           padding: 0,
         },

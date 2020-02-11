@@ -124,6 +124,10 @@ const DataGrid = React.forwardRef((props, ref) => {
     });
   }, [ColumnDefinitions]);
 
+  const calculatedTableHeight = React.useMemo(() => {
+    return rowHeight * rowCount > height ? height : rowHeight * rowCount + scrollBarWidth;
+  }, [height, rowCount, rowHeight, scrollBarWidth]);
+
   const calculatedTableWidth = React.useCallback(() => {
     let width = 0;
     ColumnDefinitions.forEach(ColumnDefinition => {
@@ -457,9 +461,12 @@ const DataGrid = React.forwardRef((props, ref) => {
             overscanRowCount={overscanRowCount}
           >
             {({ columnIndex, style }) => {
-              const { header } = ColumnDefinitions[stickyColumnsIndexes[columnIndex]].props;
+              const { header, headerProps } = ColumnDefinitions[stickyColumnsIndexes[columnIndex]].props;
+              const { style: styleProps = {}, ...moreProps } =
+                typeof headerProps === "function" ? headerProps({ header }) : {};
+
               return (
-                <styled.CellHeader role="columnheader" style={style}>
+                <styled.CellHeader role="columnheader" style={{ ...style, ...styleProps }} {...moreProps}>
                   {typeof header === "function" ? header() : header}
                 </styled.CellHeader>
               );
@@ -485,12 +492,14 @@ const DataGrid = React.forwardRef((props, ref) => {
             className={`${gridId}-header`}
           >
             {({ columnIndex, style }) => {
-              const { header } = ColumnDefinitions[columnIndex].props;
+              const { header, headerProps } = ColumnDefinitions[columnIndex].props;
 
               if (stickyColumnsIndexes.includes(columnIndex)) return null;
+              const { style: styleProps = {}, ...moreProps } =
+                typeof headerProps === "function" ? headerProps({ header }) : {};
 
               return (
-                <styled.CellHeader role="columnheader" style={style}>
+                <styled.CellHeader role="columnheader" style={{ ...style, ...styleProps }} {...moreProps}>
                   {typeof header === "function" ? header() : header}
                 </styled.CellHeader>
               );
@@ -505,7 +514,7 @@ const DataGrid = React.forwardRef((props, ref) => {
             columnWidth={columnIndex => {
               return ColumnDefinitions[stickyColumnsIndexes[columnIndex]].props.width;
             }}
-            height={height - scrollBarWidth}
+            height={calculatedTableHeight - scrollBarWidth}
             innerElementType={innerElementType}
             onItemsRendered={handleItemsRedered}
             onScroll={handleScrollStickyColumns}
@@ -549,7 +558,7 @@ const DataGrid = React.forwardRef((props, ref) => {
               if (stickyColumnsIndexes.includes(columnIndex)) return 0;
               return ColumnDefinitions[columnIndex].props.width;
             }}
-            height={height}
+            height={calculatedTableHeight}
             innerElementType={innerElementTypeMainGrid}
             onItemsRendered={handleItemsRedered}
             onScroll={handleScroll}
