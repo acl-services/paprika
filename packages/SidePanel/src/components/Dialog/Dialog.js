@@ -51,6 +51,26 @@ function Dialog(props) {
     ...moreProps
   } = props;
 
+  const isFooterSticky = footer && footer.props.isSticky;
+
+  const dialogMain = (
+    <React.Fragment>
+      {header ? React.cloneElement(header, { ref: refHeader, isCompact, onClose }) : null}
+      <sc.DialogContent
+        data-pka-anchor="sidepanel.content"
+        isCompact={isCompact}
+        isOpen={isOpen}
+        kind={kind}
+        tabIndex="0"
+        ref={refSidePanelContent}
+      >
+        {children}
+      </sc.DialogContent>
+    </React.Fragment>
+  );
+
+  const dialogFooter = footer ? React.cloneElement(footer, { refSidePanel, isCompact, width, isOpen }) : null;
+
   return (
     <sc.Dialog
       aria-modal={isInline ? null : "true"}
@@ -67,20 +87,17 @@ function Dialog(props) {
       width={width}
       {...moreProps}
     >
-      {header ? React.cloneElement(header, { ref: refHeader, isCompact, onClose }) : null}
-      <sc.DialogContent
-        data-pka-anchor="sidepanel.content"
-        isCompact={isCompact}
-        isOpen={isOpen}
-        isSticky={footer ? footer.props.isSticky : undefined}
-        footerHeight={footer ? footer.props.height : undefined}
-        kind={kind}
-        tabIndex="0"
-        ref={refSidePanelContent}
-      >
-        {children}
-      </sc.DialogContent>
-      {footer ? React.cloneElement(footer, { refSidePanel, isCompact, width, isOpen }) : null}
+      {isFooterSticky ? (
+        <sc.MainWrapper>
+          <sc.DialogMain>{dialogMain}</sc.DialogMain>
+          {dialogFooter}
+        </sc.MainWrapper>
+      ) : (
+        <React.Fragment>
+          {dialogMain}
+          {dialogFooter}
+        </React.Fragment>
+      )}
     </sc.Dialog>
   );
 }

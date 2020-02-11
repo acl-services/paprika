@@ -87,11 +87,21 @@ export const DialogContent = styled.div`
   padding: ${stylers.spacer(3)};
 
   ${props => (props.isCompact || props.kind === "child" ? compactStyles : "")}
-  ${props => {
-    return props.isSticky ? `margin-bottom: ${props.footerHeight}px;` : "";
-  }}
 
   &:focus {
     ${stylers.focusRing.subtle(true)};
   }
+`;
+
+export const MainWrapper = styled.div`
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  position: relative;
+  width: 100%;
+`;
+
+export const DialogMain = styled.div`
+  flex-grow: 1;
+  overflow-y: scroll;
 `;
