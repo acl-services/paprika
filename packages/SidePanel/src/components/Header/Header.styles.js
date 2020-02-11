@@ -1,5 +1,6 @@
 import styled, { css } from "styled-components";
 import { spacer } from "@paprika/stylers/lib/helpers";
+import stylers from "@paprika/stylers";
 import tokens from "@paprika/tokens/lib/tokens";
 import Button from "@paprika/button";
 
@@ -32,6 +33,8 @@ export const Header = styled.div`
   }
 
   [data-pka-anchor="heading"] {
+    ${stylers.truncateText}
+    display: block;
     margin: 0;
   }
 
