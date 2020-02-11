@@ -4,6 +4,7 @@ import * as Sbook from "storybook/assets/styles/common.styles";
 import ArrowRight from "@paprika/icon/lib/ArrowRight";
 import ArrowDown from "@paprika/icon/lib/ArrowDown";
 import Check from "@paprika/icon/lib/Check";
+import Popover from "@paprika/popover";
 import DataGrid from "../src";
 import initialData from "./helpers/data.collapse";
 
@@ -20,9 +21,15 @@ const Arrow = React.memo(({ hasRows, isExpand }) => {
 const Pill = React.memo(({ start, end }) => {
   if (start === end) {
     return (
-      <span>
-        <Check />
-      </span>
+      <Popover isEager>
+        <Popover.Tip />
+        <Popover.Trigger>
+          <Check />
+        </Popover.Trigger>
+        <Popover.Content>
+          <Popover.Card>All sign-off in this section are complete</Popover.Card>
+        </Popover.Content>
+      </Popover>
     );
   }
   if (start === 0) {
@@ -106,7 +113,7 @@ export function App() {
   }, [expandedRows]);
 
   const cellStyle = React.useCallback(() => {
-    return { style: { display: "flex", justifyContent: "center", pointer: "cursor" } };
+    return { style: { display: "flex", justifyContent: "center" } };
   }, []);
 
   const headerStyle = React.useCallback(() => {
@@ -142,7 +149,7 @@ export function App() {
           }}
           cellA11yText={({ row }) => row.objective}
           cellProps={({ row }) => {
-            return { style: { textIndent: `${row.indent * 16}px` } };
+            return { style: { textIndent: `${row.indent * 16}px`, cursor: "pointer" } };
           }}
           onClick={toggleExpand}
         />
