@@ -3,6 +3,7 @@ import PropTypes from "prop-types";
 import Button from "@paprika/button";
 import Popover from "@paprika/popover";
 import useI18n from "@paprika/l10n/lib/useI18n";
+import CheckIcon from "@paprika/icon/lib/Check";
 
 import SortItem from "./SortItem";
 import { sortDirections } from "../../constants";
@@ -11,6 +12,7 @@ import * as styled from "./Sort.styles";
 import { GenericPopoverPlaceholder } from "../../Navigation.styles";
 
 const propTypes = {
+  appliedNumber: PropTypes.number,
   onChange: PropTypes.func.isRequired,
   onDeleteField: PropTypes.func.isRequired,
   onAddField: PropTypes.func.isRequired,
@@ -30,10 +32,12 @@ const propTypes = {
   onCancel: PropTypes.func.isRequired,
 };
 
-const defaultProps = {};
+const defaultProps = {
+  appliedNumber: 0,
+};
 
 export default function Sort(props) {
-  const { fields, onDeleteField, onChange, columns, onAddField, onApply, onCancel } = props;
+  const { appliedNumber, fields, onDeleteField, onChange, columns, onAddField, onApply, onCancel } = props;
   const I18n = useI18n();
   const fieldsRef = React.useRef(null);
 
@@ -56,11 +60,11 @@ export default function Sort(props) {
             {...attributes}
             isSemantic={false}
             onClick={handler}
-            hasField={fields.length > 0}
+            hasField={appliedNumber > 0}
             isOpen={isOpen}
           >
             <styled.Icon />
-            {getLabelText(fields.length)}
+            {getLabelText(appliedNumber)}
           </styled.Trigger>
         )}
       </Popover.Trigger>
@@ -70,7 +74,7 @@ export default function Sort(props) {
             {fields.length === 0 ? (
               <GenericPopoverPlaceholder>{I18n.t("navigation.sort.no_sorts_applied")}</GenericPopoverPlaceholder>
             ) : null}
-            {fields.map(field => (
+            {fields.map((field, index) => (
               <SortItem
                 key={field.fieldId}
                 field={field}
@@ -78,6 +82,7 @@ export default function Sort(props) {
                 onDeleteField={onDeleteField}
                 onChange={onChange}
                 fieldsRef={fieldsRef}
+                isFirstField={index === 0}
               />
             ))}
           </styled.FieldsPanel>
@@ -91,7 +96,7 @@ export default function Sort(props) {
             >
               Add a field to sort by
             </Button>
-            <Button onClick={onApply} kind="primary">
+            <Button onClick={onApply} kind="flat" icon={<CheckIcon />}>
               Apply
             </Button>
             <Button onClick={onCancel} kind="minor">

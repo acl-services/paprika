@@ -1,5 +1,5 @@
 import React from "react";
-import Navigation, { Density } from "../../src";
+import Navigation from "../../src";
 import MyFilter from "./MyFilter";
 import MySort from "./MySort";
 import MyColumns from "./MyColumns";
@@ -42,7 +42,6 @@ const filterColumns = [
 export default function App() {
   return (
     <Navigation>
-      <Density />
       <MyFilter columns={filterColumns} />
       <MySort columns={filterColumns} />
       <MyColumns />
