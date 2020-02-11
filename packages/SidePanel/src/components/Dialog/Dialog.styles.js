@@ -103,5 +103,5 @@ export const MainWrapper = styled.div`
 
 export const DialogMain = styled.div`
   flex-grow: 1;
-  overflow-y: scroll;
+  overflow-y: auto;
 `;
