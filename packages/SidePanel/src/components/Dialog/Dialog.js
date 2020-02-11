@@ -69,7 +69,7 @@ function Dialog(props) {
     </React.Fragment>
   );
 
-  const dialogFooter = footer ? React.cloneElement(footer, { refSidePanel, isCompact, width, isOpen }) : null;
+  const dialogFooter = footer ? React.cloneElement(footer, { refSidePanel, isCompact }) : null;
 
   return (
     <sc.Dialog
