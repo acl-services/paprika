@@ -2,7 +2,7 @@ import React from "react";
 import nanoid from "nanoid";
 import { Sort } from "@paprika/navigation";
 
-export default function MySort({ sortedFields, setSortedFields, columns, onApply }) {
+export default function MySort({ appliedNumber, sortedFields, setSortedFields, columns, onApply }) {
   function getDefaultField() {
     return {
       fieldId: nanoid(),
@@ -40,6 +40,7 @@ export default function MySort({ sortedFields, setSortedFields, columns, onApply
 
   return (
     <Sort
+      appliedNumber={appliedNumber}
       onChange={memorizedHandleChange}
       columns={columns}
       fields={sortedFields}

@@ -29,7 +29,7 @@ const getLevelFilter = () => {
 };
 
 export default function MyFilter(props) {
-  const { filters, setFilters, columns, setOperator, operator, onApply } = props;
+  const { appliedNumber, filters, setFilters, columns, setOperator, operator, onApply } = props;
 
   function getDefaultFilter() {
     return {
@@ -95,6 +95,7 @@ export default function MyFilter(props) {
 
   return (
     <Filter
+      appliedNumber={appliedNumber}
       onChange={memorizedHandleChange}
       onAddFilter={memorizedAddFilter}
       onDeleteFilter={memorizedDeleteFilter}
