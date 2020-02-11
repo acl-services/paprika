@@ -1,6 +1,6 @@
 {
   "name": "@paprika/l10n",
-  "version": "0.3.5",
+  "version": "0.3.7",
   "description": "L10n component",
   "author": "@paprika",
   "main": "lib/index.js",

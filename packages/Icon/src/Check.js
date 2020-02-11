@@ -11,17 +11,16 @@ const SvgCheck = ({ title, ...props }) => (
       height: ${props.size};
       vertical-align: text-top;
     `}
+    data-pka-anchor="icon"
     focusable={false}
     {...props}
   >
     {title ? <title>{title}</title> : null}
-    <defs>
-      <path
-        d="M22.5 5.695l-11.362 14.04-.071.08c-.13.129-.267.24-.43.323-.42.214-.925.227-1.355.035a1.724 1.724 0 01-.446-.3L1.5 12.853l2.174-2.271 6.11 5.847L20.07 3.7l2.43 1.995z"
-        id="Check_svg__a"
-      />
-    </defs>
-    <use fill="currentColor" xlinkHref="#Check_svg__a" fillRule="evenodd" />
+    <path
+      d="M22.5 5.695l-11.362 14.04-.071.08c-.13.129-.267.24-.43.323-.42.214-.925.227-1.355.035a1.724 1.724 0 01-.446-.3L1.5 12.853l2.174-2.271 6.11 5.847L20.07 3.7l2.43 1.995z"
+      fillRule="evenodd"
+      fill="currentColor"
+    />
   </svg>
 );
 

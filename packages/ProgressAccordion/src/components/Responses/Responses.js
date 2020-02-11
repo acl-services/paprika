@@ -1,3 +1,5 @@
+/* eslint-disable jsx-a11y/no-noninteractive-tabindex */
+
 import React from "react";
 import PropTypes from "prop-types";
 import Item from "./Item";
@@ -20,7 +22,7 @@ const Responses = ({ children }) => {
   if (!children) return null;
 
   return (
-    <dl data-pka-anchor="responses" css={responsesStyles}>
+    <dl data-pka-anchor="responses" css={responsesStyles} tabIndex="0">
       {filteredChildren}
     </dl>
   );

@@ -11,17 +11,16 @@ const SvgArrowRight = ({ title, ...props }) => (
       height: ${props.size};
       vertical-align: text-top;
     `}
+    data-pka-anchor="icon"
     focusable={false}
     {...props}
   >
     {title ? <title>{title}</title> : null}
-    <defs>
-      <path
-        d="M10.493 17.314c.821.82 2.151.82 2.972 0l9.014-9.015-2.228-2.228-8.272 8.271-8.271-8.271-2.229 2.228 9.014 9.015z"
-        id="Arrow-Right_svg__a"
-      />
-    </defs>
-    <use fill="currentColor" transform="rotate(-90 11.98 12)" xlinkHref="#Arrow-Right_svg__a" fillRule="evenodd" />
+    <path
+      d="M17.293 13.486c.82-.82.82-2.151 0-2.972L8.279 1.5 6.05 3.729l8.272 8.27-8.272 8.272L8.279 22.5l9.014-9.014z"
+      fill="currentColor"
+      fillRule="evenodd"
+    />
   </svg>
 );
 
