@@ -73,9 +73,6 @@ const locales = {
         "arrowdown": "下",
         "escape": "エスケープ"
       },
-      "externalLink": {
-        "view": "表示"
-      },
       "collapsible": {
         "ariaText": "縮小可能セクション"
       },
@@ -98,6 +95,16 @@ const locales = {
         "less": "少なく表示",
         "more_about": "{{topic}}について詳しく表示",
         "less_about": "{{topic}}について少なく表示"
+      },
+      "listBox": {
+        "trigger": {
+          "placeholder": "選択..."
+        },
+        "filter": {
+          "a11y_text": "フィルター",
+          "no_results_message": "検索結果はどのオプションにも一致しませんでした。",
+          "placeholder": "フィルター..."
+        }
       },
       "listBoxBrowser": {
         "explore": "より多くのオプションを探す",

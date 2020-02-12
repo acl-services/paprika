@@ -4,7 +4,7 @@ import ReactDOM from "react-dom";
 import { zValue } from "@paprika/stylers/lib/helpers";
 import { extractChildren } from "../../helpers";
 import Overlay from "../Overlay";
-import { groupCSS } from "./Group.styles";
+import * as sc from "./Group.styles";
 import useOffsetScroll from "../../hooks/useOffsetScroll";
 
 const propTypes = {
@@ -37,9 +37,9 @@ export default function Group(props) {
   return ReactDOM.createPortal(
     <React.Fragment>
       {OverlayExtracted}
-      <div css={groupCSS} {...moreProps} offsetY={offsetScroll} data-pka-anchor="sidepanel.group">
+      <sc.Group {...moreProps} offsetY={offsetScroll} data-pka-anchor="sidepanel.group">
         {sidePanels.map(sidePanel => React.cloneElement(sidePanel, { isInline: true, groupOffsetY: offsetY }))}
-      </div>
+      </sc.Group>
     </React.Fragment>,
     document.body
   );
