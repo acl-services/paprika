@@ -30,7 +30,7 @@ const stories = [
   require.context("../packages/CollapsibleText", true, /CollapsibleText.Tests.stories.js$/),
 
   // Remaining
-  require.context("../packages", true, /\.stories\.js$/),
+  require.context("../packages", true, /\.stories\.(js|mdx)$/),
 ];
 
 configure(stories, module);

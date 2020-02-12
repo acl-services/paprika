@@ -1,0 +1,84 @@
+import { Meta } from "@storybook/addon-docs/blocks";
+
+<Meta title="DataGrid/Documentation" />
+
+# DataGrid
+Reacts component which helps in rendering vast amount of tabular data.
+
+Main features:
+
+- By design is a controlled component gives full flexibility to the consumer
+- Virtualization provide by [react-windows](https://react-window.now.sh/)
+- Sticky header, Sticky Column _right side for now_
+- Easy mapping cell values and custom cell render via a render function
+- Screenreader voice-over implementation **a11y**
+- Support for keyboard navigation `↑`, `↓`, `→`, `←` **a11y**
+- Easy Api for keyboard events `Enter`, `Space`, `Shift + Space` **a11y**
+- Dynamic width and height for the cells [VariableSizeGrid](https://react-window.now.sh/#/examples/grid/variable-size)
+
+
+## Installation
+There are two main way to install `@paprika/datagrid`:
+
+`yarn add @paprika/datagrid`
+
+or
+
+`npm install @paprika/datagrid`
+
+
+## Context
+Galvanize has a very tight relationship with Tables, DataGrids and Data. Our ecosystem is
+full with them. These tables present and filter the data in different ways, sometime even
+with different style and interaction patterns.
+
+With this DataGrid we are standardizing the DataGrids in our ecosystem and at the same
+time providing our developers with a component which is easy to use.
+
+## How to use it?
+
+### Simple
+
+To do render a simple table you only need two things. One have an `JS` array with objects.
+
+```js
+const data = [{ myColum1: 1, myColum2: "hi"}, { myColum1: 2, myColum2: "hello"}, { myColum1: 3, myColum2: "hola"}];
+```
+
+Each object inside of the array will represent a row while the properties inside of each object will represent the columns
+
+## FAQ
+
+0. Should I use the DataGrid for all my Tables problems?
+
+The DataGrid is a flexible component which might be sufficient for a lot of scenarios
+where showing Tabular Data is required.
+
+Saying that, there are some limitation with the DataGrid. The DataGrid is not meant to
+be a Spreadsheet, neither to react dynamically to different size of content like a regular
+HTML Table would do, so for this kind of scenarios is better to find alternatives solutions.
+
+In doubt asked your fellow ux-developer or reach to us on our Galvaize's slack #paprika channel.
+
+1. Performance issues within my DataGrid, how do I fix them?
+
+While the DataGrid has been designed to render a lot of information, its performance can be affected by multiple reason like:
+
+- Number of rows and cells rendered on the DataGrid in full screen.
+- Number of screens connected to your computer.
+- Scrolling by a mouse wheel instead a magic pad.
+- The browsers some are better than others
+- The UI and what you are rendering.
+
+To mitigated some of these problems you could use `React.Memo` or `memonize` your components. Also you could
+use [workerize](https://github.com/developit/workerize) to process complex logic, without blocking the main thread.
+
+2. Sticky headers and columns on my DataGris are not sync while scrolling.
+
+We are aware of this issue unfortunately, React-Window doesn't provide a build-in solution for sticky columns, we expect to mitigated this problems in incoming releases
+
+3. How can I remove the `padding / margin` from the Cells?
+
+The `<ColumnDefinition />` has a `cellProps` props that you can use to pass specific styles to your cell, as well any other attribute that you might require like classes or `data` attributes.
+
+> Theoretically you could also pass down a _styled-component_ `css` prop using the `cellProps` but don't it, let's not exploit internal implementation details for styling our components.
