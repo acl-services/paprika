@@ -66,7 +66,8 @@ const locales = {
       "formElement": {
         "optional": "(optional)",
         "required": "(required)",
-        "aria_info_circle": "Information"
+        "aria_info_circle": "Information",
+        "instructions": "Instructions"
       },
       "prevNextArrowButton": {
         "arrowup": "up",

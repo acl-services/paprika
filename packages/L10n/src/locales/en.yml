@@ -54,6 +54,7 @@ en:
       optional: (optional)
       required: (required)
       aria_info_circle: Information
+      instructions: Instructions
     prevNextArrowButton:
       arrowup: up
       arrowdown: down

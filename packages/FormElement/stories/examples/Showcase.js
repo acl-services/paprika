@@ -27,6 +27,7 @@ const instructionsPropKnobs = () => ({
     "instructions text",
     "Instructions Text Instructions Text Instructions Text Instructions Text Instructions Text Instructions Text Instructions Text Instructions Text Instructions Text."
   ),
+  hasTitle: boolean("instructionsHasTitle", false),
 });
 
 const descriptionPropKnobs = () => ({
@@ -51,7 +52,9 @@ const ExampleStory = props => {
       <Tagline>Form Element.</Tagline>
       <Rule />
       <FormElement {...props}>
-        <FormElement.Instructions>{instructionsPropKnobs().instructionsText}</FormElement.Instructions>
+        <FormElement.Instructions hasTitle={instructionsPropKnobs().hasTitle}>
+          {instructionsPropKnobs().instructionsText}
+        </FormElement.Instructions>
         <FormElement.Content>
           {({ idForLabel, ariaDescribedBy }) => (
             <Input
