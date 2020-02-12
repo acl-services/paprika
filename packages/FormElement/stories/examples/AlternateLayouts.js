@@ -28,12 +28,19 @@ const ExampleStory = () => {
       </Checkbox>
     ));
 
-  const getRadioOptions = ariaDescribedBy =>
-    optionsArray.map(hero => (
-      <Radio ariaDescribedBy={ariaDescribedBy} key={hero} onChange={() => {}} isDisabled={isDisabled} size={size}>
-        {hero}
-      </Radio>
-    ));
+  const getRadioOptions = ariaDescribedBy => (
+    <Radio.Group
+      onChange={activeIndex => {
+        console.log(activeIndex);
+      }}
+    >
+      {optionsArray.map(hero => (
+        <Radio ariaDescribedBy={ariaDescribedBy} key={hero} onChange={() => {}} isDisabled={isDisabled} size={size}>
+          {hero}
+        </Radio>
+      ))}
+    </Radio.Group>
+  );
 
   const [value, setValue] = React.useState("");
 
