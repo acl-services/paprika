@@ -30,16 +30,56 @@ const propTypes = {
   ).isRequired,
   onApply: PropTypes.func.isRequired,
   onCancel: PropTypes.func.isRequired,
+  onOpen: PropTypes.func,
+  onClose: PropTypes.func,
 };
 
 const defaultProps = {
   appliedNumber: 0,
+  onOpen: () => {},
+  onClose: () => {},
 };
 
 export default function Sort(props) {
-  const { appliedNumber, fields, onDeleteField, onChange, columns, onAddField, onApply, onCancel } = props;
+  const {
+    appliedNumber,
+    fields,
+    onDeleteField,
+    onChange,
+    columns,
+    onAddField,
+    onApply,
+    onCancel,
+    onOpen,
+    onClose,
+  } = props;
   const I18n = useI18n();
   const fieldsRef = React.useRef(null);
+  const [isOpen, setIsOpen] = React.useState(false);
+
+  function handleClickTrigger() {
+    setIsOpen(prevIsOpen => {
+      if (prevIsOpen) return false;
+
+      onOpen();
+      return true;
+    });
+  }
+
+  function handleClose() {
+    setIsOpen(false);
+    onClose();
+  }
+
+  function handleApply() {
+    setIsOpen(false);
+    onApply();
+  }
+
+  function handleCancel() {
+    setIsOpen(false);
+    onCancel();
+  }
 
   function getLabelText(numberOfFields) {
     switch (numberOfFields) {
@@ -53,21 +93,17 @@ export default function Sort(props) {
   }
 
   return (
-    <Popover align="bottom" edge="left" maxWidth={1200}>
-      <Popover.Trigger kind="flat">
-        {(handler, attributes, isOpen) => (
-          <styled.Trigger
-            {...attributes}
-            isSemantic={false}
-            onClick={handler}
-            hasField={appliedNumber > 0}
-            isOpen={isOpen}
-          >
-            <styled.Icon />
-            {getLabelText(appliedNumber)}
-          </styled.Trigger>
-        )}
-      </Popover.Trigger>
+    <Popover align="bottom" edge="left" maxWidth={1200} isOpen={isOpen} onClose={handleClose}>
+      <styled.Trigger
+        isSemantic={false}
+        kind="flat"
+        onClick={handleClickTrigger}
+        hasField={appliedNumber > 0}
+        isOpen={isOpen}
+      >
+        <styled.Icon />
+        {getLabelText(appliedNumber)}
+      </styled.Trigger>
       <Popover.Content>
         <Popover.Card>
           <styled.FieldsPanel ref={fieldsRef} tabIndex={-1}>
@@ -96,10 +132,10 @@ export default function Sort(props) {
             >
               Add a field to sort by
             </Button>
-            <Button onClick={onApply} kind="flat" icon={<CheckIcon />}>
+            <Button onClick={handleApply} kind="flat" icon={<CheckIcon />}>
               Apply
             </Button>
-            <Button onClick={onCancel} kind="minor">
+            <Button onClick={handleCancel} kind="minor">
               Cancel
             </Button>
           </styled.Footer>
