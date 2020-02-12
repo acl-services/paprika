@@ -32,12 +32,16 @@ const propTypes = {
   onChangeOperator: PropTypes.func,
   onApply: PropTypes.func.isRequired,
   onCancel: PropTypes.func.isRequired,
+  onOpen: PropTypes.func,
+  onClose: PropTypes.func,
 };
 
 const defaultProps = {
   appliedNumber: 0,
   operator: "AND",
   onChangeOperator: null,
+  onOpen: () => {},
+  onClose: () => {},
 };
 
 export default function Filter(props) {
@@ -52,9 +56,36 @@ export default function Filter(props) {
     onChangeOperator,
     onApply,
     onCancel,
+    onOpen,
+    onClose,
   } = props;
   const I18n = useI18n();
   const filtersRef = React.useRef(null);
+  const [isOpen, setIsOpen] = React.useState(false);
+
+  function handleClickTrigger() {
+    setIsOpen(prevIsOpen => {
+      if (prevIsOpen) return false;
+
+      onOpen();
+      return true;
+    });
+  }
+
+  function handleClose() {
+    setIsOpen(false);
+    onClose();
+  }
+
+  function handleApply() {
+    setIsOpen(false);
+    onApply();
+  }
+
+  function handleCancel() {
+    setIsOpen(false);
+    onCancel();
+  }
 
   function getLabelText(numberOfFilters) {
     switch (numberOfFilters) {
@@ -68,21 +99,17 @@ export default function Filter(props) {
   }
 
   return (
-    <Popover align="bottom" edge="left" maxWidth={600} offset={8}>
-      <Popover.Trigger>
-        {(handler, attributes, isOpen) => (
-          <styled.Trigger
-            {...attributes}
-            isSemantic={false}
-            onClick={handler}
-            hasFilterApplied={appliedNumber > 0}
-            isOpen={isOpen}
-          >
-            <styled.Icon />
-            {getLabelText(appliedNumber)}
-          </styled.Trigger>
-        )}
-      </Popover.Trigger>
+    <Popover align="bottom" edge="left" maxWidth={600} offset={8} isOpen={isOpen} onClose={handleClose}>
+      <styled.Trigger
+        isSemantic={false}
+        kind="flat"
+        onClick={handleClickTrigger}
+        hasFilterApplied={appliedNumber > 0}
+        isOpen={isOpen}
+      >
+        <styled.Icon />
+        {getLabelText(appliedNumber)}
+      </styled.Trigger>
       <Popover.Content>
         <Popover.Card>
           <styled.FiltersPanel ref={filtersRef} tabIndex={-1}>
@@ -107,10 +134,10 @@ export default function Filter(props) {
             <Button onClick={onAddFilter} kind="minor" data-pka-anchor="navigation.filter.addFilterButton">
               {I18n.t(`navigation.filter.add_filter`)}
             </Button>
-            <Button onClick={onApply} kind="flat" icon={<CheckIcon />}>
+            <Button onClick={handleApply} kind="flat" icon={<CheckIcon />}>
               Apply
             </Button>
-            <Button onClick={onCancel} kind="minor">
+            <Button onClick={handleCancel} kind="minor">
               Cancel
             </Button>
           </styled.Footer>

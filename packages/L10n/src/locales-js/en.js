@@ -166,7 +166,7 @@ const locales = {
             },
             "descending": {
               "boolean": "Sort descending (false → true)",
-              "number": "Sort descending (1 → 9)",
+              "number": "Sort descending (9 → 1)",
               "text": "Sort descending (Z → A)",
               "date": "Sort descending (9 → 1)"
             }

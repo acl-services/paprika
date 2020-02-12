@@ -19,6 +19,8 @@ export const Footer = styled.div`
 `;
 
 export const Sortable = styled(PaprikaSortable)`
+  max-height: 400px;
+  overflow-y: auto;
   padding-top: ${tokens.spaceSm};
 `;
 
