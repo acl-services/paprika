@@ -47,7 +47,6 @@ export default function MySort({ appliedNumber, sortedFields, setSortedFields, c
       onAddField={memorizedAddField}
       onDeleteField={memorizedDeleteField}
       onApply={onApply}
-      onCancel={() => {}}
     />
   );
 }

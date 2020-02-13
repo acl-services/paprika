@@ -104,7 +104,6 @@ export default function MyFilter(props) {
       operator={operator}
       onChangeOperator={memorizedHandleChangeOperator}
       onApply={onApply}
-      onCancel={() => {}}
     />
   );
 }
