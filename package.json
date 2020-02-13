@@ -9,6 +9,7 @@
     "jest:watch": "yarn jest --watch",
     "lint:fix": "yarn lint --fix",
     "lint": "eslint packages --report-unused-disable-directives",
+    "lint:css": "stylelint './packages/**/src/**/*.styles.js'",
     "prepare": "lerna run pretranspile && yarn transpile",
     "prettier:format": "yarn prettier --write",
     "prettier": "prettier \"**/*.+(js|json|yml|css|scss)\"",
@@ -100,7 +101,8 @@
   },
   "lint-staged": {
     "packages/**/*.js": [
-      "yarn lint"
+      "yarn lint",
+      "yarn lint:css"
     ],
     "packages/**/*.{js,json,yml,css,scss}": [
       "yarn prettier --check"
@@ -108,6 +110,10 @@
   },
   "dependencies": {
     "@babel/runtime-corejs2": "^7.4.4",
-    "react-json-tree": "^0.11.2"
+    "react-json-tree": "^0.11.2",
+    "stylelint": "^13.1.0",
+    "stylelint-config-recommended": "^3.0.0",
+    "stylelint-config-styled-components": "^0.1.1",
+    "stylelint-processor-styled-components": "^1.9.0"
   }
 }
