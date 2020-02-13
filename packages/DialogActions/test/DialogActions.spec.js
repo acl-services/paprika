@@ -1,9 +1,14 @@
 import React from "react";
 import { render, fireEvent } from "@testing-library/react";
+import L10n from "@paprika/l10n";
 import DialogActions from "../src";
 
 function renderComponent(props = {}) {
-  return render(<DialogActions {...props} />);
+  return render(
+    <L10n>
+      <DialogActions {...props} />
+    </L10n>
+  );
 }
 
 describe("DialogActions", () => {
