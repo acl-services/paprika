@@ -10,7 +10,7 @@ or
 
 ### Usage
 
-Please use `<L10n />` component to wrap `<Toast />` in your application.
+Please use `<L10n />` component to wrap `<DialogActions />` in your application.
 
 Example:
 
