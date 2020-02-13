@@ -36,7 +36,7 @@ const ExampleStory = () => {
       }}
     >
       {optionsArray.map(hero => (
-        <Radio ariaDescribedBy={ariaDescribedBy} key={hero} isDisabled={isDisabled} size={size}>
+        <Radio ariaDescribedBy={ariaDescribedBy} key={hero} onChange={() => {}} isDisabled={isDisabled} size={size}>
           {hero}
         </Radio>
       ))}
