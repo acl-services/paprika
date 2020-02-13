@@ -4,7 +4,7 @@ import Button from "@paprika/button";
 import useI18n from "@paprika/l10n/lib/useI18n";
 import DatePicker from "./DatePicker";
 import InlineSelect from "../InlineSelect/InlineSelect";
-import Input from "./Input";
+import InlineInput from "../InlineInput/InlineInput";
 import rules, { rulesByType, localeKeysByRule } from "./rules";
 import { columnTypes } from "../../constants";
 import * as styled from "./Filter.styles";
@@ -124,7 +124,9 @@ function FilterItem(props) {
           />
         );
       default:
-        return <Input inputKey={`${selectedColumnId}-${selectedRule}`} value={value} onChange={handleChangeValue} />;
+        return (
+          <InlineInput inputKey={`${selectedColumnId}-${selectedRule}`} value={value} onChange={handleChangeValue} />
+        );
     }
   }
 

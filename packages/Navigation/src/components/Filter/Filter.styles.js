@@ -1,5 +1,4 @@
 import styled, { css } from "styled-components";
-import PaprikaInput from "@paprika/input";
 import PlaceholderIcon from "@paprika/icon/lib/Search";
 import stylers from "@paprika/stylers";
 import tokens from "@paprika/tokens";
@@ -22,15 +21,6 @@ export const FilterItem = styled.li`
 
   ${Wrapper} {
     margin-right: ${tokens.spaceSm};
-  }
-`;
-
-export const Input = styled(PaprikaInput)`
-  input[data-pka-anchor="input"] {
-    border: none;
-    border-bottom: 1px solid ${tokens.color.black};
-    border-radius: 0;
-    width: 80px;
   }
 `;
 
