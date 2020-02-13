@@ -133,16 +133,13 @@ export function App() {
 
   return (
     <Sbook.Story>
-      <p>
-        <Button>Start</Button>
-      </p>
       {row && renderSidepanel({ row })}
       <DataGrid
         ref={refDataGrid}
         data={data}
         isIdle={isIdle}
         keygen="id"
-        width={1024}
+        width={680}
         onClick={handleOpenSidepanel}
         onEnter={handleOpenSidepanel}
         onSpaceBar={handleOpenSidepanel}
@@ -156,25 +153,24 @@ export function App() {
           cell={renderThumbnail}
           cellProps={() => ({ style: { padding: "4px" } })}
         />
-        <DataGrid.ColumnDefinition isSticky width={160} header="Name" cell="name" />
+        <DataGrid.ColumnDefinition width={90} header="Name" cell="name" />
         <DataGrid.ColumnDefinition header="Key" cell="id" />
         <DataGrid.ColumnDefinition width={240} header="Description" cell="description" />
         <DataGrid.ColumnDefinition width={180} header="Modified" cell="modified" />
         <DataGrid.ColumnDefinition width={120} header="URI" cell="resourceURI" />
         <DataGrid.ColumnDefinition width={220} header="Series" cell={renderSeries} />
         <DataGrid.WhenScrollBarReachedBottom>
-          <Button isPending={isPending} onClick={handleLoadMore}>
-            Load more
-          </Button>
+          <div css="text-align: center; padding: 16px;">
+            <Button isPending={isPending} onClick={handleLoadMore}>
+              Load more
+            </Button>
+          </div>
         </DataGrid.WhenScrollBarReachedBottom>
       </DataGrid>
 
       <a href="http://marvel.com" style={{ fontSize: "12px", color: "#777" }}>
         Data provided by Marvel. © 2019 MARVEL
       </a>
-      <p>
-        <Button>End</Button>
-      </p>
     </Sbook.Story>
   );
 }

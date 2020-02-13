@@ -4,7 +4,8 @@ import * as Sbook from "storybook/assets/styles/common.styles";
 import worker from "workerize-loader!./helpers/data.worker"; // eslint-disable-line import/no-webpack-loader-syntax
 import DataGrid, { renderColumnIndicator, renderColumnExpand } from "../src";
 
-export function App() {
+export function App(props) {
+  const { overrideWidth = null, numberOfColumns = 500, rowsOffset = 80 } = props;
   const [data, setData] = React.useState([]);
   const [isIdle, setIsIdle] = React.useState(true);
   const [page, setPage] = React.useState(0);
@@ -16,14 +17,14 @@ export function App() {
   React.useEffect(() => {
     async function loadData() {
       const w = worker();
-      const data = await w.getDataFromWorker(300, 500);
+      const data = await w.getDataFromWorker(300, numberOfColumns);
       setData(() => data);
       setIsIdle(() => false);
     }
 
     setIsIdle(() => true);
     loadData();
-  }, []);
+  }, [numberOfColumns]);
 
   React.useEffect(() => {
     if (data.length > 0) {
@@ -32,7 +33,7 @@ export function App() {
   }, [data.length]);
 
   React.useEffect(() => {
-    if (refSBookStory.current) {
+    if (refSBookStory.current && !overrideWidth) {
       setSize(() => {
         const padding = getComputedStyle(refSBookStory.current).padding;
         const space = Number.parseInt(padding, 10) * 2;
@@ -43,19 +44,19 @@ export function App() {
         };
       });
     }
-  }, [refSBookStory]);
+  }, [overrideWidth, refSBookStory]);
 
   React.useEffect(() => {
     async function loadData() {
       const w = worker();
-      const nextData = await w.getDataFromWorker(300, 500);
+      const nextData = await w.getDataFromWorker(300, numberOfColumns);
       setData(data => data.concat(nextData));
     }
 
     if (page > 0) {
       loadData();
     }
-  }, [page]);
+  }, [numberOfColumns, page]);
 
   function isChecked() {
     return "unchecked";
@@ -71,8 +72,20 @@ export function App() {
   function handleSelect() {}
 
   return (
-    <Sbook.Story ref={refSBookStory} css="height: calc(100% - 120px);">
-      <DataGrid ref={refDataGrid} data={data} isIdle={isIdle} keygen="id" width={size.width} height={size.height}>
+    <Sbook.Story
+      ref={refSBookStory}
+      css={`
+        ${overrideWidth ? "" : "height: calc(100% - 120px);"}
+      `}
+    >
+      <DataGrid
+        ref={refDataGrid}
+        data={data}
+        isIdle={isIdle}
+        keygen="id"
+        width={size.width}
+        height={overrideWidth || size.height}
+      >
         {renderColumnIndicator({ onSelect: handleSelect, isChecked })}
         {renderColumnExpand()}
         {data.length
@@ -80,7 +93,7 @@ export function App() {
               return <DataGrid.ColumnDefinition key={key} header={key} cell={key} />;
             })
           : null}
-        <DataGrid.InfinityScroll rowsOffset={80} onReached={handleInfinityScrollReached} />
+        <DataGrid.InfinityScroll rowsOffset={rowsOffset} onReached={handleInfinityScrollReached} />
       </DataGrid>
     </Sbook.Story>
   );
