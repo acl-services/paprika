@@ -3,7 +3,6 @@
 import React from "react";
 import Heading from "@paprika/heading";
 import { ShirtSizes } from "@paprika/helpers/lib/customPropTypes";
-import { action } from "@storybook/addon-actions";
 import { Rule, Tagline } from "storybook/assets/styles/common.styles";
 import Input from "@paprika/input";
 import Checkbox from "@paprika/checkbox";
@@ -32,7 +31,7 @@ const ExampleStory = () => {
   const getRadioOptions = ariaDescribedBy => (
     <Radio.Group
       onChange={activeIndex => {
-        action(`Radio index selected is ${activeIndex}`)();
+        console.log(activeIndex);
       }}
     >
       {optionsArray.map(hero => (
