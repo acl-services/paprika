@@ -4,13 +4,15 @@ The `<DialogActions>` component renders three buttons, Save (hasConfirm), Don't 
 
 ### Installation
 
-`> npm install --save @paprika/l10n`
-and
 `> npm install --save @paprika/dialog-actions`
 or
 `> yarn add @paprika/dialog-actions`
 
 ### Usage
+
+Please use `<L10n />` component to wrap `<Toast />` in your application.
+
+Example:
 
 ```js
 import DialogActions from "@paprika/dialog-actions";
