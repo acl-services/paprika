@@ -96,13 +96,20 @@ export default function MyFilter({ columns }) {
 
   return (
     <Filter
-      onChange={memorizedHandleChange}
       onAddFilter={memorizedAddFilter}
-      onDeleteFilter={memorizedDeleteFilter}
-      filters={filters}
       columns={columns}
       operator={operator}
       onChangeOperator={memorizedHandleChangeOperator}
-    />
+    >
+      {filters.map((filter, index) => (
+        <Filter.Item
+          key={filter.id}
+          filter={filter}
+          onDelete={memorizedDeleteFilter}
+          onChange={memorizedHandleChange}
+          index={index}
+        />
+      ))}
+    </Filter>
   );
 }

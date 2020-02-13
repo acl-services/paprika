@@ -6,58 +6,49 @@ import useI18n from "@paprika/l10n/lib/useI18n";
 import CheckIcon from "@paprika/icon/lib/Check";
 import FilterItem from "./FilterItem";
 import { rulesByType } from "./rules";
+import FilterContext from "./context";
+
 import * as styled from "./Filter.styles";
 import { GenericPopoverPlaceholder } from "../../Navigation.styles";
 
 const propTypes = {
   appliedNumber: PropTypes.number,
-  onChange: PropTypes.func.isRequired,
-  filters: PropTypes.arrayOf(
-    PropTypes.shape({
-      columnId: PropTypes.string.isRequired,
-      filterId: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
-      renderValueField: PropTypes.func,
-      rule: PropTypes.string.isRequired,
-      value: PropTypes.oneOfType([PropTypes.string, PropTypes.bool]),
-    })
-  ).isRequired,
+  children: PropTypes.node,
   columns: PropTypes.arrayOf(
     PropTypes.shape({
       label: PropTypes.string.isRequired,
     })
   ).isRequired,
-  onDeleteFilter: PropTypes.func.isRequired,
   onAddFilter: PropTypes.func.isRequired,
-  operator: PropTypes.oneOf(["AND", "OR"]),
-  onChangeOperator: PropTypes.func,
   onApply: PropTypes.func.isRequired,
   onCancel: PropTypes.func.isRequired,
-  onOpen: PropTypes.func,
+  onChangeOperator: PropTypes.func,
   onClose: PropTypes.func,
+  onOpen: PropTypes.func,
+  operator: PropTypes.oneOf(["AND", "OR"]),
 };
 
 const defaultProps = {
   appliedNumber: 0,
-  operator: "AND",
+  children: null,
   onChangeOperator: null,
-  onOpen: () => {},
   onClose: () => {},
+  onOpen: () => {},
+  operator: "AND",
 };
 
 export default function Filter(props) {
   const {
     appliedNumber,
-    onDeleteFilter,
-    onAddFilter,
-    filters,
+    children,
     columns,
-    onChange,
-    operator,
-    onChangeOperator,
+    onAddFilter,
     onApply,
     onCancel,
-    onOpen,
+    onChangeOperator,
     onClose,
+    onOpen,
+    operator,
   } = props;
   const I18n = useI18n();
   const filtersRef = React.useRef(null);
@@ -99,52 +90,42 @@ export default function Filter(props) {
   }
 
   return (
-    <Popover align="bottom" edge="left" maxWidth={600} offset={8} isOpen={isOpen} onClose={handleClose}>
-      <styled.Trigger
-        isSemantic={false}
-        kind="flat"
-        onClick={handleClickTrigger}
-        hasFilterApplied={appliedNumber > 0}
-        isOpen={isOpen}
-      >
-        <styled.Icon />
-        {getLabelText(appliedNumber)}
-      </styled.Trigger>
-      <Popover.Content>
-        <Popover.Card>
-          <styled.FiltersPanel ref={filtersRef} tabIndex={-1}>
-            {filters.length === 0 ? (
-              <GenericPopoverPlaceholder>{I18n.t("navigation.filter.no_filters_applied")}</GenericPopoverPlaceholder>
-            ) : null}
-            {filters.map((filter, index) => (
-              <FilterItem
-                key={filter.filterId}
-                filter={filter}
-                columns={columns}
-                onDeleteFilter={onDeleteFilter}
-                onChange={onChange}
-                index={index}
-                filtersRef={filtersRef}
-                operator={operator}
-                onChangeOperator={onChangeOperator}
-              />
-            ))}
-          </styled.FiltersPanel>
-          <styled.Footer>
-            <Button onClick={onAddFilter} kind="minor" data-pka-anchor="navigation.filter.addFilterButton">
-              {I18n.t(`navigation.filter.add_filter`)}
-            </Button>
-            <Button onClick={handleApply} kind="flat" icon={<CheckIcon />}>
-              Apply
-            </Button>
-            <Button onClick={handleCancel} kind="minor">
-              Cancel
-            </Button>
-          </styled.Footer>
-        </Popover.Card>
-      </Popover.Content>
-      <Popover.Tip />
-    </Popover>
+    <FilterContext.Provider value={{ filtersRef, columns, operator, onChangeOperator }}>
+      <Popover align="bottom" edge="left" maxWidth={600} offset={8} isOpen={isOpen} onClose={handleClose}>
+        <styled.Trigger
+          isSemantic={false}
+          kind="flat"
+          onClick={handleClickTrigger}
+          hasFilterApplied={appliedNumber > 0}
+          isOpen={isOpen}
+        >
+          <styled.Icon />
+          {getLabelText(appliedNumber)}
+        </styled.Trigger>
+        <Popover.Content>
+          <Popover.Card>
+            <styled.FiltersPanel ref={filtersRef} tabIndex={-1}>
+              {React.Children.count(children) === 0 ? (
+                <GenericPopoverPlaceholder>{I18n.t("navigation.filter.no_filters_applied")}</GenericPopoverPlaceholder>
+              ) : null}
+              {children}
+            </styled.FiltersPanel>
+            <styled.Footer>
+              <Button onClick={onAddFilter} kind="minor" data-pka-anchor="navigation.filter.addFilterButton">
+                {I18n.t(`navigation.filter.add_filter`)}
+              </Button>
+              <Button onClick={handleApply} kind="flat" icon={<CheckIcon />}>
+                Apply
+              </Button>
+              <Button onClick={handleCancel} kind="minor">
+                Cancel
+              </Button>
+            </styled.Footer>
+          </Popover.Card>
+        </Popover.Content>
+        <Popover.Tip />
+      </Popover>
+    </FilterContext.Provider>
   );
 }
 
@@ -152,3 +133,4 @@ Filter.propTypes = propTypes;
 Filter.defaultProps = defaultProps;
 Filter.displayName = "Navigation.Filter";
 Filter.rulesByType = rulesByType;
+Filter.Item = FilterItem;

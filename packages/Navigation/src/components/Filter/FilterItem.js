@@ -6,15 +6,11 @@ import DatePicker from "./DatePicker";
 import InlineSelect from "../InlineSelect/InlineSelect";
 import InlineInput from "../InlineInput/InlineInput";
 import rules, { rulesByType, localeKeysByRule } from "./rules";
+import FilterContext from "./context";
 import { columnTypes } from "../../constants";
 import * as styled from "./Filter.styles";
 
 const propTypes = {
-  columns: PropTypes.arrayOf(
-    PropTypes.shape({
-      label: PropTypes.string.isRequired,
-    })
-  ).isRequired,
   filter: PropTypes.shape({
     columnId: PropTypes.string.isRequired,
     filterId: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
@@ -25,24 +21,21 @@ const propTypes = {
   filtersRef: PropTypes.shape({ current: PropTypes.instanceOf(Object) }).isRequired,
   index: PropTypes.number.isRequired,
   onChange: PropTypes.func.isRequired,
-  onDeleteFilter: PropTypes.func.isRequired,
-  operator: PropTypes.oneOf(["AND", "OR"]).isRequired,
-  onChangeOperator: PropTypes.func,
+  onDelete: PropTypes.func.isRequired,
 };
 
-const defaultProps = {
-  onChangeOperator: null,
-};
+const defaultProps = {};
 
 function FilterItem(props) {
-  const { columns, filter, filtersRef, index, onChange, onDeleteFilter, operator, onChangeOperator } = props;
+  const { filter, index, onChange, onDelete } = props;
+  const { columns, filtersRef, onChangeOperator, operator } = React.useContext(FilterContext);
   const I18n = useI18n();
   const { columnId: selectedColumnId, rule: selectedRule, value, renderValueField: renderCustomValueField } = filter;
   const selectedColumnType = columns.find(({ id }) => id === selectedColumnId).type;
 
   function handleRemoveFilter() {
     filtersRef.current.focus();
-    onDeleteFilter(filter);
+    onDelete(filter);
   }
 
   function handleChangeColumn(event) {

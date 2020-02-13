@@ -21,7 +21,7 @@ export default function InlineInput(props) {
   }
 
   return (
-    <styled.Wrapper data-pka-anchor="filter.filter-item">
+    <styled.Wrapper data-pka-anchor="filter.inline-input">
       <styled.Input key={inputKey} onChange={handleChange} value={inputtedString} />
       <styled.Trigger>{inputtedString}</styled.Trigger>
     </styled.Wrapper>

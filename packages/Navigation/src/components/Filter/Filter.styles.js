@@ -6,7 +6,7 @@ import { Wrapper } from "../InlineSelect/InlineSelect.styles";
 import { getGenericTriggerIcon, GenericTrigger } from "../../Navigation.styles";
 
 export const FiltersPanel = styled.div`
-  width: 580px;
+  width: 420px;
 
   &:focus {
     outline: none;

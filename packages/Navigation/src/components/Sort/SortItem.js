@@ -4,33 +4,34 @@ import Button from "@paprika/button";
 import useI18n from "@paprika/l10n/lib/useI18n";
 import InlineSelect from "../InlineSelect/InlineSelect";
 import { sortDirections, localeTypeKeys } from "../../constants";
+import SortContext from "./context";
+
 import * as styled from "./Sort.styles";
 
 const propTypes = {
-  columns: PropTypes.arrayOf(
-    PropTypes.shape({
-      label: PropTypes.string.isRequired,
-    })
-  ).isRequired,
   field: PropTypes.shape({
     columnId: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
     direction: PropTypes.oneOf([sortDirections.ASCEND, sortDirections.DESCEND]),
   }).isRequired,
-  fieldsRef: PropTypes.shape({ current: PropTypes.instanceOf(Object) }).isRequired,
-  isFirstField: PropTypes.bool.isRequired,
+  isFirst: PropTypes.bool,
   onChange: PropTypes.func.isRequired,
-  onDeleteField: PropTypes.func.isRequired,
+  onDelete: PropTypes.func.isRequired,
+};
+
+const defaultProps = {
+  isFirst: true,
 };
 
 function SortItem(props) {
-  const { field, columns, isFirstField, onDeleteField, onChange, fieldsRef } = props;
-  const { columnId: selectedColumnId, direction } = field;
+  const { field, isFirst, onDelete, onChange } = props;
   const I18n = useI18n();
+  const { columns, fieldsRef } = React.useContext(SortContext);
+  const { columnId: selectedColumnId, direction } = field;
   const columnTypeTranslationKey = localeTypeKeys[columns.find(column => column.id === selectedColumnId).type];
 
   function handleRemoveFilter() {
     fieldsRef.current.focus();
-    onDeleteField(field);
+    onDelete(field);
   }
 
   function handleChangeColumn(event) {
@@ -44,7 +45,7 @@ function SortItem(props) {
   return (
     <styled.SortItem data-pka-anchor="sort.sort-field">
       <Button.Close data-pka-anchor="sort.delete-button" onClick={handleRemoveFilter} size="small" />
-      {isFirstField ? "Sort by" : "then by"}
+      {isFirst ? "Sort by" : "then by"}
       <InlineSelect
         onChange={handleChangeColumn}
         value={selectedColumnId}
@@ -77,5 +78,6 @@ function SortItem(props) {
 }
 
 SortItem.propTypes = propTypes;
+SortItem.defaultProps = defaultProps;
 
 export default React.memo(SortItem);
