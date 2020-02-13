@@ -1,13 +1,22 @@
-import React from "react";
-import { storiesOf } from "@storybook/react";
 import { withKnobs } from "@storybook/addon-knobs";
-import ShowcaseStory from "./examples/Showcase";
-import Variations from "./examples/Variations";
-import Screener from "./examples/Screener";
 
-storiesOf("DialogActions", module)
-  .addDecorator(withKnobs)
-  .add("Showcase", ShowcaseStory)
-  .add("Variations", () => <Variations />);
+import Props from "./DialogActions.mdx";
+import Showcase from "./examples/Showcase";
+import DialogActions from "../src";
 
-storiesOf("DialogActions/Automation Tests", module).add("Screener", () => <Screener />);
+export default {
+  title: "DialogActions",
+  component: DialogActions,
+};
+
+export const showcase = Showcase;
+showcase.story = {
+  decorators: [withKnobs],
+  parameters: {
+    docs: { page: Props },
+    options: {
+      isToolshown: true,
+      showPanel: true,
+    },
+  },
+};

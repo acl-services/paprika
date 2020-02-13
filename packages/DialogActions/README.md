@@ -1,6 +1,6 @@
 ## DialogActions
 
-The `<DialogActions>` component renders three buttons, Save (hasConfirm), Don't Save (hasDecline) and Cancel to provide actions for modals.
+The `<DialogActions>` component renders three buttons, Save (hasConfirm), Don't Save (hasDecline) and Cancel.
 
 ### Installation
 
@@ -33,4 +33,4 @@ import DialogActions from "@paprika/dialog-actions";
 - `onConfirm`
 - `onDecline`
 
-[More detail about these props](https://github.com/acl-services/paprika/blob/master/packages/DialogActions/src/DialogActions.js)
+[More details about these props](https://github.com/acl-services/paprika/blob/master/packages/DialogActions/src/DialogActions.js)
