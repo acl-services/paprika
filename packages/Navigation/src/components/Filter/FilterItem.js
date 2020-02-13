@@ -11,44 +11,54 @@ import { columnTypes } from "../../constants";
 import * as styled from "./Filter.styles";
 
 const propTypes = {
-  filter: PropTypes.shape({
-    columnId: PropTypes.string.isRequired,
-    filterId: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
-    renderValueField: PropTypes.func,
-    rule: PropTypes.string.isRequired,
-    value: PropTypes.oneOfType([PropTypes.string, PropTypes.bool]).isRequired,
-  }).isRequired,
-  filtersRef: PropTypes.shape({ current: PropTypes.instanceOf(Object) }).isRequired,
+  columnId: PropTypes.string.isRequired,
+  id: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
   index: PropTypes.number.isRequired,
   onChange: PropTypes.func.isRequired,
   onDelete: PropTypes.func.isRequired,
+  renderValueField: PropTypes.func,
+  rule: PropTypes.string.isRequired,
+  value: PropTypes.oneOfType([PropTypes.string, PropTypes.bool]).isRequired,
 };
 
-const defaultProps = {};
+const defaultProps = {
+  id: null,
+  renderValueField: null,
+};
 
 function FilterItem(props) {
-  const { filter, index, onChange, onDelete } = props;
+  const {
+    index,
+    onChange,
+    onDelete,
+    id,
+    columnId: selectedColumnId,
+    rule: selectedRule,
+    value,
+    renderValueField: renderCustomValueField,
+  } = props;
   const { columns, filtersRef, onChangeOperator, operator } = React.useContext(FilterContext);
   const I18n = useI18n();
-  const { columnId: selectedColumnId, rule: selectedRule, value, renderValueField: renderCustomValueField } = filter;
+  console.log(selectedColumnId);
+
   const selectedColumnType = columns.find(({ id }) => id === selectedColumnId).type;
 
   function handleRemoveFilter() {
     filtersRef.current.focus();
-    onDelete(filter);
+    onDelete(id);
   }
 
   function handleChangeColumn(event) {
     const newColumnId = event.target.value;
-    onChange({ filter, columnId: newColumnId });
+    onChange({ id, columnId: newColumnId });
   }
 
   function handleChangeRule(event) {
-    onChange({ filter, rule: event.target.value });
+    onChange({ id, rule: event.target.value });
   }
 
   function handleChangeValue(newValue) {
-    onChange({ filter, value: newValue });
+    onChange({ id, value: newValue });
   }
 
   function handleChangeDatePicker(momentDate) {
@@ -100,7 +110,7 @@ function FilterItem(props) {
           <InlineSelect
             value={`${value}`}
             onChange={event => {
-              onChange({ filter, value: event.target.value === "true" });
+              onChange({ id, value: event.target.value === "true" });
             }}
             selectedLabel={I18n.t(`navigation.filter.rules.${value}`)}
           >

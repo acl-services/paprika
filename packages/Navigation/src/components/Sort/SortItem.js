@@ -9,10 +9,9 @@ import SortContext from "./context";
 import * as styled from "./Sort.styles";
 
 const propTypes = {
-  field: PropTypes.shape({
-    columnId: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
-    direction: PropTypes.oneOf([sortDirections.ASCEND, sortDirections.DESCEND]),
-  }).isRequired,
+  columnId: PropTypes.oneOfType([PropTypes.number, PropTypes.string]).isRequired,
+  direction: PropTypes.oneOf([sortDirections.ASCEND, sortDirections.DESCEND]).isRequired,
+  id: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
   isFirst: PropTypes.bool,
   onChange: PropTypes.func.isRequired,
   onDelete: PropTypes.func.isRequired,
@@ -20,26 +19,26 @@ const propTypes = {
 
 const defaultProps = {
   isFirst: true,
+  id: null,
 };
 
 function SortItem(props) {
-  const { field, isFirst, onDelete, onChange } = props;
-  const I18n = useI18n();
+  const { id, columnId: selectedColumnId, direction, isFirst, onDelete, onChange } = props;
   const { columns, fieldsRef } = React.useContext(SortContext);
-  const { columnId: selectedColumnId, direction } = field;
+  const I18n = useI18n();
   const columnTypeTranslationKey = localeTypeKeys[columns.find(column => column.id === selectedColumnId).type];
 
   function handleRemoveFilter() {
     fieldsRef.current.focus();
-    onDelete(field);
+    onDelete(id);
   }
 
   function handleChangeColumn(event) {
-    onChange({ field, columnId: event.target.value });
+    onChange({ id, columnId: event.target.value });
   }
 
   function handleChangeRule(event) {
-    onChange({ field, direction: event.target.value });
+    onChange({ id, direction: event.target.value });
   }
 
   return (
