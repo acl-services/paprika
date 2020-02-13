@@ -388,10 +388,15 @@ The `<ColumnDefinition />` has a `cellProps` props that you can use to pass spec
   not exploit our internal implementation details for styling our components 🙏
 </Toast>
 
-**How many rows can I render on the DataGrid**
+**How many rows and columns can I render on the DataGrid**
 
-This is a hard question to answer.
+This is a complex question to answer.
 
-The answer it's depends on different factors but mainly on the numbers of columns and rows you are displaying on a given monitor in full screen.
+_Short answer:_ I don't know.
+_Long answer:_ It will depends on different factors as hardware, number or row and columns on the viewport, what kind of content is on the cells, etc.
+
+But the good news is that most of the cases you will not have to worry about this, most regular uses cases the DataGrid will perform without problems.
+
+For those specific edge case where you require to load hundred of thousand or Million rows/columns, the DataGrid will not be the only one responsible to provide a great user experience the way how the data is stream and provided will play a bigger role.
 
 [react-window](https://react-window.now.sh/) as ou virtualize
