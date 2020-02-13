@@ -5,6 +5,7 @@ import DataGrid, { renderColumnIndicator, renderColumnExpand } from "../src";
 import fixtures from "./helpers/fixtures";
 import { App as Marvel } from "./DataGrid.marvel.stories";
 import { App as Stress } from "./DataGrid.stressing.stories";
+import { App as Collapsible } from "./DataGrid.Collapse.stories";
 
 <Meta title="DataGrid/Documentation" />
 
@@ -346,6 +347,14 @@ To make use of the `Infinity Scroll` pattern you have to provide a callback func
 Uses your `↑`, `↓` keys or scroll to the bottom of the table to load more rows automatically.
 
 <Stress overrideWidth={680} numberOfColumns={15} rowsOffset={120} />
+
+### More Example
+
+#### Collapsible DataGrid
+
+This is an example of what can be achieved from consumer side.
+
+<Collapsible />
 
 ## FAQ
 
