@@ -53,7 +53,7 @@ const inputStyles = css`
     }
   }
 
-  // Sizes
+  /* Sizes */
 
   &.form-input--small input.form-input__input {
     ${stylers.fontSize(-2)}
@@ -70,7 +70,7 @@ const inputStyles = css`
     height: ${stylers.spacer(5)};
   }
 
-  // Icons
+  /* Icons */
 
   .form-input__icon,
   .form-input__clear {
@@ -110,7 +110,7 @@ const inputStyles = css`
     padding-left: ${({ size }) => (size === ShirtSizes.LARGE ? stylers.spacer(4) : stylers.spacer(3))};
   }
 
-  // Disabled
+  /* Disabled */
 
   &.form-input--is-disabled,
   &[disabled] {
@@ -123,7 +123,7 @@ const inputStyles = css`
     }
   }
 
-  // Read Only
+  /* Read Only */
 
   &.form-input--is-readonly,
   &[readonly] {
@@ -132,7 +132,7 @@ const inputStyles = css`
     }
   }
 
-  // Error
+  /* Error */
 
   &.form-input--has-error input.form-input__input {
     ${stylers.errorFormStyles}
