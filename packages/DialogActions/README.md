@@ -20,7 +20,6 @@ import DialogActions from "@paprika/dialog-actions";
 
 ### Props
 
-- `className`
 - `hasCancel`
 - `hasConfirm`
 - `hasDecline`
