@@ -18,6 +18,9 @@ const propTypes = {
   /** The content for the SidePanel. */
   children: PropTypes.node.isRequired,
 
+  /** Function that provides the container DOM element to be pushed. */
+  getPushContentRef: PropTypes.func,
+
   /** Y offset that is passed down from <SidePanel.Group> */
   groupOffsetY: PropTypes.number,
 
@@ -53,6 +56,7 @@ const propTypes = {
 };
 
 const defaultProps = {
+  getPushContentRef: null,
   groupOffsetY: 0,
   isCompact: false,
   isInline: false,
@@ -68,6 +72,7 @@ const defaultProps = {
 function SidePanel(props) {
   // Props
   const {
+    getPushContentRef,
     onAfterClose,
     onAfterOpen,
     onClose,
@@ -82,7 +87,7 @@ function SidePanel(props) {
   } = props;
 
   // Hooks
-  const [isVisible, setIsVisible] = React.useState(props.isOpen);
+  const [isVisible, setIsVisible] = React.useState(isOpen);
   const offsetScroll = useOffsetScroll(offsetY);
 
   // Refs
@@ -107,7 +112,7 @@ function SidePanel(props) {
   ]);
 
   const handleAnimationEnd = () => {
-    if (!props.isOpen) {
+    if (!isOpen) {
       setIsVisible(false);
       onAfterClose();
 
@@ -121,10 +126,26 @@ function SidePanel(props) {
   };
 
   React.useEffect(() => {
-    if (props.isOpen) {
+    if (isOpen) {
       setIsVisible(true);
     }
-  }, [props.isOpen]);
+  }, [isOpen]);
+
+  React.useLayoutEffect(() => {
+    if (getPushContentRef === null) return;
+
+    const pushContentRefStyle = getPushContentRef().style;
+
+    pushContentRefStyle.transition = "margin-right 0.5s ease";
+    pushContentRefStyle.transitionDelay = "0.2s";
+
+    if (isOpen) {
+      pushContentRefStyle.marginRight = width;
+    } else {
+      pushContentRefStyle.transitionDelay = "0s";
+      pushContentRefStyle.marginRight = "0";
+    }
+  }, [isOpen, getPushContentRef, width]);
 
   const focusLockProps = focusLockExtracted ? focusLockExtracted.props : {};
 
@@ -143,6 +164,7 @@ function SidePanel(props) {
       <Dialog
         data-pka-anchor="sidepanel"
         footer={footerExtracted}
+        getPushContentRef={getPushContentRef}
         groupOffsetY={groupOffsetY}
         header={headerExtracted}
         isCompact={isCompact}
