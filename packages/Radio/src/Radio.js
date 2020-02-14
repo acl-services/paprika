@@ -101,7 +101,6 @@ function Radio(props) {
   };
   if (a11yText) inputProps["aria-label"] = a11yText;
 
-  /* eslint-disable jsx-a11y/no-noninteractive-element-interactions */
   return (
     <div data-pka-anchor="radio" css={radioStyles} {...styleProps} {...moreProps}>
       <input {...inputProps} />
@@ -116,7 +115,6 @@ function Radio(props) {
       </label>
     </div>
   );
-  /* eslint-enable jsx-a11y/no-noninteractive-element-interactions */
 }
 
 Radio.displayName = "Radio";
