@@ -19,7 +19,7 @@ const ExampleStory = () => {
   const isDisabled = false;
   const isReadOnly = false;
   const size = ShirtSizes.MEDIUM;
-  const optionsArray = ["Black Panther", "Wonder Woman", "Spiderman", "The Incredibles", "Thor"];
+  const optionsArray = ["Black Panther", "Wonder Woman", "Spiderman", "The Incredibles", "Thor", <span>test</span>];
   const listboxOptions = optionsArray.map(hero => <ListBox.Option key={hero}>{hero}</ListBox.Option>);
 
   const getCheckboxOptions = ariaDescribedBy =>
