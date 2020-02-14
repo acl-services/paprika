@@ -131,9 +131,32 @@ const data = [
   Every time you use a function as a value of the cell prop. You need to include also a cellA11yText function.
 </Toast>
 
+### Accessibility **cellA11yText** and **headerA11yText**
+
+Whenever you use a render function on the `cell` or `header` prop you have to add a `cellA11yText` and `headerA11yText` function to
+help the voice over to speak out correctly the cell content, this function **most** return a string.
+
+```js
+<DataGrid>
+  <DataGrid.ColumnDefinition
+    {...otherProps}
+    cell={({ row }) => <MyComponent {...row} />}
+    cellA11yText={({ row }) => {
+      // you can concatenate or build your own string to help voiceover
+      return `${row.someStringValue}`;
+    }}
+    cell={({ row }) => <MyComponent {...row} />}
+    headerA11yText={({ row }) => {
+      // you can concatenate or build your own string to help voiceover
+      return `${row.someStringValue}`;
+    }}
+  />
+</DataGrid>
+```
+
 ### Styling cells
 
-So far ease; we have our `DataGrid` displaying all of the basic requirements, but we can do more.
+So far easy, we have our `DataGrid` displaying all of the basic requirements, but we can do more.
 
 Let's add some custom styling to our cells, in case if the greet includes the `letter o` we should render a blue background.
 
