@@ -73,9 +73,6 @@ const locales = {
         "arrowdown": "Ab",
         "escape": "Escape"
       },
-      "externalLink": {
-        "view": "anzeigen"
-      },
       "collapsible": {
         "ariaText": "ausblendbarer Bereich"
       },
@@ -98,6 +95,16 @@ const locales = {
         "less": "Weniger anzeigen",
         "more_about": "Mehr über {{topic}} anzeigen",
         "less_about": "Weniger über {{topic}} anzeigen"
+      },
+      "listBox": {
+        "trigger": {
+          "placeholder": "Auswählen..."
+        },
+        "filter": {
+          "a11y_text": "Filtern",
+          "no_results_message": "Ihr Suchergebnis entsprach keiner der Optionen.",
+          "placeholder": "Filtern..."
+        }
       },
       "listBoxBrowser": {
         "explore": "Weitere Optionen anzeigen",
