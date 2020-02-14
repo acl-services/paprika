@@ -58,7 +58,7 @@ function Group(props) {
             isChecked: checkedIndex === index,
             isDisabled: isDisabled || child.props.isDisabled,
             canDeselect,
-            name: child.props.name ? child.props.name : name,
+            name: child.props.name || name,
             ...childKey,
             ...moreGroupProps,
           });
