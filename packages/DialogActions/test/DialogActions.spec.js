@@ -1,9 +1,14 @@
 import React from "react";
 import { render, fireEvent } from "@testing-library/react";
+import L10n from "@paprika/l10n";
 import DialogActions from "../src";
 
 function renderComponent(props = {}) {
-  return render(<DialogActions {...props} />);
+  return render(
+    <L10n>
+      <DialogActions {...props} />
+    </L10n>
+  );
 }
 
 describe("DialogActions", () => {
@@ -29,7 +34,7 @@ describe("DialogActions", () => {
     const onDecline = jest.fn();
     const { getByText } = renderComponent({ onCancel, onConfirm, onDecline });
 
-    fireEvent.click(getByText("Save"));
+    fireEvent.click(getByText(/Save/i));
     expect(onConfirm).toHaveBeenCalled();
 
     fireEvent.click(getByText(/Decline/i));

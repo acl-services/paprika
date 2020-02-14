@@ -28,7 +28,7 @@ const itemStyles = css`
 
     colorString = isDestructive ? "orangeDarken10" : "colorBlack";
     return { color: tokens.color[colorString] };
-  }}}
+  }}
 
   &:hover {
     ${({ isDestructive, isDisabled }) => {

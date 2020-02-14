@@ -7,7 +7,7 @@ export const consts = {
 };
 
 export const Popover = styled.div`
-  display: inline-block; // required for proper positioning
+  display: inline-block; /* required for proper positioning */
 `;
 
 export const Trigger = styled(RawButton)`
