@@ -27,7 +27,7 @@
     "transpile": "lerna exec --parallel -- babel --root-mode upward src --out-dir lib --source-maps --copy-files"
   },
   "engines": {
-    "node": ">- 10.15.1",
+    "node": ">=10.15.1",
     "yarn": ">=1.12.3"
   },
   "private": true,
