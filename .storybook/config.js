@@ -29,6 +29,10 @@ const stories = [
   require.context("../packages/CollapsibleText", true, /CollapsibleText.stories.(js|mdx)$/),
   require.context("../packages/CollapsibleText", true, /CollapsibleText.Tests.stories.js$/),
 
+  // SidePanel
+  require.context("../packages/SidePanel", true, /SidePanel.stories.(js|mdx)$/),
+  require.context("../packages/SidePanel", true, /SidePanel.Tests.stories.js$/),
+
   // Remaining
   require.context("../packages", true, /\.stories\.js$/),
 ];
