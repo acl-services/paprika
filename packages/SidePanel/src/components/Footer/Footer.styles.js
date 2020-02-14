@@ -1,35 +1,22 @@
-import { css } from "styled-components";
+import styled, { css } from "styled-components";
 import stylers from "@paprika/stylers";
 import tokens from "@paprika/tokens/lib/tokens";
-
-const fixedFooterStyles = css`
-  position: fixed;
-  width: ${props => props.width};
-`;
-
-const relativeFooterStyles = css`
-  position: relative;
-  width: 100%;
-`;
 
 const compactStyles = css`
   padding: ${stylers.spacer(2)};
 `;
 
-export const footerCSS = css`
+export const Footer = styled.div`
   align-items: center;
   background: ${tokens.color.blackLighten80};
-  bottom: 0;
   box-sizing: border-box;
   display: flex;
+  flex-shrink: 0;
   height: ${props => (props.height ? props.height : stylers.spacer(9))};
   padding: ${stylers.spacer(2)} ${stylers.spacer(3)};
-  right: 0;
+  position: relative;
   transition: opacity 0.3s ease-in;
   width: 100%;
 
   ${props => (props.isCompact ? compactStyles : "")}
-  ${props => {
-    return props.isSticky ? fixedFooterStyles : relativeFooterStyles;
-  }}
 `;

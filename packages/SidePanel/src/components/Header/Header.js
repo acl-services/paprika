@@ -4,7 +4,7 @@ import Button from "@paprika/button";
 import Heading from "@paprika/heading";
 import { ShirtSizes } from "@paprika/helpers/lib/customPropTypes";
 
-import { headerCSS } from "./Header.styles";
+import * as sc from "./Header.styles";
 
 const propTypes = {
   children: PropTypes.node.isRequired,
@@ -43,7 +43,7 @@ const Header = React.forwardRef((props, ref) => {
   } = props;
 
   return (
-    <div data-pka-anchor="sidepanel.header" ref={ref} css={headerCSS} kind={kind} isCompact={isCompact} {...moreProps}>
+    <sc.Header data-pka-anchor="sidepanel.header" ref={ref} kind={kind} isCompact={isCompact} {...moreProps}>
       <Heading tabIndex="-1" level={level} displayLevel={isCompact ? 4 : 3}>
         {props.children}
       </Heading>
@@ -58,7 +58,7 @@ const Header = React.forwardRef((props, ref) => {
           />
         ) : null}
       </div>
-    </div>
+    </sc.Header>
   );
 });
 
