@@ -8,7 +8,8 @@ auto_cancel:
   running:
     when: branch != 'master'
 blocks:
-  - name: "🎩 Yarn"
+  - name: "Setup"
+    dependencies: []
     task:
       jobs:
       - name: "🎩 Yarn & caching"
@@ -22,6 +23,7 @@ blocks:
           - cache store cypress-$SEMAPHORE_GIT_BRANCH ~/.cache/Cypress
 
   - name: "🔗 Storybook link"
+    dependencies: ["Setup"]
     task:
       secrets:
         - name: paprika-env
@@ -35,6 +37,7 @@ blocks:
             - node scripts/storybookLink.js
 
   - name: "💅 Format"
+    dependencies: ["Setup"]
     task:
       prologue:
         commands:
@@ -48,6 +51,7 @@ blocks:
             - yarn lint && yarn prettier -- --list-different
 
   - name: "♿️ Accessibility"
+    dependencies: ["Setup"]
     task:
       prologue:
         commands:
@@ -59,6 +63,7 @@ blocks:
             - yarn test:a11y
 
   - name: "⚡️ Integration/Unit"
+    dependencies: ["Setup"]
     task:
       prologue:
         commands:
@@ -72,6 +77,7 @@ blocks:
             - yarn test
 
   - name: "⛰ E2E"
+    dependencies: ["Setup"]
     task:
       prologue:
         commands:
@@ -89,6 +95,7 @@ blocks:
             - yarn cypress:ci
 
   - name: "🔎 Visual Regression"
+    dependencies: ["Setup"]
     task:
       prologue:
         commands:
