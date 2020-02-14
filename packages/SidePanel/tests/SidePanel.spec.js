@@ -5,6 +5,7 @@ import SidePanel from "../src";
 configure({ testIdAttribute: "data-pka-anchor" });
 
 const noop = () => {};
+let consoleError;
 
 function render(props) {
   const onClose = props.onClose || noop;
@@ -138,7 +139,10 @@ describe("SidePanel", () => {
     });
 
     it("throws an error when there is only one side panel in a group", () => {
-      const sidePanelGroup = () =>
+      consoleError = console.error;
+      console.error = () => {};
+
+      try {
         renderReactTestingLibrary(
           <SidePanel.Group>
             <SidePanel onClose={noop} isOpen>
@@ -147,7 +151,10 @@ describe("SidePanel", () => {
             </SidePanel>
           </SidePanel.Group>
         );
-      expect(sidePanelGroup).toThrow(Error);
+      } catch (e) {
+        expect(e.message).toBe("<SidePanel.Group /> is intented to be use with two or more SidePanels");
+        console.error = consoleError;
+      }
     });
 
     it("should trigger onClick when clicking the x button", () => {
