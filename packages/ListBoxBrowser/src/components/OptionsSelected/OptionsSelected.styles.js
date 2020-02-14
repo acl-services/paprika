@@ -53,7 +53,6 @@ export const counter = css`
 `;
 
 export const remove = css`
-  align: center;
   align-items: center;
   border-bottom-right-radius: ${tokens.border.radius};
   border-left: 1px solid ${tokens.border.color};
@@ -62,9 +61,7 @@ export const remove = css`
   display: inline-flex;
   font-size: 12px;
   height: 100%;
-  justify: flex-end;
   padding: 0 ${tokens.space};
-  position: relative;
 
   &:hover {
     color: ${tokens.color.black};
