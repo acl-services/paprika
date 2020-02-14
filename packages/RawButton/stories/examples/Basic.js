@@ -47,7 +47,7 @@ const ExampleStory = () => {
       </p>
       <Rule />
       <p>
-        <RawButton isDisabled tabIndex="0" onClick={clickHandler}>
+        <RawButton isDisabled tabIndex={0} onClick={clickHandler}>
           Disabled but tabbable
         </RawButton>
       </p>

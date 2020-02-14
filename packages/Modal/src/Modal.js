@@ -3,6 +3,7 @@ import PropTypes from "prop-types";
 import Overlay from "@paprika/overlay";
 import { ShirtSizes } from "@paprika/helpers/lib/customPropTypes";
 import extractChildren from "@paprika/helpers/lib/extractChildren";
+import FocusLock from "./components/FocusLock";
 import * as styled from "./Modal.styles";
 
 const propTypes = {
@@ -39,19 +40,27 @@ const Modal = props => {
   const { isOpen, onClose, onAfterClose, onAfterOpen, size, a11yText, ...moreProps } = props;
 
   const {
+    "Modal.FocusLock": focusLockExtracted,
     "Modal.Overlay": overlayExtracted,
     "Modal.Header": headerExtracted,
     "Modal.Content": contentExtracted,
     "Modal.Footer": footerExtracted,
     children,
-  } = extractChildren(moreProps.children, ["Modal.Overlay", "Modal.Header", "Modal.Content", "Modal.Footer"]);
+  } = extractChildren(moreProps.children, [
+    "Modal.FocusLock",
+    "Modal.Overlay",
+    "Modal.Header",
+    "Modal.Content",
+    "Modal.Footer",
+  ]);
 
-  const { extractedFocusLockOptions, ...overlayProps } = overlayExtracted ? overlayExtracted.props : {};
+  const focusLockProps = focusLockExtracted ? focusLockExtracted.props : {};
+  const overlayProps = overlayExtracted ? overlayExtracted.props : {};
 
   const focusLockOptions = {
     as: styled.FocusLock,
     lockProps: { size },
-    ...(extractedFocusLockOptions || {}),
+    ...(focusLockProps || {}),
   };
 
   const ariaLabel = a11yText || (headerExtracted ? headerExtracted.props.children : null);
@@ -81,6 +90,7 @@ const Modal = props => {
   );
 };
 
+Modal.FocusLock = FocusLock;
 Modal.propTypes = propTypes;
 Modal.defaultProps = defaultProps;
 

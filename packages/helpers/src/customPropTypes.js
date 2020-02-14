@@ -37,6 +37,35 @@ export const InputValidTypes = {
   URL: "url",
 };
 
+export const FocusPropTypes = {
+  // properties copy from https://github.com/theKashey/react-focus-lock/blob/dee9b4c625eba0ca183fbda89005a5d09053086f/src/Lock.js#L160
+  // see description for props here: https://github.com/theKashey/react-focus-lock/blob/dee9b4c625eba0ca183fbda89005a5d09053086f/interfaces.d.ts#L4
+
+  children: PropTypes.node,
+  disabled: PropTypes.bool,
+  returnFocus: PropTypes.oneOfType([PropTypes.bool, PropTypes.object]),
+  noFocusGuards: PropTypes.bool,
+
+  allowTextSelection: PropTypes.bool,
+  autoFocus: PropTypes.bool,
+  persistentFocus: PropTypes.bool,
+
+  group: PropTypes.string,
+  className: PropTypes.string,
+
+  whiteList: PropTypes.func,
+  shards: PropTypes.arrayOf(PropTypes.any),
+
+  as: PropTypes.oneOfType([PropTypes.string, PropTypes.func, PropTypes.object]),
+
+  lockProps: PropTypes.object,
+
+  onActivation: PropTypes.func,
+  onDeactivation: PropTypes.func,
+
+  sideCar: PropTypes.any,
+};
+
 InputValidTypes.ALL = Object.values(InputValidTypes);
 
 export const RefOf = (propType = PropTypes.instanceOf(Element)) =>
