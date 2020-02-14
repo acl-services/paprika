@@ -93,10 +93,11 @@ export default function MyFilter({ columns }) {
 
   return (
     <Filter
-      onAddFilter={memorizedAddFilter}
       columns={columns}
-      operator={operator}
+      onAddFilter={memorizedAddFilter}
+      onApply={() => {}}
       onChangeOperator={memorizedHandleChangeOperator}
+      operator={operator}
     >
       {filters.map((filter, index) => (
         <Filter.Item

@@ -1,5 +1,5 @@
 import styled, { css } from "styled-components";
-import PlaceholderIcon from "@paprika/icon/lib/Search";
+import FilterIcon from "@paprika/icon/lib/Filter";
 import stylers from "@paprika/stylers";
 import tokens from "@paprika/tokens";
 import { Wrapper } from "../InlineSelect/InlineSelect.styles";
@@ -32,7 +32,7 @@ export const Trigger = styled(GenericTrigger)`
   ${({ hasFilterApplied }) => (hasFilterApplied ? hasFilterAppliedStyles : "")}
 `;
 
-export const Icon = getGenericTriggerIcon(PlaceholderIcon);
+export const Icon = getGenericTriggerIcon(FilterIcon);
 
 export const Footer = styled.div`
   display: flex;

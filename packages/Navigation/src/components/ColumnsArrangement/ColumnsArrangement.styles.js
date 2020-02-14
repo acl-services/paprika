@@ -1,7 +1,7 @@
 import styled, { css } from "styled-components";
 import PaprikaSortable from "@paprika/sortable";
 import PaprikaSwitch from "@paprika/switch";
-import PlaceholderIcon from "@paprika/icon/lib/Search";
+import HideIcon from "@paprika/icon/lib/Hide";
 import RawButton from "@paprika/raw-button";
 import stylers from "@paprika/stylers";
 import tokens from "@paprika/tokens";
@@ -62,6 +62,6 @@ export const Trigger = styled(RawButton)`
   }}
 `;
 
-export const Icon = styled(PlaceholderIcon)`
+export const Icon = styled(HideIcon)`
   margin-right: ${tokens.spaceSm};
 `;

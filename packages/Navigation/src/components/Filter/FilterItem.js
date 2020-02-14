@@ -39,7 +39,6 @@ function FilterItem(props) {
   } = props;
   const { columns, filtersRef, onChangeOperator, operator } = React.useContext(FilterContext);
   const I18n = useI18n();
-  console.log(selectedColumnId);
 
   const selectedColumnType = columns.find(({ id }) => id === selectedColumnId).type;
 

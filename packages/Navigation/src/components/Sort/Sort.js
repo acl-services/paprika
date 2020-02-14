@@ -22,7 +22,7 @@ const propTypes = {
   ).isRequired,
   onAddField: PropTypes.func.isRequired,
   onApply: PropTypes.func.isRequired,
-  onCancel: PropTypes.func.isRequired,
+  onCancel: PropTypes.func,
   onClose: PropTypes.func,
   onOpen: PropTypes.func,
 };
@@ -30,6 +30,7 @@ const propTypes = {
 const defaultProps = {
   appliedNumber: 0,
   children: null,
+  onCancel: () => {},
   onClose: () => {},
   onOpen: () => {},
 };
