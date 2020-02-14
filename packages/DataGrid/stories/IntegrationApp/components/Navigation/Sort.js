@@ -5,22 +5,22 @@ import { Sort } from "@paprika/navigation";
 export default function MySort({ appliedNumber, sortedFields, setSortedFields, columns, onApply }) {
   function getDefaultField() {
     return {
-      fieldId: nanoid(),
+      id: nanoid(),
       columnId: columns[0].id,
       direction: "ASCEND",
     };
   }
 
-  function handleSortFieldChange({ field, direction, columnId }) {
-    let newField;
+  function handleSortFieldChange({ id: fieldId, direction, columnId }) {
+    let change;
     if (columnId) {
-      newField = { ...field, columnId };
+      change = { columnId };
     } else {
-      newField = { ...field, direction };
+      change = { direction };
     }
 
     setSortedFields(prevFields =>
-      prevFields.map(fieldItem => (fieldItem.fieldId === field.fieldId ? newField : fieldItem))
+      prevFields.map(fieldItem => (fieldItem.id === fieldId ? { ...fieldItem, ...change } : fieldItem))
     );
   }
 
@@ -32,21 +32,23 @@ export default function MySort({ appliedNumber, sortedFields, setSortedFields, c
 
   const memorizedAddField = React.useCallback(handleAddField, [setSortedFields, columns]);
 
-  function handleDeleteField(deletedField) {
-    setSortedFields(prevFields => [...prevFields].filter(filter => filter.fieldId !== deletedField.fieldId));
+  function handleDeleteField(deletedId) {
+    setSortedFields(prevFields => [...prevFields].filter(filter => filter.id !== deletedId));
   }
 
   const memorizedDeleteField = React.useCallback(handleDeleteField, [setSortedFields]);
 
   return (
-    <Sort
-      appliedNumber={appliedNumber}
-      onChange={memorizedHandleChange}
-      columns={columns}
-      fields={sortedFields}
-      onAddField={memorizedAddField}
-      onDeleteField={memorizedDeleteField}
-      onApply={onApply}
-    />
+    <Sort appliedNumber={appliedNumber} columns={columns} onAddField={memorizedAddField} onApply={onApply}>
+      {sortedFields.map((field, index) => (
+        <Sort.Field
+          key={field.id}
+          {...field}
+          onDelete={memorizedDeleteField}
+          onChange={memorizedHandleChange}
+          isFirst={index === 0}
+        />
+      ))}
+    </Sort>
   );
 }

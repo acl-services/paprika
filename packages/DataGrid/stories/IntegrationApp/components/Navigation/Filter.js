@@ -15,7 +15,7 @@ const getLevelFilter = () => {
     columnId: "level",
     rule: "IS",
     value: null,
-    filterId: nanoid(),
+    id: nanoid(),
     renderValueField: () => {
       return (
         <select>
@@ -36,20 +36,19 @@ export default function MyFilter(props) {
       columnId: columns[0].id,
       rule: "IS",
       value: "",
-      filterId: nanoid(),
+      id: nanoid(),
     };
   }
 
-  function handleFilterChange({ filter, rule, value, columnId }) {
-    let newFilter;
+  function handleFilterChange({ id: filterId, rule, value, columnId }) {
+    let change;
 
     if (columnId) {
       const columnType = columns.find(column => column.id === columnId).type;
       if (columnType === "SINGLE_SELECT") {
-        newFilter = getLevelFilter();
+        change = getLevelFilter();
       } else {
-        newFilter = {
-          ...filter,
+        change = {
           columnId,
           rule: Filter.rulesByType[columnType][0],
           value: initialValueByType[columnType],
@@ -57,19 +56,17 @@ export default function MyFilter(props) {
         };
       }
     } else if (rule) {
-      newFilter = {
-        ...filter,
+      change = {
         rule,
         value: "",
       };
     } else {
-      newFilter = {
-        ...filter,
+      change = {
         value,
       };
     }
     setFilters(prevFilters =>
-      prevFilters.map(filterItem => (filterItem.filterId === filter.filterId ? newFilter : filterItem))
+      prevFilters.map(filterItem => (filterItem.id === filterId ? { ...filterItem, ...change } : filterItem))
     );
   }
 
@@ -81,8 +78,8 @@ export default function MyFilter(props) {
 
   const memorizedAddFilter = React.useCallback(handleAddFilter, [columns, setFilters]);
 
-  function handleDeleteFilter(deletedFilter) {
-    setFilters(prevFilters => [...prevFilters].filter(filter => filter.filterId !== deletedFilter.filterId));
+  function handleDeleteFilter(deletedFilterId) {
+    setFilters(prevFilters => [...prevFilters].filter(filter => filter.id !== deletedFilterId));
   }
 
   const memorizedDeleteFilter = React.useCallback(handleDeleteFilter, [setFilters]);
@@ -96,14 +93,21 @@ export default function MyFilter(props) {
   return (
     <Filter
       appliedNumber={appliedNumber}
-      onChange={memorizedHandleChange}
-      onAddFilter={memorizedAddFilter}
-      onDeleteFilter={memorizedDeleteFilter}
-      filters={filters}
       columns={columns}
-      operator={operator}
-      onChangeOperator={memorizedHandleChangeOperator}
+      onAddFilter={memorizedAddFilter}
       onApply={onApply}
-    />
+      onChangeOperator={memorizedHandleChangeOperator}
+      operator={operator}
+    >
+      {filters.map((filter, index) => (
+        <Filter.Item
+          key={filter.id}
+          {...filter}
+          onDelete={memorizedDeleteFilter}
+          onChange={memorizedHandleChange}
+          index={index}
+        />
+      ))}
+    </Filter>
   );
 }
