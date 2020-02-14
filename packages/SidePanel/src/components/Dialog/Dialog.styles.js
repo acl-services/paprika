@@ -1,6 +1,6 @@
 import stylers from "@paprika/stylers";
 import tokens from "@paprika/tokens";
-import { css, keyframes } from "styled-components";
+import styled, { css, keyframes } from "styled-components";
 
 const childPanel = css`
   ${props => {
@@ -45,7 +45,7 @@ const compactStyles = css`
   padding: ${stylers.spacer(2)};
 `;
 
-export const dialogStyles = css`
+export const Dialog = styled.div`
   background: ${tokens.color.white};
   box-shadow: ${tokens.modal.shadow};
   box-sizing: border-box;
@@ -82,16 +82,26 @@ export const dialogStyles = css`
   }}
 `;
 
-export const dialogContentStyles = css`
+export const DialogContent = styled.div`
   flex-grow: 1;
   padding: ${stylers.spacer(3)};
 
   ${props => (props.isCompact || props.kind === "child" ? compactStyles : "")}
-  ${props => {
-    return props.isSticky ? `margin-bottom: ${props.footerHeight}px;` : "";
-  }}
 
   &:focus {
     ${stylers.focusRing.subtle(true)};
   }
+`;
+
+export const MainWrapper = styled.div`
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  position: relative;
+  width: 100%;
+`;
+
+export const DialogMain = styled.div`
+  flex-grow: 1;
+  overflow-y: auto;
 `;

@@ -13,7 +13,7 @@ export default function InlineSelect(props) {
   const { children, onChange, selectedLabel, value, ...moreProps } = props;
 
   return (
-    <styled.Wrapper data-pka-anchor="filter.filter-item">
+    <styled.Wrapper data-pka-anchor="filter.inline-select">
       <styled.Select onChange={onChange} value={value} {...moreProps}>
         {children}
       </styled.Select>

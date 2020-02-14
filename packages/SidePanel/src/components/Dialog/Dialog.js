@@ -1,8 +1,6 @@
-/* eslint-disable jsx-a11y/no-noninteractive-tabindex */
-
 import React from "react";
 import PropTypes from "prop-types";
-import { dialogStyles, dialogContentStyles } from "./Dialog.styles";
+import * as sc from "./Dialog.styles";
 
 const propTypes = {
   children: PropTypes.node.isRequired,
@@ -53,10 +51,29 @@ function Dialog(props) {
     ...moreProps
   } = props;
 
+  const isFooterSticky = footer && footer.props.isSticky;
+
+  const dialogMain = (
+    <React.Fragment>
+      {header ? React.cloneElement(header, { ref: refHeader, isCompact, onClose }) : null}
+      <sc.DialogContent
+        data-pka-anchor="sidepanel.content"
+        isCompact={isCompact}
+        isOpen={isOpen}
+        kind={kind}
+        tabIndex="0"
+        ref={refSidePanelContent}
+      >
+        {children}
+      </sc.DialogContent>
+    </React.Fragment>
+  );
+
+  const dialogFooter = footer ? React.cloneElement(footer, { refSidePanel, isCompact }) : null;
+
   return (
-    <div
+    <sc.Dialog
       aria-modal={isInline ? null : "true"}
-      css={dialogStyles}
       groupOffsetY={groupOffsetY}
       kind={kind}
       isCompact={isCompact}
@@ -70,22 +87,18 @@ function Dialog(props) {
       width={width}
       {...moreProps}
     >
-      {header ? React.cloneElement(header, { ref: refHeader, isCompact, onClose }) : null}
-      <div
-        data-pka-anchor="sidepanel.content"
-        css={dialogContentStyles}
-        isCompact={isCompact}
-        isOpen={isOpen}
-        isSticky={footer ? footer.props.isSticky : undefined}
-        footerHeight={footer ? footer.props.height : undefined}
-        kind={kind}
-        tabIndex="0"
-        ref={refSidePanelContent}
-      >
-        {children}
-      </div>
-      {footer ? React.cloneElement(footer, { refSidePanel, isCompact, width }) : null}
-    </div>
+      {isFooterSticky ? (
+        <sc.MainWrapper>
+          <sc.DialogMain>{dialogMain}</sc.DialogMain>
+          {dialogFooter}
+        </sc.MainWrapper>
+      ) : (
+        <React.Fragment>
+          {dialogMain}
+          {dialogFooter}
+        </React.Fragment>
+      )}
+    </sc.Dialog>
   );
 }
 
