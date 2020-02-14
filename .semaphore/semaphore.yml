@@ -13,13 +13,14 @@ blocks:
       jobs:
       - name: "🎩 Yarn & caching"
         commands:
+          - sem-version node 10.15.1
           - checkout
           - cache restore client-node-modules-$SEMAPHORE_GIT_BRANCH-$(checksum yarn.lock),client-node-modules-$SEMAPHORE_GIT_BRANCH,client-node-modules-master
           - yarn install --frozen-lockfile
           - npx lerna bootstrap
           - cache store client-node-modules-$SEMAPHORE_GIT_BRANCH-$(checksum yarn.lock) node_modules
           - cache store cypress-$SEMAPHORE_GIT_BRANCH ~/.cache/Cypress
-  
+
   - name: "🔗 Storybook link"
     task:
       secrets:
@@ -32,7 +33,7 @@ blocks:
         - name: Insert Storybook link into PR Body Message
           commands:
             - node scripts/storybookLink.js
-  
+
   - name: "💅 Format"
     task:
       prologue:
