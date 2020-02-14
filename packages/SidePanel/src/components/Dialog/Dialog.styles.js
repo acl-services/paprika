@@ -18,11 +18,9 @@ const childPanel = css`
 function slideIn() {
   return keyframes`
   from {
-    opacity: 0;
     transform: translateX(100%);
   }
   to {
-    opacity: 1;
     transform: translateX(0);
   }
   `;
@@ -31,11 +29,9 @@ function slideIn() {
 function slideOut() {
   return keyframes`
   from {
-    opacity: 1;
     transform: translateX(0);
   }
   to {
-    opacity: 0;
     transform: translateX(100%);
   }
   `;
@@ -47,7 +43,7 @@ const compactStyles = css`
 
 export const Dialog = styled.div`
   background: ${tokens.color.white};
-  box-shadow: ${tokens.modal.shadow};
+  box-shadow: ${props => (props.getPushContentRef === null ? tokens.modal.shadow : 0)};
   box-sizing: border-box;
   display: flex;
   flex-direction: column;
@@ -69,14 +65,13 @@ export const Dialog = styled.div`
     }
 
     return css`
-      animation: ${animation} 0.7s ease;
+      animation: ${animation} 0.4s forwards;
       right: 0;
       top: ${props.offsetY}px;
       width: ${width};
       z-index: ${props.zIndex};
       ${props => (props.offsetY ? `height: calc(100% - ${props.offsetY}px);` : "")}
       ${props.isInline ? "position: relative;" : "position: fixed;"}
-      ${props.isOpen ? "opacity: 1" : "opacity: 0"};
       ${childSidePanel}
     `;
   }}

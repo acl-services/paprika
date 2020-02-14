@@ -18,6 +18,9 @@ const propTypes = {
   /** The content for the SidePanel. */
   children: PropTypes.node.isRequired,
 
+  /** Function that provides the container DOM element to be pushed. */
+  getPushContentElement: PropTypes.func,
+
   /** Y offset that is passed down from <SidePanel.Group> */
   groupOffsetY: PropTypes.number,
 
@@ -53,6 +56,7 @@ const propTypes = {
 };
 
 const defaultProps = {
+  getPushContentElement: null,
   groupOffsetY: 0,
   isCompact: false,
   isInline: false,
@@ -65,9 +69,13 @@ const defaultProps = {
   zIndex: zValue(7),
 };
 
+const PUSH_REF_TRANSITION_STYLE = "margin-right 0.2s ease";
+const PUSH_REF_TRANSITION_DELAY_STYLE = "0.1s";
+
 function SidePanel(props) {
   // Props
   const {
+    getPushContentElement,
     onAfterClose,
     onAfterOpen,
     onClose,
@@ -82,7 +90,7 @@ function SidePanel(props) {
   } = props;
 
   // Hooks
-  const [isVisible, setIsVisible] = React.useState(props.isOpen);
+  const [isVisible, setIsVisible] = React.useState(isOpen);
   const offsetScroll = useOffsetScroll(offsetY);
 
   // Refs
@@ -107,7 +115,7 @@ function SidePanel(props) {
   ]);
 
   const handleAnimationEnd = () => {
-    if (!props.isOpen) {
+    if (!isOpen) {
       setIsVisible(false);
       onAfterClose();
 
@@ -121,10 +129,31 @@ function SidePanel(props) {
   };
 
   React.useEffect(() => {
-    if (props.isOpen) {
+    if (isOpen) {
       setIsVisible(true);
     }
-  }, [props.isOpen]);
+  }, [isOpen]);
+
+  React.useLayoutEffect(() => {
+    if (getPushContentElement === null) return;
+
+    const pushContentRefStyle = getPushContentElement().style;
+
+    pushContentRefStyle.transition = PUSH_REF_TRANSITION_STYLE;
+    pushContentRefStyle.transitionDelay = PUSH_REF_TRANSITION_DELAY_STYLE;
+
+    if (isOpen) {
+      pushContentRefStyle.marginRight = width;
+    } else {
+      pushContentRefStyle.transitionDelay = "0s";
+      pushContentRefStyle.marginRight = "0";
+    }
+
+    return () => {
+      pushContentRefStyle.transition = PUSH_REF_TRANSITION_STYLE;
+      pushContentRefStyle.transitionDelay = PUSH_REF_TRANSITION_DELAY_STYLE;
+    };
+  }, [isOpen, getPushContentElement, width]);
 
   const focusLockProps = focusLockExtracted ? focusLockExtracted.props : {};
 
@@ -143,6 +172,7 @@ function SidePanel(props) {
       <Dialog
         data-pka-anchor="sidepanel"
         footer={footerExtracted}
+        getPushContentElement={getPushContentElement}
         groupOffsetY={groupOffsetY}
         header={headerExtracted}
         isCompact={isCompact}
