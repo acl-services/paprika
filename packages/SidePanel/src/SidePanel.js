@@ -69,6 +69,9 @@ const defaultProps = {
   zIndex: zValue(7),
 };
 
+const PUSH_REF_TRANSITION_STYLE = "margin-right 0.2s ease";
+const PUSH_REF_TRANSITION_DELAY_STYLE = "0.1s";
+
 function SidePanel(props) {
   // Props
   const {
@@ -136,8 +139,8 @@ function SidePanel(props) {
 
     const pushContentRefStyle = getPushContentRef().style;
 
-    pushContentRefStyle.transition = "margin-right 0.5s ease";
-    pushContentRefStyle.transitionDelay = "0.2s";
+    pushContentRefStyle.transition = PUSH_REF_TRANSITION_STYLE;
+    pushContentRefStyle.transitionDelay = PUSH_REF_TRANSITION_DELAY_STYLE;
 
     if (isOpen) {
       pushContentRefStyle.marginRight = width;

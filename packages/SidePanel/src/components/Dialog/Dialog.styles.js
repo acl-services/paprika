@@ -65,7 +65,7 @@ export const Dialog = styled.div`
     }
 
     return css`
-      animation: ${animation} 0.7s forwards;
+      animation: ${animation} 0.4s forwards;
       right: 0;
       top: ${props.offsetY}px;
       width: ${width};
