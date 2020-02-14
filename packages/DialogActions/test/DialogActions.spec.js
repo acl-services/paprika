@@ -34,7 +34,7 @@ describe("DialogActions", () => {
     const onDecline = jest.fn();
     const { getByText } = renderComponent({ onCancel, onConfirm, onDecline });
 
-    fireEvent.click(getByText("Save"));
+    fireEvent.click(getByText(/Save/i));
     expect(onConfirm).toHaveBeenCalled();
 
     fireEvent.click(getByText(/Decline/i));
