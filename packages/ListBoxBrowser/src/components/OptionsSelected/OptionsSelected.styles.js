@@ -61,9 +61,7 @@ export const remove = css`
   display: inline-flex;
   font-size: 12px;
   height: 100%;
-  justify-content: flex-end;
   padding: 0 ${tokens.space};
-  position: relative;
 
   &:hover {
     color: ${tokens.color.black};
