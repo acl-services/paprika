@@ -68,6 +68,7 @@ blocks:
       jobs:
         - name: JEST
           commands:
+            - nvm use 10.15.1
             - yarn test
 
   - name: "⛰ E2E"
@@ -83,6 +84,7 @@ blocks:
         - name: Cypress
           commands:
             - npx lerna bootstrap
+            - nvm use 10.15.1
             - yarn
             - yarn cypress:ci
 
@@ -96,6 +98,7 @@ blocks:
         - name: Screener
           commands:
             - npx lerna bootstrap
+            - nvm use 10.15.1
             - yarn storybook:build
             - BRANCH_NAME=$SEMAPHORE_GIT_BRANCH REVISION=$SEMAPHORE_GIT_SHA SEMAPHORE_BUILD_NUMBER=$SEMAPHORE_WORKFLOW_ID yarn storybook:screener
       secrets:
