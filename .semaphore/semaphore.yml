@@ -83,8 +83,8 @@ blocks:
       jobs:
         - name: Cypress
           commands:
-            - npx lerna bootstrap
             - nvm use 10.15.1
+            - npx lerna bootstrap
             - yarn
             - yarn cypress:ci
 
@@ -97,8 +97,8 @@ blocks:
       jobs:
         - name: Screener
           commands:
-            - npx lerna bootstrap
             - nvm use 10.15.1
+            - npx lerna bootstrap
             - yarn storybook:build
             - BRANCH_NAME=$SEMAPHORE_GIT_BRANCH REVISION=$SEMAPHORE_GIT_SHA SEMAPHORE_BUILD_NUMBER=$SEMAPHORE_WORKFLOW_ID yarn storybook:screener
       secrets:
