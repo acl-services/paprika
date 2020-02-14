@@ -41,8 +41,8 @@ function Group(props) {
     setCheckedIndex(selectedIndex);
   }
 
-  const getDeselectableIndex = index => (checkedIndex === index ? null : index);
   const name = nanoid();
+  const getDeselectableIndex = index => (checkedIndex === index ? null : index);
   const handleRadioClick = index => {
     onChange(index);
     setCheckedIndex(canDeselect ? getDeselectableIndex(index) : index);
@@ -58,7 +58,7 @@ function Group(props) {
             isChecked: checkedIndex === index,
             isDisabled: isDisabled || child.props.isDisabled,
             canDeselect,
-            name,
+            name: child.props.name || name,
             ...childKey,
             ...moreGroupProps,
           });
