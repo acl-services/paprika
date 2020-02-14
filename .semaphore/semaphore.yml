@@ -43,6 +43,7 @@ blocks:
       jobs:
         - name: Lint && prettier
           commands:
+            - sem-version node 10.15.1
             - yarn add eslint-plugin-react-hooks -D -W
             - yarn lint && yarn prettier -- --list-different
 
