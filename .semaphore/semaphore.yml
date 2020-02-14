@@ -15,11 +15,12 @@ blocks:
         commands:
           - checkout
           - cache restore client-node-modules-$SEMAPHORE_GIT_BRANCH-$(checksum yarn.lock),client-node-modules-$SEMAPHORE_GIT_BRANCH,client-node-modules-master
+          - nvm use
           - yarn install --frozen-lockfile
           - npx lerna bootstrap
           - cache store client-node-modules-$SEMAPHORE_GIT_BRANCH-$(checksum yarn.lock) node_modules
           - cache store cypress-$SEMAPHORE_GIT_BRANCH ~/.cache/Cypress
-  
+
   - name: "🔗 Storybook link"
     task:
       secrets:
@@ -32,7 +33,7 @@ blocks:
         - name: Insert Storybook link into PR Body Message
           commands:
             - node scripts/storybookLink.js
-  
+
   - name: "💅 Format"
     task:
       prologue:
@@ -42,6 +43,7 @@ blocks:
       jobs:
         - name: Lint && prettier
           commands:
+            - nvm use
             - yarn add eslint-plugin-react-hooks -D -W
             - yarn lint && yarn prettier -- --list-different
 
@@ -62,6 +64,7 @@ blocks:
         commands:
           - checkout
           - cache restore client-node-modules-$SEMAPHORE_GIT_BRANCH-$(checksum yarn.lock),client-node-modules-$SEMAPHORE_GIT_BRANCH,client-node-modules-master
+          - nvm use
           - yarn
       jobs:
         - name: JEST
@@ -80,6 +83,7 @@ blocks:
       jobs:
         - name: Cypress
           commands:
+            - nvm use
             - npx lerna bootstrap
             - yarn
             - yarn cypress:ci
@@ -93,6 +97,7 @@ blocks:
       jobs:
         - name: Screener
           commands:
+            - nvm use
             - npx lerna bootstrap
             - yarn storybook:build
             - BRANCH_NAME=$SEMAPHORE_GIT_BRANCH REVISION=$SEMAPHORE_GIT_SHA SEMAPHORE_BUILD_NUMBER=$SEMAPHORE_WORKFLOW_ID yarn storybook:screener
