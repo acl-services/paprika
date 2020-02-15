@@ -24,6 +24,8 @@ const propTypes = {
   /** Y offset that is passed down from <SidePanel.Group> */
   groupOffsetY: PropTypes.number,
 
+  pushContentWidth: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
+
   /** The width of the open panel. */
   width: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
 
@@ -65,11 +67,12 @@ const defaultProps = {
   onAfterClose: () => {},
   onClose: null,
   onAfterOpen: () => {},
+  pushContentWidth: null,
   width: "33%",
   zIndex: zValue(7),
 };
 
-const PUSH_REF_TRANSITION_STYLE = "margin-right 0.2s ease";
+const PUSH_REF_TRANSITION_STYLE = "margin-right 0.15s ease";
 const PUSH_REF_TRANSITION_DELAY_STYLE = "0.1s";
 
 function SidePanel(props) {
@@ -86,6 +89,7 @@ function SidePanel(props) {
     kind,
     offsetY,
     isOpen,
+    pushContentWidth,
     ...moreProps
   } = props;
 
@@ -143,7 +147,7 @@ function SidePanel(props) {
     pushContentRefStyle.transitionDelay = PUSH_REF_TRANSITION_DELAY_STYLE;
 
     if (isOpen) {
-      pushContentRefStyle.marginRight = width;
+      pushContentRefStyle.marginRight = pushContentWidth || width;
     } else {
       pushContentRefStyle.transitionDelay = "0s";
       pushContentRefStyle.marginRight = "0";
@@ -153,7 +157,7 @@ function SidePanel(props) {
       pushContentRefStyle.transition = PUSH_REF_TRANSITION_STYLE;
       pushContentRefStyle.transitionDelay = PUSH_REF_TRANSITION_DELAY_STYLE;
     };
-  }, [isOpen, getPushContentElement, width]);
+  }, [isOpen, getPushContentElement, pushContentWidth, width]);
 
   const focusLockProps = focusLockExtracted ? focusLockExtracted.props : {};
 

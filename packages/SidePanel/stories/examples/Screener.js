@@ -5,6 +5,7 @@ import SidePanelPushContentStory from "./SidePanelPushContentStory";
 const screenerScript = new Steps()
   .snapshot("SidePanel - Push content expanded")
   .click("[data-pka-anchor='sidepanel.trigger']")
+  .wait(1000)
   .snapshot("SidePanel - Push content collapsed")
   .end();
 

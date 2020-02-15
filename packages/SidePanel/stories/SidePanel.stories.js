@@ -152,7 +152,9 @@ storiesOf("SidePanel", module).add("Basic isCompact", () => <SidePanelCompactSto
 storiesOf("SidePanel", module).add("Basic without overlay", () => (
   <SidePanelStory disableBodyOverflow={false} hasOverlay={false} />
 ));
-storiesOf("SidePanel", module).add("Basic with pushing content", () => <SidePanelPushContentStory width="50%" />);
+storiesOf("SidePanel", module).add("Basic with pushing content", () => (
+  <SidePanelPushContentStory width="50%" pushContentWidth="25%" />
+));
 storiesOf("SidePanel", module).add("Multiple Sidepanels", () => <SidePanelStoryGroup />);
 storiesOf("SidePanel", module).add("Basic with body scrollable", () => (
   <React.Fragment>
