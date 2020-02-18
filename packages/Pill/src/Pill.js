@@ -4,7 +4,7 @@ import RawButton from "@paprika/raw-button";
 import { ShirtSizes } from "@paprika/helpers/lib/customPropTypes";
 import pillStyles, { pillTextStyles } from "./Pill.styles";
 
-export const pillColors = ["black", "blue", "green", "grey", "orange"];
+export const pillColors = ["black", "blue", "green", "grey", "orange", "lightBlue", "lightOrange"];
 export const severityPillColors = ["noRisk", "lowRisk", "mediumRisk", "highRisk"];
 
 const propTypes = {
