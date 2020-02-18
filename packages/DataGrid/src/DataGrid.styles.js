@@ -28,7 +28,7 @@ export const Grid = styled.div.attrs(({ $width, isVisible }) => {
   }
 
   border-top: 1px solid ${tokens.border.color};
-  background: {tokens.color.white};
+  background: ${tokens.color.white};
 
   position: relative;
 
@@ -84,7 +84,7 @@ export const Cell = styled.div`
       ? css`
           /* box-shadow: ${tokens.highlight.active.withBorder.insetBoxShadow}; */
           &:after {
-            
+
             content: "";
             height: 100%;
             left: 0;
@@ -141,7 +141,7 @@ export const GridCell = styled.div`
   overflow: hidden;
   position: absolute;
   top: 0;
-  whitespace: nowrap;
+  white-space: nowrap;
   width: 1px;
 `;
 
@@ -187,7 +187,7 @@ export const Flex = styled.div`
 `;
 
 export const RowCount = styled.div`
-  font-color: ${tokens.color.blackLighten40};
+  color: ${tokens.color.blackLighten40};
   font-size: 13px;
 `;
 

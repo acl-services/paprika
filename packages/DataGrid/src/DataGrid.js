@@ -7,7 +7,7 @@ import Bubbly from "@paprika/icon/lib/BubblySearchNoResults";
 import Cell from "./components/Cell";
 import useGridEventHandler from "./hooks/useGridEventHandler";
 import ColumnDefinition from "./components/ColumnDefinition";
-import * as styled from "./DataGrid.styles";
+import * as sc from "./DataGrid.styles";
 import WhenScrollBarReachedBottom, { End } from "./components/WhenScrollBarReachedBottom";
 import InfinityScroll from "./components/InfinityScroll";
 
@@ -18,11 +18,11 @@ const propTypes = {
   height: PropTypes.number,
   isIdle: PropTypes.bool,
   onClick: PropTypes.func,
-  onEnter: PropTypes.func,
+  onPressEnter: PropTypes.func,
   onKeyDown: PropTypes.func,
   onRowChecked: PropTypes.func,
-  onShiftSpaceBar: PropTypes.func,
-  onSpaceBar: PropTypes.func,
+  onPressShiftSpaceBar: PropTypes.func,
+  onPressSpaceBar: PropTypes.func,
   rowHeight: PropTypes.number,
   width: PropTypes.number,
 };
@@ -32,23 +32,23 @@ const defaultProps = {
   height: 600,
   isIdle: false,
   onClick: null,
-  onEnter: null,
+  onPressEnter: null,
   onKeyDown: () => {},
   onRowChecked: () => {},
-  onShiftSpaceBar: null,
-  onSpaceBar: null,
+  onPressShiftSpaceBar: null,
+  onPressSpaceBar: null,
   rowHeight: 36,
   width: null,
 };
 
 const outerElementType = React.forwardRef((props, ref) => <div role="rowgroup" ref={ref} {...props} />);
-const innerElementType = React.forwardRef((props, ref) => <styled.InnerElementType role="row" ref={ref} {...props} />);
+const innerElementType = React.forwardRef((props, ref) => <sc.InnerElementType role="row" ref={ref} {...props} />);
 const outerElementTypeMainGrid = React.forwardRef((props, ref) => (
-  <styled.OuterElementTypeMainGrid role="rowgroup" ref={ref} {...props} />
+  <sc.OuterElementTypeMainGrid role="rowgroup" ref={ref} {...props} />
 ));
 
 const innerElementTypeMainGrid = React.forwardRef((props, ref) => (
-  <styled.InnerElementTypeMainGrid className="inner-element-type-main-grid" role="row" ref={ref} {...props} />
+  <sc.InnerElementTypeMainGrid role="row" ref={ref} {...props} />
 ));
 
 const DataGrid = React.forwardRef((props, ref) => {
@@ -59,11 +59,11 @@ const DataGrid = React.forwardRef((props, ref) => {
     height,
     isIdle,
     onClick,
-    onEnter,
+    onPressEnter,
     onKeyDown,
     onRowChecked,
-    onShiftSpaceBar,
-    onSpaceBar,
+    onPressShiftSpaceBar,
+    onPressSpaceBar,
     rowHeight,
     width,
     ...moreProps
@@ -195,7 +195,7 @@ const DataGrid = React.forwardRef((props, ref) => {
     if (refPrevActiveCell.current && refPrevActiveCell.current in refsCell.current.keys) {
       const prevCell = refsCell.current.keys[refPrevActiveCell.current];
       if (prevCell) {
-        refsCell.current.keys[refPrevActiveCell.current].isActiveCell(false);
+        prevCell.isActiveCell(false);
       }
     }
 
@@ -208,11 +208,11 @@ const DataGrid = React.forwardRef((props, ref) => {
     highlightRow,
     onChangeActiveCell,
     onClick,
-    onEnter,
+    onPressEnter,
     onKeyDown,
     onRowChecked,
-    onShiftSpaceBar,
-    onSpaceBar,
+    onPressShiftSpaceBar,
+    onPressSpaceBar,
     refContainer,
     refGrid,
     rowCount,
@@ -226,7 +226,7 @@ const DataGrid = React.forwardRef((props, ref) => {
   }, []);
 
   const handleScroll = React.useCallback(parameters => {
-    const { scrollLeft, scrollTop /* scrollUpdateWasRequested */ } = parameters;
+    const { scrollLeft, scrollTop } = parameters;
 
     if (refScrollHeader.current) {
       refScrollHeader.current.scrollTo({ left: scrollLeft, top: 0 });
@@ -413,23 +413,23 @@ const DataGrid = React.forwardRef((props, ref) => {
   return (
     <>
       {hasNoRecords && (
-        <styled.BlockerItem gridId={gridId} $width={gridWidth} $height={height}>
-          <styled.Blocker $width={gridWidth} $height={height}>
+        <sc.BlockerItem gridId={gridId} $width={gridWidth} $height={height}>
+          <sc.Blocker $width={gridWidth} $height={height}>
             <div>
               <Bubbly width={120} height={120} />
               <p>No records found</p>
             </div>
-          </styled.Blocker>
-        </styled.BlockerItem>
+          </sc.Blocker>
+        </sc.BlockerItem>
       )}
       {isIdle && (
-        <styled.Idle gridId={gridId} $width={gridWidth} $height={height}>
-          <styled.Blocker $width={gridWidth} $height={height}>
+        <sc.Idle gridId={gridId} $width={gridWidth} $height={height}>
+          <sc.Blocker $width={gridWidth} $height={height}>
             <Spinner />
-          </styled.Blocker>
-        </styled.Idle>
+          </sc.Blocker>
+        </sc.Idle>
       )}
-      <styled.Grid
+      <sc.Grid
         aria-colcount={columnCount}
         gridId={gridId}
         onBlur={handleBlurGrid}
@@ -446,7 +446,7 @@ const DataGrid = React.forwardRef((props, ref) => {
         isVisible={isIdle || hasNoRecords}
         {...moreProps}
       >
-        <styled.Flex>
+        <sc.Flex>
           {/** STICKY HEADER */}
           <Grid
             columnCount={stickyColumnsIndexes.length}
@@ -466,9 +466,9 @@ const DataGrid = React.forwardRef((props, ref) => {
                 typeof headerProps === "function" ? headerProps({ header }) : {};
 
               return (
-                <styled.CellHeader role="columnheader" style={{ ...style, ...styleProps }} {...moreProps}>
+                <sc.CellHeader role="columnheader" style={{ ...style, ...styleProps }} {...moreProps}>
                   {typeof header === "function" ? header() : header}
-                </styled.CellHeader>
+                </sc.CellHeader>
               );
             }}
           </Grid>
@@ -499,15 +499,15 @@ const DataGrid = React.forwardRef((props, ref) => {
                 typeof headerProps === "function" ? headerProps({ header }) : {};
 
               return (
-                <styled.CellHeader role="columnheader" style={{ ...style, ...styleProps }} {...moreProps}>
+                <sc.CellHeader role="columnheader" style={{ ...style, ...styleProps }} {...moreProps}>
                   {typeof header === "function" ? header() : header}
-                </styled.CellHeader>
+                </sc.CellHeader>
               );
             }}
           </Grid>
-        </styled.Flex>
+        </sc.Flex>
         {/** STICKY COLUMNS */}
-        <styled.Flex>
+        <sc.Flex>
           <Grid
             className={`${gridId}-sticky-columns`}
             columnCount={stickyColumnsIndexes.length}
@@ -597,17 +597,17 @@ const DataGrid = React.forwardRef((props, ref) => {
               );
             }}
           </Grid>
-        </styled.Flex>
-        <styled.FillerTopRigth rowHeight={rowHeight} scrollBarWidth={scrollBarWidth} />
-        <styled.FillerBottomLeft stickyGridWidth={stickyGridWidth} scrollBarWidth={scrollBarWidth} />
-      </styled.Grid>
+        </sc.Flex>
+        <sc.FillerTopRigth rowHeight={rowHeight} scrollBarWidth={scrollBarWidth} />
+        <sc.FillerBottomLeft stickyGridWidth={stickyGridWidth} scrollBarWidth={scrollBarWidth} />
+      </sc.Grid>
       {!isIdle && !hasNoRecords ? (
         <>
-          <styled.Footer $width={gridWidth}>
-            <styled.RowCount>
+          <sc.Footer $width={gridWidth}>
+            <sc.RowCount>
               Rows:{rowCount} Columns:{columnCount}
-            </styled.RowCount>
-          </styled.Footer>
+            </sc.RowCount>
+          </sc.Footer>
           {WhenScrollBarReachedBottom ? (
             <End width={gridWidth} ref={refEnd}>
               {WhenScrollBarReachedBottom}

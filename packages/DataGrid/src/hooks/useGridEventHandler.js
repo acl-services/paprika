@@ -19,11 +19,11 @@ export default function useGridEventHandler({
   highlightRow,
   onChangeActiveCell,
   onClick,
-  onEnter,
+  onPressEnter,
   onKeyDown,
   onRowChecked,
-  onShiftSpaceBar,
-  onSpaceBar,
+  onPressShiftSpaceBar,
+  onPressSpaceBar,
   refContainer,
   refGrid,
   rowCount,
@@ -344,30 +344,30 @@ export default function useGridEventHandler({
     " ": ({ data, ColumnDefinitions, columnIndex, rowIndex, event }) => {
       const column = ColumnDefinitions[columnIndex].props;
       const options = { row: data[rowIndex], column, rowIndex: Number.parseInt(rowIndex, 10), columnIndex, event };
-      if (column.onSpaceBar !== null) {
-        column.onSpaceBar(options);
+      if (column.onPressSpaceBar !== null) {
+        column.onPressSpaceBar(options);
         return;
       }
-      return onSpaceBar && onSpaceBar(options);
+      return onPressSpaceBar && onPressSpaceBar(options);
     },
     Enter: ({ data, ColumnDefinitions, columnIndex, rowIndex, event }) => {
       const column = ColumnDefinitions[columnIndex].props;
       const options = { row: data[rowIndex], column, rowIndex: Number.parseInt(rowIndex, 10), columnIndex, event };
-      if (column.onEnter !== null) {
-        column.onEnter(options);
+      if (column.onPressEnter !== null) {
+        column.onPressEnter(options);
         return;
       }
-      return onEnter && onEnter(options);
+      return onPressEnter && onPressEnter(options);
     },
     "space+shift": ({ data, ColumnDefinitions, columnIndex, rowIndex, event }) => {
       const column = ColumnDefinitions[columnIndex].props;
       const options = { row: data[rowIndex], column, rowIndex: Number.parseInt(rowIndex, 10), columnIndex, event };
-      if (column.onShiftSpaceBar !== null) {
-        column.onShiftSpaceBar(options);
+      if (column.onPressShiftSpaceBar !== null) {
+        column.onPressShiftSpaceBar(options);
         return;
       }
 
-      return onShiftSpaceBar && onShiftSpaceBar(options);
+      return onPressShiftSpaceBar && onPressShiftSpaceBar(options);
     },
   };
 

@@ -2268,19 +2268,6 @@
   dependencies:
     "@types/node" ">= 8"
 
-"@paprika/checkbox@^0.2.1":
-  version "0.2.1"
-  resolved "https://registry.yarnpkg.com/@paprika/checkbox/-/checkbox-0.2.1.tgz#31191433feef7676364ff7c977957c689415ae86"
-  integrity sha512-xQbgqe8z+MaZTWuQz/WtGn7YoYHXyjBFvo/wDcm2Y9R+CVshoU2A2AjMGDceLJZEYPyz+yKP44fMJ4WxhPKkJg==
-  dependencies:
-    "@babel/runtime-corejs2" "^7.3.1"
-    "@paprika/helpers" "^0.2.8"
-    "@paprika/icon" "^0.2.9"
-    "@paprika/stylers" "^0.2.5"
-    "@paprika/tokens" "^0.1.12"
-    prop-types "^15.7.2"
-    uuid "^3.3.2"
-
 "@paprika/heading@^0.2.2":
   version "0.2.2"
   resolved "https://registry.yarnpkg.com/@paprika/heading/-/heading-0.2.2.tgz#66c9fbbc27aea5a8a56915cd4557e78661ca598a"
@@ -2305,16 +2292,6 @@
   dependencies:
     "@babel/runtime-corejs2" "^7.3.1"
     "@paprika/tokens" "^0.1.4"
-    "@svgr/cli" "^4.1.0"
-    prop-types "^15.7.2"
-
-"@paprika/icon@^0.2.9":
-  version "0.2.9"
-  resolved "https://registry.yarnpkg.com/@paprika/icon/-/icon-0.2.9.tgz#a86dca2a5ae3c854eb57f725ddd7c46c10ec1d87"
-  integrity sha512-azWTAqWALhEdnsdgZPzjx/2dmHyvZF/2FqLYjrR3M6mhhia82ubqNC2AXZSrmelNB3t6ytpyDLJwRf/7ixayJw==
-  dependencies:
-    "@babel/runtime-corejs2" "^7.3.1"
-    "@paprika/tokens" "^0.1.12"
     "@svgr/cli" "^4.1.0"
     prop-types "^15.7.2"
 

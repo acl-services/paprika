@@ -43,9 +43,9 @@ export const propTypes = {
   headerProps: PropTypes.func,
   isSticky: PropTypes.bool,
   onClick: PropTypes.func,
-  onEnter: PropTypes.func,
-  onShiftSpaceBar: PropTypes.func,
-  onSpaceBar: PropTypes.func,
+  onPressEnter: PropTypes.func,
+  onPressShiftSpaceBar: PropTypes.func,
+  onPressSpaceBar: PropTypes.func,
   width: PropTypes.number,
 };
 
@@ -56,9 +56,9 @@ export const defaultProps = {
   headerProps: null,
   isSticky: false,
   onClick: () => {},
-  onEnter: null,
-  onShiftSpaceBar: null,
-  onSpaceBar: null,
+  onPressEnter: null,
+  onPressShiftSpaceBar: null,
+  onPressSpaceBar: null,
   width: 182,
 };
 
