@@ -1,9 +1,10 @@
 import styled, { css } from "styled-components";
 import tokens from "@paprika/tokens";
+import stylers from "@paprika/stylers";
 
 const experimentalGrey = "#e7e7e7"; /* experimental */
 export const Grid = styled.div.attrs(({ $width, isVisible }) => {
-  const _isVisible = isVisible ? { opacity: 0 } : { opacity: 100 };
+  const _isVisible = isVisible ? { opacity: 0 } : { opacity: 1 };
 
   return {
     style: { width: `${$width}px`, ..._isVisible },
@@ -17,7 +18,7 @@ export const Grid = styled.div.attrs(({ $width, isVisible }) => {
   }
 
   .grid--is-blur {
-    box-shadow: 0 0 0;
+    box-shadow: none;
   }
 
   [role="gridcell"] {
@@ -29,7 +30,6 @@ export const Grid = styled.div.attrs(({ $width, isVisible }) => {
 
   border-top: 1px solid ${tokens.border.color};
   background: ${tokens.color.white};
-
   position: relative;
 
   ${({ gridId }) => {
@@ -43,19 +43,15 @@ export const Grid = styled.div.attrs(({ $width, isVisible }) => {
       }
 
       .${gridId}-sticky-columns {
-        /*
-          The arrow navigatoion is border sensible, please avoid adding a border to this styled components
-          doing it will create a incorrect navigation while using the arrow keys.
-        */
+        /* The arrow navigation is sensitive with borders. If a border is used, it will cause issues keyboard navigation. */
         box-shadow: 3px 0px 0px 0px ${tokens.border.color};
         overflow-x: hidden !important;
-        /* overflow: hidden !important; */
         z-index: 1;
         ::-webkit-scrollbar {
           width: 0px;
         }
         ::-webkit-scrollbar-track-piece {
-          -webkit-border-radius: 6px;
+          -webkit-border-radius: ${tokens.border.radius};
           background-color: transparent;
         }
       }
@@ -69,22 +65,19 @@ export const Cell = styled.div`
   border-left: 1px solid ${tokens.border.color};
   box-sizing: border-box;
   display: flex;
-  font-size: 16px;
+  font-size: ${tokens.fontSize.default};
   justify-content: flex-start;
   line-height: 1;
   position: relative;
 
   &:focus {
     outline: 1px solid transparent;
-    /* outline: 0; */
   }
 
   ${({ hasActiveRowShadow }) => {
     return hasActiveRowShadow
       ? css`
-          /* box-shadow: ${tokens.highlight.active.withBorder.insetBoxShadow}; */
           &:after {
-
             content: "";
             height: 100%;
             left: 0;
@@ -106,7 +99,7 @@ export const CellHeader = styled(Cell)`
   display: block;
   font-weight: 600;
   overflow: hidden;
-  padding: 8px;
+  padding: ${tokens.space};
   text-overflow: ellipsis;
   white-space: nowrap;
   width: 100%;
@@ -116,7 +109,7 @@ export const InnerCell = styled.div`
   display: block;
   height: 100%;
   overflow: hidden;
-  padding: 8px;
+  padding: ${tokens.space};
   text-overflow: ellipsis;
   white-space: nowrap;
   width: 100%;
@@ -127,11 +120,7 @@ export const InnerElementType = styled.div``;
 export const InnerElementTypeMainGrid = styled.div``;
 
 export const OuterElementTypeMainGrid = styled.div`
-  /*
-   The arrow navigatoion is border sensible, please avoid adding a border to this styled components
-   doing it will create a incorrect navigation while using the arrow keys.
-  */
-
+  /* The arrow navigation is sensitive with borders. If a border is used, it will cause issues keyboard navigation. */
   box-shadow: 0px 1px 0px 0px ${tokens.border.color}, 1px 0px 0px 0px ${tokens.border.color};
 `;
 
@@ -145,7 +134,7 @@ export const GridCell = styled.div`
   width: 1px;
 `;
 
-export const FillerTopRigth = styled.div`
+export const FillerTopRight = styled.div`
   background: ${experimentalGrey};
   border: 1px solid ${tokens.border.color};
   border-bottom: 0;
@@ -164,7 +153,7 @@ export const FillerTopRigth = styled.div`
 `;
 
 export const FillerBottomLeft = styled.div`
-  /* this is a small square filler on the right top corner of the table */
+  /* this is a small square filler on the bottom left corner of the DataGrid */
   background: ${experimentalGrey};
   border: 1px solid ${tokens.border.color};
   bottom: 0;
@@ -188,7 +177,7 @@ export const Flex = styled.div`
 
 export const RowCount = styled.div`
   color: ${tokens.color.blackLighten40};
-  font-size: 13px;
+  font-size: ${stylers.fontSize(-2)};
 `;
 
 export const WhileOnScrolling = styled.div`
@@ -230,7 +219,7 @@ export const Blocker = styled.div`
   align-items: center;
   background: transparent;
   border: 1px solid ${tokens.border.color};
-  display: Flex;
+  display: flex;
   justify-content: center;
   left: 0;
   position: absolute;
@@ -249,7 +238,7 @@ export const Footer = styled.div`
   border: 1px solid ${tokens.border.color};
   box-sizing: border-box;
   font-size: 12px;
-  padding: 4px;
+  padding: ${tokens.spaceSm};
   ${({ $width }) => {
     return `
       max-width: ${$width + 1}px;

@@ -598,7 +598,7 @@ const DataGrid = React.forwardRef((props, ref) => {
             }}
           </Grid>
         </sc.Flex>
-        <sc.FillerTopRigth rowHeight={rowHeight} scrollBarWidth={scrollBarWidth} />
+        <sc.FillerTopRight rowHeight={rowHeight} scrollBarWidth={scrollBarWidth} />
         <sc.FillerBottomLeft stickyGridWidth={stickyGridWidth} scrollBarWidth={scrollBarWidth} />
       </sc.Grid>
       {!isIdle && !hasNoRecords ? (
