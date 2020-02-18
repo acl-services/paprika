@@ -14,7 +14,7 @@ function customA11yTextPropTypeValidation(props, propName) {
       return new Error(`Accessibility is important 😇: \n
         When using a render function as a value for the ${
           props[propName]
-        } prop, you must provide an ${nameOfRenderProp} prop describing the cell content. Look on the ColumnDefinition with the following props: \n ${JSON.stringify(
+        } prop, you must provide an ${nameOfRenderProp} prop describing the cell content. Look at the ColumnDefinition with the following props: \n ${JSON.stringify(
         props,
         null,
         2
