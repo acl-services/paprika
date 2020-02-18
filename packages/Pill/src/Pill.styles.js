@@ -29,6 +29,16 @@ const pillColorStyles = {
     color: ${tokens.color.black};
   `,
 
+  lightBlue: css`
+    background: ${tokens.color.blueLighten50};
+    color: ${tokens.color.blueDarken20};
+  `,
+
+  lightOrange: css`
+    background: ${tokens.color.orangeLighten40};
+    color: ${tokens.color.orangeDarken20};
+  `,
+
   lowRisk: css`
     background: #299a7a;
   `,

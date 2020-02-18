@@ -15,8 +15,10 @@ const SizesColorsExample = () => (
     <Pill pillColor="black">Black pill</Pill>
     <Pill pillColor="grey">Grey pill</Pill>
     <Pill pillColor="blue">Blue pill</Pill>
+    <Pill pillColor="lightBlue">Light blue pill</Pill>
     <Pill pillColor="green">Green pill</Pill>
     <Pill pillColor="orange">Orange pill</Pill>
+    <Pill pillColor="lightOrange">Light orange pill</Pill>
     <Pill pillColor="noRisk">No risk</Pill>
     <Pill pillColor="lowRisk">Low risk</Pill>
     <Pill pillColor="mediumRisk">Medium risk</Pill>
