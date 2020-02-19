@@ -15,6 +15,7 @@ const propTypes = {
   onClose: PropTypes.func,
   refHeader: PropTypes.shape({ current: PropTypes.instanceOf(Element) }).isRequired,
   refSidePanelContent: PropTypes.shape({ current: PropTypes.instanceOf(Element) }).isRequired,
+  slideDirection: PropTypes.string,
   width: PropTypes.oneOfType([PropTypes.string, PropTypes.number]).isRequired,
   isOpen: PropTypes.bool.isRequired,
 };
@@ -28,6 +29,7 @@ const defaultProps = {
   isInline: false,
   offsetY: 0,
   onClose: () => {},
+  slideDirection: "right",
 };
 
 function Dialog(props) {
@@ -48,6 +50,7 @@ function Dialog(props) {
     refSidePanelContent,
     width,
     isOpen,
+    slideDirection,
     ...moreProps
   } = props;
 
@@ -84,6 +87,7 @@ function Dialog(props) {
       ref={refSidePanel}
       role="dialog"
       tabIndex="-1"
+      slideDirection={slideDirection}
       width={width}
       {...moreProps}
     >

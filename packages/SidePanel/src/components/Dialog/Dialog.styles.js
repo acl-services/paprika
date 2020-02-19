@@ -15,10 +15,10 @@ const childPanel = css`
   }}
 `;
 
-function slideIn() {
+function slideIn(slideDirection) {
   return keyframes`
   from {
-    transform: translateX(100%);
+    transform: ${slideDirection === "right" ? "translateX(100%)" : `translateX(-100%)`};
   }
   to {
     transform: translateX(0);
@@ -26,13 +26,13 @@ function slideIn() {
   `;
 }
 
-function slideOut() {
+function slideOut(slideDirection) {
   return keyframes`
   from {
     transform: translateX(0);
   }
   to {
-    transform: translateX(100%);
+    transform: ${slideDirection === "right" ? "translateX(100%)" : `translateX(-100%)`};
   }
   `;
 }
@@ -43,7 +43,7 @@ const compactStyles = css`
 
 export const Dialog = styled.div`
   background: ${tokens.color.white};
-  box-shadow: ${props => (props.getPushContentRef === null ? tokens.modal.shadow : 0)};
+  box-shadow: ${props => (props.getPushContentRef === null ? tokens.modal.shadow : "none")};
   box-sizing: border-box;
   display: flex;
   flex-direction: column;
@@ -57,7 +57,8 @@ export const Dialog = styled.div`
 
   ${props => {
     const width = Number.isNaN(Number(props.width)) ? props.width : `${props.width}px`;
-    const animation = props.isOpen ? slideIn() : slideOut();
+    const animation = props.isOpen ? slideIn(props.slideDirection) : slideOut(props.slideDirection);
+
     let childSidePanel = "";
 
     if (props.kind === "child") {
@@ -70,6 +71,7 @@ export const Dialog = styled.div`
       top: ${props.offsetY}px;
       width: ${width};
       z-index: ${props.zIndex};
+      ${props => (props.slideDirection === "right" ? `right: 0;` : `left: 0;`)}
       ${props => (props.offsetY ? `height: calc(100% - ${props.offsetY}px);` : "")}
       ${props.isInline ? "position: relative;" : "position: fixed;"}
       ${childSidePanel}

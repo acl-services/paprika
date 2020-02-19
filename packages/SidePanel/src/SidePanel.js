@@ -53,6 +53,9 @@ const propTypes = {
 
   /** Render the sidepanel inline */
   isInline: PropTypes.bool,
+
+  /** Slide direction of the sidepanel */
+  slideDirection: PropTypes.string,
 };
 
 const defaultProps = {
@@ -65,6 +68,7 @@ const defaultProps = {
   onAfterClose: () => {},
   onClose: null,
   onAfterOpen: () => {},
+  slideDirection: "right",
   width: "33%",
   zIndex: zValue(7),
 };
@@ -86,6 +90,7 @@ function SidePanel(props) {
     kind,
     offsetY,
     isOpen,
+    slideDirection,
     ...moreProps
   } = props;
 
@@ -185,6 +190,7 @@ function SidePanel(props) {
         onKeyDown={handleEscKey}
         refSidePanelContent={refSidePanelContent}
         refHeader={refHeader}
+        slideDirection={slideDirection}
         width={width}
         {...moreProps}
       >
