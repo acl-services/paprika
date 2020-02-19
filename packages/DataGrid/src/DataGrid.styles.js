@@ -17,7 +17,7 @@ export const Grid = styled.div.attrs(({ $width, isVisible }) => {
     box-shadow: ${tokens.highlight.active.withBorder.insetBoxShadow};
   }
 
-  .grid--is-blur {
+  .grid--is-blurred {
     box-shadow: none;
   }
 

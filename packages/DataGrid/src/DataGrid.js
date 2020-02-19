@@ -302,13 +302,11 @@ const DataGrid = React.forwardRef((props, ref) => {
   }, [gridId, isIdle]);
 
   function handleFocusGrid() {
-    const $isBlur = refContainer.current.querySelector(".grid--is-blur");
-    if ($isBlur) $isBlur.classList.remove("grid--is-blur");
+    const $isBlurred = refContainer.current.querySelector(".grid--is-blurred");
+    if ($isBlurred) $isBlurred.classList.remove("grid--is-blurred");
 
     if (gridShouldHaveFocus) {
-      setGridShouldHaveFocus(() => {
-        return false;
-      });
+      setGridShouldHaveFocus(() => false);
     }
   }
 
@@ -352,7 +350,7 @@ const DataGrid = React.forwardRef((props, ref) => {
 
   const handleBlurGrid = React.useCallback(() => {
     const $isActive = refContainer.current.querySelector(".grid--is-active");
-    if ($isActive) $isActive.classList.toggle("grid--is-blur");
+    if ($isActive) $isActive.classList.toggle("grid--is-blurred");
   }, []);
 
   const handleMouseUpGrid = React.useCallback(
@@ -555,8 +553,7 @@ const DataGrid = React.forwardRef((props, ref) => {
             className={`grid-${gridId}`}
             columnCount={columnCount}
             columnWidth={columnIndex => {
-              if (stickyColumnsIndexes.includes(columnIndex)) return 0;
-              return ColumnDefinitions[columnIndex].props.width;
+              return stickyColumnsIndexes.includes(columnIndex) ? 0 : ColumnDefinitions[columnIndex].props.width;
             }}
             height={calculatedTableHeight}
             innerElementType={innerElementTypeMainGrid}

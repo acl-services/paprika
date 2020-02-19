@@ -73,7 +73,7 @@ export default function renderColumnExpand(options = {}) {
           display: "flex",
           justifyContent: "center",
           alignItems: "center",
-          boxShadow: "-1px 0px 0px 0px rgba(255,255,255,1)",
+          boxShadow: "-1px 0px 0px 0px white",
           cursor: "pointer",
         },
       })}
