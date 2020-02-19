@@ -136,8 +136,8 @@ export function App() {
         width={size.width}
         height={size.height}
         onClick={handleOpenSidepanel}
-        onEnter={handleOpenSidepanel}
-        onSpaceBar={handleOpenSidepanel}
+        onPressEnter={handleOpenSidepanel}
+        onPressSpaceBar={handleOpenSidepanel}
         onRowChecked={handleRowChecked}
       >
         {renderColumnIndicator({

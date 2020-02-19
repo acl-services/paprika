@@ -141,8 +141,8 @@ export function App() {
         keygen="id"
         width={680}
         onClick={handleOpenSidepanel}
-        onEnter={handleOpenSidepanel}
-        onSpaceBar={handleOpenSidepanel}
+        onPressEnter={handleOpenSidepanel}
+        onPressSpaceBar={handleOpenSidepanel}
       >
         {renderColumnIndicator({ onSelect: handleOnSelect, isChecked })}
         {renderColumnExpand()}
