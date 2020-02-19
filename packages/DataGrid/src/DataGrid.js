@@ -2,8 +2,6 @@ import React from "react";
 import PropTypes from "prop-types";
 import { VariableSizeGrid as Grid } from "react-window";
 import extractChildren from "@paprika/helpers/lib/extractChildren";
-import Spinner from "@paprika/spinner";
-import Bubbly from "@paprika/icon/lib/BubblySearchNoResults";
 import Cell from "./components/Cell";
 import useGridEventHandler from "./hooks/useGridEventHandler";
 import ColumnDefinition from "./components/ColumnDefinition";
@@ -14,9 +12,7 @@ import InfinityScroll from "./components/InfinityScroll";
 const propTypes = {
   children: PropTypes.node.isRequired,
   data: PropTypes.arrayOf(PropTypes.shape({})),
-  hasNoRecords: PropTypes.bool,
   height: PropTypes.number,
-  isIdle: PropTypes.bool,
   onClick: PropTypes.func,
   onPressEnter: PropTypes.func,
   onKeyDown: PropTypes.func,
@@ -26,11 +22,10 @@ const propTypes = {
   rowHeight: PropTypes.number,
   width: PropTypes.number,
 };
+
 const defaultProps = {
   data: [],
-  hasNoRecords: false,
   height: 600,
-  isIdle: false,
   onClick: null,
   onPressEnter: null,
   onKeyDown: () => {},
@@ -55,9 +50,7 @@ const DataGrid = React.forwardRef((props, ref) => {
   const {
     children,
     data,
-    hasNoRecords,
     height,
-    isIdle,
     onClick,
     onPressEnter,
     onKeyDown,
@@ -296,7 +289,7 @@ const DataGrid = React.forwardRef((props, ref) => {
     // https://stackoverflow.com/questions/21064101/understanding-offsetwidth-clientwidth-scrollwidth-and-height-respectively
     // https://davidwalsh.name/detect-scrollbar-width
     setScrollBarWidth(() => scrollContainer.offsetWidth - scrollContainer.clientWidth);
-  }, [gridId, isIdle]);
+  }, [gridId]);
 
   function handleFocusGrid() {
     const $isBlurred = refContainer.current.querySelector(".grid--is-blurred");
@@ -405,25 +398,10 @@ const DataGrid = React.forwardRef((props, ref) => {
     deemphasizeRow();
   }, [deemphasizeRow]);
 
+  if (data.length === 0) return null;
+
   return (
     <>
-      {hasNoRecords && (
-        <sc.BlockerItem gridId={gridId} $width={gridWidth} $height={height}>
-          <sc.Blocker $width={gridWidth} $height={height}>
-            <div>
-              <Bubbly width={120} height={120} />
-              <p>No records found</p>
-            </div>
-          </sc.Blocker>
-        </sc.BlockerItem>
-      )}
-      {isIdle && (
-        <sc.Idle gridId={gridId} $width={gridWidth} $height={height}>
-          <sc.Blocker $width={gridWidth} $height={height}>
-            <Spinner />
-          </sc.Blocker>
-        </sc.Idle>
-      )}
       <sc.Grid
         aria-colcount={columnCount}
         gridId={gridId}
@@ -438,7 +416,6 @@ const DataGrid = React.forwardRef((props, ref) => {
         role="grid"
         tabIndex={gridShouldHaveFocus ? 0 : -1}
         $width={gridWidth}
-        isVisible={isIdle || hasNoRecords}
         {...moreProps}
       >
         <sc.Flex>
@@ -595,28 +572,24 @@ const DataGrid = React.forwardRef((props, ref) => {
         <sc.FillerTopRight rowHeight={rowHeight} scrollBarWidth={scrollBarWidth} />
         <sc.FillerBottomLeft stickyGridWidth={stickyGridWidth} scrollBarWidth={scrollBarWidth} />
       </sc.Grid>
-      {!isIdle && !hasNoRecords ? (
-        <>
-          <sc.Footer $width={gridWidth}>
-            <sc.RowCount>
-              Rows:{rowCount} Columns:{columnCount}
-            </sc.RowCount>
-          </sc.Footer>
-          {WhenScrollBarReachedBottom ? (
-            <End width={gridWidth} ref={refEnd}>
-              {WhenScrollBarReachedBottom}
-            </End>
-          ) : null}
-        </>
+      <sc.Footer $width={gridWidth}>
+        <sc.RowCount>
+          Rows:{rowCount} Columns:{columnCount}
+        </sc.RowCount>
+      </sc.Footer>
+      {WhenScrollBarReachedBottom ? (
+        <End width={gridWidth} ref={refEnd}>
+          {WhenScrollBarReachedBottom}
+        </End>
       ) : null}
     </>
   );
 });
 
-DataGrid.propTypes = propTypes;
-DataGrid.defaultProps = defaultProps;
 DataGrid.ColumnDefinition = ColumnDefinition;
-DataGrid.WhenScrollBarReachedBottom = WhenScrollBarReachedBottom;
+DataGrid.defaultProps = defaultProps;
 DataGrid.InfinityScroll = InfinityScroll;
+DataGrid.propTypes = propTypes;
+DataGrid.WhenScrollBarReachedBottom = WhenScrollBarReachedBottom;
 
 export default DataGrid;
