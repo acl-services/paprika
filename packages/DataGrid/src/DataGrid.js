@@ -271,16 +271,13 @@ const DataGrid = React.forwardRef((props, ref) => {
   );
 
   const handleRefCell = React.useCallback(({ columnIndex, rowIndex }) => {
-    return React.useCallback(
-      ref => {
-        const key = `${columnIndex}${rowIndex}`;
-        refsCell.current.keys[key] = ref;
-        refsCell.current.rows[rowIndex] = Array.isArray(refsCell.current.rows[rowIndex])
-          ? refsCell.current.rows[rowIndex].concat(key)
-          : [key];
-      },
-      [columnIndex, rowIndex]
-    );
+    return ref => {
+      const key = `${columnIndex}${rowIndex}`;
+      refsCell.current.keys[key] = ref;
+      refsCell.current.rows[rowIndex] = Array.isArray(refsCell.current.rows[rowIndex])
+        ? refsCell.current.rows[rowIndex].concat(key)
+        : [key];
+    };
   }, []);
 
   React.useEffect(() => {
