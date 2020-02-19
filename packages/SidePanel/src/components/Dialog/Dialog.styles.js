@@ -15,10 +15,10 @@ const childPanel = css`
   }}
 `;
 
-function slideIn(slideDirection) {
+function slideIn(isSlideFromLeft) {
   return keyframes`
   from {
-    transform: ${slideDirection === "right" ? "translateX(100%)" : `translateX(-100%)`};
+    transform: ${isSlideFromLeft ? "translateX(-100%)" : `translateX(100%)`};
   }
   to {
     transform: translateX(0);
@@ -26,13 +26,13 @@ function slideIn(slideDirection) {
   `;
 }
 
-function slideOut(slideDirection) {
+function slideOut(isSlideFromLeft) {
   return keyframes`
   from {
     transform: translateX(0);
   }
   to {
-    transform: ${slideDirection === "right" ? "translateX(100%)" : `translateX(-100%)`};
+    transform: ${isSlideFromLeft ? "translateX(-100%)" : `translateX(100%)`};
   }
   `;
 }
@@ -57,7 +57,7 @@ export const Dialog = styled.div`
 
   ${props => {
     const width = Number.isNaN(Number(props.width)) ? props.width : `${props.width}px`;
-    const animation = props.isOpen ? slideIn(props.slideDirection) : slideOut(props.slideDirection);
+    const animation = props.isOpen ? slideIn(props.isSlideFromLeft) : slideOut(props.isSlideFromLeft);
 
     let childSidePanel = "";
 
@@ -71,7 +71,7 @@ export const Dialog = styled.div`
       top: ${props.offsetY}px;
       width: ${width};
       z-index: ${props.zIndex};
-      ${props => (props.slideDirection === "right" ? `right: 0;` : `left: 0;`)}
+      ${props => (props.isSlideFromLeft ? `left: 0;` : `right: 0;`)}
       ${props => (props.offsetY ? `height: calc(100% - ${props.offsetY}px);` : "")}
       ${props.isInline ? "position: relative;" : "position: fixed;"}
       ${childSidePanel}

@@ -6,7 +6,7 @@ import SidePanelPushContentStory from "./examples/SidePanelPushContentStory";
 import { Nav, TextLine } from "./helpers";
 
 const SidePanelStory = props => {
-  const { disableBodyOverflow, hasOverlay, slideDirection } = props;
+  const { disableBodyOverflow, hasOverlay, isSlideFromLeft } = props;
   const [isOpen, setIsOpen] = React.useState(true);
   const toggle = () => {
     setIsOpen(state => !state);
@@ -20,7 +20,7 @@ const SidePanelStory = props => {
         isOpen={isOpen}
         onClose={toggle}
         offsetY={40}
-        slideDirection={slideDirection}
+        isSlideFromLeft={isSlideFromLeft}
       >
         {hasOverlay ? <SidePanel.Overlay /> : null}
         <SidePanel.Trigger kind="primary" onClick={toggle}>
@@ -154,7 +154,7 @@ const SidePanelStoryGroup = () => {
 };
 
 storiesOf("SidePanel", module).add("Basic", () => <SidePanelStory />);
-storiesOf("SidePanel", module).add("Basic slide left", () => <SidePanelStory slideDirection="left" />);
+storiesOf("SidePanel", module).add("Basic slide left", () => <SidePanelStory isSlideFromLeft />);
 storiesOf("SidePanel", module).add("Basic isCompact", () => <SidePanelCompactStory hasOverlay />);
 storiesOf("SidePanel", module).add("Basic without overlay", () => (
   <SidePanelStory disableBodyOverflow={false} hasOverlay={false} />
