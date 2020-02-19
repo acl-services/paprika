@@ -1,7 +1,7 @@
 {
   "name": "@paprika/datagrid",
   "version": "0.1.0",
-  "description": "DataGrid is a wrapper of react-windows",
+  "description": "DataGrid is a wrapper of react-window",
   "author": "@paprika",
   "license": "MIT",
   "main": "lib/index.js",
@@ -25,7 +25,6 @@
     "@paprika/tokens": "^0.1.9",
     "nanoid": "^2.1.9",
     "prop-types": "^15.7.2",
-    "react-virtualized-auto-sizer": "^1.0.2",
     "react-window": "^1.8.5"
   },
   "peerDependencies": {

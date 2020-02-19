@@ -12,6 +12,6 @@ const FocusLock = props => <FocusLockLibrary {...props} />;
 
 FocusLock.propTypes = propTypes;
 FocusLock.defaultProps = defaultProps;
-FocusLock.displayName = "SidePanel.FocusLock";
+FocusLock.displayName = "Modal.FocusLock";
 
 export default FocusLock;

@@ -30,8 +30,8 @@ export default function renderColumnIndicator(options = {}) {
       cell={propsCell => <RowIndicator hasNumber={hasNumber} isChecked={isChecked} onCheck={onCheck} {...propsCell} />}
       isSticky
       {...moreOptions}
-      onSpaceBar={onCheck}
-      onEnter={onCheck}
+      onPressSpaceBar={onCheck}
+      onPressEnter={onCheck}
       onClick={onCheck}
       width={34}
       cellProps={() => ({

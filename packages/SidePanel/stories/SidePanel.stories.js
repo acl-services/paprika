@@ -2,6 +2,7 @@ import React from "react";
 import { storiesOf } from "@storybook/react";
 import Button from "@paprika/button";
 import SidePanel from "../src";
+import SidePanelPushContentStory from "./examples/SidePanelPushContentStory";
 import { Nav, TextLine } from "./helpers";
 
 const SidePanelStory = props => {
@@ -151,6 +152,7 @@ storiesOf("SidePanel", module).add("Basic isCompact", () => <SidePanelCompactSto
 storiesOf("SidePanel", module).add("Basic without overlay", () => (
   <SidePanelStory disableBodyOverflow={false} hasOverlay={false} />
 ));
+storiesOf("SidePanel", module).add("Basic with pushing content", () => <SidePanelPushContentStory width="50%" />);
 storiesOf("SidePanel", module).add("Multiple Sidepanels", () => <SidePanelStoryGroup />);
 storiesOf("SidePanel", module).add("Basic with body scrollable", () => (
   <React.Fragment>
