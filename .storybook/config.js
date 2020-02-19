@@ -37,8 +37,11 @@ const stories = [
   require.context("../packages/SidePanel", true, /SidePanel.stories.(js|mdx)$/),
   require.context("../packages/SidePanel", true, /SidePanel.Tests.stories.js$/),
 
+  // DataGrid
+  require.context("../packages/DataGrid", true, /DataGrid.stories.(js|mdx)$/),
+
   // Remaining
-  require.context("../packages", true, /\.stories\.(js|mdx)$/),
+  require.context("../packages", true, /\.stories\.(js)$/),
 ];
 
 configure(stories, module);
