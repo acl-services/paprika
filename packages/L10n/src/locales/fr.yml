@@ -28,6 +28,8 @@ fr:
       delete: Supprimer
       apply: Appliquer
       cancel: Annuler
+      confirm: Enregistrer
+      decline: Refuser
     datePicker:
       calendar_header_format: MMMM YYYY
       confirmation_format: D MMMM YYYY
