@@ -245,13 +245,15 @@ describe("Listbox multi select", () => {
       dispatch({ type: types.togglePopover });
     };
 
-    const onRenderTrigger = jest.fn((selected, options, current, { dispatch, propsForTrigger, types, refTrigger }) => {
-      return (
-        <button type="button" {...propsForTrigger()} onClick={togglePopover(dispatch, types)} ref={refTrigger}>
-          Toggle Listbox
-        </button>
-      );
-    });
+    const onRenderTrigger = jest.fn(
+      (state, selected, options, current, { dispatch, propsForTrigger, types, refTrigger }) => {
+        return (
+          <button type="button" {...propsForTrigger()} onClick={togglePopover(dispatch, types)} ref={refTrigger}>
+            Toggle Listbox
+          </button>
+        );
+      }
+    );
 
     const { expectDropdownIsNotHidden, selectVenus, selectJupiter, getByText } = renderComponent({}, [
       <ListBox.Trigger key="trigger">{onRenderTrigger}</ListBox.Trigger>,

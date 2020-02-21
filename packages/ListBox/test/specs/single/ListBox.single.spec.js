@@ -146,7 +146,7 @@ describe("Listbox single select", () => {
       dispatch({ type: types.togglePopover });
     };
 
-    const onRenderTrigger = jest.fn((selected, options, { dispatch, propsForTrigger, types, refTrigger }) => {
+    const onRenderTrigger = jest.fn((state, selected, options, { dispatch, propsForTrigger, types, refTrigger }) => {
       return (
         <button type="button" {...propsForTrigger()} onClick={togglePopover(dispatch, types)} ref={refTrigger}>
           Toggle Listbox
