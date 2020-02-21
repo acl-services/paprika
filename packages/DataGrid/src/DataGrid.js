@@ -1,6 +1,7 @@
 import React from "react";
 import PropTypes from "prop-types";
 import { VariableSizeGrid as Grid } from "react-window";
+import useI18n from "@paprika/l10n/lib/useI18n";
 import extractChildren from "@paprika/helpers/lib/extractChildren";
 import Cell from "./components/Cell";
 import useGridEventHandler from "./hooks/useGridEventHandler";
@@ -83,6 +84,7 @@ const DataGrid = React.forwardRef((props, ref) => {
   const [scrollBarWidth, setScrollBarWidth] = React.useState(0);
   const [gridShouldHaveFocus, setGridShouldHaveFocus] = React.useState(true);
   const [pageSize, setPageSize] = React.useState(null);
+  const i18n = useI18n();
   // these two value are sensitive in Grids with lots of columns and can degradate performance alot.
   // be caution when using them.
   const overscanRowCount = 5;
@@ -214,9 +216,16 @@ const DataGrid = React.forwardRef((props, ref) => {
     stickyColumnsIndexes,
   });
 
-  const a11yTextMessage = React.useCallback((value, column, rowIndex) => {
-    return `${value}. You are on row ${rowIndex}, column ${column}. Disregard the following information:`;
-  }, []);
+  const a11yTextMessage = React.useCallback(
+    (value, column, rowIndex) => {
+      return i18n.t("dataGrid.a11yTextMessage", {
+        value,
+        rowIndex,
+        columnIndex: column,
+      });
+    },
+    [i18n]
+  );
 
   const handleScroll = React.useCallback(parameters => {
     const { scrollLeft, scrollTop } = parameters;

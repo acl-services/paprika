@@ -23,7 +23,7 @@ function customA11yTextPropTypeValidation(props, propName) {
 
     if (typeof props[nameOfRenderProp] !== "function")
       return new Error(`Accessibility is important 😇: \n
-        The prop ${nameOfRenderProp} has to be a function returning a string. Look on the ColumnDefinition with the following props: \n ${JSON.stringify(
+        The prop ${nameOfRenderProp} has to be a function returning a string. Look at the ColumnDefinition with the following props: \n ${JSON.stringify(
         props,
         null,
         2

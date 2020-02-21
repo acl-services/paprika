@@ -30,6 +30,7 @@
   "peerDependencies": {
     "react": "^16.8.4",
     "react-dom": "^16.8.4",
-    "styled-components": "^4.3.1"
+    "styled-components": "^4.3.1",
+    "@paprika/l10n": "^0.3.9"
   }
 }
