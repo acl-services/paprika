@@ -3,6 +3,7 @@ import PropTypes from "prop-types";
 import { VariableSizeGrid as Grid } from "react-window";
 import useI18n from "@paprika/l10n/lib/useI18n";
 import extractChildren from "@paprika/helpers/lib/extractChildren";
+import mouseWheel from "mouse-wheel";
 import Cell from "./components/Cell";
 import useGridEventHandler from "./hooks/useGridEventHandler";
 import ColumnDefinition from "./components/ColumnDefinition";
@@ -90,9 +91,7 @@ const DataGrid = React.forwardRef((props, ref) => {
   const overscanRowCount = 5;
   const overscanColumnCount = 2;
 
-  const rowCount = React.useMemo(() => {
-    return data.length;
-  }, [data.length]);
+  const rowCount = data.length;
 
   const { ColumnDefinitions, WhenScrollBarReachedBottom, InfinityScroll } = React.useMemo(() => {
     const {
@@ -257,7 +256,7 @@ const DataGrid = React.forwardRef((props, ref) => {
 
   const handleScrollStickyColumns = React.useCallback(
     parameters => {
-      const { scrollTop /* scrollUpdateWasRequested */ } = parameters;
+      const { scrollTop } = parameters;
 
       // prevent rescrolling when this scrollbar gets sync with the one in the main grid
       if (refScrollHappenedBy.current === null) {
@@ -316,14 +315,18 @@ const DataGrid = React.forwardRef((props, ref) => {
   }, [data.length, pageSize]);
 
   React.useEffect(() => {
-    refPrevLastScrollHeight.current = refScrollGrid.current.scrollHeight;
+    refPrevLastScrollHeight.current = refScrollGrid.current && refScrollGrid.current.scrollHeight;
   }, []);
 
   React.useEffect(() => {
     // this is required to readjust the active highlight
     // after any rerender
-    if (refPrevLastScrollHeight.current && refPrevLastScrollHeight.current < refScrollGrid.current.scrollHeight) {
-      refScrollGrid.current.scrollTo(0, refScrollGrid.current.scrollTop + 1);
+    if (
+      refScrollGrid.current &&
+      refPrevLastScrollHeight.current &&
+      refPrevLastScrollHeight.current < refScrollGrid.current.scrollHeight
+    ) {
+      if (refScrollGrid.current) refScrollGrid.current.scrollTo(0, refScrollGrid.current.scrollTop + 1);
     }
     restoreHighlightFocus();
   });
@@ -395,6 +398,21 @@ const DataGrid = React.forwardRef((props, ref) => {
     },
     [InfinityScroll, pageSize, rowCount]
   );
+
+  React.useEffect(() => {
+    mouseWheel(refScrollGrid.current, (dx, dy, dz, event) => {
+      event.preventDefault();
+      refScrollGrid.current.scrollTo(refScrollGrid.current.scrollLeft + dx, refScrollGrid.current.scrollTop + dy);
+    });
+
+    mouseWheel(refScrollStickyColumns.current, (dx, dy, dz, event) => {
+      event.preventDefault();
+      refScrollStickyColumns.current.scrollTo(
+        refScrollStickyColumns.current.scrollLeft + dx,
+        refScrollStickyColumns.current.scrollTop + dy
+      );
+    });
+  }, [gridId]);
 
   const handleMouseOver = React.useCallback(
     event => {

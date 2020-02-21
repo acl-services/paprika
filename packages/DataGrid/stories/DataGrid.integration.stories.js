@@ -3,6 +3,7 @@ import { storiesOf } from "@storybook/react";
 import * as Sbook from "storybook/assets/styles/common.styles";
 import SidePanel from "@paprika/sidepanel";
 import worker from "workerize-loader!./helpers/data.integration.worker"; // eslint-disable-line import/no-webpack-loader-syntax
+import Spinner from "@paprika/spinner";
 import DataGrid, { renderColumnIndicator, renderColumnExpand } from "../src";
 
 export function App() {
@@ -127,35 +128,40 @@ export function App() {
 
   return (
     <Sbook.Story ref={refSBookStory} css="height: calc(100% - 120px);">
-      {row && renderSidepanel({ row })}
-      <DataGrid
-        ref={refDataGrid}
-        data={data}
-        isIdle={isIdle}
-        keygen="id"
-        width={size.width}
-        height={size.height}
-        onClick={handleOpenSidepanel}
-        onPressEnter={handleOpenSidepanel}
-        onPressSpaceBar={handleOpenSidepanel}
-        onRowChecked={handleRowChecked}
-      >
-        {renderColumnIndicator({
-          onCheck: handleRowChecked,
-          onCheckAll: handleCheckAll,
-          isAllChecked,
-          isChecked,
-          hasNumber: false,
-        })}
-        {renderColumnExpand()}
-        {data.length
-          ? Object.keys(data[0]).map(key => {
-              if (key === "key") return null;
-              return <DataGrid.ColumnDefinition key={key} header={key} cell={key} />;
-            })
-          : null}
-        <DataGrid.InfinityScroll rowsOffset={50} onReached={handleInfinityScrollReached} />
-      </DataGrid>
+      {isIdle ? (
+        <Spinner />
+      ) : (
+        <>
+          {row && renderSidepanel({ row })}
+          <DataGrid
+            ref={refDataGrid}
+            data={data}
+            keygen="id"
+            width={size.width}
+            height={size.height}
+            onClick={handleOpenSidepanel}
+            onPressEnter={handleOpenSidepanel}
+            onPressSpaceBar={handleOpenSidepanel}
+            onRowChecked={handleRowChecked}
+          >
+            {renderColumnIndicator({
+              onCheck: handleRowChecked,
+              onCheckAll: handleCheckAll,
+              isAllChecked,
+              isChecked,
+              hasNumber: false,
+            })}
+            {renderColumnExpand()}
+            {data.length
+              ? Object.keys(data[0]).map(key => {
+                  if (key === "key") return null;
+                  return <DataGrid.ColumnDefinition key={key} header={key} cell={key} />;
+                })
+              : null}
+            <DataGrid.InfinityScroll rowsOffset={50} onReached={handleInfinityScrollReached} />
+          </DataGrid>
+        </>
+      )}
     </Sbook.Story>
   );
 }

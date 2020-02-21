@@ -2,6 +2,7 @@ import React from "react";
 import { storiesOf } from "@storybook/react";
 import * as Sbook from "storybook/assets/styles/common.styles";
 import worker from "workerize-loader!./helpers/data.worker"; // eslint-disable-line import/no-webpack-loader-syntax
+import Spinner from "@paprika/spinner";
 import DataGrid, { renderColumnIndicator, renderColumnExpand } from "../src";
 
 export function App(props) {
@@ -78,23 +79,20 @@ export function App(props) {
         ${overrideWidth ? "" : "height: calc(100% - 120px);"}
       `}
     >
-      <DataGrid
-        ref={refDataGrid}
-        data={data}
-        isIdle={isIdle}
-        keygen="id"
-        width={size.width}
-        height={overrideWidth || size.height}
-      >
-        {renderColumnIndicator({ onSelect: handleSelect, isChecked })}
-        {renderColumnExpand()}
-        {data.length
-          ? Object.keys(data[0]).map(key => {
-              return <DataGrid.ColumnDefinition key={key} header={key} cell={key} />;
-            })
-          : null}
-        <DataGrid.InfinityScroll rowsOffset={rowsOffset} onReached={handleInfinityScrollReached} />
-      </DataGrid>
+      {isIdle ? (
+        <Spinner />
+      ) : (
+        <DataGrid ref={refDataGrid} data={data} keygen="id" width={size.width} height={overrideWidth || size.height}>
+          {renderColumnIndicator({ onSelect: handleSelect, isChecked })}
+          {renderColumnExpand()}
+          {data.length
+            ? Object.keys(data[0]).map(key => {
+                return <DataGrid.ColumnDefinition key={key} header={key} cell={key} />;
+              })
+            : null}
+          <DataGrid.InfinityScroll rowsOffset={rowsOffset} onReached={handleInfinityScrollReached} />
+        </DataGrid>
+      )}
     </Sbook.Story>
   );
 }
