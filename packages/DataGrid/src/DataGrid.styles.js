@@ -3,11 +3,9 @@ import tokens from "@paprika/tokens";
 import stylers from "@paprika/stylers";
 
 const experimentalGrey = "#e7e7e7"; /* experimental */
-export const Grid = styled.div.attrs(({ $width, isVisible }) => {
-  const _isVisible = isVisible ? { opacity: 0 } : { opacity: 1 };
-
+export const Grid = styled.div.attrs(({ $width }) => {
   return {
-    style: { width: `${$width}px`, ..._isVisible },
+    style: { width: `${$width}px` },
   };
 })`
   * {
@@ -185,34 +183,6 @@ export const WhileOnScrolling = styled.div`
   border-radius: ${tokens.border.radius};
   height: 10px;
   width: 100%;
-`;
-
-export const BlockerItem = styled.div`
-  background: white;
-  border: 0;
-  opacity: 0;
-  position: absolute;
-  z-index: 100;
-
-  ${({ $height, $width }) => {
-    return `
-    width: ${$width}px;
-    height: ${$height}px;
-    opacity: 1;
-  `;
-  }}
-`;
-
-export const Idle = styled(BlockerItem)`
-  cursor: progress;
-
-  ${({ gridId }) => {
-    return `
-    .${gridId}-idle {
-      overflow: hidden !important;
-    }
-  `;
-  }}
 `;
 
 export const Blocker = styled.div`
