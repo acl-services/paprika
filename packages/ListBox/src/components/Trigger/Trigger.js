@@ -156,6 +156,7 @@ export default function Trigger(props) {
           propsForTrigger: getDOMAttributesForListBoxButton(idListBox),
           types: sanitizeActionTypes(useListBox.types),
           refTrigger,
+          isOpen: state.isOpen,
         });
       }
 
@@ -165,6 +166,7 @@ export default function Trigger(props) {
         propsForTrigger: getDOMAttributesForListBoxButton(idListBox),
         types: sanitizeActionTypes(useListBox.types),
         refTrigger,
+        isOpen: state.isOpen,
       });
     }
   }, [hasRenderTrigger, children, isMulti, state, dispatch, idListBox, refTrigger]);
