@@ -16,7 +16,7 @@ const togglePopover = (dispatch, types) => () => {
 storiesOf("ListBox / ListBox.Trigger", module).add("Basic Trigger with render props", () => (
   <ListBox>
     <ListBox.Trigger>
-      {(state, selected, options, { dispatch, types, refTrigger, propsForTrigger }) => {
+      {(selected, options, { dispatch, types, refTrigger, propsForTrigger }) => {
         return (
           <Button {...propsForTrigger()} onClick={togglePopover(dispatch, types)} ref={refTrigger}>
             Toggle Listbox
@@ -39,7 +39,7 @@ storiesOf("ListBox / ListBox.Trigger", module).add("Trigger has not clear button
 storiesOf("ListBox / ListBox.Trigger / Single", module).add("Trigger using render function", () => (
   <ListBox>
     <ListBox.Trigger>
-      {(state, selected, options, { dispatch, types, refTrigger, propsForTrigger }) => {
+      {(selected, options, { dispatch, types, refTrigger, propsForTrigger, isOpen }) => {
         return (
           <button
             type="button"
@@ -50,7 +50,7 @@ storiesOf("ListBox / ListBox.Trigger / Single", module).add("Trigger using rende
             }}
           >
             {selected !== null ? options[selected].label : "pick an superhero "}
-            {state.isOpen ? "close" : "open"}
+            {isOpen ? "close" : "open"}
           </button>
         );
       }}
@@ -62,7 +62,7 @@ storiesOf("ListBox / ListBox.Trigger / Single", module).add("Trigger using rende
 storiesOf("ListBox / ListBox.Trigger / Multiple", module).add("Trigger using render function", () => (
   <ListBox isMulti>
     <ListBox.Trigger>
-      {(state, selected, options, current, { dispatch, types, refTrigger, propsForTrigger }) => {
+      {(selected, options, current, { dispatch, types, refTrigger, propsForTrigger, isOpen }) => {
         return (
           <button
             type="button"
@@ -73,7 +73,7 @@ storiesOf("ListBox / ListBox.Trigger / Multiple", module).add("Trigger using ren
             }}
           >
             {selected.length ? selected.map(index => options[index].label).join(" ") : "pick multiple superheros "}
-            {state.isOpen ? "close" : "open"}
+            {isOpen ? "close" : "open"}
           </button>
         );
       }}

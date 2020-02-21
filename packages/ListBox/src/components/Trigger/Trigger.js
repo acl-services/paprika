@@ -151,20 +151,22 @@ export default function Trigger(props) {
       if (isMulti) {
         const [selected, options, current] = getSelectedOptionsMulti(state);
 
-        return children(state, selected, options, current, {
+        return children(selected, options, current, {
           dispatch,
           propsForTrigger: getDOMAttributesForListBoxButton(idListBox),
           types: sanitizeActionTypes(useListBox.types),
           refTrigger,
+          isOpen: state.isOpen,
         });
       }
 
       const [selected, options] = getSelectedOptionSingle(state);
-      return children(state, selected, options, {
+      return children(selected, options, {
         dispatch,
         propsForTrigger: getDOMAttributesForListBoxButton(idListBox),
         types: sanitizeActionTypes(useListBox.types),
         refTrigger,
+        isOpen: state.isOpen,
       });
     }
   }, [hasRenderTrigger, children, isMulti, state, dispatch, idListBox, refTrigger]);
