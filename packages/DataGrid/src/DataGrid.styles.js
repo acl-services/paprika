@@ -42,9 +42,12 @@ export const Grid = styled.div.attrs(({ $width }) => {
 
       .${gridId}-sticky-columns {
         /* The arrow navigation is sensitive with borders. If a border is used, it will cause issues keyboard navigation. */
+        -ms-overflow-style: none;
         box-shadow: 3px 0px 0px 0px ${tokens.border.color};
         overflow-x: hidden !important;
-        z-index: 1;
+        scrollbar-width: none; /* Internet Explorer 10+ */
+        z-index: 1; /* Firefox */
+
         ::-webkit-scrollbar {
           width: 0px;
         }
