@@ -548,7 +548,7 @@ const DataGrid = React.forwardRef((props, ref) => {
             }}
           </Grid>
 
-          {/** COLUMS */}
+          {/** COLUMNS */}
 
           <Grid
             className={`grid-${gridId}`}
