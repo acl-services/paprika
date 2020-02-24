@@ -30,7 +30,13 @@ const inputStyles = css`
 
     background-color: ${tokens.color.white};
     border: 1px solid ${tokens.border.color};
-    border-radius: ${tokens.border.radius};
+    border-radius: ${({ hasBorderRadius }) => {
+      if (hasBorderRadius === true) {
+        return tokens.border.radius;
+      }
+
+      return Array.isArray(hasBorderRadius) ? hasBorderRadius.map(value => value ? tokens.border.radius : 0).join(' ') : 0;
+    }};
     box-shadow: none;
     box-sizing: border-box;
     color: ${tokens.color.black};
