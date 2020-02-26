@@ -304,7 +304,7 @@ const DataGrid = React.forwardRef((props, ref) => {
     if ($isBlurred) $isBlurred.classList.remove("grid--is-blurred");
 
     if (gridShouldHaveFocus) {
-      setGridShouldHaveFocus(() => false);
+      setGridShouldHaveFocus(false);
     }
   }
 
