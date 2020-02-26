@@ -34,7 +34,9 @@ const locales = {
       "actions": {
         "delete": "删除",
         "apply": "应用",
-        "cancel": "取消"
+        "cancel": "取消",
+        "confirm": "保存",
+        "decline": "拒绝"
       },
       "datePicker": {
         "calendar_header_format": "YYYY 年 M 月",
