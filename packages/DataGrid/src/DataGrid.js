@@ -9,7 +9,7 @@ import useGridEventHandler from "./hooks/useGridEventHandler";
 import ColumnDefinition from "./components/ColumnDefinition";
 import * as sc from "./DataGrid.styles";
 import WhenScrollBarReachedBottom, { End } from "./components/WhenScrollBarReachedBottom";
-import InfinityScroll from "./components/InfinityScroll";
+import InfiniteScroll from "./components/InfiniteScroll";
 
 const propTypes = {
   children: PropTypes.node.isRequired,
@@ -93,23 +93,21 @@ const DataGrid = React.forwardRef((props, ref) => {
 
   const rowCount = data.length;
 
-  const { ColumnDefinitions, WhenScrollBarReachedBottom, InfinityScroll } = React.useMemo(() => {
+  const { ColumnDefinitions, WhenScrollBarReachedBottom, InfiniteScroll } = React.useMemo(() => {
     const {
       "DataGrid.ColumnDefinition": ColumnDefinitions,
       "DataGrid.WhenScrollBarReachedBottom": WhenScrollBarReachedBottom,
-      "DataGrid.InfinityScroll": InfinityScroll,
+      "DataGrid.InfiniteScroll": InfiniteScroll,
     } = extractChildren(children, [
       "DataGrid.ColumnDefinition",
       "DataGrid.WhenScrollBarReachedBottom",
-      "DataGrid.InfinityScroll",
+      "DataGrid.InfiniteScroll",
     ]);
 
-    return { ColumnDefinitions, WhenScrollBarReachedBottom, InfinityScroll };
+    return { ColumnDefinitions, WhenScrollBarReachedBottom, InfiniteScroll };
   }, [children]);
 
-  const columnCount = React.useMemo(() => {
-    return ColumnDefinitions.length;
-  }, [ColumnDefinitions]);
+  const columnCount = ColumnDefinitions.length;
 
   const columnHeadersA11yText = React.useMemo(() => {
     return ColumnDefinitions.map(ColumnDefinition => {
@@ -153,7 +151,7 @@ const DataGrid = React.forwardRef((props, ref) => {
     return width;
   }, [ColumnDefinitions, stickyColumnsIndexes]);
 
-  const highlightRow = React.useCallback(({ rowIndex = null }) => {
+  const highlightRow = ({ rowIndex = null }) => {
     if (rowIndex !== null) {
       if (refPrevActiveRow.current !== null) {
         const rowIndex = refPrevActiveRow.current;
@@ -168,7 +166,7 @@ const DataGrid = React.forwardRef((props, ref) => {
       const key = `0${rowIndex}`;
       if (refsCell.current.keys[key]) refsCell.current.keys[key].highlightOnRow(rowIndex);
     }
-  }, []);
+  };
 
   const deemphasizeRow = React.useCallback(() => {
     if (refPrevActiveRow.current) {
@@ -281,7 +279,7 @@ const DataGrid = React.forwardRef((props, ref) => {
     };
   }, []);
 
-  React.useEffect(() => {
+  React.useLayoutEffect(() => {
     if (!refContainer.current) return;
 
     refScrollHeader.current = refContainer.current.querySelector(`.${gridId}-header`);
@@ -289,7 +287,7 @@ const DataGrid = React.forwardRef((props, ref) => {
     refScrollGrid.current = refContainer.current.querySelector(`.grid-${gridId}`);
   }, [gridId]);
 
-  React.useEffect(() => {
+  React.useLayouEffect(() => {
     const scrollContainer =
       refContainer.current && refContainer.current.querySelector(`.grid-${gridId} [role="row"]`).parentElement;
 
@@ -376,7 +374,7 @@ const DataGrid = React.forwardRef((props, ref) => {
     [ColumnDefinitions, data, handleKeyUp]
   );
 
-  const handleItemsRedered = React.useCallback(
+  const handleItemsRendered = React.useCallback(
     ({ visibleRowStartIndex, visibleRowStopIndex }) => {
       refVisibleIndexes.current = {
         start: visibleRowStartIndex,
@@ -387,8 +385,8 @@ const DataGrid = React.forwardRef((props, ref) => {
         refCurrentPage.current = 0;
       }
 
-      if (InfinityScroll) {
-        const { rowsOffset, onReached } = InfinityScroll.props;
+      if (InfiniteScroll) {
+        const { rowsOffset, onReached } = InfiniteScroll.props;
         if (visibleRowStopIndex + rowsOffset > rowCount) {
           const currentPage = Math.floor(visibleRowStopIndex / pageSize);
           const nextPage = currentPage + 1;
@@ -396,7 +394,7 @@ const DataGrid = React.forwardRef((props, ref) => {
         }
       }
     },
-    [InfinityScroll, pageSize, rowCount]
+    [InfiniteScroll, pageSize, rowCount]
   );
 
   React.useEffect(() => {
@@ -414,12 +412,9 @@ const DataGrid = React.forwardRef((props, ref) => {
     });
   }, [gridId]);
 
-  const handleMouseOver = React.useCallback(
-    event => {
-      highlightRow({ rowIndex: event.target.dataset.rowIndex });
-    },
-    [highlightRow]
-  );
+  const handleMouseOver = event => {
+    highlightRow({ rowIndex: event.target.dataset.rowIndex });
+  };
 
   const handleMouseLeave = React.useCallback(() => {
     deemphasizeRow();
@@ -515,7 +510,7 @@ const DataGrid = React.forwardRef((props, ref) => {
             }}
             height={calculatedTableHeight - scrollBarWidth}
             innerElementType={innerElementType}
-            onItemsRendered={handleItemsRedered}
+            onItemsRendered={handleItemsRendered}
             onScroll={handleScrollStickyColumns}
             outerElementType={outerElementType}
             overscanColumnCount={overscanColumnCount}
@@ -558,7 +553,7 @@ const DataGrid = React.forwardRef((props, ref) => {
             }}
             height={calculatedTableHeight}
             innerElementType={innerElementTypeMainGrid}
-            onItemsRendered={handleItemsRedered}
+            onItemsRendered={handleItemsRendered}
             onScroll={handleScroll}
             outerElementType={outerElementTypeMainGrid}
             overscanColumnCount={overscanColumnCount}
@@ -615,7 +610,7 @@ const DataGrid = React.forwardRef((props, ref) => {
 
 DataGrid.ColumnDefinition = ColumnDefinition;
 DataGrid.defaultProps = defaultProps;
-DataGrid.InfinityScroll = InfinityScroll;
+DataGrid.InfiniteScroll = InfiniteScroll;
 DataGrid.propTypes = propTypes;
 DataGrid.WhenScrollBarReachedBottom = WhenScrollBarReachedBottom;
 

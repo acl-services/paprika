@@ -34,7 +34,7 @@ function customA11yTextPropTypeValidation(props, propName) {
   // with this validation we are sure that either we have a cell with a string value or we have an a11yText describing the value
 }
 
-export const propTypes = {
+const propTypes = {
   cell: customA11yTextPropTypeValidation,
   cellA11yText: PropTypes.func,
   cellProps: PropTypes.func,
