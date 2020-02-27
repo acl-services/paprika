@@ -69,14 +69,10 @@ export const Dialog = styled.div`
     if (props.hasBoxShadow) {
       border = "0";
       boxShadow = `${tokens.modal.shadow}`;
+    } else if (props.isSlideFromLeft) {
+      borderRight = borderColor;
     } else {
-      if (props.getPushContentRef !== null && !props.isSlideFromLeft) {
-        borderLeft = borderColor;
-      }
-
-      if (props.getPushContentRef === null && props.isSlideFromLeft) {
-        borderRight = borderColor;
-      }
+      borderLeft = borderColor;
     }
 
     if (props.kind === "child") {
