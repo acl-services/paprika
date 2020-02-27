@@ -34,7 +34,9 @@ const locales = {
       "actions": {
         "delete": "削除",
         "apply": "適用",
-        "cancel": "キャンセル"
+        "cancel": "キャンセル",
+        "confirm": "保存",
+        "decline": "辞退"
       },
       "datePicker": {
         "calendar_header_format": "YYYY 年 M 月",
