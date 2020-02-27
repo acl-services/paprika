@@ -1,6 +1,7 @@
 import styled, { css } from "styled-components";
 import tokens from "@paprika/tokens";
 import stylers from "@paprika/stylers";
+import { ShirtSizes } from "@paprika/helpers/lib/customPropTypes";
 
 const blueSelected = tokens.color.blueLighten50;
 
@@ -15,13 +16,25 @@ const disabledStyles = css`
   color: ${tokens.color.blackLighten60};
 `;
 
+const fontSize = {
+  [ShirtSizes.SMALL]: `
+  ${stylers.fontSize(-2)}
+`,
+  [ShirtSizes.MEDIUM]: `
+  ${stylers.fontSize(-1)}
+`,
+  [ShirtSizes.LARGE]: `
+  ${stylers.fontSize()}
+`,
+};
+
 export const OptionStyled = styled.li`
   border: 2px solid transparent;
   border-radius: 3px;
   margin-bottom: ${tokens.spaceSm};
   padding: ${tokens.spaceSm};
 
-  ${stylers.fontSize(-1)};
+  ${props => fontSize[props.size]}
 
   &:hover {
     ${props => {
