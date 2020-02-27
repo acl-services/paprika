@@ -10,10 +10,10 @@ const defaultProps = {
   onReached: () => {},
 };
 
-export default function InfinityScroll() {
+export default function InfiniteScroll() {
   return null;
 }
 
-InfinityScroll.propTypes = propTypes;
-InfinityScroll.defaultProps = defaultProps;
-InfinityScroll.displayName = "DataGrid.InfinityScroll";
+InfiniteScroll.propTypes = propTypes;
+InfiniteScroll.defaultProps = defaultProps;
+InfiniteScroll.displayName = "DataGrid.InfiniteScroll";

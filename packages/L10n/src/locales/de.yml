@@ -28,6 +28,8 @@ de:
       delete: Löschen
       apply: Anwenden
       cancel: Abbrechen
+      confirm: Speichern
+      decline: Ablehnen
     datePicker:
       calendar_header_format: MMMM YYYY
       confirmation_format: DD. MMMM YYYY
