@@ -2,6 +2,7 @@ import React from "react";
 import PropTypes from "prop-types";
 import Overlay from "@paprika/overlay";
 import extractChildren from "@paprika/helpers/lib/extractChildren";
+import FocusLock from "./components/FocusLock";
 import * as styled from "./Takeover.styles";
 
 const propTypes = {
@@ -31,13 +32,25 @@ const Takeover = props => {
   const { isOpen, onClose, onAfterClose, onAfterOpen, ...moreProps } = props;
 
   const {
+    "Takeover.FocusLock": focusLockExtracted,
     "Takeover.Overlay": overlayExtracted,
     "Takeover.Header": headerExtracted,
     "Takeover.Content": contentExtracted,
     children,
-  } = extractChildren(moreProps.children, ["Takeover.Overlay", "Takeover.Header", "Takeover.Content"]);
+  } = extractChildren(moreProps.children, [
+    "Takeover.Overlay",
+    "Takeover.Header",
+    "Takeover.Content",
+    "Takeover.FocusLock",
+  ]);
 
+  const focusLockProps = focusLockExtracted ? focusLockExtracted.props : {};
   const overlayProps = overlayExtracted ? overlayExtracted.props : {};
+
+  const focusLockOptions = {
+    as: styled.FocusLock,
+    ...(focusLockProps || {}),
+  };
 
   return (
     <Overlay
@@ -46,6 +59,7 @@ const Takeover = props => {
       onClose={onClose}
       onAfterOpen={onAfterOpen}
       onAfterClose={onAfterClose}
+      focusLockOptions={focusLockOptions}
       {...overlayProps}
     >
       {state => (
@@ -63,6 +77,7 @@ const Takeover = props => {
   );
 };
 
+Takeover.FocusLock = FocusLock;
 Takeover.propTypes = propTypes;
 Takeover.defaultProps = defaultProps;
 

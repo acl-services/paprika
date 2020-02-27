@@ -1,31 +1,11 @@
-# Takeover
+# Changelog
 
-Takeover component can toggle a full-screen view to help the user focus on complex UI tasks.
-More information at the design system site: https://design.wegalvanize.com/p/components/takeover
+All notable changes to this project will be documented in this file.
 
-## Components
+The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 
-You can use any of the following components to compose the Takeover:
+## [0.4.8] - 2020-02-27
 
-```jsx
-<Takeover.Header />
-<Takeover.Content />
-<Takeover.FocusTrap />
-```
+### Added
 
-## Basic example
-
-```jsx
-<Takeover isOpen={isOpen} onClose={toggle}>
-  <Takeover.Header>Header</Takeover.Header>
-  <Takeover.Content>My content</Takeover.Content>
-</Takeover>
-```
-
-## Props
-
-- `children` (required)
-- `isOpen` (required)
-- `onClose`
-- `onAfterOpen`
-- `onAfterClose`
+- Takeover.FocusLock component api to be consistent with Modal and Sidepanel [@tristanjasper](https://github.com/tristanjasper).
