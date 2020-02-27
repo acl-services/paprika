@@ -6,7 +6,7 @@ const propTypes = {
   children: PropTypes.node.isRequired,
   footer: PropTypes.node,
   groupOffsetY: PropTypes.number,
-  hasBoxShadow: PropTypes.bool,
+  hasShadow: PropTypes.bool,
   header: PropTypes.node,
   kind: PropTypes.oneOf(["default", "child"]),
   isCompact: PropTypes.bool,
@@ -24,7 +24,7 @@ const propTypes = {
 const defaultProps = {
   footer: null,
   groupOffsetY: 0,
-  hasBoxShadow: true,
+  hasShadow: true,
   header: null,
   kind: "default",
   isCompact: false,
@@ -42,7 +42,7 @@ function Dialog(props) {
     footer,
     groupOffsetY,
     onAnimationEnd,
-    hasBoxShadow,
+    hasShadow,
     header,
     kind,
     isCompact,
@@ -61,9 +61,10 @@ function Dialog(props) {
 
   const dialogMain = (
     <React.Fragment>
-      {header ? React.cloneElement(header, { ref: refHeader, isCompact, onClose }) : null}
+      {header ? React.cloneElement(header, { ref: refHeader, isCompact, onClose, hasShadow }) : null}
       <sc.DialogContent
         data-pka-anchor="sidepanel.content"
+        hasShadow={hasShadow}
         isCompact={isCompact}
         isOpen={isOpen}
         kind={kind}
@@ -81,7 +82,6 @@ function Dialog(props) {
     <sc.Dialog
       aria-modal={isInline ? null : "true"}
       groupOffsetY={groupOffsetY}
-      hasBoxShadow={hasBoxShadow}
       kind={kind}
       isCompact={isCompact}
       isInline={isInline}

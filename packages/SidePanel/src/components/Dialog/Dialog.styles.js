@@ -58,21 +58,14 @@ export const Dialog = styled.div`
   ${props => {
     const width = Number.isNaN(Number(props.width)) ? props.width : `${props.width}px`;
     const animation = props.isOpen ? slideIn(props.isSlideFromLeft) : slideOut(props.isSlideFromLeft);
-    const borderColor = `1px solid ${tokens.border.color}`;
 
     let childSidePanel = "";
     let border = "";
-    let borderLeft = "";
-    let borderRight = "";
     let boxShadow = "";
 
-    if (props.hasBoxShadow) {
+    if (props.hasShadow) {
       border = "0";
       boxShadow = `${tokens.modal.shadow}`;
-    } else if (props.isSlideFromLeft) {
-      borderRight = borderColor;
-    } else {
-      borderLeft = borderColor;
     }
 
     if (props.kind === "child") {
@@ -82,8 +75,6 @@ export const Dialog = styled.div`
     return css`
       animation: ${animation} 0.4s forwards;
       border: ${border};
-      border-left: ${borderLeft};
-      border-right: ${borderRight};
       box-shadow: ${boxShadow};
       top: ${props.offsetY}px;
       width: ${width};
@@ -100,11 +91,30 @@ export const DialogContent = styled.div`
   flex-grow: 1;
   padding: ${stylers.spacer(3)};
 
-  ${props => (props.isCompact || props.kind === "child" ? compactStyles : "")}
-
   &:focus {
     ${stylers.focusRing.subtle(true)};
   }
+
+  ${props => {
+    const borderColor = `1px solid ${tokens.border.color}`;
+
+    let borderLeft = "";
+    let borderRight = "";
+
+    if (!props.hasShadow) {
+      if (props.isSlideFromLeft) {
+        borderRight = borderColor;
+      } else {
+        borderLeft = borderColor;
+      }
+    }
+
+    return css`
+      border-left: ${borderLeft};
+      border-right: ${borderRight};
+      ${props.isCompact || props.kind === "child" ? compactStyles : ""};
+    `;
+  }}
 `;
 
 export const MainWrapper = styled.div`
