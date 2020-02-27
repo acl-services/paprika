@@ -48,7 +48,7 @@ const defaultProps = {
 export default function Option(props) {
   const [state, dispatch] = useListBox();
   const onChangeContext = React.useContext(OnChangeContext);
-  const { activeOption, listBoxHasFocus, isDisabled: isDisabledState } = state;
+  const { activeOption, listBoxHasFocus, isDisabled: isDisabledState, size } = state;
   const { index, groupId, label, ...moreProps } = props; // eslint-disable-line
 
   useIsSelectedOption({ index, props });
@@ -76,6 +76,7 @@ export default function Option(props) {
       isActive={activeOption === index}
       isDisabled={isDisabled}
       isSelected={isSelected}
+      size={size}
       key={index}
       onClick={handleClickOption({ props, state, dispatch, onChangeContext })}
       data-pka-anchor={isSelected ? "list-option--is-selected" : "list-option"}
