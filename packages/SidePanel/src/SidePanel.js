@@ -179,6 +179,7 @@ function SidePanel(props) {
         footer={footerExtracted}
         getPushContentElement={getPushContentElement}
         groupOffsetY={groupOffsetY}
+        hasBoxShadow={!!overlayExtracted}
         header={headerExtracted}
         isCompact={isCompact}
         isInline={isInline}

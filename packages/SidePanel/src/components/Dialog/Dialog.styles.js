@@ -43,12 +43,12 @@ const compactStyles = css`
 
 export const Dialog = styled.div`
   background: ${tokens.color.white};
-  box-shadow: ${props => (props.getPushContentRef === null ? tokens.modal.shadow : "none")};
   box-sizing: border-box;
   display: flex;
   flex-direction: column;
   height: 100%;
   overflow: auto;
+  right: 0;
   top: 0;
 
   &:focus {
@@ -58,8 +58,26 @@ export const Dialog = styled.div`
   ${props => {
     const width = Number.isNaN(Number(props.width)) ? props.width : `${props.width}px`;
     const animation = props.isOpen ? slideIn(props.isSlideFromLeft) : slideOut(props.isSlideFromLeft);
+    const borderColor = `1px solid ${tokens.border.color}`;
 
     let childSidePanel = "";
+    let border = "";
+    let borderLeft = "";
+    let borderRight = "";
+    let boxShadow = "";
+
+    if (props.hasBoxShadow) {
+      border = "0";
+      boxShadow = `${tokens.modal.shadow}`;
+    } else {
+      if (props.getPushContentRef !== null && !props.isSlideFromLeft) {
+        borderLeft = borderColor;
+      }
+
+      if (props.getPushContentRef === null && props.isSlideFromLeft) {
+        borderRight = borderColor;
+      }
+    }
 
     if (props.kind === "child") {
       childSidePanel = childPanel;
@@ -67,7 +85,10 @@ export const Dialog = styled.div`
 
     return css`
       animation: ${animation} 0.4s forwards;
-      right: 0;
+      border: ${border};
+      border-left: ${borderLeft};
+      border-right: ${borderRight};
+      box-shadow: ${boxShadow};
       top: ${props.offsetY}px;
       width: ${width};
       z-index: ${props.zIndex};
