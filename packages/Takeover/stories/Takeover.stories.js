@@ -118,3 +118,21 @@ storiesOf("Takeover", module)
       </Takeover.Content>
     </TakeoverStory>
   ));
+
+storiesOf("Takeover / screener", module)
+  .add("focus lock content input", () => (
+    <TakeoverStory>
+      <Takeover.Content>
+        <p>With input auto focus</p>
+        <input type="text" data-autofocus />
+      </Takeover.Content>
+    </TakeoverStory>
+  ))
+  .add("focus lock disabled", () => (
+    <TakeoverStory>
+      <Takeover.FocusLock autoFocus={false} />
+      <Takeover.Content>
+        <p>autofocus disabled</p>
+      </Takeover.Content>
+    </TakeoverStory>
+  ));
