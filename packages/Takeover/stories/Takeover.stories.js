@@ -52,13 +52,7 @@ storiesOf("Takeover", module)
       </Takeover.Content>
     </TakeoverStory>
   ))
-  .add("with autofocus on input", () => (
-    <TakeoverStory>
-      <Takeover.Content>
-        <input type="text" data-autofocus />
-      </Takeover.Content>
-    </TakeoverStory>
-  ))
+
   .add("with full-width content", () => (
     <TakeoverStory>
       <DemoFullWidthContent />
@@ -106,6 +100,39 @@ storiesOf("Takeover", module)
           </Popover.Content>
           <Popover.Tip />
         </Popover>
+      </Takeover.Content>
+    </TakeoverStory>
+  ))
+  .add("with autofocus disabled", () => (
+    <TakeoverStory>
+      <Takeover.FocusLock autoFocus={false} />
+      <Takeover.Content>
+        <input type="text" data-autofocus />
+      </Takeover.Content>
+    </TakeoverStory>
+  ))
+  .add("with autofocus on input", () => (
+    <TakeoverStory>
+      <Takeover.Content>
+        <input type="text" data-autofocus />
+      </Takeover.Content>
+    </TakeoverStory>
+  ));
+
+storiesOf("Takeover / screener", module)
+  .add("focus lock content input", () => (
+    <TakeoverStory>
+      <Takeover.Content>
+        <p>With input auto focus</p>
+        <input type="text" data-autofocus />
+      </Takeover.Content>
+    </TakeoverStory>
+  ))
+  .add("focus lock disabled", () => (
+    <TakeoverStory>
+      <Takeover.FocusLock autoFocus={false} />
+      <Takeover.Content>
+        <p>autofocus disabled</p>
       </Takeover.Content>
     </TakeoverStory>
   ));
