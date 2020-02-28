@@ -20,6 +20,7 @@ showcase.story = {
       isToolshown: true,
       showPanel: true,
     },
+    viewMode: "story",
   },
 };
 
@@ -31,5 +32,6 @@ variations.story = {
       isToolshown: true,
       showPanel: false,
     },
+    viewMode: "story",
   },
 };

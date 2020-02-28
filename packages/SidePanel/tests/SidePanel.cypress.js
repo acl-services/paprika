@@ -1,6 +1,6 @@
 describe("<SidePanel />", () => {
   it("should convert <SidePanel offset={} /> into sticky mode", () => {
-    cy.visitStorybook("sidepanel-cypress--sidepanel-default-sticky");
+    cy.visitStorybook("sidepanel-automation-tests--side-panel-footer-sticky");
     cy.getByTestId("purple-navigator").should("be.visible");
     cy.getByTestId("sidepanel").then($element => {
       expect($element.css("top")).to.be.equal("40px");
@@ -15,7 +15,7 @@ describe("<SidePanel />", () => {
   });
 
   it("should include footer in sticky mode", () => {
-    cy.visitStorybook("sidepanel-cypress--sidepanel-footer-sticky");
+    cy.visitStorybook("sidepanel-automation-tests--side-panel-footer-sticky");
     cy.getByTestId("sidepanel.footer").then($element => {
       expect($element.css("bottom")).to.be.equal("0px");
     });
@@ -68,7 +68,7 @@ describe("<SidePanel />", () => {
 
   let count = 1;
   it("should call onAfterOpen and onAfterClose", () => {
-    cy.visitStorybook("sidepanel-cypress--sidepanel-onafteropen-onafterclose").then(() => {
+    cy.visitStorybook("sidepanel-automation-tests--side-panel-on-after").then(() => {
       cy.on("window:alert", str => {
         if (count === 1) {
           expect(str).to.equal("after open");
