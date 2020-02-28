@@ -71,7 +71,7 @@
       }
     },
     {
-      "files": ["packages/**/*.spec.js"],
+      "files": ["packages/**/*.spec.js", "lighthouse/*.spec.js"],
       "rules": { "import/no-extraneous-dependencies": "off" },
       "globals": {
         "given": true
