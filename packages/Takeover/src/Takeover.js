@@ -59,8 +59,8 @@ const Takeover = props => {
       onClose={onClose}
       onAfterOpen={onAfterOpen}
       onAfterClose={onAfterClose}
-      focusLockOptions={focusLockOptions}
       {...overlayProps}
+      focusLockOptions={focusLockOptions}
     >
       {state => (
         <styled.Wrapper state={state} role="dialog" data-pka-anchor="takeover">
