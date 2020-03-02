@@ -8,8 +8,8 @@ import * as sc from "./Header.styles";
 
 const propTypes = {
   children: PropTypes.node.isRequired,
+  getPushContentElement: PropTypes.func,
   hasCloseButton: PropTypes.bool,
-  hasShadow: PropTypes.bool,
   isCompact: PropTypes.bool,
   kind: PropTypes.oneOf([Button.Kinds.DEFAULT, Button.Kinds.PRIMARY]),
   level: PropTypes.oneOf([1, 2, 3, 4, 5, 6]),
@@ -18,7 +18,7 @@ const propTypes = {
 
 const defaultProps = {
   hasCloseButton: true,
-  hasShadow: true,
+  getPushContentElement: () => {},
   kind: Button.Kinds.DEFAULT,
   level: 2,
   isCompact: false,
@@ -36,7 +36,7 @@ function darkBackgroundProps(kind) {
 const Header = React.forwardRef((props, ref) => {
   const {
     hasCloseButton,
-    hasShadow,
+    getPushContentElement,
     isCompact,
     kind,
     level,
@@ -48,10 +48,10 @@ const Header = React.forwardRef((props, ref) => {
   return (
     <sc.Header
       data-pka-anchor="sidepanel.header"
+      getPushContentElement={getPushContentElement}
       ref={ref}
       kind={kind}
       isCompact={isCompact}
-      hasShadow={hasShadow}
       {...moreProps}
     >
       <Heading tabIndex="-1" level={level} displayLevel={isCompact ? 4 : 3}>
