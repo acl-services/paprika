@@ -8,7 +8,7 @@ You can use any of the following components to compose the SidePanel:
 <SidePanel.Header />
 <SidePanel.Footer />
 <SidePanel.Overlay />
-<SidePanel.FocusTrap />
+<SidePanel.FocusLock />
 <SidePanel.Trigger />
 ```
 

@@ -71,8 +71,8 @@ const Modal = props => {
       onClose={onClose}
       onAfterOpen={onAfterOpen}
       onAfterClose={onAfterClose}
-      {...overlayProps}
       focusLockOptions={focusLockOptions}
+      {...overlayProps}
     >
       {state => (
         <styled.Wrapper size={size} {...moreProps}>
