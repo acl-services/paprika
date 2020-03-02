@@ -1,6 +1,6 @@
 {
   "name": "@paprika/modal",
-  "version": "0.2.7",
+  "version": "0.2.8",
   "description": "Modal component",
   "author": "@paprika",
   "main": "lib/index.js",
