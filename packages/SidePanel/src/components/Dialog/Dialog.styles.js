@@ -58,14 +58,9 @@ export const Dialog = styled.div`
   ${props => {
     const width = Number.isNaN(Number(props.width)) ? props.width : `${props.width}px`;
     const animation = props.isOpen ? slideIn(props.isSlideFromLeft) : slideOut(props.isSlideFromLeft);
-    const border = "0";
 
     let childSidePanel = "";
-    let boxShadow = `${tokens.modal.shadow}`;
-
-    if (props.getPushContentElement !== null) {
-      boxShadow = "0";
-    }
+    const boxShadow = props.hasPushedElement === null ? tokens.modal.shadow : "none";
 
     if (props.kind === "child") {
       childSidePanel = childPanel;
@@ -73,7 +68,7 @@ export const Dialog = styled.div`
 
     return css`
       animation: ${animation} 0.4s forwards;
-      border: ${border};
+      border: 0;
       box-shadow: ${boxShadow};
       top: ${props.offsetY}px;
       width: ${width};
@@ -100,7 +95,7 @@ export const DialogContent = styled.div`
     let borderLeft = "";
     let borderRight = "";
 
-    if (props.getPushContentElement !== null) {
+    if (props.hasPushedElement !== null) {
       if (props.isSlideFromLeft) {
         borderRight = borderColor;
       } else {

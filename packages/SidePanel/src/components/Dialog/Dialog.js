@@ -64,7 +64,7 @@ function Dialog(props) {
       {header ? React.cloneElement(header, { ref: refHeader, isCompact, onClose, getPushContentElement }) : null}
       <sc.DialogContent
         data-pka-anchor="sidepanel.content"
-        getPushContentElement={getPushContentElement}
+        hasPushedElement={getPushContentElement}
         isCompact={isCompact}
         isOpen={isOpen}
         kind={kind}
@@ -81,7 +81,7 @@ function Dialog(props) {
   return (
     <sc.Dialog
       aria-modal={isInline ? null : "true"}
-      getPushContentElement={getPushContentElement}
+      hasPushedElement={getPushContentElement}
       groupOffsetY={groupOffsetY}
       kind={kind}
       isCompact={isCompact}
