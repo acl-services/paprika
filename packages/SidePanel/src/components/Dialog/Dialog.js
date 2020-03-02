@@ -5,6 +5,7 @@ import * as sc from "./Dialog.styles";
 const propTypes = {
   children: PropTypes.node.isRequired,
   footer: PropTypes.node,
+  getPushContentElement: PropTypes.func,
   groupOffsetY: PropTypes.number,
   header: PropTypes.node,
   kind: PropTypes.oneOf(["default", "child"]),
@@ -22,6 +23,7 @@ const propTypes = {
 
 const defaultProps = {
   footer: null,
+  getPushContentElement: () => {},
   groupOffsetY: 0,
   header: null,
   kind: "default",
@@ -38,6 +40,7 @@ function Dialog(props) {
   const {
     children,
     footer,
+    getPushContentElement,
     groupOffsetY,
     onAnimationEnd,
     header,
@@ -58,9 +61,10 @@ function Dialog(props) {
 
   const dialogMain = (
     <React.Fragment>
-      {header ? React.cloneElement(header, { ref: refHeader, isCompact, onClose }) : null}
+      {header ? React.cloneElement(header, { ref: refHeader, isCompact, onClose, getPushContentElement }) : null}
       <sc.DialogContent
         data-pka-anchor="sidepanel.content"
+        hasPushedElement={!!getPushContentElement}
         isCompact={isCompact}
         isOpen={isOpen}
         kind={kind}
@@ -77,6 +81,7 @@ function Dialog(props) {
   return (
     <sc.Dialog
       aria-modal={isInline ? null : "true"}
+      hasPushedElement={!!getPushContentElement}
       groupOffsetY={groupOffsetY}
       kind={kind}
       isCompact={isCompact}

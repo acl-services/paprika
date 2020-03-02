@@ -43,12 +43,12 @@ const compactStyles = css`
 
 export const Dialog = styled.div`
   background: ${tokens.color.white};
-  box-shadow: ${props => (props.getPushContentRef === null ? tokens.modal.shadow : "none")};
   box-sizing: border-box;
   display: flex;
   flex-direction: column;
   height: 100%;
   overflow: auto;
+  right: 0;
   top: 0;
 
   &:focus {
@@ -60,6 +60,7 @@ export const Dialog = styled.div`
     const animation = props.isOpen ? slideIn(props.isSlideFromLeft) : slideOut(props.isSlideFromLeft);
 
     let childSidePanel = "";
+    const boxShadow = props.hasPushedElement ? "none" : tokens.modal.shadow;
 
     if (props.kind === "child") {
       childSidePanel = childPanel;
@@ -67,7 +68,8 @@ export const Dialog = styled.div`
 
     return css`
       animation: ${animation} 0.4s forwards;
-      right: 0;
+      border: 0;
+      box-shadow: ${boxShadow};
       top: ${props.offsetY}px;
       width: ${width};
       z-index: ${props.zIndex};
@@ -83,11 +85,30 @@ export const DialogContent = styled.div`
   flex-grow: 1;
   padding: ${stylers.spacer(3)};
 
-  ${props => (props.isCompact || props.kind === "child" ? compactStyles : "")}
-
   &:focus {
     ${stylers.focusRing.subtle(true)};
   }
+
+  ${props => {
+    const borderColor = `1px solid ${tokens.border.color}`;
+
+    let borderLeft = "";
+    let borderRight = "";
+
+    if (props.hasPushedElement) {
+      if (props.isSlideFromLeft) {
+        borderRight = borderColor;
+      } else {
+        borderLeft = borderColor;
+      }
+    }
+
+    return css`
+      border-left: ${borderLeft};
+      border-right: ${borderRight};
+      ${props.isCompact || props.kind === "child" ? compactStyles : ""};
+    `;
+  }}
 `;
 
 export const MainWrapper = styled.div`
