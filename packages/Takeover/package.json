@@ -1,6 +1,6 @@
 {
   "name": "@paprika/takeover",
-  "version": "0.4.7",
+  "version": "0.4.8",
   "description": "Takeover component",
   "author": "@paprika",
   "main": "lib/index.js",
