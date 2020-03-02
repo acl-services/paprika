@@ -44,7 +44,7 @@ export const Header = styled.div`
     let borderLeft = "";
     let borderRight = "";
 
-    if (props.getPushContentElement !== null && !(props.kind === "primary")) {
+    if (props.hasPushedElement && !(props.kind === "primary")) {
       if (props.isSlideFromLeft) {
         borderRight = borderColor;
       } else {

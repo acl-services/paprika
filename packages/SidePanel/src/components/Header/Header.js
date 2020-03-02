@@ -48,7 +48,7 @@ const Header = React.forwardRef((props, ref) => {
   return (
     <sc.Header
       data-pka-anchor="sidepanel.header"
-      getPushContentElement={getPushContentElement}
+      hasPushedElement={!!getPushContentElement}
       ref={ref}
       kind={kind}
       isCompact={isCompact}

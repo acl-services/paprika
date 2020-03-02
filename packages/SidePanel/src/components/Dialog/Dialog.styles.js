@@ -60,7 +60,7 @@ export const Dialog = styled.div`
     const animation = props.isOpen ? slideIn(props.isSlideFromLeft) : slideOut(props.isSlideFromLeft);
 
     let childSidePanel = "";
-    const boxShadow = props.hasPushedElement === null ? tokens.modal.shadow : "none";
+    const boxShadow = props.hasPushedElement ? "none" : tokens.modal.shadow;
 
     if (props.kind === "child") {
       childSidePanel = childPanel;
@@ -95,7 +95,7 @@ export const DialogContent = styled.div`
     let borderLeft = "";
     let borderRight = "";
 
-    if (props.hasPushedElement !== null) {
+    if (props.hasPushedElement) {
       if (props.isSlideFromLeft) {
         borderRight = borderColor;
       } else {
