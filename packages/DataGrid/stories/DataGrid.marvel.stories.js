@@ -163,13 +163,13 @@ export function App() {
             <DataGrid.ColumnDefinition width={180} header="Modified" cell="modified" />
             <DataGrid.ColumnDefinition width={120} header="URI" cell="resourceURI" />
             <DataGrid.ColumnDefinition width={220} header="Series" cell={renderSeries} />
-            <DataGrid.WhenScrollBarReachedBottom>
+            <DataGrid.Basement>
               <div css="text-align: center; padding: 16px;">
                 <Button isPending={isPending} onClick={handleLoadMore}>
                   Load more
                 </Button>
               </div>
-            </DataGrid.WhenScrollBarReachedBottom>
+            </DataGrid.Basement>
           </DataGrid>
           <a href="http://marvel.com" style={{ fontSize: "12px", color: "#777" }}>
             Data provided by Marvel. © 2019 MARVEL

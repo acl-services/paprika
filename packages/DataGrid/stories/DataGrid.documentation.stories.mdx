@@ -335,15 +335,13 @@ function renderAlertColumn() {
 
 There are two patterns to load more data shipped with this component, the traditional load more button and the infinity scrolling, we will discussed the former in the next section and the `Load more` in this one.
 
-As part of the DataGrid component you can make use of the `<DataGrid.WhenScrollBarReachedBottom>` subcomponent which is in charge of hiding or showing its content depending if the scrollbar reaching the bottom or not.
+As part of the DataGrid component you can make use of the `<DataGrid.Basement>` subcomponent which is in charge of hiding or showing its content depending if the scrollbar reaching the bottom or not.
 
 ```js
 <DataGrid data={data}>
   <DataGrid.ColumnDefinition header="..." cell="..." />
   <DataGrid.ColumnDefinition header="..." cell="..." />
-  <DataGrid.WhenScrollBarReachedBottom>
-    {/* your content or load more button goes here */}
-  </DataGrid.WhenScrollBarReachedBottom>
+  <DataGrid.Basement>{/* your content or load more button goes here */}</DataGrid.Basement>
 </DataGrid>
 ```
 

@@ -63,12 +63,10 @@ const data = [
   { myColum1: 3, myColum2: "hola" }, // row 3
 ];
 
-<DataGrid
-  data={data}
->
+<DataGrid data={data}>
   <DataGrid.ColumnDefinition header="Column 1" cell="myColum1" />
   <DataGrid.ColumnDefinition header="Column 2" cell="myColum2" />
-</DataGrid>
+</DataGrid>;
 ```
 
 ### Result
@@ -247,6 +245,7 @@ To use these custom columns:
 </Toast>
 
 ### Result
+
 <DataGrid data={fixtures(2)} width={680}>
   {React.useCallback(
     (() => {
@@ -271,18 +270,17 @@ To use these custom columns:
 ## Load more
 
 There are two patterns to load more data shipped with this component.
+
 1. Using a load more button
 2. Infinite scrolling
 
-Use the `<DataGrid.WhenScrollBarReachedBottom>` component which lets you know if the scrollbar reaches the bottom of the table viewport.
+Use the `<DataGrid.Basement>` component which lets you know if the scrollbar reaches the bottom of the table viewport.
 
 ```js
 <DataGrid data={data}>
   <DataGrid.ColumnDefinition header="..." cell="..." />
   <DataGrid.ColumnDefinition header="..." cell="..." />
-  <DataGrid.WhenScrollBarReachedBottom>
-    {/* your content or load more button goes here */}
-  </DataGrid.WhenScrollBarReachedBottom>
+  <DataGrid.Basement>{/* your content or load more button goes here */}</DataGrid.Basement>
 </DataGrid>
 ```
 
@@ -291,11 +289,13 @@ Use the `<DataGrid.WhenScrollBarReachedBottom>` component which lets you know if
 <Marvel />
 
 ### Infinity Scroll
+
 Use the `<DataGrid.InfinityScroll />` component to accomplish the infinity scroll pattern.
 
 Provide a callback funtion to the `onReach` prop and the number of rows to offset to `rowsOffset` prop.
 
 The callback will be executed right before the scroll hits the rows offset number.
+
 ```js
 <DataGrid data={data}>
   <DataGrid.ColumnDefinition header="..." cell="..." />
@@ -358,7 +358,7 @@ This is a complex question to answer.
 
 _Short answer:_ We don't know.
 
-_Long answer:_ 
+_Long answer:_
 
 It will depend on the following factors:
 
