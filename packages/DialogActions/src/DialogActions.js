@@ -1,9 +1,8 @@
 import React from "react";
 import PropTypes from "prop-types";
-import L10n from "@paprika/l10n";
 import useI18n from "@paprika/l10n/lib/useI18n";
-import Button from "../../Button/src/Button";
-import ButtonStyles from "./DialogActions.styles";
+import Button from "@paprika/button";
+import * as sc from "./DialogActions.styles";
 
 const propTypes = {
   /** If the primary button is a destructive action. */
@@ -65,7 +64,6 @@ function DialogActions(props) {
         size="large"
         kind="minor"
         onClick={onCancel}
-        css={ButtonStyles}
       >
         {labelCancel === "" ? I18n.t("actions.cancel") : labelCancel}
       </Button>
@@ -89,26 +87,18 @@ function DialogActions(props) {
   function renderDeclineButton() {
     if (!onDecline) return null;
     return (
-      <Button
-        data-pka-anchor="dialog-actions__decline"
-        isDisabled={isDisabled}
-        onClick={onDecline}
-        size="large"
-        css={ButtonStyles}
-      >
+      <Button data-pka-anchor="dialog-actions__decline" isDisabled={isDisabled} onClick={onDecline} size="large">
         {labelDecline === "" ? I18n.t("actions.decline") : labelDecline}
       </Button>
     );
   }
 
   return (
-    <L10n>
-      <div {...moreProps}>
-        {renderConfirmButton()}
-        {renderDeclineButton()}
-        {renderCancelButton()}
-      </div>
-    </L10n>
+    <sc.DialogActions {...moreProps}>
+      {renderConfirmButton()}
+      {renderDeclineButton()}
+      {renderCancelButton()}
+    </sc.DialogActions>
   );
 }
 
