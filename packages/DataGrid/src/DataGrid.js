@@ -287,7 +287,7 @@ const DataGrid = React.forwardRef((props, ref) => {
     refScrollGrid.current = refContainer.current.querySelector(`.grid-${gridId}`);
   }, [gridId]);
 
-  React.useLayouEffect(() => {
+  React.useLayoutEffect(() => {
     const scrollContainer =
       refContainer.current && refContainer.current.querySelector(`.grid-${gridId} [role="row"]`).parentElement;
 
