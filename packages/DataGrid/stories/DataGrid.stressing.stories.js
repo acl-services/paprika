@@ -90,7 +90,7 @@ export function App(props) {
                 return <DataGrid.ColumnDefinition key={key} header={key} cell={key} />;
               })
             : null}
-          <DataGrid.InfiniteScroll rowsOffset={rowsOffset} onReached={handleInfiniteScrollReached} />
+          <DataGrid.InfiniteScroll rowsOffset={rowsOffset} onReachedOffset={handleInfiniteScrollReached} />
         </DataGrid>
       )}
     </Sbook.Story>
