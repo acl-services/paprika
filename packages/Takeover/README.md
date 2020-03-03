@@ -10,7 +10,7 @@ You can use any of the following components to compose the Takeover:
 ```jsx
 <Takeover.Header />
 <Takeover.Content />
-<Takeover.FocusTrap />
+<Takeover.FocusLock />
 ```
 
 ## Basic example

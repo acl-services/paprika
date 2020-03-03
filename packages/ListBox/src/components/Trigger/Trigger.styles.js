@@ -1,10 +1,12 @@
 import styled, { css } from "styled-components";
 import Button from "@paprika/button";
 import stylers from "@paprika/stylers";
+import { ShirtSizes } from "@paprika/helpers/lib/customPropTypes";
 import { visuallyHidden } from "@paprika/stylers/lib/includes";
 import tokens from "@paprika/tokens";
 
 const triggerStyles = `
+  ${stylers.truncateText}
   align-items: center;
   background-color: #ffffff;
   border-radius: 3px;
@@ -12,10 +14,7 @@ const triggerStyles = `
   box-sizing: border-box;
   color: #3f3d3c;
   display: block;
-  font-size: 14px;
-  height: ${stylers.spacer(4)};
-  line-height: ${stylers.spacer(4)};
-  padding: 0 ${tokens.space};
+  padding: 0 50px 0 ${tokens.space};
   position: relative;
   text-align: left;
   transition: border-color 0.2s;
@@ -27,6 +26,24 @@ const triggerStyles = `
   }
 `;
 
+const triggerSizes = {
+  [ShirtSizes.SMALL]: `
+    ${stylers.fontSize(-2)}
+    height: ${stylers.spacer(3)};
+    line-height: ${stylers.spacer(3)};
+  `,
+  [ShirtSizes.MEDIUM]: `
+    ${stylers.fontSize(-1)}
+    height: ${stylers.spacer(4)};
+    line-height: ${stylers.spacer(4)};
+  `,
+  [ShirtSizes.LARGE]: `
+    ${stylers.fontSize()}
+    height: ${stylers.spacer(5)};
+    line-height: ${stylers.spacer(5)};
+  `,
+};
+
 const triggerStylesProps = () => props => {
   if (props.isHidden) {
     return css`
@@ -35,16 +52,19 @@ const triggerStylesProps = () => props => {
   }
 
   const isDisabled = props.isDisabled ? `color: ${tokens.color.blackLighten60};` : "";
+  const sizeStyles = triggerSizes[props.size];
   return props.isInline
     ? `
       ${triggerStyles}
       border-bottom-left-radius: 0;
       border-bottom-right-radius: 0;
+      ${sizeStyles}
       ${isDisabled}
     `
     : `
       & > [data-pka-anchor='listbox-trigger'] {
         ${triggerStyles}
+        ${sizeStyles}
         ${isDisabled}
       }
     `;
