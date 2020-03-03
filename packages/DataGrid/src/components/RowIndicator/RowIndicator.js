@@ -3,6 +3,8 @@ import PropTypes from "prop-types";
 import CheckBox from "@paprika/checkbox";
 import * as sc from "./RowIndicator.styles";
 
+const _UNCHECKED_ = "unchecked";
+
 const propTypes = {
   hasIndexIndicator: PropTypes.bool,
   hasNumber: PropTypes.bool,
@@ -23,12 +25,12 @@ const defaultProps = {
   rowIndex: null,
   onCheck: () => {},
   isChecked: () => {
-    return "unchecked";
+    return _UNCHECKED_;
   },
 };
 
 function isValueNotUnchecked(value) {
-  return value !== "unchecked";
+  return value !== _UNCHECKED_;
 }
 
 export default function RowIndicator(props) {
@@ -40,11 +42,11 @@ export default function RowIndicator(props) {
   }
 
   function handleMouseOver() {
-    setIsActive(() => true);
+    setIsActive(true);
   }
 
   function handleMouseLeave() {
-    setIsActive(() => false);
+    setIsActive(false);
   }
 
   const indicator = hasNumber ? (
@@ -64,13 +66,7 @@ export default function RowIndicator(props) {
     >
       {isActive || isActiveCell || isActiveRow || isValueNotUnchecked(isChecked({ rowIndex })) || !hasIndexIndicator ? (
         <sc.Checkbox>
-          <CheckBox
-            tabIndex="-1"
-            size="small"
-            checkedState={isChecked({ rowIndex })}
-            onClick={handleCheck}
-            onChange={() => {}}
-          />
+          <CheckBox tabIndex="-1" size="small" checkedState={isChecked({ rowIndex })} onChange={handleCheck} />
         </sc.Checkbox>
       ) : (
         indicator

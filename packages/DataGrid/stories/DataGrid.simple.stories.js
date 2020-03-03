@@ -35,17 +35,15 @@ const data = [
 
 export function App() {
   return (
-    <React.Fragment>
-      <Sbook.Story>
-        <DataGrid data={data}>
-          <DataGrid.ColumnDefinition header="Name" cell="name" />
-          <DataGrid.ColumnDefinition header="Goals" cell="goals" />
-          <DataGrid.ColumnDefinition header="Status" cell="status" />
-          <DataGrid.ColumnDefinition header="Status 2" cell="status" />
-          <DataGrid.ColumnDefinition header="Status 3" cell="status" />
-        </DataGrid>
-      </Sbook.Story>
-    </React.Fragment>
+    <Sbook.Story>
+      <DataGrid data={data}>
+        <DataGrid.ColumnDefinition header="Name" cell="name" />
+        <DataGrid.ColumnDefinition header="Goals" cell="goals" />
+        <DataGrid.ColumnDefinition header="Status" cell="status" />
+        <DataGrid.ColumnDefinition header="Link" cell="link" />
+        <DataGrid.ColumnDefinition header="Description" cell="description" />
+      </DataGrid>
+    </Sbook.Story>
   );
 }
 

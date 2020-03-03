@@ -181,13 +181,6 @@ export const RowCount = styled.div`
   font-size: ${stylers.fontSize(-2)};
 `;
 
-export const WhileOnScrolling = styled.div`
-  background: ${tokens.color.cremeLighten5};
-  border-radius: ${tokens.border.radius};
-  height: 10px;
-  width: 100%;
-`;
-
 export const Blocker = styled.div`
   align-items: center;
   background: transparent;
@@ -210,7 +203,7 @@ export const Blocker = styled.div`
 export const Footer = styled.div`
   border: 1px solid ${tokens.border.color};
   box-sizing: border-box;
-  font-size: 12px;
+  font-size: 12px; /* custom value */
   padding: ${tokens.spaceSm};
   ${({ $width }) => {
     return `
