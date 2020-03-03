@@ -10,6 +10,7 @@ You can use any of the following components to compose the Modal:
 <Modal.Header />
 <Modal.Content />
 <Modal.Footer />
+<Modal.FocusLock />
 <Modal.Overlay />
 ```
 
