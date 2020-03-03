@@ -2,12 +2,12 @@ import PropTypes from "prop-types";
 
 const propTypes = {
   rowsOffset: PropTypes.number,
-  onReached: PropTypes.func,
+  onReachedOffset: PropTypes.func,
 };
 
 const defaultProps = {
   rowsOffset: 25,
-  onReached: () => {},
+  onReachedOffset: () => {},
 };
 
 export default function InfiniteScroll() {
