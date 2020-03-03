@@ -1,32 +1,29 @@
 import React from "react";
 
-function SvgSort({ title, titleId, ...props }) {
-  return (
-    <svg
-      width="1em"
-      height="1em"
-      viewBox="0 0 14 14"
-      fill="none"
-      css={`
-        color: ${props.color};
-        width: ${props.size};
-        height: ${props.size};
-        vertical-align: text-top;
-      `}
-      focusable={false}
-      aria-labelledby={titleId}
-      {...props}
-    >
-      {title ? <title id={titleId}>{title}</title> : null}
-      <path
-        fillRule="evenodd"
-        clipRule="evenodd"
-        d="M3.102.605a.736.736 0 01.565-.272c.215 0 .42.1.564.272l2.67 3.2a.445.445 0 01.066.448.382.382 0 01-.348.247H.715a.382.382 0 01-.35-.247.445.445 0 01.067-.448l2.67-3.2zM10.898 13.395a.736.736 0 01-.565.272.736.736 0 01-.564-.272l-2.67-3.2a.445.445 0 01-.066-.448.382.382 0 01.348-.247h5.904c.151 0 .288.097.35.247a.445.445 0 01-.067.448l-2.67 3.2z"
-        fill="#3F3D3C"
-      />
-      <path fill="#3F3D3C" d="M9.5 2.833h1.667V9.5H9.5zM2.833 4.5H4.5v6.667H2.833z" />
-    </svg>
-  );
-}
+const SvgSort = ({ title, ...props }) => (
+  <svg
+    width="1em"
+    height="1em"
+    viewBox="0 0 24 24"
+    fill="none"
+    css={`
+      color: ${props.color};
+      width: ${props.size};
+      height: ${props.size};
+      vertical-align: text-top;
+    `}
+    data-pka-anchor="icon"
+    focusable={false}
+    {...props}
+  >
+    {title ? <title>{title}</title> : null}
+    <path
+      fillRule="evenodd"
+      clipRule="evenodd"
+      d="M17 7h-2v8h-2.542a.458.458 0 00-.419.297.534.534 0 00.08.537l3.204 3.84c.173.207.42.326.677.326a.883.883 0 00.677-.326l3.204-3.84a.534.534 0 00.08-.537.458.458 0 00-.419-.297H17V7zM8 4a.883.883 0 00-.677.326l-3.204 3.84a.534.534 0 00-.08.537c.073.18.238.297.419.297H7v8h2V9h2.542a.458.458 0 00.419-.297.534.534 0 00-.08-.537l-3.204-3.84A.883.883 0 008 4z"
+      fill="#3F3D3C"
+    />
+  </svg>
+);
 
 export default SvgSort;
