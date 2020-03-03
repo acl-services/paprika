@@ -203,7 +203,7 @@ export const Blocker = styled.div`
 export const Footer = styled.div`
   border: 1px solid ${tokens.border.color};
   box-sizing: border-box;
-  font-size: 12px;
+  font-size: 12px; /* custom value */
   padding: ${tokens.spaceSm};
   ${({ $width }) => {
     return `
