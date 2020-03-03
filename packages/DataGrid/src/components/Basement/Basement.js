@@ -1,10 +1,10 @@
 import React from "react";
 import PropTypes from "prop-types";
 
-export default function WhenScrollBarReachedBottom(props) {
+export default function Basement(props) {
   return props.children;
 }
-WhenScrollBarReachedBottom.displayName = "DataGrid.WhenScrollBarReachedBottom";
+Basement.displayName = "DataGrid.Basement";
 
 const propTypes = {
   children: PropTypes.node.isRequired,

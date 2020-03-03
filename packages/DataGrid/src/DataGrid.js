@@ -8,7 +8,7 @@ import Cell from "./components/Cell";
 import useGridEventHandler from "./hooks/useGridEventHandler";
 import ColumnDefinition from "./components/ColumnDefinition";
 import * as sc from "./DataGrid.styles";
-import WhenScrollBarReachedBottom, { End } from "./components/WhenScrollBarReachedBottom";
+import Basement, { End } from "./components/Basement";
 import InfiniteScroll from "./components/InfiniteScroll";
 
 const propTypes = {
@@ -93,18 +93,14 @@ const DataGrid = React.forwardRef((props, ref) => {
 
   const rowCount = data.length;
 
-  const { ColumnDefinitions, WhenScrollBarReachedBottom, InfiniteScroll } = React.useMemo(() => {
+  const { ColumnDefinitions, Basement, InfiniteScroll } = React.useMemo(() => {
     const {
       "DataGrid.ColumnDefinition": ColumnDefinitions,
-      "DataGrid.WhenScrollBarReachedBottom": WhenScrollBarReachedBottom,
+      "DataGrid.Basement": Basement,
       "DataGrid.InfiniteScroll": InfiniteScroll,
-    } = extractChildren(children, [
-      "DataGrid.ColumnDefinition",
-      "DataGrid.WhenScrollBarReachedBottom",
-      "DataGrid.InfiniteScroll",
-    ]);
+    } = extractChildren(children, ["DataGrid.ColumnDefinition", "DataGrid.Basement", "DataGrid.InfiniteScroll"]);
 
-    return { ColumnDefinitions, WhenScrollBarReachedBottom, InfiniteScroll };
+    return { ColumnDefinitions, Basement, InfiniteScroll };
   }, [children]);
 
   const columnCount = ColumnDefinitions.length;
@@ -601,9 +597,9 @@ const DataGrid = React.forwardRef((props, ref) => {
           Rows:{rowCount} Columns:{columnCount}
         </sc.RowCount>
       </sc.Footer>
-      {WhenScrollBarReachedBottom ? (
+      {Basement ? (
         <End width={gridWidth} ref={refEnd}>
-          {WhenScrollBarReachedBottom}
+          {Basement}
         </End>
       ) : null}
     </>
@@ -614,6 +610,6 @@ DataGrid.ColumnDefinition = ColumnDefinition;
 DataGrid.defaultProps = defaultProps;
 DataGrid.InfiniteScroll = InfiniteScroll;
 DataGrid.propTypes = propTypes;
-DataGrid.WhenScrollBarReachedBottom = WhenScrollBarReachedBottom;
+DataGrid.Basement = Basement;
 
 export default DataGrid;
