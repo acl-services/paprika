@@ -63,7 +63,7 @@ export function App(props) {
     return "unchecked";
   }
 
-  function handleInfinityScrollReached({ nextPage }) {
+  function handleInfiniteScrollReached({ nextPage }) {
     if (!refPage.current.includes(nextPage)) {
       refPage.current = refPage.current.concat(nextPage);
       setPage(() => nextPage);
@@ -90,7 +90,7 @@ export function App(props) {
                 return <DataGrid.ColumnDefinition key={key} header={key} cell={key} />;
               })
             : null}
-          <DataGrid.InfinityScroll rowsOffset={rowsOffset} onReached={handleInfinityScrollReached} />
+          <DataGrid.InfiniteScroll rowsOffset={rowsOffset} onReached={handleInfiniteScrollReached} />
         </DataGrid>
       )}
     </Sbook.Story>
