@@ -156,7 +156,7 @@ const DataGrid = React.forwardRef((props, ref) => {
       if (refPrevActiveRow.current !== null) {
         const rowIndex = refPrevActiveRow.current;
         const key = `0${rowIndex}`;
-        if (refsCell.current.keys[key]) refsCell.current.keys[key].deemphasizeOnrow(rowIndex);
+        if (refsCell.current.keys[key]) refsCell.current.keys[key].deemphasizeRow(rowIndex);
       }
 
       refActiveRow.current = rowIndex;
@@ -164,7 +164,7 @@ const DataGrid = React.forwardRef((props, ref) => {
 
       // first column nth row only
       const key = `0${rowIndex}`;
-      if (refsCell.current.keys[key]) refsCell.current.keys[key].highlightOnRow(rowIndex);
+      if (refsCell.current.keys[key]) refsCell.current.keys[key].highlightRow(rowIndex);
     }
   };
 
@@ -174,31 +174,31 @@ const DataGrid = React.forwardRef((props, ref) => {
 
       // first column nth row only
       const key = `0${rowIndex}`;
-      if (refsCell.current.keys[key]) refsCell.current.keys[key].deemphasizeOnrow(rowIndex);
+      if (refsCell.current.keys[key]) refsCell.current.keys[key].deemphasizeRow(rowIndex);
     }
 
     refActiveRow.current = null;
     refPrevActiveRow.current = null;
   }, []);
 
-  const onChangeActiveCell = React.useCallback(({ columnIndex, rowIndex }) => {
+  const notifyActiveCellChanged = React.useCallback(({ columnIndex, rowIndex }) => {
     const key = `${columnIndex}${rowIndex}`;
 
     if (refPrevActiveCell.current && refPrevActiveCell.current in refsCell.current.keys) {
       const prevCell = refsCell.current.keys[refPrevActiveCell.current];
       if (prevCell) {
-        prevCell.isActiveCell(false);
+        prevCell.setIsActiveCell(false);
       }
     }
 
     refPrevActiveCell.current = key;
-    refsCell.current.keys[key].isActiveCell(true);
+    refsCell.current.keys[key].setIsActiveCell(true);
   }, []);
 
   const { handleKeyDown, handleKeyUp, handleClick, gridId, restoreHighlightFocus } = useGridEventHandler({
     columnCount,
     highlightRow,
-    onChangeActiveCell,
+    notifyActiveCellChanged,
     onClick,
     onPressEnter,
     onKeyDown,
@@ -523,7 +523,9 @@ const DataGrid = React.forwardRef((props, ref) => {
               const column = ColumnDefinitions[stickyColumnsIndexes[columnIndex]].props;
               const cellA11yText =
                 typeof column.cell === "function"
-                  ? column.cellA11yText && column.cellA11yText({ row: data[rowIndex], rowIndex, columnIndex })
+                  ? column.cellA11yText &&
+                    typeof column.cellA11yText === "function" &&
+                    column.cellA11yText({ row: data[rowIndex], rowIndex, columnIndex })
                   : data[rowIndex][column.cell];
               const headerA11yText = columnHeadersA11yText[columnIndex];
               const a11yText = a11yTextMessage(cellA11yText, headerA11yText, rowIndex);

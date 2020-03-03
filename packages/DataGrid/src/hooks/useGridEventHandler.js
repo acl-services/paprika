@@ -17,7 +17,7 @@ export function timeDiff(t1, t2) {
 export default function useGridEventHandler({
   columnCount,
   highlightRow,
-  onChangeActiveCell,
+  notifyActiveCellChanged,
   onClick,
   onPressEnter,
   onKeyDown,
@@ -208,7 +208,7 @@ export default function useGridEventHandler({
       rowIndex: Number.parseInt(row, 10),
     };
 
-    onChangeActiveCell(cell);
+    notifyActiveCellChanged(cell);
     return cell;
   }
 
