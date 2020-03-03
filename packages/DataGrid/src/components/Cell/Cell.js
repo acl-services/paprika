@@ -1,6 +1,6 @@
 import React from "react";
 import PropTypes from "prop-types";
-import * as styled from "../../DataGrid.styles";
+import * as sc from "../../DataGrid.styles";
 
 const propTypes = {
   a11yText: PropTypes.string.isRequired,
@@ -19,15 +19,15 @@ const Cell = React.forwardRef((props, ref) => {
   const [isActiveRow, setIsRowActive] = React.useState(false);
 
   React.useImperativeHandle(ref, () => ({
-    isActiveCell: isActive => {
-      setIsActiveCell(() => isActive);
+    setIsActiveCell: isActive => {
+      setIsActiveCell(isActive);
     },
-    highlightOnRow: _rowIndex => {
+    highlightRow: _rowIndex => {
       setIsRowActive(() => {
         return Number.parseInt(_rowIndex, 10) === rowIndex;
       });
     },
-    deemphasizeOnrow: _rowIndex => {
+    deemphasizeRow: _rowIndex => {
       setIsRowActive(() => {
         return !Number.parseInt(_rowIndex, 10) === rowIndex;
       });
@@ -52,18 +52,12 @@ const Cell = React.forwardRef((props, ref) => {
   const cellProps = typeof column.cellProps === "function" ? column.cellProps(options) : {};
 
   return (
-    <styled.Cell ref={ref} tabIndex={-1} style={{ ...style }} data-cell={`${gridId}.${columnIndex}.${rowIndex}`}>
-      <styled.GridCell role="gridcell">{a11yText}</styled.GridCell>
-      <styled.InnerCell
-        hasActiveRowShadow={isActiveRow}
-        {...cellProps}
-        aria-hidden="true"
-        {...options.attrs}
-        className={`${gridId}_cell`}
-      >
+    <sc.Cell ref={ref} tabIndex={-1} style={style} data-cell={`${gridId}.${columnIndex}.${rowIndex}`}>
+      <sc.GridCell role="gridcell">{a11yText}</sc.GridCell>
+      <sc.InnerCell hasActiveRowShadow={isActiveRow} {...cellProps} aria-hidden="true" {...options.attrs}>
         {typeof column.cell === "function" ? column.cell(options) : data[rowIndex][column.cell]}
-      </styled.InnerCell>
-    </styled.Cell>
+      </sc.InnerCell>
+    </sc.Cell>
   );
 });
 
