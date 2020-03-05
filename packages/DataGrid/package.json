@@ -1,0 +1,37 @@
+{
+  "name": "@paprika/datagrid",
+  "version": "0.1.0",
+  "description": "DataGrid is a wrapper of react-window",
+  "author": "@paprika",
+  "license": "MIT",
+  "main": "lib/index.js",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/acl-services/paprika/tree/master/packages/DataGrid"
+  },
+  "publishConfig": {
+    "access": "public"
+  },
+  "dependencies": {
+    "@babel/runtime-corejs2": "^7.3.1",
+    "@paprika/button": "^0.2.8",
+    "@paprika/checkbox": "^0.2.1",
+    "@paprika/helpers": "^0.2.7",
+    "@paprika/icon": "^0.2.8",
+    "@paprika/raw-button": "^0.2.5",
+    "@paprika/sidepanel": "^0.3.2",
+    "@paprika/spinner": "^0.2.9",
+    "@paprika/stylers": "^0.2.2",
+    "@paprika/tokens": "^0.1.9",
+    "mouse-wheel": "^1.2.0",
+    "nanoid": "^2.1.9",
+    "prop-types": "^15.7.2",
+    "react-window": "^1.8.5"
+  },
+  "peerDependencies": {
+    "@paprika/l10n": "^0.3.9",
+    "react": "^16.8.4",
+    "react-dom": "^16.8.4",
+    "styled-components": "^4.3.1"
+  }
+}
