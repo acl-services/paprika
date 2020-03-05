@@ -1,7 +1,10 @@
 import React from "react";
 import { storiesOf } from "@storybook/react";
-import Test from "./examples/Test";
-import AllIcons from "./examples/AllIcons";
+import { withKnobs } from "@storybook/addon-knobs";
+import InlineTest from "./examples/InlineTest";
+import AllIconsStory from "./examples/AllIcons";
 
-storiesOf("Icon", module).add("Test", () => <Test />);
-storiesOf("Icon", module).add("All icons exposed", () => <AllIcons />);
+storiesOf("Icon", module)
+  .addDecorator(withKnobs)
+  .add("All Icons", AllIconsStory);
+storiesOf("Icon", module).add("Inline Test", () => <InlineTest />);
