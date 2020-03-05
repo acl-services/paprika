@@ -21,7 +21,7 @@ const SvgFilter = ({ title, ...props }) => (
       fillRule="evenodd"
       clipRule="evenodd"
       d="M2.75 8.25v-2.5h18.5v2.5H2.75zm11.5 10h-4.5v-2.5h4.5v2.5zm-8.5-5v-2.5h12.5v2.5H5.75z"
-      fill="#3F3D3C"
+      fill="currentColor"
     />
   </svg>
 );
