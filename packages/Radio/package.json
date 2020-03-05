@@ -1,6 +1,6 @@
 {
   "name": "@paprika/radio",
-  "version": "0.1.10",
+  "version": "0.1.11",
   "description": "Radio component",
   "author": "@paprika",
   "license": "MIT",
@@ -15,8 +15,8 @@
   },
   "dependencies": {
     "@babel/runtime-corejs2": "^7.3.1",
-    "@paprika/helpers": "^0.2.9",
-    "@paprika/icon": "^0.2.12",
+    "@paprika/helpers": "^0.2.10",
+    "@paprika/icon": "^0.2.13",
     "@paprika/stylers": "^0.2.5",
     "@paprika/tokens": "^0.1.12",
     "nanoid": "^2.1.7",
