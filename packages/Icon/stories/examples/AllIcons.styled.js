@@ -10,6 +10,7 @@ export const IconsStory = styled(Story)`
 `;
 
 export const Cards = styled.div`
+  align-items: flex-start;
   color: ${tokens.color.black};
   display: flex;
   flex-wrap: wrap;
@@ -18,15 +19,28 @@ export const Cards = styled.div`
 export const Card = styled.div`
   align-items: center;
   border: 1px solid ${tokens.border.color};
-  border-radius: 6px;
+  border-radius: ${tokens.card.borderRadius};
+  box-shadow: ${tokens.popover.shadow};
   display: flex;
   flex-direction: column;
-  height: 120px;
-  justify-content: space-around;
-  margin: ${tokens.spaceLg};
-  width: 140px;
+  height: 100px;
+  margin: ${tokens.space};
+  padding: ${stylers.spacer(3)} ${tokens.space} 0 ${tokens.space};
+  width: 120px;
 
   svg {
     display: block;
   }
+`;
+
+export const Name = styled.div`
+  ${stylers.fontSize(-1)}
+
+  align-items: center;
+  display: flex;
+  flex-grow: 1;
+  hyphens: auto;
+  justify-content: center;
+  text-align: center;
+  word-break: break-word;
 `;
