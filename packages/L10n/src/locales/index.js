@@ -8,14 +8,14 @@ import ja from "../locales-js/ja";
 import zh from "../locales-js/zh";
 
 const locales = {
-  en,
-  de,
-  fr,
-  es,
-  pt,
-  pl,
-  ja,
-  zh
+  en: en.en,
+  de: de.de,
+  fr: fr.fr,
+  es: es.es,
+  pt: pt.pt,
+  pl: pl.pl,
+  ja: ja.ja,
+  zh: zh.zh
 };
 
 export default locales;
