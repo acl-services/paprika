@@ -131,12 +131,6 @@ export default function App({ size }) {
     );
   }
 
-  console.log(data, subset, orderedColumns);
-
-  if (isIdle || subset.length === 0) return <Spinner />;
-
-  console.log(orderedColumns);
-
   return (
     <React.Fragment>
       {row && renderSidepanel({ row })}
@@ -146,27 +140,32 @@ export default function App({ size }) {
         setOrderedColumns={setOrderedColumns}
         getSubset={getSubset}
       />
-      <DataGrid
-        ref={refDataGrid}
-        data={subset}
-        isIdle={isIdle}
-        keygen="id"
-        width={size.width}
-        height={size.height}
-        onClick={handleOpenSidepanel}
-        onEnter={handleOpenSidepanel}
-        onSpaceBar={handleOpenSidepanel}
-        onRowChecked={handleRowChecked}
-      >
-        {renderColumnIndicator({
-          onCheck: handleRowChecked,
-          onCheckAll: handleCheckAll,
-          isAllChecked,
-          isChecked,
-          hasNumber: false,
-        })}
-        {renderColumnExpand()}
-        {/* {subset.length
+      {isIdle ? (
+        <Spinner />
+      ) : (
+        <DataGrid
+          ref={refDataGrid}
+          data={subset}
+          isIdle={isIdle}
+          keygen="id"
+          width={size.width}
+          height={size.height}
+          onClick={handleOpenSidepanel}
+          onEnter={handleOpenSidepanel}
+          onSpaceBar={handleOpenSidepanel}
+          onRowChecked={handleRowChecked}
+        >
+          {renderColumnIndicator({
+            onCheck: handleRowChecked,
+            onCheckAll: handleCheckAll,
+            isAllChecked,
+            isChecked,
+            hasNumber: false,
+          })}
+          {renderColumnExpand()}
+
+          {/* throws error if column difinition is an empty array */}
+          {/* {subset.length
           ? orderedColumns.map(column =>
               column.isHidden ? null : (
                 <DataGrid.ColumnDefinition key={column.id} header={column.label} cell={column.id} />
@@ -174,12 +173,15 @@ export default function App({ size }) {
             )
           : null} */}
 
-        {orderedColumns.map(column =>
-          column.isHidden ? null : <DataGrid.ColumnDefinition key={column.id} header={column.label} cell={column.id} />
-        )}
+          {orderedColumns.map(column =>
+            column.isHidden ? null : (
+              <DataGrid.ColumnDefinition key={column.id} header={column.label} cell={column.id} />
+            )
+          )}
 
-        <DataGrid.InfiniteScroll rowsOffset={50} onReached={handleInfinityScrollReached} />
-      </DataGrid>
+          <DataGrid.InfiniteScroll rowsOffset={50} onReachedOffset={handleInfinityScrollReached} />
+        </DataGrid>
+      )}
     </React.Fragment>
   );
 }
