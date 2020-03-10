@@ -1,5 +1,6 @@
 import React from "react";
 import ReactDOM from "react-dom";
+import produce from "immer";
 import SidePanel from "@paprika/sidepanel";
 import Spinner from "@paprika/spinner";
 import worker from "workerize-loader!../helpers/data.integration.worker"; // eslint-disable-line import/no-webpack-loader-syntax
@@ -8,7 +9,12 @@ import DataGrid, { renderColumnIndicator, renderColumnExpand } from "../../src";
 
 export default function App({ size }) {
   // DataGrid
-  const [data, setData] = React.useState([]);
+  // const [data, setData] = React.useState([]);
+  const [filterStates, setFilterStates] = React.useState({
+    sortedFields: [],
+    filters: [],
+    operator: "AND",
+  });
   const [subset, setSubset] = React.useState([]);
   const [isIdle, setIsIdle] = React.useState(true);
   const [isOpen, setIsOpen] = React.useState(false);
@@ -26,13 +32,12 @@ export default function App({ size }) {
   React.useEffect(() => {
     async function loadData() {
       const w = worker();
-      const data = await w.getDataFromWorker({ page: 0 });
+      const subset = await w.getSubsetFromWorker({ page: 0 });
       const initialColumns = await w.getColumnsFromWorker();
 
       setTimeout(() => {
         ReactDOM.unstable_batchedUpdates(() => {
-          setData(() => data);
-          setSubset(() => data);
+          setSubset(() => subset);
           setColumns(() => initialColumns);
           setOrderedColumns(() => initialColumns.map(column => ({ ...column, isHidden: false, isDisabled: false })));
           setIsIdle(() => false);
@@ -54,16 +59,16 @@ export default function App({ size }) {
   }
 
   React.useEffect(() => {
-    if (data.length > 0) {
+    if (subset.length > 0) {
       setIsIdle(() => false);
     }
-  }, [data.length]);
+  }, [subset.length]);
 
   React.useEffect(() => {
     async function loadData() {
       const w = worker();
-      const nextData = await w.getDataFromWorker({ page });
-      setData(data => data.concat(nextData));
+      const nextData = await w.getSubsetFromWorker({ ...filterStates, page });
+      setSubset(data => data.concat(nextData));
     }
 
     if (page > 0) {
@@ -71,30 +76,38 @@ export default function App({ size }) {
     }
   }, [page]);
 
-  async function getSubset({ sortedFields, filters, operator }) {
+  async function getNewSubset({ sortedFields, filters, operator }) {
     const w = worker();
-    const newSubset = await w.getSubsetFromWorker({ sortedFields, filters, columns, operator });
+    const newSubset = await w.getSubsetFromWorker({ sortedFields, filters, columns, operator, page: 0 });
     setSubset(() => newSubset);
+    setFilterStates(
+      produce(() => ({
+        sortedFields,
+        filters,
+        operator,
+        columns,
+      }))
+    );
   }
 
   function handleRowChecked({ rowIndex }) {
-    if (checked.includes(data[rowIndex].key)) {
+    if (checked.includes(subset[rowIndex].key)) {
       setChecked(checked => {
-        return checked.filter(key => key !== data[rowIndex].key);
+        return checked.filter(key => key !== subset[rowIndex].key);
       });
 
       return;
     }
 
     setChecked(checked => {
-      return [...new Set([...checked, data[rowIndex].key])];
+      return [...new Set([...checked, subset[rowIndex].key])];
     });
   }
 
   function isChecked({ rowIndex }) {
-    if (data.length === 0) return "unchecked";
+    if (subset.length === 0) return "unchecked";
 
-    return rowIndex !== null && checked.includes(data[rowIndex].key) ? "checked" : "unchecked";
+    return rowIndex !== null && checked.includes(subset[rowIndex].key) ? "checked" : "unchecked";
   }
 
   function handleCheckAll() {
@@ -138,7 +151,7 @@ export default function App({ size }) {
         columns={columns}
         orderedColumns={orderedColumns}
         setOrderedColumns={setOrderedColumns}
-        getSubset={getSubset}
+        getSubset={getNewSubset}
       />
       {isIdle ? (
         <Spinner />

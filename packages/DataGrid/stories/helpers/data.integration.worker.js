@@ -4,7 +4,7 @@ import rawData from "./data.integration";
 import filterTesters from "../IntegrationApp/helpers/filterTesters";
 import sort from "../IntegrationApp/helpers/sort";
 
-export function setDataIds() {
+function setDataIds() {
   const newData = rawData.map(item => {
     return {
       key: nanoid(),
@@ -15,13 +15,8 @@ export function setDataIds() {
   return newData;
 }
 
-let data = null;
-export function getDataFromWorker({ page, pageSize = 200 }) {
-  if (data === null) {
-    data = setDataIds();
-  }
-
-  return data.slice(page * pageSize, page * pageSize + pageSize);
+function getPaginatedSubset({ data, page }) {
+  return data.slice(page * 200, page * 200 + 200);
 }
 
 export function getColumnsFromWorker() {
@@ -51,13 +46,13 @@ export function getColumnsFromWorker() {
   ];
 }
 
-export function getSubsetFromWorker({ sortedFields, filters, columns, operator }) {
+export function getSubsetFromWorker({ sortedFields = [], filters = [], columns, operator, page }) {
   let sortedData = [];
   let filteredData = [];
 
   const data = setDataIds();
 
-  if (filters.length === 0 && sortedFields.length === 0) return data;
+  if (filters.length === 0 && sortedFields.length === 0) return getPaginatedSubset({ data, page });
 
   if (sortedFields.length > 0) {
     sortedFields.forEach(field => {
@@ -89,5 +84,7 @@ export function getSubsetFromWorker({ sortedFields, filters, columns, operator }
   if (sortedData.length > 0 && filteredData.length > 0) {
     return sortedData.filter(item => filteredData.find(filteredItem => isEqual(filteredItem, item)));
   }
-  return filters.length > 0 ? filteredData : sortedData;
+  return filters.length > 0
+    ? getPaginatedSubset({ data: filteredData, page })
+    : getPaginatedSubset({ data: sortedData, page });
 }
