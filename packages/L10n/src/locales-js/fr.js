@@ -34,7 +34,9 @@ const locales = {
       "actions": {
         "delete": "Supprimer",
         "apply": "Appliquer",
-        "cancel": "Annuler"
+        "cancel": "Annuler",
+        "confirm": "Enregistrer",
+        "decline": "Refuser"
       },
       "datePicker": {
         "calendar_header_format": "MMMM YYYY",

@@ -1,6 +1,7 @@
 import React from "react";
 import PropTypes from "prop-types";
 import useI18n from "@paprika/l10n/lib/useI18n";
+import { ShirtSizes } from "@paprika/helpers/lib/customPropTypes";
 import Box from "./components/Box";
 import Content from "./components/Content";
 import List from "./components/List";
@@ -47,6 +48,9 @@ export const propTypes = {
 
   /** Indicate which is the height for the options container */
   height: PropTypes.number,
+
+  /** Size of the trigger and options (font size, height, padding, etc). */
+  size: PropTypes.oneOf(ShirtSizes.DEFAULT),
 };
 
 export const defaultProps = {
@@ -61,6 +65,7 @@ export const defaultProps = {
   onChange: () => {},
   placeholder: null,
   trigger: null, // eslint-disable-line
+  size: ShirtSizes.MEDIUM,
 };
 
 export function ListBox(props) {

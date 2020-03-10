@@ -22,6 +22,7 @@ function initializeState(props) {
     refTrigger,
     refTriggerContainer,
     refLabel,
+    size,
   } = props;
   const formElementId = props.id;
   const formElementLabelDescribedBy = props["aria-describedby"];
@@ -65,6 +66,7 @@ function initializeState(props) {
     refLabel,
     formElementId,
     formElementLabelDescribedBy,
+    size,
   };
 
   return {

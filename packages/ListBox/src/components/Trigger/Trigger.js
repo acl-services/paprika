@@ -50,6 +50,7 @@ export default function Trigger(props) {
     isMulti,
     idListBox,
     refLabel,
+    size,
   } = state;
   const triggerButtonId = React.useRef(nanoid());
 
@@ -190,6 +191,7 @@ export default function Trigger(props) {
       isInline={state.isInline}
       isDisabled={isDisabled}
       ref={refTriggerContainer}
+      size={size}
       {...getDOMAttributesForListBoxButton(state.idListBox)()}
     >
       {hasRenderTrigger ? renderChildrenProps : renderLabel()}
@@ -201,6 +203,7 @@ export default function Trigger(props) {
           kind={Button.Kinds.MINOR}
           onClick={handleClickClear}
           shouldHideCaret={shouldHideCaret}
+          size={size}
         >
           <TimesCircleIcon isDisabled={isDisabled} css={iconStyles} />
         </ClearButtonStyled>

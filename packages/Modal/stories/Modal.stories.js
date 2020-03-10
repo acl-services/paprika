@@ -143,10 +143,9 @@ storiesOf("Modal / screener", module)
       </Modal.Content>
     </ModalStory>
   ))
-  .add("focus lock content input", () => (
+  .add("focus lock disabled", () => (
     <ModalStory>
       <Modal.FocusLock autoFocus={false} />
-      <Modal.Header>Header</Modal.Header>
       <Modal.Content>
         <p>autofocus disabled</p>
       </Modal.Content>

@@ -6,6 +6,9 @@ const locales = {
       "remove": "remove",
       "moreInformation": "more information",
       "close": "Close",
+      "dataGrid": {
+        "a11yTextMessage": "{{value}}. You are on row {{rowIndex}}, column {{columnIndex}}. Disregard the following information:"
+      },
       "uploader": {
         "label": "Drag and drop or choose files from your computer",
         "overlay": {

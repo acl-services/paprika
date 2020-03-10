@@ -10,6 +10,7 @@ export const ruleStyles = css`
 const labelStyles = css`
   color: ${tokens.textColor.default};
   display: inline-block;
+  font-size: inherit;
   font-weight: bold;
   margin: 0 ${stylers.spacer(4)} ${tokens.spaceSm} 0;
   padding: 0;
@@ -17,10 +18,6 @@ const labelStyles = css`
 
   ${stylers.lineHeight(-1)}
   ${({ isVisuallyHidden }) => isVisuallyHidden && stylers.visuallyHidden}
-
-  label {
-    margin-right: ${tokens.spaceSm};
-  }
 `;
 
 export default labelStyles;
