@@ -383,6 +383,7 @@ const DataGrid = React.forwardRef((props, ref) => {
 
       if (InfiniteScroll) {
         const { rowsOffset, onReachedOffset } = InfiniteScroll.props;
+        console.log(`${visibleRowStopIndex + rowsOffset} > ${rowCount}`);
         if (visibleRowStopIndex + rowsOffset > rowCount) {
           const currentPage = Math.floor(visibleRowStopIndex / pageSize);
           const nextPage = currentPage + 1;
