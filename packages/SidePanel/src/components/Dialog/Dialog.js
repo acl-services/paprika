@@ -5,6 +5,7 @@ import * as sc from "./Dialog.styles";
 const propTypes = {
   children: PropTypes.node.isRequired,
   footer: PropTypes.node,
+  getPushContentElement: PropTypes.func,
   groupOffsetY: PropTypes.number,
   header: PropTypes.node,
   kind: PropTypes.oneOf(["default", "child"]),
@@ -15,12 +16,14 @@ const propTypes = {
   onClose: PropTypes.func,
   refHeader: PropTypes.shape({ current: PropTypes.instanceOf(Element) }).isRequired,
   refSidePanelContent: PropTypes.shape({ current: PropTypes.instanceOf(Element) }).isRequired,
+  isSlideFromLeft: PropTypes.bool,
   width: PropTypes.oneOfType([PropTypes.string, PropTypes.number]).isRequired,
   isOpen: PropTypes.bool.isRequired,
 };
 
 const defaultProps = {
   footer: null,
+  getPushContentElement: () => {},
   groupOffsetY: 0,
   header: null,
   kind: "default",
@@ -28,6 +31,7 @@ const defaultProps = {
   isInline: false,
   offsetY: 0,
   onClose: () => {},
+  isSlideFromLeft: false,
 };
 
 function Dialog(props) {
@@ -36,6 +40,7 @@ function Dialog(props) {
   const {
     children,
     footer,
+    getPushContentElement,
     groupOffsetY,
     onAnimationEnd,
     header,
@@ -48,6 +53,7 @@ function Dialog(props) {
     refSidePanelContent,
     width,
     isOpen,
+    isSlideFromLeft,
     ...moreProps
   } = props;
 
@@ -55,9 +61,10 @@ function Dialog(props) {
 
   const dialogMain = (
     <React.Fragment>
-      {header ? React.cloneElement(header, { ref: refHeader, isCompact, onClose }) : null}
+      {header ? React.cloneElement(header, { ref: refHeader, isCompact, onClose, getPushContentElement }) : null}
       <sc.DialogContent
         data-pka-anchor="sidepanel.content"
+        hasPushedElement={!!getPushContentElement}
         isCompact={isCompact}
         isOpen={isOpen}
         kind={kind}
@@ -74,6 +81,7 @@ function Dialog(props) {
   return (
     <sc.Dialog
       aria-modal={isInline ? null : "true"}
+      hasPushedElement={!!getPushContentElement}
       groupOffsetY={groupOffsetY}
       kind={kind}
       isCompact={isCompact}
@@ -84,6 +92,7 @@ function Dialog(props) {
       ref={refSidePanel}
       role="dialog"
       tabIndex="-1"
+      isSlideFromLeft={isSlideFromLeft}
       width={width}
       {...moreProps}
     >

@@ -1,7 +1,8 @@
-import { css } from "styled-components";
+import styled from "styled-components";
+import tokens from "@paprika/tokens";
 
-const ButtonStyles = css`
-  margin-left: 8px;
+export const DialogActions = styled.div`
+  > button:not(:first-child) {
+    margin-left: ${tokens.space};
+  }
 `;
-
-export default ButtonStyles;

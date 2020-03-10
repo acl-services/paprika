@@ -3,6 +3,19 @@ import tokens from "@paprika/tokens";
 import stylers from "@paprika/stylers";
 import OriginalHeader from "./components/Header";
 
+export const FocusLock = styled.div`
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+
+  &::before,
+  &::after {
+    content: "";
+    display: block;
+  }
+`;
+
 const openedCss = css`
   opacity: 1;
 `;

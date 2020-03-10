@@ -29,6 +29,8 @@ const propTypes = {
   size: PropTypes.oneOf(ShirtSizes.DEFAULT),
   /** Value for tabindex attribute to override the default of 0. */
   tabIndex: PropTypes.number,
+  /** Value applied to the input if needed. */
+  value: PropTypes.string,
 };
 
 const defaultProps = {
@@ -43,6 +45,7 @@ const defaultProps = {
   onClick: () => {},
   size: ShirtSizes.MEDIUM,
   tabIndex: 0,
+  value: "",
 };
 
 function Radio(props) {
@@ -57,6 +60,7 @@ function Radio(props) {
     onClick,
     size,
     tabIndex,
+    value,
     ...moreProps
   } = props;
   const radioId = React.useRef(nanoid()).current;
@@ -98,6 +102,7 @@ function Radio(props) {
     ref: inputRef,
     tabIndex,
     type: "radio",
+    value,
   };
   if (a11yText) inputProps["aria-label"] = a11yText;
 

@@ -15,28 +15,24 @@ const childPanel = css`
   }}
 `;
 
-function slideIn() {
+function slideIn(isSlideFromLeft) {
   return keyframes`
   from {
-    opacity: 0;
-    transform: translateX(100%);
+    transform: ${isSlideFromLeft ? "translateX(-100%)" : `translateX(100%)`};
   }
   to {
-    opacity: 1;
     transform: translateX(0);
   }
   `;
 }
 
-function slideOut() {
+function slideOut(isSlideFromLeft) {
   return keyframes`
   from {
-    opacity: 1;
     transform: translateX(0);
   }
   to {
-    opacity: 0;
-    transform: translateX(100%);
+    transform: ${isSlideFromLeft ? "translateX(-100%)" : `translateX(100%)`};
   }
   `;
 }
@@ -47,12 +43,12 @@ const compactStyles = css`
 
 export const Dialog = styled.div`
   background: ${tokens.color.white};
-  box-shadow: ${tokens.modal.shadow};
   box-sizing: border-box;
   display: flex;
   flex-direction: column;
   height: 100%;
   overflow: auto;
+  right: 0;
   top: 0;
 
   &:focus {
@@ -61,22 +57,25 @@ export const Dialog = styled.div`
 
   ${props => {
     const width = Number.isNaN(Number(props.width)) ? props.width : `${props.width}px`;
-    const animation = props.isOpen ? slideIn() : slideOut();
+    const animation = props.isOpen ? slideIn(props.isSlideFromLeft) : slideOut(props.isSlideFromLeft);
+
     let childSidePanel = "";
+    const boxShadow = props.hasPushedElement ? "none" : tokens.modal.shadow;
 
     if (props.kind === "child") {
       childSidePanel = childPanel;
     }
 
     return css`
-      animation: ${animation} 0.7s ease;
-      right: 0;
+      animation: ${animation} 0.4s forwards;
+      border: 0;
+      box-shadow: ${boxShadow};
       top: ${props.offsetY}px;
       width: ${width};
       z-index: ${props.zIndex};
+      ${props => (props.isSlideFromLeft ? `left: 0;` : `right: 0;`)}
       ${props => (props.offsetY ? `height: calc(100% - ${props.offsetY}px);` : "")}
       ${props.isInline ? "position: relative;" : "position: fixed;"}
-      ${props.isOpen ? "opacity: 1" : "opacity: 0"};
       ${childSidePanel}
     `;
   }}
@@ -86,11 +85,30 @@ export const DialogContent = styled.div`
   flex-grow: 1;
   padding: ${stylers.spacer(3)};
 
-  ${props => (props.isCompact || props.kind === "child" ? compactStyles : "")}
-
   &:focus {
     ${stylers.focusRing.subtle(true)};
   }
+
+  ${props => {
+    const borderColor = `1px solid ${tokens.border.color}`;
+
+    let borderLeft = "";
+    let borderRight = "";
+
+    if (props.hasPushedElement) {
+      if (props.isSlideFromLeft) {
+        borderRight = borderColor;
+      } else {
+        borderLeft = borderColor;
+      }
+    }
+
+    return css`
+      border-left: ${borderLeft};
+      border-right: ${borderRight};
+      ${props.isCompact || props.kind === "child" ? compactStyles : ""};
+    `;
+  }}
 `;
 
 export const MainWrapper = styled.div`

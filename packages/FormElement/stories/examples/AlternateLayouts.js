@@ -9,6 +9,7 @@ import Checkbox from "@paprika/checkbox";
 import Radio from "@paprika/radio";
 import DatePicker from "@paprika/date-picker";
 import ListBox from "@paprika/listbox";
+import { action } from "@storybook/addon-actions";
 import FormElement from "../../src";
 import { FormElementStory } from "../FormElement.stories.styles";
 
@@ -18,7 +19,7 @@ const ExampleStory = () => {
   const isDisabled = false;
   const isReadOnly = false;
   const size = ShirtSizes.MEDIUM;
-  const optionsArray = ["Black Panther", "Wonder Woman", "Spiderman", "The Incredibles", "Thor"];
+  const optionsArray = ["Black Panther", "Wonder Woman", "Spiderman", "The Incredibles", "Thor", <span>test</span>];
   const listboxOptions = optionsArray.map(hero => <ListBox.Option key={hero}>{hero}</ListBox.Option>);
 
   const getCheckboxOptions = ariaDescribedBy =>
@@ -28,12 +29,19 @@ const ExampleStory = () => {
       </Checkbox>
     ));
 
-  const getRadioOptions = ariaDescribedBy =>
-    optionsArray.map(hero => (
-      <Radio ariaDescribedBy={ariaDescribedBy} key={hero} onChange={() => {}} isDisabled={isDisabled} size={size}>
-        {hero}
-      </Radio>
-    ));
+  const getRadioOptions = ariaDescribedBy => (
+    <Radio.Group
+      onChange={activeIndex => {
+        action(`Radio index selected is ${activeIndex}`)();
+      }}
+    >
+      {optionsArray.map(hero => (
+        <Radio ariaDescribedBy={ariaDescribedBy} key={hero} isDisabled={isDisabled} size={size}>
+          {hero}
+        </Radio>
+      ))}
+    </Radio.Group>
+  );
 
   const [value, setValue] = React.useState("");
 
