@@ -83,8 +83,8 @@ describe("Filter", () => {
   it("displays 0 filters", () => {
     const { queryByTestId, getByTestId } = render();
 
-    expect(queryByTestId("navigation.filter.filterItem")).not.toBeInTheDocument();
-    expect(getByTestId("navigation.filter.addFilterButton")).toBeInTheDocument();
+    expect(queryByTestId("actionBar.filter.filterItem")).not.toBeInTheDocument();
+    expect(getByTestId("actionBar.filter.addFilterButton")).toBeInTheDocument();
   });
 
   it("displays all filters", () => {

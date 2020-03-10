@@ -37,11 +37,11 @@ export default function ColumnsArrangement(props) {
   function getLabelText(numberOfHiddenColumn) {
     switch (numberOfHiddenColumn) {
       case 0:
-        return I18n.t("navigation.columns_arrangement.label");
+        return I18n.t("actionBar.columns_arrangement.label");
       case 1:
-        return I18n.t("navigation.columns_arrangement.singular_label");
+        return I18n.t("actionBar.columns_arrangement.singular_label");
       default:
-        return I18n.t("navigation.columns_arrangement.plural_label", { numberOfHiddenColumn });
+        return I18n.t("actionBar.columns_arrangement.plural_label", { numberOfHiddenColumn });
     }
   }
 
@@ -81,11 +81,11 @@ export default function ColumnsArrangement(props) {
           <Input
             defaultValue=""
             onChange={handleSearch}
-            placeholder={I18n.t("navigation.search_placeholder")}
+            placeholder={I18n.t("actionBar.search_placeholder")}
             hasClearButton
           />
           {filteredColumns.length === 0 ? (
-            I18n.t("navigation.no_results")
+            I18n.t("actionBar.no_results")
           ) : (
             <styled.Sortable onChange={handleChangeOrder} hasNumbers={false}>
               {filteredColumns.map(column => (
@@ -105,10 +105,10 @@ export default function ColumnsArrangement(props) {
           {searchTerm.length ? null : (
             <styled.Footer>
               <Button kind="minor" onClick={onHideAll}>
-                {I18n.t("navigation.columns_arrangement.hide_all")}
+                {I18n.t("actionBar.columns_arrangement.hide_all")}
               </Button>
               <Button kind="minor" onClick={onShowAll}>
-                {I18n.t("navigation.columns_arrangement.show_all")}
+                {I18n.t("actionBar.columns_arrangement.show_all")}
               </Button>
             </styled.Footer>
           )}
@@ -121,4 +121,4 @@ export default function ColumnsArrangement(props) {
 
 ColumnsArrangement.propTypes = propTypes;
 ColumnsArrangement.defaultProps = defaultProps;
-ColumnsArrangement.displayName = "Navigation.ColumnsArrangement";
+ColumnsArrangement.displayName = "ActionBar.ColumnsArrangement";

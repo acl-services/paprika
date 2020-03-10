@@ -3,4 +3,4 @@ import { storiesOf } from "@storybook/react";
 
 import App from "./ShowcaseApp";
 
-storiesOf("Navigation", module).add("Showcase", () => <App />);
+storiesOf("Action Bar", module).add("Showcase", () => <App />);

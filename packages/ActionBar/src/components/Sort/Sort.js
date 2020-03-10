@@ -1,58 +1,44 @@
 import React from "react";
 import PropTypes from "prop-types";
-import Popover from "@paprika/popover";
 import Button from "@paprika/button";
+import Popover from "@paprika/popover";
 import useI18n from "@paprika/l10n/lib/useI18n";
 import CheckIcon from "@paprika/icon/lib/Check";
-import FilterItem from "./FilterItem";
-import { rulesByType } from "./rules";
-import FilterContext from "./context";
 
-import * as styled from "./Filter.styles";
-import { GenericPopoverPlaceholder } from "../../Navigation.styles";
+import SortItem from "./SortItem";
+import SortContext from "./context";
+
+import * as styled from "./Sort.styles";
+import { GenericPopoverPlaceholder } from "../../ActionBar.styles";
 
 const propTypes = {
   appliedNumber: PropTypes.number,
   children: PropTypes.node,
   columns: PropTypes.arrayOf(
     PropTypes.shape({
+      id: PropTypes.oneOfType([PropTypes.number, PropTypes.string]).isRequired,
       label: PropTypes.string.isRequired,
     })
   ).isRequired,
-  onAddFilter: PropTypes.func.isRequired,
+  onAddField: PropTypes.func.isRequired,
   onApply: PropTypes.func.isRequired,
   onCancel: PropTypes.func,
-  onChangeOperator: PropTypes.func,
   onClose: PropTypes.func,
   onOpen: PropTypes.func,
-  operator: PropTypes.oneOf(["AND", "OR"]),
 };
 
 const defaultProps = {
   appliedNumber: 0,
   children: null,
-  onChangeOperator: null,
   onCancel: () => {},
   onClose: () => {},
   onOpen: () => {},
-  operator: "AND",
 };
 
-export default function Filter(props) {
-  const {
-    appliedNumber,
-    children,
-    columns,
-    onAddFilter,
-    onApply,
-    onCancel,
-    onChangeOperator,
-    onClose,
-    onOpen,
-    operator,
-  } = props;
+export default function Sort(props) {
+  const { appliedNumber, children, columns, onAddField, onApply, onCancel, onClose, onOpen } = props;
   const I18n = useI18n();
-  const filtersRef = React.useRef(null);
+  const fieldsRef = React.useRef(null);
   const [isOpen, setIsOpen] = React.useState(false);
 
   function handleClickTrigger() {
@@ -79,25 +65,25 @@ export default function Filter(props) {
     onCancel();
   }
 
-  function getLabelText(numberOfFilters) {
-    switch (numberOfFilters) {
+  function getLabelText(numberOfFields) {
+    switch (numberOfFields) {
       case 0:
-        return I18n.t("navigation.filter.label");
+        return I18n.t("actionBar.sort.label");
       case 1:
-        return I18n.t("navigation.filter.singular_label");
+        return I18n.t("actionBar.sort.singular_label");
       default:
-        return I18n.t("navigation.filter.plural_label", { numberOfFilters });
+        return I18n.t("actionBar.sort.plural_label", { numberOfFields });
     }
   }
 
   return (
-    <FilterContext.Provider value={{ filtersRef, columns, operator, onChangeOperator }}>
-      <Popover align="bottom" edge="left" maxWidth={600} offset={8} isOpen={isOpen} onClose={handleClose}>
+    <SortContext.Provider value={{ columns, fieldsRef }}>
+      <Popover align="bottom" edge="left" maxWidth={600} isOpen={isOpen} onClose={handleClose}>
         <styled.Trigger
           isSemantic={false}
           kind="flat"
           onClick={handleClickTrigger}
-          hasFilterApplied={appliedNumber > 0}
+          hasField={appliedNumber > 0}
           isOpen={isOpen}
         >
           <styled.Icon />
@@ -105,15 +91,21 @@ export default function Filter(props) {
         </styled.Trigger>
         <Popover.Content>
           <Popover.Card>
-            <styled.FiltersPanel ref={filtersRef} tabIndex={-1}>
+            <styled.FieldsPanel ref={fieldsRef} tabIndex={-1}>
               {React.Children.count(children) === 0 ? (
-                <GenericPopoverPlaceholder>{I18n.t("navigation.filter.no_filters_applied")}</GenericPopoverPlaceholder>
+                <GenericPopoverPlaceholder>{I18n.t("actionBar.sort.no_sorts_applied")}</GenericPopoverPlaceholder>
               ) : null}
               {children}
-            </styled.FiltersPanel>
+            </styled.FieldsPanel>
             <styled.Footer>
-              <Button onClick={onAddFilter} kind="minor" data-pka-anchor="navigation.filter.addFilterButton">
-                {I18n.t(`navigation.filter.add_filter`)}
+              <Button
+                onClick={() => {
+                  fieldsRef.current.focus();
+                  onAddField();
+                }}
+                kind="minor"
+              >
+                Add a field to sort by
               </Button>
               <Button onClick={handleApply} kind="flat" icon={<CheckIcon />}>
                 Apply
@@ -126,12 +118,11 @@ export default function Filter(props) {
         </Popover.Content>
         <Popover.Tip />
       </Popover>
-    </FilterContext.Provider>
+    </SortContext.Provider>
   );
 }
 
-Filter.propTypes = propTypes;
-Filter.defaultProps = defaultProps;
-Filter.displayName = "Navigation.Filter";
-Filter.rulesByType = rulesByType;
-Filter.Item = FilterItem;
+Sort.propTypes = propTypes;
+Sort.defaultProps = defaultProps;
+Sort.displayName = "ActionBar.Sort";
+Sort.Field = SortItem;

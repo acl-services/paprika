@@ -60,16 +60,16 @@ function SortItem(props) {
         onChange={handleChangeRule}
         value={direction}
         selectedLabel={I18n.t(
-          `navigation.sort.rules.${
+          `actionBar.sort.rules.${
             direction === sortDirections.ASCEND ? "ascending" : "descending"
           }.${columnTypeTranslationKey}`
         )}
       >
         <option value={sortDirections.ASCEND}>
-          {I18n.t(`navigation.sort.rules.ascending.${columnTypeTranslationKey}`)}
+          {I18n.t(`actionBar.sort.rules.ascending.${columnTypeTranslationKey}`)}
         </option>
         <option value={sortDirections.DESCEND}>
-          {I18n.t(`navigation.sort.rules.descending.${columnTypeTranslationKey}`)}
+          {I18n.t(`actionBar.sort.rules.descending.${columnTypeTranslationKey}`)}
         </option>
       </InlineSelect>
     </styled.SortItem>

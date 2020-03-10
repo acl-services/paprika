@@ -1,11 +1,11 @@
 import styled, { css } from "styled-components";
-import FilterIcon from "@paprika/icon/lib/Filter";
 import stylers from "@paprika/stylers";
 import tokens from "@paprika/tokens";
+import SortIcon from "@paprika/icon/lib/Sort";
 import { Wrapper } from "../InlineSelect/InlineSelect.styles";
-import { getGenericTriggerIcon, GenericTrigger } from "../../Navigation.styles";
+import { getGenericTriggerIcon, GenericTrigger } from "../../ActionBar.styles";
 
-export const FiltersPanel = styled.div`
+export const FieldsPanel = styled.div`
   width: 420px;
 
   &:focus {
@@ -13,7 +13,7 @@ export const FiltersPanel = styled.div`
   }
 `;
 
-export const FilterItem = styled.li`
+export const SortItem = styled.li`
   align-items: center;
   display: flex;
   flex-wrap: nowrap;
@@ -24,20 +24,20 @@ export const FilterItem = styled.li`
   }
 `;
 
-const hasFilterAppliedStyles = css`
-  background-color: ${stylers.alpha(tokens.color.chartColor05, 0.3)};
+const hasFieldStyles = css`
+  background-color: ${stylers.alpha(tokens.color.chartColor07, 0.3)};
 `;
 
 export const Trigger = styled(GenericTrigger)`
-  ${({ hasFilterApplied }) => (hasFilterApplied ? hasFilterAppliedStyles : "")}
+  ${({ hasField }) => (hasField ? hasFieldStyles : "")}
 `;
 
-export const Icon = getGenericTriggerIcon(FilterIcon);
+export const Icon = getGenericTriggerIcon(SortIcon);
 
 export const Footer = styled.div`
   display: flex;
 
-  [data-pka-anchor="navigation.filter.addFilterButton"] {
+  [data-pka-anchor="button"]:first-child {
     margin-right: auto;
   }
 `;

@@ -3,7 +3,7 @@ import stylers from "@paprika/stylers";
 import tokens from "@paprika/tokens";
 import RawButton from "@paprika/raw-button";
 
-export const Navigation = styled.div`
+export const ActionBar = styled.div`
   align-items: center;
   border-bottom: 2px solid rgba(0, 0, 0, 0.1);
   display: flex;

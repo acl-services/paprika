@@ -116,7 +116,7 @@ const locales = {
         "selected": "selected options",
         "selectOne": "Select one or more items..."
       },
-      "navigation": {
+      "actionBar": {
         "columns_arrangement": {
           "hide_all": "Hide all",
           "show_all": "Show all",

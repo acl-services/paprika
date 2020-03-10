@@ -73,18 +73,18 @@ function FilterItem(props) {
   function renderRuleField() {
     switch (selectedColumnType) {
       case columnTypes.BOOLEAN:
-        return I18n.t("navigation.filter.rules.is");
+        return I18n.t("actionBar.filter.rules.is");
       default:
         return (
           <InlineSelect
             onChange={handleChangeRule}
             value={selectedRule}
-            selectedLabel={I18n.t(`navigation.filter.rules.${localeKeysByRule[selectedRule]}`)}
-            data-pka-anchor="navigation.filter.ruleSelector"
+            selectedLabel={I18n.t(`actionBar.filter.rules.${localeKeysByRule[selectedRule]}`)}
+            data-pka-anchor="actionBar.filter.ruleSelector"
           >
             {rulesByType[selectedColumnType].map(rule => (
               <option key={rule} value={rule}>
-                {I18n.t(`navigation.filter.rules.${localeKeysByRule[rule]}`)}
+                {I18n.t(`actionBar.filter.rules.${localeKeysByRule[rule]}`)}
               </option>
             ))}
           </InlineSelect>
@@ -111,10 +111,10 @@ function FilterItem(props) {
             onChange={event => {
               onChange({ id, value: event.target.value === "true" });
             }}
-            selectedLabel={I18n.t(`navigation.filter.rules.${value}`)}
+            selectedLabel={I18n.t(`actionBar.filter.rules.${value}`)}
           >
-            <option value="true">{I18n.t("navigation.filter.rules.true")}</option>
-            <option value="false">{I18n.t("navigation.filter.rules.false")}</option>
+            <option value="true">{I18n.t("actionBar.filter.rules.true")}</option>
+            <option value="false">{I18n.t("actionBar.filter.rules.false")}</option>
           </InlineSelect>
         );
       case columnTypes.DATE:
@@ -135,29 +135,29 @@ function FilterItem(props) {
   function renderPrefix() {
     switch (index) {
       case 0:
-        return I18n.t("navigation.filter.where");
+        return I18n.t("actionBar.filter.where");
       case 1:
         if (onChangeOperator) {
           return (
             <InlineSelect
               onChange={onChangeOperator}
               value={operator}
-              selectedLabel={operator === "AND" ? I18n.t("navigation.filter.and") : I18n.t("navigation.filter.or")}
+              selectedLabel={operator === "AND" ? I18n.t("actionBar.filter.and") : I18n.t("actionBar.filter.or")}
             >
-              <option value="AND">{I18n.t("navigation.filter.and")}</option>
-              <option value="OR">{I18n.t("navigation.filter.or")}</option>
+              <option value="AND">{I18n.t("actionBar.filter.and")}</option>
+              <option value="OR">{I18n.t("actionBar.filter.or")}</option>
             </InlineSelect>
           );
         }
-        return I18n.t(`navigation.filter.${operator === "AND" ? "and" : "or"}`);
+        return I18n.t(`actionBar.filter.${operator === "AND" ? "and" : "or"}`);
       default:
-        return I18n.t(`navigation.filter.${operator === "AND" ? "and" : "or"}`);
+        return I18n.t(`actionBar.filter.${operator === "AND" ? "and" : "or"}`);
     }
   }
 
   return (
-    <styled.FilterItem data-pka-anchor="navigation.filter.filterItem">
-      <Button.Close data-pka-anchor="navigation.filter.deleteFilterButton" onClick={handleRemoveFilter} size="small" />
+    <styled.FilterItem data-pka-anchor="actionBar.filter.filterItem">
+      <Button.Close data-pka-anchor="actionBar.filter.deleteFilterButton" onClick={handleRemoveFilter} size="small" />
       {renderPrefix()}
       <InlineSelect
         onChange={handleChangeColumn}

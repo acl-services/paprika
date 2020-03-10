@@ -1,5 +1,5 @@
 import React from "react";
-import Navigation from "../../src";
+import ActionBar from "../../src";
 import MyFilter from "./MyFilter";
 import MySort from "./MySort";
 import MyColumns from "./MyColumns";
@@ -41,10 +41,10 @@ const filterColumns = [
 
 export default function App() {
   return (
-    <Navigation>
+    <ActionBar>
       <MyFilter columns={filterColumns} />
       <MySort columns={filterColumns} />
       <MyColumns />
-    </Navigation>
+    </ActionBar>
   );
 }
