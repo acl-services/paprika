@@ -197,6 +197,7 @@ export default function Trigger(props) {
       {hasRenderTrigger ? renderChildrenProps : renderLabel()}
       {state.selectedOptions.length && hasClearButton && !shouldHideClearButton ? (
         <ClearButtonStyled
+          isSemantic={false}
           isDisabled={isDisabled}
           data-pka-anchor="clear-button"
           kind={Button.Kinds.MINOR}
