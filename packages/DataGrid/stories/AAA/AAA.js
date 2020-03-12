@@ -2,7 +2,7 @@ import React from "react";
 import Spinner from "@paprika/spinner";
 import ActionBar, { Sort } from "@paprika/action-bar";
 import ColumnsArrangement from "./components/ColumnsArrangement";
-import DataGrid from "../../src";
+import DataGrid, { renderColumnExpand } from "../../src";
 import useData from "./hooks/useData";
 import useColumnsArragment from "./hooks/useColumnsArragment";
 import useSort from "./hooks/useSort";
@@ -86,6 +86,7 @@ export default function AAA() {
             </ColumnsArrangement>
           </ActionBar>
           <DataGrid hasAutofocus={false} data={sortedData} width={size.width || 640} height={size.height || 400}>
+            {renderColumnExpand()}
             {orderedColumns.map(column => {
               return column.isHidden ? null : (
                 <DataGrid.ColumnDefinition key={column.key} header={column.label} cell={column.key} />
