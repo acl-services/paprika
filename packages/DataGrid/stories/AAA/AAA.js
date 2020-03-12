@@ -1,12 +1,14 @@
 import React from "react";
+import { isEqual } from "lodash";
 import Spinner from "@paprika/spinner";
-import ActionBar, { Sort } from "@paprika/action-bar";
+import ActionBar, { Sort, Filter } from "@paprika/action-bar";
 import SidePanel from "@paprika/sidepanel";
 import ColumnsArrangement from "./components/ColumnsArrangement";
 import DataGrid, { renderColumnExpand } from "../../src";
 import useData from "./hooks/useData";
 import useColumnsArragment from "./hooks/useColumnsArragment";
 import useSort from "./hooks/useSort";
+import useFilters from "./hooks/useFilters";
 import sc from "./AAA.styles";
 
 export default function AAA() {
@@ -29,6 +31,21 @@ export default function AAA() {
     handleChangeItem,
     handleApply,
   } = useSort({
+    columns,
+    data,
+  });
+
+  const {
+    appliedNumberOfFilters,
+    filters,
+    onAddFilter,
+    onChangeOperator,
+    onDeleteFilter,
+    onFilterChange,
+    operator,
+    onApply,
+    filteredData,
+  } = useFilters({
     columns,
     data,
   });
@@ -60,6 +77,14 @@ export default function AAA() {
       setSize({ width: refMain.current.offsetWidth, height: refMain.current.offsetHeight - 40 - 25 - 44 });
     }
   }, [refMain, size]);
+
+  function getSubset() {
+    if (sortedData && filteredData && sortedData.length > 0 && filteredData.length > 0) {
+      return sortedData.filter(item => filteredData.find(filteredItem => isEqual(filteredItem, item)));
+    }
+
+    return appliedNumberOfFilters > 0 ? filteredData : sortedData;
+  }
 
   if (!sortedData || !orderedColumns) {
     return <Spinner />;
@@ -93,6 +118,24 @@ export default function AAA() {
         </SidePanel>
         <sc.Main ref={refMain}>
           <ActionBar>
+            <Filter
+              appliedNumber={appliedNumberOfFilters}
+              columns={columns}
+              onAddFilter={onAddFilter}
+              onApply={onApply}
+              onChangeOperator={onChangeOperator}
+              operator={operator}
+            >
+              {filters.map((filter, index) => (
+                <Filter.Item
+                  key={filter.id}
+                  {...filter}
+                  onDelete={onDeleteFilter}
+                  onChange={onFilterChange}
+                  index={index}
+                />
+              ))}
+            </Filter>
             <Sort appliedNumber={appliedNumber} columns={columns} onAddField={handleAddItem} onApply={handleApply}>
               {sortedFields.map((field, index) => (
                 <Sort.Field
@@ -123,7 +166,7 @@ export default function AAA() {
               })}
             </ColumnsArrangement>
           </ActionBar>
-          <DataGrid hasAutofocus={false} data={sortedData} width={size.width || 640} height={size.height || 400}>
+          <DataGrid hasAutofocus={false} data={getSubset()} width={size.width || 640} height={size.height || 400}>
             {renderColumnExpand({ onClick: handleExpandClick })}
             {orderedColumns.map(column => {
               return column.isHidden ? null : (
