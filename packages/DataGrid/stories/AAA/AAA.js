@@ -1,6 +1,7 @@
 import React from "react";
 import Spinner from "@paprika/spinner";
 import ActionBar, { Sort } from "@paprika/action-bar";
+import SidePanel from "@paprika/sidepanel";
 import ColumnsArrangement from "./components/ColumnsArrangement";
 import DataGrid, { renderColumnExpand } from "../../src";
 import useData from "./hooks/useData";
@@ -33,7 +34,23 @@ export default function AAA() {
   });
 
   const refMain = React.createRef(null);
+  const refCurrentRow = React.useRef(null);
   const [size, setSize] = React.useState({ width: null, height: null });
+  const [activeRow, setActiveRow] = React.useState(null);
+  const [isSidepanelOpen, setIsSidepanelOpen] = React.useState(false);
+
+  function handleExpandClick({ row }) {
+    if (JSON.stringify(row) === JSON.stringify(refCurrentRow.current)) {
+      setIsSidepanelOpen(false);
+      setActiveRow(null);
+      refCurrentRow.current = null;
+      return;
+    }
+
+    setActiveRow(() => row);
+    setIsSidepanelOpen(true);
+    refCurrentRow.current = row;
+  }
 
   React.useEffect(() => {
     if (refMain.current && (size.width === null || size.height === null)) {
@@ -53,6 +70,27 @@ export default function AAA() {
       <sc.TopNav />
       <sc.Body>
         <sc.SideBar />
+        <SidePanel
+          isOpen={isSidepanelOpen && activeRow}
+          onClose={() => {
+            setIsSidepanelOpen(false);
+            setActiveRow(null);
+          }}
+        >
+          <SidePanel.Header>Attribute type details</SidePanel.Header>
+          {activeRow &&
+            Object.keys(activeRow).map(key => {
+              return (
+                <React.Fragment key={key}>
+                  <div>
+                    <span>{columns.find(column => key === column.key).label}</span>
+                    <span>{activeRow[key]}</span>
+                  </div>
+                  <br />
+                </React.Fragment>
+              );
+            })}
+        </SidePanel>
         <sc.Main ref={refMain}>
           <ActionBar>
             <Sort appliedNumber={appliedNumber} columns={columns} onAddField={handleAddItem} onApply={handleApply}>
@@ -86,7 +124,7 @@ export default function AAA() {
             </ColumnsArrangement>
           </ActionBar>
           <DataGrid hasAutofocus={false} data={sortedData} width={size.width || 640} height={size.height || 400}>
-            {renderColumnExpand()}
+            {renderColumnExpand({ onClick: handleExpandClick })}
             {orderedColumns.map(column => {
               return column.isHidden ? null : (
                 <DataGrid.ColumnDefinition key={column.key} header={column.label} cell={column.key} />

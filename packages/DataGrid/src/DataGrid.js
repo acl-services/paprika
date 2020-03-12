@@ -14,7 +14,7 @@ import InfiniteScroll from "./components/InfiniteScroll";
 const propTypes = {
   children: PropTypes.node.isRequired,
   data: PropTypes.arrayOf(PropTypes.shape({})),
-  hasAutofocus: PropTypes.boolean,
+  hasAutofocus: PropTypes.bool,
   height: PropTypes.number,
   onClick: PropTypes.func,
   onKeyDown: PropTypes.func,
