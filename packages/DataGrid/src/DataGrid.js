@@ -394,18 +394,20 @@ const DataGrid = React.forwardRef((props, ref) => {
   );
 
   React.useEffect(() => {
-    mouseWheel(refScrollGrid.current, (dx, dy, dz, event) => {
-      event.preventDefault();
-      refScrollGrid.current.scrollTo(refScrollGrid.current.scrollLeft + dx, refScrollGrid.current.scrollTop + dy);
-    });
+    if (document.body) {
+      mouseWheel(refScrollGrid.current, (dx, dy, dz, event) => {
+        event.preventDefault();
+        refScrollGrid.current.scrollTo(refScrollGrid.current.scrollLeft + dx, refScrollGrid.current.scrollTop + dy);
+      });
 
-    mouseWheel(refScrollStickyColumns.current, (dx, dy, dz, event) => {
-      event.preventDefault();
-      refScrollStickyColumns.current.scrollTo(
-        refScrollStickyColumns.current.scrollLeft + dx,
-        refScrollStickyColumns.current.scrollTop + dy
-      );
-    });
+      mouseWheel(refScrollStickyColumns.current, (dx, dy, dz, event) => {
+        event.preventDefault();
+        refScrollStickyColumns.current.scrollTo(
+          refScrollStickyColumns.current.scrollLeft + dx,
+          refScrollStickyColumns.current.scrollTop + dy
+        );
+      });
+    }
   }, [gridId]);
 
   const handleMouseOver = event => {
