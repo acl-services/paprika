@@ -115,12 +115,16 @@ export default function Filter(props) {
               <Button onClick={onAddFilter} kind="minor" data-pka-anchor="actionBar.filter.addFilterButton">
                 {I18n.t(`actionBar.filter.add_filter`)}
               </Button>
-              <Button onClick={handleApply} kind="flat" icon={<CheckIcon />}>
-                Apply
-              </Button>
-              <Button onClick={handleCancel} kind="minor">
-                Cancel
-              </Button>
+              {React.Children.count(children) ? (
+                <>
+                  <Button onClick={handleApply} kind="flat" icon={<CheckIcon />}>
+                    Apply
+                  </Button>
+                  <Button onClick={handleCancel} kind="minor">
+                    Cancel
+                  </Button>
+                </>
+              ) : null}
             </styled.Footer>
           </Popover.Card>
         </Popover.Content>

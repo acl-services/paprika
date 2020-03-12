@@ -14,26 +14,28 @@ import InfiniteScroll from "./components/InfiniteScroll";
 const propTypes = {
   children: PropTypes.node.isRequired,
   data: PropTypes.arrayOf(PropTypes.shape({})),
+  hasAutofocus: PropTypes.boolean,
   height: PropTypes.number,
   onClick: PropTypes.func,
-  onPressEnter: PropTypes.func,
   onKeyDown: PropTypes.func,
-  onRowChecked: PropTypes.func,
+  onPressEnter: PropTypes.func,
   onPressShiftSpaceBar: PropTypes.func,
   onPressSpaceBar: PropTypes.func,
+  onRowChecked: PropTypes.func,
   rowHeight: PropTypes.number,
   width: PropTypes.number,
 };
 
 const defaultProps = {
   data: [],
+  hasAutofocus: false,
   height: 600,
   onClick: null,
-  onPressEnter: null,
   onKeyDown: () => {},
-  onRowChecked: () => {},
+  onPressEnter: null,
   onPressShiftSpaceBar: null,
   onPressSpaceBar: null,
+  onRowChecked: () => {},
   rowHeight: 36,
   width: null,
 };
@@ -52,13 +54,14 @@ const DataGrid = React.forwardRef((props, ref) => {
   const {
     children,
     data,
+    hasAutofocus,
     height,
     onClick,
-    onPressEnter,
     onKeyDown,
-    onRowChecked,
+    onPressEnter,
     onPressShiftSpaceBar,
     onPressSpaceBar,
+    onRowChecked,
     rowHeight,
     width,
     ...moreProps
@@ -93,15 +96,22 @@ const DataGrid = React.forwardRef((props, ref) => {
 
   const rowCount = data.length;
 
-  const { ColumnDefinitions, Basement, InfiniteScroll } = React.useMemo(() => {
+  const { ColumnDefinitions: ColumnDefinitionsExtracted, Basement, InfiniteScroll } = React.useMemo(() => {
     const {
-      "DataGrid.ColumnDefinition": ColumnDefinitions,
+      "DataGrid.ColumnDefinition": ColumnDefinitions = [],
       "DataGrid.Basement": Basement,
       "DataGrid.InfiniteScroll": InfiniteScroll,
     } = extractChildren(children, ["DataGrid.ColumnDefinition", "DataGrid.Basement", "DataGrid.InfiniteScroll"]);
 
     return { ColumnDefinitions, Basement, InfiniteScroll };
   }, [children]);
+
+  let ColumnDefinitions = [];
+  if (!Array.isArray(ColumnDefinitionsExtracted)) {
+    ColumnDefinitions = [ColumnDefinitionsExtracted];
+  } else {
+    ColumnDefinitions = ColumnDefinitionsExtracted;
+  }
 
   const columnCount = ColumnDefinitions.length;
 
@@ -322,7 +332,10 @@ const DataGrid = React.forwardRef((props, ref) => {
     ) {
       if (refScrollGrid.current) refScrollGrid.current.scrollTo(0, refScrollGrid.current.scrollTop + 1);
     }
-    restoreHighlightFocus();
+
+    if (hasAutofocus) {
+      restoreHighlightFocus();
+    }
   });
 
   React.useImperativeHandle(
