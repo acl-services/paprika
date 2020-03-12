@@ -38,7 +38,7 @@ const processDate = (momentParsingFormat, value, testValue, testFunction) => {
 const testers = {
   [rules.IS]: is,
   [rules.IS_NOT]: isNot,
-  [rules.CONTAINS]: (value, testValue) => (testValue === "" ? true : value.includes(testValue)),
+  [rules.CONTAINS]: (value, testValue) => (testValue === "" ? true : `${value}`.includes(testValue)),
   [rules.DOES_NOT_CONTAIN]: (value, testValue) => (testValue === "" ? true : !value.includes(testValue)),
   [rules.IS_BLANK]: isBlank,
   [rules.IS_NOT_BLANK]: isNotBlank,
