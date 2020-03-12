@@ -68,7 +68,10 @@ export default function useSort({ data, columns }) {
     }
   }, [columns, data, sortedFields]);
 
+  const appliedNumber = sortedFields.length;
+
   return {
+    appliedNumber,
     sortedData,
     sortedFields,
     handleAddItem,

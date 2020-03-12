@@ -19,7 +19,15 @@ export default function AAA() {
     handleChangeOrder,
   } = useColumnsArragment(columns);
 
-  const { sortedData, sortedFields, handleAddItem, handleDeleteItem, handleChangeItem, handleApply } = useSort({
+  const {
+    sortedData,
+    sortedFields,
+    appliedNumber,
+    handleAddItem,
+    handleDeleteItem,
+    handleChangeItem,
+    handleApply,
+  } = useSort({
     columns,
     data,
   });
@@ -47,6 +55,17 @@ export default function AAA() {
         <sc.SideBar />
         <sc.Main ref={refMain}>
           <ActionBar>
+            <Sort appliedNumber={appliedNumber} columns={columns} onAddField={handleAddItem} onApply={handleApply}>
+              {sortedFields.map((field, index) => (
+                <Sort.Field
+                  key={field.id}
+                  {...field}
+                  onDelete={handleDeleteItem}
+                  onChange={handleChangeItem}
+                  isFirst={index === 0}
+                />
+              ))}
+            </Sort>
             <ColumnsArrangement
               onChangeOrder={handleChangeOrder}
               onHideAll={handleHideAll}
@@ -65,17 +84,6 @@ export default function AAA() {
                 );
               })}
             </ColumnsArrangement>
-            <Sort appliedNumber={0} columns={columns} onAddField={handleAddItem} onApply={handleApply}>
-              {sortedFields.map((field, index) => (
-                <Sort.Field
-                  key={field.id}
-                  {...field}
-                  onDelete={handleDeleteItem}
-                  onChange={handleChangeItem}
-                  isFirst={index === 0}
-                />
-              ))}
-            </Sort>
           </ActionBar>
           <DataGrid hasAutofocus={false} data={sortedData} width={size.width || 640} height={size.height || 400}>
             {orderedColumns.map(column => {
