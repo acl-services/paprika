@@ -42,7 +42,7 @@ const LinkButton = React.forwardRef(
         {...moreProps}
       >
         {children}
-        {isOpenNewTab ? suffixIcon : null}
+        {kind === Button.Kinds.LINK && isOpenNewTab ? suffixIcon : null}
       </a>
     );
   }
