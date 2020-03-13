@@ -15,5 +15,8 @@
   "peerDependencies": {
     "react": "^16.8.0",
     "react-dom": "^16.8.0"
+  },
+  "dependencies": {
+    "react-moment-proptypes": "^1.7.0"
   }
 }

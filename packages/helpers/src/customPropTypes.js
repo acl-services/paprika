@@ -1,5 +1,6 @@
 // NOTE: Maybe this should be provided as a consumable package?
 import PropTypes from "prop-types";
+import momentPropTypes from "react-moment-proptypes";
 
 export const ShirtSizes = {
   XSMALL: "xsmall",
@@ -70,3 +71,9 @@ InputValidTypes.ALL = Object.values(InputValidTypes);
 
 export const RefOf = (propType = PropTypes.instanceOf(Element)) =>
   PropTypes.oneOfType([PropTypes.func, PropTypes.shape({ current: propType })]);
+
+export function isMomentObjectOrNull(date) {
+  if (date === null) return true;
+
+  return momentPropTypes.momentObj(date);
+}
