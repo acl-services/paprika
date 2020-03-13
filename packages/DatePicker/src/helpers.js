@@ -1,5 +1,4 @@
 import React from "react";
-import momentPropTypes from "react-moment-proptypes";
 
 export function extractChildrenProps(children, target) {
   let overrides;
@@ -11,10 +10,4 @@ export function extractChildrenProps(children, target) {
   });
 
   return overrides;
-}
-
-export function isMomentObjectOrNull(date) {
-  if (date === null) return true;
-
-  return momentPropTypes.momentObj(date);
 }

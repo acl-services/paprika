@@ -10,9 +10,9 @@ import ArrowLeft from "@paprika/icon/lib/ArrowLeft";
 import ArrowRight from "@paprika/icon/lib/ArrowRight";
 import Button from "@paprika/button";
 import useI18n from "@paprika/l10n/lib/useI18n";
+import { isMomentObjectOrNull } from "@paprika/helpers/lib/customPropTypes";
 
 import ShortcutPanel from "../ShortcutPanel";
-import { isMomentObjectOrNull } from "../../helpers";
 
 import calendarStyles, {
   arrowIconStyles,

@@ -9,7 +9,7 @@ storiesOf("DatePicker", module)
   .addDecorator(withKnobs)
   .add("DatePicker showcase", () => {
     const datePickerProps = () => ({
-      dataFormat: select("dataFormat", ["MM/DD/YYYY", "DD/MM/YYYY", "YYYY-MM-DD"], "MM/DD/YYYY"),
+      dateFormat: select("dateFormat", ["MM/DD/YYYY", "DD/MM/YYYY", "YYYY-MM-DD"], "MM/DD/YYYY"),
       humanFormat: select("humanFormat", ["MMMM DD, YYYY", "YYYY-MM-DD"], "MMMM DD, YYYY"),
       isDisabled: boolean("isDisabled", false),
       isReadOnly: boolean("isReadOnly", false),
