@@ -13,6 +13,7 @@ import sc from "./AAA.styles";
 
 export default function AAA() {
   const { data, columns } = useData();
+  const [next, setNext] = React.useState(0);
 
   const {
     orderedColumns,
@@ -20,7 +21,7 @@ export default function AAA() {
     handleShowAll,
     handleHideAll,
     handleChangeOrder,
-  } = useColumnsArragment(columns);
+  } = useColumnsArragment({ columns, setNext });
 
   const {
     sortedData,
@@ -33,6 +34,7 @@ export default function AAA() {
   } = useSort({
     columns,
     data,
+    setNext,
   });
 
   const {
@@ -48,6 +50,7 @@ export default function AAA() {
   } = useFilters({
     columns,
     data,
+    setNext,
   });
 
   const refMain = React.createRef(null);
@@ -74,17 +77,21 @@ export default function AAA() {
       // 40 top purple bar
       // 62 actionbar
       // 25 footer
+      setNext(prev => prev + 1);
       setSize({ width: refMain.current.offsetWidth, height: refMain.current.offsetHeight - 40 - 25 - 44 });
     }
   }, [refMain, size]);
 
-  function getSubset() {
-    if (sortedData && filteredData && sortedData.length > 0 && filteredData.length > 0) {
-      return sortedData.filter(item => filteredData.find(filteredItem => isEqual(filteredItem, item)));
-    }
+  const memoGetSubset = React.useCallback(
+    function getSubset() {
+      if (sortedData && filteredData && sortedData.length > 0 && filteredData.length > 0) {
+        return sortedData.filter(item => filteredData.find(filteredItem => isEqual(filteredItem, item)));
+      }
 
-    return appliedNumberOfFilters > 0 ? filteredData : sortedData;
-  }
+      return appliedNumberOfFilters > 0 ? filteredData : sortedData;
+    },
+    [appliedNumberOfFilters, filteredData, sortedData]
+  );
 
   if (!sortedData || !orderedColumns) {
     return <Spinner />;
@@ -166,7 +173,13 @@ export default function AAA() {
               })}
             </ColumnsArrangement>
           </ActionBar>
-          <DataGrid hasAutofocus={false} data={getSubset()} width={size.width || 640} height={size.height || 400}>
+          <DataGrid
+            rerender={next}
+            hasAutofocus={false}
+            data={memoGetSubset()}
+            width={size.width || 640}
+            height={size.height || 400}
+          >
             {renderColumnExpand({ onClick: handleExpandClick })}
             {orderedColumns.map(column => {
               return column.isHidden ? null : (

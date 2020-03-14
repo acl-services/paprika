@@ -30,38 +30,42 @@ function filterData({ filters, operator, columns, data }) {
   });
 }
 
-export default function useFilters({ columns, data }) {
+export default function useFilters({ columns, data, setNext = () => {} }) {
   const [filters, setFilters] = React.useState([]);
   const [operator, setOperator] = React.useState("AND");
   const [filteredData, setFilteredData] = React.useState(data);
   const [appliedNumber, setAppliedNumber] = React.useState(0);
 
-  function handleFilterChange({ id: filterId, rule, value, columnId }) {
-    let change;
+  const handleFilterChange = React.useCallback(
+    ({ id: filterId, rule, value, columnId }) => {
+      let change;
 
-    if (columnId) {
-      const columnType = columns.find(column => column.id === columnId).type;
+      if (columnId) {
+        const columnType = columns.find(column => column.id === columnId).type;
 
-      change = {
-        columnId,
-        rule: Filter.rulesByType[columnType][0],
-        value: initialValueByType[columnType],
-        renderValueField: null,
-      };
-    } else if (rule) {
-      change = {
-        rule,
-        value: "",
-      };
-    } else {
-      change = {
-        value,
-      };
-    }
-    setFilters(prevFilters =>
-      prevFilters.map(filterItem => (filterItem.id === filterId ? { ...filterItem, ...change } : filterItem))
-    );
-  }
+        change = {
+          columnId,
+          rule: Filter.rulesByType[columnType][0],
+          value: initialValueByType[columnType],
+          renderValueField: null,
+        };
+      } else if (rule) {
+        change = {
+          rule,
+          value: "",
+        };
+      } else {
+        change = {
+          value,
+        };
+      }
+
+      setFilters(prevFilters =>
+        prevFilters.map(filterItem => (filterItem.id === filterId ? { ...filterItem, ...change } : filterItem))
+      );
+    },
+    [columns]
+  );
 
   function getDefaultFilter() {
     const firstColumnId = columns[0].id;
@@ -90,6 +94,7 @@ export default function useFilters({ columns, data }) {
   function handleApply() {
     setFilteredData(() => filterData({ filters, operator, columns, data }));
     setAppliedNumber(filters.length);
+    setNext(prev => prev && prev + 1);
   }
 
   return {

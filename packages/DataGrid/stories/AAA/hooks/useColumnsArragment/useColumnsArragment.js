@@ -1,13 +1,14 @@
 import React from "react";
 
-export default function useColumnsArragment(initialColumns) {
-  const [orderedColumns, setColumns] = React.useState(initialColumns);
+export default function useColumnsArragment({ columns: initialColumns, setNext = () => {} }) {
+  const [orderedColumns, setColumns] = React.useState({ initialColumns });
 
   function handleChangeOrder({ source, destination }) {
     const newOrder = [...orderedColumns];
     const movedChild = newOrder.splice(source, 1);
     newOrder.splice(destination, 0, ...movedChild);
     setColumns(newOrder);
+    setNext(prev => prev && prev + 1);
   }
 
   function handleHideAll() {
@@ -17,6 +18,7 @@ export default function useColumnsArragment(initialColumns) {
         isHidden: true,
       }))
     );
+    setNext(prev => prev && prev + 1);
   }
 
   function handleShowAll() {
@@ -26,6 +28,7 @@ export default function useColumnsArragment(initialColumns) {
         isHidden: false,
       }))
     );
+    setNext(prev => prev && prev + 1);
   }
 
   function handleChangeVisibility(columnId) {
@@ -39,6 +42,7 @@ export default function useColumnsArragment(initialColumns) {
           : column
       )
     );
+    setNext(prev => prev && prev + 1);
   }
 
   React.useEffect(() => {

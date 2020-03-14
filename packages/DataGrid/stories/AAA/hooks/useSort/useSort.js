@@ -18,7 +18,7 @@ function sortData({ sortedFields, columns, data }) {
   return sortedData;
 }
 
-export default function useSort({ data, columns }) {
+export default function useSort({ data, columns, setNext = () => {} }) {
   const [sortedFields, setSortedFields] = React.useState([]);
   const [sortedData, setSortedData] = React.useState(data);
 
@@ -43,6 +43,7 @@ export default function useSort({ data, columns }) {
 
   function handleApply() {
     setSortedData(() => sortData({ sortedFields, columns, data }));
+    setNext(prev => prev && prev + 1);
   }
 
   const handleChangeItem = React.useCallback(
