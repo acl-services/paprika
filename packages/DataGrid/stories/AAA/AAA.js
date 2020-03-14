@@ -82,16 +82,12 @@ export default function AAA() {
     }
   }, [refMain, size]);
 
-  const memoGetSubset = React.useCallback(
-    function getSubset() {
-      if (sortedData && filteredData && sortedData.length > 0 && filteredData.length > 0) {
-        return sortedData.filter(item => filteredData.find(filteredItem => isEqual(filteredItem, item)));
-      }
-
-      return appliedNumberOfFilters > 0 ? filteredData : sortedData;
-    },
-    [appliedNumberOfFilters, filteredData, sortedData]
-  );
+  const subset = React.useMemo(() => {
+    if (sortedData && filteredData && sortedData.length > 0 && filteredData.length > 0) {
+      return sortedData.filter(item => filteredData.find(filteredItem => isEqual(filteredItem, item)));
+    }
+    return appliedNumberOfFilters > 0 ? filteredData : sortedData;
+  }, [appliedNumberOfFilters, filteredData, sortedData]);
 
   if (!sortedData || !orderedColumns) {
     return <Spinner />;
@@ -176,7 +172,7 @@ export default function AAA() {
           <DataGrid
             rerender={next}
             hasAutofocus={false}
-            data={memoGetSubset()}
+            data={subset}
             width={size.width || 640}
             height={size.height || 400}
           >
