@@ -107,16 +107,12 @@ export default function Sort(props) {
               >
                 Add a field to sort by
               </Button>
-              {React.Children.count(children) === 0 ? null : (
-                <>
-                  <Button onClick={handleApply} kind="flat" icon={<CheckIcon />}>
-                    Apply
-                  </Button>
-                  <Button onClick={handleCancel} kind="minor">
-                    Cancel
-                  </Button>
-                </>
-              )}
+              <Button onClick={handleApply} kind="flat" icon={<CheckIcon />}>
+                Apply
+              </Button>
+              <Button onClick={handleCancel} kind="minor">
+                Cancel
+              </Button>
             </styled.Footer>
           </Popover.Card>
         </Popover.Content>
