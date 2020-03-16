@@ -21,7 +21,7 @@ export default {
     background: #2e153d;
     flex-grow: 0;
     height: calc(100vh - 40px);
-    width: 280px;
+    width: 8px;
   `,
   Main: styled.div`
     flex-basis: 100%;

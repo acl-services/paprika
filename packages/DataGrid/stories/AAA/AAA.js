@@ -3,8 +3,9 @@ import { isEqual } from "lodash";
 import Spinner from "@paprika/spinner";
 import ActionBar, { Sort, Filter } from "@paprika/action-bar";
 import SidePanel from "@paprika/sidepanel";
+import tokens from "@paprika/tokens";
 import ColumnsArrangement from "./components/ColumnsArrangement";
-import DataGrid, { renderColumnExpand } from "../../src";
+import DataGrid from "../../src";
 import useData from "./hooks/useData";
 import useColumnsArragment from "./hooks/useColumnsArragment";
 import useSort from "./hooks/useSort";
@@ -97,7 +98,6 @@ export default function AAA() {
     <sc.Container>
       <sc.TopNav />
       <sc.Body>
-        <sc.SideBar />
         <SidePanel
           isOpen={isSidepanelOpen && activeRow}
           onClose={() => {
@@ -119,6 +119,7 @@ export default function AAA() {
               );
             })}
         </SidePanel>
+        <sc.SideBar />
         <sc.Main ref={refMain}>
           <ActionBar>
             <Filter
@@ -176,10 +177,26 @@ export default function AAA() {
             width={size.width || 640}
             height={size.height || 400}
           >
-            {renderColumnExpand({ onClick: handleExpandClick })}
             {orderedColumns.map(column => {
+              let cellProps = {};
+              if (column.key === "ATTTYPE_NAME") {
+                cellProps = {
+                  style: {
+                    color: tokens.color.blue,
+                  },
+                };
+              }
+
               return column.isHidden ? null : (
-                <DataGrid.ColumnDefinition key={column.key} header={column.label} cell={column.key} />
+                <DataGrid.ColumnDefinition
+                  onClick={({ row }) => {
+                    handleExpandClick({ row });
+                  }}
+                  key={column.key}
+                  header={column.label}
+                  cell={column.key}
+                  cellProps={() => cellProps}
+                />
               );
             })}
           </DataGrid>
