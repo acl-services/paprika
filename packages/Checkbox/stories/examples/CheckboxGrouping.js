@@ -1,7 +1,12 @@
 import React from "react";
+import styled from "styled-components";
 import { Rule } from "storybook/assets/styles/common.styles";
 import Heading from "@paprika/heading";
-import Checkbox from "../../src/Checkbox";
+import PaprikaCheckbox from "../../src/Checkbox";
+
+const Checkbox = styled(PaprikaCheckbox)`
+  margin-bottom: 16px;
+`;
 
 const { CHECKED, UNCHECKED } = Checkbox.states;
 
@@ -16,13 +21,7 @@ const CheckboxExample = props => {
         Checkbox Grouping
       </Heading>
       <Rule />
-      <div
-        css={`
-          [data-pka-anchor="checkbox"] {
-            margin-bottom: 12px;
-          }
-        `}
-      >
+      <div>
         <Checkbox {...props} onChange={handleChange} checkedState={checkedState}>
           Slow-carb cold-pressed hexagon forage chillwave
         </Checkbox>
