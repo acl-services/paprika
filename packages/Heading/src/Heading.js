@@ -49,29 +49,14 @@ const defaultProps = {
 const safeValue = n => (n < 1 || Number.isNaN(n) ? 6 : Math.min(n, 6));
 
 function getElementProps(safeDisplayLevel, safeLevel, props) {
-  const {
-    a11yText,
-    children,
-    displayLevel,
-    domRef,
-    hasDivider,
-    hasUnderline,
-    isHidden,
-    isLight,
-    isSemantic,
-    level,
-    ...moreProps
-  } = props;
+  const { a11yText, children, displayLevel, domRef, isSemantic, level, ...moreProps } = props;
   return {
-    "aria-level": isSemantic ? null : safeLevel,
     "aria-label": a11yText || undefined,
-    safeLevel,
-    safeDisplayLevel,
-    isHidden,
-    hasUnderline,
-    isLight,
+    "aria-level": isSemantic ? null : safeLevel,
     ref: domRef,
     role: isSemantic ? null : "heading",
+    safeDisplayLevel,
+    safeLevel,
     ...moreProps,
   };
 }

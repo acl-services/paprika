@@ -4,7 +4,6 @@ import stylers from "@paprika/stylers";
 const defaultHeadingStyles = `
   align-items: center;
   color: inherit;
-  display: flex;
   font-weight: 700;
   letter-spacing: 0;
   ${stylers.lineHeight(-1)};
@@ -55,7 +54,7 @@ const underline = level => {
 
 export const dividerStyles = `
   border-bottom: 2px solid ${tokens.color.blackLighten70};
-  flex: 1;
+  flex-grow: 1;
   margin-left: ${tokens.space};
 `;
 
@@ -64,5 +63,6 @@ export const headingStyles = props => `
   ${heading[`HEADING_LEVEL_${props.safeDisplayLevel || props.safeLevel}`]}
   ${props.isHidden ? stylers.visuallyHidden : ""}
   ${props.hasUnderline ? underline(props.safeDisplayLevel || props.safeLevel) : ""}
+  ${props.hasDivider ? "display: flex;" : ""}
   ${props.isLight ? "font-weight: 400;" : ""}
 `;
