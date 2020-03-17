@@ -92,7 +92,7 @@ export function ListBox(props) {
         <Box>
           {filter}
           <List height={height}>
-            <Options>{children}</Options>
+            <Options isPopoverOpen={props.isOpen}>{children}</Options>
           </List>
           {filter ? (
             <NoResults label={filter.props.noResultsMessage || I18n.t("listBox.filter.no_results_message")} />
@@ -125,6 +125,7 @@ const ListBoxContainer = React.forwardRef((props, ref) => {
     trigger, // eslint-disable-line
     footer, // eslint-disable-line
     popover, // eslint-disable-line
+    isOpen,
   } = props;
 
   // IMPERATIVE API
@@ -150,6 +151,7 @@ const ListBoxContainer = React.forwardRef((props, ref) => {
     height,
     placeholder: placeholder || I18n.t("listBox.trigger.placeholder"),
     trigger,
+    isOpen,
   };
 
   const listBox = <ListBox {...propsForListBox}>{children}</ListBox>;

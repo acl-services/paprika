@@ -48,7 +48,7 @@ export default function reducer(state, { type, payload }) {
     }
 
     case useListBox.types.selectMultipleOption: {
-      const { activeOptionIndex, isSelected } = payload;
+      const { activeOptionIndex, isSelected, isOpen } = payload;
       let selectedOptions = [];
 
       if (isSelected) {
@@ -65,7 +65,7 @@ export default function reducer(state, { type, payload }) {
       return {
         ...state,
         activeOption: activeOptionIndex,
-        isOpen: true,
+        isOpen,
         onChangeFn: payload.onChangeFn,
         selectedOptions,
         shouldContentScroll: false,
