@@ -2,6 +2,7 @@ import React from "react";
 import ListBox, { propTypes, defaultProps } from "./ListBox";
 import extractChildren from "./helpers/extractChildren";
 import Divider from "./components/Divider";
+import Box from "./components/Box/BoxShell";
 import Filter from "./components/Filter";
 import Footer from "./components/Footer";
 import Option from "./components/Option";
@@ -40,13 +41,20 @@ const ListBoxWithProvider = React.forwardRef((props, ref) => {
     "ListBox.Footer": footer,
     "ListBox.Popover": popover,
     "ListBox.Trigger": trigger,
+    "ListBox.Box": box,
     children: options,
-  } = extractChildren(_children, ["ListBox.Filter", "ListBox.Footer", "ListBox.Popover", "ListBox.Trigger"]);
+  } = extractChildren(_children, [
+    "ListBox.Filter",
+    "ListBox.Footer",
+    "ListBox.Popover",
+    "ListBox.Trigger",
+    "ListBox.Box",
+  ]);
 
   return (
     <Provider {...moreProps} childrenOptions={options}>
       <OnChangeProvider onChange={props.onChange}>
-        <ListBox {...moreProps} ref={ref} filter={filter} footer={footer} popover={popover} trigger={trigger}>
+        <ListBox {...moreProps} ref={ref} filter={filter} footer={footer} popover={popover} trigger={trigger} box={box}>
           {options}
         </ListBox>
       </OnChangeProvider>
@@ -56,8 +64,7 @@ const ListBoxWithProvider = React.forwardRef((props, ref) => {
 
 export default ListBoxWithProvider;
 
-ListBoxWithProvider.propTypes = propTypes;
-ListBoxWithProvider.defaultProps = defaultProps;
+ListBoxWithProvider.Box = Box;
 ListBoxWithProvider.Divider = Divider;
 ListBoxWithProvider.Filter = Filter;
 ListBoxWithProvider.Footer = Footer;
@@ -65,5 +72,7 @@ ListBoxWithProvider.Option = Option;
 ListBoxWithProvider.Popover = Popover;
 ListBoxWithProvider.RawItem = RawItem;
 ListBoxWithProvider.Trigger = Trigger;
+
+ListBoxWithProvider.defaultProps = defaultProps;
 ListBoxWithProvider.displayName = "ListBox";
-ListBoxWithProvider.displayName = "ListBox";
+ListBoxWithProvider.propTypes = propTypes;

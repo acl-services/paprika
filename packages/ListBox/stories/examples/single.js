@@ -231,6 +231,21 @@ export const DefaultIsSelected = () => {
   );
 };
 
+export const WithListBoxBox = () => {
+  return (
+    <ListBox>
+      <ListBox.Box className="my-custom-className" style={{ border: "1px solid red" }} />
+      {characters.antiHeroesRaw.map((item, index) => {
+        return (
+          <ListBox.Option key={item.label} defaultIsSelected={index === 4}>
+            {item.label}
+          </ListBox.Option>
+        );
+      })}
+    </ListBox>
+  );
+};
+
 export const OnChange = () => {
   const refListBox = React.useRef(null);
   const [change, setChange] = React.useState(null);
