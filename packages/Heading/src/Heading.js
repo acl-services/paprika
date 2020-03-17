@@ -66,11 +66,10 @@ function Heading(props) {
     role: isSemantic ? null : "heading",
     safeDisplayLevel: displayLevel ? safeValue(displayLevel) : null,
     safeLevel,
-    ...moreProps,
   };
 
   return (
-    <div data-pka-anchor="heading" css={headingStyles} {...elementProps}>
+    <div data-pka-anchor="heading" css={headingStyles} {...elementProps} {...moreProps}>
       {renderHeadingContent(a11yText, children)}
       {hasDivider ? divider : null}
     </div>
