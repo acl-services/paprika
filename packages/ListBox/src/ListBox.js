@@ -92,7 +92,7 @@ export function ListBox(props) {
         <Box {...box.props}>
           {filter}
           <List height={height}>
-            <Options>{children}</Options>
+            <Options isPopoverOpen={props.isOpen}>{children}</Options>
           </List>
           {filter ? (
             <NoResults label={filter.props.noResultsMessage || I18n.t("listBox.filter.no_results_message")} />
@@ -125,6 +125,7 @@ const ListBoxContainer = React.forwardRef((props, ref) => {
     isInline,
     placeholder,
     popover, // eslint-disable-line
+    isOpen,
     trigger, // eslint-disable-line
   } = props;
 
@@ -151,6 +152,7 @@ const ListBoxContainer = React.forwardRef((props, ref) => {
     height,
     placeholder: placeholder || I18n.t("listBox.trigger.placeholder"),
     trigger,
+    isOpen,
     box,
   };
 
