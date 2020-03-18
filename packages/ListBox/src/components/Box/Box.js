@@ -8,10 +8,16 @@ const propTypes = {
 };
 
 export default function Box(props) {
+  const { children, ...moreProps } = props;
   const [state] = useListBox();
 
   return (
-    <BoxContainerStyled data-pka-anchor="listbox-box" isInline={state.isInline} triggerWidth={state.triggerWidth}>
+    <BoxContainerStyled
+      data-pka-anchor="listbox-box"
+      isInline={state.isInline}
+      triggerWidth={state.triggerWidth}
+      {...moreProps}
+    >
       {props.children}
     </BoxContainerStyled>
   );
