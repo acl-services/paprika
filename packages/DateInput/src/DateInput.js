@@ -4,7 +4,6 @@ import moment from "moment";
 import CalendarIcon from "@paprika/icon/lib/Calendar";
 import Input from "@paprika/input";
 import { isMomentObjectOrNull } from "@paprika/helpers/lib/customPropTypes";
-import isElementContainsFocus from "@paprika/helpers/lib/dom/isElementContainsFocus";
 import useI18n from "@paprika/l10n/lib/useI18n";
 
 const INPUT_PARSE_ERROR = "INPUT_PARSE";
@@ -77,6 +76,7 @@ const DateInput = React.forwardRef((props, ref) => {
 
   const [hasParsingError, setHasParsingError] = React.useState(false);
   const [inputtedString, setInputtedString] = React.useState(date ? date.format(dateFormat) : "");
+  const [hasFocus, setFocus] = React.useState(false);
 
   const internalRef = React.useRef(null);
 
@@ -93,7 +93,7 @@ const DateInput = React.forwardRef((props, ref) => {
   const hasErrorValue = hasError || hasParsingError;
 
   let inputText;
-  if ((inputRef && isElementContainsFocus(inputRef.current)) || hasErrorValue) {
+  if ((inputRef && hasFocus) || hasErrorValue) {
     inputText = inputtedString;
   } else {
     inputText = date ? date.format(humanFormat) : "";
@@ -158,14 +158,20 @@ const DateInput = React.forwardRef((props, ref) => {
   }
 
   function handleInputBlur() {
+    setFocus(false);
     window.requestAnimationFrame(() => {
       handleInputConfirm();
     });
   }
 
+  function handleFocus() {
+    setFocus(true);
+  }
+
   return (
     <Input
       icon={<CalendarIcon />}
+      onFocus={handleFocus}
       onBlur={handleInputBlur}
       onChange={handleInputChange}
       onClick={handleClick}
