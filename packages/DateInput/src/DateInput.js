@@ -114,6 +114,10 @@ const DateInput = React.forwardRef((props, ref) => {
   }
 
   function handleInputConfirm() {
+    if (denyConfirmation()) {
+      return;
+    }
+
     beforeConfirmation();
 
     if (!inputtedString) {
@@ -139,7 +143,6 @@ const DateInput = React.forwardRef((props, ref) => {
     } else {
       const updatedPossibleDate = parseInput();
 
-      if (updatedPossibleDate.isSame(possibleDate, "year") && updatedPossibleDate.isSame(possibleDate, "month")) return;
       onChangePossibleDate(updatedPossibleDate);
     }
   }
@@ -156,9 +159,7 @@ const DateInput = React.forwardRef((props, ref) => {
 
   function handleInputBlur() {
     window.requestAnimationFrame(() => {
-      if (!denyConfirmation()) {
-        handleInputConfirm();
-      }
+      handleInputConfirm();
     });
   }
 

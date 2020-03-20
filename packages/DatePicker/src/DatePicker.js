@@ -107,6 +107,12 @@ function DatePicker(props) {
     handleChange(selectedDate);
   }
 
+  function handlePossibleDateChange(newPossibleDate) {
+    if (newPossibleDate.isSame(possibleDate, "year") && newPossibleDate.isSame(possibleDate, "month")) return;
+
+    setPossibleDate(newPossibleDate);
+  }
+
   const hasInputError = extendedInputProps && extendedInputProps.hasError;
 
   const hasErrorValue = hasError || hasInputError;
@@ -116,10 +122,7 @@ function DatePicker(props) {
       offset={8}
       {...extendedPopoverProps}
       isOpen={shouldShowCalendar}
-      onClose={() => {
-        console.log("on close");
-        handleClosePopover();
-      }}
+      onClose={handleClosePopover}
       onKeyUp={handleKeyUpOnEscape}
       shouldKeepFocus
     >
@@ -133,7 +136,7 @@ function DatePicker(props) {
         dateFormat={dateFormat}
         humanFormat={humanFormat}
         onChange={onChange}
-        onChangePossibleDate={setPossibleDate}
+        onChangePossibleDate={handlePossibleDateChange}
         onClick={showCalendar}
         onError={onError}
         beforeConfirmation={hideCalendar}
