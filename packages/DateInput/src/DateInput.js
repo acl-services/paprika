@@ -171,14 +171,14 @@ const DateInput = React.forwardRef((props, ref) => {
   return (
     <Input
       icon={<CalendarIcon />}
-      onFocus={handleFocus}
-      onBlur={handleInputBlur}
+      {...restProps}
       onChange={handleInputChange}
       onClick={handleClick}
       onKeyUp={handleKeyUp}
       inputRef={inputRef}
       value={inputText}
-      {...restProps}
+      onFocus={handleFocus}
+      onBlur={handleInputBlur}
       hasError={hasErrorValue}
     />
   );
