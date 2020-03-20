@@ -1,6 +1,6 @@
 import React from "react";
 import moment from "moment";
-import { render as renderReactTestingLibrary, configure, fireEvent } from "@testing-library/react";
+import { render as renderReactTestingLibrary, configure, fireEvent, wait } from "@testing-library/react";
 import DateInput from "../src";
 
 configure({ testIdAttribute: "data-pka-anchor" });
@@ -57,7 +57,7 @@ describe("DateInput", () => {
     expect(document.getElementsByClassName("form-input--has-error").length).toEqual(1);
   });
 
-  it("should reset format after focus/blur", () => {
+  it("should reset format after focus/blur", async () => {
     const { getByTestId } = render({ date: moment("2019-01-02") });
 
     expect(getByTestId("dateinput").value).toEqual("January 02, 2019");
@@ -68,7 +68,7 @@ describe("DateInput", () => {
 
     getByTestId("dateinput").blur();
 
-    expect(getByTestId("dateinput").value).toEqual("January 02, 2019");
+    await wait(() => expect(getByTestId("dateinput").value).toEqual("January 02, 2019"));
   });
 
   it("should render date correctly with different timezones", () => {

@@ -78,10 +78,6 @@ const DateInput = React.forwardRef((props, ref) => {
   const [inputtedString, setInputtedString] = React.useState(date ? date.format(dateFormat) : "");
   const [hasFocus, setFocus] = React.useState(false);
 
-  const internalRef = React.useRef(null);
-
-  const inputRef = ref || internalRef;
-
   // Effect
   React.useEffect(() => {
     if (date) {
@@ -93,7 +89,7 @@ const DateInput = React.forwardRef((props, ref) => {
   const hasErrorValue = hasError || hasParsingError;
 
   let inputText;
-  if ((inputRef && hasFocus) || hasErrorValue) {
+  if (hasFocus || denyConfirmation() || hasErrorValue) {
     inputText = inputtedString;
   } else {
     inputText = date ? date.format(humanFormat) : "";
@@ -158,8 +154,8 @@ const DateInput = React.forwardRef((props, ref) => {
   }
 
   function handleInputBlur() {
-    setFocus(false);
     window.requestAnimationFrame(() => {
+      setFocus(false);
       handleInputConfirm();
     });
   }
@@ -175,7 +171,7 @@ const DateInput = React.forwardRef((props, ref) => {
       onChange={handleInputChange}
       onClick={handleClick}
       onKeyUp={handleKeyUp}
-      inputRef={inputRef}
+      inputRef={ref}
       value={inputText}
       onFocus={handleFocus}
       onBlur={handleInputBlur}
