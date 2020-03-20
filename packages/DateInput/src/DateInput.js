@@ -3,62 +3,48 @@ import PropTypes from "prop-types";
 import moment from "moment";
 import CalendarIcon from "@paprika/icon/lib/Calendar";
 import Input from "@paprika/input";
-import { ShirtSizes, isMomentObjectOrNull } from "@paprika/helpers/lib/customPropTypes";
+import { isMomentObjectOrNull } from "@paprika/helpers/lib/customPropTypes";
 import isElementContainsFocus from "@paprika/helpers/lib/dom/isElementContainsFocus";
 import useI18n from "@paprika/l10n/lib/useI18n";
 
 const INPUT_PARSE_ERROR = "INPUT_PARSE";
 
 const propTypes = {
-  /** a11yText on the input. */
-  a11yText: PropTypes.string,
-
-  /** Placeholder of input. */
-  placeholder: PropTypes.string,
-
-  /** Size of input. */
-  size: PropTypes.oneOf(ShirtSizes.DEFAULT),
-
   /** If the value of <input> is valid or not. */
   hasError: PropTypes.bool,
-
-  id: PropTypes.string,
-
-  isDisabled: PropTypes.bool,
-
-  isReadOnly: PropTypes.bool,
 
   /** Date format used while entering and parsing user input. */
   dateFormat: PropTypes.string,
 
+  /** Selected date in moment object. */
   date: isMomentObjectOrNull,
 
+  /** Possible date in moment object. This prop is used when user is typing date and we can't determinate exact date. */
   possibleDate: isMomentObjectOrNull,
 
   /** Date format used while displaying date. It should be human-friendly and spelled out, default is MMMM DD,YYYY */
   humanFormat: PropTypes.string,
 
+  /** Callback when date is inputed. Will be called on blur or enter key press. */
   onChange: PropTypes.func,
 
+  /** Callback when user inputs date. Will be called after every key up event. */
   onChangePossibleDate: PropTypes.func,
 
+  /** Error callback. Will be called on blur or enter key press if inputted date can't be parsed. */
   onError: PropTypes.func,
 
   onClick: PropTypes.func,
 
+  /** Guard function. If it returns true - confirmation will be prevented. */
   denyConfirmation: PropTypes.func,
 
+  /** Callback when confirm */
   beforeConfirmation: PropTypes.func,
 };
 
 const defaultProps = {
-  a11yText: null,
-  placeholder: "",
-  size: ShirtSizes.MEDIUM,
   hasError: false,
-  id: undefined,
-  isDisabled: false,
-  isReadOnly: false,
   dateFormat: "MM/DD/YYYY",
   date: null,
   possibleDate: null,
