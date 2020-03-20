@@ -10,6 +10,8 @@ or
 
 See `DateInput.stories.js`.
 
+Note: Please use `<L10n />` component to wrap `<DateInput />` or you application.
+
 ## Props
 
 - `dateFormat`

@@ -31,7 +31,7 @@ storiesOf("DatePicker", module)
   .add("DatePicker with locale", () => <Example locale="zh" />)
   .add("DatePicker with initialDate", () => <Example initialDate={moment("2019-01-01")} />)
   .add("DatePicker with DatePicker.Input", () => (
-    <Example>
+    <Example locale="en">
       <DatePicker.Input className="custom-class-name" placeholder="custom placeholder" />
     </Example>
   ));

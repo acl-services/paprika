@@ -1,6 +1,8 @@
 import React from "react";
+import moment from "moment";
 import { storiesOf } from "@storybook/react";
 import { boolean, select, text, withKnobs } from "@storybook/addon-knobs";
+import L10n from "@paprika/l10n";
 import DateInput from "../src";
 
 const DateInputExample = props => {
@@ -9,13 +11,15 @@ const DateInputExample = props => {
 
   return (
     <React.Fragment>
-      <DateInput
-        date={date}
-        possibleDate={possibleDate}
-        onChange={setDate}
-        onChangePossibleDate={setPossibleDate}
-        {...props}
-      />
+      <L10n locale="en">
+        <DateInput
+          date={date}
+          possibleDate={possibleDate}
+          onChange={setDate}
+          onChangePossibleDate={setPossibleDate}
+          {...props}
+        />
+      </L10n>
       <p>Date: {date ? date.format(props.humanFormat) : <i>empty</i>}</p>
       <p>Possible date: {possibleDate ? possibleDate.format(props.humanFormat) : <i>empty</i>}</p>
     </React.Fragment>
@@ -34,6 +38,8 @@ storiesOf("DateInput", module)
       isReadOnly: boolean("isReadOnly", false),
       hasError: boolean("hasError", false),
     };
+
+    moment.locale("en");
 
     return <DateInputExample {...inputProps} />;
   });
