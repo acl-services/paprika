@@ -37,3 +37,6 @@ cypress/fixtures
 # MD / MDX
 .md
 .mdx
+
+# vscode 
+.vscode
