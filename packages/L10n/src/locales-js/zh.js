@@ -6,6 +6,9 @@ const locales = {
       "remove": "移除",
       "moreInformation": "更多信息",
       "close": "关闭",
+      "dataGrid": {
+        "a11yTextMessage": "{{value}}。您在第 {{rowIndex}} 行，第 {{columnIndex}} 列。忽略以下信息："
+      },
       "uploader": {
         "label": "拖放或从您的电脑中选择文件",
         "overlay": {

@@ -6,6 +6,9 @@ const locales = {
       "remove": "削除",
       "moreInformation": "詳しい情報",
       "close": "閉じる",
+      "dataGrid": {
+        "a11yTextMessage": "{{value}}. 行 {{rowIndex}}、列 {{columnIndex}} の位置にいます。次の情報は無視してください。"
+      },
       "uploader": {
         "label": "ドラッグ アンド ドロップするか、お手元のコンピュータからファイルを選択する",
         "overlay": {

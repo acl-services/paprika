@@ -6,6 +6,9 @@ const locales = {
       "remove": "supprimer",
       "moreInformation": "plus d'informations",
       "close": "Fermer",
+      "dataGrid": {
+        "a11yTextMessage": "{{value}}. Vous êtes désormais dans la ligne {{rowIndex}}, colonne {{columnIndex}}. Ignorez les informations suivantes :"
+      },
       "uploader": {
         "label": "Glissez-déplacez ou choisissez des fichiers dans votre ordinateur",
         "overlay": {
