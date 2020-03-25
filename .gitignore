@@ -34,6 +34,3 @@ storybook-dist
 
 # vscode
 .vscode
-
-# ignore js locales 
-packages/L10n/src/locales-js/
