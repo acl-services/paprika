@@ -29,6 +29,8 @@ node_modules/
 # dotenv environment variables file
 .env
 
-
 # storybook build
 storybook-dist
+
+# vscode
+.vscode
