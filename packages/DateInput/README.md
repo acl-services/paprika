@@ -15,7 +15,6 @@ Note: Please use `<L10n />` component to wrap `<DateInput />` or you application
 ## Props
 
 - `dateFormat`
-- `possibleDate`
 - `humanFormat`
 - `date`
 - `onChange`
