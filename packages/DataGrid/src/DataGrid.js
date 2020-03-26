@@ -92,16 +92,17 @@ const DataGrid = React.forwardRef((props, ref) => {
   const overscanColumnCount = 2;
 
   const rowCount = data.length;
+  const {
+    "DataGrid.ColumnDefinition": extractedColumnDefinitions,
+    "DataGrid.Basement": Basement,
+    "DataGrid.InfiniteScroll": InfiniteScroll,
+  } = extractChildren(children, ["DataGrid.ColumnDefinition", "DataGrid.Basement", "DataGrid.InfiniteScroll"]);
 
-  const { ColumnDefinitions, Basement, InfiniteScroll } = React.useMemo(() => {
-    const {
-      "DataGrid.ColumnDefinition": ColumnDefinitions,
-      "DataGrid.Basement": Basement,
-      "DataGrid.InfiniteScroll": InfiniteScroll,
-    } = extractChildren(children, ["DataGrid.ColumnDefinition", "DataGrid.Basement", "DataGrid.InfiniteScroll"]);
-
-    return { ColumnDefinitions, Basement, InfiniteScroll };
-  }, [children]);
+  let ColumnDefinitions = extractedColumnDefinitions;
+  if (!Array.isArray(extractedColumnDefinitions)) {
+    // when there is only one component extracted function return the element not an array of elements
+    ColumnDefinitions = [extractedColumnDefinitions];
+  }
 
   const columnCount = ColumnDefinitions.length;
 
@@ -397,21 +398,23 @@ const DataGrid = React.forwardRef((props, ref) => {
     // Using lazy import because in some cases document.body is null but mouse-wheel
     // depends on document.body being not null. Therefore we need to lazy import the mouse-wheel library.
     import("mouse-wheel").then(module => {
-      const { default: mouseWheel } = module;
-      mouseWheel(refScrollGrid.current, (dx, dy, dz, event) => {
-        event.preventDefault();
-        refScrollGrid.current.scrollTo(refScrollGrid.current.scrollLeft + dx, refScrollGrid.current.scrollTop + dy);
-      });
+      if (Array.isArray(data) && data.length) {
+        const { default: mouseWheel } = module;
+        mouseWheel(refScrollGrid.current, (dx, dy, dz, event) => {
+          event.preventDefault();
+          refScrollGrid.current.scrollTo(refScrollGrid.current.scrollLeft + dx, refScrollGrid.current.scrollTop + dy);
+        });
 
-      mouseWheel(refScrollStickyColumns.current, (dx, dy, dz, event) => {
-        event.preventDefault();
-        refScrollStickyColumns.current.scrollTo(
-          refScrollStickyColumns.current.scrollLeft + dx,
-          refScrollStickyColumns.current.scrollTop + dy
-        );
-      });
+        mouseWheel(refScrollStickyColumns.current, (dx, dy, dz, event) => {
+          event.preventDefault();
+          refScrollStickyColumns.current.scrollTo(
+            refScrollStickyColumns.current.scrollLeft + dx,
+            refScrollStickyColumns.current.scrollTop + dy
+          );
+        });
+      }
     });
-  }, [gridId]);
+  }, [gridId, data]);
 
   const handleMouseOver = event => {
     highlightRow({ rowIndex: event.target.dataset.rowIndex });
