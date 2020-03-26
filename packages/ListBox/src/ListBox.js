@@ -70,7 +70,7 @@ export const defaultProps = {
 
 export function ListBox(props) {
   const [state] = useListBox();
-  const { children, height, placeholder, trigger: _trigger, footer, filter } = props;
+  const { children, height, placeholder, trigger: _trigger, footer, filter, box = { props: {} } } = props;
   const I18n = useI18n();
   const propsForTrigger = {
     hasClearButton: true,
@@ -89,10 +89,10 @@ export function ListBox(props) {
     <React.Fragment>
       {trigger}
       <Content>
-        <Box>
+        <Box {...box.props}>
           {filter}
           <List height={height}>
-            <Options>{children}</Options>
+            <Options isPopoverOpen={props.isOpen}>{children}</Options>
           </List>
           {filter ? (
             <NoResults label={filter.props.noResultsMessage || I18n.t("listBox.filter.no_results_message")} />
@@ -117,14 +117,16 @@ const ListBoxContainer = React.forwardRef((props, ref) => {
   const I18n = useI18n();
 
   const {
+    box, // eslint-disable-line
     children,
+    filter, // eslint-disable-line
+    footer, // eslint-disable-line
     height,
     isInline,
     placeholder,
-    filter, // eslint-disable-line
-    trigger, // eslint-disable-line
-    footer, // eslint-disable-line
     popover, // eslint-disable-line
+    isOpen,
+    trigger, // eslint-disable-line
   } = props;
 
   // IMPERATIVE API
@@ -150,6 +152,8 @@ const ListBoxContainer = React.forwardRef((props, ref) => {
     height,
     placeholder: placeholder || I18n.t("listBox.trigger.placeholder"),
     trigger,
+    isOpen,
+    box,
   };
 
   const listBox = <ListBox {...propsForListBox}>{children}</ListBox>;

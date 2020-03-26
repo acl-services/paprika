@@ -1,6 +1,6 @@
 {
   "name": "@paprika/confirmation",
-  "version": "0.3.13",
+  "version": "0.3.14",
   "description": "Confirmation component",
   "author": "@paprika",
   "license": "MIT",
@@ -15,8 +15,8 @@
   },
   "dependencies": {
     "@babel/runtime-corejs2": "^7.3.1",
-    "@paprika/button": "^0.2.18",
-    "@paprika/heading": "^0.3.11",
+    "@paprika/button": "^0.2.19",
+    "@paprika/heading": "^0.3.12",
     "@paprika/helpers": "^0.2.10",
     "@paprika/popover": "^0.3.18",
     "@paprika/raw-button": "^0.2.8",

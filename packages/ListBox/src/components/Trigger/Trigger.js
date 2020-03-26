@@ -9,7 +9,7 @@ import TimesCircleIcon from "@paprika/icon/lib/TimesCircle";
 import Label from "../Label";
 import handleKeyboardKeys from "../../helpers/handleKeyboardKeys";
 import useListBox from "../../useListBox";
-import OnChangeContext from "../../store/OnChangeProvider";
+import { OnChangeContext } from "../../store/OnChangeProvider";
 
 import invokeOnChange, {
   sanitizeActionTypes,
@@ -76,8 +76,7 @@ export default function Trigger(props) {
     return () => {
       $label.removeEventListener("click", handleClickLabel);
     };
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
+  }, [refLabel, refTrigger]);
 
   const handleClickClear = () => {
     if (isDisabled) {
@@ -197,6 +196,7 @@ export default function Trigger(props) {
       {hasRenderTrigger ? renderChildrenProps : renderLabel()}
       {state.selectedOptions.length && hasClearButton && !shouldHideClearButton ? (
         <ClearButtonStyled
+          isSemantic={false}
           isDisabled={isDisabled}
           data-pka-anchor="clear-button"
           kind={Button.Kinds.MINOR}

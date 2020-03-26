@@ -7,23 +7,25 @@ const noop = () => {};
 
 export default function useIsSelectedOption({ index, props }) {
   const [state, dispatch] = useListBox();
+  const { isSelected } = props;
 
   React.useEffect(() => {
-    if (props.isSelected !== null) {
+    if (isSelected !== null) {
       if (state.isMulti) {
         selectMultipleOption({
           activeOptionIndex: index,
           dispatch,
-          isSelected: props.isSelected,
+          isSelected,
           onChange: noop,
+          isOpen: state.isOpen,
         });
         return;
       }
 
-      if (props.isSelected === true) {
+      if (isSelected === true) {
         // we want to execute the method exclusively on the prop with selected === true
-        selectSingleOption({ activeOptionIndex: index, state, dispatch, isOpen: false, onChange: noop });
+        selectSingleOption({ activeOptionIndex: index, state, dispatch, isOpen: state.isOpen, onChange: noop });
       }
     }
-  }, [dispatch, index, props.isSelected]); // eslint-disable-line
+  }, [dispatch, index, isSelected]); // eslint-disable-line
 }

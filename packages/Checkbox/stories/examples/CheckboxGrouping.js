@@ -1,7 +1,22 @@
 import React from "react";
+import styled from "styled-components";
 import { Rule } from "storybook/assets/styles/common.styles";
 import Heading from "@paprika/heading";
-import Checkbox from "../../src/Checkbox";
+import stylers from "@paprika/stylers";
+import tokens from "@paprika/tokens";
+import PaprikaCheckbox from "../../src/Checkbox";
+
+// Styling override example technique #1
+const Checkbox = styled(PaprikaCheckbox)`
+  margin-bottom: ${stylers.spacer(2)};
+`;
+
+// Styling override example technique #2
+const CheckboxGroup = styled.div`
+  ${Checkbox} {
+    border: 1px solid ${tokens.border.color};
+  }
+`;
 
 const { CHECKED, UNCHECKED } = Checkbox.states;
 
@@ -16,10 +31,11 @@ const CheckboxExample = props => {
         Checkbox Grouping
       </Heading>
       <Rule />
-      <div
+      <CheckboxGroup
+        // Styling override example technique #3
         css={`
           [data-pka-anchor="checkbox"] {
-            margin-bottom: 12px;
+            padding: ${tokens.space};
           }
         `}
       >
@@ -39,7 +55,7 @@ const CheckboxExample = props => {
         <Checkbox {...props} isDisabled onChange={handleChange} checkedState={checkedState}>
           Disabled
         </Checkbox>
-      </div>
+      </CheckboxGroup>
     </div>
   );
 };

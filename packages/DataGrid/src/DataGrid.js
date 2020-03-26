@@ -3,7 +3,7 @@ import PropTypes from "prop-types";
 import { VariableSizeGrid as Grid } from "react-window";
 import useI18n from "@paprika/l10n/lib/useI18n";
 import extractChildren from "@paprika/helpers/lib/extractChildren";
-import mouseWheel from "mouse-wheel";
+
 import Cell from "./components/Cell";
 import useGridEventHandler from "./hooks/useGridEventHandler";
 import ColumnDefinition from "./components/ColumnDefinition";
@@ -394,17 +394,22 @@ const DataGrid = React.forwardRef((props, ref) => {
   );
 
   React.useEffect(() => {
-    mouseWheel(refScrollGrid.current, (dx, dy, dz, event) => {
-      event.preventDefault();
-      refScrollGrid.current.scrollTo(refScrollGrid.current.scrollLeft + dx, refScrollGrid.current.scrollTop + dy);
-    });
+    // Using lazy import because in some cases document.body is null but mouse-wheel
+    // depends on document.body being not null. Therefore we need to lazy import the mouse-wheel library.
+    import("mouse-wheel").then(module => {
+      const { default: mouseWheel } = module;
+      mouseWheel(refScrollGrid.current, (dx, dy, dz, event) => {
+        event.preventDefault();
+        refScrollGrid.current.scrollTo(refScrollGrid.current.scrollLeft + dx, refScrollGrid.current.scrollTop + dy);
+      });
 
-    mouseWheel(refScrollStickyColumns.current, (dx, dy, dz, event) => {
-      event.preventDefault();
-      refScrollStickyColumns.current.scrollTo(
-        refScrollStickyColumns.current.scrollLeft + dx,
-        refScrollStickyColumns.current.scrollTop + dy
-      );
+      mouseWheel(refScrollStickyColumns.current, (dx, dy, dz, event) => {
+        event.preventDefault();
+        refScrollStickyColumns.current.scrollTo(
+          refScrollStickyColumns.current.scrollLeft + dx,
+          refScrollStickyColumns.current.scrollTop + dy
+        );
+      });
     });
   }, [gridId]);
 
