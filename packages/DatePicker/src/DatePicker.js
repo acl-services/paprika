@@ -8,7 +8,7 @@ import useDebounce from "@paprika/helpers/lib/hooks/useDebounce";
 import isElementContainsFocus from "@paprika/helpers/lib/dom/isElementContainsFocus";
 
 import Calendar from "./components/Calendar";
-import DateInputPropsExtractor from "./components/DateInput";
+import DateInputPropsContainer from "./components/DateInput";
 import DatePickerPopover from "./components/DatePickerPopover";
 import { extractChildrenProps } from "./helpers";
 
@@ -70,7 +70,7 @@ function DatePicker(props) {
   const inputRef = React.useRef(null);
 
   const debouncedPossibleDate = useDebounce(possibleDate, 300);
-  const extendedInputProps = extractChildrenProps(children, DateInputPropsExtractor);
+  const extendedInputProps = extractChildrenProps(children, DateInputPropsContainer);
   const extendedPopoverProps = extractChildrenProps(children, DatePickerPopover);
 
   function hideCalendar() {
@@ -132,7 +132,6 @@ function DatePicker(props) {
         isDisabled={isDisabled}
         isReadOnly={isReadOnly}
         date={date}
-        possibleDate={possibleDate}
         dateFormat={dateFormat}
         humanFormat={humanFormat}
         onChange={onChange}
@@ -166,7 +165,7 @@ DatePicker.displayName = "DatePicker";
 DatePicker.propTypes = propTypes;
 DatePicker.defaultProps = defaultProps;
 
-DatePicker.Input = DateInputPropsExtractor;
+DatePicker.Input = DateInputPropsContainer;
 DatePicker.Popover = DatePickerPopover;
 
 export default DatePicker;

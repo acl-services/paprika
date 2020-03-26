@@ -18,9 +18,6 @@ const propTypes = {
   /** Selected date in moment object. */
   date: isMomentObjectOrNull,
 
-  /** Possible date in moment object. This prop is used when user is typing date and we can't determinate exact date. */
-  possibleDate: isMomentObjectOrNull,
-
   /** Date format used while displaying date. It should be human-friendly and spelled out, default is MMMM DD,YYYY */
   humanFormat: PropTypes.string,
 
@@ -46,7 +43,6 @@ const defaultProps = {
   hasError: false,
   dateFormat: "MM/DD/YYYY",
   date: null,
-  possibleDate: null,
   humanFormat: undefined,
   onChange: () => {},
   onChangePossibleDate: () => {},
@@ -62,7 +58,6 @@ const DateInput = React.forwardRef((props, ref) => {
   const {
     hasError,
     date,
-    possibleDate,
     dateFormat,
     humanFormat = I18n.t("datePicker.confirmation_format"),
     onChange,
@@ -78,7 +73,6 @@ const DateInput = React.forwardRef((props, ref) => {
   const [inputtedString, setInputtedString] = React.useState(date ? date.format(dateFormat) : "");
   const [hasFocus, setFocus] = React.useState(false);
 
-  // Effect
   React.useEffect(() => {
     if (date) {
       setInputtedString(date.format(dateFormat));
@@ -102,11 +96,9 @@ const DateInput = React.forwardRef((props, ref) => {
   }
 
   function parseInput() {
-    let newDate = moment(inputtedString, dateFormat);
+    const newDate = moment(inputtedString, dateFormat);
 
-    if (!newDate.isValid()) newDate = moment(inputtedString);
-
-    return newDate;
+    return newDate.isValid() ? newDate : moment(inputtedString);
   }
 
   function handleInputConfirm() {

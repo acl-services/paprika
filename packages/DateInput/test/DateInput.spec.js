@@ -51,7 +51,6 @@ describe("DateInput", () => {
     const { getByTestId } = render();
 
     fireEvent.change(getByTestId("dateinput"), { target: { value: "abc" } });
-
     fireEvent.keyUp(getByTestId("dateinput"), { key: "Enter", code: 13 });
 
     expect(document.getElementsByClassName("form-input--has-error").length).toEqual(1);
