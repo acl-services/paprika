@@ -7,19 +7,16 @@ import CheckIcon from "@paprika/icon/lib/Check";
 import FilterItem from "./FilterItem";
 import { rules, defaultRulesByType } from "./rules";
 import FilterContext from "./context";
+import { logicalFilterOperators } from "../../constants";
+import columnShape from "../../columnShape";
 
 import * as sc from "./Filter.styles";
 import { GenericNoAppliedPlaceholder } from "../../ActionBar.styles";
-import { logicalFilterOperators } from "../../constants";
 
 const propTypes = {
   appliedNumber: PropTypes.number,
   children: PropTypes.node,
-  columns: PropTypes.arrayOf(
-    PropTypes.shape({
-      label: PropTypes.string.isRequired,
-    })
-  ).isRequired,
+  columns: PropTypes.arrayOf(PropTypes.shape(columnShape)).isRequired,
   onAddFilter: PropTypes.func.isRequired,
   onApply: PropTypes.func.isRequired,
   onCancel: PropTypes.func,

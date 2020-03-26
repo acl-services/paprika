@@ -7,6 +7,7 @@ import CheckIcon from "@paprika/icon/lib/Check";
 
 import SortItem from "./SortItem";
 import SortContext from "./context";
+import columnShape from "../../columnShape";
 
 import * as sc from "./Sort.styles";
 import { GenericNoAppliedPlaceholder } from "../../ActionBar.styles";
@@ -14,12 +15,7 @@ import { GenericNoAppliedPlaceholder } from "../../ActionBar.styles";
 const propTypes = {
   appliedNumber: PropTypes.number,
   children: PropTypes.node,
-  columns: PropTypes.arrayOf(
-    PropTypes.shape({
-      id: PropTypes.oneOfType([PropTypes.number, PropTypes.string]).isRequired,
-      label: PropTypes.string.isRequired,
-    })
-  ).isRequired,
+  columns: PropTypes.arrayOf(PropTypes.shape(columnShape)).isRequired,
   onAddField: PropTypes.func.isRequired,
   onApply: PropTypes.func.isRequired,
   onCancel: PropTypes.func,
