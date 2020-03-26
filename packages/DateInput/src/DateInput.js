@@ -39,17 +39,19 @@ const propTypes = {
   beforeConfirmation: PropTypes.func,
 };
 
+const noop = () => {};
+
 const defaultProps = {
   hasError: false,
   dateFormat: "MM/DD/YYYY",
   date: null,
   humanFormat: undefined,
-  onChange: () => {},
-  onChangePossibleDate: () => {},
-  onError: () => {},
-  onClick: () => {},
+  onChange: noop,
+  onChangePossibleDate: noop,
+  onError: noop,
+  onClick: noop,
   denyConfirmation: () => false,
-  beforeConfirmation: () => {},
+  beforeConfirmation: noop,
 };
 
 const DateInput = React.forwardRef((props, ref) => {
