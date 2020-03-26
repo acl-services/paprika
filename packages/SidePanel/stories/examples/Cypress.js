@@ -3,6 +3,15 @@ import Heading from "@paprika/heading";
 import SidePanel from "../../src";
 import { TextLine, Nav } from "../helpers";
 
+export const SidePanelFocusLockDisabled = () => {
+  return (
+    <SidePanel isOpen>
+      <SidePanel.FocusLock autoFocus={false} />
+      <SidePanel.Header>Header</SidePanel.Header>
+    </SidePanel>
+  );
+};
+
 export const SidePanelDefaultSticky = () => {
   return (
     <React.Fragment>
