@@ -18,6 +18,7 @@
     "@paprika/helpers": "^0.2.9",
     "@paprika/icon": "^0.2.12",
     "@paprika/input": "^0.2.15",
+    "@paprika/l10n": "^0.3.13",
     "prop-types": "^15.7.2"
   },
   "peerDependencies": {
