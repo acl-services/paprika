@@ -1,0 +1,29 @@
+{
+  "name": "@paprika/button-group",
+  "version": "0.1.0",
+  "description": "Button Group component",
+  "author": "@paprika",
+  "main": "lib/index.js",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/acl-services/paprika.git",
+    "directory": "packages/ButtonGroup"
+  },
+  "publishConfig": {
+    "access": "public"
+  },
+  "dependencies": {
+    "@paprika/helpers": "^0.2.10",
+    "@paprika/button": "^0.2.19",
+    "@paprika/stylers": "^0.2.6",
+    "@paprika/tokens": "^0.1.13",
+    "@paprika/icon": "^0.2.15",
+    "prop-types": "^15.7.2"
+  },
+  "peerDependencies": {
+    "react": "^16.8.4",
+    "react-dom": "^16.8.4",
+    "styled-components": "^4.2.0"
+  }
+}
