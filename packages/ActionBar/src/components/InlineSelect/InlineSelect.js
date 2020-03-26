@@ -1,6 +1,6 @@
 import React from "react";
 import PropTypes from "prop-types";
-import * as styled from "./InlineSelect.styles";
+import * as sc from "./InlineSelect.styles";
 
 const propTypes = {
   children: PropTypes.node.isRequired,
@@ -13,12 +13,12 @@ export default function InlineSelect(props) {
   const { children, onChange, selectedLabel, value, ...moreProps } = props;
 
   return (
-    <styled.Wrapper data-pka-anchor="filter.inline-select">
-      <styled.Select onChange={onChange} value={value} {...moreProps}>
+    <sc.Wrapper data-pka-anchor="filter.inline-select">
+      <sc.Select onChange={onChange} value={value} {...moreProps}>
         {children}
-      </styled.Select>
-      <styled.Trigger>{selectedLabel}</styled.Trigger>
-    </styled.Wrapper>
+      </sc.Select>
+      <sc.Trigger>{selectedLabel}</sc.Trigger>
+    </sc.Wrapper>
   );
 }
 

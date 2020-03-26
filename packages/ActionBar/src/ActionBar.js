@@ -1,6 +1,6 @@
 import React from "react";
 import PropTypes from "prop-types";
-import * as styled from "./ActionBar.styles";
+import * as sc from "./ActionBar.styles";
 
 const propTypes = {
   children: PropTypes.node.isRequired,
@@ -8,7 +8,7 @@ const propTypes = {
 
 export default function ActionBar(props) {
   const { children } = props;
-  return <styled.ActionBar>{children}</styled.ActionBar>;
+  return <sc.ActionBar>{children}</sc.ActionBar>;
 }
 
 ActionBar.propTypes = propTypes;

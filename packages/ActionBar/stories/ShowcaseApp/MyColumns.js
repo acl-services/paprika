@@ -1,5 +1,5 @@
 import React from "react";
-import { ColumnsArrangement } from "../../src";
+import { ColumnsArrangement, useColumnsArragment } from "../../src";
 
 const defaultColumnsForArrangement = [
   { id: "goals", label: "Goals", isHidden: false, isDisabled: false },
@@ -9,49 +9,17 @@ const defaultColumnsForArrangement = [
 ];
 
 export default function MyColumns() {
-  const [columns, setColumns] = React.useState(defaultColumnsForArrangement);
-
-  function handleChangeOrder({ source, destination }) {
-    const newOrder = [...columns];
-    const movedChild = newOrder.splice(source, 1);
-    newOrder.splice(destination, 0, ...movedChild);
-    setColumns(newOrder);
-  }
-
-  function handleHideAll() {
-    setColumns(prevColumns =>
-      prevColumns.map(column => ({
-        ...column,
-        isHidden: true,
-      }))
-    );
-  }
-
-  function handleShowAll() {
-    setColumns(prevColumns =>
-      prevColumns.map(column => ({
-        ...column,
-        isHidden: false,
-      }))
-    );
-  }
-
-  function handleChangeVisibility(columnId) {
-    setColumns(prevColumns =>
-      prevColumns.map(column =>
-        column.id === columnId
-          ? {
-              ...column,
-              isHidden: !column.isHidden,
-            }
-          : column
-      )
-    );
-  }
+  const {
+    orderedColumns,
+    handleChangeVisibility,
+    handleShowAll,
+    handleHideAll,
+    handleChangeOrder,
+  } = useColumnsArragment(defaultColumnsForArrangement);
 
   return (
     <ColumnsArrangement
-      columns={columns}
+      columns={orderedColumns}
       onChangeOrder={handleChangeOrder}
       onHideAll={handleHideAll}
       onShowAll={handleShowAll}

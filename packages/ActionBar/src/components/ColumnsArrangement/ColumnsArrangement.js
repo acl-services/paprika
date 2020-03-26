@@ -6,7 +6,7 @@ import Popover from "@paprika/popover";
 import Sortable from "@paprika/sortable";
 import useI18n from "@paprika/l10n/lib/useI18n";
 import ColumnManagingItem from "./ColumnsArrangementItem";
-import * as styled from "./ColumnsArrangement.styles";
+import * as sc from "./ColumnsArrangement.styles";
 
 const propTypes = {
   columns: PropTypes.arrayOf(
@@ -64,15 +64,15 @@ export default function ColumnsArrangement(props) {
     <Popover align="bottom" edge="left" minWidth={230}>
       <Popover.Trigger>
         {(handler, attributes, isOpen) => (
-          <styled.Trigger
+          <sc.Trigger
             {...attributes}
             onClick={handler}
             hasColumnsHidden={columns.filter(column => column.isHidden).length > 0}
             isOpen={isOpen}
           >
-            <styled.Icon />
+            <sc.Icon />
             {getLabelText(columns.filter(column => column.isHidden).length)}
-          </styled.Trigger>
+          </sc.Trigger>
         )}
       </Popover.Trigger>
 
@@ -87,7 +87,7 @@ export default function ColumnsArrangement(props) {
           {filteredColumns.length === 0 ? (
             I18n.t("actionBar.no_results")
           ) : (
-            <styled.Sortable onChange={handleChangeOrder} hasNumbers={false}>
+            <sc.Sortable onChange={handleChangeOrder} hasNumbers={false}>
               {filteredColumns.map(column => (
                 <Sortable.Item key={column.id} sortId={column.id}>
                   <ColumnManagingItem
@@ -100,17 +100,17 @@ export default function ColumnsArrangement(props) {
                   />
                 </Sortable.Item>
               ))}
-            </styled.Sortable>
+            </sc.Sortable>
           )}
           {searchTerm.length ? null : (
-            <styled.Footer>
+            <sc.Footer>
               <Button kind="minor" onClick={onHideAll}>
                 {I18n.t("actionBar.columns_arrangement.hide_all")}
               </Button>
               <Button kind="minor" onClick={onShowAll}>
                 {I18n.t("actionBar.columns_arrangement.show_all")}
               </Button>
-            </styled.Footer>
+            </sc.Footer>
           )}
         </Popover.Card>
       </Popover.Content>

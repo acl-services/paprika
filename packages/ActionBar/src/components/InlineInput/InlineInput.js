@@ -1,6 +1,6 @@
 import React from "react";
 import PropTypes from "prop-types";
-import * as styled from "./InlineInput.styles";
+import * as sc from "./InlineInput.styles";
 
 const propTypes = {
   value: PropTypes.string.isRequired,
@@ -16,10 +16,10 @@ export default function InlineInput(props) {
   }
 
   return (
-    <styled.Wrapper data-pka-anchor="filter.inline-input">
-      <styled.Input onChange={handleChange} value={value} />
-      <styled.Trigger>{value}</styled.Trigger>
-    </styled.Wrapper>
+    <sc.Wrapper data-pka-anchor="filter.inline-input">
+      <sc.Input onChange={handleChange} value={value} />
+      <sc.Trigger>{value}</sc.Trigger>
+    </sc.Wrapper>
   );
 }
 

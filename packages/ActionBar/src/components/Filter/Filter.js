@@ -5,10 +5,10 @@ import Button from "@paprika/button";
 import useI18n from "@paprika/l10n/lib/useI18n";
 import CheckIcon from "@paprika/icon/lib/Check";
 import FilterItem from "./FilterItem";
-import { rulesByType } from "./rules";
+import { rules, rulesByType } from "./rules";
 import FilterContext from "./context";
 
-import * as styled from "./Filter.styles";
+import * as sc from "./Filter.styles";
 import { GenericPopoverPlaceholder } from "../../ActionBar.styles";
 
 const propTypes = {
@@ -93,25 +93,25 @@ export default function Filter(props) {
   return (
     <FilterContext.Provider value={{ filtersRef, columns, operator, onChangeOperator }}>
       <Popover align="bottom" edge="left" maxWidth={600} offset={8} isOpen={isOpen} onClose={handleClose}>
-        <styled.Trigger
+        <sc.Trigger
           isSemantic={false}
           kind="flat"
           onClick={handleClickTrigger}
           hasFilterApplied={appliedNumber > 0}
           isOpen={isOpen}
         >
-          <styled.Icon />
+          <sc.Icon />
           {getLabelText(appliedNumber)}
-        </styled.Trigger>
+        </sc.Trigger>
         <Popover.Content>
           <Popover.Card>
-            <styled.FiltersPanel ref={filtersRef} tabIndex={-1}>
+            <sc.FiltersPanel ref={filtersRef} tabIndex={-1}>
               {React.Children.count(children) === 0 ? (
                 <GenericPopoverPlaceholder>{I18n.t("actionBar.filter.no_filters_applied")}</GenericPopoverPlaceholder>
               ) : null}
               {children}
-            </styled.FiltersPanel>
-            <styled.Footer>
+            </sc.FiltersPanel>
+            <sc.Footer>
               <Button onClick={onAddFilter} kind="minor" data-pka-anchor="actionBar.filter.addFilterButton">
                 {I18n.t(`actionBar.filter.add_filter`)}
               </Button>
@@ -121,7 +121,7 @@ export default function Filter(props) {
               <Button onClick={handleCancel} kind="minor">
                 Cancel
               </Button>
-            </styled.Footer>
+            </sc.Footer>
           </Popover.Card>
         </Popover.Content>
         <Popover.Tip />
@@ -134,4 +134,5 @@ Filter.propTypes = propTypes;
 Filter.defaultProps = defaultProps;
 Filter.displayName = "ActionBar.Filter";
 Filter.rulesByType = rulesByType;
+Filter.rules = rules;
 Filter.Item = FilterItem;

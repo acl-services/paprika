@@ -8,7 +8,7 @@ import CheckIcon from "@paprika/icon/lib/Check";
 import SortItem from "./SortItem";
 import SortContext from "./context";
 
-import * as styled from "./Sort.styles";
+import * as sc from "./Sort.styles";
 import { GenericPopoverPlaceholder } from "../../ActionBar.styles";
 
 const propTypes = {
@@ -79,25 +79,25 @@ export default function Sort(props) {
   return (
     <SortContext.Provider value={{ columns, fieldsRef }}>
       <Popover align="bottom" edge="left" maxWidth={600} isOpen={isOpen} onClose={handleClose}>
-        <styled.Trigger
+        <sc.Trigger
           isSemantic={false}
           kind="flat"
           onClick={handleClickTrigger}
           hasField={appliedNumber > 0}
           isOpen={isOpen}
         >
-          <styled.Icon />
+          <sc.Icon />
           {getLabelText(appliedNumber)}
-        </styled.Trigger>
+        </sc.Trigger>
         <Popover.Content>
           <Popover.Card>
-            <styled.FieldsPanel ref={fieldsRef} tabIndex={-1}>
+            <sc.FieldsPanel ref={fieldsRef} tabIndex={-1}>
               {React.Children.count(children) === 0 ? (
                 <GenericPopoverPlaceholder>{I18n.t("actionBar.sort.no_sorts_applied")}</GenericPopoverPlaceholder>
               ) : null}
               {children}
-            </styled.FieldsPanel>
-            <styled.Footer>
+            </sc.FieldsPanel>
+            <sc.Footer>
               <Button
                 onClick={() => {
                   fieldsRef.current.focus();
@@ -113,7 +113,7 @@ export default function Sort(props) {
               <Button onClick={handleCancel} kind="minor">
                 Cancel
               </Button>
-            </styled.Footer>
+            </sc.Footer>
           </Popover.Card>
         </Popover.Content>
         <Popover.Tip />

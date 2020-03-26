@@ -1,4 +1,4 @@
-const rules = {
+export const rules = {
   IS: "IS",
   IS_NOT: "IS_NOT",
   CONTAINS: "CONTAINS",

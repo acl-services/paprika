@@ -43,7 +43,7 @@ const filterColumns = [
 export default function App() {
   return (
     <React.Fragment>
-      <Heading level={2}>ActionBar showcase</Heading>
+      <Heading level={2}>Controlled ActionBar</Heading>
       <ActionBar>
         <MyFilter columns={filterColumns} />
         <MySort columns={filterColumns} />

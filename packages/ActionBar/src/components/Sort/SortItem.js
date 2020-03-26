@@ -6,7 +6,7 @@ import InlineSelect from "../InlineSelect/InlineSelect";
 import { sortDirections, localeTypeKeys } from "../../constants";
 import SortContext from "./context";
 
-import * as styled from "./Sort.styles";
+import * as sc from "./Sort.styles";
 
 const propTypes = {
   columnId: PropTypes.oneOfType([PropTypes.number, PropTypes.string]).isRequired,
@@ -42,7 +42,7 @@ function SortItem(props) {
   }
 
   return (
-    <styled.SortItem data-pka-anchor="sort.sort-field">
+    <sc.SortItem data-pka-anchor="sort.sort-field">
       <Button.Close data-pka-anchor="sort.delete-button" onClick={handleRemoveFilter} size="small" />
       {isFirst ? "Sort by" : "then by"}
       <InlineSelect
@@ -72,7 +72,7 @@ function SortItem(props) {
           {I18n.t(`actionBar.sort.rules.descending.${columnTypeTranslationKey}`)}
         </option>
       </InlineSelect>
-    </styled.SortItem>
+    </sc.SortItem>
   );
 }
 

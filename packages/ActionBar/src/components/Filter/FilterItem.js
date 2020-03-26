@@ -8,7 +8,7 @@ import InlineInput from "../InlineInput/InlineInput";
 import rules, { rulesByType, localeKeysByRule } from "./rules";
 import FilterContext from "./context";
 import { columnTypes } from "../../constants";
-import * as styled from "./Filter.styles";
+import * as sc from "./Filter.styles";
 
 const propTypes = {
   columnId: PropTypes.string.isRequired,
@@ -156,7 +156,7 @@ function FilterItem(props) {
   }
 
   return (
-    <styled.FilterItem data-pka-anchor="actionBar.filter.filterItem">
+    <sc.FilterItem data-pka-anchor="actionBar.filter.filterItem">
       <Button.Close data-pka-anchor="actionBar.filter.deleteFilterButton" onClick={handleRemoveFilter} size="small" />
       {renderPrefix()}
       <InlineSelect
@@ -173,7 +173,7 @@ function FilterItem(props) {
 
       {renderRuleField()}
       {renderValueField()}
-    </styled.FilterItem>
+    </sc.FilterItem>
   );
 }
 

@@ -1,7 +1,7 @@
 import React from "react";
 import PropTypes from "prop-types";
 
-import * as styled from "./ColumnsArrangement.styles";
+import * as sc from "./ColumnsArrangement.styles";
 
 const propTypes = {
   id: PropTypes.oneOfType([PropTypes.string, PropTypes.number]).isRequired,
@@ -24,10 +24,10 @@ export default function ColumnsArrangementItem(props) {
   }
 
   return (
-    <styled.Item>
-      <styled.ColumnLabel>{label}</styled.ColumnLabel>
-      <styled.Switch onClick={handleClick} isChecked={!isHidden} isDisabled={isDisabled} size="small" />
-    </styled.Item>
+    <sc.Item>
+      <sc.ColumnLabel>{label}</sc.ColumnLabel>
+      <sc.Switch onClick={handleClick} isChecked={!isHidden} isDisabled={isDisabled} size="small" />
+    </sc.Item>
   );
 }
 

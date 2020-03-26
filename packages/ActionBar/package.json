@@ -28,11 +28,13 @@
     "@paprika/stylers": "^0.2.2",
     "@paprika/switch": "^0.2.4",
     "@paprika/tokens": "^0.1.9",
+    "immer": "^6.0.2",
     "lodash.debounce": "^4.0.8",
     "nanoid": "^2.1.7",
     "prop-types": "^15.7.2"
   },
   "peerDependencies": {
+    "@paprika/l10n": "^0.3.13",
     "moment": "^2.18.1",
     "react": "^16.8.4",
     "react-dom": "^16.8.4",
