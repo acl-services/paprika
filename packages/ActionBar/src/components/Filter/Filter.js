@@ -5,11 +5,12 @@ import Button from "@paprika/button";
 import useI18n from "@paprika/l10n/lib/useI18n";
 import CheckIcon from "@paprika/icon/lib/Check";
 import FilterItem from "./FilterItem";
-import { rules, rulesByType } from "./rules";
+import { rules, defaultRulesByType } from "./rules";
 import FilterContext from "./context";
 
 import * as sc from "./Filter.styles";
-import { GenericPopoverPlaceholder } from "../../ActionBar.styles";
+import { GenericNoAppliedPlaceholder } from "../../ActionBar.styles";
+import { logicalFilterOperators } from "../../constants";
 
 const propTypes = {
   appliedNumber: PropTypes.number,
@@ -25,7 +26,8 @@ const propTypes = {
   onChangeOperator: PropTypes.func,
   onClose: PropTypes.func,
   onOpen: PropTypes.func,
-  operator: PropTypes.oneOf(["AND", "OR"]),
+  operator: PropTypes.oneOf([logicalFilterOperators.AND, logicalFilterOperators.OR]),
+  rulesByType: PropTypes.objectOf(PropTypes.arrayOf(PropTypes.oneOf(rules))),
 };
 
 const defaultProps = {
@@ -35,7 +37,8 @@ const defaultProps = {
   onCancel: () => {},
   onClose: () => {},
   onOpen: () => {},
-  operator: "AND",
+  operator: logicalFilterOperators.AND,
+  rulesByType: defaultRulesByType,
 };
 
 export default function Filter(props) {
@@ -50,6 +53,7 @@ export default function Filter(props) {
     onClose,
     onOpen,
     operator,
+    rulesByType,
   } = props;
   const I18n = useI18n();
   const filtersRef = React.useRef(null);
@@ -91,7 +95,7 @@ export default function Filter(props) {
   }
 
   return (
-    <FilterContext.Provider value={{ filtersRef, columns, operator, onChangeOperator }}>
+    <FilterContext.Provider value={{ filtersRef, columns, operator, onChangeOperator, rulesByType }}>
       <Popover align="bottom" edge="left" maxWidth={600} offset={8} isOpen={isOpen} onClose={handleClose}>
         <sc.Trigger
           isSemantic={false}
@@ -107,7 +111,9 @@ export default function Filter(props) {
           <Popover.Card>
             <sc.FiltersPanel ref={filtersRef} tabIndex={-1}>
               {React.Children.count(children) === 0 ? (
-                <GenericPopoverPlaceholder>{I18n.t("actionBar.filter.no_filters_applied")}</GenericPopoverPlaceholder>
+                <GenericNoAppliedPlaceholder>
+                  {I18n.t("actionBar.filter.no_filters_applied")}
+                </GenericNoAppliedPlaceholder>
               ) : null}
               {children}
             </sc.FiltersPanel>
@@ -116,10 +122,10 @@ export default function Filter(props) {
                 {I18n.t(`actionBar.filter.add_filter`)}
               </Button>
               <Button onClick={handleApply} kind="flat" icon={<CheckIcon />}>
-                Apply
+                {I18n.t("actions.apply")}
               </Button>
               <Button onClick={handleCancel} kind="minor">
-                Cancel
+                {I18n.t("actions.cancel")}
               </Button>
             </sc.Footer>
           </Popover.Card>
@@ -133,6 +139,6 @@ export default function Filter(props) {
 Filter.propTypes = propTypes;
 Filter.defaultProps = defaultProps;
 Filter.displayName = "ActionBar.Filter";
-Filter.rulesByType = rulesByType;
+Filter.defaultRulesByType = defaultRulesByType;
 Filter.rules = rules;
 Filter.Item = FilterItem;

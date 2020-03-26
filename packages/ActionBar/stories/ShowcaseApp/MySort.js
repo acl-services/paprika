@@ -6,10 +6,24 @@ export default function MySort({ columns }) {
     columns,
   });
 
+  const handleDelete = fieldId => () => {
+    onDeleteField(fieldId);
+  };
+
+  const handleChange = fieldId => params => {
+    onChangeField({ ...params, id: fieldId });
+  };
+
   return (
     <Sort appliedNumber={appliedNumber} columns={columns} onAddField={onAddField} onApply={onApply}>
       {sortedFields.map((field, index) => (
-        <Sort.Field key={field.id} {...field} onDelete={onDeleteField} onChange={onChangeField} isFirst={index === 0} />
+        <Sort.Field
+          key={field.id}
+          {...field}
+          onDelete={handleDelete(field.id)}
+          onChange={handleChange(field.id)}
+          isFirst={index === 0}
+        />
       ))}
     </Sort>
   );

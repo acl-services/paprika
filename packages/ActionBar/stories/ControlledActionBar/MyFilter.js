@@ -51,7 +51,7 @@ export default function MyFilter({ columns }) {
       } else {
         change = {
           columnId,
-          rule: Filter.rulesByType[columnType][0],
+          rule: Filter.defaultRulesByType[columnType][0],
           value: initialValueByType[columnType],
           renderValueField: null,
         };

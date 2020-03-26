@@ -9,7 +9,7 @@ import SortItem from "./SortItem";
 import SortContext from "./context";
 
 import * as sc from "./Sort.styles";
-import { GenericPopoverPlaceholder } from "../../ActionBar.styles";
+import { GenericNoAppliedPlaceholder } from "../../ActionBar.styles";
 
 const propTypes = {
   appliedNumber: PropTypes.number,
@@ -93,25 +93,19 @@ export default function Sort(props) {
           <Popover.Card>
             <sc.FieldsPanel ref={fieldsRef} tabIndex={-1}>
               {React.Children.count(children) === 0 ? (
-                <GenericPopoverPlaceholder>{I18n.t("actionBar.sort.no_sorts_applied")}</GenericPopoverPlaceholder>
+                <GenericNoAppliedPlaceholder>{I18n.t("actionBar.sort.no_sorts_applied")}</GenericNoAppliedPlaceholder>
               ) : null}
               {children}
             </sc.FieldsPanel>
             <sc.Footer>
-              <Button
-                onClick={() => {
-                  fieldsRef.current.focus();
-                  onAddField();
-                }}
-                kind="minor"
-              >
-                Add a field to sort by
+              <Button onClick={onAddField} kind="minor">
+                {I18n.t(`actionBar.sort.add_field`)}
               </Button>
               <Button onClick={handleApply} kind="flat" icon={<CheckIcon />}>
-                Apply
+                {I18n.t("actions.apply")}
               </Button>
               <Button onClick={handleCancel} kind="minor">
-                Cancel
+                {I18n.t("actions.cancel")}
               </Button>
             </sc.Footer>
           </Popover.Card>

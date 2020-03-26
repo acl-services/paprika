@@ -5,9 +5,9 @@ import useI18n from "@paprika/l10n/lib/useI18n";
 import DatePicker from "./DatePicker";
 import InlineSelect from "../InlineSelect/InlineSelect";
 import InlineInput from "../InlineInput/InlineInput";
-import rules, { rulesByType, localeKeysByRule } from "./rules";
+import rules, { localeKeysByRule } from "./rules";
 import FilterContext from "./context";
-import { columnTypes } from "../../constants";
+import { columnTypes, logicalFilterOperators } from "../../constants";
 import * as sc from "./Filter.styles";
 
 const propTypes = {
@@ -37,7 +37,7 @@ function FilterItem(props) {
     value,
     renderValueField: renderCustomValueField,
   } = props;
-  const { columns, filtersRef, onChangeOperator, operator } = React.useContext(FilterContext);
+  const { columns, filtersRef, onChangeOperator, operator, rulesByType } = React.useContext(FilterContext);
   const I18n = useI18n();
 
   const selectedColumnType = columns.find(({ id }) => id === selectedColumnId).type;
@@ -133,6 +133,8 @@ function FilterItem(props) {
   }
 
   function renderPrefix() {
+    const staticPrefix = I18n.t(`actionBar.filter.${operator === logicalFilterOperators.AND ? "and" : "or"}`);
+
     switch (index) {
       case 0:
         return I18n.t("actionBar.filter.where");
@@ -142,16 +144,18 @@ function FilterItem(props) {
             <InlineSelect
               onChange={onChangeOperator}
               value={operator}
-              selectedLabel={operator === "AND" ? I18n.t("actionBar.filter.and") : I18n.t("actionBar.filter.or")}
+              selectedLabel={
+                operator === logicalFilterOperators.AND ? I18n.t("actionBar.filter.and") : I18n.t("actionBar.filter.or")
+              }
             >
-              <option value="AND">{I18n.t("actionBar.filter.and")}</option>
-              <option value="OR">{I18n.t("actionBar.filter.or")}</option>
+              <option value={logicalFilterOperators.AND}>{I18n.t("actionBar.filter.and")}</option>
+              <option value={logicalFilterOperators.OR}>{I18n.t("actionBar.filter.or")}</option>
             </InlineSelect>
           );
         }
-        return I18n.t(`actionBar.filter.${operator === "AND" ? "and" : "or"}`);
+        return staticPrefix;
       default:
-        return I18n.t(`actionBar.filter.${operator === "AND" ? "and" : "or"}`);
+        return staticPrefix;
     }
   }
 

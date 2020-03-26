@@ -135,6 +135,8 @@ en:
         singular_label: 1 column sorted
         plural_label: "{{numberOfFields}} columns sorted"
         add_field: Add a field to sort by
+        sort_by: Sort by
+        then_by: then by
         rules:
           ascending:
             boolean: Sort ascending (true → false)

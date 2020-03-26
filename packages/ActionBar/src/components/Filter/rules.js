@@ -17,7 +17,7 @@ export const rules = {
   IS_AFTER: "IS_AFTER",
 };
 
-export const rulesByType = {
+export const defaultRulesByType = {
   DATE: [rules.IS, rules.IS_NOT, rules.IS_BEFORE, rules.IS_AFTER],
   NUMBER: [
     rules.EQUALS,
@@ -31,7 +31,6 @@ export const rulesByType = {
   ],
   TEXT: [rules.IS, rules.IS_NOT, rules.CONTAINS, rules.DOES_NOT_CONTAIN, rules.IS_BLANK, rules.IS_NOT_BLANK],
   BOOLEAN: [rules.IS],
-  SINGLE_SELECT: [rules.IS, rules.IS_NOT, rules.IS_EMPTY, rules.IS_NOT_EMPTY],
 };
 
 export const localeKeysByRule = {

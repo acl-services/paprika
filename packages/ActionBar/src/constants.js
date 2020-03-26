@@ -8,7 +8,6 @@ export const columnTypes = {
   NUMBER: "NUMBER",
   DATE: "DATE",
   BOOLEAN: "BOOLEAN",
-  SINGLE_SELECT: "SINGLE_SELECT",
 };
 
 export const localeTypeKeys = {
@@ -16,7 +15,7 @@ export const localeTypeKeys = {
   [columnTypes.NUMBER]: "number",
   [columnTypes.DATE]: "date",
   [columnTypes.BOOLEAN]: "boolean",
-  [columnTypes.SINGLE_SELECT]: "single_select",
+  // [columnTypes.SINGLE_SELECT]: "single_select",
 };
 
 export const logicalFilterOperators = {

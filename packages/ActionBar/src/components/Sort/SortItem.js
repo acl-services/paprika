@@ -26,7 +26,9 @@ function SortItem(props) {
   const { id, columnId: selectedColumnId, direction, isFirst, onDelete, onChange } = props;
   const { columns, fieldsRef } = React.useContext(SortContext);
   const I18n = useI18n();
-  const columnTypeTranslationKey = localeTypeKeys[columns.find(column => column.id === selectedColumnId).type];
+  // TODO: adding a generic Sort ascend text without type
+  const columnTypeTranslationKey =
+    localeTypeKeys[columns.find(column => column.id === selectedColumnId).type] || "text";
 
   function handleRemoveFilter() {
     fieldsRef.current.focus();
@@ -44,7 +46,7 @@ function SortItem(props) {
   return (
     <sc.SortItem data-pka-anchor="sort.sort-field">
       <Button.Close data-pka-anchor="sort.delete-button" onClick={handleRemoveFilter} size="small" />
-      {isFirst ? "Sort by" : "then by"}
+      {isFirst ? I18n.t("actionBar.sort.sort_by") : I18n.t("actionBar.sort.then_by")}
       <InlineSelect
         onChange={handleChangeColumn}
         value={selectedColumnId}

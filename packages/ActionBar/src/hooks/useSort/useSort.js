@@ -21,6 +21,7 @@ function sortData({ sortedFields, columns, data }) {
 export default function useSort({ data = null, columns }) {
   const [sortedFields, setSortedFields] = React.useState([]);
   const [sortedData, setSortedData] = React.useState(data);
+  const [appliedNumber, setAppliedNumber] = React.useState(0);
 
   const handleAddItem = React.useCallback(() => {
     setSortedFields(prevFields => [
@@ -41,6 +42,7 @@ export default function useSort({ data = null, columns }) {
   );
 
   function handleApply() {
+    setAppliedNumber(sortedFields.length);
     if (data !== null) {
       setSortedData(() => sortData({ sortedFields, columns, data }));
     }
@@ -68,8 +70,6 @@ export default function useSort({ data = null, columns }) {
   //     setSortedData(sorted);
   //   }
   // }, [columns, data, sortedFields]);
-
-  const appliedNumber = sortedFields.length;
 
   return {
     appliedNumber,

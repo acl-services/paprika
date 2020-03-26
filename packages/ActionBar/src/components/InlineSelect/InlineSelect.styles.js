@@ -23,10 +23,12 @@ export const Select = styled(PaprikaSelect)`
 
 export const Wrapper = styled.div`
   height: ${stylers.spacer(4)};
+  overflow: hidden;
   padding: 0 ${stylers.spacer(3)} 0 ${tokens.spaceSm};
   position: relative;
 `;
 
 export const Trigger = styled.div`
+  margin-right: 1px;
   padding: 0 ${tokens.spaceSm};
 `;

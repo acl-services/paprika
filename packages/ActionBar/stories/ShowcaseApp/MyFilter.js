@@ -2,6 +2,11 @@ import React from "react";
 import nanoid from "nanoid";
 import { Filter, useFilter } from "../../src";
 
+const rulesByType = {
+  ...Filter.defaultRulesByType,
+  SINGLE_SELECT: [Filter.rules.IS, Filter.rules.IS_NOT, Filter.rules.IS_EMPTY, Filter.rules.IS_NOT_EMPTY],
+};
+
 const getLevelFilter = () => {
   return {
     columnId: "level",
@@ -30,7 +35,14 @@ export default function MyFilter({ columns }) {
     onFilterChange,
     operator,
     onApply,
-  } = useFilter({ columns });
+  } = useFilter({ columns, rulesByType });
+
+  const handleDeleteFilter = filterId => () => {
+    onDeleteFilter(filterId);
+  };
+  const handleChangeFilter = filterId => params => {
+    onFilterChange({ ...params, id: filterId });
+  };
 
   return (
     <Filter
@@ -45,9 +57,9 @@ export default function MyFilter({ columns }) {
         <Filter.Item
           key={filter.id}
           {...filter}
-          onDelete={onDeleteFilter}
-          onChange={onFilterChange}
           index={index}
+          onChange={handleChangeFilter(filter.id)}
+          onDelete={handleDeleteFilter(filter.id)}
           renderValueField={filter.columnId === "level" ? getLevelFilter : null}
         />
       ))}

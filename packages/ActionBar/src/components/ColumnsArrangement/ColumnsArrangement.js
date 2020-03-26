@@ -23,8 +23,6 @@ const propTypes = {
   onShowAll: PropTypes.func.isRequired,
 };
 
-const defaultProps = {};
-
 export default function ColumnsArrangement(props) {
   const { onChangeOrder, onChangeVisibility, columns, onHideAll, onShowAll } = props;
   const I18n = useI18n();
@@ -45,9 +43,7 @@ export default function ColumnsArrangement(props) {
     }
   }
 
-  const handleChangeOrder = result => {
-    const { source, destination } = result;
-
+  const handleChangeOrder = ({ source, destination }) => {
     if (destination === null || source === destination) return;
 
     const actualSource = columns.indexOf(columns.find(column => column.id === filteredColumns[source].id));
@@ -120,5 +116,4 @@ export default function ColumnsArrangement(props) {
 }
 
 ColumnsArrangement.propTypes = propTypes;
-ColumnsArrangement.defaultProps = defaultProps;
 ColumnsArrangement.displayName = "ActionBar.ColumnsArrangement";

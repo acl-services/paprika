@@ -43,7 +43,7 @@ export const getGenericTriggerIcon = Icon => {
   `;
 };
 
-export const GenericPopoverPlaceholder = styled.div`
+export const GenericNoAppliedPlaceholder = styled.div`
   color: ${tokens.placeholder.color};
   padding: ${tokens.spaceSm} ${tokens.spaceLg};
 `;

@@ -4,13 +4,13 @@ import nanoid from "nanoid";
 import produce from "immer";
 import Filter from "../../components/Filter";
 import testers from "./testers";
+import { logicalFilterOperators } from "../../constants";
 
 const initialValueByType = {
   BOOLEAN: true,
   NUMBER: "",
   TEXT: "",
   DATE: "",
-  SINGLE_SELECT: null,
 };
 
 function filterData({ filters, operator, columns, data }) {
@@ -26,13 +26,13 @@ function filterData({ filters, operator, columns, data }) {
           )
         : true;
     };
-    return operator === "AND" ? filters.every(tester) : filters.some(tester);
+    return operator === logicalFilterOperators.AND ? filters.every(tester) : filters.some(tester);
   });
 }
 
-export default function useFilter({ columns, data = null }) {
+export default function useFilter({ columns, data = null, rulesByType }) {
   const [filters, setFilters] = React.useState([]);
-  const [operator, setOperator] = React.useState("AND");
+  const [operator, setOperator] = React.useState(logicalFilterOperators.AND);
   const [filteredData, setFilteredData] = React.useState(data);
   const [appliedNumber, setAppliedNumber] = React.useState(0);
 
@@ -46,7 +46,7 @@ export default function useFilter({ columns, data = null }) {
             if (columnId) {
               const columnType = columns.find(column => column.id === columnId).type;
               filterItem.columnId = columnId;
-              filterItem.rule = Filter.rulesByType[columnType][0];
+              filterItem.rule = Filter.defaultRulesByType[columnType][0];
               filterItem.value = initialValueByType[columnType];
               filterItem.renderValueField = null;
             } else if (rule) {
@@ -68,7 +68,7 @@ export default function useFilter({ columns, data = null }) {
 
     return {
       columnId: firstColumnId,
-      rule: Filter.rulesByType[firstColumnType][0],
+      rule: rulesByType[firstColumnType][0],
       value: initialValueByType[firstColumnType],
       id: nanoid(),
     };
@@ -87,7 +87,9 @@ export default function useFilter({ columns, data = null }) {
   }
 
   function handleChangeOperator() {
-    setOperator(prevOperator => (prevOperator === "AND" ? "OR" : "AND"));
+    setOperator(prevOperator =>
+      prevOperator === logicalFilterOperators.AND ? logicalFilterOperators.OR : logicalFilterOperators.AND
+    );
   }
 
   function handleApply() {
