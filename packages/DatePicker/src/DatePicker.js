@@ -9,8 +9,8 @@ import isElementContainsFocus from "@paprika/helpers/lib/dom/isElementContainsFo
 import extractChildrenProps from "@paprika/helpers/lib/extractChildrenProps";
 
 import Calendar from "./components/Calendar";
-import DateInputPropsContainer from "./components/DateInput";
-import DatePickerPopover from "./components/DatePickerPopover";
+import DateInputPropsCollector from "./components/DateInputPropsCollector";
+import DatePickerPopoverPropsCollector from "./components/DatePickerPopoverPropsCollector";
 
 import { calendarPopoverStyles } from "./DatePicker.styles";
 
@@ -70,8 +70,8 @@ function DatePicker(props) {
   const inputRef = React.useRef(null);
 
   const debouncedPossibleDate = useDebounce(possibleDate, 300);
-  const extendedInputProps = extractChildrenProps(children, DateInputPropsContainer);
-  const extendedPopoverProps = extractChildrenProps(children, DatePickerPopover);
+  const extendedInputProps = extractChildrenProps(children, DateInputPropsCollector);
+  const extendedPopoverProps = extractChildrenProps(children, DatePickerPopoverPropsCollector);
 
   function hideCalendar() {
     if (shouldShowCalendar) setShouldShowCalendar(false);
@@ -165,7 +165,7 @@ DatePicker.displayName = "DatePicker";
 DatePicker.propTypes = propTypes;
 DatePicker.defaultProps = defaultProps;
 
-DatePicker.Input = DateInputPropsContainer;
-DatePicker.Popover = DatePickerPopover;
+DatePicker.Input = DateInputPropsCollector;
+DatePicker.Popover = DatePickerPopoverPropsCollector;
 
 export default DatePicker;
