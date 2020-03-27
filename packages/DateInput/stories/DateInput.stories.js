@@ -14,7 +14,6 @@ const DateInputExample = props => {
       <L10n locale="en">
         <DateInput
           date={date}
-          possibleDate={possibleDate}
           onChange={setDate}
           onChangePossibleDate={setPossibleDate}
           {...props}
