@@ -30,7 +30,7 @@ function filterData({ filters, operator, columns, data }) {
   });
 }
 
-export default function useFilter({ columns, data = null, rulesByType }) {
+export default function useFilter({ columns, data = null, rulesByType = Filter.defaultRulesByType }) {
   const [filters, setFilters] = React.useState([]);
   const [operator, setOperator] = React.useState(logicalFilterOperators.AND);
   const [filteredData, setFilteredData] = React.useState(data);
@@ -46,7 +46,7 @@ export default function useFilter({ columns, data = null, rulesByType }) {
             if (columnId) {
               const columnType = columns.find(column => column.id === columnId).type;
               filterItem.columnId = columnId;
-              filterItem.rule = Filter.defaultRulesByType[columnType][0];
+              filterItem.rule = rulesByType[columnType][0];
               filterItem.value = initialValueByType[columnType];
               filterItem.renderValueField = null;
             } else if (rule) {
@@ -59,7 +59,7 @@ export default function useFilter({ columns, data = null, rulesByType }) {
         })
       );
     },
-    [columns]
+    [columns, rulesByType]
   );
 
   function getDefaultFilter() {

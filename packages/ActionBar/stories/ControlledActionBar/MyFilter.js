@@ -2,6 +2,11 @@ import React from "react";
 import nanoid from "nanoid";
 import { Filter } from "../../src";
 
+const rulesByType = {
+  ...Filter.defaultRulesByType,
+  SINGLE_SELECT: [Filter.rules.IS, Filter.rules.IS_NOT, Filter.rules.IS_EMPTY, Filter.rules.IS_NOT_EMPTY],
+};
+
 const getDefaultFilter = () => {
   return {
     columnId: "goals",
@@ -19,21 +24,21 @@ const initialValueByType = {
   SINGLE_SELECT: null,
 };
 
+const levelSelect = () => (
+  <select>
+    <option value="low">low</option>
+    <option value="mid">mid</option>
+    <option value="high">high</option>
+  </select>
+);
+
 const getLevelFilter = () => {
   return {
     columnId: "level",
     rule: "IS",
     value: null,
     id: nanoid(),
-    renderValueField: () => {
-      return (
-        <select>
-          <option value="low">low</option>
-          <option value="mid">mid</option>
-          <option value="high">high</option>
-        </select>
-      );
-    },
+    renderValueField: levelSelect,
   };
 };
 
@@ -98,6 +103,7 @@ export default function MyFilter({ columns }) {
       onApply={() => {}}
       onChangeOperator={memorizedHandleChangeOperator}
       operator={operator}
+      rulesByType={rulesByType}
     >
       {filters.map((filter, index) => (
         <Filter.Item
@@ -106,6 +112,7 @@ export default function MyFilter({ columns }) {
           onDelete={memorizedDeleteFilter}
           onChange={memorizedHandleChange}
           index={index}
+          renderValueField={filter.columnId === "level" ? levelSelect : null}
         />
       ))}
     </Filter>

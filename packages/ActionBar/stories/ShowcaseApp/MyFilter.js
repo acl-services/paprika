@@ -1,5 +1,4 @@
 import React from "react";
-import nanoid from "nanoid";
 import { Filter, useFilter } from "../../src";
 
 const rulesByType = {
@@ -7,22 +6,14 @@ const rulesByType = {
   SINGLE_SELECT: [Filter.rules.IS, Filter.rules.IS_NOT, Filter.rules.IS_EMPTY, Filter.rules.IS_NOT_EMPTY],
 };
 
-const getLevelFilter = () => {
-  return {
-    columnId: "level",
-    rule: "IS",
-    value: null,
-    id: nanoid(),
-    renderValueField: () => {
-      return (
-        <select>
-          <option value="low">low</option>
-          <option value="mid">mid</option>
-          <option value="high">high</option>
-        </select>
-      );
-    },
-  };
+const levelFilter = () => {
+  return (
+    <select>
+      <option value="low">low</option>
+      <option value="mid">mid</option>
+      <option value="high">high</option>
+    </select>
+  );
 };
 
 export default function MyFilter({ columns }) {
@@ -52,6 +43,7 @@ export default function MyFilter({ columns }) {
       onApply={onApply}
       onChangeOperator={onChangeOperator}
       operator={operator}
+      rulesByType={rulesByType}
     >
       {filters.map((filter, index) => (
         <Filter.Item
@@ -60,7 +52,7 @@ export default function MyFilter({ columns }) {
           index={index}
           onChange={handleChangeFilter(filter.id)}
           onDelete={handleDeleteFilter(filter.id)}
-          renderValueField={filter.columnId === "level" ? getLevelFilter : null}
+          renderValueField={filter.columnId === "level" ? levelFilter : null}
         />
       ))}
     </Filter>
