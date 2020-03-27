@@ -6,11 +6,11 @@ import Popover from "@paprika/popover";
 import DateInput from "@paprika/date-input";
 import useDebounce from "@paprika/helpers/lib/hooks/useDebounce";
 import isElementContainsFocus from "@paprika/helpers/lib/dom/isElementContainsFocus";
+import extractChildrenProps from "@paprika/helpers/lib/extractChildrenProps";
 
 import Calendar from "./components/Calendar";
 import DateInputPropsContainer from "./components/DateInput";
 import DatePickerPopover from "./components/DatePickerPopover";
-import { extractChildrenProps } from "./helpers";
 
 import { calendarPopoverStyles } from "./DatePicker.styles";
 
