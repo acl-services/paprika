@@ -1,23 +1,32 @@
-import stylers from "@paprika/stylers";
+import tokens from "@paprika/tokens";
+import styled from "styled-components";
+import ButtonItem from "./components/ButtonItem";
 
-// Common
-
-const commonStyles = `
-  ${stylers.alignMiddle}
-  ${stylers.lineHeight(-1)}
+const fullWithStyles = `
+  display: flex;
+  width: 100%;
 `;
 
-// Modifiers
-const activeStyles = `
-  background-color: #CCE5FD;
-`;
+export const Button = styled(ButtonItem)``;
 
-//
-// Composition
-//
-const buttonGroupStyles = props => `
-  ${commonStyles}
-  ${props.isActive ? activeStyles : ""}
-`;
+export const ButtonGroup = styled.div`
+  display: inline-flex;
 
-export default buttonGroupStyles;
+  ${Button} {
+    border-radius: 0;
+
+    &:first-child {
+      border-radius: ${tokens.spaceSm} 0 0 ${tokens.spaceSm};
+    }
+
+    &:last-child {
+      border-radius: 0 ${tokens.spaceSm} ${tokens.spaceSm} 0;
+    }
+
+    &:not(:last-child) {
+      margin-right: -1px;
+    }
+  }
+
+  ${({ isFullWidth }) => (isFullWidth ? fullWithStyles : "")}
+`;

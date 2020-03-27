@@ -1,6 +1,6 @@
 import React from "react";
 import { action } from "@storybook/addon-actions";
-import { boolean, select, text } from "@storybook/addon-knobs";
+import { boolean } from "@storybook/addon-knobs";
 import { Story, Rule, Tagline } from "storybook/assets/styles/common.styles";
 import { ShirtSizes } from "@paprika/helpers/lib/customPropTypes";
 import Heading from "@paprika/heading";
@@ -10,10 +10,8 @@ function clickHandler() {
   action("Clicked a button")();
 }
 
-const buttonProps = () => ({
-  children: text("label", "Give now"),
-  size: select("size", ShirtSizes.DEFAULT, "medium"),
-  onClick: clickHandler,
+const buttonGroupProps = () => ({
+  onChange: clickHandler,
   isDisabled: boolean("isDisabled", false),
   isFullWidth: boolean("isFullWidth", false),
   isSemantic: boolean("isSemantic", true),
@@ -26,8 +24,12 @@ const ExampleStory = props => (
     </Heading>
     <Tagline>Use the knobs to tinker with the props.</Tagline>
     <Rule />
-    <ButtonGroup {...props} />
+    <ButtonGroup {...props} size={ShirtSizes.LARGE} onChange={() => {}}>
+      <ButtonGroup.Button>One</ButtonGroup.Button>
+      <ButtonGroup.Button>Two</ButtonGroup.Button>
+      <ButtonGroup.Button>Three</ButtonGroup.Button>
+    </ButtonGroup>
   </Story>
 );
 
-export default () => <ExampleStory {...buttonProps()} />;
+export default () => <ExampleStory {...buttonGroupProps()} />;

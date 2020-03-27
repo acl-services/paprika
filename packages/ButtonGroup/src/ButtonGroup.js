@@ -1,19 +1,13 @@
 import React from "react";
 import PropTypes from "prop-types";
-import Button from "@paprika/button";
-import CheckIcon from "@paprika/icon/lib/Check";
-import TimesIcon from "@paprika/icon/lib/Times";
 
 import { ShirtSizes } from "@paprika/helpers/lib/customPropTypes";
 
-import buttonGroupStyles from "./ButtonGroup.styles";
+import * as sc from "./ButtonGroup.styles";
 
 const propTypes = {
   /** The content of each of the toggle buttons in the group. */
   children: PropTypes.node,
-
-  /** An icon to be included to the left of children content. */
-  icon: PropTypes.node,
 
   /** If the button is disabled. */
   isDisabled: PropTypes.bool,
@@ -36,7 +30,6 @@ const propTypes = {
 
 const defaultProps = {
   children: null,
-  icon: null,
   isDisabled: false,
   isFullWidth: false,
   isSemantic: true,
@@ -45,31 +38,35 @@ const defaultProps = {
   tabIndex: null,
 };
 
-const ButtonGroup = React.forwardRef((props, ref) => {
-  const { children, icon, isDisabled, isSemantic, onClick, tabIndex, size, ...moreProps } = props;
+const ButtonGroup = props => {
+  const { children, isDisabled, isFullWidth, isSemantic, onClick, tabIndex, size, ...moreProps } = props;
 
-  const [isActive, setIsActive] = React.useState(false);
+  const [selectedItems, setSelectedItems] = React.useState([]);
+  const isButtonGroupDisabled = isDisabled;
 
-  const buttonRef = React.useRef(null);
+  const handleClick = event => {
+    if (!isButtonGroupDisabled) {
+      const clickedId = event.target.textContent;
+      const itemIndex = selectedItems.indexOf(clickedId);
+      const itemUsedToBeSelected = itemIndex > -1;
+      const newSelectedItemIds = [...selectedItems];
 
-  React.useImperativeHandle(ref, () => ({
-    focus: () => {
-      buttonRef.current.focus();
-    },
-  }));
+      if (itemUsedToBeSelected) {
+        newSelectedItemIds.splice(itemIndex, 1);
+      } else {
+        newSelectedItemIds.push(clickedId);
+      }
 
-  const isButtonDisabled = isDisabled;
-
-  const handleClick = () => {
-    if (!isButtonDisabled) setIsActive(!isActive);
+      setSelectedItems(newSelectedItemIds);
+    }
   };
 
-  const bestTabIndex = isButtonDisabled && tabIndex === null ? -1 : tabIndex || 0;
+  const bestTabIndex = isButtonGroupDisabled && tabIndex === null ? -1 : tabIndex || 0;
 
   const buttonProps = {
-    isDisabled: isButtonDisabled,
+    isFullWidth,
+    isDisabled: isButtonGroupDisabled,
     onClick: handleClick,
-    ref: buttonRef,
     tabIndex,
     size,
     isSemantic,
@@ -77,18 +74,27 @@ const ButtonGroup = React.forwardRef((props, ref) => {
   };
 
   if (isSemantic) {
-    buttonProps.disabled = isButtonDisabled;
+    buttonProps.disabled = isButtonGroupDisabled;
   } else {
     buttonProps.tabIndex = bestTabIndex;
   }
 
   return (
-    <Button css={buttonGroupStyles} data-pka-anchor="button" {...buttonProps} kind="flat">
-      {isActive ? <CheckIcon /> : <TimesIcon />}
-      {children}
-    </Button>
+    <sc.ButtonGroup {...props}>
+      {children.map(item => (
+        <sc.Button
+          key={item.props.children}
+          isActive={selectedItems.includes(item.props.children)}
+          data-pka-anchor="button-group.button"
+          kind="flat"
+          {...buttonProps}
+        >
+          {item.props.children}
+        </sc.Button>
+      ))}
+    </sc.ButtonGroup>
   );
-});
+};
 
 ButtonGroup.displayName = "ButtonGroup";
 ButtonGroup.propTypes = propTypes;
