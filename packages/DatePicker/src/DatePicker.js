@@ -1,6 +1,6 @@
 import React from "react";
 import PropTypes from "prop-types";
-import momentPropTypes from "react-moment-proptypes";
+import moment from "moment";
 
 import Popover from "@paprika/popover";
 import DateInput from "@paprika/date-input";
@@ -21,7 +21,7 @@ const propTypes = {
   dateFormat: PropTypes.string,
 
   /** Selected date in moment object. */
-  date: momentPropTypes.momentObj,
+  date: PropTypes.instanceOf(moment),
 
   /** Date format used while displaying date. It should be human-friendly and spelled out, default is MMMM DD,YYYY */
   humanFormat: PropTypes.string,

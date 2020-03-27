@@ -1,7 +1,6 @@
 import React from "react";
 import PropTypes from "prop-types";
 import moment from "moment";
-import momentPropTypes from "react-moment-proptypes";
 
 import "react-dates/initialize";
 import { DayPickerSingleDateController as SDPController } from "react-dates";
@@ -10,7 +9,6 @@ import ArrowLeft from "@paprika/icon/lib/ArrowLeft";
 import ArrowRight from "@paprika/icon/lib/ArrowRight";
 import Button from "@paprika/button";
 import useI18n from "@paprika/l10n/lib/useI18n";
-import { isMomentObjectOrNull } from "@paprika/helpers/lib/customPropTypes";
 
 import ShortcutPanel from "../ShortcutPanel";
 
@@ -23,13 +21,13 @@ import calendarStyles, {
 
 const propTypes = {
   /** Selected date in moment object */
-  date: momentPropTypes.momentObj,
+  date: PropTypes.instanceOf(moment),
 
   /** Callback to fire when user select date */
   onSelect: PropTypes.func.isRequired,
 
   /** Possible date might be selected in moment object */
-  possibleDate: isMomentObjectOrNull,
+  possibleDate: PropTypes.instanceOf(moment),
 
   resetPossibleDate: PropTypes.func.isRequired,
 };

@@ -23,8 +23,7 @@
     "@paprika/stylers": "^0.2.6",
     "@paprika/tokens": "^0.1.13",
     "prop-types": "^15.7.2",
-    "react-dates": "^20.1.0",
-    "react-moment-proptypes": "^1.6.0"
+    "react-dates": "^20.1.0"
   },
   "peerDependencies": {
     "@paprika/l10n": "^0.2.5",

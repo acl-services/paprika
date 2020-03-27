@@ -3,7 +3,6 @@ import PropTypes from "prop-types";
 import moment from "moment";
 import CalendarIcon from "@paprika/icon/lib/Calendar";
 import Input from "@paprika/input";
-import { isMomentObjectOrNull } from "@paprika/helpers/lib/customPropTypes";
 import useI18n from "@paprika/l10n/lib/useI18n";
 
 const INPUT_PARSE_ERROR = "INPUT_PARSE";
@@ -16,7 +15,7 @@ const propTypes = {
   dateFormat: PropTypes.string,
 
   /** Selected date in moment object. */
-  date: isMomentObjectOrNull,
+  date: PropTypes.instanceOf(moment),
 
   /** Date format used while displaying date. It should be human-friendly and spelled out, default is MMMM DD,YYYY */
   humanFormat: PropTypes.string,
