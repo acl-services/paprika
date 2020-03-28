@@ -36,14 +36,14 @@ function getDisplayProps(props, defaultProps = {}) {
 }
 
 function buildString(displayName, displayProps, renderedChildren, hasNoChildren, depth) {
-  let outString = `<${displayName} `;
+  let outString = `<${displayName}`;
   if (displayProps.length > 2) {
     outString += `${newline}${tabs(depth)}${displayProps.join(`${newline}${tabs(depth)}`)}${tabs(depth - 1)}${newline}`;
   } else if (displayProps.length > 0) {
-    outString += `${displayProps.join(" ")}`;
+    outString += ` ${displayProps.join(" ")}`;
   }
   outString += hasNoChildren
-    ? `/>`
+    ? `${displayProps.length === 0 ? " " : ""}/>`
     : `>${newline}${tabs(depth)}${renderedChildren}${newline}${tabs(depth - 1)}</${displayName}>`;
 
   return outString;
