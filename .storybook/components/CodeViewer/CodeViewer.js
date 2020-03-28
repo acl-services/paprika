@@ -36,14 +36,14 @@ function getDisplayProps(props, defaultProps = {}) {
 }
 
 function buildString(displayName, displayProps, renderedChildren, hasNoChildren, depth) {
-  let outString = `<${displayName}`;
+  let outString = `<${displayName} `;
   if (displayProps.length > 2) {
     outString += `${newline}${tabs(depth)}${displayProps.join(`${newline}${tabs(depth)}`)}${tabs(depth - 1)}${newline}`;
   } else if (displayProps.length > 0) {
-    outString += ` ${displayProps.join(" ")}`;
+    outString += `${displayProps.join(" ")}`;
   }
   outString += hasNoChildren
-    ? ` />`
+    ? `/>`
     : `>${newline}${tabs(depth)}${renderedChildren}${newline}${tabs(depth - 1)}</${displayName}>`;
 
   return outString;
@@ -61,6 +61,10 @@ function isElement(content) {
   return Boolean(content && content.type && typeof content.type === "string");
 }
 
+function isFragment(content) {
+  return Boolean(content && content.type && typeof content.type === "symbol");
+}
+
 function getJsx(content, depth = 1) {
   if (isArray(content)) {
     return React.Children.map(content, child => {
@@ -75,10 +79,15 @@ function getJsx(content, depth = 1) {
     return `<${displayName}>${newline}${tabs(depth)}${children}${newline}${tabs(depth - 1)}</${displayName}>`;
   }
 
+  if (isFragment(content)) {
+    const children = getJsx(content.props.children, depth);
+    return `<>${newline}${tabs(depth)}${children}${newline}${tabs(depth - 1)}</>`;
+  }
+
   if (isComponent(content)) {
     const numChildren = React.Children.count(content.props.children);
     const hasNoChildren = numChildren === 0;
-    const displayName = content.type.name;
+    const displayName = content.type.name.replace(/^Svg/, "");
     const displayProps = getDisplayProps(content.props, content.type.defaultProps);
     const renderedChildren = content.props.children;
 
