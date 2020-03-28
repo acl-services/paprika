@@ -3,15 +3,13 @@ import { Story, Rule, Tagline } from "storybook/assets/styles/common.styles";
 import { boolean, number, select, text } from "@storybook/addon-knobs";
 import Heading from "@paprika/heading";
 import L10n from "@paprika/l10n";
-import CodeViewer from "storybook/assets/components/CodeViewer";
+import CodeViewer from "storybook/components/CodeViewer";
 import Toast from "../../src";
 import Kinds from "../../src/ToastKinds";
 
 const getKnobs = () => ({
-  isShowingCode: boolean("SHOW SOURCE CODE", false),
-  autoCloseDelay: number("autoCloseDelay", 1500),
+  autoCloseDelay: number("autoCloseDelay", 5000),
   canAutoClose: boolean("canAutoClose", false),
-  collapsedLength: number("collapsedLength", 255),
   children: text("children", "Notification"),
   hasCloseButton: boolean("hasCloseButton", true),
   isFixed: boolean("isFixed", false),
@@ -22,11 +20,11 @@ const getKnobs = () => ({
     [Kinds.SUCCESS, Kinds.WARNING, Kinds.ERROR, Kinds.INFO, Kinds.LOCKED, Kinds.VISUALLY_HIDDEN],
     Kinds.INFO
   ),
-  zIndex: number("zIndex", 1006),
+  zIndex: number("zIndex", undefined),
 });
 
 const ExampleStory = props => {
-  const { isShowingCode, children, ...toastProps } = props;
+  const { children, ...toastProps } = props;
 
   return (
     <Story>
@@ -41,7 +39,7 @@ const ExampleStory = props => {
       </Tagline>
       <Rule />
       <L10n locale="en">
-        <CodeViewer isShown={isShowingCode}>
+        <CodeViewer>
           <Toast {...toastProps}>{children}</Toast>
         </CodeViewer>
       </L10n>

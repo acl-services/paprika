@@ -5,7 +5,7 @@ import { ShirtSizes, InputValidTypes } from "@paprika/helpers/lib/customPropType
 import SearchIcon from "@paprika/icon/lib/Search";
 import InfoIcon from "@paprika/icon/lib/InfoCircle";
 import Heading from "@paprika/heading";
-import CodeViewer from "storybook/assets/components/CodeViewer";
+import CodeViewer from "storybook/components/CodeViewer";
 import Input from "../../src";
 
 const iconSelections = {
@@ -15,7 +15,6 @@ const iconSelections = {
 };
 
 const getKnobs = () => ({
-  isShowingCode: boolean("SHOW SOURCE CODE", false),
   size: select("size", ShirtSizes.DEFAULT, "medium"),
   placeholder: text("placeholder", "Enter some text"),
   icon: iconSelections[select("icon", Object.keys(iconSelections), null)],
@@ -28,7 +27,7 @@ const getKnobs = () => ({
 });
 
 const ExampleStory = props => {
-  const { isShowingCode, ...inputProps } = props;
+  const { ...inputProps } = props;
 
   return (
     <Story>
@@ -37,7 +36,7 @@ const ExampleStory = props => {
       </Heading>
       <Tagline>Use the knobs to tinker with the props.</Tagline>
       <Rule />
-      <CodeViewer isShown={isShowingCode}>
+      <CodeViewer>
         <Input {...inputProps} />
       </CodeViewer>
     </Story>
