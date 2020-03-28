@@ -1,14 +1,12 @@
 import React from "react";
 import PropTypes from "prop-types";
 import { boolean } from "@storybook/addon-knobs";
-import styled from "styled-components";
 import { Prism as SyntaxHighlighter } from "react-syntax-highlighter";
 import { tomorrow as syntaxTheme } from "react-syntax-highlighter/dist/esm/styles/prism";
-import tokens from "@paprika/tokens";
-import stylers from "@paprika/stylers";
 import Button from "@paprika/button";
 import HideIcon from "@paprika/icon/lib/Hide";
 import CopiedIcon from "@paprika/icon/lib/Check";
+import * as sc from "./CodeViewer.styles";
 
 const propTypes = {
   children: PropTypes.node,
@@ -19,54 +17,6 @@ const defaultProps = {
   children: null,
   defaultIsShown: false,
 };
-
-const CodeBox = styled.div`
-  border: 1px solid ${tokens.border.color};
-  position: relative;
-
-  pre {
-    ${stylers.fontSize(-1)}
-
-    font-family: "Roboto Mono", monospaced;
-    margin: 0 !important;
-    max-height: 500px;
-
-    code {
-      &:first-child {
-        opacity: 0.4;
-      }
-    }
-  }
-`;
-
-const Buttons = styled.div`
-  position: absolute;
-  right: -1px;
-  top: 100%;
-
-  button {
-    border-radius: 0;
-    font-weight: normal;
-    position: relative;
-
-    &:hover,
-    &:focus {
-      z-index: 1;
-    }
-
-    & + button {
-      margin-left: -1px;
-    }
-  }
-`;
-
-const ShowButton = styled(Button)`
-  margin-left: -8px;
-`;
-
-const CopyButton = styled(Button)`
-  width: 50px;
-`;
 
 const tab = "  ";
 const newline = "\n";
@@ -175,24 +125,24 @@ const CodeViewer = props => {
     <>
       {children}
       {isShown && (
-        <CodeBox className="paprika-code-viewer">
+        <sc.CodeBox className="paprika-code-viewer">
           <SyntaxHighlighter language="javascript" style={syntaxTheme} showLineNumbers>
             {getJsx(children)}
           </SyntaxHighlighter>
-          <Buttons>
-            <CopyButton onClick={handleCopy} size="small" kind="flat">
+          <sc.Buttons>
+            <sc.CopyButton onClick={handleCopy} size="small" kind="flat">
               {copyLabel}
-            </CopyButton>
+            </sc.CopyButton>
             <Button.Icon onClick={handleToggle} size="small" kind="flat">
               <HideIcon />
             </Button.Icon>
-          </Buttons>
-        </CodeBox>
+          </sc.Buttons>
+        </sc.CodeBox>
       )}
       {!isShown && (
-        <ShowButton onClick={handleToggle} size="small" kind="link">
+        <sc.ShowButton onClick={handleToggle} size="small" kind="link">
           Show Code
-        </ShowButton>
+        </sc.ShowButton>
       )}
     </>
   );
