@@ -12,28 +12,30 @@ import Basement, { End } from "./components/Basement";
 import InfiniteScroll from "./components/InfiniteScroll";
 
 const propTypes = {
+  autofocus: PropTypes.bool,
   children: PropTypes.node.isRequired,
   data: PropTypes.arrayOf(PropTypes.shape({})),
   height: PropTypes.number,
   onClick: PropTypes.func,
-  onPressEnter: PropTypes.func,
   onKeyDown: PropTypes.func,
-  onRowChecked: PropTypes.func,
+  onPressEnter: PropTypes.func,
   onPressShiftSpaceBar: PropTypes.func,
   onPressSpaceBar: PropTypes.func,
+  onRowChecked: PropTypes.func,
   rowHeight: PropTypes.number,
   width: PropTypes.number,
 };
 
 const defaultProps = {
+  autofocus: true,
   data: [],
   height: 600,
   onClick: null,
-  onPressEnter: null,
   onKeyDown: () => {},
-  onRowChecked: () => {},
+  onPressEnter: null,
   onPressShiftSpaceBar: null,
   onPressSpaceBar: null,
+  onRowChecked: () => {},
   rowHeight: 36,
   width: null,
 };
@@ -50,15 +52,16 @@ const innerElementTypeMainGrid = React.forwardRef((props, ref) => (
 
 const DataGrid = React.forwardRef((props, ref) => {
   const {
+    autofocus,
     children,
     data,
     height,
     onClick,
-    onPressEnter,
     onKeyDown,
-    onRowChecked,
+    onPressEnter,
     onPressShiftSpaceBar,
     onPressSpaceBar,
+    onRowChecked,
     rowHeight,
     width,
     ...moreProps
@@ -313,7 +316,7 @@ const DataGrid = React.forwardRef((props, ref) => {
     refPrevLastScrollHeight.current = refScrollGrid.current && refScrollGrid.current.scrollHeight;
   }, []);
 
-  React.useEffect(() => {
+  function focusDataGrid() {
     // this is required to readjust the active highlight
     // after any rerender
     if (
@@ -323,8 +326,11 @@ const DataGrid = React.forwardRef((props, ref) => {
     ) {
       if (refScrollGrid.current) refScrollGrid.current.scrollTo(0, refScrollGrid.current.scrollTop + 1);
     }
-    restoreHighlightFocus();
-  });
+
+    if (autofocus) {
+      restoreHighlightFocus();
+    }
+  }
 
   React.useImperativeHandle(
     ref,
@@ -425,6 +431,8 @@ const DataGrid = React.forwardRef((props, ref) => {
   }, [deemphasizeRow]);
 
   if (data.length === 0) return null;
+
+  focusDataGrid();
 
   return (
     <>
