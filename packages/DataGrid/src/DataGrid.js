@@ -3,7 +3,7 @@ import PropTypes from "prop-types";
 import { VariableSizeGrid as Grid } from "react-window";
 import useI18n from "@paprika/l10n/lib/useI18n";
 import extractChildren from "@paprika/helpers/lib/extractChildren";
-import mouseWheel from "mouse-wheel";
+
 import Cell from "./components/Cell";
 import useGridEventHandler from "./hooks/useGridEventHandler";
 import ColumnDefinition from "./components/ColumnDefinition";
@@ -12,28 +12,30 @@ import Basement, { End } from "./components/Basement";
 import InfiniteScroll from "./components/InfiniteScroll";
 
 const propTypes = {
+  autofocus: PropTypes.bool,
   children: PropTypes.node.isRequired,
   data: PropTypes.arrayOf(PropTypes.shape({})),
   height: PropTypes.number,
   onClick: PropTypes.func,
-  onPressEnter: PropTypes.func,
   onKeyDown: PropTypes.func,
-  onRowChecked: PropTypes.func,
+  onPressEnter: PropTypes.func,
   onPressShiftSpaceBar: PropTypes.func,
   onPressSpaceBar: PropTypes.func,
+  onRowChecked: PropTypes.func,
   rowHeight: PropTypes.number,
   width: PropTypes.number,
 };
 
 const defaultProps = {
+  autofocus: true,
   data: [],
   height: 600,
   onClick: null,
-  onPressEnter: null,
   onKeyDown: () => {},
-  onRowChecked: () => {},
+  onPressEnter: null,
   onPressShiftSpaceBar: null,
   onPressSpaceBar: null,
+  onRowChecked: () => {},
   rowHeight: 36,
   width: null,
 };
@@ -50,15 +52,16 @@ const innerElementTypeMainGrid = React.forwardRef((props, ref) => (
 
 const DataGrid = React.forwardRef((props, ref) => {
   const {
+    autofocus,
     children,
     data,
     height,
     onClick,
-    onPressEnter,
     onKeyDown,
-    onRowChecked,
+    onPressEnter,
     onPressShiftSpaceBar,
     onPressSpaceBar,
+    onRowChecked,
     rowHeight,
     width,
     ...moreProps
@@ -92,16 +95,17 @@ const DataGrid = React.forwardRef((props, ref) => {
   const overscanColumnCount = 2;
 
   const rowCount = data.length;
+  const {
+    "DataGrid.ColumnDefinition": extractedColumnDefinitions,
+    "DataGrid.Basement": Basement,
+    "DataGrid.InfiniteScroll": InfiniteScroll,
+  } = extractChildren(children, ["DataGrid.ColumnDefinition", "DataGrid.Basement", "DataGrid.InfiniteScroll"]);
 
-  const { ColumnDefinitions, Basement, InfiniteScroll } = React.useMemo(() => {
-    const {
-      "DataGrid.ColumnDefinition": ColumnDefinitions,
-      "DataGrid.Basement": Basement,
-      "DataGrid.InfiniteScroll": InfiniteScroll,
-    } = extractChildren(children, ["DataGrid.ColumnDefinition", "DataGrid.Basement", "DataGrid.InfiniteScroll"]);
-
-    return { ColumnDefinitions, Basement, InfiniteScroll };
-  }, [children]);
+  let ColumnDefinitions = extractedColumnDefinitions;
+  if (!Array.isArray(extractedColumnDefinitions)) {
+    // when there is only one component extracted function return the element not an array of elements
+    ColumnDefinitions = [extractedColumnDefinitions];
+  }
 
   const columnCount = ColumnDefinitions.length;
 
@@ -312,7 +316,7 @@ const DataGrid = React.forwardRef((props, ref) => {
     refPrevLastScrollHeight.current = refScrollGrid.current && refScrollGrid.current.scrollHeight;
   }, []);
 
-  React.useEffect(() => {
+  function focusDataGrid() {
     // this is required to readjust the active highlight
     // after any rerender
     if (
@@ -322,8 +326,11 @@ const DataGrid = React.forwardRef((props, ref) => {
     ) {
       if (refScrollGrid.current) refScrollGrid.current.scrollTo(0, refScrollGrid.current.scrollTop + 1);
     }
-    restoreHighlightFocus();
-  });
+
+    if (autofocus) {
+      restoreHighlightFocus();
+    }
+  }
 
   React.useImperativeHandle(
     ref,
@@ -394,19 +401,26 @@ const DataGrid = React.forwardRef((props, ref) => {
   );
 
   React.useEffect(() => {
-    mouseWheel(refScrollGrid.current, (dx, dy, dz, event) => {
-      event.preventDefault();
-      refScrollGrid.current.scrollTo(refScrollGrid.current.scrollLeft + dx, refScrollGrid.current.scrollTop + dy);
-    });
+    // Using lazy import because in some cases document.body is null but mouse-wheel
+    // depends on document.body being not null. Therefore we need to lazy import the mouse-wheel library.
+    import("mouse-wheel").then(module => {
+      if (Array.isArray(data) && data.length) {
+        const { default: mouseWheel } = module;
+        mouseWheel(refScrollGrid.current, (dx, dy, dz, event) => {
+          event.preventDefault();
+          refScrollGrid.current.scrollTo(refScrollGrid.current.scrollLeft + dx, refScrollGrid.current.scrollTop + dy);
+        });
 
-    mouseWheel(refScrollStickyColumns.current, (dx, dy, dz, event) => {
-      event.preventDefault();
-      refScrollStickyColumns.current.scrollTo(
-        refScrollStickyColumns.current.scrollLeft + dx,
-        refScrollStickyColumns.current.scrollTop + dy
-      );
+        mouseWheel(refScrollStickyColumns.current, (dx, dy, dz, event) => {
+          event.preventDefault();
+          refScrollStickyColumns.current.scrollTo(
+            refScrollStickyColumns.current.scrollLeft + dx,
+            refScrollStickyColumns.current.scrollTop + dy
+          );
+        });
+      }
     });
-  }, [gridId]);
+  }, [gridId, data]);
 
   const handleMouseOver = event => {
     highlightRow({ rowIndex: event.target.dataset.rowIndex });
@@ -417,6 +431,8 @@ const DataGrid = React.forwardRef((props, ref) => {
   }, [deemphasizeRow]);
 
   if (data.length === 0) return null;
+
+  focusDataGrid();
 
   return (
     <>

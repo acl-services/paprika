@@ -28,7 +28,7 @@ const propTypes = {
   /* Size provided by parent Group component */
   size: PropTypes.oneOf(ShirtSizes.DEFAULT),
   /** Value for tabindex attribute to override the default of 0. */
-  tabIndex: PropTypes.number,
+  tabIndex: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
 };
 
 const defaultProps = {

@@ -1,6 +1,6 @@
 {
   "name": "@paprika/external-link",
-  "version": "0.0.5",
+  "version": "0.0.8",
   "description": "ExternalLink component",
   "main": "lib/index.js",
   "author": "@paprika",
@@ -15,9 +15,9 @@
   },
   "dependencies": {
     "@babel/runtime-corejs2": "^7.3.1",
-    "@paprika/icon": "^0.2.12",
-    "@paprika/stylers": "^0.2.5",
-    "@paprika/tokens": "^0.1.12",
+    "@paprika/icon": "^0.2.15",
+    "@paprika/stylers": "^0.2.6",
+    "@paprika/tokens": "^0.1.13",
     "prop-types": "^15.7.2"
   },
   "peerDependencies": {

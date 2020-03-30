@@ -4,7 +4,7 @@ import Popover from "@paprika/popover";
 import { getDOMAttributesForListBoxContainer } from "../../helpers/DOMAttributes";
 import handleKeyboardKeys from "../../helpers/handleKeyboardKeys";
 import useListBox from "../../useListBox";
-import OnChangeContext from "../../store/OnChangeProvider";
+import { OnChangeContext } from "../../store/OnChangeProvider";
 import { ContentStyled } from "./Content.styles";
 
 const propTypes = {

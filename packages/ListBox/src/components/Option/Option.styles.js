@@ -31,6 +31,7 @@ const fontSize = {
 export const OptionStyled = styled.li`
   border: 2px solid transparent;
   border-radius: 3px;
+  cursor: pointer;
   margin-bottom: ${tokens.spaceSm};
   padding: ${tokens.spaceSm};
 

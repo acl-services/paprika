@@ -445,12 +445,14 @@ export default function useGridEventHandler({
 
   const restoreHighlightFocus = React.useCallback(() => {
     if (cell.current && (cell.current.columnIndex !== null && cell.current.rowIndex !== null)) {
-      const $cell = $getCell();
+      window.requestAnimationFrame(() => {
+        const $cell = $getCell();
 
-      if (!$cell) return;
-      setRefPrevCell();
-      setHighlight();
-      focus($cell);
+        if (!$cell) return;
+        setRefPrevCell();
+        setHighlight();
+        focus($cell);
+      });
     }
   }, [$getCell, setHighlight, setRefPrevCell]);
 
