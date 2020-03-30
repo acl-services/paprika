@@ -1,10 +1,10 @@
 import React from "react";
 import { storiesOf } from "@storybook/react";
-import { Story, Rule } from "storybook/assets/styles/common.styles";
+import { Story, Tagline, Gap } from "storybook/assets/styles/common.styles";
 import Heading from "@paprika/heading";
 import Pill from "@paprika/pill";
 import CodeViewer from "storybook/components/CodeViewer";
-import ArrowRight from "@paprika/icon/lib/ArrowRight";
+import SampleIcon from "@paprika/icon/lib/ExclamationCircle";
 
 const parameters = {
   options: {
@@ -13,29 +13,41 @@ const parameters = {
   },
 };
 
+const handlePillClick = () => {};
+
 storiesOf("Utilities | CodeViewer", module)
   .addParameters(parameters)
   .add("Variations", () => (
     <Story>
       <Heading level={1} displayLevel={2} isLight>
-        CodeViewer – Variations
+        CodeViewer
       </Heading>
-      <Rule />
+      <Tagline>
+        <big>Variations</big>
+      </Tagline>
+      <Gap />
       <CodeViewer defaultIsShown>🐐</CodeViewer>
-      <Rule />
+      <Gap />
       <CodeViewer defaultIsShown>
+        <Heading level={2} displayLevel={3}>
+          🐐
+        </Heading>
         <Pill>
-          <ArrowRight />
+          <>
+            <span>
+              <SampleIcon />
+            </span>
+            <span>
+              <SampleIcon />
+            </span>
+          </>
         </Pill>
       </CodeViewer>
-      <Rule />
+      <Gap />
       <CodeViewer defaultIsShown>
-        <Heading level={4}>🐐</Heading>
-        <>
-          <ArrowRight />
-          <Pill>🐐</Pill>
-          <span>🐐</span>
-        </>
+        <Pill onClick={handlePillClick} isDisabled size="small" pillColor="grey">
+          🐐
+        </Pill>
       </CodeViewer>
     </Story>
   ));

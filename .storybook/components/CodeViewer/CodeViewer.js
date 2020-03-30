@@ -1,10 +1,11 @@
 import React from "react";
 import PropTypes from "prop-types";
+import uuid from "uuid/v4";
 import { boolean } from "@storybook/addon-knobs";
 import { Prism as SyntaxHighlighter } from "react-syntax-highlighter";
 import { tomorrow as syntaxTheme } from "react-syntax-highlighter/dist/esm/styles/prism";
 import Button from "@paprika/button";
-import HideIcon from "@paprika/icon/lib/Hide";
+import HideIcon from "@paprika/icon/lib/Times";
 import CopiedIcon from "@paprika/icon/lib/Check";
 import { getJsx, getDisplayProps, copyToClipboard } from "./CodeViewer.helpers";
 import * as sc from "./CodeViewer.styles";
@@ -24,13 +25,15 @@ const CodeViewer = props => {
 
   const [isShown, setIsShown] = React.useState(defaultIsShown);
   const [copyLabel, setCopyLabel] = React.useState("Copy");
+  const viewerId = React.useRef(uuid()).current;
 
   const handleToggle = () => {
     setIsShown(prevIsShown => !prevIsShown);
   };
 
   const handleCopy = () => {
-    copyToClipboard(".paprika-code-viewer pre code:last-child");
+    const codeSelector = `#code-viewer-${viewerId} .paprika-code-viewer pre code:last-child`;
+    copyToClipboard(codeSelector);
     setCopyLabel(<CopiedIcon />);
     setTimeout(() => {
       setCopyLabel("Copy");
@@ -38,7 +41,7 @@ const CodeViewer = props => {
   };
 
   return (
-    <>
+    <div id={`code-viewer-${viewerId}`}>
       {children}
       {isShown && (
         <sc.CodeBox className="paprika-code-viewer">
@@ -56,11 +59,13 @@ const CodeViewer = props => {
         </sc.CodeBox>
       )}
       {!isShown && (
-        <sc.ShowButton onClick={handleToggle} size="small" kind="link">
-          Show Code
-        </sc.ShowButton>
+        <div>
+          <sc.ShowButton onClick={handleToggle} size="small" kind="link">
+            Show Code
+          </sc.ShowButton>
+        </div>
       )}
-    </>
+    </div>
   );
 };
 

@@ -9,20 +9,6 @@ function tabs(num) {
     .join("");
 }
 
-function buildString(displayName, displayProps, renderedChildren, hasNoChildren, depth) {
-  let outString = `<${displayName}`;
-  if (displayProps.length > 2) {
-    outString += `${newline}${tabs(depth)}${displayProps.join(`${newline}${tabs(depth)}`)}${tabs(depth - 1)}${newline}`;
-  } else if (displayProps.length > 0) {
-    outString += ` ${displayProps.join(" ")}`;
-  }
-  outString += hasNoChildren
-    ? `${displayProps.length === 0 ? " " : ""}/>`
-    : `>${newline}${tabs(depth)}${renderedChildren}${newline}${tabs(depth - 1)}</${displayName}>`;
-
-  return outString;
-}
-
 function isArray(content) {
   return Boolean(content && typeof content !== "string" && content.length !== undefined);
 }
@@ -39,11 +25,25 @@ function isFragment(content) {
   return Boolean(content && content.type && typeof content.type === "symbol");
 }
 
+function getComponentString(displayName, displayProps, renderedChildren, hasNoChildren, depth) {
+  let outString = `<${displayName}`;
+  if (displayProps.length > 2) {
+    outString += `${newline}${tabs(depth)}${displayProps.join(`${newline}${tabs(depth)}`)}${tabs(depth - 1)}${newline}`;
+  } else if (displayProps.length > 0) {
+    outString += ` ${displayProps.join(" ")}`;
+  }
+  outString += hasNoChildren
+    ? `${displayProps.length === 0 ? " " : ""}/>`
+    : `>${newline}${tabs(depth)}${renderedChildren}${newline}${tabs(depth - 1)}</${displayName}>`;
+
+  return outString;
+}
+
 export function getJsx(content, depth = 1) {
   if (isArray(content)) {
     return React.Children.map(content, child => {
-      return getJsx(child, depth + 1);
-    }).join(`${newline}${tabs(depth)}`);
+      return getJsx(child, depth);
+    }).join(`${newline}${tabs(depth - 1)}`);
   }
 
   if (isElement(content)) {
@@ -54,7 +54,7 @@ export function getJsx(content, depth = 1) {
   }
 
   if (isFragment(content)) {
-    const children = getJsx(content.props.children, depth);
+    const children = getJsx(content.props.children, depth + 1);
     return `<>${newline}${tabs(depth)}${children}${newline}${tabs(depth - 1)}</>`;
   }
 
@@ -65,7 +65,13 @@ export function getJsx(content, depth = 1) {
     const displayProps = getDisplayProps(content.props, content.type.defaultProps);
     const renderedChildren = content.props.children;
 
-    return buildString(displayName, displayProps, getJsx(content.props.children, depth + 1), hasNoChildren, depth);
+    return getComponentString(
+      displayName,
+      displayProps,
+      getJsx(content.props.children, depth + 1),
+      hasNoChildren,
+      depth
+    );
   }
 
   return content;
@@ -76,7 +82,7 @@ export function getDisplayProps(props, defaultProps = {}) {
 
   return propKeys
     .filter(key => props[key] !== null && props[key] !== defaultProps[key] && key !== "children")
-    .map(key => `${key}="${props[key]}"`);
+    .map(key => `${key}${props[key] !== true ? `="${props[key]}"` : ""}`);
 }
 
 export function copyToClipboard(selector) {
