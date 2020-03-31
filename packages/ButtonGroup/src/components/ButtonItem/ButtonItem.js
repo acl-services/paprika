@@ -10,21 +10,25 @@ const propTypes = {
   /** The button label of the item to be used as a key in the group. */
   label: PropTypes.node.isRequired,
 
+  /** If the button shows or hides the icon */
+  hasIcon: PropTypes.bool,
+
   /** If the item is active or on selected state */
   isActive: PropTypes.bool,
 };
 
 const defaultProps = {
   children: null,
+  hasIcon: false,
   isActive: false,
 };
 
 const ButtonItem = props => {
-  const { children, label, isActive } = props;
+  const { children, label, isActive, hasIcon } = props;
 
   return (
     <sc.ButtonItem key={label} data-pka-anchor="button" {...props} kind="flat">
-      {isActive ? <sc.CheckIcon /> : <sc.TimesIcon />}
+      {hasIcon && <React.Fragment>{isActive ? <sc.CheckIcon /> : <sc.TimesIcon />}</React.Fragment>}
       {children}
     </sc.ButtonItem>
   );

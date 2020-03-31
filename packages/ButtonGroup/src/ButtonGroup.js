@@ -9,6 +9,9 @@ const propTypes = {
   /** The content of each of the toggle buttons in the group. */
   children: PropTypes.node,
 
+  /** T show or hide the icons for selected or not. */
+  hasIcons: PropTypes.bool,
+
   /** If the button is disabled. */
   isDisabled: PropTypes.bool,
 
@@ -30,6 +33,7 @@ const propTypes = {
 
 const defaultProps = {
   children: null,
+  hasIcons: false,
   isDisabled: false,
   isFullWidth: false,
   isSemantic: true,
@@ -39,7 +43,7 @@ const defaultProps = {
 };
 
 const ButtonGroup = props => {
-  const { children, isDisabled, isFullWidth, isSemantic, onClick, tabIndex, size, ...moreProps } = props;
+  const { children, hasIcons, isDisabled, isFullWidth, isSemantic, onClick, tabIndex, size, ...moreProps } = props;
 
   const [selectedItems, setSelectedItems] = React.useState([]);
   const isButtonGroupDisabled = isDisabled;
@@ -64,6 +68,7 @@ const ButtonGroup = props => {
   const bestTabIndex = isButtonGroupDisabled && tabIndex === null ? -1 : tabIndex || 0;
 
   const buttonProps = {
+    hasIcon: hasIcons,
     isFullWidth,
     isDisabled: isButtonGroupDisabled,
     onClick: handleClick,

@@ -12,6 +12,7 @@ function clickHandler() {
 
 const buttonGroupProps = () => ({
   onChange: clickHandler,
+  hasIcons: boolean("hasIcons", false),
   isDisabled: boolean("isDisabled", false),
   isFullWidth: boolean("isFullWidth", false),
   isSemantic: boolean("isSemantic", true),
