@@ -21,8 +21,9 @@ const propTypes = {
   /** If it will be rendered as a <button> element. If false, a <span> will be rendered via an accessible <RawButton>. */
   isSemantic: PropTypes.bool,
 
-  /** Callback to be executed when the button is clicked to select the item or activated by keyboard. Typically required. */
-  onClick: PropTypes.func,
+  /** Callback to be executed when any button is clicked to select the item or activated by keyboard. Typically required.
+   * it will return a list of selected items */
+  onChange: PropTypes.func,
 
   /** Size of the button (font size, min-height, padding, etc). */
   size: PropTypes.oneOf(ShirtSizes.DEFAULT),
@@ -37,13 +38,13 @@ const defaultProps = {
   isDisabled: false,
   isFullWidth: false,
   isSemantic: true,
-  onClick: () => {},
+  onChange: () => {},
   size: ShirtSizes.MEDIUM,
   tabIndex: null,
 };
 
 const ButtonGroup = props => {
-  const { children, hasIcons, isDisabled, isFullWidth, isSemantic, onClick, tabIndex, size, ...moreProps } = props;
+  const { children, hasIcons, isDisabled, isFullWidth, isSemantic, onChange, tabIndex, size, ...moreProps } = props;
 
   const [selectedItems, setSelectedItems] = React.useState([]);
   const isButtonGroupDisabled = isDisabled;
@@ -62,6 +63,9 @@ const ButtonGroup = props => {
       }
 
       setSelectedItems(newSelectedItemIds);
+      if (onChange) {
+        onChange(newSelectedItemIds);
+      }
     }
   };
 

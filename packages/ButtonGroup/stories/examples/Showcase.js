@@ -18,6 +18,10 @@ const buttonGroupProps = () => ({
   isSemantic: boolean("isSemantic", true),
 });
 
+const logSelected = selected => {
+  console.log(selected);
+};
+
 const ExampleStory = props => (
   <Story>
     <Heading level={1} displayLevel={2} isLight>
@@ -25,7 +29,7 @@ const ExampleStory = props => (
     </Heading>
     <Tagline>Use the knobs to tinker with the props.</Tagline>
     <Rule />
-    <ButtonGroup {...props} size={ShirtSizes.LARGE} onChange={() => {}}>
+    <ButtonGroup {...props} size={ShirtSizes.LARGE} onChange={logSelected}>
       <ButtonGroup.Button>One</ButtonGroup.Button>
       <ButtonGroup.Button>Two</ButtonGroup.Button>
       <ButtonGroup.Button>Three</ButtonGroup.Button>
