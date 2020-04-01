@@ -83,7 +83,7 @@ export default function useFilter({ columns, data = null, rulesByType = Filter.d
   }
 
   function handleDeleteFilter(deletedFilterId) {
-    setFilters(prevFilters => [...prevFilters].filter(filter => filter.id !== deletedFilterId));
+    setFilters(prevFilters => prevFilters.filter(filter => filter.id !== deletedFilterId));
   }
 
   function handleChangeOperator() {

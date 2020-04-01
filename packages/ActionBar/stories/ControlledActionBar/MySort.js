@@ -35,7 +35,7 @@ export default function MySort({ columns }) {
   const memorizedAddField = React.useCallback(handleAddField, [setSortedFields]);
 
   function handleDeleteField(deletedFieldId) {
-    setSortedFields(prevFields => [...prevFields].filter(filter => filter.id !== deletedFieldId));
+    setSortedFields(prevFields => prevFields.filter(filter => filter.id !== deletedFieldId));
   }
 
   const memorizedDeleteField = React.useCallback(handleDeleteField, [setSortedFields]);
@@ -45,7 +45,9 @@ export default function MySort({ columns }) {
       {sortedFields.map((field, index) => (
         <Sort.Field
           key={field.id}
-          {...field}
+          id={field.id}
+          columnId={field.columnId}
+          direction={field.direction}
           onDelete={memorizedDeleteField}
           onChange={memorizedHandleChange}
           isFirst={index === 0}

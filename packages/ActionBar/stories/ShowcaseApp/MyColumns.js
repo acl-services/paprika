@@ -25,5 +25,18 @@ export default function MyColumns() {
       onShowAll={handleShowAll}
       onChangeVisibility={handleChangeVisibility}
     />
+
+    // <ColumnsArrangement
+    //   orderedColumnIds={["goals", "names", "status", "country"]}
+    //   onChangeOrder={() => {}}
+    //   onHideAll={() => {}}
+    //   onShowAll={() => {}}
+    //   onChangeVisibility={() => {}}
+    // >
+    //   <ColumnsArrangement.ColumnDefinition id="goals" label="Goals" isDisabled />
+    //   <ColumnsArrangement.ColumnDefinition id="name" label="Name" isHidden />
+    //   <ColumnsArrangement.ColumnDefinition id="status" label="Status" />
+    //   <ColumnsArrangement.ColumnDefinition id="country" label="Country" />
+    // </ColumnsArrangement>
   );
 }

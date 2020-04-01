@@ -85,7 +85,7 @@ export default function MyFilter({ columns }) {
   const memorizedAddFilter = React.useCallback(handleAddFilter, [setFilters]);
 
   function handleDeleteFilter(deletedFilterId) {
-    setFilters(prevFilters => [...prevFilters].filter(filter => filter.id !== deletedFilterId));
+    setFilters(prevFilters => prevFilters.filter(filter => filter.id !== deletedFilterId));
   }
 
   const memorizedDeleteFilter = React.useCallback(handleDeleteFilter, [setFilters]);

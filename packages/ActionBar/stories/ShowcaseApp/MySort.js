@@ -1,10 +1,15 @@
 import React from "react";
 import { Sort, useSort } from "../../src";
 
-export default function MySort({ columns }) {
-  const { appliedNumber, sortedFields, onAddField, onDeleteField, onChangeField, onApply } = useSort({
+export default function MySort({ columns, data, onSort }) {
+  const { appliedNumber, sortedFields, sortedData, onAddField, onDeleteField, onChangeField, onApply } = useSort({
     columns,
+    data,
   });
+
+  React.useEffect(() => {
+    onSort(sortedData);
+  }, [sortedData, onSort]);
 
   const handleDelete = fieldId => () => {
     onDeleteField(fieldId);
@@ -16,15 +21,19 @@ export default function MySort({ columns }) {
 
   return (
     <Sort appliedNumber={appliedNumber} columns={columns} onAddField={onAddField} onApply={onApply}>
-      {sortedFields.map((field, index) => (
-        <Sort.Field
-          key={field.id}
-          {...field}
-          onDelete={handleDelete(field.id)}
-          onChange={handleChange(field.id)}
-          isFirst={index === 0}
-        />
-      ))}
+      {sortedFields.map((field, index) => {
+        return (
+          <Sort.Field
+            key={field.id}
+            id={field.id}
+            columnId={field.columnId}
+            direction={field.direction}
+            onDelete={handleDelete(field.id)}
+            onChange={handleChange(field.id)}
+            isFirst={index === 0}
+          />
+        );
+      })}
     </Sort>
   );
 }

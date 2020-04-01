@@ -111,8 +111,9 @@ export default function Filter(props) {
                 <GenericNoAppliedPlaceholder>
                   {I18n.t("actionBar.filter.no_filters_applied")}
                 </GenericNoAppliedPlaceholder>
-              ) : null}
-              {children}
+              ) : (
+                children
+              )}
             </sc.FiltersPanel>
             <sc.Footer>
               <Button onClick={onAddFilter} kind="minor" data-pka-anchor="actionBar.filter.addFilterButton">

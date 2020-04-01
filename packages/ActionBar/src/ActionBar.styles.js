@@ -5,7 +5,6 @@ import RawButton from "@paprika/raw-button";
 
 export const ActionBar = styled.div`
   align-items: center;
-  border-bottom: 2px solid rgba(0, 0, 0, 0.1);
   display: flex;
   font-family: inherit;
   height: 44px;

@@ -90,8 +90,9 @@ export default function Sort(props) {
             <sc.FieldsPanel ref={fieldsRef} tabIndex={-1}>
               {React.Children.count(children) === 0 ? (
                 <GenericNoAppliedPlaceholder>{I18n.t("actionBar.sort.no_sorts_applied")}</GenericNoAppliedPlaceholder>
-              ) : null}
-              {children}
+              ) : (
+                children
+              )}
             </sc.FieldsPanel>
             <sc.Footer>
               <Button onClick={onAddField} kind="minor">

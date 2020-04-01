@@ -27,6 +27,7 @@ export default function ColumnsArrangement(props) {
   const { onChangeOrder, onChangeVisibility, columns, onHideAll, onShowAll } = props;
   const I18n = useI18n();
   const [searchTerm, setSearchTerm] = React.useState("");
+  const hiddenColumns = columns.filter(column => column.isHidden);
 
   const filteredColumns = searchTerm.length
     ? columns.filter(column => column.label.match(new RegExp(searchTerm, "i")))
@@ -60,14 +61,9 @@ export default function ColumnsArrangement(props) {
     <Popover align="bottom" edge="left" minWidth={230}>
       <Popover.Trigger>
         {(handler, attributes, isOpen) => (
-          <sc.Trigger
-            {...attributes}
-            onClick={handler}
-            hasColumnsHidden={columns.filter(column => column.isHidden).length > 0}
-            isOpen={isOpen}
-          >
+          <sc.Trigger {...attributes} onClick={handler} hasColumnsHidden={hiddenColumns.length > 0} isOpen={isOpen}>
             <sc.Icon />
-            {getLabelText(columns.filter(column => column.isHidden).length)}
+            {getLabelText(hiddenColumns.length)}
           </sc.Trigger>
         )}
       </Popover.Trigger>

@@ -1,8 +1,9 @@
 import React from "react";
 import nanoid from "nanoid";
+import useI18n from "@paprika/l10n/lib/useI18n";
 import sort from "./sort";
 
-function sortData({ sortedFields, columns, data }) {
+function sortData({ sortedFields, columns, data, locale }) {
   let sortedData = data;
   if (sortedFields.length > 0) {
     sortedFields.forEach(field => {
@@ -12,6 +13,7 @@ function sortData({ sortedFields, columns, data }) {
         direction: field.direction,
         columnType: columns.find(column => field.columnId === column.id).type,
         momentParsingFormat: columns.find(column => field.columnId === column.id).momentParsingFormat,
+        locale,
       });
     });
   }
@@ -22,6 +24,7 @@ export default function useSort({ data = null, columns }) {
   const [sortedFields, setSortedFields] = React.useState([]);
   const [sortedData, setSortedData] = React.useState(data);
   const [appliedNumber, setAppliedNumber] = React.useState(0);
+  const I18n = useI18n();
 
   const handleAddItem = React.useCallback(() => {
     setSortedFields(prevFields => [
@@ -36,7 +39,7 @@ export default function useSort({ data = null, columns }) {
 
   const handleDeleteItem = React.useCallback(
     deletedId => {
-      setSortedFields(prevFields => [...prevFields].filter(filter => filter.id !== deletedId));
+      setSortedFields(prevFields => prevFields.filter(filter => filter.id !== deletedId));
     },
     [setSortedFields]
   );
@@ -44,7 +47,7 @@ export default function useSort({ data = null, columns }) {
   function handleApply() {
     setAppliedNumber(sortedFields.length);
     if (data !== null) {
-      setSortedData(() => sortData({ sortedFields, columns, data }));
+      setSortedData(() => sortData({ sortedFields, columns, data, locale: I18n.locale }));
     }
   }
 
@@ -63,13 +66,6 @@ export default function useSort({ data = null, columns }) {
     },
     [setSortedFields]
   );
-
-  // React.useEffect(() => {
-  //   if (data !== null) {
-  //     const sorted = sortData({ sortedFields, columns, data });
-  //     setSortedData(sorted);
-  //   }
-  // }, [columns, data, sortedFields]);
 
   return {
     appliedNumber,
