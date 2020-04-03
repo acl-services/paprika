@@ -1,0 +1,29 @@
+{
+  "name": "@paprika/date-input",
+  "version": "0.1.0",
+  "description": "DateInput component",
+  "main": "lib/index.js",
+  "author": "@paprika",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/acl-services/paprika.git",
+    "directory": "packages/DateInput"
+  },
+  "publishConfig": {
+    "access": "public"
+  },
+  "dependencies": {
+    "@babel/runtime-corejs2": "^7.3.1",
+    "@paprika/helpers": "^0.2.9",
+    "@paprika/icon": "^0.2.12",
+    "@paprika/input": "^0.2.15",
+    "prop-types": "^15.7.2"
+  },
+  "peerDependencies": {
+    "@paprika/l10n": "^0.3.13",
+    "moment": "^2.18.1",
+    "react": "^16.8.4",
+    "react-dom": "^16.8.4"
+  }
+}
