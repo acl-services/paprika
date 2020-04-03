@@ -6,21 +6,17 @@ import { ShirtSizes } from "@paprika/helpers/lib/customPropTypes";
 import Heading from "@paprika/heading";
 import ButtonGroup from "../../src";
 
-function clickHandler() {
-  action("Clicked a button")();
-}
+const changeHandler = selectedItems => {
+  action("Selected an item")(selectedItems);
+};
 
 const buttonGroupProps = () => ({
-  onChange: clickHandler,
+  onChange: changeHandler,
   hasIcons: boolean("hasIcons", false),
   isDisabled: boolean("isDisabled", false),
   isFullWidth: boolean("isFullWidth", false),
   isSemantic: boolean("isSemantic", true),
 });
-
-const logSelected = selected => {
-  console.log(selected);
-};
 
 const ExampleStory = props => (
   <Story>
@@ -29,7 +25,7 @@ const ExampleStory = props => (
     </Heading>
     <Tagline>Use the knobs to tinker with the props.</Tagline>
     <Rule />
-    <ButtonGroup {...props} size={ShirtSizes.LARGE} onChange={logSelected}>
+    <ButtonGroup {...props} size={ShirtSizes.LARGE} onChange={changeHandler}>
       <ButtonGroup.Button>One</ButtonGroup.Button>
       <ButtonGroup.Button>Two</ButtonGroup.Button>
       <ButtonGroup.Button>Three</ButtonGroup.Button>

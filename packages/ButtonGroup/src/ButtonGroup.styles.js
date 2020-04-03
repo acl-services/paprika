@@ -16,11 +16,11 @@ export const ButtonGroup = styled.div`
     border-radius: 0;
 
     &:first-child {
-      border-radius: ${tokens.spaceSm} 0 0 ${tokens.spaceSm};
+      border-radius: ${tokens.button.borderRadius} 0 0 ${tokens.button.borderRadius};
     }
 
     &:last-child {
-      border-radius: 0 ${tokens.spaceSm} ${tokens.spaceSm} 0;
+      border-radius: 0 ${tokens.button.borderRadius} ${tokens.button.borderRadius} 0;
     }
 
     &:not(:last-child) {

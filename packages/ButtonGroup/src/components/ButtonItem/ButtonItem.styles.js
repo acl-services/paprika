@@ -19,11 +19,7 @@ export const CheckIcon = styled(Check)``;
 export const TimesIcon = styled(Times)``;
 
 export const ButtonItem = styled(Button)`
-  ${TimesIcon} {
-    margin-right: ${tokens.spaceSm};
-  }
-
-  ${CheckIcon} {
+  ${TimesIcon}, ${CheckIcon} {
     margin-right: ${tokens.spaceSm};
   }
 

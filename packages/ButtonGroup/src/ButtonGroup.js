@@ -47,10 +47,9 @@ const ButtonGroup = props => {
   const { children, hasIcons, isDisabled, isFullWidth, isSemantic, onChange, tabIndex, size, ...moreProps } = props;
 
   const [selectedItems, setSelectedItems] = React.useState([]);
-  const isButtonGroupDisabled = isDisabled;
 
   const handleClick = event => {
-    if (!isButtonGroupDisabled) {
+    if (!isDisabled) {
       const clickedId = event.target.textContent;
       const itemIndex = selectedItems.indexOf(clickedId);
       const itemUsedToBeSelected = itemIndex > -1;
@@ -69,24 +68,16 @@ const ButtonGroup = props => {
     }
   };
 
-  const bestTabIndex = isButtonGroupDisabled && tabIndex === null ? -1 : tabIndex || 0;
-
   const buttonProps = {
     hasIcon: hasIcons,
     isFullWidth,
-    isDisabled: isButtonGroupDisabled,
+    isDisabled,
     onClick: handleClick,
     tabIndex,
     size,
     isSemantic,
     ...moreProps,
   };
-
-  if (isSemantic) {
-    buttonProps.disabled = isButtonGroupDisabled;
-  } else {
-    buttonProps.tabIndex = bestTabIndex;
-  }
 
   return (
     <sc.ButtonGroup {...props}>
