@@ -1,88 +1,31 @@
 import React from "react";
+import reactElementToJSXString from "react-element-to-jsx-string";
 
-const tab = "  ";
-const newline = "\n";
+// modified getReactElementDisplayName from react-element-to-jsx-string
+// https://github.com/algolia/react-element-to-jsx-string/blob/master/src/parser/parseReactElement.js#L15-L20
+function getDisplayName(element) {
+  const displayName =
+    element.type.displayName ||
+    (element.type.name !== "_default" ? element.type.name : null) || // function name
+    (typeof element.type === "function" // function without a name, you should provide one
+      ? "Anonymous"
+      : element.type);
 
-function tabs(num) {
-  return Array(num)
-    .fill(tab)
-    .join("");
+  return typeof displayName === "string" ? displayName.replace(/^Svg/, "") : displayName;
 }
 
-function isArray(content) {
-  return Boolean(content && typeof content !== "string" && content.length !== undefined);
-}
+const formatOptions = {
+  showFunctions: true,
+  showDefaultProps: false,
+  filterProps: ["key"],
+  maxInlineAttributesLineLength: 40,
+  displayName: getDisplayName,
+};
 
-function isComponent(content) {
-  return Boolean(content && content.type && typeof content.type === "function");
-}
-
-function isElement(content) {
-  return Boolean(content && content.type && typeof content.type === "string");
-}
-
-function isFragment(content) {
-  return Boolean(content && content.type && typeof content.type === "symbol");
-}
-
-function getComponentString(displayName, displayProps, renderedChildren, hasNoChildren, depth) {
-  let outString = `<${displayName}`;
-  if (displayProps.length > 2) {
-    outString += `${newline}${tabs(depth)}${displayProps.join(`${newline}${tabs(depth)}`)}${tabs(depth - 1)}${newline}`;
-  } else if (displayProps.length > 0) {
-    outString += ` ${displayProps.join(" ")}`;
-  }
-  outString += hasNoChildren
-    ? `${displayProps.length === 0 ? " " : ""}/>`
-    : `>${newline}${tabs(depth)}${renderedChildren}${newline}${tabs(depth - 1)}</${displayName}>`;
-
-  return outString;
-}
-
-export function getJsx(content, depth = 1) {
-  if (isArray(content)) {
-    return React.Children.map(content, child => {
-      return getJsx(child, depth);
-    }).join(`${newline}${tabs(depth - 1)}`);
-  }
-
-  if (isElement(content)) {
-    const displayName = content.type;
-    const children = getJsx(content.props.children, depth);
-
-    return `<${displayName}>${newline}${tabs(depth)}${children}${newline}${tabs(depth - 1)}</${displayName}>`;
-  }
-
-  if (isFragment(content)) {
-    const children = getJsx(content.props.children, depth + 1);
-    return `<>${newline}${tabs(depth)}${children}${newline}${tabs(depth - 1)}</>`;
-  }
-
-  if (isComponent(content)) {
-    const numChildren = React.Children.count(content.props.children);
-    const hasNoChildren = numChildren === 0;
-    const displayName = content.type.name.replace(/^Svg/, "");
-    const displayProps = getDisplayProps(content.props, content.type.defaultProps);
-    const renderedChildren = content.props.children;
-
-    return getComponentString(
-      displayName,
-      displayProps,
-      getJsx(content.props.children, depth + 1),
-      hasNoChildren,
-      depth
-    );
-  }
-
-  return content;
-}
-
-export function getDisplayProps(props, defaultProps = {}) {
-  const propKeys = Object.keys(props);
-
-  return propKeys
-    .filter(key => props[key] !== null && props[key] !== defaultProps[key] && key !== "children")
-    .map(key => `${key}${props[key] !== true ? `="${props[key]}"` : ""}`);
+export function getJSX(children) {
+  return Array.isArray(children)
+    ? children.map(child => getJSX(child)).join("\n")
+    : reactElementToJSXString(children, formatOptions);
 }
 
 export function copyToClipboard(selector) {

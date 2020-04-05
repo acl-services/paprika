@@ -1,13 +1,13 @@
 import React from "react";
 import PropTypes from "prop-types";
-import uuid from "uuid/v4";
+import { v4 as uuid } from "uuid";
 import { boolean } from "@storybook/addon-knobs";
 import { Prism as SyntaxHighlighter } from "react-syntax-highlighter";
 import { tomorrow as syntaxTheme } from "react-syntax-highlighter/dist/esm/styles/prism";
 import Button from "@paprika/button";
 import HideIcon from "@paprika/icon/lib/Times";
 import CopiedIcon from "@paprika/icon/lib/Check";
-import { getJsx, getDisplayProps, copyToClipboard } from "./CodeViewer.helpers";
+import { getJSX, copyToClipboard } from "./CodeViewer.helpers";
 import * as sc from "./CodeViewer.styles";
 
 const propTypes = {
@@ -46,7 +46,7 @@ const CodeViewer = props => {
       {isShown && (
         <sc.CodeBox className="paprika-code-viewer">
           <SyntaxHighlighter language="javascript" style={syntaxTheme} showLineNumbers>
-            {getJsx(children)}
+            {getJSX(children)}
           </SyntaxHighlighter>
           <sc.Buttons>
             <sc.CopyButton onClick={handleCopy} size="small" kind="flat">

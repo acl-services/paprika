@@ -41,6 +41,7 @@ storiesOf("Utilities | CodeViewer", module)
               <SampleIcon />
             </span>
           </>
+          🐐
         </Pill>
       </CodeViewer>
       <Gap />
