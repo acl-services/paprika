@@ -4,9 +4,8 @@ import stylers from "@paprika/stylers";
 import Button from "@paprika/button";
 
 export const CodeBox = styled.div`
-  border: 1px solid ${tokens.border.color};
   position: relative;
-  margin: ${stylers.spacer(3)} 0 ${tokens.space} 0;
+  margin: ${stylers.spacer(7)} 0 ${tokens.space} 0;
 
   pre {
     ${stylers.fontSize(-1)}
@@ -25,11 +24,11 @@ export const CodeBox = styled.div`
 
 export const Buttons = styled.div`
   position: absolute;
-  right: -1px;
-  top: 100%;
+  right: 0;
+  top: -${stylers.spacer(3)};
 
   button {
-    border-radius: 0;
+    border-radius: ${tokens.border.radius} 0 0 0;
     font-weight: normal;
     position: relative;
 
@@ -39,6 +38,7 @@ export const Buttons = styled.div`
     }
 
     & + button {
+      border-radius: 0 ${tokens.border.radius} 0 0;
       margin-left: -1px;
     }
   }
