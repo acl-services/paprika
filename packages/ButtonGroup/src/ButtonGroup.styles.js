@@ -7,7 +7,12 @@ const fullWithStyles = `
   width: 100%;
 `;
 
-export const Button = styled(ButtonItem)``;
+export const Button = styled(ButtonItem)`
+  display: block;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+`;
 
 export const ButtonGroup = styled.div`
   display: inline-flex;

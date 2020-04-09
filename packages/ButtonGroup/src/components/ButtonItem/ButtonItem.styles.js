@@ -1,8 +1,8 @@
 import styled from "styled-components";
 import tokens from "@paprika/tokens";
 import stylers from "@paprika/stylers";
-import Check from "@paprika/icon/lib/Check";
-import Times from "@paprika/icon/lib/Times";
+import Selected from "@paprika/icon/lib/Check";
+import Unselected from "@paprika/icon/lib/Times";
 import Button from "@paprika/button";
 
 const activeStyles = `
@@ -15,11 +15,11 @@ const activeStyles = `
   }
 `;
 
-export const CheckIcon = styled(Check)``;
-export const TimesIcon = styled(Times)``;
+export const SelectedIcon = styled(Selected)``;
+export const UnselectedIcon = styled(Unselected)``;
 
-export const ButtonItem = styled(Button)`
-  ${TimesIcon}, ${CheckIcon} {
+export const Item = styled(Button)`
+  ${UnselectedIcon}, ${SelectedIcon} {
     margin-right: ${tokens.spaceSm};
   }
 

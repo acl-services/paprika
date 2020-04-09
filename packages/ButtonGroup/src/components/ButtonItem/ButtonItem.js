@@ -4,6 +4,9 @@ import PropTypes from "prop-types";
 import * as sc from "./ButtonItem.styles";
 
 const propTypes = {
+  /** Unique key to represent the selected value. */
+  key: PropTypes.string.isRequired,
+
   /** Content label of the button to be displayed. */
   children: PropTypes.node,
 
@@ -21,17 +24,17 @@ const defaultProps = {
 };
 
 const ButtonItem = props => {
-  const { children, isActive, hasIcon, ...moreProps } = props;
+  const { children, isActive, hasIcon } = props;
 
   return (
-    <sc.ButtonItem {...props} {...moreProps}>
-      {hasIcon && <React.Fragment>{isActive ? <sc.CheckIcon /> : <sc.TimesIcon />}</React.Fragment>}
+    <sc.Item {...props}>
+      {hasIcon && <React.Fragment>{isActive ? <sc.SelectedIcon /> : <sc.UnselectedIcon />}</React.Fragment>}
       {children}
-    </sc.ButtonItem>
+    </sc.Item>
   );
 };
 
-ButtonItem.displayName = "ProgressAccordion.Item";
+ButtonItem.displayName = "ButtonGroup.Item";
 ButtonItem.propTypes = propTypes;
 ButtonItem.defaultProps = defaultProps;
 
