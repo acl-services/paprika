@@ -27,7 +27,6 @@ export default function reducer(state, { type, payload }) {
       return {
         ...state,
         activeOption: payload.activeOptionIndex,
-        shouldContentScroll: true,
       };
     }
 
@@ -43,7 +42,6 @@ export default function reducer(state, { type, payload }) {
         activeOption: payload.activeOptionIndex,
         isOpen,
         selectedOptions: [payload.activeOptionIndex],
-        shouldContentScroll: true,
       };
     }
 
@@ -68,7 +66,6 @@ export default function reducer(state, { type, payload }) {
         isOpen,
         onChangeFn: payload.onChangeFn,
         selectedOptions,
-        shouldContentScroll: false,
       };
     }
 
@@ -97,7 +94,6 @@ export default function reducer(state, { type, payload }) {
         isOpen: true,
         onChangeFn: payload.onChangeFn,
         selectedOptions: selectedOptionsArray,
-        shouldContentScroll: false,
       };
     }
 
