@@ -16,7 +16,8 @@ function getOptions(indexes, list) {
     });
   }
 
-  return [list[indexes].value];
+  const options = [list[indexes].value].filter(chunk => chunk);
+  return options.length ? options : null;
 }
 
 function isSelectable({ hasOptions, isParentSelectable }) {
@@ -141,9 +142,11 @@ export function onChange({ source, indexes, list, isParentSelectable, setSelecte
     setSelectedOptions(selectedOptions => {
       const key = isRoot(source) ? "root" : browserKey;
       if (Object.keys(selectedOptions).length) {
-        const option = getOptions(indexes, list)[0];
+        const option = getOptions(indexes, list);
+        if (option === null) return {};
+
         const isSameOption = Object.keys(selectedOptions).some(key => {
-          return selectedOptions[key][0].$$key === option.$$key;
+          return selectedOptions[key][0].$$key === option[0].$$key;
         });
 
         if (isSameOption) {
@@ -151,7 +154,9 @@ export function onChange({ source, indexes, list, isParentSelectable, setSelecte
         }
       }
 
-      return { [key]: getOptions(indexes, list) };
+      const options = getOptions(indexes, list);
+      if (options === null) return {};
+      return { [key]: options };
     });
 
     return;
@@ -185,9 +190,10 @@ export function onChange({ source, indexes, list, isParentSelectable, setSelecte
   });
 }
 
-export function focusListBoxBrowser($root) {
+export function focusListBoxBrowser($root, isVisibleRoot) {
   window.requestAnimationFrame(() => {
-    $root.querySelectorAll('[data-pka-anchor="listbox-content-inline"]')[1].focus();
+    const index = isVisibleRoot ? 1 : 0;
+    $root.querySelectorAll('[data-pka-anchor="listbox-content-inline"]')[index].focus();
   });
 }
 

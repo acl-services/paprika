@@ -1,6 +1,6 @@
 import React from "react";
 import PropTypes from "prop-types";
-import { container, flex } from "./ListBoxBrowser.styles";
+import * as sc from "./ListBoxBrowser.styles";
 import {
   getData,
   getOptionByKey,
@@ -95,6 +95,10 @@ const propTypes = {
     initial value.
   */
   defaultSelectedView: PropTypes.func,
+  /** 
+    In the case you want to use the ListBoxBrowser with one column you can hide the root column
+   */
+  isVisibleRoot: PropTypes.bool,
 };
 
 const defaultProps = {
@@ -112,6 +116,7 @@ const defaultProps = {
     return false;
   },
   defaultSelectedView: null,
+  isVisibleRoot: true,
 };
 
 export const ListBoxBrowserContext = React.createContext({});
@@ -128,6 +133,7 @@ export default function ListBoxBrowser(props) {
     height,
     isMulti,
     isParentSelectable,
+    isVisibleRoot,
     onChange,
     onFetch,
     rootTitle,
@@ -314,28 +320,26 @@ export default function ListBoxBrowser(props) {
 
   return (
     <ListBoxBrowserContext.Provider value={value}>
-      <div
-        ref={refRootElement}
-        hasError={hasError}
-        isParentSelectable={isParentSelectable}
-        css={container}
-        height={height}
-      >
+      <sc.Container ref={refRootElement} hasError={hasError} isParentSelectable={isParentSelectable} height={height}>
         <Title
           rootTitle={rootTitle}
           browserTitle={browserTitle}
           onClickBreadcrumb={handleClickBreadcrumb}
           browserKey={browserKey}
           data={localData}
+          isVisibleRoot={isVisibleRoot}
         />
-        <div css={flex}>
-          <CustomListBox
-            browserKey="root"
-            onChange={handleChange("root")}
-            onClickNavigate={handleClickRoot}
-            options={localData}
-            isLoading={(root && root.isLoading) || false}
-          />
+
+        <sc.Flex isVisibleRoot={isVisibleRoot}>
+          {isVisibleRoot ? (
+            <CustomListBox
+              browserKey="root"
+              onChange={handleChange("root")}
+              onClickNavigate={handleClickRoot}
+              options={localData}
+              isLoading={(root && root.isLoading) || false}
+            />
+          ) : null}
           <CustomListBox
             id={browserKey}
             browserKey={browserKey}
@@ -346,9 +350,9 @@ export default function ListBoxBrowser(props) {
             options={browserOptions.attributes.options}
             isLoading={(browser && browser.isLoading) || false}
           />
-        </div>
+        </sc.Flex>
         {children}
-      </div>
+      </sc.Container>
     </ListBoxBrowserContext.Provider>
   );
 }

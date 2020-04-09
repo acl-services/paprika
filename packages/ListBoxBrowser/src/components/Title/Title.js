@@ -11,10 +11,11 @@ const propTypes = {
   data: PropTypes.arrayOf(PropTypes.object), // eslint-disable-line
   browserKey: PropTypes.oneOfType([PropTypes.string, PropTypes.number]).isRequired,
   onClickBreadcrumb: PropTypes.func.isRequired,
+  isVisibleRoot: PropTypes.bool.isRequired,
 };
 
 export default function Title(props) {
-  const { rootTitle, browserTitle, data, browserKey, onClickBreadcrumb } = props;
+  const { rootTitle, browserTitle, data, browserKey, onClickBreadcrumb, isVisibleRoot } = props;
 
   const handleClick = option => () => {
     onClickBreadcrumb(option);
@@ -29,9 +30,12 @@ export default function Title(props) {
 
   return (
     <div css={flex}>
-      <div css={title} data-pka-anchor="root-title">
-        {rootTitle}
-      </div>
+      {isVisibleRoot ? (
+        <div css={title} data-pka-anchor="root-title">
+          {rootTitle}
+        </div>
+      ) : null}
+
       <div css={title} data-pka-anchor="breadcrumb-title">
         <span>
           {browserTitle}
