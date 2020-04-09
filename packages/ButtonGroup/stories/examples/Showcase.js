@@ -1,13 +1,14 @@
 import React from "react";
 import { action } from "@storybook/addon-actions";
-import { boolean } from "@storybook/addon-knobs";
+import { boolean, select } from "@storybook/addon-knobs";
 import { Story, Rule, Tagline } from "storybook/assets/styles/common.styles";
 import { ShirtSizes } from "@paprika/helpers/lib/customPropTypes";
 import Heading from "@paprika/heading";
+import Calendar from "@paprika/icon/lib/Calendar";
 import ButtonGroup from "../../src";
 
 const changeHandler = selectedItems => {
-  action("Selected an item")(selectedItems);
+  action("Selected an item")(...selectedItems);
 };
 
 const buttonGroupProps = () => ({
@@ -16,6 +17,7 @@ const buttonGroupProps = () => ({
   isDisabled: boolean("isDisabled", false),
   isFullWidth: boolean("isFullWidth", false),
   isSemantic: boolean("isSemantic", true),
+  size: select("size", ShirtSizes.DEFAULT, ShirtSizes.MEDIUM),
 });
 
 const ExampleStory = props => (
@@ -25,10 +27,17 @@ const ExampleStory = props => (
     </Heading>
     <Tagline>Use the knobs to tinker with the props.</Tagline>
     <Rule />
-    <ButtonGroup {...props} size={ShirtSizes.LARGE} onChange={changeHandler}>
-      <ButtonGroup.Button>One</ButtonGroup.Button>
-      <ButtonGroup.Button>Two</ButtonGroup.Button>
-      <ButtonGroup.Button>Three</ButtonGroup.Button>
+    <ButtonGroup {...props}>
+      <ButtonGroup.Item key="One" kind="primary">
+        One
+      </ButtonGroup.Item>
+      <ButtonGroup.Item key="Two" isActive tabIndex={0}>
+        Two
+      </ButtonGroup.Item>
+      <ButtonGroup.Item key="Three">Three</ButtonGroup.Item>
+      <ButtonGroup.Item key="Four">
+        <Calendar />
+      </ButtonGroup.Item>
     </ButtonGroup>
   </Story>
 );
