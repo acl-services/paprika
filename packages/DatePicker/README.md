@@ -15,7 +15,7 @@ Please use `<L10n />` component to wrap `<DatePicker />` or you application.
 Props:
 
 - `children`
-- `dataFormat`
+- `dateFormat`
 - `date`
 - `humanFormat`
 - `id`

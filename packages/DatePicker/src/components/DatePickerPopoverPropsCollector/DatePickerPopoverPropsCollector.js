@@ -19,13 +19,13 @@ const defaultProps = {
 };
 
 // shell component for enhancing development experience
-function DatePickerPopover() {
+function DatePickerPopoverPropsCollector() {
   return null;
 }
 
-DatePickerPopover.propTypes = propTypes;
-DatePickerPopover.defaultProps = defaultProps;
+DatePickerPopoverPropsCollector.propTypes = propTypes;
+DatePickerPopoverPropsCollector.defaultProps = defaultProps;
 
-DatePickerPopover.displayName = "DatePicker.Popover";
+DatePickerPopoverPropsCollector.displayName = "DatePicker.Popover";
 
-export default DatePickerPopover;
+export default DatePickerPopoverPropsCollector;
