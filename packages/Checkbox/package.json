@@ -1,6 +1,6 @@
 {
   "name": "@paprika/checkbox",
-  "version": "0.2.9",
+  "version": "0.2.10",
   "description": "Checkbox component",
   "author": "@paprika",
   "license": "MIT",
@@ -15,7 +15,7 @@
   },
   "dependencies": {
     "@babel/runtime-corejs2": "^7.3.1",
-    "@paprika/helpers": "^0.2.10",
+    "@paprika/helpers": "^0.2.11",
     "@paprika/icon": "^0.2.15",
     "@paprika/stylers": "^0.2.6",
     "@paprika/tokens": "^0.1.13",
