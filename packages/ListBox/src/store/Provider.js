@@ -61,7 +61,6 @@ function initializeState(props) {
     refTrigger,
     refTriggerContainer,
     selectedOptions,
-    shouldContentScroll: true,
     triggerWidth: 0,
     refLabel,
     formElementId,
