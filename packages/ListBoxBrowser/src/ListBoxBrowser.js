@@ -200,11 +200,11 @@ export default function ListBoxBrowser(props) {
       if ((hasOptions && isParentSelectable === null) || isClickFromButton) {
         setRootKey($$key);
         setBrowserKey($$key);
-        focusListBoxBrowser(refRootElement.current);
+        focusListBoxBrowser(refRootElement.current, isVisibleRoot);
         if (event) event.stopPropagation();
       }
     },
-    [isParentSelectable]
+    [isParentSelectable, isVisibleRoot]
   );
 
   const handleClickBrowser = React.useCallback(
