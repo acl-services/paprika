@@ -24,8 +24,9 @@ const handleBlur = (state, dispatch) => () => {
   // via document.activeElement instead of returning
   // the body element automatically
   window.requestAnimationFrame(() => {
-    // the trigger should handle the close and open not the onBlur event
     if (state.refTriggerContainer.current && state.refTriggerContainer.current.contains(document.activeElement)) {
+      // close the popover if the target is the trigger, this make easier to handle tab events
+      dispatch({ type: useListBox.types.closePopover });
       return;
     }
 

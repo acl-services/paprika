@@ -13,7 +13,9 @@ const removeTranslationFiles = () => {
     }
 
     files.forEach(file => {
-      fs.unlinkSync(`${translationsPath}/${file}`);
+      if (file !== ".gitkeep") {
+        fs.unlinkSync(`${translationsPath}/${file}`);
+      }
     });
   });
 };
