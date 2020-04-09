@@ -46,7 +46,7 @@ const defaultProps = {
   isSemantic: true,
 };
 
-const safeValue = n => (n < 1 || Number.isNaN(n) ? 6 : Math.min(n, 6));
+const safeValue = n => (n === undefined || n < 1 || Number.isNaN(n) ? 6 : Math.min(n, 6));
 
 function renderHeadingContent(a11yText, children) {
   return a11yText ? <span aria-hidden>{children}</span> : children;
