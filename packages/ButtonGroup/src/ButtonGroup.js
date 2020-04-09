@@ -4,6 +4,7 @@ import PropTypes from "prop-types";
 import { ShirtSizes } from "@paprika/helpers/lib/customPropTypes";
 
 import * as sc from "./ButtonGroup.styles";
+import ButtonItem from "./components/ButtonItem";
 
 const propTypes = {
   /** The content of each of the toggle buttons in the group. */
@@ -27,9 +28,6 @@ const propTypes = {
 
   /** Size of the button (font size, min-height, padding, etc). */
   size: PropTypes.oneOf(ShirtSizes.DEFAULT),
-
-  /** Value for tabindex attribute to override the default of 0. */
-  tabIndex: PropTypes.number,
 };
 
 const defaultProps = {
@@ -40,17 +38,19 @@ const defaultProps = {
   isSemantic: true,
   onChange: () => {},
   size: ShirtSizes.MEDIUM,
-  tabIndex: null,
 };
 
 const ButtonGroup = props => {
-  const { children, hasIcons, isDisabled, isFullWidth, isSemantic, onChange, tabIndex, size, ...moreProps } = props;
+  const { children, hasIcons, isDisabled, isFullWidth, isSemantic, onChange, size } = props;
 
-  const [selectedItems, setSelectedItems] = React.useState([]);
+  const validChildren = children.filter(child => child.type.displayName === ButtonItem.displayName);
 
-  const handleClick = event => {
+  const initiallySelectedItems = validChildren.filter(item => item.props.isActive).map(item => item.key);
+
+  const [selectedItems, setSelectedItems] = React.useState([...initiallySelectedItems]);
+
+  const handleClick = clickedId => {
     if (!isDisabled) {
-      const clickedId = event.target.textContent;
       const itemIndex = selectedItems.indexOf(clickedId);
       const itemUsedToBeSelected = itemIndex > -1;
       const newSelectedItemIds = [...selectedItems];
@@ -68,30 +68,32 @@ const ButtonGroup = props => {
     }
   };
 
-  const buttonProps = {
-    hasIcon: hasIcons,
-    isFullWidth,
-    isDisabled,
-    onClick: handleClick,
-    tabIndex,
-    size,
-    isSemantic,
-    ...moreProps,
-  };
-
   return (
     <sc.ButtonGroup {...props}>
-      {children.map(item => (
-        <sc.Button
-          key={item.props.children}
-          isActive={selectedItems.includes(item.props.children)}
-          data-pka-anchor="button-group.button"
-          kind="flat"
-          {...buttonProps}
-        >
-          {item.props.children}
-        </sc.Button>
-      ))}
+      {validChildren.map(item => {
+        const buttonProps = {
+          isDisabled,
+          ...item.props,
+
+          hasIcon: hasIcons,
+          isFullWidth,
+          isSemantic,
+          onClick: () => handleClick(item.key),
+          size,
+        };
+
+        return (
+          <sc.Button
+            {...buttonProps}
+            key={item.key}
+            isActive={selectedItems.includes(item.key)}
+            data-pka-anchor="button-group.button"
+            kind="flat"
+          >
+            {item.props.children}
+          </sc.Button>
+        );
+      })}
     </sc.ButtonGroup>
   );
 };
@@ -99,5 +101,6 @@ const ButtonGroup = props => {
 ButtonGroup.displayName = "ButtonGroup";
 ButtonGroup.propTypes = propTypes;
 ButtonGroup.defaultProps = defaultProps;
+ButtonGroup.Item = ButtonItem;
 
 export default ButtonGroup;
