@@ -40,9 +40,19 @@ const Filter = React.forwardRef((props, ref) => {
   const applyFilterType = useListBox.types.applyFilter;
   const I18n = useI18n();
 
+  const reset = React.useCallback(() => {
+    window.requestAnimationFrame(() => {
+      applyFilter(dispatch, applyFilterType)([], false);
+      setTextSearch("");
+    });
+  }, [applyFilterType, dispatch]);
+
   React.useImperativeHandle(ref, () => ({
     clear: () => {
       setTextSearch(() => "");
+    },
+    reset: () => {
+      reset();
     },
   }));
 
@@ -96,22 +106,10 @@ const Filter = React.forwardRef((props, ref) => {
   };
 
   React.useEffect(() => {
-    if (!props.value) {
-      applyFilter({ filteredOptions: [], noResultsFound: false });
-    }
-  }, [props.value]);
-
-  React.useEffect(() => {
     if (!state.isOpen) {
-      setTextSearch("");
+      reset();
     }
-  }, [state.isOpen]);
-
-  React.useEffect(() => {
-    if (!textSearch) {
-      applyFilter({ filteredOptions: [], noResultsFound: false });
-    }
-  }, [textSearch]);
+  }, [reset, state.isOpen]);
 
   React.useEffect(() => {
     dispatch({
