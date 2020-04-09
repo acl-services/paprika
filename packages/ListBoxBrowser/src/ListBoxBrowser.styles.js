@@ -10,8 +10,8 @@ export const Flex = styled.div`
     border-left: 1px solid ${tokens.border.color};
   }
 
-  ${({ isVisibleRoot }) => {
-    return isVisibleRoot
+  ${({ hasLeftColumn }) => {
+    return hasLeftColumn
       ? ""
       : css`
           display: inline;

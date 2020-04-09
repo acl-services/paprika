@@ -98,7 +98,7 @@ const propTypes = {
   /** 
     In the case you want to use the ListBoxBrowser with one column you can hide the root column
    */
-  isVisibleRoot: PropTypes.bool,
+  hasLeftColumn: PropTypes.bool,
 };
 
 const defaultProps = {
@@ -116,7 +116,7 @@ const defaultProps = {
     return false;
   },
   defaultSelectedView: null,
-  isVisibleRoot: true,
+  hasLeftColumn: true,
 };
 
 export const ListBoxBrowserContext = React.createContext({});
@@ -133,7 +133,7 @@ export default function ListBoxBrowser(props) {
     height,
     isMulti,
     isParentSelectable,
-    isVisibleRoot,
+    hasLeftColumn,
     onChange,
     onFetch,
     rootTitle,
@@ -200,11 +200,11 @@ export default function ListBoxBrowser(props) {
       if ((hasOptions && isParentSelectable === null) || isClickFromButton) {
         setRootKey($$key);
         setBrowserKey($$key);
-        focusListBoxBrowser(refRootElement.current, isVisibleRoot);
+        focusListBoxBrowser(refRootElement.current, hasLeftColumn);
         if (event) event.stopPropagation();
       }
     },
-    [isParentSelectable, isVisibleRoot]
+    [isParentSelectable, hasLeftColumn]
   );
 
   const handleClickBrowser = React.useCallback(
@@ -327,11 +327,11 @@ export default function ListBoxBrowser(props) {
           onClickBreadcrumb={handleClickBreadcrumb}
           browserKey={browserKey}
           data={localData}
-          isVisibleRoot={isVisibleRoot}
+          hasLeftColumn={hasLeftColumn}
         />
 
-        <sc.Flex isVisibleRoot={isVisibleRoot}>
-          {isVisibleRoot ? (
+        <sc.Flex hasLeftColumn={hasLeftColumn}>
+          {hasLeftColumn ? (
             <CustomListBox
               browserKey="root"
               onChange={handleChange("root")}

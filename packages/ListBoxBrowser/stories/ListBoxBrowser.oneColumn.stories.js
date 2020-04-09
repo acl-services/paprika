@@ -12,7 +12,7 @@ storiesOf("ListBoxBrowser/Single", module).add("One column", () => (
       isMulti={false}
       rootTitle="Universes"
       browserTitle="Heroes"
-      isVisibleRoot={false}
+      hasLeftColumn={false}
       isParentSelectable
       onChange={selectedOptions => {
         console.log("selected options:", selectedOptions);

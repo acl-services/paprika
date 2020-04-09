@@ -190,9 +190,9 @@ export function onChange({ source, indexes, list, isParentSelectable, setSelecte
   });
 }
 
-export function focusListBoxBrowser($root, isVisibleRoot) {
+export function focusListBoxBrowser($root, hasLeftColumn) {
   window.requestAnimationFrame(() => {
-    const index = isVisibleRoot ? 1 : 0;
+    const index = hasLeftColumn ? 1 : 0;
     $root.querySelectorAll('[data-pka-anchor="listbox-content-inline"]')[index].focus();
   });
 }
