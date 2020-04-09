@@ -2,7 +2,7 @@ import React from "react";
 import reactElementToJSXString from "react-element-to-jsx-string";
 
 // modified getReactElementDisplayName from react-element-to-jsx-string
-// https://github.com/algolia/react-element-to-jsx-string/blob/master/src/parser/parseReactElement.js#L15-L20
+// https://github.com/algolia/react-element-to-jsx-string/blob/a0005d0b87271a3b206fed2af45e77e776523522/src/parser/parseReactElement.js#L15-L20
 function getDisplayName(element) {
   const displayName =
     element.type.displayName ||
@@ -32,11 +32,8 @@ export function copyToClipboard(selector) {
   const code = document.querySelector(selector).textContent;
   const textbox = document.createElement("textarea");
   const activator = document.activeElement;
-  textbox.value = code;
-  textbox.setAttribute("readonly", "");
-  textbox.style.position = "absolute";
-  textbox.style.left = "-9999px";
   document.body.appendChild(textbox);
+  textbox.value = code;
   textbox.select();
   activator.focus();
   document.execCommand("copy");

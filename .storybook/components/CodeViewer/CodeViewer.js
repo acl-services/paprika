@@ -1,6 +1,6 @@
 import React from "react";
 import PropTypes from "prop-types";
-import { v4 as uuid } from "uuid";
+import { nanoid } from "nanoid";
 import { boolean } from "@storybook/addon-knobs";
 import { Prism as SyntaxHighlighter } from "react-syntax-highlighter";
 import { tomorrow as syntaxTheme } from "react-syntax-highlighter/dist/esm/styles/prism";
@@ -25,7 +25,7 @@ const CodeViewer = props => {
 
   const [isShown, setIsShown] = React.useState(defaultIsShown);
   const [copyLabel, setCopyLabel] = React.useState("Copy");
-  const viewerId = React.useRef(uuid()).current;
+  const viewerId = React.useRef(nanoid()).current;
 
   const handleToggle = () => {
     setIsShown(prevIsShown => !prevIsShown);
@@ -43,7 +43,7 @@ const CodeViewer = props => {
   return (
     <div id={`code-viewer-${viewerId}`}>
       {children}
-      {isShown && (
+      {isShown ? (
         <sc.CodeBox className="paprika-code-viewer">
           <SyntaxHighlighter language="javascript" style={syntaxTheme} showLineNumbers>
             {getJSX(children)}
@@ -57,8 +57,7 @@ const CodeViewer = props => {
             </Button.Icon>
           </sc.Buttons>
         </sc.CodeBox>
-      )}
-      {!isShown && (
+      ) : (
         <div>
           <sc.ShowButton onClick={handleToggle} size="small" kind="link">
             Show Code
