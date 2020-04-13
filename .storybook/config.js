@@ -19,6 +19,9 @@ const stories = [
   // Welcome
   require.context("./", false, /welcome.story.js/),
 
+  // CodeViewer
+  require.context("./components/CodeViewer", false, /CodeViewer.story.js/),
+
   // CollapsibleText
   require.context("../packages/CollapsibleText", true, /CollapsibleText.stories.(js|mdx)$/),
   require.context("../packages/CollapsibleText", true, /CollapsibleText.Tests.stories.js$/),
