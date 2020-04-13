@@ -31,22 +31,24 @@ export default function Title(props) {
 
   return (
     <div css={flex} hasLeftColumn={hasLeftColumn}>
-      {hasLeftColumn ? (
-        <div css={title} data-pka-anchor="root-title">
+      {hasLeftColumn && (
+        <div css={title} data-pka-anchor="root-title" title={rootTitle}>
           {rootTitle}
         </div>
-      ) : null}
+      )}
       <div css={title} data-pka-anchor="breadcrumb-title">
         {hasBreadcrumb ? (
           <>
-            <span data-pka-anchor="breadcrumb-crumb" css={crumb}>
+            <span data-pka-anchor="breadcrumb-crumb" css={crumb} title={browserTitle}>
               {browserTitle}
             </span>
             <Breadcrumb onClick={handleClick} hasBrowserTitle={hasBrowserTitle} breadcrumb={breadcrumb} />
-            <span data-pka-anchor="breadcrumb-crumb" css={crumb}>
-              {breadcrumb.length || (hasBrowserTitle && !isRoot(option.parent)) ? " / " : null}
-              {!isRoot(option.parent) ? option.attributes.label : null}
-            </span>
+            {!isRoot(option.parent) && (
+              <span data-pka-anchor="breadcrumb-crumb" css={crumb} title={option.attributes.label}>
+                {(breadcrumb.length > 1 || hasBrowserTitle) && " / "}
+                {option.attributes.label}
+              </span>
+            )}
           </>
         ) : (
           browserTitle

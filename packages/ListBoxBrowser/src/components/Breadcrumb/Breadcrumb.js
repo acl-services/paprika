@@ -23,7 +23,7 @@ export default function Breadcrumb(props) {
     if (isRoot(option.parent)) return null;
 
     return (
-      <span data-pka-anchor="breadcrumb-crumb" css={crumb} key={option.$$key}>
+      <span data-pka-anchor="breadcrumb-crumb" css={crumb} key={option.$$key} title={option.attributes.label}>
         {hasBrowserTitle && <span> / </span>}
         <RawButton css={button} onClick={onClick(option)}>
           {option.attributes.label}
