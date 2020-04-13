@@ -1,6 +1,6 @@
 import React from "react";
 import PropTypes from "prop-types";
-import { title, flex } from "./Title.styles";
+import { title, flex, crumb } from "./Title.styles";
 import { getBreadcrumb, getOptionByKey, isRoot } from "../../helpers";
 import Breadcrumb from "../Breadcrumb";
 import { ListBoxBrowserContext } from "../../ListBoxBrowser";
@@ -27,22 +27,30 @@ export default function Title(props) {
   }, [data, option]);
 
   const { hasBreadcrumb } = React.useContext(ListBoxBrowserContext);
+  const hasBrowserTitle = browserTitle !== "";
 
   return (
-    <div css={flex}>
+    <div css={flex} hasLeftColumn={hasLeftColumn}>
       {hasLeftColumn ? (
         <div css={title} data-pka-anchor="root-title">
           {rootTitle}
         </div>
       ) : null}
-
       <div css={title} data-pka-anchor="breadcrumb-title">
-        <span>
-          {browserTitle}
-          {hasBreadcrumb && breadcrumb.length && browserTitle !== "" ? " / " : null}
-        </span>
-        {hasBreadcrumb ? <Breadcrumb onClick={handleClick} breadcrumb={breadcrumb} /> : null}
-        <span>{!isRoot(option.parent) && hasBreadcrumb ? option.attributes.label : null}</span>
+        {hasBreadcrumb ? (
+          <>
+            <span data-pka-anchor="breadcrumb-crumb" css={crumb}>
+              {browserTitle}
+            </span>
+            <Breadcrumb onClick={handleClick} hasBrowserTitle={hasBrowserTitle} breadcrumb={breadcrumb} />
+            <span data-pka-anchor="breadcrumb-crumb" css={crumb}>
+              {breadcrumb.length || (hasBrowserTitle && !isRoot(option.parent)) ? " / " : null}
+              {!isRoot(option.parent) ? option.attributes.label : null}
+            </span>
+          </>
+        ) : (
+          browserTitle
+        )}
       </div>
     </div>
   );
