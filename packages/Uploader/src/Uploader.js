@@ -2,13 +2,23 @@ import React from "react";
 import PropTypes from "prop-types";
 import useI18n from "@paprika/l10n/lib/useI18n";
 import { containerStyles } from "./Uploader.styles";
-import { getFiles } from "./helpers";
-import ProgressBar from "./components/ProgressBar";
+import { getFiles, getNumberWithUnits } from "./helpers";
 import types from "./types";
 import useDragAndDropEvents from "./useDragAndDropEvents";
 import useProcessFiles from "./useProcessFiles";
+import DefaultFileInput from "./components/DefaultFileInput";
+import CompactFileInput from "./components/CompactFileInput";
+import File from "./components/File";
 
-const oneMebibyte = 1048576;
+const oneMebibyte = 1024 * 1024;
+export const LAYOUTS = {
+  DEFAULT: "default",
+  COMPACT: "compact",
+  // for custom layout, just pass in any children
+};
+
+// TODO: clean up all the files! lots will be un-needed
+// TODO: L10n
 
 export const UploaderContext = React.createContext(null);
 
@@ -29,7 +39,7 @@ const propTypes = {
   /**
     children nodes
   */
-  children: PropTypes.node.isRequired,
+  children: PropTypes.node,
   /**
     initial disable state for the uploader
   */
@@ -47,6 +57,7 @@ const propTypes = {
     the upload listeners. On false will only received files if they are drop exactly on the FileInput area.
   */
   isBodyDroppable: PropTypes.bool,
+  layout: PropTypes.string,
   /**
     Size in Mebibytes which is use for comparing each file that will be upload
     you can make use of Uploader.convertUnitsToMebibytes() for easily convert units to Mebibyes
@@ -76,11 +87,13 @@ const defaultProps = {
   a11yText: null,
   okFileTypes: ["*/*"],
   canChooseMultiple: true,
+  children: null,
   defaultIsDisabled: false,
   hasAutoUpload: true,
   headers: [],
   isBodyDroppable: true,
-  maxFileSize: oneMebibyte * 10, // 1048576bytes * 10 = 10,485,760 Mebibytes
+  layout: LAYOUTS.DEFAULT,
+  maxFileSize: oneMebibyte * 10,
   onChange: () => {},
   onCompleted: () => {},
 };
@@ -101,6 +114,7 @@ const Uploader = React.forwardRef((props, ref) => {
     okFileTypes,
     canChooseMultiple,
     hasAutoUpload,
+    layout,
     maxFileSize,
     onChange,
     onCompleted,
@@ -174,6 +188,7 @@ const Uploader = React.forwardRef((props, ref) => {
     return {
       FileInput,
       files,
+      handleChange,
       isCompleted,
       isDisabled,
       isDragLeave,
@@ -197,7 +212,67 @@ const Uploader = React.forwardRef((props, ref) => {
     upload,
   ]);
 
-  return <UploaderContext.Provider value={value}>{children}</UploaderContext.Provider>;
+  // const childrenWithAddedProps = React.cloneElement(children, props);
+
+  // return <UploaderContext.Provider value={value}>{childrenWithAddedProps}</UploaderContext.Provider>;
+
+  function renderFileInput() {
+    if (layout === LAYOUTS.COMPACT) {
+      return (
+        <value.FileInput>
+          <CompactFileInput isDraggingOver={value.isDraggingOver} fileInputRef={refInput} />
+        </value.FileInput>
+      );
+    }
+
+    // custom
+    if (children) {
+      // TODO: what about clicking?
+      //          - wrap this with an 'onClick'
+      //          - add a file input at the end? that'd require more props (text)
+      //          - force them to include one button (or show warning), and override its 'onclick'?
+      // TODO: add `pointer: cursor`? ...or is it `cursor: pointer`?
+      return (
+        <value.FileInput>
+          <div>{children}</div>
+        </value.FileInput>
+      );
+    }
+
+    // default
+    return (
+      <value.FileInput>
+        <DefaultFileInput isDraggingOver={value.isDraggingOver} fileInputRef={refInput} />
+      </value.FileInput>
+    );
+  }
+
+  function renderFiles() {
+    if (!files.length) {
+      return null;
+    }
+
+    return files.map(file => {
+      let errorMessage = "";
+
+      if (!file.isSizeValid) {
+        errorMessage = `File must be smaller than ${getNumberWithUnits(maxFileSize)}`;
+      } else if (!file.isTypeValid) {
+        errorMessage = `File must be one of the following types: ${okFileTypes.join(", ")}`;
+      } else if (file.error) {
+        errorMessage = file.error.message;
+      }
+
+      return <File error={errorMessage} name={file.filename} progress={file.progress} size={file.filesize} />;
+    });
+  }
+
+  return (
+    <React.Fragment>
+      {renderFileInput()}
+      {renderFiles()}
+    </React.Fragment>
+  );
 });
 
 Uploader.defaultProps = defaultProps;
@@ -207,8 +282,5 @@ Uploader.types = types;
 
 // utility tool to help creating a maximum desirable size for files
 Uploader.convertUnitsToMebibytes = (MiB = 1) => oneMebibyte * MiB;
-
-// subcomponents
-Uploader.ProgressBar = ProgressBar;
 
 export default Uploader;

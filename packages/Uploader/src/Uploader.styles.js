@@ -3,7 +3,7 @@ import tokens from "@paprika/tokens";
 import stylers from "@paprika/stylers";
 
 export const containerStyles = css`
-  display: inline-block;
+  // display: inline-block;
   position: relative;
 
   label {

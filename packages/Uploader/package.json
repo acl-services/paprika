@@ -13,15 +13,21 @@
   "publishConfig": {
     "access": "public"
   },
+  "devDependencies": {
+    "@storybook/addon-knobs": "^5.3.0-beta.19",
+    "@storybook/react": "^5.3.0-beta.19"
+  },
   "dependencies": {
     "@babel/runtime-corejs2": "^7.3.1",
+    "@paprika/button": "^0.2.19",
     "@paprika/helpers": "^0.1.2",
     "@paprika/raw-button": "^0.2.8",
     "@paprika/stylers": "^0.2.6",
     "@paprika/tokens": "^0.1.13",
     "prop-types": "^15.7.2",
     "superagent": "^5.1.0",
-    "uuid": "^3.3.3"
+    "uuid": "^3.3.3",
+    "wasabicons": "git+ssh://git@github.com/acl-services/wasabicons.git"
   },
   "peerDependencies": {
     "@paprika/l10n": "^0.2.5",

@@ -1,91 +1,86 @@
 import React from "react";
 import { storiesOf } from "@storybook/react";
+import { withKnobs, boolean, number } from "@storybook/addon-knobs";
 import { Story } from "storybook/assets/styles/common.styles";
-import Uploader from "../src/Uploader";
+import Uploader, { UploaderContext, LAYOUTS } from "../src/Uploader";
 import Testing from "./Testing";
 
+// TODO: "No auto-upload" story doesnt work.
+
+const defaultProps = {
+  a11yText: "",
+  canChooseMultiple: true,
+  defaultIsDisabled: false,
+  endpoint: "http://localhost:9000/upload.php", // could also use webhook.site as the endpoint (enable CORS in it)
+  hasAutoUpload: true,
+  headers: [{ "API-Key": "your-api-key" }, { "X-CSRF-Token": "your-token" }],
+  isBodyDroppable: false,
+  layout: LAYOUTS.DEFAULT,
+  maxFileSize: Uploader.convertUnitsToMebibytes(10),
+  okFileTypes: ["image/png", "image/jpeg"],
+  onChange: files => {
+    console.log("onChange files:", files);
+  },
+  onCompleted: files => {
+    console.log("onCompleted files:", files);
+  },
+};
+
 storiesOf("Uploader", module)
-  .add("Basic example with all files successfully uploaded", () => (
-    <Story>
-      <Uploader
-        endpoint="http://localhost:9000/upload.php"
-        onChange={files => {
-          console.log("onChange files:", files);
-        }}
-      >
-        <Testing />
-      </Uploader>
-    </Story>
-  ))
+  .addDecorator(withKnobs)
+  .add("JAMIE - Default Layout (and all knobs)", () => {
+    return (
+      <Story>
+        <Uploader
+          {...defaultProps}
+          canChooseMultiple={boolean("canChooseMultiple", defaultProps.canChooseMultiple)}
+          hasAutoUpload={boolean("hasAutoUpload", defaultProps.hasAutoUpload)}
+          isBodyDroppable={boolean("isBodyDroppable", defaultProps.isBodyDroppable)}
+          maxFileSize={number("maxFileSize", defaultProps.maxFileSize)}
+        />
+      </Story>
+    );
+  })
+  .add("JAMIE - Compact Layout", () => {
+    return (
+      <Story>
+        <Uploader {...defaultProps} layout={LAYOUTS.COMPACT} />
+      </Story>
+    );
+  })
+  .add("JAMIE - Custom Layout", () => {
+    return (
+      <Story>
+        <Uploader {...defaultProps}>
+          <div>
+            <h3>Account photo</h3>
+            <p>Upload your account photo. Only .jpg and .png files max 500KB.</p>
+            <button type="button">Add file</button>
+          </div>
+        </Uploader>
+      </Story>
+    );
+  })
   .add("Basic example with all files failing at upload", () => (
     <Story>
-      <Uploader
-        endpoint="http://localhost:9000/upload.php?error=true"
-        onChange={files => {
-          console.log("onChange files:", files);
+      <Uploader {...defaultProps} endpoint="http://localhost:9000/upload.php?error=true" />
+    </Story>
+  ))
+  .add("No auto-upload", () => (
+    <Story>
+      <Uploader {...defaultProps} hasAutoUpload={false} />
+      <button
+        type="button"
+        onClick={() => {
+          UploaderContext.upload();
         }}
       >
-        <Testing />
-      </Uploader>
+        Upload now
+      </button>
     </Story>
   ))
-  .add("on invalid file type", () => (
-    <Story>
-      <Uploader
-        endpoint="http://localhost:9000/upload.php"
-        okFileTypes={["image/*"]}
-        onChange={files => {
-          console.log("onChange files:", files);
-        }}
-      >
-        <Testing />
-      </Uploader>
-    </Story>
-  ))
-  .add("Imposing a maxium filesize", () => (
-    <Story>
-      <p>
-        Will only allow images under 1 <strong>mebibyte</strong> (close to 1 MB)
-      </p>
-      <Uploader
-        endpoint="http://localhost:9000/upload.php"
-        okFileTypes={["image/*"]}
-        maxFileSize={Uploader.convertUnitsToMebibytes(1)}
-        onChange={files => {
-          console.log("onChange files:", files);
-        }}
-      >
-        <Testing />
-      </Uploader>
-    </Story>
-  ))
-  .add("Upload on demand", () => (
-    <Story>
-      <p>
-        Will upload image until you select your images and then click the button with the legend
-        <strong>upload images</strong>
-      </p>
-      <Uploader endpoint="http://localhost:9000/upload.php" okFileTypes={["image/*"]} hasAutoUpload={false}>
-        <Testing hasUploadButton />
-      </Uploader>
-    </Story>
-  ))
-  .add("Only accept files if are drop on the FileInput area", () => (
-    <Story>
-      <p>Will accept dropped files only if they are drop at the FileInput area.</p>
-      <Uploader isBodyDroppable={false} endpoint="http://localhost:9000/upload.php">
-        <Testing />
-      </Uploader>
-    </Story>
-  ))
-  .add("Allow only one file per upload", () => (
-    <Story>
-      <p>Allow only one file per upload.</p>
-      <Uploader canChooseMultiple={false} endpoint="http://localhost:9000/upload.php">
-        <Testing />
-      </Uploader>
-    </Story>
-  ))
+  // Move stories above this line or delete them.
+
   .add("Making use of onCompleted prop", () => (
     <Story>
       <p>
@@ -95,21 +90,6 @@ storiesOf("Uploader", module)
         Uploader.types.SUCCESS and verified if all file were uploaded correctly.
       </p>
       <Uploader onCompleted={files => console.log("on finished:", files)} endpoint="http://localhost:9000/upload.php">
-        <Testing />
-      </Uploader>
-    </Story>
-  ))
-  .add("Adding custom headers", () => (
-    <Story>
-      <p>
-        You can add custom header using the headers props, which take an array of object where use the key as the name
-        of the header you want to use and the value as the header value.
-      </p>
-      <Uploader
-        headers={[{ "API-Key": "your-api-key" }, { "X-CSRF-Token": "your-token" }]}
-        onCompleted={files => console.log("on finished:", files)}
-        endpoint="http://localhost:9000/upload.php"
-      >
         <Testing />
       </Uploader>
     </Story>

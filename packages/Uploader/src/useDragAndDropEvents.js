@@ -26,15 +26,17 @@ export default function useDragAndDropZoneEvents({ dropArea = () => document.bod
     }
 
     const element = dropArea();
-    element.addEventListener("dragover", onDragOver, false);
-    element.addEventListener("dragleave", onDragLeave, false);
-    element.addEventListener("drop", onDrop, false);
+    if (element) {
+      element.addEventListener("dragover", onDragOver, false);
+      element.addEventListener("dragleave", onDragLeave, false);
+      element.addEventListener("drop", onDrop, false);
 
-    return function cleanup() {
-      element.removeEventListener("dragover", onDragOver, false);
-      element.removeEventListener("dragleave", onDragLeave, false);
-      element.removeEventListener("drop", onDrop, false);
-    };
+      return function cleanup() {
+        element.removeEventListener("dragover", onDragOver, false);
+        element.removeEventListener("dragleave", onDragLeave, false);
+        element.removeEventListener("drop", onDrop, false);
+      };
+    }
   }, [dropArea, handleChange]);
 
   return { isDraggingOver, isDragLeave };

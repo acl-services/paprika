@@ -2,20 +2,6 @@ import uuidv4 from "uuid/v4";
 import superagent from "superagent";
 import types from "./types";
 
-export function fileSizeUnitsToHumanReadableFormat(size) {
-  const aMultiples = ["KB", "MB", "GB", "TB", "PB", "EB", "ZB", "YB"];
-  let nMultiple = 0;
-  let sOutput = "";
-  // this calculate Kibebytes, Mebibyes, etc.
-  // But are being label as KB and MB for easier understanding.
-  for (let nApprox = size / 1024; nApprox > 1; nApprox /= 1024, nMultiple++) {
-    // fixed to 2 decimals but we could add more if need it
-    sOutput = `${nApprox.toFixed(2)} ${aMultiples[nMultiple]}`;
-  }
-
-  return sOutput;
-}
-
 function getExtension({ file }) {
   const filename = file.name;
   return filename.substr((~-filename.lastIndexOf(".") >>> 0) + 2); // eslint-disable-line
@@ -38,6 +24,10 @@ function isValidFileType({ file, okFileTypes }) {
   const validFiles = okFileTypes.join("").toUpperCase();
   const extension = getExtension({ file });
 
+  if (extension === "") {
+    return false;
+  }
+
   return validFiles.indexOf(extension.toUpperCase()) > -1 || validMimeType(validFiles, file.type);
 }
 
@@ -53,6 +43,23 @@ function isValidFile({ file, maxFileSize, okFileTypes }) {
   return validation;
 }
 
+export function getNumberWithUnits(number) {
+  if (number > 1024) {
+    if (number > 1024 * 1024) {
+      if (number > 1024 * 1024 * 1024) {
+        if (number > 1024 * 1024 * 1024 * 1024) {
+          return `${(number / (1024 * 1024 * 1024 * 1024)).toFixed(3)}TiB`;
+        }
+        return `${(number / (1024 * 1024 * 1024)).toFixed(2)}GiB`;
+      }
+      return `${(number / (1024 * 1024)).toFixed(1)}MiB`;
+    }
+    return `${parseInt(number / 1024, 10)}KiB`;
+  }
+
+  return `${parseInt(number, 10)}B`;
+}
+
 function createFilesDataStructure({ files, maxFileSize, okFileTypes, endpoint }) {
   return [...files].map(file => {
     const key = uuidv4();
@@ -64,7 +71,7 @@ function createFilesDataStructure({ files, maxFileSize, okFileTypes, endpoint })
       file,
       filename: file.name,
       filesize: file.size,
-      filesizeHumanize: fileSizeUnitsToHumanReadableFormat(file.size),
+      filesizeHumanize: getNumberWithUnits(file.size),
       progress: 0,
       request: superagent.post(endpoint),
       status: fileValidation.isValid ? types.IDLE : types.ERROR,
@@ -80,7 +87,7 @@ export function upload({ file, data = {}, onProgress, onSuccess, onError, header
   formData.append("file", file.file);
   formData.append("data", JSON.stringify(data));
 
-  if (headers.length) {
+  if (headers && headers.length) {
     let headerObj = {};
     headers.forEach(header => {
       headerObj = { ...headerObj, ...header };
