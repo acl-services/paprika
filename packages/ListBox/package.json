@@ -1,6 +1,6 @@
 {
   "name": "@paprika/listbox",
-  "version": "0.8.17",
+  "version": "0.8.18",
   "description": "",
   "main": "lib/index.js",
   "dependencies": {
@@ -8,8 +8,8 @@
     "@paprika/button": "^0.2.20",
     "@paprika/helpers": "^0.2.11",
     "@paprika/icon": "^0.2.15",
-    "@paprika/input": "^0.2.20",
-    "@paprika/l10n": "^0.3.14",
+    "@paprika/input": "^0.2.21",
+    "@paprika/l10n": "^0.3.15",
     "@paprika/popover": "^0.3.19",
     "@paprika/raw-button": "^0.2.8",
     "@paprika/stylers": "^0.2.6",
