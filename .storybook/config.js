@@ -11,6 +11,9 @@ addParameters({
     showPanel: true,
     panelPosition: "right",
   },
+  previewTabs: {
+    canvas: { hidden: true },
+  },
 });
 
 addDecorator(withA11y);
