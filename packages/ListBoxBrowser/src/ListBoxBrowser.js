@@ -21,7 +21,7 @@ import Title from "./components/Title";
 const propTypes = {
   /**
     An array of javascript objects holding the data structure for the ListBoxBrowser
-    The object shape must have at least a string **label** property and an array options property in one of the objects.
+    The object shape must have at least a string label property and an array options property in one of the objects.
     Also can hold any other kind of data for your own use.
     ex.
 
