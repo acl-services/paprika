@@ -53,10 +53,10 @@ ${props}
 ${content}
 
 #### more:
-- [Storybook showcase:](https://paprika.highbond.com/?path=/story/${name.split("/")[1].toLowerCase()}--showcase)
-- [Github source code:](https://github.com/acl-services/paprika/tree/master/packages/${displayName}/src)
-- [Github create issue:](https://github.com/acl-services/paprika/issues/new?label=[]&title=${name}%20[help]:%20your%20short%20description&body=${githubIssueBody})
-- [ChangeLog:](https://github.com/acl-services/paprika/tree/master/packages/${displayName}/CHANGELOG.md)
+- [Storybook showcase](https://paprika.highbond.com/?path=/story/${name.split("/")[1].toLowerCase()}--showcase)
+- [Github source code](https://github.com/acl-services/paprika/tree/master/packages/${displayName}/src)
+- [Github create issue](https://github.com/acl-services/paprika/issues/new?label=[]&title=${name}%20[help]:%20your%20short%20description&body=${githubIssueBody})
+- [ChangeLog](https://github.com/acl-services/paprika/tree/master/packages/${displayName}/CHANGELOG.md)
 `;
 };
 

@@ -75,7 +75,7 @@ import Checkbox from "@paprika/checkbox";
 
 #### more:
 
-- [Storybook showcase:](https://paprika.highbond.com/?path=/story/checkbox--showcase)
-- [Github source code:](https://github.com/acl-services/paprika/tree/master/packages/Checkbox/src)
-- [Github create issue:](https://github.com/acl-services/paprika/issues/new?label=[]&title=@paprika/checkbox%20[help]:%20your%20short%20description&body=%0A%23%20Help%20wanted%0A%0A%23%23%20Please%20write%20your%20question.%0A*A%20clear%20and%20concise%20description%20of%20what%20the%20question%20is*%0A%0A%23%23%20Additional%20context%0A*Add%20any%20other%20context%20or%20screenshots%20about%20your%20question%20here.*%0A)
-- [ChangeLog:](https://github.com/acl-services/paprika/tree/master/packages/Checkbox/CHANGELOG.md)
+- [Storybook showcase](https://paprika.highbond.com/?path=/story/checkbox--showcase)
+- [Github source code](https://github.com/acl-services/paprika/tree/master/packages/Checkbox/src)
+- [Github create issue](https://github.com/acl-services/paprika/issues/new?label=[]&title=@paprika/checkbox%20[help]:%20your%20short%20description&body=%0A%23%20Help%20wanted%0A%0A%23%23%20Please%20write%20your%20question.%0A*A%20clear%20and%20concise%20description%20of%20what%20the%20question%20is*%0A%0A%23%23%20Additional%20context%0A*Add%20any%20other%20context%20or%20screenshots%20about%20your%20question%20here.*%0A)
+- [ChangeLog](https://github.com/acl-services/paprika/tree/master/packages/Checkbox/CHANGELOG.md)
