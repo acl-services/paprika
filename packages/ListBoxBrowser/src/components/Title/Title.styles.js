@@ -12,7 +12,17 @@ export const title = css`
   font-size: ${stylers.fontSize(-1)};
   font-weight: bold;
   min-height: 20px;
+  min-width: 0;
+  overflow: hidden;
   padding: ${tokens.spaceSm} ${tokens.space} ${tokens.spaceSm} ${tokens.spaceLg};
+  text-overflow: ellipsis;
+`;
+
+const rightColumnStyles = css`
+  [data-pka-anchor="breadcrumb-title"] {
+    border-left: 1px solid ${tokens.border.color};
+    border-top-left-radius: 0;
+  }
 `;
 
 export const flex = css`
@@ -20,7 +30,9 @@ export const flex = css`
   display: flex;
   justify-content: center;
 
-  & div:last-child {
-    border-left: 1px solid ${tokens.border.color};
-  }
+  ${({ hasLeftColumn }) => (hasLeftColumn ? rightColumnStyles : "")}
+`;
+
+export const crumb = css`
+  white-space: nowrap;
 `;

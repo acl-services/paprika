@@ -1,7 +1,6 @@
 import React from "react";
 import PropTypes from "prop-types";
 import moment from "moment";
-import momentPropTypes from "react-moment-proptypes";
 
 import ArrowLeft from "@paprika/icon/lib/ArrowLeft";
 import ArrowRight from "@paprika/icon/lib/ArrowRight";
@@ -22,7 +21,7 @@ import {
 } from "./ShortcutPanel.styles";
 
 const propTypes = {
-  date: momentPropTypes.momentObj.isRequired,
+  date: PropTypes.instanceOf(moment).isRequired,
   isVisible: PropTypes.bool.isRequired,
   onCancel: PropTypes.func.isRequired,
   onConfirm: PropTypes.func.isRequired,

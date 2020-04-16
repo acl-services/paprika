@@ -1,6 +1,6 @@
 {
   "name": "@paprika/modal",
-  "version": "0.2.12",
+  "version": "0.2.14",
   "description": "Modal component",
   "author": "@paprika",
   "main": "lib/index.js",
@@ -14,10 +14,10 @@
     "access": "public"
   },
   "dependencies": {
-    "@paprika/button": "^0.2.19",
-    "@paprika/heading": "^0.3.12",
-    "@paprika/helpers": "^0.2.10",
-    "@paprika/overlay": "^0.2.4",
+    "@paprika/button": "^0.2.20",
+    "@paprika/heading": "^0.3.13",
+    "@paprika/helpers": "^0.2.11",
+    "@paprika/overlay": "^0.2.5",
     "@paprika/stylers": "^0.2.6",
     "@paprika/tokens": "^0.1.13",
     "prop-types": "^15.7.2",

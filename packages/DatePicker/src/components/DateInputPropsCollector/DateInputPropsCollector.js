@@ -24,13 +24,13 @@ const defaultProps = {
 };
 
 // shell component for enhancing development experience
-function DateInput() {
+function DateInputPropsCollector() {
   return null;
 }
 
-DateInput.propTypes = propTypes;
-DateInput.defaultProps = defaultProps;
+DateInputPropsCollector.propTypes = propTypes;
+DateInputPropsCollector.defaultProps = defaultProps;
 
-DateInput.displayName = "DatePicker.Input";
+DateInputPropsCollector.displayName = "DatePicker.Input";
 
-export default DateInput;
+export default DateInputPropsCollector;
