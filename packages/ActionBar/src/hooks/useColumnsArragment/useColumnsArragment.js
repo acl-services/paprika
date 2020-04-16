@@ -40,5 +40,11 @@ export default function useColumnsArragment(initialColumns) {
     setColumns(newColumns);
   }
 
-  return { orderedColumns, handleChangeVisibility, handleShowAll, handleHideAll, handleChangeOrder };
+  return {
+    orderedColumns,
+    onChangeVisibility: handleChangeVisibility,
+    onShowAll: handleShowAll,
+    onHideAll: handleHideAll,
+    onChangeOrder: handleChangeOrder,
+  };
 }

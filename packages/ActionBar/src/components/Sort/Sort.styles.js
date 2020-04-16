@@ -13,7 +13,7 @@ export const FieldsPanel = styled.div`
   }
 `;
 
-export const SortItem = styled.li`
+export const SortField = styled.li`
   align-items: center;
   display: flex;
   flex-wrap: nowrap;

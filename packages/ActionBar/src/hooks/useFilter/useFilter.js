@@ -99,7 +99,7 @@ export default function useFilter({ columns, data = null, rulesByType = Filter.d
   }
 
   return {
-    appliedNumberOfFilters: appliedNumber,
+    appliedNumber,
     filters,
     onAddFilter: handleAddFilter,
     onChangeOperator: handleChangeOperator,

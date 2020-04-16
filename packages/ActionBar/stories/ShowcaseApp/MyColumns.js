@@ -8,7 +8,7 @@ const defaultColumnsForArrangement = [
   { id: "country", label: "Country", isHidden: false, isDisabled: false },
 ];
 
-export default function MyColumns() {
+export default function MyColumns({ onChange }) {
   const {
     orderedColumns,
     handleChangeVisibility,
@@ -16,6 +16,10 @@ export default function MyColumns() {
     handleHideAll,
     handleChangeOrder,
   } = useColumnsArragment(defaultColumnsForArrangement);
+
+  React.useEffect(() => {
+    onChange(orderedColumns);
+  }, [orderedColumns, onChange]);
 
   return (
     <ColumnsArrangement

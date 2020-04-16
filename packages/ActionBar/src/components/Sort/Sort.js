@@ -5,7 +5,7 @@ import Popover from "@paprika/popover";
 import useI18n from "@paprika/l10n/lib/useI18n";
 import CheckIcon from "@paprika/icon/lib/Check";
 
-import SortItem from "./SortItem";
+import SortField from "./SortField";
 import SortContext from "./context";
 import columnShape from "../../columnShape";
 
@@ -30,6 +30,17 @@ const defaultProps = {
   onClose: () => {},
   onOpen: () => {},
 };
+
+function getLabelText(numberOfFields, I18n) {
+  switch (numberOfFields) {
+    case 0:
+      return I18n.t("actionBar.sort.label");
+    case 1:
+      return I18n.t("actionBar.sort.singular_label");
+    default:
+      return I18n.t("actionBar.sort.plural_label", { numberOfFields });
+  }
+}
 
 export default function Sort(props) {
   const { appliedNumber, children, columns, onAddField, onApply, onCancel, onClose, onOpen } = props;
@@ -61,17 +72,6 @@ export default function Sort(props) {
     onCancel();
   }
 
-  function getLabelText(numberOfFields) {
-    switch (numberOfFields) {
-      case 0:
-        return I18n.t("actionBar.sort.label");
-      case 1:
-        return I18n.t("actionBar.sort.singular_label");
-      default:
-        return I18n.t("actionBar.sort.plural_label", { numberOfFields });
-    }
-  }
-
   return (
     <SortContext.Provider value={{ columns, fieldsRef }}>
       <Popover align="bottom" edge="left" maxWidth={600} isOpen={isOpen} onClose={handleClose}>
@@ -83,7 +83,7 @@ export default function Sort(props) {
           isOpen={isOpen}
         >
           <sc.Icon />
-          {getLabelText(appliedNumber)}
+          {getLabelText(appliedNumber, I18n)}
         </sc.Trigger>
         <Popover.Content>
           <Popover.Card>
@@ -116,4 +116,4 @@ export default function Sort(props) {
 Sort.propTypes = propTypes;
 Sort.defaultProps = defaultProps;
 Sort.displayName = "ActionBar.Sort";
-Sort.Field = SortItem;
+Sort.Field = SortField;

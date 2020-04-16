@@ -22,7 +22,7 @@ const defaultProps = {
   id: null,
 };
 
-function SortItem(props) {
+function SortField(props) {
   const { id, columnId: selectedColumnId, direction, isFirst, onDelete, onChange } = props;
   const { columns, fieldsRef } = React.useContext(SortContext);
   const I18n = useI18n();
@@ -44,7 +44,7 @@ function SortItem(props) {
   }
 
   return (
-    <sc.SortItem data-pka-anchor="sort.sort-field">
+    <sc.SortField data-pka-anchor="sort.sort-field">
       <Button.Close data-pka-anchor="sort.delete-button" onClick={handleRemoveFilter} size="small" />
       {isFirst ? I18n.t("actionBar.sort.sort_by") : I18n.t("actionBar.sort.then_by")}
       <InlineSelect
@@ -74,11 +74,11 @@ function SortItem(props) {
           {I18n.t(`actionBar.sort.rules.descending.${columnTypeTranslationKey}`)}
         </option>
       </InlineSelect>
-    </sc.SortItem>
+    </sc.SortField>
   );
 }
 
-SortItem.propTypes = propTypes;
-SortItem.defaultProps = defaultProps;
+SortField.propTypes = propTypes;
+SortField.defaultProps = defaultProps;
 
-export default React.memo(SortItem);
+export default React.memo(SortField);

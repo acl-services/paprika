@@ -1,6 +1,6 @@
 import React from "react";
 
-export default function MySingleSelect({ onChange, value }) {
+export default function CustomSingleSelectFilter({ onChange, value }) {
   return (
     <select onChange={onChange} value={value}>
       <option value="low">low</option>

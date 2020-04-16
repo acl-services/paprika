@@ -23,6 +23,17 @@ const propTypes = {
   onShowAll: PropTypes.func.isRequired,
 };
 
+function getLabelText(numberOfHiddenColumn, I18n) {
+  switch (numberOfHiddenColumn) {
+    case 0:
+      return I18n.t("actionBar.columns_arrangement.label");
+    case 1:
+      return I18n.t("actionBar.columns_arrangement.singular_label");
+    default:
+      return I18n.t("actionBar.columns_arrangement.plural_label", { numberOfHiddenColumn });
+  }
+}
+
 export default function ColumnsArrangement(props) {
   const { onChangeOrder, onChangeVisibility, columns, onHideAll, onShowAll } = props;
   const I18n = useI18n();
@@ -32,17 +43,6 @@ export default function ColumnsArrangement(props) {
   const filteredColumns = searchTerm.length
     ? columns.filter(column => column.label.match(new RegExp(searchTerm, "i")))
     : columns;
-
-  function getLabelText(numberOfHiddenColumn) {
-    switch (numberOfHiddenColumn) {
-      case 0:
-        return I18n.t("actionBar.columns_arrangement.label");
-      case 1:
-        return I18n.t("actionBar.columns_arrangement.singular_label");
-      default:
-        return I18n.t("actionBar.columns_arrangement.plural_label", { numberOfHiddenColumn });
-    }
-  }
 
   const handleChangeOrder = ({ source, destination }) => {
     if (destination === null || source === destination) return;
@@ -63,7 +63,7 @@ export default function ColumnsArrangement(props) {
         {(handler, attributes, isOpen) => (
           <sc.Trigger {...attributes} onClick={handler} hasColumnsHidden={hiddenColumns.length > 0} isOpen={isOpen}>
             <sc.Icon />
-            {getLabelText(hiddenColumns.length)}
+            {getLabelText(hiddenColumns.length, I18n)}
           </sc.Trigger>
         )}
       </Popover.Trigger>

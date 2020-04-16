@@ -38,6 +38,17 @@ const defaultProps = {
   rulesByType: defaultRulesByType,
 };
 
+function getLabelText(numberOfFilters, I18n) {
+  switch (numberOfFilters) {
+    case 0:
+      return I18n.t("actionBar.filter.label");
+    case 1:
+      return I18n.t("actionBar.filter.singular_label");
+    default:
+      return I18n.t("actionBar.filter.plural_label", { numberOfFilters });
+  }
+}
+
 export default function Filter(props) {
   const {
     appliedNumber,
@@ -80,17 +91,6 @@ export default function Filter(props) {
     onCancel();
   }
 
-  function getLabelText(numberOfFilters) {
-    switch (numberOfFilters) {
-      case 0:
-        return I18n.t("actionBar.filter.label");
-      case 1:
-        return I18n.t("actionBar.filter.singular_label");
-      default:
-        return I18n.t("actionBar.filter.plural_label", { numberOfFilters });
-    }
-  }
-
   return (
     <FilterContext.Provider value={{ filtersRef, columns, operator, onChangeOperator, rulesByType }}>
       <Popover align="bottom" edge="left" maxWidth={600} offset={8} isOpen={isOpen} onClose={handleClose}>
@@ -102,7 +102,7 @@ export default function Filter(props) {
           isOpen={isOpen}
         >
           <sc.Icon />
-          {getLabelText(appliedNumber)}
+          {getLabelText(appliedNumber, I18n)}
         </sc.Trigger>
         <Popover.Content>
           <Popover.Card>
