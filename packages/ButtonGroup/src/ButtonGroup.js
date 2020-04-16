@@ -10,7 +10,7 @@ const propTypes = {
   /** The content of each of the toggle buttons in the group. */
   children: PropTypes.node,
 
-  /** T show or hide the icons for selected or not. */
+  /** To show or hide the icons used for selected or not selected. */
   hasIcons: PropTypes.bool,
 
   /** If the button is disabled. */
@@ -45,7 +45,7 @@ const ButtonGroup = props => {
 
   const validChildren = children.filter(child => child.type.displayName === ButtonItem.displayName);
 
-  const initiallySelectedItems = validChildren.filter(item => item.props.isActive).map(item => item.key);
+  const initiallySelectedItems = validChildren.filter(item => item.props.isActive).map(item => item.props.value);
 
   const [selectedItems, setSelectedItems] = React.useState([...initiallySelectedItems]);
 
@@ -53,17 +53,17 @@ const ButtonGroup = props => {
     if (!isDisabled) {
       const itemIndex = selectedItems.indexOf(clickedId);
       const itemUsedToBeSelected = itemIndex > -1;
-      const newSelectedItemIds = [...selectedItems];
+      const newSelectedItems = [...selectedItems];
 
       if (itemUsedToBeSelected) {
-        newSelectedItemIds.splice(itemIndex, 1);
+        newSelectedItems.splice(itemIndex, 1);
       } else {
-        newSelectedItemIds.push(clickedId);
+        newSelectedItems.push(clickedId);
       }
 
-      setSelectedItems(newSelectedItemIds);
+      setSelectedItems(newSelectedItems);
       if (onChange) {
-        onChange(newSelectedItemIds);
+        onChange(newSelectedItems);
       }
     }
   };
@@ -78,15 +78,14 @@ const ButtonGroup = props => {
           hasIcon: hasIcons,
           isFullWidth,
           isSemantic,
-          onClick: () => handleClick(item.key),
+          onClick: () => handleClick(item.props.value),
           size,
         };
 
         return (
           <sc.Button
             {...buttonProps}
-            key={item.key}
-            isActive={selectedItems.includes(item.key)}
+            isActive={selectedItems.includes(item.props.value)}
             data-pka-anchor="button-group.button"
             kind="flat"
           >

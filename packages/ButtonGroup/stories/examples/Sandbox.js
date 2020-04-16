@@ -23,19 +23,19 @@ const buttonGroupProps = () => ({
 const ExampleStory = props => (
   <Story>
     <Heading level={1} displayLevel={2} isLight>
-      Showcase
+      Testing Sandbox
     </Heading>
     <Tagline>Use the knobs to tinker with the props.</Tagline>
     <Rule />
     <ButtonGroup {...props}>
-      <ButtonGroup.Item key="One" kind="primary">
+      <ButtonGroup.Item value="one" kind="primary">
         One
       </ButtonGroup.Item>
-      <ButtonGroup.Item key="Two" isActive tabIndex={0}>
+      <ButtonGroup.Item value="two" isActive tabIndex={0}>
         Two
       </ButtonGroup.Item>
-      <ButtonGroup.Item key="Three">Three</ButtonGroup.Item>
-      <ButtonGroup.Item key="Four">
+      <ButtonGroup.Item value="three">Three</ButtonGroup.Item>
+      <ButtonGroup.Item value="four">
         <Calendar />
       </ButtonGroup.Item>
     </ButtonGroup>

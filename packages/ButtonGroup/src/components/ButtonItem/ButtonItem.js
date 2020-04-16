@@ -5,7 +5,7 @@ import * as sc from "./ButtonItem.styles";
 
 const propTypes = {
   /** Unique key to represent the selected value. */
-  key: PropTypes.string.isRequired,
+  value: PropTypes.string.isRequired,
 
   /** Content label of the button to be displayed. */
   children: PropTypes.node,
