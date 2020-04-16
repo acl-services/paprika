@@ -18,6 +18,18 @@
     "prop-types": "15.7.2",
     "uuid": "^3.3.2"
   },
+  "paprikaDocs": {
+    "subComponents": [
+      "Box",
+      "Divider",
+      "Filter",
+      "Footer",
+      "Option",
+      "Popover",
+      "RawItem",
+      "Trigger"
+    ]
+  },
   "devDependencies": {
     "react-json-tree": "^0.11.2"
   },
