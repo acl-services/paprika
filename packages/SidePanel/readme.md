@@ -58,7 +58,7 @@ You can use any of the following components to compose the SidePanel:
 <SidePanel.Trigger />
 ```
 
-### Basic examples.
+## Basic examples.
 
 ```js
 <SidePanel isOpen={isOpen} onClose={() => {}}>
@@ -73,6 +73,10 @@ You can use any of the following components to compose the SidePanel:
   <SidePanel.Overlay />
 </SidePanel>
 ```
+
+## Warnings
+
+If the content you are putting into this component will try and control focus (like CKEditor), read this: https://github.com/acl-services/paprika/issues/453
 
 <!-- eoContent -->
 

@@ -67,6 +67,10 @@ You can use any of the following components to compose the Takeover:
 - `onAfterOpen`
 - `onAfterClose`
 
+## Warnings
+
+If the content you are putting into this component will try and control focus (like CKEditor), read this: https://github.com/acl-services/paprika/issues/453
+
 <!-- eoContent -->
 
 #### more:
