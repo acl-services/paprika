@@ -40,9 +40,10 @@ const stories = [
 
   // CodeViewer
   require.context("./components/CodeViewer", false, /CodeViewer.story.js/),
-  
+
   // Collapsible
   require.context("../packages/Collapsible", true, /Collapsible.stories.(js|mdx)$/),
+  require.context("../packages/Collapsible", true, /Collapsible.backyard.stories.(js|mdx)$/),
   require.context("../packages/Collapsible", true, /Collapsible.Tests.stories.js$/),
 
   // CollapsibleText
