@@ -2,7 +2,7 @@ import React from "react";
 import Screener from "./examples/Screener";
 
 export default {
-  title: "DialogActions/Automation Tests",
+  title: " | DialogActions/Automation Tests",
 };
 
 export const screener = () => <Screener />;

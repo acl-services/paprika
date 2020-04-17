@@ -5,7 +5,7 @@ import Showcase from "./examples/Showcase";
 import DialogActions from "../src";
 
 export default {
-  title: "Dialog Actions",
+  title: " | DialogActions",
   component: DialogActions,
 };
 

@@ -66,7 +66,7 @@ const stories = [
   require.context("../packages/SidePanel", true, /SidePanel.Tests.stories.js$/),
 
   // Remaining
-  require.context("../packages", true, /\.stories\.js$/),
+  // require.context("../packages", true, /\.stories\.js$/),
 ];
 
 configure(stories, module);

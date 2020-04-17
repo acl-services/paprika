@@ -7,7 +7,7 @@ import Props from "./Toast.mdx";
 import Toast from "../src";
 
 export default {
-  title: "Toast",
+  title: "| Toast",
   component: Toast,
 };
 

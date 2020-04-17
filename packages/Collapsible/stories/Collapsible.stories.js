@@ -4,10 +4,9 @@ import { withKnobs } from "@storybook/addon-knobs";
 import Collapsible from "../src/Collapsible";
 import Variations from "./examples/Variations";
 import Showcase from "./examples/Showcase";
-import Props from "./Collapsible.mdx";
 
 export default {
-  title: "Collapsible",
+  title: " | Collapsible",
   component: Collapsible,
 };
 
@@ -15,7 +14,6 @@ export const showcase = Showcase;
 showcase.story = {
   decorators: [withKnobs],
   parameters: {
-    docs: { page: Props },
     options: {
       isToolshown: true,
       showPanel: true,
