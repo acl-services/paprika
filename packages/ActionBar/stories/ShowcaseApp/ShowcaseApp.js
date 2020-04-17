@@ -22,7 +22,7 @@ const columnsSettingForFilterAndSort = [
   },
   { id: "country", label: "Country", type: "TEXT" },
   {
-    id: "joinedDate",
+    id: "joined",
     type: "DATE",
     label: "Joined by",
     momentParsingFormat: "MM/DD/YYYY",
