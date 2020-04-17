@@ -70,6 +70,10 @@ function FilterItem(props) {
     }
   }
 
+  function handleChangeBooleanFilterValue(event) {
+    onChange(changeTypes.FILTER_VALUE, { id, value: event.target.value === "true" });
+  }
+
   function renderRuleField() {
     switch (selectedColumnType) {
       case columnTypes.BOOLEAN:
@@ -108,9 +112,7 @@ function FilterItem(props) {
         return (
           <InlineSelect
             value={`${value}`}
-            onChange={event => {
-              onChange({ id, value: event.target.value === "true" });
-            }}
+            onChange={handleChangeBooleanFilterValue}
             selectedLabel={I18n.t(`actionBar.filter.rules.${value}`)}
           >
             <option value="true">{I18n.t("actionBar.filter.rules.true")}</option>
