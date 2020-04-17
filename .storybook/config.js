@@ -42,31 +42,33 @@ const stories = [
   require.context("./components/CodeViewer", false, /CodeViewer.story.js/),
 
   // Collapsible
-  require.context("../packages/Collapsible", true, /Collapsible.stories.(js|mdx)$/),
-  require.context("../packages/Collapsible", true, /Collapsible.backyard.stories.(js|mdx)$/),
-  require.context("../packages/Collapsible", true, /Collapsible.Tests.stories.js$/),
+  require.context("../packages/Collapsible", true, /Collapsible.stories.mdx/),
+  require.context("../packages/Collapsible", true, /Collapsible.stories.js/),
+  require.context("../packages/Collapsible", true, /Collapsible.backyard.stories.js/),
 
   // CollapsibleText
-  require.context("../packages/CollapsibleText", true, /CollapsibleText.stories.(js|mdx)$/),
-  require.context("../packages/CollapsibleText", true, /CollapsibleText.Tests.stories.js$/),
+  require.context("../packages/CollapsibleText", true, /CollapsibleText.stories.mdx/),
+  require.context("../packages/CollapsibleText", true, /CollapsibleText.stories.js/),
+  require.context("../packages/CollapsibleText", true, /CollapsibleText.Tests.stories.js/),
 
   // DialogActions
-  require.context("../packages/DialogActions", true, /DialogActions.stories.(js|mdx)$/),
-  require.context("../packages/DialogActions", true, /DialogActions.Tests.stories.js$/),
+  require.context("../packages/DialogActions", true, /DialogActions.stories.mdx/),
+  require.context("../packages/DialogActions", true, /DialogActions.stories.js/),
+  require.context("../packages/DialogActions", true, /DialogActions.Tests.stories.js/),
 
   // Toast
-  require.context("../packages/Toast", true, /Toast.stories.(js|mdx)$/),
-  require.context("../packages/Toast", true, /Toast.examples.stories.(js|mdx)$/),
-  require.context("../packages/Toast", true, /Toast.backyard.stories.(js|mdx)$/),
-  require.context("../packages/Toast", true, /Toast.Tests.stories.(js|mdx)$/),
+  require.context("../packages/Toast", true, /Toast.stories.mdx/),
+  require.context("../packages/Toast", true, /Toast.examples.stories.js/),
+  require.context("../packages/Toast", true, /Toast.backyard.stories.js/),
+  require.context("../packages/Toast", true, /Toast.Tests.stories.js/),
 
   // SidePanel
-  require.context("../packages/SidePanel", true, /SidePanel.stories.(js|mdx)$/),
-  require.context("../packages/SidePanel", true, /SidePanel.examples.stories.(js|mdx)$/),
-  require.context("../packages/SidePanel", true, /SidePanel.Tests.stories.js$/),
+  require.context("../packages/SidePanel", true, /SidePanel.stories.mdx/),
+  require.context("../packages/SidePanel", true, /SidePanel.examples.stories.js|/),
+  require.context("../packages/SidePanel", true, /SidePanel.Tests.stories.js/),
 
   // Remaining
-  // require.context("../packages", true, /\.stories\.js$/),
+  require.context("../packages", true, /\.stories\.js$/),
 ];
 
 configure(stories, module);
