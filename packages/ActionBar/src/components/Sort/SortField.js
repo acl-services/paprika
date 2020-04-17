@@ -3,7 +3,7 @@ import PropTypes from "prop-types";
 import Button from "@paprika/button";
 import useI18n from "@paprika/l10n/lib/useI18n";
 import InlineSelect from "../InlineSelect/InlineSelect";
-import { sortDirections, localeTypeKeys } from "../../constants";
+import { sortDirections, localeTypeKeys, changeTypes } from "../../constants";
 import SortContext from "./context";
 
 import * as sc from "./Sort.styles";
@@ -36,11 +36,11 @@ function SortField(props) {
   }
 
   function handleChangeColumn(event) {
-    onChange({ id, columnId: event.target.value });
+    onChange(changeTypes.COLUMN, { id, columnId: event.target.value });
   }
 
   function handleChangeRule(event) {
-    onChange({ id, direction: event.target.value });
+    onChange(changeTypes.DIRECTION, { id, direction: event.target.value });
   }
 
   return (

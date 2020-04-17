@@ -2,6 +2,7 @@ import React from "react";
 import nanoid from "nanoid";
 import useI18n from "@paprika/l10n/lib/useI18n";
 import sort from "./sort";
+import { changeTypes } from "../../constants";
 
 function sortData({ sortedFields, columns, data, locale }) {
   let sortedData = data;
@@ -52,12 +53,18 @@ export default function useSort({ data = null, columns }) {
   }
 
   const handleChangeItem = React.useCallback(
-    ({ id: fieldId, direction, columnId }) => {
-      let change;
-      if (columnId) {
-        change = { columnId };
-      } else {
-        change = { direction };
+    (type, { id: fieldId, direction, columnId }) => {
+      let change = {};
+
+      switch (type) {
+        case changeTypes.COLUMN:
+          change = { columnId };
+          break;
+        case changeTypes.DIRECTION:
+          change = { direction };
+          break;
+        default:
+          break;
       }
 
       setSortedFields(prevFields =>

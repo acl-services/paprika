@@ -21,3 +21,10 @@ export const logicalFilterOperators = {
   AND: "AND",
   OR: "OR",
 };
+
+export const changeTypes = {
+  COLUMN: "COLUMN",
+  DIRECTION: "DIRECTION",
+  RULE: "RULE",
+  FILTER_VALUE: "FILTER_VALUE",
+};

@@ -71,16 +71,16 @@ export default function App() {
   const handleDeleteFilter = filterId => () => {
     onDeleteFilter(filterId);
   };
-  const handleChangeFilter = filterId => params => {
-    onFilterChange({ ...params, id: filterId });
+  const handleChangeFilter = filterId => (type, params) => {
+    onFilterChange(type, { ...params, id: filterId });
   };
 
   const handleDeleteSortField = fieldId => () => {
     onDeleteField(fieldId);
   };
 
-  const handleChangeSortField = fieldId => params => {
-    onChangeField({ ...params, id: fieldId });
+  const handleChangeSortField = fieldId => (type, params) => {
+    onChangeField(type, { ...params, id: fieldId });
   };
 
   const renderLevelFilter = () => <CustomSingleSelectFilter />;
@@ -181,10 +181,6 @@ export default function App() {
           ))}
         </tbody>
       </table>
-
-      {/* <div>
-        <pre>{JSON.stringify(subset, null, 2)}</pre>
-      </div> */}
     </React.Fragment>
   );
 }

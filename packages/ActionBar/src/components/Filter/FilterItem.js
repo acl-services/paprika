@@ -7,7 +7,7 @@ import InlineSelect from "../InlineSelect/InlineSelect";
 import InlineInput from "../InlineInput/InlineInput";
 import rules, { localeKeysByRule } from "./rules";
 import FilterContext from "./context";
-import { columnTypes, logicalFilterOperators } from "../../constants";
+import { columnTypes, logicalFilterOperators, changeTypes } from "../../constants";
 import * as sc from "./Filter.styles";
 
 const propTypes = {
@@ -49,15 +49,15 @@ function FilterItem(props) {
 
   function handleChangeColumn(event) {
     const newColumnId = event.target.value;
-    onChange({ id, columnId: newColumnId });
+    onChange(changeTypes.COLUMN, { id, columnId: newColumnId });
   }
 
   function handleChangeRule(event) {
-    onChange({ id, rule: event.target.value });
+    onChange(changeTypes.RULE, { id, rule: event.target.value });
   }
 
   function handleChangeValue(newValue) {
-    onChange({ id, value: newValue });
+    onChange(changeTypes.FILTER_VALUE, { id, value: newValue });
   }
 
   function handleChangeDatePicker(momentDate) {

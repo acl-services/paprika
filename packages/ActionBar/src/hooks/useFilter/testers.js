@@ -20,8 +20,10 @@ const processDate = (momentParsingFormat, value, testValue, testFunction) => {
 const testers = {
   [Filter.rules.IS]: is,
   [Filter.rules.IS_NOT]: isNot,
-  [Filter.rules.CONTAINS]: (value, testValue) => (testValue === "" ? true : `${value}`.includes(testValue)),
-  [Filter.rules.DOES_NOT_CONTAIN]: (value, testValue) => (testValue === "" ? true : !value.includes(testValue)),
+  [Filter.rules.CONTAINS]: (value, testValue) =>
+    testValue === "" ? true : `${value}`.match(new RegExp(testValue, "i")),
+  [Filter.rules.DOES_NOT_CONTAIN]: (value, testValue) =>
+    testValue === "" ? true : !value.match(new RegExp(testValue, "i")),
   [Filter.rules.IS_BLANK]: isBlank,
   [Filter.rules.IS_NOT_BLANK]: isNotBlank,
   [Filter.rules.EQUALS]: (value, testValue) => processNumber(value, testValue, is),

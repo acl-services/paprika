@@ -4,7 +4,7 @@ import nanoid from "nanoid";
 import produce from "immer";
 import Filter from "../../components/Filter";
 import testers from "./testers";
-import { logicalFilterOperators } from "../../constants";
+import { logicalFilterOperators, changeTypes } from "../../constants";
 
 const initialValueByType = {
   BOOLEAN: true,
@@ -37,23 +37,32 @@ export default function useFilter({ columns, data = null, rulesByType = Filter.d
   const [appliedNumber, setAppliedNumber] = React.useState(0);
 
   const handleFilterChange = React.useCallback(
-    ({ id: filterId, rule, value, columnId }) => {
+    (type, { id: filterId, rule, value, columnId }) => {
       setFilters(
         produce(draftFilters => {
           draftFilters.forEach(filterItem => {
             if (filterItem.id !== filterId) return;
 
-            if (columnId) {
-              const columnType = columns.find(column => column.id === columnId).type;
-              filterItem.columnId = columnId;
-              filterItem.rule = rulesByType[columnType][0];
-              filterItem.value = initialValueByType[columnType];
-              filterItem.renderValueField = null;
-            } else if (rule) {
-              filterItem.rule = rule;
-              filterItem.value = "";
-            } else {
-              filterItem.value = value;
+            switch (type) {
+              case changeTypes.COLUMN: {
+                const columnType = columns.find(column => column.id === columnId).type;
+                filterItem.columnId = columnId;
+                filterItem.rule = rulesByType[columnType][0];
+                filterItem.value = initialValueByType[columnType];
+                filterItem.renderValueField = null;
+                break;
+              }
+              case changeTypes.RULE: {
+                filterItem.rule = rule;
+                filterItem.value = "";
+                break;
+              }
+              case changeTypes.FILTER_VALUE: {
+                filterItem.value = value;
+                break;
+              }
+              default:
+                break;
             }
           });
         })
