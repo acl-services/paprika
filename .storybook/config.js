@@ -64,7 +64,7 @@ const stories = [
 
   // SidePanel
   require.context("../packages/SidePanel", true, /SidePanel.stories.mdx/),
-  require.context("../packages/SidePanel", true, /SidePanel.examples.stories.js|/),
+  require.context("../packages/SidePanel", true, /SidePanel.examples.stories.js/),
   require.context("../packages/SidePanel", true, /SidePanel.Tests.stories.js/),
 
   // Remaining
