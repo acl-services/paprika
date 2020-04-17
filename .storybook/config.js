@@ -11,6 +11,9 @@ addParameters({
     showPanel: true,
     panelPosition: "right",
   },
+  previewTabs: {
+    canvas: { hidden: true },
+  },
 });
 
 addDecorator(withA11y);
@@ -38,6 +41,7 @@ const stories = [
 
   // SidePanel
   require.context("../packages/SidePanel", true, /SidePanel.stories.(js|mdx)$/),
+  require.context("../packages/SidePanel", true, /SidePanel.examples.stories.(js|mdx)$/),
   require.context("../packages/SidePanel", true, /SidePanel.Tests.stories.js$/),
 
   // Remaining
