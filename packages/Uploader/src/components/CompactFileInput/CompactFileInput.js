@@ -1,6 +1,7 @@
 import React from "react";
 import PropTypes from "prop-types";
 import { css } from "styled-components";
+import Button from "@paprika/button";
 import tokens from "@paprika/tokens";
 
 // TODO: this is very similar to the "DefaultFileInput". See if can merge them.
@@ -34,14 +35,14 @@ function CompactFileInput({ fileInputRef, isDraggingOver }) {
 
   return (
     <div css={styles}>
-      <a
-        href="javascript:return false"
+      <Button
+        kind="link"
         onClick={() => {
           fileInputRef.current.click();
         }}
       >
         Browse
-      </a>
+      </Button>
       &nbsp;or drop your file here
     </div>
   );

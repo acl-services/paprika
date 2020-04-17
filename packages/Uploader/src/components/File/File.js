@@ -5,24 +5,24 @@ import TimesIcon from "wasabicons/lib/Times";
 import RetryIcon from "wasabicons/lib/Refresh";
 import Button from "@paprika/button";
 import tokens from "@paprika/tokens";
+import { UploaderContext } from "../../Uploader";
 import { getNumberWithUnits } from "../../helpers";
+import types from "../../types";
 import "./File.scss";
 // import { css } from "styled-components";
 
-// TODO: handle cancel button (while uploading)
-// TODO: handle retry button (on server error)
-// TODO: tooltip on cancel
-// TODO: tooltip on retry
-// TODO: is there some state that is a file that was uploaded in the past? (the one with the trashcan)
 // TODO: dont use classnames, use styled-components. and use stylers.fontSize
 // TODO: L10n
+// TODO: a11y
 // TODO: tests...
 
 const propTypes = {
   error: PropTypes.string,
+  fileKey: PropTypes.string.isRequired,
   name: PropTypes.string.isRequired,
   progress: PropTypes.number,
   size: PropTypes.number.isRequired,
+  status: PropTypes.oneOf(Object.keys(types).map(key => types[key])).isRequired,
 };
 
 const defaultProps = {
@@ -30,9 +30,9 @@ const defaultProps = {
   progress: 0,
 };
 
-function File({ error, name, progress, size }) {
-  const isComplete = progress >= 100;
-  const hasError = error.length > 0;
+function File({ error, fileKey, name, progress, size, status }) {
+  const uc = React.useContext(UploaderContext);
+  const { cancelFile, restartFileUpload } = uc;
 
   function getUploadedAmount() {
     return (size * progress) / 100;
@@ -42,46 +42,55 @@ function File({ error, name, progress, size }) {
   const progressWithUnits = getNumberWithUnits(getUploadedAmount());
 
   function renderIcon() {
-    if (isComplete) {
-      return <CheckIcon color={tokens.color.green} />;
+    switch (status) {
+      case types.ERROR:
+      case types.CANCEL:
+        return (
+          <Button.Icon
+            kind="minor"
+            onClick={() => {
+              console.log("clicked restart", fileKey);
+              restartFileUpload(fileKey);
+            }}
+            size="small"
+          >
+            <RetryIcon />
+          </Button.Icon>
+        );
+      case types.SUCCESS:
+        return <CheckIcon color={tokens.color.green} />;
+      default:
+        // in progress
+        return (
+          <Button.Icon
+            kind="minor"
+            onClick={() => {
+              console.log("clicked cancel");
+              cancelFile(fileKey);
+            }}
+            size="small"
+          >
+            <TimesIcon />
+          </Button.Icon>
+        );
     }
-
-    if (hasError) {
-      return (
-        <Button.Icon
-          kind="minor"
-          onClick={() => {
-            alert("retry...");
-          }}
-          size="small"
-        >
-          <RetryIcon />
-        </Button.Icon>
-      );
-    }
-
-    // in progress
-    return (
-      <Button.Icon kind="minor" onClick={() => {}} size="small">
-        <TimesIcon />
-      </Button.Icon>
-    );
   }
 
   function getProgressText() {
-    if (isComplete) {
-      return "Complete";
+    switch (status) {
+      case types.ERROR:
+        return error;
+      case types.SUCCESS:
+        return "Complete";
+      case types.CANCEL:
+        return "Cancelled";
+      default:
+        return `Uploading ${progressWithUnits} of ${sizeWithUnits}`;
     }
-
-    if (hasError) {
-      return error;
-    }
-
-    return `Uploading ${progressWithUnits} of ${sizeWithUnits}`;
   }
 
-  const fileClass = `uploader-file ${isComplete ? "uploader-file--complete" : ""} ${
-    hasError ? "uploader-file--error" : ""
+  const fileClass = `uploader-file ${status === types.SUCCESS ? "uploader-file--complete" : ""} ${
+    status === types.ERROR ? "uploader-file--error" : ""
   }`;
 
   return (

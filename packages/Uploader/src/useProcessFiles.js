@@ -1,4 +1,5 @@
 import React from "react";
+import produce from "immer";
 import types from "./types";
 import { upload as uploadToServer } from "./helpers";
 
@@ -51,18 +52,29 @@ export default function useProcessFiles({
   function cancelFile(key) {
     const index = getFileByIndex(key, files);
     if (index !== null) {
-      if (files[index].status === types.PROCESSING || files[index].status === types.WAITINGFORSERVER) {
-        const file = files[index];
-
-        // will stop the uploading
-        file.request.abort();
+      const file = files[index];
+      if (file.status === types.IDLE || file.status === types.PROCESSING || file.status === types.WAITINGFORSERVER) {
+        file.request.abort(); // stop the uploading
 
         setFiles(
-          setFile(file, fileItem => {
-            const file = fileItem;
-            file.status = types.CANCEL;
-            file.processed = true;
-            return fileItem;
+          produce(files, draftFiles => {
+            draftFiles[index].status = types.CANCEL; // eslint-disable-line no-param-reassign
+            draftFiles[index].progress = 0; // eslint-disable-line no-param-reassign
+          })
+        );
+      }
+    }
+  }
+
+  function restartFileUpload(key) {
+    const index = getFileByIndex(key, files);
+
+    if (index !== null) {
+      const file = files[index];
+      if (file.status === types.ERROR || file.status === types.CANCEL) {
+        setFiles(
+          produce(files, draftFiles => {
+            draftFiles[index].status = types.IDLE; // eslint-disable-line no-param-reassign
           })
         );
       }
@@ -74,7 +86,7 @@ export default function useProcessFiles({
 
     if (index !== null) {
       /*
-        Removing a file while is been uploaded mess with areAllFilesProccessed() function,
+        Removing a file while is been uploaded mess with completeIfAllFilesAreProcessed() function,
         as well give a wrong impression the request has been cancel to the server.
         Therefore is only possible to remove files once they were processed or on idle status.
       */
@@ -91,84 +103,79 @@ export default function useProcessFiles({
     }
   }
 
-  const upload = React.useCallback(
-    function uploadItem() {
-      const isSameList = (files, uploadingFileList) => {
-        const sameList =
-          files.length === uploadingFileList.length &&
-          files.every((file, index) => file.key === uploadingFileList[index].key);
+  const upload = React.useCallback(() => {
+    console.log("in upload()");
 
-        return sameList;
-      };
-
-      function areAllFilesProccessed() {
-        if (files.every(file => file.processed)) {
-          setIsDisabled(() => false);
-          setisCompleted(() => true);
-          onCompleted(files);
-        }
+    function completeIfAllFilesAreProcessed() {
+      if (files.every(file => file.processed)) {
+        setIsDisabled(() => false);
+        setisCompleted(() => true);
+        onCompleted(files);
       }
+    }
 
-      function onSuccess({ file, response }) {
-        setFiles(
-          setFile(file, fileItem => {
-            const file = fileItem;
-            file.isValid = true;
-            file.processed = true;
-            file.response = response;
-            file.status = types.SUCCESS;
-            return fileItem;
-          })
-        );
+    function onSuccess({ file, response }) {
+      setFiles(
+        setFile(file, fileItem => {
+          const file = fileItem;
+          file.isValid = true;
+          file.processed = true;
+          file.response = response;
+          file.status = types.SUCCESS;
+          return fileItem;
+        })
+      );
 
-        areAllFilesProccessed();
-      }
+      completeIfAllFilesAreProcessed();
+    }
 
-      function onError({ file, error }) {
-        setFiles(
-          setFile(file, fileItem => {
-            const file = fileItem;
-            file.status = types.ERROR;
-            file.error = error;
-            file.processed = true;
-            file.isValid = false;
-            file.isServerValid = false;
-            return fileItem;
-          })
-        );
+    function onError({ file, error }) {
+      setFiles(
+        setFile(file, fileItem => {
+          const file = fileItem;
+          file.status = types.ERROR;
+          file.error = error;
+          file.processed = true;
+          file.isValid = false;
+          file.isServerValid = false;
+          return fileItem;
+        })
+      );
 
-        areAllFilesProccessed();
-      }
+      completeIfAllFilesAreProcessed();
+    }
 
-      function onProgress({ file, percent }) {
-        setFiles(
-          setFile(file, fileItem => {
-            const file = fileItem;
-            file.progress = percent;
-            file.status = types.PROCESSING;
+    function onProgress({ file, percent }) {
+      setFiles(
+        setFile(file, fileItem => {
+          const file = fileItem;
+          file.progress = percent;
+          file.status = types.PROCESSING;
 
-            if (percent === 100) {
-              file.status = types.WAITINGFORSERVER;
-            }
-            return fileItem;
-          })
-        );
-      }
-
-      if (files.length && !isSameList(files, uploadingFileList) && !isDisabled) {
-        setUploadingFileList(() => files);
-        setIsDisabled(() => true);
-        setisCompleted(() => null);
-        onChange(files);
-        files.forEach(file => {
-          if (file.isValid && file.status !== types.SUCCESS) {
-            uploadToServer({ file, endpoint, onProgress, onSuccess, onError, headers });
+          if (percent === 100) {
+            file.status = types.WAITINGFORSERVER;
           }
-        });
-      }
-    },
-    [files, uploadingFileList, isDisabled, onCompleted, onChange, endpoint, headers]
-  );
+          return fileItem;
+        })
+      );
+    }
+
+    if (files.length && files.some(file => file.status === types.IDLE) && !isDisabled) {
+      console.log("starting file upload...");
+      setIsDisabled(() => true);
+      setisCompleted(() => null);
+      onChange(files);
+      files.forEach(file => {
+        if (file.status === types.IDLE) {
+          console.log(`starting to upload ${file.filename}...`);
+          // TODO!!!!! superagent has error when restart one: "can't merge these send calls"
+          // look in helpers.js:99... maybe because `file` is a pointer it is confused
+          // maybe because i did `file.request.abort` in this file. what is there other than 'abort'? file.request.retry?
+          uploadToServer({ file, endpoint, onProgress, onSuccess, onError, headers });
+        }
+      });
+    }
+  }, [files, uploadingFileList, isDisabled, onCompleted, onChange, endpoint, headers]);
 
   React.useEffect(() => {
     if (hasAutoUpload) {
@@ -176,5 +183,13 @@ export default function useProcessFiles({
     }
   }, [files, hasAutoUpload, upload]);
 
-  return { files, setFiles, isDisabled, isCompleted, upload, removeFile, cancelFile };
+  React.useEffect(() => {
+    if (
+      files.every(file => file.status === types.SUCCESS || file.status === types.CANCEL || file.status === types.ERROR)
+    ) {
+      setIsDisabled(false); // so can restart cancelled uploads, or add new files
+    }
+  }, [files, setIsDisabled]);
+
+  return { files, setFiles, isDisabled, isCompleted, upload, removeFile, restartFileUpload, cancelFile };
 }

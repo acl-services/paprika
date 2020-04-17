@@ -2,23 +2,29 @@ import React from "react";
 import PropTypes from "prop-types";
 import useI18n from "@paprika/l10n/lib/useI18n";
 import { containerStyles } from "./Uploader.styles";
-import { getFiles, getNumberWithUnits } from "./helpers";
+import { getFiles } from "./helpers";
 import types from "./types";
 import useDragAndDropEvents from "./useDragAndDropEvents";
 import useProcessFiles from "./useProcessFiles";
 import DefaultFileInput from "./components/DefaultFileInput";
 import CompactFileInput from "./components/CompactFileInput";
-import File from "./components/File";
+import FileList from "./components/FileList";
 
 const oneMebibyte = 1024 * 1024;
-export const LAYOUTS = {
-  DEFAULT: "default",
-  COMPACT: "compact",
-  // for custom layout, just pass in any children
-};
 
+// TODO: Retry a failed/cancelled upload
+// TODO: tooltip on cancel
+// TODO: tooltip on retry
+// TODO: rename "types" to "statuses" or something like that
 // TODO: clean up all the files! lots will be un-needed
+
+// TODO: is the "CompactFileInput" necessary?
+// TODO: is a "CustomDropZone" necessary? (they can wrap any content in it, but how would they 'click' to select a file? what if they put their own button inside it?)
+// TODO: is there some state that is a file that was uploaded in the past? (the one with the trashcan) or is that "remove"? eg, cancel an upload, then can remove it or restart
+
 // TODO: L10n
+// TODO: a11y
+// TODO: tests
 
 export const UploaderContext = React.createContext(null);
 
@@ -57,7 +63,7 @@ const propTypes = {
     the upload listeners. On false will only received files if they are drop exactly on the FileInput area.
   */
   isBodyDroppable: PropTypes.bool,
-  layout: PropTypes.string,
+
   /**
     Size in Mebibytes which is use for comparing each file that will be upload
     you can make use of Uploader.convertUnitsToMebibytes() for easily convert units to Mebibyes
@@ -92,7 +98,6 @@ const defaultProps = {
   hasAutoUpload: true,
   headers: [],
   isBodyDroppable: true,
-  layout: LAYOUTS.DEFAULT,
   maxFileSize: oneMebibyte * 10,
   onChange: () => {},
   onCompleted: () => {},
@@ -114,7 +119,6 @@ const Uploader = React.forwardRef((props, ref) => {
     okFileTypes,
     canChooseMultiple,
     hasAutoUpload,
-    layout,
     maxFileSize,
     onChange,
     onCompleted,
@@ -136,7 +140,16 @@ const Uploader = React.forwardRef((props, ref) => {
     },
   }));
 
-  const { files, isCompleted, isDisabled, removeFile, cancelFile, setFiles, upload } = useProcessFiles({
+  const {
+    files,
+    isCompleted,
+    isDisabled,
+    removeFile,
+    restartFileUpload,
+    cancelFile,
+    setFiles,
+    upload,
+  } = useProcessFiles({
     defaultIsDisabled,
     endpoint,
     hasAutoUpload,
@@ -187,6 +200,7 @@ const Uploader = React.forwardRef((props, ref) => {
     }
     return {
       FileInput,
+      refInput,
       files,
       handleChange,
       isCompleted,
@@ -194,6 +208,7 @@ const Uploader = React.forwardRef((props, ref) => {
       isDragLeave,
       isDraggingOver,
       removeFile,
+      restartFileUpload,
       cancelFile,
       upload,
     };
@@ -209,76 +224,22 @@ const Uploader = React.forwardRef((props, ref) => {
     label,
     okFileTypes,
     removeFile,
+    restartFileUpload,
     upload,
   ]);
 
-  // const childrenWithAddedProps = React.cloneElement(children, props);
-
-  // return <UploaderContext.Provider value={value}>{childrenWithAddedProps}</UploaderContext.Provider>;
-
-  function renderFileInput() {
-    if (layout === LAYOUTS.COMPACT) {
-      return (
-        <value.FileInput>
-          <CompactFileInput isDraggingOver={value.isDraggingOver} fileInputRef={refInput} />
-        </value.FileInput>
-      );
-    }
-
-    // custom
-    if (children) {
-      // TODO: what about clicking?
-      //          - wrap this with an 'onClick'
-      //          - add a file input at the end? that'd require more props (text)
-      //          - force them to include one button (or show warning), and override its 'onclick'?
-      // TODO: add `pointer: cursor`? ...or is it `cursor: pointer`?
-      return (
-        <value.FileInput>
-          <div>{children}</div>
-        </value.FileInput>
-      );
-    }
-
-    // default
-    return (
-      <value.FileInput>
-        <DefaultFileInput isDraggingOver={value.isDraggingOver} fileInputRef={refInput} />
-      </value.FileInput>
-    );
-  }
-
-  function renderFiles() {
-    if (!files.length) {
-      return null;
-    }
-
-    return files.map(file => {
-      let errorMessage = "";
-
-      if (!file.isSizeValid) {
-        errorMessage = `File must be smaller than ${getNumberWithUnits(maxFileSize)}`;
-      } else if (!file.isTypeValid) {
-        errorMessage = `File must be one of the following types: ${okFileTypes.join(", ")}`;
-      } else if (file.error) {
-        errorMessage = file.error.message;
-      }
-
-      return <File error={errorMessage} name={file.filename} progress={file.progress} size={file.filesize} />;
-    });
-  }
-
-  return (
-    <React.Fragment>
-      {renderFileInput()}
-      {renderFiles()}
-    </React.Fragment>
-  );
+  const childrenWithAddedProps = React.cloneElement(children, props);
+  return <UploaderContext.Provider value={value}>{childrenWithAddedProps}</UploaderContext.Provider>;
 });
 
 Uploader.defaultProps = defaultProps;
 Uploader.propTypes = propTypes;
 Uploader.displayName = "Uploader";
 Uploader.types = types;
+
+Uploader.DefaultDropZone = DefaultFileInput;
+Uploader.CompactDropZone = CompactFileInput;
+Uploader.FileList = FileList;
 
 // utility tool to help creating a maximum desirable size for files
 Uploader.convertUnitsToMebibytes = (MiB = 1) => oneMebibyte * MiB;
