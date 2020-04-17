@@ -39,13 +39,6 @@ const columnsSettingForFilterAndSort = [
   },
 ];
 
-const defaultColumnsForArrangement = [
-  { id: "goals", label: "Goals", isHidden: false, isDisabled: false },
-  { id: "name", label: "Name", isHidden: false, isDisabled: false },
-  { id: "status", label: "Status", isHidden: false, isDisabled: false },
-  { id: "country", label: "Country", isHidden: false, isDisabled: false },
-];
-
 const customRulesByType = {
   ...Filter.defaultRulesByType,
   SINGLE_SELECT: [Filter.rules.IS, Filter.rules.IS_NOT, Filter.rules.IS_EMPTY, Filter.rules.IS_NOT_EMPTY],
@@ -61,7 +54,15 @@ export default function App() {
     columns: columnsSettingForFilterAndSort,
     data,
   });
-  const { orderedColumns, ...handlers } = useColumnsArragment(defaultColumnsForArrangement);
+  const { orderedColumnIds, isColumnHidden, ...handlers } = useColumnsArragment([
+    "goals",
+    "name",
+    "status",
+    "country",
+    "joined",
+    "shareable",
+    "level",
+  ]);
 
   const subset = React.useMemo(() => {
     return sortedData.filter(item => !!filteredData.find(filteredItem => filteredItem.id === item.id));
@@ -118,21 +119,64 @@ export default function App() {
           })}
         </Sort>
 
-        <ColumnsArrangement columns={orderedColumns} {...handlers} />
+        <ColumnsArrangement orderedColumnIds={orderedColumnIds} {...handlers}>
+          <ColumnsArrangement.ColumnDefinition
+            id="goals"
+            label="Goals"
+            isDisabled={false}
+            isHidden={isColumnHidden("goals")}
+          />
+          <ColumnsArrangement.ColumnDefinition
+            id="name"
+            label="Name"
+            isDisabled={false}
+            isHidden={isColumnHidden("name")}
+          />
+          <ColumnsArrangement.ColumnDefinition
+            id="status"
+            label="Status"
+            isDisabled={false}
+            isHidden={isColumnHidden("status")}
+          />
+          <ColumnsArrangement.ColumnDefinition
+            id="country"
+            label="Country"
+            isDisabled={false}
+            isHidden={isColumnHidden("country")}
+          />
+          <ColumnsArrangement.ColumnDefinition
+            id="joined"
+            label="Joined"
+            isDisabled={false}
+            isHidden={isColumnHidden("joined")}
+          />
+          <ColumnsArrangement.ColumnDefinition
+            id="shareable"
+            label="Shareable"
+            isDisabled={false}
+            isHidden={isColumnHidden("shareable")}
+          />
+          <ColumnsArrangement.ColumnDefinition
+            id="level"
+            label="Level"
+            isDisabled={false}
+            isHidden={isColumnHidden("level")}
+          />
+        </ColumnsArrangement>
       </ActionBar>
 
       <table>
         <thead>
           <tr>
             <th>id</th>
-            {orderedColumns.map(column => (column.isHidden ? null : <th>{column.label}</th>))}
+            {orderedColumnIds.map(id => (isColumnHidden(id) ? null : <th key={id}>{id}</th>))}
           </tr>
         </thead>
         <tbody>
           {subset.map(item => (
             <tr>
               <td>{item.id}</td>
-              {orderedColumns.map(column => (column.isHidden ? null : <td>{item[column.id]}</td>))}
+              {orderedColumnIds.map(id => (isColumnHidden(id) ? null : <td key={id}>{item[id]}</td>))}
             </tr>
           ))}
         </tbody>

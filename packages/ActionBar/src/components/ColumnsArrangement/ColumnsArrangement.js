@@ -5,18 +5,14 @@ import Input from "@paprika/input";
 import Popover from "@paprika/popover";
 import Sortable from "@paprika/sortable";
 import useI18n from "@paprika/l10n/lib/useI18n";
+import extractChildren from "@paprika/helpers/lib/extractChildren";
 import ColumnManagingItem from "./ColumnsArrangementItem";
+import ColumnDefinition from "./ColumnDefinition";
 import * as sc from "./ColumnsArrangement.styles";
 
 const propTypes = {
-  columns: PropTypes.arrayOf(
-    PropTypes.shape({
-      label: PropTypes.string.isRequired,
-      id: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
-      isDisabled: PropTypes.bool,
-      isHidden: PropTypes.bool,
-    })
-  ).isRequired,
+  children: PropTypes.node.isRequired,
+  orderedColumnIds: PropTypes.arrayOf(PropTypes.string).isRequired,
   onChangeOrder: PropTypes.func.isRequired,
   onChangeVisibility: PropTypes.func.isRequired,
   onHideAll: PropTypes.func.isRequired,
@@ -35,20 +31,36 @@ function getLabelText(numberOfHiddenColumn, I18n) {
 }
 
 export default function ColumnsArrangement(props) {
-  const { onChangeOrder, onChangeVisibility, columns, onHideAll, onShowAll } = props;
+  const { children, onChangeOrder, onChangeVisibility, orderedColumnIds, onHideAll, onShowAll } = props;
   const I18n = useI18n();
   const [searchTerm, setSearchTerm] = React.useState("");
-  const hiddenColumns = columns.filter(column => column.isHidden);
+  const { "ColumnsArrangement.ColumnDefinition": extractedColumnDefinitions } = extractChildren(children, [
+    "ColumnsArrangement.ColumnDefinition",
+  ]);
+  const columns = extractedColumnDefinitions.reduce((columns, columnDefinition) => {
+    return {
+      ...columns,
+      [columnDefinition.props.id]: {
+        label: columnDefinition.props.label,
+        isHidden: columnDefinition.props.isHidden,
+        isDisabled: columnDefinition.props.isDisabled,
+      },
+    };
+  }, {});
 
-  const filteredColumns = searchTerm.length
-    ? columns.filter(column => column.label.match(new RegExp(searchTerm, "i")))
-    : columns;
+  const hiddenColumns = Object.keys(columns).filter(columnId => columns[columnId].isHidden);
+
+  const filteredColumnIds = searchTerm.length
+    ? orderedColumnIds.filter(id => columns[id].label.match(new RegExp(searchTerm, "i")))
+    : orderedColumnIds;
 
   const handleChangeOrder = ({ source, destination }) => {
     if (destination === null || source === destination) return;
 
-    const actualSource = columns.indexOf(columns.find(column => column.id === filteredColumns[source].id));
-    const actualDestination = columns.indexOf(columns.find(column => column.id === filteredColumns[destination].id));
+    const actualSource = orderedColumnIds.indexOf(orderedColumnIds.find(id => id === filteredColumnIds[source]));
+    const actualDestination = orderedColumnIds.indexOf(
+      orderedColumnIds.find(id => id === filteredColumnIds[destination])
+    );
 
     onChangeOrder({ source: actualSource, destination: actualDestination });
   };
@@ -76,18 +88,18 @@ export default function ColumnsArrangement(props) {
             placeholder={I18n.t("actionBar.search_placeholder")}
             hasClearButton
           />
-          {filteredColumns.length === 0 ? (
+          {filteredColumnIds.length === 0 ? (
             I18n.t("actionBar.no_results")
           ) : (
             <sc.Sortable onChange={handleChangeOrder} hasNumbers={false}>
-              {filteredColumns.map(column => (
-                <Sortable.Item key={column.id} sortId={column.id}>
+              {filteredColumnIds.map(id => (
+                <Sortable.Item key={id} sortId={id}>
                   <ColumnManagingItem
-                    key={column.id}
-                    id={column.id}
-                    label={column.label}
-                    isDisabled={column.isDisabled}
-                    isHidden={column.isHidden}
+                    key={id}
+                    id={id}
+                    label={columns[id].label}
+                    isDisabled={columns[id].isDisabled}
+                    isHidden={columns[id].isHidden}
                     onChangeVisibility={onChangeVisibility}
                   />
                 </Sortable.Item>
@@ -113,3 +125,4 @@ export default function ColumnsArrangement(props) {
 
 ColumnsArrangement.propTypes = propTypes;
 ColumnsArrangement.displayName = "ActionBar.ColumnsArrangement";
+ColumnsArrangement.ColumnDefinition = ColumnDefinition;

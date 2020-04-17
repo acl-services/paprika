@@ -1,47 +1,52 @@
 import React from "react";
 import produce from "immer";
 
-export default function useColumnsArragment(initialColumns) {
-  const [orderedColumns, setColumns] = React.useState(initialColumns);
+export default function useColumnsArragment(defaultOrder) {
+  const [order, setOrder] = React.useState(defaultOrder);
+  const [hiddenColumnIds, setHiddenColumnIds] = React.useState([]);
+
+  console.log(hiddenColumnIds);
+
+  const isColumnHidden = React.useCallback(
+    columnId => {
+      return hiddenColumnIds.indexOf(columnId) > -1;
+    },
+    [hiddenColumnIds]
+  );
 
   function handleChangeOrder({ source, destination }) {
-    const newColumns = produce(draftColumns => {
-      const movedChild = draftColumns.splice(source, 1);
-      draftColumns.splice(destination, 0, ...movedChild);
-    });
-    setColumns(newColumns);
+    setOrder(
+      produce(draftOrder => {
+        const movedChild = draftOrder.splice(source, 1);
+        draftOrder.splice(destination, 0, ...movedChild);
+      })
+    );
   }
 
-  const setIsHiddenForAll = isHidden =>
-    produce(draftColumns => {
-      draftColumns.forEach(column => {
-        // eslint-disable-next-line no-param-reassign
-        column.isHidden = isHidden;
-      });
-    });
-
   function handleHideAll() {
-    setColumns(setIsHiddenForAll(true));
+    setHiddenColumnIds([...order]);
   }
 
   function handleShowAll() {
-    setColumns(setIsHiddenForAll(false));
+    setHiddenColumnIds([]);
   }
 
   function handleChangeVisibility(columnId) {
-    const newColumns = produce(draftColumns => {
-      draftColumns.forEach(column => {
-        if (columnId === column.id) {
-          // eslint-disable-next-line no-param-reassign
-          column.isHidden = !column.isHidden;
+    setHiddenColumnIds(
+      produce(draft => {
+        const index = draft.indexOf(columnId);
+        if (index > -1) {
+          draft.splice(index, 1);
+        } else {
+          draft.push(columnId);
         }
-      });
-    });
-    setColumns(newColumns);
+      })
+    );
   }
 
   return {
-    orderedColumns,
+    orderedColumnIds: order,
+    isColumnHidden,
     onChangeVisibility: handleChangeVisibility,
     onShowAll: handleShowAll,
     onHideAll: handleHideAll,
