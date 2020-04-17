@@ -3,7 +3,7 @@ import Collapsible from "../src";
 import Variations from "./examples/Variations";
 
 export default {
-  title: " | Collapsible/Backyard/Tests",
+  title: " | Collapsible/Backyard",
   component: Collapsible,
 };
 
