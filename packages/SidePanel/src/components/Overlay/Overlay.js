@@ -10,7 +10,6 @@ const propTypes = {
    * Will accept the click event on outside of the sidepanel when losing focus
    * @boolean
    */
-  background: PropTypes.string,
   hasOutsideClick: PropTypes.bool,
   onClose: PropTypes.func,
   /** Control the z position of the sidepanel overlay */
@@ -18,7 +17,6 @@ const propTypes = {
 };
 
 const defaultProps = {
-  background: "#000",
   hasOutsideClick: true,
   onClose: null,
   zIndex: zValue(6),
