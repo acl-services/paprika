@@ -25,4 +25,4 @@ export function App() {
   );
 }
 
-storiesOf("DataGrid / regular", module).add("One column", () => <App />);
+storiesOf("Data Grid / regular", module).add("One column", () => <App />);

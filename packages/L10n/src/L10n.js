@@ -4,8 +4,10 @@ import { getI18nObject } from "./useI18n";
 import L10nContext from "./L10nContext";
 
 const propTypes = {
+  /** Sets the preferred language */
   locale: PropTypes.string,
   locales: PropTypes.object /* eslint-disable-line react/forbid-prop-types */,
+  /** Children of the L10n */
   children: PropTypes.node.isRequired,
 };
 

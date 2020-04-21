@@ -20,12 +20,7 @@ import Title from "./components/Title";
 
 const propTypes = {
   /**
-    An array of javascript objects holding the data structure for the ListBoxBrowser
-    The object shape must have at least a string label property and an array options property in one of the objects.
-    Also can hold any other kind of data for your own use.
-    ex.
-
-    [{ label: "One" }, { label: "Two", options: [{ label: "Three" }] }]
+    An array of javascript objects holding the data structure for the ListBoxBrowser. The object shape must have at least a string label property and an array options property in one of the objects. Also can hold any other kind of data for your own use.
   */
   data: PropTypes.any.isRequired, // eslint-disable-line
 
@@ -66,33 +61,15 @@ const propTypes = {
   */
   hasError: PropTypes.bool,
   /**
-    When declaring the array options empty, this will be executed to retrieve the
-    data, useful if you want to do a lazy load.
-
-    ex.
-    <ListBoxBrowser data={[{ label: "lazy", options: [] }]} onFetch={(option) => { logic }}>
-      <ListBoxBrowser.Browser isLoading={isBrowserLoading} />
-    </ListBoxBrowser>
+    When declaring the array options empty, this will be executed to retrieve the data, useful if you want to do a lazy load.
   */
   onFetch: PropTypes.func,
   /**
-    A function that sets an option selected returning true or false
-    you can use to compare your data structure and decide if the option is
-    initially selected or not.
-
-    const data = [{ key: 1, label: "one", options: [...] }, { key: 2, label: "two" }, { key: 3, label: "three" }]
-
-    ex.
-    <ListBoxBrowser data={data} defaultSelectedOptions={(option) => {
-      return option.key === 2 or option.key === 3
-    }} />
+    A function that sets an option selected returning true or false you can use to compare your data structure and decide if the option is initially selected or not.
   */
   defaultSelectedOptions: PropTypes.func,
   /**
-    A function that sets the initial view for the right columns (Browser) of the ListBoxBrowser
-    the option selected to be the initial view should have options to be valid,
-    by default the ListBoxBrowser picked the first option which has options to be the
-    initial value.
+    A function that sets the initial view for the right columns (Browser) of the ListBoxBrowser the option selected to be the initial view should have options to be valid, by default the ListBoxBrowser picked the first option which has options to be the initial value.
   */
   defaultSelectedView: PropTypes.func,
   /** 

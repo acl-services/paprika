@@ -6,11 +6,17 @@ import { tabStyles } from "./Tab.styles";
 
 const propTypes = {
   children: PropTypes.node,
+  /** Sets class name */
   className: PropTypes.string,
+  /** Controls if the option is selected or not */
   isSelected: PropTypes.bool,
+  /** If the tab is disabled  */
   isDisabled: PropTypes.bool,
+  /** Sets a url the tab goes to */
   href: PropTypes.string,
+  /** Callback to fire on click */
   onClick: PropTypes.func,
+  /** Callback to fire when down arrow key is pressed */
   onKeyDownArrows: PropTypes.func,
 };
 

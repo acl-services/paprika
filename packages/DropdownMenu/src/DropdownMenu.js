@@ -17,6 +17,7 @@ const propTypes = {
   /** Children should consist of <Dropdown.Item /> */
   children: PropTypes.node.isRequired,
 
+  /** Sets the alignment of the dropdown menu based on the edge of the trigger button */
   edge: PropTypes.oneOf([AlignTypes.LEFT, AlignTypes.RIGHT, null]),
 };
 

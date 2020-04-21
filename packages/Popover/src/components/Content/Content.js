@@ -8,6 +8,7 @@ import { ContentStyled } from "./Content.styles";
 
 const propTypes = {
   children: PropTypes.node,
+  /** Callback to fire to indicate the element loses focus */
   onBlur: PropTypes.func,
 };
 

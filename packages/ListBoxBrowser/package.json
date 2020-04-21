@@ -1,7 +1,7 @@
 {
   "name": "@paprika/listbox-browser",
   "version": "0.1.28",
-  "description": "ListBox Browser component lets you select options in a multi level environment",
+  "description": "ListBox Browser component is a two column layout that allows users to select one or multiple options. It is similar to the experience of browsing a file manager in any operating system.",
   "author": "@paprika",
   "main": "lib/index.js",
   "license": "MIT",
@@ -29,5 +29,11 @@
     "react": "^16.8.4",
     "react-dom": "^16.8.4",
     "styled-components": "^4.2.0"
+  },
+  "paprikaDocs": {
+    "subComponents": [
+      "CustomListBox",
+      "Title"
+    ]
   }
 }

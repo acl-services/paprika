@@ -4,7 +4,7 @@
 
 ## Description
 
-ListBox Browser component lets you select options in a multi level environment
+ListBox Browser component is a two column layout that allows users to select one or multiple options. It is similar to the experience of browsing a file manager in any operating system.
 
 ## Installation
 
@@ -22,89 +22,53 @@ npm install @paprika/listbox-browser
 
 ### ListBoxBrowser
 
-| Prop | Type | required | default | Description                                                                      |
-| ---- | ---- | -------- | ------- | -------------------------------------------------------------------------------- |
-| data | any  | true     | -       | An array of javascript objects holding the data structure for the ListBoxBrowser |
+| Prop                   | Type   | required | default  | Description                                                                                                                                                                                                                                               |
+| ---------------------- | ------ | -------- | -------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| data                   | any    | true     | -        | An array of javascript objects holding the data structure for the ListBoxBrowser. The object shape must have at least a string label property and an array options property in one of the objects. Also can hold any other kind of data for your own use. |
+| isMulti                | bool   | false    | true     | Indicates if the user can select multiple options                                                                                                                                                                                                         |
+| height                 | number | false    | 220      | Set the height for the ListBoxBrowser                                                                                                                                                                                                                     |
+| onChange               | func   | false    | () => {} | Callback function receiving an array of selected options by the component                                                                                                                                                                                 |
+| isParentSelectable     | bool   | false    | null     | Allows the user to select the parent options                                                                                                                                                                                                              |
+| rootTitle              | node   | false    | ""       | Content title for the left column                                                                                                                                                                                                                         |
+| browserTitle           | node   | false    | ""       | Content title for the right column                                                                                                                                                                                                                        |
+| children               | node   | false    | null     | You can pass <ListBoxBrowser.OptionSelected /> as a children                                                                                                                                                                                              |
+| hasBreadcrumb          | bool   | false    | true     | Indicates if the right column should display a breadcrumb                                                                                                                                                                                                 |
+| hasError               | bool   | false    | false    | Set a border red color around the component indicating that has an error                                                                                                                                                                                  |
+| onFetch                | func   | false    | null     | When declaring the array options empty, this will be executed to retrieve the data, useful if you want to do a lazy load.                                                                                                                                 |
+| defaultSelectedOptions | func   | false    | () => {  |
 
-    The object shape must have at least a string label property and an array options property in one of the objects.
-    Also can hold any other kind of data for your own use.
-    ex.
-
-    [{ label: "One" }, { label: "Two", options: [{ label: "Three" }] }]|
-
-|isMulti|bool|false|true| Indicates if the user can select multiple options|
-|height|number|false|220| Set the height for the ListBoxBrowser|
-|onChange|func|false|() => {}| Callback function receiving an array of selected options by the component|
-|isParentSelectable|bool|false|null| Allows the user to select the parent options|
-|rootTitle|node|false|""| Content title for the left column|
-|browserTitle|node|false|""| Content title for the right column|
-|children|node|false|null| You can pass <ListBoxBrowser.OptionSelected /> as a children|
-|hasBreadcrumb|bool|false|true| Indicates if the right column should display a breadcrumb|
-|hasError|bool|false|false| Set a border red color around the component indicating that has an error|
-|onFetch|func|false|null| When declaring the array options empty, this will be executed to retrieve the
-data, useful if you want to do a lazy load.
-
-    ex.
-    <ListBoxBrowser data={[{ label: "lazy", options: [] }]} onFetch={(option) => { logic }}>
-      <ListBoxBrowser.Browser isLoading={isBrowserLoading} />
-    </ListBoxBrowser>|
-
-|defaultSelectedOptions|func|false|() => {
 return false;
-}| A function that sets an option selected returning true or false
-you can use to compare your data structure and decide if the option is
-initially selected or not.
-
-    const data = [{ key: 1, label: "one", options: [...] }, { key: 2, label: "two" }, { key: 3, label: "three" }]
-
-    ex.
-    <ListBoxBrowser data={data} defaultSelectedOptions={(option) => {
-      return option.key === 2 or option.key === 3
-    }} />|
-
-|defaultSelectedView|func|false|null| A function that sets the initial view for the right columns (Browser) of the ListBoxBrowser
-the option selected to be the initial view should have options to be valid,
-by default the ListBoxBrowser picked the first option which has options to be the
-initial value.|
+}| A function that sets an option selected returning true or false you can use to compare your data structure and decide if the option is initially selected or not.|
+|defaultSelectedView|func|false|null| A function that sets the initial view for the right columns (Browser) of the ListBoxBrowser the option selected to be the initial view should have options to be valid, by default the ListBoxBrowser picked the first option which has options to be the initial value.|
 |hasLeftColumn|bool|false|true| In the case you want to use the ListBoxBrowser with one column you can hide the root column|
+
+### CustomListBox
+
+| Prop            | Type    | required | default  | Description |
+| --------------- | ------- | -------- | -------- | ----------- |
+| hasOnUp         | bool    | false    | false    |             |
+| id              | union   | false    | "root"   |             |
+| isLoading       | bool    | false    | false    |             |
+| onChange        | func    | true     | -        |             |
+| onClickNavigate | func    | true     | -        |             |
+| onUp            | func    | false    | () => {} |             |
+| options         | arrayOf | true     | -        |             |
+
+### Title
+
+| Prop              | Type    | required | default | Description |
+| ----------------- | ------- | -------- | ------- | ----------- |
+| rootTitle         | node    | true     | -       |             |
+| browserTitle      | node    | true     | -       |             |
+| data              | arrayOf | false    | -       |             |
+| browserKey        | union   | true     | -       |             |
+| onClickBreadcrumb | func    | true     | -       |             |
+| hasLeftColumn     | bool    | true     | -       |             |
 
 ## Usage
 
 <!-- autogenerated don't modify -->
 <!-- content -->
-
-# ListBoxBrowser
-
-A two column layout that allows users to select one or multiple options. It is similar to the experience of browsing a file manager in any operating system.
-
-## Installation
-
-```sh
-$ npm install @paprika/listbox-browser
-```
-
-or
-
-```sh
-$ yarn add @paprika/listbox-browser
-```
-
-## Props
-
-```
-browserTitle
-children
-data
-defaultSelectedOptions
-defaultSelectedView
-hasBreadcrumb
-hasError
-height
-isMulti
-isParentSelectable
-onChange
-rootTitle
-```
 
 ## Usage
 

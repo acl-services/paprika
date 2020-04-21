@@ -7,9 +7,13 @@ import Tab from "./components/Tab/Tab";
 import List from "./components/List/List";
 
 const propTypes = {
+  /** Determine the styling of the tab */
   kind: PropTypes.oneOf(["primary", "secondary"]),
+  /** Children of the Tab */
   children: PropTypes.node.isRequired,
+  /** Sets what tab index is active by default */
   defaultIndex: PropTypes.number,
+  /** If the tab is disabled */
   isDisabled: PropTypes.bool,
 };
 

@@ -1,7 +1,7 @@
 {
   "name": "@paprika/checkbox",
   "version": "0.2.10",
-  "description": "Checkbox component",
+  "description": "Checkbox component displays a checkbox and label text beside it. When clicked it displays a checkmark. It can also have an indeterminate state which can be used to group checkboxes.",
   "author": "@paprika",
   "license": "MIT",
   "main": "lib/index.js",

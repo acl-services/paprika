@@ -4,6 +4,7 @@ import TabsContext from "../../TabsContext";
 import { tabsListStyles } from "./List.styles";
 
 const propTypes = {
+  /** Descriptive a11y text for assistive technologies. By default, text from children node will be used. */
   a11yText: PropTypes.string,
   children: PropTypes.node.isRequired,
 };

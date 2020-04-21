@@ -11,8 +11,11 @@ import { itemStyles, itemIndexStyles, itemHandleStyles, itemBodyStyles, itemClos
 
 const propTypes = {
   children: PropTypes.node.isRequired,
+  /** Indicator to identify the number sequence  */
   hasNumbers: PropTypes.bool.isRequired,
+  /** Numerical representation of an item */
   index: PropTypes.number.isRequired,
+  /** Callback to fire when deleting an item */
   onRemove: PropTypes.func,
 };
 

@@ -1,7 +1,7 @@
 {
   "name": "@paprika/textarea",
   "version": "0.2.13",
-  "description": "Textarea component",
+  "description": "Textarea component is a multiline text input",
   "author": "@paprika",
   "main": "lib/index.js",
   "license": "MIT",

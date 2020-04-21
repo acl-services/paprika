@@ -1,7 +1,7 @@
 {
   "name": "@paprika/form-element",
   "version": "0.3.13",
-  "description": "FormElement component",
+  "description": "FormElement component displays a user input field",
   "main": "lib/index.js",
   "author": "@paprika",
   "license": "MIT",
@@ -29,5 +29,14 @@
     "react": "^16.8.4",
     "react-dom": "^16.8.4",
     "styled-components": "^4.2.0"
+  },
+  "paprikaDocs": {
+    "subComponents": [
+      "Content",
+      "Description",
+      "Help",
+      "Instructions",
+      "Label"
+    ]
   }
 }

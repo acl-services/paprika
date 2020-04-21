@@ -1,7 +1,7 @@
 {
   "name": "@paprika/heading",
   "version": "0.3.13",
-  "description": "Heading component",
+  "description": "Heading component provides different level of headings with various stylings such as divides, underline, light or hidden.",
   "author": "@paprika",
   "license": "MIT",
   "main": "lib/index.js",
