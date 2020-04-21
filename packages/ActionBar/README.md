@@ -137,17 +137,29 @@ return (
 You can also use the hook `useColumnsArrangement`
 
 ```js
-const { orderedColumns, handleChangeVisibility, handleShowAll, handleHideAll, handleChangeOrder } = useColumnsArragment(
-  defaultColumnsForArrangement
-);
+const {
+  orderedColumnIds,
+  onChangeVisibility,
+  onShowAll,
+  onHideAll,
+  onChangeOrder,
+  isColumnHidden,
+} = useColumnsArragment(defaultColumnsForArrangement);
 
 return (
   <ColumnsArrangement
-    columns={orderedColumns}
-    onChangeOrder={handleChangeOrder}
-    onHideAll={handleHideAll}
-    onShowAll={handleShowAll}
-    onChangeVisibility={handleChangeVisibility}
-  />
+    orderedColumnIds={orderedColumnIds}
+    onChangeOrder={onChangeOrder}
+    onHideAll={onHideAll}
+    onShowAll={onShowAll}
+    onChangeVisibility={onChangeVisibility}
+  >
+    <ColumnsArrangement.ColumnDefinition
+      id="columnId"
+      label="Column label"
+      isDisabled={false}
+      isHidden={isColumnHidden("columnId")}
+    />
+  </ColumnsArrangement>
 );
 ```
