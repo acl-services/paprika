@@ -16,6 +16,7 @@ const showcaseParameters = Object.assign({}, defaultParameters, {
     selectedPanel: "storybook/knobs/panel",
     panelPosition: "right",
   },
+  viewMode: "story",
 });
 
 export const showcase = Showcase;
