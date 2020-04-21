@@ -1,6 +1,8 @@
 import React from "react";
 import { storiesOf } from "@storybook/react";
+import { Story, Rule, Tagline } from "storybook/assets/styles/common.styles";
 import Button from "@paprika/button";
+import Heading from "@paprika/heading";
 import SidePanel from "../src";
 import SidePanelPushContentStory from "./examples/SidePanelPushContentStory";
 import { Nav, TextLine } from "./helpers";
@@ -152,6 +154,23 @@ const SidePanelStoryGroup = () => {
     </React.Fragment>
   );
 };
+
+const Example = () => (
+  <Story>
+    <Heading level={1} displayLevel={2} isLight>
+      <code>&lt;SidePanel /&gt;</code>
+    </Heading>
+    <Tagline>
+      <b>Showcase</b> – Interact with the props API
+    </Tagline>
+    <Rule />
+    <SidePanel />
+  </Story>
+);
+
+storiesOf("SidePanel", module).add("Showcase", () => {
+  return <Example />;
+});
 
 storiesOf("SidePanel", module).add("Basic", () => <SidePanelStory />);
 storiesOf("SidePanel", module).add("Basic slide left", () => <SidePanelStory isSlideFromLeft />);

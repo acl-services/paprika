@@ -11,10 +11,10 @@ const propTypes = {
   /** Additional description for "Show more" link. Should be a "topic" that will be appended to "Show more about [topic]". */
   a11yText: PropTypes.string,
 
-  /* Full content to be revealed. Can include HTML markup, but should not include dynamic React nodes. */
+  /** Full content to be revealed. Can include HTML markup, but should not include dynamic React nodes. */
   children: PropTypes.node.isRequired,
 
-  /* Length, in characters, of truncated preview content. */
+  /** Length, in characters, of truncated preview content. */
   collapsedLength: PropTypes.number,
 };
 

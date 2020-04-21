@@ -8,6 +8,7 @@ import { OnChangeContext } from "../../store/OnChangeProvider";
 import { ContentStyled } from "./Content.styles";
 
 const propTypes = {
+  /** Body content of the content. */
   children: PropTypes.node.isRequired,
 };
 const defaultProps = {};

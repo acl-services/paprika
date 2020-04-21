@@ -1,7 +1,7 @@
 {
   "name": "@paprika/sidepanel",
   "version": "0.3.15",
-  "description": "SidePanel component",
+  "description": "The SidePanel component provides a view that slides in from one side so the user can maintain context of their main task while they work on a sub task.",
   "author": "@paprika",
   "main": "lib/index.js",
   "license": "MIT",

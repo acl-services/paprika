@@ -1,11 +1,12 @@
 import React from "react";
 import { storiesOf } from "@storybook/react";
 import { withKnobs, boolean, select } from "@storybook/addon-knobs";
+import { Story, Rule, Tagline, repeat } from "storybook/assets/styles/common.styles";
 import styled from "styled-components";
 import Button from "@paprika/button";
 import SidePanel from "@paprika/sidepanel";
 import { ShirtSizes } from "@paprika/helpers/lib/customPropTypes";
-import { repeat } from "storybook/assets/styles/common.styles";
+import Heading from "@paprika/heading";
 import Modal from "../src";
 
 /* Long block to test body scroll locking */
@@ -41,6 +42,23 @@ const ModalStory = ({ children }) => {
     </LongBlock>
   );
 };
+
+const Example = () => (
+  <Story>
+    <Heading level={1} displayLevel={2} isLight>
+      <code>&lt;Modal /&gt;</code>
+    </Heading>
+    <Tagline>
+      <b>Showcase</b> – Interact with the props API
+    </Tagline>
+    <Rule />
+    <Modal />
+  </Story>
+);
+
+storiesOf("Modal", module).add("Showcase", () => {
+  return <Example />;
+});
 
 storiesOf("Modal", module)
   .addDecorator(withKnobs)

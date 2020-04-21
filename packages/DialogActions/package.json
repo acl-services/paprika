@@ -1,7 +1,7 @@
 {
   "name": "@paprika/dialog-actions",
   "version": "0.1.7",
-  "description": "DialogActions component",
+  "description": "The DialogActions component renders three buttons, Save (hasConfirm), Don't Save (hasDecline) and Cancel.",
   "author": "@paprika",
   "license": "MIT",
   "main": "lib/index.js",

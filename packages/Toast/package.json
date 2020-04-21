@@ -1,7 +1,7 @@
 {
   "name": "@paprika/toast",
   "version": "0.2.22",
-  "description": "Toast component",
+  "description": "Toast component is a controlled or uncontrolled component that provides a easy way to commmunicate to users regarding success, warning, info, and error messages.",
   "main": "lib/index.js",
   "author": "@paprika",
   "license": "MIT",
