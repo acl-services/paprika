@@ -68,8 +68,9 @@ function Dialog(props) {
         isCompact={isCompact}
         isOpen={isOpen}
         kind={kind}
-        tabIndex="0"
         ref={refSidePanelContent}
+        role="region"
+        tabIndex="0"
       >
         {children}
       </sc.DialogContent>

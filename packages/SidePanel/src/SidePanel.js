@@ -76,7 +76,7 @@ const defaultProps = {
 const PUSH_REF_TRANSITION_STYLE = "margin-right 0.2s ease";
 const PUSH_REF_TRANSITION_DELAY_STYLE = "0.1s";
 
-function SidePanel(props) {
+export default function SidePanel(props) {
   // Props
   const {
     getPushContentElement,
@@ -228,9 +228,9 @@ function SidePanel(props) {
   );
 }
 
-SidePanel.displayName = "SidePanel";
 SidePanel.propTypes = propTypes;
 SidePanel.defaultProps = defaultProps;
+SidePanel.displayName = "SidePanel";
 
 SidePanel.FocusLock = FocusLock;
 SidePanel.Footer = Footer;
@@ -238,5 +238,3 @@ SidePanel.Group = Group;
 SidePanel.Header = Header;
 SidePanel.Overlay = Overlay;
 SidePanel.Trigger = Trigger;
-
-export default SidePanel;

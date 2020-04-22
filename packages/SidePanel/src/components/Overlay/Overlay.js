@@ -22,6 +22,7 @@ const defaultProps = {
 export default function Overlay(props) {
   const { onClose, hasOutsideClick, ...moreProps } = props;
   const I18n = useI18n();
+
   const handleClick = () => {
     if (hasOutsideClick) {
       onClose();
