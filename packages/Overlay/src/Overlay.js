@@ -5,8 +5,7 @@ import FocusLock from "react-focus-lock";
 import LockBodyScroll from "@paprika/helpers/lib/components/LockBodyScroll";
 import Portal from "@paprika/helpers/lib/components/Portal";
 import tokens from "@paprika/tokens";
-import Wrapper from "./Wrapper";
-import Backdrop from "./Backdrop";
+import * as sc from "./Overlay.styles";
 
 const propTypes = {
   backdropClassName: PropTypes.string,
@@ -43,6 +42,9 @@ const propTypes = {
 
     sideCar: PropTypes.any,
   }),
+
+  /** z-index of the Overlay wrapper */
+  zIndex: PropTypes.number,
 };
 
 const defaultProps = {
@@ -53,6 +55,7 @@ const defaultProps = {
   onAfterOpen: () => {},
   onAfterClose: () => {},
   focusLockOptions: {},
+  zIndex: null,
 };
 
 const Overlay = props => {
@@ -101,9 +104,9 @@ const Overlay = props => {
           onExited={onAfterClose}
         >
           {state => (
-            <Wrapper {...moreProps} onKeyDown={handleEscKey}>
+            <sc.Overlay {...moreProps} data-pka-anchor="overlay" onKeyDown={handleEscKey}>
               {hasBackdrop && (
-                <Backdrop
+                <sc.Backdrop
                   className={backdropClassName}
                   state={state}
                   onClick={onClose}
@@ -113,7 +116,7 @@ const Overlay = props => {
               <FocusLock disabled={state === "exiting" || state === "exited"} {..._focusLockOptions}>
                 {children && children(state)}
               </FocusLock>
-            </Wrapper>
+            </sc.Overlay>
           )}
         </Transition>
       </Portal>
