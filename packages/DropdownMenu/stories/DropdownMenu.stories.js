@@ -10,6 +10,7 @@ import DropdownMenuDisabledExample from "./examples/DropdownMenuDisabledExample"
 import DropdownMenuDividersExample from "./examples/DropdownMenuDividersExample";
 import DropdownMenuLongestExample from "./examples/DropdownMenuLongestExample";
 import DropdownMenuTriggerExample from "./examples/DropdownMenuTriggerExample";
+import ZIndexExample from "./examples/ZIndex";
 
 storiesOf("DropdownMenu", module)
   .addDecorator(withKnobs)
@@ -19,35 +20,40 @@ storiesOf("DropdownMenu", module)
       <DropdownMenuExample />
     </DropdownMenuStory>
   ))
-  .add("DropdownMenu with locale", () => (
+  .add("with locale", () => (
     <DropdownMenuStory>
       <L10n locale="zh">
         <DropdownMenuExample />
       </L10n>
     </DropdownMenuStory>
   ))
-  .add("DropdownMenu with multiple confirmation modals", () => (
+  .add("with multiple confirmation modals", () => (
     <DropdownMenuStory>
       <DropdownMenuMultiConfirmationExample />
     </DropdownMenuStory>
   ))
-  .add("DropdownMenu with disabled items", () => (
+  .add("with disabled items", () => (
     <DropdownMenuStory>
       <DropdownMenuDisabledExample />
     </DropdownMenuStory>
   ))
-  .add("DropdownMenu with dividers", () => (
+  .add("with dividers", () => (
     <DropdownMenuStory>
       <DropdownMenuDividersExample />
     </DropdownMenuStory>
   ))
-  .add("DropdownMenu with longest story", () => (
+  .add("with longest story", () => (
     <DropdownMenuStory>
       <DropdownMenuLongestExample />
     </DropdownMenuStory>
   ))
-  .add("DropdownMenu with trigger examples", () => (
+  .add("with trigger examples", () => (
     <DropdownMenuStory>
       <DropdownMenuTriggerExample />
+    </DropdownMenuStory>
+  ))
+  .add("Z Index", () => (
+    <DropdownMenuStory>
+      <ZIndexExample />
     </DropdownMenuStory>
   ));
