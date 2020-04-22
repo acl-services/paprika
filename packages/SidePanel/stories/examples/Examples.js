@@ -190,3 +190,44 @@ export const PushContentSidePanel = () => {
     </React.Fragment>
   );
 };
+
+export const ZIndexSidePanel = () => {
+  const [isOpen, setIsOpen] = React.useState(true);
+  const toggle = () => {
+    setIsOpen(state => !state);
+  };
+
+  return (
+    <React.Fragment>
+      <div
+        css={`
+          padding: 24px;
+        `}
+      >
+        <SidePanel isOpen={isOpen} onClose={toggle} zIndex={99}>
+          <SidePanel.Overlay zIndex={100} />
+          <SidePanel.Trigger onClick={toggle}>Open SidePanel</SidePanel.Trigger>
+          <SidePanel.Header>Header</SidePanel.Header>
+          <p>
+            The <code>zIndex</code> prop of this <code>&lt;SidePanel&gt;</code> is also <code>99</code>.
+          </p>
+          <p>
+            Because the content is renderered as a <code>&lt;Portal&gt;</code> at the end of the DOM, it will be painted
+            on top.
+          </p>
+        </SidePanel>
+        <div
+          css={`
+            position: relative;
+            z-index: 99;
+          `}
+        >
+          <p>
+            The <code>z-index</code> of this content is <code>99</code>.
+          </p>
+          <TextLine repeat={100} />
+        </div>
+      </div>
+    </React.Fragment>
+  );
+};
