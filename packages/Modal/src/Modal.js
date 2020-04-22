@@ -7,6 +7,9 @@ import FocusLock from "./components/FocusLock";
 import * as styled from "./Modal.styles";
 
 const propTypes = {
+  /* Description of the Modal dialog for assistive technology */
+  a11yText: PropTypes.string,
+
   /** The content for the Modal. */
   children: PropTypes.node.isRequired,
 
@@ -24,20 +27,18 @@ const propTypes = {
 
   /* Control the size (max-width) of the modal */
   size: PropTypes.oneOf(ShirtSizes.DEFAULT),
-
-  a11yText: PropTypes.string,
 };
 
 const defaultProps = {
-  onAfterClose: () => {},
-  onClose: () => {},
-  onAfterOpen: () => {},
-  size: ShirtSizes.MEDIUM,
   a11yText: null,
+  onAfterClose: () => {},
+  onAfterOpen: () => {},
+  onClose: () => {},
+  size: ShirtSizes.MEDIUM,
 };
 
 const Modal = props => {
-  const { isOpen, onClose, onAfterClose, onAfterOpen, size, a11yText, ...moreProps } = props;
+  const { a11yText, isOpen, onClose, onAfterClose, onAfterOpen, size, ...moreProps } = props;
 
   const {
     "Modal.FocusLock": focusLockExtracted,

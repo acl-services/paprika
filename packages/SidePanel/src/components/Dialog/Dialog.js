@@ -3,6 +3,7 @@ import PropTypes from "prop-types";
 import * as sc from "./Dialog.styles";
 
 const propTypes = {
+  a11yText: PropTypes.string,
   children: PropTypes.node.isRequired,
   footer: PropTypes.node,
   getPushContentElement: PropTypes.func,
@@ -22,6 +23,7 @@ const propTypes = {
 };
 
 const defaultProps = {
+  a11yText: null,
   footer: null,
   getPushContentElement: () => {},
   groupOffsetY: 0,
@@ -38,6 +40,7 @@ function Dialog(props) {
   const refSidePanel = React.useRef(null);
 
   const {
+    a11yText,
     children,
     footer,
     getPushContentElement,
@@ -82,6 +85,7 @@ function Dialog(props) {
   return (
     <sc.Dialog
       aria-modal={isInline ? null : "true"}
+      aria-label={a11yText}
       hasPushedElement={!!getPushContentElement}
       groupOffsetY={groupOffsetY}
       kind={kind}

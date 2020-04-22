@@ -7,7 +7,10 @@ import FocusLock from "./components/FocusLock";
 import * as sc from "./Takeover.styles";
 
 const propTypes = {
-  /** The content for the Takeover. */
+  /* Description of the Takeover dialog for assistive technology */
+  a11yText: PropTypes.string,
+
+  /** The content for the Takeover */
   children: PropTypes.node.isRequired,
 
   /** Control the visibility of the Takeover */
@@ -27,6 +30,7 @@ const propTypes = {
 };
 
 const defaultProps = {
+  a11yText: null,
   onClose: () => {},
   onAfterClose: () => {},
   onAfterOpen: () => {},
@@ -34,7 +38,7 @@ const defaultProps = {
 };
 
 const Takeover = props => {
-  const { isOpen, onClose, onAfterClose, onAfterOpen, zIndex, ...moreProps } = props;
+  const { a11yText, isOpen, onClose, onAfterClose, onAfterOpen, zIndex, ...moreProps } = props;
 
   const {
     "Takeover.FocusLock": focusLockExtracted,
@@ -57,6 +61,8 @@ const Takeover = props => {
     ...(focusLockProps || {}),
   };
 
+  const ariaLabel = a11yText || (headerExtracted ? headerExtracted.props.children : null);
+
   return (
     <Overlay
       hasBackdrop={false}
@@ -69,7 +75,7 @@ const Takeover = props => {
       focusLockOptions={focusLockOptions}
     >
       {state => (
-        <sc.Wrapper state={state} role="dialog" data-pka-anchor="takeover">
+        <sc.Wrapper state={state} role="dialog" aria-label={ariaLabel} aria-modal="true" data-pka-anchor="takeover">
           {headerExtracted && <sc.Header {...headerExtracted.props} onClose={onClose} />}
           {contentExtracted && (
             <sc.ContentWrapper role="region" tabIndex="0">

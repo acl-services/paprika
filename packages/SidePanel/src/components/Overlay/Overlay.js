@@ -11,12 +11,13 @@ const propTypes = {
   onClose: PropTypes.func,
 
   /** The z-index of the SidePanel Overlay */
-  zIndex: PropTypes.number.isRequired,
+  zIndex: PropTypes.number,
 };
 
 const defaultProps = {
   hasOutsideClick: true,
   onClose: null,
+  zIndex: null,
 };
 
 export default function Overlay(props) {
@@ -32,6 +33,7 @@ export default function Overlay(props) {
   const overlayProps = {
     a11yText: I18n.t("close"),
     ...moreProps,
+    children: "",
     "data-pka-anchor": "side-panel.overlay",
     onClick: handleClick,
   };

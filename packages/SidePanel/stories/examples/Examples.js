@@ -14,6 +14,7 @@ export const BasicSidePanel = props => {
     <React.Fragment>
       <Nav />
       <SidePanel
+        a11yText="SidePanel View"
         disableBodyOverflow={disableBodyOverflow}
         isOpen={isOpen}
         onClose={toggle}

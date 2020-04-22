@@ -15,6 +15,9 @@ import { extractChildren } from "./helpers";
 import { useOffsetScroll } from "./hooks";
 
 const propTypes = {
+  /* Description of the SidePanel dialog for assistive technology */
+  a11yText: PropTypes.string,
+
   /** The content for the SidePanel. */
   children: PropTypes.node.isRequired,
 
@@ -59,6 +62,7 @@ const propTypes = {
 };
 
 const defaultProps = {
+  a11yText: null,
   getPushContentElement: null,
   groupOffsetY: 0,
   isCompact: false,
@@ -79,6 +83,7 @@ const PUSH_REF_TRANSITION_DELAY_STYLE = "0.1s";
 export default function SidePanel(props) {
   // Props
   const {
+    a11yText,
     getPushContentElement,
     groupOffsetY,
     isCompact,
@@ -171,11 +176,14 @@ export default function SidePanel(props) {
     }
   }
 
+  const ariaLabel = a11yText || (headerExtracted ? headerExtracted.props.children : null);
+
   let sidePanel = null;
 
   if (isVisible) {
     const dialog = (
       <Dialog
+        a11yText={ariaLabel}
         data-pka-anchor="sidepanel"
         footer={footerExtracted}
         getPushContentElement={getPushContentElement}

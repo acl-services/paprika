@@ -28,7 +28,7 @@ const TakeoverStory = ({ children }) => {
   return (
     <LongBlock>
       <Button onClick={toggle}>Open</Button>
-      <Takeover isOpen={isOpen} onClose={toggle}>
+      <Takeover isOpen={isOpen} onClose={toggle} a11yText="Takeover View">
         <Takeover.Header
           hasCloseButton={boolean("Has close button", true, "Takeover.Header")}
           kind={select("Kind", ["default", "primary"], "default", "Takeover.Header")}
