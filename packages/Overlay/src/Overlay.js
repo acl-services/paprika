@@ -104,7 +104,7 @@ const Overlay = props => {
           onExited={onAfterClose}
         >
           {state => (
-            <sc.Overlay {...moreProps} data-pka-anchor="overlay" onKeyDown={handleEscKey}>
+            <sc.Overlay data-pka-anchor="overlay" {...moreProps} onKeyDown={handleEscKey}>
               {hasBackdrop && (
                 <sc.Backdrop
                   className={backdropClassName}

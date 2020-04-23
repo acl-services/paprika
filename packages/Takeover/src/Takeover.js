@@ -65,6 +65,7 @@ const Takeover = props => {
 
   return (
     <Overlay
+      data-pka-anchor="takeover.overlay"
       hasBackdrop={false}
       isOpen={isOpen}
       onClose={onClose}

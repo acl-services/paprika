@@ -73,6 +73,7 @@ const Modal = props => {
 
   return (
     <Overlay
+      data-pka-anchor="modal.overlay"
       isOpen={isOpen}
       onClose={onClose}
       onAfterOpen={onAfterOpen}
@@ -82,7 +83,7 @@ const Modal = props => {
       focusLockOptions={focusLockOptions}
     >
       {state => (
-        <styled.Wrapper size={size} {...moreProps}>
+        <styled.Wrapper size={size} data-pka-anchor="modal.wrapper" {...moreProps}>
           <styled.Dialog state={state} role="dialog" aria-modal="true" aria-label={ariaLabel} data-pka-anchor="modal">
             {headerExtracted && <styled.Header {...headerExtracted.props} onClose={onClose} />}
             <styled.ContentWrapper role="region" tabIndex="0">
