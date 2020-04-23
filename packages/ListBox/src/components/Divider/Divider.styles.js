@@ -27,5 +27,5 @@ export const dividerCSS = css`
 
   ${stylers.fontSize(-1)};
 
-  ${({ hasChildren }) => hasChildren && textDividerStyles}
+  ${textDividerStyles}
 `;
