@@ -40,7 +40,7 @@ const defaultProps = {
   size: ShirtSizes.MEDIUM,
 };
 
-const ButtonGroup = props => {
+function ButtonGroup(props) {
   const { children, hasIcons, isDisabled, isFullWidth, isSemantic, onChange, size } = props;
 
   const validChildren = children.filter(child => child.type.displayName === ButtonItem.displayName);
@@ -49,7 +49,7 @@ const ButtonGroup = props => {
 
   const [selectedItems, setSelectedItems] = React.useState([...initiallySelectedItems]);
 
-  const handleClick = clickedId => {
+  const handleClick = clickedId => () => {
     if (!isDisabled) {
       const itemIndex = selectedItems.indexOf(clickedId);
       const itemUsedToBeSelected = itemIndex > -1;
@@ -62,7 +62,7 @@ const ButtonGroup = props => {
       }
 
       setSelectedItems(newSelectedItems);
-      if (onChange) {
+      if (typeof onChange === "function") {
         onChange(newSelectedItems);
       }
     }
@@ -78,7 +78,7 @@ const ButtonGroup = props => {
           hasIcon: hasIcons,
           isFullWidth,
           isSemantic,
-          onClick: () => handleClick(item.props.value),
+          onClick: handleClick(item.props.value),
           size,
         };
 
@@ -95,7 +95,7 @@ const ButtonGroup = props => {
       })}
     </sc.ButtonGroup>
   );
-};
+}
 
 ButtonGroup.displayName = "ButtonGroup";
 ButtonGroup.propTypes = propTypes;
