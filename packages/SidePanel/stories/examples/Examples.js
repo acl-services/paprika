@@ -206,7 +206,7 @@ export const ZIndexSidePanel = () => {
         `}
       >
         <SidePanel isOpen={isOpen} onClose={toggle} zIndex={99}>
-          <SidePanel.Overlay zIndex={100} />
+          <SidePanel.Overlay />
           <SidePanel.Trigger onClick={toggle}>Open SidePanel</SidePanel.Trigger>
           <SidePanel.Header>Header</SidePanel.Header>
           <p>

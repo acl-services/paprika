@@ -25,7 +25,7 @@ const propTypes = {
   /** Callback triggered when the takeover needs to be close */
   onClose: PropTypes.func,
 
-  /** Z-index of the Takeover content */
+  /** The z-index of the Takeover content */
   zIndex: PropTypes.number,
 };
 
