@@ -10,14 +10,14 @@ import ArrowRight from "@paprika/icon/lib/ArrowRight";
 import Button from "@paprika/button";
 import useI18n from "@paprika/l10n/lib/useI18n";
 
-import ShortcutPanel from "../ShortcutPanel";
+import ShortcutPanel from "./internal/ShortcutPanel";
 
 import calendarStyles, {
   arrowIconStyles,
   calendarWrapperStyles,
   dayTriggerStyles,
   monthHeaderButtonStyles,
-} from "./Calendar.styles";
+} from "./internal/calendar.styles";
 
 const propTypes = {
   /** Selected date in moment object */
@@ -37,7 +37,7 @@ const defaultProps = {
   possibleDate: null,
 };
 
-function Calendar(props) {
+function SingleDateCalendar(props) {
   // TODO: nice to have MIN_DATE & MAX_DATE customizable
   const MIN_DATE = moment.utc("0000-01-01", "YYYY-MM-DD");
   const MAX_DATE = moment.utc("9999-12-31", "YYYY-MM-DD");
@@ -202,9 +202,7 @@ function Calendar(props) {
   );
 }
 
-Calendar.displayName = "DatePicker.Calendar";
+SingleDateCalendar.propTypes = propTypes;
+SingleDateCalendar.defaultProps = defaultProps;
 
-Calendar.propTypes = propTypes;
-Calendar.defaultProps = defaultProps;
-
-export default Calendar;
+export default SingleDateCalendar;

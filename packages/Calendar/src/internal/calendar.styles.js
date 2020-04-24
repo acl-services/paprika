@@ -3,8 +3,8 @@ import { css } from "styled-components";
 import tokens from "@paprika/tokens";
 import stylers from "@paprika/stylers";
 
-import calendarBaseStyles from "./CalendarBase.styles";
-import { hoveredItemStyles, selectedItemStyles, visuallyHiddenStyles } from "../../shared.styles";
+import calendarBaseStyles from "./calendar.base.styles";
+import { hoveredItemStyles, selectedItemStyles, visuallyHiddenStyles } from "./shared.styles";
 
 export const arrowIconStyles = css`
   > svg[role="presentation"] {
