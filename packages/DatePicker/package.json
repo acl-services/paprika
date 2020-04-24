@@ -15,19 +15,14 @@
   },
   "dependencies": {
     "@babel/runtime-corejs2": "^7.3.1",
-    "@paprika/button": "^0.2.20",
     "@paprika/calendar": "^0.1.0",
     "@paprika/date-input": "^0.1.2",
     "@paprika/helpers": "^0.2.11",
-    "@paprika/icon": "^0.2.15",
     "@paprika/popover": "^0.3.19",
-    "@paprika/stylers": "^0.2.6",
     "@paprika/tokens": "^0.1.13",
-    "prop-types": "^15.7.2",
-    "react-dates": "^20.1.0"
+    "prop-types": "^15.7.2"
   },
   "peerDependencies": {
-    "@paprika/l10n": "^0.2.5",
     "moment": "^2.18.1",
     "react": "^16.8.4",
     "react-dom": "^16.8.4",
