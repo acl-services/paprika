@@ -1,0 +1,30 @@
+{
+  "name": "@paprika/listbox-tags",
+  "private": true,
+  "version": "0.1.0",
+  "description": "ListBox component allows the user to select on or multiple elements with tags",
+  "author": "@paprika",
+  "main": "lib/index.js",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/acl-services/paprika.git",
+    "directory": "packages/TagBox"
+  },
+  "publishConfig": {
+    "access": "public"
+  },
+  "dependencies": {
+    "@babel/runtime-corejs2": "^7.3.1",
+    "@paprika/helpers": "^0.2.11",
+    "@paprika/listbox": "^0.8.18",
+    "@paprika/stylers": "^0.2.6",
+    "@paprika/tokens": "^0.1.13",
+    "prop-types": "^15.7.2"
+  },
+  "peerDependencies": {
+    "react": "^16.8.4",
+    "react-dom": "^16.8.4",
+    "styled-components": "^4.2.0"
+  }
+}
