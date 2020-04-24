@@ -127,9 +127,9 @@ function SingleDateCalendar(props) {
           handleClickHeader(month);
         }}
         tabIndex={-1}
-        data-pka-anchor="datepicker.calendar.header"
+        data-pka-anchor="calendar.header"
       >
-        {month.format(I18n.t("datePicker.calendar_header_format"))}
+        {month.format(I18n.t("calendar.header_format"))}
       </Button>
     );
   }
@@ -137,7 +137,7 @@ function SingleDateCalendar(props) {
 
   function renderArrowLeft() {
     return (
-      <span css={arrowIconStyles} ref={prevButtonRef} data-pka-anchor="datepicker-prev-month">
+      <span css={arrowIconStyles} ref={prevButtonRef} data-pka-anchor="calendar-prev-month">
         <ArrowLeft role="presentation" />
       </span>
     );
@@ -145,7 +145,7 @@ function SingleDateCalendar(props) {
 
   function renderArrowRight() {
     return (
-      <span css={arrowIconStyles} ref={nextButtonRef} data-pka-anchor="datepicker-next-month">
+      <span css={arrowIconStyles} ref={nextButtonRef} data-pka-anchor="calendar-next-month">
         <ArrowRight role="presentation" />
       </span>
     );

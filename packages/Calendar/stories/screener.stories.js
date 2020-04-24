@@ -10,11 +10,11 @@ const noop = () => {};
 storiesOf("Calendar / screener", module)
   .add("SingleDateCalendar", () => (
     <L10n>
-      <SingleDateCalendar date={moment("2019-01-01", "YYYY-MM-DD")} isOpen onSelect={noop} />
+      <SingleDateCalendar date={moment("2019-01-01", "YYYY-MM-DD")} onSelect={noop} />
     </L10n>
   ))
   .add("Shortcut panel", () => (
     <L10n>
-      <ShortCutPanel date={moment("2019-01-01", "YYYY-MM-DD")} onCancel={noop} onConfirm={noop} />
+      <ShortCutPanel isVisible date={moment("2019-01-01", "YYYY-MM-DD")} onCancel={noop} onConfirm={noop} />
     </L10n>
   ));
