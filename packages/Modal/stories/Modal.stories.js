@@ -44,6 +44,7 @@ const ModalStory = ({ children }) => {
 
 storiesOf("Modal", module)
   .addDecorator(withKnobs)
+
   .add("Basic", () => (
     <ModalStory>
       <Modal.Content>
@@ -53,6 +54,7 @@ storiesOf("Modal", module)
       </Modal.Content>
     </ModalStory>
   ))
+
   .add("with autofocus on input", () => (
     <ModalStory>
       <Modal.Content>
@@ -60,11 +62,13 @@ storiesOf("Modal", module)
       </Modal.Content>
     </ModalStory>
   ))
+
   .add("with full-width content", () => (
     <ModalStory>
       <DemoFullWidthContent />
     </ModalStory>
   ))
+
   .add("with form render", () => (
     <Modal
       isOpen
@@ -84,6 +88,60 @@ storiesOf("Modal", module)
       </Modal.Footer>
     </Modal>
   ))
+
+  .add("Z Index", () => {
+    const [isOpen, setIsOpen] = React.useState(false);
+    const toggle = () => {
+      setIsOpen(state => !state);
+    };
+
+    return (
+      <div
+        css={`
+          padding: 24px;
+        `}
+      >
+        <Button onClick={toggle}>Open</Button>
+        <Modal isOpen={isOpen} onClose={toggle} zIndex={99}>
+          <Modal.Header>Header</Modal.Header>
+          <Modal.Content>
+            <p>
+              The <code>zIndex</code> prop of this <code>&lt;Modal&gt;</code> is also <code>99</code>.
+            </p>
+            <p>
+              Because the content is renderered as a <code>&lt;Portal&gt;</code> at the end of the DOM, it will be
+              painted on top.
+            </p>
+            {repeat(4, key => (
+              <p key={key}>Hexagon heirloom kitsch DIY man bun cloud bread succulent meggings.</p>
+            ))}
+          </Modal.Content>
+          <Modal.Footer>
+            <Button kind="primary">Primary</Button>
+            <Button kind="minor" onClick={toggle}>
+              Cancel
+            </Button>
+          </Modal.Footer>
+        </Modal>
+        <div
+          css={`
+            position: relative;
+            z-index: 99;
+          `}
+        >
+          <p>
+            The <code>z-index</code> of this content is <code>99</code>.
+          </p>
+          {repeat(12, key => (
+            <p key={key}>
+              Vaporware brunch kickstarter bitters palo santo af vexillologist organic food truck bicycle rights.
+            </p>
+          ))}
+        </div>
+      </div>
+    );
+  })
+
   .add("with nested SidePanel", () =>
     React.createElement(() => {
       const [isOpen, setIsOpen] = React.useState(false);
