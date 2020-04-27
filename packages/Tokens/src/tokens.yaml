@@ -137,7 +137,7 @@ font-family:
 #
 table:
   header:
-    background-color: '#edebe8'
+    background-color: $color--black-lighten-70
   row:
     background-color: white
   row-even:
