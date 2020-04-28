@@ -24,6 +24,11 @@ const handleBlur = (state, dispatch) => () => {
   // via document.activeElement instead of returning
   // the body element automatically
   window.requestAnimationFrame(() => {
+    // trigger doesn't contain a filter)
+    if (state.refTriggerContainer.current.contains(state.refFilterInput.current)) {
+      return;
+    }
+
     if (state.refTriggerContainer.current && state.refTriggerContainer.current.contains(document.activeElement)) {
       // close the popover if the target is the trigger, this make easier to handle tab events
       dispatch({ type: useListBox.types.closePopover });

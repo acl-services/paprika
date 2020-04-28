@@ -137,7 +137,7 @@ const Filter = React.forwardRef((props, ref) => {
       <FilterContainerStyled data-pka-anchor="list-filter">
         <FilterInputStyled
           a11yText={props.a11yText || I18n.t("listBox.filter.a11y_text")}
-          data-pka-anchor="list-filter-input"
+          data-pka-anchor="list-filter.input"
           icon={hasSearchIcon ? <SearchIcon /> : null}
           isDisabled={state.isDisabled}
           onBlur={handleBlur}
