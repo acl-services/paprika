@@ -35,10 +35,6 @@ const defaultProps = {
 };
 
 class Textarea extends React.Component {
-  state = {
-    value: this.props.defaultValue,
-  };
-
   componentDidMount() {
     if (this.props.canExpand) {
       this.resize();
@@ -68,13 +64,6 @@ class Textarea extends React.Component {
     }
   };
 
-  handleChange = e => {
-    if (this.props.defaultValue !== null) {
-      this.setState({ value: e.target.value });
-    }
-    this.props.onChange(e);
-  };
-
   render() {
     const {
       a11yText,
@@ -84,15 +73,14 @@ class Textarea extends React.Component {
       inputRef,
       isDisabled,
       isReadOnly,
-      onChange,
       maxHeight,
       size,
-      defaultValue,
       ...moreProps
     } = this.props;
 
-    delete moreProps.value;
-    delete moreProps.defaultValue;
+    if (moreProps.defaultValue) {
+      delete moreProps.value;
+    }
 
     if (a11yText) moreProps["aria-label"] = a11yText;
 
@@ -111,11 +99,9 @@ class Textarea extends React.Component {
           className="form-textarea__textarea"
           data-pka-anchor="textarea"
           disabled={isDisabled}
-          onChange={this.handleChange}
           readOnly={isReadOnly}
           ref={this.setRef}
           style={{ maxHeight }}
-          value={this.state.value || this.props.value}
           {...moreProps}
         />
       </div>
