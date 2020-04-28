@@ -141,7 +141,7 @@ table:
   row:
     background-color: $color--white
   row-even:
-    background-color: '#f5f5f5'
+    background-color: $color--black-lighten-80
 #
 border:
   radius: 3px
