@@ -2,7 +2,6 @@ import styled, { css } from "styled-components";
 import tokens from "@paprika/tokens";
 import stylers from "@paprika/stylers";
 
-const experimentalGrey = "#e7e7e7"; /* experimental */
 export const Grid = styled.div.attrs(({ $width }) => {
   return {
     style: { width: `${$width}px` },
@@ -93,7 +92,7 @@ export const Cell = styled.div`
 `;
 
 export const CellHeader = styled(Cell)`
-  background: ${experimentalGrey};
+  background: ${tokens.table.header.backgroundColor};
   border-bottom: 1px solid ${tokens.border.color};
   border-left: 1px solid ${tokens.border.color};
   color: ${tokens.color.black};
@@ -136,7 +135,7 @@ export const GridCell = styled.div`
 `;
 
 export const FillerTopRight = styled.div`
-  background: ${experimentalGrey};
+  background: ${tokens.table.header.backgroundColor};
   border: 1px solid ${tokens.border.color};
   border-bottom: 0;
   position: absolute;
@@ -155,7 +154,7 @@ export const FillerTopRight = styled.div`
 
 export const FillerBottomLeft = styled.div`
   /* this is a small square filler on the bottom left corner of the DataGrid */
-  background: ${experimentalGrey};
+  background: ${tokens.table.header.backgroundColor};
   border: 1px solid ${tokens.border.color};
   bottom: 0;
   left: 0;
