@@ -25,7 +25,7 @@ const defaultProps = {
   a11yText: null,
   canExpand: true,
   className: null,
-  defaultValue: null,
+  defaultValue: "",
   hasError: false,
   inputRef: () => {},
   isDisabled: false,
@@ -33,7 +33,7 @@ const defaultProps = {
   maxHeight: "300px",
   onChange: () => {},
   size: ShirtSizes.MEDIUM,
-  value: "",
+  value: null,
 };
 
 function Textarea(props) {
@@ -81,12 +81,10 @@ function Textarea(props) {
     ...moreProps
   } = props;
 
-  if (moreProps.defaultValue) {
-    delete moreProps.value;
-  }
-
   if (moreProps.value) {
     delete moreProps.defaultValue;
+  } else {
+    delete moreProps.value;
   }
 
   if (a11yText) moreProps["aria-label"] = a11yText;
