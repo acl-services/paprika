@@ -116,23 +116,25 @@ const Confirmation = props => {
           {body && <div css={confirmBodyStyles}>{body}</div>}
           <div css={confirmFooterStyles}>
             <Button
+              canPropagate={false}
+              data-pka-anchor="confirmation.confirm-button"
               isPending={isPending}
               isSemantic={false}
-              ref={confirmButtonRef}
               kind={confirmButtonType}
-              size={buttonSize}
               onClick={handleOnConfirm}
-              data-pka-anchor="confirmation.confirm-button"
+              ref={confirmButtonRef}
+              size={buttonSize}
             >
               {confirmLabel}
             </Button>
             <Button
+              canPropagate={false}
+              data-pka-anchor="confirmation.cancel-button"
               isDisabled={isPending}
               isSemantic={false}
               kind={Button.Kinds.MINOR}
-              size={buttonSize}
               onClick={handleCloseConfirm}
-              data-pka-anchor="confirmation.cancel-button"
+              size={buttonSize}
             >
               {I18n.t("actions.cancel")}
             </Button>
