@@ -8,6 +8,7 @@ const propTypes = {
   a11yText: PropTypes.string,
   canExpand: PropTypes.bool,
   className: PropTypes.string,
+  /** Do not use in conjunction with value prop */
   defaultValue: PropTypes.string,
   hasError: PropTypes.bool,
   inputRef: PropTypes.func,
@@ -16,6 +17,7 @@ const propTypes = {
   isReadOnly: PropTypes.bool,
   maxHeight: PropTypes.string,
   size: PropTypes.oneOf(ShirtSizes.DEFAULT),
+  /** Do not use in conjunction with defaultValue prop */
   value: PropTypes.string,
 };
 
@@ -80,6 +82,10 @@ class Textarea extends React.Component {
 
     if (moreProps.defaultValue) {
       delete moreProps.value;
+    }
+
+    if (moreProps.value) {
+      delete moreProps.defaultValue;
     }
 
     if (a11yText) moreProps["aria-label"] = a11yText;
