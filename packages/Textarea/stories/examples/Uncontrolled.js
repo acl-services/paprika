@@ -13,7 +13,9 @@ const UncontrolledExample = () => {
           console.log("the textareas new value is: ", e.target.value);
         }}
       />
-      <Button onClick={() => setDefaultState("updated default state")}>Change default state value</Button>
+      <Button onClick={() => setDefaultState("updated default state")}>
+        Change default state value (should have no effect)
+      </Button>
     </Story>
   );
 };

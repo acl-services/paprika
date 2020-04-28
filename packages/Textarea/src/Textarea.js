@@ -36,83 +36,83 @@ const defaultProps = {
   value: "",
 };
 
-class Textarea extends React.Component {
-  componentDidMount() {
-    if (this.props.canExpand) {
-      this.resize();
-      window.addEventListener("resize", this.resize);
-    }
-  }
+function Textarea(props) {
+  let textarea = null;
 
-  componentDidUpdate(prevProps) {
-    if (this.props.canExpand && this.props.value !== prevProps.value) {
-      this.resize();
-    }
-  }
-
-  componentWillUnmount() {
-    window.removeEventListener("resize", this.resize);
-  }
-
-  setRef = node => {
-    this.textarea = node;
-    this.props.inputRef(node);
-  };
-
-  resize = () => {
-    if (this.textarea && this.textarea.style) {
-      this.textarea.style.height = 0;
-      this.textarea.style.height = `${this.textarea.scrollHeight + 2}px`;
+  const resize = () => {
+    if (textarea && textarea.style) {
+      textarea.style.height = 0;
+      textarea.style.height = `${textarea.scrollHeight + 2}px`;
     }
   };
 
-  render() {
-    const {
-      a11yText,
-      className,
-      canExpand,
-      hasError,
-      inputRef,
-      isDisabled,
-      isReadOnly,
-      maxHeight,
-      size,
-      ...moreProps
-    } = this.props;
-
-    if (moreProps.defaultValue) {
-      delete moreProps.value;
+  React.useEffect(() => {
+    if (props.canExpand) {
+      resize();
+      window.addEventListener("resize", resize);
     }
 
-    if (moreProps.value) {
-      delete moreProps.defaultValue;
+    return function cleanup() {
+      window.removeEventListener("resize", resize);
+    };
+  });
+
+  React.useEffect(() => {
+    if (props.canExpand) {
+      resize();
     }
+  }, [props.value]);
 
-    if (a11yText) moreProps["aria-label"] = a11yText;
+  const setRef = node => {
+    textarea = node;
+    props.inputRef(node);
+  };
 
-    const rootClasses = classNames(
-      "form-textarea",
-      `form-textarea--${size}`,
-      { "form-textarea--is-disabled": isDisabled },
-      { "form-textarea--is-readonly": isReadOnly },
-      { "form-textarea--has-error": hasError },
-      className
-    );
+  const {
+    a11yText,
+    className,
+    canExpand,
+    hasError,
+    inputRef,
+    isDisabled,
+    isReadOnly,
+    maxHeight,
+    size,
+    ...moreProps
+  } = props;
 
-    return (
-      <div className={rootClasses} css={textareaStyles}>
-        <textarea
-          className="form-textarea__textarea"
-          data-pka-anchor="textarea"
-          disabled={isDisabled}
-          readOnly={isReadOnly}
-          ref={this.setRef}
-          style={{ maxHeight }}
-          {...moreProps}
-        />
-      </div>
-    );
+  if (moreProps.defaultValue) {
+    delete moreProps.value;
   }
+
+  if (moreProps.value) {
+    delete moreProps.defaultValue;
+  }
+
+  if (a11yText) moreProps["aria-label"] = a11yText;
+
+  const rootClasses = classNames(
+    "form-textarea",
+    `form-textarea--${size}`,
+    { "form-textarea--is-disabled": isDisabled },
+    { "form-textarea--is-readonly": isReadOnly },
+    { "form-textarea--has-error": hasError },
+    className
+  );
+
+  return (
+    <div className={rootClasses} css={textareaStyles}>
+      <textarea
+        className="form-textarea__textarea"
+        data-pka-anchor="textarea"
+        disabled={isDisabled}
+        readOnly={isReadOnly}
+        ref={setRef}
+        style={{ maxHeight }}
+        {...moreProps}
+      />
+    </div>
+  );
 }
 
 Textarea.displayName = "Textarea";
