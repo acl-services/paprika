@@ -76,6 +76,10 @@ function Textarea(props) {
       resize();
     }
   }, [canExpand]);
+  const setRef = node => {
+    textarea = node;
+    inputRef(node);
+  };
 
   if (moreProps.value) {
     delete moreProps.defaultValue;
@@ -109,10 +113,7 @@ function Textarea(props) {
         disabled={isDisabled}
         readOnly={isReadOnly}
         onChange={handleChange}
-        ref={node => {
-          textarea = node;
-          props.inputRef(node);
-        }}
+        ref={setRef}
         style={{ maxHeight }}
         {...moreProps}
       />
