@@ -65,15 +65,15 @@ const Takeover = props => {
 
   return (
     <Overlay
+      {...overlayProps}
       data-pka-anchor="takeover.overlay"
+      focusLockOptions={focusLockOptions}
       hasBackdrop={false}
       isOpen={isOpen}
-      onClose={onClose}
-      onAfterOpen={onAfterOpen}
       onAfterClose={onAfterClose}
+      onAfterOpen={onAfterOpen}
+      onClose={onClose}
       zIndex={zIndex}
-      {...overlayProps}
-      focusLockOptions={focusLockOptions}
     >
       {state => (
         <sc.Wrapper state={state} role="dialog" aria-label={ariaLabel} aria-modal="true" data-pka-anchor="takeover">

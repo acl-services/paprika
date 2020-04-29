@@ -1,10 +1,10 @@
 import Takeover from "./Takeover";
-import Overlay from "./components/Overlay";
+import OverlayPropsCollector from "./components/OverlayPropsCollector";
 import Header from "./components/Header";
 import Content from "./components/Content";
 
-Takeover.Overlay = Overlay;
+Takeover.Overlay = OverlayPropsCollector;
 Takeover.Header = Header;
 Takeover.Content = Content;
 
-export { Takeover as default, Overlay, Header, Content };
+export default Takeover;
