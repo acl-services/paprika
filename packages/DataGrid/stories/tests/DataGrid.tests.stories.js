@@ -27,7 +27,7 @@ storiesOf("DataGrid / tests", module)
           <DataGrid.ColumnDefinition 
             header="Column 2" 
             cell="myColum2"
-            cellProps={({ row }) => ({ style })}
+            cellProps={() => ({ style })}
           />
         </DataGrid>
       )
