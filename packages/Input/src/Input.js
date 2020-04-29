@@ -77,7 +77,6 @@ const Input = props => {
     isReadOnly,
     hasClearButton,
     hasError,
-    onChange,
     onClear,
     size,
     ...moreProps
