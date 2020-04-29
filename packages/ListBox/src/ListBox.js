@@ -88,7 +88,7 @@ export function ListBox(props) {
   return (
     <React.Fragment>
       {trigger}
-      <Content>
+      <Content onCancelFooter={footer ? footer.props.onClickCancel : null}>
         <Box {...box.props}>
           {filter}
           <List height={height}>
