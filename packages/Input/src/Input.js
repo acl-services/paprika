@@ -107,8 +107,6 @@ const Input = props => {
     className
   );
 
-  console.log(moreProps);
-
   return (
     <div css={inputStyles} {...styleProps} className={rootClasses}>
       {renderIcon()}
