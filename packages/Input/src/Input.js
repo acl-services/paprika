@@ -26,7 +26,7 @@ const propTypes = {
 const defaultProps = {
   a11yText: null,
   className: null,
-  defaultValue: null,
+  defaultValue: "",
   hasClearButton: false,
   hasError: false,
   icon: null,
@@ -36,12 +36,10 @@ const defaultProps = {
   onClear: () => {},
   size: ShirtSizes.MEDIUM,
   type: "text",
-  value: "",
+  value: null,
 };
 
 const Input = props => {
-  const [value, setValue] = React.useState(props.defaultValue);
-
   const inputClearHandler = e => {
     e.target.value = "";
     props.onChange(e);
@@ -86,8 +84,11 @@ const Input = props => {
   } = props;
 
   // Must remove so React does not complain about a component trying to be both controlled and uncontrolled.
-  delete moreProps.value;
-  delete moreProps.defaultValue;
+  if (moreProps.value) {
+    delete moreProps.defaultValue;
+  } else {
+    delete moreProps.value;
+  }
 
   const styleProps = {
     size,
@@ -106,12 +107,7 @@ const Input = props => {
     className
   );
 
-  function handleChange(e) {
-    if (props.defaultValue !== null) {
-      setValue(e.target.value);
-    }
-    onChange(e);
-  }
+  console.log(moreProps);
 
   return (
     <div css={inputStyles} {...styleProps} className={rootClasses}>
@@ -121,10 +117,8 @@ const Input = props => {
         className="form-input__input"
         data-pka-anchor="input"
         disabled={isDisabled}
-        onChange={handleChange}
         readOnly={isReadOnly}
         ref={inputRef}
-        value={value || props.value}
         {...moreProps}
       />
       {renderClear()}
