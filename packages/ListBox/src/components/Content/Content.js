@@ -9,13 +9,13 @@ import { ContentStyled } from "./Content.styles";
 
 const propTypes = {
   children: PropTypes.node.isRequired,
-  onCancel: PropTypes.func,
+  onCancelFooter: PropTypes.func,
 };
 const defaultProps = {
-  onCancel: null,
+  onCancelFooter: null,
 };
 
-const handleBlur = (state, dispatch, onCancel) => () => {
+const handleBlur = (state, dispatch, onCancelFooter) => () => {
   const { refListBoxContainer } = state;
 
   if (state.isDisabled) {
@@ -42,7 +42,7 @@ const handleBlur = (state, dispatch, onCancel) => () => {
 
       if (state.hasFooter) {
         dispatch({ type: useListBox.types.cancel });
-        if (onCancel) onCancel();
+        if (onCancelFooter) onCancelFooter();
       }
     }
   });
@@ -78,7 +78,7 @@ export default function Content(props) {
 
   return (
     <Popover.Content
-      onBlur={handleBlur(state, dispatch, props.onCancel)}
+      onBlur={handleBlur(state, dispatch, props.onCancelFooter)}
       ref={refListBoxContainer}
       {...getDOMAttributesForListBoxContainer()}
       onKeyDown={handleKeyboardKeys({ state, dispatch, onChangeContext })}
