@@ -9,20 +9,20 @@ const data = [
   { myColum1: 3, myColum2: "hola" }, // row 3
 ];
 
-function renderComponent(){
+function renderComponent() {
   return render(
     <DataGrid data={data}>
       <DataGrid.ColumnDefinition header="Colum 1" cell="myColum1" />
       <DataGrid.ColumnDefinition header="Colum 2" cell="myColum2" />
     </DataGrid>
-  )
+  );
 }
 
-describe('DataGrid', () => {
-    it('Displays data inside the cell', () => {
-      const { getByText } = renderComponent();
-      expect(getByText('hi')).toBeInTheDocument();
-      expect(getByText('hello')).toBeInTheDocument();
-      expect(getByText('hola')).toBeInTheDocument();
-    });
+describe("DataGrid", () => {
+  it("Displays data inside the cell", () => {
+    const { getByText } = renderComponent();
+    expect(getByText("hi")).toBeInTheDocument();
+    expect(getByText("hello")).toBeInTheDocument();
+    expect(getByText("hola")).toBeInTheDocument();
+  });
 });
