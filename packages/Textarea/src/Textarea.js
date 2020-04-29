@@ -46,8 +46,22 @@ function Textarea(props) {
     }
   };
 
+  const {
+    a11yText,
+    className,
+    canExpand,
+    hasError,
+    inputRef,
+    isDisabled,
+    onChange,
+    isReadOnly,
+    maxHeight,
+    size,
+    ...moreProps
+  } = props;
+
   React.useEffect(() => {
-    if (props.canExpand) {
+    if (canExpand) {
       resize();
       window.addEventListener("resize", resize);
     }
@@ -58,29 +72,23 @@ function Textarea(props) {
   }, []);
 
   React.useEffect(() => {
-    if (props.canExpand) {
+    if (canExpand) {
       resize();
     }
-  }, [props.value, props.canExpand]);
-
-  const {
-    a11yText,
-    className,
-    canExpand,
-    hasError,
-    inputRef,
-    isDisabled,
-    isReadOnly,
-    maxHeight,
-    size,
-    ...moreProps
-  } = props;
+  }, [canExpand]);
 
   if (moreProps.value) {
     delete moreProps.defaultValue;
   } else {
     delete moreProps.value;
   }
+
+  const handleChange = e => {
+    if (canExpand) {
+      resize();
+    }
+    onChange(e);
+  };
 
   if (a11yText) moreProps["aria-label"] = a11yText;
 
@@ -100,6 +108,7 @@ function Textarea(props) {
         data-pka-anchor="textarea"
         disabled={isDisabled}
         readOnly={isReadOnly}
+        onChange={handleChange}
         ref={node => {
           textarea = node;
           props.inputRef(node);
