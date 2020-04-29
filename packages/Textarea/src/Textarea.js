@@ -37,7 +37,7 @@ const defaultProps = {
 };
 
 function Textarea(props) {
-  let textarea = null;
+  let textarea = React.useRef(null);
 
   const resize = () => {
     if (textarea && textarea.style) {
@@ -55,18 +55,13 @@ function Textarea(props) {
     return function cleanup() {
       window.removeEventListener("resize", resize);
     };
-  });
+  }, []);
 
   React.useEffect(() => {
     if (props.canExpand) {
       resize();
     }
-  }, [props.value]);
-
-  const setRef = node => {
-    textarea = node;
-    props.inputRef(node);
-  };
+  }, [props.value, props.canExpand]);
 
   const {
     a11yText,
@@ -105,7 +100,10 @@ function Textarea(props) {
         data-pka-anchor="textarea"
         disabled={isDisabled}
         readOnly={isReadOnly}
-        ref={setRef}
+        ref={node => {
+          textarea = node;
+          props.inputRef(node);
+        }}
         style={{ maxHeight }}
         {...moreProps}
       />
