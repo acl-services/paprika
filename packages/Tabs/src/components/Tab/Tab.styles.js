@@ -31,13 +31,19 @@ const disabledStyles = css`
   cursor: not-allowed;
 `;
 
+const compactStyles = css`
+  margin: 0 0 0 ${stylers.spacer(2)};
+`;
+
 export const tabStyles = css`
   ${stylers.fontSize()};
+  align-items: center;
   background-color: ${tokens.color.white};
   border: 0;
   border-bottom: ${tokens.spaceSm} solid transparent;
   color: ${tokens.color.black};
-  display: inline-block;
+  display: flex;
+  height: ${props => (props.height ? `${props.height}px` : "auto")};
   margin: 0 0 0 ${stylers.spacer(4)};
   padding: ${stylers.spacer(2)} ${tokens.spaceSm} ${tokens.space} ${tokens.spaceSm};
   position: relative;
@@ -45,6 +51,7 @@ export const tabStyles = css`
 
   ${({ isDisabled }) => (isDisabled ? disabledStyles : null)}
   ${({ isSelected }) => (isSelected ? activeStyles : null)}
+  ${({ isCompact }) => (isCompact ? compactStyles : null)}
   
   &:first-child {
     margin-left: 0;
