@@ -7,6 +7,7 @@ const UncontrolledExample = () => {
     <Story>
       <Textarea
         defaultValue="hello world"
+        canExpand
         onChange={e => {
           console.log("the textareas new value is: ", e.target.value);
         }}
