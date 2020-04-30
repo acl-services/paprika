@@ -4,7 +4,7 @@
 
 ## Description
 
-Collapsible component, the collapsible component allows the user to expand and collapse some enclosed content.
+Collapsible component, allows the user to expand and collapse some enclosed content.
 
 ## Installation
 
