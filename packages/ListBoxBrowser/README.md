@@ -87,6 +87,10 @@ The `data` prop is an array of objects where each object requires to have at lea
 ### Data prop shape
 
 ```js
+[{ label: "One" }, { label: "Two", options: [{ label: "Three" }] }];
+```
+
+```js
 {
 	label: "require attribute",
 	options: [{}{}{}], // more object with the same shape
@@ -151,6 +155,14 @@ The `defaultSelectedOptions` receives a function to be executed to determine if 
 Ex.
 
 ```jsx
+const data = [{ key: 1, label: "one", options: [...] }, { key: 2, label: "two" }, { key: 3, label: "three" }]
+
+<ListBoxBrowser data={data} defaultSelectedOptions={(option) => {
+  return option.key === 2 or option.key === 3
+}} />
+```
+
+```jsx
 const data = [
 	{ key: 1, label: "one", options: [{...}]},
 	{ key: 2, label: "two", options: [{...}]},
@@ -161,8 +173,7 @@ const data = [
 	data={data}
 	defaultSelectedView={(option) =>  (option.key === 1)}  />
 
-/**
-  The previous result on option with `key 1` to be selected */
+/** The previous result on option with `key 1` to be selected */
 ```
 
 #### defaultSelectedView
@@ -174,6 +185,17 @@ This prop works exactly like the `defaultSelectedOptions`. It receives a functio
 ### Lazy loading
 
 This component provides a way to load async options. To achieve this, you can declare the `options` array property empty `[]`. This indicates to the component to fire the `onFetch={option => ()}` prop when the user interacts with it.
+
+```js
+<ListBoxBrowser
+  data={[{ label: "lazy", options: [] }]}
+  onFetch={option => {
+    logic;
+  }}
+>
+  <ListBoxBrowser.Browser isLoading={isBrowserLoading} />
+</ListBoxBrowser>
+```
 
 #### Lazy loading example
 
