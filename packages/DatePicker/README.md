@@ -40,7 +40,7 @@ npm install @paprika/date-picker
 | Prop              | Type       | required | default | Description                                      |
 | ----------------- | ---------- | -------- | ------- | ------------------------------------------------ |
 | date              | instanceOf | false    | null    | Selected date in moment object                   |
-| onSelect          | func       | true     | -       | Callback to fire when user select date           |
+| onSelect          | func       | true     | -       | Callback when user select date                   |
 | possibleDate      | instanceOf | false    | null    | Possible date might be selected in moment object |
 | resetPossibleDate | func       | true     | -       |                                                  |
 

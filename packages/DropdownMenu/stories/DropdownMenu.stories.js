@@ -11,7 +11,7 @@ import DropdownMenuDividersExample from "./examples/DropdownMenuDividersExample"
 import DropdownMenuLongestExample from "./examples/DropdownMenuLongestExample";
 import DropdownMenuTriggerExample from "./examples/DropdownMenuTriggerExample";
 
-storiesOf("Dropdown Menu", module)
+storiesOf("DropdownMenu", module)
   .addDecorator(withKnobs)
   .add("Showcase", ShowcaseStory)
   .add("DropdownMenu", () => (

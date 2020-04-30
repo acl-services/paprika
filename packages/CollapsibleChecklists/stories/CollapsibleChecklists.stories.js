@@ -5,7 +5,7 @@ import { withKnobs } from "@storybook/addon-knobs";
 import AdvancedExample from "./examples/Advanced";
 import BasicExample from "./examples/Basic";
 
-storiesOf("Collapsible Checklists", module)
+storiesOf("CollapsibleChecklists", module)
   .addDecorator(withKnobs)
   .add("Showcase", () => <BasicExample />)
   .add("Advanced", () => <AdvancedExample />);

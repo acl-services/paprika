@@ -13,7 +13,7 @@ const propTypes = {
   /** Size of the button */
   buttonSize: PropTypes.oneOf(ShirtSizes.DEFAULT),
   children: PropTypes.node,
-  /** Determine the styling of the button */
+  /** Determine the styling of the confirm button */
   confirmButtonType: PropTypes.oneOf([Button.Kinds.PRIMARY, Button.Kinds.DESTRUCTIVE]),
   /** Label for the confirm button  */
   confirmLabel: PropTypes.string.isRequired,
@@ -25,9 +25,9 @@ const propTypes = {
   defaultIsOpen: PropTypes.bool,
   /** If the confirm button should render in a pending state (with a spinner icon) */
   isPending: PropTypes.bool,
-  /** Callback to fire when user cancels confirmation */
+  /** Callback when cancel button is clicked */
   onClose: PropTypes.func,
-  /** Callback to fire when user confirm to proceed */
+  /** Callback when confirm button is clicked */
   onConfirm: PropTypes.func.isRequired,
 };
 

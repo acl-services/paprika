@@ -5,7 +5,7 @@ import { storiesOf } from "@storybook/react";
 import Example from "./DatePickerExample";
 import DatePicker from "../src/DatePicker";
 
-storiesOf("Date Picker", module)
+storiesOf("DatePicker", module)
   .addDecorator(withKnobs)
   .add("Showcase", () => {
     const datePickerProps = () => ({

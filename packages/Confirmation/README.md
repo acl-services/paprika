@@ -25,15 +25,15 @@ npm install @paprika/confirmation
 | Prop              | Type                            | required | default                  | Description                                                                  |
 | ----------------- | ------------------------------- | -------- | ------------------------ | ---------------------------------------------------------------------------- |
 | buttonSize        | ShirtSizes.DEFAULT              | false    | ShirtSizes.MEDIUM        | Size of the button                                                           |
-| children          | node                            | false    | null                     | Children of the confirmation                                                 |
-| confirmButtonType | [object Object],[object Object] | false    | Button.Kinds.DESTRUCTIVE | Determine the styling of the button                                          |
+| children          | node                            | false    | null                     |                                                                              |
+| confirmButtonType | [object Object],[object Object] | false    | Button.Kinds.DESTRUCTIVE | Determine the styling of the confirm button                                  |
 | confirmLabel      | string                          | true     | -                        | Label for the confirm button                                                 |
 | body              | node                            | false    | null                     | Content of the popover confirmation                                          |
 | heading           | string                          | false    | null                     | Heading for the popover confirmation                                         |
 | defaultIsOpen     | bool                            | false    | false                    | If the popover is open by default                                            |
 | isPending         | bool                            | false    | false                    | If the confirm button should render in a pending state (with a spinner icon) |
-| onClose           | func                            | false    | () => {}                 | Callback to fire when user cancels confirmation                              |
-| onConfirm         | func                            | true     | -                        | Callback to fire when user confirm to proceed                                |
+| onClose           | func                            | false    | () => {}                 | Callback when cancel button is clicked                                       |
+| onConfirm         | func                            | true     | -                        | Callback when confirm button is clicked                                      |
 
 ## Usage
 

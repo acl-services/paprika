@@ -10,11 +10,11 @@ const propTypes = {
   children: PropTypes.node,
   /** If checkbox is checked by default */
   isCheckedByDefault: PropTypes.bool,
-  /** If collapsiblechecklists is disabled */
+  /** If CollapsibleChecklists is disabled */
   isDisabled: PropTypes.bool,
   /** Sets a visual state whether a checklist has been checked or not */
   isIndeterminateByDefault: PropTypes.bool,
-  /** Sets if the collapsiblechecklist is open */
+  /** Sets if the CollapsibleChecklists is open */
   onExpand: PropTypes.func,
   /** Indicate the title for the checklist */
   title: PropTypes.node.isRequired,

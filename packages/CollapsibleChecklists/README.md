@@ -24,7 +24,7 @@ npm install @paprika/collapsible-checklists
 
 | Prop     | Type | required | default | Description                                        |
 | -------- | ---- | -------- | ------- | -------------------------------------------------- |
-| children | node | true     | -       | Children of the CollapsibleChecklist               |
+| children | node | true     | -       |                                                    |
 | onChange | func | true     | -       | Callback triggered when the input state is changed |
 
 ### Group
@@ -33,9 +33,9 @@ npm install @paprika/collapsible-checklists
 | ------------------------ | ---- | -------- | ------- | --------------------------------------------------------------------- |
 | children                 | node | false    | []      | Probably an array of "Items", but could be a Spinner or anything else |
 | isCheckedByDefault       | bool | false    | false   | If checkbox is checked by default                                     |
-| isDisabled               | bool | false    | false   | If collapsiblechecklists is disabled                                  |
+| isDisabled               | bool | false    | false   | If CollapsibleChecklists is disabled                                  |
 | isIndeterminateByDefault | bool | false    | false   | Sets a visual state whether a checklist has been checked or not       |
-| onExpand                 | func | false    | null    | Sets if the collapsiblechecklist is open                              |
+| onExpand                 | func | false    | null    | Sets if the CollapsibleChecklists is open                             |
 | title                    | node | true     | -       | Indicate the title for the checklist                                  |
 
 ### Heading
@@ -46,12 +46,12 @@ npm install @paprika/collapsible-checklists
 
 ### Item
 
-| Prop       | Type | required | default  | Description                                |
-| ---------- | ---- | -------- | -------- | ------------------------------------------ |
-| children   | node | true     | -        | Content of the collapsiblechecklist item   |
-| isChecked  | bool | false    | false    | If the item is checked or not              |
-| isDisabled | bool | false    | false    | If the item is disabled                    |
-| onChange   | func | false    | () => {} | Callback to fire when user checked an item |
+| Prop       | Type | required | default  | Description                        |
+| ---------- | ---- | -------- | -------- | ---------------------------------- |
+| children   | node | true     | -        |                                    |
+| isChecked  | bool | false    | false    | If the item is checked or not      |
+| isDisabled | bool | false    | false    | If the item is disabled            |
+| onChange   | func | false    | () => {} | Callback when user checked an item |
 
 ## Usage
 

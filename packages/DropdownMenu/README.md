@@ -53,7 +53,7 @@ npm install @paprika/dropdown-menu
 
 | Prop       | Type            | required | default  | Description                         |
 | ---------- | --------------- | -------- | -------- | ----------------------------------- |
-| children   | node            | false    | null     | Children of the trigger button      |
+| children   | node            | false    | null     |                                     |
 | buttonType | ButtonTypes.ALL | false    | "simple" | Determine the styling of the button |
 | isOpen     | bool            | false    | false    |                                     |
 | menuRefId  | string          | false    | ""       |                                     |

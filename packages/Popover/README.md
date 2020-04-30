@@ -50,10 +50,10 @@ npm install @paprika/popover
 
 ### Popover.Content
 
-| Prop     | Type | required | default  | Description                                          |
-| -------- | ---- | -------- | -------- | ---------------------------------------------------- |
-| children | node | false    | null     |                                                      |
-| onBlur   | func | false    | () => {} | Callback to fire to indicate the element loses focus |
+| Prop     | Type | required | default  | Description                                  |
+| -------- | ---- | -------- | -------- | -------------------------------------------- |
+| children | node | false    | null     |                                              |
+| onBlur   | func | false    | () => {} | Callback to indicate the element loses focus |
 
 ### Popover.Card
 

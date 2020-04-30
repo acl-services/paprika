@@ -19,15 +19,15 @@ const propTypes = {
   data: PropTypes.arrayOf(PropTypes.shape({})),
   /** Sets the height of the DataGrid */
   height: PropTypes.number,
-  /** Callback to fire onClick */
+  /** Callback onClick */
   onClick: PropTypes.func,
-  /** Callback to fire on keyDown press */
+  /** Callback onKeyDown press */
   onKeyDown: PropTypes.func,
-  /** Callback to fire when on Enter press */
+  /** Callback when Enter key is pressed */
   onPressEnter: PropTypes.func,
-  /** Callback to fire when Shift + Spacebar pressed */
+  /** Callback when Shift + Spacebar is pressed */
   onPressShiftSpaceBar: PropTypes.func,
-  /** Callback to fire when Spacebar is pressed */
+  /** Callback when Spacebar is pressed */
   onPressSpaceBar: PropTypes.func,
   onRowChecked: PropTypes.func,
   /** Sets the row height */

@@ -7,7 +7,7 @@ import dataMultipleFirstOptionNoOptions from "../test/specs/fixtures/multiple.fi
 import issues from "../test/specs/fixtures/issues";
 import Lazy from "./examples/Lazy";
 
-storiesOf("ListBox Browser/Multi", module)
+storiesOf("ListBoxBrowser/Multi", module)
   .add("basic", () => (
     <Story>
       <ListBoxBrowser
@@ -123,7 +123,7 @@ storiesOf("ListBox Browser/Multi", module)
     />
   ));
 
-storiesOf("ListBox Browser/Automation Tests ", module).add("Basic", () => (
+storiesOf("ListBoxBrowser/Automation Tests ", module).add("Basic", () => (
   <Story>
     <ListBoxBrowser
       data={issues}

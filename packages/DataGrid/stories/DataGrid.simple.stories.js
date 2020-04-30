@@ -47,4 +47,4 @@ export function App() {
   );
 }
 
-storiesOf("Data Grid", module).add("Showcase", () => <App />);
+storiesOf("DataGrid", module).add("Showcase", () => <App />);

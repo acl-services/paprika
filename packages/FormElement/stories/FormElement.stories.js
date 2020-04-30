@@ -4,7 +4,7 @@ import ShowcaseStory from "./examples/Showcase";
 import AlternateLayoutsStory from "./examples/AlternateLayouts";
 import AccessibilityExample from "./examples/AccessibilityExample";
 
-storiesOf("Form Element", module)
+storiesOf("FormElement", module)
   .addDecorator(withKnobs)
   .add("Showcase", ShowcaseStory)
   .add("AlternateLayouts", AlternateLayoutsStory)

@@ -8,7 +8,7 @@ const propTypes = {
   isChecked: PropTypes.bool,
   /** If the item is disabled */
   isDisabled: PropTypes.bool,
-  /** Callback to fire when user checked an item  */
+  /** Callback when user checked an item  */
   onChange: PropTypes.func,
 };
 

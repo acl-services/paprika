@@ -14,9 +14,9 @@ const propTypes = {
   isDisabled: PropTypes.bool,
   /** Sets a url the tab goes to */
   href: PropTypes.string,
-  /** Callback to fire on click */
+  /** Callback onClick */
   onClick: PropTypes.func,
-  /** Callback to fire when down arrow key is pressed */
+  /** Callback onKeyDownArrow */
   onKeyDownArrows: PropTypes.func,
 };
 

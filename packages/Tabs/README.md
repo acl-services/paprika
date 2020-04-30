@@ -51,15 +51,15 @@ npm install @paprika/tabs
 
 ### Tabs.Tab
 
-| Prop            | Type   | required | default  | Description                                     |
-| --------------- | ------ | -------- | -------- | ----------------------------------------------- |
-| children        | node   | false    | null     |                                                 |
-| className       | string | false    | null     | Sets class name                                 |
-| isSelected      | bool   | false    | false    | Controls if the option is selected or not       |
-| isDisabled      | bool   | false    | false    | If the tab is disabled                          |
-| href            | string | false    | null     | Sets a url the tab goes to                      |
-| onClick         | func   | false    | () => {} | Callback to fire on click                       |
-| onKeyDownArrows | func   | false    | () => {} | Callback to fire when down arrow key is pressed |
+| Prop            | Type   | required | default  | Description                               |
+| --------------- | ------ | -------- | -------- | ----------------------------------------- |
+| children        | node   | false    | null     |                                           |
+| className       | string | false    | null     | Sets class name                           |
+| isSelected      | bool   | false    | false    | Controls if the option is selected or not |
+| isDisabled      | bool   | false    | false    | If the tab is disabled                    |
+| href            | string | false    | null     | Sets a url the tab goes to                |
+| onClick         | func   | false    | () => {} | Callback onClick                          |
+| onKeyDownArrows | func   | false    | () => {} | Callback onKeyDownArrow                   |
 
 ## Usage
 

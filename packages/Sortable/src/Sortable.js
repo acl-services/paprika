@@ -13,9 +13,9 @@ const propTypes = {
   hasNumbers: PropTypes.bool,
   /** Add a background-color to all even rows */
   hasZebraStripes: PropTypes.bool,
-  /** Callback to fire when sorting */
+  /** Callback when sorting */
   onChange: PropTypes.func.isRequired,
-  /** Callback to fire when deleting an item */
+  /** Callback when deleting an item */
   onRemove: PropTypes.func,
 };
 

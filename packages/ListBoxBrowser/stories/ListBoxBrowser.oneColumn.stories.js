@@ -5,7 +5,7 @@ import ListBoxBrowser from "../src";
 
 import dataSingle from "../test/specs/fixtures/single.oneColumn";
 
-storiesOf("ListBox Browser/Single", module).add("One column", () => (
+storiesOf("ListBoxBrowser/Single", module).add("One column", () => (
   <Story>
     <ListBoxBrowser
       data={dataSingle}

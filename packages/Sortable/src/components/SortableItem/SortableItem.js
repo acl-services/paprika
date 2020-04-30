@@ -15,7 +15,7 @@ const propTypes = {
   hasNumbers: PropTypes.bool.isRequired,
   /** Numerical representation of an item */
   index: PropTypes.number.isRequired,
-  /** Callback to fire when deleting an item */
+  /** Callback when deleting an item */
   onRemove: PropTypes.func,
 };
 

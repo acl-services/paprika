@@ -24,20 +24,20 @@ npm install @paprika/sortable
 
 | Prop            | Type | required | default | Description                               |
 | --------------- | ---- | -------- | ------- | ----------------------------------------- |
-| children        | node | false    | null    | Children of Sortable                      |
+| children        | node | false    | null    |                                           |
 | hasNumbers      | bool | false    | true    | Indicator to identify the number sequence |
-| hasZebraStripes | bool | false    | false   | Add a background-color to all even rows:  |
-| onChange        | func | true     | -       | Callback to fire when sorting             |
-| onRemove        | func | false    | null    | Callback to fire when deleting an item    |
+| hasZebraStripes | bool | false    | false   | Add a background-color to all even rows   |
+| onChange        | func | true     | -       | Callback when sorting                     |
+| onRemove        | func | false    | null    | Callback when deleting an item            |
 
 ### SortableItem
 
 | Prop       | Type   | required | default | Description                               |
 | ---------- | ------ | -------- | ------- | ----------------------------------------- |
-| children   | node   | true     | -       | Children of SortableItem                  |
+| children   | node   | true     | -       |                                           |
 | hasNumbers | bool   | true     | -       | Indicator to identify the number sequence |
 | index      | number | true     | -       | Numerical representation of an item       |
-| onRemove   | func   | false    | null    | Callback to fire when deleting an item    |
+| onRemove   | func   | false    | null    | Callback when deleting an item            |
 
 ## Usage
 

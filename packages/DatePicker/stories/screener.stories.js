@@ -7,7 +7,7 @@ import ShortCutPanel from "../src/components/ShortcutPanel";
 
 const noop = () => {};
 
-storiesOf("Date Picker / screener", module)
+storiesOf("DatePicker / screener", module)
   .add("Calendar", () => (
     <L10n>
       <Calendar date={moment("2019-01-01", "YYYY-MM-DD")} isOpen onSelect={noop} />

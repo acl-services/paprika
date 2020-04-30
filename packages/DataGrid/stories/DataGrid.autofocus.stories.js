@@ -98,4 +98,4 @@ export function App() {
   );
 }
 
-storiesOf("Data Grid / regular", module).add("autofocus", () => <App />);
+storiesOf("DataGrid / regular", module).add("autofocus", () => <App />);

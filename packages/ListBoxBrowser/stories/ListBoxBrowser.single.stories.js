@@ -6,7 +6,7 @@ import ListBoxBrowser from "../src";
 import dataSingle from "../test/specs/fixtures/single";
 import withNoOptionsSelected from "../test/specs/fixtures/withNoOptionsSelected";
 
-storiesOf("ListBox Browser", module).add("Showcase", () => (
+storiesOf("ListBoxBrowser", module).add("Showcase", () => (
   <Story>
     <ListBoxBrowser
       data={dataSingle}
@@ -20,7 +20,7 @@ storiesOf("ListBox Browser", module).add("Showcase", () => (
   </Story>
 ));
 
-storiesOf("ListBox Browser/Single", module)
+storiesOf("ListBoxBrowser/Single", module)
   .add("Allowing select parent", () => (
     <Story>
       <ListBoxBrowser

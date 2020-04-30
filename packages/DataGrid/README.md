@@ -28,11 +28,11 @@ npm install @paprika/data-grid
 | children             | node    | true     | -        |                                                 |
 | data                 | arrayOf | false    | []       | Array of data to be stored in the DataGrid      |
 | height               | number  | false    | 600      | Sets the height of the DataGrid                 |
-| onClick              | func    | false    | null     | Callback to fire onClick                        |
-| onKeyDown            | func    | false    | () => {} | Callback to fire on keyDown press               |
-| onPressEnter         | func    | false    | null     | Callback to fire when on Enter press            |
-| onPressShiftSpaceBar | func    | false    | null     | Callback to fire when Shift + Spacebar pressed  |
-| onPressSpaceBar      | func    | false    | null     | Callback to fire when Spacebar is pressed       |
+| onClick              | func    | false    | null     | Callback onClick                                |
+| onKeyDown            | func    | false    | () => {} | Callback onKeyDown press                        |
+| onPressEnter         | func    | false    | null     | Callback when Enter key is pressed              |
+| onPressShiftSpaceBar | func    | false    | null     | Callback when Shift + Spacebar is pressed       |
+| onPressSpaceBar      | func    | false    | null     | Callback when Spacebar is pressed               |
 | onRowChecked         | func    | false    | () => {} |                                                 |
 | rowHeight            | number  | false    | 36       | Sets the row height                             |
 | width                | number  | false    | null     | Sets the DataGrid width                         |
