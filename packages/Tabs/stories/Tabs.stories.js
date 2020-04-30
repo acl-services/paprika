@@ -64,12 +64,11 @@ storiesOf("Tabs", module)
   .add("Compact Tabs with custom height", () => (
     <Story>
       <Tabs>
-        <Tabs.List isCompact height={80}>
-          <Tabs.Tab>These tabs</Tabs.Tab>
-          <Tabs.Tab>Are tall</Tabs.Tab>
-          <Tabs.Tab href="https://wegalvanize.com" target="_blank" rel="noopener noreferrer">
-            And narrow
-          </Tabs.Tab>
+        <Tabs.List height={80}>
+          <Tabs.Tab hasInsetFocusStyle>These tabs</Tabs.Tab>
+          <Tabs.Tab hasInsetFocusStyle>Are tall</Tabs.Tab>
+          <Tabs.Tab hasInsetFocusStyle>And narrow</Tabs.Tab>
+          <Tabs.Tab hasInsetFocusStyle>With inset focus</Tabs.Tab>
         </Tabs.List>
       </Tabs>
     </Story>
