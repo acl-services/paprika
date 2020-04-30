@@ -28,7 +28,7 @@ const propTypes = {
   /** Displays a placeholder */
   placeholder: PropTypes.string,
 
-  /** Render function pattern */
+  /** Render function for filter */
   renderFilter: PropTypes.func,
 
   /** Sets a value for filter */
