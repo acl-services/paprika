@@ -37,12 +37,12 @@ const defaultProps = {
 };
 
 function Textarea(props) {
-  const textarea = React.useRef(null);
+  const textareaRef = React.useRef(null);
 
   const resize = () => {
-    if (textarea.current && textarea.current.style) {
-      textarea.current.style.height = 0;
-      textarea.current.style.height = `${textarea.current.scrollHeight + 2}px`;
+    if (textareaRef.current && textareaRef.current.style) {
+      textareaRef.current.style.height = 0;
+      textareaRef.current.style.height = `${textareaRef.current.scrollHeight + 2}px`;
     }
   };
 
@@ -78,7 +78,7 @@ function Textarea(props) {
   }, [canExpand]);
 
   const setRef = node => {
-    textarea.current = node;
+    textareaRef.current = node;
     inputRef(node);
   };
 
