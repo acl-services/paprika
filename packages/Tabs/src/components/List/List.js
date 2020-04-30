@@ -6,20 +6,18 @@ import { tabsListStyles } from "./List.styles";
 const propTypes = {
   a11yText: PropTypes.string,
   children: PropTypes.node.isRequired,
-  height: PropTypes.height,
-  isCompact: PropTypes.bool,
+  height: PropTypes.number,
 };
 
 const defaultProps = {
   a11yText: null,
   height: null,
-  isCompact: null,
 };
 
-const List = props => {
+export default function List(props) {
   const context = React.useContext(TabsContext);
 
-  const { a11yText, children, height, isCompact, ...moreProps } = props;
+  const { a11yText, children, height, ...moreProps } = props;
   const { activeIndex, kind, currentFocusIndex, onKeyDown, onClickTab, setTabListRef } = context;
 
   const childrenWithProps = React.Children.map(children, (tab, index) => {
@@ -29,7 +27,6 @@ const List = props => {
       kind,
       currentFocusIndex,
       height,
-      isCompact,
       isSelected,
       onClick: e => onClickTab(e, index),
       onKeyDownArrows: onKeyDown,
@@ -43,9 +40,8 @@ const List = props => {
       {childrenWithProps}
     </div>
   );
-};
+}
 
 List.displayName = "Tabs.List";
 List.propTypes = propTypes;
 List.defaultProps = defaultProps;
-export default List;

@@ -6,22 +6,20 @@ import { tabStyles, linkStyles } from "./Tab.styles";
 
 const propTypes = {
   children: PropTypes.node,
-  isCompact: PropTypes.bool,
-  isSelected: PropTypes.bool,
-  isDisabled: PropTypes.bool,
   height: PropTypes.number,
   href: PropTypes.string,
+  isDisabled: PropTypes.bool,
+  isSelected: PropTypes.bool,
   onClick: PropTypes.func,
   onKeyDownArrows: PropTypes.func,
 };
 
 const defaultProps = {
   children: null,
-  isCompact: false,
-  isSelected: false,
-  isDisabled: false,
   height: null,
   href: null,
+  isDisabled: false,
+  isSelected: false,
   onClick: () => {},
   onKeyDownArrows: () => {},
 };

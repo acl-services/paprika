@@ -6,7 +6,7 @@ const focusStyle = tokens.highlight.active.withBorder.boxShadow;
 
 const kindStyles = () => ({
   primary: css`
-    border-bottom: ${tokens.spaceSm} solid ${tokens.color.green};
+    border-bottom: ${tokens.spaceSm} solid ${tokens.color.blue};
   `,
 
   secondary: css`
@@ -15,6 +15,8 @@ const kindStyles = () => ({
 });
 
 const activeStyles = props => css`
+  color: ${tokens.textColor.link};
+  
   &::after {
     ${kindStyles()[props.kind]}
     bottom: -${tokens.spaceSm};
@@ -27,12 +29,11 @@ const activeStyles = props => css`
 `;
 
 const disabledStyles = css`
+  &&& {
+    border-bottom-color: transparent;
+  }
   color: ${tokens.color.blackDisabled};
   cursor: not-allowed;
-`;
-
-const compactStyles = css`
-  margin: 0 0 0 ${stylers.spacer(2)};
 `;
 
 export const tabStyles = css`
@@ -42,34 +43,32 @@ export const tabStyles = css`
   border: 0;
   border-bottom: ${tokens.spaceSm} solid transparent;
   color: ${tokens.color.black};
-  display: flex;
-  height: ${props => (props.height ? `${props.height}px` : "auto")};
-  margin: 0 0 0 ${stylers.spacer(4)};
-  padding: ${stylers.spacer(2)} ${tokens.spaceSm} ${tokens.space} ${tokens.spaceSm};
+  display: inline-flex;
+  height: ${({ height }) => (height ? `${height}px` : "auto")};
+  margin: 0 ${tokens.space} 0 0;
+  padding: ${stylers.spacer(2)} ${tokens.space} ${tokens.space} ${tokens.space};
   position: relative;
   transition: border-color 0.3s ease;
-
   ${({ isDisabled }) => (isDisabled ? disabledStyles : null)}
   ${({ isSelected }) => (isSelected ? activeStyles : null)}
-  ${({ isCompact }) => (isCompact ? compactStyles : null)}
-  
-  &:first-child {
-    margin-left: 0;
+
+  &:last-child {
+    margin-right: 0;
   }
 
   &:focus {
-    border-radius: ${tokens.border.radius};
+    border-color: ${tokens.border.color};
+    border-radius: ${tokens.border.radius} ${tokens.border.radius} 0 0;
     ${stylers.z(1)}
   }
 
   &:hover {
-    border-color: ${tokens.color.blackLighten70};
+    border-color: ${tokens.border.color};
   }
 `;
 
 export const linkStyles = css`
   ${tabStyles}
-
   color: ${tokens.color.black};
   text-decoration: none;
 
