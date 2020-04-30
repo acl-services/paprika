@@ -96,7 +96,9 @@ export function useOnScrolled() {
     if (!state.refListBox.current || state.activeOption === null) return;
 
     const $box = state.refListBox.current;
-    const $option = document.getElementById(state.options[state.activeOption].id);
+    const $option = state.options[state.activeOption]
+      ? document.getElementById(state.options[state.activeOption].id)
+      : null;
 
     if ($box && $option) {
       const rectBox = $box.getBoundingClientRect();
