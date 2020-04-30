@@ -28,7 +28,7 @@ const Tabs = props => {
   const { kind, isDisabled } = props;
 
   function focusAndSetIndex(index) {
-    tabListRef.querySelectorAll(".tab")[index].focus();
+    tabListRef.querySelectorAll("[data-pka-anchor='tab'], [data-pka-anchor='tab-link']")[index].focus();
     setFocusIndex(index);
   }
 
