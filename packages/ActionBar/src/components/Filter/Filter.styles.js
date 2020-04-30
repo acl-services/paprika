@@ -1,5 +1,5 @@
 import styled, { css } from "styled-components";
-import FilterIcon from "@paprika/icon/lib/FilterAlt";
+import FilterIcon from "@paprika/icon/lib/Filter";
 import stylers from "@paprika/stylers";
 import tokens from "@paprika/tokens";
 import { Wrapper } from "../InlineSelect/InlineSelect.styles";

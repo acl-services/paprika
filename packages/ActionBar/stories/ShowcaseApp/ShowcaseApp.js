@@ -174,7 +174,7 @@ export default function App() {
         </thead>
         <tbody>
           {subset.map(item => (
-            <tr>
+            <tr key={item.id}>
               <td>{item.id}</td>
               {orderedColumnIds.map(id => (isColumnHidden(id) ? null : <td key={id}>{item[id]}</td>))}
             </tr>
