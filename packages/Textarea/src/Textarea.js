@@ -37,7 +37,7 @@ const defaultProps = {
 };
 
 function Textarea(props) {
-  let textarea = React.useRef(null);
+  let textarea = null;
 
   const resize = () => {
     if (textarea && textarea.style) {
@@ -76,6 +76,7 @@ function Textarea(props) {
       resize();
     }
   }, [canExpand]);
+
   const setRef = node => {
     textarea = node;
     inputRef(node);
