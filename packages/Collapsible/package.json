@@ -1,7 +1,7 @@
 {
   "name": "@paprika/collapsible",
   "version": "0.2.13",
-  "description": "Collapsible component, the collapsible component allows the user to expand and collapse some enclosed content.",
+  "description": "Collapsible component, allows the user to expand and collapse some enclosed content.",
   "author": "@paprika",
   "license": "MIT",
   "main": "lib/index.js",
