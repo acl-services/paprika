@@ -2,7 +2,7 @@ import React from "react";
 import PropTypes from "prop-types";
 import RawButton from "@paprika/raw-button";
 import TabsContext from "../../TabsContext";
-import { tabStyles } from "./Tab.styles";
+import { tabStyles, linkStyles } from "./Tab.styles";
 
 const propTypes = {
   children: PropTypes.node,
@@ -43,7 +43,7 @@ export default function Tab(props) {
     return (
       <a
         {...moreProps}
-        css={tabStyles}
+        css={linkStyles}
         data-pka-anchor="tab"
         href={href}
         onKeyDown={e => handleKeyDown(e, context.currentFocusIndex)}

@@ -5,12 +5,12 @@ import stylers from "@paprika/stylers";
 const focusStyle = tokens.highlight.active.withBorder.boxShadow;
 
 const kindStyles = () => ({
-  primary: `
-    border-bottom: ${tokens.spaceSm} solid ${tokens.color.green}
+  primary: css`
+    border-bottom: ${tokens.spaceSm} solid ${tokens.color.green};
   `,
 
-  secondary: `
-    border-bottom: ${tokens.spaceSm} solid ${tokens.color.purple}
+  secondary: css`
+    border-bottom: ${tokens.spaceSm} solid ${tokens.color.purple};
   `,
 });
 
@@ -63,16 +63,18 @@ export const tabStyles = css`
   }
 
   &:hover {
-    border-color: ${tokens.color.creme};
+    border-color: ${tokens.color.blackLighten70};
   }
+`;
 
-  &.tab-link {
-    color: ${tokens.color.black};
-    text-decoration: none;
+export const linkStyles = css`
+  ${tabStyles}
 
-    &:focus {
-      box-shadow: ${focusStyle};
-      outline: none;
-    }
+  color: ${tokens.color.black};
+  text-decoration: none;
+
+  &:focus {
+    box-shadow: ${focusStyle};
+    outline: none;
   }
 `;
