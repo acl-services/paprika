@@ -37,35 +37,13 @@ const defaultProps = {
 };
 
 function Textarea(props) {
-  let textarea = null;
+  const textareaRef = React.useRef(null);
 
   const resize = () => {
-    if (textarea && textarea.style) {
-      textarea.style.height = 0;
-      textarea.style.height = `${textarea.scrollHeight + 2}px`;
+    if (textareaRef.current && textareaRef.current.style) {
+      textareaRef.current.style.height = 0;
+      textareaRef.current.style.height = `${textareaRef.current.scrollHeight + 2}px`;
     }
-  };
-
-  React.useEffect(() => {
-    if (props.canExpand) {
-      resize();
-      window.addEventListener("resize", resize);
-    }
-
-    return function cleanup() {
-      window.removeEventListener("resize", resize);
-    };
-  });
-
-  React.useEffect(() => {
-    if (props.canExpand) {
-      resize();
-    }
-  }, [props.value]);
-
-  const setRef = node => {
-    textarea = node;
-    props.inputRef(node);
   };
 
   const {
@@ -75,17 +53,47 @@ function Textarea(props) {
     hasError,
     inputRef,
     isDisabled,
+    onChange,
     isReadOnly,
     maxHeight,
     size,
     ...moreProps
   } = props;
 
+  React.useEffect(() => {
+    if (canExpand) {
+      resize();
+      window.addEventListener("resize", resize);
+    }
+
+    return function cleanup() {
+      window.removeEventListener("resize", resize);
+    };
+  }, []);
+
+  React.useEffect(() => {
+    if (canExpand) {
+      resize();
+    }
+  }, [canExpand]);
+
+  const setRef = node => {
+    textareaRef.current = node;
+    inputRef(node);
+  };
+
   if (moreProps.value) {
     delete moreProps.defaultValue;
   } else {
     delete moreProps.value;
   }
+
+  const handleChange = e => {
+    if (canExpand) {
+      resize();
+    }
+    onChange(e);
+  };
 
   if (a11yText) moreProps["aria-label"] = a11yText;
 
@@ -105,6 +113,7 @@ function Textarea(props) {
         data-pka-anchor="textarea"
         disabled={isDisabled}
         readOnly={isReadOnly}
+        onChange={handleChange}
         ref={setRef}
         style={{ maxHeight }}
         {...moreProps}
