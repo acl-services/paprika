@@ -60,6 +60,19 @@ storiesOf("Tabs", module)
         </Tabs.List>
       </Tabs>
     </Story>
+  ))
+  .add("Compact Tabs with custom height", () => (
+    <Story>
+      <Tabs>
+        <Tabs.List isCompact height={80}>
+          <Tabs.Tab>These tabs</Tabs.Tab>
+          <Tabs.Tab>Are tall</Tabs.Tab>
+          <Tabs.Tab href="https://wegalvanize.com" target="_blank" rel="noopener noreferrer">
+            And narrow
+          </Tabs.Tab>
+        </Tabs.List>
+      </Tabs>
+    </Story>
   ));
 
 storiesOf("Tabs/Automation Tests", module).add("Cypress", () => <Story>{TabsExample()}</Story>);
