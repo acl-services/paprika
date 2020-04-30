@@ -223,17 +223,15 @@ export const TriggerIsHidden = () => {
   );
 };
 
+const initialOptions = [
+  { id: 1, label: "Black Panther", isSelected: false },
+  { id: 2, label: "Wonder Woman", isSelected: false },
+  { id: 3, label: "Spiderman", isSelected: false },
+  { id: 4, label: "The Incredibles", isSelected: false },
+];
+
 const AppFullOptionControlled = () => {
-  const [options, setOptions] = React.useState([
-    { label: "Black Panther", isSelected: false },
-    { label: "Wonder Woman", isSelected: false },
-    { label: "Spiderman", isSelected: false },
-    { label: "The Incredibles", isSelected: false },
-    { label: "Thor", isSelected: false },
-    { label: "Batman", isSelected: false },
-    { label: "Iron Man", isSelected: false },
-    { label: "Doctor Strange", isSelected: false },
-  ]);
+  const [options, setOptions] = React.useState(initialOptions);
   const [isFixedOptionSelected, setIsFixedOptionSelected] = React.useState(false);
 
   const handleChange = (indexes, listBoxOptions) => {
@@ -253,12 +251,22 @@ const AppFullOptionControlled = () => {
     setOptions(cloneArray);
   };
 
-  console.log("options", options);
+  const handleFilter = filter => {
+    if (filter.search) {
+      setOptions([
+        { id: 2, label: "Wonder Woman", isSelected: false },
+        { id: 5, label: "Filtered item 1", isSelected: false },
+        { id: 6, label: "Filtered item 2", isSelected: false },
+      ]);
+    } else {
+      setOptions(initialOptions);
+    }
+  };
 
   return (
     <div className="App">
       <ListBox onChange={handleChange} isMulti>
-        <ListBox.Filter />
+        <ListBox.Filter filter={handleFilter} />
         <ListBox.Option value="Fixed option" isSelected={isFixedOptionSelected}>
           Fixed option
         </ListBox.Option>
