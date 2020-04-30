@@ -1,6 +1,6 @@
 {
   "name": "@paprika/form-element",
-  "version": "0.3.13",
+  "version": "0.3.15",
   "description": "FormElement component",
   "main": "lib/index.js",
   "author": "@paprika",
@@ -16,10 +16,10 @@
   "dependencies": {
     "@babel/runtime-corejs2": "^7.3.1",
     "@paprika/helpers": "^0.2.11",
-    "@paprika/icon": "^0.2.15",
-    "@paprika/popover": "^0.3.19",
-    "@paprika/stylers": "^0.2.6",
-    "@paprika/tokens": "^0.1.13",
+    "@paprika/icon": "^0.3.0",
+    "@paprika/popover": "^0.3.20",
+    "@paprika/stylers": "^0.2.7",
+    "@paprika/tokens": "^0.1.14",
     "prop-types": "^15.7.2",
     "uuid": "^3.3.2"
   },

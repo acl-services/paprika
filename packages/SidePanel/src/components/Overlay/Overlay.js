@@ -1,44 +1,44 @@
 import React from "react";
 import PropTypes from "prop-types";
 import useI18n from "@paprika/l10n/lib/useI18n";
-import { visuallyHidden } from "@paprika/stylers/lib/includes";
-import { zValue } from "@paprika/stylers/lib/helpers";
 import * as sc from "./Overlay.styles";
 
 const propTypes = {
-  /**
-   * Will accept the click event on outside of the sidepanel when losing focus
-   * @boolean
-   */
+  /** Will call an onClose handler when clicked on (outside of the SidePanel) */
   hasOutsideClick: PropTypes.bool,
+
+  /** Callback for click event */
   onClose: PropTypes.func,
-  /** Control the z position of the sidepanel overlay */
+
+  /** The z-index of the SidePanel Overlay */
   zIndex: PropTypes.number,
 };
 
 const defaultProps = {
   hasOutsideClick: true,
   onClose: null,
-  zIndex: zValue(6),
+  zIndex: null,
 };
 
 export default function Overlay(props) {
+  const { onClose, hasOutsideClick, ...moreProps } = props;
   const I18n = useI18n();
 
-  const { onClose, hasOutsideClick, ...moreProps } = props;
   const handleClick = () => {
     if (hasOutsideClick) {
       onClose();
     }
   };
 
-  const vh = visuallyHidden;
+  const overlayProps = {
+    a11yText: I18n.t("close"),
+    ...moreProps,
+    children: "",
+    "data-pka-anchor": "side-panel.overlay",
+    onClick: handleClick,
+  };
 
-  return (
-    <sc.Overlay {...moreProps} onClick={handleClick}>
-      <span css={vh}>{I18n.t("close")}</span>
-    </sc.Overlay>
-  );
+  return <sc.Overlay {...overlayProps} />;
 }
 
 Overlay.propTypes = propTypes;

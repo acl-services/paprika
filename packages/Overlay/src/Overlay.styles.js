@@ -16,7 +16,7 @@ const states = {
   exited: closedCss,
 };
 
-const Backdrop = styled.div`
+export const Backdrop = styled.div`
   background-color: ${tokens.overlay.backdrop.backgroundColor};
   bottom: 0;
   left: 0;
@@ -27,6 +27,11 @@ const Backdrop = styled.div`
   ${({ state }) => states[state]};
 `;
 
-Backdrop.displayName = "Overlay.Backdrop";
-
-export default Backdrop;
+export const Overlay = styled.div`
+  bottom: 0;
+  left: 0;
+  position: fixed;
+  right: 0;
+  top: 0;
+  ${({ zIndex }) => (zIndex ? `z-index: ${zIndex}` : null)}
+`;

@@ -46,7 +46,7 @@ export default function reducer(state, { type, payload }) {
     }
 
     case useListBox.types.selectMultipleOption: {
-      const { activeOptionIndex, isSelected, isOpen } = payload;
+      const { activeOptionIndex, isSelected } = payload;
       let selectedOptions = [];
 
       if (isSelected) {
@@ -63,7 +63,6 @@ export default function reducer(state, { type, payload }) {
       return {
         ...state,
         activeOption: activeOptionIndex,
-        isOpen,
         onChangeFn: payload.onChangeFn,
         selectedOptions,
       };
@@ -79,8 +78,7 @@ export default function reducer(state, { type, payload }) {
 
     case useListBox.types.toggleMultipleOption: {
       const selectedOptionsArray = state.selectedOptions.slice();
-      const { activeOptionIndex } = payload;
-
+      const { activeOptionIndex, onChangeFn } = payload;
       if (selectedOptionsArray.includes(activeOptionIndex)) {
         const index = selectedOptionsArray.indexOf(activeOptionIndex);
         selectedOptionsArray.splice(index, 1);
@@ -91,8 +89,7 @@ export default function reducer(state, { type, payload }) {
       return {
         ...state,
         activeOption: activeOptionIndex,
-        isOpen: true,
-        onChangeFn: payload.onChangeFn,
+        onChangeFn,
         selectedOptions: selectedOptionsArray,
       };
     }
