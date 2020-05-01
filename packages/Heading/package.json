@@ -1,6 +1,6 @@
 {
   "name": "@paprika/heading",
-  "version": "0.3.15",
+  "version": "0.3.16",
   "description": "Heading component",
   "author": "@paprika",
   "license": "MIT",
@@ -22,7 +22,7 @@
     "prop-types": "^15.7.2"
   },
   "devDependencies": {
-    "@paprika/external-link": "^0.0.10"
+    "@paprika/external-link": "^0.0.11"
   },
   "peerDependencies": {
     "react": "^16.8.0",

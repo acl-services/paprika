@@ -1,6 +1,6 @@
 {
   "name": "@paprika/dropdown-menu",
-  "version": "2.0.21",
+  "version": "2.0.22",
   "description": "DropdownMenu component",
   "author": "@paprika",
   "license": "MIT",
@@ -15,8 +15,8 @@
   },
   "dependencies": {
     "@babel/runtime-corejs2": "^7.3.1",
-    "@paprika/button": "^0.2.22",
-    "@paprika/confirmation": "^0.3.18",
+    "@paprika/button": "^0.2.23",
+    "@paprika/confirmation": "^0.3.19",
     "@paprika/helpers": "^0.2.11",
     "@paprika/popover": "^0.3.20",
     "@paprika/raw-button": "^0.2.9",
