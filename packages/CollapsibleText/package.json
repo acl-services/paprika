@@ -1,7 +1,7 @@
 {
   "name": "@paprika/collapsible-text",
   "version": "0.2.20",
-  "description": "CollapsibleText component",
+  "description": "CollapsibleText component, an uncontrolled component that truncates some given content at a given length to be revealed by clicking a 'Show more' link.",
   "author": "@paprika",
   "license": "MIT",
   "main": "lib/index.js",

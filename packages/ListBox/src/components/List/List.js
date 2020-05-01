@@ -5,7 +5,10 @@ import useListBox from "../../useListBox";
 import { getDOMAttributesForListBox } from "../../helpers/DOMAttributes";
 
 const propTypes = {
+  /** Sets the height for the list */
   height: PropTypes.number.isRequired,
+
+  /** Body content of the list. */
   children: PropTypes.node.isRequired,
 };
 

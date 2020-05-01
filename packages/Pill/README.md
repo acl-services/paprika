@@ -4,7 +4,7 @@
 
 ## Description
 
-Pill component
+The Pill component is for showing metadata like status, type, or levels.
 
 ## Installation
 
@@ -44,12 +44,6 @@ If an onClick handler is passed, it is rendered as a `<RawButton>`, otherwise it
 
 Fore more information about the `<Pill>`, visit our [starling site](https://design.wegalvanize.com/p/components/pill).
 
-### Installation
-
-`> npm install --save @paprika/pill`
-or
-`> yarn add @paprika/pill`
-
 ### Usage
 
 For a decorative pill
@@ -81,17 +75,6 @@ import Icon from "@paprika/icon/lib/Upload";
   Medium risk with icon
 </Pill>;
 ```
-
-### Props
-
-- `a11yText`
-- `children`
-- `isDisabled`
-- `onClick`
-- `pillColor`
-- `size`
-
-[More detail about these props](https://github.com/acl-services/paprika/blob/master/packages/Pill/src/Pill.js)
 
 <!-- eoContent -->
 

@@ -4,6 +4,7 @@ import { BoxContainerStyled } from "./Box.styles";
 import useListBox from "../../useListBox";
 
 const propTypes = {
+  /** Body content of the box. */
   children: PropTypes.node.isRequired,
 };
 

@@ -1,7 +1,7 @@
 {
   "name": "@paprika/spinner",
   "version": "0.2.14",
-  "description": "Spinner component",
+  "description": "Spinner component tells the user that the app is doing something.",
   "author": "@paprika",
   "main": "lib/index.js",
   "license": "MIT",

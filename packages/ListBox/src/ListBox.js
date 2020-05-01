@@ -28,7 +28,7 @@ export const propTypes = {
   /** Child of type <ListBox.Option /> */
   children: PropTypes.node,
 
-  /** Disable the entire ListBox */
+  /** Disables the ListBox if true */
   isDisabled: PropTypes.bool,
 
   /** Let the user to select multiple options at same time */

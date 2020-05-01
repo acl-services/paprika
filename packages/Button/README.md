@@ -4,7 +4,7 @@
 
 ## Description
 
-Button component
+Button component, for performing an action on the page you’re viewing.
 
 ## Installation
 
@@ -54,12 +54,6 @@ For buttons with a label that is only an icon, the `<Button.Icon>` component is 
 
 It is rendered as a `<button>` element by default, but can also be rendered as a generic `<span>`, via the `<RawButton>` if global CSS conflicts are an issue (when `isSemantic` prop is set to `false`).
 
-### Installation
-
-`> npm install --save @paprika/button`
-or
-`> yarn add @paprika/button`
-
 ### Usage
 
 For a basic button
@@ -81,36 +75,17 @@ import InfoIcon from "@paprika/icon/lib/InfoCircle";
 </Button.Icon>;
 ```
 
+Or a close button
+
 ```js
 import Button from "@paprika/button";
 
 <Button.Close onClick={clickHandler} />;
 ```
 
-### Props
-
-- `a11yText`
-- `canPropagate`
-- `children`
-- `icon`
-- `isActive`
-- `isDisabled`
-- `isDropdown`
-- `isFullWidth`
-- `isPending`
-- `isSemantic`
-- `isSubmit`
-- `kind` `["default", "primary", "secondary", "destructive", "flat", "minor", "link"]`
-- `onClick` (required)
-- `role`
-- `size` `["small", "medium", "large"]`
-- `tabIndex`
-
 #### Button.Close
 
 - `isDark`
-
-[More detail about these props](https://github.com/acl-services/paprika/blob/master/packages/Button/src/Button.js)
 
 <!-- eoContent -->
 

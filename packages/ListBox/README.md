@@ -4,6 +4,8 @@
 
 ## Description
 
+The ListBox component allows users to select one or more options from a list contained within the component
+
 ## Installation
 
 ```

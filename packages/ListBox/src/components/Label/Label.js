@@ -6,6 +6,7 @@ import LabelMulti from "./LabelMulti";
 import LabelSingle from "./LabelSingle";
 
 const propTypes = {
+  /** Sets a placeholder for the label. */
   placeholder: PropTypes.string,
 };
 
