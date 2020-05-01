@@ -29,12 +29,15 @@ const propTypes = {
   /** Possible date might be selected in moment object */
   possibleDate: PropTypes.instanceOf(moment),
 
-  resetPossibleDate: PropTypes.func.isRequired,
+  resetPossibleDate: PropTypes.func,
 };
+
+const noop = () => {};
 
 const defaultProps = {
   date: null,
   possibleDate: null,
+  resetPossibleDate: noop,
 };
 
 function SingleDateCalendar(props) {
