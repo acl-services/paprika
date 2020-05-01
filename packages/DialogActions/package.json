@@ -1,6 +1,6 @@
 {
   "name": "@paprika/dialog-actions",
-  "version": "0.1.9",
+  "version": "0.1.10",
   "description": "DialogActions component",
   "author": "@paprika",
   "license": "MIT",
@@ -14,7 +14,7 @@
   },
   "dependencies": {
     "@babel/runtime-corejs2": "^7.3.1",
-    "@paprika/button": "^0.2.22",
+    "@paprika/button": "^0.2.23",
     "@paprika/tokens": "^0.1.14",
     "prop-types": "^15.7.2"
   },

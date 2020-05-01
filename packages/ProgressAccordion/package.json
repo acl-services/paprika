@@ -1,6 +1,6 @@
 {
   "name": "@paprika/progress-accordion",
-  "version": "0.2.16",
+  "version": "0.2.17",
   "description": "ProgressAccordion component",
   "author": "@paprika",
   "main": "lib/index.js",
@@ -15,8 +15,8 @@
   },
   "dependencies": {
     "@babel/runtime-corejs2": "^7.3.1",
-    "@paprika/collapsible": "^0.2.15",
-    "@paprika/icon": "^0.3.0",
+    "@paprika/collapsible": "^0.2.16",
+    "@paprika/icon": "^0.3.1",
     "@paprika/stylers": "^0.2.7",
     "@paprika/tokens": "^0.1.14",
     "prop-types": "^15.7.2"
