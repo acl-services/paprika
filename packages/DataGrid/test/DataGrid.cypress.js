@@ -12,7 +12,7 @@ describe("<DataGrid/>", () => {
     cy.visitStorybook(`${comp}-${testStory}`);
   });
 
-  it("renders StickyColumn", () => {
+  it("should render StickyColumn", () => {
     cy.get('[data-column-index="2"]')
       .eq(0)
       .then(e => {
@@ -52,7 +52,15 @@ describe("<DataGrid/>", () => {
       });
   });
 
-  it("renders ColumnIndicator", () => {
+  it("should render ColumnIndicator", () => {
+    cy.get('[data-row-index="0"]')
+      .eq(0)
+      .children()
+      .children()
+      .should($div => {
+        const className = $div[0].className;
+        expect(className).not.to.match(/Checkbox/);
+      });
     cy.get('[data-row-index="0"]')
       .eq(0)
       .children()
@@ -64,31 +72,39 @@ describe("<DataGrid/>", () => {
       });
   });
 
-  it("renders ColumnExpand", () => {
-    cy.get('[data-row-index="0"]')
-      .eq(1)
+  it("should render ColumnExpand", () => {
+    cy.get('[data-column-index="1"]')
+      .eq(0)
+      .children()
+      .first()
+      .should("have.css", "opacity", "0");
+
+    cy.get('[data-column-index="1"]')
+      .eq(0)
+      .children()
+      .first()
       .trigger("mouseover")
       .should("have.css", "opacity", "1");
   });
 
-  it("renders load more button when you scroll to the bottom", () => {
+  it("should render load more button when you scroll to the bottom", () => {
     cy.getAllByRole("rowgroup")
       .last()
       .scrollTo("bottom")
-      .should("not.contain", "Amun");
+      .should("not.contain", "Amun")
+      .should("contain", "Abyss");
 
     cy.get('[data-pka-anchor="button"')
       .should("be.visible")
       .click()
-      .wait(400)
+      .wait(200)
       .getAllByRole("rowgroup")
       .last()
       .scrollTo("bottom")
-      .getAllByText(/Amun/i)
-      .should("be.visible");
+      .should("contain", "Amun");
   });
 
-  it("navigate DataGrid-collapsible OnArrowKeyDown", () => {
+  it("should navigate DataGrid-collapsible OnArrowKeyDown", () => {
     cy.visitStorybook(`${comp}-lazy--collapse`);
 
     cy.getByText("Audit Planning").click();
@@ -120,7 +136,7 @@ describe("<DataGrid/>", () => {
     cy.getByRole("grid").should("not.contain", "Narrative");
   });
 
-  it("navigate DataGrid-collapsible OnPressEnter", () => {
+  it("should navigate DataGrid-collapsible OnPressEnter", () => {
     cy.visitStorybook(`${comp}-lazy--collapse`);
 
     cy.getByText("Audit Planning")
