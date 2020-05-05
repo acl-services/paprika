@@ -1,7 +1,7 @@
 {
   "name": "@paprika/input",
   "version": "0.2.24",
-  "description": "Input component",
+  "description": "The Input component is an input that can be used controlled or un-controlled",
   "author": "@paprika",
   "license": "MIT",
   "main": "lib/index.js",

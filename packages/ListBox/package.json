@@ -1,7 +1,7 @@
 {
   "name": "@paprika/listbox",
   "version": "0.8.23",
-  "description": "",
+  "description": "The ListBox component allows users to select one or more options from a list contained within the component",
   "main": "lib/index.js",
   "dependencies": {
     "@babel/runtime-corejs2": "^7.3.1",

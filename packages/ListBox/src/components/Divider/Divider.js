@@ -12,7 +12,9 @@ const propTypes = {
 };
 
 const defaultProps = {
+  /** Disables the divider if true */
   isDisabled: true,
+  /** Body content of the divider. */
   children: null,
 };
 
