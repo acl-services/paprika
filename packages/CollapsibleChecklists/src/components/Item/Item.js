@@ -4,8 +4,11 @@ import itemStyles from "./Item.styles";
 
 const propTypes = {
   children: PropTypes.node.isRequired,
+  /** If the item is checked or not */
   isChecked: PropTypes.bool,
+  /** If the item is disabled */
   isDisabled: PropTypes.bool,
+  /** Callback when user checked an item  */
   onChange: PropTypes.func,
 };
 

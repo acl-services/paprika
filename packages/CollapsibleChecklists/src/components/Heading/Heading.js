@@ -3,6 +3,7 @@ import PropTypes from "prop-types";
 import headingStyles from "./Heading.styles";
 
 const propTypes = {
+  /** Content of the heading  */
   children: PropTypes.node.isRequired,
 };
 

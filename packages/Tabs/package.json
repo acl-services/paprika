@@ -1,7 +1,7 @@
 {
   "name": "@paprika/tabs",
   "version": "0.2.9",
-  "description": "Tabs component",
+  "description": "Tabs component displays horizontal tabs with panels associated with each tab",
   "author": "@paprika",
   "license": "MIT",
   "main": "lib/index.js",
@@ -25,5 +25,13 @@
     "react": "^16.8.4",
     "react-dom": "^16.8.4",
     "styled-components": "^4.2.0"
+  },
+  "paprikaDocs": {
+    "subComponents": [
+      "List",
+      "Panel",
+      "Panels",
+      "Tab"
+    ]
   }
 }

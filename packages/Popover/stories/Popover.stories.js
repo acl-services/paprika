@@ -27,7 +27,7 @@ const experimentalParameters = {
 
 storiesOf("Popover", module)
   .addDecorator(withKnobs)
-  .add("Basic", Basic)
+  .add("Showcase", Basic)
   .add("Controlled", () => <Controlled />)
   .add("With Trigger Components", () => <WithTriggers />)
   .add("With Positioning Element", PositioningElement)

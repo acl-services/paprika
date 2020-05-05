@@ -19,6 +19,7 @@ ButtonTypes.ALL = Object.values(ButtonTypes);
 
 const propTypes = {
   children: PropTypes.node,
+  /** Determine the styling of the button */
   buttonType: PropTypes.oneOf(ButtonTypes.ALL),
   isOpen: PropTypes.bool,
   menuRefId: PropTypes.string,
