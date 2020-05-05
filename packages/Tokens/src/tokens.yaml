@@ -137,11 +137,11 @@ font-family:
 #
 table:
   header:
-    background-color: '#edebe8'
+    background-color: $color--black-lighten-70
   row:
-    background-color: white
+    background-color: $color--white
   row-even:
-    background-color: '#f5f5f5'
+    background-color: $color--black-lighten-80
 #
 border:
   radius: 3px

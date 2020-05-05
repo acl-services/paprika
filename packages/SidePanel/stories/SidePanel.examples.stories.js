@@ -6,14 +6,17 @@ import {
   GroupSidePanel,
   PushContentSidePanel,
   StickyFooterSidePanel,
+  ZIndexSidePanel,
 } from "./examples/Examples";
 
 const sidePanelStoryParameters = {
-  viewMode: "story",
-  options: {
-    isToolshown: false,
-    showPanel: false,
-    docs: { disable: true },
+  parameters: {
+    viewMode: "story",
+    options: {
+      isToolshown: false,
+      showPanel: false,
+      docs: { disable: true },
+    },
   },
 };
 
@@ -23,26 +26,19 @@ export default {
 };
 
 export const basic = () => <BasicSidePanel />;
-basic.story = {
-  parameters: sidePanelStoryParameters,
-};
+basic.story = sidePanelStoryParameters;
 
 export const focuslock = () => <FocusLockSidePanel />;
-focuslock.story = {
-  parameters: sidePanelStoryParameters,
-};
+focuslock.story = sidePanelStoryParameters;
 
 export const group = () => <GroupSidePanel />;
-group.story = {
-  parameters: sidePanelStoryParameters,
-};
+group.story = sidePanelStoryParameters;
 
 export const pushContent = () => <PushContentSidePanel />;
-pushContent.story = {
-  parameters: sidePanelStoryParameters,
-};
+pushContent.story = sidePanelStoryParameters;
 
 export const stickyFooter = () => <StickyFooterSidePanel />;
-stickyFooter.story = {
-  parameters: sidePanelStoryParameters,
-};
+stickyFooter.story = sidePanelStoryParameters;
+
+export const zIndex = () => <ZIndexSidePanel />;
+zIndex.story = sidePanelStoryParameters;

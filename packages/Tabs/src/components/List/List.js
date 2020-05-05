@@ -6,16 +6,18 @@ import { tabsListStyles } from "./List.styles";
 const propTypes = {
   a11yText: PropTypes.string,
   children: PropTypes.node.isRequired,
+  height: PropTypes.number,
 };
 
 const defaultProps = {
   a11yText: null,
+  height: null,
 };
 
-const List = props => {
+export default function List(props) {
   const context = React.useContext(TabsContext);
 
-  const { a11yText, children, ...moreProps } = props;
+  const { a11yText, children, height, ...moreProps } = props;
   const { activeIndex, kind, currentFocusIndex, onKeyDown, onClickTab, setTabListRef } = context;
 
   const childrenWithProps = React.Children.map(children, (tab, index) => {
@@ -24,6 +26,7 @@ const List = props => {
     return React.cloneElement(tab, {
       kind,
       currentFocusIndex,
+      height,
       isSelected,
       onClick: e => onClickTab(e, index),
       onKeyDownArrows: onKeyDown,
@@ -33,13 +36,12 @@ const List = props => {
   if (a11yText) moreProps["aria-label"] = a11yText;
 
   return (
-    <div css={tabsListStyles} role="tablist" ref={ref => setTabListRef(ref)} {...moreProps} data-pka-anchor="tabs.list">
+    <div {...moreProps} css={tabsListStyles} role="tablist" ref={ref => setTabListRef(ref)} data-pka-anchor="tabs.list">
       {childrenWithProps}
     </div>
   );
-};
+}
 
 List.displayName = "Tabs.List";
 List.propTypes = propTypes;
 List.defaultProps = defaultProps;
-export default List;
