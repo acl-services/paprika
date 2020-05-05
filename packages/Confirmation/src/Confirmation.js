@@ -10,6 +10,8 @@ import TriggerButton from "./components/TriggerButton";
 import { confirmStyles, confirmBodyStyles, confirmFooterStyles } from "./Confirmation.styles";
 
 const propTypes = {
+  /** Content of the popover confirmation */
+  body: PropTypes.node,
   /** Size of the button */
   buttonSize: PropTypes.oneOf(ShirtSizes.DEFAULT),
   children: PropTypes.node,
@@ -17,12 +19,10 @@ const propTypes = {
   confirmButtonType: PropTypes.oneOf([Button.Kinds.PRIMARY, Button.Kinds.DESTRUCTIVE]),
   /** Label for the confirm button  */
   confirmLabel: PropTypes.string.isRequired,
-  /** Content of the popover confirmation */
-  body: PropTypes.node,
-  /** Heading for the popover confirmation */
-  heading: PropTypes.string,
   /** If the popover is open by default */
   defaultIsOpen: PropTypes.bool,
+  /** Heading for the popover confirmation */
+  heading: PropTypes.string,
   /** If the confirm button should render in a pending state (with a spinner icon) */
   isPending: PropTypes.bool,
   /** Callback when cancel button is clicked */
@@ -32,37 +32,39 @@ const propTypes = {
 };
 
 const defaultProps = {
+  body: null,
   buttonSize: ShirtSizes.MEDIUM,
   children: null,
   confirmButtonType: Button.Kinds.DESTRUCTIVE,
   defaultIsOpen: false,
-  body: null,
   heading: null,
   isPending: false,
   onClose: () => {},
 };
 
 const Confirmation = props => {
-  const [isConfirmOpen, setIsConfirmOpen] = React.useState(null);
   const {
-    heading,
+    body,
     buttonSize,
     children,
     confirmButtonType,
     confirmLabel,
-    body,
     defaultIsOpen,
+    heading,
     isPending,
-    onConfirm,
     onClose,
+    onConfirm,
     ...moreProps
   } = props;
+
+  const [isConfirmOpen, setIsConfirmOpen] = React.useState(null);
   const confirmButtonRef = React.useRef(null);
   const triggerRef = React.useRef(null);
   const confirmId = React.useRef(uuid()).current;
-  let popoverKey = uuid();
+  const I18n = useI18n();
 
   const popoverOffset = 4;
+  let popoverKey = uuid();
 
   const focusConfirmButton = () => {
     if (confirmButtonRef.current) confirmButtonRef.current.focus();
@@ -99,7 +101,8 @@ const Confirmation = props => {
   };
 
   const renderTrigger = () => {
-    // wrapping the returned item in a function to avoid needing to tab twice
+    // wrapping the returned item in a function to avoid wrapping children in
+    // a RawButton and needing to tab twice
     // https://github.com/acl-services/paprika/issues/126
     return () =>
       React.cloneElement(children, {
@@ -109,8 +112,6 @@ const Confirmation = props => {
         confirmId,
       });
   };
-
-  const I18n = useI18n();
 
   const popoverContent = (
     <Popover.Content id={confirmId}>
@@ -124,23 +125,25 @@ const Confirmation = props => {
           {body && <div css={confirmBodyStyles}>{body}</div>}
           <div css={confirmFooterStyles}>
             <Button
+              canPropagate={false}
+              data-pka-anchor="confirmation.confirm-button"
               isPending={isPending}
               isSemantic={false}
-              ref={confirmButtonRef}
               kind={confirmButtonType}
-              size={buttonSize}
               onClick={handleOnConfirm}
-              data-pka-anchor="confirmation.confirm-button"
+              ref={confirmButtonRef}
+              size={buttonSize}
             >
               {confirmLabel}
             </Button>
             <Button
+              canPropagate={false}
+              data-pka-anchor="confirmation.cancel-button"
               isDisabled={isPending}
               isSemantic={false}
               kind={Button.Kinds.MINOR}
-              size={buttonSize}
               onClick={handleCloseConfirm}
-              data-pka-anchor="confirmation.cancel-button"
+              size={buttonSize}
             >
               {I18n.t("actions.cancel")}
             </Button>
@@ -152,11 +155,11 @@ const Confirmation = props => {
 
   return (
     <Popover
+      data-pka-anchor="confirmation"
+      isOpen={isConfirmOpen}
       key={popoverKey}
       offset={popoverOffset}
-      isOpen={isConfirmOpen}
       onClose={handleCloseConfirm}
-      data-pka-anchor="confirmation"
       {...moreProps}
     >
       {children && <Popover.Trigger>{renderTrigger()}</Popover.Trigger>}

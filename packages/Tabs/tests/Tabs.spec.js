@@ -39,9 +39,9 @@ describe("Tabs", () => {
   });
 
   it("should render a link tab when href is passed as prop", () => {
-    renderTabsComponent();
+    const { getByText } = renderTabsComponent();
 
-    expect(document.querySelector(".tab-link").getAttribute("href")).toBe("https://wegalvanize.com/");
+    expect(getByText(/Linked Tab/i).getAttribute("href")).toBe("https://wegalvanize.com/");
   });
 
   it("should display correct tab when defaultIndex is passed as prop", () => {

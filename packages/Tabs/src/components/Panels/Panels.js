@@ -6,8 +6,10 @@ const propTypes = {
   children: PropTypes.node.isRequired,
 };
 
-const Panels = ({ children }) => {
+const Panels = props => {
   const context = React.useContext(TabsContext);
+
+  const { children, ...moreProps } = props;
 
   const childrenWithProps = React.Children.map(children, (panel, index) => {
     const isSelected = context.activeIndex === index;
@@ -17,7 +19,7 @@ const Panels = ({ children }) => {
     });
   });
 
-  return <React.Fragment>{childrenWithProps}</React.Fragment>;
+  return <div {...moreProps}>{childrenWithProps}</div>;
 };
 
 Panels.displayName = "Tabs.Panels";

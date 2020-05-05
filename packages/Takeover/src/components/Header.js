@@ -1,7 +1,7 @@
 import React from "react";
 import PropTypes from "prop-types";
 import Button from "@paprika/button";
-import * as styled from "./Header.styles";
+import * as sc from "./Header.styles";
 
 const propTypes = {
   children: PropTypes.node.isRequired,
@@ -22,11 +22,11 @@ const Header = React.forwardRef((props, ref) => {
   const { children, level, hasCloseButton, kind, onClose, ...moreProps } = props;
 
   return (
-    <styled.Wrapper ref={ref} kind={kind} {...moreProps}>
-      <styled.Heading tabIndex="-1" level={level} displayLevel={3} isLight>
+    <sc.Wrapper ref={ref} kind={kind} {...moreProps}>
+      <sc.Heading tabIndex="-1" level={level} displayLevel={3} isLight>
         {children}
-      </styled.Heading>
-      <styled.CloseButtonWrapper>
+      </sc.Heading>
+      <sc.CloseButtonWrapper>
         {hasCloseButton && (
           <Button.Close
             data-pka-anchor="takeover.header.close-button"
@@ -35,8 +35,8 @@ const Header = React.forwardRef((props, ref) => {
             size="medium"
           />
         )}
-      </styled.CloseButtonWrapper>
-    </styled.Wrapper>
+      </sc.CloseButtonWrapper>
+    </sc.Wrapper>
   );
 });
 
