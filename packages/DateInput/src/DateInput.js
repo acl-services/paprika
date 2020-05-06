@@ -29,6 +29,7 @@ const propTypes = {
   /** Error callback. Will be called on blur or enter key press if inputted date can't be parsed. */
   onError: PropTypes.func,
 
+  /** Callback to be executed when the dateInput is clicked or activated by keyboard. */
   onClick: PropTypes.func,
 
   /** Guard function. If it returns true - confirmation will be prevented. */

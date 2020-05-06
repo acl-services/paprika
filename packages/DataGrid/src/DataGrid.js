@@ -12,17 +12,27 @@ import Basement, { End } from "./components/Basement";
 import InfiniteScroll from "./components/InfiniteScroll";
 
 const propTypes = {
+  /** If the data cell should automatically get focus  */
   autofocus: PropTypes.bool,
   children: PropTypes.node.isRequired,
+  /** Array of data to be stored in the DataGrid */
   data: PropTypes.arrayOf(PropTypes.shape({})),
+  /** Sets the height of the DataGrid */
   height: PropTypes.number,
+  /** Callback onClick */
   onClick: PropTypes.func,
+  /** Callback onKeyDown press */
   onKeyDown: PropTypes.func,
+  /** Callback when Enter key is pressed */
   onPressEnter: PropTypes.func,
+  /** Callback when Shift + Spacebar is pressed */
   onPressShiftSpaceBar: PropTypes.func,
+  /** Callback when Spacebar is pressed */
   onPressSpaceBar: PropTypes.func,
   onRowChecked: PropTypes.func,
+  /** Sets the row height */
   rowHeight: PropTypes.number,
+  /** Sets the DataGrid width */
   width: PropTypes.number,
 };
 

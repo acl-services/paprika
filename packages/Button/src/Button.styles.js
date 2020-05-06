@@ -16,7 +16,6 @@ const commonStyles = `
   box-sizing: border-box;
   cursor: pointer;
   display: inline-flex;
-  font-family: ${tokens.fontFamily.default};
   font-weight: bold;
   text-align: center;
   vertical-align: middle;

@@ -1,7 +1,7 @@
 {
   "name": "@paprika/collapsible-checklists",
-  "version": "0.3.17",
-  "description": "CollapsibleChecklists component",
+  "version": "0.3.18",
+  "description": "A controlled component that has checkable groups of checkable items. Checking the parent checks all of the children.",
   "author": "@paprika",
   "license": "MIT",
   "main": "lib/index.js",
@@ -15,7 +15,7 @@
   },
   "dependencies": {
     "@babel/runtime-corejs2": "^7.3.1",
-    "@paprika/collapsible": "^0.2.16",
+    "@paprika/collapsible": "^0.2.17",
     "@paprika/stylers": "^0.2.7",
     "@paprika/tokens": "^0.1.14",
     "prop-types": "^15.7.2"
@@ -24,5 +24,12 @@
     "react": "^16.8.0",
     "react-dom": "^16.8.0",
     "styled-components": "^4.2.0"
+  },
+  "paprikaDocs": {
+    "subComponents": [
+      "Group",
+      "Heading",
+      "Item"
+    ]
   }
 }

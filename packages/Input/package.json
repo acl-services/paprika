@@ -1,7 +1,7 @@
 {
   "name": "@paprika/input",
-  "version": "0.2.24",
-  "description": "Input component",
+  "version": "0.2.25",
+  "description": "The Input component is an input that can be used controlled or un-controlled",
   "author": "@paprika",
   "license": "MIT",
   "main": "lib/index.js",
@@ -15,10 +15,10 @@
   },
   "dependencies": {
     "@babel/runtime-corejs2": "^7.3.1",
-    "@paprika/button": "^0.2.23",
+    "@paprika/button": "^0.2.24",
     "@paprika/helpers": "^0.2.11",
-    "@paprika/icon": "^0.3.1",
-    "@paprika/raw-button": "^0.2.9",
+    "@paprika/icon": "^0.3.2",
+    "@paprika/raw-button": "^0.2.10",
     "@paprika/stylers": "^0.2.7",
     "@paprika/tokens": "^0.1.14",
     "classnames": "^2.2.6",

@@ -1,7 +1,7 @@
 {
   "name": "@paprika/raw-button",
-  "version": "0.2.9",
-  "description": "Raw button component",
+  "version": "0.2.10",
+  "description": "Raw button component, for performing an action on the page you’re viewing.",
   "author": "@paprika",
   "main": "lib/index.js",
   "license": "MIT",

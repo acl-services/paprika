@@ -6,11 +6,17 @@ import Item from "../Item";
 import groupStyles from "./Group.styles";
 
 const propTypes = {
-  children: PropTypes.node, // probably an array of "Items", but could be a Spinner or anything else
+  /** Probably an array of "Items", but could be a Spinner or anything else */
+  children: PropTypes.node,
+  /** If checkbox is checked by default */
   isCheckedByDefault: PropTypes.bool,
+  /** If CollapsibleChecklists is disabled */
   isDisabled: PropTypes.bool,
+  /** Sets a visual state whether a checklist has been checked or not */
   isIndeterminateByDefault: PropTypes.bool,
+  /** Sets if the CollapsibleChecklists is open */
   onExpand: PropTypes.func,
+  /** Indicate the title for the checklist */
   title: PropTypes.node.isRequired,
 };
 
