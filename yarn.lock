@@ -3289,6 +3289,21 @@
     regenerator-runtime "^0.13.3"
     uuid "^3.3.2"
 
+"@storybook/addon-cssresources@v6.0.0-alpha.29":
+  version "6.0.0-alpha.29"
+  resolved "https://registry.yarnpkg.com/@storybook/addon-cssresources/-/addon-cssresources-6.0.0-alpha.29.tgz#a3f6f4fda12e166277070008ced653dbf70dfcec"
+  integrity sha512-LIepgrMTzs4huQQM9z/abxSM2c6dKfk8JzkTiyHmhZVt8W6vO3zvwN8BIVO2KqOhN0GfiSEyF3N8ZU+GZZr+Rw==
+  dependencies:
+    "@storybook/addons" "6.0.0-alpha.29"
+    "@storybook/api" "6.0.0-alpha.29"
+    "@storybook/components" "6.0.0-alpha.29"
+    "@storybook/core-events" "6.0.0-alpha.29"
+    "@storybook/theming" "6.0.0-alpha.29"
+    core-js "^3.0.1"
+    global "^4.3.2"
+    react "^16.8.3"
+    regenerator-runtime "^0.13.3"
+
 "@storybook/addon-docs@^v6.0.0-alpha.29":
   version "6.0.0-alpha.29"
   resolved "https://registry.yarnpkg.com/@storybook/addon-docs/-/addon-docs-6.0.0-alpha.29.tgz#0e32c5bd839485815c96c9906d0beb684e6bbb74"

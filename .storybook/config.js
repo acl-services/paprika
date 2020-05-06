@@ -2,6 +2,7 @@ import React from "react";
 import ReactDOM from "react-dom";
 import { addParameters, addDecorator, configure } from "@storybook/react";
 import { withA11y } from "@storybook/addon-a11y";
+import { withCssResources } from "@storybook/addon-cssresources";
 import paprikaTheme from "./paprikaTheme";
 import "./reset.scss";
 
@@ -14,9 +15,24 @@ addParameters({
   previewTabs: {
     canvas: { hidden: true },
   },
+  cssresources: [
+    {
+      id: "Lato",
+      code: `<style>body { font-family: "Lato", "Helvetica Neue", Helvetica, Arial, sans-serif; }</style>`,
+      picked: true,
+      hideCode: true,
+    },
+    {
+      id: "IBM Plex",
+      code: `<style>body { font-family: "IBM Plex Sans", "Helvetica Neue", Helvetica, Arial, sans-serif; }</style>`,
+      picked: false,
+      hideCode: true,
+    },
+  ],
 });
 
 addDecorator(withA11y);
+addDecorator(withCssResources);
 
 const stories = [
   // Welcome
