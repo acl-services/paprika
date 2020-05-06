@@ -1,12 +1,13 @@
 import React from "react";
 import { storiesOf } from "@storybook/react";
 import { withKnobs, boolean, select } from "@storybook/addon-knobs";
+import { Story, Rule, Tagline, repeat } from "storybook/assets/styles/common.styles";
 import styled from "styled-components";
 import Button from "@paprika/button";
 import SidePanel from "@paprika/sidepanel";
 import Popover from "@paprika/popover";
+import Heading from "@paprika/heading";
 import InfoIcon from "@paprika/icon/lib/InfoCircle";
-import { repeat } from "storybook/assets/styles/common.styles";
 import Takeover from "../src";
 
 /* Long block to test body scroll locking */
@@ -41,6 +42,23 @@ const TakeoverStory = ({ children }) => {
     </LongBlock>
   );
 };
+
+const Example = () => (
+  <Story>
+    <Heading level={1} displayLevel={2} isLight>
+      <code>&lt;Takeover /&gt;</code>
+    </Heading>
+    <Tagline>
+      <b>Showcase</b> – Interact with the props API
+    </Tagline>
+    <Rule />
+    <Takeover />
+  </Story>
+);
+
+storiesOf("Takeover", module).add("Showcase", () => {
+  return <Example />;
+});
 
 storiesOf("Takeover", module)
   .addDecorator(withKnobs)

@@ -1,7 +1,7 @@
 {
   "name": "@paprika/uploader",
   "version": "0.2.9",
-  "description": "Uploader component for paprika library",
+  "description": "The Uploader component is an agnostic UI component that let you upload files and customize the interface.",
   "author": "@paprika",
   "main": "lib/index.js",
   "license": "MIT",

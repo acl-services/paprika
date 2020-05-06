@@ -4,6 +4,7 @@ import useListBox from "../../useListBox";
 import NoResultsStyled from "./NoResults.styles";
 
 const propTypes = {
+  /** Sets label for NoResults */
   label: PropTypes.node.isRequired,
 };
 

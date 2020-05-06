@@ -1,7 +1,7 @@
 {
   "name": "@paprika/sortable",
   "version": "0.2.23",
-  "description": "Sortable component",
+  "description": "Sortable component creates a vertical list of items, that can be re-ordered with a mouse via dragging and dropping, or with the keyboard",
   "author": "@paprika",
   "license": "MIT",
   "main": "lib/index.js",
@@ -29,5 +29,10 @@
     "react": "^16.8.0",
     "react-dom": "^16.8.0",
     "styled-components": "^4.3.1"
+  },
+  "paprikaDocs": {
+    "subComponents": [
+      "SortableItem"
+    ]
   }
 }

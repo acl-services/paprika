@@ -10,15 +10,24 @@ import TriggerButton from "./components/TriggerButton";
 import { confirmStyles, confirmBodyStyles, confirmFooterStyles } from "./Confirmation.styles";
 
 const propTypes = {
+  /** Content of the popover confirmation */
   body: PropTypes.node,
+  /** Size of the button */
   buttonSize: PropTypes.oneOf(ShirtSizes.DEFAULT),
   children: PropTypes.node,
+  /** Determine the styling of the confirm button */
   confirmButtonType: PropTypes.oneOf([Button.Kinds.PRIMARY, Button.Kinds.DESTRUCTIVE]),
+  /** Label for the confirm button  */
   confirmLabel: PropTypes.string.isRequired,
+  /** If the popover is open by default */
   defaultIsOpen: PropTypes.bool,
+  /** Heading for the popover confirmation */
   heading: PropTypes.string,
+  /** If the confirm button should render in a pending state (with a spinner icon) */
   isPending: PropTypes.bool,
+  /** Callback when cancel button is clicked */
   onClose: PropTypes.func,
+  /** Callback when confirm button is clicked */
   onConfirm: PropTypes.func.isRequired,
 };
 

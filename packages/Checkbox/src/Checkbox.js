@@ -25,7 +25,7 @@ const propTypes = {
   isDisabled: PropTypes.bool,
   /** Callback triggered when the input state is changed */
   onChange: PropTypes.func.isRequired,
-  /* Size provided by parent Group component */
+  /** Size provided by parent Group component */
   size: PropTypes.oneOf(ShirtSizes.DEFAULT),
   /** Value for tabindex attribute to override the default of 0. */
   tabIndex: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),

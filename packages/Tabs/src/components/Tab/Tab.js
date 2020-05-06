@@ -7,10 +7,15 @@ import { tabStyles, linkStyles } from "./Tab.styles";
 const propTypes = {
   children: PropTypes.node,
   height: PropTypes.number,
+  /** Sets a url the tab goes to */
   href: PropTypes.string,
+  /** If the tab is disabled  */
   isDisabled: PropTypes.bool,
+  /** Controls if the option is selected or not */
   isSelected: PropTypes.bool,
+  /** Callback onClick */
   onClick: PropTypes.func,
+  /** Callback onKeyDownArrow */
   onKeyDownArrows: PropTypes.func,
 };
 
