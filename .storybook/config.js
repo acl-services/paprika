@@ -44,7 +44,7 @@ const stories = [
   // Collapsible
   require.context("../packages/Collapsible", true, /Collapsible.stories.mdx/),
   require.context("../packages/Collapsible", true, /Collapsible.stories.js/),
-  require.context("../packages/Collapsible", true, /Collapsible.backyard.stories.js/),
+  require.context("../packages/Collapsible", true, /Collapsible.Tests.stories.js/),
 
   // CollapsibleText
   require.context("../packages/CollapsibleText", true, /CollapsibleText.stories.mdx/),
