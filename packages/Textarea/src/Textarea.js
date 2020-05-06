@@ -109,6 +109,7 @@ function Textarea(props) {
   return (
     <div className={rootClasses} css={textareaStyles}>
       <textarea
+        aria-invalid={hasError}
         className="form-textarea__textarea"
         data-pka-anchor="textarea"
         disabled={isDisabled}
