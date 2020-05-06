@@ -7,19 +7,46 @@ import useListBox from "../../useListBox";
 import invokeOnChange from "../../helpers/invokeOnChange";
 
 const propTypes = {
+  /** If true it makes the accept button visible */
   isAcceptVisible: PropTypes.bool,
+
+  /** If true it makes the cancel button visible */
   isCancelVisible: PropTypes.bool,
+
+  /** If true it makes the clear button visible */
   isClearVisible: PropTypes.bool,
+
+  /** If true it makes the footer disabled */
   isDisabled: PropTypes.bool,
+
+  /** Sets what kind the accept button will be  */
   kindAccept: PropTypes.string,
+
+  /** Sets what kind the cancel button will be  */
   kindCancel: PropTypes.string,
+
+  /** Sets what kind the cancel button will be  */
   kindClear: PropTypes.string,
+
+  /** Sets the label for the accept button */
   labelAccept: PropTypes.string,
+
+  /** Sets the label for the cancel button */
   labelCancel: PropTypes.string,
+
+  /** Sets the label for the clear button */
   labelClear: PropTypes.string,
+
+  /** Callback to be executed when the accept button is clicked or activated by keyboard. */
   onClickAccept: PropTypes.func,
+
+  /** Callback to be executed when the cancel button is clicked or activated by keyboard. */
   onClickCancel: PropTypes.func,
+
+  /** Callback to be executed when the clear button is clicked or activated by keyboard. */
   onClickClear: PropTypes.func,
+
+  /** Determines the size of the footer */
   size: PropTypes.string,
 };
 

@@ -5,7 +5,7 @@ import ShowcaseStory from "./examples/Showcase";
 import Responses from "./examples/Responses";
 import Screener from "./examples/Screener";
 
-storiesOf("ProgressAccordion", module)
+storiesOf("Progress Accordion", module)
   .addDecorator(withKnobs)
   .add("Showcase", ShowcaseStory)
   .add("ProgressAccordion.Responses", () => <Responses />);

@@ -5,8 +5,10 @@ import * as sc from "./Content.styles";
 
 const propTypes = {
   children: PropTypes.oneOfType([PropTypes.func, PropTypes.node]).isRequired,
+  /** Sets id for label */
   idForLabel: PropTypes.string,
   refLabel: RefOf(),
+  /** Used for aria-describedby on the FormElement */
   ariaDescribedBy: PropTypes.string,
 };
 
