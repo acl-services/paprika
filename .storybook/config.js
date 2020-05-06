@@ -58,12 +58,14 @@ const stories = [
 
   // Toast
   require.context("../packages/Toast", true, /Toast.stories.mdx/),
+  require.context("../packages/Toast", true, /Toast.stories.js/),
   require.context("../packages/Toast", true, /Toast.examples.stories.js/),
   require.context("../packages/Toast", true, /Toast.backyard.stories.js/),
   require.context("../packages/Toast", true, /Toast.Tests.stories.js/),
 
   // SidePanel
   require.context("../packages/SidePanel", true, /SidePanel.stories.mdx/),
+  require.context("../packages/SidePanel", true, /SidePanel.stories.js/),
   require.context("../packages/SidePanel", true, /SidePanel.examples.stories.js/),
   require.context("../packages/SidePanel", true, /SidePanel.Tests.stories.js/),
 
