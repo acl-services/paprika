@@ -8,6 +8,6 @@ import Screener from "./examples/Screener";
 storiesOf("Progress Accordion", module)
   .addDecorator(withKnobs)
   .add("Showcase", ShowcaseStory)
-  .add("ProgressAccordion.Responses", () => <Responses />);
+  .add("Progress Accordion.Responses", () => <Responses />);
 
-storiesOf("ProgressAccordion/Automation Tests", module).add("Screener", () => <Screener />);
+storiesOf("Progress Accordion/Automation Tests", module).add("Screener", () => <Screener />);
