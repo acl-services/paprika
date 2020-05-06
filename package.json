@@ -46,6 +46,7 @@
     "@octokit/rest": "^16.28.6",
     "@storybook/addon-a11y": "^v6.0.0-alpha.29",
     "@storybook/addon-actions": "^v6.0.0-alpha.29",
+    "@storybook/addon-cssresources": "v6.0.0-alpha.29",
     "@storybook/addon-docs": "^v6.0.0-alpha.29",
     "@storybook/addon-knobs": "^v6.0.0-alpha.29",
     "@storybook/addon-links": "^v6.0.0-alpha.29",
