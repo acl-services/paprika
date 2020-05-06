@@ -1,6 +1,6 @@
 {
   "name": "@paprika/select",
-  "version": "0.2.14",
+  "version": "0.2.15",
   "description": "Select component allows users to select an item from a drop-down list",
   "author": "@paprika",
   "main": "lib/index.js",
