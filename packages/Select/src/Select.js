@@ -72,6 +72,7 @@ const Select = props => {
   return (
     <div css={selectStyles} className={rootClasses} data-pka-anchor="select">
       <select
+        aria-invalid={hasError}
         className="form-select__select"
         disabled={isDisabled || isReadOnly}
         ref={inputRef}
