@@ -114,9 +114,11 @@ const Button = React.forwardRef((props, ref) => {
   if (a11yText) moreProps["aria-label"] = a11yText;
 
   const buttonRef = React.useRef(null);
+  const [hasForcedFocus, setHasForcedFocus] = React.useState(false);
 
   React.useImperativeHandle(ref, () => ({
     focus: () => {
+      setHasForcedFocus(true);
       buttonRef.current.focus();
     },
   }));
@@ -133,6 +135,7 @@ const Button = React.forwardRef((props, ref) => {
   }
 
   const handleClick = event => {
+    setHasForcedFocus(false);
     if (isSubmit && !isSemantic) {
       handleSubmit(event);
     }
@@ -143,9 +146,24 @@ const Button = React.forwardRef((props, ref) => {
 
   const bestTabIndex = isButtonDisabled && tabIndex === null ? -1 : tabIndex || 0;
 
+  function getClassName() {
+    let cn = "className" in moreProps ? moreProps.className : "";
+    cn += hasForcedFocus ? " has-forced-focus" : "";
+    return cn;
+  }
+
+  function getOnBlur() {
+    if (moreProps.onBlur) {
+      moreProps.onBlur();
+    }
+    setHasForcedFocus(false);
+  }
+
   const buttonProps = {
     isDisabled: isButtonDisabled,
+    className: getClassName(),
     kind,
+    onBlur: getOnBlur,
     onClick: handleClick,
     ref: buttonRef,
     tabIndex,
