@@ -38,7 +38,7 @@ const defaultProps = {
   hasInsetFocusStyle: false,
   onClick: () => {},
   role: "button",
-  tabIndex: 0,
+  tabIndex: null,
 };
 
 const RawButton = React.forwardRef((props, ref) => {
@@ -78,15 +78,7 @@ const RawButton = React.forwardRef((props, ref) => {
     }
   };
 
-  const getTabIndex = () => {
-    if (tabIndex >= 0) {
-      return tabIndex;
-    }
-    if (isDisabled) {
-      return -1;
-    }
-    return tabIndex;
-  };
+  const bestTabIndex = isDisabled && tabIndex === null ? -1 : tabIndex || 0;
 
   return (
     <span
@@ -98,7 +90,7 @@ const RawButton = React.forwardRef((props, ref) => {
       onKeyDown={handleKeyDown}
       onKeyUp={handleKeyUp}
       ref={rawButtonRef}
-      tabIndex={getTabIndex()}
+      tabIndex={bestTabIndex}
       {...moreProps}
     >
       {children}

@@ -1,7 +1,7 @@
 import React from "react";
 import { render, fireEvent, configure } from "@testing-library/react";
 import ListBox from "../../../src";
-import { ControlledIsSelected as ListBoxControlled } from "../../../stories/examples/single";
+import { ControlledIsSelected as ListBoxControlled, OnChange } from "../../../stories/examples/single";
 
 configure({ testIdAttribute: "data-pka-anchor" });
 
@@ -141,9 +141,34 @@ describe("Listbox single select", () => {
     }, 350);
   });
 
+  it("calls renderTrigger and changes the render method for label", () => {
+    const togglePopover = (dispatch, types) => () => {
+      dispatch({ type: types.togglePopover });
+    };
+
+    const onRenderTrigger = jest.fn((selected, options, { dispatch, propsForTrigger, types, refTrigger }) => {
+      return (
+        <button type="button" {...propsForTrigger()} onClick={togglePopover(dispatch, types)} ref={refTrigger}>
+          Toggle Listbox
+        </button>
+      );
+    });
+
+    const { getByText } = renderComponent({}, [
+      <ListBox.Trigger key="trigger">{onRenderTrigger}</ListBox.Trigger>,
+      [...childrenContent],
+    ]);
+
+    expect(onRenderTrigger).toHaveBeenCalled();
+    expect(getByText(/toggle listbox/i)).toBeInTheDocument();
+    fireEvent.click(getByText(/toggle listbox/i));
+    expect(getByText(/venus/i)).toBeInTheDocument();
+    expect(getByText(/jupiter/i)).toBeInTheDocument();
+  });
+
   it("should display message when filter input does not find a match", () => {
     const { getByTestId, getByText } = render(
-      <ListBox>
+      <ListBox isMulti>
         <ListBox.Filter noResultsMessage="No match" />
         <ListBox.Option>Venus</ListBox.Option>
         <ListBox.Option>Jupiter</ListBox.Option>
@@ -263,5 +288,25 @@ describe("Listbox single select", () => {
 
     expect(getAllByTestId("list-option--is-selected").length).toBe(1);
     expect(getByTestId("list-option--is-selected").textContent).toBe("Spiderman");
+  });
+
+  it("should not create a stale state when reading the state on handleChange", () => {
+    const log = [];
+    const storeLog = msg => log.push(msg);
+    const originalConsoleLog = console.log;
+    console.log = jest.fn(storeLog);
+
+    const { getByText } = render(<OnChange />);
+
+    const options = [getByText(/Wonder Woman/), getByText(/Thor/), getByText(/Batman/)];
+    fireEvent.click(options[0]);
+    fireEvent.click(options[1]);
+    fireEvent.click(options[2]);
+
+    expect(log.includes(null)).toBe(true);
+    expect(log.includes("Wonder Woman")).toBe(true);
+    expect(log.includes("Thor")).toBe(true);
+    expect(log.includes("Batman")).toBe(false);
+    console.log = originalConsoleLog;
   });
 });

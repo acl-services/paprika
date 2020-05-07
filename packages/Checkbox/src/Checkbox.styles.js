@@ -81,6 +81,10 @@ const checkboxStyles = css`
   line-height: ${({ hasLabel }) => (hasLabel ? lineHeightValue(-1) : "0")};
   position: relative;
 
+  & + [data-pka-anchor="checkbox"] {
+    margin-top: ${tokens.space};
+  }
+
   input[type="checkbox"] {
     ${visuallyHidden};
 

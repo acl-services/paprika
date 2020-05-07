@@ -1,10 +1,12 @@
 import React from "react";
 import PropTypes from "prop-types";
-import { dialogStyles, dialogContentStyles } from "./Dialog.styles";
+import * as sc from "./Dialog.styles";
 
 const propTypes = {
+  a11yText: PropTypes.string,
   children: PropTypes.node.isRequired,
   footer: PropTypes.node,
+  getPushContentElement: PropTypes.func,
   groupOffsetY: PropTypes.number,
   header: PropTypes.node,
   kind: PropTypes.oneOf(["default", "child"]),
@@ -15,12 +17,15 @@ const propTypes = {
   onClose: PropTypes.func,
   refHeader: PropTypes.shape({ current: PropTypes.instanceOf(Element) }).isRequired,
   refSidePanelContent: PropTypes.shape({ current: PropTypes.instanceOf(Element) }).isRequired,
+  isSlideFromLeft: PropTypes.bool,
   width: PropTypes.oneOfType([PropTypes.string, PropTypes.number]).isRequired,
   isOpen: PropTypes.bool.isRequired,
 };
 
 const defaultProps = {
+  a11yText: null,
   footer: null,
+  getPushContentElement: () => {},
   groupOffsetY: 0,
   header: null,
   kind: "default",
@@ -28,14 +33,17 @@ const defaultProps = {
   isInline: false,
   offsetY: 0,
   onClose: () => {},
+  isSlideFromLeft: false,
 };
 
 function Dialog(props) {
   const refSidePanel = React.useRef(null);
 
   const {
+    a11yText,
     children,
     footer,
+    getPushContentElement,
     groupOffsetY,
     onAnimationEnd,
     header,
@@ -48,13 +56,37 @@ function Dialog(props) {
     refSidePanelContent,
     width,
     isOpen,
+    isSlideFromLeft,
     ...moreProps
   } = props;
 
+  const isFooterSticky = footer && footer.props.isSticky;
+
+  const dialogMain = (
+    <React.Fragment>
+      {header ? React.cloneElement(header, { ref: refHeader, isCompact, onClose, getPushContentElement }) : null}
+      <sc.DialogContent
+        data-pka-anchor="sidepanel.content"
+        hasPushedElement={!!getPushContentElement}
+        isCompact={isCompact}
+        isOpen={isOpen}
+        kind={kind}
+        ref={refSidePanelContent}
+        role="region"
+        tabIndex="0"
+      >
+        {children}
+      </sc.DialogContent>
+    </React.Fragment>
+  );
+
+  const dialogFooter = footer ? React.cloneElement(footer, { refSidePanel, isCompact }) : null;
+
   return (
-    <div
+    <sc.Dialog
       aria-modal={isInline ? null : "true"}
-      css={dialogStyles}
+      aria-label={a11yText}
+      hasPushedElement={!!getPushContentElement}
       groupOffsetY={groupOffsetY}
       kind={kind}
       isCompact={isCompact}
@@ -65,25 +97,22 @@ function Dialog(props) {
       ref={refSidePanel}
       role="dialog"
       tabIndex="-1"
+      isSlideFromLeft={isSlideFromLeft}
       width={width}
       {...moreProps}
     >
-      {header ? React.cloneElement(header, { ref: refHeader, isCompact, onClose }) : null}
-      <div
-        data-pka-anchor="sidepanel.content"
-        css={dialogContentStyles}
-        isCompact={isCompact}
-        isOpen={isOpen}
-        isSticky={footer ? footer.props.isSticky : undefined}
-        footerHeight={footer ? footer.props.height : undefined}
-        kind={kind}
-        tabIndex="-1"
-        ref={refSidePanelContent}
-      >
-        {children}
-      </div>
-      {footer ? React.cloneElement(footer, { refSidePanel, isCompact, width }) : null}
-    </div>
+      {isFooterSticky ? (
+        <sc.MainWrapper>
+          <sc.DialogMain>{dialogMain}</sc.DialogMain>
+          {dialogFooter}
+        </sc.MainWrapper>
+      ) : (
+        <React.Fragment>
+          {dialogMain}
+          {dialogFooter}
+        </React.Fragment>
+      )}
+    </sc.Dialog>
   );
 }
 

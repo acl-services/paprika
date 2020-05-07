@@ -49,7 +49,6 @@ export const arrowRightButton = css`
 
 export const labelContainer = css`
   align-items: center;
-  cursor: default;
   display: flex;
   font-size: ${stylers.spacer(2)};
   justify-content: flex-start;

@@ -8,6 +8,7 @@ import { ContentStyled } from "./Content.styles";
 
 const propTypes = {
   children: PropTypes.node,
+  /** Callback to indicate the element loses focus */
   onBlur: PropTypes.func,
 };
 
@@ -23,6 +24,7 @@ const Content = React.forwardRef((props, ref) => {
     content,
     isEager,
     isOpen,
+    isPortal,
     onClose,
     onDelayedClose,
     onDelayedOpen,
@@ -88,7 +90,7 @@ const Content = React.forwardRef((props, ref) => {
   }
 
   /* eslint-disable jsx-a11y/mouse-events-have-key-events */
-  return ReactDOM.createPortal(
+  const ContentStyledComponent = (
     <ContentStyled
       aria-hidden={!isOpen}
       data-component-name="PopoverContent"
@@ -105,9 +107,14 @@ const Content = React.forwardRef((props, ref) => {
       {...moreProps}
     >
       {props.children}
-    </ContentStyled>,
-    portalElement
+    </ContentStyled>
   );
+
+  if (isPortal) {
+    return ReactDOM.createPortal(ContentStyledComponent, portalElement);
+  }
+
+  return ContentStyledComponent;
 });
 /* eslint-enable jsx-a11y/mouse-events-have-key-events */
 

@@ -4,10 +4,11 @@ import Button from "@paprika/button";
 import Heading from "@paprika/heading";
 import { ShirtSizes } from "@paprika/helpers/lib/customPropTypes";
 
-import { headerCSS } from "./Header.styles";
+import * as sc from "./Header.styles";
 
 const propTypes = {
   children: PropTypes.node.isRequired,
+  getPushContentElement: PropTypes.func,
   hasCloseButton: PropTypes.bool,
   isCompact: PropTypes.bool,
   kind: PropTypes.oneOf([Button.Kinds.DEFAULT, Button.Kinds.PRIMARY]),
@@ -17,6 +18,7 @@ const propTypes = {
 
 const defaultProps = {
   hasCloseButton: true,
+  getPushContentElement: () => {},
   kind: Button.Kinds.DEFAULT,
   level: 2,
   isCompact: false,
@@ -34,6 +36,7 @@ function darkBackgroundProps(kind) {
 const Header = React.forwardRef((props, ref) => {
   const {
     hasCloseButton,
+    getPushContentElement,
     isCompact,
     kind,
     level,
@@ -43,7 +46,14 @@ const Header = React.forwardRef((props, ref) => {
   } = props;
 
   return (
-    <div data-pka-anchor="sidepanel.header" ref={ref} css={headerCSS} kind={kind} isCompact={isCompact} {...moreProps}>
+    <sc.Header
+      data-pka-anchor="sidepanel.header"
+      hasPushedElement={!!getPushContentElement}
+      ref={ref}
+      kind={kind}
+      isCompact={isCompact}
+      {...moreProps}
+    >
       <Heading tabIndex="-1" level={level} displayLevel={isCompact ? 4 : 3}>
         {props.children}
       </Heading>
@@ -58,7 +68,7 @@ const Header = React.forwardRef((props, ref) => {
           />
         ) : null}
       </div>
-    </div>
+    </sc.Header>
   );
 });
 

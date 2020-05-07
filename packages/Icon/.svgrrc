@@ -1,7 +1,11 @@
 {
   "icon": true,
   "replaceAttrValues": { 
-    "#717171": "currentColor"
+    "#717171": "currentColor",
+    "#757575": "currentColor",
+    "#767676": "currentColor",
+    "#444": "currentColor",
+    "#3F3D3C": "currentColor"
   },
   "svgProps": {
     "css": "{`
@@ -10,6 +14,7 @@
       height: ${props.size}; 
       vertical-align: text-top;
     `}",
+    "data-pka-anchor": "icon",
     focusable: false
   }, 
   "titleProp": true

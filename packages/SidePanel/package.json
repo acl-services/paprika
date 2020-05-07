@@ -1,7 +1,7 @@
 {
   "name": "@paprika/sidepanel",
-  "version": "0.2.10",
-  "description": "SidePanel component",
+  "version": "0.3.20",
+  "description": "The SidePanel component provides a view that slides in from one side so the user can maintain context of their main task while they work on a sub task.",
   "author": "@paprika",
   "main": "lib/index.js",
   "license": "MIT",
@@ -15,21 +15,21 @@
   },
   "dependencies": {
     "@babel/runtime-corejs2": "^7.3.1",
-    "@paprika/button": "^0.2.7",
-    "@paprika/heading": "^0.3.3",
-    "@paprika/helpers": "^0.2.6",
-    "@paprika/icon": "^0.2.7",
-    "@paprika/raw-button": "^0.2.4",
-    "@paprika/stylers": "^0.2.4",
-    "@paprika/tokens": "^0.1.11",
-    "focus-trap-react": "^6.0.0",
+    "@paprika/button": "^0.2.24",
+    "@paprika/heading": "^0.3.17",
+    "@paprika/helpers": "^0.2.11",
+    "@paprika/icon": "^0.3.2",
+    "@paprika/raw-button": "^0.2.10",
+    "@paprika/stylers": "^0.2.7",
+    "@paprika/tokens": "^0.1.14",
     "lodash.debounce": "^4.0.8",
-    "prop-types": "^15.7.2"
+    "prop-types": "^15.7.2",
+    "react-focus-lock": "^2.2.1"
   },
   "peerDependencies": {
     "@paprika/l10n": "^0.2.5",
-    "react": "^16.8.4",
-    "react-dom": "^16.8.4",
-    "styled-components": "^4.2.0"
+    "react": "^16.12.0",
+    "react-dom": "^16.12.0",
+    "styled-components": "^4.4.1"
   }
 }

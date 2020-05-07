@@ -28,6 +28,9 @@ const ExampleStory = () => (
       <Button onClick={clickHandler} isDisabled>
         disabled button
       </Button>
+      <Button onClick={clickHandler} isDisabled isSemantic={false} tabIndex={0}>
+        disabled but tabbable
+      </Button>
     </p>
     <Rule />
     <p>
@@ -85,6 +88,15 @@ const ExampleStory = () => (
       </Button.Link>
       <Button.Link onClick={clickHandler} kind="secondary" href="https://www.google.ca">
         Link that opens in new tab
+      </Button.Link>
+      <Button.Link href="https://youtu.be/IdkCEioCp24?t=92" size="small">
+        Link small
+      </Button.Link>
+      <Button.Link href="https://youtu.be/IdkCEioCp24?t=92" size="medium">
+        Link medium
+      </Button.Link>
+      <Button.Link href="https://youtu.be/IdkCEioCp24?t=92" size="large">
+        Link large
       </Button.Link>
     </p>
     <Rule />

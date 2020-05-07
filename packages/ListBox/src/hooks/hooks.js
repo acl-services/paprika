@@ -48,7 +48,7 @@ export function useIsPopOverOpen(shouldKeepTriggerFocus) {
 
     if (state.hasPopupOpened) {
       listBoxContainer.focus();
-      if (!state.isInline && !state.isOpen) {
+      if (state.isInline === false && state.isOpen === false) {
         trigger.focus();
       }
     }
@@ -93,33 +93,54 @@ export function useAdjustWidth() {
 export function useOnScrolled() {
   const [state] = useListBox();
   React.useLayoutEffect(() => {
-    if (!state.refListBox.current) return;
+    if (!state.refListBox.current || state.activeOption === null) return;
 
-    const shouldScroll = (state.shouldContentScroll && state.isInline) || (state.isOpen && state.shouldContentScroll);
+    const $box = state.refListBox.current;
+    const $option = state.options[state.activeOption]
+      ? document.getElementById(state.options[state.activeOption].id)
+      : null;
 
-    if (shouldScroll && state.options[state.activeOption]) {
-      const parentOffsetTop = state.refListBox.current.offsetTop;
-      const $option = document.getElementById(state.options[state.activeOption].id);
-      if ($option) {
-        const optionOffsetTop = $option.offsetTop;
-        let offsetTop = optionOffsetTop - parentOffsetTop;
-        if (state.activeOption === 0) {
-          offsetTop = 0;
-        }
+    if ($box && $option) {
+      const rectBox = $box.getBoundingClientRect();
+      const rectOption = $option.getBoundingClientRect();
 
-        if (
-          state.activeOption - 1 === 0 &&
-          state.options[state.activeOption - 1].content.type.displayName === "ListBox.Divider"
-        ) {
-          offsetTop = 0;
-        }
-
-        if (state.refListBox.current && Element.prototype.scrollTo) {
-          state.refListBox.current.scrollTo(0, offsetTop - 10);
-        }
+      // if options its between the box don't do anything
+      if (rectOption.top >= rectBox.top && rectOption.bottom <= rectBox.bottom) {
+        return;
       }
+
+      const { marginBottom, marginTop } = getComputedStyle($option);
+
+      const margin = Number.parseInt(marginBottom.split("px")[0], 10) + Number.parseInt(marginTop.split("px")[0], 10);
+      let gap = rectOption.bottom - rectBox.bottom;
+
+      const isScrollingDown = Math.sign(gap) > 0;
+      const optionHeightWithMargin = rectOption.height + margin;
+      let gapWithMargin = gap + margin;
+
+      if (isScrollingDown) {
+        // this means that the option is partially visible but not completely
+        if (gap < rectOption.height) {
+          $box.scrollTo(0, $box.scrollTop + gapWithMargin);
+          return;
+        }
+
+        $box.scrollTo(0, $box.scrollTop + optionHeightWithMargin);
+        return;
+      }
+
+      gap = rectBox.top - rectOption.top;
+      gapWithMargin = gap + margin;
+
+      // this means that the option is partially visible but not completely
+      if (gap < rectOption.height) {
+        $box.scrollTo(0, $box.scrollTop - gapWithMargin);
+        return;
+      }
+
+      $box.scrollTo(0, $box.scrollTop - optionHeightWithMargin);
     }
-  }, [state.activeOption, state.isInline, state.isOpen, state.options, state.refListBox, state.shouldContentScroll]);
+  }, [state.activeOption, state.options, state.refListBox]);
 }
 
 export function useIsDisabled(isDisabled) {

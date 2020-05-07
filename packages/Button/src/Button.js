@@ -5,6 +5,7 @@ import RawButton from "@paprika/raw-button";
 import RefreshIcon from "@paprika/icon/lib/Refresh";
 import DownIcon from "@paprika/icon/lib/CaretDown";
 import { ShirtSizes } from "@paprika/helpers/lib/customPropTypes";
+import "@paprika/helpers/lib/dom/closest"; // support for IE11
 import buttonStyles, { iconStyles } from "./Button.styles";
 
 import Kinds from "./ButtonKinds";
@@ -12,12 +13,6 @@ import Kinds from "./ButtonKinds";
 const propTypes = {
   /** Descriptive a11y text for assistive technologies. By default, text from children node will be used. */
   a11yText: PropTypes.string,
-
-  /** If click the button, we need a href (url) to open a new tab  */
-  href: PropTypes.string,
-
-  /** If click the button, it will open a new tab. */
-  isOpenNewTab: PropTypes.bool,
 
   /** If click events are allowed to propagate up the DOM tree. */
   canPropagate: PropTypes.bool,
@@ -70,8 +65,6 @@ const defaultProps = {
   canPropagate: true,
   children: null,
   icon: null,
-  href: null,
-  isOpenNewTab: true,
   isActive: false,
   isDisabled: false,
   isDropdown: false,
@@ -83,7 +76,7 @@ const defaultProps = {
   onClick: () => {},
   role: "button",
   size: ShirtSizes.MEDIUM,
-  tabIndex: 0,
+  tabIndex: null,
 };
 
 const buttonPropTypes = {
@@ -111,11 +104,9 @@ const Button = React.forwardRef((props, ref) => {
     isDropdown,
     isPending,
     isSemantic,
-    isOpenNewTab,
     isSubmit,
     kind,
     onClick,
-    href,
     role,
     tabIndex,
     ...moreProps
@@ -132,10 +123,25 @@ const Button = React.forwardRef((props, ref) => {
 
   const isButtonDisabled = isDisabled || isPending;
 
+  function handleSubmit(event) {
+    const $form = event.target.closest("form");
+    const button = $form.ownerDocument.createElement("input");
+    button.style.display = "none";
+    button.type = "submit";
+    $form.appendChild(button).click();
+    $form.removeChild(button);
+  }
+
   const handleClick = event => {
+    if (isSubmit && !isSemantic) {
+      handleSubmit(event);
+    }
+
     if (!canPropagate) event.stopPropagation();
     if (!isButtonDisabled) onClick(event);
   };
+
+  const bestTabIndex = isButtonDisabled && tabIndex === null ? -1 : tabIndex || 0;
 
   const buttonProps = {
     isDisabled: isButtonDisabled,
@@ -151,7 +157,7 @@ const Button = React.forwardRef((props, ref) => {
     buttonProps.type = isSubmit ? "submit" : "button";
     if (role !== "button") buttonProps.role = role;
   } else {
-    buttonProps.tabIndex = isButtonDisabled ? -1 : tabIndex;
+    buttonProps.tabIndex = bestTabIndex;
     buttonProps.role = role;
   }
 

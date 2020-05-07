@@ -1,17 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <svg width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
-    <!-- Generator: sketchtool 54.1 (76490) - https://sketchapp.com -->
-    <title>Arrow-Left</title>
-    <desc>Created with Sketch.</desc>
-    <defs>
-        <path d="M10.5352592,17.313764 C11.3557957,18.1341953 12.6860293,18.1341953 13.5065658,17.313764 C16.4022373,14.4179878 22.5209125,8.29941846 22.5209125,8.29941846 L20.2924062,6.0709125 L12.020965,14.3424577 L3.74941876,6.0709125 L1.5209125,8.29941846 C1.5209125,8.29941846 7.63958768,14.4179878 10.5352592,17.313764 L10.5352592,17.313764 Z" id="path-1"></path>
-    </defs>
-    <g id="Symbols" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
-        <g id="Arrow-Left">
-            <mask id="mask-2" fill="white">
-                <use xlink:href="#path-1"></use>
-            </mask>
-            <use id="🌈-Color" fill="#717171" transform="translate(12.020912, 12.000000) rotate(-270.000000) translate(-12.020912, -12.000000) " xlink:href="#path-1"></use>
-        </g>
-    </g>
+    <path
+        d="M10.5352592,17.313764 C11.3557957,18.1341953 12.6860293,18.1341953 13.5065658,17.313764 C16.4022373,14.4179878 22.5209125,8.29941846 22.5209125,8.29941846 L20.2924062,6.0709125 L12.020965,14.3424577 L3.74941876,6.0709125 L1.5209125,8.29941846 C1.5209125,8.29941846 7.63958768,14.4179878 10.5352592,17.313764 L10.5352592,17.313764 Z"
+        fill-rule="evenodd"
+        fill="#717171"
+        transform="translate(12.020912, 12.000000) rotate(-270.000000) translate(-12.020912, -12.000000) "
+    />
 </svg>

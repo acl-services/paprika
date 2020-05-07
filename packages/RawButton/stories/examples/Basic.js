@@ -45,6 +45,12 @@ const ExampleStory = () => {
           Disabled RawButton
         </RawButton>
       </p>
+      <Rule />
+      <p>
+        <RawButton isDisabled tabIndex={0} onClick={clickHandler}>
+          Disabled but tabbable
+        </RawButton>
+      </p>
       {breaklines(34)}
       ...fin.
     </Story>

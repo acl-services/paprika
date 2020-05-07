@@ -53,7 +53,7 @@ describe("ListBoxBrowser basic", () => {
   it("should navigate to risk control matrix", () => {
     navigateBrowser("Risk Control Matrix").then(() => {
       getBrowser().then(browser => {
-        const expectedOptions = ["back", "Risk", "Control"];
+        const expectedOptions = ["Back", "Risk", "Control"];
         cy.log("expected Risk Control Matrix has the correct options");
         expect(includesAllOptions(browser, expectedOptions)).equals(true);
       });
@@ -63,7 +63,7 @@ describe("ListBoxBrowser basic", () => {
   it("should navigate to Narratives", () => {
     navigateBrowser("Narratives").then(() => {
       getBrowser().then(browser => {
-        const expectedOptions = ["back", "0", "1", "2", "3"];
+        const expectedOptions = ["Back", "0", "1", "2", "3"];
         cy.log("expected narratives has the correct options");
         expect(includesAllOptions(browser, expectedOptions)).equals(true);
       });
@@ -73,7 +73,7 @@ describe("ListBoxBrowser basic", () => {
   it("should take you back clicking back button", () => {
     navigateBrowser("Narratives").then(() => {
       getBrowser().then(browser => {
-        const expectedOptions = ["back", "0", "1", "2", "3"];
+        const expectedOptions = ["Back", "0", "1", "2", "3"];
         cy.log("expected Narratives has the correct options");
         expect(includesAllOptions(browser, expectedOptions)).equals(true);
         cy.log("expected clicking back button works");
@@ -90,7 +90,7 @@ describe("ListBoxBrowser basic", () => {
     navigateBrowser("Risk Control Matrix").then(() => {
       navigateBrowser("Risk").then(() => {
         getBrowser().then(browser => {
-          const expectedOptions = ["back", "risk 1", "risk 2", "risk 3"];
+          const expectedOptions = ["Back", "risk 1", "risk 2", "risk 3"];
           cy.log("expected Risk has the correct options");
           expect(includesAllOptions(browser, expectedOptions)).equals(true);
           cy.get(selectors.title).should("contain", "Phase");
@@ -148,7 +148,7 @@ describe("ListBoxBrowser basic", () => {
             .then(elements => {
               // this should navigate to the Risk view on browser column using the option on OptionSelected
               elements.get(0).click();
-              const expectedOptions = ["back", "risk 1", "risk 2", "risk 3"];
+              const expectedOptions = ["Back", "risk 1", "risk 2", "risk 3"];
               cy.log("expected Risk has the correct options");
               expect(includesAllOptions(browser, expectedOptions)).equals(true);
               cy.get(selectors.title).should("contain", "Phase");

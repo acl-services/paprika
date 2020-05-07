@@ -1,12 +1,8 @@
-import { css } from "styled-components";
-
-import tokens from "@paprika/tokens";
+import styled from "styled-components";
 import stylers from "@paprika/stylers";
+import tokens from "@paprika/tokens";
 
-const descriptionStyles = css`
+export const Description = styled.div`
   ${stylers.lineHeight(-1)}
   color: ${tokens.color.blackLighten20};
-  margin: ${tokens.spaceSm} 0 0 0;
 `;
-
-export default descriptionStyles;

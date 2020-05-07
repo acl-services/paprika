@@ -19,7 +19,7 @@ function ErrorMessage(props) {
   if (!children) return null;
 
   return (
-    <div css={errorMessageStyles} data-pka-anchor="formElement.error" {...moreProps}>
+    <div css={errorMessageStyles} data-pka-anchor="form-element.error" {...moreProps}>
       <ExclamationCircleIcon css={iconStyles} />
       {children}
     </div>

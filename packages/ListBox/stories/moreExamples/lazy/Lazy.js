@@ -210,7 +210,7 @@ export default function LazyListBox() {
     );
   }
 
-  const renderTrigger = (state, dispatch, { types, refTrigger, propsForTrigger }) => (
+  const renderTrigger = (selected, options, current, { dispatch, types, refTrigger, propsForTrigger }) => (
     <Button
       {...propsForTrigger()}
       ref={refTrigger}

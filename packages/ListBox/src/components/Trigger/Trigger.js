@@ -9,6 +9,8 @@ import TimesCircleIcon from "@paprika/icon/lib/TimesCircle";
 import Label from "../Label";
 import handleKeyboardKeys from "../../helpers/handleKeyboardKeys";
 import useListBox from "../../useListBox";
+import { OnChangeContext } from "../../store/OnChangeProvider";
+
 import invokeOnChange, {
   sanitizeActionTypes,
   getSelectedOptionSingle,
@@ -19,11 +21,22 @@ import { ListBoxTriggerStyled, ClearButtonStyled, iconStyles, VisuallyHiddenForm
 import { getDOMAttributesForListBoxButton } from "../../helpers/DOMAttributes";
 
 const propTypes = {
+  /** Body content of the trigger. */
   children: PropTypes.oneOfType([PropTypes.node, PropTypes.func]),
+
+  /** If true it adds a clear button */
   hasClearButton: PropTypes.bool,
+
+  /** Callback to be executed when the clear button is clicked or activated by keyboard. */
   onClickClear: PropTypes.func,
+
+  /** Callback to be executed when the accept button is clicked or activated by keyboard. */
   onClickFooterAccept: PropTypes.func,
+
+  /** Sets a placeholder for the trigger */
   placeholder: PropTypes.string,
+
+  /** If true the trigger will be hidden */
   isHidden: PropTypes.bool,
 };
 
@@ -38,6 +51,7 @@ const defaultProps = {
 
 export default function Trigger(props) {
   const [state, dispatch] = useListBox();
+  const onChangeContext = React.useContext(OnChangeContext);
   const { placeholder, hasClearButton, onClickFooterAccept, children, isHidden } = props;
   const {
     isDisabled,
@@ -47,6 +61,7 @@ export default function Trigger(props) {
     isMulti,
     idListBox,
     refLabel,
+    size,
   } = state;
   const triggerButtonId = React.useRef(nanoid());
 
@@ -72,8 +87,7 @@ export default function Trigger(props) {
     return () => {
       $label.removeEventListener("click", handleClickLabel);
     };
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
+  }, [refLabel, refTrigger]);
 
   const handleClickClear = () => {
     if (isDisabled) {
@@ -116,15 +130,15 @@ export default function Trigger(props) {
       />
     ) : (
       <RawButton
-        id={triggerButtonId}
+        id={triggerButtonId.current}
         onClick={handleClick}
         ref={refTrigger}
-        onKeyDown={handleKeyboardKeys(state, dispatch)}
+        onKeyDown={handleKeyboardKeys({ state, dispatch, onChangeContext })}
         onKeyUp={() => {}}
         isDisabled={isDisabled}
         data-pka-anchor="listbox-trigger"
         aria-describedby={formElementLabelDescribedBy}
-        aria-labelledby={triggerButtonId}
+        aria-labelledby={triggerButtonId.current}
       >
         {refLabel && refLabel.current ? (
           <VisuallyHiddenFormLabelStyled>{refLabel.current.innerText}</VisuallyHiddenFormLabelStyled>
@@ -145,10 +159,25 @@ export default function Trigger(props) {
   let renderChildrenProps = null;
   renderChildrenProps = React.useMemo(() => {
     if (hasRenderTrigger) {
-      return children(isMulti ? getSelectedOptionsMulti(state) : getSelectedOptionSingle(state), dispatch, {
+      if (isMulti) {
+        const [selected, options, current] = getSelectedOptionsMulti(state);
+
+        return children(selected, options, current, {
+          dispatch,
+          propsForTrigger: getDOMAttributesForListBoxButton(idListBox),
+          types: sanitizeActionTypes(useListBox.types),
+          refTrigger,
+          isOpen: state.isOpen,
+        });
+      }
+
+      const [selected, options] = getSelectedOptionSingle(state);
+      return children(selected, options, {
+        dispatch,
         propsForTrigger: getDOMAttributesForListBoxButton(idListBox),
         types: sanitizeActionTypes(useListBox.types),
         refTrigger,
+        isOpen: state.isOpen,
       });
     }
   }, [hasRenderTrigger, children, isMulti, state, dispatch, idListBox, refTrigger]);
@@ -172,16 +201,19 @@ export default function Trigger(props) {
       isInline={state.isInline}
       isDisabled={isDisabled}
       ref={refTriggerContainer}
+      size={size}
       {...getDOMAttributesForListBoxButton(state.idListBox)()}
     >
       {hasRenderTrigger ? renderChildrenProps : renderLabel()}
       {state.selectedOptions.length && hasClearButton && !shouldHideClearButton ? (
         <ClearButtonStyled
+          isSemantic={false}
           isDisabled={isDisabled}
           data-pka-anchor="clear-button"
           kind={Button.Kinds.MINOR}
           onClick={handleClickClear}
           shouldHideCaret={shouldHideCaret}
+          size={size}
         >
           <TimesCircleIcon isDisabled={isDisabled} css={iconStyles} />
         </ClearButtonStyled>

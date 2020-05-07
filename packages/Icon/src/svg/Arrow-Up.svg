@@ -1,15 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <svg width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
-    <!-- Generator: Sketch 58 (84663) - https://sketch.com -->
-    <title>Arrow-Up</title>
-    <desc>Created with Sketch.</desc>
-    <defs>
-        <path d="M10.5143467,17.3346765 C11.3348832,18.1551078 12.6651168,18.1551078 13.4856533,17.3346765 C16.3813248,14.4389003 22.5,8.32033096 22.5,8.32033096 L20.2714937,6.091825 L12.0000525,14.3633702 L3.72850626,6.091825 L1.5,8.32033096 C1.5,8.32033096 7.61867518,14.4389003 10.5143467,17.3346765 L10.5143467,17.3346765 Z" id="path-1"></path>
-    </defs>
-    <g id="Arrow-Up" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
-        <mask id="mask-2" fill="white">
-            <use xlink:href="#path-1"></use>
-        </mask>
-        <use id="🌈-Color" fill="#717171" transform="translate(12.000000, 12.020912) scale(1, -1) translate(-12.000000, -12.020912) " xlink:href="#path-1"></use>
-    </g>
+    <path
+        d="M10.5143467,17.3346765 C11.3348832,18.1551078 12.6651168,18.1551078 13.4856533,17.3346765 C16.3813248,14.4389003 22.5,8.32033096 22.5,8.32033096 L20.2714937,6.091825 L12.0000525,14.3633702 L3.72850626,6.091825 L1.5,8.32033096 C1.5,8.32033096 7.61867518,14.4389003 10.5143467,17.3346765 L10.5143467,17.3346765 Z"
+        fill-rule="evenodd"
+        fill="#717171"
+        transform="translate(12.000000, 12.020912) scale(1, -1) translate(-12.000000, -12.020912) "
+    />
 </svg>

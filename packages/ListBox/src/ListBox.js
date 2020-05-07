@@ -1,5 +1,7 @@
 import React from "react";
 import PropTypes from "prop-types";
+import useI18n from "@paprika/l10n/lib/useI18n";
+import { ShirtSizes } from "@paprika/helpers/lib/customPropTypes";
 import Box from "./components/Box";
 import Content from "./components/Content";
 import List from "./components/List";
@@ -8,6 +10,7 @@ import Options from "./components/Options";
 import Popover from "./components/Popover";
 import Trigger from "./components/Trigger";
 import useListBox from "./useListBox";
+import { OnChangeContext } from "./store/OnChangeProvider";
 import handleImperative from "./imperative";
 import "@paprika/helpers/lib/dom/elementScrollToPolyfill";
 
@@ -25,7 +28,7 @@ export const propTypes = {
   /** Child of type <ListBox.Option /> */
   children: PropTypes.node,
 
-  /** Disable the entire ListBox */
+  /** Disables the ListBox if true */
   isDisabled: PropTypes.bool,
 
   /** Let the user to select multiple options at same time */
@@ -45,6 +48,9 @@ export const propTypes = {
 
   /** Indicate which is the height for the options container */
   height: PropTypes.number,
+
+  /** Size of the trigger and options (font size, height, padding, etc). */
+  size: PropTypes.oneOf(ShirtSizes.DEFAULT),
 };
 
 export const defaultProps = {
@@ -57,18 +63,19 @@ export const defaultProps = {
   isMulti: false,
   isOpen: null,
   onChange: () => {},
-  placeholder: "Select...",
+  placeholder: null,
   trigger: null, // eslint-disable-line
+  size: ShirtSizes.MEDIUM,
 };
 
 export function ListBox(props) {
   const [state] = useListBox();
-  const { children, height, placeholder, trigger: _trigger, footer, filter } = props;
-
+  const { children, height, placeholder, trigger: _trigger, footer, filter, box = { props: {} } } = props;
+  const I18n = useI18n();
   const propsForTrigger = {
     hasClearButton: true,
     onClickClear: null,
-    placeholder,
+    placeholder: placeholder || I18n.t("listBox.trigger.placeholder"),
     onFooterClickAccept: footer ? footer.props.onClickAccept : null,
   };
 
@@ -81,13 +88,15 @@ export function ListBox(props) {
   return (
     <React.Fragment>
       {trigger}
-      <Content>
-        <Box>
+      <Content onCancelFooter={footer ? footer.props.onClickCancel : null}>
+        <Box {...box.props}>
           {filter}
           <List height={height}>
-            <Options>{children}</Options>
+            <Options isPopoverOpen={props.isOpen}>{children}</Options>
           </List>
-          {filter ? <NoResults label={filter.props.noResultsMessage} /> : null}
+          {filter ? (
+            <NoResults label={filter.props.noResultsMessage || I18n.t("listBox.filter.no_results_message")} />
+          ) : null}
           {footer ? React.cloneElement(footer, { ref: state.refFooterContainer }) : null}
         </Box>
       </Content>
@@ -104,20 +113,24 @@ ListBox.propTypes = {
 
 const ListBoxContainer = React.forwardRef((props, ref) => {
   const [state, dispatch] = useListBox();
+  const onChangeContext = React.useContext(OnChangeContext);
+  const I18n = useI18n();
 
   const {
+    box, // eslint-disable-line
     children,
+    filter, // eslint-disable-line
+    footer, // eslint-disable-line
     height,
     isInline,
     placeholder,
-    filter, // eslint-disable-line
-    trigger, // eslint-disable-line
-    footer, // eslint-disable-line
     popover, // eslint-disable-line
+    isOpen,
+    trigger, // eslint-disable-line
   } = props;
 
   // IMPERATIVE API
-  const imperativeHandle = handleImperative(state, dispatch);
+  const imperativeHandle = handleImperative({ state, dispatch, onChangeContext });
   React.useImperativeHandle(ref, imperativeHandle);
 
   // HOOKS
@@ -137,8 +150,10 @@ const ListBoxContainer = React.forwardRef((props, ref) => {
     filter,
     footer,
     height,
-    placeholder,
+    placeholder: placeholder || I18n.t("listBox.trigger.placeholder"),
     trigger,
+    isOpen,
+    box,
   };
 
   const listBox = <ListBox {...propsForListBox}>{children}</ListBox>;

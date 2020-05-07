@@ -105,8 +105,11 @@ const radioStyles = css`
   ${boxSizingStyles};
   ${({ size }) => styles[size].baseFontSize};
   line-height: ${({ hasLabel }) => (hasLabel ? lineHeightValue(-1) : "0")};
-  margin: ${tokens.space} 0;
   position: relative;
+
+  & + [data-pka-anchor="radio"] {
+    margin-top: ${tokens.space};
+  }
 
   input[type="radio"] {
     ${visuallyHidden};

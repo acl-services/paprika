@@ -11,24 +11,12 @@ const pseudoElement = css`
 `;
 
 const textDividerStyles = css`
-  &:before {
-    ${pseudoElement}
-    margin-right: ${tokens.space};
-  }
-
   &:after {
     ${pseudoElement}
     margin-left: ${tokens.space};
   }
 `;
 
-const lineDividerStyles = css`
-  &:before {
-    ${pseudoElement}
-  }
-`;
-
-// css let the IDE recognize css highlight
 export const dividerCSS = css`
   align-items: center;
   color: ${tokens.color.blackLighten20};
@@ -39,5 +27,5 @@ export const dividerCSS = css`
 
   ${stylers.fontSize(-1)};
 
-  ${({ hasChildren }) => (hasChildren ? textDividerStyles : lineDividerStyles)}
+  ${textDividerStyles}
 `;

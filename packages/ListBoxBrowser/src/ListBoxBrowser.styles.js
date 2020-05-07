@@ -1,7 +1,7 @@
-import { css } from "styled-components";
+import styled, { css } from "styled-components";
 import tokens from "@paprika/tokens/lib/tokens";
 
-export const flex = css`
+export const Flex = styled.div`
   align-items: flex-start;
   display: flex;
   justify-content: center;
@@ -9,11 +9,23 @@ export const flex = css`
   [data-pka-anchor="listbox-content-inline"]:last-child {
     border-left: 1px solid ${tokens.border.color};
   }
+
+  ${({ hasLeftColumn }) => {
+    return hasLeftColumn
+      ? ""
+      : css`
+          display: inline;
+          [data-pka-anchor="listbox-content-inline"]:last-child {
+            border: 0;
+            border-radius: ${tokens.border.radius};
+          }
+        `;
+  }}
 `;
 
-export const container = css`
+export const Container = styled.div`
   border: 2px solid ${tokens.border.color};
-  border-radius: 6px;
+  border-radius: ${tokens.border.radius};
   position: relative;
   width: 100%;
 

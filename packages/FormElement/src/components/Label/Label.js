@@ -6,35 +6,46 @@ import useI18n from "@paprika/l10n/lib/useI18n";
 import labelStyles, { ruleStyles } from "./Label.styles";
 
 const propTypes = {
+  /** If "optional" text should be displayed beside the label  */
   hasOptionalLabel: PropTypes.bool.isRequired,
+  /** If "require" text should be displayed beside the label */
   hasRequiredLabel: PropTypes.bool.isRequired,
+  /** Help indicator */
   help: PropTypes.node,
-  id: PropTypes.string.isRequired,
+  /** id for the element */
+  id: PropTypes.string,
+  /** Should label and children be inline or not */
   isInline: PropTypes.bool.isRequired,
+  /** Should label be hidden */
   isVisuallyHidden: PropTypes.bool.isRequired,
-  label: PropTypes.string.isRequired,
+  /** Label text of the input field */
+  label: PropTypes.node.isRequired,
+  /** Set if FormElement contains multiple children to render a legend element instead of label */
+  hasFieldSet: PropTypes.bool.isRequired,
 };
 
 const defaultProps = {
   help: null,
+  id: null,
 };
 
 const Label = React.forwardRef((props, ref) => {
-  const { hasOptionalLabel, hasRequiredLabel, help, id, isInline, isVisuallyHidden, label } = props;
+  const { hasOptionalLabel, hasRequiredLabel, help, id, hasFieldSet, label, ...moreProps } = props;
   const I18n = useI18n();
 
+  const labelProps = hasFieldSet ? { as: "legend" } : { as: "label", htmlFor: id, ref };
+
   return (
-    <div css={labelStyles} isInline={isInline} isVisuallyHidden={isVisuallyHidden}>
-      <label htmlFor={id} data-pka-anchor="formElement.label" ref={ref}>
-        {label}
-        {hasOptionalLabel || hasRequiredLabel ? (
-          <span css={ruleStyles}>
-            {" "}
-            {hasRequiredLabel ? I18n.t("formElement.required") : null}
-            {hasOptionalLabel ? I18n.t("formElement.optional") : null}
-          </span>
-        ) : null}
-      </label>
+    <div data-pka-anchor="form-element.label" css={labelStyles} {...labelProps} {...moreProps}>
+      {label}
+      {hasOptionalLabel || hasRequiredLabel ? (
+        <span css={ruleStyles}>
+          {" "}
+          {hasRequiredLabel ? I18n.t("formElement.required") : null}
+          {hasOptionalLabel ? I18n.t("formElement.optional") : null}
+        </span>
+      ) : null}
+
       {help}
     </div>
   );

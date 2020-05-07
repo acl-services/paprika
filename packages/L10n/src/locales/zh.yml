@@ -4,6 +4,8 @@ zh:
     remove: 移除
     moreInformation: 更多信息
     close: 关闭
+    dataGrid:
+      a11yTextMessage: "{{value}}。您在第 {{rowIndex}} 行，第 {{columnIndex}} 列。忽略以下信息："
     uploader:
       label: 拖放或从您的电脑中选择文件
       overlay:
@@ -28,6 +30,8 @@ zh:
       delete: 删除
       apply: 应用
       cancel: 取消
+      confirm: 保存
+      decline: 拒绝
     datePicker:
       calendar_header_format: YYYY 年 M 月
       confirmation_format: YYYY 年 M 月 D 日
@@ -58,8 +62,6 @@ zh:
       arrowup: 上
       arrowdown: 下
       escape: Esc 键
-    externalLink:
-      view: 查看
     collapsible:
       ariaText: 可折叠部分
     sortable:
@@ -79,6 +81,13 @@ zh:
       less: 显示更少
       more_about: 显示关于{{topic}}的更多信息
       less_about: 显示关于{{topic}}的更少信息
+    listBox:
+      trigger:
+        placeholder: 选择…
+      filter:
+        a11y_text: 筛选
+        no_results_message: 您的搜索结果没有匹配任何选项。
+        placeholder: 筛选…
     listBoxBrowser:
       explore: 探索更多选项
       selected: 选定选项

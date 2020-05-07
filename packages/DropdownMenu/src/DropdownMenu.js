@@ -1,7 +1,6 @@
 import React from "react";
 import PropTypes from "prop-types";
 import uuid from "uuid/v4";
-import { AlignTypes } from "@paprika/helpers/lib/customPropTypes";
 import Popover from "@paprika/popover";
 import extractChildren from "@paprika/helpers/lib/extractChildren";
 import Divider from "./components/Divider";
@@ -11,24 +10,30 @@ import Item from "./components/Item";
 import { contentStyles } from "./DropdownMenu.styles";
 
 const propTypes = {
-  /** Alignment of the dropdown menu */
-  align: PropTypes.oneOf(AlignTypes.ALL),
+  /** Alignment of the Popover */
+  align: Popover.propTypes.align,
 
   /** Children should consist of <Dropdown.Item /> */
   children: PropTypes.node.isRequired,
 
-  edge: PropTypes.oneOf([AlignTypes.LEFT, AlignTypes.RIGHT, null]),
+  /** If provided, will align Popover to specified edge of Trigger */
+  edge: Popover.propTypes.edge,
+
+  /** The z-index for the popover / confirmation */
+  zIndex: Popover.propTypes.zIndex,
 };
 
 const defaultProps = {
-  align: AlignTypes.BOTTOM,
-  edge: AlignTypes.LEFT,
+  align: Popover.defaultProps.align,
+  edge: Popover.defaultProps.edge,
+  zIndex: Popover.defaultProps.zIndex,
 };
 
 const popoverOffset = 4;
 
 function DropdownMenu(props) {
-  const { align, children, edge, ...moreProps } = props;
+  const { align, children, edge, zIndex, ...moreProps } = props;
+
   const [isOpen, setIsOpen] = React.useState(false);
   const [isConfirming, setIsConfirming] = React.useState(false);
   const [renderConfirmation, setRenderConfirmation] = React.useState(null);
@@ -36,7 +41,6 @@ function DropdownMenu(props) {
   const triggerRef = React.useRef(null);
   const menuId = React.useRef(uuid());
   const triggerId = React.useRef(uuid());
-
   const dropdownListRef = React.useRef(null);
 
   function focusAndSetIndex(index) {
@@ -129,6 +133,7 @@ function DropdownMenu(props) {
         getPositioningElement: () => document.getElementById(triggerId.current),
         offset: popoverOffset,
         onClose: handleCloseMenu,
+        zIndex,
       });
     }
 
@@ -159,11 +164,12 @@ function DropdownMenu(props) {
       align={align}
       offset={popoverOffset}
       isOpen={isOpen}
+      edge={edge}
+      zIndex={zIndex}
+      {...moreProps}
       onClose={() => {
         if (!isConfirming) handleCloseMenu();
       }}
-      edge={edge}
-      {...moreProps}
     >
       <Popover.Trigger>{renderTrigger()}</Popover.Trigger>
       <Popover.Content id={menuId.current} role={!isConfirming ? "menu" : null}>
@@ -176,6 +182,7 @@ function DropdownMenu(props) {
 DropdownMenu.displayName = "DropdownMenu";
 DropdownMenu.propTypes = propTypes;
 DropdownMenu.defaultProps = defaultProps;
+
 DropdownMenu.Divider = Divider;
 DropdownMenu.LinkItem = LinkItem;
 DropdownMenu.Item = Item;

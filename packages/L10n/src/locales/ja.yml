@@ -4,6 +4,8 @@ ja:
     remove: 削除
     moreInformation: 詳しい情報
     close: 閉じる
+    dataGrid:
+      a11yTextMessage: "{{value}}. 行 {{rowIndex}}、列 {{columnIndex}} の位置にいます。次の情報は無視してください。"
     uploader:
       label: ドラッグ アンド ドロップするか、お手元のコンピュータからファイルを選択する
       overlay:
@@ -28,6 +30,8 @@ ja:
       delete: 削除
       apply: 適用
       cancel: キャンセル
+      confirm: 保存
+      decline: 辞退
     datePicker:
       calendar_header_format: YYYY 年 M 月
       confirmation_format: YYYY 年 M 月 D 日
@@ -58,8 +62,6 @@ ja:
       arrowup: 上
       arrowdown: 下
       escape: エスケープ
-    externalLink:
-      view: 表示
     collapsible:
       ariaText: 縮小可能セクション
     sortable:
@@ -79,6 +81,13 @@ ja:
       less: 少なく表示
       more_about: '{{topic}}について詳しく表示'
       less_about: '{{topic}}について少なく表示'
+    listBox:
+      trigger:
+        placeholder: 選択...
+      filter:
+        a11y_text: フィルター
+        no_results_message: 検索結果はどのオプションにも一致しませんでした。
+        placeholder: フィルター...
     listBoxBrowser:
       explore: より多くのオプションを探す
       selected: 選択されたオプション

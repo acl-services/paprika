@@ -1,27 +1,48 @@
 import React from "react";
 import PropTypes from "prop-types";
+import useI18n from "@paprika/l10n/lib/useI18n";
+import SearchIcon from "@paprika/icon/lib/Search";
 import useListBox from "../../useListBox";
 import { filter, applyFilter } from "./helpers";
-import { FilterContainerStyled, FilterInputStyled, FilterSearchIconStyled } from "./Filter.styles";
+import { FilterContainerStyled, FilterInputStyled } from "./Filter.styles";
 
 const propTypes = {
+  /** Descriptive a11y text for assistive technologies. By default, text from children node will be used. */
+  a11yText: PropTypes.string,
+
+  /** Filters the list */
   filter: PropTypes.func,
+
+  /** If true displays a search icon */
   hasSearchIcon: PropTypes.bool,
+
+  /** Message displayed if no results are found */
   noResultsMessage: PropTypes.string,
+
+  /** Callback to be executed when the value is changed  */
   onChangeFilter: PropTypes.func,
+
+  /** Callback to be executed when a key is pressed */
   onKeyDown: PropTypes.func,
+
+  /** Displays a placeholder */
   placeholder: PropTypes.string,
+
+  /** Render function for filter */
   renderFilter: PropTypes.func,
+
+  /** Sets a value for filter */
   value: PropTypes.string,
 };
 
 const defaultProps = {
+  a11yText: null,
   filter: null,
   hasSearchIcon: true,
   onChangeFilter: null,
   onKeyDown: null,
-  placeholder: "Filter...",
-  noResultsMessage: "Your search did not match any options.",
+  placeholder: null,
+  noResultsMessage: null,
   renderFilter: null,
   value: null,
 };
@@ -34,10 +55,21 @@ const Filter = React.forwardRef((props, ref) => {
   const [state, dispatch] = useListBox();
   const [textSearch, setTextSearch] = React.useState(props.value);
   const applyFilterType = useListBox.types.applyFilter;
+  const I18n = useI18n();
+
+  const reset = React.useCallback(() => {
+    window.requestAnimationFrame(() => {
+      applyFilter(dispatch, applyFilterType)([], false);
+      setTextSearch("");
+    });
+  }, [applyFilterType, dispatch]);
 
   React.useImperativeHandle(ref, () => ({
     clear: () => {
       setTextSearch(() => "");
+    },
+    reset: () => {
+      reset();
     },
   }));
 
@@ -91,22 +123,10 @@ const Filter = React.forwardRef((props, ref) => {
   };
 
   React.useEffect(() => {
-    if (!props.value) {
-      applyFilter({ filteredOptions: [], noResultsFound: false });
-    }
-  }, [props.value]);
-
-  React.useEffect(() => {
     if (!state.isOpen) {
-      setTextSearch("");
+      reset();
     }
-  }, [state.isOpen]);
-
-  React.useEffect(() => {
-    if (!textSearch) {
-      applyFilter({ filteredOptions: [], noResultsFound: false });
-    }
-  }, [textSearch]);
+  }, [reset, state.isOpen]);
 
   React.useEffect(() => {
     dispatch({
@@ -116,24 +136,34 @@ const Filter = React.forwardRef((props, ref) => {
   }, [dispatch]);
 
   if (state.isInline || state.isOpen) {
-    const { renderFilter, placeholder, value, onChangeFilter, filter, ...moreProps } = props;
+    const {
+      renderFilter,
+      placeholder,
+      value,
+      onChangeFilter,
+      filter,
+      hasSearchIcon,
+      noResultsMessage,
+      ...moreProps
+    } = props;
     if (renderFilter) {
       return props.renderFilter(props);
     }
 
     return (
       <FilterContainerStyled data-pka-anchor="list-filter">
-        {props.hasSearchIcon ? <FilterSearchIconStyled /> : null}
         <FilterInputStyled
+          a11yText={props.a11yText || I18n.t("listBox.filter.a11y_text")}
           data-pka-anchor="list-filter-input"
+          icon={hasSearchIcon ? <SearchIcon /> : null}
           isDisabled={state.isDisabled}
           onBlur={handleBlur}
           onChange={handleChangeFilter}
           onKeyDown={props.onKeyDown}
-          placeholder={placeholder}
-          ref={state.refFilterInput}
-          type="text"
+          placeholder={placeholder || I18n.t("listBox.filter.placeholder")}
+          inputRef={state.refFilterInput}
           value={value || textSearch || ""}
+          size={state.size}
           {...moreProps}
         />
       </FilterContainerStyled>

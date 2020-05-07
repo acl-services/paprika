@@ -46,48 +46,30 @@ const defaultProps = {
   isSemantic: true,
 };
 
-const safeValue = n => (n < 1 || Number.isNaN(n) ? 6 : Math.min(n, 6));
-
-function getElementProps(safeDisplayLevel, safeLevel, props) {
-  const {
-    a11yText,
-    children,
-    displayLevel,
-    domRef,
-    hasDivider,
-    hasUnderline,
-    isHidden,
-    isLight,
-    isSemantic,
-    level,
-    ...moreProps
-  } = props;
-  return {
-    "aria-level": isSemantic ? null : safeLevel,
-    "aria-label": a11yText || undefined,
-    safeLevel,
-    safeDisplayLevel,
-    isHidden,
-    hasUnderline,
-    isLight,
-    ref: domRef,
-    role: isSemantic ? null : "heading",
-    ...moreProps,
-  };
-}
+const safeValue = n => (n === undefined || n < 1 || Number.isNaN(n) ? 6 : Math.min(n, 6));
 
 function renderHeadingContent(a11yText, children) {
   return a11yText ? <span aria-hidden>{children}</span> : children;
 }
 
 function Heading(props) {
-  const { a11yText, children, displayLevel, hasDivider, isSemantic, level } = props;
+  const { a11yText, children, displayLevel, domRef, hasDivider, isSemantic, level, ...moreProps } = props;
+
   const safeLevel = safeValue(level);
-  const safeDisplayLevel = displayLevel ? safeValue(displayLevel) : null;
   const divider = <span css={dividerStyles} />;
-  const elementProps = getElementProps(safeDisplayLevel, safeLevel, props);
+  const elementProps = {
+    "aria-label": a11yText || undefined,
+    "aria-level": isSemantic ? null : safeLevel,
+    as: isSemantic ? `h${safeLevel}` : "div",
+    hasDivider,
+    ref: domRef,
+    role: isSemantic ? null : "heading",
+    safeDisplayLevel: displayLevel ? safeValue(displayLevel) : null,
+    safeLevel,
+  };
+
   return (
-    <div data-pka-anchor="heading" css={headingStyles} {...elementProps} as={isSemantic ? `h${safeLevel}` : "div"}>
+    <div data-pka-anchor="heading" css={headingStyles} {...elementProps} {...moreProps}>
       {renderHeadingContent(a11yText, children)}
       {hasDivider ? divider : null}
     </div>

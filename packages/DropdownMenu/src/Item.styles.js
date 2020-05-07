@@ -7,7 +7,6 @@ const itemStyles = css`
   ${stylers.lineHeight()}
   cursor: pointer;
   display: block;
-  font-family: ${tokens.fontFamily.default};
   font-weight: normal;
   padding: ${tokens.spaceSm} ${stylers.spacer(2)};
   text-decoration: none;
@@ -28,7 +27,7 @@ const itemStyles = css`
 
     colorString = isDestructive ? "orangeDarken10" : "colorBlack";
     return { color: tokens.color[colorString] };
-  }}}
+  }}
 
   &:hover {
     ${({ isDestructive, isDisabled }) => {

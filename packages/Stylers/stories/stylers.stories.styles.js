@@ -1,6 +1,6 @@
 import styled from "styled-components";
 import tokens from "@paprika/tokens";
-import stylers from "@paprika/stylers";
+import stylers from "../src";
 
 export const Box = styled.div`
   border: 1px solid ${tokens.border.color};
@@ -68,15 +68,65 @@ export const ZBox = styled(Box)`
 `;
 
 export const ZStep = styled.span`
-  position: absolute;
-  width: ${stylers.spacer(6)};
-  height: ${stylers.spacer(6)};
-  margin: ${tokens.space} 0 0 ${tokens.space};
-  background: rgba(164, 164, 164, 0.9); // TODO: need rgba mixin
+  background: ${stylers.alpha(tokens.color.blackLighten40, 0.8)};
   border: 1px solid ${tokens.color.blackLighten20};
   color: ${tokens.color.white};
+  height: ${stylers.spacer(6)};
   line-height: ${stylers.spacer(6)};
+  margin: ${tokens.space} 0 0 ${tokens.space};
+  position: absolute;
   text-align: center;
+  width: ${stylers.spacer(6)};
 
   ${zStyles}
+`;
+
+export const FocusBox = styled.div`
+  background: ${tokens.color.blackLighten70};
+  height: ${stylers.spacer(4)};
+  width: ${stylers.spacer(4)};
+`;
+
+FocusBox.default = styled(FocusBox)`
+  &:focus,
+  &:hover {
+    ${stylers.focusRing};
+  }
+`;
+
+FocusBox.inset = styled(FocusBox)`
+  &:focus,
+  &:hover {
+    ${stylers.focusRing(true)};
+  }
+`;
+
+FocusBox.bordered = styled(FocusBox)`
+  border: 1px solid ${tokens.border.color};
+  &:focus,
+  &:hover {
+    ${stylers.focusRing.bordered}
+  }
+`;
+
+FocusBox.bordered.inset = styled(FocusBox)`
+  border: 1px solid ${tokens.border.color};
+  &:focus,
+  &:hover {
+    ${stylers.focusRing.bordered(true)}
+  }
+`;
+
+FocusBox.subtle = styled(FocusBox)`
+  &:focus,
+  &:hover {
+    ${stylers.focusRing.subtle}
+  }
+`;
+
+FocusBox.subtle.inset = styled(FocusBox)`
+  &:focus,
+  &:hover {
+    ${stylers.focusRing.subtle(true)}
+  }
 `;

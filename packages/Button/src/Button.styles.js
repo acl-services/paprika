@@ -16,7 +16,6 @@ const commonStyles = `
   box-sizing: border-box;
   cursor: pointer;
   display: inline-flex;
-  font-family: ${tokens.fontFamily.default};
   font-weight: bold;
   text-align: center;
   vertical-align: middle;
@@ -228,6 +227,13 @@ const kindStyles = props => ({
     }
 
     ${props.isDisabled ? disabledTextStyles : ""}
+
+    > [data-pka-anchor="icon"] {
+      ${stylers.fontSize(-3)}
+      color: ${tokens.textColor.icon};
+      margin-left: ${tokens.spaceSm};
+      margin-top: -${tokens.spaceSm};
+    }
   `,
 });
 
@@ -258,11 +264,9 @@ export default buttonStyles;
 
 const spinKeyframes = keyframes`
   0% {
-    -webkit-transform: rotate(0deg);
     transform: rotate(0deg);
   }
   100% {
-    -webkit-transform: rotate(360deg);
     transform: rotate(360deg);
   }
 `;

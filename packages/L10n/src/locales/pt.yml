@@ -1,9 +1,11 @@
 pt:
   translation:
-    back: voltar
+    back: Voltar
     remove: remover
     moreInformation: mais informações
     close: Fechar
+    dataGrid:
+      a11yTextMessage: "{{value}}. Você está na linha {{rowIndex}}, coluna {{columnIndex}}. Ignorar as seguintes informações:"
     uploader:
       label: Arraste e solte ou selecione arquivos no seu computador
       overlay:
@@ -28,6 +30,8 @@ pt:
       delete: Excluir
       apply: Aplicar
       cancel: Cancelar
+      confirm: Salvar
+      decline: Recusar
     datePicker:
       calendar_header_format: MMMM YYYY
       confirmation_format: ll
@@ -58,8 +62,6 @@ pt:
       arrowup: para cima
       arrowdown: para baixo
       escape: ESC
-    externalLink:
-      view: exibir
     collapsible:
       ariaText: seção recolhível
     sortable:
@@ -79,6 +81,13 @@ pt:
       less: Mostrar menos
       more_about: mostrar mais sobre {{topic}}
       less_about: mostrar menos sobre {{topic}}
+    listBox:
+      trigger:
+        placeholder: Selecione...
+      filter:
+        a11y_text: Filtrar
+        no_results_message: O resultado da sua pesquisa não correspondeu a nenhuma opção.
+        placeholder: Filtrar...
     listBoxBrowser:
       explore: Explorar mais opções
       selected: opções selecionadas

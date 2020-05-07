@@ -1,7 +1,7 @@
 {
   "name": "@paprika/collapsible-text",
-  "version": "0.2.7",
-  "description": "CollapsibleText component",
+  "version": "0.2.25",
+  "description": "CollapsibleText component, an uncontrolled component that truncates some given content at a given length to be revealed by clicking a 'Show more' link.",
   "author": "@paprika",
   "license": "MIT",
   "main": "lib/index.js",
@@ -15,8 +15,8 @@
   },
   "dependencies": {
     "@babel/runtime-corejs2": "^7.3.1",
-    "@paprika/button": "^0.2.7",
-    "@paprika/tokens": "^0.1.11",
+    "@paprika/button": "^0.2.24",
+    "@paprika/tokens": "^0.1.14",
     "lodash.truncate": "^4.4.2",
     "prop-types": "^15.7.2",
     "uuid": "^3.3.2"

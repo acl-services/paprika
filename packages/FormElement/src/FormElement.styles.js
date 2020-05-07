@@ -1,6 +1,4 @@
-import { css } from "styled-components";
-
-import tokens from "@paprika/tokens";
+import styled, { css } from "styled-components";
 import stylers from "@paprika/stylers";
 
 const FontSizes = {
@@ -9,8 +7,8 @@ const FontSizes = {
   large: stylers.fontSize(0),
 };
 
-export const inlineContainerStyles = css`
-  flex-grow: 1;
+export const SectionsContainer = styled.div`
+  ${({ isInline }) => isInline && `flex-grow: 1;`}
 `;
 
 const inlineFormElementStyles = css`
@@ -18,16 +16,10 @@ const inlineFormElementStyles = css`
   display: flex;
 `;
 
-export const formElementChildStyle = css`
-  margin: ${tokens.space} 0;
-`;
-
-const formElementStyles = css`
+export const FormElement = styled.div`
   ${({ size }) => FontSizes[size]}
-
   ${({ isInline }) => isInline && inlineFormElementStyles};
-
   ${({ isDisabled }) => isDisabled && `opacity: 0.5;`}
+  border: none;
+  padding: 0;
 `;
-
-export default formElementStyles;

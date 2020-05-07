@@ -1,10 +1,8 @@
 import styled, { css } from "styled-components";
-
 import stylers from "@paprika/stylers";
 import tokens from "@paprika/tokens";
 import Button from "@paprika/button";
 import { visuallyHidden } from "@paprika/stylers/lib/includes";
-
 import Kinds from "./ToastKinds";
 
 const backgroundColors = {
@@ -37,7 +35,7 @@ const fixedStyles = css`
   position: fixed;
   top: ${stylers.spacer(2)};
   transform: translateX(-50%);
-  width: calc(100% - #{${stylers.spacer(4)}});
+  width: calc(100% - ${stylers.spacer(4)});
 `;
 
 const iconColors = {
@@ -92,7 +90,7 @@ const toastStyles = css`
   ${stylers.fontSize()}
   ${stylers.lineHeight()}
   ${({ isFixed }) => isFixed && fixedStyles}
-  ${({ kind }) => kind === "visually-hidden" && visuallyHidden}
+  ${({ kind }) => kind === Kinds.VISUALLY_HIDDEN && visuallyHidden}
 `;
 
 export default toastStyles;

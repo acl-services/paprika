@@ -27,7 +27,6 @@ export default function reducer(state, { type, payload }) {
       return {
         ...state,
         activeOption: payload.activeOptionIndex,
-        shouldContentScroll: true,
       };
     }
 
@@ -43,7 +42,6 @@ export default function reducer(state, { type, payload }) {
         activeOption: payload.activeOptionIndex,
         isOpen,
         selectedOptions: [payload.activeOptionIndex],
-        shouldContentScroll: true,
       };
     }
 
@@ -65,17 +63,22 @@ export default function reducer(state, { type, payload }) {
       return {
         ...state,
         activeOption: activeOptionIndex,
-        isOpen: true,
         onChangeFn: payload.onChangeFn,
         selectedOptions,
-        shouldContentScroll: false,
+      };
+    }
+
+    case useListBox.types.setListBoxHasFocus: {
+      const { hasFocus } = payload;
+      return {
+        ...state,
+        listBoxHasFocus: hasFocus,
       };
     }
 
     case useListBox.types.toggleMultipleOption: {
       const selectedOptionsArray = state.selectedOptions.slice();
-      const { activeOptionIndex } = payload;
-
+      const { activeOptionIndex, onChangeFn } = payload;
       if (selectedOptionsArray.includes(activeOptionIndex)) {
         const index = selectedOptionsArray.indexOf(activeOptionIndex);
         selectedOptionsArray.splice(index, 1);
@@ -86,10 +89,8 @@ export default function reducer(state, { type, payload }) {
       return {
         ...state,
         activeOption: activeOptionIndex,
-        isOpen: true,
-        onChangeFn: payload.onChangeFn,
+        onChangeFn,
         selectedOptions: selectedOptionsArray,
-        shouldContentScroll: false,
       };
     }
 

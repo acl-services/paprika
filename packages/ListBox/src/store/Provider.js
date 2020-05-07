@@ -14,7 +14,6 @@ function initializeState(props) {
     isInline,
     isMulti,
     isOpen,
-    onChange,
     placeholder,
     refFilterInput,
     refFooterContainer,
@@ -23,6 +22,7 @@ function initializeState(props) {
     refTrigger,
     refTriggerContainer,
     refLabel,
+    size,
   } = props;
   const formElementId = props.id;
   const formElementLabelDescribedBy = props["aria-describedby"];
@@ -42,6 +42,7 @@ function initializeState(props) {
   const initialState = {
     idListBox: `listBoxId_${uuidv4()}`,
     activeOption,
+    listBoxHasFocus: true,
     filteredOptions: [],
     hasFooter: false,
     hasPopupOpened: false,
@@ -51,7 +52,6 @@ function initializeState(props) {
     isMulti,
     isOpen,
     noResultsFound: false,
-    onChange,
     options,
     placeholder,
     refFilterInput,
@@ -61,11 +61,11 @@ function initializeState(props) {
     refTrigger,
     refTriggerContainer,
     selectedOptions,
-    shouldContentScroll: true,
     triggerWidth: 0,
     refLabel,
     formElementId,
     formElementLabelDescribedBy,
+    size,
   };
 
   return {

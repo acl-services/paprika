@@ -1,13 +1,18 @@
 import styled from "styled-components";
+import stylers from "@paprika/stylers";
+import RawButton from "@paprika/raw-button";
 
-// constants for this component (and subcomponents)
 export const consts = {
   transition: "150ms",
 };
 
-// styling for main <Popover> component
-const PopoverStyled = styled.div`
-  display: inline-block;
+export const Popover = styled.div`
+  display: inline-block; /* required for proper positioning */
 `;
 
-export default PopoverStyled;
+export const Trigger = styled(RawButton)`
+  &:focus {
+    box-shadow: none;
+    ${stylers.focusRing.subtle()};
+  }
+`;

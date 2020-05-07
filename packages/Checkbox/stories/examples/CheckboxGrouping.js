@@ -1,9 +1,24 @@
 import React from "react";
+import styled from "styled-components";
 import { Rule } from "storybook/assets/styles/common.styles";
 import Heading from "@paprika/heading";
-import Checkbox, { checkboxStates } from "../../src/Checkbox";
+import stylers from "@paprika/stylers";
+import tokens from "@paprika/tokens";
+import PaprikaCheckbox from "../../src/Checkbox";
 
-const { CHECKED, UNCHECKED } = checkboxStates;
+// Styling override example technique #1
+const Checkbox = styled(PaprikaCheckbox)`
+  margin-bottom: ${stylers.spacer(2)};
+`;
+
+// Styling override example technique #2
+const CheckboxGroup = styled.div`
+  ${Checkbox} {
+    border: 1px solid ${tokens.border.color};
+  }
+`;
+
+const { CHECKED, UNCHECKED } = Checkbox.states;
 
 const CheckboxExample = props => {
   const [checkedState, setCheckedState] = React.useState(props.value || UNCHECKED);
@@ -16,10 +31,11 @@ const CheckboxExample = props => {
         Checkbox Grouping
       </Heading>
       <Rule />
-      <div
+      <CheckboxGroup
+        // Styling override example technique #3
         css={`
           [data-pka-anchor="checkbox"] {
-            margin-bottom: 12px;
+            padding: ${tokens.space};
           }
         `}
       >
@@ -32,12 +48,14 @@ const CheckboxExample = props => {
         <Checkbox {...props} onChange={handleChange} checkedState={checkedState}>
           Locavore
         </Checkbox>
-        <Checkbox {...props} onChange={handleChange} checkedState={checkedState} />
-        <Checkbox {...props} onChange={handleChange} checkedState={checkedState}>
-          &nbsp;
+        <Checkbox {...props} tabIndex="-1" onChange={handleChange} checkedState={checkedState}>
+          Untabbable
         </Checkbox>
         <Checkbox {...props} onChange={handleChange} checkedState={checkedState} />
-      </div>
+        <Checkbox {...props} isDisabled onChange={handleChange} checkedState={checkedState}>
+          Disabled
+        </Checkbox>
+      </CheckboxGroup>
     </div>
   );
 };

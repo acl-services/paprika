@@ -105,7 +105,41 @@ $leading-scale-ratio: 1.125;
   overflow: hidden;
   padding: 0 !important;
   position: absolute !important;
+  white-space: nowrap;
   width: 1px !important;
+}
+
+// Focus Indicators
+
+@mixin focus-ring($inset: false) {
+  @if $inset {
+    box-shadow: $highlight--active--with-border--inset-box-shadow;
+    outline: none;
+  } @else {
+    box-shadow: $highlight--active--with-border--box-shadow;
+    outline: none;
+  }
+}
+
+@mixin focus-ring--bordered($inset: false) {
+  @if $inset {
+    border-color: $highlight--active--no-border--border-color;
+    box-shadow: $highlight--active--no-border--inset-box-shadow;
+    outline: none;
+  } @else {
+    border-color: $highlight--active--no-border--border-color;
+    box-shadow: $highlight--active--no-border--box-shadow;
+    outline: none;
+  }
+}
+
+@mixin focus-ring--subtle($inset: false) {
+  @if $inset {
+    outline: $highlight--active--non-interactive--outline;
+    outline-offset: -2px;
+  } @else {
+    outline: $highlight--active--non-interactive--outline;
+  }
 }
 
 // Forms

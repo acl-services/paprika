@@ -4,13 +4,19 @@ import Popover from "@paprika/popover";
 import { getDOMAttributesForListBoxContainer } from "../../helpers/DOMAttributes";
 import handleKeyboardKeys from "../../helpers/handleKeyboardKeys";
 import useListBox from "../../useListBox";
+import { OnChangeContext } from "../../store/OnChangeProvider";
+import { ContentStyled } from "./Content.styles";
 
 const propTypes = {
+  /** Body content of the content. */
   children: PropTypes.node.isRequired,
+  onCancelFooter: PropTypes.func,
 };
-const defaultProps = {};
+const defaultProps = {
+  onCancelFooter: null,
+};
 
-const handleBlur = (state, dispatch) => () => {
+const handleBlur = (state, dispatch, onCancelFooter) => () => {
   const { refListBoxContainer } = state;
 
   if (state.isDisabled) {
@@ -22,8 +28,9 @@ const handleBlur = (state, dispatch) => () => {
   // via document.activeElement instead of returning
   // the body element automatically
   window.requestAnimationFrame(() => {
-    // the trigger should handle the close and open not the onBlur event
     if (state.refTriggerContainer.current && state.refTriggerContainer.current.contains(document.activeElement)) {
+      // close the popover if the target is the trigger, this make easier to handle tab events
+      dispatch({ type: useListBox.types.closePopover });
       return;
     }
 
@@ -36,37 +43,46 @@ const handleBlur = (state, dispatch) => () => {
 
       if (state.hasFooter) {
         dispatch({ type: useListBox.types.cancel });
+        if (onCancelFooter) onCancelFooter();
       }
     }
   });
 };
 
+const handleContentFocusChange = (hasFocus, dispatch) =>
+  dispatch({ type: useListBox.types.setListBoxHasFocus, payload: { hasFocus } });
+
 export default function Content(props) {
+  const onChangeContext = React.useContext(OnChangeContext);
   const [state, dispatch] = useListBox();
   const { refListBoxContainer } = state;
 
   /* NOTE no idea what ROLE should be this div when the ListBox is INLINE */
-  /* eslint-disable jsx-a11y/no-static-element-interactions */
   if (state.isInline) {
     return (
-      <div
+      <ContentStyled
         {...getDOMAttributesForListBoxContainer({ isInline: true })}
-        onKeyDown={handleKeyboardKeys(state, dispatch)}
+        onFocus={() => {
+          handleContentFocusChange(true, dispatch);
+        }}
+        onBlur={() => {
+          handleContentFocusChange(false, dispatch);
+        }}
+        onKeyDown={handleKeyboardKeys({ state, dispatch, onChangeContext })}
         ref={refListBoxContainer}
         data-pka-anchor="listbox-content-inline"
       >
         {props.children}
-      </div>
+      </ContentStyled>
     );
   }
-  /* eslint-enable jsx-a11y/no-static-element-interactions */
 
   return (
     <Popover.Content
-      onBlur={handleBlur(state, dispatch)}
+      onBlur={handleBlur(state, dispatch, props.onCancelFooter)}
       ref={refListBoxContainer}
       {...getDOMAttributesForListBoxContainer()}
-      onKeyDown={handleKeyboardKeys(state, dispatch)}
+      onKeyDown={handleKeyboardKeys({ state, dispatch, onChangeContext })}
     >
       {props.children}
     </Popover.Content>

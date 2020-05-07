@@ -1,9 +1,11 @@
 fr:
   translation:
-    back: retour
+    back: Retour
     remove: supprimer
     moreInformation: plus d'informations
     close: Fermer
+    dataGrid:
+      a11yTextMessage: "{{value}}. Vous êtes désormais dans la ligne {{rowIndex}}, colonne {{columnIndex}}. Ignorez les informations suivantes :"
     uploader:
       label: Glissez-déplacez ou choisissez des fichiers dans votre ordinateur
       overlay:
@@ -28,6 +30,8 @@ fr:
       delete: Supprimer
       apply: Appliquer
       cancel: Annuler
+      confirm: Enregistrer
+      decline: Refuser
     datePicker:
       calendar_header_format: MMMM YYYY
       confirmation_format: D MMMM YYYY
@@ -58,8 +62,6 @@ fr:
       arrowup: haut
       arrowdown: bas
       escape: Échap
-    externalLink:
-      view: voir
     collapsible:
       ariaText: section compressible
     sortable:
@@ -79,6 +81,13 @@ fr:
       less: Afficher moins
       more_about: Afficher plus sur {{topic}}
       less_about: Afficher moins sur {{topic}}
+    listBox:
+      trigger:
+        placeholder: Sélectionner...
+      filter:
+        a11y_text: Filtrer
+        no_results_message: Vos résultats de recherche ne correspondaient à aucune option.
+        placeholder: Filtrer...
     listBoxBrowser:
       explore: Découvrir d'autres options
       selected: options sélectionnées

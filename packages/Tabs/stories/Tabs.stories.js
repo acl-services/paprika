@@ -60,6 +60,18 @@ storiesOf("Tabs", module)
         </Tabs.List>
       </Tabs>
     </Story>
+  ))
+  .add("Compact Tabs with custom height", () => (
+    <Story>
+      <Tabs>
+        <Tabs.List height={80}>
+          <Tabs.Tab hasInsetFocusStyle>These tabs</Tabs.Tab>
+          <Tabs.Tab hasInsetFocusStyle>Are tall</Tabs.Tab>
+          <Tabs.Tab hasInsetFocusStyle>And narrow</Tabs.Tab>
+          <Tabs.Tab hasInsetFocusStyle>With inset focus</Tabs.Tab>
+        </Tabs.List>
+      </Tabs>
+    </Story>
   ));
 
 storiesOf("Tabs/Automation Tests", module).add("Cypress", () => <Story>{TabsExample()}</Story>);

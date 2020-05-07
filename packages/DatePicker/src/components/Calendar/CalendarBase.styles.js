@@ -18,7 +18,6 @@ const calendarBaseStyles = css`
     font-weight: 700;
     line-height: normal;
     overflow: visible;
-    -moz-box-sizing: border-box;
     box-sizing: border-box;
     cursor: pointer;
   }
@@ -62,8 +61,6 @@ const calendarBaseStyles = css`
     position: absolute;
     right: 0;
     top: 50%;
-    -webkit-transform: translateY(-50%);
-    -ms-transform: translateY(-50%);
     transform: translateY(-50%);
   }
   .SingleDatePickerInput_clearDate__default:focus,
@@ -286,7 +283,6 @@ const calendarBaseStyles = css`
     fill: #82888a;
   }
   .CalendarDay {
-    -moz-box-sizing: border-box;
     box-sizing: border-box;
     cursor: pointer;
     font-size: 14px;
@@ -395,9 +391,6 @@ const calendarBaseStyles = css`
     background: #fff;
     text-align: center;
     vertical-align: top;
-    -webkit-user-select: none;
-    -moz-user-select: none;
-    -ms-user-select: none;
     user-select: none;
   }
   .CalendarMonth_table {
@@ -471,9 +464,6 @@ const calendarBaseStyles = css`
   }
   .DayPickerNavigation_button {
     cursor: pointer;
-    -webkit-user-select: none;
-    -moz-user-select: none;
-    -ms-user-select: none;
     user-select: none;
     border: 0;
     padding: 0;
@@ -623,8 +613,6 @@ const calendarBaseStyles = css`
     border-radius: 3px;
   }
   .DayPicker_transitionContainer__horizontal {
-    -webkit-transition: height 0.2s ease-in-out;
-    -moz-transition: height 0.2s ease-in-out;
     transition: height 0.2s ease-in-out;
   }
   .DayPicker_transitionContainer__vertical {
@@ -684,9 +672,6 @@ const calendarBaseStyles = css`
     font-weight: auto;
   }
   .DateInput_input__readOnly {
-    -webkit-user-select: none;
-    -moz-user-select: none;
-    -ms-user-select: none;
     user-select: none;
   }
   .DateInput_input__focused {
@@ -770,8 +755,6 @@ const calendarBaseStyles = css`
     position: absolute;
     right: 0;
     top: 50%;
-    -webkit-transform: translateY(-50%);
-    -ms-transform: translateY(-50%);
     transform: translateY(-50%);
   }
   .DateRangePickerInput_clearDates__small {

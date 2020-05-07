@@ -2,6 +2,7 @@ import React from "react";
 import { storiesOf } from "@storybook/react";
 import { withKnobs } from "@storybook/addon-knobs";
 import ShowcaseStory from "./examples/Showcase";
+import Uncontrolled from "./examples/Uncontrolled";
 import Sizes from "./examples/Sizes";
 import A11yStory from "./examples/test/A11y";
 import ScreenerStory from "./examples/test/Screener";
@@ -9,6 +10,7 @@ import ScreenerStory from "./examples/test/Screener";
 storiesOf("Textarea", module)
   .addDecorator(withKnobs)
   .add("Showcase", ShowcaseStory)
+  .add("Uncontrolled", Uncontrolled)
   .add("Sizes", () => <Sizes />);
 
 storiesOf("Textarea/Automation Tests/Screener", module).add("Basic", () => {

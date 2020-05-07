@@ -1,6 +1,7 @@
 import React from "react";
 import PropTypes from "prop-types";
 import useListBox from "../../useListBox";
+import { OnChangeContext } from "../../store/OnChangeProvider";
 import { getA11yAttributesForOption } from "../../helpers/DOMAttributes";
 import { isOptionVisible, isOptionSelected, handleClickOption } from "../Options/helpers/options";
 import { OptionStyled } from "./Option.styles";
@@ -46,7 +47,8 @@ const defaultProps = {
 
 export default function Option(props) {
   const [state, dispatch] = useListBox();
-  const { activeOption, isDisabled: isDisabledState } = state;
+  const onChangeContext = React.useContext(OnChangeContext);
+  const { activeOption, listBoxHasFocus, isDisabled: isDisabledState, size } = state;
   const { index, groupId, label, ...moreProps } = props; // eslint-disable-line
 
   useIsSelectedOption({ index, props });
@@ -70,11 +72,13 @@ export default function Option(props) {
       {...getA11yAttributesForOption(isSelected)}
       hasPreventDefaultOnSelect={props.preventDefaultOnSelect}
       id={id}
+      listBoxHasFocus={listBoxHasFocus}
       isActive={activeOption === index}
       isDisabled={isDisabled}
       isSelected={isSelected}
+      size={size}
       key={index}
-      onClick={handleClickOption({ props, state, dispatch })}
+      onClick={handleClickOption({ props, state, dispatch, onChangeContext })}
       data-pka-anchor={isSelected ? "list-option--is-selected" : "list-option"}
       data-pka-prevent-default-on-select={props.preventDefaultOnSelect}
     >

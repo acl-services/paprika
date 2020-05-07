@@ -45,7 +45,7 @@ export const FocusLock = styled.div`
   &::after {
     content: "";
     display: block;
-    flex: 0 1 ${tokens.modal.top};
+    flex-basis: ${tokens.modal.top};
   }
 `;
 
@@ -70,7 +70,6 @@ export const Dialog = styled.div`
 `;
 
 export const Wrapper = styled.div`
-  flex: 0 1 auto;
   margin: ${tokens.modal.margin};
   max-height: calc(100% - ${tokens.modal.margin} - ${tokens.modal.margin});
   max-width: calc(100% - ${tokens.modal.margin} - ${tokens.modal.margin});
@@ -84,6 +83,10 @@ export const Header = styled(OriginalHeader)`
 
 export const ContentWrapper = styled.div`
   overflow-y: auto;
+
+  &:focus {
+    ${stylers.focusRing.subtle(true)};
+  }
 `;
 
 export const Content = styled(OriginalContent)`

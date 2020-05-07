@@ -9,9 +9,13 @@ import sortableStyles from "./Sortable.styles";
 
 const propTypes = {
   children: PropTypes.node,
+  /** Indicator to identify the number sequence  */
   hasNumbers: PropTypes.bool,
+  /** Add a background-color to all even rows */
   hasZebraStripes: PropTypes.bool,
+  /** Callback when sorting */
   onChange: PropTypes.func.isRequired,
+  /** Callback when deleting an item */
   onRemove: PropTypes.func,
 };
 
