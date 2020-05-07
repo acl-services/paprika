@@ -56,6 +56,9 @@ const stories = [
   require.context("../packages/DialogActions", true, /DialogActions.stories.js/),
   require.context("../packages/DialogActions", true, /DialogActions.Tests.stories.js/),
 
+  // ListBox
+  require.context("../packages/ListBox", true, /ListBox.stories.(js|mdx)$/),
+
   // Toast
   require.context("../packages/Toast", true, /Toast.stories.mdx/),
   require.context("../packages/Toast", true, /Toast.stories.js/),
