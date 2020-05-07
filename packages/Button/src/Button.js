@@ -1,6 +1,6 @@
 import React from "react";
 import PropTypes from "prop-types";
-import "what-input";
+import whatInput from "what-input";
 import RawButton from "@paprika/raw-button";
 import RefreshIcon from "@paprika/icon/lib/Refresh";
 import DownIcon from "@paprika/icon/lib/CaretDown";
@@ -117,6 +117,7 @@ const Button = React.forwardRef((props, ref) => {
 
   React.useImperativeHandle(ref, () => ({
     focus: () => {
+      document.querySelector("html").setAttribute("data-whatinput", "keyboard"); // act like they used a keyboard so it shows focus ring
       buttonRef.current.focus();
     },
   }));
@@ -133,6 +134,8 @@ const Button = React.forwardRef((props, ref) => {
   }
 
   const handleClick = event => {
+    document.querySelector("html").setAttribute("data-whatinput", whatInput.ask()); // after change it manually, its not restoring correctly, so help it
+
     if (isSubmit && !isSemantic) {
       handleSubmit(event);
     }
