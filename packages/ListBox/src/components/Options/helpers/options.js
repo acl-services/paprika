@@ -19,6 +19,7 @@ export function toggleMultipleOption({ activeOptionIndex, dispatch, onChangeCont
 
 export function selectMultipleOption({ activeOptionIndex, dispatch, isSelected, onChange = null, onChangeContext }) {
   const onChangeFn = onChange || invokeOnChange(onChangeContext, "listbox:option-selected");
+
   dispatch({
     type: useListBox.types.selectMultipleOption,
     payload: { activeOptionIndex, onChangeFn, isSelected },

@@ -2,24 +2,29 @@ import React from "react";
 import PropTypes from "prop-types";
 import RawButton from "@paprika/raw-button";
 import TabsContext from "../../TabsContext";
-import { tabStyles } from "./Tab.styles";
+import { tabStyles, linkStyles } from "./Tab.styles";
 
 const propTypes = {
   children: PropTypes.node,
-  className: PropTypes.string,
-  isSelected: PropTypes.bool,
-  isDisabled: PropTypes.bool,
+  height: PropTypes.number,
+  /** Sets a url the tab goes to */
   href: PropTypes.string,
+  /** If the tab is disabled  */
+  isDisabled: PropTypes.bool,
+  /** Controls if the option is selected or not */
+  isSelected: PropTypes.bool,
+  /** Callback onClick */
   onClick: PropTypes.func,
+  /** Callback onKeyDownArrow */
   onKeyDownArrows: PropTypes.func,
 };
 
 const defaultProps = {
   children: null,
-  className: null,
-  isSelected: false,
-  isDisabled: false,
+  height: null,
   href: null,
+  isDisabled: false,
+  isSelected: false,
   onClick: () => {},
   onKeyDownArrows: () => {},
 };
@@ -27,7 +32,7 @@ const defaultProps = {
 export default function Tab(props) {
   const context = React.useContext(TabsContext);
 
-  const { className, isSelected, children, href, onClick, onKeyDownArrows, ...moreProps } = props;
+  const { isSelected, children, href, onClick, onKeyDownArrows, ...moreProps } = props;
 
   const handleKeyDown = (event, index) => {
     onKeyDownArrows(event, index);
@@ -40,14 +45,13 @@ export default function Tab(props) {
   if (href && !isDisabled) {
     return (
       <a
-        css={tabStyles}
-        className="tab tab-link"
+        {...moreProps}
+        css={linkStyles}
         data-pka-anchor="tab"
         href={href}
         onKeyDown={e => handleKeyDown(e, context.currentFocusIndex)}
         role="tab"
         tabIndex={tabIndex}
-        {...moreProps}
       >
         {children}
       </a>
@@ -56,9 +60,9 @@ export default function Tab(props) {
 
   return (
     <RawButton
+      {...moreProps}
       aria-selected={isSelected}
       kind={context.kind}
-      className="tab"
       css={tabStyles}
       data-pka-anchor="tab-link"
       isDisabled={isDisabled}

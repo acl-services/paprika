@@ -1,22 +1,34 @@
 {
   "name": "@paprika/listbox",
-  "version": "0.8.18",
-  "description": "",
+  "version": "0.8.24",
+  "description": "The ListBox component allows users to select one or more options from a list contained within the component",
   "main": "lib/index.js",
   "dependencies": {
     "@babel/runtime-corejs2": "^7.3.1",
-    "@paprika/button": "^0.2.20",
+    "@paprika/button": "^0.2.24",
     "@paprika/helpers": "^0.2.11",
-    "@paprika/icon": "^0.2.15",
-    "@paprika/input": "^0.2.21",
-    "@paprika/l10n": "^0.3.15",
-    "@paprika/popover": "^0.3.19",
-    "@paprika/raw-button": "^0.2.8",
-    "@paprika/stylers": "^0.2.6",
-    "@paprika/tokens": "^0.1.13",
+    "@paprika/icon": "^0.3.2",
+    "@paprika/input": "^0.2.25",
+    "@paprika/l10n": "^0.3.18",
+    "@paprika/popover": "^0.3.21",
+    "@paprika/raw-button": "^0.2.10",
+    "@paprika/stylers": "^0.2.7",
+    "@paprika/tokens": "^0.1.14",
     "nanoid": "^2.1.8",
     "prop-types": "15.7.2",
     "uuid": "^3.3.2"
+  },
+  "paprikaDocs": {
+    "subComponents": [
+      "Box",
+      "Divider",
+      "Filter",
+      "Footer",
+      "Option",
+      "Popover",
+      "RawItem",
+      "Trigger"
+    ]
   },
   "devDependencies": {
     "react-json-tree": "^0.11.2"

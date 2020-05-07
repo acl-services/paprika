@@ -5,6 +5,8 @@ import { panelStyles } from "./Panel.styles";
 
 const propTypes = {
   children: PropTypes.node,
+  /** Controls if the option is selected or not */
+
   isSelected: PropTypes.bool,
 };
 

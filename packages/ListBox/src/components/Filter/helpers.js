@@ -18,12 +18,7 @@ export const filter = ({ state, textSearchValue }) => {
         return label.match(filterRegExp);
       }
 
-      throw new Error(
-        `Textsearch: ${textSearchValue} during ${options[key]}.
-        ListBox.Filter  filter: <ListBox.Option /> need to have
-        a string as a children or please provide a label prop
-        <ListBox.Option label='yourOptionDescription' />.`
-      );
+      return false;
     });
 
     if (!filteredOptions.length) {

@@ -1,12 +1,16 @@
 import React from "react";
 import PropTypes from "prop-types";
 import Overlay from "@paprika/overlay";
+import { zValue } from "@paprika/stylers/lib/helpers";
 import { ShirtSizes } from "@paprika/helpers/lib/customPropTypes";
 import extractChildren from "@paprika/helpers/lib/extractChildren";
 import FocusLock from "./components/FocusLock";
 import * as styled from "./Modal.styles";
 
 const propTypes = {
+  /* Description of the Modal dialog for assistive technology */
+  a11yText: PropTypes.string,
+
   /** The content for the Modal. */
   children: PropTypes.node.isRequired,
 
@@ -25,19 +29,21 @@ const propTypes = {
   /* Control the size (max-width) of the modal */
   size: PropTypes.oneOf(ShirtSizes.DEFAULT),
 
-  a11yText: PropTypes.string,
+  /** The z-index of the Takeover content */
+  zIndex: PropTypes.number,
 };
 
 const defaultProps = {
-  onAfterClose: () => {},
-  onClose: () => {},
-  onAfterOpen: () => {},
-  size: ShirtSizes.MEDIUM,
   a11yText: null,
+  onAfterClose: () => {},
+  onAfterOpen: () => {},
+  onClose: () => {},
+  size: ShirtSizes.MEDIUM,
+  zIndex: zValue(6),
 };
 
 const Modal = props => {
-  const { isOpen, onClose, onAfterClose, onAfterOpen, size, a11yText, ...moreProps } = props;
+  const { a11yText, isOpen, onClose, onAfterClose, onAfterOpen, size, zIndex, ...moreProps } = props;
 
   const {
     "Modal.FocusLock": focusLockExtracted,
@@ -67,15 +73,17 @@ const Modal = props => {
 
   return (
     <Overlay
+      data-pka-anchor="modal.overlay"
       isOpen={isOpen}
       onClose={onClose}
       onAfterOpen={onAfterOpen}
       onAfterClose={onAfterClose}
-      focusLockOptions={focusLockOptions}
+      zIndex={zIndex}
       {...overlayProps}
+      focusLockOptions={focusLockOptions}
     >
       {state => (
-        <styled.Wrapper size={size} {...moreProps}>
+        <styled.Wrapper size={size} data-pka-anchor="modal.wrapper" {...moreProps}>
           <styled.Dialog state={state} role="dialog" aria-modal="true" aria-label={ariaLabel} data-pka-anchor="modal">
             {headerExtracted && <styled.Header {...headerExtracted.props} onClose={onClose} />}
             <styled.ContentWrapper role="region" tabIndex="0">
