@@ -1,4 +1,5 @@
 import React from "react";
+import StoryHeader from "storybook/components/StoryHeader";
 import { Story, Rule } from "storybook/assets/styles/common.styles";
 import Collapsible from "../../src";
 
@@ -26,6 +27,8 @@ const ExampleStory = () => {
 
   return (
     <Story>
+      <StoryHeader componentName="Collapsible" storyType="Variations" />
+
       <Collapsible
         {...collapsibleDefaultProps}
         isCollapsed={isCollapsed}

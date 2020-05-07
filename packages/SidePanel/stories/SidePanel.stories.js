@@ -4,7 +4,7 @@ import Showcase from "./examples/Showcase";
 import SidePanel from "../src";
 
 export default {
-  title: "SidePanel",
+  title: " | SidePanel",
   component: SidePanel,
 };
 

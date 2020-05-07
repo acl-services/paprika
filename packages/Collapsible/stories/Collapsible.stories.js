@@ -1,29 +1,33 @@
 import React from "react";
-import { storiesOf } from "@storybook/react";
-import { Story, Rule, Tagline } from "storybook/assets/styles/common.styles";
 import { withKnobs } from "@storybook/addon-knobs";
-import Heading from "@paprika/heading";
 
 import Collapsible from "../src/Collapsible";
 import Variations from "./examples/Variations";
+import Showcase from "./examples/Showcase";
 
-const Example = () => (
-  <Story>
-    <Heading level={1} displayLevel={2} isLight>
-      <code>&lt;Collapsible /&gt;</code>
-    </Heading>
-    <Tagline>
-      <b>Showcase</b> – Interact with the props API
-    </Tagline>
-    <Rule />
-    <Collapsible />
-  </Story>
-);
+export default {
+  title: " | Collapsible",
+  component: Collapsible,
+};
 
-storiesOf("Collapsible", module).add("Showcase", () => {
-  return <Example />;
-});
+export const showcase = Showcase;
+showcase.story = {
+  decorators: [withKnobs],
+  parameters: {
+    options: {
+      isToolshown: true,
+      showPanel: true,
+    },
+  },
+};
 
-storiesOf("Collapsible", module)
-  .addDecorator(withKnobs)
-  .add("Variations", () => <Variations />);
+export const variations = () => <Variations />;
+variations.story = {
+  parameters: {
+    docs: { page: Variations },
+    options: {
+      isToolshown: true,
+      showPanel: false,
+    },
+  },
+};
