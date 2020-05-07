@@ -34,7 +34,9 @@ const ExampleStory = props => (
       <ButtonGroup.Item value="two" isActive tabIndex={0}>
         Two
       </ButtonGroup.Item>
-      <ButtonGroup.Item value={3}>Three Three Three Three Three Three</ButtonGroup.Item>
+      <ButtonGroup.Item value={3} isActive>
+        Three Three Three Three Three Three
+      </ButtonGroup.Item>
       <ButtonGroup.Item value="four">
         <Calendar />
       </ButtonGroup.Item>

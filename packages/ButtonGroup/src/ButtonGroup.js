@@ -40,12 +40,21 @@ const defaultProps = {
   size: ShirtSizes.MEDIUM,
 };
 
+function getInitiallySelectedItems(children, isMulti) {
+  if (isMulti) {
+    return children.filter(item => item.props.isActive).map(item => item.props.value);
+  }
+
+  return [React.Children.toArray(children).find(item => item.props.isActive).props.value];
+}
+
 function ButtonGroup(props) {
   const { children, hasIcons, isDisabled, isFullWidth, isSemantic, onChange, size } = props;
+  const isMulti = false; // for future capability
 
   const validChildren = children.filter(child => child.type.displayName === ButtonItem.displayName);
 
-  const initiallySelectedItems = validChildren.filter(item => item.props.isActive).map(item => item.props.value);
+  const initiallySelectedItems = getInitiallySelectedItems(validChildren, isMulti);
 
   const [selectedItems, setSelectedItems] = React.useState([...initiallySelectedItems]);
 
@@ -53,18 +62,16 @@ function ButtonGroup(props) {
     if (!isDisabled) {
       const itemIndex = selectedItems.indexOf(clickedId);
       const itemUsedToBeSelected = itemIndex > -1;
-      const newSelectedItems = [...selectedItems];
+      const newSelectedItems = isMulti ? [...selectedItems] : [];
 
-      if (itemUsedToBeSelected) {
-        newSelectedItems.splice(itemIndex, 1);
-      } else {
+      if (!itemUsedToBeSelected) {
         newSelectedItems.push(clickedId);
+      } else if (isMulti) {
+        newSelectedItems.splice(itemIndex, 1);
       }
 
       setSelectedItems(newSelectedItems);
-      if (typeof onChange === "function") {
-        onChange(newSelectedItems);
-      }
+      if (typeof onChange === "function") onChange(newSelectedItems);
     }
   };
 
@@ -74,7 +81,6 @@ function ButtonGroup(props) {
         const buttonProps = {
           isDisabled,
           ...item.props,
-
           hasIcon: hasIcons,
           isFullWidth,
           isSemantic,
