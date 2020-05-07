@@ -86,6 +86,10 @@ const disabledTextStyles = `
 const activeStyles = `
   box-shadow: ${tokens.highlight.active.noBorder.boxShadow};
   border-color: ${tokens.highlight.active.noBorder.borderColor};
+
+  &:hover {
+    border-color: ${tokens.highlight.active.noBorder.borderColor};
+  }
 `;
 
 // Sizes

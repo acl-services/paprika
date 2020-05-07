@@ -8,18 +8,15 @@ const fullWithStyles = `
 `;
 
 export const Button = styled(ButtonItem)`
-  display: block;
-  overflow: hidden;
-  text-overflow: ellipsis;
-  white-space: nowrap;
+  border-radius: 0;
 `;
 
 export const ButtonGroup = styled.div`
   display: inline-flex;
 
-  ${Button} {
-    border-radius: 0;
+  ${({ isFullWidth }) => (isFullWidth ? fullWithStyles : "")}
 
+  ${Button} {
     &:first-child {
       border-radius: ${tokens.button.borderRadius} 0 0 ${tokens.button.borderRadius};
     }
@@ -32,6 +29,4 @@ export const ButtonGroup = styled.div`
       margin-right: -1px;
     }
   }
-
-  ${({ isFullWidth }) => (isFullWidth ? fullWithStyles : "")}
 `;
