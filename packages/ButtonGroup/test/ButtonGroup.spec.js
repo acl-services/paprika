@@ -24,14 +24,4 @@ describe("ButtonGroup", () => {
     const { container } = renderComponent();
     expect(container.querySelector("button")).toBeInTheDocument();
   });
-
-  it("Renders component with allowed children only", () => {
-    const { container } = render(
-      <ButtonGroup>
-        <ButtonGroup.Item value="1">Button 1</ButtonGroup.Item>
-        <h1 value="2">Button 2</h1>
-      </ButtonGroup>
-    );
-    expect(container.querySelector("h1")).not.toBeInTheDocument();
-  });
 });
