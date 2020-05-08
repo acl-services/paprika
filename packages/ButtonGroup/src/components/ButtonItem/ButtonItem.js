@@ -5,26 +5,38 @@ import ButtonGroupContext from "../../ButtonGroupContext";
 import * as sc from "./ButtonItem.styles";
 
 const propTypes = {
-  /** Unique key to represent the selected value. */
-  value: PropTypes.oneOfType([PropTypes.string, PropTypes.number]).isRequired,
-
   /** Content label of the button to be displayed. */
   children: PropTypes.node,
 
   /** If the item is active or on selected state */
   defaultIsActive: PropTypes.bool,
+
+  /** tabindex attribute of this item */
+  tabIndex: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
+
+  /** Unique key to represent the selected value. */
+  value: PropTypes.oneOfType([PropTypes.string, PropTypes.number]).isRequired,
 };
 
 const defaultProps = {
   children: null,
   defaultIsActive: false,
+  tabIndex: null,
 };
 
 const ButtonItem = props => {
-  const { children, defaultIsActive, value, ...moreProps } = props;
-  const { isDisabled, isMulti, hasIcon, isSemantic, onClick, size, selectedItems, setSelectedItems } = React.useContext(
-    ButtonGroupContext
-  );
+  const { children, defaultIsActive, tabIndex, value, ...moreProps } = props;
+  const {
+    currentFocusValue,
+    isDisabled,
+    isMulti,
+    hasIcon,
+    isSemantic,
+    onClick,
+    size,
+    selectedItems,
+    setSelectedItems,
+  } = React.useContext(ButtonGroupContext);
 
   React.useEffect(() => {
     if (defaultIsActive) {
@@ -39,6 +51,7 @@ const ButtonItem = props => {
   };
 
   const isActive = selectedItems.includes(value);
+  const isFocused = currentFocusValue === value;
 
   const buttonProps = {
     isDisabled,
@@ -49,6 +62,8 @@ const ButtonItem = props => {
     kind: "flat",
     onClick: handleClick,
     size,
+    tabIndex: isFocused ? tabIndex || 0 : -1,
+    value,
   };
 
   return (

@@ -43,13 +43,43 @@ const defaultProps = {
   size: ShirtSizes.MEDIUM,
 };
 
+const keyTypes = {
+  PREV: "ArrowLeft",
+  NEXT: "ArrowRight",
+  FIRST: "Home",
+  LAST: "End",
+};
+
 function ButtonGroup(props) {
   const { children, hasIcons, isDisabled, isMulti, isSemantic, onChange, size } = props;
 
   const [selectedItems, setSelectedItems] = React.useState([]);
+  const [currentFocusIndex, setFocusIndex] = React.useState(null);
+  const [currentFocusValue, setFocusValue] = React.useState(null);
+
+  const groupRef = React.createRef();
+
+  function isItemDisabled(item) {
+    return item.getAttribute("aria-disabled") === "true" || item.hasAttribute("disabled");
+  }
+
+  function getButtonRefs() {
+    return Array.from(groupRef.current.querySelectorAll("[data-pka-anchor='button-group.button']"));
+  }
+
+  function getEnabledIndexes() {
+    const buttonRefs = getButtonRefs();
+    return buttonRefs.map((item, index) => (isItemDisabled(item) ? null : index)).filter(index => index !== null);
+  }
+
+  function focusButton(index) {
+    getButtonRefs()[index].focus();
+    setFocusIndex(index);
+  }
 
   const handleClick = clickedValue => {
     if (!isDisabled) {
+      const buttonRefs = getButtonRefs();
       const itemIndex = selectedItems.indexOf(clickedValue);
       const itemUsedToBeSelected = itemIndex > -1;
       const newSelectedItems = isMulti ? [...selectedItems] : [];
@@ -59,13 +89,53 @@ function ButtonGroup(props) {
       } else if (isMulti) {
         newSelectedItems.splice(itemIndex, 1);
       }
-
       setSelectedItems(newSelectedItems);
+
+      const domIndex = buttonRefs.findIndex(item => item.getAttribute("value") == clickedValue); // eslint-disable-line eqeqeq
+      setFocusIndex(domIndex);
+
       if (typeof onChange === "function") onChange(newSelectedItems);
     }
   };
 
+  const handleKeyDown = event => {
+    if (Object.values(keyTypes).includes(event.key)) {
+      event.stopPropagation();
+
+      const enabledIndexes = getEnabledIndexes();
+      const enabledSelectedIndex = enabledIndexes.indexOf(currentFocusIndex);
+      const count = enabledIndexes.length;
+
+      switch (event.key) {
+        case keyTypes.NEXT:
+          focusButton(enabledIndexes[(enabledSelectedIndex + 1) % count]);
+          break;
+        case keyTypes.PREV:
+          focusButton(enabledIndexes[(enabledSelectedIndex - 1 + count) % count]);
+          break;
+        case keyTypes.FIRST:
+          focusButton(enabledIndexes[0]);
+          break;
+        case keyTypes.LAST:
+          focusButton(enabledIndexes[count - 1]);
+          break;
+        default:
+          break;
+      }
+    }
+  };
+
+  React.useEffect(() => {
+    const enabledIndexes = getEnabledIndexes();
+    setFocusIndex(enabledIndexes[0]);
+  }, []);
+
+  React.useEffect(() => {
+    if (currentFocusIndex !== null) setFocusValue(getButtonRefs()[currentFocusIndex].getAttribute("value"));
+  }, [currentFocusIndex]);
+
   const contextValue = {
+    currentFocusValue,
     isDisabled,
     isMulti,
     hasIcon: hasIcons,
@@ -77,7 +147,7 @@ function ButtonGroup(props) {
   };
 
   return (
-    <sc.ButtonGroup {...props}>
+    <sc.ButtonGroup {...props} ref={groupRef} onKeyDown={handleKeyDown}>
       <ButtonGroupContext.Provider value={contextValue}>{children}</ButtonGroupContext.Provider>
     </sc.ButtonGroup>
   );

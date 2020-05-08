@@ -1,3 +1,5 @@
+/* eslint-disable react/button-has-type */
+
 import React from "react";
 import { action } from "@storybook/addon-actions";
 import { boolean, select } from "@storybook/addon-knobs";
@@ -28,22 +30,26 @@ const ExampleStory = props => (
     </Heading>
     <Tagline>Use the knobs to tinker with the props.</Tagline>
     <Rule />
+    <p>
+      <button>Pre</button>
+    </p>
     <ButtonGroup {...props}>
       <ButtonGroup.Item value="one" kind="primary">
         One
       </ButtonGroup.Item>
-      <ButtonGroup.Item value="two" defaultIsActive tabIndex={0}>
+      <ButtonGroup.Item value="two" isDisabled defaultIsActive>
         Two
       </ButtonGroup.Item>
       <>
-        <ButtonGroup.Item value={3} defaultIsActive>
-          Three Three Three Three Three Three
-        </ButtonGroup.Item>
+        <ButtonGroup.Item value={3}>Three Three Three Three Three Three</ButtonGroup.Item>
         <ButtonGroup.Item value="four">
           <Calendar />
         </ButtonGroup.Item>
       </>
     </ButtonGroup>
+    <p>
+      <button>Post</button>
+    </p>
   </Story>
 );
 
