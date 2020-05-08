@@ -92,3 +92,59 @@ pt:
       explore: Explorar mais opções
       selected: opções selecionadas
       selectOne: Selecione um ou mais itens...
+    actionBar:
+      columns_arrangement:
+        hide_all: Ocultar tudo
+        show_all: Mostrar tudo
+        label: Organizar colunas
+        singular_label: 1 coluna oculta
+        plural_label: "{{numberOfHiddenColumn}} colunas ocultas"
+      no_results: Nenhum resultado
+      filter:
+        no_filters_applied: Nenhum filtro aplicado a esta exibição
+        label: Filtro
+        singular_label: 1 filtro aplicado
+        plural_label: "{{numberOfFilters}} filtros aplicados"
+        add_filter: Adicionar um campo para filtrar
+        and: e
+        or: ou
+        where: Onde
+        rules:
+          is: é
+          is_not: não é
+          contains: contém
+          does_not_contain: não contém
+          is_blank: em branco
+          is_not_blank: não está em branco
+          equals: igual a
+          not_equal_to: diferente de
+          greater_than: ">"
+          less_than: "<"
+          greater_than_or_equal_to: "≥"
+          less_than_or_equal_to: "≤"
+          is_empty: está em branco
+          is_not_empty: não está vazio
+          is_before: é antes de
+          is_after: é depois de
+          true: "verdadeiro"
+          false: "falso"
+      search_placeholder: Filtrar...
+      sort:
+        no_sorts_applied: Nenhum filtro aplicado a esta exibição
+        label: Ordenar
+        singular_label: 1 coluna ordenada
+        plural_label: "{{numberOfFields}} colunas ordenadas"
+        add_field: Adicionar um campo para ordenar
+        sort_by: Ordenar por
+        then_by: depois por
+        rules:
+          ascending:
+            boolean: Ordem crescente (verdadeiro → falso)
+            number: Ordem crescente (1 → 9)
+            text: Ordem crescente (A → Z)
+            date: Ordem crescente (1 → 9)
+          descending:
+            boolean: Ordem decrescente (falso → verdadeiro)
+            number: Ordem decrescente (9 → 1)
+            text: Ordem decrescente (Z → A)
+            date: Ordem decrescente (9 → 1)
