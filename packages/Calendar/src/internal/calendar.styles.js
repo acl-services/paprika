@@ -186,9 +186,14 @@ export const dayTriggerStyles = css`
   &:hover {
     ${hoveredItemStyles}
   }
-
-  ${({ isSelected }) => (isSelected ? dayTriggerSelectedStyle : null)}
-  ${({ isToday }) => (isToday ? dayTriggerTodayStyle : null)}
+  
+  .CalendarDay__today & {
+    ${dayTriggerTodayStyle};
+  }
+  
+  .CalendarDay__selected & {
+    ${dayTriggerSelectedStyle};
+  }
 `;
 
 export const monthHeaderButtonStyles = css`

@@ -155,15 +155,7 @@ function SingleDateCalendar(props) {
   }
 
   function renderDayContents(day) {
-    return (
-      <span
-        css={dayTriggerStyles}
-        isSelected={moment(day).isSame(date, "day")}
-        isToday={moment(day).isSame(moment(), "day")}
-      >
-        {day.format("D")}
-      </span>
-    );
+    return <span css={dayTriggerStyles}>{day.format("D")}</span>;
   }
 
   const CalendarKey = `${currentMonth && currentMonth.format("YYYY-MM")}/${possibleDate &&

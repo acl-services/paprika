@@ -164,13 +164,9 @@ function DateRangeCalendar(props) {
     );
   }
 
-  function isDaySelected(day) {
-    return moment(day).isSame(startDate, "day") || moment(day).isSame(endDate, "day");
-  }
-
   function renderDayContents(day) {
     return (
-      <span css={dayTriggerStyles} isSelected={isDaySelected(day)} isToday={moment(day).isSame(moment(), "day")}>
+      <span css={dayTriggerStyles}>
         {day.format("D")}
       </span>
     );
