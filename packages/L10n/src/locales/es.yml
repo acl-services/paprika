@@ -92,3 +92,59 @@ es:
       explore: Explorar más opciones
       selected: opciones seleccionadas
       selectOne: Seleccionar uno o más elementos...
+    actionBar:
+      columns_arrangement:
+        hide_all: Ocultar todas
+        show_all: Mostrar todas
+        label: Organizar las columnas
+        singular_label: 1 columna oculta
+        plural_label: "{{numberOfHiddenColumn}} columnas ocultas"
+      no_results: No hay resultados
+      filter:
+        no_filters_applied: No se aplicaron filtros a esta vista
+        label: Filtro
+        singular_label: Se aplicó 1 filtro
+        plural_label: "{{numberOfFilters}} filtros aplicados"
+        add_filter: Agregar un campo para filtrar
+        and: y
+        or: o
+        where: Dónde
+        rules:
+          is: es
+          is_not: no es
+          contains: contiene
+          does_not_contain: no contiene
+          is_blank: está en blanco
+          is_not_blank: no está en blanco
+          equals: es igual a
+          not_equal_to: distinto de
+          greater_than: ">"
+          less_than: "<"
+          greater_than_or_equal_to: "≥"
+          less_than_or_equal_to: "≤"
+          is_empty: está vacío
+          is_not_empty: no está vacío
+          is_before: es anterior a
+          is_after: es posterior a
+          true: "verdadero"
+          false: "falso"
+      search_placeholder: Filtrar...
+      sort:
+        no_sorts_applied: No se aplicaron ordenaciones a esta vista
+        label: Ordenar
+        singular_label: 1 columna ordenada
+        plural_label: "{{numberOfFields}} columnas ordenadas"
+        add_field: Agregar un campo para ordenar
+        sort_by: Ordenar por
+        then_by: luego por
+        rules:
+          ascending:
+            boolean: Orden ascendente (verdadero → falso)
+            number: Orden ascendente (1 → 9)
+            text: Orden ascendente (A → Z)
+            date: Orden ascendente (1 → 9)
+          descending:
+            boolean: Orden descendente (falso → verdadero)
+            number: Orden descendente (9 → 1)
+            text: Orden descendente (Z → A)
+            date: Orden descendente (9 → 1)

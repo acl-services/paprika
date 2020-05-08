@@ -92,3 +92,59 @@ fr:
       explore: Découvrir d'autres options
       selected: options sélectionnées
       selectOne: Sélectionner un ou plusieurs éléments...
+    actionBar:
+      columns_arrangement:
+        hide_all: Masquer tout
+        show_all: Afficher tout
+        label: Organiser les colonnes
+        singular_label: 1 colonne masquée
+        plural_label: "{{numberOfHiddenColumn}} colonnes masquées"
+      no_results: Pas de résultats
+      filter:
+        no_filters_applied: Aucun filtre appliqué à cette vue
+        label: Filtre
+        singular_label: 1 filtre appliqué
+        plural_label: "{{numberOfFilters}} filtres appliqués"
+        add_filter: Ajouter un champ pour filtrer par
+        and: et
+        or: ou
+        where: Où
+        rules:
+          is: est
+          is_not: n'est pas
+          contains: contient
+          does_not_contain: ne contient pas
+          is_blank: est vide
+          is_not_blank: n'est pas vide
+          equals: est égal à
+          not_equal_to: n'est pas égal à
+          greater_than: ">"
+          less_than: "<"
+          greater_than_or_equal_to: "≥"
+          less_than_or_equal_to: "≤"
+          is_empty: est vide
+          is_not_empty: n'est pas vide
+          is_before: est avant
+          is_after: est après
+          true: "vrai"
+          false: "faux"
+      search_placeholder: Filtrer...
+      sort:
+        no_sorts_applied: Aucun tri appliqué à cette vue
+        label: Trier
+        singular_label: 1 colonne triée
+        plural_label: "{{numberOfFields}} colonnes triées"
+        add_field: Ajouter une zone pour trier par
+        sort_by: Trier par
+        then_by: alors par
+        rules:
+          ascending:
+            boolean: Tri croissant (vrai → faux)
+            number: Tri croissant (1 → 9)
+            text: Tri croissant (A → Z)
+            date: Tri croissant (1 → 9)
+          descending:
+            boolean: Tri décroissant (faux → vrai)
+            number: 'Tri décroissant (9 → 1) '
+            text: Tri décroissant (Z → A)
+            date: Tri décroissant (9 → 1)
