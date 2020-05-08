@@ -6,7 +6,7 @@ import moment from "moment";
 import L10n from "@paprika/l10n";
 import DateRangeCalendar from "../src/DateRangeCalendar";
 import SingleDateCalendar from "../src/SingleDateCalendar";
-import { START_DATE, END_DATE } from "../src/tokens";
+import { START_DATE } from "../src/tokens";
 
 moment.locale("en");
 const noop = () => {};
