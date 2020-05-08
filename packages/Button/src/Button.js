@@ -152,7 +152,7 @@ const Button = React.forwardRef((props, ref) => {
     return cn;
   }
 
-  function getOnBlur() {
+  function handleBlur() {
     if ("onBlur" in moreProps) {
       moreProps.onBlur();
     }
@@ -163,7 +163,7 @@ const Button = React.forwardRef((props, ref) => {
     isDisabled: isButtonDisabled,
     className: getClassName(),
     kind,
-    onBlur: getOnBlur,
+    onBlur: handleBlur,
     onClick: handleClick,
     ref: buttonRef,
     tabIndex,
