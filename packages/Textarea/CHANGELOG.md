@@ -15,3 +15,9 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 ### Added
 
 - Minor fixes [@tristanjasper](https://github.com/tristanjasper).
+
+## [0.2.17] - 2020-05-06
+
+### Added
+
+- Added aria-invalid [@tristanjasper](https://github.com/tristanjasper).

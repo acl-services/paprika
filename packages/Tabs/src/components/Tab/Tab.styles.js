@@ -5,16 +5,18 @@ import stylers from "@paprika/stylers";
 const focusStyle = tokens.highlight.active.withBorder.boxShadow;
 
 const kindStyles = () => ({
-  primary: `
-    border-bottom: ${tokens.spaceSm} solid ${tokens.color.green}
+  primary: css`
+    border-bottom: ${tokens.spaceSm} solid ${tokens.color.blue};
   `,
 
-  secondary: `
-    border-bottom: ${tokens.spaceSm} solid ${tokens.color.purple}
+  secondary: css`
+    border-bottom: ${tokens.spaceSm} solid ${tokens.color.purple};
   `,
 });
 
 const activeStyles = props => css`
+  color: ${tokens.textColor.link};
+  
   &::after {
     ${kindStyles()[props.kind]}
     bottom: -${tokens.spaceSm};
@@ -27,45 +29,51 @@ const activeStyles = props => css`
 `;
 
 const disabledStyles = css`
+  &&& {
+    border-bottom-color: transparent;
+  }
   color: ${tokens.color.blackDisabled};
   cursor: not-allowed;
 `;
 
 export const tabStyles = css`
   ${stylers.fontSize()};
+  align-items: center;
   background-color: ${tokens.color.white};
   border: 0;
   border-bottom: ${tokens.spaceSm} solid transparent;
   color: ${tokens.color.black};
-  display: inline-block;
-  margin: 0 0 0 ${stylers.spacer(4)};
-  padding: ${stylers.spacer(2)} ${tokens.spaceSm} ${tokens.space} ${tokens.spaceSm};
+  display: inline-flex;
+  height: ${({ height }) => (height ? `${height}px` : "auto")};
+  margin: 0 ${tokens.space} 0 0;
+  padding: ${stylers.spacer(2)} ${tokens.space} ${tokens.space} ${tokens.space};
   position: relative;
   transition: border-color 0.3s ease;
-
   ${({ isDisabled }) => (isDisabled ? disabledStyles : null)}
   ${({ isSelected }) => (isSelected ? activeStyles : null)}
-  
-  &:first-child {
-    margin-left: 0;
+
+  &:last-child {
+    margin-right: 0;
   }
 
   &:focus {
-    border-radius: ${tokens.border.radius};
+    border-color: ${tokens.border.color};
+    border-radius: ${tokens.border.radius} ${tokens.border.radius} 0 0;
     ${stylers.z(1)}
   }
 
   &:hover {
-    border-color: ${tokens.color.creme};
+    border-color: ${tokens.border.color};
   }
+`;
 
-  &.tab-link {
-    color: ${tokens.color.black};
-    text-decoration: none;
+export const linkStyles = css`
+  ${tabStyles}
+  color: ${tokens.color.black};
+  text-decoration: none;
 
-    &:focus {
-      box-shadow: ${focusStyle};
-      outline: none;
-    }
+  &:focus {
+    box-shadow: ${focusStyle};
+    outline: none;
   }
 `;

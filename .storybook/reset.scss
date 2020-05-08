@@ -1,6 +1,10 @@
-@import url("https://fonts.googleapis.com/css?family=IBM+Plex+Sans:300,400,400i,600,600i&display=swap");
+@import url("https://fonts.googleapis.com/css?family=Lato:300,400,400i,700&display=swap");
+@import url("https://fonts.googleapis.com/css?family=IBM+Plex+Sans:400,400i,600&display=swap");
 @import url("//fonts.googleapis.com/css?family=Roboto+Mono:400");
 @import "@paprika/tokens/lib/tokens.scss";
+@import "@paprika/stylers/lib/helpers.scss";
+
+// STORYBOOK LAYOUT
 
 html,
 body,
@@ -11,6 +15,22 @@ body,
 body {
   margin: 0;
   padding: 0 !important;
-  font-family: "IBM Plex Sans", "Helvetica Neue", Helvetica, Arial, sans-serif;
+}
+
+// TYPOGRAPHY
+
+// From normalize.css
+// https://github.com/necolas/normalize.css/blob/fc091cce1534909334c1911709a39c22d406977b/normalize.css#L160-L165
+button,
+input,
+select,
+textarea {
+  font-family: inherit;
+}
+
+body {
   color: $color--black;
+  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-size: font-scale();
+  line-height: line-height-scale();
 }

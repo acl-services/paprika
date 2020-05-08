@@ -6,7 +6,7 @@ import { defaultParameters } from "./CollapsibleText.stories.helpers";
 import CollapsibleText from "../src";
 
 export default {
-  title: " | CollapsibleText",
+  title: " | Collapsible Text",
   component: CollapsibleText,
 };
 

@@ -5,15 +5,21 @@ import { ShirtSizes } from "@paprika/helpers/lib/customPropTypes";
 import textareaStyles from "./Textarea.styles";
 
 const propTypes = {
+  /** Descriptive a11y text for assistive technologies. By default, text from children node will be used. */
   a11yText: PropTypes.string,
+  /** Indicate if the textarea is expandable */
   canExpand: PropTypes.bool,
+  /** Sets class name */
   className: PropTypes.string,
   /** Do not use in conjunction with value prop */
   defaultValue: PropTypes.string,
   hasError: PropTypes.bool,
   inputRef: PropTypes.func,
+  /** If the textarea is disabled */
   isDisabled: PropTypes.bool,
+  /** If the textarea is read-only */
   isReadOnly: PropTypes.bool,
+  /** Indicates the maximum height of the textarea  */
   maxHeight: PropTypes.string,
   onChange: PropTypes.func,
   size: PropTypes.oneOf(ShirtSizes.DEFAULT),
@@ -109,6 +115,7 @@ function Textarea(props) {
   return (
     <div className={rootClasses} css={textareaStyles}>
       <textarea
+        aria-invalid={hasError}
         className="form-textarea__textarea"
         data-pka-anchor="textarea"
         disabled={isDisabled}

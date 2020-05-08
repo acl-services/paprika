@@ -6,20 +6,21 @@ import ListBoxBrowser from "../src";
 import dataSingle from "../test/specs/fixtures/single";
 import withNoOptionsSelected from "../test/specs/fixtures/withNoOptionsSelected";
 
+storiesOf("ListBoxBrowser", module).add("Showcase", () => (
+  <Story>
+    <ListBoxBrowser
+      data={dataSingle}
+      isMulti={false}
+      rootTitle="Universes"
+      browserTitle="Heroes"
+      onChange={selectedOptions => {
+        console.log("selected options:", selectedOptions);
+      }}
+    />
+  </Story>
+));
+
 storiesOf("ListBoxBrowser/Single", module)
-  .add("basic", () => (
-    <Story>
-      <ListBoxBrowser
-        data={dataSingle}
-        isMulti={false}
-        rootTitle="Universes"
-        browserTitle="Heroes"
-        onChange={selectedOptions => {
-          console.log("selected options:", selectedOptions);
-        }}
-      />
-    </Story>
-  ))
   .add("Allowing select parent", () => (
     <Story>
       <ListBoxBrowser

@@ -1,7 +1,7 @@
 {
   "name": "@paprika/popover",
-  "version": "0.3.20",
-  "description": "Popover / Tooltip component",
+  "version": "0.3.21",
+  "description": "Popover component  renders an overlay of content anchored to a trigger button (or specific positioning element). It can be triggered by click (or keypress), by hover (or keyboard focus – as a tooltip), or programatically",
   "author": "@paprika",
   "main": "lib/index.js",
   "license": "MIT",
@@ -17,7 +17,7 @@
   "dependencies": {
     "@babel/runtime-corejs2": "^7.3.1",
     "@paprika/helpers": "^0.2.11",
-    "@paprika/raw-button": "^0.2.9",
+    "@paprika/raw-button": "^0.2.10",
     "@paprika/stylers": "^0.2.7",
     "@paprika/tokens": "^0.1.14",
     "lodash.throttle": "^4.1.1",
@@ -29,5 +29,13 @@
     "react": "^16.8.0",
     "react-dom": "^16.8.0",
     "styled-components": "^4.2.0"
+  },
+  "paprikaDocs": {
+    "subComponents": [
+      "Trigger",
+      "Content",
+      "Card",
+      "Tip"
+    ]
   }
 }
