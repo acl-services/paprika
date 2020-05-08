@@ -166,7 +166,7 @@ function DateRangeCalendar(props) {
 
   function renderDayContents(day) {
     return (
-      <span css={dayTriggerStyles}>
+      <span css={dayTriggerStyles} isRangeSelected={startDate && endDate}>
         {day.format("D")}
       </span>
     );

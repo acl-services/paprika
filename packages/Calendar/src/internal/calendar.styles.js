@@ -95,7 +95,7 @@ const calendarStyles = css`
       }
     }
 
-    &.CalendarDay__selected {
+    &.CalendarDay__selected, &.CalendarDay__selected_span, &.CalendarDay__hovered_span {
       background-color: ${tokens.color.white};
     }
 
@@ -173,6 +173,21 @@ const dayTriggerTodayStyle = css`
   font-weight: bold;
 `;
 
+const dayTriggerSpanStyle = css`
+  background-color: ${tokens.color.blueLighten50};
+  border-radius: 0;
+`;
+
+const dayTriggerInRangeStyles = css`
+  .CalendarDay__selected_start & {
+    border-radius: ${tokens.border.radius} 0 0 ${tokens.border.radius};
+  }
+  
+  .CalendarDay__selected_end & {
+    border-radius: 0 ${tokens.border.radius} ${tokens.border.radius} 0;
+  }
+`;
+
 export const dayTriggerStyles = css`
   align-items: center;
   border-radius: ${tokens.border.radius};
@@ -181,7 +196,7 @@ export const dayTriggerStyles = css`
   display: inline-flex;
   height: 27px;
   justify-content: center;
-  width: 33px;
+  width: 100%;
 
   &:hover {
     ${hoveredItemStyles}
@@ -194,6 +209,12 @@ export const dayTriggerStyles = css`
   .CalendarDay__selected & {
     ${dayTriggerSelectedStyle};
   }
+  
+  .CalendarDay__selected_span &, .CalendarDay__hovered_span & {
+    ${dayTriggerSpanStyle};
+  }
+  
+  ${({isRangeSelected}) => isRangeSelected && dayTriggerInRangeStyles};
 `;
 
 export const monthHeaderButtonStyles = css`
