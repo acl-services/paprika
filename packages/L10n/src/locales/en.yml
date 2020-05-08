@@ -33,6 +33,7 @@ en:
       confirm: Save
       decline: Decline
     datePicker:
+      confirmation_format: MMMM DD, YYYY
       month: Month
       year: Year
     calendar:
