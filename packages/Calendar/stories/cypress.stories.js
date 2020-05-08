@@ -6,17 +6,14 @@ import SingleDateCalendar from "../src/SingleDateCalendar";
 
 const noop = () => {};
 
-storiesOf("Calendar / cypress", module)
-  .add("SingleDateCalendar test", () => {
-    const [date, setDate] = React.useState(null);
+storiesOf("Calendar / cypress", module).add("SingleDateCalendar test", () => {
+  const [date, setDate] = React.useState(null);
 
-    moment.locale("en");
+  moment.locale("en");
 
-    return (
-      <L10n locale="en">
-        <SingleDateCalendar date={date} onSelect={setDate} resetPossibleDate={noop} />
-      </L10n>
-    );
-  });
-
-
+  return (
+    <L10n locale="en">
+      <SingleDateCalendar date={date} onSelect={setDate} resetPossibleDate={noop} />
+    </L10n>
+  );
+});

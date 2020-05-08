@@ -95,7 +95,9 @@ const calendarStyles = css`
       }
     }
 
-    &.CalendarDay__selected, &.CalendarDay__selected_span, &.CalendarDay__hovered_span {
+    &.CalendarDay__selected,
+    &.CalendarDay__selected_span,
+    &.CalendarDay__hovered_span {
       background-color: ${tokens.color.white};
     }
 
@@ -182,7 +184,7 @@ const dayTriggerInRangeStyles = css`
   .CalendarDay__selected_start & {
     border-radius: ${tokens.border.radius} 0 0 ${tokens.border.radius};
   }
-  
+
   .CalendarDay__selected_end & {
     border-radius: 0 ${tokens.border.radius} ${tokens.border.radius} 0;
   }
@@ -201,20 +203,21 @@ export const dayTriggerStyles = css`
   &:hover {
     ${hoveredItemStyles}
   }
-  
+
   .CalendarDay__today & {
     ${dayTriggerTodayStyle};
   }
-  
+
   .CalendarDay__selected & {
     ${dayTriggerSelectedStyle};
   }
-  
-  .CalendarDay__selected_span &, .CalendarDay__hovered_span & {
+
+  .CalendarDay__selected_span &,
+  .CalendarDay__hovered_span & {
     ${dayTriggerSpanStyle};
   }
-  
-  ${({isRangeSelected}) => isRangeSelected && dayTriggerInRangeStyles};
+
+  ${({ isRangeSelected }) => isRangeSelected && dayTriggerInRangeStyles};
 `;
 
 export const monthHeaderButtonStyles = css`
