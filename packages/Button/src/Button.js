@@ -146,12 +146,6 @@ const Button = React.forwardRef((props, ref) => {
 
   const bestTabIndex = isButtonDisabled && tabIndex === null ? -1 : tabIndex || 0;
 
-  function getClassName() {
-    let cn = "className" in moreProps ? moreProps.className : "";
-    cn += hasForcedFocus ? " has-forced-focus" : "";
-    return cn;
-  }
-
   function handleBlur() {
     if ("onBlur" in moreProps) {
       moreProps.onBlur();
@@ -161,7 +155,6 @@ const Button = React.forwardRef((props, ref) => {
 
   const buttonProps = {
     isDisabled: isButtonDisabled,
-    className: getClassName(),
     kind,
     onBlur: handleBlur,
     onClick: handleClick,
@@ -184,8 +177,16 @@ const Button = React.forwardRef((props, ref) => {
     kind,
   };
 
+  const hasForcedFocusAttribute = { "data-has-forced-focus": hasForcedFocus || null };
+
   return (
-    <span css={buttonStyles} data-pka-anchor="button" {...buttonProps} as={isSemantic ? "button" : RawButton}>
+    <span
+      css={buttonStyles}
+      data-pka-anchor="button"
+      {...buttonProps}
+      as={isSemantic ? "button" : RawButton}
+      {...hasForcedFocusAttribute}
+    >
       <ButtonIcon {...iconProps} isPending={isPending} data-pka-anchor="button.icon">
         {isPending ? <RefreshIcon /> : icon}
       </ButtonIcon>
