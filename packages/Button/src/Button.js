@@ -177,15 +177,13 @@ const Button = React.forwardRef((props, ref) => {
     kind,
   };
 
-  const hasForcedFocusAttribute = { "data-has-forced-focus": hasForcedFocus || null };
-
   return (
     <span
       css={buttonStyles}
       data-pka-anchor="button"
       {...buttonProps}
       as={isSemantic ? "button" : RawButton}
-      {...hasForcedFocusAttribute}
+      data-has-forced-focus={hasForcedFocus || null}
     >
       <ButtonIcon {...iconProps} isPending={isPending} data-pka-anchor="button.icon">
         {isPending ? <RefreshIcon /> : icon}
