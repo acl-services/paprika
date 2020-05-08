@@ -27,7 +27,7 @@ const commonStyles = `
     outline: none;
   }
 
-  [data-whatinput="mouse"] &:focus {
+  [data-whatinput="mouse"] &:focus:not([data-has-forced-focus="true"]) {
     box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.1);
     border-color: ${tokens.border.color};
 
@@ -47,7 +47,6 @@ const commonStyles = `
       inset 0 1px 4px 0 rgba(0, 0, 0, 0.3);
     transform: scale(0.98);
   }
-
 `;
 
 const skeuomorphicStyles = `
