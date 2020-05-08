@@ -153,7 +153,7 @@ const Button = React.forwardRef((props, ref) => {
   }
 
   function getOnBlur() {
-    if (moreProps.onBlur) {
+    if ("onBlur" in moreProps) {
       moreProps.onBlur();
     }
     setHasForcedFocus(false);
