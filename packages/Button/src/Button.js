@@ -1,6 +1,6 @@
 import React from "react";
 import PropTypes from "prop-types";
-import whatInput from "what-input";
+import "what-input";
 import RawButton from "@paprika/raw-button";
 import RefreshIcon from "@paprika/icon/lib/Refresh";
 import DownIcon from "@paprika/icon/lib/CaretDown";
@@ -114,10 +114,11 @@ const Button = React.forwardRef((props, ref) => {
   if (a11yText) moreProps["aria-label"] = a11yText;
 
   const buttonRef = React.useRef(null);
+  const [hasForcedFocus, setHasForcedFocus] = React.useState(false);
 
   React.useImperativeHandle(ref, () => ({
     focus: () => {
-      document.querySelector("html").setAttribute("data-whatinput", "keyboard"); // act like they used a keyboard so it shows focus ring
+      setHasForcedFocus(true);
       buttonRef.current.focus();
     },
   }));
@@ -134,8 +135,7 @@ const Button = React.forwardRef((props, ref) => {
   }
 
   const handleClick = event => {
-    document.querySelector("html").setAttribute("data-whatinput", whatInput.ask()); // after change it manually, its not restoring correctly, so help it
-
+    setHasForcedFocus(false);
     if (isSubmit && !isSemantic) {
       handleSubmit(event);
     }
@@ -146,9 +146,17 @@ const Button = React.forwardRef((props, ref) => {
 
   const bestTabIndex = isButtonDisabled && tabIndex === null ? -1 : tabIndex || 0;
 
+  function handleBlur() {
+    if ("onBlur" in moreProps) {
+      moreProps.onBlur();
+    }
+    setHasForcedFocus(false);
+  }
+
   const buttonProps = {
     isDisabled: isButtonDisabled,
     kind,
+    onBlur: handleBlur,
     onClick: handleClick,
     ref: buttonRef,
     tabIndex,
@@ -170,7 +178,13 @@ const Button = React.forwardRef((props, ref) => {
   };
 
   return (
-    <span css={buttonStyles} data-pka-anchor="button" {...buttonProps} as={isSemantic ? "button" : RawButton}>
+    <span
+      css={buttonStyles}
+      data-pka-anchor="button"
+      {...buttonProps}
+      as={isSemantic ? "button" : RawButton}
+      data-has-forced-focus={hasForcedFocus || null}
+    >
       <ButtonIcon {...iconProps} isPending={isPending} data-pka-anchor="button.icon">
         {isPending ? <RefreshIcon /> : icon}
       </ButtonIcon>
