@@ -31,15 +31,17 @@ const ExampleStory = props => (
       <ButtonGroup.Item value="one" kind="primary">
         One
       </ButtonGroup.Item>
-      <ButtonGroup.Item value="two" isActive tabIndex={0}>
+      <ButtonGroup.Item value="two" defaultIsActive tabIndex={0}>
         Two
       </ButtonGroup.Item>
-      <ButtonGroup.Item value={3} isActive>
-        Three Three Three Three Three Three
-      </ButtonGroup.Item>
-      <ButtonGroup.Item value="four">
-        <Calendar />
-      </ButtonGroup.Item>
+      <>
+        <ButtonGroup.Item value={3} defaultIsActive>
+          Three Three Three Three Three Three
+        </ButtonGroup.Item>
+        <ButtonGroup.Item value="four">
+          <Calendar />
+        </ButtonGroup.Item>
+      </>
     </ButtonGroup>
   </Story>
 );

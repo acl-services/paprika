@@ -26,7 +26,7 @@ export const SelectedIcon = styled(Selected)``;
 
 export const UnselectedIcon = styled(Unselected)``;
 
-export const Item = styled(Button)`
+export const ButtonItem = styled(Button)`
   ${stylers.truncateText}
   display: block;
 

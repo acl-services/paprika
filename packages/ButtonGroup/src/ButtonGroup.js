@@ -1,10 +1,9 @@
 import React from "react";
 import PropTypes from "prop-types";
-
 import { ShirtSizes } from "@paprika/helpers/lib/customPropTypes";
-
-import * as sc from "./ButtonGroup.styles";
+import ButtonGroupContext from "./ButtonGroupContext";
 import ButtonItem from "./components/ButtonItem";
+import * as sc from "./ButtonGroup.styles";
 
 const propTypes = {
   /** The content of each of the toggle buttons in the group. */
@@ -40,32 +39,20 @@ const defaultProps = {
   size: ShirtSizes.MEDIUM,
 };
 
-function getInitiallySelectedItems(children, isMulti) {
-  if (isMulti) {
-    return children.filter(item => item.props.isActive).map(item => item.props.value);
-  }
-
-  return [React.Children.toArray(children).find(item => item.props.isActive).props.value];
-}
-
 function ButtonGroup(props) {
-  const { children, hasIcons, isDisabled, isFullWidth, isSemantic, onChange, size } = props;
+  const { children, hasIcons, isDisabled, isSemantic, onChange, size } = props;
   const isMulti = false; // for future capability
 
-  const validChildren = children.filter(child => child.type.displayName === ButtonItem.displayName);
+  const [selectedItems, setSelectedItems] = React.useState([]);
 
-  const initiallySelectedItems = getInitiallySelectedItems(validChildren, isMulti);
-
-  const [selectedItems, setSelectedItems] = React.useState([...initiallySelectedItems]);
-
-  const handleClick = clickedId => () => {
+  const handleClick = clickedValue => {
     if (!isDisabled) {
-      const itemIndex = selectedItems.indexOf(clickedId);
+      const itemIndex = selectedItems.indexOf(clickedValue);
       const itemUsedToBeSelected = itemIndex > -1;
       const newSelectedItems = isMulti ? [...selectedItems] : [];
 
       if (!itemUsedToBeSelected) {
-        newSelectedItems.push(clickedId);
+        newSelectedItems.push(clickedValue);
       } else if (isMulti) {
         newSelectedItems.splice(itemIndex, 1);
       }
@@ -75,30 +62,20 @@ function ButtonGroup(props) {
     }
   };
 
+  const contextValue = {
+    isDisabled,
+    isMulti,
+    hasIcon: hasIcons,
+    isSemantic,
+    onClick: handleClick,
+    size,
+    selectedItems,
+    setSelectedItems,
+  };
+
   return (
     <sc.ButtonGroup {...props}>
-      {validChildren.map(item => {
-        const buttonProps = {
-          isDisabled,
-          ...item.props,
-          hasIcon: hasIcons,
-          isFullWidth,
-          isSemantic,
-          onClick: handleClick(item.props.value),
-          size,
-        };
-
-        return (
-          <sc.Button
-            {...buttonProps}
-            isActive={selectedItems.includes(item.props.value)}
-            data-pka-anchor="button-group.button"
-            kind="flat"
-          >
-            {item.props.children}
-          </sc.Button>
-        );
-      })}
+      <ButtonGroupContext.Provider value={contextValue}>{children}</ButtonGroupContext.Provider>
     </sc.ButtonGroup>
   );
 }
