@@ -92,3 +92,59 @@ zh:
       explore: 探索更多选项
       selected: 选定选项
       selectOne: 选择一项或多项...
+    actionBar:
+      columns_arrangement:
+        hide_all: 全部隐藏
+        show_all: 全部显示
+        label: 排列列
+        singular_label: 隐藏 1 列
+        plural_label: "隐藏 {{numberOfHiddenColumn}} 列"
+      no_results: 没有结果
+      filter:
+        no_filters_applied: 没有过滤器应用于此视图
+        label: 筛选
+        singular_label: 已应用 1 个过滤器
+        plural_label: "已应用 {{numberOfFilters}} 个过滤器"
+        add_filter: 添加过滤字段
+        and: 和
+        or: 或
+        where: 其中
+        rules:
+          is: 是
+          is_not: 不是
+          contains: 包含
+          does_not_contain: 不包含
+          is_blank: 为空
+          is_not_blank: 不为空
+          equals: 等于
+          not_equal_to: 不等于
+          greater_than: ">"
+          less_than: "<"
+          greater_than_or_equal_to: "≥"
+          less_than_or_equal_to: "≤"
+          is_empty: 是空的
+          is_not_empty: 不是空的
+          is_before: 先于
+          is_after: 后于
+          true: "真"
+          false: "假"
+      search_placeholder: 筛选…
+      sort:
+        no_sorts_applied: 没有排序应用于此视图
+        label: 排序
+        singular_label: 已排序 1 列
+        plural_label: "已排序 {{numberOfFields}} 列"
+        add_field: 添加排序字段
+        sort_by: 排序依据
+        then_by: 随之排序依据
+        rules:
+          ascending:
+            boolean: 升序排序（真 → 假）
+            number: 升序排序 (1 → 9)
+            text: 升序排序 (A → Z)
+            date: 升序排序 (1 → 9)
+          descending:
+            boolean: 降序排序（假 → 真）
+            number: 降序排序 (9 → 1)
+            text: 降序排序 (Z → A)
+            date: 降序排序 (9 → 1)

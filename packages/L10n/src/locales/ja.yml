@@ -92,3 +92,59 @@ ja:
       explore: より多くのオプションを探す
       selected: 選択されたオプション
       selectOne: 1 つ以上の項目を選択...
+    actionBar:
+      columns_arrangement:
+        hide_all: すべて非表示
+        show_all: すべて表示
+        label: 列の整列
+        singular_label: 1列非表示
+        plural_label: "{{numberOfHiddenColumn}}列非表示"
+      no_results: 結果なし
+      filter:
+        no_filters_applied: このビューに適用するフィルターなし
+        label: フィルター
+        singular_label: 1フィルター適用済み
+        plural_label: "{{numberOfFilters}}フィルター適用済み"
+        add_filter: フィルター対象のフィールドを追加
+        and: および
+        or: または
+        where: 場合
+        rules:
+          is: である
+          is_not: ではない
+          contains: 含む
+          does_not_contain: 含まない
+          is_blank: 空白である
+          is_not_blank: 空白でない
+          equals: 一致する
+          not_equal_to: 等しくない
+          greater_than: ">"
+          less_than: "<"
+          greater_than_or_equal_to: "≥"
+          less_than_or_equal_to: "≤"
+          is_empty: は空です
+          is_not_empty: は空ではありません
+          is_before: は前ではありません
+          is_after: は後ではありません
+          true: "真"
+          false: "偽"
+      search_placeholder: フィルター...
+      sort:
+        no_sorts_applied: このビューに適用する並べ替えなし
+        label: 並べ替え
+        singular_label: 1列並べ替え済み
+        plural_label: "{{numberOfFields}}列並べ替え済み"
+        add_field: ソート対象のフィールドを追加
+        sort_by: 並べ替え条件
+        then_by: 次の条件
+        rules:
+          ascending:
+            boolean: 昇順 (真 → 偽)
+            number: 昇順 (1 → 9)
+            text: 昇順 (A → Z)
+            date: 昇順 (1 → 9)
+          descending:
+            boolean: 降順 (偽 → 真)
+            number: 降順 (9 → 1)
+            text: 降順 (Z → A)
+            date: 降順 (9 → 1)
