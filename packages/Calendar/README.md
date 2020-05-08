@@ -40,8 +40,10 @@ const [possibleDate, setPossibleDate] = React.useState(null);
 import DateRangeCalendar from "@paprika/calendar/lib/DateRangeCalendar";
 // alternative (but has potential problems with tree-shaking):
 // import { DateRangeCalendar } from "@paprika/calendar";
+import { START_DATE } from "@paprika/calendar/lib/tokens";
 
-const [[startDate, endDate], setDates] = React.useState([null, null]);
+const [currentInput, setCurrentInput] = React.useState(START_DATE);
+const [{ startDate, endDate }, setDates] = React.useState({ startDate: null, endDate: null });
 const [possibleDate, setPossibleDate] = React.useState(null);
 
 <DateRangeCalendar
@@ -50,6 +52,8 @@ const [possibleDate, setPossibleDate] = React.useState(null);
   onDatesChange={setDates}
   possibleDate={possibleDate}
   resetPossibleDate={() => { setPossibleDate(null) }}
+  focusedInput={currentInput || START_DATE}
+  onFocusChange={setCurrentInput}
 />
 ```
 
@@ -65,8 +69,9 @@ const [possibleDate, setPossibleDate] = React.useState(null);
 ### DateRangeCalendar
 
 - `startDate` (required)
-- `onStartDateSelect` (required)
 - `endDate` (required)
-- `onEndDateSelect` (required)
+- `onDatesChange` (required)
 - `possibleDate`
 - `resetPossibleDate`
+- `focusedInput` (required)
+- `onFocusChange` (required)
