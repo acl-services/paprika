@@ -11,16 +11,6 @@ import { START_DATE, END_DATE } from "../src/tokens";
 moment.locale("en");
 const noop = () => {};
 
-function useOneOfTwo(a, b) {
-  const [curr, setCurr] = React.useState(a);
-
-  const toggle = React.useCallback(() => {
-    setCurr(c => (c === a ? b : a));
-  }, [a, b]);
-
-  return [curr, toggle];
-}
-
 storiesOf("Calendar", module)
   .addDecorator(withKnobs)
   .add("SingleDateCalendar Showcase", () => {
