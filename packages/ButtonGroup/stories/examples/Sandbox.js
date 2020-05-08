@@ -16,6 +16,7 @@ const buttonGroupProps = () => ({
   hasIcons: boolean("hasIcons", false),
   isDisabled: boolean("isDisabled", false),
   isFullWidth: boolean("isFullWidth", false),
+  isMulti: boolean("isMulti", false),
   isSemantic: boolean("isSemantic", true),
   size: select("size", ShirtSizes.DEFAULT, ShirtSizes.MEDIUM),
 });

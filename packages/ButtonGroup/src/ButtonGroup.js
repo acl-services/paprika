@@ -18,6 +18,9 @@ const propTypes = {
   /** If the width of the button should span it's parent container (100%). */
   isFullWidth: PropTypes.bool,
 
+  /** If multiple simultaneous selections are allowed. */
+  isMulti: PropTypes.bool,
+
   /** If it will be rendered as a <button> element. If false, a <span> will be rendered via an accessible <RawButton>. */
   isSemantic: PropTypes.bool,
 
@@ -34,14 +37,14 @@ const defaultProps = {
   hasIcons: false,
   isDisabled: false,
   isFullWidth: false,
+  isMulti: false,
   isSemantic: true,
   onChange: () => {},
   size: ShirtSizes.MEDIUM,
 };
 
 function ButtonGroup(props) {
-  const { children, hasIcons, isDisabled, isSemantic, onChange, size } = props;
-  const isMulti = false; // for future capability
+  const { children, hasIcons, isDisabled, isMulti, isSemantic, onChange, size } = props;
 
   const [selectedItems, setSelectedItems] = React.useState([]);
 

@@ -5,7 +5,6 @@ import ButtonItem from "./components/ButtonItem";
 const fullWithStyles = css`
   display: flex;
   flex-wrap: nowrap;
-
   width: 100%;
 
   [data-pka-anchor="button-group.button"] {
