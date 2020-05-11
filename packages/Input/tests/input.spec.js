@@ -3,9 +3,7 @@ import { render, fireEvent } from "@testing-library/react";
 import { ShirtSizes } from "@paprika/helpers/lib/customPropTypes";
 import Input from "../src";
 
-function renderComponent(props = {}) {
-  return render(<Input {...props} />);
-}
+const renderComponent = props => render(<Input {...props} />);
 
 const initialValue = "initial value";
 const updatedValue = "changed value";
