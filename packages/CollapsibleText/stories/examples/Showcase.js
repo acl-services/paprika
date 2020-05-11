@@ -1,7 +1,7 @@
 import React from "react";
-import { Story, Rule, Tagline } from "storybook/assets/styles/common.styles";
+import { Story } from "storybook/assets/styles/common.styles";
 import { number, select } from "@storybook/addon-knobs";
-import Heading from "@paprika/heading";
+import StoryHeader from "storybook/components/StoryHeader";
 
 import CollapsibleText from "../../src";
 
@@ -37,16 +37,7 @@ const exampleProps = () => ({
 const ExampleStory = props => {
   return (
     <Story>
-      <Heading level={1} displayLevel={2} isLight>
-        CollapsibleText
-      </Heading>
-      <Tagline>
-        <big>
-          <strong>Showcase</strong>
-        </big>
-        <span> – Interact with the props API</span>
-      </Tagline>
-      <Rule />
+      <StoryHeader componentName="CollapsibleText" />
       <CollapsibleText {...props}>{exampleChildren[props.children]}</CollapsibleText>
     </Story>
   );

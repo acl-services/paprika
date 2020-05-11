@@ -6,6 +6,7 @@ import PopoverContext, { ThemeContext } from "../../PopoverContext";
 import { TipStyled } from "./Tip.styles";
 
 const propTypes = {
+  /** Number setting the z-index */
   zIndex: PropTypes.number,
 };
 

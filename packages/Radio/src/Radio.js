@@ -21,11 +21,11 @@ const propTypes = {
   isDisabled: PropTypes.bool,
   /** Describe if the radio started as checked or not */
   defaultIsChecked: PropTypes.bool,
-  /* Name provided for accessibility */
+  /** Name provided for accessibility */
   name: PropTypes.string,
-  /* onClick provided by parent Group component */
+  /** onClick provided by parent Group component */
   onClick: () => {},
-  /* Size provided by parent Group component */
+  /** Size provided by parent Group component */
   size: PropTypes.oneOf(ShirtSizes.DEFAULT),
   /** Value for tabindex attribute to override the default of 0. */
   tabIndex: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),

@@ -7,7 +7,7 @@ import DatePicker from "../src/DatePicker";
 
 storiesOf("DatePicker", module)
   .addDecorator(withKnobs)
-  .add("DatePicker showcase", () => {
+  .add("Showcase", () => {
     const datePickerProps = () => ({
       dateFormat: select("dateFormat", ["MM/DD/YYYY", "DD/MM/YYYY", "YYYY-MM-DD"], "MM/DD/YYYY"),
       humanFormat: select("humanFormat", ["MMMM DD, YYYY", "YYYY-MM-DD"], "MMMM DD, YYYY"),
