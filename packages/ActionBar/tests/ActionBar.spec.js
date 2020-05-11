@@ -58,13 +58,13 @@ describe("filter", () => {
 });
 
 describe("Sort", () => {
-  it("Should return the differance", () => {
+  it("Should return the number differance", () => {
     const a = 2;
     const b = 1;
     expect(compareNumber(a, b)).toBe(1);
   });
 
-  it("Should display the date/time diferance", () => {
+  it("Should display the date/time differance", () => {
     const a = "1994-06-05";
     const b = "1994-09-08";
     // differance displayed in seconds

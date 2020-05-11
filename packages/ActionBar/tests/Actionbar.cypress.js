@@ -77,17 +77,17 @@ describe("ActionBar", () => {
     cy.contains("level").should("not.be.visible");
   });
 
-  it.only("Should drag and drop to change column order", () => {
+  it("Should drag and drop to change column order", () => {
     cy.contains("Arrange columns").click();
     cy.get("[data-pka-anchor='sortable.item']")
       .first()
       .trigger("mousedown", { button: 0 })
-      .trigger("mousemove", { clientX: 24, clientY: 72 })
+      .trigger("mousemove", { button: 0, clientX: 24, clientY: 72 })
       .wait(100)
       .get('[data-pka-anchor="sortable"]')
       .trigger("mousemove", { button: 0, clientX: 24, clientY: 100 })
       .trigger("mouseup")
-      .wait(200);
+      .wait(500);
     cy.get('[data-pka-anchor="sortable.item"]')
       .eq(1)
       .contains("Goals")
