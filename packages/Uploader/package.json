@@ -1,6 +1,6 @@
 {
   "name": "@paprika/uploader",
-  "version": "0.2.10",
+  "version": "0.2.11",
   "description": "The Uploader component is an agnostic UI component that let you upload files and customize the interface.",
   "author": "@paprika",
   "main": "lib/index.js",
@@ -16,7 +16,7 @@
   "dependencies": {
     "@babel/runtime-corejs2": "^7.3.1",
     "@paprika/helpers": "^0.1.2",
-    "@paprika/raw-button": "^0.2.10",
+    "@paprika/raw-button": "^0.2.11",
     "@paprika/stylers": "^0.2.7",
     "@paprika/tokens": "^0.1.14",
     "prop-types": "^15.7.2",
