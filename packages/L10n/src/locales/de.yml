@@ -92,3 +92,59 @@ de:
       explore: Weitere Optionen anzeigen
       selected: ausgewählte Optionen
       selectOne: Ein oder mehrere Elemente auswählen...
+    actionBar:
+      columns_arrangement:
+        hide_all: Alles ausblenden
+        show_all: Alles anzeigen
+        label: Spalten neu anordnen
+        singular_label: 1 Spalte ausgeblendet
+        plural_label: "{{numberOfHiddenColumn}} Spalten ausgeblendet"
+      no_results: Keine Ergebnisse
+      filter:
+        no_filters_applied: Auf diese Ansicht wurden keine Filter angewendet
+        label: Filter
+        singular_label: 1 Filter angewendet
+        plural_label: "{{numberOfFilters}} Filter angewendet"
+        add_filter: Feld hinzufügen zum Filtern nach
+        and: und
+        or: oder
+        where: Wobei
+        rules:
+          is: ist
+          is_not: ist nicht
+          contains: enthält
+          does_not_contain: enthält nicht
+          is_blank: bleibt leer
+          is_not_blank: bleibt nicht leer
+          equals: gleich
+          not_equal_to: ungleich
+          greater_than: ">"
+          less_than: "<"
+          greater_than_or_equal_to: "≥"
+          less_than_or_equal_to: "≤"
+          is_empty: ist leer
+          is_not_empty: ist nicht leer
+          is_before: ist vor
+          is_after: ist nach
+          true: "wahr"
+          false: "falsch"
+      search_placeholder: Filtern...
+      sort:
+        no_sorts_applied: Auf diese Ansicht wurde keine Sortierung angewendet
+        label: Sortieren
+        singular_label: 1 Spalte sortiert
+        plural_label: "{{numberOfFields}} Spalten sortiert"
+        add_field: Feld hinzufügen zum Sortieren nach
+        sort_by: Sortieren nach
+        then_by: dann nach
+        rules:
+          ascending:
+            boolean: Aufsteigend sortieren (wahr → falsch)
+            number: Aufsteigend sortieren (1 → 9)
+            text: Aufsteigend sortieren (A → Z)
+            date: Aufsteigend sortieren (1 → 9)
+          descending:
+            boolean: Absteigend sortieren (falsch → wahr)
+            number: Absteigend sortieren (9 → 1)
+            text: Absteigend sortieren (Z → A)
+            date: Absteigend sortieren (9 → 1)

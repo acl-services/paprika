@@ -1,7 +1,7 @@
 {
   "name": "@paprika/heading",
-  "version": "0.3.16",
-  "description": "Heading component",
+  "version": "0.3.17",
+  "description": "Heading component provides different level of headings with various stylings such as divides, underline, light or hidden.",
   "author": "@paprika",
   "license": "MIT",
   "main": "lib/index.js",
@@ -22,7 +22,7 @@
     "prop-types": "^15.7.2"
   },
   "devDependencies": {
-    "@paprika/external-link": "^0.0.11"
+    "@paprika/external-link": "^0.0.12"
   },
   "peerDependencies": {
     "react": "^16.8.0",

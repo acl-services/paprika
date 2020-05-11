@@ -3,7 +3,7 @@ import Toast from "../src";
 import ToastFixedSidePanel from "./examples/backyard/ToastFixedSidePanel";
 
 export default {
-  title: "Toast/Backyard",
+  title: " | Toast/Backyard",
   component: Toast,
 };
 

@@ -23,7 +23,7 @@ const propTypes = {
   /** Selected date in moment object */
   date: PropTypes.instanceOf(moment),
 
-  /** Callback to fire when user select date */
+  /** Callback when user select date */
   onSelect: PropTypes.func.isRequired,
 
   /** Possible date might be selected in moment object */

@@ -1,7 +1,7 @@
 {
   "name": "@paprika/counter",
-  "version": "0.2.14",
-  "description": "Counter component",
+  "version": "0.2.15",
+  "description": "The Counter component is a decorative element that usually displays the count of a specific object.",
   "author": "@paprika",
   "license": "MIT",
   "main": "lib/index.js",
