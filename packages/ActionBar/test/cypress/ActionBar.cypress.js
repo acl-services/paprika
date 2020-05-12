@@ -1,11 +1,8 @@
-const comp = "action-bar";
-const story = "showcase";
+beforeEach(() => {
+  cy.visitStorybook("action-bar--showcase");
+});
 
 describe("ActionBar", () => {
-  beforeEach(() => {
-    cy.visitStorybook(`${comp}--${story}`);
-  });
-
   it("should render options within the Filter button", () => {
     cy.getByText("Filter")
       .should("be.visible")
@@ -44,9 +41,6 @@ describe("ActionBar", () => {
 });
 
 describe("ActionBar Sort", () => {
-  beforeEach(() => {
-    cy.visitStorybook(`${comp}--${story}`);
-  });
   it("should render options within the Sort button", () => {
     cy.getByText("Sort")
       .should("be.visible")
@@ -130,10 +124,6 @@ describe("ActionBar Sort", () => {
 });
 
 describe("ActionBar Arrange Columns", () => {
-  beforeEach(() => {
-    cy.visitStorybook(`${comp}--${story}`);
-  });
-
   it("should render options within the Arrange columns button", () => {
     cy.getByText("Arrange columns")
       .should("be.visible")
