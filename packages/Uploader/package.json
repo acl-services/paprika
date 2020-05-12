@@ -21,7 +21,8 @@
     "@paprika/tokens": "^0.1.14",
     "prop-types": "^15.7.2",
     "superagent": "^5.1.0",
-    "uuid": "^3.3.3"
+    "uuid": "^3.3.3",
+    "wasabicons": "git+ssh://git@github.com/acl-services/wasabicons.git"
   },
   "peerDependencies": {
     "@paprika/l10n": "^0.2.5",

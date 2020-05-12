@@ -22,6 +22,19 @@ storiesOf("Uploader", module)
   .add("Showcase", () => {
     return <Example />;
   })
+  .add("Jamie", () => (
+    <Story>
+      <Uploader
+        endpoint="http://localhost:9000/upload.php"
+        onChange={files => {
+          console.log("onChange files:", files);
+        }}
+      >
+        <Uploader.DropZone />
+        <Uploader.FileList />
+      </Uploader>
+    </Story>
+  ))
   .add("Basic example with all files successfully uploaded", () => (
     <Story>
       <Uploader
