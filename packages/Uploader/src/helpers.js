@@ -120,3 +120,20 @@ export function getFiles({ event, maxFileSize, okFileTypes, endpoint }) {
 
   return [];
 }
+
+export function getNumberWithUnits(number) {
+  if (number > 1024) {
+    if (number > 1024 * 1024) {
+      if (number > 1024 * 1024 * 1024) {
+        if (number > 1024 * 1024 * 1024 * 1024) {
+          return `${(number / (1024 * 1024 * 1024 * 1024)).toFixed(3)}TiB`;
+        }
+        return `${(number / (1024 * 1024 * 1024)).toFixed(2)}GiB`;
+      }
+      return `${(number / (1024 * 1024)).toFixed(1)}MiB`;
+    }
+    return `${parseInt(number / 1024, 10)}KiB`;
+  }
+
+  return `${parseInt(number, 10)}B`;
+}

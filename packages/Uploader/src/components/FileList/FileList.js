@@ -2,41 +2,36 @@ import React from "react";
 import PropTypes from "prop-types";
 import { css } from "styled-components";
 import Uploader, { UploaderContext } from "../../Uploader";
+import File from "../File";
 
-export default function FileList({ x, y, z }) {
+export default function FileList() {
   const { files } = React.useContext(UploaderContext);
-  const styles = css`
-    td {
-      max-width: 210px;
-      overflow: hidden;
-      padding: 8px;
-      text-overflow: ellipsis;
-      white-space: nowrap;
-    }
-  `;
 
   function handleRemove() {}
 
   function handleCancel() {}
 
   return files.length ? (
-    <table css={styles}>
-      <tbody>
-        <tr>
-          <td>filename</td>
-          <td>size</td>
-          <td>humanize</td>
-          <td>extension</td>
-          <td>isValid</td>
-          <td>status</td>
-          <td>progress</td>
-          <td>errorMessage</td>
-          <td>isSizeValid</td>
-          <td>isTypeValid</td>
-          <td>isServerValid</td>
-          <td>remove</td>
-        </tr>
-        {files.map(file => (
+    files.map(file => (
+      <File
+        key={file.key}
+        name={file.filename}
+        size={file.filesize}
+        status={file.status}
+        progress={file.progress}
+        error={null}
+      />
+    ))
+  ) : (
+    <div>Files are listed here...</div>
+  );
+}
+
+FileList.propTypes = {};
+FileList.defaultProps = {};
+
+/*
+
           <tr key={file.key}>
             <td>{file.filename}</td>
             <td>{file.filesize}</td>
@@ -66,13 +61,5 @@ export default function FileList({ x, y, z }) {
               </button>
             </td>
           </tr>
-        ))}
-      </tbody>
-    </table>
-  ) : (
-    <div>Files are listed here...</div>
-  );
-}
 
-FileList.propTypes = {};
-FileList.defaultProps = {};
+*/
