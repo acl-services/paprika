@@ -7,6 +7,7 @@ import * as characters from "./fixtures/characters";
 
 import * as Multi from "./examples/multi";
 import * as Single from "./examples/single";
+import * as Trigger from "./examples/trigger.js";
 import FilterSelect from "./moreExamples/filterSelect/FilterSelect";
 
 # ListBox
@@ -40,10 +41,10 @@ The single ListBox creates a basic ListBox in which a user can make one selectio
 To add new list options simply add the child element ``` <ListBox.Option></ListBox.Option>``` to your ListBox.
 
 ```js
-  <ListBox>
-    <ListBox.Option>Option 1</ListBox.Option>
-    <ListBox.Option>Option 2</ListBox.Option>
-  </ListBox>
+<ListBox>
+  <ListBox.Option>Option 1</ListBox.Option>
+  <ListBox.Option>Option 2</ListBox.Option>
+</ListBox>
 ```
 #### Result
 
@@ -54,11 +55,11 @@ To add new list options simply add the child element ``` <ListBox.Option></ListB
 You can filter your ListBox by adding the ```<ListBox.Filter />```. This adds an input in which users can type to filter through the list options.
 
 ```js
-  <ListBox>
-    <ListBox.Filter />
-    <ListBox.Option>Option 1</ListBox.Option>
-    <ListBox.Option>Option 2</ListBox.Option>
-  </ListBox>
+<ListBox>
+  <ListBox.Filter />
+  <ListBox.Option>Option 1</ListBox.Option>
+  <ListBox.Option>Option 2</ListBox.Option>
+</ListBox>
 ```
 
 #### Result
@@ -70,11 +71,11 @@ You can filter your ListBox by adding the ```<ListBox.Filter />```. This adds an
 You can add a footer to your ListBox by adding the ```<ListBox.Footer />```. This adds a footer to the bottom of the ListBox when it is expanded. Users can select to Accept, Cancel, or Clear their current list option selections.
 
 ```js
-  <ListBox>
-    <ListBox.Option>Option 1</ListBox.Option>
-    <ListBox.Option>Option 2</ListBox.Option>
-    <ListBox.Footer />
-  </ListBox>
+<ListBox>
+  <ListBox.Option>Option 1</ListBox.Option>
+  <ListBox.Option>Option 2</ListBox.Option>
+  <ListBox.Footer />
+</ListBox>
 ```
 
 #### Result
@@ -86,15 +87,15 @@ You can add a footer to your ListBox by adding the ```<ListBox.Footer />```. Thi
 You can customize the list options of your ListBox by changing the key and label properties. Here is an example in which the children elements have custom images added.
 
 ```js
-  <ListBox height={320}>
-    {images.map(image => (
-      <ListBox.Option key={image.src} label={image.label}>
-        <ImageOption>
-          <img alt={image.label} src={image.src} />
-        </ImageOption>
-      </ListBox.Option>
-    ))}
-  </ListBox>
+<ListBox height={320}>
+  {images.map(image => (
+    <ListBox.Option key={image.src} label={image.label}>
+      <ImageOption>
+        <img alt={image.label} src={image.src} />
+      </ImageOption>
+    </ListBox.Option>
+  ))}
+</ListBox>
 ```
 
 #### Result
@@ -106,10 +107,10 @@ You can customize the list options of your ListBox by changing the key and label
 You can add inline to your ListBox to prevent the listBox from collapsing the list options. Simply add the ```isInline``` prop to the ListBox. 
 
 ```js
-  <ListBox isInline>
-    <ListBox.Popover zIndex={10000}>Anti-Heroes</ListBox.Popover>
-    {characters.antiHeroes}
-  </ListBox>
+<ListBox isInline>
+  <ListBox.Popover zIndex={10000}>Anti-Heroes</ListBox.Popover>
+  {characters.antiHeroes}
+</ListBox>
 ```
 
 #### Result
@@ -121,10 +122,10 @@ You can add inline to your ListBox to prevent the listBox from collapsing the li
 You can disable ListBox options that you dont want users to be able to select. Simply add the ```isDisabled``` prop to the ```ListBox.option``` that you wish to disable. 
 
 ```js
-  <ListBox>
-    <ListBox.Option isDisabled >Option 1</ListBox.Option>
-    <ListBox.Option>Option 2</ListBox.Option>
-  </ListBox>
+<ListBox>
+  <ListBox.Option isDisabled >Option 1</ListBox.Option>
+  <ListBox.Option>Option 2</ListBox.Option>
+</ListBox>
 ```
 
 #### Result
@@ -136,12 +137,12 @@ You can disable ListBox options that you dont want users to be able to select. S
 You can add an empty option to the ListBox by setting the ```label``` property to an empty string.
 
 ```js
-  <ListBox>
-    <ListBox.Option label="">&nbsp;</ListBox.Option>
-    {characters.heroes}
-    {characters.villians}
-    {characters.antiHeroes}
-  </ListBox>
+<ListBox>
+  <ListBox.Option label="">&nbsp;</ListBox.Option>
+  {characters.heroes}
+  {characters.villians}
+  {characters.antiHeroes}
+</ListBox>
 ```
 
 #### Result
@@ -153,52 +154,87 @@ You can add an empty option to the ListBox by setting the ```label``` property t
 You can have the Listbox display a preselected option by using the ```defaultIsSelected``` property on the ```ListBox.option```. Set it equal to the option you wish to display.
 
 ```js
-  <ListBox
-    isInline
-    onChange={activeOptionIndex => {
-      console.log(activeOptionIndex);
-    }}
-  >
-    {characters.antiHeroesRaw.map((item, index) => {
-      return (
-        <ListBox.Option key={item.label} defaultIsSelected={index === 4}>
-          {item.label}
-        </ListBox.Option>
-      );
-    })}
-  </ListBox>
+<ListBox
+  isInline
+  onChange={activeOptionIndex => {
+    console.log(activeOptionIndex);
+  }}
+>
+  {characters.antiHeroesRaw.map((item, index) => {
+    return (
+      <ListBox.Option key={item.label} defaultIsSelected={index === 4}>
+        {item.label}
+      </ListBox.Option>
+    );
+  })}
+</ListBox>
 ```
 
 #### Result
 
 <ListBox isInline onChange={activeOptionIndex => {console.log(activeOptionIndex);}}>{characters.antiHeroesRaw.map((item, index) => {return (<ListBox.Option key={item.label} defaultIsSelected={index === 4}>{item.label}</ListBox.Option>);})}</ListBox>
 
+### Trigger
+
+To use a Trigger button to open the ListBox, wrap the button in a `<ListBox.Trigger>`
+
+The following code snippet demonstrates a Single ListBox Trigger
+
+```js
+const options = ["Punisher", "Catwoman", "Venom", "Thunderbolts", "Deadpool", "Spawn", "Wolverine"];
+
+function renderOptions() {
+  return options.map(option => <ListBox.Option key={option}>{option}</ListBox.Option>);
+}
+
+const togglePopover = (dispatch, types) => () => {
+  dispatch({ type: types.togglePopover });
+};
+
+<ListBox>
+  <ListBox.Trigger>
+    {(selected, options, { dispatch, types, refTrigger, propsForTrigger }) => {
+      return (
+        <Button {...propsForTrigger()} onClick={togglePopover(dispatch, types)} ref={refTrigger}>
+          Choose your character
+        </Button>
+      );
+    }}
+  </ListBox.Trigger>
+  {renderOptions()}
+</ListBox>
+```
+
+#### Result
+
+<Trigger.Trigger/>
+
 ### Multi ListBox
 
-The `<ListBox>` component provides a prop `isMulti`. It allows users to select multiple items from a drop-down list.
+The `<ListBox>` component provides a prop `isMulti`. It allows users to select multiple items from the ListBox.
 
 To create Multi ListBox, add `isMulti` prop to the `<ListBox>`
 
 ```js
-  <ListBox isMulti>
-    <ListBox.Option>Black Panther</ListBox.Option>
-    <ListBox.Option>Spiderman</ListBox.Option>
-    <ListBox.Option>Thor</ListBox.Option>
-    <ListBox.Option>Iron Man</ListBox.Option>
-    <ListBox.Option>Doctor Strange</ListBox.Option>
-  </ListBox>
+<ListBox isMulti>
+  <ListBox.Option>Black Panther</ListBox.Option>
+  <ListBox.Option>Spiderman</ListBox.Option>
+  <ListBox.Option>Thor</ListBox.Option>
+  <ListBox.Option>Iron Man</ListBox.Option>
+  <ListBox.Option>Doctor Strange</ListBox.Option>
+</ListBox>
 ```
 
 #### Result
-  <ListBox isMulti>
-    <ListBox.Option>Black Panther</ListBox.Option>
-    <ListBox.Option>Spiderman</ListBox.Option>
-    <ListBox.Option>Thor</ListBox.Option>
-    <ListBox.Option>Iron Man</ListBox.Option>
-    <ListBox.Option>Doctor Strange</ListBox.Option>
-    <ListBox.Option>Hulk</ListBox.Option>
-    <ListBox.Option>Captain America</ListBox.Option>
-  </ListBox>
+<ListBox isMulti>
+  <ListBox.Option>Black Panther</ListBox.Option>
+  <ListBox.Option>Spiderman</ListBox.Option>
+  <ListBox.Option>Thor</ListBox.Option>
+  <ListBox.Option>Iron Man</ListBox.Option>
+  <ListBox.Option>Doctor Strange</ListBox.Option>
+  <ListBox.Option>Hulk</ListBox.Option>
+  <ListBox.Option>Captain America</ListBox.Option>
+</ListBox>
 
 ### Divider
 
@@ -207,31 +243,31 @@ To create Multi ListBox, add `isMulti` prop to the `<ListBox>`
 For example, if we want to group characters according to their type, we would do the following.
 
 ```js
-  <ListBox>
-    <ListBox.Divider>Villains</ListBox.Divider>
+<ListBox>
+  <ListBox.Divider>Villains</ListBox.Divider>
     <ListBox.Option>Thanos</ListBox.Option>
     <ListBox.Option>Hela</ListBox.Option>
     <ListBox.Option>Killmonger</ListBox.Option>
     <ListBox.Option>Mysterio</ListBox.Option>
-    
-    <ListBox.Divider>Heroes</ListBox.Divider>
+  
+  <ListBox.Divider>Heroes</ListBox.Divider>
     <ListBox.Option>Black Panther</ListBox.Option>
     <ListBox.Option>Hulk</ListBox.Option>
-  </ListBox>
+</ListBox>
 ```
 
 #### Result
-  <ListBox>
-    <ListBox.Divider>Villains</ListBox.Divider>
-    <ListBox.Option>Thanos</ListBox.Option>
-    <ListBox.Option>Hela</ListBox.Option>
-    <ListBox.Option>Killmonger</ListBox.Option>
-    <ListBox.Option>Mysterio</ListBox.Option>
-    
-    <ListBox.Divider>Heroes</ListBox.Divider>
-    <ListBox.Option>Black Panther</ListBox.Option>
-    <ListBox.Option>Hulk</ListBox.Option>
-  </ListBox>
+<ListBox>
+  <ListBox.Divider>Villains</ListBox.Divider>
+  <ListBox.Option>Thanos</ListBox.Option>
+  <ListBox.Option>Hela</ListBox.Option>
+  <ListBox.Option>Killmonger</ListBox.Option>
+  <ListBox.Option>Mysterio</ListBox.Option>
+  
+  <ListBox.Divider>Heroes</ListBox.Divider>
+  <ListBox.Option>Black Panther</ListBox.Option>
+  <ListBox.Option>Hulk</ListBox.Option>
+</ListBox>
 
 ### with custom checkbox
 
@@ -239,20 +275,21 @@ Adding checkboxes next to the options will make it easier to filter a large data
 
 ```js
 // checkbox
-  function OptionCustomCheckbox(props) {
-    return (
-      <span>
-        <input tabIndex="-1" type="checkbox" checked={props.isSelected} />
-        {props.character}
-      </span>
-    );
-  }
+function OptionCustomCheckbox(props) {
+  return (
+    <span>
+      <input tabIndex="-1" type="checkbox" checked={props.isSelected} />
+      {props.character}
+    </span>
+  );
+}
 
 // ListBox
-  <ListBox isMulti>
-    {characters.villians.map(Option => (
-      <ListBox.Option label={Option.props.children}>
-        {({ isSelected }) => <OptionCustomCheckbox isSelected={isSelected} character={Option.props.children} />}
+<ListBox isMulti>
+  {characters.villians.map(Option => (
+    <ListBox.Option label={Option.props.children}>
+      {({ isSelected }) => <OptionCustomCheckbox isSelected={isSelected} character={Option.props.children} />}
+</ListBox>
 ```
 
 In the above code snippet, `characters.villians` refers to a file named `characters` with a variable `villians` that stores an array of strings
