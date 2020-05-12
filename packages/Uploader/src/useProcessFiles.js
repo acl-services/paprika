@@ -172,7 +172,6 @@ export default function useProcessFiles({
 
   React.useEffect(() => {
     if (hasAutoUpload) {
-      console.log("files changed... uploading");
       upload();
     }
   }, [files, hasAutoUpload, upload]);

@@ -27,7 +27,7 @@ storiesOf("Uploader", module)
       <Uploader
         endpoint="http://localhost:9000/upload.php"
         onChange={files => {
-          console.log("onChange files:", files);
+          console.log("Selected files:", files);
         }}
       >
         <Uploader.DropZone />

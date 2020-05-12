@@ -26,6 +26,7 @@ function DefaultFileInput() {
     display: flex;
     justify-content: center;
     padding: ${tokens.space};
+
     ${isDraggingOver && draggingOverStyles}
     a {
       color: #0063c5;
@@ -33,25 +34,28 @@ function DefaultFileInput() {
   `;
 
   const uploadIconColor = isDraggingOver ? "#51509b" : "#bdbdbd";
+  const body = isDraggingOver ? (
+    <React.Fragment>Drop files to upload</React.Fragment>
+  ) : (
+    <React.Fragment>
+      Drop files here or
+      <Button
+        kind="link"
+        onClick={() => {
+          uc.refInput.current.click();
+        }}
+      >
+        choose from your computer
+      </Button>
+      to upload
+    </React.Fragment>
+  );
 
   return (
     <uc.FileInput>
       <div css={styles}>
         <UploadIcon size="32px" color={uploadIconColor} />
-        &nbsp;Drop files here to upload
-        {!isDraggingOver && (
-          <span>
-            &nbsp;or&nbsp;
-            <Button
-              kind="link"
-              onClick={() => {
-                uc.refInput.current.click();
-              }}
-            >
-              choose from your computer
-            </Button>
-          </span>
-        )}
+        {body}
       </div>
     </uc.FileInput>
   );
