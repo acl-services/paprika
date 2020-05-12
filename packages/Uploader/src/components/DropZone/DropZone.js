@@ -38,7 +38,7 @@ function DefaultFileInput() {
     <React.Fragment>Drop files to upload</React.Fragment>
   ) : (
     <React.Fragment>
-      Drop files here or
+      Drop files to upload here or
       <Button
         kind="link"
         onClick={() => {
@@ -47,7 +47,6 @@ function DefaultFileInput() {
       >
         choose from your computer
       </Button>
-      to upload
     </React.Fragment>
   );
 

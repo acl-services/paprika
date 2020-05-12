@@ -11,20 +11,18 @@ export default function FileList() {
 
   function handleCancel() {}
 
-  return files.length ? (
-    files.map(file => (
-      <File
-        key={file.key}
-        name={file.filename}
-        size={file.filesize}
-        status={file.status}
-        progress={file.progress}
-        error={null}
-      />
-    ))
-  ) : (
-    <div>Files are listed here...</div>
-  );
+  return files.length
+    ? files.map(file => (
+        <File
+          key={file.key}
+          name={file.filename}
+          size={file.filesize}
+          status={file.status}
+          progress={file.progress}
+          error={null}
+        />
+      ))
+    : null;
 }
 
 FileList.propTypes = {};

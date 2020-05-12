@@ -3,129 +3,96 @@ import { storiesOf } from "@storybook/react";
 import { Story, Rule, Tagline } from "storybook/assets/styles/common.styles";
 import Heading from "@paprika/heading";
 import Uploader from "../src/Uploader";
-import Testing from "./Testing";
 
-const Example = () => (
-  <Story>
-    <Heading level={1} displayLevel={2} isLight>
-      <code>&lt;Uploader /&gt;</code>
-    </Heading>
-    <Tagline>
-      <b>Showcase</b> – Interact with the props API
-    </Tagline>
-    <Rule />
-    <Uploader />
-  </Story>
-);
+const props = {
+  endpoint: "http://localhost:9000/upload.php",
+  onChange: files => {
+    console.log("Selected files:", files);
+  },
+};
 
 storiesOf("Uploader", module)
-  .add("Showcase", () => {
-    return <Example />;
-  })
-  .add("Jamie", () => (
+  .add("Showcase", () => (
     <Story>
-      <Uploader
-        endpoint="http://localhost:9000/upload.php"
-        onChange={files => {
-          console.log("Selected files:", files);
-        }}
-      >
+      <Heading level={1} displayLevel={2} isLight>
+        <code>&lt;Uploader /&gt;</code>
+      </Heading>
+      <Tagline>
+        <b>Showcase</b> – Interact with the props API
+      </Tagline>
+      <Rule />
+      <Uploader {...props}>
         <Uploader.DropZone />
         <Uploader.FileList />
       </Uploader>
     </Story>
   ))
-  .add("Basic example with all files successfully uploaded", () => (
+  .add("Failed upload error", () => (
     <Story>
-      <Uploader
-        endpoint="http://localhost:9000/upload.php"
-        onChange={files => {
-          console.log("onChange files:", files);
-        }}
-      >
-        <Testing />
+      <Uploader {...props} endpoint="http://localhost:9000/upload.php?error=true">
+        <Uploader.DropZone />
+        <Uploader.FileList />
       </Uploader>
     </Story>
   ))
-  .add("Basic example with all files failing at upload", () => (
+  .add("Invalid file type error", () => (
     <Story>
-      <Uploader
-        endpoint="http://localhost:9000/upload.php?error=true"
-        onChange={files => {
-          console.log("onChange files:", files);
-        }}
-      >
-        <Testing />
+      <Uploader {...props} okFileTypes={["xxx/yyyy"]}>
+        <Uploader.DropZone />
+        <Uploader.FileList />
       </Uploader>
     </Story>
   ))
-  .add("on invalid file type", () => (
-    <Story>
-      <Uploader
-        endpoint="http://localhost:9000/upload.php"
-        okFileTypes={["image/*"]}
-        onChange={files => {
-          console.log("onChange files:", files);
-        }}
-      >
-        <Testing />
-      </Uploader>
-    </Story>
-  ))
-  .add("Imposing a maxium filesize", () => (
+  .add("File too big error", () => (
     <Story>
       <p>
         Will only allow images under 1 <strong>mebibyte</strong> (close to 1 MB)
       </p>
-      <Uploader
-        endpoint="http://localhost:9000/upload.php"
-        okFileTypes={["image/*"]}
-        maxFileSize={Uploader.convertUnitsToMebibytes(1)}
-        onChange={files => {
-          console.log("onChange files:", files);
-        }}
-      >
-        <Testing />
+      <Uploader {...props} maxFileSize={1}>
+        <Uploader.DropZone />
+        <Uploader.FileList />
       </Uploader>
     </Story>
   ))
-  .add("Upload on demand", () => (
+  .add("No auto-upload", () => (
     <Story>
       <p>
         Will upload image until you select your images and then click the button with the legend
         <strong>upload images</strong>
       </p>
-      <Uploader endpoint="http://localhost:9000/upload.php" okFileTypes={["image/*"]} hasAutoUpload={false}>
-        <Testing hasUploadButton />
+      <Uploader {...props} hasAutoUpload={false}>
+        <Uploader.DropZone />
+        <Uploader.FileList />
       </Uploader>
     </Story>
   ))
-  .add("Only accept files if are drop on the FileInput area", () => (
+  .add("Only accept files dropped on the DropZone", () => (
     <Story>
-      <p>Will accept dropped files only if they are drop at the FileInput area.</p>
-      <Uploader isBodyDroppable={false} endpoint="http://localhost:9000/upload.php">
-        <Testing />
+      <Uploader {...props} isBodyDroppable={false}>
+        <Uploader.DropZone />
+        <Uploader.FileList />
       </Uploader>
     </Story>
   ))
   .add("Allow only one file per upload", () => (
     <Story>
-      <p>Allow only one file per upload.</p>
-      <Uploader canChooseMultiple={false} endpoint="http://localhost:9000/upload.php">
-        <Testing />
+      <Uploader {...props} canChooseMultiple={false}>
+        <Uploader.DropZone />
+        <Uploader.FileList />
       </Uploader>
     </Story>
   ))
-  .add("Making use of onCompleted prop", () => (
+  .add("Firing onCompleted prop", () => (
     <Story>
       <p>
-        The onCompleted prop callback is fired once all files have been processed which dont neccessaril means that all
-        files were successuflly uploaded. The callback received as parameter the file list of all files processed with
-        their last status, you easily could map over the list and figured out if all files have file.status ===
-        Uploader.types.SUCCESS and verified if all file were uploaded correctly.
+        The onCompleted callback is fired once all files have been processed (but it doesn't neccessarily mean that
+        all files were _successuflly_ uploaded). The callback receives an array of all of the files processed
+        with their last status. You could then loop over the list to see if all files have the status
+        <code>Uploader.types.SUCCESS</code> (which would mean all were uploaded correctly).
       </p>
-      <Uploader onCompleted={files => console.log("on finished:", files)} endpoint="http://localhost:9000/upload.php">
-        <Testing />
+      <Uploader {...props} onCompleted={files => console.log("on finished:", files)}>
+        <Uploader.DropZone />
+        <Uploader.FileList />
       </Uploader>
     </Story>
   ))
@@ -137,10 +104,11 @@ storiesOf("Uploader", module)
       </p>
       <Uploader
         headers={[{ "API-Key": "your-api-key" }, { "X-CSRF-Token": "your-token" }]}
-        onCompleted={files => console.log("on finished:", files)}
+        onCompleted={files => console.log("on completed:", files)}
         endpoint="http://localhost:9000/upload.php"
       >
-        <Testing />
+        <Uploader.DropZone />
+        <Uploader.FileList />
       </Uploader>
     </Story>
   ));
