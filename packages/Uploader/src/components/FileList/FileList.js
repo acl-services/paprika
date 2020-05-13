@@ -35,6 +35,7 @@ export default function FileList({ okFileTypes, maxFileSize }) {
   return files.length
     ? files.map(file => (
         <File
+          fileKey={file.key}
           key={file.key}
           name={file.filename}
           size={file.filesize}

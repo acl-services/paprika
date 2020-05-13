@@ -9,6 +9,13 @@ import types from "./types";
 import useDragAndDropEvents from "./useDragAndDropEvents";
 import useProcessFiles from "./useProcessFiles";
 
+// TODO: rename types.js to statuses.js
+// TODO: add the tooltip over the 'cancel' icon
+// TODO: try with immerJS? (though i think this is where the multi-upload fails [closure])
+// TODO: get 'restart' working and add a tooltip? (optional, this is where things start to break... make sure multi file upload continues to work) or get rid of icon
+// TODO: a11y
+// TODO: tests
+
 const oneMebibyte = 1048576;
 
 export const UploaderContext = React.createContext(null);

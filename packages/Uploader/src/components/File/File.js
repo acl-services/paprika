@@ -11,11 +11,6 @@ import { getNumberWithUnits } from "../../helpers";
 import types from "../../types";
 import * as div from "./File.styles";
 
-// TODO: get 'cancel' working
-// TODO: get 'restart' working? (optional, this is where things start to break... make sure multi file upload continues to work)
-// TODO: a11y
-// TODO: tests...
-
 const propTypes = {
   error: PropTypes.string,
   fileKey: PropTypes.string.isRequired,
@@ -30,7 +25,7 @@ const defaultProps = {
   progress: 0,
 };
 
-function File({ error, filekey, name, progress, size, status }) {
+function File({ error, fileKey, name, progress, size, status }) {
   const uc = React.useContext(UploaderContext);
   const { cancelFile } = uc; // restartFileUpload
   const I18n = useI18n();
