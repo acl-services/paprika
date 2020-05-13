@@ -1,14 +1,6 @@
-import moment from "moment";
 import testers from "../src/hooks/useFilter/testers";
 import Filter from "../src/components/Filter";
-
-function compareNumber(a, b) {
-  return a - b;
-}
-
-function compareDate(a, b, { momentParsingFormat }) {
-  return moment(a, momentParsingFormat).unix() - moment(b, momentParsingFormat).unix();
-}
+import { compareNumber, compareDate } from "../src/hooks/useSort/sort";
 
 describe("filter", () => {
   it("Should have Filter.rules.IS set to true if testvalue is empty", () => {
@@ -24,6 +16,7 @@ describe("filter", () => {
     expect(testers[Filter.rules.IS_BLANK](undefined)).toBe(true);
     expect(testers[Filter.rules.IS_BLANK]("")).toBe(true);
     expect(testers[Filter.rules.IS_BLANK]("any value")).toBe(false);
+    expect(testers[Filter.rules.IS_BLANK](0)).toBe(false);
   });
 
   it("Should have Filter.rules.EQUALS set to true if testvalue is empty", () => {
