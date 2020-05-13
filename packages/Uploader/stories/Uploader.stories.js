@@ -11,8 +11,6 @@ const props = {
   },
 };
 
-// TODO: get rid of Testing.js
-
 function StartUploadButton() {
   const uc = React.useContext(UploaderContext);
   return (

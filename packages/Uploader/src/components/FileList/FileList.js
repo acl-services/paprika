@@ -1,15 +1,33 @@
 import React from "react";
 import PropTypes from "prop-types";
-import { css } from "styled-components";
-import Uploader, { UploaderContext } from "../../Uploader";
+// import { css } from "styled-components";
+import { UploaderContext } from "../../Uploader";
+import { getNumberWithUnits } from "../../helpers";
 import File from "../File";
 
-export default function FileList() {
+export default function FileList({ maxFileSize }) {
   const { files } = React.useContext(UploaderContext);
 
-  function handleRemove() {}
+  // function handleRemove() {}
 
-  function handleCancel() {}
+  // function handleCancel() {}
+
+  function getFileErrorText(file) {
+    if (!file.isSizeValid) {
+      return `File must be smaller than ${getNumberWithUnits(maxFileSize)}`;
+    }
+
+    if (!file.isTypeValid) {
+      // return `File must be one of the following types: ${okFileTypes.join(", ")}`;
+      return `File must be one of the following types: ...`;
+    }
+
+    if (!file.isServerValid) {
+      return file.error.message;
+    }
+
+    return null;
+  }
 
   return files.length
     ? files.map(file => (
@@ -19,13 +37,16 @@ export default function FileList() {
           size={file.filesize}
           status={file.status}
           progress={file.progress}
-          error={null}
+          error={getFileErrorText(file)}
         />
       ))
     : null;
 }
 
-FileList.propTypes = {};
+FileList.propTypes = {
+  maxFileSize: PropTypes.number.isRequired,
+};
+
 FileList.defaultProps = {};
 
 /*

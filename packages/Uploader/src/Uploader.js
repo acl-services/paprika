@@ -191,7 +191,13 @@ const Uploader = React.forwardRef((props, ref) => {
     upload,
   ]);
 
-  return <UploaderContext.Provider value={value}>{children}</UploaderContext.Provider>;
+  const childrenWithProps = React.Children.map(children, child => {
+    return React.cloneElement(child, {
+      maxFileSize,
+    });
+  });
+
+  return <UploaderContext.Provider value={value}>{childrenWithProps}</UploaderContext.Provider>;
 });
 
 Uploader.defaultProps = defaultProps;
