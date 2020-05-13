@@ -1,27 +1,28 @@
 import React from "react";
 import PropTypes from "prop-types";
-// import { css } from "styled-components";
+import useI18n from "@paprika/l10n/lib/useI18n";
 import { UploaderContext } from "../../Uploader";
 import { getNumberWithUnits } from "../../helpers";
 import File from "../File";
 
-// TODO: L10n
-// TODO: style?
+const propTypes = {
+  maxFileSize: PropTypes.number.isRequired,
+  okFileTypes: PropTypes.array.isRequired,
+};
+
+const defaultProps = {};
 
 export default function FileList({ okFileTypes, maxFileSize }) {
   const { files } = React.useContext(UploaderContext);
-
-  // function handleRemove(fileKey) {}
-
-  // function handleCancel(fileKey) {}
+  const I18n = useI18n();
 
   function getFileErrorText(file) {
     if (!file.isSizeValid) {
-      return `File must be smaller than ${getNumberWithUnits(maxFileSize)}`;
+      return I18n.t("uploader.errors.size", { maxFileSize: getNumberWithUnits(maxFileSize) });
     }
 
     if (!file.isTypeValid) {
-      return `File must be one of the following types: ${okFileTypes.join(", ")}`;
+      return I18n.t("uploader.errors.type", { supportedTypes: okFileTypes.join(", ") });
     }
 
     if (!file.isServerValid) {
@@ -45,8 +46,5 @@ export default function FileList({ okFileTypes, maxFileSize }) {
     : null;
 }
 
-FileList.propTypes = {
-  maxFileSize: PropTypes.number.isRequired,
-};
-
-FileList.defaultProps = {};
+FileList.propTypes = propTypes;
+FileList.defaultProps = defaultProps;

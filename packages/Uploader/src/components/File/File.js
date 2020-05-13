@@ -4,6 +4,7 @@ import CheckIcon from "wasabicons/lib/Check";
 import TimesIcon from "wasabicons/lib/Times";
 import RetryIcon from "wasabicons/lib/Refresh";
 import Button from "@paprika/button";
+import useI18n from "@paprika/l10n/lib/useI18n";
 import tokens from "@paprika/tokens";
 import { UploaderContext } from "../../Uploader";
 import { getNumberWithUnits } from "../../helpers";
@@ -12,7 +13,6 @@ import * as div from "./File.styles";
 
 // TODO: get 'cancel' working
 // TODO: get 'restart' working? (optional, this is where things start to break... make sure multi file upload continues to work)
-// TODO: L10n
 // TODO: a11y
 // TODO: tests...
 
@@ -30,9 +30,10 @@ const defaultProps = {
   progress: 0,
 };
 
-function File({ error, name, progress, size, status }) {
-  // const uc = React.useContext(UploaderContext);
-  // const { cancelFile, restartFileUpload } = uc;
+function File({ error, filekey, name, progress, size, status }) {
+  const uc = React.useContext(UploaderContext);
+  const { cancelFile } = uc; // restartFileUpload
+  const I18n = useI18n();
 
   function getUploadedAmount() {
     return (size * progress) / 100;
@@ -60,13 +61,11 @@ function File({ error, name, progress, size, status }) {
       case types.SUCCESS:
         return <CheckIcon color={tokens.color.green} />;
       default:
-        // in progress
         return (
           <Button.Icon
             kind="minor"
             onClick={() => {
-              // console.log("clicked cancel");
-              // cancelFile(fileKey);
+              cancelFile(fileKey);
             }}
             size="small"
           >
@@ -81,13 +80,13 @@ function File({ error, name, progress, size, status }) {
       case types.ERROR:
         return error;
       case types.SUCCESS:
-        return "Complete";
+        return I18n.t("uploader.progress.complete");
       case types.CANCEL:
-        return "Cancelled";
+        return I18n.t("uploader.progress.cancelled");
       case types.IDLE:
-        return "Idle";
+        return I18n.t("uploader.progress.idle");
       default:
-        return `Uploading ${progressWithUnits} of ${sizeWithUnits}`;
+        return I18n.t("uploader.progress.uploading", { progressWithUnits, sizeWithUnits });
     }
   }
 

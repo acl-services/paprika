@@ -11,8 +11,8 @@ en:
       drop_files_here_or: Drop files to upload here or
       choose_from_computer: choose from your computer
       errors:
-        file_size: exceeds the maximum {{size}} file size.
-        file_type: "{{type}} is incorrect file type."
+        size: File must be smaller than {{maxFileSize}}
+        type: "File must be one of the following types: {{supportedTypes}}"
       status:
         idle: Idle
         processing: Processing
@@ -20,6 +20,11 @@ en:
         success: Success
         cancel: Cancel
         error: Error
+      progress:
+        cancelled: Cancelled
+        complete: Complete
+        idle: Idle
+        uploading: Uploading {{progressWithUnits}} of {{sizeWithUnits}}
     actions:
       delete: Delete
       apply: Apply
