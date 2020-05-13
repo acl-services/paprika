@@ -5,7 +5,10 @@ import { UploaderContext } from "../../Uploader";
 import { getNumberWithUnits } from "../../helpers";
 import File from "../File";
 
-export default function FileList({ maxFileSize }) {
+// TODO: L10n
+// TODO: style?
+
+export default function FileList({ okFileTypes, maxFileSize }) {
   const { files } = React.useContext(UploaderContext);
 
   // function handleRemove() {}
@@ -18,8 +21,7 @@ export default function FileList({ maxFileSize }) {
     }
 
     if (!file.isTypeValid) {
-      // return `File must be one of the following types: ${okFileTypes.join(", ")}`;
-      return `File must be one of the following types: ...`;
+      return `File must be one of the following types: ${okFileTypes.join(", ")}`;
     }
 
     if (!file.isServerValid) {

@@ -194,6 +194,7 @@ const Uploader = React.forwardRef((props, ref) => {
   const childrenWithProps = React.Children.map(children, child => {
     return React.cloneElement(child, {
       maxFileSize,
+      okFileTypes,
     });
   });
 

@@ -46,7 +46,7 @@ storiesOf("Uploader", module)
   ))
   .add("Invalid file type error", () => (
     <Story>
-      <Uploader {...props} okFileTypes={["xxx/yyyy"]}>
+      <Uploader {...props} okFileTypes={["audio/wav", "audio/ogg"]}>
         <Uploader.DropZone />
         <Uploader.FileList />
       </Uploader>
