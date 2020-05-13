@@ -34,7 +34,7 @@ const propTypes = {
   isReadOnly: PropTypes.bool,
 
   /** Callback to be executed when the input value is changed */
-  onChange: PropTypes.func.isRequired,
+  onChange: PropTypes.func,
 
   /** Callback to be executed when the input value is cleared */
   onClear: PropTypes.func,
@@ -59,6 +59,7 @@ const defaultProps = {
   inputRef: () => {},
   isDisabled: false,
   isReadOnly: false,
+  onChange: () => {},
   onClear: () => {},
   size: ShirtSizes.MEDIUM,
   type: "text",
@@ -108,7 +109,7 @@ const Input = props => {
     ...moreProps
   } = props;
 
-  if (moreProps.value) {
+  if (moreProps.value || moreProps.value === "") {
     delete moreProps.defaultValue;
   } else {
     delete moreProps.value;
