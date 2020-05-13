@@ -5,7 +5,6 @@ import tokens from "@paprika/tokens";
 import UploadIcon from "wasabicons/lib/Upload";
 import { UploaderContext } from "../../Uploader";
 
-// TODO: use tokens
 // TODO: L10n
 
 function DefaultFileInput() {
@@ -13,27 +12,27 @@ function DefaultFileInput() {
   const isDraggingOver = uc.isDraggingOver;
 
   const draggingOverStyles = css`
-    background-color: #f6f6fa;
-    border: 2px solid #51509b;
-    color: #51509b;
+    background-color: ${tokens.color.blackLighten80};
+    border: 2px solid ${tokens.color.purpleDarken10};
+    color: ${tokens.color.purpleDarken10};
   `;
 
   const styles = css`
     align-items: center;
-    background-color: #efefef;
-    border: 2px dashed #9d9d9d;
-    border-radius: 4px;
+    background-color: ${tokens.color.blackLighten80};
+    border: 2px dashed ${tokens.color.blackLighten30};
+    border-radius: ${tokens.border.radius};
     display: flex;
     justify-content: center;
     padding: ${tokens.space};
 
     ${isDraggingOver && draggingOverStyles}
     a {
-      color: #0063c5;
+      color: ${tokens.color.blueDarken10};
     }
   `;
 
-  const uploadIconColor = isDraggingOver ? "#51509b" : "#bdbdbd";
+  const uploadIconColor = isDraggingOver ? tokens.color.purpleDarken10 : tokens.color.blackLighten50;
   const body = isDraggingOver ? (
     <React.Fragment>Drop files to upload</React.Fragment>
   ) : (

@@ -86,6 +86,8 @@ function File({ error, name, progress, size, status }) {
         return "Complete";
       case types.CANCEL:
         return "Cancelled";
+      case types.IDLE:
+        return "Idle";
       default:
         return `Uploading ${progressWithUnits} of ${sizeWithUnits}`;
     }
