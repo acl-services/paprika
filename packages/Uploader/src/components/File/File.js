@@ -12,7 +12,7 @@ import "./File.scss";
 // import { css } from "styled-components";
 
 // TODO: dont use classnames, use styled-components and stylers.fontSize
-// TODO: show errors
+// TODO: show errors (file too big, wrong file type, upload failed)
 // TODO: get 'cancel' working
 // TODO: get 'restart' working? (optional, this is where things start to break... make sure multi file upload continues to work)
 // TODO: L10n

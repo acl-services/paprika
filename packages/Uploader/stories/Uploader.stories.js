@@ -2,7 +2,7 @@ import React from "react";
 import { storiesOf } from "@storybook/react";
 import { Story, Rule, Tagline } from "storybook/assets/styles/common.styles";
 import Heading from "@paprika/heading";
-import Uploader from "../src/Uploader";
+import Uploader, { UploaderContext } from "../src/Uploader";
 
 const props = {
   endpoint: "http://localhost:9000/upload.php",
@@ -10,6 +10,17 @@ const props = {
     console.log("Selected files:", files);
   },
 };
+
+// TODO: get rid of Testing.js
+
+function StartUploadButton() {
+  const uc = React.useContext(UploaderContext);
+  return (
+    <button type="button" onClick={uc.upload}>
+      Start upload
+    </button>
+  );
+}
 
 storiesOf("Uploader", module)
   .add("Showcase", () => (
@@ -45,9 +56,6 @@ storiesOf("Uploader", module)
   ))
   .add("File too big error", () => (
     <Story>
-      <p>
-        Will only allow images under 1 <strong>mebibyte</strong> (close to 1 MB)
-      </p>
       <Uploader {...props} maxFileSize={1}>
         <Uploader.DropZone />
         <Uploader.FileList />
@@ -56,13 +64,10 @@ storiesOf("Uploader", module)
   ))
   .add("No auto-upload", () => (
     <Story>
-      <p>
-        Will upload image until you select your images and then click the button with the legend
-        <strong>upload images</strong>
-      </p>
       <Uploader {...props} hasAutoUpload={false}>
         <Uploader.DropZone />
         <Uploader.FileList />
+        <StartUploadButton />
       </Uploader>
     </Story>
   ))
@@ -85,9 +90,9 @@ storiesOf("Uploader", module)
   .add("Firing onCompleted prop", () => (
     <Story>
       <p>
-        The onCompleted callback is fired once all files have been processed (but it doesn't neccessarily mean that
-        all files were _successuflly_ uploaded). The callback receives an array of all of the files processed
-        with their last status. You could then loop over the list to see if all files have the status
+        The onCompleted callback is fired once all files have been processed (but it doesn't neccessarily mean that all
+        files were _successuflly_ uploaded). The callback receives an array of all of the files processed with their
+        last status. You could then loop over the list to see if all files have the status
         <code>Uploader.types.SUCCESS</code> (which would mean all were uploaded correctly).
       </p>
       <Uploader {...props} onCompleted={files => console.log("on finished:", files)}>
