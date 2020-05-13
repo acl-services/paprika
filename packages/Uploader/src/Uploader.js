@@ -3,7 +3,6 @@ import PropTypes from "prop-types";
 import useI18n from "@paprika/l10n/lib/useI18n";
 import { containerStyles } from "./Uploader.styles";
 import { getFiles } from "./helpers";
-import ProgressBar from "./components/ProgressBar";
 import FileList from "./components/FileList";
 import DropZone from "./components/DropZone";
 import types from "./types";
@@ -211,8 +210,5 @@ Uploader.FileList = FileList;
 
 // utility tool to help creating a maximum desirable size for files
 Uploader.convertUnitsToMebibytes = (MiB = 1) => oneMebibyte * MiB;
-
-// subcomponents
-Uploader.ProgressBar = ProgressBar;
 
 export default Uploader;

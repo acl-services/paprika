@@ -8,10 +8,8 @@ import tokens from "@paprika/tokens";
 import { UploaderContext } from "../../Uploader";
 import { getNumberWithUnits } from "../../helpers";
 import types from "../../types";
-import "./File.scss";
-// import { css } from "styled-components";
+import * as div from "./File.styles";
 
-// TODO: dont use classnames, use styled-components and stylers.fontSize
 // TODO: get 'cancel' working
 // TODO: get 'restart' working? (optional, this is where things start to break... make sure multi file upload continues to work)
 // TODO: L10n
@@ -93,26 +91,19 @@ function File({ error, name, progress, size, status }) {
     }
   }
 
-  const fileClass = `uploader-file ${status === types.SUCCESS ? "uploader-file--complete" : ""} ${
-    status === types.ERROR ? "uploader-file--error" : ""
-  }`;
-
   return (
-    <div className={fileClass}>
-      <div className="uploader-file__left">
-        <div className="uploader-file__info">
-          <div className="uploader-file__name">{name}</div>
-          <div className="uploader-file__progress-text">{getProgressText()}</div>
-        </div>
-        <div className="uploader-file__progress-bar">
-          <div
-            className="uploader-file__progress-bar uploader-file__progress-bar--inner"
-            style={{ width: `${progress}%` }}
-          />
-        </div>
-      </div>
-      <div className="uploader-file__right">{renderIcon()}</div>
-    </div>
+    <div.FileWrapper>
+      <div.Left>
+        <div.Info>
+          <div.Name>{name}</div.Name>
+          <div.ProgressText status={status}>{getProgressText()}</div.ProgressText>
+        </div.Info>
+        <div.ProgressBarWrapper>
+          <div.ProgressBar progress={progress} status={status} />
+        </div.ProgressBarWrapper>
+      </div.Left>
+      <div.Right status={status}>{renderIcon()}</div.Right>
+    </div.FileWrapper>
   );
 }
 

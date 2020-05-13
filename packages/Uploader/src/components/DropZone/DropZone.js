@@ -6,7 +6,7 @@ import useI18n from "@paprika/l10n/lib/useI18n";
 import UploadIcon from "wasabicons/lib/Upload";
 import { UploaderContext } from "../../Uploader";
 
-function DefaultFileInput() {
+function DropZone() {
   const I18n = useI18n();
   const uc = React.useContext(UploaderContext);
   const isDraggingOver = uc.isDraggingOver;
@@ -59,4 +59,4 @@ function DefaultFileInput() {
   );
 }
 
-export default DefaultFileInput;
+export default DropZone;

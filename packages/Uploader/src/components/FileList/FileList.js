@@ -11,9 +11,9 @@ import File from "../File";
 export default function FileList({ okFileTypes, maxFileSize }) {
   const { files } = React.useContext(UploaderContext);
 
-  // function handleRemove() {}
+  // function handleRemove(fileKey) {}
 
-  // function handleCancel() {}
+  // function handleCancel(fileKey) {}
 
   function getFileErrorText(file) {
     if (!file.isSizeValid) {
@@ -50,37 +50,3 @@ FileList.propTypes = {
 };
 
 FileList.defaultProps = {};
-
-/*
-
-          <tr key={file.key}>
-            <td>{file.filename}</td>
-            <td>{file.filesize}</td>
-            <td>{file.filesizeHumanize}</td>
-            <td>{file.extension}</td>
-            <td></td>
-            <td>{file.status}</td>
-            <td>
-              <Uploader.ProgressBar
-                progress={file.progress}
-                isCompleted={file.status === Uploader.types.SUCCESS}
-                hasError={!file.isValid}
-              />
-            </td>
-            <td>{file.error ? file.error.message : ""}</td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td>
-              <button type="button" onClick={handleRemove(file.key)}>
-                remove
-              </button>
-            </td>
-            <td>
-              <button type="button" onClick={handleCancel(file.key)}>
-                cancel
-              </button>
-            </td>
-          </tr>
-
-*/
