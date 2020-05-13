@@ -2,6 +2,7 @@ import React from "react";
 import { storiesOf } from "@storybook/react";
 import { Story, Rule, Tagline } from "storybook/assets/styles/common.styles";
 import Heading from "@paprika/heading";
+import L10n from "@paprika/l10n";
 import Uploader, { UploaderContext } from "../src/Uploader";
 
 const props = {
@@ -23,17 +24,19 @@ function StartUploadButton() {
 storiesOf("Uploader", module)
   .add("Showcase", () => (
     <Story>
-      <Heading level={1} displayLevel={2} isLight>
-        <code>&lt;Uploader /&gt;</code>
-      </Heading>
-      <Tagline>
-        <b>Showcase</b> – Interact with the props API
-      </Tagline>
-      <Rule />
-      <Uploader {...props}>
-        <Uploader.DropZone />
-        <Uploader.FileList />
-      </Uploader>
+      <L10n locale="en">
+        <Heading level={1} displayLevel={2} isLight>
+          <code>&lt;Uploader /&gt;</code>
+        </Heading>
+        <Tagline>
+          <b>Showcase</b> – Interact with the props API
+        </Tagline>
+        <Rule />
+        <Uploader {...props}>
+          <Uploader.DropZone />
+          <Uploader.FileList />
+        </Uploader>
+      </L10n>
     </Story>
   ))
   .add("Failed upload error", () => (

@@ -2,12 +2,12 @@ import React from "react";
 import { css } from "styled-components";
 import Button from "@paprika/button";
 import tokens from "@paprika/tokens";
+import useI18n from "@paprika/l10n/lib/useI18n";
 import UploadIcon from "wasabicons/lib/Upload";
 import { UploaderContext } from "../../Uploader";
 
-// TODO: L10n
-
 function DefaultFileInput() {
+  const I18n = useI18n();
   const uc = React.useContext(UploaderContext);
   const isDraggingOver = uc.isDraggingOver;
 
@@ -34,17 +34,17 @@ function DefaultFileInput() {
 
   const uploadIconColor = isDraggingOver ? tokens.color.purpleDarken10 : tokens.color.blackLighten50;
   const body = isDraggingOver ? (
-    <React.Fragment>Drop files to upload</React.Fragment>
+    <React.Fragment>{I18n.t("uploader.drop_files")}</React.Fragment>
   ) : (
     <React.Fragment>
-      Drop files to upload here or
+      {I18n.t("uploader.drop_files_here_or")}
       <Button
         kind="link"
         onClick={() => {
           uc.refInput.current.click();
         }}
       >
-        choose from your computer
+        {I18n.t("uploader.choose_from_computer")}
       </Button>
     </React.Fragment>
   );
