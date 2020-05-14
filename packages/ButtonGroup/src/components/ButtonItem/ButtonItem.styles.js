@@ -12,10 +12,9 @@ const activeStyles = css`
   &,
   &:hover {
     background-color: ${tokens.color.blueLighten40};
-  }
-
-  &:hover:not([disabled], [aria-disabled="true"]) {
-    background-color: ${tokens.color.blueLighten50};
+    &:not([disabled], [aria-disabled="true"]) {
+      background-color: ${tokens.color.blueLighten50};
+    }
   }
 `;
 
@@ -46,9 +45,7 @@ export const ButtonItem = styled(Button)`
 
   ${UnselectedIcon}, ${SelectedIcon} {
     ${iconStyles}
-
   }
-
   &[disabled], &[aria-disabled="true"] {
     ${UnselectedIcon}, ${SelectedIcon} {
       opacity: 0.5;
