@@ -6,16 +6,16 @@ import ButtonItem from "./components/ButtonItem";
 import * as sc from "./ButtonGroup.styles";
 
 const propTypes = {
-  /** The content of each of the toggle buttons in the group. */
+  /** The toggle buttons in the group. */
   children: PropTypes.node,
 
-  /** To show or hide the icons used for selected or not selected. */
+  /** To show the icons used for selected / not selected. */
   hasIcons: PropTypes.bool,
 
-  /** If the button is disabled. */
+  /** If the entire button group is disabled. */
   isDisabled: PropTypes.bool,
 
-  /** If the width of the button should span it's parent container (100%). */
+  /** If the width of the button group should stretch to fit its parent container (100%). */
   isFullWidth: PropTypes.bool,
 
   /** If multiple simultaneous selections are allowed. */
@@ -24,11 +24,11 @@ const propTypes = {
   /** If it will be rendered as a <button> element. If false, a <span> will be rendered via an accessible <RawButton>. */
   isSemantic: PropTypes.bool,
 
-  /** Callback to be executed when any button is clicked to select the item or activated by keyboard. Typically required.
-   * it will return a list of selected items */
+  /** Callback to be executed when any button item is clicked or activated by keyboard. 
+      It will return an array of the selected items' "value" properties. */
   onChange: PropTypes.func,
 
-  /** Size of the button (font size, min-height, padding, etc). */
+  /** Size of the buttons (height, font size, etc). */
   size: PropTypes.oneOf(ShirtSizes.DEFAULT),
 };
 
@@ -71,6 +71,20 @@ function ButtonGroup(props) {
     const buttonRefs = getButtonRefs();
     return buttonRefs.map((item, index) => (isItemDisabled(item) ? null : index)).filter(index => index !== null);
   }
+
+  React.useLayoutEffect(() => {
+    const enabledIndexes = getEnabledIndexes();
+    if (enabledIndexes.length > 0) {
+      setFocusIndex(enabledIndexes[0]);
+    }
+  }, []);
+
+  React.useEffect(() => {
+    if (currentFocusIndex !== null) {
+      const buttonRefs = getButtonRefs();
+      setFocusValue(buttonRefs[currentFocusIndex].getAttribute("value"));
+    }
+  }, [currentFocusIndex]);
 
   function focusButton(index) {
     getButtonRefs()[index].focus();
@@ -124,15 +138,6 @@ function ButtonGroup(props) {
       }
     }
   };
-
-  React.useEffect(() => {
-    const enabledIndexes = getEnabledIndexes();
-    setFocusIndex(enabledIndexes[0]);
-  }, []);
-
-  React.useEffect(() => {
-    if (currentFocusIndex !== null) setFocusValue(getButtonRefs()[currentFocusIndex].getAttribute("value"));
-  }, [currentFocusIndex]);
 
   const contextValue = {
     currentFocusValue,

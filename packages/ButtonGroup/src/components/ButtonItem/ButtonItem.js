@@ -1,7 +1,6 @@
 import React from "react";
 import PropTypes from "prop-types";
 import ButtonGroupContext from "../../ButtonGroupContext";
-
 import * as sc from "./ButtonItem.styles";
 
 const propTypes = {
@@ -11,9 +10,6 @@ const propTypes = {
   /** If the item is active or on selected state */
   defaultIsActive: PropTypes.bool,
 
-  /** tabindex attribute of this item */
-  tabIndex: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
-
   /** Unique key to represent the selected value. */
   value: PropTypes.oneOfType([PropTypes.string, PropTypes.number]).isRequired,
 };
@@ -21,11 +17,10 @@ const propTypes = {
 const defaultProps = {
   children: null,
   defaultIsActive: false,
-  tabIndex: null,
 };
 
 const ButtonItem = props => {
-  const { children, defaultIsActive, tabIndex, value, ...moreProps } = props;
+  const { children, defaultIsActive, value, ...moreProps } = props;
   const {
     currentFocusValue,
     isDisabled,
@@ -51,7 +46,7 @@ const ButtonItem = props => {
   };
 
   const isActive = selectedItems.includes(value);
-  const isFocused = currentFocusValue === value;
+  const isFocused = currentFocusValue == value; // eslint-disable-line eqeqeq
 
   const buttonProps = {
     isDisabled,
@@ -62,7 +57,7 @@ const ButtonItem = props => {
     kind: "flat",
     onClick: handleClick,
     size,
-    tabIndex: isFocused ? tabIndex || 0 : -1,
+    tabIndex: isFocused ? 0 : -1,
     value,
   };
 

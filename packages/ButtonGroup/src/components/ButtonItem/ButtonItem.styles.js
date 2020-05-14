@@ -7,10 +7,14 @@ import Button from "@paprika/button";
 
 const activeStyles = css`
   ${stylers.z(1)}
-  background-color: ${tokens.color.blueLighten40};
   box-shadow: none;
 
+  &,
   &:hover {
+    background-color: ${tokens.color.blueLighten40};
+  }
+
+  &:hover:not([disabled], [aria-disabled="true"]) {
     background-color: ${tokens.color.blueLighten50};
   }
 `;
@@ -42,5 +46,12 @@ export const ButtonItem = styled(Button)`
 
   ${UnselectedIcon}, ${SelectedIcon} {
     ${iconStyles}
+
+  }
+
+  &[disabled], &[aria-disabled="true"] {
+    ${UnselectedIcon}, ${SelectedIcon} {
+      opacity: 0.5;
+    }
   }
 `;
