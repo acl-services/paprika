@@ -15,7 +15,7 @@ const Footer = props => {
   const { children } = props;
 
   return (
-    <div css={footerStyles} {...props}>
+    <div data-pka-anchor="card.footer" css={footerStyles} {...props}>
       {children}
     </div>
   );

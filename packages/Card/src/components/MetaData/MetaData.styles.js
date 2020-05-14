@@ -4,7 +4,7 @@ import stylers from "@paprika/stylers";
 
 const metadataStyles = css`
   color: ${tokens.color.blackLighten20};
-  ${stylers.fontSize(-2)}
+  ${stylers.fontSize(-2)};
 `;
 
 export default metadataStyles;

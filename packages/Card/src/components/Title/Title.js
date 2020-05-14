@@ -15,7 +15,7 @@ const Title = props => {
   const { children } = props;
 
   return (
-    <h1 css={titleStyles} {...props}>
+    <h1 data-pka-anchor="card.title" css={titleStyles} {...props}>
       {children}
     </h1>
   );
