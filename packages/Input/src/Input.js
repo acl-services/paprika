@@ -33,7 +33,7 @@ const propTypes = {
   /** If true it makes the input read only. */
   isReadOnly: PropTypes.bool,
 
-  /** Callback to be executed when the input value is changed */
+  /** Callback to be executed when the input value is changed. Should not be used with defaultValue prop */
   onChange: PropTypes.func,
 
   /** Callback to be executed when the input value is cleared */
