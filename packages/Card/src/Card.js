@@ -1,6 +1,7 @@
 import React from "react";
 import PropTypes from "prop-types";
 import cardStyles from "./Card.styles";
+import Footer from "./components/Footer";
 import Title from "./components/Title";
 
 const propTypes = {
@@ -35,6 +36,7 @@ const Card = props => {
 };
 
 Card.Title = Title;
+Card.Footer = Footer;
 
 Card.displayName = "Card";
 Card.propTypes = propTypes;

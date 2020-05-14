@@ -13,4 +13,12 @@ storiesOf("Card", module)
         <Card.Title>hello</Card.Title>
       </Card>
     );
+  })
+  .add("Card with Footer", () => {
+    return (
+      <Card>
+        <Card.Title>hello</Card.Title>
+        <Card.Footer></Card.Footer>
+      </Card>
+    );
   });
