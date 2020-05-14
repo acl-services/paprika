@@ -102,7 +102,7 @@ fr:
       no_results: Pas de résultats
       filter:
         no_filters_applied: Aucun filtre appliqué à cette vue
-        label: Filtre
+        label: Filtrer
         singular_label: 1 filtre appliqué
         plural_label: "{{numberOfFilters}} filtres appliqués"
         add_filter: Ajouter un champ pour filtrer par
@@ -134,7 +134,7 @@ fr:
         label: Trier
         singular_label: 1 colonne triée
         plural_label: "{{numberOfFields}} colonnes triées"
-        add_field: Ajouter une zone pour trier par
+        add_field: Ajouter un champ pour trier par
         sort_by: Trier par
         then_by: alors par
         rules:
@@ -145,6 +145,6 @@ fr:
             date: Tri croissant (1 → 9)
           descending:
             boolean: Tri décroissant (faux → vrai)
-            number: 'Tri décroissant (9 → 1) '
+            number: Tri décroissant (9 → 1)
             text: Tri décroissant (Z → A)
             date: Tri décroissant (9 → 1)
