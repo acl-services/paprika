@@ -32,4 +32,13 @@ storiesOf("Card", module)
         <Card.Metadata>100 total</Card.Metadata>
       </Card>
     );
+  })
+
+  .add("Card with Footer", () => {
+    return (
+      <Card>
+        <Card.Title>hello</Card.Title>
+        <Card.Footer></Card.Footer>
+      </Card>
+    );
   });

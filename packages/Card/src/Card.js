@@ -1,6 +1,7 @@
 import React from "react";
 import PropTypes from "prop-types";
 import cardStyles from "./Card.styles";
+import Footer from "./components/Footer";
 import Title from "./components/Title";
 import Metadata from "./components/Metadata";
 import Header from "./components/Header";
@@ -36,12 +37,13 @@ const Card = props => {
   );
 };
 
-Card.Title = Title;
-Card.Metadata = Metadata;
-Card.Header = Header;
-
 Card.displayName = "Card";
 Card.propTypes = propTypes;
 Card.defaultProps = defaultProps;
+
+Card.Header = Header;
+Card.Title = Title;
+Card.Metadata = Metadata;
+Card.Footer = Footer;
 
 export default Card;

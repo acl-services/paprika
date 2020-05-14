@@ -21,6 +21,7 @@ const Title = props => {
   );
 };
 
+Title.displayName = "Title";
 Title.propTypes = propTypes;
 Title.defaultProps = defaultProps;
 
