@@ -3,7 +3,7 @@
 import React from "react";
 import { action } from "@storybook/addon-actions";
 import { boolean, select } from "@storybook/addon-knobs";
-import { Story, Rule, Tagline } from "storybook/assets/styles/common.styles";
+import { Story, Rule } from "storybook/assets/styles/common.styles";
 import { ShirtSizes } from "@paprika/helpers/lib/customPropTypes";
 import Heading from "@paprika/heading";
 import Calendar from "@paprika/icon/lib/Calendar";
@@ -28,7 +28,6 @@ const ExampleStory = props => (
     <Heading level={1} displayLevel={2} isLight>
       Testing Sandbox
     </Heading>
-    <Tagline>Use the knobs to tinker with the props.</Tagline>
     <Rule />
     <p>
       <button>Pre</button>
