@@ -27,6 +27,21 @@ const commonStyles = css`
     outline: none;
   }
 
+  [data-whatinput="mouse"] &:focus:not([data-has-forced-focus="true"]) {
+    box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.1);
+    border-color: ${tokens.border.color};
+
+    &[kind="minor"],
+    &[kind="link"] {
+      box-shadow: none;
+      border-color: transparent;
+    }
+
+    &[kind="flat"] {
+      box-shadow: none;
+    }
+  }
+
   &:active {
     box-shadow: ${tokens.highlight.active.noBorder.boxShadow}, inset 0 1px 1px 0 rgba(0, 0, 0, 0.1),
       inset 0 1px 4px 0 rgba(0, 0, 0, 0.3);

@@ -1,6 +1,6 @@
 {
   "name": "@paprika/button",
-  "version": "0.2.24",
+  "version": "0.2.25",
   "description": "Button component, for performing an action on the page you’re viewing.",
   "author": "@paprika",
   "main": "lib/index.js",
@@ -17,10 +17,11 @@
     "@babel/runtime-corejs2": "^7.3.1",
     "@paprika/helpers": "^0.2.11",
     "@paprika/icon": "^0.3.2",
-    "@paprika/raw-button": "^0.2.10",
+    "@paprika/raw-button": "^0.2.11",
     "@paprika/stylers": "^0.2.7",
     "@paprika/tokens": "^0.1.14",
-    "prop-types": "^15.7.2"
+    "prop-types": "^15.7.2",
+    "what-input": "^5.2.6"
   },
   "peerDependencies": {
     "react": "^16.8.4",
