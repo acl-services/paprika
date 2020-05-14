@@ -13,4 +13,23 @@ storiesOf("Card", module)
         <Card.Title>hello</Card.Title>
       </Card>
     );
+  })
+
+  .add("Card with Metadata", () => {
+    return (
+      <Card>
+        <Card.Title>hello</Card.Title>
+        <Card.Metadata>100 total</Card.Metadata>
+      </Card>
+    );
+  })
+
+  .add("Card with Header", () => {
+    return (
+      <Card>
+        <Card.Header>Header</Card.Header>
+        <Card.Title>hello</Card.Title>
+        <Card.Metadata>100 total</Card.Metadata>
+      </Card>
+    );
   });

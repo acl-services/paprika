@@ -2,6 +2,8 @@ import React from "react";
 import PropTypes from "prop-types";
 import cardStyles from "./Card.styles";
 import Title from "./components/Title";
+import Metadata from "./components/Metadata";
+import Header from "./components/Header";
 
 const propTypes = {
   /** Body content of the button. */
@@ -35,6 +37,8 @@ const Card = props => {
 };
 
 Card.Title = Title;
+Card.Metadata = Metadata;
+Card.Header = Header;
 
 Card.displayName = "Card";
 Card.propTypes = propTypes;
