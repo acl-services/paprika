@@ -1,7 +1,7 @@
 import React from "react";
 import PropTypes from "prop-types";
 import ButtonGroupContext from "../../ButtonGroupContext";
-import * as sc from "./ButtonItem.styles";
+import * as sc from "./Item.styles";
 
 const propTypes = {
   /** Content label of the button to be displayed. */
@@ -19,7 +19,7 @@ const defaultProps = {
   defaultIsActive: false,
 };
 
-const ButtonItem = props => {
+const Item = props => {
   const { children, defaultIsActive, value, ...moreProps } = props;
   const {
     currentFocusValue,
@@ -62,15 +62,15 @@ const ButtonItem = props => {
   };
 
   return (
-    <sc.ButtonItem {...buttonProps}>
+    <sc.Item {...buttonProps}>
       {hasIcon && <React.Fragment>{isActive ? <sc.SelectedIcon /> : <sc.UnselectedIcon />}</React.Fragment>}
       {children}
-    </sc.ButtonItem>
+    </sc.Item>
   );
 };
 
-ButtonItem.displayName = "ButtonGroup.Item";
-ButtonItem.propTypes = propTypes;
-ButtonItem.defaultProps = defaultProps;
+Item.displayName = "ButtonGroup.Item";
+Item.propTypes = propTypes;
+Item.defaultProps = defaultProps;
 
-export default ButtonItem;
+export default Item;

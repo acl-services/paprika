@@ -4,68 +4,6 @@ import { css, keyframes } from "styled-components";
 import { ShirtSizes } from "@paprika/helpers/lib/customPropTypes";
 import Kinds from "./ButtonKinds";
 
-// Common
-
-const commonStyles = css`
-  ${stylers.alignMiddle}
-  ${stylers.lineHeight(-1)}
-  appearance: none;
-  border-radius: ${tokens.button.borderRadius};
-  border-style: solid;
-  border-width: 1px;
-  box-sizing: border-box;
-  cursor: pointer;
-  display: inline-flex;
-  font-weight: bold;
-  text-align: center;
-  text-decoration: none;
-  vertical-align: middle;
-
-  &:focus {
-    box-shadow: ${tokens.highlight.active.noBorder.boxShadow};
-    border-color: ${tokens.highlight.active.noBorder.borderColor};
-    outline: none;
-  }
-
-  [data-whatinput="mouse"] &:focus:not([data-has-forced-focus="true"]) {
-    box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.1);
-    border-color: ${tokens.border.color};
-
-    &[kind="minor"],
-    &[kind="link"] {
-      box-shadow: none;
-      border-color: transparent;
-    }
-
-    &[kind="flat"] {
-      box-shadow: none;
-    }
-  }
-
-  &:active {
-    box-shadow: ${tokens.highlight.active.noBorder.boxShadow}, inset 0 1px 1px 0 rgba(0, 0, 0, 0.1),
-      inset 0 1px 4px 0 rgba(0, 0, 0, 0.3);
-    transform: scale(0.98);
-  }
-`;
-
-const skeuomorphicStyles = css`
-  box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.1);
-  cursor: pointer;
-  transition-duration: 0.2s;
-  transition-property: border;
-`;
-
-const coloredButtonStyles = css`
-  color: ${tokens.color.white};
-  text-shadow: 0 1px 1px ${stylers.alpha(tokens.color.blackPure, 0.2)};
-`;
-
-const textButtonStyles = css`
-  background: none;
-  border-color: transparent;
-`;
-
 // States
 
 const disabledStyles = css`
@@ -104,9 +42,73 @@ const activeStyles = css`
   border-color: ${tokens.highlight.active.noBorder.borderColor};
   box-shadow: ${tokens.highlight.active.noBorder.boxShadow};
 
-  &:hover:not([disabled], [aria-disabled="true"]) {
+  &:hover:not([disabled]):not([aria-disabled="true"]) {
     border-color: ${tokens.highlight.active.noBorder.borderColor};
   }
+`;
+
+// Common
+
+const commonStyles = css`
+  ${stylers.alignMiddle}
+  ${stylers.lineHeight(-1)}
+  appearance: none;
+  border-radius: ${tokens.button.borderRadius};
+  border-style: solid;
+  border-width: 1px;
+  box-sizing: border-box;
+  cursor: pointer;
+  display: inline-flex;
+  font-weight: bold;
+  text-align: center;
+  text-decoration: none;
+  vertical-align: middle;
+
+  &:focus {
+    box-shadow: ${tokens.highlight.active.noBorder.boxShadow};
+    border-color: ${tokens.highlight.active.noBorder.borderColor};
+    outline: none;
+  }
+
+  [data-whatinput="mouse"] &:focus:not([data-has-forced-focus="true"]) {
+    box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.1);
+    border-color: ${tokens.border.color};
+
+    &[kind="minor"],
+    &[kind="link"] {
+      box-shadow: none;
+      border-color: transparent;
+    }
+
+    &[kind="flat"] {
+      box-shadow: none;
+    }
+
+    ${({ isActive }) => (isActive ? activeStyles : "")}
+  }
+
+  &:active {
+    box-shadow: ${tokens.highlight.active.noBorder.boxShadow}, inset 0 1px 1px 0 rgba(0, 0, 0, 0.1),
+      inset 0 1px 4px 0 rgba(0, 0, 0, 0.3);
+    transform: scale(0.98);
+  }
+`;
+
+const skeuomorphicStyles = css`
+  box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.1);
+  cursor: pointer;
+  transition-duration: 0.2s;
+  transition-property: border;
+`;
+
+const coloredButtonStyles = css`
+  color: ${tokens.color.white};
+  text-shadow: 0 1px 1px ${stylers.alpha(tokens.color.blackPure, 0.2)};
+`;
+
+const textButtonStyles = css`
+  background: none;
+  border-color: transparent;
 `;
 
 // Sizes
@@ -308,5 +310,5 @@ export const iconStyles = props => css`
       `
     : ""}
 
-  ${props.isDropdown ? `margin:0 0 0 ${tokens.spaceSm};` : ""}
+  ${props.isDropdown ? `margin: 0 0 0 ${tokens.spaceSm};` : ""}
 `;

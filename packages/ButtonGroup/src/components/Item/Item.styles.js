@@ -12,24 +12,24 @@ const activeStyles = css`
   &,
   &:hover {
     background-color: ${tokens.color.blueLighten40};
-    &:not([disabled], [aria-disabled="true"]) {
-      background-color: ${tokens.color.blueLighten50};
-    }
+  }
+
+  &:hover:not([disabled]):not([aria-disabled="true"]) {
+    background-color: ${tokens.color.blueLighten50};
   }
 `;
 
 const iconStyles = css`
   color: ${tokens.textColor.icon};
   margin-right: ${tokens.spaceSm};
-  position: relative;
-  top: 0.15em;
+  vertical-align: -${(stylers.lineHeightValue(-1) - 1) / 2}em;
 `;
 
 export const SelectedIcon = styled(Selected)``;
 
 export const UnselectedIcon = styled(Unselected)``;
 
-export const ButtonItem = styled(Button)`
+export const Item = styled(Button)`
   ${stylers.truncateText}
   display: block;
 

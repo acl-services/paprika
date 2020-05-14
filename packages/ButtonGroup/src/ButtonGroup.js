@@ -2,7 +2,7 @@ import React from "react";
 import PropTypes from "prop-types";
 import { ShirtSizes } from "@paprika/helpers/lib/customPropTypes";
 import ButtonGroupContext from "./ButtonGroupContext";
-import ButtonItem from "./components/ButtonItem";
+import Item from "./components/Item";
 import * as sc from "./ButtonGroup.styles";
 
 const propTypes = {
@@ -21,11 +21,13 @@ const propTypes = {
   /** If multiple simultaneous selections are allowed. */
   isMulti: PropTypes.bool,
 
-  /** If it will be rendered as a <button> element. If false, a <span> will be rendered via an accessible <RawButton>. */
+  /** If it will be rendered as a button element. If false, a span will be rendered via an accessible RawButton. */
   isSemantic: PropTypes.bool,
 
-  /** Callback to be executed when any button item is clicked or activated by keyboard. 
-      It will return an array of the selected items' "value" properties. */
+  /**
+   * Callback to be executed when any button item is clicked or activated by keyboard.
+   * It will return an array of the selected items' "value" properties.
+   */
   onChange: PropTypes.func,
 
   /** Size of the buttons (height, font size, etc). */
@@ -161,6 +163,6 @@ function ButtonGroup(props) {
 ButtonGroup.displayName = "ButtonGroup";
 ButtonGroup.propTypes = propTypes;
 ButtonGroup.defaultProps = defaultProps;
-ButtonGroup.Item = ButtonItem;
+ButtonGroup.Item = Item;
 
 export default ButtonGroup;
