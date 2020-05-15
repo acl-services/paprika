@@ -1,12 +1,12 @@
 import stylers from "@paprika/stylers";
 import tokens from "@paprika/tokens";
-import styled, { css, keyframes } from "styled-components";
+import styled, { css } from "styled-components";
 import statuses from "../../statuses";
 
 export const FileWrapper = styled.div`
-  display: flex;
   align-items: center;
   border-bottom: 1px solid ${tokens.color.blackLighten40};
+  display: flex;
   padding: ${stylers.spacer(2)};
 `;
 
@@ -15,12 +15,10 @@ export const Left = styled.div`
 `;
 
 export const Right = styled.div`
-  flex: 0 0 ${stylers.spacer(4)};
-  padding: ${tokens.spaceSm} 0 ${tokens.spaceSm} ${tokens.spaceSm};
-
-  /* for its content */
   display: flex;
+  flex: 0 0 ${stylers.spacer(4)};
   justify-content: center;
+  padding: ${tokens.spaceSm} 0 ${tokens.spaceSm} ${tokens.spaceSm};
 
   ${props => {
     if (props.status === statuses.SUCCESS) {
@@ -33,8 +31,8 @@ export const Right = styled.div`
 `;
 
 export const Info = styled.div`
-  display: flex;
   align-items: flex-end;
+  display: flex;
   justify-content: space-between;
   margin-bottom: ${tokens.spaceSm};
 `;
@@ -56,7 +54,9 @@ export const ProgressText = styled.div`
       return css`
         color: ${tokens.color.green};
       `;
-    } else if (props.status === statuses.ERROR) {
+    }
+
+    if (props.status === statuses.ERROR) {
       return css`
         color: ${tokens.color.orange};
       `;
@@ -81,7 +81,9 @@ export const ProgressBar = styled.div`
       return css`
         background: ${tokens.color.green};
       `;
-    } else if (props.status === statuses.ERROR) {
+    }
+
+    if (props.status === statuses.ERROR) {
       return css`
         background: ${tokens.color.orange};
       `;

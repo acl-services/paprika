@@ -1,6 +1,6 @@
 import React from "react";
 import { storiesOf } from "@storybook/react";
-import { Story, Rule, Tagline } from "storybook/assets/styles/common.styles";
+import { Story } from "storybook/assets/styles/common.styles";
 import File from "./File";
 import Uploader from "../../Uploader";
 import statuses from "../../statuses";

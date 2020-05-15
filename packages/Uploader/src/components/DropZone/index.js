@@ -1,1 +1,1 @@
-export { default } from "./DropZone.js";
+export { default } from "./DropZone";

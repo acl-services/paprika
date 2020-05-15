@@ -91,7 +91,7 @@ storiesOf("Uploader", module)
   .add("Firing onCompleted prop", () => (
     <Story>
       <p>
-        The onCompleted callback is fired once all files have been processed (but it doesn't neccessarily mean that all
+        The onCompleted callback is fired once all files have been processed (but it does not neccessarily mean that all
         files were _successuflly_ uploaded). The callback receives an array of all of the files processed with their
         last status. You could then loop over the list to see if all files have the status
         <code>Uploader.status.SUCCESS</code> (which would mean all were uploaded correctly).

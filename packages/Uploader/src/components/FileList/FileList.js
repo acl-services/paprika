@@ -7,7 +7,7 @@ import File from "../File";
 
 const propTypes = {
   maxFileSize: PropTypes.number.isRequired,
-  supportedMimeTypes: PropTypes.array.isRequired,
+  supportedMimeTypes: PropTypes.arrayOf(PropTypes.String).isRequired,
 };
 
 const defaultProps = {};
@@ -32,19 +32,20 @@ export default function FileList({ supportedMimeTypes, maxFileSize }) {
     return null;
   }
 
-  return files.length
-    ? files.map(file => (
-        <File
-          fileKey={file.key}
-          key={file.key}
-          name={file.filename}
-          size={file.filesize}
-          status={file.status}
-          progress={file.progress}
-          error={getFileErrorText(file)}
-        />
-      ))
-    : null;
+  return (
+    files &&
+    files.map(file => (
+      <File
+        fileKey={file.key}
+        key={file.key}
+        name={file.filename}
+        size={file.filesize}
+        status={file.status}
+        progress={file.progress}
+        error={getFileErrorText(file)}
+      />
+    ))
+  );
 }
 
 FileList.propTypes = propTypes;

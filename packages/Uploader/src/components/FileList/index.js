@@ -1,1 +1,1 @@
-export { default } from "./FileList.js";
+export { default } from "./FileList";
