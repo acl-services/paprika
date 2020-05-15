@@ -1,7 +1,7 @@
 import stylers from "@paprika/stylers";
 import tokens from "@paprika/tokens";
 import styled, { css, keyframes } from "styled-components";
-import types from "../../types";
+import statuses from "../../statuses";
 
 export const FileWrapper = styled.div`
   display: flex;
@@ -23,7 +23,7 @@ export const Right = styled.div`
   justify-content: center;
 
   ${props => {
-    if (props.status === types.SUCCESS) {
+    if (props.status === statuses.SUCCESS) {
       return css`
         padding-bottom: ${tokens.space};
         padding-top: ${tokens.space};
@@ -52,11 +52,11 @@ export const ProgressText = styled.div`
   text-align: right;
 
   ${props => {
-    if (props.status === types.SUCCESS) {
+    if (props.status === statuses.SUCCESS) {
       return css`
         color: ${tokens.color.green};
       `;
-    } else if (props.status === types.ERROR) {
+    } else if (props.status === statuses.ERROR) {
       return css`
         color: ${tokens.color.orange};
       `;
@@ -77,11 +77,11 @@ export const ProgressBar = styled.div`
   width: ${props => `${props.progress}%`};
 
   ${props => {
-    if (props.status === types.SUCCESS) {
+    if (props.status === statuses.SUCCESS) {
       return css`
         background: ${tokens.color.green};
       `;
-    } else if (props.status === types.ERROR) {
+    } else if (props.status === statuses.ERROR) {
       return css`
         background: ${tokens.color.orange};
       `;

@@ -1,6 +1,6 @@
 import uuidv4 from "uuid/v4";
 import superagent from "superagent";
-import types from "./types";
+import statuses from "./statuses";
 
 export function fileSizeUnitsToHumanReadableFormat(size) {
   const aMultiples = ["KB", "MB", "GB", "TB", "PB", "EB", "ZB", "YB"];
@@ -67,7 +67,7 @@ function createFilesDataStructure({ files, maxFileSize, okFileTypes, endpoint })
       filesizeHumanize: fileSizeUnitsToHumanReadableFormat(file.size),
       progress: 0,
       request: superagent.post(endpoint),
-      status: fileValidation.isValid ? types.IDLE : types.ERROR,
+      status: fileValidation.isValid ? statuses.IDLE : statuses.ERROR,
       hasError: false,
       errorMessage: null,
       processed: !fileValidation.isValid, // if the file is not valid mean has been processed

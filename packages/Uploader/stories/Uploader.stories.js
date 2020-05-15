@@ -94,7 +94,7 @@ storiesOf("Uploader", module)
         The onCompleted callback is fired once all files have been processed (but it doesn't neccessarily mean that all
         files were _successuflly_ uploaded). The callback receives an array of all of the files processed with their
         last status. You could then loop over the list to see if all files have the status
-        <code>Uploader.types.SUCCESS</code> (which would mean all were uploaded correctly).
+        <code>Uploader.status.SUCCESS</code> (which would mean all were uploaded correctly).
       </p>
       <Uploader {...props} onCompleted={files => console.log("on finished:", files)}>
         <Uploader.DropZone />

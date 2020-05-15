@@ -5,11 +5,12 @@ import { containerStyles } from "./Uploader.styles";
 import { getFiles } from "./helpers";
 import FileList from "./components/FileList";
 import DropZone from "./components/DropZone";
-import types from "./types";
+import types from "./statuses";
 import useDragAndDropEvents from "./useDragAndDropEvents";
 import useProcessFiles from "./useProcessFiles";
 
-// TODO: rename types.js to statuses.js
+// TODO: rename okFileTypes to supportedFileTypes?
+// TODO: get it committing without --no-verify flag
 // TODO: add the tooltip over the 'cancel' icon
 // TODO: try with immerJS? (though i think this is where the multi-upload fails [closure])
 // TODO: get 'restart' working and add a tooltip? (optional, this is where things start to break... make sure multi file upload continues to work) or get rid of icon

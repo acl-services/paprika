@@ -8,7 +8,7 @@ import useI18n from "@paprika/l10n/lib/useI18n";
 import tokens from "@paprika/tokens";
 import { UploaderContext } from "../../Uploader";
 import { getNumberWithUnits } from "../../helpers";
-import types from "../../types";
+import statuses from "../../statuses";
 import * as div from "./File.styles";
 
 const propTypes = {
@@ -17,7 +17,7 @@ const propTypes = {
   name: PropTypes.string.isRequired,
   progress: PropTypes.number,
   size: PropTypes.number.isRequired,
-  status: PropTypes.oneOf(Object.keys(types).map(key => types[key])).isRequired,
+  status: PropTypes.oneOf(Object.keys(statuses).map(key => statuses[key])).isRequired,
 };
 
 const defaultProps = {
@@ -39,8 +39,8 @@ function File({ error, fileKey, name, progress, size, status }) {
 
   function renderIcon() {
     switch (status) {
-      case types.ERROR:
-      case types.CANCEL:
+      case statuses.ERROR:
+      case statuses.CANCEL:
         return (
           <Button.Icon
             kind="minor"
@@ -53,7 +53,7 @@ function File({ error, fileKey, name, progress, size, status }) {
             <RetryIcon />
           </Button.Icon>
         );
-      case types.SUCCESS:
+      case statuses.SUCCESS:
         return <CheckIcon color={tokens.color.green} />;
       default:
         return (
@@ -72,13 +72,13 @@ function File({ error, fileKey, name, progress, size, status }) {
 
   function getProgressText() {
     switch (status) {
-      case types.ERROR:
+      case statuses.ERROR:
         return error;
-      case types.SUCCESS:
+      case statuses.SUCCESS:
         return I18n.t("uploader.progress.complete");
-      case types.CANCEL:
+      case statuses.CANCEL:
         return I18n.t("uploader.progress.cancelled");
-      case types.IDLE:
+      case statuses.IDLE:
         return I18n.t("uploader.progress.idle");
       default:
         return I18n.t("uploader.progress.uploading", { progressWithUnits, sizeWithUnits });
