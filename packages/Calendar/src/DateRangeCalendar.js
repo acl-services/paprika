@@ -36,8 +36,18 @@ const propTypes = {
 
   resetPossibleDate: PropTypes.func,
 
+  /**
+   * This callback will be called after selecting date.
+   * START_DATE or END_DATE will be passed as argument.
+   * Passed argument points to next date will be selected on click.
+   * It commonly used to switch focus on start/end date inputs.
+   */
   onFocusChange: PropTypes.func.isRequired,
 
+  /**
+   * Points to the next date that will be selected on click.
+   * Should be used in conjunction with `onFocusChange`
+   */
   focusedInput: PropTypes.oneOf([START_DATE, END_DATE]).isRequired,
 };
 
