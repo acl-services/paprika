@@ -2,6 +2,9 @@ import React from "react";
 import { storiesOf } from "@storybook/react";
 import Card from "../src/Card";
 
+import BasicIconCard from "./examples/BasicIconCard";
+import DeluxeCard from "./examples/DeluxeCard";
+
 storiesOf("Card", module)
   .add("Card", () => {
     return <Card />;
@@ -41,4 +44,24 @@ storiesOf("Card", module)
         <Card.Footer></Card.Footer>
       </Card>
     );
+  })
+
+  .add("Card with Content", () => {
+    return (
+      <Card>
+        <Card.Header>Header</Card.Header>
+        <Card.Content>
+          <Card.Title>hello</Card.Title>
+          <Card.MetaData>100 total</Card.MetaData>
+        </Card.Content>
+        <Card.Footer>Footer</Card.Footer>
+      </Card>
+    );
+  })
+  .add("Card with Avatar Initial", () => {
+    return <DeluxeCard />;
+  })
+
+  .add("Card with Avatar Icon", () => {
+    return <BasicIconCard />;
   });
