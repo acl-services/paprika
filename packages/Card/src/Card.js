@@ -5,6 +5,7 @@ import Footer from "./components/Footer";
 import Title from "./components/Title";
 import MetaData from "./components/MetaData";
 import Header from "./components/Header";
+import Content from "./components/Content";
 
 const propTypes = {
   /** Body content of the button. */
@@ -45,5 +46,6 @@ Card.Header = Header;
 Card.Title = Title;
 Card.MetaData = MetaData;
 Card.Footer = Footer;
+Card.Content = Content;
 
 export default Card;
