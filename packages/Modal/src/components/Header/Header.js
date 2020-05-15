@@ -25,7 +25,9 @@ const Header = React.forwardRef((props, ref) => {
       <Heading tabIndex="-1" level={level} displayLevel={3} isLight>
         {children}
       </Heading>
-      {hasCloseButton && <Button.Close data-pka-anchor="modal.header.close-button" onClick={onClose} size="medium" />}
+      {hasCloseButton && (
+        <Button.Close data-pka-anchor="modal.header.close-button" isSemantic={false} onClick={onClose} size="medium" />
+      )}
     </styled.Wrapper>
   );
 });
