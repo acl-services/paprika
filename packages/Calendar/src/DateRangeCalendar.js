@@ -4,6 +4,7 @@ import moment from "moment";
 
 import "react-dates/initialize";
 import { DayPickerRangeController } from "react-dates";
+import { DayPickerPhrases } from "react-dates/lib/defaultPhrases";
 
 import ArrowLeft from "@paprika/icon/lib/ArrowLeft";
 import ArrowRight from "@paprika/icon/lib/ArrowRight";
@@ -59,6 +60,12 @@ const defaultProps = {
   possibleDate: null,
   resetPossibleDate: noop,
 };
+
+const phrases = {
+  ...DayPickerPhrases,
+  chooseAvailableStartDate: ({ date }) => date,
+  chooseAvailableEndDate: ({ date }) => date,
+}
 
 function DateRangeCalendar(props) {
   // TODO: nice to have MIN_DATE & MAX_DATE customizable
@@ -212,6 +219,7 @@ function DateRangeCalendar(props) {
           onPrevMonthClick={handleClickPrevMonth}
           onNextMonthClick={handleClickNextMonth}
           renderDayContents={renderDayContents}
+          phrases={phrases}
         />
       </div>
       <ShortcutPanel
