@@ -47,9 +47,9 @@ storiesOf("Uploader", module)
       </Uploader>
     </Story>
   ))
-  .add("Invalid file type error", () => (
+  .add("Invalid mime type error", () => (
     <Story>
-      <Uploader {...props} okFileTypes={["audio/wav", "audio/ogg"]}>
+      <Uploader {...props} supportedMimeTypes={["audio/wav", "audio/ogg"]}>
         <Uploader.DropZone />
         <Uploader.FileList />
       </Uploader>

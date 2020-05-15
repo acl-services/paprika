@@ -7,12 +7,12 @@ import File from "../File";
 
 const propTypes = {
   maxFileSize: PropTypes.number.isRequired,
-  okFileTypes: PropTypes.array.isRequired,
+  supportedMimeTypes: PropTypes.array.isRequired,
 };
 
 const defaultProps = {};
 
-export default function FileList({ okFileTypes, maxFileSize }) {
+export default function FileList({ supportedMimeTypes, maxFileSize }) {
   const { files } = React.useContext(UploaderContext);
   const I18n = useI18n();
 
@@ -22,7 +22,7 @@ export default function FileList({ okFileTypes, maxFileSize }) {
     }
 
     if (!file.isTypeValid) {
-      return I18n.t("uploader.errors.type", { supportedTypes: okFileTypes.join(", ") });
+      return I18n.t("uploader.errors.type", { supportedTypes: supportedMimeTypes.join(", ") });
     }
 
     if (!file.isServerValid) {

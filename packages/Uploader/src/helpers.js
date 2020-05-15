@@ -21,7 +21,7 @@ function getExtension({ file }) {
   return filename.substr((~-filename.lastIndexOf(".") >>> 0) + 2); // eslint-disable-line
 }
 
-function isValidFileType({ file, okFileTypes }) {
+function isValidFileType({ file, supportedMimeTypes }) {
   const validMimeType = (validFiles, type) => {
     const mimetype = type.split("/");
     if (mimetype.length > 0) {
@@ -30,22 +30,22 @@ function isValidFileType({ file, okFileTypes }) {
     return false;
   };
 
-  if (okFileTypes.length === 1 && okFileTypes[0] === "*/*") {
+  if (supportedMimeTypes.length === 1 && supportedMimeTypes[0] === "*/*") {
     return true;
   }
   // copy/pasta from acl-ui-3
   // http://stackoverflow.com/a/1203361/196038
-  const validFiles = okFileTypes.join("").toUpperCase();
+  const validFiles = supportedMimeTypes.join("").toUpperCase();
   const extension = getExtension({ file });
 
   return validFiles.indexOf(extension.toUpperCase()) > -1 || validMimeType(validFiles, file.type);
 }
 
-function isValidFile({ file, maxFileSize, okFileTypes }) {
+function isValidFile({ file, maxFileSize, supportedMimeTypes }) {
   const validation = {
     isServerValid: true, // this will be true unless failed when uploading the file
     isSizeValid: file.size <= maxFileSize,
-    isTypeValid: isValidFileType({ file, okFileTypes }),
+    isTypeValid: isValidFileType({ file, supportedMimeTypes }),
   };
 
   validation.isValid = validation.isSizeValid && validation.isTypeValid;
@@ -53,10 +53,10 @@ function isValidFile({ file, maxFileSize, okFileTypes }) {
   return validation;
 }
 
-function createFilesDataStructure({ files, maxFileSize, okFileTypes, endpoint }) {
+function createFilesDataStructure({ files, maxFileSize, supportedMimeTypes, endpoint }) {
   return [...files].map(file => {
     const key = uuidv4();
-    const fileValidation = isValidFile({ file, maxFileSize, okFileTypes });
+    const fileValidation = isValidFile({ file, maxFileSize, supportedMimeTypes });
     return {
       key,
       ...fileValidation,
@@ -106,7 +106,7 @@ export function upload({ file, data = {}, onProgress, onSuccess, onError, header
     });
 }
 
-export function getFiles({ event, maxFileSize, okFileTypes, endpoint }) {
+export function getFiles({ event, maxFileSize, supportedMimeTypes, endpoint }) {
   if ((event.target && event.target.files) || (event.dataTransfer && event.dataTransfer.files)) {
     let files = [];
     if (event.dataTransfer) {
@@ -115,7 +115,7 @@ export function getFiles({ event, maxFileSize, okFileTypes, endpoint }) {
       files = event.target.files;
     }
 
-    return createFilesDataStructure({ files, maxFileSize, okFileTypes, endpoint });
+    return createFilesDataStructure({ files, maxFileSize, supportedMimeTypes, endpoint });
   }
 
   return [];

@@ -9,7 +9,6 @@ import types from "./statuses";
 import useDragAndDropEvents from "./useDragAndDropEvents";
 import useProcessFiles from "./useProcessFiles";
 
-// TODO: rename okFileTypes to supportedFileTypes?
 // TODO: get it committing without --no-verify flag
 // TODO: add the tooltip over the 'cancel' icon
 // TODO: try with immerJS? (though i think this is where the multi-upload fails [closure])
@@ -29,7 +28,7 @@ const propTypes = {
   /**
     An array of string describing the allowed file types for the uploader.
   */
-  okFileTypes: PropTypes.arrayOf(PropTypes.string),
+  supportedMimeTypes: PropTypes.arrayOf(PropTypes.string),
   /**
     When false the uploader only accept one file per upload.
    */
@@ -74,7 +73,7 @@ const propTypes = {
 
 const defaultProps = {
   a11yText: null,
-  okFileTypes: ["*/*"],
+  supportedMimeTypes: ["*/*"],
   canChooseMultiple: true,
   defaultIsDisabled: false,
   hasAutoUpload: true,
@@ -98,7 +97,7 @@ function getContainer(refContainer) {
 const Uploader = React.forwardRef((props, ref) => {
   const {
     a11yText,
-    okFileTypes,
+    supportedMimeTypes,
     canChooseMultiple,
     hasAutoUpload,
     maxFileSize,
@@ -135,7 +134,7 @@ const Uploader = React.forwardRef((props, ref) => {
     function handleChange(event) {
       if (isDisabled) return;
 
-      const files = getFiles({ event, maxFileSize, okFileTypes, endpoint });
+      const files = getFiles({ event, maxFileSize, supportedMimeTypes, endpoint });
       setFiles(() => {
         if (refInput.current) {
           refInput.current.value = "";
@@ -143,7 +142,7 @@ const Uploader = React.forwardRef((props, ref) => {
         return canChooseMultiple ? files : [files[0]]; // in case only allow one file per upload
       });
     },
-    [canChooseMultiple, endpoint, isDisabled, maxFileSize, okFileTypes, setFiles]
+    [canChooseMultiple, endpoint, isDisabled, maxFileSize, supportedMimeTypes, setFiles]
   );
 
   const { isDragLeave, isDraggingOver } = useDragAndDropEvents({
@@ -162,7 +161,7 @@ const Uploader = React.forwardRef((props, ref) => {
             onChange={handleChange}
             ref={refInput}
             type="file"
-            accept={okFileTypes.join(",")}
+            accept={supportedMimeTypes.join(",")}
             aria-label={label}
           />
           {/* is this the best approach? */}
@@ -193,7 +192,7 @@ const Uploader = React.forwardRef((props, ref) => {
     isDragLeave,
     isDraggingOver,
     label,
-    okFileTypes,
+    supportedMimeTypes,
     removeFile,
     upload,
   ]);
@@ -201,7 +200,7 @@ const Uploader = React.forwardRef((props, ref) => {
   const childrenWithProps = React.Children.map(children, child => {
     return React.cloneElement(child, {
       maxFileSize,
-      okFileTypes,
+      supportedMimeTypes,
     });
   });
 
