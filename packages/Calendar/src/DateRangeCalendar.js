@@ -65,7 +65,7 @@ const phrases = {
   ...DayPickerPhrases,
   chooseAvailableStartDate: ({ date }) => date,
   chooseAvailableEndDate: ({ date }) => date,
-}
+};
 
 function DateRangeCalendar(props) {
   // TODO: nice to have MIN_DATE & MAX_DATE customizable
