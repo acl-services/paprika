@@ -3,7 +3,7 @@ import PropTypes from "prop-types";
 import cardStyles from "./Card.styles";
 import Footer from "./components/Footer";
 import Title from "./components/Title";
-import Metadata from "./components/Metadata";
+import MetaData from "./components/MetaData";
 import Header from "./components/Header";
 
 const propTypes = {
@@ -43,7 +43,7 @@ Card.defaultProps = defaultProps;
 
 Card.Header = Header;
 Card.Title = Title;
-Card.Metadata = Metadata;
+Card.MetaData = MetaData;
 Card.Footer = Footer;
 
 export default Card;

@@ -1,6 +1,6 @@
 import React from "react";
 import PropTypes from "prop-types";
-import metadataStyles from "./Metadata.styles";
+import metadataStyles from "./MetaData.styles";
 
 const propTypes = {
   children: PropTypes.node,
@@ -10,7 +10,7 @@ const defaultProps = {
   children: null,
 };
 
-const Metadata = props => {
+const MetaData = props => {
   const { children } = props;
 
   return (
@@ -20,8 +20,8 @@ const Metadata = props => {
   );
 };
 
-Metadata.displayName = "Metadata";
-Metadata.propTypes = propTypes;
-Metadata.defaultProps = defaultProps;
+MetaData.displayName = "MetaData";
+MetaData.propTypes = propTypes;
+MetaData.defaultProps = defaultProps;
 
-export default Metadata;
+export default MetaData;

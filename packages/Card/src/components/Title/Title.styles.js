@@ -4,7 +4,9 @@ import tokens from "@paprika/tokens";
 
 const titleStyles = css`
   color: ${tokens.color.black};
-  ${stylers.fontSize(-2)}
+  ${stylers.fontSize(0)};
+  margin: 0px;
+  padding: 0px;
 `;
 
 export default titleStyles;

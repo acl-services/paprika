@@ -19,7 +19,7 @@ storiesOf("Card", module)
     return (
       <Card>
         <Card.Title>hello</Card.Title>
-        <Card.Metadata>100 total</Card.Metadata>
+        <Card.MetaData>100 total</Card.MetaData>
       </Card>
     );
   })
@@ -29,7 +29,7 @@ storiesOf("Card", module)
       <Card>
         <Card.Header>Header</Card.Header>
         <Card.Title>hello</Card.Title>
-        <Card.Metadata>100 total</Card.Metadata>
+        <Card.MetaData>100 total</Card.MetaData>
       </Card>
     );
   })

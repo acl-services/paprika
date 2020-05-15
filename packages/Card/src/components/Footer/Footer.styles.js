@@ -5,6 +5,7 @@ const footerStyles = css`
   border-bottom-left-radius: 6px;
   border-bottom-right-radius: 6px;
   bottom: 0;
+  left: 0;
   min-height: 15px;
   position: relative;
   width: 100%;
