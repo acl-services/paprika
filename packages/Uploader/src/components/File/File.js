@@ -28,7 +28,7 @@ const defaultProps = {
 
 function File({ error, fileKey, name, progress, size, status }) {
   const uc = React.useContext(UploaderContext);
-  const { cancelFile } = uc; // restartFileUpload
+  const { cancelFile, restartFileUpload } = uc;
   const I18n = useI18n();
 
   function getUploadedAmount() {
@@ -46,8 +46,7 @@ function File({ error, fileKey, name, progress, size, status }) {
           <Button.Icon
             kind="minor"
             onClick={() => {
-              // console.log("clicked restart", fileKey);
-              // restartFileUpload(fileKey);
+              restartFileUpload(fileKey);
             }}
             size="small"
           >
