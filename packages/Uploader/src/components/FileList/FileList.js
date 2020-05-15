@@ -7,7 +7,7 @@ import File from "../File";
 
 const propTypes = {
   maxFileSize: PropTypes.number.isRequired,
-  supportedMimeTypes: PropTypes.arrayOf(PropTypes.String).isRequired,
+  supportedMimeTypes: PropTypes.arrayOf(PropTypes.string).isRequired,
 };
 
 const defaultProps = {};
