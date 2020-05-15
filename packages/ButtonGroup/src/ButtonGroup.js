@@ -24,10 +24,7 @@ const propTypes = {
   /** If it will be rendered as a button element. If false, a span will be rendered via an accessible RawButton. */
   isSemantic: PropTypes.bool,
 
-  /**
-   * Callback to be executed when any button item is clicked or activated by keyboard.
-   * It will return an array of the selected items' "value" properties.
-   */
+  /** Callback to be executed when any button item is clicked or activated by keyboard. It will return an array of the selected items' "value" properties. */
   onChange: PropTypes.func,
 
   /** Size of the buttons (height, font size, etc). */
