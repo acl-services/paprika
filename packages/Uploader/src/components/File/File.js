@@ -5,6 +5,7 @@ import TimesIcon from "wasabicons/lib/Times";
 import RetryIcon from "wasabicons/lib/Refresh";
 import Button from "@paprika/button";
 import useI18n from "@paprika/l10n/lib/useI18n";
+import Popover from "@paprika/popover";
 import tokens from "@paprika/tokens";
 import { UploaderContext } from "../../Uploader";
 import { getNumberWithUnits } from "../../helpers";
@@ -57,15 +58,22 @@ function File({ error, fileKey, name, progress, size, status }) {
         return <CheckIcon color={tokens.color.green} />;
       default:
         return (
-          <Button.Icon
-            kind="minor"
-            onClick={() => {
-              cancelFile(fileKey);
-            }}
-            size="small"
-          >
-            <TimesIcon />
-          </Button.Icon>
+          <Popover isDark isEager>
+            <Popover.Trigger>
+              <Button.Icon
+                kind="minor"
+                onClick={() => {
+                  cancelFile(fileKey);
+                }}
+                size="small"
+              >
+                <TimesIcon />
+              </Button.Icon>
+            </Popover.Trigger>
+            <Popover.Content>
+              <Popover.Card>{I18n.t("uploader.cancel_upload")}</Popover.Card>
+            </Popover.Content>
+          </Popover>
         );
     }
   }

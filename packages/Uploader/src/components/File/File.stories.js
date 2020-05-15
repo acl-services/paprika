@@ -2,6 +2,7 @@ import React from "react";
 import { storiesOf } from "@storybook/react";
 import { Story, Rule, Tagline } from "storybook/assets/styles/common.styles";
 import File from "./File";
+import Uploader from "../../Uploader";
 import statuses from "../../statuses";
 
 const props = {
@@ -14,9 +15,11 @@ const props = {
 
 storiesOf("Uploader/Subcomponents", module).add("File", () => (
   <Story>
-    <File {...props} />
-    <File {...props} progress={37} status={statuses.PROCESSING} />
-    <File {...props} progress={100} status={statuses.SUCCESS} />
-    <File {...props} progress={37} error="Something went wrong" status={statuses.ERROR} />
+    <Uploader>
+      <File {...props} />
+      <File {...props} progress={37} status={statuses.PROCESSING} />
+      <File {...props} progress={100} status={statuses.SUCCESS} />
+      <File {...props} progress={37} error="Something went wrong" status={statuses.ERROR} />
+    </Uploader>
   </Story>
 ));

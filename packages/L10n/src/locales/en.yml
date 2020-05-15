@@ -10,6 +10,7 @@ en:
       drop_files: Drop files to upload
       drop_files_here_or: Drop files to upload here or
       choose_from_computer: choose from your computer
+      cancel_upload: Cancel upload
       errors:
         size: File must be smaller than {{maxFileSize}}
         type: "File must be one of the following types: {{supportedTypes}}"
