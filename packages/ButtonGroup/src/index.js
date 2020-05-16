@@ -1,3 +1,1 @@
-import ButtonGroup from "./ButtonGroup";
-
-export { ButtonGroup as default };
+export { default } from "./ButtonGroup";
