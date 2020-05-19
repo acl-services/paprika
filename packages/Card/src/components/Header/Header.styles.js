@@ -1,12 +1,13 @@
-import { css } from "styled-components";
+import styled from "styled-components";
 // import stylers from "@paprika/stylers";
 import tokens from "@paprika/tokens";
 
-const headerStyles = css`
+export const Header = styled.div`
   background: ${tokens.color.white};
-  border-radius: 6px 6px 0 0;
+  border-radius: ${tokens.border.radius} ${tokens.border.radius} 0 0;
   color: ${tokens.color.black};
   min-height: 15px;
+  padding: ${tokens.spaceLg};
   position: relative;
   top: 0;
 
@@ -15,5 +16,3 @@ const headerStyles = css`
     box-sizing: border-box;
   }
 `;
-
-export default headerStyles;

@@ -1,7 +1,7 @@
 import React from "react";
 import PropTypes from "prop-types";
 
-import headerStyles from "./Header.styles";
+import * as sc from "./Header.styles";
 
 const propTypes = {
   children: PropTypes.node,
@@ -19,9 +19,9 @@ function Header(props) {
   };
 
   return (
-    <div data-pka-anchor="card.header" css={headerStyles} {...headerProps}>
+    <sc.Header data-pka-anchor="card.header" {...headerProps}>
       {children}
-    </div>
+    </sc.Header>
   );
 }
 

@@ -1,8 +1,8 @@
-import { css } from "styled-components";
+import styled from "styled-components";
 import stylers from "@paprika/stylers";
 import tokens from "@paprika/tokens";
 
-const avatarColorStyles = {
+export const avatarColorStyles = {
   black: `
   color: ${tokens.color.white};
   background: ${tokens.color.black};
@@ -13,15 +13,27 @@ const avatarColorStyles = {
 `,
 };
 
-const avatarStyles = css`
+export const avatarSizeStyles = {
+  small: `
+    border-radius: 10px;
+    height: 30px ;
+    width: 30px;
+    ${stylers.fontSize(2)} 
+  `,
+
+  medium: `
+    border-radius: 12px
+    height: 40px ;
+    width: 40px;
+    ${stylers.fontSize(3)} 
+  `,
+};
+
+export const Avatar = styled.div`
   align-items: center;
-  border-radius: 12px;
   display: inline-flex;
   font-weight: bold;
-  height: 40px;
   justify-content: center;
-  width: 40px;
-  ${stylers.fontSize(3)}
 
   &,
   * {
@@ -29,6 +41,5 @@ const avatarStyles = css`
   }
 
   ${({ color }) => avatarColorStyles[color]};
+  ${({ size }) => avatarSizeStyles[size]};
 `;
-
-export default avatarStyles;

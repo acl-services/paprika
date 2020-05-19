@@ -1,6 +1,6 @@
 import React from "react";
 import PropTypes from "prop-types";
-import contentStyles from "./Content.styles";
+import * as sc from "./Content.styles";
 
 const propTypes = {
   children: PropTypes.node,
@@ -13,11 +13,7 @@ const defaultProps = {
 function Content(props) {
   const { children } = props;
 
-  return (
-    <div css={contentStyles} data-pka-anchor="content">
-      {children}
-    </div>
-  );
+  return <sc.Content data-pka-anchor="content">{children}</sc.Content>;
 }
 
 Content.displayName = "Content";

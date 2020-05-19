@@ -1,28 +1,32 @@
 import React from "react";
 import PropTypes from "prop-types";
-import avatarStyles from "./Avatar.styles";
+import { ShirtSizes } from "@paprika/helpers/lib/customPropTypes";
+import * as sc from "./Avatar.styles";
 
 const propTypes = {
   children: PropTypes.node,
   color: PropTypes.oneOf(["black, blue"]),
+  size: PropTypes.oneOf(ShirtSizes.LIMITED),
 };
 
 const defaultProps = {
   children: "C",
   color: "black",
+  size: "medium",
 };
 
 function Avatar(props) {
-  const { color, children } = props;
+  const { color, children, size } = props;
 
   const avatarProps = {
     color,
     children,
+    size,
   };
   return (
-    <span data-pka-anchor="avatar" css={avatarStyles} {...avatarProps}>
+    <sc.Avatar data-pka-anchor="avatar" {...avatarProps}>
       {children}
-    </span>
+    </sc.Avatar>
   );
 }
 

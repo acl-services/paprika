@@ -1,12 +1,12 @@
-import { css } from "styled-components";
+import styled from "styled-components";
 // import stylers from "@paprika/stylers";
-// import tokens from "@paprika/tokens";
+import tokens from "@paprika/tokens";
 
-const contentStyles = css`
+export const Content = styled.div`
+  padding: ${tokens.spaceLg};
+
   &,
   * {
     box-sizing: border-box;
   }
 `;
-
-export default contentStyles;

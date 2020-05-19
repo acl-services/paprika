@@ -1,6 +1,6 @@
 import React from "react";
 import PropTypes from "prop-types";
-import metadataStyles from "./MetaData.styles";
+import * as sc from "./MetaData.styles";
 
 const propTypes = {
   children: PropTypes.node,
@@ -14,9 +14,9 @@ const MetaData = props => {
   const { children } = props;
 
   return (
-    <span data-pka-anchor="card.metadata" css={metadataStyles} {...props}>
+    <sc.MetaData data-pka-anchor="card.metadata" {...props}>
       {children}
-    </span>
+    </sc.MetaData>
   );
 };
 
