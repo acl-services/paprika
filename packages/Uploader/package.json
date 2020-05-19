@@ -21,7 +21,6 @@
     "@paprika/raw-button": "^0.2.11",
     "@paprika/stylers": "^0.2.7",
     "@paprika/tokens": "^0.1.14",
-    "@storybook/react": "^v6.0.0-alpha.29",
     "prop-types": "^15.7.2",
     "superagent": "^5.1.0",
     "uuid": "^3.3.3",
