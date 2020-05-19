@@ -1,6 +1,6 @@
 import React from "react";
 import PropTypes from "prop-types";
-import textStyles from "./Text.styles";
+import * as sc from "./Text.styles";
 
 const propTypes = {
   /** Body content of the button (an icon). */
@@ -15,9 +15,9 @@ const Text = props => {
   const { children } = props;
 
   return (
-    <p data-pka-anchor="card.text" css={textStyles} {...props}>
+    <sc.textStyles data-pka-anchor="card.text" {...props}>
       {children}
-    </p>
+    </sc.textStyles>
   );
 };
 

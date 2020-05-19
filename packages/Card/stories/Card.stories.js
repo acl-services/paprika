@@ -4,6 +4,7 @@ import Card from "../src/Card";
 
 import BasicIconCard from "./examples/BasicIconCard";
 import DeluxeCard from "./examples/DeluxeCard";
+import MultipleCard from "./examples/MultipleCard";
 
 storiesOf("Card", module)
   .add("Card", () => {
@@ -101,4 +102,8 @@ storiesOf("Card/Example", module)
 
   .add("Basic Card Icon", () => {
     return <BasicIconCard />;
+  })
+
+  .add("Multiple Card Icons", () => {
+    return <MultipleCard />;
   });

@@ -1,5 +1,5 @@
 import { css } from "styled-components";
-// import stylers from "@paprika/stylers";
+import stylers from "@paprika/stylers";
 import tokens from "@paprika/tokens";
 
 const headerStyles = css`
@@ -7,6 +7,7 @@ const headerStyles = css`
   border-radius: 6px 6px 0 0;
   color: ${tokens.color.black};
   min-height: 15px;
+  padding: ${stylers.spacer(1)};
   position: relative;
   top: 0;
 

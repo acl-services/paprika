@@ -1,6 +1,6 @@
 import React from "react";
 import PropTypes from "prop-types";
-import titleStyles from "./Title.styles";
+import * as sc from "./Title.styles";
 
 const propTypes = {
   /** Body content of the button (an icon). */
@@ -15,9 +15,9 @@ const Title = props => {
   const { children } = props;
 
   return (
-    <h1 data-pka-anchor="card.title" css={titleStyles} {...props}>
+    <sc.titleStyles data-pka-anchor="card.title" {...props}>
       {children}
-    </h1>
+    </sc.titleStyles>
   );
 };
 

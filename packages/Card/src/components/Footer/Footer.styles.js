@@ -1,14 +1,15 @@
-import { css } from "styled-components";
+import styled from "styled-components";
+import tokens from "@paprika/tokens";
 
-const footerStyles = css`
-  background: #f0f0f0;
-  border-bottom-left-radius: 6px;
-  border-bottom-right-radius: 6px;
+export const footerStyles = styled.div`
+  background: ${tokens.color.blackLighten70};
+  border-bottom-left-radius: ${tokens.card.borderRadius};
+  border-bottom-right-radius: ${tokens.card.borderRadius};
   bottom: 0;
+  box-sizing: border-box;
   left: 0;
   min-height: 40px;
+  padding: ${tokens.space};
   position: relative;
   width: 100%;
 `;
-
-export default footerStyles;
