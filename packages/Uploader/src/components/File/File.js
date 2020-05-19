@@ -43,15 +43,22 @@ function File({ error, fileKey, name, progress, size, status }) {
       case statuses.ERROR:
       case statuses.CANCEL:
         return (
-          <Button.Icon
-            kind="minor"
-            onClick={() => {
-              restartFileUpload(fileKey);
-            }}
-            size="small"
-          >
-            <RetryIcon />
-          </Button.Icon>
+          <Popover isDark isEager>
+            <Popover.Trigger>
+              <Button.Icon
+                kind="minor"
+                onClick={() => {
+                  restartFileUpload(fileKey);
+                }}
+                size="small"
+              >
+                <RetryIcon />
+              </Button.Icon>
+            </Popover.Trigger>
+            <Popover.Content>
+              <Popover.Card>{I18n.t("uploader.restart_upload")}</Popover.Card>
+            </Popover.Content>
+          </Popover>
         );
       case statuses.SUCCESS:
         return <CheckIcon color={tokens.color.green} />;

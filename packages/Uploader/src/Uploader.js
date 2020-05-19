@@ -9,7 +9,7 @@ import types from "./statuses";
 import useDragAndDropEvents from "./useDragAndDropEvents";
 import useProcessFiles from "./useProcessFiles";
 
-// TODO: add a tooltip to restart
+// TODO: check the styling when resize screen
 // TODO: a11y
 // TODO: tests
 
