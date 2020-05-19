@@ -18324,12 +18324,6 @@ warning@^4.0.2, warning@^4.0.3:
   dependencies:
     loose-envify "^1.0.0"
 
-"wasabicons@git+ssh://git@github.com/acl-services/wasabicons.git":
-  version "0.4.0"
-  resolved "git+ssh://git@github.com/acl-services/wasabicons.git#77f49dedfd1d774cdb6582fd480d451185b12954"
-  dependencies:
-    "@babel/runtime-corejs2" "^7.3.1"
-
 watchpack@^1.6.0:
   version "1.6.0"
   resolved "https://registry.yarnpkg.com/watchpack/-/watchpack-1.6.0.tgz#4bc12c2ebe8aa277a71f1d3f14d685c7b446cd00"

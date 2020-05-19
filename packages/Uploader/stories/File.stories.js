@@ -1,9 +1,9 @@
 import React from "react";
 import { storiesOf } from "@storybook/react";
 import { Story } from "storybook/assets/styles/common.styles";
-import File from "./File";
-import Uploader from "../../Uploader";
-import statuses from "../../statuses";
+import File from "../src/components/File/File";
+import Uploader from "../src/Uploader";
+import statuses from "../src/statuses";
 
 const props = {
   error: null,

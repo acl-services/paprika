@@ -1,7 +1,7 @@
 import React from "react";
 import tokens from "@paprika/tokens";
 import useI18n from "@paprika/l10n/lib/useI18n";
-import UploadIcon from "wasabicons/lib/Upload";
+import UploadIcon from "@paprika/icon/lib/Upload";
 import { UploaderContext } from "../../Uploader";
 import * as div from "./DropZone.styles";
 
