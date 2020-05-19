@@ -1,6 +1,6 @@
 {
   "name": "@paprika/modal",
-  "version": "0.2.20",
+  "version": "0.2.22",
   "description": "The Modal component provides additional information without losing context of the main interface.",
   "author": "@paprika",
   "main": "lib/index.js",
