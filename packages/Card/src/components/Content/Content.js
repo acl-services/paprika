@@ -3,6 +3,7 @@ import PropTypes from "prop-types";
 import * as sc from "./Content.styles";
 
 const propTypes = {
+  /** Primary content. */
   children: PropTypes.node,
 };
 

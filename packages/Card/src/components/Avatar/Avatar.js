@@ -4,8 +4,11 @@ import { ShirtSizes } from "@paprika/helpers/lib/customPropTypes";
 import * as sc from "./Avatar.styles";
 
 const propTypes = {
+  /** Avatar content. It can be initial as a string or icon */
   children: PropTypes.node,
+  /** Background color of the Avatar */
   color: PropTypes.oneOf(["black, blue"]),
+  /** Size of Avatar */
   size: PropTypes.oneOf(ShirtSizes.LIMITED),
 };
 
