@@ -42,6 +42,10 @@ const commonStyles = `
     }
   }
 
+  [data-whatinput="mouse"] &[data-has-forced-focus="true"]:focus {
+    box-shadow: ${tokens.highlight.active.noBorder.boxShadow}; 
+  }
+
   &:active {
     box-shadow: ${tokens.highlight.active.noBorder.boxShadow}, inset 0 1px 1px 0 rgba(0, 0, 0, 0.1),
       inset 0 1px 4px 0 rgba(0, 0, 0, 0.3);
