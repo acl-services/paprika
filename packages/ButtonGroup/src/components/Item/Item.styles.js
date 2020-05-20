@@ -41,7 +41,7 @@ export const Item = styled(Button)`
     ${stylers.z(2)}
   }
 
-  ${({ isActive }) => (isActive ? activeStyles : "")}
+  ${({ isActive }) => isActive && activeStyles}
 
   ${UnselectedIcon}, ${SelectedIcon} {
     ${iconStyles}

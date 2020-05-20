@@ -1,14 +1,14 @@
 import tokens from "@paprika/tokens";
 import styled, { css } from "styled-components";
 
-const Button = "[data-pka-anchor='button-group.button']";
+const buttonSelector = "[data-pka-anchor='button-group.button']";
 
 const fullWithStyles = css`
   display: flex;
   flex-wrap: nowrap;
   width: 100%;
 
-  ${Button} {
+  ${buttonSelector} {
     flex-basis: 100%;
   }
 `;
@@ -16,9 +16,9 @@ const fullWithStyles = css`
 export const ButtonGroup = styled.div`
   display: inline-flex;
   flex-wrap: wrap;
-  ${({ isFullWidth }) => (isFullWidth ? fullWithStyles : "")}
+  ${({ isFullWidth }) => isFullWidth && fullWithStyles}
 
-  ${Button} {
+  ${buttonSelector} {
     border-radius: 0;
 
     &:first-child {
