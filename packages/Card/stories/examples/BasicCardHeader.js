@@ -34,7 +34,7 @@ export default () => {
       <div style={{ display: "flex", flexWrap: "wrap" }}>
         {card.map(asset => {
           return (
-            <div style={{ width: "312px", height: "125px", padding: "8px" }}>
+            <div style={{ display: "flex", width: "312px", padding: "8px" }}>
               <Card>
                 <Card.Header>
                   <Avatar size="medium">

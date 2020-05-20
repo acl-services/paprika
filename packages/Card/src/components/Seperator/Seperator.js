@@ -14,9 +14,9 @@ const defaultProps = {
 
 const Seperator = props => {
   return (
-    <span data-pka-anchor="card.Seperator" css={seperatorStyles} {...props}>
+    <div data-pka-anchor="card.Seperator" css={seperatorStyles} {...props}>
       &nbsp;
-    </span>
+    </div>
   );
 };
 

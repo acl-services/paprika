@@ -1,6 +1,7 @@
 import React from "react";
 import PropTypes from "prop-types";
-import cardStyles from "./Card.styles";
+// import { ShirtSizes } from "@paprika/helpers/lib/customPropTypes";
+import * as sc from "./Card.styles";
 import Footer from "./components/Footer";
 import Title from "./components/Title";
 import MetaData from "./components/MetaData";
@@ -21,10 +22,14 @@ const propTypes = {
 
   /** Callback to be executed when the button is clicked or activated by keyboard. Typically required. */
   // onClick: PropTypes.func,
+
+  /** Size of the card (font size, min-height, padding, etc). */
+  // size: PropTypes.oneOf(ShirtSizes.DEFAULT),
 };
 
 const defaultProps = {
   children: null,
+  // size: ShirtSizes.MEDIUM
   // isActive: false,
   // isDisabled: false,
   // onClick: () => {},
@@ -33,11 +38,7 @@ const defaultProps = {
 const Card = props => {
   const { children } = props;
 
-  return (
-    <div css={cardStyles} data-pka-anchor="card">
-      {children}
-    </div>
-  );
+  return <sc.cardStyles data-pka-anchor="card">{children}</sc.cardStyles>;
 };
 
 Card.displayName = "Card";

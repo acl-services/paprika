@@ -10,10 +10,10 @@ const commonStyles = css`
 
 const sizeStyles = {
   [ShirtSizes.SMALL]: `
-      min-height: ${stylers.spacer(2)};
+      min-height: ${stylers.spacer(3)};
     `,
   [ShirtSizes.MEDIUM]: `
-      min-height: ${stylers.spacer(3)};
+      min-height: ${stylers.spacer(4)};
     `,
   [ShirtSizes.LARGE]: `
       min-height: ${stylers.spacer(5)};

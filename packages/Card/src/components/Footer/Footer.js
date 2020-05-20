@@ -1,6 +1,6 @@
 import React from "react";
 import PropTypes from "prop-types";
-import footerStyles from "./Footer.styles";
+import * as sc from "./Footer.styles";
 
 const propTypes = {
   /** Body content of the button (an icon). */
@@ -15,9 +15,9 @@ const Footer = props => {
   const { children } = props;
 
   return (
-    <div data-pka-anchor="card.footer" css={footerStyles} {...props}>
+    <sc.footerStyles data-pka-anchor="card.footer" {...props}>
       {children}
-    </div>
+    </sc.footerStyles>
   );
 };
 
