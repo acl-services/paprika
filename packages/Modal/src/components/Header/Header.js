@@ -2,7 +2,7 @@ import React from "react";
 import PropTypes from "prop-types";
 import Button from "@paprika/button";
 import Heading from "@paprika/heading";
-import * as styled from "./Header.styles";
+import * as sc from "./Header.styles";
 
 const propTypes = {
   children: PropTypes.node.isRequired,
@@ -21,14 +21,14 @@ const Header = React.forwardRef((props, ref) => {
   const { children, level, hasCloseButton, onClose, ...moreProps } = props;
 
   return (
-    <styled.Wrapper ref={ref} {...moreProps}>
+    <sc.Wrapper ref={ref} {...moreProps}>
       <Heading tabIndex="-1" level={level} displayLevel={3} isLight>
         {children}
       </Heading>
       {hasCloseButton && (
         <Button.Close data-pka-anchor="modal.header.close-button" isSemantic={false} onClick={onClose} size="medium" />
       )}
-    </styled.Wrapper>
+    </sc.Wrapper>
   );
 });
 

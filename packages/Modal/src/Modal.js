@@ -5,7 +5,7 @@ import { zValue } from "@paprika/stylers/lib/helpers";
 import { ShirtSizes } from "@paprika/helpers/lib/customPropTypes";
 import extractChildren from "@paprika/helpers/lib/extractChildren";
 import FocusLock from "./components/FocusLock";
-import * as styled from "./Modal.styles";
+import * as sc from "./Modal.styles";
 
 const propTypes = {
   /* Description of the Modal dialog for assistive technology */
@@ -64,7 +64,7 @@ const Modal = props => {
   const overlayProps = overlayExtracted ? overlayExtracted.props : {};
 
   const focusLockOptions = {
-    as: styled.FocusLock,
+    as: sc.FocusLock,
     lockProps: { size },
     ...(focusLockProps || {}),
   };
@@ -83,16 +83,16 @@ const Modal = props => {
       focusLockOptions={focusLockOptions}
     >
       {state => (
-        <styled.Wrapper size={size} data-pka-anchor="modal.wrapper" {...moreProps}>
-          <styled.Dialog state={state} role="dialog" aria-modal="true" aria-label={ariaLabel} data-pka-anchor="modal">
-            {headerExtracted && <styled.Header {...headerExtracted.props} onClose={onClose} />}
-            <styled.ContentWrapper role="region" tabIndex="0">
-              {contentExtracted && <styled.Content {...contentExtracted.props} />}
+        <sc.Wrapper size={size} data-pka-anchor="modal.wrapper" {...moreProps}>
+          <sc.Dialog state={state} role="dialog" aria-modal="true" aria-label={ariaLabel} data-pka-anchor="modal">
+            {headerExtracted && <sc.Header {...headerExtracted.props} onClose={onClose} />}
+            <sc.ContentWrapper role="region" tabIndex="0">
+              {contentExtracted && <sc.Content {...contentExtracted.props} />}
               {children}
-            </styled.ContentWrapper>
-            {footerExtracted && <styled.Footer {...footerExtracted.props} />}
-          </styled.Dialog>
-        </styled.Wrapper>
+            </sc.ContentWrapper>
+            {footerExtracted && <sc.Footer {...footerExtracted.props} />}
+          </sc.Dialog>
+        </sc.Wrapper>
       )}
     </Overlay>
   );
