@@ -6,7 +6,7 @@ export const Header = styled.div`
   border-radius: ${tokens.border.radius} ${tokens.border.radius} 0 0;
   color: ${tokens.color.black};
   min-height: 15px;
-  padding: ${tokens.space};
+  padding: ${tokens.spaceLg};
 
   position: relative;
   top: 0;

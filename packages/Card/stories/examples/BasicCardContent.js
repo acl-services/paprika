@@ -65,18 +65,12 @@ export default () => {
 
   return (
     <Story>
-      <h1>Configuration</h1>
-      <div style={{ display: "flex", flexWrap: "wrap" }}>
+      <h1>Views</h1>
+      <div style={{ display: "flex", justifyContent: "flex-start", flexWrap: "wrap" }}>
         {card.map(asset => {
           return (
-            <div
-              style={{
-                display: "flex",
-                width: "320px",
-                padding: "8px",
-              }}
-            >
-              <Card>
+            <div style={{ margin: "10px" }}>
+              <Card size="small">
                 <Card.Content>
                   <Card.Title>{asset.title}</Card.Title>
                   <Card.MetaData>

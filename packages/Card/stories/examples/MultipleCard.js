@@ -7,7 +7,7 @@ export default () => {
   const data = [
     {
       avatar: "A",
-      title: "Computer",
+      title: "Animals",
       meta1: "500 total",
       text: "Talk with Steve Brule first.",
       meta2: "Created by Cory McBain",
@@ -16,7 +16,7 @@ export default () => {
     },
     {
       avatar: "B",
-      title: "Eternity",
+      title: "Bee",
       meta1: "12 total",
       text: "Talk with Steve Brule first.",
       meta2: "Created by Cory McBain",
@@ -25,7 +25,7 @@ export default () => {
     },
     {
       avatar: "C",
-      title: "Eternity",
+      title: "Canary",
       meta1: "12 total",
       text: "Talk with Steve Brule first.",
       meta2: "Created by Cory McBain",
@@ -34,7 +34,7 @@ export default () => {
     },
     {
       avatar: "D",
-      title: "Eternity",
+      title: "Donkey",
       meta1: "12 total",
       text: "Talk with Steve Brule first.",
       meta2: "Created by Cory McBain",
@@ -43,7 +43,7 @@ export default () => {
     },
     {
       avatar: "E",
-      title: "Eternity",
+      title: "Elephant",
       meta1: "12 total",
       text: "Talk with Steve Brule first.",
       meta2: "Created by Cory McBain",
@@ -52,7 +52,7 @@ export default () => {
     },
     {
       avatar: "F",
-      title: "Eternity",
+      title: "Flamingo",
       meta1: "12 total",
       text: "Talk with Steve Brule first.",
       meta2: "Created by Cory McBain",
@@ -61,7 +61,7 @@ export default () => {
     },
     {
       avatar: "G",
-      title: "Eternity",
+      title: "Gorilla",
       meta1: "12 total",
       text: "Talk with Steve Brule first.",
       meta2: "Created by Cory McBain",
@@ -70,25 +70,41 @@ export default () => {
     },
   ];
 
-  return data.map(props => (
+  return (
     <Story>
-      <div style={{ width: "300px" }}>
-        <Card>
-          <Card.Header>
-            <Avatar>{props.avatar}</Avatar>
-          </Card.Header>
-          <Card.Content>
-            <Card.Title>{props.title}</Card.Title>
-            <Card.MetaData>{props.meta1}</Card.MetaData>
-            <Card.Seperator size="small" />
-            <Card.Text>{props.text}</Card.Text>
-            <Card.Seperator size="small" />
-            <Card.MetaData>{props.meta2}</Card.MetaData>
-            <Card.MetaData>{props.meta3}</Card.MetaData>
-          </Card.Content>
-          <Card.Footer>{props.footer1}</Card.Footer>
-        </Card>
+      <div
+        style={{
+          width: "100%",
+          height: "100%",
+          display: "flex",
+          flexDirection: "row",
+          justifyContent: "space-between",
+          alignItems: "center",
+          flexWrap: "wrap",
+        }}
+      >
+        {data.map(props => {
+          return (
+            <div style={{ marginBottom: "20px" }}>
+              <Card size="medium">
+                <Card.Header>
+                  <Avatar>{props.avatar}</Avatar>
+                </Card.Header>
+                <Card.Content>
+                  <Card.Title>{props.title}</Card.Title>
+                  <Card.MetaData>{props.meta1}</Card.MetaData>
+                  <Card.Seperator size="small" />
+                  <Card.Text>{props.text}</Card.Text>
+                  <Card.Seperator size="small" />
+                  <Card.MetaData>{props.meta2}</Card.MetaData>
+                  <Card.MetaData>{props.meta3}</Card.MetaData>
+                </Card.Content>
+                <Card.Footer>{props.footer1}</Card.Footer>
+              </Card>
+            </div>
+          );
+        })}
       </div>
     </Story>
-  ));
+  );
 };
