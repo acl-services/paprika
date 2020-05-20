@@ -1,28 +1,39 @@
 import React from "react";
 import { Story } from "storybook/assets/styles/common.styles";
 import Card from "../../src";
-import Avatar from "../../src/components/Avatar";
+import Input from "../../../Input";
+import Checkbox from "../../../Checkbox";
+import Textarea from "../../../Textarea";
+import Button from "../../../Button";
 
 export default () => {
   return (
     <Story>
-      {/* <div style={{ width: "300px" }}> */}
       <Card size="large">
-        <Card.Header>
-          <Avatar />
-        </Card.Header>
         <Card.Content>
-          <Card.Title>Card</Card.Title>
-          <Card.MetaData>100,000 total</Card.MetaData>
+          <Card.Title>Asset type name</Card.Title>
+          <Input />
           <Card.Seperator size="small" />
-          <Card.Text>
-            Cards are used to group similar concepts and tasks together to make the platform easier for users to scan,
-            read, and get things done.
-          </Card.Text>
+          <Checkbox>Use a display name</Checkbox>
+          <Card.Seperator size="small" />
+          <Card.Title>Description (optional)</Card.Title>
+          <Textarea placeholder="Kanye is the only one who can edit this.." />
+          <Card.Seperator size="small" />
+          <div style={{ width: "100%", display: "flex", flexDirection: "row", justifyContent: "space-between" }}>
+            <div style={{ width: "50%", display: "flex", justifyContent: "space-between" }}>
+              <Button isDisabled="true">Save</Button>
+              <Button isDisabled="true" kind="minor">
+                Cancel
+              </Button>
+            </div>
+            <Button kind="minor">Archive</Button>
+          </div>
+          <Card.Seperator size="small" />
+          <Card.MetaData>Created by Cory McBain</Card.MetaData>
+          <Card.MetaData>Last updated by Charles Bradley</Card.MetaData>
+          <Button kind="link">See full activity log</Button>
         </Card.Content>
-        <Card.Footer>250 attributes</Card.Footer>
       </Card>
-      {/* </div> */}
     </Story>
   );
 };
