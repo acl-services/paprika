@@ -70,18 +70,24 @@ const commonStyles = css`
     outline: none;
   }
 
-  [data-whatinput="mouse"] &:focus:not([data-has-forced-focus="true"]) {
-    box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.1);
-    border-color: ${tokens.border.color};
-
-    &[kind="minor"],
-    &[kind="link"] {
-      box-shadow: none;
-      border-color: transparent;
+  [data-whatinput="mouse"] &:focus {
+    &[data-has-forced-focus="true"] {
+      box-shadow: ${tokens.highlight.active.noBorder.boxShadow}; 
     }
 
-    &[kind="flat"] {
-      box-shadow: none;
+    &:not([data-has-forced-focus="true"]) {
+      box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.1);
+      border-color: ${tokens.border.color};
+  
+      &[kind="minor"],
+      &[kind="link"] {
+        box-shadow: none;
+        border-color: transparent;
+      }
+  
+      &[kind="flat"] {
+        box-shadow: none;
+      }
     }
 
     ${({ isActive }) => (isActive ? activeStyles : "")}
