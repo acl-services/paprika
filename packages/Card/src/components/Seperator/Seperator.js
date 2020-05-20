@@ -1,7 +1,7 @@
 import React from "react";
 import PropTypes from "prop-types";
 import { ShirtSizes } from "@paprika/helpers/lib/customPropTypes";
-import seperatorStyles from "./Seperator.styles";
+import * as sc from "./Seperator.styles";
 
 const propTypes = {
   /** Size of the seperator (min-height). */
@@ -13,10 +13,15 @@ const defaultProps = {
 };
 
 const Seperator = props => {
+  const { size } = props;
+
+  const seperatorProps = {
+    size,
+  };
   return (
-    <div data-pka-anchor="card.Seperator" css={seperatorStyles} {...props}>
+    <sc.seperatorStyles data-pka-anchor="card.seperator" {...seperatorProps}>
       &nbsp;
-    </div>
+    </sc.seperatorStyles>
   );
 };
 

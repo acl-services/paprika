@@ -1,8 +1,8 @@
-import { css } from "styled-components";
+import styled from "styled-components";
 import { ShirtSizes } from "@paprika/helpers/lib/customPropTypes";
 import stylers from "@paprika/stylers";
 
-const commonStyles = css`
+export const commonStyles = styled.div`
   width: 100%;
 `;
 
@@ -20,9 +20,6 @@ const sizeStyles = {
     `,
 };
 
-const seperatorStyles = props => `
-  ${commonStyles}
-  ${sizeStyles[props.size]}
+export const seperatorStyles = styled(commonStyles)`
+  ${props => sizeStyles[props.size]};
 `;
-
-export default seperatorStyles;
