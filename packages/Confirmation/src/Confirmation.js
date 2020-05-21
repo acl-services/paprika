@@ -1,6 +1,6 @@
 import React from "react";
 import PropTypes from "prop-types";
-import uuid from "uuid/v4";
+import nanoid from "nanoid";
 import Button from "@paprika/button";
 import Heading from "@paprika/heading";
 import { ShirtSizes } from "@paprika/helpers/lib/customPropTypes";
@@ -60,11 +60,12 @@ const Confirmation = props => {
   const [isConfirmOpen, setIsConfirmOpen] = React.useState(null);
   const confirmButtonRef = React.useRef(null);
   const triggerRef = React.useRef(null);
-  const confirmId = React.useRef(uuid()).current;
+  const titleId = React.useRef(nanoid()).current;
+  const descriptionId = React.useRef(nanoid()).current;
   const I18n = useI18n();
 
   const popoverOffset = 4;
-  let popoverKey = uuid();
+  let popoverKey = nanoid();
 
   const focusConfirmButton = () => {
     if (confirmButtonRef.current) confirmButtonRef.current.focus();
@@ -82,7 +83,7 @@ const Confirmation = props => {
   }, [confirmButtonRef, defaultIsOpen]);
 
   React.useEffect(() => {
-    popoverKey = uuid();
+    popoverKey = nanoid();
   }, [isPending]);
 
   React.useEffect(() => {
@@ -109,20 +110,27 @@ const Confirmation = props => {
         isConfirmOpen,
         onOpenConfirm: handleOpenConfirm,
         triggerRef,
-        confirmId,
       });
   };
 
   const popoverContent = (
-    <Popover.Content id={confirmId}>
-      <Popover.Card>
+    <Popover.Content>
+      <Popover.Card
+        role="dialog"
+        aria-labelledby={heading ? titleId : null}
+        aria-describedby={body ? descriptionId : null}
+      >
         <div css={confirmStyles}>
           {heading && (
-            <Heading displayLevel={5} level={2}>
+            <Heading id={titleId} displayLevel={5} level={2}>
               {heading}
             </Heading>
           )}
-          {body && <div css={confirmBodyStyles}>{body}</div>}
+          {body && (
+            <div css={confirmBodyStyles} id={descriptionId}>
+              {body}
+            </div>
+          )}
           <div css={confirmFooterStyles}>
             <Button
               canPropagate={false}

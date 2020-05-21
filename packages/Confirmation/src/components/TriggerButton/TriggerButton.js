@@ -19,7 +19,6 @@ ButtonTypes.ALL = Object.values(ButtonTypes);
 
 const propTypes = {
   children: PropTypes.node,
-  confirmId: PropTypes.string,
   buttonType: PropTypes.oneOf(ButtonTypes.ALL),
   isConfirmOpen: PropTypes.bool,
   onOpenConfirm: PropTypes.func,
@@ -29,14 +28,13 @@ const propTypes = {
 const defaultProps = {
   buttonType: ButtonTypes.SIMPLE,
   children: null,
-  confirmId: null,
   isConfirmOpen: false,
   onOpenConfirm: () => {},
   triggerRef: null,
 };
 
 const TriggerButton = props => {
-  const { isConfirmOpen, children, onOpenConfirm, confirmId, triggerRef, buttonType, ...moreProps } = props;
+  const { isConfirmOpen, children, onOpenConfirm, triggerRef, buttonType, ...moreProps } = props;
 
   const TriggerComponent = ButtonComponentMap[buttonType];
 
@@ -44,7 +42,6 @@ const TriggerButton = props => {
     <TriggerComponent
       data-pka-anchor="button"
       ref={triggerRef}
-      aria-controls={confirmId}
       aria-expanded={isConfirmOpen}
       aria-haspopup="true"
       isSemantic={false}
