@@ -7,7 +7,7 @@ const propTypes = {
   /** Avatar content. It can be initial as a string or icon */
   children: PropTypes.node,
   /** Background color of the Avatar */
-  color: PropTypes.oneOf(["black, blue"]),
+  color: PropTypes.oneOf(["black, blue", "green", "orange", "pink", "red"]),
   /** Size of Avatar */
   size: PropTypes.oneOf(ShirtSizes.LIMITED),
 };
@@ -26,6 +26,7 @@ function Avatar(props) {
     children,
     size,
   };
+
   return (
     <sc.Avatar data-pka-anchor="avatar" {...avatarProps}>
       {children}

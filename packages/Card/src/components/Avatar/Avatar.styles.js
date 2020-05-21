@@ -4,13 +4,23 @@ import tokens from "@paprika/tokens";
 
 export const avatarColorStyles = {
   black: `
-  color: ${tokens.color.white};
   background: ${tokens.color.black};
 `,
   blue: `
-  color: ${tokens.color.white};
   background: ${tokens.color.blue};
 `,
+  green: `
+  background: ${tokens.color.green};
+  `,
+  orange: `
+  background: ${tokens.color.orange};
+  `,
+  pink: `
+  background: ${tokens.color.chartColor07};
+  `,
+  red: `
+  background: ${tokens.color.chartColor01};
+  `,
 };
 
 export const avatarSizeStyles = {
@@ -31,6 +41,7 @@ export const avatarSizeStyles = {
 
 export const Avatar = styled.div`
   align-items: center;
+  color: ${tokens.color.white};
   display: inline-flex;
   font-weight: bold;
   justify-content: center;
