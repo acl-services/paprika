@@ -31,6 +31,13 @@ const sizeStyles = {
   `,
 };
 
+// Modifiers
+
+const fullWidthStyles = `
+  display: flex;
+  width: 100%;
+`;
+
 // States
 
 // const disabledStyles = `
@@ -71,4 +78,5 @@ const activeStyles = `
 export const cardStyles = styled(commonStyles)`
   ${props => sizeStyles[props.size]}
   ${props => (props.isActive ? activeStyles : "")}
+  ${props => (props.isFullWidth ? fullWidthStyles : "")}
 `;
