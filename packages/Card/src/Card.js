@@ -21,10 +21,10 @@ const propTypes = {
   isActive: PropTypes.bool,
 
   /** If the button is disabled. */
-  // isDisabled: PropTypes.bool,
+  isDisabled: PropTypes.bool,
 
   /** Callback to be executed when the button is clicked or activated by keyboard. Typically required. */
-  // onClick: PropTypes.func,
+  onClick: PropTypes.func,
 
   /** Size of the card (font size, min-height, padding, etc). */
   size: PropTypes.oneOf(ShirtSizes.DEFAULT),
@@ -35,18 +35,20 @@ const defaultProps = {
   size: ShirtSizes.MEDIUM,
   isFullWidth: false,
   isActive: false,
-  // isDisabled: false,
-  // onClick: () => {},
+  isDisabled: false,
+  onClick: () => {},
 };
 
 const Card = props => {
-  const { children, size, isFullWidth, isActive } = props;
+  const { children, size, isFullWidth, isActive, isDisabled, onClick } = props;
 
   const cardProps = {
     children,
     size,
     isFullWidth,
     isActive,
+    isDisabled,
+    onClick,
   };
 
   return (
