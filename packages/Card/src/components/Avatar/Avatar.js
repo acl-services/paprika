@@ -7,7 +7,9 @@ const propTypes = {
   /** Avatar content. It can be initial as a string or icon */
   children: PropTypes.node,
   /** Background color of the Avatar */
-  color: PropTypes.oneOf(["black, blue", "green", "orange", "pink", "red"]),
+  color: PropTypes.oneOf(["black", "blue", "green", "orange", "pink", "red"]),
+  /** Randomize background color */
+  isRandomBackground: PropTypes.bool,
   /** Size of Avatar */
   size: PropTypes.oneOf(ShirtSizes.LIMITED),
 };
@@ -15,17 +17,25 @@ const propTypes = {
 const defaultProps = {
   children: "C",
   color: "black",
+  isRandomBackground: false,
   size: "medium",
 };
 
 function Avatar(props) {
-  const { color, children, size } = props;
+  const { color, children, isRandomBackground, size } = props;
 
   const avatarProps = {
     color,
     children,
+    isRandomBackground,
     size,
   };
+
+  if (isRandomBackground) {
+    const colors = ["black", "blue", "green", "orange", "pink", "red"];
+    const randomColor = colors[Math.floor(Math.random() * colors.length)];
+    avatarProps.color = randomColor;
+  }
 
   return (
     <sc.Avatar data-pka-anchor="avatar" {...avatarProps}>

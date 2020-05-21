@@ -96,7 +96,7 @@ export default () => {
             <div style={{ margin: "8px" }}>
               <Card size="medium">
                 <Card.Header>
-                  <Avatar isRandom>{props.avatar}</Avatar>
+                  <Avatar isRandomBackground>{props.avatar}</Avatar>
                 </Card.Header>
                 <Card.Content>
                   <Card.Title>{props.title}</Card.Title>
