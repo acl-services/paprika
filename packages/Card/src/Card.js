@@ -1,6 +1,6 @@
 import React from "react";
 import PropTypes from "prop-types";
-// import { ShirtSizes } from "@paprika/helpers/lib/customPropTypes";
+import { ShirtSizes } from "@paprika/helpers/lib/customPropTypes";
 import * as sc from "./Card.styles";
 import Footer from "./components/Footer";
 import Title from "./components/Title";
@@ -24,21 +24,30 @@ const propTypes = {
   // onClick: PropTypes.func,
 
   /** Size of the card (font size, min-height, padding, etc). */
-  // size: PropTypes.oneOf(ShirtSizes.DEFAULT),
+  size: PropTypes.oneOf(ShirtSizes.DEFAULT),
 };
 
 const defaultProps = {
   children: null,
-  // size: ShirtSizes.MEDIUM
+  size: ShirtSizes.MEDIUM,
   // isActive: false,
   // isDisabled: false,
   // onClick: () => {},
 };
 
 const Card = props => {
-  const { children } = props;
+  const { children, size } = props;
 
-  return <sc.cardStyles data-pka-anchor="card">{children}</sc.cardStyles>;
+  const cardProps = {
+    children,
+    size,
+  };
+
+  return (
+    <sc.cardStyles {...cardProps} data-pka-anchor="card">
+      {children}
+    </sc.cardStyles>
+  );
 };
 
 Card.displayName = "Card";

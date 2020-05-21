@@ -30,12 +30,11 @@ export default () => {
 
   return (
     <Story>
-      <h1>Configuration</h1>
       <div style={{ display: "flex", flexWrap: "wrap" }}>
         {card.map(asset => {
           return (
-            <div style={{ display: "flex", width: "312px", padding: "8px" }}>
-              <Card>
+            <div style={{ margin: "10px" }}>
+              <Card size="small">
                 <Card.Header>
                   <Avatar size="medium">
                     <Icon />

@@ -9,7 +9,7 @@ export const footerStyles = styled.div`
   box-sizing: border-box;
   left: 0;
   min-height: 40px;
-  padding: ${tokens.space};
-  position: relative;
+  padding: ${tokens.spaceLg};
+  position: absolute;
   width: 100%;
 `;
