@@ -23,7 +23,7 @@ const sizeStyles = {
   `,
   [ShirtSizes.MEDIUM]: `
   width: 300px;
-  height: 300px;
+  height: 320px;
   `,
   [ShirtSizes.LARGE]: `
   width: 300px;
@@ -40,35 +40,26 @@ const fullWidthStyles = `
 
 // States
 
-// const disabledStyles = `
-//   box-shadow: none;
-//   color: ${tokens.color.blackDisabled};
-//   cursor: not-allowed;
-//   text-decoration: none;
-//   text-shadow: none;
+const disabledStyles = `
+  box-shadow: none;
+  color: ${tokens.color.blackDisabled};
+  cursor: not-allowed;
+  text-decoration: none;
+  text-shadow: none;
 
-//   &:focus {
-//     box-shadow: none;
-//     text-shadow: none;
-//     transform: none;
-//   }
+  &:focus {
+    box-shadow: none;
+    text-shadow: none;
+    transform: none;
+  }
 
-//   &, &:hover, &:focus {
-//     background: ${tokens.color.blackLighten70};
-//     border-color: ${tokens.color.blackLighten60};
-//     color: ${tokens.color.blackLighten40};
-//     text-decoration: none;
-//   }
-// `;
-
-// const disabledTextStyles = `
-//   ${disabledStyles}
-
-//   &, &:hover {
-//     background: none;
-//     border-color: transparent;
-//   }
-// `;
+  &, &:hover, &:focus {
+    background: ${tokens.color.blackLighten70};
+    border-color: ${tokens.color.blackLighten60};
+    color: ${tokens.color.blackLighten40};
+    text-decoration: none;
+  }
+`;
 
 const activeStyles = `
   box-shadow: ${tokens.highlight.active.noBorder.boxShadow};
@@ -79,4 +70,5 @@ export const cardStyles = styled(commonStyles)`
   ${props => sizeStyles[props.size]}
   ${props => (props.isActive ? activeStyles : "")}
   ${props => (props.isFullWidth ? fullWidthStyles : "")}
+  ${props => (props.isDisabled ? disabledStyles : "")}
 `;

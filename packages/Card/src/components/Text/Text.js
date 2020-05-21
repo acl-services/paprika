@@ -15,7 +15,7 @@ const Text = props => {
   const { children } = props;
 
   return (
-    <sc.textStyles data-pka-anchor="card.text" {...props}>
+    <sc.textStyles title={children} data-pka-anchor="card.text" {...props}>
       {children}
     </sc.textStyles>
   );
