@@ -72,13 +72,13 @@ export default () => {
               <Card size="small">
                 <Card.Content>
                   <Card.Title>{asset.title}</Card.Title>
-                  <Card.MetaData>
+                  <Card.Metadata>
                     {asset.attrTypes ? asset.attrTypes.concat(" attribute types") : ""}{" "}
                     {asset.questions ? asset.questions.concat(" questions") : ""}
-                  </Card.MetaData>
+                  </Card.Metadata>
                   <Card.Seperator />
-                  <Card.MetaData>Created by {asset.creator}</Card.MetaData>
-                  <Card.MetaData>Last updated by {asset.updatedBy}</Card.MetaData>
+                  <Card.Metadata>Created by {asset.creator}</Card.Metadata>
+                  <Card.Metadata>Last updated by {asset.updatedBy}</Card.Metadata>
                 </Card.Content>
               </Card>
             </div>

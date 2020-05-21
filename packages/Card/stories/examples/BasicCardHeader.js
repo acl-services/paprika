@@ -42,7 +42,7 @@ export default () => {
                 </Card.Header>
                 <Card.Content>
                   <Card.Title>{asset.title}</Card.Title>
-                  <Card.MetaData>{asset.total} total</Card.MetaData>
+                  <Card.Metadata>{asset.total} total</Card.Metadata>
                 </Card.Content>
               </Card>
             </div>

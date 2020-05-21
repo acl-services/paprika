@@ -15,7 +15,7 @@ export default () => {
         </Card.Header>
         <Card.Content>
           <Card.Title>Card</Card.Title>
-          <Card.MetaData>100,000 total</Card.MetaData>
+          <Card.Metadata>100,000 total</Card.Metadata>
         </Card.Content>
       </Card>
     </Story>

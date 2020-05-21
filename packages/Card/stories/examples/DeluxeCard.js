@@ -29,8 +29,8 @@ export default () => {
             <Button kind="minor">Archive</Button>
           </div>
           <Card.Seperator size="small" />
-          <Card.MetaData>Created by Cory McBain</Card.MetaData>
-          <Card.MetaData>Last updated by Charles Bradley</Card.MetaData>
+          <Card.Metadata>Created by Cory McBain</Card.Metadata>
+          <Card.Metadata>Last updated by Charles Bradley</Card.Metadata>
           <Button kind="link">See full activity log</Button>
         </Card.Content>
       </Card>

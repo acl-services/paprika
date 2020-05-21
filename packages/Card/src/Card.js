@@ -4,7 +4,7 @@ import { ShirtSizes } from "@paprika/helpers/lib/customPropTypes";
 import * as sc from "./Card.styles";
 import Footer from "./components/Footer";
 import Title from "./components/Title";
-import MetaData from "./components/MetaData";
+import Metadata from "./components/Metadata";
 import Header from "./components/Header";
 import Text from "./components/Text";
 import Seperator from "./components/Seperator";
@@ -62,7 +62,7 @@ Card.defaultProps = defaultProps;
 
 Card.Header = Header;
 Card.Title = Title;
-Card.MetaData = MetaData;
+Card.Metadata = Metadata;
 Card.Footer = Footer;
 Card.Text = Text;
 Card.Seperator = Seperator;

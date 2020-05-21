@@ -91,12 +91,12 @@ export default () => {
                 </Card.Header>
                 <Card.Content>
                   <Card.Title>{props.title}</Card.Title>
-                  <Card.MetaData>{props.meta1}</Card.MetaData>
+                  <Card.Metadata>{props.meta1}</Card.Metadata>
                   <Card.Seperator size="small" />
                   <Card.Text>{props.text}</Card.Text>
                   <Card.Seperator size="small" />
-                  <Card.MetaData>{props.meta2}</Card.MetaData>
-                  <Card.MetaData>{props.meta3}</Card.MetaData>
+                  <Card.Metadata>{props.meta2}</Card.Metadata>
+                  <Card.Metadata>{props.meta3}</Card.Metadata>
                 </Card.Content>
                 <Card.Footer>{props.footer1}</Card.Footer>
               </Card>
