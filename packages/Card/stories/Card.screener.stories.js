@@ -1,26 +1,18 @@
 import React from "react";
-import { storiesOf } from "@storybook/react";
+import Screener from "./examples/Screener";
 
-import BasicIconCard from "./examples/BasicIconCard";
-import DeluxeCard from "./examples/DeluxeCard";
-import BasicCardHeader from "./examples/BasicCardHeader";
-import BasicCardContent from "./examples/BasicCardContent";
-import MultipleCard from "./examples/MultipleCard";
+export default {
+  title: " | Card/Automation Tests",
+};
 
-storiesOf("Card", module).add("Showcase", BasicIconCard);
+export const screener = () => <Screener />;
 
-storiesOf("Card/Example", module)
-  .add("Deluxe Card", () => {
-    return <DeluxeCard />;
-  })
-
-  .add("Card with Header", () => {
-    return <BasicCardHeader />;
-  })
-
-  .add("Card with Content", () => {
-    return <BasicCardContent />;
-  })
-  .add("Multiple Card Icons", () => {
-    return <MultipleCard />;
-  });
+screener.story = {
+  parameters: {
+    docs: { page: null },
+    options: {
+      isToolshown: true,
+      showPanel: false,
+    },
+  },
+};
