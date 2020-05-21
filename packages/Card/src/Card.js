@@ -14,8 +14,11 @@ const propTypes = {
   /** Body content of the button. */
   children: PropTypes.node,
 
+  /** If the width of the card should span it's parent container (100%). */
+  isFullWidth: PropTypes.bool,
+
   /** If the button is in an "active" or "selected" state. */
-  // isActive: PropTypes.bool,
+  isActive: PropTypes.bool,
 
   /** If the button is disabled. */
   // isDisabled: PropTypes.bool,
@@ -30,17 +33,20 @@ const propTypes = {
 const defaultProps = {
   children: null,
   size: ShirtSizes.MEDIUM,
-  // isActive: false,
+  isFullWidth: false,
+  isActive: false,
   // isDisabled: false,
   // onClick: () => {},
 };
 
 const Card = props => {
-  const { children, size } = props;
+  const { children, size, isFullWidth, isActive } = props;
 
   const cardProps = {
     children,
     size,
+    isFullWidth,
+    isActive,
   };
 
   return (
