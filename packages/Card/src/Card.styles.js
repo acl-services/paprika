@@ -11,6 +11,7 @@ const commonStyles = styled.div`
   box-shadow: ${tokens.shadow};
   display: flex;
   flex-direction: column;
+  overflow: hidden;
   position: relative;
 `;
 
@@ -36,6 +37,11 @@ const sizeStyles = {
 const fullWidthStyles = `
   display: flex;
   width: 100%;
+`;
+
+const autoHeightStyles = `
+  display: flex;
+  height: auto;
 `;
 
 // States
@@ -70,5 +76,6 @@ export const cardStyles = styled(commonStyles)`
   ${props => sizeStyles[props.size]}
   ${props => (props.isActive ? activeStyles : "")}
   ${props => (props.isFullWidth ? fullWidthStyles : "")}
+  ${props => (props.isAutoHeight ? autoHeightStyles : "")}
   ${props => (props.isDisabled ? disabledStyles : "")}
 `;

@@ -11,6 +11,7 @@ export const footerStyles = styled.div`
   ${stylers.fontSize(-1)};
   left: 0;
   min-height: 40px;
+  overflow: hidden;
   padding: ${tokens.spaceLg};
   position: absolute;
   width: 100%;

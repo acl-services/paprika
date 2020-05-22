@@ -30,6 +30,7 @@ npm install @paprika/card
 
 The Card comes with several sub-components that can be sued to quickly create a desirable looking card. All sub-components have preset stylings. Alternatively users can choose to pass in their own elements. The following are a list of the available sub-components:
 
+
 - `<Card.Header/>`
 The header sub-component allows you to add a header section to the card.
 
@@ -54,6 +55,7 @@ The footer sub-component allows you to add a footer section to the card.
 ### Small Card
 
 To create a small card simply add the size property to the `<Card/>` element and set it's value to small. You can then add several children elements of your choice.
+
 Note: The sizes are fixed therefore consideration will have to be given to size of content passed into the Card.
 
 ```js
@@ -76,6 +78,7 @@ Note: The sizes are fixed therefore consideration will have to be given to size 
 ### Medium Card
 
 To create a medium card simply add the size property to the ```<Card/>``` element and set it's value to medium. You can then add several children elements of your choice.
+
 Note: The sizes are fixed therefore consideration will have to be given to size of content passed into the Card.
 
 ```js
@@ -114,7 +117,9 @@ Note: The sizes are fixed therefore consideration will have to be given to size 
 
 ### Large Card
 
+
 To create a large card simply add the size property to the ```<Card/>``` element and set it's value to large. You can then add several children elements of your choice.
+
 Note: The sizes are fixed therefore consideration will have to be given to size of content passed into the Card.
 
 ```js
@@ -169,4 +174,27 @@ You can change the Card to be the full width of it's parent container by adding 
 
 #### Result
 
+
 <Card size="small" isFullWidth><Card.Header><Avatar><Icon /></Avatar></Card.Header><Card.Content><Card.Title>Card</Card.Title><Card.Metadata>100,000 total</Card.Metadata></Card.Content></Card>
+
+### Making the Card height auto
+
+You can change the Card to be the full height based of the children elements passed into the card by adding the isAutoHeight property to the `<Card/>` component and setting it to true.
+
+```js
+<Card size="small" isAutoHeight='true'>
+    <Card.Header>
+        <Avatar>
+        <Icon />
+        </Avatar>
+    </Card.Header>
+    <Card.Content>
+        <Card.Title>Card</Card.Title>
+        <Card.Metadata>100,000 total</Card.Metadata>
+    </Card.Content>
+</Card>
+```
+
+#### Result
+
+<Card size="small" isAutoHeight='true'><Card.Header><Avatar><Icon /></Avatar></Card.Header><Card.Content><Card.Title>Card</Card.Title><Card.Metadata>100,000 total</Card.Metadata></Card.Content></Card>
