@@ -1,24 +1,24 @@
 import React from "react";
 import { storiesOf } from "@storybook/react";
 
-import BasicIconCard from "./examples/BasicIconCard";
+import CardStory from "./examples/CardStory";
 import DeluxeCard from "./examples/DeluxeCard";
-import BasicCardHeader from "./examples/BasicCardHeader";
+import BasicCard from "./examples/BasicCard";
 import BasicCardContent from "./examples/BasicCardContent";
 import MultipleCard from "./examples/MultipleCard";
 
-storiesOf("Card", module).add("Showcase", BasicIconCard);
+storiesOf("Card", module).add("Showcase", CardStory);
 
-storiesOf("Card/Example", module)
+storiesOf("Card/Examples", module)
+  .add("Basic Card with Icon", () => {
+    return <BasicCard />;
+  })
+
   .add("Deluxe Card", () => {
     return <DeluxeCard />;
   })
 
-  .add("Card with Header", () => {
-    return <BasicCardHeader />;
-  })
-
-  .add("Card with Content", () => {
+  .add("Basic Card with Content", () => {
     return <BasicCardContent />;
   })
   .add("Multiple Card Icons", () => {

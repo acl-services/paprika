@@ -1,11 +1,17 @@
 import React from "react";
-import { Story } from "storybook/assets/styles/common.styles";
-import BasicIconCard from "./BasicIconCard";
+import { Story, Rule } from "storybook/assets/styles/common.styles";
+import BasicCard from "./BasicCard";
+import DeluxeCard from "./DeluxeCard";
+import MultipleCard from "./MultipleCard";
 
 const ExampleStory = () => {
   return (
     <Story>
-      <BasicIconCard />
+      <BasicCard />
+      <Rule />
+      <DeluxeCard />
+      <Rule />
+      <MultipleCard />
     </Story>
   );
 };
