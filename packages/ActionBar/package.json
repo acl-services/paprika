@@ -1,0 +1,42 @@
+{
+  "name": "@paprika/action-bar",
+  "version": "0.1.5",
+  "description": "ActionBar",
+  "author": "@paprika",
+  "license": "MIT",
+  "main": "lib/index.js",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/acl-services/paprika/tree/master/packages/ActionBar"
+  },
+  "publishConfig": {
+    "access": "public"
+  },
+  "dependencies": {
+    "@babel/runtime-corejs2": "^7.3.1",
+    "@paprika/button": "^0.2.26",
+    "@paprika/date-picker": "^0.5.31",
+    "@paprika/dropdown-menu": "^2.0.25",
+    "@paprika/helpers": "^0.2.11",
+    "@paprika/icon": "^0.3.3",
+    "@paprika/input": "^0.2.28",
+    "@paprika/popover": "^0.3.23",
+    "@paprika/raw-button": "^0.2.11",
+    "@paprika/select": "^0.2.16",
+    "@paprika/sortable": "^0.2.26",
+    "@paprika/stylers": "^0.2.7",
+    "@paprika/switch": "^0.2.19",
+    "@paprika/tokens": "^0.1.14",
+    "immer": "^6.0.2",
+    "lodash.debounce": "^4.0.8",
+    "nanoid": "^2.1.7",
+    "prop-types": "^15.7.2"
+  },
+  "peerDependencies": {
+    "@paprika/l10n": "^0.3.16",
+    "moment": "^2.18.1",
+    "react": "^16.8.4",
+    "react-dom": "^16.8.4",
+    "styled-components": "^4.3.1"
+  }
+}

@@ -26,7 +26,7 @@ const propTypes = {
   /** Date format used while displaying date. It should be human-friendly and spelled out, default is MMMM DD,YYYY */
   humanFormat: PropTypes.string,
 
-  /** ID for the <input>. */
+  /** ID for the `<input>`. */
   id: PropTypes.string,
 
   /** Should be disabled or not, default is false. */

@@ -1,12 +1,13 @@
 import React from "react";
 import { storiesOf } from "@storybook/react";
 import { withKnobs, boolean, select } from "@storybook/addon-knobs";
+import { Story, Rule, Tagline, repeat } from "storybook/assets/styles/common.styles";
 import styled from "styled-components";
 import Button from "@paprika/button";
 import SidePanel from "@paprika/sidepanel";
 import Popover from "@paprika/popover";
+import Heading from "@paprika/heading";
 import InfoIcon from "@paprika/icon/lib/InfoCircle";
-import { repeat } from "storybook/assets/styles/common.styles";
 import Takeover from "../src";
 
 /* Long block to test body scroll locking */
@@ -28,7 +29,8 @@ const TakeoverStory = ({ children }) => {
   return (
     <LongBlock>
       <Button onClick={toggle}>Open</Button>
-      <Takeover isOpen={isOpen} onClose={toggle}>
+      <Takeover isOpen={isOpen} onClose={toggle} a11yText="Takeover View">
+        <Takeover.Overlay />
         <Takeover.Header
           hasCloseButton={boolean("Has close button", true, "Takeover.Header")}
           kind={select("Kind", ["default", "primary"], "default", "Takeover.Header")}
@@ -41,8 +43,26 @@ const TakeoverStory = ({ children }) => {
   );
 };
 
+const Example = () => (
+  <Story>
+    <Heading level={1} displayLevel={2} isLight>
+      <code>&lt;Takeover /&gt;</code>
+    </Heading>
+    <Tagline>
+      <b>Showcase</b> – Interact with the props API
+    </Tagline>
+    <Rule />
+    <Takeover />
+  </Story>
+);
+
+storiesOf("Takeover", module).add("Showcase", () => {
+  return <Example />;
+});
+
 storiesOf("Takeover", module)
   .addDecorator(withKnobs)
+
   .add("Basic", () => (
     <TakeoverStory>
       <Takeover.Content>
@@ -58,6 +78,7 @@ storiesOf("Takeover", module)
       <DemoFullWidthContent />
     </TakeoverStory>
   ))
+
   .add("with nested SidePanel", () =>
     React.createElement(() => {
       const [isOpen, setIsOpen] = React.useState(false);
@@ -80,6 +101,7 @@ storiesOf("Takeover", module)
       );
     })
   )
+
   .add("with nested Popover", () => (
     <TakeoverStory>
       <Takeover.Content>
@@ -87,14 +109,14 @@ storiesOf("Takeover", module)
           This example demonstrates how the Popover handles focus when created inside of a Takeover. Click the icons
           below to see how the popovers behave.
         </p>
-        <Popover>
+        <Popover zIndex={11}>
           <Popover.Trigger>
             <InfoIcon />
           </Popover.Trigger>
           <Popover.Content>
             <Popover.Card>
               <p>
-                Try <a href="http://www.google.ca">clicking this</a> with the mouse or keyboard...
+                Try <a href="https://design.wegalvanize.com/">clicking this</a> with the mouse or keyboard...
               </p>
             </Popover.Card>
           </Popover.Content>
@@ -103,6 +125,7 @@ storiesOf("Takeover", module)
       </Takeover.Content>
     </TakeoverStory>
   ))
+
   .add("with autofocus disabled", () => (
     <TakeoverStory>
       <Takeover.FocusLock autoFocus={false} />
@@ -111,13 +134,70 @@ storiesOf("Takeover", module)
       </Takeover.Content>
     </TakeoverStory>
   ))
+
   .add("with autofocus on input", () => (
     <TakeoverStory>
       <Takeover.Content>
         <input type="text" data-autofocus />
       </Takeover.Content>
     </TakeoverStory>
-  ));
+  ))
+
+  .add("Z Index", () => {
+    const [isOpen, setIsOpen] = React.useState(false);
+    const toggle = () => {
+      setIsOpen(state => !state);
+    };
+
+    return (
+      <div
+        css={`
+          padding: 24px;
+        `}
+      >
+        <Button onClick={toggle}>Open Takeover</Button>
+        <Takeover isOpen={isOpen} onClose={toggle} zIndex={999}>
+          <Takeover.Header
+            hasCloseButton={boolean("Has close button", true, "Takeover.Header")}
+            kind={select("Kind", ["default", "primary"], "default", "Takeover.Header")}
+          >
+            Header
+          </Takeover.Header>
+          <Takeover.Content>
+            <p>
+              The <code>zIndex</code> prop of this <code>&lt;Takeover&gt;</code> is also <code>99</code>.
+            </p>
+            <p>
+              Because the content is renderered as a <code>&lt;Portal&gt;</code> at the end of the DOM, it will be
+              painted on top.
+            </p>
+            {repeat(8, key => (
+              <p key={key}>
+                VHS adaptogen ethical butcher banjo vaporware street art air plant listicle irony post-ironic
+                lumbersexual.
+              </p>
+            ))}
+          </Takeover.Content>
+        </Takeover>
+        <div
+          css={`
+            position: relative;
+            z-index: 99;
+          `}
+        >
+          <p>
+            The <code>z-index</code> of this content is <code>99</code>.
+          </p>
+          {repeat(8, key => (
+            <p key={key}>
+              Quinoa palo santo cold-pressed disrupt typewriter. Disrupt distillery tacos artisan taxidermy gastropub
+              hexagon meggings.
+            </p>
+          ))}
+        </div>
+      </div>
+    );
+  });
 
 storiesOf("Takeover / screener", module)
   .add("focus lock content input", () => (
@@ -128,6 +208,7 @@ storiesOf("Takeover / screener", module)
       </Takeover.Content>
     </TakeoverStory>
   ))
+
   .add("focus lock disabled", () => (
     <TakeoverStory>
       <Takeover.FocusLock autoFocus={false} />

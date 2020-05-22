@@ -22,8 +22,11 @@ import {
 
 const propTypes = {
   date: PropTypes.instanceOf(moment).isRequired,
+  /** If the ShortcutPanel is set to be visible */
   isVisible: PropTypes.bool.isRequired,
+  /** Function to call when cancel button is clicked. */
   onCancel: PropTypes.func.isRequired,
+  /** Function to call when primary button is clicked. */
   onConfirm: PropTypes.func.isRequired,
 };
 

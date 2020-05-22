@@ -7,5 +7,5 @@ import BasicExample from "./examples/Basic";
 
 storiesOf("CollapsibleChecklists", module)
   .addDecorator(withKnobs)
-  .add("Basic", () => <BasicExample />)
+  .add("Showcase", () => <BasicExample />)
   .add("Advanced", () => <AdvancedExample />);

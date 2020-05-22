@@ -5,9 +5,16 @@ import { ShirtSizes } from "@paprika/helpers/lib/customPropTypes";
 import SpinnerStyles from "./Spinner.styles";
 
 const propTypes = {
+  /** Descriptive a11y text for assistive technologies. By default, text from children node will be used. */
   a11yText: PropTypes.string,
+
+  /** Sets the className for the spinner */
   className: PropTypes.string,
+
+  /** Sets the caption that will display beneath the spinner */
   caption: PropTypes.string,
+
+  /** Sets the size of the spinner */
   size: PropTypes.oneOf(ShirtSizes.DEFAULT),
 };
 

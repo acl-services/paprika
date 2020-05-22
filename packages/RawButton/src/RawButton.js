@@ -2,6 +2,7 @@
 
 import React from "react";
 import PropTypes from "prop-types";
+import "what-input";
 import rawButtonStyles from "./RawButton.styles";
 
 const propTypes = {

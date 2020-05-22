@@ -3,7 +3,7 @@ import Screener from "./examples/Screener";
 import { defaultParameters } from "./CollapsibleText.stories.helpers";
 
 export default {
-  title: " | CollapsibleText/ Automation Tests",
+  title: " | Collapsible Text/ Automation Tests",
 };
 
 export const screener = () => <Screener />;

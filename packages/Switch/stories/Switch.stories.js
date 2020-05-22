@@ -1,20 +1,30 @@
 import React from "react";
 import { storiesOf } from "@storybook/react";
+import { Story, Rule, Tagline } from "storybook/assets/styles/common.styles";
 import { boolean, select, text, withKnobs } from "@storybook/addon-knobs";
-import { Story } from "storybook/assets/styles/common.styles";
 import { ShirtSizes } from "@paprika/helpers/lib/customPropTypes";
+import Heading from "@paprika/heading";
 import Example from "./SwitchExample";
 
 storiesOf("Switch", module)
   .addDecorator(withKnobs)
   .add("Showcase", () => {
     return (
-      <Example
-        a11yText={text("a11yText", "")}
-        canPropagate={boolean("canPropagate", true)}
-        isDisabled={boolean("isDisabled", false)}
-        size={select("size", ShirtSizes.DEFAULT, "medium")}
-      />
+      <Story>
+        <Heading level={1} displayLevel={2} isLight>
+          <code>&lt;Switch /&gt;</code>
+        </Heading>
+        <Tagline>
+          <b>Showcase</b> – Interact with the props API
+        </Tagline>
+        <Rule />
+        <Example
+          a11yText={text("a11yText", "")}
+          canPropagate={boolean("canPropagate", true)}
+          isDisabled={boolean("isDisabled", false)}
+          size={select("size", ShirtSizes.DEFAULT, "medium")}
+        />
+      </Story>
     );
   })
   .add("Switch sizes", () => {

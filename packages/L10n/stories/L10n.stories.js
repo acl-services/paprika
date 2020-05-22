@@ -7,6 +7,9 @@ import FakeAppWithLocales from "./examples/withLocales/FakeAppWithLocales";
 
 storiesOf("L10n", module)
   .addDecorator(withKnobs)
+  .add("Showcase", () => (
+    <FakeAppWithContext locale={select("locale", ["en", "de", "fr", "es", "pt", "pl", "ja", "zh"], "de")} />
+  ))
   .add("With Context", () => (
     <FakeAppWithContext locale={select("locale", ["en", "de", "fr", "es", "pt", "pl", "ja", "zh"], "de")} />
   ))

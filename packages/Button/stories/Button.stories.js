@@ -7,6 +7,7 @@ import Basic from "./examples/Basic";
 import NewRef from "./examples/NewRef";
 import OldRef from "./examples/OldRef";
 import CloseButtonRef from "./examples/CloseButtonRef";
+import Focus from "./examples/Focus";
 
 import CommonButtons from "./examples/CommonButtons";
 import ButtonStates from "./examples/ButtonStates";
@@ -22,7 +23,8 @@ storiesOf("Button/Examples", module)
   .add("Ref", () => <NewRef />)
   .add("Old Ref", () => <OldRef />)
   .add("Button.Close Ref", () => <CloseButtonRef />)
-  .add("Button onSubmit", () => <ButtonSubmit />);
+  .add("Button onSubmit", () => <ButtonSubmit />)
+  .add("Focus", () => <Focus />);
 
 storiesOf("Button/Starling", module)
   .add("Common Buttons", () => <CommonButtons />)

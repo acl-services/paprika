@@ -6,7 +6,7 @@ import { defaultParameters } from "./CollapsibleText.stories.helpers";
 import CollapsibleText from "../src";
 
 export default {
-  title: " | CollapsibleText",
+  title: " | Collapsible Text",
   component: CollapsibleText,
 };
 
@@ -16,6 +16,7 @@ const showcaseParameters = Object.assign({}, defaultParameters, {
     selectedPanel: "storybook/knobs/panel",
     panelPosition: "right",
   },
+  viewMode: "story",
 });
 
 export const showcase = Showcase;

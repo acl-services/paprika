@@ -1,8 +1,10 @@
 import React from "react";
 import moment from "moment";
 import { storiesOf } from "@storybook/react";
+import { Story, Rule, Tagline } from "storybook/assets/styles/common.styles";
 import { boolean, select, text, withKnobs } from "@storybook/addon-knobs";
 import L10n from "@paprika/l10n";
+import Heading from "@paprika/heading";
 import DateInput from "../src";
 
 const DateInputExample = props => {
@@ -19,6 +21,23 @@ const DateInputExample = props => {
     </React.Fragment>
   );
 };
+
+const Example = () => (
+  <Story>
+    <Heading level={1} displayLevel={2} isLight>
+      <code>&lt;DateInput /&gt;</code>
+    </Heading>
+    <Tagline>
+      <b>Showcase</b> – Interact with the props API
+    </Tagline>
+    <Rule />
+    <DateInput />
+  </Story>
+);
+
+storiesOf("DateInput", module).add("Showcase", () => {
+  return <Example />;
+});
 
 storiesOf("DateInput", module)
   .addDecorator(withKnobs)
