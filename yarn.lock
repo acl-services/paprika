@@ -3189,6 +3189,16 @@
     "@svgr/cli" "^4.1.0"
     prop-types "^15.7.2"
 
+"@paprika/icon@^0.2.15":
+  version "0.2.16"
+  resolved "https://registry.yarnpkg.com/@paprika/icon/-/icon-0.2.16.tgz#689b394e9828dd624cd825897f20aa9dea82d42d"
+  integrity sha512-kEPN6+fS3O4e6w7PZv+zqpDqeRcz1oMLu3+/wN+NJ70sM9kOgJVErps+ULELF8AafWvYLZVQSVwJpO0BBABJqQ==
+  dependencies:
+    "@babel/runtime-corejs2" "^7.3.1"
+    "@paprika/tokens" "^0.1.14"
+    "@svgr/cli" "^4.1.0"
+    prop-types "^15.7.2"
+
 "@paprika/stylers@^0.1.5":
   version "0.1.7"
   resolved "https://registry.yarnpkg.com/@paprika/stylers/-/stylers-0.1.7.tgz#ae3328853fea2c463af070bdeafdec9ac34d3d9c"

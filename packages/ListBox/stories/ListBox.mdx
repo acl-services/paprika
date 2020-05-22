@@ -1,7 +1,6 @@
 import { Meta, Props, Story } from "@storybook/addon-docs/blocks";
 import ListBox from "../src/";
 
-import { ImageOption } from "./stories.styles";
 import { images } from "./fixtures/images";
 import * as characters from "./fixtures/characters";
 
@@ -90,9 +89,7 @@ You can customize the list options of your ListBox by changing the key and label
 <ListBox height={320}>
   {images.map(image => (
     <ListBox.Option key={image.src} label={image.label}>
-      <ImageOption>
         <img alt={image.label} src={image.src} />
-      </ImageOption>
     </ListBox.Option>
   ))}
 </ListBox>
@@ -100,7 +97,7 @@ You can customize the list options of your ListBox by changing the key and label
 
 #### Result
 
-<ListBox height={320}>{images.map(image => (<ListBox.Option key={image.src} label={image.label}><ImageOption><img alt={image.label} src={image.src} /></ImageOption></ListBox.Option>))}</ListBox>
+<ListBox height={320}>{images.map(image => (<ListBox.Option key={image.src} label={image.label}><img alt={image.label} src={image.src} /></ListBox.Option>))}</ListBox>
 
 ### Adding inline to the ListBox
 
