@@ -61,7 +61,8 @@ export default () => {
       avatar: "V",
       title: "Vendor",
       meta1: "12 total",
-      text: "Kanye is the only one who can edit this.",
+      text:
+        "Kanye is the only one who can edit this. Kanye is the only one who can edit this. Kanye is the only one who can edit this. Kanye is the only one who can edit this.",
       meta2: "Created by Cory McBain",
       meta3: "Updated 3 months ago by Charles Bradley",
       footer1: "150 attribute types",
@@ -102,7 +103,7 @@ export default () => {
                   <Card.Title>{props.title}</Card.Title>
                   <Card.Metadata>{props.meta1}</Card.Metadata>
                   <Card.Seperator size="small" />
-                  <Card.Text>{props.text}</Card.Text>
+                  <Card.Text isTruncate>{props.text}</Card.Text>
                   <Card.Seperator size="small" />
                   <Card.Metadata>{props.meta2}</Card.Metadata>
                   <Card.Metadata>{props.meta3}</Card.Metadata>

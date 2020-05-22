@@ -11,19 +11,19 @@ import Seperator from "./components/Seperator";
 import Content from "./components/Content";
 
 const propTypes = {
-  /** Body content of the button. */
+  /** Body content of the card. */
   children: PropTypes.node,
 
   /** If the width of the card should span it's parent container (100%). */
   isFullWidth: PropTypes.bool,
 
-  /** If the button is in an "active" or "selected" state. */
+  /** If the card is in an "active" or "selected" state. */
   isActive: PropTypes.bool,
 
-  /** If the button is disabled. */
+  /** If the card is disabled. */
   isDisabled: PropTypes.bool,
 
-  /** Callback to be executed when the button is clicked or activated by keyboard. Typically required. */
+  /** Callback to be executed when the card is clicked or activated by keyboard. Typically required. */
   onClick: PropTypes.func,
 
   /** Size of the card (font size, min-height, padding, etc). */
