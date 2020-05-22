@@ -35,29 +35,37 @@ npm install @paprika/card
 The Card comes with several sub-components that can be sued to quickly create a desirable looking card. All sub-components have preset stylings. Alternatively users can choose to pass in their own elements. The following are a list of the available sub-components:
 
 - ```<Card.Header></Card.Header>```
+
 The header sub-component allows you to add a header section to the card.
 
 - ```<Card.Content></Card.Content>```
+
 The content sub-component allows you to add a container that can section of a part of the card.
 
 - ```<Card.Title></Card.Title>```
+
 The title sub-component allows you to add a title to the card.
 
 - ```<Card.Seperator></Card.Seperator>```
+
 The seperator sub-component allows you to add space to the card, you can adjust the size of the seperator with its size property (small, medium, and large).
 
 - ```<Card.Text></Card.Text>```
+
 The text sub-component allows you to add a text body to the card.
 
 - ```<Card.Metadata></Card.Metadata>```
+
 The metadata sub-component allows you to add metadata to the card.
 
 - ```<Card.Footer></Card.Footer>```
+
 The footer sub-component allows you to add a footer section to the card.
 
 ### Small Card
 
 To create a small card simply add the size property to the ```<Card></Card>``` element and set it's value to small. You can then add several children elements of your choice.
+
 Note: The sizes are fixed therefore consideration will have to be given to size of content passed into the Card.
 
 ```js
@@ -80,6 +88,7 @@ Note: The sizes are fixed therefore consideration will have to be given to size 
 ### Medium Card
 
 To create a medium card simply add the size property to the ```<Card></Card>``` element and set it's value to medium. You can then add several children elements of your choice.
+
 Note: The sizes are fixed therefore consideration will have to be given to size of content passed into the Card.
 
 ```js
@@ -119,6 +128,7 @@ Note: The sizes are fixed therefore consideration will have to be given to size 
 ### Large Card
 
 To create a large card simply add the size property to the ```<Card></Card>``` element and set it's value to large. You can then add several children elements of your choice.
+
 Note: The sizes are fixed therefore consideration will have to be given to size of content passed into the Card.
 
 ```js
@@ -174,3 +184,25 @@ You can change the Card to be the full with of it's parent container by adding t
 #### Result
 
 <Card size="small" isFullWidth='true'><Card.Header><Avatar><Icon /></Avatar></Card.Header><Card.Content><Card.Title>Card</Card.Title><Card.Metadata>100,000 total</Card.Metadata></Card.Content></Card>
+
+### Making the Card height auto
+
+You can change the Card to be the full height based of the children elements passed into the card by adding the isAutoHeight property to the ```<Card></Card>``` component and setting it to true.
+
+```js
+<Card size="small" isAutoHeight='true'>
+    <Card.Header>
+        <Avatar>
+        <Icon />
+        </Avatar>
+    </Card.Header>
+    <Card.Content>
+        <Card.Title>Card</Card.Title>
+        <Card.Metadata>100,000 total</Card.Metadata>
+    </Card.Content>
+</Card>
+```
+
+#### Result
+
+<Card size="small" isAutoHeight='true'><Card.Header><Avatar><Icon /></Avatar></Card.Header><Card.Content><Card.Title>Card</Card.Title><Card.Metadata>100,000 total</Card.Metadata></Card.Content></Card>

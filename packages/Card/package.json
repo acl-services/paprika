@@ -1,6 +1,6 @@
 {
   "name": "@paprika/card",
-  "version": "0.0.1",
+  "version": "0.1.0",
   "description": "The Card component is a customizable content container.",
   "author": "@paprika",
   "main": "lib/index.js",
