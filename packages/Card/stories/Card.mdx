@@ -1,16 +1,12 @@
 import { Meta, Props, Story } from "@storybook/addon-docs/blocks";
 import Card from "../src/";
-
-import Input from "../src/Input";
-import Checkbox from "../src/Checkbox";
-import Textarea from "../src/Textarea";
-import Button from "../src/Button";
+import DeluxeCard from "./examples/DeluxeCard.js";
 import Icon from "@paprika/icon/lib/Lock";
 import Avatar from "../src/components/Avatar";
 
 # Card
 
-The <Card> component is a customizable content container. It comes with subcomponents that allow for quick and easy creation of various card types for different use cases. Additionally any other child elements can be passed into the Card.
+The `<Card>` component is a customizable content container. It comes with subcomponents that allow for quick and easy creation of various card types for different use cases. Additionally any other child elements can be passed into the Card.
 
 
 Main features:
@@ -34,30 +30,30 @@ npm install @paprika/card
 
 The Card comes with several sub-components that can be sued to quickly create a desirable looking card. All sub-components have preset stylings. Alternatively users can choose to pass in their own elements. The following are a list of the available sub-components:
 
-- ```<Card.Header></Card.Header>```
+- `<Card.Header/>`
 The header sub-component allows you to add a header section to the card.
 
-- ```<Card.Content></Card.Content>```
+- `<Card.Content/>`
 The content sub-component allows you to add a container that can section of a part of the card.
 
-- ```<Card.Title></Card.Title>```
+- `<Card.Title/>`
 The title sub-component allows you to add a title to the card.
 
-- ```<Card.Seperator></Card.Seperator>```
-The seperator sub-component allows you to add space to the card, you can adjust the size of the seperator with its size property (small, medium, and large).
+- `<Card.Separator/>`
+The separator sub-component allows you to add space to the card, you can adjust the size of the separator with its size property (small, medium, and large).
 
-- ```<Card.Text></Card.Text>```
+- `<Card.Text/>`
 The text sub-component allows you to add a text body to the card.
 
-- ```<Card.Metadata></Card.Metadata>```
+- `<Card.Metadata/>`
 The metadata sub-component allows you to add metadata to the card.
 
-- ```<Card.Footer></Card.Footer>```
+- `<Card.Footer/>`
 The footer sub-component allows you to add a footer section to the card.
 
 ### Small Card
 
-To create a small card simply add the size property to the ```<Card></Card>``` element and set it's value to small. You can then add several children elements of your choice.
+To create a small card simply add the size property to the `<Card/>` element and set it's value to small. You can then add several children elements of your choice.
 Note: The sizes are fixed therefore consideration will have to be given to size of content passed into the Card.
 
 ```js
@@ -79,7 +75,7 @@ Note: The sizes are fixed therefore consideration will have to be given to size 
 
 ### Medium Card
 
-To create a medium card simply add the size property to the ```<Card></Card>``` element and set it's value to medium. You can then add several children elements of your choice.
+To create a medium card simply add the size property to the ```<Card/>``` element and set it's value to medium. You can then add several children elements of your choice.
 Note: The sizes are fixed therefore consideration will have to be given to size of content passed into the Card.
 
 ```js
@@ -90,9 +86,9 @@ Note: The sizes are fixed therefore consideration will have to be given to size 
     <Card.Content>
         <Card.Title>Example</Card.Title>
         <Card.Metadata>metadata</Card.Metadata>
-        <Card.Seperator size="small" />
+        <Card.Separator size="small" />
         <Card.Text>This is an example of a medium sized Card</Card.Text>
-        <Card.Seperator size="small" />
+        <Card.Separator size="small" />
         <Card.Metadata>Created by Kaan</Card.Metadata>
         <Card.Metadata>Last updated by Karen</Card.Metadata>
     </Card.Content>
@@ -114,11 +110,11 @@ Note: The sizes are fixed therefore consideration will have to be given to size 
 
 #### Result
 
-<Card size="medium"><Card.Header><Avatar isRandomBackground>E</Avatar></Card.Header><Card.Content><Card.Title>Example</Card.Title><Card.Metadata>metadata</Card.Metadata><Card.Seperator size="small" /><Card.Text>This is an example of a medium sized Card</Card.Text><Card.Seperator size="small" /><Card.Metadata>Created by Kaan</Card.Metadata><Card.Metadata>Last updated by Karen</Card.Metadata></Card.Content><Card.Footer><div style={{ display: "flex", flexDirection: "row", justifyContent: "space-between", alignItems: "center",}}><span>150 attributes</span><span>10 questions</span></div></Card.Footer></Card>
+<Card size="medium"><Card.Header><Avatar isRandomBackground>E</Avatar></Card.Header><Card.Content><Card.Title>Example</Card.Title><Card.Metadata>metadata</Card.Metadata><Card.Separator size="small" /><Card.Text>This is an example of a medium sized Card</Card.Text><Card.Separator size="small" /><Card.Metadata>Created by Kaan</Card.Metadata><Card.Metadata>Last updated by Karen</Card.Metadata></Card.Content><Card.Footer><div style={{ display: "flex", flexDirection: "row", justifyContent: "space-between", alignItems: "center",}}><span>150 attributes</span><span>10 questions</span></div></Card.Footer></Card>
 
 ### Large Card
 
-To create a large card simply add the size property to the ```<Card></Card>``` element and set it's value to large. You can then add several children elements of your choice.
+To create a large card simply add the size property to the ```<Card/>``` element and set it's value to large. You can then add several children elements of your choice.
 Note: The sizes are fixed therefore consideration will have to be given to size of content passed into the Card.
 
 ```js
@@ -126,12 +122,12 @@ Note: The sizes are fixed therefore consideration will have to be given to size 
         <Card.Content>
           <Card.Title>Asset type name</Card.Title>
           <Input />
-          <Card.Seperator size="small" />
+          <Card.Separator size="small" />
           <Checkbox>Use a display name</Checkbox>
-          <Card.Seperator size="small" />
+          <Card.Separator size="small" />
           <Card.Title>Description (optional)</Card.Title>
           <Textarea placeholder="Kanye is the only one who can edit this.." />
-          <Card.Seperator size="small" />
+          <Card.Separator size="small" />
           <div style={{ width: "100%", display: "flex", flexDirection: "row", justifyContent: "space-between" }}>
             <div style={{ width: "50%", display: "flex", justifyContent: "space-between" }}>
               <Button isDisabled="true">Save</Button>
@@ -141,7 +137,7 @@ Note: The sizes are fixed therefore consideration will have to be given to size 
             </div>
             <Button kind="minor">Archive</Button>
           </div>
-          <Card.Seperator size="small" />
+          <Card.Separator size="small" />
           <Card.Metadata>Created by Cory McBain</Card.Metadata>
           <Card.Metadata>Last updated by Charles Bradley</Card.Metadata>
           <Button kind="link">See full activity log</Button>
@@ -151,14 +147,14 @@ Note: The sizes are fixed therefore consideration will have to be given to size 
 
 #### Result
 
-<Card size="large"><Card.Content><Card.Title>Asset type name</Card.Title><Input /><Card.Seperator size="small" /><Checkbox>Use a display name</Checkbox><Card.Seperator size="small" /><Card.Title>Description (optional)</Card.Title><Textarea placeholder="Kanye is the only one who can edit this.." /><Card.Seperator size="small" /><div style={{ width: "100%", display: "flex", flexDirection: "row", justifyContent: "space-between" }}><div style={{ width: "50%", display: "flex", justifyContent: "space-between" }}><Button isDisabled="true">Save</Button><Button isDisabled="true" kind="minor">Cancel</Button></div><Button kind="minor">Archive</Button></div><Card.Seperator size="small" /><Card.Metadata>Created by Cory McBain</Card.Metadata><Card.Metadata>Last updated by Charles Bradley</Card.Metadata><Button kind="link">See full activity log</Button></Card.Content></Card>
+<DeluxeCard/>
 
 ### Making the Card full width
 
-You can change the Card to be the full with of it's parent container by adding the isFullWidth property to the ```<Card></Card>``` component and setting it to true.
+You can change the Card to be the full width of it's parent container by adding the isFullWidth property to the `<Card/>` component.
 
 ```js
-<Card size="small" isFullWidth='true'>
+<Card size="small" isFullWidth>
     <Card.Header>
         <Avatar>
         <Icon />
@@ -173,4 +169,4 @@ You can change the Card to be the full with of it's parent container by adding t
 
 #### Result
 
-<Card size="small" isFullWidth='true'><Card.Header><Avatar><Icon /></Avatar></Card.Header><Card.Content><Card.Title>Card</Card.Title><Card.Metadata>100,000 total</Card.Metadata></Card.Content></Card>
+<Card size="small" isFullWidth><Card.Header><Avatar><Icon /></Avatar></Card.Header><Card.Content><Card.Title>Card</Card.Title><Card.Metadata>100,000 total</Card.Metadata></Card.Content></Card>

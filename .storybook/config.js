@@ -41,6 +41,9 @@ const stories = [
   // CodeViewer
   require.context("./components/CodeViewer", false, /CodeViewer.story.js/),
 
+  // Card
+  require.context("../packages/Card", true, /Card.stories.(js|mdx)$/),
+
   // Collapsible
   require.context("../packages/Collapsible", true, /Collapsible.stories.mdx/),
   require.context("../packages/Collapsible", true, /Collapsible.stories.js/),
