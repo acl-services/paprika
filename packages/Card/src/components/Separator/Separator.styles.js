@@ -20,6 +20,6 @@ const sizeStyles = {
     `,
 };
 
-export const seperatorStyles = styled(commonStyles)`
+export const separatorStyles = styled(commonStyles)`
   ${props => sizeStyles[props.size]};
 `;

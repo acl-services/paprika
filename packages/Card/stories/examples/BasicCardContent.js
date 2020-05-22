@@ -76,7 +76,7 @@ export default () => {
                     {asset.attrTypes ? asset.attrTypes.concat(" attribute types") : ""}{" "}
                     {asset.questions ? asset.questions.concat(" questions") : ""}
                   </Card.Metadata>
-                  <Card.Seperator />
+                  <Card.Separator />
                   <Card.Metadata>Created by {asset.creator}</Card.Metadata>
                   <Card.Metadata>Last updated by {asset.updatedBy}</Card.Metadata>
                 </Card.Content>

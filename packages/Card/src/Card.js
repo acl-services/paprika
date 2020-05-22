@@ -7,7 +7,7 @@ import Title from "./components/Title";
 import Metadata from "./components/Metadata";
 import Header from "./components/Header";
 import Text from "./components/Text";
-import Seperator from "./components/Seperator";
+import Separator from "./components/Separator";
 import Content from "./components/Content";
 
 const propTypes = {
@@ -67,7 +67,7 @@ Card.Title = Title;
 Card.Metadata = Metadata;
 Card.Footer = Footer;
 Card.Text = Text;
-Card.Seperator = Seperator;
+Card.Separator = Separator;
 Card.Content = Content;
 
 export default Card;
