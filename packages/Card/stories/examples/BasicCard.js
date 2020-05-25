@@ -9,7 +9,7 @@ export default () => {
     <Story style={{ width: "312px" }}>
       <Card size="small">
         <Card.Header>
-          <Avatar>
+          <Avatar backgroundColor="black" color="white">
             <Icon />
           </Avatar>
         </Card.Header>

@@ -16,7 +16,7 @@ Note: When using the size property the width and height are fixed therefore cons
 ```js
 <Card size="medium">
     <Card.Header>
-        <Avatar isRandomBackground>E</Avatar>
+        <Avatar>E</Avatar>
     </Card.Header>
     <Card.Content>
         <Card.Title>Example</Card.Title>

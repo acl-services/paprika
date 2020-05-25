@@ -15,6 +15,7 @@ export default () => {
       meta3: "Updated 3 months ago by Charles Bradley",
       footer1: "150 attribute types",
       footer2: "10 questions",
+      color: "red",
     },
     {
       avatar: "E",
@@ -25,6 +26,7 @@ export default () => {
       meta3: "Updated 3 months ago by Charles Bradley",
       footer1: "150 attribute types",
       footer2: null,
+      color: "blue",
     },
     {
       avatar: "E",
@@ -35,6 +37,7 @@ export default () => {
       meta3: "Updated 3 months ago by Charles Bradley",
       footer1: "150 attribute types",
       footer2: "200 questions",
+      color: "green",
     },
     {
       avatar: "P",
@@ -46,6 +49,7 @@ export default () => {
       meta3: "Updated 3 months ago by Charles Bradley",
       footer1: "150 attribute types",
       footer2: "200 questions",
+      color: "pink",
     },
     {
       avatar: "P",
@@ -56,6 +60,7 @@ export default () => {
       meta3: "Updated 3 months ago by Charles Bradley",
       footer1: "150 attribute types",
       footer2: null,
+      color: "orange",
     },
     {
       avatar: "V",
@@ -67,6 +72,7 @@ export default () => {
       meta3: "Updated 3 months ago by Charles Bradley",
       footer1: "150 attribute types",
       footer2: "10 questions",
+      color: "black",
     },
     {
       avatar: <Icon />,
@@ -77,6 +83,7 @@ export default () => {
       meta3: "Updated 3 months ago by Charles Bradley",
       footer1: "250 attribute types",
       footer2: "200 questions",
+      color: "blue",
     },
   ];
 
@@ -93,11 +100,15 @@ export default () => {
         }}
       >
         {data.map(props => {
+          const bgColor = props.color;
+          console.log(bgColor);
           return (
             <div style={{ margin: "8px" }}>
               <Card size="medium">
                 <Card.Header>
-                  <Avatar isRandomBackground>{props.avatar}</Avatar>
+                  <Avatar backgroundColor={bgColor} color="white">
+                    {props.avatar}
+                  </Avatar>
                 </Card.Header>
                 <Card.Content>
                   <Card.Title>{props.title}</Card.Title>
