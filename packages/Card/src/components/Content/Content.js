@@ -14,7 +14,7 @@ const defaultProps = {
 function Content(props) {
   const { children } = props;
 
-  return <sc.Content data-pka-anchor="content">{children}</sc.Content>;
+  return <sc.Content data-pka-anchor="card.content">{children}</sc.Content>;
 }
 
 Content.displayName = "Content";

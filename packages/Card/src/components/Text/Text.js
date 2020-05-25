@@ -3,22 +3,22 @@ import PropTypes from "prop-types";
 import * as sc from "./Text.styles";
 
 const propTypes = {
-  /** Body content of the button (an icon). */
+  /** Body content of the Text. */
   children: PropTypes.node,
-  isTruncate: PropTypes.bool,
+  shouldTruncate: PropTypes.bool,
 };
 
 const defaultProps = {
   children: null,
-  isTruncate: false,
+  shouldTruncate: false,
 };
 
 const Text = props => {
-  const { children, isTruncate } = props;
+  const { children, shouldTruncate } = props;
 
   const textProps = {
     children,
-    isTruncate,
+    shouldTruncate,
   };
 
   function truncateText(text, num) {
@@ -28,7 +28,7 @@ const Text = props => {
     return text.slice(0, num).concat("...");
   }
 
-  if (isTruncate) {
+  if (shouldTruncate) {
     const text = truncateText(children, 135);
     textProps.children = text;
   }

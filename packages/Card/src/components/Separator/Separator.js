@@ -13,13 +13,8 @@ const defaultProps = {
 };
 
 const Separator = props => {
-  const { size } = props;
-
-  const separatorProps = {
-    size,
-  };
   return (
-    <sc.separatorStyles data-pka-anchor="card.separator" {...separatorProps}>
+    <sc.separatorStyles data-pka-anchor="card.separator" {...props}>
       &nbsp;
     </sc.separatorStyles>
   );

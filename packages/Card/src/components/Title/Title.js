@@ -3,7 +3,7 @@ import PropTypes from "prop-types";
 import * as sc from "./Title.styles";
 
 const propTypes = {
-  /** Body content of the button (an icon). */
+  /** Body content of the Title. */
   children: PropTypes.node,
 };
 

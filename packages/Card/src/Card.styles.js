@@ -6,7 +6,7 @@ import { ShirtSizes } from "@paprika/helpers/lib/customPropTypes";
 
 const commonStyles = styled.div`
   background: ${tokens.color.white};
-  border: 1px solid #f0f0f0;
+  border: ${tokens.border.color};
   border-radius: ${tokens.card.borderRadius};
   box-shadow: ${tokens.shadow};
   display: flex;
@@ -46,27 +46,6 @@ const autoHeightStyles = `
 
 // States
 
-const disabledStyles = `
-  box-shadow: none;
-  color: ${tokens.color.blackDisabled};
-  cursor: not-allowed;
-  text-decoration: none;
-  text-shadow: none;
-
-  &:focus {
-    box-shadow: none;
-    text-shadow: none;
-    transform: none;
-  }
-
-  &, &:hover, &:focus {
-    background: ${tokens.color.blackLighten70};
-    border-color: ${tokens.color.blackLighten60};
-    color: ${tokens.color.blackLighten40};
-    text-decoration: none;
-  }
-`;
-
 const activeStyles = `
   box-shadow: ${tokens.highlight.active.noBorder.boxShadow};
   border-color: ${tokens.highlight.active.noBorder.borderColor};
@@ -77,5 +56,4 @@ export const cardStyles = styled(commonStyles)`
   ${props => (props.isActive ? activeStyles : "")}
   ${props => (props.isFullWidth ? fullWidthStyles : "")}
   ${props => (props.isAutoHeight ? autoHeightStyles : "")}
-  ${props => (props.isDisabled ? disabledStyles : "")}
 `;

@@ -23,12 +23,6 @@ const propTypes = {
   /** If the card is in an "active" or "selected" state. */
   isActive: PropTypes.bool,
 
-  /** If the card is disabled. */
-  isDisabled: PropTypes.bool,
-
-  /** Callback to be executed when the card is clicked or activated by keyboard. Typically required. */
-  onClick: PropTypes.func,
-
   /** Size of the card (font size, min-height, padding, etc). */
   size: PropTypes.oneOf(ShirtSizes.DEFAULT),
 };
@@ -39,12 +33,10 @@ const defaultProps = {
   isFullWidth: false,
   isAutoHeight: false,
   isActive: false,
-  isDisabled: false,
-  onClick: () => {},
 };
 
-const Card = props => {
-  const { children, size, isFullWidth, isAutoHeight, isActive, isDisabled, onClick } = props;
+function Card(props) {
+  const { children, size, isFullWidth, isAutoHeight, isActive } = props;
 
   const cardProps = {
     children,
@@ -52,8 +44,6 @@ const Card = props => {
     isFullWidth,
     isAutoHeight,
     isActive,
-    isDisabled,
-    onClick,
   };
 
   return (
@@ -61,7 +51,7 @@ const Card = props => {
       {children}
     </sc.cardStyles>
   );
-};
+}
 
 Card.displayName = "Card";
 Card.propTypes = propTypes;

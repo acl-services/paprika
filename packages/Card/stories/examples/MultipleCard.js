@@ -103,7 +103,7 @@ export default () => {
                   <Card.Title>{props.title}</Card.Title>
                   <Card.Metadata>{props.meta1}</Card.Metadata>
                   <Card.Separator size="small" />
-                  <Card.Text isTruncate>{props.text}</Card.Text>
+                  <Card.Text shouldTruncate>{props.text}</Card.Text>
                   <Card.Separator size="small" />
                   <Card.Metadata>{props.meta2}</Card.Metadata>
                   <Card.Metadata>{props.meta3}</Card.Metadata>
