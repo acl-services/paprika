@@ -5,7 +5,7 @@
 
 ## Card
 
-The <Card> component is a customizable content container. It comes with subcomponents that allow for quick and easy creation of various card types for different use cases. Additionally any other child elements can be passed into the Card.
+The ```<Card>``` component is a customizable content container. It comes with subcomponents that allow for quick and easy creation of various card types for different use cases. Additionally any other child elements can be passed into the Card.
 
 ### Usage
 
@@ -21,9 +21,9 @@ Note: When using the size property the width and height are fixed therefore cons
     <Card.Content>
         <Card.Title>Example</Card.Title>
         <Card.Metadata>metadata</Card.Metadata>
-        <Card.Seperator size="small" />
+        <Card.Separator size="small" />
         <Card.Text>This is an example of a medium sized Card</Card.Text>
-        <Card.Seperator size="small" />
+        <Card.Separator size="small" />
         <Card.Metadata>Created by Kaan</Card.Metadata>
         <Card.Metadata>Last updated by Karen</Card.Metadata>
     </Card.Content>

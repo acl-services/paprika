@@ -48,6 +48,10 @@
       {
         "selector": "ImportDeclaration[source.value=\"react\"] :matches(ImportSpecifier, ImportNamespaceSpecifier)",
         "message": "Prefer accessing properties of `React` import, e.g. `React.Component`"
+      },
+      {
+        "selector": "ImportDeclaration[source.value=/\\.styles/] ImportNamespaceSpecifier[local.name!=/^(sc|Sbook)$/]",
+        "message": "Prefer naming styled components import `sc` (`Sbook` for Storybook components)"
       }
     ],
     "no-underscore-dangle": "off",

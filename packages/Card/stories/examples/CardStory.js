@@ -16,7 +16,7 @@ export default () => {
           <Card.Title>Card</Card.Title>
           <Card.Metadata>100,000 total</Card.Metadata>
           <Card.Separator size="small" />
-          <Card.Text isTruncate>
+          <Card.Text shouldTruncate>
             Cards are used to group similar concepts and tasks together tp make the platform easier fro user to scan,
             read, and get things done. A card displays content in a manner similar to a playing card.
           </Card.Text>
