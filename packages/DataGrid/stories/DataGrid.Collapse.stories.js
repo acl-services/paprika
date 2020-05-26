@@ -82,7 +82,7 @@ function getNumberOfRowsToRemove({ expandedRows, rowIndex, data }) {
 
 export function App() {
   const [data, setData] = React.useState(initialData);
-  const [expandedRows, setExpanedRows] = React.useState([]);
+  const [expandedRows, setExpandedRows] = React.useState([]);
   const refDataGrid = React.useRef(null);
 
   const toggleExpand = ({ row, rowIndex }) => {
@@ -93,7 +93,7 @@ export function App() {
       });
 
       visitedRoots.push(row.id);
-      setExpanedRows(expandedRows => expandedRows.filter(r => !visitedRoots.includes(r)));
+      setExpandedRows(expandedRows => expandedRows.filter(r => !visitedRoots.includes(r)));
       return;
     }
 
@@ -104,7 +104,7 @@ export function App() {
       return data;
     });
     if (row.id) {
-      setExpanedRows(expandedRows => [...new Set([...expandedRows, row.id])]);
+      setExpandedRows(expandedRows => [...new Set([...expandedRows, row.id])]);
     }
   };
 
