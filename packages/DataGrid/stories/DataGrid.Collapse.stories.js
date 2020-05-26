@@ -129,7 +129,7 @@ export function App() {
         return `idle: ${row[key][0]} of ${row[key][1]} tasks`;
       }
 
-      return `in progres: ${row[key][0]} of ${row[key][1]} tasks`;
+      return `in progress: ${row[key][0]} of ${row[key][1]} tasks`;
     };
   }, []);
 
