@@ -16,6 +16,9 @@ storiesOf("ListBox / multi", module).add("With Groups and have preselected optio
 ));
 storiesOf("ListBox / multi", module).add("Controlled listbox", () => <Multi.ControlledIsSelected />);
 storiesOf("ListBox / multi", module).add("UnControlled defaultIsSelected listbox", () => <Multi.DefaultIsSelected />);
+storiesOf("ListBox / multi", module).add("Fully Controlled with Filter", () => (
+  <Multi.FullyOptionControlledWithFilter />
+));
 storiesOf("ListBox / multi", module).add("Trigger is hidden when isInline", () => (
   <Story>
     <Multi.TriggerIsHidden />

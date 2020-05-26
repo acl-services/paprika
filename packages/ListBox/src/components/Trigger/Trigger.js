@@ -21,11 +21,22 @@ import { ListBoxTriggerStyled, ClearButtonStyled, iconStyles, VisuallyHiddenForm
 import { getDOMAttributesForListBoxButton } from "../../helpers/DOMAttributes";
 
 const propTypes = {
+  /** Body content of the trigger. */
   children: PropTypes.oneOfType([PropTypes.node, PropTypes.func]),
+
+  /** If true it adds a clear button */
   hasClearButton: PropTypes.bool,
+
+  /** Callback to be executed when the clear button is clicked or activated by keyboard. */
   onClickClear: PropTypes.func,
+
+  /** Callback to be executed when the accept button is clicked or activated by keyboard. */
   onClickFooterAccept: PropTypes.func,
+
+  /** Sets a placeholder for the trigger */
   placeholder: PropTypes.string,
+
+  /** If true the trigger will be hidden */
   isHidden: PropTypes.bool,
 };
 
@@ -41,7 +52,7 @@ const defaultProps = {
 export default function Trigger(props) {
   const [state, dispatch] = useListBox();
   const onChangeContext = React.useContext(OnChangeContext);
-  const { placeholder, hasClearButton, onClickFooterAccept, children, isHidden } = props;
+  const { placeholder, hasClearButton, onClickFooterAccept, children, isHidden, ...moreProps } = props;
   const {
     isDisabled,
     formElementLabelDescribedBy,
@@ -192,6 +203,7 @@ export default function Trigger(props) {
       ref={refTriggerContainer}
       size={size}
       {...getDOMAttributesForListBoxButton(state.idListBox)()}
+      {...moreProps}
     >
       {hasRenderTrigger ? renderChildrenProps : renderLabel()}
       {state.selectedOptions.length && hasClearButton && !shouldHideClearButton ? (

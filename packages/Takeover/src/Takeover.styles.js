@@ -41,6 +41,7 @@ export const Wrapper = styled.div`
   right: 0;
   top: 0;
   transition: all ${tokens.overlay.animationDuration}ms ease;
+  z-index: ${({ zIndex }) => zIndex};
   ${({ state }) => states[state]};
 `;
 

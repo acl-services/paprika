@@ -1,6 +1,6 @@
 import React from "react";
 import PropTypes from "prop-types";
-import { container, flex } from "./ListBoxBrowser.styles";
+import * as sc from "./ListBoxBrowser.styles";
 import {
   getData,
   getOptionByKey,
@@ -20,12 +20,7 @@ import Title from "./components/Title";
 
 const propTypes = {
   /**
-    An array of javascript objects holding the data structure for the ListBoxBrowser
-    The object shape **must have** at least a string **label** property and an array **options** property in one of the objects.
-    Also can hold any other kind of data for your own use.
-    ex.
-
-    [{ label: "One" }, { label: "Two", options: [{ label: "Three" }] }]
+    An array of javascript objects holding the data structure for the ListBoxBrowser. The object shape must have at least a string label property and an array options property in one of the objects. Also can hold any other kind of data for your own use.
   */
   data: PropTypes.any.isRequired, // eslint-disable-line
 
@@ -66,35 +61,21 @@ const propTypes = {
   */
   hasError: PropTypes.bool,
   /**
-    When declaring the array options empty, this will be executed to retrieve the
-    data, useful if you want to do a lazy load.
-
-    ex.
-    <ListBoxBrowser data={[{ label: "lazy", options: [] }]} onFetch={(option) => {** logic**}}>
-      <ListBoxBrowser.Browser isLoading={isBrowserLoading} />
-    </ListBoxBrowser>
+    When declaring the array options empty, this will be executed to retrieve the data, useful if you want to do a lazy load.
   */
   onFetch: PropTypes.func,
   /**
-    A function that sets an option selected returning true or false
-    you can use to compare your data structure and decide if the option is
-    initially selected or not.
-
-    const data = [{ key: 1, label: "one", options: [...] }, { key: 2, label: "two" }, { key: 3, label: "three" }]
-
-    ex.
-    <ListBoxBrowser data={data} defaultSelectedOptions={(option) => {
-      return option.key === 2 or option.key === 3
-    }} />
+    A function that sets an option selected returning true or false you can use to compare your data structure and decide if the option is initially selected or not.
   */
   defaultSelectedOptions: PropTypes.func,
   /**
-    A function that sets the initial view for the right columns (Browser) of the ListBoxBrowser
-    the option selected to be the initial view should have options to be valid,
-    by default the ListBoxBrowser picked the first option which has options to be the
-    initial value.
+    A function that sets the initial view for the right columns (Browser) of the ListBoxBrowser the option selected to be the initial view should have options to be valid, by default the ListBoxBrowser picked the first option which has options to be the initial value.
   */
   defaultSelectedView: PropTypes.func,
+  /** 
+    In the case you want to use the ListBoxBrowser with one column you can hide the root column
+   */
+  hasLeftColumn: PropTypes.bool,
 };
 
 const defaultProps = {
@@ -112,6 +93,7 @@ const defaultProps = {
     return false;
   },
   defaultSelectedView: null,
+  hasLeftColumn: true,
 };
 
 export const ListBoxBrowserContext = React.createContext({});
@@ -128,6 +110,7 @@ export default function ListBoxBrowser(props) {
     height,
     isMulti,
     isParentSelectable,
+    hasLeftColumn,
     onChange,
     onFetch,
     rootTitle,
@@ -194,11 +177,11 @@ export default function ListBoxBrowser(props) {
       if ((hasOptions && isParentSelectable === null) || isClickFromButton) {
         setRootKey($$key);
         setBrowserKey($$key);
-        focusListBoxBrowser(refRootElement.current);
+        focusListBoxBrowser(refRootElement.current, hasLeftColumn);
         if (event) event.stopPropagation();
       }
     },
-    [isParentSelectable]
+    [isParentSelectable, hasLeftColumn]
   );
 
   const handleClickBrowser = React.useCallback(
@@ -314,28 +297,26 @@ export default function ListBoxBrowser(props) {
 
   return (
     <ListBoxBrowserContext.Provider value={value}>
-      <div
-        ref={refRootElement}
-        hasError={hasError}
-        isParentSelectable={isParentSelectable}
-        css={container}
-        height={height}
-      >
+      <sc.Container ref={refRootElement} hasError={hasError} isParentSelectable={isParentSelectable} height={height}>
         <Title
           rootTitle={rootTitle}
           browserTitle={browserTitle}
           onClickBreadcrumb={handleClickBreadcrumb}
           browserKey={browserKey}
           data={localData}
+          hasLeftColumn={hasLeftColumn}
         />
-        <div css={flex}>
-          <CustomListBox
-            browserKey="root"
-            onChange={handleChange("root")}
-            onClickNavigate={handleClickRoot}
-            options={localData}
-            isLoading={(root && root.isLoading) || false}
-          />
+
+        <sc.Flex hasLeftColumn={hasLeftColumn}>
+          {hasLeftColumn ? (
+            <CustomListBox
+              browserKey="root"
+              onChange={handleChange("root")}
+              onClickNavigate={handleClickRoot}
+              options={localData}
+              isLoading={(root && root.isLoading) || false}
+            />
+          ) : null}
           <CustomListBox
             id={browserKey}
             browserKey={browserKey}
@@ -346,9 +327,9 @@ export default function ListBoxBrowser(props) {
             options={browserOptions.attributes.options}
             isLoading={(browser && browser.isLoading) || false}
           />
-        </div>
+        </sc.Flex>
         {children}
-      </div>
+      </sc.Container>
     </ListBoxBrowserContext.Provider>
   );
 }

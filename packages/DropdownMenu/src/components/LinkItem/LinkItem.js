@@ -26,24 +26,21 @@ const LinkItem = props => {
   const I18n = useI18n();
 
   const linkItemProps = {
-    role: "menuitem",
     "data-pka-anchor": "dropdown.item",
     href: link,
     onKeyDown,
+    role: "menuitem",
     ...moreProps,
   };
 
   if (isExternal) {
+    linkItemProps["aria-label"] = I18n.t("dropdownMenu.isExternal", { link: children });
     linkItemProps.target = "_blank";
     linkItemProps.rel = "noopener noreferrer";
   }
 
   return (
-    <a
-      aria-label={isExternal ? I18n.t("dropdownMenu.isExternal", { link: children }) : ""}
-      css={linkItemStyles}
-      {...linkItemProps}
-    >
+    <a css={linkItemStyles} {...linkItemProps}>
       {children}
     </a>
   );

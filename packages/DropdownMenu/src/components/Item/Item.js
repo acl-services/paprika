@@ -55,15 +55,18 @@ const Item = props => {
   };
 
   const itemProps = {
-    onClick: renderConfirmation !== null ? onShowConfirmation : handleClickItem,
-    role: "menuitem",
+    canPropagate: false,
     "data-pka-anchor": "dropdown.item",
-    onKeyDown,
+    hasInsetFocusStyle: true,
     isDestructive,
+    onClick: renderConfirmation !== null ? onShowConfirmation : handleClickItem,
+    onKeyDown,
+    role: "menuitem",
+    tabIndex: 0,
   };
 
   return (
-    <RawButton tabIndex={0} hasInsetFocusStyle css={ItemStyles} {...itemProps} {...moreProps}>
+    <RawButton css={ItemStyles} {...itemProps} {...moreProps}>
       {children}
     </RawButton>
   );

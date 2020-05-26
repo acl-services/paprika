@@ -7,41 +7,66 @@ import Button from "@paprika/button";
 import inputStyles from "./Input.styles";
 
 const propTypes = {
+  /** Descriptive a11y text for assistive technologies. By default, text from children node will be used. */
   a11yText: PropTypes.string,
+
+  /** Sets the class for the input. */
   className: PropTypes.string,
+
+  /** Sets the default input value  */
   defaultValue: PropTypes.string,
+
+  /** If true displays a clear button inside the input if it contains a value.  */
   hasClearButton: PropTypes.bool,
+
+  /** If true displays a red border around input to show error.  */
   hasError: PropTypes.bool,
+
+  /** Displays an icon inside the input. */
   icon: PropTypes.node,
+
   inputRef: PropTypes.oneOfType([PropTypes.func, PropTypes.shape({ current: PropTypes.instanceOf(Element) })]),
+
+  /** If true it makes the input disabled. */
   isDisabled: PropTypes.bool,
+
+  /** If true it makes the input read only. */
   isReadOnly: PropTypes.bool,
-  onChange: PropTypes.func.isRequired,
+
+  /** Callback to be executed when the input value is changed. Should not be used with defaultValue prop */
+  onChange: PropTypes.func,
+
+  /** Callback to be executed when the input value is cleared */
   onClear: PropTypes.func,
+
+  /** Changes the size of the input. */
   size: PropTypes.oneOf(ShirtSizes.DEFAULT),
+
+  /** Allows user to specify the type of input. */
   type: PropTypes.oneOf(InputValidTypes.ALL),
+
+  /** The value inside of the input */
   value: PropTypes.string,
 };
 
 const defaultProps = {
   a11yText: null,
   className: null,
-  defaultValue: null,
+  defaultValue: "",
   hasClearButton: false,
   hasError: false,
   icon: null,
   inputRef: () => {},
   isDisabled: false,
   isReadOnly: false,
+  onChange: () => {},
   onClear: () => {},
   size: ShirtSizes.MEDIUM,
   type: "text",
-  value: "",
+  value: null,
 };
 
 const Input = props => {
-  const [value, setValue] = React.useState(props.defaultValue);
-
   const inputClearHandler = e => {
     e.target.value = "";
     props.onChange(e);
@@ -79,15 +104,16 @@ const Input = props => {
     isReadOnly,
     hasClearButton,
     hasError,
-    onChange,
     onClear,
     size,
     ...moreProps
   } = props;
 
-  // Must remove so React does not complain about a component trying to be both controlled and uncontrolled.
-  delete moreProps.value;
-  delete moreProps.defaultValue;
+  if (moreProps.value || moreProps.value === "") {
+    delete moreProps.defaultValue;
+  } else {
+    delete moreProps.value;
+  }
 
   const styleProps = {
     size,
@@ -106,13 +132,6 @@ const Input = props => {
     className
   );
 
-  function handleChange(e) {
-    if (props.defaultValue !== null) {
-      setValue(e.target.value);
-    }
-    onChange(e);
-  }
-
   return (
     <div css={inputStyles} {...styleProps} className={rootClasses}>
       {renderIcon()}
@@ -121,10 +140,8 @@ const Input = props => {
         className="form-input__input"
         data-pka-anchor="input"
         disabled={isDisabled}
-        onChange={handleChange}
         readOnly={isReadOnly}
         ref={inputRef}
-        value={value || props.value}
         {...moreProps}
       />
       {renderClear()}

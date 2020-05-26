@@ -1,7 +1,7 @@
 {
   "name": "@paprika/spinner",
-  "version": "0.2.13",
-  "description": "Spinner component",
+  "version": "0.2.16",
+  "description": "Spinner component tells the user that the app is doing something.",
   "author": "@paprika",
   "main": "lib/index.js",
   "license": "MIT",
@@ -15,9 +15,9 @@
   },
   "dependencies": {
     "@babel/runtime-corejs2": "^7.3.1",
-    "@paprika/helpers": "^0.2.10",
-    "@paprika/stylers": "^0.2.6",
-    "@paprika/tokens": "^0.1.13",
+    "@paprika/helpers": "^0.2.11",
+    "@paprika/stylers": "^0.2.7",
+    "@paprika/tokens": "^0.1.14",
     "classnames": "^2.2.6",
     "prop-types": "^15.7.2"
   },

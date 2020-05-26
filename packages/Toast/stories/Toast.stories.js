@@ -7,7 +7,7 @@ import Props from "./Toast.mdx";
 import Toast from "../src";
 
 export default {
-  title: "Toast",
+  title: " | Toast",
   component: Toast,
 };
 
@@ -20,6 +20,7 @@ showcase.story = {
       isToolshown: true,
       showPanel: true,
     },
+    viewMode: "story",
   },
 };
 
@@ -31,5 +32,6 @@ variations.story = {
       isToolshown: true,
       showPanel: false,
     },
+    viewMode: "story",
   },
 };

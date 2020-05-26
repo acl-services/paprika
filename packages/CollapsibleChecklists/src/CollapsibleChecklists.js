@@ -7,6 +7,7 @@ import CollapsibleChecklistsContext from "./CollapsibleChecklistsContext";
 
 const propTypes = {
   children: PropTypes.node.isRequired,
+  /** Callback triggered when the input state is changed */
   onChange: PropTypes.func.isRequired,
 };
 

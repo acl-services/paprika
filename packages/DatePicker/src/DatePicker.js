@@ -1,38 +1,32 @@
 import React from "react";
 import PropTypes from "prop-types";
 import moment from "moment";
-import momentPropTypes from "react-moment-proptypes";
 
-import CalendarIcon from "@paprika/icon/lib/Calendar";
-import Input from "@paprika/input";
 import Popover from "@paprika/popover";
-import useI18n from "@paprika/l10n/lib/useI18n";
+import DateInput from "@paprika/date-input";
 import useDebounce from "@paprika/helpers/lib/hooks/useDebounce";
-import usePrevious from "@paprika/helpers/lib/hooks/usePrevious";
 import isElementContainsFocus from "@paprika/helpers/lib/dom/isElementContainsFocus";
+import extractChildrenProps from "@paprika/helpers/lib/extractChildrenProps";
 
 import Calendar from "./components/Calendar";
-import DateInput from "./components/DateInput";
-import DatePickerPopover from "./components/DatePickerPopover";
-import { extractChildrenProps } from "./helpers";
+import DateInputPropsCollector from "./components/DateInputPropsCollector";
+import DatePickerPopoverPropsCollector from "./components/DatePickerPopoverPropsCollector";
 
 import { calendarPopoverStyles } from "./DatePicker.styles";
-
-const INPUT_PARSE_ERROR = "INPUT_PARSE";
 
 const propTypes = {
   children: PropTypes.node,
 
   /** Date format used while entering and parsing user input. */
-  dataFormat: PropTypes.string,
+  dateFormat: PropTypes.string,
 
   /** Selected date in moment object. */
-  date: momentPropTypes.momentObj,
+  date: PropTypes.instanceOf(moment),
 
   /** Date format used while displaying date. It should be human-friendly and spelled out, default is MMMM DD,YYYY */
   humanFormat: PropTypes.string,
 
-  /** ID for the <input>. */
+  /** ID for the `<input>`. */
   id: PropTypes.string,
 
   /** Should be disabled or not, default is false. */
@@ -53,7 +47,7 @@ const propTypes = {
 
 const defaultProps = {
   children: null,
-  dataFormat: "MM/DD/YYYY",
+  dateFormat: "MM/DD/YYYY",
   date: null,
   hasError: false,
   humanFormat: undefined,
@@ -64,49 +58,20 @@ const defaultProps = {
 };
 
 function DatePicker(props) {
-  const I18n = useI18n();
-
   // Props
-  const {
-    children,
-    dataFormat,
-    date,
-    humanFormat = I18n.t("datePicker.confirmation_format"),
-    id,
-    isDisabled,
-    isReadOnly,
-    onChange,
-    onError,
-    hasError,
-  } = props;
-
-  const formatDateProp = React.useCallback(
-    format => {
-      return date && date.isValid() ? moment(date).format(format || humanFormat) : "";
-    },
-    [date, humanFormat]
-  );
+  const { children, dateFormat, date, humanFormat, id, isDisabled, isReadOnly, onChange, onError, hasError } = props;
 
   // State
-  const [hasParsingError, setHasParsingError] = React.useState(false);
-  const [inputtedString, setInputtedString] = React.useState(formatDateProp(dataFormat));
   const [possibleDate, setPossibleDate] = React.useState(null);
   const [shouldShowCalendar, setShouldShowCalendar] = React.useState(false);
-  const prevDate = usePrevious(date);
 
   // Ref
   const calendarRef = React.useRef(null);
   const inputRef = React.useRef(null);
 
-  // Effect
-  React.useEffect(() => {
-    if ((!date && !prevDate) || (date && prevDate && date.isSame(prevDate, "day"))) return;
-    setInputtedString(formatDateProp(dataFormat));
-  }, [dataFormat, date, prevDate, formatDateProp, humanFormat]);
-
   const debouncedPossibleDate = useDebounce(possibleDate, 300);
-  const extendedInputProps = extractChildrenProps(children, DateInput);
-  const extendedPopoverProps = extractChildrenProps(children, DatePickerPopover);
+  const extendedInputProps = extractChildrenProps(children, DateInputPropsCollector);
+  const extendedPopoverProps = extractChildrenProps(children, DatePickerPopoverPropsCollector);
 
   function hideCalendar() {
     if (shouldShowCalendar) setShouldShowCalendar(false);
@@ -117,76 +82,13 @@ function DatePicker(props) {
     if (!shouldShowCalendar) setShouldShowCalendar(true);
   }
 
-  function parseInput() {
-    let newDate = moment(inputtedString, dataFormat);
-
-    if (!newDate.isValid()) newDate = moment(inputtedString);
-
-    return newDate;
-  }
-
   function handleChange(newDate) {
     if (date !== newDate) onChange(newDate);
   }
 
-  function handleClick() {
-    if (!isReadOnly) showCalendar();
-  }
-
   function handleClosePopover() {
     if (!isElementContainsFocus(calendarRef.current) && !isElementContainsFocus(inputRef.current)) {
-      if (!hasParsingError) {
-        setInputtedString(formatDateProp(dataFormat));
-      }
       hideCalendar();
-    }
-  }
-
-  function handleReset() {
-    setHasParsingError(false);
-    setInputtedString("");
-    handleChange(null);
-  }
-
-  function handleInputConfirm() {
-    hideCalendar();
-
-    if (!inputtedString) {
-      handleReset();
-      return;
-    }
-
-    const newDate = parseInput();
-
-    if (newDate.isValid()) {
-      setHasParsingError(false);
-      if (!moment(newDate).isSame(date, "day")) handleChange(newDate);
-    } else {
-      setHasParsingError(true);
-      onError({ type: INPUT_PARSE_ERROR, value: inputtedString });
-    }
-  }
-
-  function handleInputBlur() {
-    window.requestAnimationFrame(() => {
-      if (!isElementContainsFocus(calendarRef.current)) {
-        handleInputConfirm();
-      }
-    });
-  }
-
-  function handleInputChange(e) {
-    setInputtedString(e.target.value);
-  }
-
-  function handleKeyUp(event) {
-    if (event.key === "Enter") {
-      handleInputConfirm();
-    } else {
-      const updatedPossibleDate = parseInput();
-
-      if (updatedPossibleDate.isSame(possibleDate, "year") && updatedPossibleDate.isSame(possibleDate, "month")) return;
-      setPossibleDate(updatedPossibleDate);
     }
   }
 
@@ -201,19 +103,19 @@ function DatePicker(props) {
   }
 
   function handleSelect(selectedDate) {
-    setHasParsingError(false);
     hideCalendar();
     handleChange(selectedDate);
   }
 
+  function handlePossibleDateChange(newPossibleDate) {
+    if (newPossibleDate.isSame(possibleDate, "year") && newPossibleDate.isSame(possibleDate, "month")) return;
+
+    setPossibleDate(newPossibleDate);
+  }
+
   const hasInputError = extendedInputProps && extendedInputProps.hasError;
 
-  const hasErrorValue = hasError || hasParsingError || hasInputError;
-
-  const inputText =
-    (inputRef && isElementContainsFocus(inputRef.current)) || hasErrorValue
-      ? inputtedString
-      : formatDateProp(humanFormat);
+  const hasErrorValue = hasError || hasInputError;
 
   return (
     <Popover
@@ -224,17 +126,20 @@ function DatePicker(props) {
       onKeyUp={handleKeyUpOnEscape}
       shouldKeepFocus
     >
-      <Input
-        icon={<CalendarIcon />}
+      <DateInput
+        ref={inputRef}
         id={id}
         isDisabled={isDisabled}
         isReadOnly={isReadOnly}
-        onBlur={handleInputBlur}
-        onChange={handleInputChange}
-        onClick={handleClick}
-        onKeyUp={handleKeyUp}
-        inputRef={inputRef}
-        value={inputText}
+        date={date}
+        dateFormat={dateFormat}
+        humanFormat={humanFormat}
+        onChange={onChange}
+        onChangePossibleDate={handlePossibleDateChange}
+        onClick={showCalendar}
+        onError={onError}
+        beforeConfirmation={hideCalendar}
+        denyConfirmation={() => isElementContainsFocus(calendarRef.current)}
         {...extendedInputProps}
         hasError={hasErrorValue}
       />
@@ -260,7 +165,7 @@ DatePicker.displayName = "DatePicker";
 DatePicker.propTypes = propTypes;
 DatePicker.defaultProps = defaultProps;
 
-DatePicker.Input = DateInput;
-DatePicker.Popover = DatePickerPopover;
+DatePicker.Input = DateInputPropsCollector;
+DatePicker.Popover = DatePickerPopoverPropsCollector;
 
 export default DatePicker;
