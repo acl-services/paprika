@@ -255,7 +255,7 @@ export const ContentSidePanel = () => {
               The <code>zIndex</code> prop of this <code>&lt;SidePanel&gt;</code> is also <code>99</code>.
             </p>
             <p>
-              Because the content is renderered as a <code>&lt;Portal&gt;</code> at the end of the DOM, it will be
+              Because the content is rendered as a <code>&lt;Portal&gt;</code> at the end of the DOM, it will be
               painted on top.
             </p>
           </SidePanel.Content>
