@@ -10,5 +10,5 @@ export const Overlay = styled(RawButton)`
   position: fixed;
   top: 0;
   width: 100%;
-  z-index: ${props => props.zIndex};
+  ${({ zIndex }) => (zIndex ? `z-index: ${zIndex}` : null)};
 `;

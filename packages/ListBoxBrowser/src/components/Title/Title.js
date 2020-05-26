@@ -1,6 +1,6 @@
 import React from "react";
 import PropTypes from "prop-types";
-import { title, flex } from "./Title.styles";
+import { title, flex, crumb } from "./Title.styles";
 import { getBreadcrumb, getOptionByKey, isRoot } from "../../helpers";
 import Breadcrumb from "../Breadcrumb";
 import { ListBoxBrowserContext } from "../../ListBoxBrowser";
@@ -11,10 +11,11 @@ const propTypes = {
   data: PropTypes.arrayOf(PropTypes.object), // eslint-disable-line
   browserKey: PropTypes.oneOfType([PropTypes.string, PropTypes.number]).isRequired,
   onClickBreadcrumb: PropTypes.func.isRequired,
+  hasLeftColumn: PropTypes.bool.isRequired,
 };
 
 export default function Title(props) {
-  const { rootTitle, browserTitle, data, browserKey, onClickBreadcrumb } = props;
+  const { rootTitle, browserTitle, data, browserKey, onClickBreadcrumb, hasLeftColumn } = props;
 
   const handleClick = option => () => {
     onClickBreadcrumb(option);
@@ -26,19 +27,32 @@ export default function Title(props) {
   }, [data, option]);
 
   const { hasBreadcrumb } = React.useContext(ListBoxBrowserContext);
+  const hasBrowserTitle = browserTitle !== "";
 
   return (
-    <div css={flex}>
-      <div css={title} data-pka-anchor="root-title">
-        {rootTitle}
-      </div>
+    <div css={flex} hasLeftColumn={hasLeftColumn}>
+      {hasLeftColumn && (
+        <div css={title} data-pka-anchor="root-title" title={rootTitle}>
+          {rootTitle}
+        </div>
+      )}
       <div css={title} data-pka-anchor="breadcrumb-title">
-        <span>
-          {browserTitle}
-          {hasBreadcrumb && breadcrumb.length && browserTitle !== "" ? " / " : null}
-        </span>
-        {hasBreadcrumb ? <Breadcrumb onClick={handleClick} breadcrumb={breadcrumb} /> : null}
-        <span>{!isRoot(option.parent) && hasBreadcrumb ? option.attributes.label : null}</span>
+        {hasBreadcrumb ? (
+          <>
+            <span data-pka-anchor="breadcrumb-crumb" css={crumb} title={browserTitle}>
+              {browserTitle}
+            </span>
+            <Breadcrumb onClick={handleClick} hasBrowserTitle={hasBrowserTitle} breadcrumb={breadcrumb} />
+            {!isRoot(option.parent) && (
+              <span data-pka-anchor="breadcrumb-crumb" css={crumb} title={option.attributes.label}>
+                {(breadcrumb.length > 1 || hasBrowserTitle) && " / "}
+                {option.attributes.label}
+              </span>
+            )}
+          </>
+        ) : (
+          browserTitle
+        )}
       </div>
     </div>
   );

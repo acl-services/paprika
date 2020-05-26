@@ -5,9 +5,9 @@ import ShowcaseStory from "./examples/Showcase";
 import Responses from "./examples/Responses";
 import Screener from "./examples/Screener";
 
-storiesOf("ProgressAccordion", module)
+storiesOf("Progress Accordion", module)
   .addDecorator(withKnobs)
   .add("Showcase", ShowcaseStory)
-  .add("ProgressAccordion.Responses", () => <Responses />);
+  .add("Progress Accordion.Responses", () => <Responses />);
 
-storiesOf("ProgressAccordion/Automation Tests", module).add("Screener", () => <Screener />);
+storiesOf("Progress Accordion/Automation Tests", module).add("Screener", () => <Screener />);

@@ -7,7 +7,6 @@ const itemStyles = css`
   ${stylers.lineHeight()}
   cursor: pointer;
   display: block;
-  font-family: ${tokens.fontFamily.default};
   font-weight: normal;
   padding: ${tokens.spaceSm} ${stylers.spacer(2)};
   text-decoration: none;

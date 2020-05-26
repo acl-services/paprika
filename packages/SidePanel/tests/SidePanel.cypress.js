@@ -1,6 +1,6 @@
 describe("<SidePanel />", () => {
   it("should convert <SidePanel offset={} /> into sticky mode", () => {
-    cy.visitStorybook("sidepanel-cypress--sidepanel-default-sticky");
+    cy.visitStorybook("sidepanel-automation-tests--side-panel-default-sticky");
     cy.getByTestId("purple-navigator").should("be.visible");
     cy.getByTestId("sidepanel").then($element => {
       expect($element.css("top")).to.be.equal("40px");
@@ -15,27 +15,27 @@ describe("<SidePanel />", () => {
   });
 
   it("should include footer in sticky mode", () => {
-    cy.visitStorybook("sidepanel-cypress--sidepanel-footer-sticky");
+    cy.visitStorybook("sidepanel-automation-tests--side-panel-footer-sticky");
     cy.getByTestId("sidepanel.footer").then($element => {
       expect($element.css("bottom")).to.be.equal("0px");
     });
   });
 
   it("should put focus on element with data-autofocus", () => {
-    cy.visitStorybook("sidepanel-focuslock--with-autofocus-on-input");
+    cy.visitStorybook("sidepanel-examples--focuslock");
     const input = cy.get("[data-autofocus]");
     const testString = "hello world";
     input.type(testString).should("have.value", testString);
   });
 
   it("should have no focused element if pass autofocus=false to SidePanel.FocusLock", () => {
-    cy.visitStorybook("sidepanel-focuslock--with-disabled-autofocus");
+    cy.visitStorybook("sidepanel-automation-tests--side-panel-focus-lock-disabled");
     cy.getByTestId("sidepanel").should("be.visible");
     cy.focused().should("not.exist");
   });
 
   it("should be possible to interact with multiple sidepanels in a group", () => {
-    cy.visitStorybook("sidepanel--multiple-sidepanels");
+    cy.visitStorybook("sidepanel-examples--group");
 
     const sidePanel1 = cy.getByTestId("sidepanel1");
     const sidePanel2 = cy.getByTestId("sidepanel2");
@@ -68,7 +68,7 @@ describe("<SidePanel />", () => {
 
   let count = 1;
   it("should call onAfterOpen and onAfterClose", () => {
-    cy.visitStorybook("sidepanel-cypress--sidepanel-onafteropen-onafterclose").then(() => {
+    cy.visitStorybook("sidepanel-automation-tests--side-panel-on-after").then(() => {
       cy.on("window:alert", str => {
         if (count === 1) {
           expect(str).to.equal("after open");

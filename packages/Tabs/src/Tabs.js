@@ -7,9 +7,13 @@ import Tab from "./components/Tab/Tab";
 import List from "./components/List/List";
 
 const propTypes = {
+  /** Determine the styling of the tab */
   kind: PropTypes.oneOf(["primary", "secondary"]),
+  /** Children of the Tab */
   children: PropTypes.node.isRequired,
+  /** Sets what tab index is active by default */
   defaultIndex: PropTypes.number,
+  /** If the tab is disabled */
   isDisabled: PropTypes.bool,
 };
 
@@ -28,7 +32,7 @@ const Tabs = props => {
   const { kind, isDisabled } = props;
 
   function focusAndSetIndex(index) {
-    tabListRef.querySelectorAll(".tab")[index].focus();
+    tabListRef.querySelectorAll("[data-pka-anchor='tab'], [data-pka-anchor='tab-link']")[index].focus();
     setFocusIndex(index);
   }
 

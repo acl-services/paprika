@@ -1,10 +1,27 @@
 import React from "react";
 import { storiesOf } from "@storybook/react";
-import { Story } from "storybook/assets/styles/common.styles";
+import { Story, Rule, Tagline } from "storybook/assets/styles/common.styles";
+import Heading from "@paprika/heading";
 import Uploader from "../src/Uploader";
 import Testing from "./Testing";
 
+const Example = () => (
+  <Story>
+    <Heading level={1} displayLevel={2} isLight>
+      <code>&lt;Uploader /&gt;</code>
+    </Heading>
+    <Tagline>
+      <b>Showcase</b> – Interact with the props API
+    </Tagline>
+    <Rule />
+    <Uploader />
+  </Story>
+);
+
 storiesOf("Uploader", module)
+  .add("Showcase", () => {
+    return <Example />;
+  })
   .add("Basic example with all files successfully uploaded", () => (
     <Story>
       <Uploader

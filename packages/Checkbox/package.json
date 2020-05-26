@@ -1,7 +1,7 @@
 {
   "name": "@paprika/checkbox",
-  "version": "0.2.9",
-  "description": "Checkbox component",
+  "version": "0.2.15",
+  "description": "Checkbox component displays a checkbox and label text beside it. When clicked it displays a checkmark. It can also have an indeterminate state which can be used to group checkboxes.",
   "author": "@paprika",
   "license": "MIT",
   "main": "lib/index.js",
@@ -15,10 +15,10 @@
   },
   "dependencies": {
     "@babel/runtime-corejs2": "^7.3.1",
-    "@paprika/helpers": "^0.2.10",
-    "@paprika/icon": "^0.2.15",
-    "@paprika/stylers": "^0.2.6",
-    "@paprika/tokens": "^0.1.13",
+    "@paprika/helpers": "^0.2.11",
+    "@paprika/icon": "^0.3.3",
+    "@paprika/stylers": "^0.2.7",
+    "@paprika/tokens": "^0.1.14",
     "prop-types": "^15.7.2",
     "uuid": "^3.3.2"
   },

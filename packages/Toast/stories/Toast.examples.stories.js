@@ -5,6 +5,7 @@ import FixedToastExample from "./examples/FixedToastExample";
 import UncontrolledToastExample from "./examples/UncontrolledToastExample";
 
 const toastStoryParameters = {
+  viewMode: "story",
   options: {
     isToolshown: false,
     showPanel: true,

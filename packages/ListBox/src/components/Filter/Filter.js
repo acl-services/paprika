@@ -7,14 +7,31 @@ import { filter, applyFilter } from "./helpers";
 import { FilterContainerStyled, FilterInputStyled } from "./Filter.styles";
 
 const propTypes = {
+  /** Descriptive a11y text for assistive technologies. By default, text from children node will be used. */
   a11yText: PropTypes.string,
+
+  /** Filters the list */
   filter: PropTypes.func,
+
+  /** If true displays a search icon */
   hasSearchIcon: PropTypes.bool,
+
+  /** Message displayed if no results are found */
   noResultsMessage: PropTypes.string,
+
+  /** Callback to be executed when the value is changed  */
   onChangeFilter: PropTypes.func,
+
+  /** Callback to be executed when a key is pressed */
   onKeyDown: PropTypes.func,
+
+  /** Displays a placeholder */
   placeholder: PropTypes.string,
+
+  /** Render function for filter */
   renderFilter: PropTypes.func,
+
+  /** Sets a value for filter */
   value: PropTypes.string,
 };
 
@@ -40,9 +57,19 @@ const Filter = React.forwardRef((props, ref) => {
   const applyFilterType = useListBox.types.applyFilter;
   const I18n = useI18n();
 
+  const reset = React.useCallback(() => {
+    window.requestAnimationFrame(() => {
+      applyFilter(dispatch, applyFilterType)([], false);
+      setTextSearch("");
+    });
+  }, [applyFilterType, dispatch]);
+
   React.useImperativeHandle(ref, () => ({
     clear: () => {
       setTextSearch(() => "");
+    },
+    reset: () => {
+      reset();
     },
   }));
 
@@ -96,22 +123,10 @@ const Filter = React.forwardRef((props, ref) => {
   };
 
   React.useEffect(() => {
-    if (!props.value) {
-      applyFilter({ filteredOptions: [], noResultsFound: false });
-    }
-  }, [props.value]);
-
-  React.useEffect(() => {
     if (!state.isOpen) {
-      setTextSearch("");
+      reset();
     }
-  }, [state.isOpen]);
-
-  React.useEffect(() => {
-    if (!textSearch) {
-      applyFilter({ filteredOptions: [], noResultsFound: false });
-    }
-  }, [textSearch]);
+  }, [reset, state.isOpen]);
 
   React.useEffect(() => {
     dispatch({

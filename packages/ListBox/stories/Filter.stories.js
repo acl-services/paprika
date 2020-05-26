@@ -12,14 +12,14 @@ function renderOptions() {
 
 storiesOf("ListBox / ListBox.Filter", module).add("Basic Filter", () => (
   <ListBox>
-    <ListBox.Filter key="filter" />
+    <ListBox.Filter />
     {renderOptions()}
   </ListBox>
 ));
 
 storiesOf("ListBox / ListBox.Filter", module).add("Inline Filter", () => (
   <ListBox isInline>
-    <ListBox.Filter key="filter" />
+    <ListBox.Filter />
     {renderOptions()}
   </ListBox>
 ));
@@ -32,7 +32,6 @@ storiesOf("ListBox / ListBox.Filter", module).add("Custom Filter", () => (
     </p>
     <ListBox>
       <ListBox.Filter
-        key="filter"
         filter={({ search }) =>
           new Promise(resolve => {
             if (search.toUpperCase() === "P") {
@@ -56,7 +55,7 @@ storiesOf("ListBox / ListBox.Filter", module).add("Custom Filter", () => (
 
 storiesOf("ListBox / ListBox.Filter", module).add("Custom Children Filter", () => (
   <ListBox height={325}>
-    <ListBox.Filter key="filter" />
+    <ListBox.Filter />
     {images.map(image => (
       <ListBox.Option key={image.src} label={image.label}>
         <ImageOption>
@@ -67,16 +66,22 @@ storiesOf("ListBox / ListBox.Filter", module).add("Custom Children Filter", () =
   </ListBox>
 ));
 
-storiesOf("ListBox / ListBox.Filter", module).add("Multi Custom Children Filter", () => (
-  <ListBox isMulti height={325}>
-    <ListBox.Filter key="filter" />
-    {renderOptions()}
-  </ListBox>
+storiesOf("ListBox / ListBox.Filter", module).add("Multi Filter", () => (
+  <>
+    <ListBox isMulti height={325}>
+      <ListBox.Filter />
+      {renderOptions()}
+    </ListBox>
+    <p>
+      This paragraph helps testing the tabbing and clear state of the filter on a onClose event happening.
+      <button type="button">Im an useless button</button>
+    </p>
+  </>
 ));
 
 storiesOf("ListBox / ListBox.Filter", module).add("Multi Inline Custom Children Filter", () => (
   <ListBox isMulti isInline height={325}>
-    <ListBox.Filter key="filter" />
+    <ListBox.Filter />
     {images.map(image => (
       <ListBox.Option key={image.src} label={image.label}>
         <ImageOption>
