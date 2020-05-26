@@ -7,15 +7,33 @@ import RawButton from "@paprika/raw-button";
 import collapsibleStyles from "./Collapsible.styles";
 
 const propTypes = {
+  /** Descriptive a11y text for assistive technologies. By default, text from children node will be used. */
   a11yText: PropTypes.string,
+
+  /** Body content of the collapsible. */
   children: PropTypes.node,
+
+  /** Set's icon alignment left or right. */
   iconAlign: PropTypes.oneOf(["left", "right"]),
+
+  /** Sets RightArrowIcon if true. */
   iconCollapse: PropTypes.node,
+
+  /** Sets DownArrowIcon if true. */
   iconExpand: PropTypes.node,
+
+  /** State of the collapsible. */
   isCollapsed: PropTypes.bool,
+
+  /** If the collapsible is disabled. */
   isDisabled: PropTypes.bool,
+
   hasOnlyIconToggle: PropTypes.bool,
+
+  /** Sets the label that will display in the collapsible */
   label: PropTypes.node.isRequired,
+
+  /** Callback to be executed when the button is clicked or activated by keyboard. */
   onClick: PropTypes.func,
 };
 

@@ -156,11 +156,11 @@ storiesOf("Stylers", module)
         <br /> Hexagon street art selfies locavore ethical mixtape.
       </LeadingStep>
       <LeadingStep scale={-2}>
-        <code>line-height(-3) === 1.11</code>
+        <code>line-height(-2) === 1.11</code>
         <br /> Hexagon street art selfies locavore ethical mixtape.
       </LeadingStep>
       <LeadingStep scale={-1}>
-        <code>line-height(-3) === 1.24</code>
+        <code>line-height(-1) === 1.24</code>
         <br /> Hexagon street art selfies locavore ethical mixtape.
       </LeadingStep>
       <LeadingStep scale={0}>

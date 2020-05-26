@@ -18,8 +18,7 @@ const propTypes = {
   */
   a11yText: PropTypes.string,
   /**
-    An array of string describing the allowed file types for the uploader ex. ["image/*", ".pdf", ".doc", "docx"]
-    reference: https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input/file#Unique_file_type_specifiers.
+    An array of string describing the allowed file types for the uploader.
   */
   okFileTypes: PropTypes.arrayOf(PropTypes.string),
   /**
@@ -35,7 +34,7 @@ const propTypes = {
   */
   defaultIsDisabled: PropTypes.bool,
   /**
-    The url that will be use to upload the files ex. https://yourEndPointURL.com
+    The url that will be use to upload the files.
   */
   endpoint: PropTypes.string.isRequired,
   /**
@@ -43,14 +42,11 @@ const propTypes = {
   */
   hasAutoUpload: PropTypes.bool,
   /**
-    When true the user will be able to drop files at any part of the document.body triggering
-    the upload listeners. On false will only received files if they are drop exactly on the FileInput area.
+    When true the user will be able to drop files at any part of the document.body. On false will only receive files dropped exactly on the FileInput area.
   */
   isBodyDroppable: PropTypes.bool,
   /**
-    Size in Mebibytes which is use for comparing each file that will be upload
-    you can make use of Uploader.convertUnitsToMebibytes() for easily convert units to Mebibyes
-    ex.  Uploader.convertUnitsToMebibytes(4) => 4194304 (close to 4MB);
+    Size in Mebibytes which is used for comparing each file that will be uploaded.
   */
   maxFileSize: PropTypes.number,
   /**
@@ -58,16 +54,11 @@ const propTypes = {
   */
   onChange: PropTypes.func,
   /**
-    Will be fire once all files has been processed with the files as parameter, finishing doesn't mean that all
-    files has been correctly uploaded, only means that they were processed, to find about the state of each file
-    iterate over the files list.
+    Will fire once all files have been processed with the files as parameter.
   */
   onCompleted: PropTypes.func,
   /**
-    you can pass an array of header objects as need it ex.
-    <Uploader headers={[{ "API-Key": "your-api-key" }, { Accept: "application/json" }, { "X-CSRF-Token": "your-token"} ]} ...>
-      {({...}) => <YourUI />}
-    </Uploader>
+    you can pass an array of header objects.
   */
   headers: PropTypes.arrayOf(PropTypes.object),
 };

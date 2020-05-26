@@ -7,9 +7,9 @@ import DatePicker from "../src/DatePicker";
 
 storiesOf("DatePicker", module)
   .addDecorator(withKnobs)
-  .add("DatePicker showcase", () => {
+  .add("Showcase", () => {
     const datePickerProps = () => ({
-      dataFormat: select("dataFormat", ["MM/DD/YYYY", "DD/MM/YYYY", "YYYY-MM-DD"], "MM/DD/YYYY"),
+      dateFormat: select("dateFormat", ["MM/DD/YYYY", "DD/MM/YYYY", "YYYY-MM-DD"], "MM/DD/YYYY"),
       humanFormat: select("humanFormat", ["MMMM DD, YYYY", "YYYY-MM-DD"], "MMMM DD, YYYY"),
       isDisabled: boolean("isDisabled", false),
       isReadOnly: boolean("isReadOnly", false),
@@ -31,7 +31,7 @@ storiesOf("DatePicker", module)
   .add("DatePicker with locale", () => <Example locale="zh" />)
   .add("DatePicker with initialDate", () => <Example initialDate={moment("2019-01-01")} />)
   .add("DatePicker with DatePicker.Input", () => (
-    <Example>
+    <Example locale="en">
       <DatePicker.Input className="custom-class-name" placeholder="custom placeholder" />
     </Example>
   ));

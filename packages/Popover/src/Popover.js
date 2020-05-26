@@ -4,6 +4,7 @@ import PropTypes from "prop-types";
 import throttle from "lodash.throttle";
 import uuidv4 from "uuid/v4";
 import tokens from "@paprika/tokens";
+import { zValue } from "@paprika/stylers/lib/helpers";
 import { AlignTypes } from "@paprika/helpers/lib/customPropTypes";
 import isInsideBoundaries from "./helpers/isInsideBoundaries";
 import { getContentCoordinates, getTipCoordinates } from "./helpers/getPosition";
@@ -13,7 +14,7 @@ import Content from "./components/Content/Content";
 import Card from "./components/Card/Card";
 import Trigger from "./components/Trigger/Trigger";
 import Tip from "./components/Tip/Tip";
-import * as styled from "./Popover.styles";
+import * as sc from "./Popover.styles";
 
 const openDelay = 350;
 const closeDelay = 150;
@@ -89,7 +90,7 @@ const defaultProps = {
   getPositioningElement: null,
   getScrollContainer: null,
   shouldKeepFocus: false,
-  zIndex: 1,
+  zIndex: zValue(1),
 };
 
 class Popover extends React.Component {
@@ -513,9 +514,9 @@ class Popover extends React.Component {
     return (
       <ThemeContext.Provider value={isDark}>
         <PopoverContext.Provider value={contextValue}>
-          <styled.Popover data-pka-anchor="popover" {...moreProps} ref={this.$popover}>
+          <sc.Popover data-pka-anchor="popover" {...moreProps} ref={this.$popover}>
             <PopoverChildren onChildChange={this.handleChildChange}>{this.props.children}</PopoverChildren>
-          </styled.Popover>
+          </sc.Popover>
         </PopoverContext.Provider>
       </ThemeContext.Provider>
     );

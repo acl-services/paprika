@@ -28,7 +28,7 @@ export const propTypes = {
   /** Child of type <ListBox.Option /> */
   children: PropTypes.node,
 
-  /** Disable the entire ListBox */
+  /** Disables the ListBox if true */
   isDisabled: PropTypes.bool,
 
   /** Let the user to select multiple options at same time */
@@ -88,7 +88,7 @@ export function ListBox(props) {
   return (
     <React.Fragment>
       {trigger}
-      <Content>
+      <Content onCancelFooter={footer ? footer.props.onClickCancel : null}>
         <Box {...box.props}>
           {filter}
           <List height={height}>

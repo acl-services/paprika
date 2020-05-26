@@ -1,5 +1,6 @@
 import React from "react";
-import { Story, Tagline, Gap } from "storybook/assets/styles/common.styles";
+import { Story, Gap } from "storybook/assets/styles/common.styles";
+import StoryHeader from "storybook/components/StoryHeader";
 import Heading from "@paprika/heading";
 
 import CollapsibleText from "../../src";
@@ -14,15 +15,7 @@ const ExampleStory = () => {
         }
       `}
     >
-      <Heading level={1} displayLevel={2} isLight>
-        CollapsibleText
-      </Heading>
-      <Tagline>
-        <big>
-          <strong>Variations</strong>
-        </big>{" "}
-        – Browse use cases + recipes
-      </Tagline>
+      <StoryHeader componentName="CollapsibleText" storyType="Variations" />
 
       <Gap />
 

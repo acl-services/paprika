@@ -4,6 +4,8 @@ import { withKnobs } from "@storybook/addon-knobs";
 import { InputStory } from "./Input.stories.styles";
 import InputExample from "./examples/InputExample";
 
+import stateDecorator from "./examples/StateDecorator";
+
 import ShowcaseStory from "./examples/Showcase";
 import SizesStory from "./examples/Sizes";
 import WithContentStory from "./examples/WithContent";
@@ -15,7 +17,10 @@ import Uncontrolled from "./examples/Uncontrolled";
 
 storiesOf("Input", module)
   .addDecorator(withKnobs)
-  .add("Showcase", ShowcaseStory)
+  .addDecorator(stateDecorator)
+  .add("Showcase", ShowcaseStory);
+
+storiesOf("Input", module)
   .add("Sizes", () => <SizesStory />)
   .add("With content", () => <WithContentStory />)
   .add("With decorative icon", () => <WithIconStory />)

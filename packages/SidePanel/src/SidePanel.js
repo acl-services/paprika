@@ -15,6 +15,9 @@ import { extractChildren } from "./helpers";
 import { useOffsetScroll } from "./hooks";
 
 const propTypes = {
+  /* Description of the SidePanel dialog for assistive technology */
+  a11yText: PropTypes.string,
+
   /** The content for the SidePanel. */
   children: PropTypes.node.isRequired,
 
@@ -24,51 +27,52 @@ const propTypes = {
   /** Y offset that is passed down from <SidePanel.Group> */
   groupOffsetY: PropTypes.number,
 
-  /** The width of the open panel. */
-  width: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
-
-  /** Callback triggered when the side panel needs to be close */
-  onClose: PropTypes.func,
-
-  /** Callback once the sidepanel has been opened event */
-  onAfterOpen: PropTypes.func,
-
-  /** Callback once the sidepanel has been closed event */
-  onAfterClose: PropTypes.func,
-
   /** Control the compactness of the side panel */
   isCompact: PropTypes.bool,
-
-  /** Control the visibility of the side panel. This prop makes the side panel appear */
-  isOpen: PropTypes.bool.isRequired,
-
-  /** Control the z position of the sidepanel */
-  zIndex: PropTypes.number,
-
-  /** Control y offset of the sidepanel */
-  offsetY: PropTypes.number,
-
-  /** Modify the look of the SidePanel */
-  kind: PropTypes.oneOf(["default", "child"]),
 
   /** Render the sidepanel inline */
   isInline: PropTypes.bool,
 
+  /** Control the visibility of the side panel. This prop makes the side panel appear */
+  isOpen: PropTypes.bool.isRequired,
+
   /** Control if the side panel slides from the left */
   isSlideFromLeft: PropTypes.bool,
+
+  /** Modify the look of the SidePanel */
+  kind: PropTypes.oneOf(["default", "child"]),
+
+  /** Control y offset of the sidepanel */
+  offsetY: PropTypes.number,
+
+  /** Callback once the sidepanel has been closed event */
+  onAfterClose: PropTypes.func,
+
+  /** Callback once the sidepanel has been opened event */
+  onAfterOpen: PropTypes.func,
+
+  /** Callback triggered when the side panel needs to be close */
+  onClose: PropTypes.func,
+
+  /** The width of the open panel. */
+  width: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
+
+  /** Control the z position of the sidepanel */
+  zIndex: PropTypes.number,
 };
 
 const defaultProps = {
+  a11yText: null,
   getPushContentElement: null,
   groupOffsetY: 0,
   isCompact: false,
   isInline: false,
+  isSlideFromLeft: false,
   kind: "default",
   offsetY: 0,
   onAfterClose: () => {},
-  onClose: null,
   onAfterOpen: () => {},
-  isSlideFromLeft: false,
+  onClose: null,
   width: "33%",
   zIndex: zValue(7),
 };
@@ -76,21 +80,23 @@ const defaultProps = {
 const PUSH_REF_TRANSITION_STYLE = "margin-right 0.2s ease";
 const PUSH_REF_TRANSITION_DELAY_STYLE = "0.1s";
 
-function SidePanel(props) {
+export default function SidePanel(props) {
   // Props
   const {
+    a11yText,
     getPushContentElement,
+    groupOffsetY,
+    isCompact,
+    isOpen,
+    isInline,
+    isSlideFromLeft,
+    kind,
+    offsetY,
     onAfterClose,
     onAfterOpen,
     onClose,
-    groupOffsetY,
     width,
-    isCompact,
-    isInline,
-    kind,
-    offsetY,
-    isOpen,
-    isSlideFromLeft,
+    zIndex,
     ...moreProps
   } = props;
 
@@ -170,11 +176,14 @@ function SidePanel(props) {
     }
   }
 
+  const ariaLabel = a11yText || (headerExtracted ? headerExtracted.props.children : null);
+
   let sidePanel = null;
 
   if (isVisible) {
     const dialog = (
       <Dialog
+        a11yText={ariaLabel}
         data-pka-anchor="sidepanel"
         footer={footerExtracted}
         getPushContentElement={getPushContentElement}
@@ -183,15 +192,16 @@ function SidePanel(props) {
         isCompact={isCompact}
         isInline={isInline}
         isOpen={isOpen}
+        isSlideFromLeft={isSlideFromLeft}
         kind={kind}
         offsetY={offsetScroll}
         onAnimationEnd={handleAnimationEnd}
         onClose={onClose}
         onKeyDown={handleEscKey}
-        refSidePanelContent={refSidePanelContent}
         refHeader={refHeader}
-        isSlideFromLeft={isSlideFromLeft}
+        refSidePanelContent={refSidePanelContent}
         width={width}
+        zIndex={zIndex}
         {...moreProps}
       >
         {children}
@@ -204,10 +214,10 @@ function SidePanel(props) {
       sidePanel = (
         <Portal active={!isInline}>
           <React.Fragment>
+            {overlayExtracted ? React.cloneElement(overlayExtracted, { onClose, zIndex }) : null}
             <FocusLock as="div" {...focusLockProps}>
               {dialog}
             </FocusLock>
-            {overlayExtracted ? React.cloneElement(overlayExtracted, { onClose }) : null}
           </React.Fragment>
         </Portal>
       );
@@ -226,14 +236,13 @@ function SidePanel(props) {
   );
 }
 
+SidePanel.propTypes = propTypes;
 SidePanel.defaultProps = defaultProps;
+SidePanel.displayName = "SidePanel";
+
 SidePanel.FocusLock = FocusLock;
 SidePanel.Footer = Footer;
 SidePanel.Group = Group;
 SidePanel.Header = Header;
 SidePanel.Overlay = Overlay;
-SidePanel.propTypes = propTypes;
 SidePanel.Trigger = Trigger;
-SidePanel.displayName = "SidePanel";
-
-export default SidePanel;

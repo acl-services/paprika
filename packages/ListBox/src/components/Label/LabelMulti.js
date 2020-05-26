@@ -12,6 +12,9 @@ function getFormattedLabel(selectedOptions, options) {
   return selectedOptions
     .map(index => {
       const option = options[index];
+
+      if (!option) return null;
+
       if (typeof option.content === "string") {
         return option.content;
       }
@@ -25,6 +28,7 @@ function getFormattedLabel(selectedOptions, options) {
       or a label prop is add to the <ListBox.Option label='my description'> component`
       );
     })
+    .filter(label => label !== null)
     .join(", ");
 }
 

@@ -9,6 +9,10 @@ const focusStyles = isInset => css`
     box-shadow: ${isInset ? insetFocusStyle : focusStyle};
     outline: none;
   }
+
+  [data-whatinput="mouse"] &:focus {
+    box-shadow: none;
+  }
 `;
 
 const disabledStyles = css`
