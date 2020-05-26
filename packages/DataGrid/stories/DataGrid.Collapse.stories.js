@@ -155,7 +155,7 @@ export function App() {
         />
         <DataGrid.ColumnDefinition
           width={156}
-          header="Paper review"
+          header="Preparer review"
           headerProps={headerStyle}
           cellA11yText={cellA11yText("review")}
           cell={({ row }) => {
