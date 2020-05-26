@@ -11,6 +11,7 @@ import DropdownMenuDividersExample from "./examples/DropdownMenuDividersExample"
 import DropdownMenuLongestExample from "./examples/DropdownMenuLongestExample";
 import DropdownMenuTriggerExample from "./examples/DropdownMenuTriggerExample";
 import ZIndexExample from "./examples/ZIndex";
+import DropdownMenuScroll from "./examples/DropdownMenuScroll";
 
 storiesOf("DropdownMenu", module)
   .addDecorator(withKnobs)
@@ -55,5 +56,10 @@ storiesOf("DropdownMenu", module)
   .add("Z Index", () => (
     <DropdownMenuStory>
       <ZIndexExample />
+    </DropdownMenuStory>
+  ))
+  .add("with scroll on overflow-y", () => (
+    <DropdownMenuStory>
+      <DropdownMenuScroll />
     </DropdownMenuStory>
   ));

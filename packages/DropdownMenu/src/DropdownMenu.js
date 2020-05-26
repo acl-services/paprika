@@ -21,18 +21,22 @@ const propTypes = {
 
   /** The z-index for the popover / confirmation */
   zIndex: Popover.propTypes.zIndex,
+
+  /** Set max-height, if the height prevents all menu items from being displayed, the menu can scroll internally. */
+  maxHeight: PropTypes.string,
 };
 
 const defaultProps = {
   align: Popover.defaultProps.align,
   edge: Popover.defaultProps.edge,
   zIndex: Popover.defaultProps.zIndex,
+  maxHeight: null,
 };
 
 const popoverOffset = 4;
 
 function DropdownMenu(props) {
-  const { align, children, edge, zIndex, ...moreProps } = props;
+  const { align, children, edge, zIndex, maxHeight, ...moreProps } = props;
 
   const [isOpen, setIsOpen] = React.useState(false);
   const [isConfirming, setIsConfirming] = React.useState(false);
@@ -139,7 +143,7 @@ function DropdownMenu(props) {
 
     return (
       <Popover.Card>
-        <div css={contentStyles} ref={dropdownListRef}>
+        <div css={contentStyles} ref={dropdownListRef} style={{ maxHeight }}>
           {extractedChildren.children.map((child, index) => {
             const childKey = { key: `DropdownMenuItem${index}` };
             if (child && child.type && child.type.displayName === "DropdownMenu.Item") {
