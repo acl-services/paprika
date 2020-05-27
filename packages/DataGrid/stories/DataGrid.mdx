@@ -169,12 +169,12 @@ const style = {
 
 ### Sticky headers
 
-By default all our header are sticky and mandatory, so you will have this feature enable, without doing anything, enjoy it 😄.
+By default, the table headers are sticky and required.
 
 ### Sticky columns
 
 1. Add the `isSticky` prop to the `<DataGrid.ColumnDefinition/>`
-2. Make sure the `isSticky` columns are grouped together before the columns that are not sticky. This prevents issues with keyboard navigation.
+2. Make sure the `isSticky` columns are grouped together before the columns that are not sticky. This will prevent issues with keyboard navigation.
 
 ```js
 <DataGrid data={data} width={680}>
@@ -269,12 +269,12 @@ To use these custom columns:
 
 ## Load more
 
-There are two patterns to load more data shipped with this component.
+There are two patterns to load more data:
 
 1. Using a load more button
 2. Infinite scrolling
 
-Use the `<DataGrid.Basement>` component which lets you know if the scrollbar reaches the bottom of the table viewport.
+The `<DataGrid.Basement>` component lets you know if the scrollbar reaches the bottom of the table.
 
 ```js
 <DataGrid data={data}>
@@ -290,7 +290,7 @@ Use the `<DataGrid.Basement>` component which lets you know if the scrollbar rea
 
 ### Infinity Scroll
 
-Use the `<DataGrid.InfinityScroll />` component to accomplish the infinity scroll pattern.
+Use the `<DataGrid.InfinityScroll />` component to accomplish the infinite scroll pattern.
 
 Provide a callback funtion to the `onReach` prop and the number of rows to offset to `rowsOffset` prop.
 
@@ -323,7 +323,7 @@ Use the `↑`, `↓` keys or scroll to the bottom of the table to load more rows
 **Should I use the DataGrid for all my Table problems?**
 
 The DataGrid is a flexible component which might be sufficient for a lot of scenarios
-where showing Tabular Data is required.
+where showing tabular data is required.
 
 Saying that, there are some limitations with the DataGrid. The DataGrid is not meant to
 be a spreadsheet. It doesn't react well to dynamic content like a normal
@@ -338,13 +338,13 @@ While the DataGrid has been designed to render a lot of information, its perform
 1. Number of rows and cells rendered on the DataGrid in full screen.
 2. Number of screens connected to your computer.
 3. Scrolling by a mouse wheel instead a magic pad.
-4. The browsers some are better than others
+4. Some browsers may perform better than others
 5. The UI and what you are rendering.
 
 To mitigate some of these problems you could use `React.Memo` or `memoize` your components. Another way is to
 use [workerize](https://github.com/developit/workerize) to process complex logic, without blocking the main thread.
 
-**Sticky headers and columns on my DataGris are not in sync while scrolling.**
+**Sticky headers and columns on my DataGrids are not in sync while scrolling.**
 
 We are aware of this. Unfortunately React-Window doesn't provide a built-in solution for sticky columns. We hope to fix this in an upcoming release.
 
