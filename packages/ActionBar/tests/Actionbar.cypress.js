@@ -4,19 +4,19 @@ describe("ActionBar", () => {
   });
 
   it("Should render", () => {
-    cy.get("span")
+    cy.getByTestId("raw-button")
       .contains("Filter")
       .should("be.visible");
-    cy.get("span")
+    cy.getByTestId("raw-button")
       .contains("Sort")
       .should("be.visible");
-    cy.get("span")
+    cy.getByTestId("raw-button")
       .contains("Arrange")
       .should("be.visible");
   });
 
   it("Should display the differant filtering options", () => {
-    cy.get("span")
+    cy.getByTestId("raw-button")
       .contains("Filter")
       .click();
     cy.contains("Add a field to filter by").click();
@@ -52,7 +52,7 @@ describe("ActionBar", () => {
   });
 
   it("Should filter the table ", () => {
-    cy.get("span")
+    cy.getByTestId("raw-button")
       .contains("Filter")
       .click();
     cy.contains("Add a field to filter by").click();
