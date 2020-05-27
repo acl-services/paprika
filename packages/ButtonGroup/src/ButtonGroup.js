@@ -173,7 +173,12 @@ function ButtonGroup(props) {
 
   return (
     <sc.ButtonGroup {...props} ref={groupRef} onKeyDown={handleKeyDown}>
-      <ButtonGroupContext.Provider value={contextValue}>{children}</ButtonGroupContext.Provider>
+      <ButtonGroupContext.Provider value={contextValue}>
+        {/* {React.Children.map(children, (element, idx) => {
+          return React.cloneElement(element, { ref: idx });
+        })} */}
+        {children}
+      </ButtonGroupContext.Provider>
     </sc.ButtonGroup>
   );
 }

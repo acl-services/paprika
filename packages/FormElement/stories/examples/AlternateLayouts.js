@@ -9,6 +9,7 @@ import Checkbox from "@paprika/checkbox";
 import Radio from "@paprika/radio";
 import DatePicker from "@paprika/date-picker";
 import ListBox from "@paprika/listbox";
+import ButtonGroup from "@paprika/button-group";
 import { action } from "@storybook/addon-actions";
 import FormElement from "../../src";
 import { FormElementStory } from "../FormElement.stories.styles";
@@ -21,6 +22,7 @@ const ExampleStory = () => {
   const size = ShirtSizes.MEDIUM;
   const optionsArray = ["Black Panther", "Wonder Woman", "Spiderman", "The Incredibles", "Thor", <span>test</span>];
   const listboxOptions = optionsArray.map(hero => <ListBox.Option key={hero}>{hero}</ListBox.Option>);
+  const buttonGroupOptions = optionsArray.map(hero => <ButtonGroup.Item key={hero}>{hero}</ButtonGroup.Item>);
 
   const getCheckboxOptions = ariaDescribedBy =>
     optionsArray.map(hero => (
@@ -149,6 +151,22 @@ const ExampleStory = () => {
       <FormElement label="Form Label">
         <FormElement.Content>
           {({ refLabel }) => <ListBox refLabel={refLabel}>{listboxOptions}</ListBox>}
+        </FormElement.Content>
+        <FormElement.Description>
+          <span>Description of this field.</span>
+        </FormElement.Description>
+        <FormElement.Help>
+          Give me some help. <a href="wegalvanize.com">Learn more</a>.
+        </FormElement.Help>
+      </FormElement>
+
+      <Rule />
+
+      <Tagline>Form Element with ButtonGroup.</Tagline>
+      <br />
+      <FormElement label="Form Label">
+        <FormElement.Content>
+          {({ refLabel }) => <ButtonGroup refLabel={refLabel}>{buttonGroupOptions}</ButtonGroup>}
         </FormElement.Content>
         <FormElement.Description>
           <span>Description of this field.</span>
