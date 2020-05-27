@@ -52,7 +52,17 @@ const defaultProps = {
 export default function Trigger(props) {
   const [state, dispatch] = useListBox();
   const onChangeContext = React.useContext(OnChangeContext);
-  const { placeholder, hasClearButton, onClickFooterAccept, children, isHidden } = props;
+  const {
+    placeholder,
+    hasClearButton,
+    onClickFooterAccept,
+    children,
+    isHidden,
+    onClickClear,
+    // eslint-disable-next-line react/prop-types
+    onFooterClickAccept,
+    ...moreProps
+  } = props;
   const {
     isDisabled,
     formElementLabelDescribedBy,
@@ -94,8 +104,8 @@ export default function Trigger(props) {
       return;
     }
 
-    if (props.onClickClear) {
-      props.onClickClear(state, dispatch);
+    if (onClickClear) {
+      onClickClear(state, dispatch);
       return;
     }
 
@@ -203,6 +213,7 @@ export default function Trigger(props) {
       ref={refTriggerContainer}
       size={size}
       {...getDOMAttributesForListBoxButton(state.idListBox)()}
+      {...moreProps}
     >
       {hasRenderTrigger ? renderChildrenProps : renderLabel()}
       {state.selectedOptions.length && hasClearButton && !shouldHideClearButton ? (

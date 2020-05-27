@@ -4,71 +4,9 @@ import { css, keyframes } from "styled-components";
 import { ShirtSizes } from "@paprika/helpers/lib/customPropTypes";
 import Kinds from "./ButtonKinds";
 
-// Common
-
-const commonStyles = `
-  ${stylers.alignMiddle}
-  ${stylers.lineHeight(-1)}
-  appearance: none;
-  border-radius: ${tokens.button.borderRadius};
-  border-style: solid;
-  border-width: 1px;
-  box-sizing: border-box;
-  cursor: pointer;
-  display: inline-flex;
-  font-weight: bold;
-  text-align: center;
-  vertical-align: middle;
-  text-decoration: none;
-
-  &:focus {
-    box-shadow: ${tokens.highlight.active.noBorder.boxShadow};
-    border-color: ${tokens.highlight.active.noBorder.borderColor};
-    outline: none;
-  }
-
-  [data-whatinput="mouse"] &:focus:not([data-has-forced-focus="true"]) {
-    box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.1);
-    border-color: ${tokens.border.color};
-
-    &[kind="minor"],
-    &[kind="link"] {
-      box-shadow: none;
-      border-color: transparent;
-    }
-
-    &[kind="flat"] {
-      box-shadow: none;
-    }
-  }
-
-  &:active {
-    box-shadow: ${tokens.highlight.active.noBorder.boxShadow}, inset 0 1px 1px 0 rgba(0, 0, 0, 0.1),
-      inset 0 1px 4px 0 rgba(0, 0, 0, 0.3);
-    transform: scale(0.98);
-  }
-`;
-
-const skeuomorphicStyles = `
-  box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.1);
-  cursor: pointer;
-  transition-duration: 0.2s;
-  transition-property: border;
-`;
-
-const coloredButtonStyles = `
-  color: ${tokens.color.white};
-  text-shadow: 0 1px 1px ${stylers.alpha(tokens.color.blackPure, 0.2)};
-`;
-
-const textButtonStyles = `
-  background: none;
-  border-color: transparent;
-`;
-
 // States
 
-const disabledStyles = `
+const disabledStyles = css`
   box-shadow: none;
   color: ${tokens.color.blackDisabled};
   cursor: not-allowed;
@@ -81,7 +19,9 @@ const disabledStyles = `
     transform: none;
   }
 
-  &, &:hover, &:focus {
+  &,
+  &:hover,
+  &:focus {
     background: ${tokens.color.blackLighten70};
     border-color: ${tokens.color.blackLighten60};
     color: ${tokens.color.blackLighten40};
@@ -89,7 +29,7 @@ const disabledStyles = `
   }
 `;
 
-const disabledTextStyles = `
+const disabledTextStyles = css`
   ${disabledStyles}
 
   &, &:hover {
@@ -98,25 +38,99 @@ const disabledTextStyles = `
   }
 `;
 
-const activeStyles = `
-  box-shadow: ${tokens.highlight.active.noBorder.boxShadow};
+const activeStyles = css`
   border-color: ${tokens.highlight.active.noBorder.borderColor};
+  box-shadow: ${tokens.highlight.active.noBorder.boxShadow};
+
+  &:hover:not([disabled]):not([aria-disabled="true"]) {
+    border-color: ${tokens.highlight.active.noBorder.borderColor};
+  }
+`;
+
+// Common
+
+const commonStyles = css`
+  ${stylers.alignMiddle}
+  ${stylers.lineHeight(-1)}
+  appearance: none;
+  border-radius: ${tokens.button.borderRadius};
+  border-style: solid;
+  border-width: 1px;
+  box-sizing: border-box;
+  cursor: pointer;
+  display: inline-flex;
+  font-weight: bold;
+  text-align: center;
+  text-decoration: none;
+  vertical-align: middle;
+
+  &:focus {
+    box-shadow: ${tokens.highlight.active.noBorder.boxShadow};
+    border-color: ${tokens.highlight.active.noBorder.borderColor};
+    outline: none;
+  }
+
+  [data-whatinput="mouse"] &:focus {
+    &[data-has-forced-focus="true"] {
+      box-shadow: ${tokens.highlight.active.noBorder.boxShadow};
+    }
+
+    &:not([data-has-forced-focus="true"]) {
+      box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.1);
+      border-color: ${tokens.border.color};
+
+      &[kind="minor"],
+      &[kind="link"] {
+        box-shadow: none;
+        border-color: transparent;
+      }
+
+      &[kind="flat"] {
+        box-shadow: none;
+      }
+    }
+
+    ${({ isActive }) => (isActive ? activeStyles : "")}
+  }
+
+  &:active {
+    box-shadow: ${tokens.highlight.active.noBorder.boxShadow}, inset 0 1px 1px 0 rgba(0, 0, 0, 0.1),
+      inset 0 1px 4px 0 rgba(0, 0, 0, 0.3);
+    transform: scale(0.98);
+  }
+`;
+
+const skeuomorphicStyles = css`
+  box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.1);
+  cursor: pointer;
+  transition-duration: 0.2s;
+  transition-property: border;
+`;
+
+const coloredButtonStyles = css`
+  color: ${tokens.color.white};
+  text-shadow: 0 1px 1px ${stylers.alpha(tokens.color.blackPure, 0.2)};
+`;
+
+const textButtonStyles = css`
+  background: none;
+  border-color: transparent;
 `;
 
 // Sizes
 
 const sizeStyles = {
-  [ShirtSizes.SMALL]: `
+  [ShirtSizes.SMALL]: css`
     ${stylers.fontSize(-2)};
     min-height: ${stylers.spacer(3)};
     padding: 3px ${tokens.space};
   `,
-  [ShirtSizes.MEDIUM]: `
+  [ShirtSizes.MEDIUM]: css`
     ${stylers.fontSize(-1)};
     min-height: ${stylers.spacer(4)};
     padding: 6.5px ${tokens.spaceLg};
   `,
-  [ShirtSizes.LARGE]: `
+  [ShirtSizes.LARGE]: css`
     ${stylers.fontSize()};
     min-height: ${stylers.spacer(5)};
     padding: 9px ${stylers.spacer(2)};
@@ -126,11 +140,11 @@ const sizeStyles = {
 // Kinds
 
 const kindStyles = props => ({
-  [Kinds.DEFAULT]: `
+  [Kinds.DEFAULT]: css`
     ${skeuomorphicStyles}
 
-    background-image: linear-gradient(${tokens.color.blackLighten90}, ${tokens.color.blackLighten70});
     background-color: ${tokens.color.white};
+    background-image: linear-gradient(${tokens.color.blackLighten90}, ${tokens.color.blackLighten70});
     border-color: ${tokens.border.color};
     color: ${tokens.color.black};
 
@@ -141,12 +155,12 @@ const kindStyles = props => ({
 
     ${props.isDisabled ? disabledStyles : ""}
   `,
-  [Kinds.PRIMARY]: `
+  [Kinds.PRIMARY]: css`
     ${skeuomorphicStyles}
     ${coloredButtonStyles}
 
-    background-image: linear-gradient(${tokens.color.greenLighten10}, ${tokens.color.green});
     background-color: ${tokens.color.greenLighten10};
+    background-image: linear-gradient(${tokens.color.greenLighten10}, ${tokens.color.green});
     border-color: ${tokens.color.green};
 
     &:hover {
@@ -156,12 +170,12 @@ const kindStyles = props => ({
 
     ${props.isDisabled ? disabledStyles : ""}
   `,
-  [Kinds.SECONDARY]: `
+  [Kinds.SECONDARY]: css`
     ${skeuomorphicStyles}
     ${coloredButtonStyles}
 
-    background-image: linear-gradient(${tokens.color.purpleLighten10}, ${tokens.color.purple});
     background-color: ${tokens.color.purpleLighten10};
+    background-image: linear-gradient(${tokens.color.purpleLighten10}, ${tokens.color.purple});
     border-color: ${tokens.color.purple};
 
     &:hover {
@@ -171,12 +185,12 @@ const kindStyles = props => ({
 
     ${props.isDisabled ? disabledStyles : ""}
   `,
-  [Kinds.DESTRUCTIVE]: `
+  [Kinds.DESTRUCTIVE]: css`
     ${skeuomorphicStyles}
     ${coloredButtonStyles}
 
-    background-image: linear-gradient(${tokens.color.orangeHighlight}, ${tokens.color.orange});
     background-color: ${tokens.color.orangeHighlight};
+    background-image: linear-gradient(${tokens.color.orangeHighlight}, ${tokens.color.orange});
     border-color: ${tokens.color.orange};
 
     &:hover {
@@ -186,7 +200,7 @@ const kindStyles = props => ({
 
     ${props.isDisabled ? disabledStyles : ""}
   `,
-  [Kinds.FLAT]: `
+  [Kinds.FLAT]: css`
     ${skeuomorphicStyles}
 
     background-color: ${tokens.color.white};
@@ -201,7 +215,7 @@ const kindStyles = props => ({
 
     ${props.isDisabled ? disabledStyles : ""}
   `,
-  [Kinds.MINOR]: `
+  [Kinds.MINOR]: css`
     ${textButtonStyles}
 
     &:hover {
@@ -210,7 +224,7 @@ const kindStyles = props => ({
 
     ${props.isDisabled ? disabledTextStyles : ""}
   `,
-  [Kinds.LINK]: `
+  [Kinds.LINK]: css`
     ${textButtonStyles}
 
     color: ${tokens.textColor.link};
@@ -238,7 +252,7 @@ const kindStyles = props => ({
 
 // Modifiers
 
-const fullWidthStyles = `
+const fullWidthStyles = css`
   display: flex;
   width: 100%;
 `;
@@ -247,7 +261,7 @@ const fullWidthStyles = `
 // Composition
 //
 
-const buttonStyles = props => `
+const buttonStyles = props => css`
   ${commonStyles}
   ${sizeStyles[props.size]}
   ${kindStyles(props)[props.kind]}
@@ -302,5 +316,5 @@ export const iconStyles = props => css`
       `
     : ""}
 
-  ${props.isDropdown ? `margin:0 0 0 ${tokens.spaceSm};` : ""}
+  ${props.isDropdown ? `margin: 0 0 0 ${tokens.spaceSm};` : ""}
 `;

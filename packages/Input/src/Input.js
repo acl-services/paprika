@@ -33,8 +33,8 @@ const propTypes = {
   /** If true it makes the input read only. */
   isReadOnly: PropTypes.bool,
 
-  /** Callback to be executed when the input value is changed */
-  onChange: PropTypes.func.isRequired,
+  /** Callback to be executed when the input value is changed. Should not be used with defaultValue prop */
+  onChange: PropTypes.func,
 
   /** Callback to be executed when the input value is cleared */
   onClear: PropTypes.func,
@@ -52,22 +52,21 @@ const propTypes = {
 const defaultProps = {
   a11yText: null,
   className: null,
-  defaultValue: null,
+  defaultValue: "",
   hasClearButton: false,
   hasError: false,
   icon: null,
   inputRef: () => {},
   isDisabled: false,
   isReadOnly: false,
+  onChange: () => {},
   onClear: () => {},
   size: ShirtSizes.MEDIUM,
   type: "text",
-  value: "",
+  value: null,
 };
 
 const Input = props => {
-  const [value, setValue] = React.useState(props.defaultValue);
-
   const inputClearHandler = e => {
     e.target.value = "";
     props.onChange(e);
@@ -105,15 +104,16 @@ const Input = props => {
     isReadOnly,
     hasClearButton,
     hasError,
-    onChange,
     onClear,
     size,
     ...moreProps
   } = props;
 
-  // Must remove so React does not complain about a component trying to be both controlled and uncontrolled.
-  delete moreProps.value;
-  delete moreProps.defaultValue;
+  if (moreProps.value || moreProps.value === "") {
+    delete moreProps.defaultValue;
+  } else {
+    delete moreProps.value;
+  }
 
   const styleProps = {
     size,
@@ -132,13 +132,6 @@ const Input = props => {
     className
   );
 
-  function handleChange(e) {
-    if (props.defaultValue !== null) {
-      setValue(e.target.value);
-    }
-    onChange(e);
-  }
-
   return (
     <div css={inputStyles} {...styleProps} className={rootClasses}>
       {renderIcon()}
@@ -147,10 +140,8 @@ const Input = props => {
         className="form-input__input"
         data-pka-anchor="input"
         disabled={isDisabled}
-        onChange={handleChange}
         readOnly={isReadOnly}
         ref={inputRef}
-        value={value || props.value}
         {...moreProps}
       />
       {renderClear()}
