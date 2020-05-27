@@ -102,13 +102,13 @@ es:
       no_results: No hay resultados
       filter:
         no_filters_applied: No se aplicaron filtros a esta vista
-        label: Filtro
+        label: Filtrar
         singular_label: Se aplicó 1 filtro
         plural_label: "{{numberOfFilters}} filtros aplicados"
         add_filter: Agregar un campo para filtrar
         and: y
         or: o
-        where: Dónde
+        where: Donde
         rules:
           is: es
           is_not: no es
@@ -117,7 +117,7 @@ es:
           is_blank: está en blanco
           is_not_blank: no está en blanco
           equals: es igual a
-          not_equal_to: distinto de
+          not_equal_to: es distinto de
           greater_than: ">"
           less_than: "<"
           greater_than_or_equal_to: "≥"

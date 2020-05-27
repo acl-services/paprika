@@ -3,7 +3,7 @@ import PropTypes from "prop-types";
 import RawButton from "@paprika/raw-button";
 import { isActiveElementPopover } from "../../helpers/isActiveElementPopover";
 import PopoverContext from "../../PopoverContext";
-import * as styled from "../../Popover.styles";
+import * as sc from "../../Popover.styles";
 
 const propTypes = {
   /** Descriptive a11y text for assistive technologies for the trigger. */
@@ -61,7 +61,7 @@ function Trigger(props) {
 
   if (isEager) {
     return (
-      <styled.Trigger
+      <sc.Trigger
         a11yText={a11yText}
         data-pka-anchor="popover.trigger"
         onMouseOver={handleTriggerEvent}
@@ -72,7 +72,7 @@ function Trigger(props) {
         {...moreProps}
       >
         {children}
-      </styled.Trigger>
+      </sc.Trigger>
     );
   }
 

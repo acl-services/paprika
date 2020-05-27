@@ -3,7 +3,7 @@ import PropTypes from "prop-types";
 import { ShirtSizes } from "@paprika/helpers/lib/customPropTypes";
 import { zValue } from "@paprika/stylers/lib/helpers";
 import CheckIcon from "@paprika/icon/lib/Check";
-import CautionIcon from "@paprika/icon/lib/Caution";
+import CautionIcon from "@paprika/icon/lib/ColoredCaution";
 import ExclamationCircleIcon from "@paprika/icon/lib/ExclamationCircle";
 import InfoCircleIcon from "@paprika/icon/lib/InfoCircle";
 import LockIcon from "@paprika/icon/lib/Lock";
