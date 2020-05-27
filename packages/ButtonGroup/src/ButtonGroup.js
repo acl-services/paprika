@@ -1,6 +1,6 @@
 import React from "react";
 import PropTypes from "prop-types";
-import { ShirtSizes } from "@paprika/helpers/lib/customPropTypes";
+import { ShirtSizes, RefOf } from "@paprika/helpers/lib/customPropTypes";
 import ButtonGroupContext from "./ButtonGroupContext";
 import Item from "./components/Item";
 import * as sc from "./ButtonGroup.styles";
@@ -29,6 +29,8 @@ const propTypes = {
 
   /** Size of the buttons (height, font size, etc). */
   size: PropTypes.oneOf(ShirtSizes.DEFAULT),
+
+  refLabel: RefOf(),
 };
 
 const defaultProps = {
@@ -40,6 +42,7 @@ const defaultProps = {
   isSemantic: true,
   onChange: () => {},
   size: ShirtSizes.MEDIUM,
+  refLabel: null,
 };
 
 const keyTypes = {
@@ -50,13 +53,13 @@ const keyTypes = {
 };
 
 function ButtonGroup(props) {
-  const { children, hasIcons, isDisabled, isMulti, isSemantic, onChange, size } = props;
+  const { children, hasIcons, isDisabled, isMulti, isSemantic, onChange, size, refLabel } = props;
 
   const [selectedItems, setSelectedItems] = React.useState([]);
   const [currentFocusIndex, setFocusIndex] = React.useState(null);
   const [currentFocusValue, setFocusValue] = React.useState(null);
 
-  const groupRef = React.createRef();
+  const groupRef = React.useRef();
 
   function isItemDisabled(item) {
     return item.getAttribute("aria-disabled") === "true" || item.hasAttribute("disabled");
@@ -89,6 +92,24 @@ function ButtonGroup(props) {
     getButtonRefs()[index].focus();
     setFocusIndex(index);
   }
+
+  React.useLayoutEffect(() => {
+    const $label = refLabel && refLabel.current;
+
+    if (!$label) return;
+
+    function handleClickLabel() {
+      const enabledIndexes = getEnabledIndexes();
+      focusButton(enabledIndexes[0]);
+      console.log("focusing first button", document.activeElement);
+    }
+
+    $label.addEventListener("click", handleClickLabel);
+
+    return () => {
+      $label.removeEventListener("click", handleClickLabel);
+    };
+  }, [refLabel]);
 
   const handleClick = clickedValue => {
     if (!isDisabled) {
