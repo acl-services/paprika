@@ -1,4 +1,5 @@
 import React from "react";
+import isEqual from "lodash.isequal";
 import useListBox from "../useListBox";
 import { getDataOptions } from "../components/Option/helpers/optionState";
 
@@ -10,14 +11,19 @@ function waitForPopoverAnimation(func) {
 export function useChildrenLengthChange(children) {
   const [state, dispatch] = useListBox();
   React.useEffect(() => {
-    if (Object.keys(state.options).length !== React.Children.count(children)) {
-      const options = getDataOptions(children);
+    const options = getDataOptions(children);
 
-      dispatch({
-        type: useListBox.types.updateOptions,
-        payload: options,
-      });
+    if (Object.keys(state.options).length === Object.keys(options).length) {
+      const difference = Object.values(state.options).find(
+        (prevOption, key) => !isEqual(prevOption.value, options[key].value)
+      );
+      if (!difference) return;
     }
+
+    dispatch({
+      type: useListBox.types.updateOptions,
+      payload: options,
+    });
   }, [children, dispatch, state.hasFooter, state.options]);
 }
 
