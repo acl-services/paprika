@@ -10,7 +10,7 @@ import tokens from "@paprika/tokens";
 import { UploaderContext } from "../../Uploader";
 import { getNumberWithUnits } from "../../helpers";
 import statuses from "../../statuses";
-import * as div from "./File.styles";
+import * as sc from "./File.styles";
 
 const propTypes = {
   error: PropTypes.string,
@@ -100,18 +100,18 @@ function File({ error, fileKey, name, progress, size, status }) {
   }
 
   return (
-    <div.FileWrapper>
-      <div.Left>
-        <div.Info>
-          <div.Name>{name}</div.Name>
-          <div.ProgressText status={status}>{getProgressText()}</div.ProgressText>
-        </div.Info>
-        <div.ProgressBarWrapper>
-          <div.ProgressBar progress={progress} status={status} />
-        </div.ProgressBarWrapper>
-      </div.Left>
-      <div.Right status={status}>{renderIcon()}</div.Right>
-    </div.FileWrapper>
+    <sc.FileWrapper>
+      <sc.Left>
+        <sc.Info>
+          <sc.Name>{name}</sc.Name>
+          <sc.ProgressText status={status}>{getProgressText()}</sc.ProgressText>
+        </sc.Info>
+        <sc.ProgressBarWrapper>
+          <sc.ProgressBar progress={progress} status={status} />
+        </sc.ProgressBarWrapper>
+      </sc.Left>
+      <sc.Right status={status}>{renderIcon()}</sc.Right>
+    </sc.FileWrapper>
   );
 }
 

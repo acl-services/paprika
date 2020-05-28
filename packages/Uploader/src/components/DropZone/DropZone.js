@@ -1,9 +1,10 @@
 import React from "react";
 import tokens from "@paprika/tokens";
+import stylers from "@paprika/stylers";
 import useI18n from "@paprika/l10n/lib/useI18n";
 import UploadIcon from "@paprika/icon/lib/Upload";
 import { UploaderContext } from "../../Uploader";
-import * as div from "./DropZone.styles";
+import * as sc from "./DropZone.styles";
 
 export default function DropZone() {
   const I18n = useI18n();
@@ -32,10 +33,10 @@ export default function DropZone() {
 
   return (
     <uc.FileInput>
-      <div.DropZone isDraggingOver={isDraggingOver}>
-        <UploadIcon size="32px" color={uploadIconColor} />
-        <div.Body>{body}</div.Body>
-      </div.DropZone>
+      <sc.DropZone isDraggingOver={isDraggingOver}>
+        <UploadIcon size={stylers.spacer(4)} color={uploadIconColor} />
+        <sc.Body>{body}</sc.Body>
+      </sc.DropZone>
     </uc.FileInput>
   );
 }
