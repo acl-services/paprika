@@ -12,6 +12,6 @@ storiesOf(storyName, module)
   .addDecorator(withKnobs)
   .add("Showcase", Showcase);
 
-storiesOf(`${storyName}/Automation Tests`, module)
+storiesOf(`${storyName}/Backyard/Tests`, module)
   .add("Screener", () => <ScreenerStory />)
   .add("Accessibility", () => <A11yStory />);

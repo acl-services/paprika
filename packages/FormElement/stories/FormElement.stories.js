@@ -9,8 +9,8 @@ const storyName = getStoryName("FormElement");
 
 storiesOf(storyName, module)
   .addDecorator(withKnobs)
-  .add("Showcase", ShowcaseStory)
+  .add("Showcase", ShowcaseStory);
+
+storiesOf(`${storyName}/Examples`, module)
   .add("AlternateLayouts", AlternateLayoutsStory)
   .add("AccessibilityExample", AccessibilityExample);
-
-storiesOf(`${storyName}/Automation Tests`, module);

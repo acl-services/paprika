@@ -13,10 +13,13 @@ const storyName = getStoryName("Heading");
 
 storiesOf(storyName, module)
   .addDecorator(withKnobs)
-  .add("Showcase", ShowcaseStory)
+  .add("Showcase", ShowcaseStory);
+
+storiesOf(`${storyName}/Examples`, module)
   .add("Heading Levels", () => <HeadingLevelsStory />)
   .add("Heading Styles", () => <HeadingStylesStory />)
   .add("Heading Layouts", () => <HeadingLayoutsStory />);
 
-storiesOf(`${storyName}/Automation Tests/Screener`, module).add("Basic", () => <ScreenerStory />);
-storiesOf(`${storyName}/Automation Tests/Accessibility`, module).add("Default", () => <A11yStory />);
+storiesOf(`${storyName}/Backyard/Tests`, module)
+  .add("Screener", () => <ScreenerStory />)
+  .add("Accessibility", () => <A11yStory />);

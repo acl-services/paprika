@@ -21,7 +21,7 @@ storiesOf(storyName, module)
   .addDecorator(stateDecorator)
   .add("Showcase", ShowcaseStory);
 
-storiesOf(storyName, module)
+storiesOf(`${storyName}/Examples`, module)
   .add("Sizes", () => <SizesStory />)
   .add("With content", () => <WithContentStory />)
   .add("With decorative icon", () => <WithIconStory />)
@@ -30,14 +30,8 @@ storiesOf(storyName, module)
   .add("With Ref", () => <WithRef />)
   .add("Uncontrolled", () => <Uncontrolled />);
 
-storiesOf(`{storyName}/Automation Tests/Screener`, module).add("InputExample", () => (
+storiesOf(`${storyName}/Backyard/Tests`, module).add("Screener", () => (
   <InputStory>
     <InputExample placeholder="First Name" size="large" />
-  </InputStory>
-));
-
-storiesOf(`{storyName}/Automation Tests/Accessibility`, module).add("Default", () => (
-  <InputStory>
-    <InputExample placeholder="First Name" size="large" onChange={() => {}} />
   </InputStory>
 ));
