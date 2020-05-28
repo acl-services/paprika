@@ -3189,6 +3189,16 @@
     "@svgr/cli" "^4.1.0"
     prop-types "^15.7.2"
 
+"@paprika/icon@^0.2.15":
+  version "0.2.16"
+  resolved "https://registry.yarnpkg.com/@paprika/icon/-/icon-0.2.16.tgz#689b394e9828dd624cd825897f20aa9dea82d42d"
+  integrity sha512-kEPN6+fS3O4e6w7PZv+zqpDqeRcz1oMLu3+/wN+NJ70sM9kOgJVErps+ULELF8AafWvYLZVQSVwJpO0BBABJqQ==
+  dependencies:
+    "@babel/runtime-corejs2" "^7.3.1"
+    "@paprika/tokens" "^0.1.14"
+    "@svgr/cli" "^4.1.0"
+    prop-types "^15.7.2"
+
 "@paprika/stylers@^0.1.5":
   version "0.1.7"
   resolved "https://registry.yarnpkg.com/@paprika/stylers/-/stylers-0.1.7.tgz#ae3328853fea2c463af070bdeafdec9ac34d3d9c"
@@ -11814,6 +11824,11 @@ lodash.isboolean@^3.0.3:
   version "3.0.3"
   resolved "https://registry.yarnpkg.com/lodash.isboolean/-/lodash.isboolean-3.0.3.tgz#6c2e171db2a257cd96802fd43b01b20d5f5870f6"
   integrity sha1-bC4XHbKiV82WgC/UOwGyDV9YcPY=
+
+lodash.isequal@^4.5.0:
+  version "4.5.0"
+  resolved "https://registry.yarnpkg.com/lodash.isequal/-/lodash.isequal-4.5.0.tgz#415c4478f2bcc30120c22ce10ed3226f7d3e18e0"
+  integrity sha1-QVxEePK8wwEgwizhDtMib30+GOA=
 
 lodash.isinteger@^4.0.4:
   version "4.0.4"

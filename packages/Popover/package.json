@@ -1,6 +1,6 @@
 {
   "name": "@paprika/popover",
-  "version": "0.3.22",
+  "version": "0.3.23",
   "description": "Popover component  renders an overlay of content anchored to a trigger button (or specific positioning element). It can be triggered by click (or keypress), by hover (or keyboard focus – as a tooltip), or programatically",
   "author": "@paprika",
   "main": "lib/index.js",
