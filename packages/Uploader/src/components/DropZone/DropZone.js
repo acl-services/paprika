@@ -19,9 +19,9 @@ export default function DropZone() {
       {I18n.t("uploader.drop_files_here_or")}&nbsp;
       <a
         href="#"
-        onClick={() => {
+        onClick={e => {
+          e.preventDefault();
           refInput.current.click();
-          return false;
         }}
       >
         {I18n.t("uploader.choose_from_computer")}

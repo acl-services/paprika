@@ -4,6 +4,7 @@ import useI18n from "@paprika/l10n/lib/useI18n";
 import { UploaderContext } from "../../Uploader";
 import { getNumberWithUnits } from "../../helpers";
 import File from "../File";
+import * as sc from "./FileList.styles";
 
 const propTypes = {
   maxFileSize: PropTypes.number.isRequired,
@@ -18,7 +19,7 @@ export default function FileList({ supportedMimeTypes, maxFileSize }) {
 
   function getFileErrorText(file) {
     if (!file.isSizeValid) {
-      return I18n.t("uploader.errors.size", { maxFileSize: getNumberWithUnits(maxFileSize) });
+      return I18n.t("uploader.errors.size", { maxFileSize: getNumberWithUnits(I18n, maxFileSize) });
     }
 
     if (!file.isTypeValid) {
@@ -32,19 +33,24 @@ export default function FileList({ supportedMimeTypes, maxFileSize }) {
     return null;
   }
 
+  if (!files) {
+    return null;
+  }
+
   return (
-    files &&
-    files.map(file => (
-      <File
-        fileKey={file.key}
-        key={file.key}
-        name={file.filename}
-        size={file.filesize}
-        status={file.status}
-        progress={file.progress}
-        error={getFileErrorText(file)}
-      />
-    ))
+    <sc.unorderedList>
+      {files.map(file => (
+        <File
+          fileKey={file.key}
+          key={file.key}
+          name={file.filename}
+          size={file.filesize}
+          status={file.status}
+          progress={file.progress}
+          error={getFileErrorText(file)}
+        />
+      ))}
+    </sc.unorderedList>
   );
 }
 

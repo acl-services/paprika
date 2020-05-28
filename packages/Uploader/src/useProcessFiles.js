@@ -1,7 +1,7 @@
 import React from "react";
 import uuidv4 from "uuid/v4";
 import statuses from "./statuses";
-import { upload as uploadToServer } from "./helpers";
+import { uploadToServer } from "./helpers";
 
 function getFileByIndex(key, files) {
   let index = null;

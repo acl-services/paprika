@@ -2,20 +2,6 @@ import uuidv4 from "uuid/v4";
 import superagent from "superagent";
 import statuses from "./statuses";
 
-export function fileSizeUnitsToHumanReadableFormat(size) {
-  const aMultiples = ["KB", "MB", "GB", "TB", "PB", "EB", "ZB", "YB"];
-  let nMultiple = 0;
-  let sOutput = "";
-  // this calculate Kibebytes, Mebibyes, etc.
-  // But are being label as KB and MB for easier understanding.
-  for (let nApprox = size / 1024; nApprox > 1; nApprox /= 1024, nMultiple++) {
-    // fixed to 2 decimals but we could add more if need it
-    sOutput = `${nApprox.toFixed(2)} ${aMultiples[nMultiple]}`;
-  }
-
-  return sOutput;
-}
-
 function getExtension({ file }) {
   const filename = file.name;
   return filename.substr((~-filename.lastIndexOf(".") >>> 0) + 2); // eslint-disable-line
@@ -64,7 +50,6 @@ function createFilesDataStructure({ files, maxFileSize, supportedMimeTypes, endp
       file,
       filename: file.name,
       filesize: file.size,
-      filesizeHumanize: fileSizeUnitsToHumanReadableFormat(file.size),
       progress: 0,
       request: superagent.post(endpoint),
       status: fileValidation.isValid ? statuses.IDLE : statuses.ERROR,
@@ -75,7 +60,7 @@ function createFilesDataStructure({ files, maxFileSize, supportedMimeTypes, endp
   });
 }
 
-export function upload({ file, data = {}, onProgress, onSuccess, onError, headers }) {
+export function uploadToServer({ file, data = {}, onProgress, onSuccess, onError, headers }) {
   const formData = new FormData();
   formData.append("file", file.file);
   formData.append("data", JSON.stringify(data));
@@ -121,19 +106,21 @@ export function getFiles({ event, maxFileSize, supportedMimeTypes, endpoint }) {
   return [];
 }
 
-export function getNumberWithUnits(number) {
+export function getNumberWithUnits(I18n, number) {
   if (number > 1024) {
     if (number > 1024 * 1024) {
       if (number > 1024 * 1024 * 1024) {
         if (number > 1024 * 1024 * 1024 * 1024) {
-          return `${(number / (1024 * 1024 * 1024 * 1024)).toFixed(3)}TiB`;
+          return `${(number / (1024 * 1024 * 1024 * 1024)).toFixed(3)}${I18n.t(
+            "uploader.size_abbreviations.tebibyte"
+          )}`;
         }
-        return `${(number / (1024 * 1024 * 1024)).toFixed(2)}GiB`;
+        return `${(number / (1024 * 1024 * 1024)).toFixed(2)}${I18n.t("uploader.size_abbreviations.gibibyte")}`;
       }
-      return `${(number / (1024 * 1024)).toFixed(1)}MiB`;
+      return `${(number / (1024 * 1024)).toFixed(1)}${I18n.t("uploader.size_abbreviations.mebibyte")}`;
     }
-    return `${parseInt(number / 1024, 10)}KiB`;
+    return `${parseInt(number / 1024, 10)}${I18n.t("uploader.size_abbreviations.kibibyte")}`;
   }
 
-  return `${parseInt(number, 10)}B`;
+  return `${parseInt(number, 10)}${I18n.t("uploader.size_abbreviations.byte")}`;
 }

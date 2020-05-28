@@ -7,6 +7,7 @@ import Button from "@paprika/button";
 import useI18n from "@paprika/l10n/lib/useI18n";
 import Popover from "@paprika/popover";
 import tokens from "@paprika/tokens";
+import { ShirtSizes } from "@paprika/helpers/lib/customPropTypes";
 import { UploaderContext } from "../../Uploader";
 import { getNumberWithUnits } from "../../helpers";
 import statuses from "../../statuses";
@@ -29,13 +30,8 @@ const defaultProps = {
 function File({ error, fileKey, name, progress, size, status }) {
   const { cancelFile, restartFileUpload } = React.useContext(UploaderContext);
   const I18n = useI18n();
-
-  function getUploadedAmount() {
-    return (size * progress) / 100;
-  }
-
-  const sizeWithUnits = getNumberWithUnits(size);
-  const progressWithUnits = getNumberWithUnits(getUploadedAmount());
+  const sizeWithUnits = getNumberWithUnits(I18n, size);
+  const progressWithUnits = getNumberWithUnits(I18n, (size * progress) / 100);
 
   function renderIcon() {
     switch (status) {
@@ -46,11 +42,11 @@ function File({ error, fileKey, name, progress, size, status }) {
             <Popover.Tip />
             <Popover.Trigger>
               <Button.Icon
-                kind="minor"
+                kind={Button.Kinds.MINOR}
                 onClick={() => {
                   restartFileUpload(fileKey);
                 }}
-                size="small"
+                size={ShirtSizes.SMALL}
               >
                 <RetryIcon />
               </Button.Icon>
@@ -68,11 +64,11 @@ function File({ error, fileKey, name, progress, size, status }) {
             <Popover.Tip />
             <Popover.Trigger>
               <Button.Icon
-                kind="minor"
+                kind={Button.Kinds.MINOR}
                 onClick={() => {
                   cancelFile(fileKey);
                 }}
-                size="small"
+                size={ShirtSizes.SMALL}
               >
                 <TimesIcon />
               </Button.Icon>

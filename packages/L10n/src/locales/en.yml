@@ -14,7 +14,7 @@ en:
       restart_upload: Restart upload
       errors:
         size: File must be smaller than {{maxFileSize}}
-        type: "File must be one of the following types: {{supportedTypes}}"
+        type: "File must be one of the following types: {{- supportedTypes}}"
       status:
         idle: Idle
         processing: Processing
@@ -27,6 +27,12 @@ en:
         complete: Complete
         idle: Idle
         uploading: Uploading {{progressWithUnits}} of {{sizeWithUnits}}
+      size_abbreviations:
+        byte: B
+        kibibyte: KiB
+        mebibyte: MiB
+        gibibyte: GiB
+        tebibyte: TiB
     actions:
       delete: Delete
       apply: Apply
