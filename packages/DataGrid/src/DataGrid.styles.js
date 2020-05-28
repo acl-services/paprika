@@ -74,8 +74,8 @@ export const Cell = styled.div`
     outline: 1px solid transparent;
   }
 
-  ${({ hasActiveRowShadow }) => {
-    return hasActiveRowShadow
+  ${({ hasActiveRowShadow, hasZebraStripes, rowIndex }) => {
+    const rowShadow = hasActiveRowShadow
       ? css`
           &:after {
             content: "";
@@ -88,6 +88,15 @@ export const Cell = styled.div`
           }
         `
       : "";
+
+    const zebraStripe =
+      hasZebraStripes && rowIndex % 2 === 0
+        ? `background: ${tokens.table.rowEven.backgroundColor};`
+        : `background: ${tokens.table.row.backgroundColor};`;
+    return `
+      ${rowShadow}
+      ${zebraStripe}
+    `;
   }}
 `;
 
