@@ -7,10 +7,15 @@ describe("DataGrid", () => {
 
   it("Should autofocus the last selection", () => {
     cy.visitStorybook("datagrid-regular--autofocus")
+      /* Selecting and click the item does not appear to work in cypress version 3.3.1. It does however work when selected and clicked twice. 
+    When updating cypress the repetition can and should be removed to avoid testing fails. */
+      // <---from here--->
       .wait(100)
       .get('[data-row-index="0"]')
-      .click()
-      .get("button")
+      .click();
+    // <---till here--->
+    cy.get('[data-row-index="0"]').click();
+    cy.get("button")
       .click()
       .focused()
       .contains("Josef Bican ‡");
@@ -54,8 +59,17 @@ describe("DataGrid", () => {
 
   it("Should show expanded content", () => {
     cy.visitStorybook("datagrid-lazy--collapse")
-      .wait(100)
-      .getByText("Audit Planning")
+      /* Selecting and click the item does not appear to work in cypress version 3.3.1. It does however work when selected and clicked twice. 
+    When updating cypress the repetition can and should be removed to avoid testing fails. */
+      // <---from here--->
+      .getByRole("grid")
+      .get('[data-row-index="0"]')
+      .eq(0)
+      .click();
+    // <---till here--->
+    cy.getByRole("grid")
+      .get('[data-row-index="0"]')
+      .eq(0)
       .click()
       .getAllByText(/narratives/i)
       .should("be.visible");
