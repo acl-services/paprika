@@ -43,6 +43,7 @@ function File({ error, fileKey, name, progress, size, status }) {
       case statuses.CANCEL:
         return (
           <Popover isDark isEager>
+            <Popover.Tip />
             <Popover.Trigger>
               <Button.Icon
                 kind="minor"
@@ -64,6 +65,7 @@ function File({ error, fileKey, name, progress, size, status }) {
       default:
         return (
           <Popover isDark isEager>
+            <Popover.Tip />
             <Popover.Trigger>
               <Button.Icon
                 kind="minor"
