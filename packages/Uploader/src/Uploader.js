@@ -9,11 +9,6 @@ import types from "./statuses";
 import useDragAndDropEvents from "./useDragAndDropEvents";
 import useProcessFiles from "./useProcessFiles";
 
-// TODO: there is a flicker when go over dropzone
-// TODO: why is restarting the 2nd file waiting until the 1st file is complete?
-// TODO: a11y
-// TODO: tests
-
 const oneMebibyte = 1048576;
 
 export const UploaderContext = React.createContext(null);
