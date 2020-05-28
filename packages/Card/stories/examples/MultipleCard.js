@@ -113,9 +113,9 @@ export default () => {
                 <Card.Content>
                   <Card.Title>{props.title}</Card.Title>
                   <Card.Metadata>{props.meta1}</Card.Metadata>
-                  <Card.Separator size="small" />
+                  <div style={{ width: "100%", height: "24px" }} />
                   <Card.Text shouldTruncate>{props.text}</Card.Text>
-                  <Card.Separator size="small" />
+                  <div style={{ width: "100%", height: "24px" }} />
                   <Card.Metadata>{props.meta2}</Card.Metadata>
                   <Card.Metadata>{props.meta3}</Card.Metadata>
                 </Card.Content>

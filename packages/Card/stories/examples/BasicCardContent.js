@@ -76,7 +76,7 @@ export default () => {
                     {card.attrTypes ? card.attrTypes.concat(" attribute types") : ""}{" "}
                     {card.questions ? card.questions.concat(" questions") : ""}
                   </Card.Metadata>
-                  <Card.Separator />
+                  <div style={{ width: "100%", height: "32px" }} />
                   <Card.Metadata>Created by {card.creator}</Card.Metadata>
                   <Card.Metadata>Last updated by {card.updatedBy}</Card.Metadata>
                 </Card.Content>

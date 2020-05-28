@@ -40,9 +40,6 @@ The content sub-component allows you to add a container that can section of a pa
 - `<Card.Title/>`
 The title sub-component allows you to add a title to the card.
 
-- `<Card.Separator/>`
-The separator sub-component allows you to add space to the card, you can adjust the size of the separator with its size property (small, medium, and large).
-
 - `<Card.Text/>`
 The text sub-component allows you to add a text body to the card.
 
@@ -89,9 +86,9 @@ Note: The sizes are fixed therefore consideration will have to be given to size 
     <Card.Content>
         <Card.Title>Example</Card.Title>
         <Card.Metadata>metadata</Card.Metadata>
-        <Card.Separator size="small" />
+        <div style={{width:'100%', height:'24px'}} />
         <Card.Text>This is an example of a medium sized Card</Card.Text>
-        <Card.Separator size="small" />
+        <div style={{width:'100%', height:'24px'}} />
         <Card.Metadata>Created by Kaan</Card.Metadata>
         <Card.Metadata>Last updated by Karen</Card.Metadata>
     </Card.Content>
@@ -113,7 +110,7 @@ Note: The sizes are fixed therefore consideration will have to be given to size 
 
 #### Result
 
-<Card size="medium"><Card.Header><Avatar backgroundColor="black" color="white">E</Avatar></Card.Header><Card.Content><Card.Title>Example</Card.Title><Card.Metadata>metadata</Card.Metadata><Card.Separator size="small" /><Card.Text>This is an example of a medium sized Card</Card.Text><Card.Separator size="small" /><Card.Metadata>Created by Kaan</Card.Metadata><Card.Metadata>Last updated by Karen</Card.Metadata></Card.Content><Card.Footer><div style={{ display: "flex", flexDirection: "row", justifyContent: "space-between", alignItems: "center",}}><span>150 attributes</span><span>10 questions</span></div></Card.Footer></Card>
+<Card size="medium"><Card.Header><Avatar backgroundColor="black" color="white">E</Avatar></Card.Header><Card.Content><Card.Title>Example</Card.Title><Card.Metadata>metadata</Card.Metadata><div style={{width:'100%', height:'24px'}} /><Card.Text>This is an example of a medium sized Card</Card.Text><div style={{width:'100%', height:'24px'}} /><Card.Metadata>Created by Kaan</Card.Metadata><Card.Metadata>Last updated by Karen</Card.Metadata></Card.Content><Card.Footer><div style={{ display: "flex", flexDirection: "row", justifyContent: "space-between", alignItems: "center",}}><span>150 attributes</span><span>10 questions</span></div></Card.Footer></Card>
 
 ### Large Card
 
@@ -127,12 +124,12 @@ Note: The sizes are fixed therefore consideration will have to be given to size 
         <Card.Content>
           <Card.Title>Asset type name</Card.Title>
           <Input />
-          <Card.Separator size="small" />
+          <div style={{width:'100%', height:'24px'}} />
           <Checkbox>Use a display name</Checkbox>
-          <Card.Separator size="small" />
+          <div style={{width:'100%', height:'24px'}} />
           <Card.Title>Description (optional)</Card.Title>
           <Textarea placeholder="Kanye is the only one who can edit this.." />
-          <Card.Separator size="small" />
+          <div style={{width:'100%', height:'24px'}} />
           <div style={{ width: "100%", display: "flex", flexDirection: "row", justifyContent: "space-between" }}>
             <div style={{ width: "50%", display: "flex", justifyContent: "space-between" }}>
               <Button isDisabled="true">Save</Button>
@@ -142,7 +139,7 @@ Note: The sizes are fixed therefore consideration will have to be given to size 
             </div>
             <Button kind="minor">Archive</Button>
           </div>
-          <Card.Separator size="small" />
+          <div style={{width:'100%', height:'24px'}} />
           <Card.Metadata>Created by Cory McBain</Card.Metadata>
           <Card.Metadata>Last updated by Charles Bradley</Card.Metadata>
           <Button kind="link">See full activity log</Button>

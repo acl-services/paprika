@@ -21,9 +21,9 @@ Note: When using the size property the width and height are fixed therefore cons
     <Card.Content>
         <Card.Title>Example</Card.Title>
         <Card.Metadata>metadata</Card.Metadata>
-        <Card.Separator size="small" />
+        <div style={{width:'100%', height:'24px'}} />
         <Card.Text>This is an example of a medium sized Card</Card.Text>
-        <Card.Separator size="small" />
+        <div style={{width:'100%', height:'24px'}} />
         <Card.Metadata>Created by Kaan</Card.Metadata>
         <Card.Metadata>Last updated by Karen</Card.Metadata>
     </Card.Content>
