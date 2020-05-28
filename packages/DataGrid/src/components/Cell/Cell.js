@@ -17,10 +17,12 @@ const propTypes = {
   rowIndex: PropTypes.number.isRequired,
   /** Visual style of the data cell */
   style: PropTypes.shape({}).isRequired,
+  /** Add an alternate background on the DataGrid's rows */
+  hasZebraStripes: PropTypes.bool.isRequired,
 };
 
 const Cell = React.forwardRef((props, ref) => {
-  const { style, gridId, columnIndex, rowIndex, column, data, a11yText } = props;
+  const { style, gridId, columnIndex, rowIndex, column, data, a11yText, hasZebraStripes } = props;
   const [isActiveCell, setIsActiveCell] = React.useState(false);
   const [isActiveRow, setIsRowActive] = React.useState(false);
 
@@ -58,7 +60,14 @@ const Cell = React.forwardRef((props, ref) => {
   const cellProps = typeof column.cellProps === "function" ? column.cellProps(options) : {};
 
   return (
-    <sc.Cell ref={ref} tabIndex={-1} style={style} data-cell={`${gridId}.${columnIndex}.${rowIndex}`}>
+    <sc.Cell
+      ref={ref}
+      tabIndex={-1}
+      style={style}
+      data-cell={`${gridId}.${columnIndex}.${rowIndex}`}
+      rowIndex={rowIndex}
+      hasZebraStripes={hasZebraStripes}
+    >
       <sc.GridCell role="gridcell">{a11yText}</sc.GridCell>
       <sc.InnerCell hasActiveRowShadow={isActiveRow} {...cellProps} aria-hidden="true" {...options.attrs}>
         {typeof column.cell === "function" ? column.cell(options) : data[rowIndex][column.cell]}
