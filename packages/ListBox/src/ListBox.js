@@ -16,7 +16,7 @@ import "@paprika/helpers/lib/dom/elementScrollToPolyfill";
 
 import {
   useAdjustWidth,
-  useChildrenLengthChange,
+  useChildrenChange,
   useHasFooter,
   useIsDisabled,
   useIsPopOverOpen,
@@ -138,7 +138,7 @@ const ListBoxContainer = React.forwardRef((props, ref) => {
   const shouldTriggerKeepFocus = popover && popover.props.shouldKeepFocus;
 
   useAdjustWidth();
-  useChildrenLengthChange(children);
+  useChildrenChange(children);
   useIsDisabled(props.isDisabled);
   useIsPopOverOpen(shouldTriggerKeepFocus);
   useOnScrolled();

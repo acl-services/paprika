@@ -1,16 +1,16 @@
 import moment from "moment";
 import getAlphaSortFunction from "./getAlphaSortFunction";
 
-function compareString(a, b, { locale }) {
+export function compareString(a, b, { locale }) {
   const alphaSortAsc = getAlphaSortFunction(locale);
   return alphaSortAsc(a, b);
 }
 
-function compareNumber(a, b) {
+export function compareNumber(a, b) {
   return a - b;
 }
 
-function compareDate(a, b, { momentParsingFormat }) {
+export function compareDate(a, b, { momentParsingFormat }) {
   return moment(a, momentParsingFormat).unix() - moment(b, momentParsingFormat).unix();
 }
 
