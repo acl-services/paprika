@@ -8,8 +8,7 @@ import * as sc from "./DropZone.styles";
 
 export default function DropZone() {
   const I18n = useI18n();
-  const uc = React.useContext(UploaderContext);
-  const isDraggingOver = uc.isDraggingOver;
+  const { refInput, FileInput, isDraggingOver } = React.useContext(UploaderContext);
   const uploadIconColor = isDraggingOver ? tokens.color.purpleDarken10 : tokens.color.blackLighten50;
 
   /* eslint-disable jsx-a11y/anchor-is-valid */
@@ -21,7 +20,7 @@ export default function DropZone() {
       <a
         href="#"
         onClick={() => {
-          uc.refInput.current.click();
+          refInput.current.click();
           return false;
         }}
       >
@@ -32,11 +31,11 @@ export default function DropZone() {
   /* eslint-enable jsx-a11y/anchor-is-valid */
 
   return (
-    <uc.FileInput>
+    <FileInput>
       <sc.DropZone isDraggingOver={isDraggingOver}>
         <UploadIcon size={stylers.spacer(4)} color={uploadIconColor} />
         <sc.Body>{body}</sc.Body>
       </sc.DropZone>
-    </uc.FileInput>
+    </FileInput>
   );
 }

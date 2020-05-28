@@ -27,8 +27,7 @@ const defaultProps = {
 };
 
 function File({ error, fileKey, name, progress, size, status }) {
-  const uc = React.useContext(UploaderContext);
-  const { cancelFile, restartFileUpload } = uc;
+  const { cancelFile, restartFileUpload } = React.useContext(UploaderContext);
   const I18n = useI18n();
 
   function getUploadedAmount() {
