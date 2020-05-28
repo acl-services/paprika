@@ -7,7 +7,7 @@ import DataGrid from "../src";
 
 export function App() {
   const [data, setData] = React.useState([]);
-  const [isIdle, setIsIdle] = React.useState(true);
+  const [isLoading, setIsLoading] = React.useState(true);
   const refDataGrid = React.useRef(null);
 
   React.useEffect(() => {
@@ -15,7 +15,7 @@ export function App() {
       const w = worker();
       const data = await w.getDataFromWorker(100, 5);
       setData(() => data);
-      setIsIdle(() => false);
+      setIsLoading(() => false);
     }
 
     loadData();
@@ -23,13 +23,13 @@ export function App() {
 
   React.useEffect(() => {
     if (data.length > 0) {
-      setIsIdle(() => false);
+      setIsLoading(() => false);
     }
   }, [data.length]);
 
   return (
     <Sbook.Story>
-      {isIdle ? (
+      {isLoading ? (
         <Spinner />
       ) : (
         <DataGrid ref={refDataGrid} data={data} keygen="id" hasZebraStripes>
