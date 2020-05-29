@@ -21,8 +21,9 @@ const ExampleStory = () => {
   const isReadOnly = false;
   const size = ShirtSizes.MEDIUM;
   const optionsArray = ["Black Panther", "Wonder Woman", "Spiderman", "The Incredibles", "Thor", <span>test</span>];
+  const buttonOptionsArray = ["Black Panther", "Wonder Woman", "Spiderman", "The Incredibles", "Thor"];
   const listboxOptions = optionsArray.map(hero => <ListBox.Option key={hero}>{hero}</ListBox.Option>);
-  const buttonGroupOptions = optionsArray.map(hero => (
+  const buttonGroupOptions = buttonOptionsArray.map(hero => (
     <ButtonGroup.Item value={hero} key={hero}>
       {hero}
     </ButtonGroup.Item>
