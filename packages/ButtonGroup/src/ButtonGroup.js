@@ -103,6 +103,7 @@ function ButtonGroup(props) {
       const firstEnabledChildRef = childRefs[enabledIndexes[0]];
       if (firstEnabledChildRef) {
         firstEnabledChildRef.current.focus();
+        setFocusIndex(enabledIndexes[0]);
       }
     }
 
