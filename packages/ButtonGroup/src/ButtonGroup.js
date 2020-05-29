@@ -102,7 +102,6 @@ function ButtonGroup(props) {
     function handleClickLabel() {
       const enabledIndexes = getEnabledIndexes();
       childRefs.current[enabledIndexes[0]].current.focus();
-      console.log("focusing first button", document.activeElement);
     }
 
     $label.addEventListener("click", handleClickLabel);
