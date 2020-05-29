@@ -19,7 +19,7 @@ const defaultProps = {
   defaultIsActive: false,
 };
 
-const Item = props => {
+const Item = React.forwardRef((props, ref) => {
   const { children, defaultIsActive, value, ...moreProps } = props;
   const {
     currentFocusValue,
@@ -62,12 +62,12 @@ const Item = props => {
   };
 
   return (
-    <sc.Item {...buttonProps}>
+    <sc.Item {...buttonProps} ref={ref}>
       {hasIcon && <React.Fragment>{isActive ? <sc.SelectedIcon /> : <sc.UnselectedIcon />}</React.Fragment>}
       {children}
     </sc.Item>
   );
-};
+});
 
 Item.displayName = "ButtonGroup.Item";
 Item.propTypes = propTypes;

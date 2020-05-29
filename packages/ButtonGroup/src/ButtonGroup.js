@@ -60,6 +60,7 @@ function ButtonGroup(props) {
   const [currentFocusValue, setFocusValue] = React.useState(null);
 
   const groupRef = React.useRef();
+  const childRefs = React.useRef(children.map(React.createRef));
 
   function isItemDisabled(item) {
     return item.getAttribute("aria-disabled") === "true" || item.hasAttribute("disabled");
@@ -100,7 +101,7 @@ function ButtonGroup(props) {
 
     function handleClickLabel() {
       const enabledIndexes = getEnabledIndexes();
-      focusButton(enabledIndexes[0]);
+      childRefs.current[enabledIndexes[0]].current.focus();
       console.log("focusing first button", document.activeElement);
     }
 
@@ -174,10 +175,9 @@ function ButtonGroup(props) {
   return (
     <sc.ButtonGroup {...props} ref={groupRef} onKeyDown={handleKeyDown}>
       <ButtonGroupContext.Provider value={contextValue}>
-        {/* {React.Children.map(children, (element, idx) => {
-          return React.cloneElement(element, { ref: idx });
-        })} */}
-        {children}
+        {React.Children.map(children, (element, index) => {
+          return React.cloneElement(element, { ref: childRefs.current[index] });
+        })}
       </ButtonGroupContext.Provider>
     </sc.ButtonGroup>
   );

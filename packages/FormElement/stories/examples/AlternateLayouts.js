@@ -22,7 +22,11 @@ const ExampleStory = () => {
   const size = ShirtSizes.MEDIUM;
   const optionsArray = ["Black Panther", "Wonder Woman", "Spiderman", "The Incredibles", "Thor", <span>test</span>];
   const listboxOptions = optionsArray.map(hero => <ListBox.Option key={hero}>{hero}</ListBox.Option>);
-  const buttonGroupOptions = optionsArray.map(hero => <ButtonGroup.Item key={hero}>{hero}</ButtonGroup.Item>);
+  const buttonGroupOptions = optionsArray.map(hero => (
+    <ButtonGroup.Item value={hero} key={hero}>
+      {hero}
+    </ButtonGroup.Item>
+  ));
 
   const getCheckboxOptions = ariaDescribedBy =>
     optionsArray.map(hero => (
