@@ -1,19 +1,23 @@
+import { spacer } from "@paprika/stylers/lib/helpers";
 import styled from "styled-components";
 import stylers from "@paprika/stylers";
 import tokens from "@paprika/tokens";
 
+const smallSize = `${spacer(4)}`;
+const mediumSize = `${spacer(5)}`;
+
 export const avatarSizeStyles = {
   small: `
     border-radius: 10px;
-    height: 30px;
-    width: 30px;
+    height: ${smallSize};
+    width: ${smallSize};
     ${stylers.fontSize(2)} 
   `,
 
   medium: `
     border-radius: 12px;
-    height: 40px;
-    width: 40px;
+    height: ${mediumSize};
+    width: ${mediumSize};
     ${stylers.fontSize(3)} 
   `,
 };

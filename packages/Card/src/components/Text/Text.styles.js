@@ -7,7 +7,7 @@ export const textStyles = styled.p`
   color: ${tokens.color.black};
   ${stylers.fontSize(-2)};
   height: ${spacer(8)};
-  margin: 0px;
+  margin: 0;
   overflow: hidden;
   padding: 0;
 `;

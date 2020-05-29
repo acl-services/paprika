@@ -52,8 +52,16 @@ const activeStyles = `
 `;
 
 export const cardStyles = styled(commonStyles)`
-  ${props => sizeStyles[props.size]}
-  ${props => (props.isActive ? activeStyles : "")}
-  ${props => (props.isFullWidth ? fullWidthStyles : "")}
-  ${props => (props.isAutoHeight ? autoHeightStyles : "")}
+  ${props => {
+    const size = sizeStyles[props.size];
+    const active = props.isActive && activeStyles;
+    const fullWidth = props.isFullWidth && fullWidthStyles;
+    const autoHeight = props.isAutoHeight && autoHeightStyles;
+
+    return `
+      ${size};
+      ${active};
+      ${fullWidth};
+      ${autoHeight};`;
+  }}
 `;

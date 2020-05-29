@@ -5,5 +5,5 @@ import stylers from "@paprika/stylers";
 export const Metadata = styled.div`
   color: ${tokens.color.blackLighten20};
   ${stylers.fontSize(-2)};
-  display: flex;
+  ${stylers.truncateText};
 `;

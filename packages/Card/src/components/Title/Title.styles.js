@@ -7,4 +7,5 @@ export const titleStyles = styled.h1`
   ${stylers.fontSize(0)};
   margin: 0;
   padding: 0;
+  ${stylers.truncateText};
 `;
