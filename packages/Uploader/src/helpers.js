@@ -1,27 +1,13 @@
 import uuidv4 from "uuid/v4";
 import superagent from "superagent";
-import types from "./types";
-
-export function fileSizeUnitsToHumanReadableFormat(size) {
-  const aMultiples = ["KB", "MB", "GB", "TB", "PB", "EB", "ZB", "YB"];
-  let nMultiple = 0;
-  let sOutput = "";
-  // this calculate Kibebytes, Mebibyes, etc.
-  // But are being label as KB and MB for easier understanding.
-  for (let nApprox = size / 1024; nApprox > 1; nApprox /= 1024, nMultiple++) {
-    // fixed to 2 decimals but we could add more if need it
-    sOutput = `${nApprox.toFixed(2)} ${aMultiples[nMultiple]}`;
-  }
-
-  return sOutput;
-}
+import statuses from "./statuses";
 
 function getExtension({ file }) {
   const filename = file.name;
   return filename.substr((~-filename.lastIndexOf(".") >>> 0) + 2); // eslint-disable-line
 }
 
-function isValidFileType({ file, okFileTypes }) {
+function isValidFileType({ file, supportedMimeTypes }) {
   const validMimeType = (validFiles, type) => {
     const mimetype = type.split("/");
     if (mimetype.length > 0) {
@@ -30,22 +16,22 @@ function isValidFileType({ file, okFileTypes }) {
     return false;
   };
 
-  if (okFileTypes.length === 1 && okFileTypes[0] === "*/*") {
+  if (supportedMimeTypes.length === 1 && supportedMimeTypes[0] === "*/*") {
     return true;
   }
   // copy/pasta from acl-ui-3
   // http://stackoverflow.com/a/1203361/196038
-  const validFiles = okFileTypes.join("").toUpperCase();
+  const validFiles = supportedMimeTypes.join("").toUpperCase();
   const extension = getExtension({ file });
 
   return validFiles.indexOf(extension.toUpperCase()) > -1 || validMimeType(validFiles, file.type);
 }
 
-function isValidFile({ file, maxFileSize, okFileTypes }) {
+function isValidFile({ file, maxFileSize, supportedMimeTypes }) {
   const validation = {
     isServerValid: true, // this will be true unless failed when uploading the file
     isSizeValid: file.size <= maxFileSize,
-    isTypeValid: isValidFileType({ file, okFileTypes }),
+    isTypeValid: isValidFileType({ file, supportedMimeTypes }),
   };
 
   validation.isValid = validation.isSizeValid && validation.isTypeValid;
@@ -53,10 +39,10 @@ function isValidFile({ file, maxFileSize, okFileTypes }) {
   return validation;
 }
 
-function createFilesDataStructure({ files, maxFileSize, okFileTypes, endpoint }) {
+function createFilesDataStructure({ files, maxFileSize, supportedMimeTypes, endpoint }) {
   return [...files].map(file => {
     const key = uuidv4();
-    const fileValidation = isValidFile({ file, maxFileSize, okFileTypes });
+    const fileValidation = isValidFile({ file, maxFileSize, supportedMimeTypes });
     return {
       key,
       ...fileValidation,
@@ -64,10 +50,9 @@ function createFilesDataStructure({ files, maxFileSize, okFileTypes, endpoint })
       file,
       filename: file.name,
       filesize: file.size,
-      filesizeHumanize: fileSizeUnitsToHumanReadableFormat(file.size),
       progress: 0,
       request: superagent.post(endpoint),
-      status: fileValidation.isValid ? types.IDLE : types.ERROR,
+      status: fileValidation.isValid ? statuses.IDLE : statuses.ERROR,
       hasError: false,
       errorMessage: null,
       processed: !fileValidation.isValid, // if the file is not valid mean has been processed
@@ -75,7 +60,7 @@ function createFilesDataStructure({ files, maxFileSize, okFileTypes, endpoint })
   });
 }
 
-export function upload({ file, data = {}, onProgress, onSuccess, onError, headers }) {
+export function uploadToServer({ file, data = {}, onProgress, onSuccess, onError, headers }) {
   const formData = new FormData();
   formData.append("file", file.file);
   formData.append("data", JSON.stringify(data));
@@ -106,7 +91,7 @@ export function upload({ file, data = {}, onProgress, onSuccess, onError, header
     });
 }
 
-export function getFiles({ event, maxFileSize, okFileTypes, endpoint }) {
+export function getFiles({ event, maxFileSize, supportedMimeTypes, endpoint }) {
   if ((event.target && event.target.files) || (event.dataTransfer && event.dataTransfer.files)) {
     let files = [];
     if (event.dataTransfer) {
@@ -115,8 +100,27 @@ export function getFiles({ event, maxFileSize, okFileTypes, endpoint }) {
       files = event.target.files;
     }
 
-    return createFilesDataStructure({ files, maxFileSize, okFileTypes, endpoint });
+    return createFilesDataStructure({ files, maxFileSize, supportedMimeTypes, endpoint });
   }
 
   return [];
+}
+
+export function getNumberWithUnits(I18n, number) {
+  if (number > 1024) {
+    if (number > 1024 * 1024) {
+      if (number > 1024 * 1024 * 1024) {
+        if (number > 1024 * 1024 * 1024 * 1024) {
+          return `${(number / (1024 * 1024 * 1024 * 1024)).toFixed(3)}${I18n.t(
+            "uploader.size_abbreviations.tebibyte"
+          )}`;
+        }
+        return `${(number / (1024 * 1024 * 1024)).toFixed(2)}${I18n.t("uploader.size_abbreviations.gibibyte")}`;
+      }
+      return `${(number / (1024 * 1024)).toFixed(1)}${I18n.t("uploader.size_abbreviations.mebibyte")}`;
+    }
+    return `${parseInt(number / 1024, 10)}${I18n.t("uploader.size_abbreviations.kibibyte")}`;
+  }
+
+  return `${parseInt(number, 10)}${I18n.t("uploader.size_abbreviations.byte")}`;
 }
