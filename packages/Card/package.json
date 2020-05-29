@@ -18,6 +18,7 @@
     "@paprika/helpers": "^0.2.11",
     "@paprika/stylers": "^0.2.7",
     "@paprika/tokens": "^0.1.14",
+    "lodash.truncate": "^4.4.2",
     "prop-types": "^15.7.2"
   },
   "peerDependencies": {

@@ -5,7 +5,7 @@ import Avatar from "../../src/components/Avatar";
 
 export default () => {
   return (
-    <Story style={{ width: "312px" }}>
+    <Story>
       <Card size="medium">
         <Card.Header>
           <Avatar backgroundColor="black" color="white">
@@ -16,8 +16,8 @@ export default () => {
           <Card.Title>Card</Card.Title>
           <Card.Metadata>100,000 total</Card.Metadata>
           <div style={{ width: "100%", height: "24px" }} />
-          <Card.Text shouldTruncate>
-            Cards are used to group similar concepts and tasks together tp make the platform easier fro user to scan,
+          <Card.Text>
+            Cards are used to group similar concepts and tasks together to make the platform easier for user to scan,
             read, and get things done. A card displays content in a manner similar to a playing card.
           </Card.Text>
           <div style={{ width: "100%", height: "24px" }} />
