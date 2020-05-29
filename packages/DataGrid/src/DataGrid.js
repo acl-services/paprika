@@ -15,6 +15,8 @@ const propTypes = {
   /** If the data cell should automatically get focus  */
   autofocus: PropTypes.bool,
   children: PropTypes.node.isRequired,
+  /** Add an alternate background on the DataGrid's rows */
+  hasZebraStripes: PropTypes.bool,
   /** Array of data to be stored in the DataGrid */
   data: PropTypes.arrayOf(PropTypes.shape({})),
   /** Sets the height of the DataGrid */
@@ -39,6 +41,7 @@ const propTypes = {
 const defaultProps = {
   autofocus: true,
   data: [],
+  hasZebraStripes: false,
   height: 600,
   onClick: null,
   onKeyDown: () => {},
@@ -65,6 +68,7 @@ const DataGrid = React.forwardRef((props, ref) => {
     autofocus,
     children,
     data,
+    hasZebraStripes,
     height,
     onClick,
     onKeyDown,
@@ -559,6 +563,7 @@ const DataGrid = React.forwardRef((props, ref) => {
                   columnIndex={columnIndex}
                   data={data}
                   gridId={gridId}
+                  hasZebraStripes={hasZebraStripes}
                   ref={handleRefCell({ columnIndex, rowIndex })}
                   rowIndex={rowIndex}
                   style={style}
@@ -607,6 +612,7 @@ const DataGrid = React.forwardRef((props, ref) => {
                   columnIndex={columnIndex}
                   data={data}
                   gridId={gridId}
+                  hasZebraStripes={hasZebraStripes}
                   ref={handleRefCell({ columnIndex, rowIndex })}
                   rowIndex={rowIndex}
                   style={style}
