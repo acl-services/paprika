@@ -60,7 +60,7 @@ function ButtonGroup(props) {
   const [currentFocusValue, setFocusValue] = React.useState(null);
 
   const groupRef = React.useRef();
-  const childRefs = React.useRef(children.map(React.createRef));
+  const childRefs = React.useRef(children ? React.Children.map(React.createRef) : null);
 
   function isItemDisabled(item) {
     return item.getAttribute("aria-disabled") === "true" || item.hasAttribute("disabled");
