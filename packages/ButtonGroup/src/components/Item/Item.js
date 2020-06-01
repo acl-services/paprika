@@ -37,7 +37,7 @@ const Item = props => {
   const itemRef = React.useRef(null);
 
   React.useEffect(() => {
-    setItemRefs(itemRefs => [...itemRefs, itemRef]);
+    setItemRefs(prevItemRefs => [...prevItemRefs, itemRef]);
     if (defaultIsActive) {
       setSelectedItems(prevItems => {
         return isMulti ? [...prevItems, value] : [value];
