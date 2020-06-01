@@ -58,9 +58,10 @@ function ButtonGroup(props) {
   const [selectedItems, setSelectedItems] = React.useState([]);
   const [currentFocusIndex, setFocusIndex] = React.useState(null);
   const [currentFocusValue, setFocusValue] = React.useState(null);
+  const [itemRefs, setItemRefs] = React.useState([]);
 
   const groupRef = React.useRef();
-  const childRefs = React.Children.map(children, React.useRef);
+
   function isItemDisabled(item) {
     return item.getAttribute("aria-disabled") === "true" || item.hasAttribute("disabled");
   }
@@ -93,16 +94,16 @@ function ButtonGroup(props) {
     setFocusIndex(index);
   }
 
-  React.useLayoutEffect(() => {
+  React.useEffect(() => {
     const $label = refLabel && refLabel.current;
 
     if (!$label) return;
 
     function handleClickLabel() {
       const firstEnabledIndex = getEnabledIndexes()[0];
-      const firstEnabledChildRef = childRefs[firstEnabledIndex];
-      if (firstEnabledChildRef) {
-        firstEnabledChildRef.current.focus();
+      const firstEnabledItemRef = itemRefs[firstEnabledIndex];
+      if (firstEnabledItemRef) {
+        firstEnabledItemRef.current.focus();
         setFocusIndex(firstEnabledIndex);
       }
     }
@@ -112,7 +113,7 @@ function ButtonGroup(props) {
     return () => {
       $label.removeEventListener("click", handleClickLabel);
     };
-  }, [refLabel]);
+  }, [refLabel, itemRefs]);
 
   const handleClick = clickedValue => {
     if (!isDisabled) {
@@ -172,15 +173,12 @@ function ButtonGroup(props) {
     size,
     selectedItems,
     setSelectedItems,
+    setItemRefs,
   };
 
   return (
     <sc.ButtonGroup {...props} ref={groupRef} onKeyDown={handleKeyDown}>
-      <ButtonGroupContext.Provider value={contextValue}>
-        {React.Children.map(children, (element, index) => {
-          return React.cloneElement(element, { ref: childRefs[index] });
-        })}
-      </ButtonGroupContext.Provider>
+      <ButtonGroupContext.Provider value={contextValue}>{children}</ButtonGroupContext.Provider>
     </sc.ButtonGroup>
   );
 }
