@@ -46,18 +46,17 @@ const RawButton = React.forwardRef((props, ref) => {
   if (a11yText) moreProps["aria-label"] = a11yText;
 
   const rawButtonRef = React.useRef(null);
-
-  const forceButtonFocus = value => rawButtonRef.current.setAttribute("data-has-forced-focus", value);
+  const [hasForcedFocus, setHasForcedFocus] = React.useState(false);
 
   React.useImperativeHandle(ref, () => ({
     focus: () => {
-      forceButtonFocus(true);
+      setHasForcedFocus(true);
       rawButtonRef.current.focus();
     },
   }));
 
   const handleClick = event => {
-    forceButtonFocus(false);
+    setHasForcedFocus(false);
     if (!canPropagate) event.stopPropagation();
     if (!isDisabled) onClick(event);
   };
@@ -66,7 +65,7 @@ const RawButton = React.forwardRef((props, ref) => {
     if ("onBlur" in moreProps) {
       moreProps.onBlur();
     }
-    forceButtonFocus(true);
+    setHasForcedFocus(false);
   }
 
   const handleKeyDown = event => {
@@ -104,6 +103,7 @@ const RawButton = React.forwardRef((props, ref) => {
       ref={rawButtonRef}
       tabIndex={bestTabIndex}
       {...moreProps}
+      data-has-forced-focus={hasForcedFocus || null}
     >
       {children}
     </span>
