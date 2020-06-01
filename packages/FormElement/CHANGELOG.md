@@ -20,10 +20,14 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 
 - Added new isFieldSet prop to support rendering of fieldset and legend elements for multiple children
 - Ensures children can be rendered as html in the label sub component
-- Only renders required label if both hasRequiredLabel and hasOptionalLabel are true [@tristanjasper](https://github.com/tristanjasper).
+- Only renders required label if both hasRequiredLabel and hasOptionalLabel are true
+
+[@tristanjasper](https://github.com/tristanjasper).
 
 ## [0.3.20] - 2020-06-01
 
 ### Added
 
 -- Added onClickLabel prop to be able to set focus on child refs, currently ButtonGroup supported
+
+[@tristanjasper](https://github.com/tristanjasper).
