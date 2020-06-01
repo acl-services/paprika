@@ -1,6 +1,6 @@
 import React from "react";
 import PropTypes from "prop-types";
-import { ShirtSizes, RefOf } from "@paprika/helpers/lib/customPropTypes";
+import { ShirtSizes } from "@paprika/helpers/lib/customPropTypes";
 import ButtonGroupContext from "./ButtonGroupContext";
 import Item from "./components/Item";
 import * as sc from "./ButtonGroup.styles";
@@ -29,8 +29,6 @@ const propTypes = {
 
   /** Size of the buttons (height, font size, etc). */
   size: PropTypes.oneOf(ShirtSizes.DEFAULT),
-
-  refLabel: RefOf(),
 };
 
 const defaultProps = {
@@ -42,7 +40,6 @@ const defaultProps = {
   isSemantic: true,
   onChange: () => {},
   size: ShirtSizes.MEDIUM,
-  refLabel: null,
 };
 
 const keyTypes = {
@@ -52,8 +49,8 @@ const keyTypes = {
   LAST: "End",
 };
 
-function ButtonGroup(props) {
-  const { children, hasIcons, isDisabled, isMulti, isSemantic, onChange, size, refLabel } = props;
+const ButtonGroup = React.forwardRef((props, ref) => {
+  const { children, hasIcons, isDisabled, isMulti, isSemantic, onChange, size } = props;
 
   const [selectedItems, setSelectedItems] = React.useState([]);
   const [currentFocusIndex, setFocusIndex] = React.useState(null);
@@ -62,18 +59,29 @@ function ButtonGroup(props) {
 
   const groupRef = React.useRef();
 
-  function isItemDisabled(item) {
-    return item.getAttribute("aria-disabled") === "true" || item.hasAttribute("disabled");
-  }
-
   function getButtonRefs() {
     return Array.from(groupRef.current.querySelectorAll("[data-pka-anchor='button-group.button']"));
+  }
+
+  function isItemDisabled(item) {
+    return item.getAttribute("aria-disabled") === "true" || item.hasAttribute("disabled");
   }
 
   function getEnabledIndexes() {
     const buttonRefs = getButtonRefs();
     return buttonRefs.map((item, index) => (isItemDisabled(item) ? null : index)).filter(index => index !== null);
   }
+
+  React.useImperativeHandle(ref, () => ({
+    focus: () => {
+      const firstEnabledIndex = getEnabledIndexes()[0];
+      const firstEnabledItemRef = itemRefs[firstEnabledIndex];
+      if (firstEnabledItemRef) {
+        firstEnabledItemRef.current.focus();
+        setFocusIndex(firstEnabledIndex);
+      }
+    },
+  }));
 
   React.useLayoutEffect(() => {
     const enabledIndexes = getEnabledIndexes();
@@ -93,27 +101,6 @@ function ButtonGroup(props) {
     getButtonRefs()[index].focus();
     setFocusIndex(index);
   }
-
-  React.useEffect(() => {
-    const $label = refLabel && refLabel.current;
-
-    if (!$label) return;
-
-    function handleClickLabel() {
-      const firstEnabledIndex = getEnabledIndexes()[0];
-      const firstEnabledItemRef = itemRefs[firstEnabledIndex];
-      if (firstEnabledItemRef) {
-        firstEnabledItemRef.current.focus();
-        setFocusIndex(firstEnabledIndex);
-      }
-    }
-
-    $label.addEventListener("click", handleClickLabel);
-
-    return () => {
-      $label.removeEventListener("click", handleClickLabel);
-    };
-  }, [refLabel, itemRefs]);
 
   const handleClick = clickedValue => {
     if (!isDisabled) {
@@ -181,7 +168,7 @@ function ButtonGroup(props) {
       <ButtonGroupContext.Provider value={contextValue}>{children}</ButtonGroupContext.Provider>
     </sc.ButtonGroup>
   );
-}
+});
 
 ButtonGroup.displayName = "ButtonGroup";
 ButtonGroup.propTypes = propTypes;

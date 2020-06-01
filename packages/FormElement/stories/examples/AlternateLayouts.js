@@ -28,6 +28,7 @@ const ExampleStory = () => {
       {hero}
     </ButtonGroup.Item>
   ));
+  const refButtonGroup = React.useRef(null);
 
   const getCheckboxOptions = ariaDescribedBy =>
     optionsArray.map(hero => (
@@ -169,9 +170,9 @@ const ExampleStory = () => {
 
       <Tagline>Form Element with ButtonGroup.</Tagline>
       <br />
-      <FormElement label="Form Label">
+      <FormElement label="Form Label" onClickLabel={() => refButtonGroup.current.focus()}>
         <FormElement.Content>
-          {({ refLabel }) => <ButtonGroup refLabel={refLabel}>{buttonGroupOptions}</ButtonGroup>}
+          {() => <ButtonGroup ref={refButtonGroup}>{buttonGroupOptions}</ButtonGroup>}
         </FormElement.Content>
         <FormElement.Description>
           <span>Description of this field.</span>
