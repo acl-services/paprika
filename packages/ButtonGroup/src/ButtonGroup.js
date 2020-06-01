@@ -99,8 +99,7 @@ function ButtonGroup(props) {
     if (!$label) return;
 
     function handleClickLabel() {
-      const enabledIndexes = getEnabledIndexes();
-      const firstEnabledIndex = enabledIndexes[0];
+      const firstEnabledIndex = getEnabledIndexes()[0];
       const firstEnabledChildRef = childRefs[firstEnabledIndex];
       if (firstEnabledChildRef) {
         firstEnabledChildRef.current.focus();
