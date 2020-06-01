@@ -26,7 +26,9 @@ export const BasicSidePanel = props => {
           {isOpen ? "close" : "open"}
         </SidePanel.Trigger>
         <SidePanel.Header kind="primary">Header</SidePanel.Header>
-        <TextLine repeat={100} />
+        <SidePanel.Content>
+          <TextLine repeat={100} />
+        </SidePanel.Content>
         <SidePanel.Footer>
           <Button>Default action</Button>
           <Button kind="minor">Cancel</Button>
@@ -41,7 +43,9 @@ export const FocusLockSidePanel = () => {
   return (
     <SidePanel isOpen>
       <SidePanel.Header>Header</SidePanel.Header>
-      <input type="text" data-autofocus />
+      <SidePanel.Content>
+        <input type="text" data-autofocus />
+      </SidePanel.Content>
     </SidePanel>
   );
 };
@@ -99,18 +103,22 @@ export const GroupSidePanel = () => {
       <SidePanel.Group offsetY={40}>
         <SidePanel data-pka-anchor="sidepanel1" width={400} onClose={handleParent1} isOpen={spParent1}>
           <SidePanel.Header kind="primary">Parent 1</SidePanel.Header>
-          <TextLine repeat={100} />
-          <Button>Test button</Button>
+          <SidePanel.Content>
+            <TextLine repeat={100} />
+            <Button>Test button</Button>
+          </SidePanel.Content>
         </SidePanel>
         <SidePanel data-pka-anchor="sidepanel2" onClose={handleParent2} width={400} isOpen={spParent2}>
           <SidePanel.Header kind="primary">Parent 2</SidePanel.Header>
-          <Button
-            onClick={() => {
-              setSpChild(state => !state);
-            }}
-          >
-            Toggle Child
-          </Button>
+          <SidePanel.Content>
+            <Button
+              onClick={() => {
+                setSpChild(state => !state);
+              }}
+            >
+              Toggle Child
+            </Button>
+          </SidePanel.Content>
         </SidePanel>
         <SidePanel
           data-pka-anchor="sidepanel-child"
@@ -123,7 +131,9 @@ export const GroupSidePanel = () => {
           isOpen={spChild}
         >
           <SidePanel.Header>Child of Parent 2</SidePanel.Header>
-          <TextLine repeat={100} />
+          <SidePanel.Content>
+            <TextLine repeat={100} />
+          </SidePanel.Content>
           <SidePanel.Footer>
             <Button>Test button</Button>
           </SidePanel.Footer>
@@ -137,7 +147,9 @@ export const StickyFooterSidePanel = () => {
   return (
     <SidePanel isOpen>
       <SidePanel.Header>Header</SidePanel.Header>
-      <TextLine repeat={100} />
+      <SidePanel.Content>
+        <TextLine repeat={100} />
+      </SidePanel.Content>
       <SidePanel.Footer isSticky>Footer isSticky</SidePanel.Footer>
     </SidePanel>
   );
@@ -164,7 +176,9 @@ export const PushContentSidePanel = () => {
           {isOpen ? "close" : "open"}
         </SidePanel.Trigger>
         <SidePanel.Header kind="primary">Header</SidePanel.Header>
-        <TextLine repeat={100} />
+        <SidePanel.Content>
+          <TextLine repeat={100} />
+        </SidePanel.Content>
         <SidePanel.Footer>
           <Button>Default action</Button>
           <Button kind="minor">Cancel</Button>
@@ -209,54 +223,13 @@ export const ZIndexSidePanel = () => {
           <SidePanel.Overlay />
           <SidePanel.Trigger onClick={toggle}>Open SidePanel</SidePanel.Trigger>
           <SidePanel.Header>Header</SidePanel.Header>
-          <p style={{ marginTop: 0 }}>
-            The <code>zIndex</code> prop of this <code>&lt;SidePanel&gt;</code> is also <code>99</code>.
-          </p>
-          <p>
-            Because the content is renderered as a <code>&lt;Portal&gt;</code> at the end of the DOM, it will be painted
-            on top.
-          </p>
-        </SidePanel>
-        <div
-          css={`
-            position: relative;
-            z-index: 99;
-          `}
-        >
-          <p>
-            The <code>z-index</code> of this content is <code>99</code>.
-          </p>
-          <TextLine repeat={100} />
-        </div>
-      </div>
-    </React.Fragment>
-  );
-};
-
-export const ContentSidePanel = () => {
-  const [isOpen, setIsOpen] = React.useState(true);
-  const toggle = () => {
-    setIsOpen(state => !state);
-  };
-
-  return (
-    <React.Fragment>
-      <div
-        css={`
-          padding: 24px;
-        `}
-      >
-        <SidePanel isOpen={isOpen} onClose={toggle} zIndex={99}>
-          <SidePanel.Overlay />
-          <SidePanel.Trigger onClick={toggle}>Open SidePanel</SidePanel.Trigger>
-          <SidePanel.Header>Header</SidePanel.Header>
           <SidePanel.Content>
-            <p>
+            <p style={{ marginTop: 0 }}>
               The <code>zIndex</code> prop of this <code>&lt;SidePanel&gt;</code> is also <code>99</code>.
             </p>
             <p>
-              Because the content is rendered as a <code>&lt;Portal&gt;</code> at the end of the DOM, it will be painted
-              on top.
+              Because the content is renderered as a <code>&lt;Portal&gt;</code> at the end of the DOM, it will be
+              painted on top.
             </p>
           </SidePanel.Content>
         </SidePanel>

@@ -2,7 +2,6 @@ import React from "react";
 import SidePanel from "../src";
 import {
   BasicSidePanel,
-  ContentSidePanel,
   FocusLockSidePanel,
   GroupSidePanel,
   PushContentSidePanel,
@@ -43,6 +42,3 @@ stickyFooter.story = sidePanelStoryParameters;
 
 export const zIndex = () => <ZIndexSidePanel />;
 zIndex.story = sidePanelStoryParameters;
-
-export const content = () => <ContentSidePanel />;
-content.story = sidePanelStoryParameters;
