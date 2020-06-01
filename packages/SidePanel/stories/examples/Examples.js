@@ -209,7 +209,7 @@ export const ZIndexSidePanel = () => {
           <SidePanel.Overlay />
           <SidePanel.Trigger onClick={toggle}>Open SidePanel</SidePanel.Trigger>
           <SidePanel.Header>Header</SidePanel.Header>
-          <p>
+          <p style={{ marginTop: 0 }}>
             The <code>zIndex</code> prop of this <code>&lt;SidePanel&gt;</code> is also <code>99</code>.
           </p>
           <p>
@@ -251,12 +251,12 @@ export const ContentSidePanel = () => {
           <SidePanel.Trigger onClick={toggle}>Open SidePanel</SidePanel.Trigger>
           <SidePanel.Header>Header</SidePanel.Header>
           <SidePanel.Content>
-            <p style={{ marginTop: 0 }}>
+            <p>
               The <code>zIndex</code> prop of this <code>&lt;SidePanel&gt;</code> is also <code>99</code>.
             </p>
             <p>
-              Because the content is rendered as a <code>&lt;Portal&gt;</code> at the end of the DOM, it will be
-              painted on top.
+              Because the content is rendered as a <code>&lt;Portal&gt;</code> at the end of the DOM, it will be painted
+              on top.
             </p>
           </SidePanel.Content>
         </SidePanel>
