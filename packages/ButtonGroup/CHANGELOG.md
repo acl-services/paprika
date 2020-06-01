@@ -8,4 +8,4 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 
 ### Added
 
-- Ensure buttonGroup.item focus on refLabel click event [@tristanjasper](https://github.com/tristanjasper).
+- Add imperative api with focus method to allow focus of first enabled ButtonGroup.Item [@tristanjasper](https://github.com/tristanjasper).
