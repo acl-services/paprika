@@ -132,6 +132,14 @@ export default locales;
 
 Please do not using the same translation key as paprika's to avoid overriding. You can check them from here: https://github.com/acl-services/paprika/blob/master/packages/L10n/src/locales/en.yml
 
+##### Adding new translations
+
+After you have added a new translation to en.yml, in order to see it in Storybook you will need to delete the `lib` folder and regenerate it:
+
+```
+rm -rf packages/L10n/lib/ && npx lerna bootstrap
+```
+
 <!-- eoContent -->
 
 #### more:
