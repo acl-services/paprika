@@ -31,9 +31,13 @@ const Item = props => {
     size,
     selectedItems,
     setSelectedItems,
+    setItemRefs,
   } = React.useContext(ButtonGroupContext);
 
+  const itemRef = React.useRef(null);
+
   React.useEffect(() => {
+    setItemRefs(prevItemRefs => [...prevItemRefs, itemRef]);
     if (defaultIsActive) {
       setSelectedItems(prevItems => {
         return isMulti ? [...prevItems, value] : [value];
@@ -62,7 +66,7 @@ const Item = props => {
   };
 
   return (
-    <sc.Item {...buttonProps}>
+    <sc.Item {...buttonProps} ref={itemRef}>
       {hasIcon && <React.Fragment>{isActive ? <sc.SelectedIcon /> : <sc.UnselectedIcon />}</React.Fragment>}
       {children}
     </sc.Item>
