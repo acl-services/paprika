@@ -8,7 +8,7 @@ import Button from "@paprika/button";
 import Spinner from "@paprika/spinner";
 import DataGrid, { renderColumnIndicator, renderColumnExpand } from "../src";
 
-const storyName = getStoryName("Heading");
+const storyName = getStoryName("DataGrid");
 
 const ImgWrapper = styled.div`
   height: 28px;
@@ -183,4 +183,4 @@ export function App() {
   );
 }
 
-storiesOf(`${storyName}/Examples/Lazy`, module).add("Marvel Api interaction", () => <App />);
+storiesOf(`${storyName}/Examples`, module).add("Lazy", () => <App />);

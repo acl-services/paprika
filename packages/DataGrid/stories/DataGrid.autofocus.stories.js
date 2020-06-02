@@ -101,4 +101,4 @@ export function App() {
   );
 }
 
-storiesOf(`${storyName}/Examples/Regular`, module).add("autofocus", () => <App />);
+storiesOf(`${storyName}/Examples`, module).add("Autofocus", () => <App />);

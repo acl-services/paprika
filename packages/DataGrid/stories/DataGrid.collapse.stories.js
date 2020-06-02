@@ -187,4 +187,4 @@ export function App() {
   );
 }
 
-storiesOf(`${storyName}/Examples`, module).add("Lazy", () => <App />);
+storiesOf(`${storyName}/Examples`, module).add("Collapsible", () => <App />);
