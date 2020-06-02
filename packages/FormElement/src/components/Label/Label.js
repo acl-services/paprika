@@ -22,15 +22,19 @@ const propTypes = {
   label: PropTypes.node.isRequired,
   /** Set if FormElement contains multiple children to render a legend element instead of label */
   hasFieldSet: PropTypes.bool.isRequired,
+
+  onClick: PropTypes.func,
 };
 
 const defaultProps = {
   help: null,
   id: null,
+  onClick: () => {},
 };
 
 const Label = React.forwardRef((props, ref) => {
   const { hasOptionalLabel, hasRequiredLabel, help, id, hasFieldSet, label, ...moreProps } = props;
+
   const I18n = useI18n();
 
   const labelProps = hasFieldSet ? { as: "legend" } : { as: "label", htmlFor: id, ref };
