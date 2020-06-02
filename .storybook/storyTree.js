@@ -1,6 +1,80 @@
+// prettier-ignore
 const storyTree = [
-  { category: "Basic", components: ["Spinner", "Heading", "Toast"] },
-  { category: "Forms", components: ["Input", "FormElement"] },
+  {
+    category: "Basic",
+    components: [
+      "Spinner",
+      "Heading",
+      "Pill",
+      "Counter",
+      "Icon",
+    ],
+  },
+  {
+    category: "Content",
+    components: [
+      "Toast",
+      "Tabs",
+      "Collapsible",
+      "CollapsibleText",
+      "CollapsibleChecklists",
+      "ProgressAccordion",
+      "Sortable",
+    ],
+  },
+  {
+    category: "Layers",
+    components: [
+      "Popover",
+      "SidePanel",
+      "Modal",
+      "Takeover",
+    ],
+  },
+  {
+    category: "Commands",
+    components: [
+      "RawButton",
+      "Button",
+      "DialogActions",
+      "ExternalLink",
+      "DropdownMenu",
+      "Confirmation",
+      "Switch",
+      "ButtonGroup",
+    ],
+  },
+  {
+    category: "Forms",
+    components: [
+      "FormElement",
+      "Input",
+      "Select",
+      "TextArea",
+      "Checkbox",
+      "Radio",
+      "Uploader",
+      "ListBox",
+      "ListBoxBrowser",
+      "DateInput",
+      "DatePicker",
+    ],
+  },
+  {
+    category: "Data Table",
+    components: [
+      "ActionBar",
+      "DataGrid",
+    ],
+  },
+  {
+    category: "Utilities",
+    components: [
+      "L10n",
+      "Guard",
+      "Stylers",
+    ],
+  },
 ];
 
 function getStoryName(component) {
