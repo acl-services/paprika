@@ -7,25 +7,32 @@ en:
     dataGrid:
       a11yTextMessage: "{{value}}. You are on row {{rowIndex}}, column {{columnIndex}}. Disregard the following information:"
     uploader:
-      label: Drag and drop or choose files from your computer
-      overlay:
-        title: Drag and drop
-        subtitle: Your files here
-      form:
-        dragAndDrop: Drag and drop
-        or: or
-        chooseFiles: Choose files
-        from: From your computer
+      drop_files: Drop files to upload
+      drop_files_here_or: Drop files to upload here or
+      choose_from_computer: choose from your computer
+      cancel_upload: Cancel upload
+      restart_upload: Restart upload
       errors:
-        file_size: exceeds the maximum {{size}} file size.
-        file_type: "{{type}} is incorrect file type."
+        size: File must be smaller than {{maxFileSize}}
+        type: "File must be one of the following types: {{- supportedTypes}}"
       status:
-        idle: idle
-        processing: processing
-        uploading: uploading
-        success: success
-        cancel: cancel
-        error: error
+        idle: Idle
+        processing: Processing
+        uploading: Uploading
+        success: Success
+        cancel: Cancel
+        error: Error
+      progress:
+        cancelled: Cancelled
+        complete: Complete
+        idle: Idle
+        uploading: Uploading {{progressWithUnits}} of {{sizeWithUnits}}
+      size_abbreviations:
+        byte: B
+        kibibyte: KiB
+        mebibyte: MiB
+        gibibyte: GiB
+        tebibyte: TiB
     actions:
       delete: Delete
       apply: Apply
