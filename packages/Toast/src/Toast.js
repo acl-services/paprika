@@ -11,7 +11,7 @@ import Portal from "@paprika/helpers/lib/components/Portal";
 
 import Kinds from "./ToastKinds";
 
-import toastStyles, { contentStyles, IconStyled, CloseButtonStyled } from "./Toast.styles";
+import * as sc from "./Toast.styles";
 
 const propTypes = {
   /** Duration (in ms) before Toast will automaticall close (if canAutoClose is true) */
@@ -127,17 +127,16 @@ function Toast(props) {
 
     return (
       <>
-        {!isVisuallyHidden && <IconStyled as={icons[kind]} kind={kind} />}
-        <div css={contentStyles}>{children}</div>
-        {hasCloseButton && !isVisuallyHidden && <CloseButtonStyled onClick={handleClose} size={ShirtSizes.SMALL} />}
+        {!isVisuallyHidden && <sc.IconStyled as={icons[kind]} kind={kind} />}
+        <sc.contentStyles>{children}</sc.contentStyles>
+        {hasCloseButton && !isVisuallyHidden && <sc.CloseButtonStyled onClick={handleClose} size={ShirtSizes.SMALL} />}
       </>
     );
   }
 
   function renderToast() {
     return (
-      <div
-        css={toastStyles}
+      <sc.toastStyles
         data-pka-anchor="toast"
         hasCloseButton={hasCloseButton}
         isFixed={isFixed}
@@ -147,7 +146,7 @@ function Toast(props) {
         {...moreProps}
       >
         {renderContent()}
-      </div>
+      </sc.toastStyles>
     );
   }
 

@@ -1,7 +1,8 @@
+import styled from "styled-components";
 import tokens from "@paprika/tokens";
 import stylers from "@paprika/stylers";
 
-const defaultHeadingStyles = `
+const defaultHeadingStyles = styled.div`
   align-items: center;
   color: inherit;
   font-weight: 700;
@@ -52,17 +53,25 @@ const underline = level => {
   return result;
 };
 
-export const dividerStyles = `
+export const dividerStyles = styled.span`
   border-bottom: 2px solid ${tokens.color.blackLighten70};
   flex-grow: 1;
   margin-left: ${tokens.space};
 `;
 
-export const headingStyles = props => `
-  ${defaultHeadingStyles}
-  ${heading[`HEADING_LEVEL_${props.safeDisplayLevel || props.safeLevel}`]}
-  ${props.isHidden ? stylers.visuallyHidden : ""}
-  ${props.hasUnderline ? underline(props.safeDisplayLevel || props.safeLevel) : ""}
-  ${props.hasDivider ? "display: flex;" : ""}
-  ${props.isLight ? "font-weight: 400;" : ""}
+export const headingStyles = styled(defaultHeadingStyles)`
+  ${props => {
+    const headingLevel = heading[`HEADING_LEVEL_${props.safeDisplayLevel || props.safeLevel}`];
+    const hidden = props.isHidden ? stylers.visuallyHidden : "";
+    const ifUnderline = props.hasUnderline ? underline(props.safeDisplayLevel || props.safeLevel) : "";
+    const divider = props.hasDivider ? "display: flex;" : "";
+    const light = props.isLight ? "font-weight: 400;" : "";
+
+    return `
+      ${headingLevel};
+      ${hidden};
+      ${ifUnderline};
+      ${divider};
+      ${light};`;
+  }}
 `;

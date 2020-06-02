@@ -12,7 +12,7 @@ import Calendar from "./components/Calendar";
 import DateInputPropsCollector from "./components/DateInputPropsCollector";
 import DatePickerPopoverPropsCollector from "./components/DatePickerPopoverPropsCollector";
 
-import { calendarPopoverStyles } from "./DatePicker.styles";
+import * as sc from "./DatePicker.styles";
 
 const propTypes = {
   children: PropTypes.node,
@@ -145,7 +145,7 @@ function DatePicker(props) {
       />
 
       <Popover.Content>
-        <div css={calendarPopoverStyles} data-pka-anchor="datepicker.calendar" ref={calendarRef}>
+        <sc.calendarPopoverStyles data-pka-anchor="datepicker.calendar" ref={calendarRef}>
           {shouldShowCalendar ? (
             <Calendar
               date={date}
@@ -154,7 +154,7 @@ function DatePicker(props) {
               resetPossibleDate={handleResetPossibleDate}
             />
           ) : null}
-        </div>
+        </sc.calendarPopoverStyles>
       </Popover.Content>
     </Popover>
   );

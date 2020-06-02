@@ -3,7 +3,7 @@ import PropTypes from "prop-types";
 import nanoid from "nanoid";
 import CheckIcon from "@paprika/icon/lib/Check";
 import { ShirtSizes } from "@paprika/helpers/lib/customPropTypes";
-import radioStyles from "./Radio.styles";
+import * as sc from "./Radio.styles";
 import Group from "./components/Group";
 
 const propTypes = {
@@ -107,7 +107,7 @@ function Radio(props) {
   if (a11yText) inputProps["aria-label"] = a11yText;
 
   return (
-    <div data-pka-anchor="radio" css={radioStyles} {...styleProps} {...moreProps}>
+    <sc.radioStyles data-pka-anchor="radio" {...styleProps} {...moreProps}>
       <input {...inputProps} />
       <label onKeyUp={handleKeyUp} className={canDeselect ? "deselectable" : ""} htmlFor={radioId}>
         {children}
@@ -118,7 +118,7 @@ function Radio(props) {
           <div className="radio-icon radio-solid-background" data-pka-anchor="radio.icon.check" />
         )}
       </label>
-    </div>
+    </sc.radioStyles>
   );
 }
 

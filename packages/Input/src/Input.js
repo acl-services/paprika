@@ -4,7 +4,7 @@ import classNames from "classnames";
 import { ShirtSizes, InputValidTypes } from "@paprika/helpers/lib/customPropTypes";
 import TimesCircleIcon from "@paprika/icon/lib/TimesCircle";
 import Button from "@paprika/button";
-import inputStyles from "./Input.styles";
+import * as sc from "./Input.styles";
 
 const propTypes = {
   /** Descriptive a11y text for assistive technologies. By default, text from children node will be used. */
@@ -133,7 +133,7 @@ const Input = props => {
   );
 
   return (
-    <div css={inputStyles} {...styleProps} className={rootClasses}>
+    <sc.inputStyles {...styleProps} className={rootClasses}>
       {renderIcon()}
       <input
         aria-invalid={hasError}
@@ -145,7 +145,7 @@ const Input = props => {
         {...moreProps}
       />
       {renderClear()}
-    </div>
+    </sc.inputStyles>
   );
 };
 

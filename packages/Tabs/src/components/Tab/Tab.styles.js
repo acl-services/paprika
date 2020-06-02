@@ -1,6 +1,7 @@
-import { css } from "styled-components";
+import styled, { css } from "styled-components";
 import tokens from "@paprika/tokens";
 import stylers from "@paprika/stylers";
+import RawButton from "@paprika/raw-button";
 
 const focusStyle = tokens.highlight.active.withBorder.boxShadow;
 
@@ -36,7 +37,7 @@ const disabledStyles = css`
   cursor: not-allowed;
 `;
 
-export const tabStyles = css`
+export const tabStyles = styled(RawButton)`
   ${stylers.fontSize()};
   align-items: center;
   background-color: ${tokens.color.white};
@@ -67,7 +68,7 @@ export const tabStyles = css`
   }
 `;
 
-export const linkStyles = css`
+export const linkStyles = styled.a`
   ${tabStyles}
   color: ${tokens.color.black};
   text-decoration: none;

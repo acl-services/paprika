@@ -1,8 +1,8 @@
-import { css } from "styled-components";
+import styled from "styled-components";
 import tokens from "@paprika/tokens";
 import stylers from "@paprika/stylers";
 
-export const containerStyles = css`
+export const containerStyles = styled.div`
   display: inline-block;
   position: relative;
 

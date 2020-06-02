@@ -1,6 +1,6 @@
-import { css } from "styled-components";
+import styled from "styled-components";
 import stylers from "@paprika/stylers";
 
-export const panelStyles = css`
+export const panelStyles = styled.div`
   margin-top: ${stylers.spacer(2)};
 `;

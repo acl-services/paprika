@@ -4,7 +4,7 @@ import RightArrowIcon from "@paprika/icon/lib/ArrowRight";
 import DownArrowIcon from "@paprika/icon/lib/ArrowDown";
 import useI18n from "@paprika/l10n/lib/useI18n";
 import RawButton from "@paprika/raw-button";
-import collapsibleStyles from "./Collapsible.styles";
+import * as sc from "./Collapsible.styles";
 
 const propTypes = {
   /** Descriptive a11y text for assistive technologies. By default, text from children node will be used. */
@@ -134,12 +134,12 @@ const Collapsible = props => {
   };
 
   return (
-    <div css={collapsibleStyles} {...collapsibleProps} role="group" {...moreProps}>
+    <sc.collapsibleStyles {...collapsibleProps} role="group" {...moreProps}>
       {hasOnlyIconToggle ? renderCollapsibleByIcon() : renderDefaultCollapsible()}
       <div className="collapsible__body" style={isCollapsed ? hiddenStyles : null}>
         {children}
       </div>
-    </div>
+    </sc.collapsibleStyles>
   );
 };
 

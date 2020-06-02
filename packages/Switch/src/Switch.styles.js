@@ -1,5 +1,5 @@
 import styled, { css } from "styled-components";
-
+import RawButton from "@paprika/raw-button";
 import tokens from "@paprika/tokens";
 import stylers from "@paprika/stylers";
 
@@ -110,7 +110,7 @@ const disabledStyles = css`
     }
   }
 `;
-const switchStyles = css`
+export const switchStyles = styled(RawButton)`
   position: relative;
 
   &,
@@ -148,5 +148,3 @@ const switchStyles = css`
 
   ${({ isDisabled }) => (isDisabled ? disabledStyles : null)}
 `;
-
-export default switchStyles;

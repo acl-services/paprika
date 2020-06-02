@@ -1,9 +1,8 @@
 import React from "react";
 import PropTypes from "prop-types";
 import { ShirtSizes } from "@paprika/helpers/lib/customPropTypes";
-import RawButton from "@paprika/raw-button";
 
-import switchStyles, { KnobStyled, UnderlayStyled } from "./Switch.styles";
+import * as sc from "./Switch.styles";
 
 const propTypes = {
   /** Descriptive a11y text for assistive technologies. Typically required. */
@@ -38,8 +37,7 @@ function Switch(props) {
   const { a11yText, canPropagate, isChecked, isDisabled, size, onChange, ...moreProps } = props;
 
   return (
-    <RawButton
-      css={switchStyles}
+    <sc.switchStyles
       data-pka-anchor="switch"
       role="switch"
       a11yText={a11yText}
@@ -50,10 +48,10 @@ function Switch(props) {
       size={size}
       {...moreProps}
     >
-      <UnderlayStyled>
-        <KnobStyled />
-      </UnderlayStyled>
-    </RawButton>
+      <sc.UnderlayStyled>
+        <sc.KnobStyled />
+      </sc.UnderlayStyled>
+    </sc.switchStyles>
   );
 }
 

@@ -2,7 +2,7 @@ import React from "react";
 import PropTypes from "prop-types";
 import classNames from "classnames";
 import { ShirtSizes } from "@paprika/helpers/lib/customPropTypes";
-import textareaStyles from "./Textarea.styles";
+import * as sc from "./Textarea.styles";
 
 const propTypes = {
   /** Descriptive a11y text for assistive technologies. By default, text from children node will be used. */
@@ -113,7 +113,7 @@ function Textarea(props) {
   );
 
   return (
-    <div className={rootClasses} css={textareaStyles}>
+    <sc.textareaStyles className={rootClasses}>
       <textarea
         aria-invalid={hasError}
         className="form-textarea__textarea"
@@ -125,7 +125,7 @@ function Textarea(props) {
         style={{ maxHeight }}
         {...moreProps}
       />
-    </div>
+    </sc.textareaStyles>
   );
 }
 

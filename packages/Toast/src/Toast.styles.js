@@ -65,12 +65,12 @@ export const IconStyled = styled.div`
   ${stylers.fontSize(2)}
 `;
 
-export const contentStyles = css`
+export const contentStyles = styled.div`
   flex-grow: 1;
   flex-shrink: 1;
 `;
 
-const toastStyles = css`
+export const toastStyles = styled.div`
   align-items: flex-start;
   background-color: ${({ kind }) => backgroundColors[kind]};
   border-color: ${({ kind }) => borderColors[kind]};
@@ -92,5 +92,3 @@ const toastStyles = css`
   ${({ isFixed }) => isFixed && fixedStyles}
   ${({ kind }) => kind === Kinds.VISUALLY_HIDDEN && visuallyHidden}
 `;
-
-export default toastStyles;

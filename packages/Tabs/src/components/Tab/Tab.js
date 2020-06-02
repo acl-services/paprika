@@ -1,8 +1,7 @@
 import React from "react";
 import PropTypes from "prop-types";
-import RawButton from "@paprika/raw-button";
 import TabsContext from "../../TabsContext";
-import { tabStyles, linkStyles } from "./Tab.styles";
+import * as sc from "./Tab.styles";
 
 const propTypes = {
   children: PropTypes.node,
@@ -44,9 +43,8 @@ export default function Tab(props) {
 
   if (href && !isDisabled) {
     return (
-      <a
+      <sc.linkStyles
         {...moreProps}
-        css={linkStyles}
         data-pka-anchor="tab"
         href={href}
         onKeyDown={e => handleKeyDown(e, context.currentFocusIndex)}
@@ -54,16 +52,15 @@ export default function Tab(props) {
         tabIndex={tabIndex}
       >
         {children}
-      </a>
+      </sc.linkStyles>
     );
   }
 
   return (
-    <RawButton
+    <sc.tabStyles
       {...moreProps}
       aria-selected={isSelected}
       kind={context.kind}
-      css={tabStyles}
       data-pka-anchor="tab-link"
       isDisabled={isDisabled}
       isSelected={isSelected}
@@ -73,7 +70,7 @@ export default function Tab(props) {
       tabIndex={tabIndex}
     >
       {children}
-    </RawButton>
+    </sc.tabStyles>
   );
 }
 

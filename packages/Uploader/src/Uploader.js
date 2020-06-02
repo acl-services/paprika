@@ -1,7 +1,7 @@
 import React from "react";
 import PropTypes from "prop-types";
 import useI18n from "@paprika/l10n/lib/useI18n";
-import { containerStyles } from "./Uploader.styles";
+import * as sc from "./Uploader.styles";
 import { getFiles } from "./helpers";
 import ProgressBar from "./components/ProgressBar";
 import types from "./types";
@@ -147,7 +147,7 @@ const Uploader = React.forwardRef((props, ref) => {
     function FileInput(props) {
       const { children } = props;
       return (
-        <div css={containerStyles} ref={refContainer} data-pka-anchor="uploader">
+        <sc.containerStyles ref={refContainer} data-pka-anchor="uploader">
           <input
             multiple={canChooseMultiple}
             onChange={handleChange}
@@ -159,7 +159,7 @@ const Uploader = React.forwardRef((props, ref) => {
           {/* is this the best approach? */}
           {/* aria-hidden will prevent from rendering content that can be counter intuitive for the screen reader */}
           <div aria-hidden>{children}</div>
-        </div>
+        </sc.containerStyles>
       );
     }
     return {

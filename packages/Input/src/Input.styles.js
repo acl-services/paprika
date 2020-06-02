@@ -1,4 +1,4 @@
-import { css } from "styled-components";
+import styled from "styled-components";
 import tokens from "@paprika/tokens";
 import stylers from "@paprika/stylers";
 import { ShirtSizes } from "@paprika/helpers/lib/customPropTypes";
@@ -21,7 +21,7 @@ const iconStyles = {
   `,
 };
 
-const inputStyles = css`
+export const inputStyles = styled.div`
   line-height: 1;
   position: relative;
 
@@ -138,5 +138,3 @@ const inputStyles = css`
     ${stylers.errorFormStyles}
   }
 `;
-
-export default inputStyles;

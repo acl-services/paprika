@@ -1,8 +1,7 @@
 import React from "react";
 import PropTypes from "prop-types";
-import RawButton from "@paprika/raw-button";
 import { ShirtSizes } from "@paprika/helpers/lib/customPropTypes";
-import pillStyles, { pillTextStyles } from "./Pill.styles";
+import * as sc from "./Pill.styles";
 
 export const pillColors = ["black", "blue", "green", "grey", "orange", "lightBlue", "lightOrange"];
 export const severityPillColors = ["noRisk", "lowRisk", "mediumRisk", "highRisk"];
@@ -34,23 +33,16 @@ function Pill(props) {
 
   if (onClick) {
     return (
-      <RawButton
-        css={pillStyles}
-        {...styleProps}
-        a11yText={a11yText}
-        isDisabled={isDisabled}
-        onClick={onClick}
-        {...moreProps}
-      >
-        <span css={pillTextStyles}>{props.children}</span>
-      </RawButton>
+      <sc.rawPillStyle {...styleProps} a11yText={a11yText} isDisabled={isDisabled} onClick={onClick} {...moreProps}>
+        <sc.pillTextStyles>{props.children}</sc.pillTextStyles>
+      </sc.rawPillStyle>
     );
   }
 
   return (
-    <div css={pillStyles} {...styleProps} {...moreProps} data-pka-anchor="pill">
-      <span css={pillTextStyles}>{props.children}</span>
-    </div>
+    <sc.pillStyles {...styleProps} {...moreProps} data-pka-anchor="pill">
+      <sc.pillTextStyles>{props.children}</sc.pillTextStyles>
+    </sc.pillStyles>
   );
 }
 

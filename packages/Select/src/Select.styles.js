@@ -1,3 +1,4 @@
+import styled from "styled-components";
 import tokens from "@paprika/tokens";
 import stylers from "@paprika/stylers";
 
@@ -8,7 +9,7 @@ const selectArrow = (color = tokens.color.black) => `
   background-image: url("data:image/svg+xml;base64,${btoa(svgString(color))}");
 `;
 
-const selectStyles = () => `
+export const selectStyles = styled.div`
   position: relative;
 
   .form-select__select {
@@ -30,8 +31,7 @@ const selectStyles = () => `
     padding: 0 ${stylers.spacer(3)} 0 ${stylers.spacer(1)};
     width: 100%;
 
-    -webkit-appearance: none;
-    -moz-appearance: none;
+    appearance: none;
 
     &:hover:not(.is-disabled):not(.is-readonly):not([disabled]) {
       border-color: ${tokens.color.blackLighten30};
@@ -43,8 +43,6 @@ const selectStyles = () => `
       box-shadow: ${tokens.highlight.active.noBorder.boxShadow};
     }
   }
-
-  // Sizes
 
   &.form-select--small .form-select__select {
     ${stylers.fontSize(-2)}
@@ -61,8 +59,6 @@ const selectStyles = () => `
     height: ${stylers.spacer(5)};
   }
 
-  // Placeholder
-
   &.form-select--placeholder .form-select__select {
     ${stylers.placeholder}
 
@@ -77,24 +73,16 @@ const selectStyles = () => `
     }
   }
 
-  // Disabled
-
   &.form-select--is-disabled .form-select__select {
     ${stylers.disabledFormStyles}
     ${selectArrow(tokens.color.blackLighten60)}
   }
 
-  // Read Only
-
   &.form-select--is-readonly .form-select__select {
     ${stylers.readOnlyFormStyles}
   }
-
-  // Error
 
   &.form-select--has-error .form-select__select {
     ${stylers.errorFormStyles}
   }
 `;
-
-export default selectStyles;

@@ -1,6 +1,7 @@
-import { css } from "styled-components";
+import styled, { css } from "styled-components";
 import stylers from "@paprika/stylers";
 import tokens from "@paprika/tokens";
+import RawButton from "@paprika/raw-button";
 
 const pillColorStyles = {
   black: css`
@@ -69,7 +70,7 @@ const pillSizeStyles = {
   `,
 };
 
-const pillStyles = css`
+export const pillStyles = styled.div`
   align-items: center;
   color: ${tokens.color.white};
   display: inline-flex;
@@ -92,10 +93,31 @@ const pillStyles = css`
   ${({ pillColor }) => pillColorStyles[pillColor]}
 `;
 
-export const pillTextStyles = css`
+export const rawPillStyle = styled(RawButton)`
+  align-items: center;
+  color: ${tokens.color.white};
+  display: inline-flex;
+  max-width: 100%;
+
+  &,
+  * {
+    box-sizing: border-box;
+  }
+
+  &:focus {
+    outline: 0;
+  }
+
+  svg {
+    margin-right: ${tokens.spaceSm};
+  }
+
+  ${({ size }) => pillSizeStyles[size]}
+  ${({ pillColor }) => pillColorStyles[pillColor]}
+`;
+
+export const pillTextStyles = styled.span`
   ${stylers.truncateText};
   align-items: center;
   display: inline-flex;
 `;
-
-export default pillStyles;

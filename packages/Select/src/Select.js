@@ -2,7 +2,7 @@ import React from "react";
 import classNames from "classnames";
 import PropTypes from "prop-types";
 import { ShirtSizes } from "@paprika/helpers/lib/customPropTypes";
-import selectStyles from "./Select.styles";
+import * as sc from "./Select.styles";
 
 const propTypes = {
   a11yText: PropTypes.string,
@@ -70,7 +70,7 @@ const Select = props => {
   );
 
   return (
-    <div css={selectStyles} className={rootClasses} data-pka-anchor="select">
+    <sc.selectStyles className={rootClasses} data-pka-anchor="select">
       <select
         aria-invalid={hasError}
         className="form-select__select"
@@ -82,7 +82,7 @@ const Select = props => {
         {renderPlaceholder()}
         {children}
       </select>
-    </div>
+    </sc.selectStyles>
   );
 };
 

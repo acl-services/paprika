@@ -1,4 +1,4 @@
-import { css } from "styled-components";
+import styled, { css } from "styled-components";
 import stylers from "@paprika/stylers";
 import tokens from "@paprika/tokens";
 
@@ -57,7 +57,7 @@ const indicatorStyles = css`
   }
 `;
 
-const counterStyles = css`
+export const counterStyles = styled.span`
   display: inline-flex;
   font-weight: bold;
   justify-content: center;
@@ -69,10 +69,7 @@ const counterStyles = css`
   * {
     box-sizing: border-box;
   }
-
   ${({ hasIndicator }) => hasIndicator && indicatorStyles};
   ${({ color }) => counterColorStyles[color]};
   ${({ size }) => counterSizeStyles[size]};
 `;
-
-export default counterStyles;

@@ -1,4 +1,4 @@
-import { css } from "styled-components";
+import styled from "styled-components";
 import { toInt, fontSizeValue, lineHeightValue, z } from "@paprika/stylers/lib/helpers";
 import { boxSizingStyles, visuallyHidden } from "@paprika/stylers/lib/includes";
 import { ShirtSizes } from "@paprika/helpers/lib/customPropTypes";
@@ -75,7 +75,7 @@ const styles = {
   },
 };
 
-const checkboxStyles = css`
+export const checkboxStyles = styled.div`
   ${boxSizingStyles};
   ${({ size }) => styles[size].baseFontSize};
   line-height: ${({ hasLabel }) => (hasLabel ? lineHeightValue(-1) : "0")};
@@ -176,5 +176,3 @@ const checkboxStyles = css`
     }
   }
 `;
-
-export default checkboxStyles;

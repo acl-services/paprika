@@ -1,15 +1,15 @@
-import { css } from "styled-components";
+import styled from "styled-components";
 import tokens from "@paprika/tokens";
 import stylers from "@paprika/stylers";
 
-export const accordionStyles = css`
+export const accordionStyles = styled.div`
   &,
   * {
     box-sizing: border-box;
   }
 `;
 
-export const itemStyles = css`
+export const itemStyles = styled.div`
   color: ${tokens.textColor.subtle};
   display: flex;
 
@@ -18,18 +18,18 @@ export const itemStyles = css`
   }
 `;
 
-export const activeItemStyles = css`
+export const activeItemStyles = styled.div`
   display: flex;
   justify-content: space-between;
 `;
 
-export const activeLabelStyles = css`
+export const activeLabelStyles = styled.div`
   ${stylers.truncateText}
   
   color: ${tokens.color.blue};
 `;
 
-export const activeStatusStyles = css`
+export const activeStatusStyles = styled.div`
   ${stylers.fontSize(-1)}
 
   font-style: italic;
