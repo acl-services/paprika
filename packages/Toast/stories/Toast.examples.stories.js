@@ -1,4 +1,5 @@
 import React from "react";
+import { getStoryName } from "storybook/storyTree";
 import Toast from "../src";
 import ControlledToastExample from "./examples/ControlledToastExample";
 import FixedToastExample from "./examples/FixedToastExample";
@@ -13,7 +14,7 @@ const toastStoryParameters = {
 };
 
 export default {
-  title: "Toast/Examples",
+  title: `${getStoryName("Toast")}/Examples`,
   component: Toast,
 };
 

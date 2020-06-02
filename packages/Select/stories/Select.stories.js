@@ -12,7 +12,7 @@ storiesOf("Select", module)
   .add("With Selected Option", () => <Select.WithSelectedOption />)
   .add("With isDisabled", () => <Select.DisableSelect />)
   .add("With isReadOnly", () => <Select.ReadOnlySelect />)
-  .add("With hasError", () => <Select.hasErrorSelect />);
+  .add("With hasError", () => <Select.HasErrorSelect />);
 
 storiesOf("Select/Automation Tests/Screener", module).add("Basic", () => {
   return <ScreenerStory />;

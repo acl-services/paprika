@@ -60,27 +60,27 @@ storiesOf("Stylers", module)
       <h4>
         <code>stylers.focusRing()</code>
       </h4>
-      <FocusBox.default tabIndex={0} />
+      <FocusBox.Default tabIndex={0} />
       <h4>
         <code>stylers.focusRing(true)</code>
       </h4>
-      <FocusBox.inset tabIndex={0} />
+      <FocusBox.Inset tabIndex={0} />
       <h4>
         <code>stylers.focusRing.bordered()</code>
       </h4>
-      <FocusBox.bordered tabIndex={0} />
+      <FocusBox.Bordered tabIndex={0} />
       <h4>
         <code>stylers.focusRing.bordered(true)</code>
       </h4>
-      <FocusBox.bordered.inset tabIndex={0} />
+      <FocusBox.Bordered.Inset tabIndex={0} />
       <h4>
         <code>stylers.focusRing.subtle()</code>
       </h4>
-      <FocusBox.subtle tabIndex={0} />
+      <FocusBox.Subtle tabIndex={0} />
       <h4>
         <code>stylers.focusRing.subtle(true)</code>
       </h4>
-      <FocusBox.subtle.inset tabIndex={0} />
+      <FocusBox.Subtle.Inset tabIndex={0} />
     </Story>
   ))
 
