@@ -1,4 +1,4 @@
-const baseStory = "sortable-automation-tests";
+const baseStory = "content-sortable-backyard-tests";
 const testStory = "cypress";
 
 const selector = {

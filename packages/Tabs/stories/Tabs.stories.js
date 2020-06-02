@@ -2,10 +2,13 @@ import React from "react";
 import { storiesOf } from "@storybook/react";
 import { withKnobs } from "@storybook/addon-knobs";
 import { Gap, Story } from "storybook/assets/styles/common.styles";
+import { getStoryName } from "storybook/storyTree";
 import Button from "@paprika/button";
 import Heading from "@paprika/heading";
 import ShowcaseStory from "./examples/Showcase";
 import Tabs from "../src/Tabs";
+
+const storyName = getStoryName("Tabs");
 
 function TabsExample() {
   return (
@@ -42,9 +45,12 @@ function TabsExample() {
     </React.Fragment>
   );
 }
-storiesOf("Tabs", module)
+
+storiesOf(storyName, module)
   .addDecorator(withKnobs)
-  .add("Showcase", ShowcaseStory)
+  .add("Showcase", ShowcaseStory);
+
+storiesOf(`${storyName}/Examples`, module)
   .add("Tab", () => <Story>{TabsExample()}</Story>)
   .add("Tab Links", () => (
     <Story>
@@ -74,4 +80,4 @@ storiesOf("Tabs", module)
     </Story>
   ));
 
-storiesOf("Tabs/Automation Tests", module).add("Cypress", () => <Story>{TabsExample()}</Story>);
+storiesOf(`${storyName}/Backyard/Tests`, module).add("Cypress", () => <TabsExample />);
