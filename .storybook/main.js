@@ -15,7 +15,7 @@ storyTree.forEach(catList => {
   });
 });
 stories.push("./components/CodeViewer/CodeViewer.story.js");
-// stories.push("../packages/**/*.stories.js");
+stories.push("../packages/**/*.stories.js");
 
 module.exports = {
   stories,

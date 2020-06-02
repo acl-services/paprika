@@ -1,12 +1,15 @@
 import React from "react";
 import { storiesOf } from "@storybook/react";
-import { Story, Rule, Tagline } from "storybook/assets/styles/common.styles";
 import { boolean, select, text, withKnobs } from "@storybook/addon-knobs";
+import { Story, Rule, Tagline } from "storybook/assets/styles/common.styles";
+import { getStoryName } from "storybook/storyTree";
 import { ShirtSizes } from "@paprika/helpers/lib/customPropTypes";
 import Heading from "@paprika/heading";
 import Example from "./SwitchExample";
 
-storiesOf("Switch", module)
+const storyName = getStoryName("Switch");
+
+storiesOf(storyName, module)
   .addDecorator(withKnobs)
   .add("Showcase", () => {
     return (
@@ -26,7 +29,9 @@ storiesOf("Switch", module)
         />
       </Story>
     );
-  })
+  });
+
+storiesOf(`${storyName}/Examples`, module)
   .add("Switch sizes", () => {
     return (
       <Story>

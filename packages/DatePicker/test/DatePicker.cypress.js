@@ -7,7 +7,7 @@ describe("<DatePicker />", () => {
     .date(1);
 
   beforeEach(() => {
-    cy.visitStorybook("datepicker-cypress--datepicker-test");
+    cy.visitStorybook("forms-datepicker-backyard-tests--cypress");
   });
 
   const selectADateByClick = () => {

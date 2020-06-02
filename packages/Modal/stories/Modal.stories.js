@@ -84,17 +84,28 @@ storiesOf(`${storyName}/Examples`, module)
       </Modal.Content>
     </ModalStory>
   ))
-  .add("with autofocus on input", () => (
-    <ModalStory>
-      <Modal.Content>
-        <input type="text" data-autofocus />
-      </Modal.Content>
-    </ModalStory>
-  ))
   .add("with full-width content", () => (
     <ModalStory>
       <DemoFullWidthContent />
     </ModalStory>
+  ))
+  .add("with autofocus on input", () => (
+    <Modal isOpen>
+      <Modal.Header>Header</Modal.Header>
+      <Modal.Content>
+        <p>With input auto focus</p>
+        <input type="text" data-autofocus />
+      </Modal.Content>
+    </Modal>
+  ))
+  .add("with disabled autofocus", () => (
+    <Modal isOpen>
+      <Modal.FocusLock autoFocus={false} />
+      <Modal.Header>Header</Modal.Header>
+      <Modal.Content>
+        <p>autofocus disabled</p>
+      </Modal.Content>
+    </Modal>
   ));
 
 storiesOf(`${storyName}/Backyard/Sandbox`, module)
