@@ -2,12 +2,15 @@ import React from "react";
 import { storiesOf } from "@storybook/react";
 import { withKnobs, boolean, select } from "@storybook/addon-knobs";
 import { Story, Rule, Tagline, repeat } from "storybook/assets/styles/common.styles";
+import { getStoryName } from "storybook/storyTree";
 import styled from "styled-components";
 import Button from "@paprika/button";
 import SidePanel from "@paprika/sidepanel";
 import { ShirtSizes } from "@paprika/helpers/lib/customPropTypes";
 import Heading from "@paprika/heading";
 import Modal from "../src";
+
+const storyName = getStoryName("Modal");
 
 /* Long block to test body scroll locking */
 const LongBlock = styled.div`
@@ -52,17 +55,26 @@ const Example = () => (
       <b>Showcase</b> – Interact with the props API
     </Tagline>
     <Rule />
-    <Modal />
+    <ModalStory>
+      <Modal.Content>
+        {repeat(8, key => (
+          <p key={key}>
+            Mixtape single-origin coffee put a bird on it flexitarian street cred live-edge you probably haven‘t heard
+            of them.
+          </p>
+        ))}
+      </Modal.Content>
+    </ModalStory>
   </Story>
 );
 
-storiesOf("Modal", module).add("Showcase", () => {
-  return <Example />;
-});
-
-storiesOf("Modal", module)
+storiesOf(storyName, module)
   .addDecorator(withKnobs)
+  .add("Showcase", () => {
+    return <Example />;
+  });
 
+storiesOf(`${storyName}/Examples`, module)
   .add("Basic", () => (
     <ModalStory>
       <Modal.Content>
@@ -72,7 +84,6 @@ storiesOf("Modal", module)
       </Modal.Content>
     </ModalStory>
   ))
-
   .add("with autofocus on input", () => (
     <ModalStory>
       <Modal.Content>
@@ -80,13 +91,13 @@ storiesOf("Modal", module)
       </Modal.Content>
     </ModalStory>
   ))
-
   .add("with full-width content", () => (
     <ModalStory>
       <DemoFullWidthContent />
     </ModalStory>
-  ))
+  ));
 
+storiesOf(`${storyName}/Backyard/Sandbox`, module)
   .add("with form render", () => (
     <Modal
       isOpen
@@ -106,13 +117,11 @@ storiesOf("Modal", module)
       </Modal.Footer>
     </Modal>
   ))
-
   .add("Z Index", () => {
     const [isOpen, setIsOpen] = React.useState(false);
     const toggle = () => {
       setIsOpen(state => !state);
     };
-
     return (
       <div
         css={`
@@ -159,7 +168,6 @@ storiesOf("Modal", module)
       </div>
     );
   })
-
   .add("with nested SidePanel", () =>
     React.createElement(() => {
       const [isOpen, setIsOpen] = React.useState(false);
@@ -183,7 +191,7 @@ storiesOf("Modal", module)
     })
   );
 
-storiesOf("Modal / screener", module)
+storiesOf(`${storyName}/Backyard/Tests/Screener`, module)
   .add("small", () => (
     <ModalStory>
       <Modal.Content>
