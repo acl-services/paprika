@@ -1,8 +1,11 @@
 import React from "react";
 import { storiesOf } from "@storybook/react";
-import Button from "@paprika/button";
 import * as Sbook from "storybook/assets/styles/common.styles";
+import { getStoryName } from "storybook/storyTree";
+import Button from "@paprika/button";
 import DataGrid from "../src";
+
+const storyName = getStoryName("DataGrid");
 
 const _DATA_ = [
   {
@@ -98,4 +101,4 @@ export function App() {
   );
 }
 
-storiesOf("DataGrid / regular", module).add("autofocus", () => <App />);
+storiesOf(`${storyName}/Examples/Regular`, module).add("autofocus", () => <App />);

@@ -1,9 +1,12 @@
 import React from "react";
 import { storiesOf } from "@storybook/react";
 import * as Sbook from "storybook/assets/styles/common.styles";
+import { getStoryName } from "storybook/storyTree";
 import worker from "workerize-loader!./helpers/data.worker"; // eslint-disable-line import/no-webpack-loader-syntax
 import Spinner from "@paprika/spinner";
 import DataGrid, { renderColumnIndicator, renderColumnExpand } from "../src";
+
+const storyName = getStoryName("DataGrid");
 
 export function App(props) {
   const { overrideWidth = null, numberOfColumns = 500, rowsOffset = 80 } = props;
@@ -97,4 +100,4 @@ export function App(props) {
   );
 }
 
-storiesOf("DataGrid / Lazy", module).add("Stressing", () => <App />);
+storiesOf(`${storyName}/Examples`, module).add("Stress Test", () => <App />);

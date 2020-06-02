@@ -1,5 +1,6 @@
 import React from "react";
 import { storiesOf } from "@storybook/react";
+import { getStoryName } from "storybook/storyTree";
 import * as Sbook from "storybook/assets/styles/common.styles";
 import ArrowRight from "@paprika/icon/lib/ArrowRight";
 import ArrowDown from "@paprika/icon/lib/ArrowDown";
@@ -7,6 +8,8 @@ import Check from "@paprika/icon/lib/Check";
 import Popover from "@paprika/popover";
 import DataGrid from "../src";
 import initialData from "./helpers/data.collapse";
+
+const storyName = getStoryName("DataGrid");
 
 const Arrow = React.memo(({ hasRows, isExpand }) => {
   if (!hasRows) return null;
@@ -184,4 +187,4 @@ export function App() {
   );
 }
 
-storiesOf("DataGrid / Lazy", module).add("Collapse", () => <App />);
+storiesOf(`${storyName}/Examples`, module).add("Lazy", () => <App />);
