@@ -1,14 +1,17 @@
 import React from "react";
-import { Story } from "storybook/assets/styles/common.styles";
 import { storiesOf } from "@storybook/react";
+import { Story } from "storybook/assets/styles/common.styles";
+import { getStoryName } from "storybook/storyTree";
 import ListBoxBrowser from "../src";
 import dataMultiple from "../test/specs/fixtures/multiple";
 import dataMultipleFirstOptionNoOptions from "../test/specs/fixtures/multiple.firstOptionNoOptions";
 import issues from "../test/specs/fixtures/issues";
 import Lazy from "./examples/Lazy";
 
-storiesOf("ListBoxBrowser/Multi", module)
-  .add("basic", () => (
+const storyName = getStoryName("ListBoxBrowser");
+
+storiesOf(`${storyName}/Examples/Multi`, module)
+  .add("Basic", () => (
     <Story>
       <ListBoxBrowser
         data={issues}
@@ -123,7 +126,7 @@ storiesOf("ListBoxBrowser/Multi", module)
     />
   ));
 
-storiesOf("ListBoxBrowser/Automation Tests ", module).add("Basic", () => (
+storiesOf(`${storyName}/Backyard/Tests`, module).add("Cypress", () => (
   <Story>
     <ListBoxBrowser
       data={issues}
