@@ -63,3 +63,5 @@ storiesOf(`${storyName}/Backyard/Sandbox`, module).add("Z Index", () => (
     <ZIndexExample />
   </DropdownMenuStory>
 ));
+
+storiesOf(`${storyName}/Backyard/Tests`, module).add("Cypress", () => <DropdownMenuExample />);

@@ -1,6 +1,7 @@
 import React from "react";
 import { storiesOf } from "@storybook/react";
 import { Story, Rule } from "storybook/assets/styles/common.styles";
+import { getStoryName } from "storybook/storyTree";
 import {
   Box,
   TruncatedBox,
@@ -15,7 +16,9 @@ import {
   FocusBox,
 } from "./stylers.stories.styles";
 
-storiesOf("Stylers", module)
+const storyName = getStoryName("Stylers");
+
+storiesOf(storyName, module)
   .add("Includes", () => (
     <Story>
       <h1>Include Examples</h1>

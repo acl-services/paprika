@@ -57,3 +57,5 @@ storiesOf(`${storyName}/Examples`, module)
       <ConfirmationExampleWithAsyncAction />
     </Story>
   ));
+
+storiesOf(`${storyName}/Backyard/Tests`, module).add("Screener", () => <ConfirmationExample />);

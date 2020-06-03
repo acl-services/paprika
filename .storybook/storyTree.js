@@ -50,7 +50,7 @@ const storyTree = [
       "FormElement",
       "Input",
       "Select",
-      "TextArea",
+      "Textarea",
       "Checkbox",
       "Radio",
       "Uploader",
