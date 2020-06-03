@@ -1,11 +1,11 @@
 import { withKnobs } from "@storybook/addon-knobs";
-
+import { getStoryName } from "storybook/storyTree";
 import Props from "./DialogActions.mdx";
 import Showcase from "./examples/Showcase";
 import DialogActions from "../src";
 
 export default {
-  title: " | Dialog Actions",
+  title: getStoryName("DialogActions"),
   component: DialogActions,
 };
 

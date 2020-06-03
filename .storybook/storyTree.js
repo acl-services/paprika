@@ -13,6 +13,7 @@ const storyTree = [
   {
     category: "Content",
     components: [
+      "Card",
       "Toast",
       "Tabs",
       "Collapsible",

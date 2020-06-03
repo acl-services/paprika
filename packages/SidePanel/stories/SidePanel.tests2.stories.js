@@ -1,4 +1,5 @@
 import React from "react";
+import { getStoryName } from "storybook/storyTree";
 import Screener from "./examples/Screener";
 import {
   SidePanelDefaultSticky,
@@ -8,7 +9,7 @@ import {
 } from "./examples/Cypress";
 
 export default {
-  title: " | SidePanel/ Automation Tests",
+  title: `${getStoryName("SidePanel")}/Backyard/Tests`,
 };
 
 export const screener = () => <Screener />;
