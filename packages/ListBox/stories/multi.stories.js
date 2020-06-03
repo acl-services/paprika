@@ -6,7 +6,7 @@ import * as Multi from "./examples/multi";
 
 const storyName = getStoryName("ListBox");
 
-storiesOf(`${storyName}/multi`, module)
+storiesOf(`${storyName}/Examples/Multi`, module)
   .add("Basic", () => <Multi.Basic />)
   .add("Basic with preselected options", () => <Multi.BasicWithPreselectedOptions />)
   .add("Basic is disabled", () => <Multi.BasicIsDisabled />)

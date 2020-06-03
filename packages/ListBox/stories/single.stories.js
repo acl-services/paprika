@@ -5,7 +5,7 @@ import * as Single from "./examples/single";
 
 const storyName = getStoryName("ListBox");
 
-storiesOf(`${storyName}/single`, module)
+storiesOf(`${storyName}/Examples/Single`, module)
   .add("Basic", () => <Single.Basic />)
   .add("Basic Inline Display", () => <Single.BasicInlineDisplay />)
   .add("Basic Dividers", () => <Single.Dividers />)

@@ -3,7 +3,7 @@ import { toggleDropdown } from "../helpers/toggleHelpers";
 
 describe("ListBox single select", () => {
   beforeEach(() => {
-    cy.visitStorybook("listbox-single--basic");
+    cy.visitStorybook("forms-listbox-examples-single--basic");
     toggleDropdown();
   });
 
