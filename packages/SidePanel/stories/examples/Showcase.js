@@ -37,8 +37,10 @@ const ExampleStory = props => {
       <SidePanel {...props}>
         {overlayProps().toggleOverlay ? <SidePanel.Overlay /> : null}
         <SidePanel.Header {...headerProps()}>{headerProps().children}</SidePanel.Header>
-        <StoryHeader componentName="SidePanel" />
-        <TextLine repeat={50} />
+        <SidePanel.Content>
+          <StoryHeader componentName="SidePanel" />
+          <TextLine repeat={50} />
+        </SidePanel.Content>
         <SidePanel.Footer>
           <Button kind="primary">Default action</Button>
           <Button kind="minor">Cancel</Button>
