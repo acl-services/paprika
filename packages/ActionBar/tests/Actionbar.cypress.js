@@ -1,6 +1,6 @@
 describe("ActionBar", () => {
   beforeEach(() => {
-    cy.visitStorybook("action-bar--showcase");
+    cy.visitStorybook("data-table-actionbar--showcase");
   });
 
   it("Should render", () => {

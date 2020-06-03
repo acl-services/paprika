@@ -1,5 +1,5 @@
 beforeEach(() => {
-  cy.visitStorybook("action-bar--showcase");
+  cy.visitStorybook("data-table-actionbar--showcase");
 });
 
 describe("ActionBar", () => {
