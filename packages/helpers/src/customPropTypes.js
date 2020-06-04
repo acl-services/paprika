@@ -68,5 +68,5 @@ export const FocusPropTypes = {
 
 InputValidTypes.ALL = Object.values(InputValidTypes);
 
-export const RefOf = (propType = PropTypes.instanceOf(Element)) =>
+export const RefOf = (propType = PropTypes.object) =>
   PropTypes.oneOfType([PropTypes.func, PropTypes.shape({ current: propType })]);
