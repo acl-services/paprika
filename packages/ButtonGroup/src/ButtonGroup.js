@@ -49,27 +49,39 @@ const keyTypes = {
   LAST: "End",
 };
 
-function ButtonGroup(props) {
+const ButtonGroup = React.forwardRef((props, ref) => {
   const { children, hasIcons, isDisabled, isMulti, isSemantic, onChange, size } = props;
 
   const [selectedItems, setSelectedItems] = React.useState([]);
   const [currentFocusIndex, setFocusIndex] = React.useState(null);
   const [currentFocusValue, setFocusValue] = React.useState(null);
+  const [itemRefs, setItemRefs] = React.useState([]);
 
-  const groupRef = React.createRef();
-
-  function isItemDisabled(item) {
-    return item.getAttribute("aria-disabled") === "true" || item.hasAttribute("disabled");
-  }
+  const groupRef = React.useRef();
 
   function getButtonRefs() {
     return Array.from(groupRef.current.querySelectorAll("[data-pka-anchor='button-group.button']"));
+  }
+
+  function isItemDisabled(item) {
+    return item.getAttribute("aria-disabled") === "true" || item.hasAttribute("disabled");
   }
 
   function getEnabledIndexes() {
     const buttonRefs = getButtonRefs();
     return buttonRefs.map((item, index) => (isItemDisabled(item) ? null : index)).filter(index => index !== null);
   }
+
+  React.useImperativeHandle(ref, () => ({
+    focus: () => {
+      const firstEnabledIndex = getEnabledIndexes()[0];
+      const firstEnabledItemRef = itemRefs[firstEnabledIndex];
+      if (firstEnabledItemRef) {
+        firstEnabledItemRef.current.focus();
+        setFocusIndex(firstEnabledIndex);
+      }
+    },
+  }));
 
   React.useLayoutEffect(() => {
     const enabledIndexes = getEnabledIndexes();
@@ -148,6 +160,7 @@ function ButtonGroup(props) {
     size,
     selectedItems,
     setSelectedItems,
+    setItemRefs,
   };
 
   return (
@@ -155,7 +168,7 @@ function ButtonGroup(props) {
       <ButtonGroupContext.Provider value={contextValue}>{children}</ButtonGroupContext.Provider>
     </sc.ButtonGroup>
   );
-}
+});
 
 ButtonGroup.displayName = "ButtonGroup";
 ButtonGroup.propTypes = propTypes;

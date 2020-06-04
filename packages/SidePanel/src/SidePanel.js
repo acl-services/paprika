@@ -3,6 +3,7 @@ import PropTypes from "prop-types";
 import { zValue } from "@paprika/stylers/lib/helpers";
 import LockBodyScroll from "@paprika/helpers/lib/components/LockBodyScroll";
 import Portal from "@paprika/helpers/lib/components/Portal";
+import Content from "./components/Content";
 import Dialog from "./components/Dialog";
 import Footer from "./components/Footer";
 import Header from "./components/Header";
@@ -240,6 +241,7 @@ SidePanel.propTypes = propTypes;
 SidePanel.defaultProps = defaultProps;
 SidePanel.displayName = "SidePanel";
 
+SidePanel.Content = Content;
 SidePanel.FocusLock = FocusLock;
 SidePanel.Footer = Footer;
 SidePanel.Group = Group;
