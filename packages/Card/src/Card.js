@@ -29,7 +29,7 @@ const propTypes = {
 const defaultProps = {
   children: null,
   className: null,
-  size: ShirtSizes.MEDIUM,
+  size: "auto",
   isFullWidth: false,
   isActive: false,
 };

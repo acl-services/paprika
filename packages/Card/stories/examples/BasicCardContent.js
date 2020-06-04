@@ -69,7 +69,7 @@ export default () => {
         {card.map(card => {
           return (
             <div style={{ margin: "10px" }}>
-              <Card size="auto">
+              <Card>
                 <Card.Content>
                   <Card.Title>{card.title}</Card.Title>
                   <Card.Metadata>
