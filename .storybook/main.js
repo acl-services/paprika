@@ -4,13 +4,13 @@ const { storyTree } = require("./storyTree");
 const stories = ["./welcome.story.js"];
 storyTree.forEach(catList => {
   catList.components.forEach(component => {
-    const path = `../packages/${component}/stories/${component}`;
+    const path = `../packages/${component}/stories`;
     stories.push(
-      `${path}.stories.mdx`,
-      `${path}.stories.js`,
-      `${path}.examples.stories.js`,
-      `${path}.backyard.stories.js`,
-      `${path}.tests.stories.js`
+      `${path}/${component}.stories.mdx`,
+      `${path}/${component}.stories.js`,
+      `${path}/${component}.examples.stories.js`,
+      `${path}/${component}.backyard.stories.js`,
+      `${path}/${component}.tests.stories.js`
     );
   });
 });

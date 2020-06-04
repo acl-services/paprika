@@ -83,11 +83,7 @@ function getStoryName(component) {
 }
 
 function getCategory(component) {
-  let found;
-  storyTree.forEach(catList => {
-    if (catList.components.includes(component)) found = catList.category;
-  });
-  return found;
+  return storyTree.find(catList => catList.components.includes(component)).category;
 }
 
 module.exports = {
