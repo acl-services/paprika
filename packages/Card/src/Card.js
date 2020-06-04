@@ -23,7 +23,7 @@ const propTypes = {
   isActive: PropTypes.bool,
 
   /** Size of the card (font size, min-height, padding, etc). */
-  size: PropTypes.oneOf(ShirtSizes.DEFAULT),
+  size: PropTypes.oneOf(["auto", ShirtSizes.SMALL, ShirtSizes.MEDIUM, ShirtSizes.LARGE]),
 };
 
 const defaultProps = {
