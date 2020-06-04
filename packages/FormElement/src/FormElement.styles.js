@@ -16,10 +16,20 @@ const inlineFormElementStyles = css`
   display: flex;
 `;
 
-export const FormElement = styled.div`
-  ${({ size }) => FontSizes[size]}
-  ${({ isInline }) => isInline && inlineFormElementStyles};
-  ${({ isDisabled }) => isDisabled && `opacity: 0.5;`}
+const commonStyles = styled.div`
   border: none;
   padding: 0;
+`;
+
+export const FormElement = styled(commonStyles)`
+  ${props => {
+    const size = FontSizes[props.size];
+    const isInline = props.isInline && inlineFormElementStyles;
+    const isDisabled = props.isDisabled && `opacity: 0.5;`;
+
+    return `
+    ${size};
+    ${isInline};
+    ${isDisabled};`;
+  }}
 `;

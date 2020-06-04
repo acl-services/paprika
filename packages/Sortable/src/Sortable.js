@@ -5,7 +5,7 @@ import { DragDropContext, Droppable } from "react-beautiful-dnd";
 import useI18n from "@paprika/l10n/lib/useI18n";
 import SortableItem from "./components/SortableItem/SortableItem";
 import Item from "./components/Item/Item";
-import sortableStyles from "./Sortable.styles";
+import * as sc from "./Sortable.styles";
 
 const propTypes = {
   children: PropTypes.node,
@@ -75,11 +75,10 @@ const Sortable = ({ children, onChange, hasNumbers, hasZebraStripes, onRemove, .
     >
       <Droppable droppableId={dropId.current}>
         {(provided, snapshot) => (
-          <ul
+          <sc.sortableStyles
             {...provided.droppableProps}
             {...moreProps}
             hasZebraStripes={hasZebraStripes}
-            css={sortableStyles}
             data-pka-anchor="sortable"
             data-is-dragging-over={snapshot.isDraggingOver ? true : undefined}
             isDraggingOver={snapshot.isDraggingOver}
@@ -98,7 +97,7 @@ const Sortable = ({ children, onChange, hasNumbers, hasZebraStripes, onRemove, .
                 </SortableItem>
               ))}
             {provided.placeholder}
-          </ul>
+          </sc.sortableStyles>
         )}
       </Droppable>
     </DragDropContext>

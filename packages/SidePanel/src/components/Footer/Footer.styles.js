@@ -6,17 +6,26 @@ const compactStyles = css`
   padding: ${stylers.spacer(2)};
 `;
 
-export const Footer = styled.div`
+export const commonStyles = styled.div`
   align-items: center;
   background: ${tokens.color.blackLighten80};
   box-sizing: border-box;
   display: flex;
   flex-shrink: 0;
-  height: ${props => (props.height ? props.height : stylers.spacer(9))};
   padding: ${stylers.spacer(2)} ${stylers.spacer(3)};
   position: relative;
   transition: opacity 0.3s ease-in;
   width: 100%;
+`;
 
-  ${props => (props.isCompact ? compactStyles : "")}
+export const Footer = styled(commonStyles)`
+  ${props => {
+    const height = props.height ? props.height : stylers.spacer(9);
+    const compact = props.isCompact ? compactStyles : "";
+
+    return `
+  ${height};
+  ${compact};
+  `;
+  }}
 `;

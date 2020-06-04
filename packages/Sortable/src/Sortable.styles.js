@@ -1,7 +1,7 @@
-import { css } from "styled-components";
+import styled from "styled-components";
 import tokens from "@paprika/tokens";
 
-const sortableStyles = css`
+const commonStyles = styled.ul`
   &,
   * {
     box-sizing: border-box;
@@ -9,14 +9,18 @@ const sortableStyles = css`
 
   margin: 0;
   padding: 0;
-
-  ${({ hasZebraStripes }) =>
-    hasZebraStripes &&
-    `
-      li:nth-of-type(even) {
-        background-color: ${tokens.table.rowEven.backgroundColor};
-      }
-    `}
 `;
 
-export default sortableStyles;
+export const sortableStyles = styled(commonStyles)`
+  ${props => {
+    const hasZebraStripes =
+      props.hasZebraStripes &&
+      `li:nth-of-type(even) {
+        background-color: ${tokens.table.rowEven.backgroundColor};
+      }`;
+
+    return `
+      ${hasZebraStripes};
+    `;
+  }}
+`;

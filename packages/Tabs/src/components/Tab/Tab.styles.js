@@ -37,7 +37,7 @@ const disabledStyles = css`
   cursor: not-allowed;
 `;
 
-export const tabStyles = styled(RawButton)`
+const commonStyles = styled(RawButton)`
   ${stylers.fontSize()};
   align-items: center;
   background-color: ${tokens.color.white};
@@ -45,13 +45,10 @@ export const tabStyles = styled(RawButton)`
   border-bottom: ${tokens.spaceSm} solid transparent;
   color: ${tokens.color.black};
   display: inline-flex;
-  height: ${({ height }) => (height ? `${height}px` : "auto")};
   margin: 0 ${tokens.space} 0 0;
   padding: ${stylers.spacer(2)} ${tokens.space} ${tokens.space} ${tokens.space};
   position: relative;
   transition: border-color 0.3s ease;
-  ${({ isDisabled }) => (isDisabled ? disabledStyles : null)}
-  ${({ isSelected }) => (isSelected ? activeStyles : null)}
 
   &:last-child {
     margin-right: 0;
@@ -66,6 +63,19 @@ export const tabStyles = styled(RawButton)`
   &:hover {
     border-color: ${tokens.border.color};
   }
+`;
+
+export const tabStyles = styled(commonStyles)`
+  ${props => {
+    const isDisabled = props.isDisabled ? disabledStyles : null;
+    const isSelected = props.isSelected ? activeStyles : null;
+
+    return `
+      height: ${props.height ? `${props.height}px` : "auto"};
+      ${isDisabled};
+      ${isSelected};
+    `;
+  }}
 `;
 
 export const linkStyles = styled.a`

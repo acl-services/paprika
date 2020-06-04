@@ -1,4 +1,4 @@
-import styled, { css } from "styled-components";
+import styled from "styled-components";
 import stylers from "@paprika/stylers";
 import tokens from "@paprika/tokens";
 import Button from "@paprika/button";
@@ -29,7 +29,7 @@ const closeButtonColors = {
   [Kinds.LOCKED]: tokens.color.yellowLighten30,
 };
 
-const fixedStyles = css`
+const fixedStyles = `
   left: 50%;
   max-width: 675px;
   position: fixed;
@@ -70,10 +70,8 @@ export const contentStyles = styled.div`
   flex-shrink: 1;
 `;
 
-export const toastStyles = styled.div`
+const commonStyles = styled.div`
   align-items: flex-start;
-  background-color: ${({ kind }) => backgroundColors[kind]};
-  border-color: ${({ kind }) => borderColors[kind]};
   border-radius: ${tokens.border.radius};
   border-style: solid;
   border-width: 1px;
@@ -85,10 +83,22 @@ export const toastStyles = styled.div`
   position: relative;
   text-align: left;
   transition: opacity 0.3s ease-out;
-  z-index: ${({ zIndex }) => zIndex};
 
   ${stylers.fontSize()}
   ${stylers.lineHeight()}
-  ${({ isFixed }) => isFixed && fixedStyles}
-  ${({ kind }) => kind === Kinds.VISUALLY_HIDDEN && visuallyHidden}
+`;
+
+export const toastStyles = styled(commonStyles)`
+  ${props => {
+    const isFixed = props.isFixed && fixedStyles;
+    const kind = props.kind === Kinds.VISUALLY_HIDDEN && visuallyHidden;
+
+    return `
+  background-color: ${backgroundColors[props.kind]};
+  border-color: ${borderColors[props.kind]};
+  z-index: ${props.zIndex};
+  ${kind};
+  ${isFixed}
+  `;
+  }}
 `;

@@ -1,9 +1,7 @@
-/* eslint-disable jsx-a11y/no-static-element-interactions */
-
 import React from "react";
 import PropTypes from "prop-types";
 import "what-input";
-import rawButtonStyles from "./RawButton.styles";
+import * as sc from "./RawButton.styles";
 
 const propTypes = {
   /** Descriptive a11y text for assistive technologies. By default, text from children node will be used. */
@@ -81,9 +79,8 @@ const RawButton = React.forwardRef((props, ref) => {
   const bestTabIndex = isDisabled && tabIndex === null ? -1 : tabIndex || 0;
 
   return (
-    <span
+    <sc.rawButtonStyles
       aria-disabled={isDisabled}
-      css={rawButtonStyles}
       data-pka-anchor="raw-button"
       isDisabled={isDisabled}
       onClick={handleClick}
@@ -94,7 +91,7 @@ const RawButton = React.forwardRef((props, ref) => {
       {...moreProps}
     >
       {children}
-    </span>
+    </sc.rawButtonStyles>
   );
 });
 

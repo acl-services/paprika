@@ -31,7 +31,7 @@ const states = {
   exited: closedCss,
 };
 
-export const Wrapper = styled.div`
+const commonStyles = styled.div`
   background-color: ${tokens.backgroundColor.level0};
   bottom: 0;
   display: flex;
@@ -41,8 +41,17 @@ export const Wrapper = styled.div`
   right: 0;
   top: 0;
   transition: all ${tokens.overlay.animationDuration}ms ease;
-  z-index: ${({ zIndex }) => zIndex};
-  ${({ state }) => states[state]};
+`;
+
+export const Wrapper = styled(commonStyles)`
+  ${props => {
+    const state = states[props.state];
+
+    return `
+    z-index: ${props.zIndex};
+    ${state};
+  `;
+  }}
 `;
 
 export const Header = styled(OriginalHeader)`

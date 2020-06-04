@@ -1,4 +1,4 @@
-import styled, { css } from "styled-components";
+import styled from "styled-components";
 import stylers from "@paprika/stylers";
 import tokens from "@paprika/tokens";
 
@@ -43,7 +43,7 @@ const counterColorStyles = {
   `,
 };
 
-const indicatorStyles = css`
+const indicatorStyles = `
   ::after {
     background-color: ${tokens.color.orange};
     border: 1px solid ${tokens.color.white};
@@ -57,7 +57,7 @@ const indicatorStyles = css`
   }
 `;
 
-export const counterStyles = styled.span`
+const commonStyles = styled.span`
   display: inline-flex;
   font-weight: bold;
   justify-content: center;
@@ -69,7 +69,17 @@ export const counterStyles = styled.span`
   * {
     box-sizing: border-box;
   }
-  ${({ hasIndicator }) => hasIndicator && indicatorStyles};
-  ${({ color }) => counterColorStyles[color]};
-  ${({ size }) => counterSizeStyles[size]};
+`;
+
+export const counterStyles = styled(commonStyles)`
+  ${props => {
+    const hasIndicator = props.hasIndicator && indicatorStyles;
+    const color = counterColorStyles[props.color];
+    const size = counterSizeStyles[props.size];
+
+    return `
+      ${hasIndicator};
+      ${color};
+      ${size};`;
+  }}
 `;
