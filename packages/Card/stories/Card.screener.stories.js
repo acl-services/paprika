@@ -2,8 +2,10 @@ import React from "react";
 import { getStoryName } from "storybook/storyTree";
 import Screener from "./examples/Screener";
 
+const storyName = getStoryName("Card");
+
 export default {
-  title: `${getStoryName("Card")}/Backyard/Tests`,
+  title: `${storyName}/Backyard/Tests`,
 };
 
 export const screener = () => <Screener />;

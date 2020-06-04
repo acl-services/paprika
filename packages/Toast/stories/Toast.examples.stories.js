@@ -5,6 +5,8 @@ import ControlledToastExample from "./examples/ControlledToastExample";
 import FixedToastExample from "./examples/FixedToastExample";
 import UncontrolledToastExample from "./examples/UncontrolledToastExample";
 
+const storyName = getStoryName("Toast");
+
 const toastStoryParameters = {
   viewMode: "story",
   options: {
@@ -14,7 +16,7 @@ const toastStoryParameters = {
 };
 
 export default {
-  title: `${getStoryName("Toast")}/Examples`,
+  title: `${storyName}/Examples`,
   component: Toast,
 };
 

@@ -8,8 +8,10 @@ import {
   SidePanelFocusLockDisabled,
 } from "./examples/Cypress";
 
+const storyName = getStoryName("SidePanel");
+
 export default {
-  title: `${getStoryName("SidePanel")}/Backyard/Tests`,
+  title: `${storyName}/Backyard/Tests`,
 };
 
 export const screener = () => <Screener />;

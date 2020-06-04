@@ -3,8 +3,10 @@ import { getStoryName } from "storybook/storyTree";
 import Toast from "../src";
 import ToastFixedSidePanel from "./examples/backyard/ToastFixedSidePanel";
 
+const storyName = getStoryName("Toast");
+
 export default {
-  title: `${getStoryName("Toast")}/Backyard/Sandbox`,
+  title: `${storyName}/Backyard/Sandbox`,
   component: Toast,
 };
 

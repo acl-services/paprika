@@ -10,6 +10,8 @@ import {
 } from "./examples/Examples";
 import SidePanel from "../src";
 
+const storyName = getStoryName("SidePanel");
+
 const sidePanelStoryParameters = {
   parameters: {
     viewMode: "story",
@@ -22,7 +24,7 @@ const sidePanelStoryParameters = {
 };
 
 export default {
-  title: `${getStoryName("SidePanel")}/Examples`,
+  title: `${storyName}/Examples`,
   component: SidePanel,
 };
 

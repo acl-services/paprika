@@ -2,8 +2,10 @@ import React from "react";
 import { getStoryName } from "storybook/storyTree";
 import Screener from "./examples/Screener";
 
+const storyName = getStoryName("DialogActions");
+
 export default {
-  title: `${getStoryName("DialogActions")}/Backyard/Tests`,
+  title: `${storyName}/Backyard/Tests`,
 };
 
 export const screener = () => <Screener />;

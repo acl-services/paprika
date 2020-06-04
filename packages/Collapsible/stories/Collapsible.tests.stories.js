@@ -3,8 +3,10 @@ import { getStoryName } from "storybook/storyTree";
 import Collapsible from "../src";
 import Variations from "./examples/Variations";
 
+const storyName = getStoryName("Collapsible");
+
 export default {
-  title: `${getStoryName("Collapsible")}/Backyard/Tests`,
+  title: `${storyName}/Backyard/Tests`,
   component: Collapsible,
 };
 

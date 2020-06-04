@@ -3,8 +3,10 @@ import { getStoryName } from "storybook/storyTree";
 import Screener from "./examples/Screener";
 import { defaultParameters } from "./CollapsibleText.stories.helpers";
 
+const storyName = getStoryName("CollapsibleText");
+
 export default {
-  title: `${getStoryName("CollapsibleText")}/Backyard/Tests`,
+  title: `${storyName}/Backyard/Tests`,
 };
 
 export const screener = () => <Screener />;
