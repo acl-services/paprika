@@ -65,11 +65,11 @@ export default () => {
 
   return (
     <Story>
-      <div style={{ display: "flex", justifyContent: "flex-start", flexWrap: "wrap" }}>
+      <div style={{ display: "flex", flexWrap: "wrap" }}>
         {card.map(card => {
           return (
             <div style={{ margin: "10px" }}>
-              <Card size="small">
+              <Card size="auto">
                 <Card.Content>
                   <Card.Title>{card.title}</Card.Title>
                   <Card.Metadata>

@@ -18,7 +18,7 @@ storiesOf("Card/Examples", module)
     return <DeluxeCard />;
   })
 
-  .add("Basic Card with Content", () => {
+  .add("Size Auto", () => {
     return <BasicCardContent />;
   })
   .add("Multiple Card Icons", () => {

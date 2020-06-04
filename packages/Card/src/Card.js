@@ -13,11 +13,11 @@ const propTypes = {
   /** Body content of the card. */
   children: PropTypes.node,
 
+  /** Sets className */
+  className: PropTypes.string,
+
   /** If the width of the card should span it's parent container (100%). */
   isFullWidth: PropTypes.bool,
-
-  /** If the height of the card should span the height of its children elements. */
-  isAutoHeight: PropTypes.bool,
 
   /** If the card is in an "active" or "selected" state. */
   isActive: PropTypes.bool,
@@ -28,20 +28,20 @@ const propTypes = {
 
 const defaultProps = {
   children: null,
+  className: null,
   size: ShirtSizes.MEDIUM,
   isFullWidth: false,
-  isAutoHeight: false,
   isActive: false,
 };
 
 function Card(props) {
-  const { children, size, isFullWidth, isAutoHeight, isActive } = props;
+  const { children, className, size, isFullWidth, isActive } = props;
 
   const cardProps = {
     children,
+    className,
     size,
     isFullWidth,
-    isAutoHeight,
     isActive,
   };
 
