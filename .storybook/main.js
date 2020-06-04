@@ -14,8 +14,8 @@ storyTree.forEach(catList => {
     );
   });
 });
-stories.push("./components/CodeViewer/CodeViewer.story.js");
-stories.push("../packages/**/*.stories.js");
+stories.push("../packages/**/*.stor(y|ies).js");
+stories.push("./components/**/*.stor(y|ies).js");
 
 module.exports = {
   stories,
