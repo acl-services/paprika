@@ -4,7 +4,7 @@ import tokens from "@paprika/tokens";
 import stylers from "@paprika/stylers";
 
 export const Resizer = styled(ResizableBox)`
-  border: 2px dashed ${tokens.color.blackLighten60};
+  outline: 2px dashed ${tokens.color.blackLighten60};
   overflow: hidden;
   position: relative;
 
