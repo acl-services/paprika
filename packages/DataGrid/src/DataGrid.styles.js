@@ -4,7 +4,7 @@ import stylers from "@paprika/stylers";
 
 export const Grid = styled.div.attrs(({ $width }) => {
   return {
-    style: { width: `${$width}px` },
+    style: { maxWidth: `${$width}px` },
   };
 })`
   * {

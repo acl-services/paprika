@@ -1,7 +1,7 @@
 import React from "react";
 import produce from "immer";
 
-export default function useColumnsArragment(defaultOrder) {
+export default function useColumnsArrangement(defaultOrder) {
   const [order, setOrder] = React.useState(defaultOrder);
   const [hiddenColumnIds, setHiddenColumnIds] = React.useState([]);
 
