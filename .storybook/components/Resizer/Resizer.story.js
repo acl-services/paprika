@@ -8,8 +8,6 @@ import stylers from "@paprika/stylers";
 import Heading from "@paprika/heading";
 import Resizer from "./Resizer";
 
-import useResizeObserver from "use-resize-observer/polyfilled";
-
 const StretchyBox = styled.div`
   ${stylers.fontSize(3)};
   align-items: center;
@@ -18,33 +16,13 @@ const StretchyBox = styled.div`
   display: flex;
   height: 100%;
   justify-content: center;
-  /* padding: ${stylers.spacer(2)}; */
+  padding: ${stylers.spacer(2)};
   text-align: center;
   text-shadow: 1px 1px 1px ${stylers.alpha(tokens.color.black, 0.5)};
   width: 100%;
 `;
 
-const ResizeListener = props => {
-  const refStretchyBox = React.useRef(null);
-  const { width, height } = useResizeObserver({
-    ref: refStretchyBox,
-  });
-
-  useResizeObserver({
-    ref: refStretchyBox,
-    onResize: ({ width, height }) => {
-      action("useResizeObserver.onResize")(`${width}x${height}`);
-    },
-  });
-
-  return (
-    <StretchyBox ref={refStretchyBox}>
-      {width} x {height}
-    </StretchyBox>
-  );
-};
-
-storiesOf("Utilities | Resizer", module).add("Demo", () => (
+storiesOf("Storybook | Resizer", module).add("Demo", () => (
   <Story>
     <Heading level={1} displayLevel={2} isLight>
       Resizer
@@ -53,11 +31,13 @@ storiesOf("Utilities | Resizer", module).add("Demo", () => (
       <big>Demo</big>
     </Tagline>
     <Rule />
-    <Resizer>
-      <ResizeListener />
-    </Resizer>
-    <Rule />
-    <Resizer initWidth={420} initHeight={180} onResizeStop={action("ResizableBox.onResizeStop")}>
+    <Resizer
+      initWidth={360}
+      initHeight={240}
+      onResizeStop={(event, obj) => {
+        action("onResizeStop")(`${obj.size.width}x${obj.size.height}`);
+      }}
+    >
       <StretchyBox>Live-edge Mumblecore Locavore</StretchyBox>
     </Resizer>
   </Story>

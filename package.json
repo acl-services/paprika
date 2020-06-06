@@ -105,7 +105,6 @@
     "stylelint-config-recommended": "^3.0.0",
     "stylelint-config-styled-components": "^0.1.1",
     "stylelint-processor-styled-components": "^1.9.0",
-    "use-resize-observer": "^6.1.0",
     "uuid": "^7.0.2",
     "verdaccio": "^3.11.6",
     "wait-on": "^3.2.0",
