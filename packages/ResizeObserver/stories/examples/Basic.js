@@ -48,8 +48,11 @@ function ExampleStory() {
           breakpointLarge={large}
           debounceDelay={30}
           isFullHeight
+          onBreak={size => {
+            action("onBreak")(size);
+          }}
           onResize={({ width, height }) => {
-            action("ResizeObserver.onResize")(`${width}x${height}`);
+            action("onResize")(`${width}x${height}`);
           }}
         >
           <ResizeConsumer />
