@@ -3,14 +3,15 @@ import styled from "styled-components";
 import { action } from "@storybook/addon-actions";
 import tokens from "@paprika/tokens";
 import stylers from "@paprika/stylers";
-import { Story } from "storybook/assets/styles/common.styles";
+import Heading from "@paprika/heading";
+import { Story, Rule } from "storybook/assets/styles/common.styles";
 import Resizer from "storybook/components/Resizer";
-import ResizeObserver, { useObservedDimensions } from "../../src";
+import ResizeObserver, { useBreakpoints, useObservedDimensions } from "../../src";
 
 const StretchyBox = styled.div`
   ${stylers.fontSize(3)};
   align-items: center;
-  background-image: linear-gradient(to bottom, ${tokens.color.chartColor09}, ${tokens.color.chartColor11});
+  background-image: linear-gradient(to bottom, ${tokens.color.chartColor03}, ${tokens.color.chartColor07});
   color: ${tokens.color.white};
   display: flex;
   height: 100%;
@@ -22,19 +23,30 @@ const StretchyBox = styled.div`
 
 function ResizeConsumer() {
   const { width, height } = useObservedDimensions();
+  const { size } = useBreakpoints();
 
   return (
     <StretchyBox>
       {width} x {height}
+      <br />[{size}]
     </StretchyBox>
   );
 }
 
 function ExampleStory() {
+  const small = 250;
+  const large = 400;
   return (
     <Story>
+      <Heading level={1} displayLevel={2} isLight>
+        ResizeObserver
+      </Heading>
+      <Rule />
       <Resizer initWidth={360} initHeight={180}>
         <ResizeObserver
+          breakpointSmall={small}
+          breakpointLarge={large}
+          debounceDelay={30}
           isFullHeight
           onResize={({ width, height }) => {
             action("ResizeObserver.onResize")(`${width}x${height}`);
@@ -43,6 +55,17 @@ function ExampleStory() {
           <ResizeConsumer />
         </ResizeObserver>
       </Resizer>
+      <Rule />
+      <p>
+        <code>
+          breakpointSmall: <strong>{small}</strong>
+        </code>
+      </p>
+      <p>
+        <code>
+          breakpointLarge: <strong>{large}</strong>
+        </code>
+      </p>
     </Story>
   );
 }

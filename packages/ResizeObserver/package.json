@@ -15,6 +15,7 @@
   },
   "dependencies": {
     "@babel/runtime-corejs2": "^7.3.1",
+    "@paprika/helpers": "^0.2.11",
     "lodash.debounce": "^4.0.8",
     "prop-types": "^15.7.2",
     "use-resize-observer": "^6.1.0"

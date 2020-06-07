@@ -1,1 +1,1 @@
-export { default, useObservedDimensions } from "./ResizeObserver";
+export { default, useBreakpoints, useObservedDimensions } from "./ResizeObserver";
