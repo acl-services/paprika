@@ -61,7 +61,6 @@ const Cell = React.forwardRef((props, ref) => {
 
   return (
     <sc.Cell
-      ref={ref}
       tabIndex={-1}
       style={style}
       data-cell={`${gridId}.${columnIndex}.${rowIndex}`}

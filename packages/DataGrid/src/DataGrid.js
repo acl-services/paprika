@@ -4,12 +4,12 @@ import { VariableSizeGrid as Grid } from "react-window";
 import useI18n from "@paprika/l10n/lib/useI18n";
 import extractChildren from "@paprika/helpers/lib/extractChildren";
 
-import Cell from "./components/Cell";
 import useGridEventHandler from "./hooks/useGridEventHandler";
 import ColumnDefinition from "./components/ColumnDefinition";
 import * as sc from "./DataGrid.styles";
 import Basement, { End } from "./components/Basement";
 import InfiniteScroll from "./components/InfiniteScroll";
+import { Row, StickyRow, createItemData } from "./Datagrid.Row";
 
 const propTypes = {
   /** If the data cell should automatically get focus  */
@@ -227,6 +227,34 @@ const DataGrid = React.forwardRef((props, ref) => {
     stickyColumnsIndexes,
   });
 
+  // ({ columnIndex, rowIndex, style }) => {
+  //   const column = ColumnDefinitions[columnIndex].props;
+  //   const cellA11yText =
+  //     typeof column.cell === "function"
+  //       ? column.cellA11yText && column.cellA11yText({ row: data[rowIndex], rowIndex, columnIndex })
+  //       : data[rowIndex][column.cell];
+  //   const headerA11yText = columnHeadersA11yText[columnIndex];
+  //   const a11yText = a11yTextMessage(cellA11yText, headerA11yText, rowIndex);
+
+  //   if (stickyColumnsIndexes.includes(columnIndex)) {
+  //     return null;
+  //   }
+
+  //   return (
+  //     <Cell
+  //       a11yText={a11yText}
+  //       column={column}
+  //       columnIndex={columnIndex}
+  //       data={data}
+  //       gridId={gridId}
+  //       hasZebraStripes={hasZebraStripes}
+  //       ref={handleRefCell({ columnIndex, rowIndex })}
+  //       rowIndex={rowIndex}
+  //       style={style}
+  //     />
+  //   );
+  // };
+
   const a11yTextMessage = React.useCallback(
     (value, column, rowIndex) => {
       return i18n.t("dataGrid.a11yTextMessage", {
@@ -283,15 +311,15 @@ const DataGrid = React.forwardRef((props, ref) => {
     [refScrollGrid]
   );
 
-  const handleRefCell = React.useCallback(({ columnIndex, rowIndex }) => {
-    return ref => {
-      const key = `${columnIndex}${rowIndex}`;
-      refsCell.current.keys[key] = ref;
-      refsCell.current.rows[rowIndex] = Array.isArray(refsCell.current.rows[rowIndex])
-        ? refsCell.current.rows[rowIndex].concat(key)
-        : [key];
-    };
-  }, []);
+  // const handleRefCell = React.useCallback(({ columnIndex, rowIndex }) => {
+  //   return ref => {
+  //     const key = `${columnIndex}${rowIndex}`;
+  //     refsCell.current.keys[key] = ref;
+  //     refsCell.current.rows[rowIndex] = Array.isArray(refsCell.current.rows[rowIndex])
+  //       ? refsCell.current.rows[rowIndex].concat(key)
+  //       : [key];
+  //   };
+  // }, []);
 
   React.useLayoutEffect(() => {
     if (!refContainer.current) return;
@@ -319,6 +347,8 @@ const DataGrid = React.forwardRef((props, ref) => {
       setGridShouldHaveFocus(false);
     }
   }
+
+  const itemData = createItemData(ColumnDefinitions, data, gridId, hasZebraStripes, refsCell, stickyColumnsIndexes);
 
   React.useEffect(() => {
     if (data.length && pageSize === null) {
@@ -536,6 +566,7 @@ const DataGrid = React.forwardRef((props, ref) => {
             }}
             height={calculatedTableHeight - scrollBarWidth}
             innerElementType={innerElementType}
+            itemData={itemData}
             onItemsRendered={handleItemsRendered}
             onScroll={handleScrollStickyColumns}
             outerElementType={outerElementType}
@@ -545,31 +576,7 @@ const DataGrid = React.forwardRef((props, ref) => {
             rowHeight={() => rowHeight}
             width={stickyGridWidth}
           >
-            {({ columnIndex, rowIndex, style }) => {
-              const column = ColumnDefinitions[stickyColumnsIndexes[columnIndex]].props;
-              const cellA11yText =
-                typeof column.cell === "function"
-                  ? column.cellA11yText &&
-                    typeof column.cellA11yText === "function" &&
-                    column.cellA11yText({ row: data[rowIndex], rowIndex, columnIndex })
-                  : data[rowIndex][column.cell];
-              const headerA11yText = columnHeadersA11yText[columnIndex];
-              const a11yText = a11yTextMessage(cellA11yText, headerA11yText, rowIndex);
-
-              return (
-                <Cell
-                  a11yText={a11yText}
-                  column={column}
-                  columnIndex={columnIndex}
-                  data={data}
-                  gridId={gridId}
-                  hasZebraStripes={hasZebraStripes}
-                  ref={handleRefCell({ columnIndex, rowIndex })}
-                  rowIndex={rowIndex}
-                  style={style}
-                />
-              );
-            }}
+            {StickyRow}
           </Grid>
 
           {/** COLUMNS */}
@@ -582,6 +589,7 @@ const DataGrid = React.forwardRef((props, ref) => {
             }}
             height={calculatedTableHeight}
             innerElementType={innerElementTypeMainGrid}
+            itemData={itemData}
             onItemsRendered={handleItemsRendered}
             onScroll={handleScroll}
             outerElementType={outerElementTypeMainGrid}
@@ -592,33 +600,7 @@ const DataGrid = React.forwardRef((props, ref) => {
             rowHeight={() => rowHeight}
             width={gridWidth - stickyGridWidth}
           >
-            {({ columnIndex, rowIndex, style }) => {
-              const column = ColumnDefinitions[columnIndex].props;
-              const cellA11yText =
-                typeof column.cell === "function"
-                  ? column.cellA11yText && column.cellA11yText({ row: data[rowIndex], rowIndex, columnIndex })
-                  : data[rowIndex][column.cell];
-              const headerA11yText = columnHeadersA11yText[columnIndex];
-              const a11yText = a11yTextMessage(cellA11yText, headerA11yText, rowIndex);
-
-              if (stickyColumnsIndexes.includes(columnIndex)) {
-                return null;
-              }
-
-              return (
-                <Cell
-                  a11yText={a11yText}
-                  column={column}
-                  columnIndex={columnIndex}
-                  data={data}
-                  gridId={gridId}
-                  hasZebraStripes={hasZebraStripes}
-                  ref={handleRefCell({ columnIndex, rowIndex })}
-                  rowIndex={rowIndex}
-                  style={style}
-                />
-              );
-            }}
+            {Row}
           </Grid>
         </sc.Flex>
         <sc.FillerTopRight rowHeight={rowHeight} scrollBarWidth={scrollBarWidth} />
