@@ -105,7 +105,7 @@ const DataGrid = React.forwardRef((props, ref) => {
   const i18n = useI18n();
   // these two value are sensitive in Grids with lots of columns and can degradate performance alot.
   // be caution when using them.
-  const overscanRowCount = 5;
+  const overscanRowCount = 7;
   const overscanColumnCount = 2;
 
   const rowCount = data.length;
@@ -206,7 +206,6 @@ const DataGrid = React.forwardRef((props, ref) => {
     }
 
     refPrevActiveCell.current = key;
-    refsCell.current.keys[key].setIsActiveCell(true);
   }, []);
 
   const { handleKeyDown, handleKeyUp, handleClick, gridId, restoreHighlightFocus } = useGridEventHandler({

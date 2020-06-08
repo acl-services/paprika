@@ -23,13 +23,9 @@ const propTypes = {
 
 const Cell = React.forwardRef((props, ref) => {
   const { style, gridId, columnIndex, rowIndex, column, data, a11yText, hasZebraStripes } = props;
-  const [isActiveCell, setIsActiveCell] = React.useState(false);
   const [isActiveRow, setIsRowActive] = React.useState(false);
 
   React.useImperativeHandle(ref, () => ({
-    setIsActiveCell: isActive => {
-      setIsActiveCell(isActive);
-    },
     highlightRow: _rowIndex => {
       setIsRowActive(() => {
         return Number.parseInt(_rowIndex, 10) === rowIndex;
@@ -49,7 +45,6 @@ const Cell = React.forwardRef((props, ref) => {
     row: data[rowIndex],
     rowIndex,
     columnIndex,
-    isActiveCell,
     isActiveRow,
     attrs: {
       "data-row-index": rowIndex,
