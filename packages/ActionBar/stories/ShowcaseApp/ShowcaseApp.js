@@ -1,6 +1,6 @@
 import React from "react";
 import Heading from "@paprika/heading";
-import ActionBar, { ColumnsArrangement, useColumnsArragment, useFilter, Filter, Sort, useSort } from "../../src";
+import ActionBar, { ColumnsArrangement, useColumnsArrangement, useFilter, Filter, Sort, useSort } from "../../src";
 import data from "./data";
 import CustomSingleSelectFilter from "./CustomSingleSelectFilter";
 
@@ -54,7 +54,7 @@ export default function App() {
     columns: columnsSettingForFilterAndSort,
     data,
   });
-  const { orderedColumnIds, isColumnHidden, ...handlers } = useColumnsArragment([
+  const { orderedColumnIds, isColumnHidden, ...handlers } = useColumnsArrangement([
     "goals",
     "name",
     "status",
