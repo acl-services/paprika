@@ -100,9 +100,9 @@ const DataGrid = React.forwardRef((props, ref) => {
     start: null,
     stop: null,
   });
-  const totalColumnWidth = React.useRef(0);
-  const remainingSpace = React.useRef(0);
-  const totalIsGrow = React.useRef(0);
+  const reftotalColumnWidth = React.useRef(0);
+  const refRemainingSpace = React.useRef(0);
+  const refTotalCanGrow = React.useRef(0);
 
   const [scrollBarWidth, setScrollBarWidth] = React.useState(0);
   const [gridShouldHaveFocus, setGridShouldHaveFocus] = React.useState(true);
@@ -452,14 +452,14 @@ const DataGrid = React.forwardRef((props, ref) => {
     }
 
     ColumnDefinitions.forEach(columnDefinition => {
-      totalColumnWidth.current = columnDefinition.props.width + totalColumnWidth.current;
-      if (columnDefinition.props.isGrow) {
-        totalIsGrow.current += 1;
+      reftotalColumnWidth.current = columnDefinition.props.width + reftotalColumnWidth.current;
+      if (columnDefinition.props.canGrow) {
+        refTotalCanGrow.current += 1;
       }
     });
 
     // TODO: Figure out how scrollbarwidth can be calculated initially so that its not always 0
-    remainingSpace.current = refContainer.current.offsetWidth - totalColumnWidth.current - 15;
+    refRemainingSpace.current = refContainer.current.offsetWidth - reftotalColumnWidth.current - 15;
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
@@ -476,8 +476,12 @@ const DataGrid = React.forwardRef((props, ref) => {
       return 0;
     }
 
-    if (ColumnDefinitions[columnIndex].props.isGrow && totalIsGrow.current !== 0) {
-      return ColumnDefinitions[columnIndex].props.width + remainingSpace.current / totalIsGrow.current;
+    if (
+      ColumnDefinitions[columnIndex].props.canGrow &&
+      refTotalCanGrow.current !== 0 &&
+      refRemainingSpace.current > 0
+    ) {
+      return ColumnDefinitions[columnIndex].props.width + refRemainingSpace.current / refTotalCanGrow.current;
     }
 
     return ColumnDefinitions[columnIndex].props.width;

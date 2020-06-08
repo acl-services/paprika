@@ -9,17 +9,39 @@ import fixtures from "./helpers/fixtures";
 
 const data = fixtures(10);
 
-export function App() {
+export function MultipleCanGrow() {
   return (
     <React.Fragment>
       <Sbook.Story>
         <Heading level={2}>
-          Multiple <code>isGrow</code>
+          Multiple <code>canGrow</code>
         </Heading>
         <DataGrid data={data} width={1000}>
-          <DataGrid.ColumnDefinition header="Countries (grows)" cell="country" isGrow />
+          <DataGrid.ColumnDefinition header="Countries (grows)" cell="country" canGrow />
           <DataGrid.ColumnDefinition header="Name" cell="name" />
-          <DataGrid.ColumnDefinition header="Goals (grows)" cell="goals" isGrow />
+          <DataGrid.ColumnDefinition header="Goals (grows)" cell="goals" canGrow />
+          <DataGrid.ColumnDefinition header="Goals" cell="goals" />
+        </DataGrid>
+      </Sbook.Story>
+    </React.Fragment>
+  );
+}
+
+export function CanGrowStressing() {
+  return (
+    <React.Fragment>
+      <Sbook.Story>
+        <Heading level={2}>
+          Full width <code>canGrow</code>
+        </Heading>
+        <p>using canGrow prop when there is no available space to fill will do nothing</p>
+        <DataGrid data={data}>
+          <DataGrid.ColumnDefinition header="Countries (grows)" cell="country" canGrow />
+          <DataGrid.ColumnDefinition header="Name" cell="name" />
+          <DataGrid.ColumnDefinition header="Name" cell="name" />
+          <DataGrid.ColumnDefinition header="Name" cell="name" />
+          <DataGrid.ColumnDefinition header="Name" cell="name" />
+          <DataGrid.ColumnDefinition header="Goals (grows)" cell="goals" canGrow />
           <DataGrid.ColumnDefinition header="Goals" cell="goals" />
         </DataGrid>
       </Sbook.Story>
@@ -41,27 +63,27 @@ function AppWithActionBar() {
       goals: {
         cell: () => "Goals",
         header: "Goals (grows)",
-        isGrow: true,
+        canGrow: true,
       },
       name: {
         cell: () => "Name",
         header: "Name",
-        isGrow: false,
+        canGrow: false,
       },
       status: {
         cell: () => "Status",
         header: "Status",
-        isGrow: false,
+        canGrow: false,
       },
       country: {
         cell: () => "Country",
         header: "Country",
-        isGrow: false,
+        canGrow: false,
       },
       joined: {
         cell: () => "Joined",
         header: "Joined",
-        isGrow: false,
+        canGrow: false,
       },
     };
 
@@ -106,13 +128,13 @@ function AppWithActionBar() {
             />
           </ColumnsArrangement>
         </ActionBar>
-        <DataGrid data={data} width={1000}>
+        <DataGrid key={orderedColumnIds.join("-")} data={data} width={1000}>
           {orderedColumnIds.map(columnKey =>
             isColumnHidden(columnKey) ? null : (
               <DataGrid.ColumnDefinition
                 cell={renderColumns(columnKey).cell}
                 header={renderColumns(columnKey).header}
-                isGrow={renderColumns(columnKey).isGrow}
+                canGrow={renderColumns(columnKey).canGrow}
               />
             )
           )}
@@ -124,7 +146,8 @@ function AppWithActionBar() {
 
 storiesOf("DataGrid / resize", module).add("Resize", () => (
   <>
-    <App />
+    <MultipleCanGrow />
+    <CanGrowStressing />
     <AppWithActionBar />
   </>
 ));

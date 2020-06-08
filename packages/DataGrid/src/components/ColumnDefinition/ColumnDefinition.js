@@ -35,6 +35,7 @@ function customA11yTextPropTypeValidation(props, propName) {
 }
 
 const propTypes = {
+  canGrow: PropTypes.bool,
   cell: customA11yTextPropTypeValidation,
   cellA11yText: PropTypes.func,
   cellProps: PropTypes.func,
@@ -50,6 +51,7 @@ const propTypes = {
 };
 
 export const defaultProps = {
+  canGrow: false,
   cellA11yText: null,
   cellProps: null,
   headerA11yText: null,

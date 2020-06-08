@@ -137,7 +137,7 @@ export function App() {
     <Sbook.Story>
       <DataGrid ref={refDataGrid} data={data} keygen="id" width={700} height={600} onPressEnter={toggleExpand}>
         <DataGrid.ColumnDefinition
-          isGrow
+          canGrow
           header="Objective"
           cell={({ row }) => {
             return (
