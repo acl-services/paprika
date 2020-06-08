@@ -31,12 +31,12 @@ const MAX_WAIT = 1000;
 
 const ResizeContext = React.createContext();
 
-export function useObservedDimensions() {
+function useObservedDimensions() {
   const { width, height } = React.useContext(ResizeContext);
   return { width, height };
 }
 
-export function useBreakpoints() {
+function useBreakpoints() {
   const { size } = React.useContext(ResizeContext);
   return { size };
 }
@@ -81,9 +81,7 @@ function ResizeObserver(props) {
 
   return (
     <sc.ResizeObserver data-pka-anchor="resize-observer" {...moreProps} ref={refContainer}>
-      <ResizeContext.Provider value={{ width, height, size, breakpointSmall, breakpointLarge }}>
-        {children}
-      </ResizeContext.Provider>
+      <ResizeContext.Provider value={{ width, height, size }}>{children}</ResizeContext.Provider>
     </sc.ResizeObserver>
   );
 }
@@ -91,5 +89,7 @@ function ResizeObserver(props) {
 ResizeObserver.displayName = "ResizeObserver";
 ResizeObserver.propTypes = propTypes;
 ResizeObserver.defaultProps = defaultProps;
+ResizeObserver.useObservedDimensions = useObservedDimensions;
+ResizeObserver.useBreakpoints = useBreakpoints;
 
 export default ResizeObserver;

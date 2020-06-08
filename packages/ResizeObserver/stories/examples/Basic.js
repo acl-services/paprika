@@ -6,7 +6,7 @@ import stylers from "@paprika/stylers";
 import Heading from "@paprika/heading";
 import { Story, Rule } from "storybook/assets/styles/common.styles";
 import Resizer from "storybook/components/Resizer";
-import ResizeObserver, { useBreakpoints, useObservedDimensions } from "../../src";
+import ResizeObserver from "../../src";
 
 const StretchyBox = styled.div`
   ${stylers.fontSize(3)};
@@ -22,8 +22,8 @@ const StretchyBox = styled.div`
 `;
 
 function ResizeConsumer() {
-  const { width, height } = useObservedDimensions();
-  const { size } = useBreakpoints();
+  const { width, height } = ResizeObserver.useObservedDimensions();
+  const { size } = ResizeObserver.useBreakpoints();
 
   return (
     <StretchyBox>

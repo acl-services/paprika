@@ -16,6 +16,7 @@ basic.story = {
     options: {
       isToolshown: true,
       showPanel: true,
+      panelPosition: "bottom",
     },
     viewMode: "story",
   },
