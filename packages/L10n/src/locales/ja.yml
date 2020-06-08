@@ -7,18 +7,14 @@ ja:
     dataGrid:
       a11yTextMessage: "{{value}}. 行 {{rowIndex}}、列 {{columnIndex}} の位置にいます。次の情報は無視してください。"
     uploader:
-      label: ドラッグ アンド ドロップするか、お手元のコンピュータからファイルを選択する
-      overlay:
-        title: ドラッグ アンド ドロップ
-        subtitle: ファイルをここに
-      form:
-        dragAndDrop: ドラッグ アンド ドロップ
-        or: または
-        chooseFiles: コンピューターからファイルを選択
-        from: コンピューターから
+      drop_files: アップロードするファイルをドロップ
+      drop_files_here_or: アップロードするファイルをここにドロップまたは
+      choose_from_computer: コンピューターから選択
+      cancel_upload: アップロードをキャンセル
+      restart_upload: アップロードを再起動
       errors:
-        file_size: ファイル サイズの最大である {{size}} を超過しています。
-        file_type: "{{type}} は誤ったファイルの種類です。"
+        size: ファイルは{{maxFileSize}}未満にする必要があります
+        type: "ファイルは次のタイプの1つにする必要があります: {{- supportedTypes}}"
       status:
         idle: アイドル状態
         processing: 処理中
@@ -26,6 +22,17 @@ ja:
         success: 成功
         cancel: キャンセル
         error: エラー
+      progress:
+        cancelled: 取り消されました
+        complete: 完了
+        idle: アイドル状態
+        uploading: '{{sizeWithUnits}}のうち{{progressWithUnits}}をアップロード'
+      size_abbreviations:
+        byte: B
+        kibibyte: KiB
+        mebibyte: MiB
+        gibibyte: GiB
+        tebibyte: TiB
     actions:
       delete: 削除
       apply: 適用
