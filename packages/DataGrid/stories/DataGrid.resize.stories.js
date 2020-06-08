@@ -96,47 +96,23 @@ function AppWithActionBar() {
         <Heading level={2}>DataGrid with ActionBar</Heading>
         <ActionBar>
           <ColumnsArrangement orderedColumnIds={orderedColumnIds} {...handlers}>
-            <ColumnsArrangement.ColumnDefinition
-              id="goals"
-              label="Goals"
-              isDisabled={false}
-              isHidden={isColumnHidden("goals")}
-            />
-            <ColumnsArrangement.ColumnDefinition
-              id="name"
-              label="Name"
-              isDisabled={false}
-              isHidden={isColumnHidden("name")}
-            />
-            <ColumnsArrangement.ColumnDefinition
-              id="status"
-              label="Status"
-              isDisabled={false}
-              isHidden={isColumnHidden("status")}
-            />
-            <ColumnsArrangement.ColumnDefinition
-              id="country"
-              label="Country"
-              isDisabled={false}
-              isHidden={isColumnHidden("country")}
-            />
-            <ColumnsArrangement.ColumnDefinition
-              id="joined"
-              label="Joined"
-              isDisabled={false}
-              isHidden={isColumnHidden("joined")}
-            />
+            <ColumnsArrangement.ColumnDefinition id="goals" label="Goals" isHidden={isColumnHidden("goals")} />
+            <ColumnsArrangement.ColumnDefinition id="name" label="Name" isHidden={isColumnHidden("name")} />
+            <ColumnsArrangement.ColumnDefinition id="status" label="Status" isHidden={isColumnHidden("status")} />
+            <ColumnsArrangement.ColumnDefinition id="country" label="Country" isHidden={isColumnHidden("country")} />
+            <ColumnsArrangement.ColumnDefinition id="joined" label="Joined" isHidden={isColumnHidden("joined")} />
           </ColumnsArrangement>
         </ActionBar>
         <DataGrid key={orderedColumnIds.join("-")} data={data} width={1000}>
-          {orderedColumnIds.map(columnKey =>
-            isColumnHidden(columnKey) ? null : (
-              <DataGrid.ColumnDefinition
-                cell={renderColumns(columnKey).cell}
-                header={renderColumns(columnKey).header}
-                canGrow={renderColumns(columnKey).canGrow}
-              />
-            )
+          {orderedColumnIds.map(
+            columnKey =>
+              !isColumnHidden(columnKey) && (
+                <DataGrid.ColumnDefinition
+                  cell={renderColumns(columnKey).cell}
+                  header={renderColumns(columnKey).header}
+                  canGrow={renderColumns(columnKey).canGrow}
+                />
+              )
           )}
         </DataGrid>
       </Sbook.Story>

@@ -100,7 +100,7 @@ const DataGrid = React.forwardRef((props, ref) => {
     start: null,
     stop: null,
   });
-  const reftotalColumnWidth = React.useRef(0);
+  const refTotalColumnWidth = React.useRef(0);
   const refRemainingSpace = React.useRef(0);
   const refTotalCanGrow = React.useRef(0);
 
@@ -445,21 +445,21 @@ const DataGrid = React.forwardRef((props, ref) => {
   React.useEffect(() => {
     if (!refContainer.current) return;
 
-    if (refGridColumns.current !== null && refGridStickyHeader.current !== null && refGridHeader.current !== null) {
+    if (refGridColumns.current && refGridStickyHeader.current && refGridHeader.current) {
       refGridHeader.current.resetAfterColumnIndex(0);
       refGridStickyHeader.current.resetAfterColumnIndex(0);
       refGridColumns.current.resetAfterColumnIndex(0);
     }
 
     ColumnDefinitions.forEach(columnDefinition => {
-      reftotalColumnWidth.current = columnDefinition.props.width + reftotalColumnWidth.current;
+      refTotalColumnWidth.current += columnDefinition.props.width;
       if (columnDefinition.props.canGrow) {
         refTotalCanGrow.current += 1;
       }
     });
 
     // TODO: Figure out how scrollbarwidth can be calculated initially so that its not always 0
-    refRemainingSpace.current = refContainer.current.offsetWidth - reftotalColumnWidth.current - 15;
+    refRemainingSpace.current = refContainer.current.offsetWidth - refTotalColumnWidth.current - 15;
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
