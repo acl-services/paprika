@@ -3,7 +3,7 @@ import PropTypes from "prop-types";
 function customA11yTextPropTypeValidation(props, propName) {
   if (typeof props[propName] !== "function" && typeof props[propName] !== "string") {
     return new Error(`
-      ${props[propName]} requires to be either function or string.
+      The prop "${propName}" is required to be either function or string; "${typeof props[propName]}" given.
     `);
   }
 
