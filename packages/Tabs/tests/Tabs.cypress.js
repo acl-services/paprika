@@ -1,4 +1,4 @@
-const baseStory = "tabs-automation-tests";
+const baseStory = "content-tabs-backyard-tests";
 const testStory = "cypress";
 
 describe("<Tabs />", () => {

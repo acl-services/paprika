@@ -2,10 +2,18 @@ import React from "react";
 import moment from "moment";
 import { boolean, select, text, withKnobs } from "@storybook/addon-knobs";
 import { storiesOf } from "@storybook/react";
+import { getStoryName } from "storybook/storyTree";
+import L10n from "@paprika/l10n";
 import Example from "./DatePickerExample";
 import DatePicker from "../src/DatePicker";
+import Calendar from "../src/components/Calendar";
+import ShortCutPanel from "../src/components/ShortcutPanel";
 
-storiesOf("DatePicker", module)
+const storyName = getStoryName("DatePicker");
+
+const noop = () => {};
+
+storiesOf(storyName, module)
   .addDecorator(withKnobs)
   .add("Showcase", () => {
     const datePickerProps = () => ({
@@ -26,12 +34,32 @@ storiesOf("DatePicker", module)
         <DatePicker.Popover style={{ marginTop: "270px" }} />
       </Example>
     );
-  })
-  .add("DatePicker", () => <Example locale="en" />)
-  .add("DatePicker with locale", () => <Example locale="zh" />)
-  .add("DatePicker with initialDate", () => <Example initialDate={moment("2019-01-01")} />)
-  .add("DatePicker with DatePicker.Input", () => (
+  });
+
+storiesOf(`${storyName}/Examples`, module)
+  .add("Basic", () => <Example locale="en" />)
+  .add("with locale", () => <Example locale="zh" />)
+  .add("with initialDate", () => <Example initialDate={moment("2019-01-01")} />)
+  .add("with DatePicker.Input", () => (
     <Example locale="en">
       <DatePicker.Input className="custom-class-name" placeholder="custom placeholder" />
     </Example>
+  ));
+
+storiesOf(`${storyName}/Backyard/Tests`, module).add("Cypress", () => (
+  <Example locale="en">
+    <DatePicker.Input data-pka-anchor="datepicker.input" />
+  </Example>
+));
+
+storiesOf(`${storyName}/Backyard/Tests/Screener`, module)
+  .add("Calendar", () => (
+    <L10n>
+      <Calendar date={moment("2019-01-01", "YYYY-MM-DD")} isOpen onSelect={noop} />
+    </L10n>
+  ))
+  .add("Shortcut panel", () => (
+    <L10n>
+      <ShortCutPanel isVisible date={moment("2019-01-01", "YYYY-MM-DD")} onCancel={noop} onConfirm={noop} />
+    </L10n>
   ));

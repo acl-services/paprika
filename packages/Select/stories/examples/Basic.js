@@ -46,7 +46,7 @@ export const ReadOnlySelect = () => {
   );
 };
 
-export const hasErrorSelect = () => {
+export const HasErrorSelect = () => {
   return (
     <Story>
       <Select placeholder="Select an option" hasError>

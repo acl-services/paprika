@@ -6,7 +6,7 @@ const keyEvent = {
 
 describe("<DataGrid/>", () => {
   it("should render StickyColumn", () => {
-    cy.visitStorybook("datagrid-lazy--marvel-api-interaction");
+    cy.visitStorybook("data-table-datagrid-examples--lazy");
     cy.get('[data-column-index="2"]')
       .eq(0)
       .then(e => {
@@ -47,7 +47,7 @@ describe("<DataGrid/>", () => {
   });
 
   it("should render ColumnIndicator", () => {
-    cy.visitStorybook("datagrid-lazy--marvel-api-interaction");
+    cy.visitStorybook("data-table-datagrid-examples--lazy");
     cy.get('[data-row-index="0"]')
       .eq(0)
       .children()
@@ -68,7 +68,7 @@ describe("<DataGrid/>", () => {
   });
 
   it("should render ColumnExpand", () => {
-    cy.visitStorybook("datagrid-lazy--marvel-api-interaction");
+    cy.visitStorybook("data-table-datagrid-examples--lazy");
     cy.get('[data-column-index="1"]')
       .eq(0)
       .children()
@@ -84,7 +84,7 @@ describe("<DataGrid/>", () => {
   });
 
   it("should render load more button when you scroll to the bottom", () => {
-    cy.visitStorybook("datagrid-lazy--marvel-api-interaction");
+    cy.visitStorybook("data-table-datagrid-examples--lazy");
     cy.getAllByRole("rowgroup")
       .last()
       .scrollTo("bottom")
@@ -102,7 +102,7 @@ describe("<DataGrid/>", () => {
   });
 
   it("should navigate DataGrid-collapsible with enter key and up, down arrow keys", () => {
-    cy.visitStorybook("datagrid-lazy--collapse");
+    cy.visitStorybook("data-table-datagrid-examples--collapsible");
 
     cy.getByText("Audit Planning")
       .click()

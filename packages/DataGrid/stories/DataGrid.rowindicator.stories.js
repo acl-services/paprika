@@ -1,8 +1,11 @@
 import React from "react";
 import { storiesOf } from "@storybook/react";
 import * as Sbook from "storybook/assets/styles/common.styles";
+import { getStoryName } from "storybook/storyTree";
 import DataGrid from "../src";
 import fixtures from "./helpers/fixtures";
+
+const storyName = getStoryName("DataGrid");
 
 const data = fixtures(10);
 // <DataGrid.ColumnDefinition
@@ -32,4 +35,4 @@ export function App() {
   );
 }
 
-storiesOf("DataGrid / regular", module).add("Row indicator", () => <App />);
+storiesOf(`${storyName}/Examples`, module).add("Row indicator", () => <App />);

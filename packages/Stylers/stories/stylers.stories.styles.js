@@ -87,21 +87,21 @@ export const FocusBox = styled.div`
   width: ${stylers.spacer(4)};
 `;
 
-FocusBox.default = styled(FocusBox)`
+FocusBox.Default = styled(FocusBox)`
   &:focus,
   &:hover {
     ${stylers.focusRing};
   }
 `;
 
-FocusBox.inset = styled(FocusBox)`
+FocusBox.Inset = styled(FocusBox)`
   &:focus,
   &:hover {
     ${stylers.focusRing(true)};
   }
 `;
 
-FocusBox.bordered = styled(FocusBox)`
+FocusBox.Bordered = styled(FocusBox)`
   border: 1px solid ${tokens.border.color};
   &:focus,
   &:hover {
@@ -109,7 +109,7 @@ FocusBox.bordered = styled(FocusBox)`
   }
 `;
 
-FocusBox.bordered.inset = styled(FocusBox)`
+FocusBox.Bordered.Inset = styled(FocusBox)`
   border: 1px solid ${tokens.border.color};
   &:focus,
   &:hover {
@@ -117,14 +117,14 @@ FocusBox.bordered.inset = styled(FocusBox)`
   }
 `;
 
-FocusBox.subtle = styled(FocusBox)`
+FocusBox.Subtle = styled(FocusBox)`
   &:focus,
   &:hover {
     ${stylers.focusRing.subtle}
   }
 `;
 
-FocusBox.subtle.inset = styled(FocusBox)`
+FocusBox.Subtle.Inset = styled(FocusBox)`
   &:focus,
   &:hover {
     ${stylers.focusRing.subtle(true)}

@@ -15,7 +15,7 @@ const parameters = {
 
 const handlePillClick = () => {};
 
-storiesOf("Utilities | CodeViewer", module)
+storiesOf("Storybook | CodeViewer", module)
   .addParameters(parameters)
   .add("Variations", () => (
     <Story>

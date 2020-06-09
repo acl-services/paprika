@@ -1,10 +1,12 @@
 import React from "react";
 import { storiesOf } from "@storybook/react";
+import { getStoryName } from "storybook/storyTree";
 import ListBox from "../src";
 
+const storyName = getStoryName("ListBox");
 const options = ["Punisher", "Catwoman", "Venom", "Thunderbolts", "Deadpool", "Spawn", "Wolverine"];
 
-storiesOf("ListBox / ListBox.Popover", module).add("Basic Popover with zindex", () => (
+storiesOf(`${storyName}/Subcomponents/Popover`, module).add("Basic Popover with zindex", () => (
   <ListBox>
     <ListBox.Popover zIndex={1} />
     {options.map(option => (

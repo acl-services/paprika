@@ -1,7 +1,10 @@
 import React from "react";
 import { storiesOf } from "@storybook/react";
 import * as Sbook from "storybook/assets/styles/common.styles";
+import { getStoryName } from "storybook/storyTree";
 import DataGrid from "../src";
+
+const storyName = getStoryName("DataGrid");
 
 const data = [
   {
@@ -47,4 +50,4 @@ export function App() {
   );
 }
 
-storiesOf("DataGrid", module).add("Showcase", () => <App />);
+storiesOf(storyName, module).add("Showcase", () => <App />);

@@ -1,13 +1,15 @@
 import React from "react";
 import { withKnobs } from "@storybook/addon-knobs";
-
+import { getStoryName } from "storybook/storyTree";
 import Variations from "./examples/Variations";
 import Showcase from "./examples/Showcase";
 import Props from "./Toast.mdx";
 import Toast from "../src";
 
+const storyName = getStoryName("Toast");
+
 export default {
-  title: " | Toast",
+  title: storyName,
   component: Toast,
 };
 

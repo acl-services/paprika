@@ -3,10 +3,13 @@
 import React from "react";
 import { storiesOf } from "@storybook/react";
 import { Story, Rule } from "storybook/assets/styles/common.styles";
+import { getStoryName } from "storybook/storyTree";
 import { Box } from "./stylers.stories.styles";
 import "./helpers.scss";
 
-storiesOf("Stylers/Sass", module)
+const storyName = getStoryName("Stylers");
+
+storiesOf(`${storyName}/Sass`, module)
   .add("Mixins", () => (
     <Story className="story--stylers">
       <h1>Mixin Examples</h1>

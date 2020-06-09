@@ -1,4 +1,5 @@
 import React from "react";
+import { getStoryName } from "storybook/storyTree";
 import Screener from "./examples/Screener";
 import {
   SidePanelDefaultSticky,
@@ -7,8 +8,10 @@ import {
   SidePanelFocusLockDisabled,
 } from "./examples/Cypress";
 
+const storyName = getStoryName("SidePanel");
+
 export default {
-  title: " | SidePanel/ Automation Tests",
+  title: `${storyName}/Backyard/Tests`,
 };
 
 export const screener = () => <Screener />;

@@ -1,10 +1,10 @@
 import { withKnobs } from "@storybook/addon-knobs";
-
+import { getStoryName } from "storybook/storyTree";
 import Showcase from "./examples/Showcase";
 import SidePanel from "../src";
 
 export default {
-  title: " | SidePanel",
+  title: getStoryName("SidePanel"),
   component: SidePanel,
 };
 
