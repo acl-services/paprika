@@ -226,7 +226,7 @@ const DataGrid = React.forwardRef((props, ref) => {
     onPressShiftSpaceBar,
     onPressSpaceBar,
     refContainer,
-    refGridColumns,
+    refGrid: refGridColumns,
     rowCount,
     rowHeight,
     scrollBarWidth,
