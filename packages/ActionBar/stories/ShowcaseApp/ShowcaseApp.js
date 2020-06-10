@@ -45,12 +45,12 @@ const customRulesByType = {
 };
 
 export default function App() {
-  const { filters, filteredData, onDeleteFilter, onFilterChange, ...filterProps } = useFilter({
+  const { filters, filteredData, onDeleteFilter, onChangeFilter, ...filterProps } = useFilter({
     columns: columnsSettingForFilterAndSort,
     rulesByType: customRulesByType,
     data,
   });
-  const { sortedFields, sortedData, onDeleteField, onChangeField, ...sortProps } = useSort({
+  const { sortedFields, sortedData, onDeleteSort, onChangeSort, ...sortProps } = useSort({
     columns: columnsSettingForFilterAndSort,
     data,
   });
@@ -68,21 +68,6 @@ export default function App() {
     return sortedData.filter(item => !!filteredData.find(filteredItem => filteredItem.id === item.id));
   }, [filteredData, sortedData]);
 
-  const handleDeleteFilter = filterId => () => {
-    onDeleteFilter(filterId);
-  };
-  const handleChangeFilter = filterId => (type, params) => {
-    onFilterChange(type, { ...params, id: filterId });
-  };
-
-  const handleDeleteSortField = fieldId => () => {
-    onDeleteField(fieldId);
-  };
-
-  const handleChangeSortField = fieldId => (type, params) => {
-    onChangeField(type, { ...params, id: fieldId });
-  };
-
   const renderLevelFilter = () => <CustomSingleSelectFilter />;
 
   return (
@@ -93,12 +78,15 @@ export default function App() {
         <Filter {...filterProps} columns={columnsSettingForFilterAndSort} rulesByType={customRulesByType}>
           {filters.map((filter, index) => (
             <Filter.Item
-              key={filter.id}
-              {...filter}
+              columnId={filter.columnId}
+              id={filter.id}
               index={index}
-              onChange={handleChangeFilter(filter.id)}
-              onDelete={handleDeleteFilter(filter.id)}
+              key={filter.id}
+              label={filter.label}
+              onChange={onChangeFilter}
+              onDelete={onDeleteFilter}
               renderValueField={filter.columnId === "level" ? renderLevelFilter : null}
+              type={filter.type}
             />
           ))}
         </Filter>
@@ -107,13 +95,13 @@ export default function App() {
           {sortedFields.map((field, index) => {
             return (
               <Sort.Field
-                key={field.id}
-                id={field.id}
                 columnId={field.columnId}
                 direction={field.direction}
-                onDelete={handleDeleteSortField(field.id)}
-                onChange={handleChangeSortField(field.id)}
+                id={field.id}
                 isFirst={index === 0}
+                key={field.id}
+                onChange={onChangeSort}
+                onDelete={onDeleteSort}
               />
             );
           })}
@@ -176,7 +164,7 @@ export default function App() {
           {subset.map(item => (
             <tr key={item.id}>
               <td>{item.id}</td>
-              {orderedColumnIds.map(id => (isColumnHidden(id) ? null : <td key={id}>{item[id]}</td>))}
+              {orderedColumnIds.map(id => (isColumnHidden(id) ? null : <td key={id}>{`${item[id]}`}</td>))}
             </tr>
           ))}
         </tbody>
