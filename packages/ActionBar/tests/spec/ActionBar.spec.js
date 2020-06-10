@@ -154,4 +154,26 @@ describe("ActionBar Sort", () => {
     // differance displayed in seconds
     expect(compareDate(a, b, "YYYY-MM-DD")).toBe(-8208000);
   });
+
+  it("should sort by shareable by BOOLEAN ASC", () => {
+    expect(
+      sort({
+        data: sampleData,
+        columnId: "shareable",
+        direction: "ASCEND",
+        columnType: "BOOLEAN",
+      })
+    ).toMatchSnapshot();
+  });
+
+  it("should sort by shareable by BOOLEAN DESC", () => {
+    expect(
+      sort({
+        data: sampleData,
+        columnId: "shareable",
+        direction: "DESCEND",
+        columnType: "BOOLEAN",
+      })
+    ).toMatchSnapshot();
+  });
 });
