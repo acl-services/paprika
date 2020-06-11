@@ -4,32 +4,32 @@ import ActionBar, { ColumnsArrangement, useColumnsArrangement, useFilter, Filter
 import data from "./data";
 import CustomSingleSelectFilter from "./CustomSingleSelectFilter";
 
-const columnsSettingForFilterAndSort = [
+const columnsSettings = [
   {
     id: "goals",
-    type: "NUMBER",
+    type: ActionBar.columnTypes.NUMBER,
     label: "Goals",
   },
   {
     id: "name",
-    type: "TEXT",
+    type: ActionBar.columnTypes.TEXT,
     label: "Name",
   },
   {
     id: "status",
-    type: "TEXT",
+    type: ActionBar.columnTypes.TEXT,
     label: "Status",
   },
   { id: "country", label: "Country", type: "TEXT" },
   {
     id: "joined",
-    type: "DATE",
+    type: ActionBar.columnTypes.DATE,
     label: "Joined by",
     momentParsingFormat: "MM/DD/YYYY",
   },
   {
     id: "shareable",
-    type: "BOOLEAN",
+    type: ActionBar.columnTypes.BOOLEAN,
     label: "Shareable",
   },
   {
@@ -46,12 +46,12 @@ const customRulesByType = {
 
 export default function App() {
   const { filters, filteredData, onDeleteFilter, onChangeFilter, ...filterProps } = useFilter({
-    columns: columnsSettingForFilterAndSort,
+    columns: columnsSettings,
     rulesByType: customRulesByType,
     data,
   });
   const { sortedFields, sortedData, onDeleteSort, onChangeSort, ...sortProps } = useSort({
-    columns: columnsSettingForFilterAndSort,
+    columns: columnsSettings,
     data,
   });
   const { orderedColumnIds, isColumnHidden, ...handlers } = useColumnsArrangement([
@@ -75,7 +75,7 @@ export default function App() {
       <Heading level={2}>ActionBar showcase</Heading>
 
       <ActionBar>
-        <Filter {...filterProps} columns={columnsSettingForFilterAndSort} rulesByType={customRulesByType}>
+        <Filter {...filterProps} columns={columnsSettings} rulesByType={customRulesByType}>
           {filters.map((filter, index) => (
             <Filter.Item
               columnId={filter.columnId}
@@ -91,7 +91,7 @@ export default function App() {
           ))}
         </Filter>
 
-        <Sort {...sortProps} columns={columnsSettingForFilterAndSort}>
+        <Sort {...sortProps} columns={columnsSettings}>
           {sortedFields.map((field, index) => {
             return (
               <Sort.Field
@@ -108,48 +108,13 @@ export default function App() {
         </Sort>
 
         <ColumnsArrangement orderedColumnIds={orderedColumnIds} {...handlers}>
-          <ColumnsArrangement.ColumnDefinition
-            id="goals"
-            label="Goals"
-            isDisabled={false}
-            isHidden={isColumnHidden("goals")}
-          />
-          <ColumnsArrangement.ColumnDefinition
-            id="name"
-            label="Name"
-            isDisabled={false}
-            isHidden={isColumnHidden("name")}
-          />
-          <ColumnsArrangement.ColumnDefinition
-            id="status"
-            label="Status"
-            isDisabled={false}
-            isHidden={isColumnHidden("status")}
-          />
-          <ColumnsArrangement.ColumnDefinition
-            id="country"
-            label="Country"
-            isDisabled={false}
-            isHidden={isColumnHidden("country")}
-          />
-          <ColumnsArrangement.ColumnDefinition
-            id="joined"
-            label="Joined"
-            isDisabled={false}
-            isHidden={isColumnHidden("joined")}
-          />
-          <ColumnsArrangement.ColumnDefinition
-            id="shareable"
-            label="Shareable"
-            isDisabled={false}
-            isHidden={isColumnHidden("shareable")}
-          />
-          <ColumnsArrangement.ColumnDefinition
-            id="level"
-            label="Level"
-            isDisabled={false}
-            isHidden={isColumnHidden("level")}
-          />
+          {columnsSettings.map(column => (
+            <ColumnsArrangement.ColumnDefinition
+              id={column.id}
+              label={column.label}
+              isHidden={isColumnHidden(column.id)}
+            />
+          ))}
         </ColumnsArrangement>
       </ActionBar>
 
