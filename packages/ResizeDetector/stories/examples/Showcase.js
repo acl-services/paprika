@@ -1,11 +1,13 @@
 import React from "react";
 import styled from "styled-components";
+import { boolean, number } from "@storybook/addon-knobs";
 import { action } from "@storybook/addon-actions";
 import tokens from "@paprika/tokens";
 import stylers from "@paprika/stylers";
 import Heading from "@paprika/heading";
 import { Story, Rule } from "storybook/assets/styles/common.styles";
 import Resizer from "storybook/components/Resizer";
+import CodeViewer from "storybook/components/CodeViewer";
 import ResizeDetector from "../../src";
 
 const StretchyBox = styled.div`
@@ -21,6 +23,16 @@ const StretchyBox = styled.div`
   width: 100%;
 `;
 
+const defaultProps = ResizeDetector.defaultProps;
+
+const getKnobs = () => ({
+  isFullWidth: boolean("isFullWidth", defaultProps.isFullWidth),
+  isFullHeight: boolean("isFullHeight", defaultProps.isFullHeight),
+  debounceDelay: number("debounceDelay", defaultProps.debounceDelay),
+  breakpointSmall: number("breakpointSmall", defaultProps.breakpointSmall),
+  breakpointLarge: number("breakpointLarge", defaultProps.breakpointLarge),
+});
+
 function ResizeConsumer() {
   const { width, height } = ResizeDetector.useObservedDimensions();
   const { size } = ResizeDetector.useBreakpoints();
@@ -33,44 +45,35 @@ function ResizeConsumer() {
   );
 }
 
-function ExampleStory() {
-  const small = 250;
-  const large = 400;
+const initDimensions = {
+  initWidth: 360,
+  initHeight: 180,
+};
+
+function Showcase(props) {
   return (
     <Story>
       <Heading level={1} displayLevel={2} isLight>
         ResizeDetector
       </Heading>
       <Rule />
-      <Resizer initWidth={360} initHeight={180}>
-        <ResizeDetector
-          breakpointSmall={small}
-          breakpointLarge={large}
-          debounceDelay={30}
-          isFullHeight
-          onBreak={size => {
-            action("onBreak")(size);
-          }}
-          onResize={({ width, height }) => {
-            action("onResize")(`${width}x${height}`);
-          }}
-        >
-          <ResizeConsumer />
-        </ResizeDetector>
-      </Resizer>
-      <Rule />
-      <p>
-        <code>
-          breakpointSmall: <strong>{small}</strong>
-        </code>
-      </p>
-      <p>
-        <code>
-          breakpointLarge: <strong>{large}</strong>
-        </code>
-      </p>
+      <CodeViewer>
+        <Resizer {...initDimensions}>
+          <ResizeDetector
+            {...props}
+            onBreak={size => {
+              action("onBreak")(size);
+            }}
+            onResize={({ width, height }) => {
+              action("onResize")(`${width}x${height}`);
+            }}
+          >
+            <ResizeConsumer />
+          </ResizeDetector>
+        </Resizer>
+      </CodeViewer>
     </Story>
   );
 }
 
-export default ExampleStory;
+export default () => <Showcase {...getKnobs()} />;

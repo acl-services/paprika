@@ -1,6 +1,5 @@
-import React from "react";
 import { withKnobs } from "@storybook/addon-knobs";
-import Basic from "./examples/Basic";
+import Showcase from "./examples/Showcase";
 import ResizeDetector from "../src";
 
 export default {
@@ -8,11 +7,10 @@ export default {
   component: ResizeDetector,
 };
 
-export const basic = () => <Basic />;
-basic.story = {
+export const showcase = Showcase;
+showcase.story = {
   decorators: [withKnobs],
   parameters: {
-    docs: { page: Basic },
     options: {
       isToolshown: true,
       showPanel: true,

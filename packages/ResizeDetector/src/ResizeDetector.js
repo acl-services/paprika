@@ -6,10 +6,10 @@ import { ShirtSizes } from "@paprika/helpers/lib/customPropTypes";
 import * as sc from "./ResizeDetector.styles";
 
 const propTypes = {
-  /** The width at which the size will change from the default (medium) to large. */
+  /** The width at which the size will change from the default (medium) to large. 0 or null value will disable. */
   breakpointLarge: PropTypes.number,
 
-  /** The width at which the size will change from small to the default (medium). */
+  /** The width at which the size will change from small to the default (medium). 0 or null value will disable. */
   breakpointSmall: PropTypes.number,
 
   /** Content to be wrapped which will be provided with live dimensions and (tshirt) size values.  */
