@@ -1,7 +1,7 @@
 import Tokens from "@paprika/tokens";
 
-export default function calculateAvatarColours(text) {
-  const COLOURS = [
+export default function calculateAvatarColors(text) {
+  const COLORS = [
     { background: Tokens.color.chartColor01, font: Tokens.color.white },
     { background: Tokens.color.chartColor02, font: Tokens.color.white },
     { background: Tokens.color.chartColor03, font: Tokens.color.black },
@@ -18,10 +18,10 @@ export default function calculateAvatarColours(text) {
 
   const reducer = (accumulator, letter) => accumulator + letter.charCodeAt(0);
   const textAsciiSum = text.split("").reduce(reducer, 0);
-  const index = textAsciiSum % COLOURS.length;
+  const index = textAsciiSum % COLORS.length;
 
   return {
-    fontColour: COLOURS[index].font,
-    backgroundColour: COLOURS[index].background,
+    fontColor: COLORS[index].font,
+    backgroundColor: COLORS[index].background,
   };
 }
