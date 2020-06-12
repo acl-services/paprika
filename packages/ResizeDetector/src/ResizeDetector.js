@@ -1,9 +1,9 @@
 import React from "react";
 import PropTypes from "prop-types";
-import useResizeObserver from "use-resize-observer/polyfilled";
+import useResizeDetector from "use-resize-observer/polyfilled";
 import debounce from "lodash.debounce";
 import { ShirtSizes } from "@paprika/helpers/lib/customPropTypes";
-import * as sc from "./ResizeObserver.styles";
+import * as sc from "./ResizeDetector.styles";
 
 const propTypes = {
   /** The width at which the size will change from the default (medium) to large. */
@@ -66,7 +66,7 @@ function getSize(width, breakpointSmall, breakpointLarge) {
   return size;
 }
 
-function ResizeObserver(props) {
+function ResizeDetector(props) {
   const { breakpointSmall, breakpointLarge, children, debounceDelay, onBreak, onResize, ...moreProps } = props;
   const refContainer = React.useRef(null);
   const [{ width, height }, setDimensions] = React.useState({});
@@ -83,7 +83,7 @@ function ResizeObserver(props) {
     }
   }
 
-  useResizeObserver({
+  useResizeDetector({
     ref: refContainer,
     onResize: debounce(handleResize, debounceDelay, { maxWait: MAX_WAIT }),
   });
@@ -95,16 +95,16 @@ function ResizeObserver(props) {
   }, [breakpointSmall, breakpointLarge]);
 
   return (
-    <sc.ResizeObserver data-pka-anchor="resize-observer" {...moreProps} ref={refContainer}>
+    <sc.ResizeDetector data-pka-anchor="resize-observer" {...moreProps} ref={refContainer}>
       <ResizeContext.Provider value={{ width, height, size }}>{children}</ResizeContext.Provider>
-    </sc.ResizeObserver>
+    </sc.ResizeDetector>
   );
 }
 
-ResizeObserver.displayName = "ResizeObserver";
-ResizeObserver.propTypes = propTypes;
-ResizeObserver.defaultProps = defaultProps;
-ResizeObserver.useObservedDimensions = useObservedDimensions;
-ResizeObserver.useBreakpoints = useBreakpoints;
+ResizeDetector.displayName = "ResizeDetector";
+ResizeDetector.propTypes = propTypes;
+ResizeDetector.defaultProps = defaultProps;
+ResizeDetector.useObservedDimensions = useObservedDimensions;
+ResizeDetector.useBreakpoints = useBreakpoints;
 
-export default ResizeObserver;
+export default ResizeDetector;

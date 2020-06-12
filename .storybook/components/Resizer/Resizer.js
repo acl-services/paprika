@@ -17,10 +17,10 @@ const defaultProps = {
 };
 
 const Resizer = props => {
-  const { children, initWidth, initHeight, onResizeStop } = props;
+  const { children, initWidth, initHeight, onResizeStop, ...moreProps } = props;
 
   return (
-    <sc.Resizer width={initWidth} height={initHeight} onResizeStop={onResizeStop}>
+    <sc.Resizer {...moreProps} width={initWidth} height={initHeight} onResizeStop={onResizeStop}>
       {children}
     </sc.Resizer>
   );

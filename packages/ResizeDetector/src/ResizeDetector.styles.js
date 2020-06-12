@@ -1,6 +1,6 @@
 import styled, { css } from "styled-components";
 
-export const ResizeObserver = styled.span`
+export const ResizeDetector = styled.span`
   display: inline-block;
 
   ${({ isFullWidth }) =>

@@ -1,11 +1,11 @@
 import React from "react";
 import { withKnobs } from "@storybook/addon-knobs";
 import Basic from "./examples/Basic";
-import ResizeObserver from "../src";
+import ResizeDetector from "../src";
 
 export default {
-  title: "Utilities | ResizeObserver",
-  component: ResizeObserver,
+  title: "Utilities | ResizeDetector",
+  component: ResizeDetector,
 };
 
 export const basic = () => <Basic />;
