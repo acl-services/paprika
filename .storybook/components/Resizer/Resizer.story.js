@@ -2,7 +2,7 @@ import React from "react";
 import styled from "styled-components";
 import { storiesOf } from "@storybook/react";
 import { action } from "@storybook/addon-actions";
-import { Story, Tagline, Rule } from "storybook/assets/styles/common.styles";
+import { Story, Rule } from "storybook/assets/styles/common.styles";
 import tokens from "@paprika/tokens";
 import stylers from "@paprika/stylers";
 import Heading from "@paprika/heading";
@@ -27,9 +27,6 @@ storiesOf("Storybook | Resizer", module).add("Demo", () => (
     <Heading level={1} displayLevel={2} isLight>
       Resizer
     </Heading>
-    <Tagline>
-      <big>Demo</big>
-    </Tagline>
     <Rule />
     <Resizer
       initWidth={360}

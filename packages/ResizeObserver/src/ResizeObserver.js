@@ -6,13 +6,28 @@ import { ShirtSizes } from "@paprika/helpers/lib/customPropTypes";
 import * as sc from "./ResizeObserver.styles";
 
 const propTypes = {
+  /** The width at which the size will change from the default (medium) to large. */
   breakpointLarge: PropTypes.number,
+
+  /** The width at which the size will change from small to the default (medium). */
   breakpointSmall: PropTypes.number,
+
+  /** Content to be wrapped which will be provided with live dimensions and (tshirt) size values.  */
   children: PropTypes.node,
+
+  /** The ms delay before firing resize events / making live updates. */
   debounceDelay: PropTypes.number,
+
+  /** If the container will match its parent's width like a block level element (width: 100%). */
   isFullWidth: PropTypes.bool,
+
+  /** If the container will match its parent's height (height: 100%). */
   isFullHeight: PropTypes.bool,
+
+  /** Callback that fires when the size change crosses a breakpoint threshold (returns new size value).  */
   onBreak: PropTypes.func,
+
+  /** Callback that fires when the size changes (returns new width + height values).  */
   onResize: PropTypes.func,
 };
 
@@ -20,7 +35,7 @@ const defaultProps = {
   breakpointLarge: 768,
   breakpointSmall: 360,
   children: null,
-  debounceDelay: 200,
+  debounceDelay: 30,
   isFullWidth: true,
   isFullHeight: false,
   onBreak: () => {},
@@ -43,7 +58,7 @@ function useBreakpoints() {
 
 function getSize(width, breakpointSmall, breakpointLarge) {
   let size = ShirtSizes.MEDIUM;
-  if (breakpointSmall && width <= breakpointSmall) {
+  if (breakpointSmall && width < breakpointSmall) {
     size = ShirtSizes.SMALL;
   } else if (breakpointLarge && width >= breakpointLarge) {
     size = ShirtSizes.LARGE;
@@ -77,7 +92,7 @@ function ResizeObserver(props) {
     const { width, height } = refContainer.current.getBoundingClientRect();
     setDimensions({ width, height });
     setSize(getSize(width, breakpointSmall, breakpointLarge));
-  }, [children, breakpointSmall, breakpointLarge]);
+  }, [breakpointSmall, breakpointLarge]);
 
   return (
     <sc.ResizeObserver data-pka-anchor="resize-observer" {...moreProps} ref={refContainer}>
