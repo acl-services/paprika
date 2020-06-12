@@ -36,7 +36,7 @@ export default function useFilter({ columns, data = null, rulesByType = Filter.d
   const [filteredData, setFilteredData] = React.useState(data);
   const [appliedNumber, setAppliedNumber] = React.useState(0);
 
-  const handleFilterChange = React.useCallback(
+  const handleChangeFilter = React.useCallback(
     (type, { id: filterId, rule, value, columnId }) => {
       setFilters(
         produce(draftFilters => {
@@ -113,7 +113,7 @@ export default function useFilter({ columns, data = null, rulesByType = Filter.d
     onAddFilter: handleAddFilter,
     onChangeOperator: handleChangeOperator,
     onDeleteFilter: handleDeleteFilter,
-    onFilterChange: handleFilterChange,
+    onChangeFilter: handleChangeFilter,
     operator,
     onApply: handleApply,
     filteredData,
