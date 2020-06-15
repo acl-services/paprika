@@ -94,9 +94,10 @@ describe("ActionBar Filter", () => {
       .contains("Filter")
       .click();
     cy.contains("Add a field to filter by").click();
+    cy.getByTestId("actionBar.filter.ruleSelector").select("GREATER_THAN");
     cy.get("input")
       .eq(0)
-      .type("805");
+      .type("800");
     cy.contains("Apply").click();
     cy.contains("805").should("be.visible");
     cy.contains("772").should("not.be.visible");
