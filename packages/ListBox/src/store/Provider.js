@@ -40,38 +40,40 @@ function initializeState(props) {
   }
 
   const initialState = {
-    idListBox: `listBoxId_${uuidv4()}`,
     activeOption,
-    listBoxHasFocus: true,
     filteredOptions: [],
+    formElementId,
+    formElementLabelDescribedBy,
+    hasFilter: false,
     hasFooter: false,
     hasPopupOpened: false,
     height,
+    idListBox: `listBoxId_${uuidv4()}`,
     isDisabled,
     isInline,
     isMulti,
     isOpen,
+    lastKnownSelectedOptions: selectedOptions.slice(0),
+    listBoxHasFocus: true,
     noResultsFound: false,
+    onChangeFn: null,
     options,
     placeholder,
     refFilterInput,
     refFooterContainer,
+    refLabel,
     refListBox,
     refListBoxContainer,
     refTrigger,
     refTriggerContainer,
     selectedOptions,
-    triggerWidth: 0,
-    refLabel,
-    formElementId,
-    formElementLabelDescribedBy,
     size,
+    triggerWidth: 0,
   };
 
   return {
     ...initialState,
     originalState: { ...initialState },
-    lastKnownSelectedOptions: initialState.selectedOptions.slice(0),
   };
 }
 
