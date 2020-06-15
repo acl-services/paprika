@@ -66,12 +66,14 @@ function initializeState(props) {
     formElementId,
     formElementLabelDescribedBy,
     size,
+    hasFilter: false,
+    lastKnownSelectedOptions: selectedOptions.slice(0),
+    onChangeFn: null,
   };
 
   return {
     ...initialState,
     originalState: { ...initialState },
-    lastKnownSelectedOptions: initialState.selectedOptions.slice(0),
   };
 }
 
