@@ -9,6 +9,7 @@ const LinkPropTypes = {
   a11yText: PropTypes.string,
   children: PropTypes.node.isRequired,
   href: PropTypes.string.isRequired,
+  isDisabled: PropTypes.bool,
   isOpenNewTab: PropTypes.bool,
   kind: PropTypes.oneOf(Button.Kinds.ALL),
   size: PropTypes.oneOf(ShirtSizes.DEFAULT),
@@ -17,7 +18,8 @@ const LinkPropTypes = {
 
 const LinkDefaultProps = {
   a11yText: null,
-  isOpenNewTab: true,
+  isDisabled: false,
+  isOpenNewTab: false,
   kind: Button.Kinds.LINK,
   size: ShirtSizes.MEDIUM,
   suffixIcon: <NewTabIcon />,
@@ -29,17 +31,19 @@ const isOpenNewTabProps = {
 };
 
 const LinkButton = React.forwardRef(
-  ({ a11yText, children, href, isOpenNewTab, kind, size, suffixIcon, ...moreProps }, ref) => {
+  ({ a11yText, children, href, isDisabled, isOpenNewTab, kind, size, suffixIcon, ...moreProps }, ref) => {
     return (
       <a
-        css={buttonStyles}
-        ref={ref}
-        href={href}
         aria-label={a11yText}
+        css={buttonStyles}
+        href={!isDisabled && href}
+        isDisabled={isDisabled}
         kind={kind}
         size={size}
         {...(isOpenNewTab ? isOpenNewTabProps : {})}
         {...moreProps}
+        as={isDisabled ? "span" : "a"}
+        ref={ref}
       >
         {children}
         {kind === Button.Kinds.LINK && isOpenNewTab ? suffixIcon : null}
