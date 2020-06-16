@@ -3,7 +3,7 @@ import { storiesOf } from "@storybook/react";
 import { withKnobs } from "@storybook/addon-knobs";
 import { getStoryName } from "storybook/storyTree";
 import Showcase from "./examples/Showcase";
-import Basic from "./examples/Basic";
+import Variations from "./examples/Variations";
 import NewRef from "./examples/NewRef";
 import OldRef from "./examples/OldRef";
 import CloseButtonRef from "./examples/CloseButtonRef";
@@ -19,8 +19,9 @@ storiesOf(storyName, module)
   .addDecorator(withKnobs)
   .add("Showcase", Showcase);
 
+storiesOf(storyName, module).add("Variations", () => <Variations />);
+
 storiesOf(`${storyName}/Examples`, module)
-  .add("Basic", () => <Basic />)
   .add("Ref", () => <NewRef />)
   .add("Old Ref", () => <OldRef />)
   .add("Button.Close Ref", () => <CloseButtonRef />)
