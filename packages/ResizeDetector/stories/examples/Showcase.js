@@ -10,6 +10,16 @@ import Resizer from "storybook/components/Resizer";
 import CodeViewer from "storybook/components/CodeViewer";
 import ResizeDetector from "../../src";
 
+const defaultProps = ResizeDetector.defaultProps;
+
+const getKnobs = () => ({
+  isFullWidth: boolean("isFullWidth", defaultProps.isFullWidth),
+  isFullHeight: boolean("isFullHeight", defaultProps.isFullHeight),
+  debounceDelay: number("debounceDelay", defaultProps.debounceDelay),
+  breakpointSmall: number("breakpointSmall", defaultProps.breakpointSmall),
+  breakpointLarge: number("breakpointLarge", defaultProps.breakpointLarge),
+});
+
 const StretchyBox = styled.div`
   ${stylers.fontSize(3)};
   align-items: center;
@@ -23,16 +33,6 @@ const StretchyBox = styled.div`
   width: 100%;
 `;
 
-const defaultProps = ResizeDetector.defaultProps;
-
-const getKnobs = () => ({
-  isFullWidth: boolean("isFullWidth", defaultProps.isFullWidth),
-  isFullHeight: boolean("isFullHeight", defaultProps.isFullHeight),
-  debounceDelay: number("debounceDelay", defaultProps.debounceDelay),
-  breakpointSmall: number("breakpointSmall", defaultProps.breakpointSmall),
-  breakpointLarge: number("breakpointLarge", defaultProps.breakpointLarge),
-});
-
 function ResizeConsumer() {
   const { width, height } = ResizeDetector.useObservedDimensions();
   const { size } = ResizeDetector.useBreakpoints();
@@ -45,33 +45,42 @@ function ResizeConsumer() {
   );
 }
 
-const initDimensions = {
-  initWidth: 360,
-  initHeight: 180,
-};
+function storybookAction(actionName) {
+  return action(actionName);
+}
+
+function handleBreak(size) {
+  return storybookAction("onBreak")(size);
+}
+
+function handleResize(dimensions) {
+  return storybookAction("onResize")(`${dimensions.width}x${dimensions.height}`);
+}
 
 function Showcase(props) {
+  const initDimensions = {
+    initWidth: 360,
+    initHeight: 180,
+  };
+
+  const codeViewerProps = {
+    getDisplayElement: () => document.querySelector(".codeviewer-portal"),
+  };
+
   return (
     <Story>
       <Heading level={1} displayLevel={2} isLight>
         ResizeDetector
       </Heading>
       <Rule />
-      <CodeViewer>
-        <Resizer {...initDimensions}>
-          <ResizeDetector
-            {...props}
-            onBreak={size => {
-              action("onBreak")(size);
-            }}
-            onResize={({ width, height }) => {
-              action("onResize")(`${width}x${height}`);
-            }}
-          >
+      <Resizer {...initDimensions}>
+        <CodeViewer {...codeViewerProps}>
+          <ResizeDetector {...props} onBreak={handleBreak} onResize={handleResize}>
             <ResizeConsumer />
           </ResizeDetector>
-        </Resizer>
-      </CodeViewer>
+        </CodeViewer>
+      </Resizer>
+      <div className="codeviewer-portal" />
     </Story>
   );
 }
