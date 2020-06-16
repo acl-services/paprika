@@ -4,6 +4,7 @@ import React from "react";
 import { areEqual } from "react-window";
 import memoize from "memoize-one";
 import Cell from "./components/Cell";
+import { CellHeader } from "./DataGrid.styles";
 
 export const createItemData = memoize(
   (ColumnDefinitions, data, gridId, hasZebraStripes, refsCell, stickyColumnsIndexes) => ({
@@ -102,5 +103,32 @@ export const StickyRow = React.memo(({ data: RowData, columnIndex, rowIndex, sty
       rowIndex={rowIndex}
       style={style}
     />
+  );
+}, areEqual);
+
+export const HeaderRow = React.memo(({ data: RowData, columnIndex, style }) => {
+  const { ColumnDefinitions, stickyColumnsIndexes } = RowData;
+  const { header, headerProps } = ColumnDefinitions[columnIndex].props;
+
+  if (stickyColumnsIndexes.includes(columnIndex)) return null;
+  const { style: styleProps = {}, ...moreProps } = typeof headerProps === "function" ? headerProps({ header }) : {};
+
+  return (
+    <CellHeader role="columnheader" style={{ ...style, ...styleProps }} {...moreProps}>
+      {typeof header === "function" ? header() : header}
+    </CellHeader>
+  );
+}, areEqual);
+
+export const StickyHeaderRow = React.memo(({ data: RowData, columnIndex, style }) => {
+  const { ColumnDefinitions } = RowData;
+  const { header, headerProps } = ColumnDefinitions[columnIndex].props;
+
+  const { style: styleProps = {}, ...moreProps } = typeof headerProps === "function" ? headerProps({ header }) : {};
+
+  return (
+    <CellHeader role="columnheader" style={{ ...style, ...styleProps }} {...moreProps}>
+      {typeof header === "function" ? header() : header}
+    </CellHeader>
   );
 }, areEqual);

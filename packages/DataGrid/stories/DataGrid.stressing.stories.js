@@ -6,6 +6,7 @@ import Spinner from "@paprika/spinner";
 import DataGrid, { renderColumnIndicator, renderColumnExpand } from "../src";
 
 export function App(props) {
+  const [checkedItems, setCheckedItems] = React.useState([]);
   const { overrideWidth = null, numberOfColumns = 500, rowsOffset = 80 } = props;
   const [data, setData] = React.useState([]);
   const [isIdle, setIsIdle] = React.useState(true);
@@ -59,10 +60,6 @@ export function App(props) {
     }
   }, [numberOfColumns, page]);
 
-  function isChecked() {
-    return "unchecked";
-  }
-
   function handleInfiniteScrollReached({ nextPage }) {
     if (!refPage.current.includes(nextPage)) {
       refPage.current = refPage.current.concat(nextPage);
@@ -70,7 +67,17 @@ export function App(props) {
     }
   }
 
-  function handleSelect() {}
+  function handleCheck({ rowIndex }) {
+    if (checkedItems.includes(rowIndex)) {
+      setCheckedItems(list => {
+        const cloneList = list.slice(0);
+        return cloneList.filter(item => item !== rowIndex);
+      });
+      return;
+    }
+
+    setCheckedItems(list => [...new Set([...list, rowIndex])]);
+  }
 
   return (
     <Sbook.Story
@@ -82,8 +89,8 @@ export function App(props) {
       {isIdle ? (
         <Spinner />
       ) : (
-        <DataGrid ref={refDataGrid} data={data} keygen="id" width={size.width} height={overrideWidth || size.height}>
-          {renderColumnIndicator({ onSelect: handleSelect, isChecked })}
+        <DataGrid ref={refDataGrid} data={data} width={size.width} height={overrideWidth || size.height}>
+          {renderColumnIndicator({ onCheck: handleCheck, checkedItems, hasNumber: false })}
           {renderColumnExpand()}
           {data.length
             ? Object.keys(data[0]).map(key => {

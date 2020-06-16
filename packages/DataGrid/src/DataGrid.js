@@ -9,7 +9,7 @@ import ColumnDefinition from "./components/ColumnDefinition";
 import * as sc from "./DataGrid.styles";
 import Basement, { End } from "./components/Basement";
 import InfiniteScroll from "./components/InfiniteScroll";
-import { Row, StickyRow, createItemData } from "./Datagrid.Row";
+import { Row, HeaderRow, StickyRow, StickyHeaderRow, createItemData } from "./DataGrid.Rows";
 
 const propTypes = {
   /** If the data cell should automatically get focus  */
@@ -105,19 +105,19 @@ const DataGrid = React.forwardRef((props, ref) => {
   const refTotalCanGrow = React.useRef(0);
 
   const [scrollBarWidth, setScrollBarWidth] = React.useState(0);
-  const [gridShouldHaveFocus, setGridShouldHaveFocus] = React.useState(true);
+  const [gridShouldHaveFocus] = React.useState(true);
   const [pageSize, setPageSize] = React.useState(null);
   const i18n = useI18n();
   // these two value are sensitive in Grids with lots of columns and can degradate performance alot.
   // be caution when using them.
   const overscanRowCount = 7;
-  const overscanColumnCount = 2;
+  const overscanColumnCount = 5;
 
   const rowCount = data.length;
   const {
     "DataGrid.ColumnDefinition": extractedColumnDefinitions,
     "DataGrid.Basement": Basement,
-    "DataGrid.InfiniteScroll": InfiniteScroll,
+    "DataGrid.InfiniteScroll": extractedInfiniteScroll,
   } = extractChildren(children, ["DataGrid.ColumnDefinition", "DataGrid.Basement", "DataGrid.InfiniteScroll"]);
 
   let ColumnDefinitions = extractedColumnDefinitions;
@@ -225,7 +225,7 @@ const DataGrid = React.forwardRef((props, ref) => {
     onPressShiftSpaceBar,
     onPressSpaceBar,
     refContainer,
-    refGridColumns,
+    refGrid: refGridColumns,
     rowCount,
     rowHeight,
     scrollBarWidth,
@@ -347,10 +347,6 @@ const DataGrid = React.forwardRef((props, ref) => {
   function handleFocusGrid() {
     const $isBlurred = refContainer.current.querySelector(".grid--is-blurred");
     if ($isBlurred) $isBlurred.classList.remove("grid--is-blurred");
-
-    if (gridShouldHaveFocus) {
-      setGridShouldHaveFocus(false);
-    }
   }
 
   const itemData = createItemData(ColumnDefinitions, data, gridId, hasZebraStripes, refsCell, stickyColumnsIndexes);
@@ -373,6 +369,7 @@ const DataGrid = React.forwardRef((props, ref) => {
       refPrevLastScrollHeight.current &&
       refPrevLastScrollHeight.current < refScrollGrid.current.scrollHeight
     ) {
+      console.log("scrolling 372");
       if (refScrollGrid.current) refScrollGrid.current.scrollTo(0, refScrollGrid.current.scrollTop + 1);
     }
 
@@ -405,7 +402,7 @@ const DataGrid = React.forwardRef((props, ref) => {
     if ($isActive) $isActive.classList.toggle("grid--is-blurred");
   }, []);
 
-  const handleMouseUpGrid = React.useCallback(
+  const handleMouseDownGrid = React.useCallback(
     event => {
       handleClick({ data, ColumnDefinitions })(event);
     },
@@ -437,8 +434,9 @@ const DataGrid = React.forwardRef((props, ref) => {
         refCurrentPage.current = 0;
       }
 
-      if (InfiniteScroll) {
-        const { rowsOffset, onReachedOffset } = InfiniteScroll.props;
+      if (extractedInfiniteScroll) {
+        console.log("scrolling 438");
+        const { rowsOffset, onReachedOffset } = extractedInfiniteScroll.props;
         if (visibleRowStopIndex + rowsOffset > rowCount) {
           const currentPage = Math.floor(visibleRowStopIndex / pageSize);
           const nextPage = currentPage + 1;
@@ -446,7 +444,7 @@ const DataGrid = React.forwardRef((props, ref) => {
         }
       }
     },
-    [InfiniteScroll, pageSize, rowCount]
+    [extractedInfiniteScroll, pageSize, rowCount]
   );
 
   React.useEffect(() => {
@@ -529,12 +527,12 @@ const DataGrid = React.forwardRef((props, ref) => {
         onFocus={handleFocusGrid}
         onKeyDown={handleKeyDownGrid}
         onKeyUp={handleKeyUpGrid}
-        onMouseUp={handleMouseUpGrid}
+        onMouseDown={handleMouseDownGrid}
         onMouseOver={handleMouseOver}
         onMouseLeave={handleMouseLeave}
         ref={refContainer}
         role="grid"
-        tabIndex={gridShouldHaveFocus ? 0 : -1}
+        tabIndex={0}
         $width={gridWidth}
         {...moreProps}
       >
@@ -545,6 +543,7 @@ const DataGrid = React.forwardRef((props, ref) => {
             columnWidth={columnIndex => {
               return ColumnDefinitions[stickyColumnsIndexes[columnIndex]].props.width;
             }}
+            itemData={itemData}
             height={rowHeight}
             ref={refGridStickyHeader}
             rowCount={1}
@@ -553,48 +552,27 @@ const DataGrid = React.forwardRef((props, ref) => {
             overscanColumnCount={overscanColumnCount}
             overscanRowCount={overscanRowCount}
           >
-            {({ columnIndex, style }) => {
-              const { header, headerProps } = ColumnDefinitions[stickyColumnsIndexes[columnIndex]].props;
-              const { style: styleProps = {}, ...moreProps } =
-                typeof headerProps === "function" ? headerProps({ header }) : {};
-
-              return (
-                <sc.CellHeader role="columnheader" style={{ ...style, ...styleProps }} {...moreProps}>
-                  {typeof header === "function" ? header() : header}
-                </sc.CellHeader>
-              );
-            }}
+            {StickyHeaderRow}
           </Grid>
 
           {/** HEADER */}
 
           <Grid
+            className={`${gridId}-header`}
             columnCount={columnCount}
             columnWidth={calculateColumnWidth}
+            height={rowHeight}
+            innerElementType={innerElementType}
+            itemData={itemData}
+            outerElementType={outerElementType}
+            overscanColumnCount={overscanColumnCount}
+            overscanRowCount={overscanRowCount}
             ref={refGridHeader}
             rowCount={1}
             rowHeight={() => rowHeight}
-            height={rowHeight}
             width={gridWidth - stickyGridWidth - scrollBarWidth}
-            overscanColumnCount={overscanColumnCount}
-            overscanRowCount={overscanRowCount}
-            outerElementType={outerElementType}
-            innerElementType={innerElementType}
-            className={`${gridId}-header`}
           >
-            {({ columnIndex, style }) => {
-              const { header, headerProps } = ColumnDefinitions[columnIndex].props;
-
-              if (stickyColumnsIndexes.includes(columnIndex)) return null;
-              const { style: styleProps = {}, ...moreProps } =
-                typeof headerProps === "function" ? headerProps({ header }) : {};
-
-              return (
-                <sc.CellHeader role="columnheader" style={{ ...style, ...styleProps }} {...moreProps}>
-                  {typeof header === "function" ? header() : header}
-                </sc.CellHeader>
-              );
-            }}
+            {HeaderRow}
           </Grid>
         </sc.Flex>
         {/** STICKY COLUMNS */}
