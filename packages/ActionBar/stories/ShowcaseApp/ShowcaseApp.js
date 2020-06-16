@@ -87,6 +87,8 @@ export default function App() {
               onDelete={onDeleteFilter}
               renderValueField={filter.columnId === "level" ? renderLevelFilter : null}
               type={filter.type}
+              rule={filter.rule}
+              value={filter.value}
             />
           ))}
         </Filter>
