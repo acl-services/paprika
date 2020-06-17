@@ -36,7 +36,7 @@ export const createItemData = memoize(
 
 export const Row = React.memo(({ data: RowData, rowIndex, columnIndex, style }) => {
   // Data passed to List as "itemData" is available as props.data
-  const { ColumnDefinitions, data, stickyColumnsIndexes, gridId, hasZebraStripes } = RowData;
+  const { ColumnDefinitions, data, stickyColumnsIndexes, gridId, hasZebraStripes, handleRefCell } = RowData;
   // const item = items[index];
 
   const column = ColumnDefinitions[columnIndex].props;
@@ -80,7 +80,7 @@ export const Row = React.memo(({ data: RowData, rowIndex, columnIndex, style }) 
 }, areEqual);
 
 export const StickyRow = React.memo(({ data: RowData, columnIndex, rowIndex, style }) => {
-  const { ColumnDefinitions, data, stickyColumnsIndexes, gridId, hasZebraStripes } = RowData;
+  const { ColumnDefinitions, data, stickyColumnsIndexes, gridId, hasZebraStripes, handleRefCell } = RowData;
 
   const column = ColumnDefinitions[stickyColumnsIndexes[columnIndex]].props;
   // const cellA11yText =

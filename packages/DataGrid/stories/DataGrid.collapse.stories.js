@@ -59,7 +59,9 @@ const insert = (arr, index, newItems) => [
   ...arr.slice(index),
 ];
 
-const remove = ({ data, start, end }) => [...data.slice(0, start), ...data.slice(end + 1, data.length)];
+const remove = ({ data, start, end }) => {
+  return [...data.slice(0, start), ...data.slice(end + 1, data.length)];
+};
 
 function getNumberOfRowsToRemove({ expandedRows, rowIndex, data }) {
   const visitedRoots = [];
@@ -152,7 +154,7 @@ export function App() {
           }}
           cellA11yText={({ row }) => row.objective}
           cellProps={({ row }) => {
-            return { style: { textIndent: `${row.indent * 16}px`, cursor: "pointer" } };
+            return { style: { textIndent: `${(row.indent || 0) * 16}px`, cursor: "pointer" } };
           }}
           onClick={toggleExpand}
         />
