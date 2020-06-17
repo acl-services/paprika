@@ -59,8 +59,7 @@ export const IconStyled = styled.div`
   color: ${({ kind }) => iconColors[kind]};
   flex-grow: 0;
   flex-shrink: 0;
-  padding-right: ${tokens.space};
-  padding-top: 1px;
+  margin: 1px ${tokens.space} 0 0;
 
   ${stylers.fontSize(2)}
 `;

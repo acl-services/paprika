@@ -1,8 +1,9 @@
 import React from "react";
 import { action } from "@storybook/addon-actions";
 import styled from "styled-components";
-import { Rule, breaklines } from "storybook/assets/styles/common.styles";
+import { Rule, Tagline, breaklines } from "storybook/assets/styles/common.styles";
 import tokens from "@paprika/tokens";
+import Heading from "@paprika/heading";
 import PlusIcon from "@paprika/icon/lib/Add";
 import InfoIcon from "@paprika/icon/lib/InfoCircle";
 import { ButtonStory } from "../Button.stories.styles";
@@ -21,6 +22,11 @@ function clickHandler() {
 
 const ExampleStory = () => (
   <ButtonStory>
+    <Heading level={1} displayLevel={2} isLight>
+      Variations
+    </Heading>
+    <Tagline>So many different kinds of Buttons!</Tagline>
+    <Rule />
     <p>
       <Button a11yText="ceci n'est pas un bouton" data-pka-anchor="test-button" onClick={clickHandler}>
         default button
@@ -54,7 +60,6 @@ const ExampleStory = () => (
         small
       </Button>
       <Button onClick={clickHandler}>medium</Button>
-
       <Button size="large" onClick={clickHandler}>
         large
       </Button>
@@ -83,20 +88,21 @@ const ExampleStory = () => (
     </p>
     <Rule />
     <p>
-      <Button.Link onClick={clickHandler} isOpenNewTab={false} kind="primary" href="https://www.google.ca">
+      <Button.Link onClick={clickHandler} kind="primary" href="https://youtu.be/IdkCEioCp24?t=92">
         Link
       </Button.Link>
-      <Button.Link onClick={clickHandler} kind="secondary" href="https://www.google.ca">
-        Link that opens in new tab
+      <Button.Link onClick={clickHandler} kind="secondary" href="https://youtu.be/IdkCEioCp24?t=92" shouldOpenNewTab>
+        Link in new tab
       </Button.Link>
       <Button.Link href="https://youtu.be/IdkCEioCp24?t=92" size="small">
         Link small
       </Button.Link>
-      <Button.Link href="https://youtu.be/IdkCEioCp24?t=92" size="medium">
-        Link medium
-      </Button.Link>
+      <Button.Link href="https://youtu.be/IdkCEioCp24?t=92">Link medium</Button.Link>
       <Button.Link href="https://youtu.be/IdkCEioCp24?t=92" size="large">
         Link large
+      </Button.Link>
+      <Button.Link href="https://youtu.be/IdkCEioCp24?t=92" shouldOpenNewTab>
+        Link in new tab
       </Button.Link>
     </p>
     <Rule />
@@ -145,9 +151,6 @@ const ExampleStory = () => (
       <Button onClick={clickHandler} icon={<PlusIcon />} size="large">
         with icon
       </Button>
-    </p>
-    <Rule />
-    <p>
       <Button onClick={clickHandler} icon={<PlusIcon />} kind="minor">
         with icon
       </Button>
@@ -163,6 +166,30 @@ const ExampleStory = () => (
       <Button onClick={clickHandler} icon={<PlusIcon />} kind="primary" isDisabled>
         with icon
       </Button>
+    </p>
+    <Rule />
+    <p>
+      <Button onClick={clickHandler} isDisabled>
+        disabled
+      </Button>
+      <Button onClick={clickHandler} isDisabled kind="primary">
+        disabled primary
+      </Button>
+      <Button onClick={clickHandler} isDisabled kind="minor">
+        disabled minor
+      </Button>
+      <Button onClick={clickHandler} isDisabled kind="link">
+        disabled kind=link
+      </Button>
+      <Button.Icon onClick={clickHandler} isDisabled>
+        <InfoIcon />
+      </Button.Icon>
+      <Button.Icon onClick={clickHandler} isDisabled kind="minor">
+        <InfoIcon />
+      </Button.Icon>
+      <Button.Link href="https://youtu.be/IdkCEioCp24?t=92" isDisabled>
+        disabled Button.Link
+      </Button.Link>
     </p>
     <Rule />
     <p>

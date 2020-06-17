@@ -1,7 +1,7 @@
 import React from "react";
 import PropTypes from "prop-types";
 
-import { changeTypes } from "./constants";
+import { changeTypes, columnTypes } from "./constants";
 import * as sc from "./ActionBar.styles";
 
 const propTypes = {
@@ -16,3 +16,4 @@ export default function ActionBar(props) {
 ActionBar.propTypes = propTypes;
 ActionBar.displayName = "DataTable.ActionBar";
 ActionBar.changeTypes = changeTypes;
+ActionBar.columnTypes = columnTypes;

@@ -9,7 +9,7 @@ const darkStyles = css`
   &:hover {
     background-color: ${stylers.alpha(tokens.color.white, 0.2)};
 
-    .button__icon {
+    [data-pka-anchor="button.icon"] {
       color: ${tokens.color.white};
     }
   }
@@ -18,20 +18,20 @@ const darkStyles = css`
     background-color: ${stylers.alpha(tokens.color.white, 0.3)};
     transition: none;
 
-    .button__icon {
+    [data-pka-anchor="button.icon"] {
       color: ${tokens.color.white};
       transition: none;
     }
   }
 
-  .button__icon {
+  [data-pka-anchor="button.icon"] {
     color: ${tokens.color.blackLighten50};
     transition: color 0.2s ease-out;
   }
 `;
 
 const closeButtonStyles = css`
-  .button__icon {
+  [data-pka-anchor="button.icon"] {
     color: ${tokens.textColor.icon};
   }
 
