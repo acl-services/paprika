@@ -89,7 +89,7 @@ const buttonDefaultProps = {
 
 const ButtonIcon = props =>
   props.children ? (
-    <span css={iconStyles} {...props} className="button__icon">
+    <span css={iconStyles} {...props}>
       {props.children}
     </span>
   ) : null;
