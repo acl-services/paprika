@@ -5,7 +5,7 @@ import SidePanel from "@paprika/sidepanel";
 import styled from "styled-components";
 import Button from "@paprika/button";
 import Spinner from "@paprika/spinner";
-import DataGrid, { renderColumnExpand } from "../src";
+import DataGrid, { renderColumnIndicator, renderColumnExpand } from "../src";
 
 const ImgWrapper = styled.div`
   height: 28px;
@@ -103,10 +103,6 @@ export function App() {
     console.log("handleOnSelect");
   }
 
-  function isChecked() {
-    return "unchecked";
-  }
-
   function renderSidepanel({ row }) {
     return (
       <SidePanel onClose={handleSidePanelClose} isOpen={isOpen}>
@@ -148,6 +144,7 @@ export function App() {
             onPressEnter={handleOpenSidepanel}
             onPressSpaceBar={handleOpenSidepanel}
           >
+            {renderColumnIndicator({ onChecked: handleOnSelect })}
             {renderColumnExpand()}
             <DataGrid.ColumnDefinition
               isSticky

@@ -6,12 +6,9 @@ export default function renderColumnIndicator(options = {}) {
   const {
     isAllChecked = false,
     onCheck = () => {},
-    onCheckAll = () => {},
     hasNumber = true,
     hasHeaderChecker = true,
-    checkedItems = () => {
-      return [];
-    },
+    checkedItems = [],
     ...moreOptions
   } = options;
 
@@ -19,16 +16,8 @@ export default function renderColumnIndicator(options = {}) {
     <ColumnDefinition
       headerA11yText={() => "unchecked"}
       cellA11yText={() => "unchecked"}
-      header={propsHeader => {
-        return hasHeaderChecker ? (
-          <RowIndicator
-            hasIndexIndicator={false}
-            onCheck={onCheckAll}
-            isChecked={isAllChecked}
-            checkedItems={checkedItems}
-            {...propsHeader}
-          />
-        ) : null;
+      header={() => {
+        return hasHeaderChecker ? <RowIndicator onCheck={onCheck} isChecked={isAllChecked} isHeaderChecker /> : null;
       }}
       cell={propsCell => (
         <RowIndicator

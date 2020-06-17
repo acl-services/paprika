@@ -7,6 +7,7 @@ import DataGrid, { renderColumnIndicator, renderColumnExpand } from "../src";
 
 export function App(props) {
   const [checkedItems, setCheckedItems] = React.useState([]);
+  const [isAllChecked, setIsAllChecked] = React.useState(false);
   const { overrideWidth = null, numberOfColumns = 500, rowsOffset = 80 } = props;
   const [data, setData] = React.useState([]);
   const [isIdle, setIsIdle] = React.useState(true);
@@ -67,7 +68,11 @@ export function App(props) {
     }
   }
 
-  function handleCheck({ rowIndex }) {
+  function handleCheck({ rowIndex, isHeader }) {
+    if (isHeader) {
+      setIsAllChecked(prev => !prev);
+      return;
+    }
     if (checkedItems.includes(rowIndex)) {
       setCheckedItems(list => {
         const cloneList = list.slice(0);
@@ -90,7 +95,12 @@ export function App(props) {
         <Spinner />
       ) : (
         <DataGrid ref={refDataGrid} data={data} width={size.width} height={overrideWidth || size.height}>
-          {renderColumnIndicator({ onCheck: handleCheck, checkedItems, hasNumber: false })}
+          {renderColumnIndicator({
+            onCheck: handleCheck,
+            checkedItems,
+            hasNumber: false,
+            isAllChecked,
+          })}
           {renderColumnExpand()}
           {data.length
             ? Object.keys(data[0]).map(key => {

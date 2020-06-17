@@ -271,33 +271,36 @@ const DataGrid = React.forwardRef((props, ref) => {
     [i18n]
   );
 
-  const handleScroll = React.useCallback(parameters => {
-    const { scrollLeft, scrollTop } = parameters;
+  const handleScroll = React.useCallback(
+    parameters => {
+      const { scrollLeft, scrollTop } = parameters;
 
-    if (refScrollHeader.current) {
-      refScrollHeader.current.scrollTo({ left: scrollLeft, top: 0 });
-    }
-
-    // prevent rescrolling when this scrollbar gets sync with the one in the sticky column
-    if (refScrollHappenedBy.current === null) {
-      refScrollHappenedBy.current = "handleScroll";
-      if (refScrollStickyColumns.current) {
-        refScrollStickyColumns.current.scrollTo({ left: 0, top: scrollTop });
+      if (refScrollHeader.current && stickyColumnsIndexes.length) {
+        refScrollHeader.current.scrollTo({ left: scrollLeft, top: 0 });
       }
-    } else {
-      refScrollHappenedBy.current = null;
-    }
 
-    if (
-      refScrollGrid.current &&
-      refEnd.current &&
-      refScrollGrid.current.scrollTop + refScrollGrid.current.offsetHeight >= refScrollGrid.current.scrollHeight
-    ) {
-      refEnd.current.onScrollBarReachedBottom(true);
-    } else if (refEnd.current) {
-      refEnd.current.onScrollBarReachedBottom(false);
-    }
-  }, []);
+      // prevent re-scrolling when this scrollbar gets sync with the one in the sticky column
+      if (refScrollHappenedBy.current === null && stickyColumnsIndexes.length) {
+        refScrollHappenedBy.current = "handleScroll";
+        if (refScrollStickyColumns.current) {
+          refScrollStickyColumns.current.scrollTo({ left: 0, top: scrollTop });
+        }
+      } else {
+        refScrollHappenedBy.current = null;
+      }
+
+      if (
+        refScrollGrid.current &&
+        refEnd.current &&
+        refScrollGrid.current.scrollTop + refScrollGrid.current.offsetHeight >= refScrollGrid.current.scrollHeight
+      ) {
+        refEnd.current.onScrollBarReachedBottom(true);
+      } else if (refEnd.current) {
+        refEnd.current.onScrollBarReachedBottom(false);
+      }
+    },
+    [stickyColumnsIndexes.length]
+  );
 
   const handleScrollStickyColumns = React.useCallback(
     parameters => {
@@ -369,7 +372,6 @@ const DataGrid = React.forwardRef((props, ref) => {
       refPrevLastScrollHeight.current &&
       refPrevLastScrollHeight.current < refScrollGrid.current.scrollHeight
     ) {
-      console.log("scrolling 372");
       if (refScrollGrid.current) refScrollGrid.current.scrollTo(0, refScrollGrid.current.scrollTop + 1);
     }
 
@@ -435,7 +437,6 @@ const DataGrid = React.forwardRef((props, ref) => {
       }
 
       if (extractedInfiniteScroll) {
-        console.log("scrolling 438");
         const { rowsOffset, onReachedOffset } = extractedInfiniteScroll.props;
         if (visibleRowStopIndex + rowsOffset > rowCount) {
           const currentPage = Math.floor(visibleRowStopIndex / pageSize);

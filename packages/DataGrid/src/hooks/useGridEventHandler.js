@@ -9,9 +9,7 @@ const getDataCell = event => {
 };
 
 export function timeDiff(t1, t2) {
-  if (isDevEnv()) {
-    console.log(`%c diff: ${t2 - t1}`, "color: yellow; background: #333;");
-  }
+  console.log(`%c diff: ${t2 - t1} milliseconds`, `color: ${isDevEnv() ? "yellow" : "cyan"}; background: #333;`);
 }
 
 export default function useGridEventHandler({
@@ -92,12 +90,14 @@ export default function useGridEventHandler({
   function scrollToTheBottom() {
     const $cell = $getCell();
     refScroll.current.scrollTo(refScroll.current.scrollLeft, refScroll.current.scrollHeight);
+
     focus($cell);
   }
 
   function scrollToTheRightEdge() {
     const $cell = $getCell();
     refScroll.current.scrollTo(refScroll.current.scrollWidth, refScroll.current.scrollTop);
+
     focus($cell);
   }
 
@@ -130,6 +130,7 @@ export default function useGridEventHandler({
       const left = refScroll.current.scrollLeft - cellBoundClientRect.width;
       focus($cell);
       refScroll.current.scrollTo(left, refScroll.current.scrollTop);
+
       timeDiff(t1, performance.now());
       return;
     }
@@ -173,6 +174,7 @@ export default function useGridEventHandler({
         }
 
         refScroll.current.scrollTo(refScroll.current.scrollLeft, top);
+
         focus($cell);
         return;
       }

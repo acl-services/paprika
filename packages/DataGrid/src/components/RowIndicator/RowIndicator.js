@@ -10,6 +10,7 @@ const propTypes = {
   row: PropTypes.shape({}),
   rowIndex: PropTypes.number,
   isChecked: PropTypes.bool,
+  isHeaderChecker: PropTypes.bool,
 };
 
 const defaultProps = {
@@ -20,13 +21,16 @@ const defaultProps = {
   rowIndex: null,
   onCheck: () => {},
   isChecked: false,
+  isHeaderChecker: false,
 };
 
 function RowIndicator(props) {
-  const { rowIndex, isChecked, onCheck, isActiveCell, isActiveRow, hasNumber } = props;
+  const { rowIndex, isChecked, onCheck, isHeaderChecker, isActiveCell, isActiveRow, hasNumber } = props;
 
-  function handleCheck() {
-    onCheck({ rowIndex });
+  function handleCheck(event) {
+    const isHeader = isHeaderChecker;
+    onCheck({ rowIndex, isHeader });
+    event.stopPropagation();
   }
 
   const indicator = hasNumber ? (
@@ -39,7 +43,7 @@ function RowIndicator(props) {
         indicator
       ) : (
         <sc.Checkbox>
-          <input type="checkbox" checked={isChecked} onKeyDown={handleCheck} />
+          <input type="checkbox" checked={isChecked} onChange={() => {}} onMouseDown={handleCheck} />
         </sc.Checkbox>
       )}
     </sc.RowContainer>
