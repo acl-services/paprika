@@ -1,6 +1,6 @@
 {
   "name": "@paprika/modal",
-  "version": "0.2.26",
+  "version": "0.2.27",
   "description": "The Modal component provides additional information without losing context of the main interface.",
   "author": "@paprika",
   "main": "lib/index.js",
@@ -14,7 +14,7 @@
     "access": "public"
   },
   "dependencies": {
-    "@paprika/button": "^0.2.29",
+    "@paprika/button": "^0.3.0",
     "@paprika/heading": "^0.3.19",
     "@paprika/helpers": "^0.2.12",
     "@paprika/overlay": "^0.3.1",
