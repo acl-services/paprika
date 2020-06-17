@@ -8,5 +8,5 @@ module.exports = {
   storybookConfigDir: ".storybook",
   storybookStaticDir: "./.storybook/assets",
   failureExitCode: 0, // Don't fail CI build when regressions found
-  includeRules: [/Screener/, /Stylers/, /^Button: Variations/],
+  includeRules: [/Screener/, /Stylers/, /Button: Variations/],
 };
