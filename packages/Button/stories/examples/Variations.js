@@ -91,7 +91,7 @@ const ExampleStory = () => (
       <Button.Link onClick={clickHandler} kind="primary" href="https://youtu.be/IdkCEioCp24?t=92">
         Link
       </Button.Link>
-      <Button.Link onClick={clickHandler} kind="secondary" href="https://youtu.be/IdkCEioCp24?t=92" isOpenNewTab>
+      <Button.Link onClick={clickHandler} kind="secondary" href="https://youtu.be/IdkCEioCp24?t=92" shouldOpenNewTab>
         Link in new tab
       </Button.Link>
       <Button.Link href="https://youtu.be/IdkCEioCp24?t=92" size="small">
@@ -101,7 +101,7 @@ const ExampleStory = () => (
       <Button.Link href="https://youtu.be/IdkCEioCp24?t=92" size="large">
         Link large
       </Button.Link>
-      <Button.Link href="https://youtu.be/IdkCEioCp24?t=92" isOpenNewTab>
+      <Button.Link href="https://youtu.be/IdkCEioCp24?t=92" shouldOpenNewTab>
         Link in new tab
       </Button.Link>
     </p>

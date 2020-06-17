@@ -8,4 +8,4 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 
 ### Changed
 
-- Changed default value of `<Button.Link>` `isOpenNewTab` prop to `false` [@mikrotron](https://github.com/mikrotron)
+- Changed name / default value of `<Button.Link>` `isOpenNewTab` prop to `shouldOpenNewTab` / `false` [@mikrotron](https://github.com/mikrotron)
