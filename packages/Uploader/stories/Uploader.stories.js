@@ -1,15 +1,28 @@
 import React from "react";
 import { storiesOf } from "@storybook/react";
 import { Story, Rule, Tagline } from "storybook/assets/styles/common.styles";
+import { getStoryName } from "storybook/storyTree";
 import Heading from "@paprika/heading";
 import L10n from "@paprika/l10n";
 import Uploader, { UploaderContext } from "../src/Uploader";
+import File from "../src/components/File/File";
+import statuses from "../src/statuses";
+
+const storyName = getStoryName("Uploader");
 
 const props = {
   endpoint: "http://localhost:9000/upload.php",
   onChange: files => {
     console.log("Selected files:", files);
   },
+};
+
+const fileProps = {
+  error: null,
+  name: "MyFile.jpg",
+  progress: 0,
+  size: 12345678,
+  status: statuses.IDLE,
 };
 
 function StartUploadButton() {
@@ -21,24 +34,25 @@ function StartUploadButton() {
   );
 }
 
-storiesOf("Uploader", module)
-  .add("Showcase", () => (
-    <Story>
-      <L10n locale="en">
-        <Heading level={1} displayLevel={2} isLight>
-          <code>&lt;Uploader /&gt;</code>
-        </Heading>
-        <Tagline>
-          <b>Showcase</b> – Interact with the props API
-        </Tagline>
-        <Rule />
-        <Uploader {...props}>
-          <Uploader.DropZone />
-          <Uploader.FileList />
-        </Uploader>
-      </L10n>
-    </Story>
-  ))
+storiesOf(storyName, module).add("Showcase", () => (
+  <Story>
+    <L10n locale="en">
+      <Heading level={1} displayLevel={2} isLight>
+        <code>&lt;Uploader /&gt;</code>
+      </Heading>
+      <Tagline>
+        <b>Showcase</b> – Interact with the props API
+      </Tagline>
+      <Rule />
+      <Uploader {...props}>
+        <Uploader.DropZone />
+        <Uploader.FileList />
+      </Uploader>
+    </L10n>
+  </Story>
+));
+
+storiesOf(`${storyName}/Examples`, module)
   .add("Failed upload error", () => (
     <Story>
       <Uploader {...props} endpoint="http://localhost:9000/upload.php?error=true">
@@ -115,6 +129,16 @@ storiesOf("Uploader", module)
       >
         <Uploader.DropZone />
         <Uploader.FileList />
+      </Uploader>
+    </Story>
+  ))
+  .add("File statuses", () => (
+    <Story>
+      <Uploader>
+        <File {...fileProps} />
+        <File {...fileProps} progress={37} status={statuses.PROCESSING} />
+        <File {...fileProps} progress={100} status={statuses.SUCCESS} />
+        <File {...fileProps} progress={37} error="Something went wrong" status={statuses.ERROR} />
       </Uploader>
     </Story>
   ));

@@ -1,8 +1,11 @@
 import React from "react";
 import { storiesOf } from "@storybook/react";
-
+import { getStoryName } from "storybook/storyTree";
 import BasicStory from "./examples/Basic";
 import WithFormStory from "./examples/WithForm";
 
-storiesOf("Guard", module).add("Basic", () => <BasicStory />);
-storiesOf("Guard", module).add("With form", () => <WithFormStory />);
+const storyName = getStoryName("Guard");
+
+storiesOf(storyName, module)
+  .add("Basic", () => <BasicStory />)
+  .add("With form", () => <WithFormStory />);

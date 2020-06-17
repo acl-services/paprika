@@ -37,7 +37,7 @@ function navigateBrowser(label) {
 
 describe("ListBoxBrowser basic", () => {
   beforeEach(() => {
-    cy.visitStorybook("listboxbrowser-automation-tests--basic");
+    cy.visitStorybook("forms-listboxbrowser-backyard-tests--cypress");
   });
 
   it("should have correct number of options", () => {

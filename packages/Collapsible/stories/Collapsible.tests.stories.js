@@ -1,9 +1,12 @@
 import React from "react";
+import { getStoryName } from "storybook/storyTree";
 import Collapsible from "../src";
 import Variations from "./examples/Variations";
 
+const storyName = getStoryName("Collapsible");
+
 export default {
-  title: " | Collapsible/Automation Tests",
+  title: `${storyName}/Backyard/Tests`,
   component: Collapsible,
 };
 

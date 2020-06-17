@@ -2,6 +2,7 @@ import React from "react";
 import { storiesOf } from "@storybook/react";
 import { withKnobs, boolean, select } from "@storybook/addon-knobs";
 import { Story, Rule, Tagline, repeat } from "storybook/assets/styles/common.styles";
+import { getStoryName } from "storybook/storyTree";
 import styled from "styled-components";
 import Button from "@paprika/button";
 import SidePanel from "@paprika/sidepanel";
@@ -9,6 +10,8 @@ import Popover from "@paprika/popover";
 import Heading from "@paprika/heading";
 import InfoIcon from "@paprika/icon/lib/InfoCircle";
 import Takeover from "../src";
+
+const storyName = getStoryName("Takeover");
 
 /* Long block to test body scroll locking */
 const LongBlock = styled.div`
@@ -52,17 +55,23 @@ const Example = () => (
       <b>Showcase</b> – Interact with the props API
     </Tagline>
     <Rule />
-    <Takeover />
+    <TakeoverStory>
+      <Takeover.Content>
+        {repeat(12, key => (
+          <p key={key}>Post-ironic asymmetrical small batch coloring book woke pickled authentic.</p>
+        ))}
+      </Takeover.Content>
+    </TakeoverStory>
   </Story>
 );
 
-storiesOf("Takeover", module).add("Showcase", () => {
-  return <Example />;
-});
-
-storiesOf("Takeover", module)
+storiesOf(storyName, module)
   .addDecorator(withKnobs)
+  .add("Showcase", () => {
+    return <Example />;
+  });
 
+storiesOf(`${storyName}/Examples`, module)
   .add("Basic", () => (
     <TakeoverStory>
       <Takeover.Content>
@@ -72,20 +81,34 @@ storiesOf("Takeover", module)
       </Takeover.Content>
     </TakeoverStory>
   ))
-
   .add("with full-width content", () => (
     <TakeoverStory>
       <DemoFullWidthContent />
     </TakeoverStory>
   ))
+  .add("with autofocus disabled", () => (
+    <TakeoverStory>
+      <Takeover.FocusLock autoFocus={false} />
+      <Takeover.Content>
+        <input type="text" data-autofocus />
+      </Takeover.Content>
+    </TakeoverStory>
+  ))
+  .add("with autofocus on input", () => (
+    <TakeoverStory>
+      <Takeover.Content>
+        <input type="text" data-autofocus />
+      </Takeover.Content>
+    </TakeoverStory>
+  ));
 
+storiesOf(`${storyName}/Backyard/Sandbox`, module)
   .add("with nested SidePanel", () =>
     React.createElement(() => {
       const [isOpen, setIsOpen] = React.useState(false);
       const toggle = () => {
         setIsOpen(state => !state);
       };
-
       return (
         <TakeoverStory>
           <Takeover.Content>
@@ -101,7 +124,6 @@ storiesOf("Takeover", module)
       );
     })
   )
-
   .add("with nested Popover", () => (
     <TakeoverStory>
       <Takeover.Content>
@@ -125,30 +147,11 @@ storiesOf("Takeover", module)
       </Takeover.Content>
     </TakeoverStory>
   ))
-
-  .add("with autofocus disabled", () => (
-    <TakeoverStory>
-      <Takeover.FocusLock autoFocus={false} />
-      <Takeover.Content>
-        <input type="text" data-autofocus />
-      </Takeover.Content>
-    </TakeoverStory>
-  ))
-
-  .add("with autofocus on input", () => (
-    <TakeoverStory>
-      <Takeover.Content>
-        <input type="text" data-autofocus />
-      </Takeover.Content>
-    </TakeoverStory>
-  ))
-
   .add("Z Index", () => {
     const [isOpen, setIsOpen] = React.useState(false);
     const toggle = () => {
       setIsOpen(state => !state);
     };
-
     return (
       <div
         css={`
@@ -199,7 +202,7 @@ storiesOf("Takeover", module)
     );
   });
 
-storiesOf("Takeover / screener", module)
+storiesOf(`${storyName}/Backyard/Tests/Screener`, module)
   .add("focus lock content input", () => (
     <TakeoverStory>
       <Takeover.Content>
@@ -208,7 +211,6 @@ storiesOf("Takeover / screener", module)
       </Takeover.Content>
     </TakeoverStory>
   ))
-
   .add("focus lock disabled", () => (
     <TakeoverStory>
       <Takeover.FocusLock autoFocus={false} />

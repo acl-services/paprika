@@ -40,7 +40,7 @@ const {
   onAddFilter,
   onChangeOperator,
   onDeleteFilter,
-  onFilterChange,
+  onChangeFilter,
   operator,
   onApply,
   filteredData,
@@ -50,7 +50,7 @@ const handleDeleteFilter = filterId => () => {
   onDeleteFilter(filterId);
 };
 const handleChangeFilter = filterId => params => {
-  onFilterChange({ ...params, id: filterId });
+  onChangeFilter({ ...params, id: filterId });
 };
 
 return (
@@ -80,7 +80,7 @@ return (
 #### Sort
 
 ```js
-<Sort appliedNumber={appliedNumber} columns={columns} onAddField={onAddField} onApply={onApply}>
+<Sort appliedNumber={appliedNumber} columns={columns} onAddSort={onAddSort} onApply={onApply}>
   <Sort.Field id={fieldId} onDelete={handleDelete} onChange={handleChange} isFirst />
   <Sort.Field id={fieldId} onDelete={handleDelete} onChange={handleChange} isFirst={false} />
 </Sort>
@@ -91,20 +91,20 @@ return (
 You can also use the hook `useSort`
 
 ```js
-const { appliedNumber, sortedFields, sortedData, onAddField, onDeleteField, onChangeField, onApply } = useSort({
+const { appliedNumber, sortedFields, sortedData, onAddSort, onDeleteSort, onChangeSort, onApply } = useSort({
   columns,
 });
 
 const handleDelete = fieldId => () => {
-  onDeleteField(fieldId);
+  onDeleteSort(fieldId);
 };
 
 const handleChange = fieldId => params => {
-  onChangeField({ ...params, id: fieldId });
+  onChangeSort({ ...params, id: fieldId });
 };
 
 return (
-  <Sort appliedNumber={appliedNumber} columns={columns} onAddField={onAddField} onApply={onApply}>
+  <Sort appliedNumber={appliedNumber} columns={columns} onAddSort={onAddSort} onApply={onApply}>
     {sortedFields.map((field, index) => (
       <Sort.Field
         key={field.id}

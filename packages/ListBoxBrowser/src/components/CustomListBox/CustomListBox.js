@@ -57,7 +57,7 @@ export default function CustomListBox(props) {
 
   return (
     <ListBox key={id} height={height} isMulti={isMulti} isInline onChange={onChange}>
-      <ListBox.Trigger isHidden></ListBox.Trigger>
+      <ListBox.Trigger isHidden />
       {hasOnUp ? (
         <ListBox.Option onClick={onUp}>
           <span css={backButton} data-pka-anchor="listboxbrowser-listoption-back">

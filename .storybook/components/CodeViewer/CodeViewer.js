@@ -1,7 +1,6 @@
 import React from "react";
 import PropTypes from "prop-types";
 import { nanoid } from "nanoid";
-import { boolean } from "@storybook/addon-knobs";
 import { Prism as SyntaxHighlighter } from "react-syntax-highlighter";
 import { tomorrow as syntaxTheme } from "react-syntax-highlighter/dist/esm/styles/prism";
 import Button from "@paprika/button";

@@ -1,12 +1,12 @@
 describe("DataGrid", () => {
   it("Should have custom css", () => {
-    cy.visitStorybook("datagrid-tests--custom-css")
+    cy.visitStorybook("data-table-datagrid-backyard-tests--custom-css")
       .get('[data-column-index="1"]')
       .should("have.css", "background-color", "rgb(204, 229, 253)");
   });
 
   it("Should autofocus the last selection", () => {
-    cy.visitStorybook("datagrid-regular--autofocus")
+    cy.visitStorybook("data-table-datagrid-examples--autofocus")
       /* Selecting and click the item does not appear to work in cypress version 3.3.1. It does however work when selected and clicked twice. 
     When updating cypress the repetition can and should be removed to avoid testing fails. */
       // <---from here--->
@@ -22,7 +22,7 @@ describe("DataGrid", () => {
   });
 
   it("Should run a callback function", () => {
-    cy.visitStorybook("datagrid-tests--callback-function")
+    cy.visitStorybook("data-table-datagrid-backyard-tests--callback-function")
       .wait(100)
       .contains("click me");
 
@@ -32,7 +32,7 @@ describe("DataGrid", () => {
   });
 
   it("Should have infinity scroll", () => {
-    cy.visitStorybook("datagrid-tests--infinity-scroll")
+    cy.visitStorybook("data-table-datagrid-backyard-tests--infinity-scroll")
       .wait(100)
       .getAllByRole("rowgroup")
       .last()
@@ -51,14 +51,14 @@ describe("DataGrid", () => {
   });
 
   it("Should not show collapsed content", () => {
-    cy.visitStorybook("datagrid-lazy--collapse")
+    cy.visitStorybook("data-table-datagrid-examples--collapsible")
       .getByRole("grid")
       .contains(/narratives/i)
       .should("not.be.visible");
   });
 
   it("Should show expanded content", () => {
-    cy.visitStorybook("datagrid-lazy--collapse")
+    cy.visitStorybook("data-table-datagrid-examples--collapsible")
       /* Selecting and click the item does not appear to work in cypress version 3.3.1. It does however work when selected and clicked twice. 
     When updating cypress the repetition can and should be removed to avoid testing fails. */
       // <---from here--->
