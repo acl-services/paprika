@@ -53,7 +53,7 @@ const defaultProps = {
   width: null,
 };
 
-const outerElementType = React.forwardRef((props, ref) => <div role="rowgroup" ref={ref} {...props} />);
+const outerElementType = React.forwardRef((props, ref) => <sc.OuterElementType role="rowgroup" ref={ref} {...props} />);
 const innerElementType = React.forwardRef((props, ref) => <sc.InnerElementType role="row" ref={ref} {...props} />);
 const outerElementTypeMainGrid = React.forwardRef((props, ref) => (
   <sc.OuterElementTypeMainGrid role="rowgroup" ref={ref} {...props} />
