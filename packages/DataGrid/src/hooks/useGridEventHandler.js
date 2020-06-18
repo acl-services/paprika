@@ -9,7 +9,6 @@ const getDataCell = event => {
 
 export default function useGridEventHandler({
   columnCount,
-  highlightRow,
   notifyActiveCellChanged,
   onClick,
   onPressEnter,
@@ -242,7 +241,6 @@ export default function useGridEventHandler({
         setRefPrevCell();
         cell.current = toCellState(columnIndex, nextRowIndex);
         setHighlight();
-        highlightRow({ rowIndex: nextRowIndex });
         scroll(columnIndex, nextRowIndex);
       }
     },
@@ -257,7 +255,6 @@ export default function useGridEventHandler({
         setHighlight();
         $setRefs(columnIndex);
         scroll(nextColumnIndex, 0);
-        highlightRow({ rowIndex });
         if (nextColumnIndex === columnCount - 1) {
           scrollToTheRightEdge();
         }
@@ -278,7 +275,6 @@ export default function useGridEventHandler({
         $setRefs(columnIndex);
         cell.current = toCellState(columnIndex, nextRowIndex);
         setHighlight();
-        highlightRow({ rowIndex: nextRowIndex });
         scroll(columnIndex, nextRowIndex);
       }
     },
@@ -286,7 +282,6 @@ export default function useGridEventHandler({
       const columnIndex = cell.current.columnIndex;
       const rowIndex = cell.current.rowIndex;
       const nextColumnIndex = Number.parseInt(columnIndex, 10) - 1;
-      highlightRow({ rowIndex });
       if (nextColumnIndex >= 0) {
         setRefPrevCell();
         cell.current = toCellState(nextColumnIndex, rowIndex);

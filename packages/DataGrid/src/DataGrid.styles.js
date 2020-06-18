@@ -74,27 +74,12 @@ export const Cell = styled.div`
     outline: 1px solid transparent;
   }
 
-  ${({ hasActiveRowShadow, hasZebraStripes, rowIndex }) => {
-    const rowShadow = hasActiveRowShadow
-      ? css`
-          &:after {
-            content: "";
-            height: 100%;
-            left: 0;
-            position: absolute;
-            top: 0;
-            width: 3px;
-            z-index: 1;
-          }
-        `
-      : "";
-
+  ${({ hasZebraStripes, rowIndex }) => {
     const zebraStripe =
       hasZebraStripes && rowIndex % 2 === 0
         ? `background: ${tokens.table.rowEven.backgroundColor};`
         : `background: ${tokens.table.row.backgroundColor};`;
     return `
-      ${rowShadow}
       ${zebraStripe}
     `;
   }}

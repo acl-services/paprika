@@ -94,8 +94,6 @@ const DataGrid = React.forwardRef((props, ref) => {
   const refEnd = React.useRef(null);
   const refPrevLastScrollHeight = React.useRef(null);
   const refCurrentPage = React.useRef(null);
-  const refActiveRow = React.useRef(null);
-  const refPrevActiveRow = React.useRef(null);
   const refVisibleIndexes = React.useRef({
     start: null,
     stop: null,
@@ -170,36 +168,6 @@ const DataGrid = React.forwardRef((props, ref) => {
     return width;
   }, [ColumnDefinitions, stickyColumnsIndexes]);
 
-  const highlightRow = ({ rowIndex = null }) => {
-    if (rowIndex !== null) {
-      if (refPrevActiveRow.current !== null) {
-        const rowIndex = refPrevActiveRow.current;
-        const key = `0${rowIndex}`;
-        if (refsCell.current.keys[key]) refsCell.current.keys[key].deemphasizeRow(rowIndex);
-      }
-
-      refActiveRow.current = rowIndex;
-      refPrevActiveRow.current = rowIndex;
-
-      // first column nth row only
-      const key = `0${rowIndex}`;
-      if (refsCell.current.keys[key]) refsCell.current.keys[key].highlightRow(rowIndex);
-    }
-  };
-
-  const deemphasizeRow = React.useCallback(() => {
-    if (refPrevActiveRow.current) {
-      const rowIndex = refPrevActiveRow.current;
-
-      // first column nth row only
-      const key = `0${rowIndex}`;
-      if (refsCell.current.keys[key]) refsCell.current.keys[key].deemphasizeRow(rowIndex);
-    }
-
-    refActiveRow.current = null;
-    refPrevActiveRow.current = null;
-  }, []);
-
   const notifyActiveCellChanged = React.useCallback(({ columnIndex, rowIndex }) => {
     const key = `${columnIndex}${rowIndex}`;
 
@@ -215,7 +183,6 @@ const DataGrid = React.forwardRef((props, ref) => {
 
   const { handleKeyDown, handleKeyUp, handleClick, gridId, restoreHighlightFocus } = useGridEventHandler({
     columnCount,
-    highlightRow,
     notifyActiveCellChanged,
     onClick,
     onPressEnter,
@@ -460,14 +427,6 @@ const DataGrid = React.forwardRef((props, ref) => {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
-  const handleMouseOver = event => {
-    highlightRow({ rowIndex: event.target.dataset.rowIndex });
-  };
-
-  const handleMouseLeave = React.useCallback(() => {
-    deemphasizeRow();
-  }, [deemphasizeRow]);
-
   const calculateColumnWidth = columnIndex => {
     if (stickyColumnsIndexes.includes(columnIndex)) {
       return 0;
@@ -498,8 +457,6 @@ const DataGrid = React.forwardRef((props, ref) => {
         onKeyDown={handleKeyDownGrid}
         onKeyUp={handleKeyUpGrid}
         onMouseDown={handleMouseDownGrid}
-        onMouseOver={handleMouseOver}
-        onMouseLeave={handleMouseLeave}
         ref={refContainer}
         role="grid"
         tabIndex={0}
