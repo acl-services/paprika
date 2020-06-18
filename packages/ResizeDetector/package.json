@@ -1,5 +1,5 @@
 {
-  "name": "@paprika/resize-observer",
+  "name": "@paprika/resize-detector",
   "version": "0.0.1",
   "description": "A wrapper that provides debounced updates of its dimensions.",
   "author": "@paprika",
@@ -8,7 +8,7 @@
   "repository": {
     "type": "git",
     "url": "https://github.com/acl-services/paprika.git",
-    "directory": "packages/ResizeObserver"
+    "directory": "packages/ResizeDetector"
   },
   "publishConfig": {
     "access": "public"
