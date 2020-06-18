@@ -1,16 +1,11 @@
 import React from "react";
 import nanoid from "nanoid";
-import isDevEnv from "@paprika/helpers/lib/isDevEnv";
 import "@paprika/helpers/lib/dom/closest";
 
 const getDataCell = event => {
   const $cell = event.target.closest("[data-cell]");
   return $cell && $cell.dataset.cell;
 };
-
-export function timeDiff(t1, t2) {
-  console.log(`%c diff: ${t2 - t1} milliseconds`, `color: ${isDevEnv() ? "yellow" : "cyan"}; background: #333;`);
-}
 
 export default function useGridEventHandler({
   columnCount,
@@ -104,7 +99,6 @@ export default function useGridEventHandler({
   // This is in charge of scrolling the Grid in case the content has overflow
   // it's responsible of the sticky columns as well in case include any.
   function scroll(columnIndex, rowIndex) {
-    const t1 = performance.now();
     const $cell = $getCell();
 
     if (!$cell) return;
@@ -122,7 +116,6 @@ export default function useGridEventHandler({
       refScroll.current.scrollTo(left, refScroll.current.scrollTop);
 
       focus($cell);
-      timeDiff(t1, performance.now());
       return;
     }
 
@@ -131,7 +124,6 @@ export default function useGridEventHandler({
       focus($cell);
       refScroll.current.scrollTo(left, refScroll.current.scrollTop);
 
-      timeDiff(t1, performance.now());
       return;
     }
 
@@ -153,7 +145,6 @@ export default function useGridEventHandler({
           );
 
           focus($cell);
-          timeDiff(t1, performance.now());
           return;
         }
 
@@ -185,7 +176,6 @@ export default function useGridEventHandler({
           refScroll.current.scrollTo(refScroll.current.scrollLeft, refScroll.current.scrollTop - topGap);
 
           focus($cell);
-          timeDiff(t1, performance.now());
           return;
         }
 
@@ -195,13 +185,11 @@ export default function useGridEventHandler({
         );
 
         focus($cell);
-        timeDiff(t1, performance.now());
         return;
       }
     }
 
     focus($cell);
-    timeDiff(t1, performance.now());
   }
 
   function toCellState(column, row) {
