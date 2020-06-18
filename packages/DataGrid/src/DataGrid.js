@@ -105,7 +105,6 @@ const DataGrid = React.forwardRef((props, ref) => {
   const refTotalCanGrow = React.useRef(0);
 
   const [scrollBarWidth, setScrollBarWidth] = React.useState(0);
-  const [gridShouldHaveFocus] = React.useState(true);
   const [pageSize, setPageSize] = React.useState(null);
   const i18n = useI18n();
   // these two value are sensitive in Grids with lots of columns and can degradate performance alot.
@@ -232,34 +231,6 @@ const DataGrid = React.forwardRef((props, ref) => {
     stickyColumnsIndexes,
   });
 
-  // ({ columnIndex, rowIndex, style }) => {
-  //   const column = ColumnDefinitions[columnIndex].props;
-  //   const cellA11yText =
-  //     typeof column.cell === "function"
-  //       ? column.cellA11yText && column.cellA11yText({ row: data[rowIndex], rowIndex, columnIndex })
-  //       : data[rowIndex][column.cell];
-  //   const headerA11yText = columnHeadersA11yText[columnIndex];
-  //   const a11yText = a11yTextMessage(cellA11yText, headerA11yText, rowIndex);
-
-  //   if (stickyColumnsIndexes.includes(columnIndex)) {
-  //     return null;
-  //   }
-
-  //   return (
-  //     <Cell
-  //       a11yText={a11yText}
-  //       column={column}
-  //       columnIndex={columnIndex}
-  //       data={data}
-  //       gridId={gridId}
-  //       hasZebraStripes={hasZebraStripes}
-  //       ref={handleRefCell({ columnIndex, rowIndex })}
-  //       rowIndex={rowIndex}
-  //       style={style}
-  //     />
-  //   );
-  // };
-
   const a11yTextMessage = React.useCallback(
     (value, column, rowIndex) => {
       return i18n.t("dataGrid.a11yTextMessage", {
@@ -319,16 +290,6 @@ const DataGrid = React.forwardRef((props, ref) => {
     [refScrollGrid]
   );
 
-  // const handleRefCell = React.useCallback(({ columnIndex, rowIndex }) => {
-  //   return ref => {
-  //     const key = `${columnIndex}${rowIndex}`;
-  //     refsCell.current.keys[key] = ref;
-  //     refsCell.current.rows[rowIndex] = Array.isArray(refsCell.current.rows[rowIndex])
-  //       ? refsCell.current.rows[rowIndex].concat(key)
-  //       : [key];
-  //   };
-  // }, []);
-
   React.useLayoutEffect(() => {
     if (!refContainer.current) return;
 
@@ -352,7 +313,15 @@ const DataGrid = React.forwardRef((props, ref) => {
     if ($isBlurred) $isBlurred.classList.remove("grid--is-blurred");
   }
 
-  const itemData = createItemData(ColumnDefinitions, data, gridId, hasZebraStripes, refsCell, stickyColumnsIndexes);
+  const itemData = createItemData(
+    ColumnDefinitions,
+    data,
+    gridId,
+    hasZebraStripes,
+    stickyColumnsIndexes,
+    columnHeadersA11yText,
+    a11yTextMessage
+  );
 
   React.useEffect(() => {
     if (data.length && pageSize === null) {
