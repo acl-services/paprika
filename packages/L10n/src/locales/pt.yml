@@ -121,7 +121,7 @@ pt:
           is_not: não é
           contains: contém
           does_not_contain: não contém
-          is_blank: em branco
+          is_blank: está em branco
           is_not_blank: não está em branco
           equals: igual a
           not_equal_to: diferente de
