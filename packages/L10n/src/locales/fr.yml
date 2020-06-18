@@ -115,7 +115,7 @@ fr:
         add_filter: Ajouter un champ pour filtrer par
         and: et
         or: ou
-        where: Où
+        where: Lorsque
         rules:
           is: est
           is_not: n'est pas

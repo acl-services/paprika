@@ -115,7 +115,7 @@ de:
         add_filter: Feld hinzufügen zum Filtern nach
         and: und
         or: oder
-        where: Wobei
+        where: Mit
         rules:
           is: ist
           is_not: ist nicht
