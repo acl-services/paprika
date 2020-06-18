@@ -10,6 +10,7 @@ import * as sc from "./DataGrid.styles";
 import Basement, { End } from "./components/Basement";
 import InfiniteScroll from "./components/InfiniteScroll";
 import { Row, HeaderRow, StickyRow, StickyHeaderRow, createItemData } from "./DataGrid.Rows";
+import getScrollbarWidth from "./helpers/getScrollbarWidth";
 
 const propTypes = {
   /** If the data cell should automatically get focus  */
@@ -36,12 +37,15 @@ const propTypes = {
   rowHeight: PropTypes.number,
   /** Sets the DataGrid width */
   width: PropTypes.number,
+  /** Define the look for borders in the table */
+  borderType: PropTypes.oneOf(["grid", "empty", "horizontal", "vertical"]),
 };
 
 const defaultProps = {
   autofocus: true,
+  borderType: "grid",
   data: [],
-  hasZebraStripes: false,
+  hasZebraStripes: true,
   height: 600,
   onClick: null,
   onKeyDown: () => {},
@@ -66,6 +70,7 @@ const innerElementTypeMainGrid = React.forwardRef((props, ref) => (
 const DataGrid = React.forwardRef((props, ref) => {
   const {
     autofocus,
+    borderType,
     children,
     data,
     hasZebraStripes,
@@ -102,7 +107,7 @@ const DataGrid = React.forwardRef((props, ref) => {
   const refRemainingSpace = React.useRef(0);
   const refTotalCanGrow = React.useRef(0);
 
-  const [scrollBarWidth, setScrollBarWidth] = React.useState(0);
+  const [scrollBarWidth] = React.useState(getScrollbarWidth);
   const [pageSize, setPageSize] = React.useState(null);
   const i18n = useI18n();
   // these two value are sensitive in Grids with lots of columns and can degradate performance alot.
@@ -149,7 +154,6 @@ const DataGrid = React.forwardRef((props, ref) => {
   }, [ColumnDefinitions, scrollBarWidth]);
 
   const gridWidth = width === null ? calculatedTableWidth() : width;
-
   const stickyColumnsIndexes = React.useMemo(
     () =>
       ColumnDefinitions.map((ColumnDefinition, index) => {
@@ -265,15 +269,15 @@ const DataGrid = React.forwardRef((props, ref) => {
     refScrollGrid.current = refContainer.current.querySelector(`.grid-${gridId}`);
   }, [gridId]);
 
-  React.useLayoutEffect(() => {
-    const scrollContainer =
-      refContainer.current && refContainer.current.querySelector(`.grid-${gridId} [role="row"]`).parentElement;
+  // React.useLayoutEffect(() => {
+  //   const scrollContainer =
+  //     refContainer.current && refContainer.current.querySelector(`.grid-${gridId} [role="row"]`).parentElement;
 
-    if (!scrollContainer) return;
-    // https://stackoverflow.com/questions/21064101/understanding-offsetwidth-clientwidth-scrollwidth-and-height-respectively
-    // https://davidwalsh.name/detect-scrollbar-width
-    setScrollBarWidth(() => scrollContainer.offsetWidth - scrollContainer.clientWidth);
-  }, [gridId]);
+  //   if (!scrollContainer) return;
+  //   // https://stackoverflow.com/questions/21064101/understanding-offsetwidth-clientwidth-scrollwidth-and-height-respectively
+  //   // https://davidwalsh.name/detect-scrollbar-width
+  //   setScrollBarWidth(() => scrollContainer.offsetWidth - scrollContainer.clientWidth);
+  // }, [gridId]);
 
   function handleFocusGrid() {
     const $isBlurred = refContainer.current.querySelector(".grid--is-blurred");
@@ -287,7 +291,8 @@ const DataGrid = React.forwardRef((props, ref) => {
     hasZebraStripes,
     stickyColumnsIndexes,
     columnHeadersA11yText,
-    a11yTextMessage
+    a11yTextMessage,
+    borderType
   );
 
   React.useEffect(() => {
@@ -302,7 +307,7 @@ const DataGrid = React.forwardRef((props, ref) => {
 
   function focusDataGrid() {
     // this is required to readjust the active highlight
-    // after any rerender
+    // after any re-render
     if (
       refScrollGrid.current &&
       refPrevLastScrollHeight.current &&
@@ -422,8 +427,7 @@ const DataGrid = React.forwardRef((props, ref) => {
       }
     });
 
-    // TODO: Figure out how scrollbarwidth can be calculated initially so that its not always 0
-    refRemainingSpace.current = refContainer.current.offsetWidth - refTotalColumnWidth.current - 15;
+    refRemainingSpace.current = refContainer.current.offsetWidth - refTotalColumnWidth.current - scrollBarWidth;
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 

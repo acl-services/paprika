@@ -59,9 +59,15 @@ export const Grid = styled.div.attrs(({ $width }) => {
   }}
 `;
 
+const borders = {
+  grid: `box-shadow: 0 0 0 1px ${tokens.border.color};`,
+  empty: ``,
+  horizontal: `box-shadow: -1px 0 0 0px ${tokens.border.color};`,
+  vertical: `box-shadow: 0 -1px 0 0px ${tokens.border.color};`,
+};
+
 export const Cell = styled.div`
   background: ${tokens.color.white};
-  box-shadow: 0 0 0 1px ${tokens.border.color};
   box-sizing: border-box;
   display: flex;
   font-size: ${tokens.fontSize.default};
@@ -73,12 +79,16 @@ export const Cell = styled.div`
     outline: 1px solid transparent;
   }
 
-  ${({ hasZebraStripes, rowIndex }) => {
+  ${({ hasZebraStripes, rowIndex, borderType }) => {
+    const border = borderType in borders ? borders[borderType] : borders.grid;
+
     const zebraStripe =
       hasZebraStripes && rowIndex % 2 === 0
         ? `background: ${tokens.table.rowEven.backgroundColor};`
         : `background: ${tokens.table.row.backgroundColor};`;
+
     return `
+      ${border}
       ${zebraStripe}
     `;
   }}
@@ -128,6 +138,7 @@ export const GridCell = styled.div`
   white-space: nowrap;
   width: 1px;
 `;
+
 export const FillerTopRight = styled.div`
   background: ${tokens.table.header.backgroundColor};
   border-bottom: 0;
@@ -140,8 +151,8 @@ export const FillerTopRight = styled.div`
 
     return `
       ${displayBlock}
-      width: ${scrollBarWidth}px;
-      height: ${rowHeight}px;
+      width: ${scrollBarWidth - 1}px;
+      height: ${rowHeight - 1}px;
     `;
   }}
 `;
@@ -155,7 +166,7 @@ export const FillerBottomLeft = styled.div`
   position: absolute;
   z-index: 3;
   ${({ stickyGridWidth, scrollBarWidth }) => {
-    const displayBlock = scrollBarWidth > 0 ? "" : "display: none;";
+    const displayBlock = stickyGridWidth > 0 ? "" : "display: none;";
 
     return `
       ${displayBlock}
