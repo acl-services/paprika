@@ -1,13 +1,16 @@
 import { withKnobs } from "@storybook/addon-knobs";
-import Showcase from "./examples/Showcase";
+import { getStoryName } from "storybook/storyTree";
+import ShowcaseStory from "./examples/Showcase";
 import ResizeDetector from "../src";
 
+const storyName = getStoryName("ResizeDetector");
+
 export default {
-  title: "Utilities | ResizeDetector",
+  title: storyName,
   component: ResizeDetector,
 };
 
-export const showcase = Showcase;
+export const showcase = ShowcaseStory;
 showcase.story = {
   decorators: [withKnobs],
   parameters: {
