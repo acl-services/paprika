@@ -1,6 +1,6 @@
 import React from "react";
 import PropTypes from "prop-types";
-import { ShirtSizes } from "@paprika/helpers/lib/customPropTypes";
+import { ShirtSizes } from "@paprika/helpers/lib/enums";
 import RawButton from "@paprika/raw-button";
 
 import switchStyles, { KnobStyled, UnderlayStyled } from "./Switch.styles";

@@ -1,6 +1,6 @@
 import React from "react";
 import { render, fireEvent } from "@testing-library/react";
-import { ShirtSizes } from "@paprika/helpers/lib/customPropTypes";
+import { ShirtSizes } from "@paprika/helpers/lib/enums";
 import Input from "../src";
 
 const renderComponent = props => render(<Input {...props} />);

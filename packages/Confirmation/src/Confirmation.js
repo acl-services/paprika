@@ -3,7 +3,7 @@ import PropTypes from "prop-types";
 import nanoid from "nanoid";
 import Button from "@paprika/button";
 import Heading from "@paprika/heading";
-import { ShirtSizes } from "@paprika/helpers/lib/customPropTypes";
+import { ShirtSizes } from "@paprika/helpers/lib/enums";
 import useI18n from "@paprika/l10n/lib/useI18n";
 import Popover from "@paprika/popover";
 import TriggerButton from "./components/TriggerButton";

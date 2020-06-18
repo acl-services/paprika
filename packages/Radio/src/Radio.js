@@ -4,7 +4,7 @@ import React from "react";
 import PropTypes from "prop-types";
 import nanoid from "nanoid";
 import CheckIcon from "@paprika/icon/lib/Check";
-import { ShirtSizes } from "@paprika/helpers/lib/customPropTypes";
+import { ShirtSizes } from "@paprika/helpers/lib/enums";
 import radioStyles from "./Radio.styles";
 import Group from "./components/Group";
 

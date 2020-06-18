@@ -2,7 +2,7 @@ import React from "react";
 import PropTypes from "prop-types";
 import Overlay from "@paprika/overlay";
 import { zValue } from "@paprika/stylers/lib/helpers";
-import { ShirtSizes } from "@paprika/helpers/lib/customPropTypes";
+import { ShirtSizes } from "@paprika/helpers/lib/enums";
 import extractChildren from "@paprika/helpers/lib/extractChildren";
 import FocusLock from "./components/FocusLock";
 import * as sc from "./Modal.styles";

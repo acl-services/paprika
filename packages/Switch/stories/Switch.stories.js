@@ -3,7 +3,7 @@ import { storiesOf } from "@storybook/react";
 import { boolean, select, text, withKnobs } from "@storybook/addon-knobs";
 import { Story, Rule, Tagline } from "storybook/assets/styles/common.styles";
 import { getStoryName } from "storybook/storyTree";
-import { ShirtSizes } from "@paprika/helpers/lib/customPropTypes";
+import { ShirtSizes } from "@paprika/helpers/lib/enums";
 import Heading from "@paprika/heading";
 import Example from "./SwitchExample";
 

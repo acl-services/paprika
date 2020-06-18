@@ -1,7 +1,7 @@
 import React from "react";
 import PropTypes from "prop-types";
 
-import { ShirtSizes } from "@paprika/helpers/lib/customPropTypes";
+import { ShirtSizes } from "@paprika/helpers/lib/enums";
 import extractChildren from "@paprika/helpers/lib/extractChildren";
 import isNil from "lodash/isNil";
 import uuidv4 from "uuid/v4";

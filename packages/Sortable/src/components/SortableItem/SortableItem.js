@@ -6,7 +6,7 @@ import Button from "@paprika/button";
 import TrashbinIcon from "@paprika/icon/lib/Trashbin";
 import useI18n from "@paprika/l10n/lib/useI18n";
 import tokens from "@paprika/tokens";
-import { ShirtSizes } from "@paprika/helpers/lib/customPropTypes";
+import { ShirtSizes } from "@paprika/helpers/lib/enums";
 import { itemStyles, itemIndexStyles, itemHandleStyles, itemBodyStyles, itemCloseStyles } from "./SortableItem.styles";
 
 const propTypes = {

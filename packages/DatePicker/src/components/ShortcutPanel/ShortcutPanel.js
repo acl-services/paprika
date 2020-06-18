@@ -7,7 +7,7 @@ import ArrowRight from "@paprika/icon/lib/ArrowRight";
 import Button from "@paprika/button";
 import tokens from "@paprika/tokens";
 import useI18n from "@paprika/l10n/lib/useI18n";
-import { ShirtSizes } from "@paprika/helpers/lib/customPropTypes";
+import { ShirtSizes } from "@paprika/helpers/lib/enums";
 
 import {
   actionBarStyles,

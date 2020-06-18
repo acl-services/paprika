@@ -1,6 +1,6 @@
 import React from "react";
 import PropTypes from "prop-types";
-import { ShirtSizes } from "@paprika/helpers/lib/customPropTypes";
+import { ShirtSizes } from "@paprika/helpers/lib/enums";
 import counterStyles from "./Counter.styles";
 
 const propTypes = {

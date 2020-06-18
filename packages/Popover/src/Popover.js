@@ -5,7 +5,7 @@ import throttle from "lodash.throttle";
 import uuidv4 from "uuid/v4";
 import tokens from "@paprika/tokens";
 import { zValue } from "@paprika/stylers/lib/helpers";
-import { AlignTypes } from "@paprika/helpers/lib/customPropTypes";
+import { AlignTypes } from "@paprika/helpers/lib/enums";
 import isInsideBoundaries from "./helpers/isInsideBoundaries";
 import { getContentCoordinates, getTipCoordinates } from "./helpers/getPosition";
 import getBoundingClientRect from "./helpers/getBoundingClientRect";

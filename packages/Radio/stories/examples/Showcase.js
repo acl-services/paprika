@@ -2,7 +2,7 @@ import React from "react";
 import { boolean, select, text } from "@storybook/addon-knobs";
 import { action } from "@storybook/addon-actions";
 import { Rule, Tagline } from "storybook/assets/styles/common.styles";
-import { ShirtSizes } from "@paprika/helpers/lib/customPropTypes";
+import { ShirtSizes } from "@paprika/helpers/lib/enums";
 import Heading from "@paprika/heading";
 import { RadioStory } from "../Radio.stories.styles";
 import Radio from "../../src/Radio";

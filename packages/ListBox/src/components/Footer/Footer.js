@@ -1,7 +1,7 @@
 import React from "react";
 import Button from "@paprika/button";
 import PropTypes from "prop-types";
-import { ShirtSizes } from "@paprika/helpers/lib/customPropTypes";
+import { ShirtSizes } from "@paprika/helpers/lib/enums";
 import { FooterContainerStyled } from "./Footer.styles";
 import useListBox from "../../useListBox";
 import invokeOnChange from "../../helpers/invokeOnChange";

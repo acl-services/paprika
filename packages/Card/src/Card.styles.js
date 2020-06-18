@@ -1,6 +1,6 @@
 import styled from "styled-components";
 import tokens from "@paprika/tokens";
-import { ShirtSizes } from "@paprika/helpers/lib/customPropTypes";
+import { ShirtSizes } from "@paprika/helpers/lib/enums";
 
 // Common
 

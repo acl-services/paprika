@@ -1,7 +1,7 @@
 import React from "react";
 import PropTypes from "prop-types";
 import RawButton from "@paprika/raw-button";
-import { ShirtSizes } from "@paprika/helpers/lib/customPropTypes";
+import { ShirtSizes } from "@paprika/helpers/lib/enums";
 import pillStyles, { pillTextStyles } from "./Pill.styles";
 
 export const pillColors = ["black", "blue", "green", "grey", "orange", "lightBlue", "lightOrange"];

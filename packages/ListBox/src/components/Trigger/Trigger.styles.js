@@ -1,7 +1,7 @@
 import styled, { css } from "styled-components";
 import Button from "@paprika/button";
 import stylers from "@paprika/stylers";
-import { ShirtSizes } from "@paprika/helpers/lib/customPropTypes";
+import { ShirtSizes } from "@paprika/helpers/lib/enums";
 import { visuallyHidden } from "@paprika/stylers/lib/includes";
 import tokens from "@paprika/tokens";
 

@@ -1,7 +1,7 @@
 import React from "react";
 import { array, boolean, select, text } from "@storybook/addon-knobs";
 import { Rule, Story, Tagline } from "storybook/assets/styles/common.styles";
-import { ShirtSizes } from "@paprika/helpers/lib/customPropTypes";
+import { ShirtSizes } from "@paprika/helpers/lib/enums";
 import Heading from "@paprika/heading";
 import SelectExample from "./SelectExample";
 

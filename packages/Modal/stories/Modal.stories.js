@@ -6,7 +6,7 @@ import { getStoryName } from "storybook/storyTree";
 import styled from "styled-components";
 import Button from "@paprika/button";
 import SidePanel from "@paprika/sidepanel";
-import { ShirtSizes } from "@paprika/helpers/lib/customPropTypes";
+import { ShirtSizes } from "@paprika/helpers/lib/enums";
 import Heading from "@paprika/heading";
 import Modal from "../src";
 

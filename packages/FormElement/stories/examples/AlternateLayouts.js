@@ -2,7 +2,7 @@
 
 import React from "react";
 import Heading from "@paprika/heading";
-import { ShirtSizes } from "@paprika/helpers/lib/customPropTypes";
+import { ShirtSizes } from "@paprika/helpers/lib/enums";
 import { Rule, Tagline } from "storybook/assets/styles/common.styles";
 import Input from "@paprika/input";
 import Checkbox from "@paprika/checkbox";

@@ -4,7 +4,7 @@ import React from "react";
 import { action } from "@storybook/addon-actions";
 import { boolean, select } from "@storybook/addon-knobs";
 import { Story, Rule } from "storybook/assets/styles/common.styles";
-import { ShirtSizes } from "@paprika/helpers/lib/customPropTypes";
+import { ShirtSizes } from "@paprika/helpers/lib/enums";
 import Heading from "@paprika/heading";
 import Calendar from "@paprika/icon/lib/Calendar";
 import ButtonGroup from "../../src";

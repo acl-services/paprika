@@ -1,6 +1,6 @@
 import React from "react";
 import PropTypes from "prop-types";
-import { ShirtSizes } from "@paprika/helpers/lib/customPropTypes";
+import { ShirtSizes } from "@paprika/helpers/lib/enums";
 import { zValue } from "@paprika/stylers/lib/helpers";
 import CheckIcon from "@paprika/icon/lib/Check";
 import CautionIcon from "@paprika/icon/lib/ColoredCaution";

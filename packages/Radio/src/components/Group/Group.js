@@ -1,7 +1,7 @@
 import React from "react";
 import PropTypes from "prop-types";
 import nanoid from "nanoid";
-import { ShirtSizes } from "@paprika/helpers/lib/customPropTypes";
+import { ShirtSizes } from "@paprika/helpers/lib/enums";
 
 const propTypes = {
   /** aria-labelledby prop on the containing group element */

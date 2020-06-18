@@ -1,5 +1,5 @@
 import tokens from "@paprika/tokens";
-import { AlignTypes } from "@paprika/helpers/lib/customPropTypes";
+import { AlignTypes } from "@paprika/helpers/lib/enums";
 
 const rotate = {
   top: 180,

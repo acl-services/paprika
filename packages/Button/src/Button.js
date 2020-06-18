@@ -4,11 +4,9 @@ import "what-input";
 import RawButton from "@paprika/raw-button";
 import RefreshIcon from "@paprika/icon/lib/Refresh";
 import DownIcon from "@paprika/icon/lib/CaretDown";
-import { ShirtSizes } from "@paprika/helpers/lib/customPropTypes";
+import { ShirtSizes, ButtonKinds } from "@paprika/helpers/lib/enums";
 import "@paprika/helpers/lib/dom/closest"; // support for IE11
 import buttonStyles, { iconStyles } from "./Button.styles";
-
-import Kinds from "./ButtonKinds";
 
 const propTypes = {
   /** Descriptive a11y text for assistive technologies. By default, text from children node will be used. */
@@ -45,7 +43,7 @@ const propTypes = {
   isSubmit: PropTypes.bool,
 
   /** The visual style of the button. */
-  kind: PropTypes.oneOf(Kinds.ALL),
+  kind: PropTypes.oneOf(ButtonKinds.ALL),
 
   /** Callback to be executed when the button is clicked or activated by keyboard. Typically required. */
   onClick: PropTypes.func,
@@ -72,7 +70,7 @@ const defaultProps = {
   isPending: false,
   isSemantic: true,
   isSubmit: false,
-  kind: Kinds.DEFAULT,
+  kind: ButtonKinds.DEFAULT,
   onClick: () => {},
   role: "button",
   size: ShirtSizes.MEDIUM,
@@ -198,7 +196,7 @@ const Button = React.forwardRef((props, ref) => {
 ButtonIcon.propTypes = buttonPropTypes;
 ButtonIcon.defaultProps = buttonDefaultProps;
 
-Button.Kinds = Kinds;
+Button.Kinds = ButtonKinds;
 Button.displayName = "Button";
 Button.propTypes = propTypes;
 Button.defaultProps = defaultProps;

@@ -1,7 +1,7 @@
 import { css } from "styled-components";
 import { toInt, fontSizeValue, lineHeightValue, z } from "@paprika/stylers/lib/helpers";
 import { boxSizingStyles, visuallyHidden } from "@paprika/stylers/lib/includes";
-import { ShirtSizes } from "@paprika/helpers/lib/customPropTypes";
+import { ShirtSizes } from "@paprika/helpers/lib/enums";
 import tokens from "@paprika/tokens";
 
 const getLabelLeftPadding = (checkboxSize, hasLabel) => {

@@ -1,7 +1,7 @@
 import React from "react";
 import PropTypes from "prop-types";
 import classNames from "classnames";
-import { ShirtSizes, InputValidTypes } from "@paprika/helpers/lib/customPropTypes";
+import { ShirtSizes, InputValidTypes } from "@paprika/helpers/lib/enums";
 import TimesCircleIcon from "@paprika/icon/lib/TimesCircle";
 import Button from "@paprika/button";
 import inputStyles from "./Input.styles";

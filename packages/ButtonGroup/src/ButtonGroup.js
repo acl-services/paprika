@@ -1,6 +1,6 @@
 import React from "react";
 import PropTypes from "prop-types";
-import { ShirtSizes } from "@paprika/helpers/lib/customPropTypes";
+import { ShirtSizes } from "@paprika/helpers/lib/enums";
 import ButtonGroupContext from "./ButtonGroupContext";
 import Item from "./components/Item";
 import * as sc from "./ButtonGroup.styles";

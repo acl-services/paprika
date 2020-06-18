@@ -7,7 +7,7 @@ import Button from "@paprika/button";
 import useI18n from "@paprika/l10n/lib/useI18n";
 import Popover from "@paprika/popover";
 import tokens from "@paprika/tokens";
-import { ShirtSizes } from "@paprika/helpers/lib/customPropTypes";
+import { ShirtSizes } from "@paprika/helpers/lib/enums";
 import { UploaderContext } from "../../Uploader";
 import { getNumberWithUnits } from "../../helpers";
 import statuses from "../../statuses";

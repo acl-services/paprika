@@ -1,7 +1,7 @@
 import React from "react";
 import PropTypes from "prop-types";
 import uuid from "uuid/v4";
-import { ShirtSizes } from "@paprika/helpers/lib/customPropTypes";
+import { ShirtSizes } from "@paprika/helpers/lib/enums";
 import CheckIcon from "@paprika/icon/lib/Check";
 import DashIcon from "@paprika/icon/lib/Dash";
 import checkboxStyles from "./Checkbox.styles";

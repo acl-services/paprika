@@ -3,6 +3,7 @@ import PropTypes from "prop-types";
 import { zValue } from "@paprika/stylers/lib/helpers";
 import LockBodyScroll from "@paprika/helpers/lib/components/LockBodyScroll";
 import Portal from "@paprika/helpers/lib/components/Portal";
+import { SidePanelKinds } from "@paprika/helpers/lib/enums";
 import Content from "./components/Content";
 import Dialog from "./components/Dialog";
 import Footer from "./components/Footer";
@@ -41,7 +42,7 @@ const propTypes = {
   isSlideFromLeft: PropTypes.bool,
 
   /** Modify the look of the SidePanel */
-  kind: PropTypes.oneOf(["default", "child"]),
+  kind: PropTypes.oneOf(SidePanelKinds.ALL),
 
   /** Control y offset of the sidepanel */
   offsetY: PropTypes.number,
@@ -69,7 +70,7 @@ const defaultProps = {
   isCompact: false,
   isInline: false,
   isSlideFromLeft: false,
-  kind: "default",
+  kind: SidePanelKinds.DEFAULT,
   offsetY: 0,
   onAfterClose: () => {},
   onAfterOpen: () => {},
@@ -248,3 +249,4 @@ SidePanel.Group = Group;
 SidePanel.Header = Header;
 SidePanel.Overlay = Overlay;
 SidePanel.Trigger = Trigger;
+SidePanel.Kinds = SidePanelKinds;

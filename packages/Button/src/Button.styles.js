@@ -1,8 +1,7 @@
 import tokens from "@paprika/tokens";
 import stylers from "@paprika/stylers";
 import { css, keyframes } from "styled-components";
-import { ShirtSizes } from "@paprika/helpers/lib/customPropTypes";
-import Kinds from "./ButtonKinds";
+import { ShirtSizes, ButtonKinds } from "@paprika/helpers/lib/enums";
 
 // States
 
@@ -147,7 +146,7 @@ const sizeStyles = {
 // Kinds
 
 const kindStyles = props => ({
-  [Kinds.DEFAULT]: css`
+  [ButtonKinds.DEFAULT]: css`
     ${skeuomorphicStyles}
 
     background-color: ${tokens.color.white};
@@ -162,7 +161,7 @@ const kindStyles = props => ({
 
     ${props.isDisabled ? disabledStyles : ""}
   `,
-  [Kinds.PRIMARY]: css`
+  [ButtonKinds.PRIMARY]: css`
     ${skeuomorphicStyles}
     ${coloredButtonStyles}
 
@@ -177,7 +176,7 @@ const kindStyles = props => ({
 
     ${props.isDisabled ? disabledStyles : ""}
   `,
-  [Kinds.SECONDARY]: css`
+  [ButtonKinds.SECONDARY]: css`
     ${skeuomorphicStyles}
     ${coloredButtonStyles}
 
@@ -192,7 +191,7 @@ const kindStyles = props => ({
 
     ${props.isDisabled ? disabledStyles : ""}
   `,
-  [Kinds.DESTRUCTIVE]: css`
+  [ButtonKinds.DESTRUCTIVE]: css`
     ${skeuomorphicStyles}
     ${coloredButtonStyles}
 
@@ -207,7 +206,7 @@ const kindStyles = props => ({
 
     ${props.isDisabled ? disabledStyles : ""}
   `,
-  [Kinds.FLAT]: css`
+  [ButtonKinds.FLAT]: css`
     ${skeuomorphicStyles}
 
     background-color: ${tokens.color.white};
@@ -222,7 +221,7 @@ const kindStyles = props => ({
 
     ${props.isDisabled ? disabledStyles : ""}
   `,
-  [Kinds.MINOR]: css`
+  [ButtonKinds.MINOR]: css`
     ${textButtonStyles}
 
     &:hover {
@@ -231,7 +230,7 @@ const kindStyles = props => ({
 
     ${props.isDisabled ? disabledTextStyles : ""}
   `,
-  [Kinds.LINK]: css`
+  [ButtonKinds.LINK]: css`
     ${textButtonStyles}
 
     color: ${tokens.textColor.link};
@@ -292,13 +291,13 @@ const spinKeyframes = keyframes`
 `;
 
 const iconColors = {
-  [Kinds.DEFAULT]: tokens.textColor.icon,
-  [Kinds.PRIMARY]: tokens.color.white,
-  [Kinds.SECONDARY]: tokens.color.white,
-  [Kinds.DESTRUCTIVE]: tokens.color.white,
-  [Kinds.FLAT]: tokens.textColor.icon,
-  [Kinds.MINOR]: tokens.textColor.icon,
-  [Kinds.LINK]: tokens.textColor.icon,
+  [ButtonKinds.DEFAULT]: tokens.textColor.icon,
+  [ButtonKinds.PRIMARY]: tokens.color.white,
+  [ButtonKinds.SECONDARY]: tokens.color.white,
+  [ButtonKinds.DESTRUCTIVE]: tokens.color.white,
+  [ButtonKinds.FLAT]: tokens.textColor.icon,
+  [ButtonKinds.MINOR]: tokens.textColor.icon,
+  [ButtonKinds.LINK]: tokens.textColor.icon,
 };
 
 function getIconColor(props) {
