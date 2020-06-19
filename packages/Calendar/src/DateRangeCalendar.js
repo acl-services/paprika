@@ -3,48 +3,78 @@ import PropTypes from "prop-types";
 import moment from "moment";
 
 import "react-dates/initialize";
-import { DayPickerSingleDateController as SDPController } from "react-dates";
+import { DayPickerRangeController } from "react-dates";
+import { DayPickerPhrases } from "react-dates/lib/defaultPhrases";
 
 import ArrowLeft from "@paprika/icon/lib/ArrowLeft";
 import ArrowRight from "@paprika/icon/lib/ArrowRight";
 import Button from "@paprika/button";
 import useI18n from "@paprika/l10n/lib/useI18n";
 
-import ShortcutPanel from "../ShortcutPanel";
+import { START_DATE, END_DATE } from "./tokens";
+
+import ShortcutPanel from "./internal/ShortcutPanel";
 
 import calendarStyles, {
   arrowIconStyles,
   calendarWrapperStyles,
   dayTriggerStyles,
   monthHeaderButtonStyles,
-} from "./Calendar.styles";
+} from "./internal/calendar.styles";
 
 const propTypes = {
-  /** Selected date in moment object */
-  date: PropTypes.instanceOf(moment),
+  /** Selected start date in moment object */
+  startDate: PropTypes.instanceOf(moment),
 
-  /** Callback when user select date */
-  onSelect: PropTypes.func.isRequired,
+  /** Selected end date in moment object */
+  endDate: PropTypes.instanceOf(moment),
+
+  /** Callback to fire when user select start or end date */
+  onDatesChange: PropTypes.func.isRequired,
 
   /** Possible date might be selected in moment object */
   possibleDate: PropTypes.instanceOf(moment),
 
-  resetPossibleDate: PropTypes.func.isRequired,
+  resetPossibleDate: PropTypes.func,
+
+  /**
+   * This callback will be called after selecting date.
+   * START_DATE or END_DATE will be passed as argument.
+   * Passed argument points to next date will be selected on click.
+   * It commonly used to switch focus on start/end date inputs.
+   */
+  onFocusChange: PropTypes.func.isRequired,
+
+  /**
+   * Points to the next date that will be selected on click.
+   * Should be used in conjunction with `onFocusChange`
+   */
+  focusedInput: PropTypes.oneOf([START_DATE, END_DATE]).isRequired,
 };
+
+const noop = () => {};
 
 const defaultProps = {
-  date: null,
+  startDate: null,
+  endDate: null,
   possibleDate: null,
+  resetPossibleDate: noop,
 };
 
-function Calendar(props) {
+const phrases = {
+  ...DayPickerPhrases,
+  chooseAvailableStartDate: ({ date }) => date,
+  chooseAvailableEndDate: ({ date }) => date,
+};
+
+function DateRangeCalendar(props) {
   // TODO: nice to have MIN_DATE & MAX_DATE customizable
   const MIN_DATE = moment.utc("0000-01-01", "YYYY-MM-DD");
   const MAX_DATE = moment.utc("9999-12-31", "YYYY-MM-DD");
   const I18n = useI18n();
 
   // Props
-  const { date, onSelect, possibleDate, resetPossibleDate } = props;
+  const { startDate, endDate, onDatesChange, possibleDate, resetPossibleDate, focusedInput, onFocusChange } = props;
 
   // State
   const [shouldShowShortcut, setShouldShowShortcut] = React.useState(false);
@@ -61,7 +91,7 @@ function Calendar(props) {
 
   React.useEffect(() => {
     keepFocus();
-  }, [currentMonth, date]);
+  }, [currentMonth, startDate, endDate]);
 
   function getInitialVisibleMonth() {
     let initialVisibleMonth;
@@ -71,7 +101,7 @@ function Calendar(props) {
     } else if (currentMonth && currentMonth.isValid()) {
       initialVisibleMonth = currentMonth;
     } else {
-      initialVisibleMonth = date && date.isValid() ? date : moment();
+      initialVisibleMonth = startDate && startDate.isValid() ? startDate : moment();
     }
 
     return initialVisibleMonth;
@@ -127,9 +157,9 @@ function Calendar(props) {
           handleClickHeader(month);
         }}
         tabIndex={-1}
-        data-pka-anchor="datepicker.calendar.header"
+        data-pka-anchor="calendar.header"
       >
-        {month.format(I18n.t("datePicker.calendar_header_format"))}
+        {month.format(I18n.t("calendar.header_format"))}
       </Button>
     );
   }
@@ -137,7 +167,7 @@ function Calendar(props) {
 
   function renderArrowLeft() {
     return (
-      <span css={arrowIconStyles} ref={prevButtonRef} data-pka-anchor="datepicker-prev-month">
+      <span css={arrowIconStyles} ref={prevButtonRef} data-pka-anchor="calendar-prev-month">
         <ArrowLeft role="presentation" />
       </span>
     );
@@ -145,7 +175,7 @@ function Calendar(props) {
 
   function renderArrowRight() {
     return (
-      <span css={arrowIconStyles} ref={nextButtonRef} data-pka-anchor="datepicker-next-month">
+      <span css={arrowIconStyles} ref={nextButtonRef} data-pka-anchor="calendar-next-month">
         <ArrowRight role="presentation" />
       </span>
     );
@@ -153,27 +183,27 @@ function Calendar(props) {
 
   function renderDayContents(day) {
     return (
-      <span
-        css={dayTriggerStyles}
-        isSelected={moment(day).isSame(date, "day")}
-        isToday={moment(day).isSame(moment(), "day")}
-      >
+      <span css={dayTriggerStyles} isRangeSelected={startDate && endDate}>
         {day.format("D")}
       </span>
     );
   }
 
   const CalendarKey = `${currentMonth && currentMonth.format("YYYY-MM")}/${possibleDate &&
-    possibleDate.format("YYYY-MM")}/${date && date.format("YYYY-MM")}`;
+    possibleDate.format("YYYY-MM")}/${startDate && startDate.format("YYYY-MM")}/${endDate &&
+    endDate.format("YYYY-MM")}`;
 
   return (
     <div css={calendarWrapperStyles} tabIndex={-1} ref={calendarRef}>
       <div css={calendarStyles} isVisible={!shouldShowShortcut}>
-        <SDPController
+        <DayPickerRangeController
           key={CalendarKey}
-          date={date}
-          onDateChange={onSelect}
-          focused
+          minimumNights={0}
+          startDate={startDate}
+          endDate={endDate}
+          onDatesChange={onDatesChange}
+          onFocusChange={onFocusChange}
+          focusedInput={focusedInput}
           isOutsideRange={isOutsideSupportedRange}
           renderMonthElement={renderMonthHeaderElement}
           enableOutsideDays
@@ -189,6 +219,7 @@ function Calendar(props) {
           onPrevMonthClick={handleClickPrevMonth}
           onNextMonthClick={handleClickNextMonth}
           renderDayContents={renderDayContents}
+          phrases={phrases}
         />
       </div>
       <ShortcutPanel
@@ -202,9 +233,7 @@ function Calendar(props) {
   );
 }
 
-Calendar.displayName = "DatePicker.Calendar";
+DateRangeCalendar.propTypes = propTypes;
+DateRangeCalendar.defaultProps = defaultProps;
 
-Calendar.propTypes = propTypes;
-Calendar.defaultProps = defaultProps;
-
-export default Calendar;
+export default DateRangeCalendar;

@@ -114,10 +114,10 @@ function ShortcutPanel(props) {
   }
 
   return (
-    <div css={containerStyles} data-pka-anchor="datepicker.calendar.shortcut" isVisible={isVisible}>
+    <div css={containerStyles} data-pka-anchor="calendar.shortcut" isVisible={isVisible}>
       <div css={panelContentStyles}>
         <div css={listStyles}>
-          <div css={columnHeaderStyles}>{I18n.t("datePicker.month")}</div>
+          <div css={columnHeaderStyles}>{I18n.t("calendar.month")}</div>
           <div role="group">{renderMonthList()}</div>
         </div>
         <div css={yearListStyles}>
@@ -125,7 +125,7 @@ function ShortcutPanel(props) {
             <Button.Icon isSemantic={false} onClick={handleClickPrev} kind="minor" size={ShirtSizes.SMALL}>
               <ArrowLeft color={tokens.textColor.icon} />
             </Button.Icon>
-            {I18n.t("datePicker.year")}
+            {I18n.t("calendar.year")}
             <Button.Icon isSemantic={false} onClick={handleClickNext} kind="minor" size={ShirtSizes.SMALL}>
               <ArrowRight color={tokens.textColor.icon} />
             </Button.Icon>
@@ -139,7 +139,7 @@ function ShortcutPanel(props) {
           kind={Button.Kinds.PRIMARY}
           onClick={handleConfirm}
           size={ShirtSizes.SMALL}
-          data-pka-anchor="datepicker.calendar.apply"
+          data-pka-anchor="calendar.apply"
         >
           {I18n.t("actions.apply")}
         </Button>
@@ -148,7 +148,7 @@ function ShortcutPanel(props) {
           kind={Button.Kinds.MINOR}
           onClick={onCancel}
           size={ShirtSizes.SMALL}
-          data-pka-anchor="datepicker.calendar.cancel"
+          data-pka-anchor="calendar.cancel"
         >
           {I18n.t("actions.cancel")}
         </Button>
@@ -158,6 +158,6 @@ function ShortcutPanel(props) {
 }
 
 ShortcutPanel.propTypes = propTypes;
-ShortcutPanel.displayName = "DatePicker.ShortcutPanel";
+ShortcutPanel.displayName = "Calendar.ShortcutPanel";
 
 export default ShortcutPanel;

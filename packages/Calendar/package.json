@@ -1,38 +1,33 @@
 {
-  "name": "@paprika/date-picker",
-  "version": "0.5.35",
-  "description": "DatePicker component allows user to view and specify a date through an entry field or a calendar widget.",
+  "name": "@paprika/calendar",
+  "version": "0.1.0",
+  "description": "Calendar component",
   "main": "lib/index.js",
   "author": "@paprika",
   "license": "MIT",
   "repository": {
     "type": "git",
     "url": "https://github.com/acl-services/paprika.git",
-    "directory": "packages/DatePicker"
+    "directory": "packages/Calendar"
   },
   "publishConfig": {
     "access": "public"
   },
   "dependencies": {
     "@babel/runtime-corejs2": "^7.3.1",
-    "@paprika/calendar": "^0.1.0",
-    "@paprika/date-input": "^0.1.13",
+    "@paprika/button": "^0.3.0",
     "@paprika/helpers": "^0.2.12",
-    "@paprika/popover": "^0.3.26",
+    "@paprika/icon": "^0.3.3",
     "@paprika/stylers": "^0.2.8",
     "@paprika/tokens": "^0.1.14",
-    "prop-types": "^15.7.2"
+    "prop-types": "^15.7.2",
+    "react-dates": "^20.1.0"
   },
   "peerDependencies": {
+    "@paprika/l10n": "^0.2.5",
     "moment": "^2.18.1",
     "react": "^16.8.4",
     "react-dom": "^16.8.4",
     "styled-components": "^4.2.0"
-  },
-  "paprikaDocs": {
-    "subComponents": [
-      "Calendar",
-      "ShortcutPanel"
-    ]
   }
 }
