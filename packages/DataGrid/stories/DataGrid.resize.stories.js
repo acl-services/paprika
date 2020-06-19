@@ -1,11 +1,13 @@
 import React from "react";
 import { storiesOf } from "@storybook/react";
 import * as Sbook from "storybook/assets/styles/common.styles";
+import { getStoryName } from "storybook/storyTree";
 import Heading from "@paprika/heading";
 import ActionBar, { ColumnsArrangement, useColumnsArrangement } from "../../ActionBar/src";
-
 import DataGrid from "../src";
 import fixtures from "./helpers/fixtures";
+
+const storyName = getStoryName("DataGrid");
 
 const data = fixtures(10);
 
@@ -120,7 +122,7 @@ function AppWithActionBar() {
   );
 }
 
-storiesOf("DataGrid / resize", module).add("Resize", () => (
+storiesOf(`${storyName}/Examples`, module).add("Resize", () => (
   <>
     <MultipleCanGrow />
     <CanGrowStressing />
