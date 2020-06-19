@@ -22,19 +22,14 @@ const defaultProps = {
 function Avatar(props) {
   const { backgroundColor, children, size, color } = props;
 
-  const avatarProps = {
+  const styleProps = {
     backgroundColor,
-    children,
     size,
     color,
   };
 
   return (
-    <sc.Avatar
-      style={{ backgroundColor: avatarProps.backgroundColor, color: avatarProps.color }}
-      data-pka-anchor="avatar"
-      {...avatarProps}
-    >
+    <sc.Avatar data-pka-anchor="avatar" {...styleProps}>
       {children}
     </sc.Avatar>
   );
