@@ -27,6 +27,13 @@ const disabledStyles = css`
     color: ${tokens.color.blackLighten40};
     text-decoration: none;
   }
+
+  &,
+  &:hover,
+  &:active {
+    box-shadow: none;
+    transform: none;
+  }
 `;
 
 const disabledTextStyles = css`

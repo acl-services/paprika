@@ -1,9 +1,12 @@
 import React from "react";
+import { getStoryName } from "storybook/storyTree";
 import Toast from "../src";
 import ToastFixedSidePanel from "./examples/backyard/ToastFixedSidePanel";
 
+const storyName = getStoryName("Toast");
+
 export default {
-  title: " | Toast/Backyard",
+  title: `${storyName}/Backyard/Sandbox`,
   component: Toast,
 };
 

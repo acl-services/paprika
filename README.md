@@ -65,15 +65,22 @@ or refer to the [AirTable summary](https://airtable.com/shrkJwkvtbgc3FT22).
 
 #### NPM Packages
 
+<a href="https://www.npmjs.com/package/@paprika/action-bar"><img src="https://img.shields.io/npm/v/@paprika/action-bar?label=ActionBar" /></a>
 <a href="https://www.npmjs.com/package/@paprika/button"><img src="https://img.shields.io/npm/v/@paprika/button?label=Button" /></a>
+<a href="https://www.npmjs.com/package/@paprika/button-group"><img src="https://img.shields.io/npm/v/@paprika/button-group?label=ButtonGroup" /></a>
+<a href="https://www.npmjs.com/package/@paprika/card"><img src="https://img.shields.io/npm/v/@paprika/card?label=Card" /></a>
 <a href="https://www.npmjs.com/package/@paprika/checkbox"><img src="https://img.shields.io/npm/v/@paprika/checkbox?label=Checkbox" /></a>
 <a href="https://www.npmjs.com/package/@paprika/collapsible"><img src="https://img.shields.io/npm/v/@paprika/collapsible?label=Collapsible" /></a>
 <a href="https://www.npmjs.com/package/@paprika/collapsible-checklists"><img src="https://img.shields.io/npm/v/@paprika/collapsible-checklists?label=CollapsibleChecklists" /></a>
 <a href="https://www.npmjs.com/package/@paprika/collapsible-text"><img src="https://img.shields.io/npm/v/@paprika/collapsible-text?label=CollapsibleText" /></a>
 <a href="https://www.npmjs.com/package/@paprika/confirmation"><img src="https://img.shields.io/npm/v/@paprika/confirmation?label=Confirmation" /></a>
 <a href="https://www.npmjs.com/package/@paprika/counter"><img src="https://img.shields.io/npm/v/@paprika/counter?label=Counter" /></a>
+<a href="https://www.npmjs.com/package/@paprika/data-grid"><img src="https://img.shields.io/npm/v/@paprika/data-grid?label=DataGrid" /></a>
+<a href="https://www.npmjs.com/package/@paprika/date-input"><img src="https://img.shields.io/npm/v/@paprika/date-input?label=DateInput" /></a>
 <a href="https://www.npmjs.com/package/@paprika/date-picker"><img src="https://img.shields.io/npm/v/@paprika/date-picker?label=DatePicker" /></a>
+<a href="https://www.npmjs.com/package/@paprika/dialog-actions"><img src="https://img.shields.io/npm/v/@paprika/dialog-actions?label=DialogActions" /></a>
 <a href="https://www.npmjs.com/package/@paprika/dropdown-menu"><img src="https://img.shields.io/npm/v/@paprika/dropdown-menu?label=DropdownMenu" /></a>
+<a href="https://www.npmjs.com/package/@paprika/external-link"><img src="https://img.shields.io/npm/v/@paprika/external-link?label=ExternalLink" /></a>
 <a href="https://www.npmjs.com/package/@paprika/form-element"><img src="https://img.shields.io/npm/v/@paprika/form-element?label=FormElement" /></a>
 <a href="https://www.npmjs.com/package/@paprika/guard"><img src="https://img.shields.io/npm/v/@paprika/guard?label=Guard" /></a>
 <a href="https://www.npmjs.com/package/@paprika/heading"><img src="https://img.shields.io/npm/v/@paprika/heading?label=Heading" /></a>
@@ -82,10 +89,13 @@ or refer to the [AirTable summary](https://airtable.com/shrkJwkvtbgc3FT22).
 <a href="https://www.npmjs.com/package/@paprika/input"><img src="https://img.shields.io/npm/v/@paprika/input?label=Input" /></a>
 <a href="https://www.npmjs.com/package/@paprika/l10n"><img src="https://img.shields.io/npm/v/@paprika/l10n?label=L10n" /></a>
 <a href="https://www.npmjs.com/package/@paprika/listbox"><img src="https://img.shields.io/npm/v/@paprika/listbox?label=ListBox" /></a>
-<a href="https://www.npmjs.com/package/@paprika/listbox-browser"><img src="https://img.shields.io/npm/v/@paprika/listbox-browser?label=ListBox" /></a>
+<a href="https://www.npmjs.com/package/@paprika/listbox-browser"><img src="https://img.shields.io/npm/v/@paprika/listbox-browser?label=ListBoxBrowser" /></a>
+<a href="https://www.npmjs.com/package/@paprika/modal"><img src="https://img.shields.io/npm/v/@paprika/modal?label=Modal" /></a>
+<a href="https://www.npmjs.com/package/@paprika/overlay"><img src="https://img.shields.io/npm/v/@paprika/overlay?label=Overlay" /></a>
 <a href="https://www.npmjs.com/package/@paprika/pill"><img src="https://img.shields.io/npm/v/@paprika/pill?label=Pill" /></a>
 <a href="https://www.npmjs.com/package/@paprika/popover"><img src="https://img.shields.io/npm/v/@paprika/popover?label=Popover" /></a>
 <a href="https://www.npmjs.com/package/@paprika/progress-accordion"><img src="https://img.shields.io/npm/v/@paprika/progress-accordion?label=ProgressAccordion" /></a>
+<a href="https://www.npmjs.com/package/@paprika/radio"><img src="https://img.shields.io/npm/v/@paprika/radio?label=Radio" /></a>
 <a href="https://www.npmjs.com/package/@paprika/raw-button"><img src="https://img.shields.io/npm/v/@paprika/raw-button?label=RawButton" /></a>
 <a href="https://www.npmjs.com/package/@paprika/select"><img src="https://img.shields.io/npm/v/@paprika/select?label=Select" /></a>
 <a href="https://www.npmjs.com/package/@paprika/sidepanel"><img src="https://img.shields.io/npm/v/@paprika/sidepanel?label=SidePanel" /></a>

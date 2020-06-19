@@ -43,6 +43,8 @@ const propTypes = {
 
   /** FormElement contains multiple children so Renders a legend element instead of label. */
   hasFieldSet: PropTypes.bool,
+
+  onClickLabel: PropTypes.func,
 };
 
 const defaultProps = {
@@ -54,6 +56,7 @@ const defaultProps = {
   isLabelVisuallyHidden: false,
   size: ShirtSizes.MEDIUM,
   hasFieldSet: false,
+  onClickLabel: () => {},
 };
 
 const subComponentDisplayNames = {
@@ -76,6 +79,7 @@ function FormElement(props) {
     label,
     size,
     hasFieldSet,
+    onClickLabel,
     ...moreProps
   } = props;
 
@@ -148,6 +152,7 @@ function FormElement(props) {
         label={label}
         ref={refLabel}
         hasFieldSet={hasFieldSet}
+        onClick={onClickLabel}
       />
       <sc.SectionsContainer isInline={isInline}>
         {renderInstructions()}

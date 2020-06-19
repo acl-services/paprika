@@ -1,35 +1,35 @@
 import React from "react";
 import Heading from "@paprika/heading";
-import ActionBar, { ColumnsArrangement, useColumnsArragment, useFilter, Filter, Sort, useSort } from "../../src";
+import ActionBar, { ColumnsArrangement, useColumnsArrangement, useFilter, Filter, Sort, useSort } from "../../src";
 import data from "./data";
 import CustomSingleSelectFilter from "./CustomSingleSelectFilter";
 
-const columnsSettingForFilterAndSort = [
+const columnsSettings = [
   {
     id: "goals",
-    type: "NUMBER",
+    type: ActionBar.columnTypes.NUMBER,
     label: "Goals",
   },
   {
     id: "name",
-    type: "TEXT",
+    type: ActionBar.columnTypes.TEXT,
     label: "Name",
   },
   {
     id: "status",
-    type: "TEXT",
+    type: ActionBar.columnTypes.TEXT,
     label: "Status",
   },
   { id: "country", label: "Country", type: "TEXT" },
   {
     id: "joined",
-    type: "DATE",
+    type: ActionBar.columnTypes.DATE,
     label: "Joined by",
     momentParsingFormat: "MM/DD/YYYY",
   },
   {
     id: "shareable",
-    type: "BOOLEAN",
+    type: ActionBar.columnTypes.BOOLEAN,
     label: "Shareable",
   },
   {
@@ -45,16 +45,16 @@ const customRulesByType = {
 };
 
 export default function App() {
-  const { filters, filteredData, onDeleteFilter, onFilterChange, ...filterProps } = useFilter({
-    columns: columnsSettingForFilterAndSort,
+  const { filters, filteredData, onDeleteFilter, onChangeFilter, ...filterProps } = useFilter({
+    columns: columnsSettings,
     rulesByType: customRulesByType,
     data,
   });
-  const { sortedFields, sortedData, onDeleteField, onChangeField, ...sortProps } = useSort({
-    columns: columnsSettingForFilterAndSort,
+  const { sortedFields, sortedData, onDeleteSort, onChangeSort, ...sortProps } = useSort({
+    columns: columnsSettings,
     data,
   });
-  const { orderedColumnIds, isColumnHidden, ...handlers } = useColumnsArragment([
+  const { orderedColumnIds, isColumnHidden, ...handlers } = useColumnsArrangement([
     "goals",
     "name",
     "status",
@@ -68,21 +68,6 @@ export default function App() {
     return sortedData.filter(item => !!filteredData.find(filteredItem => filteredItem.id === item.id));
   }, [filteredData, sortedData]);
 
-  const handleDeleteFilter = filterId => () => {
-    onDeleteFilter(filterId);
-  };
-  const handleChangeFilter = filterId => (type, params) => {
-    onFilterChange(type, { ...params, id: filterId });
-  };
-
-  const handleDeleteSortField = fieldId => () => {
-    onDeleteField(fieldId);
-  };
-
-  const handleChangeSortField = fieldId => (type, params) => {
-    onChangeField(type, { ...params, id: fieldId });
-  };
-
   const renderLevelFilter = () => <CustomSingleSelectFilter />;
 
   return (
@@ -90,78 +75,48 @@ export default function App() {
       <Heading level={2}>ActionBar showcase</Heading>
 
       <ActionBar>
-        <Filter {...filterProps} columns={columnsSettingForFilterAndSort} rulesByType={customRulesByType}>
+        <Filter {...filterProps} columns={columnsSettings} rulesByType={customRulesByType}>
           {filters.map((filter, index) => (
             <Filter.Item
-              key={filter.id}
-              {...filter}
+              columnId={filter.columnId}
+              id={filter.id}
               index={index}
-              onChange={handleChangeFilter(filter.id)}
-              onDelete={handleDeleteFilter(filter.id)}
+              key={filter.id}
+              label={filter.label}
+              onChange={onChangeFilter}
+              onDelete={onDeleteFilter}
               renderValueField={filter.columnId === "level" ? renderLevelFilter : null}
+              type={filter.type}
+              rule={filter.rule}
+              value={filter.value}
             />
           ))}
         </Filter>
 
-        <Sort {...sortProps} columns={columnsSettingForFilterAndSort}>
+        <Sort {...sortProps} columns={columnsSettings}>
           {sortedFields.map((field, index) => {
             return (
               <Sort.Field
-                key={field.id}
-                id={field.id}
                 columnId={field.columnId}
                 direction={field.direction}
-                onDelete={handleDeleteSortField(field.id)}
-                onChange={handleChangeSortField(field.id)}
+                id={field.id}
                 isFirst={index === 0}
+                key={field.id}
+                onChange={onChangeSort}
+                onDelete={onDeleteSort}
               />
             );
           })}
         </Sort>
 
         <ColumnsArrangement orderedColumnIds={orderedColumnIds} {...handlers}>
-          <ColumnsArrangement.ColumnDefinition
-            id="goals"
-            label="Goals"
-            isDisabled={false}
-            isHidden={isColumnHidden("goals")}
-          />
-          <ColumnsArrangement.ColumnDefinition
-            id="name"
-            label="Name"
-            isDisabled={false}
-            isHidden={isColumnHidden("name")}
-          />
-          <ColumnsArrangement.ColumnDefinition
-            id="status"
-            label="Status"
-            isDisabled={false}
-            isHidden={isColumnHidden("status")}
-          />
-          <ColumnsArrangement.ColumnDefinition
-            id="country"
-            label="Country"
-            isDisabled={false}
-            isHidden={isColumnHidden("country")}
-          />
-          <ColumnsArrangement.ColumnDefinition
-            id="joined"
-            label="Joined"
-            isDisabled={false}
-            isHidden={isColumnHidden("joined")}
-          />
-          <ColumnsArrangement.ColumnDefinition
-            id="shareable"
-            label="Shareable"
-            isDisabled={false}
-            isHidden={isColumnHidden("shareable")}
-          />
-          <ColumnsArrangement.ColumnDefinition
-            id="level"
-            label="Level"
-            isDisabled={false}
-            isHidden={isColumnHidden("level")}
-          />
+          {columnsSettings.map(column => (
+            <ColumnsArrangement.ColumnDefinition
+              id={column.id}
+              label={column.label}
+              isHidden={isColumnHidden(column.id)}
+            />
+          ))}
         </ColumnsArrangement>
       </ActionBar>
 
@@ -176,7 +131,7 @@ export default function App() {
           {subset.map(item => (
             <tr key={item.id}>
               <td>{item.id}</td>
-              {orderedColumnIds.map(id => (isColumnHidden(id) ? null : <td key={id}>{item[id]}</td>))}
+              {orderedColumnIds.map(id => (isColumnHidden(id) ? null : <td key={id}>{`${item[id]}`}</td>))}
             </tr>
           ))}
         </tbody>

@@ -1,7 +1,8 @@
 import React from "react";
 import { action } from "@storybook/addon-actions";
 import InfoIcon from "@paprika/icon/lib/InfoCircle";
-import Spinner from "../../../Spinner/src/index";
+import Spinner from "@paprika/spinner";
+import { Story } from "storybook/assets/styles/common.styles";
 import CollapsibleChecklists from "../../src/index";
 
 const AdvancedStory = () => {
@@ -191,36 +192,40 @@ const AdvancedStory = () => {
   }
 
   return (
-    <CollapsibleChecklists onChange={handleOnChange}>
-      <CollapsibleChecklists.Heading>California Sports Teams</CollapsibleChecklists.Heading>
-      <CollapsibleChecklists.Group title={californiaBasketball.title}>
-        {renderTeams(californiaBasketball.teams)}
-      </CollapsibleChecklists.Group>
-      <CollapsibleChecklists.Group title={californiaHockey.title}>
-        {renderTeams(californiaHockey.teams)}
-      </CollapsibleChecklists.Group>
-      <CollapsibleChecklists.Group title={californiaBaseball.title} isDisabled>
-        {renderTeams(californiaBaseball.teams)}
-      </CollapsibleChecklists.Group>
+    <Story>
+      <CollapsibleChecklists onChange={handleOnChange}>
+        <CollapsibleChecklists.Heading>California Sports Teams</CollapsibleChecklists.Heading>
+        <CollapsibleChecklists.Group title={californiaBasketball.title}>
+          {renderTeams(californiaBasketball.teams)}
+        </CollapsibleChecklists.Group>
+        <CollapsibleChecklists.Group title={californiaHockey.title}>
+          {renderTeams(californiaHockey.teams)}
+        </CollapsibleChecklists.Group>
+        <CollapsibleChecklists.Group title={californiaBaseball.title} isDisabled>
+          {renderTeams(californiaBaseball.teams)}
+        </CollapsibleChecklists.Group>
 
-      <CollapsibleChecklists.Heading>Ohio Sports Teams</CollapsibleChecklists.Heading>
-      <CollapsibleChecklists.Group title={ohioFootball.title} onExpand={handleExpandOhio} isIndeterminateByDefault>
-        {renderOhioFootballTeams()}
-      </CollapsibleChecklists.Group>
+        <CollapsibleChecklists.Heading>Ohio Sports Teams</CollapsibleChecklists.Heading>
+        <CollapsibleChecklists.Group title={ohioFootball.title} onExpand={handleExpandOhio} isIndeterminateByDefault>
+          {renderOhioFootballTeams()}
+        </CollapsibleChecklists.Group>
 
-      <CollapsibleChecklists.Heading>British Columbia Sports Teams</CollapsibleChecklists.Heading>
-      <CollapsibleChecklists.Group title={bcHockey.title} onExpand={handleExpandBc} isCheckedByDefault>
-        {renderBcHockeyTeams()}
-      </CollapsibleChecklists.Group>
+        <CollapsibleChecklists.Heading>British Columbia Sports Teams</CollapsibleChecklists.Heading>
+        <CollapsibleChecklists.Group title={bcHockey.title} onExpand={handleExpandBc} isCheckedByDefault>
+          {renderBcHockeyTeams()}
+        </CollapsibleChecklists.Group>
 
-      <CollapsibleChecklists.Heading>Manitoba Sports Teams</CollapsibleChecklists.Heading>
-      <CollapsibleChecklists.Group title={mbHockey.title} onExpand={handleExpandMb}>
-        {renderMbHockeyTeams()}
-      </CollapsibleChecklists.Group>
+        <CollapsibleChecklists.Heading>Manitoba Sports Teams</CollapsibleChecklists.Heading>
+        <CollapsibleChecklists.Group title={mbHockey.title} onExpand={handleExpandMb}>
+          {renderMbHockeyTeams()}
+        </CollapsibleChecklists.Group>
 
-      <CollapsibleChecklists.Heading>Saskatchewan Sports Teams</CollapsibleChecklists.Heading>
-      <div style={{ fontStyle: "italic", padding: "4px" }}>None available (this shows that any child is accepted)</div>
-    </CollapsibleChecklists>
+        <CollapsibleChecklists.Heading>Saskatchewan Sports Teams</CollapsibleChecklists.Heading>
+        <div style={{ fontStyle: "italic", padding: "4px" }}>
+          None available (this shows that any child is accepted)
+        </div>
+      </CollapsibleChecklists>
+    </Story>
   );
 };
 

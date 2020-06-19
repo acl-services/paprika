@@ -1,6 +1,6 @@
 describe("<DropdownMenu />", () => {
   beforeEach(() => {
-    cy.visitStorybook("dropdownmenu-cypress--dropdownmenu-test");
+    cy.visitStorybook("commands-dropdownmenu-backyard-tests--cypress");
   });
 
   it("should show hide dropdown content when when clicking trigger", () => {

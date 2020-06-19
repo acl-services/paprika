@@ -15,6 +15,8 @@ const propTypes = {
   /** If the data cell should automatically get focus  */
   autofocus: PropTypes.bool,
   children: PropTypes.node.isRequired,
+  /** Add an alternate background on the DataGrid's rows */
+  hasZebraStripes: PropTypes.bool,
   /** Array of data to be stored in the DataGrid */
   data: PropTypes.arrayOf(PropTypes.shape({})),
   /** Sets the height of the DataGrid */
@@ -39,6 +41,7 @@ const propTypes = {
 const defaultProps = {
   autofocus: true,
   data: [],
+  hasZebraStripes: false,
   height: 600,
   onClick: null,
   onKeyDown: () => {},
@@ -65,6 +68,7 @@ const DataGrid = React.forwardRef((props, ref) => {
     autofocus,
     children,
     data,
+    hasZebraStripes,
     height,
     onClick,
     onKeyDown,
@@ -81,7 +85,9 @@ const DataGrid = React.forwardRef((props, ref) => {
   const refPrevActiveCell = React.useRef(null);
   const refScrollHeader = React.useRef(null);
   const refContainer = React.useRef(null);
-  const refGrid = React.useRef(null);
+  const refGridColumns = React.useRef(null);
+  const refGridStickyHeader = React.useRef(null);
+  const refGridHeader = React.useRef(null);
   const refScrollStickyColumns = React.useRef(null);
   const refScrollGrid = React.useRef(null);
   const refScrollHappenedBy = React.useRef(null);
@@ -94,6 +100,9 @@ const DataGrid = React.forwardRef((props, ref) => {
     start: null,
     stop: null,
   });
+  const refTotalColumnWidth = React.useRef(0);
+  const refRemainingSpace = React.useRef(0);
+  const refTotalCanGrow = React.useRef(0);
 
   const [scrollBarWidth, setScrollBarWidth] = React.useState(0);
   const [gridShouldHaveFocus, setGridShouldHaveFocus] = React.useState(true);
@@ -112,12 +121,13 @@ const DataGrid = React.forwardRef((props, ref) => {
   } = extractChildren(children, ["DataGrid.ColumnDefinition", "DataGrid.Basement", "DataGrid.InfiniteScroll"]);
 
   let ColumnDefinitions = extractedColumnDefinitions;
+  let columnCount = ColumnDefinitions && ColumnDefinitions.length;
+
   if (!Array.isArray(extractedColumnDefinitions)) {
     // when there is only one component extracted function return the element not an array of elements
     ColumnDefinitions = [extractedColumnDefinitions];
+    columnCount = ColumnDefinitions.length;
   }
-
-  const columnCount = ColumnDefinitions.length;
 
   const columnHeadersA11yText = React.useMemo(() => {
     return ColumnDefinitions.map(ColumnDefinition => {
@@ -216,7 +226,7 @@ const DataGrid = React.forwardRef((props, ref) => {
     onPressShiftSpaceBar,
     onPressSpaceBar,
     refContainer,
-    refGrid,
+    refGrid: refGridColumns,
     rowCount,
     rowHeight,
     scrollBarWidth,
@@ -432,6 +442,27 @@ const DataGrid = React.forwardRef((props, ref) => {
     });
   }, [gridId, data]);
 
+  React.useEffect(() => {
+    if (!refContainer.current) return;
+
+    if (refGridColumns.current && refGridStickyHeader.current && refGridHeader.current) {
+      refGridHeader.current.resetAfterColumnIndex(0);
+      refGridStickyHeader.current.resetAfterColumnIndex(0);
+      refGridColumns.current.resetAfterColumnIndex(0);
+    }
+
+    ColumnDefinitions.forEach(columnDefinition => {
+      refTotalColumnWidth.current += columnDefinition.props.width;
+      if (columnDefinition.props.canGrow) {
+        refTotalCanGrow.current += 1;
+      }
+    });
+
+    // TODO: Figure out how scrollbarwidth can be calculated initially so that its not always 0
+    refRemainingSpace.current = refContainer.current.offsetWidth - refTotalColumnWidth.current - 15;
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
+
   const handleMouseOver = event => {
     highlightRow({ rowIndex: event.target.dataset.rowIndex });
   };
@@ -439,6 +470,22 @@ const DataGrid = React.forwardRef((props, ref) => {
   const handleMouseLeave = React.useCallback(() => {
     deemphasizeRow();
   }, [deemphasizeRow]);
+
+  const calculateColumnWidth = columnIndex => {
+    if (stickyColumnsIndexes.includes(columnIndex)) {
+      return 0;
+    }
+
+    if (
+      ColumnDefinitions[columnIndex].props.canGrow &&
+      refTotalCanGrow.current !== 0 &&
+      refRemainingSpace.current > 0
+    ) {
+      return ColumnDefinitions[columnIndex].props.width + refRemainingSpace.current / refTotalCanGrow.current;
+    }
+
+    return ColumnDefinitions[columnIndex].props.width;
+  };
 
   if (data.length === 0) return null;
 
@@ -470,6 +517,7 @@ const DataGrid = React.forwardRef((props, ref) => {
               return ColumnDefinitions[stickyColumnsIndexes[columnIndex]].props.width;
             }}
             height={rowHeight}
+            ref={refGridStickyHeader}
             rowCount={1}
             rowHeight={() => rowHeight}
             width={stickyGridWidth}
@@ -493,10 +541,8 @@ const DataGrid = React.forwardRef((props, ref) => {
 
           <Grid
             columnCount={columnCount}
-            columnWidth={columnIndex => {
-              if (stickyColumnsIndexes.includes(columnIndex)) return 0;
-              return ColumnDefinitions[columnIndex].props.width;
-            }}
+            columnWidth={calculateColumnWidth}
+            ref={refGridHeader}
             rowCount={1}
             rowHeight={() => rowHeight}
             height={rowHeight}
@@ -559,6 +605,7 @@ const DataGrid = React.forwardRef((props, ref) => {
                   columnIndex={columnIndex}
                   data={data}
                   gridId={gridId}
+                  hasZebraStripes={hasZebraStripes}
                   ref={handleRefCell({ columnIndex, rowIndex })}
                   rowIndex={rowIndex}
                   style={style}
@@ -572,9 +619,7 @@ const DataGrid = React.forwardRef((props, ref) => {
           <Grid
             className={`grid-${gridId}`}
             columnCount={columnCount}
-            columnWidth={columnIndex => {
-              return stickyColumnsIndexes.includes(columnIndex) ? 0 : ColumnDefinitions[columnIndex].props.width;
-            }}
+            columnWidth={calculateColumnWidth}
             height={calculatedTableHeight}
             innerElementType={innerElementTypeMainGrid}
             onItemsRendered={handleItemsRendered}
@@ -582,7 +627,7 @@ const DataGrid = React.forwardRef((props, ref) => {
             outerElementType={outerElementTypeMainGrid}
             overscanColumnCount={overscanColumnCount}
             overscanRowCount={overscanRowCount}
-            ref={refGrid}
+            ref={refGridColumns}
             rowCount={rowCount}
             rowHeight={() => rowHeight}
             width={gridWidth - stickyGridWidth}
@@ -607,6 +652,7 @@ const DataGrid = React.forwardRef((props, ref) => {
                   columnIndex={columnIndex}
                   data={data}
                   gridId={gridId}
+                  hasZebraStripes={hasZebraStripes}
                   ref={handleRefCell({ columnIndex, rowIndex })}
                   rowIndex={rowIndex}
                   style={style}

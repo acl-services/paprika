@@ -16,7 +16,7 @@ const propTypes = {
   appliedNumber: PropTypes.number,
   children: PropTypes.node,
   columns: PropTypes.arrayOf(PropTypes.shape(columnShape)).isRequired,
-  onAddField: PropTypes.func.isRequired,
+  onAddSort: PropTypes.func.isRequired,
   onApply: PropTypes.func.isRequired,
   onCancel: PropTypes.func,
   onClose: PropTypes.func,
@@ -43,7 +43,7 @@ function getLabelText(numberOfFields, I18n) {
 }
 
 export default function Sort(props) {
-  const { appliedNumber, children, columns, onAddField, onApply, onCancel, onClose, onOpen } = props;
+  const { appliedNumber, children, columns, onAddSort, onApply, onCancel, onClose, onOpen } = props;
   const I18n = useI18n();
   const fieldsRef = React.useRef(null);
   const [isOpen, setIsOpen] = React.useState(false);
@@ -95,7 +95,7 @@ export default function Sort(props) {
               )}
             </sc.FieldsPanel>
             <sc.Footer>
-              <Button onClick={onAddField} kind="minor">
+              <Button onClick={onAddSort} kind="minor">
                 {I18n.t(`actionBar.sort.add_field`)}
               </Button>
               <Button onClick={handleApply} kind="flat" icon={<CheckIcon />}>

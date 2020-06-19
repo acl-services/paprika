@@ -7,18 +7,14 @@ ja:
     dataGrid:
       a11yTextMessage: "{{value}}. 行 {{rowIndex}}、列 {{columnIndex}} の位置にいます。次の情報は無視してください。"
     uploader:
-      label: ドラッグ アンド ドロップするか、お手元のコンピュータからファイルを選択する
-      overlay:
-        title: ドラッグ アンド ドロップ
-        subtitle: ファイルをここに
-      form:
-        dragAndDrop: ドラッグ アンド ドロップ
-        or: または
-        chooseFiles: コンピューターからファイルを選択
-        from: コンピューターから
+      drop_files: アップロードするファイルをドロップ
+      drop_files_here_or: アップロードするファイルをここにドロップまたは
+      choose_from_computer: コンピューターから選択
+      cancel_upload: アップロードをキャンセル
+      restart_upload: アップロードを再起動
       errors:
-        file_size: ファイル サイズの最大である {{size}} を超過しています。
-        file_type: "{{type}} は誤ったファイルの種類です。"
+        size: ファイルは{{maxFileSize}}未満にする必要があります
+        type: "ファイルは次のタイプの1つにする必要があります: {{- supportedTypes}}"
       status:
         idle: アイドル状態
         processing: 処理中
@@ -26,6 +22,17 @@ ja:
         success: 成功
         cancel: キャンセル
         error: エラー
+      progress:
+        cancelled: 取り消されました
+        complete: 完了
+        idle: アイドル状態
+        uploading: '{{sizeWithUnits}}のうち{{progressWithUnits}}をアップロード'
+      size_abbreviations:
+        byte: B
+        kibibyte: KiB
+        mebibyte: MiB
+        gibibyte: GiB
+        tebibyte: TiB
     actions:
       delete: 削除
       apply: 適用
@@ -108,24 +115,24 @@ ja:
         add_filter: フィルター対象のフィールドを追加
         and: および
         or: または
-        where: 場合
+        where: 条件として
         rules:
-          is: である
-          is_not: ではない
-          contains: 含む
-          does_not_contain: 含まない
-          is_blank: 空白である
-          is_not_blank: 空白でない
-          equals: 一致する
-          not_equal_to: 等しくない
+          is: 'は次である:'
+          is_not: 'は次でない:'
+          contains: 'は次を含む:'
+          does_not_contain: 'は次を含まない:'
+          is_blank: は空白である
+          is_not_blank: は空白でない
+          equals: 'は次と一致する:'
+          not_equal_to: 'は次と一致しない:'
           greater_than: ">"
           less_than: "<"
           greater_than_or_equal_to: "≥"
           less_than_or_equal_to: "≤"
-          is_empty: は空です
-          is_not_empty: は空ではありません
-          is_before: は前ではありません
-          is_after: は後ではありません
+          is_empty: は空である
+          is_not_empty: は空でない
+          is_before: 'は次より前である:'
+          is_after: 'は次より後である:'
           true: "真"
           false: "偽"
       search_placeholder: フィルター...

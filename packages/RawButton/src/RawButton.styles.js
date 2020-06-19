@@ -11,7 +11,13 @@ const focusStyles = isInset => css`
   }
 
   [data-whatinput="mouse"] &:focus {
-    box-shadow: none;
+    &[data-has-forced-focus="true"] {
+      box-shadow: ${tokens.highlight.active.noBorder.boxShadow};
+    }
+
+    &:not([data-has-forced-focus="true"]) {
+      box-shadow: none;
+    }
   }
 `;
 

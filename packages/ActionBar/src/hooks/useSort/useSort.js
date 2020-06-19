@@ -27,7 +27,7 @@ export default function useSort({ data = null, columns }) {
   const [appliedNumber, setAppliedNumber] = React.useState(0);
   const I18n = useI18n();
 
-  const handleAddItem = React.useCallback(() => {
+  const handleAddField = React.useCallback(() => {
     setSortedFields(prevFields => [
       ...prevFields,
       {
@@ -38,7 +38,7 @@ export default function useSort({ data = null, columns }) {
     ]);
   }, [columns]);
 
-  const handleDeleteItem = React.useCallback(
+  const handleDeleteField = React.useCallback(
     deletedId => {
       setSortedFields(prevFields => prevFields.filter(filter => filter.id !== deletedId));
     },
@@ -52,7 +52,7 @@ export default function useSort({ data = null, columns }) {
     }
   }
 
-  const handleChangeItem = React.useCallback(
+  const handleChangeField = React.useCallback(
     (type, { id: fieldId, direction, columnId }) => {
       let change = {};
 
@@ -78,9 +78,9 @@ export default function useSort({ data = null, columns }) {
     appliedNumber,
     sortedData,
     sortedFields,
-    onAddField: handleAddItem,
-    onDeleteField: handleDeleteItem,
-    onChangeField: handleChangeItem,
+    onAddSort: handleAddField,
+    onDeleteSort: handleDeleteField,
+    onChangeSort: handleChangeField,
     onApply: handleApply,
   };
 }
