@@ -1,9 +1,4 @@
 // jest.config.js
 module.exports = {
-  setupFilesAfterEnv: [
-    "jest-dom/extend-expect",
-    "@testing-library/react/cleanup-after-each",
-    "given2/setup",
-    "./testingHelpers/config.js",
-  ],
+  setupFilesAfterEnv: ["@testing-library/jest-dom/extend-expect", "given2/setup", "./testingHelpers/config.js"],
 };
