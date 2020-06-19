@@ -3,8 +3,8 @@ import { css } from "styled-components";
 import tokens from "@paprika/tokens";
 import stylers from "@paprika/stylers";
 
-import calendarBaseStyles from "./CalendarBase.styles";
-import { hoveredItemStyles, selectedItemStyles, visuallyHiddenStyles } from "../../shared.styles";
+import calendarBaseStyles from "./calendar.base.styles";
+import { hoveredItemStyles, selectedItemStyles, visuallyHiddenStyles } from "./shared.styles";
 
 export const arrowIconStyles = css`
   > svg[role="presentation"] {
@@ -95,7 +95,9 @@ const calendarStyles = css`
       }
     }
 
-    &.CalendarDay__selected {
+    &.CalendarDay__selected,
+    &.CalendarDay__selected_span,
+    &.CalendarDay__hovered_span {
       background-color: ${tokens.color.white};
     }
 
@@ -173,6 +175,21 @@ const dayTriggerTodayStyle = css`
   font-weight: bold;
 `;
 
+const dayTriggerSpanStyle = css`
+  background-color: ${tokens.color.blueLighten50};
+  border-radius: 0;
+`;
+
+const dayTriggerInRangeStyles = css`
+  .CalendarDay__selected_start & {
+    border-radius: ${tokens.border.radius} 0 0 ${tokens.border.radius};
+  }
+
+  .CalendarDay__selected_end & {
+    border-radius: 0 ${tokens.border.radius} ${tokens.border.radius} 0;
+  }
+`;
+
 export const dayTriggerStyles = css`
   align-items: center;
   border-radius: ${tokens.border.radius};
@@ -181,14 +198,26 @@ export const dayTriggerStyles = css`
   display: inline-flex;
   height: 27px;
   justify-content: center;
-  width: 33px;
+  width: 100%;
 
   &:hover {
     ${hoveredItemStyles}
   }
 
-  ${({ isSelected }) => (isSelected ? dayTriggerSelectedStyle : null)}
-  ${({ isToday }) => (isToday ? dayTriggerTodayStyle : null)}
+  .CalendarDay__today & {
+    ${dayTriggerTodayStyle};
+  }
+
+  .CalendarDay__selected & {
+    ${dayTriggerSelectedStyle};
+  }
+
+  .CalendarDay__selected_span &,
+  .CalendarDay__hovered_span & {
+    ${dayTriggerSpanStyle};
+  }
+
+  ${({ isRangeSelected }) => isRangeSelected && dayTriggerInRangeStyles};
 `;
 
 export const monthHeaderButtonStyles = css`

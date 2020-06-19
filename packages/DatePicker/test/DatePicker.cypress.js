@@ -16,9 +16,9 @@ describe("<DatePicker />", () => {
 
     cy.get(".CalendarDay__today").should("have.attr", "aria-label", today.format("dddd, MMMM D, YYYY"));
 
-    cy.getByTestId("datepicker-next-month").click();
-    cy.getByTestId("datepicker-next-month").click();
-    cy.getByTestId("datepicker-prev-month").click();
+    cy.getByTestId("calendar-next-month").click();
+    cy.getByTestId("calendar-next-month").click();
+    cy.getByTestId("calendar-prev-month").click();
     cy.get(`[aria-label="${targetDate.format("dddd, MMMM D, YYYY")}"]`)
       .last()
       .click({ force: true });
@@ -26,7 +26,7 @@ describe("<DatePicker />", () => {
 
   const openShortcut = () => {
     cy.getByTestId("datepicker.input").click();
-    cy.getByTestId("datepicker.calendar.header")
+    cy.getByTestId("calendar.header")
       .contains(today.format("MMMM YYYY"))
       .click();
   };
@@ -46,12 +46,12 @@ describe("<DatePicker />", () => {
 
   it("should open shortcut panel and be able to jump to target month", () => {
     openShortcut();
-    cy.getByTestId("datepicker.calendar.shortcut").should("be.visible");
+    cy.getByTestId("calendar.shortcut").should("be.visible");
 
     cy.get('label[for="0"]').click();
     cy.get('label[for="2018"]').click();
-    cy.getByTestId("datepicker.calendar.apply").click();
-    cy.getByTestId("datepicker.calendar.header")
+    cy.getByTestId("calendar.apply").click();
+    cy.getByTestId("calendar.header")
       .contains("January 2018")
       .should("be.visible");
   });
@@ -70,7 +70,7 @@ describe("<DatePicker />", () => {
     cy.getByTestId("datepicker.input").type("5/6/2001");
 
     cy.tick(5000);
-    cy.getByTestId("datepicker.calendar.header")
+    cy.getByTestId("calendar.header")
       .contains("May 2001")
       .should("be.visible");
 
