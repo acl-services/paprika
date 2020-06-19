@@ -4,11 +4,11 @@ import moment from "moment";
 
 import Popover from "@paprika/popover";
 import DateInput from "@paprika/date-input";
+import Calendar from "@paprika/calendar/lib/SingleDateCalendar";
 import useDebounce from "@paprika/helpers/lib/hooks/useDebounce";
 import isElementContainsFocus from "@paprika/helpers/lib/dom/isElementContainsFocus";
 import extractChildrenProps from "@paprika/helpers/lib/extractChildrenProps";
 
-import Calendar from "./components/Calendar";
 import DateInputPropsCollector from "./components/DateInputPropsCollector";
 import DatePickerPopoverPropsCollector from "./components/DatePickerPopoverPropsCollector";
 

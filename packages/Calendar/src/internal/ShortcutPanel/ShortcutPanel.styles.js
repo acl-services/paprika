@@ -3,7 +3,7 @@ import { css } from "styled-components";
 import tokens from "@paprika/tokens";
 import stylers from "@paprika/stylers";
 
-import { hoveredItemStyles, selectedItemStyles, visuallyHiddenStyles } from "../../shared.styles";
+import { hoveredItemStyles, selectedItemStyles, visuallyHiddenStyles } from "../shared.styles";
 
 export const actionBarStyles = css`
   align-items: center;
