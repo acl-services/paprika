@@ -8,10 +8,10 @@ const KnobPositionStyles = {
     transform: translateX(12px);
   `,
   medium: css`
-    transform: translate(20px, 0);
+    transform: translate(16px, 0);
   `,
   large: css`
-    transform: translate(28px);
+    transform: translate(20px);
   `,
 };
 
@@ -25,19 +25,19 @@ const KnobSizeStyles = {
     }
   `,
   medium: css`
+    height: 16px;
+    width: 16px;
+
+    &::after {
+      height: 17px;
+    }
+  `,
+  large: css`
     height: 20px;
     width: 20px;
 
     &::after {
       height: 21px;
-    }
-  `,
-  large: css`
-    height: 28px;
-    width: 28px;
-
-    &::after {
-      height: 29px;
     }
   `,
 };
@@ -48,12 +48,12 @@ const UnderlaySizeStyles = {
     width: 28px;
   `,
   medium: css`
-    height: ${stylers.spacer(3)};
-    width: 44px;
+    height: ${stylers.spacer(2.5)};
+    width: 36px;
   `,
   large: css`
-    height: ${stylers.spacer(4)};
-    width: 60px;
+    height: ${stylers.spacer(3)};
+    width: 44px;
   `,
 };
 
