@@ -125,13 +125,13 @@ export const HeaderRow = React.memo(({ data: RowData, columnIndex, style }) => {
 }, areEqual);
 
 export const StickyHeaderRow = React.memo(({ data: RowData, columnIndex, style }) => {
-  const { ColumnDefinitions } = RowData;
+  const { ColumnDefinitions, borderType } = RowData;
   const { header, headerProps } = ColumnDefinitions[columnIndex].props;
 
   const { style: styleProps = {}, ...moreProps } = typeof headerProps === "function" ? headerProps({ header }) : {};
 
   return (
-    <CellHeader role="columnheader" style={{ ...style, ...styleProps }} {...moreProps}>
+    <CellHeader role="columnheader" style={{ ...style, ...styleProps }} {...moreProps} borderType={borderType}>
       {typeof header === "function" ? header() : header}
     </CellHeader>
   );

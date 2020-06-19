@@ -19,10 +19,12 @@ const propTypes = {
   style: PropTypes.shape({}).isRequired,
   /** Add an alternate background on the DataGrid's rows */
   hasZebraStripes: PropTypes.bool.isRequired,
+  /** Define the look for borders in the table */
+  borderType: PropTypes.oneOf(["grid", "empty", "horizontal", "vertical"]).isRequired,
 };
 
 export default function Cell(props) {
-  const { style, gridId, columnIndex, rowIndex, column, data, a11yText, hasZebraStripes } = props;
+  const { style, gridId, columnIndex, rowIndex, column, data, a11yText, hasZebraStripes, borderType } = props;
 
   const options = {
     row: data[rowIndex],
@@ -38,11 +40,12 @@ export default function Cell(props) {
 
   return (
     <sc.Cell
-      tabIndex={-1}
-      style={style}
+      borderType={borderType}
       data-cell={`${gridId}.${columnIndex}.${rowIndex}`}
-      rowIndex={rowIndex}
       hasZebraStripes={hasZebraStripes}
+      rowIndex={rowIndex}
+      style={style}
+      tabIndex={-1}
     >
       <sc.GridCell role="gridcell">{a11yText}</sc.GridCell>
       <sc.InnerCell {...cellProps} aria-hidden="true" {...options.attrs}>

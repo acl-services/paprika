@@ -15,7 +15,11 @@ import getScrollbarWidth from "./helpers/getScrollbarWidth";
 const propTypes = {
   /** If the data cell should automatically get focus  */
   autofocus: PropTypes.bool,
+  /** Define the look for borders in the table */
+  borderType: PropTypes.oneOf(["grid", "empty", "horizontal", "vertical"]),
   children: PropTypes.node.isRequired,
+  /** This will force the table to include in the calculation of the table the scrollbar thickness */
+  forceTableWidthWithScrollBars: PropTypes.bool,
   /** Add an alternate background on the DataGrid's rows */
   hasZebraStripes: PropTypes.bool,
   /** Array of data to be stored in the DataGrid */
@@ -37,15 +41,14 @@ const propTypes = {
   rowHeight: PropTypes.number,
   /** Sets the DataGrid width */
   width: PropTypes.number,
-  /** Define the look for borders in the table */
-  borderType: PropTypes.oneOf(["grid", "empty", "horizontal", "vertical"]),
 };
 
 const defaultProps = {
   autofocus: true,
   borderType: "grid",
   data: [],
-  hasZebraStripes: true,
+  forceTableWidthWithScrollBars: false,
+  hasZebraStripes: false,
   height: 600,
   onClick: null,
   onKeyDown: () => {},
@@ -73,6 +76,7 @@ const DataGrid = React.forwardRef((props, ref) => {
     borderType,
     children,
     data,
+    forceTableWidthWithScrollBars,
     hasZebraStripes,
     height,
     onClick,
@@ -107,7 +111,7 @@ const DataGrid = React.forwardRef((props, ref) => {
   const refRemainingSpace = React.useRef(0);
   const refTotalCanGrow = React.useRef(0);
 
-  const [scrollBarWidth] = React.useState(getScrollbarWidth);
+  const [scrollBarWidth, setScrollBarWidth] = React.useState(getScrollbarWidth);
   const [pageSize, setPageSize] = React.useState(null);
   const i18n = useI18n();
   // these two value are sensitive in Grids with lots of columns and can degradate performance alot.
@@ -269,15 +273,20 @@ const DataGrid = React.forwardRef((props, ref) => {
     refScrollGrid.current = refContainer.current.querySelector(`.grid-${gridId}`);
   }, [gridId]);
 
-  // React.useLayoutEffect(() => {
-  //   const scrollContainer =
-  //     refContainer.current && refContainer.current.querySelector(`.grid-${gridId} [role="row"]`).parentElement;
+  React.useLayoutEffect(() => {
+    const scrollContainer =
+      refContainer.current && refContainer.current.querySelector(`.grid-${gridId} [role="row"]`).parentElement;
 
-  //   if (!scrollContainer) return;
-  //   // https://stackoverflow.com/questions/21064101/understanding-offsetwidth-clientwidth-scrollwidth-and-height-respectively
-  //   // https://davidwalsh.name/detect-scrollbar-width
-  //   setScrollBarWidth(() => scrollContainer.offsetWidth - scrollContainer.clientWidth);
-  // }, [gridId]);
+    if (!scrollContainer) return;
+    // https://stackoverflow.com/questions/21064101/understanding-offsetwidth-clientwidth-scrollwidth-and-height-respectively
+    // https://davidwalsh.name/detect-scrollbar-width
+
+    if (forceTableWidthWithScrollBars) {
+      return;
+    }
+
+    setScrollBarWidth(() => scrollContainer.offsetWidth - scrollContainer.clientWidth);
+  }, [forceTableWidthWithScrollBars, gridId]);
 
   function handleFocusGrid() {
     const $isBlurred = refContainer.current.querySelector(".grid--is-blurred");
