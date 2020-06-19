@@ -23,7 +23,12 @@ export default () => {
   return (
     <Story>
       <Heading level={3}>Colors</Heading>
-      <div style={{ display: "flex", flexWrap: "wrap" }}>
+      <div
+        css={`
+          display: flex;
+          flex-wrap: wrap;
+        `}
+      >
         {text.map(text => {
           const color = getAvatarColors(text);
           const initial = text.charAt(0).toUpperCase();
@@ -38,10 +43,10 @@ export default () => {
       </div>
       <div>
         <Heading level={3}>Sizes</Heading>
-        <Avatar backgroundColor="black" size="small">
+        <Avatar backgroundColor="black" color="white" size="small">
           S
         </Avatar>
-        <Avatar backgroundColor="black" size="medium">
+        <Avatar backgroundColor="black" color="white" size="medium">
           M
         </Avatar>
       </div>

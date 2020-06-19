@@ -19,7 +19,7 @@ const ExampleStory = props => (
     </Heading>
     <Tagline>Use the knobs to tinker with the props.</Tagline>
     <Rule />
-    <Avatar {...props}>{props.children}</Avatar>
+    <Avatar {...props} />
   </Story>
 );
 

@@ -1,7 +1,6 @@
 import { spacer } from "@paprika/stylers/lib/helpers";
 import styled from "styled-components";
 import stylers from "@paprika/stylers";
-import tokens from "@paprika/tokens";
 
 const smallSize = `${spacer(4)}`;
 const mediumSize = `${spacer(5)}`;
@@ -22,9 +21,8 @@ export const avatarSizeStyles = {
   `,
 };
 
-export const Avatar = styled.div`
+const commonStyles = styled.div`
   align-items: center;
-  color: ${tokens.color.white};
   display: inline-flex;
   font-weight: bold;
   justify-content: center;
@@ -33,6 +31,16 @@ export const Avatar = styled.div`
   * {
     box-sizing: border-box;
   }
+`;
 
-  ${({ size }) => avatarSizeStyles[size]};
+export const Avatar = styled(commonStyles)`
+  ${props => {
+    const size = avatarSizeStyles[props.size];
+
+    return `
+      background-color: ${props.backgroundColor};
+      color: ${props.color};
+      ${size};
+    `;
+  }}
 `;
