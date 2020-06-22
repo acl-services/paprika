@@ -61,7 +61,6 @@ export default function Takeover(props) {
 
   const takeoverOverlay = overlayExtracted || <TakeoverOverlay />;
   const overlayProps = {
-    zIndex,
     "data-pka-anchor": "takeover.overlay",
     hasBackdrop: false,
     focusLockOptions,
@@ -70,6 +69,7 @@ export default function Takeover(props) {
     onAfterClose,
     onAfterOpen,
     onClose,
+    zIndex,
   };
 
   function getAriaLabel() {
@@ -92,6 +92,7 @@ export default function Takeover(props) {
       aria-modal="true"
       data-pka-anchor="takeover"
       role="dialog"
+      zIndex={zIndex}
     >
       {headerExtracted && <sc.Header {...headerExtracted.props} onClose={onClose} />}
       {contentExtracted && (

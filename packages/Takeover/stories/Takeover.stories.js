@@ -161,7 +161,7 @@ storiesOf(`${storyName}/Backyard/Sandbox`, module)
         `}
       >
         <Button onClick={toggle}>Open Takeover</Button>
-        <Takeover isOpen={isOpen} onClose={toggle} zIndex={999}>
+        <Takeover isOpen={isOpen} onClose={toggle} zIndex={99}>
           <Takeover.Header
             hasCloseButton={boolean("Has close button", true, "Takeover.Header")}
             kind={select("Kind", ["default", "primary"], "default", "Takeover.Header")}
