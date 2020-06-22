@@ -3,15 +3,10 @@ import moment from "moment";
 import { boolean, select, text, withKnobs } from "@storybook/addon-knobs";
 import { storiesOf } from "@storybook/react";
 import { getStoryName } from "storybook/storyTree";
-import L10n from "@paprika/l10n";
 import Example from "./DatePickerExample";
 import DatePicker from "../src/DatePicker";
-import Calendar from "../src/components/Calendar";
-import ShortCutPanel from "../src/components/ShortcutPanel";
 
 const storyName = getStoryName("DatePicker");
-
-const noop = () => {};
 
 storiesOf(storyName, module)
   .addDecorator(withKnobs)
@@ -51,15 +46,3 @@ storiesOf(`${storyName}/Backyard/Tests`, module).add("Cypress", () => (
     <DatePicker.Input data-pka-anchor="datepicker.input" />
   </Example>
 ));
-
-storiesOf(`${storyName}/Backyard/Tests/Screener`, module)
-  .add("Calendar", () => (
-    <L10n>
-      <Calendar date={moment("2019-01-01", "YYYY-MM-DD")} isOpen onSelect={noop} />
-    </L10n>
-  ))
-  .add("Shortcut panel", () => (
-    <L10n>
-      <ShortCutPanel isVisible date={moment("2019-01-01", "YYYY-MM-DD")} onCancel={noop} onConfirm={noop} />
-    </L10n>
-  ));

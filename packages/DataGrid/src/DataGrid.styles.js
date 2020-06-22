@@ -66,7 +66,19 @@ const borders = {
   vertical: `box-shadow: 0 -1px 0 0px ${tokens.border.color};`,
 };
 
-export const Cell = styled.div`
+export const Cell = styled.div.attrs(({ hasZebraStripes, rowIndex, borderType }) => {
+  const shadow = borderType in borders ? borders[borderType] : borders.grid;
+
+  const style = {
+    background:
+      hasZebraStripes && rowIndex % 2 === 0
+        ? `${tokens.table.rowEven.backgroundColor}`
+        : `${tokens.table.row.backgroundColor}`,
+    boxShadow: shadow,
+  };
+
+  return { style };
+})`
   background: ${tokens.color.white};
   box-sizing: border-box;
   display: flex;
