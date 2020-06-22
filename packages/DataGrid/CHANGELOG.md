@@ -6,10 +6,14 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 
 ## [0.2.0] - 2020-06-22
 
-- Breaking change
-- Deprecated onmouseover events now its not possible to hide and show columns
-- Added memoization for the four grids using React.memo and memoize-one
+### Breaking change
+
+- deprecated onmouseover events now its not possible to hide and show columns on mouse ovr on a row.
 - Deprecate autofocus props, since is no working as expected need a11y expert input to implemented again
+
+### Added
+
+- memoization for the four grids using React.memo and memoize-one
 
 ## [0.1.8] - 2020-06-09
 
