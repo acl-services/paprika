@@ -46,11 +46,23 @@ const disabledTextStyles = css`
 `;
 
 const activeStyles = css`
-  border-color: ${tokens.highlight.active.noBorder.borderColor};
-  box-shadow: ${tokens.highlight.active.noBorder.boxShadow};
+  ${stylers.focusRing.bordered()}
+`;
 
-  &:hover:not([disabled]):not([aria-disabled="true"]) {
-    border-color: ${tokens.highlight.active.noBorder.borderColor};
+const mouseStyles = css`
+  [data-whatinput="mouse"] &:not([data-has-forced-focus="true"]):focus {
+    border-color: ${tokens.border.color};
+    box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.1);
+
+    &[kind="minor"],
+    &[kind="link"] {
+      box-shadow: none;
+      border-color: transparent;
+    }
+
+    &[kind="flat"] {
+      box-shadow: none;
+    }
   }
 `;
 
@@ -72,33 +84,10 @@ const commonStyles = css`
   vertical-align: middle;
 
   &:focus {
-    box-shadow: ${tokens.highlight.active.noBorder.boxShadow};
-    border-color: ${tokens.highlight.active.noBorder.borderColor};
-    outline: none;
+    ${stylers.focusRing.bordered()}
   }
 
-  [data-whatinput="mouse"] &:focus {
-    &[data-has-forced-focus="true"] {
-      box-shadow: ${tokens.highlight.active.noBorder.boxShadow};
-    }
-
-    &:not([data-has-forced-focus="true"]) {
-      box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.1);
-      border-color: ${tokens.border.color};
-
-      &[kind="minor"],
-      &[kind="link"] {
-        box-shadow: none;
-        border-color: transparent;
-      }
-
-      &[kind="flat"] {
-        box-shadow: none;
-      }
-    }
-
-    ${({ isActive }) => (isActive ? activeStyles : "")}
-  }
+  ${({ isActive }) => (isActive ? activeStyles : mouseStyles)}
 
   &:active {
     box-shadow: ${tokens.highlight.active.noBorder.boxShadow}, inset 0 1px 1px 0 rgba(0, 0, 0, 0.1),
