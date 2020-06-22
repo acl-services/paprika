@@ -61,8 +61,6 @@ const Checkbox = props => {
   const inputRef = React.useRef(null);
   const extendedInputProps = extractChildrenProps(children, CheckboxInputPropsCollector);
 
-  console.log(extendedInputProps);
-
   React.useEffect(() => {
     if (!inputRef.current) return;
 
