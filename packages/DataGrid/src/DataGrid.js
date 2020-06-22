@@ -81,8 +81,6 @@ const DataGrid = React.forwardRef((props, ref) => {
     ...moreProps
   } = props;
 
-  const refsCell = React.useRef({ keys: {}, rows: {} });
-  const refPrevActiveCell = React.useRef(null);
   const refScrollHeader = React.useRef(null);
   const refContainer = React.useRef(null);
   const refGridColumns = React.useRef(null);
@@ -111,9 +109,10 @@ const DataGrid = React.forwardRef((props, ref) => {
   const overscanColumnCount = 5;
 
   const rowCount = data.length;
+
   const {
     "DataGrid.ColumnDefinition": extractedColumnDefinitions,
-    "DataGrid.Basement": Basement,
+    "DataGrid.Basement": extractedBasement,
     "DataGrid.InfiniteScroll": extractedInfiniteScroll,
   } = extractChildren(children, ["DataGrid.ColumnDefinition", "DataGrid.Basement", "DataGrid.InfiniteScroll"]);
 
@@ -168,22 +167,8 @@ const DataGrid = React.forwardRef((props, ref) => {
     return width;
   }, [ColumnDefinitions, stickyColumnsIndexes]);
 
-  const notifyActiveCellChanged = React.useCallback(({ columnIndex, rowIndex }) => {
-    const key = `${columnIndex}${rowIndex}`;
-
-    if (refPrevActiveCell.current && refPrevActiveCell.current in refsCell.current.keys) {
-      const prevCell = refsCell.current.keys[refPrevActiveCell.current];
-      if (prevCell) {
-        prevCell.setIsActiveCell(false);
-      }
-    }
-
-    refPrevActiveCell.current = key;
-  }, []);
-
   const { handleKeyDown, handleKeyUp, handleClick, gridId, restoreHighlightFocus } = useGridEventHandler({
     columnCount,
-    notifyActiveCellChanged,
     onClick,
     onPressEnter,
     onKeyDown,
@@ -275,10 +260,10 @@ const DataGrid = React.forwardRef((props, ref) => {
     setScrollBarWidth(() => scrollContainer.offsetWidth - scrollContainer.clientWidth);
   }, [gridId]);
 
-  function handleFocusGrid() {
+  const handleFocusGrid = React.useCallback(() => {
     const $isBlurred = refContainer.current.querySelector(".grid--is-blurred");
     if ($isBlurred) $isBlurred.classList.remove("grid--is-blurred");
-  }
+  }, []);
 
   const itemData = createItemData(
     ColumnDefinitions,
@@ -299,22 +284,6 @@ const DataGrid = React.forwardRef((props, ref) => {
   React.useEffect(() => {
     refPrevLastScrollHeight.current = refScrollGrid.current && refScrollGrid.current.scrollHeight;
   }, []);
-
-  function focusDataGrid() {
-    // this is required to readjust the active highlight
-    // after any rerender
-    if (
-      refScrollGrid.current &&
-      refPrevLastScrollHeight.current &&
-      refPrevLastScrollHeight.current < refScrollGrid.current.scrollHeight
-    ) {
-      if (refScrollGrid.current) refScrollGrid.current.scrollTo(0, refScrollGrid.current.scrollTop + 1);
-    }
-
-    if (autofocus) {
-      restoreHighlightFocus();
-    }
-  }
 
   React.useImperativeHandle(
     ref,
@@ -340,7 +309,7 @@ const DataGrid = React.forwardRef((props, ref) => {
     if ($isActive) $isActive.classList.toggle("grid--is-blurred");
   }, []);
 
-  const handleMouseDownGrid = React.useCallback(
+  const handleMouseUpGrid = React.useCallback(
     event => {
       handleClick({ data, ColumnDefinitions })(event);
     },
@@ -445,8 +414,6 @@ const DataGrid = React.forwardRef((props, ref) => {
 
   if (data.length === 0) return null;
 
-  focusDataGrid();
-
   return (
     <>
       <sc.Grid
@@ -456,7 +423,7 @@ const DataGrid = React.forwardRef((props, ref) => {
         onFocus={handleFocusGrid}
         onKeyDown={handleKeyDownGrid}
         onKeyUp={handleKeyUpGrid}
-        onMouseDown={handleMouseDownGrid}
+        onMouseUp={handleMouseUpGrid}
         ref={refContainer}
         role="grid"
         tabIndex={0}
@@ -555,9 +522,9 @@ const DataGrid = React.forwardRef((props, ref) => {
           Rows:{rowCount} Columns:{columnCount}
         </sc.RowCount>
       </sc.Footer>
-      {Basement ? (
+      {extractedBasement ? (
         <End width={gridWidth} ref={refEnd}>
-          {Basement}
+          {extractedBasement}
         </End>
       ) : null}
     </>

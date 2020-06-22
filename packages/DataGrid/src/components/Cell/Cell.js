@@ -24,13 +24,16 @@ const propTypes = {
 export default function Cell(props) {
   const { style, gridId, columnIndex, rowIndex, column, data, a11yText, hasZebraStripes } = props;
 
+  const rowIndexInt = Number.parseInt(rowIndex, 10);
+  const columnIndexInt = Number.parseInt(columnIndex, 10);
+
   const options = {
     row: data[rowIndex],
-    rowIndex,
-    columnIndex,
+    rowIndex: rowIndexInt,
+    columnIndex: columnIndexInt,
     attrs: {
-      "data-row-index": rowIndex,
-      "data-column-index": columnIndex,
+      "data-row-index": rowIndexInt,
+      "data-column-index": columnIndexInt,
     },
   };
 

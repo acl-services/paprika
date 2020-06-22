@@ -14,6 +14,7 @@ export default function renderColumnIndicator(options = {}) {
 
   return (
     <ColumnDefinition
+      key="renderColumnIndicator"
       headerA11yText={() => "unchecked"}
       cellA11yText={() => "unchecked"}
       header={() => {
