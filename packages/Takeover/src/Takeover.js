@@ -89,7 +89,7 @@ export default function Takeover(props) {
       state={state}
       {...moreProps}
       aria-label={getAriaLabel()}
-      aria-modal="true"
+      aria-modal
       data-pka-anchor="takeover"
       role="dialog"
       zIndex={zIndex}
