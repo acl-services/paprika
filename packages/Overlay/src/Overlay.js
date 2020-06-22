@@ -124,6 +124,7 @@ const Overlay = props => {
   );
 };
 
+Overlay.displayName = "Overlay";
 Overlay.propTypes = propTypes;
 Overlay.defaultProps = defaultProps;
 
