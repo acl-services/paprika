@@ -18,6 +18,9 @@ const propTypes = {
   /** If the visual focus ring should be displayed with an inset style. */
   hasInsetFocusStyle: PropTypes.bool,
 
+  /** If the button is in an "active" or "selected" state. */
+  isActive: PropTypes.bool,
+
   /** If the button is disabled. */
   isDisabled: PropTypes.bool,
 
@@ -34,6 +37,7 @@ const propTypes = {
 const defaultProps = {
   a11yText: null,
   canPropagate: true,
+  isActive: null,
   isDisabled: false,
   hasInsetFocusStyle: false,
   onClick: () => {},
@@ -42,7 +46,7 @@ const defaultProps = {
 };
 
 const RawButton = React.forwardRef((props, ref) => {
-  const { a11yText, canPropagate, children, isDisabled, onClick, tabIndex, ...moreProps } = props;
+  const { a11yText, canPropagate, children, isActive, isDisabled, onClick, tabIndex, ...moreProps } = props;
   if (a11yText) moreProps["aria-label"] = a11yText;
 
   const rawButtonRef = React.useRef(null);
@@ -92,18 +96,20 @@ const RawButton = React.forwardRef((props, ref) => {
 
   return (
     <span
+      aria-pressed={isActive}
+      data-pka-anchor="raw-button"
+      tabIndex={bestTabIndex}
+      {...moreProps}
       aria-disabled={isDisabled}
       css={rawButtonStyles}
-      data-pka-anchor="raw-button"
+      data-has-forced-focus={hasForcedFocus || null}
+      isActive={isActive}
       isDisabled={isDisabled}
       onBlur={handleBlur}
       onClick={handleClick}
       onKeyDown={handleKeyDown}
       onKeyUp={handleKeyUp}
       ref={rawButtonRef}
-      tabIndex={bestTabIndex}
-      {...moreProps}
-      data-has-forced-focus={hasForcedFocus || null}
     >
       {children}
     </span>
