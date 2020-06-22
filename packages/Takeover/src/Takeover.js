@@ -93,7 +93,7 @@ export default function Takeover(props) {
       data-pka-anchor="takeover"
       role="dialog"
     >
-      {headerExtracted && <sc.Header onClose={onClose} {...headerExtracted.props} />}
+      {headerExtracted && <sc.Header {...headerExtracted.props} onClose={onClose} />}
       {contentExtracted && (
         <sc.ContentWrapper {...contentExtracted.props} role="region" tabIndex="0">
           {contentExtracted}
