@@ -1,6 +1,5 @@
 import React from "react";
 import nanoid from "nanoid";
-import isDevEnv from "@paprika/helpers/lib/isDevEnv";
 import "@paprika/helpers/lib/dom/closest";
 
 const getDataCell = event => {
@@ -8,16 +7,12 @@ const getDataCell = event => {
   return $cell && $cell.dataset.cell;
 };
 
-export function timeDiff(t1, t2) {
-  if (isDevEnv()) {
-    console.log(`%c diff: ${t2 - t1}`, "color: yellow; background: #333;");
-  }
+function toInt(num) {
+  return Number.parseInt(num, 10);
 }
 
 export default function useGridEventHandler({
   columnCount,
-  highlightRow,
-  notifyActiveCellChanged,
   onClick,
   onPressEnter,
   onKeyDown,
@@ -92,19 +87,20 @@ export default function useGridEventHandler({
   function scrollToTheBottom() {
     const $cell = $getCell();
     refScroll.current.scrollTo(refScroll.current.scrollLeft, refScroll.current.scrollHeight);
+
     focus($cell);
   }
 
   function scrollToTheRightEdge() {
     const $cell = $getCell();
     refScroll.current.scrollTo(refScroll.current.scrollWidth, refScroll.current.scrollTop);
+
     focus($cell);
   }
 
   // This is in charge of scrolling the Grid in case the content has overflow
   // it's responsible of the sticky columns as well in case include any.
   function scroll(columnIndex, rowIndex) {
-    const t1 = performance.now();
     const $cell = $getCell();
 
     if (!$cell) return;
@@ -122,7 +118,6 @@ export default function useGridEventHandler({
       refScroll.current.scrollTo(left, refScroll.current.scrollTop);
 
       focus($cell);
-      timeDiff(t1, performance.now());
       return;
     }
 
@@ -130,7 +125,7 @@ export default function useGridEventHandler({
       const left = refScroll.current.scrollLeft - cellBoundClientRect.width;
       focus($cell);
       refScroll.current.scrollTo(left, refScroll.current.scrollTop);
-      timeDiff(t1, performance.now());
+
       return;
     }
 
@@ -152,7 +147,6 @@ export default function useGridEventHandler({
           );
 
           focus($cell);
-          timeDiff(t1, performance.now());
           return;
         }
 
@@ -173,6 +167,7 @@ export default function useGridEventHandler({
         }
 
         refScroll.current.scrollTo(refScroll.current.scrollLeft, top);
+
         focus($cell);
         return;
       }
@@ -183,7 +178,6 @@ export default function useGridEventHandler({
           refScroll.current.scrollTo(refScroll.current.scrollLeft, refScroll.current.scrollTop - topGap);
 
           focus($cell);
-          timeDiff(t1, performance.now());
           return;
         }
 
@@ -193,24 +187,21 @@ export default function useGridEventHandler({
         );
 
         focus($cell);
-        timeDiff(t1, performance.now());
         return;
       }
     }
 
     focus($cell);
-    timeDiff(t1, performance.now());
   }
 
-  function toCellState(column, row) {
+  const toCellState = React.useCallback((column, row) => {
     const cell = {
-      columnIndex: Number.parseInt(column, 10),
-      rowIndex: Number.parseInt(row, 10),
+      columnIndex: toInt(column),
+      rowIndex: toInt(row),
     };
 
-    notifyActiveCellChanged(cell);
     return cell;
-  }
+  }, []);
 
   const $getGrid = React.useCallback(() => {
     return refContainer.current && refContainer.current.querySelector(`.grid-${gridId} [role="row"]`).parentElement;
@@ -246,20 +237,19 @@ export default function useGridEventHandler({
     ArrowUp: () => {
       const columnIndex = cell.current.columnIndex;
       const rowIndex = cell.current.rowIndex;
-      const nextRowIndex = Number.parseInt(rowIndex, 10) - 1;
+      const nextRowIndex = toInt(rowIndex) - 1;
       if (nextRowIndex >= 0) {
         $setRefs(columnIndex);
         setRefPrevCell();
         cell.current = toCellState(columnIndex, nextRowIndex);
         setHighlight();
-        highlightRow({ rowIndex: nextRowIndex });
         scroll(columnIndex, nextRowIndex);
       }
     },
     ArrowRight: () => {
       const columnIndex = cell.current.columnIndex;
       const rowIndex = cell.current.rowIndex;
-      const nextColumnIndex = Number.parseInt(columnIndex, 10) + 1;
+      const nextColumnIndex = toInt(columnIndex) + 1;
 
       if (nextColumnIndex < columnCount) {
         setRefPrevCell();
@@ -267,7 +257,6 @@ export default function useGridEventHandler({
         setHighlight();
         $setRefs(columnIndex);
         scroll(nextColumnIndex, 0);
-        highlightRow({ rowIndex });
         if (nextColumnIndex === columnCount - 1) {
           scrollToTheRightEdge();
         }
@@ -282,21 +271,19 @@ export default function useGridEventHandler({
 
       const columnIndex = cell.current.columnIndex;
       const rowIndex = cell.current.rowIndex;
-      const nextRowIndex = Number.parseInt(rowIndex, 10) + 1;
+      const nextRowIndex = toInt(rowIndex) + 1;
       if (nextRowIndex < rowCount) {
         setRefPrevCell();
         $setRefs(columnIndex);
         cell.current = toCellState(columnIndex, nextRowIndex);
         setHighlight();
-        highlightRow({ rowIndex: nextRowIndex });
         scroll(columnIndex, nextRowIndex);
       }
     },
     ArrowLeft: () => {
       const columnIndex = cell.current.columnIndex;
       const rowIndex = cell.current.rowIndex;
-      const nextColumnIndex = Number.parseInt(columnIndex, 10) - 1;
-      highlightRow({ rowIndex });
+      const nextColumnIndex = toInt(columnIndex) - 1;
       if (nextColumnIndex >= 0) {
         setRefPrevCell();
         cell.current = toCellState(nextColumnIndex, rowIndex);
@@ -314,36 +301,39 @@ export default function useGridEventHandler({
     // to fire it as soon as the user click the key to have a smoother experience
     f: ({ data, ColumnDefinitions, columnIndex, rowIndex, event }) => {
       const column = ColumnDefinitions[columnIndex].props;
-      const options = { row: data[rowIndex], column, rowIndex: Number.parseInt(rowIndex, 10), columnIndex, event };
+      const options = { row: data[rowIndex], column, rowIndex: toInt(rowIndex), columnIndex, event };
       return onRowChecked && onRowChecked(options);
     },
   };
 
   // This in charge of highlight the cell but will not scroll the table in case there is overflow
-  const handleKeyDown = ({ data, ColumnDefinitions }) => event => {
-    onKeyDown(event);
-    if (event.key in keyboardDownKeys) {
-      document.body.style.pointerEvents = "none";
-      event.preventDefault();
-      if (!cell) {
-        return;
-      }
+  const handleKeyDown = React.useCallback(
+    ({ data, ColumnDefinitions }) => event => {
+      onKeyDown(event);
+      if (event.key in keyboardDownKeys) {
+        document.body.style.pointerEvents = "none";
+        event.preventDefault();
+        if (!cell) {
+          return;
+        }
 
-      keyboardDownKeys[event.key]({
-        ColumnDefinitions,
-        columnIndex: cell.current.columnIndex,
-        data,
-        event,
-        rowIndex: cell.current.rowIndex,
-      });
-    }
-  };
+        keyboardDownKeys[event.key]({
+          ColumnDefinitions,
+          columnIndex: cell.current.columnIndex,
+          data,
+          event,
+          rowIndex: cell.current.rowIndex,
+        });
+      }
+    },
+    [keyboardDownKeys, onKeyDown]
+  );
 
   const keyboardUpKeys = {
     // space bar
     " ": ({ data, ColumnDefinitions, columnIndex, rowIndex, event }) => {
       const column = ColumnDefinitions[columnIndex].props;
-      const options = { row: data[rowIndex], column, rowIndex: Number.parseInt(rowIndex, 10), columnIndex, event };
+      const options = { row: data[rowIndex], column, rowIndex: toInt(rowIndex), columnIndex, event };
       if (column.onPressSpaceBar !== null) {
         column.onPressSpaceBar(options);
         return;
@@ -352,7 +342,7 @@ export default function useGridEventHandler({
     },
     Enter: ({ data, ColumnDefinitions, columnIndex, rowIndex, event }) => {
       const column = ColumnDefinitions[columnIndex].props;
-      const options = { row: data[rowIndex], column, rowIndex: Number.parseInt(rowIndex, 10), columnIndex, event };
+      const options = { row: data[rowIndex], column, rowIndex: toInt(rowIndex), columnIndex, event };
       if (column.onPressEnter !== null) {
         column.onPressEnter(options);
         return;
@@ -361,7 +351,7 @@ export default function useGridEventHandler({
     },
     "space+shift": ({ data, ColumnDefinitions, columnIndex, rowIndex, event }) => {
       const column = ColumnDefinitions[columnIndex].props;
-      const options = { row: data[rowIndex], column, rowIndex: Number.parseInt(rowIndex, 10), columnIndex, event };
+      const options = { row: data[rowIndex], column, rowIndex: toInt(rowIndex), columnIndex, event };
       if (column.onPressShiftSpaceBar !== null) {
         column.onPressShiftSpaceBar(options);
         return;
@@ -371,54 +361,60 @@ export default function useGridEventHandler({
     },
   };
 
-  const handleKeyUp = ({ data, ColumnDefinitions }) => event => {
-    if (event.key in keyboardUpKeys) {
-      event.preventDefault();
-      if (!cell) {
-        return;
-      }
+  const handleKeyUp = React.useCallback(
+    ({ data, ColumnDefinitions }) => event => {
+      if (event.key in keyboardUpKeys) {
+        event.preventDefault();
+        if (!cell) {
+          return;
+        }
 
-      if (event.shiftKey && event.key === " ") {
-        keyboardUpKeys["space+shift"]({
+        if (event.shiftKey && event.key === " ") {
+          keyboardUpKeys["space+shift"]({
+            ColumnDefinitions,
+            columnIndex: cell.current.columnIndex,
+            data,
+            event,
+            rowIndex: cell.current.rowIndex,
+          });
+          return;
+        }
+
+        keyboardUpKeys[event.key]({
           ColumnDefinitions,
           columnIndex: cell.current.columnIndex,
           data,
           event,
           rowIndex: cell.current.rowIndex,
         });
-        return;
       }
+    },
+    [keyboardUpKeys]
+  );
 
-      keyboardUpKeys[event.key]({
-        ColumnDefinitions,
-        columnIndex: cell.current.columnIndex,
-        data,
-        event,
-        rowIndex: cell.current.rowIndex,
-      });
-    }
-  };
+  const handleClick = React.useCallback(
+    ({ data, ColumnDefinitions }) => event => {
+      const dataCell = getDataCell(event);
+      if (!dataCell) return;
 
-  const handleClick = ({ data, ColumnDefinitions }) => event => {
-    const dataCell = getDataCell(event);
-    if (!dataCell) return;
+      const [, columnIndex, rowIndex] = dataCell.split(".");
 
-    const [, columnIndex, rowIndex] = dataCell.split(".");
+      cell.current = toCellState(columnIndex, rowIndex);
+      setHighlight();
 
-    cell.current = toCellState(columnIndex, rowIndex);
-    setHighlight();
+      const $cell = event.target.hasAttribute("data-cell") ? event.target : event.target.parentElement;
+      focus($cell);
 
-    const $cell = event.target.hasAttribute("data-cell") ? event.target : event.target.parentElement;
-    focus($cell);
-
-    const column = ColumnDefinitions[columnIndex].props;
-    const options = { row: data[rowIndex], column, rowIndex: Number.parseInt(rowIndex, 10), columnIndex, event };
-    if (column.onClick !== null) {
-      column.onClick(options);
-    } else {
-      onClick(options);
-    }
-  };
+      const column = ColumnDefinitions[columnIndex].props;
+      const options = { row: data[rowIndex], column, rowIndex: toInt(rowIndex), columnIndex, event };
+      if (column.onClick !== null) {
+        column.onClick(options);
+      } else {
+        onClick(options);
+      }
+    },
+    [onClick, setHighlight, toCellState]
+  );
 
   React.useEffect(() => {
     // this helps "enable" the mouse after being disable when using the keyboard

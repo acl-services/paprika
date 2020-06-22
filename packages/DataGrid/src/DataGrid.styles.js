@@ -59,7 +59,16 @@ export const Grid = styled.div.attrs(({ $width }) => {
   }}
 `;
 
-export const Cell = styled.div`
+export const Cell = styled.div.attrs(({ hasZebraStripes, rowIndex }) => {
+  const style = {
+    background:
+      hasZebraStripes && rowIndex % 2 === 0
+        ? `${tokens.table.rowEven.backgroundColor}`
+        : `${tokens.table.row.backgroundColor}`,
+  };
+
+  return { style };
+})`
   background: ${tokens.color.white};
   border-bottom: 1px solid ${tokens.border.color};
   border-left: 1px solid ${tokens.border.color};
@@ -73,31 +82,6 @@ export const Cell = styled.div`
   &:focus {
     outline: 1px solid transparent;
   }
-
-  ${({ hasActiveRowShadow, hasZebraStripes, rowIndex }) => {
-    const rowShadow = hasActiveRowShadow
-      ? css`
-          &:after {
-            content: "";
-            height: 100%;
-            left: 0;
-            position: absolute;
-            top: 0;
-            width: 3px;
-            z-index: 1;
-          }
-        `
-      : "";
-
-    const zebraStripe =
-      hasZebraStripes && rowIndex % 2 === 0
-        ? `background: ${tokens.table.rowEven.backgroundColor};`
-        : `background: ${tokens.table.row.backgroundColor};`;
-    return `
-      ${rowShadow}
-      ${zebraStripe}
-    `;
-  }}
 `;
 
 export const CellHeader = styled(Cell)`
