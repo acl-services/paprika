@@ -22,22 +22,17 @@ describe("<DataGrid />", () => {
   });
 
   it("Should have infinity scroll", () => {
-    cy.visitStorybook("data-table-datagrid-backyard-tests--infinity-scroll")
-      .wait(100)
+    cy.visitStorybook("data-table-datagrid-backyard-tests--infinity-scroll");
+
+    cy.getByText(/Rows:300/i)
+      .should("exist")
       .getAllByRole("rowgroup")
       .last()
-      .then(element => {
-        const initHeight = element[0].scrollHeight;
-
-        cy.getAllByRole("rowgroup")
-          .last()
-          .scrollTo(0, 8000)
-          .wait(1100)
-          .then(element => {
-            const newHeight = element[0].scrollHeight;
-            cy.expect(newHeight).to.be.greaterThan(initHeight);
-          });
-      });
+      .then($e => {
+        window.requestAnimationFrame(() => $e.get(0).scrollTo(0, $e.get(0).scrollHeight));
+      })
+      .getByText(/Rows:600/i)
+      .should("exist");
   });
 
   it("Should not show collapsed content", () => {
@@ -120,17 +115,16 @@ describe("<DataGrid />", () => {
     cy.visitStorybook("data-table-datagrid-examples--lazy");
     cy.getAllByRole("rowgroup")
       .last()
-      .scrollTo("bottom")
-      .should("not.contain", "Albion")
-      .should("contain", "Abyss");
+      // cypress .scrollTo("bottom") is not working correctly
+      .then($e => {
+        window.requestAnimationFrame(() => $e.get(0).scrollTo(0, $e.width() + 100));
+      });
 
     cy.get('[data-pka-anchor="button"')
       .should("be.visible")
       .click()
-      .wait(200)
       .getAllByRole("rowgroup")
       .last()
-      .scrollTo("bottom")
       .contains("Albion");
   });
 

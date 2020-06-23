@@ -140,7 +140,7 @@ export function App() {
 
   return (
     <Sbook.Story>
-      <DataGrid ref={refDataGrid} data={data} keygen="id" width={700} height={600} onPressEnter={toggleExpand}>
+      <DataGrid ref={refDataGrid} data={data} keygen="id" onPressEnter={toggleExpand} forceTableWidthWithScrollBars>
         <DataGrid.ColumnDefinition
           canGrow
           header="Objective"

@@ -1,6 +1,7 @@
 import styled, { css } from "styled-components";
 import tokens from "@paprika/tokens";
 import stylers from "@paprika/stylers";
+import types from "./types";
 
 export const Grid = styled.div.attrs(({ $width }) => {
   return {
@@ -25,14 +26,14 @@ export const Grid = styled.div.attrs(({ $width }) => {
     }
   }
 
-  border-top: 1px solid ${tokens.border.color};
   background: ${tokens.color.white};
   position: relative;
+  box-shadow: 0 0 0 1px ${tokens.border.color};
 
   ${({ gridId }) => {
     return css`
       .grid-${gridId} {
-        overflow: scroll !important;
+        overflow: auto !important;
       }
 
       .${gridId}-header {
@@ -59,19 +60,30 @@ export const Grid = styled.div.attrs(({ $width }) => {
   }}
 `;
 
-export const Cell = styled.div.attrs(({ hasZebraStripes, rowIndex }) => {
+const borders = {
+  [types.GRID]: `box-shadow: 0 0 0 1px ${tokens.border.color};`,
+  [types.NONE]: ``,
+  [types.HORIZONTAL]: `box-shadow: -1px 0 0 0px ${tokens.border.color};`,
+  [types.VERTICAL]: `box-shadow: 0 -1px 0 0px ${tokens.border.color};`,
+};
+
+export const Cell = styled.div.attrs(({ hasZebraStripes, rowIndex, borderType }) => {
+  const shadow = borderType in borders ? borders[borderType] : borders.grid;
+  const zebra = hasZebraStripes
+    ? {
+        background:
+          rowIndex % 2 === 0 ? `${tokens.table.rowEven.backgroundColor}` : `${tokens.table.row.backgroundColor}`,
+      }
+    : {};
+
   const style = {
-    background:
-      hasZebraStripes && rowIndex % 2 === 0
-        ? `${tokens.table.rowEven.backgroundColor}`
-        : `${tokens.table.row.backgroundColor}`,
+    ...zebra,
+    boxShadow: shadow,
   };
 
   return { style };
 })`
   background: ${tokens.color.white};
-  border-bottom: 1px solid ${tokens.border.color};
-  border-left: 1px solid ${tokens.border.color};
   box-sizing: border-box;
   display: flex;
   font-size: ${tokens.fontSize.default};
@@ -82,12 +94,24 @@ export const Cell = styled.div.attrs(({ hasZebraStripes, rowIndex }) => {
   &:focus {
     outline: 1px solid transparent;
   }
+
+  ${({ hasZebraStripes, rowIndex, borderType }) => {
+    const border = borderType in borders ? borders[borderType] : borders.grid;
+
+    const zebraStripe =
+      hasZebraStripes && rowIndex % 2 === 0
+        ? `background: ${tokens.table.rowEven.backgroundColor};`
+        : `background: ${tokens.table.row.backgroundColor};`;
+
+    return `
+      ${border}
+      ${zebraStripe}
+    `;
+  }}
 `;
 
 export const CellHeader = styled(Cell)`
   background: ${tokens.table.header.backgroundColor};
-  border-bottom: 1px solid ${tokens.border.color};
-  border-left: 1px solid ${tokens.border.color};
   color: ${tokens.color.black};
   display: block;
   font-weight: 600;
@@ -105,7 +129,11 @@ export const InnerCell = styled.div`
   padding: ${tokens.space};
   text-overflow: ellipsis;
   white-space: nowrap;
-  width: 100%;
+  width: 100%; /* All the borders by using the spread properties */
+`;
+
+export const OuterElementType = styled.div`
+  background: ${tokens.table.header.backgroundColor};
 `;
 
 export const InnerElementType = styled.div``;
@@ -114,7 +142,7 @@ export const InnerElementTypeMainGrid = styled.div``;
 
 export const OuterElementTypeMainGrid = styled.div`
   /* The arrow navigation is sensitive with borders. If a border is used, it will cause issues keyboard navigation. */
-  box-shadow: 0px 1px 0px 0px ${tokens.border.color}, 1px 0px 0px 0px ${tokens.border.color};
+  box-shadow: 0 0 0 1px ${tokens.border.color}; /* All the borders by using the spread properties */
 `;
 
 export const GridCell = styled.div`
@@ -129,8 +157,8 @@ export const GridCell = styled.div`
 
 export const FillerTopRight = styled.div`
   background: ${tokens.table.header.backgroundColor};
-  border: 1px solid ${tokens.border.color};
   border-bottom: 0;
+  box-shadow: 0 0 0 1px ${tokens.border.color};
   position: absolute;
   right: 0;
   top: 0;
@@ -139,8 +167,8 @@ export const FillerTopRight = styled.div`
 
     return `
       ${displayBlock}
-      width: ${scrollBarWidth}px;
-      height: ${rowHeight}px;
+      width: ${scrollBarWidth - 1}px;
+      height: ${rowHeight - 1}px;
     `;
   }}
 `;
@@ -148,13 +176,13 @@ export const FillerTopRight = styled.div`
 export const FillerBottomLeft = styled.div`
   /* this is a small square filler on the bottom left corner of the DataGrid */
   background: ${tokens.table.header.backgroundColor};
-  border: 1px solid ${tokens.border.color};
   bottom: 0;
+  box-shadow: 0 0 0 1px ${tokens.border.color};
   left: 0;
   position: absolute;
   z-index: 3;
   ${({ stickyGridWidth, scrollBarWidth }) => {
-    const displayBlock = scrollBarWidth > 0 ? "" : "display: none;";
+    const displayBlock = stickyGridWidth > 0 ? "" : "display: none;";
 
     return `
       ${displayBlock}
@@ -173,33 +201,15 @@ export const RowCount = styled.div`
   font-size: ${stylers.fontSize(-2)};
 `;
 
-export const Blocker = styled.div`
-  align-items: center;
-  background: transparent;
-  border: 1px solid ${tokens.border.color};
-  display: flex;
-  justify-content: center;
-  left: 0;
-  position: absolute;
-  top: 0;
-  z-index: 4;
-
-  ${({ $height, $width }) => {
-    return `
-      width: ${$width}px;
-      height: ${$height}px;
-    `;
-  }}
-`;
-
 export const Footer = styled.div`
-  border: 1px solid ${tokens.border.color};
-  box-sizing: border-box;
-  font-size: 12px; /* custom value */
-  padding: ${tokens.spaceSm};
+  box-shadow: 0 0 0 1px ${tokens.border.color};
+  box-sizing: border-box; /* custom value */
+  font-size: 12px;
+  padding: ${tokens.spaceSm}; /* All the borders by using the spread properties */
+
   ${({ $width }) => {
     return `
-      max-width: ${$width + 1}px;
+      max-width: ${$width}px;
   `;
   }}
 `;

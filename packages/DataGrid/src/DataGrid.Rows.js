@@ -6,7 +6,7 @@ import Cell from "./components/Cell";
 import { CellHeader } from "./DataGrid.styles";
 
 export const createItemData = memoize(
-  (ColumnDefinitions, data, gridId, hasZebraStripes, stickyColumnsIndexes, columnHeadersA11yText, a11yTextMessage) => ({
+  (
     ColumnDefinitions,
     data,
     gridId,
@@ -14,6 +14,16 @@ export const createItemData = memoize(
     stickyColumnsIndexes,
     columnHeadersA11yText,
     a11yTextMessage,
+    borderType
+  ) => ({
+    ColumnDefinitions,
+    data,
+    gridId,
+    hasZebraStripes,
+    stickyColumnsIndexes,
+    columnHeadersA11yText,
+    a11yTextMessage,
+    borderType,
   })
 );
 
@@ -27,6 +37,7 @@ export const Row = React.memo(({ data: RowData, rowIndex, columnIndex, style }) 
     hasZebraStripes,
     columnHeadersA11yText,
     a11yTextMessage,
+    borderType,
   } = RowData;
 
   const column = ColumnDefinitions[columnIndex].props;
@@ -50,6 +61,7 @@ export const Row = React.memo(({ data: RowData, rowIndex, columnIndex, style }) 
   return (
     <Cell
       a11yText={a11yText}
+      borderType={borderType}
       column={column}
       columnIndex={columnIndex}
       data={data}
@@ -70,6 +82,7 @@ export const StickyRow = React.memo(({ data: RowData, columnIndex, rowIndex, sty
     hasZebraStripes,
     columnHeadersA11yText,
     a11yTextMessage,
+    borderType,
   } = RowData;
 
   const column = ColumnDefinitions[stickyColumnsIndexes[columnIndex]].props;
@@ -85,6 +98,7 @@ export const StickyRow = React.memo(({ data: RowData, columnIndex, rowIndex, sty
   return (
     <Cell
       a11yText={a11yText}
+      borderType={borderType}
       column={column}
       columnIndex={columnIndex}
       data={data}
@@ -97,27 +111,27 @@ export const StickyRow = React.memo(({ data: RowData, columnIndex, rowIndex, sty
 }, areEqual);
 
 export const HeaderRow = React.memo(({ data: RowData, columnIndex, style }) => {
-  const { ColumnDefinitions, stickyColumnsIndexes } = RowData;
+  const { ColumnDefinitions, stickyColumnsIndexes, borderType } = RowData;
   const { header, headerProps } = ColumnDefinitions[columnIndex].props;
 
   if (stickyColumnsIndexes.includes(columnIndex)) return null;
   const { style: styleProps = {}, ...moreProps } = typeof headerProps === "function" ? headerProps({ header }) : {};
 
   return (
-    <CellHeader role="columnheader" style={{ ...style, ...styleProps }} {...moreProps}>
+    <CellHeader role="columnheader" style={{ ...style, ...styleProps }} {...moreProps} borderType={borderType}>
       {typeof header === "function" ? header() : header}
     </CellHeader>
   );
 }, areEqual);
 
 export const StickyHeaderRow = React.memo(({ data: RowData, columnIndex, style }) => {
-  const { ColumnDefinitions } = RowData;
+  const { ColumnDefinitions, borderType } = RowData;
   const { header, headerProps } = ColumnDefinitions[columnIndex].props;
 
   const { style: styleProps = {}, ...moreProps } = typeof headerProps === "function" ? headerProps({ header }) : {};
 
   return (
-    <CellHeader role="columnheader" style={{ ...style, ...styleProps }} {...moreProps}>
+    <CellHeader role="columnheader" style={{ ...style, ...styleProps }} {...moreProps} borderType={borderType}>
       {typeof header === "function" ? header() : header}
     </CellHeader>
   );
