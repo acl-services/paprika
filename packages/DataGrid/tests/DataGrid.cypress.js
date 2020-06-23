@@ -125,10 +125,6 @@ describe("<DataGrid />", () => {
         window.requestAnimationFrame(() => $e.get(0).scrollTo(0, $e.width() + 100));
       });
 
-    // .should("not.contain", "Albion")
-    // .should("contain", "Abyss");
-    // cy.getAllByRole("rowgroup").scrollTo("bottom");
-
     cy.get('[data-pka-anchor="button"')
       .should("be.visible")
       .click()
