@@ -1,5 +1,3 @@
-/* eslint-disable jsx-a11y/no-noninteractive-element-interactions */
-
 import React from "react";
 import PropTypes from "prop-types";
 import nanoid from "nanoid";
@@ -111,7 +109,9 @@ function Radio(props) {
   return (
     <div data-pka-anchor="radio" css={radioStyles} {...styleProps} {...moreProps}>
       <input {...inputProps} />
+      {/* eslint-disable */}
       <label onKeyUp={handleKeyUp} className={canDeselect ? "deselectable" : ""} htmlFor={radioId}>
+        {/* eslint-enable */}
         {children}
 
         {canDeselect ? (

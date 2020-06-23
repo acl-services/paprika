@@ -4,30 +4,30 @@ import ColumnDefinition from "../ColumnDefinition";
 
 export default function renderColumnIndicator(options = {}) {
   const {
-    isChecked = () => "unchecked",
-    isAllChecked = "unchecked",
+    isAllChecked = false,
     onCheck = () => {},
-    onCheckAll = () => {},
     hasNumber = true,
     hasHeaderChecker = true,
+    checkedItems = [],
     ...moreOptions
   } = options;
 
   return (
     <ColumnDefinition
+      key="renderColumnIndicator"
       headerA11yText={() => "unchecked"}
       cellA11yText={() => "unchecked"}
-      header={propsHeader => {
-        return hasHeaderChecker ? (
-          <RowIndicator
-            hasIndexIndicator={false}
-            onCheck={onCheckAll}
-            isChecked={() => isAllChecked}
-            {...propsHeader}
-          />
-        ) : null;
+      header={() => {
+        return hasHeaderChecker ? <RowIndicator onCheck={onCheck} isChecked={isAllChecked} isHeaderChecker /> : null;
       }}
-      cell={propsCell => <RowIndicator hasNumber={hasNumber} isChecked={isChecked} onCheck={onCheck} {...propsCell} />}
+      cell={propsCell => (
+        <RowIndicator
+          hasNumber={hasNumber}
+          isChecked={checkedItems.includes(propsCell.rowIndex)}
+          onCheck={onCheck}
+          {...propsCell}
+        />
+      )}
       isSticky
       {...moreOptions}
       onPressSpaceBar={onCheck}
