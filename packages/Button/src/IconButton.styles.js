@@ -37,7 +37,7 @@ const minorStyles = css`
           &,
           &:hover,
           &:active {
-            [data-pka-anchor="icon"] {
+            [data-pka-anchor="button.icon"] svg {
               color: ${tokens.color.blackDisabled};
             }
           }
@@ -57,7 +57,6 @@ const iconButtonStyles = css`
   ${({ size }) => iconButtonSizes[size]}
   ${({ kind }) => (kind === Button.Kinds.MINOR ? minorStyles : "")}
 
-  
   [data-pka-anchor="button.icon"] {
     color: inherit;
     margin: 0;

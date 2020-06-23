@@ -59,6 +59,7 @@ const storyTree = [
       "ListBoxBrowser",
       "DateInput",
       "DatePicker",
+      "Calendar",
     ],
   },
   {

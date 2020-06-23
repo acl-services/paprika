@@ -1,7 +1,7 @@
 import React from "react";
 import { action } from "@storybook/addon-actions";
 import styled from "styled-components";
-import { Rule, Tagline, breaklines } from "storybook/assets/styles/common.styles";
+import { Rule, Tagline, breaklines, Gap } from "storybook/assets/styles/common.styles";
 import tokens from "@paprika/tokens";
 import Heading from "@paprika/heading";
 import PlusIcon from "@paprika/icon/lib/Add";
@@ -190,6 +190,74 @@ const ExampleStory = () => (
       <Button.Link href="https://youtu.be/IdkCEioCp24?t=92" isDisabled>
         disabled Button.Link
       </Button.Link>
+    </p>
+    <p>
+      <Button.Icon onClick={clickHandler}>
+        <InfoIcon />
+      </Button.Icon>
+      <Button.Icon onClick={clickHandler} isDisabled>
+        <InfoIcon />
+      </Button.Icon>
+      <Button.Icon onClick={clickHandler} kind="primary">
+        <InfoIcon />
+      </Button.Icon>
+      <Button.Icon onClick={clickHandler} kind="primary" isDisabled>
+        <InfoIcon />
+      </Button.Icon>
+      <Button.Icon onClick={clickHandler} kind="link">
+        <InfoIcon />
+      </Button.Icon>
+      <Button.Icon onClick={clickHandler} kind="link" isDisabled>
+        <InfoIcon />
+      </Button.Icon>
+      <Button.Icon onClick={clickHandler} kind="minor">
+        <InfoIcon />
+      </Button.Icon>
+      <Button.Icon onClick={clickHandler} kind="minor" isDisabled>
+        <InfoIcon />
+      </Button.Icon>
+      <Gap.Inline />
+      <Gap.Inline />
+      <Gap.Inline />
+      <Button.Icon
+        onClick={clickHandler}
+        kind="minor"
+        css={`
+          color: ${tokens.color.gold};
+        `}
+      >
+        <InfoIcon />
+      </Button.Icon>
+      <Button.Icon
+        onClick={clickHandler}
+        kind="minor"
+        css={`
+          color: ${tokens.color.gold};
+        `}
+        isDisabled
+      >
+        <InfoIcon />
+      </Button.Icon>
+      <Button.Icon onClick={clickHandler} kind="minor">
+        <InfoIcon
+          css={`
+            color: ${tokens.color.gold};
+          `}
+        />
+      </Button.Icon>
+      <Button.Icon onClick={clickHandler} kind="minor" isDisabled>
+        <InfoIcon
+          css={`
+            color: ${tokens.color.gold};
+          `}
+        />
+      </Button.Icon>
+      <Button.Icon onClick={clickHandler} kind="minor">
+        <InfoIcon color={tokens.color.gold} />
+      </Button.Icon>
+      <Button.Icon onClick={clickHandler} kind="minor" isDisabled>
+        <InfoIcon color={tokens.color.gold} />
+      </Button.Icon>
     </p>
     <Rule />
     <p>

@@ -27,20 +27,18 @@ module.exports = {
     "@storybook/addon-cssresources",
   ],
   webpackFinal: async config => {
-    config.module.rules.push(
-      {
-        resolve: {
-          alias: {
-            storybook: path.resolve("./.storybook/"),
-          },
-        },
-      },
+    config.module.rules = [
+      ...config.module.rules,
       {
         test: /\.scss$/,
         loaders: ["style-loader", "css-loader", "sass-loader"],
         include: path.resolve(__dirname, "../"),
-      }
-    );
+      },
+    ];
+    config.resolve.alias = {
+      ...config.resolve.alias,
+      storybook: path.resolve("./.storybook/"),
+    };
     config.output = {
       ...config.output,
       globalObject: "self",

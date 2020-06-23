@@ -43,7 +43,7 @@ const LargeGap = styled.div`
 const SmallGap = styled.div`
   height: ${stylers.spacer(2)};
 `;
-const InlineGap = styled.div`
+const InlineGap = styled.span`
   display: inline-flex;
   width: ${tokens.space};
 `;
