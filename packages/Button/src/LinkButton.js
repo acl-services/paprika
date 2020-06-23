@@ -26,13 +26,13 @@ const defaultProps = {
   suffixIcon: <NewTabIcon />,
 };
 
-const shouldOpenNewTabProps = {
-  target: "_blank",
-  rel: "noopener noreferrer",
-};
-
 const LinkButton = React.forwardRef((props, ref) => {
   const { a11yText, children, href, isDisabled, shouldOpenNewTab, kind, size, suffixIcon, ...moreProps } = props;
+
+  const shouldOpenNewTabProps = {
+    target: "_blank",
+    rel: "noopener noreferrer",
+  };
 
   const iconProps = {
     isDisabled,
