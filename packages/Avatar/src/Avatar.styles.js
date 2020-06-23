@@ -3,21 +3,21 @@ import styled from "styled-components";
 import stylers from "@paprika/stylers";
 
 const smallSize = `${spacer(4)}`;
-const mediumSize = `${spacer(6)}`;
+const mediumSize = `${spacer(5)}`;
 
 export const avatarSizeStyles = {
   small: `
-    border-radius: ${spacer(0.5)};
+    border-radius: 10px;
     height: ${smallSize};
     width: ${smallSize};
-    ${stylers.fontSize(2)} 
+    ${stylers.fontSize(2)};
   `,
 
   medium: `
-    border-radius: ${spacer(1)}
+    border-radius: 12px;
     height: ${mediumSize};
     width: ${mediumSize};
-    ${stylers.fontSize(3)} 
+    ${stylers.fontSize(3)};
   `,
 };
 
