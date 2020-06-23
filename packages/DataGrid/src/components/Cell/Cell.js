@@ -21,39 +21,19 @@ const propTypes = {
   hasZebraStripes: PropTypes.bool.isRequired,
 };
 
-const Cell = React.forwardRef((props, ref) => {
+export default function Cell(props) {
   const { style, gridId, columnIndex, rowIndex, column, data, a11yText, hasZebraStripes } = props;
-  const [isActiveCell, setIsActiveCell] = React.useState(false);
-  const [isActiveRow, setIsRowActive] = React.useState(false);
 
-  React.useImperativeHandle(ref, () => ({
-    setIsActiveCell: isActive => {
-      setIsActiveCell(isActive);
-    },
-    highlightRow: _rowIndex => {
-      setIsRowActive(() => {
-        return Number.parseInt(_rowIndex, 10) === rowIndex;
-      });
-    },
-    deemphasizeRow: _rowIndex => {
-      setIsRowActive(() => {
-        return !Number.parseInt(_rowIndex, 10) === rowIndex;
-      });
-    },
-    getIndexes: () => {
-      return { rowIndex, columnIndex };
-    },
-  }));
+  const rowIndexInt = Number.parseInt(rowIndex, 10);
+  const columnIndexInt = Number.parseInt(columnIndex, 10);
 
   const options = {
     row: data[rowIndex],
-    rowIndex,
-    columnIndex,
-    isActiveCell,
-    isActiveRow,
+    rowIndex: rowIndexInt,
+    columnIndex: columnIndexInt,
     attrs: {
-      "data-row-index": rowIndex,
-      "data-column-index": columnIndex,
+      "data-row-index": rowIndexInt,
+      "data-column-index": columnIndexInt,
     },
   };
 
@@ -61,7 +41,6 @@ const Cell = React.forwardRef((props, ref) => {
 
   return (
     <sc.Cell
-      ref={ref}
       tabIndex={-1}
       style={style}
       data-cell={`${gridId}.${columnIndex}.${rowIndex}`}
@@ -69,13 +48,11 @@ const Cell = React.forwardRef((props, ref) => {
       hasZebraStripes={hasZebraStripes}
     >
       <sc.GridCell role="gridcell">{a11yText}</sc.GridCell>
-      <sc.InnerCell hasActiveRowShadow={isActiveRow} {...cellProps} aria-hidden="true" {...options.attrs}>
+      <sc.InnerCell {...cellProps} aria-hidden="true" {...options.attrs}>
         {typeof column.cell === "function" ? column.cell(options) : data[rowIndex][column.cell]}
       </sc.InnerCell>
     </sc.Cell>
   );
-});
+}
 
 Cell.propTypes = propTypes;
-
-export default Cell;
