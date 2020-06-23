@@ -120,17 +120,20 @@ describe("<DataGrid />", () => {
     cy.visitStorybook("data-table-datagrid-examples--lazy");
     cy.getAllByRole("rowgroup")
       .last()
-      .scrollTo("bottom")
-      .should("not.contain", "Albion")
-      .should("contain", "Abyss");
+      // cypress .scrollTo("bottom") is not working correctly
+      .then($e => {
+        window.requestAnimationFrame(() => $e.get(0).scrollTo(0, $e.width() + 100));
+      });
+
+    // .should("not.contain", "Albion")
+    // .should("contain", "Abyss");
+    // cy.getAllByRole("rowgroup").scrollTo("bottom");
 
     cy.get('[data-pka-anchor="button"')
       .should("be.visible")
       .click()
-      .wait(200)
       .getAllByRole("rowgroup")
       .last()
-      .scrollTo("bottom")
       .contains("Albion");
   });
 
