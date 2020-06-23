@@ -4,6 +4,7 @@ import { VariableSizeGrid as Grid } from "react-window";
 import useI18n from "@paprika/l10n/lib/useI18n";
 import extractChildren from "@paprika/helpers/lib/extractChildren";
 
+import types from "./types";
 import useGridEventHandler from "./hooks/useGridEventHandler";
 import ColumnDefinition from "./components/ColumnDefinition";
 import * as sc from "./DataGrid.styles";
@@ -15,8 +16,8 @@ import getScrollbarWidth from "./helpers/getScrollbarWidth";
 const propTypes = {
   /** If the data cell should automatically get focus  */
   autofocus: PropTypes.bool,
-  /** Define the look for borders in the table */
-  borderType: PropTypes.oneOf(["grid", "empty", "horizontal", "vertical"]),
+  /** Define the look for borders in the table DataGrid.types.GRID, DataGrid.types.NONE, etc.  */
+  borderType: PropTypes.oneOf([types.GRID, types.NONE, types.HORIZONTAL, types.VERTICAL]),
   children: PropTypes.node.isRequired,
   /** This will force the table to include in the calculation of the table the scrollbar thickness */
   forceTableWidthWithScrollBars: PropTypes.bool,
@@ -135,7 +136,7 @@ const DataGrid = React.forwardRef((props, ref) => {
   }
 
   const columnHeadersA11yText = React.useMemo(() => {
-    return ColumnDefinitions.map((ColumnDefinition) => {
+    return ColumnDefinitions.map(ColumnDefinition => {
       const { header, headerA11yText } = ColumnDefinition.props;
       return typeof header === "function" ? headerA11yText && headerA11yText() : header;
     });
@@ -147,7 +148,7 @@ const DataGrid = React.forwardRef((props, ref) => {
 
   const calculatedTableWidth = React.useCallback(() => {
     let width = 0;
-    ColumnDefinitions.forEach((ColumnDefinition) => {
+    ColumnDefinitions.forEach(ColumnDefinition => {
       if (!ColumnDefinition.props.isSticky) {
         width += Number.parseInt(ColumnDefinition.props.width, 10);
       }
@@ -161,14 +162,14 @@ const DataGrid = React.forwardRef((props, ref) => {
     () =>
       ColumnDefinitions.map((ColumnDefinition, index) => {
         return ColumnDefinition.props.isSticky ? index : null;
-      }).filter((chunk) => chunk !== null),
+      }).filter(chunk => chunk !== null),
     [ColumnDefinitions]
   );
 
   const stickyGridWidth = React.useMemo(() => {
     let width = 0;
     if (stickyColumnsIndexes.length) {
-      stickyColumnsIndexes.forEach((index) => {
+      stickyColumnsIndexes.forEach(index => {
         width += ColumnDefinitions[index].props.width;
       });
     }
@@ -203,7 +204,7 @@ const DataGrid = React.forwardRef((props, ref) => {
   );
 
   const handleScroll = React.useCallback(
-    (parameters) => {
+    parameters => {
       const { scrollLeft, scrollTop } = parameters;
 
       if (refScrollHeader.current && stickyColumnsIndexes.length) {
@@ -234,7 +235,7 @@ const DataGrid = React.forwardRef((props, ref) => {
   );
 
   const handleScrollStickyColumns = React.useCallback(
-    (parameters) => {
+    parameters => {
       const { scrollTop } = parameters;
 
       // prevent rescrolling when this scrollbar gets sync with the one in the main grid
@@ -324,21 +325,21 @@ const DataGrid = React.forwardRef((props, ref) => {
   }, []);
 
   const handleMouseUpGrid = React.useCallback(
-    (event) => {
+    event => {
       handleClick({ data, ColumnDefinitions })(event);
     },
     [ColumnDefinitions, data, handleClick]
   );
 
   const handleKeyDownGrid = React.useCallback(
-    (event) => {
+    event => {
       handleKeyDown({ data, ColumnDefinitions })(event);
     },
     [ColumnDefinitions, data, handleKeyDown]
   );
 
   const handleKeyUpGrid = React.useCallback(
-    (event) => {
+    event => {
       handleKeyUp({ data, ColumnDefinitions })(event);
     },
     [ColumnDefinitions, data, handleKeyUp]
@@ -370,7 +371,7 @@ const DataGrid = React.forwardRef((props, ref) => {
   React.useEffect(() => {
     // Using lazy import because in some cases document.body is null but mouse-wheel
     // depends on document.body being not null. Therefore we need to lazy import the mouse-wheel library.
-    import("mouse-wheel").then((module) => {
+    import("mouse-wheel").then(module => {
       if (Array.isArray(data) && data.length) {
         const { default: mouseWheel } = module;
         mouseWheel(refScrollGrid.current, (dx, dy, dz, event) => {
@@ -398,7 +399,7 @@ const DataGrid = React.forwardRef((props, ref) => {
       refGridColumns.current.resetAfterColumnIndex(0);
     }
 
-    ColumnDefinitions.forEach((columnDefinition) => {
+    ColumnDefinitions.forEach(columnDefinition => {
       refTotalColumnWidth.current += columnDefinition.props.width;
       if (columnDefinition.props.canGrow) {
         refTotalCanGrow.current += 1;
@@ -409,7 +410,7 @@ const DataGrid = React.forwardRef((props, ref) => {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
-  const calculateColumnWidth = (columnIndex) => {
+  const calculateColumnWidth = columnIndex => {
     if (stickyColumnsIndexes.includes(columnIndex)) {
       return 0;
     }
@@ -447,7 +448,7 @@ const DataGrid = React.forwardRef((props, ref) => {
           {/** STICKY HEADER */}
           <Grid
             columnCount={stickyColumnsIndexes.length}
-            columnWidth={(columnIndex) => {
+            columnWidth={columnIndex => {
               return ColumnDefinitions[stickyColumnsIndexes[columnIndex]].props.width;
             }}
             itemData={itemData}
@@ -487,7 +488,7 @@ const DataGrid = React.forwardRef((props, ref) => {
           <Grid
             className={`${gridId}-sticky-columns`}
             columnCount={stickyColumnsIndexes.length}
-            columnWidth={(columnIndex) => {
+            columnWidth={columnIndex => {
               return ColumnDefinitions[stickyColumnsIndexes[columnIndex]].props.width;
             }}
             height={calculatedTableHeight - scrollBarWidth}
@@ -549,5 +550,6 @@ DataGrid.defaultProps = defaultProps;
 DataGrid.InfiniteScroll = InfiniteScroll;
 DataGrid.propTypes = propTypes;
 DataGrid.Basement = Basement;
+DataGrid.types = types;
 
 export default DataGrid;

@@ -20,7 +20,7 @@ const propTypes = {
   /** Add an alternate background on the DataGrid's rows */
   hasZebraStripes: PropTypes.bool.isRequired,
   /** Define the look for borders in the table */
-  borderType: PropTypes.oneOf(["grid", "empty", "horizontal", "vertical"]).isRequired,
+  borderType: PropTypes.string.isRequired,
 };
 
 export default function Cell(props) {

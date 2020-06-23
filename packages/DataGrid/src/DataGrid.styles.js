@@ -1,6 +1,7 @@
 import styled, { css } from "styled-components";
 import tokens from "@paprika/tokens";
 import stylers from "@paprika/stylers";
+import types from "./types";
 
 export const Grid = styled.div.attrs(({ $width }) => {
   return {
@@ -60,20 +61,23 @@ export const Grid = styled.div.attrs(({ $width }) => {
 `;
 
 const borders = {
-  grid: `box-shadow: 0 0 0 1px ${tokens.border.color};`,
-  empty: ``,
-  horizontal: `box-shadow: -1px 0 0 0px ${tokens.border.color};`,
-  vertical: `box-shadow: 0 -1px 0 0px ${tokens.border.color};`,
+  [types.GRID]: `box-shadow: 0 0 0 1px ${tokens.border.color};`,
+  [types.NONE]: ``,
+  [types.HORIZONTAL]: `box-shadow: -1px 0 0 0px ${tokens.border.color};`,
+  [types.VERTICAL]: `box-shadow: 0 -1px 0 0px ${tokens.border.color};`,
 };
 
 export const Cell = styled.div.attrs(({ hasZebraStripes, rowIndex, borderType }) => {
   const shadow = borderType in borders ? borders[borderType] : borders.grid;
+  const zebra = hasZebraStripes
+    ? {
+        background:
+          rowIndex % 2 === 0 ? `${tokens.table.rowEven.backgroundColor}` : `${tokens.table.row.backgroundColor}`,
+      }
+    : {};
 
   const style = {
-    background:
-      hasZebraStripes && rowIndex % 2 === 0
-        ? `${tokens.table.rowEven.backgroundColor}`
-        : `${tokens.table.row.backgroundColor}`,
+    ...zebra,
     boxShadow: shadow,
   };
 
