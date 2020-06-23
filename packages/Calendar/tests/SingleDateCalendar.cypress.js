@@ -7,7 +7,7 @@ describe("<SingleDateCalendar />", () => {
     .date(1);
 
   beforeEach(() => {
-    cy.visitStorybook("calendar-cypress--singledatecalendar-test");
+    cy.visitStorybook("forms-calendar-backyard-tests-cypress--singledatecalendar-test");
   });
 
   const selectADateByClick = () => {

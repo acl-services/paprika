@@ -2,13 +2,16 @@ import React from "react";
 import { storiesOf } from "@storybook/react";
 import moment from "moment";
 import L10n from "@paprika/l10n";
+import { getStoryName } from "storybook/storyTree";
 import SingleDateCalendar from "../src/SingleDateCalendar";
 import DateRangeCalendar from "../src/DateRangeCalendar";
 import { START_DATE } from "../src/tokens";
 
+const storyName = getStoryName("Calendar");
+
 const noop = () => {};
 
-storiesOf("Calendar / cypress", module)
+storiesOf(`${storyName}/Backyard/Tests/Cypress`, module)
   .add("SingleDateCalendar test", () => {
     const [date, setDate] = React.useState(null);
 
