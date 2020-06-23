@@ -3,25 +3,25 @@ import styled from "styled-components";
 import stylers from "@paprika/stylers";
 
 const smallSize = `${spacer(4)}`;
-const mediumSize = `${spacer(5)}`;
+const mediumSize = `${spacer(6)}`;
 
 export const avatarSizeStyles = {
   small: `
-    border-radius: 10px;
+    border-radius: ${spacer(0.5)};
     height: ${smallSize};
     width: ${smallSize};
     ${stylers.fontSize(2)} 
   `,
 
   medium: `
-    border-radius: 12px;
+    border-radius: ${spacer(1)}
     height: ${mediumSize};
     width: ${mediumSize};
     ${stylers.fontSize(3)} 
   `,
 };
 
-const commonStyles = styled.div`
+export const Avatar = styled.div`
   align-items: center;
   display: inline-flex;
   font-weight: bold;
@@ -31,16 +31,13 @@ const commonStyles = styled.div`
   * {
     box-sizing: border-box;
   }
-`;
 
-export const Avatar = styled(commonStyles)`
-  ${props => {
-    const size = avatarSizeStyles[props.size];
-
+  ${({ $backgroundColor, $color, size }) => {
+    const sizeValue = avatarSizeStyles[size];
     return `
-      background-color: ${props.backgroundColor};
-      color: ${props.color};
-      ${size};
+      background-color: ${$backgroundColor};
+      color: ${$color};
+      ${sizeValue};
     `;
   }}
 `;

@@ -8,8 +8,8 @@ import Avatar from "../../src";
 const avatarProps = () => ({
   children: text("content", "A"),
   size: select("size", ["small", "medium"], "medium"),
-  backgroundColor: text("backgroundColor", "black"),
-  color: text("color", "white"),
+  backgroundColor: text("backgroundColor", "#d1cbc2"),
+  color: text("color", "#3f3d3c"),
 });
 
 const ExampleStory = props => (
