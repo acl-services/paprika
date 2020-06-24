@@ -63,8 +63,8 @@ export const Grid = styled.div.attrs(({ $width }) => {
 const borders = {
   [types.GRID]: `box-shadow: 0 0 0 1px ${tokens.border.color};`,
   [types.NONE]: ``,
-  [types.HORIZONTAL]: `box-shadow: -1px 0 0 0px ${tokens.border.color};`,
-  [types.VERTICAL]: `box-shadow: 0 -1px 0 0px ${tokens.border.color};`,
+  [types.HORIZONTAL]: `box-shadow: 0 -1px 0 0px ${tokens.border.color};`,
+  [types.VERTICAL]: `box-shadow: -1px 0 0 0px ${tokens.border.color};`,
 };
 
 export const Cell = styled.div.attrs(({ hasZebraStripes, rowIndex, borderType }) => {
