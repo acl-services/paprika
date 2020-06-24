@@ -1,6 +1,6 @@
 {
   "name": "@paprika/takeover",
-  "version": "0.4.24",
+  "version": "0.4.25",
   "description": "The Takeover component can toggle a full-screen view to help the user focus on complex UI tasks.",
   "author": "@paprika",
   "main": "lib/index.js",
