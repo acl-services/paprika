@@ -4,17 +4,23 @@ import { VariableSizeGrid as Grid } from "react-window";
 import useI18n from "@paprika/l10n/lib/useI18n";
 import extractChildren from "@paprika/helpers/lib/extractChildren";
 
+import types from "./types";
 import useGridEventHandler from "./hooks/useGridEventHandler";
 import ColumnDefinition from "./components/ColumnDefinition";
 import * as sc from "./DataGrid.styles";
 import Basement, { End } from "./components/Basement";
 import InfiniteScroll from "./components/InfiniteScroll";
 import { Row, HeaderRow, StickyRow, StickyHeaderRow, createItemData } from "./DataGrid.Rows";
+import getScrollbarWidth from "./helpers/getScrollbarWidth";
 
 const propTypes = {
   /** If the data cell should automatically get focus  */
   autofocus: PropTypes.bool,
+  /** Define the look for borders in the table DataGrid.types.GRID, DataGrid.types.NONE, etc.  */
+  borderType: PropTypes.oneOf([types.GRID, types.NONE, types.HORIZONTAL, types.VERTICAL]),
   children: PropTypes.node.isRequired,
+  /** This will force the table to include in the calculation of the table the scrollbar thickness */
+  forceTableWidthWithScrollBars: PropTypes.bool,
   /** Add an alternate background on the DataGrid's rows */
   hasZebraStripes: PropTypes.bool,
   /** Array of data to be stored in the DataGrid */
@@ -40,7 +46,9 @@ const propTypes = {
 
 const defaultProps = {
   autofocus: true,
+  borderType: "grid",
   data: [],
+  forceTableWidthWithScrollBars: false,
   hasZebraStripes: false,
   height: 600,
   onClick: null,
@@ -53,7 +61,7 @@ const defaultProps = {
   width: null,
 };
 
-const outerElementType = React.forwardRef((props, ref) => <div role="rowgroup" ref={ref} {...props} />);
+const outerElementType = React.forwardRef((props, ref) => <sc.OuterElementType role="rowgroup" ref={ref} {...props} />);
 const innerElementType = React.forwardRef((props, ref) => <sc.InnerElementType role="row" ref={ref} {...props} />);
 const outerElementTypeMainGrid = React.forwardRef((props, ref) => (
   <sc.OuterElementTypeMainGrid role="rowgroup" ref={ref} {...props} />
@@ -66,8 +74,10 @@ const innerElementTypeMainGrid = React.forwardRef((props, ref) => (
 const DataGrid = React.forwardRef((props, ref) => {
   const {
     autofocus,
+    borderType,
     children,
     data,
+    forceTableWidthWithScrollBars,
     hasZebraStripes,
     height,
     onClick,
@@ -100,7 +110,7 @@ const DataGrid = React.forwardRef((props, ref) => {
   const refRemainingSpace = React.useRef(0);
   const refTotalCanGrow = React.useRef(0);
 
-  const [scrollBarWidth, setScrollBarWidth] = React.useState(0);
+  const [scrollBarWidth, setScrollBarWidth] = React.useState(getScrollbarWidth);
   const [pageSize, setPageSize] = React.useState(null);
   const i18n = useI18n();
   // these two value are sensitive in Grids with lots of columns and can degradate performance alot.
@@ -148,7 +158,6 @@ const DataGrid = React.forwardRef((props, ref) => {
   }, [ColumnDefinitions, scrollBarWidth]);
 
   const gridWidth = width === null ? calculatedTableWidth() : width;
-
   const stickyColumnsIndexes = React.useMemo(
     () =>
       ColumnDefinitions.map((ColumnDefinition, index) => {
@@ -257,8 +266,13 @@ const DataGrid = React.forwardRef((props, ref) => {
     if (!scrollContainer) return;
     // https://stackoverflow.com/questions/21064101/understanding-offsetwidth-clientwidth-scrollwidth-and-height-respectively
     // https://davidwalsh.name/detect-scrollbar-width
+
+    if (forceTableWidthWithScrollBars) {
+      return;
+    }
+
     setScrollBarWidth(() => scrollContainer.offsetWidth - scrollContainer.clientWidth);
-  }, [gridId]);
+  }, [forceTableWidthWithScrollBars, gridId]);
 
   const handleFocusGrid = React.useCallback(() => {
     const $isBlurred = refContainer.current.querySelector(".grid--is-blurred");
@@ -272,7 +286,8 @@ const DataGrid = React.forwardRef((props, ref) => {
     hasZebraStripes,
     stickyColumnsIndexes,
     columnHeadersA11yText,
-    a11yTextMessage
+    a11yTextMessage,
+    borderType
   );
 
   React.useEffect(() => {
@@ -391,8 +406,7 @@ const DataGrid = React.forwardRef((props, ref) => {
       }
     });
 
-    // TODO: Figure out how scrollbarwidth can be calculated initially so that its not always 0
-    refRemainingSpace.current = refContainer.current.offsetWidth - refTotalColumnWidth.current - 15;
+    refRemainingSpace.current = refContainer.current.offsetWidth - refTotalColumnWidth.current - scrollBarWidth;
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
@@ -536,5 +550,6 @@ DataGrid.defaultProps = defaultProps;
 DataGrid.InfiniteScroll = InfiniteScroll;
 DataGrid.propTypes = propTypes;
 DataGrid.Basement = Basement;
+DataGrid.types = types;
 
 export default DataGrid;

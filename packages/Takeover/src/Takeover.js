@@ -96,7 +96,7 @@ export default function Takeover(props) {
     >
       {headerExtracted && <sc.Header {...headerExtracted.props} onClose={onClose} />}
       {contentExtracted && (
-        <sc.ContentWrapper {...contentExtracted.props} role="region" tabIndex="0">
+        <sc.ContentWrapper role="region" tabIndex="0">
           {contentExtracted}
         </sc.ContentWrapper>
       )}

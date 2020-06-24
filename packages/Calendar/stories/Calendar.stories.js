@@ -2,16 +2,20 @@ import React from "react";
 import { storiesOf } from "@storybook/react";
 import { withKnobs } from "@storybook/addon-knobs";
 import { Story } from "storybook/assets/styles/common.styles";
+import { getStoryName } from "storybook/storyTree";
 import moment from "moment";
 import L10n from "@paprika/l10n";
 import DateRangeCalendar from "../src/DateRangeCalendar";
 import SingleDateCalendar from "../src/SingleDateCalendar";
 import { START_DATE } from "../src/tokens";
 
-moment.locale("en");
+const storyName = getStoryName("Calendar");
+
 const noop = () => {};
 
-storiesOf("Calendar", module)
+moment.locale("en");
+
+storiesOf(storyName, module)
   .addDecorator(withKnobs)
   .add("SingleDateCalendar Showcase", () => {
     const [date, setDate] = React.useState(null);
