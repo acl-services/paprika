@@ -37,6 +37,7 @@ const setFile = (file, callback) => files => {
 };
 
 export default function useProcessFiles({
+  initialFiles,
   hasAutoUpload,
   onChange,
   onCompleted,
@@ -47,7 +48,7 @@ export default function useProcessFiles({
   const [uploadingFileList, setUploadingFileList] = React.useState([]);
   const [isDisabled, setIsDisabled] = React.useState(defaultIsDisabled);
   const [isCompleted, setisCompleted] = React.useState(null);
-  const [files, setFiles] = React.useState([]);
+  const [files, setFiles] = React.useState(initialFiles);
 
   function cancelFile(key) {
     const index = getFileByIndex(key, files);

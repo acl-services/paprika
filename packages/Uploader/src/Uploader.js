@@ -62,6 +62,8 @@ const propTypes = {
     you can pass an array of header objects.
   */
   headers: PropTypes.arrayOf(PropTypes.object),
+
+  initialFiles: PropTypes.arrayOf(PropTypes.object),
 };
 
 const defaultProps = {
@@ -75,6 +77,7 @@ const defaultProps = {
   maxFileSize: oneMebibyte * 10, // 1048576bytes * 10 = 10,485,760 Mebibytes
   onChange: () => {},
   onCompleted: () => {},
+  initialFiles: [],
 };
 
 function getDocumentBody() {
@@ -101,6 +104,7 @@ const Uploader = React.forwardRef((props, ref) => {
     children,
     defaultIsDisabled,
     headers,
+    initialFiles,
   } = props;
 
   const refInput = React.useRef();
@@ -124,6 +128,7 @@ const Uploader = React.forwardRef((props, ref) => {
     setFiles,
     upload,
   } = useProcessFiles({
+    initialFiles,
     defaultIsDisabled,
     endpoint,
     hasAutoUpload,
@@ -143,6 +148,7 @@ const Uploader = React.forwardRef((props, ref) => {
         }
         return canChooseMultiple ? files : [files[0]]; // in case only allow one file per upload
       });
+      onChange(files);
     },
     [canChooseMultiple, endpoint, isDisabled, maxFileSize, supportedMimeTypes, setFiles]
   );

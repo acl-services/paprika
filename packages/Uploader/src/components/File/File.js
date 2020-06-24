@@ -69,6 +69,7 @@ function File({ error, fileKey, name, progress, size, status }) {
                   cancelFile(fileKey);
                 }}
                 size={ShirtSizes.SMALL}
+                isSemantic={false}
               >
                 <TimesIcon />
               </Button.Icon>
