@@ -1,14 +1,15 @@
 import { Meta } from "@storybook/addon-docs/blocks";
+import { getStoryName } from "storybook/storyTree";
 import MDX from "./Card.mdx";
 import Card from "../src/";
 
 export const params = {
   options: {
-    isToolshown: true, 
+    isToolshown: true,
     showPanel: false,
   },
-}
+};
 
-<Meta title="Card/ Docs" component={Card} parameters={params} />
+<Meta title={`${getStoryName("Card")}/Docs`} component={Card} parameters={params} />
 
 <MDX />

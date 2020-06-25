@@ -1,9 +1,11 @@
 import React from "react";
 import { storiesOf } from "@storybook/react";
+import { getStoryName } from "storybook/storyTree";
 import Heading from "@paprika/heading";
 import { Story, Rule, Tagline } from "storybook/assets/styles/common.styles";
-
 import ListBox from "../src";
+
+const storyName = getStoryName("ListBox");
 
 const Example = () => (
   <Story>
@@ -11,13 +13,13 @@ const Example = () => (
       <code>&lt;ListBox /&gt;</code>
     </Heading>
     <Tagline>
-      <b>Showcase</b> – Interact with the props API
+      <b>Showcase</b> – a stubby little story
     </Tagline>
     <Rule />
     <ListBox />
   </Story>
 );
 
-storiesOf("ListBox", module).add("Showcase", () => {
+storiesOf(storyName, module).add("Showcase", () => {
   return <Example />;
 });

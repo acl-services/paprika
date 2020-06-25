@@ -1,12 +1,13 @@
 import React from "react";
 import { withKnobs } from "@storybook/addon-knobs";
+import { getStoryName } from "storybook/storyTree";
 import Variations from "./examples/Variations";
 import Showcase from "./examples/Showcase";
 import { defaultParameters } from "./CollapsibleText.stories.helpers";
 import CollapsibleText from "../src";
 
 export default {
-  title: " | Collapsible Text",
+  title: getStoryName("CollapsibleText"),
   component: CollapsibleText,
 };
 

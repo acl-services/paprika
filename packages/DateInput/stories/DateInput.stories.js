@@ -1,11 +1,14 @@
 import React from "react";
 import moment from "moment";
 import { storiesOf } from "@storybook/react";
-import { Story, Rule, Tagline } from "storybook/assets/styles/common.styles";
 import { boolean, select, text, withKnobs } from "@storybook/addon-knobs";
+import { Story, Rule, Tagline } from "storybook/assets/styles/common.styles";
+import { getStoryName } from "storybook/storyTree";
 import L10n from "@paprika/l10n";
 import Heading from "@paprika/heading";
 import DateInput from "../src";
+
+const storyName = getStoryName("DateInput");
 
 const DateInputExample = props => {
   const [date, setDate] = React.useState(null);
@@ -22,37 +25,33 @@ const DateInputExample = props => {
   );
 };
 
-const Example = () => (
-  <Story>
-    <Heading level={1} displayLevel={2} isLight>
-      <code>&lt;DateInput /&gt;</code>
-    </Heading>
-    <Tagline>
-      <b>Showcase</b> – Interact with the props API
-    </Tagline>
-    <Rule />
-    <DateInput />
-  </Story>
-);
-
-storiesOf("DateInput", module).add("Showcase", () => {
-  return <Example />;
+const getKnobs = () => ({
+  size: select("size", ["small", "medium", "large"], "medium"),
+  placeholder: text("placeholder", ""),
+  dateFormat: select("dateFormat", ["MM/DD/YYYY", "DD/MM/YYYY", "YYYY-MM-DD"], "MM/DD/YYYY"),
+  humanFormat: select("humanFormat", ["MMMM DD, YYYY", "YYYY-MM-DD"], "MMMM DD, YYYY"),
+  isDisabled: boolean("isDisabled", false),
+  isReadOnly: boolean("isReadOnly", false),
+  hasError: boolean("hasError", false),
 });
 
-storiesOf("DateInput", module)
+const Showcase = props => {
+  moment.locale("en");
+
+  return (
+    <Story>
+      <Heading level={1} displayLevel={2} isLight>
+        <code>&lt;DateInput /&gt;</code>
+      </Heading>
+      <Tagline>
+        <b>Showcase</b> – Interact with the props API
+      </Tagline>
+      <Rule />
+      <DateInputExample {...props} />
+    </Story>
+  );
+};
+
+storiesOf(storyName, module)
   .addDecorator(withKnobs)
-  .add("Basic", () => {
-    const inputProps = {
-      size: select("size", ["small", "medium", "large"], "medium"),
-      placeholder: text("placeholder", ""),
-      dateFormat: select("dateFormat", ["MM/DD/YYYY", "DD/MM/YYYY", "YYYY-MM-DD"], "MM/DD/YYYY"),
-      humanFormat: select("humanFormat", ["MMMM DD, YYYY", "YYYY-MM-DD"], "MMMM DD, YYYY"),
-      isDisabled: boolean("isDisabled", false),
-      isReadOnly: boolean("isReadOnly", false),
-      hasError: boolean("hasError", false),
-    };
-
-    moment.locale("en");
-
-    return <DateInputExample {...inputProps} />;
-  });
+  .add("Showcase", () => <Showcase {...getKnobs()} />);

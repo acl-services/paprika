@@ -1,4 +1,5 @@
 import { Meta } from "@storybook/addon-docs/blocks";
+import { getStoryName } from "storybook/storyTree";
 import MDX from "./SidePanel.mdx";
 import SidePanel from "../src";
 
@@ -9,6 +10,6 @@ export const params = {
   },
 };
 
-<Meta title=" | SidePanel/ Docs" component={SidePanel} parameters={params} />
+<Meta title={`${getStoryName("SidePanel")}/Docs`} component={SidePanel} parameters={params} />
 
 <MDX />

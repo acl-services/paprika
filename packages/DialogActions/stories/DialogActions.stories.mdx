@@ -1,4 +1,5 @@
 import { Meta } from "@storybook/addon-docs/blocks";
+import { getStoryName } from "storybook/storyTree";
 import MDX from "./DialogActions.mdx";
 import DialogActions from "../src";
 
@@ -9,6 +10,6 @@ export const params = {
   },
 };
 
-<Meta title="Dialog Actions/ Docs" component={DialogActions} parameters={params} />
+<Meta title={`${getStoryName("DialogActions")}/Docs`} component={DialogActions} parameters={params} />
 
 <MDX />

@@ -7,25 +7,32 @@ de:
     dataGrid:
       a11yTextMessage: "{{value}}. Sie befinden sich in Reihe {{rowIndex}}, Spalte {{columnIndex}}. Ignorieren Sie die folgenden Informationen:"
     uploader:
-      label: Ziehen und Ablegen oder wählen Sie Dateien von Ihrem Computer
-      overlay:
-        title: Ziehen & Ablegen
-        subtitle: Dateien hier
-      form:
-        dragAndDrop: Ziehen & Ablegen
-        or: oder
-        chooseFiles: Dateien auswählen
-        from: Von Ihrem Rechner
+      drop_files: Dateien zum Hochladen ablegen
+      drop_files_here_or: Legen Sie Dateien zum Hochladen hier ab oder
+      choose_from_computer: wählen Sie auf Ihrem Computer aus
+      cancel_upload: Upload abbrechen
+      restart_upload: Upload neu starten
       errors:
-        file_size: überschreitet die maximale Dateigröße von {{size}}.
-        file_type: "{{type}} ist nicht der richtige Dateityp."
+        size: Datei muss kleiner als {{maxFileSize}} sein
+        type: "Datei muss die Datei einen der folgenden Dateitypen aufweisen: {{- supportedTypes}}"
       status:
         idle: Inaktiv
-        processing: Verarbeitung läuft...
-        uploading: Daten werden hochgeladen...
-        success: Erfolg!
+        processing: In Bearbeitung
+        uploading: Wird hochgeladen
+        success: Erfolg
         cancel: Abbrechen
         error: Fehler
+      progress:
+        cancelled: Abgebrochen
+        complete: Abgeschlossen
+        idle: Inaktiv
+        uploading: '{{progressWithUnits}} von {{sizeWithUnits}} werden hochgeladen'
+      size_abbreviations:
+        byte: B
+        kibibyte: KiB
+        mebibyte: MiB
+        gibibyte: GiB
+        tebibyte: TiB
     actions:
       delete: Löschen
       apply: Anwenden
@@ -108,7 +115,7 @@ de:
         add_filter: Feld hinzufügen zum Filtern nach
         and: und
         or: oder
-        where: Wobei
+        where: Mit
         rules:
           is: ist
           is_not: ist nicht

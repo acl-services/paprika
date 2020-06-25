@@ -1,11 +1,14 @@
 import React from "react";
 import { storiesOf } from "@storybook/react";
 import * as Sbook from "storybook/assets/styles/common.styles";
+import { getStoryName } from "storybook/storyTree";
 import SidePanel from "@paprika/sidepanel";
 import styled from "styled-components";
 import Button from "@paprika/button";
 import Spinner from "@paprika/spinner";
 import DataGrid, { renderColumnIndicator, renderColumnExpand } from "../src";
+
+const storyName = getStoryName("DataGrid");
 
 const ImgWrapper = styled.div`
   height: 28px;
@@ -103,10 +106,6 @@ export function App() {
     console.log("handleOnSelect");
   }
 
-  function isChecked() {
-    return "unchecked";
-  }
-
   function renderSidepanel({ row }) {
     return (
       <SidePanel onClose={handleSidePanelClose} isOpen={isOpen}>
@@ -148,7 +147,7 @@ export function App() {
             onPressEnter={handleOpenSidepanel}
             onPressSpaceBar={handleOpenSidepanel}
           >
-            {renderColumnIndicator({ onSelect: handleOnSelect, isChecked })}
+            {renderColumnIndicator({ onChecked: handleOnSelect })}
             {renderColumnExpand()}
             <DataGrid.ColumnDefinition
               isSticky
@@ -180,4 +179,4 @@ export function App() {
   );
 }
 
-storiesOf("DataGrid / Lazy", module).add("Marvel Api interaction", () => <App />);
+storiesOf(`${storyName}/Examples`, module).add("Lazy", () => <App />);

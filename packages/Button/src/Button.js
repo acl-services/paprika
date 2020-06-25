@@ -87,12 +87,8 @@ const buttonDefaultProps = {
   children: null,
 };
 
-const ButtonIcon = props =>
-  props.children ? (
-    <span css={iconStyles} {...props} className="button__icon">
-      {props.children}
-    </span>
-  ) : null;
+export const ButtonIcon = props =>
+  props.children ? <span css={iconStyles} data-pka-anchor="button.icon" {...props} /> : null;
 
 const Button = React.forwardRef((props, ref) => {
   const {
@@ -184,11 +180,11 @@ const Button = React.forwardRef((props, ref) => {
 
   return (
     <span css={buttonStyles} as={isSemantic ? "button" : RawButton} {...buttonProps}>
-      <ButtonIcon {...iconProps} isPending={isPending} data-pka-anchor="button.icon">
+      <ButtonIcon {...iconProps} isPending={isPending}>
         {isPending ? <RefreshIcon /> : icon}
       </ButtonIcon>
       {children}
-      <ButtonIcon {...iconProps} isDropdown data-pka-anchor="button.icon">
+      <ButtonIcon {...iconProps} isSuffixIcon>
         {isDropdown && <DownIcon />}
       </ButtonIcon>
     </span>

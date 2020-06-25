@@ -1,5 +1,5 @@
 import React from "react";
-import SidePanel from "../src";
+import { getStoryName } from "storybook/storyTree";
 import {
   BasicSidePanel,
   FocusLockSidePanel,
@@ -8,6 +8,9 @@ import {
   StickyFooterSidePanel,
   ZIndexSidePanel,
 } from "./examples/Examples";
+import SidePanel from "../src";
+
+const storyName = getStoryName("SidePanel");
 
 const sidePanelStoryParameters = {
   parameters: {
@@ -21,7 +24,7 @@ const sidePanelStoryParameters = {
 };
 
 export default {
-  title: "SidePanel/Examples",
+  title: `${storyName}/Examples`,
   component: SidePanel,
 };
 

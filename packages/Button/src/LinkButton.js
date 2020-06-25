@@ -4,53 +4,65 @@ import { ShirtSizes } from "@paprika/helpers/lib/customPropTypes";
 import NewTabIcon from "@paprika/icon/lib/NewTab";
 import Button from "./Button";
 import buttonStyles from "./Button.styles";
+import * as sc from "./LinkButton.styles";
 
-const LinkPropTypes = {
+const propTypes = {
   a11yText: PropTypes.string,
   children: PropTypes.node.isRequired,
   href: PropTypes.string.isRequired,
-  isOpenNewTab: PropTypes.bool,
+  isDisabled: PropTypes.bool,
   kind: PropTypes.oneOf(Button.Kinds.ALL),
   size: PropTypes.oneOf(ShirtSizes.DEFAULT),
+  shouldOpenNewTab: PropTypes.bool,
   suffixIcon: PropTypes.node,
 };
 
-const LinkDefaultProps = {
+const defaultProps = {
   a11yText: null,
-  isOpenNewTab: true,
+  isDisabled: false,
   kind: Button.Kinds.LINK,
+  shouldOpenNewTab: false,
   size: ShirtSizes.MEDIUM,
   suffixIcon: <NewTabIcon />,
 };
 
-const isOpenNewTabProps = {
-  target: "_blank",
-  rel: "noopener noreferrer",
-};
+const LinkButton = React.forwardRef((props, ref) => {
+  const { a11yText, children, href, isDisabled, shouldOpenNewTab, kind, size, suffixIcon, ...moreProps } = props;
 
-const LinkButton = React.forwardRef(
-  ({ a11yText, children, href, isOpenNewTab, kind, size, suffixIcon, ...moreProps }, ref) => {
-    return (
-      <a
-        css={buttonStyles}
-        ref={ref}
-        href={href}
-        aria-label={a11yText}
-        kind={kind}
-        size={size}
-        {...(isOpenNewTab ? isOpenNewTabProps : {})}
-        {...moreProps}
-      >
-        {children}
-        {kind === Button.Kinds.LINK && isOpenNewTab ? suffixIcon : null}
-      </a>
-    );
-  }
-);
+  const shouldOpenNewTabProps = {
+    target: "_blank",
+    rel: "noopener noreferrer",
+  };
 
-LinkButton.Kinds = Button.Kinds;
+  const iconProps = {
+    isDisabled,
+    kind,
+  };
+
+  return (
+    <a
+      aria-label={a11yText}
+      css={buttonStyles}
+      href={!isDisabled ? href : null}
+      isDisabled={isDisabled}
+      kind={kind}
+      size={size}
+      {...(shouldOpenNewTab ? shouldOpenNewTabProps : {})}
+      {...moreProps}
+      as={isDisabled ? "span" : "a"}
+      ref={ref}
+    >
+      {children}
+      <sc.LinkButtonIcon {...iconProps} isSuffixIcon>
+        {kind === Button.Kinds.LINK && shouldOpenNewTab && suffixIcon}
+      </sc.LinkButtonIcon>
+    </a>
+  );
+});
+
 LinkButton.displayName = "LinkButton";
-LinkButton.propTypes = LinkPropTypes;
-LinkButton.defaultProps = LinkDefaultProps;
+LinkButton.propTypes = propTypes;
+LinkButton.defaultProps = defaultProps;
+LinkButton.Kinds = Button.Kinds;
 
 export default LinkButton;

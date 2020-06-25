@@ -1,6 +1,6 @@
 {
   "name": "@paprika/select",
-  "version": "0.2.16",
+  "version": "0.2.18",
   "description": "Select component allows users to select an item from a drop-down list",
   "author": "@paprika",
   "main": "lib/index.js",
@@ -15,8 +15,8 @@
   },
   "dependencies": {
     "@babel/runtime-corejs2": "^7.3.1",
-    "@paprika/helpers": "^0.2.11",
-    "@paprika/stylers": "^0.2.7",
+    "@paprika/helpers": "^0.2.12",
+    "@paprika/stylers": "^0.2.8",
     "@paprika/tokens": "^0.1.14",
     "classnames": "^2.2.6",
     "prop-types": "^15.7.2"
