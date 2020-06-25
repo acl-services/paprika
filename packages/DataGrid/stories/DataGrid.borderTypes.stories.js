@@ -30,5 +30,5 @@ export function App({ borderType }) {
 
 storiesOf(`${storyName} / Borders`, module).add("Grid", () => <App />);
 storiesOf(`${storyName} / Borders`, module).add("Empty", () => <App borderType={DataGrid.types.NONE} />);
-storiesOf(`${storyName} / Borders`, module).add("Vertical", () => <App borderType={DataGrid.types.HORIZONTAL} />);
-storiesOf(`${storyName} / Borders`, module).add("Horizontal", () => <App borderType={DataGrid.types.VERTICAL} />);
+storiesOf(`${storyName} / Borders`, module).add("Horizontal", () => <App borderType={DataGrid.types.HORIZONTAL} />);
+storiesOf(`${storyName} / Borders`, module).add("Vertical", () => <App borderType={DataGrid.types.VERTICAL} />);
