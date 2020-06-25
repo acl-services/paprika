@@ -23,7 +23,7 @@ import { getAvatarColors } from "@paprika/avatar/lib/helpers";
 
 const color = getAvatarColors("text");
 
-<Avatar backgroundColor="color.backgroundColor" color="color.fontColor" size="small">
+<Avatar backgroundColor={color.backgroundColor} color={color.fontColor} size="small">
   A
 </Avatar>;
 ```
