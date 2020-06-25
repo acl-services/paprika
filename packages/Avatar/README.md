@@ -5,22 +5,27 @@
 
 ## Avatar
 
-An `Avatar` component represents an object or entity and displays initials or icon.
+`Avatar` component represents an object or entity and displays initials or icon.
 
 ### Usage
 
 ```js
-<Avatar backgroundColor="black" color="white" size="small">A</Avatar>
+<Avatar backgroundColor="black" color="white" size="small">
+  A
+</Avatar>
 ```
 
-Avatar using getAvatarColors() to use consistent avatar colors
+Avatar using getAvatarColors() to use consistent colors
 
 ```js
-import Avatar, { getAvatarColors } from '@paprika/avatar';
+import Avatar from "@paprika/avatar";
+import { getAvatarColors } from "@paprika/avatar/lib/helpers";
 
-const color = getAvatarColors(text);
+const color = getAvatarColors("text");
 
-<Avatar backgroundColor="black" color="white" size="small">A</Avatar>
+<Avatar backgroundColor="color.backgroundColor" color="color.fontColor" size="small">
+  A
+</Avatar>;
 ```
 
 <!-- eoContent -->
