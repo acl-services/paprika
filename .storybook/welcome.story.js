@@ -9,7 +9,7 @@ const parameters = {
   },
 };
 
-storiesOf(" | Welcome", module)
+storiesOf("Welcome", module)
   .addParameters(parameters)
   .add("Paprika", () => (
     <WelcomePage>

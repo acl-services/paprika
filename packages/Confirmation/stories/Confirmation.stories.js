@@ -2,6 +2,7 @@ import React from "react";
 import { storiesOf } from "@storybook/react";
 import { Story, Rule } from "storybook/assets/styles/common.styles";
 import { withKnobs } from "@storybook/addon-knobs";
+import { getStoryName } from "storybook/storyTree";
 import L10n from "@paprika/l10n";
 import Heading from "@paprika/heading";
 import ShowcaseStory from "./examples/Showcase";
@@ -11,10 +12,14 @@ import ConfirmationExampleWithTriggerIcon from "./examples/ConfirmationExampleWi
 import ConfirmationExampleWithTriggerRaw from "./examples/ConfirmationExampleWithTriggerRaw";
 import ConfirmationExampleWithAsyncAction from "./examples/ConfirmationExampleWithAsyncAction";
 
-storiesOf("Confirmation", module)
+const storyName = getStoryName("Confirmation");
+
+storiesOf(storyName, module)
   .addDecorator(withKnobs)
-  .add("Showcase", ShowcaseStory)
-  .add("Confirmation", () => (
+  .add("Showcase", ShowcaseStory);
+
+storiesOf(`${storyName}/Examples`, module)
+  .add("Basic", () => (
     <Story>
       <ConfirmationExample />
     </Story>
@@ -52,3 +57,5 @@ storiesOf("Confirmation", module)
       <ConfirmationExampleWithAsyncAction />
     </Story>
   ));
+
+storiesOf(`${storyName}/Backyard/Tests`, module).add("Screener", () => <ConfirmationExample />);

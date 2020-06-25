@@ -39,14 +39,14 @@ export default [
   },
   {
     id: 2,
-    objective: "Card Issuance and Managment",
+    objective: "Card Issuance and Management",
     review: [9, 20],
     detail: [4, 20],
     general: [0, 20],
     rows: [
-      { indent: 2, objective: "Card Issuance and Managment 1", review: [12, 23], detail: [3, 15], general: [0, 2] },
-      { indent: 2, objective: "Card Issuance and Managment 2", review: [34, 34], detail: [15, 15], general: [0, 6] },
-      { indent: 2, objective: "Card Issuance and Managment 3", review: [34, 34], detail: [15, 15], general: [6, 6] },
+      { indent: 2, objective: "Card Issuance and Management 1", review: [12, 23], detail: [3, 15], general: [0, 2] },
+      { indent: 2, objective: "Card Issuance and Management 2", review: [34, 34], detail: [15, 15], general: [0, 6] },
+      { indent: 2, objective: "Card Issuance and Management 3", review: [34, 34], detail: [15, 15], general: [6, 6] },
     ],
   },
   {
@@ -116,8 +116,8 @@ export default [
   },
   { id: 4, objective: "Employee T&E Transactions", review: [10, 34], detail: [3, 15], general: [1, 15] },
   { id: 5, objective: "Approval of T&E Transactions", review: [10, 34], detail: [3, 15], general: [1, 15] },
-  { id: 6, objective: "Lost Card Managment", review: [10, 34], detail: [3, 15], general: [1, 15] },
+  { id: 6, objective: "Lost Card Management", review: [10, 34], detail: [3, 15], general: [1, 15] },
   { id: 7, objective: "Monitor operational contorls", review: [3, 25], detail: [1, 25], general: [0, 25] },
   { id: 8, objective: "Monitor IT Process", review: [25, 25], detail: [25, 25], general: [3, 9] },
-  { id: 9, objective: "Additional Managment", review: [25, 25], detail: [3, 15], general: [1, 40] },
+  { id: 9, objective: "Additional Management", review: [25, 25], detail: [3, 15], general: [1, 40] },
 ];

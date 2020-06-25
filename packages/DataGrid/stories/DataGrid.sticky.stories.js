@@ -1,9 +1,12 @@
 import React from "react";
 import { storiesOf } from "@storybook/react";
 import * as Sbook from "storybook/assets/styles/common.styles";
+import { getStoryName } from "storybook/storyTree";
 import Button from "@paprika/button";
 import DataGrid from "../src";
 import fixtures from "./helpers/fixtures";
+
+const storyName = getStoryName("DataGrid");
 
 const data = fixtures(100);
 const flags = {
@@ -54,4 +57,4 @@ export function App() {
   );
 }
 
-storiesOf("DataGrid / sticky", module).add("basic", () => <App />);
+storiesOf(`${storyName}/Examples`, module).add("Sticky", () => <App />);

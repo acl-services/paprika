@@ -1,8 +1,11 @@
 import React from "react";
+import { getStoryName } from "storybook/storyTree";
 import Toast from "../src";
 import ControlledToastExample from "./examples/ControlledToastExample";
 import FixedToastExample from "./examples/FixedToastExample";
 import UncontrolledToastExample from "./examples/UncontrolledToastExample";
+
+const storyName = getStoryName("Toast");
 
 const toastStoryParameters = {
   viewMode: "story",
@@ -13,7 +16,7 @@ const toastStoryParameters = {
 };
 
 export default {
-  title: "Toast/Examples",
+  title: `${storyName}/Examples`,
   component: Toast,
 };
 

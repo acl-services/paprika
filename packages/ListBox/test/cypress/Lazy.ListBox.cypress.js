@@ -7,7 +7,7 @@ function checkIfSelected(marvelChar, isSelected) {
 
 describe("Lazy ListBox", () => {
   beforeEach(() => {
-    cy.visitStorybook("listbox-lazy--lazy-listbox");
+    cy.visitStorybook("forms-listbox-examples--lazy-listbox");
     openLazyDropDown();
   });
 

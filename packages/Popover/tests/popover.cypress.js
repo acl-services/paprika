@@ -1,6 +1,6 @@
 import selectors from "./helpers/selectors";
 
-const storyFolder = "popover-automation-tests";
+const storyFolder = "layers-popover-backyard-tests";
 const story = "cypress";
 
 describe("Popover", () => {

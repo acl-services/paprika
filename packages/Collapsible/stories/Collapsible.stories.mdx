@@ -1,9 +1,14 @@
 import { Meta, Story } from "@storybook/addon-docs/blocks";
 import { Props, Description } from "@storybook/addon-docs/blocks";
 import { Gap } from "storybook/assets/styles/common.styles";
+import { getStoryName } from "storybook/storyTree";
 import Readme from "../README.md";
 import Collapsible from "../src";
 
-<Meta title=" | Collapsible/ Docs" component={Collapsible} parameters={{ options: { showPanel: false } }} />
+<Meta
+  title={`${getStoryName("Collapsible")}/Docs`}
+  component={Collapsible}
+  parameters={{ options: { showPanel: false } }}
+/>
 
 <Description markdown={Readme} />

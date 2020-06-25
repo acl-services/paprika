@@ -1,5 +1,8 @@
 import React from "react";
 import { storiesOf } from "@storybook/react";
+import { getStoryName } from "storybook/storyTree";
 import LazyListBox from "./Lazy";
 
-storiesOf("ListBox / Lazy", module).add("Lazy ListBox", () => <LazyListBox />);
+const storyName = getStoryName("ListBox");
+
+storiesOf(`${storyName}/Examples`, module).add("Lazy ListBox", () => <LazyListBox />);

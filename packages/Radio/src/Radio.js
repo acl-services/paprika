@@ -109,7 +109,9 @@ function Radio(props) {
   return (
     <div data-pka-anchor="radio" css={radioStyles} {...styleProps} {...moreProps}>
       <input {...inputProps} />
+      {/* eslint-disable */}
       <label onKeyUp={handleKeyUp} className={canDeselect ? "deselectable" : ""} htmlFor={radioId}>
+        {/* eslint-enable */}
         {children}
 
         {canDeselect ? (

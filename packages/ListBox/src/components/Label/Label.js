@@ -1,13 +1,17 @@
 import React from "react";
 import PropTypes from "prop-types";
 import useListBox from "../../useListBox";
-// import {labelStyles} from "./Label.styles";
+import * as sc from "./Label.styles";
 import LabelMulti from "./LabelMulti";
 import LabelSingle from "./LabelSingle";
 
 const propTypes = {
   /** Sets a placeholder for the label. */
   placeholder: PropTypes.string,
+};
+
+const defaultProps = {
+  placeholder: "",
 };
 
 export default function Label(props) {
@@ -31,7 +35,8 @@ export default function Label(props) {
     setLabel(placeholder);
   }, [isMulti, options, placeholder, selectedOptions]);
 
-  return label;
+  return <sc.Label isPlaceholder={!selectedOptions.length}>{label}</sc.Label>;
 }
 
 Label.propTypes = propTypes;
+Label.defaultProps = defaultProps;

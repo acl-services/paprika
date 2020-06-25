@@ -1,4 +1,5 @@
 import React from "react";
+import { Story } from "storybook/assets/styles/common.styles";
 import CollapsibleChecklists from "../../src/index";
 
 // from API call #1
@@ -88,10 +89,12 @@ function Basic2Story() {
   }
 
   return (
-    <CollapsibleChecklists onChange={handleChangeItems}>
-      {renderCollapsibleChecklists("Movies", items.movies)}
-      {renderCollapsibleChecklists("TV Shows", items.tvShows)}
-    </CollapsibleChecklists>
+    <Story>
+      <CollapsibleChecklists onChange={handleChangeItems}>
+        {renderCollapsibleChecklists("Movies", items.movies)}
+        {renderCollapsibleChecklists("TV Shows", items.tvShows)}
+      </CollapsibleChecklists>
+    </Story>
   );
 }
 
