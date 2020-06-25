@@ -2,7 +2,7 @@ import React from "react";
 import { Story } from "storybook/assets/styles/common.styles";
 import Heading from "@paprika/heading";
 import Avatar from "../../src";
-import getAvatarColors from "../../src/helpers";
+import { getAvatarColors } from "../../src/helpers";
 
 const text = [
   "apple",
