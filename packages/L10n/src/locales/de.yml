@@ -40,8 +40,9 @@ de:
       confirm: Speichern
       decline: Ablehnen
     datePicker:
-      calendar_header_format: MMMM YYYY
       confirmation_format: DD. MMMM YYYY
+    calendar:
+      header_format: MMMM YYYY
       month: Monat
       year: Jahr
     daterange:
