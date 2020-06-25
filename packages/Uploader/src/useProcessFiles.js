@@ -53,6 +53,7 @@ export default function useProcessFiles({
   function cancelFile(key) {
     const index = getFileByIndex(key, files);
     if (index !== null) {
+      // what about in the case of `hasAutoUpload` being false,  and each file is always idle? It can't be removed from the list?
       if (files[index].status === statuses.PROCESSING || files[index].status === statuses.WAITINGFORSERVER) {
         const file = files[index];
 

@@ -47,6 +47,7 @@ function File({ error, fileKey, name, progress, size, status }) {
                   restartFileUpload(fileKey);
                 }}
                 size={ShirtSizes.SMALL}
+                isSemantic={false}
               >
                 <RetryIcon />
               </Button.Icon>
