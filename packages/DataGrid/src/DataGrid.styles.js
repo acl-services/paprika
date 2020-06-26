@@ -40,7 +40,7 @@ export const Grid = styled.div.attrs(({ $width }) => {
         /** header grid doesn't need overflow on the x side */
         overflow: hidden !important;
         /** let the vertical scroll overflow appears if the main grid has a scroll */
-        overflow-y: ${scrollBarWidth > 0 ? "scroll" : "hidden"} !important;
+        overflow-y: ${scrollBarWidth > 0 ? "overlay" : "hidden"} !important;
       }
 
       .${gridId}-sticky-columns {
