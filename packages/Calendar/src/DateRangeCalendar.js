@@ -11,7 +11,7 @@ import ArrowRight from "@paprika/icon/lib/ArrowRight";
 import Button from "@paprika/button";
 import useI18n from "@paprika/l10n/lib/useI18n";
 
-import { START_DATE, END_DATE } from "./tokens";
+import { Kinds, START_DATE, END_DATE } from "./tokens";
 
 import ShortcutPanel from "./internal/ShortcutPanel";
 
@@ -50,6 +50,8 @@ const propTypes = {
    * Should be used in conjunction with `onFocusChange`
    */
   focusedInput: PropTypes.oneOf([START_DATE, END_DATE]).isRequired,
+
+  kind: PropTypes.oneOf(Object.values(Kinds)),
 };
 
 const noop = () => {};
@@ -59,6 +61,7 @@ const defaultProps = {
   endDate: null,
   possibleDate: null,
   resetPossibleDate: noop,
+  kind: Kinds.CARD,
 };
 
 const phrases = {
@@ -74,7 +77,7 @@ function DateRangeCalendar(props) {
   const I18n = useI18n();
 
   // Props
-  const { startDate, endDate, onDatesChange, possibleDate, resetPossibleDate, focusedInput, onFocusChange } = props;
+  const { startDate, endDate, onDatesChange, possibleDate, resetPossibleDate, focusedInput, onFocusChange, kind } = props;
 
   // State
   const [shouldShowShortcut, setShouldShowShortcut] = React.useState(false);
@@ -195,7 +198,7 @@ function DateRangeCalendar(props) {
 
   return (
     <div css={calendarWrapperStyles} tabIndex={-1} ref={calendarRef}>
-      <div css={calendarStyles} isVisible={!shouldShowShortcut}>
+      <div css={calendarStyles} isVisible={!shouldShowShortcut} kind={kind}>
         <DayPickerRangeController
           key={CalendarKey}
           minimumNights={0}
@@ -210,6 +213,7 @@ function DateRangeCalendar(props) {
           numberOfMonths={1}
           initialVisibleMonth={getInitialVisibleMonth}
           hideKeyboardShortcutsPanel
+          noBorder={kind === Kinds.EMBEDDED}
           daySize={34}
           verticalBorderSpacing={0}
           transitionDuration={0}
