@@ -4,6 +4,28 @@ import { css, keyframes } from "styled-components";
 import { ShirtSizes } from "@paprika/helpers/lib/customPropTypes";
 import Kinds from "./ButtonKinds";
 
+// Borders
+
+const borderColors = {
+  [Kinds.DEFAULT]: tokens.border.color,
+  [Kinds.PRIMARY]: tokens.color.green,
+  [Kinds.SECONDARY]: tokens.color.purple,
+  [Kinds.DESTRUCTIVE]: tokens.color.orange,
+  [Kinds.FLAT]: tokens.border.color,
+  [Kinds.MINOR]: "transparent",
+  [Kinds.LINK]: "transparent",
+};
+
+const borderHoverColors = {
+  [Kinds.DEFAULT]: tokens.border.hoverColor,
+  [Kinds.PRIMARY]: tokens.color.greenDarken10,
+  [Kinds.SECONDARY]: tokens.color.purpleDarken10,
+  [Kinds.DESTRUCTIVE]: tokens.color.orangeDarken10,
+  [Kinds.FLAT]: tokens.border.hoverColor,
+  [Kinds.MINOR]: "transparent",
+  [Kinds.LINK]: "transparent",
+};
+
 // States
 
 const disabledStyles = css`
@@ -51,17 +73,12 @@ const activeStyles = css`
 
 const mouseStyles = css`
   [data-whatinput="mouse"] &:not([data-has-forced-focus="true"]):focus {
-    border-color: ${tokens.border.color};
+    border-color: ${({ kind }) => borderColors[kind]};
     box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.1);
+    ${({ kind }) => [Kinds.FLAT, Kinds.MINOR, Kinds.LINK].includes(kind) && "box-shadow: none;"}
 
-    &[kind="minor"],
-    &[kind="link"] {
-      box-shadow: none;
-      border-color: transparent;
-    }
-
-    &[kind="flat"] {
-      box-shadow: none;
+    &:hover {
+      border-color: ${({ kind }) => borderHoverColors[kind]};
     }
   }
 `;
@@ -141,12 +158,10 @@ const kindStyles = props => ({
 
     background-color: ${tokens.color.white};
     background-image: linear-gradient(${tokens.color.blackLighten90}, ${tokens.color.blackLighten70});
-    border-color: ${tokens.border.color};
     color: ${tokens.color.black};
 
     &:hover {
       background: ${tokens.color.blackLighten70};
-      border-color: ${tokens.border.hoverColor};
     }
 
     ${props.isDisabled ? disabledStyles : ""}
@@ -157,11 +172,9 @@ const kindStyles = props => ({
 
     background-color: ${tokens.color.greenLighten10};
     background-image: linear-gradient(${tokens.color.greenLighten10}, ${tokens.color.green});
-    border-color: ${tokens.color.green};
 
     &:hover {
       background: ${tokens.color.green};
-      border-color: ${tokens.border.greenDarken10};
     }
 
     ${props.isDisabled ? disabledStyles : ""}
@@ -172,11 +185,9 @@ const kindStyles = props => ({
 
     background-color: ${tokens.color.purpleLighten10};
     background-image: linear-gradient(${tokens.color.purpleLighten10}, ${tokens.color.purple});
-    border-color: ${tokens.color.purple};
 
     &:hover {
       background: ${tokens.color.purple};
-      border-color: ${tokens.border.purpleDarken10};
     }
 
     ${props.isDisabled ? disabledStyles : ""}
@@ -187,11 +198,9 @@ const kindStyles = props => ({
 
     background-color: ${tokens.color.orangeHighlight};
     background-image: linear-gradient(${tokens.color.orangeHighlight}, ${tokens.color.orange});
-    border-color: ${tokens.color.orange};
 
     &:hover {
       background: ${tokens.color.orange};
-      border-color: ${tokens.border.orangeDarken10};
     }
 
     ${props.isDisabled ? disabledStyles : ""}
@@ -200,13 +209,11 @@ const kindStyles = props => ({
     ${skeuomorphicStyles}
 
     background-color: ${tokens.color.white};
-    border-color: ${tokens.border.color};
     box-shadow: none;
     color: ${tokens.color.black};
 
     &:hover {
       background: ${tokens.color.blackLighten70};
-      border-color: ${tokens.border.hoverColor};
     }
 
     ${props.isDisabled ? disabledStyles : ""}
@@ -255,6 +262,12 @@ const buttonStyles = props => css`
   ${sizeStyles[props.size]}
   ${kindStyles(props)[props.kind]}
   ${props.isFullWidth ? fullWidthStyles : ""}
+
+  border-color: ${({ kind }) => borderColors[kind]};
+  &:not([disabled]):not([aria-disabled="true"]):hover {
+    border-color: ${({ kind }) => borderHoverColors[kind]};
+  }
+
   ${props.isActive ? activeStyles : ""}
 `;
 
