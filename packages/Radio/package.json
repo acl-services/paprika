@@ -1,6 +1,6 @@
 {
   "name": "@paprika/radio",
-  "version": "0.1.23",
+  "version": "0.1.24",
   "description": "Radio component displays a radio input and label text beside it. When clicked it selects the input and deselects any other radio input in its group",
   "author": "@paprika",
   "license": "MIT",
