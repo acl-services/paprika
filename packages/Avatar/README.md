@@ -21,7 +21,7 @@ Avatar using getAvatarColors() to use consistent colors
 import Avatar from "@paprika/avatar";
 import { getAvatarColors } from "@paprika/avatar/lib/helpers";
 
-const color = getAvatarColors("text");
+const color = getAvatarColors("Terry Fox");
 
 <Avatar backgroundColor={color.backgroundColor} color={color.fontColor} size="small">
   A
