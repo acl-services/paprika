@@ -1,5 +1,7 @@
 import React from "react";
 import Popover from "@paprika/popover";
+import Calendar from "@paprika/calendar/lib/DateRangeCalendar";
+import { Kinds as CalendarKinds, START_DATE, END_DATE } from "@paprika/calendar/lib/tokens";
 import ArrowIcon from "@paprika/icon/lib/ArrowRightB";
 import useI18n from "@paprika/l10n/lib/useI18n";
 import extractChildren from "@paprika/helpers/lib/extractChildren";
@@ -11,8 +13,9 @@ import * as styled from "./DateRangePicker.styles";
 const START_INPUT_BORDER_RADIUS = [true, false, false, true];
 const END_INPUT_BORDER_RADIUS = [false, true, true, false];
 
-const DateRangePicker = ({ startDate, endDate, onChangeStartDate, onChangeEndDate, children }) => {
+const DateRangePicker = ({ startDate, endDate, onDatesChange, children }) => {
   const [shouldShowPopover, setShouldShowPopover] = React.useState(false);
+  const [currentFocus, setCurrentFocus] = React.useState(null);
 
   const popoverContentRef = React.useRef(null);
   const startDateInputRef = React.useRef(null);
@@ -52,6 +55,7 @@ const DateRangePicker = ({ startDate, endDate, onChangeStartDate, onChangeEndDat
     if (shouldShowPopover) setShouldShowPopover(false);
     if (startDateInputRef.current) startDateInputRef.current.blur();
     if (endDateInputRef.current) endDateInputRef.current.blur();
+    setCurrentFocus(null);
   }
 
   function handleClosePopover() {
@@ -64,6 +68,36 @@ const DateRangePicker = ({ startDate, endDate, onChangeStartDate, onChangeEndDat
     if (event.key === "Escape") {
       hidePopover();
     }
+  }
+
+  function onDateInputFocus(type) {
+    return () => {
+      setCurrentFocus(type);
+    };
+  }
+
+  function onFocusChange(type) {
+    if (type === START_DATE) {
+      startDateInputRef.current.focus();
+    } else if (type === END_DATE) {
+      endDateInputRef.current.focus();
+    }
+  }
+
+  function onChangeStartDate(newDate) {
+    onDatesChange({ startDate: newDate, endDate });
+  }
+
+  function onChangeEndDate(newDate) {
+    onDatesChange({ startDate, endDate: newDate });
+  }
+
+  function shouldDenyStartDateInputConfirmation() {
+    return isElementContainsFocus(startDateInputRef.current);
+  }
+
+  function shouldDenyEndDateInputConfirmation() {
+    return isElementContainsFocus(endDateInputRef.current);
   }
 
   return (
@@ -85,8 +119,9 @@ const DateRangePicker = ({ startDate, endDate, onChangeStartDate, onChangeEndDat
           hasBorderRadius={START_INPUT_BORDER_RADIUS}
           placeholder={startInputPlaceholder}
           onClick={showPopover}
-          beforeConfirmation={hidePopover}
-          denyConfirmation={isAnyElementContainsFocus}
+          beforeConfirmation={handleClosePopover}
+          denyConfirmation={shouldDenyStartDateInputConfirmation}
+          onFocus={onDateInputFocus(START_DATE)}
           {...inputProps}
           {...startInputProps}
         />
@@ -100,8 +135,9 @@ const DateRangePicker = ({ startDate, endDate, onChangeStartDate, onChangeEndDat
           hasBorderRadius={END_INPUT_BORDER_RADIUS}
           placeholder={endInputPlaceholder}
           onClick={showPopover}
-          beforeConfirmation={hidePopover}
-          denyConfirmation={isAnyElementContainsFocus}
+          beforeConfirmation={handleClosePopover}
+          denyConfirmation={shouldDenyEndDateInputConfirmation}
+          onFocus={onDateInputFocus(END_DATE)}
           {...inputProps}
           {...endInputProps}
         />
@@ -109,13 +145,33 @@ const DateRangePicker = ({ startDate, endDate, onChangeStartDate, onChangeEndDat
 
       <Popover.Content ref={popoverContentRef}>
         <Popover.Card>
-          <styled.PopoverCardContent>
-            <styled.CalendarsWrapper>
-              <styled.Calendar />
-              <styled.Calendar />
-            </styled.CalendarsWrapper>
-            {/* there will be picker for predefined ranges */}
-          </styled.PopoverCardContent>
+          {shouldShowPopover && (
+            <styled.PopoverCardContent>
+              <styled.CalendarsWrapper>
+                <styled.CalendarWrapper>
+                  <Calendar
+                    kind={CalendarKinds.EMBEDDED}
+                    focusedInput={currentFocus}
+                    onFocusChange={onFocusChange}
+                    startDate={startDate}
+                    endDate={endDate}
+                    onDatesChange={onDatesChange}
+                  />
+                </styled.CalendarWrapper>
+                <styled.CalendarWrapper>
+                  <Calendar
+                    kind={CalendarKinds.EMBEDDED}
+                    focusedInput={currentFocus}
+                    onFocusChange={onFocusChange}
+                    startDate={startDate}
+                    endDate={endDate}
+                    onDatesChange={onDatesChange}
+                  />
+                </styled.CalendarWrapper>
+              </styled.CalendarsWrapper>
+              {/* there will be picker for predefined ranges */}
+            </styled.PopoverCardContent>
+          )}
         </Popover.Card>
       </Popover.Content>
     </Popover>

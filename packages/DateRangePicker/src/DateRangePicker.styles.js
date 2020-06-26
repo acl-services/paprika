@@ -1,10 +1,7 @@
-import React from "react";
 import styled from "styled-components";
 import OriginalDateInput from "@paprika/date-input";
 import tokens from "@paprika/tokens";
 import stylers from "@paprika/stylers";
-import OriginalCalendar from "@paprika/calendar/lib/SingleDateCalendar";
-import { Kinds as CalendarKinds } from "@paprika/calendar/lib/tokens";
 
 export const Wrapper = styled.div`
   display: flex;
@@ -36,12 +33,6 @@ export const CalendarsWrapper = styled.div`
   margin: 0 calc(-${stylers.spacer(3)} - ${CALENDAR_INTERNAL_PADDING}px);
 `;
 
-const CalendarWrapper = styled.div`
+export const CalendarWrapper = styled.div`
   margin: 0 ${stylers.spacer(3)};
 `;
-
-export const Calendar = props => (
-  <CalendarWrapper>
-    <OriginalCalendar kind={CalendarKinds.EMBEDDED} {...props} />
-  </CalendarWrapper>
-);

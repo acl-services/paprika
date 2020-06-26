@@ -27,8 +27,7 @@ storiesOf("DateRangePicker", module)
       placeholder: text("DateRangePicker.EndInput - placeholder", "") || undefined,
     };
 
-    const [startDate, setStartDate] = React.useState(null);
-    const [endDate, setEndDate] = React.useState(null);
+    const [{ startDate, endDate }, setDates] = React.useState({ startDate: null, endDate: null });
 
     moment.locale("en");
 
@@ -38,8 +37,7 @@ storiesOf("DateRangePicker", module)
           <DateRangePicker
             startDate={startDate}
             endDate={endDate}
-            onChangeStartDate={setStartDate}
-            onChangeEndDate={setEndDate}
+            onDatesChange={setDates}
             {...dateRangePickerProps}
           >
             <DateRangePicker.Input {...inputProps} />
