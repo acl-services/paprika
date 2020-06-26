@@ -45,9 +45,10 @@ const defaultProps = {
   tabIndex: null,
 };
 
+const isTriggerKey = key => [" ", "Enter"].includes(key);
+
 const RawButton = React.forwardRef((props, ref) => {
   const { a11yText, canPropagate, children, isActive, isDisabled, onClick, tabIndex, ...moreProps } = props;
-  if (a11yText) moreProps["aria-label"] = a11yText;
 
   const rawButtonRef = React.useRef(null);
   const [hasForcedFocus, setHasForcedFocus] = React.useState(false);
@@ -66,30 +67,24 @@ const RawButton = React.forwardRef((props, ref) => {
   };
 
   function handleBlur() {
-    if ("onBlur" in moreProps) {
-      moreProps.onBlur();
-    }
+    if (moreProps.onBlur) moreProps.onBlur();
     setHasForcedFocus(false);
   }
 
   const handleKeyDown = event => {
-    if (
-      // Prevent scrolling the page with a spacerbar keypress
-      event.key === " " ||
-      // Prevent submitting forms in IE/Edge with and enter keypress
-      event.key === "Enter"
-    ) {
-      event.preventDefault();
-    }
+    // Prevent scrolling the page with a spacerbar keypress
+    // Prevent submitting forms in IE/Edge with and enter keypress
+    if (isTriggerKey(event.key)) event.preventDefault();
+    const shouldHandle = canPropagate || event.target === rawButtonRef.current;
+    if (shouldHandle && moreProps.onKeyDown) moreProps.onKeyDown(event);
   };
 
   const handleKeyUp = event => {
     const shouldHandle = canPropagate || event.target === rawButtonRef.current;
-    const isTriggerKey = event.key === " " || event.key === "Enter";
-
-    if (!isDisabled && shouldHandle && isTriggerKey) {
+    if (!isDisabled && shouldHandle && isTriggerKey(event.key)) {
       onClick(event);
     }
+    if (shouldHandle && moreProps.onKeyUp) moreProps.onKeyUp(event);
   };
 
   const bestTabIndex = isDisabled && tabIndex === null ? -1 : tabIndex || 0;
@@ -99,6 +94,7 @@ const RawButton = React.forwardRef((props, ref) => {
       aria-pressed={isActive}
       data-pka-anchor="raw-button"
       tabIndex={bestTabIndex}
+      aria-label={a11yText}
       {...moreProps}
       aria-disabled={isDisabled}
       css={rawButtonStyles}
