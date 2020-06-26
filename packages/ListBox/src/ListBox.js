@@ -74,6 +74,7 @@ export function ListBox(props) {
   const I18n = useI18n();
   const propsForTrigger = {
     hasClearButton: true,
+    hasImplicitAll: _trigger ? _trigger.props.hasImplicitAll : null,
     onClickClear: null,
     placeholder: placeholder || I18n.t("listBox.trigger.placeholder"),
     onFooterClickAccept: footer ? footer.props.onClickAccept : null,
