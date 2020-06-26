@@ -1,6 +1,7 @@
 import { spacer } from "@paprika/stylers/lib/helpers";
 import styled from "styled-components";
 import stylers from "@paprika/stylers";
+import { getAvatarColors } from "./helpers";
 
 const smallSize = `${spacer(4)}`;
 const mediumSize = `${spacer(5)}`;
@@ -32,11 +33,14 @@ export const Avatar = styled.div`
     box-sizing: border-box;
   }
 
-  ${({ $backgroundColor, $color, size }) => {
+  ${({ $backgroundColor, $color, size, children }) => {
     const sizeValue = avatarSizeStyles[size];
+    const color = getAvatarColors(children);
+    const backgroundColor = $backgroundColor ?? color.backgroundColor;
+    const fontColor = $color ?? color.fontColor;
     return `
-      background-color: ${$backgroundColor};
-      color: ${$color};
+      background-color: ${backgroundColor};
+      color: ${fontColor};
       ${sizeValue};
     `;
   }}

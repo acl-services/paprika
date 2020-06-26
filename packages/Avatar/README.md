@@ -9,13 +9,15 @@
 
 ### Usage
 
+By default, Avatar component sets the background and text color using the `getAvatarColor`function with the children props value as the parameter.
+
 ```js
-<Avatar backgroundColor="black" color="white" size="small">
-  A
-</Avatar>
+import Avatar from "@paprika/avatar";
+
+<Avatar>A</Avatar>;
 ```
 
-Avatar using getAvatarColors() to use consistent colors
+Access `getAvatarColors`
 
 ```js
 import Avatar from "@paprika/avatar";
@@ -23,7 +25,17 @@ import { getAvatarColors } from "@paprika/avatar/lib/helpers";
 
 const color = getAvatarColors("Terry Fox");
 
-<Avatar backgroundColor={color.backgroundColor} color={color.fontColor} size="small">
+<Avatar backgroundColor={color.backgroundColor} color={color.fontColor}>
+  T
+</Avatar>;
+```
+
+Set custom size, background and text color
+
+```js
+import Avatar from "@paprika/avatar";
+
+<Avatar backgroundColor="black" color="white" size="small">
   A
 </Avatar>;
 ```

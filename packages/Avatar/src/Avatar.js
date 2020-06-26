@@ -7,15 +7,17 @@ const propTypes = {
   /** Avatar content. It can be initial as a string or icon */
   children: PropTypes.node,
   /** Background color of the Avatar */
-  backgroundColor: PropTypes.string.isRequired,
+  backgroundColor: PropTypes.string,
   /** Color for the initial or icon */
-  color: PropTypes.string.isRequired,
+  color: PropTypes.string,
   /** Size of Avatar */
   size: PropTypes.oneOf(ShirtSizes.LIMITED),
 };
 
 const defaultProps = {
+  backgroundColor: null,
   children: null,
+  color: null,
   size: "medium",
 };
 
