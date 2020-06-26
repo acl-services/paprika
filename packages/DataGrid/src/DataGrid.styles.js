@@ -31,7 +31,6 @@ export const Grid = styled.div.attrs(({ $width }) => {
   box-shadow: 0 0 0 1px ${tokens.border.color};
 
   ${({ gridId, scrollBarWidth }) => {
-    console.log("scrollBarWidth", scrollBarWidth);
     return css`
       .grid-${gridId} {
         overflow: auto !important;
