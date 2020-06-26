@@ -40,8 +40,9 @@ pt:
       confirm: Salvar
       decline: Recusar
     datePicker:
-      calendar_header_format: MMMM YYYY
       confirmation_format: ll
+    calendar:
+      header_format: MMMM YYYY
       month: Mês
       year: Ano
     daterange:
