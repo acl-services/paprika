@@ -30,14 +30,19 @@ export const Grid = styled.div.attrs(({ $width }) => {
   position: relative;
   box-shadow: 0 0 0 1px ${tokens.border.color};
 
-  ${({ gridId }) => {
+  ${({ gridId, scrollBarWidth }) => {
     return css`
       .grid-${gridId} {
         overflow: auto !important;
       }
 
       .${gridId}-header {
+        /** header grid doesn't need overflow on the x side */
         overflow: hidden !important;
+        /** let the vertical scroll overflow appears if the main grid has a scroll */
+        /** https://stackoverflow.com/questions/23200639/transparent-scrollbar-with-css */
+        /** https://developer.mozilla.org/en-US/docs/Web/CSS/overflow#Values ¯\_ツ_/¯ */
+        overflow-y: ${scrollBarWidth > 0 ? "overlay" : "hidden"} !important;
       }
 
       .${gridId}-sticky-columns {
