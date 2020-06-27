@@ -31,7 +31,28 @@ export const Grid = styled.div.attrs(({ $width }) => {
   box-shadow: 0 0 0 1px ${tokens.border.color};
 
   ${({ gridId, scrollBarWidth }) => {
+    /** this is a div that seats with a position absolute on top of the scrollbar for the header
+     * when the main table has an scrollbar, this fix the issue found on https://github.com/acl-services/paprika/pull/588
+     * for most browser we can change the style for the scrollbar but this doesn't work in IE or Firefox :/
+     * this hacks works in any browser
+     */
+    const fillerTopRightForScrollbarIEEdgeIssue =
+      scrollBarWidth > 0
+        ? `
+          &:after {
+            background: ${tokens.table.header.backgroundColor};
+            content: "";
+            height: 35px;     
+            position: absolute;
+            right: ${scrollBarWidth}px;
+            top: 0;
+            width: ${scrollBarWidth}px;
+          }
+        `
+        : "";
+
     return css`
+      ${fillerTopRightForScrollbarIEEdgeIssue};
       .grid-${gridId} {
         overflow: auto !important;
       }
@@ -39,10 +60,11 @@ export const Grid = styled.div.attrs(({ $width }) => {
       .${gridId}-header {
         /** header grid doesn't need overflow on the x side */
         overflow: hidden !important;
-        /** let the vertical scroll overflow appears if the main grid has a scroll */
-        /** https://stackoverflow.com/questions/23200639/transparent-scrollbar-with-css */
-        /** https://developer.mozilla.org/en-US/docs/Web/CSS/overflow#Values ¯\_ツ_/¯ */
-        overflow-y: ${scrollBarWidth > 0 ? "overlay" : "hidden"} !important;
+        overflow-y: ${scrollBarWidth > 0 ? "scroll" : "hidden"} !important;
+
+        ::-webkit-scrollbar {
+          background-color: ${tokens.table.header.backgroundColor};
+        }
       }
 
       .${gridId}-sticky-columns {
