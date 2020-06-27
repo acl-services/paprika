@@ -24,7 +24,7 @@ You can use the custom hooks provided by the `<ResizeDetector>` to consume the d
 
 ```jsx
 function ResizeConsumer() {
-  const { width, height } = ResizeDetector.useObservedDimensions();
+  const { width, height } = ResizeDetector.useDimensions();
   const { size } = ResizeDetector.useBreakpoints();
 
   return (

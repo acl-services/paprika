@@ -40,7 +40,7 @@ npm install @paprika/resize-observer
 
 `<ResizeDetector>` is a provider component that implements a simple DOM wrapper element and provides callbacks for resize events and custom hooks with dimension values for a consuming application or child component.
 
-Two callback props are provided (`onResize` + `onBreak`), as well as two custom hooks (`useObservedDimensions` + `useBreakpoints`) that a child component can use.
+Two callback props are provided (`onResize` + `onBreak`), as well as two custom hooks (`useDimensions` + `useBreakpoints`) that a child component can use.
 
 It provides the up-to-date `width` and `height` of its root DOM element as well as a simple tshirt `size` value (`small` | `medium` | `large`) that is determined by two breakpoints, which can be customized or disabled.
 
@@ -48,7 +48,7 @@ It provides the up-to-date `width` and `height` of its root DOM element as well 
 
 ```jsx
 function ResizeConsumer() {
-  const { width, height } = ResizeDetector.useObservedDimensions();
+  const { width, height } = ResizeDetector.useDimensions();
   return (
     <>
       {width} x {height}

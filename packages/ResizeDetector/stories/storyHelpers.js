@@ -42,7 +42,7 @@ export const ColourfulBox = styled.div`
 `;
 
 export function ResizeConsumer() {
-  const { width, height } = ResizeDetector.useObservedDimensions();
+  const { width, height } = ResizeDetector.useDimensions();
   const { size } = ResizeDetector.useBreakpoints();
 
   return (

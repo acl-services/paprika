@@ -6,7 +6,7 @@ function getVals() {
   let returnVal;
 
   function ResizeConsumer() {
-    const { width, height } = ResizeDetector.useObservedDimensions();
+    const { width, height } = ResizeDetector.useDimensions();
     const { size } = ResizeDetector.useBreakpoints();
 
     React.useLayoutEffect(() => {
