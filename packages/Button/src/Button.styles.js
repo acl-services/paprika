@@ -4,6 +4,14 @@ import { css, keyframes } from "styled-components";
 import { ShirtSizes } from "@paprika/helpers/lib/customPropTypes";
 import Kinds from "./ButtonKinds";
 
+const dropShadow = "0 1px 2px 0 rgba(0, 0, 0, 0.1)";
+
+const enabled = content => css`
+  &:not([disabled]):not([aria-disabled="true"]) {
+    ${content};
+  }
+`;
+
 // Borders
 
 const borderColors = {
@@ -25,6 +33,16 @@ const borderHoverColors = {
   [Kinds.MINOR]: "transparent",
   [Kinds.LINK]: "transparent",
 };
+
+const borderStyles = css`
+  border-color: ${({ kind }) => borderColors[kind]};
+
+  &:hover {
+    ${enabled(css`
+      border-color: ${({ kind }) => borderHoverColors[kind]};
+    `)}
+  }
+`;
 
 // States
 
@@ -71,15 +89,22 @@ const activeStyles = css`
   ${stylers.focusRing.bordered()}
 `;
 
-const mouseStyles = css`
-  [data-whatinput="mouse"] &:not([data-has-forced-focus="true"]):focus {
-    border-color: ${({ kind }) => borderColors[kind]};
-    box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.1);
-    ${({ kind }) => [Kinds.FLAT, Kinds.MINOR, Kinds.LINK].includes(kind) && "box-shadow: none;"}
+const inactiveStyles = css`
+  ${borderStyles}
 
-    &:hover {
-      border-color: ${({ kind }) => borderHoverColors[kind]};
-    }
+  [data-whatinput="mouse"] &:not([data-has-forced-focus="true"]):focus {
+    ${enabled(css`
+      ${borderStyles}
+
+      ${({ kind }) =>
+        [Kinds.FLAT, Kinds.MINOR, Kinds.LINK].includes(kind)
+          ? css`
+              box-shadow: none;
+            `
+          : css`
+              box-shadow: ${dropShadow};
+            `}
+    `)}
   }
 `;
 
@@ -104,8 +129,6 @@ const commonStyles = css`
     ${stylers.focusRing.bordered()}
   }
 
-  ${({ isActive }) => (isActive ? activeStyles : mouseStyles)}
-
   &:active {
     box-shadow: ${tokens.highlight.active.noBorder.boxShadow}, inset 0 1px 1px 0 rgba(0, 0, 0, 0.1),
       inset 0 1px 4px 0 rgba(0, 0, 0, 0.3);
@@ -114,7 +137,7 @@ const commonStyles = css`
 `;
 
 const skeuomorphicStyles = css`
-  box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.1);
+  box-shadow: ${dropShadow};
   cursor: pointer;
   transition-duration: 0.2s;
   transition-property: border;
@@ -261,14 +284,8 @@ const buttonStyles = props => css`
   ${commonStyles}
   ${sizeStyles[props.size]}
   ${kindStyles(props)[props.kind]}
-  ${props.isFullWidth ? fullWidthStyles : ""}
-
-  border-color: ${({ kind }) => borderColors[kind]};
-  &:not([disabled]):not([aria-disabled="true"]):hover {
-    border-color: ${({ kind }) => borderHoverColors[kind]};
-  }
-
-  ${props.isActive ? activeStyles : ""}
+  ${props.isFullWidth && fullWidthStyles}
+  ${({ isActive }) => (isActive ? activeStyles : inactiveStyles)}
 `;
 
 export default buttonStyles;
@@ -296,10 +313,7 @@ const iconColors = {
   [Kinds.LINK]: tokens.textColor.icon,
 };
 
-function getIconColor(props) {
-  if (props.isDisabled) return tokens.color.blackDisabled;
-  return iconColors[props.kind];
-}
+const getIconColor = props => (props.isDisabled ? tokens.color.blackDisabled : iconColors[props.kind]);
 
 export const iconStyles = props => css`
   align-items: center;
@@ -312,11 +326,13 @@ export const iconStyles = props => css`
     vertical-align: -${(stylers.lineHeightValue(-1) - 1) / 2}em;
   }
 
-  ${props.isPending
-    ? css`
-        animation: ${spinKeyframes} 2s infinite linear;
-      `
-    : ""}
+  ${props.isPending &&
+    css`
+      animation: ${spinKeyframes} 2s infinite linear;
+    `}
 
-  ${props.isSuffixIcon ? `margin: 0 0 0 ${tokens.spaceSm};` : ""}
+  ${props.isSuffixIcon &&
+    css`
+      margin: 0 0 0 ${tokens.spaceSm};
+    `}
 `;
