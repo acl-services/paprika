@@ -1,10 +1,13 @@
 import React from "react";
+import moment from "moment";
+
 import Popover from "@paprika/popover";
 import Calendar from "@paprika/calendar/lib/DateRangeCalendar";
 import { Kinds as CalendarKinds, START_DATE, END_DATE } from "@paprika/calendar/lib/tokens";
 import ArrowIcon from "@paprika/icon/lib/ArrowRightB";
 import useI18n from "@paprika/l10n/lib/useI18n";
 import extractChildren from "@paprika/helpers/lib/extractChildren";
+import useDebounce from "@paprika/helpers/lib/hooks/useDebounce";
 import isElementContainsFocus from "@paprika/helpers/lib/dom/isElementContainsFocus";
 import { AlignTypes } from "@paprika/helpers/lib/customPropTypes";
 import createPropsCollector from "./createPropsCollector";
@@ -16,12 +19,16 @@ const END_INPUT_BORDER_RADIUS = [false, true, true, false];
 const DateRangePicker = ({ startDate, endDate, onDatesChange, children }) => {
   const [shouldShowPopover, setShouldShowPopover] = React.useState(false);
   const [currentFocus, setCurrentFocus] = React.useState(null);
+  const [possibleStartDate, setPossibleStartDate] = React.useState(moment().startOf('month'));
+  const [possibleEndDate, setPossibleEndDate] = React.useState(moment().startOf('month').add(1, 'months'));
 
   const popoverContentRef = React.useRef(null);
   const startDateInputRef = React.useRef(null);
   const endDateInputRef = React.useRef(null);
 
   const I18n = useI18n();
+  const debouncedPossibleStartDate = useDebounce(possibleStartDate, 300);
+  const debouncedPossibleEndDate = useDebounce(possibleEndDate, 300);
 
   const {
     "DateRangePicker.Input": { props: inputProps = {} } = {},
@@ -100,6 +107,26 @@ const DateRangePicker = ({ startDate, endDate, onDatesChange, children }) => {
     return isElementContainsFocus(endDateInputRef.current);
   }
 
+  function handleResetPossibleStartDate() {
+    setPossibleStartDate(null);
+  }
+
+  function handleResetPossibleEndDate() {
+    setPossibleEndDate(null);
+  }
+
+  function handlePossibleStartDateChange(newPossibleDate) {
+    if (newPossibleDate.isSame(possibleStartDate, "year") && newPossibleDate.isSame(possibleStartDate, "month")) return;
+
+    setPossibleStartDate(newPossibleDate);
+  }
+
+  function handlePossibleEndDateChange(newPossibleDate) {
+    if (newPossibleDate.isSame(possibleEndDate, "year") && newPossibleDate.isSame(possibleEndDate, "month")) return;
+
+    setPossibleEndDate(newPossibleDate);
+  }
+
   return (
     <Popover
       edge={AlignTypes.LEFT}
@@ -116,6 +143,7 @@ const DateRangePicker = ({ startDate, endDate, onDatesChange, children }) => {
           ref={startDateInputRef}
           date={startDate}
           onChange={onChangeStartDate}
+          onChangePossibleDate={handlePossibleStartDateChange}
           hasBorderRadius={START_INPUT_BORDER_RADIUS}
           placeholder={startInputPlaceholder}
           onClick={showPopover}
@@ -132,6 +160,7 @@ const DateRangePicker = ({ startDate, endDate, onDatesChange, children }) => {
           ref={endDateInputRef}
           date={endDate}
           onChange={onChangeEndDate}
+          onChangePossibleDate={handlePossibleEndDateChange}
           hasBorderRadius={END_INPUT_BORDER_RADIUS}
           placeholder={endInputPlaceholder}
           onClick={showPopover}
@@ -156,6 +185,8 @@ const DateRangePicker = ({ startDate, endDate, onDatesChange, children }) => {
                     startDate={startDate}
                     endDate={endDate}
                     onDatesChange={onDatesChange}
+                    possibleDate={debouncedPossibleStartDate}
+                    resetPossibleDate={handleResetPossibleStartDate}
                   />
                 </styled.CalendarWrapper>
                 <styled.CalendarWrapper>
@@ -166,6 +197,8 @@ const DateRangePicker = ({ startDate, endDate, onDatesChange, children }) => {
                     startDate={startDate}
                     endDate={endDate}
                     onDatesChange={onDatesChange}
+                    possibleDate={debouncedPossibleEndDate}
+                    resetPossibleDate={handleResetPossibleEndDate}
                   />
                 </styled.CalendarWrapper>
               </styled.CalendarsWrapper>
