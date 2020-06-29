@@ -187,7 +187,7 @@ const kindStyles = props => ({
       background: ${tokens.color.blackLighten70};
     }
 
-    ${props.isDisabled ? disabledStyles : ""}
+    ${props.isDisabled && disabledStyles}
   `,
   [Kinds.PRIMARY]: css`
     ${skeuomorphicStyles}
@@ -200,7 +200,7 @@ const kindStyles = props => ({
       background: ${tokens.color.green};
     }
 
-    ${props.isDisabled ? disabledStyles : ""}
+    ${props.isDisabled && disabledStyles}
   `,
   [Kinds.SECONDARY]: css`
     ${skeuomorphicStyles}
@@ -213,7 +213,7 @@ const kindStyles = props => ({
       background: ${tokens.color.purple};
     }
 
-    ${props.isDisabled ? disabledStyles : ""}
+    ${props.isDisabled && disabledStyles}
   `,
   [Kinds.DESTRUCTIVE]: css`
     ${skeuomorphicStyles}
@@ -226,7 +226,7 @@ const kindStyles = props => ({
       background: ${tokens.color.orange};
     }
 
-    ${props.isDisabled ? disabledStyles : ""}
+    ${props.isDisabled && disabledStyles}
   `,
   [Kinds.FLAT]: css`
     ${skeuomorphicStyles}
@@ -239,7 +239,7 @@ const kindStyles = props => ({
       background: ${tokens.color.blackLighten70};
     }
 
-    ${props.isDisabled ? disabledStyles : ""}
+    ${props.isDisabled && disabledStyles}
   `,
   [Kinds.MINOR]: css`
     ${textButtonStyles}
@@ -248,7 +248,7 @@ const kindStyles = props => ({
       text-decoration: underline;
     }
 
-    ${props.isDisabled ? disabledTextStyles : ""}
+    ${props.isDisabled && disabledTextStyles}
   `,
   [Kinds.LINK]: css`
     ${textButtonStyles}
@@ -265,7 +265,7 @@ const kindStyles = props => ({
       color: ${tokens.color.blue};
     }
 
-    ${props.isDisabled ? disabledTextStyles : ""}
+    ${props.isDisabled && disabledTextStyles}
   `,
 });
 
