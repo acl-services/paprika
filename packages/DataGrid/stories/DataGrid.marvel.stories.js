@@ -106,10 +106,6 @@ export function App() {
     console.log("handleOnSelect");
   }
 
-  function isChecked() {
-    return "unchecked";
-  }
-
   function renderSidepanel({ row }) {
     return (
       <SidePanel onClose={handleSidePanelClose} isOpen={isOpen}>
@@ -151,7 +147,7 @@ export function App() {
             onPressEnter={handleOpenSidepanel}
             onPressSpaceBar={handleOpenSidepanel}
           >
-            {renderColumnIndicator({ onSelect: handleOnSelect, isChecked })}
+            {renderColumnIndicator({ onChecked: handleOnSelect })}
             {renderColumnExpand()}
             <DataGrid.ColumnDefinition
               isSticky

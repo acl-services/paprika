@@ -40,8 +40,9 @@ zh:
       confirm: 保存
       decline: 拒绝
     datePicker:
-      calendar_header_format: YYYY 年 M 月
       confirmation_format: YYYY 年 M 月 D 日
+    calendar:
+      header_format: YYYY 年 M 月
       month: 月
       year: 年
     daterange:
@@ -115,7 +116,7 @@ zh:
         add_filter: 添加过滤字段
         and: 和
         or: 或
-        where: 其中
+        where: 如果
         rules:
           is: 是
           is_not: 不是
@@ -131,8 +132,8 @@ zh:
           less_than_or_equal_to: "≤"
           is_empty: 是空的
           is_not_empty: 不是空的
-          is_before: 先于
-          is_after: 后于
+          is_before: 早于
+          is_after: 晚于
           true: "真"
           false: "假"
       search_placeholder: 筛选…

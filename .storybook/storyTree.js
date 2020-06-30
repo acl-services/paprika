@@ -8,6 +8,7 @@ const storyTree = [
       "Pill",
       "Counter",
       "Icon",
+      "Avatar"
     ],
   },
   {
@@ -59,6 +60,7 @@ const storyTree = [
       "ListBoxBrowser",
       "DateInput",
       "DatePicker",
+      "Calendar",
     ],
   },
   {

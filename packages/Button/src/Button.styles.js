@@ -247,13 +247,6 @@ const kindStyles = props => ({
     }
 
     ${props.isDisabled ? disabledTextStyles : ""}
-
-    > [data-pka-anchor="icon"] {
-      ${stylers.fontSize(-3)}
-      color: ${tokens.textColor.icon};
-      margin-left: ${tokens.spaceSm};
-      margin-top: -${tokens.spaceSm};
-    }
   `,
 });
 
@@ -323,5 +316,5 @@ export const iconStyles = props => css`
       `
     : ""}
 
-  ${props.isDropdown ? `margin: 0 0 0 ${tokens.spaceSm};` : ""}
+  ${props.isSuffixIcon ? `margin: 0 0 0 ${tokens.spaceSm};` : ""}
 `;

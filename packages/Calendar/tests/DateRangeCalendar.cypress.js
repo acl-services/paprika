@@ -4,7 +4,7 @@ describe("<DateRangeCalendar />", () => {
   const today = moment();
 
   beforeEach(() => {
-    cy.visitStorybook("calendar-cypress--daterangecalendar-test");
+    cy.visitStorybook("forms-calendar-backyard-tests-cypress--daterangecalendar-test");
   });
 
   it("should be initialized with current month", () => {

@@ -32,9 +32,11 @@ const TakeoverStory = ({ children }) => {
   return (
     <LongBlock>
       <Button onClick={toggle}>Open</Button>
-      <Takeover isOpen={isOpen} onClose={toggle} a11yText="Takeover View">
-        <Takeover.Overlay />
+      <Takeover isOpen={isOpen} onClose={toggle} a11yText="Takeover View" className="storybook-takeover">
+        <Takeover.Overlay className="storybook-takeover__overlay" />
+        <Takeover.FocusLock className="storybook-takeover__focuslock" />
         <Takeover.Header
+          className="storybook-takeover__header"
           hasCloseButton={boolean("Has close button", true, "Takeover.Header")}
           kind={select("Kind", ["default", "primary"], "default", "Takeover.Header")}
         >
@@ -74,7 +76,7 @@ storiesOf(storyName, module)
 storiesOf(`${storyName}/Examples`, module)
   .add("Basic", () => (
     <TakeoverStory>
-      <Takeover.Content>
+      <Takeover.Content className="storybook-takeover__content">
         {repeat(100, key => (
           <p key={key}>Some content here</p>
         ))}
@@ -159,7 +161,7 @@ storiesOf(`${storyName}/Backyard/Sandbox`, module)
         `}
       >
         <Button onClick={toggle}>Open Takeover</Button>
-        <Takeover isOpen={isOpen} onClose={toggle} zIndex={999}>
+        <Takeover isOpen={isOpen} onClose={toggle} zIndex={99}>
           <Takeover.Header
             hasCloseButton={boolean("Has close button", true, "Takeover.Header")}
             kind={select("Kind", ["default", "primary"], "default", "Takeover.Header")}
