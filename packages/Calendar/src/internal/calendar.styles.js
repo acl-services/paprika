@@ -215,8 +215,7 @@ export const dayTriggerStyles = css`
     ${dayTriggerSelectedStyle};
   }
 
-  .CalendarDay__selected_span &,
-  .CalendarDay__hovered_span & {
+  .CalendarDay__selected_span & {
     ${dayTriggerSpanStyle};
   }
 
