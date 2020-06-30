@@ -88,6 +88,8 @@ const DateRangePicker = ({ startDate, endDate, onDatesChange, children }) => {
       startDateInputRef.current.focus();
     } else if (type === END_DATE) {
       endDateInputRef.current.focus();
+    } else {
+      hidePopover();
     }
   }
 
