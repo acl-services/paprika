@@ -14,7 +14,7 @@ export default () => {
           <Card.Title>Asset type name</Card.Title>
           <Input />
           <div style={{ width: "100%", height: "24px" }} />
-          <Checkbox onChange={() => {}}>Use a display name</Checkbox>
+          <Checkbox>Use a display name</Checkbox>
           <div style={{ width: "100%", height: "24px" }} />
           <Card.Title>Description (optional)</Card.Title>
           <Textarea placeholder="Kanye is the only one who can edit this.." />

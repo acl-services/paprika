@@ -14,6 +14,8 @@ const checkboxStates = {
   INDETERMINATE: "indeterminate",
 };
 
+const noop = () => {};
+
 const propTypes = {
   /** Used for aria-describedby on the checkbox input  */
   ariaDescribedBy: PropTypes.string,
@@ -26,7 +28,7 @@ const propTypes = {
   /** Describe if the checkbox is disabled or not */
   isDisabled: PropTypes.bool,
   /** Callback triggered when the input state is changed */
-  onChange: PropTypes.func.isRequired,
+  onChange: PropTypes.func,
   /** Size provided by parent Group component */
   size: PropTypes.oneOf(ShirtSizes.DEFAULT),
   /** Value for tabindex attribute to override the default of 0. */
@@ -39,6 +41,7 @@ const defaultProps = {
   checkedState: checkboxStates.UNCHECKED,
   children: null,
   isDisabled: false,
+  onChange: noop,
   size: ShirtSizes.MEDIUM,
   tabIndex: 0,
 };
