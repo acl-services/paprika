@@ -74,11 +74,9 @@ const ButtonGroup = React.forwardRef((props, ref) => {
 
   React.useImperativeHandle(ref, () => ({
     focus: () => {
-      const firstEnabledIndex = getEnabledIndexes()[0];
-      const firstEnabledItemRef = itemRefs[firstEnabledIndex];
-      if (firstEnabledItemRef) {
-        firstEnabledItemRef.current.focus();
-        setFocusIndex(firstEnabledIndex);
+      if (currentFocusIndex !== null) {
+        const currentFocusRef = itemRefs[currentFocusIndex];
+        if (currentFocusRef) currentFocusRef.current.focus();
       }
     },
   }));

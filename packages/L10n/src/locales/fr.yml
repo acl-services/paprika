@@ -40,8 +40,9 @@ fr:
       confirm: Enregistrer
       decline: Refuser
     datePicker:
-      calendar_header_format: MMMM YYYY
       confirmation_format: D MMMM YYYY
+    calendar:
+      header_format: MMMM YYYY
       month: Mois
       year: Année
     daterange:
