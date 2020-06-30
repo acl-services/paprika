@@ -88,14 +88,6 @@ function DateRangeCalendar(props) {
   const prevButtonRef = React.useRef(null);
   const calendarRef = React.useRef(null);
 
-  function keepFocus() {
-    if (calendarRef.current) calendarRef.current.focus();
-  }
-
-  React.useEffect(() => {
-    keepFocus();
-  }, [currentMonth, startDate, endDate]);
-
   function getInitialVisibleMonth() {
     let initialVisibleMonth;
 
@@ -118,14 +110,12 @@ function DateRangeCalendar(props) {
 
   function handleCancelShortcut() {
     setShouldShowShortcut(false);
-    keepFocus();
   }
 
   function handleConfirmShortcut({ month, year }) {
     setCurrentMonth(moment.utc([year, month]));
     resetPossibleDate();
     setShouldShowShortcut(false);
-    keepFocus();
   }
 
   function handleClickNavigation(buttonRef) {
