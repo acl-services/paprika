@@ -27,7 +27,7 @@ const propTypes = {
   /** If true it adds a clear button */
   hasClearButton: PropTypes.bool,
 
-  /** Has implicit All label */
+  /** Has implicit "All items selected" value when no item is selected */
   hasImplicitAll: PropTypes.bool,
 
   /** Callback to be executed when the clear button is clicked or activated by keyboard. */

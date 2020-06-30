@@ -24,8 +24,7 @@ export const BasicWithEmptyOption = () => (
 );
 
 export const BasicWithImplicitAll = () => (
-  <ListBox placeholder="All">
-    <ListBox.Trigger hasImplicitAll />
+  <ListBox hasImplicitAll placeholder="All">
     {characters.villians}
     {characters.antiHeroes}
     {characters.heroes}
