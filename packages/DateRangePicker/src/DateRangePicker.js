@@ -19,8 +19,8 @@ const END_INPUT_BORDER_RADIUS = [false, true, true, false];
 const DateRangePicker = ({ startDate, endDate, onDatesChange, children }) => {
   const [shouldShowPopover, setShouldShowPopover] = React.useState(false);
   const [currentFocus, setCurrentFocus] = React.useState(null);
-  const [possibleStartDate, setPossibleStartDate] = React.useState(moment().startOf('month'));
-  const [possibleEndDate, setPossibleEndDate] = React.useState(moment().startOf('month').add(1, 'months'));
+  const [possibleStartDate, setPossibleStartDate] = React.useState(startDate || moment());
+  const [possibleEndDate, setPossibleEndDate] = React.useState(endDate || moment().add(1, 'months'));
 
   const popoverContentRef = React.useRef(null);
   const startDateInputRef = React.useRef(null);
@@ -29,6 +29,14 @@ const DateRangePicker = ({ startDate, endDate, onDatesChange, children }) => {
   const I18n = useI18n();
   const debouncedPossibleStartDate = useDebounce(possibleStartDate, 300);
   const debouncedPossibleEndDate = useDebounce(possibleEndDate, 300);
+
+  React.useEffect(() => {
+    setPossibleStartDate(startDate || moment());
+  }, [startDate]);
+
+  React.useEffect(() => {
+    setPossibleEndDate(endDate || moment().add(1, 'months'));
+  }, [endDate]);
 
   const {
     "DateRangePicker.Input": { props: inputProps = {} } = {},
@@ -109,14 +117,6 @@ const DateRangePicker = ({ startDate, endDate, onDatesChange, children }) => {
     return isElementContainsFocus(endDateInputRef.current);
   }
 
-  function handleResetPossibleStartDate() {
-    setPossibleStartDate(null);
-  }
-
-  function handleResetPossibleEndDate() {
-    setPossibleEndDate(null);
-  }
-
   function handlePossibleStartDateChange(newPossibleDate) {
     if (newPossibleDate.isSame(possibleStartDate, "year") && newPossibleDate.isSame(possibleStartDate, "month")) return;
 
@@ -188,7 +188,6 @@ const DateRangePicker = ({ startDate, endDate, onDatesChange, children }) => {
                     endDate={endDate}
                     onDatesChange={onDatesChange}
                     possibleDate={debouncedPossibleStartDate}
-                    resetPossibleDate={handleResetPossibleStartDate}
                   />
                 </styled.CalendarWrapper>
                 <styled.CalendarWrapper>
@@ -200,7 +199,6 @@ const DateRangePicker = ({ startDate, endDate, onDatesChange, children }) => {
                     endDate={endDate}
                     onDatesChange={onDatesChange}
                     possibleDate={debouncedPossibleEndDate}
-                    resetPossibleDate={handleResetPossibleEndDate}
                   />
                 </styled.CalendarWrapper>
               </styled.CalendarsWrapper>
