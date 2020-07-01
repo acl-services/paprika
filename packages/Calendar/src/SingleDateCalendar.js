@@ -33,6 +33,7 @@ const propTypes = {
 
   resetPossibleDate: PropTypes.func,
 
+  /** Kind of styling */
   kind: PropTypes.oneOf(Object.values(Kinds)),
 };
 

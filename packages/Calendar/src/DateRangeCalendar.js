@@ -51,6 +51,7 @@ const propTypes = {
    */
   focusedInput: PropTypes.oneOf([START_DATE, END_DATE]).isRequired,
 
+  /** Kind of styling */
   kind: PropTypes.oneOf(Object.values(Kinds)),
 };
 
