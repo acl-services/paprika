@@ -6,4 +6,4 @@ export default function createPropsCollector(displayName) {
   PropsCollector.displayName = displayName;
 
   return PropsCollector;
-};
+}

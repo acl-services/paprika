@@ -34,12 +34,7 @@ storiesOf("DateRangePicker", module)
     return (
       <L10n locale="en">
         <DateRangePickerStory>
-          <DateRangePicker
-            startDate={startDate}
-            endDate={endDate}
-            onDatesChange={setDates}
-            {...dateRangePickerProps}
-          >
+          <DateRangePicker startDate={startDate} endDate={endDate} onDatesChange={setDates} {...dateRangePickerProps}>
             <DateRangePicker.Input {...inputProps} />
             <DateRangePicker.StartInput {...startInputProps} />
             <DateRangePicker.EndInput {...endInputProps} />

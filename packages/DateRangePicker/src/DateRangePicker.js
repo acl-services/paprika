@@ -40,7 +40,7 @@ const DateRangePicker = ({ startDate, endDate, onDatesChange, children }) => {
   const [shouldShowPopover, setShouldShowPopover] = React.useState(false);
   const [currentFocus, setCurrentFocus] = React.useState(null);
   const [possibleStartDate, setPossibleStartDate] = React.useState(startDate || moment());
-  const [possibleEndDate, setPossibleEndDate] = React.useState(endDate || moment().add(1, 'months'));
+  const [possibleEndDate, setPossibleEndDate] = React.useState(endDate || moment().add(1, "months"));
 
   const popoverContentRef = React.useRef(null);
   const startDateInputRef = React.useRef(null);
@@ -55,7 +55,7 @@ const DateRangePicker = ({ startDate, endDate, onDatesChange, children }) => {
   }, [startDate]);
 
   React.useEffect(() => {
-    setPossibleEndDate(endDate || moment().add(1, 'months'));
+    setPossibleEndDate(endDate || moment().add(1, "months"));
   }, [endDate]);
 
   const {
