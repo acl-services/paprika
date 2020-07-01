@@ -12,14 +12,14 @@ export const DateInput = styled(OriginalDateInput)`
 `;
 
 export const Separator = styled.div`
-  flex: none;
-  display: flex;
   align-items: center;
+  border-bottom: 1px solid ${tokens.border.color};
+  border-top: 1px solid ${tokens.border.color};
+  color: ${tokens.textColor.icon};
+  display: flex;
+  flex: none;
   justify-content: center;
   padding: 0 ${tokens.spaceSm};
-  border-top: 1px solid ${tokens.border.color};
-  border-bottom: 1px solid ${tokens.border.color};
-  color: ${tokens.textColor.icon};
 `;
 
 export const PopoverCardContent = styled.div`
