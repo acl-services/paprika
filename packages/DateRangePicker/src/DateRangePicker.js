@@ -1,4 +1,5 @@
 import React from "react";
+import PropTypes from "prop-types";
 import moment from "moment";
 
 import Popover from "@paprika/popover";
@@ -15,6 +16,25 @@ import * as styled from "./DateRangePicker.styles";
 
 const START_INPUT_BORDER_RADIUS = [true, false, false, true];
 const END_INPUT_BORDER_RADIUS = [false, true, true, false];
+
+const propTypes = {
+  /** Selected start date in moment object */
+  startDate: PropTypes.instanceOf(moment),
+
+  /** Selected end date in moment object */
+  endDate: PropTypes.instanceOf(moment),
+
+  /** Callback to fire when user select start or end date */
+  onDatesChange: PropTypes.func.isRequired,
+
+  children: PropTypes.node,
+};
+
+const defaultProps = {
+  startDate: null,
+  endDate: null,
+  children: null,
+};
 
 const DateRangePicker = ({ startDate, endDate, onDatesChange, children }) => {
   const [shouldShowPopover, setShouldShowPopover] = React.useState(false);
@@ -210,6 +230,9 @@ const DateRangePicker = ({ startDate, endDate, onDatesChange, children }) => {
     </Popover>
   );
 };
+
+DateRangePicker.propTypes = propTypes;
+DateRangePicker.defaultProps = defaultProps;
 
 DateRangePicker.Input = createPropsCollector("DateRangePicker.Input");
 DateRangePicker.StartInput = createPropsCollector("DateRangePicker.StartInput");
