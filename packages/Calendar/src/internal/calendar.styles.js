@@ -65,10 +65,12 @@ const calendarStyles = css`
     margin-bottom: ${tokens.spaceLg};
     margin-left: -9px;
     margin-right: -10px;
-    ${({ kind }) => (kind === Kinds.EMBEDDED || css`
-      background-color: ${tokens.color.blackLighten80};
-      border-bottom: 1px solid ${tokens.border.color};
-    `)}
+    ${({ kind }) =>
+      kind === Kinds.EMBEDDED ||
+      css`
+        background-color: ${tokens.color.blackLighten80};
+        border-bottom: 1px solid ${tokens.border.color};
+      `}
   }
 
   .CalendarDay {

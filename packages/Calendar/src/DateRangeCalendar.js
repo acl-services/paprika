@@ -78,7 +78,16 @@ function DateRangeCalendar(props) {
   const I18n = useI18n();
 
   // Props
-  const { startDate, endDate, onDatesChange, possibleDate, resetPossibleDate, focusedInput, onFocusChange, kind } = props;
+  const {
+    startDate,
+    endDate,
+    onDatesChange,
+    possibleDate,
+    resetPossibleDate,
+    focusedInput,
+    onFocusChange,
+    kind,
+  } = props;
 
   // State
   const [shouldShowShortcut, setShouldShowShortcut] = React.useState(false);
