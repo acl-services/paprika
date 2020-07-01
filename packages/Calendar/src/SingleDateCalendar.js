@@ -42,7 +42,7 @@ const defaultProps = {
   date: null,
   possibleDate: null,
   resetPossibleDate: noop,
-  kind: Kinds.CARD,
+  kind: Kinds.BORDERED,
 };
 
 function SingleDateCalendar(props) {

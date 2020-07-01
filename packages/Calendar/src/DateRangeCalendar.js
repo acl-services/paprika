@@ -61,7 +61,7 @@ const defaultProps = {
   endDate: null,
   possibleDate: null,
   resetPossibleDate: noop,
-  kind: Kinds.CARD,
+  kind: Kinds.BORDERED,
 };
 
 const phrases = {
