@@ -35,7 +35,9 @@ const inputStyles = css`
         return tokens.border.radius;
       }
 
-      return Array.isArray(hasBorderRadius) ? hasBorderRadius.map(value => value ? tokens.border.radius : 0).join(' ') : 0;
+      return Array.isArray(hasBorderRadius)
+        ? hasBorderRadius.map(value => (value ? tokens.border.radius : 0)).join(" ")
+        : 0;
     }};
     box-shadow: none;
     box-sizing: border-box;
