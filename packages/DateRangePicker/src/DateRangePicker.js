@@ -11,8 +11,9 @@ import extractChildren from "@paprika/helpers/lib/extractChildren";
 import useDebounce from "@paprika/helpers/lib/hooks/useDebounce";
 import isElementContainsFocus from "@paprika/helpers/lib/dom/isElementContainsFocus";
 import { AlignTypes } from "@paprika/helpers/lib/customPropTypes";
+
 import createPropsCollector from "./createPropsCollector";
-import * as styled from "./DateRangePicker.styles";
+import * as sc from "./DateRangePicker.styles";
 
 const START_INPUT_BORDER_RADIUS = [true, false, false, true];
 const END_INPUT_BORDER_RADIUS = [false, true, true, false];
@@ -160,8 +161,8 @@ const DateRangePicker = ({ startDate, endDate, onDatesChange, children }) => {
       onClose={handleClosePopover}
       shouldKeepFocus
     >
-      <styled.Wrapper>
-        <styled.DateInput
+      <sc.Wrapper>
+        <sc.DateInput
           ref={startDateInputRef}
           date={startDate}
           onChange={onChangeStartDate}
@@ -175,10 +176,10 @@ const DateRangePicker = ({ startDate, endDate, onDatesChange, children }) => {
           {...inputProps}
           {...startInputProps}
         />
-        <styled.Separator>
+        <sc.Separator>
           <ArrowIcon />
-        </styled.Separator>
-        <styled.DateInput
+        </sc.Separator>
+        <sc.DateInput
           ref={endDateInputRef}
           date={endDate}
           onChange={onChangeEndDate}
@@ -192,14 +193,14 @@ const DateRangePicker = ({ startDate, endDate, onDatesChange, children }) => {
           {...inputProps}
           {...endInputProps}
         />
-      </styled.Wrapper>
+      </sc.Wrapper>
 
       <Popover.Content ref={popoverContentRef}>
         <Popover.Card>
           {shouldShowPopover && (
-            <styled.PopoverCardContent>
-              <styled.CalendarsWrapper>
-                <styled.CalendarWrapper>
+            <sc.PopoverCardContent>
+              <sc.CalendarsWrapper>
+                <sc.CalendarWrapper>
                   <Calendar
                     kind={CalendarKinds.EMBEDDED}
                     focusedInput={currentFocus}
@@ -209,8 +210,8 @@ const DateRangePicker = ({ startDate, endDate, onDatesChange, children }) => {
                     onDatesChange={onDatesChange}
                     possibleDate={debouncedPossibleStartDate}
                   />
-                </styled.CalendarWrapper>
-                <styled.CalendarWrapper>
+                </sc.CalendarWrapper>
+                <sc.CalendarWrapper>
                   <Calendar
                     kind={CalendarKinds.EMBEDDED}
                     focusedInput={currentFocus}
@@ -220,10 +221,10 @@ const DateRangePicker = ({ startDate, endDate, onDatesChange, children }) => {
                     onDatesChange={onDatesChange}
                     possibleDate={debouncedPossibleEndDate}
                   />
-                </styled.CalendarWrapper>
-              </styled.CalendarsWrapper>
+                </sc.CalendarWrapper>
+              </sc.CalendarsWrapper>
               {/* there will be picker for predefined ranges */}
-            </styled.PopoverCardContent>
+            </sc.PopoverCardContent>
           )}
         </Popover.Card>
       </Popover.Content>
