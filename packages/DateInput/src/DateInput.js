@@ -38,8 +38,10 @@ const propTypes = {
   /** Callback when confirm */
   beforeConfirmation: PropTypes.func,
 
+  /** Callback when input focused */
   onFocus: PropTypes.func,
 
+  /** Callback when input lose focus */
   onBlur: PropTypes.func,
 };
 
