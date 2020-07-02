@@ -15,5 +15,5 @@ export const labelStyles = `
 `;
 
 export const Label = styled.span`
-  ${props => (props.isPlaceholder ? placeholderStyles : "")}
+  ${props => (props.isPlaceholder && !props.hasImplicitAll ? placeholderStyles : "")}
 `;

@@ -6,16 +6,18 @@ import LabelMulti from "./LabelMulti";
 import LabelSingle from "./LabelSingle";
 
 const propTypes = {
+  hasImplicitAll: PropTypes.bool,
   /** Sets a placeholder for the label. */
   placeholder: PropTypes.string,
 };
 
 const defaultProps = {
+  hasImplicitAll: false,
   placeholder: "",
 };
 
 export default function Label(props) {
-  const { placeholder } = props;
+  const { hasImplicitAll, placeholder } = props;
   const [state] = useListBox();
   const { selectedOptions, isMulti, options } = state;
   const [label, setLabel] = React.useState(placeholder);
@@ -35,7 +37,11 @@ export default function Label(props) {
     setLabel(placeholder);
   }, [isMulti, options, placeholder, selectedOptions]);
 
-  return <sc.Label isPlaceholder={!selectedOptions.length}>{label}</sc.Label>;
+  return (
+    <sc.Label hasImplicitAll={hasImplicitAll} isPlaceholder={!selectedOptions.length}>
+      {label}
+    </sc.Label>
+  );
 }
 
 Label.propTypes = propTypes;
