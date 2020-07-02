@@ -1,6 +1,7 @@
 import { spacer } from "@paprika/stylers/lib/helpers";
 import styled from "styled-components";
 import stylers from "@paprika/stylers";
+import tokens from "@paprika/tokens";
 import { getAvatarColors } from "./helpers";
 
 const smallSize = `${spacer(4)}`;
@@ -35,7 +36,10 @@ export const Avatar = styled.div`
 
   ${({ $backgroundColor, $color, size, children }) => {
     const sizeValue = avatarSizeStyles[size];
-    const color = getAvatarColors(children);
+    const color =
+      typeof children !== "string"
+        ? { backgroundColor: tokens.color.blackLighten60, fontColor: tokens.color.blackLighten20 }
+        : getAvatarColors(children);
     const backgroundColor = $backgroundColor ?? color.backgroundColor;
     const fontColor = $color ?? color.fontColor;
     return `
