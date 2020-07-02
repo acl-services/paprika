@@ -28,14 +28,20 @@ export const propTypes = {
   /** Child of type <ListBox.Option /> */
   children: PropTypes.node,
 
+  /** Has implicit "All items selected" value when no item is selected */
+  hasImplicitAll: PropTypes.bool,
+
+  /** Indicate which is the height for the options container */
+  height: PropTypes.number,
+
   /** Disables the ListBox if true */
   isDisabled: PropTypes.bool,
 
-  /** Let the user to select multiple options at same time */
-  isMulti: PropTypes.bool,
-
   /** This options will display the listbox without the Popover */
   isInline: PropTypes.bool,
+
+  /** Let the user to select multiple options at same time */
+  isMulti: PropTypes.bool,
 
   /** Indicates if the popover is visible */
   isOpen: PropTypes.bool,
@@ -46,9 +52,6 @@ export const propTypes = {
   /** Defaults label to display when the ListBox has not option selected */
   placeholder: PropTypes.string,
 
-  /** Indicate which is the height for the options container */
-  height: PropTypes.number,
-
   /** Size of the trigger and options (font size, height, padding, etc). */
   size: PropTypes.oneOf(ShirtSizes.DEFAULT),
 };
@@ -57,6 +60,7 @@ export const defaultProps = {
   children: null,
   filter: null, // eslint-disable-line
   footer: null, // eslint-disable-line
+  hasImplicitAll: false,
   height: 200,
   isDisabled: false,
   isInline: false,
@@ -64,16 +68,26 @@ export const defaultProps = {
   isOpen: null,
   onChange: () => {},
   placeholder: null,
-  trigger: null, // eslint-disable-line
   size: ShirtSizes.MEDIUM,
+  trigger: null, // eslint-disable-line
 };
 
 export function ListBox(props) {
   const [state] = useListBox();
-  const { children, height, placeholder, trigger: _trigger, footer, filter, box = { props: {} } } = props;
+  const {
+    children,
+    hasImplicitAll,
+    height,
+    placeholder,
+    trigger: _trigger,
+    footer,
+    filter,
+    box = { props: {} },
+  } = props;
   const I18n = useI18n();
   const propsForTrigger = {
     hasClearButton: true,
+    hasImplicitAll,
     onClickClear: null,
     placeholder: placeholder || I18n.t("listBox.trigger.placeholder"),
     onFooterClickAccept: footer ? footer.props.onClickAccept : null,
@@ -121,6 +135,7 @@ const ListBoxContainer = React.forwardRef((props, ref) => {
     children,
     filter, // eslint-disable-line
     footer, // eslint-disable-line
+    hasImplicitAll,
     height,
     isInline,
     placeholder,
@@ -149,6 +164,7 @@ const ListBoxContainer = React.forwardRef((props, ref) => {
     children,
     filter,
     footer,
+    hasImplicitAll,
     height,
     placeholder: placeholder || I18n.t("listBox.trigger.placeholder"),
     trigger,

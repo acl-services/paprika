@@ -14,8 +14,14 @@ const activeStyles = css`
     background-color: ${tokens.color.blueLighten40};
   }
 
-  &:hover:not([disabled]):not([aria-disabled="true"]) {
-    background-color: ${tokens.color.blueLighten50};
+  &:not([disabled]):not([aria-disabled="true"]) {
+    &,
+    &:focus {
+      border-color: ${tokens.color.blue};
+    }
+    &:hover {
+      background-color: ${tokens.color.blueLighten50};
+    }
   }
 `;
 

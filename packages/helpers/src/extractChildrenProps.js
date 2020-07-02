@@ -4,7 +4,7 @@ export default function extractChildrenProps(children, target) {
   let props = {};
 
   React.Children.forEach(children, child => {
-    if (child.type.displayName === target.displayName) {
+    if (child.type && child.type.displayName === target.displayName) {
       props = { ...child.props };
     }
   });

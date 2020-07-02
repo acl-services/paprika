@@ -4,9 +4,10 @@ import { truncateText } from "@paprika/stylers/lib/includes";
 import { toInt } from "@paprika/stylers/lib/helpers";
 
 export const ExternalLink = styled.a`
+  align-items: center;
   border-radius: ${tokens.border.radius};
   color: ${tokens.textColor.link};
-  display: inline-block;
+  display: inline-flex;
   max-width: 100%;
   position: relative;
 
@@ -43,6 +44,4 @@ export const ExternalLinkIconStyles = `
   color: ${tokens.textColor.icon};
   display: inline-block;
   margin-left: ${tokens.spaceSm};
-  position: absolute;
-  top: 0;
 `;

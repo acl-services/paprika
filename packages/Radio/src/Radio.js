@@ -91,7 +91,6 @@ function Radio(props) {
 
   const inputProps = {
     "aria-describedby": ariaDescribedBy,
-    readOnly: true,
     onClick,
     checked: isChecked,
     disabled: isDisabled,
