@@ -29,10 +29,9 @@ export default () => {
         `}
       >
         {text.map(text => {
-          const initial = text.charAt(0).toUpperCase();
           return (
             <div style={{ margin: "1em" }} key={text}>
-              <Avatar>{initial}</Avatar>
+              <Avatar>{text}</Avatar>
             </div>
           );
         })}
@@ -40,10 +39,10 @@ export default () => {
       <div>
         <Heading level={3}>Sizes</Heading>
         <Avatar backgroundColor="black" color="white" size="small">
-          S
+          Small
         </Avatar>
         <Avatar backgroundColor="black" color="white" size="medium">
-          M
+          Medium
         </Avatar>
       </div>
     </Story>

@@ -14,7 +14,7 @@ By default, Avatar component sets the background and text color using the `getAv
 ```js
 import Avatar from "@paprika/avatar";
 
-<Avatar>A</Avatar>;
+<Avatar>Terry Fox</Avatar>;
 ```
 
 Access `getAvatarColors`
@@ -26,7 +26,7 @@ import { getAvatarColors } from "@paprika/avatar/lib/helpers";
 const color = getAvatarColors("Terry Fox");
 
 <Avatar backgroundColor={color.backgroundColor} color={color.fontColor}>
-  T
+  Terry Fox
 </Avatar>;
 ```
 
@@ -36,7 +36,7 @@ Set custom size, background and text color
 import Avatar from "@paprika/avatar";
 
 <Avatar backgroundColor="black" color="white" size="small">
-  A
+  Terry Fox
 </Avatar>;
 ```
 
