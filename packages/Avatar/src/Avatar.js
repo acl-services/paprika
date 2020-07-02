@@ -22,10 +22,16 @@ const defaultProps = {
 };
 
 function Avatar(props) {
-  const { backgroundColor, size, color, ...moreProps } = props;
+  const { backgroundColor, size, color, children, ...moreProps } = props;
+
+  const getInitial = children => {
+    return children.substring(0, 1).toUpperCase();
+  };
 
   return (
-    <sc.Avatar data-pka-anchor="avatar" $backgroundColor={backgroundColor} $color={color} size={size} {...moreProps} />
+    <sc.Avatar data-pka-anchor="avatar" $backgroundColor={backgroundColor} $color={color} size={size} {...moreProps}>
+      {typeof children === "string" ? getInitial(children) : children}
+    </sc.Avatar>
   );
 }
 
