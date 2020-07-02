@@ -13,9 +13,6 @@ const propTypes = {
   /** Body content of the card. */
   children: PropTypes.node,
 
-  /** Sets className */
-  className: PropTypes.string,
-
   /** If the width of the card should span it's parent container (100%). */
   isFullWidth: PropTypes.bool,
 
@@ -28,25 +25,20 @@ const propTypes = {
 
 const defaultProps = {
   children: null,
-  className: null,
   size: "auto",
   isFullWidth: false,
   isActive: false,
 };
 
 function Card(props) {
-  const { children, className, size, isFullWidth, isActive } = props;
+  const { children, size, isFullWidth, isActive, ...moreProps } = props;
 
-  const cardProps = {
-    children,
-    className,
+  const styleProps = {
     size,
-    isFullWidth,
-    isActive,
   };
 
   return (
-    <sc.cardStyles {...cardProps} data-pka-anchor="card">
+    <sc.cardStyles data-pka-anchor="card" {...styleProps} {...moreProps}>
       {children}
     </sc.cardStyles>
   );
