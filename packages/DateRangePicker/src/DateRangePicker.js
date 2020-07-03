@@ -200,7 +200,7 @@ const DateRangePicker = ({ startDate, endDate, onDatesChange, children }) => {
           {shouldShowPopover && (
             <sc.PopoverCardContent>
               <sc.CalendarsWrapper>
-                <sc.CalendarWrapper>
+                <sc.CalendarWrapper data-pka-anchor="daterangepicker.leftcalendar">
                   <Calendar
                     kind={CalendarKinds.EMBEDDED}
                     focusedInput={currentFocus}
@@ -211,7 +211,7 @@ const DateRangePicker = ({ startDate, endDate, onDatesChange, children }) => {
                     possibleDate={debouncedPossibleStartDate}
                   />
                 </sc.CalendarWrapper>
-                <sc.CalendarWrapper>
+                <sc.CalendarWrapper data-pka-anchor="daterangepicker.rightcalendar">
                   <Calendar
                     kind={CalendarKinds.EMBEDDED}
                     focusedInput={currentFocus}

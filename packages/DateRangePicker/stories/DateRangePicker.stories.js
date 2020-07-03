@@ -48,3 +48,20 @@ storiesOf(storyName, module)
       </L10n>
     );
   });
+
+storiesOf(`${storyName}/Backyard/Tests`, module).add("Cypress", () => {
+  const [{ startDate, endDate }, setDates] = React.useState({ startDate: null, endDate: null });
+
+  moment.locale("en");
+
+  return (
+    <L10n locale="en">
+      <DateRangePickerStory>
+        <DateRangePicker startDate={startDate} endDate={endDate} onDatesChange={setDates}>
+          <DateRangePicker.StartInput data-pka-anchor="daterangepicker.startinput" />
+          <DateRangePicker.EndInput data-pka-anchor="daterangepicker.endinput" />
+        </DateRangePicker>
+      </DateRangePickerStory>
+    </L10n>
+  );
+});
