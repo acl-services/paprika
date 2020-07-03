@@ -1,12 +1,15 @@
 import React from "react";
 import { boolean, select, text, withKnobs } from "@storybook/addon-knobs";
 import { storiesOf } from "@storybook/react";
+import { getStoryName } from "storybook/storyTree";
 import moment from "moment";
 import L10n from "@paprika/l10n";
 import { DateRangePickerStory } from "./DateRangePicker.stories.styles";
 import DateRangePicker from "../src";
 
-storiesOf("DateRangePicker", module)
+const storyName = getStoryName("DateRangePicker");
+
+storiesOf(storyName, module)
   .addDecorator(withKnobs)
   .add("Showcase", () => {
     const dateRangePickerProps = {
