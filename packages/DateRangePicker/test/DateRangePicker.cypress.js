@@ -12,15 +12,13 @@ describe("<DateRangePicker />", () => {
     cy.getByTestId("daterangepicker.leftcalendar").should("be.visible");
     cy.getByTestId("daterangepicker.rightcalendar").should("be.visible");
 
-    cy
-      .getByTestId("daterangepicker.leftcalendar")
-      .within(() => {
-        cy.getByTestId("calendar-next-month").click();
-        cy.getByTestId("calendar-prev-month").click();
-        const today = cy.get(`[aria-label="${targetStartDate.format("dddd, MMMM D, YYYY")}"]`).filter(':visible');
+    cy.getByTestId("daterangepicker.leftcalendar").within(() => {
+      cy.getByTestId("calendar-next-month").click();
+      cy.getByTestId("calendar-prev-month").click();
+      const today = cy.get(`[aria-label="${targetStartDate.format("dddd, MMMM D, YYYY")}"]`).filter(":visible");
 
-        today.click();
-      });
+      today.click();
+    });
     cy.getByTestId("daterangepicker.startinput").should("have.value", targetStartDate.format("MMMM DD, YYYY"));
     cy.getByTestId("daterangepicker.leftcalendar").should("not.be.visible");
     cy.getByTestId("daterangepicker.rightcalendar").should("not.be.visible");
