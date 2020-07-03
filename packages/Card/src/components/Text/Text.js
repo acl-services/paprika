@@ -1,41 +1,40 @@
 import React from "react";
 import PropTypes from "prop-types";
+import truncate from "lodash.truncate";
 import * as sc from "./Text.styles";
 
 const propTypes = {
   /** Body content of the Text. */
   children: PropTypes.node,
-  shouldTruncate: PropTypes.bool,
+  /** Sets the maximum text length visible on the card */
+  maxTextLength: PropTypes.number,
 };
 
 const defaultProps = {
   children: null,
-  shouldTruncate: false,
+  maxTextLength: 140,
 };
 
 const Text = props => {
-  const { children, shouldTruncate } = props;
+  const { children, maxTextLength } = props;
 
   const textProps = {
     children,
-    shouldTruncate,
+    maxTextLength,
   };
 
-  function truncateText(text, num) {
-    if (text.length <= num) {
-      return text;
-    }
-    return text.slice(0, num).concat("...");
+  function truncateText(text, length) {
+    return truncate(text, {
+      length,
+      separator: " ",
+    });
   }
 
-  if (shouldTruncate) {
-    const text = truncateText(children, 135);
-    textProps.children = text;
-  }
+  const truncatedText = truncateText(children, maxTextLength);
 
   return (
     <sc.textStyles title={children} data-pka-anchor="card.text" {...textProps}>
-      {textProps.children}
+      {truncatedText}
     </sc.textStyles>
   );
 };

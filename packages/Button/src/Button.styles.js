@@ -4,6 +4,46 @@ import { css, keyframes } from "styled-components";
 import { ShirtSizes } from "@paprika/helpers/lib/customPropTypes";
 import Kinds from "./ButtonKinds";
 
+const dropShadow = "0 1px 2px 0 rgba(0, 0, 0, 0.1)";
+
+const enabled = content => css`
+  &:not([disabled]):not([aria-disabled="true"]) {
+    ${content};
+  }
+`;
+
+// Borders
+
+const borderColors = {
+  [Kinds.DEFAULT]: tokens.border.color,
+  [Kinds.PRIMARY]: tokens.color.green,
+  [Kinds.SECONDARY]: tokens.color.purple,
+  [Kinds.DESTRUCTIVE]: tokens.color.orange,
+  [Kinds.FLAT]: tokens.border.color,
+  [Kinds.MINOR]: "transparent",
+  [Kinds.LINK]: "transparent",
+};
+
+const borderHoverColors = {
+  [Kinds.DEFAULT]: tokens.border.hoverColor,
+  [Kinds.PRIMARY]: tokens.color.greenDarken10,
+  [Kinds.SECONDARY]: tokens.color.purpleDarken10,
+  [Kinds.DESTRUCTIVE]: tokens.color.orangeDarken10,
+  [Kinds.FLAT]: tokens.border.hoverColor,
+  [Kinds.MINOR]: "transparent",
+  [Kinds.LINK]: "transparent",
+};
+
+const borderStyles = css`
+  border-color: ${({ kind }) => borderColors[kind]};
+
+  &:hover {
+    ${enabled(css`
+      border-color: ${({ kind }) => borderHoverColors[kind]};
+    `)}
+  }
+`;
+
 // States
 
 const disabledStyles = css`
@@ -27,6 +67,13 @@ const disabledStyles = css`
     color: ${tokens.color.blackLighten40};
     text-decoration: none;
   }
+
+  &,
+  &:hover,
+  &:active {
+    box-shadow: none;
+    transform: none;
+  }
 `;
 
 const disabledTextStyles = css`
@@ -39,11 +86,25 @@ const disabledTextStyles = css`
 `;
 
 const activeStyles = css`
-  border-color: ${tokens.highlight.active.noBorder.borderColor};
-  box-shadow: ${tokens.highlight.active.noBorder.boxShadow};
+  ${stylers.focusRing.bordered()}
+`;
 
-  &:hover:not([disabled]):not([aria-disabled="true"]) {
-    border-color: ${tokens.highlight.active.noBorder.borderColor};
+const inactiveStyles = css`
+  ${borderStyles}
+
+  [data-whatinput="mouse"] &:not([data-has-forced-focus="true"]):focus {
+    ${enabled(css`
+      ${borderStyles}
+
+      ${({ kind }) =>
+        [Kinds.FLAT, Kinds.MINOR, Kinds.LINK].includes(kind)
+          ? css`
+              box-shadow: none;
+            `
+          : css`
+              box-shadow: ${dropShadow};
+            `}
+    `)}
   }
 `;
 
@@ -65,32 +126,7 @@ const commonStyles = css`
   vertical-align: middle;
 
   &:focus {
-    box-shadow: ${tokens.highlight.active.noBorder.boxShadow};
-    border-color: ${tokens.highlight.active.noBorder.borderColor};
-    outline: none;
-  }
-
-  [data-whatinput="mouse"] &:focus {
-    &[data-has-forced-focus="true"] {
-      box-shadow: ${tokens.highlight.active.noBorder.boxShadow};
-    }
-
-    &:not([data-has-forced-focus="true"]) {
-      box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.1);
-      border-color: ${tokens.border.color};
-
-      &[kind="minor"],
-      &[kind="link"] {
-        box-shadow: none;
-        border-color: transparent;
-      }
-
-      &[kind="flat"] {
-        box-shadow: none;
-      }
-    }
-
-    ${({ isActive }) => (isActive ? activeStyles : "")}
+    ${stylers.focusRing.bordered()}
   }
 
   &:active {
@@ -101,7 +137,7 @@ const commonStyles = css`
 `;
 
 const skeuomorphicStyles = css`
-  box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.1);
+  box-shadow: ${dropShadow};
   cursor: pointer;
   transition-duration: 0.2s;
   transition-property: border;
@@ -145,15 +181,13 @@ const kindStyles = props => ({
 
     background-color: ${tokens.color.white};
     background-image: linear-gradient(${tokens.color.blackLighten90}, ${tokens.color.blackLighten70});
-    border-color: ${tokens.border.color};
     color: ${tokens.color.black};
 
     &:hover {
       background: ${tokens.color.blackLighten70};
-      border-color: ${tokens.border.hoverColor};
     }
 
-    ${props.isDisabled ? disabledStyles : ""}
+    ${props.isDisabled && disabledStyles}
   `,
   [Kinds.PRIMARY]: css`
     ${skeuomorphicStyles}
@@ -161,14 +195,12 @@ const kindStyles = props => ({
 
     background-color: ${tokens.color.greenLighten10};
     background-image: linear-gradient(${tokens.color.greenLighten10}, ${tokens.color.green});
-    border-color: ${tokens.color.green};
 
     &:hover {
       background: ${tokens.color.green};
-      border-color: ${tokens.border.greenDarken10};
     }
 
-    ${props.isDisabled ? disabledStyles : ""}
+    ${props.isDisabled && disabledStyles}
   `,
   [Kinds.SECONDARY]: css`
     ${skeuomorphicStyles}
@@ -176,14 +208,12 @@ const kindStyles = props => ({
 
     background-color: ${tokens.color.purpleLighten10};
     background-image: linear-gradient(${tokens.color.purpleLighten10}, ${tokens.color.purple});
-    border-color: ${tokens.color.purple};
 
     &:hover {
       background: ${tokens.color.purple};
-      border-color: ${tokens.border.purpleDarken10};
     }
 
-    ${props.isDisabled ? disabledStyles : ""}
+    ${props.isDisabled && disabledStyles}
   `,
   [Kinds.DESTRUCTIVE]: css`
     ${skeuomorphicStyles}
@@ -191,29 +221,25 @@ const kindStyles = props => ({
 
     background-color: ${tokens.color.orangeHighlight};
     background-image: linear-gradient(${tokens.color.orangeHighlight}, ${tokens.color.orange});
-    border-color: ${tokens.color.orange};
 
     &:hover {
       background: ${tokens.color.orange};
-      border-color: ${tokens.border.orangeDarken10};
     }
 
-    ${props.isDisabled ? disabledStyles : ""}
+    ${props.isDisabled && disabledStyles}
   `,
   [Kinds.FLAT]: css`
     ${skeuomorphicStyles}
 
     background-color: ${tokens.color.white};
-    border-color: ${tokens.border.color};
     box-shadow: none;
     color: ${tokens.color.black};
 
     &:hover {
       background: ${tokens.color.blackLighten70};
-      border-color: ${tokens.border.hoverColor};
     }
 
-    ${props.isDisabled ? disabledStyles : ""}
+    ${props.isDisabled && disabledStyles}
   `,
   [Kinds.MINOR]: css`
     ${textButtonStyles}
@@ -222,7 +248,7 @@ const kindStyles = props => ({
       text-decoration: underline;
     }
 
-    ${props.isDisabled ? disabledTextStyles : ""}
+    ${props.isDisabled && disabledTextStyles}
   `,
   [Kinds.LINK]: css`
     ${textButtonStyles}
@@ -239,14 +265,7 @@ const kindStyles = props => ({
       color: ${tokens.color.blue};
     }
 
-    ${props.isDisabled ? disabledTextStyles : ""}
-
-    > [data-pka-anchor="icon"] {
-      ${stylers.fontSize(-3)}
-      color: ${tokens.textColor.icon};
-      margin-left: ${tokens.spaceSm};
-      margin-top: -${tokens.spaceSm};
-    }
+    ${props.isDisabled && disabledTextStyles}
   `,
 });
 
@@ -265,8 +284,8 @@ const buttonStyles = props => css`
   ${commonStyles}
   ${sizeStyles[props.size]}
   ${kindStyles(props)[props.kind]}
-  ${props.isFullWidth ? fullWidthStyles : ""}
-  ${props.isActive ? activeStyles : ""}
+  ${props.isFullWidth && fullWidthStyles}
+  ${({ isActive }) => (isActive ? activeStyles : inactiveStyles)}
 `;
 
 export default buttonStyles;
@@ -294,10 +313,7 @@ const iconColors = {
   [Kinds.LINK]: tokens.textColor.icon,
 };
 
-function getIconColor(props) {
-  if (props.isDisabled) return tokens.color.blackDisabled;
-  return iconColors[props.kind];
-}
+const getIconColor = props => (props.isDisabled ? tokens.color.blackDisabled : iconColors[props.kind]);
 
 export const iconStyles = props => css`
   align-items: center;
@@ -310,11 +326,13 @@ export const iconStyles = props => css`
     vertical-align: -${(stylers.lineHeightValue(-1) - 1) / 2}em;
   }
 
-  ${props.isPending
-    ? css`
-        animation: ${spinKeyframes} 2s infinite linear;
-      `
-    : ""}
+  ${props.isPending &&
+    css`
+      animation: ${spinKeyframes} 2s infinite linear;
+    `}
 
-  ${props.isDropdown ? `margin: 0 0 0 ${tokens.spaceSm};` : ""}
+  ${props.isSuffixIcon &&
+    css`
+      margin: 0 0 0 ${tokens.spaceSm};
+    `}
 `;

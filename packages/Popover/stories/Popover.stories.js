@@ -1,6 +1,7 @@
 import React from "react";
 import { storiesOf } from "@storybook/react";
 import { withKnobs } from "@storybook/addon-knobs";
+import { getStoryName } from "storybook/storyTree";
 import Basic from "./examples/Basic";
 import Controlled from "./examples/Controlled";
 import WithTriggers from "./examples/WithTriggers";
@@ -12,6 +13,8 @@ import A11y from "./examples/A11y";
 import Cypress, { propHandles } from "./examples/Cypress";
 import Screener from "./examples/Screener";
 import DynamicContent from "./examples/DynamicContent";
+
+const storyName = getStoryName("Popover");
 
 const experimentalParameters = {
   docs: {
@@ -25,27 +28,30 @@ const experimentalParameters = {
   },
 };
 
-storiesOf("Popover", module)
+storiesOf(storyName, module)
   .addDecorator(withKnobs)
-  .add("Showcase", Basic)
+  .add("Showcase", Basic);
+
+storiesOf(`${storyName}/Examples`, module)
+  .addDecorator(withKnobs)
   .add("Controlled", () => <Controlled />)
   .add("With Trigger Components", () => <WithTriggers />)
   .add("With Positioning Element", PositioningElement)
   .add("With Dynamic Content", DynamicContent);
 
-storiesOf("Popover", module)
+storiesOf(`${storyName}/Examples`, module)
   .addParameters(experimentalParameters)
   .addDecorator(withKnobs)
   .add("With Scroll Container", ScrollContainer);
 
-storiesOf("Popover/Dev", module)
+storiesOf(`${storyName}/Backyard/Sandbox`, module)
   .add("Has container with a CSS transform", () => <Transformed />)
   .add("Testing Focus Management", () => <FocusTest />);
 
-storiesOf("Popover/Automation Tests", module)
+storiesOf(`${storyName}/Backyard/Tests`, module)
   .add("Accessibility", () => <A11y />)
   .add("Screener", () => <Screener />);
 
-storiesOf("Popover/Automation Tests", module)
+storiesOf(`${storyName}/Backyard/Tests`, module)
   .addDecorator(propHandles)
   .add("Cypress", Cypress);

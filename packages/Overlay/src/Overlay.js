@@ -9,12 +9,11 @@ import * as sc from "./Overlay.styles";
 
 const propTypes = {
   backdropClassName: PropTypes.string,
-  isOpen: PropTypes.bool.isRequired,
   children: PropTypes.func,
-  hasBackdrop: PropTypes.bool,
-  onClose: PropTypes.func,
-  onAfterOpen: PropTypes.func,
-  onAfterClose: PropTypes.func,
+
+  /** container of the Overlay element */
+  container: PropTypes.instanceOf(Element),
+
   focusLockOptions: PropTypes.shape({
     // properties copy from https://github.com/theKashey/react-focus-lock/blob/dee9b4c625eba0ca183fbda89005a5d09053086f/src/Lock.js#L160
     // see description for props here: https://github.com/theKashey/react-focus-lock/blob/dee9b4c625eba0ca183fbda89005a5d09053086f/interfaces.d.ts#L4
@@ -42,6 +41,11 @@ const propTypes = {
 
     sideCar: PropTypes.any,
   }),
+  hasBackdrop: PropTypes.bool,
+  isOpen: PropTypes.bool.isRequired,
+  onClose: PropTypes.func,
+  onAfterOpen: PropTypes.func,
+  onAfterClose: PropTypes.func,
 
   /** z-index of the Overlay wrapper */
   zIndex: PropTypes.number,
@@ -50,24 +54,26 @@ const propTypes = {
 const defaultProps = {
   backdropClassName: null,
   children: () => {},
-  hasBackdrop: true,
-  onClose: () => {},
-  onAfterOpen: () => {},
-  onAfterClose: () => {},
+  container: null,
   focusLockOptions: {},
+  hasBackdrop: true,
+  onAfterClose: () => {},
+  onAfterOpen: () => {},
+  onClose: () => {},
   zIndex: null,
 };
 
 const Overlay = props => {
   const {
     backdropClassName,
-    isOpen,
     children,
-    hasBackdrop,
-    onClose,
-    onAfterOpen,
-    onAfterClose,
+    container,
     focusLockOptions,
+    hasBackdrop,
+    isOpen,
+    onAfterClose,
+    onAfterOpen,
+    onClose,
     ...moreProps
   } = props;
 
@@ -93,7 +99,7 @@ const Overlay = props => {
   return (
     <>
       {isOpen && <LockBodyScroll />}
-      <Portal>
+      <Portal container={container}>
         <Transition
           mountOnEnter
           unmountOnExit
@@ -124,6 +130,7 @@ const Overlay = props => {
   );
 };
 
+Overlay.displayName = "Overlay";
 Overlay.propTypes = propTypes;
 Overlay.defaultProps = defaultProps;
 

@@ -3,8 +3,9 @@ import PropTypes from "prop-types";
 import useI18n from "@paprika/l10n/lib/useI18n";
 import * as sc from "./Uploader.styles";
 import { getFiles } from "./helpers";
-import ProgressBar from "./components/ProgressBar";
-import types from "./types";
+import FileList from "./components/FileList";
+import DropZone from "./components/DropZone";
+import types from "./statuses";
 import useDragAndDropEvents from "./useDragAndDropEvents";
 import useProcessFiles from "./useProcessFiles";
 
@@ -20,7 +21,7 @@ const propTypes = {
   /**
     An array of string describing the allowed file types for the uploader.
   */
-  okFileTypes: PropTypes.arrayOf(PropTypes.string),
+  supportedMimeTypes: PropTypes.arrayOf(PropTypes.string),
   /**
     When false the uploader only accept one file per upload.
    */
@@ -65,7 +66,7 @@ const propTypes = {
 
 const defaultProps = {
   a11yText: null,
-  okFileTypes: ["*/*"],
+  supportedMimeTypes: ["*/*"],
   canChooseMultiple: true,
   defaultIsDisabled: false,
   hasAutoUpload: true,
@@ -89,7 +90,7 @@ function getContainer(refContainer) {
 const Uploader = React.forwardRef((props, ref) => {
   const {
     a11yText,
-    okFileTypes,
+    supportedMimeTypes,
     canChooseMultiple,
     hasAutoUpload,
     maxFileSize,
@@ -113,7 +114,16 @@ const Uploader = React.forwardRef((props, ref) => {
     },
   }));
 
-  const { files, isCompleted, isDisabled, removeFile, cancelFile, setFiles, upload } = useProcessFiles({
+  const {
+    files,
+    isCompleted,
+    isDisabled,
+    removeFile,
+    cancelFile,
+    restartFileUpload,
+    setFiles,
+    upload,
+  } = useProcessFiles({
     defaultIsDisabled,
     endpoint,
     hasAutoUpload,
@@ -126,7 +136,7 @@ const Uploader = React.forwardRef((props, ref) => {
     function handleChange(event) {
       if (isDisabled) return;
 
-      const files = getFiles({ event, maxFileSize, okFileTypes, endpoint });
+      const files = getFiles({ event, maxFileSize, supportedMimeTypes, endpoint });
       setFiles(() => {
         if (refInput.current) {
           refInput.current.value = "";
@@ -134,7 +144,7 @@ const Uploader = React.forwardRef((props, ref) => {
         return canChooseMultiple ? files : [files[0]]; // in case only allow one file per upload
       });
     },
-    [canChooseMultiple, endpoint, isDisabled, maxFileSize, okFileTypes, setFiles]
+    [canChooseMultiple, endpoint, isDisabled, maxFileSize, supportedMimeTypes, setFiles]
   );
 
   const { isDragLeave, isDraggingOver } = useDragAndDropEvents({
@@ -153,7 +163,7 @@ const Uploader = React.forwardRef((props, ref) => {
             onChange={handleChange}
             ref={refInput}
             type="file"
-            accept={okFileTypes.join(",")}
+            accept={supportedMimeTypes.join(",")}
             aria-label={label}
           />
           {/* is this the best approach? */}
@@ -169,9 +179,11 @@ const Uploader = React.forwardRef((props, ref) => {
       isDisabled,
       isDragLeave,
       isDraggingOver,
+      refInput,
       removeFile,
       cancelFile,
       upload,
+      restartFileUpload,
     };
   }, [
     canChooseMultiple,
@@ -183,12 +195,19 @@ const Uploader = React.forwardRef((props, ref) => {
     isDragLeave,
     isDraggingOver,
     label,
-    okFileTypes,
+    supportedMimeTypes,
     removeFile,
     upload,
   ]);
 
-  return <UploaderContext.Provider value={value}>{children}</UploaderContext.Provider>;
+  const childrenWithProps = React.Children.map(children, child => {
+    return React.cloneElement(child, {
+      maxFileSize,
+      supportedMimeTypes,
+    });
+  });
+
+  return <UploaderContext.Provider value={value}>{childrenWithProps}</UploaderContext.Provider>;
 });
 
 Uploader.defaultProps = defaultProps;
@@ -196,10 +215,10 @@ Uploader.propTypes = propTypes;
 Uploader.displayName = "Uploader";
 Uploader.types = types;
 
+Uploader.DropZone = DropZone;
+Uploader.FileList = FileList;
+
 // utility tool to help creating a maximum desirable size for files
 Uploader.convertUnitsToMebibytes = (MiB = 1) => oneMebibyte * MiB;
-
-// subcomponents
-Uploader.ProgressBar = ProgressBar;
 
 export default Uploader;

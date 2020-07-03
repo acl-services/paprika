@@ -91,7 +91,6 @@ function Radio(props) {
 
   const inputProps = {
     "aria-describedby": ariaDescribedBy,
-    readOnly: true,
     onClick,
     checked: isChecked,
     disabled: isDisabled,
@@ -109,7 +108,9 @@ function Radio(props) {
   return (
     <sc.radioStyles data-pka-anchor="radio" {...styleProps} {...moreProps}>
       <input {...inputProps} />
+      {/* eslint-disable */}
       <label onKeyUp={handleKeyUp} className={canDeselect ? "deselectable" : ""} htmlFor={radioId}>
+        {/* eslint-enable */}
         {children}
 
         {canDeselect ? (

@@ -76,11 +76,11 @@ export default () => {
     },
     {
       avatar: <Icon />,
-      title: "Archived Vendor",
+      title: "Pneumonoultramicroscopicsilicovolcanoconiosis",
       meta1: "1,500 total",
       text: "",
       meta2: "Created by Cory McBain",
-      meta3: "Updated 3 months ago by Charles Bradley",
+      meta3: "Updated 3 months ago by Hubert Blaine Wolfe­schlegel­stein­hausen­berger­dorff Sr.",
       footer1: "250 attribute types",
       footer2: "200 questions",
       color: "blue",
@@ -114,7 +114,7 @@ export default () => {
                   <Card.Title>{props.title}</Card.Title>
                   <Card.Metadata>{props.meta1}</Card.Metadata>
                   <div style={{ width: "100%", height: "24px" }} />
-                  <Card.Text shouldTruncate>{props.text}</Card.Text>
+                  <Card.Text maxTextLength="135">{props.text}</Card.Text>
                   <div style={{ width: "100%", height: "24px" }} />
                   <Card.Metadata>{props.meta2}</Card.Metadata>
                   <Card.Metadata>{props.meta3}</Card.Metadata>

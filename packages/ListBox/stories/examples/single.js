@@ -23,6 +23,14 @@ export const BasicWithEmptyOption = () => (
   </ListBox>
 );
 
+export const BasicWithImplicitAll = () => (
+  <ListBox hasImplicitAll placeholder="All">
+    {characters.villians}
+    {characters.antiHeroes}
+    {characters.heroes}
+  </ListBox>
+);
+
 export const Dividers = () => (
   <ListBox>
     <ListBox.Divider>Villians</ListBox.Divider>

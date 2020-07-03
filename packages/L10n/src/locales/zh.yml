@@ -7,25 +7,32 @@ zh:
     dataGrid:
       a11yTextMessage: "{{value}}。您在第 {{rowIndex}} 行，第 {{columnIndex}} 列。忽略以下信息："
     uploader:
-      label: 拖放或从您的电脑中选择文件
-      overlay:
-        title: 拖放
-        subtitle: 您的文件到此
-      form:
-        dragAndDrop: 拖放
-        or: 或
-        chooseFiles: 选择文件
-        from: 从您的电脑
+      drop_files: 放下文件以上传
+      drop_files_here_or: 在此放下文件以上传或
+      choose_from_computer: 从您的电脑中选择
+      cancel_upload: 取消上传
+      restart_upload: 重新启动上传
       errors:
-        file_size: 超出最大 {{size}} 的文件限制。
-        file_type: "{{type}}是不正确的文件类型。"
+        size: 文件必须小于 {{maxFileSize}}
+        type: "文件必须是以下类型之一：{{- supportedTypes}}"
       status:
-        idle: 闲置
+        idle: 空闲
         processing: 正在处理
         uploading: 上传中
         success: 成功
         cancel: 取消
         error: 错误
+      progress:
+        cancelled: 已取消
+        complete: 完成
+        idle: 空闲
+        uploading: 正在上传 {{progressWithUnits}} / {{sizeWithUnits}}
+      size_abbreviations:
+        byte: B
+        kibibyte: KiB
+        mebibyte: MiB
+        gibibyte: GiB
+        tebibyte: TiB
     actions:
       delete: 删除
       apply: 应用
@@ -33,8 +40,9 @@ zh:
       confirm: 保存
       decline: 拒绝
     datePicker:
-      calendar_header_format: YYYY 年 M 月
       confirmation_format: YYYY 年 M 月 D 日
+    calendar:
+      header_format: YYYY 年 M 月
       month: 月
       year: 年
     daterange:
@@ -108,7 +116,7 @@ zh:
         add_filter: 添加过滤字段
         and: 和
         or: 或
-        where: 其中
+        where: 如果
         rules:
           is: 是
           is_not: 不是
@@ -124,8 +132,8 @@ zh:
           less_than_or_equal_to: "≤"
           is_empty: 是空的
           is_not_empty: 不是空的
-          is_before: 先于
-          is_after: 后于
+          is_before: 早于
+          is_after: 晚于
           true: "真"
           false: "假"
       search_placeholder: 筛选…

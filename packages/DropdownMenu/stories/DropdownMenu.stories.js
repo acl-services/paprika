@@ -1,6 +1,7 @@
 import React from "react";
 import { storiesOf } from "@storybook/react";
 import { withKnobs } from "@storybook/addon-knobs";
+import { getStoryName } from "storybook/storyTree";
 import L10n from "@paprika/l10n";
 import ShowcaseStory from "./examples/Showcase";
 import { DropdownMenuStory } from "./DropdownMenu.stories.styles";
@@ -12,10 +13,14 @@ import DropdownMenuLongestExample from "./examples/DropdownMenuLongestExample";
 import DropdownMenuTriggerExample from "./examples/DropdownMenuTriggerExample";
 import ZIndexExample from "./examples/ZIndex";
 
-storiesOf("DropdownMenu", module)
+const storyName = getStoryName("DropdownMenu");
+
+storiesOf(storyName, module)
   .addDecorator(withKnobs)
-  .add("Showcase", ShowcaseStory)
-  .add("DropdownMenu", () => (
+  .add("Showcase", ShowcaseStory);
+
+storiesOf(`${storyName}/Examples`, module)
+  .add("Basic", () => (
     <DropdownMenuStory>
       <DropdownMenuExample />
     </DropdownMenuStory>
@@ -51,9 +56,12 @@ storiesOf("DropdownMenu", module)
     <DropdownMenuStory>
       <DropdownMenuTriggerExample />
     </DropdownMenuStory>
-  ))
-  .add("Z Index", () => (
-    <DropdownMenuStory>
-      <ZIndexExample />
-    </DropdownMenuStory>
   ));
+
+storiesOf(`${storyName}/Backyard/Sandbox`, module).add("Z Index", () => (
+  <DropdownMenuStory>
+    <ZIndexExample />
+  </DropdownMenuStory>
+));
+
+storiesOf(`${storyName}/Backyard/Tests`, module).add("Cypress", () => <DropdownMenuExample />);

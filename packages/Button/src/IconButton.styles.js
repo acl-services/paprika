@@ -31,20 +31,33 @@ const iconButtonSizes = {
 const minorStyles = css`
   transition: background-color 0.2s ease-out;
 
-  &:hover {
-    background-color: ${stylers.alpha(tokens.color.black, 0.1)};
-  }
+  ${({ isDisabled }) =>
+    isDisabled
+      ? css`
+          &,
+          &:hover,
+          &:active {
+            [data-pka-anchor="button.icon"] svg {
+              color: ${tokens.color.blackDisabled};
+            }
+          }
+        `
+      : css`
+          &:hover {
+            background-color: ${stylers.alpha(tokens.color.black, 0.1)};
+          }
 
-  &:active {
-    background-color: ${stylers.alpha(tokens.color.black, 0.2)};
-  }
+          &:active {
+            background-color: ${stylers.alpha(tokens.color.black, 0.2)};
+          }
+        `}
 `;
 
 const iconButtonStyles = css`
   ${({ size }) => iconButtonSizes[size]}
   ${({ kind }) => (kind === Button.Kinds.MINOR ? minorStyles : "")}
 
-  .button__icon {
+  [data-pka-anchor="button.icon"] {
     color: inherit;
     margin: 0;
   }

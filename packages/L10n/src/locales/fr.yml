@@ -7,25 +7,32 @@ fr:
     dataGrid:
       a11yTextMessage: "{{value}}. Vous êtes désormais dans la ligne {{rowIndex}}, colonne {{columnIndex}}. Ignorez les informations suivantes :"
     uploader:
-      label: Glissez-déplacez ou choisissez des fichiers dans votre ordinateur
-      overlay:
-        title: Glisser-déposer
-        subtitle: Vos fichiers ici
-      form:
-        dragAndDrop: Glisser-déposer
-        or: ou
-        chooseFiles: Sélectionner des fichiers
-        from: Depuis votre ordinateur
+      drop_files: Déposer les fichiers à charger
+      drop_files_here_or: Déposer les fichiers à charger ici ou
+      choose_from_computer: parcourir votre ordinateur
+      cancel_upload: Annuler le chargement
+      restart_upload: Recommencer le chargement
       errors:
-        file_size: dépasse la taille du fichier {{size}} maximale.
-        file_type: "{{type}} est un type de fichier incorrect."
+        size: La taille du fichier ne doit pas dépasser {{maxFileSize}}
+        type: "Le fichier doit être de l'un des types suivants : {{- supportedTypes}}"
       status:
-        idle: inactif
-        processing: traitement
-        uploading: chargement
-        success: réussite
-        cancel: annuler
-        error: erreur
+        idle: Inactif
+        processing: Traitement en cours
+        uploading: Téléchargement
+        success: Réussite
+        cancel: Annuler
+        error: Erreur
+      progress:
+        cancelled: Annulé(e)
+        complete: Terminé(e)
+        idle: Inactif
+        uploading: Chargement en cours de {{progressWithUnits}} sur {{sizeWithUnits}}
+      size_abbreviations:
+        byte: O
+        kibibyte: Kio
+        mebibyte: Mio
+        gibibyte: Gio
+        tebibyte: Tio
     actions:
       delete: Supprimer
       apply: Appliquer
@@ -33,8 +40,9 @@ fr:
       confirm: Enregistrer
       decline: Refuser
     datePicker:
-      calendar_header_format: MMMM YYYY
       confirmation_format: D MMMM YYYY
+    calendar:
+      header_format: MMMM YYYY
       month: Mois
       year: Année
     daterange:
@@ -108,7 +116,7 @@ fr:
         add_filter: Ajouter un champ pour filtrer par
         and: et
         or: ou
-        where: Où
+        where: Lorsque
         rules:
           is: est
           is_not: n'est pas

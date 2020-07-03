@@ -1,11 +1,13 @@
 import React from "react";
-import { Story } from "storybook/assets/styles/common.styles";
 import { storiesOf } from "@storybook/react";
+import { Story } from "storybook/assets/styles/common.styles";
+import { getStoryName } from "storybook/storyTree";
 import ListBoxBrowser from "../src";
-
 import dataSingle from "../test/specs/fixtures/single.oneColumn";
 
-storiesOf("ListBoxBrowser/Single", module).add("One column", () => (
+const storyName = getStoryName("ListBoxBrowser");
+
+storiesOf(`${storyName}/Examples/Single`, module).add("One column", () => (
   <Story>
     <ListBoxBrowser
       data={dataSingle}

@@ -1,16 +1,16 @@
 import styled, { css } from "styled-components";
 import tokens from "@paprika/tokens";
+import stylers from "@paprika/stylers";
 
 const focusStyle = tokens.highlight.active.withBorder.boxShadow;
 const insetFocusStyle = tokens.highlight.active.withBorder.insetBoxShadow;
 
 const focusStyles = isInset => css`
   &:focus {
-    box-shadow: ${isInset ? insetFocusStyle : focusStyle};
-    outline: none;
+    ${stylers.focusRing(isInset)}
   }
 
-  [data-whatinput="mouse"] &:focus {
+  [data-whatinput="mouse"] &:not([data-has-forced-focus="true"]):focus {
     box-shadow: none;
   }
 `;

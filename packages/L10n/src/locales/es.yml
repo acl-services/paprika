@@ -7,25 +7,32 @@ es:
     dataGrid:
       a11yTextMessage: "{{value}}. Está en la fila {{rowIndex}}, columna {{columnIndex}}. Haga caso omiso de la siguiente información:"
     uploader:
-      label: Arrastre y suelte o elija archivos de su computadora
-      overlay:
-        title: Arrastrar y soltar
-        subtitle: Sus archivos aquí
-      form:
-        dragAndDrop: Arrastrar y soltar
-        or: o
-        chooseFiles: Elija los archivos
-        from: De su computadora
+      drop_files: Soltar archivos a cargar
+      drop_files_here_or: Suelte los archivos a cargar aquí o
+      choose_from_computer: elija de su computadora
+      cancel_upload: Cancelar carga
+      restart_upload: Reiniciar carga
       errors:
-        file_size: excede el tamaño máximo del archivo de {{size}}.
-        file_type: "{{type}} es el tipo de archivo incorrecto."
+        size: El archivo debe tener menos de {{maxFileSize}}
+        type: "El archivo debe ser de uno de los siguientes tipos: {{- supportedTypes}}"
       status:
-        idle: ocioso
-        processing: en proceso...
-        uploading: cargando...
-        success: éxito
-        cancel: cancelar
-        error: error
+        idle: Ocioso
+        processing: En proceso
+        uploading: Cargando
+        success: Éxito
+        cancel: Cancelar
+        error: Error
+      progress:
+        cancelled: Cancelado/a
+        complete: Completado/a
+        idle: Ocioso
+        uploading: Cargando {{progressWithUnits}} de {{sizeWithUnits}}
+      size_abbreviations:
+        byte: B
+        kibibyte: KiB
+        mebibyte: MiB
+        gibibyte: GiB
+        tebibyte: TiB
     actions:
       delete: Eliminar
       apply: Aplicar
@@ -33,8 +40,9 @@ es:
       confirm: Guardar
       decline: Declinar
     datePicker:
-      calendar_header_format: MMMM YYYY
       confirmation_format: ll
+    calendar:
+      header_format: MMMM YYYY
       month: Mes
       year: Año
     daterange:
