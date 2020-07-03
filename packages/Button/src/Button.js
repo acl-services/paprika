@@ -65,7 +65,7 @@ const defaultProps = {
   canPropagate: true,
   children: null,
   icon: null,
-  isActive: false,
+  isActive: null,
   isDisabled: false,
   isDropdown: false,
   isFullWidth: false,
@@ -151,9 +151,9 @@ const Button = React.forwardRef((props, ref) => {
   }
 
   const buttonProps = {
-    tabIndex,
-    "data-pka-anchor": "button",
     "aria-pressed": isActive,
+    "data-pka-anchor": "button",
+    tabIndex,
     ...moreProps,
     "data-has-forced-focus": hasForcedFocus || null,
     isActive,
