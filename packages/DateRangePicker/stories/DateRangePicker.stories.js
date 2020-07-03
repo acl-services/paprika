@@ -56,12 +56,10 @@ storiesOf(`${storyName}/Backyard/Tests`, module).add("Cypress", () => {
 
   return (
     <L10n locale="en">
-      <DateRangePickerStory>
-        <DateRangePicker startDate={startDate} endDate={endDate} onDatesChange={setDates}>
-          <DateRangePicker.StartInput data-pka-anchor="daterangepicker.startinput" />
-          <DateRangePicker.EndInput data-pka-anchor="daterangepicker.endinput" />
-        </DateRangePicker>
-      </DateRangePickerStory>
+      <DateRangePicker startDate={startDate} endDate={endDate} onDatesChange={setDates}>
+        <DateRangePicker.StartInput data-pka-anchor="daterangepicker.startinput" />
+        <DateRangePicker.EndInput data-pka-anchor="daterangepicker.endinput" />
+      </DateRangePicker>
     </L10n>
   );
 });
