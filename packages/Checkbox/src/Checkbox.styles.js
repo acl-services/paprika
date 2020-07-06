@@ -76,38 +76,33 @@ const styles = {
 };
 
 export const CheckboxWrapper = styled.div`
-  ${props => `
   ${boxSizingStyles};
+  ${props => `
   ${styles[props.size].baseFontSize};
   line-height: ${props.hasLabel ? lineHeightValue(-1) : "0"};
   position: relative;
-
+  `}
   & + [data-pka-anchor="checkbox"] {
     margin-top: ${tokens.space};
   }
-
   input[type="checkbox"] {
     ${visuallyHidden};
-
     &:focus + label::before {
       box-shadow: ${tokens.highlight.active.noBorder.boxShadow};
       border-color: ${tokens.highlight.active.noBorder.borderColor};
     }
-
     & + label {
       cursor: pointer;
       display: inline-block;
       margin: 0;
-      ${styles[props.size].labelStyles(props.hasLabel)};
+      ${({ size, hasLabel }) => styles[size].labelStyles(hasLabel)};
       position: relative;
     }
-
     & + label::before,
     & + label > .checkbox-icon {
       position: absolute;
       top: 0;
     }
-
     & + label::before {
       background: ${tokens.color.white};
       border: 2px solid ${tokens.border.color};
@@ -115,23 +110,20 @@ export const CheckboxWrapper = styled.div`
       content: "";
       left: 0;
       ${z(1)};
-      ${styles[props.size].checkBoxStyles};
+      ${({ size }) => styles[size].checkBoxStyles};
     }
-
     & + label:hover::before {
       border: 2px solid ${tokens.color.black};
     }
-
     & + label > .checkbox-icon {
       color: ${tokens.color.white};
-      ${styles[props.size].checkBoxIconStyles};
+      ${({ size }) => styles[size].checkBoxIconStyles};
       opacity: 0;
       pointer-events: none;
       transform: translateX(-50%);
       transition: opacity 0.15s ease-out;
       ${z(2)};
     }
-
     &:checked,
     &:indeterminate {
       & + label::before {
@@ -142,19 +134,15 @@ export const CheckboxWrapper = styled.div`
         background: ${tokens.color.blackLighten30};
       }
     }
-
     &:checked + label > [data-pka-anchor="checkbox.icon.check"] {
       opacity: 1;
     }
-
     &:indeterminate + label > [data-pka-anchor="checkbox.icon.check"] {
       opacity: 0;
     }
-
     &:indeterminate + label > [data-pka-anchor="checkbox.icon.indeterminate"] {
       opacity: 1;
     }
-
     &:disabled {
       & + label,
       & ~ .checkbox-icon {
@@ -175,5 +163,5 @@ export const CheckboxWrapper = styled.div`
         border: 2px solid ${tokens.border.color};
       }
     }
-  }`}
+  }
 `;
