@@ -38,9 +38,9 @@ export default function Label(props) {
   }, [isMulti, options, placeholder, selectedOptions]);
 
   return (
-    <sc.Label hasImplicitAll={hasImplicitAll} isPlaceholder={!selectedOptions.length}>
+    <sc.LabelWrapper hasImplicitAll={hasImplicitAll} isPlaceholder={!selectedOptions.length}>
       {label}
-    </sc.Label>
+    </sc.LabelWrapper>
   );
 }
 

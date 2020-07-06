@@ -38,7 +38,7 @@ export default function Overlay(props) {
     onClick: handleClick,
   };
 
-  return <sc.Overlay {...overlayProps} />;
+  return <sc.OverlayWrapper {...overlayProps} />;
 }
 
 Overlay.propTypes = propTypes;

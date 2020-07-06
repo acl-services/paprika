@@ -133,7 +133,7 @@ const Input = props => {
   );
 
   return (
-    <sc.inputStyles {...styleProps} className={rootClasses}>
+    <sc.InputWrapper {...styleProps} className={rootClasses}>
       {renderIcon()}
       <input
         aria-invalid={hasError}
@@ -145,7 +145,7 @@ const Input = props => {
         {...moreProps}
       />
       {renderClear()}
-    </sc.inputStyles>
+    </sc.InputWrapper>
   );
 };
 

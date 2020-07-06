@@ -2,14 +2,14 @@ import styled from "styled-components";
 import tokens from "@paprika/tokens";
 import stylers from "@paprika/stylers";
 
-export const accordionStyles = styled.div`
+export const AccordionWrapper = styled.div`
   &,
   * {
     box-sizing: border-box;
   }
 `;
 
-export const itemStyles = styled.div`
+export const ItemWrapper = styled.div`
   color: ${tokens.textColor.subtle};
   display: flex;
 
@@ -18,18 +18,18 @@ export const itemStyles = styled.div`
   }
 `;
 
-export const activeItemStyles = styled.div`
+export const ActiveItemWrapper = styled.div`
   display: flex;
   justify-content: space-between;
 `;
 
-export const activeLabelStyles = styled.div`
+export const ActiveLabelWrapper = styled.div`
   ${stylers.truncateText}
   
   color: ${tokens.color.blue};
 `;
 
-export const activeStatusStyles = styled.div`
+export const ActiveStatusWrapper = styled.div`
   ${stylers.fontSize(-1)}
 
   font-style: italic;

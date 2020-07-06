@@ -1,6 +1,6 @@
 import React from "react";
 import PropTypes from "prop-types";
-import { BoxContainerStyled } from "./Box.styles";
+import * as sc from "./Box.styles";
 import useListBox from "../../useListBox";
 
 const propTypes = {
@@ -13,14 +13,14 @@ export default function Box(props) {
   const [state] = useListBox();
 
   return (
-    <BoxContainerStyled
+    <sc.BoxWrapper
       data-pka-anchor="listbox-box"
       isInline={state.isInline}
       triggerWidth={state.triggerWidth}
       {...moreProps}
     >
       {props.children}
-    </BoxContainerStyled>
+    </sc.BoxWrapper>
   );
 }
 

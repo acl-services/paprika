@@ -2,7 +2,7 @@ import styled from "styled-components";
 import tokens from "@paprika/tokens";
 import stylers from "@paprika/stylers";
 
-export const collapsibleStyles = styled.div`
+export const CollapsibleWrapper = styled.div`
   &, * {
     box-sizing: border-box;
   }

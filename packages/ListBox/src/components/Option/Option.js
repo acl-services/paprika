@@ -4,7 +4,7 @@ import useListBox from "../../useListBox";
 import { OnChangeContext } from "../../store/OnChangeProvider";
 import { getA11yAttributesForOption } from "../../helpers/DOMAttributes";
 import { isOptionVisible, isOptionSelected, handleClickOption } from "../Options/helpers/options";
-import { OptionStyled } from "./Option.styles";
+import * as sc from "./Option.styles";
 import useIsSelectedOption from "./useIsSelectedOption";
 
 const propTypes = {
@@ -67,7 +67,7 @@ export default function Option(props) {
   const id = state.options[index].id;
 
   return (
-    <OptionStyled
+    <sc.OptionWrapper
       {...moreProps}
       {...getA11yAttributesForOption(isSelected)}
       hasPreventDefaultOnSelect={props.preventDefaultOnSelect}
@@ -83,7 +83,7 @@ export default function Option(props) {
       data-pka-prevent-default-on-select={props.preventDefaultOnSelect}
     >
       {typeof props.children === "function" ? props.children({ isSelected, isDisabled, id }) : props.children}
-    </OptionStyled>
+    </sc.OptionWrapper>
   );
   /* eslint-enable react/prop-types */
 }

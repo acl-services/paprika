@@ -2,7 +2,7 @@ import React from "react";
 import Button from "@paprika/button";
 import PropTypes from "prop-types";
 import { ShirtSizes } from "@paprika/helpers/lib/customPropTypes";
-import { FooterContainerStyled } from "./Footer.styles";
+import * as sc from "./Footer.styles";
 import useListBox from "../../useListBox";
 import invokeOnChange from "../../helpers/invokeOnChange";
 
@@ -122,7 +122,7 @@ export function FooterComponent(props, ref) {
   const { isDisabled } = props;
 
   return (
-    <FooterContainerStyled ref={ref}>
+    <sc.FooterWrapper ref={ref}>
       <div>
         {isAcceptVisible && (
           <Button isDisabled={isDisabled} kind={kindAccept} size={size} onClick={handleClickAccept}>
@@ -148,7 +148,7 @@ export function FooterComponent(props, ref) {
           </Button>
         )}
       </div>
-    </FooterContainerStyled>
+    </sc.FooterWrapper>
   );
 }
 

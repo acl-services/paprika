@@ -127,8 +127,8 @@ function Toast(props) {
 
     return (
       <>
-        {!isVisuallyHidden && <sc.IconStyled as={icons[kind]} kind={kind} />}
-        <sc.contentStyles>{children}</sc.contentStyles>
+        {!isVisuallyHidden && <sc.IconWrapper as={icons[kind]} kind={kind} />}
+        <sc.ContentWrapper>{children}</sc.ContentWrapper>
         {hasCloseButton && !isVisuallyHidden && <sc.CloseButtonStyled onClick={handleClose} size={ShirtSizes.SMALL} />}
       </>
     );
@@ -136,7 +136,7 @@ function Toast(props) {
 
   function renderToast() {
     return (
-      <sc.toastStyles
+      <sc.ToastWrapper
         data-pka-anchor="toast"
         hasCloseButton={hasCloseButton}
         isFixed={isFixed}
@@ -146,7 +146,7 @@ function Toast(props) {
         {...moreProps}
       >
         {renderContent()}
-      </sc.toastStyles>
+      </sc.ToastWrapper>
     );
   }
 

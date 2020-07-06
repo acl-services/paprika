@@ -94,11 +94,11 @@ function DialogActions(props) {
   }
 
   return (
-    <sc.DialogActions {...moreProps}>
+    <sc.DialogActionsWrapper {...moreProps}>
       {renderConfirmButton()}
       {renderDeclineButton()}
       {renderCancelButton()}
-    </sc.DialogActions>
+    </sc.DialogActionsWrapper>
   );
 }
 

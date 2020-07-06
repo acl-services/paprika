@@ -14,6 +14,8 @@ export const labelStyles = `
   width: 100%;
 `;
 
-export const Label = styled.span`
-  ${props => (props.isPlaceholder && !props.hasImplicitAll ? placeholderStyles : "")}
+export const LabelWrapper = styled.span`
+  ${props => `
+    ${props.isPlaceholder && !props.hasImplicitAll ? placeholderStyles : ""};
+  `}
 `;

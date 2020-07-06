@@ -70,7 +70,7 @@ const Select = props => {
   );
 
   return (
-    <sc.selectStyles className={rootClasses} data-pka-anchor="select">
+    <sc.SelectWrapper className={rootClasses} data-pka-anchor="select">
       <select
         aria-invalid={hasError}
         className="form-select__select"
@@ -82,7 +82,7 @@ const Select = props => {
         {renderPlaceholder()}
         {children}
       </select>
-    </sc.selectStyles>
+    </sc.SelectWrapper>
   );
 };
 

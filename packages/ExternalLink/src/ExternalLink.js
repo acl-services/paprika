@@ -31,7 +31,7 @@ function ExternalLink(props) {
   };
 
   return (
-    <sc.ExternalLink
+    <sc.ExternalLinkWrapper
       aria-label={ariaText || children}
       onClick={handleSwallowClick}
       rel="noopener noreferrer"
@@ -41,7 +41,7 @@ function ExternalLink(props) {
     >
       <sc.ExternalLinkContent hasNoUnderline={hasNoUnderline}>{children}</sc.ExternalLinkContent>
       <NewTabIcon css={sc.ExternalLinkIconStyles} size={`${iconFontSize}px`} />
-    </sc.ExternalLink>
+    </sc.ExternalLinkWrapper>
   );
 }
 

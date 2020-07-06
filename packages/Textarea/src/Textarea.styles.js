@@ -2,7 +2,7 @@ import styled from "styled-components";
 import tokens from "@paprika/tokens";
 import stylers from "@paprika/stylers";
 
-export const textareaStyles = styled.div`
+export const TextareaWrapper = styled.div`
   position: relative;
 
   .form-textarea__textarea {

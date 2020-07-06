@@ -514,9 +514,9 @@ class Popover extends React.Component {
     return (
       <ThemeContext.Provider value={isDark}>
         <PopoverContext.Provider value={contextValue}>
-          <sc.Popover data-pka-anchor="popover" {...moreProps} ref={this.$popover}>
+          <sc.PopoverWrapper data-pka-anchor="popover" {...moreProps} ref={this.$popover}>
             <PopoverChildren onChildChange={this.handleChildChange}>{this.props.children}</PopoverChildren>
-          </sc.Popover>
+          </sc.PopoverWrapper>
         </PopoverContext.Provider>
       </ThemeContext.Provider>
     );

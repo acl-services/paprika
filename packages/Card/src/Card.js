@@ -46,9 +46,9 @@ function Card(props) {
   };
 
   return (
-    <sc.cardStyles {...cardProps} data-pka-anchor="card">
+    <sc.CardWrapper {...cardProps} data-pka-anchor="card">
       {children}
-    </sc.cardStyles>
+    </sc.CardWrapper>
   );
 }
 

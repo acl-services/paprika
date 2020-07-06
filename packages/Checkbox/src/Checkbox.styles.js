@@ -75,10 +75,11 @@ const styles = {
   },
 };
 
-export const checkboxStyles = styled.div`
+export const CheckboxWrapper = styled.div`
+  ${props => `
   ${boxSizingStyles};
-  ${({ size }) => styles[size].baseFontSize};
-  line-height: ${({ hasLabel }) => (hasLabel ? lineHeightValue(-1) : "0")};
+  ${styles[props.size].baseFontSize};
+  line-height: ${props.hasLabel ? lineHeightValue(-1) : "0"};
   position: relative;
 
   & + [data-pka-anchor="checkbox"] {
@@ -97,7 +98,7 @@ export const checkboxStyles = styled.div`
       cursor: pointer;
       display: inline-block;
       margin: 0;
-      ${({ size, hasLabel }) => styles[size].labelStyles(hasLabel)};
+      ${styles[props.size].labelStyles(props.hasLabel)};
       position: relative;
     }
 
@@ -114,7 +115,7 @@ export const checkboxStyles = styled.div`
       content: "";
       left: 0;
       ${z(1)};
-      ${({ size }) => styles[size].checkBoxStyles};
+      ${styles[props.size].checkBoxStyles};
     }
 
     & + label:hover::before {
@@ -123,7 +124,7 @@ export const checkboxStyles = styled.div`
 
     & + label > .checkbox-icon {
       color: ${tokens.color.white};
-      ${({ size }) => styles[size].checkBoxIconStyles};
+      ${styles[props.size].checkBoxIconStyles};
       opacity: 0;
       pointer-events: none;
       transform: translateX(-50%);
@@ -174,5 +175,5 @@ export const checkboxStyles = styled.div`
         border: 2px solid ${tokens.border.color};
       }
     }
-  }
+  }`}
 `;

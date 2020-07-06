@@ -16,7 +16,7 @@ const states = {
   exited: closedCss,
 };
 
-export const Backdrop = styled.div`
+export const BackdropWrapper = styled.div`
   background-color: ${tokens.overlay.backdrop.backgroundColor};
   bottom: 0;
   left: 0;
@@ -27,7 +27,7 @@ export const Backdrop = styled.div`
   ${({ state }) => states[state]};
 `;
 
-export const Overlay = styled.div`
+export const OverlayWrapper = styled.div`
   bottom: 0;
   left: 0;
   position: fixed;

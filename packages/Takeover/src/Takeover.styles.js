@@ -31,27 +31,20 @@ const states = {
   exited: closedCss,
 };
 
-const commonStyles = styled.div`
-  background-color: ${tokens.backgroundColor.level0};
-  bottom: 0;
-  display: flex;
-  flex-direction: column;
-  left: 0;
-  position: fixed;
-  right: 0;
-  top: 0;
-  transition: all ${tokens.overlay.animationDuration}ms ease;
-`;
-
-export const Wrapper = styled(commonStyles)`
-  ${props => {
-    const state = states[props.state];
-
-    return `
+export const Wrapper = styled.div`
+  ${props => `
+    background-color: ${tokens.backgroundColor.level0};
+    bottom: 0;
+    display: flex;
+    flex-direction: column;
+    left: 0;
+    position: fixed;
+    right: 0;
+    top: 0;
+    transition: all ${tokens.overlay.animationDuration}ms ease;
     z-index: ${props.zIndex};
-    ${state};
-  `;
-  }}
+    ${states[props.state]};
+  `}
 `;
 
 export const Header = styled(OriginalHeader)`

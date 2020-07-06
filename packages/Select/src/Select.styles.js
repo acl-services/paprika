@@ -9,7 +9,7 @@ const selectArrow = (color = tokens.color.black) => `
   background-image: url("data:image/svg+xml;base64,${btoa(svgString(color))}");
 `;
 
-export const selectStyles = styled.div`
+export const SelectWrapper = styled.div`
   position: relative;
 
   .form-select__select {

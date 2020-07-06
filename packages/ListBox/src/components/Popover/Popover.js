@@ -1,6 +1,6 @@
 import React from "react";
 import PropTypes from "prop-types";
-import PopoverStyled from "./Popover.styles";
+import * as sc from "./Popover.styles";
 import useListBox from "../../useListBox";
 
 const propTypes = {
@@ -21,9 +21,9 @@ export default function Popover(props) {
   const { children, zIndex } = props;
 
   return (
-    <PopoverStyled {...props} isOpen={state.isOpen} maxWidth={state.triggerWidth} offset={0} zIndex={zIndex}>
+    <sc.PopoverStyled {...props} isOpen={state.isOpen} maxWidth={state.triggerWidth} offset={0} zIndex={zIndex}>
       {children}
-    </PopoverStyled>
+    </sc.PopoverStyled>
   );
 }
 

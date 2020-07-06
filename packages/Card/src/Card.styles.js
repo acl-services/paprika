@@ -2,19 +2,6 @@ import styled from "styled-components";
 import tokens from "@paprika/tokens";
 import { ShirtSizes } from "@paprika/helpers/lib/customPropTypes";
 
-// Common
-
-const commonStyles = styled.div`
-  background: ${tokens.color.white};
-  border: ${tokens.border.color};
-  border-radius: ${tokens.card.borderRadius};
-  box-shadow: ${tokens.shadow};
-  display: flex;
-  flex-direction: column;
-  overflow: hidden;
-  position: relative;
-`;
-
 // Sizes
 
 const sizeStyles = {
@@ -51,17 +38,20 @@ const activeStyles = `
   border-color: ${tokens.highlight.active.noBorder.borderColor};
 `;
 
-export const cardStyles = styled(commonStyles)`
-  ${props => {
-    const size = sizeStyles[props.size];
-    const active = props.isActive && activeStyles;
-    const fullWidth = props.isFullWidth && fullWidthStyles;
-    const autoHeight = props.isAutoHeight && autoHeightStyles;
+export const CardWrapper = styled.div`
+  background: ${tokens.color.white};
+  border: ${tokens.border.color};
+  border-radius: ${tokens.card.borderRadius};
+  box-shadow: ${tokens.shadow};
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  position: relative;
 
-    return `
-      ${size};
-      ${active};
-      ${fullWidth};
-      ${autoHeight};`;
-  }}
+  ${props => `
+    ${sizeStyles[props.size]}
+    ${props.isActive && activeStyles}
+    ${props.isFullWidth && fullWidthStyles}
+    ${props.isAutoHeight && autoHeightStyles}
+    `}
 `;

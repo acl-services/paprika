@@ -57,7 +57,7 @@ const indicatorStyles = `
   }
 `;
 
-const commonStyles = styled.span`
+export const CounterWrapper = styled.span`
   display: inline-flex;
   font-weight: bold;
   justify-content: center;
@@ -69,17 +69,9 @@ const commonStyles = styled.span`
   * {
     box-sizing: border-box;
   }
-`;
-
-export const counterStyles = styled(commonStyles)`
-  ${props => {
-    const hasIndicator = props.hasIndicator && indicatorStyles;
-    const color = counterColorStyles[props.color];
-    const size = counterSizeStyles[props.size];
-
-    return `
-      ${hasIndicator};
-      ${color};
-      ${size};`;
-  }}
+  ${props => `
+    ${props.hasIndicator && indicatorStyles};
+    ${counterColorStyles[props.color]};
+    ${counterSizeStyles[props.size]};
+    `}
 `;

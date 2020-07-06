@@ -88,14 +88,13 @@ const RawButton = React.forwardRef((props, ref) => {
   const bestTabIndex = isDisabled && tabIndex === null ? -1 : tabIndex || 0;
 
   return (
-    <sc.rawButtonStyles
+    <sc.RawButtonWrapper
       aria-pressed={isActive}
       data-pka-anchor="raw-button"
       tabIndex={bestTabIndex}
       aria-label={a11yText}
       {...moreProps}
       aria-disabled={isDisabled}
-      css={rawButtonStyles}
       data-has-forced-focus={hasForcedFocus || null}
       isActive={isActive}
       isDisabled={isDisabled}
@@ -106,7 +105,7 @@ const RawButton = React.forwardRef((props, ref) => {
       ref={rawButtonRef}
     >
       {children}
-    </sc.rawButtonStyles>
+    </sc.RawButtonWrapper>
   );
 });
 

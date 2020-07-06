@@ -44,20 +44,20 @@ const ProgressAccordion = props => {
 
   const getLabel = (label, index) => {
     return activeIndex === index ? (
-      <sc.activeItemStyles>
-        <sc.activeLabelStyles>
+      <sc.ActiveItemWrapper>
+        <sc.ActiveLabelWrapper>
           {label}
           <span css={visuallyHidden}>. {I18n.t("progressAccordion.active")}</span>
-        </sc.activeLabelStyles>
-        <sc.activeStatusStyles>{activeStatus}</sc.activeStatusStyles>
-      </sc.activeItemStyles>
+        </sc.ActiveLabelWrapper>
+        <sc.ActiveStatusWrapper>{activeStatus}</sc.ActiveStatusWrapper>
+      </sc.ActiveItemWrapper>
     ) : (
       label
     );
   };
 
   return (
-    <sc.accordionStyles {...moreProps} role="list" aria-label={a11yText} data-pka-anchor="progress-accordion">
+    <sc.AccordionWrapper {...moreProps} role="list" aria-label={a11yText} data-pka-anchor="progress-accordion">
       {validChildren.length > 0 &&
         validChildren.map((child, index) => {
           const isComplete = activeIndex > index;
@@ -69,13 +69,13 @@ const ProgressAccordion = props => {
 
           return (
             // eslint-disable-next-line react/no-array-index-key
-            <sc.itemStyles key={index} role="listitem" data-pka-anchor="progress-accordion.item">
+            <sc.ItemWrapper key={index} role="listitem" data-pka-anchor="progress-accordion.item">
               <Indicator {...indicatorProps} />
               {React.cloneElement(child, { label: getLabel(child.props.label, index), isComplete })}
-            </sc.itemStyles>
+            </sc.ItemWrapper>
           );
         })}
-    </sc.accordionStyles>
+    </sc.AccordionWrapper>
   );
 };
 

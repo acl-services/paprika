@@ -3,26 +3,6 @@ import stylers from "@paprika/stylers";
 import tokens from "@paprika/tokens";
 import RawButton from "@paprika/raw-button";
 
-const commonPillStyles = styled.div`
-  align-items: center;
-  color: ${tokens.color.white};
-  display: inline-flex;
-  max-width: 100%;
-
-  &,
-  * {
-    box-sizing: border-box;
-  }
-
-  &:focus {
-    outline: 0;
-  }
-
-  svg {
-    margin-right: ${tokens.spaceSm};
-  }
-`;
-
 const pillColorStyles = {
   black: `
     background: ${tokens.color.black};
@@ -90,41 +70,56 @@ const pillSizeStyles = {
   `,
 };
 
-export const pillStyles = styled(commonPillStyles)`
-  ${props => {
-    const size = pillSizeStyles[props.size];
-    const pillColor = pillColorStyles[props.pillColor];
+export const PillWrapper = styled.div`
+  ${props => `
+    align-items: center;
+    color: ${tokens.color.white};
+    display: inline-flex;
+    max-width: 100%;
 
-    return `
-    ${size};
-    ${pillColor};`;
-  }}
+    &,
+    * {
+      box-sizing: border-box;
+    }
+
+    &:focus {
+      outline: 0;
+    }
+
+    svg {
+      margin-right: ${tokens.spaceSm};
+    }
+    ${pillSizeStyles[props.size]};
+    ${pillColorStyles[props.pillColor]};
+  `}
 `;
 
-export const rawPillStyle = styled(RawButton)`
-  align-items: center;
-  color: ${tokens.color.white};
-  display: inline-flex;
-  max-width: 100%;
+export const rawPillWrapper = styled(RawButton)`
+  ${props => `
+    align-items: center;
+    color: ${tokens.color.white};
+    display: inline-flex;
+    max-width: 100%;
 
-  &,
-  * {
-    box-sizing: border-box;
-  }
+    &,
+    * {
+      box-sizing: border-box;
+    }
 
-  &:focus {
-    outline: 0;
-  }
+    &:focus {
+      outline: 0;
+    }
 
-  svg {
-    margin-right: ${tokens.spaceSm};
-  }
+    svg {
+      margin-right: ${tokens.spaceSm};
+    }
 
-  ${({ size }) => pillSizeStyles[size]}
-  ${({ pillColor }) => pillColorStyles[pillColor]}
+    ${pillSizeStyles[props.size]};
+    ${pillColorStyles[props.pillColor]};
+  `}
 `;
 
-export const pillTextStyles = styled.span`
+export const pillTextWrapper = styled.span`
   ${stylers.truncateText};
   align-items: center;
   display: inline-flex;

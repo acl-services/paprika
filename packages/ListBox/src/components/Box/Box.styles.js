@@ -7,7 +7,7 @@ const isInlineCSS = `
   border-top: 0;
 `;
 
-export const BoxContainerStyled = styled.div`
+export const BoxWrapper = styled.div`
   background-color: #ffffff;
   border: 1px solid #d7d7d7;
   border-radius: 3px;
@@ -15,12 +15,8 @@ export const BoxContainerStyled = styled.div`
   box-sizing: border-box;
   padding: 0;
 
-  ${props => {
-    const inlineCSS = props.isInline ? isInlineCSS : "";
-    const widthCSS = props.triggerWidth ? `width: ${props.triggerWidth}px;` : "";
-    return `
-    ${widthCSS}
-    ${inlineCSS}
-    `;
-  }}
+  ${props => `
+    ${props.isInline ? isInlineCSS : ""};
+    ${props.triggerWidth ? `width: ${props.triggerWidth}px;` : ""};
+  `}
 `;

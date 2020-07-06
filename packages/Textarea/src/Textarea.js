@@ -113,7 +113,7 @@ function Textarea(props) {
   );
 
   return (
-    <sc.textareaStyles className={rootClasses}>
+    <sc.TextareaWrapper className={rootClasses}>
       <textarea
         aria-invalid={hasError}
         className="form-textarea__textarea"
@@ -125,7 +125,7 @@ function Textarea(props) {
         style={{ maxHeight }}
         {...moreProps}
       />
-    </sc.textareaStyles>
+    </sc.TextareaWrapper>
   );
 }
 

@@ -2,7 +2,7 @@ import stylers from "@paprika/stylers";
 import tokens from "@paprika/tokens";
 import styled from "styled-components";
 
-export const SpinnerStyles = styled.div`
+export const SpinnerWrapper = styled.div`
 
 @keyframes spin {
   0% {

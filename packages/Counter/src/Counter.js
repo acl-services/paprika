@@ -38,9 +38,9 @@ function Counter(props) {
   };
 
   return (
-    <sc.counterStyles data-pka-anchor="counter" {...counterProps} title={exceedsThreshold ? quantity : ""}>
+    <sc.CounterWrapper data-pka-anchor="counter" {...counterProps} title={exceedsThreshold ? quantity : ""}>
       {exceedsThreshold ? `${threshold}+` : quantity}
-    </sc.counterStyles>
+    </sc.CounterWrapper>
   );
 }
 

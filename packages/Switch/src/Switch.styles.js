@@ -8,10 +8,10 @@ const KnobPositionStyles = {
     transform: translateX(12px);
   `,
   medium: css`
-    transform: translate(16px, 0);
+    transform: translate(20px, 0);
   `,
   large: css`
-    transform: translate(20px);
+    transform: translate(28px);
   `,
 };
 
@@ -19,25 +19,22 @@ const KnobSizeStyles = {
   small: css`
     height: 12px;
     width: 12px;
-
     &::after {
       height: 13px;
     }
   `,
   medium: css`
-    height: 16px;
-    width: 16px;
-
+    height: 20px;
+    width: 20px;
     &::after {
-      height: 17px;
+      height: 21px;
     }
   `,
   large: css`
-    height: 20px;
-    width: 20px;
-
+    height: 28px;
+    width: 28px;
     &::after {
-      height: 21px;
+      height: 29px;
     }
   `,
 };
@@ -48,12 +45,12 @@ const UnderlaySizeStyles = {
     width: 28px;
   `,
   medium: css`
-    height: ${stylers.spacer(2.5)};
-    width: 36px;
-  `,
-  large: css`
     height: ${stylers.spacer(3)};
     width: 44px;
+  `,
+  large: css`
+    height: ${stylers.spacer(4)};
+    width: 60px;
   `,
 };
 
@@ -82,10 +79,8 @@ const disabledStyles = css`
   ${UnderlayStyled} {
     box-shadow: none;
   }
-
   ${KnobStyled} {
     box-shadow: none;
-
     &::after {
       content: "";
       display: block;
@@ -95,14 +90,12 @@ const disabledStyles = css`
       transform: rotate(45deg) translateX(-50%);
     }
   }
-
   &[aria-checked="true"] {
     ${UnderlayStyled},
     ${KnobStyled}::after {
       background-color: ${tokens.color.greenLighten30};
     }
   }
-
   &[aria-checked="false"] {
     ${UnderlayStyled},
     ${KnobStyled}::after {
@@ -112,39 +105,30 @@ const disabledStyles = css`
 `;
 export const switchStyles = styled(RawButton)`
   position: relative;
-
   &,
   * {
     box-sizing: border-box;
   }
-
   ${({ size }) => UnderlaySizeStyles[size]}
-
   ${UnderlayStyled} {
     ${({ size }) => UnderlaySizeStyles[size]}
   }
-
   ${KnobStyled} {
     ${({ size }) => KnobSizeStyles[size]}
   }
-
   &:focus {
     box-shadow: none;
-
     ${UnderlayStyled} {
       box-shadow: ${tokens.highlight.active.withBorder.boxShadow};
     }
   }
-
   &[aria-checked="true"] {
     ${UnderlayStyled} {
       background-color: ${tokens.color.green};
     }
-
     ${KnobStyled} {
       ${({ size }) => KnobPositionStyles[size]}
     }
   }
-
   ${({ isDisabled }) => (isDisabled ? disabledStyles : null)}
 `;

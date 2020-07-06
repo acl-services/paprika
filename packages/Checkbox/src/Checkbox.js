@@ -93,14 +93,14 @@ const Checkbox = props => {
   if (a11yText) inputProps["aria-label"] = a11yText;
 
   return (
-    <sc.checkboxStyles data-pka-anchor="checkbox" {...styleProps} {...moreProps}>
+    <sc.CheckboxWrapper data-pka-anchor="checkbox" {...styleProps} {...moreProps}>
       <input {...inputProps} />
       <label htmlFor={checkboxId}>
         {children}
         <CheckIcon className="checkbox-icon" aria-hidden data-pka-anchor="checkbox.icon.check" />
         <DashIcon aria-hidden className="checkbox-icon" data-pka-anchor="checkbox.icon.indeterminate" />
       </label>
-    </sc.checkboxStyles>
+    </sc.CheckboxWrapper>
   );
 };
 

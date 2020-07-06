@@ -101,10 +101,11 @@ const styles = {
   },
 };
 
-export const radioStyles = styled.div`
+export const RadioWrapper = styled.div`
+  ${props => `
   ${boxSizingStyles};
-  ${({ size }) => styles[size].baseFontSize};
-  line-height: ${({ hasLabel }) => (hasLabel ? lineHeightValue(-1) : "0")};
+  ${styles[props.size].baseFontSize};
+  line-height: ${props.hasLabel ? lineHeightValue(-1) : "0"};
   position: relative;
 
   & + [data-pka-anchor="radio"] {
@@ -118,7 +119,7 @@ export const radioStyles = styled.div`
       cursor: pointer;
       display: inline-block;
       margin: 0;
-      ${({ size, hasLabel }) => styles[size].labelStyles(hasLabel)};
+      ${styles[props.size].labelStyles(props.hasLabel)};
       position: relative;
     }
 
@@ -134,7 +135,7 @@ export const radioStyles = styled.div`
       content: "";
       left: 0;
       ${z(1)};
-      ${({ size }) => styles[size].radioStyles};
+      ${styles[props.size].radioStyles};
     }
 
     & + label:hover::before {
@@ -143,7 +144,7 @@ export const radioStyles = styled.div`
 
     & + label > .radio-icon {
       color: ${tokens.color.black};
-      ${({ size }) => styles[size].radioIconStyles};
+      ${styles[props.size].radioIconStyles};
       opacity: 0;
       pointer-events: none;
       transform: translateX(-50%);
@@ -153,7 +154,7 @@ export const radioStyles = styled.div`
 
     & + label > .radio-solid-background {
       background-color: ${tokens.color.black};
-      ${({ size }) => styles[size].radioIconBackgroundStyles};
+      ${styles[props.size].radioIconBackgroundStyles};
     }
 
     &:checked {
@@ -194,4 +195,5 @@ export const radioStyles = styled.div`
       box-shadow: ${tokens.highlight.active.noBorder.boxShadow};
     }
   }
+  `}
 `;

@@ -139,7 +139,7 @@ function DropdownMenu(props) {
 
     return (
       <Popover.Card>
-        <sc.contentStyles ref={dropdownListRef}>
+        <sc.ContentStylesWrapper ref={dropdownListRef}>
           {extractedChildren.children.map((child, index) => {
             const childKey = { key: `DropdownMenuItem${index}` };
             if (child && child.type && child.type.displayName === "DropdownMenu.Item") {
@@ -154,7 +154,7 @@ function DropdownMenu(props) {
             }
             return getClonedChild(child, childKey);
           })}
-        </sc.contentStyles>
+        </sc.ContentStylesWrapper>
       </Popover.Card>
     );
   };

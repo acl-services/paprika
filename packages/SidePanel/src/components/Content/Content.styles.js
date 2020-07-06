@@ -1,6 +1,6 @@
 import styled from "styled-components";
 import stylers from "@paprika/stylers";
 
-export const contentStyles = styled.div`
+export const ContentWrapper = styled.div`
   padding: ${stylers.spacer(3)};
 `;

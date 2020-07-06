@@ -110,9 +110,9 @@ const Overlay = props => {
           onExited={onAfterClose}
         >
           {state => (
-            <sc.Overlay data-pka-anchor="overlay" {...moreProps} onKeyDown={handleEscKey}>
+            <sc.OverlayWrapper data-pka-anchor="overlay" {...moreProps} onKeyDown={handleEscKey}>
               {hasBackdrop && (
-                <sc.Backdrop
+                <sc.BackdropWrapper
                   className={backdropClassName}
                   state={state}
                   onClick={onClose}
@@ -122,7 +122,7 @@ const Overlay = props => {
               <FocusLock disabled={state === "exiting" || state === "exited"} {..._focusLockOptions}>
                 {children && children(state)}
               </FocusLock>
-            </sc.Overlay>
+            </sc.OverlayWrapper>
           )}
         </Transition>
       </Portal>

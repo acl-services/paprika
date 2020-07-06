@@ -1,6 +1,6 @@
 import React from "react";
 import PropTypes from "prop-types";
-import ListStyled from "./List.styles";
+import * as sc from "./List.styles";
 import useListBox from "../../useListBox";
 import { getDOMAttributesForListBox } from "../../helpers/DOMAttributes";
 
@@ -18,7 +18,7 @@ export default function List(props) {
   const { refListBox } = state;
 
   return (
-    <ListStyled
+    <sc.ListWrapper
       data-pka-anchor="styled-list"
       {...getDOMAttributesForListBox(state)}
       noResultsFound={state.noResultsFound}
@@ -26,7 +26,7 @@ export default function List(props) {
       ref={refListBox}
     >
       {children}
-    </ListStyled>
+    </sc.ListWrapper>
   );
 }
 

@@ -37,13 +37,13 @@ const Spinner = ({ a11yText, className, caption, size, ...moreProps }) => {
   const bestAria = a11yText || caption || "Loading"; // TODO: l10n
 
   return (
-    <sc.SpinnerStyles className={rootClasses} {...moreProps} data-pka-anchor="spinner">
+    <sc.SpinnerWrapper className={rootClasses} {...moreProps} data-pka-anchor="spinner">
       <div className="spinner__visual" />
       <div className="spinner__caption">{caption}</div>
       <div className="spinner__aria-alert" role="alert" aria-live="polite">
         {bestAria}
       </div>
-    </sc.SpinnerStyles>
+    </sc.SpinnerWrapper>
   );
 };
 

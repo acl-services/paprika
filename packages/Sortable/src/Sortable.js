@@ -75,7 +75,7 @@ const Sortable = ({ children, onChange, hasNumbers, hasZebraStripes, onRemove, .
     >
       <Droppable droppableId={dropId.current}>
         {(provided, snapshot) => (
-          <sc.sortableStyles
+          <sc.SortableWrapper
             {...provided.droppableProps}
             {...moreProps}
             hasZebraStripes={hasZebraStripes}
@@ -97,7 +97,7 @@ const Sortable = ({ children, onChange, hasNumbers, hasZebraStripes, onRemove, .
                 </SortableItem>
               ))}
             {provided.placeholder}
-          </sc.sortableStyles>
+          </sc.SortableWrapper>
         )}
       </Droppable>
     </DragDropContext>

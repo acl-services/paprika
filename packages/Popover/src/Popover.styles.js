@@ -6,7 +6,7 @@ export const consts = {
   transition: "150ms",
 };
 
-export const Popover = styled.div`
+export const PopoverWrapper = styled.div`
   display: inline-block; /* required for proper positioning */
 `;
 

@@ -56,7 +56,7 @@ function Heading(props) {
   const { a11yText, children, displayLevel, domRef, hasDivider, isSemantic, level, ...moreProps } = props;
 
   const safeLevel = safeValue(level);
-  const divider = <sc.dividerStyles />;
+  const divider = <sc.DividerWrapper />;
   const elementProps = {
     "aria-label": a11yText || undefined,
     "aria-level": isSemantic ? null : safeLevel,
@@ -69,10 +69,10 @@ function Heading(props) {
   };
 
   return (
-    <sc.headingStyles data-pka-anchor="heading" {...elementProps} {...moreProps}>
+    <sc.HeadingWrapper data-pka-anchor="heading" {...elementProps} {...moreProps}>
       {renderHeadingContent(a11yText, children)}
       {hasDivider ? divider : null}
-    </sc.headingStyles>
+    </sc.HeadingWrapper>
   );
 }
 

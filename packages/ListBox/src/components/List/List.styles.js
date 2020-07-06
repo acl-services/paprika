@@ -1,6 +1,6 @@
 import styled from "styled-components";
 
-const ListStyled = styled.ul`
+export const ListWrapper = styled.ul`
   box-sizing: border-box;
   list-style: none;
   margin: 0;
@@ -23,5 +23,3 @@ const ListStyled = styled.ul`
       `;
   }}
 `;
-
-export default ListStyled;

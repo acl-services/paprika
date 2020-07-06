@@ -23,9 +23,9 @@ export default function Footer(props) {
   } = props;
 
   return (
-    <sc.Footer data-pka-anchor="sidepanel.footer" isSticky={isSticky} {...moreProps}>
+    <sc.FooterWrapper data-pka-anchor="sidepanel.footer" isSticky={isSticky} {...moreProps}>
       {children}
-    </sc.Footer>
+    </sc.FooterWrapper>
   );
 }
 

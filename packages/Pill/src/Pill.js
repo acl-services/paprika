@@ -33,16 +33,16 @@ function Pill(props) {
 
   if (onClick) {
     return (
-      <sc.rawPillStyle {...styleProps} a11yText={a11yText} isDisabled={isDisabled} onClick={onClick} {...moreProps}>
-        <sc.pillTextStyles>{props.children}</sc.pillTextStyles>
-      </sc.rawPillStyle>
+      <sc.rawPillWrapper {...styleProps} a11yText={a11yText} isDisabled={isDisabled} onClick={onClick} {...moreProps}>
+        <sc.pillTextWrapper>{props.children}</sc.pillTextWrapper>
+      </sc.rawPillWrapper>
     );
   }
 
   return (
-    <sc.pillStyles {...styleProps} {...moreProps} data-pka-anchor="pill">
-      <sc.pillTextStyles>{props.children}</sc.pillTextStyles>
-    </sc.pillStyles>
+    <sc.PillWrapper {...styleProps} {...moreProps} data-pka-anchor="pill">
+      <sc.pillTextWrapper>{props.children}</sc.pillTextWrapper>
+    </sc.PillWrapper>
   );
 }
 

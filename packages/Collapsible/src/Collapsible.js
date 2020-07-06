@@ -134,12 +134,12 @@ const Collapsible = props => {
   };
 
   return (
-    <sc.collapsibleStyles {...collapsibleProps} role="group" {...moreProps}>
+    <sc.CollapsibleWrapper {...collapsibleProps} role="group" {...moreProps}>
       {hasOnlyIconToggle ? renderCollapsibleByIcon() : renderDefaultCollapsible()}
       <div className="collapsible__body" style={isCollapsed ? hiddenStyles : null}>
         {children}
       </div>
-    </sc.collapsibleStyles>
+    </sc.CollapsibleWrapper>
   );
 };
 

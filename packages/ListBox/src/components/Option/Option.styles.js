@@ -28,7 +28,7 @@ const fontSize = {
 `,
 };
 
-export const OptionStyled = styled.li`
+export const OptionWrapper = styled.li`
   border: 2px solid transparent;
   border-radius: 3px;
   cursor: pointer;

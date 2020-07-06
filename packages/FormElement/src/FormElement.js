@@ -135,7 +135,7 @@ function FormElement(props) {
     });
   }
   return (
-    <sc.FormElement
+    <sc.FormElementWrapper
       as={hasFieldSet ? "fieldset" : "div"}
       isInline={isInline}
       size={size}
@@ -159,7 +159,7 @@ function FormElement(props) {
         {renderContent()}
         {renderFooter()}
       </sc.SectionsContainer>
-    </sc.FormElement>
+    </sc.FormElementWrapper>
   );
 }
 

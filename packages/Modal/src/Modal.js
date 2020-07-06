@@ -84,14 +84,20 @@ const Modal = props => {
     >
       {state => (
         <sc.Wrapper size={size} data-pka-anchor="modal.wrapper" {...moreProps}>
-          <sc.Dialog state={state} role="dialog" aria-modal="true" aria-label={ariaLabel} data-pka-anchor="modal">
+          <sc.DialogWrapper
+            state={state}
+            role="dialog"
+            aria-modal="true"
+            aria-label={ariaLabel}
+            data-pka-anchor="modal"
+          >
             {headerExtracted && <sc.Header {...headerExtracted.props} onClose={onClose} />}
             <sc.ContentWrapper role="region" tabIndex="0">
               {contentExtracted && <sc.Content {...contentExtracted.props} />}
               {children}
             </sc.ContentWrapper>
             {footerExtracted && <sc.Footer {...footerExtracted.props} />}
-          </sc.Dialog>
+          </sc.DialogWrapper>
         </sc.Wrapper>
       )}
     </Overlay>

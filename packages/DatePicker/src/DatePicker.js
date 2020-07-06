@@ -145,7 +145,7 @@ function DatePicker(props) {
       />
 
       <Popover.Content>
-        <sc.calendarPopoverStyles data-pka-anchor="datepicker.calendar" ref={calendarRef}>
+        <sc.CalendarPopoverWrapper data-pka-anchor="datepicker.calendar" ref={calendarRef}>
           {shouldShowCalendar ? (
             <Calendar
               date={date}
@@ -154,7 +154,7 @@ function DatePicker(props) {
               resetPossibleDate={handleResetPossibleDate}
             />
           ) : null}
-        </sc.calendarPopoverStyles>
+        </sc.CalendarPopoverWrapper>
       </Popover.Content>
     </Popover>
   );

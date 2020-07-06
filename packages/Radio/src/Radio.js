@@ -106,7 +106,7 @@ function Radio(props) {
   if (a11yText) inputProps["aria-label"] = a11yText;
 
   return (
-    <sc.radioStyles data-pka-anchor="radio" {...styleProps} {...moreProps}>
+    <sc.RadioWrapper data-pka-anchor="radio" {...styleProps} {...moreProps}>
       <input {...inputProps} />
       {/* eslint-disable */}
       <label onKeyUp={handleKeyUp} className={canDeselect ? "deselectable" : ""} htmlFor={radioId}>
@@ -119,7 +119,7 @@ function Radio(props) {
           <div className="radio-icon radio-solid-background" data-pka-anchor="radio.icon.check" />
         )}
       </label>
-    </sc.radioStyles>
+    </sc.RadioWrapper>
   );
 }
 
