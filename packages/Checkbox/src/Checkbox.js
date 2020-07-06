@@ -27,8 +27,6 @@ const propTypes = {
   children: PropTypes.node,
   /** Describe if the checkbox is disabled or not */
   isDisabled: PropTypes.bool,
-  /** Sets name attribute */
-  name: PropTypes.string,
   /** Callback triggered when the input state is changed */
   onChange: PropTypes.func,
   /** Size provided by parent Group component */
@@ -43,7 +41,6 @@ const defaultProps = {
   checkedState: checkboxStates.UNCHECKED,
   children: null,
   isDisabled: false,
-  name: null,
   onChange: noop,
   size: ShirtSizes.MEDIUM,
   tabIndex: 0,
@@ -59,7 +56,6 @@ const Checkbox = props => {
     onChange,
     ariaDescribedBy,
     tabIndex,
-    name,
     ...moreProps
   } = props;
   const { CHECKED, INDETERMINATE } = checkboxStates;
@@ -92,7 +88,6 @@ const Checkbox = props => {
     ref: inputRef,
     tabIndex,
     type: "checkbox",
-    name,
     ...extendedInputProps,
   };
   if (a11yText) inputProps["aria-label"] = a11yText;

@@ -13,7 +13,6 @@ const checkboxProps = () => ({
   isDisabled: boolean("isDisabled", false),
   checkedState: select("checkedState", Object.values(Checkbox.states), UNCHECKED),
   a11yText: text("a11yText", ""),
-  name: text("name", ""),
 });
 
 const ExampleStory = props => {
