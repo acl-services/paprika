@@ -17,6 +17,10 @@ const sizeStyles = {
   width: 300px;
   height: 500px;
   `,
+  auto: `
+  height: auto;
+  width: auto;
+  `,
 };
 
 // Modifiers
@@ -24,11 +28,6 @@ const sizeStyles = {
 const fullWidthStyles = `
   display: flex;
   width: 100%;
-`;
-
-const autoHeightStyles = `
-  display: flex;
-  height: auto;
 `;
 
 // States
