@@ -30,6 +30,10 @@ const sizeStyles = {
   width: 300px;
   height: 500px;
   `,
+  auto: `
+  height: auto;
+  width: auto;
+  `,
 };
 
 // Modifiers
@@ -37,11 +41,6 @@ const sizeStyles = {
 const fullWidthStyles = `
   display: flex;
   width: 100%;
-`;
-
-const autoHeightStyles = `
-  display: flex;
-  height: auto;
 `;
 
 // States
@@ -56,12 +55,10 @@ export const cardStyles = styled(commonStyles)`
     const size = sizeStyles[props.size];
     const active = props.isActive && activeStyles;
     const fullWidth = props.isFullWidth && fullWidthStyles;
-    const autoHeight = props.isAutoHeight && autoHeightStyles;
 
     return `
       ${size};
       ${active};
-      ${fullWidth};
-      ${autoHeight};`;
+      ${fullWidth};`;
   }}
 `;
