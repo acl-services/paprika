@@ -1,10 +1,11 @@
 import moment from "moment";
+import { getStoryUrlPrefix } from "../../../.storybook/storyTree";
 
 describe("<DateRangeCalendar />", () => {
   const today = moment();
 
   beforeEach(() => {
-    cy.visitStorybook("forms-calendar-backyard-tests-cypress--daterangecalendar-test");
+    cy.visitStorybook(`${getStoryUrlPrefix("Calendar")}-backyard-tests-cypress--daterangecalendar-test`);
   });
 
   it("should be initialized with current month", () => {

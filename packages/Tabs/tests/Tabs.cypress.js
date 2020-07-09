@@ -1,4 +1,6 @@
-const baseStory = "content-tabs-backyard-tests";
+import { getStoryUrlPrefix } from "../../../.storybook/storyTree";
+
+const baseStory = `${getStoryUrlPrefix("Tabs")}-backyard-tests`;
 const testStory = "cypress";
 
 describe("<Tabs />", () => {

@@ -1,11 +1,12 @@
+import { getStoryUrlPrefix } from "../../../.storybook/storyTree";
 import selectors from "./helpers/selectors";
 
-const storyFolder = "layers-popover-backyard-tests";
-const story = "cypress";
+const baseStory = `${getStoryUrlPrefix("Popover")}-backyard-tests`;
+const testStory = "cypress";
 
 describe("Popover", () => {
   beforeEach(() => {
-    cy.visitStorybook(`${storyFolder}--${story}`);
+    cy.visitStorybook(`${baseStory}--${testStory}`);
     cy.get(selectors.popover).should("be.not.visible");
   });
 
