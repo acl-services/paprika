@@ -9,10 +9,10 @@ const commonStyles = styled.div`
   border: ${tokens.border.color};
   border-radius: ${tokens.card.borderRadius};
   box-shadow: ${tokens.shadow};
-  display: flex;
-  flex-direction: column;
+  display: inline-block;
   overflow: hidden;
   position: relative;
+  text-decoration: none;
 `;
 
 // Sizes
