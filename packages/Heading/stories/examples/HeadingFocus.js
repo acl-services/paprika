@@ -5,7 +5,7 @@ import Button from "@paprika/button";
 import Heading from "../../src";
 
 const ExampleStory = () => {
-  const headingRef = React.createRef();
+  const headingRef = React.useRef(null);
 
   const handleFocus = () => {
     headingRef.current.focus();

@@ -4,6 +4,7 @@ import { withKnobs, boolean, select } from "@storybook/addon-knobs";
 import { Story, Rule, Tagline, repeat } from "storybook/assets/styles/common.styles";
 import { getStoryName } from "storybook/storyTree";
 import styled from "styled-components";
+import stylers from "@paprika/stylers";
 import Button from "@paprika/button";
 import SidePanel from "@paprika/sidepanel";
 import { ShirtSizes } from "@paprika/helpers/lib/customPropTypes";
@@ -106,7 +107,48 @@ storiesOf(`${storyName}/Examples`, module)
         <p>autofocus disabled</p>
       </Modal.Content>
     </Modal>
-  ));
+  ))
+  .add("with focus on heading", () => {
+    const refHeading = React.useRef(null);
+    const [isOpen, setOpen] = React.useState(false);
+
+    return (
+      <Story>
+        <Button
+          size="small"
+          onClick={() => {
+            setOpen(true);
+          }}
+        >
+          Open
+        </Button>
+        <Modal
+          isOpen={isOpen}
+          onClose={() => {
+            setOpen(false);
+          }}
+          onAfterOpen={() => {
+            if (refHeading.current) refHeading.current.focus();
+          }}
+          css={`
+            [data-pka-anchor="heading"]:focus {
+              ${stylers.focusRing.subtle()}
+            }
+          `}
+        >
+          <Modal.Header refHeading={refHeading}>Header</Modal.Header>
+          <Modal.Content>
+            <p>
+              Unicorn next level readymade polaroid, locavore hot chicken forage ennui crucifix tote bag yuccie. Raw
+              denim tumblr echo park bushwick hoodie iceland cloud bread iPhone kombucha shoreditch taiyaki woke. Brunch
+              ramps cred polaroid, vinyl skateboard portland typewriter jean shorts single-origin coffee flexitarian
+              drinking vinegar.
+            </p>
+          </Modal.Content>
+        </Modal>
+      </Story>
+    );
+  });
 
 storiesOf(`${storyName}/Backyard/Sandbox`, module)
   .add("with form render", () => (
