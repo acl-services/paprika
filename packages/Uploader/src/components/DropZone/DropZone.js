@@ -19,11 +19,12 @@ export default function DropZone() {
       {I18n.t("uploader.drop_files_here_or")}&nbsp;
       <Button
         kind={Button.Kinds.LINK}
-        aria-label={I18n.t("uploader.choose_from_computer_a11y")}
         onClick={() => {
           refInput.current.click();
         }}
         isSemantic={false}
+        tabIndex={-1}
+        aria-hidden
       >
         {I18n.t("uploader.choose_from_computer")}
       </Button>

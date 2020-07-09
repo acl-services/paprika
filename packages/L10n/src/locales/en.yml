@@ -14,7 +14,6 @@ en:
       cancel_upload: Cancel upload
       restart_upload: Restart upload
       file_list: List of files
-      label: File uploader
       errors:
         size: File must be smaller than {{maxFileSize}}
         type: "File must be one of the following types: {{- supportedTypes}}"
