@@ -7,6 +7,7 @@ const storyName = getStoryName("Collapsible");
 
 export default {
   title: `${storyName}/Backyard/Tests`,
+  id: "collapsible-tests",
   component: Collapsible,
 };
 
