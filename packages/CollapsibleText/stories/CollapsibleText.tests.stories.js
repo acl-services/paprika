@@ -7,6 +7,7 @@ const storyName = getStoryName("CollapsibleText");
 
 export default {
   title: `${storyName}/Backyard/Tests`,
+  id: "collapsible-text-stories",
 };
 
 export const screener = () => <Screener />;
