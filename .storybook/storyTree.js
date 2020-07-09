@@ -82,16 +82,21 @@ const storyTree = [
   },
 ];
 
+function getCategory(component) {
+  return storyTree.find(catList => catList.components.includes(component)).category;
+}
+
 function getStoryName(component) {
   return `${getCategory(component)} | ${component}`;
 }
 
-function getCategory(component) {
-  return storyTree.find(catList => catList.components.includes(component)).category;
+function getStoryUrlPrefix(component) {
+  return `${getCategory(component).toLowerCase()}-${component.toLowerCase()}`;
 }
 
 module.exports = {
   getCategory,
   getStoryName,
+  getStoryUrlPrefix,
   storyTree,
 };
