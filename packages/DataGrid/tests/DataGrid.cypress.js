@@ -1,3 +1,7 @@
+import { getStoryUrlPrefix } from "../../../.storybook/storyTree";
+
+const storyPrefix = `${getStoryUrlPrefix("DataGrid")}`;
+
 const keyEvent = {
   enter: { keyCode: 13, which: 13, force: true },
   up: { keyCode: 38, which: 38, force: true },
@@ -6,13 +10,13 @@ const keyEvent = {
 
 describe("<DataGrid />", () => {
   it("Should have custom css", () => {
-    cy.visitStorybook("data-table-datagrid-backyard-tests--custom-css")
+    cy.visitStorybook(`${storyPrefix}-backyard-tests--custom-css`)
       .get('[data-column-index="1"]')
       .should("have.css", "background-color", "rgb(204, 229, 253)");
   });
 
   it("Should run a callback function", () => {
-    cy.visitStorybook("data-table-datagrid-backyard-tests--callback-function")
+    cy.visitStorybook(`${storyPrefix}-backyard-tests--callback-function`)
       .wait(100)
       .contains("click me");
 
@@ -22,7 +26,7 @@ describe("<DataGrid />", () => {
   });
 
   it("Should have infinity scroll", () => {
-    cy.visitStorybook("data-table-datagrid-backyard-tests--infinity-scroll");
+    cy.visitStorybook(`${storyPrefix}-backyard-tests--infinity-scroll`);
 
     cy.getByText(/Rows:300/i)
       .should("exist")
@@ -36,14 +40,14 @@ describe("<DataGrid />", () => {
   });
 
   it("Should not show collapsed content", () => {
-    cy.visitStorybook("data-table-datagrid-examples--collapsible")
+    cy.visitStorybook(`${storyPrefix}-examples--collapsible`)
       .getByRole("grid")
       .contains(/narratives/i)
       .should("not.be.visible");
   });
 
   it("should render StickyColumn", () => {
-    cy.visitStorybook("data-table-datagrid-examples--lazy");
+    cy.visitStorybook(`${storyPrefix}-examples--lazy`);
     cy.get('[data-column-index="2"]')
       .eq(0)
       .then(e => {
@@ -84,7 +88,7 @@ describe("<DataGrid />", () => {
   });
 
   it("should render ColumnIndicator", () => {
-    cy.visitStorybook("data-table-datagrid-examples--lazy");
+    cy.visitStorybook(`${storyPrefix}-examples--lazy`);
     cy.get('[data-row-index="0"]')
       .eq(0)
       .children()
@@ -96,7 +100,7 @@ describe("<DataGrid />", () => {
   });
 
   it("should render ColumnExpand", () => {
-    cy.visitStorybook("data-table-datagrid-examples--lazy");
+    cy.visitStorybook(`${storyPrefix}-examples--lazy`);
     cy.get('[data-column-index="1"]')
       .eq(0)
       .children()
@@ -112,7 +116,7 @@ describe("<DataGrid />", () => {
   });
 
   it("should render load more button when you scroll to the bottom", () => {
-    cy.visitStorybook("data-table-datagrid-examples--lazy");
+    cy.visitStorybook(`${storyPrefix}-examples--lazy`);
     cy.getAllByRole("rowgroup")
       .last()
       // cypress .scrollTo("bottom") is not working correctly
@@ -129,7 +133,7 @@ describe("<DataGrid />", () => {
   });
 
   it("should navigate DataGrid-collapsible with enter key and up, down arrow keys", () => {
-    cy.visitStorybook("data-table-datagrid-examples--collapsible");
+    cy.visitStorybook(`${storyPrefix}-examples--collapsible`);
 
     cy.getByText("Audit Planning")
       .trigger("mouseup")

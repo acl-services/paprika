@@ -6,6 +6,7 @@ const storyName = getStoryName("Toast");
 
 export default {
   title: `${storyName}/Backyard/Tests`,
+  id: "toast-tests",
 };
 
 export const screener = () => <Screener />;
