@@ -1,5 +1,7 @@
+import { getStoryUrlPrefix } from "../../../../.storybook/storyTree";
+
 beforeEach(() => {
-  cy.visitStorybook("data-table-actionbar--showcase");
+  cy.visitStorybook(`${getStoryUrlPrefix("ActionBar")}--showcase`);
 });
 
 describe("ActionBar", () => {
