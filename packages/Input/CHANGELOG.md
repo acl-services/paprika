@@ -15,3 +15,9 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 ### Added
 
 - Fix bug where empty string as value is causing a warning, set onChange callback to not required [@tristanjasper](https://github.com/tristanjasper).
+
+## [0.3.0] - 2020-07-09
+
+### Removed
+
+- Removed `inputRef` prop and forwarded ref directly [@allison-c](https://github.com/allison-c).
