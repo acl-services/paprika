@@ -18,6 +18,7 @@ export default function DropZone() {
     <React.Fragment>
       {I18n.t("uploader.drop_files_here_or")}&nbsp;
       <a
+        data-pka-anchor="uploader-dropZone-link"
         href="#"
         onClick={e => {
           e.preventDefault();
@@ -33,7 +34,7 @@ export default function DropZone() {
   return (
     <FileInput>
       <sc.DropZone isDraggingOver={isDraggingOver}>
-        <UploadIcon size={stylers.spacer(4)} color={uploadIconColor} />
+        <UploadIcon data-pka-anchor="uploader-dropZone-uploadIcon" size={stylers.spacer(4)} color={uploadIconColor} />
         <sc.Body>{body}</sc.Body>
       </sc.DropZone>
     </FileInput>
