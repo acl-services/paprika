@@ -1,4 +1,5 @@
 import moment from "moment";
+import { getStoryUrlPrefix } from "../../../.storybook/storyTree";
 
 describe("<DatePicker />", () => {
   const today = moment();
@@ -7,7 +8,7 @@ describe("<DatePicker />", () => {
     .date(1);
 
   beforeEach(() => {
-    cy.visitStorybook("forms-datepicker-backyard-tests--cypress");
+    cy.visitStorybook(`${getStoryUrlPrefix("DatePicker")}-backyard-tests--cypress`);
   });
 
   const selectADateByClick = () => {

@@ -1,3 +1,4 @@
+import { getStoryUrlPrefix } from "../../../../.storybook/storyTree";
 import selectors from "../helpers/selectors";
 import { openLazyDropDown } from "../helpers/toggleHelpers";
 
@@ -7,7 +8,7 @@ function checkIfSelected(marvelChar, isSelected) {
 
 describe("Lazy ListBox", () => {
   beforeEach(() => {
-    cy.visitStorybook("forms-listbox-examples--lazy-listbox");
+    cy.visitStorybook(`${getStoryUrlPrefix("ListBox")}-examples--lazy-listbox`);
     openLazyDropDown();
   });
 
