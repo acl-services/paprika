@@ -11,12 +11,12 @@ const storyName = getStoryName("L10n");
 storiesOf(storyName, module)
   .addDecorator(withKnobs)
   .add("Showcase", () => (
-    <FakeAppWithContext locale={select("locale", ["en", "de", "fr", "es", "pt", "pl", "ja", "zh"], "de")} />
+    <FakeAppWithContext locale={select("locale", ["en", "de", "fr", "es", "pt", "ja", "zh"], "de")} />
   ));
 
 storiesOf(`${storyName}/Examples`, module)
   .add("With Context", () => (
-    <FakeAppWithContext locale={select("locale", ["en", "de", "fr", "es", "pt", "pl", "ja", "zh"], "de")} />
+    <FakeAppWithContext locale={select("locale", ["en", "de", "fr", "es", "pt", "ja", "zh"], "de")} />
   ))
   .add("Without Context", () => <FakeAppWithoutContext />)
   .add("Providing Locales", () => <FakeAppWithLocales locale={select("locale", ["en", "fr"], "fr")} />);
