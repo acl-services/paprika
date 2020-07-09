@@ -25,8 +25,6 @@ const propTypes = {
   /** Displays an icon inside the input. */
   icon: PropTypes.node,
 
-  inputRef: PropTypes.oneOfType([PropTypes.func, PropTypes.shape({ current: PropTypes.instanceOf(Element) })]),
-
   /** If true it makes the input disabled. */
   isDisabled: PropTypes.bool,
 
@@ -56,7 +54,6 @@ const defaultProps = {
   hasClearButton: false,
   hasError: false,
   icon: null,
-  inputRef: () => {},
   isDisabled: false,
   isReadOnly: false,
   onChange: () => {},
@@ -66,7 +63,7 @@ const defaultProps = {
   value: null,
 };
 
-const Input = props => {
+const Input = React.forwardRef((props, ref) => {
   const inputClearHandler = e => {
     e.target.value = "";
     props.onChange(e);
@@ -99,7 +96,6 @@ const Input = props => {
     a11yText,
     className,
     icon,
-    inputRef, // TODO: use useImperativeHandle()
     isDisabled,
     isReadOnly,
     hasClearButton,
@@ -141,13 +137,13 @@ const Input = props => {
         data-pka-anchor="input"
         disabled={isDisabled}
         readOnly={isReadOnly}
-        ref={inputRef}
+        ref={ref}
         {...moreProps}
       />
       {renderClear()}
     </div>
   );
-};
+});
 
 Input.displayName = "Input";
 Input.propTypes = propTypes;

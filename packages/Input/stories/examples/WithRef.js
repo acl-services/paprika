@@ -16,10 +16,10 @@ const WithRefStory = () => {
     <InputStory>
       <h3>
         <small>
-          <code>inputRef</code>
+          <code>ref</code>
         </small>
       </h3>
-      <InputExample inputRef={setRef} />
+      <InputExample ref={setRef} />
       <small>This text input will capture the focus after 1 second.</small>
     </InputStory>
   );
