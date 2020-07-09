@@ -88,6 +88,24 @@ const ExampleStory = () => (
     </p>
     <Rule />
     <p>
+      <Button onClick={clickHandler} isActive>
+        active button
+      </Button>
+      <Button onClick={clickHandler} isActive kind="primary">
+        active button
+      </Button>
+      <Button onClick={clickHandler} isActive kind="flat">
+        active button
+      </Button>
+      <Button onClick={clickHandler} isActive kind="minor">
+        active button
+      </Button>
+      <Button onClick={clickHandler} isActive kind="link">
+        active button
+      </Button>
+    </p>
+    <Rule />
+    <p>
       <Button.Link onClick={clickHandler} kind="primary" href="https://youtu.be/IdkCEioCp24?t=92">
         Link
       </Button.Link>

@@ -1,6 +1,8 @@
+import { getStoryUrlPrefix } from "../../../.storybook/storyTree";
+
 describe("<DropdownMenu />", () => {
   beforeEach(() => {
-    cy.visitStorybook("commands-dropdownmenu-backyard-tests--cypress");
+    cy.visitStorybook(`${getStoryUrlPrefix("DropdownMenu")}-backyard-tests--cypress`);
   });
 
   it("should show hide dropdown content when when clicking trigger", () => {

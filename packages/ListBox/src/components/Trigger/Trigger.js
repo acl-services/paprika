@@ -27,6 +27,9 @@ const propTypes = {
   /** If true it adds a clear button */
   hasClearButton: PropTypes.bool,
 
+  /** Has implicit "All items selected" value when no item is selected */
+  hasImplicitAll: PropTypes.bool,
+
   /** Callback to be executed when the clear button is clicked or activated by keyboard. */
   onClickClear: PropTypes.func,
 
@@ -43,6 +46,7 @@ const propTypes = {
 const defaultProps = {
   children: <React.Fragment />,
   hasClearButton: true,
+  hasImplicitAll: false,
   onClickClear: null,
   onClickFooterAccept: null,
   placeholder: "Select...",
@@ -55,6 +59,7 @@ export default function Trigger(props) {
   const {
     placeholder,
     hasClearButton,
+    hasImplicitAll,
     onClickFooterAccept,
     children,
     isHidden,
@@ -133,6 +138,7 @@ export default function Trigger(props) {
     return state.isInline ? (
       <Label
         activeOption={state.options[state.activeOption]}
+        hasImplicitAll={hasImplicitAll}
         isMulti={isMulti}
         options={state.options}
         placeholder={placeholder}
@@ -155,6 +161,7 @@ export default function Trigger(props) {
         ) : null}
         <Label
           activeOption={state.options[state.activeOption]}
+          hasImplicitAll={hasImplicitAll}
           isMulti={isMulti}
           options={state.options}
           placeholder={placeholder}

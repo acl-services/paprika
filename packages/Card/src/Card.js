@@ -16,37 +16,29 @@ const propTypes = {
   /** If the width of the card should span it's parent container (100%). */
   isFullWidth: PropTypes.bool,
 
-  /** If the height of the card should span the height of its children elements. */
-  isAutoHeight: PropTypes.bool,
-
   /** If the card is in an "active" or "selected" state. */
   isActive: PropTypes.bool,
 
   /** Size of the card (font size, min-height, padding, etc). */
-  size: PropTypes.oneOf(ShirtSizes.DEFAULT),
+  size: PropTypes.oneOf(["auto", ShirtSizes.SMALL, ShirtSizes.MEDIUM, ShirtSizes.LARGE]),
 };
 
 const defaultProps = {
   children: null,
-  size: ShirtSizes.MEDIUM,
+  size: "auto",
   isFullWidth: false,
-  isAutoHeight: false,
   isActive: false,
 };
 
 function Card(props) {
-  const { children, size, isFullWidth, isAutoHeight, isActive } = props;
+  const { children, size, isFullWidth, isActive, ...moreProps } = props;
 
-  const cardProps = {
-    children,
+  const styleProps = {
     size,
-    isFullWidth,
-    isAutoHeight,
-    isActive,
   };
 
   return (
-    <sc.cardStyles {...cardProps} data-pka-anchor="card">
+    <sc.cardStyles data-pka-anchor="card" {...styleProps} {...moreProps}>
       {children}
     </sc.cardStyles>
   );

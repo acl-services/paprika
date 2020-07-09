@@ -1,6 +1,6 @@
 import React from "react";
 import { action } from "@storybook/addon-actions";
-import { Story, Small, Rule, breaklines } from "storybook/assets/styles/common.styles";
+import { Story, Small, Gap, breaklines } from "storybook/assets/styles/common.styles";
 import RawButton from "../../src";
 
 function clickHandler() {
@@ -24,7 +24,13 @@ const ExampleStory = () => {
       <p>
         <RawButton onClick={clickHandler}>RawButton</RawButton>
       </p>
-      <Rule />
+      <Gap />
+      <p>
+        <RawButton isActive onClick={clickHandler}>
+          Active RawButton
+        </RawButton>
+      </p>
+      <Gap />
       <p>
         <RawButton
           a11yText="ceci n'est pas un bouton"
@@ -39,17 +45,21 @@ const ExampleStory = () => {
       <p>
         <Small>This RawButton will capture the focus after 1 second.</Small>
       </p>
-      <Rule />
+      <Gap />
       <p>
         <RawButton isDisabled onClick={clickHandler}>
           Disabled RawButton
         </RawButton>
       </p>
-      <Rule />
+      <Gap />
       <p>
         <RawButton isDisabled tabIndex={0} onClick={clickHandler}>
           Disabled but tabbable
         </RawButton>
+      </p>
+      <Gap />
+      <p>
+        <button type="button">Post</button>
       </p>
       {breaklines(34)}
       ...fin.

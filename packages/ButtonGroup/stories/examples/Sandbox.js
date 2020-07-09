@@ -23,33 +23,41 @@ const buttonGroupProps = () => ({
   size: select("size", ShirtSizes.DEFAULT, ShirtSizes.MEDIUM),
 });
 
-const ExampleStory = props => (
-  <Story>
-    <Heading level={1} displayLevel={2} isLight>
-      Testing Sandbox
-    </Heading>
-    <Rule />
-    <p>
-      <button>Pre</button>
-    </p>
-    <ButtonGroup {...props}>
-      <ButtonGroup.Item value="one" kind="primary">
-        One
-      </ButtonGroup.Item>
-      <ButtonGroup.Item value="two" isDisabled defaultIsActive>
-        Two
-      </ButtonGroup.Item>
-      <>
-        <ButtonGroup.Item value={3}>Three Three Three Three Three Three</ButtonGroup.Item>
-        <ButtonGroup.Item value="four">
-          <Calendar />
+const ExampleStory = props => {
+  const refButtonGroup = React.createRef();
+
+  const handleFocus = () => {
+    refButtonGroup.current.focus();
+  };
+
+  return (
+    <Story>
+      <Heading level={1} displayLevel={2} isLight>
+        Testing Sandbox
+      </Heading>
+      <Rule />
+      <p>
+        <button onClick={handleFocus}>Focus Pre</button>
+      </p>
+      <ButtonGroup {...props} ref={refButtonGroup}>
+        <ButtonGroup.Item value="one" kind="primary">
+          One
         </ButtonGroup.Item>
-      </>
-    </ButtonGroup>
-    <p>
-      <button>Post</button>
-    </p>
-  </Story>
-);
+        <ButtonGroup.Item value="two" isDisabled defaultIsActive>
+          Two
+        </ButtonGroup.Item>
+        <>
+          <ButtonGroup.Item value={3}>Three Three Three Three Three Three</ButtonGroup.Item>
+          <ButtonGroup.Item value="four">
+            <Calendar />
+          </ButtonGroup.Item>
+        </>
+      </ButtonGroup>
+      <p>
+        <button onClick={handleFocus}>Focus Post</button>
+      </p>
+    </Story>
+  );
+};
 
 export default () => <ExampleStory {...buttonGroupProps()} />;
