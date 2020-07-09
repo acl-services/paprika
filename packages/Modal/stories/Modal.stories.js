@@ -31,7 +31,7 @@ const ModalStory = ({ children }) => {
 
   return (
     <LongBlock>
-      <Button onClick={toggle}>Open</Button>
+      <Button onClick={toggle}>Open Modal</Button>
       <Modal isOpen={isOpen} onClose={toggle} size={select("Size", ShirtSizes.DEFAULT, ShirtSizes.MEDIUM, "Modal")}>
         <Modal.Header hasCloseButton={boolean("Has close button", true, "Modal.Header")}>Header</Modal.Header>
         {children}
@@ -115,12 +115,11 @@ storiesOf(`${storyName}/Examples`, module)
     return (
       <Story>
         <Button
-          size="small"
           onClick={() => {
             setOpen(true);
           }}
         >
-          Open
+          Open Modal
         </Button>
         <Modal
           isOpen={isOpen}
@@ -181,7 +180,7 @@ storiesOf(`${storyName}/Backyard/Sandbox`, module)
           padding: 24px;
         `}
       >
-        <Button onClick={toggle}>Open</Button>
+        <Button onClick={toggle}>Open Modal</Button>
         <Modal isOpen={isOpen} onClose={toggle} zIndex={99}>
           <Modal.Header>Header</Modal.Header>
           <Modal.Content>
