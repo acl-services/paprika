@@ -1,4 +1,6 @@
 import React from "react";
+import { Story } from "storybook/assets/styles/common.styles";
+import stylers from "@paprika/stylers";
 import Button from "@paprika/button";
 import SidePanel from "../../src";
 import { Nav, TextLine } from "../helpers";
@@ -214,11 +216,7 @@ export const ZIndexSidePanel = () => {
 
   return (
     <React.Fragment>
-      <div
-        css={`
-          padding: 24px;
-        `}
-      >
+      <Story>
         <SidePanel isOpen={isOpen} onClose={toggle} zIndex={99}>
           <SidePanel.Overlay />
           <SidePanel.Trigger onClick={toggle}>Open SidePanel</SidePanel.Trigger>
@@ -244,7 +242,48 @@ export const ZIndexSidePanel = () => {
           </p>
           <TextLine repeat={100} />
         </div>
-      </div>
+      </Story>
     </React.Fragment>
+  );
+};
+
+export const FocusHeading = () => {
+  const refHeading = React.useRef(null);
+  const [isOpen, setOpen] = React.useState(false);
+
+  return (
+    <Story>
+      <Button
+        onClick={() => {
+          setOpen(true);
+        }}
+      >
+        Open SidePanel
+      </Button>
+      <SidePanel
+        isOpen={isOpen}
+        onClose={() => {
+          setOpen(false);
+        }}
+        onAfterOpen={() => {
+          if (refHeading.current) refHeading.current.focus();
+        }}
+        css={`
+          [data-pka-anchor="heading"]:focus {
+            ${stylers.focusRing.subtle()}
+          }
+        `}
+      >
+        <SidePanel.Header refHeading={refHeading}>Header</SidePanel.Header>
+        <SidePanel.Content>
+          <p>
+            Unicorn next level readymade polaroid, locavore hot chicken forage ennui crucifix tote bag yuccie. Raw denim
+            tumblr echo park bushwick hoodie iceland cloud bread iPhone kombucha shoreditch taiyaki woke. Brunch ramps
+            cred polaroid, vinyl skateboard portland typewriter jean shorts single-origin coffee flexitarian drinking
+            vinegar.
+          </p>
+        </SidePanel.Content>
+      </SidePanel>
+    </Story>
   );
 };

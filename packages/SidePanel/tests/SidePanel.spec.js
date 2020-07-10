@@ -175,9 +175,9 @@ describe("SidePanel", () => {
           </SidePanel>
         </SidePanel.Group>
       );
-      fireEvent.click(getAllByTestId("sidepanel-header-close")[0]);
-      fireEvent.click(getAllByTestId("sidepanel-header-close")[1]);
-      fireEvent.click(getAllByTestId("sidepanel-header-close")[2]);
+      fireEvent.click(getAllByTestId("sidepanel.header.close")[0]);
+      fireEvent.click(getAllByTestId("sidepanel.header.close")[1]);
+      fireEvent.click(getAllByTestId("sidepanel.header.close")[2]);
 
       expect(noop).toBeCalledTimes(3);
     });
