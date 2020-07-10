@@ -454,3 +454,5 @@ export default function useGridEventHandler({
 
   return { cell, prevCell, handleKeyDown, handleKeyUp, gridId, restoreHighlightFocus, handleClick };
 }
+
+useGridEventHandler.displayName = "useGridEventHandler";

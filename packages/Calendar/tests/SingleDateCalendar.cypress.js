@@ -1,4 +1,5 @@
 import moment from "moment";
+import { getStoryUrlPrefix } from "../../../.storybook/storyTree";
 
 describe("<SingleDateCalendar />", () => {
   const today = moment();
@@ -7,7 +8,7 @@ describe("<SingleDateCalendar />", () => {
     .date(1);
 
   beforeEach(() => {
-    cy.visitStorybook("forms-calendar-backyard-tests-cypress--singledatecalendar-test");
+    cy.visitStorybook(`${getStoryUrlPrefix("Calendar")}-backyard-tests-cypress--singledatecalendar-test`);
   });
 
   const selectADateByClick = () => {

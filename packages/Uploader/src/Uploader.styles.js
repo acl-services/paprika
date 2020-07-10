@@ -22,5 +22,9 @@ export const containerStyles = styled.div`
     &:focus + label {
       box-shadow: ${tokens.highlight.active.withBorder.boxShadow};
     }
+
+    &:focus + div span[data-pka-anchor="button"] {
+      ${stylers.focusRing.bordered()};
+    }
   }
 `;

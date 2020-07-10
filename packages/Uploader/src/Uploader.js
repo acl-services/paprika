@@ -106,7 +106,7 @@ const Uploader = React.forwardRef((props, ref) => {
   const refInput = React.useRef();
   const refContainer = React.useRef(null);
   const i18n = useI18n();
-  const label = a11yText || i18n.t("uploader.label");
+  const label = a11yText || i18n.t("uploader.choose_from_computer_a11y");
 
   React.useImperativeHandle(ref, () => ({
     focus: () => {
@@ -165,6 +165,7 @@ const Uploader = React.forwardRef((props, ref) => {
             type="file"
             accept={supportedMimeTypes.join(",")}
             aria-label={label}
+            tabIndex={0}
           />
           {/* is this the best approach? */}
           {/* aria-hidden will prevent from rendering content that can be counter intuitive for the screen reader */}

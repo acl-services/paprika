@@ -6,6 +6,7 @@ const storyName = getStoryName("DialogActions");
 
 export default {
   title: `${storyName}/Backyard/Tests`,
+  id: "dialog-actions-tests",
 };
 
 export const screener = () => <Screener />;

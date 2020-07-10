@@ -1,7 +1,7 @@
 import styled, { css } from "styled-components";
 import tokens from "@paprika/tokens";
 import stylers from "@paprika/stylers";
-import OriginalHeader from "./components/Header";
+import OriginalHeader from "./components/Header/Header";
 
 export const FocusLock = styled.div`
   align-items: center;
