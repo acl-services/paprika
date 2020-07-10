@@ -12,10 +12,6 @@ const propTypes = {
   /** Optional display level(1-6) affects styles only */
   displayLevel: PropTypes.oneOf([1, 2, 3, 4, 5, 6]),
 
-  /** Ref function that returns DOM node for heading */
-  // TODO: Replace with a focus() method via useImperativeHandle()
-  domRef: PropTypes.func,
-
   /** Horizontal divider style */
   hasDivider: PropTypes.bool,
 
@@ -38,7 +34,6 @@ const propTypes = {
 const defaultProps = {
   a11yText: null,
   displayLevel: null,
-  domRef: () => {},
   hasDivider: false,
   hasUnderline: false,
   isHidden: false,
@@ -52,17 +47,27 @@ function renderHeadingContent(a11yText, children) {
   return a11yText ? <span aria-hidden>{children}</span> : children;
 }
 
-function Heading(props) {
-  const { a11yText, children, displayLevel, domRef, hasDivider, isSemantic, level, ...moreProps } = props;
+const Heading = React.forwardRef((props, ref) => {
+  const { a11yText, children, displayLevel, hasDivider, isSemantic, level, ...moreProps } = props;
+  const headingRef = React.useRef(null);
+
+  React.useImperativeHandle(ref, () => ({
+    focus: () => {
+      if (headingRef.current) {
+        if (!moreProps.tabIndex) headingRef.current.setAttribute("tabindex", "-1");
+        headingRef.current.focus();
+      }
+    },
+  }));
 
   const safeLevel = safeValue(level);
   const divider = <span css={dividerStyles} />;
   const elementProps = {
-    "aria-label": a11yText || undefined,
+    "aria-label": a11yText || null,
     "aria-level": isSemantic ? null : safeLevel,
     as: isSemantic ? `h${safeLevel}` : "div",
     hasDivider,
-    ref: domRef,
+    ref: headingRef,
     role: isSemantic ? null : "heading",
     safeDisplayLevel: displayLevel ? safeValue(displayLevel) : null,
     safeLevel,
@@ -71,10 +76,10 @@ function Heading(props) {
   return (
     <div data-pka-anchor="heading" css={headingStyles} {...elementProps} {...moreProps}>
       {renderHeadingContent(a11yText, children)}
-      {hasDivider ? divider : null}
+      {hasDivider && divider}
     </div>
   );
-}
+});
 
 Heading.displayName = "Heading";
 Heading.propTypes = propTypes;
