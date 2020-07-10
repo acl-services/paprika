@@ -16,7 +16,8 @@ export const Grid = styled.div.attrs(({ $width }) => {
   }
 
   .grid--is-blurred {
-    box-shadow: none;
+    /* restore the original box-shadow on blur */
+    box-shadow: 0 0 0 1px ${tokens.border.color};
   }
 
   [role="gridcell"] {
