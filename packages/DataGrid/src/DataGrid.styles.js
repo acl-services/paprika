@@ -105,7 +105,7 @@ export const Cell = styled.div.attrs(({ hasZebraStripes, rowIndex, borderType })
 
   const style = {
     ...zebra,
-    boxShadow: shadow,
+    boxShadow: shadow.replace("box-shadow: ", "") /** styles requires no declaration of box-shadow */,
   };
 
   return { style };
