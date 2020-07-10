@@ -1,5 +1,6 @@
 import React from "react";
 import PropTypes from "prop-types";
+import { RefOf } from "@paprika/helpers/lib/customPropTypes";
 import Button from "@paprika/button";
 import * as sc from "./Header.styles";
 
@@ -9,6 +10,7 @@ const propTypes = {
   kind: PropTypes.oneOf(["default", "primary"]),
   level: PropTypes.oneOf([1, 2, 3, 4, 5, 6]),
   onClose: PropTypes.func,
+  refHeading: RefOf(),
 };
 
 const defaultProps = {
@@ -16,27 +18,28 @@ const defaultProps = {
   level: 3,
   kind: "default",
   onClose: () => {},
+  refHeading: null,
 };
 
 const Header = React.forwardRef((props, ref) => {
-  const { children, level, hasCloseButton, kind, onClose, ...moreProps } = props;
+  const { children, level, hasCloseButton, kind, onClose, refHeading, ...moreProps } = props;
 
   return (
-    <sc.Wrapper ref={ref} kind={kind} {...moreProps}>
-      <sc.Heading tabIndex="-1" level={level} displayLevel={3} isLight>
+    <sc.Header ref={ref} kind={kind} {...moreProps}>
+      <sc.Heading level={level} displayLevel={3} isLight ref={refHeading}>
         {children}
       </sc.Heading>
-      <sc.CloseButtonWrapper>
-        {hasCloseButton && (
+      {hasCloseButton && (
+        <sc.CloseButtonWrapper>
           <Button.Close
             data-pka-anchor="takeover.header.close-button"
             onClick={onClose}
-            isDark={kind === "primary" || undefined}
+            isDark={kind === "primary" || null}
             size="medium"
           />
-        )}
-      </sc.CloseButtonWrapper>
-    </sc.Wrapper>
+        </sc.CloseButtonWrapper>
+      )}
+    </sc.Header>
   );
 });
 

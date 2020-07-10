@@ -1,9 +1,10 @@
 import React from "react";
+import styled from "styled-components";
 import { storiesOf } from "@storybook/react";
 import { withKnobs, boolean, select } from "@storybook/addon-knobs";
 import { Story, Rule, Tagline, repeat } from "storybook/assets/styles/common.styles";
 import { getStoryName } from "storybook/storyTree";
-import styled from "styled-components";
+import stylers from "@paprika/stylers";
 import Button from "@paprika/button";
 import SidePanel from "@paprika/sidepanel";
 import Popover from "@paprika/popover";
@@ -102,7 +103,47 @@ storiesOf(`${storyName}/Examples`, module)
         <input type="text" data-autofocus />
       </Takeover.Content>
     </TakeoverStory>
-  ));
+  ))
+  .add("with focus on heading", () => {
+    const refHeading = React.useRef(null);
+    const [isOpen, setOpen] = React.useState(false);
+
+    return (
+      <Story>
+        <Button
+          onClick={() => {
+            setOpen(true);
+          }}
+        >
+          Open Takeover
+        </Button>
+        <Takeover
+          isOpen={isOpen}
+          onClose={() => {
+            setOpen(false);
+          }}
+          onAfterOpen={() => {
+            if (refHeading.current) refHeading.current.focus();
+          }}
+          css={`
+            [data-pka-anchor="heading"]:focus {
+              ${stylers.focusRing.subtle()}
+            }
+          `}
+        >
+          <Takeover.Header refHeading={refHeading}>Header</Takeover.Header>
+          <Takeover.Content>
+            <p>
+              Unicorn next level readymade polaroid, locavore hot chicken forage ennui crucifix tote bag yuccie. Raw
+              denim tumblr echo park bushwick hoodie iceland cloud bread iPhone kombucha shoreditch taiyaki woke. Brunch
+              ramps cred polaroid, vinyl skateboard portland typewriter jean shorts single-origin coffee flexitarian
+              drinking vinegar.
+            </p>
+          </Takeover.Content>
+        </Takeover>
+      </Story>
+    );
+  });
 
 storiesOf(`${storyName}/Backyard/Sandbox`, module)
   .add("with nested SidePanel", () =>
