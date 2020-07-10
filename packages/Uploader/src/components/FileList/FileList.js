@@ -38,7 +38,7 @@ export default function FileList({ supportedMimeTypes, maxFileSize }) {
   }
 
   return (
-    <sc.unorderedList>
+    <sc.unorderedList aria-label={I18n.t("uploader.file_list")}>
       {files.map(file => (
         <File
           fileKey={file.key}
