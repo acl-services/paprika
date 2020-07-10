@@ -4,8 +4,8 @@ import { zValue } from "@paprika/stylers/lib/helpers";
 import extractChildren from "@paprika/helpers/lib/extractChildren";
 import Overlay from "@paprika/overlay";
 import FocusLock from "./components/FocusLock";
-import Header from "./components/Header";
-import Content from "./components/Content";
+import Header from "./components/Header/Header";
+import Content from "./components/Content/Content";
 import * as sc from "./Takeover.styles";
 
 const propTypes = {

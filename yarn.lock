@@ -2374,18 +2374,6 @@
   dependencies:
     "@types/node" ">= 8"
 
-"@paprika/heading@^0.2.2":
-  version "0.2.2"
-  resolved "https://registry.yarnpkg.com/@paprika/heading/-/heading-0.2.2.tgz#66c9fbbc27aea5a8a56915cd4557e78661ca598a"
-  integrity sha512-dXvFBvlqzIZx4Ff+KaUzzDUrh6OA+b3mDbcWQz/kqS9EOzUHnBouBEu4iysc4m9jXb86ZnuWcxoNnggNwyF+Nw==
-  dependencies:
-    "@babel/runtime-corejs2" "^7.3.1"
-    "@paprika/stylers" "^0.2.2"
-    "@paprika/tokens" "^0.1.9"
-    class-names "^1.0.0"
-    classnames "^2.2.6"
-    prop-types "^15.7.2"
-
 "@paprika/helpers@^0.1.2":
   version "0.1.3"
   resolved "https://registry.yarnpkg.com/@paprika/helpers/-/helpers-0.1.3.tgz#2606180f2e5df0316e37442930dba5f016aa8697"

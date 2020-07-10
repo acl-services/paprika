@@ -27,7 +27,6 @@ npm install @paprika/heading
 | a11yText     | string                                                                                          | false    | null     | Optional aria text if it should be more descriptive than what is rendered |
 | children     | node                                                                                            | true     | -        | Heading content is required                                               |
 | displayLevel | [object Object],[object Object],[object Object],[object Object],[object Object],[object Object] | false    | null     | Optional display level(1-6) affects styles only                           |
-| domRef       | func                                                                                            | false    | () => {} | Ref function that returns DOM node for heading                            |
 | hasDivider   | bool                                                                                            | false    | false    | Horizontal divider style                                                  |
 | hasUnderline | bool                                                                                            | false    | false    | Underline style                                                           |
 | isHidden     | bool                                                                                            | false    | false    | Optional, visually hide the header                                        |
