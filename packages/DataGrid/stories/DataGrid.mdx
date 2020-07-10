@@ -7,6 +7,7 @@ import fixtures from "./helpers/fixtures";
 import { App as Marvel } from "./DataGrid.marvel.stories";
 import { App as Stress } from "./DataGrid.stressing.stories";
 import { App as Collapsible } from "./DataGrid.collapse.stories";
+import { App as LinksActions } from "./DataGrid.link.stories";
 
 ## DataGrid
 
@@ -305,6 +306,79 @@ The callback will be executed right before the scroll hits the rows offset numbe
   })} />
 </DataGrid>
 ```
+
+### Links
+
+To add link to the table we provided a component to achieve that specific scenario, the `linkAction` component can
+behave as a button or as a regular link to use you can import it like:
+
+```sh
+import DataGrid, { LinkAction } from "@paprika/data-grid";
+```
+
+Once imported you can use it in the following way:
+
+#### As a button
+
+```js
+<DataGrid.ColumnDefinition
+  key={key}
+  header="Link with onClick"
+  cell={({ row }) => (
+    <LinkAction
+      onClick={() => {
+        setIsOpen(true);
+      }}
+    >
+      {row[key]}
+    </LinkAction>
+  )}
+  onPressEnter={() => setIsOpen(true)}
+/>
+```
+
+#### As a regular link
+
+```js
+<DataGrid.ColumnDefinition
+  key={key}
+  header="Link default"
+  cell={({ row }) => <LinkAction href="http://design.wegalvanize.com">{row[key]}</LinkAction>}
+  onPressEnter={() => {
+    LinkAction.href("http://design.wegalvanize.com");
+  }}
+/>
+```
+
+#### LinkAction.href function
+
+The `LinkAction` component also provides an `href` function that let you to implement the link funcionality in an onPressEnter function or any other
+event supported by the `DataGrid.ColumnDefinition` component.
+
+```js
+// function signature
+Link.href = (url, target) => {
+  //... implementation
+};
+
+// use case:
+<DataGrid.ColumnDefinition
+  key={key}
+  header="Link with _blank"
+  cell={({ row }) => (
+    <LinkAction href="http://design.wegalvanize.com" target="_blank">
+      {row[key]}
+    </LinkAction>
+  )}
+  onPressEnter={() => {
+    LinkAction.href("http://design.wegalvanize.com", "_blank");
+  }}
+/>;
+```
+
+#### Result
+
+<LinksActions />
 
 #### Elaborated example
 
