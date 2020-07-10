@@ -10,8 +10,8 @@ const commonStyles = styled.div`
   border-radius: ${tokens.card.borderRadius};
   box-shadow: ${tokens.shadow};
   box-sizing: border-box;
-  display: flex;
-  flex-direction: column;
+  display: inline-block;
+  text-decoration: none;
 `;
 
 // Sizes
