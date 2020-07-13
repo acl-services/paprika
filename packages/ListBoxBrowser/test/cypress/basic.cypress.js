@@ -1,3 +1,5 @@
+import { getStoryUrlPrefix } from "../../../../.storybook/storyTree";
+
 const selectors = {
   backButton: "[data-pka-anchor='listboxbrowser-listoption-back']",
   breadcrumbTitle: "[data-pka-anchor='breadcrumb-title']",
@@ -37,7 +39,7 @@ function navigateBrowser(label) {
 
 describe("ListBoxBrowser basic", () => {
   beforeEach(() => {
-    cy.visitStorybook("forms-listboxbrowser-backyard-tests--cypress");
+    cy.visitStorybook(`${getStoryUrlPrefix("ListBoxBrowser")}-backyard-tests--cypress`);
   });
 
   it("should have correct number of options", () => {

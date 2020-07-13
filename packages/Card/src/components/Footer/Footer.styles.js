@@ -8,6 +8,7 @@ export const footerStyles = styled.div`
   border-radius: 0 0 ${tokens.border.radius} ${tokens.border.radius};
   bottom: 0;
   box-sizing: border-box;
+  color: ${tokens.color.black};
   ${stylers.fontSize(-1)};
   left: 0;
   min-height: ${spacer(5)};

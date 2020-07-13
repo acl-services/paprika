@@ -8,7 +8,7 @@ const kind = {
   primary: `background: ${tokens.color.purple}; color: ${tokens.color.white};`,
 };
 
-export const Wrapper = styled.div`
+export const Header = styled.div`
   align-items: center;
   box-shadow: ${tokens.shadow};
   box-sizing: border-box;
