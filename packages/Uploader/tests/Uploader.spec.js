@@ -18,6 +18,5 @@ describe("Uploader", () => {
     expect(getByText("Drop files to upload here or")).toBeInTheDocument();
     expect(getByText("choose from your computer")).toBeInTheDocument();
     expect(getByTestId("uploader-dropZone-uploadIcon")).toBeInTheDocument();
-    expect(getByTestId("uploader-dropZone-link")).toHaveAttribute("href", "#");
   });
 });
