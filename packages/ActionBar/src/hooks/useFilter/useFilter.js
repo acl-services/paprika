@@ -11,6 +11,7 @@ const initialValueByType = {
   NUMBER: "",
   TEXT: "",
   DATE: "",
+  SINGLE_SELECT: "",
 };
 
 function filterData({ filters, operator, columns, data }) {
@@ -50,6 +51,7 @@ export default function useFilter({ columns, data = null, rulesByType = Filter.d
                 filterItem.rule = rulesByType[columnType][0];
                 filterItem.value = initialValueByType[columnType];
                 filterItem.renderValueField = null;
+                filterItem.data = data;
                 break;
               }
               case changeTypes.RULE: {
