@@ -18,7 +18,7 @@ export default function DropZone() {
     <React.Fragment>
       {I18n.t("uploader.drop_files_here_or")}&nbsp;
       <Button
-         data-pka-anchor="uploader-dropZone-link"
+        data-pka-anchor="uploader-dropZone-link"
         kind={Button.Kinds.LINK}
         onClick={() => {
           refInput.current.click();
