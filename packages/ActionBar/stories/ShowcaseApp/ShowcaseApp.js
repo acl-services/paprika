@@ -37,6 +37,11 @@ const columnsSettings = [
     type: "SINGLE_SELECT",
     label: "Level",
   },
+  {
+    id: "position",
+    type: ActionBar.columnTypes.SINGLE_SELECT,
+    label: "Position",
+  },
 ];
 
 const customRulesByType = {
@@ -62,6 +67,7 @@ export default function App() {
     "joined",
     "shareable",
     "level",
+    "position",
   ]);
 
   const subset = React.useMemo(() => {
@@ -89,6 +95,7 @@ export default function App() {
               type={filter.type}
               rule={filter.rule}
               value={filter.value}
+              data={filter.data}
             />
           ))}
         </Filter>
