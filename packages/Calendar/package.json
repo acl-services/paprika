@@ -24,7 +24,7 @@
     "react-dates": "^20.1.0"
   },
   "peerDependencies": {
-    "@paprika/l10n": "^0.2.5",
+    "@paprika/l10n": "^0.4.2",
     "moment": "^2.18.1",
     "react": "^16.8.4",
     "react-dom": "^16.8.4",
