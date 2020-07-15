@@ -4,7 +4,7 @@ import tokens from "@paprika/tokens";
 import stylers from "@paprika/stylers";
 import Heading from "@paprika/heading";
 import { Story, Rule, Tagline } from "storybook/assets/styles/common.styles";
-import ResizeDetector from "../src";
+import { useDimensions, useBreakpoints } from "../src";
 
 export const exampleStoryParameters = {
   options: {
@@ -42,8 +42,8 @@ export const ColourfulBox = styled.div`
 `;
 
 export function ResizeConsumer() {
-  const { width, height } = ResizeDetector.useDimensions();
-  const { size } = ResizeDetector.useBreakpoints();
+  const { width, height } = useDimensions();
+  const { size } = useBreakpoints();
 
   return (
     <ColourfulBox>

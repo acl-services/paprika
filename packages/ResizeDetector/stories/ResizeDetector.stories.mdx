@@ -2,7 +2,7 @@ import { Meta } from "@storybook/addon-docs/blocks";
 import { Description } from "@storybook/addon-docs/blocks";
 import { getStoryName } from "storybook/storyTree";
 import Readme from "../README.md";
-import ResizeDetector from "../src";
+import ResizeDetector, { useDimensions, useBreakpoints } from "../src";
 import { BasicStory, FullHeightStory } from "./examples/Basic";
 import { CustomBreakpointsStory, NoSmallStory, NoLargeStory } from "./examples/Breakpoints";
 import { OnBreakStory } from "./examples/Callbacks";
@@ -24,8 +24,8 @@ You can use the custom hooks provided by the `<ResizeDetector>` to consume the d
 
 ```jsx
 function ResizeConsumer() {
-  const { width, height } = ResizeDetector.useDimensions();
-  const { size } = ResizeDetector.useBreakpoints();
+  const { width, height } = useDimensions();
+  const { size } = useBreakpoints();
 
   return (
     <ColourfulBox>

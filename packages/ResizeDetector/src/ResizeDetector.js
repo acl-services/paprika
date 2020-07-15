@@ -46,12 +46,12 @@ const MAX_WAIT = 1000;
 
 const ResizeContext = React.createContext();
 
-function useDimensions() {
+export function useDimensions() {
   const { width, height } = React.useContext(ResizeContext);
   return { width, height };
 }
 
-function useBreakpoints() {
+export function useBreakpoints() {
   const { size } = React.useContext(ResizeContext);
   return { size };
 }
@@ -104,7 +104,5 @@ function ResizeDetector(props) {
 ResizeDetector.displayName = "ResizeDetector";
 ResizeDetector.propTypes = propTypes;
 ResizeDetector.defaultProps = defaultProps;
-ResizeDetector.useDimensions = useDimensions;
-ResizeDetector.useBreakpoints = useBreakpoints;
 
 export default ResizeDetector;

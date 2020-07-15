@@ -1,1 +1,1 @@
-export { default } from "./ResizeDetector";
+export { default, useDimensions, useBreakpoints } from "./ResizeDetector";
