@@ -1,9 +1,8 @@
 import React from "react";
 import PropTypes from "prop-types";
+import { RefOf, ShirtSizes } from "@paprika/helpers/lib/customPropTypes";
 import Button from "@paprika/button";
 import Heading from "@paprika/heading";
-import { ShirtSizes } from "@paprika/helpers/lib/customPropTypes";
-
 import * as sc from "./Header.styles";
 
 const propTypes = {
@@ -14,6 +13,7 @@ const propTypes = {
   kind: PropTypes.oneOf([Button.Kinds.DEFAULT, Button.Kinds.PRIMARY]),
   level: PropTypes.oneOf([1, 2, 3, 4, 5, 6]),
   onClose: PropTypes.func,
+  refHeading: RefOf(),
 };
 
 const defaultProps = {
@@ -23,25 +23,19 @@ const defaultProps = {
   level: 2,
   isCompact: false,
   onClose: () => {},
+  refHeading: null,
 };
-
-function darkBackgroundProps(kind) {
-  if (kind === Button.Kinds.PRIMARY) {
-    return { isDark: true };
-  }
-
-  return {};
-}
 
 const Header = React.forwardRef((props, ref) => {
   const {
+    children,
     hasCloseButton,
     getPushContentElement,
     isCompact,
     kind,
     level,
-    // injected by Dialog.js
     onClose,
+    refHeading,
     ...moreProps
   } = props;
 
@@ -49,31 +43,29 @@ const Header = React.forwardRef((props, ref) => {
     <sc.Header
       data-pka-anchor="sidepanel.header"
       hasPushedElement={!!getPushContentElement}
-      ref={ref}
-      kind={kind}
       isCompact={isCompact}
+      kind={kind}
+      ref={ref}
       {...moreProps}
     >
-      <Heading tabIndex="-1" level={level} displayLevel={isCompact ? 4 : 3}>
-        {props.children}
+      <Heading level={level} displayLevel={isCompact ? 4 : 3} ref={refHeading}>
+        {children}
       </Heading>
-      <div>
-        {hasCloseButton ? (
-          <Button.Close
-            data-pka-anchor="sidepanel-header-close"
-            isSemantic={false}
-            onClick={onClose}
-            {...darkBackgroundProps(kind)}
-            size={isCompact ? ShirtSizes.SMALL : ShirtSizes.MEDIUM}
-          />
-        ) : null}
-      </div>
+      {hasCloseButton && (
+        <Button.Close
+          data-pka-anchor="sidepanel.header.close"
+          isSemantic={false}
+          onClick={onClose}
+          size={isCompact ? ShirtSizes.SMALL : ShirtSizes.MEDIUM}
+          isDark={kind === Button.Kinds.PRIMARY}
+        />
+      )}
     </sc.Header>
   );
 });
 
+Header.displayName = "SidePanel.Header";
 Header.propTypes = propTypes;
 Header.defaultProps = defaultProps;
-Header.displayName = "SidePanel.Header";
 
 export default Header;

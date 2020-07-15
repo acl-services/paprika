@@ -43,7 +43,7 @@ function RowIndicator(props) {
         indicator
       ) : (
         <sc.Checkbox>
-          <input type="checkbox" checked={isChecked} onChange={() => {}} onMouseDown={handleCheck} />
+          <input type="checkbox" checked={isChecked} onChange={() => {}} onMouseUp={handleCheck} />
         </sc.Checkbox>
       )}
     </sc.RowContainer>
