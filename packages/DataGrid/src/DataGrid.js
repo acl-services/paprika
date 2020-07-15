@@ -43,7 +43,7 @@ const propTypes = {
   onPressSpaceBar: PropTypes.func,
   /** Callback when user click the f key. Might change in the future */
   onRowChecked: PropTypes.func,
-  /** Callback with rowIndex, columnIndex, gridId as parameters */
+  /** Callback with information about the prev and next highlighted cell */
   onHighlighted: PropTypes.func,
   /** Sets the row height */
   rowHeight: PropTypes.number,
