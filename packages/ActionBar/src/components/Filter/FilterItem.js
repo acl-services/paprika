@@ -45,6 +45,14 @@ function FilterItem(props) {
 
   const selectedColumnType = columns.find(({ id }) => id === selectedColumnId).type;
 
+  const selectOptions = React.useMemo(() => {
+    return selectedColumnType === columnTypes.SINGLE_SELECT
+      ? data.filter((obj, index, arr) => {
+          return arr.map(mapObj => mapObj[selectedColumnId]).indexOf(obj[selectedColumnId]) === index;
+        })
+      : null;
+  }, [selectedColumnType, data, selectedColumnId]);
+
   function handleRemoveFilter() {
     filtersRef.current.focus();
     onDelete(id);
@@ -79,12 +87,6 @@ function FilterItem(props) {
 
   function handleChangeSingleSelectFilterValue(event) {
     onChange(changeTypes.FILTER_VALUE, { id, value: event.target.value });
-  }
-
-  function handleSelectOptionDuplicates(data, prop) {
-    return data.filter((obj, index, arr) => {
-      return arr.map(mapObj => mapObj[prop]).indexOf(obj[prop]) === index;
-    });
   }
 
   function renderRuleField() {
@@ -142,12 +144,8 @@ function FilterItem(props) {
 
       case columnTypes.SINGLE_SELECT:
         return (
-          <InlineSelect
-            value={`${value}`}
-            onChange={handleChangeSingleSelectFilterValue}
-            selectedLabel={I18n.t(`actionBar.filter.rules.${value}`)}
-          >
-            {handleSelectOptionDuplicates(data, selectedColumnId).map(data => (
+          <InlineSelect value={`${value}`} onChange={handleChangeSingleSelectFilterValue} selectedLabel={value}>
+            {selectOptions.map(data => (
               <option key={data[selectedColumnId]} value={data[selectedColumnId]}>
                 {data[selectedColumnId]}
               </option>

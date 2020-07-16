@@ -4,15 +4,7 @@ import nanoid from "nanoid";
 import produce from "immer";
 import Filter from "../../components/Filter";
 import testers from "./testers";
-import { logicalFilterOperators, changeTypes } from "../../constants";
-
-const initialValueByType = {
-  BOOLEAN: true,
-  NUMBER: "",
-  TEXT: "",
-  DATE: "",
-  SINGLE_SELECT: "",
-};
+import { logicalFilterOperators, changeTypes, columnTypes } from "../../constants";
 
 function filterData({ filters, operator, columns, data }) {
   if (filters.length === 0) return data;
@@ -37,6 +29,18 @@ export default function useFilter({ columns, data = null, rulesByType = Filter.d
   const [filteredData, setFilteredData] = React.useState(data);
   const [appliedNumber, setAppliedNumber] = React.useState(0);
 
+  function setInitialValueByType(columnType, columnId) {
+    switch (columnType) {
+      case columnTypes.BOOLEAN:
+        return true;
+      case columnTypes.SINGLE_SELECT: {
+        return data.map(data => data[columnId]).find(option => option);
+      }
+      default:
+        return "";
+    }
+  }
+
   const handleChangeFilter = React.useCallback(
     (type, { id: filterId, rule, value, columnId }) => {
       setFilters(
@@ -49,14 +53,14 @@ export default function useFilter({ columns, data = null, rulesByType = Filter.d
                 const columnType = columns.find(column => column.id === columnId).type;
                 filterItem.columnId = columnId;
                 filterItem.rule = rulesByType[columnType][0];
-                filterItem.value = initialValueByType[columnType];
+                filterItem.value = setInitialValueByType(columnType, columnId);
                 filterItem.renderValueField = null;
-                filterItem.data = data;
+                filterItem.data = columnType === "SINGLE_SELECT" ? data : null;
                 break;
               }
               case changeTypes.RULE: {
                 filterItem.rule = rule;
-                filterItem.value = "";
+                filterItem.value = ""; // Set initial value for select
                 break;
               }
               case changeTypes.FILTER_VALUE: {
@@ -70,7 +74,7 @@ export default function useFilter({ columns, data = null, rulesByType = Filter.d
         })
       );
     },
-    [columns, rulesByType]
+    [columns, rulesByType, data]
   );
 
   function getDefaultFilter() {
@@ -80,7 +84,7 @@ export default function useFilter({ columns, data = null, rulesByType = Filter.d
     return {
       columnId: firstColumnId,
       rule: rulesByType[firstColumnType][0],
-      value: initialValueByType[firstColumnType],
+      value: setInitialValueByType(firstColumnType, firstColumnId),
       id: nanoid(),
     };
   }

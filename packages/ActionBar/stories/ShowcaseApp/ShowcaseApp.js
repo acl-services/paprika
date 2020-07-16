@@ -34,7 +34,7 @@ const columnsSettings = [
   },
   {
     id: "level",
-    type: "SINGLE_SELECT",
+    type: "CUSTOM_SELECT",
     label: "Level",
   },
   {
@@ -46,7 +46,7 @@ const columnsSettings = [
 
 const customRulesByType = {
   ...Filter.defaultRulesByType,
-  SINGLE_SELECT: [Filter.rules.IS, Filter.rules.IS_NOT, Filter.rules.IS_EMPTY, Filter.rules.IS_NOT_EMPTY],
+  CUSTOM_SELECT: [Filter.rules.IS, Filter.rules.IS_NOT, Filter.rules.IS_EMPTY, Filter.rules.IS_NOT_EMPTY],
 };
 
 export default function App() {
