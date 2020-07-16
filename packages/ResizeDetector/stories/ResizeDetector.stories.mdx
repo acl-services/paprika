@@ -23,6 +23,8 @@ import { DebounceSlowStory, DebounceFastStory } from "./examples/Debounce";
 You can use the custom hooks provided by the `<ResizeDetector>` to consume the dimensions, or tshirt "size" value (`small` | `medium` | `large`) in a child component of the `<ResizeDetector>`.
 
 ```jsx
+import ResizeDetector, { useDimensions, useBreakpoints } from "@paprika/resize-detector";
+
 function ResizeConsumer() {
   const { width, height } = useDimensions();
   const { size } = useBreakpoints();

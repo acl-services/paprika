@@ -47,8 +47,10 @@ It provides the up-to-date `width` and `height` of its root DOM element as well 
 #### Custom Hooks Example
 
 ```jsx
+import ResizeDetector, { useDimensions } from "@paprika/resize-detector";
+
 function ResizeConsumer() {
-  const { width, height } = ResizeDetector.useDimensions();
+  const { width, height } = useDimensions();
   return (
     <>
       {width} x {height}
