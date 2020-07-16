@@ -16,7 +16,7 @@ export default {
 };
 
 export const basic = () => (
-  <ExampleStory storyName="Basic Example">
+  <ExampleStory storyName="Basic Example" fileName="examples/Basic.js">
     <p>
       <code>isFullHeight = true</code>
     </p>
@@ -26,7 +26,7 @@ export const basic = () => (
 basic.story = { name: "Basic", parameters: exampleStoryParameters };
 
 export const breakpoints = () => (
-  <ExampleStory storyName="Custom Breakpoints">
+  <ExampleStory storyName="Custom Breakpoints" fileName="examples/Breakpoints.js">
     <p>
       <code>breakpointSmall = 100</code>
       <br />
@@ -48,14 +48,14 @@ export const breakpoints = () => (
 breakpoints.story = { name: "with breakpoints", parameters: exampleStoryParameters };
 
 export const callbacks = () => (
-  <ExampleStory storyName="Callback Example" tagline="Pop goes the <Toast>!">
+  <ExampleStory storyName="Callback Example" tagline="Pop goes the <Toast>!" fileName="examples/Callbacks.js">
     <OnBreakStory />
   </ExampleStory>
 );
 callbacks.story = { name: "with onBreak callback", parameters: exampleStoryParameters };
 
 export const debounce = () => (
-  <ExampleStory storyName="Debounce Examples">
+  <ExampleStory storyName="Debounce Examples" fileName="examples/Debounce.js">
     <p>
       <code>debounceDelay = 300</code>
     </p>
