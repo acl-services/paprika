@@ -144,7 +144,7 @@ function FilterItem(props) {
 
       case columnTypes.SINGLE_SELECT:
         return (
-          <InlineSelect value={`${value}`} onChange={handleChangeSingleSelectFilterValue} selectedLabel={value}>
+          <InlineSelect value={value} onChange={handleChangeSingleSelectFilterValue} selectedLabel={value}>
             {selectOptions.map(data => (
               <option key={data[selectedColumnId]} value={data[selectedColumnId]}>
                 {data[selectedColumnId]}

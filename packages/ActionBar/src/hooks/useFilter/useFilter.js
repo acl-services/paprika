@@ -60,7 +60,6 @@ export default function useFilter({ columns, data = null, rulesByType = Filter.d
               }
               case changeTypes.RULE: {
                 filterItem.rule = rule;
-                filterItem.value = ""; // Set initial value for select
                 break;
               }
               case changeTypes.FILTER_VALUE: {
