@@ -9,9 +9,11 @@ de:
     uploader:
       drop_files: Dateien zum Hochladen ablegen
       drop_files_here_or: Legen Sie Dateien zum Hochladen hier ab oder
-      choose_from_computer: wählen Sie auf Ihrem Computer aus
+      choose_from_computer: wählen Sie sie auf Ihrem Computer aus
+      choose_from_computer_a11y: Wählen Sie Dateien auf Ihrem Computer aus
       cancel_upload: Upload abbrechen
       restart_upload: Upload neu starten
+      file_list: Liste der Dateien
       errors:
         size: Datei muss kleiner als {{maxFileSize}} sein
         type: "Datei muss die Datei einen der folgenden Dateitypen aufweisen: {{- supportedTypes}}"
