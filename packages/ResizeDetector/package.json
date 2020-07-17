@@ -1,0 +1,28 @@
+{
+  "name": "@paprika/resize-detector",
+  "version": "0.0.1",
+  "description": "A wrapper that provides debounced updates of its dimensions.",
+  "author": "@paprika",
+  "main": "lib/index.js",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/acl-services/paprika.git",
+    "directory": "packages/ResizeDetector"
+  },
+  "publishConfig": {
+    "access": "public"
+  },
+  "dependencies": {
+    "@babel/runtime-corejs2": "^7.3.1",
+    "@paprika/helpers": "^0.2.11",
+    "lodash.debounce": "^4.0.8",
+    "prop-types": "^15.7.2",
+    "use-resize-observer": "^6.1.0"
+  },
+  "peerDependencies": {
+    "react": "^16.8.4",
+    "react-dom": "^16.8.4",
+    "styled-components": "^4.3.1"
+  }
+}

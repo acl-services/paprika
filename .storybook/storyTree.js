@@ -76,6 +76,7 @@ const storyTree = [
     category: "Utilities",
     components: [
       "L10n",
+      "ResizeDetector",
       "Guard",
       "Stylers",
     ],

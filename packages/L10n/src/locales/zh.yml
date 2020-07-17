@@ -10,8 +10,10 @@ zh:
       drop_files: 放下文件以上传
       drop_files_here_or: 在此放下文件以上传或
       choose_from_computer: 从您的电脑中选择
+      choose_from_computer_a11y: 从您的电脑中选择文件
       cancel_upload: 取消上传
       restart_upload: 重新启动上传
+      file_list: 文件列表
       errors:
         size: 文件必须小于 {{maxFileSize}}
         type: "文件必须是以下类型之一：{{- supportedTypes}}"

@@ -39,7 +39,7 @@ const ExampleStory = () => (
     </p>
     <p>
       This is <code>ExternalLink</code> with a low width <br />
-      <ExternalLink href={mockUrl} style={{ width: "198px" }} data-testid="low-width">
+      <ExternalLink href={mockUrl} style={{ maxWidth: "198px" }} data-testid="low-width">
         This is a long fieldfdsfdasfsdfdafafafdf fsadf sdfad fda fds
       </ExternalLink>
     </p>
@@ -48,7 +48,7 @@ const ExampleStory = () => (
       <br />
       <p>
         This is descriptive text{" "}
-        <ExternalLink href={mockUrl} style={{ width: "198px" }} data-testid="low-width">
+        <ExternalLink href={mockUrl} style={{ maxWidth: "198px" }} data-testid="low-width">
           This is a long fieldfdsfdasfsdfdafafafdf fsadf sdfad fda fds
         </ExternalLink>
         this is descriptive text This is descriptive text
@@ -56,4 +56,5 @@ const ExampleStory = () => (
     </p>
   </Story>
 );
+
 export default () => <ExampleStory />;

@@ -104,7 +104,9 @@ function DatePicker(props) {
 
   function handleSelect(selectedDate) {
     hideCalendar();
-    handleChange(selectedDate);
+    window.requestAnimationFrame(() => {
+      handleChange(selectedDate);
+    });
   }
 
   function handlePossibleDateChange(newPossibleDate) {
