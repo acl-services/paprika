@@ -19,11 +19,13 @@ const propTypes = {
   renderValueField: PropTypes.func,
   rule: PropTypes.string.isRequired,
   value: PropTypes.oneOfType([PropTypes.string, PropTypes.bool]).isRequired,
+  data: PropTypes.arrayOf(PropTypes.shape({})),
 };
 
 const defaultProps = {
   id: null,
   renderValueField: null,
+  data: null,
 };
 
 function FilterItem(props) {
@@ -36,11 +38,20 @@ function FilterItem(props) {
     rule: selectedRule,
     value,
     renderValueField: renderCustomValueField,
+    data,
   } = props;
   const { columns, filtersRef, onChangeOperator, operator, rulesByType } = React.useContext(FilterContext);
   const I18n = useI18n();
 
   const selectedColumnType = columns.find(({ id }) => id === selectedColumnId).type;
+
+  const selectOptions = React.useMemo(() => {
+    return selectedColumnType === columnTypes.SINGLE_SELECT
+      ? data.filter((obj, index, arr) => {
+          return arr.map(mapObj => mapObj[selectedColumnId]).indexOf(obj[selectedColumnId]) === index;
+        })
+      : null;
+  }, [selectedColumnType, data, selectedColumnId]);
 
   function handleRemoveFilter() {
     filtersRef.current.focus();
@@ -74,6 +85,10 @@ function FilterItem(props) {
     onChange(changeTypes.FILTER_VALUE, { id, value: event.target.value === "true" });
   }
 
+  function handleChangeSingleSelectFilterValue(event) {
+    onChange(changeTypes.FILTER_VALUE, { id, value: event.target.value });
+  }
+
   function renderRuleField() {
     switch (selectedColumnType) {
       case columnTypes.BOOLEAN:
@@ -95,7 +110,6 @@ function FilterItem(props) {
         );
     }
   }
-
   function renderValueField() {
     const shouldNotShowValueField =
       selectedRule === rules.IS_BLANK ||
@@ -126,6 +140,17 @@ function FilterItem(props) {
             onChange={handleChangeDatePicker}
             parsingFormat={columns.find(({ id }) => id === selectedColumnId).momentParsingFormat}
           />
+        );
+
+      case columnTypes.SINGLE_SELECT:
+        return (
+          <InlineSelect value={value} onChange={handleChangeSingleSelectFilterValue} selectedLabel={value}>
+            {selectOptions.map(data => (
+              <option key={data[selectedColumnId]} value={data[selectedColumnId]}>
+                {data[selectedColumnId]}
+              </option>
+            ))}
+          </InlineSelect>
         );
       default:
         return (
@@ -160,7 +185,6 @@ function FilterItem(props) {
         return staticPrefix;
     }
   }
-
   return (
     <sc.FilterItem data-pka-anchor="actionBar.filter.filterItem">
       <Button.Close data-pka-anchor="actionBar.filter.deleteFilterButton" onClick={handleRemoveFilter} size="small" />

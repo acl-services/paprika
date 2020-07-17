@@ -10,8 +10,10 @@ ja:
       drop_files: アップロードするファイルをドロップ
       drop_files_here_or: アップロードするファイルをここにドロップまたは
       choose_from_computer: コンピューターから選択
+      choose_from_computer_a11y: コンピューターからファイルを選択する
       cancel_upload: アップロードをキャンセル
       restart_upload: アップロードを再起動
+      file_list: ファイル一覧
       errors:
         size: ファイルは{{maxFileSize}}未満にする必要があります
         type: "ファイルは次のタイプの1つにする必要があります: {{- supportedTypes}}"
