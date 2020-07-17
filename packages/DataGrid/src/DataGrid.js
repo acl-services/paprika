@@ -4,15 +4,18 @@ import { VariableSizeGrid as Grid } from "react-window";
 import useI18n from "@paprika/l10n/lib/useI18n";
 import extractChildren from "@paprika/helpers/lib/extractChildren";
 import "@paprika/helpers/lib/dom/elementScrollToPolyfill";
+import nanoid from "nanoid";
 
 import types from "./types";
-import useGridEventHandler from "./hooks/useGridEventHandler";
+import useGridEventHandler, { getGridRefId } from "./hooks/useGridEventHandler";
 import ColumnDefinition from "./components/ColumnDefinition";
 import * as sc from "./DataGrid.styles";
 import Basement, { End } from "./components/Basement";
 import InfiniteScroll from "./components/InfiniteScroll";
 import { Row, HeaderRow, StickyRow, StickyHeaderRow, createItemData } from "./DataGrid.Rows";
 import getScrollbarWidth from "./helpers/getScrollbarWidth";
+
+window.paprika = { dataGridRef: {} };
 
 const propTypes = {
   /** If the data cell should automatically get focus  */
@@ -38,7 +41,10 @@ const propTypes = {
   onPressShiftSpaceBar: PropTypes.func,
   /** Callback when Spacebar is pressed */
   onPressSpaceBar: PropTypes.func,
+  /** Callback when user click the f key. Might change in the future */
   onRowChecked: PropTypes.func,
+  /** Callback with information about the prev and next highlighted cell */
+  onHighlighted: PropTypes.func,
   /** Sets the row height */
   rowHeight: PropTypes.number,
   /** Sets the DataGrid width */
@@ -53,6 +59,7 @@ const defaultProps = {
   hasZebraStripes: false,
   height: 600,
   onClick: null,
+  onHighlighted: () => {},
   onKeyDown: () => {},
   onPressEnter: null,
   onPressShiftSpaceBar: null,
@@ -82,6 +89,7 @@ const DataGrid = React.forwardRef((props, ref) => {
     hasZebraStripes,
     height,
     onClick,
+    onHighlighted,
     onKeyDown,
     onPressEnter,
     onPressShiftSpaceBar,
@@ -110,6 +118,7 @@ const DataGrid = React.forwardRef((props, ref) => {
   const refTotalColumnWidth = React.useRef(0);
   const refRemainingSpace = React.useRef(0);
   const refTotalCanGrow = React.useRef(0);
+  const refPrevEventCellHighlighted = React.useRef({ columnIndex: null, rowIndex: null });
 
   const [scrollBarWidth, setScrollBarWidth] = React.useState(getScrollbarWidth);
   const [pageSize, setPageSize] = React.useState(null);
@@ -177,14 +186,16 @@ const DataGrid = React.forwardRef((props, ref) => {
     return width;
   }, [ColumnDefinitions, stickyColumnsIndexes]);
 
-  const { handleKeyDown, handleKeyUp, handleClick, gridId, restoreHighlightFocus } = useGridEventHandler({
+  const [gridId] = React.useState(() => `PKA${nanoid()}`);
+  const { handleKeyDown, handleKeyUp, handleClick, restoreHighlightFocus } = useGridEventHandler({
     columnCount,
+    gridId,
     onClick,
-    onPressEnter,
     onKeyDown,
-    onRowChecked,
+    onPressEnter,
     onPressShiftSpaceBar,
     onPressSpaceBar,
+    onRowChecked,
     refContainer,
     refGrid: refGridColumns,
     rowCount,
@@ -407,6 +418,52 @@ const DataGrid = React.forwardRef((props, ref) => {
     refRemainingSpace.current = refContainer.current.offsetWidth - refTotalColumnWidth.current - scrollBarWidth;
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
+
+  const handleCellHighlighted = React.useCallback(
+    event => {
+      const { rowIndex: prevRowIndex, columnIndex: prevColumnIndex } = refPrevEventCellHighlighted.current;
+      const key = getGridRefId({ gridId, columnIndex: event.detail.columnIndex, rowIndex: event.detail.rowIndex });
+      const prevKey = getGridRefId({ gridId, columnIndex: prevColumnIndex, rowIndex: prevRowIndex });
+
+      const nextRowIndex = event.detail.rowIndex | 0; // eslint-disable-line
+      const nextColumnIndex = event.detail.columnIndex | 0; // eslint-disable-line
+      const getElementFromDom = (gridId, columnIndex, rowIndex) => () => {
+        return document.querySelector(`[data-pka-cell-key="${gridId}.${columnIndex}.${rowIndex}"]`);
+      };
+      const attributes = (columnIndex, rowIndex, gridId) => {
+        return {
+          columnIndex,
+          rowIndex,
+          gridId,
+        };
+      };
+
+      const nextRef = window.paprika.dataGridRef[key] || null;
+      const prevRef = window.paprika.dataGridRef[prevKey] || null;
+      onHighlighted({
+        next: {
+          attributes: attributes(nextColumnIndex, nextRowIndex, gridId),
+          getElementFromDom: getElementFromDom(gridId, nextColumnIndex, nextRowIndex),
+          ref: nextRef,
+        },
+        prev: {
+          attributes: attributes(prevColumnIndex, prevRowIndex, gridId),
+          getElementFromDom: getElementFromDom(gridId, prevColumnIndex, prevRowIndex),
+          ref: prevRef,
+        },
+      });
+
+      refPrevEventCellHighlighted.current = { columnIndex: nextColumnIndex, rowIndex: nextRowIndex };
+    },
+    [gridId, onHighlighted]
+  );
+
+  React.useEffect(() => {
+    document.addEventListener("dataGridCellHighlighted", handleCellHighlighted, false);
+    return () => {
+      document.removeEventListener("dataGridCellHighlighted", handleCellHighlighted, false);
+    };
+  }, [handleCellHighlighted]);
 
   const calculateColumnWidth = columnIndex => {
     if (stickyColumnsIndexes.includes(columnIndex)) {

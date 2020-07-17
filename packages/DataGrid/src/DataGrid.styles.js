@@ -12,7 +12,13 @@ export const Grid = styled.div.attrs(({ $width }) => {
     box-sizing: border-box;
   }
   .grid--is-active {
-    box-shadow: ${tokens.highlight.active.withBorder.insetBoxShadow};
+    z-index: 1;
+
+    [data-pka="cell"] {
+      box-shadow: inset -2px 0px 0px 0px ${tokens.color.blue}, inset 0px -2px 0px 0px ${tokens.color.blue},
+        inset 0px 2px 0px 0px ${tokens.color.blue}, inset 2px 0px 0px 0px ${tokens.color.blue};
+      border-radius: ${tokens.spaceSm};
+    }
   }
 
   .grid--is-blurred {
@@ -89,10 +95,10 @@ export const Grid = styled.div.attrs(({ $width }) => {
 `;
 
 const borders = {
-  [types.GRID]: `box-shadow: 0 0 0 1px ${tokens.border.color};`,
+  [types.GRID]: `box-shadow: 0 0 0 1px ${tokens.border.color}`,
   [types.NONE]: ``,
-  [types.HORIZONTAL]: `box-shadow: 0 -1px 0 0px ${tokens.border.color};`,
-  [types.VERTICAL]: `box-shadow: -1px 0 0 0px ${tokens.border.color};`,
+  [types.HORIZONTAL]: `box-shadow: 0 -1px 0 0px ${tokens.border.color}`,
+  [types.VERTICAL]: `box-shadow: -1px 0 0 0px ${tokens.border.color}`,
 };
 
 export const Cell = styled.div.attrs(({ hasZebraStripes, rowIndex, borderType }) => {
@@ -150,13 +156,21 @@ export const CellHeader = styled(Cell)`
   width: 100%;
 `;
 
-export const InnerCell = styled.div`
+export const defaultCssCellStyle = {
+  overflow: "hidden",
+  padding: `${tokens.space}`,
+  textOverflow: "ellipsis",
+  whiteSpace: "nowrap",
+};
+
+export const InnerCell = styled.div.attrs(({ resetCSS }) => {
+  const reset = resetCSS ? {} : { ...defaultCssCellStyle };
+  return {
+    style: reset,
+  };
+})`
   display: block;
   height: 100%;
-  overflow: hidden;
-  padding: ${tokens.space};
-  text-overflow: ellipsis;
-  white-space: nowrap;
   width: 100%; /* All the borders by using the spread properties */
 `;
 

@@ -31,6 +31,7 @@ export const defaultRulesByType = {
   ],
   TEXT: [rules.IS, rules.IS_NOT, rules.CONTAINS, rules.DOES_NOT_CONTAIN, rules.IS_BLANK, rules.IS_NOT_BLANK],
   BOOLEAN: [rules.IS],
+  SINGLE_SELECT: [rules.IS, rules.IS_NOT, rules.IS_BLANK, rules.IS_NOT_BLANK],
 };
 
 export const localeKeysByRule = {
