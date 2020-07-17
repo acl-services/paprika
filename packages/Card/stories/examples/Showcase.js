@@ -15,12 +15,10 @@ export default () => {
         <Card.Content>
           <Card.Title>Card</Card.Title>
           <Card.Metadata>100,000 total</Card.Metadata>
-          <div style={{ width: "100%", height: "24px" }} />
           <Card.Text>
             Cards are used to group similar concepts and tasks together to make the platform easier for user to scan,
             read, and get things done. A card displays content in a manner similar to a playing card.
           </Card.Text>
-          <div style={{ width: "100%", height: "24px" }} />
           <Card.Metadata>Created by Phil Smith</Card.Metadata>
           <Card.Metadata>Updated 1 minute ago by Phil Smith</Card.Metadata>
         </Card.Content>
