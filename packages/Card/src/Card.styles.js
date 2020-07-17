@@ -9,9 +9,8 @@ const commonStyles = styled.div`
   border: ${tokens.border.color};
   border-radius: ${tokens.card.borderRadius};
   box-shadow: ${tokens.shadow};
+  box-sizing: border-box;
   display: inline-block;
-  overflow: hidden;
-  position: relative;
   text-decoration: none;
 `;
 
@@ -19,12 +18,12 @@ const commonStyles = styled.div`
 
 const sizeStyles = {
   [ShirtSizes.SMALL]: `
-    width: 300px;
-    height: 130px;
+    width: 240px;
+    height: 117px;
   `,
   [ShirtSizes.MEDIUM]: `
-  width: 300px;
-  height: 320px;
+  width: 240px;
+  height: 284px;
   `,
   [ShirtSizes.LARGE]: `
   width: 300px;

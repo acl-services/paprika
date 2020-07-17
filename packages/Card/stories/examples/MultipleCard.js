@@ -101,7 +101,6 @@ export default () => {
       >
         {data.map(props => {
           const bgColor = props.color;
-          console.log(bgColor);
           return (
             <div style={{ margin: "8px" }}>
               <Card size="medium">
@@ -113,23 +112,15 @@ export default () => {
                 <Card.Content>
                   <Card.Title>{props.title}</Card.Title>
                   <Card.Metadata>{props.meta1}</Card.Metadata>
-                  <div style={{ width: "100%", height: "24px" }} />
-                  <Card.Text maxTextLength="135">{props.text}</Card.Text>
-                  <div style={{ width: "100%", height: "24px" }} />
+
+                  <Card.Text>{props.text}</Card.Text>
                   <Card.Metadata>{props.meta2}</Card.Metadata>
                   <Card.Metadata>{props.meta3}</Card.Metadata>
                 </Card.Content>
                 <Card.Footer>
-                  <div
-                    style={{
-                      display: "flex",
-                      flexDirection: "row",
-                      justifyContent: "space-between",
-                      alignItems: "center",
-                    }}
-                  >
+                  <div>
                     <span>{props.footer1}</span>
-                    <span>{props.footer2}</span>
+                    <span> {props.footer2}</span>
                   </div>
                 </Card.Footer>
               </Card>

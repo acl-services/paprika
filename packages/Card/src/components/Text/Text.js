@@ -12,7 +12,7 @@ const propTypes = {
 
 const defaultProps = {
   children: null,
-  maxTextLength: 140,
+  maxTextLength: 95,
 };
 
 const Text = props => {
