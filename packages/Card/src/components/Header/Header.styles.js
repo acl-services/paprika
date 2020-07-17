@@ -1,15 +1,10 @@
 import styled from "styled-components";
+import stylers from "@paprika/stylers";
 import tokens from "@paprika/tokens";
 
 export const Header = styled.div`
-  border-radius: ${tokens.border.radius} ${tokens.border.radius} 0 0;
+  border-radius: 6px 6px 0 0;
+  box-sizing: border-box;
   color: ${tokens.color.black};
-  padding: ${tokens.spaceLg};
-  position: relative;
-  top: 0;
-
-  &,
-  * {
-    box-sizing: border-box;
-  }
+  padding: ${stylers.spacer(2)} 0 0 ${stylers.spacer(2)};
 `;
