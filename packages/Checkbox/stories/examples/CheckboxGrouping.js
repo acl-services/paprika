@@ -40,9 +40,11 @@ const CheckboxExample = props => {
         `}
       >
         <Checkbox {...props} onChange={handleChange} checkedState={checkedState}>
+          <Checkbox.Input name="diet" />
           Slow-carb cold-pressed hexagon forage chillwave
         </Checkbox>
         <Checkbox {...props} onChange={handleChange} checkedState={checkedState}>
+          <Checkbox.Input name="diet" />
           Flexitarian
         </Checkbox>
         <Checkbox {...props} onChange={handleChange} checkedState={checkedState}>
