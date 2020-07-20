@@ -15,7 +15,10 @@ export function useChildrenChange(children) {
 
     if (Object.keys(state.options).length === Object.keys(options).length) {
       const difference = Object.values(state.options).find(
-        (prevOption, key) => !isEqual(prevOption.value, options[key].value)
+        (prevOption, key) =>
+          !isEqual(prevOption.value, options[key].value) ||
+          prevOption.isDisabled !== options[key].isDisabled ||
+          prevOption.isSelected !== options[key].isSelected
       );
       if (!difference) return;
     }
