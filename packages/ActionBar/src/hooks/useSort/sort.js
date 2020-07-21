@@ -27,6 +27,7 @@ const compareFunctions = {
   NUMBER: compareNumber,
   TEXT: compareString,
   BOOLEAN: compareBoolean,
+  SINGLE_SELECT: compareString,
 };
 
 export default function sort({ data, columnId, direction, columnType, momentParsingFormat, locale }) {
