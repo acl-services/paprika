@@ -54,7 +54,7 @@ const propTypes = {
 
 const defaultProps = {
   a11yText: null,
-  clearIcon: <TimesCircleIcon />,
+  clearIcon: null,
   className: null,
   defaultValue: "",
   hasClearButton: false,
@@ -78,7 +78,7 @@ const Input = props => {
   };
 
   const renderClear = () => {
-    const { hasClearButton, isDisabled, isReadOnly, size, value } = props;
+    const { clearIcon, hasClearButton, isDisabled, isReadOnly, size, value } = props;
     if (!hasClearButton || isDisabled || isReadOnly || !value) return null;
     const iconSize = size === ShirtSizes.LARGE ? ShirtSizes.MEDIUM : ShirtSizes.SMALL;
 
@@ -90,7 +90,7 @@ const Input = props => {
         size={iconSize}
         onClick={inputClearHandler}
       >
-        {props.clearIcon}
+        {clearIcon || <TimesCircleIcon />}
       </Button.Icon>
     );
   };
