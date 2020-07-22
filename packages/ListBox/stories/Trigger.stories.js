@@ -33,7 +33,7 @@ storiesOf(`${storyName}/Subcomponents/Trigger`, module)
   ))
   .add("without clear button", () => (
     <ListBox isInline>
-      <ListBox.Trigger hasClearButton />
+      <ListBox.Trigger hasClearButton={false} />
       <ListBox.Option isSelected>Loki</ListBox.Option>
       {renderOptions()}
     </ListBox>
