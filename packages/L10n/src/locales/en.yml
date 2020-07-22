@@ -153,8 +153,10 @@ en:
             number: Sort ascending (1 → 9)
             text: Sort ascending (A → Z)
             date: Sort ascending (1 → 9)
+            single_select: Sort ascending (A → Z)
           descending:
             boolean: Sort descending (false → true)
             number: Sort descending (9 → 1)
             text: Sort descending (Z → A)
             date: Sort descending (9 → 1)
+            single_select: Sort descending (Z → A)
