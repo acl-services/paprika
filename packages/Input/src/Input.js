@@ -102,6 +102,7 @@ const Input = props => {
 
   const {
     a11yText,
+    clearIcon,
     className,
     icon,
     inputRef, // TODO: use useImperativeHandle()
