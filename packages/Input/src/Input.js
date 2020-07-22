@@ -13,6 +13,7 @@ const propTypes = {
   /** Sets the class for the input. */
   className: PropTypes.string,
 
+  /** Custom icon for the clear action in the input. */
   clearIcon: PropTypes.node,
 
   /** Sets the default input value  */
