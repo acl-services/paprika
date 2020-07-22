@@ -13,6 +13,8 @@ const propTypes = {
   /** Sets the class for the input. */
   className: PropTypes.string,
 
+  clearIcon: PropTypes.node,
+
   /** Sets the default input value  */
   defaultValue: PropTypes.string,
 
@@ -51,6 +53,7 @@ const propTypes = {
 
 const defaultProps = {
   a11yText: null,
+  clearIcon: <TimesCircleIcon />,
   className: null,
   defaultValue: "",
   hasClearButton: false,
@@ -77,6 +80,7 @@ const Input = props => {
     const { hasClearButton, isDisabled, isReadOnly, size, value } = props;
     if (!hasClearButton || isDisabled || isReadOnly || !value) return null;
     const iconSize = size === ShirtSizes.LARGE ? ShirtSizes.MEDIUM : ShirtSizes.SMALL;
+
     return (
       <Button.Icon
         a11yText="Clear Input" // TODO: add L10n
@@ -85,7 +89,7 @@ const Input = props => {
         size={iconSize}
         onClick={inputClearHandler}
       >
-        <TimesCircleIcon />
+        {props.clearIcon}
       </Button.Icon>
     );
   };
