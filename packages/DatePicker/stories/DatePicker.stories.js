@@ -46,3 +46,7 @@ storiesOf(`${storyName}/Backyard/Tests`, module).add("Cypress", () => (
     <DatePicker.Input data-pka-anchor="datepicker.input" />
   </Example>
 ));
+
+storiesOf(`${storyName}/Backyard/Tests`, module).add("Cypress date picker with time", () => (
+  <Example locale="en" dateFormat="YYYY-MM-DD HH:mm:ss" humanFormat="YYYY-MM-DD h:mm:ss a" />
+));

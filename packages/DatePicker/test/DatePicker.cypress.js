@@ -90,4 +90,13 @@ describe("<DatePicker />", () => {
       .parent()
       .should("have.class", "form-input--has-error");
   });
+
+  it("should handle time change", () => {
+    cy.visitStorybook(`${getStoryUrlPrefix("DatePicker")}-backyard-tests--cypress-date-picker-with-time`);
+    cy.clock();
+    cy.getByTestId("datepicker.input").type("2020-07-17 11:00:00");
+
+    cy.tick(5000);
+    cy.getByTestId("datepicker.input").should("have.value", "2020-07-17 11:00:00 am");
+  });
 });
