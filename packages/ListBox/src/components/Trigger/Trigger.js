@@ -21,6 +21,9 @@ import { ListBoxTriggerStyled, ClearButtonStyled, iconStyles, VisuallyHiddenForm
 import { getDOMAttributesForListBoxButton } from "../../helpers/DOMAttributes";
 
 const propTypes = {
+  /** Custom clear icon */
+  clearIcon: PropTypes.node,
+
   /** Body content of the trigger. */
   children: PropTypes.oneOfType([PropTypes.node, PropTypes.func]),
 
@@ -44,6 +47,7 @@ const propTypes = {
 };
 
 const defaultProps = {
+  clearIcon: null,
   children: <React.Fragment />,
   hasClearButton: true,
   hasImplicitAll: false,
@@ -57,6 +61,7 @@ export default function Trigger(props) {
   const [state, dispatch] = useListBox();
   const onChangeContext = React.useContext(OnChangeContext);
   const {
+    clearIcon,
     placeholder,
     hasClearButton,
     hasImplicitAll,
@@ -233,7 +238,7 @@ export default function Trigger(props) {
           shouldHideCaret={shouldHideCaret}
           size={size}
         >
-          <TimesCircleIcon isDisabled={isDisabled} css={iconStyles} />
+          {clearIcon || <TimesCircleIcon isDisabled={isDisabled} css={iconStyles} />}
         </ClearButtonStyled>
       ) : null}
       {shouldHideCaret ? null : caret}
