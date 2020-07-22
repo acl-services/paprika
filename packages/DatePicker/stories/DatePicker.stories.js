@@ -3,6 +3,7 @@ import moment from "moment";
 import { boolean, select, text, withKnobs } from "@storybook/addon-knobs";
 import { storiesOf } from "@storybook/react";
 import { getStoryName } from "storybook/storyTree";
+import RefreshIcon from "@paprika/icon/lib/Refresh";
 import Example from "./DatePickerExample";
 import DatePicker from "../src/DatePicker";
 
@@ -37,7 +38,12 @@ storiesOf(`${storyName}/Examples`, module)
   .add("with initialDate", () => <Example initialDate={moment("2019-01-01")} />)
   .add("with DatePicker.Input", () => (
     <Example locale="en">
-      <DatePicker.Input className="custom-class-name" placeholder="custom placeholder" />
+      <DatePicker.Input
+        className="custom-class-name"
+        placeholder="custom placeholder"
+        hasClearButton
+        clearIcon={<RefreshIcon />}
+      />
     </Example>
   ));
 

@@ -2,6 +2,7 @@ import React from "react";
 import { storiesOf } from "@storybook/react";
 import { getStoryName } from "storybook/storyTree";
 import Button from "@paprika/button";
+import RefreshIcon from "@paprika/icon/lib/Refresh";
 import ListBox from "../src";
 
 const storyName = getStoryName("ListBox");
@@ -32,7 +33,14 @@ storiesOf(`${storyName}/Subcomponents/Trigger`, module)
   ))
   .add("without clear button", () => (
     <ListBox isInline>
-      <ListBox.Trigger hasClearButton={false} />
+      <ListBox.Trigger hasClearButton />
+      <ListBox.Option isSelected>Loki</ListBox.Option>
+      {renderOptions()}
+    </ListBox>
+  ))
+  .add("with custom clear button", () => (
+    <ListBox isInline>
+      <ListBox.Trigger hasClearButton clearIcon={<RefreshIcon />} />
       <ListBox.Option isSelected>Loki</ListBox.Option>
       {renderOptions()}
     </ListBox>
