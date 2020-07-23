@@ -16,9 +16,6 @@ const propTypes = {
   /** If true it makes the clear button visible */
   isClearVisible: PropTypes.bool,
 
-  /** If true it makes the reset button visible */
-  isResetVisible: PropTypes.bool,
-
   /** If true it makes the footer disabled */
   isDisabled: PropTypes.bool,
 
@@ -31,9 +28,6 @@ const propTypes = {
   /** Sets what kind the cancel button will be  */
   kindClear: PropTypes.string,
 
-  /** Sets what kind the reset button will be  */
-  kindReset: PropTypes.string,
-
   /** Sets the label for the accept button */
   labelAccept: PropTypes.string,
 
@@ -42,9 +36,6 @@ const propTypes = {
 
   /** Sets the label for the clear button */
   labelClear: PropTypes.string,
-
-  /** Sets the label for the reset button */
-  labelReset: PropTypes.string,
 
   /** Callback to be executed when the accept button is clicked or activated by keyboard. */
   onClickAccept: PropTypes.func,
@@ -55,8 +46,8 @@ const propTypes = {
   /** Callback to be executed when the clear button is clicked or activated by keyboard. */
   onClickClear: PropTypes.func,
 
-  /** Callback to be executed when the reset button is clicked or activated by keyboard. */
-  onClickReset: PropTypes.func,
+  /** Render an extra button beside the clear button */
+  renderExtraButton: PropTypes.func,
 
   /** Determines the size of the footer */
   size: PropTypes.string,
@@ -66,20 +57,17 @@ const defaultProps = {
   isAcceptVisible: true,
   isCancelVisible: true,
   isClearVisible: true,
-  isResetVisible: false,
   isDisabled: false,
   kindAccept: Button.Kinds.PRIMARY,
   kindCancel: Button.Kinds.MINOR,
   kindClear: Button.Kinds.MINOR,
-  kindReset: Button.Kinds.MINOR,
   labelAccept: "Accept",
   labelCancel: "Cancel",
   labelClear: "Clear",
-  labelReset: "Reset",
   onClickAccept: null,
   onClickCancel: null,
   onClickClear: null,
-  onClickReset: null,
+  renderExtraButton: () => {},
   size: ShirtSizes.SMALL,
 };
 
@@ -90,15 +78,13 @@ export function FooterComponent(props, ref) {
     labelCancel,
     labelAccept,
     labelClear,
-    labelReset,
     isCancelVisible,
     isAcceptVisible,
     isClearVisible,
-    isResetVisible,
     kindAccept,
     kindCancel,
     kindClear,
-    kindReset,
+    renderExtraButton,
     size,
   } = props;
 
@@ -138,11 +124,6 @@ export function FooterComponent(props, ref) {
     });
   };
 
-  const handleClickReset = event => {
-    event.stopPropagation();
-    props.onClickReset();
-  };
-
   const { isDisabled } = props;
 
   return (
@@ -171,17 +152,8 @@ export function FooterComponent(props, ref) {
             {labelClear}
           </Button>
         )}
-        {isResetVisible && (
-          <Button
-            data-pka-anchor="footer-reset-button"
-            isDisabled={isDisabled}
-            kind={kindReset}
-            size={size}
-            onClick={handleClickReset}
-          >
-            {labelReset}
-          </Button>
-        )}
+
+        {renderExtraButton()}
       </div>
     </FooterContainerStyled>
   );
