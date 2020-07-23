@@ -197,7 +197,7 @@ export default class TimeInput extends React.Component {
                   ariaLabel={ariaLabel}
                   hasClearButton={false}
                   isDisabled={isDisabled}
-                  onChange={this.handleChange}
+                  onInput={this.handleChange}
                   onFocus={this.handleFocus}
                   onKeyUp={this.handleKeyUp}
                   value={this.state.value}
