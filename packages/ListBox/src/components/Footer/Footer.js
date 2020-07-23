@@ -46,6 +46,9 @@ const propTypes = {
   /** Callback to be executed when the clear button is clicked or activated by keyboard. */
   onClickClear: PropTypes.func,
 
+  /** Render an extra button beside the clear button */
+  renderExtraButton: PropTypes.func,
+
   /** Determines the size of the footer */
   size: PropTypes.string,
 };
@@ -64,6 +67,7 @@ const defaultProps = {
   onClickAccept: null,
   onClickCancel: null,
   onClickClear: null,
+  renderExtraButton: () => {},
   size: ShirtSizes.SMALL,
 };
 
@@ -80,6 +84,7 @@ export function FooterComponent(props, ref) {
     kindAccept,
     kindCancel,
     kindClear,
+    renderExtraButton,
     size,
   } = props;
 
@@ -147,6 +152,8 @@ export function FooterComponent(props, ref) {
             {labelClear}
           </Button>
         )}
+
+        {renderExtraButton()}
       </div>
     </FooterContainerStyled>
   );
