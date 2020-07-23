@@ -153,8 +153,10 @@ zh:
             number: 升序排序 (1 → 9)
             text: 升序排序 (A → Z)
             date: 升序排序 (1 → 9)
+            single_select: 升序排序 (A → Z)
           descending:
             boolean: 降序排序（假 → 真）
             number: 降序排序 (9 → 1)
             text: 降序排序 (Z → A)
             date: 降序排序 (9 → 1)
+            single_select: 降序排序 (Z → A)

@@ -153,8 +153,10 @@ ja:
             number: 昇順 (1 → 9)
             text: 昇順 (A → Z)
             date: 昇順 (1 → 9)
+            single_select: 昇順 (A → Z)
           descending:
             boolean: 降順 (偽 → 真)
             number: 降順 (9 → 1)
             text: 降順 (Z → A)
             date: 降順 (9 → 1)
+            single_select: 降順 (Z → A)
