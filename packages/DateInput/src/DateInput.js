@@ -36,13 +36,7 @@ const propTypes = {
   denyConfirmation: PropTypes.func,
 
   /** Callback when confirm */
-  beforeConfirmation: PropTypes.func,
-
-  /** Callback when input focused */
-  onFocus: PropTypes.func,
-
-  /** Callback when input lose focus */
-  onBlur: PropTypes.func,
+  beforeConfirmation: PropTypes.func
 };
 
 const noop = () => {};
@@ -58,8 +52,6 @@ const defaultProps = {
   onClick: noop,
   denyConfirmation: () => false,
   beforeConfirmation: noop,
-  onFocus: noop,
-  onBlur: noop,
 };
 
 const DateInput = React.forwardRef((props, ref) => {
@@ -76,8 +68,6 @@ const DateInput = React.forwardRef((props, ref) => {
     onClick,
     denyConfirmation,
     beforeConfirmation,
-    onFocus,
-    onBlur,
     ...restProps
   } = props;
 
@@ -158,7 +148,9 @@ const DateInput = React.forwardRef((props, ref) => {
   }
 
   function handleInputBlur(e) {
-    onBlur(e);
+    if ("onBlur" in restProps) {
+      restProps.onBlur(e);
+    }
     window.requestAnimationFrame(() => {
       setFocus(false);
       handleInputConfirm();
@@ -167,7 +159,9 @@ const DateInput = React.forwardRef((props, ref) => {
 
   function handleFocus(e) {
     setFocus(true);
-    onFocus(e);
+    if ("onFocus" in restProps) {
+      restProps.onFocus(e);
+    }
   }
 
   return (
