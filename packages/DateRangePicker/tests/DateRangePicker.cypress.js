@@ -8,7 +8,7 @@ describe("<DateRangePicker />", () => {
     .date(1);
 
   beforeEach(() => {
-    cy.visitStorybook(`${getStoryUrlPrefix("DatePicker")}-backyard-tests--cypress`);
+    cy.visitStorybook(`${getStoryUrlPrefix("DateRangePicker")}-backyard-tests--cypress`);
   });
 
   const selectStartDate = () => {
