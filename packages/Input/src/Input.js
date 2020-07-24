@@ -50,7 +50,6 @@ const propTypes = {
 
   /** The value inside of the input */
   value: PropTypes.string,
-  hasBorderRadius: PropTypes.oneOfType([PropTypes.bool, PropTypes.arrayOf(PropTypes.bool)]),
 };
 
 const defaultProps = {
@@ -69,7 +68,6 @@ const defaultProps = {
   size: ShirtSizes.MEDIUM,
   type: "text",
   value: null,
-  hasBorderRadius: true,
 };
 
 const Input = props => {
@@ -114,7 +112,6 @@ const Input = props => {
     hasError,
     onClear,
     size,
-    hasBorderRadius,
     ...moreProps
   } = props;
 
@@ -127,7 +124,6 @@ const Input = props => {
   const styleProps = {
     size,
     hasClearButton,
-    hasBorderRadius,
   };
 
   if (a11yText) moreProps["aria-label"] = a11yText;
