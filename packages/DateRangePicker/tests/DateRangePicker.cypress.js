@@ -1,4 +1,5 @@
 import moment from "moment";
+import { getStoryUrlPrefix } from "../../../.storybook/storyTree";
 
 describe("<DateRangePicker />", () => {
   const targetStartDate = moment();
@@ -7,7 +8,7 @@ describe("<DateRangePicker />", () => {
     .date(1);
 
   beforeEach(() => {
-    cy.visitStorybook("forms-daterangepicker-backyard-tests--cypress");
+    cy.visitStorybook(`${getStoryUrlPrefix("DatePicker")}-backyard-tests--cypress`);
   });
 
   const selectStartDate = () => {
