@@ -10,10 +10,10 @@ export const Wrapper = styled.div`
 export const DateInput = styled(OriginalDateInput)`
   flex-grow: 1;
   
-  input.form-input__input:first-child {
+  &:first-child input.form-input__input {
     border-radius: ${tokens.border.radius} 0 0 ${tokens.border.radius};
   }
-  input.form-input__input:last-child {
+  &:last-child input.form-input__input {
     border-radius: 0 ${tokens.border.radius} ${tokens.border.radius} 0;
   }
 `;
