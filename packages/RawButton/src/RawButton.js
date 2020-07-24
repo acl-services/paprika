@@ -66,8 +66,8 @@ const RawButton = React.forwardRef((props, ref) => {
     if (!isDisabled) onClick(event);
   };
 
-  function handleBlur() {
-    if (moreProps.onBlur) moreProps.onBlur();
+  function handleBlur(event) {
+    if (moreProps.onBlur) moreProps.onBlur(event);
     setHasForcedFocus(false);
   }
 
