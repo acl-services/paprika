@@ -15,9 +15,6 @@ import { AlignTypes } from "@paprika/helpers/lib/customPropTypes";
 import createPropsCollector from "./createPropsCollector";
 import * as sc from "./DateRangePicker.styles";
 
-const START_INPUT_BORDER_RADIUS = [true, false, false, true];
-const END_INPUT_BORDER_RADIUS = [false, true, true, false];
-
 const propTypes = {
   /** Selected start date in moment object */
   startDate: PropTypes.instanceOf(moment),
@@ -167,7 +164,6 @@ const DateRangePicker = ({ startDate, endDate, onDatesChange, children }) => {
           date={startDate}
           onChange={onChangeStartDate}
           onChangePossibleDate={handlePossibleStartDateChange}
-          hasBorderRadius={START_INPUT_BORDER_RADIUS}
           placeholder={startInputPlaceholder}
           onClick={showPopover}
           beforeConfirmation={handleClosePopover}
@@ -184,7 +180,6 @@ const DateRangePicker = ({ startDate, endDate, onDatesChange, children }) => {
           date={endDate}
           onChange={onChangeEndDate}
           onChangePossibleDate={handlePossibleEndDateChange}
-          hasBorderRadius={END_INPUT_BORDER_RADIUS}
           placeholder={endInputPlaceholder}
           onClick={showPopover}
           beforeConfirmation={handleClosePopover}

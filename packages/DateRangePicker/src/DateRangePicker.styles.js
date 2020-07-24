@@ -9,6 +9,13 @@ export const Wrapper = styled.div`
 
 export const DateInput = styled(OriginalDateInput)`
   flex-grow: 1;
+  
+  input.form-input__input:first-child {
+    border-radius: ${tokens.border.radius} 0 0 ${tokens.border.radius};
+  }
+  input.form-input__input:last-child {
+    border-radius: 0 ${tokens.border.radius} ${tokens.border.radius} 0;
+  }
 `;
 
 export const Separator = styled.div`
