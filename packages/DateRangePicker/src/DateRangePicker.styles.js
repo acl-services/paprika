@@ -9,7 +9,7 @@ export const Wrapper = styled.div`
 
 export const DateInput = styled(OriginalDateInput)`
   flex-grow: 1;
-  
+
   &:first-child input.form-input__input {
     border-radius: ${tokens.border.radius} 0 0 ${tokens.border.radius};
   }
