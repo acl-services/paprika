@@ -30,7 +30,7 @@ const CALENDAR_INTERNAL_PADDING = 9;
 
 export const CalendarsWrapper = styled.div`
   display: flex;
-  margin: 0 calc(-${stylers.spacer(3)} - ${CALENDAR_INTERNAL_PADDING}px);
+  margin: 0 ${-1 * stylers.toInt(stylers.spacer(3)) - CALENDAR_INTERNAL_PADDING}px;
 `;
 
 export const CalendarWrapper = styled.div`
