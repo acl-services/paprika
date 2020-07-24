@@ -1,10 +1,13 @@
 import React from "react";
-import nanoid from "nanoid";
 import "@paprika/helpers/lib/dom/closest";
 
 const getDataCell = event => {
-  const $cell = event.target.closest("[data-cell]");
-  return $cell && $cell.dataset.cell;
+  const $cell = event.target.closest("[data-pka-cell-key]");
+  return $cell && $cell.dataset.pkaCellKey;
+};
+
+export const getGridRefId = ({ gridId, rowIndex, columnIndex }) => {
+  return `${gridId}.${columnIndex}.${rowIndex}`;
 };
 
 function toInt(num) {
@@ -24,8 +27,8 @@ export default function useGridEventHandler({
   rowCount,
   scrollBarWidth,
   stickyColumnsIndexes,
+  gridId,
 }) {
-  const [gridId] = React.useState(() => `PKA${nanoid()}`);
   const refContainerBoundClientRect = React.useRef(null);
   const refScroll = React.useRef(null);
   const refPrevCell = React.useRef(null);
@@ -38,7 +41,7 @@ export default function useGridEventHandler({
     if (!refContainer.current && cell !== null) return;
 
     return refContainer.current.querySelector(
-      `[data-cell='${gridId}.${cell.current.columnIndex}.${cell.current.rowIndex}']`
+      `[data-pka-cell-key='${gridId}.${cell.current.columnIndex}.${cell.current.rowIndex}']`
     );
   }, [gridId, refContainer]);
 
@@ -46,22 +49,29 @@ export default function useGridEventHandler({
     refPrevCell.current = $getCell();
   }, [$getCell]);
 
-  const setHighlight = React.useCallback(() => {
-    if (cell && cell.current && refGrid && refGrid.current) {
-      const $cell = $getCell();
+  const setHighlight = React.useCallback(
+    ({ rowIndex, columnIndex }) => {
+      if (cell && cell.current && refGrid && refGrid.current) {
+        const $cell = $getCell();
 
-      if ($cell) {
-        const classNameStr = "grid--is-active";
+        if ($cell) {
+          const classNameStr = "grid--is-active";
 
-        const $withClassName = refContainer.current.querySelector(`.${classNameStr}`);
-        if ($withClassName) {
-          $withClassName.classList.toggle(classNameStr);
+          const nextHighlight = refContainer.current.querySelector(`.${classNameStr}`);
+          if (nextHighlight) {
+            nextHighlight.classList.toggle(classNameStr);
+          }
+
+          $cell.classList.toggle(classNameStr);
+
+          const event = document.createEvent("CustomEvent");
+          event.initCustomEvent("dataGridCellHighlighted", false, false, { rowIndex, columnIndex });
+          document.dispatchEvent(event);
         }
-
-        $cell.classList.toggle(classNameStr);
       }
-    }
-  }, [$getCell, refContainer, refGrid]);
+    },
+    [$getCell, refContainer, refGrid]
+  );
 
   function focus($cell) {
     const $prev = refPrevCell.current;
@@ -71,14 +81,14 @@ export default function useGridEventHandler({
       $prev.querySelector("[role=gridcell]").tabIndex = "-1";
     }
 
-    if ($cell.hasAttribute("data-cell")) {
+    if ($cell.hasAttribute("data-pka-cell-key")) {
       const $a11Txt = $cell.querySelector("[role=gridcell]");
       $a11Txt.tabIndex = 0;
       $a11Txt.focus();
       return;
     }
 
-    const $gridCell = $cell.closest("[data-cell]");
+    const $gridCell = $cell.closest("[data-pka-cell-key]");
     const $a11Txt = $gridCell.querySelector("[role=gridcell]");
     $a11Txt.tabIndex = 0;
     $a11Txt.focus();
@@ -242,8 +252,8 @@ export default function useGridEventHandler({
         $setRefs(columnIndex);
         setRefPrevCell();
         cell.current = toCellState(columnIndex, nextRowIndex);
-        setHighlight();
         scroll(columnIndex, nextRowIndex);
+        setHighlight({ columnIndex, rowIndex: nextRowIndex });
       }
     },
     ArrowRight: () => {
@@ -254,9 +264,9 @@ export default function useGridEventHandler({
       if (nextColumnIndex < columnCount) {
         setRefPrevCell();
         cell.current = toCellState(nextColumnIndex, rowIndex);
-        setHighlight();
         $setRefs(columnIndex);
         scroll(nextColumnIndex, 0);
+        setHighlight({ columnIndex: nextColumnIndex, rowIndex });
         if (nextColumnIndex === columnCount - 1) {
           scrollToTheRightEdge();
         }
@@ -276,7 +286,7 @@ export default function useGridEventHandler({
         setRefPrevCell();
         $setRefs(columnIndex);
         cell.current = toCellState(columnIndex, nextRowIndex);
-        setHighlight();
+        setHighlight({ columnIndex, rowIndex: nextRowIndex });
         scroll(columnIndex, nextRowIndex);
       }
     },
@@ -287,7 +297,7 @@ export default function useGridEventHandler({
       if (nextColumnIndex >= 0) {
         setRefPrevCell();
         cell.current = toCellState(nextColumnIndex, rowIndex);
-        setHighlight();
+        setHighlight({ columnIndex: nextColumnIndex, rowIndex });
         $setRefs(columnIndex);
         scroll(nextColumnIndex, 0);
         if (rowIndex + 1 === rowCount) {
@@ -395,14 +405,17 @@ export default function useGridEventHandler({
   const handleClick = React.useCallback(
     ({ data, ColumnDefinitions }) => event => {
       const dataCell = getDataCell(event);
-      if (!dataCell) return;
+      if (!dataCell) {
+        console.warn("dataCell value not found on getDataCell(event)", event);
+        return;
+      }
 
       const [, columnIndex, rowIndex] = dataCell.split(".");
 
       cell.current = toCellState(columnIndex, rowIndex);
-      setHighlight();
+      setHighlight({ columnIndex, rowIndex });
 
-      const $cell = event.target.hasAttribute("data-cell") ? event.target : event.target.parentElement;
+      const $cell = event.target.hasAttribute("data-pka-cell-key") ? event.target : event.target.parentElement;
       focus($cell);
 
       const column = ColumnDefinitions[columnIndex].props;
@@ -446,7 +459,7 @@ export default function useGridEventHandler({
 
         if (!$cell) return;
         setRefPrevCell();
-        setHighlight();
+        setHighlight({ columnIndex: cell.current.columnIndex, rowIndex: cell.current.rowIndex });
         focus($cell);
       });
     }
@@ -454,3 +467,5 @@ export default function useGridEventHandler({
 
   return { cell, prevCell, handleKeyDown, handleKeyUp, gridId, restoreHighlightFocus, handleClick };
 }
+
+useGridEventHandler.displayName = "useGridEventHandler";

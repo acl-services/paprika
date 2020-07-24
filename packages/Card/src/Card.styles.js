@@ -9,26 +9,29 @@ const commonStyles = styled.div`
   border: ${tokens.border.color};
   border-radius: ${tokens.card.borderRadius};
   box-shadow: ${tokens.shadow};
-  display: flex;
-  flex-direction: column;
-  overflow: hidden;
-  position: relative;
+  box-sizing: border-box;
+  display: inline-block;
+  text-decoration: none;
 `;
 
 // Sizes
 
 const sizeStyles = {
   [ShirtSizes.SMALL]: `
-    width: 300px;
-    height: 130px;
+    width: 240px;
+    height: 117px;
   `,
   [ShirtSizes.MEDIUM]: `
-  width: 300px;
-  height: 320px;
+  width: 240px;
+  height: 284px;
   `,
   [ShirtSizes.LARGE]: `
   width: 300px;
   height: 500px;
+  `,
+  auto: `
+  height: auto;
+  width: auto;
   `,
 };
 
@@ -37,11 +40,6 @@ const sizeStyles = {
 const fullWidthStyles = `
   display: flex;
   width: 100%;
-`;
-
-const autoHeightStyles = `
-  display: flex;
-  height: auto;
 `;
 
 // States
@@ -56,12 +54,10 @@ export const cardStyles = styled(commonStyles)`
     const size = sizeStyles[props.size];
     const active = props.isActive && activeStyles;
     const fullWidth = props.isFullWidth && fullWidthStyles;
-    const autoHeight = props.isAutoHeight && autoHeightStyles;
 
     return `
       ${size};
       ${active};
-      ${fullWidth};
-      ${autoHeight};`;
+      ${fullWidth};`;
   }}
 `;

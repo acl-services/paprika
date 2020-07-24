@@ -1,6 +1,6 @@
 import Tokens from "@paprika/tokens";
 
-export default function getAvatarColors(text) {
+export function getAvatarColors(text) {
   const COLORS = [
     { background: Tokens.color.chartColor01, font: Tokens.color.white },
     { background: Tokens.color.chartColor02, font: Tokens.color.white },

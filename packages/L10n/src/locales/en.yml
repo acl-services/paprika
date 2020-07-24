@@ -10,8 +10,10 @@ en:
       drop_files: Drop files to upload
       drop_files_here_or: Drop files to upload here or
       choose_from_computer: choose from your computer
+      choose_from_computer_a11y: Choose files from your computer
       cancel_upload: Cancel upload
       restart_upload: Restart upload
+      file_list: List of files
       errors:
         size: File must be smaller than {{maxFileSize}}
         type: "File must be one of the following types: {{- supportedTypes}}"
@@ -151,8 +153,10 @@ en:
             number: Sort ascending (1 → 9)
             text: Sort ascending (A → Z)
             date: Sort ascending (1 → 9)
+            single_select: Sort ascending (A → Z)
           descending:
             boolean: Sort descending (false → true)
             number: Sort descending (9 → 1)
             text: Sort descending (Z → A)
             date: Sort descending (9 → 1)
+            single_select: Sort descending (Z → A)

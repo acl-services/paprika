@@ -1,5 +1,7 @@
+import { getStoryUrlPrefix } from "../../../../.storybook/storyTree";
+
 beforeEach(() => {
-  cy.visitStorybook("data-table-actionbar--showcase");
+  cy.visitStorybook(`${getStoryUrlPrefix("ActionBar")}--showcase`);
 });
 
 describe("ActionBar", () => {
@@ -216,7 +218,7 @@ describe("ActionBar Arrange Columns", () => {
   it("should render all columns by clicking 'Show all'", () => {
     cy.get("table")
       .get("th")
-      .should("have.length", 8)
+      .should("have.length", 9)
       .getByText("Arrange columns")
       .click()
       .getByText("Hide all")
@@ -226,14 +228,14 @@ describe("ActionBar Arrange Columns", () => {
       .getByText("Show all")
       .click()
       .get("th")
-      .should("have.length", 8);
+      .should("have.length", 9);
   });
 
   it("should filter columns while typing in an input", () => {
     cy.getByText("Arrange columns")
       .click()
       .getByTestId("sortable.item")
-      .should("have.length", 7)
+      .should("have.length", 8)
       .get("input")
       .type("Goals")
       .getByTestId("sortable.item")

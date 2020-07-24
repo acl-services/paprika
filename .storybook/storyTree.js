@@ -1,96 +1,104 @@
 // prettier-ignore
 const storyTree = [
   {
-    category: "Basic",
+    category: "Display",
     components: [
-      "Spinner",
-      "Heading",
-      "Pill",
+      "Avatar",
       "Counter",
+      "Heading",
       "Icon",
-      "Avatar"
+      "Pill",
     ],
   },
   {
-    category: "Content",
-    components: [
-      "Card",
-      "Toast",
-      "Tabs",
-      "Collapsible",
-      "CollapsibleText",
-      "CollapsibleChecklists",
-      "ProgressAccordion",
-      "Sortable",
-    ],
-  },
-  {
-    category: "Layers",
-    components: [
-      "Popover",
-      "SidePanel",
-      "Modal",
-      "Takeover",
-    ],
-  },
-  {
-    category: "Commands",
-    components: [
-      "RawButton",
-      "Button",
-      "DialogActions",
-      "ExternalLink",
-      "DropdownMenu",
-      "Confirmation",
-      "Switch",
-      "ButtonGroup",
-    ],
-  },
-  {
-    category: "Forms",
-    components: [
-      "FormElement",
-      "Input",
-      "Select",
-      "Textarea",
-      "Checkbox",
-      "Radio",
-      "Uploader",
-      "ListBox",
-      "ListBoxBrowser",
-      "DateInput",
-      "DatePicker",
-      "DateRangePicker",
-      "Calendar",
-    ],
-  },
-  {
-    category: "Data Table",
+    category: "Table",
     components: [
       "ActionBar",
       "DataGrid",
     ],
   },
   {
+    category: "Buttons",
+    components: [
+      "Button",
+      "ButtonGroup",
+      "DropdownMenu",
+      "DialogActions",
+      "ExternalLink",
+      "RawButton",
+    ],
+  },
+  {
+    category: "Forms",
+    components: [
+      "Calendar",
+      "Checkbox",
+      "DateInput",
+      "DatePicker",
+      "DateRangePicker",
+      "FormElement",
+      "Input",
+      "ListBox",
+      "ListBoxBrowser",
+      "Radio",
+      "Select",
+      "Sortable",
+      "Switch",
+      "Textarea",
+      "Uploader",
+    ],
+  },
+
+  {
+    category: "Messaging",
+    components: [
+      "Confirmation",
+      "Popover",
+      "Modal",
+      "SidePanel",
+      "Spinner",
+      "Takeover",
+      "Toast",
+    ],
+  },
+  {
+    category: "Navigation",
+    components: [
+      "Card",
+      "Collapsible",
+      "CollapsibleText",
+      "CollapsibleChecklists",
+      "ProgressAccordion",
+      "Tabs",
+    ],
+  },
+
+  {
     category: "Utilities",
     components: [
       "L10n",
+      "ResizeDetector",
       "Guard",
       "Stylers",
     ],
   },
 ];
 
+function getCategory(component) {
+  return storyTree.find(catList => catList.components.includes(component)).category;
+}
+
 function getStoryName(component) {
   return `${getCategory(component)} | ${component}`;
 }
 
-function getCategory(component) {
-  return storyTree.find(catList => catList.components.includes(component)).category;
+function getStoryUrlPrefix(component) {
+  return `${getCategory(component).toLowerCase()}-${component.toLowerCase()}`;
 }
 
 module.exports = {
   getCategory,
   getStoryName,
+  getStoryUrlPrefix,
   storyTree,
 };

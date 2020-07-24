@@ -9,6 +9,7 @@ import ShowcaseStory from "./examples/Showcase";
 import SizesStory from "./examples/Sizes";
 import WithContentStory from "./examples/WithContent";
 import WithIconStory from "./examples/WithIcon";
+import WithCustomClearIconStory from "./examples/WithCustomClearIconStory";
 import WithDisabledReadOnlyStory from "./examples/WithDisabledReadOnly";
 import TypesStory from "./examples/Types";
 import WithRef from "./examples/WithRef";
@@ -25,6 +26,7 @@ storiesOf(`${storyName}/Examples`, module)
   .add("Sizes", () => <SizesStory />)
   .add("With content", () => <WithContentStory />)
   .add("With decorative icon", () => <WithIconStory />)
+  .add("With custom clear icon", () => <WithCustomClearIconStory />)
   .add("With isDisabled / isReadOnly", () => <WithDisabledReadOnlyStory />)
   .add("Types", () => <TypesStory />)
   .add("With Ref", () => <WithRef />)

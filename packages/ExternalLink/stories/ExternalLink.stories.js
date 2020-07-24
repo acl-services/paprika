@@ -10,4 +10,4 @@ storiesOf(storyName, module)
   .addDecorator(withKnobs)
   .add("Showcase", Showcase);
 
-storiesOf(`${storyName}/Examples`, module).add("Layout Examples", LayoutExamples);
+storiesOf(`${storyName}/Examples`, module).add("Screener Examples", LayoutExamples);

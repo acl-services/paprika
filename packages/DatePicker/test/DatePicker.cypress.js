@@ -1,4 +1,5 @@
 import moment from "moment";
+import { getStoryUrlPrefix } from "../../../.storybook/storyTree";
 
 describe("<DatePicker />", () => {
   const today = moment();
@@ -7,7 +8,7 @@ describe("<DatePicker />", () => {
     .date(1);
 
   beforeEach(() => {
-    cy.visitStorybook("forms-datepicker-backyard-tests--cypress");
+    cy.visitStorybook(`${getStoryUrlPrefix("DatePicker")}-backyard-tests--cypress`);
   });
 
   const selectADateByClick = () => {
@@ -88,5 +89,15 @@ describe("<DatePicker />", () => {
     cy.getByTestId("datepicker.input")
       .parent()
       .should("have.class", "form-input--has-error");
+  });
+
+  it("should handle time change", () => {
+    cy.clock();
+    cy.visitStorybook(`${getStoryUrlPrefix("DatePicker")}-backyard-tests--cypress-date-picker-with-time`);
+    cy.getByTestId("datepicker.input").type("2020-07-17 11:00:00");
+
+    cy.get("body").click();
+    cy.tick(500);
+    cy.getByTestId("datepicker.input").should("have.value", "2020-07-17 11:00:00 am");
   });
 });

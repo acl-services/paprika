@@ -9,7 +9,7 @@ const externalLinkProps = () => ({
   ariaText: text("ariaText", ""),
   hasNoUnderline: boolean("hasNoUnderline", false),
   href: text("href", "http://www.wegalvanize.com"),
-  width: number("Inline width px value", "120"),
+  maxWidth: number("Inline maxWidth", "120"),
 });
 
 const ExampleStory = props => (
@@ -19,7 +19,7 @@ const ExampleStory = props => (
     </Heading>
     <Tagline>Use the knobs to tinker with the props.</Tagline>
     <Rule />
-    <ExternalLink {...props} style={{ width: `${props.width}px` }}>
+    <ExternalLink {...props} style={{ maxWidth: `${props.maxWidth}px` }}>
       {props.children}
     </ExternalLink>
   </Story>

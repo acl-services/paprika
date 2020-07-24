@@ -1,4 +1,5 @@
 import React from "react";
+import ReactDOM from "react-dom";
 import PropTypes from "prop-types";
 import { nanoid } from "nanoid";
 import { Prism as SyntaxHighlighter } from "react-syntax-highlighter";
@@ -12,26 +13,23 @@ import * as sc from "./CodeViewer.styles";
 const propTypes = {
   children: PropTypes.node,
   defaultIsShown: PropTypes.bool,
+  getDisplayElement: PropTypes.func,
 };
 
 const defaultProps = {
   children: null,
   defaultIsShown: false,
+  getDisplayElement: () => {},
 };
 
-const CodeViewer = props => {
-  const { children, defaultIsShown } = props;
+const SourceCode = props => {
+  const { children, isShown, portalElement, onToggle } = props;
 
-  const [isShown, setIsShown] = React.useState(defaultIsShown);
-  const [copyLabel, setCopyLabel] = React.useState("Copy");
   const viewerId = React.useRef(nanoid()).current;
-
-  const handleToggle = () => {
-    setIsShown(prevIsShown => !prevIsShown);
-  };
+  const [copyLabel, setCopyLabel] = React.useState("Copy");
 
   const handleCopy = () => {
-    const codeSelector = `#code-viewer-${viewerId} .paprika-code-viewer pre code:last-child`;
+    const codeSelector = `#code-viewer-${viewerId} pre code:last-child`;
     copyToClipboard(codeSelector);
     setCopyLabel(<CopiedIcon />);
     setTimeout(() => {
@@ -39,31 +37,63 @@ const CodeViewer = props => {
     }, 1000);
   };
 
-  return (
-    <div id={`code-viewer-${viewerId}`}>
-      {children}
-      {isShown ? (
-        <sc.CodeBox className="paprika-code-viewer">
-          <SyntaxHighlighter language="javascript" style={syntaxTheme} showLineNumbers>
-            {getJSX(children)}
-          </SyntaxHighlighter>
-          <sc.Buttons>
-            <sc.CopyButton onClick={handleCopy} size="small" kind="flat">
-              {copyLabel}
-            </sc.CopyButton>
-            <Button.Icon onClick={handleToggle} size="small" kind="flat">
-              <HideIcon />
-            </Button.Icon>
-          </sc.Buttons>
-        </sc.CodeBox>
-      ) : (
-        <div>
-          <sc.ShowButton onClick={handleToggle} size="small" kind="link">
-            Show Code
-          </sc.ShowButton>
-        </div>
-      )}
+  const renderedSourceCode = isShown ? (
+    <sc.CodeBox className="paprika-code-viewer" id={`code-viewer-${viewerId}`}>
+      <SyntaxHighlighter language="javascript" style={syntaxTheme} showLineNumbers>
+        {getJSX(children)}
+      </SyntaxHighlighter>
+      <sc.Buttons>
+        <sc.CopyButton onClick={handleCopy} size="small" kind="flat">
+          {copyLabel}
+        </sc.CopyButton>
+        <Button.Icon onClick={onToggle} size="small" kind="flat">
+          <HideIcon />
+        </Button.Icon>
+      </sc.Buttons>
+    </sc.CodeBox>
+  ) : (
+    <div>
+      <sc.ShowButton onClick={onToggle} size="small" kind="link">
+        Show Code
+      </sc.ShowButton>
     </div>
+  );
+
+  if (Boolean(portalElement)) {
+    return ReactDOM.createPortal(renderedSourceCode, portalElement);
+  }
+  return renderedSourceCode;
+};
+
+const CodeViewer = props => {
+  const { children, defaultIsShown, getDisplayElement } = props;
+
+  const [isShown, setIsShown] = React.useState(defaultIsShown);
+  const [portalElement, setPortalElement] = React.useState();
+
+  React.useLayoutEffect(() => {
+    const portalElement = getDisplayElement();
+    if (Boolean(portalElement)) {
+      setPortalElement(portalElement);
+    }
+  }, []);
+
+  const handleToggle = () => {
+    setIsShown(prevIsShown => !prevIsShown);
+  };
+
+  const sourceCodeProps = {
+    children,
+    isShown,
+    onToggle: handleToggle,
+    portalElement,
+  };
+
+  return (
+    <React.Fragment>
+      {children}
+      <SourceCode {...sourceCodeProps} />
+    </React.Fragment>
   );
 };
 

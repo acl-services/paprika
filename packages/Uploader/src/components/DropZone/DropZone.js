@@ -2,6 +2,7 @@ import React from "react";
 import tokens from "@paprika/tokens";
 import stylers from "@paprika/stylers";
 import useI18n from "@paprika/l10n/lib/useI18n";
+import Button from "@paprika/button/lib/Button";
 import UploadIcon from "@paprika/icon/lib/Upload";
 import { UploaderContext } from "../../Uploader";
 import * as sc from "./DropZone.styles";
@@ -11,24 +12,24 @@ export default function DropZone() {
   const { refInput, FileInput, isDraggingOver } = React.useContext(UploaderContext);
   const uploadIconColor = isDraggingOver ? tokens.color.purpleDarken10 : tokens.color.blackLighten50;
 
-  /* eslint-disable jsx-a11y/anchor-is-valid */
   const body = isDraggingOver ? (
     I18n.t("uploader.drop_files")
   ) : (
     <React.Fragment>
       {I18n.t("uploader.drop_files_here_or")}&nbsp;
-      <a
-        href="#"
-        onClick={e => {
-          e.preventDefault();
+      <Button
+        kind={Button.Kinds.LINK}
+        onClick={() => {
           refInput.current.click();
         }}
+        isSemantic={false}
+        tabIndex={-1}
+        aria-hidden
       >
         {I18n.t("uploader.choose_from_computer")}
-      </a>
+      </Button>
     </React.Fragment>
   );
-  /* eslint-enable jsx-a11y/anchor-is-valid */
 
   return (
     <FileInput>
