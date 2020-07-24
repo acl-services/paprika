@@ -153,8 +153,10 @@ es:
             number: Orden ascendente (1 → 9)
             text: Orden ascendente (A → Z)
             date: Orden ascendente (1 → 9)
+            single_select: Orden ascendente (A → Z)
           descending:
             boolean: Orden descendente (falso → verdadero)
             number: Orden descendente (9 → 1)
             text: Orden descendente (Z → A)
             date: Orden descendente (9 → 1)
+            single_select: Orden descendente (Z → A)
