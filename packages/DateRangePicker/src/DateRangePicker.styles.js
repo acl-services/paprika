@@ -8,7 +8,7 @@ export const Wrapper = styled.div`
 `;
 
 export const DateInput = styled(OriginalDateInput)`
-  flex: 1 1 auto;
+  flex-grow: 1;
 `;
 
 export const Separator = styled.div`
