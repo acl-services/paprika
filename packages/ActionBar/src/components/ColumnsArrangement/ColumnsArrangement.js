@@ -17,6 +17,11 @@ const propTypes = {
   onChangeVisibility: PropTypes.func.isRequired,
   onHideAll: PropTypes.func.isRequired,
   onShowAll: PropTypes.func.isRequired,
+  hasButtonTrigger: PropTypes.bool,
+};
+
+const defaultProps = {
+  hasButtonTrigger: false,
 };
 
 function getLabelText(numberOfHiddenColumn, I18n) {
@@ -31,7 +36,15 @@ function getLabelText(numberOfHiddenColumn, I18n) {
 }
 
 export default function ColumnsArrangement(props) {
-  const { children, onChangeOrder, onChangeVisibility, orderedColumnIds, onHideAll, onShowAll } = props;
+  const {
+    children,
+    onChangeOrder,
+    onChangeVisibility,
+    orderedColumnIds,
+    onHideAll,
+    onShowAll,
+    hasButtonTrigger,
+  } = props;
   const I18n = useI18n();
   const [searchTerm, setSearchTerm] = React.useState("");
   const { "ColumnsArrangement.ColumnDefinition": extractedColumnDefinitions } = extractChildren(children, [
@@ -49,6 +62,10 @@ export default function ColumnsArrangement(props) {
   }, {});
 
   const hiddenColumns = Object.keys(columns).filter(columnId => columns[columnId].isHidden);
+
+  const hiddenColumnLabel = getLabelText(hiddenColumns.length, I18n);
+
+  const hasColumnsHidden = hiddenColumns.length > 0;
 
   const filteredColumnIds = searchTerm.length
     ? orderedColumnIds.filter(id => columns[id].label.match(new RegExp(searchTerm, "i")))
@@ -72,14 +89,20 @@ export default function ColumnsArrangement(props) {
   return (
     <Popover align="bottom" edge="left" minWidth={230}>
       <Popover.Trigger>
-        {(handler, attributes, isOpen) => (
-          <sc.Trigger {...attributes} onClick={handler} hasColumnsHidden={hiddenColumns.length > 0} isOpen={isOpen}>
-            <sc.Icon />
-            {getLabelText(hiddenColumns.length, I18n)}
-          </sc.Trigger>
-        )}
+        {(handler, attributes, isOpen) =>
+          hasButtonTrigger === true ? (
+            <Button {...attributes} onClick={handler} hasColumnsHidden={hasColumnsHidden} isOpen={isOpen}>
+              <sc.Icon />
+              {hiddenColumnLabel}
+            </Button>
+          ) : (
+            <sc.Trigger {...attributes} onClick={handler} hasColumnsHidden={hasColumnsHidden} isOpen={isOpen}>
+              <sc.Icon />
+              {hiddenColumnLabel}
+            </sc.Trigger>
+          )
+        }
       </Popover.Trigger>
-
       <Popover.Content>
         <Popover.Card>
           <Input
@@ -124,5 +147,6 @@ export default function ColumnsArrangement(props) {
 }
 
 ColumnsArrangement.propTypes = propTypes;
+ColumnsArrangement.defaultProps = defaultProps;
 ColumnsArrangement.displayName = "ActionBar.ColumnsArrangement";
 ColumnsArrangement.ColumnDefinition = ColumnDefinition;
