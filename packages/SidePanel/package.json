@@ -1,6 +1,6 @@
 {
   "name": "@paprika/sidepanel",
-  "version": "0.4.7",
+  "version": "0.4.8",
   "description": "The SidePanel component provides a view that slides in from one side so the user can maintain context of their main task while they work on a sub task.",
   "author": "@paprika",
   "main": "lib/index.js",
@@ -15,11 +15,11 @@
   },
   "dependencies": {
     "@babel/runtime-corejs2": "^7.3.1",
-    "@paprika/button": "^0.3.2",
+    "@paprika/button": "^0.3.3",
     "@paprika/heading": "^0.4.1",
     "@paprika/helpers": "^0.2.13",
     "@paprika/icon": "^0.3.3",
-    "@paprika/raw-button": "^0.2.14",
+    "@paprika/raw-button": "^0.2.15",
     "@paprika/stylers": "^0.2.8",
     "@paprika/tokens": "^0.1.14",
     "lodash.debounce": "^4.0.8",
