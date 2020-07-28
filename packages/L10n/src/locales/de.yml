@@ -153,8 +153,10 @@ de:
             number: Aufsteigend sortieren (1 → 9)
             text: Aufsteigend sortieren (A → Z)
             date: Aufsteigend sortieren (1 → 9)
+            single_select: Aufsteigend sortieren (A → Z)
           descending:
             boolean: Absteigend sortieren (falsch → wahr)
             number: Absteigend sortieren (9 → 1)
             text: Absteigend sortieren (Z → A)
             date: Absteigend sortieren (9 → 1)
+            single_select: Absteigend sortieren (Z → A)
