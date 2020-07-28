@@ -1,6 +1,9 @@
 import React from "react";
-import Heading from "@paprika/heading";
 import { Story } from "storybook/assets/styles/common.styles";
+import tokens from "@paprika/tokens";
+import Heading from "@paprika/heading";
+import Button from "@paprika/button/lib/Button";
+import HideIcon from "@paprika/icon/lib/Hide";
 import ActionBar, { ColumnsArrangement, useColumnsArrangement } from "../../src";
 import data from "../ShowcaseApp/data";
 
@@ -60,8 +63,19 @@ export default function ButtonTrigger() {
       <Heading level={2}>Columns Arrangement - Button Trigger</Heading>
 
       <ActionBar>
-        <ColumnsArrangement orderedColumnIds={orderedColumnIds} {...handlers} hasButtonTrigger>
-          <ColumnsArrangement.ColumnTrigger />
+        <ColumnsArrangement
+          orderedColumnIds={orderedColumnIds}
+          {...handlers}
+          renderTriggerButton={(handler, attributes, isOpen, hiddenColumnCount) => {
+            const label = hiddenColumnCount > 0 ? `${hiddenColumnCount} Hidden` : "Arrange";
+            return (
+              <Button {...attributes} onClick={handler} isOpen={isOpen}>
+                <HideIcon style={{ marginRight: tokens.spaceSm }} />
+                {label}
+              </Button>
+            );
+          }}
+        >
           {columnsSettings.map(column => (
             <ColumnsArrangement.ColumnDefinition
               id={column.id}
