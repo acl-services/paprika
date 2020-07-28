@@ -116,7 +116,7 @@ export default function App() {
           })}
         </Sort>
 
-        <ColumnsArrangement orderedColumnIds={orderedColumnIds} {...handlers}>
+        <ColumnsArrangement orderedColumnIds={orderedColumnIds} {...handlers} renderTriggerButton>
           {columnsSettings.map(column => (
             <ColumnsArrangement.ColumnDefinition
               id={column.id}
