@@ -21,7 +21,7 @@ const propTypes = {
 };
 
 const defaultProps = {
-  renderTriggerButton: () => {},
+  renderTriggerButton: null,
 };
 
 function getLabelText(numberOfHiddenColumn, I18n) {
