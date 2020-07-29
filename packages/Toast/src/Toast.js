@@ -69,7 +69,7 @@ const icons = {
   [Kinds.LOCKED]: LockIcon,
 };
 
-function Toast(props) {
+const Toast = React.forwardRef((props, ref) => {
   const {
     autoCloseDelay,
     canAutoClose,
@@ -83,6 +83,17 @@ function Toast(props) {
     zIndex,
     ...moreProps
   } = props;
+
+  const toastRef = React.useRef(null);
+
+  React.useImperativeHandle(ref, () => ({
+    focus: () => {
+      if (toastRef.current) {
+        if (!moreProps.tabIndex) toastRef.current.setAttribute("tabindex", "-1");
+        toastRef.current.focus();
+      }
+    },
+  }));
 
   const [isToastOpen, setIsToastOpen] = React.useState(isOpen === undefined ? true : isOpen);
   const [shouldRender, setShouldRender] = React.useState(!isPolite);
@@ -129,7 +140,9 @@ function Toast(props) {
       <>
         {!isVisuallyHidden && <IconStyled as={icons[kind]} kind={kind} />}
         <div css={contentStyles}>{children}</div>
-        {hasCloseButton && !isVisuallyHidden && <CloseButtonStyled onClick={handleClose} size={ShirtSizes.SMALL} />}
+        {hasCloseButton && !isVisuallyHidden && (
+          <CloseButtonStyled isSemantic={false} onClick={handleClose} size={ShirtSizes.SMALL} />
+        )}
       </>
     );
   }
@@ -144,6 +157,7 @@ function Toast(props) {
         role={ariaRole}
         kind={kind}
         zIndex={zIndex || defaultZIndex}
+        ref={toastRef}
         {...moreProps}
       >
         {renderContent()}
@@ -187,7 +201,7 @@ function Toast(props) {
   }
 
   return renderToast();
-}
+});
 
 Toast.displayName = "Toast";
 Toast.propTypes = propTypes;
