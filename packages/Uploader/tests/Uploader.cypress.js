@@ -25,7 +25,7 @@ describe("Uploader", () => {
     cy.getByText("File must be smaller than 1B").should("be.visible");
   });
 
-  it("Should display differant types of status", () => {
+  it("Should display different types of status", () => {
     cy.visitStorybook("forms-uploader-examples--file-statuses");
 
     cy.getByText("Idle").should("be.visible");
