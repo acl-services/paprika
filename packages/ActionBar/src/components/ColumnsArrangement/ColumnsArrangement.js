@@ -17,6 +17,11 @@ const propTypes = {
   onChangeVisibility: PropTypes.func.isRequired,
   onHideAll: PropTypes.func.isRequired,
   onShowAll: PropTypes.func.isRequired,
+  renderTriggerButton: PropTypes.func,
+};
+
+const defaultProps = {
+  renderTriggerButton: null,
 };
 
 function getLabelText(numberOfHiddenColumn, I18n) {
@@ -31,7 +36,15 @@ function getLabelText(numberOfHiddenColumn, I18n) {
 }
 
 export default function ColumnsArrangement(props) {
-  const { children, onChangeOrder, onChangeVisibility, orderedColumnIds, onHideAll, onShowAll } = props;
+  const {
+    children,
+    onChangeOrder,
+    onChangeVisibility,
+    orderedColumnIds,
+    onHideAll,
+    onShowAll,
+    renderTriggerButton,
+  } = props;
   const I18n = useI18n();
   const [searchTerm, setSearchTerm] = React.useState("");
   const { "ColumnsArrangement.ColumnDefinition": extractedColumnDefinitions } = extractChildren(children, [
@@ -72,14 +85,21 @@ export default function ColumnsArrangement(props) {
   return (
     <Popover align="bottom" edge="left" minWidth={230}>
       <Popover.Trigger>
-        {(handler, attributes, isOpen) => (
-          <sc.Trigger {...attributes} onClick={handler} hasColumnsHidden={hiddenColumns.length > 0} isOpen={isOpen}>
-            <sc.Icon />
-            {getLabelText(hiddenColumns.length, I18n)}
-          </sc.Trigger>
+        {typeof renderTriggerButton === "function" ? (
+          <Popover.Trigger>
+            {(handler, attributes, isOpen) => renderTriggerButton(handler, attributes, isOpen, hiddenColumns.length)}
+          </Popover.Trigger>
+        ) : (
+          <Popover.Trigger>
+            {(handler, attributes, isOpen) => (
+              <sc.Trigger {...attributes} onClick={handler} hasColumnsHidden={hiddenColumns.length > 0} isOpen={isOpen}>
+                <sc.Icon />
+                {getLabelText(hiddenColumns.length, I18n)}
+              </sc.Trigger>
+            )}
+          </Popover.Trigger>
         )}
       </Popover.Trigger>
-
       <Popover.Content>
         <Popover.Card>
           <Input
@@ -124,5 +144,6 @@ export default function ColumnsArrangement(props) {
 }
 
 ColumnsArrangement.propTypes = propTypes;
+ColumnsArrangement.defaultProps = defaultProps;
 ColumnsArrangement.displayName = "ActionBar.ColumnsArrangement";
 ColumnsArrangement.ColumnDefinition = ColumnDefinition;

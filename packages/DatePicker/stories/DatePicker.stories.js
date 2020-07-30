@@ -3,6 +3,7 @@ import moment from "moment";
 import { boolean, select, text, withKnobs } from "@storybook/addon-knobs";
 import { storiesOf } from "@storybook/react";
 import { getStoryName } from "storybook/storyTree";
+import RefreshIcon from "@paprika/icon/lib/Refresh";
 import Example from "./DatePickerExample";
 import DatePicker from "../src/DatePicker";
 
@@ -37,12 +38,23 @@ storiesOf(`${storyName}/Examples`, module)
   .add("with initialDate", () => <Example initialDate={moment("2019-01-01")} />)
   .add("with DatePicker.Input", () => (
     <Example locale="en">
-      <DatePicker.Input className="custom-class-name" placeholder="custom placeholder" />
+      <DatePicker.Input
+        className="custom-class-name"
+        placeholder="custom placeholder"
+        hasClearButton
+        clearIcon={<RefreshIcon />}
+      />
     </Example>
   ));
 
 storiesOf(`${storyName}/Backyard/Tests`, module).add("Cypress", () => (
   <Example locale="en">
+    <DatePicker.Input data-pka-anchor="datepicker.input" />
+  </Example>
+));
+
+storiesOf(`${storyName}/Backyard/Tests`, module).add("Cypress date picker with time", () => (
+  <Example locale="en" dateFormat="YYYY-MM-DD HH:mm:ss" humanFormat="YYYY-MM-DD h:mm:ss a">
     <DatePicker.Input data-pka-anchor="datepicker.input" />
   </Example>
 ));

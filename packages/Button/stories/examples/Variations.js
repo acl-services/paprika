@@ -4,6 +4,7 @@ import styled from "styled-components";
 import { Rule, Tagline, breaklines, Gap } from "storybook/assets/styles/common.styles";
 import tokens from "@paprika/tokens";
 import Heading from "@paprika/heading";
+import Popover from "@paprika/popover";
 import PlusIcon from "@paprika/icon/lib/Add";
 import InfoIcon from "@paprika/icon/lib/InfoCircle";
 import { ButtonStory } from "../Button.stories.styles";
@@ -19,6 +20,25 @@ const DarkBackground = styled.span`
 function clickHandler() {
   action("Clicked a button")();
 }
+
+const renderTriggerWithTooltip = () => {
+  const content = "Tooltip text example";
+  return (
+    <Popover align="top" isDark isEager offset={8} shouldKeepFocus>
+      <Popover.Trigger tabIndex="-1">
+        <PlusIcon />
+      </Popover.Trigger>
+      {content && (
+        <>
+          <Popover.Content key={content}>
+            <Popover.Card>{content}</Popover.Card>
+          </Popover.Content>
+          <Popover.Tip />
+        </>
+      )}
+    </Popover>
+  );
+};
 
 const ExampleStory = () => (
   <ButtonStory>
@@ -294,6 +314,10 @@ const ExampleStory = () => (
       <DarkBackground>
         <Button.Close onClick={clickHandler} isDark a11yText="dark close" />
       </DarkBackground>
+    </p>
+    <p>
+      <div>Button Icon with tooltip</div>
+      <Button.Icon>{renderTriggerWithTooltip()}</Button.Icon>
     </p>
     {breaklines(34)}
     ...fin.

@@ -101,6 +101,7 @@ export const ClearButtonStyled = styled(Button.Icon)`
     > svg {
       color: ${tokens.color.blackLighten20};
       vertical-align: text-top;
+      ${iconStyles}
     }
   }
 
