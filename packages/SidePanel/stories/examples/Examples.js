@@ -2,6 +2,7 @@ import React from "react";
 import { Story } from "storybook/assets/styles/common.styles";
 import stylers from "@paprika/stylers";
 import Button from "@paprika/button";
+import Sortable from "@paprika/sortable";
 import SidePanel from "../../src";
 import { Nav, TextLine } from "../helpers";
 
@@ -282,6 +283,65 @@ export const FocusHeading = () => {
             cred polaroid, vinyl skateboard portland typewriter jean shorts single-origin coffee flexitarian drinking
             vinegar.
           </p>
+        </SidePanel.Content>
+      </SidePanel>
+    </Story>
+  );
+};
+
+export const WithSortable = () => {
+  const refHeading = React.useRef(null);
+  const [isOpen, setOpen] = React.useState(false);
+
+  const initChildren = [
+    <Sortable.Item sortId="1" key={1} className="my-custom-sortable-item-classname" data-qa-id="my-custom-data-qa-id">
+      Item One
+    </Sortable.Item>,
+    <Sortable.Item sortId="2" key={2}>
+      Item Two
+    </Sortable.Item>,
+    <Sortable.Item sortId="3" key={3}>
+      Item Three
+    </Sortable.Item>,
+  ];
+  const [children, setChildren] = React.useState(initChildren);
+
+  const handleChange = result => {
+    console.log("sortable change");
+
+    const { source, destination } = result;
+
+    if (destination === null || source === destination) return;
+
+    const reorderedChildren = [...children];
+    const movedChild = reorderedChildren.splice(source, 1);
+    reorderedChildren.splice(destination, 0, ...movedChild);
+
+    setChildren(reorderedChildren);
+  };
+
+  return (
+    <Story>
+      <Button
+        onClick={() => {
+          setOpen(!isOpen);
+        }}
+      >
+        {isOpen ? "Close" : "Open"} SidePanel
+      </Button>
+      <SidePanel
+        isSlideFromLeft
+        hasTransformAnimation={false}
+        isOpen={isOpen}
+        onClose={() => {
+          setOpen(false);
+        }}
+      >
+        <SidePanel.Header refHeading={refHeading}>Header</SidePanel.Header>
+        <SidePanel.Content>
+          <Sortable onChange={handleChange} onRemove={() => {}} className="my-custom-sortable-classname">
+            {children}
+          </Sortable>
         </SidePanel.Content>
       </SidePanel>
     </Story>

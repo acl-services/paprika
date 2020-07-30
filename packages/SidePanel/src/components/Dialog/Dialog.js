@@ -9,6 +9,7 @@ const propTypes = {
   getPushContentElement: PropTypes.func,
   groupOffsetY: PropTypes.number,
   header: PropTypes.node,
+  hasTransformAnimation: PropTypes.bool.isRequired,
   kind: PropTypes.oneOf(["default", "child"]),
   isCompact: PropTypes.bool,
   isInline: PropTypes.bool,
@@ -46,6 +47,7 @@ function Dialog(props) {
     getPushContentElement,
     groupOffsetY,
     onAnimationEnd,
+    hasTransformAnimation,
     header,
     kind,
     isCompact,
@@ -87,6 +89,7 @@ function Dialog(props) {
       aria-modal={isInline ? null : "true"}
       aria-label={a11yText}
       hasPushedElement={!!getPushContentElement}
+      hasTransformAnimation={hasTransformAnimation}
       groupOffsetY={groupOffsetY}
       kind={kind}
       isCompact={isCompact}
