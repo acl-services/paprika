@@ -7,7 +7,8 @@ describe("Uploader", () => {
     cy.getByTestId("uploader-dropZone-link").should("be.visible");
   });
 
-  it("Should add a file", () => {
+  // Will require fake server set up for file attachments to function properly
+  it.skip("Should add a file", () => {
     cy.visitStorybook("forms-uploader--showcase");
 
     const fileName = "example.json";
@@ -16,7 +17,8 @@ describe("Uploader", () => {
     cy.getByText("example.json").should("be.visible");
   });
 
-  it("Should show error for file size", () => {
+  // Will require fake server set up for file attachments to function properly
+  it.skip("Should show error for file size", () => {
     cy.visitStorybook("forms-uploader-examples--file-too-big-error");
 
     const fileName = "example.json";
