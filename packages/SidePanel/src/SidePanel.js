@@ -28,9 +28,6 @@ const propTypes = {
   /** Y offset that is passed down from <SidePanel.Group> */
   groupOffsetY: PropTypes.number,
 
-  /** Control Whether transforms are applied to the sidepanel */
-  hasTransformAnimation: PropTypes.bool,
-
   /** Control the compactness of the side panel */
   isCompact: PropTypes.bool,
 
@@ -69,7 +66,6 @@ const defaultProps = {
   a11yText: null,
   getPushContentElement: null,
   groupOffsetY: 0,
-  hasTransformAnimation: true,
   isCompact: false,
   isInline: false,
   isSlideFromLeft: false,
@@ -91,7 +87,6 @@ export default function SidePanel(props) {
     a11yText,
     getPushContentElement,
     groupOffsetY,
-    hasTransformAnimation,
     isCompact,
     isOpen,
     isInline,
