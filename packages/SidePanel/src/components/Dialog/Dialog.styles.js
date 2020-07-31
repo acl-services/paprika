@@ -59,6 +59,7 @@ export const Dialog = styled.div`
 
   ${props => {
     const width = Number.isNaN(Number(props.width)) ? props.width : `${props.width}px`;
+    const animation = props.isOpen ? slideIn(props.isSlideFromLeft) : slideOut(props.isSlideFromLeft);
 
     let childSidePanel = "";
     const boxShadow = props.hasPushedElement ? "none" : tokens.modal.shadow;
@@ -68,17 +69,7 @@ export const Dialog = styled.div`
     }
 
     return css`
-      ${props => {
-        if (props.hasTransformAnimation) {
-          const animation = props.isOpen ? slideIn(props.isSlideFromLeft) : slideOut(props.isSlideFromLeft);
-          return css`
-            animation: ${animation} 0.4s forwards;
-          `;
-        }
-        return css`
-          margin-${props.isSlideFromLeft ? "margin-left" : "margin-right"} : ${!props.isOpen ? "-100%" : ""};
-        `;
-      }};
+      animation: ${animation} 0.4s forwards;
       border: 0;
       box-shadow: ${boxShadow};
       top: ${props.offsetY}px;
@@ -88,6 +79,12 @@ export const Dialog = styled.div`
       ${props => (props.offsetY ? `height: calc(100% - ${props.offsetY}px);` : "")}
       ${props.isInline ? "position: relative;" : "position: fixed;"}
       ${childSidePanel}
+      ${props =>
+        props.isAnimating
+          ? css`
+              animation: none;
+            `
+          : ""}
     `;
   }}
 `;

@@ -330,8 +330,6 @@ export const WithSortable = () => {
         {isOpen ? "Close" : "Open"} SidePanel
       </Button>
       <SidePanel
-        isSlideFromLeft
-        hasTransformAnimation={false}
         isOpen={isOpen}
         onClose={() => {
           setOpen(false);

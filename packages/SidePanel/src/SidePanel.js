@@ -195,7 +195,6 @@ export default function SidePanel(props) {
         getPushContentElement={getPushContentElement}
         groupOffsetY={groupOffsetY}
         header={headerExtracted}
-        hasTransformAnimation={hasTransformAnimation}
         isCompact={isCompact}
         isInline={isInline}
         isOpen={isOpen}

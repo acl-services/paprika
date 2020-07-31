@@ -9,7 +9,6 @@ const propTypes = {
   getPushContentElement: PropTypes.func,
   groupOffsetY: PropTypes.number,
   header: PropTypes.node,
-  hasTransformAnimation: PropTypes.bool.isRequired,
   kind: PropTypes.oneOf(["default", "child"]),
   isCompact: PropTypes.bool,
   isInline: PropTypes.bool,
@@ -38,6 +37,7 @@ const defaultProps = {
 };
 
 function Dialog(props) {
+  const [isAnimating, setIsAnimating] = React.useState(false);
   const refSidePanel = React.useRef(null);
 
   const {
@@ -47,7 +47,6 @@ function Dialog(props) {
     getPushContentElement,
     groupOffsetY,
     onAnimationEnd,
-    hasTransformAnimation,
     header,
     kind,
     isCompact,
@@ -82,21 +81,30 @@ function Dialog(props) {
     </React.Fragment>
   );
 
+  React.useEffect(() => {
+    setIsAnimating(false);
+  }, [isOpen]);
+
   const dialogFooter = footer ? React.cloneElement(footer, { refSidePanel, isCompact }) : null;
+
+  const handleAnimationEnd = () => {
+    setIsAnimating(true);
+    onAnimationEnd();
+  };
 
   return (
     <sc.Dialog
       aria-modal={isInline ? null : "true"}
       aria-label={a11yText}
       hasPushedElement={!!getPushContentElement}
-      hasTransformAnimation={hasTransformAnimation}
       groupOffsetY={groupOffsetY}
       kind={kind}
       isCompact={isCompact}
       isInline={isInline}
       isOpen={isOpen}
       offsetY={offsetY}
-      onAnimationEnd={onAnimationEnd}
+      isAnimating={isAnimating}
+      onAnimationEnd={handleAnimationEnd}
       ref={refSidePanel}
       role="dialog"
       tabIndex="-1"
