@@ -104,7 +104,7 @@ function File({ error, fileKey, name, progress, size, status }) {
           <sc.ProgressText status={status}>{getProgressText()}</sc.ProgressText>
         </sc.Info>
         <sc.ProgressBarWrapper>
-          <sc.ProgressBar progress={progress} status={status} />
+          <sc.ProgressBar data-pka-anchor="uploader-file-progressBar" progress={progress} status={status} />
         </sc.ProgressBarWrapper>
       </sc.Left>
       <sc.Right status={status}>{renderIcon()}</sc.Right>
