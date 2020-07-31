@@ -82,13 +82,13 @@ function Dialog(props) {
   );
 
   React.useEffect(() => {
-    setIsAnimating(false);
+    setIsAnimating(true);
   }, [isOpen]);
 
   const dialogFooter = footer ? React.cloneElement(footer, { refSidePanel, isCompact }) : null;
 
   const handleAnimationEnd = () => {
-    setIsAnimating(true);
+    setIsAnimating(false);
     onAnimationEnd();
   };
 

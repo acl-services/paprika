@@ -15,28 +15,6 @@ const childPanel = css`
   }}
 `;
 
-function slideIn(isSlideFromLeft) {
-  return keyframes`
-  from {
-    transform: ${isSlideFromLeft ? "translateX(-100%)" : `translateX(100%)`};
-  }
-  to {
-    transform: translateX(0);
-  }
-  `;
-}
-
-function slideOut(isSlideFromLeft) {
-  return keyframes`
-  from {
-    transform: translateX(0);
-  }
-  to {
-    transform: ${isSlideFromLeft ? "translateX(-100%)" : `translateX(100%)`};
-  }
-  `;
-}
-
 const compactStyles = css`
   padding: ${stylers.spacer(2)};
 `;
@@ -59,7 +37,35 @@ export const Dialog = styled.div`
 
   ${props => {
     const width = Number.isNaN(Number(props.width)) ? props.width : `${props.width}px`;
-    const animation = props.isOpen ? slideIn(props.isSlideFromLeft) : slideOut(props.isSlideFromLeft);
+    const slideOutTransform = props.isSlideFromLeft ? "translateX(-100%)" : `translateX(100%)`;
+    const slideInTransform = "translateX(0)";
+    function slideIn() {
+      return keyframes`
+      from {
+        transform: ${slideOutTransform};
+      }
+      to {
+        transform: ${slideInTransform};
+      }
+      `;
+    }
+
+    function slideOut() {
+      return keyframes`
+      from {
+        transform: ${slideInTransform};
+      }
+      to {
+        transform: ${slideOutTransform};
+      }
+      `;
+    }
+
+    const animationStyle = props.isAnimating
+      ? css`
+          animation: ${props.isOpen ? slideIn() : slideOut()} 0.4s forwards;
+        `
+      : "";
 
     let childSidePanel = "";
     const boxShadow = props.hasPushedElement ? "none" : tokens.modal.shadow;
@@ -69,7 +75,7 @@ export const Dialog = styled.div`
     }
 
     return css`
-      animation: ${animation} 0.4s forwards;
+      ${animationStyle};
       border: 0;
       box-shadow: ${boxShadow};
       top: ${props.offsetY}px;
@@ -79,12 +85,6 @@ export const Dialog = styled.div`
       ${props => (props.offsetY ? `height: calc(100% - ${props.offsetY}px);` : "")}
       ${props.isInline ? "position: relative;" : "position: fixed;"}
       ${childSidePanel}
-      ${props =>
-        props.isAnimating
-          ? css`
-              animation: none;
-            `
-          : ""}
     `;
   }}
 `;
