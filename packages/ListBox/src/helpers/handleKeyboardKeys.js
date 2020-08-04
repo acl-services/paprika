@@ -6,8 +6,6 @@ export const handleKeyDownKeyboardKeys = ({ state, dispatch, onChangeContext }) 
     return;
   }
 
-  console.log("PRESS DOWN");
-
   switch (event.key) {
     case "ArrowUp":
       handleArrowKeys({ event, state, dispatch, onChangeContext, isArrowDown: false });
@@ -27,8 +25,6 @@ export const handleKeyUpKeyboardKeys = ({ state, dispatch, onChangeContext }) =>
     return;
   }
 
-  console.log("PRESS UP");
-
   switch (event.key) {
     case "Escape":
       if (!state.isOpen) break;
@@ -41,7 +37,6 @@ export const handleKeyUpKeyboardKeys = ({ state, dispatch, onChangeContext }) =>
 
     case "Enter":
     case " ":
-      console.log("ENTER");
       handleEnterOrSpace({ event, state, dispatch, onChangeContext });
       break;
 
