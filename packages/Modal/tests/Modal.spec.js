@@ -70,7 +70,7 @@ describe("Modal", () => {
     given("isOpen", () => false);
 
     it("renders nothing", () => {
-      expect(given.rendered.container).toBeEmpty();
+      expect(given.rendered.container).toBeEmptyDOMElement();
     });
 
     it("does not trigger onClose when ESC press", () => {
