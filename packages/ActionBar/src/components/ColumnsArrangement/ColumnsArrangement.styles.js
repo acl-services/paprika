@@ -30,6 +30,7 @@ export const ColumnLabel = styled.span`
 
 export const Switch = styled(PaprikaSwitch)`
   flex-shrink: 0;
+  margin-left: ${tokens.spaceSm};
 `;
 
 const hasColumnsHiddenStyles = css`
