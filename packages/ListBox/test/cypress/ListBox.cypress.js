@@ -10,6 +10,37 @@ describe("ListBox single select", () => {
     toggleDropdown();
   });
 
+  it.only("should toggle the list-box popover while triggering enter on the keyboard", () => {
+    const anchor = cy.get("[data-pka-anchor='listbox-trigger']");
+    anchor.should("be.visible");
+    const joker = /The Joker/i;
+    const darth = /Darth Vader/i;
+    const hannibal = /Hannibal/i;
+
+    cy.contains(joker);
+    cy.contains(darth);
+    cy.contains(hannibal);
+
+    anchor.trigger("keyup", { key: "Enter" });
+
+    cy.should("not.contain", joker);
+    cy.should("not.contain", darth);
+    cy.should("not.contain", hannibal);
+
+    anchor.trigger("keyup", { key: "Enter" });
+
+    cy.contains(joker);
+    cy.contains(darth);
+    cy.contains(hannibal);
+  });
+});
+
+describe("ListBox single select", () => {
+  beforeEach(() => {
+    cy.visitStorybook(`${storyPrefix}-examples-single--basic`);
+    toggleDropdown();
+  });
+
   it("should select option and clear it", () => {
     const character = "Spiderman";
     cy.contains(character).click();
