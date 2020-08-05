@@ -34,3 +34,6 @@ storybook-dist
 
 # vscode
 .vscode
+
+# vscode workspace
+*.code-workspace

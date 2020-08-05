@@ -15,6 +15,28 @@ const childPanel = css`
   }}
 `;
 
+function slideIn(slideInTransform, slideOutTransform) {
+  return keyframes`
+      from {
+        transform: ${slideOutTransform};
+      }
+      to {
+        transform: ${slideInTransform};
+      }
+      `;
+}
+
+function slideOut(slideInTransform, slideOutTransform) {
+  return keyframes`
+      from {
+        transform: ${slideInTransform};
+      }
+      to {
+        transform: ${slideOutTransform};
+      }
+      `;
+}
+
 const compactStyles = css`
   padding: ${stylers.spacer(2)};
 `;
@@ -36,41 +58,24 @@ export const Dialog = styled.div`
   }
 
   ${props => {
-    const width = Number.isNaN(Number(props.width)) ? props.width : `${props.width}px`;
-    const slideOutTransform = props.isSlideFromLeft ? "translateX(-100%)" : `translateX(100%)`;
+    const { width, isAnimating, isSlideFromLeft, isOpen, hasPushedElement, kind, offsetY, zIndex, isInline } = props;
+    const widthAsPx = Number.isNaN(Number(width)) ? width : `${width}px`;
+    const slideOutTransform = isSlideFromLeft ? "translateX(-100%)" : `translateX(100%)`;
     const slideInTransform = "translateX(0)";
-    function slideIn() {
-      return keyframes`
-      from {
-        transform: ${slideOutTransform};
-      }
-      to {
-        transform: ${slideInTransform};
-      }
-      `;
-    }
 
-    function slideOut() {
-      return keyframes`
-      from {
-        transform: ${slideInTransform};
-      }
-      to {
-        transform: ${slideOutTransform};
-      }
-      `;
-    }
-
-    const animationStyle = props.isAnimating
+    const animationStyle = isAnimating
       ? css`
-          animation: ${props.isOpen ? slideIn() : slideOut()} 0.4s forwards;
+          animation: ${isOpen
+              ? slideIn(slideInTransform, slideOutTransform)
+              : slideOut(slideInTransform, slideOutTransform)}
+            0.4s forwards;
         `
       : "";
 
     let childSidePanel = "";
-    const boxShadow = props.hasPushedElement ? "none" : tokens.modal.shadow;
+    const boxShadow = hasPushedElement ? "none" : tokens.modal.shadow;
 
-    if (props.kind === "child") {
+    if (kind === "child") {
       childSidePanel = childPanel;
     }
 
@@ -78,12 +83,12 @@ export const Dialog = styled.div`
       ${animationStyle};
       border: 0;
       box-shadow: ${boxShadow};
-      top: ${props.offsetY}px;
-      width: ${width};
-      z-index: ${props.zIndex};
-      ${props => (props.isSlideFromLeft ? `left: 0;` : `right: 0;`)}
-      ${props => (props.offsetY ? `height: calc(100% - ${props.offsetY}px);` : "")}
-      ${props.isInline ? "position: relative;" : "position: fixed;"}
+      top: ${offsetY}px;
+      width: ${widthAsPx};
+      z-index: ${zIndex};
+      ${isSlideFromLeft ? `left: 0;` : `right: 0;`}
+      ${offsetY ? `height: calc(100% - ${offsetY}px);` : ""}
+      ${isInline ? "position: relative;" : "position: fixed;"}
       ${childSidePanel}
     `;
   }}

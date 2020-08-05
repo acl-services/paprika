@@ -18,6 +18,7 @@ const sidePanelProps = () => ({
   isSlideFromLeft: boolean("isSlideFromLeft", false, sidePanelGroup),
   width: text("width", "50%", sidePanelGroup),
   zIndex: number("zIndex", undefined, {}, sidePanelGroup),
+  offsetY: number("offsetY", 0, {}, sidePanelGroup),
 });
 
 const headerProps = () => ({
