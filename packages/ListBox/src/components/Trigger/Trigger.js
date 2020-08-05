@@ -7,7 +7,7 @@ import CaretDownIcon from "@paprika/icon/lib/CaretDown";
 import CaretUpIcon from "@paprika/icon/lib/CaretUp";
 import TimesCircleIcon from "@paprika/icon/lib/TimesCircle";
 import Label from "../Label";
-import handleKeyboardKeys from "../../helpers/handleKeyboardKeys";
+import { handleKeyDownKeyboardKeys, handleKeyUpKeyboardKeys } from "../../helpers/handleKeyboardKeys";
 import useListBox from "../../useListBox";
 import { OnChangeContext } from "../../store/OnChangeProvider";
 
@@ -154,8 +154,8 @@ export default function Trigger(props) {
         id={triggerButtonId.current}
         onClick={handleClick}
         ref={refTrigger}
-        onKeyDown={handleKeyboardKeys({ state, dispatch, onChangeContext })}
-        onKeyUp={() => {}}
+        onKeyDown={handleKeyDownKeyboardKeys({ state, dispatch, onChangeContext })}
+        onKeyUp={handleKeyUpKeyboardKeys({ state, dispatch, onChangeContext })}
         isDisabled={isDisabled}
         data-pka-anchor="listbox-trigger"
         aria-describedby={formElementLabelDescribedBy}

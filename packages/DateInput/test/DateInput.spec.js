@@ -1,6 +1,6 @@
 import React from "react";
 import moment from "moment";
-import { render as renderReactTestingLibrary, configure, fireEvent, wait } from "@testing-library/react";
+import { render as renderReactTestingLibrary, configure, fireEvent, waitFor } from "@testing-library/react";
 import DateInput from "../src";
 
 configure({ testIdAttribute: "data-pka-anchor" });
@@ -67,7 +67,7 @@ describe("DateInput", () => {
 
     getByTestId("dateinput").blur();
 
-    await wait(() => expect(getByTestId("dateinput").value).toEqual("January 02, 2019"));
+    await waitFor(() => expect(getByTestId("dateinput").value).toEqual("January 02, 2019"));
   });
 
   it("should render date correctly with different timezones", () => {

@@ -1,5 +1,5 @@
 import React from "react";
-import { render, fireEvent, configure } from "@testing-library/react";
+import { render, fireEvent, configure, waitFor } from "@testing-library/react";
 import ListBox from "../../../src";
 import { ControlledIsSelected as ListBoxControlled, OnChange } from "../../../stories/examples/single";
 
@@ -84,7 +84,9 @@ describe("Listbox single select", () => {
     );
 
     fireEvent.click(getByText(/Select/));
-    expect(getByTestId("list-filter")).toBeInTheDocument();
+    waitFor(() => {
+      expect(getByTestId("list-filter")).toBeInTheDocument();
+    });
   });
 
   it("should have custom height of 500", () => {
@@ -177,8 +179,10 @@ describe("Listbox single select", () => {
 
     fireEvent.click(getByText(/Select/));
     fireEvent.change(getByTestId("list-filter-input"), { target: { value: "g" } });
-    expect(getByTestId("no-results")).toBeInTheDocument();
-    expect(getByText("No match")).toBeInTheDocument();
+    waitFor(() => {
+      expect(getByTestId("no-results")).toBeInTheDocument();
+      expect(getByText("No match")).toBeInTheDocument();
+    });
   });
 
   it("placeholder should display default label when no option is selected", () => {

@@ -1,5 +1,5 @@
 import React from "react";
-import { render, configure, fireEvent, wait } from "@testing-library/react";
+import { render, configure, fireEvent, waitFor } from "@testing-library/react";
 import Confirmation from "../src";
 
 configure({ testIdAttribute: "data-pka-anchor" });
@@ -32,7 +32,7 @@ describe("Confirmation", () => {
     fireEvent.click(getByText(/trigger/i));
     fireEvent.click(getByText(/confirm delete/i));
     expect(onConfirmFunc).toHaveBeenCalled();
-    await wait(() => {
+    await waitFor(() => {
       expect(onCloseFunc).not.toHaveBeenCalled();
     });
   });
@@ -44,7 +44,7 @@ describe("Confirmation", () => {
     });
     fireEvent.click(getByText(/trigger/i));
     fireEvent.click(getByText(/cancel/i));
-    await wait(() => {
+    await waitFor(() => {
       expect(onCloseFunc).toHaveBeenCalled();
     });
   });

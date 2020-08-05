@@ -24,7 +24,7 @@ const propTypes = {
   onClose: PropTypes.func,
   onOpen: PropTypes.func,
   operator: PropTypes.oneOf([logicalFilterOperators.AND, logicalFilterOperators.OR]),
-  rulesByType: PropTypes.objectOf(PropTypes.arrayOf(PropTypes.oneOf(rules))),
+  rulesByType: PropTypes.objectOf(PropTypes.arrayOf(PropTypes.objectOf(rules))),
 };
 
 const defaultProps = {

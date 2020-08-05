@@ -2,7 +2,7 @@ import React from "react";
 import PropTypes from "prop-types";
 import Popover from "@paprika/popover";
 import { getDOMAttributesForListBoxContainer } from "../../helpers/DOMAttributes";
-import handleKeyboardKeys from "../../helpers/handleKeyboardKeys";
+import { handleKeyUpKeyboardKeys, handleKeyDownKeyboardKeys } from "../../helpers/handleKeyboardKeys";
 import useListBox from "../../useListBox";
 import { OnChangeContext } from "../../store/OnChangeProvider";
 import { ContentStyled } from "./Content.styles";
@@ -68,7 +68,8 @@ export default function Content(props) {
         onBlur={() => {
           handleContentFocusChange(false, dispatch);
         }}
-        onKeyDown={handleKeyboardKeys({ state, dispatch, onChangeContext })}
+        onKeyDown={handleKeyDownKeyboardKeys({ state, dispatch, onChangeContext })}
+        onKeyUp={handleKeyUpKeyboardKeys({ state, dispatch, onChangeContext })}
         ref={refListBoxContainer}
         data-pka-anchor="listbox-content-inline"
       >
@@ -82,7 +83,8 @@ export default function Content(props) {
       onBlur={handleBlur(state, dispatch, props.onCancelFooter)}
       ref={refListBoxContainer}
       {...getDOMAttributesForListBoxContainer()}
-      onKeyDown={handleKeyboardKeys({ state, dispatch, onChangeContext })}
+      onKeyDown={handleKeyDownKeyboardKeys({ state, dispatch, onChangeContext })}
+      onKeyUp={handleKeyUpKeyboardKeys({ state, dispatch, onChangeContext })}
     >
       {props.children}
     </Popover.Content>
