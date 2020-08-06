@@ -113,6 +113,7 @@ export const StickyRow = React.memo(({ data: RowData, columnIndex, rowIndex, sty
 export const HeaderRow = React.memo(({ data: RowData, columnIndex, style }) => {
   const { ColumnDefinitions, stickyColumnsIndexes, borderType } = RowData;
   const { header, headerProps } = ColumnDefinitions[columnIndex].props;
+  const headerText = typeof header === "function" ? header() : header;
 
   if (stickyColumnsIndexes.includes(columnIndex)) return null;
   const { style: styleProps = {}, ...moreProps } = typeof headerProps === "function" ? headerProps({ header }) : {};
@@ -123,9 +124,9 @@ export const HeaderRow = React.memo(({ data: RowData, columnIndex, style }) => {
       style={{ ...style, ...styleProps }}
       {...moreProps}
       borderType={borderType}
-      title={typeof header === "function" ? header() : header}
+      title={headerText}
     >
-      {typeof header === "function" ? header() : header}
+      {headerText}
     </CellHeader>
   );
 }, areEqual);
@@ -133,6 +134,7 @@ export const HeaderRow = React.memo(({ data: RowData, columnIndex, style }) => {
 export const StickyHeaderRow = React.memo(({ data: RowData, columnIndex, style }) => {
   const { ColumnDefinitions, borderType } = RowData;
   const { header, headerProps } = ColumnDefinitions[columnIndex].props;
+  const headerText = typeof header === "function" ? header() : header;
 
   const { style: styleProps = {}, ...moreProps } = typeof headerProps === "function" ? headerProps({ header }) : {};
 
@@ -142,9 +144,9 @@ export const StickyHeaderRow = React.memo(({ data: RowData, columnIndex, style }
       style={{ ...style, ...styleProps }}
       {...moreProps}
       borderType={borderType}
-      title={typeof header === "function" ? header() : header}
+      title={headerText}
     >
-      {typeof header === "function" ? header() : header}
+      {headerText}
     </CellHeader>
   );
 }, areEqual);
