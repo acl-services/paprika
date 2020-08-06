@@ -13,6 +13,9 @@ const propTypes = {
   /** Sets the class for the input. */
   className: PropTypes.string,
 
+  /** Custom icon for the clear action in the input. */
+  clearIcon: PropTypes.node,
+
   /** Sets the default input value  */
   defaultValue: PropTypes.string,
 
@@ -49,6 +52,7 @@ const propTypes = {
 
 const defaultProps = {
   a11yText: null,
+  clearIcon: null,
   className: null,
   defaultValue: "",
   hasClearButton: false,
@@ -71,9 +75,10 @@ const Input = React.forwardRef((props, ref) => {
   };
 
   const renderClear = () => {
-    const { hasClearButton, isDisabled, isReadOnly, size, value } = props;
+    const { clearIcon, hasClearButton, isDisabled, isReadOnly, size, value } = props;
     if (!hasClearButton || isDisabled || isReadOnly || !value) return null;
     const iconSize = size === ShirtSizes.LARGE ? ShirtSizes.MEDIUM : ShirtSizes.SMALL;
+
     return (
       <Button.Icon
         a11yText="Clear Input" // TODO: add L10n
@@ -82,7 +87,7 @@ const Input = React.forwardRef((props, ref) => {
         size={iconSize}
         onClick={inputClearHandler}
       >
-        <TimesCircleIcon />
+        {clearIcon || <TimesCircleIcon />}
       </Button.Icon>
     );
   };
@@ -94,6 +99,7 @@ const Input = React.forwardRef((props, ref) => {
 
   const {
     a11yText,
+    clearIcon,
     className,
     icon,
     isDisabled,

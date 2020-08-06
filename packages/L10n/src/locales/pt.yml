@@ -10,8 +10,10 @@ pt:
       drop_files: Solte os arquivos para carregar
       drop_files_here_or: Solte os arquivos para carregar aqui ou
       choose_from_computer: escolha no seu computador
+      choose_from_computer_a11y: Escolher arquivos no seu computador
       cancel_upload: Cancelar upload
       restart_upload: Reiniciar upload
+      file_list: Lista de arquivos
       errors:
         size: O arquivo deve ser menor que {{maxFileSize}}
         type: "O arquivo precisa ser de um dos seguintes tipos: {{- supportedTypes}}"
@@ -151,8 +153,10 @@ pt:
             number: Ordem crescente (1 → 9)
             text: Ordem crescente (A → Z)
             date: Ordem crescente (1 → 9)
+            single_select: Ordem crescente (A → Z)
           descending:
             boolean: Ordem decrescente (falso → verdadeiro)
             number: Ordem decrescente (9 → 1)
             text: Ordem decrescente (Z → A)
             date: Ordem decrescente (9 → 1)
+            single_select: Ordem decrescente (Z → A)

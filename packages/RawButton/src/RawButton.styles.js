@@ -8,6 +8,7 @@ const focusStyles = isInset => css`
 
   [data-whatinput="mouse"] &:not([data-has-forced-focus="true"]):focus {
     box-shadow: none;
+    outline: none;
   }
 `;
 

@@ -1,0 +1,171 @@
+import { Meta } from "@storybook/addon-docs/blocks";
+import { Description } from "@storybook/addon-docs/blocks";
+import { getStoryName } from "storybook/storyTree";
+import Readme from "../README.md";
+import ResizeDetector, { useDimensions, useBreakpoints } from "../src";
+import { BasicStory, FullHeightStory } from "./examples/Basic";
+import { CustomBreakpointsStory, NoSmallStory, NoLargeStory } from "./examples/Breakpoints";
+import { OnBreakStory } from "./examples/Callbacks";
+import { DebounceSlowStory, DebounceFastStory } from "./examples/Debounce";
+
+<Meta
+  title={`${getStoryName("ResizeDetector")}/Docs`}
+  component={ResizeDetector}
+  parameters={{ options: { showPanel: false } }}
+/>
+
+<Description markdown={Readme} />
+
+## More Examples
+
+### Custom Hooks
+
+You can use the custom hooks provided by the `<ResizeDetector>` to consume the dimensions, or tshirt "size" value (`small` | `medium` | `large`) in a child component of the `<ResizeDetector>`.
+
+```jsx
+import ResizeDetector, { useDimensions, useBreakpoints } from "@paprika/resize-detector";
+
+function ResizeConsumer() {
+  const { width, height } = useDimensions();
+  const { size } = useBreakpoints();
+
+  return (
+    <ColourfulBox>
+      {width} x {height}
+      <br />
+      [{size}]
+    </ColourfulBox>
+  );
+}
+
+function ResizeApp() {
+  return (
+    <ResizeDetector>
+      <ResizeConsumer />
+    </ResizeDetector>;
+  );
+}
+```
+
+#### Result
+
+<BasicStory />
+
+<br />
+
+---
+
+### FullWidth / FullHeight
+
+By default, the `<ResizeDetector>` has its `isFullWidth` prop set to `true`, giving it the rendering behaviour of a block level element. However, this `isFullWidth` can be set to `false` so that it will wrap to the contents of its children and behave like an `inline-block` element.
+
+It also has an `isFullHeight` prop, which will cause it to expand to the height of its container which may be useful for detecting the `height`.
+
+#### Result
+
+<FullHeightStory />
+
+<br />
+
+---
+
+### Breakpoints
+
+The `size` value that is provided is a t-shirt size (`small` | `medium` | `large`) which is determined by two breakpoints: `breakpointSmall` + `breakpointLarge`.
+
+The `breakpointSmall` is the pixel value of the container width at which the `size` value "breaks" _from_ `small` to `medium`.
+
+The `breakpointLarge` is the pixel value of the container width at which the `size` value "breaks" from `medium` _to_ `large`.
+
+If either of these is set to `0` or `null`, then that breakpoint will be ignored, and the corresponding `size` will never be applied.
+
+#### Custom Breakpoints
+
+```jsx
+<ResizeDetector breakpointSmall={100} breakpointLarge={200}>
+  <ResizeConsumer />
+</ResizeDetector>
+```
+
+#### Result
+
+<CustomBreakpointsStory />
+
+#### No Small Breakpoint
+
+```jsx
+<ResizeDetector breakpointSmall={0} breakpointLarge={200}>
+  <ResizeConsumer />
+</ResizeDetector>
+```
+
+#### Result
+
+<NoSmallStory />
+
+#### No Large Breakpoint
+
+```jsx
+<ResizeDetector breakpointSmall={100} breakpointLarge={null}>
+  <ResizeConsumer />
+</ResizeDetector>
+```
+
+#### Result
+
+<NoLargeStory />
+
+<br />
+
+---
+
+### Callbacks
+
+The `<ResizeDetector>` has two callback props, `onBreak` and `onResize`. Similar to the custom hooks, they provide the `size` value and the `width` / `height` values, respectively.
+
+These callbacks may be useful for triggering an event, like fetching data or displaying a Modal.
+
+```jsx
+<ResizeDetector
+  onBreak={size => {
+    showToast(size);
+  }}
+>
+  <ResizeConsumer />
+</ResizeDetector>
+```
+
+#### Result
+
+<OnBreakStory />
+
+<br />
+
+---
+
+### Debounce Examples
+
+<p>
+  By default, the updates emitted by the <code>&lt;ResizeDetector&gt;</code> are debounced with a delay of
+  {ResizeDetector.defaultProps.debounceDelay} ms, but this can be controlled with the <code>debounceDelay</code> prop.
+</p>
+
+```jsx
+<ResizeDetector debounceDelay={300}>
+  <ResizeConsumer />
+</ResizeDetector>
+```
+
+#### Result
+
+<DebounceSlowStory />
+
+```jsx
+<ResizeDetector debounceDelay={0}>
+  <ResizeConsumer />
+</ResizeDetector>
+```
+
+#### Result
+
+<DebounceFastStory />

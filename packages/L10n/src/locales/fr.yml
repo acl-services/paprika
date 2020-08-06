@@ -10,8 +10,10 @@ fr:
       drop_files: Déposer les fichiers à charger
       drop_files_here_or: Déposer les fichiers à charger ici ou
       choose_from_computer: parcourir votre ordinateur
+      choose_from_computer_a11y: Choisir des fichiers dans votre ordinateur
       cancel_upload: Annuler le chargement
       restart_upload: Recommencer le chargement
+      file_list: Liste des fichiers
       errors:
         size: La taille du fichier ne doit pas dépasser {{maxFileSize}}
         type: "Le fichier doit être de l'un des types suivants : {{- supportedTypes}}"
@@ -151,8 +153,10 @@ fr:
             number: Tri croissant (1 → 9)
             text: Tri croissant (A → Z)
             date: Tri croissant (1 → 9)
+            single_select: Tri croissant (A → Z)
           descending:
             boolean: Tri décroissant (faux → vrai)
             number: Tri décroissant (9 → 1)
             text: Tri décroissant (Z → A)
             date: Tri décroissant (9 → 1)
+            single_select: Tri décroissant (Z → A)

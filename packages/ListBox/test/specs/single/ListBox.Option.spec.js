@@ -1,5 +1,5 @@
 import React from "react";
-import { configure, render, fireEvent } from "@testing-library/react";
+import { configure, render, fireEvent, waitFor } from "@testing-library/react";
 import ListBox from "../../../src";
 
 configure({ testIdAttribute: "data-pka-anchor" });
@@ -77,7 +77,9 @@ describe("ListBox.Option", () => {
 
     fireEvent.click(getByTestId("listbox-trigger"));
     fireEvent.click(getByAltText("planetvenus"));
-    expect(getByTestId("listbox-trigger")).toHaveTextContent(/venus/i);
+    waitFor(() => {
+      expect(getByTestId("listbox-trigger")).toHaveTextContent(/venus/i);
+    });
   });
 
   it("should prevent default selection ability", () => {

@@ -1,7 +1,7 @@
 import styled from "styled-components";
 import { spacer } from "@paprika/stylers/lib/helpers";
 
-export const Wrapper = styled.div`
+export const Header = styled.div`
   align-items: center;
   display: flex;
   justify-content: space-between;

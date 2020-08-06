@@ -120,7 +120,7 @@ const DateInput = React.forwardRef((props, ref) => {
     if (newDate.isValid()) {
       setHasParsingError(false);
       setInputtedString(newDate.format(dateFormat));
-      if (!moment(newDate).isSame(date, "day")) onChange(newDate);
+      if (!moment(newDate).isSame(date)) onChange(newDate);
     } else {
       setHasParsingError(true);
       onError({ type: INPUT_PARSE_ERROR, value: inputtedString });

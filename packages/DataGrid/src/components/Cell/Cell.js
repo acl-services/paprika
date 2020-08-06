@@ -1,13 +1,17 @@
 import React from "react";
 import PropTypes from "prop-types";
 import * as sc from "../../DataGrid.styles";
+import { getGridRefId } from "../../hooks/useGridEventHandler";
 
 const propTypes = {
   /** Descriptive a11y text for assistive technologies. By default, text from children node will be used. */
   a11yText: PropTypes.string.isRequired,
   /**  */
-  column: PropTypes.shape({ cellProps: PropTypes.func, cell: PropTypes.oneOfType([PropTypes.string, PropTypes.func]) })
-    .isRequired,
+  column: PropTypes.shape({
+    cellProps: PropTypes.func,
+    cell: PropTypes.oneOfType([PropTypes.string, PropTypes.func]),
+    cellPropsResetCSS: PropTypes.bool,
+  }).isRequired,
   /** Position of a column in the DataGrid */
   columnIndex: PropTypes.number.isRequired,
   /** Array of data to be stored */
@@ -24,7 +28,8 @@ const propTypes = {
 };
 
 export default function Cell(props) {
-  const { style, gridId, columnIndex, rowIndex, column, data, a11yText, hasZebraStripes, borderType } = props;
+  const [isHighlighted, setIsHighlighted] = React.useState(false);
+  const { a11yText, borderType, column, columnIndex, data, gridId, hasZebraStripes, rowIndex, style } = props;
 
   const rowIndexInt = Number.parseInt(rowIndex, 10);
   const columnIndexInt = Number.parseInt(columnIndex, 10);
@@ -33,6 +38,8 @@ export default function Cell(props) {
     row: data[rowIndex],
     rowIndex: rowIndexInt,
     columnIndex: columnIndexInt,
+    isHighlighted,
+    defaultCssCellStyle: sc.defaultCssCellStyle,
     attrs: {
       "data-row-index": rowIndexInt,
       "data-column-index": columnIndexInt,
@@ -41,18 +48,45 @@ export default function Cell(props) {
 
   const cellProps = typeof column.cellProps === "function" ? column.cellProps(options) : {};
 
+  function setHighlight(value = false) {
+    setIsHighlighted(value);
+  }
+
+  React.useEffect(() => {
+    const key = getGridRefId({ gridId, rowIndex, columnIndex });
+    window.paprika.dataGridRef[key] = {
+      setHighlight,
+    };
+
+    return () => {
+      delete window.paprika.dataGridRef[key];
+    };
+  }, []); // eslint-disable-line
+
+  const isColumnCellAFunction = typeof column.cell === "function";
   return (
     <sc.Cell
       borderType={borderType}
-      data-cell={`${gridId}.${columnIndex}.${rowIndex}`}
+      data-pka-cell-key-column-index={columnIndex}
+      data-pka-cell-key-row-index={rowIndex}
+      data-pka-cell-key={`${gridId}.${columnIndex}.${rowIndex}`}
+      data-pka="cell-container"
       hasZebraStripes={hasZebraStripes}
       rowIndex={rowIndex}
       style={style}
       tabIndex={-1}
     >
-      <sc.GridCell role="gridcell">{a11yText}</sc.GridCell>
-      <sc.InnerCell {...cellProps} aria-hidden="true" {...options.attrs}>
-        {typeof column.cell === "function" ? column.cell(options) : data[rowIndex][column.cell]}
+      <sc.GridCell data-pka="cell-a11y" role="gridcell">
+        {a11yText}
+      </sc.GridCell>
+      <sc.InnerCell
+        resetCSS={column.cellPropsResetCSS}
+        data-pka="cell"
+        {...cellProps}
+        aria-hidden="true"
+        {...options.attrs}
+      >
+        {isColumnCellAFunction ? column.cell({ ...options }) : data[rowIndex][column.cell]}
       </sc.InnerCell>
     </sc.Cell>
   );

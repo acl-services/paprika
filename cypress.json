@@ -1,8 +1,9 @@
 {
+  "chromeWebSecurity": false,
   "integrationFolder": "./packages",
   "testFiles": "**/*.cypress.js",
   "video": false,
   "viewportHeight": 800,
   "viewportWidth": 1280,
-  "fixturesFolder": false
+  "fixturesFolder": "cypress/fixtures"
 }

@@ -32,7 +32,7 @@ function ExternalLink(props) {
 
   return (
     <sc.ExternalLink
-      aria-label={ariaText || children}
+      aria-label={ariaText || null}
       onClick={handleSwallowClick}
       rel="noopener noreferrer"
       target="_blank"

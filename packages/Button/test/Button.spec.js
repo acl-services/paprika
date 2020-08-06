@@ -1,7 +1,7 @@
 /* eslint-disable jsx-a11y/click-events-have-key-events, jsx-a11y/no-static-element-interactions */
 
 import React from "react";
-import { render, fireEvent } from "@testing-library/react";
+import { render, fireEvent, act } from "@testing-library/react";
 import Button from "../src";
 
 const noop = () => {};
@@ -109,7 +109,7 @@ describe("Button", () => {
   it("Is focussable via ref", () => {
     const buttonRef = React.createRef();
     renderComponent({ ref: buttonRef });
-    buttonRef.current.focus();
+    act(() => buttonRef.current.focus());
 
     expect(document.activeElement.tagName.toLowerCase()).toEqual("button");
   });
@@ -120,7 +120,7 @@ describe("Button", () => {
       buttonRef = component;
     };
     renderComponent({ ref: setRef });
-    buttonRef.focus();
+    act(() => buttonRef.focus());
 
     expect(document.activeElement.tagName.toLowerCase()).toEqual("button");
   });

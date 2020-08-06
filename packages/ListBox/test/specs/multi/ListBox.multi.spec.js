@@ -1,5 +1,5 @@
 import React from "react";
-import { configure, render, fireEvent } from "@testing-library/react";
+import { configure, render, fireEvent, waitFor } from "@testing-library/react";
 
 import ListBox from "../../../src";
 import { ControlledIsSelected } from "../../../stories/examples/multi";
@@ -90,7 +90,9 @@ describe("Listbox multi select", () => {
     const { getByTestId, openSelect } = renderComponent(null, [<ListBox.Filter key="filter" />, [...childrenContent]]);
 
     openSelect();
-    expect(getByTestId("list-filter")).toBeInTheDocument();
+    waitFor(() => {
+      expect(getByTestId("list-filter")).toBeInTheDocument();
+    });
   });
 
   it("should display message when filter input does not find a match", () => {
@@ -101,8 +103,10 @@ describe("Listbox multi select", () => {
 
     openSelect();
     fireEvent.change(getByTestId("list-filter-input"), { target: { value: "g" } });
-    expect(getByTestId("no-results")).toBeInTheDocument();
-    expect(getByText("No match")).toBeInTheDocument();
+    waitFor(() => {
+      expect(getByTestId("no-results")).toBeInTheDocument();
+      expect(getByText("No match")).toBeInTheDocument();
+    });
   });
 
   it("should have custom height of 500", () => {

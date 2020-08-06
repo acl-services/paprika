@@ -10,6 +10,7 @@ export default [
     link: "https://wegalvanize.com",
     shareable: true,
     level: "low",
+    position: "striker",
   },
   {
     id: "2",
@@ -22,6 +23,7 @@ export default [
     link: "https://wegalvanize.com",
     shareable: false,
     level: "high",
+    position: "striker",
   },
   {
     id: "3",
@@ -34,5 +36,6 @@ export default [
     link: "https://wegalvanize.com",
     shareable: true,
     level: "mid",
+    position: "midfielder",
   },
 ];
