@@ -8,6 +8,7 @@ import {
   StickyFooterSidePanel,
   ZIndexSidePanel,
   FocusHeading,
+  WithSortable,
 } from "./examples/Examples";
 import SidePanel from "../src";
 
@@ -49,3 +50,6 @@ zIndex.story = sidePanelStoryParameters;
 
 export const focusHeading = () => <FocusHeading />;
 focusHeading.story = sidePanelStoryParameters;
+
+export const withSortable = () => <WithSortable />;
+withSortable.story = sidePanelStoryParameters;
