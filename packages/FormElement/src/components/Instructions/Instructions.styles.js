@@ -5,5 +5,5 @@ import stylers from "@paprika/stylers";
 export const Instructions = styled.div`
   ${stylers.lineHeight(-1)}
   color: ${tokens.color.blackLighten20};
-  margin: ${tokens.spaceSm} 0 0 0;
+  margin: ${tokens.spaceSm} 0 ${tokens.space} 0;
 `;
