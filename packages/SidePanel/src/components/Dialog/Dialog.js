@@ -37,6 +37,7 @@ const defaultProps = {
 };
 
 function Dialog(props) {
+  const [isAnimating, setIsAnimating] = React.useState(false);
   const refSidePanel = React.useRef(null);
 
   const {
@@ -80,7 +81,16 @@ function Dialog(props) {
     </React.Fragment>
   );
 
+  React.useEffect(() => {
+    setIsAnimating(true);
+  }, [isOpen]);
+
   const dialogFooter = footer ? React.cloneElement(footer, { refSidePanel, isCompact }) : null;
+
+  const handleAnimationEnd = () => {
+    setIsAnimating(false);
+    onAnimationEnd();
+  };
 
   return (
     <sc.Dialog
@@ -93,7 +103,8 @@ function Dialog(props) {
       isInline={isInline}
       isOpen={isOpen}
       offsetY={offsetY}
-      onAnimationEnd={onAnimationEnd}
+      isAnimating={isAnimating}
+      onAnimationEnd={handleAnimationEnd}
       ref={refSidePanel}
       role="dialog"
       tabIndex="-1"
