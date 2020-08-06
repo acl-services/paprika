@@ -118,7 +118,13 @@ export const HeaderRow = React.memo(({ data: RowData, columnIndex, style }) => {
   const { style: styleProps = {}, ...moreProps } = typeof headerProps === "function" ? headerProps({ header }) : {};
 
   return (
-    <CellHeader role="columnheader" style={{ ...style, ...styleProps }} {...moreProps} borderType={borderType}>
+    <CellHeader
+      role="columnheader"
+      style={{ ...style, ...styleProps }}
+      {...moreProps}
+      borderType={borderType}
+      title={typeof header === "function" ? header() : header}
+    >
       {typeof header === "function" ? header() : header}
     </CellHeader>
   );
@@ -131,7 +137,13 @@ export const StickyHeaderRow = React.memo(({ data: RowData, columnIndex, style }
   const { style: styleProps = {}, ...moreProps } = typeof headerProps === "function" ? headerProps({ header }) : {};
 
   return (
-    <CellHeader role="columnheader" style={{ ...style, ...styleProps }} {...moreProps} borderType={borderType}>
+    <CellHeader
+      role="columnheader"
+      style={{ ...style, ...styleProps }}
+      {...moreProps}
+      borderType={borderType}
+      title={typeof header === "function" ? header() : header}
+    >
       {typeof header === "function" ? header() : header}
     </CellHeader>
   );
