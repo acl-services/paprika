@@ -62,10 +62,10 @@ function Dialog(props) {
   } = props;
 
   const isFooterSticky = footer && footer.props.isSticky;
+  const isHeaderSticky = header && header.props.isSticky;
 
   const dialogMain = (
     <React.Fragment>
-      {header ? React.cloneElement(header, { ref: refHeader, isCompact, onClose, getPushContentElement }) : null}
       <sc.DialogContent
         data-pka-anchor="sidepanel.content"
         hasPushedElement={!!getPushContentElement}
@@ -86,11 +86,33 @@ function Dialog(props) {
   }, [isOpen]);
 
   const dialogFooter = footer ? React.cloneElement(footer, { refSidePanel, isCompact }) : null;
+  const dialogHeader = header
+    ? React.cloneElement(header, { ref: refHeader, isCompact, onClose, getPushContentElement })
+    : null;
 
   const handleAnimationEnd = () => {
     setIsAnimating(false);
     onAnimationEnd();
   };
+
+  const renderDialogContent = () =>
+    isFooterSticky || isHeaderSticky ? (
+      <sc.MainWrapper>
+        {isHeaderSticky && dialogHeader}
+        <sc.DialogMain>
+          {!isHeaderSticky && dialogHeader}
+          {dialogMain}
+          {!isFooterSticky && dialogFooter}
+        </sc.DialogMain>
+        {isFooterSticky && dialogFooter}
+      </sc.MainWrapper>
+    ) : (
+      <>
+        {dialogHeader}
+        {dialogMain}
+        {dialogFooter}
+      </>
+    );
 
   return (
     <sc.Dialog
@@ -112,17 +134,7 @@ function Dialog(props) {
       width={width}
       {...moreProps}
     >
-      {isFooterSticky ? (
-        <sc.MainWrapper>
-          <sc.DialogMain>{dialogMain}</sc.DialogMain>
-          {dialogFooter}
-        </sc.MainWrapper>
-      ) : (
-        <React.Fragment>
-          {dialogMain}
-          {dialogFooter}
-        </React.Fragment>
-      )}
+      {renderDialogContent()}
     </sc.Dialog>
   );
 }

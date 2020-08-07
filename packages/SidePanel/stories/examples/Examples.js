@@ -158,6 +158,18 @@ export const StickyFooterSidePanel = () => {
   );
 };
 
+export const StickyHeaderSidePanel = () => {
+  return (
+    <SidePanel isOpen>
+      <SidePanel.Header isSticky>Header isSticky</SidePanel.Header>
+      <SidePanel.Content>
+        <TextLine repeat={100} />
+      </SidePanel.Content>
+      <SidePanel.Footer>Footer</SidePanel.Footer>
+    </SidePanel>
+  );
+};
+
 export const PushContentSidePanel = () => {
   const [isOpen, setIsOpen] = React.useState(true);
   const toggle = () => {

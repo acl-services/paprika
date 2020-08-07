@@ -15,3 +15,9 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 ### Changed
 
 - <SidePanel> no longer has default padding or margin. Instead make use of the <SidePanel.Content> sub component to apply the padding to a section of the SidePanel. (https://github.com/KaanDarcey).
+
+## [0.4.11] 2020-08-07
+
+### Added
+
+- Added heading isSticky prop, fixed footer height being applied[@tristanjasper](https://github.com/tristanjasper).
