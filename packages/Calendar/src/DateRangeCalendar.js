@@ -73,15 +73,7 @@ function DateRangeCalendar(props) {
   const I18n = useI18n();
 
   // Props
-  const {
-    startDate,
-    endDate,
-    onDatesChange,
-    possibleDate,
-    focusedInput,
-    onFocusChange,
-    kind,
-  } = props;
+  const { startDate, endDate, onDatesChange, possibleDate, focusedInput, onFocusChange, kind } = props;
 
   function getInitialVisibleMonth() {
     if (possibleDate && possibleDate.isValid()) {
