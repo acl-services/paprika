@@ -19,6 +19,8 @@ import Picker from "./components/Picker/Picker";
 import TimeInterpreter from "./TimeInterpreter";
 import * as sc from "./TimePicker.styles";
 
+const getExplodeTime = TimeInterpreter.parse;
+
 const propTypes = {
   /** Descriptive a11y text for assistive technologies. */
   a11yText: PropTypes.string,
@@ -94,60 +96,16 @@ function TimePicker(props) {
     ...moreProps
   } = props;
 
-  // const [hh, setHh] = React.useState(null);
-  // const [isPristine, setIsPristine] = React.useState(true);
+  const [hh, setHh] = React.useState(null);
   const [isVisible, setIsVisible] = React.useState(defaultIsVisible);
-  // const [mm, setMm] = React.useState(null);
-  // const [period, setPeriod] = React.useState(null);
-  // const [timeStr, setTimeStr] = React.useState(null);
-  // const [isTabIndexActive, setIsTabIndexActive] = React.useState(0);
+  const [mm, setMm] = React.useState(null);
+  const [period, setPeriod] = React.useState(null);
+  const [timeStr, setTimeStr] = React.useState(null);
+  const [isTabIndexActive, setIsTabIndexActive] = React.useState(0);
   const [value, setValue] = React.useState("");
+  const [error, setError] = React.useState(null);
 
-  // temp only to pass eslint
-  const hh = null;
-  const isPristine = true;
-  const mm = null;
-  const period = null;
-  const timeStr = null;
-  const isTabIndexActive = 0;
-
-  // $refInputContainer = React.createRef();
-
-  // constructor(props) {
-  //   super(props);
-  //   this.name = `${props.prefix}${btoa(Math.random()).substring(0, 8)}`;
-  //   this.state = {
-  //     hh: null,
-  //     isPristine: true,
-  //     isVisible: this.props.defaultIsVisible,
-  //     mm: null,
-  //     period: null,
-  //     timeStr: null,
-  //     isTabIndexActive: 0,
-  //     value: "",
-  //   };
-  // }
-
-  const getExplodeTime = TimeInterpreter.parse;
-
-  // useEffect(() => {
-  //   if (defaultValue && !value && isPristine) {
-  //     const time = getExplodeTime(defaultValue);
-
-  //     if (time.error) {
-  //       return {
-  //         ...time
-  //         error = labelError;
-  //         setIsVisible = false;
-  //         setIsPristine = false;
-  //       };
-  //     }
-  //     return { ...time, isVisible: isVisible, isPristine: false };
-  //   }
-
-  //   return null;
-  // };
-
+  // TODO: seems like we don't need it in functional component
   // function getDerivedStateFromProps() {
   //   if (defaultValue && !value && isPristine) {
   //     const time = getExplodeTime(defaultValue);
@@ -160,7 +118,7 @@ function TimePicker(props) {
   //         setIsPristine: false,
   //       };
   //     }
-  //     return { ...time, isVisible: isVisible, isPristine: false };
+  //     return { ...time, isVisible, isPristine: false };
   //   }
 
   //   return null;
@@ -172,85 +130,60 @@ function TimePicker(props) {
     return timeObj;
   }
 
-  setValue({
-    hh,
-    isPristine,
-    isVisible,
-    mm,
-    period,
-    timeStr,
-    isTabIndexActive,
-    value,
-  });
+  function handleClick(time) {
+    const newTime = setTime(time);
 
-  // const handleClick = time => {
-  //   this.setState(this.setTime(time));
-  // };
+    setHh(newTime.hh);
+    setMm(newTime.mm);
+    setPeriod(newTime.period);
+    setTimeStr(newTime.timeStr);
+    setValue(newTime.value);
+    setError(null);
+  }
 
-  // function handleError(time) {
-  //   {
-  //     time;
-  //   }
-  //   error = labelError;
-  //   setIsVisible(false);
-  // }
+  const handleError = () => {
+    setError(labelError);
+    setIsVisible(false);
+  };
 
-  // useEffect(event => {
-  //   const time = setTime(event.target.value);
-  //   if (time.error) {
-  //     handleError(time);
-  //     return;
-  //   }
+  const handleChange = event => {
+    const time = setTime(event.target.value);
+    if (time.error) {
+      handleError(time);
+      return;
+    }
 
-  //   this.setState(time);
-  // });
+    setHh(time.hh);
+    setMm(time.mm);
+    setPeriod(time.period);
+    setTimeStr(time.timeStr);
+    setValue(time.value);
+    setError(null);
+  };
 
-  // const handleChange = event => {
-  //   const time = this.setTime(event.target.value);
-  //   if (time.error) {
-  //     this.handleError(time);
-  //     return;
-  //   }
+  const handleFocus = () => {
+    if (!isDisabled) {
+      setIsTabIndexActive(-1);
+      setIsVisible(true);
+    }
+  };
 
-  //   this.setState(time);
-  // };
+  const handleBlur = event => {
+    const timeinputDom = document.querySelector(".timeinput-picker");
 
-  // handleFocus = () => {
-  //   if (!this.props.isDisabled) {
-  //     this.setState(
-  //       {
-  //         isTabIndexActive: -1,
-  //         isVisible: true,
-  //       },
-  //       () => {
-  //         this.$refInputContainer.current.querySelector("input").focus();
-  //       }
-  //     );
-  //   }
-  // };
+    let target = event.relatedTarget;
+    if (target === null) {
+      // IE11 fix https://stackoverflow.com/a/49325196/196038
+      target = document.activeElement;
+    }
 
-  // handleBlur = event => {
-  //   const timeinputDom = document.querySelector(".timeinput-picker");
+    if (timeinputDom && timeinputDom.contains(target)) {
+      return;
+    }
 
-  //   let target = event.relatedTarget;
-  //   if (target === null) {
-  //     // IE11 fix https://stackoverflow.com/a/49325196/196038
-  //     target = document.activeElement;
-  //   }
-
-  //   if (timeinputDom && timeinputDom.contains(target)) {
-  //     return;
-  //   }
-
-  //   this.setState({
-  //     isTabIndexActive: 0,
-  //     isVisible: false,
-  //   });
-  // };
-
-  // const handleClickOutside = () => {
-  //   this.finish();
-  // };
+    setIsTabIndexActive(0);
+    setIsVisible(false);
+  };
 
   function finish() {
     setIsVisible(false);
@@ -271,47 +204,46 @@ function TimePicker(props) {
     <L10n>
       <sc.TimePicker>
         <Popover style={{ width: "100%" }}>
-          {/* <div className="timeinput" onFocus={this.handleFocus} onBlur={this.handleBlur}> */}
-          {/* eslint-disable-next-line */}
-          <div tabIndex={isTabIndexActive ? 0 : -1}>
-            {/* setting hasClearButton to false confuses, look like a close button for the timeinput hasClearButton */}
-            {/* <div ref={this.$refInputContainer}> */}
-            <FormElement>
-              <FormElement.Content>
-                <Popover.Trigger style={{ width: "100%" }}>
-                  <Input
-                    ariaLabel={a11yText}
-                    hasClearButton={false}
-                    isDisabled={isDisabled}
-                    // onInput={handleChange}
-                    onKeyUp={handleKeyUp}
-                    defaultValue={value}
-                    data-qa-id="time-input__starting-at"
-                    {...moreProps}
-                  />
-                </Popover.Trigger>
-              </FormElement.Content>
-              <FormElement.Error />
-            </FormElement>
+          <div className="timeinput" onFocus={handleFocus} onBlur={handleBlur}>
+            {/* eslint-disable-next-line */}
+            <div tabIndex={isTabIndexActive ? 0 : -1}>
+              {/* setting hasClearButton to false confuses, look like a close button for the timeinput hasClearButton */}
+              <FormElement>
+                <FormElement.Content>
+                  <Popover.Trigger style={{ width: "100%" }}>
+                    <Input
+                      ariaLabel={a11yText}
+                      hasClearButton={false}
+                      isDisabled={isDisabled}
+                      onInput={handleChange}
+                      onKeyUp={handleKeyUp}
+                      onFocus={handleFocus}
+                      defaultValue={value}
+                      data-qa-id="time-input__starting-at"
+                      {...moreProps}
+                    />
+                  </Popover.Trigger>
+                </FormElement.Content>
+                <FormElement.Error>{error}</FormElement.Error>
+              </FormElement>
+            </div>
+            <Popover.Content>
+              <Picker
+                hh={hh}
+                isVisible={isVisible}
+                labelCustom={labelCustom}
+                labelHours={labelHours}
+                labelMinutes={labelMinutes}
+                labelPeriod={labelPeriod}
+                labelAM={labelAM}
+                labelPM={labelPM}
+                mm={mm}
+                onClick={handleClick}
+                period={period}
+                {...moreProps}
+              />
+            </Popover.Content>
           </div>
-          <Popover.Content>
-            <Picker
-              hh={hh}
-              isVisible={isVisible}
-              labelCustom={labelCustom}
-              labelHours={labelHours}
-              labelMinutes={labelMinutes}
-              labelPeriod={labelPeriod}
-              labelAM={labelAM}
-              labelPM={labelPM}
-              mm={mm}
-              onClick={setTime}
-              period={period}
-              {...moreProps}
-            />
-          </Popover.Content>
-          {/* </div> */}
-          {/* </div> */}
         </Popover>
       </sc.TimePicker>
     </L10n>
