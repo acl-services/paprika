@@ -11,7 +11,7 @@ export const Picker = styled.div`
   z-index: z(1);
 `;
 export const timeInputPickerOption = styled.div`
-  flex-basis: 112px;
+  flex-basis: 122px;
   &.timeinput-picker__hours {
     flex-basis: 140px;
   }
@@ -60,8 +60,6 @@ export const timeInputPickerColumnItemCustom = css`
 
 export const timeInputPickerColumnItem = styled(RawButton)`
   ${({ isActive, isCustom }) => css`
-    ${isActive && timeInputPickerColumnItemIsPicked};
-    ${isCustom && timeInputPickerColumnItemCustom};
     border-radius: ${tokens.border.radius};
     display: inline-block;
     margin-bottom: 0;
@@ -69,5 +67,7 @@ export const timeInputPickerColumnItem = styled(RawButton)`
     padding: ${tokens.spaceSm};
     text-align: center;
     width: 100%;
+    ${isActive ? timeInputPickerColumnItemIsPicked : ""};
+    ${isCustom ? timeInputPickerColumnItemCustom : ""};
   `}
 `;
