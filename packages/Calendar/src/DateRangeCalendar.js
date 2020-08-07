@@ -35,8 +35,6 @@ const propTypes = {
   /** Possible date might be selected in moment object */
   possibleDate: PropTypes.instanceOf(moment),
 
-  resetPossibleDate: PropTypes.func,
-
   /**
    * This callback will be called after selecting date.
    * START_DATE or END_DATE will be passed as argument.
@@ -55,13 +53,10 @@ const propTypes = {
   kind: PropTypes.oneOf(Object.values(Kinds)),
 };
 
-const noop = () => {};
-
 const defaultProps = {
   startDate: null,
   endDate: null,
   possibleDate: null,
-  resetPossibleDate: noop,
   kind: Kinds.BORDERED,
 };
 
@@ -83,38 +78,36 @@ function DateRangeCalendar(props) {
     endDate,
     onDatesChange,
     possibleDate,
-    resetPossibleDate,
     focusedInput,
     onFocusChange,
     kind,
   } = props;
 
+  function getInitialVisibleMonth() {
+    if (possibleDate && possibleDate.isValid()) {
+      return possibleDate;
+    }
+
+    return startDate && startDate.isValid() ? startDate : moment();
+  }
+
   // State
   const [shouldShowShortcut, setShouldShowShortcut] = React.useState(false);
-  const [currentMonth, setCurrentMonth] = React.useState(null);
+  const [currentMonth, setCurrentMonth] = React.useState(getInitialVisibleMonth());
 
   // Ref
   const nextButtonRef = React.useRef(null);
   const prevButtonRef = React.useRef(null);
   const calendarRef = React.useRef(null);
 
-  function getInitialVisibleMonth() {
-    let initialVisibleMonth;
-
+  React.useEffect(() => {
     if (possibleDate && possibleDate.isValid()) {
-      initialVisibleMonth = possibleDate;
-    } else if (currentMonth && currentMonth.isValid()) {
-      initialVisibleMonth = currentMonth;
-    } else {
-      initialVisibleMonth = startDate && startDate.isValid() ? startDate : moment();
+      setCurrentMonth(possibleDate);
     }
-
-    return initialVisibleMonth;
-  }
+  }, [possibleDate]);
 
   function handleClickHeader(month) {
     setCurrentMonth(month);
-    resetPossibleDate();
     setShouldShowShortcut(true);
   }
 
@@ -124,7 +117,6 @@ function DateRangeCalendar(props) {
 
   function handleConfirmShortcut({ month, year }) {
     setCurrentMonth(moment.utc([year, month]));
-    resetPossibleDate();
     setShouldShowShortcut(false);
   }
 
@@ -192,9 +184,7 @@ function DateRangeCalendar(props) {
     );
   }
 
-  const CalendarKey = `${currentMonth && currentMonth.format("YYYY-MM")}/${possibleDate &&
-    possibleDate.format("YYYY-MM")}/${startDate && startDate.format("YYYY-MM")}/${endDate &&
-    endDate.format("YYYY-MM")}`;
+  const CalendarKey = `${currentMonth.format("YYYY-MM")}`;
 
   return (
     <div css={calendarWrapperStyles} tabIndex={-1} ref={calendarRef}>
@@ -211,7 +201,7 @@ function DateRangeCalendar(props) {
           renderMonthElement={renderMonthHeaderElement}
           enableOutsideDays
           numberOfMonths={1}
-          initialVisibleMonth={getInitialVisibleMonth}
+          initialVisibleMonth={() => currentMonth}
           hideKeyboardShortcutsPanel
           noBorder={kind === Kinds.EMBEDDED}
           daySize={34}
@@ -227,7 +217,6 @@ function DateRangeCalendar(props) {
         />
       </div>
       <ShortcutPanel
-        key={shouldShowShortcut}
         date={currentMonth || moment()}
         isVisible={shouldShowShortcut}
         onCancel={handleCancelShortcut}

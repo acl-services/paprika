@@ -1,6 +1,7 @@
 import React from "react";
 import PropTypes from "prop-types";
 import moment from "moment";
+import { nanoid } from "nanoid";
 
 import ArrowLeft from "@paprika/icon/lib/ArrowLeft";
 import ArrowRight from "@paprika/icon/lib/ArrowRight";
@@ -31,6 +32,7 @@ const propTypes = {
 };
 
 function ShortcutPanel(props) {
+  const uniqId = React.useMemo(() => nanoid(), []);
   const { date, isVisible, onCancel, onConfirm } = props;
   const [pageIndex, setPageIndex] = React.useState(0);
   const [selectedMonth, setSelectedMonth] = React.useState(date.month());
@@ -39,14 +41,14 @@ function ShortcutPanel(props) {
 
   function handleChange(event) {
     const name = event.target.name;
-    const id = event.target.id;
+    const value = event.target.value;
 
     switch (name) {
       case "month":
-        setSelectedMonth(id * 1);
+        setSelectedMonth(value * 1);
         break;
       case "year":
-        setSelectedYear(id * 1);
+        setSelectedYear(value * 1);
         break;
       default:
         break;
@@ -66,12 +68,12 @@ function ShortcutPanel(props) {
         <input
           type="radio"
           name="month"
-          id={monthIndex}
-          value={month}
+          id={`${uniqId}-${monthIndex}`}
+          value={monthIndex}
           defaultChecked={monthIndex === selectedMonth}
           onChange={handleChange}
         />
-        <label css={labelStyles} htmlFor={monthIndex} isSelected={monthIndex === selectedMonth}>
+        <label css={labelStyles} htmlFor={`${uniqId}-${monthIndex}`} isSelected={monthIndex === selectedMonth}>
           {month}
         </label>
       </div>
@@ -93,12 +95,12 @@ function ShortcutPanel(props) {
         <input
           type="radio"
           name="year"
-          id={year}
+          id={`${uniqId}-${year}`}
           value={year}
           defaultChecked={year === selectedyear}
           onChange={handleChange}
         />
-        <label css={labelStyles} htmlFor={year} isSelected={year === selectedyear}>
+        <label css={labelStyles} htmlFor={`${uniqId}-${year}`} isSelected={year === selectedyear}>
           {year}
         </label>
       </div>
