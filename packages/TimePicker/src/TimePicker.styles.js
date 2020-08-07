@@ -1,7 +1,7 @@
 import styled from "styled-components";
 import tokens from "@paprika/tokens";
 
-export const CSSHolder = styled.div`
+export const TimePicker = styled.div`
   .timeinput {
     position: relative;
 

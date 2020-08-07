@@ -1,0 +1,48 @@
+import { Meta, Props, Story } from "@storybook/addon-docs/blocks";
+import TimePicker from "../src/";
+
+# TimePicker
+
+The `<TimePicker>` component gives users the ability to select a specific time from a popover.
+
+Main Features:
+
+- Ability to make specific time seleciton
+- Ability to set default time value
+
+## Installation
+
+```
+yarn add @/paprika/timepicker
+```
+or
+```
+npm install @paprika/timepicker
+```
+
+## Usage
+
+To create a TimePicker simply add the `<TimePicker />` component. You can set the default value of the picker and whether to display the dropdown displaying the time selection options by adding the properties to the the TimePicker.
+
+### Setting a default value for the TimePicker
+
+To set a default value for the TimePicker simply use the `defaultValue` prop and set the time you wish to display.
+
+```js
+<TimePicker defaultValue="6am" />
+```
+
+#### Result
+<TimePicker defaultValue="6am" />
+
+### Setting the TimePicker to visible
+
+To display the popover for the TimePicker without needing to click the input first simply add the `isVisible` property to the ```<TimePicker>```
+
+
+```js
+<TimePicker defaultValue="6am" isVisible />
+```
+
+#### Result
+<TimePicker defaultValue="6am" isVisible />
