@@ -7,11 +7,11 @@ import DateRangePicker from "../src";
 configure({ testIdAttribute: "data-pka-anchor" });
 
 function render(props = {}, startInputProps = {}, endInputProps = {}) {
-  const { onDatesChange, ...moreProps } = props;
-  const handleChange = onDatesChange || (() => {});
+  const { onChange, ...moreProps } = props;
+  const handleChange = onChange || (() => {});
   const rendered = renderReactTestingLibrary(
     <L10n>
-      <DateRangePicker onDatesChange={handleChange} {...moreProps}>
+      <DateRangePicker onChange={handleChange} {...moreProps}>
         <DateRangePicker.StartInput {...startInputProps} data-pka-anchor="daterangepicker.startinput" />
         <DateRangePicker.EndInput {...endInputProps} data-pka-anchor="daterangepicker.endinput" />
       </DateRangePicker>
@@ -24,7 +24,7 @@ function render(props = {}, startInputProps = {}, endInputProps = {}) {
     rerender: updatedProps => {
       rerender(
         <L10n>
-          <DateRangePicker onDatesChange={handleChange} {...moreProps} {...updatedProps}>
+          <DateRangePicker onChange={handleChange} {...moreProps} {...updatedProps}>
             <DateRangePicker.StartInput {...startInputProps} data-pka-anchor="daterangepicker.startinput" />
             <DateRangePicker.EndInput {...endInputProps} data-pka-anchor="daterangepicker.endinput" />
           </DateRangePicker>

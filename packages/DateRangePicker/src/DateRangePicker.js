@@ -23,7 +23,7 @@ const propTypes = {
   endDate: PropTypes.instanceOf(moment),
 
   /** Callback to fire when user select start or end date */
-  onDatesChange: PropTypes.func.isRequired,
+  onChange: PropTypes.func.isRequired,
 
   children: PropTypes.node,
 };
@@ -34,7 +34,7 @@ const defaultProps = {
   children: null,
 };
 
-const DateRangePicker = ({ startDate, endDate, onDatesChange, children }) => {
+const DateRangePicker = ({ startDate, endDate, onChange, children }) => {
   const [shouldShowPopover, setShouldShowPopover] = React.useState(false);
   const [currentFocus, setCurrentFocus] = React.useState(null);
   const [possibleStartDate, setPossibleStartDate] = React.useState(startDate || moment());
@@ -138,11 +138,11 @@ const DateRangePicker = ({ startDate, endDate, onDatesChange, children }) => {
   }
 
   function onChangeStartDate(newDate) {
-    onDatesChange({ startDate: newDate, endDate });
+    onChange({ startDate: newDate, endDate });
   }
 
   function onChangeEndDate(newDate) {
-    onDatesChange({ startDate, endDate: newDate });
+    onChange({ startDate, endDate: newDate });
   }
 
   function shouldDenyStartDateInputConfirmation() {
@@ -220,7 +220,7 @@ const DateRangePicker = ({ startDate, endDate, onDatesChange, children }) => {
                     onFocusChange={onFocusChange}
                     startDate={startDate}
                     endDate={endDate}
-                    onDatesChange={onDatesChange}
+                    onDatesChange={onChange}
                     possibleDate={debouncedPossibleStartDate}
                   />
                 </sc.CalendarWrapper>
@@ -231,7 +231,7 @@ const DateRangePicker = ({ startDate, endDate, onDatesChange, children }) => {
                     onFocusChange={onFocusChange}
                     startDate={startDate}
                     endDate={endDate}
-                    onDatesChange={onDatesChange}
+                    onDatesChange={onChange}
                     possibleDate={debouncedPossibleEndDate}
                   />
                 </sc.CalendarWrapper>

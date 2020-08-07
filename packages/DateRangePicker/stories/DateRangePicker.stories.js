@@ -37,7 +37,7 @@ storiesOf(storyName, module)
     return (
       <L10n locale="en">
         <DateRangePickerStory>
-          <DateRangePicker startDate={startDate} endDate={endDate} onDatesChange={setDates} {...dateRangePickerProps}>
+          <DateRangePicker startDate={startDate} endDate={endDate} onChange={setDates} {...dateRangePickerProps}>
             <DateRangePicker.Input {...inputProps} />
             <DateRangePicker.StartInput {...startInputProps} />
             <DateRangePicker.EndInput {...endInputProps} />
@@ -56,7 +56,7 @@ storiesOf(`${storyName}/Backyard/Tests`, module).add("Cypress", () => {
 
   return (
     <L10n locale="en">
-      <DateRangePicker startDate={startDate} endDate={endDate} onDatesChange={setDates}>
+      <DateRangePicker startDate={startDate} endDate={endDate} onChange={setDates}>
         <DateRangePicker.StartInput data-pka-anchor="daterangepicker.startinput" />
         <DateRangePicker.EndInput data-pka-anchor="daterangepicker.endinput" />
       </DateRangePicker>
