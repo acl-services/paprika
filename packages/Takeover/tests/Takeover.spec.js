@@ -7,11 +7,13 @@ const noop = () => {};
 describe("Takeover", () => {
   given("children", () => "some content");
   given("onClose", () => noop);
+  given("a11yText", () => "takeover story");
 
   given("props", () => ({
     isOpen: given.isOpen,
     onClose: given.onClose,
     children: given.children,
+    a11yText: given.a11yText,
   }));
 
   given("rendered", () => renderReactTestingLibrary(<Takeover {...given.props} />));
@@ -57,7 +59,7 @@ describe("Takeover", () => {
     given("isOpen", () => false);
 
     it("renders nothing", () => {
-      expect(given.rendered.container).toBeEmpty();
+      expect(given.rendered.container).toBeEmptyDOMElement();
     });
 
     it("does not trigger onClose when ESC press", () => {

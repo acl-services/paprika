@@ -1,6 +1,6 @@
 {
   "name": "@paprika/time-picker",
-  "version": "0.2.0",
+  "version": "0.2.2",
   "description": "Provides a easy to use picker with ability to select a specific time",
   "author": "@paprika",
   "main": "lib/index.js",
@@ -17,8 +17,8 @@
     "@babel/runtime-corejs2": "^7.3.1",
     "@paprika/helpers": "^0.2.13",
     "@paprika/icon": "^0.3.3",
-    "@paprika/input": "^0.2.36",
-    "@paprika/raw-button": "^0.2.14",
+    "@paprika/input": "^0.2.38",
+    "@paprika/raw-button": "^0.2.16",
     "@paprika/stylers": "^0.2.8",
     "@paprika/tokens": "^0.1.14",
     "prop-types": "^15.7.2"

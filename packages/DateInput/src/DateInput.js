@@ -171,7 +171,7 @@ const DateInput = React.forwardRef((props, ref) => {
       onChange={handleInputChange}
       onClick={handleClick}
       onKeyUp={handleKeyUp}
-      inputRef={ref}
+      ref={ref}
       value={inputText}
       onFocus={handleFocus}
       onBlur={handleInputBlur}

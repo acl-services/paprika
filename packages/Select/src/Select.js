@@ -9,7 +9,6 @@ const propTypes = {
   className: PropTypes.string,
   children: PropTypes.node,
   hasError: PropTypes.bool,
-  inputRef: PropTypes.oneOfType([PropTypes.func, PropTypes.shape({ current: PropTypes.instanceOf(Element) })]),
   isDisabled: PropTypes.bool,
   isReadOnly: PropTypes.bool,
   placeholder: PropTypes.string,
@@ -22,7 +21,6 @@ const defaultProps = {
   className: null,
   children: null,
   hasError: false,
-  inputRef: () => {},
   isDisabled: false,
   isReadOnly: false,
   placeholder: null,
@@ -30,7 +28,7 @@ const defaultProps = {
   value: "",
 };
 
-const Select = props => {
+const Select = React.forwardRef((props, ref) => {
   const renderPlaceholder = () => {
     const { placeholder } = props;
     if (!placeholder) return null;
@@ -46,7 +44,6 @@ const Select = props => {
     className,
     children,
     hasError,
-    inputRef,
     isDisabled,
     isReadOnly,
     size,
@@ -75,7 +72,7 @@ const Select = props => {
         aria-invalid={hasError}
         className="form-select__select"
         disabled={isDisabled || isReadOnly}
-        ref={inputRef}
+        ref={ref}
         value={value}
         {...moreProps}
       >
@@ -84,7 +81,7 @@ const Select = props => {
       </select>
     </div>
   );
-};
+});
 
 Select.displayName = "Select";
 Select.propTypes = propTypes;

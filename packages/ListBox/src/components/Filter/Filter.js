@@ -161,7 +161,7 @@ const Filter = React.forwardRef((props, ref) => {
           onChange={handleChangeFilter}
           onKeyDown={props.onKeyDown}
           placeholder={placeholder || I18n.t("listBox.filter.placeholder")}
-          inputRef={state.refFilterInput}
+          ref={state.refFilterInput}
           value={value || textSearch || ""}
           size={state.size}
           {...moreProps}
