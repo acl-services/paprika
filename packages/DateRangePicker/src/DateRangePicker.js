@@ -40,9 +40,9 @@ const DateRangePicker = ({ startDate, endDate, onDatesChange, children }) => {
   const [possibleStartDate, setPossibleStartDate] = React.useState(startDate || moment());
   const [possibleEndDate, setPossibleEndDate] = React.useState(endDate || moment().add(1, "months"));
 
-  const popoverContentRef = React.useRef(null);
-  const startDateInputRef = React.useRef(null);
-  const endDateInputRef = React.useRef(null);
+  const refPopoverContent = React.useRef(null);
+  const refStartDateInput = React.useRef(null);
+  const refEndDateInput = React.useRef(null);
 
   const I18n = useI18n();
   const debouncedPossibleStartDate = useDebounce(possibleStartDate, 300);
@@ -74,9 +74,9 @@ const DateRangePicker = ({ startDate, endDate, onDatesChange, children }) => {
 
   function isAnyElementContainsFocus() {
     return (
-      isElementContainsFocus(popoverContentRef.current) ||
-      isElementContainsFocus(startDateInputRef.current) ||
-      isElementContainsFocus(endDateInputRef.current)
+      isElementContainsFocus(refPopoverContent.current) ||
+      isElementContainsFocus(refStartDateInput.current) ||
+      isElementContainsFocus(refEndDateInput.current)
     );
   }
 
@@ -86,8 +86,8 @@ const DateRangePicker = ({ startDate, endDate, onDatesChange, children }) => {
 
   function hidePopover() {
     if (shouldShowPopover) setShouldShowPopover(false);
-    if (startDateInputRef.current) startDateInputRef.current.blur();
-    if (endDateInputRef.current) endDateInputRef.current.blur();
+    if (refStartDateInput.current) refStartDateInput.current.blur();
+    if (refEndDateInput.current) refEndDateInput.current.blur();
     setCurrentFocus(null);
   }
 
@@ -111,9 +111,9 @@ const DateRangePicker = ({ startDate, endDate, onDatesChange, children }) => {
 
   function onFocusChange(type) {
     if (type === START_DATE) {
-      startDateInputRef.current.focus();
+      refStartDateInput.current.focus();
     } else if (type === END_DATE) {
-      endDateInputRef.current.focus();
+      refEndDateInput.current.focus();
     } else {
       hidePopover();
     }
@@ -128,11 +128,11 @@ const DateRangePicker = ({ startDate, endDate, onDatesChange, children }) => {
   }
 
   function shouldDenyStartDateInputConfirmation() {
-    return isElementContainsFocus(startDateInputRef.current);
+    return isElementContainsFocus(refStartDateInput.current);
   }
 
   function shouldDenyEndDateInputConfirmation() {
-    return isElementContainsFocus(endDateInputRef.current);
+    return isElementContainsFocus(refEndDateInput.current);
   }
 
   function handlePossibleStartDateChange(newPossibleDate) {
@@ -160,7 +160,7 @@ const DateRangePicker = ({ startDate, endDate, onDatesChange, children }) => {
     >
       <sc.Wrapper>
         <sc.DateInput
-          ref={startDateInputRef}
+          ref={refStartDateInput}
           date={startDate}
           onChange={onChangeStartDate}
           onChangePossibleDate={handlePossibleStartDateChange}
@@ -176,7 +176,7 @@ const DateRangePicker = ({ startDate, endDate, onDatesChange, children }) => {
           <ArrowIcon />
         </sc.Separator>
         <sc.DateInput
-          ref={endDateInputRef}
+          ref={refEndDateInput}
           date={endDate}
           onChange={onChangeEndDate}
           onChangePossibleDate={handlePossibleEndDateChange}
@@ -190,7 +190,7 @@ const DateRangePicker = ({ startDate, endDate, onDatesChange, children }) => {
         />
       </sc.Wrapper>
 
-      <Popover.Content ref={popoverContentRef}>
+      <Popover.Content ref={refPopoverContent}>
         <Popover.Card>
           {shouldShowPopover && (
             <sc.PopoverCardContent>
