@@ -1,7 +1,6 @@
 import React from "react";
 import { storiesOf } from "@storybook/react";
 import TimePicker from "../src";
-import Picker from "../src/components/Picker/Picker";
 
 function Container({ children }) {
   return <div style={{ padding: "32px", maxWidth: "366px" }}>{children}</div>;
@@ -12,11 +11,6 @@ function ScreenerContainer({ children }) {
 }
 
 storiesOf("TimePicker", module)
-  .add("pick", () => (
-    <Container>
-      <Picker />
-    </Container>
-  ))
   .add("Basic", () => (
     <Container>
       <TimePicker isVisible />
@@ -24,42 +18,42 @@ storiesOf("TimePicker", module)
   ))
   .add("Format 0000", () => (
     <Container>
-      <TimePicker defaultValue="0000" isVisible />
+      <TimePicker defaultValue="0000" defaultIsVisible />
     </Container>
   ))
   .add("Format 03:33am", () => (
     <Container>
-      <TimePicker defaultValue="03:33am" isVisible />
+      <TimePicker defaultValue="03:33am" defaultIsVisible />
     </Container>
   ))
   .add("Format 10....22pm2", () => (
     <Container>
-      <TimePicker defaultValue="10....22pm2" isVisible />
+      <TimePicker defaultValue="10....22pm2" defaultIsVisible />
     </Container>
   ))
   .add("Format 1344", () => (
     <Container>
-      <TimePicker defaultValue="1344" isVisible />
+      <TimePicker defaultValue="1344" defaultIsVisible />
     </Container>
   ))
   .add("Format 1pm", () => (
     <Container>
-      <TimePicker defaultValue="1pm" isVisible />
+      <TimePicker defaultValue="1pm" defaultIsVisible />
     </Container>
   ))
   .add("Format 3333", () => (
     <Container>
-      <TimePicker defaultValue="3333" />
+      <TimePicker defaultValue="3333" defaultIsVisible />
     </Container>
   ))
   .add("Format 959", () => (
     <Container>
-      <TimePicker defaultValue="959" isVisible />
+      <TimePicker defaultValue="959" defaultIsVisible />
     </Container>
   ))
   .add("Format 6am", () => (
     <Container>
-      <TimePicker defaultValue="6am" isVisible />
+      <TimePicker defaultValue="6am" defaultIsVisible />
     </Container>
   ))
   .add("Format 730am  isVisible=false", () => (
@@ -73,31 +67,31 @@ storiesOf("TimePicker", module)
         <TimePicker defaultValue="730am" />
       </ScreenerContainer>
       <ScreenerContainer>
-        <TimePicker defaultValue="6am" isVisible />
+        <TimePicker defaultValue="6am" defaultIsVisible />
       </ScreenerContainer>
       <ScreenerContainer>
-        <TimePicker isVisible />
+        <TimePicker defaultIsVisible />
       </ScreenerContainer>
       <ScreenerContainer>
-        <TimePicker defaultValue="959" isVisible />
+        <TimePicker defaultValue="959" defaultIsVisible />
       </ScreenerContainer>
       <ScreenerContainer>
-        <TimePicker defaultValue="3333" />
+        <TimePicker defaultValue="3333" defaultIsVisible />
       </ScreenerContainer>
       <ScreenerContainer>
-        <TimePicker defaultValue="1pm" isVisible />
+        <TimePicker defaultValue="1pm" defaultIsVisible />
       </ScreenerContainer>
       <ScreenerContainer>
-        <TimePicker defaultValue="1344" isVisible />
+        <TimePicker defaultValue="1344" defaultIsVisible />
       </ScreenerContainer>
       <ScreenerContainer>
-        <TimePicker defaultValue="10....22pm2" isVisible />
+        <TimePicker defaultValue="10....22pm2" defaultIsVisible />
       </ScreenerContainer>
       <ScreenerContainer>
-        <TimePicker defaultValue="03:33am" isVisible />
+        <TimePicker defaultValue="03:33am" defaultIsVisible />
       </ScreenerContainer>
       <ScreenerContainer>
-        <TimePicker defaultValue="0000" isVisible />
+        <TimePicker defaultValue="0000" defaultIsVisible />
       </ScreenerContainer>
     </>
   ));

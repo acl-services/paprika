@@ -96,33 +96,14 @@ function TimePicker(props) {
     ...moreProps
   } = props;
 
-  const [hh, setHh] = React.useState(null);
+  const [hh, setHh] = React.useState(getExplodeTime(defaultValue).hh);
   const [isVisible, setIsVisible] = React.useState(defaultIsVisible);
-  const [mm, setMm] = React.useState(null);
-  const [period, setPeriod] = React.useState(null);
+  const [mm, setMm] = React.useState(getExplodeTime(defaultValue).mm);
+  const [period, setPeriod] = React.useState(getExplodeTime(defaultValue).period);
   const [timeStr, setTimeStr] = React.useState(null);
   const [isTabIndexActive, setIsTabIndexActive] = React.useState(0);
-  const [value, setValue] = React.useState("");
+  const [value, setValue] = React.useState(defaultValue);
   const [error, setError] = React.useState(null);
-
-  // TODO: seems like we don't need it in functional component
-  // function getDerivedStateFromProps() {
-  //   if (defaultValue && !value && isPristine) {
-  //     const time = getExplodeTime(defaultValue);
-
-  //     if (time.error) {
-  //       return {
-  //         ...time,
-  //         error: labelError,
-  //         setIsVisible: false,
-  //         setIsPristine: false,
-  //       };
-  //     }
-  //     return { ...time, isVisible, isPristine: false };
-  //   }
-
-  //   return null;
-  // }
 
   function setTime(time) {
     const timeObj = getExplodeTime(time);
@@ -199,51 +180,50 @@ function TimePicker(props) {
       finish();
     }
   };
-
   return (
     <L10n>
-      <sc.TimePicker>
-        <Popover style={{ width: "100%" }}>
-          <div className="timeinput" onFocus={handleFocus} onBlur={handleBlur}>
-            {/* eslint-disable-next-line */}
-            <div tabIndex={isTabIndexActive ? 0 : -1}>
-              {/* setting hasClearButton to false confuses, look like a close button for the timeinput hasClearButton */}
-              <FormElement>
-                <FormElement.Content>
-                  <Popover.Trigger style={{ width: "100%" }}>
-                    <Input
-                      ariaLabel={a11yText}
-                      hasClearButton={false}
-                      isDisabled={isDisabled}
-                      onInput={handleChange}
-                      onKeyUp={handleKeyUp}
-                      onFocus={handleFocus}
-                      defaultValue={value}
-                      data-qa-id="time-input__starting-at"
-                      {...moreProps}
-                    />
-                  </Popover.Trigger>
-                </FormElement.Content>
-                <FormElement.Error>{error}</FormElement.Error>
-              </FormElement>
-            </div>
-            <Popover.Content>
-              <Picker
-                hh={hh}
-                isVisible={isVisible}
-                labelCustom={labelCustom}
-                labelHours={labelHours}
-                labelMinutes={labelMinutes}
-                labelPeriod={labelPeriod}
-                labelAM={labelAM}
-                labelPM={labelPM}
-                mm={mm}
-                onClick={handleClick}
-                period={period}
-                {...moreProps}
-              />
-            </Popover.Content>
+      <sc.TimePicker onFocus={handleFocus} onBlur={handleBlur}>
+        <Popover style={{ width: "100%" }} isOpen={isVisible} edge="left" offset={0} align="bottom">
+          {/* <div className="timeinput" onFocus={handleFocus} onBlur={handleBlur}> */}
+          {/* eslint-disable-next-line */}
+          <div tabIndex={isTabIndexActive ? 0 : -1}>
+            {/* setting hasClearButton to false confuses, look like a close button for the timeinput hasClearButton */}
+            <FormElement isLabelVisuallyHidden>
+              <FormElement.Content style={{ margin: 0 }}>
+                <Popover.Trigger style={{ width: "100%" }}>
+                  <Input
+                    ariaLabel={a11yText}
+                    hasClearButton={false}
+                    isDisabled={isDisabled}
+                    onInput={handleChange}
+                    onKeyUp={handleKeyUp}
+                    onFocus={handleFocus}
+                    defaultValue={value}
+                    data-qa-id="time-input__starting-at"
+                    {...moreProps}
+                  />
+                </Popover.Trigger>
+              </FormElement.Content>
+              <FormElement.Error>{error}</FormElement.Error>
+            </FormElement>
           </div>
+          <Popover.Content>
+            <Picker
+              hh={hh}
+              isVisible={isVisible}
+              labelCustom={labelCustom}
+              labelHours={labelHours}
+              labelMinutes={labelMinutes}
+              labelPeriod={labelPeriod}
+              labelAM={labelAM}
+              labelPM={labelPM}
+              mm={mm}
+              onClick={handleClick}
+              period={period}
+              {...moreProps}
+            />
+          </Popover.Content>
+          {/* </div> */}
         </Popover>
       </sc.TimePicker>
     </L10n>
