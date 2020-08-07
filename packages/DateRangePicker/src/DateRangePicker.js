@@ -49,8 +49,26 @@ const DateRangePicker = ({ startDate, endDate, onDatesChange, children }) => {
   const debouncedPossibleEndDate = useDebounce(possibleEndDate, 300);
 
   React.useEffect(() => {
-    setPossibleStartDate(startDate || moment());
-  }, [startDate]);
+    if (startDate) {
+      setPossibleStartDate(startDate);
+
+      if (!endDate) {
+        setPossibleEndDate(moment(startDate).add(1, "months"));
+      }
+    } else if (!endDate) {
+      setPossibleStartDate(moment());
+    }
+
+    if (endDate) {
+      setPossibleEndDate(endDate);
+
+      if (!startDate) {
+        setPossibleStartDate(moment(endDate).subtract(1, "months"));
+      }
+    } else if (!startDate) {
+      setPossibleStartDate(moment());
+    }
+  }, [startDate, endDate]);
 
   React.useEffect(() => {
     setPossibleEndDate(endDate || moment().add(1, "months"));
