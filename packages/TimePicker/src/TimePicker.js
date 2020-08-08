@@ -26,7 +26,7 @@ const propTypes = {
   a11yText: PropTypes.string,
 
   /** If the TimePicker is set to visible */
-  defaultIsVisible: PropTypes.bool,
+  defaultIsOpen: PropTypes.bool,
 
   /** */
   defaultValue: PropTypes.string, // it been use on getDerivedStateFromProps which is a useEffect in pre-era of hooks
@@ -64,7 +64,7 @@ const propTypes = {
 
 const defaultProps = {
   a11yText: "Time (hh:mm)",
-  defaultIsVisible: false,
+  defaultIsOpen: false,
   defaultValue: null,
   labelCustom: "Custom",
   labelError: "Invalid Format",
@@ -81,7 +81,7 @@ const defaultProps = {
 function TimePicker(props) {
   const {
     a11yText,
-    defaultIsVisible,
+    defaultIsOpen,
     defaultValue,
     labelCustom,
     labelError,
@@ -96,56 +96,84 @@ function TimePicker(props) {
     ...moreProps
   } = props;
 
-  const [hh, setHh] = React.useState(getExplodeTime(defaultValue).hh);
-  const [isVisible, setIsVisible] = React.useState(defaultIsVisible);
-  const [mm, setMm] = React.useState(getExplodeTime(defaultValue).mm);
-  const [period, setPeriod] = React.useState(getExplodeTime(defaultValue).period);
+  const [isOpen, setIsOpen] = React.useState(defaultIsOpen);
+  const [time, setTime] = React.useState(() => {
+    if (defaultValue) {
+      const defaultTime = getExplodeTime(defaultValue);
+      return {
+        hh: defaultTime.hh,
+        mm: defaultTime.mm,
+        period: defaultTime.period,
+      };
+    }
+    return {
+      hh: null,
+      mm: null,
+      period: null,
+    };
+  });
   const [timeStr, setTimeStr] = React.useState(null);
   const [isTabIndexActive, setIsTabIndexActive] = React.useState(0);
   const [value, setValue] = React.useState(defaultValue);
-  const [error, setError] = React.useState(null);
+  const [hasError, setHasError] = React.useState(false);
 
-  function setTime(time) {
-    const timeObj = getExplodeTime(time);
-    onChange(timeObj);
-    return timeObj;
+  React.useEffect(() => {
+    if (defaultValue) {
+      const { hh, mm, period, error, timeStr: newTimeStr, value: newValue } = getExplodeTime(defaultValue);
+
+      if (error) {
+        setIsOpen(false);
+        setHasError(true);
+        return;
+      }
+
+      setTime({ hh, mm, period });
+      setTimeStr(newTimeStr);
+      setValue(newValue);
+      setHasError(false);
+    }
+  }, [defaultValue]);
+
+  function handleClick(newTime) {
+    const newTimeParsed = getExplodeTime(newTime);
+    const { hh, mm, period, timeStr: newTimeStr, value: newValue } = newTimeParsed;
+
+    onChange(newTimeParsed);
+
+    setTime({ hh, mm, period });
+    setTimeStr(newTimeStr);
+    setValue(newValue);
+    setHasError(false);
   }
-
-  function handleClick(time) {
-    const newTime = setTime(time);
-
-    setHh(newTime.hh);
-    setMm(newTime.mm);
-    setPeriod(newTime.period);
-    setTimeStr(newTime.timeStr);
-    setValue(newTime.value);
-    setError(null);
-  }
-
-  const handleError = () => {
-    setError(labelError);
-    setIsVisible(false);
-  };
 
   const handleChange = event => {
-    const time = setTime(event.target.value);
-    if (time.error) {
-      handleError(time);
+    setValue(event.target.value);
+
+    if (!event.target.value) {
+      setTime({ hh: null, mm: null, period: null });
+      setHasError(false);
       return;
     }
 
-    setHh(time.hh);
-    setMm(time.mm);
-    setPeriod(time.period);
-    setTimeStr(time.timeStr);
-    setValue(time.value);
-    setError(null);
+    const newTimeParsed = getExplodeTime(event.target.value);
+    const { hh, mm, period, timeStr: newTimeStr, error } = newTimeParsed;
+    onChange(newTimeParsed);
+
+    if (error) {
+      setHasError(true);
+      setIsOpen(false);
+      return;
+    }
+
+    setTime({ hh, mm, period });
+    setTimeStr(newTimeStr);
+    setHasError(false);
   };
 
   const handleFocus = () => {
     if (!isDisabled) {
       setIsTabIndexActive(-1);
-      setIsVisible(true);
+      setIsOpen(true);
     }
   };
 
@@ -163,11 +191,11 @@ function TimePicker(props) {
     }
 
     setIsTabIndexActive(0);
-    setIsVisible(false);
+    setIsOpen(false);
   };
 
   function finish() {
-    setIsVisible(false);
+    setIsOpen(false);
     setValue(timeStr);
   }
 
@@ -180,10 +208,11 @@ function TimePicker(props) {
       finish();
     }
   };
+
   return (
     <L10n>
       <sc.TimePicker onFocus={handleFocus} onBlur={handleBlur}>
-        <Popover style={{ width: "100%" }} isOpen={isVisible} edge="left" offset={0} align="bottom">
+        <Popover style={{ width: "100%" }} isOpen={isOpen} edge="left" offset={0} align="bottom">
           {/* <div className="timeinput" onFocus={handleFocus} onBlur={handleBlur}> */}
           {/* eslint-disable-next-line */}
           <div tabIndex={isTabIndexActive ? 0 : -1}>
@@ -195,31 +224,31 @@ function TimePicker(props) {
                     ariaLabel={a11yText}
                     hasClearButton={false}
                     isDisabled={isDisabled}
-                    onInput={handleChange}
+                    onChange={handleChange}
                     onKeyUp={handleKeyUp}
                     onFocus={handleFocus}
-                    defaultValue={value}
+                    value={value}
                     data-qa-id="time-input__starting-at"
                     {...moreProps}
                   />
                 </Popover.Trigger>
               </FormElement.Content>
-              <FormElement.Error>{error}</FormElement.Error>
+              <FormElement.Error>{hasError ? labelError : null}</FormElement.Error>
             </FormElement>
           </div>
           <Popover.Content>
             <Picker
-              hh={hh}
-              isVisible={isVisible}
+              hh={time.hh}
+              isVisible={isOpen}
               labelCustom={labelCustom}
               labelHours={labelHours}
               labelMinutes={labelMinutes}
               labelPeriod={labelPeriod}
               labelAM={labelAM}
               labelPM={labelPM}
-              mm={mm}
+              mm={time.mm}
               onClick={handleClick}
-              period={period}
+              period={time.period}
               {...moreProps}
             />
           </Popover.Content>
