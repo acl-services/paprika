@@ -28,7 +28,7 @@ function ArrowItem(props) {
 
   return (
     <sc.ArrowItem aria-label={a11yText} isDisabled={isDisabled} onClick={onClick}>
-      <sc.ArrowItemIcon size={14} type={`Arrow-${type}`} />
+      <sc.ArrowItemIcon size={14} type={`Arrow-${type}`} isDisabled />
     </sc.ArrowItem>
   );
 }

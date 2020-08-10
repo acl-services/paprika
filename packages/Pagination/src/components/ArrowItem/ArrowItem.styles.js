@@ -1,11 +1,14 @@
-import styled from "styled-components";
+import styled, { css } from "styled-components";
 import RawButton from "@paprika/raw-button";
-// import Icon from "../../../../Icon";
 import tokens from "@paprika/tokens";
+// import Icon from "../../../../Icon";
 
-// export const ArrowItemIcon = styled(Icon)`
-//   line-height: ${tokens.space * 3};
-// `;
+export const ArrowItemIcon = css`
+  ${({ isDisabled }) => css`
+    line-height: ${tokens.space * 3};
+    ${isDisabled ? tokens.color.blackLighten40 : tokens.color.black}
+  `}
+`;
 
 export const ArrowItem = styled(RawButton)`
   border-radius: ${tokens.borderRadius};
