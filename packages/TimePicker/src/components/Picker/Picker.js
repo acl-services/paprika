@@ -4,26 +4,27 @@ import PropTypes from "prop-types";
 import * as sc from "./Picker.styles";
 
 const propTypes = {
+  /** Value for the hours */
   hh: PropTypes.number,
-
+  /** If the Picker is visible. */
   isVisible: PropTypes.bool,
-
+  /** Label for the Custom button */
   labelCustom: PropTypes.string,
-
+  /** Label for the Hours column */
   labelHours: PropTypes.string,
-
+  /** Label for the Minutes column */
   labelMinutes: PropTypes.string,
-
+  /** Label for the Period column */
   labelPeriod: PropTypes.string,
-
+  /** Label for the am */
   labelAM: PropTypes.string,
-
+  /** Label for the pm */
   labelPM: PropTypes.string,
-
+  /** Value for the minutes */
   mm: PropTypes.number,
-
+  /** Callback to be executed when the value is changed. */
   onClick: PropTypes.func,
-
+  /** Value for period */
   period: PropTypes.string,
 };
 
