@@ -11,7 +11,6 @@
 
 import React from "react";
 import PropTypes from "prop-types";
-import FormElement from "@paprika/form-element";
 import Input from "@paprika/input";
 import L10n from "@paprika/l10n";
 import Popover from "@paprika/popover";
@@ -41,9 +40,6 @@ const propTypes = {
   labelCustom: PropTypes.string,
 
   /** */
-  labelError: PropTypes.string,
-
-  /** */
   labelHours: PropTypes.string,
 
   /** */
@@ -59,6 +55,9 @@ const propTypes = {
   onChange: PropTypes.func,
 
   /** */
+  onError: PropTypes.func,
+
+  /** */
   prefix: PropTypes.string,
 };
 
@@ -67,7 +66,6 @@ const defaultProps = {
   defaultIsOpen: false,
   defaultValue: null,
   labelCustom: "Custom",
-  labelError: "Invalid Format",
   labelHours: "Hours",
   labelMinutes: "Minutes",
   labelPeriod: "Period",
@@ -75,6 +73,7 @@ const defaultProps = {
   labelPM: "pm",
   isDisabled: false,
   onChange: () => {},
+  onError: () => {},
   prefix: "timePicker",
 };
 
@@ -84,7 +83,6 @@ function TimePicker(props) {
     defaultIsOpen,
     defaultValue,
     labelCustom,
-    labelError,
     labelHours,
     labelMinutes,
     labelPeriod,
@@ -92,6 +90,7 @@ function TimePicker(props) {
     labelPM,
     isDisabled,
     onChange,
+    onError,
     prefix,
     ...moreProps
   } = props;
@@ -115,7 +114,6 @@ function TimePicker(props) {
   const [timeStr, setTimeStr] = React.useState(null);
   const [isTabIndexActive, setIsTabIndexActive] = React.useState(0);
   const [value, setValue] = React.useState(defaultValue);
-  const [hasError, setHasError] = React.useState(false);
 
   React.useEffect(() => {
     if (defaultValue) {
@@ -123,14 +121,14 @@ function TimePicker(props) {
 
       if (error) {
         setIsOpen(false);
-        setHasError(true);
+        // TODO: not required if we assume consumer always pass in valid value
+        // onError(error);
         return;
       }
 
       setTime({ hh, mm, period });
       setTimeStr(newTimeStr);
       setValue(newValue);
-      setHasError(false);
     }
   }, [defaultValue]);
 
@@ -143,7 +141,6 @@ function TimePicker(props) {
     setTime({ hh, mm, period });
     setTimeStr(newTimeStr);
     setValue(newValue);
-    setHasError(false);
   }
 
   const handleChange = event => {
@@ -151,7 +148,6 @@ function TimePicker(props) {
 
     if (!event.target.value) {
       setTime({ hh: null, mm: null, period: null });
-      setHasError(false);
       return;
     }
 
@@ -160,14 +156,13 @@ function TimePicker(props) {
     onChange(newTimeParsed);
 
     if (error) {
-      setHasError(true);
       setIsOpen(false);
+      onError(error);
       return;
     }
 
     setTime({ hh, mm, period });
     setTimeStr(newTimeStr);
-    setHasError(false);
   };
 
   const handleFocus = () => {
@@ -217,24 +212,19 @@ function TimePicker(props) {
           {/* eslint-disable-next-line */}
           <div tabIndex={isTabIndexActive ? 0 : -1}>
             {/* setting hasClearButton to false confuses, look like a close button for the timeinput hasClearButton */}
-            <FormElement isLabelVisuallyHidden>
-              <FormElement.Content style={{ margin: 0 }}>
-                <Popover.Trigger style={{ width: "100%" }}>
-                  <Input
-                    ariaLabel={a11yText}
-                    hasClearButton={false}
-                    isDisabled={isDisabled}
-                    onChange={handleChange}
-                    onKeyUp={handleKeyUp}
-                    onFocus={handleFocus}
-                    value={value}
-                    data-qa-id="time-input__starting-at"
-                    {...moreProps}
-                  />
-                </Popover.Trigger>
-              </FormElement.Content>
-              <FormElement.Error>{hasError ? labelError : null}</FormElement.Error>
-            </FormElement>
+            <Popover.Trigger style={{ width: "100%" }}>
+              <Input
+                ariaLabel={a11yText}
+                hasClearButton={false}
+                isDisabled={isDisabled}
+                onChange={handleChange}
+                onKeyUp={handleKeyUp}
+                onFocus={handleFocus}
+                value={value}
+                data-qa-id="time-input__starting-at"
+                {...moreProps}
+              />
+            </Popover.Trigger>
           </div>
           <Popover.Content>
             <Picker

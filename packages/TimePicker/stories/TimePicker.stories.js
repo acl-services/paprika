@@ -1,5 +1,6 @@
 import React from "react";
 import { storiesOf } from "@storybook/react";
+import FormElement from "@paprika/form-element";
 import TimePicker from "../src";
 
 function Container({ children }) {
@@ -61,6 +62,31 @@ storiesOf("TimePicker", module)
       <TimePicker defaultValue="730am" />
     </Container>
   ))
+  .add("With form-element", () => {
+    const [hasError, setHasError] = React.useState(false);
+
+    function handleError(error) {
+      if (error) {
+        setHasError(true);
+      }
+    }
+
+    function handleChange() {
+      setHasError(false);
+    }
+
+    return (
+      <Container>
+        <FormElement label="Time picker:">
+          <FormElement.Content>
+            <TimePicker onChange={handleChange} onError={handleError} />
+          </FormElement.Content>
+
+          <FormElement.Error>{hasError ? "Invalid time" : null}</FormElement.Error>
+        </FormElement>
+      </Container>
+    );
+  })
   .add("Screener", () => (
     <>
       <ScreenerContainer>
