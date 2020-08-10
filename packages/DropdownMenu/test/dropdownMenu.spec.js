@@ -1,5 +1,5 @@
 import React from "react";
-import { render, configure, fireEvent, wait } from "@testing-library/react";
+import { render, configure, fireEvent, waitFor } from "@testing-library/react";
 import L10n from "@paprika/l10n";
 import Confirmation from "@paprika/confirmation";
 import DropdownMenu from "../src";
@@ -82,7 +82,7 @@ describe("DropdownMenu", () => {
     it("should hide all dropdown menus when replacement cancel button is clicked", async () => {
       fireEvent.click(getByText(/cancel/i));
 
-      await wait(() => {
+      await waitFor(() => {
         expect(queryByText(/confirm delete/i)).not.toBeInTheDocument();
         expect(queryByText(/edit/i)).not.toBeInTheDocument();
       });

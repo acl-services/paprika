@@ -14,16 +14,10 @@ const defaultProps = {
 };
 
 export default function Footer(props) {
-  const {
-    height,
-    isSticky,
-    children,
-    refSidePanel, // eslint-disable-line
-    ...moreProps
-  } = props;
+  const { children, ...moreProps } = props;
 
   return (
-    <sc.Footer data-pka-anchor="sidepanel.footer" isSticky={isSticky} {...moreProps}>
+    <sc.Footer data-pka-anchor="sidepanel.footer" {...moreProps}>
       {children}
     </sc.Footer>
   );

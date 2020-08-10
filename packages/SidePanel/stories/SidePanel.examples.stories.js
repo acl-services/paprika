@@ -6,8 +6,10 @@ import {
   GroupSidePanel,
   PushContentSidePanel,
   StickyFooterSidePanel,
+  StickyHeaderSidePanel,
   ZIndexSidePanel,
   FocusHeading,
+  WithSortable,
 } from "./examples/Examples";
 import SidePanel from "../src";
 
@@ -44,8 +46,14 @@ pushContent.story = sidePanelStoryParameters;
 export const stickyFooter = () => <StickyFooterSidePanel />;
 stickyFooter.story = sidePanelStoryParameters;
 
+export const stickyHeader = () => <StickyHeaderSidePanel />;
+stickyHeader.story = sidePanelStoryParameters;
+
 export const zIndex = () => <ZIndexSidePanel />;
 zIndex.story = sidePanelStoryParameters;
 
 export const focusHeading = () => <FocusHeading />;
 focusHeading.story = sidePanelStoryParameters;
+
+export const withSortable = () => <WithSortable />;
+withSortable.story = sidePanelStoryParameters;
