@@ -85,7 +85,6 @@ function Picker(props) {
   if (!isVisible) {
     return null;
   }
-  console.log(hh);
   return (
     <sc.Picker>
       <sc.timeInputPickerOption>

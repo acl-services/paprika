@@ -12,6 +12,7 @@
 import React from "react";
 import PropTypes from "prop-types";
 import FormElement from "@paprika/form-element";
+import SvgClockTime from "@paprika/icon/src/ClockTime";
 import Input from "@paprika/input";
 import L10n from "@paprika/l10n";
 import Popover from "@paprika/popover";
@@ -103,7 +104,7 @@ function TimePicker(props) {
   const [timeStr, setTimeStr] = React.useState(null);
   const [isTabIndexActive, setIsTabIndexActive] = React.useState(0);
   const [value, setValue] = React.useState(defaultValue);
-  const [error, setError] = React.useState(null);
+  const [error, setError] = React.useState(getExplodeTime(defaultValue).error);
 
   function setTime(time) {
     const timeObj = getExplodeTime(time);
@@ -184,7 +185,6 @@ function TimePicker(props) {
     <L10n>
       <sc.TimePicker onFocus={handleFocus} onBlur={handleBlur}>
         <Popover style={{ width: "100%" }} isOpen={isVisible} edge="left" offset={0} align="bottom">
-          {/* <div className="timeinput" onFocus={handleFocus} onBlur={handleBlur}> */}
           {/* eslint-disable-next-line */}
           <div tabIndex={isTabIndexActive ? 0 : -1}>
             {/* setting hasClearButton to false confuses, look like a close button for the timeinput hasClearButton */}
@@ -198,6 +198,7 @@ function TimePicker(props) {
                     onInput={handleChange}
                     onKeyUp={handleKeyUp}
                     onFocus={handleFocus}
+                    icon={<SvgClockTime />}
                     defaultValue={value}
                     data-qa-id="time-input__starting-at"
                     {...moreProps}
@@ -223,7 +224,6 @@ function TimePicker(props) {
               {...moreProps}
             />
           </Popover.Content>
-          {/* </div> */}
         </Popover>
       </sc.TimePicker>
     </L10n>
