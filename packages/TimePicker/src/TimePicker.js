@@ -13,7 +13,7 @@ import React from "react";
 import PropTypes from "prop-types";
 import SvgClockTime from "@paprika/icon/src/ClockTime";
 import Input from "@paprika/input";
-import L10n from "@paprika/l10n";
+import useI18n from "@paprika/l10n/lib/useI18n";
 import Popover from "@paprika/popover";
 import Picker from "./components/Picker/Picker";
 import TimeInterpreter from "./TimeInterpreter";
@@ -34,24 +34,6 @@ const propTypes = {
   /** If the TimePicker is disabled. */
   isDisabled: PropTypes.bool,
 
-  /** The label shown for the AM. */
-  labelAM: PropTypes.string,
-
-  /** The label shown for the Custom. */
-  labelCustom: PropTypes.string,
-
-  /** The label shown for the hours. */
-  labelHours: PropTypes.string,
-
-  /** The label shown for the minutes. */
-  labelMinutes: PropTypes.string,
-
-  /** The label shown for the period. */
-  labelPeriod: PropTypes.string,
-
-  /** The label shown for the PM. */
-  labelPM: PropTypes.string,
-
   /** Callback to be executed when the value is changed. */
   onChange: PropTypes.func,
 
@@ -66,12 +48,6 @@ const defaultProps = {
   a11yText: "Time (hh:mm)",
   defaultIsOpen: false,
   defaultValue: null,
-  labelCustom: "Custom",
-  labelHours: "Hours",
-  labelMinutes: "Minutes",
-  labelPeriod: "Period",
-  labelAM: "am",
-  labelPM: "pm",
   isDisabled: false,
   onChange: () => {},
   onError: () => {},
@@ -79,22 +55,7 @@ const defaultProps = {
 };
 
 function TimePicker(props) {
-  const {
-    a11yText,
-    defaultIsOpen,
-    defaultValue,
-    labelCustom,
-    labelHours,
-    labelMinutes,
-    labelPeriod,
-    labelAM,
-    labelPM,
-    isDisabled,
-    onChange,
-    onError,
-    prefix,
-    ...moreProps
-  } = props;
+  const { a11yText, defaultIsOpen, defaultValue, isDisabled, onChange, onError, prefix, ...moreProps } = props;
 
   const [isOpen, setIsOpen] = React.useState(defaultIsOpen);
   const [time, setTime] = React.useState(() => {
@@ -205,48 +166,47 @@ function TimePicker(props) {
     }
   };
 
+  const { t } = useI18n();
   return (
-    <L10n>
-      <sc.TimePicker onFocus={handleFocus} onBlur={handleBlur}>
-        <Popover style={{ width: "100%" }} isOpen={isOpen} edge="left" offset={0} align="bottom">
-          {/* eslint-disable-next-line */}
-          <div tabIndex={isTabIndexActive ? 0 : -1}>
-            {/* setting hasClearButton to false confuses, look like a close button for the timeinput hasClearButton */}
-            <Popover.Trigger style={{ width: "100%" }}>
-              <Input
-                ariaLabel={a11yText}
-                hasClearButton={false}
-                icon={<SvgClockTime />}
-                isDisabled={isDisabled}
-                onChange={handleChange}
-                onKeyUp={handleKeyUp}
-                onFocus={handleFocus}
-                value={value}
-                data-qa-id="time-input__starting-at"
-                data-pka-anchor="timePicker-Input"
-                {...moreProps}
-              />
-            </Popover.Trigger>
-          </div>
-          <Popover.Content>
-            <Picker
-              hh={time.hh}
-              isVisible={isOpen}
-              labelCustom={labelCustom}
-              labelHours={labelHours}
-              labelMinutes={labelMinutes}
-              labelPeriod={labelPeriod}
-              labelAM={labelAM}
-              labelPM={labelPM}
-              mm={time.mm}
-              onClick={handleClick}
-              period={time.period}
+    <sc.TimePicker onFocus={handleFocus} onBlur={handleBlur}>
+      <Popover style={{ width: "100%" }} isOpen={isOpen} edge="left" offset={0} align="bottom">
+        {/* eslint-disable-next-line */}
+        <div tabIndex={isTabIndexActive ? 0 : -1}>
+          {/* setting hasClearButton to false confuses, look like a close button for the timeinput hasClearButton */}
+          <Popover.Trigger style={{ width: "100%" }}>
+            <Input
+              ariaLabel={a11yText}
+              hasClearButton={false}
+              icon={<SvgClockTime />}
+              isDisabled={isDisabled}
+              onChange={handleChange}
+              onKeyUp={handleKeyUp}
+              onFocus={handleFocus}
+              value={value}
+              data-qa-id="time-input__starting-at"
+              data-pka-anchor="timePicker-Input"
               {...moreProps}
             />
-          </Popover.Content>
-        </Popover>
-      </sc.TimePicker>
-    </L10n>
+          </Popover.Trigger>
+        </div>
+        <Popover.Content>
+          <Picker
+            hh={time.hh}
+            isOpen={isOpen}
+            labelCustom={t("timePicker.custom")}
+            labelHours={t("timePicker.hours")}
+            labelMinutes={t("timePicker.minutes")}
+            labelPeriod={t("timePicker.period")}
+            labelAM={t("timePicker.am")}
+            labelPM={t("timePicker.pm")}
+            mm={time.mm}
+            onClick={handleClick}
+            period={time.period}
+            {...moreProps}
+          />
+        </Popover.Content>
+      </Popover>
+    </sc.TimePicker>
   );
 }
 

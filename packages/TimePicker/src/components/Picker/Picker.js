@@ -8,7 +8,7 @@ const propTypes = {
   hh: PropTypes.number,
 
   /** If the Picker is visible. */
-  isVisible: PropTypes.bool,
+  isOpen: PropTypes.bool,
 
   /** Label for the Custom button */
   labelCustom: PropTypes.string,
@@ -41,7 +41,7 @@ const propTypes = {
 function Picker(props) {
   const {
     hh,
-    isVisible,
+    isOpen,
     labelCustom,
     labelHours,
     labelMinutes,
@@ -93,7 +93,7 @@ function Picker(props) {
   };
 
   // render() {
-  if (!isVisible) {
+  if (!isOpen) {
     return null;
   }
   return (
@@ -104,7 +104,6 @@ function Picker(props) {
           <sc.timeInputPickerColumn>
             {[1, 2, 3, 4, 5, 6].map(item => (
               <sc.timeInputPickerColumnItem
-                data-has-forced-focus={false}
                 tabIndex={-1}
                 key={`hours_colum1_${item}`}
                 onMouseDown={handlePreventMouseDown}
@@ -118,7 +117,6 @@ function Picker(props) {
           <sc.timeInputPickerColumn>
             {[7, 8, 9, 10, 11, 12].map(item => (
               <sc.timeInputPickerColumnItem
-                data-has-forced-focus={false}
                 tabIndex={-1}
                 key={`hours_colum2_${item}`}
                 onMouseDown={handlePreventMouseDown}
@@ -137,7 +135,6 @@ function Picker(props) {
           <sc.timeInputPickerColumn>
             {["00", 15, 30, 45, "custom"].map(item => (
               <sc.timeInputPickerColumnItem
-                data-has-forced-focus={false}
                 tabIndex={-1}
                 key={`minutes_${item}`}
                 isDisabled={item === "custom"}
@@ -158,7 +155,6 @@ function Picker(props) {
           <sc.timeInputPickerColumn>
             {[labelAM, labelPM].map(item => (
               <sc.timeInputPickerColumnItem
-                data-has-forced-focus={false}
                 tabIndex={-1}
                 key={`period_${item}`}
                 onMouseDown={handlePreventMouseDown}
