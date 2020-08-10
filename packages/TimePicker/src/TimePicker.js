@@ -28,8 +28,8 @@ const propTypes = {
   /** If the TimePicker is set to visible. */
   defaultIsOpen: PropTypes.bool,
 
-  /** */
-  defaultValue: PropTypes.string, // it been use on getDerivedStateFromProps which is a useEffect in pre-era of hooks
+  /** Sets the default value for the TimePicker */
+  defaultValue: PropTypes.string,
 
   /** If the TimePicker is disabled. */
   isDisabled: PropTypes.bool,
