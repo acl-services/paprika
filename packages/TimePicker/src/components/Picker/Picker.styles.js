@@ -61,6 +61,7 @@ export const timeInputPickerColumnItemCustom = css`
 export const timeInputPickerColumnItem = styled(RawButton)`
   ${({ isActive, isCustom }) => css`
     border-radius: ${tokens.border.radius};
+    box-shadow: none;
     display: inline-block;
     margin-bottom: 0;
     max-width: 40px;

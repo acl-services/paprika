@@ -1,4 +1,4 @@
-import TimeInterpreter from "../src/TimeInterpreter";
+import TimeInterpreter from "../../src/TimeInterpreter";
 
 describe("Time Input", () => {
   describe("when setting the time", () => {

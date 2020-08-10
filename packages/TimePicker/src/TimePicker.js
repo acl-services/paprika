@@ -25,37 +25,37 @@ const propTypes = {
   /** Descriptive a11y text for assistive technologies. */
   a11yText: PropTypes.string,
 
-  /** If the TimePicker is set to visible */
+  /** If the TimePicker is set to visible. */
   defaultIsOpen: PropTypes.bool,
 
   /** */
   defaultValue: PropTypes.string, // it been use on getDerivedStateFromProps which is a useEffect in pre-era of hooks
 
-  /** If the TimePicker is disabled */
+  /** If the TimePicker is disabled. */
   isDisabled: PropTypes.bool,
 
-  /** */
+  /** The label shown for the AM. */
   labelAM: PropTypes.string,
 
-  /** */
+  /** The label shown for the Custom. */
   labelCustom: PropTypes.string,
 
-  /** */
+  /** The label shown for the hours. */
   labelHours: PropTypes.string,
 
-  /** */
+  /** The label shown for the minutes. */
   labelMinutes: PropTypes.string,
 
-  /** */
+  /** The label shown for the period. */
   labelPeriod: PropTypes.string,
 
-  /** */
+  /** The label shown for the PM. */
   labelPM: PropTypes.string,
 
-  /** */
+  /** Callback to be executed when the value is changed. */
   onChange: PropTypes.func,
 
-  /** */
+  /** Callback to be executed when there is an error. */
   onError: PropTypes.func,
 
   /** */
@@ -209,7 +209,6 @@ function TimePicker(props) {
     <L10n>
       <sc.TimePicker onFocus={handleFocus} onBlur={handleBlur}>
         <Popover style={{ width: "100%" }} isOpen={isOpen} edge="left" offset={0} align="bottom">
-          {/* <div className="timeinput" onFocus={handleFocus} onBlur={handleBlur}> */}
           {/* eslint-disable-next-line */}
           <div tabIndex={isTabIndexActive ? 0 : -1}>
             {/* setting hasClearButton to false confuses, look like a close button for the timeinput hasClearButton */}
@@ -224,6 +223,7 @@ function TimePicker(props) {
                 onFocus={handleFocus}
                 value={value}
                 data-qa-id="time-input__starting-at"
+                data-pka-anchor="timePicker-Input"
                 {...moreProps}
               />
             </Popover.Trigger>

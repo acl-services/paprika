@@ -1,7 +1,10 @@
 import React from "react";
 import { storiesOf } from "@storybook/react";
+import { getStoryName } from "storybook/storyTree";
 import FormElement from "@paprika/form-element";
 import TimePicker from "../src";
+
+const storyName = getStoryName("TimePicker");
 
 function Container({ children }) {
   return <div style={{ padding: "32px", maxWidth: "366px" }}>{children}</div>;
@@ -11,7 +14,7 @@ function ScreenerContainer({ children }) {
   return <div style={{ height: "256px", width: "366px", float: "left" }}>{children}</div>;
 }
 
-storiesOf("TimePicker", module)
+storiesOf(storyName, module)
   .add("Basic", () => (
     <Container>
       <TimePicker isVisible />

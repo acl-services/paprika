@@ -44,6 +44,7 @@ const storyTree = [
       "Sortable",
       "Switch",
       "Textarea",
+      "TimePicker",
       "Uploader",
     ],
   },
