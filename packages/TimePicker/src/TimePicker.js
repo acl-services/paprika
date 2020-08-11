@@ -150,7 +150,7 @@ function TimePicker(props) {
   const { t } = useI18n();
   return (
     <sc.TimePicker onFocus={handleFocus} onBlur={handleBlur}>
-      <Popover style={{ width: "100%" }} isOpen={isOpen} edge="left" offset={0} align="bottom">
+      <Popover style={{ width: "100%" }} isOpen={isOpen} edge="left" offset={0} align="bottom" shouldKeepFocus>
         <Popover.Trigger style={{ width: "100%" }}>
           <Input
             ariaLabel={a11yText}
