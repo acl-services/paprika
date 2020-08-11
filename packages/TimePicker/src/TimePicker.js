@@ -1,130 +1,122 @@
-/**
- * THIS IS A PORT FROM ROBOTS APP
- * 1. this require trim a refactor to be at paprika standards.
- * please deselect the jsx-a11y/no-noninteractive-tabindex jsx-a11y/aria-props to fix
- * a11y issue
- * 2. include a proper FormElement and render the `this.state.error` properly inside of it
- * 3. remove class name and create proper styled-component components
- * 4. refactor the files to be functional components and hooks.
- * 5. replace the current picker and the code on handleBlur and handleFocus with a popover
- */
-
 import React from "react";
 import PropTypes from "prop-types";
+import SvgClockTime from "@paprika/icon/src/ClockTime";
 import Input from "@paprika/input";
-import Picker from "./Picker/Picker";
+import useI18n from "@paprika/l10n/lib/useI18n";
+import Popover from "@paprika/popover";
+import Picker from "./components/Picker/Picker";
 import TimeInterpreter from "./TimeInterpreter";
-
-import * as scPicker from "./Picker/Picker.styles"; // eslint-disable-line
 import * as sc from "./TimePicker.styles";
 
 const getExplodeTime = TimeInterpreter.parse;
 
-export default class TimeInput extends React.Component {
-  $refInputContainer = React.createRef();
+const propTypes = {
+  /** Descriptive a11y text for assistive technologies. */
+  a11yText: PropTypes.string,
 
-  static propTypes = {
-    ariaLabel: PropTypes.string,
-    defaultIsVisible: PropTypes.bool,
-    defaultValue: PropTypes.string, // it been use on getDerivedStateFromProps which is a useEffect in pre-era of hooks
-    isDisabled: PropTypes.bool,
-    labelAM: PropTypes.string,
-    labelCustom: PropTypes.string,
-    labelError: PropTypes.string,
-    labelHours: PropTypes.string,
-    labelMinutes: PropTypes.string,
-    labelPeriod: PropTypes.string,
-    labelPM: PropTypes.string,
-    onChange: PropTypes.func,
-    prefix: PropTypes.string,
-  };
+  /** If the TimePicker is set to visible. */
+  defaultIsOpen: PropTypes.bool,
 
-  static defaultProps = {
-    ariaLabel: "Time (hh:mm)",
-    defaultIsVisible: false,
-    defaultValue: null,
-    labelCustom: "Custom",
-    labelError: "Invalid Format",
-    labelHours: "Hours",
-    labelMinutes: "Minutes",
-    labelPeriod: "Period",
-    labelAM: "am",
-    labelPM: "pm",
-    isDisabled: false,
-    onChange: () => {},
-    prefix: "timePicker",
-  };
+  /** Sets the default value for the TimePicker */
+  defaultValue: PropTypes.string,
 
-  constructor(props) {
-    super(props);
-    this.name = `${props.prefix}${btoa(Math.random()).substring(0, 8)}`;
-    this.state = {
+  /** If the TimePicker is disabled. */
+  isDisabled: PropTypes.bool,
+
+  /** Callback to be executed when the value is changed. */
+  onChange: PropTypes.func,
+
+  /** Callback to be executed when there is an error. */
+  onError: PropTypes.func,
+};
+
+const defaultProps = {
+  a11yText: "Time (hh:mm)",
+  defaultIsOpen: false,
+  defaultValue: null,
+  isDisabled: false,
+  onChange: () => {},
+  onError: () => {},
+};
+
+function TimePicker(props) {
+  const { a11yText, defaultIsOpen, defaultValue, isDisabled, onChange, onError, ...moreProps } = props;
+
+  const [isOpen, setIsOpen] = React.useState(defaultIsOpen);
+  const [time, setTime] = React.useState(() => {
+    if (defaultValue) {
+      const defaultTime = getExplodeTime(defaultValue);
+      return {
+        hh: defaultTime.hh,
+        mm: defaultTime.mm,
+        period: defaultTime.period,
+      };
+    }
+    return {
       hh: null,
-      isPristine: true,
-      isVisible: this.props.defaultIsVisible,
       mm: null,
       period: null,
-      timeStr: null,
-      isTabIndexActive: 0,
-      value: "",
     };
-  }
+  });
+  const [timeStr, setTimeStr] = React.useState(null);
+  const [value, setValue] = React.useState(defaultValue);
 
-  static getDerivedStateFromProps(props, state) {
-    if (props.defaultValue && !state.value && state.isPristine) {
-      const time = getExplodeTime(props.defaultValue);
+  React.useEffect(() => {
+    if (defaultValue) {
+      const { hh, mm, period, error, timeStr: newTimeStr, value: newValue } = getExplodeTime(defaultValue);
 
-      if (time.error) {
-        return {
-          ...time,
-          error: props.labelError,
-          isVisible: false,
-          isPristine: false,
-        };
+      if (error) {
+        setIsOpen(false);
+        console.error("TimePicker - invalid defaultValue, please check your defaultValue passed in");
+        return;
       }
-      return { ...time, isVisible: props.defaultIsVisible, isPristine: false };
+
+      setTime({ hh, mm, period });
+      setTimeStr(newTimeStr);
+      setValue(newValue);
     }
+  }, [defaultValue]);
 
-    return null;
+  function handleClick(newTime) {
+    const newTimeParsed = getExplodeTime(newTime);
+    const { hh, mm, period, timeStr: newTimeStr, value: newValue } = newTimeParsed;
+
+    onChange(newTimeParsed);
+
+    setTime({ hh, mm, period });
+    setTimeStr(newTimeStr);
+    setValue(newValue);
   }
 
-  setTime(time) {
-    const timeObj = getExplodeTime(time);
-    this.props.onChange(timeObj);
-    return timeObj;
-  }
+  const handleChange = event => {
+    setValue(event.target.value);
 
-  value = () => this.state;
-
-  handleClick = time => {
-    this.setState(this.setTime(time));
-  };
-
-  handleChange = event => {
-    const time = this.setTime(event.target.value);
-    if (time.error) {
-      this.handleError(time);
+    if (!event.target.value) {
+      setTime({ hh: null, mm: null, period: null });
       return;
     }
 
-    this.setState(time);
+    const newTimeParsed = getExplodeTime(event.target.value);
+    const { hh, mm, period, timeStr: newTimeStr, error } = newTimeParsed;
+    onChange(newTimeParsed);
+
+    if (error) {
+      setIsOpen(false);
+      onError(error);
+      return;
+    }
+
+    setTime({ hh, mm, period });
+    setTimeStr(newTimeStr);
   };
 
-  handleFocus = () => {
-    if (!this.props.isDisabled) {
-      this.setState(
-        {
-          isTabIndexActive: -1,
-          isVisible: true,
-        },
-        () => {
-          this.$refInputContainer.current.querySelector("input").focus();
-        }
-      );
+  const handleFocus = () => {
+    if (!isDisabled) {
+      setIsOpen(true);
     }
   };
 
-  handleBlur = event => {
+  const handleBlur = event => {
     const timeinputDom = document.querySelector(".timeinput-picker");
 
     let target = event.relatedTarget;
@@ -137,94 +129,65 @@ export default class TimeInput extends React.Component {
       return;
     }
 
-    this.setState({
-      isTabIndexActive: 0,
-      isVisible: false,
-    });
+    setIsOpen(false);
   };
 
-  handleClickOutside = () => {
-    this.finish();
-  };
+  function finish() {
+    setIsOpen(false);
+    setValue(timeStr);
+  }
 
-  handleKeyUp = event => {
+  const handleKeyUp = event => {
     if (event.key === "Enter") {
-      this.finish();
+      finish();
     }
 
     if (event.key === "Escape") {
-      this.finish();
+      finish();
     }
   };
 
-  handleError(time) {
-    this.setState({
-      ...time,
-      error: this.props.labelError,
-      isVisible: false,
-    });
-  }
-
-  finish() {
-    this.setState(state => ({
-      isVisible: false,
-      value: state.timeStr,
-    }));
-  }
-
-  render() {
-    const {
-      isDisabled,
-      ariaLabel,
-      labelCustom,
-      labelHours,
-      labelMinutes,
-      labelPeriod,
-      labelAM,
-      labelPM,
-      ...moreProps
-    } = this.props;
-
-    return (
-      <sc.CSSHolder>
-        <scPicker.CSSHolder>
-          <div className="timeinput" onFocus={this.handleFocus} onBlur={this.handleBlur}>
-            {/* eslint-disable-next-line */}
-            <div tabIndex={this.state.isTabIndexActive ? 0 : -1}>
-              {/* setting hasClearButton to false confuses, look like a close button for the timeinput hasClearButton */}
-              <div ref={this.$refInputContainer}>
-                <Input
-                  ariaLabel={ariaLabel}
-                  hasClearButton={false}
-                  isDisabled={isDisabled}
-                  onInput={this.handleChange}
-                  onFocus={this.handleFocus}
-                  onKeyUp={this.handleKeyUp}
-                  value={this.state.value}
-                  data-qa-id="time-input__starting-at"
-                  {...moreProps}
-                />
-              </div>
-              {/** THIS ERROR SHOULD BE REPLACE WITH A PROPER FORM-ELEMENT */}
-              <span>{this.state.error}</span>
-              <Picker
-                hh={this.state.hh}
-                isVisible={this.state.isVisible}
-                labelCustom={labelCustom}
-                labelHours={labelHours}
-                labelMinutes={labelMinutes}
-                labelPeriod={labelPeriod}
-                labelAM={labelAM}
-                labelPM={labelPM}
-                mm={this.state.mm}
-                onClick={this.handleClick}
-                period={this.state.period}
-                {...moreProps}
-              />
-            </div>
-          </div>
-        </scPicker.CSSHolder>
-      </sc.CSSHolder>
-    );
-  }
+  const { t } = useI18n();
+  return (
+    <sc.TimePicker onFocus={handleFocus} onBlur={handleBlur}>
+      <Popover style={{ width: "100%" }} isOpen={isOpen} edge="left" offset={0} align="bottom">
+        <Popover.Trigger style={{ width: "100%" }}>
+          <Input
+            ariaLabel={a11yText}
+            hasClearButton={false}
+            icon={<SvgClockTime />}
+            isDisabled={isDisabled}
+            onChange={handleChange}
+            onKeyUp={handleKeyUp}
+            onFocus={handleFocus}
+            value={value}
+            data-pka-anchor="timePicker-Input"
+            {...moreProps}
+          />
+        </Popover.Trigger>
+        <Popover.Content>
+          <Picker
+            hh={time.hh}
+            isOpen={isOpen}
+            labelCustom={t("timePicker.custom")}
+            labelHours={t("timePicker.hours")}
+            labelMinutes={t("timePicker.minutes")}
+            labelPeriod={t("timePicker.period")}
+            labelAM={t("timePicker.am")}
+            labelPM={t("timePicker.pm")}
+            mm={time.mm}
+            onClick={handleClick}
+            period={time.period}
+            {...moreProps}
+          />
+        </Popover.Content>
+      </Popover>
+    </sc.TimePicker>
+  );
 }
+
+TimePicker.displayName = "TimePicker";
+TimePicker.propTypes = propTypes;
+TimePicker.defaultProps = defaultProps;
+
+export default TimePicker;

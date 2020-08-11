@@ -1,5 +1,12 @@
 en:
   translation:
+    timePicker:
+      am: am
+      custom: Custom
+      hours: Hours
+      minutes: Minutes
+      period: Period
+      pm: pm
     back: Back
     remove: remove
     moreInformation: more information
@@ -160,3 +167,4 @@ en:
             text: Sort descending (Z → A)
             date: Sort descending (9 → 1)
             single_select: Sort descending (Z → A)
+          
