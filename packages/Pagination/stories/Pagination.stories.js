@@ -5,7 +5,7 @@ import ArrowItem from "../src/components/ArrowItem/ArrowItem";
 import CurrentPageItem from "../src/components/CurrentPageItem/CurrentPageItem";
 import ElipsisItem from "../src/components/EllipsisItem/ElipsisItem";
 import PageItem from "../src/components/PageItem/PageItem";
-// import Pagination from "../src/Pagination";
+import Pagination from "../src/Pagination";
 
 // import Showcase from "./examples/Showcase";
 
@@ -33,7 +33,7 @@ import PageItem from "../src/components/PageItem/PageItem";
 const storyName = getStoryName("Pagination");
 
 storiesOf(`${storyName}/Examples`, module)
-  //   .add("Pagination", () => <Pagination />)
+  .add("Pagination", () => <Pagination />)
   .add("ArrowItem", () => <ArrowItem />)
   .add("CurrentPageItem", () => <CurrentPageItem />)
   .add("PageItem", () => <PageItem />)

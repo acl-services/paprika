@@ -6,8 +6,6 @@ export const PageItem = styled.span`
   box-sizing: border-box;
   display: inline-block;
   height: ${tokens.space * 3};
-  margin: 0;
+  margin: 0 ${tokens.spaceSm + 1} 0 ${tokens.spaceSm};
   position: relative;
 `;
-
-/* ${tokens.space - sm + 1} 0 ${space - sm} */

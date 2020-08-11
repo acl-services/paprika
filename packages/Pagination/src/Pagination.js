@@ -28,54 +28,51 @@ const defaultProps = {
 function Pagination(props) {
   const { currentPage, totalPages, length, onClickPage, className, ...moreProps } = props;
 
-  //   isCurrentPage = pageNumber => this.props.currentPage === pageNumber;
-  //   isFirstPage = pageNumber => pageNumber === 1;
-  //   isLastPage = pageNumber => pageNumber === this.props.totalPages;
+  // isCurrentPage = pageNumber => currentPage === pageNumber;
+  // isFirstPage = pageNumber => pageNumber === 1;
+  // isLastPage = pageNumber => pageNumber === totalPages;
 
-  //   isNotEllipsed = (pageNumber, left, right) =>
-  //     (pageNumber === 2 && left === 3) ||
-  //     (pageNumber === this.props.totalPages - 1 && right === this.props.totalPages - 2);
+  // isNotEllipsed = (pageNumber, left, right) =>
+  //   (pageNumber === 2 && left === 3) || (pageNumber === totalPages - 1 && right === totalPages - 2);
 
-  //   isRenderableSibling = (pageNumber, left, right) => left <= pageNumber && pageNumber <= right;
+  // isRenderableSibling = (pageNumber, left, right) => left <= pageNumber && pageNumber <= right;
 
-  //   renderPageElements = () => {
-  //     const { currentPage, onClickPage, totalPages } = this.props;
+  // renderPageElements = () => {
+  //   const delta = pagesOnEachSide[length];
+  //   const left = currentPage - delta;
+  //   const right = currentPage + delta;
 
-  //     const delta = pagesOnEachSide[this.props.length];
-  //     const left = currentPage - delta;
-  //     const right = currentPage + delta;
+  //   const items = [];
 
-  //     const items = [];
+  //   let wasPreviousItemEllipsized = false;
 
-  //     let wasPreviousItemEllipsized = false;
-
-  //     for (let pageNumber = 1; pageNumber <= totalPages; pageNumber++) {
-  //       if (this.isCurrentPage(pageNumber)) {
-  //         items.push(<CurrentPageItem key={pageNumber} pageNumber={pageNumber} />);
-  //       } else if (
-  //         this.isFirstPage(pageNumber) ||
-  //         this.isLastPage(pageNumber) ||
-  //         this.isRenderableSibling(pageNumber, left, right) ||
-  //         this.isNotEllipsed(pageNumber, left, right)
-  //       ) {
-  //         items.push(
-  //           <PageItem
-  //             key={pageNumber}
-  //             onClick={() => {
-  //               onClickPage(pageNumber);
-  //             }}
-  //             pageNumber={pageNumber}
-  //           />
-  //         );
-  //         wasPreviousItemEllipsized = false;
-  //       } else if (!wasPreviousItemEllipsized) {
-  //         items.push(<EllipsisItem key={pageNumber} />);
-  //         wasPreviousItemEllipsized = true;
-  //       }
+  //   for (let pageNumber = 1; pageNumber <= totalPages; pageNumber++) {
+  //     if (isCurrentPage(pageNumber)) {
+  //       items.push(<CurrentPageItem key={pageNumber} pageNumber={pageNumber} />);
+  //     } else if (
+  //       isFirstPage(pageNumber) ||
+  //       isLastPage(pageNumber) ||
+  //       isRenderableSibling(pageNumber, left, right) ||
+  //       isNotEllipsed(pageNumber, left, right)
+  //     ) {
+  //       items.push(
+  //         <PageItem
+  //           key={pageNumber}
+  //           onClick={() => {
+  //             onClickPage(pageNumber);
+  //           }}
+  //           pageNumber={pageNumber}
+  //         />
+  //       );
+  //       wasPreviousItemEllipsized = false;
+  //     } else if (!wasPreviousItemEllipsized) {
+  //       items.push(<EllipsisItem key={pageNumber} />);
+  //       wasPreviousItemEllipsized = true;
   //     }
+  //   }
 
-  //     return items;
-  //   };
+  //   return items;
+  // };
 
   return (
     <sc.Pagination data-pka-anchor="pagination" {...moreProps}>
@@ -86,7 +83,7 @@ function Pagination(props) {
         }}
         type="Left"
       />
-      {/* {this.renderPageElements()} */}
+      {/* {renderPageElements()} */}
       <ArrowItem
         isDisabled={currentPage === totalPages}
         onClick={() => {
