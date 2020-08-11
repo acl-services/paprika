@@ -17,7 +17,7 @@ function ScreenerContainer({ children }) {
 storiesOf(storyName, module)
   .add("Basic", () => (
     <Container>
-      <TimePicker isOpen />
+      <TimePicker defaultIsOpen />
     </Container>
   ))
   .add("Format 0000", () => (
