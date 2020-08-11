@@ -92,7 +92,6 @@ function Picker(props) {
     event.preventDefault();
   };
 
-  // render() {
   if (!isOpen) {
     return null;
   }
@@ -107,7 +106,7 @@ function Picker(props) {
                 tabIndex={-1}
                 key={`hours_colum1_${item}`}
                 onMouseDown={handlePreventMouseDown}
-                onMouseUp={handleClickHour(item, this)}
+                onMouseUp={handleClickHour(item)}
                 isActive={item === hh}
               >
                 {item}
@@ -120,7 +119,7 @@ function Picker(props) {
                 tabIndex={-1}
                 key={`hours_colum2_${item}`}
                 onMouseDown={handlePreventMouseDown}
-                onMouseUp={handleClickHour(item, this)}
+                onMouseUp={handleClickHour(item)}
                 isActive={item === hh}
               >
                 {item}
@@ -139,7 +138,7 @@ function Picker(props) {
                 key={`minutes_${item}`}
                 isDisabled={item === "custom"}
                 onMouseDown={handlePreventMouseDown}
-                onMouseUp={handleClickMinutes(item, this)}
+                onMouseUp={handleClickMinutes(item)}
                 isCustom={item === "custom"}
                 isActive={isMinutesActive(item)}
               >
@@ -158,7 +157,7 @@ function Picker(props) {
                 tabIndex={-1}
                 key={`period_${item}`}
                 onMouseDown={handlePreventMouseDown}
-                onMouseUp={handleClickPeriod(item, this)}
+                onMouseUp={handleClickPeriod(item)}
                 isActive={item === period}
               >
                 {item}
@@ -170,7 +169,6 @@ function Picker(props) {
     </sc.Picker>
   );
 }
-// }
 
 Picker.propTypes = propTypes;
 

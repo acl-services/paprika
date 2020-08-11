@@ -71,9 +71,7 @@ function TimePicker(props) {
 
       if (error) {
         setIsOpen(false);
-        // TODO: not required if we assume consumer always pass in valid value
-        // onError(error);
-        console.error();
+        console.error("TimePicker - invalid defaultValue, please check your defaultValue passed in");
         return;
       }
 
