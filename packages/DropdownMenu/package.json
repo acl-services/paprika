@@ -1,6 +1,6 @@
 {
   "name": "@paprika/dropdown-menu",
-  "version": "2.0.36",
+  "version": "2.0.37",
   "description": "DropdownMenu component displays a trigger button, which when clicked displays a list of items in a dropdown format. These items can be raw content, Links or actions such as Delete, which will prompt a confirmation panel to be displayed.",
   "author": "@paprika",
   "license": "MIT",
@@ -15,8 +15,8 @@
   },
   "dependencies": {
     "@babel/runtime-corejs2": "^7.3.1",
-    "@paprika/button": "^0.3.4",
-    "@paprika/confirmation": "^0.3.33",
+    "@paprika/button": "^0.3.5",
+    "@paprika/confirmation": "^0.3.34",
     "@paprika/helpers": "^0.2.13",
     "@paprika/popover": "^0.3.29",
     "@paprika/raw-button": "^0.2.16",
