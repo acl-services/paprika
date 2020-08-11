@@ -2411,21 +2411,6 @@
     "@svgr/cli" "^4.1.0"
     prop-types "^15.7.2"
 
-"@paprika/input@^0.2.38":
-  version "0.2.38"
-  resolved "https://registry.yarnpkg.com/@paprika/input/-/input-0.2.38.tgz#a816bcc1ea4a261fddb1ff67a629d7bdbcbe3a57"
-  integrity sha512-3bNpJ7/KB/MfnWnpK1zXVzQ61QzFEP6YE/x+cGQMJFXBnpqVX+CCNNPmv39hxAWlSJSGbpBmuY5/lsrlsEPCCg==
-  dependencies:
-    "@babel/runtime-corejs2" "^7.3.1"
-    "@paprika/button" "^0.3.4"
-    "@paprika/helpers" "^0.2.13"
-    "@paprika/icon" "^0.3.3"
-    "@paprika/raw-button" "^0.2.16"
-    "@paprika/stylers" "^0.2.8"
-    "@paprika/tokens" "^0.1.14"
-    classnames "^2.2.6"
-    prop-types "^15.7.2"
-
 "@paprika/stylers@^0.1.5":
   version "0.1.7"
   resolved "https://registry.yarnpkg.com/@paprika/stylers/-/stylers-0.1.7.tgz#ae3328853fea2c463af070bdeafdec9ac34d3d9c"

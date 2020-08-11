@@ -1,14 +1,3 @@
-/**
- * THIS IS A PORT FROM ROBOTS APP
- * 1. this require trim a refactor to be at paprika standards.
- * please deselect the jsx-a11y/no-noninteractive-tabindex jsx-a11y/aria-props to fix
- * a11y issue
- * 2. include a proper FormElement and render the `this.state.error` properly inside of it
- * 3. remove class name and create proper styled-component components
- * 4. refactor the files to be functional components and hooks.
- * 5. replace the current picker and the code on handleBlur and handleFocus with a popover
- */
-
 import React from "react";
 import PropTypes from "prop-types";
 import SvgClockTime from "@paprika/icon/src/ClockTime";
@@ -74,7 +63,6 @@ function TimePicker(props) {
     };
   });
   const [timeStr, setTimeStr] = React.useState(null);
-  const [isTabIndexActive, setIsTabIndexActive] = React.useState(0);
   const [value, setValue] = React.useState(defaultValue);
 
   React.useEffect(() => {
@@ -85,6 +73,7 @@ function TimePicker(props) {
         setIsOpen(false);
         // TODO: not required if we assume consumer always pass in valid value
         // onError(error);
+        console.error();
         return;
       }
 
@@ -129,7 +118,6 @@ function TimePicker(props) {
 
   const handleFocus = () => {
     if (!isDisabled) {
-      setIsTabIndexActive(-1);
       setIsOpen(true);
     }
   };
@@ -147,7 +135,6 @@ function TimePicker(props) {
       return;
     }
 
-    setIsTabIndexActive(0);
     setIsOpen(false);
   };
 
@@ -170,25 +157,20 @@ function TimePicker(props) {
   return (
     <sc.TimePicker onFocus={handleFocus} onBlur={handleBlur}>
       <Popover style={{ width: "100%" }} isOpen={isOpen} edge="left" offset={0} align="bottom">
-        {/* eslint-disable-next-line */}
-        <div tabIndex={isTabIndexActive ? 0 : -1}>
-          {/* setting hasClearButton to false confuses, look like a close button for the timeinput hasClearButton */}
-          <Popover.Trigger style={{ width: "100%" }}>
-            <Input
-              ariaLabel={a11yText}
-              hasClearButton={false}
-              icon={<SvgClockTime />}
-              isDisabled={isDisabled}
-              onChange={handleChange}
-              onKeyUp={handleKeyUp}
-              onFocus={handleFocus}
-              value={value}
-              data-qa-id="time-input__starting-at"
-              data-pka-anchor="timePicker-Input"
-              {...moreProps}
-            />
-          </Popover.Trigger>
-        </div>
+        <Popover.Trigger style={{ width: "100%" }}>
+          <Input
+            ariaLabel={a11yText}
+            hasClearButton={false}
+            icon={<SvgClockTime />}
+            isDisabled={isDisabled}
+            onChange={handleChange}
+            onKeyUp={handleKeyUp}
+            onFocus={handleFocus}
+            value={value}
+            data-pka-anchor="timePicker-Input"
+            {...moreProps}
+          />
+        </Popover.Trigger>
         <Popover.Content>
           <Picker
             hh={time.hh}
