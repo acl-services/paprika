@@ -28,9 +28,6 @@ const propTypes = {
 
   /** Callback to be executed when there is an error. */
   onError: PropTypes.func,
-
-  /** */
-  prefix: PropTypes.string,
 };
 
 const defaultProps = {
@@ -40,11 +37,10 @@ const defaultProps = {
   isDisabled: false,
   onChange: () => {},
   onError: () => {},
-  prefix: "timePicker",
 };
 
 function TimePicker(props) {
-  const { a11yText, defaultIsOpen, defaultValue, isDisabled, onChange, onError, prefix, ...moreProps } = props;
+  const { a11yText, defaultIsOpen, defaultValue, isDisabled, onChange, onError, ...moreProps } = props;
 
   const [isOpen, setIsOpen] = React.useState(defaultIsOpen);
   const [time, setTime] = React.useState(() => {
