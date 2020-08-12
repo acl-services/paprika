@@ -7,7 +7,9 @@ This package consists of two components (`SingleDateCalendar` and `DateRangeCale
 ```shell
 npm install --save @paprika/calendar
 ```
+
 or
+
 ```shell
 yarn add @paprika/calendar
 ```
@@ -30,8 +32,10 @@ const [possibleDate, setPossibleDate] = React.useState(null);
   date={date}
   onSelect={setDate}
   possibleDate={possibleDate}
-  resetPossibleDate={() => { setPossibleDate(null) }}
-/>
+  resetPossibleDate={() => {
+    setPossibleDate(null);
+  }}
+/>;
 ```
 
 ### DateRangeCalendar
@@ -51,10 +55,12 @@ const [possibleDate, setPossibleDate] = React.useState(null);
   endDate={endDate}
   onDatesChange={setDates}
   possibleDate={possibleDate}
-  resetPossibleDate={() => { setPossibleDate(null) }}
+  resetPossibleDate={() => {
+    setPossibleDate(null);
+  }}
   focusedInput={currentInput || START_DATE}
   onFocusChange={setCurrentInput}
-/>
+/>;
 ```
 
 ## Props

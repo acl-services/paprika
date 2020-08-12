@@ -1,3 +1,5 @@
+<!-- content -->
+
 ## Action Bar
 
 Action Bar component contains 3 individual widgets.
@@ -163,3 +165,5 @@ return (
   </ColumnsArrangement>
 );
 ```
+
+<!-- eoContent -->
