@@ -14,6 +14,6 @@ export default function ActionBar(props) {
 }
 
 ActionBar.propTypes = propTypes;
-ActionBar.displayName = "DataTable.ActionBar";
+ActionBar.displayName = "ActionBar";
 ActionBar.changeTypes = changeTypes;
 ActionBar.columnTypes = columnTypes;
