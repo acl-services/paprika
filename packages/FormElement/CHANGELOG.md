@@ -39,3 +39,11 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 -- Changed the spacing between label and content
 
 [@allison-c](https://github.com/allison-c).
+
+## [0.3.27] - 2020-08-12
+
+### Changed
+
+-- Changed the spacing between label, content and instructions
+
+[@tristanjasper](https://github.com/tristanjasper).
