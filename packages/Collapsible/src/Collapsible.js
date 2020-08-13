@@ -54,15 +54,8 @@ const Collapsible = props => {
   const I18n = useI18n();
   let hasWarnedForA11yText = false;
 
-  const [collapsedIcon, setCollapsedIcon] = React.useState([props.iconExpand, props.iconCollapse]);
-
-  React.useEffect(() => {
-    if (props.iconAlign === "right") {
-      setCollapsedIcon([<UpArrowIcon />, <DownArrowIcon />]);
-    } else {
-      setCollapsedIcon([props.iconExpand, props.iconCollapse]);
-    }
-  }, []);
+  const collapsedIcon =
+    props.iconAlign === "right" ? [<UpArrowIcon />, <DownArrowIcon />] : [props.iconExpand, props.iconCollapse];
 
   const checkPropsError = () => {
     if (!props.a11yText && !(I18n && I18n.t) && !hasWarnedForA11yText) {
