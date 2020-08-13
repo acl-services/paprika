@@ -44,6 +44,9 @@ const propTypes = {
 
   /** If true the trigger will be hidden */
   isHidden: PropTypes.bool,
+
+  /** Custom label text */
+  customLabel: PropTypes.string,
 };
 
 const defaultProps = {
@@ -55,6 +58,7 @@ const defaultProps = {
   onClickFooterAccept: null,
   placeholder: "Select...",
   isHidden: false,
+  customLabel: null,
 };
 
 export default function Trigger(props) {
@@ -71,6 +75,7 @@ export default function Trigger(props) {
     onClickClear,
     // eslint-disable-next-line react/prop-types
     onFooterClickAccept,
+    customLabel,
     ...moreProps
   } = props;
   const {
@@ -148,6 +153,7 @@ export default function Trigger(props) {
         options={state.options}
         placeholder={placeholder}
         selectedOptions={state.selectedOptions}
+        customLabel={customLabel}
       />
     ) : (
       <RawButton
@@ -171,6 +177,7 @@ export default function Trigger(props) {
           options={state.options}
           placeholder={placeholder}
           selectedOptions={state.selectedOptions}
+          customLabel={customLabel}
         />
       </RawButton>
     );
