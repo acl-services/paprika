@@ -33,6 +33,9 @@ const propTypes = {
   /** Has implicit "All items selected" value when no item is selected */
   hasImplicitAll: PropTypes.bool,
 
+  /** Override the label with a custom one. */
+  label: PropTypes.string,
+
   /** Callback to be executed when the clear button is clicked or activated by keyboard. */
   onClickClear: PropTypes.func,
 
@@ -44,9 +47,6 @@ const propTypes = {
 
   /** If true the trigger will be hidden */
   isHidden: PropTypes.bool,
-
-  /** Custom label text */
-  customLabel: PropTypes.string,
 };
 
 const defaultProps = {
@@ -54,11 +54,11 @@ const defaultProps = {
   children: <React.Fragment />,
   hasClearButton: true,
   hasImplicitAll: false,
+  label: null,
   onClickClear: null,
   onClickFooterAccept: null,
   placeholder: "Select...",
   isHidden: false,
-  customLabel: null,
 };
 
 export default function Trigger(props) {
@@ -69,13 +69,13 @@ export default function Trigger(props) {
     placeholder,
     hasClearButton,
     hasImplicitAll,
+    label,
     onClickFooterAccept,
     children,
     isHidden,
     onClickClear,
     // eslint-disable-next-line react/prop-types
     onFooterClickAccept,
-    customLabel,
     ...moreProps
   } = props;
   const {
@@ -153,7 +153,7 @@ export default function Trigger(props) {
         options={state.options}
         placeholder={placeholder}
         selectedOptions={state.selectedOptions}
-        customLabel={customLabel}
+        label={label}
       />
     ) : (
       <RawButton
@@ -177,7 +177,7 @@ export default function Trigger(props) {
           options={state.options}
           placeholder={placeholder}
           selectedOptions={state.selectedOptions}
-          customLabel={customLabel}
+          label={label}
         />
       </RawButton>
     );
