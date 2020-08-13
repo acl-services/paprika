@@ -1,5 +1,6 @@
 import React from "react";
 import PropTypes from "prop-types";
+import useI18n from "@paprika/l10n/lib/useI18n";
 import * as sc from "./PageItem.styles";
 
 const propTypes = {
@@ -20,8 +21,10 @@ const defaultProps = {
 
 function PageItem(props) {
   const { a11yText, onClick, pageNumber } = props;
+  const I18n = useI18n();
+
   return (
-    <sc.PageItem aria-label={(a11yText, pageNumber)} onClick={onClick}>
+    <sc.PageItem aria-label={(a11yText || I18n.t("pagination.page"), pageNumber)} onClick={onClick}>
       {pageNumber}
     </sc.PageItem>
   );

@@ -1,5 +1,6 @@
 import React from "react";
 import PropTypes from "prop-types";
+import useI18n from "@paprika/l10n/lib/useI18n";
 import * as sc from "./CurrentPageItem.styles";
 
 const propTypes = {
@@ -20,8 +21,16 @@ const defaultProps = {
 
 function CurrentPageItem(props) {
   const { a11yText, role, pageNumber } = props;
+
+  const I18n = useI18n();
+
   return (
-    <sc.CurrentPageItem aria-current aria-disabled aria-label={(a11yText, pageNumber)} role={role}>
+    <sc.CurrentPageItem
+      aria-current
+      aria-disabled
+      aria-label={(a11yText || I18n.t("pagination.page"), pageNumber)}
+      role={role}
+    >
       <sc.CurrentPageItemContent>{pageNumber}</sc.CurrentPageItemContent>
     </sc.CurrentPageItem>
   );

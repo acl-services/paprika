@@ -1,7 +1,8 @@
 import React from "react";
 import PropTypes from "prop-types";
-import * as sc from "./ArrowItem.styles";
+import useI18n from "@paprika/l10n/lib/useI18n";
 import { getArrowIcon } from "./ArrowItem.styles";
+import * as sc from "./ArrowItem.styles";
 
 const propTypes = {
   /* Description of the ArrowItem for assistive technology */
@@ -27,9 +28,10 @@ const defaultProps = {
 function ArrowItem(props) {
   const { a11yText, isDisabled, onClick, type } = props;
   const Icon = getArrowIcon(`Arrow-${type}`);
+  const I18n = useI18n();
 
   return (
-    <sc.ArrowItem aria-label={a11yText} isDisabled={isDisabled} onClick={onClick}>
+    <sc.ArrowItem aria-label={a11yText || I18n.t(`pagination.${type}`)} isDisabled={isDisabled} onClick={onClick}>
       <Icon isDisabled size={14} />
     </sc.ArrowItem>
   );

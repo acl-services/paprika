@@ -1,5 +1,6 @@
 import React from "react";
 import PropTypes from "prop-types";
+import useI18n from "@paprika/l10n/lib/useI18n";
 import * as sc from "./ElipsisItem.styles";
 
 const propTypes = {
@@ -17,8 +18,9 @@ const defaultProps = {
 
 function ElipsisItem(props) {
   const { a11yText, role } = props;
+  const I18n = useI18n();
   return (
-    <sc.ElipsisItem aria-disabled aria-label={a11yText} role={role}>
+    <sc.ElipsisItem aria-disabled aria-label={a11yText || I18n.t("pagination.elipsis")} role={role}>
       <sc.ElipsisItemElipse>...</sc.ElipsisItemElipse>
     </sc.ElipsisItem>
   );

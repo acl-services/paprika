@@ -7,4 +7,24 @@
 
 The Pagination component allows the user to select a page from a range of pages.
 
+### Usage
+
+To create a Pagination simply add the `<Pagination />` component.
+
+#### Total Pages
+
+To set the amount of pages for the Pagination component use the `totalPages` property.
+
+```js
+<Pagination totalPages={12} />
+```
+
+#### Current Page
+
+To set the currently active page use the `currentPage` property. This will highlight the currently active page.
+
+```js
+<Pagination totalPages={12} currentPage={2} />
+```
+
 <!-- eoContent -->
