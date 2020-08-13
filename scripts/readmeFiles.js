@@ -122,7 +122,7 @@ const processPropTables = ({ info, folder, path, paprikaDocs = null }) => {
   // you can define on packages.json a property named paprikaDocs with an attribute subComponent to list
   // extra component that you might want to create and render on the table.
   if (paprikaDocs && "subComponents" in paprikaDocs) {
-    paprikaDocs.subComponents.map(subComponent => {
+    paprikaDocs.subComponents.forEach(subComponent => {
       const subComponentContent = fs.readFileSync(`${path}/src/components/${subComponent}/${subComponent}.js`, "utf8");
       const arrayOfComponentsDefinitions = reactDocs.parse(
         subComponentContent,

@@ -9,7 +9,7 @@ import * as sc from "./Table.styles";
 
 const propTypes = {
   /** Define the look for borders in the table DataGrid.types.GRID, DataGrid.types.NONE, etc.  */
-  borderType: PropTypes.oneOf([types.GRID, types.NONE, types.HORIZONTAL, types.VERTICAL]),
+  borderType: PropTypes.oneOf(["grid", "non", "horizontal", "vertical"]),
   children: PropTypes.node.isRequired,
   /** Add an alternate background on the DataGrid's rows */
   hasZebraStripes: PropTypes.bool,
@@ -92,7 +92,7 @@ export default function Table(props) {
   );
 }
 
-Table.displayName = Table;
+Table.displayName = "Table";
 Table.propTypes = propTypes;
 Table.defaultProps = defaultProps;
 Table.ColumnDefinition = ColumnDefinition;

@@ -1,3 +1,5 @@
+/* eslint-disable react/no-unused-prop-types */
+import React from "react";
 import PropTypes from "prop-types";
 
 function customA11yTextPropTypeValidation(props, propName) {
@@ -36,11 +38,11 @@ function customA11yTextPropTypeValidation(props, propName) {
 
 const propTypes = {
   canGrow: PropTypes.bool,
-  cell: customA11yTextPropTypeValidation,
+  cell: customA11yTextPropTypeValidation.isRequired,
   cellA11yText: PropTypes.func,
   cellProps: PropTypes.func,
   cellPropsResetCSS: PropTypes.bool,
-  header: customA11yTextPropTypeValidation,
+  header: customA11yTextPropTypeValidation.isRequired,
   headerA11yText: PropTypes.func,
   headerProps: PropTypes.func,
   isSticky: PropTypes.bool,
@@ -67,7 +69,7 @@ export const defaultProps = {
 };
 
 export default function ColumnDefinition() {
-  return null;
+  return <React.Fragment />;
 }
 
 ColumnDefinition.propTypes = propTypes;
