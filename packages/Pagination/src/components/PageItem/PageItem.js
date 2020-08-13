@@ -3,10 +3,10 @@ import PropTypes from "prop-types";
 import * as sc from "./PageItem.styles";
 
 const propTypes = {
-  /* Description of the CurrentPageItem for assistive technology */
+  /* Description of the PageItem for assistive technology */
   a11yText: PropTypes.string,
 
-  /** Callback to be executed when the ArrowItem is clicked or activated by keyboard. */
+  /** Callback to be executed when the PageItem is clicked or activated by keyboard. */
   onClick: PropTypes.func,
 
   /** The page number */

@@ -1,6 +1,7 @@
 import React from "react";
 import PropTypes from "prop-types";
 import * as sc from "./ArrowItem.styles";
+import { getArrowIcon } from "./ArrowItem.styles";
 
 const propTypes = {
   /* Description of the ArrowItem for assistive technology */
@@ -25,10 +26,11 @@ const defaultProps = {
 
 function ArrowItem(props) {
   const { a11yText, isDisabled, onClick, type } = props;
+  const Icon = getArrowIcon(`Arrow-${type}`);
 
   return (
     <sc.ArrowItem aria-label={a11yText} isDisabled={isDisabled} onClick={onClick}>
-      <sc.ArrowItemIcon size={14} type={`Arrow-${type}`} isDisabled />
+      <Icon isDisabled size={14} />
     </sc.ArrowItem>
   );
 }

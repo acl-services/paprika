@@ -1,8 +1,8 @@
 import React from "react";
-import DividerStyles from "./Divider.styles";
+import * as sc from "./Divider.styles";
 
 export default function Divider() {
-  return <span css={DividerStyles} />;
+  return <sc.Divider />;
 }
 
 Divider.displayName = "Pagination.Divider";
