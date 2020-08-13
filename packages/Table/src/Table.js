@@ -19,7 +19,7 @@ const propTypes = {
 };
 
 const defaultProps = {
-  borderType: "grid",
+  borderType: types.GRID,
   data: [],
   hasZebraStripes: false,
 };
@@ -46,8 +46,17 @@ export default function Table(props) {
             const { header } = columnDefinition.props;
 
             if (typeof header === "function")
-              return <sc.TH key={columnIndex}>{header({ header: columnDefinition.props, columnIndex })}</sc.TH>;
-            if (typeof header === "string") return <sc.TH key={columnIndex}>{header}</sc.TH>;
+              return (
+                <sc.TH borderType={borderType} key={columnIndex}>
+                  {header({ header: columnDefinition.props, columnIndex })}
+                </sc.TH>
+              );
+            if (typeof header === "string")
+              return (
+                <sc.TH borderType={borderType} key={columnIndex}>
+                  {header}
+                </sc.TH>
+              );
 
             throw new Error("Header should be either of type string or function");
           })}
@@ -62,13 +71,13 @@ export default function Table(props) {
 
                 if (typeof cell === "function")
                   return (
-                    <sc.TD key={columnIndex} {...moreProps}>
+                    <sc.TD borderType={borderType} key={columnIndex} {...moreProps}>
                       {cell({ row, rowIndex, columnIndex })}
                     </sc.TD>
                   );
                 if (typeof cell === "string")
                   return (
-                    <sc.TD key={columnIndex} {...moreProps}>
+                    <sc.TD borderType={borderType} key={columnIndex} {...moreProps}>
                       {typeof row[cell] !== "undefined" ? row[cell] : `Error: ${cell} doesn't exist`}
                     </sc.TD>
                   );
@@ -87,3 +96,4 @@ Table.displayName = Table;
 Table.propTypes = propTypes;
 Table.defaultProps = defaultProps;
 Table.ColumnDefinition = ColumnDefinition;
+Table.types = types;

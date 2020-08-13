@@ -1,6 +1,7 @@
 import React from "react";
 import { storiesOf } from "@storybook/react";
 import { getStoryName } from "storybook/storyTree";
+import styled from "styled-components";
 
 import Table from "../src";
 
@@ -21,16 +22,95 @@ const data = [
   { name: "Vint", lastName: "Cerf" },
 ];
 
-storiesOf(`${storyName}/Examples`, module)
-  .add("Basic", () => (
+function Basic() {
+  return (
     <Table data={data}>
       <Table.ColumnDefinition header="Name" cell="name" />
       <Table.ColumnDefinition header="LastName" cell="lastName" />
     </Table>
-  ))
-  .add("Has Zebra stripes", () => (
-    <Table data={data} hasZebraStripes>
-      <Table.ColumnDefinition header="Name" cell="name" />
-      <Table.ColumnDefinition header="LastName" cell="lastName" />
-    </Table>
-  ));
+  );
+}
+
+const bordersStyles = {
+  Container: styled.div`
+    display: flex;
+  `,
+  Gap: styled.div`
+    padding: 8px;
+  `,
+};
+
+export function Borders() {
+  return (
+    <bordersStyles.Container>
+      <bordersStyles.Gap>
+        <h4>Grid default value</h4>
+        <Table data={data}>
+          <Table.ColumnDefinition header="Name" cell="name" />
+          <Table.ColumnDefinition header="LastName" cell="lastName" />
+        </Table>
+      </bordersStyles.Gap>
+      <bordersStyles.Gap>
+        <h4>Horizontal</h4>
+        <Table data={data} borderType={Table.types.HORIZONTAL}>
+          <Table.ColumnDefinition header="Name" cell="name" />
+          <Table.ColumnDefinition header="LastName" cell="lastName" />
+        </Table>
+      </bordersStyles.Gap>
+      <bordersStyles.Gap>
+        <h4>Vertical</h4>
+        <Table data={data} borderType={Table.types.VERTICAL}>
+          <Table.ColumnDefinition header="Name" cell="name" />
+          <Table.ColumnDefinition header="LastName" cell="lastName" />
+        </Table>
+      </bordersStyles.Gap>
+      <bordersStyles.Gap>
+        <h4>None</h4>
+        <Table data={data} borderType={Table.types.NONE}>
+          <Table.ColumnDefinition header="Name" cell="name" />
+          <Table.ColumnDefinition header="LastName" cell="lastName" />
+        </Table>
+      </bordersStyles.Gap>
+    </bordersStyles.Container>
+  );
+}
+
+export function WithZebras() {
+  return (
+    <bordersStyles.Container>
+      <bordersStyles.Gap>
+        <h4>Grid default value</h4>
+        <Table data={data} hasZebraStripes>
+          <Table.ColumnDefinition header="Name" cell="name" />
+          <Table.ColumnDefinition header="LastName" cell="lastName" />
+        </Table>
+      </bordersStyles.Gap>
+      <bordersStyles.Gap>
+        <h4>Horizontal</h4>
+        <Table data={data} hasZebraStripes borderType={Table.types.HORIZONTAL}>
+          <Table.ColumnDefinition header="Name" cell="name" />
+          <Table.ColumnDefinition header="LastName" cell="lastName" />
+        </Table>
+      </bordersStyles.Gap>
+      <bordersStyles.Gap>
+        <h4>Vertical</h4>
+        <Table data={data} hasZebraStripes borderType={Table.types.VERTICAL}>
+          <Table.ColumnDefinition header="Name" cell="name" />
+          <Table.ColumnDefinition header="LastName" cell="lastName" />
+        </Table>
+      </bordersStyles.Gap>
+      <bordersStyles.Gap>
+        <h4>None</h4>
+        <Table data={data} hasZebraStripes borderType={Table.types.NONE}>
+          <Table.ColumnDefinition header="Name" cell="name" />
+          <Table.ColumnDefinition header="LastName" cell="lastName" />
+        </Table>
+      </bordersStyles.Gap>
+    </bordersStyles.Container>
+  );
+}
+
+storiesOf(`${storyName}`, module)
+  .add("Basic", () => <Basic />)
+  .add("Has Zebra stripes", () => <WithZebras />)
+  .add("Border types", () => <Borders />);

@@ -15,8 +15,11 @@
   },
   "dependencies": {
     "@babel/runtime-corejs2": "^7.3.1",
-    "@paprika/tokens": "^0.1.14",
+    "@paprika/button": "^0.3.5",
+    "@paprika/dropdown-menu": "^2.0.37",
     "@paprika/helpers": "0.2.13",
+    "@paprika/pill": "^0.2.25",
+    "@paprika/tokens": "^0.1.14",
     "prop-types": "^15.7.2"
   },
   "peerDependencies": {
