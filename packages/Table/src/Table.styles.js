@@ -15,7 +15,7 @@ export const TBody = styled.tbody(({ hasZebraStripes }) => {
         background: ${tokens.table.row.backgroundColor};
       }
 
-      & tr:nth-child(odd) {
+      & tr:nth-child(even) {
         background-color: ${tokens.table.rowEven.backgroundColor};
       }
     `;
