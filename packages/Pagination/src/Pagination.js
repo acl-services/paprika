@@ -1,6 +1,5 @@
 import React from "react";
 import PropTypes from "prop-types";
-// import { ShirtSizes } from "@paprika/helpers/lib/customPropTypes";
 import ArrowItem from "./components/ArrowItem/ArrowItem";
 import CurrentPageItem from "./components/CurrentPageItem/CurrentPageItem";
 import ElipsisItem from "./components/EllipsisItem/ElipsisItem";
