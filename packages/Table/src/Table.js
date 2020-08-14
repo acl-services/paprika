@@ -8,12 +8,12 @@ import types from "./types";
 import * as sc from "./Table.styles";
 
 const propTypes = {
-  /** Define the look for borders in the table DataGrid.types.GRID, DataGrid.types.NONE, etc.  */
+  /** Define the look for borders in the table Table.types.GRID, Table.types.NONE, etc.  */
   borderType: PropTypes.oneOf(["grid", "non", "horizontal", "vertical"]),
   children: PropTypes.node.isRequired,
-  /** Add an alternate background on the DataGrid's rows */
+  /** Add an alternating background on the table rows */
   hasZebraStripes: PropTypes.bool,
-  /** Array of data to be stored in the DataGrid */
+  /** Array of data to be stored in the Table */
   data: PropTypes.arrayOf(PropTypes.shape({})),
   /** Sets the height of the DataGrid */
 };
