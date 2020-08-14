@@ -1,5 +1,12 @@
 fr:
   translation:
+    timePicker:
+      am: am
+      custom: Personnalisé
+      hours: Heures
+      minutes: Minutes
+      period: Période
+      pm: pm
     back: Retour
     remove: supprimer
     moreInformation: plus d'informations
@@ -160,3 +167,4 @@ fr:
             text: Tri décroissant (Z → A)
             date: Tri décroissant (9 → 1)
             single_select: Tri décroissant (Z → A)
+          

@@ -1,5 +1,12 @@
 de:
   translation:
+    timePicker:
+      am: AM
+      custom: Angepasst
+      hours: Stunden
+      minutes: Minuten
+      period: Zeitraum
+      pm: PM
     back: Zurück
     remove: entfernen
     moreInformation: weitere Informationen
@@ -160,3 +167,4 @@ de:
             text: Absteigend sortieren (Z → A)
             date: Absteigend sortieren (9 → 1)
             single_select: Absteigend sortieren (Z → A)
+          
