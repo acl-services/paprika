@@ -32,8 +32,8 @@ npm install @paprika/popover
 | isPortal              | bool                                    | false    | true                         | This renders the popover inline in the DOM and not in a react portal. WARNING: will have side effects with paprika side panels and modals, use with caution. |
 | defaultIsOpen         | bool                                    | false    | null                         | How "uncontrolled" popovers can be rendered open by default.                                                                                                 |
 | edge                  | [AlignTypes.LEFT,AlignTypes.RIGHT,null] | false    | null                         | Where the edge of the popover content is based on the trigger or getPositioningElement                                                                       |
-| maxWidth              | union                                   | false    | 320                          | Maximum width of popover content. Using a number is recommended and implies px units.                                                                        |
-| minWidth              | union                                   | false    | 0                            | Minimumn width of popover content. Using a number is recommended and implies px units.                                                                       |
+| maxWidth              | [string,number]                         | false    | 320                          | Maximum width of popover content. Using a number is recommended and implies px units.                                                                        |
+| minWidth              | [string,number]                         | false    | 0                            | Minimumn width of popover content. Using a number is recommended and implies px units.                                                                       |
 | onClose               | func                                    | false    | null                         | Callback to fire when user closes popover.                                                                                                                   |
 | offset                | number                                  | false    | parseInt(tokens.spaceLg, 10) | Distance, in px, between popover content edge and trigger / getPositioningElement.                                                                           |
 | getPositioningElement | func                                    | false    | null                         | Function that provides DOM element to use as target for positioning the popover.                                                                             |
@@ -43,10 +43,10 @@ npm install @paprika/popover
 
 ### Popover.Trigger
 
-| Prop     | Type   | required | default | Description                                                       |
-| -------- | ------ | -------- | ------- | ----------------------------------------------------------------- |
-| a11yText | string | false    | null    | Descriptive a11y text for assistive technologies for the trigger. |
-| children | union  | true     | -       |                                                                   |
+| Prop     | Type        | required | default | Description                                                       |
+| -------- | ----------- | -------- | ------- | ----------------------------------------------------------------- |
+| a11yText | string      | false    | null    | Descriptive a11y text for assistive technologies for the trigger. |
+| children | [func,node] | true     | -       |                                                                   |
 
 ### Popover.Content
 

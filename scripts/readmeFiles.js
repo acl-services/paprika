@@ -83,15 +83,17 @@ const createPropsTable = ({ info }) => {
     const v = info.props[key] || {};
     let type = "-";
     if ("type" in v) {
-      type =
-        // eslint-disable-next-line no-nested-ternary
-        v.type.name !== "enum"
-          ? v.type.name
-          : Array.isArray(v.type.value)
-          ? `[${v.type.value.map(i => i.value)}]`
-          : v.type.value;
-
-      console.log("enum", JSON.stringify(v.type.value));
+      if (v.type.name === "union") {
+        type = `[${v.type.value.map(i => i.name)}]`;
+      } else {
+        type =
+          // eslint-disable-next-line no-nested-ternary
+          v.type.name !== "enum"
+            ? v.type.name
+            : Array.isArray(v.type.value)
+            ? `[${v.type.value.map(i => i.value)}]`
+            : v.type.value;
+      }
     }
 
     const required = "required" in v ? v.required.toString() : " ";

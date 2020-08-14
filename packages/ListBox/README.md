@@ -88,17 +88,17 @@ see: options/helpers/options.js|
 
 ### ListBox.Option
 
-| Prop                   | Type   | required | default | Description                                                                            |
-| ---------------------- | ------ | -------- | ------- | -------------------------------------------------------------------------------------- |
-| children               | union  | true     | -       | String, number or JSX content                                                          |
-| isSelected             | bool   | false    | null    |                                                                                        |
-| defaultIsSelected      | bool   | false    | null    | Describe if the option started as selected or not                                      |
-| isDisabled             | bool   | false    | false   | Describe if the option is enable or not                                                |
-| isHidden               | bool   | false    | false   | Describe if the option is hidden or not                                                |
-| label                  | string | false    | null    | When the children are not a String, label should need to be add so the filter can work |
-| onClick                | func   | false    | null    | Callback for the clicking event                                                        |
-| value                  | any    | false    | null    | Value of your option this can be any data structure                                    |
-| preventDefaultOnSelect | -      | false    | false   |                                                                                        |
+| Prop                   | Type        | required | default | Description                                                                            |
+| ---------------------- | ----------- | -------- | ------- | -------------------------------------------------------------------------------------- |
+| children               | [node,func] | true     | -       | String, number or JSX content                                                          |
+| isSelected             | bool        | false    | null    |                                                                                        |
+| defaultIsSelected      | bool        | false    | null    | Describe if the option started as selected or not                                      |
+| isDisabled             | bool        | false    | false   | Describe if the option is enable or not                                                |
+| isHidden               | bool        | false    | false   | Describe if the option is hidden or not                                                |
+| label                  | string      | false    | null    | When the children are not a String, label should need to be add so the filter can work |
+| onClick                | func        | false    | null    | Callback for the clicking event                                                        |
+| value                  | any         | false    | null    | Value of your option this can be any data structure                                    |
+| preventDefaultOnSelect | -           | false    | false   |                                                                                        |
 
 ### ListBox.Popover
 
@@ -115,17 +115,17 @@ see: options/helpers/options.js|
 
 ### ListBox.Trigger
 
-| Prop                | Type   | required | default            | Description                                                                         |
-| ------------------- | ------ | -------- | ------------------ | ----------------------------------------------------------------------------------- |
-| clearIcon           | node   | false    | null               | Custom clear icon                                                                   |
-| children            | union  | false    | <React.Fragment /> | Body content of the trigger.                                                        |
-| hasClearButton      | bool   | false    | true               | If true it adds a clear button                                                      |
-| hasImplicitAll      | bool   | false    | false              | Has implicit "All items selected" value when no item is selected                    |
-| label               | string | false    | null               | Override the label with a custom one.                                               |
-| onClickClear        | func   | false    | null               | Callback to be executed when the clear button is clicked or activated by keyboard.  |
-| onClickFooterAccept | func   | false    | null               | Callback to be executed when the accept button is clicked or activated by keyboard. |
-| placeholder         | string | false    | "Select..."        | Sets a placeholder for the trigger                                                  |
-| isHidden            | bool   | false    | false              | If true the trigger will be hidden                                                  |
+| Prop                | Type        | required | default            | Description                                                                         |
+| ------------------- | ----------- | -------- | ------------------ | ----------------------------------------------------------------------------------- |
+| clearIcon           | node        | false    | null               | Custom clear icon                                                                   |
+| children            | [node,func] | false    | <React.Fragment /> | Body content of the trigger.                                                        |
+| hasClearButton      | bool        | false    | true               | If true it adds a clear button                                                      |
+| hasImplicitAll      | bool        | false    | false              | Has implicit "All items selected" value when no item is selected                    |
+| label               | string      | false    | null               | Override the label with a custom one.                                               |
+| onClickClear        | func        | false    | null               | Callback to be executed when the clear button is clicked or activated by keyboard.  |
+| onClickFooterAccept | func        | false    | null               | Callback to be executed when the accept button is clicked or activated by keyboard. |
+| placeholder         | string      | false    | "Select..."        | Sets a placeholder for the trigger                                                  |
+| isHidden            | bool        | false    | false              | If true the trigger will be hidden                                                  |
 
 <!-- autogenerated don't modify -->
 <!-- content -->

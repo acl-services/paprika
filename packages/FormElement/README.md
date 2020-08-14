@@ -38,12 +38,12 @@ npm install @paprika/form-element
 
 ### FormElement.Content
 
-| Prop            | Type   | required | default | Description                                  |
-| --------------- | ------ | -------- | ------- | -------------------------------------------- |
-| children        | union  | true     | -       |                                              |
-| idForLabel      | string | false    | null    | Sets id for label                            |
-| refLabel        | custom | false    | null    |                                              |
-| ariaDescribedBy | string | false    | null    | Used for aria-describedby on the FormElement |
+| Prop            | Type        | required | default | Description                                  |
+| --------------- | ----------- | -------- | ------- | -------------------------------------------- |
+| children        | [func,node] | true     | -       |                                              |
+| idForLabel      | string      | false    | null    | Sets id for label                            |
+| refLabel        | custom      | false    | null    |                                              |
+| ariaDescribedBy | string      | false    | null    | Used for aria-describedby on the FormElement |
 
 ### FormElement.Description
 
