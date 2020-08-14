@@ -2,6 +2,7 @@ import React from "react";
 import PropTypes from "prop-types";
 import RightArrowIcon from "@paprika/icon/lib/ArrowRight";
 import DownArrowIcon from "@paprika/icon/lib/ArrowDown";
+import UpArrowIcon from "@paprika/icon/lib/ArrowUp";
 import useI18n from "@paprika/l10n/lib/useI18n";
 import RawButton from "@paprika/raw-button";
 import collapsibleStyles from "./Collapsible.styles";
@@ -52,7 +53,9 @@ const defaultProps = {
 const Collapsible = props => {
   const I18n = useI18n();
   let hasWarnedForA11yText = false;
-  const collapsedIcon = [props.iconExpand, props.iconCollapse];
+
+  const collapsedIcon =
+    props.iconAlign === "right" ? [<UpArrowIcon />, <DownArrowIcon />] : [props.iconExpand, props.iconCollapse];
 
   const checkPropsError = () => {
     if (!props.a11yText && !(I18n && I18n.t) && !hasWarnedForA11yText) {

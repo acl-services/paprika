@@ -14,7 +14,6 @@ const propTypes = {
   /** Do not use in conjunction with value prop */
   defaultValue: PropTypes.string,
   hasError: PropTypes.bool,
-  inputRef: PropTypes.func,
   /** If the textarea is disabled */
   isDisabled: PropTypes.bool,
   /** If the textarea is read-only */
@@ -33,7 +32,6 @@ const defaultProps = {
   className: null,
   defaultValue: "",
   hasError: false,
-  inputRef: () => {},
   isDisabled: false,
   isReadOnly: false,
   maxHeight: "300px",
@@ -42,7 +40,7 @@ const defaultProps = {
   value: null,
 };
 
-function Textarea(props) {
+const Textarea = React.forwardRef((props, ref) => {
   const textareaRef = React.useRef(null);
 
   const resize = () => {
@@ -57,7 +55,6 @@ function Textarea(props) {
     className,
     canExpand,
     hasError,
-    inputRef,
     isDisabled,
     onChange,
     isReadOnly,
@@ -85,7 +82,9 @@ function Textarea(props) {
 
   const setRef = node => {
     textareaRef.current = node;
-    inputRef(node);
+    if (ref) {
+      ref(node);
+    }
   };
 
   if (moreProps.value) {
@@ -127,7 +126,7 @@ function Textarea(props) {
       />
     </div>
   );
-}
+});
 
 Textarea.displayName = "Textarea";
 Textarea.propTypes = propTypes;

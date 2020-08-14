@@ -6,6 +6,9 @@ const propTypes = {
   /** a11yText on the input. */
   a11yText: PropTypes.string,
 
+  /** Custom clear icon */
+  clearIcon: PropTypes.node,
+
   /** Placeholder of input. */
   placeholder: PropTypes.string,
 
@@ -18,6 +21,7 @@ const propTypes = {
 
 const defaultProps = {
   a11yText: null,
+  clearIcon: null,
   placeholder: "",
   size: ShirtSizes.MEDIUM,
   hasError: false,

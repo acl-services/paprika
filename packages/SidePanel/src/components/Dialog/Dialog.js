@@ -37,6 +37,7 @@ const defaultProps = {
 };
 
 function Dialog(props) {
+  const [isAnimating, setIsAnimating] = React.useState(false);
   const refSidePanel = React.useRef(null);
 
   const {
@@ -61,10 +62,10 @@ function Dialog(props) {
   } = props;
 
   const isFooterSticky = footer && footer.props.isSticky;
+  const isHeaderSticky = header && header.props.isSticky;
 
   const dialogMain = (
     <React.Fragment>
-      {header ? React.cloneElement(header, { ref: refHeader, isCompact, onClose, getPushContentElement }) : null}
       <sc.DialogContent
         data-pka-anchor="sidepanel.content"
         hasPushedElement={!!getPushContentElement}
@@ -80,7 +81,38 @@ function Dialog(props) {
     </React.Fragment>
   );
 
+  React.useEffect(() => {
+    setIsAnimating(true);
+  }, [isOpen]);
+
   const dialogFooter = footer ? React.cloneElement(footer, { refSidePanel, isCompact }) : null;
+  const dialogHeader = header
+    ? React.cloneElement(header, { ref: refHeader, isCompact, onClose, getPushContentElement })
+    : null;
+
+  const handleAnimationEnd = () => {
+    setIsAnimating(false);
+    onAnimationEnd();
+  };
+
+  const renderDialogContent = () =>
+    isFooterSticky || isHeaderSticky ? (
+      <sc.MainWrapper>
+        {isHeaderSticky && dialogHeader}
+        <sc.DialogMain>
+          {!isHeaderSticky && dialogHeader}
+          {dialogMain}
+          {!isFooterSticky && dialogFooter}
+        </sc.DialogMain>
+        {isFooterSticky && dialogFooter}
+      </sc.MainWrapper>
+    ) : (
+      <>
+        {dialogHeader}
+        {dialogMain}
+        {dialogFooter}
+      </>
+    );
 
   return (
     <sc.Dialog
@@ -93,7 +125,8 @@ function Dialog(props) {
       isInline={isInline}
       isOpen={isOpen}
       offsetY={offsetY}
-      onAnimationEnd={onAnimationEnd}
+      isAnimating={isAnimating}
+      onAnimationEnd={handleAnimationEnd}
       ref={refSidePanel}
       role="dialog"
       tabIndex="-1"
@@ -101,17 +134,7 @@ function Dialog(props) {
       width={width}
       {...moreProps}
     >
-      {isFooterSticky ? (
-        <sc.MainWrapper>
-          <sc.DialogMain>{dialogMain}</sc.DialogMain>
-          {dialogFooter}
-        </sc.MainWrapper>
-      ) : (
-        <React.Fragment>
-          {dialogMain}
-          {dialogFooter}
-        </React.Fragment>
-      )}
+      {renderDialogContent()}
     </sc.Dialog>
   );
 }

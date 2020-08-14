@@ -153,8 +153,10 @@ fr:
             number: Tri croissant (1 → 9)
             text: Tri croissant (A → Z)
             date: Tri croissant (1 → 9)
+            single_select: Tri croissant (A → Z)
           descending:
             boolean: Tri décroissant (faux → vrai)
             number: Tri décroissant (9 → 1)
             text: Tri décroissant (Z → A)
             date: Tri décroissant (9 → 1)
+            single_select: Tri décroissant (Z → A)

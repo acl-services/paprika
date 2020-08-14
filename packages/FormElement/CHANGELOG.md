@@ -31,3 +31,19 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 -- Added onClickLabel prop to be able to set focus on child refs, currently ButtonGroup supported
 
 [@tristanjasper](https://github.com/tristanjasper).
+
+## [0.3.26] - 2020-08-05
+
+### Changed
+
+-- Changed the spacing between label and content
+
+[@allison-c](https://github.com/allison-c).
+
+## [0.3.27] - 2020-08-12
+
+### Changed
+
+-- Changed the spacing between label, content and instructions
+
+[@tristanjasper](https://github.com/tristanjasper).

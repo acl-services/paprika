@@ -7,7 +7,7 @@ import CaretDownIcon from "@paprika/icon/lib/CaretDown";
 import CaretUpIcon from "@paprika/icon/lib/CaretUp";
 import TimesCircleIcon from "@paprika/icon/lib/TimesCircle";
 import Label from "../Label";
-import handleKeyboardKeys from "../../helpers/handleKeyboardKeys";
+import { handleKeyDownKeyboardKeys, handleKeyUpKeyboardKeys } from "../../helpers/handleKeyboardKeys";
 import useListBox from "../../useListBox";
 import { OnChangeContext } from "../../store/OnChangeProvider";
 
@@ -21,6 +21,9 @@ import { ListBoxTriggerStyled, ClearButtonStyled, iconStyles, VisuallyHiddenForm
 import { getDOMAttributesForListBoxButton } from "../../helpers/DOMAttributes";
 
 const propTypes = {
+  /** Custom clear icon */
+  clearIcon: PropTypes.node,
+
   /** Body content of the trigger. */
   children: PropTypes.oneOfType([PropTypes.node, PropTypes.func]),
 
@@ -29,6 +32,9 @@ const propTypes = {
 
   /** Has implicit "All items selected" value when no item is selected */
   hasImplicitAll: PropTypes.bool,
+
+  /** Override the label with a custom one. */
+  label: PropTypes.string,
 
   /** Callback to be executed when the clear button is clicked or activated by keyboard. */
   onClickClear: PropTypes.func,
@@ -44,9 +50,11 @@ const propTypes = {
 };
 
 const defaultProps = {
+  clearIcon: null,
   children: <React.Fragment />,
   hasClearButton: true,
   hasImplicitAll: false,
+  label: null,
   onClickClear: null,
   onClickFooterAccept: null,
   placeholder: "Select...",
@@ -57,9 +65,11 @@ export default function Trigger(props) {
   const [state, dispatch] = useListBox();
   const onChangeContext = React.useContext(OnChangeContext);
   const {
+    clearIcon,
     placeholder,
     hasClearButton,
     hasImplicitAll,
+    label,
     onClickFooterAccept,
     children,
     isHidden,
@@ -143,14 +153,15 @@ export default function Trigger(props) {
         options={state.options}
         placeholder={placeholder}
         selectedOptions={state.selectedOptions}
+        label={label}
       />
     ) : (
       <RawButton
         id={triggerButtonId.current}
         onClick={handleClick}
         ref={refTrigger}
-        onKeyDown={handleKeyboardKeys({ state, dispatch, onChangeContext })}
-        onKeyUp={() => {}}
+        onKeyDown={handleKeyDownKeyboardKeys({ state, dispatch, onChangeContext })}
+        onKeyUp={handleKeyUpKeyboardKeys({ state, dispatch, onChangeContext })}
         isDisabled={isDisabled}
         data-pka-anchor="listbox-trigger"
         aria-describedby={formElementLabelDescribedBy}
@@ -166,6 +177,7 @@ export default function Trigger(props) {
           options={state.options}
           placeholder={placeholder}
           selectedOptions={state.selectedOptions}
+          label={label}
         />
       </RawButton>
     );
@@ -233,7 +245,7 @@ export default function Trigger(props) {
           shouldHideCaret={shouldHideCaret}
           size={size}
         >
-          <TimesCircleIcon isDisabled={isDisabled} css={iconStyles} />
+          {clearIcon || <TimesCircleIcon isDisabled={isDisabled} css={iconStyles} />}
         </ClearButtonStyled>
       ) : null}
       {shouldHideCaret ? null : caret}

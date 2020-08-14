@@ -1,7 +1,7 @@
 import { handleEnterOrSpace, handleArrowKeys } from "../components/Options/helpers/options";
 import useListBox from "../useListBox";
 
-const handleKeyboardKeys = ({ state, dispatch, onChangeContext }) => event => {
+export const handleKeyDownKeyboardKeys = ({ state, dispatch, onChangeContext }) => event => {
   if (state.isDisabled) {
     return;
   }
@@ -15,6 +15,17 @@ const handleKeyboardKeys = ({ state, dispatch, onChangeContext }) => event => {
       handleArrowKeys({ event, state, dispatch, onChangeContext, isArrowDown: true });
       break;
 
+    default:
+      break;
+  }
+};
+
+export const handleKeyUpKeyboardKeys = ({ state, dispatch, onChangeContext }) => event => {
+  if (state.isDisabled) {
+    return;
+  }
+
+  switch (event.key) {
     case "Escape":
       if (!state.isOpen) break;
       if (state.hasFooter) {
@@ -33,5 +44,3 @@ const handleKeyboardKeys = ({ state, dispatch, onChangeContext }) => event => {
       break;
   }
 };
-
-export default handleKeyboardKeys;

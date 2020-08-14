@@ -39,14 +39,14 @@ describe("Input", () => {
     expect(getByTestId("input").value).toBe(emptyStringValue);
   });
 
-  it("should set value uncontrolled using defaultValue and call the inputRef function with node when input changes", async () => {
+  it("should set value uncontrolled using defaultValue and call the ref function with node when input changes", async () => {
     let node = null;
     const inputRefFunc = element => {
       node = element;
     };
     const { getByTestId } = renderComponent({
       defaultValue: initialValue,
-      inputRef: inputRefFunc,
+      ref: inputRefFunc,
     });
     expect(getByTestId("input").value).toBe(initialValue);
     fireEvent.change(getByTestId("input"), { target: { value: updatedValue } });

@@ -3,7 +3,8 @@ import { storiesOf } from "@storybook/react";
 import { getStoryName } from "storybook/storyTree";
 import Heading from "@paprika/heading";
 import { Story, Rule, Tagline } from "storybook/assets/styles/common.styles";
-import ListBox from "../src";
+import { Basic as BasicSingle } from "./examples/single";
+import { Basic as BasicMulti } from "./examples/multi";
 
 const storyName = getStoryName("ListBox");
 
@@ -16,7 +17,11 @@ const Example = () => (
       <b>Showcase</b> – a stubby little story
     </Tagline>
     <Rule />
-    <ListBox />
+    <h3>Single</h3>
+    <BasicSingle />
+    <Rule />
+    <h3>Multi</h3>
+    <BasicMulti />
   </Story>
 );
 

@@ -59,9 +59,7 @@ export default function Cell(props) {
     };
 
     return () => {
-      console.log("before:", Object.keys(window.paprika.dataGridRef).length);
       delete window.paprika.dataGridRef[key];
-      console.log("after:", Object.keys(window.paprika.dataGridRef).length);
     };
   }, []); // eslint-disable-line
 
