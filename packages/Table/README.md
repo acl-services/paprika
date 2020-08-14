@@ -4,7 +4,7 @@
 
 ## Description
 
-The Table component is a simple wrap for the html table, for more advance feature please take a look into the DataGrid
+The Table component is a simple wrap for the html table. For the use of a data table, please take a look into the DataGrid component.
 
 ## Installation
 
