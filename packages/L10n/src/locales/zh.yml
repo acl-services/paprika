@@ -1,5 +1,12 @@
 zh:
   translation:
+    timePicker:
+      am: 上午
+      custom: 自定义
+      hours: 小时
+      minutes: 分钟
+      period: 期间
+      pm: 下午
     back: 返回
     remove: 移除
     moreInformation: 更多信息
@@ -160,3 +167,4 @@ zh:
             text: 降序排序 (Z → A)
             date: 降序排序 (9 → 1)
             single_select: 降序排序 (Z → A)
+          
