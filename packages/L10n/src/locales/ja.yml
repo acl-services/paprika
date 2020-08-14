@@ -1,5 +1,12 @@
 ja:
   translation:
+    timePicker:
+      am: 午前
+      custom: カスタム
+      hours: 時間
+      minutes: 分
+      period: 期間
+      pm: 午後
     back: 戻る
     remove: 削除
     moreInformation: 詳しい情報
@@ -160,3 +167,4 @@ ja:
             text: 降順 (Z → A)
             date: 降順 (9 → 1)
             single_select: 降順 (Z → A)
+          
