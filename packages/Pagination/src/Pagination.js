@@ -1,6 +1,6 @@
 import React from "react";
 import PropTypes from "prop-types";
-import { ShirtSizes } from "@paprika/helpers/lib/customPropTypes";
+// import { ShirtSizes } from "@paprika/helpers/lib/customPropTypes";
 import ArrowItem from "./components/ArrowItem/ArrowItem";
 import CurrentPageItem from "./components/CurrentPageItem/CurrentPageItem";
 import ElipsisItem from "./components/EllipsisItem/ElipsisItem";
@@ -11,20 +11,20 @@ import * as sc from "./Pagination.styles";
 const propTypes = {
   /** The number of current active page */
   currentPage: PropTypes.number.isRequired,
-  /** Length of the pagination (the number of other pages will be displayed around active page). */
-  length: ShirtSizes,
+  /** The number of other pages that will be visible around the current/active page (not hidden by elipsis). */
+  pagesOnEachSide: PropTypes.number,
   /** Callback to be executed when current page is changed. */
-  onClickPage: PropTypes.func.isRequired,
+  onClick: PropTypes.func.isRequired,
   /** The number of total pages. */
   totalPages: PropTypes.number.isRequired,
 };
 
 const defaultProps = {
-  length: "medium",
+  pagesOnEachSide: 2,
 };
 
 function Pagination(props) {
-  const { currentPage, totalPages, length, onClickPage, ...moreProps } = props;
+  const { currentPage, totalPages, pagesOnEachSide, onClick, ...moreProps } = props;
 
   const isCurrentPage = pageNumber => currentPage === pageNumber;
   const isFirstPage = pageNumber => pageNumber === 1;
@@ -36,12 +36,7 @@ function Pagination(props) {
   const isRenderableSibling = (pageNumber, left, right) => left <= pageNumber && pageNumber <= right;
 
   const renderPageElements = () => {
-    const pagesOnEachSide = {
-      small: 1,
-      medium: 2,
-      large: 3,
-    };
-    const delta = pagesOnEachSide[length];
+    const delta = pagesOnEachSide;
     const left = currentPage - delta;
     const right = currentPage + delta;
 
@@ -62,7 +57,7 @@ function Pagination(props) {
           <PageItem
             key={pageNumber}
             onClick={() => {
-              onClickPage(pageNumber);
+              onClick(pageNumber);
             }}
             pageNumber={pageNumber}
           />,
@@ -83,7 +78,7 @@ function Pagination(props) {
       <ArrowItem
         isDisabled={currentPage === 1}
         onClick={() => {
-          onClickPage(currentPage - 1);
+          onClick(currentPage - 1);
         }}
         type="Left"
       />
@@ -92,7 +87,7 @@ function Pagination(props) {
       <ArrowItem
         isDisabled={currentPage === totalPages}
         onClick={() => {
-          onClickPage(currentPage + 1);
+          onClick(currentPage + 1);
         }}
         type="Right"
       />

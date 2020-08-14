@@ -12,7 +12,7 @@ export const ElipsisItemElipse = styled.span`
   height: ${tokens.space * 3};
   line-height: ${tokens.space * 3};
   min-width: ${tokens.space * 3};
-  padding: 0 ${tokens.spaceSm};
+  padding: ${tokens.space} ${tokens.spaceSm};
   text-align: center;
   vertical-align: top;
 `;

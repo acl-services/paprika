@@ -19,7 +19,7 @@ describe("Pagination", () => {
   it("Should update page selection", () => {
     cy.getByText("1")
       .should("have.css", "background-color")
-      .should("eq", "rgb(51, 117, 84)");
+      .should("eq", "rgb(120, 92, 186)");
     cy.getByText("Page 1").should("be.visible");
     cy.getByText("Computer").should("be.visible");
     cy.getByText("Entity").should("be.visible");
@@ -28,7 +28,7 @@ describe("Pagination", () => {
     cy.getByText("2").click();
     cy.getByText("2")
       .should("have.css", "background-color")
-      .should("eq", "rgb(51, 117, 84)");
+      .should("eq", "rgb(120, 92, 186)");
     cy.getByText("Page 2").should("be.visible");
     cy.getByText("Policy").should("be.visible");
     cy.getByText("Process").should("be.visible");
@@ -39,7 +39,7 @@ describe("Pagination", () => {
       .click();
     cy.getByText("3")
       .should("have.css", "background-color")
-      .should("eq", "rgb(51, 117, 84)");
+      .should("eq", "rgb(120, 92, 186)");
     cy.getByText("Page 3").should("be.visible");
     cy.getByText("K").should("be.visible");
 
@@ -49,7 +49,7 @@ describe("Pagination", () => {
       .click();
     cy.getByText("1")
       .should("have.css", "background-color")
-      .should("eq", "rgb(51, 117, 84)");
+      .should("eq", "rgb(120, 92, 186)");
     cy.getByText("Page 1").should("be.visible");
     cy.getByText("Computer").should("be.visible");
     cy.getByText("Entity").should("be.visible");

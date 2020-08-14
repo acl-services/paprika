@@ -13,17 +13,28 @@ export const getArrowIcon = type => {
   }
   return styled(selectedIcon)`
     ${({ isDisabled }) => css`
+      color: ${isDisabled ? tokens.color.blackLighten40 : tokens.color.black};
       line-height: ${tokens.space * 3};
-      ${isDisabled ? tokens.color.blackLighten40 : tokens.color.black}
     `}
   `;
 };
 
 export const ArrowItem = styled(RawButton)`
-  border-radius: ${tokens.borderRadius};
-  box-sizing: border-box;
-  display: inline-block;
-  height: ${tokens.space * 3};
-  margin: 0 ${tokens.spaceSm + 1} 0 ${tokens.spaceSm};
-  position: relative;
+  ${({ isDisabled }) => css`
+    align-items: center;
+    border-radius: ${tokens.button.borderRadius};
+    box-sizing: border-box;
+    display: flex;
+    height: ${tokens.space * 3};
+    line-height: ${tokens.space * 3};
+    margin: 0 ${tokens.spaceSm + 1} 0 ${tokens.spaceSm};
+    min-width: ${tokens.space * 3};
+    padding: ${tokens.spaceSm} ${tokens.spaceSm};
+    position: relative;
+    ${!isDisabled
+      ? `&:hover {
+      background: ${tokens.color.blackLighten70};
+    `
+      : ""}
+  `}
 `;

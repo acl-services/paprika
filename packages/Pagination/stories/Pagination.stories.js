@@ -7,5 +7,5 @@ import BasicPagination from "./examples/BasicPagination";
 const storyName = getStoryName("Pagination");
 
 storiesOf(`${storyName}/Examples`, module)
-  .add("Basic Pagination", () => <BasicPagination totalPages={12} currentPage={2} />)
-  .add("Interactive Pagination", () => <InteractivePagination totalPages={12} currentPage={2} />);
+  .add("Basic Pagination", () => <BasicPagination />)
+  .add("Interactive Pagination", () => <InteractivePagination />);

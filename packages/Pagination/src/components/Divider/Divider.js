@@ -1,8 +1,13 @@
-import React from "react";
-import * as sc from "./Divider.styles";
+import styled from "styled-components";
+import tokens from "@paprika/tokens";
 
-export default function Divider() {
-  return <sc.Divider />;
-}
+const Divider = styled.span`
+  background-color: ${tokens.border.color};
+  display: inline-block;
+  height: 24px;
+  margin-left: ${tokens.spaceSm};
+  margin-right: ${tokens.spaceSm};
+  width: 1px;
+`;
 
-Divider.displayName = "Pagination.Divider";
+export default Divider;

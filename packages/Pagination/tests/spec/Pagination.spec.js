@@ -19,6 +19,6 @@ describe("Pagination", () => {
   });
   it("Should highlight current page", () => {
     const { getByText } = renderComponent();
-    expect(getByText("2")).toHaveStyle("background-color:	#337554");
+    expect(getByText("2")).toHaveStyle("background-color:	#785cba");
   });
 });

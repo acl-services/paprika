@@ -32,7 +32,7 @@ function ArrowItem(props) {
 
   return (
     <sc.ArrowItem aria-label={a11yText || I18n.t(`pagination.${type}`)} isDisabled={isDisabled} onClick={onClick}>
-      <Icon isDisabled size={14} />
+      <Icon isDisabled={isDisabled} size={14} />
     </sc.ArrowItem>
   );
 }
