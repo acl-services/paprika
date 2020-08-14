@@ -1,6 +1,6 @@
 {
   "name": "@paprika/action-bar",
-  "version": "0.2.17",
+  "version": "0.2.18",
   "description": "ActionBar",
   "author": "@paprika",
   "license": "MIT",
@@ -15,7 +15,7 @@
   "dependencies": {
     "@babel/runtime-corejs2": "^7.3.1",
     "@paprika/button": "^0.3.5",
-    "@paprika/date-picker": "^0.5.47",
+    "@paprika/date-picker": "^0.5.48",
     "@paprika/dropdown-menu": "^2.0.37",
     "@paprika/helpers": "^0.2.13",
     "@paprika/icon": "^0.3.4",
