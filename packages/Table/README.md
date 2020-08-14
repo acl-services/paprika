@@ -4,7 +4,7 @@
 
 ## Description
 
-The Table component is a simple wrap for the html table. For the use of a data table, please take a look into the DataGrid component.
+The Table component is a simple wrap for the html table, for more advance feature please take a look into the DataGrid
 
 ## Installation
 
@@ -22,12 +22,12 @@ npm install @paprika/table
 
 ### Table
 
-| Prop            | Type                                                            | required | default    | Description                                                                             |
-| --------------- | --------------------------------------------------------------- | -------- | ---------- | --------------------------------------------------------------------------------------- |
-| borderType      | [object Object],[object Object],[object Object],[object Object] | false    | types.GRID | Define the look for borders in the table DataGrid.types.GRID, DataGrid.types.NONE, etc. |
-| children        | node                                                            | true     | -          |                                                                                         |
-| hasZebraStripes | bool                                                            | false    | false      | Add an alternate background on the DataGrid's rows                                      |
-| data            | arrayOf                                                         | false    | []         | Array of data to be stored in the DataGrid                                              |
+| Prop            | Type                                                            | required | default    | Description                                                                       |
+| --------------- | --------------------------------------------------------------- | -------- | ---------- | --------------------------------------------------------------------------------- |
+| borderType      | [object Object],[object Object],[object Object],[object Object] | false    | types.GRID | Define the look for borders in the table Table.types.GRID, Table.types.NONE, etc. |
+| children        | node                                                            | true     | -          |                                                                                   |
+| hasZebraStripes | bool                                                            | false    | false      | Add an alternating background on the table rows                                   |
+| data            | arrayOf                                                         | false    | []         | Array of data to be stored in the Table                                           |
 
 ### Table.ColumnDefinition
 

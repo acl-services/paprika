@@ -15,7 +15,6 @@ const propTypes = {
   hasZebraStripes: PropTypes.bool,
   /** Array of data to be stored in the Table */
   data: PropTypes.arrayOf(PropTypes.shape({})),
-  /** Sets the height of the DataGrid */
 };
 
 const defaultProps = {
