@@ -13,7 +13,7 @@ const propTypes = {
   children: PropTypes.node.isRequired,
   /** Add an alternating background on the table rows */
   hasZebraStripes: PropTypes.bool,
-  /** Array of data to be stored in the DataGrid */
+  /** Array of data to be stored in the Table */
   data: PropTypes.arrayOf(PropTypes.shape({})),
   /** Sets the height of the DataGrid */
 };
