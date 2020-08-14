@@ -3,7 +3,7 @@ import tokens from "@paprika/tokens";
 import { fontSizeValue } from "@paprika/stylers/lib/helpers";
 
 export const CurrentPageItemContent = styled.span`
-  background: ${tokens.color.chartColor09};
+  background: ${tokens.color.greenDarken10};
   color: ${tokens.color.white};
   cursor: default;
   font-size: ${fontSizeValue(-1)};
@@ -16,7 +16,7 @@ export const CurrentPageItemContent = styled.span`
 `;
 
 export const CurrentPageItem = styled.span`
-  background: ${tokens.color.chartColor09};
+  background: ${tokens.color.greenDarken10};
   border-radius: ${tokens.button.borderRadius};
   box-sizing: border-box;
   color: ${tokens.color.white};
