@@ -13,7 +13,7 @@ describe("Pagination", () => {
       .eq(0)
       .should("be.visible");
     cy.getAllByRole("button")
-      .eq(2)
+      .eq(4)
       .should("be.visible");
   });
   it("Should update page selection", () => {
@@ -35,7 +35,7 @@ describe("Pagination", () => {
     cy.getByText("Vendor").should("be.visible");
 
     cy.getAllByRole("button")
-      .eq(2)
+      .eq(4)
       .click();
     cy.getByText("3")
       .should("have.css", "background-color")
