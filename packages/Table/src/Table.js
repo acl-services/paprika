@@ -10,6 +10,8 @@ import * as sc from "./Table.styles";
 const propTypes = {
   /** Define the look for borders in the table Table.types.GRID, Table.types.NONE, etc.  */
   borderType: PropTypes.oneOf(["grid", "non", "horizontal", "vertical"]),
+  /**  Accessible description of the table */
+  a11yText: PropTypes.string.isRequired,
   children: PropTypes.node.isRequired,
   /** Add an alternating background on the table rows */
   hasZebraStripes: PropTypes.bool,
@@ -24,7 +26,7 @@ const defaultProps = {
 };
 
 export default function Table(props) {
-  const { borderType, children, hasZebraStripes, data, ...moreProps } = props;
+  const { borderType, children, hasZebraStripes, data, a11yText, ...moreProps } = props;
 
   const { "Table.ColumnDefinition": extractedColumnDefinitions } = extractChildren(children, [
     "Table.ColumnDefinition",
@@ -38,7 +40,7 @@ export default function Table(props) {
   }
 
   return (
-    <sc.Table {...moreProps}>
+    <sc.Table aria-label={a11yText} {...moreProps}>
       <sc.Thead>
         <tr>
           {ColumnDefinitions.map((columnDefinition, columnIndex) => {

@@ -83,7 +83,15 @@ const createPropsTable = ({ info }) => {
     const v = info.props[key] || {};
     let type = "-";
     if ("type" in v) {
-      type = v.type.name === "enum" ? v.type.value : v.type.name;
+      type =
+        // eslint-disable-next-line no-nested-ternary
+        v.type.name !== "enum"
+          ? v.type.name
+          : Array.isArray(v.type.value)
+          ? `[${v.type.value.map(i => i.value)}]`
+          : v.type.value;
+
+      console.log("enum", JSON.stringify(v.type.value));
     }
 
     const required = "required" in v ? v.required.toString() : " ";

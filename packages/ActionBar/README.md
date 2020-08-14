@@ -40,19 +40,19 @@ npm install @paprika/action-bar
 
 ### ActionBar.Filter
 
-| Prop             | Type                            | required | default                    | Description |
-| ---------------- | ------------------------------- | -------- | -------------------------- | ----------- |
-| appliedNumber    | number                          | false    | 0                          |             |
-| children         | node                            | false    | null                       |             |
-| columns          | arrayOf                         | true     | -                          |             |
-| onAddFilter      | func                            | true     | -                          |             |
-| onApply          | func                            | true     | -                          |             |
-| onCancel         | func                            | false    | () => {}                   |             |
-| onChangeOperator | func                            | false    | null                       |             |
-| onClose          | func                            | false    | () => {}                   |             |
-| onOpen           | func                            | false    | () => {}                   |             |
-| operator         | [object Object],[object Object] | false    | logicalFilterOperators.AND |             |
-| rulesByType      | objectOf                        | false    | defaultRulesByType         |             |
+| Prop             | Type                                                   | required | default                    | Description |
+| ---------------- | ------------------------------------------------------ | -------- | -------------------------- | ----------- |
+| appliedNumber    | number                                                 | false    | 0                          |             |
+| children         | node                                                   | false    | null                       |             |
+| columns          | arrayOf                                                | true     | -                          |             |
+| onAddFilter      | func                                                   | true     | -                          |             |
+| onApply          | func                                                   | true     | -                          |             |
+| onCancel         | func                                                   | false    | () => {}                   |             |
+| onChangeOperator | func                                                   | false    | null                       |             |
+| onClose          | func                                                   | false    | () => {}                   |             |
+| onOpen           | func                                                   | false    | () => {}                   |             |
+| operator         | [logicalFilterOperators.AND,logicalFilterOperators.OR] | false    | logicalFilterOperators.AND |             |
+| rulesByType      | objectOf                                               | false    | defaultRulesByType         |             |
 
 ### ActionBar.Sort
 
