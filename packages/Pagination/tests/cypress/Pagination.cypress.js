@@ -20,12 +20,19 @@ describe("Pagination", () => {
     cy.getByText("1")
       .should("have.css", "background-color")
       .should("eq", "rgb(120, 92, 186)");
+    cy.getByText("Page 1").should("be.visible");
+    cy.getByText("Computer").should("be.visible");
+    cy.getByText("Entity").should("be.visible");
+    cy.getByText("IT Asset").should("be.visible");
 
     cy.getByText("2").click();
     cy.getByText("2")
       .should("have.css", "background-color")
       .should("eq", "rgb(120, 92, 186)");
     cy.getByText("Page 2").should("be.visible");
+    cy.getByText("Policy").should("be.visible");
+    cy.getByText("Process").should("be.visible");
+    cy.getByText("Vendor").should("be.visible");
 
     cy.getAllByRole("button")
       .eq(2)
@@ -34,6 +41,7 @@ describe("Pagination", () => {
       .should("have.css", "background-color")
       .should("eq", "rgb(120, 92, 186)");
     cy.getByText("Page 3").should("be.visible");
+    cy.getByText("K").should("be.visible");
 
     cy.getAllByRole("button")
       .eq(0)
@@ -43,5 +51,8 @@ describe("Pagination", () => {
       .should("have.css", "background-color")
       .should("eq", "rgb(120, 92, 186)");
     cy.getByText("Page 1").should("be.visible");
+    cy.getByText("Computer").should("be.visible");
+    cy.getByText("Entity").should("be.visible");
+    cy.getByText("IT Asset").should("be.visible");
   });
 });
