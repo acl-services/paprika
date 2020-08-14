@@ -1,6 +1,6 @@
 import React from "react";
 import { render } from "@testing-library/react";
-import Pagination from "../src/Pagination";
+import Pagination from "../../src/Pagination";
 
 function renderComponent() {
   return render(<Pagination totalPages={12} currentPage={2} />);

@@ -5,7 +5,6 @@ import ArrowRight from "@paprika/icon/lib/ArrowRight";
 import ArrowLeft from "@paprika/icon/lib/ArrowLeft";
 
 export const getArrowIcon = type => {
-  console.log(`THIS IS THE TYPE: ${type}`);
   let selectedIcon = null;
   if (type === "Arrow-Left") {
     selectedIcon = ArrowLeft;
