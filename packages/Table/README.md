@@ -22,13 +22,13 @@ npm install @paprika/table
 
 ### Table
 
-| Prop            | Type                                   | required | default    | Description                                                                       |
-| --------------- | -------------------------------------- | -------- | ---------- | --------------------------------------------------------------------------------- |
-| borderType      | ["grid","non","horizontal","vertical"] | false    | types.GRID | Define the look for borders in the table Table.types.GRID, Table.types.NONE, etc. |
-| a11yText        | string                                 | true     | -          | Accessible description of the table                                               |
-| children        | node                                   | true     | -          |                                                                                   |
-| hasZebraStripes | bool                                   | false    | false      | Add an alternating background on the table rows                                   |
-| data            | arrayOf                                | false    | []         | Array of data to be stored in the Table                                           |
+| Prop            | Type                                    | required | default    | Description                                                                       |
+| --------------- | --------------------------------------- | -------- | ---------- | --------------------------------------------------------------------------------- |
+| borderType      | ["grid","none","horizontal","vertical"] | false    | types.GRID | Define the look for borders in the table Table.types.GRID, Table.types.NONE, etc. |
+| a11yText        | string                                  | true     | -          | Accessible description of the table                                               |
+| children        | node                                    | true     | -          |                                                                                   |
+| hasZebraStripes | bool                                    | false    | false      | Add an alternating background on the table rows                                   |
+| data            | arrayOf                                 | false    | []         | Array of data to be stored in the Table                                           |
 
 ### Table.ColumnDefinition
 

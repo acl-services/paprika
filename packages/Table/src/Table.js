@@ -9,7 +9,7 @@ import * as sc from "./Table.styles";
 
 const propTypes = {
   /** Define the look for borders in the table Table.types.GRID, Table.types.NONE, etc.  */
-  borderType: PropTypes.oneOf(["grid", "non", "horizontal", "vertical"]),
+  borderType: PropTypes.oneOf(["grid", "none", "horizontal", "vertical"]),
   /**  Accessible description of the table */
   a11yText: PropTypes.string.isRequired,
   children: PropTypes.node.isRequired,
