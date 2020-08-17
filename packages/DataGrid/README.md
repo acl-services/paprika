@@ -22,38 +22,43 @@ npm install @paprika/data-grid
 
 ### DataGrid
 
-| Prop                          | Type                                                            | required | default  | Description                                                                                  |
-| ----------------------------- | --------------------------------------------------------------- | -------- | -------- | -------------------------------------------------------------------------------------------- |
-| autofocus                     | bool                                                            | false    | true     | If the data cell should automatically get focus                                              |
-| borderType                    | [object Object],[object Object],[object Object],[object Object] | false    | "grid"   | Define the look for borders in the table DataGrid.types.GRID, DataGrid.types.NONE, etc.      |
-| children                      | node                                                            | true     | -        |                                                                                              |
-| forceTableWidthWithScrollBars | bool                                                            | false    | false    | This will force the table to include in the calculation of the table the scrollbar thickness |
-| hasZebraStripes               | bool                                                            | false    | false    | Add an alternate background on the DataGrid's rows                                           |
-| data                          | arrayOf                                                         | false    | []       | Array of data to be stored in the DataGrid                                                   |
-| height                        | number                                                          | false    | 600      | Sets the height of the DataGrid                                                              |
-| onClick                       | func                                                            | false    | null     | Callback onClick                                                                             |
-| onKeyDown                     | func                                                            | false    | () => {} | Callback onKeyDown press                                                                     |
-| onPressEnter                  | func                                                            | false    | null     | Callback when Enter key is pressed                                                           |
-| onPressShiftSpaceBar          | func                                                            | false    | null     | Callback when Shift + Spacebar is pressed                                                    |
-| onPressSpaceBar               | func                                                            | false    | null     | Callback when Spacebar is pressed                                                            |
-| onRowChecked                  | func                                                            | false    | () => {} | Callback when user click the f key. Might change in the future                               |
-| onHighlighted                 | func                                                            | false    | () => {} | Callback with information about the prev and next highlighted cell                           |
-| rowHeight                     | number                                                          | false    | 36       | Sets the row height                                                                          |
-| width                         | number                                                          | false    | null     | Sets the DataGrid width                                                                      |
+| Prop                          | Type                                                    | required | default  | Description                                                                                  |
+| ----------------------------- | ------------------------------------------------------- | -------- | -------- | -------------------------------------------------------------------------------------------- |
+| autofocus                     | bool                                                    | false    | true     | If the data cell should automatically get focus                                              |
+| borderType                    | [types.GRID,types.NONE,types.HORIZONTAL,types.VERTICAL] | false    | "grid"   | Define the look for borders in the table DataGrid.types.GRID, DataGrid.types.NONE, etc.      |
+| children                      | node                                                    | true     | -        |                                                                                              |
+| forceTableWidthWithScrollBars | bool                                                    | false    | false    | This will force the table to include in the calculation of the table the scrollbar thickness |
+| hasZebraStripes               | bool                                                    | false    | false    | Add an alternate background on the DataGrid's rows                                           |
+| data                          | arrayOf                                                 | false    | []       | Array of data to be stored in the DataGrid                                                   |
+| height                        | number                                                  | false    | 600      | Sets the height of the DataGrid                                                              |
+| onClick                       | func                                                    | false    | null     | Callback onClick                                                                             |
+| onKeyDown                     | func                                                    | false    | () => {} | Callback onKeyDown press                                                                     |
+| onPressEnter                  | func                                                    | false    | null     | Callback when Enter key is pressed                                                           |
+| onPressShiftSpaceBar          | func                                                    | false    | null     | Callback when Shift + Spacebar is pressed                                                    |
+| onPressSpaceBar               | func                                                    | false    | null     | Callback when Spacebar is pressed                                                            |
+| onRowChecked                  | func                                                    | false    | () => {} | Callback when user click the f key. Might change in the future                               |
+| onHighlighted                 | func                                                    | false    | () => {} | Callback with information about the prev and next highlighted cell                           |
+| rowHeight                     | number                                                  | false    | 36       | Sets the row height                                                                          |
+| width                         | number                                                  | false    | null     | Sets the DataGrid width                                                                      |
 
-### Cell
+### DataGrid.ColumnDefinition
 
-| Prop            | Type    | required | default | Description                                                                                         |
-| --------------- | ------- | -------- | ------- | --------------------------------------------------------------------------------------------------- |
-| a11yText        | string  | true     | -       | Descriptive a11y text for assistive technologies. By default, text from children node will be used. |
-| column          | shape   | true     | -       |                                                                                                     |
-| columnIndex     | number  | true     | -       | Position of a column in the DataGrid                                                                |
-| data            | arrayOf | true     | -       | Array of data to be stored                                                                          |
-| gridId          | string  | true     | -       |                                                                                                     |
-| rowIndex        | number  | true     | -       | Position of a row in the DataGrid                                                                   |
-| style           | shape   | true     | -       | Visual style of the data cell                                                                       |
-| hasZebraStripes | bool    | true     | -       | Add an alternate background on the DataGrid's rows                                                  |
-| borderType      | string  | true     | -       | Define the look for borders in the table                                                            |
+| Prop                 | Type   | required | default  | Description |
+| -------------------- | ------ | -------- | -------- | ----------- |
+| canGrow              | bool   | false    | false    |             |
+| cell                 | custom | false    | -        |             |
+| cellA11yText         | func   | false    | null     |             |
+| cellProps            | func   | false    | null     |             |
+| cellPropsResetCSS    | bool   | false    | false    |             |
+| header               | custom | false    | -        |             |
+| headerA11yText       | func   | false    | null     |             |
+| headerProps          | func   | false    | null     |             |
+| isSticky             | bool   | false    | false    |             |
+| onClick              | func   | false    | () => {} |             |
+| onPressEnter         | func   | false    | null     |             |
+| onPressShiftSpaceBar | func   | false    | null     |             |
+| onPressSpaceBar      | func   | false    | null     |             |
+| width                | number | false    | 182      |             |
 
 <!-- autogenerated don't modify -->
 <!-- content -->

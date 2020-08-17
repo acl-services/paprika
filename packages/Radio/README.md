@@ -34,7 +34,7 @@ npm install @paprika/radio
 | name             | string             | false    | ""                | Name provided for accessibility                            |
 | onClick          | custom             | false    | () => {}          | onClick provided by parent Group component                 |
 | size             | ShirtSizes.DEFAULT | false    | ShirtSizes.MEDIUM | Size provided by parent Group component                    |
-| tabIndex         | union              | false    | 0                 | Value for tabindex attribute to override the default of 0. |
+| tabIndex         | [number,string]    | false    | 0                 | Value for tabindex attribute to override the default of 0. |
 | value            | string             | false    | ""                | Value applied to the input if needed.                      |
 
 ### Radio.Group

@@ -1,6 +1,6 @@
 {
   "name": "@paprika/data-grid",
-  "version": "0.3.13",
+  "version": "0.3.14",
   "description": "DataGrid is a wrapper of react-window",
   "author": "@paprika",
   "license": "MIT",
@@ -37,7 +37,7 @@
   },
   "paprikaDocs": {
     "subComponents": [
-      "Cell"
+      "ColumnDefinition"
     ]
   }
 }
