@@ -16,3 +16,9 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 ### Changed
 
 - Add `label` prop on `ListBox.Trigger` component to support custom text as the label.
+
+## [0.9.4] - 2020-08-17
+
+### Fixed
+
+- Update `lastKnownSelectedOptions` in the state, when `useListBox.types.updateOptions` has been dispatched.
