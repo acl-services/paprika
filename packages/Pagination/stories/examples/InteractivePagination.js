@@ -14,7 +14,7 @@ export default () => {
   const I18n = useI18n();
   const pageNum = I18n.t(`pagination.page`) + selectedPage;
 
-  function ChangePage(prop) {
+  function handleClickChangePage(prop) {
     setSelectedPage(prop);
   }
 
@@ -60,7 +60,12 @@ export default () => {
           );
         })}
       </div>
-      <Pagination onClick={ChangePage} style={{ marginTop: "100px" }} totalPages={3} currentPage={selectedPage} />
+      <Pagination
+        onChange={handleClickChangePage}
+        style={{ marginTop: "100px" }}
+        totalPages={3}
+        currentPage={selectedPage}
+      />
     </Story>
   );
 };

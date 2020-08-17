@@ -2411,17 +2411,6 @@
     "@svgr/cli" "^4.1.0"
     prop-types "^15.7.2"
 
-"@paprika/raw-button@0.2.14":
-  version "0.2.14"
-  resolved "https://registry.yarnpkg.com/@paprika/raw-button/-/raw-button-0.2.14.tgz#1406e4ceac6514782c8b4f354d02a06c6149dbbe"
-  integrity sha512-QhBqJeMXnPpz7Y0S4AbQ28FFsW92Bw1/sgm21Winif33IIS9D4zAHJWe65n1Gr3A8upc+y1NlCBbx6JZFO9dHQ==
-  dependencies:
-    "@babel/runtime-corejs2" "^7.3.1"
-    "@paprika/stylers" "^0.2.8"
-    "@paprika/tokens" "^0.1.14"
-    prop-types "^15.7.2"
-    what-input "^5.2.6"
-
 "@paprika/stylers@^0.1.5":
   version "0.1.7"
   resolved "https://registry.yarnpkg.com/@paprika/stylers/-/stylers-0.1.7.tgz#ae3328853fea2c463af070bdeafdec9ac34d3d9c"

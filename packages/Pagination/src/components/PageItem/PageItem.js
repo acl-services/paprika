@@ -1,6 +1,5 @@
 import React from "react";
 import PropTypes from "prop-types";
-import useI18n from "@paprika/l10n/lib/useI18n";
 import * as sc from "./PageItem.styles";
 
 const propTypes = {
@@ -8,7 +7,7 @@ const propTypes = {
   a11yText: PropTypes.string,
 
   /** Callback to be executed when the PageItem is clicked or activated by keyboard. */
-  onClick: PropTypes.func,
+  onClick: PropTypes.func.isRequired,
 
   /** The page number */
   pageNumber: PropTypes.number.isRequired,
@@ -16,15 +15,13 @@ const propTypes = {
 
 const defaultProps = {
   a11yText: null,
-  onClick: () => {},
 };
 
 function PageItem(props) {
   const { a11yText, onClick, pageNumber } = props;
-  const I18n = useI18n();
 
   return (
-    <sc.PageItem aria-label={(a11yText || I18n.t("pagination.page"), pageNumber)} onClick={onClick}>
+    <sc.PageItem aria-label={a11yText} onClick={onClick}>
       {pageNumber}
     </sc.PageItem>
   );

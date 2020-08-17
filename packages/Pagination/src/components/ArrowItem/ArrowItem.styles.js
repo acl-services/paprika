@@ -1,14 +1,15 @@
 import styled, { css } from "styled-components";
 import RawButton from "@paprika/raw-button";
-import tokens from "@paprika/tokens";
 import ArrowRight from "@paprika/icon/lib/ArrowRight";
 import ArrowLeft from "@paprika/icon/lib/ArrowLeft";
+import stylers from "@paprika/stylers";
+import tokens from "@paprika/tokens";
 
-export const getArrowIcon = type => {
+export const getIcon = type => {
   let selectedIcon = null;
-  if (type === "Arrow-Left") {
+  if (type === "Left") {
     selectedIcon = ArrowLeft;
-  } else if (type === "Arrow-Right") {
+  } else if (type === "Right") {
     selectedIcon = ArrowRight;
   }
   return styled(selectedIcon)`
@@ -25,12 +26,15 @@ export const ArrowItem = styled(RawButton)`
     border-radius: ${tokens.button.borderRadius};
     box-sizing: border-box;
     display: flex;
-    height: ${tokens.space * 3};
-    line-height: ${tokens.space * 3};
-    margin: 0 ${tokens.spaceSm + 1} 0 ${tokens.spaceSm};
-    min-width: ${tokens.space * 3};
-    padding: ${tokens.spaceSm} ${tokens.spaceSm};
+    font-size: ${stylers.fontSize(-1)};
+    height: ${stylers.spacer(3)};
+    justify-content: center;
+    line-height: ${stylers.spacer(3)};
+    margin: 0 ${stylers.spacer(0.5) + 1} 0 ${stylers.spacer(0.5)};
+    min-width: ${stylers.spacer(3)};
+    padding: 0 ${stylers.spacer(0.5)};
     position: relative;
+
     ${!isDisabled
       ? `&:hover {
       background: ${tokens.color.blackLighten70};

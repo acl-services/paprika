@@ -18,7 +18,9 @@ describe("Pagination", () => {
     expect(getAllByRole("button")[1]).toBeVisible();
   });
   it("Should highlight current page", () => {
-    const { getByText } = renderComponent();
+    const { getByText, getAllByRole } = renderComponent();
+
     expect(getByText("2")).toHaveStyle("background-color:	#785cba");
+    expect(getAllByRole("button")[2]).toHaveAttribute("aria-current", "true");
   });
 });

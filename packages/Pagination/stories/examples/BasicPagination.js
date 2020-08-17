@@ -5,7 +5,7 @@ import Pagination from "../../src/Pagination";
 export default () => {
   return (
     <Story>
-      <Pagination totalPages={12} currentPage={2} />
+      <Pagination onChange={() => {}} totalPages={12} currentPage={2} />
     </Story>
   );
 };
