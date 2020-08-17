@@ -9,9 +9,11 @@ export const PageItem = styled(RawButton)`
   color: ${tokens.textColor.link};
   display: inline-block;
   height: ${stylers.spacer(3)};
-  margin: 0 ${stylers.spacer(1)} 0 ${stylers.spacer(1)};
+  margin: 0 ${stylers.spacer(0.5) + 1} 0 ${stylers.spacer(0.5)};
   padding: 0 ${stylers.spacer};
   position: relative;
+  text-align: center;
+  width: ${stylers.spacer(3)};
 
   &:hover {
     background: ${tokens.color.blackLighten70};

@@ -5,9 +5,6 @@ import { getIcon } from "./ArrowItem.styles";
 import * as sc from "./ArrowItem.styles";
 
 const propTypes = {
-  /* Description of the ArrowItem for assistive technology */
-  a11yText: PropTypes.string,
-
   /** To set the ArrowItem as disabled */
   isDisabled: PropTypes.bool,
 
@@ -19,19 +16,18 @@ const propTypes = {
 };
 
 const defaultProps = {
-  a11yText: null,
   isDisabled: false,
   onClick: () => {},
   type: "right",
 };
 
 function ArrowItem(props) {
-  const { a11yText, isDisabled, onClick, type } = props;
+  const { isDisabled, onClick, type } = props;
   const Icon = getIcon(type);
   const I18n = useI18n();
 
   return (
-    <sc.ArrowItem aria-label={a11yText || I18n.t(`pagination.${type}`)} isDisabled={isDisabled} onClick={onClick}>
+    <sc.ArrowItem aria-label={I18n.t(`pagination.${type}`)} isDisabled={isDisabled} onClick={onClick}>
       <Icon isDisabled={isDisabled} />
     </sc.ArrowItem>
   );

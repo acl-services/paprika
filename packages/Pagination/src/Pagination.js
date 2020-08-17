@@ -8,29 +8,8 @@ import Divider from "./components/Divider";
 import * as sc from "./Pagination.styles";
 
 const propTypes = {
-  /* Description of the Left ArrowItem for assistive technology to override the default */
-  arrowItemLeftA11yText: PropTypes.string,
-
-  /* Description of the Right ArrowItem for assistive technology to override the default */
-  arrowitemRightA11yText: PropTypes.string,
-
   /** The number of current active page */
   currentPage: PropTypes.number.isRequired,
-
-  /* Description of the PageItem for assistive technology to override the default */
-  pageItemA11yText: PropTypes.string,
-
-  /* Description of the CurrentPageItem for assistive technology to override the default */
-  currentPageItemA11yText: PropTypes.string,
-
-  /** Value for role attribute of the CurrentPageItem to override the default */
-  currentPageItemRole: PropTypes.string,
-
-  /* Description of the ElipsesItem for assistive technology to override the default */
-  elipsisItemA11yText: PropTypes.string,
-
-  /** Value for role attribute of the ElipsisItem to override the default */
-  elipsisItemRole: PropTypes.string,
 
   /** The number of other pages that will be visible around the current/active page (not hidden by elipsis). Can be set to small, medium, or large */
   pagesOnEachSide: PropTypes.number,
@@ -44,13 +23,6 @@ const propTypes = {
 
 const defaultProps = {
   pagesOnEachSide: "medium",
-  arrowItemLeftA11yText: "left",
-  arrowitemRightA11yText: "right",
-  pageItemA11yText: "page",
-  currentPageItemA11yText: "Current Page",
-  currentPageItemRole: "Button",
-  elipsisItemA11yText: "elipsis",
-  elipsisItemRole: "button",
 };
 
 const isCurrentPage = (pageNumber, currentPage) => currentPage === pageNumber;
@@ -62,17 +34,7 @@ const isNotEllipsed = (pageNumber, left, right, totalPages) =>
 
 const isRenderableSibling = (pageNumber, left, right) => left <= pageNumber && pageNumber <= right;
 
-const renderPageElements = (
-  currentPage,
-  totalPages,
-  pagesOnEachSide,
-  onChange,
-  currentPageItemRole,
-  pageItemA11yText,
-  currentPageItemA11yText,
-  elipsisItemA11yText,
-  elipsisItemRole
-) => {
+const renderPageElements = (currentPage, totalPages, pagesOnEachSide, onChange) => {
   const pagesOnEachSideSize = {
     small: 1,
     medium: 2,
@@ -87,15 +49,7 @@ const renderPageElements = (
 
   for (let pageNumber = 1; pageNumber <= totalPages; pageNumber++) {
     if (isCurrentPage(pageNumber, currentPage)) {
-      items.push([
-        <CurrentPageItem
-          key={pageNumber}
-          pageNumber={pageNumber}
-          role={currentPageItemRole}
-          a11yText={currentPageItemA11yText}
-        />,
-        <Divider />,
-      ]);
+      items.push([<CurrentPageItem key={pageNumber} pageNumber={pageNumber} />, <Divider />]);
     } else if (
       isFirstPage(pageNumber) ||
       isLastPage(pageNumber, totalPages) ||
@@ -104,7 +58,6 @@ const renderPageElements = (
     ) {
       items.push([
         <PageItem
-          a11yText={pageItemA11yText}
           key={pageNumber}
           onClick={() => {
             onChange(pageNumber);
@@ -115,7 +68,7 @@ const renderPageElements = (
       ]);
       wasPreviousItemEllipsized = false;
     } else if (!wasPreviousItemEllipsized) {
-      items.push([<ElipsisItem a11yText={elipsisItemA11yText} role={elipsisItemRole} key={pageNumber} />, <Divider />]);
+      items.push([<ElipsisItem key={pageNumber} />, <Divider />]);
       wasPreviousItemEllipsized = true;
     }
   }
@@ -124,25 +77,11 @@ const renderPageElements = (
 };
 
 function Pagination(props) {
-  const {
-    currentPage,
-    totalPages,
-    pagesOnEachSide,
-    onChange,
-    currentPageItemRole,
-    pageItemA11yText,
-    currentPageItemA11yText,
-    elipsisItemA11yText,
-    elipsisItemRole,
-    arrowItemLeftA11yText,
-    arrowitemRightA11yText,
-    ...moreProps
-  } = props;
+  const { currentPage, totalPages, pagesOnEachSide, onChange, ...moreProps } = props;
 
   return (
     <sc.Pagination data-pka-anchor="pagination" {...moreProps}>
       <ArrowItem
-        a11yText={arrowItemLeftA11yText}
         isDisabled={currentPage === 1}
         onClick={() => {
           onChange(currentPage - 1);
@@ -150,17 +89,8 @@ function Pagination(props) {
         type="Left"
       />
       <Divider />
-      {renderPageElements(
-        currentPage,
-        totalPages,
-        pagesOnEachSide,
-        onChange,
-        currentPageItemRole,
-        pageItemA11yText,
-        currentPageItemA11yText
-      )}
+      {renderPageElements(currentPage, totalPages, pagesOnEachSide, onChange)}
       <ArrowItem
-        a11yText={arrowitemRightA11yText}
         isDisabled={currentPage === totalPages}
         onClick={() => {
           onChange(currentPage + 1);

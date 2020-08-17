@@ -4,39 +4,22 @@ import useI18n from "@paprika/l10n/lib/useI18n";
 import * as sc from "./CurrentPageItem.styles";
 
 const propTypes = {
-  /* Description of the CurrentPageItem for assistive technology */
-  a11yText: PropTypes.string,
-
   /** The page number */
   pageNumber: PropTypes.number.isRequired,
-
-  /** Value for role attribute to override the default */
-  role: PropTypes.string,
-};
-
-const defaultProps = {
-  a11yText: null,
-  role: "button",
 };
 
 function CurrentPageItem(props) {
-  const { a11yText, role, pageNumber } = props;
+  const { pageNumber } = props;
 
   const I18n = useI18n();
 
   return (
-    <sc.CurrentPageItem
-      aria-current
-      aria-disabled
-      aria-label={(a11yText || I18n.t("pagination.page"), pageNumber)}
-      role={role}
-    >
+    <sc.CurrentPageItem aria-current aria-disabled aria-label={I18n.t("pagination.page", { pageNumber })} role="button">
       <sc.CurrentPageItemContent>{pageNumber}</sc.CurrentPageItemContent>
     </sc.CurrentPageItem>
   );
 }
 
-CurrentPageItem.defaultProps = defaultProps;
 CurrentPageItem.displayName = "Pagination.CurrentPageItem";
 CurrentPageItem.propTypes = propTypes;
 
