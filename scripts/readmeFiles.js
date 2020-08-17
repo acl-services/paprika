@@ -83,7 +83,17 @@ const createPropsTable = ({ info }) => {
     const v = info.props[key] || {};
     let type = "-";
     if ("type" in v) {
-      type = v.type.name === "enum" ? v.type.value : v.type.name;
+      if (v.type.name === "union") {
+        type = `[${v.type.value.map(i => i.name)}]`;
+      } else {
+        type =
+          // eslint-disable-next-line no-nested-ternary
+          v.type.name !== "enum"
+            ? v.type.name
+            : Array.isArray(v.type.value)
+            ? `[${v.type.value.map(i => i.value)}]`
+            : v.type.value;
+      }
     }
 
     const required = "required" in v ? v.required.toString() : " ";
@@ -122,7 +132,7 @@ const processPropTables = ({ info, folder, path, paprikaDocs = null }) => {
   // you can define on packages.json a property named paprikaDocs with an attribute subComponent to list
   // extra component that you might want to create and render on the table.
   if (paprikaDocs && "subComponents" in paprikaDocs) {
-    paprikaDocs.subComponents.map(subComponent => {
+    paprikaDocs.subComponents.forEach(subComponent => {
       const subComponentContent = fs.readFileSync(`${path}/src/components/${subComponent}/${subComponent}.js`, "utf8");
       const arrayOfComponentsDefinitions = reactDocs.parse(
         subComponentContent,
