@@ -18,14 +18,18 @@ npm install @paprika/icon
 
 ## Usage
 
-If you need a custom icon for paprika, you can use the `@paprika/icon`
+For each SVG icon, we export the respective `<Icon>` component from the `@paprika/icon` package. You can [see the full list of these icons](https://github.com/acl-services/paprika/tree/master/packages/Icon/src/svg).
+
+To add a custom icon to paprika components, you can do the following:
 
 ```jsx
-import AddIcon from "@paprika/icon";
+import ArrowDownIcon from "@paprika/icon/lib/ArrowDown";
 
-<AddIcon />;
+<ArrowDownIcon />;
 ```
 
 ### Note
 
-If you are a consumer who needs a custom icon for your project, you have to use [wasabicons](https://design.wegalvanize.com/icons)
+- The exported `@paprika/icon` is using _PascalCase_ naming (for example ArrowDown, ArrowLeft)
+
+- If you are a consumer who needs a custom icon for your project, you have to use [wasabicons](https://design.wegalvanize.com/icons) _(only accessible to Galvanize users)_
