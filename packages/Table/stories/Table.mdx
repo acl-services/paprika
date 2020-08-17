@@ -1,0 +1,55 @@
+import { Meta, Props, Story } from "@storybook/addon-docs/blocks";
+import Table from "../src/";
+
+# Table
+
+The `<Table>` component allows users to organize and display data in a table format.
+
+Main Features:
+
+- Ability to differentiate cells with zebra stripes.
+- Ability to display data with multiple rows and columns.
+
+## Installation
+
+```
+yarn add @/paprika/table
+```
+or
+```
+npm install @paprika/table
+```
+
+## Usage
+
+### Basic
+
+To create a basic Table simply add the `<Table>` component and set the `data` property to the data object you wish to pass in. Inside your table you can create columns by adding the `<Table.ColumnDefinition />` sub component. Add a header name with the `header` property and set the `cell` property to specify the data object property name you wish to pas into said column.
+
+```js
+    <Table data={data}>
+        <Table.ColumnDefinition header="Name" cell="name" />
+        <Table.ColumnDefinition header="LastName" cell="lastName" />
+    </Table>
+```
+
+#### Result
+
+<Table data={[
+  { name: "Charles ", lastName: "Babbage" },
+  { name: "Claude ", lastName: "Shannon" },
+  { name: "Alan ", lastName: "Turing" },
+  { name: "John  von", lastName: " Neumann" },
+  { name: "William", lastName: "Shockley" },
+  { name: "Douglas", lastName: "Engelbart" },
+  { name: "Robert", lastName: "Noyce" },
+  { name: "Steve", lastName: "Wozniak" },
+  { name: "Grace Murray", lastName: "Hopper" },
+  { name: "Vint", lastName: "Cerf" },
+]}>
+      <Table.ColumnDefinition header="Name" cell="name" />
+      <Table.ColumnDefinition header="LastName" cell="lastName" />
+    </Table>
+
+### With Zembra Stripes
+
