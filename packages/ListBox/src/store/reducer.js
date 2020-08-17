@@ -142,6 +142,7 @@ export default function reducer(state, { type, payload }) {
         ...state,
         options: payload,
         selectedOptions,
+        lastKnownSelectedOptions: [...selectedOptions],
       };
     }
 
