@@ -1,5 +1,4 @@
 import styled from "styled-components";
-import { fontSizeValue } from "@paprika/stylers/lib/helpers";
 import stylers from "@paprika/stylers";
 import tokens from "@paprika/tokens";
 
@@ -9,7 +8,7 @@ export const ElipsisItemElipse = styled.span`
   box-sizing: border-box;
   color: ${tokens.color.blackLighten20};
   display: flex;
-  font-size: ${fontSizeValue(-1)};
+  font-size: ${stylers.fontSizeValue(-1)};
   font-weight: bold;
   height: ${stylers.spacer(3)};
   justify-content: center;
