@@ -4,13 +4,15 @@ import stylers from "@paprika/stylers";
 import tokens from "@paprika/tokens";
 
 export const ElipsisItemElipse = styled.span`
+  align-items: center;
   border-radius: ${tokens.borderRadius};
   box-sizing: border-box;
   color: ${tokens.color.blackLighten20};
-  display: inline-block;
+  display: flex;
   font-size: ${fontSizeValue(-1)};
   font-weight: bold;
   height: ${stylers.spacer(3)};
+  justify-content: center;
   line-height: ${stylers.spacer(3)};
   min-width: ${stylers.spacer(3)};
   padding: 0 ${tokens.spaceSm};
@@ -19,10 +21,12 @@ export const ElipsisItemElipse = styled.span`
 `;
 
 export const ElipsisItem = styled.span`
+  align-items: center;
   border-radius: ${tokens.borderRadius};
   box-sizing: border-box;
-  display: inline-block;
+  display: flex;
   height: ${stylers.spacer(3)};
+  justify-content: center;
   margin: 0 ${tokens.spaceSm + 1} 0 ${tokens.spaceSm};
   position: relative;
 `;
