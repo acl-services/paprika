@@ -26,7 +26,7 @@ export const ArrowItem = styled(RawButton)`
     border-radius: ${tokens.button.borderRadius};
     box-sizing: border-box;
     display: flex;
-    font-size: ${stylers.fontSize(-1)};
+    font-size: ${stylers.fontSizeValue(-1)};
     height: ${stylers.spacer(3)};
     line-height: ${stylers.spacer(3)};
     margin: 0 ${tokens.spaceSm + 1} 0 ${tokens.spaceSm};
