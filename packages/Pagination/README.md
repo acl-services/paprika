@@ -25,7 +25,7 @@ npm install @paprika/pagination
 | Prop        | Type                                                  | required | default  | Description                                                                                                                                  |
 | ----------- | ----------------------------------------------------- | -------- | -------- | -------------------------------------------------------------------------------------------------------------------------------------------- |
 | currentPage | number                                                | true     | -        | The number of current active page                                                                                                            |
-| onChange    | func                                                  | true     | -        | Callback to be executed when current page is changed.                                                                                        |
+| onChange    | func                                                  | false    | () => {} | Callback to be executed when current page is changed.                                                                                        |
 | size        | [ShirtSizes.SMALL,ShirtSizes.MEDIUM,ShirtSizes.LARGE] | false    | "medium" | The number of other pages that will be visible around the current/active page (not hidden by elipsis). Can be set to small, medium, or large |
 | totalPages  | number                                                | true     | -        | The number of total pages.                                                                                                                   |
 
