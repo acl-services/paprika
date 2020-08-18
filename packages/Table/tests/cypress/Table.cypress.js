@@ -4,30 +4,33 @@ describe("Table", () => {
   it("Should render the table data", () => {
     cy.visitStorybook(`${getStoryUrlPrefix("Table")}--basic`);
 
+    [
+      "Charles",
+      "Claude",
+      "Alan",
+      "John von",
+      "William",
+      "Douglas",
+      "Robert",
+      "Steve",
+      "Grace Murray",
+      "Vint",
+      "Babbage",
+      "Shannon",
+      "Turing",
+      "Neumann",
+      "Shockley",
+      "Engelbart",
+      "Noyce",
+      "Wozniak",
+      "Hopper",
+      "Cerf",
+    ].forEach(name => {
+      cy.getByText(name).should("be.visible");
+    });
+
     cy.getByText("Name").should("be.visible");
     cy.getByText("LastName").should("be.visible");
-
-    cy.getByText("Charles").should("be.visible");
-    cy.getByText("Claude").should("be.visible");
-    cy.getByText("Alan").should("be.visible");
-    cy.getByText("John von").should("be.visible");
-    cy.getByText("William").should("be.visible");
-    cy.getByText("Douglas").should("be.visible");
-    cy.getByText("Robert").should("be.visible");
-    cy.getByText("Steve").should("be.visible");
-    cy.getByText("Grace Murray").should("be.visible");
-    cy.getByText("Vint").should("be.visible");
-
-    cy.getByText("Babbage").should("be.visible");
-    cy.getByText("Shannon").should("be.visible");
-    cy.getByText("Turing").should("be.visible");
-    cy.getByText("Neumann").should("be.visible");
-    cy.getByText("Shockley").should("be.visible");
-    cy.getByText("Engelbart").should("be.visible");
-    cy.getByText("Noyce").should("be.visible");
-    cy.getByText("Wozniak").should("be.visible");
-    cy.getByText("Hopper").should("be.visible");
-    cy.getByText("Cerf").should("be.visible");
 
     cy.getByText("Name")
       .should("have.css", "font-weight")
@@ -40,50 +43,53 @@ describe("Table", () => {
   it("Should display zebrastripes", () => {
     cy.visitStorybook(`${getStoryUrlPrefix("Table")}--has-zebra-stripes`);
 
+    const grey = "rgb(247, 247, 247)";
+    const white = "rgb(255, 255, 255)";
+
     cy.getAllByRole("row")
       .eq(2)
       .should("have.css", "background-color")
-      .should("eq", "rgb(247, 247, 247)");
+      .should("eq", grey);
 
     cy.getAllByRole("row")
       .eq(4)
       .should("have.css", "background-color")
-      .should("eq", "rgb(247, 247, 247)");
+      .should("eq", grey);
 
     cy.getAllByRole("row")
       .eq(6)
       .should("have.css", "background-color")
-      .should("eq", "rgb(247, 247, 247)");
+      .should("eq", grey);
 
     cy.getAllByRole("row")
       .eq(8)
       .should("have.css", "background-color")
-      .should("eq", "rgb(247, 247, 247)");
+      .should("eq", grey);
 
     cy.getAllByRole("row")
       .eq(10)
       .should("have.css", "background-color")
-      .should("eq", "rgb(247, 247, 247)");
+      .should("eq", grey);
 
     cy.getAllByRole("row")
       .eq(1)
       .should("have.css", "background-color")
-      .should("eq", "rgb(255, 255, 255)");
+      .should("eq", white);
 
     cy.getAllByRole("row")
       .eq(3)
       .should("have.css", "background-color")
-      .should("eq", "rgb(255, 255, 255)");
+      .should("eq", white);
 
     cy.getAllByRole("row")
       .eq(7)
       .should("have.css", "background-color")
-      .should("eq", "rgb(255, 255, 255)");
+      .should("eq", white);
 
     cy.getAllByRole("row")
       .eq(9)
       .should("have.css", "background-color")
-      .should("eq", "rgb(255, 255, 255)");
+      .should("eq", white);
   });
   it("Should have borders", () => {
     cy.visitStorybook(`${getStoryUrlPrefix("Table")}--border-types`);
