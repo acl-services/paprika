@@ -1,7 +1,7 @@
 {
   "name": "@paprika/table",
   "version": "0.1.0",
-  "description": "The Table component is a simple wrap for the html table, for more advance feature please take a look into the DataGrid",
+  "description": "The Table component is a simple wrap for the html table, for more advanced features see the DataGrid component.",
   "author": "@paprika",
   "main": "lib/index.js",
   "license": "MIT",
