@@ -22,6 +22,10 @@ npm install @paprika/table
 
 ## Usage
 
+### Properties
+
+<Props of={Table} />
+
 ### Basic
 
 To create a basic Table simply add the `<Table>` component and set the `data` property to the data object you wish to pass in. Inside your table you can create columns by adding the `<Table.ColumnDefinition />` sub component. Add a header name with the `header` property and set the `cell` property to specify the data object property name you wish to pas into said column.
@@ -84,3 +88,80 @@ A table with zebra stripes can help differentiate each row for easier scan and r
 
 The table can further be customized by adjusting the borders. The table can be set to display no borders, only horizontal borders, or only vertical borders. To set the border type add the `borderType` property. The `borderType` property can be set to `Table.types.HORIZONTAL`, `Table.types.VERTICAL`, or `Table.types.NONE`.
 
+#### HORIZONTAL
+```js
+    <Table data={data} borderType={Table.types.HORIZONTAL}>
+      <Table.ColumnDefinition header="Name" cell="name" />
+      <Table.ColumnDefinition header="LastName" cell="lastName" />
+    </Table>
+```
+
+### Result
+
+  <Table data={[
+    { name: "Charles ", lastName: "Babbage" },
+    { name: "Claude ", lastName: "Shannon" },
+    { name: "Alan ", lastName: "Turing" },
+    { name: "John  von", lastName: " Neumann" },
+    { name: "William", lastName: "Shockley" },
+    { name: "Douglas", lastName: "Engelbart" },
+    { name: "Robert", lastName: "Noyce" },
+    { name: "Steve", lastName: "Wozniak" },
+    { name: "Grace Murray", lastName: "Hopper" },
+    { name: "Vint", lastName: "Cerf" },
+  ]} borderType={Table.types.HORIZONTAL}>
+    <Table.ColumnDefinition header="Name" cell="name" />
+    <Table.ColumnDefinition header="LastName" cell="lastName" />
+  </Table>
+
+#### VERTICAL
+```js
+    <Table data={data} borderType={Table.types.VERTICAL}>
+      <Table.ColumnDefinition header="Name" cell="name" />
+      <Table.ColumnDefinition header="LastName" cell="lastName" />
+    </Table>
+```
+
+### Result
+
+  <Table data={[
+    { name: "Charles ", lastName: "Babbage" },
+    { name: "Claude ", lastName: "Shannon" },
+    { name: "Alan ", lastName: "Turing" },
+    { name: "John  von", lastName: " Neumann" },
+    { name: "William", lastName: "Shockley" },
+    { name: "Douglas", lastName: "Engelbart" },
+    { name: "Robert", lastName: "Noyce" },
+    { name: "Steve", lastName: "Wozniak" },
+    { name: "Grace Murray", lastName: "Hopper" },
+    { name: "Vint", lastName: "Cerf" },
+  ]} borderType={Table.types.VERTICAL}>
+    <Table.ColumnDefinition header="Name" cell="name" />
+    <Table.ColumnDefinition header="LastName" cell="lastName" />
+  </Table>
+
+#### NONE
+```js
+    <Table data={data} borderType={Table.types.NONE}>
+      <Table.ColumnDefinition header="Name" cell="name" />
+      <Table.ColumnDefinition header="LastName" cell="lastName" />
+    </Table>
+```
+
+### Result
+
+  <Table data={[
+    { name: "Charles ", lastName: "Babbage" },
+    { name: "Claude ", lastName: "Shannon" },
+    { name: "Alan ", lastName: "Turing" },
+    { name: "John  von", lastName: " Neumann" },
+    { name: "William", lastName: "Shockley" },
+    { name: "Douglas", lastName: "Engelbart" },
+    { name: "Robert", lastName: "Noyce" },
+    { name: "Steve", lastName: "Wozniak" },
+    { name: "Grace Murray", lastName: "Hopper" },
+    { name: "Vint", lastName: "Cerf" },
+  ]} borderType={Table.types.NONE}>
+    <Table.ColumnDefinition header="Name" cell="name" />
+    <Table.ColumnDefinition header="LastName" cell="lastName" />
+  </Table>
