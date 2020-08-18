@@ -12,7 +12,7 @@ const propTypes = {
   currentPage: PropTypes.number.isRequired,
 
   /** Callback to be executed when current page is changed. */
-  onChange: PropTypes.func.isRequired,
+  onChange: PropTypes.func,
 
   /** The number of other pages that will be visible around the current/active page (not hidden by elipsis). Can be set to small, medium, or large */
   size: PropTypes.PropTypes.oneOf([ShirtSizes.SMALL, ShirtSizes.MEDIUM, ShirtSizes.LARGE]),
@@ -22,6 +22,7 @@ const propTypes = {
 };
 
 const defaultProps = {
+  onChange: () => {},
   size: "medium",
 };
 

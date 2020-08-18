@@ -6,10 +6,14 @@ import * as sc from "./PageItem.styles";
 
 const propTypes = {
   /** Callback to be executed when the PageItem is clicked or activated by keyboard. */
-  onClick: PropTypes.func.isRequired,
+  onClick: PropTypes.func,
 
   /** The page number */
   pageNumber: PropTypes.number.isRequired,
+};
+
+const defaultProps = {
+  onClick: () => {},
 };
 
 function PageItem(props) {
@@ -25,6 +29,7 @@ function PageItem(props) {
   );
 }
 
+PageItem.defaultProps = defaultProps;
 PageItem.displayName = "Pagination.PageItem";
 PageItem.propTypes = propTypes;
 
