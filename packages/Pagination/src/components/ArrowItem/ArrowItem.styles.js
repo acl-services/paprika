@@ -28,11 +28,10 @@ export const ArrowItem = styled(RawButton)`
     display: flex;
     font-size: ${stylers.fontSize(-1)};
     height: ${stylers.spacer(3)};
-    justify-content: center;
     line-height: ${stylers.spacer(3)};
-    margin: 0 ${stylers.spacer(0.5) + 1} 0 ${stylers.spacer(0.5)};
+    margin: 0 ${tokens.spaceSm + 1} 0 ${tokens.spaceSm};
     min-width: ${stylers.spacer(3)};
-    padding: 0 ${stylers.spacer(0.5)};
+    padding: 0 ${tokens.spaceSm};
     position: relative;
 
     ${!isDisabled
@@ -41,4 +40,15 @@ export const ArrowItem = styled(RawButton)`
     `
       : ""}
   `}
+`;
+
+export const Wrapper = styled.span`
+  border-right: 1px solid ${tokens.border.color};
+  margin: 0 ${tokens.spaceSm};
+  padding-right: ${stylers.spacer(1)};
+  position: relative;
+
+  &:last-child {
+    border: none;
+  }
 `;

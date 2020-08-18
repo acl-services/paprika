@@ -14,9 +14,16 @@ function CurrentPageItem(props) {
   const I18n = useI18n();
 
   return (
-    <sc.CurrentPageItem aria-current aria-disabled aria-label={I18n.t("pagination.page", { pageNumber })} role="button">
-      <sc.CurrentPageItemContent>{pageNumber}</sc.CurrentPageItemContent>
-    </sc.CurrentPageItem>
+    <sc.Wrapper>
+      <sc.CurrentPageItem
+        aria-current
+        aria-disabled
+        aria-label={I18n.t("pagination.page", { pageNumber })}
+        role="button"
+      >
+        <sc.CurrentPageItemContent>{pageNumber}</sc.CurrentPageItemContent>
+      </sc.CurrentPageItem>
+    </sc.Wrapper>
   );
 }
 

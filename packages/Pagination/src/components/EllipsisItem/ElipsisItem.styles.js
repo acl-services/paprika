@@ -13,7 +13,7 @@ export const ElipsisItemElipse = styled.span`
   height: ${stylers.spacer(3)};
   line-height: ${stylers.spacer(3)};
   min-width: ${stylers.spacer(3)};
-  padding: 0 ${stylers.spacer(0.5)};
+  padding: 0 ${tokens.spaceSm};
   text-align: center;
   vertical-align: top;
 `;
@@ -23,6 +23,13 @@ export const ElipsisItem = styled.span`
   box-sizing: border-box;
   display: inline-block;
   height: ${stylers.spacer(3)};
-  margin: 0 ${stylers.spacer(0.5) + 1} 0 ${stylers.spacer(0.5)};
+  margin: 0 ${tokens.spaceSm + 1} 0 ${tokens.spaceSm};
+  position: relative;
+`;
+
+export const Wrapper = styled.span`
+  border-right: 1px solid ${tokens.border.color};
+  margin: 0 ${tokens.spaceSm};
+  padding-right: ${stylers.spacer(1)};
   position: relative;
 `;

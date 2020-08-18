@@ -4,7 +4,6 @@ import ArrowItem from "./components/ArrowItem/ArrowItem";
 import CurrentPageItem from "./components/CurrentPageItem/CurrentPageItem";
 import ElipsisItem from "./components/EllipsisItem/ElipsisItem";
 import PageItem from "./components/PageItem/PageItem";
-import Divider from "./components/Divider";
 import * as sc from "./Pagination.styles";
 
 const propTypes = {
@@ -49,26 +48,25 @@ const renderPageElements = (currentPage, totalPages, pagesOnEachSide, onChange) 
 
   for (let pageNumber = 1; pageNumber <= totalPages; pageNumber++) {
     if (isCurrentPage(pageNumber, currentPage)) {
-      items.push([<CurrentPageItem key={pageNumber} pageNumber={pageNumber} />, <Divider />]);
+      items.push(<CurrentPageItem key={pageNumber} pageNumber={pageNumber} />);
     } else if (
       isFirstPage(pageNumber) ||
       isLastPage(pageNumber, totalPages) ||
       isRenderableSibling(pageNumber, left, right) ||
       isNotEllipsed(pageNumber, left, right)
     ) {
-      items.push([
+      items.push(
         <PageItem
           key={pageNumber}
           onClick={() => {
             onChange(pageNumber);
           }}
           pageNumber={pageNumber}
-        />,
-        <Divider />,
-      ]);
+        />
+      );
       wasPreviousItemEllipsized = false;
     } else if (!wasPreviousItemEllipsized) {
-      items.push([<ElipsisItem key={pageNumber} />, <Divider />]);
+      items.push(<ElipsisItem key={pageNumber} />);
       wasPreviousItemEllipsized = true;
     }
   }
@@ -88,7 +86,7 @@ function Pagination(props) {
         }}
         type="Left"
       />
-      <Divider />
+
       {renderPageElements(currentPage, totalPages, pagesOnEachSide, onChange)}
       <ArrowItem
         isDisabled={currentPage === totalPages}

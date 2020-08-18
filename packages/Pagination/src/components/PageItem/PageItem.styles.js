@@ -7,10 +7,9 @@ export const PageItem = styled(RawButton)`
   border-radius: ${tokens.button.borderRadius};
   box-sizing: border-box;
   color: ${tokens.textColor.link};
-  display: inline-block;
   height: ${stylers.spacer(3)};
-  margin: 0 ${stylers.spacer(0.5) + 1} 0 ${stylers.spacer(0.5)};
-  padding: 0 ${stylers.spacer};
+  margin: 0 ${tokens.spaceSm + 1} 0 ${tokens.spaceSm};
+
   position: relative;
   text-align: center;
   width: ${stylers.spacer(3)};
@@ -18,4 +17,11 @@ export const PageItem = styled(RawButton)`
   &:hover {
     background: ${tokens.color.blackLighten70};
   }
+`;
+
+export const Wrapper = styled.span`
+  border-right: 1px solid ${tokens.border.color};
+  margin: 0 ${tokens.spaceSm};
+  padding-right: ${stylers.spacer(1)};
+  position: relative;
 `;

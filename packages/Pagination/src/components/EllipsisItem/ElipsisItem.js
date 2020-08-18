@@ -5,9 +5,11 @@ import * as sc from "./ElipsisItem.styles";
 function ElipsisItem() {
   const I18n = useI18n();
   return (
-    <sc.ElipsisItem aria-disabled aria-label={I18n.t("pagination.elipsis")} role="button">
-      <sc.ElipsisItemElipse>...</sc.ElipsisItemElipse>
-    </sc.ElipsisItem>
+    <sc.Wrapper>
+      <sc.ElipsisItem aria-disabled aria-label={I18n.t("pagination.elipsis")} role="button">
+        <sc.ElipsisItemElipse>...</sc.ElipsisItemElipse>
+      </sc.ElipsisItem>
+    </sc.Wrapper>
   );
 }
 

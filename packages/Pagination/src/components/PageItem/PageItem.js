@@ -16,9 +16,11 @@ function PageItem(props) {
   const I18n = useI18n();
 
   return (
-    <sc.PageItem aria-label={I18n.t("pagination.page", { pageNumber })} onClick={onClick}>
-      {pageNumber}
-    </sc.PageItem>
+    <sc.Wrapper>
+      <sc.PageItem aria-label={I18n.t("pagination.page", { pageNumber })} onClick={onClick}>
+        {pageNumber}
+      </sc.PageItem>
+    </sc.Wrapper>
   );
 }
 
