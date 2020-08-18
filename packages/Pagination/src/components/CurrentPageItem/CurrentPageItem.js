@@ -1,6 +1,7 @@
 import React from "react";
 import PropTypes from "prop-types";
 import useI18n from "@paprika/l10n/lib/useI18n";
+import Wrapper from "../Wrapper/Wrapper.styles";
 import * as sc from "./CurrentPageItem.styles";
 
 const propTypes = {
@@ -14,7 +15,7 @@ function CurrentPageItem(props) {
   const I18n = useI18n();
 
   return (
-    <sc.Wrapper>
+    <Wrapper>
       <sc.CurrentPageItem
         aria-current
         aria-disabled
@@ -23,7 +24,7 @@ function CurrentPageItem(props) {
       >
         <sc.CurrentPageItemContent>{pageNumber}</sc.CurrentPageItemContent>
       </sc.CurrentPageItem>
-    </sc.Wrapper>
+    </Wrapper>
   );
 }
 

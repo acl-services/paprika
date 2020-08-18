@@ -10,11 +10,11 @@ const propTypes = {
   /** The number of current active page */
   currentPage: PropTypes.number.isRequired,
 
-  /** The number of other pages that will be visible around the current/active page (not hidden by elipsis). Can be set to small, medium, or large */
-  pagesOnEachSide: PropTypes.number,
-
   /** Callback to be executed when current page is changed. */
   onChange: PropTypes.func.isRequired,
+
+  /** The number of other pages that will be visible around the current/active page (not hidden by elipsis). Can be set to small, medium, or large */
+  pagesOnEachSide: PropTypes.string,
 
   /** The number of total pages. */
   totalPages: PropTypes.number.isRequired,

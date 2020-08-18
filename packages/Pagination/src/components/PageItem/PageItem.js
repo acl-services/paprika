@@ -1,6 +1,7 @@
 import React from "react";
 import PropTypes from "prop-types";
 import useI18n from "@paprika/l10n/lib/useI18n";
+import Wrapper from "../Wrapper/Wrapper.styles";
 import * as sc from "./PageItem.styles";
 
 const propTypes = {
@@ -16,11 +17,11 @@ function PageItem(props) {
   const I18n = useI18n();
 
   return (
-    <sc.Wrapper>
+    <Wrapper>
       <sc.PageItem aria-label={I18n.t("pagination.page", { pageNumber })} onClick={onClick}>
         {pageNumber}
       </sc.PageItem>
-    </sc.Wrapper>
+    </Wrapper>
   );
 }
 

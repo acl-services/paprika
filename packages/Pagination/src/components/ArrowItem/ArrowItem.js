@@ -27,11 +27,11 @@ function ArrowItem(props) {
   const I18n = useI18n();
 
   return (
-    <sc.Wrapper>
+    <sc.ArrowItemWrapper>
       <sc.ArrowItem aria-label={I18n.t(`pagination.${type}`)} isDisabled={isDisabled} onClick={onClick}>
         <Icon isDisabled={isDisabled} />
       </sc.ArrowItem>
-    </sc.Wrapper>
+    </sc.ArrowItemWrapper>
   );
 }
 

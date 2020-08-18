@@ -42,7 +42,7 @@ export const ArrowItem = styled(RawButton)`
   `}
 `;
 
-export const Wrapper = styled.span`
+export const ArrowItemWrapper = styled.span`
   border-right: 1px solid ${tokens.border.color};
   margin: 0 ${tokens.spaceSm};
   padding-right: ${stylers.spacer(1)};
