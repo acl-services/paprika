@@ -28,29 +28,31 @@ describe("Table", () => {
   it("Should render data in the table component", () => {
     const { getByText } = renderComponent();
 
-    expect(getByText("Name")).toBeVisible();
-    expect(getByText("LastName")).toBeVisible();
-
-    expect(getByText("Charles")).toBeVisible();
-    expect(getByText("Claude")).toBeVisible();
-    expect(getByText("Alan")).toBeVisible();
-    expect(getByText("John von")).toBeVisible();
-    expect(getByText("William")).toBeVisible();
-    expect(getByText("Douglas")).toBeVisible();
-    expect(getByText("Robert")).toBeVisible();
-    expect(getByText("Steve")).toBeVisible();
-    expect(getByText("Grace Murray")).toBeVisible();
-    expect(getByText("Vint")).toBeVisible();
-
-    expect(getByText("Babbage")).toBeVisible();
-    expect(getByText("Shannon")).toBeVisible();
-    expect(getByText("Turing")).toBeVisible();
-    expect(getByText("Neumann")).toBeVisible();
-    expect(getByText("Shockley")).toBeVisible();
-    expect(getByText("Engelbart")).toBeVisible();
-    expect(getByText("Noyce")).toBeVisible();
-    expect(getByText("Wozniak")).toBeVisible();
-    expect(getByText("Hopper")).toBeVisible();
-    expect(getByText("Cerf")).toBeVisible();
+    [
+      "Name",
+      "LastName",
+      "Charles",
+      "Claude",
+      "Alan",
+      "John von",
+      "William",
+      "Douglas",
+      "Robert",
+      "Steve",
+      "Grace Murray",
+      "Vint",
+      "Babbage",
+      "Shannon",
+      "Turing",
+      "Neumann",
+      "Shockley",
+      "Engelbart",
+      "Noyce",
+      "Wozniak",
+      "Hopper",
+      "Cerf",
+    ].forEach(name => {
+      expect(getByText(name)).toBeVisible();
+    });
   });
 });
