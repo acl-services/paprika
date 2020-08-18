@@ -1,5 +1,6 @@
 import React from "react";
 import PropTypes from "prop-types";
+import { ShirtSizes } from "@paprika/helpers/lib/customPropTypes";
 import ArrowItem from "./components/ArrowItem/ArrowItem";
 import CurrentPageItem from "./components/CurrentPageItem/CurrentPageItem";
 import ElipsisItem from "./components/EllipsisItem/ElipsisItem";
@@ -14,14 +15,14 @@ const propTypes = {
   onChange: PropTypes.func.isRequired,
 
   /** The number of other pages that will be visible around the current/active page (not hidden by elipsis). Can be set to small, medium, or large */
-  pagesOnEachSide: PropTypes.string,
+  size: PropTypes.PropTypes.oneOf([ShirtSizes.SMALL, ShirtSizes.MEDIUM, ShirtSizes.LARGE]),
 
   /** The number of total pages. */
   totalPages: PropTypes.number.isRequired,
 };
 
 const defaultProps = {
-  pagesOnEachSide: "medium",
+  size: "medium",
 };
 
 const isCurrentPage = (pageNumber, currentPage) => currentPage === pageNumber;
@@ -33,14 +34,14 @@ const isNotEllipsed = (pageNumber, left, right, totalPages) =>
 
 const isRenderableSibling = (pageNumber, left, right) => left <= pageNumber && pageNumber <= right;
 
-const renderPageElements = (currentPage, totalPages, pagesOnEachSide, onChange) => {
+const renderPageElements = (currentPage, totalPages, size, onChange) => {
   const pagesOnEachSideSize = {
     small: 1,
     medium: 2,
     large: 3,
   };
-  const left = currentPage - pagesOnEachSideSize[pagesOnEachSide];
-  const right = currentPage + pagesOnEachSideSize[pagesOnEachSide];
+  const left = currentPage - pagesOnEachSideSize[size];
+  const right = currentPage + pagesOnEachSideSize[size];
 
   const items = [];
 
@@ -75,7 +76,7 @@ const renderPageElements = (currentPage, totalPages, pagesOnEachSide, onChange) 
 };
 
 function Pagination(props) {
-  const { currentPage, totalPages, pagesOnEachSide, onChange, ...moreProps } = props;
+  const { currentPage, totalPages, size, onChange, ...moreProps } = props;
 
   return (
     <sc.Pagination data-pka-anchor="pagination" {...moreProps}>
@@ -87,7 +88,7 @@ function Pagination(props) {
         type="Left"
       />
 
-      {renderPageElements(currentPage, totalPages, pagesOnEachSide, onChange)}
+      {renderPageElements(currentPage, totalPages, size, onChange)}
       <ArrowItem
         isDisabled={currentPage === totalPages}
         onClick={() => {
