@@ -1,5 +1,4 @@
 import styled from "styled-components";
-import { fontSizeValue } from "@paprika/stylers/lib/helpers";
 import stylers from "@paprika/stylers";
 import tokens from "@paprika/tokens";
 
@@ -10,7 +9,7 @@ export const CurrentPageItemContent = styled.span`
   color: ${tokens.color.white};
   cursor: default;
   display: inline-block;
-  font-size: ${fontSizeValue(-1)};
+  font-size: ${stylers.fontSizeValue(-1)};
   font-weight: bold;
   height: ${stylers.spacer(3)};
   line-height: ${stylers.spacer(3)};
@@ -27,7 +26,7 @@ export const CurrentPageItem = styled.span`
   color: ${tokens.color.white};
   cursor: default;
   display: inline-block;
-  font-size: ${fontSizeValue(-1)};
+  font-size: ${stylers.fontSizeValue(-1)};
   font-weight: bold;
   height: ${stylers.spacer(3)};
   line-height: ${stylers.spacer(3)};

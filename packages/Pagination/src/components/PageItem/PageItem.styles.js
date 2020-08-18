@@ -7,6 +7,8 @@ export const PageItem = styled(RawButton)`
   border-radius: ${tokens.button.borderRadius};
   box-sizing: border-box;
   color: ${tokens.textColor.link};
+  font-size: ${stylers.fontSizeValue(-1)};
+  font-weight: bold;
   height: ${stylers.spacer(3)};
   margin: 0 ${tokens.spaceSm + 1} 0 ${tokens.spaceSm};
 
