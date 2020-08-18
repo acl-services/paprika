@@ -28,8 +28,8 @@ export const CurrentPageItem = styled.span`
   box-sizing: border-box;
   color: ${tokens.color.white};
   cursor: default;
-  font-size: ${stylers.fontSizeValue(-1)};
   display: flex;
+  font-size: ${stylers.fontSizeValue(-1)};
   font-weight: bold;
   height: ${stylers.spacer(3)};
   justify-content: center;
