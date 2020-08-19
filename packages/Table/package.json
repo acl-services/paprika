@@ -1,6 +1,6 @@
 {
   "name": "@paprika/table",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "The Table component is a simple wrap for the html table, for more advanced features see the DataGrid component.",
   "author": "@paprika",
   "main": "lib/index.js",

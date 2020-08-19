@@ -1,6 +1,6 @@
 {
   "name": "@paprika/pagination",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "The Pagination component allows the user to select a page from a range of pages.",
   "author": "@paprika",
   "main": "lib/index.js",
