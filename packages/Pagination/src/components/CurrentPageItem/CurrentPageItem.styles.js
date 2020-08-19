@@ -10,7 +10,7 @@ export const CurrentPageItemContent = styled.span`
   color: ${tokens.color.white};
   cursor: default;
   display: flex;
-  font-size: ${stylers.fontSizeValue(-1)};
+  ${stylers.fontSize(-1)};
   font-weight: bold;
   height: ${stylers.spacer(3)};
   justify-content: center;
@@ -29,7 +29,7 @@ export const CurrentPageItem = styled.span`
   color: ${tokens.color.white};
   cursor: default;
   display: flex;
-  font-size: ${stylers.fontSizeValue(-1)};
+  ${stylers.fontSize(-1)};
   font-weight: bold;
   height: ${stylers.spacer(3)};
   justify-content: center;
