@@ -1,6 +1,6 @@
 import React from "react";
 import PropTypes from "prop-types";
-import SvgClockTime from "@paprika/icon/src/ClockTime";
+import SvgClockTime from "@paprika/icon/lib/ClockTime";
 import Input from "@paprika/input";
 import useI18n from "@paprika/l10n/lib/useI18n";
 import Popover from "@paprika/popover";
