@@ -8,7 +8,7 @@ export const ElipsisItemElipse = styled.span`
   box-sizing: border-box;
   color: ${tokens.color.blackLighten20};
   display: flex;
-  font-size: ${stylers.fontSizeValue(-1)};
+  ${stylers.fontSize(-1)};
   font-weight: bold;
   height: ${stylers.spacer(3)};
   justify-content: center;

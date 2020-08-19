@@ -9,12 +9,11 @@ export const PageItem = styled(RawButton)`
   box-sizing: border-box;
   color: ${tokens.textColor.link};
   display: flex;
-  font-size: ${stylers.fontSizeValue(-1)};
+  ${stylers.fontSize(-1)};
   font-weight: bold;
   height: ${stylers.spacer(3)};
   justify-content: center;
   margin: 0 ${tokens.spaceSm + 1} 0 ${tokens.spaceSm};
-
   position: relative;
   text-align: center;
   width: ${stylers.spacer(3)};
