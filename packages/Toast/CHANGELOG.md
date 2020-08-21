@@ -1,6 +1,8 @@
-# CHANGELOG
+# Changelog
 
-## 2020-07-29
+## [Unreleased]
+
+## [] - 2020-07-29
 
 ### Added
 
