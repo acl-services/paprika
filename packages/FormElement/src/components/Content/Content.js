@@ -12,14 +12,14 @@ const propTypes = {
   /** Used for aria-describedby on the FormElement */
   ariaDescribedBy: PropTypes.string,
   /** Used when form Elements are nested and is automatically appended to aria-describedby */
-  outerAriaDescribedBy: PropTypes.string,
+  wrapperAriaDescribedBy: PropTypes.string,
 };
 
 const defaultProps = {
   idForLabel: null,
   ariaDescribedBy: null,
   refLabel: null,
-  outerAriaDescribedBy: null,
+  wrapperAriaDescribedBy: "",
 };
 
 const supportedComponentNames = {
@@ -34,8 +34,8 @@ const supportedComponentNames = {
 
 function Content(props) {
   let labelRefSet = false;
-  const { children, idForLabel, refLabel, outerAriaDescribedBy, ...moreProps } = props;
-  const ariaDescribedBy = `${props.ariaDescribedBy} ${outerAriaDescribedBy}`;
+  const { children, idForLabel, refLabel, wrapperAriaDescribedBy, ...moreProps } = props;
+  const ariaDescribedBy = `${props.ariaDescribedBy} ${wrapperAriaDescribedBy}`;
 
   const extractedChildren = extractChildren(children, Object.values(supportedComponentNames));
 
@@ -147,7 +147,7 @@ function Content(props) {
       const formElementChildren = extractedFormElement.map(formElement => {
         return formElement.props.children.map(item => {
           if (item.type.displayName === "FormElement.Content") {
-            return React.cloneElement(item, { outerAriaDescribedBy: ariaDescribedBy });
+            return React.cloneElement(item, { wrapperAriaDescribedBy: ariaDescribedBy });
           }
           return item;
         });
