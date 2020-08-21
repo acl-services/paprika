@@ -33,7 +33,7 @@ const supportedComponentNames = {
 };
 
 function Content(props) {
-  let labelRefSet = false;
+  let isLabelRefSet = false;
   const { children, idForLabel, refLabel, wrapperAriaDescribedBy, ...moreProps } = props;
   const ariaDescribedBy = `${props.ariaDescribedBy} ${wrapperAriaDescribedBy}`;
 
@@ -41,10 +41,10 @@ function Content(props) {
 
   const getIdProp = () => {
     // ensure the id for lable is only set on one element
-    const idProp = !labelRefSet ? { id: idForLabel } : null;
+    const idProp = !isLabelRefSet ? { id: idForLabel } : null;
 
     if (idProp) {
-      labelRefSet = true;
+      isLabelRefSet = true;
     }
     return idProp;
   };
