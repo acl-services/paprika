@@ -5,10 +5,11 @@ import Panel from "./components/Panel/Panel";
 import Panels from "./components/Panels/Panels";
 import Tab from "./components/Tab/Tab";
 import List from "./components/List/List";
+import * as types from "./types";
 
 const propTypes = {
   /** Determine the styling of the tab */
-  kind: PropTypes.oneOf(["primary", "secondary"]),
+  kind: PropTypes.oneOf([types.PRIMARY, types.SECONDARY]),
   /** Children of the Tab */
   children: PropTypes.node.isRequired,
   /** Sets what tab index is active by default */
@@ -18,7 +19,7 @@ const propTypes = {
 };
 
 const defaultProps = {
-  kind: "primary",
+  kind: types.PRIMARY,
   defaultIndex: 0,
   isDisabled: false,
 };
@@ -93,5 +94,6 @@ Tabs.Tab = Tab;
 Tabs.List = List;
 Tabs.propTypes = propTypes;
 Tabs.defaultProps = defaultProps;
+Tabs.types = types;
 
 export default Tabs;

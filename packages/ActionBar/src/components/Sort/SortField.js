@@ -3,14 +3,14 @@ import PropTypes from "prop-types";
 import Button from "@paprika/button";
 import useI18n from "@paprika/l10n/lib/useI18n";
 import InlineSelect from "../InlineSelect/InlineSelect";
-import { sortDirections, localeTypeKeys, changeTypes } from "../../constants";
 import SortContext from "./context";
+import * as types from "../../types";
 
 import * as sc from "./Sort.styles";
 
 const propTypes = {
   columnId: PropTypes.oneOfType([PropTypes.number, PropTypes.string]).isRequired,
-  direction: PropTypes.oneOf([sortDirections.ASCEND, sortDirections.DESCEND]).isRequired,
+  direction: PropTypes.oneOf([types.ASCEND, types.DESCEND]).isRequired,
   id: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
   isFirst: PropTypes.bool,
   onChange: PropTypes.func.isRequired,
@@ -28,7 +28,7 @@ function SortField(props) {
   const I18n = useI18n();
   // TODO: adding a generic Sort ascend text without type
   const columnTypeTranslationKey =
-    localeTypeKeys[columns.find(column => column.id === selectedColumnId).type] || "text";
+    types.localeTypeKeys[columns.find(column => column.id === selectedColumnId).type] || "text";
 
   function handleRemoveFilter() {
     fieldsRef.current.focus();
@@ -36,11 +36,11 @@ function SortField(props) {
   }
 
   function handleChangeColumn(event) {
-    onChange(changeTypes.COLUMN, { id, columnId: event.target.value });
+    onChange(types.COLUMN, { id, columnId: event.target.value });
   }
 
   function handleChangeRule(event) {
-    onChange(changeTypes.DIRECTION, { id, direction: event.target.value });
+    onChange(types.DIRECTION, { id, direction: event.target.value });
   }
 
   return (
@@ -62,23 +62,18 @@ function SortField(props) {
         onChange={handleChangeRule}
         value={direction}
         selectedLabel={I18n.t(
-          `actionBar.sort.rules.${
-            direction === sortDirections.ASCEND ? "ascending" : "descending"
-          }.${columnTypeTranslationKey}`
+          `actionBar.sort.rules.${direction === types.ASCEND ? "ascending" : "descending"}.${columnTypeTranslationKey}`
         )}
       >
-        <option value={sortDirections.ASCEND}>
-          {I18n.t(`actionBar.sort.rules.ascending.${columnTypeTranslationKey}`)}
-        </option>
-        <option value={sortDirections.DESCEND}>
-          {I18n.t(`actionBar.sort.rules.descending.${columnTypeTranslationKey}`)}
-        </option>
+        <option value={types.ASCEND}>{I18n.t(`actionBar.sort.rules.ascending.${columnTypeTranslationKey}`)}</option>
+        <option value={types.DESCEND}>{I18n.t(`actionBar.sort.rules.descending.${columnTypeTranslationKey}`)}</option>
       </InlineSelect>
     </sc.SortField>
   );
 }
 
 SortField.propTypes = propTypes;
+SortField.types = types;
 SortField.defaultProps = defaultProps;
 
 export default React.memo(SortField);

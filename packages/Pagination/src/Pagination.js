@@ -1,6 +1,6 @@
 import React from "react";
 import PropTypes from "prop-types";
-import { ShirtSizes } from "@paprika/helpers/lib/customPropTypes";
+import * as types from "./types";
 import ArrowItem from "./components/ArrowItem/ArrowItem";
 import CurrentPageItem from "./components/CurrentPageItem/CurrentPageItem";
 import ElipsisItem from "./components/EllipsisItem/ElipsisItem";
@@ -15,7 +15,7 @@ const propTypes = {
   onChange: PropTypes.func,
 
   /** The number of other pages that will be visible around the current/active page (not hidden by elipsis). Can be set to small, medium, or large */
-  size: PropTypes.PropTypes.oneOf([ShirtSizes.SMALL, ShirtSizes.MEDIUM, ShirtSizes.LARGE]),
+  size: PropTypes.PropTypes.oneOf([types.SMALL, types.MEDIUM, types.LARGE]),
 
   /** The number of total pages. */
   totalPages: PropTypes.number.isRequired,
@@ -104,5 +104,6 @@ function Pagination(props) {
 Pagination.displayName = "Pagination";
 Pagination.propTypes = propTypes;
 Pagination.defaultProps = defaultProps;
+Pagination.types = types;
 
 export default Pagination;

@@ -1,9 +1,9 @@
 import React from "react";
 import PropTypes from "prop-types";
 import classNames from "classnames";
-import { ShirtSizes, InputValidTypes } from "@paprika/helpers/lib/customPropTypes";
 import TimesCircleIcon from "@paprika/icon/lib/TimesCircle";
 import Button from "@paprika/button";
+import * as types from "./types";
 import inputStyles from "./Input.styles";
 
 const propTypes = {
@@ -41,10 +41,10 @@ const propTypes = {
   onClear: PropTypes.func,
 
   /** Changes the size of the input. */
-  size: PropTypes.oneOf(ShirtSizes.DEFAULT),
+  size: PropTypes.oneOf(types.DEFAULTS),
 
   /** Allows user to specify the type of input. */
-  type: PropTypes.oneOf(InputValidTypes.ALL),
+  type: PropTypes.oneOf(types.ALL),
 
   /** The value inside of the input */
   value: PropTypes.string,
@@ -62,7 +62,7 @@ const defaultProps = {
   isReadOnly: false,
   onChange: () => {},
   onClear: () => {},
-  size: ShirtSizes.MEDIUM,
+  size: types.MEDIUM,
   type: "text",
   value: null,
 };
@@ -77,13 +77,13 @@ const Input = React.forwardRef((props, ref) => {
   const renderClear = () => {
     const { clearIcon, hasClearButton, isDisabled, isReadOnly, size, value } = props;
     if (!hasClearButton || isDisabled || isReadOnly || !value) return null;
-    const iconSize = size === ShirtSizes.LARGE ? ShirtSizes.MEDIUM : ShirtSizes.SMALL;
+    const iconSize = size === types.LARGE ? types.MEDIUM : types.SMALL;
 
     return (
       <Button.Icon
         a11yText="Clear Input" // TODO: add L10n
         className="form-input__clear"
-        kind={Button.Kinds.MINOR}
+        kind={types.MINOR}
         size={iconSize}
         onClick={inputClearHandler}
       >
@@ -154,5 +154,6 @@ const Input = React.forwardRef((props, ref) => {
 Input.displayName = "Input";
 Input.propTypes = propTypes;
 Input.defaultProps = defaultProps;
+Input.types = types;
 
 export default Input;

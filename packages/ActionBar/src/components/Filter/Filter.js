@@ -7,8 +7,8 @@ import CheckIcon from "@paprika/icon/lib/Check";
 import FilterItem from "./FilterItem";
 import { rules, defaultRulesByType } from "./rules";
 import FilterContext from "./context";
-import { logicalFilterOperators } from "../../constants";
 import columnShape from "../../columnShape";
+import * as types from "../../types";
 
 import * as sc from "./Filter.styles";
 import { GenericNoAppliedPlaceholder } from "../../ActionBar.styles";
@@ -23,7 +23,7 @@ const propTypes = {
   onChangeOperator: PropTypes.func,
   onClose: PropTypes.func,
   onOpen: PropTypes.func,
-  operator: PropTypes.oneOf([logicalFilterOperators.AND, logicalFilterOperators.OR]),
+  operator: PropTypes.oneOf([types.AND, types.OR]),
   rulesByType: PropTypes.objectOf(PropTypes.arrayOf(PropTypes.objectOf(rules))),
 };
 
@@ -34,7 +34,7 @@ const defaultProps = {
   onCancel: () => {},
   onClose: () => {},
   onOpen: () => {},
-  operator: logicalFilterOperators.AND,
+  operator: types.AND,
   rulesByType: defaultRulesByType,
 };
 
@@ -135,6 +135,7 @@ export default function Filter(props) {
 }
 
 Filter.propTypes = propTypes;
+Filter.types = types;
 Filter.defaultProps = defaultProps;
 Filter.displayName = "ActionBar.Filter";
 Filter.defaultRulesByType = defaultRulesByType;

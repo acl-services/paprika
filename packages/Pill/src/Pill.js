@@ -1,27 +1,24 @@
 import React from "react";
 import PropTypes from "prop-types";
 import RawButton from "@paprika/raw-button";
-import { ShirtSizes } from "@paprika/helpers/lib/customPropTypes";
+import * as types from "./types";
 import pillStyles, { pillTextStyles } from "./Pill.styles";
-
-export const pillColors = ["black", "blue", "green", "grey", "orange", "lightBlue", "lightOrange"];
-export const severityPillColors = ["noRisk", "lowRisk", "mediumRisk", "highRisk"];
 
 const propTypes = {
   a11yText: PropTypes.string,
   children: PropTypes.node.isRequired,
   isDisabled: PropTypes.bool,
   onClick: PropTypes.func,
-  pillColor: PropTypes.oneOf([...pillColors, ...severityPillColors]),
-  size: PropTypes.oneOf(ShirtSizes.LIMITED),
+  pillColor: PropTypes.oneOf([types.All_COLORS, types.All_SEVERITY]),
+  size: PropTypes.oneOf(types.LIMITED),
 };
 
 const defaultProps = {
   a11yText: null,
   isDisabled: false,
   onClick: null,
-  pillColor: "grey",
-  size: "medium",
+  pillColor: types.GREY,
+  size: types.MEDIUM,
 };
 
 function Pill(props) {
@@ -57,5 +54,6 @@ function Pill(props) {
 Pill.displayName = "Pill";
 Pill.propTypes = propTypes;
 Pill.defaultProps = defaultProps;
+Pill.types = types;
 
 export default Pill;

@@ -1,7 +1,7 @@
 import React from "react";
 import PropTypes from "prop-types";
 import useI18n from "@paprika/l10n/lib/useI18n";
-import { ShirtSizes } from "@paprika/helpers/lib/customPropTypes";
+import * as types from "./types";
 import Box from "./components/Box";
 import Content from "./components/Content";
 import List from "./components/List";
@@ -53,7 +53,7 @@ export const propTypes = {
   placeholder: PropTypes.string,
 
   /** Size of the trigger and options (font size, height, padding, etc). */
-  size: PropTypes.oneOf(ShirtSizes.DEFAULT),
+  size: PropTypes.oneOf(types.DEFAULTS),
 };
 
 export const defaultProps = {
@@ -68,7 +68,7 @@ export const defaultProps = {
   isOpen: null,
   onChange: () => {},
   placeholder: null,
-  size: ShirtSizes.MEDIUM,
+  size: types.MEDIUM,
   trigger: null, // eslint-disable-line
 };
 
@@ -192,5 +192,6 @@ const ListBoxContainer = React.forwardRef((props, ref) => {
 
 ListBoxContainer.propTypes = propTypes;
 ListBoxContainer.defaultProps = defaultProps;
+ListBoxContainer.types = types;
 
 export default ListBoxContainer;

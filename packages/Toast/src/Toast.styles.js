@@ -3,30 +3,30 @@ import stylers from "@paprika/stylers";
 import tokens from "@paprika/tokens";
 import Button from "@paprika/button";
 import { visuallyHidden } from "@paprika/stylers/lib/includes";
-import Kinds from "./ToastKinds";
+import * as types from "./types";
 
 const backgroundColors = {
-  [Kinds.SUCCESS]: tokens.color.greenLighten50,
-  [Kinds.WARNING]: tokens.color.yellowLighten30,
-  [Kinds.ERROR]: tokens.color.orangeLighten40,
-  [Kinds.INFO]: tokens.color.cremeLighten5,
-  [Kinds.LOCKED]: tokens.color.yellowLighten30,
+  [types.SUCCESS]: tokens.color.greenLighten50,
+  [types.WARNING]: tokens.color.yellowLighten30,
+  [types.ERROR]: tokens.color.orangeLighten40,
+  [types.INFO]: tokens.color.cremeLighten5,
+  [types.LOCKED]: tokens.color.yellowLighten30,
 };
 
 // Calculated by brightness.
 const borderColors = {
-  [Kinds.SUCCESS]: "#c5e2d3",
-  [Kinds.WARNING]: "#f2deaf",
-  [Kinds.ERROR]: "#f2c2b8",
-  [Kinds.INFO]: "#dbd8d0",
-  [Kinds.LOCKED]: "#f2deaf",
+  [types.SUCCESS]: "#c5e2d3",
+  [types.WARNING]: "#f2deaf",
+  [types.ERROR]: "#f2c2b8",
+  [types.INFO]: "#dbd8d0",
+  [types.LOCKED]: "#f2deaf",
 };
 
 const closeButtonColors = {
-  [Kinds.SUCCESS]: tokens.color.greenDarken20,
-  [Kinds.WARNING]: tokens.color.yellowDarken40,
-  [Kinds.ERROR]: tokens.color.orangeLighten40,
-  [Kinds.LOCKED]: tokens.color.yellowLighten30,
+  [types.SUCCESS]: tokens.color.greenDarken20,
+  [types.WARNING]: tokens.color.yellowDarken40,
+  [types.ERROR]: tokens.color.orangeLighten40,
+  [types.LOCKED]: tokens.color.yellowLighten30,
 };
 
 const fixedStyles = css`
@@ -39,11 +39,11 @@ const fixedStyles = css`
 `;
 
 const iconColors = {
-  [Kinds.SUCCESS]: tokens.color.green,
-  [Kinds.WARNING]: tokens.color.yellowDarken10,
-  [Kinds.ERROR]: tokens.color.orange,
-  [Kinds.INFO]: tokens.color.blue,
-  [Kinds.LOCKED]: tokens.color.yellowDarken10,
+  [types.SUCCESS]: tokens.color.green,
+  [types.WARNING]: tokens.color.yellowDarken10,
+  [types.ERROR]: tokens.color.orange,
+  [types.INFO]: tokens.color.blue,
+  [types.LOCKED]: tokens.color.yellowDarken10,
 };
 
 export const CloseButtonStyled = styled(Button.Close)`
@@ -89,7 +89,7 @@ const toastStyles = css`
   ${stylers.fontSize()}
   ${stylers.lineHeight()}
   ${({ isFixed }) => isFixed && fixedStyles}
-  ${({ kind }) => kind === Kinds.VISUALLY_HIDDEN && visuallyHidden}
+  ${({ kind }) => kind === types.VISUALLY_HIDDEN && visuallyHidden}
 `;
 
 export default toastStyles;

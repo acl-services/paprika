@@ -11,6 +11,7 @@ import Overlay from "./components/Overlay";
 import Trigger from "./components/Trigger";
 import Group from "./components/Group";
 import FocusLock from "./components/FocusLock";
+import * as types from "./types";
 
 import { extractChildren } from "./helpers";
 import { useOffsetScroll } from "./hooks";
@@ -41,7 +42,7 @@ const propTypes = {
   isSlideFromLeft: PropTypes.bool,
 
   /** Modify the look of the SidePanel */
-  kind: PropTypes.oneOf(["default", "child"]),
+  kind: PropTypes.oneOf([types.SIDEPANEL_DEFAULT, types.SIDEPANEL_CHILD]),
 
   /** Control y offset of the sidepanel */
   offsetY: PropTypes.number,
@@ -69,7 +70,7 @@ const defaultProps = {
   isCompact: false,
   isInline: false,
   isSlideFromLeft: false,
-  kind: "default",
+  kind: types.SIDEPANEL_DEFAULT,
   offsetY: 0,
   onAfterClose: () => {},
   onAfterOpen: () => {},
@@ -240,6 +241,7 @@ export default function SidePanel(props) {
 SidePanel.propTypes = propTypes;
 SidePanel.defaultProps = defaultProps;
 SidePanel.displayName = "SidePanel";
+SidePanel.types = types;
 
 SidePanel.Content = Content;
 SidePanel.FocusLock = FocusLock;

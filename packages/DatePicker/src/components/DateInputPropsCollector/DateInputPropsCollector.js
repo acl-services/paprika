@@ -1,6 +1,6 @@
 import PropTypes from "prop-types";
 
-import { ShirtSizes } from "@paprika/helpers/lib/customPropTypes";
+import * as types from "../../types";
 
 const propTypes = {
   /** a11yText on the input. */
@@ -13,7 +13,7 @@ const propTypes = {
   placeholder: PropTypes.string,
 
   /** Size of input. */
-  size: PropTypes.oneOf(ShirtSizes.DEFAULT),
+  size: PropTypes.oneOf(types.DEFAULTS),
 
   /** If the value of <input> is valid or not. */
   hasError: PropTypes.bool,
@@ -23,7 +23,7 @@ const defaultProps = {
   a11yText: null,
   clearIcon: null,
   placeholder: "",
-  size: ShirtSizes.MEDIUM,
+  size: types.MEDIUM,
   hasError: false,
 };
 
@@ -34,6 +34,7 @@ function DateInputPropsCollector() {
 
 DateInputPropsCollector.propTypes = propTypes;
 DateInputPropsCollector.defaultProps = defaultProps;
+DateInputPropsCollector.types = types;
 
 DateInputPropsCollector.displayName = "DatePicker.Input";
 

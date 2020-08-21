@@ -1,7 +1,7 @@
 import React from "react";
 import PropTypes from "prop-types";
 import classNames from "classnames";
-import { ShirtSizes } from "@paprika/helpers/lib/customPropTypes";
+import * as types from "./types";
 import textareaStyles from "./Textarea.styles";
 
 const propTypes = {
@@ -21,7 +21,7 @@ const propTypes = {
   /** Indicates the maximum height of the textarea  */
   maxHeight: PropTypes.string,
   onChange: PropTypes.func,
-  size: PropTypes.oneOf(ShirtSizes.DEFAULT),
+  size: PropTypes.oneOf(types.DEFAULTS),
   /** Do not use in conjunction with defaultValue prop */
   value: PropTypes.string,
 };
@@ -36,7 +36,7 @@ const defaultProps = {
   isReadOnly: false,
   maxHeight: "300px",
   onChange: () => {},
-  size: ShirtSizes.MEDIUM,
+  size: types.MEDIUM,
   value: null,
 };
 
@@ -131,5 +131,6 @@ const Textarea = React.forwardRef((props, ref) => {
 Textarea.displayName = "Textarea";
 Textarea.propTypes = propTypes;
 Textarea.defaultProps = defaultProps;
+Textarea.types = types;
 
 export default Textarea;

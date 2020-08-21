@@ -5,7 +5,7 @@ import throttle from "lodash.throttle";
 import uuidv4 from "uuid/v4";
 import tokens from "@paprika/tokens";
 import { zValue } from "@paprika/stylers/lib/helpers";
-import { AlignTypes } from "@paprika/helpers/lib/customPropTypes";
+import * as types from "./types";
 import isInsideBoundaries from "./helpers/isInsideBoundaries";
 import { getContentCoordinates, getTipCoordinates } from "./helpers/getPosition";
 import getBoundingClientRect from "./helpers/getBoundingClientRect";
@@ -27,7 +27,7 @@ const focusableElementSelector =
 
 const propTypes = {
   /** Where the popover content is positioned relative to the trigger or getPositioningElement. */
-  align: PropTypes.oneOf(AlignTypes.ALL),
+  align: PropTypes.oneOf(types.ALL),
 
   /** Content of the popover */
   children: PropTypes.node.isRequired,
@@ -48,7 +48,7 @@ const propTypes = {
   defaultIsOpen: PropTypes.bool,
 
   /** Where the edge of the popover content is based on the trigger or getPositioningElement */
-  edge: PropTypes.oneOf([AlignTypes.LEFT, AlignTypes.RIGHT, null]),
+  edge: PropTypes.oneOf([types.LEFT, types.RIGHT, null]),
 
   /** Maximum width of popover content. Using a number is recommended and implies px units. */
   maxWidth: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
@@ -76,7 +76,7 @@ const propTypes = {
 };
 
 const defaultProps = {
-  align: AlignTypes.BOTTOM,
+  align: types.BOTTOM,
   isDark: false,
   isEager: false,
   isOpen: null,
@@ -241,7 +241,7 @@ class Popover extends React.Component {
     if (this.$content) {
       // dynamically setting a fixed width before positioning avoids issues at the
       // right edge of the screen
-      if (isOpening && [AlignTypes.TOP, AlignTypes.BOTTOM].includes(this.props.align)) {
+      if (isOpening && [types.TOP, types.BOTTOM].includes(this.props.align)) {
         const newWidth = this.getContentWidth();
         if (newWidth !== this.state.width) {
           this.setState({ width: newWidth }, () => {
@@ -537,6 +537,8 @@ function PopoverChildren(props) {
 Popover.displayName = "Popover";
 Popover.propTypes = propTypes;
 Popover.defaultProps = defaultProps;
+Popover.types = types;
+
 Popover.Trigger = Trigger;
 Popover.Content = Content;
 Popover.Card = Card;

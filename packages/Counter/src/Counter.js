@@ -1,6 +1,6 @@
 import React from "react";
 import PropTypes from "prop-types";
-import { ShirtSizes } from "@paprika/helpers/lib/customPropTypes";
+import * as types from "./types";
 import counterStyles from "./Counter.styles";
 
 const propTypes = {
@@ -14,7 +14,7 @@ const propTypes = {
   quantity: PropTypes.number.isRequired,
 
   /** Size of counter. It can be small or medium. Default is medium. */
-  size: PropTypes.oneOf(ShirtSizes.LIMITED),
+  size: PropTypes.oneOf(types.LIMITED),
 
   /** When quantity exceeds threshold, it will display "(Threshold)+" inside the counter. Default is 99. */
   threshold: PropTypes.number,
@@ -23,7 +23,7 @@ const propTypes = {
 const defaultProps = {
   color: "grey",
   hasIndicator: false,
-  size: "medium",
+  size: types.MEDIUM,
   threshold: 99,
 };
 

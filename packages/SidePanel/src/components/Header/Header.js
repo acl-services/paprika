@@ -1,8 +1,9 @@
 import React from "react";
 import PropTypes from "prop-types";
-import { RefOf, ShirtSizes } from "@paprika/helpers/lib/customPropTypes";
+import { RefOf } from "@paprika/helpers/lib/customPropTypes";
 import Button from "@paprika/button";
 import Heading from "@paprika/heading";
+import * as types from "../../types";
 import * as sc from "./Header.styles";
 
 const propTypes = {
@@ -11,7 +12,7 @@ const propTypes = {
   hasCloseButton: PropTypes.bool,
   isCompact: PropTypes.bool,
   isHeaderSticky: PropTypes.bool,
-  kind: PropTypes.oneOf([Button.Kinds.DEFAULT, Button.Kinds.PRIMARY]),
+  kind: PropTypes.oneOf([types.DEFAULT, types.PRIMARY]),
   level: PropTypes.oneOf([1, 2, 3, 4, 5, 6]),
   onClose: PropTypes.func,
   refHeading: RefOf(),
@@ -20,7 +21,7 @@ const propTypes = {
 const defaultProps = {
   hasCloseButton: true,
   getPushContentElement: () => {},
-  kind: Button.Kinds.DEFAULT,
+  kind: types.DEFAULT,
   isHeaderSticky: false,
   level: 2,
   isCompact: false,
@@ -58,8 +59,8 @@ const Header = React.forwardRef((props, ref) => {
           data-pka-anchor="sidepanel.header.close"
           isSemantic={false}
           onClick={onClose}
-          size={isCompact ? ShirtSizes.SMALL : ShirtSizes.MEDIUM}
-          isDark={kind === Button.Kinds.PRIMARY}
+          size={isCompact ? types.SMALL : types.MEDIUM}
+          isDark={kind === types.PRIMARY}
         />
       )}
     </sc.Header>

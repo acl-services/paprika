@@ -1,6 +1,6 @@
 import React from "react";
 import PropTypes from "prop-types";
-import { ShirtSizes } from "@paprika/helpers/lib/customPropTypes";
+import * as types from "./types";
 import iconButtonStyles from "./IconButton.styles";
 import Button from "./Button";
 
@@ -9,15 +9,15 @@ const IconPropTypes = {
   children: PropTypes.node.isRequired,
 
   /** The visual style of the button. */
-  kind: PropTypes.oneOf(Button.Kinds.ALL),
+  kind: PropTypes.oneOf(types.ALL),
 
   /** Size of the button (font size, min-height, padding, etc). */
-  size: PropTypes.oneOf(ShirtSizes.DEFAULT),
+  size: PropTypes.oneOf(types.DEFAULTS),
 };
 
 const IconDefaultProps = {
-  kind: Button.Kinds.DEFAULT,
-  size: ShirtSizes.MEDIUM,
+  kind: types.DEFAULT,
+  size: types.MEDIUM,
 };
 
 const IconButton = React.forwardRef((props, ref) => {
@@ -30,7 +30,7 @@ const IconButton = React.forwardRef((props, ref) => {
   return <Button css={iconButtonStyles} {...props} {...buttonProps} ref={ref} />;
 });
 
-IconButton.Kinds = Button.Kinds;
+IconButton.types = types;
 IconButton.displayName = "IconButton";
 IconButton.propTypes = IconPropTypes;
 IconButton.defaultProps = IconDefaultProps;

@@ -1,20 +1,20 @@
 import { css } from "styled-components";
 import tokens from "@paprika/tokens";
 import stylers from "@paprika/stylers";
-import { ShirtSizes } from "@paprika/helpers/lib/customPropTypes";
+import * as types from "./types";
 
 const iconStyles = {
-  [ShirtSizes.SMALL]: `
+  [types.SMALL]: `
     ${stylers.fontSize(-2)}
     margin-left: 3px;
     padding: 0 ${tokens.spaceSm};
   `,
-  [ShirtSizes.MEDIUM]: `
+  [types.MEDIUM]: `
     ${stylers.fontSize()}
     margin-left: 2px;
     padding: 0 ${tokens.spaceSm};
   `,
-  [ShirtSizes.LARGE]: `
+  [types.LARGE]: `
     ${stylers.fontSize(2)}
     margin-left: ${tokens.spaceSm};
     padding: 0 ${tokens.spaceSm};
@@ -107,7 +107,7 @@ const inputStyles = css`
   }
 
   &.form-input--has-icon input.form-input__input {
-    padding-left: ${({ size }) => (size === ShirtSizes.LARGE ? stylers.spacer(4) : stylers.spacer(3))};
+    padding-left: ${({ size }) => (size === types.LARGE ? stylers.spacer(4) : stylers.spacer(3))};
   }
 
   /* Disabled */

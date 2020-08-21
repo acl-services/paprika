@@ -2,12 +2,13 @@ import React from "react";
 import PropTypes from "prop-types";
 import { RefOf } from "@paprika/helpers/lib/customPropTypes";
 import Button from "@paprika/button";
+import * as types from "../../types";
 import * as sc from "./Header.styles";
 
 const propTypes = {
   children: PropTypes.node.isRequired,
   hasCloseButton: PropTypes.bool,
-  kind: PropTypes.oneOf(["default", "primary"]),
+  kind: PropTypes.oneOf([types.DEFAULT, types.PRIMARY]),
   level: PropTypes.oneOf([1, 2, 3, 4, 5, 6]),
   onClose: PropTypes.func,
   refHeading: RefOf(),
@@ -16,7 +17,7 @@ const propTypes = {
 const defaultProps = {
   hasCloseButton: true,
   level: 3,
-  kind: "default",
+  kind: types.DEFAULT,
   onClose: () => {},
   refHeading: null,
 };
@@ -46,5 +47,6 @@ const Header = React.forwardRef((props, ref) => {
 Header.displayName = "Takeover.Header";
 Header.propTypes = propTypes;
 Header.defaultProps = defaultProps;
+Header.types = types;
 
 export default Header;

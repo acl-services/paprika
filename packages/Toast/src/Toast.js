@@ -1,6 +1,5 @@
 import React from "react";
 import PropTypes from "prop-types";
-import { ShirtSizes } from "@paprika/helpers/lib/customPropTypes";
 import { zValue } from "@paprika/stylers/lib/helpers";
 import CheckIcon from "@paprika/icon/lib/Check";
 import CautionIcon from "@paprika/icon/lib/ColoredCaution";
@@ -8,8 +7,7 @@ import ExclamationCircleIcon from "@paprika/icon/lib/ExclamationCircle";
 import InfoCircleIcon from "@paprika/icon/lib/InfoCircle";
 import LockIcon from "@paprika/icon/lib/Lock";
 import Portal from "@paprika/helpers/lib/components/Portal";
-
-import Kinds from "./ToastKinds";
+import * as types from "./types";
 
 import toastStyles, { contentStyles, IconStyled, CloseButtonStyled } from "./Toast.styles";
 
@@ -36,7 +34,7 @@ const propTypes = {
   isPolite: PropTypes.bool,
 
   /** Determines the styling of the Toast */
-  kind: PropTypes.oneOf(Kinds.ALL),
+  kind: PropTypes.oneOf(types.ALL),
 
   /** Callback that is executed after clicking the 'close' button */
   onClose: PropTypes.func,
@@ -53,7 +51,7 @@ const defaultProps = {
   isOpen: undefined,
   isFixed: false,
   isPolite: false,
-  kind: Kinds.INFO,
+  kind: types.INFO,
   onClose: () => {},
   zIndex: null,
 };
@@ -62,11 +60,11 @@ const minimumCloseTimeout = 1500;
 const renderTimeout = 20;
 
 const icons = {
-  [Kinds.SUCCESS]: CheckIcon,
-  [Kinds.WARNING]: CautionIcon,
-  [Kinds.ERROR]: ExclamationCircleIcon,
-  [Kinds.INFO]: InfoCircleIcon,
-  [Kinds.LOCKED]: LockIcon,
+  [types.SUCCESS]: CheckIcon,
+  [types.WARNING]: CautionIcon,
+  [types.ERROR]: ExclamationCircleIcon,
+  [types.INFO]: InfoCircleIcon,
+  [types.LOCKED]: LockIcon,
 };
 
 const Toast = React.forwardRef((props, ref) => {
@@ -101,7 +99,7 @@ const Toast = React.forwardRef((props, ref) => {
   const renderTimer = React.useRef(null);
   const ariaRole = isPolite ? "status" : "alert";
   const defaultZIndex = isFixed ? zValue(7) : null;
-  const isVisuallyHidden = kind === Kinds.VISUALLY_HIDDEN;
+  const isVisuallyHidden = kind === types.VISUALLY_HIDDEN;
 
   const memoizedStartAutoCloseTimer = React.useCallback(() => {
     function handleDelayedClose() {
@@ -141,7 +139,7 @@ const Toast = React.forwardRef((props, ref) => {
         {!isVisuallyHidden && <IconStyled as={icons[kind]} kind={kind} />}
         <div css={contentStyles}>{children}</div>
         {hasCloseButton && !isVisuallyHidden && (
-          <CloseButtonStyled isSemantic={false} onClick={handleClose} size={ShirtSizes.SMALL} />
+          <CloseButtonStyled isSemantic={false} onClick={handleClose} size={types.SMALL} />
         )}
       </>
     );
@@ -206,5 +204,6 @@ const Toast = React.forwardRef((props, ref) => {
 Toast.displayName = "Toast";
 Toast.propTypes = propTypes;
 Toast.defaultProps = defaultProps;
+Toast.types = types;
 
 export default Toast;

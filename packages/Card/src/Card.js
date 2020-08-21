@@ -1,13 +1,13 @@
 import React from "react";
 import PropTypes from "prop-types";
-import { ShirtSizes } from "@paprika/helpers/lib/customPropTypes";
-import * as sc from "./Card.styles";
 import Footer from "./components/Footer";
 import Title from "./components/Title";
 import Metadata from "./components/Metadata";
 import Header from "./components/Header";
 import Text from "./components/Text";
 import Content from "./components/Content";
+import * as types from "./types";
+import * as sc from "./Card.styles";
 
 const propTypes = {
   /** Body content of the card. */
@@ -20,12 +20,12 @@ const propTypes = {
   isActive: PropTypes.bool,
 
   /** Size of the card (font size, min-height, padding, etc). */
-  size: PropTypes.oneOf(["auto", ShirtSizes.SMALL, ShirtSizes.MEDIUM, ShirtSizes.LARGE]),
+  size: PropTypes.oneOf([types.AUTO, types.SMALL, types.MEDIUM, types.LARGE]),
 };
 
 const defaultProps = {
   children: null,
-  size: "auto",
+  size: types.AUTO,
   isFullWidth: false,
   isActive: false,
 };
@@ -47,6 +47,7 @@ function Card(props) {
 Card.displayName = "Card";
 Card.propTypes = propTypes;
 Card.defaultProps = defaultProps;
+Card.types = types;
 
 Card.Header = Header;
 Card.Title = Title;

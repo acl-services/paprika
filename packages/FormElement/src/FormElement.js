@@ -1,7 +1,6 @@
 import React from "react";
 import PropTypes from "prop-types";
 
-import { ShirtSizes } from "@paprika/helpers/lib/customPropTypes";
 import extractChildren from "@paprika/helpers/lib/extractChildren";
 import isNil from "lodash/isNil";
 import uuidv4 from "uuid/v4";
@@ -12,6 +11,7 @@ import Content from "./components/Content";
 import ErrorMessage from "./components/ErrorMessage";
 import Help from "./components/Help";
 import Label from "./components/Label";
+import * as types from "./types";
 import * as sc from "./FormElement.styles";
 
 const propTypes = {
@@ -39,7 +39,7 @@ const propTypes = {
   label: PropTypes.node.isRequired,
 
   /** Size of the label, error, help and description (font size, min-height, padding, etc). */
-  size: PropTypes.oneOf(ShirtSizes.DEFAULT),
+  size: PropTypes.oneOf(types.DEFAULTS),
 
   /** FormElement contains multiple children so Renders a legend element instead of label. */
   hasFieldSet: PropTypes.bool,
@@ -54,7 +54,7 @@ const defaultProps = {
   isDisabled: false,
   isInline: false,
   isLabelVisuallyHidden: false,
-  size: ShirtSizes.MEDIUM,
+  size: types.MEDIUM,
   hasFieldSet: false,
   onClickLabel: () => {},
 };
@@ -167,6 +167,7 @@ function FormElement(props) {
 FormElement.displayName = "FormElement";
 FormElement.propTypes = propTypes;
 FormElement.defaultProps = defaultProps;
+FormElement.types = types;
 FormElement.subComponentDisplayNames = subComponentDisplayNames;
 FormElement.Content = Content;
 FormElement.Instructions = Instructions;

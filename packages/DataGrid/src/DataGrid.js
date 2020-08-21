@@ -5,8 +5,7 @@ import useI18n from "@paprika/l10n/lib/useI18n";
 import extractChildren from "@paprika/helpers/lib/extractChildren";
 import "@paprika/helpers/lib/dom/elementScrollToPolyfill";
 import nanoid from "nanoid";
-
-import types from "./types";
+import * as types from "./types";
 import useGridEventHandler, { getGridRefId } from "./hooks/useGridEventHandler";
 import ColumnDefinition from "./components/ColumnDefinition";
 import * as sc from "./DataGrid.styles";
@@ -53,7 +52,7 @@ const propTypes = {
 
 const defaultProps = {
   autofocus: true,
-  borderType: "grid",
+  borderType: types.GRID,
   data: [],
   forceTableWidthWithScrollBars: false,
   hasZebraStripes: false,

@@ -1,8 +1,8 @@
 import React from "react";
 import PropTypes from "prop-types";
-import { ShirtSizes } from "@paprika/helpers/lib/customPropTypes";
 import ButtonGroupContext from "./ButtonGroupContext";
 import Item from "./components/Item";
+import * as types from "./types";
 import * as sc from "./ButtonGroup.styles";
 
 const propTypes = {
@@ -28,7 +28,7 @@ const propTypes = {
   onChange: PropTypes.func,
 
   /** Size of the buttons (height, font size, etc). */
-  size: PropTypes.oneOf(ShirtSizes.DEFAULT),
+  size: PropTypes.oneOf(types.DEFAULTS),
 };
 
 const defaultProps = {
@@ -39,14 +39,7 @@ const defaultProps = {
   isMulti: false,
   isSemantic: true,
   onChange: () => {},
-  size: ShirtSizes.MEDIUM,
-};
-
-const keyTypes = {
-  PREV: "ArrowLeft",
-  NEXT: "ArrowRight",
-  FIRST: "Home",
-  LAST: "End",
+  size: types.MEDIUM,
 };
 
 const ButtonGroup = React.forwardRef((props, ref) => {
@@ -122,7 +115,7 @@ const ButtonGroup = React.forwardRef((props, ref) => {
   };
 
   const handleKeyDown = event => {
-    if (Object.values(keyTypes).includes(event.key)) {
+    if (Object.values(types).includes(event.key)) {
       event.stopPropagation();
 
       const enabledIndexes = getEnabledIndexes();
@@ -130,16 +123,16 @@ const ButtonGroup = React.forwardRef((props, ref) => {
       const count = enabledIndexes.length;
 
       switch (event.key) {
-        case keyTypes.NEXT:
+        case types.NEXT:
           focusButton(enabledIndexes[(enabledSelectedIndex + 1) % count]);
           break;
-        case keyTypes.PREV:
+        case types.PREV:
           focusButton(enabledIndexes[(enabledSelectedIndex - 1 + count) % count]);
           break;
-        case keyTypes.FIRST:
+        case types.FIRST:
           focusButton(enabledIndexes[0]);
           break;
-        case keyTypes.LAST:
+        case types.LAST:
           focusButton(enabledIndexes[count - 1]);
           break;
         default:
@@ -172,5 +165,6 @@ ButtonGroup.displayName = "ButtonGroup";
 ButtonGroup.propTypes = propTypes;
 ButtonGroup.defaultProps = defaultProps;
 ButtonGroup.Item = Item;
+ButtonGroup.types = types;
 
 export default ButtonGroup;

@@ -1,8 +1,8 @@
 import { css } from "styled-components";
 import { toInt, fontSizeValue, lineHeightValue, z } from "@paprika/stylers/lib/helpers";
 import { boxSizingStyles, visuallyHidden } from "@paprika/stylers/lib/includes";
-import { ShirtSizes } from "@paprika/helpers/lib/customPropTypes";
 import tokens from "@paprika/tokens";
+import * as types from "./types";
 
 const getLabelLeftPadding = (radioSize, hasLabel) => {
   return hasLabel ? `${toInt(radioSize) + toInt(tokens.space)}px` : radioSize;
@@ -18,7 +18,7 @@ const mediumRadioHalfSize = getHalfSizeCss(mediumRadioSize);
 const largeRadioHalfSize = getHalfSizeCss(largeRadioSize);
 
 const styles = {
-  [ShirtSizes.SMALL]: {
+  [types.SMALL]: {
     baseFontSize: {
       fontSize: `${fontSizeValue(-1)}px`,
     },
@@ -45,7 +45,7 @@ const styles = {
       };
     },
   },
-  [ShirtSizes.MEDIUM]: {
+  [types.MEDIUM]: {
     baseFontSize: {
       fontSize: `${fontSizeValue()}px`,
     },
@@ -72,7 +72,7 @@ const styles = {
       };
     },
   },
-  [ShirtSizes.LARGE]: {
+  [types.LARGE]: {
     baseFontSize: {
       fontSize: `${fontSizeValue()}px`,
     },

@@ -1,7 +1,7 @@
 import React from "react";
 import classNames from "classnames";
 import PropTypes from "prop-types";
-import { ShirtSizes } from "@paprika/helpers/lib/customPropTypes";
+import * as types from "./types";
 import selectStyles from "./Select.styles";
 
 const propTypes = {
@@ -12,7 +12,7 @@ const propTypes = {
   isDisabled: PropTypes.bool,
   isReadOnly: PropTypes.bool,
   placeholder: PropTypes.string,
-  size: PropTypes.oneOf(ShirtSizes.DEFAULT),
+  size: PropTypes.oneOf(types.DEFAULTS),
   value: PropTypes.string,
 };
 
@@ -24,7 +24,7 @@ const defaultProps = {
   isDisabled: false,
   isReadOnly: false,
   placeholder: null,
-  size: ShirtSizes.MEDIUM,
+  size: types.MEDIUM,
   value: "",
 };
 
@@ -86,5 +86,6 @@ const Select = React.forwardRef((props, ref) => {
 Select.displayName = "Select";
 Select.propTypes = propTypes;
 Select.defaultProps = defaultProps;
+Select.types = types;
 
 export default Select;

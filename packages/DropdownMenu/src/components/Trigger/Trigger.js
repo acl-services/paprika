@@ -2,12 +2,7 @@ import React from "react";
 import PropTypes from "prop-types";
 import RawButton from "@paprika/raw-button";
 import Button from "@paprika/button";
-
-export const ButtonTypes = {
-  ICON: "icon",
-  RAW: "raw",
-  SIMPLE: "simple",
-};
+import * as types from "../../types";
 
 const ButtonComponentMap = {
   icon: Button.Icon,
@@ -15,12 +10,10 @@ const ButtonComponentMap = {
   simple: Button,
 };
 
-ButtonTypes.ALL = Object.values(ButtonTypes);
-
 const propTypes = {
   children: PropTypes.node,
   /** Determine the styling of the button */
-  buttonType: PropTypes.oneOf(ButtonTypes.ALL),
+  buttonType: PropTypes.oneOf(types.ALL),
   isOpen: PropTypes.bool,
   menuRefId: PropTypes.string,
   onOpenMenu: PropTypes.func,
@@ -28,7 +21,7 @@ const propTypes = {
 };
 
 const defaultProps = {
-  buttonType: ButtonTypes.SIMPLE,
+  buttonType: types.SIMPLE,
   children: null,
   menuRefId: "",
   triggerRef: null,
@@ -58,4 +51,6 @@ const Trigger = props => {
 Trigger.displayName = "DropdownMenu.Trigger";
 Trigger.defaultProps = defaultProps;
 Trigger.propTypes = propTypes;
+Trigger.types = types;
+
 export default Trigger;

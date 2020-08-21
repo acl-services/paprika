@@ -1,7 +1,7 @@
 import React from "react";
 import PropTypes from "prop-types";
 import classNames from "classnames";
-import { ShirtSizes } from "@paprika/helpers/lib/customPropTypes";
+import * as types from "./types";
 import SpinnerStyles from "./Spinner.styles";
 
 const propTypes = {
@@ -15,14 +15,14 @@ const propTypes = {
   caption: PropTypes.string,
 
   /** Sets the size of the spinner */
-  size: PropTypes.oneOf(ShirtSizes.DEFAULT),
+  size: PropTypes.oneOf(types.DEFAULTS),
 };
 
 const defaultProps = {
   a11yText: null,
   className: null,
   caption: null,
-  size: ShirtSizes.MEDIUM,
+  size: types.MEDIUM,
 };
 
 const spinnerSize = {
@@ -50,5 +50,6 @@ const Spinner = ({ a11yText, className, caption, size, ...moreProps }) => {
 Spinner.displayName = "Spinner";
 Spinner.propTypes = propTypes;
 Spinner.defaultProps = defaultProps;
+Spinner.types = types;
 
 export default Spinner;

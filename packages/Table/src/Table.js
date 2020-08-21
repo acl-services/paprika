@@ -4,12 +4,12 @@ import React from "react";
 import extractChildren from "@paprika/helpers/lib/extractChildren";
 import PropTypes from "prop-types";
 import ColumnDefinition from "./components/ColumnDefinition";
-import types from "./types";
+import * as types from "./types";
 import * as sc from "./Table.styles";
 
 const propTypes = {
   /** Define the look for borders in the table Table.types.GRID, Table.types.NONE, etc.  */
-  borderType: PropTypes.oneOf(["grid", "none", "horizontal", "vertical"]),
+  borderType: PropTypes.oneOf([types.GRID, types.NONE, types.HORIZONTAL, types.VERTICAL]),
   /**  Accessible description of the table */
   a11yText: PropTypes.string.isRequired,
   children: PropTypes.node.isRequired,

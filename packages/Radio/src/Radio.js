@@ -2,7 +2,7 @@ import React from "react";
 import PropTypes from "prop-types";
 import nanoid from "nanoid";
 import CheckIcon from "@paprika/icon/lib/Check";
-import { ShirtSizes } from "@paprika/helpers/lib/customPropTypes";
+import * as types from "./types";
 import radioStyles from "./Radio.styles";
 import Group from "./components/Group";
 
@@ -26,7 +26,7 @@ const propTypes = {
   /** onClick provided by parent Group component */
   onClick: () => {},
   /** Size provided by parent Group component */
-  size: PropTypes.oneOf(ShirtSizes.DEFAULT),
+  size: PropTypes.oneOf(types.DEFAULTS),
   /** Value for tabindex attribute to override the default of 0. */
   tabIndex: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
   /** Value applied to the input if needed. */
@@ -43,7 +43,7 @@ const defaultProps = {
   isDisabled: false,
   name: "",
   onClick: () => {},
-  size: ShirtSizes.MEDIUM,
+  size: types.MEDIUM,
   tabIndex: 0,
   value: "",
 };
@@ -126,6 +126,7 @@ function Radio(props) {
 Radio.displayName = "Radio";
 Radio.propTypes = propTypes;
 Radio.defaultProps = defaultProps;
+Radio.types = types;
 Radio.Group = Group;
 
 export default Radio;

@@ -1,5 +1,6 @@
 import React from "react";
 import PropTypes from "prop-types";
+import * as types from "../../types";
 import * as sc from "./Dialog.styles";
 
 const propTypes = {
@@ -9,7 +10,7 @@ const propTypes = {
   getPushContentElement: PropTypes.func,
   groupOffsetY: PropTypes.number,
   header: PropTypes.node,
-  kind: PropTypes.oneOf(["default", "child"]),
+  kind: PropTypes.oneOf([types.SIDEPANEL_DEFAULT, types.SIDEPANEL_CHILD]),
   isCompact: PropTypes.bool,
   isInline: PropTypes.bool,
   offsetY: PropTypes.number,
@@ -28,7 +29,7 @@ const defaultProps = {
   getPushContentElement: () => {},
   groupOffsetY: 0,
   header: null,
-  kind: "default",
+  kind: types.SIDEPANEL_DEFAULT,
   isCompact: false,
   isInline: false,
   offsetY: 0,
@@ -143,3 +144,4 @@ export default Dialog;
 
 Dialog.propTypes = propTypes;
 Dialog.defaultProps = defaultProps;
+Dialog.types = types;

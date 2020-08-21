@@ -1,7 +1,7 @@
 import React from "react";
 import PropTypes from "prop-types";
-import { ShirtSizes } from "@paprika/helpers/lib/customPropTypes";
 import RawButton from "@paprika/raw-button";
+import * as types from "./types";
 
 import switchStyles, { KnobStyled, UnderlayStyled } from "./Switch.styles";
 
@@ -22,7 +22,7 @@ const propTypes = {
   onChange: PropTypes.func,
 
   /** Size of the switch. */
-  size: PropTypes.oneOf(ShirtSizes.DEFAULT),
+  size: PropTypes.oneOf(types.DEFAULTS),
 };
 
 const defaultProps = {
@@ -31,7 +31,7 @@ const defaultProps = {
   isChecked: false,
   isDisabled: false,
   onChange: () => {},
-  size: ShirtSizes.MEDIUM,
+  size: types.MEDIUM,
 };
 
 function Switch(props) {
@@ -60,5 +60,6 @@ function Switch(props) {
 Switch.displayName = "Switch";
 Switch.propTypes = propTypes;
 Switch.defaultProps = defaultProps;
+Switch.types = types;
 
 export default Switch;

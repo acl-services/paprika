@@ -4,19 +4,19 @@ import tokens from "@paprika/tokens";
 import stylers from "@paprika/stylers";
 
 const KnobPositionStyles = {
-  small: css`
+  SMALL: css`
     transform: translateX(12px);
   `,
-  medium: css`
+  MEDIUM: css`
     transform: translate(16px, 0);
   `,
-  large: css`
+  LARGE: css`
     transform: translate(20px);
   `,
 };
 
 const KnobSizeStyles = {
-  small: css`
+  SMALL: css`
     height: 12px;
     width: 12px;
 
@@ -24,7 +24,7 @@ const KnobSizeStyles = {
       height: 13px;
     }
   `,
-  medium: css`
+  MEDIUM: css`
     height: 16px;
     width: 16px;
 
@@ -32,7 +32,7 @@ const KnobSizeStyles = {
       height: 17px;
     }
   `,
-  large: css`
+  LARGE: css`
     height: 20px;
     width: 20px;
 
@@ -43,15 +43,15 @@ const KnobSizeStyles = {
 };
 
 const UnderlaySizeStyles = {
-  small: css`
+  SMALL: css`
     height: ${stylers.spacer(2)};
     width: 28px;
   `,
-  medium: css`
+  MEDIUM: css`
     height: ${stylers.spacer(2.5)};
     width: 36px;
   `,
-  large: css`
+  LARGE: css`
     height: ${stylers.spacer(3)};
     width: 44px;
   `,

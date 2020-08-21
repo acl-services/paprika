@@ -8,14 +8,14 @@ const smallSize = `${spacer(4)}`;
 const mediumSize = `${spacer(5)}`;
 
 export const avatarSizeStyles = {
-  small: `
+  SMALL: `
     border-radius: 10px;
     height: ${smallSize};
     width: ${smallSize};
     ${stylers.fontSize(2)};
   `,
 
-  medium: `
+  MEDIUM: `
     border-radius: 12px;
     height: ${mediumSize};
     width: ${mediumSize};

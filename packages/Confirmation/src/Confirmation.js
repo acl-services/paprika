@@ -3,20 +3,20 @@ import PropTypes from "prop-types";
 import nanoid from "nanoid";
 import Button from "@paprika/button";
 import Heading from "@paprika/heading";
-import { ShirtSizes } from "@paprika/helpers/lib/customPropTypes";
 import useI18n from "@paprika/l10n/lib/useI18n";
 import Popover from "@paprika/popover";
 import TriggerButton from "./components/TriggerButton";
+import * as types from "./types";
 import { confirmStyles, confirmBodyStyles, confirmFooterStyles } from "./Confirmation.styles";
 
 const propTypes = {
   /** Content of the popover confirmation */
   body: PropTypes.node,
   /** Size of the button */
-  buttonSize: PropTypes.oneOf(ShirtSizes.DEFAULT),
+  buttonSize: PropTypes.oneOf(types.DEFAULTS),
   children: PropTypes.node,
   /** Determine the styling of the confirm button */
-  confirmButtonType: PropTypes.oneOf([Button.Kinds.PRIMARY, Button.Kinds.DESTRUCTIVE]),
+  confirmButtonType: PropTypes.oneOf([types.PRIMARY, types.DESTRUCTIVE]),
   /** Label for the confirm button  */
   confirmLabel: PropTypes.string.isRequired,
   /** If the popover is open by default */
@@ -33,9 +33,9 @@ const propTypes = {
 
 const defaultProps = {
   body: null,
-  buttonSize: ShirtSizes.MEDIUM,
+  buttonSize: types.MEDIUM,
   children: null,
-  confirmButtonType: Button.Kinds.DESTRUCTIVE,
+  confirmButtonType: types.DESTRUCTIVE,
   defaultIsOpen: false,
   heading: null,
   isPending: false,
@@ -149,7 +149,7 @@ const Confirmation = props => {
               data-pka-anchor="confirmation.cancel-button"
               isDisabled={isPending}
               isSemantic={false}
-              kind={Button.Kinds.MINOR}
+              kind={types.MINOR}
               onClick={handleCloseConfirm}
               size={buttonSize}
             >
@@ -179,6 +179,7 @@ const Confirmation = props => {
 Confirmation.displayName = "Confirmation";
 Confirmation.propTypes = propTypes;
 Confirmation.defaultProps = defaultProps;
+Confirmation.types = types;
 Confirmation.TriggerButton = TriggerButton;
 
 export default Confirmation;
