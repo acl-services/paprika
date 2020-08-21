@@ -109,6 +109,8 @@ or refer to the [AirTable summary](https://airtable.com/shrkJwkvtbgc3FT22).
 <a href="https://www.npmjs.com/package/@paprika/toast"><img src="https://img.shields.io/npm/v/@paprika/toast?label=Toast" /></a>
 <a href="https://www.npmjs.com/package/@paprika/tokens"><img src="https://img.shields.io/npm/v/@paprika/tokens?label=tokens" /></a>
 <a href="https://www.npmjs.com/package/@paprika/uploader"><img src="https://img.shields.io/npm/v/@paprika/uploader?label=Uploader" /></a>
+<a href="https://www.npmjs.com/package/@paprika/table"><img src="https://img.shields.io/npm/v/@paprika/uploader?label=Table" /></a>
+<a href="https://www.npmjs.com/package/@paprika/time-picker"><img src="https://img.shields.io/npm/v/@paprika/uploader?label=time-picker" /></a>
 
 ## Contributing
 
