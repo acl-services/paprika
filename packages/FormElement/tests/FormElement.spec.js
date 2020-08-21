@@ -14,15 +14,7 @@ function renderComponent(props = {}) {
       <FormElement label={label || defaultLabel} {...moreProps}>
         {children || (
           <FormElement.Content>
-            {({ idForLabel, ariaDescribedBy }) => (
-              <input
-                aria-describedby={ariaDescribedBy}
-                readOnly={isReadOnly}
-                disabled={isDisabled}
-                data-pka-anchor="form-element.input"
-                id={idForLabel}
-              />
-            )}
+            <input readOnly={isReadOnly} disabled={isDisabled} data-pka-anchor="form-element.input" />
           </FormElement.Content>
         )}
       </FormElement>
@@ -84,9 +76,7 @@ describe("FormElement", () => {
       <L10n>
         <FormElement label={defaultLabel}>
           <FormElement.Content>
-            {({ idForLabel, ariaDescribedBy }) => (
-              <input aria-describedby={ariaDescribedBy} data-pka-anchor="form-element.input" id={idForLabel} />
-            )}
+            <input data-pka-anchor="form-element.input" />
           </FormElement.Content>
           <FormElement.Description>Sample description</FormElement.Description>
           <FormElement.Help>Sample help</FormElement.Help>
@@ -103,9 +93,7 @@ describe("FormElement", () => {
       <L10n>
         <FormElement label={defaultLabel}>
           <FormElement.Content>
-            {({ idForLabel, ariaDescribedBy }) => (
-              <input aria-describedby={ariaDescribedBy} data-pka-anchor="form-element.input" id={idForLabel} />
-            )}
+            <input data-pka-anchor="form-element.input" />
           </FormElement.Content>
           <FormElement.Instructions>
             Instructions Panel Content Instructions Panel Content Instructions Panel Content
@@ -126,9 +114,7 @@ describe("FormElement", () => {
       <L10n>
         <FormElement label={defaultLabel}>
           <FormElement.Content>
-            {({ idForLabel, ariaDescribedBy }) => (
-              <input aria-describedby={ariaDescribedBy} data-pka-anchor="form-element.input" id={idForLabel} />
-            )}
+            <input data-pka-anchor="form-element.input" />
           </FormElement.Content>
           <FormElement.Description>Sample description</FormElement.Description>
           <FormElement.Error>Sample error</FormElement.Error>
@@ -145,9 +131,7 @@ describe("FormElement", () => {
       <L10n>
         <FormElement label={defaultLabel} hasFieldSet>
           <FormElement.Content>
-            {({ idForLabel, ariaDescribedBy }) => (
-              <input aria-describedby={ariaDescribedBy} data-pka-anchor="form-element.input" id={idForLabel} />
-            )}
+            <input data-pka-anchor="form-element.input" />
           </FormElement.Content>
           <FormElement.Description>Sample description</FormElement.Description>
           <FormElement.Error>Sample error</FormElement.Error>
@@ -164,9 +148,7 @@ describe("FormElement", () => {
       <L10n>
         <FormElement label={defaultLabel}>
           <FormElement.Content>
-            {({ idForLabel, ariaDescribedBy }) => (
-              <input aria-describedby={ariaDescribedBy} data-pka-anchor="form-element.input" id={idForLabel} />
-            )}
+            <input data-pka-anchor="form-element.input" />
           </FormElement.Content>
           <FormElement.Description>Sample description</FormElement.Description>
           <FormElement.Error>Sample error</FormElement.Error>

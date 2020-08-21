@@ -94,20 +94,16 @@ import Input from "@paprika/input";
 
 <FormElement label="Name">
   <FormElement.Content>
-    {({ idForLabel, ariaDescribedBy }) => (
-      <Input
-        id={idForLabel}
-        onChange={handleChange}
-        value={value}
-        placeholder="Form placeholder"
-        aria-describedby={ariaDescribedBy}
-        aria-required={hasRequiredLabel}
-        hasError={false}
-        isDisabled={isDisabled}
-        isReadOnly={isReadOnly}
-        size={size}
-      />
-    )}
+    <Input
+      onChange={handleChange}
+      value={value}
+      placeholder="Form placeholder"
+      aria-required={hasRequiredLabel}
+      hasError={false}
+      isDisabled={isDisabled}
+      isReadOnly={isReadOnly}
+      size={size}
+    />
   </FormElement.Content>
 </FormElement>;
 ```
@@ -120,11 +116,9 @@ import FormElement from "@paprika/form-element";
 
 <FormElement label="Name">
   <FormElement.Content>
-    {({ idForLabel, ariaDescribedBy }) => (
-      <DatePicker onError={() => {}} hasError={Boolean(errorText.length)} id={idForLabel} onChange={() => {}}>
-        <DatePicker.Input aria-describedby={ariaDescribedBy} />
-      </DatePicker>
-    )}
+    <DatePicker onError={() => {}} hasError={Boolean(errorText.length)} onChange={() => {}}>
+      <DatePicker.Input />
+    </DatePicker>
   </FormElement.Content>
 </FormElement>;
 ```
@@ -136,16 +130,12 @@ import FormElement from "@paprika/form-element";
 
 <FormElement hasRequiredLabel={hasRequiredLabel} label="Name">
   <FormElement.Content>
-    {({ idForLabel, ariaDescribedBy }) => (
-      <input
-        aria-required={hasRequiredLabel}
-        aria-describedby={ariaDescribedBy}
-        aria-invalid={Boolean(errorText.length)}
-        disabled={isDisabled}
-        id={idForLabel}
-        readOnly={isReadOnly}
-      />
-    )}
+    <input
+      aria-required={hasRequiredLabel}
+      aria-invalid={Boolean(errorText.length)}
+      disabled={isDisabled}
+      readOnly={isReadOnly}
+    />
   </FormElement.Content>
 </FormElement>;
 ```

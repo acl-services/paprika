@@ -22,34 +22,7 @@ const ExampleStory = () => {
   const size = ShirtSizes.MEDIUM;
   const optionsArray = ["Black Panther", "Wonder Woman", "Spiderman", "The Incredibles", "Thor", <span>test</span>];
   const buttonOptionsArray = ["Black Panther", "Wonder Woman", "Spiderman", "The Incredibles", "Thor"];
-  const listboxOptions = optionsArray.map(hero => <ListBox.Option key={hero}>{hero}</ListBox.Option>);
-  const buttonGroupOptions = buttonOptionsArray.map(hero => (
-    <ButtonGroup.Item value={hero} key={hero}>
-      {hero}
-    </ButtonGroup.Item>
-  ));
   const refButtonGroup = React.useRef(null);
-
-  const getCheckboxOptions = ariaDescribedBy =>
-    optionsArray.map(hero => (
-      <Checkbox ariaDescribedBy={ariaDescribedBy} key={hero} onChange={() => {}} isDisabled={isDisabled} size={size}>
-        {hero}
-      </Checkbox>
-    ));
-
-  const getRadioOptions = ariaDescribedBy => (
-    <Radio.Group
-      onChange={activeIndex => {
-        action(`Radio index selected is ${activeIndex}`)();
-      }}
-    >
-      {optionsArray.map(hero => (
-        <Radio ariaDescribedBy={ariaDescribedBy} key={hero} isDisabled={isDisabled} size={size}>
-          {hero}
-        </Radio>
-      ))}
-    </Radio.Group>
-  );
 
   const [value, setValue] = React.useState("");
 
@@ -72,20 +45,16 @@ const ExampleStory = () => {
           </span>
         </FormElement.Instructions>
         <FormElement.Content>
-          {({ idForLabel, ariaDescribedBy }) => (
-            <Input
-              id={idForLabel}
-              onChange={handleChange}
-              value={value}
-              placeholder="Form placeholder"
-              aria-describedby={ariaDescribedBy}
-              aria-required={hasRequiredLabel}
-              hasError={Boolean(errorText.length)}
-              isDisabled={isDisabled}
-              isReadOnly={isReadOnly}
-              size={size}
-            />
-          )}
+          <Input
+            onChange={handleChange}
+            value={value}
+            placeholder="Form placeholder"
+            aria-required={hasRequiredLabel}
+            hasError={Boolean(errorText.length)}
+            isDisabled={isDisabled}
+            isReadOnly={isReadOnly}
+            size={size}
+          />
         </FormElement.Content>
         <FormElement.Description>
           <span>Description of this field.</span>
@@ -95,14 +64,16 @@ const ExampleStory = () => {
           Give me some help. <a href="wegalvanize.com">Learn more</a>.
         </FormElement.Help>
       </FormElement>
-
       <Rule />
-
       <Tagline>Form Element with checkboxes.</Tagline>
       <br />
       <FormElement hasFieldSet label="Form Label">
         <FormElement.Content>
-          {({ ariaDescribedBy: ariaDescribedByOuter }) => getCheckboxOptions(ariaDescribedByOuter)}
+          {optionsArray.map(hero => (
+            <Checkbox key={hero} onChange={() => {}} isDisabled={isDisabled} size={size}>
+              {hero}
+            </Checkbox>
+          ))}
         </FormElement.Content>
         <FormElement.Description>
           <span>Description of this field.</span>
@@ -112,14 +83,22 @@ const ExampleStory = () => {
           Give me some help. <a href="wegalvanize.com">Learn more</a>.
         </FormElement.Help>
       </FormElement>
-
       <Rule />
-
       <Tagline>Form Element with radios.</Tagline>
       <br />
       <FormElement hasFieldSet label="Form Label">
         <FormElement.Content>
-          {({ ariaDescribedBy: ariaDescribedByOuter }) => getRadioOptions(ariaDescribedByOuter)}
+          <Radio.Group
+            onChange={activeIndex => {
+              action(`Radio index selected is ${activeIndex}`)();
+            }}
+          >
+            {optionsArray.map(hero => (
+              <Radio key={hero} isDisabled={isDisabled} size={size}>
+                {hero}
+              </Radio>
+            ))}
+          </Radio.Group>
         </FormElement.Content>
         <FormElement.Description>
           <span>Description of this field.</span>
@@ -130,16 +109,13 @@ const ExampleStory = () => {
         </FormElement.Help>
       </FormElement>
       <Rule />
-
       <Tagline>Form Element with Date Picker.</Tagline>
       <br />
       <FormElement label="Form Label">
         <FormElement.Content>
-          {({ idForLabel, ariaDescribedBy }) => (
-            <DatePicker onError={() => {}} hasError={Boolean(errorText.length)} id={idForLabel} onChange={() => {}}>
-              <DatePicker.Input aria-describedby={ariaDescribedBy} />
-            </DatePicker>
-          )}
+          <DatePicker onError={() => {}} hasError={Boolean(errorText.length)} onChange={() => {}}>
+            <DatePicker.Input />
+          </DatePicker>
         </FormElement.Content>
         <FormElement.Description>
           <span>Description of this field.</span>
@@ -149,14 +125,16 @@ const ExampleStory = () => {
           Give me some help. <a href="wegalvanize.com">Learn more</a>.
         </FormElement.Help>
       </FormElement>
-
       <Rule />
-
       <Tagline>Form Element with Listbox.</Tagline>
       <br />
       <FormElement label="Form Label">
         <FormElement.Content>
-          {({ refLabel }) => <ListBox refLabel={refLabel}>{listboxOptions}</ListBox>}
+          <ListBox>
+            {optionsArray.map(hero => (
+              <ListBox.Option key={hero}>{hero}</ListBox.Option>
+            ))}
+          </ListBox>
         </FormElement.Content>
         <FormElement.Description>
           <span>Description of this field.</span>
@@ -172,7 +150,13 @@ const ExampleStory = () => {
       <br />
       <FormElement label="Form Label" onClickLabel={() => refButtonGroup.current.focus()}>
         <FormElement.Content>
-          {() => <ButtonGroup ref={refButtonGroup}>{buttonGroupOptions}</ButtonGroup>}
+          <ButtonGroup ref={refButtonGroup}>
+            {buttonOptionsArray.map(hero => (
+              <ButtonGroup.Item value={hero} key={hero}>
+                {hero}
+              </ButtonGroup.Item>
+            ))}
+          </ButtonGroup>
         </FormElement.Content>
         <FormElement.Description>
           <span>Description of this field.</span>
@@ -188,16 +172,12 @@ const ExampleStory = () => {
       <br />
       <FormElement isDisabled={isDisabled} hasRequiredLabel={hasRequiredLabel} label="Form Label">
         <FormElement.Content>
-          {({ idForLabel, ariaDescribedBy }) => (
-            <input
-              aria-required={hasRequiredLabel}
-              aria-describedby={ariaDescribedBy}
-              aria-invalid={Boolean(errorText.length)}
-              disabled={isDisabled}
-              id={idForLabel}
-              readOnly={isReadOnly}
-            />
-          )}
+          <input
+            aria-required={hasRequiredLabel}
+            aria-invalid={Boolean(errorText.length)}
+            disabled={isDisabled}
+            readOnly={isReadOnly}
+          />
         </FormElement.Content>
         <FormElement.Error>{errorText}</FormElement.Error>
         <FormElement.Description>
@@ -210,68 +190,76 @@ const ExampleStory = () => {
 
       <Rule />
 
+      <Tagline>Form Element with multiple children.</Tagline>
+      <br />
+      <FormElement isDisabled={isDisabled} hasRequiredLabel={hasRequiredLabel} label="Form Label">
+        <FormElement.Content>
+          <input
+            aria-required={hasRequiredLabel}
+            aria-invalid={Boolean(errorText.length)}
+            disabled={isDisabled}
+            readOnly={isReadOnly}
+          />
+          <input
+            aria-required={hasRequiredLabel}
+            aria-invalid={Boolean(errorText.length)}
+            disabled={isDisabled}
+            readOnly={isReadOnly}
+          />
+        </FormElement.Content>
+        <FormElement.Error>{errorText}</FormElement.Error>
+        <FormElement.Description>
+          <span>Description of this field.</span>
+        </FormElement.Description>
+        <FormElement.Help>
+          Give me some help. <a href="wegalvanize.com">Learn more</a>.
+        </FormElement.Help>
+      </FormElement>
+
       <Tagline>Form Element nested Form Elements.</Tagline>
       <br />
       <FormElement hasFieldSet label="Form Legend">
         <FormElement.Content>
-          {({ ariaDescribedBy: ariaDescribedByOuter }) => (
-            <>
-              <FormElement isInline label="Sub Label">
-                <FormElement.Content>
-                  {({ idForLabel, ariaDescribedBy }) => (
-                    <>
-                      <input
-                        aria-required={hasRequiredLabel}
-                        aria-describedby={ariaDescribedBy + ariaDescribedByOuter}
-                        aria-invalid={Boolean(errorText.length)}
-                        disabled={isDisabled}
-                        id={idForLabel}
-                        readOnly={isReadOnly}
-                      />
-                      <input
-                        aria-required={hasRequiredLabel}
-                        aria-describedby={ariaDescribedBy + ariaDescribedByOuter}
-                        aria-invalid={Boolean(errorText.length)}
-                        disabled={isDisabled}
-                        readOnly={isReadOnly}
-                      />
-                    </>
-                  )}
-                </FormElement.Content>
-                <FormElement.Error>{errorText}</FormElement.Error>
-                <FormElement.Help>
-                  Give me some help. <a href="wegalvanize.com">Learn more</a>.
-                </FormElement.Help>
-              </FormElement>
-              <FormElement isInline label="Sub Label 2">
-                <FormElement.Content>
-                  {({ idForLabel, ariaDescribedBy }) => (
-                    <>
-                      <input
-                        aria-required={hasRequiredLabel}
-                        aria-describedby={ariaDescribedBy + ariaDescribedByOuter}
-                        aria-invalid={Boolean(errorText.length)}
-                        disabled={isDisabled}
-                        id={idForLabel}
-                        readOnly={isReadOnly}
-                      />
-                      <input
-                        aria-required={hasRequiredLabel}
-                        aria-describedby={ariaDescribedBy + ariaDescribedByOuter}
-                        aria-invalid={Boolean(errorText.length)}
-                        disabled={isDisabled}
-                        readOnly={isReadOnly}
-                      />
-                    </>
-                  )}
-                </FormElement.Content>
-                <FormElement.Error>{errorText}</FormElement.Error>
-                <FormElement.Help>
-                  Give me some help. <a href="wegalvanize.com">Learn more</a>.
-                </FormElement.Help>
-              </FormElement>
-            </>
-          )}
+          <FormElement isInline label="Sub Label">
+            <FormElement.Content>
+              <input
+                aria-required={hasRequiredLabel}
+                aria-invalid={Boolean(errorText.length)}
+                disabled={isDisabled}
+                readOnly={isReadOnly}
+              />
+              <input
+                aria-required={hasRequiredLabel}
+                aria-invalid={Boolean(errorText.length)}
+                disabled={isDisabled}
+                readOnly={isReadOnly}
+              />
+            </FormElement.Content>
+            <FormElement.Error>{errorText}</FormElement.Error>
+            <FormElement.Help>
+              Give me some help. <a href="wegalvanize.com">Learn more</a>.
+            </FormElement.Help>
+          </FormElement>
+          <FormElement isInline label="Sub Label 2">
+            <FormElement.Content>
+              <input
+                aria-required={hasRequiredLabel}
+                aria-invalid={Boolean(errorText.length)}
+                disabled={isDisabled}
+                readOnly={isReadOnly}
+              />
+              <input
+                aria-required={hasRequiredLabel}
+                aria-invalid={Boolean(errorText.length)}
+                disabled={isDisabled}
+                readOnly={isReadOnly}
+              />
+            </FormElement.Content>
+            <FormElement.Error>{errorText}</FormElement.Error>
+            <FormElement.Help>
+              Give me some help. <a href="wegalvanize.com">Learn more</a>.
+            </FormElement.Help>
+          </FormElement>
         </FormElement.Content>
         <FormElement.Error>{errorText}</FormElement.Error>
         <FormElement.Description>
@@ -295,20 +283,16 @@ const ExampleStory = () => {
           </span>
         </FormElement.Instructions>
         <FormElement.Content>
-          {({ idForLabel, ariaDescribedBy }) => (
-            <Input
-              id={idForLabel}
-              onChange={handleChange}
-              value={value}
-              placeholder="Form placeholder"
-              aria-describedby={ariaDescribedBy}
-              aria-required={hasRequiredLabel}
-              hasError={Boolean(errorText.length)}
-              isDisabled={isDisabled}
-              isReadOnly={isReadOnly}
-              size={size}
-            />
-          )}
+          <Input
+            onChange={handleChange}
+            value={value}
+            placeholder="Form placeholder"
+            aria-required={hasRequiredLabel}
+            hasError={Boolean(errorText.length)}
+            isDisabled={isDisabled}
+            isReadOnly={isReadOnly}
+            size={size}
+          />
         </FormElement.Content>
       </FormElement>
       <Rule />
@@ -331,20 +315,16 @@ const ExampleStory = () => {
           </span>
         </FormElement.Instructions>
         <FormElement.Content>
-          {({ idForLabel, ariaDescribedBy }) => (
-            <Input
-              id={idForLabel}
-              onChange={handleChange}
-              value={value}
-              placeholder="Form placeholder"
-              aria-describedby={ariaDescribedBy}
-              aria-required={hasRequiredLabel}
-              hasError={Boolean(errorText.length)}
-              isDisabled={isDisabled}
-              isReadOnly={isReadOnly}
-              size={size}
-            />
-          )}
+          <Input
+            onChange={handleChange}
+            value={value}
+            placeholder="Form placeholder"
+            aria-required={hasRequiredLabel}
+            hasError={Boolean(errorText.length)}
+            isDisabled={isDisabled}
+            isReadOnly={isReadOnly}
+            size={size}
+          />
         </FormElement.Content>
         <FormElement.Help>
           Give me some help. <a href="wegalvanize.com">Learn more</a>.

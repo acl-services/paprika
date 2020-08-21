@@ -53,20 +53,16 @@ const ExampleStory = props => {
       <FormElement {...props}>
         <FormElement.Instructions>{instructionsPropKnobs().instructionsText}</FormElement.Instructions>
         <FormElement.Content>
-          {({ idForLabel, ariaDescribedBy }) => (
-            <Input
-              id={idForLabel}
-              onChange={handleChange}
-              value={value}
-              placeholder="Form placeholder"
-              aria-describedby={ariaDescribedBy}
-              aria-required={props.hasRequiredLabel}
-              hasError={Boolean(errorPropKnobs().errorText)}
-              isDisabled={props.isDisabled}
-              isReadOnly={props.isReadOnly}
-              size={props.size}
-            />
-          )}
+          <Input
+            onChange={handleChange}
+            value={value}
+            placeholder="Form placeholder"
+            aria-required={props.hasRequiredLabel}
+            hasError={Boolean(errorPropKnobs().errorText)}
+            isDisabled={props.isDisabled}
+            isReadOnly={props.isReadOnly}
+            size={props.size}
+          />
         </FormElement.Content>
         <FormElement.Error>{errorPropKnobs().errorText}</FormElement.Error>
         <FormElement.Description>

@@ -38,16 +38,12 @@ const ExampleStory = () => {
           </span>
         </FormElement.Instructions>
         <FormElement.Content>
-          {({ idForLabel, ariaDescribedBy }) => (
-            <Input
-              id={idForLabel}
-              onChange={handleChange}
-              value={value}
-              placeholder="Form placeholder"
-              aria-describedby={ariaDescribedBy}
-              hasError={Boolean(errorText.length)}
-            />
-          )}
+          <Input
+            onChange={handleChange}
+            value={value}
+            placeholder="Form placeholder"
+            hasError={Boolean(errorText.length)}
+          />
         </FormElement.Content>
         <FormElement.Description>
           <span>This is description text</span>
