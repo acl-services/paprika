@@ -12,7 +12,7 @@
     "lint:fix": "yarn lint --fix",
     "lint": "eslint packages --report-unused-disable-directives",
     "lint:jss": "stylelint './packages/**/src/**/*.styles.js'",
-    "prepare": "yarn cleanup && lerna run pretranspile && yarn transpile && yarn readme && yarn changelog",
+    "prepare": "yarn cleanup && lerna run pretranspile && yarn transpile && yarn readme",
     "prettier:format": "yarn prettier --write",
     "prettier": "prettier \"**/*.+(js|json|yml|css|scss)\"",
     "readme": "node scripts/readmeFiles.js",
