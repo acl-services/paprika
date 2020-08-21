@@ -60,117 +60,83 @@ function Content(props) {
       "aria-describedby": ariaDescribedBy,
     });
 
-  const getAccessibleElement = (elements, cloneFn) => {
-    return Array.isArray(elements) ? elements.map(cloneFn) : cloneFn(elements);
+  const getAccessibleElement = (elements, cloneFn) =>
+    Array.isArray(elements) ? elements.map(cloneFn) : cloneFn(elements);
+
+  const renderInput = extractedInputs => getAccessibleElement(extractedInputs, cloneWithAriaDescribedByAndLabelId);
+
+  const renderCheckboxes = extractedCheckboxes => getAccessibleElement(extractedCheckboxes, cloneWithAriaDescribedBy);
+
+  const renderRadioGroup = extractedRadioGroup => {
+    const radioElements = extractedRadioGroup.props.children.map(cloneWithAriaDescribedBy);
+    return React.cloneElement(extractedRadioGroup, {
+      children: radioElements,
+    });
   };
 
-  function renderInput() {
-    const extractedInputs = extractedChildren[supportedComponentNames.Input];
-    if (extractedInputs) {
-      return getAccessibleElement(extractedInputs, cloneWithAriaDescribedByAndLabelId);
-    }
+  const renderTimePicker = extractedTimePicker => cloneWithAriaDescribedByAndLabelId(extractedTimePicker);
 
-    return null;
-  }
+  const renderDatePicker = extractedDatePicker => {
+    const dataPickerInput = cloneWithAriaDescribedByAndLabelId(extractedDatePicker.props.children);
+    return React.cloneElement(extractedDatePicker, {
+      children: dataPickerInput,
+    });
+  };
 
-  function renderCheckboxes() {
-    const extractedCheckboxes = extractedChildren[supportedComponentNames.Checkbox];
-    if (extractedCheckboxes) {
-      return getAccessibleElement(extractedCheckboxes, cloneWithAriaDescribedBy);
-    }
-
-    return null;
-  }
-
-  function renderRadioGroup() {
-    const extractedRadioGroup = extractedChildren[supportedComponentNames.RadioGroup];
-    if (extractedRadioGroup) {
-      const radioElements = extractedRadioGroup.props.children.map(cloneWithAriaDescribedBy);
-      return React.cloneElement(extractedRadioGroup, {
-        children: radioElements,
-      });
-    }
-
-    return null;
-  }
-
-  function renderTimePicker() {
-    const extractedTimePicker = extractedChildren[supportedComponentNames.TimePicker];
-    if (extractedTimePicker) {
-      return cloneWithAriaDescribedByAndLabelId(extractedTimePicker);
-    }
-
-    return null;
-  }
-
-  function renderDatePicker() {
-    const extractedDatePicker = extractedChildren[supportedComponentNames.DatePicker];
-    if (extractedDatePicker) {
-      const dataPickerInput = cloneWithAriaDescribedByAndLabelId(extractedDatePicker.props.children);
-      return React.cloneElement(extractedDatePicker, {
-        children: dataPickerInput,
-      });
-    }
-
-    return null;
-  }
-
-  function renderOtherChildren() {
+  const renderOtherChildren = children => {
     const elementClone = element => {
       if (element.type === "input") {
         return cloneWithAriaDescribedByAndLabelId(element);
       }
       return element;
     };
+    return children.map(elementClone);
+  };
 
-    return extractedChildren.children.map(elementClone);
-  }
+  const renderListBox = extractedListBox =>
+    React.cloneElement(extractedListBox, {
+      refLabel,
+    });
 
-  function renderListBox() {
-    const extractedListBox = extractedChildren[supportedComponentNames.ListBox];
-    if (extractedListBox) {
-      return React.cloneElement(extractedListBox, {
-        refLabel,
-      });
+  const renderFormElement = extractedFormElement => {
+    const formElementChildren = extractedFormElement.map(formElement =>
+      formElement.props.children.map(item => {
+        if (item.type.displayName === "FormElement.Content") {
+          return React.cloneElement(item, { wrapperAriaDescribedBy: ariaDescribedBy });
+        }
+        return item;
+      })
+    );
+
+    return extractedFormElement.map((formElement, index) =>
+      React.cloneElement(formElement, { children: formElementChildren[index] })
+    );
+  };
+
+  const renderFunctionMap = {
+    Input: renderInput,
+    Checkbox: renderCheckboxes,
+    "Radio.Group": renderRadioGroup,
+    DatePicker: renderDatePicker,
+    ListBox: renderListBox,
+    FormElement: renderFormElement,
+    TimePicker: renderTimePicker,
+    children: renderOtherChildren,
+  };
+
+  function renderExtractedChildren() {
+    for (const [key, value] of Object.entries(extractedChildren)) {
+      return renderFunctionMap[key](value);
     }
-
-    return null;
   }
 
   if (!children) {
     return null;
   }
 
-  function renderFormElement() {
-    const extractedFormElement = extractedChildren[supportedComponentNames.FormElement];
-    if (extractedFormElement) {
-      const formElementChildren = extractedFormElement.map(formElement => {
-        return formElement.props.children.map(item => {
-          if (item.type.displayName === "FormElement.Content") {
-            return React.cloneElement(item, { wrapperAriaDescribedBy: ariaDescribedBy });
-          }
-          return item;
-        });
-      });
-
-      return extractedFormElement.map((formElement, index) => {
-        return React.cloneElement(formElement, { children: formElementChildren[index] });
-      });
-    }
-
-    return null;
-  }
-
   return (
     <sc.ContentContainer data-pka-anchor="form-element.content" {...moreProps}>
-      {renderInput()}
-      {renderCheckboxes()}
-      {renderRadioGroup()}
-      {renderDatePicker()}
-      {renderListBox()}
-      {renderFormElement()}
-      {renderTimePicker()}
-      {renderOtherChildren()}
+      {renderExtractedChildren()}
     </sc.ContentContainer>
   );
 }
