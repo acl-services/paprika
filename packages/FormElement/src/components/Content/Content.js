@@ -57,28 +57,33 @@ function Content(props) {
       "aria-describedby": ariaDescribedBy,
     });
 
+  const getAccessibleElement = (elements, cloneFn) => {
+    return Array.isArray(elements) ? elements.map(cloneFn) : cloneFn(elements);
+  };
+
   function renderInput() {
-    if (extractedChildren[supportedComponentNames.Input]) {
-      return cloneWithAriaDescribedByAndLabelId(supportedComponentNames.Input);
+    const extractedInputs = extractedChildren[supportedComponentNames.Input];
+    if (extractedInputs) {
+      return getAccessibleElement(extractedInputs, cloneWithAriaDescribedByAndLabelId);
     }
 
     return null;
   }
 
   function renderCheckboxes() {
-    if (extractedChildren[supportedComponentNames.Checkbox]) {
-      return extractedChildren[supportedComponentNames.Checkbox].map(cloneWithAriaDescribedBy);
+    const extractedCheckboxes = extractedChildren[supportedComponentNames.Checkbox];
+    if (extractedCheckboxes) {
+      return getAccessibleElement(extractedCheckboxes, cloneWithAriaDescribedBy);
     }
 
     return null;
   }
 
   function renderRadioGroup() {
-    if (extractedChildren[supportedComponentNames.RadioGroup]) {
-      const radioElements = extractedChildren[supportedComponentNames.RadioGroup].props.children.map(
-        cloneWithAriaDescribedBy
-      );
-      return React.cloneElement(extractedChildren[supportedComponentNames.RadioGroup], {
+    const extractedRadioGroup = extractedChildren[supportedComponentNames.RadioGroup];
+    if (extractedRadioGroup) {
+      const radioElements = extractedRadioGroup.props.children.map(cloneWithAriaDescribedBy);
+      return React.cloneElement(extractedRadioGroup, {
         children: radioElements,
       });
     }
@@ -87,11 +92,10 @@ function Content(props) {
   }
 
   function renderDatePicker() {
-    if (extractedChildren[supportedComponentNames.DatePicker]) {
-      const dataPickerInput = cloneWithAriaDescribedBy(
-        extractedChildren[supportedComponentNames.DatePicker].props.children
-      );
-      return React.cloneElement(extractedChildren[supportedComponentNames.DatePicker], {
+    const extractedDatePicker = extractedChildren[supportedComponentNames.DatePicker];
+    if (extractedDatePicker) {
+      const dataPickerInput = cloneWithAriaDescribedBy(extractedDatePicker.props.children);
+      return React.cloneElement(extractedDatePicker, {
         children: dataPickerInput,
         id: idForLabel,
       });
@@ -111,8 +115,9 @@ function Content(props) {
   }
 
   function renderListBox() {
-    if (extractedChildren[supportedComponentNames.ListBox]) {
-      return React.cloneElement(extractedChildren[supportedComponentNames.ListBox], {
+    const extractedListBox = extractedChildren[supportedComponentNames.ListBox];
+    if (extractedListBox) {
+      return React.cloneElement(extractedListBox, {
         refLabel,
       });
     }
@@ -125,8 +130,9 @@ function Content(props) {
   }
 
   function renderFormElement() {
-    if (extractedChildren[supportedComponentNames.FormElement]) {
-      const formElementChildren = extractedChildren[supportedComponentNames.FormElement].map(formElement => {
+    const extractedFormElement = extractedChildren[supportedComponentNames.FormElement];
+    if (extractedFormElement) {
+      const formElementChildren = extractedFormElement.map(formElement => {
         return formElement.props.children.map(item => {
           if (item.type.displayName === "FormElement.Content") {
             return React.cloneElement(item, { outerAriaDescribedBy: ariaDescribedBy });
@@ -135,7 +141,7 @@ function Content(props) {
         });
       });
 
-      return extractedChildren[supportedComponentNames.FormElement].map((formElement, index) => {
+      return extractedFormElement.map((formElement, index) => {
         return React.cloneElement(formElement, { children: formElementChildren[index] });
       });
     }
