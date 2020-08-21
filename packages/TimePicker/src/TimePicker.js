@@ -178,7 +178,6 @@ function TimePicker(props) {
             mm={time.mm}
             onClick={handleClick}
             period={time.period}
-            {...moreProps}
           />
         </Popover.Content>
       </Popover>

@@ -8,6 +8,7 @@ import Input from "@paprika/input";
 import Checkbox from "@paprika/checkbox";
 import Radio from "@paprika/radio";
 import DatePicker from "@paprika/date-picker";
+import TimePicker from "@paprika/time-picker";
 import ListBox from "@paprika/listbox";
 import ButtonGroup from "@paprika/button-group";
 import { action } from "@storybook/addon-actions";
@@ -116,6 +117,21 @@ const ExampleStory = () => {
           <DatePicker onError={() => {}} hasError={Boolean(errorText.length)} onChange={() => {}}>
             <DatePicker.Input />
           </DatePicker>
+        </FormElement.Content>
+        <FormElement.Description>
+          <span>Description of this field.</span>
+        </FormElement.Description>
+        <FormElement.Error>{errorText}</FormElement.Error>
+        <FormElement.Help>
+          Give me some help. <a href="wegalvanize.com">Learn more</a>.
+        </FormElement.Help>
+      </FormElement>
+      <Rule />
+      <Tagline>Form Element with Time Picker.</Tagline>
+      <br />
+      <FormElement label="Form Label">
+        <FormElement.Content>
+          <TimePicker onChange={() => {}} onError={() => {}} />
         </FormElement.Content>
         <FormElement.Description>
           <span>Description of this field.</span>

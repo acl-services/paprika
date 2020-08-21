@@ -29,6 +29,7 @@ const supportedComponentNames = {
   DatePicker: "DatePicker",
   ListBox: "ListBox",
   FormElement: "FormElement",
+  TimePicker: "TimePicker",
 };
 
 function Content(props) {
@@ -38,19 +39,21 @@ function Content(props) {
 
   const extractedChildren = extractChildren(children, Object.values(supportedComponentNames));
 
-  const cloneWithAriaDescribedByAndLabelId = input => {
-    // ensure only the first input gets the id for labelRef
+  const getIdProp = () => {
+    // ensure the id for lable is only set on one element
     const idProp = !labelRefSet ? { id: idForLabel } : null;
 
     if (idProp) {
       labelRefSet = true;
     }
-
-    return React.cloneElement(input, {
-      "aria-describedby": ariaDescribedBy,
-      ...idProp,
-    });
+    return idProp;
   };
+
+  const cloneWithAriaDescribedByAndLabelId = input =>
+    React.cloneElement(input, {
+      "aria-describedby": ariaDescribedBy,
+      ...getIdProp(),
+    });
 
   const cloneWithAriaDescribedBy = item =>
     React.cloneElement(item, {
@@ -91,13 +94,21 @@ function Content(props) {
     return null;
   }
 
+  function renderTimePicker() {
+    const extractedTimePicker = extractedChildren[supportedComponentNames.TimePicker];
+    if (extractedTimePicker) {
+      return cloneWithAriaDescribedByAndLabelId(extractedTimePicker);
+    }
+
+    return null;
+  }
+
   function renderDatePicker() {
     const extractedDatePicker = extractedChildren[supportedComponentNames.DatePicker];
     if (extractedDatePicker) {
-      const dataPickerInput = cloneWithAriaDescribedBy(extractedDatePicker.props.children);
+      const dataPickerInput = cloneWithAriaDescribedByAndLabelId(extractedDatePicker.props.children);
       return React.cloneElement(extractedDatePicker, {
         children: dataPickerInput,
-        id: idForLabel,
       });
     }
 
@@ -109,6 +120,7 @@ function Content(props) {
       if (element.type === "input") {
         return cloneWithAriaDescribedByAndLabelId(element);
       }
+      return element;
     };
 
     return extractedChildren.children.map(elementClone);
@@ -157,6 +169,7 @@ function Content(props) {
       {renderDatePicker()}
       {renderListBox()}
       {renderFormElement()}
+      {renderTimePicker()}
       {renderOtherChildren()}
     </sc.ContentContainer>
   );
