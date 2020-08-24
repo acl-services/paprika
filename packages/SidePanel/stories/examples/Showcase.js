@@ -8,6 +8,7 @@ import SidePanel from "../../src";
 
 const sidePanelGroup = "<SidePanel>";
 const headerGroup = "<SidePanel.Header>";
+const footerGroup = "<SidePanel.Footer>";
 const overlayGroup = "<SidePanel.Overlay>";
 
 const sidePanelProps = () => ({
@@ -26,6 +27,12 @@ const headerProps = () => ({
   hasCloseButton: boolean("hasCloseButton", true, headerGroup),
   kind: select("kind", ["default", "primary"], "primary", headerGroup),
   level: select("level", [1, 2, 3, 4, 5, 6], 2, headerGroup),
+  isSticky: boolean("isSticky", false, headerGroup),
+});
+
+const footerProps = () => ({
+  isSticky: boolean("isSticky", false, footerGroup),
+  height: number("height", 72, {}, footerGroup),
 });
 
 const overlayProps = () => ({
@@ -42,7 +49,7 @@ const ExampleStory = props => {
           <StoryHeader componentName="SidePanel" />
           <TextLine repeat={50} />
         </SidePanel.Content>
-        <SidePanel.Footer>
+        <SidePanel.Footer {...footerProps()}>
           <Button kind="primary">Default action</Button>
           <Button kind="minor">Cancel</Button>
         </SidePanel.Footer>

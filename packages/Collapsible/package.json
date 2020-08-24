@@ -1,6 +1,6 @@
 {
   "name": "@paprika/collapsible",
-  "version": "0.2.25",
+  "version": "0.2.27",
   "description": "Collapsible component, allows the user to expand and collapse some enclosed content.",
   "author": "@paprika",
   "license": "MIT",
@@ -15,7 +15,7 @@
   },
   "dependencies": {
     "@babel/runtime-corejs2": "^7.3.1",
-    "@paprika/icon": "^0.3.3",
+    "@paprika/icon": "^0.3.4",
     "@paprika/raw-button": "^0.2.16",
     "@paprika/stylers": "^0.2.8",
     "@paprika/tokens": "^0.1.14",

@@ -15,6 +15,7 @@ const storyTree = [
     components: [
       "ActionBar",
       "DataGrid",
+      "Table"
     ],
   },
   {
@@ -45,6 +46,7 @@ const storyTree = [
       "Sortable",
       "Switch",
       "Textarea",
+      "TimePicker",
       "Uploader",
     ],
   },
@@ -68,6 +70,7 @@ const storyTree = [
       "Collapsible",
       "CollapsibleText",
       "CollapsibleChecklists",
+      "Pagination",
       "ProgressAccordion",
       "Tabs",
     ],

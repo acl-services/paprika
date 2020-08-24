@@ -143,6 +143,7 @@ function FormElement(props) {
       {...moreProps}
     >
       <Label
+        hasInstructionsShowing={extractedChildren[subComponentDisplayNames.Instructions]}
         hasOptionalLabel={hasRequiredLabel ? false : hasOptionalLabel}
         hasRequiredLabel={hasRequiredLabel}
         help={extractedChildren[subComponentDisplayNames.Help]}

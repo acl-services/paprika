@@ -1,0 +1,35 @@
+{
+  "name": "@paprika/table",
+  "version": "0.1.1",
+  "description": "The Table component is a simple wrap for the html table, for more advanced features see the DataGrid component.",
+  "author": "@paprika",
+  "main": "lib/index.js",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/acl-services/paprika.git",
+    "directory": "packages/Table"
+  },
+  "publishConfig": {
+    "access": "public"
+  },
+  "dependencies": {
+    "@babel/runtime-corejs2": "^7.3.1",
+    "@paprika/button": "^0.3.5",
+    "@paprika/dropdown-menu": "^2.0.37",
+    "@paprika/helpers": "0.2.13",
+    "@paprika/pill": "^0.2.25",
+    "@paprika/tokens": "^0.1.14",
+    "prop-types": "^15.7.2"
+  },
+  "peerDependencies": {
+    "react": "^16.8.4",
+    "react-dom": "^16.8.4",
+    "styled-components": "^4.2.0"
+  },
+  "paprikaDocs": {
+    "subComponents": [
+      "ColumnDefinition"
+    ]
+  }
+}
