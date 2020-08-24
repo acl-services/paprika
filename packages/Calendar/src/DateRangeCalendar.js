@@ -11,7 +11,7 @@ import ArrowRight from "@paprika/icon/lib/ArrowRight";
 import Button from "@paprika/button";
 import useI18n from "@paprika/l10n/lib/useI18n";
 
-import { START_DATE, END_DATE } from "./tokens";
+import { Kinds, START_DATE, END_DATE } from "./tokens";
 
 import ShortcutPanel from "./internal/ShortcutPanel";
 
@@ -35,8 +35,6 @@ const propTypes = {
   /** Possible date might be selected in moment object */
   possibleDate: PropTypes.instanceOf(moment),
 
-  resetPossibleDate: PropTypes.func,
-
   /**
    * This callback will be called after selecting date.
    * START_DATE or END_DATE will be passed as argument.
@@ -50,15 +48,16 @@ const propTypes = {
    * Should be used in conjunction with `onFocusChange`
    */
   focusedInput: PropTypes.oneOf([START_DATE, END_DATE]).isRequired,
-};
 
-const noop = () => {};
+  /** Kind of styling */
+  kind: PropTypes.oneOf(Object.values(Kinds)),
+};
 
 const defaultProps = {
   startDate: null,
   endDate: null,
   possibleDate: null,
-  resetPossibleDate: noop,
+  kind: Kinds.BORDERED,
 };
 
 const phrases = {
@@ -74,55 +73,43 @@ function DateRangeCalendar(props) {
   const I18n = useI18n();
 
   // Props
-  const { startDate, endDate, onDatesChange, possibleDate, resetPossibleDate, focusedInput, onFocusChange } = props;
+  const { startDate, endDate, onDatesChange, possibleDate, focusedInput, onFocusChange, kind } = props;
+
+  function getInitialVisibleMonth() {
+    if (possibleDate && possibleDate.isValid()) {
+      return possibleDate;
+    }
+
+    return startDate && startDate.isValid() ? startDate : moment();
+  }
 
   // State
   const [shouldShowShortcut, setShouldShowShortcut] = React.useState(false);
-  const [currentMonth, setCurrentMonth] = React.useState(null);
+  const [currentMonth, setCurrentMonth] = React.useState(getInitialVisibleMonth());
 
   // Ref
   const nextButtonRef = React.useRef(null);
   const prevButtonRef = React.useRef(null);
   const calendarRef = React.useRef(null);
 
-  function keepFocus() {
-    if (calendarRef.current) calendarRef.current.focus();
-  }
-
   React.useEffect(() => {
-    keepFocus();
-  }, [currentMonth, startDate, endDate]);
-
-  function getInitialVisibleMonth() {
-    let initialVisibleMonth;
-
     if (possibleDate && possibleDate.isValid()) {
-      initialVisibleMonth = possibleDate;
-    } else if (currentMonth && currentMonth.isValid()) {
-      initialVisibleMonth = currentMonth;
-    } else {
-      initialVisibleMonth = startDate && startDate.isValid() ? startDate : moment();
+      setCurrentMonth(possibleDate);
     }
-
-    return initialVisibleMonth;
-  }
+  }, [possibleDate]);
 
   function handleClickHeader(month) {
     setCurrentMonth(month);
-    resetPossibleDate();
     setShouldShowShortcut(true);
   }
 
   function handleCancelShortcut() {
     setShouldShowShortcut(false);
-    keepFocus();
   }
 
   function handleConfirmShortcut({ month, year }) {
     setCurrentMonth(moment.utc([year, month]));
-    resetPossibleDate();
     setShouldShowShortcut(false);
-    keepFocus();
   }
 
   function handleClickNavigation(buttonRef) {
@@ -189,13 +176,11 @@ function DateRangeCalendar(props) {
     );
   }
 
-  const CalendarKey = `${currentMonth && currentMonth.format("YYYY-MM")}/${possibleDate &&
-    possibleDate.format("YYYY-MM")}/${startDate && startDate.format("YYYY-MM")}/${endDate &&
-    endDate.format("YYYY-MM")}`;
+  const CalendarKey = `${currentMonth.format("YYYY-MM")}`;
 
   return (
     <div css={calendarWrapperStyles} tabIndex={-1} ref={calendarRef}>
-      <div css={calendarStyles} isVisible={!shouldShowShortcut}>
+      <div css={calendarStyles} isVisible={!shouldShowShortcut} kind={kind}>
         <DayPickerRangeController
           key={CalendarKey}
           minimumNights={0}
@@ -208,8 +193,9 @@ function DateRangeCalendar(props) {
           renderMonthElement={renderMonthHeaderElement}
           enableOutsideDays
           numberOfMonths={1}
-          initialVisibleMonth={getInitialVisibleMonth}
+          initialVisibleMonth={() => currentMonth}
           hideKeyboardShortcutsPanel
+          noBorder={kind === Kinds.EMBEDDED}
           daySize={34}
           verticalBorderSpacing={0}
           transitionDuration={0}
@@ -223,7 +209,6 @@ function DateRangeCalendar(props) {
         />
       </div>
       <ShortcutPanel
-        key={shouldShowShortcut}
         date={currentMonth || moment()}
         isVisible={shouldShowShortcut}
         onCancel={handleCancelShortcut}
