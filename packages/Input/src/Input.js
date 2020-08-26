@@ -45,7 +45,15 @@ const propTypes = {
   size: PropTypes.oneOf([types.SMALL, types.MEDIUM, types.LARGE]),
 
   /** Allows user to specify the type of input. */
-  type: PropTypes.oneOf(types.inputValidTypes),
+  type: PropTypes.oneOf([
+    types.EMAIL,
+    types.NUMBER,
+    types.PASSWORD,
+    types.SEARCH,
+    types.TELEPHONE,
+    types.TEXT,
+    types.URL,
+  ]),
 
   /** The value inside of the input */
   value: PropTypes.string,

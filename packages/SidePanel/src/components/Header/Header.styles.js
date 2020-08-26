@@ -5,8 +5,8 @@ import tokens from "@paprika/tokens/lib/tokens";
 import Button from "@paprika/button";
 
 const kind = {
-  [Button.Kinds.DEFAULT]: `background: ${tokens.color.white}; color: ${tokens.color.black};`,
-  [Button.Kinds.PRIMARY]: `background: ${tokens.color.purple}; color: ${tokens.color.white};`,
+  [Button.types.kind.DEFAULT]: `background: ${tokens.color.white}; color: ${tokens.color.black};`,
+  [Button.types.kind.PRIMARY]: `background: ${tokens.color.purple}; color: ${tokens.color.white};`,
 };
 
 const compactStyles = `

@@ -1,6 +1,6 @@
 import uuidv4 from "uuid/v4";
 import superagent from "superagent";
-import statuses from "./statuses";
+import statuses from "./types";
 
 function getExtension({ file }) {
   const filename = file.name;

@@ -1,7 +1,7 @@
 import stylers from "@paprika/stylers";
 import tokens from "@paprika/tokens";
 import styled, { css } from "styled-components";
-import statuses from "../../statuses";
+import statuses from "../../types";
 
 export const FileWrapper = styled.li`
   align-items: center;

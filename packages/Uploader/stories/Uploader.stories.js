@@ -6,7 +6,7 @@ import Heading from "@paprika/heading";
 import L10n from "@paprika/l10n";
 import Uploader, { UploaderContext } from "../src/Uploader";
 import File from "../src/components/File/File";
-import statuses from "../src/statuses";
+import * as types from "../src/types";
 
 const storyName = getStoryName("Uploader");
 
@@ -22,7 +22,7 @@ const fileProps = {
   name: "MyFile.jpg",
   progress: 0,
   size: 12345678,
-  status: statuses.IDLE,
+  status: types.status.IDLE,
 };
 
 function StartUploadButton() {
@@ -136,9 +136,9 @@ storiesOf(`${storyName}/Examples`, module)
     <Story>
       <Uploader>
         <File {...fileProps} />
-        <File {...fileProps} progress={37} status={statuses.PROCESSING} />
-        <File {...fileProps} progress={100} status={statuses.SUCCESS} />
-        <File {...fileProps} progress={37} error="Something went wrong" status={statuses.ERROR} />
+        <File {...fileProps} progress={37} status={types.status.PROCESSING} />
+        <File {...fileProps} progress={100} status={types.status.SUCCESS} />
+        <File {...fileProps} progress={37} error="Something went wrong" status={types.ERROR} />
       </Uploader>
     </Story>
   ));

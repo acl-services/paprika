@@ -10,7 +10,7 @@ import tokens from "@paprika/tokens";
 import { ShirtSizes } from "@paprika/helpers/lib/customPropTypes";
 import { UploaderContext } from "../../Uploader";
 import { getNumberWithUnits } from "../../helpers";
-import statuses from "../../statuses";
+import statuses from "../../types";
 import * as sc from "./File.styles";
 
 const propTypes = {
