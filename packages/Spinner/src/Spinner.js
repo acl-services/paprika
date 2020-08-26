@@ -1,6 +1,7 @@
 import React from "react";
 import PropTypes from "prop-types";
 import classNames from "classnames";
+import * as constants from "@paprika/constants/lib/Constants";
 import * as types from "./types";
 import SpinnerStyles from "./Spinner.styles";
 
@@ -15,7 +16,7 @@ const propTypes = {
   caption: PropTypes.string,
 
   /** Sets the size of the spinner */
-  size: PropTypes.oneOf(types.DEFAULTS),
+  size: PropTypes.oneOf([types.SMALL, types.MEDIUM, types.LARGE]),
 };
 
 const defaultProps = {
@@ -50,6 +51,8 @@ const Spinner = ({ a11yText, className, caption, size, ...moreProps }) => {
 Spinner.displayName = "Spinner";
 Spinner.propTypes = propTypes;
 Spinner.defaultProps = defaultProps;
-Spinner.types = types;
+Spinner.types = {
+  size: constants.defaultSize,
+};
 
 export default Spinner;

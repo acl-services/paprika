@@ -34,7 +34,14 @@ const propTypes = {
   isPolite: PropTypes.bool,
 
   /** Determines the styling of the Toast */
-  kind: PropTypes.oneOf(types.ALL),
+  kind: PropTypes.oneOf([
+    types.toastKinds.SUCCESS,
+    types.toastKinds.WARNING,
+    types.toastKinds.ERROR,
+    types.toastKinds.INFO,
+    types.toastKinds.LOCKED,
+    types.toastKinds.VISUALLY_HIDDEN,
+  ]),
 
   /** Callback that is executed after clicking the 'close' button */
   onClose: PropTypes.func,
@@ -51,7 +58,7 @@ const defaultProps = {
   isOpen: undefined,
   isFixed: false,
   isPolite: false,
-  kind: types.INFO,
+  kind: types.toastKinds.INFO,
   onClose: () => {},
   zIndex: null,
 };
@@ -60,11 +67,11 @@ const minimumCloseTimeout = 1500;
 const renderTimeout = 20;
 
 const icons = {
-  [types.SUCCESS]: CheckIcon,
-  [types.WARNING]: CautionIcon,
-  [types.ERROR]: ExclamationCircleIcon,
-  [types.INFO]: InfoCircleIcon,
-  [types.LOCKED]: LockIcon,
+  [types.toastKinds.SUCCESS]: CheckIcon,
+  [types.toastKinds.WARNING]: CautionIcon,
+  [types.toastKinds.ERROR]: ExclamationCircleIcon,
+  [types.toastKinds.INFO]: InfoCircleIcon,
+  [types.toastKinds.LOCKED]: LockIcon,
 };
 
 const Toast = React.forwardRef((props, ref) => {
@@ -99,7 +106,7 @@ const Toast = React.forwardRef((props, ref) => {
   const renderTimer = React.useRef(null);
   const ariaRole = isPolite ? "status" : "alert";
   const defaultZIndex = isFixed ? zValue(7) : null;
-  const isVisuallyHidden = kind === types.VISUALLY_HIDDEN;
+  const isVisuallyHidden = kind === types.toastKinds.VISUALLY_HIDDEN;
 
   const memoizedStartAutoCloseTimer = React.useCallback(() => {
     function handleDelayedClose() {
@@ -204,6 +211,9 @@ const Toast = React.forwardRef((props, ref) => {
 Toast.displayName = "Toast";
 Toast.propTypes = propTypes;
 Toast.defaultProps = defaultProps;
-Toast.types = types;
+Toast.types = {
+  kind: types.toastKinds,
+  size: types.SMALL,
+};
 
 export default Toast;

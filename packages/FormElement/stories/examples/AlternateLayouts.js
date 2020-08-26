@@ -1,8 +1,8 @@
 /* eslint-disable react/jsx-wrap-multilines */
 
 import React from "react";
+import * as constants from "@paprika/constants/lib/Constants";
 import Heading from "@paprika/heading";
-import { ShirtSizes } from "@paprika/helpers/lib/customPropTypes";
 import { Rule, Tagline } from "storybook/assets/styles/common.styles";
 import Input from "@paprika/input";
 import Checkbox from "@paprika/checkbox";
@@ -19,7 +19,7 @@ const ExampleStory = () => {
   const errorText = "";
   const isDisabled = false;
   const isReadOnly = false;
-  const size = ShirtSizes.MEDIUM;
+  const size = constants.size.MEDIUM;
   const optionsArray = ["Black Panther", "Wonder Woman", "Spiderman", "The Incredibles", "Thor", <span>test</span>];
   const buttonOptionsArray = ["Black Panther", "Wonder Woman", "Spiderman", "The Incredibles", "Thor"];
   const listboxOptions = optionsArray.map(hero => <ListBox.Option key={hero}>{hero}</ListBox.Option>);

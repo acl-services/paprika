@@ -19,21 +19,21 @@ function filterData({ filters, operator, columns, data }) {
           )
         : true;
     };
-    return operator === types.AND ? filters.every(tester) : filters.some(tester);
+    return operator === types.logicalFilterOperators.AND ? filters.every(tester) : filters.some(tester);
   });
 }
 
 export default function useFilter({ columns, data = null, rulesByType = Filter.defaultRulesByType }) {
   const [filters, setFilters] = React.useState([]);
-  const [operator, setOperator] = React.useState(types.AND);
+  const [operator, setOperator] = React.useState(types.logicalFilterOperators.AND);
   const [filteredData, setFilteredData] = React.useState(data);
   const [appliedNumber, setAppliedNumber] = React.useState(0);
 
   function setInitialValueByType(columnType, columnId) {
     switch (columnType) {
-      case types.COLUMN_BOOLEAN:
+      case types.columnTypes.BOOLEAN:
         return true;
-      case types.COLUMN_SINGLE_SELECT: {
+      case types.columnTypes.SINGLE_SELECT: {
         return data.map(data => data[columnId]).find(option => option);
       }
       default:
@@ -49,7 +49,7 @@ export default function useFilter({ columns, data = null, rulesByType = Filter.d
             if (filterItem.id !== filterId) return;
 
             switch (type) {
-              case types.COLUMN: {
+              case types.changeTypes.COLUMN: {
                 const columnType = columns.find(column => column.id === columnId).type;
                 filterItem.columnId = columnId;
                 filterItem.rule = rulesByType[columnType][0];
@@ -58,11 +58,11 @@ export default function useFilter({ columns, data = null, rulesByType = Filter.d
                 filterItem.data = columnType === "SINGLE_SELECT" ? data : null;
                 break;
               }
-              case types.RULE: {
+              case types.changeTypes.RULE: {
                 filterItem.rule = rule;
                 break;
               }
-              case types.FILTER_VALUE: {
+              case types.changeTypes.FILTER_VALUE: {
                 filterItem.value = value;
                 break;
               }
@@ -101,7 +101,11 @@ export default function useFilter({ columns, data = null, rulesByType = Filter.d
   }
 
   function handleChangeOperator() {
-    setOperator(prevOperator => (prevOperator === types.AND ? types.OR : types.AND));
+    setOperator(prevOperator =>
+      prevOperator === types.logicalFilterOperators.AND
+        ? types.logicalFilterOperators.OR
+        : types.logicalFilterOperators.AND
+    );
   }
 
   function handleApply() {

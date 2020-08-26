@@ -1,4 +1,4 @@
-import * as constants from "@paprika/constants";
+import * as constants from "@paprika/constants/lib/Constants";
 
 export const AUTO = constants.size.AUTO;
 export const SMALL = constants.size.SMALL;

@@ -12,7 +12,7 @@ const propTypes = {
   hasCloseButton: PropTypes.bool,
   isCompact: PropTypes.bool,
   isHeaderSticky: PropTypes.bool,
-  kind: PropTypes.oneOf([types.DEFAULT, types.PRIMARY]),
+  kind: PropTypes.oneOf([types.sidePanelKinds.DEFAULT, types.sidePanelKinds.PRIMARY]),
   level: PropTypes.oneOf([1, 2, 3, 4, 5, 6]),
   onClose: PropTypes.func,
   refHeading: RefOf(),
@@ -21,7 +21,7 @@ const propTypes = {
 const defaultProps = {
   hasCloseButton: true,
   getPushContentElement: () => {},
-  kind: types.DEFAULT,
+  kind: types.sidePanelKinds.DEFAULT,
   isHeaderSticky: false,
   level: 2,
   isCompact: false,
@@ -60,7 +60,7 @@ const Header = React.forwardRef((props, ref) => {
           isSemantic={false}
           onClick={onClose}
           size={isCompact ? types.SMALL : types.MEDIUM}
-          isDark={kind === types.PRIMARY}
+          isDark={kind === types.sidePanelKinds.PRIMARY}
         />
       )}
     </sc.Header>
@@ -70,5 +70,9 @@ const Header = React.forwardRef((props, ref) => {
 Header.displayName = "SidePanel.Header";
 Header.propTypes = propTypes;
 Header.defaultProps = defaultProps;
+
+Header.types = {
+  kind: types.sidePanelKinds,
+};
 
 export default Header;

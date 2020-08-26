@@ -10,7 +10,7 @@ import * as sc from "./Sort.styles";
 
 const propTypes = {
   columnId: PropTypes.oneOfType([PropTypes.number, PropTypes.string]).isRequired,
-  direction: PropTypes.oneOf([types.ASCEND, types.DESCEND]).isRequired,
+  direction: PropTypes.oneOf([types.sortDirections.ASCEND, types.sortDirections.DESCEND]).isRequired,
   id: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
   isFirst: PropTypes.bool,
   onChange: PropTypes.func.isRequired,
@@ -36,11 +36,11 @@ function SortField(props) {
   }
 
   function handleChangeColumn(event) {
-    onChange(types.COLUMN, { id, columnId: event.target.value });
+    onChange(types.changeTypes.COLUMN, { id, columnId: event.target.value });
   }
 
   function handleChangeRule(event) {
-    onChange(types.DIRECTION, { id, direction: event.target.value });
+    onChange(types.changeTypes.DIRECTION, { id, direction: event.target.value });
   }
 
   return (
@@ -62,18 +62,26 @@ function SortField(props) {
         onChange={handleChangeRule}
         value={direction}
         selectedLabel={I18n.t(
-          `actionBar.sort.rules.${direction === types.ASCEND ? "ascending" : "descending"}.${columnTypeTranslationKey}`
+          `actionBar.sort.rules.${
+            direction === types.sortDirections.ASCEND ? "ascending" : "descending"
+          }.${columnTypeTranslationKey}`
         )}
       >
-        <option value={types.ASCEND}>{I18n.t(`actionBar.sort.rules.ascending.${columnTypeTranslationKey}`)}</option>
-        <option value={types.DESCEND}>{I18n.t(`actionBar.sort.rules.descending.${columnTypeTranslationKey}`)}</option>
+        <option value={types.sortDirections.ASCEND}>
+          {I18n.t(`actionBar.sort.rules.ascending.${columnTypeTranslationKey}`)}
+        </option>
+        <option value={types.sortDirections.DESCEND}>
+          {I18n.t(`actionBar.sort.rules.descending.${columnTypeTranslationKey}`)}
+        </option>
       </InlineSelect>
     </sc.SortField>
   );
 }
 
 SortField.propTypes = propTypes;
-SortField.types = types;
+SortField.types = {
+  direction: types.sortDirections,
+};
 SortField.defaultProps = defaultProps;
 
 export default React.memo(SortField);

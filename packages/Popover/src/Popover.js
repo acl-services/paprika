@@ -3,6 +3,7 @@ import memoizeOne from "memoize-one";
 import PropTypes from "prop-types";
 import throttle from "lodash.throttle";
 import uuidv4 from "uuid/v4";
+import * as constants from "@paprika/constants/lib/Constants";
 import tokens from "@paprika/tokens";
 import { zValue } from "@paprika/stylers/lib/helpers";
 import * as types from "./types";
@@ -27,7 +28,7 @@ const focusableElementSelector =
 
 const propTypes = {
   /** Where the popover content is positioned relative to the trigger or getPositioningElement. */
-  align: PropTypes.oneOf(types.ALL),
+  align: PropTypes.oneOf([types.TOP, types.RIGHT, types.BOTTOM, types.LEFT]),
 
   /** Content of the popover */
   children: PropTypes.node.isRequired,
@@ -537,7 +538,9 @@ function PopoverChildren(props) {
 Popover.displayName = "Popover";
 Popover.propTypes = propTypes;
 Popover.defaultProps = defaultProps;
-Popover.types = types;
+Popover.types = {
+  align: constants.align,
+};
 
 Popover.Trigger = Trigger;
 Popover.Content = Content;

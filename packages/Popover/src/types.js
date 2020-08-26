@@ -1,8 +1,6 @@
-import * as constants from "@paprika/constants";
+import * as constants from "@paprika/constants/lib/Constants";
 
-export const TOP = constants.alignTypes.TOP;
-export const RIGHT = constants.alignTypes.RIGHT;
-export const BOTTOM = constants.alignTypes.BOTTOM;
-export const LEFT = constants.alignTypes.LEFT;
-
-export const ALL = Object.values(constants.alignTypes);
+export const TOP = constants.align.TOP;
+export const RIGHT = constants.align.RIGHT;
+export const BOTTOM = constants.align.BOTTOM;
+export const LEFT = constants.align.LEFT;

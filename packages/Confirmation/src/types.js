@@ -1,14 +1,16 @@
-import * as constants from "@paprika/constants";
+import * as constants from "@paprika/constants/lib/Constants";
 
 export const SMALL = constants.size.SMALL;
 export const MEDIUM = constants.size.MEDIUM;
 export const LARGE = constants.size.LARGE;
 
-export const DEFAULTS = [SMALL, MEDIUM, LARGE];
+export const PRIMARY = constants.kind.PRIMARY;
+export const DESTRUCTIVE = constants.kind.DESTRUCTIVE;
 
-export const PRIMARY = constants.buttonKinds.PRIMARY;
-export const DESTRUCTIVE = constants.buttonKinds.DESTRUCTIVE;
+export const buttonTypes = {
+  ICON: "icon",
+  RAW: "raw",
+  SIMPLE: "simple",
+};
 
-export const ICON = constants.buttonTypes.ICON;
-export const RAW = constants.buttonTypes.RAW;
-export const SIMPLE = constants.buttonTypes.SIMPLE;
+export const MINOR = constants.kind.MINOR;

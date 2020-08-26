@@ -47,6 +47,8 @@ const Header = React.forwardRef((props, ref) => {
 Header.displayName = "Takeover.Header";
 Header.propTypes = propTypes;
 Header.defaultProps = defaultProps;
-Header.types = types;
+Header.types = {
+  kind: { DEFAULT: types.DEFAULT, PRIMARY: types.PRIMARY },
+};
 
 export default Header;

@@ -1,11 +1,11 @@
-import * as constants from "@paprika/constants";
+import * as constants from "@paprika/constants/lib/Constants";
 
 export const SMALL = constants.size.SMALL;
 export const MEDIUM = constants.size.MEDIUM;
 export const LARGE = constants.size.LARGE;
 
-export const DEFAULTS = [SMALL, MEDIUM, LARGE];
-
-export const CHECKED = constants.checkboxStates.CHECKED;
-export const UNCHECKED = constants.checkboxStates.UNCHECKED;
-export const INDETERMINATE = constants.checkboxStates.INDETERMINATE;
+export const checkboxStates = {
+  CHECKED: "checked",
+  UNCHECKED: "unchecked",
+  INDETERMINATE: "indeterminate",
+};

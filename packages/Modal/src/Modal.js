@@ -1,5 +1,6 @@
 import React from "react";
 import PropTypes from "prop-types";
+import * as constants from "@paprika/constants/lib/Constants";
 import Overlay from "@paprika/overlay";
 import { zValue } from "@paprika/stylers/lib/helpers";
 import extractChildren from "@paprika/helpers/lib/extractChildren";
@@ -27,7 +28,7 @@ const propTypes = {
   onAfterClose: PropTypes.func,
 
   /* Control the size (max-width) of the modal */
-  size: PropTypes.oneOf(types.DEFAULTS),
+  size: PropTypes.oneOf([types.SMALL, types.MEDIUM, types.LARGE]),
 
   /** The z-index of the Takeover content */
   zIndex: PropTypes.number,
@@ -101,6 +102,8 @@ const Modal = props => {
 Modal.FocusLock = FocusLock;
 Modal.propTypes = propTypes;
 Modal.defaultProps = defaultProps;
-Modal.types = types;
+Modal.types = {
+  size: constants.defaultSize,
+};
 
 export default Modal;

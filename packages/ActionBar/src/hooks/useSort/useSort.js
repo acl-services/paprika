@@ -57,10 +57,10 @@ export default function useSort({ data = null, columns }) {
       let change = {};
 
       switch (type) {
-        case types.COLUMN:
+        case types.changeTypes.COLUMN:
           change = { columnId };
           break;
-        case types.DIRECTION:
+        case types.changeTypes.DIRECTION:
           change = { direction };
           break;
         default:

@@ -1,6 +1,7 @@
 import React from "react";
 import PropTypes from "prop-types";
 import useI18n from "@paprika/l10n/lib/useI18n";
+import * as constants from "@paprika/constants/lib/Constants";
 import * as types from "./types";
 import Box from "./components/Box";
 import Content from "./components/Content";
@@ -53,7 +54,7 @@ export const propTypes = {
   placeholder: PropTypes.string,
 
   /** Size of the trigger and options (font size, height, padding, etc). */
-  size: PropTypes.oneOf(types.DEFAULTS),
+  size: PropTypes.oneOf([types.SMALL, types.MEDIUM, types.LARGE]),
 };
 
 export const defaultProps = {
@@ -192,6 +193,8 @@ const ListBoxContainer = React.forwardRef((props, ref) => {
 
 ListBoxContainer.propTypes = propTypes;
 ListBoxContainer.defaultProps = defaultProps;
-ListBoxContainer.types = types;
+ListBoxContainer.types = {
+  size: constants.defaultSize,
+};
 
 export default ListBoxContainer;

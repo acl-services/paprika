@@ -1,10 +1,12 @@
-import * as constants from "@paprika/constants";
+import * as constants from "@paprika/constants/lib/Constants";
 
-export const SUCCESS = constants.toastKinds.SUCCESS;
-export const WARNING = constants.toastKinds.WARNING;
-export const ERROR = constants.toastKinds.ERROR;
-export const INFO = constants.toastKinds.INFO;
-export const LOCKED = constants.toastKinds.LOCKED;
-export const VISUALLY_HIDDEN = constants.toastKinds.VISUALLY_HIDDEN;
+export const toastKinds = {
+  SUCCESS: "success",
+  WARNING: "warning",
+  ERROR: "error",
+  INFO: "info",
+  LOCKED: "locked",
+  VISUALLY_HIDDEN: "visually-hidden",
+};
 
-export const ALL = [SUCCESS, WARNING, ERROR, INFO, LOCKED, VISUALLY_HIDDEN];
+export const SMALL = constants.size.SMALL;

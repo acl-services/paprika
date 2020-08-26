@@ -24,11 +24,11 @@ npm install @paprika/checkbox
 |-------|-------| --------  | --------- | ----------- |
 |ariaDescribedBy|string|false|null| Used for aria-describedby on the checkbox input|
 |a11yText|string|false|null| Used for aria-label on the checkbox input|
-|checkedState|[types.CHECKED,types.UNCHECKED,types.INDETERMINATE]|false|types.UNCHECKED| The checkbox state|
+|checkedState|[types.checkboxStates.CHECKED,types.checkboxStates.UNCHECKED,types.checkboxStates.INDETERMINATE]|false|types.checkboxStates.UNCHECKED| The checkbox state|
 |children|node|false|null| Used for label contents|
 |isDisabled|bool|false|false| Describe if the checkbox is disabled or not|
 |onChange|func|false|() => {}| Callback triggered when the input state is changed|
-|size|types.DEFAULT|false|types.MEDIUM| Size provided by parent Group component|
+|size|[types.SMALL,types.MEDIUM,types.LARGE]|false|types.MEDIUM| Size provided by parent Group component|
 |tabIndex|[number,string]|false|0| Value for tabindex attribute to override the default of 0.|
 
 

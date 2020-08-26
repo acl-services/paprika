@@ -42,7 +42,7 @@ const propTypes = {
   isSlideFromLeft: PropTypes.bool,
 
   /** Modify the look of the SidePanel */
-  kind: PropTypes.oneOf([types.SIDEPANEL_DEFAULT, types.SIDEPANEL_CHILD]),
+  kind: PropTypes.oneOf(types.sidePanelKinds),
 
   /** Control y offset of the sidepanel */
   offsetY: PropTypes.number,
@@ -70,7 +70,7 @@ const defaultProps = {
   isCompact: false,
   isInline: false,
   isSlideFromLeft: false,
-  kind: types.SIDEPANEL_DEFAULT,
+  kind: types.sidePanelKinds.DEFAULT,
   offsetY: 0,
   onAfterClose: () => {},
   onAfterOpen: () => {},
@@ -241,7 +241,9 @@ export default function SidePanel(props) {
 SidePanel.propTypes = propTypes;
 SidePanel.defaultProps = defaultProps;
 SidePanel.displayName = "SidePanel";
-SidePanel.types = types;
+SidePanel.types = {
+  kind: types.sidePanelKinds,
+};
 
 SidePanel.Content = Content;
 SidePanel.FocusLock = FocusLock;

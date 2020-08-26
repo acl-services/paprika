@@ -13,7 +13,7 @@ const ButtonComponentMap = {
 const propTypes = {
   children: PropTypes.node,
   /** Determine the styling of the button */
-  buttonType: PropTypes.oneOf(types.ALL),
+  buttonType: PropTypes.oneOf([types.buttonTypes.ICON, types.buttonTypes.RAW, types.buttonTypes.SIMPLE]),
   isOpen: PropTypes.bool,
   menuRefId: PropTypes.string,
   onOpenMenu: PropTypes.func,
@@ -21,7 +21,7 @@ const propTypes = {
 };
 
 const defaultProps = {
-  buttonType: types.SIMPLE,
+  buttonType: types.buttonTypes.SIMPLE,
   children: null,
   menuRefId: "",
   triggerRef: null,
@@ -51,6 +51,8 @@ const Trigger = props => {
 Trigger.displayName = "DropdownMenu.Trigger";
 Trigger.defaultProps = defaultProps;
 Trigger.propTypes = propTypes;
-Trigger.types = types;
+Trigger.types = {
+  button: types.buttonTypes,
+};
 
 export default Trigger;

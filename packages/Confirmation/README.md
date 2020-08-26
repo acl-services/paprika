@@ -23,7 +23,7 @@ npm install @paprika/confirmation
 | Prop  | Type  | required  | default   | Description |
 |-------|-------| --------  | --------- | ----------- |
 |body|node|false|null| Content of the popover confirmation|
-|buttonSize|types.DEFAULTS|false|types.MEDIUM| Size of the button|
+|buttonSize|[types.SMALL,types.MEDIUM,types.LARGE]|false|types.MEDIUM| Size of the button|
 |children|node|false|null| |
 |confirmButtonType|[types.PRIMARY,types.DESTRUCTIVE]|false|types.DESTRUCTIVE| Determine the styling of the confirm button|
 |confirmLabel|string|true|-| Label for the confirm button|

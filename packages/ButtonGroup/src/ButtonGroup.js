@@ -1,5 +1,6 @@
 import React from "react";
 import PropTypes from "prop-types";
+import * as constants from "@paprika/constants/lib/Constants";
 import ButtonGroupContext from "./ButtonGroupContext";
 import Item from "./components/Item";
 import * as types from "./types";
@@ -28,7 +29,7 @@ const propTypes = {
   onChange: PropTypes.func,
 
   /** Size of the buttons (height, font size, etc). */
-  size: PropTypes.oneOf(types.DEFAULTS),
+  size: PropTypes.oneOf([types.SMALL, types.MEDIUM, types.LARGE]),
 };
 
 const defaultProps = {
@@ -123,16 +124,16 @@ const ButtonGroup = React.forwardRef((props, ref) => {
       const count = enabledIndexes.length;
 
       switch (event.key) {
-        case types.NEXT:
+        case types.keyTypes.NEXT:
           focusButton(enabledIndexes[(enabledSelectedIndex + 1) % count]);
           break;
-        case types.PREV:
+        case types.keyTypes.PREV:
           focusButton(enabledIndexes[(enabledSelectedIndex - 1 + count) % count]);
           break;
-        case types.FIRST:
+        case types.keyTypes.FIRST:
           focusButton(enabledIndexes[0]);
           break;
-        case types.LAST:
+        case types.keyTypes.LAST:
           focusButton(enabledIndexes[count - 1]);
           break;
         default:
@@ -165,6 +166,8 @@ ButtonGroup.displayName = "ButtonGroup";
 ButtonGroup.propTypes = propTypes;
 ButtonGroup.defaultProps = defaultProps;
 ButtonGroup.Item = Item;
-ButtonGroup.types = types;
+ButtonGroup.types = {
+  size: constants.defaultSize,
+};
 
 export default ButtonGroup;

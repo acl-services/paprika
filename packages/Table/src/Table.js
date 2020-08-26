@@ -3,6 +3,7 @@ import React from "react";
 
 import extractChildren from "@paprika/helpers/lib/extractChildren";
 import PropTypes from "prop-types";
+import * as constants from "@paprika/constants/lib/Constants";
 import ColumnDefinition from "./components/ColumnDefinition";
 import * as types from "./types";
 import * as sc from "./Table.styles";
@@ -97,4 +98,6 @@ Table.displayName = "Table";
 Table.propTypes = propTypes;
 Table.defaultProps = defaultProps;
 Table.ColumnDefinition = ColumnDefinition;
-Table.types = types;
+Table.types = {
+  border: constants.gridTypes,
+};

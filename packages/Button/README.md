@@ -33,10 +33,10 @@ npm install @paprika/button
 |isPending|bool|false|false| If the button should render in a pending state (with a spinner icon).|
 |isSemantic|bool|false|true| If it will be rendered as a <button> element. If false, a <span> will be rendered via an accessible <RawButton>.|
 |isSubmit|bool|false|false| If the type attribute should "submit", instead of the default "button".|
-|kind|types.ALL|false|types.DEFAULT| The visual style of the button.|
+|kind|[types.DEFAULT,types.SECONDARY,types.DESTRUCTIVE,types.FLAT,types.MINOR,types.LINK]|false|types.DEFAULT| The visual style of the button.|
 |onClick|func|false|() => {}| Callback to be executed when the button is clicked or activated by keyboard. Typically required.|
 |role|string|false|"button"| Value for role attribute to override the default of "button".|
-|size|types.DEFAULTS|false|types.MEDIUM| Size of the button (font size, min-height, padding, etc).|
+|size|[types.SMALL,types.MEDIUM,types.LARGE]|false|types.MEDIUM| Size of the button (font size, min-height, padding, etc).|
 |tabIndex|number|false|null| Value for tabindex attribute to override the default of 0.|
 
 

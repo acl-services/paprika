@@ -45,7 +45,7 @@ function FilterItem(props) {
   const selectedColumnType = columns.find(({ id }) => id === selectedColumnId).type;
 
   const selectOptions = React.useMemo(() => {
-    return selectedColumnType === types.COLUMN_SINGLE_SELECT
+    return selectedColumnType === types.columnTypes.SINGLE_SELECT
       ? data.filter((obj, index, arr) => {
           return arr.map(mapObj => mapObj[selectedColumnId]).indexOf(obj[selectedColumnId]) === index;
         })
@@ -59,15 +59,15 @@ function FilterItem(props) {
 
   function handleChangeColumn(event) {
     const newColumnId = event.target.value;
-    onChange(types.COLUMN, { id, columnId: newColumnId });
+    onChange(types.changeTypes.COLUMN, { id, columnId: newColumnId });
   }
 
   function handleChangeRule(event) {
-    onChange(types.RULE, { id, rule: event.target.value });
+    onChange(types.changeTypes.RULE, { id, rule: event.target.value });
   }
 
   function handleChangeValue(newValue) {
-    onChange(types.FILTER_VALUE, { id, value: newValue });
+    onChange(types.changeTypes.FILTER_VALUE, { id, value: newValue });
   }
 
   function handleChangeDatePicker(momentDate) {
@@ -81,16 +81,16 @@ function FilterItem(props) {
   }
 
   function handleChangeBooleanFilterValue(event) {
-    onChange(types.FILTER_VALUE, { id, value: event.target.value === "true" });
+    onChange(types.changeTypes.FILTER_VALUE, { id, value: event.target.value === "true" });
   }
 
   function handleChangeSingleSelectFilterValue(event) {
-    onChange(types.FILTER_VALUE, { id, value: event.target.value });
+    onChange(types.changeTypes.FILTER_VALUE, { id, value: event.target.value });
   }
 
   function renderRuleField() {
     switch (selectedColumnType) {
-      case types.COLUMN_BOOLEAN:
+      case types.columnTypes.BOOLEAN:
         return I18n.t("actionBar.filter.rules.is");
       default:
         return (
@@ -111,17 +111,17 @@ function FilterItem(props) {
   }
   function renderValueField() {
     const shouldNotShowValueField =
-      selectedRule === types.IS_BLANK ||
-      selectedRule === types.IS_NOT_BLANK ||
-      selectedRule === types.IS_EMPTY ||
-      selectedRule === types.IS_NOT_EMPTY;
+      selectedRule === types.rules.IS_BLANK ||
+      selectedRule === types.rules.IS_NOT_BLANK ||
+      selectedRule === types.rules.IS_EMPTY ||
+      selectedRule === types.rules.IS_NOT_EMPTY;
 
     if (shouldNotShowValueField) return null;
 
     if (renderCustomValueField) return renderCustomValueField();
 
     switch (selectedColumnType) {
-      case types.COLUMN_BOOLEAN:
+      case types.columnTypes.BOOLEAN:
         return (
           <InlineSelect
             value={`${value}`}
@@ -132,7 +132,7 @@ function FilterItem(props) {
             <option value="false">{I18n.t("actionBar.filter.rules.false")}</option>
           </InlineSelect>
         );
-      case types.COLUMN_DATE:
+      case types.columnTypes.DATE:
         return (
           <DatePicker
             initialDate={value}
@@ -141,7 +141,7 @@ function FilterItem(props) {
           />
         );
 
-      case types.COLUMN_SINGLE_SELECT:
+      case types.columnTypes.SINGLE_SELECT:
         return (
           <InlineSelect value={value} onChange={handleChangeSingleSelectFilterValue} selectedLabel={value}>
             {selectOptions.map(data => (
@@ -159,7 +159,7 @@ function FilterItem(props) {
   }
 
   function renderPrefix() {
-    const staticPrefix = I18n.t(`actionBar.filter.${operator === types.AND ? "and" : "or"}`);
+    const staticPrefix = I18n.t(`actionBar.filter.${operator === types.logicalFilterOperators.AND ? "and" : "or"}`);
 
     switch (index) {
       case 0:
@@ -170,10 +170,14 @@ function FilterItem(props) {
             <InlineSelect
               onChange={onChangeOperator}
               value={operator}
-              selectedLabel={operator === types.AND ? I18n.t("actionBar.filter.and") : I18n.t("actionBar.filter.or")}
+              selectedLabel={
+                operator === types.logicalFilterOperators.AND
+                  ? I18n.t("actionBar.filter.and")
+                  : I18n.t("actionBar.filter.or")
+              }
             >
-              <option value={types.AND}>{I18n.t("actionBar.filter.and")}</option>
-              <option value={types.OR}>{I18n.t("actionBar.filter.or")}</option>
+              <option value={types.logicalFilterOperators.AND}>{I18n.t("actionBar.filter.and")}</option>
+              <option value={types.logicalFilterOperators.OR}>{I18n.t("actionBar.filter.or")}</option>
             </InlineSelect>
           );
         }

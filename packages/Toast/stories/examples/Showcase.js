@@ -17,8 +17,15 @@ const getKnobs = () => ({
   isPolite: boolean("isPolite", false),
   kind: select(
     "kind",
-    [types.SUCCESS, types.WARNING, types.ERROR, types.INFO, types.LOCKED, types.VISUALLY_HIDDEN],
-    types.INFO
+    [
+      types.toastKinds.SUCCESS,
+      types.toastKinds.WARNING,
+      types.toastKinds.ERROR,
+      types.toastKinds.INFO,
+      types.toastKinds.LOCKED,
+      types.toastKinds.VISUALLY_HIDDEN,
+    ],
+    types.toastKinds.INFO
   ),
   zIndex: number("zIndex", undefined),
 });

@@ -1,4 +1,4 @@
-import * as constants from "@paprika/constants";
+import * as constants from "@paprika/constants/lib/Constants";
 
-export const PRIMARY = constants.buttonKinds.PRIMARY;
-export const SECONDARY = constants.buttonKinds.SECONDARY;
+export const PRIMARY = constants.kind.PRIMARY;
+export const SECONDARY = constants.kind.SECONDARY;

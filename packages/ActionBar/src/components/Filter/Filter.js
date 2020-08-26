@@ -23,7 +23,7 @@ const propTypes = {
   onChangeOperator: PropTypes.func,
   onClose: PropTypes.func,
   onOpen: PropTypes.func,
-  operator: PropTypes.oneOf([types.AND, types.OR]),
+  operator: PropTypes.oneOf([types.logicalFilterOperators.AND, types.logicalFilterOperators.OR]),
   rulesByType: PropTypes.objectOf(PropTypes.arrayOf(PropTypes.objectOf(rules))),
 };
 
@@ -34,7 +34,7 @@ const defaultProps = {
   onCancel: () => {},
   onClose: () => {},
   onOpen: () => {},
-  operator: types.AND,
+  operator: types.logicalFilterOperators.AND,
   rulesByType: defaultRulesByType,
 };
 

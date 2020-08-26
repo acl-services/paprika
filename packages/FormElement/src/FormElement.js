@@ -1,6 +1,6 @@
 import React from "react";
 import PropTypes from "prop-types";
-
+import * as constants from "@paprika/constants/lib/Constants";
 import extractChildren from "@paprika/helpers/lib/extractChildren";
 import isNil from "lodash/isNil";
 import uuidv4 from "uuid/v4";
@@ -39,7 +39,7 @@ const propTypes = {
   label: PropTypes.node.isRequired,
 
   /** Size of the label, error, help and description (font size, min-height, padding, etc). */
-  size: PropTypes.oneOf(types.DEFAULTS),
+  size: PropTypes.oneOf([types.SMALL, types.MEDIUM, types.LARGE]),
 
   /** FormElement contains multiple children so Renders a legend element instead of label. */
   hasFieldSet: PropTypes.bool,
@@ -167,7 +167,9 @@ function FormElement(props) {
 FormElement.displayName = "FormElement";
 FormElement.propTypes = propTypes;
 FormElement.defaultProps = defaultProps;
-FormElement.types = types;
+FormElement.types = {
+  size: constants.defaultSize,
+};
 FormElement.subComponentDisplayNames = subComponentDisplayNames;
 FormElement.Content = Content;
 FormElement.Instructions = Instructions;

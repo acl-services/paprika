@@ -1,6 +1,7 @@
 import React from "react";
 import PropTypes from "prop-types";
 import nanoid from "nanoid";
+import * as constants from "@paprika/constants/lib/Constants";
 import Button from "@paprika/button";
 import Heading from "@paprika/heading";
 import useI18n from "@paprika/l10n/lib/useI18n";
@@ -13,7 +14,7 @@ const propTypes = {
   /** Content of the popover confirmation */
   body: PropTypes.node,
   /** Size of the button */
-  buttonSize: PropTypes.oneOf(types.DEFAULTS),
+  buttonSize: PropTypes.oneOf([types.SMALL, types.MEDIUM, types.LARGE]),
   children: PropTypes.node,
   /** Determine the styling of the confirm button */
   confirmButtonType: PropTypes.oneOf([types.PRIMARY, types.DESTRUCTIVE]),
@@ -179,7 +180,10 @@ const Confirmation = props => {
 Confirmation.displayName = "Confirmation";
 Confirmation.propTypes = propTypes;
 Confirmation.defaultProps = defaultProps;
-Confirmation.types = types;
+Confirmation.types = {
+  size: constants.defaultSize,
+  kind: constants.kind,
+};
 Confirmation.TriggerButton = TriggerButton;
 
 export default Confirmation;

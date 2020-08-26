@@ -5,6 +5,7 @@ import RawButton from "@paprika/raw-button";
 import RefreshIcon from "@paprika/icon/lib/Refresh";
 import DownIcon from "@paprika/icon/lib/CaretDown";
 import "@paprika/helpers/lib/dom/closest"; // support for IE11
+import * as constants from "@paprika/constants/lib/Constants";
 import * as types from "./types";
 import buttonStyles, { iconStyles } from "./Button.styles";
 
@@ -43,7 +44,7 @@ const propTypes = {
   isSubmit: PropTypes.bool,
 
   /** The visual style of the button. */
-  kind: PropTypes.oneOf(types.ALL),
+  kind: PropTypes.oneOf([types.DEFAULT, types.SECONDARY, types.DESTRUCTIVE, types.FLAT, types.MINOR, types.LINK]),
 
   /** Callback to be executed when the button is clicked or activated by keyboard. Typically required. */
   onClick: PropTypes.func,
@@ -52,7 +53,7 @@ const propTypes = {
   role: PropTypes.string,
 
   /** Size of the button (font size, min-height, padding, etc). */
-  size: PropTypes.oneOf(types.DEFAULTS),
+  size: PropTypes.oneOf([types.SMALL, types.MEDIUM, types.LARGE]),
 
   /** Value for tabindex attribute to override the default of 0. */
   tabIndex: PropTypes.number,
@@ -192,7 +193,10 @@ const Button = React.forwardRef((props, ref) => {
 ButtonIcon.propTypes = buttonPropTypes;
 ButtonIcon.defaultProps = buttonDefaultProps;
 
-Button.types = types;
+Button.types = {
+  size: constants.defaultSize,
+  kind: constants.kind,
+};
 Button.displayName = "Button";
 Button.propTypes = propTypes;
 Button.defaultProps = defaultProps;

@@ -1,6 +1,7 @@
 import React from "react";
 import PropTypes from "prop-types";
 import classNames from "classnames";
+import * as constants from "@paprika/constants/lib/Constants";
 import * as types from "./types";
 import textareaStyles from "./Textarea.styles";
 
@@ -21,7 +22,7 @@ const propTypes = {
   /** Indicates the maximum height of the textarea  */
   maxHeight: PropTypes.string,
   onChange: PropTypes.func,
-  size: PropTypes.oneOf(types.DEFAULTS),
+  size: PropTypes.oneOf([types.SMALL, types.MEDIUM, types.LARGE]),
   /** Do not use in conjunction with defaultValue prop */
   value: PropTypes.string,
 };
@@ -131,6 +132,8 @@ const Textarea = React.forwardRef((props, ref) => {
 Textarea.displayName = "Textarea";
 Textarea.propTypes = propTypes;
 Textarea.defaultProps = defaultProps;
-Textarea.types = types;
+Textarea.types = {
+  size: constants.defaultSize,
+};
 
 export default Textarea;

@@ -1,6 +1,7 @@
 import React from "react";
 import classNames from "classnames";
 import PropTypes from "prop-types";
+import * as constants from "@paprika/constants/lib/Constants";
 import * as types from "./types";
 import selectStyles from "./Select.styles";
 
@@ -12,7 +13,7 @@ const propTypes = {
   isDisabled: PropTypes.bool,
   isReadOnly: PropTypes.bool,
   placeholder: PropTypes.string,
-  size: PropTypes.oneOf(types.DEFAULTS),
+  size: PropTypes.oneOf([types.SMALL, types.MEDIUM, types.LARGE]),
   value: PropTypes.string,
 };
 
@@ -86,6 +87,8 @@ const Select = React.forwardRef((props, ref) => {
 Select.displayName = "Select";
 Select.propTypes = propTypes;
 Select.defaultProps = defaultProps;
-Select.types = types;
+Select.types = {
+  size: constants.defaultSize,
+};
 
 export default Select;

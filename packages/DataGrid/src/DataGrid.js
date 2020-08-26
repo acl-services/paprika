@@ -1,6 +1,7 @@
 import React from "react";
 import PropTypes from "prop-types";
 import { VariableSizeGrid as Grid } from "react-window";
+import * as constants from "@paprika/constants/lib/Constants";
 import useI18n from "@paprika/l10n/lib/useI18n";
 import extractChildren from "@paprika/helpers/lib/extractChildren";
 import "@paprika/helpers/lib/dom/elementScrollToPolyfill";
@@ -19,7 +20,7 @@ window.paprika = { dataGridRef: {} };
 const propTypes = {
   /** If the data cell should automatically get focus  */
   autofocus: PropTypes.bool,
-  /** Define the look for borders in the table DataGrid.types.GRID, DataGrid.types.NONE, etc.  */
+  /** Define the look for borders in the table types.DataGrid.GRID, types.DataGrid.NONE, etc.  */
   borderType: PropTypes.oneOf([types.GRID, types.NONE, types.HORIZONTAL, types.VERTICAL]),
   children: PropTypes.node.isRequired,
   /** This will force the table to include in the calculation of the table the scrollbar thickness */
@@ -605,6 +606,8 @@ DataGrid.defaultProps = defaultProps;
 DataGrid.InfiniteScroll = InfiniteScroll;
 DataGrid.propTypes = propTypes;
 DataGrid.Basement = Basement;
-DataGrid.types = types;
+DataGrid.types = {
+  border: constants.gridTypes,
+};
 
 export default DataGrid;

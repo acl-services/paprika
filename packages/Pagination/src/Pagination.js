@@ -1,5 +1,6 @@
 import React from "react";
 import PropTypes from "prop-types";
+import * as constants from "@paprika/constants/lib/Constants";
 import * as types from "./types";
 import ArrowItem from "./components/ArrowItem/ArrowItem";
 import CurrentPageItem from "./components/CurrentPageItem/CurrentPageItem";
@@ -23,7 +24,7 @@ const propTypes = {
 
 const defaultProps = {
   onChange: () => {},
-  size: "medium",
+  size: types.MEDIUM,
 };
 
 const isCurrentPage = (pageNumber, currentPage) => currentPage === pageNumber;
@@ -104,6 +105,8 @@ function Pagination(props) {
 Pagination.displayName = "Pagination";
 Pagination.propTypes = propTypes;
 Pagination.defaultProps = defaultProps;
-Pagination.types = types;
+Pagination.types = {
+  size: constants.defaultSize,
+};
 
 export default Pagination;

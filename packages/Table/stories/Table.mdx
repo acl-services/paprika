@@ -86,11 +86,11 @@ A table with zebra stripes can help differentiate each row for easier scan and r
 
 ### Border Types
 
-The table can further be customized by adjusting the borders. The table can be set to display no borders, only horizontal borders, or only vertical borders. To set the border type add the `borderType` property. The `borderType` property can be set to `Table.types.HORIZONTAL`, `Table.types.VERTICAL`, or `Table.types.NONE`.
+The table can further be customized by adjusting the borders. The table can be set to display no borders, only horizontal borders, or only vertical borders. To set the border type add the `borderType` property. The `borderType` property can be set to `Table.types.border.HORIZONTAL`, `Table.types.border.VERTICAL`, or `Table.types.border.NONE`.
 
 #### HORIZONTAL
 ```js
-    <Table data={data} borderType={Table.types.HORIZONTAL}>
+    <Table data={data} borderType={Table.types.border.HORIZONTAL}>
       <Table.ColumnDefinition header="Name" cell="name" />
       <Table.ColumnDefinition header="LastName" cell="lastName" />
     </Table>
@@ -109,14 +109,14 @@ The table can further be customized by adjusting the borders. The table can be s
     { name: "Steve", lastName: "Wozniak" },
     { name: "Grace Murray", lastName: "Hopper" },
     { name: "Vint", lastName: "Cerf" },
-  ]} borderType={Table.types.HORIZONTAL}>
+  ]} borderType={Table.types.border.HORIZONTAL}>
     <Table.ColumnDefinition header="Name" cell="name" />
     <Table.ColumnDefinition header="LastName" cell="lastName" />
   </Table>
 
 #### VERTICAL
 ```js
-    <Table data={data} borderType={Table.types.VERTICAL}>
+    <Table data={data} borderType={Table.types.border.VERTICAL}>
       <Table.ColumnDefinition header="Name" cell="name" />
       <Table.ColumnDefinition header="LastName" cell="lastName" />
     </Table>
@@ -135,14 +135,14 @@ The table can further be customized by adjusting the borders. The table can be s
     { name: "Steve", lastName: "Wozniak" },
     { name: "Grace Murray", lastName: "Hopper" },
     { name: "Vint", lastName: "Cerf" },
-  ]} borderType={Table.types.VERTICAL}>
+  ]} borderType={Table.types.border.VERTICAL}>
     <Table.ColumnDefinition header="Name" cell="name" />
     <Table.ColumnDefinition header="LastName" cell="lastName" />
   </Table>
 
 #### NONE
 ```js
-    <Table data={data} borderType={Table.types.NONE}>
+    <Table data={data} borderType={Table.types.border.NONE}>
       <Table.ColumnDefinition header="Name" cell="name" />
       <Table.ColumnDefinition header="LastName" cell="lastName" />
     </Table>
@@ -161,7 +161,7 @@ The table can further be customized by adjusting the borders. The table can be s
     { name: "Steve", lastName: "Wozniak" },
     { name: "Grace Murray", lastName: "Hopper" },
     { name: "Vint", lastName: "Cerf" },
-  ]} borderType={Table.types.NONE}>
+  ]} borderType={Table.types.border.NONE}>
     <Table.ColumnDefinition header="Name" cell="name" />
     <Table.ColumnDefinition header="LastName" cell="lastName" />
   </Table>

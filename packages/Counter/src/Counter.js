@@ -1,11 +1,12 @@
 import React from "react";
 import PropTypes from "prop-types";
+import * as constants from "@paprika/constants/lib/Constants";
 import * as types from "./types";
 import counterStyles from "./Counter.styles";
 
 const propTypes = {
   /** Background color of the counter. */
-  color: PropTypes.oneOf(["grey", "blue", "red"]),
+  color: PropTypes.oneOf([types.GREY, types.BLUE, types.RED]),
 
   /** If the counter should display a red dot on the top right corner. Normally used to indicate when there are new items. */
   hasIndicator: PropTypes.bool,
@@ -14,14 +15,14 @@ const propTypes = {
   quantity: PropTypes.number.isRequired,
 
   /** Size of counter. It can be small or medium. Default is medium. */
-  size: PropTypes.oneOf(types.LIMITED),
+  size: PropTypes.oneOf([types.SMALL, types.MEDIUM]),
 
   /** When quantity exceeds threshold, it will display "(Threshold)+" inside the counter. Default is 99. */
   threshold: PropTypes.number,
 };
 
 const defaultProps = {
-  color: "grey",
+  color: types.GREY,
   hasIndicator: false,
   size: types.MEDIUM,
   threshold: 99,
@@ -47,5 +48,9 @@ function Counter(props) {
 Counter.displayName = "Counter";
 Counter.propTypes = propTypes;
 Counter.defaultProps = defaultProps;
+Counter.types = {
+  color: { GREY: types.GREY, BLUE: types.BLUE, RED: types.RED },
+  size: constants.limitedSize,
+};
 
 export default Counter;

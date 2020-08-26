@@ -1,5 +1,6 @@
 import React from "react";
 import PropTypes from "prop-types";
+import * as constants from "@paprika/constants/lib/Constants";
 import Footer from "./components/Footer";
 import Title from "./components/Title";
 import Metadata from "./components/Metadata";
@@ -47,7 +48,9 @@ function Card(props) {
 Card.displayName = "Card";
 Card.propTypes = propTypes;
 Card.defaultProps = defaultProps;
-Card.types = types;
+Card.types = {
+  size: constants.autoSize,
+};
 
 Card.Header = Header;
 Card.Title = Title;

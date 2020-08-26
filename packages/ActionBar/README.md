@@ -49,7 +49,7 @@ npm install @paprika/action-bar
 |onChangeOperator|func|false|null| |
 |onClose|func|false|() => {}| |
 |onOpen|func|false|() => {}| |
-|operator|[types.AND,types.OR]|false|types.AND| |
+|operator|[types.logicalFilterOperators.AND,types.logicalFilterOperators.OR]|false|types.logicalFilterOperators.AND| |
 |rulesByType|objectOf|false|defaultRulesByType| |
 
 

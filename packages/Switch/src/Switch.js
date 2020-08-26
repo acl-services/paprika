@@ -1,5 +1,6 @@
 import React from "react";
 import PropTypes from "prop-types";
+import * as constants from "@paprika/constants/lib/Constants";
 import RawButton from "@paprika/raw-button";
 import * as types from "./types";
 
@@ -22,7 +23,7 @@ const propTypes = {
   onChange: PropTypes.func,
 
   /** Size of the switch. */
-  size: PropTypes.oneOf(types.DEFAULTS),
+  size: PropTypes.oneOf([types.SMALL, types.MEDIUM, types.LARGE]),
 };
 
 const defaultProps = {
@@ -60,6 +61,8 @@ function Switch(props) {
 Switch.displayName = "Switch";
 Switch.propTypes = propTypes;
 Switch.defaultProps = defaultProps;
-Switch.types = types;
+Switch.types = {
+  size: constants.defaultSize,
+};
 
 export default Switch;

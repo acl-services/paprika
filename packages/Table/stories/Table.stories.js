@@ -52,21 +52,21 @@ export function Borders() {
       </bordersStyles.Gap>
       <bordersStyles.Gap>
         <h4>Horizontal</h4>
-        <Table data={data} borderType={Table.types.HORIZONTAL}>
+        <Table data={data} borderType={Table.types.border.HORIZONTAL}>
           <Table.ColumnDefinition header="Name" cell="name" />
           <Table.ColumnDefinition header="LastName" cell="lastName" />
         </Table>
       </bordersStyles.Gap>
       <bordersStyles.Gap>
         <h4>Vertical</h4>
-        <Table data={data} borderType={Table.types.VERTICAL}>
+        <Table data={data} borderType={Table.types.border.VERTICAL}>
           <Table.ColumnDefinition header="Name" cell="name" />
           <Table.ColumnDefinition header="LastName" cell="lastName" />
         </Table>
       </bordersStyles.Gap>
       <bordersStyles.Gap>
         <h4>None</h4>
-        <Table data={data} borderType={Table.types.NONE}>
+        <Table data={data} borderType={Table.types.border.NONE}>
           <Table.ColumnDefinition header="Name" cell="name" />
           <Table.ColumnDefinition header="LastName" cell="lastName" />
         </Table>
@@ -87,21 +87,21 @@ export function WithZebras() {
       </bordersStyles.Gap>
       <bordersStyles.Gap>
         <h4>Horizontal</h4>
-        <Table data={data} hasZebraStripes borderType={Table.types.HORIZONTAL}>
+        <Table data={data} hasZebraStripes borderType={Table.types.border.HORIZONTAL}>
           <Table.ColumnDefinition header="Name" cell="name" />
           <Table.ColumnDefinition header="LastName" cell="lastName" />
         </Table>
       </bordersStyles.Gap>
       <bordersStyles.Gap>
         <h4>Vertical</h4>
-        <Table data={data} hasZebraStripes borderType={Table.types.VERTICAL}>
+        <Table data={data} hasZebraStripes borderType={Table.types.border.VERTICAL}>
           <Table.ColumnDefinition header="Name" cell="name" />
           <Table.ColumnDefinition header="LastName" cell="lastName" />
         </Table>
       </bordersStyles.Gap>
       <bordersStyles.Gap>
         <h4>None</h4>
-        <Table data={data} hasZebraStripes borderType={Table.types.NONE}>
+        <Table data={data} hasZebraStripes borderType={Table.types.border.NONE}>
           <Table.ColumnDefinition header="Name" cell="name" />
           <Table.ColumnDefinition header="LastName" cell="lastName" />
         </Table>

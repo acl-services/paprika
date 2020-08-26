@@ -1,5 +1,6 @@
 import React from "react";
 import PropTypes from "prop-types";
+import * as constants from "@paprika/constants/lib/Constants";
 import ButtonGroupContext from "../../ButtonGroupContext";
 import * as sc from "./Item.styles";
 
@@ -58,7 +59,7 @@ const Item = props => {
     "data-pka-anchor": "button-group.button",
     isActive,
     isSemantic,
-    kind: "flat",
+    kind: constants.kind.FLAT,
     onClick: handleClick,
     size,
     tabIndex: isFocused ? 0 : -1,

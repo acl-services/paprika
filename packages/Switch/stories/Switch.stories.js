@@ -3,9 +3,10 @@ import { storiesOf } from "@storybook/react";
 import { boolean, select, text, withKnobs } from "@storybook/addon-knobs";
 import { Story, Rule, Tagline } from "storybook/assets/styles/common.styles";
 import { getStoryName } from "storybook/storyTree";
-import { ShirtSizes } from "@paprika/helpers/lib/customPropTypes";
 import Heading from "@paprika/heading";
+import * as types from "../src/types";
 import Example from "./SwitchExample";
+import Switch from "../src/Switch";
 
 const storyName = getStoryName("Switch");
 
@@ -25,7 +26,7 @@ storiesOf(storyName, module)
           a11yText={text("a11yText", "")}
           canPropagate={boolean("canPropagate", true)}
           isDisabled={boolean("isDisabled", false)}
-          size={select("size", ShirtSizes.DEFAULT, "medium")}
+          size={select("size", [types.SMALL, types.MEDIUM, types.LARGE], "medium")}
         />
       </Story>
     );
@@ -38,17 +39,17 @@ storiesOf(`${storyName}/Examples`, module)
         <h4>
           <code>size=&quot;small&quot;</code>
         </h4>
-        <Example size="small" />
+        <Example size={Switch.types.size.SMALL} />
         <p />
         <h4>
           <code>size=&quot;medium&quot;</code>
         </h4>
-        <Example size="medium" />
+        <Example size={Switch.types.size.MEDIUM} />
         <p />
         <h4>
           <code>size=&quot;large&quot;</code>
         </h4>
-        <Example size="large" />
+        <Example size={Switch.types.size.LARGE} />
       </Story>
     );
   })

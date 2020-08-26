@@ -2,12 +2,7 @@ import React from "react";
 import PropTypes from "prop-types";
 import Button from "@paprika/button";
 import RawButton from "@paprika/raw-button";
-
-export const ButtonTypes = {
-  ICON: "icon",
-  RAW: "raw",
-  SIMPLE: "simple",
-};
+import * as types from "../../types";
 
 const ButtonComponentMap = {
   icon: Button.Icon,
@@ -15,18 +10,16 @@ const ButtonComponentMap = {
   simple: Button,
 };
 
-ButtonTypes.ALL = Object.values(ButtonTypes);
-
 const propTypes = {
   children: PropTypes.node,
-  buttonType: PropTypes.oneOf(ButtonTypes.ALL),
+  buttonType: PropTypes.oneOf([types.buttonTypes.ICON, types.buttonTypes.RAW, types.buttonTypes.SIMPLE]),
   isConfirmOpen: PropTypes.bool,
   onOpenConfirm: PropTypes.func,
   triggerRef: PropTypes.shape({ current: PropTypes.instanceOf(Object) }),
 };
 
 const defaultProps = {
-  buttonType: ButtonTypes.SIMPLE,
+  buttonType: types.buttonTypes.SIMPLE,
   children: null,
   isConfirmOpen: false,
   onOpenConfirm: () => {},
@@ -56,5 +49,8 @@ const TriggerButton = props => {
 TriggerButton.displayName = "Confirmation.TriggerButton";
 TriggerButton.defaultProps = defaultProps;
 TriggerButton.propTypes = propTypes;
+TriggerButton.types = {
+  button: types.buttonTypes,
+};
 
 export default TriggerButton;

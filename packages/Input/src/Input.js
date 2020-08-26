@@ -1,6 +1,7 @@
 import React from "react";
 import PropTypes from "prop-types";
 import classNames from "classnames";
+import * as constants from "@paprika/constants/lib/Constants";
 import TimesCircleIcon from "@paprika/icon/lib/TimesCircle";
 import Button from "@paprika/button";
 import * as types from "./types";
@@ -41,10 +42,10 @@ const propTypes = {
   onClear: PropTypes.func,
 
   /** Changes the size of the input. */
-  size: PropTypes.oneOf(types.DEFAULTS),
+  size: PropTypes.oneOf([types.SMALL, types.MEDIUM, types.LARGE]),
 
   /** Allows user to specify the type of input. */
-  type: PropTypes.oneOf(types.ALL),
+  type: PropTypes.oneOf(types.inputValidTypes),
 
   /** The value inside of the input */
   value: PropTypes.string,
@@ -63,7 +64,7 @@ const defaultProps = {
   onChange: () => {},
   onClear: () => {},
   size: types.MEDIUM,
-  type: "text",
+  type: types.inputValidTypes.TEXT,
   value: null,
 };
 
@@ -154,6 +155,9 @@ const Input = React.forwardRef((props, ref) => {
 Input.displayName = "Input";
 Input.propTypes = propTypes;
 Input.defaultProps = defaultProps;
-Input.types = types;
+Input.types = {
+  size: constants.defaultSize,
+  input: types.inputValidTypes,
+};
 
 export default Input;

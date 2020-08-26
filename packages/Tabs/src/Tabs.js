@@ -1,5 +1,6 @@
 import React from "react";
 import PropTypes from "prop-types";
+import * as constants from "@paprika/constants/lib/Constants";
 import TabsContext from "./TabsContext";
 import Panel from "./components/Panel/Panel";
 import Panels from "./components/Panels/Panels";
@@ -94,6 +95,8 @@ Tabs.Tab = Tab;
 Tabs.List = List;
 Tabs.propTypes = propTypes;
 Tabs.defaultProps = defaultProps;
-Tabs.types = types;
+Tabs.types = {
+  kind: constants.kind,
+};
 
 export default Tabs;

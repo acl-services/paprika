@@ -1,6 +1,7 @@
 import React from "react";
 import PropTypes from "prop-types";
 import uuid from "uuid/v4";
+import * as constants from "@paprika/constants/lib/Constants";
 import extractChildrenProps from "@paprika/helpers/lib/extractChildrenProps";
 import CheckIcon from "@paprika/icon/lib/Check";
 import DashIcon from "@paprika/icon/lib/Dash";
@@ -16,7 +17,11 @@ const propTypes = {
   /** Used for aria-label on the checkbox input  */
   a11yText: PropTypes.string,
   /** The checkbox state */
-  checkedState: PropTypes.oneOf([types.CHECKED, types.UNCHECKED, types.INDETERMINATE]),
+  checkedState: PropTypes.oneOf([
+    types.checkboxStates.CHECKED,
+    types.checkboxStates.UNCHECKED,
+    types.checkboxStates.INDETERMINATE,
+  ]),
   /** Used for label contents */
   children: PropTypes.node,
   /** Describe if the checkbox is disabled or not */
@@ -24,7 +29,7 @@ const propTypes = {
   /** Callback triggered when the input state is changed */
   onChange: PropTypes.func,
   /** Size provided by parent Group component */
-  size: PropTypes.oneOf(types.DEFAULT),
+  size: PropTypes.oneOf([types.SMALL, types.MEDIUM, types.LARGE]),
   /** Value for tabindex attribute to override the default of 0. */
   tabIndex: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
 };
@@ -32,7 +37,7 @@ const propTypes = {
 const defaultProps = {
   a11yText: null,
   ariaDescribedBy: null,
-  checkedState: types.UNCHECKED,
+  checkedState: types.checkboxStates.UNCHECKED,
   children: null,
   isDisabled: false,
   onChange: noop,
@@ -60,8 +65,8 @@ const Checkbox = props => {
   React.useEffect(() => {
     if (!inputRef.current) return;
 
-    if (checkedState === types.INDETERMINATE) {
-      inputRef.current.indeterminate = types.INDETERMINATE;
+    if (checkedState === types.checkboxStates.INDETERMINATE) {
+      inputRef.current.indeterminate = types.checkboxStates.INDETERMINATE;
     } else {
       inputRef.current.indeterminate = false;
     }
@@ -74,7 +79,7 @@ const Checkbox = props => {
 
   const inputProps = {
     "aria-describedby": ariaDescribedBy,
-    checked: checkedState === types.CHECKED,
+    checked: checkedState === types.checkboxStates.CHECKED,
     disabled: isDisabled,
     id: checkboxId,
     onChange,
@@ -100,6 +105,9 @@ const Checkbox = props => {
 Checkbox.displayName = "Checkbox";
 Checkbox.propTypes = propTypes;
 Checkbox.defaultProps = defaultProps;
-Checkbox.types = types;
+Checkbox.types = {
+  size: constants.defaultSize,
+  state: types.checkboxStates,
+};
 Checkbox.Input = CheckboxInputPropsCollector;
 export default Checkbox;

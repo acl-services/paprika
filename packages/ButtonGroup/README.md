@@ -29,7 +29,7 @@ npm install @paprika/button-group
 |isMulti|bool|false|false| If multiple simultaneous selections are allowed.|
 |isSemantic|bool|false|true| If it will be rendered as a button element. If false, a span will be rendered via an accessible RawButton.|
 |onChange|func|false|() => {}| Callback to be executed when any button item is clicked or activated by keyboard. It will return an array of the selected items' "value" properties.|
-|size|types.DEFAULTS|false|types.MEDIUM| Size of the buttons (height, font size, etc).|
+|size|[types.SMALL,types.MEDIUM,types.LARGE]|false|types.MEDIUM| Size of the buttons (height, font size, etc).|
 
 
 ### ButtonGroup.Item 

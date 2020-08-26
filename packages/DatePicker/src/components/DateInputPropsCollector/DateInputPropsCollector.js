@@ -1,5 +1,5 @@
 import PropTypes from "prop-types";
-
+import * as constants from "@paprika/constants/lib/Constants";
 import * as types from "../../types";
 
 const propTypes = {
@@ -13,7 +13,7 @@ const propTypes = {
   placeholder: PropTypes.string,
 
   /** Size of input. */
-  size: PropTypes.oneOf(types.DEFAULTS),
+  size: PropTypes.oneOf([types.SMALL, types.MEDIUM, types.LARGE]),
 
   /** If the value of <input> is valid or not. */
   hasError: PropTypes.bool,
@@ -34,7 +34,9 @@ function DateInputPropsCollector() {
 
 DateInputPropsCollector.propTypes = propTypes;
 DateInputPropsCollector.defaultProps = defaultProps;
-DateInputPropsCollector.types = types;
+DateInputPropsCollector.types = {
+  size: constants.defaultSize,
+};
 
 DateInputPropsCollector.displayName = "DatePicker.Input";
 

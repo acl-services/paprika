@@ -10,7 +10,7 @@ const propTypes = {
   getPushContentElement: PropTypes.func,
   groupOffsetY: PropTypes.number,
   header: PropTypes.node,
-  kind: PropTypes.oneOf([types.SIDEPANEL_DEFAULT, types.SIDEPANEL_CHILD]),
+  kind: PropTypes.oneOf([types.sidePanelKinds.DEFAULT, types.sidePanelKinds.CHILD]),
   isCompact: PropTypes.bool,
   isInline: PropTypes.bool,
   offsetY: PropTypes.number,
@@ -29,7 +29,7 @@ const defaultProps = {
   getPushContentElement: () => {},
   groupOffsetY: 0,
   header: null,
-  kind: types.SIDEPANEL_DEFAULT,
+  kind: types.sidePanelKinds.DEFAULT,
   isCompact: false,
   isInline: false,
   offsetY: 0,
@@ -144,4 +144,6 @@ export default Dialog;
 
 Dialog.propTypes = propTypes;
 Dialog.defaultProps = defaultProps;
-Dialog.types = types;
+Dialog.types = {
+  kind: { DEFAULT: types.sidePanelKinds.DEFAULT, PRIMARY: types.sidePanelKinds.PRIMARY },
+};

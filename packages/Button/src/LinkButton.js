@@ -1,6 +1,7 @@
 import React from "react";
 import PropTypes from "prop-types";
 import NewTabIcon from "@paprika/icon/lib/NewTab";
+import * as constants from "@paprika/constants/lib/Constants";
 import * as types from "./types";
 import buttonStyles from "./Button.styles";
 import * as sc from "./LinkButton.styles";
@@ -10,8 +11,8 @@ const propTypes = {
   children: PropTypes.node.isRequired,
   href: PropTypes.string.isRequired,
   isDisabled: PropTypes.bool,
-  kind: PropTypes.oneOf(types.ALL),
-  size: PropTypes.oneOf(types.DEFAULTS),
+  kind: PropTypes.oneOf([types.DEFAULT, types.SECONDARY, types.DESTRUCTIVE, types.FLAT, types.MINOR, types.LINK]),
+  size: PropTypes.oneOf([types.SMALL, types.MEDIUM, types.LARGE]),
   shouldOpenNewTab: PropTypes.bool,
   suffixIcon: PropTypes.node,
 };
@@ -62,6 +63,9 @@ const LinkButton = React.forwardRef((props, ref) => {
 LinkButton.displayName = "LinkButton";
 LinkButton.propTypes = propTypes;
 LinkButton.defaultProps = defaultProps;
-LinkButton.types = types;
+LinkButton.types = {
+  kind: constants.kind,
+  size: constants.defaultSize,
+};
 
 export default LinkButton;

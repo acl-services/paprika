@@ -1,5 +1,6 @@
 import React from "react";
 import PropTypes from "prop-types";
+import * as constants from "@paprika/constants/lib/Constants";
 import * as types from "./types";
 import * as sc from "./Avatar.styles";
 
@@ -11,7 +12,7 @@ const propTypes = {
   /** Color for the initial or icon */
   color: PropTypes.string,
   /** Size of Avatar */
-  size: PropTypes.oneOf(types.LIMITED),
+  size: PropTypes.oneOf([types.SMALL, types.MEDIUM]),
 };
 
 const defaultProps = {
@@ -37,7 +38,9 @@ function Avatar(props) {
 
 Avatar.displayName = "Avatar";
 Avatar.propTypes = propTypes;
-Avatar.types = types;
+Avatar.types = {
+  size: constants.limitedSize,
+};
 Avatar.defaultProps = defaultProps;
 
 export default Avatar;
