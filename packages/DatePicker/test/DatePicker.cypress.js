@@ -49,8 +49,8 @@ describe("<DatePicker />", () => {
     openShortcut();
     cy.getByTestId("calendar.shortcut").should("be.visible");
 
-    cy.get('label[for="0"]').click();
-    cy.get('label[for="2018"]').click();
+    cy.get('label[for$="-0"]').click();
+    cy.get('label[for$="-2018"]').click();
     cy.getByTestId("calendar.apply").click();
     cy.getByTestId("calendar.header")
       .contains("January 2018")
