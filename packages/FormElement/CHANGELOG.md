@@ -50,10 +50,8 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 
 [@tristanjasper](https://github.com/tristanjasper).
 
-## [0.3.29] - 2020-08-20
+## [Unreleased]
 
 ### Changed
 
--- Simplified formElement api for consumers
-
-[@tristanjasper](https://github.com/tristanjasper).
+- Simplified formElement api for consumers - [@tristanjasper](https://github.com/tristanjasper).
