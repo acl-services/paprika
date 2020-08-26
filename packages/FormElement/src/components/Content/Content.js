@@ -18,9 +18,9 @@ const propTypes = {
 
 const defaultProps = {
   idForLabel: null,
-  ariaDescribedBy: "",
+  ariaDescribedBy: null,
   refLabel: null,
-  wrapperAriaDescribedBy: "",
+  wrapperAriaDescribedBy: null,
 };
 
 const supportedComponentNames = {
@@ -35,7 +35,10 @@ const supportedComponentNames = {
 
 function Content(props) {
   const { children, idForLabel, refLabel, wrapperAriaDescribedBy, ...moreProps } = props;
-  const ariaDescribedBy = `${props.ariaDescribedBy} ${wrapperAriaDescribedBy}`;
+
+  const ariaDescribedBy = wrapperAriaDescribedBy
+    ? `${props.ariaDescribedBy} ${wrapperAriaDescribedBy}`
+    : props.ariaDescribedBy;
 
   const extractedChildren = extractChildren(children, Object.values(supportedComponentNames));
 
