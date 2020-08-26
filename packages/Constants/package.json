@@ -1,6 +1,6 @@
 {
   "name": "@paprika/constants",
-  "version": "0.1.1",
+  "version": "0.1.0",
   "description": "Constants for components",
   "author": "@paprika",
   "license": "MIT",
@@ -11,6 +11,9 @@
   },
   "publishConfig": {
     "access": "public"
+  },
+  "dependencies": {
+    "@babel/runtime-corejs2": "^7.3.1"
   },
   "peerDependencies": {
     "react": "^16.8.0",
