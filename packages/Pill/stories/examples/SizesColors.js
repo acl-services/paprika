@@ -28,7 +28,7 @@ const SizesColorsExample = () => (
       <Icon />
       No risk with icon
     </Pill>
-    <Pill pillColor={Pill.types.MEDIUM_RISK} size={Pill.types.size.SMALL}>
+    <Pill pillColor={Pill.types.severity.MEDIUM_RISK} size={Pill.types.size.SMALL}>
       <Icon />
       Medium risk with icon
     </Pill>
