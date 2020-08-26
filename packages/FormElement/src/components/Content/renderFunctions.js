@@ -1,8 +1,9 @@
 import React from "react";
 
-const cloneWithAriaAttributes = ({ element, idForLabel, ariaDescribedBy }) =>
+const cloneWithAriaAttributes = ({ element, idForLabel, ariaDescribedBy, ariaDescribedByProp }) =>
   React.cloneElement(element, {
     "aria-describedby": ariaDescribedBy,
+    ariaDescribedBy: ariaDescribedByProp,
     id: idForLabel,
   });
 
@@ -15,10 +16,12 @@ export default {
       cloneWithAriaAttributes({ element, idForLabel: index === 0 ? idForLabel : null, ariaDescribedBy })
     ),
   Checkbox: ({ extractedElements, ariaDescribedBy }) =>
-    getAccessibleElement(extractedElements, element => cloneWithAriaAttributes({ element, ariaDescribedBy })),
+    getAccessibleElement(extractedElements, element =>
+      cloneWithAriaAttributes({ element, ariaDescribedByProp: ariaDescribedBy })
+    ),
   "Radio.Group": ({ extractedElements, ariaDescribedBy }) => {
     const radioElements = extractedElements.props.children.map(element =>
-      cloneWithAriaAttributes({ element, ariaDescribedBy })
+      cloneWithAriaAttributes({ element, ariaDescribedByProp: ariaDescribedBy })
     );
     return React.cloneElement(extractedElements, {
       children: radioElements,
