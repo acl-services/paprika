@@ -147,15 +147,21 @@ const DateInput = React.forwardRef((props, ref) => {
     }
   }
 
-  function handleInputBlur() {
+  function handleInputBlur(e) {
+    if ("onBlur" in restProps) {
+      restProps.onBlur(e);
+    }
     window.requestAnimationFrame(() => {
       setFocus(false);
       handleInputConfirm();
     });
   }
 
-  function handleFocus() {
+  function handleFocus(e) {
     setFocus(true);
+    if ("onFocus" in restProps) {
+      restProps.onFocus(e);
+    }
   }
 
   return (

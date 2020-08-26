@@ -19,6 +19,8 @@ import calendarStyles, {
   monthHeaderButtonStyles,
 } from "./internal/calendar.styles";
 
+import { Kinds } from "./tokens";
+
 const propTypes = {
   /** Selected date in moment object */
   date: PropTypes.instanceOf(moment),
@@ -30,6 +32,9 @@ const propTypes = {
   possibleDate: PropTypes.instanceOf(moment),
 
   resetPossibleDate: PropTypes.func,
+
+  /** Kind of styling */
+  kind: PropTypes.oneOf(Object.values(Kinds)),
 };
 
 const noop = () => {};
@@ -38,6 +43,7 @@ const defaultProps = {
   date: null,
   possibleDate: null,
   resetPossibleDate: noop,
+  kind: Kinds.BORDERED,
 };
 
 function SingleDateCalendar(props) {
@@ -47,7 +53,7 @@ function SingleDateCalendar(props) {
   const I18n = useI18n();
 
   // Props
-  const { date, onSelect, possibleDate, resetPossibleDate } = props;
+  const { date, onSelect, possibleDate, resetPossibleDate, kind } = props;
 
   // State
   const [shouldShowShortcut, setShouldShowShortcut] = React.useState(false);
@@ -163,7 +169,7 @@ function SingleDateCalendar(props) {
 
   return (
     <div css={calendarWrapperStyles} tabIndex={-1} ref={calendarRef}>
-      <div css={calendarStyles} isVisible={!shouldShowShortcut}>
+      <div css={calendarStyles} isVisible={!shouldShowShortcut} kind={kind}>
         <SDPController
           key={CalendarKey}
           date={date}
@@ -175,6 +181,7 @@ function SingleDateCalendar(props) {
           numberOfMonths={1}
           initialVisibleMonth={getInitialVisibleMonth}
           hideKeyboardShortcutsPanel
+          noBorder={kind === Kinds.EMBEDDED}
           daySize={34}
           verticalBorderSpacing={0}
           transitionDuration={0}

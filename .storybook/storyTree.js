@@ -36,6 +36,7 @@ const storyTree = [
       "Checkbox",
       "DateInput",
       "DatePicker",
+      "DateRangePicker",
       "FormElement",
       "Input",
       "ListBox",
@@ -49,7 +50,7 @@ const storyTree = [
       "Uploader",
     ],
   },
-  
+
   {
     category: "Messaging",
     components: [
@@ -74,7 +75,7 @@ const storyTree = [
       "Tabs",
     ],
   },
- 
+
   {
     category: "Utilities",
     components: [
