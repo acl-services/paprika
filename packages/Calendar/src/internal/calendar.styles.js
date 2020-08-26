@@ -5,6 +5,7 @@ import stylers from "@paprika/stylers";
 
 import calendarBaseStyles from "./calendar.base.styles";
 import { hoveredItemStyles, selectedItemStyles, visuallyHiddenStyles } from "./shared.styles";
+import { Kinds } from "../tokens";
 
 export const arrowIconStyles = css`
   > svg[role="presentation"] {
@@ -56,7 +57,6 @@ const calendarStyles = css`
 
   .CalendarMonth_caption {
     align-items: center;
-    background-color: ${tokens.color.blackLighten80};
     display: flex;
     height: ${stylers.spacer(5)};
     justify-content: center;
@@ -65,7 +65,12 @@ const calendarStyles = css`
     margin-bottom: ${tokens.spaceLg};
     margin-left: -9px;
     margin-right: -10px;
-    border-bottom: 1px solid ${tokens.border.color};
+    ${({ kind }) =>
+      kind === Kinds.EMBEDDED ||
+      css`
+        background-color: ${tokens.color.blackLighten80};
+        border-bottom: 1px solid ${tokens.border.color};
+      `}
   }
 
   .CalendarDay {
@@ -212,8 +217,7 @@ export const dayTriggerStyles = css`
     ${dayTriggerSelectedStyle};
   }
 
-  .CalendarDay__selected_span &,
-  .CalendarDay__hovered_span & {
+  .CalendarDay__selected_span & {
     ${dayTriggerSpanStyle};
   }
 
