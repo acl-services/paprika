@@ -1,6 +1,6 @@
 import React from "react";
 import uuidv4 from "uuid/v4";
-import statuses from "./types";
+import * as types from "./types";
 import { uploadToServer } from "./helpers";
 
 function getFileByIndex(key, files) {
@@ -52,7 +52,7 @@ export default function useProcessFiles({
   function cancelFile(key) {
     const index = getFileByIndex(key, files);
     if (index !== null) {
-      if (files[index].status === statuses.PROCESSING || files[index].status === statuses.WAITINGFORSERVER) {
+      if (files[index].status === types.status.PROCESSING || files[index].status === types.status.WAITINGFORSERVER) {
         const file = files[index];
 
         // will stop the uploading
@@ -61,7 +61,7 @@ export default function useProcessFiles({
         setFiles(
           setFile(file, fileItem => {
             const file = fileItem;
-            file.status = statuses.CANCEL;
+            file.status = types.status.CANCEL;
             file.processed = true;
             return fileItem;
           })
@@ -79,7 +79,7 @@ export default function useProcessFiles({
         as well give a wrong impression the request has been cancel to the server.
         Therefore is only possible to remove files once they were processed or on idle status.
       */
-      if (isCompleted || files[index].status === statuses.IDLE || files[index].status === statuses.ERROR) {
+      if (isCompleted || files[index].status === types.status.IDLE || files[index].status === types.status.ERROR) {
         const fileClones = files.slice(0);
         fileClones.splice(index, 1);
 
@@ -98,7 +98,7 @@ export default function useProcessFiles({
     if (index !== null) {
       const file = files[index];
 
-      if (file.status === statuses.ERROR || file.status === statuses.CANCEL) {
+      if (file.status === types.status.ERROR || file.status === types.status.CANCEL) {
         setFiles(
           setFile(file, fileItem => {
             const file = fileItem;
@@ -137,7 +137,7 @@ export default function useProcessFiles({
           file.isValid = true;
           file.processed = true;
           file.response = response;
-          file.status = statuses.SUCCESS;
+          file.status = types.status.SUCCESS;
           return fileItem;
         })
       );
@@ -149,7 +149,7 @@ export default function useProcessFiles({
       setFiles(
         setFile(file, fileItem => {
           const file = fileItem;
-          file.status = statuses.ERROR;
+          file.status = types.status.ERROR;
           file.error = error;
           file.processed = true;
           file.isValid = false;
@@ -166,10 +166,10 @@ export default function useProcessFiles({
         setFile(file, fileItem => {
           const file = fileItem;
           file.progress = percent;
-          file.status = statuses.PROCESSING;
+          file.status = types.status.PROCESSING;
 
           if (percent === 100) {
-            file.status = statuses.WAITINGFORSERVER;
+            file.status = types.status.WAITINGFORSERVER;
           }
           return fileItem;
         })
@@ -182,7 +182,7 @@ export default function useProcessFiles({
       setisCompleted(() => null);
       onChange(files);
       files.forEach(file => {
-        if (file.isValid && file.status !== statuses.SUCCESS) {
+        if (file.isValid && file.status !== types.status.SUCCESS) {
           uploadToServer({ file, endpoint, onProgress, onSuccess, onError, headers });
         }
       });

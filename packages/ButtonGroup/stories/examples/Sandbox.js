@@ -21,7 +21,7 @@ const buttonGroupProps = () => ({
   isFullWidth: boolean("isFullWidth", false),
   isMulti: boolean("isMulti", false),
   isSemantic: boolean("isSemantic", true),
-  size: select("size", types.DEFAULT, types.MEDIUM),
+  size: select("size", [types.SMALL, types.MEDIUM, types.LARGE], types.MEDIUM),
 });
 
 const ExampleStory = props => {

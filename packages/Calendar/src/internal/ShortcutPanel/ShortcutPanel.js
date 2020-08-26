@@ -7,7 +7,6 @@ import ArrowRight from "@paprika/icon/lib/ArrowRight";
 import Button from "@paprika/button";
 import tokens from "@paprika/tokens";
 import useI18n from "@paprika/l10n/lib/useI18n";
-import { ShirtSizes } from "@paprika/helpers/lib/customPropTypes";
 
 import {
   actionBarStyles,
@@ -122,11 +121,21 @@ function ShortcutPanel(props) {
         </div>
         <div css={yearListStyles}>
           <div css={columnHeaderStyles} isYear>
-            <Button.Icon isSemantic={false} onClick={handleClickPrev} kind="minor" size={ShirtSizes.SMALL}>
+            <Button.Icon
+              isSemantic={false}
+              onClick={handleClickPrev}
+              kind={Button.Icon.types.kind.MINOR}
+              size={Button.Icon.types.size.SMALL}
+            >
               <ArrowLeft color={tokens.textColor.icon} />
             </Button.Icon>
             {I18n.t("calendar.year")}
-            <Button.Icon isSemantic={false} onClick={handleClickNext} kind="minor" size={ShirtSizes.SMALL}>
+            <Button.Icon
+              isSemantic={false}
+              onClick={handleClickNext}
+              kind={Button.Icon.types.kind.MINOR}
+              size={Button.Icon.types.size.SMALL}
+            >
               <ArrowRight color={tokens.textColor.icon} />
             </Button.Icon>
           </div>
@@ -136,18 +145,18 @@ function ShortcutPanel(props) {
       <div css={actionBarStyles}>
         <Button
           isSemantic={false}
-          kind={Button.Kinds.PRIMARY}
+          kind={Button.types.kind.PRIMARY}
           onClick={handleConfirm}
-          size={ShirtSizes.SMALL}
+          size={Button.types.size.SMALL}
           data-pka-anchor="calendar.apply"
         >
           {I18n.t("actions.apply")}
         </Button>
         <Button
           isSemantic={false}
-          kind={Button.Kinds.MINOR}
+          kind={Button.types.kind.MINOR}
           onClick={onCancel}
-          size={ShirtSizes.SMALL}
+          size={Button.types.size.SMALL}
           data-pka-anchor="calendar.cancel"
         >
           {I18n.t("actions.cancel")}

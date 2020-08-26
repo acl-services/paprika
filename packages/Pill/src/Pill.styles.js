@@ -3,57 +3,57 @@ import stylers from "@paprika/stylers";
 import tokens from "@paprika/tokens";
 
 const pillColorStyles = {
-  BLACK: css`
+  black: css`
     background: ${tokens.color.black};
   `,
 
-  BLUE: css`
+  blue: css`
     background: ${tokens.color.blue};
   `,
 
-  GREY: css`
+  grey: css`
     background: ${tokens.color.blackLighten60};
     color: ${tokens.color.black};
   `,
 
-  GREEN: css`
+  green: css`
     background: ${tokens.color.greenDarken10};
   `,
 
-  ORANGE: css`
+  orange: css`
     background: ${tokens.color.orangeDarken10};
   `,
 
-  NO_RISK: css`
+  noRisk: css`
     background: ${tokens.color.blackLighten60};
     color: ${tokens.color.black};
   `,
 
-  LIGHT_BLUE: css`
+  lightBlue: css`
     background: ${tokens.color.blueLighten50};
     color: ${tokens.color.blueDarken20};
   `,
 
-  LIGHT_ORANGE: css`
+  lightOrange: css`
     background: ${tokens.color.orangeLighten40};
     color: ${tokens.color.orangeDarken20};
   `,
 
-  LOW_RISK: css`
+  lowRisk: css`
     background: #299a7a;
   `,
 
-  MEDIUM_RISK: css`
+  mediumRisk: css`
     background: #c9af28;
   `,
 
-  HIGH_RISK: css`
+  highRisk: css`
     background: #cd3c44;
   `,
 };
 
 const pillSizeStyles = {
-  SMALL: css`
+  small: css`
     border-radius: ${tokens.pill.smallRadius};
     font-weight: bold;
     height: ${stylers.spacer(2)};
@@ -61,7 +61,7 @@ const pillSizeStyles = {
     ${stylers.fontSize(-3)};
   `,
 
-  MEDIUM: css`
+  medium: css`
     border-radius: ${tokens.pill.mediumRadius};
     height: ${stylers.spacer(3)};
     padding: 0 ${stylers.spacer(4)};

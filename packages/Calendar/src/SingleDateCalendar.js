@@ -125,7 +125,7 @@ function SingleDateCalendar(props) {
         css={monthHeaderButtonStyles}
         isDropdown
         isSemantic={false}
-        kind={Button.Kinds.FLAT}
+        kind={Button.types.kind.FLAT}
         onClick={() => {
           handleClickHeader(month);
         }}

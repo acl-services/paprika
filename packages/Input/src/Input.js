@@ -46,13 +46,13 @@ const propTypes = {
 
   /** Allows user to specify the type of input. */
   type: PropTypes.oneOf([
-    types.EMAIL,
-    types.NUMBER,
-    types.PASSWORD,
-    types.SEARCH,
-    types.TELEPHONE,
-    types.TEXT,
-    types.URL,
+    types.inputValidTypes.EMAIL,
+    types.inputValidTypes.NUMBER,
+    types.inputValidTypes.PASSWORD,
+    types.inputValidTypes.SEARCH,
+    types.inputValidTypes.TELEPHONE,
+    types.inputValidTypes.TEXT,
+    types.inputValidTypes.URL,
   ]),
 
   /** The value inside of the input */

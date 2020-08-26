@@ -138,7 +138,7 @@ storiesOf(`${storyName}/Examples`, module)
         <File {...fileProps} />
         <File {...fileProps} progress={37} status={types.status.PROCESSING} />
         <File {...fileProps} progress={100} status={types.status.SUCCESS} />
-        <File {...fileProps} progress={37} error="Something went wrong" status={types.ERROR} />
+        <File {...fileProps} progress={37} error="Something went wrong" status={types.status.ERROR} />
       </Uploader>
     </Story>
   ));
