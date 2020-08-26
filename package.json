@@ -13,7 +13,7 @@
     "lint": "eslint packages --report-unused-disable-directives",
     "lint:jss": "stylelint './packages/**/src/**/*.styles.js'",
     "postpublish": "git add . && git commit -m 'Publish: automate readme and changelog update' --no-verify && git push origin master -f --no-verify",
-    "prepare": "yarn cleanup && lerna run pretranspile && yarn transpile && yarn readme",
+    "prepare": "yarn cleanup && lerna run pretranspile && yarn transpile && yarn readme && yarn types",
     "prepublishOnly": "yarn changelog",
     "prettier:format": "yarn prettier --write",
     "prettier": "prettier \"**/*.+(js|json|yml|css|scss)\"",
@@ -29,7 +29,8 @@
     "test:a11y": "echo 'Axe will run on this command'",
     "test:debug": "node --inspect node_modules/.bin/jest --runInBand",
     "test": "jest --passWithNoTests",
-    "transpile": "lerna exec --parallel -- babel --root-mode upward src --out-dir lib --source-maps --copy-files"
+    "transpile": "lerna exec --parallel -- babel --root-mode upward src --out-dir lib --source-maps --copy-files",
+    "types": "node scripts/types.js"
   },
   "engines": {
     "yarn": ">=1.12.3"
@@ -109,6 +110,7 @@
     "stylelint-config-recommended": "^3.0.0",
     "stylelint-config-styled-components": "^0.1.1",
     "stylelint-processor-styled-components": "^1.9.0",
+    "typescript": "^4.0.2",
     "uuid": "^7.0.2",
     "verdaccio": "^3.11.6",
     "wait-on": "^3.2.0",

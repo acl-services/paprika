@@ -1,0 +1,23 @@
+{
+  "include": ["packages"],
+  "compilerOptions": {
+    "baseUrl": "./packages",
+    "allowJs": true,
+    "declaration": true,
+    "emitDeclarationOnly": true,
+    "outDir": "types",
+    "strict": true,
+    "target": "ES5",
+    "module": "ESNext",
+    "lib": ["DOM", "DOM.Iterable", "ESNext"],
+    "skipLibCheck": true,
+    "forceConsistentCasingInFileNames": true,
+    "moduleResolution": "node",
+    "jsx": "react",
+    "resolveJsonModule": true,
+    "isolatedModules": true,
+    "strictFunctionTypes": true,
+    "strictNullChecks": true,
+    "strictBindCallApply": true
+  }
+}
