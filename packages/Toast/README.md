@@ -22,18 +22,18 @@ npm install @paprika/toast
 
 ### Toast
 
-| Prop           | Type      | required | default    | Description                                                                               |
-| -------------- | --------- | -------- | ---------- | ----------------------------------------------------------------------------------------- |
-| autoCloseDelay | number    | false    | 5000       | Duration (in ms) before Toast will automaticall close (if canAutoClose is true)           |
-| canAutoClose   | bool      | false    | false      | Will automatically close after 1500ms (or longer if provided by autoCloseDelay)           |
-| children       | node      | false    | null       | Content of the Toast                                                                      |
-| hasCloseButton | bool      | false    | true       | If the component should have a 'close' button                                             |
-| isOpen         | bool      | false    | undefined  | How "controlled" toast is shown / hidden.                                                 |
-| isFixed        | bool      | false    | false      | If the Toast is fixed to the top of the viewport. This will render the Toast as a Portal. |
-| isPolite       | bool      | false    | false      | A11y: If the toast is polite or not. If false, then the toast will be assertive.          |
-| kind           | Kinds.ALL | false    | Kinds.INFO | Determines the styling of the Toast                                                       |
-| onClose        | func      | false    | () => {}   | Callback that is executed after clicking the 'close' button                               |
-| zIndex         | number    | false    | null       | The z-index of the Toast                                                                  |
+| Prop           | Type                                                                                                                                                      | required | default               | Description                                                                               |
+| -------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------- | -------- | --------------------- | ----------------------------------------------------------------------------------------- |
+| autoCloseDelay | number                                                                                                                                                    | false    | 5000                  | Duration (in ms) before Toast will automaticall close (if canAutoClose is true)           |
+| canAutoClose   | bool                                                                                                                                                      | false    | false                 | Will automatically close after 1500ms (or longer if provided by autoCloseDelay)           |
+| children       | node                                                                                                                                                      | false    | null                  | Content of the Toast                                                                      |
+| hasCloseButton | bool                                                                                                                                                      | false    | true                  | If the component should have a 'close' button                                             |
+| isOpen         | bool                                                                                                                                                      | false    | undefined             | How "controlled" toast is shown / hidden.                                                 |
+| isFixed        | bool                                                                                                                                                      | false    | false                 | If the Toast is fixed to the top of the viewport. This will render the Toast as a Portal. |
+| isPolite       | bool                                                                                                                                                      | false    | false                 | A11y: If the toast is polite or not. If false, then the toast will be assertive.          |
+| kind           | [types.toastKinds.SUCCESS,types.toastKinds.WARNING,types.toastKinds.ERROR,types.toastKinds.INFO,types.toastKinds.LOCKED,types.toastKinds.VISUALLY_HIDDEN] | false    | types.toastKinds.INFO | Determines the styling of the Toast                                                       |
+| onClose        | func                                                                                                                                                      | false    | () => {}              | Callback that is executed after clicking the 'close' button                               |
+| zIndex         | number                                                                                                                                                    | false    | null                  | The z-index of the Toast                                                                  |
 
 <!-- autogenerated don't modify -->
 <!-- content -->

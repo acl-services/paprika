@@ -116,7 +116,7 @@ const ButtonGroup = React.forwardRef((props, ref) => {
   };
 
   const handleKeyDown = event => {
-    if (Object.values(types).includes(event.key)) {
+    if (Object.values(types.keyTypes).includes(event.key)) {
       event.stopPropagation();
 
       const enabledIndexes = getEnabledIndexes();

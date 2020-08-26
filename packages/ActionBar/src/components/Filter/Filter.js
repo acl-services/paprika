@@ -5,7 +5,6 @@ import Button from "@paprika/button";
 import useI18n from "@paprika/l10n/lib/useI18n";
 import CheckIcon from "@paprika/icon/lib/Check";
 import FilterItem from "./FilterItem";
-import { rules, defaultRulesByType } from "./rules";
 import FilterContext from "./context";
 import columnShape from "../../columnShape";
 import * as types from "../../types";
@@ -24,7 +23,7 @@ const propTypes = {
   onClose: PropTypes.func,
   onOpen: PropTypes.func,
   operator: PropTypes.oneOf([types.logicalFilterOperators.AND, types.logicalFilterOperators.OR]),
-  rulesByType: PropTypes.objectOf(PropTypes.arrayOf(PropTypes.objectOf(rules))),
+  rulesByType: PropTypes.objectOf(PropTypes.arrayOf(PropTypes.objectOf(types.rules))),
 };
 
 const defaultProps = {
@@ -35,7 +34,7 @@ const defaultProps = {
   onClose: () => {},
   onOpen: () => {},
   operator: types.logicalFilterOperators.AND,
-  rulesByType: defaultRulesByType,
+  rulesByType: types.defaultRulesByType,
 };
 
 function getLabelText(numberOfFilters, I18n) {
@@ -138,6 +137,6 @@ Filter.propTypes = propTypes;
 Filter.types = types;
 Filter.defaultProps = defaultProps;
 Filter.displayName = "ActionBar.Filter";
-Filter.defaultRulesByType = defaultRulesByType;
-Filter.rules = rules;
+Filter.defaultRulesByType = types.defaultRulesByType;
+Filter.rules = types.rules;
 Filter.Item = FilterItem;
