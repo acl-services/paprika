@@ -5,7 +5,7 @@ import Checkbox from "../src/Checkbox";
 function renderComponent(props = {}) {
   const defaultProps = {
     a11yText: null,
-    checkedState: Checkbox.typees.state.CHECKED,
+    checkedState: Checkbox.types.state.CHECKED,
     children: null,
     isDisabled: false,
     onChange: () => {},

@@ -55,7 +55,7 @@ export const Header = styled.div`
       border-left: ${borderLeft};
       border-right: ${borderRight};
       [data-pka-anchor="button.icon"] {
-        ${props.kind === [Button.Kinds.PRIMARY] ? `color: ${tokens.color.white}` : "color: inherit"}
+        ${props.kind === [Button.types.kind.PRIMARY] ? `color: ${tokens.color.white}` : "color: inherit"}
       }
 
       ${props.isCompact ? compactStyles : ""}
