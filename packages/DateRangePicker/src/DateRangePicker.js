@@ -5,7 +5,7 @@ import moment from "moment";
 import Popover from "@paprika/popover";
 import Calendar from "@paprika/calendar/lib/DateRangeCalendar";
 import { Kinds as CalendarKinds, START_DATE, END_DATE } from "@paprika/calendar/lib/tokens";
-import ArrowIcon from "@paprika/icon/lib/ArrowRightB";
+import ArrowIcon from "@paprika/icon/lib/ArrowRight";
 import useI18n from "@paprika/l10n/lib/useI18n";
 import extractChildren from "@paprika/helpers/lib/extractChildren";
 import useDebounce from "@paprika/helpers/lib/hooks/useDebounce";
