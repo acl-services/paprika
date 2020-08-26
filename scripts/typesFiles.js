@@ -149,3 +149,5 @@ shell.ls("packages").forEach(folder => {
     fs.writeFileSync(`${path}/${fileName}`, template, { encoding: "utf8", flag: "w" });
   }
 });
+
+shell.exec(`prettier "**/${fileName}" --write`);
