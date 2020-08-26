@@ -65,6 +65,7 @@ const ExampleStory = () => {
           Give me some help. <a href="wegalvanize.com">Learn more</a>.
         </FormElement.Help>
       </FormElement>
+
       <Rule />
       <Tagline>Form Element with checkboxes.</Tagline>
       <br />
@@ -84,6 +85,7 @@ const ExampleStory = () => {
           Give me some help. <a href="wegalvanize.com">Learn more</a>.
         </FormElement.Help>
       </FormElement>
+
       <Rule />
       <Tagline>Form Element with radios.</Tagline>
       <br />
@@ -109,6 +111,7 @@ const ExampleStory = () => {
           Give me some help. <a href="wegalvanize.com">Learn more</a>.
         </FormElement.Help>
       </FormElement>
+
       <Rule />
       <Tagline>Form Element with Date Picker.</Tagline>
       <br />
@@ -126,7 +129,9 @@ const ExampleStory = () => {
           Give me some help. <a href="wegalvanize.com">Learn more</a>.
         </FormElement.Help>
       </FormElement>
+
       <Rule />
+
       <Tagline>Form Element with Time Picker.</Tagline>
       <br />
       <FormElement label="Form Label">
@@ -225,6 +230,7 @@ const ExampleStory = () => {
           Give me some help. <a href="wegalvanize.com">Learn more</a>.
         </FormElement.Help>
       </FormElement>
+      <Rule />
       <Tagline>Form Element nested Form Elements.</Tagline>
       <br />
       <FormElement hasFieldSet label="Form Legend">
