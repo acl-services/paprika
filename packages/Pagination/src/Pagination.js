@@ -16,7 +16,11 @@ const propTypes = {
   onChange: PropTypes.func,
 
   /** The number of other pages that will be visible around the current/active page (not hidden by elipsis). Can be set to small, medium, or large */
-  size: PropTypes.PropTypes.oneOf([types.SMALL, types.MEDIUM, types.LARGE]),
+  size: PropTypes.PropTypes.oneOf([
+    Pagination.types.size.SMALL, // eslint-disable-line no-use-before-define
+    Pagination.types.size.MEDIUM, // eslint-disable-line no-use-before-define
+    Pagination.types.size.LARGE, // eslint-disable-line no-use-before-define
+  ]),
 
   /** The number of total pages. */
   totalPages: PropTypes.number.isRequired,

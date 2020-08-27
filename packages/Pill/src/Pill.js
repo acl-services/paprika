@@ -11,10 +11,23 @@ const propTypes = {
   isDisabled: PropTypes.bool,
   onClick: PropTypes.func,
   pillColor: PropTypes.oneOf([
-    [types.BLACK, types.BLUE, types.GREEN, types.GREY, types.ORANGE, types.LIGHT_BLUE, types.LIGHT_ORANGE],
-    types.severityPillColors,
+    [
+      Pill.types.color.BLACK, // eslint-disable-line no-use-before-define
+      Pill.types.color.BLUE, // eslint-disable-line no-use-before-define
+      Pill.types.color.GREEN, // eslint-disable-line no-use-before-define
+      Pill.types.color.GREY, // eslint-disable-line no-use-before-define
+      Pill.types.color.ORANGE, // eslint-disable-line no-use-before-define
+      Pill.types.color.LIGHT_BLUE, // eslint-disable-line no-use-before-define
+      Pill.types.color.LIGHT_ORANGE, // eslint-disable-line no-use-before-define
+    ],
+    [
+      Pill.types.severity.NO_RISK, // eslint-disable-line no-use-before-define
+      Pill.types.severity.LOW_RISK, // eslint-disable-line no-use-before-define
+      Pill.types.severity.MEDIUM_RISK, // eslint-disable-line no-use-before-define
+      Pill.types.severity.HIGH_RISK, // eslint-disable-line no-use-before-define
+    ],
   ]),
-  size: PropTypes.oneOf([types.SMALL, types.MEDIUM]),
+  size: PropTypes.oneOf([Pill.types.size.SMALL, Pill.types.size.MEDIUM]), // eslint-disable-line no-use-before-define
 };
 
 const defaultProps = {

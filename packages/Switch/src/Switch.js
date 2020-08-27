@@ -23,7 +23,7 @@ const propTypes = {
   onChange: PropTypes.func,
 
   /** Size of the switch. */
-  size: PropTypes.oneOf([types.SMALL, types.MEDIUM, types.LARGE]),
+  size: PropTypes.oneOf([Switch.types.size.SMALL, Switch.types.size.MEDIUM, Switch.types.size.LARGE]), // eslint-disable-line no-use-before-define
 };
 
 const defaultProps = {

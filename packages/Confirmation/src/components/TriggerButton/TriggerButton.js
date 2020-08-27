@@ -12,7 +12,11 @@ const ButtonComponentMap = {
 
 const propTypes = {
   children: PropTypes.node,
-  buttonType: PropTypes.oneOf([types.buttonTypes.ICON, types.buttonTypes.RAW, types.buttonTypes.SIMPLE]),
+  buttonType: PropTypes.oneOf([
+    TriggerButton.types.button.ICON, // eslint-disable-line no-use-before-define
+    TriggerButton.types.button.RAW, // eslint-disable-line no-use-before-define
+    TriggerButton.types.button.SIMPLE, // eslint-disable-line no-use-before-define
+  ]),
   isConfirmOpen: PropTypes.bool,
   onOpenConfirm: PropTypes.func,
   triggerRef: PropTypes.shape({ current: PropTypes.instanceOf(Object) }),

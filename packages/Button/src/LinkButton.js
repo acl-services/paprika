@@ -11,8 +11,15 @@ const propTypes = {
   children: PropTypes.node.isRequired,
   href: PropTypes.string.isRequired,
   isDisabled: PropTypes.bool,
-  kind: PropTypes.oneOf([types.DEFAULT, types.SECONDARY, types.DESTRUCTIVE, types.FLAT, types.MINOR, types.LINK]),
-  size: PropTypes.oneOf([types.SMALL, types.MEDIUM, types.LARGE]),
+  kind: PropTypes.oneOf([
+    LinkButton.types.kind.DEFAULT, // eslint-disable-line no-use-before-define
+    LinkButton.types.kind.SECONDARY, // eslint-disable-line no-use-before-define
+    LinkButton.types.kind.DESTRUCTIVE, // eslint-disable-line no-use-before-define
+    LinkButton.types.kind.FLAT, // eslint-disable-line no-use-before-define
+    LinkButton.types.kind.MINOR, // eslint-disable-line no-use-before-define
+    LinkButton.types.kind.LINK, // eslint-disable-line no-use-before-define
+  ]),
+  size: PropTypes.oneOf([LinkButton.types.size.SMALL, LinkButton.types.size.MEDIUM, LinkButton.types.size.LARGE]), // eslint-disable-line no-use-before-define
   shouldOpenNewTab: PropTypes.bool,
   suffixIcon: PropTypes.node,
 };

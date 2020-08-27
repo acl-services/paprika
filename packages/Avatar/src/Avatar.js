@@ -12,7 +12,8 @@ const propTypes = {
   /** Color for the initial or icon */
   color: PropTypes.string,
   /** Size of Avatar */
-  size: PropTypes.oneOf([types.SMALL, types.MEDIUM]),
+  /* eslint-disable-next-line no-use-before-define */
+  size: PropTypes.oneOf([Avatar.types.size.SMALL, Avatar.types.size.MEDIUM]),
 };
 
 const defaultProps = {

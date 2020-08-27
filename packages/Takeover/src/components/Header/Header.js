@@ -8,7 +8,7 @@ import * as sc from "./Header.styles";
 const propTypes = {
   children: PropTypes.node.isRequired,
   hasCloseButton: PropTypes.bool,
-  kind: PropTypes.oneOf([types.DEFAULT, types.PRIMARY]),
+  kind: PropTypes.oneOf([Header.types.kind.DEFAULT, Header.types.kind.PRIMARY]), // eslint-disable-line no-use-before-define
   level: PropTypes.oneOf([1, 2, 3, 4, 5, 6]),
   onClose: PropTypes.func,
   refHeading: RefOf(),

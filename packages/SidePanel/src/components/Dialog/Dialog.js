@@ -10,7 +10,7 @@ const propTypes = {
   getPushContentElement: PropTypes.func,
   groupOffsetY: PropTypes.number,
   header: PropTypes.node,
-  kind: PropTypes.oneOf([types.sidePanelKinds.DEFAULT, types.sidePanelKinds.CHILD]),
+  kind: PropTypes.oneOf([Dialog.types.kind.DEFAULT, Dialog.types.kind.CHILD]), // eslint-disable-line no-use-before-define
   isCompact: PropTypes.bool,
   isInline: PropTypes.bool,
   offsetY: PropTypes.number,

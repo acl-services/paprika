@@ -42,7 +42,7 @@ const propTypes = {
   onClear: PropTypes.func,
 
   /** Changes the size of the input. */
-  size: PropTypes.oneOf([types.SMALL, types.MEDIUM, types.LARGE]),
+  size: PropTypes.oneOf([Input.types.size.SMALL, Input.types.size.MEDIUM, Input.types.size.LARGE]), // eslint-disable-line no-use-before-define
 
   /** Allows user to specify the type of input. */
   type: PropTypes.oneOf([

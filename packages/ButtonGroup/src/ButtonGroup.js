@@ -29,7 +29,7 @@ const propTypes = {
   onChange: PropTypes.func,
 
   /** Size of the buttons (height, font size, etc). */
-  size: PropTypes.oneOf([types.SMALL, types.MEDIUM, types.LARGE]),
+  size: PropTypes.oneOf([ButtonGroup.types.size.SMALL, ButtonGroup.types.size.MEDIUM, ButtonGroup.types.size.LARGE]), // eslint-disable-line no-use-before-define
 };
 
 const defaultProps = {

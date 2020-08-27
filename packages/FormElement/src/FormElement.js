@@ -39,7 +39,7 @@ const propTypes = {
   label: PropTypes.node.isRequired,
 
   /** Size of the label, error, help and description (font size, min-height, padding, etc). */
-  size: PropTypes.oneOf([types.SMALL, types.MEDIUM, types.LARGE]),
+  size: PropTypes.oneOf([FormElement.types.size.SMALL, FormElement.types.size.MEDIUM, FormElement.types.size.LARGE]), // eslint-disable-line no-use-before-define
 
   /** FormElement contains multiple children so Renders a legend element instead of label. */
   hasFieldSet: PropTypes.bool,

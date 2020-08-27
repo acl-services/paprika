@@ -13,7 +13,7 @@ const ButtonComponentMap = {
 const propTypes = {
   children: PropTypes.node,
   /** Determine the styling of the button */
-  buttonType: PropTypes.oneOf([types.buttonTypes.ICON, types.buttonTypes.RAW, types.buttonTypes.SIMPLE]),
+  buttonType: PropTypes.oneOf([Trigger.types.button.ICON, Trigger.types.button.RAW, Trigger.types.button.SIMPLE]), // eslint-disable-line no-use-before-define
   isOpen: PropTypes.bool,
   menuRefId: PropTypes.string,
   onOpenMenu: PropTypes.func,

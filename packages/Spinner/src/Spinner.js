@@ -16,7 +16,7 @@ const propTypes = {
   caption: PropTypes.string,
 
   /** Sets the size of the spinner */
-  size: PropTypes.oneOf([types.SMALL, types.MEDIUM, types.LARGE]),
+  size: PropTypes.oneOf([Spinner.types.size.SMALL, Spinner.types.size.MEDIUM, Spinner.types.size.LARGE]), // eslint-disable-line no-use-before-define
 };
 
 const defaultProps = {

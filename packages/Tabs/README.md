@@ -22,12 +22,12 @@ npm install @paprika/tabs
 
 ### Tabs
 
-| Prop         | Type                            | required | default       | Description                              |
-| ------------ | ------------------------------- | -------- | ------------- | ---------------------------------------- |
-| kind         | [types.PRIMARY,types.SECONDARY] | false    | types.PRIMARY | Determine the styling of the tab         |
-| children     | node                            | true     | -             | Children of the Tab                      |
-| defaultIndex | number                          | false    | 0             | Sets what tab index is active by default |
-| isDisabled   | bool                            | false    | false         | If the tab is disabled                   |
+| Prop         | Type                                                | required | default       | Description                              |
+| ------------ | --------------------------------------------------- | -------- | ------------- | ---------------------------------------- |
+| kind         | [Tabs.types.kind.PRIMARY,Tabs.types.kind.SECONDARY] | false    | types.PRIMARY | Determine the styling of the tab         |
+| children     | node                                                | true     | -             | Children of the Tab                      |
+| defaultIndex | number                                              | false    | 0             | Sets what tab index is active by default |
+| isDisabled   | bool                                                | false    | false         | If the tab is disabled                   |
 
 ### Tabs.List
 

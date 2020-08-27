@@ -13,7 +13,11 @@ const propTypes = {
   placeholder: PropTypes.string,
 
   /** Size of input. */
-  size: PropTypes.oneOf([types.SMALL, types.MEDIUM, types.LARGE]),
+  size: PropTypes.oneOf([
+    DateInputPropsCollector.types.size.SMALL, // eslint-disable-line no-use-before-define
+    DateInputPropsCollector.types.size.MEDIUM, // eslint-disable-line no-use-before-define
+    DateInputPropsCollector.types.size.LARGE, // eslint-disable-line no-use-before-define
+  ]),
 
   /** If the value of <input> is valid or not. */
   hasError: PropTypes.bool,

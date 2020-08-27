@@ -54,7 +54,11 @@ export const propTypes = {
   placeholder: PropTypes.string,
 
   /** Size of the trigger and options (font size, height, padding, etc). */
-  size: PropTypes.oneOf([types.SMALL, types.MEDIUM, types.LARGE]),
+  size: PropTypes.oneOf([
+    ListBoxContainer.types.size.SMALL, // eslint-disable-line no-use-before-define
+    ListBoxContainer.types.size.MEDIUM, // eslint-disable-line no-use-before-define
+    ListBoxContainer.types.size.LARGE, // eslint-disable-line no-use-before-define
+  ]),
 };
 
 export const defaultProps = {

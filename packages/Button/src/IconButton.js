@@ -10,10 +10,17 @@ const IconPropTypes = {
   children: PropTypes.node.isRequired,
 
   /** The visual style of the button. */
-  kind: PropTypes.oneOf([types.DEFAULT, types.SECONDARY, types.DESTRUCTIVE, types.FLAT, types.MINOR, types.LINK]),
+  kind: PropTypes.oneOf([
+    IconButton.types.kind.DEFAULT, // eslint-disable-line no-use-before-define
+    IconButton.types.kind.SECONDARY, // eslint-disable-line no-use-before-define
+    IconButton.types.kind.DESTRUCTIVE, // eslint-disable-line no-use-before-define
+    IconButton.types.kind.FLAT, // eslint-disable-line no-use-before-define
+    IconButton.types.kind.MINOR, // eslint-disable-line no-use-before-define
+    IconButton.types.kind.LINK, // eslint-disable-line no-use-before-define
+  ]),
 
   /** Size of the button (font size, min-height, padding, etc). */
-  size: PropTypes.oneOf([types.SMALL, types.MEDIUM, types.LARGE]),
+  size: PropTypes.oneOf([IconButton.types.size.SMALL, IconButton.types.size.MEDIUM, IconButton.types.size.LARGE]), // eslint-disable-line no-use-before-define
 };
 
 const IconDefaultProps = {

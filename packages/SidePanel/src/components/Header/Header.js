@@ -12,7 +12,7 @@ const propTypes = {
   hasCloseButton: PropTypes.bool,
   isCompact: PropTypes.bool,
   isHeaderSticky: PropTypes.bool,
-  kind: PropTypes.oneOf([types.sidePanelKinds.DEFAULT, types.sidePanelKinds.PRIMARY]),
+  kind: PropTypes.oneOf([Header.types.kind.DEFAULT, Header.types.kind.PRIMARY]), // eslint-disable-line no-use-before-define
   level: PropTypes.oneOf([1, 2, 3, 4, 5, 6]),
   onClose: PropTypes.func,
   refHeading: RefOf(),

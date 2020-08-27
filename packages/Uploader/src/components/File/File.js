@@ -18,7 +18,7 @@ const propTypes = {
   name: PropTypes.string.isRequired,
   progress: PropTypes.number,
   size: PropTypes.number.isRequired,
-  status: PropTypes.oneOf(Object.keys(types.status).map(key => types.status[key])).isRequired,
+  status: PropTypes.oneOf(Object.keys(File.types.status).map(key => File.types.status[key])).isRequired, // eslint-disable-line no-use-before-define
 };
 
 const defaultProps = {
@@ -113,5 +113,8 @@ function File({ error, fileKey, name, progress, size, status }) {
 
 File.defaultProps = defaultProps;
 File.propTypes = propTypes;
+File.types = {
+  status: types.status,
+};
 
 export default File;

@@ -29,7 +29,7 @@ const propTypes = {
   /** Callback triggered when the input state is changed */
   onChange: PropTypes.func,
   /** Size provided by parent Group component */
-  size: PropTypes.oneOf([types.SMALL, types.MEDIUM, types.LARGE]),
+  size: PropTypes.oneOf([Checkbox.types.size.SMALL, Checkbox.types.size.MEDIUM, Checkbox.types.size.LARGE]), // eslint-disable-line no-use-before-define
   /** Value for tabindex attribute to override the default of 0. */
   tabIndex: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
 };

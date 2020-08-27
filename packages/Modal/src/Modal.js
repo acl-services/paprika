@@ -28,7 +28,7 @@ const propTypes = {
   onAfterClose: PropTypes.func,
 
   /* Control the size (max-width) of the modal */
-  size: PropTypes.oneOf([types.SMALL, types.MEDIUM, types.LARGE]),
+  size: PropTypes.oneOf([Modal.types.size.SMALL, Modal.types.size.MEDIUM, Modal.types.size.LARGE]), // eslint-disable-line no-use-before-define
 
   /** The z-index of the Takeover content */
   zIndex: PropTypes.number,

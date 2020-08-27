@@ -21,7 +21,12 @@ const propTypes = {
   /** If the data cell should automatically get focus  */
   autofocus: PropTypes.bool,
   /** Define the look for borders in the table types.DataGrid.GRID, types.DataGrid.NONE, etc.  */
-  borderType: PropTypes.oneOf([types.GRID, types.NONE, types.HORIZONTAL, types.VERTICAL]),
+  borderType: PropTypes.oneOf([
+    DataGrid.types.border.GRID, // eslint-disable-line no-use-before-define
+    DataGrid.types.border.NONE, // eslint-disable-line no-use-before-define
+    DataGrid.types.border.HORIZONTAL, // eslint-disable-line no-use-before-define
+    DataGrid.types.border.VERTICAL, // eslint-disable-line no-use-before-define
+  ]),
   children: PropTypes.node.isRequired,
   /** This will force the table to include in the calculation of the table the scrollbar thickness */
   forceTableWidthWithScrollBars: PropTypes.bool,

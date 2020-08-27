@@ -35,12 +35,12 @@ const propTypes = {
 
   /** Determines the styling of the Toast */
   kind: PropTypes.oneOf([
-    types.toastKinds.SUCCESS,
-    types.toastKinds.WARNING,
-    types.toastKinds.ERROR,
-    types.toastKinds.INFO,
-    types.toastKinds.LOCKED,
-    types.toastKinds.VISUALLY_HIDDEN,
+    Toast.types.kind.SUCCESS, // eslint-disable-line no-use-before-define
+    Toast.types.kind.WARNING, // eslint-disable-line no-use-before-define
+    Toast.types.kind.ERROR, // eslint-disable-line no-use-before-define
+    Toast.types.kind.INFO, // eslint-disable-line no-use-before-define
+    Toast.types.kind.LOCKED, // eslint-disable-line no-use-before-define
+    Toast.types.kind.VISUALLY_HIDDEN, // eslint-disable-line no-use-before-define
   ]),
 
   /** Callback that is executed after clicking the 'close' button */

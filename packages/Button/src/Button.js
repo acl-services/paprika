@@ -44,7 +44,14 @@ const propTypes = {
   isSubmit: PropTypes.bool,
 
   /** The visual style of the button. */
-  kind: PropTypes.oneOf([types.DEFAULT, types.SECONDARY, types.DESTRUCTIVE, types.FLAT, types.MINOR, types.LINK]),
+  kind: PropTypes.oneOf([
+    Button.types.kind.DEFAULT, // eslint-disable-line no-use-before-define
+    Button.types.kind.SECONDARY, // eslint-disable-line no-use-before-define
+    Button.types.kind.DESTRUCTIVE, // eslint-disable-line no-use-before-define
+    Button.types.kind.FLAT, // eslint-disable-line no-use-before-define
+    Button.types.kind.MINOR, // eslint-disable-line no-use-before-define
+    Button.types.kind.LINK, // eslint-disable-line no-use-before-define
+  ]),
 
   /** Callback to be executed when the button is clicked or activated by keyboard. Typically required. */
   onClick: PropTypes.func,

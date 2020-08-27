@@ -10,7 +10,12 @@ import * as sc from "./Table.styles";
 
 const propTypes = {
   /** Define the look for borders in the table Table.types.GRID, Table.types.NONE, etc.  */
-  borderType: PropTypes.oneOf([types.GRID, types.NONE, types.HORIZONTAL, types.VERTICAL]),
+  borderType: PropTypes.oneOf([
+    Table.types.border.GRID, // eslint-disable-line no-use-before-define
+    Table.types.border.NONE, // eslint-disable-line no-use-before-define
+    Table.types.border.HORIZONTAL, // eslint-disable-line no-use-before-define
+    Table.types.border.VERTICAL, // eslint-disable-line no-use-before-define
+  ]),
   /**  Accessible description of the table */
   a11yText: PropTypes.string.isRequired,
   children: PropTypes.node.isRequired,

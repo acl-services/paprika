@@ -13,7 +13,7 @@ const propTypes = {
   isDisabled: PropTypes.bool,
   isReadOnly: PropTypes.bool,
   placeholder: PropTypes.string,
-  size: PropTypes.oneOf([types.SMALL, types.MEDIUM, types.LARGE]),
+  size: PropTypes.oneOf([Select.types.size.SMALL, Select.types.size.MEDIUM, Select.types.size.LARGE]), // eslint-disable-line no-use-before-define
   value: PropTypes.string,
 };
 

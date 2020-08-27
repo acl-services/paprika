@@ -14,10 +14,14 @@ const propTypes = {
   /** Content of the popover confirmation */
   body: PropTypes.node,
   /** Size of the button */
-  buttonSize: PropTypes.oneOf([types.SMALL, types.MEDIUM, types.LARGE]),
+  buttonSize: PropTypes.oneOf([
+    Confirmation.types.size.SMALL, // eslint-disable-line no-use-before-define
+    Confirmation.types.size.MEDIUM, // eslint-disable-line no-use-before-define
+    Confirmation.types.size.LARGE, // eslint-disable-line no-use-before-define
+  ]),
   children: PropTypes.node,
   /** Determine the styling of the confirm button */
-  confirmButtonType: PropTypes.oneOf([types.PRIMARY, types.DESTRUCTIVE]),
+  confirmButtonType: PropTypes.oneOf([Confirmation.types.kind.PRIMARY, Confirmation.types.kind.DESTRUCTIVE]), // eslint-disable-line no-use-before-define
   /** Label for the confirm button  */
   confirmLabel: PropTypes.string.isRequired,
   /** If the popover is open by default */

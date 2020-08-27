@@ -6,7 +6,7 @@ import counterStyles from "./Counter.styles";
 
 const propTypes = {
   /** Background color of the counter. */
-  color: PropTypes.oneOf([types.GREY, types.BLUE, types.RED]),
+  color: PropTypes.oneOf([Counter.types.color.GREY, Counter.types.color.BLUE, Counter.types.color.RED]), // eslint-disable-line no-use-before-define
 
   /** If the counter should display a red dot on the top right corner. Normally used to indicate when there are new items. */
   hasIndicator: PropTypes.bool,
@@ -15,7 +15,7 @@ const propTypes = {
   quantity: PropTypes.number.isRequired,
 
   /** Size of counter. It can be small or medium. Default is medium. */
-  size: PropTypes.oneOf([types.SMALL, types.MEDIUM]),
+  size: PropTypes.oneOf([Counter.types.size.SMALL, Counter.types.size.MEDIUM]), // eslint-disable-line no-use-before-define
 
   /** When quantity exceeds threshold, it will display "(Threshold)+" inside the counter. Default is 99. */
   threshold: PropTypes.number,

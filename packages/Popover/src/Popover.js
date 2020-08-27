@@ -28,7 +28,12 @@ const focusableElementSelector =
 
 const propTypes = {
   /** Where the popover content is positioned relative to the trigger or getPositioningElement. */
-  align: PropTypes.oneOf([types.TOP, types.RIGHT, types.BOTTOM, types.LEFT]),
+  align: PropTypes.oneOf([
+    Popover.types.align.TOP, // eslint-disable-line no-use-before-define
+    Popover.types.align.RIGHT, // eslint-disable-line no-use-before-define
+    Popover.types.align.BOTTOM, // eslint-disable-line no-use-before-define
+    Popover.types.align.LEFT, // eslint-disable-line no-use-before-define
+  ]),
 
   /** Content of the popover */
   children: PropTypes.node.isRequired,
@@ -49,7 +54,7 @@ const propTypes = {
   defaultIsOpen: PropTypes.bool,
 
   /** Where the edge of the popover content is based on the trigger or getPositioningElement */
-  edge: PropTypes.oneOf([types.LEFT, types.RIGHT, null]),
+  edge: PropTypes.oneOf([Popover.types.align.LEFT, Popover.types.align.RIGHT, null]), // eslint-disable-line no-use-before-define
 
   /** Maximum width of popover content. Using a number is recommended and implies px units. */
   maxWidth: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),

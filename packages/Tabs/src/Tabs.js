@@ -10,7 +10,7 @@ import * as types from "./types";
 
 const propTypes = {
   /** Determine the styling of the tab */
-  kind: PropTypes.oneOf([types.PRIMARY, types.SECONDARY]),
+  kind: PropTypes.oneOf([Tabs.types.kind.PRIMARY, Tabs.types.kind.SECONDARY]), // eslint-disable-line no-use-before-define
   /** Children of the Tab */
   children: PropTypes.node.isRequired,
   /** Sets what tab index is active by default */

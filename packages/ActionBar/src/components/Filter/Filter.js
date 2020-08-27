@@ -22,8 +22,12 @@ const propTypes = {
   onChangeOperator: PropTypes.func,
   onClose: PropTypes.func,
   onOpen: PropTypes.func,
-  operator: PropTypes.oneOf([types.logicalFilterOperators.AND, types.logicalFilterOperators.OR]),
-  rulesByType: PropTypes.objectOf(PropTypes.arrayOf(PropTypes.objectOf(types.rules))),
+  operator: PropTypes.oneOf([
+    Filter.types.operator.logicalFilterOperators.AND, // eslint-disable-line no-use-before-define
+    Filter.types.operator.logicalFilterOperators.OR, // eslint-disable-line no-use-before-define
+  ]),
+
+  rulesByType: PropTypes.objectOf(PropTypes.arrayOf(PropTypes.objectOf(Filter.types.rule))), // eslint-disable-line no-use-before-define
 };
 
 const defaultProps = {
@@ -134,7 +138,10 @@ export default function Filter(props) {
 }
 
 Filter.propTypes = propTypes;
-Filter.types = types;
+Filter.types = {
+  operator: types.logicalFilterOperators,
+  rule: types.rules,
+};
 Filter.defaultProps = defaultProps;
 Filter.displayName = "ActionBar.Filter";
 Filter.defaultRulesByType = types.defaultRulesByType;

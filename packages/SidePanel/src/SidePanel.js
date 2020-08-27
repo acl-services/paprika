@@ -42,7 +42,7 @@ const propTypes = {
   isSlideFromLeft: PropTypes.bool,
 
   /** Modify the look of the SidePanel */
-  kind: PropTypes.oneOf(types.sidePanelKinds),
+  kind: PropTypes.oneOf([SidePanel.types.kind.DEFAULT, SidePanel.types.kind.CHILD, SidePanel.types.kind.PRIMARY]), // eslint-disable-line no-use-before-define
 
   /** Control y offset of the sidepanel */
   offsetY: PropTypes.number,

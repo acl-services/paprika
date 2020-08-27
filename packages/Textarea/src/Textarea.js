@@ -22,7 +22,7 @@ const propTypes = {
   /** Indicates the maximum height of the textarea  */
   maxHeight: PropTypes.string,
   onChange: PropTypes.func,
-  size: PropTypes.oneOf([types.SMALL, types.MEDIUM, types.LARGE]),
+  size: PropTypes.oneOf([Textarea.types.size.SMALL, Textarea.types.size.MEDIUM, Textarea.types.size.LARGE]), // eslint-disable-line no-use-before-define
   /** Do not use in conjunction with defaultValue prop */
   value: PropTypes.string,
 };

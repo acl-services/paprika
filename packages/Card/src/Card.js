@@ -21,7 +21,7 @@ const propTypes = {
   isActive: PropTypes.bool,
 
   /** Size of the card (font size, min-height, padding, etc). */
-  size: PropTypes.oneOf([types.AUTO, types.SMALL, types.MEDIUM, types.LARGE]),
+  size: PropTypes.oneOf([Card.types.size.AUTO, Card.types.size.SMALL, Card.types.size.MEDIUM, Card.types.size.LARGE]), // eslint-disable-line no-use-before-define
 };
 
 const defaultProps = {
