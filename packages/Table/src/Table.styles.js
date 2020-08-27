@@ -1,5 +1,6 @@
 import styled, { css } from "styled-components";
 import tokens from "@paprika/tokens";
+import { fontSize } from "@paprika/stylers/lib/helpers";
 import types from "./types";
 
 export const Table = styled.table`
@@ -58,9 +59,9 @@ export const TD = styled.td(({ borderType }) => {
 
 export const TH = styled.th(({ borderType }) => {
   return css`
+    ${fontSize()}
     ${borderType in borderTypesStyles ? borderTypesStyles[borderType] : ""}
-    font-size: 16px;
-    font-weight: 600;
+    font-weight: bold;
     padding: ${tokens.space};
     text-align: left;
   `;
