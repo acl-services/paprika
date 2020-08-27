@@ -1,6 +1,6 @@
 {
   "name": "@paprika/data-grid",
-  "version": "0.3.15",
+  "version": "0.3.16",
   "description": "DataGrid is a wrapper of react-window",
   "author": "@paprika",
   "license": "MIT",
@@ -15,12 +15,12 @@
   "dependencies": {
     "@babel/runtime-corejs2": "^7.3.1",
     "@paprika/constants": "^0.1.0",
-    "@paprika/button": "^0.3.6",
-    "@paprika/checkbox": "^0.2.21",
+    "@paprika/button": "^0.3.7",
+    "@paprika/checkbox": "^0.2.22",
     "@paprika/helpers": "^0.2.13",
-    "@paprika/icon": "^0.3.5",
+    "@paprika/icon": "^0.3.6",
     "@paprika/raw-button": "^0.2.16",
-    "@paprika/sidepanel": "^0.4.13",
+    "@paprika/sidepanel": "^0.4.14",
     "@paprika/spinner": "^0.2.19",
     "@paprika/stylers": "^0.2.8",
     "@paprika/tokens": "^0.1.14",
@@ -41,5 +41,5 @@
       "ColumnDefinition"
     ]
   },
-  "gitHead": "b7097f9eb289a267275153542276319fc792969a"
+  "gitHead": "494ce26cb0a6c24a8f6abf2b154d97ddd4d7e343"
 }
