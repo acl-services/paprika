@@ -5,6 +5,13 @@ import Button from "@paprika/button";
 import * as types from "../../types";
 import * as sc from "./Header.styles";
 
+Header.propTypes = propTypes; // eslint-disable-line no-use-before-define
+Header.defaultProps = defaultProps; // eslint-disable-line no-use-before-define
+// eslint-disable-next-line no-use-before-define
+Header.types = {
+  kind: { DEFAULT: types.DEFAULT, PRIMARY: types.PRIMARY },
+};
+
 const propTypes = {
   children: PropTypes.node.isRequired,
   hasCloseButton: PropTypes.bool,
@@ -17,7 +24,7 @@ const propTypes = {
 const defaultProps = {
   hasCloseButton: true,
   level: 3,
-  kind: types.DEFAULT,
+  kind: Header.types.kind.DEFAULT, // eslint-disable-line no-use-before-define
   onClose: () => {},
   refHeading: null,
 };
@@ -45,10 +52,5 @@ const Header = React.forwardRef((props, ref) => {
 });
 
 Header.displayName = "Takeover.Header";
-Header.propTypes = propTypes;
-Header.defaultProps = defaultProps;
-Header.types = {
-  kind: { DEFAULT: types.DEFAULT, PRIMARY: types.PRIMARY },
-};
 
 export default Header;

@@ -5,8 +5,14 @@ import Overlay from "@paprika/overlay";
 import { zValue } from "@paprika/stylers/lib/helpers";
 import extractChildren from "@paprika/helpers/lib/extractChildren";
 import FocusLock from "./components/FocusLock";
-import * as types from "./types";
 import * as sc from "./Modal.styles";
+
+Modal.propTypes = propTypes; // eslint-disable-line no-use-before-define
+Modal.defaultProps = defaultProps; // eslint-disable-line no-use-before-define
+// eslint-disable-next-line no-use-before-define
+Modal.types = {
+  size: constants.defaultSize,
+};
 
 const propTypes = {
   /* Description of the Modal dialog for assistive technology */
@@ -39,7 +45,7 @@ const defaultProps = {
   onAfterClose: () => {},
   onAfterOpen: () => {},
   onClose: () => {},
-  size: types.MEDIUM,
+  size: Modal.types.size.MEDIUM, // eslint-disable-line no-use-before-define
   zIndex: zValue(6),
 };
 
@@ -100,10 +106,5 @@ const Modal = props => {
 };
 
 Modal.FocusLock = FocusLock;
-Modal.propTypes = propTypes;
-Modal.defaultProps = defaultProps;
-Modal.types = {
-  size: constants.defaultSize,
-};
 
 export default Modal;

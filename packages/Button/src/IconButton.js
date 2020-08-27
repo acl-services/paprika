@@ -1,9 +1,16 @@
 import React from "react";
 import PropTypes from "prop-types";
 import * as constants from "@paprika/constants/lib/Constants";
-import * as types from "./types";
 import iconButtonStyles from "./IconButton.styles";
 import Button from "./Button";
+
+// eslint-disable-next-line no-use-before-define
+IconButton.types = {
+  kind: constants.kind,
+  size: constants.defaultSize,
+};
+IconButton.propTypes = IconPropTypes; // eslint-disable-line no-use-before-define
+IconButton.defaultProps = IconDefaultProps; // eslint-disable-line no-use-before-define
 
 const IconPropTypes = {
   /** Body content of the button (an icon). */
@@ -24,8 +31,8 @@ const IconPropTypes = {
 };
 
 const IconDefaultProps = {
-  kind: types.DEFAULT,
-  size: types.MEDIUM,
+  kind: IconButton.types.kind.DEFAULT, // eslint-disable-line no-use-before-define
+  size: IconButton.types.size.MEDIUM, // eslint-disable-line no-use-before-define
 };
 
 const IconButton = React.forwardRef((props, ref) => {
@@ -38,12 +45,6 @@ const IconButton = React.forwardRef((props, ref) => {
   return <Button css={iconButtonStyles} {...props} {...buttonProps} ref={ref} />;
 });
 
-IconButton.types = {
-  kind: constants.kind,
-  size: constants.defaultSize,
-};
 IconButton.displayName = "IconButton";
-IconButton.propTypes = IconPropTypes;
-IconButton.defaultProps = IconDefaultProps;
 
 export default IconButton;

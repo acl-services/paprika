@@ -12,6 +12,13 @@ import { getNumberWithUnits } from "../../helpers";
 import * as types from "../../types";
 import * as sc from "./File.styles";
 
+File.defaultProps = defaultProps; // eslint-disable-line no-use-before-define
+File.propTypes = propTypes; // eslint-disable-line no-use-before-define
+// eslint-disable-next-line no-use-before-define
+File.types = {
+  status: types.status,
+};
+
 const propTypes = {
   error: PropTypes.string,
   fileKey: PropTypes.string.isRequired,
@@ -110,11 +117,5 @@ function File({ error, fileKey, name, progress, size, status }) {
     </sc.FileWrapper>
   );
 }
-
-File.defaultProps = defaultProps;
-File.propTypes = propTypes;
-File.types = {
-  status: types.status,
-};
 
 export default File;

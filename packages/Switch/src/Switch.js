@@ -2,9 +2,15 @@ import React from "react";
 import PropTypes from "prop-types";
 import * as constants from "@paprika/constants/lib/Constants";
 import RawButton from "@paprika/raw-button";
-import * as types from "./types";
 
 import switchStyles, { KnobStyled, UnderlayStyled } from "./Switch.styles";
+
+Switch.propTypes = propTypes; // eslint-disable-line no-use-before-define
+Switch.defaultProps = defaultProps; // eslint-disable-line no-use-before-define
+// eslint-disable-next-line no-use-before-define
+Switch.types = {
+  size: constants.defaultSize,
+};
 
 const propTypes = {
   /** Descriptive a11y text for assistive technologies. Typically required. */
@@ -32,7 +38,7 @@ const defaultProps = {
   isChecked: false,
   isDisabled: false,
   onChange: () => {},
-  size: types.MEDIUM,
+  size: Switch.types.size.MEDIUM, // eslint-disable-line no-use-before-define
 };
 
 function Switch(props) {
@@ -59,10 +65,5 @@ function Switch(props) {
 }
 
 Switch.displayName = "Switch";
-Switch.propTypes = propTypes;
-Switch.defaultProps = defaultProps;
-Switch.types = {
-  size: constants.defaultSize,
-};
 
 export default Switch;

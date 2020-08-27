@@ -3,6 +3,13 @@ import PropTypes from "prop-types";
 import * as types from "../../types";
 import * as sc from "./Dialog.styles";
 
+Dialog.propTypes = propTypes; // eslint-disable-line no-use-before-define
+Dialog.defaultProps = defaultProps; // eslint-disable-line no-use-before-define
+// eslint-disable-next-line no-use-before-define
+Dialog.types = {
+  kind: { DEFAULT: types.sidePanelKinds.DEFAULT, PRIMARY: types.sidePanelKinds.PRIMARY },
+};
+
 const propTypes = {
   a11yText: PropTypes.string,
   children: PropTypes.node.isRequired,
@@ -29,7 +36,7 @@ const defaultProps = {
   getPushContentElement: () => {},
   groupOffsetY: 0,
   header: null,
-  kind: types.sidePanelKinds.DEFAULT,
+  kind: Dialog.types.kind.DEFAULT, // eslint-disable-line no-use-before-define
   isCompact: false,
   isInline: false,
   offsetY: 0,
@@ -141,9 +148,3 @@ function Dialog(props) {
 }
 
 export default Dialog;
-
-Dialog.propTypes = propTypes;
-Dialog.defaultProps = defaultProps;
-Dialog.types = {
-  kind: { DEFAULT: types.sidePanelKinds.DEFAULT, PRIMARY: types.sidePanelKinds.PRIMARY },
-};

@@ -6,7 +6,6 @@ import useI18n from "@paprika/l10n/lib/useI18n";
 import extractChildren from "@paprika/helpers/lib/extractChildren";
 import "@paprika/helpers/lib/dom/elementScrollToPolyfill";
 import nanoid from "nanoid";
-import * as types from "./types";
 import useGridEventHandler, { getGridRefId } from "./hooks/useGridEventHandler";
 import ColumnDefinition from "./components/ColumnDefinition";
 import * as sc from "./DataGrid.styles";
@@ -14,6 +13,16 @@ import Basement, { End } from "./components/Basement";
 import InfiniteScroll from "./components/InfiniteScroll";
 import { Row, HeaderRow, StickyRow, StickyHeaderRow, createItemData } from "./DataGrid.Rows";
 import getScrollbarWidth from "./helpers/getScrollbarWidth";
+
+DataGrid.ColumnDefinition = ColumnDefinition; // eslint-disable-line no-use-before-define
+DataGrid.defaultProps = defaultProps; // eslint-disable-line no-use-before-define
+DataGrid.InfiniteScroll = InfiniteScroll; // eslint-disable-line no-use-before-define
+DataGrid.propTypes = propTypes; // eslint-disable-line no-use-before-define
+DataGrid.Basement = Basement; // eslint-disable-line no-use-before-define
+// eslint-disable-next-line no-use-before-define
+DataGrid.types = {
+  border: constants.gridTypes,
+};
 
 window.paprika = { dataGridRef: {} };
 
@@ -58,7 +67,7 @@ const propTypes = {
 
 const defaultProps = {
   autofocus: true,
-  borderType: types.GRID,
+  borderType: DataGrid.types.border.GRID, // eslint-disable-line no-use-before-define
   data: [],
   forceTableWidthWithScrollBars: false,
   hasZebraStripes: false,
@@ -605,14 +614,5 @@ const DataGrid = React.forwardRef((props, ref) => {
     </>
   );
 });
-
-DataGrid.ColumnDefinition = ColumnDefinition;
-DataGrid.defaultProps = defaultProps;
-DataGrid.InfiniteScroll = InfiniteScroll;
-DataGrid.propTypes = propTypes;
-DataGrid.Basement = Basement;
-DataGrid.types = {
-  border: constants.gridTypes,
-};
 
 export default DataGrid;

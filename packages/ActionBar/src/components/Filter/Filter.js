@@ -12,6 +12,14 @@ import * as types from "../../types";
 import * as sc from "./Filter.styles";
 import { GenericNoAppliedPlaceholder } from "../../ActionBar.styles";
 
+Filter.propTypes = propTypes; // eslint-disable-line no-use-before-define
+// eslint-disable-next-line no-use-before-define
+Filter.types = {
+  operator: types.logicalFilterOperators,
+  rule: types.rules,
+};
+Filter.defaultProps = defaultProps; // eslint-disable-line no-use-before-define
+
 const propTypes = {
   appliedNumber: PropTypes.number,
   children: PropTypes.node,
@@ -37,8 +45,8 @@ const defaultProps = {
   onCancel: () => {},
   onClose: () => {},
   onOpen: () => {},
-  operator: types.logicalFilterOperators.AND,
-  rulesByType: types.defaultRulesByType,
+  operator: Filter.types.logicalFilterOperators.AND, // eslint-disable-line no-use-before-define
+  rulesByType: Filter.types.defaultRulesByType, // eslint-disable-line no-use-before-define
 };
 
 function getLabelText(numberOfFilters, I18n) {
@@ -137,12 +145,6 @@ export default function Filter(props) {
   );
 }
 
-Filter.propTypes = propTypes;
-Filter.types = {
-  operator: types.logicalFilterOperators,
-  rule: types.rules,
-};
-Filter.defaultProps = defaultProps;
 Filter.displayName = "ActionBar.Filter";
 Filter.defaultRulesByType = types.defaultRulesByType;
 Filter.rules = types.rules;

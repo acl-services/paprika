@@ -4,6 +4,13 @@ import RawButton from "@paprika/raw-button";
 import Button from "@paprika/button";
 import * as types from "../../types";
 
+Trigger.defaultProps = defaultProps; // eslint-disable-line no-use-before-define
+Trigger.propTypes = propTypes; // eslint-disable-line no-use-before-define
+// eslint-disable-next-line no-use-before-define
+Trigger.types = {
+  button: types.buttonTypes,
+};
+
 const ButtonComponentMap = {
   icon: Button.Icon,
   raw: RawButton,
@@ -21,7 +28,7 @@ const propTypes = {
 };
 
 const defaultProps = {
-  buttonType: types.buttonTypes.SIMPLE,
+  buttonType: Trigger.types.button.SIMPLE, // eslint-disable-line no-use-before-define
   children: null,
   menuRefId: "",
   triggerRef: null,
@@ -49,10 +56,5 @@ const Trigger = props => {
 };
 
 Trigger.displayName = "DropdownMenu.Trigger";
-Trigger.defaultProps = defaultProps;
-Trigger.propTypes = propTypes;
-Trigger.types = {
-  button: types.buttonTypes,
-};
 
 export default Trigger;

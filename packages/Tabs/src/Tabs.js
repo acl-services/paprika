@@ -6,7 +6,13 @@ import Panel from "./components/Panel/Panel";
 import Panels from "./components/Panels/Panels";
 import Tab from "./components/Tab/Tab";
 import List from "./components/List/List";
-import * as types from "./types";
+
+Tabs.propTypes = propTypes; // eslint-disable-line no-use-before-define
+Tabs.defaultProps = defaultProps; // eslint-disable-line no-use-before-define
+// eslint-disable-next-line no-use-before-define
+Tabs.types = {
+  kind: constants.kind,
+};
 
 const propTypes = {
   /** Determine the styling of the tab */
@@ -20,7 +26,7 @@ const propTypes = {
 };
 
 const defaultProps = {
-  kind: types.PRIMARY,
+  kind: Tabs.types.kind.PRIMARY, // eslint-disable-line no-use-before-define
   defaultIndex: 0,
   isDisabled: false,
 };
@@ -93,10 +99,5 @@ Tabs.Panel = Panel;
 Tabs.Panels = Panels;
 Tabs.Tab = Tab;
 Tabs.List = List;
-Tabs.propTypes = propTypes;
-Tabs.defaultProps = defaultProps;
-Tabs.types = {
-  kind: constants.kind,
-};
 
 export default Tabs;

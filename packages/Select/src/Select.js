@@ -2,8 +2,14 @@ import React from "react";
 import classNames from "classnames";
 import PropTypes from "prop-types";
 import * as constants from "@paprika/constants/lib/Constants";
-import * as types from "./types";
 import selectStyles from "./Select.styles";
+
+Select.propTypes = propTypes; // eslint-disable-line no-use-before-define
+Select.defaultProps = defaultProps; // eslint-disable-line no-use-before-define
+// eslint-disable-next-line no-use-before-define
+Select.types = {
+  size: constants.defaultSize,
+};
 
 const propTypes = {
   a11yText: PropTypes.string,
@@ -25,7 +31,7 @@ const defaultProps = {
   isDisabled: false,
   isReadOnly: false,
   placeholder: null,
-  size: types.MEDIUM,
+  size: Select.types.size.MEDIUM, // eslint-disable-line no-use-before-define
   value: "",
 };
 
@@ -85,10 +91,5 @@ const Select = React.forwardRef((props, ref) => {
 });
 
 Select.displayName = "Select";
-Select.propTypes = propTypes;
-Select.defaultProps = defaultProps;
-Select.types = {
-  size: constants.defaultSize,
-};
 
 export default Select;

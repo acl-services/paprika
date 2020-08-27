@@ -1,12 +1,18 @@
 import React from "react";
 import PropTypes from "prop-types";
 import * as constants from "@paprika/constants/lib/Constants";
-import * as types from "./types";
 import ArrowItem from "./components/ArrowItem/ArrowItem";
 import CurrentPageItem from "./components/CurrentPageItem/CurrentPageItem";
 import ElipsisItem from "./components/EllipsisItem/ElipsisItem";
 import PageItem from "./components/PageItem/PageItem";
 import * as sc from "./Pagination.styles";
+
+Pagination.propTypes = propTypes; // eslint-disable-line no-use-before-define
+Pagination.defaultProps = defaultProps; // eslint-disable-line no-use-before-define
+// eslint-disable-next-line no-use-before-define
+Pagination.types = {
+  size: constants.defaultSize,
+};
 
 const propTypes = {
   /** The number of current active page */
@@ -28,7 +34,7 @@ const propTypes = {
 
 const defaultProps = {
   onChange: () => {},
-  size: types.MEDIUM,
+  size: Pagination.types.size.MEDIUM, // eslint-disable-line no-use-before-define
 };
 
 const isCurrentPage = (pageNumber, currentPage) => currentPage === pageNumber;
@@ -107,10 +113,5 @@ function Pagination(props) {
 }
 
 Pagination.displayName = "Pagination";
-Pagination.propTypes = propTypes;
-Pagination.defaultProps = defaultProps;
-Pagination.types = {
-  size: constants.defaultSize,
-};
 
 export default Pagination;

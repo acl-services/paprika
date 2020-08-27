@@ -2,7 +2,6 @@ import React from "react";
 import PropTypes from "prop-types";
 import useI18n from "@paprika/l10n/lib/useI18n";
 import * as constants from "@paprika/constants/lib/Constants";
-import * as types from "./types";
 import Box from "./components/Box";
 import Content from "./components/Content";
 import List from "./components/List";
@@ -24,6 +23,13 @@ import {
   useOnScrolled,
   useOptionSelected,
 } from "./hooks";
+
+ListBoxContainer.propTypes = propTypes; // eslint-disable-line no-use-before-define
+ListBoxContainer.defaultProps = defaultProps; // eslint-disable-line no-use-before-define
+// eslint-disable-next-line no-use-before-define
+ListBoxContainer.types = {
+  size: constants.defaultSize,
+};
 
 export const propTypes = {
   /** Child of type <ListBox.Option /> */
@@ -73,7 +79,7 @@ export const defaultProps = {
   isOpen: null,
   onChange: () => {},
   placeholder: null,
-  size: types.MEDIUM,
+  size: ListBoxContainer.types.size.MEDIUM, // eslint-disable-line no-use-before-define
   trigger: null, // eslint-disable-line
 };
 
@@ -194,11 +200,5 @@ const ListBoxContainer = React.forwardRef((props, ref) => {
 
   return <Popover>{listBox}</Popover>;
 });
-
-ListBoxContainer.propTypes = propTypes;
-ListBoxContainer.defaultProps = defaultProps;
-ListBoxContainer.types = {
-  size: constants.defaultSize,
-};
 
 export default ListBoxContainer;

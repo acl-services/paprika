@@ -9,6 +9,15 @@ import CheckboxInputPropsCollector from "./CheckboxInputPropsCollector";
 import * as types from "./types";
 import checkboxStyles from "./Checkbox.styles";
 
+Checkbox.propTypes = propTypes; // eslint-disable-line no-use-before-define
+Checkbox.defaultProps = defaultProps; // eslint-disable-line no-use-before-define
+// eslint-disable-next-line no-use-before-define
+Checkbox.types = {
+  size: constants.defaultSize,
+  state: types.checkboxStates,
+};
+Checkbox.Input = CheckboxInputPropsCollector; // eslint-disable-line no-use-before-define
+
 const noop = () => {};
 
 const propTypes = {
@@ -18,9 +27,9 @@ const propTypes = {
   a11yText: PropTypes.string,
   /** The checkbox state */
   checkedState: PropTypes.oneOf([
-    types.checkboxStates.CHECKED,
-    types.checkboxStates.UNCHECKED,
-    types.checkboxStates.INDETERMINATE,
+    Checkbox.types.checkboxStates.CHECKED, // eslint-disable-line no-use-before-define
+    Checkbox.types.checkboxStates.UNCHECKED, // eslint-disable-line no-use-before-define
+    Checkbox.types.checkboxStates.INDETERMINATE, // eslint-disable-line no-use-before-define
   ]),
   /** Used for label contents */
   children: PropTypes.node,
@@ -37,11 +46,11 @@ const propTypes = {
 const defaultProps = {
   a11yText: null,
   ariaDescribedBy: null,
-  checkedState: types.checkboxStates.UNCHECKED,
+  checkedState: Checkbox.types.checkboxStates.UNCHECKED, // eslint-disable-line no-use-before-define
   children: null,
   isDisabled: false,
   onChange: noop,
-  size: types.MEDIUM,
+  size: Checkbox.types.size.MEDIUM, // eslint-disable-line no-use-before-define
   tabIndex: 0,
 };
 
@@ -103,11 +112,5 @@ const Checkbox = props => {
 };
 
 Checkbox.displayName = "Checkbox";
-Checkbox.propTypes = propTypes;
-Checkbox.defaultProps = defaultProps;
-Checkbox.types = {
-  size: constants.defaultSize,
-  state: types.checkboxStates,
-};
-Checkbox.Input = CheckboxInputPropsCollector;
+
 export default Checkbox;

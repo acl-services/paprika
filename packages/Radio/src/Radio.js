@@ -3,9 +3,15 @@ import PropTypes from "prop-types";
 import nanoid from "nanoid";
 import * as constants from "@paprika/constants/lib/Constants";
 import CheckIcon from "@paprika/icon/lib/Check";
-import * as types from "./types";
 import radioStyles from "./Radio.styles";
 import Group from "./components/Group";
+
+Radio.propTypes = propTypes; // eslint-disable-line no-use-before-define
+Radio.defaultProps = defaultProps; // eslint-disable-line no-use-before-define
+// eslint-disable-next-line no-use-before-define
+Radio.types = {
+  size: constants.defaultSize,
+};
 
 const propTypes = {
   /** Used for aria-label on the radio input  */
@@ -44,7 +50,7 @@ const defaultProps = {
   isDisabled: false,
   name: "",
   onClick: () => {},
-  size: types.MEDIUM,
+  size: Radio.types.size.MEDIUM, // eslint-disable-line no-use-before-define
   tabIndex: 0,
   value: "",
 };
@@ -125,11 +131,6 @@ function Radio(props) {
 }
 
 Radio.displayName = "Radio";
-Radio.propTypes = propTypes;
-Radio.defaultProps = defaultProps;
-Radio.types = {
-  size: constants.defaultSize,
-};
 Radio.Group = Group;
 
 export default Radio;

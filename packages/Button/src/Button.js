@@ -6,8 +6,17 @@ import RefreshIcon from "@paprika/icon/lib/Refresh";
 import DownIcon from "@paprika/icon/lib/CaretDown";
 import "@paprika/helpers/lib/dom/closest"; // support for IE11
 import * as constants from "@paprika/constants/lib/Constants";
-import * as types from "./types";
 import buttonStyles, { iconStyles } from "./Button.styles";
+
+ButtonIcon.propTypes = buttonPropTypes; // eslint-disable-line no-use-before-define
+ButtonIcon.defaultProps = buttonDefaultProps; // eslint-disable-line no-use-before-define
+Button.propTypes = propTypes; // eslint-disable-line no-use-before-define
+Button.defaultProps = defaultProps; // eslint-disable-line no-use-before-define
+// eslint-disable-next-line no-use-before-define
+Button.types = {
+  size: constants.defaultSize,
+  kind: constants.kind,
+};
 
 const propTypes = {
   /** Descriptive a11y text for assistive technologies. By default, text from children node will be used. */
@@ -60,7 +69,7 @@ const propTypes = {
   role: PropTypes.string,
 
   /** Size of the button (font size, min-height, padding, etc). */
-  size: PropTypes.oneOf([types.SMALL, types.MEDIUM, types.LARGE]),
+  size: PropTypes.oneOf([Button.types.size.SMALL, Button.types.size.MEDIUM, Button.types.size.LARGE]), // eslint-disable-line no-use-before-define
 
   /** Value for tabindex attribute to override the default of 0. */
   tabIndex: PropTypes.number,
@@ -78,10 +87,10 @@ const defaultProps = {
   isPending: false,
   isSemantic: true,
   isSubmit: false,
-  kind: types.DEFAULT,
+  kind: Button.types.kind.DEFAULT, // eslint-disable-line no-use-before-define
   onClick: () => {},
   role: "button",
-  size: types.MEDIUM,
+  size: Button.types.size.MEDIUM, // eslint-disable-line no-use-before-define
   tabIndex: null,
 };
 
@@ -197,15 +206,6 @@ const Button = React.forwardRef((props, ref) => {
   );
 });
 
-ButtonIcon.propTypes = buttonPropTypes;
-ButtonIcon.defaultProps = buttonDefaultProps;
-
-Button.types = {
-  size: constants.defaultSize,
-  kind: constants.kind,
-};
 Button.displayName = "Button";
-Button.propTypes = propTypes;
-Button.defaultProps = defaultProps;
 
 export default Button;

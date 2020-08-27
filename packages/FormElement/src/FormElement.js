@@ -11,8 +11,14 @@ import Content from "./components/Content";
 import ErrorMessage from "./components/ErrorMessage";
 import Help from "./components/Help";
 import Label from "./components/Label";
-import * as types from "./types";
 import * as sc from "./FormElement.styles";
+
+FormElement.propTypes = propTypes; // eslint-disable-line no-use-before-define
+FormElement.defaultProps = defaultProps; // eslint-disable-line no-use-before-define
+// eslint-disable-next-line no-use-before-define
+FormElement.types = {
+  size: constants.defaultSize,
+};
 
 const propTypes = {
   children: PropTypes.node.isRequired,
@@ -54,7 +60,7 @@ const defaultProps = {
   isDisabled: false,
   isInline: false,
   isLabelVisuallyHidden: false,
-  size: types.MEDIUM,
+  size: FormElement.types.size.MEDIUM, // eslint-disable-line no-use-before-define
   hasFieldSet: false,
   onClickLabel: () => {},
 };
@@ -165,11 +171,7 @@ function FormElement(props) {
 }
 
 FormElement.displayName = "FormElement";
-FormElement.propTypes = propTypes;
-FormElement.defaultProps = defaultProps;
-FormElement.types = {
-  size: constants.defaultSize,
-};
+
 FormElement.subComponentDisplayNames = subComponentDisplayNames;
 FormElement.Content = Content;
 FormElement.Instructions = Instructions;

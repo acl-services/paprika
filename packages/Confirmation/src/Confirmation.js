@@ -10,6 +10,15 @@ import TriggerButton from "./components/TriggerButton";
 import * as types from "./types";
 import { confirmStyles, confirmBodyStyles, confirmFooterStyles } from "./Confirmation.styles";
 
+Confirmation.propTypes = propTypes; // eslint-disable-line no-use-before-define
+Confirmation.defaultProps = defaultProps; // eslint-disable-line no-use-before-define
+// eslint-disable-next-line no-use-before-define
+Confirmation.types = {
+  size: constants.defaultSize,
+  kind: constants.kind,
+};
+Confirmation.TriggerButton = TriggerButton; // eslint-disable-line no-use-before-define
+
 const propTypes = {
   /** Content of the popover confirmation */
   body: PropTypes.node,
@@ -38,9 +47,9 @@ const propTypes = {
 
 const defaultProps = {
   body: null,
-  buttonSize: types.MEDIUM,
+  buttonSize: Confirmation.types.size.MEDIUM, // eslint-disable-line no-use-before-define
   children: null,
-  confirmButtonType: types.DESTRUCTIVE,
+  confirmButtonType: Confirmation.types.kind.DESTRUCTIVE, // eslint-disable-line no-use-before-define
   defaultIsOpen: false,
   heading: null,
   isPending: false,
@@ -182,12 +191,5 @@ const Confirmation = props => {
 };
 
 Confirmation.displayName = "Confirmation";
-Confirmation.propTypes = propTypes;
-Confirmation.defaultProps = defaultProps;
-Confirmation.types = {
-  size: constants.defaultSize,
-  kind: constants.kind,
-};
-Confirmation.TriggerButton = TriggerButton;
 
 export default Confirmation;

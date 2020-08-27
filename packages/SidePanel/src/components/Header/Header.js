@@ -6,6 +6,13 @@ import Heading from "@paprika/heading";
 import * as types from "../../types";
 import * as sc from "./Header.styles";
 
+Header.propTypes = propTypes; // eslint-disable-line no-use-before-define
+Header.defaultProps = defaultProps; // eslint-disable-line no-use-before-define
+// eslint-disable-next-line no-use-before-define
+Header.types = {
+  kind: types.sidePanelKinds,
+};
+
 const propTypes = {
   children: PropTypes.node.isRequired,
   getPushContentElement: PropTypes.func,
@@ -21,7 +28,7 @@ const propTypes = {
 const defaultProps = {
   hasCloseButton: true,
   getPushContentElement: () => {},
-  kind: types.sidePanelKinds.DEFAULT,
+  kind: Header.types.kind.DEFAULT, // eslint-disable-line no-use-before-define
   isHeaderSticky: false,
   level: 2,
   isCompact: false,
@@ -68,11 +75,5 @@ const Header = React.forwardRef((props, ref) => {
 });
 
 Header.displayName = "SidePanel.Header";
-Header.propTypes = propTypes;
-Header.defaultProps = defaultProps;
-
-Header.types = {
-  kind: types.sidePanelKinds,
-};
 
 export default Header;

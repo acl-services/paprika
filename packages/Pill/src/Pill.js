@@ -5,6 +5,15 @@ import RawButton from "@paprika/raw-button";
 import * as types from "./types";
 import pillStyles, { pillTextStyles } from "./Pill.styles";
 
+Pill.propTypes = propTypes; // eslint-disable-line no-use-before-define
+Pill.defaultProps = defaultProps; // eslint-disable-line no-use-before-define
+// eslint-disable-next-line no-use-before-define
+Pill.types = {
+  size: constants.limitedSize,
+  color: constants.color,
+  severity: types.severityPillColors,
+};
+
 const propTypes = {
   a11yText: PropTypes.string,
   children: PropTypes.node.isRequired,
@@ -34,8 +43,8 @@ const defaultProps = {
   a11yText: null,
   isDisabled: false,
   onClick: null,
-  pillColor: types.GREY,
-  size: types.MEDIUM,
+  pillColor: Pill.types.color.GREY, // eslint-disable-line no-use-before-define
+  size: Pill.types.size.MEDIUM, // eslint-disable-line no-use-before-define
 };
 
 function Pill(props) {
@@ -69,12 +78,5 @@ function Pill(props) {
 }
 
 Pill.displayName = "Pill";
-Pill.propTypes = propTypes;
-Pill.defaultProps = defaultProps;
-Pill.types = {
-  size: constants.limitedSize,
-  color: constants.color,
-  severity: types.severityPillColors,
-};
 
 export default Pill;

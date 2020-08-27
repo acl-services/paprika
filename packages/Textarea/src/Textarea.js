@@ -2,8 +2,14 @@ import React from "react";
 import PropTypes from "prop-types";
 import classNames from "classnames";
 import * as constants from "@paprika/constants/lib/Constants";
-import * as types from "./types";
 import textareaStyles from "./Textarea.styles";
+
+Textarea.propTypes = propTypes; // eslint-disable-line no-use-before-define
+Textarea.defaultProps = defaultProps; // eslint-disable-line no-use-before-define
+// eslint-disable-next-line no-use-before-define
+Textarea.types = {
+  size: constants.defaultSize,
+};
 
 const propTypes = {
   /** Descriptive a11y text for assistive technologies. By default, text from children node will be used. */
@@ -37,7 +43,7 @@ const defaultProps = {
   isReadOnly: false,
   maxHeight: "300px",
   onChange: () => {},
-  size: types.MEDIUM,
+  size: Textarea.types.size.MEDIUM, // eslint-disable-line no-use-before-define
   value: null,
 };
 
@@ -130,10 +136,5 @@ const Textarea = React.forwardRef((props, ref) => {
 });
 
 Textarea.displayName = "Textarea";
-Textarea.propTypes = propTypes;
-Textarea.defaultProps = defaultProps;
-Textarea.types = {
-  size: constants.defaultSize,
-};
 
 export default Textarea;

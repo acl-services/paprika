@@ -16,6 +16,13 @@ import * as types from "./types";
 import { extractChildren } from "./helpers";
 import { useOffsetScroll } from "./hooks";
 
+SidePanel.defaultProps = defaultProps; // eslint-disable-line no-use-before-define
+SidePanel.displayName = "SidePanel"; // eslint-disable-line no-use-before-define
+// eslint-disable-next-line no-use-before-define
+SidePanel.types = {
+  kind: types.sidePanelKinds,
+};
+
 const propTypes = {
   /* Description of the SidePanel dialog for assistive technology */
   a11yText: PropTypes.string,
@@ -70,7 +77,7 @@ const defaultProps = {
   isCompact: false,
   isInline: false,
   isSlideFromLeft: false,
-  kind: types.sidePanelKinds.DEFAULT,
+  kind: SidePanel.types.kind.DEFAULT, // eslint-disable-line no-use-before-define
   offsetY: 0,
   onAfterClose: () => {},
   onAfterOpen: () => {},
@@ -239,11 +246,6 @@ export default function SidePanel(props) {
 }
 
 SidePanel.propTypes = propTypes;
-SidePanel.defaultProps = defaultProps;
-SidePanel.displayName = "SidePanel";
-SidePanel.types = {
-  kind: types.sidePanelKinds,
-};
 
 SidePanel.Content = Content;
 SidePanel.FocusLock = FocusLock;

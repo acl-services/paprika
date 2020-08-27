@@ -5,8 +5,15 @@ import extractChildren from "@paprika/helpers/lib/extractChildren";
 import PropTypes from "prop-types";
 import * as constants from "@paprika/constants/lib/Constants";
 import ColumnDefinition from "./components/ColumnDefinition";
-import * as types from "./types";
 import * as sc from "./Table.styles";
+
+Table.propTypes = propTypes; // eslint-disable-line no-use-before-define
+Table.defaultProps = defaultProps; // eslint-disable-line no-use-before-define
+Table.ColumnDefinition = ColumnDefinition; // eslint-disable-line no-use-before-define
+// eslint-disable-next-line no-use-before-define
+Table.types = {
+  border: constants.gridTypes,
+};
 
 const propTypes = {
   /** Define the look for borders in the table Table.types.GRID, Table.types.NONE, etc.  */
@@ -26,7 +33,7 @@ const propTypes = {
 };
 
 const defaultProps = {
-  borderType: types.GRID,
+  borderType: Table.types.border.GRID, // eslint-disable-line no-use-before-define
   data: [],
   hasZebraStripes: false,
 };
@@ -100,9 +107,3 @@ export default function Table(props) {
 }
 
 Table.displayName = "Table";
-Table.propTypes = propTypes;
-Table.defaultProps = defaultProps;
-Table.ColumnDefinition = ColumnDefinition;
-Table.types = {
-  border: constants.gridTypes,
-};

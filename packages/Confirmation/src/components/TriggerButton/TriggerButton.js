@@ -4,6 +4,13 @@ import Button from "@paprika/button";
 import RawButton from "@paprika/raw-button";
 import * as types from "../../types";
 
+TriggerButton.defaultProps = defaultProps; // eslint-disable-line no-use-before-define
+TriggerButton.propTypes = propTypes; // eslint-disable-line no-use-before-define
+// eslint-disable-next-line no-use-before-define
+TriggerButton.types = {
+  button: types.buttonTypes,
+};
+
 const ButtonComponentMap = {
   icon: Button.Icon,
   raw: RawButton,
@@ -23,7 +30,7 @@ const propTypes = {
 };
 
 const defaultProps = {
-  buttonType: types.buttonTypes.SIMPLE,
+  buttonType: TriggerButton.types.button.SIMPLE, // eslint-disable-line no-use-before-define
   children: null,
   isConfirmOpen: false,
   onOpenConfirm: () => {},
@@ -51,10 +58,5 @@ const TriggerButton = props => {
 };
 
 TriggerButton.displayName = "Confirmation.TriggerButton";
-TriggerButton.defaultProps = defaultProps;
-TriggerButton.propTypes = propTypes;
-TriggerButton.types = {
-  button: types.buttonTypes,
-};
 
 export default TriggerButton;

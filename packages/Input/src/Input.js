@@ -7,6 +7,14 @@ import Button from "@paprika/button";
 import * as types from "./types";
 import inputStyles from "./Input.styles";
 
+Input.propTypes = propTypes; // eslint-disable-line no-use-before-define
+Input.defaultProps = defaultProps; // eslint-disable-line no-use-before-define
+// eslint-disable-next-line no-use-before-define
+Input.types = {
+  size: constants.defaultSize,
+  input: types.inputValidTypes,
+};
+
 const propTypes = {
   /** Descriptive a11y text for assistive technologies. By default, text from children node will be used. */
   a11yText: PropTypes.string,
@@ -71,8 +79,8 @@ const defaultProps = {
   isReadOnly: false,
   onChange: () => {},
   onClear: () => {},
-  size: types.MEDIUM,
-  type: types.inputValidTypes.TEXT,
+  size: Input.types.size.MEDIUM, // eslint-disable-line no-use-before-define
+  type: Input.types.input.TEXT, // eslint-disable-line no-use-before-define
   value: null,
 };
 
@@ -161,11 +169,5 @@ const Input = React.forwardRef((props, ref) => {
 });
 
 Input.displayName = "Input";
-Input.propTypes = propTypes;
-Input.defaultProps = defaultProps;
-Input.types = {
-  size: constants.defaultSize,
-  input: types.inputValidTypes,
-};
 
 export default Input;

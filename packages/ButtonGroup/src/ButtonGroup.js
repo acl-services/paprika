@@ -6,6 +6,14 @@ import Item from "./components/Item";
 import * as types from "./types";
 import * as sc from "./ButtonGroup.styles";
 
+ButtonGroup.propTypes = propTypes; // eslint-disable-line no-use-before-define
+ButtonGroup.defaultProps = defaultProps; // eslint-disable-line no-use-before-define
+ButtonGroup.Item = Item; // eslint-disable-line no-use-before-define
+// eslint-disable-next-line no-use-before-define
+ButtonGroup.types = {
+  size: constants.defaultSize,
+};
+
 const propTypes = {
   /** The toggle buttons in the group. */
   children: PropTypes.node,
@@ -40,7 +48,7 @@ const defaultProps = {
   isMulti: false,
   isSemantic: true,
   onChange: () => {},
-  size: types.MEDIUM,
+  size: ButtonGroup.types.size.MEDIUM, // eslint-disable-line no-use-before-define
 };
 
 const ButtonGroup = React.forwardRef((props, ref) => {
@@ -163,11 +171,5 @@ const ButtonGroup = React.forwardRef((props, ref) => {
 });
 
 ButtonGroup.displayName = "ButtonGroup";
-ButtonGroup.propTypes = propTypes;
-ButtonGroup.defaultProps = defaultProps;
-ButtonGroup.Item = Item;
-ButtonGroup.types = {
-  size: constants.defaultSize,
-};
 
 export default ButtonGroup;

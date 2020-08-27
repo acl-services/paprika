@@ -4,6 +4,14 @@ import * as constants from "@paprika/constants/lib/Constants";
 import * as types from "./types";
 import counterStyles from "./Counter.styles";
 
+Counter.propTypes = propTypes; // eslint-disable-line no-use-before-define
+Counter.defaultProps = defaultProps; // eslint-disable-line no-use-before-define
+// eslint-disable-next-line no-use-before-define
+Counter.types = {
+  color: { GREY: types.GREY, BLUE: types.BLUE, RED: types.RED },
+  size: constants.limitedSize,
+};
+
 const propTypes = {
   /** Background color of the counter. */
   color: PropTypes.oneOf([Counter.types.color.GREY, Counter.types.color.BLUE, Counter.types.color.RED]), // eslint-disable-line no-use-before-define
@@ -22,9 +30,9 @@ const propTypes = {
 };
 
 const defaultProps = {
-  color: types.GREY,
+  color: Counter.types.color.GREY, // eslint-disable-line no-use-before-define
   hasIndicator: false,
-  size: types.MEDIUM,
+  size: Counter.types.size.MEDIUM, // eslint-disable-line no-use-before-define
   threshold: 99,
 };
 
@@ -46,11 +54,5 @@ function Counter(props) {
 }
 
 Counter.displayName = "Counter";
-Counter.propTypes = propTypes;
-Counter.defaultProps = defaultProps;
-Counter.types = {
-  color: { GREY: types.GREY, BLUE: types.BLUE, RED: types.RED },
-  size: constants.limitedSize,
-};
 
 export default Counter;

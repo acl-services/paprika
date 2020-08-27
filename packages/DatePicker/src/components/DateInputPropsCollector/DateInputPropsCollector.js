@@ -1,6 +1,12 @@
 import PropTypes from "prop-types";
 import * as constants from "@paprika/constants/lib/Constants";
-import * as types from "../../types";
+
+DateInputPropsCollector.propTypes = propTypes; // eslint-disable-line no-use-before-define
+DateInputPropsCollector.defaultProps = defaultProps; // eslint-disable-line no-use-before-define
+// eslint-disable-next-line no-use-before-define
+DateInputPropsCollector.types = {
+  size: constants.defaultSize,
+};
 
 const propTypes = {
   /** a11yText on the input. */
@@ -27,7 +33,7 @@ const defaultProps = {
   a11yText: null,
   clearIcon: null,
   placeholder: "",
-  size: types.MEDIUM,
+  size: DateInputPropsCollector.types.size.MEDIUM, // eslint-disable-line no-use-before-define
   hasError: false,
 };
 
@@ -35,12 +41,6 @@ const defaultProps = {
 function DateInputPropsCollector() {
   return null;
 }
-
-DateInputPropsCollector.propTypes = propTypes;
-DateInputPropsCollector.defaultProps = defaultProps;
-DateInputPropsCollector.types = {
-  size: constants.defaultSize,
-};
 
 DateInputPropsCollector.displayName = "DatePicker.Input";
 

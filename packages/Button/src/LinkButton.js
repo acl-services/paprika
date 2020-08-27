@@ -6,6 +6,14 @@ import * as types from "./types";
 import buttonStyles from "./Button.styles";
 import * as sc from "./LinkButton.styles";
 
+LinkButton.propTypes = propTypes; // eslint-disable-line no-use-before-define
+LinkButton.defaultProps = defaultProps; // eslint-disable-line no-use-before-define
+// eslint-disable-next-line no-use-before-define
+LinkButton.types = {
+  kind: constants.kind,
+  size: constants.defaultSize,
+};
+
 const propTypes = {
   a11yText: PropTypes.string,
   children: PropTypes.node.isRequired,
@@ -27,9 +35,9 @@ const propTypes = {
 const defaultProps = {
   a11yText: null,
   isDisabled: false,
-  kind: types.LINK,
+  kind: LinkButton.types.kind.LINK, // eslint-disable-line no-use-before-define
   shouldOpenNewTab: false,
-  size: types.MEDIUM,
+  size: LinkButton.types.size.MEDIUM, // eslint-disable-line no-use-before-define
   suffixIcon: <NewTabIcon />,
 };
 
@@ -68,11 +76,5 @@ const LinkButton = React.forwardRef((props, ref) => {
 });
 
 LinkButton.displayName = "LinkButton";
-LinkButton.propTypes = propTypes;
-LinkButton.defaultProps = defaultProps;
-LinkButton.types = {
-  kind: constants.kind,
-  size: constants.defaultSize,
-};
 
 export default LinkButton;

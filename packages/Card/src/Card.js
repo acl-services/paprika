@@ -7,8 +7,14 @@ import Metadata from "./components/Metadata";
 import Header from "./components/Header";
 import Text from "./components/Text";
 import Content from "./components/Content";
-import * as types from "./types";
 import * as sc from "./Card.styles";
+
+Card.propTypes = propTypes; // eslint-disable-line no-use-before-define
+Card.defaultProps = defaultProps; // eslint-disable-line no-use-before-define
+// eslint-disable-next-line no-use-before-define
+Card.types = {
+  size: constants.autoSize,
+};
 
 const propTypes = {
   /** Body content of the card. */
@@ -26,7 +32,7 @@ const propTypes = {
 
 const defaultProps = {
   children: null,
-  size: types.AUTO,
+  size: Card.types.size.AUTO, // eslint-disable-line no-use-before-define
   isFullWidth: false,
   isActive: false,
 };
@@ -46,11 +52,6 @@ function Card(props) {
 }
 
 Card.displayName = "Card";
-Card.propTypes = propTypes;
-Card.defaultProps = defaultProps;
-Card.types = {
-  size: constants.autoSize,
-};
 
 Card.Header = Header;
 Card.Title = Title;

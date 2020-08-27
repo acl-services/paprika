@@ -17,6 +17,13 @@ import Trigger from "./components/Trigger/Trigger";
 import Tip from "./components/Tip/Tip";
 import * as sc from "./Popover.styles";
 
+Popover.propTypes = propTypes; // eslint-disable-line no-use-before-define
+Popover.defaultProps = defaultProps; // eslint-disable-line no-use-before-define
+// eslint-disable-next-line no-use-before-define
+Popover.types = {
+  align: constants.align,
+};
+
 const openDelay = 350;
 const closeDelay = 150;
 const throttleDelay = 20;
@@ -82,7 +89,7 @@ const propTypes = {
 };
 
 const defaultProps = {
-  align: types.BOTTOM,
+  align: Popover.types.align.BOTTOM, // eslint-disable-line no-use-before-define
   isDark: false,
   isEager: false,
   isOpen: null,
@@ -541,11 +548,6 @@ function PopoverChildren(props) {
 }
 
 Popover.displayName = "Popover";
-Popover.propTypes = propTypes;
-Popover.defaultProps = defaultProps;
-Popover.types = {
-  align: constants.align,
-};
 
 Popover.Trigger = Trigger;
 Popover.Content = Content;
