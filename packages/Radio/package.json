@@ -1,6 +1,6 @@
 {
   "name": "@paprika/radio",
-  "version": "0.1.27",
+  "version": "0.1.28",
   "description": "Radio component displays a radio input and label text beside it. When clicked it selects the input and deselects any other radio input in its group",
   "author": "@paprika",
   "license": "MIT",
@@ -16,7 +16,7 @@
   "dependencies": {
     "@babel/runtime-corejs2": "^7.3.1",
     "@paprika/helpers": "^0.2.13",
-    "@paprika/icon": "^0.3.5",
+    "@paprika/icon": "^0.3.6",
     "@paprika/stylers": "^0.2.8",
     "@paprika/tokens": "^0.1.14",
     "nanoid": "^2.1.7",
@@ -32,5 +32,5 @@
       "Group"
     ]
   },
-  "gitHead": "b7097f9eb289a267275153542276319fc792969a"
+  "gitHead": "494ce26cb0a6c24a8f6abf2b154d97ddd4d7e343"
 }
