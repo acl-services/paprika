@@ -12,7 +12,7 @@
     "lint:fix": "yarn lint --fix",
     "lint": "eslint packages --report-unused-disable-directives",
     "lint:jss": "stylelint './packages/**/src/**/*.styles.js'",
-    "postpublish": "git add . && git commit -m 'Publish: automate readme and changelog update' --no-verify && git push origin master -f --no-verify",
+    "postpublish": "git add packages/*.md && git commit -m 'Publish: automate readme and changelog update' --no-verify && git push origin master -f --no-verify",
     "prepare": "yarn cleanup && lerna run pretranspile && yarn transpile && yarn readme",
     "prepublishOnly": "yarn changelog",
     "prettier:format": "yarn prettier --write",
