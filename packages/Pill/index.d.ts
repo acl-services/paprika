@@ -1,24 +1,27 @@
 export default Pill;
 
-declare function Pill(props: any): JSX.Element;
-declare namespace propTypes {
-  export {};
-  const a11yText: string;
-  const children: node;
-  const isDisabled: bool;
-  const onClick: func;
-  const pillColor: [
-    "black",
-    "blue",
-    "green",
-    "grey",
-    "orange",
-    "lightBlue",
-    "lightOrange",
-    "noRisk",
-    "lowRisk",
-    "mediumRisk",
-    "highRisk"
-  ];
-  const size: ShirtSizes.LIMITED;
+declare function Pill(props: PillProps): JSX.Element;
+interface PillProps {
+  a11yText?: string;
+
+  children: node;
+
+  isDisabled?: boolean;
+
+  onClick?: func;
+
+  pillColor?:
+    | "black"
+    | "blue"
+    | "green"
+    | "grey"
+    | "orange"
+    | "lightBlue"
+    | "lightOrange"
+    | "noRisk"
+    | "lowRisk"
+    | "mediumRisk"
+    | "highRisk";
+
+  size?: ShirtSizes.LIMITED;
 }

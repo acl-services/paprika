@@ -1,48 +1,70 @@
 export default ActionBar;
 
-declare function ActionBar(props: any): JSX.Element;
-declare namespace propTypes {
-  export {};
-  const children: node;
+declare function ActionBar(props: ActionBarProps): JSX.Element;
+interface ActionBarProps {
+  children: node;
 }
+declare namespace ActionBar {
+  function ColumnsArrangement(props: ColumnsArrangementProps): JSX.Element;
+  interface ColumnsArrangementProps {
+    children: node;
 
-declare function ColumnsArrangement(props: any): JSX.Element;
-declare namespace propTypes {
-  export {};
-  const children: node;
-  const orderedColumnIds: arrayOf;
-  const onChangeOrder: func;
-  const onChangeVisibility: func;
-  const onHideAll: func;
-  const onShowAll: func;
-  const renderTriggerButton: func;
+    orderedColumnIds: arrayOf;
+
+    onChangeOrder: func;
+
+    onChangeVisibility: func;
+
+    onHideAll: func;
+
+    onShowAll: func;
+
+    renderTriggerButton?: func;
+  }
 }
+declare namespace ActionBar {
+  function Filter(props: FilterProps): JSX.Element;
+  interface FilterProps {
+    appliedNumber?: number;
 
-declare function Filter(props: any): JSX.Element;
-declare namespace propTypes {
-  export {};
-  const appliedNumber: number;
-  const children: node;
-  const columns: arrayOf;
-  const onAddFilter: func;
-  const onApply: func;
-  const onCancel: func;
-  const onChangeOperator: func;
-  const onClose: func;
-  const onOpen: func;
-  const operator: [logicalFilterOperators.AND, logicalFilterOperators.OR];
-  const rulesByType: objectOf;
+    children?: node;
+
+    columns: arrayOf;
+
+    onAddFilter: func;
+
+    onApply: func;
+
+    onCancel?: func;
+
+    onChangeOperator?: func;
+
+    onClose?: func;
+
+    onOpen?: func;
+
+    operator?: logicalFilterOperators.AND | logicalFilterOperators.OR;
+
+    rulesByType?: objectOf;
+  }
 }
+declare namespace ActionBar {
+  function Sort(props: SortProps): JSX.Element;
+  interface SortProps {
+    appliedNumber?: number;
 
-declare function Sort(props: any): JSX.Element;
-declare namespace propTypes {
-  export {};
-  const appliedNumber: number;
-  const children: node;
-  const columns: arrayOf;
-  const onAddSort: func;
-  const onApply: func;
-  const onCancel: func;
-  const onClose: func;
-  const onOpen: func;
+    children?: node;
+
+    columns: arrayOf;
+
+    onAddSort: func;
+
+    onApply: func;
+
+    onCancel?: func;
+
+    onClose?: func;
+
+    onOpen?: func;
+  }
 }

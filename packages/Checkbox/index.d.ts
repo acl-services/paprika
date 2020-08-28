@@ -1,14 +1,21 @@
 export default Checkbox;
 
-declare function Checkbox(props: any): JSX.Element;
-declare namespace propTypes {
-  export {};
-  const ariaDescribedBy: string;
-  const a11yText: string;
-  const checkedState: ["checked", "indeterminate", "unchecked"];
-  const children: node;
-  const isDisabled: bool;
-  const onChange: func;
-  const size: ShirtSizes.DEFAULT;
-  const tabIndex: [number, string];
+declare function Checkbox(props: CheckboxProps): JSX.Element;
+interface CheckboxProps {
+  /** Used for aria-describedby on the checkbox input */
+  ariaDescribedBy?: string;
+  /** Used for aria-label on the checkbox input */
+  a11yText?: string;
+  /** The checkbox state */
+  checkedState?: "checked" | "indeterminate" | "unchecked";
+  /** Used for label contents */
+  children?: node;
+  /** Describe if the checkbox is disabled or not */
+  isDisabled?: boolean;
+  /** Callback triggered when the input state is changed */
+  onChange?: func;
+  /** Size provided by parent Group component */
+  size?: ShirtSizes.DEFAULT;
+  /** Value for tabindex attribute to override the default of 0. */
+  tabIndex?: number | string;
 }

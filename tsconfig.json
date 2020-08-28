@@ -1,11 +1,10 @@
 {
-  "include": ["packages"],
+  "include": ["./packages/Tokens/src"],
+  "exclude": ["./packages/Tokens/types"],
   "compilerOptions": {
-    "baseUrl": "./packages",
     "allowJs": true,
     "declaration": true,
     "emitDeclarationOnly": true,
-    "outDir": "types",
     "strict": true,
     "target": "ES5",
     "module": "ESNext",
@@ -18,6 +17,8 @@
     "isolatedModules": true,
     "strictFunctionTypes": true,
     "strictNullChecks": true,
-    "strictBindCallApply": true
+    "strictBindCallApply": true,
+    "noImplicitAny": true,
+    "outDir": "./packages/Tokens/types"
   }
 }

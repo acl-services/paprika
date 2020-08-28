@@ -5,44 +5,31 @@ const shell = require("shelljs");
 // eslint-disable-next-line import/no-extraneous-dependencies
 const reactDocs = require("react-docgen");
 
-const skipPackages = [
-  "Guard",
-  "Icon",
-  "Stylers",
-  "Tokens",
-  "helpers",
-  "Button",
-  "ButtonGroup",
-  "Calendar",
-  "DataGrid",
-  "DateInput",
-  "Heading",
-  "Input",
-  "ListBox",
-  "Modal",
-  "Popover",
-  "RawButton",
-  "Select",
-  "Textarea",
-  "Toast",
-  "Uploader",
-];
+const packagesProcessInTsc = ["Tokens"];
+const skipPackages = ["Guard", "Icon", "Stylers", "helpers", "ButtonGroup", "Calendar"];
 
 const fileName = "index.d.ts";
 /* prettier-ignore */
 const renderDeclarationTemplate = ({ displayName="", props = "" }) => { return `export default ${displayName};
+
 ${props}`;};
 
 const createPropsList = ({ info }) => {
   if (!info || !info.props) return "";
+
+  const dottedNotation = info.displayName.includes(".");
   const subComponent = info.displayName.substring(info.displayName.indexOf(".") + 1, info.displayName.length);
-  const displayName = info.displayName.includes(".") ? subComponent : info.displayName;
+  const displayName = dottedNotation ? subComponent : info.displayName;
+  const compName = info.displayName.substring(0, info.displayName.indexOf("."));
+
+  const declareComp = !dottedNotation
+    ? `declare function ${displayName}(props:${displayName}Props): JSX.Element;`
+    : `declare namespace ${compName} {
+      function ${displayName}(props:${displayName}Props): JSX.Element;`;
+
   /* prettier-ignore */
-  const list = [`
-declare function ${displayName}(props: any): JSX.Element;
-declare namespace propTypes {
-  export {};
-`,
+  const list = [`${declareComp}
+  interface ${displayName}Props {`,
   ];
 
   Object.keys(info.props).map(key => {
@@ -50,22 +37,27 @@ declare namespace propTypes {
     let type = "-";
     if ("type" in v) {
       if (v.type.name === "union") {
-        type = `[${v.type.value.map(i => i.name)}]`;
+        type = `${v.type.value.map(i => i.name)}`.replace(/,/g, "|");
       } else {
         type =
           // eslint-disable-next-line no-nested-ternary
           v.type.name !== "enum"
             ? v.type.name
             : Array.isArray(v.type.value)
-            ? `[${v.type.value.map(i => i.value)}]`
+            ? `${v.type.value.map(i => i.value)}`.replace(/,/g, "|")
             : v.type.value;
       }
     }
+
+    const req = v.required.toString() === "false" ? "?:" : ":";
+    const typeName = type === "bool" ? "boolean" : type;
+    const description = v.description ? `/** ${v.description} */` : "";
     /* prettier-ignore */
-    return list.push(`  const ${key}: ${type};\n`);
+    return list.push(` ${description}
+    ${key}${req} ${typeName};\n`);
   });
-  list.push(`}
-  `);
+  list.push(`}`);
+  if (dottedNotation) list.push(`}`);
   return list.join("");
 };
 
@@ -120,7 +112,7 @@ const processPropsList = ({ info, folder, path, paprikaDocs = null }) => {
 };
 
 shell.ls("packages").forEach(folder => {
-  if (!skipPackages.includes(folder)) {
+  if (!skipPackages.includes(folder) && !packagesProcessInTsc.includes(folder)) {
     const path = `./packages/${folder}`;
     const { paprikaDocs = null } = JSON.parse(fs.readFileSync(`${path}/package.json`, "utf8"));
     const componentContent = fs.readFileSync(`${path}/src/${folder}.js`, "utf8");

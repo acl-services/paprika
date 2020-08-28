@@ -1,0 +1,33 @@
+export default Input;
+
+declare function Input(props: InputProps): JSX.Element;
+interface InputProps {
+  /** Descriptive a11y text for assistive technologies. By default, text from children node will be used. */
+  a11yText?: string;
+  /** Sets the class for the input. */
+  className?: string;
+  /** Custom icon for the clear action in the input. */
+  clearIcon?: node;
+  /** Sets the default input value */
+  defaultValue?: string;
+  /** If true displays a clear button inside the input if it contains a value. */
+  hasClearButton?: boolean;
+  /** If true displays a red border around input to show error. */
+  hasError?: boolean;
+  /** Displays an icon inside the input. */
+  icon?: node;
+  /** If true it makes the input disabled. */
+  isDisabled?: boolean;
+  /** If true it makes the input read only. */
+  isReadOnly?: boolean;
+  /** Callback to be executed when the input value is changed. Should not be used with defaultValue prop */
+  onChange?: func;
+  /** Callback to be executed when the input value is cleared */
+  onClear?: func;
+  /** Changes the size of the input. */
+  size?: ShirtSizes.DEFAULT;
+  /** Allows user to specify the type of input. */
+  type?: InputValidTypes.ALL;
+  /** The value inside of the input */
+  value?: string;
+}

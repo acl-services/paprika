@@ -1,12 +1,17 @@
 export default TimePicker;
 
-declare function TimePicker(props: any): JSX.Element;
-declare namespace propTypes {
-  export {};
-  const a11yText: string;
-  const defaultIsOpen: bool;
-  const defaultValue: string;
-  const isDisabled: bool;
-  const onChange: func;
-  const onError: func;
+declare function TimePicker(props: TimePickerProps): JSX.Element;
+interface TimePickerProps {
+  /** Descriptive a11y text for assistive technologies. */
+  a11yText?: string;
+  /** If the TimePicker is set to visible. */
+  defaultIsOpen?: boolean;
+  /** Sets the default value for the TimePicker */
+  defaultValue?: string;
+  /** If the TimePicker is disabled. */
+  isDisabled?: boolean;
+  /** Callback to be executed when the value is changed. */
+  onChange?: func;
+  /** Callback to be executed when there is an error. */
+  onError?: func;
 }

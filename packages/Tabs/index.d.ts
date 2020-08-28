@@ -1,43 +1,56 @@
 export default Tabs;
 
-declare function Tabs(props: any): JSX.Element;
-declare namespace propTypes {
-  export {};
-  const kind: ["primary", "secondary"];
-  const children: node;
-  const defaultIndex: number;
-  const isDisabled: bool;
+declare function Tabs(props: TabsProps): JSX.Element;
+interface TabsProps {
+  /** Determine the styling of the tab */
+  kind?: "primary" | "secondary";
+  /** Children of the Tab */
+  children: node;
+  /** Sets what tab index is active by default */
+  defaultIndex?: number;
+  /** If the tab is disabled */
+  isDisabled?: boolean;
 }
+declare namespace Tabs {
+  function List(props: ListProps): JSX.Element;
+  interface ListProps {
+    /** Descriptive a11y text for assistive technologies. By default, text from children node will be used. */
+    a11yText?: string;
 
-declare function List(props: any): JSX.Element;
-declare namespace propTypes {
-  export {};
-  const a11yText: string;
-  const children: node;
-  const height: number;
+    children: node;
+
+    height?: number;
+  }
 }
-
-declare function Panel(props: any): JSX.Element;
-declare namespace propTypes {
-  export {};
-  const children: node;
-  const isSelected: bool;
+declare namespace Tabs {
+  function Panel(props: PanelProps): JSX.Element;
+  interface PanelProps {
+    children?: node;
+    /** Controls if the option is selected or not */
+    isSelected?: boolean;
+  }
 }
-
-declare function Panels(props: any): JSX.Element;
-declare namespace propTypes {
-  export {};
-  const children: node;
+declare namespace Tabs {
+  function Panels(props: PanelsProps): JSX.Element;
+  interface PanelsProps {
+    children: node;
+  }
 }
+declare namespace Tabs {
+  function Tab(props: TabProps): JSX.Element;
+  interface TabProps {
+    children?: node;
 
-declare function Tab(props: any): JSX.Element;
-declare namespace propTypes {
-  export {};
-  const children: node;
-  const height: number;
-  const href: string;
-  const isDisabled: bool;
-  const isSelected: bool;
-  const onClick: func;
-  const onKeyDownArrows: func;
+    height?: number;
+    /** Sets a url the tab goes to */
+    href?: string;
+    /** If the tab is disabled */
+    isDisabled?: boolean;
+    /** Controls if the option is selected or not */
+    isSelected?: boolean;
+    /** Callback onClick */
+    onClick?: func;
+    /** Callback onKeyDownArrow */
+    onKeyDownArrows?: func;
+  }
 }

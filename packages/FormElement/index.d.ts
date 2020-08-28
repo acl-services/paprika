@@ -1,60 +1,83 @@
 export default FormElement;
 
-declare function FormElement(props: any): JSX.Element;
-declare namespace propTypes {
-  export {};
-  const children: node;
-  const hasOptionalLabel: bool;
-  const hasRequiredLabel: bool;
-  const id: string;
-  const isDisabled: bool;
-  const isInline: bool;
-  const isLabelVisuallyHidden: bool;
-  const label: node;
-  const size: ShirtSizes.DEFAULT;
-  const hasFieldSet: bool;
-  const onClickLabel: func;
-}
+declare function FormElement(props: FormElementProps): JSX.Element;
+interface FormElementProps {
+  children: node;
+  /** Should show is optional text besides the label or not. Will not show if hasRequiredLabel prop is true */
+  hasOptionalLabel?: boolean;
+  /** Should show is required text besides the label or not. Takes presendence over hasOptionalLabel prop */
+  hasRequiredLabel?: boolean;
+  /** ID for the child element. */
+  id?: string;
+  /** Should be disabled or not, default is false. */
+  isDisabled?: boolean;
+  /** Should label and children be inline or not, default is false. */
+  isInline?: boolean;
+  /** Should label be hidden, default is false. Note: this is discouraged because of accessibility requirements. */
+  isLabelVisuallyHidden?: boolean;
+  /** Label text of this field. */
+  label: node;
+  /** Size of the label, error, help and description (font size, min-height, padding, etc). */
+  size?: ShirtSizes.DEFAULT;
+  /** FormElement contains multiple children so Renders a legend element instead of label. */
+  hasFieldSet?: boolean;
 
-declare function Content(props: any): JSX.Element;
-declare namespace propTypes {
-  export {};
-  const children: [func, node];
-  const idForLabel: string;
-  const refLabel: custom;
-  const ariaDescribedBy: string;
+  onClickLabel?: func;
 }
+declare namespace FormElement {
+  function Content(props: ContentProps): JSX.Element;
+  interface ContentProps {
+    children: func | node;
+    /** Sets id for label */
+    idForLabel?: string;
 
-declare function Description(props: any): JSX.Element;
-declare namespace propTypes {
-  export {};
-  const ariaDescriptionId: string;
-  const children: node;
+    refLabel?: custom;
+    /** Used for aria-describedby on the FormElement */
+    ariaDescribedBy?: string;
+  }
 }
+declare namespace FormElement {
+  function Description(props: DescriptionProps): JSX.Element;
+  interface DescriptionProps {
+    ariaDescriptionId?: string;
 
-declare function Help(props: any): JSX.Element;
-declare namespace propTypes {
-  export {};
-  const children: node;
-  const triggerA11yText: string;
+    children: node;
+  }
 }
-
-declare function Instructions(props: any): JSX.Element;
-declare namespace propTypes {
-  export {};
-  const children: node;
+declare namespace FormElement {
+  function Help(props: HelpProps): JSX.Element;
+  interface HelpProps {
+    children: node;
+    /** Aria text for information button to trigger help popover. */
+    triggerA11yText?: string;
+  }
 }
+declare namespace FormElement {
+  function Instructions(props: InstructionsProps): JSX.Element;
+  interface InstructionsProps {
+    children: node;
+  }
+}
+declare namespace FormElement {
+  function Label(props: LabelProps): JSX.Element;
+  interface LabelProps {
+    /** If "optional" text should be displayed beside the label */
+    hasOptionalLabel: boolean;
+    /** If "require" text should be displayed beside the label */
+    hasRequiredLabel: boolean;
+    /** Help indicator */
+    help?: node;
+    /** id for the element */
+    id?: string;
+    /** Should label and children be inline or not */
+    isInline: boolean;
+    /** Should label be hidden */
+    isVisuallyHidden: boolean;
+    /** Label text of the input field */
+    label: node;
+    /** Set if FormElement contains multiple children to render a legend element instead of label */
+    hasFieldSet: boolean;
 
-declare function Label(props: any): JSX.Element;
-declare namespace propTypes {
-  export {};
-  const hasOptionalLabel: bool;
-  const hasRequiredLabel: bool;
-  const help: node;
-  const id: string;
-  const isInline: bool;
-  const isVisuallyHidden: bool;
-  const label: node;
-  const hasFieldSet: bool;
-  const onClick: func;
+    onClick?: func;
+  }
 }
