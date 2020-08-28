@@ -15,6 +15,9 @@ import DatePickerPopoverPropsCollector from "./components/DatePickerPopoverProps
 import { calendarPopoverStyles } from "./DatePicker.styles";
 
 const propTypes = {
+  /** Used for aria-describedby on the date input  */
+  a11yDescribedByIds: PropTypes.string,
+
   children: PropTypes.node,
 
   /** Date format used while entering and parsing user input. */
@@ -55,11 +58,24 @@ const defaultProps = {
   isDisabled: false,
   isReadOnly: false,
   onError: () => {},
+  a11yDescribedByIds: null,
 };
 
 function DatePicker(props) {
   // Props
-  const { children, dateFormat, date, humanFormat, id, isDisabled, isReadOnly, onChange, onError, hasError } = props;
+  const {
+    children,
+    dateFormat,
+    date,
+    humanFormat,
+    id,
+    isDisabled,
+    isReadOnly,
+    onChange,
+    onError,
+    hasError,
+    a11yDescribedByIds,
+  } = props;
 
   // State
   const [possibleDate, setPossibleDate] = React.useState(null);
@@ -144,6 +160,7 @@ function DatePicker(props) {
         denyConfirmation={() => isElementContainsFocus(calendarRef.current)}
         {...extendedInputProps}
         hasError={hasErrorValue}
+        a11yDescribedByIds={a11yDescribedByIds}
       />
 
       <Popover.Content>

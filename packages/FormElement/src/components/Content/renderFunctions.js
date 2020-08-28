@@ -1,48 +1,52 @@
 import React from "react";
 
-const cloneWithAriaAttributes = ({ element, idForLabel, ariaDescribedBy, ariaDescribedByProp }) =>
-  React.cloneElement(element, {
-    "aria-describedby": ariaDescribedBy,
-    ariaDescribedBy: ariaDescribedByProp,
-    id: idForLabel,
+const cloneWithAriaAttributes = ({ element, idForLabel, a11yDescribedByIds, isNative }) => {
+  const a11yProps = {};
+
+  if (a11yDescribedByIds && isNative) {
+    a11yProps["aria-describedby"] = a11yDescribedByIds;
+  }
+
+  if (a11yDescribedByIds && !isNative) {
+    a11yProps.a11yDescribedByIds = a11yDescribedByIds;
+  }
+
+  if (idForLabel) {
+    a11yProps.id = idForLabel;
+  }
+
+  return React.cloneElement(element, {
+    ...a11yProps,
   });
+};
 
 const getAccessibleElement = (elements, cloneFn) =>
   Array.isArray(elements) ? elements.map(cloneFn) : cloneFn(elements);
 
 export default {
-  Input: ({ extractedElements, idForLabel, ariaDescribedBy }) =>
+  Input: ({ extractedElements, idForLabel, a11yDescribedByIds }) =>
     getAccessibleElement(extractedElements, (element, index = 0) =>
-      cloneWithAriaAttributes({ element, idForLabel: index === 0 ? idForLabel : null, ariaDescribedBy })
+      cloneWithAriaAttributes({ element, idForLabel: index === 0 ? idForLabel : null, a11yDescribedByIds })
     ),
-  Checkbox: ({ extractedElements, ariaDescribedBy }) =>
-    getAccessibleElement(extractedElements, element =>
-      cloneWithAriaAttributes({ element, ariaDescribedByProp: ariaDescribedBy })
+  Checkbox: ({ extractedElements, a11yDescribedByIds }) =>
+    getAccessibleElement(extractedElements, element => cloneWithAriaAttributes({ element, a11yDescribedByIds })),
+  "Radio.Group": ({ extractedElements, a11yDescribedByIds }) =>
+    getAccessibleElement(extractedElements, element => cloneWithAriaAttributes({ element, a11yDescribedByIds })),
+  TimePicker: ({ extractedElements, a11yDescribedByIds, idForLabel }) =>
+    cloneWithAriaAttributes({ element: extractedElements, a11yDescribedByIds, idForLabel }),
+  DatePicker: ({ extractedElements, idForLabel, a11yDescribedByIds }) =>
+    getAccessibleElement(extractedElements, (element, index = 0) =>
+      cloneWithAriaAttributes({ element, idForLabel: index === 0 ? idForLabel : null, a11yDescribedByIds })
     ),
-  "Radio.Group": ({ extractedElements, ariaDescribedBy }) => {
-    const radioElements = extractedElements.props.children.map(element =>
-      cloneWithAriaAttributes({ element, ariaDescribedByProp: ariaDescribedBy })
-    );
-    return React.cloneElement(extractedElements, {
-      children: radioElements,
-    });
-  },
-  TimePicker: ({ extractedElements, ariaDescribedBy, idForLabel }) =>
-    cloneWithAriaAttributes({ element: extractedElements, ariaDescribedBy, idForLabel }),
-  DatePicker: ({ extractedElements, ariaDescribedBy, idForLabel }) => {
-    const datePickerInput = cloneWithAriaAttributes({
-      element: extractedElements.props.children,
-      ariaDescribedBy,
-      idForLabel,
-    });
-    return React.cloneElement(extractedElements, {
-      children: datePickerInput,
-    });
-  },
-  children: ({ extractedElements, ariaDescribedBy, idForLabel }) => {
+  children: ({ extractedElements, a11yDescribedByIds, idForLabel }) => {
     const elementClone = (element, index = 0) =>
       element.type === "input"
-        ? cloneWithAriaAttributes({ element, idForLabel: index === 0 ? idForLabel : null, ariaDescribedBy })
+        ? cloneWithAriaAttributes({
+            element,
+            idForLabel: index === 0 ? idForLabel : null,
+            a11yDescribedByIds,
+            isNative: true,
+          })
         : element;
     return extractedElements.map(elementClone);
   },
@@ -50,11 +54,11 @@ export default {
     React.cloneElement(extractedElements, {
       refLabel,
     }),
-  FormElement: ({ extractedElements, ariaDescribedBy }) => {
+  FormElement: ({ extractedElements, a11yDescribedByIds }) => {
     const formElementChildren = extractedElements.map(formElement =>
       formElement.props.children.map(item =>
         item.type.displayName === "FormElement.Content"
-          ? React.cloneElement(item, { wrapperAriaDescribedBy: ariaDescribedBy })
+          ? React.cloneElement(item, { wrapperA11yDescribedByIds: a11yDescribedByIds })
           : item
       )
     );

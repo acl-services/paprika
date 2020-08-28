@@ -4,6 +4,9 @@ import nanoid from "nanoid";
 import { ShirtSizes } from "@paprika/helpers/lib/customPropTypes";
 
 const propTypes = {
+  /** Used for aria-describedby on the radios  */
+  a11yDescribedByIds: PropTypes.string,
+
   /** aria-labelledby prop on the containing group element */
   a11yText: PropTypes.string,
 
@@ -24,6 +27,7 @@ const propTypes = {
 };
 
 const defaultProps = {
+  a11yDescribedByIds: null,
   a11yText: "",
   canDeselect: false,
   children: null,
@@ -32,7 +36,7 @@ const defaultProps = {
 };
 
 function Group(props) {
-  const { a11yText, canDeselect, children, isDisabled, onChange, ...moreGroupProps } = props;
+  const { a11yText, canDeselect, children, isDisabled, onChange, a11yDescribedByIds, ...moreGroupProps } = props;
   const defaultCheckedIndex = React.Children.toArray(children).findIndex(child => child.props.defaultIsChecked);
   const selectedIndex = React.Children.toArray(children).findIndex(child => child.props.isChecked);
 
@@ -54,6 +58,7 @@ function Group(props) {
         if (child && child.type && child.type.displayName === "Radio") {
           const childKey = { key: `Radio${index}` };
           return React.cloneElement(child, {
+            a11yDescribedByIds,
             onClick: () => handleRadioClick(index),
             isChecked: checkedIndex === index,
             isDisabled: isDisabled || child.props.isDisabled,

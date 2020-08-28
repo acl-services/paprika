@@ -125,7 +125,7 @@ function FormElement(props) {
     return getClonedElement(subComponentDisplayNames.Content, {
       idForLabel,
       refLabel,
-      ariaDescribedBy: `${ariaErrorId} ${ariaInstructionsId} ${ariaDescriptionId}`,
+      a11yDescribedByIds: `${ariaErrorId} ${ariaInstructionsId} ${ariaDescriptionId}`,
     });
   }
 

@@ -11,16 +11,16 @@ const propTypes = {
   idForLabel: PropTypes.string,
   refLabel: RefOf(),
   /** Used for aria-describedby on the FormElement */
-  ariaDescribedBy: PropTypes.string,
+  a11yDescribedByIds: PropTypes.string,
   /** Used when form Elements are nested and is automatically appended to aria-describedby */
-  wrapperAriaDescribedBy: PropTypes.string,
+  wrapperA11yDescribedByIds: PropTypes.string,
 };
 
 const defaultProps = {
   idForLabel: null,
-  ariaDescribedBy: null,
+  a11yDescribedByIds: null,
   refLabel: null,
-  wrapperAriaDescribedBy: null,
+  wrapperA11yDescribedByIds: null,
 };
 
 const supportedComponentNames = {
@@ -34,11 +34,11 @@ const supportedComponentNames = {
 };
 
 function Content(props) {
-  const { children, idForLabel, refLabel, wrapperAriaDescribedBy, ...moreProps } = props;
+  const { children, idForLabel, refLabel, wrapperA11yDescribedByIds, ...moreProps } = props;
 
-  const ariaDescribedBy = wrapperAriaDescribedBy
-    ? `${props.ariaDescribedBy} ${wrapperAriaDescribedBy}`
-    : props.ariaDescribedBy;
+  const a11yDescribedByIds = wrapperA11yDescribedByIds
+    ? `${props.a11yDescribedByIds} ${wrapperA11yDescribedByIds}`
+    : props.a11yDescribedByIds;
 
   const extractedChildren = extractChildren(children, Object.values(supportedComponentNames));
 
@@ -55,7 +55,7 @@ function Content(props) {
       {Object.keys(extractedChildren).map(key =>
         renderFunctions[key]({
           extractedElements: extractedChildren[key],
-          ariaDescribedBy,
+          a11yDescribedByIds,
           idForLabel,
           refLabel,
         })

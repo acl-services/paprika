@@ -11,6 +11,8 @@ import * as sc from "./TimePicker.styles";
 const getExplodeTime = TimeInterpreter.parse;
 
 const propTypes = {
+  a11yDescribedByIds: PropTypes.string,
+
   /** Descriptive a11y text for assistive technologies. */
   a11yText: PropTypes.string,
 
@@ -19,6 +21,9 @@ const propTypes = {
 
   /** Sets the default value for the TimePicker */
   defaultValue: PropTypes.string,
+
+  /** ID for the `<input>`. */
+  id: PropTypes.string,
 
   /** If the TimePicker is disabled. */
   isDisabled: PropTypes.bool,
@@ -31,7 +36,9 @@ const propTypes = {
 };
 
 const defaultProps = {
+  a11yDescribedByIds: PropTypes.string,
   a11yText: "Time (hh:mm)",
+  id: null,
   defaultIsOpen: false,
   defaultValue: null,
   isDisabled: false,
@@ -40,7 +47,17 @@ const defaultProps = {
 };
 
 function TimePicker(props) {
-  const { a11yText, defaultIsOpen, defaultValue, isDisabled, onChange, onError, ...moreProps } = props;
+  const {
+    a11yText,
+    defaultIsOpen,
+    defaultValue,
+    id,
+    isDisabled,
+    onChange,
+    onError,
+    a11yDescribedByIds,
+    ...moreProps
+  } = props;
 
   const [isOpen, setIsOpen] = React.useState(defaultIsOpen);
   const [time, setTime] = React.useState(() => {
@@ -149,12 +166,14 @@ function TimePicker(props) {
 
   const { t } = useI18n();
   return (
-    <sc.TimePicker onFocus={handleFocus} onBlur={handleBlur}>
+    <sc.TimePicker onFocus={handleFocus} onBlur={handleBlur} {...moreProps}>
       <Popover style={{ width: "100%" }} isOpen={isOpen} edge="left" offset={0} align="bottom" shouldKeepFocus>
         <Popover.Trigger style={{ width: "100%" }}>
           <Input
+            aria-describedby={a11yDescribedByIds}
             ariaLabel={a11yText}
             hasClearButton={false}
+            id={id}
             icon={<SvgClockTime />}
             isDisabled={isDisabled}
             onChange={handleChange}
@@ -162,7 +181,6 @@ function TimePicker(props) {
             onFocus={handleFocus}
             value={value}
             data-pka-anchor="timePicker-Input"
-            {...moreProps}
           />
         </Popover.Trigger>
         <Popover.Content>

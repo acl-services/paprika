@@ -38,13 +38,13 @@ npm install @paprika/form-element
 
 ### FormElement.Content
 
-| Prop                   | Type        | required | default | Description                                                                          |
-| ---------------------- | ----------- | -------- | ------- | ------------------------------------------------------------------------------------ |
-| children               | [func,node] | true     | -       |                                                                                      |
-| idForLabel             | string      | false    | null    | Sets id for label                                                                    |
-| refLabel               | custom      | false    | null    |                                                                                      |
-| ariaDescribedBy        | string      | false    | null    | Used for aria-describedby on the FormElement                                         |
-| wrapperAriaDescribedBy | string      | false    | null    | Used when form Elements are nested and is automatically appended to aria-describedby |
+| Prop                      | Type        | required | default | Description                                                                          |
+| ------------------------- | ----------- | -------- | ------- | ------------------------------------------------------------------------------------ |
+| children                  | [func,node] | true     | -       |                                                                                      |
+| idForLabel                | string      | false    | null    | Sets id for label                                                                    |
+| refLabel                  | custom      | false    | null    |                                                                                      |
+| a11yDescribedByIds        | string      | false    | null    | Used for aria-describedby on the FormElement                                         |
+| wrapperA11yDescribedByIds | string      | false    | null    | Used when form Elements are nested and is automatically appended to aria-describedby |
 
 ### FormElement.Description
 

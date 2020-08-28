@@ -10,7 +10,7 @@ const propTypes = {
   /** Used for aria-label on the radio input  */
   a11yText: PropTypes.string,
   /** Used for aria-describedby on the radio input  */
-  ariaDescribedBy: PropTypes.string,
+  a11yDescribedByIds: PropTypes.string,
   /** Describe if the radio started as selected or not */
   canDeselect: PropTypes.bool,
   /** Used for label contents */
@@ -35,7 +35,7 @@ const propTypes = {
 
 const defaultProps = {
   a11yText: null,
-  ariaDescribedBy: null,
+  a11yDescribedByIds: null,
   canDeselect: false,
   children: null,
   defaultIsChecked: false,
@@ -51,7 +51,7 @@ const defaultProps = {
 function Radio(props) {
   const {
     a11yText,
-    ariaDescribedBy,
+    a11yDescribedByIds,
     children,
     isChecked,
     isDisabled,
@@ -90,7 +90,7 @@ function Radio(props) {
   };
 
   const inputProps = {
-    "aria-describedby": ariaDescribedBy,
+    "aria-describedby": a11yDescribedByIds,
     onClick,
     checked: isChecked,
     disabled: isDisabled,

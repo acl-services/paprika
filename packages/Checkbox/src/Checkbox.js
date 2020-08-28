@@ -18,7 +18,7 @@ const noop = () => {};
 
 const propTypes = {
   /** Used for aria-describedby on the checkbox input  */
-  ariaDescribedBy: PropTypes.string,
+  a11yDescribedByIds: PropTypes.string,
   /** Used for aria-label on the checkbox input  */
   a11yText: PropTypes.string,
   /** The checkbox state */
@@ -37,7 +37,7 @@ const propTypes = {
 
 const defaultProps = {
   a11yText: null,
-  ariaDescribedBy: null,
+  a11yDescribedByIds: null,
   checkedState: checkboxStates.UNCHECKED,
   children: null,
   isDisabled: false,
@@ -54,7 +54,7 @@ const Checkbox = props => {
     checkedState,
     size,
     onChange,
-    ariaDescribedBy,
+    a11yDescribedByIds,
     tabIndex,
     ...moreProps
   } = props;
@@ -80,7 +80,7 @@ const Checkbox = props => {
   };
 
   const inputProps = {
-    "aria-describedby": ariaDescribedBy,
+    "aria-describedby": a11yDescribedByIds,
     checked: checkedState === CHECKED,
     disabled: isDisabled,
     id: checkboxId,

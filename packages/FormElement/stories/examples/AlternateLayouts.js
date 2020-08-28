@@ -147,6 +147,7 @@ const ExampleStory = () => {
         </FormElement.Help>
       </FormElement>
       <Rule />
+
       <Tagline>Form Element with Listbox.</Tagline>
       <br />
       <FormElement label="Form Label">
@@ -165,6 +166,7 @@ const ExampleStory = () => {
         </FormElement.Help>
       </FormElement>
       <Rule />
+
       <Tagline>Form Element with ButtonGroup.</Tagline>
       <br />
       <FormElement label="Form Label" onClickLabel={() => refButtonGroup.current.focus()}>
@@ -184,6 +186,7 @@ const ExampleStory = () => {
           Give me some help. <a href="wegalvanize.com">Learn more</a>.
         </FormElement.Help>
       </FormElement>
+
       <Rule />
       <Tagline>Form Element with native input.</Tagline>
       <br />
@@ -230,6 +233,7 @@ const ExampleStory = () => {
           Give me some help. <a href="wegalvanize.com">Learn more</a>.
         </FormElement.Help>
       </FormElement>
+
       <Rule />
       <Tagline>Form Element nested Form Elements.</Tagline>
       <br />

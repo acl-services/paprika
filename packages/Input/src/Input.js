@@ -10,6 +10,8 @@ const propTypes = {
   /** Descriptive a11y text for assistive technologies. By default, text from children node will be used. */
   a11yText: PropTypes.string,
 
+  a11yDescribedByIds: PropTypes.string,
+
   /** Sets the class for the input. */
   className: PropTypes.string,
 
@@ -52,6 +54,7 @@ const propTypes = {
 
 const defaultProps = {
   a11yText: null,
+  a11yDescribedByIds: PropTypes.string,
   clearIcon: null,
   className: null,
   defaultValue: "",
@@ -99,6 +102,7 @@ const Input = React.forwardRef((props, ref) => {
 
   const {
     a11yText,
+    a11yDescribedByIds,
     clearIcon,
     className,
     icon,
@@ -139,6 +143,7 @@ const Input = React.forwardRef((props, ref) => {
       {renderIcon()}
       <input
         aria-invalid={hasError}
+        aria-describedby={a11yDescribedByIds}
         className="form-input__input"
         data-pka-anchor="input"
         disabled={isDisabled}
