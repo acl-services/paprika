@@ -41,27 +41,27 @@ const isOpenStyles = css`
   background-color: ${stylers.alpha(tokens.color.black, 0.1)};
 `;
 
-export const Trigger = styled(RawButton)`
-  ${stylers.fontSize()}
-  align-items: center;
-  border-radius: ${tokens.button.borderRadius};
-  color: ${tokens.textColor.default};
-  display: flex;
-  font-weight: bold;
-  margin-right: ${tokens.spaceSm};
-  padding: ${tokens.spaceSm};
-  transition-duration: 0.2s;
-  transition-property: "background-color";
+export const Trigger = styled(RawButton)(
+  ({ hasColumnsHidden, isOpen }) => css`
+    ${stylers.fontSize()}
+    align-items: center;
+    border-radius: ${tokens.button.borderRadius};
+    color: ${tokens.textColor.default};
+    display: flex;
+    font-weight: bold;
+    margin-right: ${tokens.spaceSm};
+    padding: ${tokens.spaceSm};
+    transition-duration: 0.2s;
+    transition-property: "background-color";
 
-  &:hover {
-    ${isOpenStyles}
-  }
+    &:hover {
+      ${isOpenStyles}
+    }
 
-  ${({ hasColumnsHidden, isOpen }) => {
-    if (hasColumnsHidden) return hasColumnsHiddenStyles;
-    if (isOpen) return isOpenStyles;
-  }}
-`;
+    ${hasColumnsHidden && hasColumnsHiddenStyles}
+    ${isOpen && isOpenStyles}
+  `
+);
 
 export const Icon = styled(HideIcon)`
   margin-right: ${tokens.spaceSm};
