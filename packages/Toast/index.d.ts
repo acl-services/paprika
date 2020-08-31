@@ -7,7 +7,7 @@ interface ToastProps {
   /** Will automatically close after 1500ms (or longer if provided by autoCloseDelay) */
   canAutoClose?: boolean;
   /** Content of the Toast */
-  children?: node;
+  children?: React.ReactNode;
   /** If the component should have a 'close' button */
   hasCloseButton?: boolean;
   /** How "controlled" toast is shown / hidden. */
@@ -19,7 +19,7 @@ interface ToastProps {
   /** Determines the styling of the Toast */
   kind?: Kinds.ALL;
   /** Callback that is executed after clicking the 'close' button */
-  onClose?: func;
+  onClose?: (...args: any[]) => any;
   /** The z-index of the Toast */
   zIndex?: number;
 }

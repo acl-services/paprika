@@ -7,29 +7,29 @@ interface DataGridProps {
   /** Define the look for borders in the table DataGrid.types.GRID, DataGrid.types.NONE, etc. */
   borderType?: types.GRID | types.NONE | types.HORIZONTAL | types.VERTICAL;
 
-  children: node;
+  children: React.ReactNode;
   /** This will force the table to include in the calculation of the table the scrollbar thickness */
   forceTableWidthWithScrollBars?: boolean;
   /** Add an alternate background on the DataGrid's rows */
   hasZebraStripes?: boolean;
   /** Array of data to be stored in the DataGrid */
-  data?: arrayOf;
+  data?: shape[];
   /** Sets the height of the DataGrid */
   height?: number;
   /** Callback onClick */
-  onClick?: func;
+  onClick?: (...args: any[]) => any;
   /** Callback onKeyDown press */
-  onKeyDown?: func;
+  onKeyDown?: (...args: any[]) => any;
   /** Callback when Enter key is pressed */
-  onPressEnter?: func;
+  onPressEnter?: (...args: any[]) => any;
   /** Callback when Shift + Spacebar is pressed */
-  onPressShiftSpaceBar?: func;
+  onPressShiftSpaceBar?: (...args: any[]) => any;
   /** Callback when Spacebar is pressed */
-  onPressSpaceBar?: func;
+  onPressSpaceBar?: (...args: any[]) => any;
   /** Callback when user click the f key. Might change in the future */
-  onRowChecked?: func;
+  onRowChecked?: (...args: any[]) => any;
   /** Callback with information about the prev and next highlighted cell */
-  onHighlighted?: func;
+  onHighlighted?: (...args: any[]) => any;
   /** Sets the row height */
   rowHeight?: number;
   /** Sets the DataGrid width */
@@ -42,27 +42,27 @@ declare namespace DataGrid {
 
     cell?: custom;
 
-    cellA11yText?: func;
+    cellA11yText?: (...args: any[]) => any;
 
-    cellProps?: func;
+    cellProps?: (...args: any[]) => any;
 
     cellPropsResetCSS?: boolean;
 
     header?: custom;
 
-    headerA11yText?: func;
+    headerA11yText?: (...args: any[]) => any;
 
-    headerProps?: func;
+    headerProps?: (...args: any[]) => any;
 
     isSticky?: boolean;
 
-    onClick?: func;
+    onClick?: (...args: any[]) => any;
 
-    onPressEnter?: func;
+    onPressEnter?: (...args: any[]) => any;
 
-    onPressShiftSpaceBar?: func;
+    onPressShiftSpaceBar?: (...args: any[]) => any;
 
-    onPressSpaceBar?: func;
+    onPressSpaceBar?: (...args: any[]) => any;
 
     width?: number;
   }

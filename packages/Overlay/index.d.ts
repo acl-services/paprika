@@ -4,7 +4,7 @@ declare function Overlay(props: OverlayProps): JSX.Element;
 interface OverlayProps {
   backdropClassName?: string;
 
-  children?: func;
+  children?: (...args: any[]) => any;
   /** container of the Overlay element */
   container?: instanceOf;
 
@@ -14,11 +14,11 @@ interface OverlayProps {
 
   isOpen: boolean;
 
-  onClose?: func;
+  onClose?: (...args: any[]) => any;
 
-  onAfterOpen?: func;
+  onAfterOpen?: (...args: any[]) => any;
 
-  onAfterClose?: func;
+  onAfterClose?: (...args: any[]) => any;
   /** z-index of the Overlay wrapper */
   zIndex?: number;
 }

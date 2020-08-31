@@ -11,7 +11,7 @@ interface TimePickerProps {
   /** If the TimePicker is disabled. */
   isDisabled?: boolean;
   /** Callback to be executed when the value is changed. */
-  onChange?: func;
+  onChange?: (...args: any[]) => any;
   /** Callback to be executed when there is an error. */
-  onError?: func;
+  onError?: (...args: any[]) => any;
 }

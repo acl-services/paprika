@@ -4,11 +4,11 @@ declare function Pill(props: PillProps): JSX.Element;
 interface PillProps {
   a11yText?: string;
 
-  children: node;
+  children: React.ReactNode;
 
   isDisabled?: boolean;
 
-  onClick?: func;
+  onClick?: (...args: any[]) => any;
 
   pillColor?:
     | "black"

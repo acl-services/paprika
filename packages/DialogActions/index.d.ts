@@ -13,9 +13,9 @@ interface DialogActionsProps {
   /** Text for a secondary generic button. */
   labelDecline?: string;
   /** Function to call when cancel button is clicked. */
-  onCancel?: func;
+  onCancel?: (...args: any[]) => any;
   /** Function to call when primary button is clicked. */
-  onConfirm?: func;
+  onConfirm?: (...args: any[]) => any;
   /** Function to call when secondary button is clicked. */
-  onDecline?: func;
+  onDecline?: (...args: any[]) => any;
 }

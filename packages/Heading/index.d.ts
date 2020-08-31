@@ -5,7 +5,7 @@ interface HeadingProps {
   /** Optional aria text if it should be more descriptive than what is rendered */
   a11yText?: string;
   /** Heading content is required */
-  children: node;
+  children: React.ReactNode;
   /** Optional display level(1-6) affects styles only */
   displayLevel?: 1 | 2 | 3 | 4 | 5 | 6;
   /** Horizontal divider style */

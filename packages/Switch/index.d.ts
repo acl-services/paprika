@@ -11,7 +11,7 @@ interface SwitchProps {
   /** If the switch is disabled. */
   isDisabled?: boolean;
   /** Callback to be executed when the switch is toggled on or off. Typically required. */
-  onChange?: func;
+  onChange?: (...args: any[]) => any;
   /** Size of the switch. */
   size?: ShirtSizes.DEFAULT;
 }

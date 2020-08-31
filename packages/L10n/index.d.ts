@@ -7,5 +7,5 @@ interface L10nProps {
 
   locales?: object;
   /** Children of the L10n */
-  children: node;
+  children: React.ReactNode;
 }

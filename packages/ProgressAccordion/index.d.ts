@@ -7,7 +7,7 @@ interface ProgressAccordionProps {
 
   activeIndex?: number;
   /** Optional status text to be displayed with the active list item. */
-  activeStatus?: node;
+  activeStatus?: React.ReactNode;
   /** List items (must be of type <ProgressAccordion.Item>. */
-  children?: node;
+  children?: React.ReactNode;
 }

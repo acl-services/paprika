@@ -7,11 +7,11 @@ interface TableProps {
   /** Accessible description of the table */
   a11yText: string;
 
-  children: node;
+  children: React.ReactNode;
   /** Add an alternating background on the table rows */
   hasZebraStripes?: boolean;
   /** Array of data to be stored in the Table */
-  data?: arrayOf;
+  data?: shape[];
 }
 declare namespace Table {
   function ColumnDefinition(props: ColumnDefinitionProps): JSX.Element;

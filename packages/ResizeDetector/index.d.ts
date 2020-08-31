@@ -7,7 +7,7 @@ interface ResizeDetectorProps {
   /** The width at which the size will change from small to the default (medium). 0 or null value will disable. */
   breakpointSmall?: number;
   /** Content to be wrapped which will be provided with live dimensions and (tshirt) size values. */
-  children?: node;
+  children?: React.ReactNode;
   /** The ms delay before firing resize events / making live updates. */
   debounceDelay?: number;
   /** If the container will match its parent's width like a block level element (width: 100%). */
@@ -15,7 +15,7 @@ interface ResizeDetectorProps {
   /** If the container will match its parent's height (height: 100%). */
   isFullHeight?: boolean;
   /** Callback that fires when the size change crosses a breakpoint threshold (returns new size value). */
-  onBreak?: func;
+  onBreak?: (...args: any[]) => any;
   /** Callback that fires when the size changes (returns new width + height values). */
-  onResize?: func;
+  onResize?: (...args: any[]) => any;
 }

@@ -7,7 +7,7 @@ interface DateRangePickerProps {
   /** Selected end date in moment object */
   endDate?: instanceOf;
   /** Callback to fire when user select start or end date */
-  onChange: func;
+  onChange: (...args: any[]) => any;
 
-  children?: node;
+  children?: React.ReactNode;
 }

@@ -9,7 +9,7 @@ interface RadioProps {
   /** Describe if the radio started as selected or not */
   canDeselect?: boolean;
   /** Used for label contents */
-  children?: node;
+  children?: React.ReactNode;
 
   isChecked?: boolean;
   /** Describe if the radio is disabled or not */
@@ -35,11 +35,11 @@ declare namespace Radio {
     /** Can deselect any radio */
     canDeselect?: boolean;
     /** The individual radio items. */
-    children?: node;
+    children?: React.ReactNode;
     /** Are all radios disabled */
     isDisabled?: boolean;
     /** On change of radio selection. */
-    onChange: func;
+    onChange: (...args: any[]) => any;
     /** The size for all radio components. */
     size?: ShirtSizes.DEFAULT;
   }

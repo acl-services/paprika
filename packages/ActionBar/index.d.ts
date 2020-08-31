@@ -2,24 +2,24 @@ export default ActionBar;
 
 declare function ActionBar(props: ActionBarProps): JSX.Element;
 interface ActionBarProps {
-  children: node;
+  children: React.ReactNode;
 }
 declare namespace ActionBar {
   function ColumnsArrangement(props: ColumnsArrangementProps): JSX.Element;
   interface ColumnsArrangementProps {
-    children: node;
+    children: React.ReactNode;
 
-    orderedColumnIds: arrayOf;
+    orderedColumnIds: string[];
 
-    onChangeOrder: func;
+    onChangeOrder: (...args: any[]) => any;
 
-    onChangeVisibility: func;
+    onChangeVisibility: (...args: any[]) => any;
 
-    onHideAll: func;
+    onHideAll: (...args: any[]) => any;
 
-    onShowAll: func;
+    onShowAll: (...args: any[]) => any;
 
-    renderTriggerButton?: func;
+    renderTriggerButton?: (...args: any[]) => any;
   }
 }
 declare namespace ActionBar {
@@ -27,21 +27,21 @@ declare namespace ActionBar {
   interface FilterProps {
     appliedNumber?: number;
 
-    children?: node;
+    children?: React.ReactNode;
 
-    columns: arrayOf;
+    columns: shape[];
 
-    onAddFilter: func;
+    onAddFilter: (...args: any[]) => any;
 
-    onApply: func;
+    onApply: (...args: any[]) => any;
 
-    onCancel?: func;
+    onCancel?: (...args: any[]) => any;
 
-    onChangeOperator?: func;
+    onChangeOperator?: (...args: any[]) => any;
 
-    onClose?: func;
+    onClose?: (...args: any[]) => any;
 
-    onOpen?: func;
+    onOpen?: (...args: any[]) => any;
 
     operator?: logicalFilterOperators.AND | logicalFilterOperators.OR;
 
@@ -53,18 +53,18 @@ declare namespace ActionBar {
   interface SortProps {
     appliedNumber?: number;
 
-    children?: node;
+    children?: React.ReactNode;
 
-    columns: arrayOf;
+    columns: shape[];
 
-    onAddSort: func;
+    onAddSort: (...args: any[]) => any;
 
-    onApply: func;
+    onApply: (...args: any[]) => any;
 
-    onCancel?: func;
+    onCancel?: (...args: any[]) => any;
 
-    onClose?: func;
+    onClose?: (...args: any[]) => any;
 
-    onOpen?: func;
+    onOpen?: (...args: any[]) => any;
   }
 }

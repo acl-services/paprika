@@ -7,7 +7,7 @@ interface RawButtonProps {
   /** If click events are allowed to propagate up the DOM tree. */
   canPropagate?: boolean;
   /** Body content of the button. */
-  children: node;
+  children: React.ReactNode;
   /** If the visual focus ring should be displayed with an inset style. */
   hasInsetFocusStyle?: boolean;
   /** If the button is in an "active" or "selected" state. */
@@ -15,7 +15,7 @@ interface RawButtonProps {
   /** If the button is disabled. */
   isDisabled?: boolean;
   /** Callback to be executed when the button is clicked or activated by keyboard. Typically required. */
-  onClick?: func;
+  onClick?: (...args: any[]) => any;
   /** Value for role attribute to override the default of "button". */
   role?: string;
   /** Value for tabindex attribute to override the default of 0. */

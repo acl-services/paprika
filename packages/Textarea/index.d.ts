@@ -19,7 +19,7 @@ interface TextareaProps {
   /** Indicates the maximum height of the textarea */
   maxHeight?: string;
 
-  onChange?: func;
+  onChange?: (...args: any[]) => any;
 
   size?: ShirtSizes.DEFAULT;
   /** Do not use in conjunction with defaultValue prop */

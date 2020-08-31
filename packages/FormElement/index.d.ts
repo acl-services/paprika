@@ -2,7 +2,7 @@ export default FormElement;
 
 declare function FormElement(props: FormElementProps): JSX.Element;
 interface FormElementProps {
-  children: node;
+  children: React.ReactNode;
   /** Should show is optional text besides the label or not. Will not show if hasRequiredLabel prop is true */
   hasOptionalLabel?: boolean;
   /** Should show is required text besides the label or not. Takes presendence over hasOptionalLabel prop */
@@ -16,13 +16,13 @@ interface FormElementProps {
   /** Should label be hidden, default is false. Note: this is discouraged because of accessibility requirements. */
   isLabelVisuallyHidden?: boolean;
   /** Label text of this field. */
-  label: node;
+  label: React.ReactNode;
   /** Size of the label, error, help and description (font size, min-height, padding, etc). */
   size?: ShirtSizes.DEFAULT;
   /** FormElement contains multiple children so Renders a legend element instead of label. */
   hasFieldSet?: boolean;
 
-  onClickLabel?: func;
+  onClickLabel?: (...args: any[]) => any;
 }
 declare namespace FormElement {
   function Content(props: ContentProps): JSX.Element;
@@ -41,13 +41,13 @@ declare namespace FormElement {
   interface DescriptionProps {
     ariaDescriptionId?: string;
 
-    children: node;
+    children: React.ReactNode;
   }
 }
 declare namespace FormElement {
   function Help(props: HelpProps): JSX.Element;
   interface HelpProps {
-    children: node;
+    children: React.ReactNode;
     /** Aria text for information button to trigger help popover. */
     triggerA11yText?: string;
   }
@@ -55,7 +55,7 @@ declare namespace FormElement {
 declare namespace FormElement {
   function Instructions(props: InstructionsProps): JSX.Element;
   interface InstructionsProps {
-    children: node;
+    children: React.ReactNode;
   }
 }
 declare namespace FormElement {
@@ -66,7 +66,7 @@ declare namespace FormElement {
     /** If "require" text should be displayed beside the label */
     hasRequiredLabel: boolean;
     /** Help indicator */
-    help?: node;
+    help?: React.ReactNode;
     /** id for the element */
     id?: string;
     /** Should label and children be inline or not */
@@ -74,10 +74,10 @@ declare namespace FormElement {
     /** Should label be hidden */
     isVisuallyHidden: boolean;
     /** Label text of the input field */
-    label: node;
+    label: React.ReactNode;
     /** Set if FormElement contains multiple children to render a legend element instead of label */
     hasFieldSet: boolean;
 
-    onClick?: func;
+    onClick?: (...args: any[]) => any;
   }
 }

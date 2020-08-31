@@ -2,7 +2,7 @@ export default ListBox;
 
 declare function ListBox(props:ListBoxProps): JSX.Element;
   interface ListBoxProps { /** Child of type <ListBox.Option /> */
-    children: node;
+    children: React.ReactNode;
  /** Has implicit "All items selected" value when no item is selected */
     hasImplicitAll?: boolean;
  /** Indicate which is the height for the options container */
@@ -16,14 +16,14 @@ declare function ListBox(props:ListBoxProps): JSX.Element;
  /** Indicates if the popover is visible */
     isOpen?: boolean;
  /** Callback returning the current selection on the ListBox */
-    onChange?: func;
+    onChange?: (...args: any[])=> any;
  /** Defaults label to display when the ListBox has not option selected */
     placeholder: string;
  /** Size of the trigger and options (font size, height, padding, etc). */
     size?: ShirtSizes.DEFAULT;
 }declare function Box(props:BoxProps): JSX.Element;
   interface BoxProps { /** Body content of the box. */
-    children: node;
+    children: React.ReactNode;
 }declare namespace ListBox {
       function Divider(props:DividerProps): JSX.Element;
   interface DividerProps { /** isDisable is use internally as a default prop
@@ -32,25 +32,25 @@ declare function ListBox(props:ListBoxProps): JSX.Element;
   see: options/helpers/options.js */
     isDisabled?: boolean;
  
-    children?: node;
+    children?: React.ReactNode;
 }}declare namespace ListBox {
       function Filter(props:FilterProps): JSX.Element;
   interface FilterProps { /** Descriptive a11y text for assistive technologies. By default, text from children node will be used. */
     a11yText?: string;
  /** Filters the list */
-    filter?: func;
+    filter?: (...args: any[])=> any;
  /** If true displays a search icon */
     hasSearchIcon?: boolean;
  /** Message displayed if no results are found */
     noResultsMessage?: string;
  /** Callback to be executed when the value is changed */
-    onChangeFilter?: func;
+    onChangeFilter?: (...args: any[])=> any;
  /** Callback to be executed when a key is pressed */
-    onKeyDown?: func;
+    onKeyDown?: (...args: any[])=> any;
  /** Displays a placeholder */
     placeholder?: string;
  /** Render function for filter */
-    renderFilter?: func;
+    renderFilter?: (...args: any[])=> any;
  /** Sets a value for filter */
     value?: string;
 }}declare namespace ListBox {
@@ -76,13 +76,13 @@ declare function ListBox(props:ListBoxProps): JSX.Element;
  /** Sets the label for the clear button */
     labelClear?: string;
  /** Callback to be executed when the accept button is clicked or activated by keyboard. */
-    onClickAccept?: func;
+    onClickAccept?: (...args: any[])=> any;
  /** Callback to be executed when the cancel button is clicked or activated by keyboard. */
-    onClickCancel?: func;
+    onClickCancel?: (...args: any[])=> any;
  /** Callback to be executed when the clear button is clicked or activated by keyboard. */
-    onClickClear?: func;
+    onClickClear?: (...args: any[])=> any;
  /** Render an extra button beside the clear button */
-    renderExtraButton?: func;
+    renderExtraButton?: (...args: any[])=> any;
  /** Determines the size of the footer */
     size?: string;
 }}declare namespace ListBox {
@@ -100,7 +100,7 @@ declare function ListBox(props:ListBoxProps): JSX.Element;
  /** When the children are not a String, label should need to be add so the filter can work */
     label?: string;
  /** Callback for the clicking event */
-    onClick?: func;
+    onClick?: (...args: any[])=> any;
  /** Value of your option this can be any data structure */
     value?: any;
  
@@ -108,7 +108,7 @@ declare function ListBox(props:ListBoxProps): JSX.Element;
 }}declare namespace ListBox {
       function Popover(props:PopoverProps): JSX.Element;
   interface PopoverProps { /** Body content of the PopOver. */
-    children?: node;
+    children?: React.ReactNode;
  /** Sets the z-index value of the PopOver */
     zIndex?: number;
 }}declare namespace ListBox {
@@ -118,7 +118,7 @@ declare function ListBox(props:ListBoxProps): JSX.Element;
 }}declare namespace ListBox {
       function Trigger(props:TriggerProps): JSX.Element;
   interface TriggerProps { /** Custom clear icon */
-    clearIcon?: node;
+    clearIcon?: React.ReactNode;
  /** Body content of the trigger. */
     children?: node|func;
  /** If true it adds a clear button */
@@ -128,9 +128,9 @@ declare function ListBox(props:ListBoxProps): JSX.Element;
  /** Override the label with a custom one. */
     label?: string;
  /** Callback to be executed when the clear button is clicked or activated by keyboard. */
-    onClickClear?: func;
+    onClickClear?: (...args: any[])=> any;
  /** Callback to be executed when the accept button is clicked or activated by keyboard. */
-    onClickFooterAccept?: func;
+    onClickFooterAccept?: (...args: any[])=> any;
  /** Sets a placeholder for the trigger */
     placeholder?: string;
  /** If true the trigger will be hidden */

@@ -9,11 +9,11 @@ interface CheckboxProps {
   /** The checkbox state */
   checkedState?: "checked" | "indeterminate" | "unchecked";
   /** Used for label contents */
-  children?: node;
+  children?: React.ReactNode;
   /** Describe if the checkbox is disabled or not */
   isDisabled?: boolean;
   /** Callback triggered when the input state is changed */
-  onChange?: func;
+  onChange?: (...args: any[]) => any;
   /** Size provided by parent Group component */
   size?: ShirtSizes.DEFAULT;
   /** Value for tabindex attribute to override the default of 0. */

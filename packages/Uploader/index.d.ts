@@ -5,11 +5,11 @@ interface UploaderProps {
   /** Accessible message for the input[type="file"]. */
   a11yText?: string;
   /** An array of string describing the allowed file types for the uploader. */
-  supportedMimeTypes?: arrayOf;
+  supportedMimeTypes?: string[];
   /** When false the uploader only accept one file per upload. */
   canChooseMultiple?: boolean;
   /** children nodes */
-  children: node;
+  children: React.ReactNode;
   /** initial disable state for the uploader */
   defaultIsDisabled?: boolean;
   /** The url that will be use to upload the files. */
@@ -21,9 +21,9 @@ interface UploaderProps {
   /** Size in Mebibytes which is used for comparing each file that will be uploaded. */
   maxFileSize?: number;
   /** This callback fires every time a file has been processed */
-  onChange?: func;
+  onChange?: (...args: any[]) => any;
   /** Will fire once all files have been processed with the files as parameter. */
-  onCompleted?: func;
+  onCompleted?: (...args: any[]) => any;
   /** you can pass an array of header objects. */
-  headers?: arrayOf;
+  headers?: object[];
 }

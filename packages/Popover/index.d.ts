@@ -5,7 +5,7 @@ interface PopoverProps {
   /** Where the popover content is positioned relative to the trigger or getPositioningElement. */
   align?: AlignTypes.ALL;
   /** Content of the popover */
-  children: node;
+  children: React.ReactNode;
   /** Displays as a "tooltip" style with white text on black background. */
   isDark?: boolean;
   /** Activated by mouseOver / focus instead of onClick. */
@@ -23,13 +23,13 @@ interface PopoverProps {
   /** Minimumn width of popover content. Using a number is recommended and implies px units. */
   minWidth?: string | number;
   /** Callback to fire when user closes popover. */
-  onClose?: func;
+  onClose?: (...args: any[]) => any;
   /** Distance, in px, between popover content edge and trigger / getPositioningElement. */
   offset?: number;
   /** Function that provides DOM element to use as target for positioning the popover. */
-  getPositioningElement?: func;
+  getPositioningElement?: (...args: any[]) => any;
   /** Function that provides the scrolling DOM element that contains the popover. */
-  getScrollContainer?: func;
+  getScrollContainer?: (...args: any[]) => any;
   /** If focus will stay at the trigger when showing popover. Popover can still be closed when clicking outside or pressing escape key. */
   shouldKeepFocus?: boolean;
   /** Number setting the z-index for the popover content / tip. */
@@ -47,15 +47,15 @@ declare namespace Popover {
 declare namespace Popover {
   function Content(props: ContentProps): JSX.Element;
   interface ContentProps {
-    children?: node;
+    children?: React.ReactNode;
     /** Callback to indicate the element loses focus */
-    onBlur?: func;
+    onBlur?: (...args: any[]) => any;
   }
 }
 declare namespace Popover {
   function Card(props: CardProps): JSX.Element;
   interface CardProps {
-    children: node;
+    children: React.ReactNode;
   }
 }
 declare namespace Popover {

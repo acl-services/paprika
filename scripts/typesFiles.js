@@ -35,26 +35,46 @@ const createPropsList = ({ info }) => {
   Object.keys(info.props).map(key => {
     const v = info.props[key] || {};
     let type = "-";
+
     if ("type" in v) {
-      if (v.type.name === "union") {
-        type = `${v.type.value.map(i => i.name)}`.replace(/,/g, "|");
-      } else {
-        type =
-          // eslint-disable-next-line no-nested-ternary
-          v.type.name !== "enum"
-            ? v.type.name
-            : Array.isArray(v.type.value)
-            ? `${v.type.value.map(i => i.value)}`.replace(/,/g, "|")
-            : v.type.value;
+      switch (v.type.name) {
+        case "bool": {
+          type = `boolean`;
+          break;
+        }
+        case "node": {
+          type = "React.ReactNode";
+          break;
+        }
+        case "func": {
+          type = "(...args: any[])=> any";
+          break;
+        }
+        case "arrayOf": {
+          type = `${v.type.value.name}[]`;
+          break;
+        }
+        case "union": {
+          type = `${v.type.value.map(i => i.name)}`.replace(/,/g, "|");
+          break;
+        }
+        default: {
+          type =
+            // eslint-disable-next-line no-nested-ternary
+            v.type.name !== "enum"
+              ? v.type.name
+              : Array.isArray(v.type.value)
+              ? `${v.type.value.map(i => i.value)}`.replace(/,/g, "|")
+              : v.type.value;
+        }
       }
     }
 
     const req = v.required.toString() === "false" ? "?:" : ":";
-    const typeName = type === "bool" ? "boolean" : type;
     const description = v.description ? `/** ${v.description} */` : "";
     /* prettier-ignore */
     return list.push(` ${description}
-    ${key}${req} ${typeName};\n`);
+    ${key}${req} ${type};\n`);
   });
   list.push(`}`);
   if (dottedNotation) list.push(`}`);

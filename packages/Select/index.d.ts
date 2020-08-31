@@ -6,7 +6,7 @@ interface SelectProps {
 
   className?: string;
 
-  children?: node;
+  children?: React.ReactNode;
 
   hasError?: boolean;
 

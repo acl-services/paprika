@@ -9,25 +9,25 @@ interface ListBoxBrowserProps {
   /** Set the height for the ListBoxBrowser */
   height?: number;
   /** Callback function receiving an array of selected options by the component */
-  onChange?: func;
+  onChange?: (...args: any[]) => any;
   /** Allows the user to select the parent options */
   isParentSelectable?: boolean;
   /** Content title for the left column */
-  rootTitle?: node;
+  rootTitle?: React.ReactNode;
   /** Content title for the right column */
-  browserTitle?: node;
+  browserTitle?: React.ReactNode;
   /** You can pass <ListBoxBrowser.OptionSelected /> as a children */
-  children?: node;
+  children?: React.ReactNode;
   /** Indicates if the right column should display a breadcrumb */
   hasBreadcrumb?: boolean;
   /** Set a border red color around the component indicating that has an error */
   hasError?: boolean;
   /** When declaring the array options empty, this will be executed to retrieve the data, useful if you want to do a lazy load. */
-  onFetch?: func;
+  onFetch?: (...args: any[]) => any;
   /** A function that sets an option selected returning true or false you can use to compare your data structure and decide if the option is initially selected or not. */
-  defaultSelectedOptions?: func;
+  defaultSelectedOptions?: (...args: any[]) => any;
   /** A function that sets the initial view for the right columns (Browser) of the ListBoxBrowser the option selected to be the initial view should have options to be valid, by default the ListBoxBrowser picked the first option which has options to be the initial value. */
-  defaultSelectedView?: func;
+  defaultSelectedView?: (...args: any[]) => any;
   /** In the case you want to use the ListBoxBrowser with one column you can hide the root column */
   hasLeftColumn?: boolean;
 }
@@ -39,25 +39,25 @@ interface CustomListBoxProps {
 
   isLoading?: boolean;
 
-  onChange: func;
+  onChange: (...args: any[]) => any;
 
-  onClickNavigate: func;
+  onClickNavigate: (...args: any[]) => any;
 
-  onUp?: func;
+  onUp?: (...args: any[]) => any;
 
-  options: arrayOf;
+  options: object[];
 }
 declare function Title(props: TitleProps): JSX.Element;
 interface TitleProps {
-  rootTitle: node;
+  rootTitle: React.ReactNode;
 
-  browserTitle: node;
+  browserTitle: React.ReactNode;
 
-  data?: arrayOf;
+  data?: object[];
 
   browserKey: string | number;
 
-  onClickBreadcrumb: func;
+  onClickBreadcrumb: (...args: any[]) => any;
 
   hasLeftColumn: boolean;
 }

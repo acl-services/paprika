@@ -4,9 +4,9 @@ declare function SidePanel(props: SidePanelProps): JSX.Element;
 interface SidePanelProps {
   a11yText?: string;
   /** The content for the SidePanel. */
-  children: node;
+  children: React.ReactNode;
   /** Function that provides the container DOM element to be pushed. */
-  getPushContentElement?: func;
+  getPushContentElement?: (...args: any[]) => any;
   /** Y offset that is passed down from <SidePanel.Group> */
   groupOffsetY?: number;
   /** Control the compactness of the side panel */
@@ -22,11 +22,11 @@ interface SidePanelProps {
   /** Control y offset of the sidepanel */
   offsetY?: number;
   /** Callback once the sidepanel has been closed event */
-  onAfterClose?: func;
+  onAfterClose?: (...args: any[]) => any;
   /** Callback once the sidepanel has been opened event */
-  onAfterOpen?: func;
+  onAfterOpen?: (...args: any[]) => any;
   /** Callback triggered when the side panel needs to be close */
-  onClose?: func;
+  onClose?: (...args: any[]) => any;
   /** The width of the open panel. */
   width?: string | number;
   /** Control the z position of the sidepanel */

@@ -7,9 +7,9 @@ interface ButtonProps {
   /** If click events are allowed to propagate up the DOM tree. */
   canPropagate?: boolean;
   /** Body content of the button. */
-  children?: node;
+  children?: React.ReactNode;
   /** An icon to be included to the left of children content. */
-  icon?: node;
+  icon?: React.ReactNode;
   /** If the button is in an "active" or "selected" state. */
   isActive?: boolean;
   /** If the button is disabled. */
@@ -27,7 +27,7 @@ interface ButtonProps {
   /** The visual style of the button. */
   kind?: Kinds.ALL;
   /** Callback to be executed when the button is clicked or activated by keyboard. Typically required. */
-  onClick?: func;
+  onClick?: (...args: any[]) => any;
   /** Value for role attribute to override the default of "button". */
   role?: string;
   /** Size of the button (font size, min-height, padding, etc). */

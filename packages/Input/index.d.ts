@@ -7,7 +7,7 @@ interface InputProps {
   /** Sets the class for the input. */
   className?: string;
   /** Custom icon for the clear action in the input. */
-  clearIcon?: node;
+  clearIcon?: React.ReactNode;
   /** Sets the default input value */
   defaultValue?: string;
   /** If true displays a clear button inside the input if it contains a value. */
@@ -15,15 +15,15 @@ interface InputProps {
   /** If true displays a red border around input to show error. */
   hasError?: boolean;
   /** Displays an icon inside the input. */
-  icon?: node;
+  icon?: React.ReactNode;
   /** If true it makes the input disabled. */
   isDisabled?: boolean;
   /** If true it makes the input read only. */
   isReadOnly?: boolean;
   /** Callback to be executed when the input value is changed. Should not be used with defaultValue prop */
-  onChange?: func;
+  onChange?: (...args: any[]) => any;
   /** Callback to be executed when the input value is cleared */
-  onClear?: func;
+  onClear?: (...args: any[]) => any;
   /** Changes the size of the input. */
   size?: ShirtSizes.DEFAULT;
   /** Allows user to specify the type of input. */
