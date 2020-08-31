@@ -52,6 +52,7 @@ const propTypes = {
   isDisabled: PropTypes.bool,
   kind: PropTypes.oneOf([
     LinkButton.types.kind.DEFAULT,
+    LinkButton.types.kind.PRIMARY,
     LinkButton.types.kind.SECONDARY,
     LinkButton.types.kind.DESTRUCTIVE,
     LinkButton.types.kind.FLAT,

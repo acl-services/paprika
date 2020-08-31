@@ -127,6 +127,7 @@ const ButtonGroup = React.forwardRef((props, ref) => {
 
 ButtonGroup.types = {
   size: constants.defaultSize,
+  kind: constants.kind,
 };
 
 const propTypes = {
