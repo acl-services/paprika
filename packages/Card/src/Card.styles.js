@@ -1,37 +1,25 @@
-import styled from "styled-components";
+import styled, { css } from "styled-components";
 import tokens from "@paprika/tokens";
 import { ShirtSizes } from "@paprika/helpers/lib/customPropTypes";
-
-// Common
-
-const commonStyles = styled.div`
-  background: ${tokens.color.white};
-  border: ${tokens.border.color};
-  border-radius: ${tokens.card.borderRadius};
-  box-shadow: ${tokens.shadow};
-  box-sizing: border-box;
-  display: inline-block;
-  text-decoration: none;
-`;
 
 // Sizes
 
 const sizeStyles = {
-  [ShirtSizes.SMALL]: `
-    width: 240px;
+  [ShirtSizes.SMALL]: css`
     height: 117px;
+    width: 240px;
   `,
-  [ShirtSizes.MEDIUM]: `
-  width: 240px;
-  height: 284px;
+  [ShirtSizes.MEDIUM]: css`
+    height: 284px;
+    width: 240px;
   `,
-  [ShirtSizes.LARGE]: `
-  width: 300px;
-  height: 500px;
+  [ShirtSizes.LARGE]: css`
+    height: 500px;
+    width: 300px;
   `,
-  auto: `
-  height: auto;
-  width: auto;
+  auto: css`
+    height: auto;
+    width: auto;
   `,
 };
 
@@ -49,15 +37,17 @@ const activeStyles = `
   border-color: ${tokens.highlight.active.noBorder.borderColor};
 `;
 
-export const cardStyles = styled(commonStyles)`
-  ${props => {
-    const size = sizeStyles[props.size];
-    const active = props.isActive && activeStyles;
-    const fullWidth = props.isFullWidth && fullWidthStyles;
-
-    return `
-      ${size};
-      ${active};
-      ${fullWidth};`;
-  }}
-`;
+export const cardStyles = styled.div(
+  ({ size, isActive, isFullWidth }) => css`
+    background: ${tokens.color.white};
+    border: ${tokens.border.color};
+    border-radius: ${tokens.card.borderRadius};
+    box-shadow: ${tokens.shadow};
+    box-sizing: border-box;
+    display: inline-block;
+    text-decoration: none;
+    ${sizeStyles[size]};
+    ${isActive && activeStyles};
+    ${isFullWidth && fullWidthStyles};
+  `
+);
