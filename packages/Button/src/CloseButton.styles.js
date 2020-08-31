@@ -1,6 +1,7 @@
-import { css } from "styled-components";
+import styled, { css } from "styled-components";
 import tokens from "@paprika/tokens";
 import stylers from "@paprika/stylers";
+import IconButton from "./IconButton";
 
 const darkStyles = css`
   transition: background-color 0.2s ease-out;
@@ -29,12 +30,12 @@ const darkStyles = css`
   }
 `;
 
-const closeButtonStyles = ({ isDark }) => css`
-  [data-pka-anchor="button.icon"] {
-    color: ${tokens.textColor.icon};
-  }
+export const CloseButton = styled(IconButton)(
+  ({ isDark }) => css`
+    [data-pka-anchor="button.icon"] {
+      color: ${tokens.textColor.icon};
+    }
 
-  ${isDark ? darkStyles : ""}
-`;
-
-export default closeButtonStyles;
+    ${isDark ? darkStyles : ""}
+  `
+);

@@ -3,7 +3,6 @@ import PropTypes from "prop-types";
 import { ShirtSizes } from "@paprika/helpers/lib/customPropTypes";
 import NewTabIcon from "@paprika/icon/lib/NewTab";
 import Button from "./Button";
-import buttonStyles from "./Button.styles";
 import * as sc from "./LinkButton.styles";
 
 const propTypes = {
@@ -40,9 +39,8 @@ const LinkButton = React.forwardRef((props, ref) => {
   };
 
   return (
-    <a
+    <Button
       aria-label={a11yText}
-      css={buttonStyles}
       href={!isDisabled ? href : null}
       isDisabled={isDisabled}
       kind={kind}
@@ -56,7 +54,7 @@ const LinkButton = React.forwardRef((props, ref) => {
       <sc.LinkButtonIcon {...iconProps} isSuffixIcon>
         {kind === Button.Kinds.LINK && shouldOpenNewTab && suffixIcon}
       </sc.LinkButtonIcon>
-    </a>
+    </Button>
   );
 });
 

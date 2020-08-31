@@ -87,7 +87,7 @@ const buttonDefaultProps = {
   children: null,
 };
 
-export const ButtonIcon = props => (props.children ? <sc.iconStyles data-pka-anchor="button.icon" {...props} /> : null);
+export const ButtonIcon = props => (props.children ? <sc.ButtonIcon data-pka-anchor="button.icon" {...props} /> : null);
 
 const Button = React.forwardRef((props, ref) => {
   const {

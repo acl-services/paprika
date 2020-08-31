@@ -314,7 +314,7 @@ const iconColors = {
 
 const getIconColor = ({ isDisabled, kind }) => (isDisabled ? tokens.color.blackDisabled : iconColors[kind]);
 
-export const iconStyles = styled.span(
+export const ButtonIcon = styled.span(
   ({ isPending, isSuffixIcon, ...props }) => css`
     align-items: center;
     color: ${getIconColor(props)};
