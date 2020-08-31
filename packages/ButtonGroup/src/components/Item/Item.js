@@ -59,7 +59,7 @@ const Item = props => {
 };
 
 Item.types = {
-  kind: constants.kind.PRIMARY,
+  kind: constants.kind,
 };
 
 const propTypes = {
