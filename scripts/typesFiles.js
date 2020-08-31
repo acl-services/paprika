@@ -6,7 +6,7 @@ const shell = require("shelljs");
 const reactDocs = require("react-docgen");
 
 const packagesProcessInTsc = ["Tokens"];
-const skipPackages = ["Guard", "Icon", "Stylers", "helpers", "ButtonGroup", "Calendar"];
+const skipPackages = ["Guard", "Icon", "Stylers", "helpers", "Calendar"];
 
 const fileName = "index.d.ts";
 /* prettier-ignore */
