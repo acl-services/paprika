@@ -6,7 +6,7 @@ import { ShirtSizes } from "@paprika/helpers/lib/customPropTypes";
 import CheckIcon from "@paprika/icon/lib/Check";
 import DashIcon from "@paprika/icon/lib/Dash";
 import CheckboxInputPropsCollector from "./CheckboxInputPropsCollector";
-import checkboxStyles from "./Checkbox.styles";
+import * as sc from "./Checkbox.styles";
 
 const checkboxStates = {
   CHECKED: "checked",
@@ -93,14 +93,14 @@ const Checkbox = props => {
   if (a11yText) inputProps["aria-label"] = a11yText;
 
   return (
-    <div data-pka-anchor="checkbox" css={checkboxStyles} {...styleProps} {...moreProps}>
+    <sc.Checkbox data-pka-anchor="checkbox" {...styleProps} {...moreProps}>
       <input {...inputProps} />
       <label htmlFor={checkboxId}>
         {children}
         <CheckIcon className="checkbox-icon" aria-hidden data-pka-anchor="checkbox.icon.check" />
         <DashIcon aria-hidden className="checkbox-icon" data-pka-anchor="checkbox.icon.indeterminate" />
       </label>
-    </div>
+    </sc.Checkbox>
   );
 };
 
