@@ -5,48 +5,6 @@ import RawButton from "@paprika/raw-button";
 import * as types from "./types";
 import pillStyles, { pillTextStyles } from "./Pill.styles";
 
-Pill.propTypes = propTypes; // eslint-disable-line no-use-before-define
-Pill.defaultProps = defaultProps; // eslint-disable-line no-use-before-define
-// eslint-disable-next-line no-use-before-define
-Pill.types = {
-  size: constants.limitedSize,
-  color: constants.color,
-  severity: types.severityPillColors,
-};
-
-const propTypes = {
-  a11yText: PropTypes.string,
-  children: PropTypes.node.isRequired,
-  isDisabled: PropTypes.bool,
-  onClick: PropTypes.func,
-  pillColor: PropTypes.oneOf([
-    [
-      Pill.types.color.BLACK, // eslint-disable-line no-use-before-define
-      Pill.types.color.BLUE, // eslint-disable-line no-use-before-define
-      Pill.types.color.GREEN, // eslint-disable-line no-use-before-define
-      Pill.types.color.GREY, // eslint-disable-line no-use-before-define
-      Pill.types.color.ORANGE, // eslint-disable-line no-use-before-define
-      Pill.types.color.LIGHT_BLUE, // eslint-disable-line no-use-before-define
-      Pill.types.color.LIGHT_ORANGE, // eslint-disable-line no-use-before-define
-    ],
-    [
-      Pill.types.severity.NO_RISK, // eslint-disable-line no-use-before-define
-      Pill.types.severity.LOW_RISK, // eslint-disable-line no-use-before-define
-      Pill.types.severity.MEDIUM_RISK, // eslint-disable-line no-use-before-define
-      Pill.types.severity.HIGH_RISK, // eslint-disable-line no-use-before-define
-    ],
-  ]),
-  size: PropTypes.oneOf([Pill.types.size.SMALL, Pill.types.size.MEDIUM]), // eslint-disable-line no-use-before-define
-};
-
-const defaultProps = {
-  a11yText: null,
-  isDisabled: false,
-  onClick: null,
-  pillColor: Pill.types.color.GREY, // eslint-disable-line no-use-before-define
-  size: Pill.types.size.MEDIUM, // eslint-disable-line no-use-before-define
-};
-
 function Pill(props) {
   const { a11yText, pillColor, isDisabled, size, onClick, ...moreProps } = props;
 
@@ -77,6 +35,47 @@ function Pill(props) {
   );
 }
 
+Pill.types = {
+  size: constants.limitedSize,
+  color: constants.color,
+  severity: types.severityPillColors,
+};
+
+const propTypes = {
+  a11yText: PropTypes.string,
+  children: PropTypes.node.isRequired,
+  isDisabled: PropTypes.bool,
+  onClick: PropTypes.func,
+  pillColor: PropTypes.oneOf([
+    [
+      Pill.types.color.BLACK,
+      Pill.types.color.BLUE,
+      Pill.types.color.GREEN,
+      Pill.types.color.GREY,
+      Pill.types.color.ORANGE,
+      Pill.types.color.LIGHT_BLUE,
+      Pill.types.color.LIGHT_ORANGE,
+    ],
+    [
+      Pill.types.severity.NO_RISK,
+      Pill.types.severity.LOW_RISK,
+      Pill.types.severity.MEDIUM_RISK,
+      Pill.types.severity.HIGH_RISK,
+    ],
+  ]),
+  size: PropTypes.oneOf([Pill.types.size.SMALL, Pill.types.size.MEDIUM]),
+};
+
+const defaultProps = {
+  a11yText: null,
+  isDisabled: false,
+  onClick: null,
+  pillColor: Pill.types.color.GREY,
+  size: Pill.types.size.MEDIUM,
+};
+
 Pill.displayName = "Pill";
+Pill.propTypes = propTypes;
+Pill.defaultProps = defaultProps;
 
 export default Pill;

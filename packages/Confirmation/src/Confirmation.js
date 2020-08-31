@@ -10,52 +10,6 @@ import TriggerButton from "./components/TriggerButton";
 import * as types from "./types";
 import { confirmStyles, confirmBodyStyles, confirmFooterStyles } from "./Confirmation.styles";
 
-Confirmation.propTypes = propTypes; // eslint-disable-line no-use-before-define
-Confirmation.defaultProps = defaultProps; // eslint-disable-line no-use-before-define
-// eslint-disable-next-line no-use-before-define
-Confirmation.types = {
-  size: constants.defaultSize,
-  kind: constants.kind,
-};
-Confirmation.TriggerButton = TriggerButton; // eslint-disable-line no-use-before-define
-
-const propTypes = {
-  /** Content of the popover confirmation */
-  body: PropTypes.node,
-  /** Size of the button */
-  buttonSize: PropTypes.oneOf([
-    Confirmation.types.size.SMALL, // eslint-disable-line no-use-before-define
-    Confirmation.types.size.MEDIUM, // eslint-disable-line no-use-before-define
-    Confirmation.types.size.LARGE, // eslint-disable-line no-use-before-define
-  ]),
-  children: PropTypes.node,
-  /** Determine the styling of the confirm button */
-  confirmButtonType: PropTypes.oneOf([Confirmation.types.kind.PRIMARY, Confirmation.types.kind.DESTRUCTIVE]), // eslint-disable-line no-use-before-define
-  /** Label for the confirm button  */
-  confirmLabel: PropTypes.string.isRequired,
-  /** If the popover is open by default */
-  defaultIsOpen: PropTypes.bool,
-  /** Heading for the popover confirmation */
-  heading: PropTypes.string,
-  /** If the confirm button should render in a pending state (with a spinner icon) */
-  isPending: PropTypes.bool,
-  /** Callback when cancel button is clicked */
-  onClose: PropTypes.func,
-  /** Callback when confirm button is clicked */
-  onConfirm: PropTypes.func.isRequired,
-};
-
-const defaultProps = {
-  body: null,
-  buttonSize: Confirmation.types.size.MEDIUM, // eslint-disable-line no-use-before-define
-  children: null,
-  confirmButtonType: Confirmation.types.kind.DESTRUCTIVE, // eslint-disable-line no-use-before-define
-  defaultIsOpen: false,
-  heading: null,
-  isPending: false,
-  onClose: () => {},
-};
-
 const Confirmation = props => {
   const {
     body,
@@ -190,6 +144,51 @@ const Confirmation = props => {
   );
 };
 
+Confirmation.types = {
+  size: constants.defaultSize,
+  kind: constants.kind,
+};
+
+const propTypes = {
+  /** Content of the popover confirmation */
+  body: PropTypes.node,
+  /** Size of the button */
+  buttonSize: PropTypes.oneOf([
+    Confirmation.types.size.SMALL,
+    Confirmation.types.size.MEDIUM,
+    Confirmation.types.size.LARGE,
+  ]),
+  children: PropTypes.node,
+  /** Determine the styling of the confirm button */
+  confirmButtonType: PropTypes.oneOf([Confirmation.types.kind.PRIMARY, Confirmation.types.kind.DESTRUCTIVE]),
+  /** Label for the confirm button  */
+  confirmLabel: PropTypes.string.isRequired,
+  /** If the popover is open by default */
+  defaultIsOpen: PropTypes.bool,
+  /** Heading for the popover confirmation */
+  heading: PropTypes.string,
+  /** If the confirm button should render in a pending state (with a spinner icon) */
+  isPending: PropTypes.bool,
+  /** Callback when cancel button is clicked */
+  onClose: PropTypes.func,
+  /** Callback when confirm button is clicked */
+  onConfirm: PropTypes.func.isRequired,
+};
+
+const defaultProps = {
+  body: null,
+  buttonSize: Confirmation.types.size.MEDIUM,
+  children: null,
+  confirmButtonType: Confirmation.types.kind.DESTRUCTIVE,
+  defaultIsOpen: false,
+  heading: null,
+  isPending: false,
+  onClose: () => {},
+};
+
 Confirmation.displayName = "Confirmation";
+Confirmation.propTypes = propTypes;
+Confirmation.defaultProps = defaultProps;
+Confirmation.TriggerButton = TriggerButton;
 
 export default Confirmation;

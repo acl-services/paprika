@@ -4,37 +4,6 @@ import PropTypes from "prop-types";
 import * as constants from "@paprika/constants/lib/Constants";
 import selectStyles from "./Select.styles";
 
-Select.propTypes = propTypes; // eslint-disable-line no-use-before-define
-Select.defaultProps = defaultProps; // eslint-disable-line no-use-before-define
-// eslint-disable-next-line no-use-before-define
-Select.types = {
-  size: constants.defaultSize,
-};
-
-const propTypes = {
-  a11yText: PropTypes.string,
-  className: PropTypes.string,
-  children: PropTypes.node,
-  hasError: PropTypes.bool,
-  isDisabled: PropTypes.bool,
-  isReadOnly: PropTypes.bool,
-  placeholder: PropTypes.string,
-  size: PropTypes.oneOf([Select.types.size.SMALL, Select.types.size.MEDIUM, Select.types.size.LARGE]), // eslint-disable-line no-use-before-define
-  value: PropTypes.string,
-};
-
-const defaultProps = {
-  a11yText: null,
-  className: null,
-  children: null,
-  hasError: false,
-  isDisabled: false,
-  isReadOnly: false,
-  placeholder: null,
-  size: Select.types.size.MEDIUM, // eslint-disable-line no-use-before-define
-  value: "",
-};
-
 const Select = React.forwardRef((props, ref) => {
   const renderPlaceholder = () => {
     const { placeholder } = props;
@@ -90,6 +59,36 @@ const Select = React.forwardRef((props, ref) => {
   );
 });
 
+Select.types = {
+  size: constants.defaultSize,
+};
+
+const propTypes = {
+  a11yText: PropTypes.string,
+  className: PropTypes.string,
+  children: PropTypes.node,
+  hasError: PropTypes.bool,
+  isDisabled: PropTypes.bool,
+  isReadOnly: PropTypes.bool,
+  placeholder: PropTypes.string,
+  size: PropTypes.oneOf([Select.types.size.SMALL, Select.types.size.MEDIUM, Select.types.size.LARGE]),
+  value: PropTypes.string,
+};
+
+const defaultProps = {
+  a11yText: null,
+  className: null,
+  children: null,
+  hasError: false,
+  isDisabled: false,
+  isReadOnly: false,
+  placeholder: null,
+  size: Select.types.size.MEDIUM,
+  value: "",
+};
+
 Select.displayName = "Select";
+Select.propTypes = propTypes;
+Select.defaultProps = defaultProps;
 
 export default Select;

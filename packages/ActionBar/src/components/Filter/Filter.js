@@ -12,43 +12,6 @@ import * as types from "../../types";
 import * as sc from "./Filter.styles";
 import { GenericNoAppliedPlaceholder } from "../../ActionBar.styles";
 
-Filter.propTypes = propTypes; // eslint-disable-line no-use-before-define
-// eslint-disable-next-line no-use-before-define
-Filter.types = {
-  operator: types.logicalFilterOperators,
-  rule: types.rules,
-};
-Filter.defaultProps = defaultProps; // eslint-disable-line no-use-before-define
-
-const propTypes = {
-  appliedNumber: PropTypes.number,
-  children: PropTypes.node,
-  columns: PropTypes.arrayOf(PropTypes.shape(columnShape)).isRequired,
-  onAddFilter: PropTypes.func.isRequired,
-  onApply: PropTypes.func.isRequired,
-  onCancel: PropTypes.func,
-  onChangeOperator: PropTypes.func,
-  onClose: PropTypes.func,
-  onOpen: PropTypes.func,
-  operator: PropTypes.oneOf([
-    Filter.types.operator.logicalFilterOperators.AND, // eslint-disable-line no-use-before-define
-    Filter.types.operator.logicalFilterOperators.OR, // eslint-disable-line no-use-before-define
-  ]),
-
-  rulesByType: PropTypes.objectOf(PropTypes.arrayOf(PropTypes.objectOf(Filter.types.rule))), // eslint-disable-line no-use-before-define
-};
-
-const defaultProps = {
-  appliedNumber: 0,
-  children: null,
-  onChangeOperator: null,
-  onCancel: () => {},
-  onClose: () => {},
-  onOpen: () => {},
-  operator: Filter.types.logicalFilterOperators.AND, // eslint-disable-line no-use-before-define
-  rulesByType: Filter.types.defaultRulesByType, // eslint-disable-line no-use-before-define
-};
-
 function getLabelText(numberOfFilters, I18n) {
   switch (numberOfFilters) {
     case 0:
@@ -145,7 +108,41 @@ export default function Filter(props) {
   );
 }
 
+Filter.types = {
+  operator: types.logicalFilterOperators,
+  rule: types.rules,
+};
+
+const propTypes = {
+  appliedNumber: PropTypes.number,
+  children: PropTypes.node,
+  columns: PropTypes.arrayOf(PropTypes.shape(columnShape)).isRequired,
+  onAddFilter: PropTypes.func.isRequired,
+  onApply: PropTypes.func.isRequired,
+  onCancel: PropTypes.func,
+  onChangeOperator: PropTypes.func,
+  onClose: PropTypes.func,
+  onOpen: PropTypes.func,
+  operator: PropTypes.oneOf([Filter.types.operator.AND, Filter.types.operator.OR]),
+
+  rulesByType: PropTypes.objectOf(PropTypes.arrayOf(PropTypes.objectOf(Filter.types.rule))),
+};
+
+const defaultProps = {
+  appliedNumber: 0,
+  children: null,
+  onChangeOperator: null,
+  onCancel: () => {},
+  onClose: () => {},
+  onOpen: () => {},
+  operator: Filter.types.AND,
+  rulesByType: Filter.types.defaultRulesByType,
+};
+
 Filter.displayName = "ActionBar.Filter";
+Filter.propTypes = propTypes;
+Filter.defaultProps = defaultProps;
+
 Filter.defaultRulesByType = types.defaultRulesByType;
 Filter.rules = types.rules;
 Filter.Item = FilterItem;

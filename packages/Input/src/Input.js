@@ -7,83 +7,6 @@ import Button from "@paprika/button";
 import * as types from "./types";
 import inputStyles from "./Input.styles";
 
-Input.propTypes = propTypes; // eslint-disable-line no-use-before-define
-Input.defaultProps = defaultProps; // eslint-disable-line no-use-before-define
-// eslint-disable-next-line no-use-before-define
-Input.types = {
-  size: constants.defaultSize,
-  input: types.inputValidTypes,
-};
-
-const propTypes = {
-  /** Descriptive a11y text for assistive technologies. By default, text from children node will be used. */
-  a11yText: PropTypes.string,
-
-  /** Sets the class for the input. */
-  className: PropTypes.string,
-
-  /** Custom icon for the clear action in the input. */
-  clearIcon: PropTypes.node,
-
-  /** Sets the default input value  */
-  defaultValue: PropTypes.string,
-
-  /** If true displays a clear button inside the input if it contains a value.  */
-  hasClearButton: PropTypes.bool,
-
-  /** If true displays a red border around input to show error.  */
-  hasError: PropTypes.bool,
-
-  /** Displays an icon inside the input. */
-  icon: PropTypes.node,
-
-  /** If true it makes the input disabled. */
-  isDisabled: PropTypes.bool,
-
-  /** If true it makes the input read only. */
-  isReadOnly: PropTypes.bool,
-
-  /** Callback to be executed when the input value is changed. Should not be used with defaultValue prop */
-  onChange: PropTypes.func,
-
-  /** Callback to be executed when the input value is cleared */
-  onClear: PropTypes.func,
-
-  /** Changes the size of the input. */
-  size: PropTypes.oneOf([Input.types.size.SMALL, Input.types.size.MEDIUM, Input.types.size.LARGE]), // eslint-disable-line no-use-before-define
-
-  /** Allows user to specify the type of input. */
-  type: PropTypes.oneOf([
-    types.inputValidTypes.EMAIL,
-    types.inputValidTypes.NUMBER,
-    types.inputValidTypes.PASSWORD,
-    types.inputValidTypes.SEARCH,
-    types.inputValidTypes.TELEPHONE,
-    types.inputValidTypes.TEXT,
-    types.inputValidTypes.URL,
-  ]),
-
-  /** The value inside of the input */
-  value: PropTypes.string,
-};
-
-const defaultProps = {
-  a11yText: null,
-  clearIcon: null,
-  className: null,
-  defaultValue: "",
-  hasClearButton: false,
-  hasError: false,
-  icon: null,
-  isDisabled: false,
-  isReadOnly: false,
-  onChange: () => {},
-  onClear: () => {},
-  size: Input.types.size.MEDIUM, // eslint-disable-line no-use-before-define
-  type: Input.types.input.TEXT, // eslint-disable-line no-use-before-define
-  value: null,
-};
-
 const Input = React.forwardRef((props, ref) => {
   const inputClearHandler = e => {
     e.target.value = "";
@@ -168,6 +91,82 @@ const Input = React.forwardRef((props, ref) => {
   );
 });
 
+Input.types = {
+  size: constants.defaultSize,
+  input: types.inputValidTypes,
+};
+
+const propTypes = {
+  /** Descriptive a11y text for assistive technologies. By default, text from children node will be used. */
+  a11yText: PropTypes.string,
+
+  /** Sets the class for the input. */
+  className: PropTypes.string,
+
+  /** Custom icon for the clear action in the input. */
+  clearIcon: PropTypes.node,
+
+  /** Sets the default input value  */
+  defaultValue: PropTypes.string,
+
+  /** If true displays a clear button inside the input if it contains a value.  */
+  hasClearButton: PropTypes.bool,
+
+  /** If true displays a red border around input to show error.  */
+  hasError: PropTypes.bool,
+
+  /** Displays an icon inside the input. */
+  icon: PropTypes.node,
+
+  /** If true it makes the input disabled. */
+  isDisabled: PropTypes.bool,
+
+  /** If true it makes the input read only. */
+  isReadOnly: PropTypes.bool,
+
+  /** Callback to be executed when the input value is changed. Should not be used with defaultValue prop */
+  onChange: PropTypes.func,
+
+  /** Callback to be executed when the input value is cleared */
+  onClear: PropTypes.func,
+
+  /** Changes the size of the input. */
+  size: PropTypes.oneOf([Input.types.size.SMALL, Input.types.size.MEDIUM, Input.types.size.LARGE]),
+
+  /** Allows user to specify the type of input. */
+  type: PropTypes.oneOf([
+    types.inputValidTypes.EMAIL,
+    types.inputValidTypes.NUMBER,
+    types.inputValidTypes.PASSWORD,
+    types.inputValidTypes.SEARCH,
+    types.inputValidTypes.TELEPHONE,
+    types.inputValidTypes.TEXT,
+    types.inputValidTypes.URL,
+  ]),
+
+  /** The value inside of the input */
+  value: PropTypes.string,
+};
+
+const defaultProps = {
+  a11yText: null,
+  clearIcon: null,
+  className: null,
+  defaultValue: "",
+  hasClearButton: false,
+  hasError: false,
+  icon: null,
+  isDisabled: false,
+  isReadOnly: false,
+  onChange: () => {},
+  onClear: () => {},
+  size: Input.types.size.MEDIUM,
+  type: Input.types.input.TEXT,
+  value: null,
+};
+
 Input.displayName = "Input";
+Input.propTypes = propTypes;
+Input.defaultProps = defaultProps;
 
 export default Input;

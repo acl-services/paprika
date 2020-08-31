@@ -6,51 +6,6 @@ import Item from "./components/Item";
 import * as types from "./types";
 import * as sc from "./ButtonGroup.styles";
 
-ButtonGroup.propTypes = propTypes; // eslint-disable-line no-use-before-define
-ButtonGroup.defaultProps = defaultProps; // eslint-disable-line no-use-before-define
-ButtonGroup.Item = Item; // eslint-disable-line no-use-before-define
-// eslint-disable-next-line no-use-before-define
-ButtonGroup.types = {
-  size: constants.defaultSize,
-};
-
-const propTypes = {
-  /** The toggle buttons in the group. */
-  children: PropTypes.node,
-
-  /** To show the icons used for selected / not selected. */
-  hasIcons: PropTypes.bool,
-
-  /** If the entire button group is disabled. */
-  isDisabled: PropTypes.bool,
-
-  /** If the width of the button group should stretch to fit its parent container (100%). */
-  isFullWidth: PropTypes.bool,
-
-  /** If multiple simultaneous selections are allowed. */
-  isMulti: PropTypes.bool,
-
-  /** If it will be rendered as a button element. If false, a span will be rendered via an accessible RawButton. */
-  isSemantic: PropTypes.bool,
-
-  /** Callback to be executed when any button item is clicked or activated by keyboard. It will return an array of the selected items' "value" properties. */
-  onChange: PropTypes.func,
-
-  /** Size of the buttons (height, font size, etc). */
-  size: PropTypes.oneOf([ButtonGroup.types.size.SMALL, ButtonGroup.types.size.MEDIUM, ButtonGroup.types.size.LARGE]), // eslint-disable-line no-use-before-define
-};
-
-const defaultProps = {
-  children: null,
-  hasIcons: false,
-  isDisabled: false,
-  isFullWidth: false,
-  isMulti: false,
-  isSemantic: true,
-  onChange: () => {},
-  size: ButtonGroup.types.size.MEDIUM, // eslint-disable-line no-use-before-define
-};
-
 const ButtonGroup = React.forwardRef((props, ref) => {
   const { children, hasIcons, isDisabled, isMulti, isSemantic, onChange, size } = props;
 
@@ -170,6 +125,50 @@ const ButtonGroup = React.forwardRef((props, ref) => {
   );
 });
 
+ButtonGroup.types = {
+  size: constants.defaultSize,
+};
+
+const propTypes = {
+  /** The toggle buttons in the group. */
+  children: PropTypes.node,
+
+  /** To show the icons used for selected / not selected. */
+  hasIcons: PropTypes.bool,
+
+  /** If the entire button group is disabled. */
+  isDisabled: PropTypes.bool,
+
+  /** If the width of the button group should stretch to fit its parent container (100%). */
+  isFullWidth: PropTypes.bool,
+
+  /** If multiple simultaneous selections are allowed. */
+  isMulti: PropTypes.bool,
+
+  /** If it will be rendered as a button element. If false, a span will be rendered via an accessible RawButton. */
+  isSemantic: PropTypes.bool,
+
+  /** Callback to be executed when any button item is clicked or activated by keyboard. It will return an array of the selected items' "value" properties. */
+  onChange: PropTypes.func,
+
+  /** Size of the buttons (height, font size, etc). */
+  size: PropTypes.oneOf([ButtonGroup.types.size.SMALL, ButtonGroup.types.size.MEDIUM, ButtonGroup.types.size.LARGE]),
+};
+
+const defaultProps = {
+  children: null,
+  hasIcons: false,
+  isDisabled: false,
+  isFullWidth: false,
+  isMulti: false,
+  isSemantic: true,
+  onChange: () => {},
+  size: ButtonGroup.types.size.MEDIUM,
+};
+
 ButtonGroup.displayName = "ButtonGroup";
+ButtonGroup.propTypes = propTypes;
+ButtonGroup.defaultProps = defaultProps;
+ButtonGroup.Item = Item;
 
 export default ButtonGroup;

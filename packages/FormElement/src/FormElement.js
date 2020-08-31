@@ -13,58 +13,6 @@ import Help from "./components/Help";
 import Label from "./components/Label";
 import * as sc from "./FormElement.styles";
 
-FormElement.propTypes = propTypes; // eslint-disable-line no-use-before-define
-FormElement.defaultProps = defaultProps; // eslint-disable-line no-use-before-define
-// eslint-disable-next-line no-use-before-define
-FormElement.types = {
-  size: constants.defaultSize,
-};
-
-const propTypes = {
-  children: PropTypes.node.isRequired,
-
-  /** Should show is optional text besides the label or not. Will not show if hasRequiredLabel prop is true */
-  hasOptionalLabel: PropTypes.bool,
-
-  /** Should show is required text besides the label or not. Takes presendence over hasOptionalLabel prop */
-  hasRequiredLabel: PropTypes.bool,
-
-  /** ID for the child element. */
-  id: PropTypes.string,
-
-  /** Should be disabled or not, default is false. */
-  isDisabled: PropTypes.bool,
-
-  /** Should label and children be inline or not, default is false. */
-  isInline: PropTypes.bool,
-
-  /** Should label be hidden, default is false. Note: this is discouraged because of accessibility requirements. */
-  isLabelVisuallyHidden: PropTypes.bool,
-
-  /** Label text of this field. */
-  label: PropTypes.node.isRequired,
-
-  /** Size of the label, error, help and description (font size, min-height, padding, etc). */
-  size: PropTypes.oneOf([FormElement.types.size.SMALL, FormElement.types.size.MEDIUM, FormElement.types.size.LARGE]), // eslint-disable-line no-use-before-define
-
-  /** FormElement contains multiple children so Renders a legend element instead of label. */
-  hasFieldSet: PropTypes.bool,
-
-  onClickLabel: PropTypes.func,
-};
-
-const defaultProps = {
-  hasOptionalLabel: false,
-  hasRequiredLabel: false,
-  id: null,
-  isDisabled: false,
-  isInline: false,
-  isLabelVisuallyHidden: false,
-  size: FormElement.types.size.MEDIUM, // eslint-disable-line no-use-before-define
-  hasFieldSet: false,
-  onClickLabel: () => {},
-};
-
 const subComponentDisplayNames = {
   Error: "FormElement.Error",
   Description: "FormElement.Description",
@@ -170,7 +118,58 @@ function FormElement(props) {
   );
 }
 
+FormElement.types = {
+  size: constants.defaultSize,
+};
+
+const propTypes = {
+  children: PropTypes.node.isRequired,
+
+  /** Should show is optional text besides the label or not. Will not show if hasRequiredLabel prop is true */
+  hasOptionalLabel: PropTypes.bool,
+
+  /** Should show is required text besides the label or not. Takes presendence over hasOptionalLabel prop */
+  hasRequiredLabel: PropTypes.bool,
+
+  /** ID for the child element. */
+  id: PropTypes.string,
+
+  /** Should be disabled or not, default is false. */
+  isDisabled: PropTypes.bool,
+
+  /** Should label and children be inline or not, default is false. */
+  isInline: PropTypes.bool,
+
+  /** Should label be hidden, default is false. Note: this is discouraged because of accessibility requirements. */
+  isLabelVisuallyHidden: PropTypes.bool,
+
+  /** Label text of this field. */
+  label: PropTypes.node.isRequired,
+
+  /** Size of the label, error, help and description (font size, min-height, padding, etc). */
+  size: PropTypes.oneOf([FormElement.types.size.SMALL, FormElement.types.size.MEDIUM, FormElement.types.size.LARGE]),
+
+  /** FormElement contains multiple children so Renders a legend element instead of label. */
+  hasFieldSet: PropTypes.bool,
+
+  onClickLabel: PropTypes.func,
+};
+
+const defaultProps = {
+  hasOptionalLabel: false,
+  hasRequiredLabel: false,
+  id: null,
+  isDisabled: false,
+  isInline: false,
+  isLabelVisuallyHidden: false,
+  size: FormElement.types.size.MEDIUM,
+  hasFieldSet: false,
+  onClickLabel: () => {},
+};
+
 FormElement.displayName = "FormElement";
+FormElement.propTypes = propTypes;
+FormElement.defaultProps = defaultProps;
 
 FormElement.subComponentDisplayNames = subComponentDisplayNames;
 FormElement.Content = Content;

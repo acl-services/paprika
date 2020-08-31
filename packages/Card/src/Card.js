@@ -9,9 +9,20 @@ import Text from "./components/Text";
 import Content from "./components/Content";
 import * as sc from "./Card.styles";
 
-Card.propTypes = propTypes; // eslint-disable-line no-use-before-define
-Card.defaultProps = defaultProps; // eslint-disable-line no-use-before-define
-// eslint-disable-next-line no-use-before-define
+function Card(props) {
+  const { children, size, isFullWidth, isActive, ...moreProps } = props;
+
+  const styleProps = {
+    size,
+  };
+
+  return (
+    <sc.cardStyles data-pka-anchor="card" {...styleProps} {...moreProps}>
+      {children}
+    </sc.cardStyles>
+  );
+}
+
 Card.types = {
   size: constants.autoSize,
 };
@@ -27,31 +38,19 @@ const propTypes = {
   isActive: PropTypes.bool,
 
   /** Size of the card (font size, min-height, padding, etc). */
-  size: PropTypes.oneOf([Card.types.size.AUTO, Card.types.size.SMALL, Card.types.size.MEDIUM, Card.types.size.LARGE]), // eslint-disable-line no-use-before-define
+  size: PropTypes.oneOf([Card.types.size.AUTO, Card.types.size.SMALL, Card.types.size.MEDIUM, Card.types.size.LARGE]),
 };
 
 const defaultProps = {
   children: null,
-  size: Card.types.size.AUTO, // eslint-disable-line no-use-before-define
+  size: Card.types.size.AUTO,
   isFullWidth: false,
   isActive: false,
 };
 
-function Card(props) {
-  const { children, size, isFullWidth, isActive, ...moreProps } = props;
-
-  const styleProps = {
-    size,
-  };
-
-  return (
-    <sc.cardStyles data-pka-anchor="card" {...styleProps} {...moreProps}>
-      {children}
-    </sc.cardStyles>
-  );
-}
-
 Card.displayName = "Card";
+Card.propTypes = propTypes;
+Card.defaultProps = defaultProps;
 
 Card.Header = Header;
 Card.Title = Title;

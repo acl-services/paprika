@@ -7,37 +7,6 @@ import * as constants from "@paprika/constants/lib/Constants";
 import ColumnDefinition from "./components/ColumnDefinition";
 import * as sc from "./Table.styles";
 
-Table.propTypes = propTypes; // eslint-disable-line no-use-before-define
-Table.defaultProps = defaultProps; // eslint-disable-line no-use-before-define
-Table.ColumnDefinition = ColumnDefinition; // eslint-disable-line no-use-before-define
-// eslint-disable-next-line no-use-before-define
-Table.types = {
-  border: constants.gridTypes,
-};
-
-const propTypes = {
-  /** Define the look for borders in the table Table.types.GRID, Table.types.NONE, etc.  */
-  borderType: PropTypes.oneOf([
-    Table.types.border.GRID, // eslint-disable-line no-use-before-define
-    Table.types.border.NONE, // eslint-disable-line no-use-before-define
-    Table.types.border.HORIZONTAL, // eslint-disable-line no-use-before-define
-    Table.types.border.VERTICAL, // eslint-disable-line no-use-before-define
-  ]),
-  /**  Accessible description of the table */
-  a11yText: PropTypes.string.isRequired,
-  children: PropTypes.node.isRequired,
-  /** Add an alternating background on the table rows */
-  hasZebraStripes: PropTypes.bool,
-  /** Array of data to be stored in the Table */
-  data: PropTypes.arrayOf(PropTypes.shape({})),
-};
-
-const defaultProps = {
-  borderType: Table.types.border.GRID, // eslint-disable-line no-use-before-define
-  data: [],
-  hasZebraStripes: false,
-};
-
 export default function Table(props) {
   const { borderType, children, hasZebraStripes, data, a11yText, ...moreProps } = props;
 
@@ -106,4 +75,34 @@ export default function Table(props) {
   );
 }
 
+Table.types = {
+  border: constants.gridTypes,
+};
+
+const propTypes = {
+  /** Define the look for borders in the table Table.types.GRID, Table.types.NONE, etc.  */
+  borderType: PropTypes.oneOf([
+    Table.types.border.GRID,
+    Table.types.border.NONE,
+    Table.types.border.HORIZONTAL,
+    Table.types.border.VERTICAL,
+  ]),
+  /**  Accessible description of the table */
+  a11yText: PropTypes.string.isRequired,
+  children: PropTypes.node.isRequired,
+  /** Add an alternating background on the table rows */
+  hasZebraStripes: PropTypes.bool,
+  /** Array of data to be stored in the Table */
+  data: PropTypes.arrayOf(PropTypes.shape({})),
+};
+
+const defaultProps = {
+  borderType: Table.types.border.GRID,
+  data: [],
+  hasZebraStripes: false,
+};
+
 Table.displayName = "Table";
+Table.propTypes = propTypes;
+Table.defaultProps = defaultProps;
+Table.ColumnDefinition = ColumnDefinition;

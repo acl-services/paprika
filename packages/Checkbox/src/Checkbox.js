@@ -9,51 +9,6 @@ import CheckboxInputPropsCollector from "./CheckboxInputPropsCollector";
 import * as types from "./types";
 import checkboxStyles from "./Checkbox.styles";
 
-Checkbox.propTypes = propTypes; // eslint-disable-line no-use-before-define
-Checkbox.defaultProps = defaultProps; // eslint-disable-line no-use-before-define
-// eslint-disable-next-line no-use-before-define
-Checkbox.types = {
-  size: constants.defaultSize,
-  state: types.checkboxStates,
-};
-Checkbox.Input = CheckboxInputPropsCollector; // eslint-disable-line no-use-before-define
-
-const noop = () => {};
-
-const propTypes = {
-  /** Used for aria-describedby on the checkbox input  */
-  ariaDescribedBy: PropTypes.string,
-  /** Used for aria-label on the checkbox input  */
-  a11yText: PropTypes.string,
-  /** The checkbox state */
-  checkedState: PropTypes.oneOf([
-    Checkbox.types.checkboxStates.CHECKED, // eslint-disable-line no-use-before-define
-    Checkbox.types.checkboxStates.UNCHECKED, // eslint-disable-line no-use-before-define
-    Checkbox.types.checkboxStates.INDETERMINATE, // eslint-disable-line no-use-before-define
-  ]),
-  /** Used for label contents */
-  children: PropTypes.node,
-  /** Describe if the checkbox is disabled or not */
-  isDisabled: PropTypes.bool,
-  /** Callback triggered when the input state is changed */
-  onChange: PropTypes.func,
-  /** Size provided by parent Group component */
-  size: PropTypes.oneOf([Checkbox.types.size.SMALL, Checkbox.types.size.MEDIUM, Checkbox.types.size.LARGE]), // eslint-disable-line no-use-before-define
-  /** Value for tabindex attribute to override the default of 0. */
-  tabIndex: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
-};
-
-const defaultProps = {
-  a11yText: null,
-  ariaDescribedBy: null,
-  checkedState: Checkbox.types.checkboxStates.UNCHECKED, // eslint-disable-line no-use-before-define
-  children: null,
-  isDisabled: false,
-  onChange: noop,
-  size: Checkbox.types.size.MEDIUM, // eslint-disable-line no-use-before-define
-  tabIndex: 0,
-};
-
 const Checkbox = props => {
   const {
     a11yText,
@@ -111,6 +66,51 @@ const Checkbox = props => {
   );
 };
 
+Checkbox.types = {
+  size: constants.defaultSize,
+  state: types.checkboxStates,
+};
+
+const noop = () => {};
+
+const propTypes = {
+  /** Used for aria-describedby on the checkbox input  */
+  ariaDescribedBy: PropTypes.string,
+  /** Used for aria-label on the checkbox input  */
+  a11yText: PropTypes.string,
+  /** The checkbox state */
+  checkedState: PropTypes.oneOf([
+    Checkbox.types.state.CHECKED,
+    Checkbox.types.state.UNCHECKED,
+    Checkbox.types.state.INDETERMINATE,
+  ]),
+  /** Used for label contents */
+  children: PropTypes.node,
+  /** Describe if the checkbox is disabled or not */
+  isDisabled: PropTypes.bool,
+  /** Callback triggered when the input state is changed */
+  onChange: PropTypes.func,
+  /** Size provided by parent Group component */
+  size: PropTypes.oneOf([Checkbox.types.size.SMALL, Checkbox.types.size.MEDIUM, Checkbox.types.size.LARGE]),
+  /** Value for tabindex attribute to override the default of 0. */
+  tabIndex: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
+};
+
+const defaultProps = {
+  a11yText: null,
+  ariaDescribedBy: null,
+  checkedState: Checkbox.types.state.UNCHECKED,
+  children: null,
+  isDisabled: false,
+  onChange: noop,
+  size: Checkbox.types.size.MEDIUM,
+  tabIndex: 0,
+};
+
 Checkbox.displayName = "Checkbox";
+Checkbox.propTypes = propTypes;
+Checkbox.defaultProps = defaultProps;
+
+Checkbox.Input = CheckboxInputPropsCollector;
 
 export default Checkbox;

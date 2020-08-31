@@ -1,14 +1,13 @@
 /* eslint-disable react/button-has-type */
 
 import React from "react";
-import * as constants from "@paprika/constants/lib/Constants";
 import { action } from "@storybook/addon-actions";
 import { boolean, select } from "@storybook/addon-knobs";
 import { Story, Rule } from "storybook/assets/styles/common.styles";
+import ButtonGroup from "@paprika/button-group";
 import Heading from "@paprika/heading";
 import Calendar from "@paprika/icon/lib/Calendar";
 import * as types from "../../src/types";
-import ButtonGroup from "../../src";
 
 const changeHandler = selectedItems => {
   action("Selected an item")(...selectedItems);
@@ -41,7 +40,7 @@ const ExampleStory = props => {
         <button onClick={handleFocus}>Focus Pre</button>
       </p>
       <ButtonGroup {...props} ref={refButtonGroup}>
-        <ButtonGroup.Item value="one" kind={constants.kind.PRIMARY}>
+        <ButtonGroup.Item value="one" kind={ButtonGroup.Item.types.kind.PRIMARY}>
           One
         </ButtonGroup.Item>
         <ButtonGroup.Item value="two" isDisabled defaultIsActive>

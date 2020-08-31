@@ -10,3 +10,5 @@ export const keyTypes = {
   FIRST: "Home",
   LAST: "End",
 };
+
+export const PRIMARY = constants.kind.PRIMARY;

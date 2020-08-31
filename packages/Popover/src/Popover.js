@@ -17,13 +17,6 @@ import Trigger from "./components/Trigger/Trigger";
 import Tip from "./components/Tip/Tip";
 import * as sc from "./Popover.styles";
 
-Popover.propTypes = propTypes; // eslint-disable-line no-use-before-define
-Popover.defaultProps = defaultProps; // eslint-disable-line no-use-before-define
-// eslint-disable-next-line no-use-before-define
-Popover.types = {
-  align: constants.align,
-};
-
 const openDelay = 350;
 const closeDelay = 150;
 const throttleDelay = 20;
@@ -32,79 +25,6 @@ const focusableElementSelector =
 
 // TODO: To handle cases where there are multiple scrolling containers, we need to implement
 //       getScrollContainer as oneOfType([func, arrayOf(func)])
-
-const propTypes = {
-  /** Where the popover content is positioned relative to the trigger or getPositioningElement. */
-  align: PropTypes.oneOf([
-    Popover.types.align.TOP, // eslint-disable-line no-use-before-define
-    Popover.types.align.RIGHT, // eslint-disable-line no-use-before-define
-    Popover.types.align.BOTTOM, // eslint-disable-line no-use-before-define
-    Popover.types.align.LEFT, // eslint-disable-line no-use-before-define
-  ]),
-
-  /** Content of the popover */
-  children: PropTypes.node.isRequired,
-
-  /** Displays as a "tooltip" style with white text on black background. */
-  isDark: PropTypes.bool,
-
-  /** Activated by mouseOver / focus instead of onClick. */
-  isEager: PropTypes.bool,
-
-  /** How "controlled" popovers are shown / hidden. */
-  isOpen: PropTypes.bool,
-
-  /** This renders the popover inline in the DOM and not in a react portal. WARNING: will have side effects with paprika side panels and modals, use with caution. */
-  isPortal: PropTypes.bool,
-
-  /** How "uncontrolled" popovers can be rendered open by default. */
-  defaultIsOpen: PropTypes.bool,
-
-  /** Where the edge of the popover content is based on the trigger or getPositioningElement */
-  edge: PropTypes.oneOf([Popover.types.align.LEFT, Popover.types.align.RIGHT, null]), // eslint-disable-line no-use-before-define
-
-  /** Maximum width of popover content. Using a number is recommended and implies px units. */
-  maxWidth: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
-
-  /** Minimumn width of popover content. Using a number is recommended and implies px units. */
-  minWidth: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
-
-  /** Callback to fire when user closes popover. */
-  onClose: PropTypes.func,
-
-  /** Distance, in px, between popover content edge and trigger / getPositioningElement. */
-  offset: PropTypes.number,
-
-  /** Function that provides DOM element to use as target for positioning the popover. */
-  getPositioningElement: PropTypes.func,
-
-  /** Function that provides the scrolling DOM element that contains the popover. */
-  getScrollContainer: PropTypes.func,
-
-  /** If focus will stay at the trigger when showing popover. Popover can still be closed when clicking outside or pressing escape key. */
-  shouldKeepFocus: PropTypes.bool,
-
-  /** Number setting the z-index for the popover content / tip. */
-  zIndex: PropTypes.number,
-};
-
-const defaultProps = {
-  align: Popover.types.align.BOTTOM, // eslint-disable-line no-use-before-define
-  isDark: false,
-  isEager: false,
-  isOpen: null,
-  isPortal: true,
-  defaultIsOpen: null,
-  edge: null,
-  maxWidth: 320,
-  minWidth: 0,
-  onClose: null,
-  offset: parseInt(tokens.spaceLg, 10),
-  getPositioningElement: null,
-  getScrollContainer: null,
-  shouldKeepFocus: false,
-  zIndex: zValue(1),
-};
 
 class Popover extends React.Component {
   constructor(props) {
@@ -547,7 +467,86 @@ function PopoverChildren(props) {
   return children;
 }
 
+Popover.types = {
+  align: constants.align,
+};
+
+const propTypes = {
+  /** Where the popover content is positioned relative to the trigger or getPositioningElement. */
+  align: PropTypes.oneOf([
+    Popover.types.align.TOP,
+    Popover.types.align.RIGHT,
+    Popover.types.align.BOTTOM,
+    Popover.types.align.LEFT,
+  ]),
+
+  /** Content of the popover */
+  children: PropTypes.node.isRequired,
+
+  /** Displays as a "tooltip" style with white text on black background. */
+  isDark: PropTypes.bool,
+
+  /** Activated by mouseOver / focus instead of onClick. */
+  isEager: PropTypes.bool,
+
+  /** How "controlled" popovers are shown / hidden. */
+  isOpen: PropTypes.bool,
+
+  /** This renders the popover inline in the DOM and not in a react portal. WARNING: will have side effects with paprika side panels and modals, use with caution. */
+  isPortal: PropTypes.bool,
+
+  /** How "uncontrolled" popovers can be rendered open by default. */
+  defaultIsOpen: PropTypes.bool,
+
+  /** Where the edge of the popover content is based on the trigger or getPositioningElement */
+  edge: PropTypes.oneOf([Popover.types.align.LEFT, Popover.types.align.RIGHT, null]),
+
+  /** Maximum width of popover content. Using a number is recommended and implies px units. */
+  maxWidth: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
+
+  /** Minimumn width of popover content. Using a number is recommended and implies px units. */
+  minWidth: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
+
+  /** Callback to fire when user closes popover. */
+  onClose: PropTypes.func,
+
+  /** Distance, in px, between popover content edge and trigger / getPositioningElement. */
+  offset: PropTypes.number,
+
+  /** Function that provides DOM element to use as target for positioning the popover. */
+  getPositioningElement: PropTypes.func,
+
+  /** Function that provides the scrolling DOM element that contains the popover. */
+  getScrollContainer: PropTypes.func,
+
+  /** If focus will stay at the trigger when showing popover. Popover can still be closed when clicking outside or pressing escape key. */
+  shouldKeepFocus: PropTypes.bool,
+
+  /** Number setting the z-index for the popover content / tip. */
+  zIndex: PropTypes.number,
+};
+
+const defaultProps = {
+  align: Popover.types.align.BOTTOM,
+  isDark: false,
+  isEager: false,
+  isOpen: null,
+  isPortal: true,
+  defaultIsOpen: null,
+  edge: null,
+  maxWidth: 320,
+  minWidth: 0,
+  onClose: null,
+  offset: parseInt(tokens.spaceLg, 10),
+  getPositioningElement: null,
+  getScrollContainer: null,
+  shouldKeepFocus: false,
+  zIndex: zValue(1),
+};
+
 Popover.displayName = "Popover";
+Popover.propTypes = propTypes;
+Popover.defaultProps = defaultProps;
 
 Popover.Trigger = Trigger;
 Popover.Content = Content;

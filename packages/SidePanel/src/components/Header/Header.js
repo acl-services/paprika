@@ -6,36 +6,6 @@ import Heading from "@paprika/heading";
 import * as types from "../../types";
 import * as sc from "./Header.styles";
 
-Header.propTypes = propTypes; // eslint-disable-line no-use-before-define
-Header.defaultProps = defaultProps; // eslint-disable-line no-use-before-define
-// eslint-disable-next-line no-use-before-define
-Header.types = {
-  kind: types.sidePanelKinds,
-};
-
-const propTypes = {
-  children: PropTypes.node.isRequired,
-  getPushContentElement: PropTypes.func,
-  hasCloseButton: PropTypes.bool,
-  isCompact: PropTypes.bool,
-  isHeaderSticky: PropTypes.bool,
-  kind: PropTypes.oneOf([Header.types.kind.DEFAULT, Header.types.kind.PRIMARY]), // eslint-disable-line no-use-before-define
-  level: PropTypes.oneOf([1, 2, 3, 4, 5, 6]),
-  onClose: PropTypes.func,
-  refHeading: RefOf(),
-};
-
-const defaultProps = {
-  hasCloseButton: true,
-  getPushContentElement: () => {},
-  kind: Header.types.kind.DEFAULT, // eslint-disable-line no-use-before-define
-  isHeaderSticky: false,
-  level: 2,
-  isCompact: false,
-  onClose: () => {},
-  refHeading: null,
-};
-
 const Header = React.forwardRef((props, ref) => {
   const {
     children,
@@ -74,6 +44,35 @@ const Header = React.forwardRef((props, ref) => {
   );
 });
 
+Header.types = {
+  kind: types.sidePanelKinds,
+};
+
+const propTypes = {
+  children: PropTypes.node.isRequired,
+  getPushContentElement: PropTypes.func,
+  hasCloseButton: PropTypes.bool,
+  isCompact: PropTypes.bool,
+  isHeaderSticky: PropTypes.bool,
+  kind: PropTypes.oneOf([Header.types.kind.DEFAULT, Header.types.kind.PRIMARY]),
+  level: PropTypes.oneOf([1, 2, 3, 4, 5, 6]),
+  onClose: PropTypes.func,
+  refHeading: RefOf(),
+};
+
+const defaultProps = {
+  hasCloseButton: true,
+  getPushContentElement: () => {},
+  kind: Header.types.kind.DEFAULT,
+  isHeaderSticky: false,
+  level: 2,
+  isCompact: false,
+  onClose: () => {},
+  refHeading: null,
+};
+
 Header.displayName = "SidePanel.Header";
+Header.propTypes = propTypes;
+Header.defaultProps = defaultProps;
 
 export default Header;

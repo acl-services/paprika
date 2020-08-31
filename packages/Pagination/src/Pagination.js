@@ -7,36 +7,6 @@ import ElipsisItem from "./components/EllipsisItem/ElipsisItem";
 import PageItem from "./components/PageItem/PageItem";
 import * as sc from "./Pagination.styles";
 
-Pagination.propTypes = propTypes; // eslint-disable-line no-use-before-define
-Pagination.defaultProps = defaultProps; // eslint-disable-line no-use-before-define
-// eslint-disable-next-line no-use-before-define
-Pagination.types = {
-  size: constants.defaultSize,
-};
-
-const propTypes = {
-  /** The number of current active page */
-  currentPage: PropTypes.number.isRequired,
-
-  /** Callback to be executed when current page is changed. */
-  onChange: PropTypes.func,
-
-  /** The number of other pages that will be visible around the current/active page (not hidden by elipsis). Can be set to small, medium, or large */
-  size: PropTypes.PropTypes.oneOf([
-    Pagination.types.size.SMALL, // eslint-disable-line no-use-before-define
-    Pagination.types.size.MEDIUM, // eslint-disable-line no-use-before-define
-    Pagination.types.size.LARGE, // eslint-disable-line no-use-before-define
-  ]),
-
-  /** The number of total pages. */
-  totalPages: PropTypes.number.isRequired,
-};
-
-const defaultProps = {
-  onChange: () => {},
-  size: Pagination.types.size.MEDIUM, // eslint-disable-line no-use-before-define
-};
-
 const isCurrentPage = (pageNumber, currentPage) => currentPage === pageNumber;
 const isFirstPage = pageNumber => pageNumber === 1;
 const isLastPage = (pageNumber, totalPages) => pageNumber === totalPages;
@@ -112,6 +82,35 @@ function Pagination(props) {
   );
 }
 
+Pagination.types = {
+  size: constants.defaultSize,
+};
+
+const propTypes = {
+  /** The number of current active page */
+  currentPage: PropTypes.number.isRequired,
+
+  /** Callback to be executed when current page is changed. */
+  onChange: PropTypes.func,
+
+  /** The number of other pages that will be visible around the current/active page (not hidden by elipsis). Can be set to small, medium, or large */
+  size: PropTypes.PropTypes.oneOf([
+    Pagination.types.size.SMALL,
+    Pagination.types.size.MEDIUM,
+    Pagination.types.size.LARGE,
+  ]),
+
+  /** The number of total pages. */
+  totalPages: PropTypes.number.isRequired,
+};
+
+const defaultProps = {
+  onChange: () => {},
+  size: Pagination.types.size.MEDIUM,
+};
+
 Pagination.displayName = "Pagination";
+Pagination.propTypes = propTypes;
+Pagination.defaultProps = defaultProps;
 
 export default Pagination;

@@ -6,41 +6,6 @@ import * as types from "./types";
 import buttonStyles from "./Button.styles";
 import * as sc from "./LinkButton.styles";
 
-LinkButton.propTypes = propTypes; // eslint-disable-line no-use-before-define
-LinkButton.defaultProps = defaultProps; // eslint-disable-line no-use-before-define
-// eslint-disable-next-line no-use-before-define
-LinkButton.types = {
-  kind: constants.kind,
-  size: constants.defaultSize,
-};
-
-const propTypes = {
-  a11yText: PropTypes.string,
-  children: PropTypes.node.isRequired,
-  href: PropTypes.string.isRequired,
-  isDisabled: PropTypes.bool,
-  kind: PropTypes.oneOf([
-    LinkButton.types.kind.DEFAULT, // eslint-disable-line no-use-before-define
-    LinkButton.types.kind.SECONDARY, // eslint-disable-line no-use-before-define
-    LinkButton.types.kind.DESTRUCTIVE, // eslint-disable-line no-use-before-define
-    LinkButton.types.kind.FLAT, // eslint-disable-line no-use-before-define
-    LinkButton.types.kind.MINOR, // eslint-disable-line no-use-before-define
-    LinkButton.types.kind.LINK, // eslint-disable-line no-use-before-define
-  ]),
-  size: PropTypes.oneOf([LinkButton.types.size.SMALL, LinkButton.types.size.MEDIUM, LinkButton.types.size.LARGE]), // eslint-disable-line no-use-before-define
-  shouldOpenNewTab: PropTypes.bool,
-  suffixIcon: PropTypes.node,
-};
-
-const defaultProps = {
-  a11yText: null,
-  isDisabled: false,
-  kind: LinkButton.types.kind.LINK, // eslint-disable-line no-use-before-define
-  shouldOpenNewTab: false,
-  size: LinkButton.types.size.MEDIUM, // eslint-disable-line no-use-before-define
-  suffixIcon: <NewTabIcon />,
-};
-
 const LinkButton = React.forwardRef((props, ref) => {
   const { a11yText, children, href, isDisabled, shouldOpenNewTab, kind, size, suffixIcon, ...moreProps } = props;
 
@@ -75,6 +40,40 @@ const LinkButton = React.forwardRef((props, ref) => {
   );
 });
 
+LinkButton.types = {
+  kind: constants.kind,
+  size: constants.defaultSize,
+};
+
+const propTypes = {
+  a11yText: PropTypes.string,
+  children: PropTypes.node.isRequired,
+  href: PropTypes.string.isRequired,
+  isDisabled: PropTypes.bool,
+  kind: PropTypes.oneOf([
+    LinkButton.types.kind.DEFAULT,
+    LinkButton.types.kind.SECONDARY,
+    LinkButton.types.kind.DESTRUCTIVE,
+    LinkButton.types.kind.FLAT,
+    LinkButton.types.kind.MINOR,
+    LinkButton.types.kind.LINK,
+  ]),
+  size: PropTypes.oneOf([LinkButton.types.size.SMALL, LinkButton.types.size.MEDIUM, LinkButton.types.size.LARGE]),
+  shouldOpenNewTab: PropTypes.bool,
+  suffixIcon: PropTypes.node,
+};
+
+const defaultProps = {
+  a11yText: null,
+  isDisabled: false,
+  kind: LinkButton.types.kind.LINK,
+  shouldOpenNewTab: false,
+  size: LinkButton.types.size.MEDIUM,
+  suffixIcon: <NewTabIcon />,
+};
+
 LinkButton.displayName = "LinkButton";
+LinkButton.propTypes = propTypes;
+LinkButton.defaultProps = defaultProps;
 
 export default LinkButton;

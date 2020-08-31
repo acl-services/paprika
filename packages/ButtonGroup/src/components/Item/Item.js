@@ -4,22 +4,6 @@ import * as constants from "@paprika/constants/lib/Constants";
 import ButtonGroupContext from "../../ButtonGroupContext";
 import * as sc from "./Item.styles";
 
-const propTypes = {
-  /** Content label of the button to be displayed. */
-  children: PropTypes.node,
-
-  /** If the item is active or on selected state */
-  defaultIsActive: PropTypes.bool,
-
-  /** Unique key to represent the selected value. */
-  value: PropTypes.oneOfType([PropTypes.string, PropTypes.number]).isRequired,
-};
-
-const defaultProps = {
-  children: null,
-  defaultIsActive: false,
-};
-
 const Item = props => {
   const { children, defaultIsActive, value, ...moreProps } = props;
   const {
@@ -59,7 +43,7 @@ const Item = props => {
     "data-pka-anchor": "button-group.button",
     isActive,
     isSemantic,
-    kind: constants.kind.FLAT,
+    kind: Item.types.kind.FLAT,
     onClick: handleClick,
     size,
     tabIndex: isFocused ? 0 : -1,
@@ -72,6 +56,26 @@ const Item = props => {
       {children}
     </sc.Item>
   );
+};
+
+Item.types = {
+  kind: constants.kind.PRIMARY,
+};
+
+const propTypes = {
+  /** Content label of the button to be displayed. */
+  children: PropTypes.node,
+
+  /** If the item is active or on selected state */
+  defaultIsActive: PropTypes.bool,
+
+  /** Unique key to represent the selected value. */
+  value: PropTypes.oneOfType([PropTypes.string, PropTypes.number]).isRequired,
+};
+
+const defaultProps = {
+  children: null,
+  defaultIsActive: false,
 };
 
 Item.displayName = "ButtonGroup.Item";

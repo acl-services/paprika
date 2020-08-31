@@ -7,48 +7,6 @@ import extractChildren from "@paprika/helpers/lib/extractChildren";
 import FocusLock from "./components/FocusLock";
 import * as sc from "./Modal.styles";
 
-Modal.propTypes = propTypes; // eslint-disable-line no-use-before-define
-Modal.defaultProps = defaultProps; // eslint-disable-line no-use-before-define
-// eslint-disable-next-line no-use-before-define
-Modal.types = {
-  size: constants.defaultSize,
-};
-
-const propTypes = {
-  /* Description of the Modal dialog for assistive technology */
-  a11yText: PropTypes.string,
-
-  /** The content for the Modal. */
-  children: PropTypes.node.isRequired,
-
-  /** Control the visibility of the modal */
-  isOpen: PropTypes.bool.isRequired,
-
-  /** Callback triggered when the modal needs to be close */
-  onClose: PropTypes.func,
-
-  /** Callback once the modal has been opened event */
-  onAfterOpen: PropTypes.func,
-
-  /** Callback once the modal has been closed event */
-  onAfterClose: PropTypes.func,
-
-  /* Control the size (max-width) of the modal */
-  size: PropTypes.oneOf([Modal.types.size.SMALL, Modal.types.size.MEDIUM, Modal.types.size.LARGE]), // eslint-disable-line no-use-before-define
-
-  /** The z-index of the Takeover content */
-  zIndex: PropTypes.number,
-};
-
-const defaultProps = {
-  a11yText: null,
-  onAfterClose: () => {},
-  onAfterOpen: () => {},
-  onClose: () => {},
-  size: Modal.types.size.MEDIUM, // eslint-disable-line no-use-before-define
-  zIndex: zValue(6),
-};
-
 const Modal = props => {
   const { a11yText, isOpen, onClose, onAfterClose, onAfterOpen, size, zIndex, ...moreProps } = props;
 
@@ -104,6 +62,48 @@ const Modal = props => {
     </Overlay>
   );
 };
+
+Modal.types = {
+  size: constants.defaultSize,
+};
+
+const propTypes = {
+  /* Description of the Modal dialog for assistive technology */
+  a11yText: PropTypes.string,
+
+  /** The content for the Modal. */
+  children: PropTypes.node.isRequired,
+
+  /** Control the visibility of the modal */
+  isOpen: PropTypes.bool.isRequired,
+
+  /** Callback triggered when the modal needs to be close */
+  onClose: PropTypes.func,
+
+  /** Callback once the modal has been opened event */
+  onAfterOpen: PropTypes.func,
+
+  /** Callback once the modal has been closed event */
+  onAfterClose: PropTypes.func,
+
+  /* Control the size (max-width) of the modal */
+  size: PropTypes.oneOf([Modal.types.size.SMALL, Modal.types.size.MEDIUM, Modal.types.size.LARGE]),
+
+  /** The z-index of the Takeover content */
+  zIndex: PropTypes.number,
+};
+
+const defaultProps = {
+  a11yText: null,
+  onAfterClose: () => {},
+  onAfterOpen: () => {},
+  onClose: () => {},
+  size: Modal.types.size.MEDIUM,
+  zIndex: zValue(6),
+};
+
+Modal.propTypes = propTypes;
+Modal.defaultProps = defaultProps;
 
 Modal.FocusLock = FocusLock;
 

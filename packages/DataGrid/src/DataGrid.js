@@ -14,74 +14,7 @@ import InfiniteScroll from "./components/InfiniteScroll";
 import { Row, HeaderRow, StickyRow, StickyHeaderRow, createItemData } from "./DataGrid.Rows";
 import getScrollbarWidth from "./helpers/getScrollbarWidth";
 
-DataGrid.ColumnDefinition = ColumnDefinition; // eslint-disable-line no-use-before-define
-DataGrid.defaultProps = defaultProps; // eslint-disable-line no-use-before-define
-DataGrid.InfiniteScroll = InfiniteScroll; // eslint-disable-line no-use-before-define
-DataGrid.propTypes = propTypes; // eslint-disable-line no-use-before-define
-DataGrid.Basement = Basement; // eslint-disable-line no-use-before-define
-// eslint-disable-next-line no-use-before-define
-DataGrid.types = {
-  border: constants.gridTypes,
-};
-
 window.paprika = { dataGridRef: {} };
-
-const propTypes = {
-  /** If the data cell should automatically get focus  */
-  autofocus: PropTypes.bool,
-  /** Define the look for borders in the table types.DataGrid.GRID, types.DataGrid.NONE, etc.  */
-  borderType: PropTypes.oneOf([
-    DataGrid.types.border.GRID, // eslint-disable-line no-use-before-define
-    DataGrid.types.border.NONE, // eslint-disable-line no-use-before-define
-    DataGrid.types.border.HORIZONTAL, // eslint-disable-line no-use-before-define
-    DataGrid.types.border.VERTICAL, // eslint-disable-line no-use-before-define
-  ]),
-  children: PropTypes.node.isRequired,
-  /** This will force the table to include in the calculation of the table the scrollbar thickness */
-  forceTableWidthWithScrollBars: PropTypes.bool,
-  /** Add an alternate background on the DataGrid's rows */
-  hasZebraStripes: PropTypes.bool,
-  /** Array of data to be stored in the DataGrid */
-  data: PropTypes.arrayOf(PropTypes.shape({})),
-  /** Sets the height of the DataGrid */
-  height: PropTypes.number,
-  /** Callback onClick */
-  onClick: PropTypes.func,
-  /** Callback onKeyDown press */
-  onKeyDown: PropTypes.func,
-  /** Callback when Enter key is pressed */
-  onPressEnter: PropTypes.func,
-  /** Callback when Shift + Spacebar is pressed */
-  onPressShiftSpaceBar: PropTypes.func,
-  /** Callback when Spacebar is pressed */
-  onPressSpaceBar: PropTypes.func,
-  /** Callback when user click the f key. Might change in the future */
-  onRowChecked: PropTypes.func,
-  /** Callback with information about the prev and next highlighted cell */
-  onHighlighted: PropTypes.func,
-  /** Sets the row height */
-  rowHeight: PropTypes.number,
-  /** Sets the DataGrid width */
-  width: PropTypes.number,
-};
-
-const defaultProps = {
-  autofocus: true,
-  borderType: DataGrid.types.border.GRID, // eslint-disable-line no-use-before-define
-  data: [],
-  forceTableWidthWithScrollBars: false,
-  hasZebraStripes: false,
-  height: 600,
-  onClick: null,
-  onHighlighted: () => {},
-  onKeyDown: () => {},
-  onPressEnter: null,
-  onPressShiftSpaceBar: null,
-  onPressSpaceBar: null,
-  onRowChecked: () => {},
-  rowHeight: 36,
-  width: null,
-};
 
 const outerElementType = React.forwardRef((props, ref) => <sc.OuterElementType role="rowgroup" ref={ref} {...props} />);
 const innerElementType = React.forwardRef((props, ref) => <sc.InnerElementType role="row" ref={ref} {...props} />);
@@ -614,5 +547,72 @@ const DataGrid = React.forwardRef((props, ref) => {
     </>
   );
 });
+
+DataGrid.types = {
+  border: constants.gridTypes,
+};
+
+const propTypes = {
+  /** If the data cell should automatically get focus  */
+  autofocus: PropTypes.bool,
+  /** Define the look for borders in the table types.DataGrid.GRID, types.DataGrid.NONE, etc.  */
+  borderType: PropTypes.oneOf([
+    DataGrid.types.border.GRID,
+    DataGrid.types.border.NONE,
+    DataGrid.types.border.HORIZONTAL,
+    DataGrid.types.border.VERTICAL,
+  ]),
+  children: PropTypes.node.isRequired,
+  /** This will force the table to include in the calculation of the table the scrollbar thickness */
+  forceTableWidthWithScrollBars: PropTypes.bool,
+  /** Add an alternate background on the DataGrid's rows */
+  hasZebraStripes: PropTypes.bool,
+  /** Array of data to be stored in the DataGrid */
+  data: PropTypes.arrayOf(PropTypes.shape({})),
+  /** Sets the height of the DataGrid */
+  height: PropTypes.number,
+  /** Callback onClick */
+  onClick: PropTypes.func,
+  /** Callback onKeyDown press */
+  onKeyDown: PropTypes.func,
+  /** Callback when Enter key is pressed */
+  onPressEnter: PropTypes.func,
+  /** Callback when Shift + Spacebar is pressed */
+  onPressShiftSpaceBar: PropTypes.func,
+  /** Callback when Spacebar is pressed */
+  onPressSpaceBar: PropTypes.func,
+  /** Callback when user click the f key. Might change in the future */
+  onRowChecked: PropTypes.func,
+  /** Callback with information about the prev and next highlighted cell */
+  onHighlighted: PropTypes.func,
+  /** Sets the row height */
+  rowHeight: PropTypes.number,
+  /** Sets the DataGrid width */
+  width: PropTypes.number,
+};
+
+const defaultProps = {
+  autofocus: true,
+  borderType: DataGrid.types.border.GRID,
+  data: [],
+  forceTableWidthWithScrollBars: false,
+  hasZebraStripes: false,
+  height: 600,
+  onClick: null,
+  onHighlighted: () => {},
+  onKeyDown: () => {},
+  onPressEnter: null,
+  onPressShiftSpaceBar: null,
+  onPressSpaceBar: null,
+  onRowChecked: () => {},
+  rowHeight: 36,
+  width: null,
+};
+
+DataGrid.ColumnDefinition = ColumnDefinition;
+DataGrid.defaultProps = defaultProps;
+DataGrid.InfiniteScroll = InfiniteScroll;
+DataGrid.propTypes = propTypes;
+DataGrid.Basement = Basement;
 
 export default DataGrid;

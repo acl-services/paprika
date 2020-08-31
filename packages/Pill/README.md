@@ -30,18 +30,18 @@ npm install @paprika/pill
 | onClick    | func   | false    | null    |             |
 | pillColor  | [[     |
 
-Pill.types.color.BLACK, // eslint-disable-line no-use-before-define
-Pill.types.color.BLUE, // eslint-disable-line no-use-before-define
-Pill.types.color.GREEN, // eslint-disable-line no-use-before-define
-Pill.types.color.GREY, // eslint-disable-line no-use-before-define
-Pill.types.color.ORANGE, // eslint-disable-line no-use-before-define
-Pill.types.color.LIGHT_BLUE, // eslint-disable-line no-use-before-define
-Pill.types.color.LIGHT_ORANGE, // eslint-disable-line no-use-before-define
+Pill.types.color.BLACK,
+Pill.types.color.BLUE,
+Pill.types.color.GREEN,
+Pill.types.color.GREY,
+Pill.types.color.ORANGE,
+Pill.types.color.LIGHT_BLUE,
+Pill.types.color.LIGHT_ORANGE,
 ],[
-Pill.types.severity.NO_RISK, // eslint-disable-line no-use-before-define
-Pill.types.severity.LOW_RISK, // eslint-disable-line no-use-before-define
-Pill.types.severity.MEDIUM_RISK, // eslint-disable-line no-use-before-define
-Pill.types.severity.HIGH_RISK, // eslint-disable-line no-use-before-define
+Pill.types.severity.NO_RISK,
+Pill.types.severity.LOW_RISK,
+Pill.types.severity.MEDIUM_RISK,
+Pill.types.severity.HIGH_RISK,
 ]]|false|Pill.types.color.GREY| |
 |size|[Pill.types.size.SMALL,Pill.types.size.MEDIUM]|false|Pill.types.size.MEDIUM| |
 

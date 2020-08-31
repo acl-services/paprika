@@ -6,55 +6,6 @@ import CheckIcon from "@paprika/icon/lib/Check";
 import radioStyles from "./Radio.styles";
 import Group from "./components/Group";
 
-Radio.propTypes = propTypes; // eslint-disable-line no-use-before-define
-Radio.defaultProps = defaultProps; // eslint-disable-line no-use-before-define
-// eslint-disable-next-line no-use-before-define
-Radio.types = {
-  size: constants.defaultSize,
-};
-
-const propTypes = {
-  /** Used for aria-label on the radio input  */
-  a11yText: PropTypes.string,
-  /** Used for aria-describedby on the radio input  */
-  ariaDescribedBy: PropTypes.string,
-  /** Describe if the radio started as selected or not */
-  canDeselect: PropTypes.bool,
-  /** Used for label contents */
-  children: PropTypes.node,
-  /* Controls if the radio is checked or not, never combine it with defaultIsChecked */
-  isChecked: PropTypes.bool,
-  /** Describe if the radio is disabled or not */
-  isDisabled: PropTypes.bool,
-  /** Describe if the radio started as checked or not */
-  defaultIsChecked: PropTypes.bool,
-  /** Name provided for accessibility */
-  name: PropTypes.string,
-  /** onClick provided by parent Group component */
-  onClick: () => {},
-  /** Size provided by parent Group component */
-  size: PropTypes.oneOf([Radio.types.size.SMALL, Radio.types.size.MEDIUM, Radio.types.size.LARGE]), // eslint-disable-line no-use-before-define
-  /** Value for tabindex attribute to override the default of 0. */
-  tabIndex: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
-  /** Value applied to the input if needed. */
-  value: PropTypes.string,
-};
-
-const defaultProps = {
-  a11yText: null,
-  ariaDescribedBy: null,
-  canDeselect: false,
-  children: null,
-  defaultIsChecked: false,
-  isChecked: false,
-  isDisabled: false,
-  name: "",
-  onClick: () => {},
-  size: Radio.types.size.MEDIUM, // eslint-disable-line no-use-before-define
-  tabIndex: 0,
-  value: "",
-};
-
 function Radio(props) {
   const {
     a11yText,
@@ -130,7 +81,55 @@ function Radio(props) {
   );
 }
 
+Radio.types = {
+  size: constants.defaultSize,
+};
+
+const propTypes = {
+  /** Used for aria-label on the radio input  */
+  a11yText: PropTypes.string,
+  /** Used for aria-describedby on the radio input  */
+  ariaDescribedBy: PropTypes.string,
+  /** Describe if the radio started as selected or not */
+  canDeselect: PropTypes.bool,
+  /** Used for label contents */
+  children: PropTypes.node,
+  /* Controls if the radio is checked or not, never combine it with defaultIsChecked */
+  isChecked: PropTypes.bool,
+  /** Describe if the radio is disabled or not */
+  isDisabled: PropTypes.bool,
+  /** Describe if the radio started as checked or not */
+  defaultIsChecked: PropTypes.bool,
+  /** Name provided for accessibility */
+  name: PropTypes.string,
+  /** onClick provided by parent Group component */
+  onClick: () => {},
+  /** Size provided by parent Group component */
+  size: PropTypes.oneOf([Radio.types.size.SMALL, Radio.types.size.MEDIUM, Radio.types.size.LARGE]),
+  /** Value for tabindex attribute to override the default of 0. */
+  tabIndex: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
+  /** Value applied to the input if needed. */
+  value: PropTypes.string,
+};
+
+const defaultProps = {
+  a11yText: null,
+  ariaDescribedBy: null,
+  canDeselect: false,
+  children: null,
+  defaultIsChecked: false,
+  isChecked: false,
+  isDisabled: false,
+  name: "",
+  onClick: () => {},
+  size: Radio.types.size.MEDIUM,
+  tabIndex: 0,
+  value: "",
+};
+
 Radio.displayName = "Radio";
+Radio.propTypes = propTypes;
+Radio.defaultProps = defaultProps;
 Radio.Group = Group;
 
 export default Radio;

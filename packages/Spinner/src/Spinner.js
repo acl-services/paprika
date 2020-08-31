@@ -4,34 +4,6 @@ import classNames from "classnames";
 import * as constants from "@paprika/constants/lib/Constants";
 import SpinnerStyles from "./Spinner.styles";
 
-Spinner.propTypes = propTypes; // eslint-disable-line no-use-before-define
-Spinner.defaultProps = defaultProps; // eslint-disable-line no-use-before-define
-// eslint-disable-next-line no-use-before-define
-Spinner.types = {
-  size: constants.defaultSize,
-};
-
-const propTypes = {
-  /** Descriptive a11y text for assistive technologies. By default, text from children node will be used. */
-  a11yText: PropTypes.string,
-
-  /** Sets the className for the spinner */
-  className: PropTypes.string,
-
-  /** Sets the caption that will display beneath the spinner */
-  caption: PropTypes.string,
-
-  /** Sets the size of the spinner */
-  size: PropTypes.oneOf([Spinner.types.size.SMALL, Spinner.types.size.MEDIUM, Spinner.types.size.LARGE]), // eslint-disable-line no-use-before-define
-};
-
-const defaultProps = {
-  a11yText: null,
-  className: null,
-  caption: null,
-  size: Spinner.types.size.MEDIUM, // eslint-disable-line no-use-before-define
-};
-
 const spinnerSize = {
   large: "spinner--large",
   medium: "spinner--medium",
@@ -54,6 +26,33 @@ const Spinner = ({ a11yText, className, caption, size, ...moreProps }) => {
   );
 };
 
+Spinner.types = {
+  size: constants.defaultSize,
+};
+
+const propTypes = {
+  /** Descriptive a11y text for assistive technologies. By default, text from children node will be used. */
+  a11yText: PropTypes.string,
+
+  /** Sets the className for the spinner */
+  className: PropTypes.string,
+
+  /** Sets the caption that will display beneath the spinner */
+  caption: PropTypes.string,
+
+  /** Sets the size of the spinner */
+  size: PropTypes.oneOf([Spinner.types.size.SMALL, Spinner.types.size.MEDIUM, Spinner.types.size.LARGE]),
+};
+
+const defaultProps = {
+  a11yText: null,
+  className: null,
+  caption: null,
+  size: Spinner.types.size.MEDIUM,
+};
+
 Spinner.displayName = "Spinner";
+Spinner.propTypes = propTypes;
+Spinner.defaultProps = defaultProps;
 
 export default Spinner;

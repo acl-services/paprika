@@ -4,49 +4,6 @@ import classNames from "classnames";
 import * as constants from "@paprika/constants/lib/Constants";
 import textareaStyles from "./Textarea.styles";
 
-Textarea.propTypes = propTypes; // eslint-disable-line no-use-before-define
-Textarea.defaultProps = defaultProps; // eslint-disable-line no-use-before-define
-// eslint-disable-next-line no-use-before-define
-Textarea.types = {
-  size: constants.defaultSize,
-};
-
-const propTypes = {
-  /** Descriptive a11y text for assistive technologies. By default, text from children node will be used. */
-  a11yText: PropTypes.string,
-  /** Indicate if the textarea is expandable */
-  canExpand: PropTypes.bool,
-  /** Sets class name */
-  className: PropTypes.string,
-  /** Do not use in conjunction with value prop */
-  defaultValue: PropTypes.string,
-  hasError: PropTypes.bool,
-  /** If the textarea is disabled */
-  isDisabled: PropTypes.bool,
-  /** If the textarea is read-only */
-  isReadOnly: PropTypes.bool,
-  /** Indicates the maximum height of the textarea  */
-  maxHeight: PropTypes.string,
-  onChange: PropTypes.func,
-  size: PropTypes.oneOf([Textarea.types.size.SMALL, Textarea.types.size.MEDIUM, Textarea.types.size.LARGE]), // eslint-disable-line no-use-before-define
-  /** Do not use in conjunction with defaultValue prop */
-  value: PropTypes.string,
-};
-
-const defaultProps = {
-  a11yText: null,
-  canExpand: true,
-  className: null,
-  defaultValue: "",
-  hasError: false,
-  isDisabled: false,
-  isReadOnly: false,
-  maxHeight: "300px",
-  onChange: () => {},
-  size: Textarea.types.size.MEDIUM, // eslint-disable-line no-use-before-define
-  value: null,
-};
-
 const Textarea = React.forwardRef((props, ref) => {
   const textareaRef = React.useRef(null);
 
@@ -135,6 +92,48 @@ const Textarea = React.forwardRef((props, ref) => {
   );
 });
 
+Textarea.types = {
+  size: constants.defaultSize,
+};
+
+const propTypes = {
+  /** Descriptive a11y text for assistive technologies. By default, text from children node will be used. */
+  a11yText: PropTypes.string,
+  /** Indicate if the textarea is expandable */
+  canExpand: PropTypes.bool,
+  /** Sets class name */
+  className: PropTypes.string,
+  /** Do not use in conjunction with value prop */
+  defaultValue: PropTypes.string,
+  hasError: PropTypes.bool,
+  /** If the textarea is disabled */
+  isDisabled: PropTypes.bool,
+  /** If the textarea is read-only */
+  isReadOnly: PropTypes.bool,
+  /** Indicates the maximum height of the textarea  */
+  maxHeight: PropTypes.string,
+  onChange: PropTypes.func,
+  size: PropTypes.oneOf([Textarea.types.size.SMALL, Textarea.types.size.MEDIUM, Textarea.types.size.LARGE]),
+  /** Do not use in conjunction with defaultValue prop */
+  value: PropTypes.string,
+};
+
+const defaultProps = {
+  a11yText: null,
+  canExpand: true,
+  className: null,
+  defaultValue: "",
+  hasError: false,
+  isDisabled: false,
+  isReadOnly: false,
+  maxHeight: "300px",
+  onChange: () => {},
+  size: Textarea.types.size.MEDIUM,
+  value: null,
+};
+
 Textarea.displayName = "Textarea";
+Textarea.propTypes = propTypes;
+Textarea.defaultProps = defaultProps;
 
 export default Textarea;
