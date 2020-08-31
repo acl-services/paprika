@@ -1,6 +1,6 @@
 {
   "name": "@paprika/icon",
-  "version": "0.3.4",
+  "version": "0.3.6",
   "description": "Icon component is a graphic to represent something else",
   "author": "@paprika",
   "main": "lib/index.js",
@@ -27,5 +27,6 @@
     "react": "^16.8.0",
     "react-dom": "^16.8.0",
     "styled-components": "^4.2.0"
-  }
+  },
+  "gitHead": "494ce26cb0a6c24a8f6abf2b154d97ddd4d7e343"
 }
