@@ -29,12 +29,12 @@ const darkStyles = css`
   }
 `;
 
-const closeButtonStyles = css`
+const closeButtonStyles = ({ isDark }) => css`
   [data-pka-anchor="button.icon"] {
     color: ${tokens.textColor.icon};
   }
 
-  ${({ isDark }) => (isDark ? darkStyles : "")}
+  ${isDark ? darkStyles : ""}
 `;
 
 export default closeButtonStyles;

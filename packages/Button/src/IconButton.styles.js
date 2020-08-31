@@ -1,4 +1,4 @@
-import { css } from "styled-components";
+import styled, { css } from "styled-components";
 import tokens from "@paprika/tokens";
 import stylers from "@paprika/stylers";
 import { ShirtSizes } from "@paprika/helpers/lib/customPropTypes";
@@ -28,39 +28,38 @@ const iconButtonSizes = {
   `,
 };
 
-const minorStyles = css`
+const minorStyles = ({ isDisabled }) => css`
   transition: background-color 0.2s ease-out;
 
-  ${({ isDisabled }) =>
-    isDisabled
-      ? css`
-          &,
-          &:hover,
-          &:active {
-            [data-pka-anchor="button.icon"] svg {
-              color: ${tokens.color.blackDisabled};
-            }
+  ${isDisabled
+    ? css`
+        &,
+        &:hover,
+        &:active {
+          [data-pka-anchor="button.icon"] svg {
+            color: ${tokens.color.blackDisabled};
           }
-        `
-      : css`
-          &:hover {
-            background-color: ${stylers.alpha(tokens.color.black, 0.1)};
-          }
+        }
+      `
+    : css`
+        &:hover {
+          background-color: ${stylers.alpha(tokens.color.black, 0.1)};
+        }
 
-          &:active {
-            background-color: ${stylers.alpha(tokens.color.black, 0.2)};
-          }
-        `}
+        &:active {
+          background-color: ${stylers.alpha(tokens.color.black, 0.2)};
+        }
+      `}
 `;
 
-const iconButtonStyles = css`
-  ${({ size }) => iconButtonSizes[size]}
-  ${({ kind }) => (kind === Button.Kinds.MINOR ? minorStyles : "")}
+export const IconButton = styled(Button)(
+  ({ size, kind }) => css`
+    ${iconButtonSizes[size]}
+    ${kind === Button.Kinds.MINOR ? minorStyles : ""}
 
   [data-pka-anchor="button.icon"] {
-    color: inherit;
-    margin: 0;
-  }
-`;
-
-export default iconButtonStyles;
+      color: inherit;
+      margin: 0;
+    }
+  `
+);

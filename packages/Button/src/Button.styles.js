@@ -1,6 +1,6 @@
 import tokens from "@paprika/tokens";
 import stylers from "@paprika/stylers";
-import { css, keyframes } from "styled-components";
+import styled, { css, keyframes } from "styled-components";
 import { ShirtSizes } from "@paprika/helpers/lib/customPropTypes";
 import Kinds from "./ButtonKinds";
 
@@ -34,12 +34,12 @@ const borderHoverColors = {
   [Kinds.LINK]: "transparent",
 };
 
-const borderStyles = css`
-  border-color: ${({ kind }) => borderColors[kind]};
+const borderStyles = ({ kind }) => css`
+  border-color: ${borderColors[kind]};
 
   &:hover {
     ${enabled(css`
-      border-color: ${({ kind }) => borderHoverColors[kind]};
+      border-color: ${borderHoverColors[kind]};
     `)}
   }
 `;
@@ -89,21 +89,20 @@ const activeStyles = css`
   ${stylers.focusRing.bordered()}
 `;
 
-const inactiveStyles = css`
+const inactiveStyles = ({ kind }) => css`
   ${borderStyles}
 
   [data-whatinput="mouse"] &:not([data-has-forced-focus="true"]):focus {
     ${enabled(css`
       ${borderStyles}
 
-      ${({ kind }) =>
-        [Kinds.FLAT, Kinds.MINOR, Kinds.LINK].includes(kind)
-          ? css`
-              box-shadow: none;
-            `
-          : css`
-              box-shadow: ${dropShadow};
-            `}
+      ${[Kinds.FLAT, Kinds.MINOR, Kinds.LINK].includes(kind)
+        ? css`
+            box-shadow: none;
+          `
+        : css`
+            box-shadow: ${dropShadow};
+          `}
     `)}
   }
 `;
@@ -175,7 +174,7 @@ const sizeStyles = {
 
 // Kinds
 
-const kindStyles = props => ({
+const kindStyles = ({ isDisabled }) => ({
   [Kinds.DEFAULT]: css`
     ${skeuomorphicStyles}
 
@@ -187,7 +186,7 @@ const kindStyles = props => ({
       background: ${tokens.color.blackLighten70};
     }
 
-    ${props.isDisabled && disabledStyles}
+    ${isDisabled && disabledStyles}
   `,
   [Kinds.PRIMARY]: css`
     ${skeuomorphicStyles}
@@ -200,7 +199,7 @@ const kindStyles = props => ({
       background: ${tokens.color.green};
     }
 
-    ${props.isDisabled && disabledStyles}
+    ${isDisabled && disabledStyles}
   `,
   [Kinds.SECONDARY]: css`
     ${skeuomorphicStyles}
@@ -213,7 +212,7 @@ const kindStyles = props => ({
       background: ${tokens.color.purple};
     }
 
-    ${props.isDisabled && disabledStyles}
+    ${isDisabled && disabledStyles}
   `,
   [Kinds.DESTRUCTIVE]: css`
     ${skeuomorphicStyles}
@@ -226,7 +225,7 @@ const kindStyles = props => ({
       background: ${tokens.color.orange};
     }
 
-    ${props.isDisabled && disabledStyles}
+    ${isDisabled && disabledStyles}
   `,
   [Kinds.FLAT]: css`
     ${skeuomorphicStyles}
@@ -239,7 +238,7 @@ const kindStyles = props => ({
       background: ${tokens.color.blackLighten70};
     }
 
-    ${props.isDisabled && disabledStyles}
+    ${isDisabled && disabledStyles}
   `,
   [Kinds.MINOR]: css`
     ${textButtonStyles}
@@ -248,7 +247,7 @@ const kindStyles = props => ({
       text-decoration: underline;
     }
 
-    ${props.isDisabled && disabledTextStyles}
+    ${isDisabled && disabledTextStyles}
   `,
   [Kinds.LINK]: css`
     ${textButtonStyles}
@@ -265,7 +264,7 @@ const kindStyles = props => ({
       color: ${tokens.color.blue};
     }
 
-    ${props.isDisabled && disabledTextStyles}
+    ${isDisabled && disabledTextStyles}
   `,
 });
 
@@ -280,15 +279,15 @@ const fullWidthStyles = css`
 // Composition
 //
 
-const buttonStyles = props => css`
+export const Button = styled.span(
+  ({ size, kind, isFullWidth, isActive, ...props }) => css`
   ${commonStyles}
-  ${sizeStyles[props.size]}
-  ${kindStyles(props)[props.kind]}
-  ${props.isFullWidth && fullWidthStyles}
-  ${({ isActive }) => (isActive ? activeStyles : inactiveStyles)}
-`;
-
-export default buttonStyles;
+  ${sizeStyles[size]}
+  ${kindStyles(props)[kind]}
+  ${isFullWidth && fullWidthStyles}
+  ${isActive ? activeStyles : inactiveStyles}
+`
+);
 
 //
 // Icons
@@ -313,26 +312,28 @@ const iconColors = {
   [Kinds.LINK]: tokens.textColor.icon,
 };
 
-const getIconColor = props => (props.isDisabled ? tokens.color.blackDisabled : iconColors[props.kind]);
+const getIconColor = ({ isDisabled, kind }) => (isDisabled ? tokens.color.blackDisabled : iconColors[kind]);
 
-export const iconStyles = props => css`
-  align-items: center;
-  color: ${getIconColor(props)};
-  display: inline-flex;
-  justify-content: center;
-  margin: 0 ${tokens.spaceSm} 0 0;
+export const iconStyles = styled.span(
+  ({ isPending, isSuffixIcon, ...props }) => css`
+    align-items: center;
+    color: ${getIconColor(props)};
+    display: inline-flex;
+    justify-content: center;
+    margin: 0 ${tokens.spaceSm} 0 0;
 
-  svg {
-    vertical-align: -${(stylers.lineHeightValue(-1) - 1) / 2}em;
-  }
+    svg {
+      vertical-align: -${(stylers.lineHeightValue(-1) - 1) / 2}em;
+    }
 
-  ${props.isPending &&
-    css`
-      animation: ${spinKeyframes} 2s infinite linear;
-    `}
+    ${isPending &&
+      css`
+        animation: ${spinKeyframes} 2s infinite linear;
+      `}
 
-  ${props.isSuffixIcon &&
-    css`
-      margin: 0 0 0 ${tokens.spaceSm};
-    `}
-`;
+    ${isSuffixIcon &&
+      css`
+        margin: 0 0 0 ${tokens.spaceSm};
+      `}
+  `
+);

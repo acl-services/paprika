@@ -1,7 +1,7 @@
 import React from "react";
 import PropTypes from "prop-types";
 import { ShirtSizes } from "@paprika/helpers/lib/customPropTypes";
-import iconButtonStyles from "./IconButton.styles";
+import * as sc from "./IconButton.styles";
 import Button from "./Button";
 
 const IconPropTypes = {
@@ -27,7 +27,7 @@ const IconButton = React.forwardRef((props, ref) => {
     isFullWidth: false,
   };
 
-  return <Button css={iconButtonStyles} {...props} {...buttonProps} ref={ref} />;
+  return <sc.IconButton {...props} {...buttonProps} ref={ref} />;
 });
 
 IconButton.Kinds = Button.Kinds;

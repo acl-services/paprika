@@ -6,7 +6,7 @@ import RefreshIcon from "@paprika/icon/lib/Refresh";
 import DownIcon from "@paprika/icon/lib/CaretDown";
 import { ShirtSizes } from "@paprika/helpers/lib/customPropTypes";
 import "@paprika/helpers/lib/dom/closest"; // support for IE11
-import buttonStyles, { iconStyles } from "./Button.styles";
+import * as sc from "./Button.styles";
 
 import Kinds from "./ButtonKinds";
 
@@ -87,8 +87,7 @@ const buttonDefaultProps = {
   children: null,
 };
 
-export const ButtonIcon = props =>
-  props.children ? <span css={iconStyles} data-pka-anchor="button.icon" {...props} /> : null;
+export const ButtonIcon = props => (props.children ? <sc.iconStyles data-pka-anchor="button.icon" {...props} /> : null);
 
 const Button = React.forwardRef((props, ref) => {
   const {
@@ -179,7 +178,7 @@ const Button = React.forwardRef((props, ref) => {
   };
 
   return (
-    <span css={buttonStyles} as={isSemantic ? "button" : RawButton} {...buttonProps}>
+    <sc.Button as={isSemantic ? "button" : RawButton} {...buttonProps}>
       <ButtonIcon {...iconProps} isPending={isPending}>
         {isPending ? <RefreshIcon /> : icon}
       </ButtonIcon>
@@ -187,7 +186,7 @@ const Button = React.forwardRef((props, ref) => {
       <ButtonIcon {...iconProps} isSuffixIcon>
         {isDropdown && <DownIcon />}
       </ButtonIcon>
-    </span>
+    </sc.Button>
   );
 });
 
