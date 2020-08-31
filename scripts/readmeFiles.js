@@ -163,48 +163,52 @@ shell.ls("packages").forEach(folder => {
   if (!skipPackages.includes(folder)) {
     const path = `./packages/${folder}`;
 
-    // data from package.json
-    const { paprikaDocs = null, name, version, description = "required description" } = JSON.parse(
-      fs.readFileSync(`${path}/package.json`, "utf8")
-    );
+    try {
+      // data from package.json
+      const { paprikaDocs = null, name, version, description = "required description" } = JSON.parse(
+        fs.readFileSync(`${path}/package.json`, "utf8")
+      );
 
-    const content = fs.readFileSync(`${path}/README.md`, "utf8");
-    const componentContent = fs.readFileSync(`${path}/src/${folder}.js`, "utf8");
-    const arrayOfComponentsDefinitions = reactDocs.parse(
-      componentContent,
-      reactDocs.resolver.findAllComponentDefinitions
-    );
-
-    const info = extractCorrectComponentDefinition({ desireDefinition: folder, arrayOfComponentsDefinitions });
-
-    if (!info) return;
-
-    if (content.search(/<!-- content/g) >= 0) {
-      // the .md file has the content tag, let's extract the content
-      const contentExtracted = content.match(/<!-- content -->[\s\S]*?<!-- eoContent -->/g);
-      const propTables = processPropTables({
-        info,
+      const content = fs.readFileSync(`${path}/README.md`, "utf8");
+      const componentContent = fs.readFileSync(`${path}/src/${folder}.js`, "utf8");
+      const arrayOfComponentsDefinitions = reactDocs.parse(
         componentContent,
-        path,
-        paprikaDocs,
-        folder,
-        content,
-      });
+        reactDocs.resolver.findAllComponentDefinitions
+      );
 
-      const template = renderReadmeTemplate({
-        displayName: info.displayName,
-        name,
-        description,
-        content: contentExtracted,
-        props: propTables.join("\n\n"),
-        version,
-      });
+      const info = extractCorrectComponentDefinition({ desireDefinition: folder, arrayOfComponentsDefinitions });
 
-      fs.writeFileSync(`${path}/README.md`, template, { encoding: "utf8", flag: "w" });
-      return;
+      if (!info) return;
+
+      if (content.search(/<!-- content/g) >= 0) {
+        // the .md file has the content tag, let's extract the content
+        const contentExtracted = content.match(/<!-- content -->[\s\S]*?<!-- eoContent -->/g);
+        const propTables = processPropTables({
+          info,
+          componentContent,
+          path,
+          paprikaDocs,
+          folder,
+          content,
+        });
+
+        const template = renderReadmeTemplate({
+          displayName: info.displayName,
+          name,
+          description,
+          content: contentExtracted,
+          props: propTables.join("\n\n"),
+          version,
+        });
+
+        fs.writeFileSync(`${path}/README.md`, template, { encoding: "utf8", flag: "w" });
+        return;
+      }
+
+      initAutoReadme({ path, content });
+    } catch (e) {
+      console.warn(e);
     }
-
-    initAutoReadme({ path, content });
   }
 });
 
