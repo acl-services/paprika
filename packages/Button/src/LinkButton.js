@@ -39,7 +39,7 @@ const LinkButton = React.forwardRef((props, ref) => {
   };
 
   return (
-    <Button
+    <sc.LinkButton
       aria-label={a11yText}
       href={!isDisabled ? href : null}
       isDisabled={isDisabled}
@@ -54,7 +54,7 @@ const LinkButton = React.forwardRef((props, ref) => {
       <sc.LinkButtonIcon {...iconProps} isSuffixIcon>
         {kind === Button.Kinds.LINK && shouldOpenNewTab && suffixIcon}
       </sc.LinkButtonIcon>
-    </Button>
+    </sc.LinkButton>
   );
 });
 

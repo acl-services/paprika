@@ -85,11 +85,11 @@ const disabledTextStyles = css`
   }
 `;
 
-const activeStyles = css`
+export const activeStyles = css`
   ${stylers.focusRing.bordered()}
 `;
 
-const inactiveStyles = ({ kind }) => css`
+export const inactiveStyles = ({ kind }) => css`
   ${borderStyles}
 
   [data-whatinput="mouse"] &:not([data-has-forced-focus="true"]):focus {
@@ -109,7 +109,7 @@ const inactiveStyles = ({ kind }) => css`
 
 // Common
 
-const commonStyles = css`
+export const commonStyles = css`
   ${stylers.alignMiddle}
   ${stylers.lineHeight(-1)}
   appearance: none;
@@ -154,7 +154,7 @@ const textButtonStyles = css`
 
 // Sizes
 
-const sizeStyles = {
+export const sizeStyles = {
   [ShirtSizes.SMALL]: css`
     ${stylers.fontSize(-2)};
     min-height: ${stylers.spacer(3)};
@@ -174,7 +174,7 @@ const sizeStyles = {
 
 // Kinds
 
-const kindStyles = ({ isDisabled }) => ({
+export const kindStyles = ({ isDisabled }) => ({
   [Kinds.DEFAULT]: css`
     ${skeuomorphicStyles}
 
@@ -280,10 +280,10 @@ const fullWidthStyles = css`
 //
 
 export const Button = styled.span(
-  ({ size, kind, isFullWidth, isActive, ...props }) => css`
+  ({ size, kind, isFullWidth, isActive, isDisabled }) => css`
   ${commonStyles}
   ${sizeStyles[size]}
-  ${kindStyles(props)[kind]}
+  ${kindStyles(isDisabled)[kind]}
   ${isFullWidth && fullWidthStyles}
   ${isActive ? activeStyles : inactiveStyles}
 `
