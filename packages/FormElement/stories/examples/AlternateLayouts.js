@@ -129,7 +129,6 @@ const ExampleStory = () => {
           Give me some help. <a href="wegalvanize.com">Learn more</a>.
         </FormElement.Help>
       </FormElement>
-
       <Rule />
 
       <Tagline>Form Element with Time Picker.</Tagline>
@@ -233,7 +232,6 @@ const ExampleStory = () => {
           Give me some help. <a href="wegalvanize.com">Learn more</a>.
         </FormElement.Help>
       </FormElement>
-
       <Rule />
       <Tagline>Form Element nested Form Elements.</Tagline>
       <br />
