@@ -38,10 +38,10 @@ export default () => {
       </div>
       <div>
         <Heading level={3}>Sizes</Heading>
-        <Avatar backgroundColor="black" color="white" size="small">
+        <Avatar backgroundColor="black" color="white" size={Avatar.types.size.SMALL}>
           Small
         </Avatar>
-        <Avatar backgroundColor="black" color="white" size="medium">
+        <Avatar backgroundColor="black" color="white" size={Avatar.types.size.MEDIUM}>
           Medium
         </Avatar>
       </div>

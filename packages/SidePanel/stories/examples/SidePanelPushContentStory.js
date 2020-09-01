@@ -23,14 +23,14 @@ const SidePanelPushContentStory = props => {
         width={width}
       >
         {hasOverlay ? <SidePanel.Overlay /> : null}
-        <SidePanel.Trigger kind="primary" onClick={toggle}>
+        <SidePanel.Trigger kind={SidePanel.types.kind.PRIMARY} onClick={toggle}>
           {isOpen ? "close" : "open"}
         </SidePanel.Trigger>
-        <SidePanel.Header kind="primary">Header</SidePanel.Header>
+        <SidePanel.Header kind={SidePanel.Header.types.kind.PRIMARY}>Header</SidePanel.Header>
         <TextLine repeat={100} />
         <SidePanel.Footer>
           <Button>Default action</Button>
-          <Button kind="minor">Cancel</Button>
+          <Button kind={Button.types.kind.MINOR}>Cancel</Button>
         </SidePanel.Footer>
       </SidePanel>
       <div role="main">

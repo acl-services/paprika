@@ -1,7 +1,7 @@
 import styled, { css } from "styled-components";
 import tokens from "@paprika/tokens";
 import stylers from "@paprika/stylers";
-import types from "./types";
+import * as types from "./types";
 
 export const Grid = styled.div.attrs(({ $width }) => {
   return {
