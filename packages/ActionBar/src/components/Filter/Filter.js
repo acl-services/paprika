@@ -111,6 +111,7 @@ export default function Filter(props) {
 Filter.types = {
   operator: types.logicalFilterOperators,
   rule: types.rules,
+  rulesByType: types.defaultRulesByType,
 };
 
 const propTypes = {
@@ -135,8 +136,8 @@ const defaultProps = {
   onCancel: () => {},
   onClose: () => {},
   onOpen: () => {},
-  operator: Filter.types.AND,
-  rulesByType: Filter.types.defaultRulesByType,
+  operator: Filter.types.operator.AND,
+  rulesByType: Filter.types.rulesByType,
 };
 
 Filter.displayName = "ActionBar.Filter";
