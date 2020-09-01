@@ -94,6 +94,16 @@ function Content(props) {
 
   const extractedChildren = extractChildren(children, Object.values(supportedComponentNames));
 
+  const getSingleIdForLabel = (key, element) => {
+    // Future api can override this behaviour to choose which element can receive labelId
+    if (!isLabelSet) {
+      const singleIdForLabel =
+        componentsRequiringIdForLabel.includes(key) || isOtherChildRequiringId(key, element) ? idForLabel : null;
+      isLabelSet = Boolean(singleIdForLabel);
+      return singleIdForLabel;
+    }
+  };
+
   if (!children) {
     return null;
   }
@@ -106,17 +116,9 @@ function Content(props) {
     <sc.ContentContainer data-pka-anchor="form-element.content" {...moreProps}>
       {Object.keys(extractedChildren).map(key =>
         getElement(extractedChildren[key], element => {
-          // Future api can override this behaviour to choose which element can receive labelId
-          let oneTimeUseIdForLabel = null;
-          if (!isLabelSet) {
-            oneTimeUseIdForLabel =
-              componentsRequiringIdForLabel.includes(key) || isOtherChildRequiringId(key, element) ? idForLabel : null;
-            isLabelSet = Boolean(oneTimeUseIdForLabel);
-          }
-
           const a11yProps = {
             element,
-            idForLabel: oneTimeUseIdForLabel,
+            idForLabel: getSingleIdForLabel(key, element),
             refLabel: componentsRequiringLabelRef.includes(key) ? refLabel : null,
             a11yDescribedByIds: componentsRequiringA11yDescribedByIds.includes(key) ? a11yDescribedByIds : null,
             isNative: key === "children" && element?.type,
