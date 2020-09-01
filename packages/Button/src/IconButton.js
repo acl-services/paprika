@@ -26,6 +26,7 @@ const IconPropTypes = {
   /** The visual style of the button. */
   kind: PropTypes.oneOf([
     IconButton.types.kind.DEFAULT,
+    IconButton.types.kind.PRIMARY,
     IconButton.types.kind.SECONDARY,
     IconButton.types.kind.DESTRUCTIVE,
     IconButton.types.kind.FLAT,
