@@ -1,8 +1,8 @@
 import React from "react";
 import { array, boolean, select, text } from "@storybook/addon-knobs";
 import { Rule, Story, Tagline } from "storybook/assets/styles/common.styles";
-import { ShirtSizes } from "@paprika/helpers/lib/customPropTypes";
 import Heading from "@paprika/heading";
+import * as types from "../../src/types";
 import SelectExample from "./SelectExample";
 
 const selectChildren = () => {
@@ -25,7 +25,7 @@ const selectProps = () => ({
   isDisabled: boolean("isDisabled", false),
   isReadOnly: boolean("isReadOnly", false),
   placeholder: text("placeholder", "This is a default placeholder..."),
-  size: select("size", ShirtSizes.DEFAULT, "medium"),
+  size: select("size", [types.SMALL, types.MEDIUM, types.LARGE], "medium"),
 });
 
 const ExampleStory = props => (
