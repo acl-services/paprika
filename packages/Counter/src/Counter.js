@@ -1,7 +1,7 @@
 import React from "react";
 import PropTypes from "prop-types";
 import { ShirtSizes } from "@paprika/helpers/lib/customPropTypes";
-import counterStyles from "./Counter.styles";
+import * as sc from "./Counter.styles";
 
 const propTypes = {
   /** Background color of the counter. */
@@ -38,9 +38,9 @@ function Counter(props) {
   };
 
   return (
-    <span data-pka-anchor="counter" css={counterStyles} {...counterProps} title={exceedsThreshold ? quantity : ""}>
+    <sc.Counter data-pka-anchor="counter" {...counterProps} title={exceedsThreshold ? quantity : ""}>
       {exceedsThreshold ? `${threshold}+` : quantity}
-    </span>
+    </sc.Counter>
   );
 }
 
