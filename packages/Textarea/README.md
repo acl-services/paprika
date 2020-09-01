@@ -22,19 +22,19 @@ npm install @paprika/textarea
 
 ### Textarea
 
-| Prop         | Type               | required | default           | Description                                                                                         |
-| ------------ | ------------------ | -------- | ----------------- | --------------------------------------------------------------------------------------------------- |
-| a11yText     | string             | false    | null              | Descriptive a11y text for assistive technologies. By default, text from children node will be used. |
-| canExpand    | bool               | false    | true              | Indicate if the textarea is expandable                                                              |
-| className    | string             | false    | null              | Sets class name                                                                                     |
-| defaultValue | string             | false    | ""                | Do not use in conjunction with value prop                                                           |
-| hasError     | bool               | false    | false             |                                                                                                     |
-| isDisabled   | bool               | false    | false             | If the textarea is disabled                                                                         |
-| isReadOnly   | bool               | false    | false             | If the textarea is read-only                                                                        |
-| maxHeight    | string             | false    | "300px"           | Indicates the maximum height of the textarea                                                        |
-| onChange     | func               | false    | () => {}          |                                                                                                     |
-| size         | ShirtSizes.DEFAULT | false    | ShirtSizes.MEDIUM |                                                                                                     |
-| value        | string             | false    | null              | Do not use in conjunction with defaultValue prop                                                    |
+| Prop         | Type                                                                             | required | default                    | Description                                                                                         |
+| ------------ | -------------------------------------------------------------------------------- | -------- | -------------------------- | --------------------------------------------------------------------------------------------------- |
+| a11yText     | string                                                                           | false    | null                       | Descriptive a11y text for assistive technologies. By default, text from children node will be used. |
+| canExpand    | bool                                                                             | false    | true                       | Indicate if the textarea is expandable                                                              |
+| className    | string                                                                           | false    | null                       | Sets class name                                                                                     |
+| defaultValue | string                                                                           | false    | ""                         | Do not use in conjunction with value prop                                                           |
+| hasError     | bool                                                                             | false    | false                      |                                                                                                     |
+| isDisabled   | bool                                                                             | false    | false                      | If the textarea is disabled                                                                         |
+| isReadOnly   | bool                                                                             | false    | false                      | If the textarea is read-only                                                                        |
+| maxHeight    | string                                                                           | false    | "300px"                    | Indicates the maximum height of the textarea                                                        |
+| onChange     | func                                                                             | false    | () => {}                   |                                                                                                     |
+| size         | [Textarea.types.size.SMALL,Textarea.types.size.MEDIUM,Textarea.types.size.LARGE] | false    | Textarea.types.size.MEDIUM |                                                                                                     |
+| value        | string                                                                           | false    | null                       | Do not use in conjunction with defaultValue prop                                                    |
 
 <!-- autogenerated don't modify -->
 <!-- content -->

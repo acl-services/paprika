@@ -6,27 +6,27 @@ const ExampleStory = () => {
   return (
     <ButtonStory>
       <div>
-        <Button kind="primary">Primary</Button>
+        <Button kind={Button.types.kind.PRIMARY}>Primary</Button>
         <Button>Default</Button>
-        <Button kind="minor">Minor</Button>
+        <Button kind={Button.types.kind.MINOR}>Minor</Button>
       </div>
       <br />
       <div>
-        <Button size="large" kind="primary">
+        <Button size={Button.types.size.LARGE} kind={Button.types.kind.PRIMARY}>
           Large primary
         </Button>
-        <Button size="large">Large</Button>
-        <Button size="large" kind="minor">
+        <Button size={Button.types.size.LARGE}>Large</Button>
+        <Button size={Button.types.size.LARGE} kind={Button.types.kind.MINOR}>
           Large minor
         </Button>
       </div>
       <br />
       <div>
-        <Button size="small" kind="primary">
+        <Button size={Button.types.size.SMALL} kind={Button.types.kind.PRIMARY}>
           Small primary
         </Button>
-        <Button size="small">Small</Button>
-        <Button size="small" kind="minor">
+        <Button size={Button.types.size.SMALL}>Small</Button>
+        <Button size={Button.types.size.SMALL} kind={Button.types.kind.MINOR}>
           Small minor
         </Button>
       </div>

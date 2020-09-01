@@ -1,8 +1,7 @@
 import tokens from "@paprika/tokens";
 import stylers from "@paprika/stylers";
 import { css, keyframes } from "styled-components";
-import { ShirtSizes } from "@paprika/helpers/lib/customPropTypes";
-import Kinds from "./ButtonKinds";
+import * as types from "./types";
 
 const dropShadow = "0 1px 2px 0 rgba(0, 0, 0, 0.1)";
 
@@ -15,23 +14,23 @@ const enabled = content => css`
 // Borders
 
 const borderColors = {
-  [Kinds.DEFAULT]: tokens.border.color,
-  [Kinds.PRIMARY]: tokens.color.green,
-  [Kinds.SECONDARY]: tokens.color.purple,
-  [Kinds.DESTRUCTIVE]: tokens.color.orange,
-  [Kinds.FLAT]: tokens.border.color,
-  [Kinds.MINOR]: "transparent",
-  [Kinds.LINK]: "transparent",
+  [types.DEFAULT]: tokens.border.color,
+  [types.PRIMARY]: tokens.color.green,
+  [types.SECONDARY]: tokens.color.purple,
+  [types.DESTRUCTIVE]: tokens.color.orange,
+  [types.FLAT]: tokens.border.color,
+  [types.MINOR]: "transparent",
+  [types.LINK]: "transparent",
 };
 
 const borderHoverColors = {
-  [Kinds.DEFAULT]: tokens.border.hoverColor,
-  [Kinds.PRIMARY]: tokens.color.greenDarken10,
-  [Kinds.SECONDARY]: tokens.color.purpleDarken10,
-  [Kinds.DESTRUCTIVE]: tokens.color.orangeDarken10,
-  [Kinds.FLAT]: tokens.border.hoverColor,
-  [Kinds.MINOR]: "transparent",
-  [Kinds.LINK]: "transparent",
+  [types.DEFAULT]: tokens.border.hoverColor,
+  [types.PRIMARY]: tokens.color.greenDarken10,
+  [types.SECONDARY]: tokens.color.purpleDarken10,
+  [types.DESTRUCTIVE]: tokens.color.orangeDarken10,
+  [types.FLAT]: tokens.border.hoverColor,
+  [types.MINOR]: "transparent",
+  [types.LINK]: "transparent",
 };
 
 const borderStyles = css`
@@ -97,7 +96,7 @@ const inactiveStyles = css`
       ${borderStyles}
 
       ${({ kind }) =>
-        [Kinds.FLAT, Kinds.MINOR, Kinds.LINK].includes(kind)
+        [types.FLAT, types.MINOR, types.LINK].includes(kind)
           ? css`
               box-shadow: none;
             `
@@ -156,27 +155,27 @@ const textButtonStyles = css`
 // Sizes
 
 const sizeStyles = {
-  [ShirtSizes.SMALL]: css`
+  [types.SMALL]: css`
     ${stylers.fontSize(-2)};
     min-height: ${stylers.spacer(3)};
     padding: 3px ${tokens.space};
   `,
-  [ShirtSizes.MEDIUM]: css`
+  [types.MEDIUM]: css`
     ${stylers.fontSize(-1)};
     min-height: ${stylers.spacer(4)};
     padding: 6.5px ${tokens.spaceLg};
   `,
-  [ShirtSizes.LARGE]: css`
+  [types.LARGE]: css`
     ${stylers.fontSize()};
     min-height: ${stylers.spacer(5)};
     padding: 9px ${stylers.spacer(2)};
   `,
 };
 
-// Kinds
+// types
 
 const kindStyles = props => ({
-  [Kinds.DEFAULT]: css`
+  [types.DEFAULT]: css`
     ${skeuomorphicStyles}
 
     background-color: ${tokens.color.white};
@@ -189,7 +188,7 @@ const kindStyles = props => ({
 
     ${props.isDisabled && disabledStyles}
   `,
-  [Kinds.PRIMARY]: css`
+  [types.PRIMARY]: css`
     ${skeuomorphicStyles}
     ${coloredButtonStyles}
 
@@ -202,7 +201,7 @@ const kindStyles = props => ({
 
     ${props.isDisabled && disabledStyles}
   `,
-  [Kinds.SECONDARY]: css`
+  [types.SECONDARY]: css`
     ${skeuomorphicStyles}
     ${coloredButtonStyles}
 
@@ -215,7 +214,7 @@ const kindStyles = props => ({
 
     ${props.isDisabled && disabledStyles}
   `,
-  [Kinds.DESTRUCTIVE]: css`
+  [types.DESTRUCTIVE]: css`
     ${skeuomorphicStyles}
     ${coloredButtonStyles}
 
@@ -228,7 +227,7 @@ const kindStyles = props => ({
 
     ${props.isDisabled && disabledStyles}
   `,
-  [Kinds.FLAT]: css`
+  [types.FLAT]: css`
     ${skeuomorphicStyles}
 
     background-color: ${tokens.color.white};
@@ -241,7 +240,7 @@ const kindStyles = props => ({
 
     ${props.isDisabled && disabledStyles}
   `,
-  [Kinds.MINOR]: css`
+  [types.MINOR]: css`
     ${textButtonStyles}
 
     &:hover {
@@ -250,7 +249,7 @@ const kindStyles = props => ({
 
     ${props.isDisabled && disabledTextStyles}
   `,
-  [Kinds.LINK]: css`
+  [types.LINK]: css`
     ${textButtonStyles}
 
     color: ${tokens.textColor.link};
@@ -304,13 +303,13 @@ const spinKeyframes = keyframes`
 `;
 
 const iconColors = {
-  [Kinds.DEFAULT]: tokens.textColor.icon,
-  [Kinds.PRIMARY]: tokens.color.white,
-  [Kinds.SECONDARY]: tokens.color.white,
-  [Kinds.DESTRUCTIVE]: tokens.color.white,
-  [Kinds.FLAT]: tokens.textColor.icon,
-  [Kinds.MINOR]: tokens.textColor.icon,
-  [Kinds.LINK]: tokens.textColor.icon,
+  [types.DEFAULT]: tokens.textColor.icon,
+  [types.PRIMARY]: tokens.color.white,
+  [types.SECONDARY]: tokens.color.white,
+  [types.DESTRUCTIVE]: tokens.color.white,
+  [types.FLAT]: tokens.textColor.icon,
+  [types.MINOR]: tokens.textColor.icon,
+  [types.LINK]: tokens.textColor.icon,
 };
 
 const getIconColor = props => (props.isDisabled ? tokens.color.blackDisabled : iconColors[props.kind]);

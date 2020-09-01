@@ -117,7 +117,7 @@ function App() {
         <>
           {isLoading && !showNoResults ? (
             <ListBox.RawItem isDisabled>
-              <Spinner size="small" />
+              <Spinner size={Spinner.types.size.SMALL} />
             </ListBox.RawItem>
           ) : null}
           {showNoResults ? (

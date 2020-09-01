@@ -19,32 +19,7 @@ import calendarStyles, {
   monthHeaderButtonStyles,
 } from "./internal/calendar.styles";
 
-import { Kinds } from "./tokens";
-
-const propTypes = {
-  /** Selected date in moment object */
-  date: PropTypes.instanceOf(moment),
-
-  /** Callback when user select date */
-  onSelect: PropTypes.func.isRequired,
-
-  /** Possible date might be selected in moment object */
-  possibleDate: PropTypes.instanceOf(moment),
-
-  resetPossibleDate: PropTypes.func,
-
-  /** Kind of styling */
-  kind: PropTypes.oneOf(Object.values(Kinds)),
-};
-
-const noop = () => {};
-
-const defaultProps = {
-  date: null,
-  possibleDate: null,
-  resetPossibleDate: noop,
-  kind: Kinds.BORDERED,
-};
+import * as types from "./types";
 
 function SingleDateCalendar(props) {
   // TODO: nice to have MIN_DATE & MAX_DATE customizable
@@ -131,7 +106,7 @@ function SingleDateCalendar(props) {
         css={monthHeaderButtonStyles}
         isDropdown
         isSemantic={false}
-        kind={Button.Kinds.FLAT}
+        kind={Button.types.kind.FLAT}
         onClick={() => {
           handleClickHeader(month);
         }}
@@ -181,7 +156,7 @@ function SingleDateCalendar(props) {
           numberOfMonths={1}
           initialVisibleMonth={getInitialVisibleMonth}
           hideKeyboardShortcutsPanel
-          noBorder={kind === Kinds.EMBEDDED}
+          noBorder={kind === SingleDateCalendar.types.kind.EMBEDDED}
           daySize={34}
           verticalBorderSpacing={0}
           transitionDuration={0}
@@ -203,6 +178,35 @@ function SingleDateCalendar(props) {
     </div>
   );
 }
+
+SingleDateCalendar.types = {
+  kind: types.kind,
+};
+
+const propTypes = {
+  /** Selected date in moment object */
+  date: PropTypes.instanceOf(moment),
+
+  /** Callback when user select date */
+  onSelect: PropTypes.func.isRequired,
+
+  /** Possible date might be selected in moment object */
+  possibleDate: PropTypes.instanceOf(moment),
+
+  resetPossibleDate: PropTypes.func,
+
+  /** Kind of styling */
+  kind: PropTypes.oneOf(Object.values(SingleDateCalendar.types.kind)),
+};
+
+const noop = () => {};
+
+const defaultProps = {
+  date: null,
+  possibleDate: null,
+  resetPossibleDate: noop,
+  kind: SingleDateCalendar.types.kind.BORDERED,
+};
 
 SingleDateCalendar.propTypes = propTypes;
 SingleDateCalendar.defaultProps = defaultProps;

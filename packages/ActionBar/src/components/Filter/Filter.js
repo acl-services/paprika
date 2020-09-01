@@ -5,38 +5,12 @@ import Button from "@paprika/button";
 import useI18n from "@paprika/l10n/lib/useI18n";
 import CheckIcon from "@paprika/icon/lib/Check";
 import FilterItem from "./FilterItem";
-import { rules, defaultRulesByType } from "./rules";
 import FilterContext from "./context";
-import { logicalFilterOperators } from "../../constants";
 import columnShape from "../../columnShape";
+import * as types from "../../types";
 
 import * as sc from "./Filter.styles";
 import { GenericNoAppliedPlaceholder } from "../../ActionBar.styles";
-
-const propTypes = {
-  appliedNumber: PropTypes.number,
-  children: PropTypes.node,
-  columns: PropTypes.arrayOf(PropTypes.shape(columnShape)).isRequired,
-  onAddFilter: PropTypes.func.isRequired,
-  onApply: PropTypes.func.isRequired,
-  onCancel: PropTypes.func,
-  onChangeOperator: PropTypes.func,
-  onClose: PropTypes.func,
-  onOpen: PropTypes.func,
-  operator: PropTypes.oneOf([logicalFilterOperators.AND, logicalFilterOperators.OR]),
-  rulesByType: PropTypes.objectOf(PropTypes.arrayOf(PropTypes.objectOf(rules))),
-};
-
-const defaultProps = {
-  appliedNumber: 0,
-  children: null,
-  onChangeOperator: null,
-  onCancel: () => {},
-  onClose: () => {},
-  onOpen: () => {},
-  operator: logicalFilterOperators.AND,
-  rulesByType: defaultRulesByType,
-};
 
 function getLabelText(numberOfFilters, I18n) {
   switch (numberOfFilters) {
@@ -134,9 +108,42 @@ export default function Filter(props) {
   );
 }
 
+Filter.types = {
+  operator: types.logicalFilterOperators,
+  rule: types.rules,
+  rulesByType: types.defaultRulesByType,
+};
+
+const propTypes = {
+  appliedNumber: PropTypes.number,
+  children: PropTypes.node,
+  columns: PropTypes.arrayOf(PropTypes.shape(columnShape)).isRequired,
+  onAddFilter: PropTypes.func.isRequired,
+  onApply: PropTypes.func.isRequired,
+  onCancel: PropTypes.func,
+  onChangeOperator: PropTypes.func,
+  onClose: PropTypes.func,
+  onOpen: PropTypes.func,
+  operator: PropTypes.oneOf([Filter.types.operator.AND, Filter.types.operator.OR]),
+
+  rulesByType: PropTypes.objectOf(PropTypes.arrayOf(PropTypes.objectOf(Filter.types.rule))),
+};
+
+const defaultProps = {
+  appliedNumber: 0,
+  children: null,
+  onChangeOperator: null,
+  onCancel: () => {},
+  onClose: () => {},
+  onOpen: () => {},
+  operator: Filter.types.operator.AND,
+  rulesByType: Filter.types.rulesByType,
+};
+
+Filter.displayName = "ActionBar.Filter";
 Filter.propTypes = propTypes;
 Filter.defaultProps = defaultProps;
-Filter.displayName = "ActionBar.Filter";
-Filter.defaultRulesByType = defaultRulesByType;
-Filter.rules = rules;
+
+Filter.defaultRulesByType = types.defaultRulesByType;
+Filter.rules = types.rules;
 Filter.Item = FilterItem;
