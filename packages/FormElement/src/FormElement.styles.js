@@ -7,11 +7,13 @@ const FontSizes = {
   large: stylers.fontSize(0),
 };
 
-export const SectionsContainer = styled.div(
-  ({ isInline }) => css`
-    ${isInline && `flex-grow: 1;`}
-  `
-);
+export const SectionsContainer = styled.div`
+  ${({ isInline }) =>
+    isInline &&
+    css`
+      flex-grow: 1;
+    `}
+`;
 
 const inlineFormElementStyles = css`
   align-items: baseline;
