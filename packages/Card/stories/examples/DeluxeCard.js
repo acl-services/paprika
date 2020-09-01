@@ -21,8 +21,8 @@ export default () => {
           <div style={{ width: "100%", height: "24px" }} />
           <div style={{ width: "100%", display: "flex", flexDirection: "row", justifyContent: "space-between" }}>
             <div style={{ width: "50%", display: "flex", justifyContent: "space-between" }}>
-              <Button isDisabled="true">Save</Button>
-              <Button isDisabled="true" kind={Button.types.kind.MINOR}>
+              <Button isDisabled>Save</Button>
+              <Button isDisabled kind={Button.types.kind.MINOR}>
                 Cancel
               </Button>
             </div>

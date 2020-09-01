@@ -102,7 +102,7 @@ function Item(props) {
 }
 
 storiesOf(`${storyName}`, module).add("Collections Example", () => (
-  <Table data={data} width="100%">
+  <Table a11yText="" data={data} width="100%">
     <Table.ColumnDefinition
       width="70%"
       header="Table"
