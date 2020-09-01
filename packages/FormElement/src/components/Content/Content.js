@@ -86,6 +86,15 @@ const createFormElementChild = ({ element, a11yDescribedByIds }) => {
 function Content(props) {
   const { children, idForLabel, refLabel, wrapperA11yDescribedByIds, ...moreProps } = props;
 
+  if (!children) {
+    return null;
+  }
+
+  if (typeof children === "function") {
+    console.error("FormElement.Content no longer accepts a render function child, skipping rendering children");
+    return null;
+  }
+
   let isLabelSet = false;
 
   const a11yDescribedByIds = wrapperA11yDescribedByIds
@@ -94,8 +103,24 @@ function Content(props) {
 
   const extractedChildren = extractChildren(children, Object.values(supportedComponentNames));
 
+  const hasLabelAssociationOverride = Boolean(
+    Array.isArray(children)
+      ? children.find(element => element.props.overridelabelassociation)
+      : children.props.overridelabelassociation
+  );
+
   const getSingleIdForLabel = (key, element) => {
-    // Future api can override this behaviour to choose which element can receive labelId
+    if (hasLabelAssociationOverride) {
+      if (element.props.overridelabelassociation) {
+        if (isLabelSet) {
+          console.error("Label override via 'overridelabelassociation' should only be applied to one child");
+        }
+        isLabelSet = true;
+        return idForLabel;
+      }
+      return null;
+    }
+
     if (!isLabelSet) {
       const singleIdForLabel =
         componentsRequiringIdForLabel.includes(key) || isOtherChildRequiringId(key, element) ? idForLabel : null;
@@ -103,10 +128,6 @@ function Content(props) {
       return singleIdForLabel;
     }
   };
-
-  if (!children) {
-    return null;
-  }
 
   if (!extractedChildren?.children.length) {
     delete extractedChildren.children;

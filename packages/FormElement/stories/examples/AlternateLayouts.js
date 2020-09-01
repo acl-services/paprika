@@ -347,6 +347,47 @@ const ExampleStory = () => {
           Give me some help. <a href="wegalvanize.com">Learn more</a>.
         </FormElement.Help>
       </FormElement>
+      <Rule />
+      <Tagline>Form Element overriding label association with child</Tagline>
+      <br />
+      <FormElement
+        hasRequiredLabel={hasRequiredLabel}
+        label={
+          <Heading level={5}>
+            <strong>
+              <i>Form Label</i>
+            </strong>
+          </Heading>
+        }
+      >
+        <FormElement.Instructions>Some instructions</FormElement.Instructions>
+        <FormElement.Content>
+          <Input
+            onChange={handleChange}
+            value={value}
+            placeholder="Form placeholder"
+            aria-required={hasRequiredLabel}
+            hasError={Boolean(errorText.length)}
+            isDisabled={isDisabled}
+            isReadOnly={isReadOnly}
+            size={size}
+          />
+          <Input
+            onChange={handleChange}
+            value={value}
+            placeholder="Form placeholder"
+            aria-required={hasRequiredLabel}
+            hasError={Boolean(errorText.length)}
+            isDisabled={isDisabled}
+            isReadOnly={isReadOnly}
+            size={size}
+            overridelabelassociation="true" // Add to override default label association
+          />
+        </FormElement.Content>
+        <FormElement.Help>
+          Give me some help. <a href="wegalvanize.com">Learn more</a>.
+        </FormElement.Help>
+      </FormElement>
     </FormElementStory>
   );
 };
