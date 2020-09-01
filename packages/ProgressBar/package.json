@@ -1,0 +1,31 @@
+{
+  "name": "@paprika/progressbar",
+  "version": "0.1.0",
+  "description": "ProgressBar component",
+  "author": "@paprika",
+  "main": "lib/index.js",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/acl-services/paprika.git",
+    "directory": "packages/ProgressBar"
+  },
+  "publishConfig": {
+    "access": "public"
+  },
+  "directories": {
+    "lib": "lib",
+    "test": "tests"
+  },
+  "peerDependencies": {
+    "react": "^16.12.0",
+    "react-dom": "^16.12.0",
+    "styled-components": "^4.4.1"
+  },
+  "dependencies": {
+    "@paprika/heading": "^0.4.4",
+    "@paprika/tokens": "^0.1.14",
+    "@paprika/stylers": "^0.2.8",
+    "prop-types": "^15.7.2"
+  }
+}
