@@ -1,7 +1,7 @@
 {
   "name": "@paprika/constants",
   "version": "0.1.0",
-  "description": "Constants for components",
+  "description": "Constants for components, for library internal use only",
   "author": "@paprika",
   "license": "MIT",
   "repository": {
