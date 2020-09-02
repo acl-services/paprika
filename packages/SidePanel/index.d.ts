@@ -18,7 +18,7 @@ interface SidePanelProps {
   /** Control if the side panel slides from the left */
   isSlideFromLeft?: boolean;
   /** Modify the look of the SidePanel */
-  kind?: "default" | "child";
+  kind?: SidePanel.types.kind.DEFAULT | SidePanel.types.kind.CHILD | SidePanel.types.kind.PRIMARY;
   /** Control y offset of the sidepanel */
   offsetY?: number;
   /** Callback once the sidepanel has been closed event */

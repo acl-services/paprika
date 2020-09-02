@@ -22,12 +22,12 @@ npm install @paprika/card
 
 ### Card
 
-| Prop        | Type                                                                                      | required | default              | Description                                                        |
-| ----------- | ----------------------------------------------------------------------------------------- | -------- | -------------------- | ------------------------------------------------------------------ |
-| children    | node                                                                                      | false    | null                 | Body content of the card.                                          |
-| isFullWidth | bool                                                                                      | false    | false                | If the width of the card should span it's parent container (100%). |
-| isActive    | bool                                                                                      | false    | false                | If the card is in an "active" or "selected" state.                 |
-| size        | [Card.types.size.AUTO,Card.types.size.SMALL,Card.types.size.MEDIUM,Card.types.size.LARGE] | false    | Card.types.size.AUTO | Size of the card (font size, min-height, padding, etc).            |
+| Prop        | Type                                                                                          | required | default              | Description                                                        |
+| ----------- | --------------------------------------------------------------------------------------------- | -------- | -------------------- | ------------------------------------------------------------------ |
+| children    | node                                                                                          | false    | null                 | Body content of the card.                                          |
+| isFullWidth | bool                                                                                          | false    | false                | If the width of the card should span it's parent container (100%). |
+| isActive    | bool                                                                                          | false    | false                | If the card is in an "active" or "selected" state.                 |
+| size        | [ Card.types.size.AUTO, Card.types.size.SMALL, Card.types.size.MEDIUM, Card.types.size.LARGE] | false    | Card.types.size.AUTO | Size of the card (font size, min-height, padding, etc).            |
 
 ### Content
 

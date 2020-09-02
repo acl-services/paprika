@@ -25,13 +25,20 @@ interface ButtonProps {
   /** If the type attribute should "submit", instead of the default "button". */
   isSubmit?: boolean;
   /** The visual style of the button. */
-  kind?: Kinds.ALL;
+  kind?:
+    | Button.types.kind.DEFAULT
+    | Button.types.kind.PRIMARY
+    | Button.types.kind.SECONDARY
+    | Button.types.kind.DESTRUCTIVE
+    | Button.types.kind.FLAT
+    | Button.types.kind.MINOR
+    | Button.types.kind.LINK;
   /** Callback to be executed when the button is clicked or activated by keyboard. Typically required. */
   onClick?: (...args: any[]) => any;
   /** Value for role attribute to override the default of "button". */
   role?: string;
   /** Size of the button (font size, min-height, padding, etc). */
-  size?: ShirtSizes.DEFAULT;
+  size?: Button.types.size.SMALL | Button.types.size.MEDIUM | Button.types.size.LARGE;
   /** Value for tabindex attribute to override the default of 0. */
   tabIndex?: number;
 }

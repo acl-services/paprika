@@ -22,18 +22,18 @@ npm install @paprika/listbox
 
 ### ListBox
 
-| Prop           | Type                                                                                                     | required | default | Description                                                        |
-| -------------- | -------------------------------------------------------------------------------------------------------- | -------- | ------- | ------------------------------------------------------------------ |
-| children       | node                                                                                                     | true     | -       | Child of type <ListBox.Option />                                   |
-| hasImplicitAll | bool                                                                                                     | false    | -       | Has implicit "All items selected" value when no item is selected   |
-| height         | number                                                                                                   | true     | -       | Indicate which is the height for the options container             |
-| isDisabled     | bool                                                                                                     | false    | -       | Disables the ListBox if true                                       |
-| isInline       | bool                                                                                                     | false    | -       | This options will display the listbox without the Popover          |
-| isMulti        | bool                                                                                                     | false    | -       | Let the user to select multiple options at same time               |
-| isOpen         | bool                                                                                                     | false    | -       | Indicates if the popover is visible                                |
-| onChange       | func                                                                                                     | false    | -       | Callback returning the current selection on the ListBox            |
-| placeholder    | string                                                                                                   | true     | -       | Defaults label to display when the ListBox has not option selected |
-| size           | [ListBoxContainer.types.size.SMALL,ListBoxContainer.types.size.MEDIUM,ListBoxContainer.types.size.LARGE] | false    | -       | Size of the trigger and options (font size, height, padding, etc). |
+| Prop           | Type                                                                                                        | required | default | Description                                                        |
+| -------------- | ----------------------------------------------------------------------------------------------------------- | -------- | ------- | ------------------------------------------------------------------ |
+| children       | node                                                                                                        | true     | -       | Child of type <ListBox.Option />                                   |
+| hasImplicitAll | bool                                                                                                        | false    | -       | Has implicit "All items selected" value when no item is selected   |
+| height         | number                                                                                                      | true     | -       | Indicate which is the height for the options container             |
+| isDisabled     | bool                                                                                                        | false    | -       | Disables the ListBox if true                                       |
+| isInline       | bool                                                                                                        | false    | -       | This options will display the listbox without the Popover          |
+| isMulti        | bool                                                                                                        | false    | -       | Let the user to select multiple options at same time               |
+| isOpen         | bool                                                                                                        | false    | -       | Indicates if the popover is visible                                |
+| onChange       | func                                                                                                        | false    | -       | Callback returning the current selection on the ListBox            |
+| placeholder    | string                                                                                                      | true     | -       | Defaults label to display when the ListBox has not option selected |
+| size           | [ ListBoxContainer.types.size.SMALL, ListBoxContainer.types.size.MEDIUM, ListBoxContainer.types.size.LARGE] | false    | -       | Size of the trigger and options (font size, height, padding, etc). |
 
 ### Box
 

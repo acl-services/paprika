@@ -9,5 +9,5 @@ interface AvatarProps {
   /** Color for the initial or icon */
   color?: string;
   /** Size of Avatar */
-  size?: ShirtSizes.LIMITED;
+  size?: Avatar.types.size.SMALL | Avatar.types.size.MEDIUM;
 }
