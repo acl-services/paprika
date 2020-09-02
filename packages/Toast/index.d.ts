@@ -17,7 +17,13 @@ interface ToastProps {
   /** A11y: If the toast is polite or not. If false, then the toast will be assertive. */
   isPolite?: boolean;
   /** Determines the styling of the Toast */
-  kind?: Kinds.ALL;
+  kind?:
+    | Toast.types.kind.SUCCESS
+    | Toast.types.kind.WARNING
+    | Toast.types.kind.ERROR
+    | Toast.types.kind.INFO
+    | Toast.types.kind.LOCKED
+    | Toast.types.kind.VISUALLY_HIDDEN;
   /** Callback that is executed after clicking the 'close' button */
   onClose?: (...args: any[]) => any;
   /** The z-index of the Toast */
