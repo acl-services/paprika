@@ -7,29 +7,29 @@ import CustomSingleSelectFilter from "./CustomSingleSelectFilter";
 const columnsSettings = [
   {
     id: "goals",
-    type: ActionBar.columnTypes.NUMBER,
+    type: ActionBar.types.columnTypes.NUMBER,
     label: "Goals",
   },
   {
     id: "name",
-    type: ActionBar.columnTypes.TEXT,
+    type: ActionBar.types.columnTypes.TEXT,
     label: "Name",
   },
   {
     id: "status",
-    type: ActionBar.columnTypes.TEXT,
+    type: ActionBar.types.columnTypes.TEXT,
     label: "Status",
   },
   { id: "country", label: "Country", type: "TEXT" },
   {
     id: "joined",
-    type: ActionBar.columnTypes.DATE,
+    type: ActionBar.types.columnTypes.DATE,
     label: "Joined by",
     momentParsingFormat: "MM/DD/YYYY",
   },
   {
     id: "shareable",
-    type: ActionBar.columnTypes.BOOLEAN,
+    type: ActionBar.types.columnTypes.BOOLEAN,
     label: "Shareable",
   },
   {
@@ -39,7 +39,7 @@ const columnsSettings = [
   },
   {
     id: "position",
-    type: ActionBar.columnTypes.SINGLE_SELECT,
+    type: ActionBar.types.columnTypes.SINGLE_SELECT,
     label: "Position",
   },
 ];
