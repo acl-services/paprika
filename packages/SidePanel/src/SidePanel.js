@@ -11,72 +11,10 @@ import Overlay from "./components/Overlay";
 import Trigger from "./components/Trigger";
 import Group from "./components/Group";
 import FocusLock from "./components/FocusLock";
+import * as types from "./types";
 
 import { extractChildren } from "./helpers";
 import { useOffsetScroll } from "./hooks";
-
-const propTypes = {
-  /* Description of the SidePanel dialog for assistive technology */
-  a11yText: PropTypes.string,
-
-  /** The content for the SidePanel. */
-  children: PropTypes.node.isRequired,
-
-  /** Function that provides the container DOM element to be pushed. */
-  getPushContentElement: PropTypes.func,
-
-  /** Y offset that is passed down from <SidePanel.Group> */
-  groupOffsetY: PropTypes.number,
-
-  /** Control the compactness of the side panel */
-  isCompact: PropTypes.bool,
-
-  /** Render the sidepanel inline */
-  isInline: PropTypes.bool,
-
-  /** Control the visibility of the side panel. This prop makes the side panel appear */
-  isOpen: PropTypes.bool.isRequired,
-
-  /** Control if the side panel slides from the left */
-  isSlideFromLeft: PropTypes.bool,
-
-  /** Modify the look of the SidePanel */
-  kind: PropTypes.oneOf(["default", "child"]),
-
-  /** Control y offset of the sidepanel */
-  offsetY: PropTypes.number,
-
-  /** Callback once the sidepanel has been closed event */
-  onAfterClose: PropTypes.func,
-
-  /** Callback once the sidepanel has been opened event */
-  onAfterOpen: PropTypes.func,
-
-  /** Callback triggered when the side panel needs to be close */
-  onClose: PropTypes.func,
-
-  /** The width of the open panel. */
-  width: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
-
-  /** Control the z position of the sidepanel */
-  zIndex: PropTypes.number,
-};
-
-const defaultProps = {
-  a11yText: null,
-  getPushContentElement: null,
-  groupOffsetY: 0,
-  isCompact: false,
-  isInline: false,
-  isSlideFromLeft: false,
-  kind: "default",
-  offsetY: 0,
-  onAfterClose: () => {},
-  onAfterOpen: () => {},
-  onClose: null,
-  width: "33%",
-  zIndex: zValue(7),
-};
 
 const PUSH_REF_TRANSITION_STYLE = "margin-right 0.2s ease";
 const PUSH_REF_TRANSITION_DELAY_STYLE = "0.1s";
@@ -236,6 +174,73 @@ export default function SidePanel(props) {
     </React.Fragment>
   );
 }
+
+SidePanel.types = {
+  kind: types.sidePanelKinds,
+};
+
+const propTypes = {
+  /* Description of the SidePanel dialog for assistive technology */
+  a11yText: PropTypes.string,
+
+  /** The content for the SidePanel. */
+  children: PropTypes.node.isRequired,
+
+  /** Function that provides the container DOM element to be pushed. */
+  getPushContentElement: PropTypes.func,
+
+  /** Y offset that is passed down from <SidePanel.Group> */
+  groupOffsetY: PropTypes.number,
+
+  /** Control the compactness of the side panel */
+  isCompact: PropTypes.bool,
+
+  /** Render the sidepanel inline */
+  isInline: PropTypes.bool,
+
+  /** Control the visibility of the side panel. This prop makes the side panel appear */
+  isOpen: PropTypes.bool.isRequired,
+
+  /** Control if the side panel slides from the left */
+  isSlideFromLeft: PropTypes.bool,
+
+  /** Modify the look of the SidePanel */
+  kind: PropTypes.oneOf([SidePanel.types.kind.DEFAULT, SidePanel.types.kind.CHILD, SidePanel.types.kind.PRIMARY]),
+
+  /** Control y offset of the sidepanel */
+  offsetY: PropTypes.number,
+
+  /** Callback once the sidepanel has been closed event */
+  onAfterClose: PropTypes.func,
+
+  /** Callback once the sidepanel has been opened event */
+  onAfterOpen: PropTypes.func,
+
+  /** Callback triggered when the side panel needs to be close */
+  onClose: PropTypes.func,
+
+  /** The width of the open panel. */
+  width: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
+
+  /** Control the z position of the sidepanel */
+  zIndex: PropTypes.number,
+};
+
+const defaultProps = {
+  a11yText: null,
+  getPushContentElement: null,
+  groupOffsetY: 0,
+  isCompact: false,
+  isInline: false,
+  isSlideFromLeft: false,
+  kind: SidePanel.types.kind.DEFAULT,
+  offsetY: 0,
+  onAfterClose: () => {},
+  onAfterOpen: () => {},
+  onClose: null,
+  width: "33%",
+  zIndex: zValue(7),
+};
 
 SidePanel.propTypes = propTypes;
 SidePanel.defaultProps = defaultProps;

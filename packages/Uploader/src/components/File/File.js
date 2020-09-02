@@ -7,11 +7,17 @@ import Button from "@paprika/button";
 import useI18n from "@paprika/l10n/lib/useI18n";
 import Popover from "@paprika/popover";
 import tokens from "@paprika/tokens";
-import { ShirtSizes } from "@paprika/helpers/lib/customPropTypes";
 import { UploaderContext } from "../../Uploader";
 import { getNumberWithUnits } from "../../helpers";
-import statuses from "../../statuses";
+import * as types from "../../types";
 import * as sc from "./File.styles";
+
+File.defaultProps = defaultProps; // eslint-disable-line no-use-before-define
+File.propTypes = propTypes; // eslint-disable-line no-use-before-define
+// eslint-disable-next-line no-use-before-define
+File.types = {
+  status: types.status,
+};
 
 const propTypes = {
   error: PropTypes.string,
@@ -19,7 +25,7 @@ const propTypes = {
   name: PropTypes.string.isRequired,
   progress: PropTypes.number,
   size: PropTypes.number.isRequired,
-  status: PropTypes.oneOf(Object.keys(statuses).map(key => statuses[key])).isRequired,
+  status: PropTypes.oneOf(Object.keys(File.types.status).map(key => File.types.status[key])).isRequired, // eslint-disable-line no-use-before-define
 };
 
 const defaultProps = {
@@ -35,18 +41,18 @@ function File({ error, fileKey, name, progress, size, status }) {
 
   function renderIcon() {
     switch (status) {
-      case statuses.ERROR:
-      case statuses.CANCEL:
+      case types.status.ERROR:
+      case types.status.CANCEL:
         return (
           <Popover isDark isEager>
             <Popover.Tip />
             <Popover.Trigger>
               <Button.Icon
-                kind={Button.Kinds.MINOR}
+                kind={Button.Icon.types.kind.MINOR}
                 onClick={() => {
                   restartFileUpload(fileKey);
                 }}
-                size={ShirtSizes.SMALL}
+                size={Button.Icon.types.size.SMALL}
               >
                 <RetryIcon />
               </Button.Icon>
@@ -56,7 +62,7 @@ function File({ error, fileKey, name, progress, size, status }) {
             </Popover.Content>
           </Popover>
         );
-      case statuses.SUCCESS:
+      case types.status.SUCCESS:
         return <CheckIcon color={tokens.color.green} />;
       default:
         return (
@@ -64,11 +70,11 @@ function File({ error, fileKey, name, progress, size, status }) {
             <Popover.Tip />
             <Popover.Trigger>
               <Button.Icon
-                kind={Button.Kinds.MINOR}
+                kind={Button.Icon.types.kind.MINOR}
                 onClick={() => {
                   cancelFile(fileKey);
                 }}
-                size={ShirtSizes.SMALL}
+                size={Button.Icon.types.size.SMALL}
               >
                 <TimesIcon />
               </Button.Icon>
@@ -83,13 +89,13 @@ function File({ error, fileKey, name, progress, size, status }) {
 
   function getProgressText() {
     switch (status) {
-      case statuses.ERROR:
+      case types.status.ERROR:
         return error;
-      case statuses.SUCCESS:
+      case types.status.SUCCESS:
         return I18n.t("uploader.progress.complete");
-      case statuses.CANCEL:
+      case types.status.CANCEL:
         return I18n.t("uploader.progress.cancelled");
-      case statuses.IDLE:
+      case types.status.IDLE:
         return I18n.t("uploader.progress.idle");
       default:
         return I18n.t("uploader.progress.uploading", { progressWithUnits, sizeWithUnits });
@@ -111,8 +117,5 @@ function File({ error, fileKey, name, progress, size, status }) {
     </sc.FileWrapper>
   );
 }
-
-File.defaultProps = defaultProps;
-File.propTypes = propTypes;
 
 export default File;

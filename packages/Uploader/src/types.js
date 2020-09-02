@@ -1,4 +1,4 @@
-export default {
+export const status = {
   IDLE: "idle",
   PROCESSING: "processing",
   WAITINGFORSERVER: "waiting-for-server",

@@ -2,11 +2,11 @@ import React from "react";
 import { action } from "@storybook/addon-actions";
 import { boolean, select, text } from "@storybook/addon-knobs";
 import { Story, Rule, Tagline } from "storybook/assets/styles/common.styles";
-import { ShirtSizes } from "@paprika/helpers/lib/customPropTypes";
 import AddIcon from "@paprika/icon/lib/Add";
 import TimesIcon from "@paprika/icon/lib/Times";
 import InfoIcon from "@paprika/icon/lib/InfoCircle";
 import Heading from "@paprika/heading";
+import * as types from "../../src/types";
 import Button from "../../src";
 
 function clickHandler() {
@@ -22,8 +22,12 @@ const iconSelections = {
 
 const buttonProps = () => ({
   children: text("label", "Give now"),
-  size: select("size", ShirtSizes.DEFAULT, "medium"),
-  kind: select("type", Button.Kinds.ALL, "default"),
+  size: select("size", types.DEFAULT, "medium"),
+  kind: select(
+    "type",
+    [types.DEFAULT, types.PRIMARY, types.SECONDARY, types.DESTRUCTIVE, types.FLAT, types.MINOR, types.LINK],
+    "default"
+  ),
   onClick: clickHandler,
   icon: iconSelections[select("icon", Object.keys(iconSelections), null)],
   isActive: boolean("isActive", false),
