@@ -4,7 +4,7 @@ import useI18n from "@paprika/l10n/lib/useI18n";
 import SearchIcon from "@paprika/icon/lib/Search";
 import useListBox from "../../useListBox";
 import { filter, applyFilter } from "./helpers";
-import { FilterContainerStyled, FilterInputStyled } from "./Filter.styles";
+import * as sc from "./Filter.styles";
 
 const propTypes = {
   /** Descriptive a11y text for assistive technologies. By default, text from children node will be used. */
@@ -151,8 +151,8 @@ const Filter = React.forwardRef((props, ref) => {
     }
 
     return (
-      <FilterContainerStyled data-pka-anchor="list-filter">
-        <FilterInputStyled
+      <sc.Filter data-pka-anchor="list-filter">
+        <sc.FilterInput
           a11yText={props.a11yText || I18n.t("listBox.filter.a11y_text")}
           data-pka-anchor="list-filter-input"
           icon={hasSearchIcon ? <SearchIcon /> : null}
@@ -166,7 +166,7 @@ const Filter = React.forwardRef((props, ref) => {
           size={state.size}
           {...moreProps}
         />
-      </FilterContainerStyled>
+      </sc.Filter>
     );
   }
 

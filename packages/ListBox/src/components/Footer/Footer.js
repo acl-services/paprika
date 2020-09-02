@@ -1,10 +1,10 @@
 import React from "react";
 import Button from "@paprika/button";
 import PropTypes from "prop-types";
-import { FooterContainerStyled } from "./Footer.styles";
 import useListBox from "../../useListBox";
 import invokeOnChange from "../../helpers/invokeOnChange";
 import * as types from "../../types";
+import * as sc from "./Footer.styles";
 
 const propTypes = {
   /** If true it makes the accept button visible */
@@ -127,7 +127,7 @@ export function FooterComponent(props, ref) {
   const { isDisabled } = props;
 
   return (
-    <FooterContainerStyled ref={ref}>
+    <sc.Footer ref={ref}>
       <div>
         {isAcceptVisible && (
           <Button isDisabled={isDisabled} kind={kindAccept} size={size} onClick={handleClickAccept}>
@@ -155,7 +155,7 @@ export function FooterComponent(props, ref) {
 
         {renderExtraButton()}
       </div>
-    </FooterContainerStyled>
+    </sc.Footer>
   );
 }
 
