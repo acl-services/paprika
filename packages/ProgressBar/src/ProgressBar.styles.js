@@ -3,7 +3,6 @@ import tokens from "@paprika/tokens";
 import stylers from "@paprika/stylers";
 
 export const ProgressBar = styled.div`
-  height: 100%;
   text-align: center;
   width: 100%;
 `;
