@@ -1,10 +1,10 @@
 import React from "react";
 import Button from "@paprika/button";
 import PropTypes from "prop-types";
-import { ShirtSizes } from "@paprika/helpers/lib/customPropTypes";
 import { FooterContainerStyled } from "./Footer.styles";
 import useListBox from "../../useListBox";
 import invokeOnChange from "../../helpers/invokeOnChange";
+import * as types from "../../types";
 
 const propTypes = {
   /** If true it makes the accept button visible */
@@ -58,9 +58,9 @@ const defaultProps = {
   isCancelVisible: true,
   isClearVisible: true,
   isDisabled: false,
-  kindAccept: Button.Kinds.PRIMARY,
-  kindCancel: Button.Kinds.MINOR,
-  kindClear: Button.Kinds.MINOR,
+  kindAccept: types.PRIMARY,
+  kindCancel: types.MINOR,
+  kindClear: types.MINOR,
   labelAccept: "Accept",
   labelCancel: "Cancel",
   labelClear: "Clear",
@@ -68,7 +68,7 @@ const defaultProps = {
   onClickCancel: null,
   onClickClear: null,
   renderExtraButton: () => {},
-  size: ShirtSizes.SMALL,
+  size: types.SMALL,
 };
 
 export function FooterComponent(props, ref) {

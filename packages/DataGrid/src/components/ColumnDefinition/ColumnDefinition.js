@@ -38,11 +38,13 @@ function customA11yTextPropTypeValidation(props, propName) {
 
 const propTypes = {
   canGrow: PropTypes.bool,
-  cell: customA11yTextPropTypeValidation.isRequired,
+  // eslint-disable-next-line react/require-default-props
+  cell: customA11yTextPropTypeValidation,
   cellA11yText: PropTypes.func,
   cellProps: PropTypes.func,
   cellPropsResetCSS: PropTypes.bool,
-  header: customA11yTextPropTypeValidation.isRequired,
+  // eslint-disable-next-line react/require-default-props
+  header: customA11yTextPropTypeValidation,
   headerA11yText: PropTypes.func,
   headerProps: PropTypes.func,
   isSticky: PropTypes.bool,

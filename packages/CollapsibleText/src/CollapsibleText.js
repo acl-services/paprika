@@ -81,7 +81,7 @@ function CollapsibleText(props) {
             aria-controls={contentId}
             aria-expanded={!isCollapsed}
             isSemantic={false}
-            kind={Button.Kinds.LINK}
+            kind={Button.types.kind.LINK}
             onClick={handleToggle}
           >
             {getToggleLabel()}

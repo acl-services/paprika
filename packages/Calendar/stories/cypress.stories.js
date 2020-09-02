@@ -5,7 +5,7 @@ import L10n from "@paprika/l10n";
 import { getStoryName } from "storybook/storyTree";
 import SingleDateCalendar from "../src/SingleDateCalendar";
 import DateRangeCalendar from "../src/DateRangeCalendar";
-import { START_DATE } from "../src/tokens";
+import * as types from "../src/types";
 
 const storyName = getStoryName("Calendar");
 
@@ -24,7 +24,7 @@ storiesOf(`${storyName}/Backyard/Tests/Cypress`, module)
     );
   })
   .add("DateRangeCalendar test", () => {
-    const [currentInput, setCurrentInput] = React.useState(START_DATE);
+    const [currentInput, setCurrentInput] = React.useState(types.START_DATE);
     const [{ startDate, endDate }, setDates] = React.useState({ startDate: null, endDate: null });
 
     return (
@@ -33,7 +33,7 @@ storiesOf(`${storyName}/Backyard/Tests/Cypress`, module)
           startDate={startDate}
           endDate={endDate}
           onDatesChange={setDates}
-          focusedInput={currentInput || START_DATE}
+          focusedInput={currentInput || DateRangeCalendar.types.date.START}
           onFocusChange={setCurrentInput}
         />
       </L10n>

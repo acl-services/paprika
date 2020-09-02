@@ -35,7 +35,7 @@ export default () => {
           const bgColor = props.color;
           return (
             <div style={{ margin: "8px" }}>
-              <Card size="medium">
+              <Card size={Card.types.size.MEDIUM}>
                 <Card.Header>
                   <Avatar backgroundColor={bgColor} color="white">
                     {props.avatar}
