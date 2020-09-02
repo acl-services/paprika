@@ -15,13 +15,18 @@ const progress = keyframes`
 
 const animation = css`
   animation: ${progress} 0.5s infinite linear;
-  background-image: linear-gradient(${tokens.color.purple}, ${tokens.color.purpleLighten20}, ${tokens.color.purple});
+  background-image: linear-gradient(
+    to left,
+    ${tokens.color.purple} 30%,
+    ${tokens.color.purpleLighten20} 80%,
+    ${tokens.color.purple} 100%
+  );
   background-size: 50% 100%;
 `;
 
 export const Bar = styled.div`
   background-color: ${tokens.color.blackLighten80};
-  border: 1px solid ${tokens.color.blackLighten30};
+  border: 1px solid ${tokens.border.color};
   border-radius: ${tokens.border.radius};
   height: ${stylers.spacer(2)};
   width: 100%;
@@ -30,7 +35,8 @@ export const Bar = styled.div`
 export const BarFiller = styled.div(
   ({ completed }) => css`
     ${animation}
-    height: ${stylers.spacer(2)};
+    border-radius: inherit;
+    height: inherit;
     width: ${completed}%;
   `
 );

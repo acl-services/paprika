@@ -5,8 +5,9 @@ import Heading from "@paprika/heading";
 import ProgressBar from "../../src";
 
 const progressBarProps = () => ({
+  a11yText: text("a11yText", ""),
   header: text("header", "Preparing your file..."),
-  bodyText: text("bodyText", "Control attributes are getting updated. This might take more than 15secs."),
+  bodyText: text("bodyText", ""),
   completed: number("completed", "20"),
 });
 

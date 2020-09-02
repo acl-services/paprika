@@ -1,5 +1,5 @@
 import React from "react";
-import { render } from "@testing-library/react";
+import { render, screen } from "@testing-library/react";
 import ProgressBar from "../src";
 
 function renderComponent(props = {}) {
@@ -11,9 +11,9 @@ function renderComponent(props = {}) {
 }
 
 describe("ProgressBar", () => {
-  it("should render ProgressBar", () => {
-    const { getByText, getAllByText } = renderComponent();
-    expect(getByText("Preparing your file...")).toBeVisible();
-    expect(getAllByText(/This might take more than 15secs/i)[0]).toBeVisible();
+  it("should render ProgressBar header and bodyText", () => {
+    renderComponent();
+    expect(screen.queryByText("Preparing your file...")).toBeVisible();
+    expect(screen.queryAllByText(/This might take more than 15secs/i)[0]).toBeVisible();
   });
 });
