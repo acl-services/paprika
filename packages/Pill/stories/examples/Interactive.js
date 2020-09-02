@@ -12,7 +12,7 @@ const InteractiveExample = () => {
     <Story>
       <Tagline>Check action log for more details:</Tagline>
       <br />
-      <Pill onClick={handlePillClick} pillColor="mediumRisk">
+      <Pill onClick={handlePillClick} pillColor={Pill.types.severity.MEDIUM_RISK}>
         Click me
       </Pill>
     </Story>

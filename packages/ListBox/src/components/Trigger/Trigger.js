@@ -240,7 +240,7 @@ export default function Trigger(props) {
           isSemantic={false}
           isDisabled={isDisabled}
           data-pka-anchor="clear-button"
-          kind={Button.Kinds.MINOR}
+          kind={Button.types.kind.MINOR}
           onClick={handleClickClear}
           shouldHideCaret={shouldHideCaret}
           size={size}

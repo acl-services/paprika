@@ -1,32 +1,10 @@
 import React from "react";
 import PropTypes from "prop-types";
-import { RefOf, ShirtSizes } from "@paprika/helpers/lib/customPropTypes";
+import { RefOf } from "@paprika/helpers/lib/customPropTypes";
 import Button from "@paprika/button";
 import Heading from "@paprika/heading";
+import * as types from "../../types";
 import * as sc from "./Header.styles";
-
-const propTypes = {
-  children: PropTypes.node.isRequired,
-  getPushContentElement: PropTypes.func,
-  hasCloseButton: PropTypes.bool,
-  isCompact: PropTypes.bool,
-  isHeaderSticky: PropTypes.bool,
-  kind: PropTypes.oneOf([Button.Kinds.DEFAULT, Button.Kinds.PRIMARY]),
-  level: PropTypes.oneOf([1, 2, 3, 4, 5, 6]),
-  onClose: PropTypes.func,
-  refHeading: RefOf(),
-};
-
-const defaultProps = {
-  hasCloseButton: true,
-  getPushContentElement: () => {},
-  kind: Button.Kinds.DEFAULT,
-  isHeaderSticky: false,
-  level: 2,
-  isCompact: false,
-  onClose: () => {},
-  refHeading: null,
-};
 
 const Header = React.forwardRef((props, ref) => {
   const {
@@ -58,13 +36,40 @@ const Header = React.forwardRef((props, ref) => {
           data-pka-anchor="sidepanel.header.close"
           isSemantic={false}
           onClick={onClose}
-          size={isCompact ? ShirtSizes.SMALL : ShirtSizes.MEDIUM}
-          isDark={kind === Button.Kinds.PRIMARY}
+          size={isCompact ? types.SMALL : types.MEDIUM}
+          isDark={kind === types.sidePanelKinds.PRIMARY}
         />
       )}
     </sc.Header>
   );
 });
+
+Header.types = {
+  kind: types.sidePanelKinds,
+};
+
+const propTypes = {
+  children: PropTypes.node.isRequired,
+  getPushContentElement: PropTypes.func,
+  hasCloseButton: PropTypes.bool,
+  isCompact: PropTypes.bool,
+  isHeaderSticky: PropTypes.bool,
+  kind: PropTypes.oneOf([Header.types.kind.DEFAULT, Header.types.kind.PRIMARY]),
+  level: PropTypes.oneOf([1, 2, 3, 4, 5, 6]),
+  onClose: PropTypes.func,
+  refHeading: RefOf(),
+};
+
+const defaultProps = {
+  hasCloseButton: true,
+  getPushContentElement: () => {},
+  kind: Header.types.kind.DEFAULT,
+  isHeaderSticky: false,
+  level: 2,
+  isCompact: false,
+  onClose: () => {},
+  refHeading: null,
+};
 
 Header.displayName = "SidePanel.Header";
 Header.propTypes = propTypes;

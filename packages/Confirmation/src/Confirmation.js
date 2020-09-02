@@ -1,46 +1,14 @@
 import React from "react";
 import PropTypes from "prop-types";
 import nanoid from "nanoid";
+import * as constants from "@paprika/constants/lib/Constants";
 import Button from "@paprika/button";
 import Heading from "@paprika/heading";
-import { ShirtSizes } from "@paprika/helpers/lib/customPropTypes";
 import useI18n from "@paprika/l10n/lib/useI18n";
 import Popover from "@paprika/popover";
 import TriggerButton from "./components/TriggerButton";
+import * as types from "./types";
 import { confirmStyles, confirmBodyStyles, confirmFooterStyles } from "./Confirmation.styles";
-
-const propTypes = {
-  /** Content of the popover confirmation */
-  body: PropTypes.node,
-  /** Size of the button */
-  buttonSize: PropTypes.oneOf(ShirtSizes.DEFAULT),
-  children: PropTypes.node,
-  /** Determine the styling of the confirm button */
-  confirmButtonType: PropTypes.oneOf([Button.Kinds.PRIMARY, Button.Kinds.DESTRUCTIVE]),
-  /** Label for the confirm button  */
-  confirmLabel: PropTypes.string.isRequired,
-  /** If the popover is open by default */
-  defaultIsOpen: PropTypes.bool,
-  /** Heading for the popover confirmation */
-  heading: PropTypes.string,
-  /** If the confirm button should render in a pending state (with a spinner icon) */
-  isPending: PropTypes.bool,
-  /** Callback when cancel button is clicked */
-  onClose: PropTypes.func,
-  /** Callback when confirm button is clicked */
-  onConfirm: PropTypes.func.isRequired,
-};
-
-const defaultProps = {
-  body: null,
-  buttonSize: ShirtSizes.MEDIUM,
-  children: null,
-  confirmButtonType: Button.Kinds.DESTRUCTIVE,
-  defaultIsOpen: false,
-  heading: null,
-  isPending: false,
-  onClose: () => {},
-};
 
 const Confirmation = props => {
   const {
@@ -149,7 +117,7 @@ const Confirmation = props => {
               data-pka-anchor="confirmation.cancel-button"
               isDisabled={isPending}
               isSemantic={false}
-              kind={Button.Kinds.MINOR}
+              kind={types.MINOR}
               onClick={handleCloseConfirm}
               size={buttonSize}
             >
@@ -174,6 +142,48 @@ const Confirmation = props => {
       {popoverContent}
     </Popover>
   );
+};
+
+Confirmation.types = {
+  size: constants.defaultSize,
+  kind: constants.kind,
+};
+
+const propTypes = {
+  /** Content of the popover confirmation */
+  body: PropTypes.node,
+  /** Size of the button */
+  buttonSize: PropTypes.oneOf([
+    Confirmation.types.size.SMALL,
+    Confirmation.types.size.MEDIUM,
+    Confirmation.types.size.LARGE,
+  ]),
+  children: PropTypes.node,
+  /** Determine the styling of the confirm button */
+  confirmButtonType: PropTypes.oneOf([Confirmation.types.kind.PRIMARY, Confirmation.types.kind.DESTRUCTIVE]),
+  /** Label for the confirm button  */
+  confirmLabel: PropTypes.string.isRequired,
+  /** If the popover is open by default */
+  defaultIsOpen: PropTypes.bool,
+  /** Heading for the popover confirmation */
+  heading: PropTypes.string,
+  /** If the confirm button should render in a pending state (with a spinner icon) */
+  isPending: PropTypes.bool,
+  /** Callback when cancel button is clicked */
+  onClose: PropTypes.func,
+  /** Callback when confirm button is clicked */
+  onConfirm: PropTypes.func.isRequired,
+};
+
+const defaultProps = {
+  body: null,
+  buttonSize: Confirmation.types.size.MEDIUM,
+  children: null,
+  confirmButtonType: Confirmation.types.kind.DESTRUCTIVE,
+  defaultIsOpen: false,
+  heading: null,
+  isPending: false,
+  onClose: () => {},
 };
 
 Confirmation.displayName = "Confirmation";

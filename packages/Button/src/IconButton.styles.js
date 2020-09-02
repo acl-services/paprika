@@ -1,25 +1,24 @@
 import styled, { css } from "styled-components";
 import tokens from "@paprika/tokens";
 import stylers from "@paprika/stylers";
-import { ShirtSizes } from "@paprika/helpers/lib/customPropTypes";
-import Button from "./Button";
+import * as types from "./types";
 
 const iconButtonSizes = {
-  [ShirtSizes.SMALL]: css`
+  [types.SMALL]: css`
     font-size: 14px;
     height: ${stylers.spacer(3)};
     line-height: ${Number.parseInt(tokens.space, 10) * 3 - 2}px;
     padding: 0;
     width: ${stylers.spacer(3)};
   `,
-  [ShirtSizes.MEDIUM]: css`
+  [types.MEDIUM]: css`
     font-size: 18px;
     height: ${stylers.spacer(4)};
     line-height: ${Number.parseInt(tokens.space, 10) * 4 - 2}px;
     padding: 0;
     width: ${stylers.spacer(4)};
   `,
-  [ShirtSizes.LARGE]: css`
+  [types.LARGE]: css`
     font-size: 22px;
     height: ${stylers.spacer(5)};
     line-height: ${Number.parseInt(tokens.space, 10) * 5 - 2}px;
@@ -55,7 +54,7 @@ const minorStyles = ({ isDisabled }) => css`
 export const IconButton = styled(Button)(
   ({ size, kind }) => css`
     ${iconButtonSizes[size]}
-    ${kind === Button.Kinds.MINOR ? minorStyles : ""}
+    ${kind === types.MINOR ? minorStyles : ""}
 
   [data-pka-anchor="button.icon"] {
       color: inherit;
