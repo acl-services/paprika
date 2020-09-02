@@ -1,12 +1,11 @@
 import React from "react";
 import PropTypes from "prop-types";
 import { VariableSizeGrid as Grid } from "react-window";
+import * as constants from "@paprika/constants/lib/Constants";
 import useI18n from "@paprika/l10n/lib/useI18n";
 import extractChildren from "@paprika/helpers/lib/extractChildren";
 import "@paprika/helpers/lib/dom/elementScrollToPolyfill";
 import nanoid from "nanoid";
-
-import types from "./types";
 import useGridEventHandler, { getGridRefId } from "./hooks/useGridEventHandler";
 import ColumnDefinition from "./components/ColumnDefinition";
 import * as sc from "./DataGrid.styles";
@@ -16,58 +15,6 @@ import { Row, HeaderRow, StickyRow, StickyHeaderRow, createItemData } from "./Da
 import getScrollbarWidth from "./helpers/getScrollbarWidth";
 
 window.paprika = { dataGridRef: {} };
-
-const propTypes = {
-  /** If the data cell should automatically get focus  */
-  autofocus: PropTypes.bool,
-  /** Define the look for borders in the table DataGrid.types.GRID, DataGrid.types.NONE, etc.  */
-  borderType: PropTypes.oneOf([types.GRID, types.NONE, types.HORIZONTAL, types.VERTICAL]),
-  children: PropTypes.node.isRequired,
-  /** This will force the table to include in the calculation of the table the scrollbar thickness */
-  forceTableWidthWithScrollBars: PropTypes.bool,
-  /** Add an alternate background on the DataGrid's rows */
-  hasZebraStripes: PropTypes.bool,
-  /** Array of data to be stored in the DataGrid */
-  data: PropTypes.arrayOf(PropTypes.shape({})),
-  /** Sets the height of the DataGrid */
-  height: PropTypes.number,
-  /** Callback onClick */
-  onClick: PropTypes.func,
-  /** Callback onKeyDown press */
-  onKeyDown: PropTypes.func,
-  /** Callback when Enter key is pressed */
-  onPressEnter: PropTypes.func,
-  /** Callback when Shift + Spacebar is pressed */
-  onPressShiftSpaceBar: PropTypes.func,
-  /** Callback when Spacebar is pressed */
-  onPressSpaceBar: PropTypes.func,
-  /** Callback when user click the f key. Might change in the future */
-  onRowChecked: PropTypes.func,
-  /** Callback with information about the prev and next highlighted cell */
-  onHighlighted: PropTypes.func,
-  /** Sets the row height */
-  rowHeight: PropTypes.number,
-  /** Sets the DataGrid width */
-  width: PropTypes.number,
-};
-
-const defaultProps = {
-  autofocus: true,
-  borderType: "grid",
-  data: [],
-  forceTableWidthWithScrollBars: false,
-  hasZebraStripes: false,
-  height: 600,
-  onClick: null,
-  onHighlighted: () => {},
-  onKeyDown: () => {},
-  onPressEnter: null,
-  onPressShiftSpaceBar: null,
-  onPressSpaceBar: null,
-  onRowChecked: () => {},
-  rowHeight: 36,
-  width: null,
-};
 
 const outerElementType = React.forwardRef((props, ref) => <sc.OuterElementType role="rowgroup" ref={ref} {...props} />);
 const innerElementType = React.forwardRef((props, ref) => <sc.InnerElementType role="row" ref={ref} {...props} />);
@@ -601,11 +548,71 @@ const DataGrid = React.forwardRef((props, ref) => {
   );
 });
 
+DataGrid.types = {
+  border: constants.gridTypes,
+};
+
+const propTypes = {
+  /** If the data cell should automatically get focus  */
+  autofocus: PropTypes.bool,
+  /** Define the look for borders in the table types.DataGrid.GRID, types.DataGrid.NONE, etc.  */
+  borderType: PropTypes.oneOf([
+    DataGrid.types.border.GRID,
+    DataGrid.types.border.NONE,
+    DataGrid.types.border.HORIZONTAL,
+    DataGrid.types.border.VERTICAL,
+  ]),
+  children: PropTypes.node.isRequired,
+  /** This will force the table to include in the calculation of the table the scrollbar thickness */
+  forceTableWidthWithScrollBars: PropTypes.bool,
+  /** Add an alternate background on the DataGrid's rows */
+  hasZebraStripes: PropTypes.bool,
+  /** Array of data to be stored in the DataGrid */
+  data: PropTypes.arrayOf(PropTypes.shape({})),
+  /** Sets the height of the DataGrid */
+  height: PropTypes.number,
+  /** Callback onClick */
+  onClick: PropTypes.func,
+  /** Callback onKeyDown press */
+  onKeyDown: PropTypes.func,
+  /** Callback when Enter key is pressed */
+  onPressEnter: PropTypes.func,
+  /** Callback when Shift + Spacebar is pressed */
+  onPressShiftSpaceBar: PropTypes.func,
+  /** Callback when Spacebar is pressed */
+  onPressSpaceBar: PropTypes.func,
+  /** Callback when user click the f key. Might change in the future */
+  onRowChecked: PropTypes.func,
+  /** Callback with information about the prev and next highlighted cell */
+  onHighlighted: PropTypes.func,
+  /** Sets the row height */
+  rowHeight: PropTypes.number,
+  /** Sets the DataGrid width */
+  width: PropTypes.number,
+};
+
+const defaultProps = {
+  autofocus: true,
+  borderType: DataGrid.types.border.GRID,
+  data: [],
+  forceTableWidthWithScrollBars: false,
+  hasZebraStripes: false,
+  height: 600,
+  onClick: null,
+  onHighlighted: () => {},
+  onKeyDown: () => {},
+  onPressEnter: null,
+  onPressShiftSpaceBar: null,
+  onPressSpaceBar: null,
+  onRowChecked: () => {},
+  rowHeight: 36,
+  width: null,
+};
+
 DataGrid.ColumnDefinition = ColumnDefinition;
 DataGrid.defaultProps = defaultProps;
 DataGrid.InfiniteScroll = InfiniteScroll;
 DataGrid.propTypes = propTypes;
 DataGrid.Basement = Basement;
-DataGrid.types = types;
 
 export default DataGrid;

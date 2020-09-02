@@ -15,6 +15,7 @@
   },
   "dependencies": {
     "@babel/runtime-corejs2": "^7.3.1",
+    "@paprika/constants": "^0.1.0",
     "@paprika/button": "^0.3.7",
     "@paprika/dropdown-menu": "^2.0.39",
     "@paprika/helpers": "0.2.13",

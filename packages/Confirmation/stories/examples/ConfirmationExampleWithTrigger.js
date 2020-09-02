@@ -10,7 +10,7 @@ const ConfirmationExample = () => {
     <div>
       <Confirmation
         align="bottom"
-        buttonSize="medium"
+        buttonSize={Confirmation.types.size.MEDIUM}
         confirmLabel="Confirm button text"
         body="Description text"
         onConfirm={handleConfirm}

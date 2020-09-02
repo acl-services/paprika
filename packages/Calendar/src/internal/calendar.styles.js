@@ -5,7 +5,7 @@ import stylers from "@paprika/stylers";
 
 import calendarBaseStyles from "./calendar.base.styles";
 import { hoveredItemStyles, selectedItemStyles, visuallyHiddenStyles } from "./shared.styles";
-import { Kinds } from "../tokens";
+import * as types from "../types";
 
 export const arrowIconStyles = css`
   > svg[role="presentation"] {
@@ -66,7 +66,7 @@ const calendarStyles = css`
     margin-left: -9px;
     margin-right: -10px;
     ${({ kind }) =>
-      kind === Kinds.EMBEDDED ||
+      kind === types.kind.EMBEDDED ||
       css`
         background-color: ${tokens.color.blackLighten80};
         border-bottom: 1px solid ${tokens.border.color};

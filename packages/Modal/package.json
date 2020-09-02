@@ -14,6 +14,7 @@
     "access": "public"
   },
   "dependencies": {
+    "@paprika/constants": "^0.1.0",
     "@paprika/button": "^0.3.7",
     "@paprika/heading": "^0.4.4",
     "@paprika/helpers": "^0.2.13",

@@ -16,7 +16,7 @@ const ExampleStory = () => (
   <TransformedStory>
     <Popover>
       <Popover.Trigger>
-        <Button kind="secondary">Open Popover</Button>
+        <Button kind={Button.types.kind.SECONDARY}>Open Popover</Button>
       </Popover.Trigger>
       <Popover.Content>
         <Popover.Card>This popover renders inside a &lt;div&gt; with a CSS transform applied to it.</Popover.Card>
