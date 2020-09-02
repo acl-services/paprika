@@ -9,7 +9,7 @@ import * as constants from "@paprika/constants/lib/Constants";
 import * as sc from "./Button.styles";
 
 export const ButtonIcon = props => (props.children ? <sc.ButtonIcon data-pka-anchor="button.icon" {...props} /> : null);
-                                    
+
 const Button = React.forwardRef((props, ref) => {
   const {
     a11yText,

@@ -1,7 +1,6 @@
 import React from "react";
 import PropTypes from "prop-types";
 import * as constants from "@paprika/constants/lib/Constants";
-import Button from "./Button";
 import * as sc from "./IconButton.styles";
 
 const IconButton = React.forwardRef((props, ref) => {
