@@ -134,31 +134,35 @@ const processPropsList = ({ info, folder, path, paprikaDocs = null }) => {
 shell.ls("packages").forEach(folder => {
   if (!skipPackages.includes(folder) && !packagesProcessInTsc.includes(folder)) {
     const path = `./packages/${folder}`;
-    const { paprikaDocs = null } = JSON.parse(fs.readFileSync(`${path}/package.json`, "utf8"));
-    const componentContent = fs.readFileSync(`${path}/src/${folder}.js`, "utf8");
-    const arrayOfComponentsDefinitions = reactDocs.parse(
-      componentContent,
-      reactDocs.resolver.findAllComponentDefinitions
-    );
+    try {
+      const { paprikaDocs = null } = JSON.parse(fs.readFileSync(`${path}/package.json`, "utf8"));
+      const componentContent = fs.readFileSync(`${path}/src/${folder}.js`, "utf8");
+      const arrayOfComponentsDefinitions = reactDocs.parse(
+        componentContent,
+        reactDocs.resolver.findAllComponentDefinitions
+      );
 
-    const info = extractCorrectComponentDefinition({ desireDefinition: folder, arrayOfComponentsDefinitions });
+      const info = extractCorrectComponentDefinition({ desireDefinition: folder, arrayOfComponentsDefinitions });
 
-    if (!info) return;
+      if (!info) return;
 
-    const propsList = processPropsList({
-      info,
-      componentContent,
-      path,
-      paprikaDocs,
-      folder,
-    });
+      const propsList = processPropsList({
+        info,
+        componentContent,
+        path,
+        paprikaDocs,
+        folder,
+      });
 
-    const template = renderDeclarationTemplate({
-      displayName: info.displayName,
-      props: propsList.join(""),
-    });
+      const template = renderDeclarationTemplate({
+        displayName: info.displayName,
+        props: propsList.join(""),
+      });
 
-    fs.writeFileSync(`${path}/${fileName}`, template, { encoding: "utf8", flag: "w" });
+      fs.writeFileSync(`${path}/${fileName}`, template, { encoding: "utf8", flag: "w" });
+    } catch (e) {
+      console.warn(e);
+    }
   }
 });
 
