@@ -24,7 +24,7 @@ const data = [
 
 function Basic() {
   return (
-    <Table data={data}>
+    <Table a11yText="" data={data}>
       <Table.ColumnDefinition header="Name" cell="name" />
       <Table.ColumnDefinition header="LastName" cell="lastName" />
     </Table>
@@ -45,28 +45,28 @@ export function Borders() {
     <bordersStyles.Container>
       <bordersStyles.Gap>
         <h4>Grid default value</h4>
-        <Table data={data}>
+        <Table a11yText="" data={data}>
           <Table.ColumnDefinition header="Name" cell="name" />
           <Table.ColumnDefinition header="LastName" cell="lastName" />
         </Table>
       </bordersStyles.Gap>
       <bordersStyles.Gap>
         <h4>Horizontal</h4>
-        <Table data={data} borderType={Table.types.HORIZONTAL}>
+        <Table a11yText="" data={data} borderType={Table.types.border.HORIZONTAL}>
           <Table.ColumnDefinition header="Name" cell="name" />
           <Table.ColumnDefinition header="LastName" cell="lastName" />
         </Table>
       </bordersStyles.Gap>
       <bordersStyles.Gap>
         <h4>Vertical</h4>
-        <Table data={data} borderType={Table.types.VERTICAL}>
+        <Table a11yText="" data={data} borderType={Table.types.border.VERTICAL}>
           <Table.ColumnDefinition header="Name" cell="name" />
           <Table.ColumnDefinition header="LastName" cell="lastName" />
         </Table>
       </bordersStyles.Gap>
       <bordersStyles.Gap>
         <h4>None</h4>
-        <Table data={data} borderType={Table.types.NONE}>
+        <Table a11yText="" data={data} borderType={Table.types.border.NONE}>
           <Table.ColumnDefinition header="Name" cell="name" />
           <Table.ColumnDefinition header="LastName" cell="lastName" />
         </Table>
@@ -80,28 +80,28 @@ export function WithZebras() {
     <bordersStyles.Container>
       <bordersStyles.Gap>
         <h4>Grid default value</h4>
-        <Table data={data} hasZebraStripes>
+        <Table a11yText="" data={data} hasZebraStripes>
           <Table.ColumnDefinition header="Name" cell="name" />
           <Table.ColumnDefinition header="LastName" cell="lastName" />
         </Table>
       </bordersStyles.Gap>
       <bordersStyles.Gap>
         <h4>Horizontal</h4>
-        <Table data={data} hasZebraStripes borderType={Table.types.HORIZONTAL}>
+        <Table a11yText="" data={data} hasZebraStripes borderType={Table.types.border.HORIZONTAL}>
           <Table.ColumnDefinition header="Name" cell="name" />
           <Table.ColumnDefinition header="LastName" cell="lastName" />
         </Table>
       </bordersStyles.Gap>
       <bordersStyles.Gap>
         <h4>Vertical</h4>
-        <Table data={data} hasZebraStripes borderType={Table.types.VERTICAL}>
+        <Table a11yText="" data={data} hasZebraStripes borderType={Table.types.border.VERTICAL}>
           <Table.ColumnDefinition header="Name" cell="name" />
           <Table.ColumnDefinition header="LastName" cell="lastName" />
         </Table>
       </bordersStyles.Gap>
       <bordersStyles.Gap>
         <h4>None</h4>
-        <Table data={data} hasZebraStripes borderType={Table.types.NONE}>
+        <Table a11yText="" data={data} hasZebraStripes borderType={Table.types.border.NONE}>
           <Table.ColumnDefinition header="Name" cell="name" />
           <Table.ColumnDefinition header="LastName" cell="lastName" />
         </Table>

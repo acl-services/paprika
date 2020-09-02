@@ -6,12 +6,12 @@ import Heading from "@paprika/heading";
 import { CheckboxStory } from "../Checkbox.stories.styles";
 import Checkbox from "../../src/Checkbox";
 
-const { CHECKED, UNCHECKED } = Checkbox.states;
+const { CHECKED, UNCHECKED } = Checkbox.types.state;
 
 const checkboxProps = () => ({
   size: select("size", ShirtSizes.DEFAULT, "medium"),
   isDisabled: boolean("isDisabled", false),
-  checkedState: select("checkedState", Object.values(Checkbox.states), UNCHECKED),
+  checkedState: select("checkedState", Object.values(Checkbox.types.state), UNCHECKED),
   a11yText: text("a11yText", ""),
 });
 

@@ -2,6 +2,10 @@
 
 ## [Unreleased]
 
+### Added
+
+- Updated: Created and placed all constants into type.js file. [@kaan.darcey](https://github.com/KDarcey).
+
 ## [] - 2020-07-29
 
 ### Added

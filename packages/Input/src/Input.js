@@ -1,74 +1,11 @@
 import React from "react";
 import PropTypes from "prop-types";
 import classNames from "classnames";
-import { ShirtSizes, InputValidTypes } from "@paprika/helpers/lib/customPropTypes";
+import * as constants from "@paprika/constants/lib/Constants";
 import TimesCircleIcon from "@paprika/icon/lib/TimesCircle";
 import Button from "@paprika/button";
+import * as types from "./types";
 import inputStyles from "./Input.styles";
-
-const propTypes = {
-  /** Descriptive a11y text for assistive technologies. By default, text from children node will be used. */
-  a11yText: PropTypes.string,
-
-  a11yDescribedByIds: PropTypes.string,
-
-  /** Sets the class for the input. */
-  className: PropTypes.string,
-
-  /** Custom icon for the clear action in the input. */
-  clearIcon: PropTypes.node,
-
-  /** Sets the default input value  */
-  defaultValue: PropTypes.string,
-
-  /** If true displays a clear button inside the input if it contains a value.  */
-  hasClearButton: PropTypes.bool,
-
-  /** If true displays a red border around input to show error.  */
-  hasError: PropTypes.bool,
-
-  /** Displays an icon inside the input. */
-  icon: PropTypes.node,
-
-  /** If true it makes the input disabled. */
-  isDisabled: PropTypes.bool,
-
-  /** If true it makes the input read only. */
-  isReadOnly: PropTypes.bool,
-
-  /** Callback to be executed when the input value is changed. Should not be used with defaultValue prop */
-  onChange: PropTypes.func,
-
-  /** Callback to be executed when the input value is cleared */
-  onClear: PropTypes.func,
-
-  /** Changes the size of the input. */
-  size: PropTypes.oneOf(ShirtSizes.DEFAULT),
-
-  /** Allows user to specify the type of input. */
-  type: PropTypes.oneOf(InputValidTypes.ALL),
-
-  /** The value inside of the input */
-  value: PropTypes.string,
-};
-
-const defaultProps = {
-  a11yText: null,
-  a11yDescribedByIds: PropTypes.string,
-  clearIcon: null,
-  className: null,
-  defaultValue: "",
-  hasClearButton: false,
-  hasError: false,
-  icon: null,
-  isDisabled: false,
-  isReadOnly: false,
-  onChange: () => {},
-  onClear: () => {},
-  size: ShirtSizes.MEDIUM,
-  type: "text",
-  value: null,
-};
 
 const Input = React.forwardRef((props, ref) => {
   const inputClearHandler = e => {
@@ -80,13 +17,13 @@ const Input = React.forwardRef((props, ref) => {
   const renderClear = () => {
     const { clearIcon, hasClearButton, isDisabled, isReadOnly, size, value } = props;
     if (!hasClearButton || isDisabled || isReadOnly || !value) return null;
-    const iconSize = size === ShirtSizes.LARGE ? ShirtSizes.MEDIUM : ShirtSizes.SMALL;
+    const iconSize = size === types.LARGE ? types.MEDIUM : types.SMALL;
 
     return (
       <Button.Icon
         a11yText="Clear Input" // TODO: add L10n
         className="form-input__clear"
-        kind={Button.Kinds.MINOR}
+        kind={types.MINOR}
         size={iconSize}
         onClick={inputClearHandler}
       >
@@ -155,6 +92,84 @@ const Input = React.forwardRef((props, ref) => {
     </div>
   );
 });
+
+Input.types = {
+  size: constants.defaultSize,
+  input: types.inputValidTypes,
+};
+
+const propTypes = {
+  /** String of Ids provided by the formElement component when used as a child of FormElement.Content  */
+  a11yDescribedByIds: PropTypes.string,
+
+  /** Descriptive a11y text for assistive technologies. By default, text from children node will be used. */
+  a11yText: PropTypes.string,
+
+  /** Sets the class for the input. */
+  className: PropTypes.string,
+
+  /** Custom icon for the clear action in the input. */
+  clearIcon: PropTypes.node,
+
+  /** Sets the default input value  */
+  defaultValue: PropTypes.string,
+
+  /** If true displays a clear button inside the input if it contains a value.  */
+  hasClearButton: PropTypes.bool,
+
+  /** If true displays a red border around input to show error.  */
+  hasError: PropTypes.bool,
+
+  /** Displays an icon inside the input. */
+  icon: PropTypes.node,
+
+  /** If true it makes the input disabled. */
+  isDisabled: PropTypes.bool,
+
+  /** If true it makes the input read only. */
+  isReadOnly: PropTypes.bool,
+
+  /** Callback to be executed when the input value is changed. Should not be used with defaultValue prop */
+  onChange: PropTypes.func,
+
+  /** Callback to be executed when the input value is cleared */
+  onClear: PropTypes.func,
+
+  /** Changes the size of the input. */
+  size: PropTypes.oneOf([Input.types.size.SMALL, Input.types.size.MEDIUM, Input.types.size.LARGE]),
+
+  /** Allows user to specify the type of input. */
+  type: PropTypes.oneOf([
+    types.inputValidTypes.EMAIL,
+    types.inputValidTypes.NUMBER,
+    types.inputValidTypes.PASSWORD,
+    types.inputValidTypes.SEARCH,
+    types.inputValidTypes.TELEPHONE,
+    types.inputValidTypes.TEXT,
+    types.inputValidTypes.URL,
+  ]),
+
+  /** The value inside of the input */
+  value: PropTypes.string,
+};
+
+const defaultProps = {
+  a11yDescribedByIds: null,
+  a11yText: null,
+  clearIcon: null,
+  className: null,
+  defaultValue: "",
+  hasClearButton: false,
+  hasError: false,
+  icon: null,
+  isDisabled: false,
+  isReadOnly: false,
+  onChange: () => {},
+  onClear: () => {},
+  size: Input.types.size.MEDIUM,
+  type: Input.types.input.TEXT,
+  value: null,
+};
 
 Input.displayName = "Input";
 Input.propTypes = propTypes;

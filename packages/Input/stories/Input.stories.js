@@ -14,6 +14,7 @@ import WithDisabledReadOnlyStory from "./examples/WithDisabledReadOnly";
 import TypesStory from "./examples/Types";
 import WithRef from "./examples/WithRef";
 import Uncontrolled from "./examples/Uncontrolled";
+import Input from "../src/Input";
 
 const storyName = getStoryName("Input");
 
@@ -34,6 +35,6 @@ storiesOf(`${storyName}/Examples`, module)
 
 storiesOf(`${storyName}/Backyard/Tests`, module).add("Screener", () => (
   <InputStory>
-    <InputExample placeholder="First Name" size="large" />
+    <InputExample placeholder="First Name" size={Input.types.size.LARGE} />
   </InputStory>
 ));

@@ -18,7 +18,7 @@ const CheckboxGroup = styled.div`
   }
 `;
 
-const { CHECKED, UNCHECKED } = Checkbox.states;
+const { CHECKED, UNCHECKED } = Checkbox.types.state;
 
 const CheckboxExample = props => {
   const [checkedState, setCheckedState] = React.useState(props.value || UNCHECKED);
