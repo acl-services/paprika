@@ -7,7 +7,7 @@ import Avatar from "../../src/components/Avatar";
 export default () => {
   return (
     <Story style={{ width: "312px" }}>
-      <Card size="small">
+      <Card size={Card.types.size.SMALL}>
         <Card.Header>
           <Avatar backgroundColor="black" color="white">
             <Icon />

@@ -11,7 +11,7 @@ const DropdownMenuTriggerExample = () => {
       <div>
         <br />
         <DropdownMenu align="bottom">
-          <DropdownMenu.Trigger buttonType="raw">
+          <DropdownMenu.Trigger buttonType={DropdownMenu.Trigger.types.button.RAW}>
             <p>I am a paragraph tag</p>
           </DropdownMenu.Trigger>
           <DropdownMenu.Item onClick={() => {}}>First Item</DropdownMenu.Item>
@@ -25,7 +25,7 @@ const DropdownMenuTriggerExample = () => {
       <div>
         <br />
         <DropdownMenu align="bottom">
-          <DropdownMenu.Trigger buttonType="icon">
+          <DropdownMenu.Trigger buttonType={DropdownMenu.Trigger.types.button.ICON}>
             <Add />
           </DropdownMenu.Trigger>
           <DropdownMenu.Item onClick={() => {}}>First Item</DropdownMenu.Item>

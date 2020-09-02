@@ -1,12 +1,12 @@
 import React from "react";
 import { select, text } from "@storybook/addon-knobs";
 import { Story, Rule, Tagline } from "storybook/assets/styles/common.styles";
-import { ShirtSizes } from "@paprika/helpers/lib/customPropTypes";
 import Heading from "@paprika/heading";
+import * as types from "../../src/types";
 import Spinner from "../../src";
 
 const spinnerProps = () => ({
-  size: select("size", ShirtSizes.DEFAULT, "medium"),
+  size: select("size", [types.SMALL, types.MEDIUM, types.LARGE], "medium"),
   caption: text("caption", "Spinning..."),
   a11yText: text("a11yText", ""),
 });

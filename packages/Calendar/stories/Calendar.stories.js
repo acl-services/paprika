@@ -7,7 +7,7 @@ import moment from "moment";
 import L10n from "@paprika/l10n";
 import DateRangeCalendar from "../src/DateRangeCalendar";
 import SingleDateCalendar from "../src/SingleDateCalendar";
-import { START_DATE } from "../src/tokens";
+import * as types from "../src/types";
 
 const storyName = getStoryName("Calendar");
 
@@ -30,7 +30,7 @@ storiesOf(storyName, module)
     );
   })
   .add("DateRangeCalendar Showcase", () => {
-    const [currentInput, setCurrentInput] = React.useState(START_DATE);
+    const [currentInput, setCurrentInput] = React.useState(types.START_DATE);
     const [{ startDate, endDate }, setDates] = React.useState({ startDate: null, endDate: null });
 
     return (
@@ -41,7 +41,7 @@ storiesOf(storyName, module)
             endDate={endDate}
             onDatesChange={setDates}
             resetPossibleDate={noop}
-            focusedInput={currentInput || START_DATE}
+            focusedInput={currentInput || DateRangeCalendar.types.date.START}
             onFocusChange={setCurrentInput}
           />
           <p>Selected start date: {startDate ? startDate.format("MMMM DD, YYYY") : <i>none</i>}</p>

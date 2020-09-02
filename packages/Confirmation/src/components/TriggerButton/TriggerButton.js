@@ -2,35 +2,12 @@ import React from "react";
 import PropTypes from "prop-types";
 import Button from "@paprika/button";
 import RawButton from "@paprika/raw-button";
-
-export const ButtonTypes = {
-  ICON: "icon",
-  RAW: "raw",
-  SIMPLE: "simple",
-};
+import * as types from "../../types";
 
 const ButtonComponentMap = {
   icon: Button.Icon,
   raw: RawButton,
   simple: Button,
-};
-
-ButtonTypes.ALL = Object.values(ButtonTypes);
-
-const propTypes = {
-  children: PropTypes.node,
-  buttonType: PropTypes.oneOf(ButtonTypes.ALL),
-  isConfirmOpen: PropTypes.bool,
-  onOpenConfirm: PropTypes.func,
-  triggerRef: PropTypes.shape({ current: PropTypes.instanceOf(Object) }),
-};
-
-const defaultProps = {
-  buttonType: ButtonTypes.SIMPLE,
-  children: null,
-  isConfirmOpen: false,
-  onOpenConfirm: () => {},
-  triggerRef: null,
 };
 
 const TriggerButton = props => {
@@ -53,8 +30,32 @@ const TriggerButton = props => {
   );
 };
 
+TriggerButton.types = {
+  button: types.buttonTypes,
+};
+
+const propTypes = {
+  children: PropTypes.node,
+  buttonType: PropTypes.oneOf([
+    TriggerButton.types.button.ICON,
+    TriggerButton.types.button.RAW,
+    TriggerButton.types.button.SIMPLE,
+  ]),
+  isConfirmOpen: PropTypes.bool,
+  onOpenConfirm: PropTypes.func,
+  triggerRef: PropTypes.shape({ current: PropTypes.instanceOf(Object) }),
+};
+
+const defaultProps = {
+  buttonType: TriggerButton.types.button.SIMPLE,
+  children: null,
+  isConfirmOpen: false,
+  onOpenConfirm: () => {},
+  triggerRef: null,
+};
+
 TriggerButton.displayName = "Confirmation.TriggerButton";
-TriggerButton.defaultProps = defaultProps;
 TriggerButton.propTypes = propTypes;
+TriggerButton.defaultProps = defaultProps;
 
 export default TriggerButton;

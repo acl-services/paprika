@@ -5,7 +5,7 @@ const shell = require("shelljs");
 // eslint-disable-next-line import/no-extraneous-dependencies
 const reactDocs = require("react-docgen");
 
-const skipPackages = ["helpers", "Stylers", "Tokens", "Guard", "Icon", "Overlay", "Select", "Calendar"];
+const skipPackages = ["helpers", "Stylers", "Tokens", "Guard", "Icon", "Overlay", "Select", "Calendar", "Constants"];
 
 const githubIssueBody = encodeURIComponent(`
 # Help wanted

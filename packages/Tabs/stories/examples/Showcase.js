@@ -3,6 +3,7 @@ import { boolean, select, number } from "@storybook/addon-knobs";
 import { Story, Rule, Tagline } from "storybook/assets/styles/common.styles";
 import Heading from "@paprika/heading";
 import Tabs from "../../src";
+import * as types from "../../src/types";
 
 const renderTabs = () => {
   const tabs = ["Pepsi", "Coke", "Diet Coke", "Canada Dry"];
@@ -21,7 +22,7 @@ const renderPanels = () => {
 };
 
 const tabProps = () => ({
-  kind: select("kind", ["primary", "secondary"], "primary"),
+  kind: select("kind", [types.PRIMARY, types.SECONDARY], "primary"),
   isDisabled: boolean("isDisabled", false),
   height: number("height"),
 });

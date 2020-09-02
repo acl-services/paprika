@@ -3,27 +3,9 @@ import React from "react";
 
 import extractChildren from "@paprika/helpers/lib/extractChildren";
 import PropTypes from "prop-types";
+import * as constants from "@paprika/constants/lib/Constants";
 import ColumnDefinition from "./components/ColumnDefinition";
-import types from "./types";
 import * as sc from "./Table.styles";
-
-const propTypes = {
-  /** Define the look for borders in the table Table.types.GRID, Table.types.NONE, etc.  */
-  borderType: PropTypes.oneOf(["grid", "none", "horizontal", "vertical"]),
-  /**  Accessible description of the table */
-  a11yText: PropTypes.string.isRequired,
-  children: PropTypes.node.isRequired,
-  /** Add an alternating background on the table rows */
-  hasZebraStripes: PropTypes.bool,
-  /** Array of data to be stored in the Table */
-  data: PropTypes.arrayOf(PropTypes.shape({})),
-};
-
-const defaultProps = {
-  borderType: types.GRID,
-  data: [],
-  hasZebraStripes: false,
-};
 
 export default function Table(props) {
   const { borderType, children, hasZebraStripes, data, a11yText, ...moreProps } = props;
@@ -93,8 +75,34 @@ export default function Table(props) {
   );
 }
 
+Table.types = {
+  border: constants.gridTypes,
+};
+
+const propTypes = {
+  /** Define the look for borders in the table Table.types.GRID, Table.types.NONE, etc.  */
+  borderType: PropTypes.oneOf([
+    Table.types.border.GRID,
+    Table.types.border.NONE,
+    Table.types.border.HORIZONTAL,
+    Table.types.border.VERTICAL,
+  ]),
+  /**  Accessible description of the table */
+  a11yText: PropTypes.string.isRequired,
+  children: PropTypes.node.isRequired,
+  /** Add an alternating background on the table rows */
+  hasZebraStripes: PropTypes.bool,
+  /** Array of data to be stored in the Table */
+  data: PropTypes.arrayOf(PropTypes.shape({})),
+};
+
+const defaultProps = {
+  borderType: Table.types.border.GRID,
+  data: [],
+  hasZebraStripes: false,
+};
+
 Table.displayName = "Table";
 Table.propTypes = propTypes;
 Table.defaultProps = defaultProps;
 Table.ColumnDefinition = ColumnDefinition;
-Table.types = types;
