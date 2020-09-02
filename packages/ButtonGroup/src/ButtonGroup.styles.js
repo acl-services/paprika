@@ -13,24 +13,26 @@ const fullWithStyles = css`
   }
 `;
 
-export const ButtonGroup = styled.div`
-  display: inline-flex;
-  flex-wrap: wrap;
-  ${({ isFullWidth }) => isFullWidth && fullWithStyles}
+export const ButtonGroup = styled.div(
+  ({ isFullWidth }) => css`
+    display: inline-flex;
+    flex-wrap: wrap;
+    ${isFullWidth && fullWithStyles}
 
-  ${buttonSelector} {
-    border-radius: 0;
+    ${buttonSelector} {
+      border-radius: 0;
 
-    &:first-child {
-      border-radius: ${tokens.button.borderRadius} 0 0 ${tokens.button.borderRadius};
+      &:first-child {
+        border-radius: ${tokens.button.borderRadius} 0 0 ${tokens.button.borderRadius};
+      }
+
+      &:last-child {
+        border-radius: 0 ${tokens.button.borderRadius} ${tokens.button.borderRadius} 0;
+      }
+
+      &:not(:last-child) {
+        margin-right: -1px;
+      }
     }
-
-    &:last-child {
-      border-radius: 0 ${tokens.button.borderRadius} ${tokens.button.borderRadius} 0;
-    }
-
-    &:not(:last-child) {
-      margin-right: -1px;
-    }
-  }
-`;
+  `
+);

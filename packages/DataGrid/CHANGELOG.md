@@ -6,10 +6,6 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 
 ## [Unreleased]
 
-### Added
-
-- Updated: Created and placed all constants into type.js file. [@kaan.darcey](https://github.com/KDarcey).
-
 ## [0.3.0] - 2020-06-24
 
 ### Breaking change
@@ -38,3 +34,9 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 ### Added
 
 - Added canGrow prop to ColumnDefinition [@oscarkwan](https://github.com/oscarkwan).
+
+## [0.3.17] - 2020-09-02
+
+### Added
+
+- Updated: Created and placed all constants into type.js file. [@kaan.darcey](https://github.com/KDarcey).
