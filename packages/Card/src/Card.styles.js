@@ -1,23 +1,23 @@
 import styled, { css } from "styled-components";
 import tokens from "@paprika/tokens";
-import { ShirtSizes } from "@paprika/helpers/lib/customPropTypes";
+import * as types from "./types";
 
 // Sizes
 
 const sizeStyles = {
-  [ShirtSizes.SMALL]: css`
+  [types.SMALL]: css`
     height: 117px;
     width: 240px;
   `,
-  [ShirtSizes.MEDIUM]: css`
+  [types.MEDIUM]: css`
     height: 284px;
     width: 240px;
   `,
-  [ShirtSizes.LARGE]: css`
+  [types.LARGE]: css`
     height: 500px;
     width: 300px;
   `,
-  auto: css`
+  [types.AUTO]: css`
     height: auto;
     width: auto;
   `,
