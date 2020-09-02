@@ -1,7 +1,8 @@
+import styled, { css } from "styled-components";
 import tokens from "@paprika/tokens";
 import stylers from "@paprika/stylers";
 
-const defaultHeadingStyles = `
+const defaultHeadingStyles = css`
   align-items: center;
   color: inherit;
   font-weight: 700;
@@ -15,29 +16,33 @@ const defaultHeadingStyles = `
 `;
 
 const heading = {
-  HEADING_LEVEL_1: `
+  HEADING_LEVEL_1: css`
     ${stylers.fontSize(7)}
     ${stylers.lineHeight(-2)}
-    font-weight: 400;`,
+    font-weight: 400;
+  `,
 
-  HEADING_LEVEL_2: `
+  HEADING_LEVEL_2: css`
     ${stylers.fontSize(5)}
-    ${stylers.lineHeight(-2)}`,
+    ${stylers.lineHeight(-2)}
+  `,
 
-  HEADING_LEVEL_3: `
-     ${stylers.fontSize(3)}`,
+  HEADING_LEVEL_3: css`
+    ${stylers.fontSize(3)}
+  `,
 
-  HEADING_LEVEL_4: `
-     ${stylers.fontSize(1)}`,
+  HEADING_LEVEL_4: css`
+    ${stylers.fontSize(1)}
+  `,
 
-  HEADING_LEVEL_5: `
+  HEADING_LEVEL_5: css`
     ${stylers.fontSize()}
     margin: ${tokens.space} 0;`,
 
-  HEADING_LEVEL_6: `
+  HEADING_LEVEL_6: css`
     ${stylers.fontSize(-1)}
     margin: ${tokens.space} 0;
-  }`,
+  `,
 };
 
 const underline = level => {
@@ -52,17 +57,19 @@ const underline = level => {
   return result;
 };
 
-export const dividerStyles = `
+export const Divider = styled.span`
   border-bottom: 2px solid ${tokens.color.blackLighten70};
   flex-grow: 1;
   margin-left: ${tokens.space};
 `;
 
-export const headingStyles = props => `
+export const Heading = styled.div(
+  ({ safeDisplayLevel, safeLevel, isHidden, hasUnderline, hasDivider, isLight }) => css`
   ${defaultHeadingStyles}
-  ${heading[`HEADING_LEVEL_${props.safeDisplayLevel || props.safeLevel}`]}
-  ${props.isHidden ? stylers.visuallyHidden : ""}
-  ${props.hasUnderline ? underline(props.safeDisplayLevel || props.safeLevel) : ""}
-  ${props.hasDivider ? "display: flex;" : ""}
-  ${props.isLight ? "font-weight: 400;" : ""}
-`;
+  ${heading[`HEADING_LEVEL_${safeDisplayLevel || safeLevel}`]}
+  ${isHidden ? stylers.visuallyHidden : ""}
+  ${hasUnderline ? underline(safeDisplayLevel || safeLevel) : ""}
+  ${hasDivider ? "display: flex;" : ""}
+  ${isLight ? "font-weight: 400;" : ""}
+`
+);

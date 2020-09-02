@@ -1,6 +1,6 @@
 import React from "react";
 import PropTypes from "prop-types";
-import { headingStyles, dividerStyles } from "./Heading.styles";
+import * as sc from "./Heading.styles";
 
 const propTypes = {
   /** Optional aria text if it should be more descriptive than what is rendered */
@@ -61,7 +61,7 @@ const Heading = React.forwardRef((props, ref) => {
   }));
 
   const safeLevel = safeValue(level);
-  const divider = <span css={dividerStyles} />;
+  const divider = <sc.Divider />;
   const elementProps = {
     "aria-label": a11yText || null,
     "aria-level": isSemantic ? null : safeLevel,
@@ -74,10 +74,10 @@ const Heading = React.forwardRef((props, ref) => {
   };
 
   return (
-    <div data-pka-anchor="heading" css={headingStyles} {...elementProps} {...moreProps}>
+    <sc.Heading data-pka-anchor="heading" {...elementProps} {...moreProps}>
       {renderHeadingContent(a11yText, children)}
       {hasDivider && divider}
-    </div>
+    </sc.Heading>
   );
 });
 
