@@ -1,7 +1,7 @@
 import styled, { css } from "styled-components";
 import tokens from "@paprika/tokens";
 import { fontSize } from "@paprika/stylers/lib/helpers";
-import types from "./types";
+import * as types from "./types";
 
 export const Table = styled.table`
   border: 1px solid ${tokens.border.color};

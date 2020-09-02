@@ -6,7 +6,6 @@ import { getStoryName } from "storybook/storyTree";
 import SingleDateCalendar from "../src/SingleDateCalendar";
 import DateRangeCalendar from "../src/DateRangeCalendar";
 import ShortCutPanel from "../src/internal/ShortcutPanel";
-import { START_DATE } from "../src/tokens";
 
 const storyName = getStoryName("Calendar");
 
@@ -25,7 +24,7 @@ storiesOf(`${storyName}/Backyard/Tests/Screener`, module)
         endDate={moment("2019-01-10", "YYYY-MM-DD")}
         onDatesChange={noop}
         onFocusChange={noop}
-        focusedInput={START_DATE}
+        focusedInput={DateRangeCalendar.types.date.START}
       />
     </L10n>
   ))

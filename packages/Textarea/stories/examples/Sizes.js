@@ -10,7 +10,7 @@ const Sizes = () => {
       <Heading level={4}>
         <code>Small</code>
       </Heading>
-      <Textarea placeholder="Tell me a story..." size="small" a11yText="story" />
+      <Textarea placeholder="Tell me a story..." size={Textarea.types.size.SMALL} a11yText="story" />
       <Heading level={4}>
         <code>Medium</code>
       </Heading>
@@ -18,7 +18,7 @@ const Sizes = () => {
       <Heading level={4}>
         <code>Large</code>
       </Heading>
-      <Textarea placeholder="Tell me a story..." size="large" a11yText="story" />
+      <Textarea placeholder="Tell me a story..." size={Textarea.types.size.LARGE} a11yText="story" />
     </Story>
   );
 };

@@ -1,30 +1,11 @@
 import React from "react";
 import PropTypes from "prop-types";
-import { ShirtSizes } from "@paprika/helpers/lib/customPropTypes";
+import * as constants from "@paprika/constants/lib/Constants";
 import ArrowItem from "./components/ArrowItem/ArrowItem";
 import CurrentPageItem from "./components/CurrentPageItem/CurrentPageItem";
 import ElipsisItem from "./components/EllipsisItem/ElipsisItem";
 import PageItem from "./components/PageItem/PageItem";
 import * as sc from "./Pagination.styles";
-
-const propTypes = {
-  /** The number of current active page */
-  currentPage: PropTypes.number.isRequired,
-
-  /** Callback to be executed when current page is changed. */
-  onChange: PropTypes.func,
-
-  /** The number of other pages that will be visible around the current/active page (not hidden by elipsis). Can be set to small, medium, or large */
-  size: PropTypes.PropTypes.oneOf([ShirtSizes.SMALL, ShirtSizes.MEDIUM, ShirtSizes.LARGE]),
-
-  /** The number of total pages. */
-  totalPages: PropTypes.number.isRequired,
-};
-
-const defaultProps = {
-  onChange: () => {},
-  size: "medium",
-};
 
 const isCurrentPage = (pageNumber, currentPage) => currentPage === pageNumber;
 const isFirstPage = pageNumber => pageNumber === 1;
@@ -100,6 +81,33 @@ function Pagination(props) {
     </sc.Pagination>
   );
 }
+
+Pagination.types = {
+  size: constants.defaultSize,
+};
+
+const propTypes = {
+  /** The number of current active page */
+  currentPage: PropTypes.number.isRequired,
+
+  /** Callback to be executed when current page is changed. */
+  onChange: PropTypes.func,
+
+  /** The number of other pages that will be visible around the current/active page (not hidden by elipsis). Can be set to small, medium, or large */
+  size: PropTypes.PropTypes.oneOf([
+    Pagination.types.size.SMALL,
+    Pagination.types.size.MEDIUM,
+    Pagination.types.size.LARGE,
+  ]),
+
+  /** The number of total pages. */
+  totalPages: PropTypes.number.isRequired,
+};
+
+const defaultProps = {
+  onChange: () => {},
+  size: Pagination.types.size.MEDIUM,
+};
 
 Pagination.displayName = "Pagination";
 Pagination.propTypes = propTypes;

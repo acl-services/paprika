@@ -10,7 +10,9 @@ import SidePanel from "@paprika/sidepanel";
 import Popover from "@paprika/popover";
 import Heading from "@paprika/heading";
 import InfoIcon from "@paprika/icon/lib/InfoCircle";
+import Trigger from "@paprika/sidepanel/lib/components/Trigger/Trigger";
 import Takeover from "../src";
+import * as types from "../src/types";
 
 const storyName = getStoryName("Takeover");
 
@@ -39,7 +41,7 @@ const TakeoverStory = ({ children }) => {
         <Takeover.Header
           className="storybook-takeover__header"
           hasCloseButton={boolean("Has close button", true, "Takeover.Header")}
-          kind={select("Kind", ["default", "primary"], "default", "Takeover.Header")}
+          kind={select("Kind", [types.DEFAULT, types.PRIMARY], types.DEFAULT, "Takeover.Header")}
         >
           Header
         </Takeover.Header>
@@ -157,7 +159,7 @@ storiesOf(`${storyName}/Backyard/Sandbox`, module)
           <Takeover.Content>
             <SidePanel isOpen={isOpen} onClose={toggle}>
               <SidePanel.Overlay />
-              <SidePanel.Trigger kind="primary" onClick={toggle}>
+              <SidePanel.Trigger kind={Trigger.types.kind.PRIMARY} onClick={toggle}>
                 {isOpen ? "close" : "open side panel"}
               </SidePanel.Trigger>
               <SidePanel.Header>Header</SidePanel.Header>

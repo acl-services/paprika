@@ -61,8 +61,8 @@ function DialogActions(props) {
       <Button
         data-pka-anchor="dialog-actions__cancel"
         isDisabled={isDisabled}
-        size="large"
-        kind="minor"
+        size={Button.types.size.LARGE}
+        kind={Button.types.kind.MINOR}
         onClick={onCancel}
       >
         {labelCancel === "" ? I18n.t("actions.cancel") : labelCancel}
@@ -76,7 +76,7 @@ function DialogActions(props) {
         data-pka-anchor="dialog-actions__confirm"
         isDisabled={isDisabled}
         onClick={onConfirm}
-        size="large"
+        size={Button.types.size.LARGE}
         kind={kindConfirm}
       >
         {labelConfirm === "" ? I18n.t("actions.confirm") : labelConfirm}
