@@ -1,7 +1,7 @@
 import React from "react";
+import * as constants from "@paprika/constants/lib/Constants";
 import { boolean, number, select } from "@storybook/addon-knobs";
 import { Story, Rule, Tagline } from "storybook/assets/styles/common.styles";
-import { ShirtSizes } from "@paprika/helpers/lib/customPropTypes";
 import Heading from "@paprika/heading";
 import Counter from "../../src/Counter";
 
@@ -9,7 +9,7 @@ const counterKnobs = () => ({
   color: select("color", ["grey", "blue", "red"], "grey"),
   hasIndicator: boolean("hasIndicator", false),
   quantity: number("quantity", 32),
-  size: select("size", ShirtSizes.LIMITED, "medium"),
+  size: select("size", [constants.limitedSize], "medium"),
   threshold: number("threshold", 99),
 });
 

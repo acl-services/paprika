@@ -3,7 +3,7 @@ import { Rule } from "storybook/assets/styles/common.styles";
 import Heading from "@paprika/heading";
 import Checkbox from "../../src/Checkbox";
 
-const { CHECKED, UNCHECKED } = Checkbox.states;
+const { CHECKED, UNCHECKED } = Checkbox.types.state;
 
 const CheckboxExample = props => {
   const [checkedState, setCheckedState] = React.useState(props.value || UNCHECKED);

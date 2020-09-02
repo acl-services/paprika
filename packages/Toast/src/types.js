@@ -1,4 +1,6 @@
-const Kinds = {
+import * as constants from "@paprika/constants/lib/Constants";
+
+export const toastKinds = {
   SUCCESS: "success",
   WARNING: "warning",
   ERROR: "error",
@@ -6,6 +8,5 @@ const Kinds = {
   LOCKED: "locked",
   VISUALLY_HIDDEN: "visually-hidden",
 };
-Kinds.ALL = Object.values(Kinds);
 
-export default Kinds;
+export const SMALL = constants.size.SMALL;

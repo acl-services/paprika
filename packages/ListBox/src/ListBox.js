@@ -1,7 +1,7 @@
 import React from "react";
 import PropTypes from "prop-types";
 import useI18n from "@paprika/l10n/lib/useI18n";
-import { ShirtSizes } from "@paprika/helpers/lib/customPropTypes";
+import * as constants from "@paprika/constants/lib/Constants";
 import Box from "./components/Box";
 import Content from "./components/Content";
 import List from "./components/List";
@@ -23,54 +23,6 @@ import {
   useOnScrolled,
   useOptionSelected,
 } from "./hooks";
-
-export const propTypes = {
-  /** Child of type <ListBox.Option /> */
-  children: PropTypes.node,
-
-  /** Has implicit "All items selected" value when no item is selected */
-  hasImplicitAll: PropTypes.bool,
-
-  /** Indicate which is the height for the options container */
-  height: PropTypes.number,
-
-  /** Disables the ListBox if true */
-  isDisabled: PropTypes.bool,
-
-  /** This options will display the listbox without the Popover */
-  isInline: PropTypes.bool,
-
-  /** Let the user to select multiple options at same time */
-  isMulti: PropTypes.bool,
-
-  /** Indicates if the popover is visible */
-  isOpen: PropTypes.bool,
-
-  /** Callback returning the current selection on the ListBox */
-  onChange: PropTypes.func,
-
-  /** Defaults label to display when the ListBox has not option selected */
-  placeholder: PropTypes.string,
-
-  /** Size of the trigger and options (font size, height, padding, etc). */
-  size: PropTypes.oneOf(ShirtSizes.DEFAULT),
-};
-
-export const defaultProps = {
-  children: null,
-  filter: null, // eslint-disable-line
-  footer: null, // eslint-disable-line
-  hasImplicitAll: false,
-  height: 200,
-  isDisabled: false,
-  isInline: false,
-  isMulti: false,
-  isOpen: null,
-  onChange: () => {},
-  placeholder: null,
-  size: ShirtSizes.MEDIUM,
-  trigger: null, // eslint-disable-line
-};
 
 export function ListBox(props) {
   const [state] = useListBox();
@@ -117,13 +69,6 @@ export function ListBox(props) {
     </React.Fragment>
   );
 }
-
-ListBox.propTypes = {
-  ...propTypes,
-  children: PropTypes.node.isRequired,
-  height: PropTypes.number.isRequired,
-  placeholder: PropTypes.string.isRequired,
-};
 
 const ListBoxContainer = React.forwardRef((props, ref) => {
   const [state, dispatch] = useListBox();
@@ -189,6 +134,69 @@ const ListBoxContainer = React.forwardRef((props, ref) => {
 
   return <Popover>{listBox}</Popover>;
 });
+
+ListBoxContainer.types = {
+  size: constants.defaultSize,
+};
+
+export const propTypes = {
+  /** Child of type <ListBox.Option /> */
+  children: PropTypes.node,
+
+  /** Has implicit "All items selected" value when no item is selected */
+  hasImplicitAll: PropTypes.bool,
+
+  /** Indicate which is the height for the options container */
+  height: PropTypes.number,
+
+  /** Disables the ListBox if true */
+  isDisabled: PropTypes.bool,
+
+  /** This options will display the listbox without the Popover */
+  isInline: PropTypes.bool,
+
+  /** Let the user to select multiple options at same time */
+  isMulti: PropTypes.bool,
+
+  /** Indicates if the popover is visible */
+  isOpen: PropTypes.bool,
+
+  /** Callback returning the current selection on the ListBox */
+  onChange: PropTypes.func,
+
+  /** Defaults label to display when the ListBox has not option selected */
+  placeholder: PropTypes.string,
+
+  /** Size of the trigger and options (font size, height, padding, etc). */
+  size: PropTypes.oneOf([
+    ListBoxContainer.types.size.SMALL,
+    ListBoxContainer.types.size.MEDIUM,
+    ListBoxContainer.types.size.LARGE,
+  ]),
+};
+
+ListBox.propTypes = {
+  ...propTypes,
+  children: PropTypes.node.isRequired,
+  height: PropTypes.number.isRequired,
+  placeholder: PropTypes.string.isRequired,
+};
+
+export const defaultProps = {
+  children: null,
+  filter: null, // eslint-disable-line
+  footer: null, // eslint-disable-line
+  hasImplicitAll: false,
+  height: 200,
+  isDisabled: false,
+  isInline: false,
+  isMulti: false,
+  isOpen: null,
+  onChange: () => {},
+  placeholder: null,
+  size: ListBoxContainer.types.size.MEDIUM,
+  trigger: null, // eslint-disable-line
+};
 
 ListBoxContainer.propTypes = propTypes;
 ListBoxContainer.defaultProps = defaultProps;

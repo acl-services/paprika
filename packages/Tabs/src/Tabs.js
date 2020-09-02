@@ -1,27 +1,11 @@
 import React from "react";
 import PropTypes from "prop-types";
+import * as constants from "@paprika/constants/lib/Constants";
 import TabsContext from "./TabsContext";
 import Panel from "./components/Panel/Panel";
 import Panels from "./components/Panels/Panels";
 import Tab from "./components/Tab/Tab";
 import List from "./components/List/List";
-
-const propTypes = {
-  /** Determine the styling of the tab */
-  kind: PropTypes.oneOf(["primary", "secondary"]),
-  /** Children of the Tab */
-  children: PropTypes.node.isRequired,
-  /** Sets what tab index is active by default */
-  defaultIndex: PropTypes.number,
-  /** If the tab is disabled */
-  isDisabled: PropTypes.bool,
-};
-
-const defaultProps = {
-  kind: "primary",
-  defaultIndex: 0,
-  isDisabled: false,
-};
 
 const Tabs = props => {
   const [activeIndex, setActiveIndex] = React.useState(props.defaultIndex);
@@ -86,12 +70,34 @@ const Tabs = props => {
   return <TabsContext.Provider value={contextValue}>{props.children}</TabsContext.Provider>;
 };
 
+Tabs.types = {
+  kind: constants.kind,
+};
+
+const propTypes = {
+  /** Determine the styling of the tab */
+  kind: PropTypes.oneOf([Tabs.types.kind.PRIMARY, Tabs.types.kind.SECONDARY]),
+  /** Children of the Tab */
+  children: PropTypes.node.isRequired,
+  /** Sets what tab index is active by default */
+  defaultIndex: PropTypes.number,
+  /** If the tab is disabled */
+  isDisabled: PropTypes.bool,
+};
+
+const defaultProps = {
+  kind: Tabs.types.kind.PRIMARY,
+  defaultIndex: 0,
+  isDisabled: false,
+};
+
 Tabs.displayName = "Tabs";
+Tabs.propTypes = propTypes;
+Tabs.defaultProps = defaultProps;
+
 Tabs.Panel = Panel;
 Tabs.Panels = Panels;
 Tabs.Tab = Tab;
 Tabs.List = List;
-Tabs.propTypes = propTypes;
-Tabs.defaultProps = defaultProps;
 
 export default Tabs;

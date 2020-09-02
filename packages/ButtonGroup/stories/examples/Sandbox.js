@@ -4,10 +4,10 @@ import React from "react";
 import { action } from "@storybook/addon-actions";
 import { boolean, select } from "@storybook/addon-knobs";
 import { Story, Rule } from "storybook/assets/styles/common.styles";
-import { ShirtSizes } from "@paprika/helpers/lib/customPropTypes";
+import ButtonGroup from "@paprika/button-group";
 import Heading from "@paprika/heading";
 import Calendar from "@paprika/icon/lib/Calendar";
-import ButtonGroup from "../../src";
+import * as types from "../../src/types";
 
 const changeHandler = selectedItems => {
   action("Selected an item")(...selectedItems);
@@ -20,7 +20,7 @@ const buttonGroupProps = () => ({
   isFullWidth: boolean("isFullWidth", false),
   isMulti: boolean("isMulti", false),
   isSemantic: boolean("isSemantic", true),
-  size: select("size", ShirtSizes.DEFAULT, ShirtSizes.MEDIUM),
+  size: select("size", [types.SMALL, types.MEDIUM, types.LARGE], types.MEDIUM),
 });
 
 const ExampleStory = props => {
@@ -40,7 +40,7 @@ const ExampleStory = props => {
         <button onClick={handleFocus}>Focus Pre</button>
       </p>
       <ButtonGroup {...props} ref={refButtonGroup}>
-        <ButtonGroup.Item value="one" kind="primary">
+        <ButtonGroup.Item value="one" kind={ButtonGroup.Item.types.kind.PRIMARY}>
           One
         </ButtonGroup.Item>
         <ButtonGroup.Item value="two" isDisabled defaultIsActive>

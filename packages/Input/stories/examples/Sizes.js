@@ -1,6 +1,7 @@
 import React from "react";
 import InputExample from "./InputExample";
 import { InputStory } from "../Input.stories.styles";
+import Input from "../../src";
 
 const SizesExampleStory = () => {
   return (
@@ -10,7 +11,7 @@ const SizesExampleStory = () => {
           <code>size = small</code>
         </small>
       </h3>
-      <InputExample placeholder="First Name" size="small" />
+      <InputExample placeholder="First Name" size={Input.types.size.SMALL} />
       <br />
       <h3>
         <small>
@@ -24,7 +25,7 @@ const SizesExampleStory = () => {
           <code>size = large</code>
         </small>
       </h3>
-      <InputExample placeholder="First Name" size="large" />
+      <InputExample placeholder="First Name" size={Input.types.size.LARGE} />
     </InputStory>
   );
 };

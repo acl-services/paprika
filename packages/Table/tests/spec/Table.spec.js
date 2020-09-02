@@ -17,7 +17,7 @@ const data = [
 
 function renderComponent() {
   return render(
-    <Table data={data}>
+    <Table a11yText="" data={data}>
       <Table.ColumnDefinition header="Name" cell="name" />
       <Table.ColumnDefinition header="LastName" cell="lastName" />
     </Table>
