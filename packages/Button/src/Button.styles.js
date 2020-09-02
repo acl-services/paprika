@@ -279,10 +279,10 @@ const fullWidthStyles = css`
 //
 
 export const Button = styled.span(
-  ({ size, kind, isFullWidth, isActive, isDisabled }) => css`
+  ({ size, kind, isFullWidth, isActive, ...props }) => css`
   ${commonStyles}
   ${sizeStyles[size]}
-  ${kindStyles(isDisabled)[kind]}
+  ${kindStyles(props)[kind]}
   ${isFullWidth && fullWidthStyles}
   ${isActive ? activeStyles : inactiveStyles}
 `
