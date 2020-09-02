@@ -5,10 +5,10 @@ import { commonStyles, sizeStyles, kindStyles } from "./Button.styles";
 import { ButtonIcon } from "./Button";
 
 export const LinkButton = styled.a(
-  ({ size, kind, isDisabled }) => css`
+  ({ size, kind, ...props }) => css`
     ${commonStyles}
     ${sizeStyles[size]}
-    ${kindStyles(isDisabled)[kind]}
+    ${kindStyles(props)[kind]}
   `
 );
 
