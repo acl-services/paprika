@@ -2,12 +2,7 @@ import React from "react";
 import PropTypes from "prop-types";
 import RawButton from "@paprika/raw-button";
 import Button from "@paprika/button";
-
-export const ButtonTypes = {
-  ICON: "icon",
-  RAW: "raw",
-  SIMPLE: "simple",
-};
+import * as types from "../../types";
 
 const ButtonComponentMap = {
   icon: Button.Icon,
@@ -15,28 +10,7 @@ const ButtonComponentMap = {
   simple: Button,
 };
 
-ButtonTypes.ALL = Object.values(ButtonTypes);
-
-const propTypes = {
-  children: PropTypes.node,
-  /** Determine the styling of the button */
-  buttonType: PropTypes.oneOf(ButtonTypes.ALL),
-  isOpen: PropTypes.bool,
-  menuRefId: PropTypes.string,
-  onOpenMenu: PropTypes.func,
-  triggerRef: PropTypes.shape({ current: PropTypes.instanceOf(Object) }) || null,
-};
-
-const defaultProps = {
-  buttonType: ButtonTypes.SIMPLE,
-  children: null,
-  menuRefId: "",
-  triggerRef: null,
-  isOpen: false,
-  onOpenMenu: () => {},
-};
-
-const Trigger = props => {
+function Trigger(props) {
   const { children, isOpen, onOpenMenu, menuRefId, triggerRef, buttonType, ...otherProps } = props;
   const TriggerComponent = ButtonComponentMap[buttonType];
 
@@ -53,9 +27,33 @@ const Trigger = props => {
       {children}
     </TriggerComponent>
   );
+}
+
+Trigger.types = {
+  button: types.buttonTypes,
+};
+
+const propTypes = {
+  children: PropTypes.node,
+  /** Determine the styling of the button */
+  buttonType: PropTypes.oneOf([Trigger.types.button.ICON, Trigger.types.button.RAW, Trigger.types.button.SIMPLE]),
+  isOpen: PropTypes.bool,
+  menuRefId: PropTypes.string,
+  onOpenMenu: PropTypes.func,
+  triggerRef: PropTypes.shape({ current: PropTypes.instanceOf(Object) }) || null,
+};
+
+const defaultProps = {
+  buttonType: Trigger.types.button.SIMPLE,
+  children: null,
+  menuRefId: "",
+  triggerRef: null,
+  isOpen: false,
+  onOpenMenu: () => {},
 };
 
 Trigger.displayName = "DropdownMenu.Trigger";
 Trigger.defaultProps = defaultProps;
 Trigger.propTypes = propTypes;
+
 export default Trigger;

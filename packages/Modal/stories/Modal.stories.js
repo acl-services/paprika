@@ -7,8 +7,9 @@ import styled from "styled-components";
 import stylers from "@paprika/stylers";
 import Button from "@paprika/button";
 import SidePanel from "@paprika/sidepanel";
-import { ShirtSizes } from "@paprika/helpers/lib/customPropTypes";
 import Heading from "@paprika/heading";
+import * as types from "../src/types";
+
 import Modal from "../src";
 
 const storyName = getStoryName("Modal");
@@ -32,13 +33,17 @@ const ModalStory = ({ children }) => {
   return (
     <LongBlock>
       <Button onClick={toggle}>Open Modal</Button>
-      <Modal isOpen={isOpen} onClose={toggle} size={select("Size", ShirtSizes.DEFAULT, ShirtSizes.MEDIUM, "Modal")}>
+      <Modal
+        isOpen={isOpen}
+        onClose={toggle}
+        size={select("Size", [types.SMALL, types.MEDIUM, types.LARGE], types.MEDIUM, "Modal")}
+      >
         <Modal.Header hasCloseButton={boolean("Has close button", true, "Modal.Header")}>Header</Modal.Header>
         {children}
         <Modal.Footer>
-          <Button kind="primary">Primary</Button>
+          <Button kind={Button.types.kind.PRIMARY}>Primary</Button>
           <Button>Secondary</Button>
-          <Button kind="minor" onClick={toggle}>
+          <Button kind={Button.types.kind.MINOR} onClick={toggle}>
             Cancel
           </Button>
         </Modal.Footer>
@@ -196,8 +201,8 @@ storiesOf(`${storyName}/Backyard/Sandbox`, module)
             ))}
           </Modal.Content>
           <Modal.Footer>
-            <Button kind="primary">Primary</Button>
-            <Button kind="minor" onClick={toggle}>
+            <Button kind={Button.types.kind.PRIMARY}>Primary</Button>
+            <Button kind={Button.types.kind.MINOR} onClick={toggle}>
               Cancel
             </Button>
           </Modal.Footer>
@@ -232,7 +237,7 @@ storiesOf(`${storyName}/Backyard/Sandbox`, module)
           <Modal.Content>
             <SidePanel isOpen={isOpen} onClose={toggle}>
               <SidePanel.Overlay />
-              <SidePanel.Trigger kind="primary" onClick={toggle}>
+              <SidePanel.Trigger kind={SidePanel.types.kind.PRIMARY} onClick={toggle}>
                 {isOpen ? "close" : "open side panel"}
               </SidePanel.Trigger>
               <SidePanel.Header>Header</SidePanel.Header>

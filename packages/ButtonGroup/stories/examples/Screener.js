@@ -14,7 +14,7 @@ const ExampleStory = () => (
       <ButtonGroup.Item value={3}>Three</ButtonGroup.Item>
     </ButtonGroup>
     <Gap />
-    <ButtonGroup kind="primary">
+    <ButtonGroup kind={ButtonGroup.types.kind.PRIMARY}>
       <ButtonGroup.Item value={1} defaultIsActive>
         One
       </ButtonGroup.Item>
@@ -34,7 +34,7 @@ const ExampleStory = () => (
       <ButtonGroup.Item value={3}>Three</ButtonGroup.Item>
     </ButtonGroup>
     <Gap />
-    <ButtonGroup hasIcons size="small">
+    <ButtonGroup hasIcons size={ButtonGroup.types.size.SMALL}>
       <ButtonGroup.Item value={1}>One</ButtonGroup.Item>
       <ButtonGroup.Item value={2}>Two</ButtonGroup.Item>
       <ButtonGroup.Item value={3} defaultIsActive>
@@ -42,7 +42,7 @@ const ExampleStory = () => (
       </ButtonGroup.Item>
     </ButtonGroup>
     <Gap />
-    <ButtonGroup hasIcons size="large">
+    <ButtonGroup hasIcons size={ButtonGroup.types.size.LARGE}>
       <ButtonGroup.Item value={1}>One</ButtonGroup.Item>
       <ButtonGroup.Item value={2}>Two</ButtonGroup.Item>
       <ButtonGroup.Item value={3} defaultIsActive>

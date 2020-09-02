@@ -2,10 +2,22 @@ import React from "react";
 import { select, text } from "@storybook/addon-knobs";
 import { Story, Rule, Tagline } from "storybook/assets/styles/common.styles";
 import Heading from "@paprika/heading";
+import * as types from "../../src/types";
+import Pill from "../../src/Pill";
 
-import Pill, { pillColors, severityPillColors } from "../../src/Pill";
-
-const allColors = [...pillColors, ...severityPillColors];
+const allColors = [
+  types.BLACK,
+  types.BLUE,
+  types.GREEN,
+  types.GREY,
+  types.ORANGE,
+  types.LIGHT_BLUE,
+  types.LIGHT_ORANGE,
+  types.severityPillColors.NO_RISK,
+  types.severityPillColors.LOW_RISK,
+  types.severityPillColors.MEDIUM_RISK,
+  types.severityPillColors.NO_RISK,
+];
 
 const pillProps = () => ({
   a11yText: text("a11yText", ""),

@@ -1,29 +1,8 @@
 import React from "react";
 import PropTypes from "prop-types";
 import classNames from "classnames";
-import { ShirtSizes } from "@paprika/helpers/lib/customPropTypes";
+import * as constants from "@paprika/constants/lib/Constants";
 import SpinnerStyles from "./Spinner.styles";
-
-const propTypes = {
-  /** Descriptive a11y text for assistive technologies. By default, text from children node will be used. */
-  a11yText: PropTypes.string,
-
-  /** Sets the className for the spinner */
-  className: PropTypes.string,
-
-  /** Sets the caption that will display beneath the spinner */
-  caption: PropTypes.string,
-
-  /** Sets the size of the spinner */
-  size: PropTypes.oneOf(ShirtSizes.DEFAULT),
-};
-
-const defaultProps = {
-  a11yText: null,
-  className: null,
-  caption: null,
-  size: ShirtSizes.MEDIUM,
-};
 
 const spinnerSize = {
   large: "spinner--large",
@@ -45,6 +24,31 @@ const Spinner = ({ a11yText, className, caption, size, ...moreProps }) => {
       </div>
     </div>
   );
+};
+
+Spinner.types = {
+  size: constants.defaultSize,
+};
+
+const propTypes = {
+  /** Descriptive a11y text for assistive technologies. By default, text from children node will be used. */
+  a11yText: PropTypes.string,
+
+  /** Sets the className for the spinner */
+  className: PropTypes.string,
+
+  /** Sets the caption that will display beneath the spinner */
+  caption: PropTypes.string,
+
+  /** Sets the size of the spinner */
+  size: PropTypes.oneOf([Spinner.types.size.SMALL, Spinner.types.size.MEDIUM, Spinner.types.size.LARGE]),
+};
+
+const defaultProps = {
+  a11yText: null,
+  className: null,
+  caption: null,
+  size: Spinner.types.size.MEDIUM,
 };
 
 Spinner.displayName = "Spinner";

@@ -1,46 +1,11 @@
 import React from "react";
 import PropTypes from "prop-types";
+import * as constants from "@paprika/constants/lib/Constants";
 import Overlay from "@paprika/overlay";
 import { zValue } from "@paprika/stylers/lib/helpers";
-import { ShirtSizes } from "@paprika/helpers/lib/customPropTypes";
 import extractChildren from "@paprika/helpers/lib/extractChildren";
 import FocusLock from "./components/FocusLock";
 import * as sc from "./Modal.styles";
-
-const propTypes = {
-  /* Description of the Modal dialog for assistive technology */
-  a11yText: PropTypes.string,
-
-  /** The content for the Modal. */
-  children: PropTypes.node.isRequired,
-
-  /** Control the visibility of the modal */
-  isOpen: PropTypes.bool.isRequired,
-
-  /** Callback triggered when the modal needs to be close */
-  onClose: PropTypes.func,
-
-  /** Callback once the modal has been opened event */
-  onAfterOpen: PropTypes.func,
-
-  /** Callback once the modal has been closed event */
-  onAfterClose: PropTypes.func,
-
-  /* Control the size (max-width) of the modal */
-  size: PropTypes.oneOf(ShirtSizes.DEFAULT),
-
-  /** The z-index of the Takeover content */
-  zIndex: PropTypes.number,
-};
-
-const defaultProps = {
-  a11yText: null,
-  onAfterClose: () => {},
-  onAfterOpen: () => {},
-  onClose: () => {},
-  size: ShirtSizes.MEDIUM,
-  zIndex: zValue(6),
-};
 
 const Modal = props => {
   const { a11yText, isOpen, onClose, onAfterClose, onAfterOpen, size, zIndex, ...moreProps } = props;
@@ -98,8 +63,48 @@ const Modal = props => {
   );
 };
 
-Modal.FocusLock = FocusLock;
+Modal.types = {
+  size: constants.defaultSize,
+};
+
+const propTypes = {
+  /* Description of the Modal dialog for assistive technology */
+  a11yText: PropTypes.string,
+
+  /** The content for the Modal. */
+  children: PropTypes.node.isRequired,
+
+  /** Control the visibility of the modal */
+  isOpen: PropTypes.bool.isRequired,
+
+  /** Callback triggered when the modal needs to be close */
+  onClose: PropTypes.func,
+
+  /** Callback once the modal has been opened event */
+  onAfterOpen: PropTypes.func,
+
+  /** Callback once the modal has been closed event */
+  onAfterClose: PropTypes.func,
+
+  /* Control the size (max-width) of the modal */
+  size: PropTypes.oneOf([Modal.types.size.SMALL, Modal.types.size.MEDIUM, Modal.types.size.LARGE]),
+
+  /** The z-index of the Takeover content */
+  zIndex: PropTypes.number,
+};
+
+const defaultProps = {
+  a11yText: null,
+  onAfterClose: () => {},
+  onAfterOpen: () => {},
+  onClose: () => {},
+  size: Modal.types.size.MEDIUM,
+  zIndex: zValue(6),
+};
+
 Modal.propTypes = propTypes;
 Modal.defaultProps = defaultProps;
+
+Modal.FocusLock = FocusLock;
 
 export default Modal;
