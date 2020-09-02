@@ -5,13 +5,13 @@ import Heading from "@paprika/heading";
 import * as sc from "./ProgressBar.styles";
 
 const propTypes = {
-  /** Descriptive a11y text for assistive technologies. By default, text from children node will be used. */
+  /** Descriptive a11y text for assistive technologies. */
   a11yText: PropTypes.string,
-  /** Body text for the ProgressBar */
+  /** Description for the ProgressBar */
   bodyText: PropTypes.string,
   /** Header text for the ProgressBar */
   header: PropTypes.string,
-  /** Specifies how much progress has been completed */
+  /** Specifies how much progress has been completed from 0-100 */
   completed: PropTypes.number,
 };
 
@@ -25,7 +25,7 @@ const defaultProps = {
 function ProgressBar(props) {
   const { a11yText, header, bodyText, completed, ...moreProps } = props;
 
-  const bestAria = a11yText || bodyText || "Loading"; // TODO: l10n
+  const bestAria = a11yText || "Loading";
 
   return (
     <sc.ProgressBar data-pka-anchor="progress-bar" {...moreProps}>

@@ -1,7 +1,7 @@
 {
   "name": "@paprika/progressbar",
   "version": "0.1.0",
-  "description": "ProgressBar component",
+  "description": "ProgressBar is a component that shows the current progress of an action",
   "author": "@paprika",
   "main": "lib/index.js",
   "license": "MIT",
