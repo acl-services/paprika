@@ -19,7 +19,7 @@ export default function DropZone() {
       {I18n.t("uploader.drop_files_here_or")}&nbsp;
       <Button
         data-pka-anchor="uploader-dropZone-link"
-        kind={Button.Kinds.LINK}
+        kind={Button.types.kind.LINK}
         onClick={() => {
           refInput.current.click();
         }}

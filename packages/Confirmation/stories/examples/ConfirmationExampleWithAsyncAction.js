@@ -12,7 +12,7 @@ const ConfirmationExampleWithAsyncAction = () => {
   return (
     <Confirmation
       align="bottom"
-      buttonSize="medium"
+      buttonSize={Confirmation.types.size.MEDIUM}
       confirmLabel="Confirm Async"
       body="Description text"
       onConfirm={handleConfirm}

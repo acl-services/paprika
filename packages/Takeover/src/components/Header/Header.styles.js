@@ -4,8 +4,8 @@ import { spacer } from "@paprika/stylers/lib/helpers";
 import tokens from "@paprika/tokens/lib/tokens";
 
 const kind = {
-  default: `background: ${tokens.color.white}; color: ${tokens.color.black};`,
-  primary: `background: ${tokens.color.purple}; color: ${tokens.color.white};`,
+  DEFAULT: `background: ${tokens.color.white}; color: ${tokens.color.black};`,
+  PRIMARY: `background: ${tokens.color.purple}; color: ${tokens.color.white};`,
 };
 
 export const Header = styled.div`

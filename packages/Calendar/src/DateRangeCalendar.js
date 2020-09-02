@@ -11,7 +11,7 @@ import ArrowRight from "@paprika/icon/lib/ArrowRight";
 import Button from "@paprika/button";
 import useI18n from "@paprika/l10n/lib/useI18n";
 
-import { Kinds, START_DATE, END_DATE } from "./tokens";
+import * as types from "./types";
 
 import ShortcutPanel from "./internal/ShortcutPanel";
 
@@ -21,44 +21,6 @@ import calendarStyles, {
   dayTriggerStyles,
   monthHeaderButtonStyles,
 } from "./internal/calendar.styles";
-
-const propTypes = {
-  /** Selected start date in moment object */
-  startDate: PropTypes.instanceOf(moment),
-
-  /** Selected end date in moment object */
-  endDate: PropTypes.instanceOf(moment),
-
-  /** Callback to fire when user select start or end date */
-  onDatesChange: PropTypes.func.isRequired,
-
-  /** Possible date might be selected in moment object */
-  possibleDate: PropTypes.instanceOf(moment),
-
-  /**
-   * This callback will be called after selecting date.
-   * START_DATE or END_DATE will be passed as argument.
-   * Passed argument points to next date will be selected on click.
-   * It commonly used to switch focus on start/end date inputs.
-   */
-  onFocusChange: PropTypes.func.isRequired,
-
-  /**
-   * Points to the next date that will be selected on click.
-   * Should be used in conjunction with `onFocusChange`
-   */
-  focusedInput: PropTypes.oneOf([START_DATE, END_DATE]).isRequired,
-
-  /** Kind of styling */
-  kind: PropTypes.oneOf(Object.values(Kinds)),
-};
-
-const defaultProps = {
-  startDate: null,
-  endDate: null,
-  possibleDate: null,
-  kind: Kinds.BORDERED,
-};
 
 const phrases = {
   ...DayPickerPhrases,
@@ -139,7 +101,7 @@ function DateRangeCalendar(props) {
         css={monthHeaderButtonStyles}
         isDropdown
         isSemantic={false}
-        kind={Button.Kinds.FLAT}
+        kind={Button.types.kind.FLAT}
         onClick={() => {
           handleClickHeader(month);
         }}
@@ -195,7 +157,7 @@ function DateRangeCalendar(props) {
           numberOfMonths={1}
           initialVisibleMonth={() => currentMonth}
           hideKeyboardShortcutsPanel
-          noBorder={kind === Kinds.EMBEDDED}
+          noBorder={kind === DateRangeCalendar.types.kind.EMBEDDED}
           daySize={34}
           verticalBorderSpacing={0}
           transitionDuration={0}
@@ -217,6 +179,49 @@ function DateRangeCalendar(props) {
     </div>
   );
 }
+
+DateRangeCalendar.types = {
+  kind: types.kind,
+  date: { START: types.START_DATE, END: types.END_DATE },
+};
+
+const propTypes = {
+  /** Selected start date in moment object */
+  startDate: PropTypes.instanceOf(moment),
+
+  /** Selected end date in moment object */
+  endDate: PropTypes.instanceOf(moment),
+
+  /** Callback to fire when user select start or end date */
+  onDatesChange: PropTypes.func.isRequired,
+
+  /** Possible date might be selected in moment object */
+  possibleDate: PropTypes.instanceOf(moment),
+
+  /**
+   * This callback will be called after selecting date.
+   * START_DATE or END_DATE will be passed as argument.
+   * Passed argument points to next date will be selected on click.
+   * It commonly used to switch focus on start/end date inputs.
+   */
+  onFocusChange: PropTypes.func.isRequired,
+
+  /**
+   * Points to the next date that will be selected on click.
+   * Should be used in conjunction with `onFocusChange`
+   */
+  focusedInput: PropTypes.oneOf([DateRangeCalendar.types.date.START, DateRangeCalendar.types.date.END]).isRequired,
+
+  /** Kind of styling */
+  kind: PropTypes.oneOf(Object.values(DateRangeCalendar.types.kind)),
+};
+
+const defaultProps = {
+  startDate: null,
+  endDate: null,
+  possibleDate: null,
+  kind: DateRangeCalendar.types.kind.BORDERED,
+};
 
 DateRangeCalendar.propTypes = propTypes;
 DateRangeCalendar.defaultProps = defaultProps;

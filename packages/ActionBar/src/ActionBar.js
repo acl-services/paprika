@@ -1,7 +1,6 @@
 import React from "react";
 import PropTypes from "prop-types";
-
-import { changeTypes, columnTypes } from "./constants";
+import * as types from "./types";
 import * as sc from "./ActionBar.styles";
 
 const propTypes = {
@@ -15,5 +14,4 @@ export default function ActionBar(props) {
 
 ActionBar.propTypes = propTypes;
 ActionBar.displayName = "ActionBar";
-ActionBar.changeTypes = changeTypes;
-ActionBar.columnTypes = columnTypes;
+ActionBar.types = types;
