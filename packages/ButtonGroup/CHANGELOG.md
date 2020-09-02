@@ -6,12 +6,14 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 
 ## [Unreleased]
 
-### Added
-
-- Updated: Created and placed all constants into type.js file. [@kaan.darcey](https://github.com/KDarcey).
-
 ## [0.1.11] - 2020-05-29
 
 ### Added
 
 - Add imperative api with focus method to allow focus of first enabled ButtonGroup.Item [@tristanjasper](https://github.com/tristanjasper).
+
+## [0.1.13] - 2020-09-02
+
+### Added
+
+- Updated: Created and placed all constants into type.js file. [@kaan.darcey](https://github.com/KDarcey).

@@ -6,10 +6,6 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 
 ## [Unreleased]
 
-### Added
-
-- Updated: Created and placed all constants into type.js file. [@kaan.darcey](https://github.com/KDarcey).
-
 ## [0.2.0] - 2020-06-08
 
 ### Added
@@ -25,3 +21,9 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 - Renamed `onChangeField` to `onChangeSort` [@allison-c](https://github.com/allison-c).
 - Renamed `onDeleteField` to `onDeleteSort` [@allison-c](https://github.com/allison-c).
 - Fixed `useSort` when sorting boolean values, the results is in the opposite direction [@allison-c](https://github.com/allison-c).
+
+## [0.2.21] - 2020-09-02
+
+### Added
+
+- Updated: Created and placed all constants into type.js file. [@kaan.darcey](https://github.com/KDarcey).
