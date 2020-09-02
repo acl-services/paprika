@@ -269,7 +269,7 @@ export const kindStyles = ({ isDisabled }) => ({
 
 // Modifiers
 
-const fullWidthStyles = css`
+export const fullWidthStyles = css`
   display: flex;
   width: 100%;
 `;
