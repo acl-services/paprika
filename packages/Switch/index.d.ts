@@ -13,5 +13,5 @@ interface SwitchProps {
   /** Callback to be executed when the switch is toggled on or off. Typically required. */
   onChange?: (...args: any[]) => any;
   /** Size of the switch. */
-  size?: ShirtSizes.DEFAULT;
+  size?: Switch.types.size.SMALL | Switch.types.size.MEDIUM | Switch.types.size.LARGE;
 }

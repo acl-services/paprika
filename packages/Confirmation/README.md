@@ -22,18 +22,18 @@ npm install @paprika/confirmation
 
 ### Confirmation
 
-| Prop              | Type                                                                                         | required | default                             | Description                                                                  |
-| ----------------- | -------------------------------------------------------------------------------------------- | -------- | ----------------------------------- | ---------------------------------------------------------------------------- |
-| body              | node                                                                                         | false    | null                                | Content of the popover confirmation                                          |
-| buttonSize        | [Confirmation.types.size.SMALL,Confirmation.types.size.MEDIUM,Confirmation.types.size.LARGE] | false    | Confirmation.types.size.MEDIUM      | Size of the button                                                           |
-| children          | node                                                                                         | false    | null                                |                                                                              |
-| confirmButtonType | [Confirmation.types.kind.PRIMARY,Confirmation.types.kind.DESTRUCTIVE]                        | false    | Confirmation.types.kind.DESTRUCTIVE | Determine the styling of the confirm button                                  |
-| confirmLabel      | string                                                                                       | true     | -                                   | Label for the confirm button                                                 |
-| defaultIsOpen     | bool                                                                                         | false    | false                               | If the popover is open by default                                            |
-| heading           | string                                                                                       | false    | null                                | Heading for the popover confirmation                                         |
-| isPending         | bool                                                                                         | false    | false                               | If the confirm button should render in a pending state (with a spinner icon) |
-| onClose           | func                                                                                         | false    | () => {}                            | Callback when cancel button is clicked                                       |
-| onConfirm         | func                                                                                         | true     | -                                   | Callback when confirm button is clicked                                      |
+| Prop              | Type                                                                                            | required | default                             | Description                                                                  |
+| ----------------- | ----------------------------------------------------------------------------------------------- | -------- | ----------------------------------- | ---------------------------------------------------------------------------- |
+| body              | node                                                                                            | false    | null                                | Content of the popover confirmation                                          |
+| buttonSize        | [ Confirmation.types.size.SMALL, Confirmation.types.size.MEDIUM, Confirmation.types.size.LARGE] | false    | Confirmation.types.size.MEDIUM      | Size of the button                                                           |
+| children          | node                                                                                            | false    | null                                |                                                                              |
+| confirmButtonType | [ Confirmation.types.kind.PRIMARY, Confirmation.types.kind.DESTRUCTIVE]                         | false    | Confirmation.types.kind.DESTRUCTIVE | Determine the styling of the confirm button                                  |
+| confirmLabel      | string                                                                                          | true     | -                                   | Label for the confirm button                                                 |
+| defaultIsOpen     | bool                                                                                            | false    | false                               | If the popover is open by default                                            |
+| heading           | string                                                                                          | false    | null                                | Heading for the popover confirmation                                         |
+| isPending         | bool                                                                                            | false    | false                               | If the confirm button should render in a pending state (with a spinner icon) |
+| onClose           | func                                                                                            | false    | () => {}                            | Callback when cancel button is clicked                                       |
+| onConfirm         | func                                                                                            | true     | -                                   | Callback when confirm button is clicked                                      |
 
 <!-- autogenerated don't modify -->
 <!-- content -->

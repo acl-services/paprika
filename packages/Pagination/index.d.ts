@@ -7,7 +7,7 @@ interface PaginationProps {
   /** Callback to be executed when current page is changed. */
   onChange?: (...args: any[]) => any;
   /** The number of other pages that will be visible around the current/active page (not hidden by elipsis). Can be set to small, medium, or large */
-  size?: ShirtSizes.SMALL | ShirtSizes.MEDIUM | ShirtSizes.LARGE;
+  size?: Pagination.types.size.SMALL | Pagination.types.size.MEDIUM | Pagination.types.size.LARGE;
   /** The number of total pages. */
   totalPages: number;
 }

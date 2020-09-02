@@ -4,8 +4,12 @@ declare function DataGrid(props: DataGridProps): JSX.Element;
 interface DataGridProps {
   /** If the data cell should automatically get focus */
   autofocus?: boolean;
-  /** Define the look for borders in the table DataGrid.types.GRID, DataGrid.types.NONE, etc. */
-  borderType?: types.GRID | types.NONE | types.HORIZONTAL | types.VERTICAL;
+  /** Define the look for borders in the table types.DataGrid.GRID, types.DataGrid.NONE, etc. */
+  borderType?:
+    | DataGrid.types.border.GRID
+    | DataGrid.types.border.NONE
+    | DataGrid.types.border.HORIZONTAL
+    | DataGrid.types.border.VERTICAL;
 
   children: React.ReactNode;
   /** This will force the table to include in the calculation of the table the scrollbar thickness */

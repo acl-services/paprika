@@ -43,7 +43,7 @@ declare namespace ActionBar {
 
     onOpen?: (...args: any[]) => any;
 
-    operator?: logicalFilterOperators.AND | logicalFilterOperators.OR;
+    operator?: Filter.types.operator.AND | Filter.types.operator.OR;
 
     rulesByType?: objectOf;
   }
