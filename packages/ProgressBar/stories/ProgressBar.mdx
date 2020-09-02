@@ -1,0 +1,42 @@
+import { Meta, Props, Story } from "@storybook/addon-docs/blocks";
+import ProgressBar from "../src/";
+
+# ProgressBar
+
+`<ProgressBar/>` is a component that shows the current progress of an action.
+
+## Installation
+
+```
+yarn add @paprika/progressbar
+```
+
+or
+
+```
+npm install @paprika/progressbar
+```
+
+## Usage
+
+### Properties
+
+<Props of={ProgressBar} />
+
+### Code Example
+
+```jsx
+<ProgressBar
+  header="Preparing your file..."
+  bodyText="Control attributes are getting updated. This might take more than 15secs."
+  completed={30}
+/>
+```
+
+### Result
+
+<ProgressBar
+  header="Preparing your file..."
+  bodyText="Control attributes are getting updated. This might take more than 15secs."
+  completed={30}
+/>
