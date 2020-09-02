@@ -5,7 +5,7 @@ import { containerStyles } from "./Uploader.styles";
 import { getFiles } from "./helpers";
 import FileList from "./components/FileList";
 import DropZone from "./components/DropZone";
-import types from "./statuses";
+import * as types from "./types";
 import useDragAndDropEvents from "./useDragAndDropEvents";
 import useProcessFiles from "./useProcessFiles";
 

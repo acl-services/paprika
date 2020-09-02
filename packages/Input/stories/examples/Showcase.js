@@ -1,11 +1,11 @@
 import React from "react";
 import { boolean, select, text } from "@storybook/addon-knobs";
 import { Story, Rule, Tagline } from "storybook/assets/styles/common.styles";
-import { ShirtSizes, InputValidTypes } from "@paprika/helpers/lib/customPropTypes";
 import SearchIcon from "@paprika/icon/lib/Search";
 import InfoIcon from "@paprika/icon/lib/InfoCircle";
 import Heading from "@paprika/heading";
 import CodeViewer from "storybook/components/CodeViewer";
+import * as types from "../../src/types";
 import Input from "../../src";
 
 const iconSelections = {
@@ -15,14 +15,14 @@ const iconSelections = {
 };
 
 const getKnobs = () => ({
-  size: select("size", ShirtSizes.DEFAULT, "medium"),
+  size: select("size", [types.SMALL, types.MEDIUM, types.LARGE], "medium"),
   placeholder: text("placeholder", "Enter some text"),
   icon: iconSelections[select("icon", Object.keys(iconSelections), null)],
   hasClearButton: boolean("hasClearButton", false),
   isDisabled: boolean("isDisabled", false),
   isReadOnly: boolean("isReadOnly", false),
   hasError: boolean("hasError", false),
-  type: select("type", InputValidTypes.ALL),
+  type: select("type", types.inputValidTypes),
   a11yText: text("a11yText", null),
 });
 

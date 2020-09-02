@@ -1,7 +1,7 @@
 import styled, { css } from "styled-components";
 import tokens from "@paprika/tokens";
 import stylers from "@paprika/stylers";
-import { ShirtSizes } from "@paprika/helpers/lib/customPropTypes";
+import * as types from "./types";
 import OriginalHeader from "./components/Header";
 import OriginalContent from "./components/Content";
 import OriginalFooter from "./components/Footer";
@@ -50,9 +50,9 @@ export const FocusLock = styled.div`
 `;
 
 const mapShirtSizesToValues = {
-  [ShirtSizes.SMALL]: tokens.modal.sizes.sm,
-  [ShirtSizes.MEDIUM]: tokens.modal.sizes.md,
-  [ShirtSizes.LARGE]: tokens.modal.sizes.lg,
+  [types.SMALL]: tokens.modal.sizes.sm,
+  [types.MEDIUM]: tokens.modal.sizes.md,
+  [types.LARGE]: tokens.modal.sizes.lg,
 };
 
 export const Dialog = styled.div`
@@ -73,7 +73,7 @@ export const Wrapper = styled.div`
   margin: ${tokens.modal.margin};
   max-height: calc(100% - ${tokens.modal.margin} - ${tokens.modal.margin});
   max-width: calc(100% - ${tokens.modal.margin} - ${tokens.modal.margin});
-  width: ${({ size }) => mapShirtSizesToValues[size] || mapShirtSizesToValues[ShirtSizes.MEDIUM]};
+  width: ${({ size }) => mapShirtSizesToValues[size] || mapShirtSizesToValues[types.MEDIUM]};
   ${stylers.z(1)};
 `;
 

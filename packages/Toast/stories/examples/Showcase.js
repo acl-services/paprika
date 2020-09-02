@@ -5,7 +5,7 @@ import Heading from "@paprika/heading";
 import L10n from "@paprika/l10n";
 import CodeViewer from "storybook/components/CodeViewer";
 import Toast from "../../src";
-import Kinds from "../../src/ToastKinds";
+import * as types from "../../src/types";
 
 const getKnobs = () => ({
   autoCloseDelay: number("autoCloseDelay", 5000),
@@ -17,8 +17,15 @@ const getKnobs = () => ({
   isPolite: boolean("isPolite", false),
   kind: select(
     "kind",
-    [Kinds.SUCCESS, Kinds.WARNING, Kinds.ERROR, Kinds.INFO, Kinds.LOCKED, Kinds.VISUALLY_HIDDEN],
-    Kinds.INFO
+    [
+      types.toastKinds.SUCCESS,
+      types.toastKinds.WARNING,
+      types.toastKinds.ERROR,
+      types.toastKinds.INFO,
+      types.toastKinds.LOCKED,
+      types.toastKinds.VISUALLY_HIDDEN,
+    ],
+    types.toastKinds.INFO
   ),
   zIndex: number("zIndex", undefined),
 });

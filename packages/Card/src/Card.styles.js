@@ -1,6 +1,6 @@
 import styled from "styled-components";
 import tokens from "@paprika/tokens";
-import { ShirtSizes } from "@paprika/helpers/lib/customPropTypes";
+import * as types from "./types";
 
 // Common
 
@@ -17,19 +17,19 @@ const commonStyles = styled.div`
 // Sizes
 
 const sizeStyles = {
-  [ShirtSizes.SMALL]: `
+  [types.SMALL]: `
     width: 240px;
     height: 117px;
   `,
-  [ShirtSizes.MEDIUM]: `
+  [types.MEDIUM]: `
   width: 240px;
   height: 284px;
   `,
-  [ShirtSizes.LARGE]: `
+  [types.LARGE]: `
   width: 300px;
   height: 500px;
   `,
-  auto: `
+  [types.AUTO]: `
   height: auto;
   width: auto;
   `,

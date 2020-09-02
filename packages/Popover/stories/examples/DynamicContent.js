@@ -49,7 +49,7 @@ const ExampleStory = () => {
 
   return (
     <CenteredStory>
-      <Popover align="top" isOpen>
+      <Popover align={Popover.align.TOP} isOpen>
         <Popover.Trigger aria-hidden>👻</Popover.Trigger>
         {childs}
       </Popover>

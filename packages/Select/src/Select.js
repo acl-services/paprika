@@ -1,32 +1,8 @@
 import React from "react";
 import classNames from "classnames";
 import PropTypes from "prop-types";
-import { ShirtSizes } from "@paprika/helpers/lib/customPropTypes";
+import * as constants from "@paprika/constants/lib/Constants";
 import selectStyles from "./Select.styles";
-
-const propTypes = {
-  a11yText: PropTypes.string,
-  className: PropTypes.string,
-  children: PropTypes.node,
-  hasError: PropTypes.bool,
-  isDisabled: PropTypes.bool,
-  isReadOnly: PropTypes.bool,
-  placeholder: PropTypes.string,
-  size: PropTypes.oneOf(ShirtSizes.DEFAULT),
-  value: PropTypes.string,
-};
-
-const defaultProps = {
-  a11yText: null,
-  className: null,
-  children: null,
-  hasError: false,
-  isDisabled: false,
-  isReadOnly: false,
-  placeholder: null,
-  size: ShirtSizes.MEDIUM,
-  value: "",
-};
 
 const Select = React.forwardRef((props, ref) => {
   const renderPlaceholder = () => {
@@ -82,6 +58,34 @@ const Select = React.forwardRef((props, ref) => {
     </div>
   );
 });
+
+Select.types = {
+  size: constants.defaultSize,
+};
+
+const propTypes = {
+  a11yText: PropTypes.string,
+  className: PropTypes.string,
+  children: PropTypes.node,
+  hasError: PropTypes.bool,
+  isDisabled: PropTypes.bool,
+  isReadOnly: PropTypes.bool,
+  placeholder: PropTypes.string,
+  size: PropTypes.oneOf([Select.types.size.SMALL, Select.types.size.MEDIUM, Select.types.size.LARGE]),
+  value: PropTypes.string,
+};
+
+const defaultProps = {
+  a11yText: null,
+  className: null,
+  children: null,
+  hasError: false,
+  isDisabled: false,
+  isReadOnly: false,
+  placeholder: null,
+  size: Select.types.size.MEDIUM,
+  value: "",
+};
 
 Select.displayName = "Select";
 Select.propTypes = propTypes;

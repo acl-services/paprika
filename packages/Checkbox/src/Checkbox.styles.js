@@ -1,8 +1,8 @@
 import styled, { css } from "styled-components";
 import { toInt, fontSizeValue, lineHeightValue, z } from "@paprika/stylers/lib/helpers";
 import { boxSizingStyles, visuallyHidden } from "@paprika/stylers/lib/includes";
-import { ShirtSizes } from "@paprika/helpers/lib/customPropTypes";
 import tokens from "@paprika/tokens";
+import * as types from "./types";
 
 const getLabelLeftPadding = (checkboxSize, hasLabel) => {
   return hasLabel ? `${toInt(checkboxSize) + toInt(tokens.space)}px` : checkboxSize;
@@ -13,7 +13,7 @@ const mediumCheckboxSize = tokens.checkbox.sizeMd;
 const largeCheckboxSize = tokens.checkbox.sizeLg;
 
 const styles = {
-  [ShirtSizes.SMALL]: {
+  [types.SMALL]: {
     baseFontSize: {
       fontSize: `${fontSizeValue(-1)}px`,
     },
@@ -33,7 +33,7 @@ const styles = {
       };
     },
   },
-  [ShirtSizes.MEDIUM]: {
+  [types.MEDIUM]: {
     baseFontSize: {
       fontSize: `${fontSizeValue()}px`,
     },
@@ -53,7 +53,7 @@ const styles = {
       };
     },
   },
-  [ShirtSizes.LARGE]: {
+  [types.LARGE]: {
     baseFontSize: {
       fontSize: `${fontSizeValue()}px`,
     },
