@@ -14,7 +14,7 @@ interface ModalProps {
   /** Callback once the modal has been closed event */
   onAfterClose?: (...args: any[]) => any;
 
-  size?: ShirtSizes.DEFAULT;
+  size?: Modal.types.size.SMALL | Modal.types.size.MEDIUM | Modal.types.size.LARGE;
   /** The z-index of the Takeover content */
   zIndex?: number;
 }

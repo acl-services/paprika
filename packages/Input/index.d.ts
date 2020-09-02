@@ -25,9 +25,16 @@ interface InputProps {
   /** Callback to be executed when the input value is cleared */
   onClear?: (...args: any[]) => any;
   /** Changes the size of the input. */
-  size?: ShirtSizes.DEFAULT;
+  size?: Input.types.size.SMALL | Input.types.size.MEDIUM | Input.types.size.LARGE;
   /** Allows user to specify the type of input. */
-  type?: InputValidTypes.ALL;
+  type?:
+    | types.inputValidTypes.EMAIL
+    | types.inputValidTypes.NUMBER
+    | types.inputValidTypes.PASSWORD
+    | types.inputValidTypes.SEARCH
+    | types.inputValidTypes.TELEPHONE
+    | types.inputValidTypes.TEXT
+    | types.inputValidTypes.URL;
   /** The value inside of the input */
   value?: string;
 }

@@ -18,7 +18,7 @@ interface FormElementProps {
   /** Label text of this field. */
   label: React.ReactNode;
   /** Size of the label, error, help and description (font size, min-height, padding, etc). */
-  size?: ShirtSizes.DEFAULT;
+  size?: FormElement.types.size.SMALL | FormElement.types.size.MEDIUM | FormElement.types.size.LARGE;
   /** FormElement contains multiple children so Renders a legend element instead of label. */
   hasFieldSet?: boolean;
 

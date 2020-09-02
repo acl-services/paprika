@@ -3,7 +3,11 @@ export default Table;
 declare function Table(props: TableProps): JSX.Element;
 interface TableProps {
   /** Define the look for borders in the table Table.types.GRID, Table.types.NONE, etc. */
-  borderType?: "grid" | "none" | "horizontal" | "vertical";
+  borderType?:
+    | Table.types.border.GRID
+    | Table.types.border.NONE
+    | Table.types.border.HORIZONTAL
+    | Table.types.border.VERTICAL;
   /** Accessible description of the table */
   a11yText: string;
 

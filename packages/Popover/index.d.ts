@@ -3,7 +3,7 @@ export default Popover;
 declare function Popover(props: PopoverProps): JSX.Element;
 interface PopoverProps {
   /** Where the popover content is positioned relative to the trigger or getPositioningElement. */
-  align?: AlignTypes.ALL;
+  align?: Popover.types.align.TOP | Popover.types.align.RIGHT | Popover.types.align.BOTTOM | Popover.types.align.LEFT;
   /** Content of the popover */
   children: React.ReactNode;
   /** Displays as a "tooltip" style with white text on black background. */
@@ -17,7 +17,7 @@ interface PopoverProps {
   /** How "uncontrolled" popovers can be rendered open by default. */
   defaultIsOpen?: boolean;
   /** Where the edge of the popover content is based on the trigger or getPositioningElement */
-  edge?: AlignTypes.LEFT | AlignTypes.RIGHT | null;
+  edge?: Popover.types.align.LEFT | Popover.types.align.RIGHT | null;
   /** Maximum width of popover content. Using a number is recommended and implies px units. */
   maxWidth?: string | number;
   /** Minimumn width of popover content. Using a number is recommended and implies px units. */

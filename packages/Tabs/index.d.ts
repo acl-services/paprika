@@ -3,7 +3,7 @@ export default Tabs;
 declare function Tabs(props: TabsProps): JSX.Element;
 interface TabsProps {
   /** Determine the styling of the tab */
-  kind?: "primary" | "secondary";
+  kind?: Tabs.types.kind.PRIMARY | Tabs.types.kind.SECONDARY;
   /** Children of the Tab */
   children: React.ReactNode;
   /** Sets what tab index is active by default */

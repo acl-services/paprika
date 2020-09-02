@@ -7,7 +7,7 @@ interface CheckboxProps {
   /** Used for aria-label on the checkbox input */
   a11yText?: string;
   /** The checkbox state */
-  checkedState?: "checked" | "indeterminate" | "unchecked";
+  checkedState?: Checkbox.types.state.CHECKED | Checkbox.types.state.UNCHECKED | Checkbox.types.state.INDETERMINATE;
   /** Used for label contents */
   children?: React.ReactNode;
   /** Describe if the checkbox is disabled or not */
@@ -15,7 +15,7 @@ interface CheckboxProps {
   /** Callback triggered when the input state is changed */
   onChange?: (...args: any[]) => any;
   /** Size provided by parent Group component */
-  size?: ShirtSizes.DEFAULT;
+  size?: Checkbox.types.size.SMALL | Checkbox.types.size.MEDIUM | Checkbox.types.size.LARGE;
   /** Value for tabindex attribute to override the default of 0. */
   tabIndex?: number | string;
 }

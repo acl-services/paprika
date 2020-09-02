@@ -21,7 +21,7 @@ interface RadioProps {
   /** onClick provided by parent Group component */
   onClick?: custom;
   /** Size provided by parent Group component */
-  size?: ShirtSizes.DEFAULT;
+  size?: Radio.types.size.SMALL | Radio.types.size.MEDIUM | Radio.types.size.LARGE;
   /** Value for tabindex attribute to override the default of 0. */
   tabIndex?: number | string;
   /** Value applied to the input if needed. */
