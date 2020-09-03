@@ -1,9 +1,8 @@
 import React from "react";
 import PropTypes from "prop-types";
 import * as constants from "@paprika/constants/lib/Constants";
-import RawButton from "@paprika/raw-button";
 import * as types from "./types";
-import pillStyles, { pillTextStyles } from "./Pill.styles";
+import * as sc from "./Pill.styles";
 
 function Pill(props) {
   const { a11yText, pillColor, isDisabled, size, onClick, ...moreProps } = props;
@@ -15,23 +14,16 @@ function Pill(props) {
 
   if (onClick) {
     return (
-      <RawButton
-        css={pillStyles}
-        {...styleProps}
-        a11yText={a11yText}
-        isDisabled={isDisabled}
-        onClick={onClick}
-        {...moreProps}
-      >
-        <span css={pillTextStyles}>{props.children}</span>
-      </RawButton>
+      <sc.Pill {...styleProps} a11yText={a11yText} isDisabled={isDisabled} onClick={onClick} {...moreProps}>
+        <sc.PillText>{props.children}</sc.PillText>
+      </sc.Pill>
     );
   }
 
   return (
-    <div css={pillStyles} {...styleProps} {...moreProps} data-pka-anchor="pill">
-      <span css={pillTextStyles}>{props.children}</span>
-    </div>
+    <sc.Pill {...styleProps} {...moreProps} data-pka-anchor="pill">
+      <sc.PillText>{props.children}</sc.PillText>
+    </sc.Pill>
   );
 }
 
