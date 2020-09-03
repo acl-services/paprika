@@ -6,6 +6,10 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 
 ## [Unreleased]
 
+### Fixed
+
+- Fix ListBox Footer sub-component was compiling the older version of the updated constants/types. It's properties was running 'Button..Kinds.MINOR' where it should be running 'Button.types.kind.Minor'. Proprties have been updated to latest standard. [@kaan.darcey](https://github.com/KDarcey).
+
 ## [0.9.0] - 2020-06-16
 
 ### Changed
