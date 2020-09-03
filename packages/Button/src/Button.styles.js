@@ -240,8 +240,10 @@ const kindStyles = props => ({
     box-shadow: none;
     color: ${tokens.color.black};
 
-    &:hover {
+    &:hover, &:visited {
       background: ${tokens.color.blackLighten70};
+      color: ${tokens.color.black};
+      text-decoration:none;
     }
 
     ${props.isDisabled && disabledStyles}
