@@ -8,20 +8,25 @@ export const ProgressBar = styled.div`
 `;
 
 const progress = keyframes`
-  0% { background-position: left bottom; }
-  100% { background-position: right bottom; }
+  0% { background-position: right bottom; }
+  100% { background-position: left bottom; }
 `;
 
-const animation = css`
-  animation: ${progress} 0.5s infinite linear;
-  background-image: linear-gradient(
-    to left,
-    ${tokens.color.purple} 30%,
-    ${tokens.color.purpleLighten20} 80%,
-    ${tokens.color.purple} 100%
-  );
-  background-size: 50% 100%;
-`;
+export const BarFiller = styled.div(
+  ({ completed }) => css`
+    animation: ${progress} 1.5s linear infinite;
+    background-image: linear-gradient(
+      to left,
+      ${tokens.color.purple} 30%,
+      ${tokens.color.purpleLighten20} 80%,
+      ${tokens.color.purple} 100%
+    );
+    background-size: 150% 200%;
+    border-radius: inherit;
+    height: inherit;
+    width: ${completed}%;
+  `
+);
 
 export const Bar = styled.div`
   background-color: ${tokens.color.blackLighten80};
@@ -30,15 +35,6 @@ export const Bar = styled.div`
   height: ${stylers.spacer(2)};
   width: 100%;
 `;
-
-export const BarFiller = styled.div(
-  ({ completed }) => css`
-    ${animation}
-    border-radius: inherit;
-    height: inherit;
-    width: ${completed}%;
-  `
-);
 
 export const Body = styled.p`
   ${stylers.fontSize()};

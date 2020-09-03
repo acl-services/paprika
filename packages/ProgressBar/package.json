@@ -1,5 +1,5 @@
 {
-  "name": "@paprika/progressbar",
+  "name": "@paprika/progress-bar",
   "version": "0.1.0",
   "description": "ProgressBar is a component that shows the current progress of an action",
   "author": "@paprika",
