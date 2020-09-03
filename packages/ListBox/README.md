@@ -74,9 +74,9 @@ see: options/helpers/options.js|
 | isCancelVisible   | bool                                                                          | false    | true                      | If true it makes the cancel button visible                                          |
 | isClearVisible    | bool                                                                          | false    | true                      | If true it makes the clear button visible                                           |
 | isDisabled        | bool                                                                          | false    | false                     | If true it makes the footer disabled                                                |
-| kindAccept        | [ Footer.types.kind.PRIMARY, Footer.types.kind.MINOR]                         | false    | Footer.types.kind.PRIMARY | Sets what kind the accept button will be                                            |
-| kindCancel        | [ Footer.types.kind.PRIMARY, Footer.types.kind.MINOR]                         | false    | Footer.types.kind.MINOR   | Sets what kind the cancel button will be                                            |
-| kindClear         | [ Footer.types.kind.PRIMARY, Footer.types.kind.MINOR]                         | false    | Footer.types.kind.MINOR   | Sets what kind the cancel button will be                                            |
+| kindAccept        | [ Button.types.kind.PRIMARY, Button.types.kind.MINOR]                         | false    | Button.types.kind.PRIMARY | Sets what kind the accept button will be                                            |
+| kindCancel        | [ Button.types.kind.PRIMARY, Button.types.kind.MINOR]                         | false    | Button.types.kind.MINOR   | Sets what kind the cancel button will be                                            |
+| kindClear         | [ Button.types.kind.PRIMARY, Button.types.kind.MINOR]                         | false    | Button.types.kind.MINOR   | Sets what kind the cancel button will be                                            |
 | labelAccept       | string                                                                        | false    | "Accept"                  | Sets the label for the accept button                                                |
 | labelCancel       | string                                                                        | false    | "Cancel"                  | Sets the label for the cancel button                                                |
 | labelClear        | string                                                                        | false    | "Clear"                   | Sets the label for the clear button                                                 |
@@ -84,7 +84,7 @@ see: options/helpers/options.js|
 | onClickCancel     | func                                                                          | false    | null                      | Callback to be executed when the cancel button is clicked or activated by keyboard. |
 | onClickClear      | func                                                                          | false    | null                      | Callback to be executed when the clear button is clicked or activated by keyboard.  |
 | renderExtraButton | func                                                                          | false    | () => {}                  | Render an extra button beside the clear button                                      |
-| size              | [ Footer.types.size.SMALL, Footer.types.size.MEDIUM, Footer.types.size.LARGE] | false    | Footer.types.size.SMALL   | Determines the size of the footer                                                   |
+| size              | [ Button.types.size.SMALL, Button.types.size.MEDIUM, Button.types.size.LARGE] | false    | Button.types.size.SMALL   | Determines the size of the footer                                                   |
 
 ### ListBox.Option
 

@@ -1,10 +1,8 @@
 import React from "react";
 import Button from "@paprika/button";
 import PropTypes from "prop-types";
-import * as constants from "@paprika/constants/lib/Constants";
 import useListBox from "../../useListBox";
 import invokeOnChange from "../../helpers/invokeOnChange";
-import * as types from "../../types";
 import { FooterContainerStyled } from "./Footer.styles";
 
 export function FooterComponent(props, ref) {
@@ -97,11 +95,6 @@ export function FooterComponent(props, ref) {
 
 const Footer = React.forwardRef(FooterComponent);
 
-Footer.types = {
-  kind: { MINOR: types.MINOR, PRIMARY: types.PRIMARY },
-  size: constants.defaultSize,
-};
-
 const propTypes = {
   /** If true it makes the accept button visible */
   isAcceptVisible: PropTypes.bool,
@@ -116,13 +109,13 @@ const propTypes = {
   isDisabled: PropTypes.bool,
 
   /** Sets what kind the accept button will be  */
-  kindAccept: PropTypes.oneOf([Footer.types.kind.PRIMARY, Footer.types.kind.MINOR]),
+  kindAccept: PropTypes.oneOf([Button.types.kind.PRIMARY, Button.types.kind.MINOR]),
 
   /** Sets what kind the cancel button will be  */
-  kindCancel: PropTypes.oneOf([Footer.types.kind.PRIMARY, Footer.types.kind.MINOR]),
+  kindCancel: PropTypes.oneOf([Button.types.kind.PRIMARY, Button.types.kind.MINOR]),
 
   /** Sets what kind the cancel button will be  */
-  kindClear: PropTypes.oneOf([Footer.types.kind.PRIMARY, Footer.types.kind.MINOR]),
+  kindClear: PropTypes.oneOf([Button.types.kind.PRIMARY, Button.types.kind.MINOR]),
 
   /** Sets the label for the accept button */
   labelAccept: PropTypes.string,
@@ -146,7 +139,7 @@ const propTypes = {
   renderExtraButton: PropTypes.func,
 
   /** Determines the size of the footer */
-  size: PropTypes.oneOf([Footer.types.size.SMALL, Footer.types.size.MEDIUM, Footer.types.size.LARGE]),
+  size: PropTypes.oneOf([Button.types.size.SMALL, Button.types.size.MEDIUM, Button.types.size.LARGE]),
 };
 
 const defaultProps = {
@@ -154,9 +147,9 @@ const defaultProps = {
   isCancelVisible: true,
   isClearVisible: true,
   isDisabled: false,
-  kindAccept: Footer.types.kind.PRIMARY,
-  kindCancel: Footer.types.kind.MINOR,
-  kindClear: Footer.types.kind.MINOR,
+  kindAccept: Button.types.kind.PRIMARY,
+  kindCancel: Button.types.kind.MINOR,
+  kindClear: Button.types.kind.MINOR,
   labelAccept: "Accept",
   labelCancel: "Cancel",
   labelClear: "Clear",
@@ -164,7 +157,7 @@ const defaultProps = {
   onClickCancel: null,
   onClickClear: null,
   renderExtraButton: () => {},
-  size: Footer.types.size.SMALL,
+  size: Button.types.size.SMALL,
 };
 
 Footer.propTypes = propTypes;
