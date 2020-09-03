@@ -1,6 +1,6 @@
 import React from "react";
 import PropTypes from "prop-types";
-import { Wrapper, ChildWrapper } from "./Footer.styles";
+import * as sc from "./Footer.styles";
 
 const propTypes = {
   children: PropTypes.node,
@@ -14,11 +14,11 @@ const Footer = props => {
   const { children, ...moreProps } = props;
 
   return (
-    <Wrapper {...moreProps}>
+    <sc.Footer {...moreProps}>
       {React.Children.map(children, child => (
-        <ChildWrapper key={child.key}>{child}</ChildWrapper>
+        <sc.Child key={child.key}>{child}</sc.Child>
       ))}
-    </Wrapper>
+    </sc.Footer>
   );
 };
 
