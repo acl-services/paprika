@@ -17,7 +17,7 @@ interface ButtonGroupProps {
   /** Callback to be executed when any button item is clicked or activated by keyboard. It will return an array of the selected items' "value" properties. */
   onChange?: (...args: any[]) => any;
   /** Size of the buttons (height, font size, etc). */
-  size?: ShirtSizes.DEFAULT;
+  size?: ButtonGroup.types.size.SMALL | ButtonGroup.types.size.MEDIUM | ButtonGroup.types.size.LARGE;
 }
 declare namespace ButtonGroup {
   function Item(props: ItemProps): JSX.Element;

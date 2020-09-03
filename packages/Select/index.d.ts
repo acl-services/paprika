@@ -16,7 +16,7 @@ interface SelectProps {
 
   placeholder?: string;
 
-  size?: ShirtSizes.DEFAULT;
+  size?: Select.types.size.SMALL | Select.types.size.MEDIUM | Select.types.size.LARGE;
 
   value?: string;
 }
