@@ -9,5 +9,5 @@ interface SpinnerProps {
   /** Sets the caption that will display beneath the spinner */
   caption?: string;
   /** Sets the size of the spinner */
-  size?: ShirtSizes.DEFAULT;
+  size?: Spinner.types.size.SMALL | Spinner.types.size.MEDIUM | Spinner.types.size.LARGE;
 }

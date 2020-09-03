@@ -11,17 +11,17 @@ interface PillProps {
   onClick?: (...args: any[]) => any;
 
   pillColor?:
-    | "black"
-    | "blue"
-    | "green"
-    | "grey"
-    | "orange"
-    | "lightBlue"
-    | "lightOrange"
-    | "noRisk"
-    | "lowRisk"
-    | "mediumRisk"
-    | "highRisk";
+    | Pill.types.color.BLACK
+    | Pill.types.color.BLUE
+    | Pill.types.color.GREEN
+    | Pill.types.color.GREY
+    | Pill.types.color.ORANGE
+    | Pill.types.color.LIGHT_BLUE
+    | Pill.types.color.LIGHT_ORANGE
+    | Pill.types.severity.NO_RISK
+    | Pill.types.severity.LOW_RISK
+    | Pill.types.severity.MEDIUM_RISK
+    | Pill.types.severity.HIGH_RISK;
 
-  size?: ShirtSizes.LIMITED;
+  size?: Pill.types.size.SMALL | Pill.types.size.MEDIUM;
 }

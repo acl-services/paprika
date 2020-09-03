@@ -20,7 +20,7 @@ declare function ListBox(props:ListBoxProps): JSX.Element;
  /** Defaults label to display when the ListBox has not option selected */
     placeholder: string;
  /** Size of the trigger and options (font size, height, padding, etc). */
-    size?: ShirtSizes.DEFAULT;
+    size?: ListBoxContainer.types.size.SMALL|ListBoxContainer.types.size.MEDIUM|ListBoxContainer.types.size.LARGE;
 }declare function Box(props:BoxProps): JSX.Element;
   interface BoxProps { /** Body content of the box. */
     children: React.ReactNode;
