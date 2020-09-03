@@ -31,7 +31,13 @@ function ProgressBar(props) {
     <sc.ProgressBar data-pka-anchor="progress-bar" {...moreProps}>
       <Heading level={3}>{header}</Heading>
       <sc.Bar>
-        <sc.BarFiller completed={completed} />
+        <sc.BarFiller
+          role="progressbar"
+          aria-valuemin="0"
+          aria-valuemax="100"
+          aria-valuenow={completed}
+          completed={completed}
+        />
       </sc.Bar>
       <sc.Body>{bodyText}</sc.Body>
       <sc.BarAria role="alert" aria-live="polite">
