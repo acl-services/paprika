@@ -55,27 +55,31 @@ const mapShirtSizesToValues = {
   [types.LARGE]: tokens.modal.sizes.lg,
 };
 
-export const Dialog = styled.div`
-  background-color: ${tokens.modal.backgroundColor};
-  border-radius: ${tokens.modal.borderRadius};
-  display: flex;
-  flex-direction: column;
-  height: 100%;
-  justify-content: flex-start;
-  overflow: auto;
-  transition: all ${tokens.overlay.animationDuration}ms ease;
-  width: 100%;
-  ${({ state }) => states[state]};
-  ${stylers.boxSizingStyles};
-`;
+export const Dialog = styled.div(
+  ({ state }) => css`
+    background-color: ${tokens.modal.backgroundColor};
+    border-radius: ${tokens.modal.borderRadius};
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    justify-content: flex-start;
+    overflow: auto;
+    transition: all ${tokens.overlay.animationDuration}ms ease;
+    width: 100%;
+    ${states[state]};
+    ${stylers.boxSizingStyles};
+  `
+);
 
-export const Wrapper = styled.div`
-  margin: ${tokens.modal.margin};
-  max-height: calc(100% - ${tokens.modal.margin} - ${tokens.modal.margin});
-  max-width: calc(100% - ${tokens.modal.margin} - ${tokens.modal.margin});
-  width: ${({ size }) => mapShirtSizesToValues[size] || mapShirtSizesToValues[types.MEDIUM]};
-  ${stylers.z(1)};
-`;
+export const Modal = styled.div(
+  ({ size }) => css`
+    margin: ${tokens.modal.margin};
+    max-height: calc(100% - ${tokens.modal.margin} - ${tokens.modal.margin});
+    max-width: calc(100% - ${tokens.modal.margin} - ${tokens.modal.margin});
+    width: ${mapShirtSizesToValues[size] || mapShirtSizesToValues[types.MEDIUM]};
+    ${stylers.z(1)};
+  `
+);
 
 export const Header = styled(OriginalHeader)`
   flex: none;

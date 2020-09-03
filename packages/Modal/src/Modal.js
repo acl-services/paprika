@@ -48,16 +48,16 @@ const Modal = props => {
       focusLockOptions={focusLockOptions}
     >
       {state => (
-        <sc.Wrapper size={size} data-pka-anchor="modal.wrapper" {...moreProps}>
+        <sc.Modal size={size} data-pka-anchor="modal.wrapper" {...moreProps}>
           <sc.Dialog state={state} role="dialog" aria-modal="true" aria-label={ariaLabel} data-pka-anchor="modal">
             {headerExtracted && <sc.Header {...headerExtracted.props} onClose={onClose} />}
-            <sc.ContentWrapper role="region" tabIndex="0">
+            <sc.Content role="region" tabIndex="0">
               {contentExtracted && <sc.Content {...contentExtracted.props} />}
               {children}
-            </sc.ContentWrapper>
+            </sc.Content>
             {footerExtracted && <sc.Footer {...footerExtracted.props} />}
           </sc.Dialog>
-        </sc.Wrapper>
+        </sc.Modal>
       )}
     </Overlay>
   );
