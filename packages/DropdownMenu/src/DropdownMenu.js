@@ -7,7 +7,7 @@ import Divider from "./components/Divider";
 import Trigger from "./components/Trigger";
 import LinkItem from "./components/LinkItem";
 import Item from "./components/Item";
-import { contentStyles } from "./DropdownMenu.styles";
+import * as sc from "./DropdownMenu.styles";
 
 const propTypes = {
   /** Alignment of the Popover */
@@ -139,7 +139,7 @@ function DropdownMenu(props) {
 
     return (
       <Popover.Card>
-        <div css={contentStyles} ref={dropdownListRef}>
+        <sc.Content ref={dropdownListRef}>
           {extractedChildren.children.map((child, index) => {
             const childKey = { key: `DropdownMenuItem${index}` };
             if (child && child.type && child.type.displayName === "DropdownMenu.Item") {
@@ -154,7 +154,7 @@ function DropdownMenu(props) {
             }
             return getClonedChild(child, childKey);
           })}
-        </div>
+        </sc.Content>
       </Popover.Card>
     );
   };
