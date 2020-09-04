@@ -3,6 +3,7 @@
   "version": "0.3.31",
   "description": "FormElement component displays a user input field",
   "main": "lib/index.js",
+  "types": "lib/index.d.ts",
   "author": "@paprika",
   "license": "MIT",
   "repository": {

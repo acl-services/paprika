@@ -4,6 +4,7 @@
   "description": "Button component, for performing an action on the page you’re viewing.",
   "author": "@paprika",
   "main": "lib/index.js",
+  "types": "lib/index.d.ts",
   "license": "MIT",
   "repository": {
     "type": "git",

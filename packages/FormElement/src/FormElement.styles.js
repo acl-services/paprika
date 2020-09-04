@@ -7,19 +7,23 @@ const FontSizes = {
   large: stylers.fontSize(0),
 };
 
-export const SectionsContainer = styled.div`
-  ${({ isInline }) => isInline && `flex-grow: 1;`}
-`;
+export const Sections = styled.div(
+  ({ isInline }) => css`
+    ${isInline && `flex-grow: 1;`}
+  `
+);
 
 const inlineFormElementStyles = css`
   align-items: baseline;
   display: flex;
 `;
 
-export const FormElement = styled.div`
-  ${({ size }) => FontSizes[size]}
-  ${({ isInline }) => isInline && inlineFormElementStyles};
-  ${({ isDisabled }) => isDisabled && `opacity: 0.5;`}
-  border: none;
-  padding: 0;
-`;
+export const FormElement = styled.div(
+  ({ size, isInline, isDisabled }) => css`
+    ${FontSizes[size]}
+    ${isInline && inlineFormElementStyles};
+    ${isDisabled && `opacity: 0.5;`}
+    border: none;
+    padding: 0;
+  `
+);

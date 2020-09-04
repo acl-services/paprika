@@ -4,6 +4,7 @@
   "description": "The TimePicker component gives users the ability to select a specific time from a popover.",
   "author": "@paprika",
   "main": "lib/index.js",
+  "types": "lib/index.d.ts",
   "license": "MIT",
   "repository": {
     "type": "git",
