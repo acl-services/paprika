@@ -1,9 +1,8 @@
 import React from "react";
 import PropTypes from "prop-types";
-import Collapsible from "@paprika/collapsible";
 import UpIcon from "@paprika/icon/lib/ArrowUp";
 import DownIcon from "@paprika/icon/lib/ArrowDown";
-import { itemStyles, incompleteStyles, itemLabelStyles } from "./Item.styles";
+import * as sc from "./Item.styles";
 
 const propTypes = {
   /** Content to be revealed with the Collapsible for this item is open. */
@@ -31,22 +30,19 @@ const Item = props => {
   };
 
   return isComplete ? (
-    <Collapsible
-      css={itemStyles}
+    <sc.Item
       iconAlign="right"
       iconCollapse={<DownIcon />}
       iconExpand={<UpIcon />}
       isCollapsed={!isOpen}
-      label={<div css={itemLabelStyles}>{label}</div>}
+      label={<sc.ItemLabel>{label}</sc.ItemLabel>}
       onClick={handleToggle}
       {...moreProps}
     >
       {children}
-    </Collapsible>
+    </sc.Item>
   ) : (
-    <div css={incompleteStyles} data-pka-anchor="progress-accordion.item.incomplete">
-      {label}
-    </div>
+    <sc.Incomplete data-pka-anchor="progress-accordion.item.incomplete">{label}</sc.Incomplete>
   );
 };
 
