@@ -1,6 +1,6 @@
 {
   "name": "@paprika/progress-accordion",
-  "version": "0.2.31",
+  "version": "0.2.32",
   "description": "The ProgressAccordion component displays questionnaire responses in a collapsible accordion format.",
   "author": "@paprika",
   "main": "lib/index.js",
