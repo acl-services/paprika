@@ -144,6 +144,12 @@ const skeuomorphicStyles = css`
 const coloredButtonStyles = css`
   color: ${tokens.color.white};
   text-shadow: 0 1px 1px ${stylers.alpha(tokens.color.blackPure, 0.2)};
+
+  &:hover,
+  &:visited {
+    color: ${tokens.color.white};
+    text-decoration: none;
+  }
 `;
 
 const textButtonStyles = css`
@@ -233,8 +239,10 @@ export const kindStyles = ({ isDisabled }) => ({
     box-shadow: none;
     color: ${tokens.color.black};
 
-    &:hover {
+    &:hover, &:visited {
       background: ${tokens.color.blackLighten70};
+      color: ${tokens.color.black};
+      text-decoration:none;
     }
 
     ${isDisabled && disabledStyles}

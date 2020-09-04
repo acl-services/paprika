@@ -1,4 +1,4 @@
-import { css } from "styled-components";
+import styled, { css } from "styled-components";
 import tokens from "@paprika/tokens";
 import stylers from "@paprika/stylers";
 
@@ -48,40 +48,44 @@ const doneStyles = css`
   color: ${tokens.color.white};
 `;
 
-export const indicatorStyles = css`
-  &,
-  * {
-    box-sizing: border-box;
-  }
+export const Indicator = styled.div(
+  ({ isLast, isComplete, isActive }) => css`
+    &,
+    * {
+      box-sizing: border-box;
+    }
 
-  display: inline-block;
-  line-height: 1;
-  position: relative;
+    display: inline-block;
+    line-height: 1;
+    position: relative;
 
-  &:before {
-    ${({ isLast }) => !isLast && lineStyles}
-    ${({ isComplete }) => isComplete && `border-color: ${tokens.color.black}`}
-  }
+    &:before {
+      ${!isLast && lineStyles}
+      ${isComplete && `border-color: ${tokens.color.black}`}
+    }
 
-  &:after {
-    ${({ isActive, isLast }) => isActive && !isLast && activeLineStyles}
-  }
-`;
+    &:after {
+      ${isActive && !isLast && activeLineStyles}
+    }
+  `
+);
 
-export const indicatorDotStyles = css`
-  ${stylers.fontSize()}
-  ${stylers.z(2)}
+export const IndicatorDot = styled.span(
+  ({ isActive, isComplete }) => css`
+    ${stylers.fontSize()}
+    ${stylers.z(2)}
 
   align-items: center;
-  background-color: ${tokens.color.white};
-  border: 2px solid ${tokens.color.blackLighten40};
-  border-radius: 100%;
-  display: flex;
-  height: ${indicatorSize};
-  justify-content: center;
-  position: relative;
-  width: ${indicatorSize};
+    background-color: ${tokens.color.white};
+    border: 2px solid ${tokens.color.blackLighten40};
+    border-radius: 100%;
+    display: flex;
+    height: ${indicatorSize};
+    justify-content: center;
+    position: relative;
+    width: ${indicatorSize};
 
-  ${({ isActive, isComplete }) => isComplete && !isActive && doneStyles}
-  ${({ isActive }) => isActive && activeStyles}
-`;
+    ${isComplete && !isActive && doneStyles}
+    ${isActive && activeStyles}
+  `
+);

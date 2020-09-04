@@ -1,8 +1,8 @@
-import { css } from "styled-components";
+import styled from "styled-components";
 import tokens from "@paprika/tokens";
 import stylers from "@paprika/stylers";
 
-export const contentStyles = css`
+export const Content = styled.div`
   margin-left: -${tokens.spaceLg};
   margin-right: -${tokens.spaceLg};
 
