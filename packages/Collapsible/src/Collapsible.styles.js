@@ -1,8 +1,8 @@
-import { css } from "styled-components";
+import styled from "styled-components";
 import tokens from "@paprika/tokens";
 import stylers from "@paprika/stylers";
 
-const collapsibleStyles = css`
+export const Collapsible = styled.div`
   &, * {
     box-sizing: border-box;
   }
@@ -55,5 +55,3 @@ const collapsibleStyles = css`
     width: 100%;
   }
 `;
-
-export default collapsibleStyles;
