@@ -2,9 +2,8 @@ import React from "react";
 import PropTypes from "prop-types";
 import CloseIcon from "@paprika/icon/lib/Times";
 import * as constants from "@paprika/constants/lib/Constants";
-import closeButtonStyles from "./CloseButton.styles";
-import IconButton from "./IconButton";
 import * as types from "./types";
+import * as sc from "./CloseButton.styles";
 
 const propTypes = {
   /** Descriptive a11y text for assistive technologies. By default, text from children node will be used. */
@@ -27,9 +26,9 @@ const CloseButton = React.forwardRef((props, ref) => {
   };
 
   return (
-    <IconButton css={closeButtonStyles} {...props} {...buttonProps} ref={ref}>
+    <sc.CloseButton {...props} {...buttonProps} ref={ref}>
       <CloseIcon />
-    </IconButton>
+    </sc.CloseButton>
   );
 });
 

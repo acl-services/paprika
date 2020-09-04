@@ -2,7 +2,7 @@ import React from "react";
 import PropTypes from "prop-types";
 import * as constants from "@paprika/constants/lib/Constants";
 import * as types from "./types";
-import counterStyles from "./Counter.styles";
+import * as sc from "./Counter.styles";
 
 function Counter(props) {
   const { color, hasIndicator, quantity, size, threshold } = props;
@@ -15,9 +15,9 @@ function Counter(props) {
   };
 
   return (
-    <span data-pka-anchor="counter" css={counterStyles} {...counterProps} title={exceedsThreshold ? quantity : ""}>
+    <sc.Counter data-pka-anchor="counter" {...counterProps} title={exceedsThreshold ? quantity : ""}>
       {exceedsThreshold ? `${threshold}+` : quantity}
-    </span>
+    </sc.Counter>
   );
 }
 

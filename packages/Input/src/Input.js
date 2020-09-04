@@ -5,7 +5,7 @@ import * as constants from "@paprika/constants/lib/Constants";
 import TimesCircleIcon from "@paprika/icon/lib/TimesCircle";
 import Button from "@paprika/button";
 import * as types from "./types";
-import inputStyles from "./Input.styles";
+import * as sc from "./Input.styles";
 
 const Input = React.forwardRef((props, ref) => {
   const inputClearHandler = e => {
@@ -75,7 +75,7 @@ const Input = React.forwardRef((props, ref) => {
   );
 
   return (
-    <div css={inputStyles} {...styleProps} className={rootClasses}>
+    <sc.Input {...styleProps} className={rootClasses}>
       {renderIcon()}
       <input
         aria-invalid={hasError}
@@ -87,7 +87,7 @@ const Input = React.forwardRef((props, ref) => {
         {...moreProps}
       />
       {renderClear()}
-    </div>
+    </sc.Input>
   );
 });
 
