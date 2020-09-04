@@ -1,4 +1,4 @@
-import { css } from "styled-components";
+import styled, { css } from "styled-components";
 import tokens from "@paprika/tokens";
 import stylers from "@paprika/stylers";
 
@@ -6,7 +6,7 @@ export const emptyValueStyles = css`
   font-style: italic;
 `;
 
-const responsesStyles = css`
+export const Response = styled.dl`
   ${stylers.lineHeight()}
 
   color: ${tokens.textColor.subtle};
@@ -40,5 +40,3 @@ const responsesStyles = css`
     }
   }
 `;
-
-export default responsesStyles;
