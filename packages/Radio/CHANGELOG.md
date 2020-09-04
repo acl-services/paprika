@@ -6,10 +6,6 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 
 ## [Unreleased]
 
-### Added
-
-- Updated: Created and placed all constants into type.js file. [@kaan.darcey](https://github.com/KDarcey).
-
 ## [0.1.6] - 2020-01-31
 
 ### Added
@@ -21,3 +17,9 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 ### Added
 
 - Remove readonly true prop from input (fix safari focus) [@tristanjasper](https://github.com/tristanjasper).
+
+## [0.1.29] - 2020-09-02
+
+### Added
+
+- Updated: Created and placed all constants into type.js file. [@kaan.darcey](https://github.com/KDarcey).

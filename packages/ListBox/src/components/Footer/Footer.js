@@ -1,75 +1,9 @@
 import React from "react";
 import Button from "@paprika/button";
 import PropTypes from "prop-types";
-import { FooterContainerStyled } from "./Footer.styles";
 import useListBox from "../../useListBox";
 import invokeOnChange from "../../helpers/invokeOnChange";
-import * as types from "../../types";
-
-const propTypes = {
-  /** If true it makes the accept button visible */
-  isAcceptVisible: PropTypes.bool,
-
-  /** If true it makes the cancel button visible */
-  isCancelVisible: PropTypes.bool,
-
-  /** If true it makes the clear button visible */
-  isClearVisible: PropTypes.bool,
-
-  /** If true it makes the footer disabled */
-  isDisabled: PropTypes.bool,
-
-  /** Sets what kind the accept button will be  */
-  kindAccept: PropTypes.string,
-
-  /** Sets what kind the cancel button will be  */
-  kindCancel: PropTypes.string,
-
-  /** Sets what kind the cancel button will be  */
-  kindClear: PropTypes.string,
-
-  /** Sets the label for the accept button */
-  labelAccept: PropTypes.string,
-
-  /** Sets the label for the cancel button */
-  labelCancel: PropTypes.string,
-
-  /** Sets the label for the clear button */
-  labelClear: PropTypes.string,
-
-  /** Callback to be executed when the accept button is clicked or activated by keyboard. */
-  onClickAccept: PropTypes.func,
-
-  /** Callback to be executed when the cancel button is clicked or activated by keyboard. */
-  onClickCancel: PropTypes.func,
-
-  /** Callback to be executed when the clear button is clicked or activated by keyboard. */
-  onClickClear: PropTypes.func,
-
-  /** Render an extra button beside the clear button */
-  renderExtraButton: PropTypes.func,
-
-  /** Determines the size of the footer */
-  size: PropTypes.string,
-};
-
-const defaultProps = {
-  isAcceptVisible: true,
-  isCancelVisible: true,
-  isClearVisible: true,
-  isDisabled: false,
-  kindAccept: types.PRIMARY,
-  kindCancel: types.MINOR,
-  kindClear: types.MINOR,
-  labelAccept: "Accept",
-  labelCancel: "Cancel",
-  labelClear: "Clear",
-  onClickAccept: null,
-  onClickCancel: null,
-  onClickClear: null,
-  renderExtraButton: () => {},
-  size: types.SMALL,
-};
+import { FooterContainerStyled } from "./Footer.styles";
 
 export function FooterComponent(props, ref) {
   const [, dispatch] = useListBox();
@@ -160,6 +94,71 @@ export function FooterComponent(props, ref) {
 }
 
 const Footer = React.forwardRef(FooterComponent);
+
+const propTypes = {
+  /** If true it makes the accept button visible */
+  isAcceptVisible: PropTypes.bool,
+
+  /** If true it makes the cancel button visible */
+  isCancelVisible: PropTypes.bool,
+
+  /** If true it makes the clear button visible */
+  isClearVisible: PropTypes.bool,
+
+  /** If true it makes the footer disabled */
+  isDisabled: PropTypes.bool,
+
+  /** Sets what kind the accept button will be  */
+  kindAccept: PropTypes.oneOf([Button.types.kind.PRIMARY, Button.types.kind.MINOR]),
+
+  /** Sets what kind the cancel button will be  */
+  kindCancel: PropTypes.oneOf([Button.types.kind.PRIMARY, Button.types.kind.MINOR]),
+
+  /** Sets what kind the cancel button will be  */
+  kindClear: PropTypes.oneOf([Button.types.kind.PRIMARY, Button.types.kind.MINOR]),
+
+  /** Sets the label for the accept button */
+  labelAccept: PropTypes.string,
+
+  /** Sets the label for the cancel button */
+  labelCancel: PropTypes.string,
+
+  /** Sets the label for the clear button */
+  labelClear: PropTypes.string,
+
+  /** Callback to be executed when the accept button is clicked or activated by keyboard. */
+  onClickAccept: PropTypes.func,
+
+  /** Callback to be executed when the cancel button is clicked or activated by keyboard. */
+  onClickCancel: PropTypes.func,
+
+  /** Callback to be executed when the clear button is clicked or activated by keyboard. */
+  onClickClear: PropTypes.func,
+
+  /** Render an extra button beside the clear button */
+  renderExtraButton: PropTypes.func,
+
+  /** Determines the size of the footer */
+  size: PropTypes.oneOf([Button.types.size.SMALL, Button.types.size.MEDIUM, Button.types.size.LARGE]),
+};
+
+const defaultProps = {
+  isAcceptVisible: true,
+  isCancelVisible: true,
+  isClearVisible: true,
+  isDisabled: false,
+  kindAccept: Button.types.kind.PRIMARY,
+  kindCancel: Button.types.kind.MINOR,
+  kindClear: Button.types.kind.MINOR,
+  labelAccept: "Accept",
+  labelCancel: "Cancel",
+  labelClear: "Clear",
+  onClickAccept: null,
+  onClickCancel: null,
+  onClickClear: null,
+  renderExtraButton: () => {},
+  size: Button.types.size.SMALL,
+};
 
 Footer.propTypes = propTypes;
 Footer.defaultProps = defaultProps;
