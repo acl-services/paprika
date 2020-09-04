@@ -68,23 +68,23 @@ see: options/helpers/options.js|
 
 ### ListBox.Footer
 
-| Prop              | Type   | required | default       | Description                                                                         |
-| ----------------- | ------ | -------- | ------------- | ----------------------------------------------------------------------------------- |
-| isAcceptVisible   | bool   | false    | true          | If true it makes the accept button visible                                          |
-| isCancelVisible   | bool   | false    | true          | If true it makes the cancel button visible                                          |
-| isClearVisible    | bool   | false    | true          | If true it makes the clear button visible                                           |
-| isDisabled        | bool   | false    | false         | If true it makes the footer disabled                                                |
-| kindAccept        | string | false    | types.PRIMARY | Sets what kind the accept button will be                                            |
-| kindCancel        | string | false    | types.MINOR   | Sets what kind the cancel button will be                                            |
-| kindClear         | string | false    | types.MINOR   | Sets what kind the cancel button will be                                            |
-| labelAccept       | string | false    | "Accept"      | Sets the label for the accept button                                                |
-| labelCancel       | string | false    | "Cancel"      | Sets the label for the cancel button                                                |
-| labelClear        | string | false    | "Clear"       | Sets the label for the clear button                                                 |
-| onClickAccept     | func   | false    | null          | Callback to be executed when the accept button is clicked or activated by keyboard. |
-| onClickCancel     | func   | false    | null          | Callback to be executed when the cancel button is clicked or activated by keyboard. |
-| onClickClear      | func   | false    | null          | Callback to be executed when the clear button is clicked or activated by keyboard.  |
-| renderExtraButton | func   | false    | () => {}      | Render an extra button beside the clear button                                      |
-| size              | string | false    | types.SMALL   | Determines the size of the footer                                                   |
+| Prop              | Type                                                                          | required | default                   | Description                                                                         |
+| ----------------- | ----------------------------------------------------------------------------- | -------- | ------------------------- | ----------------------------------------------------------------------------------- |
+| isAcceptVisible   | bool                                                                          | false    | true                      | If true it makes the accept button visible                                          |
+| isCancelVisible   | bool                                                                          | false    | true                      | If true it makes the cancel button visible                                          |
+| isClearVisible    | bool                                                                          | false    | true                      | If true it makes the clear button visible                                           |
+| isDisabled        | bool                                                                          | false    | false                     | If true it makes the footer disabled                                                |
+| kindAccept        | [ Button.types.kind.PRIMARY, Button.types.kind.MINOR]                         | false    | Button.types.kind.PRIMARY | Sets what kind the accept button will be                                            |
+| kindCancel        | [ Button.types.kind.PRIMARY, Button.types.kind.MINOR]                         | false    | Button.types.kind.MINOR   | Sets what kind the cancel button will be                                            |
+| kindClear         | [ Button.types.kind.PRIMARY, Button.types.kind.MINOR]                         | false    | Button.types.kind.MINOR   | Sets what kind the cancel button will be                                            |
+| labelAccept       | string                                                                        | false    | "Accept"                  | Sets the label for the accept button                                                |
+| labelCancel       | string                                                                        | false    | "Cancel"                  | Sets the label for the cancel button                                                |
+| labelClear        | string                                                                        | false    | "Clear"                   | Sets the label for the clear button                                                 |
+| onClickAccept     | func                                                                          | false    | null                      | Callback to be executed when the accept button is clicked or activated by keyboard. |
+| onClickCancel     | func                                                                          | false    | null                      | Callback to be executed when the cancel button is clicked or activated by keyboard. |
+| onClickClear      | func                                                                          | false    | null                      | Callback to be executed when the clear button is clicked or activated by keyboard.  |
+| renderExtraButton | func                                                                          | false    | () => {}                  | Render an extra button beside the clear button                                      |
+| size              | [ Button.types.size.SMALL, Button.types.size.MEDIUM, Button.types.size.LARGE] | false    | Button.types.size.SMALL   | Determines the size of the footer                                                   |
 
 ### ListBox.Option
 
