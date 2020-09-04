@@ -1,8 +1,7 @@
 import React from "react";
 import PropTypes from "prop-types";
 import * as constants from "@paprika/constants/lib/Constants";
-import iconButtonStyles from "./IconButton.styles";
-import Button from "./Button";
+import * as sc from "./IconButton.styles";
 
 const IconButton = React.forwardRef((props, ref) => {
   const buttonProps = {
@@ -11,7 +10,7 @@ const IconButton = React.forwardRef((props, ref) => {
     isFullWidth: false,
   };
 
-  return <Button css={iconButtonStyles} {...props} {...buttonProps} ref={ref} />;
+  return <sc.IconButton {...props} {...buttonProps} ref={ref} />;
 });
 
 IconButton.types = {
@@ -42,6 +41,7 @@ const IconDefaultProps = {
   kind: IconButton.types.kind.DEFAULT,
   size: IconButton.types.size.MEDIUM,
 };
+
 IconButton.displayName = "IconButton";
 IconButton.propTypes = IconPropTypes;
 IconButton.defaultProps = IconDefaultProps;

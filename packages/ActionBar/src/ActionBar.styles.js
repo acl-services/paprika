@@ -17,24 +17,26 @@ const genericIsOpenStyles = css`
   background-color: ${stylers.alpha(tokens.color.black, 0.1)};
 `;
 
-export const GenericTrigger = styled(RawButton)`
-  ${stylers.fontSize()}
-  align-items: center;
-  border-radius: ${tokens.button.borderRadius};
-  color: ${tokens.textColor.default};
-  display: flex;
-  font-weight: bold;
-  margin-right: ${tokens.spaceSm};
-  padding: ${tokens.spaceSm};
-  transition-duration: 0.2s;
-  transition-property: "background-color";
+export const GenericTrigger = styled(RawButton)(
+  ({ isOpen }) => css`
+    ${stylers.fontSize()}
+    align-items: center;
+    border-radius: ${tokens.button.borderRadius};
+    color: ${tokens.textColor.default};
+    display: flex;
+    font-weight: bold;
+    margin-right: ${tokens.spaceSm};
+    padding: ${tokens.spaceSm};
+    transition-duration: 0.2s;
+    transition-property: "background-color";
 
-  &:hover {
-    ${genericIsOpenStyles}
-  }
+    &:hover {
+      ${genericIsOpenStyles}
+    }
 
-  ${({ isOpen }) => (isOpen ? genericIsOpenStyles : "")}
-`;
+    ${isOpen ? genericIsOpenStyles : ""}
+  `
+);
 
 export const getGenericTriggerIcon = Icon => {
   return styled(Icon)`

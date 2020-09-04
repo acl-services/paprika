@@ -1,7 +1,7 @@
 import React from "react";
 import PropTypes from "prop-types";
 import CheckIcon from "@paprika/icon/lib/Check";
-import { indicatorStyles, indicatorDotStyles } from "./Indicator.styles";
+import * as sc from "./Indicator.styles";
 
 const propTypes = {
   /** If this is the current or pending item in the list. */
@@ -24,11 +24,11 @@ const Indicator = props => {
   const { isComplete, isActive } = props;
 
   return (
-    <div data-pka-anchor="indicator" css={indicatorStyles} {...props} aria-hidden>
-      <span data-pka-anchor="indicator.dot" css={indicatorDotStyles} {...props}>
+    <sc.Indicator data-pka-anchor="indicator" {...props} aria-hidden>
+      <sc.IndicatorDot data-pka-anchor="indicator.dot" {...props}>
         {isComplete && !isActive && <CheckIcon />}
-      </span>
-    </div>
+      </sc.IndicatorDot>
+    </sc.Indicator>
   );
 };
 
