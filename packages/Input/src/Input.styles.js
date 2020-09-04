@@ -1,27 +1,28 @@
-import { css } from "styled-components";
+import styled, { css } from "styled-components";
 import tokens from "@paprika/tokens";
 import stylers from "@paprika/stylers";
 import * as types from "./types";
 
 const iconStyles = {
-  [types.SMALL]: `
+  [types.SMALL]: css`
     ${stylers.fontSize(-2)}
     margin-left: 3px;
     padding: 0 ${tokens.spaceSm};
   `,
-  [types.MEDIUM]: `
+  [types.MEDIUM]: css`
     ${stylers.fontSize()}
     margin-left: 2px;
     padding: 0 ${tokens.spaceSm};
   `,
-  [types.LARGE]: `
+  [types.LARGE]: css`
     ${stylers.fontSize(2)}
     margin-left: ${tokens.spaceSm};
     padding: 0 ${tokens.spaceSm};
   `,
 };
 
-const inputStyles = css`
+export const Input = styled.div(
+  ({ hasClearButton, size }) => css`
   line-height: 1;
   position: relative;
 
@@ -37,7 +38,7 @@ const inputStyles = css`
     display: block;
     margin: 0;
     padding: 0 0 0 ${tokens.space};
-    padding-right: ${({ hasClearButton }) => (hasClearButton ? stylers.spacer(3) : tokens.space)};
+    padding-right: ${hasClearButton ? stylers.spacer(3) : tokens.space};
     transition: box-shadow 0.2s, color 0.2s;
     width: 100%;
 
@@ -82,7 +83,7 @@ const inputStyles = css`
   }
 
   .form-input__icon {
-    ${({ size }) => iconStyles[size]};
+    ${iconStyles[size]};
 
     svg {
       vertical-align: middle;
@@ -107,7 +108,7 @@ const inputStyles = css`
   }
 
   &.form-input--has-icon input.form-input__input {
-    padding-left: ${({ size }) => (size === types.LARGE ? stylers.spacer(4) : stylers.spacer(3))};
+    padding-left: ${size === types.LARGE ? stylers.spacer(4) : stylers.spacer(3)};
   }
 
   /* Disabled */
@@ -137,6 +138,5 @@ const inputStyles = css`
   &.form-input--has-error input.form-input__input {
     ${stylers.errorFormStyles}
   }
-`;
-
-export default inputStyles;
+`
+);
