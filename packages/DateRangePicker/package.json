@@ -3,6 +3,7 @@
   "version": "0.1.2",
   "description": "DateRangePicker component allows user to view and specify a date range through an entry fields or a calendar widgets.",
   "main": "lib/index.js",
+  "types": "lib/index.d.ts",
   "author": "@paprika",
   "license": "MIT",
   "repository": {

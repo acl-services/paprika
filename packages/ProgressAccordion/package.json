@@ -4,6 +4,7 @@
   "description": "The ProgressAccordion component displays questionnaire responses in a collapsible accordion format.",
   "author": "@paprika",
   "main": "lib/index.js",
+  "types": "lib/index.d.ts",
   "license": "MIT",
   "repository": {
     "type": "git",

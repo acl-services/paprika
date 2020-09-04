@@ -4,6 +4,7 @@
   "description": "ListBox Browser component is a two column layout that allows users to select one or multiple options. It is similar to the experience of browsing a file manager in any operating system.",
   "author": "@paprika",
   "main": "lib/index.js",
+  "types": "lib/index.d.ts",
   "license": "MIT",
   "repository": {
     "type": "git",
