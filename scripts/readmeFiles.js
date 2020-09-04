@@ -91,7 +91,7 @@ const createPropsTable = ({ info }) => {
           v.type.name !== "enum"
             ? v.type.name
             : Array.isArray(v.type.value)
-            ? `[${v.type.value.map(i => i.value)}]`
+            ? `[${v.type.value.map(i => ` ${i.value}`)}]`
             : v.type.value;
       }
     }

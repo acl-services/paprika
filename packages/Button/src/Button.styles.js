@@ -1,6 +1,6 @@
 import tokens from "@paprika/tokens";
 import stylers from "@paprika/stylers";
-import { css, keyframes } from "styled-components";
+import styled, { css, keyframes } from "styled-components";
 import * as types from "./types";
 
 const dropShadow = "0 1px 2px 0 rgba(0, 0, 0, 0.1)";
@@ -33,12 +33,12 @@ const borderHoverColors = {
   [types.LINK]: "transparent",
 };
 
-const borderStyles = css`
-  border-color: ${({ kind }) => borderColors[kind]};
+const borderStyles = ({ kind }) => css`
+  border-color: ${borderColors[kind]};
 
   &:hover {
     ${enabled(css`
-      border-color: ${({ kind }) => borderHoverColors[kind]};
+      border-color: ${borderHoverColors[kind]};
     `)}
   }
 `;
@@ -84,32 +84,31 @@ const disabledTextStyles = css`
   }
 `;
 
-const activeStyles = css`
+export const activeStyles = css`
   ${stylers.focusRing.bordered()}
 `;
 
-const inactiveStyles = css`
+export const inactiveStyles = ({ kind }) => css`
   ${borderStyles}
 
   [data-whatinput="mouse"] &:not([data-has-forced-focus="true"]):focus {
     ${enabled(css`
       ${borderStyles}
 
-      ${({ kind }) =>
-        [types.FLAT, types.MINOR, types.LINK].includes(kind)
-          ? css`
-              box-shadow: none;
-            `
-          : css`
-              box-shadow: ${dropShadow};
-            `}
+      ${[types.FLAT, types.MINOR, types.LINK].includes(kind)
+        ? css`
+            box-shadow: none;
+          `
+        : css`
+            box-shadow: ${dropShadow};
+          `}
     `)}
   }
 `;
 
 // Common
 
-const commonStyles = css`
+export const commonStyles = css`
   ${stylers.alignMiddle}
   ${stylers.lineHeight(-1)}
   appearance: none;
@@ -145,6 +144,12 @@ const skeuomorphicStyles = css`
 const coloredButtonStyles = css`
   color: ${tokens.color.white};
   text-shadow: 0 1px 1px ${stylers.alpha(tokens.color.blackPure, 0.2)};
+
+  &:hover,
+  &:visited {
+    color: ${tokens.color.white};
+    text-decoration: none;
+  }
 `;
 
 const textButtonStyles = css`
@@ -154,7 +159,7 @@ const textButtonStyles = css`
 
 // Sizes
 
-const sizeStyles = {
+export const sizeStyles = {
   [types.SMALL]: css`
     ${stylers.fontSize(-2)};
     min-height: ${stylers.spacer(3)};
@@ -174,7 +179,7 @@ const sizeStyles = {
 
 // types
 
-const kindStyles = props => ({
+export const kindStyles = ({ isDisabled }) => ({
   [types.DEFAULT]: css`
     ${skeuomorphicStyles}
 
@@ -186,7 +191,7 @@ const kindStyles = props => ({
       background: ${tokens.color.blackLighten70};
     }
 
-    ${props.isDisabled && disabledStyles}
+    ${isDisabled && disabledStyles}
   `,
   [types.PRIMARY]: css`
     ${skeuomorphicStyles}
@@ -199,7 +204,7 @@ const kindStyles = props => ({
       background: ${tokens.color.green};
     }
 
-    ${props.isDisabled && disabledStyles}
+    ${isDisabled && disabledStyles}
   `,
   [types.SECONDARY]: css`
     ${skeuomorphicStyles}
@@ -212,7 +217,7 @@ const kindStyles = props => ({
       background: ${tokens.color.purple};
     }
 
-    ${props.isDisabled && disabledStyles}
+    ${isDisabled && disabledStyles}
   `,
   [types.DESTRUCTIVE]: css`
     ${skeuomorphicStyles}
@@ -225,7 +230,7 @@ const kindStyles = props => ({
       background: ${tokens.color.orange};
     }
 
-    ${props.isDisabled && disabledStyles}
+    ${isDisabled && disabledStyles}
   `,
   [types.FLAT]: css`
     ${skeuomorphicStyles}
@@ -234,11 +239,13 @@ const kindStyles = props => ({
     box-shadow: none;
     color: ${tokens.color.black};
 
-    &:hover {
+    &:hover, &:visited {
       background: ${tokens.color.blackLighten70};
+      color: ${tokens.color.black};
+      text-decoration:none;
     }
 
-    ${props.isDisabled && disabledStyles}
+    ${isDisabled && disabledStyles}
   `,
   [types.MINOR]: css`
     ${textButtonStyles}
@@ -247,7 +254,7 @@ const kindStyles = props => ({
       text-decoration: underline;
     }
 
-    ${props.isDisabled && disabledTextStyles}
+    ${isDisabled && disabledTextStyles}
   `,
   [types.LINK]: css`
     ${textButtonStyles}
@@ -264,13 +271,13 @@ const kindStyles = props => ({
       color: ${tokens.color.blue};
     }
 
-    ${props.isDisabled && disabledTextStyles}
+    ${isDisabled && disabledTextStyles}
   `,
 });
 
 // Modifiers
 
-const fullWidthStyles = css`
+export const fullWidthStyles = css`
   display: flex;
   width: 100%;
 `;
@@ -279,15 +286,15 @@ const fullWidthStyles = css`
 // Composition
 //
 
-const buttonStyles = props => css`
+export const Button = styled.span(
+  ({ size, kind, isFullWidth, isActive, ...props }) => css`
   ${commonStyles}
-  ${sizeStyles[props.size]}
-  ${kindStyles(props)[props.kind]}
-  ${props.isFullWidth && fullWidthStyles}
-  ${({ isActive }) => (isActive ? activeStyles : inactiveStyles)}
-`;
-
-export default buttonStyles;
+  ${sizeStyles[size]}
+  ${kindStyles(props)[kind]}
+  ${isFullWidth && fullWidthStyles}
+  ${isActive ? activeStyles : inactiveStyles}
+`
+);
 
 //
 // Icons
@@ -312,26 +319,28 @@ const iconColors = {
   [types.LINK]: tokens.textColor.icon,
 };
 
-const getIconColor = props => (props.isDisabled ? tokens.color.blackDisabled : iconColors[props.kind]);
+const getIconColor = ({ isDisabled, kind }) => (isDisabled ? tokens.color.blackDisabled : iconColors[kind]);
 
-export const iconStyles = props => css`
-  align-items: center;
-  color: ${getIconColor(props)};
-  display: inline-flex;
-  justify-content: center;
-  margin: 0 ${tokens.spaceSm} 0 0;
+export const ButtonIcon = styled.span(
+  ({ isPending, isSuffixIcon, ...props }) => css`
+    align-items: center;
+    color: ${getIconColor(props)};
+    display: inline-flex;
+    justify-content: center;
+    margin: 0 ${tokens.spaceSm} 0 0;
 
-  svg {
-    vertical-align: -${(stylers.lineHeightValue(-1) - 1) / 2}em;
-  }
+    svg {
+      vertical-align: -${(stylers.lineHeightValue(-1) - 1) / 2}em;
+    }
 
-  ${props.isPending &&
-    css`
-      animation: ${spinKeyframes} 2s infinite linear;
-    `}
+    ${isPending &&
+      css`
+        animation: ${spinKeyframes} 2s infinite linear;
+      `}
 
-  ${props.isSuffixIcon &&
-    css`
-      margin: 0 0 0 ${tokens.spaceSm};
-    `}
-`;
+    ${isSuffixIcon &&
+      css`
+        margin: 0 0 0 ${tokens.spaceSm};
+      `}
+  `
+);
