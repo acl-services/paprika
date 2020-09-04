@@ -5,7 +5,7 @@ import truncate from "lodash.truncate";
 import uuid from "uuid/v4";
 import useI18n from "@paprika/l10n/lib/useI18n";
 import Button from "@paprika/button";
-import { toggleStyles } from "./CollapsibleText.styles";
+import * as sc from "./CollapsibleText.styles";
 
 const propTypes = {
   /** Additional description for "Show more" link. Should be a "topic" that will be appended to "Show more about [topic]". */
@@ -75,7 +75,7 @@ function CollapsibleText(props) {
         </span>
       )}
       {isOverflowing && (
-        <span isCollapsed={isCollapsed} css={toggleStyles}>
+        <sc.Toggle isCollapsed={isCollapsed}>
           <Button
             a11yText={getA11yText()}
             aria-controls={contentId}
@@ -86,7 +86,7 @@ function CollapsibleText(props) {
           >
             {getToggleLabel()}
           </Button>
-        </span>
+        </sc.Toggle>
       )}
     </div>
   );

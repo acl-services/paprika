@@ -28,9 +28,11 @@ const hasFilterAppliedStyles = css`
   background-color: ${stylers.alpha(tokens.color.chartColor05, 0.3)};
 `;
 
-export const Trigger = styled(GenericTrigger)`
-  ${({ hasFilterApplied }) => (hasFilterApplied ? hasFilterAppliedStyles : "")}
-`;
+export const Trigger = styled(GenericTrigger)(
+  ({ hasFilterApplied }) => css`
+    ${hasFilterApplied ? hasFilterAppliedStyles : ""}
+  `
+);
 
 export const Icon = getGenericTriggerIcon(FilterIcon);
 
