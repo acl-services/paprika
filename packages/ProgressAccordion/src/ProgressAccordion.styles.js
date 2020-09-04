@@ -1,15 +1,16 @@
-import { css } from "styled-components";
+import styled from "styled-components";
+import { visuallyHidden } from "@paprika/stylers/lib/includes";
 import tokens from "@paprika/tokens";
 import stylers from "@paprika/stylers";
 
-export const accordionStyles = css`
+export const Accordion = styled.div`
   &,
   * {
     box-sizing: border-box;
   }
 `;
 
-export const itemStyles = css`
+export const Item = styled.div`
   color: ${tokens.textColor.subtle};
   display: flex;
 
@@ -18,20 +19,24 @@ export const itemStyles = css`
   }
 `;
 
-export const activeItemStyles = css`
+export const ActiveItem = styled.div`
   display: flex;
   justify-content: space-between;
 `;
 
-export const activeLabelStyles = css`
+export const ActiveLabel = styled.div`
   ${stylers.truncateText}
   
   color: ${tokens.color.blue};
 `;
 
-export const activeStatusStyles = css`
+export const ActiveStatus = styled.div`
   ${stylers.fontSize(-1)}
 
   font-style: italic;
   font-weight: normal;
+`;
+
+export const ActiveLabelText = styled.span`
+  ${visuallyHidden}
 `;
