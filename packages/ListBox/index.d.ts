@@ -20,7 +20,7 @@ declare function ListBox(props:ListBoxProps): JSX.Element;
  /** Defaults label to display when the ListBox has not option selected */
     placeholder: string;
  /** Size of the trigger and options (font size, height, padding, etc). */
-    size?: ShirtSizes.DEFAULT;
+    size?: ListBoxContainer.types.size.SMALL|ListBoxContainer.types.size.MEDIUM|ListBoxContainer.types.size.LARGE;
 }declare function Box(props:BoxProps): JSX.Element;
   interface BoxProps { /** Body content of the box. */
     children: React.ReactNode;
@@ -64,11 +64,11 @@ declare function ListBox(props:ListBoxProps): JSX.Element;
  /** If true it makes the footer disabled */
     isDisabled?: boolean;
  /** Sets what kind the accept button will be */
-    kindAccept?: string;
+    kindAccept?: Button.types.kind.PRIMARY|Button.types.kind.MINOR;
  /** Sets what kind the cancel button will be */
-    kindCancel?: string;
+    kindCancel?: Button.types.kind.PRIMARY|Button.types.kind.MINOR;
  /** Sets what kind the cancel button will be */
-    kindClear?: string;
+    kindClear?: Button.types.kind.PRIMARY|Button.types.kind.MINOR;
  /** Sets the label for the accept button */
     labelAccept?: string;
  /** Sets the label for the cancel button */
@@ -84,7 +84,7 @@ declare function ListBox(props:ListBoxProps): JSX.Element;
  /** Render an extra button beside the clear button */
     renderExtraButton?: (...args: any[])=> any;
  /** Determines the size of the footer */
-    size?: string;
+    size?: Button.types.size.SMALL|Button.types.size.MEDIUM|Button.types.size.LARGE;
 }}declare namespace ListBox {
       function Option(props:OptionProps): JSX.Element;
   interface OptionProps { /** String, number or JSX content */

@@ -9,7 +9,7 @@ interface CardProps {
   /** If the card is in an "active" or "selected" state. */
   isActive?: boolean;
   /** Size of the card (font size, min-height, padding, etc). */
-  size?: "auto" | ShirtSizes.SMALL | ShirtSizes.MEDIUM | ShirtSizes.LARGE;
+  size?: Card.types.size.AUTO | Card.types.size.SMALL | Card.types.size.MEDIUM | Card.types.size.LARGE;
 }
 declare function Content(props: ContentProps): JSX.Element;
 interface ContentProps {
