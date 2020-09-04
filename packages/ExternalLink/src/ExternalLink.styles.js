@@ -12,37 +12,37 @@ const contentHoverFocusStyles = css`
   }
 `;
 
-export const ExternalLink = styled.a`
-  align-items: center;
-  border-radius: ${tokens.border.radius};
-  color: ${tokens.textColor.link};
-  display: inline-flex;
-  max-width: 100%;
-  position: relative;
-  text-decoration: none;
+export const ExternalLink = styled.a(
+  ({ iconFontSize }) => css`
+    align-items: center;
+    border-radius: ${tokens.border.radius};
+    color: ${tokens.textColor.link};
+    display: inline-flex;
+    max-width: 100%;
+    padding: 1px ${iconFontSize + toInt(tokens.spaceLg)}px 1px ${tokens.spaceSm};
+    position: relative;
+    text-decoration: none;
 
-  ${({ iconFontSize }) =>
-    css`
-      padding: 1px ${iconFontSize + toInt(tokens.spaceLg)}px 1px ${tokens.spaceSm};
-    `}
+    &:focus,
+    &:active {
+      box-shadow: ${tokens.highlight.active.boxShadow};
+      outline: none;
+    }
+  `
+);
 
-  &:focus,
-  &:active {
-    box-shadow: ${tokens.highlight.active.boxShadow};
-    outline: none;
-  }
-`;
+export const ExternalLinkContent = styled.span(
+  ({ hasNoUnderline }) => css`
+    display: inline-block;
+    text-decoration: underline;
+    vertical-align: bottom;
+    width: 100%;
 
-export const ExternalLinkContent = styled.span`
-  display: inline-block;
-  text-decoration: underline;
-  vertical-align: bottom;
-  width: 100%;
+    ${truncateText}
 
-  ${truncateText}
-
-  ${({ hasNoUnderline }) => hasNoUnderline && contentHoverFocusStyles};
-`;
+    ${hasNoUnderline && contentHoverFocusStyles};
+  `
+);
 
 export const ExternalLinkIconStyles = css`
   color: ${tokens.textColor.icon};
