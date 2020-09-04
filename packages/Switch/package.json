@@ -4,6 +4,7 @@
   "description": "Switch component for turning a setting on or off.",
   "author": "@paprika",
   "main": "lib/index.js",
+  "types": "lib/index.d.ts",
   "license": "MIT",
   "repository": {
     "type": "git",
