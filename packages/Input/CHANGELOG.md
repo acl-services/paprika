@@ -6,10 +6,6 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 
 ## [Unreleased]
 
-### Added
-
-- Updated: Created and placed all constants into type.js file. [@kaan.darcey](https://github.com/KDarcey).
-
 ## [0.2.26] - 2020-04-29
 
 ### Added
@@ -27,3 +23,9 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 ### Removed
 
 - Removed `inputRef` prop and forwarded ref directly [@allison-c](https://github.com/allison-c).
+
+## [0.3.4] - 2020-09-02
+
+### Added
+
+- Updated: Created and placed all constants into type.js file. [@kaan.darcey](https://github.com/KDarcey).

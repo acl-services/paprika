@@ -1,6 +1,6 @@
 {
   "name": "@paprika/date-picker",
-  "version": "0.5.50",
+  "version": "0.5.52",
   "description": "DatePicker component allows user to view and specify a date through an entry field or a calendar widget.",
   "main": "lib/index.js",
   "author": "@paprika",
@@ -15,13 +15,13 @@
   },
   "dependencies": {
     "@babel/runtime-corejs2": "^7.3.1",
-    "@paprika/constants": "^0.1.0",
-    "@paprika/calendar": "^0.1.8",
-    "@paprika/date-input": "^0.1.23",
+    "@paprika/calendar": "^0.1.10",
+    "@paprika/constants": "^0.1.1",
+    "@paprika/date-input": "^0.1.25",
     "@paprika/helpers": "^0.2.13",
-    "@paprika/popover": "^0.3.29",
-    "@paprika/stylers": "^0.2.8",
-    "@paprika/tokens": "^0.1.14",
+    "@paprika/popover": "^0.3.30",
+    "@paprika/stylers": "^0.2.9",
+    "@paprika/tokens": "^0.1.15",
     "prop-types": "^15.7.2"
   },
   "peerDependencies": {
