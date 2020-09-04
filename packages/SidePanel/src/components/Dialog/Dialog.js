@@ -64,7 +64,7 @@ function Dialog(props) {
 
   const renderDialogContent = () =>
     isFooterSticky || isHeaderSticky ? (
-      <sc.MainWrapper>
+      <sc.Main>
         {isHeaderSticky && dialogHeader}
         <sc.DialogMain>
           {!isHeaderSticky && dialogHeader}
@@ -72,7 +72,7 @@ function Dialog(props) {
           {!isFooterSticky && dialogFooter}
         </sc.DialogMain>
         {isFooterSticky && dialogFooter}
-      </sc.MainWrapper>
+      </sc.Main>
     ) : (
       <>
         {dialogHeader}
