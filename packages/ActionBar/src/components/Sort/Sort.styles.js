@@ -28,9 +28,11 @@ const hasFieldStyles = css`
   background-color: ${stylers.alpha(tokens.color.chartColor07, 0.3)};
 `;
 
-export const Trigger = styled(GenericTrigger)`
-  ${({ hasField }) => (hasField ? hasFieldStyles : "")}
-`;
+export const Trigger = styled(GenericTrigger)(
+  ({ hasField }) => css`
+    ${hasField ? hasFieldStyles : ""}
+  `
+);
 
 export const Icon = getGenericTriggerIcon(SortIcon);
 
