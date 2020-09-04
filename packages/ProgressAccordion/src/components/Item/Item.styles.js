@@ -1,10 +1,11 @@
-import { css } from "styled-components";
+import styled from "styled-components";
+import Collapsible from "@paprika/collapsible";
 import tokens from "@paprika/tokens";
 import stylers from "@paprika/stylers";
 
 const incompleteHeight = `${Number.parseInt(tokens.space, 10) * 5 + 1}px`;
 
-export const itemStyles = css`
+export const Item = styled(Collapsible)`
   border-bottom: 1px solid ${tokens.border.color};
   color: ${tokens.textColor.subtle};
   max-width: calc(100% - 36px); /* 36px = indicatorSize + margin-right */
@@ -17,11 +18,11 @@ export const itemStyles = css`
   }
 `;
 
-export const itemLabelStyles = css`
+export const ItemLabel = styled.div`
   ${stylers.truncateText}
 `;
 
-export const incompleteStyles = css`
+export const Incomplete = styled.div`
   ${stylers.fontSize()}
   ${stylers.truncateText}
 
