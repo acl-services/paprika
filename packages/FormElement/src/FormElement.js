@@ -109,11 +109,11 @@ function FormElement(props) {
         hasFieldSet={hasFieldSet}
         onClick={onClickLabel}
       />
-      <sc.SectionsContainer isInline={isInline}>
+      <sc.Sections isInline={isInline}>
         {renderInstructions()}
         {renderContent()}
         {renderFooter()}
-      </sc.SectionsContainer>
+      </sc.Sections>
     </sc.FormElement>
   );
 }
