@@ -21,9 +21,9 @@ export default function Popover(props) {
   const { children, zIndex } = props;
 
   return (
-    <sc.PopOver {...props} isOpen={state.isOpen} maxWidth={state.triggerWidth} offset={0} zIndex={zIndex}>
+    <sc.PopoverWrapper {...props} isOpen={state.isOpen} maxWidth={state.triggerWidth} offset={0} zIndex={zIndex}>
       {children}
-    </sc.PopOver>
+    </sc.PopoverWrapper>
   );
 }
 
