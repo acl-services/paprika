@@ -48,7 +48,7 @@ declare namespace DropdownMenu {
   interface TriggerProps {
     children?: React.ReactNode;
     /** Determine the styling of the button */
-    buttonType?: ButtonTypes.ALL;
+    buttonType?: Trigger.types.button.ICON | Trigger.types.button.RAW | Trigger.types.button.SIMPLE;
 
     isOpen?: boolean;
 

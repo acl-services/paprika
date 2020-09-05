@@ -21,7 +21,7 @@ interface TextareaProps {
 
   onChange?: (...args: any[]) => any;
 
-  size?: ShirtSizes.DEFAULT;
+  size?: Textarea.types.size.SMALL | Textarea.types.size.MEDIUM | Textarea.types.size.LARGE;
   /** Do not use in conjunction with defaultValue prop */
   value?: string;
 }

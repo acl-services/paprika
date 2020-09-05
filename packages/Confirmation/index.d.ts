@@ -5,11 +5,11 @@ interface ConfirmationProps {
   /** Content of the popover confirmation */
   body?: React.ReactNode;
   /** Size of the button */
-  buttonSize?: ShirtSizes.DEFAULT;
+  buttonSize?: Confirmation.types.size.SMALL | Confirmation.types.size.MEDIUM | Confirmation.types.size.LARGE;
 
   children?: React.ReactNode;
   /** Determine the styling of the confirm button */
-  confirmButtonType?: Button.Kinds.PRIMARY | Button.Kinds.DESTRUCTIVE;
+  confirmButtonType?: Confirmation.types.kind.PRIMARY | Confirmation.types.kind.DESTRUCTIVE;
   /** Label for the confirm button */
   confirmLabel: string;
   /** If the popover is open by default */
