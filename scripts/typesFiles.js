@@ -159,7 +159,7 @@ shell.ls("packages").forEach(folder => {
         props: propsList.join(""),
       });
 
-      fs.writeFileSync(`${path}/${fileName}`, template, { encoding: "utf8", flag: "w" });
+      fs.writeFileSync(`${path}/src/${fileName}`, template, { encoding: "utf8", flag: "w" });
     } catch (e) {
       console.warn(e);
     }
