@@ -1,6 +1,6 @@
 import styled from "styled-components";
 
-export const FooterContainerStyled = styled.div`
+export const Footer = styled.div`
   border-top: 1px solid #d7d7d7;
   display: flex;
   justify-content: flex-start;
