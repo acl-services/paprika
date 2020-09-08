@@ -4,6 +4,7 @@
   "description": "The Pill component is for showing metadata like status, type, or levels.",
   "author": "@paprika",
   "main": "lib/index.js",
+  "types": "lib/index.d.ts",
   "license": "MIT",
   "repository": {
     "type": "git",

@@ -3,6 +3,7 @@
   "version": "0.1.25",
   "description": "The DateInput component allows users to enter and display a date.",
   "main": "lib/index.js",
+  "types": "lib/index.d.ts",
   "author": "@paprika",
   "license": "MIT",
   "repository": {

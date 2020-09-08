@@ -3,6 +3,7 @@
   "version": "0.0.20",
   "description": "The ExternalLink component links to an external website.",
   "main": "lib/index.js",
+  "types": "lib/index.d.ts",
   "author": "@paprika",
   "license": "MIT",
   "repository": {

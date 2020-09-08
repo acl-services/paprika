@@ -3,6 +3,7 @@
   "version": "0.2.45",
   "description": "Toast component is a controlled or uncontrolled component that provides a easy way to commmunicate to users regarding success, warning, info, and error messages.",
   "main": "lib/index.js",
+  "types": "lib/index.d.ts",
   "author": "@paprika",
   "license": "MIT",
   "repository": {
