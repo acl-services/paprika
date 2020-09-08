@@ -2,11 +2,11 @@ import styled from "styled-components";
 import Input from "@paprika/input";
 import tokens from "@paprika/tokens";
 
-export const FilterContainerStyled = styled.div`
+export const Filter = styled.div`
   position: relative;
 `;
 
-export const FilterInputStyled = styled(Input)`
+export const FilterInput = styled(Input)`
   && {
     background-color: white;
     display: inline-block;
