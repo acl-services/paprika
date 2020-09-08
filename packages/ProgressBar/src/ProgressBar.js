@@ -25,8 +25,6 @@ const defaultProps = {
 function ProgressBar(props) {
   const { a11yText, header, bodyText, completed, ...moreProps } = props;
 
-  const bestAria = a11yText || "Loading";
-
   return (
     <sc.ProgressBar {...moreProps}>
       <Heading level={3}>{header}</Heading>
@@ -38,12 +36,11 @@ function ProgressBar(props) {
           aria-valuemax="100"
           aria-valuenow={completed}
           completed={completed}
+          aria-live="polite"
+          aria-valuetext={a11yText}
         />
       </sc.Bar>
       <sc.Body>{bodyText}</sc.Body>
-      <sc.BarAria role="alert" aria-live="polite">
-        {bestAria}
-      </sc.BarAria>
     </sc.ProgressBar>
   );
 }
