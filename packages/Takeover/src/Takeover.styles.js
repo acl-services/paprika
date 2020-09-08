@@ -31,25 +31,27 @@ const states = {
   exited: closedCss,
 };
 
-export const Wrapper = styled.div`
-  background-color: ${tokens.backgroundColor.level0};
-  bottom: 0;
-  display: flex;
-  flex-direction: column;
-  left: 0;
-  position: fixed;
-  right: 0;
-  top: 0;
-  transition: all ${tokens.overlay.animationDuration}ms ease;
-  z-index: ${({ zIndex }) => zIndex};
-  ${({ state }) => states[state]};
-`;
+export const Takeover = styled.div(
+  ({ zIndex, state }) => css`
+    background-color: ${tokens.backgroundColor.level0};
+    bottom: 0;
+    display: flex;
+    flex-direction: column;
+    left: 0;
+    position: fixed;
+    right: 0;
+    top: 0;
+    transition: all ${tokens.overlay.animationDuration}ms ease;
+    z-index: ${zIndex};
+    ${states[state]};
+  `
+);
 
 export const Header = styled(OriginalHeader)`
   flex: none;
 `;
 
-export const ContentWrapper = styled.div`
+export const Content = styled.div`
   flex-grow: 1;
   overflow-y: auto;
 
