@@ -1,6 +1,6 @@
 import React from "react";
 import PropTypes from "prop-types";
-import { dividerCSS } from "./Divider.styles";
+import * as sc from "./Divider.styles";
 
 const propTypes = {
   /**  isDisable is use internally as a default prop
@@ -20,9 +20,9 @@ const defaultProps = {
 
 export default function Divider(props) {
   return (
-    <li aria-hidden="true" data-pka-anchor="listbox.divider" css={dividerCSS}>
+    <sc.Divider aria-hidden="true" data-pka-anchor="listbox.divider">
       {props.children}
-    </li>
+    </sc.Divider>
   );
 }
 

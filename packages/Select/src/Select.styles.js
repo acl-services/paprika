@@ -1,5 +1,6 @@
-import tokens from "@paprika/tokens";
+import styled from "styled-components";
 import stylers from "@paprika/stylers";
+import tokens from "@paprika/tokens";
 
 const svgString = color =>
   `<svg color='${color}' width='18' height='32' xmlns='http://www.w3.org/2000/svg'><path fill='currentColor' d='M18.286 12.571q0 0.464-0.339 0.804l-8 8q-0.339 0.339-0.804 0.339t-0.804-0.339l-8-8q-0.339-0.339-0.339-0.804t0.339-0.804 0.804-0.339h16q0.464 0 0.804 0.339t0.339 0.804z'></path></svg>`;
@@ -8,12 +9,12 @@ const selectArrow = (color = tokens.color.black) => `
   background-image: url("data:image/svg+xml;base64,${btoa(svgString(color))}");
 `;
 
-const selectStyles = () => `
+export const Select = styled.div`
   position: relative;
 
   .form-select__select {
     ${selectArrow()}
-
+    appearance: none;
     background-color: ${tokens.color.white};
     background-position: right 11px center;
     background-repeat: no-repeat;
@@ -30,9 +31,6 @@ const selectStyles = () => `
     padding: 0 ${stylers.spacer(3)} 0 ${stylers.spacer(1)};
     width: 100%;
 
-    -webkit-appearance: none;
-    -moz-appearance: none;
-
     &:hover:not(.is-disabled):not(.is-readonly):not([disabled]) {
       border-color: ${tokens.color.blackLighten30};
     }
@@ -43,8 +41,6 @@ const selectStyles = () => `
       box-shadow: ${tokens.highlight.active.noBorder.boxShadow};
     }
   }
-
-  // Sizes
 
   &.form-select--small .form-select__select {
     ${stylers.fontSize(-2)}
@@ -61,8 +57,6 @@ const selectStyles = () => `
     height: ${stylers.spacer(5)};
   }
 
-  // Placeholder
-
   &.form-select--placeholder .form-select__select {
     ${stylers.placeholder}
 
@@ -77,24 +71,16 @@ const selectStyles = () => `
     }
   }
 
-  // Disabled
-
   &.form-select--is-disabled .form-select__select {
     ${stylers.disabledFormStyles}
     ${selectArrow(tokens.color.blackLighten60)}
   }
 
-  // Read Only
-
   &.form-select--is-readonly .form-select__select {
     ${stylers.readOnlyFormStyles}
   }
-
-  // Error
 
   &.form-select--has-error .form-select__select {
     ${stylers.errorFormStyles}
   }
 `;
-
-export default selectStyles;
