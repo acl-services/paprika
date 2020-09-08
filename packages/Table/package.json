@@ -4,6 +4,7 @@
   "description": "The Table component is a simple wrap for the html table, for more advanced features see the DataGrid component.",
   "author": "@paprika",
   "main": "lib/index.js",
+  "types": "lib/index.d.ts",
   "license": "MIT",
   "repository": {
     "type": "git",

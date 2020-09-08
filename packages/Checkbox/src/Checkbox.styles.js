@@ -1,4 +1,4 @@
-import { css } from "styled-components";
+import styled, { css } from "styled-components";
 import { toInt, fontSizeValue, lineHeightValue, z } from "@paprika/stylers/lib/helpers";
 import { boxSizingStyles, visuallyHidden } from "@paprika/stylers/lib/includes";
 import tokens from "@paprika/tokens";
@@ -75,106 +75,106 @@ const styles = {
   },
 };
 
-const checkboxStyles = css`
-  ${boxSizingStyles};
-  ${({ size }) => styles[size].baseFontSize};
-  line-height: ${({ hasLabel }) => (hasLabel ? lineHeightValue(-1) : "0")};
-  position: relative;
+export const Checkbox = styled.div(
+  ({ size, hasLabel }) => css`
+    ${boxSizingStyles};
+    ${styles[size].baseFontSize};
+    line-height: ${hasLabel ? lineHeightValue(-1) : "0"};
+    position: relative;
 
-  & + [data-pka-anchor="checkbox"] {
-    margin-top: ${tokens.space};
-  }
-
-  input[type="checkbox"] {
-    ${visuallyHidden};
-
-    &:focus + label::before {
-      box-shadow: ${tokens.highlight.active.noBorder.boxShadow};
-      border-color: ${tokens.highlight.active.noBorder.borderColor};
+    & + [data-pka-anchor="checkbox"] {
+      margin-top: ${tokens.space};
     }
 
-    & + label {
-      cursor: pointer;
-      display: inline-block;
-      margin: 0;
-      ${({ size, hasLabel }) => styles[size].labelStyles(hasLabel)};
-      position: relative;
-    }
+    input[type="checkbox"] {
+      ${visuallyHidden};
 
-    & + label::before,
-    & + label > .checkbox-icon {
-      position: absolute;
-      top: 0;
-    }
+      &:focus + label::before {
+        box-shadow: ${tokens.highlight.active.noBorder.boxShadow};
+        border-color: ${tokens.highlight.active.noBorder.borderColor};
+      }
 
-    & + label::before {
-      background: ${tokens.color.white};
-      border: 2px solid ${tokens.border.color};
-      border-radius: ${tokens.border.radius};
-      content: "";
-      left: 0;
-      ${z(1)};
-      ${({ size }) => styles[size].checkBoxStyles};
-    }
+      & + label {
+        cursor: pointer;
+        display: inline-block;
+        margin: 0;
+        ${styles[size].labelStyles(hasLabel)};
+        position: relative;
+      }
 
-    & + label:hover::before {
-      border: 2px solid ${tokens.color.black};
-    }
+      & + label::before,
+      & + label > .checkbox-icon {
+        position: absolute;
+        top: 0;
+      }
 
-    & + label > .checkbox-icon {
-      color: ${tokens.color.white};
-      ${({ size }) => styles[size].checkBoxIconStyles};
-      opacity: 0;
-      pointer-events: none;
-      transform: translateX(-50%);
-      transition: opacity 0.15s ease-out;
-      ${z(2)};
-    }
-
-    &:checked,
-    &:indeterminate {
       & + label::before {
-        background: ${tokens.color.black};
-        border: none;
+        background: ${tokens.color.white};
+        border: 2px solid ${tokens.border.color};
+        border-radius: ${tokens.border.radius};
+        content: "";
+        left: 0;
+        ${z(1)};
+        ${styles[size].checkBoxStyles};
       }
+
       & + label:hover::before {
-        background: ${tokens.color.blackLighten30};
+        border: 2px solid ${tokens.color.black};
       }
-    }
 
-    &:checked + label > [data-pka-anchor="checkbox.icon.check"] {
-      opacity: 1;
-    }
-
-    &:indeterminate + label > [data-pka-anchor="checkbox.icon.check"] {
-      opacity: 0;
-    }
-
-    &:indeterminate + label > [data-pka-anchor="checkbox.icon.indeterminate"] {
-      opacity: 1;
-    }
-
-    &:disabled {
-      & + label,
-      & ~ .checkbox-icon {
-        cursor: not-allowed;
-        opacity: 0.5;
-        transition: none;
+      & + label > .checkbox-icon {
+        color: ${tokens.color.white};
+        ${styles[size].checkBoxIconStyles};
+        opacity: 0;
+        pointer-events: none;
+        transform: translateX(-50%);
+        transition: opacity 0.15s ease-out;
+        ${z(2)};
       }
+
       &:checked,
       &:indeterminate {
         & + label::before {
-          background-color: ${tokens.color.blackLighten40};
-        }
-        & + label:hover::before {
+          background: ${tokens.color.black};
           border: none;
         }
+        & + label:hover::before {
+          background: ${tokens.color.blackLighten30};
+        }
       }
-      & + label:hover::before {
-        border: 2px solid ${tokens.border.color};
+
+      &:checked + label > [data-pka-anchor="checkbox.icon.check"] {
+        opacity: 1;
+      }
+
+      &:indeterminate + label > [data-pka-anchor="checkbox.icon.check"] {
+        opacity: 0;
+      }
+
+      &:indeterminate + label > [data-pka-anchor="checkbox.icon.indeterminate"] {
+        opacity: 1;
+      }
+
+      &:disabled {
+        & + label,
+        & ~ .checkbox-icon {
+          cursor: not-allowed;
+          opacity: 0.5;
+          transition: none;
+        }
+        &:checked,
+        &:indeterminate {
+          & + label::before {
+            background-color: ${tokens.color.blackLighten40};
+          }
+          & + label:hover::before {
+            border: none;
+          }
+        }
+        & + label:hover::before {
+          border: 2px solid ${tokens.border.color};
+        }
       }
     }
-  }
-`;
-
-export default checkboxStyles;
+  `
+);

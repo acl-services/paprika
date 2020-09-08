@@ -6,7 +6,7 @@ import InfoIcon from "@paprika/icon/lib/InfoCircle";
 import Heading from "@paprika/heading";
 import CodeViewer from "storybook/components/CodeViewer";
 import * as types from "../../src/types";
-import Input from "../../src";
+import InputExample from "./InputExample";
 
 const iconSelections = {
   none: null,
@@ -37,7 +37,7 @@ const ExampleStory = props => {
       <Tagline>Use the knobs to tinker with the props.</Tagline>
       <Rule />
       <CodeViewer>
-        <Input {...inputProps} />
+        <InputExample {...inputProps} />
       </CodeViewer>
     </Story>
   );

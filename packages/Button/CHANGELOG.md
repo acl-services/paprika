@@ -6,6 +6,8 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 
 ## [Unreleased]
 
+Added support for icon in ButtonLink component [@tristanjasper](https://github.com/tristanjasper).
+
 ## [0.3.0] - 2020-06-16
 
 ### Changed
