@@ -4,6 +4,7 @@
   "description": "Spinner component tells the user that the app is doing something.",
   "author": "@paprika",
   "main": "lib/index.js",
+  "types": "lib/index.d.ts",
   "license": "MIT",
   "repository": {
     "type": "git",

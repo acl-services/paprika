@@ -1,7 +1,7 @@
 import React from "react";
 import PropTypes from "prop-types";
 import useListBox from "../../useListBox";
-import NoResultsStyled from "./NoResults.styles";
+import * as sc from "./NoResults.styles";
 
 const propTypes = {
   /** Sets label for NoResults */
@@ -13,7 +13,7 @@ export default function NoResults(props) {
   const [state] = useListBox();
 
   if ((state.isOpen || state.isInline) && state.noResultsFound) {
-    return <NoResultsStyled data-pka-anchor="no-results">{label}</NoResultsStyled>;
+    return <sc.NoResults data-pka-anchor="no-results">{label}</sc.NoResults>;
   }
 
   return null;
