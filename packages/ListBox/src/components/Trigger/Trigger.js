@@ -17,7 +17,7 @@ import invokeOnChange, {
   getSelectedOptionsMulti,
 } from "../../helpers/invokeOnChange";
 
-import { ListBoxTriggerStyled, ClearButtonStyled, iconStyles, VisuallyHiddenFormLabelStyled } from "./Trigger.styles";
+import * as sc from "./Trigger.styles";
 import { getDOMAttributesForListBoxButton } from "../../helpers/DOMAttributes";
 
 const propTypes = {
@@ -168,7 +168,7 @@ export default function Trigger(props) {
         aria-labelledby={triggerButtonId.current}
       >
         {refLabel && refLabel.current ? (
-          <VisuallyHiddenFormLabelStyled>{refLabel.current.innerText}</VisuallyHiddenFormLabelStyled>
+          <sc.VisuallyHiddenFormLabel>{refLabel.current.innerText}</sc.VisuallyHiddenFormLabel>
         ) : null}
         <Label
           activeOption={state.options[state.activeOption]}
@@ -212,9 +212,9 @@ export default function Trigger(props) {
   }, [hasRenderTrigger, children, isMulti, state, dispatch, idListBox, refTrigger]);
 
   const caret = state.isOpen ? (
-    <CaretUpIcon isDisabled={isDisabled} css={iconStyles} />
+    <CaretUpIcon isDisabled={isDisabled} css={sc.iconStyles} />
   ) : (
-    <CaretDownIcon isDisabled={isDisabled} css={iconStyles} />
+    <CaretDownIcon isDisabled={isDisabled} css={sc.iconStyles} />
   );
 
   const shouldHideClearButton = (state.hasFooter && state.isOpen) || hasRenderTrigger;
@@ -222,11 +222,11 @@ export default function Trigger(props) {
   const shouldHideCaret = hasRenderTrigger || state.isInline;
 
   if (isHidden && state.isInline) {
-    return <ListBoxTriggerStyled data-pka-anchor="listbox-trigger" isHidden />;
+    return <sc.ListBoxTrigger data-pka-anchor="listbox-trigger" isHidden />;
   }
 
   return (
-    <ListBoxTriggerStyled
+    <sc.ListBoxTrigger
       isInline={state.isInline}
       isDisabled={isDisabled}
       ref={refTriggerContainer}
@@ -236,7 +236,7 @@ export default function Trigger(props) {
     >
       {hasRenderTrigger ? renderChildrenProps : renderLabel()}
       {state.selectedOptions.length && hasClearButton && !shouldHideClearButton ? (
-        <ClearButtonStyled
+        <sc.ClearButton
           isSemantic={false}
           isDisabled={isDisabled}
           data-pka-anchor="clear-button"
@@ -245,11 +245,11 @@ export default function Trigger(props) {
           shouldHideCaret={shouldHideCaret}
           size={size}
         >
-          {clearIcon || <TimesCircleIcon isDisabled={isDisabled} css={iconStyles} />}
-        </ClearButtonStyled>
+          {clearIcon || <TimesCircleIcon isDisabled={isDisabled} css={sc.iconStyles} />}
+        </sc.ClearButton>
       ) : null}
       {shouldHideCaret ? null : caret}
-    </ListBoxTriggerStyled>
+    </sc.ListBoxTrigger>
   );
 }
 

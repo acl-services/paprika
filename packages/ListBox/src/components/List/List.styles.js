@@ -1,27 +1,21 @@
-import styled from "styled-components";
+import styled, { css } from "styled-components";
 
-const ListStyled = styled.ul`
-  box-sizing: border-box;
-  list-style: none;
-  margin: 0;
-  overflow: auto;
-
-  &:focus {
-    outline: none;
-  }
-
-  li {
+export const List = styled.ul(
+  ({ noResultsFound, height }) => css`
     box-sizing: border-box;
-  }
+    list-style: none;
+    margin: 0;
+    max-height: ${height}px;
+    overflow: auto;
 
-  padding: 8px;
-  ${props => {
-    const paddingNoResults = props.noResultsFound ? "padding: 0" : "";
-    return `
-        max-height: ${props.height}px
-        ${paddingNoResults}
-      `;
-  }}
-`;
+    &:focus {
+      outline: none;
+    }
 
-export default ListStyled;
+    li {
+      box-sizing: border-box;
+    }
+    padding: 8px;
+    ${noResultsFound ? "padding: 0" : ""}
+  `
+);

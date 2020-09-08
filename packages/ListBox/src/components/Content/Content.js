@@ -5,7 +5,7 @@ import { getDOMAttributesForListBoxContainer } from "../../helpers/DOMAttributes
 import { handleKeyUpKeyboardKeys, handleKeyDownKeyboardKeys } from "../../helpers/handleKeyboardKeys";
 import useListBox from "../../useListBox";
 import { OnChangeContext } from "../../store/OnChangeProvider";
-import { ContentStyled } from "./Content.styles";
+import * as sc from "./Content.styles";
 
 const propTypes = {
   /** Body content of the content. */
@@ -60,7 +60,7 @@ export default function Content(props) {
   /* NOTE no idea what ROLE should be this div when the ListBox is INLINE */
   if (state.isInline) {
     return (
-      <ContentStyled
+      <sc.Content
         {...getDOMAttributesForListBoxContainer({ isInline: true })}
         onFocus={() => {
           handleContentFocusChange(true, dispatch);
@@ -74,7 +74,7 @@ export default function Content(props) {
         data-pka-anchor="listbox-content-inline"
       >
         {props.children}
-      </ContentStyled>
+      </sc.Content>
     );
   }
 
