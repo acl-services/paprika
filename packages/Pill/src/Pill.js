@@ -14,9 +14,9 @@ function Pill(props) {
 
   if (onClick) {
     return (
-      <sc.Pill {...styleProps} a11yText={a11yText} isDisabled={isDisabled} onClick={onClick} {...moreProps}>
+      <sc.RawButtonPill {...styleProps} a11yText={a11yText} isDisabled={isDisabled} onClick={onClick} {...moreProps}>
         <sc.PillText>{props.children}</sc.PillText>
-      </sc.Pill>
+      </sc.RawButtonPill>
     );
   }
 

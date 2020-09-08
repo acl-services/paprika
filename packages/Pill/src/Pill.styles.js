@@ -70,7 +70,32 @@ const pillSizeStyles = {
   `,
 };
 
-export const Pill = styled(RawButton)(
+export const Pill = styled.div(
+  ({ size, pillColor }) => css`
+    align-items: center;
+    color: ${tokens.color.white};
+    display: inline-flex;
+    max-width: 100%;
+
+    &,
+    * {
+      box-sizing: border-box;
+    }
+
+    &:focus {
+      outline: 0;
+    }
+
+    svg {
+      margin-right: ${tokens.spaceSm};
+    }
+
+    ${pillSizeStyles[size]}
+    ${pillColorStyles[pillColor]}
+  `
+);
+
+export const RawButtonPill = styled(RawButton)(
   ({ size, pillColor }) => css`
     align-items: center;
     color: ${tokens.color.white};
