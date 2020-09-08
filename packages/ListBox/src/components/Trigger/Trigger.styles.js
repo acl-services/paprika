@@ -1,9 +1,9 @@
 import styled, { css } from "styled-components";
 import Button from "@paprika/button";
 import stylers from "@paprika/stylers";
-import { ShirtSizes } from "@paprika/helpers/lib/customPropTypes";
 import { visuallyHidden } from "@paprika/stylers/lib/includes";
 import tokens from "@paprika/tokens";
+import * as types from "../../types";
 
 const triggerStyles = `
   ${stylers.truncateText}
@@ -27,55 +27,53 @@ const triggerStyles = `
 `;
 
 const triggerSizes = {
-  [ShirtSizes.SMALL]: `
+  [types.SMALL]: `
     ${stylers.fontSize(-2)}
     height: ${stylers.spacer(3)};
     line-height: ${stylers.spacer(3)};
   `,
-  [ShirtSizes.MEDIUM]: `
+  [types.MEDIUM]: `
     ${stylers.fontSize(-1)}
     height: ${stylers.spacer(4)};
     line-height: ${stylers.spacer(4)};
   `,
-  [ShirtSizes.LARGE]: `
+  [types.LARGE]: `
     ${stylers.fontSize()}
     height: ${stylers.spacer(5)};
     line-height: ${stylers.spacer(5)};
   `,
 };
 
-const triggerStylesProps = () => props => {
-  if (props.isHidden) {
+const triggerStylesProps = () => ({ isHidden, isDisabled, isInline, size }) => {
+  if (isHidden) {
     return css`
       border: 1px solid #d7d7d7;
     `;
   }
 
-  const isDisabled = props.isDisabled ? `color: ${tokens.color.blackLighten60};` : "";
-  const sizeStyles = triggerSizes[props.size];
-  return props.isInline
+  return isInline
     ? `
       ${triggerStyles}
       border-bottom-left-radius: 0;
       border-bottom-right-radius: 0;
-      ${sizeStyles}
-      ${isDisabled}
+      ${triggerSizes[size]};
+      ${isDisabled ? `color: ${tokens.color.blackLighten60};` : ""}
     `
     : `
       & > [data-pka-anchor='listbox-trigger'] {
-        ${triggerStyles}
-        ${sizeStyles}
-        ${isDisabled}
+        ${triggerStyles};
+        ${triggerSizes[size]};
+        ${isDisabled ? `color: ${tokens.color.blackLighten60};` : ""};
       }
     `;
 };
 
-export const ListBoxTriggerStyled = styled.div`
+export const ListBoxTrigger = styled.div`
   position: relative;
   ${triggerStylesProps()}
 `;
 
-export const iconStyles = css`
+export const iconStyles = ({ isDisabled }) => css`
   height: 100%;
   pointer-events: none;
   position: absolute;
@@ -83,33 +81,35 @@ export const iconStyles = css`
   top: 0;
   ${stylers.fontSize(-1)}
 
-  ${({ isDisabled }) => isDisabled && `color: ${tokens.color.blackLighten60};`}
+  ${isDisabled && `color: ${tokens.color.blackLighten60};`}
 `;
 
-export const ClearButtonStyled = styled(Button.Icon)`
-  height: 100%;
-  margin-right: 2px;
-  position: absolute;
-  /* 14px + 8px */
-  right: ${({ shouldHideCaret }) => (shouldHideCaret ? 0 : "22px")};
-  top: 0;
+export const ClearButton = styled(Button.Icon)(
+  ({ shouldHideCaret }) => css`
+    height: 100%;
+    margin-right: 2px;
+    position: absolute;
+    /* 14px + 8px */
+    right: ${shouldHideCaret ? 0 : "22px"};
+    top: 0;
 
-  > span {
-    height: 14px;
-    line-height: 14px;
+    > span {
+      height: 14px;
+      line-height: 14px;
 
-    > svg {
-      color: ${tokens.color.blackLighten20};
-      vertical-align: text-top;
-      ${iconStyles}
+      > svg {
+        color: ${tokens.color.blackLighten20};
+        vertical-align: text-top;
+        ${iconStyles}
+      }
     }
-  }
 
-  &:hover {
-    background-color: transparent;
-  }
-`;
+    &:hover {
+      background-color: transparent;
+    }
+  `
+);
 
-export const VisuallyHiddenFormLabelStyled = styled.span`
+export const VisuallyHiddenFormLabel = styled.span`
   ${visuallyHidden};
 `;
