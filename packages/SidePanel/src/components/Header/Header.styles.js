@@ -4,7 +4,7 @@ import stylers from "@paprika/stylers";
 import tokens from "@paprika/tokens/lib/tokens";
 import Button from "@paprika/button";
 
-const kind = {
+const typeKinds = {
   [Button.types.kind.DEFAULT]: `background: ${tokens.color.white}; color: ${tokens.color.black};`,
   [Button.types.kind.PRIMARY]: `background: ${tokens.color.purple}; color: ${tokens.color.white};`,
 };
@@ -18,48 +18,38 @@ const compactStyles = `
   }
 `;
 
-export const Header = styled.div`
-  align-items: center;
-  border-bottom: 1px solid ${tokens.border.color};
-  box-sizing: border-box;
-  display: flex;
-  height: ${spacer(8)};
-  justify-content: space-between;
-  min-height: ${spacer(6)};
-  padding: ${spacer(2)} ${spacer(3)};
-  width: 100%;
-  &:focus {
-    outline: 0;
-  }
-
-  [data-pka-anchor="heading"] {
-    ${stylers.truncateText}
-    display: block;
-    margin: 0;
-  }
-
-  ${props => {
-    const borderColor = `1px solid ${tokens.border.color}`;
-
-    let borderLeft = "";
-    let borderRight = "";
-
-    if (props.hasPushedElement && !(props.kind === "primary")) {
-      if (props.isSlideFromLeft) {
-        borderRight = borderColor;
-      } else {
-        borderLeft = borderColor;
-      }
+export const Header = styled.div(
+  ({ kind, hasPushedElement, isSlideFromLeft, isCompact }) => css`
+    align-items: center;
+    border-bottom: 1px solid ${tokens.border.color};
+    ${hasPushedElement && !(kind === "primary") && isSlideFromLeft
+      ? `border-right: 1px solid ${tokens.border.color}`
+      : ""}
+    ${hasPushedElement && !(kind === "primary") && !isSlideFromLeft
+      ? `border-left: 1px solid ${tokens.border.color}`
+      : ""}
+    box-sizing: border-box;
+    display: flex;
+    height: ${spacer(8)};
+    justify-content: space-between;
+    min-height: ${spacer(6)};
+    padding: ${spacer(2)} ${spacer(3)};
+    width: 100%;
+    &:focus {
+      outline: 0;
     }
-    return css`
-      border-left: ${borderLeft};
-      border-right: ${borderRight};
-      [data-pka-anchor="button.icon"] {
-        ${props.kind === [Button.types.kind.PRIMARY] ? `color: ${tokens.color.white}` : "color: inherit"}
-      }
 
-      ${props.isCompact ? compactStyles : ""}
-      ${props.kind ? kind[props.kind] : ""}
-    `;
-  }}
-`;
+    [data-pka-anchor="heading"] {
+      ${stylers.truncateText}
+      display: block;
+      margin: 0;
+    }
+
+    [data-pka-anchor="button.icon"] {
+      ${kind === [Button.types.kind.PRIMARY] ? `color: ${tokens.color.white}` : "color: inherit"}
+    }
+
+    ${isCompact ? compactStyles : ""};
+    ${kind ? typeKinds[kind] : ""};
+  `
+);
