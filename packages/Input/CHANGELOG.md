@@ -6,6 +6,10 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 
 ## [Unreleased]
 
+### Changed
+
+- Changed `Input.types.input` to `Input.types.type` to match the propType name. [@allison-c](https://github.com/allison-c).
+
 ## [0.2.26] - 2020-04-29
 
 ### Added

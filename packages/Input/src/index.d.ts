@@ -28,13 +28,13 @@ interface InputProps {
   size?: Input.types.size.SMALL | Input.types.size.MEDIUM | Input.types.size.LARGE;
   /** Allows user to specify the type of input. */
   type?:
-    | types.inputValidTypes.EMAIL
-    | types.inputValidTypes.NUMBER
-    | types.inputValidTypes.PASSWORD
-    | types.inputValidTypes.SEARCH
-    | types.inputValidTypes.TELEPHONE
-    | types.inputValidTypes.TEXT
-    | types.inputValidTypes.URL;
+    | Input.types.type.EMAIL
+    | Input.types.type.NUMBER
+    | Input.types.type.PASSWORD
+    | Input.types.type.SEARCH
+    | Input.types.type.TELEPHONE
+    | Input.types.type.TEXT
+    | Input.types.type.URL;
   /** The value inside of the input */
   value?: string;
 }

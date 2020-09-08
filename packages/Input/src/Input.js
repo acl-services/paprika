@@ -93,7 +93,7 @@ const Input = React.forwardRef((props, ref) => {
 
 Input.types = {
   size: constants.defaultSize,
-  input: types.inputValidTypes,
+  type: types.inputValidTypes,
 };
 
 const propTypes = {
@@ -135,13 +135,13 @@ const propTypes = {
 
   /** Allows user to specify the type of input. */
   type: PropTypes.oneOf([
-    types.inputValidTypes.EMAIL,
-    types.inputValidTypes.NUMBER,
-    types.inputValidTypes.PASSWORD,
-    types.inputValidTypes.SEARCH,
-    types.inputValidTypes.TELEPHONE,
-    types.inputValidTypes.TEXT,
-    types.inputValidTypes.URL,
+    Input.types.type.EMAIL,
+    Input.types.type.NUMBER,
+    Input.types.type.PASSWORD,
+    Input.types.type.SEARCH,
+    Input.types.type.TELEPHONE,
+    Input.types.type.TEXT,
+    Input.types.type.URL,
   ]),
 
   /** The value inside of the input */
@@ -161,7 +161,7 @@ const defaultProps = {
   onChange: () => {},
   onClear: () => {},
   size: Input.types.size.MEDIUM,
-  type: Input.types.input.TEXT,
+  type: Input.types.type.TEXT,
   value: null,
 };
 
