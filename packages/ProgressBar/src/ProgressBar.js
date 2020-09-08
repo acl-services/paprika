@@ -28,10 +28,11 @@ function ProgressBar(props) {
   const bestAria = a11yText || "Loading";
 
   return (
-    <sc.ProgressBar data-pka-anchor="progress-bar" {...moreProps}>
+    <sc.ProgressBar {...moreProps}>
       <Heading level={3}>{header}</Heading>
       <sc.Bar>
         <sc.BarFiller
+          data-pka-anchor="progress-bar"
           role="progressbar"
           aria-valuemin="0"
           aria-valuemax="100"

@@ -14,14 +14,14 @@ const progress = keyframes`
 
 export const BarFiller = styled.div(
   ({ completed }) => css`
-    animation: ${progress} linear 1.5s infinite;
+    animation: ${progress} ease 1.5s infinite;
     background-image: linear-gradient(
-      to left,
+      270deg,
       ${tokens.color.purple} 30%,
       ${tokens.color.purpleLighten20} 80%,
       ${tokens.color.purple} 100%
     );
-    background-size: 150% 200%;
+    background-size: 200% 200%;
     width: ${completed}%;
   `
 );
