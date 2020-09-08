@@ -1,7 +1,7 @@
 import React from "react";
 import PropTypes from "prop-types";
 
-import { panelStyles } from "./Panel.styles";
+import * as sc from "./Panel.styles";
 
 const propTypes = {
   children: PropTypes.node,
@@ -23,9 +23,9 @@ const Panel = props => {
   }
 
   return (
-    <div {...moreProps} css={panelStyles} role="tabpanel" data-pka-anchor="tabs.panel">
+    <sc.Panel {...moreProps} role="tabpanel" data-pka-anchor="tabs.panel">
       {children}
-    </div>
+    </sc.Panel>
   );
 };
 

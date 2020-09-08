@@ -3,7 +3,7 @@ import Button from "@paprika/button";
 import PropTypes from "prop-types";
 import useListBox from "../../useListBox";
 import invokeOnChange from "../../helpers/invokeOnChange";
-import { FooterContainerStyled } from "./Footer.styles";
+import * as sc from "./Footer.styles";
 
 export function FooterComponent(props, ref) {
   const [, dispatch] = useListBox();
@@ -61,7 +61,7 @@ export function FooterComponent(props, ref) {
   const { isDisabled } = props;
 
   return (
-    <FooterContainerStyled ref={ref}>
+    <sc.Footer ref={ref}>
       <div>
         {isAcceptVisible && (
           <Button isDisabled={isDisabled} kind={kindAccept} size={size} onClick={handleClickAccept}>
@@ -89,7 +89,7 @@ export function FooterComponent(props, ref) {
 
         {renderExtraButton()}
       </div>
-    </FooterContainerStyled>
+    </sc.Footer>
   );
 }
 
