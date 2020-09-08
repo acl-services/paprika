@@ -1,7 +1,7 @@
 import React from "react";
 import PropTypes from "prop-types";
 import TabsContext from "../../TabsContext";
-import { tabsListStyles } from "./List.styles";
+import * as sc from "./List.styles";
 
 const propTypes = {
   /** Descriptive a11y text for assistive technologies. By default, text from children node will be used. */
@@ -37,9 +37,9 @@ export default function List(props) {
   if (a11yText) moreProps["aria-label"] = a11yText;
 
   return (
-    <div {...moreProps} css={tabsListStyles} role="tablist" ref={ref => setTabListRef(ref)} data-pka-anchor="tabs.list">
+    <sc.TabList {...moreProps} role="tablist" ref={ref => setTabListRef(ref)} data-pka-anchor="tabs.list">
       {childrenWithProps}
-    </div>
+    </sc.TabList>
   );
 }
 
