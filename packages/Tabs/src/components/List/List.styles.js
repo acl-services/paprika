@@ -1,7 +1,7 @@
-import { css } from "styled-components";
+import styled from "styled-components";
 import tokens from "@paprika/tokens";
 
-export const tabsListStyles = css`
+export const TabList = styled.div`
   border-bottom: 1px solid ${tokens.color.creme};
   margin: 0;
   padding: 0;

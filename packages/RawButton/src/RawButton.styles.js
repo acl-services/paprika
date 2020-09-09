@@ -1,4 +1,4 @@
-import { css } from "styled-components";
+import styled, { css } from "styled-components";
 import stylers from "@paprika/stylers";
 
 const focusStyles = isInset => css`
@@ -20,12 +20,11 @@ const disabledStyles = css`
   }
 `;
 
-const rawButtonStyles = css`
-  cursor: pointer;
-  display: inline-block;
-  ${({ hasInsetFocusStyle, isActive }) =>
-    isActive ? stylers.focusRing(hasInsetFocusStyle) : focusStyles(hasInsetFocusStyle)};
-  ${({ isDisabled }) => isDisabled && disabledStyles};
-`;
-
-export default rawButtonStyles;
+export const RawButton = styled.span(
+  ({ hasInsetFocusStyle, isActive, isDisabled }) => css`
+    cursor: pointer;
+    display: inline-block;
+    ${isActive ? stylers.focusRing(hasInsetFocusStyle) : focusStyles(hasInsetFocusStyle)};
+    ${isDisabled && disabledStyles};
+  `
+);

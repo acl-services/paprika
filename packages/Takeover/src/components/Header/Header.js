@@ -14,14 +14,14 @@ const Header = React.forwardRef((props, ref) => {
         {children}
       </sc.Heading>
       {hasCloseButton && (
-        <sc.CloseButtonWrapper>
+        <sc.CloseButton>
           <Button.Close
             data-pka-anchor="takeover.header.close-button"
             onClick={onClose}
             isDark={kind === "primary" || null}
             size="medium"
           />
-        </sc.CloseButtonWrapper>
+        </sc.CloseButton>
       )}
     </sc.Header>
   );
