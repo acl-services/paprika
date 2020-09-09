@@ -3,7 +3,7 @@ import tokens from "@paprika/tokens";
 import styled, { css } from "styled-components";
 import * as types from "../../types";
 
-export const FileWrapper = styled.li`
+export const File = styled.li`
   align-items: center;
   border-bottom: 1px solid ${tokens.color.blackLighten40};
   display: flex;
@@ -20,21 +20,16 @@ export const Left = styled.div`
   flex-shrink: 1;
 `;
 
-export const Right = styled.div`
-  display: flex;
-  flex-basis: ${stylers.spacer(4)};
-  justify-content: center;
-  padding: ${tokens.spaceSm} 0 ${tokens.spaceSm} ${tokens.spaceSm};
+export const Right = styled.div(
+  ({ status }) => css`
+    display: flex;
+    flex-basis: ${stylers.spacer(4)};
+    justify-content: center;
+    padding: ${tokens.spaceSm} 0 ${tokens.spaceSm} ${tokens.spaceSm};
 
-  ${props => {
-    if (props.status === types.status.SUCCESS) {
-      return css`
-        padding-bottom: ${tokens.space};
-        padding-top: ${tokens.space};
-      `;
-    }
-  }}
-`;
+    ${status === types.status.SUCCESS ? `padding-bottom: ${tokens.space}; padding-top: ${tokens.space};` : ""};
+  `
+);
 
 export const Info = styled.div`
   align-items: flex-end;
@@ -51,28 +46,20 @@ export const Name = styled.div`
   font-weight: bold;
 `;
 
-export const ProgressText = styled.div`
-  color: ${tokens.color.blackLighten20};
-  flex-basis: 40%;
-  flex-shrink: 1;
+export const ProgressText = styled.div(
+  ({ status }) => css`
+    color: ${tokens.color.blackLighten20};
+    flex-basis: 40%;
+    flex-shrink: 1;
 
-  ${stylers.fontSize(-3)}
-  text-align: right;
+    ${stylers.fontSize(-3)}
+    text-align: right;
 
-  ${props => {
-    if (props.status === types.status.SUCCESS) {
-      return css`
-        color: ${tokens.color.green};
-      `;
-    }
+    ${status === types.status.SUCCESS ? `color: ${tokens.color.green};` : ""};
 
-    if (props.status === types.status.ERROR) {
-      return css`
-        color: ${tokens.color.orange};
-      `;
-    }
-  }}
-`;
+    ${status === types.status.ERROR ? `color: ${tokens.color.orange};` : ""};
+  `
+);
 
 export const ProgressBarWrapper = styled.div`
   background: ${tokens.color.blackLighten40};
@@ -81,22 +68,14 @@ export const ProgressBarWrapper = styled.div`
   overflow: hidden;
 `;
 
-export const ProgressBar = styled.div`
-  background: ${tokens.color.purple};
-  height: 100%;
-  width: ${props => `${props.progress}%`};
+export const ProgressBar = styled.div(
+  ({ status, progress }) => css`
+    background: ${tokens.color.purple};
+    height: 100%;
+    width: ${`${progress}%`};
 
-  ${props => {
-    if (props.status === types.status.SUCCESS) {
-      return css`
-        background: ${tokens.color.green};
-      `;
-    }
+    ${status === types.status.SUCCESS ? `background: ${tokens.color.green};` : ""};
 
-    if (props.status === types.status.ERROR) {
-      return css`
-        background: ${tokens.color.orange};
-      `;
-    }
-  }};
-`;
+    ${status === types.status.ERROR ? `background: ${tokens.color.orange};` : ""};
+  `
+);
