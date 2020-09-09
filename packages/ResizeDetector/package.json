@@ -4,6 +4,7 @@
   "description": "A wrapper that provides debounced updates of its dimensions.",
   "author": "@paprika",
   "main": "lib/index.js",
+  "types": "lib/index.d.ts",
   "license": "MIT",
   "repository": {
     "type": "git",

@@ -1,8 +1,9 @@
 {
   "name": "@paprika/toast",
-  "version": "0.2.44",
+  "version": "0.2.45",
   "description": "Toast component is a controlled or uncontrolled component that provides a easy way to commmunicate to users regarding success, warning, info, and error messages.",
   "main": "lib/index.js",
+  "types": "lib/index.d.ts",
   "author": "@paprika",
   "license": "MIT",
   "repository": {
@@ -15,7 +16,7 @@
   },
   "dependencies": {
     "@babel/runtime-corejs2": "^7.3.1",
-    "@paprika/button": "^0.3.8",
+    "@paprika/button": "^0.3.9",
     "@paprika/constants": "^0.1.1",
     "@paprika/helpers": "^0.2.13",
     "@paprika/icon": "^0.3.7",
