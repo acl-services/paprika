@@ -1,5 +1,5 @@
 import styled, { css } from "styled-components";
-
+import RawButton from "@paprika/raw-button";
 import tokens from "@paprika/tokens";
 import stylers from "@paprika/stylers";
 
@@ -57,7 +57,7 @@ const UnderlaySizeStyles = {
   `,
 };
 
-export const KnobStyled = styled.span`
+export const Knob = styled.span`
   background-color: ${tokens.color.white};
   border-radius: 100%;
   box-shadow: 0 1px 3px rgba(0, 0, 0, 0.4);
@@ -68,7 +68,7 @@ export const KnobStyled = styled.span`
   transition: transform 0.25s ease;
 `;
 
-export const UnderlayStyled = styled.span`
+export const Underlay = styled.span`
   background-color: ${tokens.color.blackLighten50};
   border-radius: 50px;
   display: inline-block;
@@ -79,11 +79,11 @@ export const UnderlayStyled = styled.span`
 `;
 
 const disabledStyles = css`
-  ${UnderlayStyled} {
+  ${Underlay} {
     box-shadow: none;
   }
 
-  ${KnobStyled} {
+  ${Knob} {
     box-shadow: none;
 
     &::after {
@@ -97,56 +97,56 @@ const disabledStyles = css`
   }
 
   &[aria-checked="true"] {
-    ${UnderlayStyled},
-    ${KnobStyled}::after {
+    ${Underlay},
+    ${Knob}::after {
       background-color: ${tokens.color.greenLighten30};
     }
   }
 
   &[aria-checked="false"] {
-    ${UnderlayStyled},
-    ${KnobStyled}::after {
+    ${Underlay},
+    ${Knob}::after {
       background-color: ${tokens.color.blackLighten60};
     }
   }
 `;
-const switchStyles = css`
-  position: relative;
+export const Switch = styled(RawButton)(
+  ({ size, isDisabled }) => css`
+    position: relative;
 
-  &,
-  * {
-    box-sizing: border-box;
-  }
-
-  ${({ size }) => UnderlaySizeStyles[size]}
-
-  ${UnderlayStyled} {
-    ${({ size }) => UnderlaySizeStyles[size]}
-  }
-
-  ${KnobStyled} {
-    ${({ size }) => KnobSizeStyles[size]}
-  }
-
-  &:focus {
-    box-shadow: none;
-
-    ${UnderlayStyled} {
-      box-shadow: ${tokens.highlight.active.withBorder.boxShadow};
-    }
-  }
-
-  &[aria-checked="true"] {
-    ${UnderlayStyled} {
-      background-color: ${tokens.color.green};
+    &,
+    * {
+      box-sizing: border-box;
     }
 
-    ${KnobStyled} {
-      ${({ size }) => KnobPositionStyles[size]}
+    ${UnderlaySizeStyles[size]}
+
+    ${Underlay} {
+      ${UnderlaySizeStyles[size]}
     }
-  }
 
-  ${({ isDisabled }) => (isDisabled ? disabledStyles : null)}
-`;
+    ${Knob} {
+      ${KnobSizeStyles[size]}
+    }
 
-export default switchStyles;
+    &:focus {
+      box-shadow: none;
+
+      ${Underlay} {
+        box-shadow: ${tokens.highlight.active.withBorder.boxShadow};
+      }
+    }
+
+    &[aria-checked="true"] {
+      ${Underlay} {
+        background-color: ${tokens.color.green};
+      }
+
+      ${Knob} {
+        ${KnobPositionStyles[size]}
+      }
+    }
+
+    ${isDisabled ? disabledStyles : null}
+  `
+);
