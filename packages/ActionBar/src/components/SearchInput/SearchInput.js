@@ -7,10 +7,10 @@ import useI18n from "@paprika/l10n/lib/useI18n";
 import * as sc from "./SearchInput.styles";
 
 export default function SearchInput(props) {
-  const { a11yText, onChange, placeholder, ...moreProps } = props;
+  const { a11yText, debouncedValue, onChange, placeholder, ...moreProps } = props;
   const I18n = useI18n();
   const [searchTerm, setSearchTerm] = React.useState("");
-  const debouncedOnChange = React.useCallback(debounce(onChange, 500), []);
+  const debouncedOnChange = React.useCallback(debounce(onChange, debouncedValue), []);
 
   function handleSearch(e) {
     const newSearchTerm = e.target.value;
@@ -35,13 +35,22 @@ export default function SearchInput(props) {
 }
 
 const propTypes = {
+  /** Descriptive a11y text for assistive technologies. */
   a11yText: PropTypes.string,
+
+  /** Debounced value will be used for onChange. */
+  debouncedValue: PropTypes.number,
+
+  /** Placeholder for the search input. */
   placeholder: PropTypes.string,
+
+  /** Callback to be executed when the input value is changed. */
   onChange: PropTypes.func,
 };
 
 const defaultProps = {
   a11yText: null,
+  debouncedValue: 500,
   placeholder: null,
   onChange: null,
 };
