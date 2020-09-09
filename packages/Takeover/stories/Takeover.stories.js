@@ -10,7 +10,6 @@ import SidePanel from "@paprika/sidepanel";
 import Popover from "@paprika/popover";
 import Heading from "@paprika/heading";
 import InfoIcon from "@paprika/icon/lib/InfoCircle";
-import Trigger from "@paprika/sidepanel/lib/components/Trigger/Trigger";
 import Takeover from "../src";
 import * as types from "../src/types";
 
@@ -159,7 +158,7 @@ storiesOf(`${storyName}/Backyard/Sandbox`, module)
           <Takeover.Content>
             <SidePanel isOpen={isOpen} onClose={toggle}>
               <SidePanel.Overlay />
-              <SidePanel.Trigger kind={Trigger.types.kind.PRIMARY} onClick={toggle}>
+              <SidePanel.Trigger kind={SidePanel.Trigger.types.kind.PRIMARY} onClick={toggle}>
                 {isOpen ? "close" : "open side panel"}
               </SidePanel.Trigger>
               <SidePanel.Header>Header</SidePanel.Header>
