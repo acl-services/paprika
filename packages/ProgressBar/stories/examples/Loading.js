@@ -5,11 +5,11 @@ import ProgressBar from "../../src";
 
 export default function Loading() {
   const [value, setValue] = React.useState(0);
-  const [a11yText, setA11yText] = React.useState();
+  const [a11yText, setA11yText] = React.useState("");
 
-  if (value < 100) {
+  if (value <= 100) {
     setTimeout(() => {
-      setValue(val => val + 1);
+      setValue(value => value + 15);
     }, 1000);
   } else {
     setValue(100);
