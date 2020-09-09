@@ -51,10 +51,10 @@ const Modal = props => {
         <sc.Modal size={size} data-pka-anchor="modal.wrapper" {...moreProps}>
           <sc.Dialog state={state} role="dialog" aria-modal="true" aria-label={ariaLabel} data-pka-anchor="modal">
             {headerExtracted && <sc.Header {...headerExtracted.props} onClose={onClose} />}
-            <sc.Content role="region" tabIndex="0">
+            <sc.ContentWrapper role="region" tabIndex="0">
               {contentExtracted && <sc.Content {...contentExtracted.props} />}
               {children}
-            </sc.Content>
+            </sc.ContentWrapper>
             {footerExtracted && <sc.Footer {...footerExtracted.props} />}
           </sc.Dialog>
         </sc.Modal>
