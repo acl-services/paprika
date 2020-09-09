@@ -77,7 +77,7 @@ const propTypes = {
   /** Control the visibility of the modal */
   isOpen: PropTypes.bool.isRequired,
 
-  /** Callback triggered when the modal needs to be close */
+  /** Callback triggered when the modal needs to be closed */
   onClose: PropTypes.func,
 
   /** Callback once the modal has been opened event */
