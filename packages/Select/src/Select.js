@@ -2,7 +2,7 @@ import React from "react";
 import classNames from "classnames";
 import PropTypes from "prop-types";
 import * as constants from "@paprika/constants/lib/Constants";
-import selectStyles from "./Select.styles";
+import * as sc from "./Select.styles";
 
 const Select = React.forwardRef((props, ref) => {
   const renderPlaceholder = () => {
@@ -43,7 +43,7 @@ const Select = React.forwardRef((props, ref) => {
   );
 
   return (
-    <div css={selectStyles} className={rootClasses} data-pka-anchor="select">
+    <sc.Select className={rootClasses} data-pka-anchor="select">
       <select
         aria-invalid={hasError}
         className="form-select__select"
@@ -55,7 +55,7 @@ const Select = React.forwardRef((props, ref) => {
         {renderPlaceholder()}
         {children}
       </select>
-    </div>
+    </sc.Select>
   );
 });
 

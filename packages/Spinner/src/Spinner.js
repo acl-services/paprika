@@ -2,7 +2,7 @@ import React from "react";
 import PropTypes from "prop-types";
 import classNames from "classnames";
 import * as constants from "@paprika/constants/lib/Constants";
-import SpinnerStyles from "./Spinner.styles";
+import * as sc from "./Spinner.styles";
 
 const spinnerSize = {
   large: "spinner--large",
@@ -16,13 +16,13 @@ const Spinner = ({ a11yText, className, caption, size, ...moreProps }) => {
   const bestAria = a11yText || caption || "Loading"; // TODO: l10n
 
   return (
-    <div className={rootClasses} css={SpinnerStyles} {...moreProps} data-pka-anchor="spinner">
+    <sc.Spinner className={rootClasses} {...moreProps} data-pka-anchor="spinner">
       <div className="spinner__visual" />
       <div className="spinner__caption">{caption}</div>
       <div className="spinner__aria-alert" role="alert" aria-live="polite">
         {bestAria}
       </div>
-    </div>
+    </sc.Spinner>
   );
 };
 
