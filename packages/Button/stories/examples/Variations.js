@@ -142,6 +142,9 @@ const ExampleStory = () => (
       <Button.Link href="https://youtu.be/IdkCEioCp24?t=92" shouldOpenNewTab>
         Link in new tab
       </Button.Link>
+      <Button.Link kind="secondary" icon={<PlusIcon />} href="https://youtu.be/IdkCEioCp24?t=92" shouldOpenNewTab>
+        Button link with icon
+      </Button.Link>
     </p>
     <Rule />
     <p>

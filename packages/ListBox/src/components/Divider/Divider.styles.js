@@ -1,4 +1,4 @@
-import { css } from "styled-components";
+import styled, { css } from "styled-components";
 import tokens from "@paprika/tokens";
 import stylers from "@paprika/stylers";
 
@@ -17,7 +17,7 @@ const textDividerStyles = css`
   }
 `;
 
-export const dividerCSS = css`
+export const Divider = styled.li`
   align-items: center;
   color: ${tokens.color.blackLighten20};
   display: flex;

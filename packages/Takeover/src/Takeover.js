@@ -85,7 +85,7 @@ export default function Takeover(props) {
   }
 
   return React.cloneElement(takeoverOverlay, overlayProps, state => (
-    <sc.Wrapper
+    <sc.Takeover
       state={state}
       {...moreProps}
       aria-label={getAriaLabel()}
@@ -96,12 +96,12 @@ export default function Takeover(props) {
     >
       {headerExtracted && <sc.Header {...headerExtracted.props} onClose={onClose} />}
       {contentExtracted && (
-        <sc.ContentWrapper role="region" tabIndex="0">
+        <sc.Content role="region" tabIndex="0">
           {contentExtracted}
-        </sc.ContentWrapper>
+        </sc.Content>
       )}
       {children}
-    </sc.Wrapper>
+    </sc.Takeover>
   ));
 }
 

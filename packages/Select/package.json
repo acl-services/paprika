@@ -4,6 +4,7 @@
   "description": "Select component allows users to select an item from a drop-down list",
   "author": "@paprika",
   "main": "lib/index.js",
+  "types": "lib/index.d.ts",
   "license": "MIT",
   "repository": {
     "type": "git",
