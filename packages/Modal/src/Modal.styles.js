@@ -73,7 +73,6 @@ export const Dialog = styled.div(
 
 export const Modal = styled.div(
   ({ size }) => css`
-    border: 10px solid pink;
     margin: ${tokens.modal.margin};
     max-height: calc(100% - ${tokens.modal.margin} - ${tokens.modal.margin});
     max-width: calc(100% - ${tokens.modal.margin} - ${tokens.modal.margin});
