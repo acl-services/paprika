@@ -22,6 +22,7 @@ export const BarFiller = styled.div(
       ${tokens.color.purple} 100%
     );
     background-size: 200% 200%;
+    transition: width 0.2s ease;
     width: ${completed}%;
   `
 );

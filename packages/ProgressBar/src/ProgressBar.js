@@ -39,9 +39,7 @@ function ProgressBar(props) {
         />
       </sc.Bar>
       <sc.Body>{bodyText}</sc.Body>
-      <sc.BarAria role="alert" aria-live="polite">
-        {bestAria}
-      </sc.BarAria>
+      <sc.BarAria aria-live="polite">{bestAria}</sc.BarAria>
     </sc.ProgressBar>
   );
 }
