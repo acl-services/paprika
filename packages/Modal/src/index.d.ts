@@ -7,7 +7,7 @@ interface ModalProps {
   children: React.ReactNode;
   /** Control the visibility of the modal */
   isOpen: boolean;
-  /** Callback triggered when the modal needs to be close */
+  /** Callback triggered when the modal needs to be closed */
   onClose?: (...args: any[]) => any;
   /** Callback once the modal has been opened event */
   onAfterOpen?: (...args: any[]) => any;
