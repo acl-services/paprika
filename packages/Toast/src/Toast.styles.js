@@ -46,33 +46,38 @@ const iconColors = {
   [types.toastKinds.LOCKED]: tokens.color.yellowDarken10,
 };
 
-export const CloseButtonStyled = styled(Button.Close)`
-  flex-grow: 0;
-  flex-shrink: 0;
-  margin-left: ${tokens.space};
-  min-height: 0;
+export const CloseButtonStyled = styled(Button.Close)(
+  ({ kind }) => css`
+    flex-grow: 0;
+    flex-shrink: 0;
+    margin-left: ${tokens.space};
+    min-height: 0;
 
-  ${({ kind }) => closeButtonColors[kind] && `color: ${closeButtonColors[kind]};`}
-`;
+    ${closeButtonColors[kind] && `color: ${closeButtonColors[kind]};`}
+  `
+);
 
-export const IconStyled = styled.div`
-  color: ${({ kind }) => iconColors[kind]};
-  flex-grow: 0;
-  flex-shrink: 0;
-  margin: 1px ${tokens.space} 0 0;
+export const IconStyled = styled.div(
+  ({ kind }) => css`
+    color: ${iconColors[kind]};
+    flex-grow: 0;
+    flex-shrink: 0;
+    margin: 1px ${tokens.space} 0 0;
 
-  ${stylers.fontSize(2)}
-`;
+    ${stylers.fontSize(2)}
+  `
+);
 
-export const contentStyles = css`
+export const Content = styled.div`
   flex-grow: 1;
   flex-shrink: 1;
 `;
 
-const toastStyles = css`
+export const Toast = styled.div(
+  ({ isFixed, kind, zIndex }) => css`
   align-items: flex-start;
-  background-color: ${({ kind }) => backgroundColors[kind]};
-  border-color: ${({ kind }) => borderColors[kind]};
+  background-color: ${backgroundColors[kind]};
+  border-color: ${borderColors[kind]};
   border-radius: ${tokens.border.radius};
   border-style: solid;
   border-width: 1px;
@@ -84,12 +89,11 @@ const toastStyles = css`
   position: relative;
   text-align: left;
   transition: opacity 0.3s ease-out;
-  z-index: ${({ zIndex }) => zIndex};
+  z-index: ${zIndex};
 
   ${stylers.fontSize()}
   ${stylers.lineHeight()}
-  ${({ isFixed }) => isFixed && fixedStyles}
-  ${({ kind }) => kind === types.toastKinds.VISUALLY_HIDDEN && visuallyHidden}
-`;
-
-export default toastStyles;
+  ${isFixed && fixedStyles}
+  ${kind === types.toastKinds.VISUALLY_HIDDEN && visuallyHidden}
+`
+);
