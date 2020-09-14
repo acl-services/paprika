@@ -9,7 +9,7 @@ import LockIcon from "@paprika/icon/lib/Lock";
 import Portal from "@paprika/helpers/lib/components/Portal";
 import * as types from "./types";
 
-import toastStyles, { contentStyles, IconStyled, CloseButtonStyled } from "./Toast.styles";
+import * as sc from "./Toast.styles";
 
 const icons = {
   [types.toastKinds.SUCCESS]: CheckIcon,
@@ -91,10 +91,10 @@ const Toast = React.forwardRef((props, ref) => {
 
     return (
       <>
-        {!isVisuallyHidden && <IconStyled as={icons[kind]} kind={kind} />}
-        <div css={contentStyles}>{children}</div>
+        {!isVisuallyHidden && <sc.IconStyled as={icons[kind]} kind={kind} />}
+        <sc.Content>{children}</sc.Content>
         {hasCloseButton && !isVisuallyHidden && (
-          <CloseButtonStyled isSemantic={false} onClick={handleClose} size={types.SMALL} />
+          <sc.CloseButtonStyled isSemantic={false} onClick={handleClose} size={types.SMALL} />
         )}
       </>
     );
@@ -102,8 +102,7 @@ const Toast = React.forwardRef((props, ref) => {
 
   function renderToast() {
     return (
-      <div
-        css={toastStyles}
+      <sc.Toast
         data-pka-anchor="toast"
         hasCloseButton={hasCloseButton}
         isFixed={isFixed}
@@ -114,7 +113,7 @@ const Toast = React.forwardRef((props, ref) => {
         {...moreProps}
       >
         {renderContent()}
-      </div>
+      </sc.Toast>
     );
   }
 
