@@ -1,7 +1,8 @@
+import styled from "styled-components";
 import tokens from "@paprika/tokens";
 import stylers from "@paprika/stylers";
 
-const textareaStyles = () => `
+export const Textarea = styled.div`
   position: relative;
 
   .form-textarea__textarea {
@@ -40,8 +41,6 @@ const textareaStyles = () => `
     ${stylers.visuallyHidden}
   }
 
-  // Sizes
-
   &.form-textarea--small .form-textarea__textarea {
     ${stylers.fontSize(-2)};
   }
@@ -54,16 +53,13 @@ const textareaStyles = () => `
     ${stylers.fontSize()};
   }
 
-  // Read Only
-
   &.form-textarea--is-readonly .form-textarea__textarea {
     ${stylers.readOnlyFormStyles};
     cursor: text;
   }
 
-  // Disabled
-
-  &.form-textarea--is-disabled, &[disabled] {
+  &.form-textarea--is-disabled,
+  &[disabled] {
     textarea.form-textarea__textarea {
       ${stylers.disabledFormStyles}
     }
@@ -73,11 +69,7 @@ const textareaStyles = () => `
     }
   }
 
-  // Error
-
   &.form-textarea--has-error textarea.form-textarea__textarea {
     ${stylers.errorFormStyles}
   }
 `;
-
-export default textareaStyles;
