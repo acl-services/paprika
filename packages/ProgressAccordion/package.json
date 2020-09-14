@@ -1,6 +1,6 @@
 {
   "name": "@paprika/progress-accordion",
-  "version": "0.2.32",
+  "version": "0.2.33",
   "description": "The ProgressAccordion component displays questionnaire responses in a collapsible accordion format.",
   "author": "@paprika",
   "main": "lib/index.js",
@@ -16,7 +16,7 @@
   },
   "dependencies": {
     "@babel/runtime-corejs2": "^7.3.1",
-    "@paprika/collapsible": "^0.2.30",
+    "@paprika/collapsible": "^0.2.31",
     "@paprika/icon": "^0.3.7",
     "@paprika/stylers": "^0.2.9",
     "@paprika/tokens": "^0.1.15",

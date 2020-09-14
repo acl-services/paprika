@@ -1,6 +1,6 @@
 {
   "name": "@paprika/external-link",
-  "version": "0.0.20",
+  "version": "0.0.21",
   "description": "The ExternalLink component links to an external website.",
   "main": "lib/index.js",
   "types": "lib/index.d.ts",

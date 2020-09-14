@@ -1,6 +1,6 @@
 {
   "name": "@paprika/avatar",
-  "version": "0.1.2",
+  "version": "0.1.3",
   "description": "Avatar component represents an object or entity and displays initials or icon.",
   "author": "@paprika",
   "main": "lib/index.js",
