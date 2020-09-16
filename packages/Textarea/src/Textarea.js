@@ -2,7 +2,7 @@ import React from "react";
 import PropTypes from "prop-types";
 import classNames from "classnames";
 import * as constants from "@paprika/constants/lib/Constants";
-import textareaStyles from "./Textarea.styles";
+import * as sc from "./Textarea.styles";
 
 const Textarea = React.forwardRef((props, ref) => {
   const textareaRef = React.useRef(null);
@@ -76,7 +76,7 @@ const Textarea = React.forwardRef((props, ref) => {
   );
 
   return (
-    <div className={rootClasses} css={textareaStyles}>
+    <sc.Textarea className={rootClasses}>
       <textarea
         aria-invalid={hasError}
         className="form-textarea__textarea"
@@ -88,7 +88,7 @@ const Textarea = React.forwardRef((props, ref) => {
         style={{ maxHeight }}
         {...moreProps}
       />
-    </div>
+    </sc.Textarea>
   );
 });
 

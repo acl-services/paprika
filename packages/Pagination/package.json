@@ -1,6 +1,6 @@
 {
   "name": "@paprika/pagination",
-  "version": "0.1.4",
+  "version": "0.1.5",
   "description": "The Pagination component allows the user to select a page from a range of pages.",
   "author": "@paprika",
   "main": "lib/index.js",
@@ -19,8 +19,8 @@
     "@paprika/constants": "^0.1.1",
     "@paprika/helpers": "^0.2.13",
     "@paprika/icon": "^0.3.7",
-    "@paprika/l10n": "^0.4.8",
-    "@paprika/raw-button": "^0.2.17",
+    "@paprika/l10n": "^0.4.9",
+    "@paprika/raw-button": "^0.2.18",
     "@paprika/stylers": "^0.2.9",
     "@paprika/tokens": "^0.1.15",
     "prop-types": "^15.7.2"
