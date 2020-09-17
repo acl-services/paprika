@@ -103,7 +103,7 @@ function File({ error, fileKey, name, progress, size, status }) {
   }
 
   return (
-    <sc.FileWrapper>
+    <sc.File>
       <sc.Left>
         <sc.Info>
           <sc.Name>{name}</sc.Name>
@@ -114,7 +114,7 @@ function File({ error, fileKey, name, progress, size, status }) {
         </sc.ProgressBarWrapper>
       </sc.Left>
       <sc.Right status={status}>{renderIcon()}</sc.Right>
-    </sc.FileWrapper>
+    </sc.File>
   );
 }
 
