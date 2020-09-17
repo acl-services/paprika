@@ -58,8 +58,8 @@ export const timeInputPickerColumnItemCustom = css`
   max-width: 64px;
 `;
 
-export const timeInputPickerColumnItem = styled(RawButton)`
-  ${({ isActive, isCustom }) => css`
+export const timeInputPickerColumnItem = styled(RawButton)(
+  ({ isActive, isCustom }) => css`
     border-radius: ${tokens.border.radius};
     box-shadow: none;
     display: inline-block;
@@ -70,5 +70,5 @@ export const timeInputPickerColumnItem = styled(RawButton)`
     width: 100%;
     ${isActive ? timeInputPickerColumnItemIsPicked : ""};
     ${isCustom ? timeInputPickerColumnItemCustom : ""};
-  `}
-`;
+  `
+);

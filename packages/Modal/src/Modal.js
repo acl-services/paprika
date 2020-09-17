@@ -48,7 +48,7 @@ const Modal = props => {
       focusLockOptions={focusLockOptions}
     >
       {state => (
-        <sc.Wrapper size={size} data-pka-anchor="modal.wrapper" {...moreProps}>
+        <sc.Modal size={size} data-pka-anchor="modal.wrapper" {...moreProps}>
           <sc.Dialog state={state} role="dialog" aria-modal="true" aria-label={ariaLabel} data-pka-anchor="modal">
             {headerExtracted && <sc.Header {...headerExtracted.props} onClose={onClose} />}
             <sc.ContentWrapper role="region" tabIndex="0">
@@ -57,7 +57,7 @@ const Modal = props => {
             </sc.ContentWrapper>
             {footerExtracted && <sc.Footer {...footerExtracted.props} />}
           </sc.Dialog>
-        </sc.Wrapper>
+        </sc.Modal>
       )}
     </Overlay>
   );
@@ -77,7 +77,7 @@ const propTypes = {
   /** Control the visibility of the modal */
   isOpen: PropTypes.bool.isRequired,
 
-  /** Callback triggered when the modal needs to be close */
+  /** Callback triggered when the modal needs to be closed */
   onClose: PropTypes.func,
 
   /** Callback once the modal has been opened event */
