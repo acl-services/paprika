@@ -6,8 +6,6 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 
 ## [Unreleased]
 
-Added aria-disabled tag on LinkButton component [@tristanjasper](https://github.com/tristanjasper).
-
 ## [0.3.0] - 2020-06-16
 
 ### Changed
@@ -23,3 +21,7 @@ Added aria-disabled tag on LinkButton component [@tristanjasper](https://github.
 ## [0.3.10] - 2020-09-14
 
 Added support for icon in LinkButton component [@tristanjasper](https://github.com/tristanjasper).
+
+## [0.3.11] - 2020-09-17
+
+Added aria-disabled tag on LinkButton component [@tristanjasper](https://github.com/tristanjasper).
