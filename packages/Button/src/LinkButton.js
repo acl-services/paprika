@@ -27,6 +27,7 @@ const LinkButton = React.forwardRef((props, ref) => {
 
   return (
     <sc.LinkButton
+      aria-disabled={isDisabled}
       aria-label={a11yText}
       href={!isDisabled ? href : null}
       isDisabled={isDisabled}
