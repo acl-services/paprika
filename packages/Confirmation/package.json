@@ -1,6 +1,6 @@
 {
   "name": "@paprika/confirmation",
-  "version": "0.3.39",
+  "version": "0.3.40",
   "description": "Confirmation component allows user to confirm or cancel action",
   "author": "@paprika",
   "license": "MIT",
@@ -16,14 +16,14 @@
   },
   "dependencies": {
     "@babel/runtime-corejs2": "^7.3.1",
-    "@paprika/button": "^0.3.10",
+    "@paprika/button": "^0.3.11",
     "@paprika/constants": "^0.1.1",
-    "@paprika/heading": "^0.4.6",
+    "@paprika/heading": "^0.4.7",
     "@paprika/helpers": "^0.2.13",
-    "@paprika/popover": "^0.3.31",
-    "@paprika/raw-button": "^0.2.18",
-    "@paprika/stylers": "^0.2.9",
-    "@paprika/tokens": "^0.1.15",
+    "@paprika/popover": "^0.3.32",
+    "@paprika/raw-button": "^0.2.19",
+    "@paprika/stylers": "^0.2.10",
+    "@paprika/tokens": "^0.1.16",
     "nanoid": "^2.1.7",
     "prop-types": "^15.7.2"
   },

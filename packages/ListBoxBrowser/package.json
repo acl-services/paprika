@@ -1,6 +1,6 @@
 {
   "name": "@paprika/listbox-browser",
-  "version": "0.2.9",
+  "version": "0.2.10",
   "description": "ListBox Browser component is a two column layout that allows users to select one or multiple options. It is similar to the experience of browsing a file manager in any operating system.",
   "author": "@paprika",
   "main": "lib/index.js",
@@ -17,12 +17,12 @@
   "dependencies": {
     "@babel/runtime-corejs2": "^7.3.1",
     "@paprika/helpers": "^0.2.13",
-    "@paprika/icon": "^0.3.7",
-    "@paprika/listbox": "^0.9.9",
-    "@paprika/raw-button": "^0.2.18",
-    "@paprika/spinner": "^0.2.21",
+    "@paprika/icon": "^0.3.8",
+    "@paprika/listbox": "^0.9.10",
+    "@paprika/raw-button": "^0.2.19",
+    "@paprika/spinner": "^0.2.22",
     "@paprika/stylers": "^0.1.5",
-    "@paprika/tokens": "^0.1.15",
+    "@paprika/tokens": "^0.1.16",
     "prop-types": "^15.7.2"
   },
   "peerDependencies": {
