@@ -72,7 +72,7 @@ export const ProgressBar = styled.div(
   ({ status, progress }) => css`
     background: ${tokens.color.purple};
     height: 100%;
-    width: ${`${progress}%`};
+    width: ${progress}%;
 
     ${status === types.status.SUCCESS ? `background: ${tokens.color.green};` : ""};
 
