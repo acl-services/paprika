@@ -1,6 +1,6 @@
 {
   "include": ["./packages/Tokens/src"],
-  "exclude": ["./packages/Tokens/types"],
+  "exclude": ["./packages/Tokens/src/index.d.ts"],
   "compilerOptions": {
     "allowJs": true,
     "declaration": true,
@@ -14,11 +14,10 @@
     "moduleResolution": "node",
     "jsx": "react",
     "resolveJsonModule": true,
-    "isolatedModules": true,
     "strictFunctionTypes": true,
     "strictNullChecks": true,
     "strictBindCallApply": true,
     "noImplicitAny": true,
-    "outDir": "./packages/Tokens/types"
+    "outFile": "./packages/Tokens/src/index"
   }
 }
