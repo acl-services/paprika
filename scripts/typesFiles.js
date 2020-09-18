@@ -29,7 +29,7 @@ const createPropsList = ({ info }) => {
 
   /* prettier-ignore */
   const list = [`${declareComp}
-  interface ${displayName}Props {`,
+  interface ${displayName}Props extends React.HTMLAttributes<HTMLElement> {`,
   ];
 
   Object.keys(info.props).map(key => {
