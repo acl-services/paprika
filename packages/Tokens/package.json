@@ -4,7 +4,7 @@
   "description": "Design tokens generated as scss + js",
   "author": "@paprika",
   "main": "lib/index.js",
-  "types": "lib/index.d.ts",
+  "types": "lib/tokens.d.ts",
   "license": "MIT",
   "repository": {
     "type": "git",

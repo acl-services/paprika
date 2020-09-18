@@ -4,6 +4,7 @@
   "description": "ProgressBar is a component that shows the current progress of an action",
   "author": "@paprika",
   "main": "lib/index.js",
+  "types": "lib/index.d.ts",
   "license": "MIT",
   "repository": {
     "type": "git",
@@ -12,10 +13,6 @@
   },
   "publishConfig": {
     "access": "public"
-  },
-  "directories": {
-    "lib": "lib",
-    "test": "tests"
   },
   "peerDependencies": {
     "react": "^16.12.0",
