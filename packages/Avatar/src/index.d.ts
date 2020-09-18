@@ -1,7 +1,7 @@
 export default Avatar;
 
 declare function Avatar(props: AvatarProps): JSX.Element;
-interface AvatarProps {
+interface AvatarProps extends React.HTMLAttributes<HTMLElement> {
   /** Avatar content. It can be initial as a string or icon */
   children?: React.ReactNode;
   /** Background color of the Avatar */

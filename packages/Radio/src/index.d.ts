@@ -1,7 +1,7 @@
 export default Radio;
 
 declare function Radio(props: RadioProps): JSX.Element;
-interface RadioProps {
+interface RadioProps extends React.HTMLAttributes<HTMLElement> {
   /** Used for aria-label on the radio input */
   a11yText?: string;
   /** Used for aria-describedby on the radio input */
@@ -29,7 +29,7 @@ interface RadioProps {
 }
 declare namespace Radio {
   function Group(props: GroupProps): JSX.Element;
-  interface GroupProps {
+  interface GroupProps extends React.HTMLAttributes<HTMLElement> {
     /** aria-labelledby prop on the containing group element */
     a11yText?: string;
     /** Can deselect any radio */

@@ -1,7 +1,7 @@
 export default Pill;
 
 declare function Pill(props: PillProps): JSX.Element;
-interface PillProps {
+interface PillProps extends React.HTMLAttributes<HTMLElement> {
   a11yText?: string;
 
   children: React.ReactNode;

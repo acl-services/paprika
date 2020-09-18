@@ -1,7 +1,7 @@
 export default DateRangePicker;
 
 declare function DateRangePicker(props: DateRangePickerProps): JSX.Element;
-interface DateRangePickerProps {
+interface DateRangePickerProps extends React.HTMLAttributes<HTMLElement> {
   /** Selected start date in moment object */
   startDate?: instanceOf;
   /** Selected end date in moment object */

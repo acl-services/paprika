@@ -1,7 +1,7 @@
 export default Overlay;
 
 declare function Overlay(props: OverlayProps): JSX.Element;
-interface OverlayProps {
+interface OverlayProps extends React.HTMLAttributes<HTMLElement> {
   backdropClassName?: string;
 
   children?: (...args: any[]) => any;

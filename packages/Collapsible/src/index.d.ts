@@ -1,7 +1,7 @@
 export default Collapsible;
 
 declare function Collapsible(props: CollapsibleProps): JSX.Element;
-interface CollapsibleProps {
+interface CollapsibleProps extends React.HTMLAttributes<HTMLElement> {
   /** Descriptive a11y text for assistive technologies. By default, text from children node will be used. */
   a11yText?: string;
   /** Body content of the collapsible. */

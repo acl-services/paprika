@@ -1,7 +1,7 @@
 export default RawButton;
 
 declare function RawButton(props: RawButtonProps): JSX.Element;
-interface RawButtonProps {
+interface RawButtonProps extends React.HTMLAttributes<HTMLElement> {
   /** Descriptive a11y text for assistive technologies. By default, text from children node will be used. */
   a11yText?: string;
   /** If click events are allowed to propagate up the DOM tree. */

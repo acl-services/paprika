@@ -1,7 +1,7 @@
 export default Table;
 
 declare function Table(props: TableProps): JSX.Element;
-interface TableProps {
+interface TableProps extends React.HTMLAttributes<HTMLElement> {
   /** Define the look for borders in the table Table.types.GRID, Table.types.NONE, etc. */
   borderType?:
     | Table.types.border.GRID
@@ -19,7 +19,7 @@ interface TableProps {
 }
 declare namespace Table {
   function ColumnDefinition(props: ColumnDefinitionProps): JSX.Element;
-  interface ColumnDefinitionProps {
+  interface ColumnDefinitionProps extends React.HTMLAttributes<HTMLElement> {
     cell: string | func;
 
     header: string | func;

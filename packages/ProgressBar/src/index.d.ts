@@ -1,7 +1,7 @@
 export default ProgressBar;
 
 declare function ProgressBar(props: ProgressBarProps): JSX.Element;
-interface ProgressBarProps {
+interface ProgressBarProps extends React.HTMLAttributes<HTMLElement> {
   /** Descriptive a11y text for assistive technologies. */
   a11yText?: string;
   /** Description for the ProgressBar */

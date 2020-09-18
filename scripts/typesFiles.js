@@ -5,7 +5,7 @@ const shell = require("shelljs");
 // eslint-disable-next-line import/no-extraneous-dependencies
 const reactDocs = require("react-docgen");
 
-const packagesProcessInTsc = ["Tokens"];
+const packagesProcessInTsc = ["Tokens", "Constants"];
 const skipPackages = ["Guard", "Icon", "Stylers", "helpers", "Calendar"];
 
 const fileName = "index.d.ts";

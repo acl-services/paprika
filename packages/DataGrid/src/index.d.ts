@@ -1,7 +1,7 @@
 export default DataGrid;
 
 declare function DataGrid(props: DataGridProps): JSX.Element;
-interface DataGridProps {
+interface DataGridProps extends React.HTMLAttributes<HTMLElement> {
   /** If the data cell should automatically get focus */
   autofocus?: boolean;
   /** Define the look for borders in the table types.DataGrid.GRID, types.DataGrid.NONE, etc. */
@@ -41,7 +41,7 @@ interface DataGridProps {
 }
 declare namespace DataGrid {
   function ColumnDefinition(props: ColumnDefinitionProps): JSX.Element;
-  interface ColumnDefinitionProps {
+  interface ColumnDefinitionProps extends React.HTMLAttributes<HTMLElement> {
     canGrow?: boolean;
 
     cell?: custom;

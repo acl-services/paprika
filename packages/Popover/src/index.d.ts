@@ -1,7 +1,7 @@
 export default Popover;
 
 declare function Popover(props: PopoverProps): JSX.Element;
-interface PopoverProps {
+interface PopoverProps extends React.HTMLAttributes<HTMLElement> {
   /** Where the popover content is positioned relative to the trigger or getPositioningElement. */
   align?: Popover.types.align.TOP | Popover.types.align.RIGHT | Popover.types.align.BOTTOM | Popover.types.align.LEFT;
   /** Content of the popover */
@@ -37,7 +37,7 @@ interface PopoverProps {
 }
 declare namespace Popover {
   function Trigger(props: TriggerProps): JSX.Element;
-  interface TriggerProps {
+  interface TriggerProps extends React.HTMLAttributes<HTMLElement> {
     /** Descriptive a11y text for assistive technologies for the trigger. */
     a11yText?: string;
 
@@ -46,7 +46,7 @@ declare namespace Popover {
 }
 declare namespace Popover {
   function Content(props: ContentProps): JSX.Element;
-  interface ContentProps {
+  interface ContentProps extends React.HTMLAttributes<HTMLElement> {
     children?: React.ReactNode;
     /** Callback to indicate the element loses focus */
     onBlur?: (...args: any[]) => any;
@@ -54,13 +54,13 @@ declare namespace Popover {
 }
 declare namespace Popover {
   function Card(props: CardProps): JSX.Element;
-  interface CardProps {
+  interface CardProps extends React.HTMLAttributes<HTMLElement> {
     children: React.ReactNode;
   }
 }
 declare namespace Popover {
   function Tip(props: TipProps): JSX.Element;
-  interface TipProps {
+  interface TipProps extends React.HTMLAttributes<HTMLElement> {
     /** Number setting the z-index */
     zIndex?: number;
   }
