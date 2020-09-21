@@ -36,11 +36,11 @@ const createPropsList = ({ info }) => {
     `,
   ];
 
-  /** 
+  /**
    * [x:string]:any; to support typechecking for additional props
    * autocomplete suggestions will display existing props first
    * compared to using React.HTMLAttributes which suggest multiple html attributes
-  */
+   */
 
   Object.keys(info.props).map(key => {
     const v = info.props[key] || {};
@@ -66,7 +66,6 @@ const createPropsList = ({ info }) => {
         }
         case "union": {
           type = `${v.type.value.map(i => i.name)}`.replace(/,/g, "|");
-          console.log(type);
           break;
         }
         default: {
@@ -75,8 +74,8 @@ const createPropsList = ({ info }) => {
             v.type.name !== "enum"
               ? v.type.name
               : Array.isArray(v.type.value)
-                ? `${v.type.value.map(i => i.value)}`.replace(/,/g, "|")
-                : v.type.value;
+              ? `${v.type.value.map(i => i.value)}`.replace(/,/g, "|")
+              : v.type.value;
         }
       }
     }
