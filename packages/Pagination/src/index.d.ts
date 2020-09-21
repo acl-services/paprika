@@ -1,7 +1,8 @@
 export default Pagination;
 
 declare function Pagination(props: PaginationProps): JSX.Element;
-interface PaginationProps extends React.HTMLAttributes<HTMLElement> {
+interface PaginationProps {
+  [x: string]: any;
   /** The number of current active page */
   currentPage: number;
   /** Callback to be executed when current page is changed. */

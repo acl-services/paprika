@@ -1,7 +1,8 @@
 export default Uploader;
 
 declare function Uploader(props: UploaderProps): JSX.Element;
-interface UploaderProps extends React.HTMLAttributes<HTMLElement> {
+interface UploaderProps {
+  [x: string]: any;
   /** Accessible message for the input[type="file"]. */
   a11yText?: string;
   /** An array of string describing the allowed file types for the uploader. */

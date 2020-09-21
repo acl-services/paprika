@@ -1,7 +1,8 @@
 export default Toast;
 
 declare function Toast(props: ToastProps): JSX.Element;
-interface ToastProps extends React.HTMLAttributes<HTMLElement> {
+interface ToastProps {
+  [x: string]: any;
   /** Duration (in ms) before Toast will automaticall close (if canAutoClose is true) */
   autoCloseDelay?: number;
   /** Will automatically close after 1500ms (or longer if provided by autoCloseDelay) */

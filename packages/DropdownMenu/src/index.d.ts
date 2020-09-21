@@ -1,7 +1,8 @@
 export default DropdownMenu;
 
 declare function DropdownMenu(props: DropdownMenuProps): JSX.Element;
-interface DropdownMenuProps extends React.HTMLAttributes<HTMLElement> {
+interface DropdownMenuProps {
+  [x: string]: any;
   /** Alignment of the Popover */
   align?: custom;
   /** Children should consist of <Dropdown.Item /> */
@@ -13,7 +14,8 @@ interface DropdownMenuProps extends React.HTMLAttributes<HTMLElement> {
 }
 declare namespace DropdownMenu {
   function Item(props: ItemProps): JSX.Element;
-  interface ItemProps extends React.HTMLAttributes<HTMLElement> {
+  interface ItemProps {
+    [x: string]: any;
     /** HTML for each item */
     children: React.ReactNode;
     /** If the item is destructive. */
@@ -32,7 +34,8 @@ declare namespace DropdownMenu {
 }
 declare namespace DropdownMenu {
   function LinkItem(props: LinkItemProps): JSX.Element;
-  interface LinkItemProps extends React.HTMLAttributes<HTMLElement> {
+  interface LinkItemProps {
+    [x: string]: any;
     /** HTML for each LinkItem */
     children: React.ReactNode;
     /** The url for the href */
@@ -45,7 +48,9 @@ declare namespace DropdownMenu {
 }
 declare namespace DropdownMenu {
   function Trigger(props: TriggerProps): JSX.Element;
-  interface TriggerProps extends React.HTMLAttributes<HTMLElement> {
+  interface TriggerProps {
+    [x: string]: any;
+
     children?: React.ReactNode;
     /** Determine the styling of the button */
     buttonType?: Trigger.types.button.ICON | Trigger.types.button.RAW | Trigger.types.button.SIMPLE;

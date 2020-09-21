@@ -1,7 +1,8 @@
 export default Tabs;
 
 declare function Tabs(props: TabsProps): JSX.Element;
-interface TabsProps extends React.HTMLAttributes<HTMLElement> {
+interface TabsProps {
+  [x: string]: any;
   /** Determine the styling of the tab */
   kind?: Tabs.types.kind.PRIMARY | Tabs.types.kind.SECONDARY;
   /** Children of the Tab */
@@ -13,7 +14,8 @@ interface TabsProps extends React.HTMLAttributes<HTMLElement> {
 }
 declare namespace Tabs {
   function List(props: ListProps): JSX.Element;
-  interface ListProps extends React.HTMLAttributes<HTMLElement> {
+  interface ListProps {
+    [x: string]: any;
     /** Descriptive a11y text for assistive technologies. By default, text from children node will be used. */
     a11yText?: string;
 
@@ -24,7 +26,9 @@ declare namespace Tabs {
 }
 declare namespace Tabs {
   function Panel(props: PanelProps): JSX.Element;
-  interface PanelProps extends React.HTMLAttributes<HTMLElement> {
+  interface PanelProps {
+    [x: string]: any;
+
     children?: React.ReactNode;
     /** Controls if the option is selected or not */
     isSelected?: boolean;
@@ -32,13 +36,17 @@ declare namespace Tabs {
 }
 declare namespace Tabs {
   function Panels(props: PanelsProps): JSX.Element;
-  interface PanelsProps extends React.HTMLAttributes<HTMLElement> {
+  interface PanelsProps {
+    [x: string]: any;
+
     children: React.ReactNode;
   }
 }
 declare namespace Tabs {
   function Tab(props: TabProps): JSX.Element;
-  interface TabProps extends React.HTMLAttributes<HTMLElement> {
+  interface TabProps {
+    [x: string]: any;
+
     children?: React.ReactNode;
 
     height?: number;

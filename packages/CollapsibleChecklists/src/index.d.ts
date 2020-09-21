@@ -1,13 +1,16 @@
 export default CollapsibleChecklists;
 
 declare function CollapsibleChecklists(props: CollapsibleChecklistsProps): JSX.Element;
-interface CollapsibleChecklistsProps extends React.HTMLAttributes<HTMLElement> {
+interface CollapsibleChecklistsProps {
+  [x: string]: any;
+
   children: React.ReactNode;
   /** Callback triggered when the input state is changed */
   onChange: (...args: any[]) => any;
 }
 declare function Group(props: GroupProps): JSX.Element;
-interface GroupProps extends React.HTMLAttributes<HTMLElement> {
+interface GroupProps {
+  [x: string]: any;
   /** Probably an array of "Items", but could be a Spinner or anything else */
   children?: React.ReactNode;
   /** If checkbox is checked by default */
@@ -22,12 +25,15 @@ interface GroupProps extends React.HTMLAttributes<HTMLElement> {
   title: React.ReactNode;
 }
 declare function Heading(props: HeadingProps): JSX.Element;
-interface HeadingProps extends React.HTMLAttributes<HTMLElement> {
+interface HeadingProps {
+  [x: string]: any;
   /** Content of the heading */
   children: React.ReactNode;
 }
 declare function Item(props: ItemProps): JSX.Element;
-interface ItemProps extends React.HTMLAttributes<HTMLElement> {
+interface ItemProps {
+  [x: string]: any;
+
   children: React.ReactNode;
   /** If the item is checked or not */
   isChecked?: boolean;

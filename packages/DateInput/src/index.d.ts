@@ -1,7 +1,8 @@
 export default DateInput;
 
 declare function DateInput(props: DateInputProps): JSX.Element;
-interface DateInputProps extends React.HTMLAttributes<HTMLElement> {
+interface DateInputProps {
+  [x: string]: any;
   /** If the value of <input> is valid or not. */
   hasError?: boolean;
   /** Date format used while entering and parsing user input. */

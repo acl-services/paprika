@@ -1,7 +1,9 @@
 export default Takeover;
 
 declare function Takeover(props: TakeoverProps): JSX.Element;
-interface TakeoverProps extends React.HTMLAttributes<HTMLElement> {
+interface TakeoverProps {
+  [x: string]: any;
+
   a11yText?: string;
   /** The content for the Takeover */
   children: React.ReactNode;

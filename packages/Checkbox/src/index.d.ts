@@ -1,7 +1,8 @@
 export default Checkbox;
 
 declare function Checkbox(props: CheckboxProps): JSX.Element;
-interface CheckboxProps extends React.HTMLAttributes<HTMLElement> {
+interface CheckboxProps {
+  [x: string]: any;
   /** Used for aria-describedby on the checkbox input */
   ariaDescribedBy?: string;
   /** Used for aria-label on the checkbox input */

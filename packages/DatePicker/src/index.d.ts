@@ -1,7 +1,9 @@
 export default DatePicker;
 
 declare function DatePicker(props: DatePickerProps): JSX.Element;
-interface DatePickerProps extends React.HTMLAttributes<HTMLElement> {
+interface DatePickerProps {
+  [x: string]: any;
+
   children?: React.ReactNode;
   /** Date format used while entering and parsing user input. */
   dateFormat?: string;

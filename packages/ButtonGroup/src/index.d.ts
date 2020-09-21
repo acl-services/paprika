@@ -1,7 +1,8 @@
 export default ButtonGroup;
 
 declare function ButtonGroup(props: ButtonGroupProps): JSX.Element;
-interface ButtonGroupProps extends React.HTMLAttributes<HTMLElement> {
+interface ButtonGroupProps {
+  [x: string]: any;
   /** The toggle buttons in the group. */
   children?: React.ReactNode;
   /** To show the icons used for selected / not selected. */
@@ -21,7 +22,8 @@ interface ButtonGroupProps extends React.HTMLAttributes<HTMLElement> {
 }
 declare namespace ButtonGroup {
   function Item(props: ItemProps): JSX.Element;
-  interface ItemProps extends React.HTMLAttributes<HTMLElement> {
+  interface ItemProps {
+    [x: string]: any;
     /** Content label of the button to be displayed. */
     children?: React.ReactNode;
     /** If the item is active or on selected state */

@@ -1,7 +1,9 @@
 export default Sortable;
 
 declare function Sortable(props: SortableProps): JSX.Element;
-interface SortableProps extends React.HTMLAttributes<HTMLElement> {
+interface SortableProps {
+  [x: string]: any;
+
   children?: React.ReactNode;
   /** Indicator to identify the number sequence */
   hasNumbers?: boolean;
@@ -13,7 +15,9 @@ interface SortableProps extends React.HTMLAttributes<HTMLElement> {
   onRemove?: (...args: any[]) => any;
 }
 declare function SortableItem(props: SortableItemProps): JSX.Element;
-interface SortableItemProps extends React.HTMLAttributes<HTMLElement> {
+interface SortableItemProps {
+  [x: string]: any;
+
   children: React.ReactNode;
   /** Indicator to identify the number sequence */
   hasNumbers: boolean;

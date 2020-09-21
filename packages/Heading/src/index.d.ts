@@ -1,7 +1,8 @@
 export default Heading;
 
 declare function Heading(props: HeadingProps): JSX.Element;
-interface HeadingProps extends React.HTMLAttributes<HTMLElement> {
+interface HeadingProps {
+  [x: string]: any;
   /** Optional aria text if it should be more descriptive than what is rendered */
   a11yText?: string;
   /** Heading content is required */

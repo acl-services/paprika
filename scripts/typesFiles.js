@@ -10,9 +10,11 @@ const skipPackages = ["Guard", "Icon", "Stylers", "helpers", "Calendar"];
 
 const fileName = "index.d.ts";
 /* prettier-ignore */
-const renderDeclarationTemplate = ({ displayName="", props = "" }) => { return `export default ${displayName};
+const renderDeclarationTemplate = ({ displayName = "", props = "" }) => {
+  return `export default ${displayName};
 
-${props}`;};
+${props}`;
+};
 
 const createPropsList = ({ info }) => {
   if (!info || !info.props) return "";
@@ -29,8 +31,16 @@ const createPropsList = ({ info }) => {
 
   /* prettier-ignore */
   const list = [`${declareComp}
-  interface ${displayName}Props extends React.HTMLAttributes<HTMLElement> {`,
+  interface ${displayName}Props{
+    [x:string]: any;
+    `,
   ];
+
+  /** 
+   * [x:string]:any; to support typechecking for additional props
+   * autocomplete suggestions will display existing props first
+   * compared to using React.HTMLAttributes which suggest multiple html attributes
+  */
 
   Object.keys(info.props).map(key => {
     const v = info.props[key] || {};
@@ -56,6 +66,7 @@ const createPropsList = ({ info }) => {
         }
         case "union": {
           type = `${v.type.value.map(i => i.name)}`.replace(/,/g, "|");
+          console.log(type);
           break;
         }
         default: {
@@ -64,8 +75,8 @@ const createPropsList = ({ info }) => {
             v.type.name !== "enum"
               ? v.type.name
               : Array.isArray(v.type.value)
-              ? `${v.type.value.map(i => i.value)}`.replace(/,/g, "|")
-              : v.type.value;
+                ? `${v.type.value.map(i => i.value)}`.replace(/,/g, "|")
+                : v.type.value;
         }
       }
     }

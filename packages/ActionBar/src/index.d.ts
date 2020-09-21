@@ -1,12 +1,16 @@
 export default ActionBar;
 
 declare function ActionBar(props: ActionBarProps): JSX.Element;
-interface ActionBarProps extends React.HTMLAttributes<HTMLElement> {
+interface ActionBarProps {
+  [x: string]: any;
+
   children: React.ReactNode;
 }
 declare namespace ActionBar {
   function ColumnsArrangement(props: ColumnsArrangementProps): JSX.Element;
-  interface ColumnsArrangementProps extends React.HTMLAttributes<HTMLElement> {
+  interface ColumnsArrangementProps {
+    [x: string]: any;
+
     children: React.ReactNode;
 
     orderedColumnIds: string[];
@@ -24,7 +28,9 @@ declare namespace ActionBar {
 }
 declare namespace ActionBar {
   function Filter(props: FilterProps): JSX.Element;
-  interface FilterProps extends React.HTMLAttributes<HTMLElement> {
+  interface FilterProps {
+    [x: string]: any;
+
     appliedNumber?: number;
 
     children?: React.ReactNode;
@@ -50,7 +56,9 @@ declare namespace ActionBar {
 }
 declare namespace ActionBar {
   function Sort(props: SortProps): JSX.Element;
-  interface SortProps extends React.HTMLAttributes<HTMLElement> {
+  interface SortProps {
+    [x: string]: any;
+
     appliedNumber?: number;
 
     children?: React.ReactNode;

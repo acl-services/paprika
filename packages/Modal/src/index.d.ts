@@ -1,7 +1,9 @@
 export default Modal;
 
 declare function Modal(props: ModalProps): JSX.Element;
-interface ModalProps extends React.HTMLAttributes<HTMLElement> {
+interface ModalProps {
+  [x: string]: any;
+
   a11yText?: string;
   /** The content for the Modal. */
   children: React.ReactNode;

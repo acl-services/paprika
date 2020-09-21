@@ -1,7 +1,9 @@
 export default Select;
 
 declare function Select(props: SelectProps): JSX.Element;
-interface SelectProps extends React.HTMLAttributes<HTMLElement> {
+interface SelectProps {
+  [x: string]: any;
+
   a11yText?: string;
 
   className?: string;

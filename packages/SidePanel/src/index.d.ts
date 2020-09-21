@@ -1,7 +1,9 @@
 export default SidePanel;
 
 declare function SidePanel(props: SidePanelProps): JSX.Element;
-interface SidePanelProps extends React.HTMLAttributes<HTMLElement> {
+interface SidePanelProps {
+  [x: string]: any;
+
   a11yText?: string;
   /** The content for the SidePanel. */
   children: React.ReactNode;
