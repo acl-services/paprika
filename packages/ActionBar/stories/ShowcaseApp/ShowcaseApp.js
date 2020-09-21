@@ -1,6 +1,14 @@
 import React from "react";
 import Heading from "@paprika/heading";
-import ActionBar, { ColumnsArrangement, useColumnsArrangement, useFilter, Filter, Sort, useSort } from "../../src";
+import ActionBar, {
+  ColumnsArrangement,
+  Filter,
+  SearchInput,
+  Sort,
+  useColumnsArrangement,
+  useFilter,
+  useSort,
+} from "../../src";
 import data from "./data";
 import CustomSingleSelectFilter from "./CustomSingleSelectFilter";
 
@@ -50,6 +58,7 @@ const customRulesByType = {
 };
 
 export default function App() {
+  const [searchTerm, setSearchTerm] = React.useState("");
   const { filters, filteredData, onDeleteFilter, onChangeFilter, ...filterProps } = useFilter({
     columns: columnsSettings,
     rulesByType: customRulesByType,
@@ -71,8 +80,16 @@ export default function App() {
   ]);
 
   const subset = React.useMemo(() => {
-    return sortedData.filter(item => !!filteredData.find(filteredItem => filteredItem.id === item.id));
-  }, [filteredData, sortedData]);
+    return sortedData.filter(
+      item =>
+        !!filteredData.find(filteredItem => filteredItem.id === item.id) &&
+        (searchTerm
+          ? !!Object.values(item).find(value => {
+              return new RegExp(`${searchTerm}`, "i").test(`${value}`);
+            })
+          : true)
+    );
+  }, [filteredData, searchTerm, sortedData]);
 
   const renderLevelFilter = () => <CustomSingleSelectFilter />;
 
@@ -81,6 +98,11 @@ export default function App() {
       <Heading level={2}>ActionBar showcase</Heading>
 
       <ActionBar>
+        <SearchInput
+          onChange={term => {
+            setSearchTerm(term);
+          }}
+        />
         <Filter {...filterProps} columns={columnsSettings} rulesByType={customRulesByType}>
           {filters.map((filter, index) => (
             <Filter.Item

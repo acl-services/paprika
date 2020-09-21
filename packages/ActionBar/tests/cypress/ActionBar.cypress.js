@@ -236,7 +236,7 @@ describe("ActionBar Arrange Columns", () => {
       .click()
       .getByTestId("sortable.item")
       .should("have.length", 8)
-      .get("input")
+      .getByTestId("actionBar.columnsArrangement.filter")
       .type("Goals")
       .getByTestId("sortable.item")
       .should("have.length", 1);

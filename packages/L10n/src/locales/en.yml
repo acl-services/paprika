@@ -116,6 +116,7 @@ en:
         label: Arrange columns
         singular_label: 1 column hidden
         plural_label: "{{numberOfHiddenColumn}} columns hidden"
+        search_placeholder: Filter...
       no_results: No results
       filter:
         no_filters_applied: No filters applied to this view
@@ -145,7 +146,8 @@ en:
           is_after: is after
           true: "true"
           false: "false"
-      search_placeholder: Filter...
+      search_placeholder: Search...
+      search_a11y_text: Search the data
       sort:
         no_sorts_applied: No sorts applied to this view
         label: Sort

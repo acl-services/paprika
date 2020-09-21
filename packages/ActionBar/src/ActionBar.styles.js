@@ -9,7 +9,6 @@ export const ActionBar = styled.div`
   font-family: inherit;
   height: 44px;
   justify-content: flex-start;
-  padding: ${stylers.spacer(1)};
   width: 100%;
 `;
 
