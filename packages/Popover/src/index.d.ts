@@ -2,6 +2,7 @@ export default Popover;
 
 declare function Popover(props: PopoverProps): JSX.Element;
 interface PopoverProps {
+  [x: string]: any;
   /** Where the popover content is positioned relative to the trigger or getPositioningElement. */
   align?: Popover.types.align.TOP | Popover.types.align.RIGHT | Popover.types.align.BOTTOM | Popover.types.align.LEFT;
   /** Content of the popover */
@@ -38,6 +39,7 @@ interface PopoverProps {
 declare namespace Popover {
   function Trigger(props: TriggerProps): JSX.Element;
   interface TriggerProps {
+    [x: string]: any;
     /** Descriptive a11y text for assistive technologies for the trigger. */
     a11yText?: string;
 
@@ -47,6 +49,8 @@ declare namespace Popover {
 declare namespace Popover {
   function Content(props: ContentProps): JSX.Element;
   interface ContentProps {
+    [x: string]: any;
+
     children?: React.ReactNode;
     /** Callback to indicate the element loses focus */
     onBlur?: (...args: any[]) => any;
@@ -55,12 +59,15 @@ declare namespace Popover {
 declare namespace Popover {
   function Card(props: CardProps): JSX.Element;
   interface CardProps {
+    [x: string]: any;
+
     children: React.ReactNode;
   }
 }
 declare namespace Popover {
   function Tip(props: TipProps): JSX.Element;
   interface TipProps {
+    [x: string]: any;
     /** Number setting the z-index */
     zIndex?: number;
   }

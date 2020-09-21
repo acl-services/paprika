@@ -2,6 +2,7 @@ export default Collapsible;
 
 declare function Collapsible(props: CollapsibleProps): JSX.Element;
 interface CollapsibleProps {
+  [x: string]: any;
   /** Descriptive a11y text for assistive technologies. By default, text from children node will be used. */
   a11yText?: string;
   /** Body content of the collapsible. */

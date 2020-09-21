@@ -2,6 +2,8 @@ export default Overlay;
 
 declare function Overlay(props: OverlayProps): JSX.Element;
 interface OverlayProps {
+  [x: string]: any;
+
   backdropClassName?: string;
 
   children?: (...args: any[]) => any;

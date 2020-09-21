@@ -2,6 +2,7 @@ export default Spinner;
 
 declare function Spinner(props: SpinnerProps): JSX.Element;
 interface SpinnerProps {
+  [x: string]: any;
   /** Descriptive a11y text for assistive technologies. By default, text from children node will be used. */
   a11yText?: string;
   /** Sets the className for the spinner */

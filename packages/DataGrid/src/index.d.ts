@@ -2,6 +2,7 @@ export default DataGrid;
 
 declare function DataGrid(props: DataGridProps): JSX.Element;
 interface DataGridProps {
+  [x: string]: any;
   /** If the data cell should automatically get focus */
   autofocus?: boolean;
   /** Define the look for borders in the table types.DataGrid.GRID, types.DataGrid.NONE, etc. */
@@ -42,6 +43,8 @@ interface DataGridProps {
 declare namespace DataGrid {
   function ColumnDefinition(props: ColumnDefinitionProps): JSX.Element;
   interface ColumnDefinitionProps {
+    [x: string]: any;
+
     canGrow?: boolean;
 
     cell?: custom;

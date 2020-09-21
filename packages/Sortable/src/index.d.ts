@@ -2,6 +2,8 @@ export default Sortable;
 
 declare function Sortable(props: SortableProps): JSX.Element;
 interface SortableProps {
+  [x: string]: any;
+
   children?: React.ReactNode;
   /** Indicator to identify the number sequence */
   hasNumbers?: boolean;
@@ -14,6 +16,8 @@ interface SortableProps {
 }
 declare function SortableItem(props: SortableItemProps): JSX.Element;
 interface SortableItemProps {
+  [x: string]: any;
+
   children: React.ReactNode;
   /** Indicator to identify the number sequence */
   hasNumbers: boolean;

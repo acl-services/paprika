@@ -1,7 +1,9 @@
 export default ListBox;
 
 declare function ListBox(props:ListBoxProps): JSX.Element;
-  interface ListBoxProps { /** Child of type <ListBox.Option /> */
+  interface ListBoxProps{
+    [x:string]: any;
+     /** Child of type <ListBox.Option /> */
     children: React.ReactNode;
  /** Has implicit "All items selected" value when no item is selected */
     hasImplicitAll?: boolean;
@@ -22,11 +24,15 @@ declare function ListBox(props:ListBoxProps): JSX.Element;
  /** Size of the trigger and options (font size, height, padding, etc). */
     size?: ListBoxContainer.types.size.SMALL|ListBoxContainer.types.size.MEDIUM|ListBoxContainer.types.size.LARGE;
 }declare function Box(props:BoxProps): JSX.Element;
-  interface BoxProps { /** Body content of the box. */
+  interface BoxProps{
+    [x:string]: any;
+     /** Body content of the box. */
     children: React.ReactNode;
 }declare namespace ListBox {
       function Divider(props:DividerProps): JSX.Element;
-  interface DividerProps { /** isDisable is use internally as a default prop
+  interface DividerProps{
+    [x:string]: any;
+     /** isDisable is use internally as a default prop
   the prop is read by the option/helpers/optionState.js which is assigned in the store
   it helps to ignore the divider while using the keyboard.
   see: options/helpers/options.js */
@@ -35,7 +41,9 @@ declare function ListBox(props:ListBoxProps): JSX.Element;
     children?: React.ReactNode;
 }}declare namespace ListBox {
       function Filter(props:FilterProps): JSX.Element;
-  interface FilterProps { /** Descriptive a11y text for assistive technologies. By default, text from children node will be used. */
+  interface FilterProps{
+    [x:string]: any;
+     /** Descriptive a11y text for assistive technologies. By default, text from children node will be used. */
     a11yText?: string;
  /** Filters the list */
     filter?: (...args: any[])=> any;
@@ -55,7 +63,9 @@ declare function ListBox(props:ListBoxProps): JSX.Element;
     value?: string;
 }}declare namespace ListBox {
       function Footer(props:FooterProps): JSX.Element;
-  interface FooterProps { /** If true it makes the accept button visible */
+  interface FooterProps{
+    [x:string]: any;
+     /** If true it makes the accept button visible */
     isAcceptVisible?: boolean;
  /** If true it makes the cancel button visible */
     isCancelVisible?: boolean;
@@ -87,7 +97,9 @@ declare function ListBox(props:ListBoxProps): JSX.Element;
     size?: Button.types.size.SMALL|Button.types.size.MEDIUM|Button.types.size.LARGE;
 }}declare namespace ListBox {
       function Option(props:OptionProps): JSX.Element;
-  interface OptionProps { /** String, number or JSX content */
+  interface OptionProps{
+    [x:string]: any;
+     /** String, number or JSX content */
     children: node|func;
  
     isSelected?: boolean;
@@ -107,17 +119,23 @@ declare function ListBox(props:ListBoxProps): JSX.Element;
     preventDefaultOnSelect?: -;
 }}declare namespace ListBox {
       function Popover(props:PopoverProps): JSX.Element;
-  interface PopoverProps { /** Body content of the PopOver. */
+  interface PopoverProps{
+    [x:string]: any;
+     /** Body content of the PopOver. */
     children?: React.ReactNode;
  /** Sets the z-index value of the PopOver */
     zIndex?: number;
 }}declare namespace ListBox {
       function RawItem(props:RawItemProps): JSX.Element;
-  interface RawItemProps { 
+  interface RawItemProps{
+    [x:string]: any;
+     
     preventDefaultOnSelect?: -;
 }}declare namespace ListBox {
       function Trigger(props:TriggerProps): JSX.Element;
-  interface TriggerProps { /** Custom clear icon */
+  interface TriggerProps{
+    [x:string]: any;
+     /** Custom clear icon */
     clearIcon?: React.ReactNode;
  /** Body content of the trigger. */
     children?: node|func;

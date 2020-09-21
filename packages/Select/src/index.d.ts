@@ -2,6 +2,8 @@ export default Select;
 
 declare function Select(props: SelectProps): JSX.Element;
 interface SelectProps {
+  [x: string]: any;
+
   a11yText?: string;
 
   className?: string;

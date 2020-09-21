@@ -2,6 +2,7 @@ export default DialogActions;
 
 declare function DialogActions(props: DialogActionsProps): JSX.Element;
 interface DialogActionsProps {
+  [x: string]: any;
   /** If the primary button is a destructive action. */
   kindConfirm?: string;
   /** If the primary and secondary buttons are disabled. */

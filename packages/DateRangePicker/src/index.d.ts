@@ -2,6 +2,7 @@ export default DateRangePicker;
 
 declare function DateRangePicker(props: DateRangePickerProps): JSX.Element;
 interface DateRangePickerProps {
+  [x: string]: any;
   /** Selected start date in moment object */
   startDate?: instanceOf;
   /** Selected end date in moment object */

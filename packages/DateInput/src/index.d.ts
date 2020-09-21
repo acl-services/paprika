@@ -2,6 +2,7 @@ export default DateInput;
 
 declare function DateInput(props: DateInputProps): JSX.Element;
 interface DateInputProps {
+  [x: string]: any;
   /** If the value of <input> is valid or not. */
   hasError?: boolean;
   /** Date format used while entering and parsing user input. */

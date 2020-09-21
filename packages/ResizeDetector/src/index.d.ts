@@ -2,6 +2,7 @@ export default ResizeDetector;
 
 declare function ResizeDetector(props: ResizeDetectorProps): JSX.Element;
 interface ResizeDetectorProps {
+  [x: string]: any;
   /** The width at which the size will change from the default (medium) to large. 0 or null value will disable. */
   breakpointLarge?: number;
   /** The width at which the size will change from small to the default (medium). 0 or null value will disable. */

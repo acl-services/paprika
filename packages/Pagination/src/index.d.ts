@@ -2,6 +2,7 @@ export default Pagination;
 
 declare function Pagination(props: PaginationProps): JSX.Element;
 interface PaginationProps {
+  [x: string]: any;
   /** The number of current active page */
   currentPage: number;
   /** Callback to be executed when current page is changed. */

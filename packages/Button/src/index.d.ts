@@ -2,6 +2,7 @@ export default Button;
 
 declare function Button(props: ButtonProps): JSX.Element;
 interface ButtonProps {
+  [x: string]: any;
   /** Descriptive a11y text for assistive technologies. By default, text from children node will be used. */
   a11yText?: string;
   /** If click events are allowed to propagate up the DOM tree. */

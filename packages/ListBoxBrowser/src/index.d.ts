@@ -2,6 +2,7 @@ export default ListBoxBrowser;
 
 declare function ListBoxBrowser(props: ListBoxBrowserProps): JSX.Element;
 interface ListBoxBrowserProps {
+  [x: string]: any;
   /** An array of javascript objects holding the data structure for the ListBoxBrowser. The object shape must have at least a string label property and an array options property in one of the objects. Also can hold any other kind of data for your own use. */
   data: any;
   /** Indicates if the user can select multiple options */
@@ -33,6 +34,8 @@ interface ListBoxBrowserProps {
 }
 declare function CustomListBox(props: CustomListBoxProps): JSX.Element;
 interface CustomListBoxProps {
+  [x: string]: any;
+
   hasOnUp?: boolean;
 
   id?: string | number;
@@ -49,6 +52,8 @@ interface CustomListBoxProps {
 }
 declare function Title(props: TitleProps): JSX.Element;
 interface TitleProps {
+  [x: string]: any;
+
   rootTitle: React.ReactNode;
 
   browserTitle: React.ReactNode;

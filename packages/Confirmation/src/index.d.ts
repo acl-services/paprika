@@ -2,6 +2,7 @@ export default Confirmation;
 
 declare function Confirmation(props: ConfirmationProps): JSX.Element;
 interface ConfirmationProps {
+  [x: string]: any;
   /** Content of the popover confirmation */
   body?: React.ReactNode;
   /** Size of the button */

@@ -2,6 +2,7 @@ export default Input;
 
 declare function Input(props: InputProps): JSX.Element;
 interface InputProps {
+  [x: string]: any;
   /** Descriptive a11y text for assistive technologies. By default, text from children node will be used. */
   a11yText?: string;
   /** Sets the class for the input. */

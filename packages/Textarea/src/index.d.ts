@@ -2,6 +2,7 @@ export default Textarea;
 
 declare function Textarea(props: TextareaProps): JSX.Element;
 interface TextareaProps {
+  [x: string]: any;
   /** Descriptive a11y text for assistive technologies. By default, text from children node will be used. */
   a11yText?: string;
   /** Indicate if the textarea is expandable */

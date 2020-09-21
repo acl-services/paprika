@@ -2,6 +2,7 @@ export default Switch;
 
 declare function Switch(props: SwitchProps): JSX.Element;
 interface SwitchProps {
+  [x: string]: any;
   /** Descriptive a11y text for assistive technologies. Typically required. */
   a11yText?: string;
   /** If click events are allowed to propagate up the DOM tree. */

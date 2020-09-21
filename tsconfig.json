@@ -1,6 +1,6 @@
 {
-  "include": ["./packages/Tokens/src"],
-  "exclude": ["./packages/Tokens/src/index.d.ts"],
+  "files": ["./packages/Tokens/src/tokens.js", "./packages/Constants/src/Constants.js"],
+  "exclude": ["./packages/Tokens/src", "./packages/Constants/src"],
   "compilerOptions": {
     "allowJs": true,
     "declaration": true,
@@ -14,10 +14,10 @@
     "moduleResolution": "node",
     "jsx": "react",
     "resolveJsonModule": true,
+    "isolatedModules": true,
     "strictFunctionTypes": true,
     "strictNullChecks": true,
     "strictBindCallApply": true,
-    "noImplicitAny": true,
-    "outFile": "./packages/Tokens/src/index"
+    "noImplicitAny": true
   }
 }

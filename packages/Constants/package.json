@@ -4,6 +4,8 @@
   "description": "Constants for components, for library internal use only",
   "author": "@paprika",
   "license": "MIT",
+  "main": "lib/Constants.js",
+  "types": "lib/Constants.d.ts",
   "repository": {
     "type": "git",
     "url": "https://github.com/acl-services/paprika.git",

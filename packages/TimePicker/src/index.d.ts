@@ -2,6 +2,7 @@ export default TimePicker;
 
 declare function TimePicker(props: TimePickerProps): JSX.Element;
 interface TimePickerProps {
+  [x: string]: any;
   /** Descriptive a11y text for assistive technologies. */
   a11yText?: string;
   /** If the TimePicker is set to visible. */
