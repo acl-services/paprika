@@ -103,9 +103,10 @@ export default function ColumnsArrangement(props) {
       <Popover.Content>
         <Popover.Card>
           <Input
+            data-pka-anchor="actionBar.columnsArrangement.filter"
             defaultValue=""
             onChange={handleSearch}
-            placeholder={I18n.t("actionBar.search_placeholder")}
+            placeholder={I18n.t("actionBar.columns_arrangement.search_placeholder")}
             hasClearButton
           />
           {filteredColumnIds.length === 0 ? (
