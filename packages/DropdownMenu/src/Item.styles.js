@@ -5,10 +5,14 @@ import stylers from "@paprika/stylers";
 const itemStyles = css`
   ${stylers.fontSize()};
   ${stylers.lineHeight()}
+  border-radius: none;
+  border-width: inherit;
   cursor: pointer;
   display: block;
   font-weight: normal;
+  min-height: inherit;
   padding: ${tokens.spaceSm} ${stylers.spacer(2)};
+  text-align: left;
   text-decoration: none;
 
   &:focus {

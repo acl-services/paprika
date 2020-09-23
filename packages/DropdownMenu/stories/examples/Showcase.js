@@ -49,6 +49,9 @@ const ExampleStory = () => (
         align={dropdownComponentProps().align}
       >
         <DropdownMenu.Trigger>{dropdownComponentProps().triggerContent}</DropdownMenu.Trigger>
+        <DropdownMenu.LinkItem isExternal link="http://www.bbc.com">
+          External link
+        </DropdownMenu.LinkItem>
         <DropdownMenu.Item onClick={handleItemClick}>Edit</DropdownMenu.Item>
         <DropdownMenu.Item onClick={handleItemClick}>Duplicate</DropdownMenu.Item>
         <DropdownMenu.Item isDestructive isDisabled onClick={handleItemClick}>
