@@ -1,0 +1,106 @@
+import { Meta } from "@storybook/addon-docs/blocks";
+import { getStoryName } from "storybook/storyTree";
+import Readme from "../README.md";
+
+export const params = {
+  options: {
+    isToolshown: true,
+    showPanel: false,
+  },
+};
+
+<Meta title={`${getStoryName("FieldTypes")}/Docs`} parameters={params} />
+
+#FieldTypes
+
+FieldTypes component helps during your [Table](https://github.com/acl-services/paprika/tree/master/packages/Table) or [DataGrid](https://github.com/acl-services/paprika/tree/master/packages/DataGrid) implementation providing you with small components that encapsulate specific stylings that adapts to our Design System.
+
+## Uses
+
+Once the component its imported:
+
+```js
+import FieldTypes from "@paprika/field-types";
+```
+
+You can make use of different Fields in the following way:
+
+```js
+
+/**
+ *  The following applies either for the <Table /> or <DataGrid /> component
+ */
+
+import FieldTypes from "@paprika/field-types";
+import Table from "@paprika/table";
+
+function App() {
+  const [data] = React.useState(() => {
+    return [
+      {name "Abbeline Doe", income: 150000, taxes: 2500 }
+      {name "Alivia Smith", income: 80000, taxes: 1500 }
+      {name "Aniya Johanson", income: 75000, taxes: 1420 }
+    ]
+  })
+
+  return (
+    <Table data={data}>
+      <Table.ColumnDefinition header="Name" cell="name" />
+      <Table.ColumnDefinition header="Income" cell={({ row }) => (
+        <FieldTypes.Number textAlign={FieldTypes.types.align.RIGHT} value={row.income} />
+      )} />
+      <Table.ColumnDefinition header="Taxes" cell="taxes" />
+    </Table>
+  );
+}
+```
+
+## Localization
+
+Whenever the [window.Intl](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Intl) object is present on the browser, the FieldTypes will
+try to localize the fields inside the table or the data grid. To `set` up a locale you can use the `L10n` component.
+
+```js
+
+/**
+ *  The following applies either for the <Table /> or <DataGrid /> component
+ */
+
+import FieldTypes from "@paprika/field-types";
+import Table from "@paprika/table";
+import L10n from "@paprika/l10n";
+
+function App() {
+  const [data] = React.useState(() => {
+    return [
+      {name "Abbeline Doe", income: 150000, taxes: 2500 }
+      {name "Alivia Smith", income: 80000, taxes: 1500 }
+      {name "Aniya Johanson", income: 75000, taxes: 1420 }
+    ]
+  })
+
+  return (
+    <L10n locale="fr">
+      <Table data={data}>
+        <Table.ColumnDefinition header="Name" cell="name" />
+        <Table.ColumnDefinition header="Income" cell={
+          ({ row }) => {
+            return (
+              <FieldTypes align="right">
+                <FieldTypes.Number>{row.income}<FieldTypes.Number>
+              </FieldTypes>
+            );
+          }} />
+        <Table.ColumnDefinition header="Taxes" cell={
+          ({ row }) => {
+            return (
+              <FieldTypes align="right">
+                <FieldTypes.Number>{row.taxes}<FieldTypes.Number>
+              </FieldTypes>
+            );
+          }} />
+      </Table>
+    </L10n>
+  );
+}
+```
