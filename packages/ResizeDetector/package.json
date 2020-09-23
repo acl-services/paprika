@@ -1,6 +1,6 @@
 {
   "name": "@paprika/resize-detector",
-  "version": "0.1.2",
+  "version": "0.1.3",
   "description": "A wrapper that provides debounced updates of its dimensions.",
   "author": "@paprika",
   "main": "lib/index.js",
