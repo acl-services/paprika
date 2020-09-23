@@ -182,14 +182,17 @@ export const sizeStyles = {
 export const kindStyles = ({ isDisabled }) => ({
   [types.DEFAULT]: css`
     ${skeuomorphicStyles}
-    background-color: ${tokens.color.white};
-    background-image: linear-gradient(${tokens.color.blackLighten90}, ${tokens.color.blackLighten70});
-    color: ${tokens.color.black};
 
-    &:hover, &:visited {
-      background: ${tokens.color.blackLighten70};
+    &, &:hover, &:active, &:visited {
+      background-color: ${tokens.color.white};
+      background-image: linear-gradient(${tokens.color.blackLighten90}, ${tokens.color.blackLighten70});
       color: ${tokens.color.black};
       text-decoration: none;
+    }
+
+    &:hover,
+    &:active {
+      background: ${tokens.color.blackLighten70};
     }
 
     ${isDisabled && disabledStyles}
