@@ -6,8 +6,6 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 
 ## [Unreleased]
 
-Updated DEFAULT hover,visited styles to be resilient to global styling, [@tristanjasper](https://github.com/tristanjasper).
-
 ## [0.3.0] - 2020-06-16
 
 ### Changed
@@ -27,3 +25,7 @@ Added support for icon in LinkButton component [@tristanjasper](https://github.c
 ## [0.3.11] - 2020-09-17
 
 Added aria-disabled tag on LinkButton component [@tristanjasper](https://github.com/tristanjasper).
+
+## [0.3.12] - 2020-09-23
+
+Updated DEFAULT hover,visited styles to be resilient to global styling, [@tristanjasper](https://github.com/tristanjasper).

@@ -6,10 +6,6 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 
 ## [Unreleased]
 
-### Added
-
-- Added `<SearchInput>` component [@allison-c](https://github.com/allison-c).
-
 ## [0.2.0] - 2020-06-08
 
 ### Added
@@ -31,3 +27,9 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 ### Added
 
 - Updated: Created and placed all constants into type.js file. [@kaan.darcey](https://github.com/KDarcey).
+
+## [0.2.25] - 2020-09-23
+
+### Added
+
+- Added `<SearchInput>` component [@allison-c](https://github.com/allison-c).
