@@ -46,7 +46,6 @@ const borderStyles = ({ kind }) => css`
 // States
 
 const disabledStyles = css`
-  box-shadow: none;
   color: ${tokens.color.blackDisabled};
   cursor: not-allowed;
   text-decoration: none;
@@ -142,13 +141,12 @@ const skeuomorphicStyles = css`
 `;
 
 const coloredButtonStyles = css`
-  color: ${tokens.color.white};
-  text-shadow: 0 1px 1px ${stylers.alpha(tokens.color.blackPure, 0.2)};
-
+  &,
   &:hover,
   &:visited {
     color: ${tokens.color.white};
     text-decoration: none;
+    text-shadow: 0 1px 1px ${stylers.alpha(tokens.color.blackPure, 0.2)};
   }
 `;
 
@@ -201,10 +199,13 @@ export const kindStyles = ({ isDisabled }) => ({
     ${skeuomorphicStyles}
     ${coloredButtonStyles}
 
-    background-color: ${tokens.color.greenLighten10};
-    background-image: linear-gradient(${tokens.color.greenLighten10}, ${tokens.color.green});
+    &, &:hover, &:active, &:visited {
+      background-color: ${tokens.color.greenLighten10};
+      background-image: linear-gradient(${tokens.color.greenLighten10}, ${tokens.color.green});
+    }
 
-    &:hover {
+    &:hover,
+    &:active {
       background: ${tokens.color.green};
     }
 
@@ -214,8 +215,10 @@ export const kindStyles = ({ isDisabled }) => ({
     ${skeuomorphicStyles}
     ${coloredButtonStyles}
 
-    background-color: ${tokens.color.purpleLighten10};
-    background-image: linear-gradient(${tokens.color.purpleLighten10}, ${tokens.color.purple});
+    &, &:hover, &:active, &:visited {
+      background-color: ${tokens.color.purpleLighten10};
+      background-image: linear-gradient(${tokens.color.purpleLighten10}, ${tokens.color.purple});
+    }
 
     &:hover {
       background: ${tokens.color.purple};
@@ -227,8 +230,10 @@ export const kindStyles = ({ isDisabled }) => ({
     ${skeuomorphicStyles}
     ${coloredButtonStyles}
 
-    background-color: ${tokens.color.orangeHighlight};
-    background-image: linear-gradient(${tokens.color.orangeHighlight}, ${tokens.color.orange});
+    &, &:hover, &:active, &:visited {
+      background-color: ${tokens.color.orangeHighlight};
+      background-image: linear-gradient(${tokens.color.orangeHighlight}, ${tokens.color.orange});
+    }
 
     &:hover {
       background: ${tokens.color.orange};
@@ -239,14 +244,17 @@ export const kindStyles = ({ isDisabled }) => ({
   [types.FLAT]: css`
     ${skeuomorphicStyles}
 
-    background-color: ${tokens.color.white};
-    box-shadow: none;
-    color: ${tokens.color.black};
+    &, &:hover, &:active, &:visited {
+      background-color: ${tokens.color.white};
+      box-shadow: none;
+      color: ${tokens.color.black};
+    }
 
-    &:hover, &:visited {
+    &:hover,
+    &:visited {
       background: ${tokens.color.blackLighten70};
       color: ${tokens.color.black};
-      text-decoration:none;
+      text-decoration: none;
     }
 
     ${isDisabled && disabledStyles}
@@ -263,9 +271,11 @@ export const kindStyles = ({ isDisabled }) => ({
   [types.LINK]: css`
     ${textButtonStyles}
 
-    color: ${tokens.textColor.link};
-    font-weight: inherit;
-    text-decoration: underline;
+    &, &:hover, &:active, &:visited {
+      color: ${tokens.textColor.link};
+      font-weight: inherit;
+      text-decoration: underline;
+    }
 
     &:hover {
       color: ${tokens.textColor.linkHover};
