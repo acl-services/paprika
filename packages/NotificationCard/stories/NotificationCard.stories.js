@@ -1,13 +1,23 @@
 import { withKnobs } from "@storybook/addon-knobs";
-import { storiesOf } from "@storybook/react";
 import { getStoryName } from "storybook/storyTree";
 import Showcase from "./examples/Showcase";
-import Screener from "./examples/Screener";
+import NotificationCard from "../src";
+import Props from "./NotificationCard.mdx";
 
-const storyName = getStoryName("NotificationCard");
+export default {
+  title: getStoryName("NotificationCard"),
+  component: NotificationCard,
+};
 
-storiesOf(storyName, module)
-  .addDecorator(withKnobs)
-  .add("Showcase", Showcase);
+export const showcase = Showcase;
 
-storiesOf(`${storyName}/Backyard/Tests`, module).add("Screener", Screener);
+showcase.story = {
+  decorators: [withKnobs],
+  parameters: {
+    docs: { page: Props },
+    options: {
+      isToolshown: true,
+      showPanel: true,
+    },
+  },
+};

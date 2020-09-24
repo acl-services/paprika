@@ -5,8 +5,9 @@ import tokens from "@paprika/tokens";
 
 export const NotificationHeader = styled(Heading)`
   font-weight: bold;
-  letter-spacing: 0.05em;
+  letter-spacing: 0.12em;
   margin-bottom: ${tokens.space};
+  margin-top: 0;
   text-transform: uppercase;
 
   ${stylers.fontSize(-1)};
