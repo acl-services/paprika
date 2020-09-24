@@ -5,7 +5,7 @@ import stylers from "@paprika/stylers";
 const itemStyles = css`
   ${stylers.fontSize()};
   ${stylers.lineHeight()}
-  border-radius: none;
+  border-radius: 0;
   border-width: inherit;
   cursor: pointer;
   display: block;

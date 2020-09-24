@@ -40,8 +40,11 @@ const LinkItem = props => {
     linkItemProps.suffixIcon = null;
   }
 
-  // must fix applying of css styles
-  return <Button.Link {...linkItemProps}>{children}</Button.Link>;
+  return (
+    <Button.Link css={linkItemStyles} {...linkItemProps}>
+      {children}
+    </Button.Link>
+  );
 };
 
 LinkItem.displayName = "DropdownMenu.LinkItem";
