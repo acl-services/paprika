@@ -1,6 +1,6 @@
 {
   "name": "@paprika/progress-bar",
-  "version": "0.1.2",
+  "version": "0.1.3",
   "description": "ProgressBar is a component that shows the current progress of an action",
   "author": "@paprika",
   "main": "lib/index.js",
@@ -20,9 +20,9 @@
     "styled-components": "^4.4.1"
   },
   "dependencies": {
-    "@paprika/heading": "^0.4.7",
-    "@paprika/stylers": "^0.2.10",
-    "@paprika/tokens": "^0.1.16",
+    "@paprika/heading": "^0.4.8",
+    "@paprika/stylers": "^0.2.11",
+    "@paprika/tokens": "^0.1.17",
     "prop-types": "^15.7.2"
   }
 }
