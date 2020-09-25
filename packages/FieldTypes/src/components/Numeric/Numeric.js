@@ -57,8 +57,7 @@ Numeric.propTypes = {
    */
   intl: PropTypes.object, // eslint-disable-line react/forbid-prop-types
   /**
-   * When passing a currency string as 'EUR' or 'JPY' will display the correct currency symbol
-   * This can also be achieved using the intl prop, which it's use internally to make this prop works.
+   * When passing a currency string as 'EUR' or 'JPY' will display the correct currency symbol, is a short version instead of using the intl prop.
    */
   currency: PropTypes.string,
   /**
