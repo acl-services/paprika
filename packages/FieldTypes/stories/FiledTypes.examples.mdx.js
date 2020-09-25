@@ -22,7 +22,7 @@ const data = [
 export function Simple() {
   return (
     <SimpleContainer>
-      <FieldTypes.Numeric align={FieldTypes.types.align.LEFT} currency="USD" cell={1240} />
+      <FieldTypes.Numeric align={FieldTypes.types.align.LEFT} currency="USD" number={1240} />
     </SimpleContainer>
   );
 }
@@ -32,13 +32,13 @@ export function TableWithLocale() {
     <L10n locale="fr">
       <Table data={data}>
         <Table.ColumnDefinition header="Project" cell="name" />
-        <Table.ColumnDefinition header="Income" cell={({ row }) => <FieldTypes.Numeric cell={row.income} />} />
-        <Table.ColumnDefinition header="Taxes" cell={({ row }) => <FieldTypes.Numeric cell={row.taxes} />} />
+        <Table.ColumnDefinition header="Income" cell={({ row }) => <FieldTypes.Numeric number={row.income} />} />
+        <Table.ColumnDefinition header="Taxes" cell={({ row }) => <FieldTypes.Numeric number={row.taxes} />} />
         <Table.ColumnDefinition
           header="Revenue"
           cell={({ row }) => (
             <a href="http://wegalvanize.com">
-              <FieldTypes.Numeric cell={Number(row.income - row.taxes)} />
+              <FieldTypes.Numeric number={Number(row.income - row.taxes)} />
             </a>
           )}
         />
@@ -54,17 +54,17 @@ export function TableWithLocaleAlignLeft() {
         <Table.ColumnDefinition header="Project" cell="name" />
         <Table.ColumnDefinition
           header="Income"
-          cell={({ row }) => <FieldTypes.Numeric align={FieldTypes.types.align.LEFT} cell={row.income} />}
+          cell={({ row }) => <FieldTypes.Numeric align={FieldTypes.types.align.LEFT} number={row.income} />}
         />
         <Table.ColumnDefinition
           header="Taxes"
-          cell={({ row }) => <FieldTypes.Numeric align={FieldTypes.types.align.LEFT} cell={row.taxes} />}
+          cell={({ row }) => <FieldTypes.Numeric align={FieldTypes.types.align.LEFT} number={row.taxes} />}
         />
         <Table.ColumnDefinition
           header="Revenue"
           cell={({ row }) => (
             <a href="http://wegalvanize.com">
-              <FieldTypes.Numeric align={FieldTypes.types.align.LEFT} cell={Number(row.income - row.taxes)} />
+              <FieldTypes.Numeric align={FieldTypes.types.align.LEFT} number={Number(row.income - row.taxes)} />
             </a>
           )}
         />

@@ -33,23 +33,44 @@ export const Screener = () => {
       <div>
         <L10n locale="de">
           <Container>
-            <FieldTypes.Numeric align={FieldTypes.types.align.LEFT} currency="USD" cell={1240} />
-            <FieldTypes.Numeric align={FieldTypes.types.align.LEFT} currency="JPN" cell={340.43} />
-            <FieldTypes.Numeric align={FieldTypes.types.align.LEFT} cell={133240.234322} />
+            <FieldTypes.Numeric align={FieldTypes.types.align.LEFT} currency="USD" number={1240} />
+            <FieldTypes.Numeric align={FieldTypes.types.align.LEFT} currency="JPN" number={340.43} />
+            <FieldTypes.Numeric align={FieldTypes.types.align.LEFT} number={133240.234322} />
           </Container>
         </L10n>
         <L10n locale="fr">
           <Container>
-            <FieldTypes.Numeric align={FieldTypes.types.align.LEFT} currency="USD" cell={1240} />
-            <FieldTypes.Numeric align={FieldTypes.types.align.LEFT} currency="JPN" cell={340.43} />
-            <FieldTypes.Numeric align={FieldTypes.types.align.LEFT} cell={133240.234322} />
+            <FieldTypes.Numeric align={FieldTypes.types.align.LEFT} currency="USD" number={1240} />
+            <FieldTypes.Numeric align={FieldTypes.types.align.LEFT} currency="JPN" number={340.43} />
+            <FieldTypes.Numeric align={FieldTypes.types.align.LEFT} number={133240.234322} />
           </Container>
         </L10n>
         <L10n>
           <Container>
-            <FieldTypes.Numeric align={FieldTypes.types.align.LEFT} currency="USD" cell={1240} />
-            <FieldTypes.Numeric align={FieldTypes.types.align.LEFT} currency="JPN" cell={340.43} />
-            <FieldTypes.Numeric align={FieldTypes.types.align.LEFT} cell={133240.234322} />
+            <FieldTypes.Numeric align={FieldTypes.types.align.LEFT} currency="USD" number={1240} />
+            <FieldTypes.Numeric align={FieldTypes.types.align.LEFT} currency="JPN" number={340.43} />
+            <FieldTypes.Numeric align={FieldTypes.types.align.LEFT} number={133240.234322} />
+          </Container>
+        </L10n>
+        <L10n locale="de">
+          <Container>
+            <FieldTypes.Numeric
+              align={FieldTypes.types.align.LEFT}
+              displayOnlyDecimals={false}
+              currency="USD"
+              number={1240}
+            />
+            <FieldTypes.Numeric
+              align={FieldTypes.types.align.LEFT}
+              displayOnlyDecimals={false}
+              currency="JPN"
+              number={340.43}
+            />
+            <FieldTypes.Numeric
+              displayOnlyDecimals={false}
+              align={FieldTypes.types.align.LEFT}
+              number={133240.234322}
+            />
           </Container>
         </L10n>
       </div>
@@ -57,27 +78,48 @@ export const Screener = () => {
         <h2>Table</h2>
         <Table data={data}>
           <Table.ColumnDefinition header="Project" cell="name" />
-          <Table.ColumnDefinition header="Income" cell={({ row }) => <FieldTypes.Numeric cell={row.income} />} />
-          <Table.ColumnDefinition header="Taxes" cell={({ row }) => <FieldTypes.Numeric cell={row.taxes} />} />
+          <Table.ColumnDefinition header="Income" cell={({ row }) => <FieldTypes.Numeric number={row.income} />} />
+          <Table.ColumnDefinition header="Taxes" cell={({ row }) => <FieldTypes.Numeric number={row.taxes} />} />
           <Table.ColumnDefinition
             header="Revenue"
             cell={({ row }) => (
               <a href="http://wegalvanize.com">
-                <FieldTypes.Numeric cell={Number(row.income - row.taxes)} />
+                <FieldTypes.Numeric number={Number(row.income - row.taxes)} />
               </a>
             )}
           />
         </Table>
+        <h2>With full delimiters</h2>
+        <Table data={data}>
+          <Table.ColumnDefinition header="Project" cell="name" />
+          <Table.ColumnDefinition
+            header="Income"
+            cell={({ row }) => <FieldTypes.Numeric displayOnlyDecimals={false} number={row.income} />}
+          />
+          <Table.ColumnDefinition
+            header="Taxes"
+            cell={({ row }) => <FieldTypes.Numeric displayOnlyDecimals={false} number={row.taxes} />}
+          />
+          <Table.ColumnDefinition
+            header="Revenue"
+            cell={({ row }) => (
+              <a href="http://wegalvanize.com">
+                <FieldTypes.Numeric displayOnlyDecimals={false} number={Number(row.income - row.taxes)} />
+              </a>
+            )}
+          />
+        </Table>
+
         <h2>DataGrid</h2>
         <L10n locale="fr">
           <h3>French locale</h3>
           <DataGrid data={data}>
             <DataGrid.ColumnDefinition header="Project" cell="name" />
-            <DataGrid.ColumnDefinition header="Income" cell={({ row }) => <FieldTypes.Numeric cell={row.income} />} />
-            <DataGrid.ColumnDefinition header="Taxes" cell={({ row }) => <FieldTypes.Numeric cell={row.taxes} />} />
+            <DataGrid.ColumnDefinition header="Income" cell={({ row }) => <FieldTypes.Numeric number={row.income} />} />
+            <DataGrid.ColumnDefinition header="Taxes" cell={({ row }) => <FieldTypes.Numeric number={row.taxes} />} />
             <DataGrid.ColumnDefinition
               header="Revenue"
-              cell={({ row }) => <FieldTypes.Numeric cell={Number(row.income - row.taxes)} />}
+              cell={({ row }) => <FieldTypes.Numeric number={Number(row.income - row.taxes)} />}
             />
           </DataGrid>
         </L10n>
@@ -87,11 +129,11 @@ export const Screener = () => {
             <DataGrid.ColumnDefinition header="Project" cell="name" />
             <DataGrid.ColumnDefinition
               header="Income"
-              cell={({ row }) => <FieldTypes.Numeric align={FieldTypes.types.align.LEFT} cell={row.income} />}
+              cell={({ row }) => <FieldTypes.Numeric align={FieldTypes.types.align.LEFT} number={row.income} />}
             />
             <DataGrid.ColumnDefinition
               header="Taxes"
-              cell={({ row }) => <FieldTypes.Numeric align={FieldTypes.types.align.LEFT} cell={row.taxes} />}
+              cell={({ row }) => <FieldTypes.Numeric align={FieldTypes.types.align.LEFT} number={row.taxes} />}
             />
             <DataGrid.ColumnDefinition
               header="Revenue"
@@ -100,7 +142,7 @@ export const Screener = () => {
                   <FieldTypes.Numeric
                     align={FieldTypes.types.align.LEFT}
                     color={tokens.textColor.link}
-                    cell={Number(row.income - row.taxes)}
+                    number={Number(row.income - row.taxes)}
                   />
                   <Popover isEager>
                     <Popover.Tip />

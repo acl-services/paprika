@@ -8,9 +8,10 @@ function formatNumber({ number, locale, options = {} }) {
   return Intl.NumberFormat(locale, options).format(number);
 }
 
-export function withDecimalSeparatorOnly({ number, locale }) {
+export function withDecimalSeparatorOnly({ number, locale, options = {} }) {
   return new Intl.NumberFormat(locale, {
     useGrouping: true,
+    ...options,
   })
     .formatToParts(number)
     .filter(chunk => chunk.type !== "group")
@@ -19,26 +20,39 @@ export function withDecimalSeparatorOnly({ number, locale }) {
 }
 
 export default function Numeric(props) {
-  const { align, cell, currency: currencySymbol, intl, color, displayOnlyDecimals, ...moreProps } = props;
-  const number = Number(cell);
+  const { align, number: propNumber, currency: currencySymbol, intl, color, displayOnlyDecimals, ...moreProps } = props;
+  const number = Number(propNumber);
   const i18n = useI18n();
 
   if (Number.isNaN(number)) {
-    console.warn(`string|number ${cell} is Not a Number`);
-  }
-
-  if (displayOnlyDecimals) {
-    withDecimalSeparatorOnly({ number, locale: i18n.locale });
+    console.warn(`string|number ${propNumber} is Not a Number`);
   }
 
   const currency = currencySymbol ? { style: "currency", currency: currencySymbol } : {};
+  const decimalNumbers =
+    number % 1 === 0 ? { minimumFractionDigits: 0, maximumFractionDigits: 0 } : { minimumFractionDigits: 1 };
 
   const i18nNumber =
-    "Intl" in window ? formatNumber({ number, locale: i18n.locale, options: { ...currency, ...intl } }) : cell;
+    "Intl" in window
+      ? formatNumber({ number, locale: i18n.locale, options: { ...currency, ...decimalNumbers, ...intl } })
+      : propNumber;
+
+  if (displayOnlyDecimals) {
+    const numberWithDecimalsOnly = withDecimalSeparatorOnly({
+      number,
+      locale: i18n.locale,
+      options: { ...currency, ...decimalNumbers, ...intl },
+    });
+    return (
+      <Container align={align} color={color} {...moreProps} data-pka-anchor="data-fields-numeric">
+        {typeof cell === "function" ? propNumber(numberWithDecimalsOnly) : numberWithDecimalsOnly}
+      </Container>
+    );
+  }
 
   return (
     <Container align={align} color={color} {...moreProps} data-pka-anchor="data-fields-numeric">
-      {typeof cell === "function" ? cell(i18nNumber) : i18nNumber}
+      {typeof cell === "function" ? propNumber(i18nNumber) : i18nNumber}
     </Container>
   );
 }
@@ -47,7 +61,7 @@ Numeric.propTypes = {
   /**
    * The cell value to be localize
    */
-  cell: PropTypes.oneOfType([PropTypes.string, PropTypes.number]).isRequired,
+  number: PropTypes.oneOfType([PropTypes.string, PropTypes.number]).isRequired,
   /**
    * Text alignment for the number default is right
    */

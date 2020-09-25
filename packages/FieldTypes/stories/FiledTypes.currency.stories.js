@@ -11,7 +11,7 @@ export default {
 };
 
 const data = [
-  { name: "Abbeline Doe", income: 153234.87, taxes: 32300.34 },
+  { name: "Abbeline Doe", income: 153234.0, taxes: 32300.0 },
   { name: "Alivia Smith", income: 85720.92, taxes: 17300.43 },
   { name: "Aniya Johanson", income: 45328.54, taxes: 14302.23 },
 ];
@@ -25,15 +25,15 @@ export const Currency = () => {
         <Table.ColumnDefinition header="Project" cell="name" />
         <Table.ColumnDefinition
           header="Income"
-          cell={({ row }) => <FieldTypes.Numeric currency="USD" cell={row.income} />}
+          cell={({ row }) => <FieldTypes.Numeric currency="USD" number={row.income} />}
         />
         <Table.ColumnDefinition
           header="Taxes"
-          cell={({ row }) => <FieldTypes.Numeric currency="USD" cell={row.taxes} />}
+          cell={({ row }) => <FieldTypes.Numeric currency="USD" number={row.taxes} />}
         />
         <Table.ColumnDefinition
           header="Revenue"
-          cell={({ row }) => <FieldTypes.Numeric currency="USD" cell={Number(row.income - row.taxes)} />}
+          cell={({ row }) => <FieldTypes.Numeric currency="USD" number={Number(row.income - row.taxes)} />}
         />
       </Table>
       <h2>DataGrid</h2>
@@ -43,17 +43,17 @@ export const Currency = () => {
           <DataGrid.ColumnDefinition header="Project" cell="name" />
           <DataGrid.ColumnDefinition
             header="Income"
-            cell={({ row }) => <FieldTypes.Numeric currency="JPY" cell={row.income} />}
+            cell={({ row }) => <FieldTypes.Numeric currency="JPY" number={row.income} />}
           />
           <DataGrid.ColumnDefinition
             header="Taxes"
-            cell={({ row }) => <FieldTypes.Numeric currency="JPY" cell={row.taxes} />}
+            cell={({ row }) => <FieldTypes.Numeric currency="JPY" number={row.taxes} />}
           />
           <DataGrid.ColumnDefinition
             header="Revenue"
             cell={({ row }) => (
               <>
-                <FieldTypes.Numeric currency="JPY" cell={Number(row.income - row.taxes)} />
+                <FieldTypes.Numeric currency="JPY" number={Number(row.income - row.taxes)} />
               </>
             )}
           />
@@ -65,15 +65,15 @@ export const Currency = () => {
           <DataGrid.ColumnDefinition header="Project" cell="name" />
           <DataGrid.ColumnDefinition
             header="Income"
-            cell={({ row }) => <FieldTypes.Numeric currency="EUR" cell={row.income} />}
+            cell={({ row }) => <FieldTypes.Numeric currency="EUR" number={row.income} />}
           />
           <DataGrid.ColumnDefinition
             header="Taxes"
-            cell={({ row }) => <FieldTypes.Numeric currency="EUR" cell={row.taxes} />}
+            cell={({ row }) => <FieldTypes.Numeric currency="EUR" number={row.taxes} />}
           />
           <DataGrid.ColumnDefinition
             header="Revenue"
-            cell={({ row }) => <FieldTypes.Numeric currency="EUR" cell={Number(row.income - row.taxes)} />}
+            cell={({ row }) => <FieldTypes.Numeric currency="EUR" number={Number(row.income - row.taxes)} />}
           />
         </DataGrid>
       </L10n>
