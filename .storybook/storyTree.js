@@ -58,6 +58,7 @@ const storyTree = [
       "Confirmation",
       "Popover",
       "Modal",
+      "NotificationCard",
       "ProgressBar",
       "SidePanel",
       "Spinner",

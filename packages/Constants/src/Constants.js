@@ -3,6 +3,7 @@ export const align = {
   RIGHT: "right",
   BOTTOM: "bottom",
   LEFT: "left",
+  CENTER: "center",
 };
 
 export const color = {
