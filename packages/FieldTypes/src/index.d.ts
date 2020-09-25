@@ -12,7 +12,7 @@ interface NumericProps {
   /** The cell value to be localize */
   number: string | number;
   /** Text alignment for the number default is right */
-  align?: types.align.LEFT | types.align.RIGHT | types.align.CENTER;
+  align?: FieldTypes.types.align.LEFT | FieldTypes.types.align.RIGHT | FieldTypes.types.align.CENTER;
   /** The window.Intl.numberFormat option object https://mzl.la/3iW0ioQ */
   intl?: object;
   /** When passing a currency string as 'EUR' or 'JPY' will display the correct currency symbol, is a short version instead of using the intl prop. */

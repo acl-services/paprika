@@ -4,6 +4,11 @@ import useI18n from "@paprika/l10n/lib/useI18n";
 import Container from "../Container";
 import types from "../../types";
 
+// This let mimic the use of Field.types.align.LEFT in documentation and d.ts files
+// not other reason to have it
+const FieldTypes = {};
+FieldTypes.types = types;
+
 function formatNumber({ number, locale, options = {} }) {
   return Intl.NumberFormat(locale, options).format(number);
 }
@@ -65,7 +70,7 @@ Numeric.propTypes = {
   /**
    * Text alignment for the number default is right
    */
-  align: PropTypes.oneOf([types.align.LEFT, types.align.RIGHT, types.align.CENTER]),
+  align: PropTypes.oneOf([FieldTypes.types.align.LEFT, FieldTypes.types.align.RIGHT, FieldTypes.types.align.CENTER]),
   /**
    * The window.Intl.numberFormat option object https://mzl.la/3iW0ioQ
    */
@@ -85,7 +90,7 @@ Numeric.propTypes = {
 };
 
 Numeric.defaultProps = {
-  align: types.align.RIGHT,
+  align: FieldTypes.types.align.RIGHT,
   color: null,
   currency: null,
   displayOnlyDecimals: true,
