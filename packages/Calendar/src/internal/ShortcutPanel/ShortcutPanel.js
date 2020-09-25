@@ -1,6 +1,8 @@
 import React from "react";
 import PropTypes from "prop-types";
 import moment from "moment";
+
+import "../../polyfills";
 import { nanoid } from "nanoid";
 
 import ArrowLeft from "@paprika/icon/lib/ArrowLeft";
