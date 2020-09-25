@@ -1,7 +1,7 @@
 {
   "name": "@paprika/field-types",
   "version": "0.0.0",
-  "description": "TableFieldTypes is a set of components that help the Table and DataGrid to enhance the cell property",
+  "description": "Field Types package is a set of components that help the Table and DataGrid to enhance the cell property to display different value in a ease manner",
   "author": "@paprika",
   "license": "MIT",
   "main": "lib/index.js",
@@ -19,6 +19,8 @@
     "@paprika/button": "^0.3.11",
     "@paprika/constants": "^0.1.1",
     "@paprika/data-grid": "^0.3.20",
+    "@paprika/icon": "^0.3.9",
+    "@paprika/popover": "^0.3.33",
     "@paprika/tokens": "^0.1.16",
     "prop-types": "^15.7.2"
   },

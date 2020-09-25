@@ -1,6 +1,7 @@
 import { Meta } from "@storybook/addon-docs/blocks";
 import { getStoryName } from "storybook/storyTree";
 import Readme from "../README.md";
+import { Simple, TableWithLocale, TableWithLocaleAlignLeft } from "./FiledTypes.examples.mdx";
 
 export const params = {
   options: {
@@ -13,7 +14,7 @@ export const params = {
 
 #FieldTypes
 
-FieldTypes component helps during your [Table](https://github.com/acl-services/paprika/tree/master/packages/Table) or [DataGrid](https://github.com/acl-services/paprika/tree/master/packages/DataGrid) implementation providing you with small components that encapsulate specific stylings that adapts to our Design System.
+FieldTypes component helps during your [Table](https://github.com/acl-services/paprika/tree/master/packages/Table) or [DataGrid](https://github.com/acl-services/paprika/tree/master/packages/DataGrid) implementation providing you with small components that encapsulate specific stylings for specific types that adapts to our Design System.
 
 ## Uses
 
@@ -26,34 +27,20 @@ import FieldTypes from "@paprika/field-types";
 You can make use of different Fields in the following way:
 
 ```js
-
 /**
  *  The following applies either for the <Table /> or <DataGrid /> component
  */
 
 import FieldTypes from "@paprika/field-types";
-import Table from "@paprika/table";
 
 function App() {
-  const [data] = React.useState(() => {
-    return [
-      {name "Abbeline Doe", income: 150000, taxes: 2500 }
-      {name "Alivia Smith", income: 80000, taxes: 1500 }
-      {name "Aniya Johanson", income: 75000, taxes: 1420 }
-    ]
-  })
-
-  return (
-    <Table data={data}>
-      <Table.ColumnDefinition header="Name" cell="name" />
-      <Table.ColumnDefinition header="Income" cell={({ row }) => (
-        <FieldTypes.Number textAlign={FieldTypes.types.align.RIGHT} value={row.income} />
-      )} />
-      <Table.ColumnDefinition header="Taxes" cell="taxes" />
-    </Table>
-  );
+  return <FieldTypes.Numeric align={FieldTypes.types.align.LEFT} currency="USD" cell={1240} />;
 }
 ```
+
+### Results
+
+<Simple />
 
 ## Localization
 
@@ -68,39 +55,64 @@ try to localize the fields inside the table or the data grid. To `set` up a loca
 
 import FieldTypes from "@paprika/field-types";
 import Table from "@paprika/table";
-import L10n from "@paprika/l10n";
 
 function App() {
-  const [data] = React.useState(() => {
-    return [
-      {name "Abbeline Doe", income: 150000, taxes: 2500 }
-      {name "Alivia Smith", income: 80000, taxes: 1500 }
-      {name "Aniya Johanson", income: 75000, taxes: 1420 }
-    ]
-  })
-
+  const data = [...] // some data
   return (
     <L10n locale="fr">
       <Table data={data}>
-        <Table.ColumnDefinition header="Name" cell="name" />
-        <Table.ColumnDefinition header="Income" cell={
-          ({ row }) => {
-            return (
-              <FieldTypes align="right">
-                <FieldTypes.Number>{row.income}<FieldTypes.Number>
-              </FieldTypes>
-            );
-          }} />
-        <Table.ColumnDefinition header="Taxes" cell={
-          ({ row }) => {
-            return (
-              <FieldTypes align="right">
-                <FieldTypes.Number>{row.taxes}<FieldTypes.Number>
-              </FieldTypes>
-            );
-          }} />
+        <Table.ColumnDefinition header="Project" cell="name" />
+        <Table.ColumnDefinition header="Income" cell={({ row }) => <FieldTypes.Numeric cell={row.income} />} />
+        <Table.ColumnDefinition header="Taxes" cell={({ row }) => <FieldTypes.Numeric cell={row.taxes} />} />
+        <Table.ColumnDefinition
+          header="Revenue"
+          cell={({ row }) => (
+            <a href="http://wegalvanize.com">
+              <FieldTypes.Numeric cell={Number(row.income - row.taxes)} />
+            </a>
+          )}
+        />
       </Table>
     </L10n>
   );
 }
 ```
+
+### Result
+
+<TableWithLocale />
+
+## Numeric Field Type
+
+### Alignment
+
+The `<FieldTypes.Numeric />` by default has a right alignment `(align-items: flex-end)`, you can modify this using the `align` prop and one of their opitons like
+`FieldTypes.types.align.LEFT`
+
+```js
+<L10n locale="de">
+  <Table data={data}>
+    <Table.ColumnDefinition header="Project" cell="name" />
+    <Table.ColumnDefinition
+      header="Income"
+      cell={({ row }) => <FieldTypes.Numeric align={FieldTypes.types.align.LEFT} cell={row.income} />}
+    />
+    <Table.ColumnDefinition
+      header="Taxes"
+      cell={({ row }) => <FieldTypes.Numeric align={FieldTypes.types.align.LEFT} cell={row.taxes} />}
+    />
+    <Table.ColumnDefinition
+      header="Revenue"
+      cell={({ row }) => (
+        <a href="http://wegalvanize.com">
+          <FieldTypes.Numeric align={FieldTypes.types.align.LEFT} cell={Number(row.income - row.taxes)} />
+        </a>
+      )}
+    />
+  </Table>
+</L10n>
+```
+
+### Result
+
+<TableWithLocaleAlignLeft />

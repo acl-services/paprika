@@ -1,5 +1,6 @@
 import PropTypes from "prop-types";
 import Numeric from "./components/Numeric";
+import Container from "./components/Container";
 import types from "./types";
 
 export default function FieldTypes(props) {
@@ -13,4 +14,4 @@ FieldTypes.propTypes = {
 };
 
 FieldTypes.Numeric = Numeric;
-FieldTypes.Numeric.attributes = Numeric.attributes;
+FieldTypes.Container = Container;

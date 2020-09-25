@@ -7,12 +7,12 @@ const alignStr = {
   center: "center",
 };
 
-export const Container = styled.div(({ $align = "left" }) => {
+export const Container = styled.span(({ $align = "left", $color }) => {
   return css`
+    ${$color ? `color: ${$color}` : ""};
     align-items: center;
     box-sizing: border-box;
     display: flex;
-    font-family: "IBM Plex Mono", monospace;
     height: 100%;
     justify-content: ${$align in alignStr ? alignStr[$align] : "flex-start"};
     padding: ${tokens.space};

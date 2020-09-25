@@ -8,13 +8,27 @@ function formatNumber({ number, locale, options = {} }) {
   return Intl.NumberFormat(locale, options).format(number);
 }
 
+export function withDecimalSeparatorOnly({ number, locale }) {
+  return new Intl.NumberFormat(locale, {
+    useGrouping: true,
+  })
+    .formatToParts(number)
+    .filter(chunk => chunk.type !== "group")
+    .map(chunk => chunk.value)
+    .join("");
+}
+
 export default function Numeric(props) {
-  const { align, cell, currency: currencySymbol, intl, ...moreProps } = props;
+  const { align, cell, currency: currencySymbol, intl, color, displayOnlyDecimals, ...moreProps } = props;
   const number = Number(cell);
   const i18n = useI18n();
 
   if (Number.isNaN(number)) {
     console.warn(`string|number ${cell} is Not a Number`);
+  }
+
+  if (displayOnlyDecimals) {
+    withDecimalSeparatorOnly({ number, locale: i18n.locale });
   }
 
   const currency = currencySymbol ? { style: "currency", currency: currencySymbol } : {};
@@ -23,7 +37,7 @@ export default function Numeric(props) {
     "Intl" in window ? formatNumber({ number, locale: i18n.locale, options: { ...currency, ...intl } }) : cell;
 
   return (
-    <Container align={align} {...moreProps} data-pka-anchor="data-fields-numeric">
+    <Container align={align} color={color} {...moreProps} data-pka-anchor="data-fields-numeric">
       {typeof cell === "function" ? cell(i18nNumber) : i18nNumber}
     </Container>
   );
@@ -47,10 +61,20 @@ Numeric.propTypes = {
    * This can also be achieved using the intl prop, which it's use internally to make this prop works.
    */
   currency: PropTypes.string,
+  /**
+   * Add a color to the number, accept any kind of html color #F60, rgba(100,100,100, 0.5), etc.
+   */
+  color: PropTypes.string,
+  /**
+   * Controls if the number should be display with full delimiter or only the decimal separators
+   */
+  displayOnlyDecimals: PropTypes.bool,
 };
 
 Numeric.defaultProps = {
   align: types.align.RIGHT,
-  intl: {},
+  color: null,
   currency: null,
+  displayOnlyDecimals: true,
+  intl: {},
 };

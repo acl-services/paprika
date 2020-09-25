@@ -2396,6 +2396,13 @@
   dependencies:
     "@types/node" ">= 8"
 
+"@paprika/constants@^0.1.2":
+  version "0.1.2"
+  resolved "https://registry.yarnpkg.com/@paprika/constants/-/constants-0.1.2.tgz#828fca8e1112bf9038a20ca2bad860f896763ef5"
+  integrity sha512-lg1F/vkcQRa379cndIZRt7P15IOdTp/LaC5ZWvGPQ9Q2DFUYl3Kk3cYz5TwyhrZti/X69LJxVaYMvwcysGdVQw==
+  dependencies:
+    "@babel/runtime-corejs2" "^7.3.1"
+
 "@paprika/helpers@^0.1.2":
   version "0.1.3"
   resolved "https://registry.yarnpkg.com/@paprika/helpers/-/helpers-0.1.3.tgz#2606180f2e5df0316e37442930dba5f016aa8697"
@@ -2411,12 +2418,64 @@
     "@svgr/cli" "^4.1.0"
     prop-types "^15.7.2"
 
+"@paprika/icon@^0.3.9":
+  version "0.3.9"
+  resolved "https://registry.yarnpkg.com/@paprika/icon/-/icon-0.3.9.tgz#47a1da1ac78497d71ec42202db29157550860029"
+  integrity sha512-ZbgJQbmDr6ty9OZW8/3sno0Iqu9T5aY92GUCnZKzHOrxcZhO8p43OTZH8rOgaSnPHPOjzL5cYjeLhBWe9Nm13A==
+  dependencies:
+    "@babel/runtime-corejs2" "^7.3.1"
+    "@paprika/tokens" "^0.1.17"
+    "@svgr/cli" "^4.1.0"
+    prop-types "^15.7.2"
+
+"@paprika/popover@^0.3.33":
+  version "0.3.33"
+  resolved "https://registry.yarnpkg.com/@paprika/popover/-/popover-0.3.33.tgz#c2c6c578107ddbf7bc48567daa5d0ce93da06810"
+  integrity sha512-yM3gQ/2+4lUuv66ymEu5qFu5e68pWwylG+iG1hpvD04LD+n1uWZO+Ih08kNicu3OpesOyUgUA2Gminwp2QKh3g==
+  dependencies:
+    "@babel/runtime-corejs2" "^7.3.1"
+    "@paprika/constants" "^0.1.2"
+    "@paprika/helpers" "^0.2.13"
+    "@paprika/raw-button" "^0.2.20"
+    "@paprika/stylers" "^0.2.11"
+    "@paprika/tokens" "^0.1.17"
+    lodash.throttle "^4.1.1"
+    memoize-one "^5.0.0"
+    prop-types "^15.7.2"
+    uuid "^3.3.2"
+
+"@paprika/raw-button@^0.2.20":
+  version "0.2.20"
+  resolved "https://registry.yarnpkg.com/@paprika/raw-button/-/raw-button-0.2.20.tgz#20d9e6f1dee90efa5765da393fbe263dc32ebad1"
+  integrity sha512-gHsQCgxBruSfPt5b2lS12LI63O+D/7BypLSpcsAxsDq7xP6qFQHXoC+ZHfMjoCZKj6Ow0dEf1y3Qjvu2YBmhVg==
+  dependencies:
+    "@babel/runtime-corejs2" "^7.3.1"
+    "@paprika/stylers" "^0.2.11"
+    "@paprika/tokens" "^0.1.17"
+    prop-types "^15.7.2"
+    what-input "^5.2.6"
+
 "@paprika/stylers@^0.1.5":
   version "0.1.7"
   resolved "https://registry.yarnpkg.com/@paprika/stylers/-/stylers-0.1.7.tgz#ae3328853fea2c463af070bdeafdec9ac34d3d9c"
   integrity sha512-cfCvRbqEBVUIjamaGr8ykoJ9wkfnjkWwQzWwQAit8ySf3Vt+HbpGBOTsBx+Z3GESbHUxim0sN5o6Iwso6sgnDg==
   dependencies:
     "@paprika/tokens" "^0.1.6"
+
+"@paprika/stylers@^0.2.11":
+  version "0.2.11"
+  resolved "https://registry.yarnpkg.com/@paprika/stylers/-/stylers-0.2.11.tgz#334d0115949160bf84195ed9ea0f75ce1d50e0fb"
+  integrity sha512-fytqeGby6BH/Ewa4vHxjnt1k7Aj9UM1t74BXrtFrQRUahtSKvbmylcIzDenNZHLRU3pfc+WW7Pg7db5gFdcOCg==
+  dependencies:
+    "@paprika/tokens" "^0.1.17"
+
+"@paprika/tokens@^0.1.17":
+  version "0.1.17"
+  resolved "https://registry.yarnpkg.com/@paprika/tokens/-/tokens-0.1.17.tgz#8f34b62d1a6ceb63fc035ed96cb5a9adf4b88fff"
+  integrity sha512-6E2BJZmV876HfFPv21u8XLoCZk4W+yWtKARdJ3sT7Si9KYh3A5dFowBM/Y/pW8qjP+neGPAnN0Y++Uer5I96Vg==
+  dependencies:
+    "@babel/runtime-corejs2" "^7.3.1"
+    prop-types "^15.7.2"
 
 "@reach/router@^1.3.3":
   version "1.3.3"
