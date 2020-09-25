@@ -1,6 +1,6 @@
 {
   "name": "@paprika/counter",
-  "version": "0.2.22",
+  "version": "0.2.23",
   "description": "The Counter component is a decorative element that usually displays the count of a specific object.",
   "author": "@paprika",
   "license": "MIT",
@@ -16,7 +16,7 @@
   },
   "dependencies": {
     "@babel/runtime-corejs2": "^7.3.1",
-    "@paprika/constants": "^0.1.2",
+    "@paprika/constants": "^0.1.3",
     "@paprika/helpers": "^0.2.13",
     "@paprika/stylers": "^0.2.11",
     "@paprika/tokens": "^0.1.17",
