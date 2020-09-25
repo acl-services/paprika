@@ -116,6 +116,7 @@ zh:
         label: 排列列
         singular_label: 隐藏 1 列
         plural_label: "隐藏 {{numberOfHiddenColumn}} 列"
+        search_placeholder: 筛选…
       no_results: 没有结果
       filter:
         no_filters_applied: 没有过滤器应用于此视图
@@ -145,7 +146,8 @@ zh:
           is_after: 晚于
           true: "真"
           false: "假"
-      search_placeholder: 筛选…
+      search_placeholder: 搜索…
+      search_a11y_text: 搜索数据
       sort:
         no_sorts_applied: 没有排序应用于此视图
         label: 排序
