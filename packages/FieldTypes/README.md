@@ -46,7 +46,7 @@ FieldTypes component helps during your [Table](https://github.com/acl-services/p
 
 ## Uses
 
-Once the component its imported:
+Once the component is imported:
 
 ```js
 import FieldTypes from "@paprika/field-types";
@@ -62,7 +62,7 @@ You can make use of different Fields in the following way:
 import FieldTypes from "@paprika/field-types";
 
 function App() {
-  return <FieldTypes.Numeric align={FieldTypes.types.align.LEFT} currency="USD" cell={1240} />;
+  return <FieldTypes.Numeric align={FieldTypes.types.align.LEFT} currency="USD" number={1240} />;
 }
 ```
 
