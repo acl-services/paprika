@@ -1,9 +1,9 @@
 import React from "react";
 import PropTypes from "prop-types";
 import * as constants from "@paprika/constants/lib/Constants";
-import CheckIcon from "@paprika/icon/lib/Check";
 import "@paprika/helpers/lib/dom/nanoIdPolyfill";
 import nanoid from "nanoid";
+import CheckIcon from "@paprika/icon/lib/Check";
 import * as sc from "./Radio.styles";
 import Group from "./components/Group";
 
