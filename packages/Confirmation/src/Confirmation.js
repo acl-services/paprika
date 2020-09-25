@@ -1,5 +1,6 @@
 import React from "react";
 import PropTypes from "prop-types";
+import "@paprika/helpers/lib/dom/nanoIdPolyfill";
 import nanoid from "nanoid";
 import * as constants from "@paprika/constants/lib/Constants";
 import Button from "@paprika/button";

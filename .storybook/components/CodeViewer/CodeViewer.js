@@ -2,7 +2,7 @@ import React from "react";
 import ReactDOM from "react-dom";
 import PropTypes from "prop-types";
 
-import "./polyfills";
+import "@paprika/helpers/lib/dom/nanoIdPolyfill";
 import { nanoid } from "nanoid";
 import { Prism as SyntaxHighlighter } from "react-syntax-highlighter";
 import { tomorrow as syntaxTheme } from "react-syntax-highlighter/dist/esm/styles/prism";

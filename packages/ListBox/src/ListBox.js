@@ -13,6 +13,7 @@ import useListBox from "./useListBox";
 import { OnChangeContext } from "./store/OnChangeProvider";
 import handleImperative from "./imperative";
 import "@paprika/helpers/lib/dom/elementScrollToPolyfill";
+import "@paprika/helpers/lib/dom/nanoIdPolyfill";
 
 import {
   useAdjustWidth,
