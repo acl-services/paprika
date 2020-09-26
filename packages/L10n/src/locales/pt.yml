@@ -116,6 +116,7 @@ pt:
         label: Organizar colunas
         singular_label: 1 coluna oculta
         plural_label: "{{numberOfHiddenColumn}} colunas ocultas"
+        search_placeholder: Filtrar...
       no_results: Nenhum resultado
       filter:
         no_filters_applied: Nenhum filtro aplicado a esta exibição
@@ -145,7 +146,8 @@ pt:
           is_after: é depois de
           true: "verdadeiro"
           false: "falso"
-      search_placeholder: Filtrar...
+      search_placeholder: Pesquisar...
+      search_a11y_text: Pesquisar os dados
       sort:
         no_sorts_applied: Nenhum filtro aplicado a esta exibição
         label: Ordenar

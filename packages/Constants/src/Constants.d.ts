@@ -3,6 +3,7 @@ export namespace align {
     const RIGHT: string;
     const BOTTOM: string;
     const LEFT: string;
+    const CENTER: string;
 }
 export namespace color {
     const BLACK: string;
