@@ -4,15 +4,15 @@ import Numeric from "./components/Numeric";
 import Container from "./components/Container";
 import types from "./types";
 
-export default function FieldTypes(props) {
+export default function DataField(props) {
   return <>{props.children}</>;
 }
 
-FieldTypes.types = types;
+DataField.types = types;
 
-FieldTypes.propTypes = {
+DataField.propTypes = {
   children: PropTypes.node.isRequired,
 };
 
-FieldTypes.Numeric = Numeric;
-FieldTypes.Container = Container;
+DataField.Numeric = Numeric;
+DataField.Container = Container;

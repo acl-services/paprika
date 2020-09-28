@@ -1,7 +1,7 @@
-export default FieldTypes;
+export default DataField;
 
-declare function FieldTypes(props: FieldTypesProps): JSX.Element;
-interface FieldTypesProps {
+declare function DataField(props: DataFieldProps): JSX.Element;
+interface DataFieldProps {
   [x: string]: any;
 
   children: React.ReactNode;
@@ -12,7 +12,7 @@ interface NumericProps {
   /** The cell value to be localize */
   number: string | number;
   /** Text alignment for the number default is right */
-  align?: FieldTypes.types.align.LEFT | FieldTypes.types.align.RIGHT | FieldTypes.types.align.CENTER;
+  align?: DataField.types.align.LEFT | DataField.types.align.RIGHT | DataField.types.align.CENTER;
   /** The window.Intl.numberFormat option object https://mzl.la/3iW0ioQ */
   intl?: object;
   /** When passing a currency string as 'EUR' or 'JPY' will display the correct currency symbol, is a short version instead of using the intl prop. */

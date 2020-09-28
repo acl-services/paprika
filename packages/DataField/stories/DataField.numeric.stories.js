@@ -7,7 +7,7 @@ import InfoCircle from "@paprika/icon/lib/InfoCircle";
 import tokens from "@paprika/tokens";
 
 import { getStoryName } from "storybook/storyTree";
-import FieldTypes from "../src";
+import DataField from "../src";
 
 export default {
   title: getStoryName("DataField"),
@@ -26,13 +26,13 @@ export const Numeric = () => {
       <h3>US locale</h3>
       <Table data={data}>
         <Table.ColumnDefinition header="Project" cell="name" />
-        <Table.ColumnDefinition header="Income" cell={({ row }) => <FieldTypes.Numeric number={row.income} />} />
-        <Table.ColumnDefinition header="Taxes" cell={({ row }) => <FieldTypes.Numeric number={row.taxes} />} />
+        <Table.ColumnDefinition header="Income" cell={({ row }) => <DataField.Numeric number={row.income} />} />
+        <Table.ColumnDefinition header="Taxes" cell={({ row }) => <DataField.Numeric number={row.taxes} />} />
         <Table.ColumnDefinition
           header="Revenue"
           cell={({ row }) => (
             <a href="http://wegalvanize.com">
-              <FieldTypes.Numeric number={Number(row.income - row.taxes)} />
+              <DataField.Numeric number={Number(row.income - row.taxes)} />
             </a>
           )}
         />
@@ -42,11 +42,11 @@ export const Numeric = () => {
         <h3>French locale</h3>
         <DataGrid data={data}>
           <DataGrid.ColumnDefinition header="Project" cell="name" />
-          <DataGrid.ColumnDefinition header="Income" cell={({ row }) => <FieldTypes.Numeric number={row.income} />} />
-          <DataGrid.ColumnDefinition header="Taxes" cell={({ row }) => <FieldTypes.Numeric number={row.taxes} />} />
+          <DataGrid.ColumnDefinition header="Income" cell={({ row }) => <DataField.Numeric number={row.income} />} />
+          <DataGrid.ColumnDefinition header="Taxes" cell={({ row }) => <DataField.Numeric number={row.taxes} />} />
           <DataGrid.ColumnDefinition
             header="Revenue"
-            cell={({ row }) => <FieldTypes.Numeric number={Number(row.income - row.taxes)} />}
+            cell={({ row }) => <DataField.Numeric number={Number(row.income - row.taxes)} />}
           />
         </DataGrid>
       </L10n>
@@ -54,13 +54,13 @@ export const Numeric = () => {
         <h3>German locale</h3>
         <DataGrid data={data}>
           <DataGrid.ColumnDefinition header="Project" cell="name" />
-          <DataGrid.ColumnDefinition header="Income" cell={({ row }) => <FieldTypes.Numeric number={row.income} />} />
-          <DataGrid.ColumnDefinition header="Taxes" cell={({ row }) => <FieldTypes.Numeric number={row.taxes} />} />
+          <DataGrid.ColumnDefinition header="Income" cell={({ row }) => <DataField.Numeric number={row.income} />} />
+          <DataGrid.ColumnDefinition header="Taxes" cell={({ row }) => <DataField.Numeric number={row.taxes} />} />
           <DataGrid.ColumnDefinition
             header="Revenue"
             cell={({ row }) => (
-              <FieldTypes.Container align="right">
-                <FieldTypes.Numeric color={tokens.textColor.link} number={Number(row.income - row.taxes)} />
+              <DataField.Container align="right">
+                <DataField.Numeric color={tokens.textColor.link} number={Number(row.income - row.taxes)} />
                 <Popover isEager>
                   <Popover.Tip />
                   <Popover.Trigger style={{ display: "flex", alignItems: "center" }}>
@@ -72,7 +72,7 @@ export const Numeric = () => {
                     <Popover.Card>Example info text</Popover.Card>
                   </Popover.Content>
                 </Popover>
-              </FieldTypes.Container>
+              </DataField.Container>
             )}
           />
         </DataGrid>

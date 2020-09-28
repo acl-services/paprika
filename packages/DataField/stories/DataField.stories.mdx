@@ -10,18 +10,18 @@ export const params = {
   },
 };
 
-<Meta title={`${getStoryName("FieldTypes")}/Docs`} parameters={params} />
+<Meta title={`${getStoryName("DataField")}/Docs`} parameters={params} />
 
-#FieldTypes
+#DataField
 
-FieldTypes component helps during your [Table](https://github.com/acl-services/paprika/tree/master/packages/Table) or [DataGrid](https://github.com/acl-services/paprika/tree/master/packages/DataGrid) implementation providing you with small components that encapsulate specific stylings for specific types that adapts to our Design System.
+DataField component helps during your [Table](https://github.com/acl-services/paprika/tree/master/packages/Table) or [DataGrid](https://github.com/acl-services/paprika/tree/master/packages/DataGrid) implementation providing you with small components that encapsulate specific stylings for specific types that adapts to our Design System.
 
 ## Uses
 
 Once the component its imported:
 
 ```js
-import FieldTypes from "@paprika/field-types";
+import DataField from "@paprika/field-types";
 ```
 
 You can make use of different Fields in the following way:
@@ -31,10 +31,10 @@ You can make use of different Fields in the following way:
  *  The following applies either for the <Table /> or <DataGrid /> component
  */
 
-import FieldTypes from "@paprika/field-types";
+import DataField from "@paprika/field-types";
 
 function App() {
-  return <FieldTypes.Numeric align={FieldTypes.types.align.LEFT} currency="USD" number={1240} />;
+  return <DataField.Numeric align={DataField.types.align.LEFT} currency="USD" number={1240} />;
 }
 ```
 
@@ -44,7 +44,7 @@ function App() {
 
 ## Localization
 
-Whenever the [window.Intl](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Intl) object is present on the browser, the FieldTypes will
+Whenever the [window.Intl](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Intl) object is present on the browser, the DataField will
 try to localize the fields inside the table or the data grid. To `set` up a locale you can use the `L10n` component.
 
 ```js
@@ -53,7 +53,7 @@ try to localize the fields inside the table or the data grid. To `set` up a loca
  *  The following applies either for the <Table /> or <DataGrid /> component
  */
 
-import FieldTypes from "@paprika/field-types";
+import DataField from "@paprika/field-types";
 import Table from "@paprika/table";
 
 function App() {
@@ -62,13 +62,13 @@ function App() {
     <L10n locale="fr">
       <Table data={data}>
         <Table.ColumnDefinition header="Project" cell="name" />
-        <Table.ColumnDefinition header="Income" cell={({ row }) => <FieldTypes.Numeric cell={row.income} />} />
-        <Table.ColumnDefinition header="Taxes" cell={({ row }) => <FieldTypes.Numeric cell={row.taxes} />} />
+        <Table.ColumnDefinition header="Income" cell={({ row }) => <DataField.Numeric cell={row.income} />} />
+        <Table.ColumnDefinition header="Taxes" cell={({ row }) => <DataField.Numeric cell={row.taxes} />} />
         <Table.ColumnDefinition
           header="Revenue"
           cell={({ row }) => (
             <a href="http://wegalvanize.com">
-              <FieldTypes.Numeric cell={Number(row.income - row.taxes)} />
+              <DataField.Numeric cell={Number(row.income - row.taxes)} />
             </a>
           )}
         />
@@ -86,8 +86,8 @@ function App() {
 
 ### Alignment
 
-The `<FieldTypes.Numeric />` by default has a right alignment `(align-items: flex-end)`, you can modify this using the `align` prop and one of their opitons like
-`FieldTypes.types.align.LEFT`
+The `<DataField.Numeric />` by default has a right alignment `(align-items: flex-end)`, you can modify this using the `align` prop and one of their opitons like
+`DataField.types.align.LEFT`
 
 ```js
 <L10n locale="de">
@@ -95,17 +95,17 @@ The `<FieldTypes.Numeric />` by default has a right alignment `(align-items: fle
     <Table.ColumnDefinition header="Project" cell="name" />
     <Table.ColumnDefinition
       header="Income"
-      cell={({ row }) => <FieldTypes.Numeric align={FieldTypes.types.align.LEFT} cell={row.income} />}
+      cell={({ row }) => <DataField.Numeric align={DataField.types.align.LEFT} cell={row.income} />}
     />
     <Table.ColumnDefinition
       header="Taxes"
-      cell={({ row }) => <FieldTypes.Numeric align={FieldTypes.types.align.LEFT} cell={row.taxes} />}
+      cell={({ row }) => <DataField.Numeric align={DataField.types.align.LEFT} cell={row.taxes} />}
     />
     <Table.ColumnDefinition
       header="Revenue"
       cell={({ row }) => (
         <a href="http://wegalvanize.com">
-          <FieldTypes.Numeric align={FieldTypes.types.align.LEFT} cell={Number(row.income - row.taxes)} />
+          <DataField.Numeric align={DataField.types.align.LEFT} cell={Number(row.income - row.taxes)} />
         </a>
       )}
     />

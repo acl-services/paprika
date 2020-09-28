@@ -6,8 +6,8 @@ import types from "../../types";
 
 // This let mimic the use of Field.types.align.LEFT in documentation and d.ts files
 // not other reason to have it
-const FieldTypes = {};
-FieldTypes.types = types;
+const DataField = {};
+DataField.types = types;
 
 function formatNumber({ number, locale, options = {} }) {
   return Intl.NumberFormat(locale, options).format(number);
@@ -70,7 +70,7 @@ Numeric.propTypes = {
   /**
    * Text alignment for the number default is right
    */
-  align: PropTypes.oneOf([FieldTypes.types.align.LEFT, FieldTypes.types.align.RIGHT, FieldTypes.types.align.CENTER]),
+  align: PropTypes.oneOf([DataField.types.align.LEFT, DataField.types.align.RIGHT, DataField.types.align.CENTER]),
   /**
    * The window.Intl.numberFormat option object https://mzl.la/3iW0ioQ
    */
@@ -90,7 +90,7 @@ Numeric.propTypes = {
 };
 
 Numeric.defaultProps = {
-  align: FieldTypes.types.align.RIGHT,
+  align: DataField.types.align.RIGHT,
   color: null,
   currency: null,
   displayOnlyDecimals: true,

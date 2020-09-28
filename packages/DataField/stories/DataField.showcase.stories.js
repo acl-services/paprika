@@ -3,7 +3,7 @@ import L10n from "@paprika/l10n";
 
 import { getStoryName } from "storybook/storyTree";
 import styled, { css } from "styled-components";
-import FieldTypes from "../src";
+import DataField from "../src";
 
 export default {
   title: getStoryName("DataField"),
@@ -24,7 +24,7 @@ export const Showcase = () => {
       <h3>German locale with US currency</h3>
       <L10n locale="de">
         <Container>
-          <FieldTypes.Numeric align={FieldTypes.types.align.LEFT} currency="USD" number={1240} />
+          <DataField.Numeric align={DataField.types.align.LEFT} currency="USD" number={1240} />
         </Container>
       </L10n>
     </div>
