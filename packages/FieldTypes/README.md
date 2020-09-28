@@ -4,7 +4,7 @@
 
 ## Description
 
-Field Types package is a set of components that help the Table and DataGrid to enhance the cell property to display different value in a ease manner
+Field Types package is a set of components that help the Table and DataGrid to enhance the cell property to display different values in an easy manner
 
 ## Installation
 
