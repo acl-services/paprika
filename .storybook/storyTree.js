@@ -16,7 +16,7 @@ const storyTree = [
       "ActionBar",
       "DataGrid",
       "Table",
-      "FieldTypes"
+      "DataField"
     ],
   },
   {

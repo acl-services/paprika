@@ -1,5 +1,5 @@
 {
-  "name": "@paprika/field-types",
+  "name": "@paprika/data-field",
   "version": "0.1.0",
   "description": "Field Types package is a set of components that help the Table and DataGrid to enhance the cell property to display different value in a ease manner",
   "author": "@paprika",
@@ -9,7 +9,7 @@
   "repository": {
     "type": "git",
     "url": "https://github.com/acl-services/paprika.git",
-    "directory": "packages/FieldTypes"
+    "directory": "packages/DataField"
   },
   "publishConfig": {
     "access": "public"

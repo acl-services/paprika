@@ -6,7 +6,7 @@ import styled, { css } from "styled-components";
 import FieldTypes from "../src";
 
 export default {
-  title: getStoryName("FieldTypes"),
+  title: getStoryName("DataField"),
 };
 
 const Container = styled.div(() => {

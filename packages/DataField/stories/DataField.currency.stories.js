@@ -7,7 +7,7 @@ import { getStoryName } from "storybook/storyTree";
 import FieldTypes from "../src";
 
 export default {
-  title: getStoryName("FieldTypes"),
+  title: getStoryName("DataField"),
 };
 
 const data = [
