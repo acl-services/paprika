@@ -1,0 +1,38 @@
+{
+  "name": "@paprika/data-field",
+  "version": "0.1.1",
+  "description": "Field Types package is a set of components that help the Table and DataGrid to enhance the cell property to display different value in a ease manner",
+  "author": "@paprika",
+  "license": "MIT",
+  "main": "lib/index.js",
+  "types": "lib/index.d.ts",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/acl-services/paprika.git",
+    "directory": "packages/DataField"
+  },
+  "publishConfig": {
+    "access": "public"
+  },
+  "dependencies": {
+    "@babel/runtime-corejs2": "^7.3.1",
+    "@paprika/button": "^0.3.11",
+    "@paprika/constants": "^0.1.3",
+    "@paprika/data-grid": "^0.3.20",
+    "@paprika/icon": "^0.3.9",
+    "@paprika/popover": "^0.3.33",
+    "@paprika/tokens": "^0.1.16",
+    "prop-types": "^15.7.2"
+  },
+  "peerDependencies": {
+    "@paprika/l10n": "^0.4.9",
+    "react": "^16.8.4",
+    "react-dom": "^16.8.4",
+    "styled-components": "^4.2.0"
+  },
+  "paprikaDocs": {
+    "subComponents": [
+      "Numeric"
+    ]
+  }
+}
