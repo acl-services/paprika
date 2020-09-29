@@ -57,7 +57,7 @@ export default function Numeric(props) {
   }
 
   return (
-    <Container align={align} color={color} {...moreProps} data-pka-anchor="data-fields-numeric">
+    <Container align={align} color={color} {...moreProps} data-pka-anchor="data-field.numeric">
       {typeof cell === "function" ? propValue(i18nNumber) : i18nNumber}
     </Container>
   );
