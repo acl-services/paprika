@@ -142,7 +142,7 @@ But you can activate this feature to display multiple options using the `<ListBo
 
 ```jsx
 <ListboxBrowser data={data}>
-   <ListBoxBrowser.SelectedOptions />
+  <ListBoxBrowser.SelectedOptions />
 </ListBoxBrowser>
 ```
 

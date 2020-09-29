@@ -22,7 +22,7 @@ const data = [
 export function Simple() {
   return (
     <SimpleContainer>
-      <DataField.Numeric align={DataField.types.align.LEFT} currency="USD" number={1240} />
+      <DataField.Numeric align={DataField.types.align.LEFT} currency="USD" value={1240} />
     </SimpleContainer>
   );
 }
@@ -32,13 +32,13 @@ export function TableWithLocale() {
     <L10n locale="fr">
       <Table data={data}>
         <Table.ColumnDefinition header="Project" cell="name" />
-        <Table.ColumnDefinition header="Income" cell={({ row }) => <DataField.Numeric number={row.income} />} />
-        <Table.ColumnDefinition header="Taxes" cell={({ row }) => <DataField.Numeric number={row.taxes} />} />
+        <Table.ColumnDefinition header="Income" cell={({ row }) => <DataField.Numeric value={row.income} />} />
+        <Table.ColumnDefinition header="Taxes" cell={({ row }) => <DataField.Numeric value={row.taxes} />} />
         <Table.ColumnDefinition
           header="Revenue"
           cell={({ row }) => (
             <a href="http://wegalvanize.com">
-              <DataField.Numeric number={Number(row.income - row.taxes)} />
+              <DataField.Numeric value={Number(row.income - row.taxes)} />
             </a>
           )}
         />
@@ -54,17 +54,17 @@ export function TableWithLocaleAlignLeft() {
         <Table.ColumnDefinition header="Project" cell="name" />
         <Table.ColumnDefinition
           header="Income"
-          cell={({ row }) => <DataField.Numeric align={DataField.types.align.LEFT} number={row.income} />}
+          cell={({ row }) => <DataField.Numeric align={DataField.types.align.LEFT} value={row.income} />}
         />
         <Table.ColumnDefinition
           header="Taxes"
-          cell={({ row }) => <DataField.Numeric align={DataField.types.align.LEFT} number={row.taxes} />}
+          cell={({ row }) => <DataField.Numeric align={DataField.types.align.LEFT} value={row.taxes} />}
         />
         <Table.ColumnDefinition
           header="Revenue"
           cell={({ row }) => (
             <a href="http://wegalvanize.com">
-              <DataField.Numeric align={DataField.types.align.LEFT} number={Number(row.income - row.taxes)} />
+              <DataField.Numeric align={DataField.types.align.LEFT} value={Number(row.income - row.taxes)} />
             </a>
           )}
         />

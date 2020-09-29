@@ -9,8 +9,8 @@ interface DataFieldProps {
 declare function Numeric(props: NumericProps): JSX.Element;
 interface NumericProps {
   [x: string]: any;
-  /** The cell value to be localize */
-  number: string | number;
+  /** The value to be localize */
+  value: string | number;
   /** Text alignment for the number default is right */
   align?: DataField.types.align.LEFT | DataField.types.align.RIGHT | DataField.types.align.CENTER;
   /** The window.Intl.numberFormat option object https://mzl.la/3iW0ioQ */

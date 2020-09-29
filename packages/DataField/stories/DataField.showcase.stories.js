@@ -24,7 +24,7 @@ export const Showcase = () => {
       <h3>German locale with US currency</h3>
       <L10n locale="de">
         <Container>
-          <DataField.Numeric align={DataField.types.align.LEFT} currency="USD" number={1240} />
+          <DataField.Numeric align={DataField.types.align.LEFT} currency="USD" value={1240} />
         </Container>
       </L10n>
     </div>

@@ -25,12 +25,13 @@ export function withDecimalSeparatorOnly({ number, locale, options = {} }) {
 }
 
 export default function Numeric(props) {
-  const { align, number: propNumber, currency: currencySymbol, intl, color, displayOnlyDecimals, ...moreProps } = props;
-  const number = Number(propNumber);
+  const { align, value: propValue, currency: currencySymbol, intl, color, displayOnlyDecimals, ...moreProps } = props;
+
+  const number = Number(propValue);
   const i18n = useI18n();
 
   if (Number.isNaN(number)) {
-    console.warn(`string|number ${propNumber} is Not a Number`);
+    console.warn(`string|number ${propValue} is Not a Number`);
   }
 
   const currency = currencySymbol ? { style: "currency", currency: currencySymbol } : {};
@@ -40,7 +41,7 @@ export default function Numeric(props) {
   const i18nNumber =
     "Intl" in window
       ? formatNumber({ number, locale: i18n.locale, options: { ...currency, ...decimalNumbers, ...intl } })
-      : propNumber;
+      : propValue;
 
   if (displayOnlyDecimals) {
     const numberWithDecimalsOnly = withDecimalSeparatorOnly({
@@ -50,23 +51,23 @@ export default function Numeric(props) {
     });
     return (
       <Container align={align} color={color} {...moreProps} data-pka-anchor="data-fields-numeric">
-        {typeof cell === "function" ? propNumber(numberWithDecimalsOnly) : numberWithDecimalsOnly}
+        {typeof cell === "function" ? propValue(numberWithDecimalsOnly) : numberWithDecimalsOnly}
       </Container>
     );
   }
 
   return (
     <Container align={align} color={color} {...moreProps} data-pka-anchor="data-fields-numeric">
-      {typeof cell === "function" ? propNumber(i18nNumber) : i18nNumber}
+      {typeof cell === "function" ? propValue(i18nNumber) : i18nNumber}
     </Container>
   );
 }
 
 Numeric.propTypes = {
   /**
-   * The cell value to be localize
+   * The value to be localize
    */
-  number: PropTypes.oneOfType([PropTypes.string, PropTypes.number]).isRequired,
+  value: PropTypes.oneOfType([PropTypes.string, PropTypes.number]).isRequired,
   /**
    * Text alignment for the number default is right
    */
@@ -96,3 +97,5 @@ Numeric.defaultProps = {
   displayOnlyDecimals: true,
   intl: {},
 };
+
+console.log("Numeric.js>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>", Numeric);

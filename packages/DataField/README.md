@@ -30,7 +30,7 @@ npm install @paprika/data-field
 
 | Prop                | Type                                                                                     | required | default                     | Description                                                                                                                                   |
 | ------------------- | ---------------------------------------------------------------------------------------- | -------- | --------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------- |
-| number              | [string,number]                                                                          | true     | -                           | The cell value to be localize                                                                                                                 |
+| value               | [string,number]                                                                          | true     | -                           | The value to be localize                                                                                                                      |
 | align               | [ DataField.types.align.LEFT, DataField.types.align.RIGHT, DataField.types.align.CENTER] | false    | DataField.types.align.RIGHT | Text alignment for the number default is right                                                                                                |
 | intl                | object                                                                                   | false    | {}                          | The window.Intl.numberFormat option object https://mzl.la/3iW0ioQ                                                                             |
 | currency            | string                                                                                   | false    | null                        | When passing a currency string as 'EUR' or 'JPY' will display the correct currency symbol, is a short version instead of using the intl prop. |
@@ -66,8 +66,6 @@ function App() {
   return <DataField.Numeric align={DataField.types.align.LEFT} currency="USD" number={1240} />;
 }
 ```
-
-<!-- eoContent -->
 
 <!-- eoContent -->
 

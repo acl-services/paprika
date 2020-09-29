@@ -9,7 +9,6 @@ export default function DataField(props) {
 }
 
 DataField.types = types;
-
 DataField.propTypes = {
   children: PropTypes.node.isRequired,
 };

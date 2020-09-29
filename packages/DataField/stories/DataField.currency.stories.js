@@ -4,6 +4,7 @@ import DataGrid from "@paprika/data-grid";
 import L10n from "@paprika/l10n";
 
 import { getStoryName } from "storybook/storyTree";
+
 import DataField from "../src";
 
 export default {
@@ -25,15 +26,15 @@ export const Currency = () => {
         <Table.ColumnDefinition header="Project" cell="name" />
         <Table.ColumnDefinition
           header="Income"
-          cell={({ row }) => <DataField.Numeric currency="USD" number={row.income} />}
+          cell={({ row }) => <DataField.Numeric currency="USD" value={row.income} />}
         />
         <Table.ColumnDefinition
           header="Taxes"
-          cell={({ row }) => <DataField.Numeric currency="USD" number={row.taxes} />}
+          cell={({ row }) => <DataField.Numeric currency="USD" value={row.taxes} />}
         />
         <Table.ColumnDefinition
           header="Revenue"
-          cell={({ row }) => <DataField.Numeric currency="USD" number={Number(row.income - row.taxes)} />}
+          cell={({ row }) => <DataField.Numeric currency="USD" value={Number(row.income - row.taxes)} />}
         />
       </Table>
       <h2>DataGrid</h2>
@@ -43,17 +44,17 @@ export const Currency = () => {
           <DataGrid.ColumnDefinition header="Project" cell="name" />
           <DataGrid.ColumnDefinition
             header="Income"
-            cell={({ row }) => <DataField.Numeric currency="JPY" number={row.income} />}
+            cell={({ row }) => <DataField.Numeric currency="JPY" value={row.income} />}
           />
           <DataGrid.ColumnDefinition
             header="Taxes"
-            cell={({ row }) => <DataField.Numeric currency="JPY" number={row.taxes} />}
+            cell={({ row }) => <DataField.Numeric currency="JPY" value={row.taxes} />}
           />
           <DataGrid.ColumnDefinition
             header="Revenue"
             cell={({ row }) => (
               <>
-                <DataField.Numeric currency="JPY" number={Number(row.income - row.taxes)} />
+                <DataField.Numeric currency="JPY" value={Number(row.income - row.taxes)} />
               </>
             )}
           />
@@ -65,15 +66,15 @@ export const Currency = () => {
           <DataGrid.ColumnDefinition header="Project" cell="name" />
           <DataGrid.ColumnDefinition
             header="Income"
-            cell={({ row }) => <DataField.Numeric currency="EUR" number={row.income} />}
+            cell={({ row }) => <DataField.Numeric currency="EUR" value={row.income} />}
           />
           <DataGrid.ColumnDefinition
             header="Taxes"
-            cell={({ row }) => <DataField.Numeric currency="EUR" number={row.taxes} />}
+            cell={({ row }) => <DataField.Numeric currency="EUR" value={row.taxes} />}
           />
           <DataGrid.ColumnDefinition
             header="Revenue"
-            cell={({ row }) => <DataField.Numeric currency="EUR" number={Number(row.income - row.taxes)} />}
+            cell={({ row }) => <DataField.Numeric currency="EUR" value={Number(row.income - row.taxes)} />}
           />
         </DataGrid>
       </L10n>
