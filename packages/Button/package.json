@@ -30,5 +30,12 @@
     "react-dom": "^16.8.4",
     "styled-components": "^4.2.0"
   },
+  "paprikaDocs": {
+    "subComponents": [
+      "Close",
+      "Icon",
+      "Link"
+    ]
+  },
   "gitHead": "494ce26cb0a6c24a8f6abf2b154d97ddd4d7e343"
 }
