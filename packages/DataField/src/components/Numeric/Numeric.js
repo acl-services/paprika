@@ -25,7 +25,7 @@ export function withDecimalSeparatorOnly({ number, locale, options = {} }) {
 }
 
 export default function Numeric(props) {
-  const { align, value: propValue, currency: currencySymbol, intl, color, displayOnlyDecimals, ...moreProps } = props;
+  const { align, value: propValue, currency: currencySymbol, intl, color, hasOnlyRadixSeparator, ...moreProps } = props;
 
   const number = Number(propValue);
   const i18n = useI18n();
@@ -43,7 +43,7 @@ export default function Numeric(props) {
       ? formatNumber({ number, locale: i18n.locale, options: { ...currency, ...decimalNumbers, ...intl } })
       : propValue;
 
-  if (displayOnlyDecimals) {
+  if (hasOnlyRadixSeparator) {
     const numberWithDecimalsOnly = withDecimalSeparatorOnly({
       number,
       locale: i18n.locale,
@@ -87,15 +87,13 @@ Numeric.propTypes = {
   /**
    * Controls if the number should be display with full delimiter or only the decimal separators
    */
-  displayOnlyDecimals: PropTypes.bool,
+  hasOnlyRadixSeparator: PropTypes.bool,
 };
 
 Numeric.defaultProps = {
   align: DataField.types.align.RIGHT,
   color: null,
   currency: null,
-  displayOnlyDecimals: true,
+  hasOnlyRadixSeparator: true,
   intl: {},
 };
-
-console.log("Numeric.js>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>", Numeric);

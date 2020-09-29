@@ -20,5 +20,5 @@ interface NumericProps {
   /** Add a color to the number, accept any kind of html color #F60, rgba(100,100,100, 0.5), etc. */
   color?: string;
   /** Controls if the number should be display with full delimiter or only the decimal separators */
-  displayOnlyDecimals?: boolean;
+  hasOnlyRadixSeparator?: boolean;
 }

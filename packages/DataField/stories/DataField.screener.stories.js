@@ -56,17 +56,17 @@ export const Screener = () => {
           <Container>
             <DataField.Numeric
               align={DataField.types.align.LEFT}
-              displayOnlyDecimals={false}
+              hasOnlyRadixSeparator={false}
               currency="USD"
               value={1240}
             />
             <DataField.Numeric
               align={DataField.types.align.LEFT}
-              displayOnlyDecimals={false}
+              hasOnlyRadixSeparator={false}
               currency="JPN"
               value={340.43}
             />
-            <DataField.Numeric displayOnlyDecimals={false} align={DataField.types.align.LEFT} value={133240.234322} />
+            <DataField.Numeric hasOnlyRadixSeparator={false} align={DataField.types.align.LEFT} value={133240.234322} />
           </Container>
         </L10n>
       </div>
@@ -85,22 +85,22 @@ export const Screener = () => {
             )}
           />
         </Table>
-        <h2>With full delimiters</h2>
+        <h2>With full delimiters (hasOnlyRadixSeparator)</h2>
         <Table data={data}>
           <Table.ColumnDefinition header="Project" cell="name" />
           <Table.ColumnDefinition
             header="Income"
-            cell={({ row }) => <DataField.Numeric displayOnlyDecimals={false} value={row.income} />}
+            cell={({ row }) => <DataField.Numeric hasOnlyRadixSeparator={false} value={row.income} />}
           />
           <Table.ColumnDefinition
             header="Taxes"
-            cell={({ row }) => <DataField.Numeric displayOnlyDecimals={false} value={row.taxes} />}
+            cell={({ row }) => <DataField.Numeric hasOnlyRadixSeparator={false} value={row.taxes} />}
           />
           <Table.ColumnDefinition
             header="Revenue"
             cell={({ row }) => (
               <a href="http://wegalvanize.com">
-                <DataField.Numeric displayOnlyDecimals={false} value={Number(row.income - row.taxes)} />
+                <DataField.Numeric hasOnlyRadixSeparator={false} value={Number(row.income - row.taxes)} />
               </a>
             )}
           />
