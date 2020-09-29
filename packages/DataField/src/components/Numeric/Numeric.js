@@ -50,7 +50,7 @@ export default function Numeric(props) {
       options: { ...currency, ...decimalNumbers, ...intl },
     });
     return (
-      <Container align={align} color={color} {...moreProps} data-pka-anchor="data-fields-numeric">
+      <Container align={align} color={color} {...moreProps} data-pka-anchor="data-field.numeric">
         {typeof cell === "function" ? propValue(numberWithDecimalsOnly) : numberWithDecimalsOnly}
       </Container>
     );
