@@ -7,7 +7,7 @@ import DataField from "../src";
 
 const SimpleContainer = styled.div(() => {
   return css`
-    [data-pka-anchor="data-fields-numeric"] {
+    [data-pka-anchor="data-field.numeric"] {
       height: auto;
     }
   `;
