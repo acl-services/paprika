@@ -1,8 +1,8 @@
 import styled, { css } from "styled-components";
 import tokens from "@paprika/tokens";
 import stylers from "@paprika/stylers";
-import Button from "./Button";
-import * as types from "./types";
+import Button from "../../Button";
+import * as types from "../../types";
 
 const iconButtonSizes = {
   [types.SMALL]: css`

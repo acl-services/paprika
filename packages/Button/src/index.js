@@ -1,10 +1,10 @@
 import Button from "./Button";
-import CloseButton from "./CloseButton";
-import IconButton from "./IconButton";
-import LinkButton from "./LinkButton";
+import Close from "./components/Close";
+import Icon from "./components/Icon";
+import Link from "./components/Link";
 
-Button.Close = CloseButton;
-Button.Icon = IconButton;
-Button.Link = LinkButton;
+Button.Close = Close;
+Button.Icon = Icon;
+Button.Link = Link;
 
 export { Button as default };
