@@ -11,7 +11,7 @@ export default {
 
 const Container = styled.div(() => {
   return css`
-    [data-pka-anchor="data-fields-numeric"] {
+    [data-pka-anchor="data-field.numeric"] {
       font-size: 32px;
     }
   `;
