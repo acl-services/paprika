@@ -5,7 +5,7 @@ import Input from "@paprika/input";
 import Button from "@paprika/button";
 // import FormElement from "../../src";
 import { FormElementStory } from "../FormElement.stories.styles";
-import FormElement, { useFormElement, Label, Instructions, Content, Description, ErrorMessage, Help } from "../../src";
+import FormElement, { useFormElement, Label, Instructions, Content, Description, Error, Help } from "../../src";
 
 const ExampleStory = () => {
   const [value, setValue] = React.useState("");
@@ -59,7 +59,7 @@ const ExampleStory = () => {
         <Description {...descriptionA11yProps}>
           <span>This is description text</span>
         </Description>
-        <ErrorMessage {...errorA11yProps}>{errorText}</ErrorMessage>
+        <Error {...errorA11yProps}>{errorText}</Error>
         <Help>
           Give me some help. <a href="wegalvanize.com">Learn more</a>.
         </Help>
