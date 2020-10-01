@@ -23,7 +23,7 @@
     "@paprika/stylers": "^0.2.11",
     "@paprika/tokens": "^0.1.17",
     "prop-types": "^15.7.2",
-    "uuid": "^3.3.2"
+    "nanoid": "^2.1.7"
   },
   "peerDependencies": {
     "@paprika/l10n": "^0.2.5",

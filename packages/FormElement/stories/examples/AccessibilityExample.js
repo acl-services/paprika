@@ -3,12 +3,21 @@ import Heading from "@paprika/heading";
 import { Rule, Tagline } from "storybook/assets/styles/common.styles";
 import Input from "@paprika/input";
 import Button from "@paprika/button";
-import FormElement from "../../src";
+// import FormElement from "../../src";
 import { FormElementStory } from "../FormElement.stories.styles";
+import FormElement, { useFormElement, Label, Instructions, Content, Description, ErrorMessage, Help } from "../../src";
 
 const ExampleStory = () => {
   const [value, setValue] = React.useState("");
   const [errorText, setErrorText] = React.useState("");
+
+  const {
+    inputA11yProps,
+    labelA11yProps,
+    instructionsA11yProps,
+    descriptionA11yProps,
+    errorA11yProps,
+  } = useFormElement();
 
   function handleChange(e) {
     setValue(e.target.value);
@@ -31,31 +40,29 @@ const ExampleStory = () => {
       <Tagline>Form Element with instructions component.</Tagline>
       <Rule />
       <FormElement label="Form Label">
-        <FormElement.Instructions>
+        <Label {...labelA11yProps}>Form Label</Label>
+        <Instructions {...instructionsA11yProps}>
           <span>
             Example text for extra panel for questionnaires. Example text for extra panel for questionnaires Example
             text for extra panel for questionnaires. Example text for extra panel for questionnaires
           </span>
-        </FormElement.Instructions>
-        <FormElement.Content>
-          {({ idForLabel, ariaDescribedBy }) => (
-            <Input
-              id={idForLabel}
-              onChange={handleChange}
-              value={value}
-              placeholder="Form placeholder"
-              aria-describedby={ariaDescribedBy}
-              hasError={Boolean(errorText.length)}
-            />
-          )}
-        </FormElement.Content>
-        <FormElement.Description>
+        </Instructions>
+        <Content>
+          <Input
+            onChange={handleChange}
+            value={value}
+            placeholder="Form placeholder"
+            hasError={Boolean(errorText.length)}
+            {...inputA11yProps}
+          />
+        </Content>
+        <Description {...descriptionA11yProps}>
           <span>This is description text</span>
-        </FormElement.Description>
-        <FormElement.Error>{errorText}</FormElement.Error>
-        <FormElement.Help>
+        </Description>
+        <ErrorMessage {...errorA11yProps}>{errorText}</ErrorMessage>
+        <Help>
           Give me some help. <a href="wegalvanize.com">Learn more</a>.
-        </FormElement.Help>
+        </Help>
       </FormElement>
       <Rule />
       <Button onClick={setError} style={{ marginRight: "10px" }}>

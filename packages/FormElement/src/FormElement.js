@@ -2,18 +2,10 @@ import React from "react";
 import PropTypes from "prop-types";
 import * as constants from "@paprika/constants/lib/Constants";
 import extractChildren from "@paprika/helpers/lib/extractChildren";
-import isNil from "lodash/isNil";
-import uuidv4 from "uuid/v4";
-
-import Description from "./components/Description";
-import Instructions from "./components/Instructions";
-import Content from "./components/Content";
-import ErrorMessage from "./components/ErrorMessage";
-import Help from "./components/Help";
-import Label from "./components/Label";
 import * as sc from "./FormElement.styles";
 
 const subComponentDisplayNames = {
+  Label: "FormElement.Label",
   Error: "FormElement.Error",
   Description: "FormElement.Description",
   Content: "FormElement.Content",
@@ -38,56 +30,36 @@ function FormElement(props) {
   } = props;
 
   const extractedChildren = extractChildren(children, Object.values(subComponentDisplayNames));
-  const ariaDescriptionId = React.useRef(uuidv4()).current;
-  const ariaErrorId = React.useRef(uuidv4()).current;
-  const ariaInstructionsId = React.useRef(uuidv4()).current;
-  const uniqueInputId = React.useRef(uuidv4()).current;
   const hasError =
     !!extractedChildren[subComponentDisplayNames.Error] &&
     !!extractedChildren[subComponentDisplayNames.Error].props.children;
-
-  const generateLabelId = id => (isNil(id) || id === "" ? uniqueInputId : id);
-  const idForLabel = generateLabelId(id);
-  const refLabel = React.useRef(null);
 
   const getClonedElement = (displayName, extraProps = {}) => {
     if (!extractedChildren[displayName]) return null;
     return React.cloneElement(extractedChildren[displayName], extraProps);
   };
 
-  function renderFooter() {
+  function renderError() {
     if (hasError) {
-      return (
-        <div role="alert">
-          {getClonedElement(subComponentDisplayNames.Error, {
-            id: ariaErrorId,
-          })}
-        </div>
-      );
+      return <div role="alert">{getClonedElement(subComponentDisplayNames.Error)}</div>;
     }
-
-    if (extractedChildren[subComponentDisplayNames.Description]) {
-      return getClonedElement(subComponentDisplayNames.Description, {
-        id: ariaDescriptionId,
-      });
-    }
-
     return null;
   }
 
-  function renderContent() {
-    return getClonedElement(subComponentDisplayNames.Content, {
-      idForLabel,
-      refLabel,
-      ariaDescribedBy: `${ariaErrorId} ${ariaInstructionsId} ${ariaDescriptionId}`,
+  function renderLabel() {
+    return getClonedElement(subComponentDisplayNames.Label, {
+      hasInstructionsShowing: extractedChildren[subComponentDisplayNames.Instructions],
+      hasOptionalLabel: hasRequiredLabel ? false : hasOptionalLabel,
+      hasRequiredLabel,
+      help: extractedChildren[subComponentDisplayNames.Help],
+      isInline,
+      isVisuallyHidden: isLabelVisuallyHidden,
+      label,
+      hasFieldSet,
+      onClick: onClickLabel,
     });
   }
 
-  function renderInstructions() {
-    return getClonedElement(subComponentDisplayNames.Instructions, {
-      id: ariaInstructionsId,
-    });
-  }
   return (
     <sc.FormElement
       as={hasFieldSet ? "fieldset" : "div"}
@@ -96,24 +68,16 @@ function FormElement(props) {
       isDisabled={isDisabled}
       {...moreProps}
     >
-      <Label
-        hasInstructionsShowing={extractedChildren[subComponentDisplayNames.Instructions]}
-        hasOptionalLabel={hasRequiredLabel ? false : hasOptionalLabel}
-        hasRequiredLabel={hasRequiredLabel}
-        help={extractedChildren[subComponentDisplayNames.Help]}
-        id={idForLabel}
-        isInline={isInline}
-        isVisuallyHidden={isLabelVisuallyHidden}
-        label={label}
-        ref={refLabel}
-        hasFieldSet={hasFieldSet}
-        onClick={onClickLabel}
-      />
-      <sc.Sections isInline={isInline}>
-        {renderInstructions()}
-        {renderContent()}
-        {renderFooter()}
-      </sc.Sections>
+      {children.map(child => {
+        if (child.type.displayName === subComponentDisplayNames.Label) {
+          return renderLabel();
+        }
+
+        if (child.type.displayName === subComponentDisplayNames.Error) {
+          return renderError();
+        }
+        return child;
+      })}
     </sc.FormElement>
   );
 }
@@ -170,12 +134,5 @@ const defaultProps = {
 FormElement.displayName = "FormElement";
 FormElement.propTypes = propTypes;
 FormElement.defaultProps = defaultProps;
-
-FormElement.subComponentDisplayNames = subComponentDisplayNames;
-FormElement.Content = Content;
-FormElement.Instructions = Instructions;
-FormElement.Description = Description;
-FormElement.Error = ErrorMessage;
-FormElement.Help = Help;
 
 export default FormElement;

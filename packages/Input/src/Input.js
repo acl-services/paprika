@@ -38,6 +38,7 @@ const Input = React.forwardRef((props, ref) => {
   };
 
   const {
+    a11yProps,
     a11yText,
     clearIcon,
     className,
@@ -98,6 +99,12 @@ Input.types = {
 
 const propTypes = {
   /** Descriptive a11y text for assistive technologies. By default, text from children node will be used. */
+  a11yProps: PropTypes.shape({
+    idForLabel: PropTypes.string,
+    refLabel: PropTypes.object,
+    ariaDescribedBy: PropTypes.string,
+  }),
+
   a11yText: PropTypes.string,
 
   /** Sets the class for the input. */
@@ -149,6 +156,7 @@ const propTypes = {
 };
 
 const defaultProps = {
+  a11yProps: null,
   a11yText: null,
   clearIcon: null,
   className: null,
