@@ -2,7 +2,7 @@ import styled, { css } from "styled-components";
 import { toInt, fontSizeValue, lineHeightValue, z } from "@paprika/stylers/lib/helpers";
 import { boxSizingStyles, visuallyHidden } from "@paprika/stylers/lib/includes";
 import tokens from "@paprika/tokens";
-import * as types from "./types";
+import types from "./types";
 
 const getLabelLeftPadding = (radioSize, hasLabel) => {
   return hasLabel ? `${toInt(radioSize) + toInt(tokens.space)}px` : radioSize;
@@ -18,7 +18,7 @@ const mediumRadioHalfSize = getHalfSizeCss(mediumRadioSize);
 const largeRadioHalfSize = getHalfSizeCss(largeRadioSize);
 
 const styles = {
-  [types.SMALL]: {
+  [types.size.SMALL]: {
     baseFontSize: {
       fontSize: `${fontSizeValue(-1)}px`,
     },
@@ -45,7 +45,7 @@ const styles = {
       };
     },
   },
-  [types.MEDIUM]: {
+  [types.size.MEDIUM]: {
     baseFontSize: {
       fontSize: `${fontSizeValue()}px`,
     },
@@ -72,7 +72,7 @@ const styles = {
       };
     },
   },
-  [types.LARGE]: {
+  [types.size.LARGE]: {
     baseFontSize: {
       fontSize: `${fontSizeValue()}px`,
     },

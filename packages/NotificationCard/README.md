@@ -29,10 +29,10 @@ npm install @paprika/notification-card
 
 ### NotificationCard.Image
 
-| Prop     | Type                                           | required | default             | Description                      |
-| -------- | ---------------------------------------------- | -------- | ------------------- | -------------------------------- |
-| align    | [ constants.align.TOP, constants.align.CENTER] | false    | constants.align.TOP | Aligns the position of the image |
-| children | node                                           | false    | null                |                                  |
+| Prop     | Type                                                                     | required | default                          | Description                      |
+| -------- | ------------------------------------------------------------------------ | -------- | -------------------------------- | -------------------------------- |
+| align    | [ NotificationCard.types.align.TOP, NotificationCard.types.align.CENTER] | false    | NotificationCard.types.align.TOP | Aligns the position of the image |
+| children | node                                                                     | false    | null                             |                                  |
 
 ### NotificationCard.Header
 

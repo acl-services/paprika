@@ -5,10 +5,10 @@ import { Rule, Tagline } from "storybook/assets/styles/common.styles";
 import Heading from "@paprika/heading";
 import { RadioStory } from "../Radio.stories.styles";
 import Radio from "../../src/Radio";
-import * as types from "../../src/types";
+import types from "../../src/types";
 
 const radioProps = () => ({
-  size: select("size", [types.SMALL, types.MEDIUM, types.LARGE], "medium"),
+  size: select("size", [types.size.SMALL, types.size.MEDIUM, types.size.LARGE], "medium"),
   isDisabled: boolean("Is Group Disabled", false),
   canDeselect: boolean("canDeselect", false),
   a11yText: text("a11yText", ""),
