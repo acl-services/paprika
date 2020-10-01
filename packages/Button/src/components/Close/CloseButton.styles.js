@@ -1,7 +1,7 @@
 import styled, { css } from "styled-components";
 import tokens from "@paprika/tokens";
 import stylers from "@paprika/stylers";
-import IconButton from "./IconButton";
+import IconButton from "../Icon";
 
 const darkStyles = css`
   transition: background-color 0.2s ease-out;

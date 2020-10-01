@@ -2,7 +2,7 @@ import React from "react";
 import { ButtonStory } from "../Button.stories.styles";
 import Button from "../../src";
 
-const ExampleStory = () => {
+export default function ButtonStates() {
   return (
     <ButtonStory>
       <Button isActive>Active</Button>
@@ -10,6 +10,4 @@ const ExampleStory = () => {
       <Button isPending>Pending</Button>
     </ButtonStory>
   );
-};
-
-export default ExampleStory;
+}

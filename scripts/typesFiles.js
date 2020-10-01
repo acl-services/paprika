@@ -2,8 +2,7 @@
 const fs = require("fs");
 // eslint-disable-next-line import/no-extraneous-dependencies
 const shell = require("shelljs");
-// eslint-disable-next-line import/no-extraneous-dependencies
-const reactDocs = require("react-docgen");
+const parseFileToReactDoc = require("./parseFileToReactDoc");
 
 const packagesProcessInTsc = ["Tokens", "Constants"];
 const skipPackages = ["Guard", "Icon", "Stylers", "helpers", "Calendar"];
@@ -120,10 +119,7 @@ const processPropsList = ({ info, folder, path, paprikaDocs = null }) => {
   if (paprikaDocs && "subComponents" in paprikaDocs) {
     paprikaDocs.subComponents.forEach(subComponent => {
       const subComponentContent = fs.readFileSync(`${path}/src/components/${subComponent}/${subComponent}.js`, "utf8");
-      const arrayOfComponentsDefinitions = reactDocs.parse(
-        subComponentContent,
-        reactDocs.resolver.findAllComponentDefinitions
-      );
+      const arrayOfComponentsDefinitions = parseFileToReactDoc(subComponentContent);
       let _info = extractCorrectComponentDefinition({
         desireDefinition: subComponent,
         arrayOfComponentsDefinitions,
@@ -151,10 +147,7 @@ shell.ls("packages").forEach(folder => {
     try {
       const { paprikaDocs = null } = JSON.parse(fs.readFileSync(`${path}/package.json`, "utf8"));
       const componentContent = fs.readFileSync(`${path}/src/${folder}.js`, "utf8");
-      const arrayOfComponentsDefinitions = reactDocs.parse(
-        componentContent,
-        reactDocs.resolver.findAllComponentDefinitions
-      );
+      const arrayOfComponentsDefinitions = parseFileToReactDoc(componentContent);
 
       const info = extractCorrectComponentDefinition({
         desireDefinition: folder,

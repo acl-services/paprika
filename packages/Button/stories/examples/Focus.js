@@ -2,7 +2,7 @@ import React from "react";
 import { Story } from "storybook/assets/styles/common.styles";
 import Button from "../../src";
 
-const ExampleStory = () => {
+export default function Focus() {
   const button1Ref = React.useRef(null);
   const button3Ref = React.useRef(null);
 
@@ -52,6 +52,4 @@ const ExampleStory = () => {
       </p>
     </Story>
   );
-};
-
-export default ExampleStory;
+}

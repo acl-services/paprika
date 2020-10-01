@@ -44,7 +44,7 @@ declare namespace Radio {
     /** On change of radio selection. */
     onChange: (...args: any[]) => any;
     /** The size for all radio components. */
-    size?: ShirtSizes.DEFAULT;
+    size?: Radio.types.size.SMALL | Radio.types.size.MEDIUM | Radio.types.size.LARGE;
   }
 }
 

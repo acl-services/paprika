@@ -15,7 +15,8 @@ const storyTree = [
     components: [
       "ActionBar",
       "DataGrid",
-      "Table"
+      "Table",
+      "DataField"
     ],
   },
   {
@@ -57,6 +58,7 @@ const storyTree = [
       "Confirmation",
       "Popover",
       "Modal",
+      "NotificationCard",
       "ProgressBar",
       "SidePanel",
       "Spinner",

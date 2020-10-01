@@ -3,7 +3,7 @@ import PropTypes from "prop-types";
 import * as constants from "@paprika/constants/lib/Constants";
 import * as sc from "./IconButton.styles";
 
-const IconButton = React.forwardRef((props, ref) => {
+const Icon = React.forwardRef((props, ref) => {
   const buttonProps = {
     children: null,
     icon: props.children,
@@ -13,7 +13,7 @@ const IconButton = React.forwardRef((props, ref) => {
   return <sc.IconButton {...props} {...buttonProps} ref={ref} />;
 });
 
-IconButton.types = {
+Icon.types = {
   kind: constants.kind,
   size: constants.defaultSize,
 };
@@ -24,26 +24,26 @@ const IconPropTypes = {
 
   /** The visual style of the button. */
   kind: PropTypes.oneOf([
-    IconButton.types.kind.DEFAULT,
-    IconButton.types.kind.PRIMARY,
-    IconButton.types.kind.SECONDARY,
-    IconButton.types.kind.DESTRUCTIVE,
-    IconButton.types.kind.FLAT,
-    IconButton.types.kind.MINOR,
-    IconButton.types.kind.LINK,
+    Icon.types.kind.DEFAULT,
+    Icon.types.kind.PRIMARY,
+    Icon.types.kind.SECONDARY,
+    Icon.types.kind.DESTRUCTIVE,
+    Icon.types.kind.FLAT,
+    Icon.types.kind.MINOR,
+    Icon.types.kind.LINK,
   ]),
 
   /** Size of the button (font size, min-height, padding, etc). */
-  size: PropTypes.oneOf([IconButton.types.size.SMALL, IconButton.types.size.MEDIUM, IconButton.types.size.LARGE]),
+  size: PropTypes.oneOf([Icon.types.size.SMALL, Icon.types.size.MEDIUM, Icon.types.size.LARGE]),
 };
 
 const IconDefaultProps = {
-  kind: IconButton.types.kind.DEFAULT,
-  size: IconButton.types.size.MEDIUM,
+  kind: Icon.types.kind.DEFAULT,
+  size: Icon.types.size.MEDIUM,
 };
 
-IconButton.displayName = "IconButton";
-IconButton.propTypes = IconPropTypes;
-IconButton.defaultProps = IconDefaultProps;
+Icon.displayName = "Button.Icon";
+Icon.propTypes = IconPropTypes;
+Icon.defaultProps = IconDefaultProps;
 
-export default IconButton;
+export default Icon;

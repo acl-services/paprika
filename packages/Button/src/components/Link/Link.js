@@ -2,11 +2,11 @@ import React from "react";
 import PropTypes from "prop-types";
 import NewTabIcon from "@paprika/icon/lib/NewTab";
 import * as constants from "@paprika/constants/lib/Constants";
-import * as types from "./types";
+import * as types from "../../types";
 import * as sc from "./LinkButton.styles";
-import { ButtonIcon } from "./Button";
+import { ButtonIcon } from "../../Button";
 
-const LinkButton = React.forwardRef((props, ref) => {
+const Link = React.forwardRef((props, ref) => {
   const { a11yText, children, href, isDisabled, shouldOpenNewTab, kind, icon, size, suffixIcon, ...moreProps } = props;
 
   const shouldOpenNewTabProps = {
@@ -45,7 +45,7 @@ const LinkButton = React.forwardRef((props, ref) => {
   );
 });
 
-LinkButton.types = {
+Link.types = {
   kind: constants.kind,
   size: constants.defaultSize,
 };
@@ -68,17 +68,17 @@ const propTypes = {
 
   /** The visual style of the button. */
   kind: PropTypes.oneOf([
-    LinkButton.types.kind.DEFAULT,
-    LinkButton.types.kind.PRIMARY,
-    LinkButton.types.kind.SECONDARY,
-    LinkButton.types.kind.DESTRUCTIVE,
-    LinkButton.types.kind.FLAT,
-    LinkButton.types.kind.MINOR,
-    LinkButton.types.kind.LINK,
+    Link.types.kind.DEFAULT,
+    Link.types.kind.PRIMARY,
+    Link.types.kind.SECONDARY,
+    Link.types.kind.DESTRUCTIVE,
+    Link.types.kind.FLAT,
+    Link.types.kind.MINOR,
+    Link.types.kind.LINK,
   ]),
 
   /** Size of the button (font size, min-height, padding, etc). */
-  size: PropTypes.oneOf([LinkButton.types.size.SMALL, LinkButton.types.size.MEDIUM, LinkButton.types.size.LARGE]),
+  size: PropTypes.oneOf([Link.types.size.SMALL, Link.types.size.MEDIUM, Link.types.size.LARGE]),
 
   /** Whether the link should open a new tab. */
   shouldOpenNewTab: PropTypes.bool,
@@ -91,14 +91,14 @@ const defaultProps = {
   a11yText: null,
   icon: null,
   isDisabled: false,
-  kind: LinkButton.types.kind.LINK,
+  kind: Link.types.kind.LINK,
   shouldOpenNewTab: false,
-  size: LinkButton.types.size.MEDIUM,
+  size: Link.types.size.MEDIUM,
   suffixIcon: <NewTabIcon />,
 };
 
-LinkButton.displayName = "LinkButton";
-LinkButton.propTypes = propTypes;
-LinkButton.defaultProps = defaultProps;
+Link.displayName = "Button.Link";
+Link.propTypes = propTypes;
+Link.defaultProps = defaultProps;
 
-export default LinkButton;
+export default Link;

@@ -116,6 +116,7 @@ ja:
         label: 列の整列
         singular_label: 1列非表示
         plural_label: "{{numberOfHiddenColumn}}列非表示"
+        search_placeholder: フィルター...
       no_results: 結果なし
       filter:
         no_filters_applied: このビューに適用するフィルターなし
@@ -145,7 +146,8 @@ ja:
           is_after: 'は次より後である:'
           true: "真"
           false: "偽"
-      search_placeholder: フィルター...
+      search_placeholder: 検索...
+      search_a11y_text: データを検索
       sort:
         no_sorts_applied: このビューに適用する並べ替えなし
         label: 並べ替え

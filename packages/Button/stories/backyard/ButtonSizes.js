@@ -2,7 +2,7 @@ import React from "react";
 import { ButtonStory } from "../Button.stories.styles";
 import Button from "../../src";
 
-const ExampleStory = () => {
+export default function CommonButtons() {
   return (
     <ButtonStory>
       <div>
@@ -32,6 +32,4 @@ const ExampleStory = () => {
       </div>
     </ButtonStory>
   );
-};
-
-export default ExampleStory;
+}

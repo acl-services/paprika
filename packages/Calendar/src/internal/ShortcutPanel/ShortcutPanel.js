@@ -1,7 +1,7 @@
 import React from "react";
 import PropTypes from "prop-types";
 import moment from "moment";
-import { nanoid } from "nanoid";
+import nanoid from "nanoid";
 
 import ArrowLeft from "@paprika/icon/lib/ArrowLeft";
 import ArrowRight from "@paprika/icon/lib/ArrowRight";
