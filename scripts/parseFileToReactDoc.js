@@ -1,22 +1,26 @@
 // eslint-disable-next-line import/no-extraneous-dependencies
 const reactDocs = require("react-docgen");
 
+function hasTypes(str) {
+  return /^types\./.test(str);
+}
+
 function typesHandler(documentation) {
   const componentName = documentation._data.get("displayName").split(".")[0];
 
   documentation._props.forEach((value, key) => {
-    let newValue = null;
+    let newValue;
 
     if (value.type && value.type.name === "enum") {
       newValue = value.type.value.map(propValue => {
-        if (new RegExp(/^types./).test(propValue.value)) {
+        if (hasTypes(propValue.value)) {
           return { ...propValue, value: `${componentName}.${propValue.value}` };
         }
         return { ...propValue };
       });
     }
 
-    if (value.defaultValue && new RegExp(/^types./).test(value.defaultValue.value)) {
+    if (value.defaultValue && hasTypes(value.defaultValue.value)) {
       documentation._props.set(key, {
         ...value,
         type: {
