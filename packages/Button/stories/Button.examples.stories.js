@@ -9,6 +9,7 @@ import CommonButtons from "./examples/CommonButtons";
 import Focus from "./examples/Focus";
 import NewRef from "./examples/NewRef";
 import OldRef from "./examples/OldRef";
+import Variations from "./examples/Variations";
 import Button from "../src";
 
 const storyName = getStoryName("Button");
@@ -73,3 +74,10 @@ export const oldRef = () => (
   </ExampleStory>
 );
 oldRef.story = { name: "Old Ref", parameters: exampleStoryParameters };
+
+export const variations = () => (
+  <ExampleStory storyName="Variations" fileName="examples/Variations.js">
+    <Variations />
+  </ExampleStory>
+);
+variations.story = { name: "All Variations", parameters: exampleStoryParameters };

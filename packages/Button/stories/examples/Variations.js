@@ -3,7 +3,6 @@ import { action } from "@storybook/addon-actions";
 import styled from "styled-components";
 import { Rule, Tagline, breaklines, Gap } from "storybook/assets/styles/common.styles";
 import tokens from "@paprika/tokens";
-import Heading from "@paprika/heading";
 import Popover from "@paprika/popover";
 import PlusIcon from "@paprika/icon/lib/Add";
 import InfoIcon from "@paprika/icon/lib/InfoCircle";
@@ -43,9 +42,6 @@ const renderTriggerWithTooltip = () => {
 export default function Variations() {
   return (
     <ButtonStory>
-      <Heading level={1} displayLevel={2} isLight>
-        Variations
-      </Heading>
       <Tagline>So many different kinds of Buttons!</Tagline>
       <Rule />
       <p>
