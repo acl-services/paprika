@@ -1,15 +1,11 @@
 import React from "react";
 import { getStoryName } from "storybook/storyTree";
 import { ExampleStory, exampleStoryParameters } from "./storyHelpers";
-import ButtonStates from "./examples/ButtonStates";
 import ButtonSubmit from "./examples/ButtonSubmit";
-import ButtonVariations from "./examples/ButtonVariations";
 import CloseButtonRef from "./examples/CloseButtonRef";
-import CommonButtons from "./examples/CommonButtons";
 import Focus from "./examples/Focus";
 import NewRef from "./examples/NewRef";
 import OldRef from "./examples/OldRef";
-import Variations from "./examples/Variations";
 import Button from "../src";
 
 const storyName = getStoryName("Button");
@@ -19,40 +15,19 @@ export default {
   component: Button,
 };
 
-export const buttonStates = () => (
-  <ExampleStory storyName="Button States" fileName="examples/ButtonStates.js">
-    <ButtonStates />
-  </ExampleStory>
-);
-buttonStates.story = { name: "Button States", parameters: exampleStoryParameters };
-
 export const buttonSubmit = () => (
-  <ExampleStory storyName="Button Submit" fileName="examples/ButtonSubmit.js">
+  <ExampleStory storyName="Submit" fileName="examples/ButtonSubmit.js">
     <ButtonSubmit />
   </ExampleStory>
 );
-buttonSubmit.story = { name: "Button Submit", parameters: exampleStoryParameters };
-
-export const buttonVariations = () => (
-  <ExampleStory storyName="Button Variations" fileName="examples/ButtonVariations.js">
-    <ButtonVariations />
-  </ExampleStory>
-);
-buttonVariations.story = { name: "Button Variations", parameters: exampleStoryParameters };
+buttonSubmit.story = { name: "Submit", parameters: exampleStoryParameters };
 
 export const closeButtonRef = () => (
-  <ExampleStory storyName="Close Button Ref" fileName="examples/CloseButtonRef.js">
+  <ExampleStory storyName="Close Ref" fileName="examples/CloseButtonRef.js">
     <CloseButtonRef />
   </ExampleStory>
 );
-closeButtonRef.story = { name: "Close Button Ref", parameters: exampleStoryParameters };
-
-export const commonButtons = () => (
-  <ExampleStory storyName="Common Buttons" fileName="examples/CommonButtons.js">
-    <CommonButtons />
-  </ExampleStory>
-);
-commonButtons.story = { name: "Common Buttons", parameters: exampleStoryParameters };
+closeButtonRef.story = { name: "Close Ref", parameters: exampleStoryParameters };
 
 export const focus = () => (
   <ExampleStory storyName="Focus" fileName="examples/Focus.js">
@@ -74,10 +49,3 @@ export const oldRef = () => (
   </ExampleStory>
 );
 oldRef.story = { name: "Old Ref", parameters: exampleStoryParameters };
-
-export const variations = () => (
-  <ExampleStory storyName="Variations" fileName="examples/Variations.js">
-    <Variations />
-  </ExampleStory>
-);
-variations.story = { name: "All Variations", parameters: exampleStoryParameters };
