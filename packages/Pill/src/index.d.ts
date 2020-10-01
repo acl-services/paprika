@@ -27,3 +27,30 @@ interface PillProps {
 
   size?: Pill.types.size.SMALL | Pill.types.size.MEDIUM;
 }
+
+declare namespace Pill {
+  namespace types {
+    namespace color {
+      const BLACK: any;
+      const BLUE: any;
+      const GREEN: any;
+      const GREY: any;
+      const ORANGE: any;
+      const LIGHT_BLUE: any;
+      const LIGHT_ORANGE: any;
+      const severity: any;
+      const NO_RISK: any;
+      const LOW_RISK: any;
+      const MEDIUM_RISK: any;
+      const HIGH_RISK: any;
+    }
+  }
+}
+declare namespace Pill {
+  namespace types {
+    namespace size {
+      const SMALL: any;
+      const MEDIUM: any;
+    }
+  }
+}

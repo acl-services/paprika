@@ -30,3 +30,16 @@ interface ToastProps {
   /** The z-index of the Toast */
   zIndex?: number;
 }
+
+declare namespace Toast {
+  namespace types {
+    namespace kind {
+      const SUCCESS: any;
+      const WARNING: any;
+      const ERROR: any;
+      const INFO: any;
+      const LOCKED: any;
+      const VISUALLY_HIDDEN: any;
+    }
+  }
+}

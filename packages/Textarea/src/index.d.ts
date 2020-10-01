@@ -26,3 +26,13 @@ interface TextareaProps {
   /** Do not use in conjunction with defaultValue prop */
   value?: string;
 }
+
+declare namespace Textarea {
+  namespace types {
+    namespace size {
+      const SMALL: any;
+      const MEDIUM: any;
+      const LARGE: any;
+    }
+  }
+}

@@ -12,3 +12,13 @@ interface PaginationProps {
   /** The number of total pages. */
   totalPages: number;
 }
+
+declare namespace Pagination {
+  namespace types {
+    namespace size {
+      const SMALL: any;
+      const MEDIUM: any;
+      const LARGE: any;
+    }
+  }
+}
