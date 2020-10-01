@@ -2,8 +2,8 @@ import React from "react";
 import { getStoryName } from "storybook/storyTree";
 import { ExampleStory, exampleStoryParameters } from "./storyHelpers";
 import ButtonStates from "./backyard/ButtonStates";
-import ButtonVariations from "./backyard/ButtonVariations";
-import CommonButtons from "./backyard/CommonButtons";
+import ButtonVariations from "./backyard/ButtonKinds";
+import CommonButtons from "./backyard/ButtonSizes";
 import Button from "../src";
 
 const storyName = getStoryName("Button");
@@ -21,14 +21,14 @@ export const buttonStates = () => (
 buttonStates.story = { name: "States", parameters: exampleStoryParameters };
 
 export const buttonVariations = () => (
-  <ExampleStory storyName="Kinds" fileName="backyard/ButtonVariations.js">
+  <ExampleStory storyName="Kinds" fileName="backyard/ButtonKinds.js">
     <ButtonVariations />
   </ExampleStory>
 );
 buttonVariations.story = { name: "Kinds", parameters: exampleStoryParameters };
 
 export const commonButtons = () => (
-  <ExampleStory storyName="Sizes" fileName="backyard/CommonButtons.js">
+  <ExampleStory storyName="Sizes" fileName="backyard/ButtonSizes.js">
     <CommonButtons />
   </ExampleStory>
 );
