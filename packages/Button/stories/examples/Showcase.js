@@ -20,7 +20,7 @@ const iconSelections = {
   info: <InfoIcon />,
 };
 
-const buttonProps = () => ({
+const getKnobs = () => ({
   children: text("label", "Give now"),
   size: select("size", types.DEFAULT, "medium"),
   kind: select(
@@ -40,15 +40,17 @@ const buttonProps = () => ({
   a11yText: text("a11yText", ""),
 });
 
-const ExampleStory = props => (
-  <Story>
-    <Heading level={1} displayLevel={2} isLight>
-      Showcase
-    </Heading>
-    <Tagline>Use the knobs to tinker with the props.</Tagline>
-    <Rule />
-    <Button {...props} />
-  </Story>
-);
+function Showcase(props) {
+  return (
+    <Story>
+      <Heading level={1} displayLevel={2} isLight>
+        Showcase
+      </Heading>
+      <Tagline>Use the knobs to tinker with the props.</Tagline>
+      <Rule />
+      <Button {...props} />
+    </Story>
+  );
+}
 
-export default () => <ExampleStory {...buttonProps()} />;
+export default () => <Showcase {...getKnobs()} />;

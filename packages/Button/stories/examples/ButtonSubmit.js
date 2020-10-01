@@ -2,7 +2,7 @@ import React from "react";
 import { ButtonStory } from "../Button.stories.styles";
 import Button from "../../src";
 
-const ExampleSubmitStory = () => {
+export default function ButtonSubmit() {
   return (
     <ButtonStory>
       <form
@@ -18,6 +18,4 @@ const ExampleSubmitStory = () => {
       </form>
     </ButtonStory>
   );
-};
-
-export default ExampleSubmitStory;
+}
