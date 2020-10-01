@@ -6,6 +6,7 @@ interface DataFieldProps {
 
   children: React.ReactNode;
 }
+
 declare namespace DataField {
   function Numeric(props: NumericProps): JSX.Element;
   interface NumericProps {
@@ -22,5 +23,15 @@ declare namespace DataField {
     color?: string;
     /** Controls if the number should be display with full delimiter or only the decimal separators */
     hasOnlyRadixSeparator?: boolean;
+  }
+}
+
+declare namespace DataField {
+  namespace types {
+    namespace align {
+      const LEFT: any;
+      const RIGHT: any;
+      const CENTER: any;
+    }
   }
 }

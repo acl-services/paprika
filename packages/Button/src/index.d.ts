@@ -43,6 +43,7 @@ interface ButtonProps {
   /** Value for tabindex attribute to override the default of 0. */
   tabIndex?: number;
 }
+
 declare namespace Button {
   function Close(props: CloseProps): JSX.Element;
   interface CloseProps {
@@ -101,5 +102,72 @@ declare namespace Button {
     shouldOpenNewTab?: boolean;
     /** Size of the button (font size, min-height, padding, etc). */
     suffixIcon?: React.ReactNode;
+  }
+}
+
+declare namespace Button {
+  namespace types {
+    namespace kind {
+      const DEFAULT: any;
+      const PRIMARY: any;
+      const SECONDARY: any;
+      const DESTRUCTIVE: any;
+      const FLAT: any;
+      const MINOR: any;
+      const LINK: any;
+    }
+  }
+}
+declare namespace Button {
+  namespace types {
+    namespace size {
+      const SMALL: any;
+      const MEDIUM: any;
+      const LARGE: any;
+    }
+  }
+}
+declare namespace Icon {
+  namespace types {
+    namespace kind {
+      const DEFAULT: any;
+      const PRIMARY: any;
+      const SECONDARY: any;
+      const DESTRUCTIVE: any;
+      const FLAT: any;
+      const MINOR: any;
+      const LINK: any;
+    }
+  }
+}
+declare namespace Icon {
+  namespace types {
+    namespace size {
+      const SMALL: any;
+      const MEDIUM: any;
+      const LARGE: any;
+    }
+  }
+}
+declare namespace Link {
+  namespace types {
+    namespace kind {
+      const DEFAULT: any;
+      const PRIMARY: any;
+      const SECONDARY: any;
+      const DESTRUCTIVE: any;
+      const FLAT: any;
+      const MINOR: any;
+      const LINK: any;
+    }
+  }
+}
+declare namespace Link {
+  namespace types {
+    namespace size {
+      const SMALL: any;
+      const MEDIUM: any;
+      const LARGE: any;
+    }
   }
 }

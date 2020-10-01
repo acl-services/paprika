@@ -57,3 +57,12 @@ declare namespace Radio {
     }
   }
 }
+declare namespace Radio {
+  namespace types {
+    namespace size {
+      const SMALL: any;
+      const MEDIUM: any;
+      const LARGE: any;
+    }
+  }
+}
