@@ -3,7 +3,7 @@ import PlusIcon from "@paprika/icon/lib/Add";
 import { ButtonStory } from "../Button.stories.styles";
 import Button from "../../src";
 
-const ExampleStory = () => {
+export default function ExampleStory() {
   return (
     <ButtonStory>
       <Button kind="flat">Flat</Button>
@@ -21,6 +21,4 @@ const ExampleStory = () => {
       <Button isFullWidth>Full-width</Button>
     </ButtonStory>
   );
-};
-
-export default ExampleStory;
+}

@@ -7,7 +7,7 @@ function clickHandler() {
   action("Clicked a button")();
 }
 
-const ExampleStory = () => {
+export default function OldRef() {
   let buttonRef;
 
   const setRef = node => {
@@ -35,6 +35,4 @@ const ExampleStory = () => {
       </p>
     </Story>
   );
-};
-
-export default ExampleStory;
+}
