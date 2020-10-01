@@ -33,8 +33,6 @@ const createPropsList = ({ info }) => {
     declare namespace ${compName} {
       function ${displayName}(props:${displayName}Props): JSX.Element;`;
 
-  let constants;
-
   const list = [
     `${declareComp}
   interface ${displayName}Props{
@@ -178,7 +176,7 @@ shell.ls("packages").forEach(folder => {
       const constants = propsList // return an array, [constants.type]
         .toString()
         .split(" ")
-        .filter((e, i) => {
+        .filter(e => {
           return regex.test(e);
         });
 
@@ -200,7 +198,8 @@ declare namespace ${e[0]}{
       ${e
         .splice(3)
         .map(i => {
-          return `const ${i}: any;`;
+          return `
+      const ${i}: any;`;
         })
         .join("")}
     }

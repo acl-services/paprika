@@ -83,7 +83,11 @@ declare function Popover(props:PopoverProps): JSX.Element;
 declare namespace Popover{
   namespace types{
     namespace align{
-      const TOP: any;const RIGHT: any;const BOTTOM: any;const LEFT
+      
+      const TOP: any;
+      const RIGHT: any;
+      const BOTTOM: any;
+      const LEFT
 : any;
     }
   }
@@ -91,7 +95,10 @@ declare namespace Popover{
 declare namespace Popover{
   namespace types{
     namespace align{
-      const LEFT: any;const RIGHT: any;const null
+      
+      const LEFT: any;
+      const RIGHT: any;
+      const null
 : any;
     }
   }

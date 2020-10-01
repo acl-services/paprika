@@ -184,7 +184,10 @@ declare function Box(props:BoxProps): JSX.Element;
 declare namespace ListBoxContainer{
   namespace types{
     namespace size{
-      const SMALL: any;const MEDIUM: any;const LARGE
+      
+      const SMALL: any;
+      const MEDIUM: any;
+      const LARGE
 
 : any;
     }
@@ -193,7 +196,9 @@ declare namespace ListBoxContainer{
 declare namespace Button{
   namespace types{
     namespace kind{
-      const PRIMARY: any;const MINOR
+      
+      const PRIMARY: any;
+      const MINOR
 : any;
     }
   }
@@ -201,7 +206,9 @@ declare namespace Button{
 declare namespace Button{
   namespace types{
     namespace kind{
-      const PRIMARY: any;const MINOR
+      
+      const PRIMARY: any;
+      const MINOR
 : any;
     }
   }
@@ -209,7 +216,9 @@ declare namespace Button{
 declare namespace Button{
   namespace types{
     namespace kind{
-      const PRIMARY: any;const MINOR
+      
+      const PRIMARY: any;
+      const MINOR
 : any;
     }
   }
@@ -217,7 +226,10 @@ declare namespace Button{
 declare namespace Button{
   namespace types{
     namespace size{
-      const SMALL: any;const MEDIUM: any;const LARGE
+      
+      const SMALL: any;
+      const MEDIUM: any;
+      const LARGE
 
 : any;
     }
