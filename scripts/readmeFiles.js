@@ -155,11 +155,6 @@ const processPropTables = ({ info, path, paprikaDocs = null }) => {
           arrayOfComponentsDefinitions,
         });
 
-        if (subComponent === "Image") {
-          // console.log(arrayOfComponentsDefinitions);
-          // console.log(_info);
-        }
-
         propsTable.push(createPropsTable({ info: _info }));
       }
     });
