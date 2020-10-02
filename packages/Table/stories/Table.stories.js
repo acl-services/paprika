@@ -51,15 +51,15 @@ export function Borders() {
         </Table>
       </bordersStyles.Gap>
       <bordersStyles.Gap>
-        <h4>Vertical</h4>
-        <Table a11yText="" data={data} borderType={Table.types.border.VERTICAL}>
+        <h4>Grid</h4>
+        <Table a11yText="" data={data} borderType={Table.types.border.GRID}>
           <Table.ColumnDefinition header="Name" cell="name" />
           <Table.ColumnDefinition header="LastName" cell="lastName" />
         </Table>
       </bordersStyles.Gap>
       <bordersStyles.Gap>
-        <h4>Grid</h4>
-        <Table a11yText="" data={data} borderType={Table.types.border.GRID}>
+        <h4>Vertical</h4>
+        <Table a11yText="" data={data} borderType={Table.types.border.VERTICAL}>
           <Table.ColumnDefinition header="Name" cell="name" />
           <Table.ColumnDefinition header="LastName" cell="lastName" />
         </Table>
@@ -86,15 +86,15 @@ export function WithZebras() {
         </Table>
       </bordersStyles.Gap>
       <bordersStyles.Gap>
-        <h4>Vertical</h4>
-        <Table a11yText="" data={data} hasZebraStripes borderType={Table.types.border.VERTICAL}>
+        <h4>Grid</h4>
+        <Table a11yText="" data={data} hasZebraStripes borderType={Table.types.border.GRID}>
           <Table.ColumnDefinition header="Name" cell="name" />
           <Table.ColumnDefinition header="LastName" cell="lastName" />
         </Table>
       </bordersStyles.Gap>
       <bordersStyles.Gap>
-        <h4>Grid</h4>
-        <Table a11yText="" data={data} hasZebraStripes borderType={Table.types.border.GRID}>
+        <h4>Vertical</h4>
+        <Table a11yText="" data={data} hasZebraStripes borderType={Table.types.border.VERTICAL}>
           <Table.ColumnDefinition header="Name" cell="name" />
           <Table.ColumnDefinition header="LastName" cell="lastName" />
         </Table>
