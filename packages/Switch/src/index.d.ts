@@ -16,3 +16,13 @@ interface SwitchProps {
   /** Size of the switch. */
   size?: Switch.types.size.SMALL | Switch.types.size.MEDIUM | Switch.types.size.LARGE;
 }
+
+declare namespace Switch {
+  namespace types {
+    namespace size {
+      const SMALL: any;
+      const MEDIUM: any;
+      const LARGE: any;
+    }
+  }
+}

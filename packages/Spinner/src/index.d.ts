@@ -12,3 +12,13 @@ interface SpinnerProps {
   /** Sets the size of the spinner */
   size?: Spinner.types.size.SMALL | Spinner.types.size.MEDIUM | Spinner.types.size.LARGE;
 }
+
+declare namespace Spinner {
+  namespace types {
+    namespace size {
+      const SMALL: any;
+      const MEDIUM: any;
+      const LARGE: any;
+    }
+  }
+}

@@ -28,6 +28,7 @@ interface RadioProps {
   /** Value applied to the input if needed. */
   value?: string;
 }
+
 declare namespace Radio {
   function Group(props: GroupProps): JSX.Element;
   interface GroupProps {
@@ -44,5 +45,24 @@ declare namespace Radio {
     onChange: (...args: any[]) => any;
     /** The size for all radio components. */
     size?: Radio.types.size.SMALL | Radio.types.size.MEDIUM | Radio.types.size.LARGE;
+  }
+}
+
+declare namespace Radio {
+  namespace types {
+    namespace size {
+      const SMALL: any;
+      const MEDIUM: any;
+      const LARGE: any;
+    }
+  }
+}
+declare namespace Radio {
+  namespace types {
+    namespace size {
+      const SMALL: any;
+      const MEDIUM: any;
+      const LARGE: any;
+    }
   }
 }

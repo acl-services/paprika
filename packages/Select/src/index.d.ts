@@ -22,3 +22,13 @@ interface SelectProps {
 
   value?: string;
 }
+
+declare namespace Select {
+  namespace types {
+    namespace size {
+      const SMALL: any;
+      const MEDIUM: any;
+      const LARGE: any;
+    }
+  }
+}

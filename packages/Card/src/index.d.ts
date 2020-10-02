@@ -24,6 +24,7 @@ interface FooterProps {
   /** Body content of the footer */
   children?: React.ReactNode;
 }
+
 declare namespace Card {
   function Header(props: HeaderProps): JSX.Element;
   interface HeaderProps {
@@ -51,4 +52,15 @@ interface TitleProps {
   [x: string]: any;
   /** Body content of the Title. */
   children?: React.ReactNode;
+}
+
+declare namespace Card {
+  namespace types {
+    namespace size {
+      const AUTO: any;
+      const SMALL: any;
+      const MEDIUM: any;
+      const LARGE: any;
+    }
+  }
 }
