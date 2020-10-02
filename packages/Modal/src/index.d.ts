@@ -20,3 +20,13 @@ interface ModalProps {
   /** The z-index of the Takeover content */
   zIndex?: number;
 }
+
+declare namespace Modal {
+  namespace types {
+    namespace size {
+      const SMALL: any;
+      const MEDIUM: any;
+      const LARGE: any;
+    }
+  }
+}

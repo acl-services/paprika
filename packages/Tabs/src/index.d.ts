@@ -12,6 +12,7 @@ interface TabsProps {
   /** If the tab is disabled */
   isDisabled?: boolean;
 }
+
 declare namespace Tabs {
   function List(props: ListProps): JSX.Element;
   interface ListProps {
@@ -60,5 +61,14 @@ declare namespace Tabs {
     onClick?: (...args: any[]) => any;
     /** Callback onKeyDownArrow */
     onKeyDownArrows?: (...args: any[]) => any;
+  }
+}
+
+declare namespace Tabs {
+  namespace types {
+    namespace kind {
+      const PRIMARY: any;
+      const SECONDARY: any;
+    }
   }
 }

@@ -14,3 +14,21 @@ interface CounterProps {
   /** When quantity exceeds threshold, it will display "(Threshold)+" inside the counter. Default is 99. */
   threshold?: number;
 }
+
+declare namespace Counter {
+  namespace types {
+    namespace color {
+      const GREY: any;
+      const BLUE: any;
+      const RED: any;
+    }
+  }
+}
+declare namespace Counter {
+  namespace types {
+    namespace size {
+      const SMALL: any;
+      const MEDIUM: any;
+    }
+  }
+}

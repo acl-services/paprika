@@ -20,6 +20,7 @@ interface ButtonGroupProps {
   /** Size of the buttons (height, font size, etc). */
   size?: ButtonGroup.types.size.SMALL | ButtonGroup.types.size.MEDIUM | ButtonGroup.types.size.LARGE;
 }
+
 declare namespace ButtonGroup {
   function Item(props: ItemProps): JSX.Element;
   interface ItemProps {
@@ -30,5 +31,15 @@ declare namespace ButtonGroup {
     defaultIsActive?: boolean;
     /** Unique key to represent the selected value. */
     value: string | number;
+  }
+}
+
+declare namespace ButtonGroup {
+  namespace types {
+    namespace size {
+      const SMALL: any;
+      const MEDIUM: any;
+      const LARGE: any;
+    }
   }
 }

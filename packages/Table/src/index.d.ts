@@ -3,7 +3,7 @@ export default Table;
 declare function Table(props: TableProps): JSX.Element;
 interface TableProps {
   [x: string]: any;
-  /** Define the look for borders in the table Table.types.GRID, Table.types.NONE, etc. */
+  /** Define the look for borders in the table */
   borderType?:
     | Table.types.border.GRID
     | Table.types.border.NONE
@@ -18,6 +18,7 @@ interface TableProps {
   /** Array of data to be stored in the Table */
   data?: shape[];
 }
+
 declare namespace Table {
   function ColumnDefinition(props: ColumnDefinitionProps): JSX.Element;
   interface ColumnDefinitionProps {
@@ -26,5 +27,16 @@ declare namespace Table {
     cell: string | func;
 
     header: string | func;
+  }
+}
+
+declare namespace Table {
+  namespace types {
+    namespace border {
+      const GRID: any;
+      const NONE: any;
+      const HORIZONTAL: any;
+      const VERTICAL: any;
+    }
   }
 }

@@ -23,12 +23,17 @@ declare function ListBox(props:ListBoxProps): JSX.Element;
     placeholder: string;
  /** Size of the trigger and options (font size, height, padding, etc). */
     size?: ListBoxContainer.types.size.SMALL|ListBoxContainer.types.size.MEDIUM|ListBoxContainer.types.size.LARGE;
-}declare function Box(props:BoxProps): JSX.Element;
+
+ }
+declare function Box(props:BoxProps): JSX.Element;
   interface BoxProps{
     [x:string]: any;
      /** Body content of the box. */
     children: React.ReactNode;
-}declare namespace ListBox {
+
+ }
+
+    declare namespace ListBox {
       function Divider(props:DividerProps): JSX.Element;
   interface DividerProps{
     [x:string]: any;
@@ -39,7 +44,10 @@ declare function ListBox(props:ListBoxProps): JSX.Element;
     isDisabled?: boolean;
  
     children?: React.ReactNode;
-}}declare namespace ListBox {
+
+ }
+}
+    declare namespace ListBox {
       function Filter(props:FilterProps): JSX.Element;
   interface FilterProps{
     [x:string]: any;
@@ -61,7 +69,10 @@ declare function ListBox(props:ListBoxProps): JSX.Element;
     renderFilter?: (...args: any[])=> any;
  /** Sets a value for filter */
     value?: string;
-}}declare namespace ListBox {
+
+ }
+}
+    declare namespace ListBox {
       function Footer(props:FooterProps): JSX.Element;
   interface FooterProps{
     [x:string]: any;
@@ -95,7 +106,10 @@ declare function ListBox(props:ListBoxProps): JSX.Element;
     renderExtraButton?: (...args: any[])=> any;
  /** Determines the size of the footer */
     size?: Button.types.size.SMALL|Button.types.size.MEDIUM|Button.types.size.LARGE;
-}}declare namespace ListBox {
+
+ }
+}
+    declare namespace ListBox {
       function Option(props:OptionProps): JSX.Element;
   interface OptionProps{
     [x:string]: any;
@@ -117,7 +131,10 @@ declare function ListBox(props:ListBoxProps): JSX.Element;
     value?: any;
  
     preventDefaultOnSelect?: -;
-}}declare namespace ListBox {
+
+ }
+}
+    declare namespace ListBox {
       function Popover(props:PopoverProps): JSX.Element;
   interface PopoverProps{
     [x:string]: any;
@@ -125,13 +142,19 @@ declare function ListBox(props:ListBoxProps): JSX.Element;
     children?: React.ReactNode;
  /** Sets the z-index value of the PopOver */
     zIndex?: number;
-}}declare namespace ListBox {
+
+ }
+}
+    declare namespace ListBox {
       function RawItem(props:RawItemProps): JSX.Element;
   interface RawItemProps{
     [x:string]: any;
      
     preventDefaultOnSelect?: -;
-}}declare namespace ListBox {
+
+ }
+}
+    declare namespace ListBox {
       function Trigger(props:TriggerProps): JSX.Element;
   interface TriggerProps{
     [x:string]: any;
@@ -153,4 +176,62 @@ declare function ListBox(props:ListBoxProps): JSX.Element;
     placeholder?: string;
  /** If true the trigger will be hidden */
     isHidden?: boolean;
-}}
+
+ }
+}
+
+
+declare namespace ListBoxContainer{
+  namespace types{
+    namespace size{
+      
+      const SMALL: any;
+      const MEDIUM: any;
+      const LARGE
+
+: any;
+    }
+  }
+}
+declare namespace Button{
+  namespace types{
+    namespace kind{
+      
+      const PRIMARY: any;
+      const MINOR
+: any;
+    }
+  }
+}
+declare namespace Button{
+  namespace types{
+    namespace kind{
+      
+      const PRIMARY: any;
+      const MINOR
+: any;
+    }
+  }
+}
+declare namespace Button{
+  namespace types{
+    namespace kind{
+      
+      const PRIMARY: any;
+      const MINOR
+: any;
+    }
+  }
+}
+declare namespace Button{
+  namespace types{
+    namespace size{
+      
+      const SMALL: any;
+      const MEDIUM: any;
+      const LARGE
+
+: any;
+    }
+  }
+}

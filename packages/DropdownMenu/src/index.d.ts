@@ -12,6 +12,7 @@ interface DropdownMenuProps {
   /** The z-index for the popover / confirmation */
   zIndex?: custom;
 }
+
 declare namespace DropdownMenu {
   function Item(props: ItemProps): JSX.Element;
   interface ItemProps {
@@ -62,5 +63,15 @@ declare namespace DropdownMenu {
     onOpenMenu?: (...args: any[]) => any;
 
     triggerRef?: custom;
+  }
+}
+
+declare namespace Trigger {
+  namespace types {
+    namespace button {
+      const ICON: any;
+      const RAW: any;
+      const SIMPLE: any;
+    }
   }
 }

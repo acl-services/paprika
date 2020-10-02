@@ -34,3 +34,13 @@ interface SidePanelProps {
   /** Control the z position of the sidepanel */
   zIndex?: number;
 }
+
+declare namespace SidePanel {
+  namespace types {
+    namespace kind {
+      const DEFAULT: any;
+      const CHILD: any;
+      const PRIMARY: any;
+    }
+  }
+}

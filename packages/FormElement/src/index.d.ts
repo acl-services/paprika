@@ -26,6 +26,7 @@ interface FormElementProps {
 
   onClickLabel?: (...args: any[]) => any;
 }
+
 declare namespace FormElement {
   function Content(props: ContentProps): JSX.Element;
   interface ContentProps {
@@ -90,5 +91,15 @@ declare namespace FormElement {
     hasFieldSet: boolean;
 
     onClick?: (...args: any[]) => any;
+  }
+}
+
+declare namespace FormElement {
+  namespace types {
+    namespace size {
+      const SMALL: any;
+      const MEDIUM: any;
+      const LARGE: any;
+    }
   }
 }

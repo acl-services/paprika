@@ -12,3 +12,12 @@ interface AvatarProps {
   /** Size of Avatar */
   size?: Avatar.types.size.SMALL | Avatar.types.size.MEDIUM;
 }
+
+declare namespace Avatar {
+  namespace types {
+    namespace size {
+      const SMALL: any;
+      const MEDIUM: any;
+    }
+  }
+}

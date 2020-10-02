@@ -8,6 +8,7 @@ interface NotificationCardProps {
   /** Dictates the maximum width of the component */
   maxWidth?: string;
 }
+
 declare namespace NotificationCard {
   function Image(props: ImageProps): JSX.Element;
   interface ImageProps {
@@ -42,5 +43,14 @@ declare namespace NotificationCard {
     [x: string]: any;
 
     children?: React.ReactNode;
+  }
+}
+
+declare namespace NotificationCard {
+  namespace types {
+    namespace align {
+      const TOP: any;
+      const CENTER: any;
+    }
   }
 }

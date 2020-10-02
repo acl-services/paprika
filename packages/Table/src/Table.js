@@ -80,7 +80,7 @@ Table.types = {
 };
 
 const propTypes = {
-  /** Define the look for borders in the table Table.types.GRID, Table.types.NONE, etc.  */
+  /** Define the look for borders in the table */
   borderType: PropTypes.oneOf([
     Table.types.border.GRID,
     Table.types.border.NONE,
