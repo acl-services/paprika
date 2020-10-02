@@ -1,6 +1,6 @@
 import React from "react";
-import { ButtonStory } from "../Button.stories.styles";
-import Button from "../../src";
+import { ButtonStory } from "../../Button.stories.styles";
+import Button from "../../../src";
 
 export default function ButtonStates() {
   return (
