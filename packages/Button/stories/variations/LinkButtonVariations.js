@@ -2,6 +2,7 @@ import React from "react";
 import { action } from "@storybook/addon-actions";
 import { Rule } from "storybook/assets/styles/common.styles";
 import PlusIcon from "@paprika/icon/lib/Add";
+import Heading from "@paprika/heading";
 import Button from "../../src/Button";
 
 function clickHandler() {
@@ -11,6 +12,10 @@ function clickHandler() {
 export default function LinkButtonVariations() {
   return (
     <>
+      <Heading level={1} displayLevel={2} isLight>
+        Variations of Link Button
+      </Heading>
+      <Rule />
       <p>
         <Button.Link onClick={clickHandler} kind="primary" href="https://youtu.be/IdkCEioCp24?t=92">
           Link

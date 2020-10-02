@@ -2,6 +2,7 @@ import React from "react";
 import { action } from "@storybook/addon-actions";
 import { Rule } from "storybook/assets/styles/common.styles";
 import PlusIcon from "@paprika/icon/lib/Add";
+import Heading from "@paprika/heading";
 import Button from "../../src/Button";
 
 function clickHandler() {
@@ -11,6 +12,10 @@ function clickHandler() {
 export default function ButtonVariations() {
   return (
     <>
+      <Heading level={1} displayLevel={2} isLight>
+        Variations of Basic Button
+      </Heading>
+      <Rule />
       <p>
         <Button a11yText="ceci n'est pas un bouton" data-pka-anchor="test-button" onClick={clickHandler}>
           default button

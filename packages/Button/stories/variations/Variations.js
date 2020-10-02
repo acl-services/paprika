@@ -1,5 +1,5 @@
 import React from "react";
-import { Rule, Tagline, breaklines } from "storybook/assets/styles/common.styles";
+import { Rule, breaklines } from "storybook/assets/styles/common.styles";
 import { ButtonStory } from "../Button.stories.styles";
 import ButtonVariations from "./ButtonVariations";
 import LinkButtonVariations from "./LinkButtonVariations";
@@ -9,8 +9,6 @@ import CloseButtonVariations from "./CloseButtonVariations";
 export default function Variations() {
   return (
     <ButtonStory>
-      <Tagline>So many different kinds of Buttons!</Tagline>
-      <Rule />
       <ButtonVariations />
       <Rule />
       <LinkButtonVariations />

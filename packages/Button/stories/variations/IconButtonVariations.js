@@ -5,6 +5,7 @@ import InfoIcon from "@paprika/icon/lib/InfoCircle";
 import tokens from "@paprika/tokens";
 import Popover from "@paprika/popover";
 import PlusIcon from "@paprika/icon/lib/Add";
+import Heading from "@paprika/heading";
 import Button from "../../src/Button";
 
 const renderTriggerWithTooltip = () => {
@@ -33,6 +34,10 @@ function clickHandler() {
 export default function IconButtonVariations() {
   return (
     <>
+      <Heading level={1} displayLevel={2} isLight>
+        Variations of Icon Button
+      </Heading>
+      <Rule />
       <p>
         <Button.Icon onClick={clickHandler} size="small">
           <InfoIcon />
