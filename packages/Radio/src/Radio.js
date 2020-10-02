@@ -1,10 +1,10 @@
 import React from "react";
 import PropTypes from "prop-types";
 import nanoid from "nanoid";
-import * as constants from "@paprika/constants/lib/Constants";
 import CheckIcon from "@paprika/icon/lib/Check";
 import * as sc from "./Radio.styles";
 import Group from "./components/Group";
+import types from "./types";
 
 function Radio(props) {
   const {
@@ -81,9 +81,7 @@ function Radio(props) {
   );
 }
 
-Radio.types = {
-  size: constants.defaultSize,
-};
+Radio.types = types;
 
 const propTypes = {
   /** Used for aria-label on the radio input  */
