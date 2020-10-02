@@ -8,38 +8,23 @@ import NewRef from "./examples/NewRef";
 import OldRef from "./examples/OldRef";
 import Button from "../src/";
 
-# Button
+## More Examples
 
-<Props of={Button} />
+### Index
 
-## Installation
+- <a href="#basic-button">Basic Button</a>
 
-```
-yarn add @/paprika/button
-```
+  - <a href="#kinds">Kinds</a>
 
-or
+  - <a href="#sizes">Sizes</a>
 
-```
-npm install @paprika/button
-```
+  - <a href="#states">States</a>
 
-## Usage
+  - <a href="#submit">Submit</a>
 
-The `<Button />` component allows users to perform an action on the page you’re viewing.
-
-The Button component has several unique sub-components that can be used depending on the users needs. The alternate Button's that can be used include the following:
-
-- The Basic Button: `<Button />`
-- The Close Button: `<Button.Close />`
-- The Link Button: `<Button.Link />`
-- The Icon Button: `<Button.Icon />`
-
-To add any of the aforementioned buttons to your project simply import the button as follows:
-
-```js
-import Button from "@paprika/button";
-```
+- <a href="#close-button">Close Button</a>
+- <a href="#link-button">Link Button</a>
+- <a href="#icon-button">Icon Button</a>
 
 ### Basic Button
 
@@ -49,7 +34,7 @@ To add a basic button import the button and add the `<Button>` component to your
 <Button>Click Me!</Button>
 ```
 
-#### Result
+##### Result
 
 <Button>Click Me!</Button>
 
@@ -67,7 +52,7 @@ Differant projects require differant buttons, luckily the Button component can m
 <Button kind="Button.types.kind.LINK">link</Button>
 ```
 
-#### Result
+##### Result
 
 <Button kind="default">default</Button>
 <Button kind="primary">primary</Button>
@@ -88,7 +73,7 @@ Buttons can be adjusteds to be a variety of sizes using the `size` proeprty or t
 <Button isFullWidth>full width</Button>
 ```
 
-#### Result
+##### Result
 
 <Button size="small">small</Button>
 <Button size="medium">medium</Button>
@@ -105,7 +90,7 @@ Buttons can be display differant states by adjusting making use of the `isActive
     <Button isPending>pending</Button>
 ```
 
-#### Result
+##### Result
 
 <Button isActive>active</Button>
 <Button isDisabled>disabled</Button>
@@ -129,13 +114,11 @@ To turn a Button into a submit Button by adding the `isSubmit` property.
 </form>
 ```
 
-#### Result
+##### Result
 
 <ButtonSubmit />
 
 ### Close Button
-
-<Props of={Button.Close} />
 
 To make use of a Close Button use the `<Button.Close>` element.
 
@@ -148,13 +131,11 @@ To make use of a Close Button use the `<Button.Close>` element.
 </p>
 ```
 
-#### Result
+##### Result
 
 <CloseButtonRef />
 
 ### Link Button
-
-<Props of={Button.Link} />
 
 To make use of a Link Button use the `<Link.Button>` element.
 
@@ -180,7 +161,7 @@ To make use of a Link Button use the `<Link.Button>` element.
 </Button.Link>
 ```
 
-#### Result
+##### Result
 
 <Button.Link kind="primary" href="https://youtu.be/IdkCEioCp24?t=92">
     Link
@@ -203,8 +184,6 @@ To make use of a Link Button use the `<Link.Button>` element.
 </Button.Link>
 
 ### Icon Button
-
-<Props of={Button.Icon} />
 
 The Icon Button allows users to easily make use of buttons that contain icons or use icons as buttons.
 
@@ -231,7 +210,7 @@ The Icon Button allows users to easily make use of buttons that contain icons or
 </Button.Icon>
 ```
 
-#### Result
+##### Result
 
 <Button.Icon  size="small">
     <InfoIcon />
