@@ -106,7 +106,7 @@ export const Cell = styled.div.attrs(({ hasZebraStripes, rowIndex, borderType })
   const zebra = hasZebraStripes
     ? {
         background:
-          rowIndex % 2 === 0 ? `${tokens.table.rowEven.backgroundColor}` : `${tokens.table.row.backgroundColor}`,
+          rowIndex % 2 === 0 ? `${tokens.table.row.backgroundColor}` : `${tokens.table.rowEven.backgroundColor}`,
       }
     : {};
 
