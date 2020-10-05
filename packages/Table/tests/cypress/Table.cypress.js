@@ -94,45 +94,45 @@ describe("Table", () => {
   it("Should have borders", () => {
     cy.visitStorybook(`${getStoryUrlPrefix("Table")}--border-types`);
 
-    // Default borders
-    cy.getAllByRole("cell")
-      .eq(0)
-      .should("have.css", "border")
-      .should("eq", "1px solid rgb(215, 215, 215)");
-
-    cy.getAllByRole("cell")
-      .eq(1)
-      .should("have.css", "border")
-      .should("eq", "1px solid rgb(215, 215, 215)");
-
-    cy.getAllByRole("cell")
-      .eq(2)
-      .should("have.css", "border")
-      .should("eq", "1px solid rgb(215, 215, 215)");
-
-    cy.getAllByRole("cell")
-      .eq(3)
-      .should("have.css", "border")
-      .should("eq", "1px solid rgb(215, 215, 215)");
-
-    // horizontal borders
+    // Grid borders
     cy.getAllByRole("cell")
       .eq(20)
-      .should("have.css", "border-width")
-      .should("eq", "1px 0px");
+      .should("have.css", "border")
+      .should("eq", "1px solid rgb(215, 215, 215)");
 
     cy.getAllByRole("cell")
       .eq(21)
-      .should("have.css", "border-width")
-      .should("eq", "1px 0px");
+      .should("have.css", "border")
+      .should("eq", "1px solid rgb(215, 215, 215)");
 
     cy.getAllByRole("cell")
       .eq(22)
+      .should("have.css", "border")
+      .should("eq", "1px solid rgb(215, 215, 215)");
+
+    cy.getAllByRole("cell")
+      .eq(23)
+      .should("have.css", "border")
+      .should("eq", "1px solid rgb(215, 215, 215)");
+
+    // Default/horizontal borders
+    cy.getAllByRole("cell")
+      .eq(0)
       .should("have.css", "border-width")
       .should("eq", "1px 0px");
 
     cy.getAllByRole("cell")
-      .eq(23)
+      .eq(1)
+      .should("have.css", "border-width")
+      .should("eq", "1px 0px");
+
+    cy.getAllByRole("cell")
+      .eq(2)
+      .should("have.css", "border-width")
+      .should("eq", "1px 0px");
+
+    cy.getAllByRole("cell")
+      .eq(3)
       .should("have.css", "border-width")
       .should("eq", "1px 0px");
 

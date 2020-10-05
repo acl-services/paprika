@@ -97,7 +97,7 @@ const propTypes = {
 };
 
 const defaultProps = {
-  borderType: Table.types.border.GRID,
+  borderType: Table.types.border.HORIZONTAL,
   data: [],
   hasZebraStripes: false,
 };
