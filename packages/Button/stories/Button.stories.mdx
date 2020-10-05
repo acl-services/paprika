@@ -1,8 +1,16 @@
-import { Meta } from "@storybook/addon-docs/blocks";
+import { Meta, Props, Story } from "@storybook/addon-docs/blocks";
 import { Description } from "@storybook/addon-docs/blocks";
 import { getStoryName } from "storybook/storyTree";
 import Readme from "../README.md";
-import MDX from "./Button.mdx";
+import Input from "@paprika/input";
+import PlusIcon from "@paprika/icon/lib/Add";
+import InfoIcon from "@paprika/icon/lib/InfoCircle";
+import ButtonSubmit from "./examples/ButtonSubmit";
+import CloseButtonRef from "./examples/CloseButtonRef";
+import Focus from "./examples/Focus";
+import NewRef from "./examples/NewRef";
+import OldRef from "./examples/OldRef";
+import { ButtonStory } from "./Button.stories.styles";
 import Button from "../src/";
 
 export const params = {
@@ -16,4 +24,221 @@ export const params = {
 
 <Description markdown={Readme} />
 
-<MDX />
+## More Examples
+
+### Index
+
+- <a href="#basic-button">Basic Button</a>
+
+  - <a href="#kinds">Kinds</a>
+
+  - <a href="#sizes">Sizes</a>
+
+  - <a href="#states">States</a>
+
+  - <a href="#submit">Submit</a>
+
+- <a href="#close-button">Close Button</a>
+- <a href="#link-button">Link Button</a>
+- <a href="#icon-button">Icon Button</a>
+
+### Basic Button
+
+#### Kinds
+
+Differant projects require differant buttons, luckily the Button component can make us of the `kind` property to create a variety of buttons for differant use cases.
+
+```jsx
+  <Button kind="Button.types.kind.DEFAULT">default</Button>
+  <Button kind="Button.types.kind.PRIMARY">primary</Button>
+  <Button kind="Button.types.kind.SECONDARY">secondary</Button>
+  <Button kind="Button.types.kind.DESTRUCTIVE">destructive</Button>
+  <Button kind="Button.types.kind.FLAT">flat</Button>
+  <Button kind="Button.types.kind.MINOR">minor</Button>
+  <Button kind="Button.types.kind.LINK">link</Button>
+```
+
+##### Result
+
+<ButtonStory>
+  <Button kind="default">default</Button>
+  <Button kind="primary">primary</Button>
+  <Button kind="secondary">secondary</Button>
+  <Button kind="destructive">destructive</Button>
+  <Button kind="flat">flat</Button>
+  <Button kind="minor">minor</Button>
+  <Button kind="link">link</Button>
+</ButtonStory>
+
+#### Sizes
+
+Buttons can be adjusteds to be a variety of sizes using the `size` proeprty or the `isFullWidth` proeprty.
+
+```jsx
+<Button size="Button.types.size.SMALL">small</Button>
+<Button size="Button.types.size.MEDIUM">medium</Button>
+<Button size="Button.types.size.LARGE">large</Button>
+<Button isFullWidth>full width</Button>
+```
+
+##### Result
+
+<ButtonStory>
+  <Button size="small">small</Button>
+  <Button size="medium">medium</Button>
+  <Button size="large">large</Button>
+  <Button isFullWidth>full width</Button>
+</ButtonStory>
+
+#### States
+
+Buttons can be display differant states by adjusting making use of the `isActive`, `isPending`, and `isDisabled` properties.
+
+```jsx
+    <Button isActive>active</Button>
+
+    <Button isDisabled>disabled</Button>
+
+    <Button isPending>pending</Button>
+```
+
+##### Result
+
+<ButtonStory>
+  <Button isActive>active</Button>
+  <Button isDisabled>disabled</Button>
+  <Button isPending>pending</Button>
+</ButtonStory>
+
+#### Submit
+
+To turn a Button into a submit Button by adding the `isSubmit` property.
+
+```jsx
+<form
+  style={{ display: "flex", flexDirection: "row", alignItems: "center" }}
+  onSubmit={event => {
+    alert("submitted");
+    event.preventDefault();
+  }}
+>
+  <Input type="text" defaultValue="Press enter while focus" />
+  <Button isSubmit isSemantic={false}>
+    submit
+  </Button>
+</form>
+```
+
+##### Result
+
+<ButtonStory>
+  <ButtonSubmit />
+</ButtonStory>
+
+### Close Button
+
+To make use of a Close Button use the `<Button.Close>` element.
+
+```jsx
+<Button.Close />
+```
+
+##### Result
+
+<ButtonStory>
+  <Button.Close />
+</ButtonStory>
+
+### Link Button
+
+To make use of a Link Button use the `<Button.Link>` element.
+
+```jsx
+<Button.Link kind="primary" href="https://youtu.be/IdkCEioCp24?t=92">
+    Link
+</Button.Link>
+<Button.Link kind="secondary" href="https://youtu.be/IdkCEioCp24?t=92" shouldOpenNewTab>
+    Link in new tab
+</Button.Link>
+<Button.Link href="https://youtu.be/IdkCEioCp24?t=92" size="small">
+    Link small
+</Button.Link>
+<Button.Link href="https://youtu.be/IdkCEioCp24?t=92">Link medium</Button.Link>
+<Button.Link href="https://youtu.be/IdkCEioCp24?t=92" size="large">
+    Link large
+</Button.Link>
+<Button.Link href="https://youtu.be/IdkCEioCp24?t=92" shouldOpenNewTab>
+    Link in new tab
+</Button.Link>
+<Button.Link kind="secondary" icon={<PlusIcon />} href="https://youtu.be/IdkCEioCp24?t=92" shouldOpenNewTab>
+    Button link with icon
+</Button.Link>
+```
+
+##### Result
+
+<ButtonStory>
+  <Button.Link kind="primary" href="https://youtu.be/IdkCEioCp24?t=92">
+    Link
+  </Button.Link>
+  <Button.Link kind="secondary" href="https://youtu.be/IdkCEioCp24?t=92" shouldOpenNewTab>
+    Link in new tab
+  </Button.Link>
+  <Button.Link href="https://youtu.be/IdkCEioCp24?t=92" size="small">
+    Link small
+  </Button.Link>
+  <Button.Link href="https://youtu.be/IdkCEioCp24?t=92">Link medium</Button.Link>
+  <Button.Link href="https://youtu.be/IdkCEioCp24?t=92" size="large">
+    Link large
+  </Button.Link>
+  <Button.Link href="https://youtu.be/IdkCEioCp24?t=92" shouldOpenNewTab>
+    Link in new tab
+  </Button.Link>
+  <Button.Link kind="secondary" icon={<PlusIcon />} href="https://youtu.be/IdkCEioCp24?t=92" shouldOpenNewTab>
+    Button link with icon
+  </Button.Link>
+</ButtonStory>
+
+### Icon Button
+
+To make use of an Icon Button use the `<Button.Icon>` element. The Icon Button allows users to easily render a square button that uses _only_ an icon as the label.
+
+For accessibility, it is important to also provide a text label for Icon Buttons by utilizing the `a11yText` prop.
+
+```jsx
+<Button.Icon  size="small">
+    <InfoIcon />
+</Button.Icon>
+<Button.Icon >
+    <InfoIcon />
+</Button.Icon>
+<Button.Icon  size="large">
+    <InfoIcon />
+</Button.Icon>
+<Button.Icon  kind="flat">
+    <InfoIcon />
+</Button.Icon>
+<Button.Icon  kind="minor">
+    <InfoIcon />
+</Button.Icon>
+```
+
+##### Result
+
+<ButtonStory>
+  <Button.Icon size="small">
+    <InfoIcon />
+  </Button.Icon>
+  <Button.Icon>
+    <InfoIcon />
+  </Button.Icon>
+  <Button.Icon size="large">
+    <InfoIcon />
+  </Button.Icon>
+  <Button.Icon kind="flat">
+    <InfoIcon />
+  </Button.Icon>
+  <Button.Icon kind="minor">
+    <InfoIcon />
+  </Button.Icon>
+</ButtonStory>

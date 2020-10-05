@@ -91,7 +91,7 @@ import Button from "@paprika/button";
 <Button onClick={clickHandler}>Button label</Button>;
 ```
 
-Or a button
+Or an Icon button
 
 ```js
 import Button from "@paprika/button";
@@ -102,17 +102,13 @@ import InfoIcon from "@paprika/icon/lib/InfoCircle";
 </Button.Icon>;
 ```
 
-Or a close button
+Or a Close button
 
 ```js
 import Button from "@paprika/button";
 
 <Button.Close onClick={clickHandler} />;
 ```
-
-#### Button.Close
-
-- `isDark`
 
 <!-- eoContent -->
 
