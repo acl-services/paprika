@@ -7,7 +7,7 @@ import { ShirtSizes } from "@paprika/helpers/lib/customPropTypes";
 import { FormElementStory } from "../FormElement.stories.styles";
 import FormElement from "../../src";
 
-const formElementProps = () => ({
+const getKnobs = () => ({
   hasOptionalLabel: boolean("hasOptionalLabel", false),
   hasRequiredLabel: boolean("hasRequiredLabel", false),
   isDisabled: boolean("isDisabled", false),
@@ -37,7 +37,7 @@ const helpPropKnobs = () => ({
   helpText: text("help text", "Give me some help."),
 });
 
-const ExampleStory = props => {
+const Showcase = props => {
   const [value, setValue] = React.useState("");
 
   function handleChange(e) {
@@ -78,4 +78,4 @@ const ExampleStory = props => {
   );
 };
 
-export default () => <ExampleStory {...formElementProps()} />;
+export default () => <Showcase {...getKnobs()} />;

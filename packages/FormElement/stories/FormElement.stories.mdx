@@ -1,0 +1,265 @@
+import { Meta } from "@storybook/addon-docs/blocks";
+import { Description } from "@storybook/addon-docs/blocks";
+import { getStoryName } from "storybook/storyTree";
+import Readme from "../README.md";
+import { FormElementStory } from "./FormElement.stories.styles";
+import CheckboxExample from "./examples/CheckboxExample";
+import RadioExample from "./examples/RadioExample";
+import DatePickerExample from "./examples/DatePickerExample";
+import AccessibilityExample from "./examples/AccessibilityExample";
+import ListBoxExample from "./examples/ListBoxExample";
+import ButtonGroupExample from "./examples/ButtonGroupExample";
+import NativeInputExample from "./examples/NativeInputExample";
+import NestedExample from "./examples/NestedExample";
+import HTMLExample from "./examples/HTMLExample";
+import ComponentLabelExample from "./examples/ComponentLabelExample";
+import FormElement from "../src/FormElement";
+
+<Meta
+  title={`${getStoryName("FormElement")}/Docs`}
+  component={FormElement}
+  parameters={{ options: { showPanel: false } }}
+/>
+
+<Description markdown={Readme} />
+
+## More Examples
+
+### Index
+
+- <a href="#accessibility">Accessibility</a>
+- <a href="#alternate-layouts">Alternate Layout</a>
+
+  - <a href="#checkboxes">Checkboxes</a>
+  - <a href="#radios">Radios</a>
+  - <a href="#date-picker">Date Picker</a>
+  - <a href="#listbox">ListBox</a>
+  - <a href="#buttongroup">ButtonGroup</a>
+  - <a href="#nested-formelement">Nested FormElements</a>
+
+### Accessibility
+
+The Formelement has been designed with accessibiklity in mind. By using `<FormElement.Instructions>` users can add instructions for the end user. Users can also make use of the `<FormElement.Description>` to add additional direction for consumers.
+
+```jsx
+<FormElement label="Form Label">
+  <FormElement.Instructions>
+    <span>
+      Example text for extra panel for questionnaires. Example text for extra panel for questionnaires Example text for
+      extra panel for questionnaires. Example text for extra panel for questionnaires
+    </span>
+  </FormElement.Instructions>
+  <FormElement.Content>
+    {({ idForLabel, ariaDescribedBy }) => (
+      <Input
+        id={idForLabel}
+        onChange={handleChange}
+        value={value}
+        placeholder="Form placeholder"
+        aria-describedby={ariaDescribedBy}
+        hasError={Boolean(errorText.length)}
+      />
+    )}
+  </FormElement.Content>
+  <FormElement.Description>
+    <span>This is description text</span>
+  </FormElement.Description>
+  <FormElement.Error>{errorText}</FormElement.Error>
+  <FormElement.Help>
+    Give me some help. <a href="wegalvanize.com">Learn more</a>.
+  </FormElement.Help>
+</FormElement>
+```
+
+##### Result
+
+<FormElementStory>
+  <AccessibilityExample />
+</FormElementStory>
+
+### Alternate Layouts
+
+The FormElement can be used in a variety of formats. These can include FormElements with checkboxes, radios, listbox's etc.
+
+#### Checkboxes
+
+```jsx
+<FormElement hasFieldSet label="Form Label">
+  <FormElement.Content>
+    {({ ariaDescribedBy: ariaDescribedByOuter }) => getCheckboxOptions(ariaDescribedByOuter)}
+  </FormElement.Content>
+  <FormElement.Description>
+    <span>Description of this field.</span>
+  </FormElement.Description>
+  <FormElement.Error>{errorText}</FormElement.Error>
+  <FormElement.Help>
+    Give me some help. <a href="wegalvanize.com">Learn more</a>.
+  </FormElement.Help>
+</FormElement>
+```
+
+##### Result
+
+<CheckboxExample />
+
+#### Radios
+
+```jsx
+<FormElement hasFieldSet label="Form Label">
+  <FormElement.Content>
+    {({ ariaDescribedBy: ariaDescribedByOuter }) => getRadioOptions(ariaDescribedByOuter)}
+  </FormElement.Content>
+  <FormElement.Description>
+    <span>Description of this field.</span>
+  </FormElement.Description>
+  <FormElement.Error>{errorText}</FormElement.Error>
+  <FormElement.Help>
+    Give me some help. <a href="wegalvanize.com">Learn more</a>.
+  </FormElement.Help>
+</FormElement>
+```
+
+##### Result
+
+<RadioExample />
+
+#### Date Picker
+
+```jsx
+<FormElement label="Form Label">
+  <FormElement.Content>
+    {({ idForLabel, ariaDescribedBy }) => (
+      <DatePicker onError={() => {}} hasError={Boolean(errorText.length)} id={idForLabel} onChange={() => {}}>
+        <DatePicker.Input aria-describedby={ariaDescribedBy} />
+      </DatePicker>
+    )}
+  </FormElement.Content>
+  <FormElement.Description>
+    <span>Description of this field.</span>
+  </FormElement.Description>
+  <FormElement.Error>{errorText}</FormElement.Error>
+  <FormElement.Help>
+    Give me some help. <a href="wegalvanize.com">Learn more</a>.
+  </FormElement.Help>
+</FormElement>
+```
+
+##### Result
+
+<DatePickerExample />
+
+#### ListBox
+
+```jsx
+<FormElement label="Form Label">
+  <FormElement.Content>{({ refLabel }) => <ListBox refLabel={refLabel}>{listboxOptions}</ListBox>}</FormElement.Content>
+  <FormElement.Description>
+    <span>Description of this field.</span>
+  </FormElement.Description>
+  <FormElement.Help>
+    Give me some help. <a href="wegalvanize.com">Learn more</a>.
+  </FormElement.Help>
+</FormElement>
+```
+
+##### Result
+
+<ListBoxExample />
+
+#### ButtonGroup
+
+```jsx
+<FormElement label="Form Label" onClickLabel={() => refButtonGroup.current.focus()}>
+  <FormElement.Content>
+    {() => <ButtonGroup ref={refButtonGroup}>{buttonGroupOptions}</ButtonGroup>}
+  </FormElement.Content>
+  <FormElement.Description>
+    <span>Description of this field.</span>
+  </FormElement.Description>
+  <FormElement.Help>
+    Give me some help. <a href="wegalvanize.com">Learn more</a>.
+  </FormElement.Help>
+</FormElement>
+```
+
+##### Result
+
+<ButtonGroupExample />
+
+#### Nested FormElement
+
+```jsx
+<FormElement hasFieldSet label="Form Legend">
+  <FormElement.Content>
+    {({ ariaDescribedBy: ariaDescribedByOuter }) => (
+      <>
+        <FormElement isInline label="Sub Label">
+          <FormElement.Content>
+            {({ idForLabel, ariaDescribedBy }) => (
+              <>
+                <input
+                  aria-required={hasRequiredLabel}
+                  aria-describedby={ariaDescribedBy + ariaDescribedByOuter}
+                  aria-invalid={Boolean(errorText.length)}
+                  disabled={isDisabled}
+                  id={idForLabel}
+                  readOnly={isReadOnly}
+                />
+                <input
+                  aria-required={hasRequiredLabel}
+                  aria-describedby={ariaDescribedBy + ariaDescribedByOuter}
+                  aria-invalid={Boolean(errorText.length)}
+                  disabled={isDisabled}
+                  readOnly={isReadOnly}
+                />
+              </>
+            )}
+          </FormElement.Content>
+          <FormElement.Error>{errorText}</FormElement.Error>
+          <FormElement.Help>
+            Give me some help. <a href="wegalvanize.com">Learn more</a>.
+          </FormElement.Help>
+        </FormElement>
+        <FormElement isInline label="Sub Label 2">
+          <FormElement.Content>
+            {({ idForLabel, ariaDescribedBy }) => (
+              <>
+                <input
+                  aria-required={hasRequiredLabel}
+                  aria-describedby={ariaDescribedBy + ariaDescribedByOuter}
+                  aria-invalid={Boolean(errorText.length)}
+                  disabled={isDisabled}
+                  id={idForLabel}
+                  readOnly={isReadOnly}
+                />
+                <input
+                  aria-required={hasRequiredLabel}
+                  aria-describedby={ariaDescribedBy + ariaDescribedByOuter}
+                  aria-invalid={Boolean(errorText.length)}
+                  disabled={isDisabled}
+                  readOnly={isReadOnly}
+                />
+              </>
+            )}
+          </FormElement.Content>
+          <FormElement.Error>{errorText}</FormElement.Error>
+          <FormElement.Help>
+            Give me some help. <a href="wegalvanize.com">Learn more</a>.
+          </FormElement.Help>
+        </FormElement>
+      </>
+    )}
+  </FormElement.Content>
+  <FormElement.Error>{errorText}</FormElement.Error>
+  <FormElement.Description>
+    <span>Description of this field.</span>
+  </FormElement.Description>
+  <FormElement.Help>
+    Give me some help. <a href="wegalvanize.com">Learn more</a>.
+  </FormElement.Help>
+</FormElement>
+```
+
+##### Result
+
+<NestedExample />
