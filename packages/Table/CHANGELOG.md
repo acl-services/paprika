@@ -12,7 +12,7 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 
 ### Added
 
-- Propagate `<Table.ColumnDefinition>` `moreProps` to the `<th>` elements. [@mikrotron](https://github.com/mikrotron)
+- BREAKING: Propagate `<Table.ColumnDefinition>` `moreProps` to the `<th>` elements. This could introduce a breaking change since props that were applied to `<td>` elements will now ALSO be applied to `<th>` elements. [@mikrotron](https://github.com/mikrotron)
 
 ## [0.1.3] - 2020-08-27
 
