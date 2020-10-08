@@ -1,6 +1,6 @@
 import React from "react";
 import PropTypes from "prop-types";
-import SvgClockTime from "@paprika/icon/lib/ClockTime";
+import ClockIcon from "@paprika/icon/lib/Clock";
 import Input from "@paprika/input";
 import useI18n from "@paprika/l10n/lib/useI18n";
 import Popover from "@paprika/popover";
@@ -155,7 +155,7 @@ function TimePicker(props) {
           <Input
             ariaLabel={a11yText}
             hasClearButton={false}
-            icon={<SvgClockTime />}
+            icon={<ClockIcon />}
             isDisabled={isDisabled}
             onChange={handleChange}
             onKeyUp={handleKeyUp}

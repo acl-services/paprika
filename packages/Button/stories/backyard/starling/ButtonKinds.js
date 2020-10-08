@@ -1,7 +1,7 @@
 import React from "react";
 import PlusIcon from "@paprika/icon/lib/Add";
-import { ButtonStory } from "../Button.stories.styles";
-import Button from "../../src";
+import { ButtonStory } from "../../Button.stories.styles";
+import Button from "../../../src";
 
 export default function ExampleStory() {
   return (
