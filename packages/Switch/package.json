@@ -1,6 +1,6 @@
 {
   "name": "@paprika/switch",
-  "version": "0.2.31",
+  "version": "0.2.32",
   "description": "Switch component for turning a setting on or off.",
   "author": "@paprika",
   "main": "lib/index.js",
