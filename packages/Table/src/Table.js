@@ -26,17 +26,17 @@ export default function Table(props) {
       <sc.Thead>
         <tr>
           {ColumnDefinitions.map((columnDefinition, columnIndex) => {
-            const { header } = columnDefinition.props;
+            const { cell, header, ...moreColumnProps } = columnDefinition.props;
 
             if (typeof header === "function")
               return (
-                <sc.TH borderType={borderType} key={columnIndex}>
+                <sc.TH borderType={borderType} key={columnIndex} {...moreColumnProps}>
                   {header({ header: columnDefinition.props, columnIndex })}
                 </sc.TH>
               );
             if (typeof header === "string")
               return (
-                <sc.TH borderType={borderType} key={columnIndex}>
+                <sc.TH borderType={borderType} key={columnIndex} {...moreColumnProps}>
                   {header}
                 </sc.TH>
               );
@@ -50,17 +50,17 @@ export default function Table(props) {
           return (
             <tr key={rowIndex}>
               {ColumnDefinitions.map((columnDefinition, columnIndex) => {
-                const { cell, ...moreProps } = columnDefinition.props;
+                const { cell, header, ...moreColumnProps } = columnDefinition.props;
 
                 if (typeof cell === "function")
                   return (
-                    <sc.TD borderType={borderType} key={columnIndex} {...moreProps}>
+                    <sc.TD borderType={borderType} key={columnIndex} {...moreColumnProps}>
                       {cell({ row, rowIndex, columnIndex })}
                     </sc.TD>
                   );
                 if (typeof cell === "string")
                   return (
-                    <sc.TD borderType={borderType} key={columnIndex} {...moreProps}>
+                    <sc.TD borderType={borderType} key={columnIndex} {...moreColumnProps}>
                       {typeof row[cell] !== "undefined" ? row[cell] : `Error: ${cell} doesn't exist`}
                     </sc.TD>
                   );
