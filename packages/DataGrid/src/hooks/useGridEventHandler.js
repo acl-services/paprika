@@ -405,6 +405,13 @@ export default function useGridEventHandler({
   const handleClick = React.useCallback(
     ({ data, ColumnDefinitions }) => event => {
       const dataCell = getDataCell(event);
+
+      const headerCell = event.target.closest("[data-pka-header=true]");
+      if (headerCell && headerCell.contains(event.target)) {
+        // header doesn't requires to handle the click event
+        return;
+      }
+
       if (!dataCell) {
         console.warn("dataCell value not found on getDataCell(event)", event);
         return;
