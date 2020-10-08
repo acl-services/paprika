@@ -4,7 +4,7 @@ import stylers from "@paprika/stylers";
 import Button from "@paprika/button";
 import Heading from "../../src";
 
-const ExampleStory = () => {
+export default function HeadingFocus() {
   const headingRef = React.useRef(null);
 
   const handleFocus = () => {
@@ -29,6 +29,4 @@ const ExampleStory = () => {
       </Button>
     </Story>
   );
-};
-
-export default ExampleStory;
+}
