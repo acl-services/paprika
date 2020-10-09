@@ -39,7 +39,9 @@ import FormElement from "../src/FormElement";
 
 ### Accessibility
 
-The Formelement has been designed with accessibiklity in mind. By using `<FormElement.Instructions>` users can add instructions for the end user. Users can also make use of the `<FormElement.Description>` to add additional direction for consumers.
+The `<FormElement>` has been designed with accessibility in mind. By using `<FormElement.Instructions>` users can add instructions for the end user. Users can also make use of the `<FormElement.Description>` to add additional directions for consumers. Both of these, along with any error messages can be associated to the input field by applying the supplied `ariaDescribedBy` parameter in the render function supplied to the `children` of `<FormElement.Content>`. 
+
+In addition, a `<label>` is rendered by the `<FormElement>` and is associated to the input field by the `idForLabel` parameter of the same `children` function. 
 
 ```jsx
 <FormElement label="Form Label">
