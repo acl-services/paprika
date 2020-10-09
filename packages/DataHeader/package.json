@@ -23,6 +23,7 @@
     "@paprika/dropdown-menu": "^2.0.45",
     "@paprika/icon": "^0.3.9",
     "@paprika/popover": "^0.3.33",
+    "@paprika/raw-button": "^0.2.20",
     "@paprika/tokens": "^0.1.16",
     "prop-types": "^15.7.2"
   },

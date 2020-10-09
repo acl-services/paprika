@@ -17,7 +17,7 @@ export const Header = styled.div(({ $color = tokens.color.black, $backgroundColo
         const s = $anchor.parentElement.style;
         s.backgroundColor = $backgroundColor;
         s.color = $color;
-        s.display = "flex";
+        s.border = "0";
       }
     });
 
@@ -32,7 +32,7 @@ export const Header = styled.div(({ $color = tokens.color.black, $backgroundColo
     /**
       * Css lacks of parent selector, we can use javascript to replace that :P
       */
-    ${resetHeaderParentContainer()}
+    ${$backgroundColor || $color ? resetHeaderParentContainer() : ""}
   `;
 });
 
@@ -40,5 +40,24 @@ export const Label = styled.div(() => {
   return css`
     flex-basis: 100%;
     flex-grow: 1;
+    min-height: 24px;
+  `;
+});
+
+export const Icon = styled.div(() => {
+  return css`
+    font-weight: bold;
+  `;
+});
+
+export const Info = styled.div(() => {
+  return css`
+    align-items: center;
+    display: flex;
+    justify-content: flex-start;
+    width: 100%;
+    svg {
+      font-size: 1.3rem;
+    }
   `;
 });

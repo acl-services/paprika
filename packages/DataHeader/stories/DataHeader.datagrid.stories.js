@@ -24,7 +24,7 @@ function Menu(props) {
 
   return (
     <DropdownMenu>
-      <DropdownMenu.Trigger size="small">
+      <DropdownMenu.Trigger buttonType="raw">
         <EllipsisVertical />
       </DropdownMenu.Trigger>
       <DropdownMenu.Item onClick={handleClick("one")}>One</DropdownMenu.Item>
@@ -39,14 +39,7 @@ export const DataGridWithBackground = () => {
     <div style={{ padding: "32px" }}>
       <DataGrid data={data}>
         <DataGrid.ColumnDefinition
-          header={() => (
-            <DataHeader
-              backgroundColor="pink"
-              label="name"
-              type="numeric"
-              renderDropDownMenu={() => <Menu type="some" />}
-            />
-          )}
+          header={() => <DataHeader backgroundColor="pink" label="name" renderActions={() => <Menu type="some" />} />}
           cell="name"
         />
         <DataGrid.ColumnDefinition header="Income" cell={({ row }) => row.income} />

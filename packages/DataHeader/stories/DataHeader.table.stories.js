@@ -24,7 +24,7 @@ function Menu(props) {
 
   return (
     <DropdownMenu>
-      <DropdownMenu.Trigger size="small">
+      <DropdownMenu.Trigger buttonType="raw">
         <EllipsisVertical />
       </DropdownMenu.Trigger>
       <DropdownMenu.Item onClick={handleClick("one")}>One</DropdownMenu.Item>
@@ -40,12 +40,7 @@ export const TableExample = () => {
       <Table data={data}>
         <Table.ColumnDefinition
           header={() => (
-            <DataHeader
-              backgroundColor="#F60"
-              label="name"
-              type="numeric"
-              renderDropDownMenu={() => <Menu type="some" />}
-            />
+            <DataHeader backgroundColor="#F60" label="name" type="numeric" renderActions={() => <Menu type="some" />} />
           )}
           cell="name"
         />

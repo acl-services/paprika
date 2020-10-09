@@ -18,6 +18,10 @@ npm install @paprika/icon
 
 ## Usage
 
+```
+IMPORTANT: PAPRIKA MAKES USE OF SOME PROPRIETARY ICONS THAT REQUIRE A LICENCE IN ORDER TO BE CONSUMED. PLEASE AVOID USING ANY COMPONENT WITH PROPRIETARY ICONS OUTSIDE OF THE HIGHBOND PLATFORM.
+```
+
 For each SVG icon, we export the respective `<Icon>` component from the `@paprika/icon` package. You can [see the full list of these icons](https://github.com/acl-services/paprika/tree/master/packages/Icon/src/svg).
 
 To add a custom icon to paprika components, you can do the following:
