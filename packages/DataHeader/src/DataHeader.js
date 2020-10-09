@@ -10,14 +10,21 @@ import * as sc from "./DataHeader.styles";
 import types from "./types";
 
 export default function DataHeader(props) {
-  const { renderActions, label, backgroundColor, type, icons } = props;
+  const { renderActions, label, backgroundColor, color, type, icons, ...moreProps } = props;
   const refHeader = React.useRef(null);
 
   return (
-    <sc.Header ref={refHeader} refHeader={refHeader} $backgroundColor={backgroundColor}>
-      <sc.Info>
-        {icons && type && type in icons ? icons[type] : null}
-        <sc.Label>{typeof label === "function" ? label() : label}</sc.Label>
+    <sc.Header
+      data-pka-anchor="DataHeader.Header"
+      ref={refHeader}
+      refHeader={refHeader}
+      $color={color}
+      $backgroundColor={backgroundColor}
+      {...moreProps}
+    >
+      <sc.Info data-pka-anchor="DataHeader.Info">
+        {icons && type && type in icons ? <sc.Icon data-pka-anchor="DataHeader.Icon">{icons[type]}</sc.Icon> : null}
+        <sc.Label data-pka-anchor="DataHeader.Label">{typeof label === "function" ? label() : label}</sc.Label>
       </sc.Info>
       {renderActions && typeof renderActions === "function" ? renderActions() : null}
     </sc.Header>
@@ -27,6 +34,7 @@ export default function DataHeader(props) {
 DataHeader.types = types;
 DataHeader.propTypes = {
   backgroundColor: PropTypes.string,
+  color: PropTypes.string,
   label: PropTypes.oneOfType([PropTypes.func, PropTypes.string]).isRequired,
   renderActions: PropTypes.func,
   type: PropTypes.oneOf([types.type.TEXT, types.type.NUMERIC, types.type.DATE, types.type.DATE_TIME, types.type.TIME]),
@@ -38,6 +46,7 @@ DataHeader.defaultProps = {
   renderActions: null,
   type: null,
   icons: null,
+  color: null,
 };
 
 DataHeader.icons = {

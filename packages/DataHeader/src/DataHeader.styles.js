@@ -17,7 +17,6 @@ export const Header = styled.div(({ $color = tokens.color.black, $backgroundColo
         const s = $anchor.parentElement.style;
         s.backgroundColor = $backgroundColor;
         s.color = $color;
-        s.border = "0";
       }
     });
 
@@ -46,7 +45,7 @@ export const Label = styled.div(() => {
 
 export const Icon = styled.div(() => {
   return css`
-    font-weight: bold;
+    padding-right: ${tokens.spaceSm};
   `;
 });
 

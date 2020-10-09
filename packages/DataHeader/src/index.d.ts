@@ -4,9 +4,15 @@ declare function DataHeader(props: DataHeaderProps): JSX.Element;
 interface DataHeaderProps {
   [x: string]: any;
 
-  renderActions?: (...args: any[]) => any;
+  backgroundColor?: string;
+
+  color?: string;
 
   label: func | string;
 
-  backgroundColor?: string;
+  renderActions?: (...args: any[]) => any;
+
+  type?: types.type.TEXT | types.type.NUMERIC | types.type.DATE | types.type.DATE_TIME | types.type.TIME;
+
+  icons?: object;
 }

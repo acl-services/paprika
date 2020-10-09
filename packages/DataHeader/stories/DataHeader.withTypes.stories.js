@@ -1,8 +1,12 @@
 import React from "react";
 import Table from "@paprika/table";
 import CaretUp from "@paprika/icon/lib/CaretUp";
+// You should import this icon from WASABICONS if you are using it on the highbond ecosystem.
+import EllipsisVertical from "@paprika/icon/lib/EllipsisVertical";
+
 import { Story } from "storybook/assets/styles/common.styles";
 import { getStoryName } from "storybook/storyTree";
+import DropdownMenu from "@paprika/dropdown-menu";
 import DataHeader from "../src";
 
 export default {
@@ -15,17 +19,56 @@ const data = [
   { name: "Aniya Johanson", income: 45328.54, taxes: 14302.23 },
 ];
 
+function Menu(props) {
+  const { type } = props;
+  const handleClick = item => () => {
+    console.log(`${type} / ${item}`);
+  };
+
+  return (
+    <DropdownMenu>
+      <DropdownMenu.Trigger buttonType="raw">
+        <EllipsisVertical />
+      </DropdownMenu.Trigger>
+      <DropdownMenu.Item onClick={handleClick("one")}>One</DropdownMenu.Item>
+      <DropdownMenu.Item onClick={handleClick("two")}>Two</DropdownMenu.Item>
+      <DropdownMenu.Item onClick={handleClick("three")}>Three</DropdownMenu.Item>
+    </DropdownMenu>
+  );
+}
+
 export const Numeric = () => {
   return (
     <Story>
       <Table data={data}>
         <Table.ColumnDefinition
-          header={() => <DataHeader icons={DataHeader.icons} label="name" type={DataHeader.types.type.NUMERIC} />}
+          width="150px"
+          header={() => (
+            <DataHeader
+              icons={DataHeader.icons}
+              label="name"
+              type={DataHeader.types.type.TEXT}
+              renderActions={() => <Menu type="name" />}
+            />
+          )}
           cell="name"
         />
-        <Table.ColumnDefinition header="Income" cell={({ row }) => row.income} />
-        <Table.ColumnDefinition header="Taxes" cell={({ row }) => row.taxes} />
-        <Table.ColumnDefinition header="Revenue" cell={({ row }) => Number(row.income - row.taxes)} />
+        <Table.ColumnDefinition
+          header={() => <DataHeader icons={DataHeader.icons} label="Income" type={DataHeader.types.type.NUMERIC} />}
+          cell={({ row }) => row.income}
+        />
+        <Table.ColumnDefinition
+          header={() => <DataHeader icons={DataHeader.icons} label="Value" type={DataHeader.types.type.DATE} />}
+          cell={({ row }) => row.taxes}
+        />
+        <Table.ColumnDefinition
+          header={() => <DataHeader icons={DataHeader.icons} label="Value" type={DataHeader.types.type.TIME} />}
+          cell={({ row }) => row.taxes}
+        />
+        <Table.ColumnDefinition
+          header={() => <DataHeader icons={DataHeader.icons} label="Value" type={DataHeader.types.type.DATE_TIME} />}
+          cell={({ row }) => row.taxes}
+        />
       </Table>
     </Story>
   );
