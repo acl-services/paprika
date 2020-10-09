@@ -30,7 +30,7 @@ const fullChild = (
   </>
 );
 
-const ExampleStory = () => {
+const DynamicContent = () => {
   const [childs, setChilds] = React.useState(initChild);
 
   React.useEffect(() => {
@@ -49,7 +49,7 @@ const ExampleStory = () => {
 
   return (
     <CenteredStory>
-      <Popover align={Popover.align.TOP} isOpen>
+      <Popover align={Popover.types.align.TOP} isOpen>
         <Popover.Trigger aria-hidden>👻</Popover.Trigger>
         {childs}
       </Popover>
@@ -57,4 +57,4 @@ const ExampleStory = () => {
   );
 };
 
-export default () => <ExampleStory />;
+export default () => <DynamicContent />;

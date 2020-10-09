@@ -17,7 +17,7 @@ const sampleText = {
     truck, crucifix try-hard godard biodiesel next level snackwave disrupt flexitarian.`,
 };
 
-export const popoverProps = () => ({
+export const getKnobs = () => ({
   align: select("align", ["bottom", "top", "right", "left"], "bottom"),
   edge: select("edge", { left: "left", right: "right", none: null }, null),
   maxWidth: text("maxWidth", "320"),
@@ -26,38 +26,40 @@ export const popoverProps = () => ({
   offset: number("offset", 12),
 });
 
-const ExampleStory = props => (
-  <CenteredStory>
-    <Popover {...props}>
-      <Popover.Trigger>
-        <Button>Open Popover</Button>
-      </Popover.Trigger>
-      <Popover.Content>
-        <Popover.Card>
-          <p>
-            Some copy with a{" "}
-            <a href="http://www.google.ca" target="_blank" rel="noopener noreferrer">
-              link
-            </a>
-          </p>
-          <button type="button">Submit</button>
-        </Popover.Card>
-      </Popover.Content>
-      <Popover.Tip />
-    </Popover>
+function Showcase(props) {
+  return (
+    <CenteredStory>
+      <Popover {...props}>
+        <Popover.Trigger>
+          <Button>Open Popover</Button>
+        </Popover.Trigger>
+        <Popover.Content>
+          <Popover.Card>
+            <p>
+              Some copy with a{" "}
+              <a href="http://www.google.ca" target="_blank" rel="noopener noreferrer">
+                link
+              </a>
+            </p>
+            <button type="button">Submit</button>
+          </Popover.Card>
+        </Popover.Content>
+        <Popover.Tip />
+      </Popover>
 
-    <Gap />
+      <Gap />
 
-    <Popover {...props} isDark isEager>
-      <Popover.Trigger>
-        <Button kind="minor">Open Tooltip</Button>
-      </Popover.Trigger>
-      <Popover.Content>
-        <Popover.Card>{sampleText.short}</Popover.Card>
-      </Popover.Content>
-      <Popover.Tip />
-    </Popover>
-  </CenteredStory>
-);
+      <Popover {...props} isDark isEager>
+        <Popover.Trigger>
+          <Button kind="minor">Open Tooltip</Button>
+        </Popover.Trigger>
+        <Popover.Content>
+          <Popover.Card>{sampleText.short}</Popover.Card>
+        </Popover.Content>
+        <Popover.Tip />
+      </Popover>
+    </CenteredStory>
+  );
+}
 
-export default () => <ExampleStory {...popoverProps()} />;
+export default () => <Showcase {...getKnobs()} />;

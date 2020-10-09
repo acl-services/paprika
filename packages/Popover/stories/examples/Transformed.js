@@ -12,7 +12,7 @@ const TransformedStory = styled(CenteredStory)`
   width: 50vw;
 `;
 
-const ExampleStory = () => (
+const Transformed = () => (
   <TransformedStory>
     <Popover>
       <Popover.Trigger>
@@ -26,4 +26,4 @@ const ExampleStory = () => (
   </TransformedStory>
 );
 
-export default ExampleStory;
+export default Transformed;

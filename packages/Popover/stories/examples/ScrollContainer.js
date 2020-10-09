@@ -4,8 +4,8 @@ import { action } from "@storybook/addon-actions";
 import styled from "styled-components";
 import { CenteredStory } from "storybook/assets/styles/common.styles";
 import Button from "@paprika/button";
-import { popoverProps as basicProps } from "./Basic";
-import Popover from "../../src";
+import { getKnobs as basicProps } from "./Showcase";
+import Popover from "../../src/Popover";
 
 const PopoverContainer = styled.div`
   height: 1024px;
@@ -57,7 +57,7 @@ function PopoverBox(props) {
   );
 }
 
-const ExampleStory = props => {
+const ScrollContainer = props => {
   setTimeout(() => {
     action("There are no actions for this story.")();
     document.getElementById("scroll-container").scrollTo(1420, 320);
@@ -75,4 +75,4 @@ const ExampleStory = props => {
   );
 };
 
-export default () => <ExampleStory {...popoverProps()} />;
+export default () => <ScrollContainer {...popoverProps()} />;
