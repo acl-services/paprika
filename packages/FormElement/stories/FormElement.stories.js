@@ -1,7 +1,7 @@
 import { withKnobs } from "@storybook/addon-knobs";
 import { getStoryName } from "storybook/storyTree";
 import ShowcaseStory from "./examples/Showcase";
-import Variations from "./variations/Variations";
+import Variations from "./examples/Variations";
 import FormElement from "../src/FormElement";
 
 const storyName = getStoryName("FormElement");

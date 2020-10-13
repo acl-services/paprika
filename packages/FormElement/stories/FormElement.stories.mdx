@@ -1,6 +1,7 @@
 import { Meta } from "@storybook/addon-docs/blocks";
 import { Description } from "@storybook/addon-docs/blocks";
 import { getStoryName } from "storybook/storyTree";
+import { Rule, Tagline } from "storybook/assets/styles/common.styles";
 import Readme from "../README.md";
 import { FormElementStory } from "./FormElement.stories.styles";
 import CheckboxExample from "./examples/CheckboxExample";
@@ -28,20 +29,14 @@ import FormElement from "../src/FormElement";
 ### Index
 
 - <a href="#accessibility">Accessibility</a>
-- <a href="#alternate-layouts">Alternate Layout</a>
-
-  - <a href="#checkboxes">Checkboxes</a>
-  - <a href="#radios">Radios</a>
-  - <a href="#date-picker">Date Picker</a>
-  - <a href="#listbox">ListBox</a>
-  - <a href="#buttongroup">ButtonGroup</a>
-  - <a href="#nested-formelement">Nested FormElements</a>
+- <a href="#components">Components</a>
+- <a href="#complex-components">Complex Components</a>
 
 ### Accessibility
 
-The `<FormElement>` has been designed with accessibility in mind. By using `<FormElement.Instructions>` users can add instructions for the end user. Users can also make use of the `<FormElement.Description>` to add additional directions for consumers. Both of these, along with any error messages can be associated to the input field by applying the supplied `ariaDescribedBy` parameter in the render function supplied to the `children` of `<FormElement.Content>`. 
+The `<FormElement>` has been designed with accessibility in mind. By using `<FormElement.Instructions>` users can add instructions for the end user. Users can also make use of the `<FormElement.Description>` to add additional directions for consumers. Both of these, along with any error messages can be associated to the input field by applying the supplied `ariaDescribedBy` parameter in the render function supplied to the `children` of `<FormElement.Content>`. Users can also make use of the `<FormElement.Error />` sub-component to create an error message to help clarify any user errors to consumers.
 
-In addition, a `<label>` is rendered by the `<FormElement>` and is associated to the input field by the `idForLabel` parameter of the same `children` function. 
+In addition, a `<label>` is rendered by the `<FormElement>` and is associated to the input field by the `idForLabel` parameter of the same `children` function.
 
 ```jsx
 <FormElement label="Form Label">
@@ -76,14 +71,14 @@ In addition, a `<label>` is rendered by the `<FormElement>` and is associated to
 ##### Result
 
 <FormElementStory>
+  <Tagline>Form Element with instructions component.</Tagline>
+  <br />
   <AccessibilityExample />
 </FormElementStory>
 
-### Alternate Layouts
+### Components
 
-The FormElement can be used in a variety of formats. These can include FormElements with checkboxes, radios, listbox's etc.
-
-#### Checkboxes
+The `<FormElement />` can be used with differant components to create specific input needs. Some of these can include components such as the checkbox or radio.
 
 ```jsx
 <FormElement hasFieldSet label="Form Label">
@@ -102,44 +97,55 @@ The FormElement can be used in a variety of formats. These can include FormEleme
 
 ##### Result
 
-<CheckboxExample />
+<FormElementStory>
+  <Tagline>Form Element with checkboxes.</Tagline>
+  <br />
+  <CheckboxExample />
+</FormElementStory>
+<Rule />
+<FormElementStory>
+  <Tagline>Form Element with radios.</Tagline>
+  <br />
+  <RadioExample />
+</FormElementStory>
 
-#### Radios
+### Complex Components
 
-```jsx
-<FormElement hasFieldSet label="Form Label">
-  <FormElement.Content>
-    {({ ariaDescribedBy: ariaDescribedByOuter }) => getRadioOptions(ariaDescribedByOuter)}
-  </FormElement.Content>
-  <FormElement.Description>
-    <span>Description of this field.</span>
-  </FormElement.Description>
-  <FormElement.Error>{errorText}</FormElement.Error>
-  <FormElement.Help>
-    Give me some help. <a href="wegalvanize.com">Learn more</a>.
-  </FormElement.Help>
-</FormElement>
-```
-
-##### Result
-
-<RadioExample />
-
-#### Date Picker
+The `<FormElement />` can handle a variety of components to further increase the users indivudal needs. This can range from a `<DatePicker />` component to a `<ListBox />` component. The following code snippet is an example of the `ComponentLabel` this example allows users to use the `label` property of the `<FormElement/ />`. Users can set the label property to equal an entire component, in this particular example making use of the `<Heading />` component.
 
 ```jsx
-<FormElement label="Form Label">
+<FormElement
+  hasRequiredLabel={hasRequiredLabel}
+  label={
+    <Heading level={5}>
+      <strong>
+        <i>Form Label</i>
+      </strong>
+    </Heading>
+  }
+>
+  <FormElement.Instructions>
+    <span>
+      Example text for extra panel for questionnaires. Example text for extra panel for questionnaires Example text for
+      extra panel for questionnaires. Example text for extra panel for questionnaires
+    </span>
+  </FormElement.Instructions>
   <FormElement.Content>
     {({ idForLabel, ariaDescribedBy }) => (
-      <DatePicker onError={() => {}} hasError={Boolean(errorText.length)} id={idForLabel} onChange={() => {}}>
-        <DatePicker.Input aria-describedby={ariaDescribedBy} />
-      </DatePicker>
+      <Input
+        id={idForLabel}
+        onChange={handleChange}
+        value={value}
+        placeholder="Form placeholder"
+        aria-describedby={ariaDescribedBy}
+        aria-required={hasRequiredLabel}
+        hasError={Boolean(errorText.length)}
+        isDisabled={isDisabled}
+        isReadOnly={isReadOnly}
+        size={size}
+      />
     )}
   </FormElement.Content>
-  <FormElement.Description>
-    <span>Description of this field.</span>
-  </FormElement.Description>
-  <FormElement.Error>{errorText}</FormElement.Error>
   <FormElement.Help>
     Give me some help. <a href="wegalvanize.com">Learn more</a>.
   </FormElement.Help>
@@ -148,120 +154,32 @@ The FormElement can be used in a variety of formats. These can include FormEleme
 
 ##### Result
 
-<DatePickerExample />
-
-#### ListBox
-
-```jsx
-<FormElement label="Form Label">
-  <FormElement.Content>{({ refLabel }) => <ListBox refLabel={refLabel}>{listboxOptions}</ListBox>}</FormElement.Content>
-  <FormElement.Description>
-    <span>Description of this field.</span>
-  </FormElement.Description>
-  <FormElement.Help>
-    Give me some help. <a href="wegalvanize.com">Learn more</a>.
-  </FormElement.Help>
-</FormElement>
-```
-
-##### Result
-
-<ListBoxExample />
-
-#### ButtonGroup
-
-```jsx
-<FormElement label="Form Label" onClickLabel={() => refButtonGroup.current.focus()}>
-  <FormElement.Content>
-    {() => <ButtonGroup ref={refButtonGroup}>{buttonGroupOptions}</ButtonGroup>}
-  </FormElement.Content>
-  <FormElement.Description>
-    <span>Description of this field.</span>
-  </FormElement.Description>
-  <FormElement.Help>
-    Give me some help. <a href="wegalvanize.com">Learn more</a>.
-  </FormElement.Help>
-</FormElement>
-```
-
-##### Result
-
-<ButtonGroupExample />
-
-#### Nested FormElement
-
-```jsx
-<FormElement hasFieldSet label="Form Legend">
-  <FormElement.Content>
-    {({ ariaDescribedBy: ariaDescribedByOuter }) => (
-      <>
-        <FormElement isInline label="Sub Label">
-          <FormElement.Content>
-            {({ idForLabel, ariaDescribedBy }) => (
-              <>
-                <input
-                  aria-required={hasRequiredLabel}
-                  aria-describedby={ariaDescribedBy + ariaDescribedByOuter}
-                  aria-invalid={Boolean(errorText.length)}
-                  disabled={isDisabled}
-                  id={idForLabel}
-                  readOnly={isReadOnly}
-                />
-                <input
-                  aria-required={hasRequiredLabel}
-                  aria-describedby={ariaDescribedBy + ariaDescribedByOuter}
-                  aria-invalid={Boolean(errorText.length)}
-                  disabled={isDisabled}
-                  readOnly={isReadOnly}
-                />
-              </>
-            )}
-          </FormElement.Content>
-          <FormElement.Error>{errorText}</FormElement.Error>
-          <FormElement.Help>
-            Give me some help. <a href="wegalvanize.com">Learn more</a>.
-          </FormElement.Help>
-        </FormElement>
-        <FormElement isInline label="Sub Label 2">
-          <FormElement.Content>
-            {({ idForLabel, ariaDescribedBy }) => (
-              <>
-                <input
-                  aria-required={hasRequiredLabel}
-                  aria-describedby={ariaDescribedBy + ariaDescribedByOuter}
-                  aria-invalid={Boolean(errorText.length)}
-                  disabled={isDisabled}
-                  id={idForLabel}
-                  readOnly={isReadOnly}
-                />
-                <input
-                  aria-required={hasRequiredLabel}
-                  aria-describedby={ariaDescribedBy + ariaDescribedByOuter}
-                  aria-invalid={Boolean(errorText.length)}
-                  disabled={isDisabled}
-                  readOnly={isReadOnly}
-                />
-              </>
-            )}
-          </FormElement.Content>
-          <FormElement.Error>{errorText}</FormElement.Error>
-          <FormElement.Help>
-            Give me some help. <a href="wegalvanize.com">Learn more</a>.
-          </FormElement.Help>
-        </FormElement>
-      </>
-    )}
-  </FormElement.Content>
-  <FormElement.Error>{errorText}</FormElement.Error>
-  <FormElement.Description>
-    <span>Description of this field.</span>
-  </FormElement.Description>
-  <FormElement.Help>
-    Give me some help. <a href="wegalvanize.com">Learn more</a>.
-  </FormElement.Help>
-</FormElement>
-```
-
-##### Result
-
-<NestedExample />
+<FormElementStory>
+  <Tagline>Form Element using component in label</Tagline>
+  <br />
+  <ComponentLabelExample />
+</FormElementStory>
+<Rule />
+<FormElementStory>
+  <Tagline>Form Element with Date Picker.</Tagline>
+  <br />
+  <DatePickerExample />
+</FormElementStory>
+<Rule />
+<FormElementStory>
+  <Tagline>Form Element with Listbox.</Tagline>
+  <br />
+  <ListBoxExample />
+</FormElementStory>
+<Rule />
+<FormElementStory>
+  <Tagline>Form Element with ButtonGroup.</Tagline>
+  <br />
+  <ButtonGroupExample />
+</FormElementStory>
+<Rule />
+<FormElementStory>
+  <Tagline>Form Element nested Form Elements.</Tagline>
+  <br />
+  <NestedExample />
+</FormElementStory>

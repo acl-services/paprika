@@ -1,9 +1,8 @@
 import React from "react";
-import { Rule, Tagline } from "storybook/assets/styles/common.styles";
+import { Rule } from "storybook/assets/styles/common.styles";
 import Input from "@paprika/input";
 import Button from "@paprika/button";
 import FormElement from "../../src";
-import { FormElementStory } from "../FormElement.stories.styles";
 
 const AccessibilityExample = () => {
   const [value, setValue] = React.useState("");
@@ -22,9 +21,7 @@ const AccessibilityExample = () => {
   }
 
   return (
-    <FormElementStory>
-      <Tagline>Form Element with instructions component.</Tagline>
-      <Rule />
+    <>
       <FormElement label="Form Label">
         <FormElement.Instructions>
           <span>
@@ -57,7 +54,7 @@ const AccessibilityExample = () => {
         Show an Error
       </Button>
       <Button onClick={clearError}>Clear Error</Button>
-    </FormElementStory>
+    </>
   );
 };
 

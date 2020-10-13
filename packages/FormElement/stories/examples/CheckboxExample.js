@@ -1,6 +1,5 @@
 import React from "react";
 import * as constants from "@paprika/constants/lib/Constants";
-import { Tagline } from "storybook/assets/styles/common.styles";
 import Checkbox from "@paprika/checkbox";
 import FormElement from "../../src/FormElement";
 
@@ -18,21 +17,17 @@ export default function CheckboxExample() {
     ));
 
   return (
-    <>
-      <Tagline>Form Element with checkboxes.</Tagline>
-      <br />
-      <FormElement hasFieldSet label="Form Label">
-        <FormElement.Content>
-          {({ ariaDescribedBy: ariaDescribedByOuter }) => getCheckboxOptions(ariaDescribedByOuter)}
-        </FormElement.Content>
-        <FormElement.Description>
-          <span>Description of this field.</span>
-        </FormElement.Description>
-        <FormElement.Error>{errorText}</FormElement.Error>
-        <FormElement.Help>
-          Give me some help. <a href="wegalvanize.com">Learn more</a>.
-        </FormElement.Help>
-      </FormElement>
-    </>
+    <FormElement hasFieldSet label="Form Label">
+      <FormElement.Content>
+        {({ ariaDescribedBy: ariaDescribedByOuter }) => getCheckboxOptions(ariaDescribedByOuter)}
+      </FormElement.Content>
+      <FormElement.Description>
+        <span>Description of this field.</span>
+      </FormElement.Description>
+      <FormElement.Error>{errorText}</FormElement.Error>
+      <FormElement.Help>
+        Give me some help. <a href="wegalvanize.com">Learn more</a>.
+      </FormElement.Help>
+    </FormElement>
   );
 }
