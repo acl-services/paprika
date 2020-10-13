@@ -1,6 +1,6 @@
 {
   "name": "@paprika/counter",
-  "version": "0.2.23",
+  "version": "0.2.24",
   "description": "The Counter component is a decorative element that usually displays the count of a specific object.",
   "author": "@paprika",
   "license": "MIT",

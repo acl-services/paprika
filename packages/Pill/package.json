@@ -1,6 +1,6 @@
 {
   "name": "@paprika/pill",
-  "version": "0.2.30",
+  "version": "0.2.31",
   "description": "The Pill component is for showing metadata like status, type, or levels.",
   "author": "@paprika",
   "main": "lib/index.js",
