@@ -20,6 +20,6 @@ declare namespace Breadcrumbs {
     /** Render as another component instead of Button.Link. */
     as?: string | func;
     /** Url for the link. */
-    href: string;
+    href?: string;
   }
 }

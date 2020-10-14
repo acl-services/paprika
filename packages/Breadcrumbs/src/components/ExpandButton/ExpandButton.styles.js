@@ -5,7 +5,6 @@ import Button from "@paprika/button";
 export const ExpandButton = styled(Button.Icon)`
   color: ${({ isDark }) => (isDark ? tokens.color.white : tokens.textColor.subtle)};
   height: 20px;
-  line-height: 20px;
   margin: -1px ${tokens.spaceSm} 0;
   min-height: 20px;
   width: 20px;
@@ -16,7 +15,7 @@ export const ExpandButton = styled(Button.Icon)`
 `;
 
 export const ExpandButtonWrapper = styled.li`
-  display: inline;
+  display: ${({ isHidden }) => (isHidden ? "none" : "inline")};
   list-style-type: none;
   margin: 0;
   padding: 0;

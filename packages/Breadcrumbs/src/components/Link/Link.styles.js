@@ -6,6 +6,7 @@ import Button from "@paprika/button";
 export const Link = styled(Button.Link)`
   color: ${({ isDark }) => (isDark ? tokens.color.white : tokens.textColor.subtle)};
   display: inline;
+  font-weight: normal;
   min-height: 0;
   padding: 0 ${tokens.space};
   text-decoration: none;

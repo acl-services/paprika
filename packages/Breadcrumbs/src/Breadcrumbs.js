@@ -23,11 +23,11 @@ function Breadcrumbs(props) {
       <sc.Nav role="navigation" aria-label={I18n.t("breadcrumbs.aria_label")} isDark={isDark} {...moreProps}>
         <sc.List isCollapsed={isCollapsed}>
           {React.Children.map(children, (child, index) => {
-            if (isCollapsed && index === 0) {
+            if (shouldShowExpandButton && index === 0) {
               return (
                 <>
                   {child}
-                  <ExpandButton onClick={handleExpand} />
+                  <ExpandButton onClick={handleExpand} isHidden={!isCollapsed} />
                 </>
               );
             }

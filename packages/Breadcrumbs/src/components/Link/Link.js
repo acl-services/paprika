@@ -15,16 +15,13 @@ function isString(item) {
 
 function Link(props) {
   const { children, href, as, ...moreProps } = props;
+  const isDark = React.useContext(IsDarkContext);
   const shouldTruncate = isString(children) && children.length > MAXIMUM_NUM_OF_CHARACTER;
 
   const link = (
-    <IsDarkContext.Consumer>
-      {isDark => (
-        <sc.Link data-pka-anchor="breadcrumbs.link" as={as} kind="minor" href={href} isDark={isDark} {...moreProps}>
-          {shouldTruncate ? truncate(children) : children}
-        </sc.Link>
-      )}
-    </IsDarkContext.Consumer>
+    <sc.Link data-pka-anchor="breadcrumbs.link" as={as} kind="minor" href={href} isDark={isDark} {...moreProps}>
+      {shouldTruncate ? truncate(children) : children}
+    </sc.Link>
   );
 
   return (
@@ -51,12 +48,13 @@ const propTypes = {
   as: PropTypes.oneOfType([PropTypes.string, PropTypes.func]),
 
   /** Url for the link. */
-  href: PropTypes.string.isRequired,
+  href: PropTypes.string,
 };
 
 const defaultProps = {
   children: null,
   as: null,
+  href: null,
 };
 
 Link.displayName = "Breadcrumbs.Link";
