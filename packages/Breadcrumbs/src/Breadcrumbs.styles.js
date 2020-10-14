@@ -3,7 +3,7 @@ import tokens from "@paprika/tokens";
 import { fontSize, lineHeight } from "@paprika/stylers/lib/helpers";
 import { Link } from "./components/Link/Link.styles";
 
-export const Nav = styled.div`
+export const Nav = styled.nav`
   color: ${({ isDark }) => (isDark ? tokens.color.white : tokens.textColor.subtle)};
   font-weight: bold;
   ${fontSize(-2)}

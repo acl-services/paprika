@@ -20,7 +20,7 @@ function Breadcrumbs(props) {
 
   return (
     <IsDarkContext.Provider value={isDark}>
-      <sc.Nav role="navigation" aria-label={I18n.t("breadcrumbs.aria_label")} isDark={isDark} {...moreProps}>
+      <sc.Nav aria-label={I18n.t("breadcrumbs.aria_label")} isDark={isDark} {...moreProps}>
         <sc.List isCollapsed={isCollapsed}>
           {React.Children.map(children, (child, index) => {
             if (shouldShowExpandButton && index === 0) {
