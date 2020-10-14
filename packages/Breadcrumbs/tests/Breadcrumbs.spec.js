@@ -37,6 +37,6 @@ describe("Breadcrumbs", () => {
     fireEvent.click(await screen.findByTestId("breadcrumbs.expandButton"));
 
     expect(await screen.queryByText(/parent page/i)).toBeVisible();
-    expect(screen.queryByTestId("breadcrumbs.expandButton")).not.toBeInTheDocument();
+    expect(screen.queryByTestId("breadcrumbs.expandButton")).not.toBeVisible();
   });
 });
