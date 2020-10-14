@@ -1,6 +1,125 @@
-import { Props, Description } from "@storybook/addon-docs/blocks";
+import { Props, Description, Preview } from "@storybook/addon-docs/blocks";
 import { Gap } from "storybook/assets/styles/common.styles";
 import Readme from "../README.md";
 import Breadcrumbs from "../src";
 
 <Description markdown={Readme} />
+
+### Basic Breadcrumbs
+
+```js
+<Breadcrumbs>
+  <Breadcrumbs.Link href={URL}>Breadcrumb 1</Breadcrumbs.Link>
+  <Breadcrumbs.Link href={URL}>Breadcrumb 2</Breadcrumbs.Link>
+  <Breadcrumbs.Link href={URL}>Breadcrumb 3</Breadcrumbs.Link>
+</Breadcrumbs>
+```
+
+#### Result
+
+<Preview>
+  <Breadcrumbs>
+    <Breadcrumbs.Link href={URL}>Breadcrumb 1</Breadcrumbs.Link>
+    <Breadcrumbs.Link href={URL}>Breadcrumb 2</Breadcrumbs.Link>
+    <Breadcrumbs.Link href={URL}>Breadcrumb 3</Breadcrumbs.Link>
+  </Breadcrumbs>
+</Preview>
+
+### Breadcrumbs will auto collapse if there're more than 3 items.
+
+```js
+<Breadcrumbs>
+  <Breadcrumbs.Link href={URL}>Breadcrumb 1</Breadcrumbs.Link>
+  <Breadcrumbs.Link href={URL}>Breadcrumb 2</Breadcrumbs.Link>
+  <Breadcrumbs.Link href={URL}>Breadcrumb 3</Breadcrumbs.Link>
+  <Breadcrumbs.Link href={URL}>Breadcrumb 4</Breadcrumbs.Link>
+</Breadcrumbs>
+```
+
+#### Result
+
+<Preview>
+  <Breadcrumbs>
+    <Breadcrumbs.Link href={URL}>Breadcrumb 1</Breadcrumbs.Link>
+    <Breadcrumbs.Link href={URL}>Breadcrumb 2</Breadcrumbs.Link>
+    <Breadcrumbs.Link href={URL}>Breadcrumb 3</Breadcrumbs.Link>
+    <Breadcrumbs.Link href={URL}>Breadcrumb 4</Breadcrumbs.Link>
+  </Breadcrumbs>
+</Preview>
+
+### Using isDark prop for breadcrumbs on a dark background
+
+```js
+<Breadcrumbs isDark>
+  <Breadcrumbs.Link href={URL}>Breadcrumb 1</Breadcrumbs.Link>
+  <Breadcrumbs.Link href={URL}>Breadcrumb 2</Breadcrumbs.Link>
+  <Breadcrumbs.Link href={URL}>Breadcrumb 3</Breadcrumbs.Link>
+  <Breadcrumbs.Link href={URL}>Breadcrumb 4</Breadcrumbs.Link>
+</Breadcrumbs>
+```
+
+#### Result
+
+<Preview>
+  <div style={{ padding: "16px", background: "#3f3d3c" }}>
+    <Breadcrumbs isDark>
+      <Breadcrumbs.Link href={URL}>Breadcrumb 1</Breadcrumbs.Link>
+      <Breadcrumbs.Link href={URL}>Breadcrumb 2</Breadcrumbs.Link>
+      <Breadcrumbs.Link href={URL}>Breadcrumb 3</Breadcrumbs.Link>
+      <Breadcrumbs.Link href={URL}>Breadcrumb 4</Breadcrumbs.Link>
+    </Breadcrumbs>
+  </div>
+</Preview>
+
+### Breadcrumbs will add a tooltip if the text in your Breadcrumb.Link longer than 40 characters
+
+```js
+<Breadcrumbs>
+  <Breadcrumbs.Link href={URL}>
+    Breadcrumb item with long text will have a tooltip. Hover this item to see.
+  </Breadcrumbs.Link>
+  <Breadcrumbs.Link href={URL}>Breadcrumb 2</Breadcrumbs.Link>
+  <Breadcrumbs.Link href={URL}>Breadcrumb 3</Breadcrumbs.Link>
+</Breadcrumbs>
+```
+
+#### Result
+
+<Preview>
+  <Breadcrumbs>
+    <Breadcrumbs.Link href={URL}>
+      Breadcrumb item with long text will have a tooltip. Hover this item to see.
+    </Breadcrumbs.Link>
+    <Breadcrumbs.Link href={URL}>Breadcrumb 2</Breadcrumbs.Link>
+    <Breadcrumbs.Link href={URL}>Breadcrumb 3</Breadcrumbs.Link>
+  </Breadcrumbs>
+</Preview>
+
+### Render Breadcrumbs.Link using your own components
+
+```js
+const MyButton = (children) => <button>{children}</button>
+
+<Breadcrumbs>
+  <Breadcrumbs.Link as="button" href={URL}>
+    Breadcrumb link using button
+  </Breadcrumbs.Link>
+  <Breadcrumbs.Link as="a" href={URL}>
+    Breadcrumb link using anchor link
+  </Breadcrumbs.Link>
+  <Breadcrumbs.Link as={MyButton} href={URL}>Breadcrumb 2 using MyButton</Breadcrumbs.Link>
+</Breadcrumbs>
+```
+
+#### Result
+
+<Preview>
+  <Breadcrumbs>
+    <Breadcrumbs.Link as="button" href={URL}>
+      Breadcrumb link using button
+    </Breadcrumbs.Link>
+    <Breadcrumbs.Link as="a" href={URL}>
+      Breadcrumb link using anchor link
+    </Breadcrumbs.Link>
+  </Breadcrumbs>
+</Preview>
