@@ -27,13 +27,9 @@ export const params = {
 
 ### Index
 
-- <a href="#heading-with-focus">Heading with Focus</a>
-
-- <a href="#heading-layouts">Heading Layouts</a>
+- <a href="#components">Components</a>
 
   - <a href="#external-link">External Link</a>
-
-  - <a href="#set-width">Set Width</a>
 
 - <a href="#heading-levels">Heading Levels</a>
 
@@ -41,40 +37,17 @@ export const params = {
 
   - <a href="#display-level">Display Level</a>
 
-  - <a href="#is-light">Is Light</a>
+* <a href="#heading-styles">Heading Styles</a>
 
-- <a href="#heading-styles">Heading Styles</a>
+  - <a href="#set-width">Set Width</a>
+
+  - <a href="#is-light">Is Light</a>
 
   - <a href="#divider">Divider</a>
 
   - <a href="#underline">Underline</a>
 
-### Heading with Focus
-
-```jsx
-    <Heading
-    level={4}
-    ref={headingRef}
-    css={`
-        &:focus {
-        ${stylers.focusRing.subtle()}
-        }
-    `}
-    >
-    Focusable Heading
-    </Heading>
-    <Button onClick={handleFocus} size="small">
-    Set focus
-    </Button>
-```
-
-##### Result
-
-<p>
-  <HeadingFocus />
-</p>
-
-### Heading Layouts
+### Components
 
 #### External Link
 
@@ -93,24 +66,6 @@ Users can use make use of external links as headers by adding the `<ExternalLink
 
 <p>
   <ExternalLinkExample />
-</p>
-
-#### Set Width
-
-Users can use styling to set a specific width value for the `<Heading />` component. If the text does not fit into the width it will be truncated.
-
-```jsx
-const renderExternalLink = () => <ExternalLink href="http://wegalvanize.com">External Link Text</ExternalLink>;
-
-<Heading style={{ width: "160px" }} level={1}>
-  {renderExternalLink()}
-</Heading>;
-```
-
-##### Result
-
-<p>
-  <SetWidthExample />
 </p>
 
 ### Heading Levels
@@ -193,6 +148,26 @@ Always be sure to avoid skipping heading levels and to style the headings approp
   <DisplayLevelExample />
 </p>
 
+### Heading Styles
+
+#### Set Width
+
+Users can use styling to set a specific width value for the `<Heading />` component. If the text does not fit into the width it will be truncated.
+
+```jsx
+const renderExternalLink = () => <ExternalLink href="http://wegalvanize.com">External Link Text</ExternalLink>;
+
+<Heading style={{ width: "160px" }} level={1}>
+  {renderExternalLink()}
+</Heading>;
+```
+
+##### Result
+
+<p>
+  <SetWidthExample />
+</p>
+
 #### Is Light
 
 If users do not desire a heavy/bolded heading, users can make use of the `isLight` property to change its weight.
@@ -223,8 +198,6 @@ If users do not desire a heavy/bolded heading, users can make use of the `isLigh
 <p>
   <IsLightExample />
 </p>
-
-### Heading Styles
 
 #### Divider
 
