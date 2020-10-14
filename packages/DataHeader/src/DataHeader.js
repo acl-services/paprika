@@ -3,7 +3,7 @@ import PropTypes from "prop-types";
 import Character from "@paprika/icon/lib/Character";
 import Numeric from "@paprika/icon/lib/Number";
 import DateTime from "@paprika/icon/lib/TimeAndDate";
-import ClockTime from "@paprika/icon/lib/ClockTime";
+import Clock from "@paprika/icon/lib/Clock";
 import Date from "@paprika/icon/lib/Calendar";
 
 import * as sc from "./DataHeader.styles";
@@ -22,9 +22,9 @@ export default function DataHeader(props) {
       $backgroundColor={backgroundColor}
       {...moreProps}
     >
-      <sc.Info data-pka-anchor="DataHeader.Info">
-        {icons && type && type in icons ? <sc.Icon data-pka-anchor="DataHeader.Icon">{icons[type]}</sc.Icon> : null}
-        <sc.Label data-pka-anchor="DataHeader.Label">{typeof label === "function" ? label() : label}</sc.Label>
+      <sc.Info data-pka-anchor="data-header.Info">
+        {icons && type && type in icons ? <sc.Icon data-pka-anchor="data-header.icon">{icons[type]}</sc.Icon> : null}
+        <sc.Label data-pka-anchor="data-header.label">{typeof label === "function" ? label() : label}</sc.Label>
       </sc.Info>
       {renderActions && typeof renderActions === "function" ? renderActions() : null}
     </sc.Header>
@@ -54,5 +54,5 @@ DataHeader.icons = {
   [types.type.NUMERIC]: <Numeric />,
   [types.type.DATE]: <Date />,
   [types.type.DATE_TIME]: <DateTime />,
-  [types.type.TIME]: <ClockTime />,
+  [types.type.TIME]: <Clock />,
 };

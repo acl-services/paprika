@@ -8,7 +8,11 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 
 ### Added
 
-- Ellipsis vertical icon [@nahumzs](https://github.com/nahumzs).
+- Ellipsis vertical icon
+- Character
+- Number,
+- Time and Date
+  [@nahumzs](https://github.com/nahumzs).
 
 ## [0.3.0] - 2020-04-29
 

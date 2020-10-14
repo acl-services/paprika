@@ -406,7 +406,7 @@ export default function useGridEventHandler({
     ({ data, ColumnDefinitions }) => event => {
       const dataCell = getDataCell(event);
 
-      const headerCell = event.target.closest("[data-pka-header=true]");
+      const headerCell = event.target.closest("[data-pka-anchor='data-grid.header']");
       if (headerCell && headerCell.contains(event.target)) {
         // header doesn't requires to handle the click event
         return;

@@ -79,7 +79,7 @@ const icons = {
   [DataHeader.types.type.DATE_TIME]: <CaretUp />,
 };
 
-export const Types = () => {
+export const TypesExample = () => {
   return (
     <Story>
       <h3>TEXT</h3>

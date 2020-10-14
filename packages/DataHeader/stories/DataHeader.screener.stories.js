@@ -162,19 +162,19 @@ const icons = {
   [DataHeader.types.type.DATE_TIME]: <CaretUp />,
 };
 
-export const TypesScreener = () => {
+export const TypesExampleScreener = () => {
   return (
     <Story>
       <h3>TEXT</h3>
-      <DataHeader icons={DataHeader.icons} label="name" type={DataHeader.type.types.TEXT} />
+      <DataHeader icons={DataHeader.icons} label="name" type={DataHeader.types.type.TEXT} />
       <h3>DATE</h3>
-      <DataHeader icons={DataHeader.icons} label="name" type={DataHeader.type.types.DATE} />
+      <DataHeader icons={DataHeader.icons} label="name" type={DataHeader.types.type.DATE} />
       <h3>DATE TIME</h3>
-      <DataHeader icons={DataHeader.icons} label="name" type={DataHeader.type.types.DATE_TIME} />
+      <DataHeader icons={DataHeader.icons} label="name" type={DataHeader.types.type.DATE_TIME} />
       <h3>TIME</h3>
-      <DataHeader icons={DataHeader.icons} label="name" type={DataHeader.type.types.TIME} />
+      <DataHeader icons={DataHeader.icons} label="name" type={DataHeader.types.type.TIME} />
       <h3>CUSTOM</h3>
-      <DataHeader icons={icons} label="name" type={DataHeader.type.types.DATE_TIME} />
+      <DataHeader icons={icons} label="name" type={DataHeader.types.type.DATE_TIME} />
     </Story>
   );
 };

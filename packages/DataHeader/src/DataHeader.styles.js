@@ -1,7 +1,7 @@
 import styled, { css } from "styled-components";
 import tokens from "@paprika/tokens";
 
-export const Header = styled.div(({ $color = tokens.color.black, $backgroundColor = "transparent", refHeader }) => {
+export const Header = styled.div(({ $color, $backgroundColor, refHeader }) => {
   function resetHeaderParentContainer() {
     /**
      * This wait until the <Table /> <DataGrid /> is render and then execute the function to style the TH for the Table or the Div for the DataGrid
@@ -15,8 +15,8 @@ export const Header = styled.div(({ $color = tokens.color.black, $backgroundColo
 
       if ($anchor) {
         const s = $anchor.parentElement.style;
-        s.backgroundColor = $backgroundColor;
-        s.color = $color;
+        if ($backgroundColor !== null) s.backgroundColor = $backgroundColor;
+        if ($color !== null) s.color = $color;
       }
     });
 
@@ -56,7 +56,7 @@ export const Info = styled.div(() => {
     justify-content: flex-start;
     width: 100%;
     svg {
-      font-size: 1.3rem;
+      font-size: 1.2rem;
     }
   `;
 });

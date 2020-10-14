@@ -2396,21 +2396,6 @@
   dependencies:
     "@types/node" ">= 8"
 
-"@paprika/button@^0.3.14":
-  version "0.3.14"
-  resolved "https://registry.yarnpkg.com/@paprika/button/-/button-0.3.14.tgz#d600cb01a044625f14bcff6fd21a3aa5bd7048a5"
-  integrity sha512-WlBCDzyLGc6jZLII60+jQ/9m3CebH7SABtn+8j6XwyFaYg3xOb+yhEcL+ho7Z98u27IjdIa8GipY62k5tyX3xg==
-  dependencies:
-    "@babel/runtime-corejs2" "^7.3.1"
-    "@paprika/constants" "^0.1.3"
-    "@paprika/helpers" "^0.2.13"
-    "@paprika/icon" "^0.3.10"
-    "@paprika/raw-button" "^0.2.20"
-    "@paprika/stylers" "^0.2.11"
-    "@paprika/tokens" "^0.1.17"
-    prop-types "^15.7.2"
-    what-input "^5.2.6"
-
 "@paprika/helpers@^0.1.2":
   version "0.1.3"
   resolved "https://registry.yarnpkg.com/@paprika/helpers/-/helpers-0.1.3.tgz#2606180f2e5df0316e37442930dba5f016aa8697"
@@ -2426,35 +2411,12 @@
     "@svgr/cli" "^4.1.0"
     prop-types "^15.7.2"
 
-"@paprika/icon@^0.3.10":
-  version "0.3.10"
-  resolved "https://registry.yarnpkg.com/@paprika/icon/-/icon-0.3.10.tgz#8b65166f2dede5720b3b1c8ee45a6e7c13112728"
-  integrity sha512-8mK7VsDWkv6T2zbgmXkFMH53izkavp5hQb84ofzepnDZP1oCxNy7um3p2RBFjgXiqEwlnLtB5Sd5sGBNrpL8Hw==
-  dependencies:
-    "@babel/runtime-corejs2" "^7.3.1"
-    "@paprika/tokens" "^0.1.17"
-    prop-types "^15.7.2"
-
 "@paprika/stylers@^0.1.5":
   version "0.1.7"
   resolved "https://registry.yarnpkg.com/@paprika/stylers/-/stylers-0.1.7.tgz#ae3328853fea2c463af070bdeafdec9ac34d3d9c"
   integrity sha512-cfCvRbqEBVUIjamaGr8ykoJ9wkfnjkWwQzWwQAit8ySf3Vt+HbpGBOTsBx+Z3GESbHUxim0sN5o6Iwso6sgnDg==
   dependencies:
     "@paprika/tokens" "^0.1.6"
-
-"@paprika/toast@^0.2.50":
-  version "0.2.50"
-  resolved "https://registry.yarnpkg.com/@paprika/toast/-/toast-0.2.50.tgz#234ea978d6113581049589d283a01ef87188f0e6"
-  integrity sha512-1b5+G2Z3iTBgZaqRxaIzP2wsI391ufqztr8RkZ/4DKLJGy1V4VgVrxqL10IZoYHW8VG/DHsgF6Sipr+XsRAGxA==
-  dependencies:
-    "@babel/runtime-corejs2" "^7.3.1"
-    "@paprika/button" "^0.3.14"
-    "@paprika/constants" "^0.1.3"
-    "@paprika/helpers" "^0.2.13"
-    "@paprika/icon" "^0.3.10"
-    "@paprika/stylers" "^0.2.11"
-    "@paprika/tokens" "^0.1.17"
-    prop-types "^15.7.2"
 
 "@reach/router@^1.3.3":
   version "1.3.3"
