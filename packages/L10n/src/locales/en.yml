@@ -169,4 +169,7 @@ en:
             text: Sort descending (Z → A)
             date: Sort descending (9 → 1)
             single_select: Sort descending (Z → A)
+    breadcrumbs:
+      aria_label: Breadcrumbs
+      aria_expand: Show all breadcrumb items.
           

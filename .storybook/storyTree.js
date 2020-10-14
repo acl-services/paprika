@@ -69,6 +69,7 @@ const storyTree = [
   {
     category: "Navigation",
     components: [
+      "Breadcrumbs",
       "Card",
       "Collapsible",
       "CollapsibleText",
