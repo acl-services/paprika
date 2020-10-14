@@ -54,7 +54,7 @@ const propTypes = {
 const defaultProps = {
   children: null,
   as: null,
-  href: null,
+  href: "",
 };
 
 Link.displayName = "Breadcrumbs.Link";
