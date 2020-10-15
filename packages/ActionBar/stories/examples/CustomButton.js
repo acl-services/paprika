@@ -59,8 +59,9 @@ const customRulesByType = {
   CUSTOM_SELECT: [Filter.rules.IS, Filter.rules.IS_NOT, Filter.rules.IS_EMPTY, Filter.rules.IS_NOT_EMPTY],
 };
 
-export default function AddedButtons() {
+export default function CustomButton() {
   const [searchTerm, setSearchTerm] = React.useState("");
+
   const { filters, filteredData, onDeleteFilter, onChangeFilter, ...filterProps } = useFilter({
     columns: columnsSettings,
     rulesByType: customRulesByType,
@@ -81,6 +82,16 @@ export default function AddedButtons() {
     "position",
   ]);
 
+  const [rowColor, setRowColor] = React.useState("");
+
+  const changeRowColor = () => {
+    const r = Math.floor(Math.random() * 255);
+    const g = Math.floor(Math.random() * 255);
+    const b = Math.floor(Math.random() * 255);
+    const color = `rgb(${r}, ${g}, ${b})`;
+    setRowColor(color);
+  };
+
   const subset = React.useMemo(() => {
     return sortedData.filter(
       item =>
@@ -97,7 +108,7 @@ export default function AddedButtons() {
 
   return (
     <Story>
-      <Heading level={2}>ActionBar with Added Buttons</Heading>
+      <Heading level={2}>ActionBar with Custom Button</Heading>
       <Tagline>
         If a user needs any functionality or feature that the Actionbar does not offer, the user has the ability to add
         their own buttons to the ActionBar component to meet those specific needs.
@@ -153,14 +164,14 @@ export default function AddedButtons() {
             />
           ))}
         </ColumnsArrangement>
-        <Button style={{ marginRight: "8px" }} kind={Button.types.kind.FLAT}>
-          Custom
-        </Button>
-        <Button style={{ marginRight: "8px" }} kind={Button.types.kind.PRIMARY}>
-          Add
-        </Button>
-        <Button style={{ marginRight: "8px" }} kind={Button.types.kind.DESTRUCTIVE}>
-          Delete
+        <Button
+          style={{ marginRight: "8px" }}
+          kind={Button.types.kind.FLAT}
+          onClick={() => {
+            changeRowColor();
+          }}
+        >
+          Change Color!
         </Button>
       </ActionBar>
 
@@ -173,7 +184,7 @@ export default function AddedButtons() {
         </thead>
         <tbody>
           {subset.map(item => (
-            <tr key={item.id}>
+            <tr key={item.id} style={{ backgroundColor: rowColor }}>
               <td>{item.id}</td>
               {orderedColumnIds.map(id => (isColumnHidden(id) ? null : <td key={id}>{`${item[id]}`}</td>))}
             </tr>
