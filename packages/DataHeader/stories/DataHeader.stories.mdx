@@ -1,6 +1,7 @@
 import { Meta } from "@storybook/addon-docs/blocks";
 import { getStoryName } from "storybook/storyTree";
-import Readme from "../README.md";
+import { Description } from "@storybook/addon-docs/blocks";
+import README from "../README.md";
 import { Basic, WithRenderActions, WithTypes, WithBackgroundColor } from "./DataHeader.examples";
 import Toast from "@paprika/toast";
 
@@ -13,26 +14,11 @@ export const params = {
 
 <Meta title={`${getStoryName("DataHeader")}/Docs`} parameters={params} />
 
-# README
+<Description markdown={README} />
 
-<Description markdown={Readme} />
+## DataHeader
 
-# DataHeader
-
-## Introduction
-
-The `<DataHeader />` component helps consumer to deal with header with the `<Table />` and `<DataGrid />` components.
-
-With this component you have access to three major features: render Label via a string or function, render an action button/menu at the right side of the header or render an icon `type`
-before the label.
-
-The component looks like:
-
-```js
-<DataHeader label={string|function} type={:string} renderActions={:function} />
-```
-
-## Basic example
+### Basic example
 
 A basic example using a `<Table />`
 
@@ -42,11 +28,11 @@ A basic example using a `<Table />`
 </Table>
 ```
 
-### Output
+#### Output
 
 <Basic />
 
-## Render Actions Prop
+### Render Actions Prop
 
 The previous example is too simple, you can achieve the same using a single `header` prop on the `ColumnDefinition`
 Let's add the `renderActions` prop to make it more interesting:
@@ -80,7 +66,7 @@ function App() {
 }
 ```
 
-### Output
+#### Output
 
 <WithRenderActions />
 <br /><br />
@@ -88,7 +74,7 @@ function App() {
   You can render whatever you need into the <code>renderActions</code> space not only a menu, can be a button, icon, etc. It will always be align to the right.
 </Toast>
 
-## Using type prop for icons
+### Using type prop for icons
 
 The type props let you to assign an icon into the header to highlight the type of column, you can check the prop table on the readme to see which one are support it.
 
@@ -128,7 +114,7 @@ function App() {
 
 <WithTypes />
 
-## BackgroundColor and color
+### BackgroundColor and color
 
 There are scenarios when you will want to highlight specific header column with a color, in this case you can make use of the `backgroundColor` and `color` props.
 
@@ -153,6 +139,6 @@ function App() {
 }
 ```
 
-### Output
+#### Output
 
 <WithBackgroundColor />
