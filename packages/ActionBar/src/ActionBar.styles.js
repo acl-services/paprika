@@ -41,7 +41,7 @@ export const GenericTrigger = styled(Button)(
 export const getGenericTriggerIcon = Icon => {
   return styled(Icon)`
     font-size: 1.25em;
-    margin-right: ${tokens.space};
+    padding-right: ${tokens.space};
   `;
 };
 
