@@ -23,7 +23,7 @@ export const List = styled.ol`
   ${({ isCollapsed }) =>
     isCollapsed &&
     css`
-      li[data-pka-anchor="breadcrumbs.listItem"] {
+      li[data-pka-anchor="breadcrumbs.list-item"] {
         display: none;
 
         &:first-child,

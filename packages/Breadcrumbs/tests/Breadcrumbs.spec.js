@@ -16,7 +16,7 @@ describe("Breadcrumbs", () => {
 
     expect(await screen.findByText(/home page/i)).toBeVisible();
     expect(await screen.findByText(/parent page/i)).toBeVisible();
-    expect(screen.queryByTestId("breadcrumbs.expandButton")).not.toBeInTheDocument();
+    expect(screen.queryByTestId("breadcrumbs.expand-button")).not.toBeInTheDocument();
   });
 
   it("Collapses if there are more than 3 breadcrumb items", async () => {
@@ -32,11 +32,11 @@ describe("Breadcrumbs", () => {
     );
 
     expect(await screen.queryByText(/parent page/i)).not.toBeVisible();
-    expect(screen.findByTestId("breadcrumbs.expandButton"));
+    expect(screen.findByTestId("breadcrumbs.expand-button"));
 
-    fireEvent.click(await screen.findByTestId("breadcrumbs.expandButton"));
+    fireEvent.click(await screen.findByTestId("breadcrumbs.expand-button"));
 
     expect(await screen.queryByText(/parent page/i)).toBeVisible();
-    expect(screen.queryByTestId("breadcrumbs.expandButton")).not.toBeVisible();
+    expect(screen.queryByTestId("breadcrumbs.expand-button")).not.toBeVisible();
   });
 });

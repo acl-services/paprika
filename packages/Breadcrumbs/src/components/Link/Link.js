@@ -25,7 +25,7 @@ function Link(props) {
   );
 
   return (
-    <sc.ListItem data-pka-anchor="breadcrumbs.listItem">
+    <sc.ListItem data-pka-anchor="breadcrumbs.list-item">
       {shouldTruncate ? (
         <Popover isDark isEager>
           <Popover.Trigger>{link}</Popover.Trigger>

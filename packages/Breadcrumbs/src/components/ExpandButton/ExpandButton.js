@@ -15,7 +15,7 @@ function ExpandButton(props) {
     <sc.ExpandButtonWrapper isHidden={isHidden}>
       <sc.ExpandButton
         a11yText={I18n.t("breadcrumbs.aria_expand")}
-        data-pka-anchor="breadcrumbs.expandButton"
+        data-pka-anchor="breadcrumbs.expand-button"
         kind="minor"
         size="small"
         onClick={onClick}
