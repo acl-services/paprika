@@ -77,7 +77,7 @@ export default function Sort(props) {
       <Popover align="bottom" edge="left" maxWidth={600} isOpen={isOpen} onClose={handleClose}>
         <sc.Trigger
           isSemantic={false}
-          kind="flat"
+          kind={Button.types.kind.FLAT}
           onClick={handleClickTrigger}
           hasField={appliedNumber > 0}
           isOpen={isOpen}

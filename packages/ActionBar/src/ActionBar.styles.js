@@ -1,7 +1,7 @@
 import styled, { css } from "styled-components";
 import stylers from "@paprika/stylers";
 import tokens from "@paprika/tokens";
-import RawButton from "@paprika/raw-button";
+import Button from "@paprika/button";
 
 export const ActionBar = styled.div`
   align-items: center;
@@ -16,19 +16,20 @@ const genericIsOpenStyles = css`
   background-color: ${stylers.alpha(tokens.color.black, 0.1)};
 `;
 
-export const GenericTrigger = styled(RawButton)(
+export const GenericTrigger = styled(Button)(
   ({ isOpen }) => css`
-    ${stylers.fontSize()}
+    ${stylers.fontSize(-1)}
     align-items: center;
+    border: 1px solid ${tokens.color.blackLighten60};
     border-radius: ${tokens.button.borderRadius};
     color: ${tokens.textColor.default};
     display: flex;
     font-weight: bold;
-    margin-right: ${tokens.spaceSm};
-    padding: ${tokens.spaceSm};
+    justify-content: center;
+    margin-right: ${tokens.space};
+    padding: ${tokens.spaceSm} ${tokens.space};
     transition-duration: 0.2s;
     transition-property: "background-color";
-
     &:hover {
       ${genericIsOpenStyles}
     }

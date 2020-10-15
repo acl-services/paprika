@@ -2,7 +2,7 @@ import styled, { css } from "styled-components";
 import PaprikaSortable from "@paprika/sortable";
 import PaprikaSwitch from "@paprika/switch";
 import HideIcon from "@paprika/icon/lib/Hide";
-import RawButton from "@paprika/raw-button";
+import Button from "@paprika/button";
 import stylers from "@paprika/stylers";
 import tokens from "@paprika/tokens";
 
@@ -41,16 +41,17 @@ const isOpenStyles = css`
   background-color: ${stylers.alpha(tokens.color.black, 0.1)};
 `;
 
-export const Trigger = styled(RawButton)(
+export const Trigger = styled(Button)(
   ({ hasColumnsHidden, isOpen }) => css`
-    ${stylers.fontSize()}
+    ${stylers.fontSize(-1)}
     align-items: center;
+    border: 1px solid ${tokens.color.blackLighten60};
     border-radius: ${tokens.button.borderRadius};
     color: ${tokens.textColor.default};
     display: flex;
     font-weight: bold;
-    margin-right: ${tokens.spaceSm};
-    padding: ${tokens.spaceSm};
+    margin-right: ${tokens.space};
+    padding: ${tokens.spaceSm} ${tokens.space};
     transition-duration: 0.2s;
     transition-property: "background-color";
 
