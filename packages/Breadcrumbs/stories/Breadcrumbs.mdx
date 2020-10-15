@@ -7,7 +7,7 @@ import Breadcrumbs from "../src";
 
 ### Basic Breadcrumbs
 
-```js
+```jsx
 <Breadcrumbs>
   <Breadcrumbs.Link href={URL}>Breadcrumb 1</Breadcrumbs.Link>
   <Breadcrumbs.Link href={URL}>Breadcrumb 2</Breadcrumbs.Link>
@@ -27,7 +27,7 @@ import Breadcrumbs from "../src";
 
 ### Breadcrumbs will auto collapse if there're more than 3 items.
 
-```js
+```jsx
 <Breadcrumbs>
   <Breadcrumbs.Link href={URL}>Breadcrumb 1</Breadcrumbs.Link>
   <Breadcrumbs.Link href={URL}>Breadcrumb 2</Breadcrumbs.Link>
@@ -49,7 +49,7 @@ import Breadcrumbs from "../src";
 
 ### Using isDark prop for breadcrumbs on a dark background
 
-```js
+```jsx
 <Breadcrumbs isDark>
   <Breadcrumbs.Link href={URL}>Breadcrumb 1</Breadcrumbs.Link>
   <Breadcrumbs.Link href={URL}>Breadcrumb 2</Breadcrumbs.Link>
@@ -73,7 +73,7 @@ import Breadcrumbs from "../src";
 
 ### Breadcrumbs will add a tooltip if the text in your Breadcrumb.Link longer than 40 characters
 
-```js
+```jsx
 <Breadcrumbs>
   <Breadcrumbs.Link href={URL}>
     Breadcrumb item with long text will have a tooltip. Hover this item to see.
@@ -95,7 +95,7 @@ import Breadcrumbs from "../src";
 
 ### Render Breadcrumbs.Link using your own components
 
-```js
+```jsx
 const MyButton = (children) => <button>{children}</button>
 
 <Breadcrumbs>
