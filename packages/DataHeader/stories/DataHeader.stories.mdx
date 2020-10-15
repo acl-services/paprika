@@ -86,23 +86,23 @@ function App() {
   return (
     <Table data={data}>
       <Table.ColumnDefinition
-        header={() => <DataHeader label="Value" type={DataHeader.type.types.TEXT} />}
+        header={() => <DataHeader label="Value" icons={DataHeader.icons} type={DataHeader.type.types.TEXT} />}
         cell="name"
       />
       <Table.ColumnDefinition
-        header={() => <DataHeader label="Value" type={DataHeader.type.types.NUMERIC} />}
+        header={() => <DataHeader label="Value" icons={DataHeader.icons} type={DataHeader.type.types.NUMERIC} />}
         cell="name"
       />
       <Table.ColumnDefinition
-        header={() => <DataHeader label="Value" type={DataHeader.type.types.DATA} />}
+        header={() => <DataHeader label="Value" icons={DataHeader.icons} type={DataHeader.type.types.DATA} />}
         cell="income"
       />
       <Table.ColumnDefinition
-        header={() => <DataHeader label="Value" type={DataHeader.type.types.TIME} />}
+        header={() => <DataHeader label="Value" icons={DataHeader.icons} type={DataHeader.type.types.TIME} />}
         cell="taxes"
       />
       <Table.ColumnDefinition
-        header={() => <DataHeader label="Value" type={DataHeader.type.types.DATE_TIME} />}
+        header={() => <DataHeader label="Value" icons={DataHeader.icons} type={DataHeader.type.types.DATE_TIME} />}
         cell="income"
       />
     </Table>
