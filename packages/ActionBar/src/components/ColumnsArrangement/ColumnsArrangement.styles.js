@@ -66,5 +66,5 @@ export const Trigger = styled(Button)(
 
 export const Icon = styled(HideIcon)`
   font-size: 1.25em;
-  padding-right: ${tokens.space};
+  padding-right: ${tokens.spaceSm};
 `;
