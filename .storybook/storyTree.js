@@ -43,6 +43,7 @@ const storyTree = [
       "Input",
       "ListBox",
       "ListBoxBrowser",
+      "ListBoxTags",
       "Radio",
       "Select",
       "Sortable",

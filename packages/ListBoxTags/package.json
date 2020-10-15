@@ -1,0 +1,36 @@
+{
+  "name": "@paprika/listbox-tags",
+  "version": "0.0.1",
+  "description": "ListBoxTags behave as a ListBox with the difference that the selected option stack on pills next to an search input",
+  "author": "@paprika",
+  "main": "lib/index.js",
+  "types": "lib/index.d.ts",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/acl-services/paprika.git",
+    "directory": "packages/ListBoxTags"
+  },
+  "publishConfig": {
+    "access": "public"
+  },
+  "dependencies": {
+    "@babel/runtime-corejs2": "^7.3.1",
+    "@paprika/button": "^0.3.14",
+    "@paprika/constants": "^0.1.3",
+    "@paprika/helpers": "0.2.13",
+    "@paprika/pill": "^0.2.31",
+    "@paprika/stylers": "^0.2.11",
+    "@paprika/tokens": "^0.1.17",
+    "prop-types": "^15.7.2"
+  },
+  "peerDependencies": {
+    "react": "^16.8.4",
+    "react-dom": "^16.8.4",
+    "styled-components": "^4.2.0"
+  },
+  "paprikaDocs": {
+    "subComponents": [
+    ]
+  }
+}

@@ -1,0 +1,15 @@
+import { Meta } from "@storybook/addon-docs/blocks";
+import { getStoryName } from "storybook/storyTree";
+import MDX from "./ListBoxTags.mdx";
+import ListBoxTags from "../src/";
+
+export const params = {
+  options: {
+    isToolshown: false,
+    showPanel: false,
+  },
+};
+
+<Meta title={`${getStoryName("ListBoxTags")}/Docs`} component={ListBoxTags} parameters={params} />
+
+<MDX />
