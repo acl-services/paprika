@@ -14,9 +14,10 @@ const storyTree = [
     category: "Table",
     components: [
       "ActionBar",
+      "DataField",
       "DataGrid",
-      "Table",
-      "DataField"
+      "DataHeader",
+      "Table"
     ],
   },
   {

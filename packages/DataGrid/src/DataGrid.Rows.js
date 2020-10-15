@@ -123,6 +123,7 @@ export const HeaderRow = React.memo(({ data: RowData, columnIndex, style }) => {
       role="columnheader"
       style={{ ...style, ...styleProps }}
       {...moreProps}
+      data-pka-anchor="data-grid.header"
       borderType={borderType}
       title={headerText}
     >

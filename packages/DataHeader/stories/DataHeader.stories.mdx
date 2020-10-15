@@ -1,0 +1,144 @@
+import { Meta } from "@storybook/addon-docs/blocks";
+import { getStoryName } from "storybook/storyTree";
+import { Description } from "@storybook/addon-docs/blocks";
+import README from "../README.md";
+import { Basic, WithRenderActions, WithTypes, WithBackgroundColor } from "./DataHeader.examples";
+import Toast from "@paprika/toast";
+
+export const params = {
+  options: {
+    isToolshown: true,
+    showPanel: false,
+  },
+};
+
+<Meta title={`${getStoryName("DataHeader")}/Docs`} parameters={params} />
+
+<Description markdown={README} />
+
+## DataHeader
+
+### Basic example
+
+A basic example using a `<Table />`
+
+```js
+<Table data={data}>
+  <Table.ColumnDefinition header={() => <DataHeader label="name" />} cell="name" />
+</Table>
+```
+
+#### Output
+
+<Basic />
+
+### Render Actions Prop
+
+The previous example is too simple, you can achieve the same using a single `header` prop on the `ColumnDefinition`
+Let's add the `renderActions` prop to make it more interesting:
+
+```js
+import DropdownMenu from "@paprika/dropdown-menu";
+
+function Menu() {
+  return (
+    <DropdownMenu>
+      <DropdownMenu.Trigger buttonType="raw">
+        <EllipsisVertical />
+      </DropdownMenu.Trigger>
+      <DropdownMenu.Item onClick={() => {}}>One</DropdownMenu.Item>
+      <DropdownMenu.Item onClick={() => {}}>Two</DropdownMenu.Item>
+      <DropdownMenu.Item onClick={() => {}}>Three</DropdownMenu.Item>
+    </DropdownMenu>
+  );
+}
+
+function App() {
+  return (
+    <Table data={data}>
+      <Table.ColumnDefinition
+        width="150px"
+        header={() => <DataHeader label="name" renderActions={() => <Menu />} />}
+        cell="name"
+      />
+    </Table>
+  );
+}
+```
+
+#### Output
+
+<WithRenderActions />
+<br /><br />
+<Toast hasCloseButton={false}>
+  You can render whatever you need into the <code>renderActions</code> space not only a menu, can be a button, icon, etc. It will always be align to the right.
+</Toast>
+
+### Using type prop for icons
+
+The type props let you to assign an icon into the header to highlight the type of column, you can check the prop table on the readme to see which one are support it.
+
+Worth noting the `DataHeader` component expose all their icons via an object declare on `DataHeader.icons` this is due licence issues with the use of some of our icons.
+This object can be override in case you need to use the component outside of the [Highbond](https://www.wegalvanize.com/highbond/) platform.
+
+```js
+function App() {
+  return (
+    <Table data={data}>
+      <Table.ColumnDefinition
+        header={() => <DataHeader label="Value" icons={DataHeader.icons} type={DataHeader.type.types.TEXT} />}
+        cell="name"
+      />
+      <Table.ColumnDefinition
+        header={() => <DataHeader label="Value" icons={DataHeader.icons} type={DataHeader.type.types.NUMERIC} />}
+        cell="name"
+      />
+      <Table.ColumnDefinition
+        header={() => <DataHeader label="Value" icons={DataHeader.icons} type={DataHeader.type.types.DATA} />}
+        cell="income"
+      />
+      <Table.ColumnDefinition
+        header={() => <DataHeader label="Value" icons={DataHeader.icons} type={DataHeader.type.types.TIME} />}
+        cell="taxes"
+      />
+      <Table.ColumnDefinition
+        header={() => <DataHeader label="Value" icons={DataHeader.icons} type={DataHeader.type.types.DATE_TIME} />}
+        cell="income"
+      />
+    </Table>
+  );
+}
+```
+
+### Output
+
+<WithTypes />
+
+### BackgroundColor and color
+
+There are scenarios when you will want to highlight specific header column with a color, in this case you can make use of the `backgroundColor` and `color` props.
+
+```js
+function App() {
+  return (
+    <Table data={data}>
+      <Table.ColumnDefinition
+        header={() => <DataHeader backgroundColor="magenta" color="white" label="name" />}
+        cell="name"
+      />
+      <Table.ColumnDefinition
+        header={() => <DataHeader backgroundColor="cyan" label="Income" />}
+        cell={({ row }) => row.income}
+      />
+      <Table.ColumnDefinition
+        header={() => <DataHeader backgroundColor="black" color="white" label="Value" />}
+        cell={({ row }) => row.taxes}
+      />
+    </Table>
+  );
+}
+```
+
+#### Output
+
+<WithBackgroundColor />
