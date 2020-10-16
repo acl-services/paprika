@@ -63,14 +63,7 @@ In addition, a `<label />` is rendered by the `<FormElement />` and is associate
   </FormElement.Instructions>
   <FormElement.Content>
     {({ idForLabel, ariaDescribedBy }) => (
-      <Input
-        id={idForLabel}
-        onChange={handleChange}
-        value={value}
-        placeholder="Form placeholder"
-        aria-describedby={ariaDescribedBy}
-        hasError={Boolean(errorText.length)}
-      />
+      <Input id={idForLabel} placeholder="Form placeholder" aria-describedby={ariaDescribedBy} />
     )}
   </FormElement.Content>
   <FormElement.Description>
@@ -151,12 +144,6 @@ The `<FormElement />` can handle a variety of components to further increase the
 #### Component Label
 
 ```jsx
-const [value, setValue] = React.useState("");
-
-function handleChange(e) {
-  setValue(e.target.value);
-}
-
 <FormElement
   hasRequiredLabel={false}
   label={
@@ -171,19 +158,16 @@ function handleChange(e) {
     {({ idForLabel, ariaDescribedBy }) => (
       <Input
         id={idForLabel}
-        onChange={handleChange}
-        value={value}
+        onChange={() => {}}
         placeholder="Form placeholder"
         aria-describedby={ariaDescribedBy}
         aria-required={false}
         hasError={Boolean(errorText.length)}
-        isDisabled={false}
-        isReadOnly={false}
         size={FormElement.types.size.MEDIUM}
       />
     )}
   </FormElement.Content>
-</FormElement>;
+</FormElement>
 ```
 
 ##### Result
