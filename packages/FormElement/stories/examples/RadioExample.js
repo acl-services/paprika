@@ -7,7 +7,6 @@ import FormElement from "../../src/FormElement";
 export default function RadioExample() {
   const optionsArray = ["Black Panther", "Wonder Woman", "Spiderman", "The Incredibles", "Thor", <span>test</span>];
   const isDisabled = false;
-  const errorText = "";
   const size = constants.size.MEDIUM;
 
   const getRadioOptions = ariaDescribedBy => (
@@ -28,13 +27,6 @@ export default function RadioExample() {
       <FormElement.Content>
         {({ ariaDescribedBy: ariaDescribedByOuter }) => getRadioOptions(ariaDescribedByOuter)}
       </FormElement.Content>
-      <FormElement.Description>
-        <span>Description of this field.</span>
-      </FormElement.Description>
-      <FormElement.Error>{errorText}</FormElement.Error>
-      <FormElement.Help>
-        Give me some help. <a href="wegalvanize.com">Learn more</a>.
-      </FormElement.Help>
     </FormElement>
   );
 }

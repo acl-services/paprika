@@ -20,12 +20,6 @@ export default function HTMLExample() {
       hasRequiredLabel={hasRequiredLabel}
       label={<span dangerouslySetInnerHTML={{ __html: "<strong><i>Form Label</i></strong>" }} />}
     >
-      <FormElement.Instructions>
-        <span>
-          Example text for extra panel for questionnaires. Example text for extra panel for questionnaires Example text
-          for extra panel for questionnaires. Example text for extra panel for questionnaires
-        </span>
-      </FormElement.Instructions>
       <FormElement.Content>
         {({ idForLabel, ariaDescribedBy }) => (
           <Input

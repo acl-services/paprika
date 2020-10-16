@@ -16,12 +16,6 @@ export default function ButtonGroupExample() {
       <FormElement.Content>
         {() => <ButtonGroup ref={refButtonGroup}>{buttonGroupOptions}</ButtonGroup>}
       </FormElement.Content>
-      <FormElement.Description>
-        <span>Description of this field.</span>
-      </FormElement.Description>
-      <FormElement.Help>
-        Give me some help. <a href="wegalvanize.com">Learn more</a>.
-      </FormElement.Help>
     </FormElement>
   );
 }

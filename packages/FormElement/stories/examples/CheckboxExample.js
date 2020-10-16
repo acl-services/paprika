@@ -6,7 +6,6 @@ import FormElement from "../../src/FormElement";
 export default function CheckboxExample() {
   const isDisabled = false;
   const size = constants.size.MEDIUM;
-  const errorText = "";
   const optionsArray = ["Black Panther", "Wonder Woman", "Spiderman", "The Incredibles", "Thor", <span>test</span>];
 
   const getCheckboxOptions = ariaDescribedBy =>
@@ -21,13 +20,6 @@ export default function CheckboxExample() {
       <FormElement.Content>
         {({ ariaDescribedBy: ariaDescribedByOuter }) => getCheckboxOptions(ariaDescribedByOuter)}
       </FormElement.Content>
-      <FormElement.Description>
-        <span>Description of this field.</span>
-      </FormElement.Description>
-      <FormElement.Error>{errorText}</FormElement.Error>
-      <FormElement.Help>
-        Give me some help. <a href="wegalvanize.com">Learn more</a>.
-      </FormElement.Help>
     </FormElement>
   );
 }

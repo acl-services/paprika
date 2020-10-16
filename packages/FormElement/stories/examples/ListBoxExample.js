@@ -12,12 +12,6 @@ export default function ListBoxExample() {
       <FormElement.Content>
         {({ refLabel }) => <ListBox refLabel={refLabel}>{listboxOptions}</ListBox>}
       </FormElement.Content>
-      <FormElement.Description>
-        <span>Description of this field.</span>
-      </FormElement.Description>
-      <FormElement.Help>
-        Give me some help. <a href="wegalvanize.com">Learn more</a>.
-      </FormElement.Help>
     </FormElement>
   );
 }

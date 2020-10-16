@@ -27,12 +27,6 @@ export default function ComponentLabelExample() {
         </Heading>
       }
     >
-      <FormElement.Instructions>
-        <span>
-          Example text for extra panel for questionnaires. Example text for extra panel for questionnaires Example text
-          for extra panel for questionnaires. Example text for extra panel for questionnaires
-        </span>
-      </FormElement.Instructions>
       <FormElement.Content>
         {({ idForLabel, ariaDescribedBy }) => (
           <Input
@@ -49,9 +43,6 @@ export default function ComponentLabelExample() {
           />
         )}
       </FormElement.Content>
-      <FormElement.Help>
-        Give me some help. <a href="wegalvanize.com">Learn more</a>.
-      </FormElement.Help>
     </FormElement>
   );
 }

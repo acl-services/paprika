@@ -23,6 +23,9 @@ const AccessibilityExample = () => {
   return (
     <>
       <FormElement label="Form Label">
+        <FormElement.Help>
+          Give me some help. <a href="wegalvanize.com">Learn more</a>.
+        </FormElement.Help>
         <FormElement.Instructions>
           <span>
             Example text for extra panel for questionnaires. Example text for extra panel for questionnaires Example
@@ -45,9 +48,6 @@ const AccessibilityExample = () => {
           <span>This is description text</span>
         </FormElement.Description>
         <FormElement.Error>{errorText}</FormElement.Error>
-        <FormElement.Help>
-          Give me some help. <a href="wegalvanize.com">Learn more</a>.
-        </FormElement.Help>
       </FormElement>
       <Rule />
       <Button onClick={setError} style={{ marginRight: "10px" }}>

@@ -19,7 +19,6 @@ export default function NestedExample() {
                     <input
                       aria-required={hasRequiredLabel}
                       aria-describedby={ariaDescribedBy + ariaDescribedByOuter}
-                      aria-invalid={Boolean(errorText.length)}
                       disabled={isDisabled}
                       id={idForLabel}
                       readOnly={isReadOnly}
@@ -27,7 +26,6 @@ export default function NestedExample() {
                     <input
                       aria-required={hasRequiredLabel}
                       aria-describedby={ariaDescribedBy + ariaDescribedByOuter}
-                      aria-invalid={Boolean(errorText.length)}
                       disabled={isDisabled}
                       readOnly={isReadOnly}
                     />
@@ -46,7 +44,6 @@ export default function NestedExample() {
                     <input
                       aria-required={hasRequiredLabel}
                       aria-describedby={ariaDescribedBy + ariaDescribedByOuter}
-                      aria-invalid={Boolean(errorText.length)}
                       disabled={isDisabled}
                       id={idForLabel}
                       readOnly={isReadOnly}
@@ -54,7 +51,6 @@ export default function NestedExample() {
                     <input
                       aria-required={hasRequiredLabel}
                       aria-describedby={ariaDescribedBy + ariaDescribedByOuter}
-                      aria-invalid={Boolean(errorText.length)}
                       disabled={isDisabled}
                       readOnly={isReadOnly}
                     />
@@ -69,13 +65,6 @@ export default function NestedExample() {
           </>
         )}
       </FormElement.Content>
-      <FormElement.Error>{errorText}</FormElement.Error>
-      <FormElement.Description>
-        <span>Description of this field.</span>
-      </FormElement.Description>
-      <FormElement.Help>
-        Give me some help. <a href="wegalvanize.com">Learn more</a>.
-      </FormElement.Help>
     </FormElement>
   );
 }

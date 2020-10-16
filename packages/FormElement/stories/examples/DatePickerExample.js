@@ -13,13 +13,6 @@ export default function DatePickerExample() {
           </DatePicker>
         )}
       </FormElement.Content>
-      <FormElement.Description>
-        <span>Description of this field.</span>
-      </FormElement.Description>
-      <FormElement.Error>{errorText}</FormElement.Error>
-      <FormElement.Help>
-        Give me some help. <a href="wegalvanize.com">Learn more</a>.
-      </FormElement.Help>
     </FormElement>
   );
 }
