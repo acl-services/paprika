@@ -70,7 +70,7 @@ export default function Filter(props) {
       <Popover align="bottom" edge="left" maxWidth={600} offset={8} isOpen={isOpen} onClose={handleClose}>
         <sc.Trigger
           isSemantic={false}
-          kind="flat"
+          kind={Button.types.kind.FLAT}
           onClick={handleClickTrigger}
           hasFilterApplied={appliedNumber > 0}
           isOpen={isOpen}
