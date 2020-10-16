@@ -113,7 +113,7 @@ en:
       columns_arrangement:
         hide_all: Hide all
         show_all: Show all
-        label: Arrange columns
+        label: Arrange
         singular_label: 1 column hidden
         plural_label: "{{numberOfHiddenColumn}} columns hidden"
         search_placeholder: Filter...
