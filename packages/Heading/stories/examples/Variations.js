@@ -1,6 +1,6 @@
 import React from "react";
 import { Rule, Story, Tagline } from "storybook/assets/styles/common.styles";
-import ExternalLinkExample from "./ExternalLinkExample";
+import { HeadingStory } from "../Heading.stories.styles";
 import SetWidthExample from "./SetWidthExample";
 import ParagraphExample from "./ParagraphExample";
 import DisplayLevelExample from "./DisplayLevelExample";
@@ -16,25 +16,33 @@ export default function Variations() {
         Variations of Headings
       </Heading>
       <Rule />
-      <Tagline>Components</Tagline>
-      <Rule />
-      <ExternalLinkExample />
-      <Rule />
       <Tagline>Heading Levels</Tagline>
       <Rule />
-      <ParagraphExample />
+      <HeadingStory>
+        <ParagraphExample />
+      </HeadingStory>
       <Rule />
-      <DisplayLevelExample />
+      <HeadingStory>
+        <DisplayLevelExample />
+      </HeadingStory>
       <Rule />
       <Tagline>Heading Styles</Tagline>
       <Rule />
-      <SetWidthExample />
+      <HeadingStory>
+        <IsLightExample />
+      </HeadingStory>
       <Rule />
-      <IsLightExample />
+      <HeadingStory>
+        <DividerExample />
+      </HeadingStory>
       <Rule />
-      <DividerExample />
+      <HeadingStory>
+        <UnderLineExample />
+      </HeadingStory>
       <Rule />
-      <UnderLineExample />
+      <HeadingStory>
+        <SetWidthExample />
+      </HeadingStory>
     </Story>
   );
 }
