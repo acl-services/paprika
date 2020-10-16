@@ -6,13 +6,13 @@ beforeEach(() => {
 
 describe("ActionBar", () => {
   it("Should render", () => {
-    cy.getByTestId("raw-button")
+    cy.getByTestId("button")
       .contains("Filter")
       .should("be.visible");
-    cy.getByTestId("raw-button")
+    cy.getByTestId("button")
       .contains("Sort")
       .should("be.visible");
-    cy.getByTestId("raw-button")
+    cy.getByTestId("button")
       .contains("Arrange")
       .should("be.visible");
   });
@@ -47,7 +47,7 @@ describe("ActionBar Filter", () => {
   });
 
   it("Should display the differant filtering options", () => {
-    cy.getByTestId("raw-button")
+    cy.getByTestId("button")
       .contains("Filter")
       .click();
     cy.contains("Add a field to filter by").click();
@@ -92,7 +92,7 @@ describe("ActionBar Filter", () => {
   });
 
   it("Should filter the table ", () => {
-    cy.getByTestId("raw-button")
+    cy.getByTestId("button")
       .contains("Filter")
       .click();
     cy.contains("Add a field to filter by").click();
@@ -192,7 +192,7 @@ describe("ActionBar Sort", () => {
 
 describe("ActionBar Arrange Columns", () => {
   it("should render options within the Arrange columns button", () => {
-    cy.getByText("Arrange columns")
+    cy.getByText("Arrange")
       .should("be.visible")
       .getByTestId("popover.content")
       .should("not.be.visible")
@@ -203,7 +203,7 @@ describe("ActionBar Arrange Columns", () => {
       .getByText("Show all")
       .should("not.be.visible");
 
-    cy.getByText("Arrange columns")
+    cy.getByText("Arrange")
       .click()
       .getByTestId("popover.content")
       .should("be.visible")
@@ -219,7 +219,7 @@ describe("ActionBar Arrange Columns", () => {
     cy.get("table")
       .get("th")
       .should("have.length", 9)
-      .getByText("Arrange columns")
+      .getByText("Arrange")
       .click()
       .getByText("Hide all")
       .click()
@@ -232,7 +232,7 @@ describe("ActionBar Arrange Columns", () => {
   });
 
   it("should filter columns while typing in an input", () => {
-    cy.getByText("Arrange columns")
+    cy.getByText("Arrange")
       .click()
       .getByTestId("sortable.item")
       .should("have.length", 8)
@@ -246,7 +246,7 @@ describe("ActionBar Arrange Columns", () => {
     cy.get("tr")
       .eq(0)
       .should("contain", "goals")
-      .getByText("Arrange columns")
+      .getByText("Arrange")
       .click()
       .getByTestId("switch")
       .eq(0)
@@ -257,7 +257,7 @@ describe("ActionBar Arrange Columns", () => {
   });
 
   it("Should hide all columns", () => {
-    cy.contains("Arrange columns").click();
+    cy.contains("Arrange").click();
     cy.contains("Hide all").click();
     cy.contains("goals").should("not.be.visible");
     cy.contains("name").should("not.be.visible");
@@ -269,7 +269,7 @@ describe("ActionBar Arrange Columns", () => {
   });
 
   it("Should drag and drop to change column order", () => {
-    cy.contains("Arrange columns").click();
+    cy.contains("Arrange").click();
     cy.get("[data-pka-anchor='sortable.item']")
       .first()
       .trigger("mousedown", { button: 0 })
