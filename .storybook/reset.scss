@@ -34,3 +34,14 @@ body {
   font-size: font-scale();
   line-height: line-height-scale();
 }
+
+// DOCS
+
+// Props Tables
+.sbdocs-table {
+  width: 100%;
+
+  th:last-child {
+    width: 50%;
+  }
+}
