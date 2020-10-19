@@ -184,7 +184,7 @@ const errorText = "";
 <FormElement label="Form Label">
   <FormElement.Content>
     {({ idForLabel, ariaDescribedBy }) => (
-      <DatePicker onError={() => {}} hasError={Boolean(errorText.length)} id={idForLabel} onChange={() => {}}>
+      <DatePicker id={idForLabel} onChange={() => {}}>
         <DatePicker.Input aria-describedby={ariaDescribedBy} />
       </DatePicker>
     )}
