@@ -14,9 +14,10 @@ const storyTree = [
     category: "Table",
     components: [
       "ActionBar",
+      "DataField",
       "DataGrid",
-      "Table",
-      "DataField"
+      "DataHeader",
+      "Table"
     ],
   },
   {
@@ -69,6 +70,7 @@ const storyTree = [
   {
     category: "Navigation",
     components: [
+      "Breadcrumbs",
       "Card",
       "Collapsible",
       "CollapsibleText",
