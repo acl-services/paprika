@@ -46,7 +46,7 @@ import FormElement from "../src/FormElement";
 
 In addition, a `<label />` is rendered by the `<FormElement />` and is associated to the input field by the `idForLabel` parameter of the same `children` function.
 
-The `<FormElement />` has been designed with accessibility in mind. Users can make use of `<FormElement.Instructions />`, `<FormElement.Description />`, `<FormElement.Error />`, and `<FormElement.Help` to add instructions, guidance and feedback to users. Error messages, instructions, and descriptions can be associated to the input field by applying the supplied `ariaDescribedBy` parameter in the render function supplied to the `children` of the `<FormElement.Content>`.
+The `<FormElement />` has been designed with accessibility in mind. Users can make use of `<FormElement.Instructions />`, `<FormElement.Description />`, `<FormElement.Error />`, and `<FormElement.Help />` to add instructions, guidance and feedback to users. Error messages, instructions, and descriptions can be associated to the input field by applying the supplied `ariaDescribedBy` parameter in the render function supplied to the `children` of the `<FormElement.Content>`.
 
 The `<FormElement.Help />` will add an icon with a tooltip next to the label.
 
@@ -162,7 +162,7 @@ The `<FormElement />` can handle a variety of components to further increase the
 <FormElement label="Form Label">
   <FormElement.Content>
     {({ idForLabel, ariaDescribedBy }) => (
-      <DatePicker onError={() => {}} hasError={Boolean(errorText.length)} id={idForLabel} onChange={() => {}}>
+      <DatePicker id={idForLabel} onChange={() => {}}>
         <DatePicker.Input aria-describedby={ariaDescribedBy} />
       </DatePicker>
     )}
