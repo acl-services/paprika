@@ -28,10 +28,6 @@ export const params = {
 
 ### Index
 
-- <a href="#components">Components</a>
-
-  - <a href="#external-link">External Link</a>
-
 - <a href="#heading-levels">Heading Levels</a>
 
   - <a href="#paragraph">Paragraph</a>
@@ -47,24 +43,6 @@ export const params = {
   - <a href="#underline">Underline</a>
 
   - <a href="#set-width">Set Width</a>
-
-### Components
-
-#### External Link
-
-Users can use make use of external links as headers by adding the `<ExternalLink />`component as a child to the `<Heading />` component.
-
-```jsx
-const renderExternalLink = () => <ExternalLink href="http://wegalvanize.com">External Link Text</ExternalLink>;
-
-<Heading level={1}>{renderExternalLink()}</Heading>;
-```
-
-##### Result
-
-<HeadingStory>
-  <ExternalLinkExample />
-</HeadingStory>
 
 ### Heading Levels
 
@@ -243,12 +221,12 @@ Heading with hasUnderline
 
 Users can use styling to set a specific width value for the `<Heading />` component. If the text does not fit into the width it will be truncated.
 
-```jsx
-const renderExternalLink = () => <ExternalLink href="http://wegalvanize.com">External Link Text</ExternalLink>;
+Users can also make use of external links as headers by adding the `<ExternalLink />`component as a child to the `<Heading />` component.
 
+```jsx
 <Heading style={{ width: "160px" }} level={1}>
-  {renderExternalLink()}
-</Heading>;
+  <ExternalLink href="http://wegalvanize.com">External Link Text</ExternalLink>
+</Heading>
 ```
 
 ##### Result
