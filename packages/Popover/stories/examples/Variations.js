@@ -1,15 +1,15 @@
 import React from "react";
 import { CenteredStory, Gap, Tagline, Rule, Story } from "storybook/assets/styles/common.styles";
-import ButtonExample from "../examples/ButtonExample";
-import InputExample from "../examples/InputExample";
-import IconExample from "../examples/IconExample";
-import LinkIsEagerExample from "../examples/LinkIsEagerExample";
-import ButtonIsEagerExample from "../examples/ButtonIsEagerExample";
-import IsDarkExample from "../examples/IsDarkExample";
-import LinkExample from "../examples/LinkExample";
-import NoCardExample from "../examples/NoCardExample";
-import ShouldKeepFocusExample from "../examples/ShouldKeepFocusExample";
-import ButtonStateExample from "../examples/ButtonStateExample";
+import ButtonExample from "./ButtonExample";
+import InputExample from "./InputExample";
+import IconExample from "./IconExample";
+import LinkIsEagerExample from "./LinkIsEagerExample";
+import ButtonIsEagerExample from "./ButtonIsEagerExample";
+import IsDarkExample from "./IsDarkExample";
+import LinkExample from "./LinkExample";
+import NoCardExample from "./NoCardExample";
+import ShouldKeepFocusExample from "./ShouldKeepFocusExample";
+import ButtonStateExample from "./ButtonStateExample";
 
 const Variations = () => (
   <CenteredStory>
