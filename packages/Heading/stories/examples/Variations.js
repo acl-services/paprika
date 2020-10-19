@@ -1,6 +1,6 @@
 import React from "react";
 import { Rule, Story, Tagline } from "storybook/assets/styles/common.styles";
-import { HeadingStory } from "../Heading.stories.styles";
+import { HeadingStory } from "../storyHelpers";
 import SetWidthExample from "./SetWidthExample";
 import ParagraphExample from "./ParagraphExample";
 import DisplayLevelExample from "./DisplayLevelExample";
