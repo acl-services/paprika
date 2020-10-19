@@ -1,0 +1,209 @@
+import { Meta, Props, Story } from "@storybook/addon-docs/blocks";
+import { Description } from "@storybook/addon-docs/blocks";
+import { getStoryName } from "storybook/storyTree";
+import Readme from "../README.md";
+import Button from "@paprika/button";
+import Popover from "../src/";
+
+export const params = {
+  options: {
+    isToolshown: true,
+    showPanel: false,
+  },
+};
+
+<Meta title={`${getStoryName("Popover")}/Docs`} component={Popover} parameters={params} />
+
+<Description markdown={Readme} />
+
+## More Examples
+
+### Index
+
+- <a href="#align">Align</a>
+
+- <a href="#isdark">isDark</a>
+
+- <a href="#iseager">isEager</a>
+
+- <a href="#edge">Edge</a>
+
+- <a href="#no-card">No Card</a>
+
+### Align
+
+The `<Popover />` component can be set to align with the trigger from any side the user desires using the `align` property.
+
+```jsx
+<Popover align={Popover.types.align.RIGHT}>
+  <Popover.Trigger data-test-attr="propagated">
+    {handler => <Button onClick={handler}>Align Popover</Button>}
+  </Popover.Trigger>
+  <Popover.Content data-test-attr="propagated">
+    <Popover.Card data-test-attr="propagated">
+      Lorem ipsum single-origin kombucha butcher gentrify foraged flannel.
+    </Popover.Card>
+  </Popover.Content>
+</Popover>
+```
+
+##### Result
+
+<Popover align={Popover.types.align.RIGHT}>
+  <Popover.Trigger data-test-attr="propagated">
+    {handler => <Button onClick={handler}>Align Popover</Button>}
+  </Popover.Trigger>
+  <Popover.Content data-test-attr="propagated">
+    <Popover.Card data-test-attr="propagated">
+      Lorem ipsum single-origin kombucha butcher gentrify foraged flannel.
+    </Popover.Card>
+  </Popover.Content>
+</Popover>
+
+### isDark
+
+The `<Popover />` component's card can be set to have a dark backgorund wtihw hite text, opposed to the default white background with dark text, by using the `isDark` proeprty.
+
+```jsx
+<Popover isDark>
+  <Popover.Trigger data-test-attr="propagated">{handler => <Button onClick={handler}>isDark</Button>}</Popover.Trigger>
+  <Popover.Content data-test-attr="propagated">
+    <Popover.Card data-test-attr="propagated">
+      Lorem ipsum single-origin kombucha butcher gentrify foraged flannel.
+    </Popover.Card>
+  </Popover.Content>
+</Popover>
+```
+
+##### Result
+
+<Popover isDark>
+  <Popover.Trigger data-test-attr="propagated">{handler => <Button onClick={handler}>isDark</Button>}</Popover.Trigger>
+  <Popover.Content data-test-attr="propagated">
+    <Popover.Card data-test-attr="propagated">
+      Lorem ipsum single-origin kombucha butcher gentrify foraged flannel.
+    </Popover.Card>
+  </Popover.Content>
+</Popover>
+
+### isEager
+
+By making use of the `isEager` property the `<Popover />` component will display the card when the user hovers or focuses on the trigger.
+
+```jsx
+<Popover isEager>
+  <Popover.Trigger>
+    {(handler, attributes) => (
+      <Button
+        {...attributes}
+        onMouseOver={handler}
+        onMouseOut={handler}
+        onFocus={handler}
+        onBlur={handler}
+        onClick={() => {
+          window.location.href = "http://www.acl.com";
+        }}
+      >
+        isEager
+      </Button>
+    )}
+  </Popover.Trigger>
+  <Popover.Content>
+    <Popover.Card>Lorem ipsum single-origin kombucha butcher gentrify foraged flannel.</Popover.Card>
+  </Popover.Content>
+</Popover>
+```
+
+##### Result
+
+<Popover isEager>
+  <Popover.Trigger>
+    {(handler, attributes) => (
+      <Button
+        {...attributes}
+        onMouseOver={handler}
+        onMouseOut={handler}
+        onFocus={handler}
+        onBlur={handler}
+        onClick={() => {
+          window.location.href = "http://www.acl.com";
+        }}
+      >
+        isEager
+      </Button>
+    )}
+  </Popover.Trigger>
+  <Popover.Content>
+    <Popover.Card>Lorem ipsum single-origin kombucha butcher gentrify foraged flannel.</Popover.Card>
+  </Popover.Content>
+</Popover>
+
+### Edge
+
+By using the `edge` property users can set the `<Popover />` card's edge to be aligned on either the right or left side of the trigger.
+
+```jsx
+<Popover edge={Popover.types.align.LEFT}>
+  <Popover.Trigger data-test-attr="propagated">{handler => <Button onClick={handler}>Edge</Button>}</Popover.Trigger>
+  <Popover.Content data-test-attr="propagated">
+    <Popover.Card data-test-attr="propagated">
+      Lorem ipsum single-origin kombucha butcher gentrify foraged flannel.
+    </Popover.Card>
+  </Popover.Content>
+</Popover>
+```
+
+##### Result
+
+<Popover edge={Popover.types.align.LEFT}>
+  <Popover.Trigger data-test-attr="propagated">{handler => <Button onClick={handler}>Edge</Button>}</Popover.Trigger>
+  <Popover.Content data-test-attr="propagated">
+    <Popover.Card data-test-attr="propagated">
+      Lorem ipsum single-origin kombucha butcher gentrify foraged flannel.
+    </Popover.Card>
+  </Popover.Content>
+</Popover>
+
+### No Card
+
+The `<Popover />` component doesn't have to render a Card, if a user wishes to display content without a card simply place the desired content inside of the `<Popover.Content />`.
+
+```jsx
+<Popover isEager>
+  <Popover.Trigger>
+    {(handler, attributes) => (
+      <a
+        {...attributes}
+        href="http://www.acl.com"
+        onMouseOver={handler}
+        onMouseOut={handler}
+        onFocus={handler}
+        onBlur={handler}
+      >
+        No Card
+      </a>
+    )}
+  </Popover.Trigger>
+  <Popover.Content>Lorem ipsum single-origin kombucha.</Popover.Content>
+</Popover>
+```
+
+##### Result
+
+<Popover isEager>
+  <Popover.Trigger>
+    {(handler, attributes) => (
+      <a
+        {...attributes}
+        href="http://www.acl.com"
+        onMouseOver={handler}
+        onMouseOut={handler}
+        onFocus={handler}
+        onBlur={handler}
+      >
+        No Card
+      </a>
+    )}
+  </Popover.Trigger>
+  <Popover.Content>Lorem ipsum single-origin kombucha.</Popover.Content>
+</Popover>
