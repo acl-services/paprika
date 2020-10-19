@@ -1,0 +1,177 @@
+import { Meta } from "@storybook/addon-docs/blocks";
+import { Description } from "@storybook/addon-docs/blocks";
+import { getStoryName } from "storybook/storyTree";
+import { Rule } from "storybook/assets/styles/common.styles";
+import Readme from "../README.md";
+import Textarea from "@paprika/textarea";
+import { FormElementStory } from "./FormElement.stories.styles";
+import CheckboxExample from "./examples/CheckboxExample";
+import RadioExample from "./examples/RadioExample";
+import DatePickerExample from "./examples/DatePickerExample";
+import AccessibilityExample from "./examples/AccessibilityExample";
+import ListBoxExample from "./examples/ListBoxExample";
+import ButtonGroupExample from "./examples/ButtonGroupExample";
+import NativeInputExample from "./examples/NativeInputExample";
+import NestedExample from "./examples/NestedExample";
+import HTMLExample from "./examples/HTMLExample";
+import ComponentLabelExample from "./examples/ComponentLabelExample";
+import FormElement from "../src/FormElement";
+
+<Meta
+  title={`${getStoryName("FormElement")}/Docs`}
+  component={FormElement}
+  parameters={{ options: { showPanel: false } }}
+/>
+
+<Description markdown={Readme} />
+
+## More Examples
+
+### Index
+
+- <a href="#accessibility">Accessibility</a>
+- <a href="#basic-input-components">Basic Input Components</a>
+
+  - <a href="#textarea">Textarea</a>
+
+  - <a href="#checkbox">Checkbox</a>
+
+- <a href="#component-label">Component Label</a>
+
+- <a href="#complex-input-components">Complex Input Components</a>
+
+  - <a href="#datepicker">DatePicker</a>
+
+### Accessibility
+
+In addition, a `<label />` is rendered by the `<FormElement />` and is associated to the input field by the `idForLabel` parameter of the same `children` function.
+
+The `<FormElement />` has been designed with accessibility in mind. Users can make use of `<FormElement.Instructions />`, `<FormElement.Description />`, `<FormElement.Error />`, and `<FormElement.Help />` to add instructions, guidance and feedback to users. Error messages, instructions, and descriptions can be associated to the input field by applying the supplied `ariaDescribedBy` parameter in the render function supplied to the `children` of the `<FormElement.Content>`.
+
+The `<FormElement.Help />` will add an icon with a tooltip next to the label.
+
+```jsx
+<FormElement label="Form Label">
+  <FormElement.Help>
+    Give me some help. <a href="wegalvanize.com">Learn more</a>.
+  </FormElement.Help>
+  <FormElement.Instructions>
+    <span>
+      Example text for extra panel for questionnaires. Example text for extra panel for questionnaires Example text for
+      extra panel for questionnaires. Example text for extra panel for questionnaires
+    </span>
+  </FormElement.Instructions>
+  <FormElement.Content>
+    {({ idForLabel, ariaDescribedBy }) => (
+      <Input id={idForLabel} placeholder="Form placeholder" aria-describedby={ariaDescribedBy} />
+    )}
+  </FormElement.Content>
+  <FormElement.Description>
+    <span>This is description text</span>
+  </FormElement.Description>
+  <FormElement.Error>There was an error</FormElement.Error>
+</FormElement>
+```
+
+##### Result
+
+<FormElementStory>
+  <AccessibilityExample />
+</FormElementStory>
+
+### Basic Input Components
+
+The `<FormElement>` can be used with different components to fulfill a variety of input needs. This can be achieved by including basic input components such as the `<Select>`, `<Textarea>`, `<Checkbox>`, etc. as `children` for the `<FormElement.Content>`
+
+#### Textarea
+
+```jsx
+<FormElement label="Form Label">
+  <FormElement.Content>
+    <Textarea defaultValue="Hello world">
+  </FormElement.Content>
+</FormElement>
+```
+
+##### Result
+
+<FormElementStory>
+  <FormElement label="Form Label">
+    <FormElement.Content>
+      <Textarea defaultValue="Hello world" />
+    </FormElement.Content>
+  </FormElement>
+</FormElementStory>
+
+#### Checkbox
+
+```jsx
+<FormElement hasFieldSet label="Form Label">
+  <FormElement.Content>
+    {({ ariaDescribedBy: ariaDescribedByOuter }) =>
+    <Checkbox ariaDescribedBy={ariaDescribedBy} onChange={() => {}}>Black Panther</Checkbox>
+    <Checkbox ariaDescribedBy={ariaDescribedBy} onChange={() => {}}>Spiderman</Checkbox>
+    <Checkbox ariaDescribedBy={ariaDescribedBy} onChange={() => {}}>Wonder Woman</Checkbox>
+}
+  </FormElement.Content>
+</FormElement>;
+```
+
+##### Result
+
+<FormElementStory>
+  <CheckboxExample />
+</FormElementStory>
+
+#### Component Label
+
+The `ComponentLabel` allows users to use the`label`property of the`<FormElement/ />`. Users can set the label property to equal an entire component, in this particular example making use of the`<Heading />` component.
+
+```jsx
+<FormElement
+  hasRequiredLabel={false}
+  label={
+    <Heading level={5}>
+      <strong>
+        <i>Form Label</i>
+      </strong>
+    </Heading>
+  }
+>
+  <FormElement.Content>
+    {({ idForLabel, ariaDescribedBy }) => (
+      <Input id={idForLabel} onChange={() => {}} aria-describedby={ariaDescribedBy} />
+    )}
+  </FormElement.Content>
+</FormElement>
+```
+
+##### Result
+
+<FormElementStory>
+  <ComponentLabelExample />
+</FormElementStory>
+
+### Complex Input Components
+
+The `<FormElement />` can handle a variety of components to further increase the users indivudal needs. This can range from a `<DatePicker />` component to a `<ListBox />` component.
+
+#### DatePicker
+
+```jsx
+<FormElement label="Form Label">
+  <FormElement.Content>
+    {({ idForLabel, ariaDescribedBy }) => (
+      <DatePicker id={idForLabel} onChange={() => {}}>
+        <DatePicker.Input aria-describedby={ariaDescribedBy} />
+      </DatePicker>
+    )}
+  </FormElement.Content>
+</FormElement>
+```
+
+##### Result
+
+<FormElementStory>
+  <DatePickerExample />
+</FormElementStory>
