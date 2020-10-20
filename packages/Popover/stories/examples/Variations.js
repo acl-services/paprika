@@ -2,9 +2,9 @@ import React from "react";
 import { CenteredStory, Gap, Tagline, Rule, Story } from "storybook/assets/styles/common.styles";
 import Button from "@paprika/button";
 import Popover from "@paprika/popover";
-import ButtonExample from "./ButtonExample";
-import ButtonIsEagerExample from "./ButtonIsEagerExample";
-import ShouldKeepFocusExample from "./ShouldKeepFocusExample";
+import ButtonExample from "./Button";
+import ButtonIsEagerExample from "./ButtonIsEager";
+import ShouldKeepFocusExample from "./ShouldKeepFocus";
 
 const Variations = () => (
   <CenteredStory>
