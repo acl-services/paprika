@@ -19,9 +19,14 @@
     "@paprika/button": "^0.3.14",
     "@paprika/constants": "^0.1.3",
     "@paprika/helpers": "0.2.13",
+    "@paprika/icon": "^0.3.10",
+    "@paprika/input": "^0.3.10",
+    "@paprika/listbox": "^0.9.14",
     "@paprika/pill": "^0.2.31",
+    "@paprika/raw-button": "^0.2.20",
     "@paprika/stylers": "^0.2.11",
     "@paprika/tokens": "^0.1.17",
+    "fuse.js": "^6.4.1",
     "prop-types": "^15.7.2"
   },
   "peerDependencies": {
@@ -30,7 +35,6 @@
     "styled-components": "^4.2.0"
   },
   "paprikaDocs": {
-    "subComponents": [
-    ]
+    "subComponents": []
   }
 }

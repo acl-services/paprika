@@ -18,6 +18,12 @@ const handleImperative = ({ state, dispatch, onChangeContext }) => () => {
         payload: { onChangeFn: invokeOnChange(onChangeContext, "listbox:imperative:reset") },
       });
     },
+    setActiveOptionIndex: (index = 0) => {
+      dispatch({
+        type: useListBox.types.setActiveOption,
+        payload: { activeOptionIndex: index },
+      });
+    },
     focus: () => {
       state.refTrigger.current.focus();
     },

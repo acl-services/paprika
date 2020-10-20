@@ -207,7 +207,7 @@ export default function reducer(state, { type, payload }) {
         originalState: state.originalState,
       };
     }
-
+      
     case useListBox.types.accept: {
       const selectedOptions = state.selectedOptions.slice(0);
 
