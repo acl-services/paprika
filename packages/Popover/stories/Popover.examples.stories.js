@@ -11,8 +11,7 @@ import IsDarkExample from "./examples/IsDarkExample";
 import NoCardExample from "./examples/NoCardExample";
 import ShouldKeepFocusExample from "./examples/ShouldKeepFocusExample";
 import ButtonStateExample from "./examples/ButtonStateExample";
-import Transformed from "./examples/Transformed";
-import DynamicContent from "./examples/DynamicContent";
+import DefaultIsOpen from "./examples/DefaultIsOpen";
 import Popover from "../src/Popover";
 
 const storyName = getStoryName("Popover");
@@ -92,16 +91,9 @@ export const shouldKeepFocusExample = () => (
 );
 shouldKeepFocusExample.story = { name: "shouldKeepFocus", parameters: exampleStoryParameters };
 
-export const transformed = () => (
-  <ExampleStory storyName="Transformed" fileName="examples/Transformed.js">
-    <Transformed />
+export const defaultIsOpen = () => (
+  <ExampleStory storyName="defaultIsOpen" fileName="examples/DefaultIsOpen.js">
+    <DefaultIsOpen />
   </ExampleStory>
 );
-transformed.story = { name: "Transformed", parameters: exampleStoryParameters };
-
-export const dynamicContent = () => (
-  <ExampleStory storyName="Dynamic" fileName="examples/DynamicContent.js">
-    <DynamicContent />
-  </ExampleStory>
-);
-dynamicContent.story = { name: "Dynamic", parameters: exampleStoryParameters };
+defaultIsOpen.story = { name: "defaultIsOpen", parameters: exampleStoryParameters };

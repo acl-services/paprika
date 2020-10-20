@@ -4,8 +4,8 @@ import { action } from "@storybook/addon-actions";
 import styled from "styled-components";
 import { CenteredStory } from "storybook/assets/styles/common.styles";
 import Button from "@paprika/button";
-import { getKnobs as basicProps } from "./Showcase";
-import Popover from "../../src/Popover";
+import { getKnobs as basicProps } from "../../examples/Showcase";
+import Popover from "../../../src/Popover";
 
 const PopoverContainer = styled.div`
   height: 1024px;

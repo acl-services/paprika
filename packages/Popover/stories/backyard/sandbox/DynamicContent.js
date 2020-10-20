@@ -1,7 +1,7 @@
 import React from "react";
 import { CenteredStory } from "storybook/assets/styles/common.styles";
 import Spinner from "@paprika/spinner";
-import Popover from "../../src";
+import Popover from "../../../src/Popover";
 
 const sampleText = {
   short: "Lorem Hipsum",

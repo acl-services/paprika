@@ -24,7 +24,7 @@ const Variations = () => (
       <Tagline>PopOver isDark</Tagline>
       <Story>
         <Popover isEager isDark defaultIsOpen>
-          <Popover.Trigger data-test-attr="propagated">
+          <Popover.Trigger>
             <span role="img" aria-label="bulb light">
               💡
             </span>
@@ -42,41 +42,18 @@ const Variations = () => (
       </Story>
       <Gap />
       <Rule />
-      <Tagline>Popover defaultIsOpen</Tagline>
-      <Story>
-        <Popover defaultIsOpen>
-          <Popover.Trigger data-test-attr="propagated">
-            {handler => <Button onClick={handler}>defaultIsOpen</Button>}
-          </Popover.Trigger>
-          <Popover.Content data-test-attr="propagated">
-            <Popover.Card data-test-attr="propagated">
-              Lorem ipsum single-origin kombucha butcher gentrify foraged flannel.
-            </Popover.Card>
-          </Popover.Content>
-        </Popover>
-      </Story>
-      <Gap />
-      <Rule />
       <Tagline>Popover edge</Tagline>
       <Story>
-        <Popover edge={Popover.types.align.LEFT}>
-          <Popover.Trigger data-test-attr="propagated">
-            {handler => <Button onClick={handler}>edge left</Button>}
-          </Popover.Trigger>
-          <Popover.Content data-test-attr="propagated">
-            <Popover.Card data-test-attr="propagated">
-              Lorem ipsum single-origin kombucha butcher gentrify foraged flannel.
-            </Popover.Card>
+        <Popover defaultIsOpen edge={Popover.types.align.LEFT}>
+          <Popover.Trigger>{handler => <Button onClick={handler}>edge left</Button>}</Popover.Trigger>
+          <Popover.Content>
+            <Popover.Card>Lorem ipsum single-origin kombucha butcher gentrify foraged flannel.</Popover.Card>
           </Popover.Content>
         </Popover>
-        <Popover edge={Popover.types.align.RIGHT}>
-          <Popover.Trigger data-test-attr="propagated">
-            {handler => <Button onClick={handler}>edge right</Button>}
-          </Popover.Trigger>
-          <Popover.Content data-test-attr="propagated">
-            <Popover.Card data-test-attr="propagated">
-              Lorem ipsum single-origin kombucha butcher gentrify foraged flannel.
-            </Popover.Card>
+        <Popover defaultIsOpen edge={Popover.types.align.RIGHT}>
+          <Popover.Trigger>{handler => <Button onClick={handler}>edge right</Button>}</Popover.Trigger>
+          <Popover.Content>
+            <Popover.Card>Lorem ipsum single-origin kombucha butcher gentrify foraged flannel.</Popover.Card>
           </Popover.Content>
         </Popover>
       </Story>
