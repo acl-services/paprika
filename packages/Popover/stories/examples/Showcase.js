@@ -24,6 +24,7 @@ export const getKnobs = () => ({
   minWidth: text("minWidth", "0"),
   isPortal: boolean("isPortal", true),
   isDark: boolean("isDark", false),
+  isEager: boolean("isEager", false),
   offset: number("offset", 12),
 });
 
