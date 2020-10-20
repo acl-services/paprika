@@ -19,9 +19,6 @@
     "prepublishOnly": "yarn generateChangelog",
     "prettier": "prettier \"**/*.+(js|json|yml|css|scss)\"",
     "prettier:format": "yarn prettier --write",
-    "registrymock": "run-p -l registrymock:start registrymock:publish",
-    "registrymock:publish": "lerna publish --no-git-tag-version --no-push --registry http://localhost:4873",
-    "registrymock:start": "verdaccio",
     "storybook": "run-p storybook:start storybook:uploadserver",
     "storybook:build": "build-storybook -s ./.storybook/public -c .storybook -o storybook-dist",
     "storybook:screener": "screener-storybook --conf screener.config.js",
@@ -112,7 +109,6 @@
     "stylelint-processor-styled-components": "^1.9.0",
     "typescript": "^4.0.2",
     "uuid": "^7.0.2",
-    "verdaccio": "^3.11.6",
     "wait-on": "^3.2.0",
     "workerize-loader": "^1.1.0"
   },
