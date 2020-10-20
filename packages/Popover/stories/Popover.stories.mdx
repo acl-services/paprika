@@ -36,28 +36,22 @@ The `<Popover />` component can be set to align with the trigger from any side t
 
 ```jsx
 <Popover align={Popover.types.align.RIGHT}>
-  <Popover.Trigger data-test-attr="propagated">
-    {handler => <Button onClick={handler}>Align Popover</Button>}
-  </Popover.Trigger>
-  <Popover.Content data-test-attr="propagated">
-    <Popover.Card data-test-attr="propagated">
-      Lorem ipsum single-origin kombucha butcher gentrify foraged flannel.
-    </Popover.Card>
+  <Popover.Trigger>{handler => <Button onClick={handler}>Show Popover</Button>}</Popover.Trigger>
+  <Popover.Content>
+    <Popover.Card>Lorem ipsum single-origin kombucha butcher gentrify foraged flannel.</Popover.Card>
   </Popover.Content>
+  <Popover.Tip />
 </Popover>
 ```
 
 ##### Result
 
 <Popover align={Popover.types.align.RIGHT}>
-  <Popover.Trigger data-test-attr="propagated">
-    {handler => <Button onClick={handler}>Align Popover</Button>}
-  </Popover.Trigger>
-  <Popover.Content data-test-attr="propagated">
-    <Popover.Card data-test-attr="propagated">
-      Lorem ipsum single-origin kombucha butcher gentrify foraged flannel.
-    </Popover.Card>
+  <Popover.Trigger>{handler => <Button onClick={handler}>Show Popover</Button>}</Popover.Trigger>
+  <Popover.Content>
+    <Popover.Card>Lorem ipsum single-origin kombucha butcher gentrify foraged flannel.</Popover.Card>
   </Popover.Content>
+  <Popover.Tip />
 </Popover>
 
 ### isDark
