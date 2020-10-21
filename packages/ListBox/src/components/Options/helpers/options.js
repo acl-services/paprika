@@ -125,6 +125,20 @@ export function handleArrowKeys({ event, state, dispatch, isArrowDown = null, on
   }
 }
 
+export const toggleOption = ({ index, isMulti, dispatch, onChangeContext }) => {
+  if (isMulti) {
+    toggleMultipleOption({
+      activeOptionIndex: index,
+      dispatch,
+      onChangeContext,
+    });
+
+    return;
+  }
+
+  selectSingleOption({ activeOptionIndex: index, isOpen: false, dispatch, onChangeContext });
+};
+
 export const handleClickOption = ({ props, state, dispatch, onChangeContext }) => event => {
   const { index } = props;
   const { options, hasFilter, isMulti, refFilterInput } = state;

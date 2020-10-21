@@ -1,1 +1,1 @@
-export { default, ListBoxTags2 } from "./ListBoxTags";
+export { default } from "./ListBoxTags";

@@ -1,5 +1,6 @@
 import useListBox from "../useListBox";
 import invokeOnChange from "../helpers/invokeOnChange";
+import { toggleOption } from "../components/Options/helpers/options";
 
 const handleImperative = ({ state, dispatch, onChangeContext }) => () => {
   return {
@@ -26,6 +27,14 @@ const handleImperative = ({ state, dispatch, onChangeContext }) => () => {
     },
     focus: () => {
       state.refTrigger.current.focus();
+    },
+    toggleSelectedOption: index => {
+      toggleOption({
+        index,
+        isMulti: state.isMulti,
+        dispatch,
+        onChangeContext,
+      });
     },
     selected: state.isMulti ? state.selectedOptions : state.selectedOptions[0],
     options: state.options,

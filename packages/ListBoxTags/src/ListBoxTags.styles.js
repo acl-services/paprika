@@ -1,12 +1,24 @@
 import styled, { css } from "styled-components";
 import tokens from "@paprika/tokens";
-import { fontSize } from "@paprika/stylers/lib/helpers";
 import stylers from "@paprika/stylers";
 import RawButton from "@paprika/raw-button";
+import ListBox from "@paprika/listbox";
 
-export const Trigger = styled(RawButton)(() => {
+const fontSize = {
+  [ListBox.types.size.SMALL]: css`
+    ${stylers.fontSize(-2)}
+  `,
+  [ListBox.types.size.MEDIUM]: css`
+    ${stylers.fontSize(-1)}
+  `,
+  [ListBox.types.size.LARGE]: css`
+    ${stylers.fontSize()}
+  `,
+};
+
+export const Trigger = styled(RawButton)(({ size }) => {
   return css`
-    ${stylers.truncateText}
+    ${fontSize[size]}
     align-items: center;
     background-color: #ffffff;
     border: 1px solid #d7d7d7;
@@ -19,10 +31,5 @@ export const Trigger = styled(RawButton)(() => {
     text-align: left;
     transition: border-color 0.2s;
     width: 100%;
-
-    /* RawButton span */
-    & > span {
-      width: calc(100% - 48px);
-    }
   `;
 });
