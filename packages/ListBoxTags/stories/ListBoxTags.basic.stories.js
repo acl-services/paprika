@@ -55,7 +55,7 @@ function App() {
 
   return (
     <div style={{ padding: "32px" }}>
-      <ListBoxTags onAddedOption={handleAddedOption} onChange={handleChange}>
+      <ListBoxTags onCustomOption={handleAddedOption} onChange={handleChange}>
         {data.map(option => {
           return (
             <ListBoxTags.Option

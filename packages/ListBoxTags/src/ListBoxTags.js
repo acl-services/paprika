@@ -1,30 +1,34 @@
 import React from "react";
 import PropTypes from "prop-types";
 import ListBox from "@paprika/listbox";
+import useI18n from "@paprika/l10n/lib/useI18n";
 import Pill, { Pills } from "./components/Pill";
 import * as sc from "./ListBoxTags.styles";
 
 const propTypes = {
   children: PropTypes.isRequired,
-  onAddedOption: PropTypes.func,
+  onCustomOption: PropTypes.func,
 };
 
 const defaultProps = {
-  onAddedOption: () => {},
+  onCustomOption: () => {},
 };
 
 const renderTrigger = ({ size, refListBox }) => (...args) => {
-  const [selected, options, currentSelected, attributes] = args;
+  const [selected, options, , attributes] = args;
   const { propsForTrigger, refTrigger, dispatch, types, handleKeyDown, handleKeyUp } = attributes;
+  const { t } = useI18n();
 
   function handleClick(event) {
-    // we don't want to close the popover if the user click enter or space to select an option
+    if (event.target.dataset.dataPkaAnchor === "listbox-tags-pill-delete") {
+      return;
+    }
+
     if (event.key === "Enter" || event.key === " ") return;
     dispatch({ type: types.togglePopover });
   }
 
-  const handleDelete = option => event => {
-    event.stopPropagation();
+  const handleDelete = option => () => {
     refListBox.current.toggleSelectedOption(option.index);
   };
 
@@ -41,7 +45,7 @@ const renderTrigger = ({ size, refListBox }) => (...args) => {
         {selected.map(index => {
           return <Pill onDelete={handleDelete(options[index])}>{options[index].label}</Pill>;
         })}
-        {selected.length ? null : <div>Open me</div>}
+        {selected.length ? null : <div>{t("listBoxTags.placeholder")}</div>}
       </Pills>
     </sc.Trigger>
   );
@@ -50,7 +54,7 @@ const renderTrigger = ({ size, refListBox }) => (...args) => {
 export default function ListBoxTags(props) {
   const {
     children,
-    onAddedOption,
+    onCustomOption,
     size = ListBox.types.size.MEDIUM, // eslint-disable-line
     ...moreProps
   } = props;
@@ -65,7 +69,7 @@ export default function ListBoxTags(props) {
       console.log("email: ", event.target.value);
       refFilter.current.clear();
       refListBox.current.close();
-      onAddedOption(label);
+      onCustomOption(label);
     }
   }
 

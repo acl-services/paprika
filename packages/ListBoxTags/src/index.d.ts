@@ -5,4 +5,6 @@ interface ListBoxTagsProps {
   [x: string]: any;
 
   children?: custom;
+
+  onCustomOption?: (...args: any[]) => any;
 }

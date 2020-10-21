@@ -13,7 +13,7 @@ export default function Pill(props) {
   return (
     <sc.Pill>
       <sc.Content>{children}</sc.Content>
-      <sc.Delete onClick={onDelete}>
+      <sc.Delete data-pka-anchor="listbox-tags-pill-delete" onClick={onDelete}>
         <Close />
       </sc.Delete>
     </sc.Pill>

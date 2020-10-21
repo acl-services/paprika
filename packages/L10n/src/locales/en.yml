@@ -102,13 +102,15 @@ en:
       trigger:
         placeholder: Select...
       filter:
-        a11y_text: Filter
+        a11y_text: Search
         no_results_message: Your search result did not match any options.
-        placeholder: Filter...
+        placeholder: Search...
     listBoxBrowser:
       explore: Explore more options
       selected: selected options
       selectOne: Select one or more items...
+    listBoxTags:
+      placeholder: Select…
     actionBar:
       columns_arrangement:
         hide_all: Hide all
@@ -116,7 +118,7 @@ en:
         label: Arrange columns
         singular_label: 1 column hidden
         plural_label: "{{numberOfHiddenColumn}} columns hidden"
-        search_placeholder: Filter...
+        search_placeholder: Search...
       no_results: No results
       filter:
         no_filters_applied: No filters applied to this view

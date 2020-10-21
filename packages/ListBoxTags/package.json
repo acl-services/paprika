@@ -21,6 +21,7 @@
     "@paprika/helpers": "0.2.13",
     "@paprika/icon": "^0.3.10",
     "@paprika/input": "^0.3.10",
+    "@paprika/l10n": "^0.4.11",
     "@paprika/listbox": "^0.9.14",
     "@paprika/pill": "^0.2.31",
     "@paprika/raw-button": "^0.2.20",
