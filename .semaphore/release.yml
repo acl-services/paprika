@@ -14,11 +14,11 @@ blocks:
         commands:
           - checkout
           - cache restore client-node-modules-$SEMAPHORE_GIT_BRANCH-$(checksum yarn.lock),client-node-modules-$SEMAPHORE_GIT_BRANCH,client-node-modules-master
+          - ssh-add ~/keys/github.key
+          - echo "//registry.npmjs.org/:_authToken=$NPM_PUBLISH_TOKEN" >> .npmrc
       jobs:
         - name: "Publish to NPM"
           commands:
             - nvm use
             - npx lerna bootstrap
             - yarn
-            - yarn lerna version prerelease --yes
-            - yarn lerna publish from-package --yes
