@@ -10,6 +10,10 @@ blocks:
       secrets:
         - name: github-ssh
         - name: paprika-env
+      prologue:
+        commands:
+          - checkout
+          - cache restore client-node-modules-$SEMAPHORE_GIT_BRANCH-$(checksum yarn.lock),client-node-modules-$SEMAPHORE_GIT_BRANCH,client-node-modules-master
       jobs:
         - name: "Publish to NPM"
           commands:
