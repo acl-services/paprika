@@ -4,7 +4,11 @@ declare function ListBoxTags(props: ListBoxTagsProps): JSX.Element;
 interface ListBoxTagsProps {
   [x: string]: any;
 
-  children?: custom;
+  children: React.ReactNode;
+
+  noResultsMessage?: string;
 
   onCustomOption?: (...args: any[]) => any;
+
+  regexCustomOption?: instanceOf;
 }

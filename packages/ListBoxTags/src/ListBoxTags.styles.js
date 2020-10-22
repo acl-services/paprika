@@ -20,13 +20,17 @@ export const Trigger = styled(RawButton)(({ size }) => {
   return css`
     ${fontSize[size]}
     align-items: center;
-    background-color: #ffffff;
-    border: 1px solid #d7d7d7;
-    border-radius: 3px;
+    background-color: ${tokens.color.white};
+    border: 1px solid ${tokens.border.color};
+    border-radius: ${tokens.border.radius};
     box-sizing: border-box;
-    color: #3f3d3c;
+    color: ${tokens.color.black};
     display: block;
-    padding: 4px 50px 4px 4px;
+    /**
+     * the bottom padding is assign on the Pill.styles file to 
+     * let the pills have a margin bottom whenever the wrap occurs
+     */
+    padding: ${tokens.spaceSm} 50px 0 ${tokens.spaceSm};
     position: relative;
     text-align: left;
     transition: border-color 0.2s;

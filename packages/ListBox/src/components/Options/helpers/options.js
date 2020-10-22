@@ -219,6 +219,11 @@ export function handleEnterOrSpace({ event, state, dispatch, onChangeContext }) 
     }
 
     if (state.isMulti) {
+      // if the "Enter" occurs using in the filter input, prevent it.
+      if (event.target.dataset.pkaAnchor === "list-filter-input") {
+        return;
+      }
+
       dispatch({ type: useListBox.types.togglePopover });
       return;
     }

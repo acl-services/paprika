@@ -1,3 +1,4 @@
+import ListBox from "@paprika/listbox";
 import React from "react";
 import { getStoryName } from "storybook/storyTree";
 import ListBoxTags from "../src";
@@ -53,10 +54,34 @@ function App() {
     });
   }
 
+  const CustomOptionsIndexes = data
+    .map(option => (typeof option.isCustom !== "undefined" ? option.id : null))
+    .filter(chunk => chunk);
+
   return (
     <div style={{ padding: "32px" }}>
-      <ListBoxTags onCustomOption={handleAddedOption} onChange={handleChange}>
+      <ListBoxTags
+        onCustomOption={handleAddedOption}
+        onChange={handleChange}
+        noResultsMessage="No results found, but you can add an email and then press enter..."
+      >
+        {CustomOptionsIndexes.length ? <ListBox.Divider>Custom Options</ListBox.Divider> : null}
+        {CustomOptionsIndexes.length
+          ? CustomOptionsIndexes.map(index => {
+              const { label, id } = data.filter(option => option.id === index)[0];
+              return (
+                <ListBox.Option key={id} value={id} isSelected={checkIfIsSelected(id)}>
+                  {label}
+                </ListBox.Option>
+              );
+            })
+          : null}
+        {CustomOptionsIndexes.length ? <ListBox.Divider>Options</ListBox.Divider> : null}
         {data.map(option => {
+          if (typeof option.isCustom !== "undefined") {
+            return null;
+          }
+
           return (
             <ListBoxTags.Option
               value={option.id}

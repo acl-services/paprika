@@ -98,6 +98,12 @@ export const WithGroupsAndHavePreselectedOptions = () => (
     <ListBox.Divider>Antiheroes</ListBox.Divider>
     <ListBox.Option isSelected>Michael Corleone</ListBox.Option>
     {characters.antiHeroes}
+    {Array(100)
+      .fill(null)
+      .map((a, index) => {
+        return <ListBox.Option>{index}</ListBox.Option>;
+      })}
+
     <ListBox.Option isSelected>Mad Max</ListBox.Option>
 
     <ListBox.Divider>Villians</ListBox.Divider>

@@ -111,43 +111,31 @@ export function useOnScrolled() {
 
     if ($box && $option) {
       const rectBox = $box.getBoundingClientRect();
+      const scrollTop = $box.scrollTop;
+      const { marginBottom, marginTop } = window.getComputedStyle($option);
+      const marginBottomNumber = Number.parseInt(marginBottom, 10);
+      const marginTopNumber = Number.parseInt(marginTop, 10);
       const rectOption = $option.getBoundingClientRect();
 
-      // if options its between the box don't do anything
-      if (rectOption.top >= rectBox.top && rectOption.bottom <= rectBox.bottom) {
-        return;
-      }
+      const nextTopPositionForOption =
+        rectOption.height * state.activeOption + state.activeOption * (marginBottomNumber + marginTopNumber);
 
-      const { marginBottom, marginTop } = getComputedStyle($option);
-
-      const margin = Number.parseInt(marginBottom.split("px")[0], 10) + Number.parseInt(marginTop.split("px")[0], 10);
-      let gap = rectOption.bottom - rectBox.bottom;
-
-      const isScrollingDown = Math.sign(gap) > 0;
-      const optionHeightWithMargin = rectOption.height + margin;
-      let gapWithMargin = gap + margin;
-
-      if (isScrollingDown) {
-        // this means that the option is partially visible but not completely
-        if (gap < rectOption.height) {
-          $box.scrollTo(0, $box.scrollTop + gapWithMargin);
+      if (nextTopPositionForOption >= scrollTop && nextTopPositionForOption <= scrollTop + rectBox.height) {
+        if (rectBox.bottom >= rectOption.top && rectBox.bottom <= rectOption.bottom) {
+          $box.scrollTo({
+            top: scrollTop + (rectOption.bottom - rectBox.bottom) + (marginBottomNumber + marginTopNumber),
+          });
           return;
         }
-
-        $box.scrollTo(0, $box.scrollTop + optionHeightWithMargin);
         return;
       }
 
-      gap = rectBox.top - rectOption.top;
-      gapWithMargin = gap + margin;
-
-      // this means that the option is partially visible but not completely
-      if (gap < rectOption.height) {
-        $box.scrollTo(0, $box.scrollTop - gapWithMargin);
-        return;
-      }
-
-      $box.scrollTo(0, $box.scrollTop - optionHeightWithMargin);
+      // position by the height of the option rect by the position index = rectOption.height * state.activeOption
+      // calculate the amount of margin bottom and top for all elements before the option = state.activeOption * (marginBottomNumber + marginTopNumber)
+      // correct scroll position
+      $box.scrollTo({
+        top: nextTopPositionForOption,
+      });
     }
   }, [state.activeOption, state.options, state.refListBox]);
 }
