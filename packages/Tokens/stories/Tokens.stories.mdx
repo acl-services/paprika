@@ -1,0 +1,15 @@
+import { Meta, Description } from "@storybook/addon-docs/blocks";
+import { getStoryName } from "storybook/storyTree";
+import Readme from "../README.md";
+import Toast from "@paprika/toast";
+
+export const params = {
+  options: {
+    isToolshown: true,
+    showPanel: false,
+  },
+};
+
+<Meta title={`${getStoryName("Tokens")}/Docs`} component={Toast} parameters={params} />
+
+<Description markdown={Readme} />

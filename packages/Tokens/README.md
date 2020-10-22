@@ -12,19 +12,21 @@ The Starling Design System site has a [**tokens reference page**](https://design
 
 ## Installation
 
-```
+```sh
 yarn add @paprika/tokens
 ```
 
 or with npm:
 
-```
+```sh
 npm install @paprika/tokens
 ```
 
 ## Usage
 
-Tokens are intended for use **internally and externally**. Internally, when contributors create Paprika components, and externally, when application developers consume Paprika to create user interfaces with the Starling Design System.
+Tokens are intended for use **internally and externally**.
+
+Internally, when contributors create Paprika components, and externally, when application developers consume Paprika to create user interfaces with the Starling Design System.
 
 ### Consumers
 
@@ -44,13 +46,15 @@ When using tokens in Paprika, or even in an application that uses `styled-compon
 import tokens from "@paprika/tokens";
 ```
 
-Then you can access the tokens from that `tokens` object, like `tokens.space` or `tokens.color.blackLighten10`. With `styled-components` you will usually use them in a template string, interpolated like `${tokens.space}`.
+Then you can access the tokens from that `tokens` object, like `tokens.space` or `tokens.color.blackLighten10`.
+
+With `styled-components` you will usually use them in a template string, interpolated like `${tokens.space}`.
 
 #### Adding New Tokens
 
 The source file for the tokens is `src/tokens.yaml`. New tokens can be added there and then generated for Sass, JavaScript and even for the Starling Design System reference page by running the folloing in the `packages/Tokens` directory:
 
-```
+```sh
 yarn pretranspile
 ```
 
