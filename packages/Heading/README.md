@@ -39,22 +39,12 @@ npm install @paprika/heading
 
 ## Usage
 
-For a basic heading
+For a basic heading:
 
-```js
+```jsx
 import Heading from "@paprika/heading";
 
 <Heading level={1}>Heading One</Heading>;
-```
-
-Or a styling of headings with divider, hasUnderline, isLight, or isHidden
-
-```js
-import Heading from "@paprika/heading";
-
-<Heading level={1} hasDivider>
-  Heading One With divider
-</Heading>;
 ```
 
 <!-- eoContent -->

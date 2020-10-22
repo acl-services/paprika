@@ -1,48 +1,36 @@
 import React from "react";
-import { Rule, Story, Tagline } from "storybook/assets/styles/common.styles";
-import { HeadingStory } from "../storyHelpers";
-import SetWidthExample from "./SetWidthExample";
-import ParagraphExample from "./ParagraphExample";
-import DisplayLevelExample from "./DisplayLevelExample";
-import IsLightExample from "./IsLightExample";
-import DividerExample from "./DividerExample";
-import UnderLineExample from "./UnderlineExample";
-import Heading from "../../src/Heading";
+import ExampleStory from "storybook/components/ExampleStory";
+import StoryHeading from "storybook/components/StoryHeading";
+import { Gap } from "storybook/assets/styles/common.styles";
+import ExternalLink from "./ExternalLink";
+import Paragraph from "./Paragraph";
+import DisplayLevel from "./DisplayLevel";
+import IsLight from "./IsLight";
+import Divider from "./Divider";
+import UnderLine from "./Underline";
 
 export default function Variations() {
   return (
-    <Story>
-      <Heading level={1} displayLevel={2} isLight>
-        Variations of Headings
-      </Heading>
-      <Rule />
-      <Tagline>Heading Levels</Tagline>
-      <Rule />
-      <HeadingStory>
-        <ParagraphExample />
-      </HeadingStory>
-      <Rule />
-      <HeadingStory>
-        <DisplayLevelExample />
-      </HeadingStory>
-      <Rule />
-      <Tagline>Heading Styles</Tagline>
-      <Rule />
-      <HeadingStory>
-        <IsLightExample />
-      </HeadingStory>
-      <Rule />
-      <HeadingStory>
-        <DividerExample />
-      </HeadingStory>
-      <Rule />
-      <HeadingStory>
-        <UnderLineExample />
-      </HeadingStory>
-      <Rule />
-      <HeadingStory>
-        <SetWidthExample />
-      </HeadingStory>
-    </Story>
+    <ExampleStory storyName="Variations" tagline="&lt;Heading&gt; at a glance">
+      <StoryHeading>Levels</StoryHeading>
+      <Paragraph />
+      <Gap.Small />
+      <StoryHeading level={2}>With DisplayLevel</StoryHeading>
+      <DisplayLevel />
+
+      <Gap />
+
+      <StoryHeading>Styles</StoryHeading>
+      <IsLight />
+      <Gap.Small />
+      <Divider />
+      <Gap.Small />
+      <UnderLine />
+
+      <Gap />
+
+      <StoryHeading>With ExternalLink</StoryHeading>
+      <ExternalLink />
+    </ExampleStory>
   );
 }

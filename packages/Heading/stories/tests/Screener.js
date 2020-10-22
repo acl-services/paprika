@@ -1,6 +1,6 @@
 import React from "react";
 import { Story } from "storybook/assets/styles/common.styles";
-import Heading from "../../../src";
+import Heading from "../../src";
 
 const ScreenerStory = () => {
   return (
