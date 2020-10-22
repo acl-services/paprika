@@ -1,47 +1,47 @@
 import React from "react";
 import { Rule, Story, Tagline } from "storybook/assets/styles/common.styles";
 import { HeadingStory } from "../storyHelpers";
-import SetWidthExample from "./SetWidthExample";
-import ParagraphExample from "./ParagraphExample";
-import DisplayLevelExample from "./DisplayLevelExample";
-import IsLightExample from "./IsLightExample";
-import DividerExample from "./DividerExample";
-import UnderLineExample from "./UnderlineExample";
+import SetWidth from "./SetWidth";
+import Paragraph from "./Paragraph";
+import DisplayLevel from "./DisplayLevel";
+import IsLight from "./IsLight";
+import Divider from "./Divider";
+import UnderLine from "./Underline";
 import Heading from "../../src/Heading";
 
 export default function Variations() {
   return (
     <Story>
       <Heading level={1} displayLevel={2} isLight>
-        Variations of Headings
+        Variations of &lt;Heading&gt;
       </Heading>
       <Rule />
       <Tagline>Heading Levels</Tagline>
       <Rule />
       <HeadingStory>
-        <ParagraphExample />
+        <Paragraph />
       </HeadingStory>
       <Rule />
       <HeadingStory>
-        <DisplayLevelExample />
+        <DisplayLevel />
       </HeadingStory>
       <Rule />
       <Tagline>Heading Styles</Tagline>
       <Rule />
       <HeadingStory>
-        <IsLightExample />
+        <IsLight />
       </HeadingStory>
       <Rule />
       <HeadingStory>
-        <DividerExample />
+        <Divider />
       </HeadingStory>
       <Rule />
       <HeadingStory>
-        <UnderLineExample />
+        <UnderLine />
       </HeadingStory>
       <Rule />
       <HeadingStory>
-        <SetWidthExample />
+        <SetWidth />
       </HeadingStory>
     </Story>
   );
