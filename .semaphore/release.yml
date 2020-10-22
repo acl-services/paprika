@@ -14,6 +14,9 @@ blocks:
         commands:
           - checkout
           - cache restore client-node-modules-$SEMAPHORE_GIT_BRANCH-$(checksum yarn.lock),client-node-modules-$SEMAPHORE_GIT_BRANCH,client-node-modules-master
+          - chmod 0600 ~/keys/github.key
+          - ssh-add ~/keys/github.key
+          - echo "//registry.npmjs.org/:_authToken=$NPM_PUBLISH_TOKEN" >> .npmrc
       jobs:
         - name: "Publish to NPM"
           commands:
