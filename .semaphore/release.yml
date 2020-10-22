@@ -8,6 +8,7 @@ blocks:
   - name: "🍳 Release"
     task:
       secrets:
+        - name: github-ssh
         - name: paprika-env
       jobs:
         - name: "Publish to NPM"
