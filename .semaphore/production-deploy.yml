@@ -1,0 +1,13 @@
+version: v1.0
+name: Paprika Semaphore 2.0 Deploy to production
+agent:
+  machine:
+    type: e1-standard-2
+    os_image: ubuntu1804
+blocks:
+  - name: Deploy
+    task:
+      jobs:
+        - name: "Deploying"
+          commands:
+            - echo 'Deploying to production!'
