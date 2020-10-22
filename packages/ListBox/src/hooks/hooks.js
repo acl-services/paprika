@@ -120,6 +120,15 @@ export function useOnScrolled() {
       const nextTopPositionForOption =
         rectOption.height * state.activeOption + state.activeOption * (marginBottomNumber + marginTopNumber);
 
+      // this occurs when the first element is a Divider so we want to scroll to the top
+      // so the user can see the Divider text instead to see only the option
+      if (state.activeOption - 1 === 0 && state.options[state.activeOption - 1].isDisabled) {
+        $box.scrollTo({
+          top: 0,
+        });
+        return;
+      }
+
       if (nextTopPositionForOption >= scrollTop && nextTopPositionForOption <= scrollTop + rectBox.height) {
         if (rectBox.bottom >= rectOption.top && rectBox.bottom <= rectOption.bottom) {
           $box.scrollTo({
