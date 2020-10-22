@@ -16,5 +16,5 @@ blocks:
             - nvm use
             - npx lerna bootstrap
             - yarn
-            - yarn lerna version prerelease
-            - yarn lerna publish from-package --yes --registry
+            - yarn lerna version prerelease --yes
+            - yarn lerna publish from-package --yes
