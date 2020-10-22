@@ -24,7 +24,7 @@ npm install @paprika/tokens
 
 ## Usage
 
-Tokens are intended for use **internally and externally**.
+`tokens` are intended for use **internally and externally**.
 
 Internally, when contributors create Paprika components, and externally, when application developers consume Paprika to create user interfaces with the Starling Design System.
 
