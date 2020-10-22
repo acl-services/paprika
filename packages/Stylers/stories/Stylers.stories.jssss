@@ -14,7 +14,7 @@ import {
   ZBox,
   ZStep,
   FocusBox,
-} from "./stylers.stories.styles";
+} from "./Stylers.stories.styles";
 
 const storyName = getStoryName("Stylers");
 

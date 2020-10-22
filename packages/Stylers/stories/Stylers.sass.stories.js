@@ -4,7 +4,7 @@ import React from "react";
 import { storiesOf } from "@storybook/react";
 import { Story, Rule } from "storybook/assets/styles/common.styles";
 import { getStoryName } from "storybook/storyTree";
-import { Box } from "./stylers.stories.styles";
+import { Box } from "./Stylers.stories.styles";
 import "./helpers.scss";
 
 const storyName = getStoryName("Stylers");
