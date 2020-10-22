@@ -1,0 +1,18 @@
+version: v1.0
+name: Release Paprika
+agent:
+  machine:
+    type: e1-standard-2
+    os_image: ubuntu1804
+blocks:
+  - name: "🍳 Release"
+    task:
+      secrets:
+        - name: paprika-env
+      jobs:
+        - name: "Publish to NPM"
+          commands:
+            - nvm use
+            - npx lerna bootstrap
+            - yarn
+            - yarn lerna publish from-package --yes --registry

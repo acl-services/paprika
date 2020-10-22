@@ -111,7 +111,7 @@ blocks:
       secrets:
         - name: screener-api-key
 promotions:
-  - name: Production deploy
-    pipeline_file: production-deploy.yml
+  - name: Release
+    pipeline_file: release.yml
     auto_promote:
       when: "result = 'passed' and branch = 'master'"
