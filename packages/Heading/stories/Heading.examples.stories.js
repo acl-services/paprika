@@ -1,7 +1,7 @@
 import React from "react";
 import { getStoryName } from "storybook/storyTree";
 import ExampleStory from "storybook/components/ExampleStory";
-import { exampleStoryParameters } from "./storyHelpers";
+import { exampleStoryParameters } from "storybook/assets/storyParameters";
 import Heading from "../src/Heading";
 import HeadingFocus from "./examples/HeadingFocus";
 import Divider from "./examples/Divider";

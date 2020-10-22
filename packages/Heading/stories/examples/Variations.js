@@ -2,7 +2,6 @@ import React from "react";
 import ExampleStory from "storybook/components/ExampleStory";
 import StoryHeading from "storybook/components/StoryHeading";
 import { Gap } from "storybook/assets/styles/common.styles";
-
 import ExternalLink from "./ExternalLink";
 import Paragraph from "./Paragraph";
 import DisplayLevel from "./DisplayLevel";

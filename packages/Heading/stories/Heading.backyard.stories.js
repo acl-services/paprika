@@ -1,6 +1,6 @@
 import React from "react";
 import { getStoryName } from "storybook/storyTree";
-import { exampleStoryParameters } from "./storyHelpers";
+import { testStoryParameters } from "storybook/assets/storyParameters";
 import Heading from "../src/Heading";
 import Screener from "./tests/Screener";
 import A11y from "./tests/A11y";
@@ -13,7 +13,7 @@ export default {
 };
 
 export const screener = () => <Screener />;
-screener.story = { name: "Screener", parameters: exampleStoryParameters };
+screener.story = { name: "Screener", parameters: testStoryParameters };
 
 export const a11y = () => <A11y />;
-a11y.story = { name: "Accessibility", parameters: exampleStoryParameters };
+a11y.story = { name: "Accessibility", parameters: testStoryParameters };

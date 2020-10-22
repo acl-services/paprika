@@ -1,16 +1,10 @@
 import { Meta, Description, Canvas } from "@storybook/addon-docs/blocks";
 import { getStoryName } from "storybook/storyTree";
+import { docsStoryParameters } from "storybook/assets/storyParameters";
 import Readme from "../README.md";
 import Heading from "../src/";
 
-export const params = {
-  options: {
-    isToolshown: true,
-    showPanel: false,
-  },
-};
-
-<Meta title={`${getStoryName("Heading")}/Docs`} component={Heading} parameters={params} />
+<Meta title={`${getStoryName("Heading")}/Docs`} component={Heading} parameters={docsStoryParameters} />
 
 <Description markdown={Readme} />
 
