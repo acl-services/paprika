@@ -36,7 +36,7 @@ Then you should be able to use Sass functions like `font-size()` and `spacer()` 
 
 For scalability, in implementation of the `stylers` is split into:
 
-- `includes.js` + `formIncludes.js` (for bundles of styling rules)
+- `includes.js` and `formIncludes.js` (for bundles of styling rules)
 - `helpers.js` (functions that take an input and generate a value or styling rule/rules).
 
 ## Links

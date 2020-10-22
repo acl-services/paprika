@@ -1,6 +1,8 @@
 import React from "react";
 import { Story, Rule } from "storybook/assets/styles/common.styles";
 import { getStoryName } from "storybook/storyTree";
+import storyParameters from "storybook/assets/storyParameters";
+
 import {
   Box,
   TruncatedBox,
@@ -88,6 +90,10 @@ export const includes = () => (
     <FocusBox.Subtle.Inset tabIndex={0} />
   </Story>
 );
+includes.story = {
+  name: "Includes",
+  parameters: storyParameters,
+};
 
 export const helpers = () => (
   <Story>
@@ -198,3 +204,7 @@ export const helpers = () => (
     </ZBox>
   </Story>
 );
+helpers.story = {
+  name: "Helpers",
+  parameters: storyParameters,
+};

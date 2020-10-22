@@ -3,6 +3,7 @@
 import React from "react";
 import { Story, Rule } from "storybook/assets/styles/common.styles";
 import { getStoryName } from "storybook/storyTree";
+import storyParameters from "storybook/assets/storyParameters";
 import { Box } from "./Stylers.stories.styles";
 import "./helpers.scss";
 
@@ -80,6 +81,10 @@ export const mixins = () => (
     <div className="focus-box focus-box--subtle--inset" tabIndex={0} />
   </Story>
 );
+mixins.story = {
+  name: "Mixins",
+  parameters: storyParameters,
+};
 
 export const functions = () => (
   <Story className="story--stylers">
@@ -189,3 +194,7 @@ export const functions = () => (
     </Box>
   </Story>
 );
+functions.story = {
+  name: "Functions",
+  parameters: storyParameters,
+};
