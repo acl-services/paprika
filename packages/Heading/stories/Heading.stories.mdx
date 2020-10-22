@@ -1,5 +1,5 @@
 import { Meta, Props, Story } from "@storybook/addon-docs/blocks";
-import { Description } from "@storybook/addon-docs/blocks";
+import { Description, Canvas } from "@storybook/addon-docs/blocks";
 import { getStoryName } from "storybook/storyTree";
 import Readme from "../README.md";
 import Heading from "../src/";
@@ -56,7 +56,9 @@ Always be sure to avoid skipping heading levels and to style the headings as nee
 
 ##### Result
 
-<React.Fragment>
+<!-- prettier-ignore -->
+<>
+
   <Heading level={1}>Heading One</Heading>
   <p>
     Lorem ipsum dolor amet blog direct trade salvia marfa whatever, selvage ennui portland man bun hexagon yr. Vegan
@@ -72,8 +74,57 @@ Always be sure to avoid skipping heading levels and to style the headings as nee
     Cold-pressed roof party blog direct trade salvia marfa whatever, selvage ennui portland man bun hexagon yr. Vegan
     cardigan twee next level 90s palo santo.
   </p>
-</React.Fragment>
+</>
 
+.
+
+.
+
+.
+
+.
+
+.
+
+# —— VS ——
+
+.
+
+.
+
+.
+
+.
+
+.
+
+### Heading Levels
+
+Heading levels are important for accessibility. It will create a hierarchy in which the page will be read; this is especially important for consumers that make use of screen readers. The `level` property allows users to set the heading level of the `<Heading />` component.
+Always be sure to avoid skipping heading levels and to style the headings as needed.
+
+<!-- prettier-ignore -->
+<Canvas isExpanded>
+<>
+  <Heading level={1}>Heading One</Heading>
+  <p>
+    Lorem ipsum dolor amet blog direct trade salvia marfa whatever, selvage ennui portland man bun hexagon yr. Vegan
+    cardigan twee next level 90s palo santo.
+  </p>
+  <Heading level={2}>Heading Two</Heading>
+  <p>
+    Single-origin coffee pickled af 3 wolf moon adaptogen lomo normcore aesthetic. Godard seitan asymmetrical
+    lumbersexual try-hard bushwick 90s raw denim.
+  </p>
+  <Heading level={3}>Heading Three</Heading>
+  <p>
+    Cold-pressed roof party blog direct trade salvia marfa whatever, selvage ennui portland man bun hexagon yr. Vegan
+    cardigan twee next level 90s palo santo.
+  </p>
+</>
+</Canvas>
+
+<!--
 #### Display Level
 
 Heading levels have differing default stylings, however, if you wish to have a differant heading default styling for a particular heading level you can make iuse of the `displayLevel` property. The `displayLevel` property sets the headings styling to the default stylings of the level selected. For example, if a user creates a `<Heading />` with a `level={2}` the dfault styling would be equivelant to an `h2` element, however, with the `displayLevel` property a user can set `displayLevel={3}` to give it the `h3` default styles.
@@ -92,7 +143,7 @@ Heading levels have differing default stylings, however, if you wish to have a d
 
 ##### Result
 
-<React.Fragment>
+<Preview>
   <Heading level={1} displayLevel={6}>
     Heading One
   </Heading>
@@ -102,7 +153,7 @@ Heading levels have differing default stylings, however, if you wish to have a d
   <Heading level={3} displayLevel={1}>
     Heading Three
   </Heading>
-</React.Fragment>
+</Preview>
 
 ### Heading Styles
 
@@ -124,7 +175,7 @@ If users do not desire a heavy/bolded heading, users can make use of the `isLigh
 
 ##### Result
 
-<React.Fragment>
+<Preview>
   <Heading level={1} isLight>
     Heading One with isLight
   </Heading>
@@ -134,7 +185,7 @@ If users do not desire a heavy/bolded heading, users can make use of the `isLigh
   <Heading level={3} isLight>
     Heading Three with isLight
   </Heading>
-</React.Fragment>
+</Preview>
 
 #### Divider
 
@@ -154,7 +205,7 @@ Sometimes additional seperation of content can aid in visual clarity. Users can 
 
 ##### Result
 
-<React.Fragment>
+<Preview>
   <Heading level={1} hasDivider>
     Heading with hasDivider
   </Heading>
@@ -164,7 +215,7 @@ Sometimes additional seperation of content can aid in visual clarity. Users can 
   <Heading level={3} hasDivider>
     Heading with hasDivider
   </Heading>
-</React.Fragment>
+</Preview>
 
 #### Underline
 
@@ -184,7 +235,7 @@ Users can make seperate their content by using the `hasUnderline` property which
 
 ##### Result
 
-<React.Fragment>
+<Preview>
   <Heading level={1} hasUnderline>
     Heading with hasUnderline
   </Heading>
@@ -194,4 +245,4 @@ Users can make seperate their content by using the `hasUnderline` property which
   <Heading level={3} hasUnderline>
     Heading with hasUnderline
   </Heading>
-</React.Fragment>
+</Preview> -->
