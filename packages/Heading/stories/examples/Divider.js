@@ -5,22 +5,22 @@ export default function DividerExample() {
   return (
     <>
       <Heading level={1} hasDivider>
-        Heading One
+        Heading One with hasDivider
       </Heading>
       <Heading level={2} hasDivider>
-        Heading Two
+        Heading Two with hasDivider
       </Heading>
       <Heading level={3} hasDivider>
-        Heading Three
+        Heading Three with hasDivider
       </Heading>
       <Heading level={4} hasDivider>
-        Heading Four
+        Heading Four with hasDivider
       </Heading>
       <Heading level={5} hasDivider>
-        Heading Five
+        Heading Five with hasDivider
       </Heading>
       <Heading level={6} hasDivider>
-        Heading Six
+        Heading Six with hasDivider
       </Heading>
     </>
   );
