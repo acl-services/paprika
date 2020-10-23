@@ -28,6 +28,7 @@ npm install @paprika/time-picker
 | defaultIsOpen | bool   | false    | false          | If the TimePicker is set to visible.               |
 | defaultValue  | string | false    | null           | Sets the default value for the TimePicker          |
 | isDisabled    | bool   | false    | false          | If the TimePicker is disabled.                     |
+| isReadOnly    | bool   | false    | false          | Should be read-only or not, default is false.      |
 | onChange      | func   | false    | () => {}       | Callback to be executed when the value is changed. |
 | onError       | func   | false    | () => {}       | Callback to be executed when there is an error.    |
 
