@@ -7,6 +7,7 @@ import * as sc from "./ExampleStory.styles";
 
 const propTypes = {
   children: PropTypes.node,
+  component: PropTypes.string,
   fileName: PropTypes.string,
   storyName: PropTypes.string,
   tagline: PropTypes.string,
@@ -14,13 +15,14 @@ const propTypes = {
 
 const defaultProps = {
   children: null,
+  component: null,
   fileName: null,
   storyName: null,
   tagline: null,
 };
 
 export const ExampleStory = props => {
-  const { children, fileName, storyName, tagline } = props;
+  const { children, component, fileName, storyName, tagline } = props;
   return (
     <Story>
       {(fileName || storyName) && (
@@ -30,10 +32,10 @@ export const ExampleStory = props => {
               {storyName}
             </Heading>
           )}
-          {fileName && (
+          {component && fileName && (
             <ExternalLink
               hasNoUnderline
-              href={`https://github.com/acl-services/paprika/blob/master/packages/Heading/stories/${fileName}`}
+              href={`https://github.com/acl-services/paprika/blob/master/packages/${component}/stories/${fileName}`}
             >
               Source
             </ExternalLink>
