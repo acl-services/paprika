@@ -1,7 +1,8 @@
 import React from "react";
 import { getStoryName } from "storybook/storyTree";
 import { Gap } from "storybook/assets/styles/common.styles";
-import { ExampleStory, exampleStoryParameters } from "./storyHelpers";
+import { exampleStoryParameters } from "storybook/assets/storyParameters";
+import ExampleStory from "storybook/components/ExampleStory";
 import { FullHeightStory } from "./examples/Basic";
 import { CustomBreakpointsStory, NoSmallStory, NoLargeStory } from "./examples/Breakpoints";
 import { OnBreakStory } from "./examples/Callbacks";
@@ -16,17 +17,20 @@ export default {
 };
 
 export const basic = () => (
-  <ExampleStory storyName="Basic Example" fileName="examples/Basic.js">
+  <ExampleStory storyName="Basic Example" component="ResizeDetector" fileName="examples/Basic.js">
     <p>
       <code>isFullHeight = true</code>
     </p>
     <FullHeightStory />
   </ExampleStory>
 );
-basic.story = { name: "Basic", parameters: exampleStoryParameters };
+basic.story = {
+  name: "Basic",
+  parameters: exampleStoryParameters,
+};
 
 export const breakpoints = () => (
-  <ExampleStory storyName="Custom Breakpoints" fileName="examples/Breakpoints.js">
+  <ExampleStory storyName="Custom Breakpoints" component="ResizeDetector" fileName="examples/Breakpoints.js">
     <p>
       <code>breakpointSmall = 100</code>
       <br />
@@ -45,17 +49,28 @@ export const breakpoints = () => (
     <NoLargeStory />
   </ExampleStory>
 );
-breakpoints.story = { name: "with breakpoints", parameters: exampleStoryParameters };
+breakpoints.story = {
+  name: "with breakpoints",
+  parameters: exampleStoryParameters,
+};
 
 export const callbacks = () => (
-  <ExampleStory storyName="Callback Example" tagline="Pop goes the <Toast>!" fileName="examples/Callbacks.js">
+  <ExampleStory
+    storyName="Callback Example"
+    tagline="Pop goes the <Toast>!"
+    component="ResizeDetector"
+    fileName="examples/Callbacks.js"
+  >
     <OnBreakStory />
   </ExampleStory>
 );
-callbacks.story = { name: "with onBreak callback", parameters: exampleStoryParameters };
+callbacks.story = {
+  name: "with onBreak callback",
+  parameters: exampleStoryParameters,
+};
 
 export const debounce = () => (
-  <ExampleStory storyName="Debounce Examples" fileName="examples/Debounce.js">
+  <ExampleStory storyName="Debounce Examples" component="ResizeDetector" fileName="examples/Debounce.js">
     <p>
       <code>debounceDelay = 300</code>
     </p>
@@ -67,4 +82,7 @@ export const debounce = () => (
     <DebounceFastStory />
   </ExampleStory>
 );
-debounce.story = { name: "with debounceDelay", parameters: exampleStoryParameters };
+debounce.story = {
+  name: "with debounceDelay",
+  parameters: exampleStoryParameters,
+};

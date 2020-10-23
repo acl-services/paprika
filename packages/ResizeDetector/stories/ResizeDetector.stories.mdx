@@ -1,6 +1,7 @@
 import { Meta } from "@storybook/addon-docs/blocks";
 import { Description } from "@storybook/addon-docs/blocks";
 import { getStoryName } from "storybook/storyTree";
+import { docsStoryParameters } from "storybook/assets/storyParameters";
 import Readme from "../README.md";
 import ResizeDetector, { useDimensions, useBreakpoints } from "../src";
 import { BasicStory, FullHeightStory } from "./examples/Basic";
@@ -8,11 +9,7 @@ import { CustomBreakpointsStory, NoSmallStory, NoLargeStory } from "./examples/B
 import { OnBreakStory } from "./examples/Callbacks";
 import { DebounceSlowStory, DebounceFastStory } from "./examples/Debounce";
 
-<Meta
-  title={`${getStoryName("ResizeDetector")}/Docs`}
-  component={ResizeDetector}
-  parameters={{ options: { showPanel: false } }}
-/>
+<Meta title={`${getStoryName("ResizeDetector")}/Docs`} component={ResizeDetector} parameters={docsStoryParameters} />
 
 <Description markdown={Readme} />
 
