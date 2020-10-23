@@ -17,10 +17,11 @@ function exitWithError(errorMessage) {
 }
 
 /**
- * A valid format is like: "fix(MyComponent): this is what i did"
+ * A valid format is like: "fix(MyComponent): this is what i did", and uses an approved "type"
  */
 function isValidCommitMessage(commitMessage) {
-  return commitMessage.match(/^\w*\(\w+\): .+/g);
+  const type = commitMessage.substr(0, commitMessage.indexOf("("));
+  return VALID_TYPES.indexOf(type) > -1 && !!commitMessage.match(/^\w*\(\w+\): .+/g);
 }
 
 /**
