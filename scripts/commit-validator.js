@@ -1,15 +1,4 @@
 #!/usr/bin/env node
-
-/*
-  To get this to work, everyone else will have to make sure their `commit-msg` hook contains the husky code, NOT the ACL code
-  To get this to work, everyone else will have to make sure their `commit-msg` hook contains the husky code, NOT the ACL code
-  To get this to work, everyone else will have to make sure their `commit-msg` hook contains the husky code, NOT the ACL code
-  To get this to work, everyone else will have to make sure their `commit-msg` hook contains the husky code, NOT the ACL code
-  To get this to work, everyone else will have to make sure their `commit-msg` hook contains the husky code, NOT the ACL code
-  To get this to work, everyone else will have to make sure their `commit-msg` hook contains the husky code, NOT the ACL code
-  What will happen if someone does not do that? (existing dev still using old 'ruby' code, new dev, some external contributor)
-*/
-
 const fs = require("fs");
 const shell = require("shelljs");
 
