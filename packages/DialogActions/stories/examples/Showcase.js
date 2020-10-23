@@ -1,8 +1,7 @@
 import React from "react";
 import { boolean, text, select } from "@storybook/addon-knobs";
 import { action } from "@storybook/addon-actions";
-import { Story } from "storybook/assets/styles/common.styles";
-import StoryHeader from "storybook/components/StoryHeader";
+import ExampleStory from "storybook/components/ExampleStory";
 import L10n from "@paprika/l10n";
 import DialogActions from "../../src";
 
@@ -22,15 +21,14 @@ const DialogActionsProps = () => ({
   onDecline: action("Decline Clicked"),
 });
 
-const ExampleStory = props => {
+const Showcase = props => {
   return (
-    <Story>
-      <StoryHeader componentName="DialogActions" />
+    <ExampleStory storyName="DialogActions" tagline={ExampleStory.defaultTaglines.showcase}>
       <L10n locale="en">
         <DialogActions {...props} />
       </L10n>
-    </Story>
+    </ExampleStory>
   );
 };
 
-export default () => <ExampleStory {...DialogActionsProps()} />;
+export default () => <Showcase {...DialogActionsProps()} />;

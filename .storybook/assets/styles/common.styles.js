@@ -28,6 +28,11 @@ export const Rule = styled.hr`
   margin: ${stylers.spacer(4)} 0;
 `;
 
+export const Big = styled.span`
+  font-size: 1.2em;
+  font-weight: bold;
+`;
+
 export const Small = styled.small`
   color: ${tokens.color.blackLighten40};
 `;

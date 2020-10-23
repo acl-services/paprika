@@ -1,6 +1,6 @@
 import React from "react";
-import StoryHeader from "storybook/components/StoryHeader";
-import { Story, Rule } from "storybook/assets/styles/common.styles";
+import ExampleStory from "storybook/components/ExampleStory";
+import { Rule } from "storybook/assets/styles/common.styles";
 import Collapsible from "../../src";
 
 const dummyContent = (
@@ -17,7 +17,7 @@ const collapsibleDefaultProps = {
   iconAlign: "left",
 };
 
-const ExampleStory = () => {
+const Variations = () => {
   const [isCollapsed, setIsCollapsed] = React.useState(false);
   const [isCollapsed2, setIsCollapsed2] = React.useState(false);
   const [isCollapsed3, setIsCollapsed3] = React.useState(false);
@@ -26,9 +26,7 @@ const ExampleStory = () => {
   const [isCollapsed6, setIsCollapsed6] = React.useState(true);
 
   return (
-    <Story>
-      <StoryHeader componentName="Collapsible" storyType="Variations" />
-
+    <ExampleStory storyName="Collapsible" tagline={ExampleStory.defaultTaglines.variations}>
       <Collapsible
         {...collapsibleDefaultProps}
         isCollapsed={isCollapsed}
@@ -88,8 +86,8 @@ const ExampleStory = () => {
           Child content
         </Collapsible>
       </Collapsible>
-    </Story>
+    </ExampleStory>
   );
 };
 
-export default ExampleStory;
+export default Variations;

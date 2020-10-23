@@ -2,7 +2,7 @@ import React from "react";
 import PropTypes from "prop-types";
 import Heading from "@paprika/heading";
 import ExternalLink from "@paprika/external-link";
-import { Story, Tagline, Rule } from "storybook/assets/styles/common.styles";
+import { Story, Tagline, Rule, Big } from "storybook/assets/styles/common.styles";
 import * as sc from "./ExampleStory.styles";
 
 const propTypes = {
@@ -19,6 +19,19 @@ const defaultProps = {
   fileName: null,
   storyName: null,
   tagline: null,
+};
+
+const defaultTaglines = {
+  showcase: (
+    <>
+      <Big>Showcase</Big> – Interact with the props API
+    </>
+  ),
+  variations: (
+    <>
+      <Big>Variations</Big> – Browse use cases + recipes
+    </>
+  ),
 };
 
 export const ExampleStory = props => {
@@ -51,5 +64,6 @@ export const ExampleStory = props => {
 
 ExampleStory.propTypes = propTypes;
 ExampleStory.defaultProps = defaultProps;
+ExampleStory.defaultTaglines = defaultTaglines;
 
 export default ExampleStory;
