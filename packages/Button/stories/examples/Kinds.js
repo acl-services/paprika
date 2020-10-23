@@ -1,5 +1,6 @@
 import React from "react";
 import PlusIcon from "@paprika/icon/lib/Add";
+import { Gap } from "storybook/assets/styles/common.styles";
 import Button from "../../src";
 
 export default function ExampleStory() {
@@ -17,9 +18,8 @@ export default function ExampleStory() {
         <PlusIcon />
       </Button.Icon>
       <Button icon={<PlusIcon />}>Icon & text</Button>
-      <p>
-        <Button isFullWidth>Full-width</Button>
-      </p>
+      <Gap.Small />
+      <Button isFullWidth>Full-width</Button>
     </>
   );
 }
