@@ -1,5 +1,4 @@
 import React from "react";
-import { Story } from "storybook/assets/styles/common.styles";
 import Button from "../../src";
 
 export default function Focus() {
@@ -16,7 +15,7 @@ export default function Focus() {
   });
 
   return (
-    <Story>
+    <>
       <p>
         Buttons get a focus ring when:
         <ol>
@@ -50,6 +49,6 @@ export default function Focus() {
         </Button>
         <Button onClick={() => {}}>Button4</Button>
       </p>
-    </Story>
+    </>
   );
 }

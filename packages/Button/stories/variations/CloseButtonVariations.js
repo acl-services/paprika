@@ -1,9 +1,9 @@
 import React from "react";
 import { action } from "@storybook/addon-actions";
-import { Rule } from "storybook/assets/styles/common.styles";
+import { Gap } from "storybook/assets/styles/common.styles";
+import StoryHeading from "storybook/components/StoryHeading";
 import styled from "styled-components";
 import tokens from "@paprika/tokens";
-import Heading from "@paprika/heading";
 import Button from "../../src/Button";
 
 const DarkBackground = styled.span`
@@ -20,10 +20,8 @@ function clickHandler() {
 export default function CloseButtonVariations() {
   return (
     <>
-      <Heading level={1} displayLevel={2} isLight>
-        Variations of Close Button
-      </Heading>
-      <Rule />
+      <StoryHeading level={1}>Close Button</StoryHeading>
+      <Gap.Small />
       <p>
         <Button.Close onClick={clickHandler} size="small" />
         <Button.Close onClick={clickHandler} />

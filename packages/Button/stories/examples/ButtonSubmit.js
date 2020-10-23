@@ -1,11 +1,10 @@
 import React from "react";
 import Input from "@paprika/input";
-import { ButtonStory } from "../Button.stories.styles";
 import Button from "../../src";
 
 export default function ButtonSubmit() {
   return (
-    <ButtonStory>
+    <>
       <form
         style={{ display: "flex", flexDirection: "row", alignItems: "center" }}
         onSubmit={event => {
@@ -18,6 +17,6 @@ export default function ButtonSubmit() {
           submit
         </Button>
       </form>
-    </ButtonStory>
+    </>
   );
 }

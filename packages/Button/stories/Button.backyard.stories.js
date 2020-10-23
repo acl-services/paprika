@@ -1,9 +1,10 @@
 import React from "react";
 import { getStoryName } from "storybook/storyTree";
-import { ExampleStory, exampleStoryParameters } from "./storyHelpers";
-import ButtonStates from "./backyard/starling/ButtonStates";
-import ButtonVariations from "./backyard/starling/ButtonKinds";
-import CommonButtons from "./backyard/starling/ButtonSizes";
+import { exampleStoryParameters } from "storybook/assets/storyParameters";
+import { ButtonStory } from "./Button.stories.styles";
+import States from "./examples/States";
+import Kinds from "./examples/Kinds";
+import Sizes from "./examples/Sizes";
 import Button from "../src";
 
 const storyName = getStoryName("Button");
@@ -13,23 +14,32 @@ export default {
   component: Button,
 };
 
-export const buttonStates = () => (
-  <ExampleStory storyName="States" fileName="backyard/starling/ButtonStates.js">
-    <ButtonStates />
-  </ExampleStory>
+export const states = () => (
+  <ButtonStory storyName="States" fileName="examples/States.js">
+    <States />
+  </ButtonStory>
 );
-buttonStates.story = { name: "States", parameters: exampleStoryParameters };
+states.story = {
+  name: "States",
+  parameters: exampleStoryParameters,
+};
 
-export const buttonVariations = () => (
-  <ExampleStory storyName="Kinds" fileName="backyard/starling/ButtonKinds.js">
-    <ButtonVariations />
-  </ExampleStory>
+export const kinds = () => (
+  <ButtonStory storyName="Kinds" fileName="examples/Kinds.js">
+    <Kinds />
+  </ButtonStory>
 );
-buttonVariations.story = { name: "Kinds", parameters: exampleStoryParameters };
+kinds.story = {
+  name: "Kinds",
+  parameters: exampleStoryParameters,
+};
 
-export const commonButtons = () => (
-  <ExampleStory storyName="Sizes" fileName="backyard/starling/ButtonSizes.js">
-    <CommonButtons />
-  </ExampleStory>
+export const sizes = () => (
+  <ButtonStory storyName="Sizes" fileName="examples/Sizes.js">
+    <Sizes />
+  </ButtonStory>
 );
-commonButtons.story = { name: "Sizes", parameters: exampleStoryParameters };
+sizes.story = {
+  name: "Sizes",
+  parameters: exampleStoryParameters,
+};

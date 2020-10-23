@@ -1,10 +1,9 @@
 import React from "react";
-import { ButtonStory } from "../../Button.stories.styles";
-import Button from "../../../src";
+import Button from "../../src";
 
 export default function CommonButtons() {
   return (
-    <ButtonStory>
+    <>
       <div>
         <Button kind={Button.types.kind.PRIMARY}>Primary</Button>
         <Button>Default</Button>
@@ -30,6 +29,6 @@ export default function CommonButtons() {
           Small minor
         </Button>
       </div>
-    </ButtonStory>
+    </>
   );
 }

@@ -1,6 +1,7 @@
 import React from "react";
 import { getStoryName } from "storybook/storyTree";
-import { ExampleStory, exampleStoryParameters } from "./storyHelpers";
+import { exampleStoryParameters } from "storybook/assets/storyParameters";
+import { ButtonStory } from "./Button.stories.styles";
 import ButtonSubmit from "./examples/ButtonSubmit";
 import CloseButtonRef from "./examples/CloseButtonRef";
 import Focus from "./examples/Focus";
@@ -16,36 +17,51 @@ export default {
 };
 
 export const buttonSubmit = () => (
-  <ExampleStory storyName="Submit" fileName="examples/ButtonSubmit.js">
+  <ButtonStory storyName="Submit" component="Button" fileName="examples/ButtonSubmit.js">
     <ButtonSubmit />
-  </ExampleStory>
+  </ButtonStory>
 );
-buttonSubmit.story = { name: "Submit", parameters: exampleStoryParameters };
-
-export const closeButtonRef = () => (
-  <ExampleStory storyName="Close Ref" fileName="examples/CloseButtonRef.js">
-    <CloseButtonRef />
-  </ExampleStory>
-);
-closeButtonRef.story = { name: "Close Ref", parameters: exampleStoryParameters };
+buttonSubmit.story = {
+  name: "Submit Button",
+  parameters: exampleStoryParameters,
+};
 
 export const focus = () => (
-  <ExampleStory storyName="Focus" fileName="examples/Focus.js">
+  <ButtonStory storyName="Focus" component="Button" fileName="examples/Focus.js">
     <Focus />
-  </ExampleStory>
+  </ButtonStory>
 );
-focus.story = { name: "Focus", parameters: exampleStoryParameters };
+focus.story = {
+  name: "Focus Test",
+  parameters: exampleStoryParameters,
+};
 
 export const newRef = () => (
-  <ExampleStory storyName="New Ref" fileName="examples/NewRef.js">
+  <ButtonStory storyName="New Ref" component="Button" fileName="examples/NewRef.js">
     <NewRef />
-  </ExampleStory>
+  </ButtonStory>
 );
-newRef.story = { name: "New Ref", parameters: exampleStoryParameters };
+newRef.story = {
+  name: "New Ref",
+  parameters: exampleStoryParameters,
+};
 
 export const oldRef = () => (
-  <ExampleStory storyName="oldRef" fileName="examples/OldRef.js">
+  <ButtonStory storyName="oldRef" component="Button" fileName="examples/OldRef.js">
     <OldRef />
-  </ExampleStory>
+  </ButtonStory>
 );
-oldRef.story = { name: "Old Ref", parameters: exampleStoryParameters };
+oldRef.story = {
+  name: "Old Ref",
+  parameters: exampleStoryParameters,
+};
+
+export const closeButtonRef = () => (
+  <ButtonStory storyName="Close Ref" component="Button" fileName="examples/CloseButtonRef.js">
+    <CloseButtonRef />
+  </ButtonStory>
+);
+closeButtonRef.story = {
+  name: "Close Button",
+  parameters: exampleStoryParameters,
+};

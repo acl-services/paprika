@@ -1,6 +1,6 @@
 import React from "react";
 import { action } from "@storybook/addon-actions";
-import { Story, Small } from "storybook/assets/styles/common.styles";
+import { Small } from "storybook/assets/styles/common.styles";
 import Button from "../../src";
 
 function clickHandler() {
@@ -20,13 +20,13 @@ export default function CloseButtonRef() {
   }, []);
 
   return (
-    <Story>
+    <>
       <p>
         <Button.Close onClick={clickHandler} ref={buttonRef} />
       </p>
       <p>
         <Small>This CloseButton will capture the focus after 1 second.</Small>
       </p>
-    </Story>
+    </>
   );
 }
