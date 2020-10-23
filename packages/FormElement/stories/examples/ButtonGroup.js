@@ -5,7 +5,7 @@ import FormElement from "../../src/FormElement";
 
 export default function ButtonGroupExample() {
   const refButtonGroup = React.useRef(null);
-  const buttonOptionsArray = ["Black Panther", "Wonder Woman", "Spiderman", "The Incredibles", "Thor"];
+  const buttonOptionsArray = ["Black Panther", "Wonder Woman", "Spiderman"];
   const buttonGroupOptions = buttonOptionsArray.map(hero => (
     <ButtonGroup.Item value={hero} key={hero}>
       {hero}

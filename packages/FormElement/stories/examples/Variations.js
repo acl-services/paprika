@@ -1,170 +1,88 @@
 import React from "react";
-import { Rule, Tagline } from "storybook/assets/styles/common.styles";
-import Heading from "@paprika/heading";
+import { Gap } from "storybook/assets/styles/common.styles";
+import StoryHeading from "storybook/components/StoryHeading";
 import Input from "@paprika/input";
 import { FormElementStory } from "../FormElement.stories.styles";
 import FormElement from "../../src";
 
 const Variations = () => {
   return (
-    <FormElementStory>
-      <Heading level={1} displayLevel={2} isLight>
-        Variations
-      </Heading>
-      <Rule />
-      <Tagline>Form Element sizes</Tagline>
-      <br />
+    <FormElementStory storyName="Variations" tagline="The many moods of FormElements">
+      <StoryHeading level={2}>FormElement sizes</StoryHeading>
       <FormElement label="Form with small size" size="small">
         <FormElement.Content>
-          {({ idForLabel, ariaDescribedBy }) => (
-            <Input
-              id={idForLabel}
-              placeholder="Form placeholder"
-              aria-describedby={ariaDescribedBy}
-              isDisabled={false}
-              hasError={false}
-            />
-          )}
+          {({ idForLabel, ariaDescribedBy }) => <Input id={idForLabel} aria-describedby={ariaDescribedBy} />}
         </FormElement.Content>
       </FormElement>
-      <FormElement label="Form with medium size" size="medium">
+      <FormElement label="Form with medium size">
         <FormElement.Content>
-          {({ idForLabel, ariaDescribedBy }) => (
-            <Input
-              id={idForLabel}
-              placeholder="Form placeholder"
-              aria-describedby={ariaDescribedBy}
-              isDisabled={false}
-              hasError={false}
-            />
-          )}
+          {({ idForLabel, ariaDescribedBy }) => <Input id={idForLabel} aria-describedby={ariaDescribedBy} />}
         </FormElement.Content>
       </FormElement>
       <FormElement label="Form with large size" size="large">
         <FormElement.Content>
-          {({ idForLabel, ariaDescribedBy }) => (
-            <Input
-              id={idForLabel}
-              placeholder="Form placeholder"
-              aria-describedby={ariaDescribedBy}
-              isDisabled={false}
-              hasError={false}
-            />
-          )}
+          {({ idForLabel, ariaDescribedBy }) => <Input id={idForLabel} aria-describedby={ariaDescribedBy} />}
         </FormElement.Content>
       </FormElement>
-      <Rule />
-      <Tagline>Form Element with instructions.</Tagline>
-      <br />
+      <Gap />
+      <StoryHeading level={2}>FormElement with instructions</StoryHeading>
       <FormElement label="Form with instructions">
         <FormElement.Instructions>
-          <span>
-            Example text for extra panel for questionnaires. Example text for extra panel for questionnaires Example
-            text for extra panel for questionnaires. Example text for extra panel for questionnaires
-          </span>
+          Example text for extra panel for questionnaires. Example text for extra panel for questionnaires Example text
+          for extra panel for questionnaires. Example text for extra panel for questionnaires.
         </FormElement.Instructions>
         <FormElement.Content>
-          {({ idForLabel, ariaDescribedBy }) => (
-            <Input id={idForLabel} placeholder="Form placeholder" aria-describedby={ariaDescribedBy} hasError={false} />
-          )}
+          {({ idForLabel, ariaDescribedBy }) => <Input id={idForLabel} aria-describedby={ariaDescribedBy} />}
         </FormElement.Content>
       </FormElement>
-      <Rule />
-      <Tagline>Form Element with description.</Tagline>
-      <br />
+      <Gap />
+      <StoryHeading level={2}>FormElement with description</StoryHeading>
       <FormElement label="Form with description">
         <FormElement.Content>
-          {({ idForLabel, ariaDescribedBy }) => (
-            <Input id={idForLabel} placeholder="Form placeholder" aria-describedby={ariaDescribedBy} hasError={false} />
-          )}
+          {({ idForLabel, ariaDescribedBy }) => <Input id={idForLabel} aria-describedby={ariaDescribedBy} />}
         </FormElement.Content>
-        <FormElement.Description>
-          <span>This is description text</span>
-        </FormElement.Description>
+        <FormElement.Description>This is description text.</FormElement.Description>
       </FormElement>
-      <Rule />
-      <Tagline>Form Element with error.</Tagline>
-      <br />
+      <Gap />
+      <StoryHeading level={2}>FormElement with an error</StoryHeading>
       <FormElement label="Form with error">
         <FormElement.Content>
-          {({ idForLabel, ariaDescribedBy }) => (
-            <Input id={idForLabel} placeholder="Form placeholder" aria-describedby={ariaDescribedBy} hasError />
-          )}
+          {({ idForLabel, ariaDescribedBy }) => <Input id={idForLabel} aria-describedby={ariaDescribedBy} hasError />}
         </FormElement.Content>
         <FormElement.Error>has an error</FormElement.Error>
       </FormElement>
-      <Rule />
-      <Tagline>Form Element with isInline.</Tagline>
-      <br />
+      <Gap />
+      <StoryHeading level={2}>FormElement with isInline</StoryHeading>
       <FormElement label="Form with isInline" isInline>
         <FormElement.Content>
-          {({ idForLabel, ariaDescribedBy }) => (
-            <Input
-              id={idForLabel}
-              placeholder="Form placeholder"
-              aria-describedby={ariaDescribedBy}
-              isDisabled={false}
-              hasError={false}
-            />
-          )}
+          {({ idForLabel, ariaDescribedBy }) => <Input id={idForLabel} aria-describedby={ariaDescribedBy} />}
         </FormElement.Content>
       </FormElement>
-      <Rule />
-      <Tagline>Form Element with hasOptionalLabel.</Tagline>
-      <br />
+      <Gap />
+      <StoryHeading level={2}>FormElement with hasOptionalLabel</StoryHeading>
       <FormElement label="Form with hasOptionalLabel" hasOptionalLabel>
         <FormElement.Content>
-          {({ idForLabel, ariaDescribedBy }) => (
-            <Input
-              id={idForLabel}
-              placeholder="Form placeholder"
-              aria-describedby={ariaDescribedBy}
-              isDisabled={false}
-              hasError={false}
-            />
-          )}
+          {({ idForLabel, ariaDescribedBy }) => <Input id={idForLabel} aria-describedby={ariaDescribedBy} />}
         </FormElement.Content>
       </FormElement>
-      <Rule />
-      <Tagline>Form Element with hasRequiredLabel.</Tagline>
-      <br />
+      <Gap />
+      <StoryHeading level={2}>FormElement with hasRequiredLabel</StoryHeading>
       <FormElement label="Form with hasRequiredLabel" hasRequiredLabel>
         <FormElement.Content>
-          {({ idForLabel, ariaDescribedBy }) => (
-            <Input
-              id={idForLabel}
-              placeholder="Form placeholder"
-              aria-describedby={ariaDescribedBy}
-              isDisabled={false}
-              hasError={false}
-            />
-          )}
+          {({ idForLabel, ariaDescribedBy }) => <Input id={idForLabel} aria-describedby={ariaDescribedBy} />}
         </FormElement.Content>
       </FormElement>
-      <Rule />
-      <Tagline>Form Element with isDisabled.</Tagline>
-      <br />
+      <Gap />
+      <StoryHeading level={2}>FormElement with isDisabled</StoryHeading>
       <FormElement label="Form with isDisabled" isDisabled>
         <FormElement.Instructions>
-          <span>
-            Example text for extra panel for questionnaires. Example text for extra panel for questionnaires Example
-            text for extra panel for questionnaires. Example text for extra panel for questionnaires
-          </span>
+          Example text for extra panel for questionnaires. Example text for extra panel for questionnaires Example text
+          for extra panel for questionnaires. Example text for extra panel for questionnaires.
         </FormElement.Instructions>
         <FormElement.Content>
-          {({ idForLabel, ariaDescribedBy }) => (
-            <Input
-              id={idForLabel}
-              placeholder="Form placeholder"
-              aria-describedby={ariaDescribedBy}
-              isDisabled
-              hasError={false}
-            />
-          )}
+          {({ idForLabel, ariaDescribedBy }) => <Input id={idForLabel} aria-describedby={ariaDescribedBy} isDisabled />}
         </FormElement.Content>
-        <FormElement.Description>
-          <span>This is description text</span>
-        </FormElement.Description>
+        <FormElement.Description>This is description text.</FormElement.Description>
       </FormElement>
     </FormElementStory>
   );

@@ -1,5 +1,6 @@
 import { withKnobs } from "@storybook/addon-knobs";
 import { getStoryName } from "storybook/storyTree";
+import { showcaseStoryParameters, variationsStoryParameters } from "storybook/assets/storyParameters";
 import ShowcaseStory from "./examples/Showcase";
 import Variations from "./examples/Variations";
 import FormElement from "../src/FormElement";
@@ -14,25 +15,11 @@ export default {
 export const showcase = ShowcaseStory;
 showcase.story = {
   decorators: [withKnobs],
-  parameters: {
-    options: {
-      isToolshown: true,
-      showPanel: true,
-      panelPosition: "bottom",
-    },
-    viewMode: "story",
-  },
+  parameters: showcaseStoryParameters,
 };
 
 export const variations = Variations;
 variations.story = {
   decorators: [withKnobs],
-  parameters: {
-    options: {
-      isToolshown: true,
-      showPanel: false,
-      panelPosition: "bottom",
-    },
-    viewMode: "story",
-  },
+  parameters: variationsStoryParameters,
 };

@@ -1,27 +1,23 @@
-import { Meta } from "@storybook/addon-docs/blocks";
-import { Description } from "@storybook/addon-docs/blocks";
+import { Meta, Description } from "@storybook/addon-docs/blocks";
 import { getStoryName } from "storybook/storyTree";
 import { Rule } from "storybook/assets/styles/common.styles";
+import { docsStoryParameters } from "storybook/assets/storyParameters";
 import Readme from "../README.md";
 import Textarea from "@paprika/textarea";
-import { FormElementStory } from "./FormElement.stories.styles";
-import CheckboxExample from "./examples/CheckboxExample";
-import RadioExample from "./examples/RadioExample";
-import DatePickerExample from "./examples/DatePickerExample";
-import AccessibilityExample from "./examples/AccessibilityExample";
-import ListBoxExample from "./examples/ListBoxExample";
-import ButtonGroupExample from "./examples/ButtonGroupExample";
-import NativeInputExample from "./examples/NativeInputExample";
-import NestedExample from "./examples/NestedExample";
-import HTMLExample from "./examples/HTMLExample";
-import ComponentLabelExample from "./examples/ComponentLabelExample";
+import { FormElementStyles } from "./FormElement.stories.styles";
+import Checkbox from "./examples/Checkbox";
+import Radio from "./examples/Radio";
+import DatePicker from "./examples/DatePicker";
+import Accessibility from "./examples/Accessibility";
+import ListBox from "./examples/ListBox";
+import ButtonGroup from "./examples/ButtonGroup";
+import NativeInput from "./examples/NativeInput";
+import Nested from "./examples/Nested";
+import HTML from "./examples/HTML";
+import ComponentLabel from "./examples/ComponentLabel";
 import FormElement from "../src/FormElement";
 
-<Meta
-  title={`${getStoryName("FormElement")}/Docs`}
-  component={FormElement}
-  parameters={{ options: { showPanel: false } }}
-/>
+<Meta title={`${getStoryName("FormElement")}/Docs`} component={FormElement} parameters={docsStoryParameters} />
 
 <Description markdown={Readme} />
 
@@ -31,15 +27,10 @@ import FormElement from "../src/FormElement";
 
 - <a href="#accessibility">Accessibility</a>
 - <a href="#basic-input-components">Basic Input Components</a>
-
   - <a href="#textarea">Textarea</a>
-
   - <a href="#checkbox">Checkbox</a>
-
 - <a href="#component-label">Component Label</a>
-
 - <a href="#complex-input-components">Complex Input Components</a>
-
   - <a href="#datepicker">DatePicker</a>
 
 ### Accessibility
@@ -56,28 +47,24 @@ The `<FormElement.Help />` will add an icon with a tooltip next to the label.
     Give me some help. <a href="wegalvanize.com">Learn more</a>.
   </FormElement.Help>
   <FormElement.Instructions>
-    <span>
-      Example text for extra panel for questionnaires. Example text for extra panel for questionnaires Example text for
-      extra panel for questionnaires. Example text for extra panel for questionnaires
-    </span>
+    Example text for extra panel for questionnaires. Example text for extra panel for questionnaires Example text for
+    extra panel for questionnaires. Example text for extra panel for questionnaires
   </FormElement.Instructions>
   <FormElement.Content>
     {({ idForLabel, ariaDescribedBy }) => (
       <Input id={idForLabel} placeholder="Form placeholder" aria-describedby={ariaDescribedBy} />
     )}
   </FormElement.Content>
-  <FormElement.Description>
-    <span>This is description text</span>
-  </FormElement.Description>
+  <FormElement.Description>This is description text</FormElement.Description>
   <FormElement.Error>There was an error</FormElement.Error>
 </FormElement>
 ```
 
 ##### Result
 
-<FormElementStory>
-  <AccessibilityExample />
-</FormElementStory>
+<FormElementStyles>
+  <Accessibility />
+</FormElementStyles>
 
 ### Basic Input Components
 
@@ -95,13 +82,13 @@ The `<FormElement>` can be used with different components to fulfill a variety o
 
 ##### Result
 
-<FormElementStory>
+<FormElementStyles>
   <FormElement label="Form Label">
     <FormElement.Content>
       <Textarea defaultValue="Hello world" />
     </FormElement.Content>
   </FormElement>
-</FormElementStory>
+</FormElementStyles>
 
 #### Checkbox
 
@@ -109,35 +96,26 @@ The `<FormElement>` can be used with different components to fulfill a variety o
 <FormElement hasFieldSet label="Form Label">
   <FormElement.Content>
     {({ ariaDescribedBy: ariaDescribedByOuter }) =>
-    <Checkbox ariaDescribedBy={ariaDescribedBy} onChange={() => {}}>Black Panther</Checkbox>
-    <Checkbox ariaDescribedBy={ariaDescribedBy} onChange={() => {}}>Spiderman</Checkbox>
-    <Checkbox ariaDescribedBy={ariaDescribedBy} onChange={() => {}}>Wonder Woman</Checkbox>
-}
+      <Checkbox ariaDescribedBy={ariaDescribedBy} onChange={() => {}}>Black Panther</Checkbox>
+      <Checkbox ariaDescribedBy={ariaDescribedBy} onChange={() => {}}>Spiderman</Checkbox>
+      <Checkbox ariaDescribedBy={ariaDescribedBy} onChange={() => {}}>Wonder Woman</Checkbox>
+    }
   </FormElement.Content>
-</FormElement>;
+</FormElement>
 ```
 
 ##### Result
 
-<FormElementStory>
-  <CheckboxExample />
-</FormElementStory>
+<FormElementStyles>
+  <Checkbox />
+</FormElementStyles>
 
 #### Component Label
 
 The `ComponentLabel` allows users to use the`label`property of the`<FormElement/ />`. Users can set the label property to equal an entire component, in this particular example making use of the`<Heading />` component.
 
 ```jsx
-<FormElement
-  hasRequiredLabel={false}
-  label={
-    <Heading level={5}>
-      <strong>
-        <i>Form Label</i>
-      </strong>
-    </Heading>
-  }
->
+<FormElement hasRequiredLabel={false} label={<Heading level={4}>Form Label</Heading>}>
   <FormElement.Content>
     {({ idForLabel, ariaDescribedBy }) => (
       <Input id={idForLabel} onChange={() => {}} aria-describedby={ariaDescribedBy} />
@@ -148,9 +126,9 @@ The `ComponentLabel` allows users to use the`label`property of the`<FormElement/
 
 ##### Result
 
-<FormElementStory>
-  <ComponentLabelExample />
-</FormElementStory>
+<FormElementStyles>
+  <ComponentLabel />
+</FormElementStyles>
 
 ### Complex Input Components
 
@@ -172,6 +150,6 @@ The `<FormElement />` can handle a variety of components to further increase the
 
 ##### Result
 
-<FormElementStory>
-  <DatePickerExample />
-</FormElementStory>
+<FormElementStyles>
+  <DatePicker />
+</FormElementStyles>
