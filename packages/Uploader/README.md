@@ -43,7 +43,8 @@ npm install @paprika/uploader
 ## Usage
 
 ```js
-import { UploaderContext } from "@paprika/uploader";
+import { UploaderContext } from "@paprika/uploader/lib/Uploader"
+
 function YourUI() {
   const {
     /*provided by context*/
