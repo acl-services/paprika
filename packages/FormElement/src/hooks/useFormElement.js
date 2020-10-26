@@ -21,18 +21,20 @@ export default function useFormElement(props) {
       id: idForLabel,
       "aria-describedby": ariaDescribedBy,
     },
-    labelA11yProps: {
-      id: idForLabel,
-      ref: refLabel,
-    },
-    instructionsA11yProps: {
-      id: ariaInstructionsId,
-    },
-    descriptionA11yProps: {
-      id: ariaDescriptionId,
-    },
-    errorA11yProps: {
-      id: ariaErrorId,
+    internalA11yProps: {
+      labelA11yProps: {
+        id: idForLabel,
+        ref: refLabel,
+      },
+      instructionsA11yProps: {
+        id: ariaInstructionsId,
+      },
+      descriptionA11yProps: {
+        id: ariaDescriptionId,
+      },
+      errorA11yProps: {
+        id: ariaErrorId,
+      },
     },
   };
 }

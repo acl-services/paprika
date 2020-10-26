@@ -3,21 +3,22 @@ import Heading from "@paprika/heading";
 import { Rule, Tagline } from "storybook/assets/styles/common.styles";
 import Input from "@paprika/input";
 import Button from "@paprika/button";
-// import FormElement from "../../src";
 import { FormElementStory } from "../FormElement.stories.styles";
-import FormElement, { useFormElement, Label, Instructions, Content, Description, Error, Help } from "../../src";
+import FormElement, {
+  useFormElement,
+  Label,
+  Instructions,
+  Content,
+  Description,
+  Error,
+  Help,
+} from "@paprika/form-element";
 
 const ExampleStory = () => {
   const [value, setValue] = React.useState("");
   const [errorText, setErrorText] = React.useState("");
 
-  const {
-    inputA11yProps,
-    labelA11yProps,
-    instructionsA11yProps,
-    descriptionA11yProps,
-    errorA11yProps,
-  } = useFormElement();
+  const { contentA11yProps, internalA11yProps } = useFormElement();
 
   function handleChange(e) {
     setValue(e.target.value);
@@ -39,9 +40,9 @@ const ExampleStory = () => {
       <Rule />
       <Tagline>Form Element with instructions component.</Tagline>
       <Rule />
-      <FormElement label="Form Label">
-        <Label {...labelA11yProps}>Form Label</Label>
-        <Instructions {...instructionsA11yProps}>
+      <FormElement internalA11yProps={internalA11yProps}>
+        <Label>Form Label</Label>
+        <Instructions>
           <span>
             Example text for extra panel for questionnaires. Example text for extra panel for questionnaires Example
             text for extra panel for questionnaires. Example text for extra panel for questionnaires
@@ -53,16 +54,13 @@ const ExampleStory = () => {
             value={value}
             placeholder="Form placeholder"
             hasError={Boolean(errorText.length)}
-            {...inputA11yProps}
+            {...contentA11yProps}
           />
         </Content>
-        <Description {...descriptionA11yProps}>
+        <Description>
           <span>This is description text</span>
         </Description>
-        <Error {...errorA11yProps}>{errorText}</Error>
-        <Help>
-          Give me some help. <a href="wegalvanize.com">Learn more</a>.
-        </Help>
+        <Error>{errorText}</Error>
       </FormElement>
       <Rule />
       <Button onClick={setError} style={{ marginRight: "10px" }}>

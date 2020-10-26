@@ -26,6 +26,7 @@ function FormElement(props) {
     size,
     hasFieldSet,
     onClickLabel,
+    internalA11yProps,
     ...moreProps
   } = props;
 
@@ -46,8 +47,11 @@ function FormElement(props) {
     return null;
   }
 
+  // next steps, render description, error, label and instructions with context
+
   function renderLabel() {
     return getClonedElement(subComponentDisplayNames.Label, {
+      id: internalA11yProps.labelA11yProps,
       hasInstructionsShowing: extractedChildren[subComponentDisplayNames.Instructions],
       hasOptionalLabel: hasRequiredLabel ? false : hasOptionalLabel,
       hasRequiredLabel,
@@ -87,6 +91,8 @@ FormElement.types = {
 };
 
 const propTypes = {
+  internalA11yProps: PropTypes.object,
+
   children: PropTypes.node.isRequired,
 
   /** Should show is optional text besides the label or not. Will not show if hasRequiredLabel prop is true */
@@ -120,6 +126,7 @@ const propTypes = {
 };
 
 const defaultProps = {
+  internalA11yProps: {},
   hasOptionalLabel: false,
   hasRequiredLabel: false,
   id: null,
