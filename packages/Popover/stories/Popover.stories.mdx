@@ -38,7 +38,7 @@ The `<Popover />` component can be set to align with the trigger from any side t
 
 ```jsx
 <Popover align={Popover.types.align.RIGHT}>
-  <Popover.Trigger>{handler => <Button onClick={handler}>Show Popover</Button>}</Popover.Trigger>
+  <Popover.Trigger>{handler => <Button onClick={handler}>Show Popover with Align</Button>}</Popover.Trigger>
   <Popover.Content>
     <Popover.Card>Lorem ipsum single-origin kombucha butcher gentrify foraged flannel.</Popover.Card>
   </Popover.Content>
@@ -49,7 +49,7 @@ The `<Popover />` component can be set to align with the trigger from any side t
 ##### Result
 
 <Popover align={Popover.types.align.RIGHT}>
-  <Popover.Trigger>{handler => <Button onClick={handler}>Show Popover</Button>}</Popover.Trigger>
+  <Popover.Trigger>{handler => <Button onClick={handler}>Show Popover with Align</Button>}</Popover.Trigger>
   <Popover.Content>
     <Popover.Card>Lorem ipsum single-origin kombucha butcher gentrify foraged flannel.</Popover.Card>
   </Popover.Content>
@@ -62,7 +62,7 @@ By using the `edge` property users can set the `<Popover />` card's edge to be a
 
 ```jsx
 <Popover edge={Popover.types.align.LEFT}>
-  <Popover.Trigger>{handler => <Button onClick={handler}>Edge</Button>}</Popover.Trigger>
+  <Popover.Trigger>{handler => <Button onClick={handler}>Show Popover with Edge</Button>}</Popover.Trigger>
   <Popover.Content>
     <Popover.Card>Lorem ipsum single-origin kombucha butcher gentrify foraged flannel.</Popover.Card>
   </Popover.Content>
@@ -73,7 +73,7 @@ By using the `edge` property users can set the `<Popover />` card's edge to be a
 ##### Result
 
 <Popover edge={Popover.types.align.LEFT}>
-  <Popover.Trigger>{handler => <Button onClick={handler}>Edge</Button>}</Popover.Trigger>
+  <Popover.Trigger>{handler => <Button onClick={handler}>Show Popover with Edge</Button>}</Popover.Trigger>
   <Popover.Content>
     <Popover.Card>Lorem ipsum single-origin kombucha butcher gentrify foraged flannel.</Popover.Card>
   </Popover.Content>
@@ -138,7 +138,6 @@ The `<Popover />` component doesn't have to render a Card, if a user wishes to d
 <Popover>
   <Popover.Trigger>{handler => <Button onClick={handler}>Show Popover with no card</Button>}</Popover.Trigger>
   <Popover.Content>Lorem ipsum single-origin kombucha butcher gentrify foraged flannel.</Popover.Content>
-  <Popover.Tip />
 </Popover>
 ```
 

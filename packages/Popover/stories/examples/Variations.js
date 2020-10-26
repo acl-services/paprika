@@ -50,6 +50,7 @@ const Variations = () => (
             <Popover.Card>Lorem ipsum single-origin kombucha butcher gentrify foraged flannel.</Popover.Card>
           </Popover.Content>
         </Popover>
+        <Gap />
         <Popover defaultIsOpen edge={Popover.types.align.RIGHT}>
           <Popover.Trigger>{handler => <Button onClick={handler}>edge right</Button>}</Popover.Trigger>
           <Popover.Content>
