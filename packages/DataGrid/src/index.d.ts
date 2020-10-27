@@ -40,6 +40,7 @@ interface DataGridProps {
   /** Sets the DataGrid width */
   width?: number;
 }
+
 declare namespace DataGrid {
   function ColumnDefinition(props: ColumnDefinitionProps): JSX.Element;
   interface ColumnDefinitionProps {
@@ -72,5 +73,16 @@ declare namespace DataGrid {
     onPressSpaceBar?: (...args: any[]) => any;
 
     width?: number;
+  }
+}
+
+declare namespace DataGrid {
+  namespace types {
+    namespace border {
+      const GRID: any;
+      const NONE: any;
+      const HORIZONTAL: any;
+      const VERTICAL: any;
+    }
   }
 }

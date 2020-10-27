@@ -1,6 +1,6 @@
 import React from "react";
 import PropTypes from "prop-types";
-import * as constants from "@paprika/constants/lib/Constants";
+import types from "../../types";
 
 import * as sc from "./Image.styles";
 
@@ -14,13 +14,13 @@ function NotificationImage({ align, children, ...moreProps }) {
 
 const propTypes = {
   /** Aligns the position of the image */
-  align: PropTypes.oneOf([constants.align.TOP, constants.align.CENTER]),
+  align: PropTypes.oneOf([types.align.TOP, types.align.CENTER]),
 
   children: PropTypes.node,
 };
 
 const defaultProps = {
-  align: constants.align.TOP,
+  align: types.align.TOP,
   children: null,
 };
 

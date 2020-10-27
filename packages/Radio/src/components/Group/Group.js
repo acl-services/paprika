@@ -1,7 +1,7 @@
 import React from "react";
 import PropTypes from "prop-types";
 import nanoid from "nanoid";
-import { ShirtSizes } from "@paprika/helpers/lib/customPropTypes";
+import types from "../../types";
 
 const propTypes = {
   /** aria-labelledby prop on the containing group element */
@@ -20,7 +20,7 @@ const propTypes = {
   onChange: PropTypes.func.isRequired,
 
   /** The size for all radio components. */
-  size: PropTypes.oneOf(ShirtSizes.DEFAULT),
+  size: PropTypes.oneOf([types.size.SMALL, types.size.MEDIUM, types.size.LARGE]),
 };
 
 const defaultProps = {
@@ -28,7 +28,7 @@ const defaultProps = {
   canDeselect: false,
   children: null,
   isDisabled: false,
-  size: ShirtSizes.MEDIUM,
+  size: types.size.MEDIUM,
 };
 
 function Group(props) {
@@ -49,7 +49,7 @@ function Group(props) {
   };
 
   return (
-    <div role="radiogroup" aria-labelledby={a11yText} data-pka-anchor="radio.group">
+    <div role="radiogroup" aria-labelledby={a11yText} data-pka-anchor="radio.group" {...moreGroupProps}>
       {React.Children.map(children, (child, index) => {
         if (child && child.type && child.type.displayName === "Radio") {
           const childKey = { key: `Radio${index}` };
@@ -60,7 +60,6 @@ function Group(props) {
             canDeselect,
             name: child.props.name || name,
             ...childKey,
-            ...moreGroupProps,
           });
         }
         return child;

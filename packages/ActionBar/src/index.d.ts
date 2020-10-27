@@ -6,6 +6,7 @@ interface ActionBarProps {
 
   children: React.ReactNode;
 }
+
 declare namespace ActionBar {
   function ColumnsArrangement(props: ColumnsArrangementProps): JSX.Element;
   interface ColumnsArrangementProps {
@@ -74,5 +75,14 @@ declare namespace ActionBar {
     onClose?: (...args: any[]) => any;
 
     onOpen?: (...args: any[]) => any;
+  }
+}
+
+declare namespace Filter {
+  namespace types {
+    namespace operator {
+      const AND: any;
+      const OR: any;
+    }
   }
 }

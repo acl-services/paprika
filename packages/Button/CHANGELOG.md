@@ -29,3 +29,7 @@ Added aria-disabled tag on LinkButton component [@tristanjasper](https://github.
 ## [0.3.12] - 2020-09-23
 
 Updated DEFAULT hover,visited styles to be resilient to global styling, [@tristanjasper](https://github.com/tristanjasper).
+
+## [0.3.14] - 2020-10-07
+
+Move CloseButton, IconButton, LinkButton to components folder to fix typings and for file structure consistency [kcumlat](https://github.com/kcumlat).

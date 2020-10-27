@@ -116,4 +116,9 @@ describe("TimePicker", () => {
       .should("have.css", "background-color")
       .should("eq", "rgb(204, 229, 253)");
   });
+  it("Should not open popover with isReadOnly", () => {
+    cy.visitStorybook(`${getStoryUrlPrefix("TimePicker")}--read-only`);
+    cy.getByTestId("timePicker-Input").focus();
+    cy.getByTestId("popover.content").should("not.be.visible");
+  });
 });

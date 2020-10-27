@@ -1,0 +1,29 @@
+version: v1.0
+name: Release Paprika
+agent:
+  machine:
+    type: e1-standard-2
+    os_image: ubuntu1804
+blocks:
+  - name: "🍳 Release"
+    task:
+      secrets:
+        - name: github-ssh
+        - name: paprika-env
+      prologue:
+        commands:
+          - checkout
+          - cache restore client-node-modules-$SEMAPHORE_GIT_BRANCH-$(checksum yarn.lock),client-node-modules-$SEMAPHORE_GIT_BRANCH,client-node-modules-master
+          - chmod 0600 ~/keys/github.key
+          - ssh-add ~/keys/github.key
+          - git config user.name "Paprika Semaphore 2.0"
+          - git config user.email "allison.chen@wegalvanize.com"
+          - echo "//registry.npmjs.org/:_authToken=$NPM_PUBLISH_TOKEN" >> .npmrc
+      jobs:
+        - name: "Publish to NPM"
+          commands:
+            - nvm use
+            - npx lerna bootstrap
+            - yarn
+            - yarn lerna version prerelease --yes
+            - yarn lerna publish from-package --yes

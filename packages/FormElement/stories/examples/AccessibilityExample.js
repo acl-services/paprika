@@ -1,20 +1,10 @@
 import React from "react";
-import Heading from "@paprika/heading";
-import { Rule, Tagline } from "storybook/assets/styles/common.styles";
+import { Rule } from "storybook/assets/styles/common.styles";
 import Input from "@paprika/input";
 import Button from "@paprika/button";
-import { FormElementStory } from "../FormElement.stories.styles";
-import FormElement, {
-  useFormElement,
-  Label,
-  Instructions,
-  Content,
-  Description,
-  Error,
-  Help,
-} from "@paprika/form-element";
+import FormElement, { useFormElement, Label, Instructions, Content, Description, Error, Help } from "../../src";
 
-const ExampleStory = () => {
+const AccessibilityExample = () => {
   const [value, setValue] = React.useState("");
   const [errorText, setErrorText] = React.useState("");
 
@@ -33,15 +23,12 @@ const ExampleStory = () => {
   }
 
   return (
-    <FormElementStory>
-      <Heading level={1} displayLevel={2} isLight>
-        Accessibility Example
-      </Heading>
-      <Rule />
-      <Tagline>Form Element with instructions component.</Tagline>
-      <Rule />
-      <FormElement internalA11yProps={internalA11yProps}>
-        <Label>Form Label</Label>
+    <>
+      <FormElement label="Form Label" internalA11yProps={internalA11yProps}>
+        <Label>this is a label</Label>
+        <Help>
+          Give me some help. <a href="wegalvanize.com">Learn more</a>.
+        </Help>
         <Instructions>
           <span>
             Example text for extra panel for questionnaires. Example text for extra panel for questionnaires Example
@@ -67,8 +54,8 @@ const ExampleStory = () => {
         Show an Error
       </Button>
       <Button onClick={clearError}>Clear Error</Button>
-    </FormElementStory>
+    </>
   );
 };
 
-export default () => <ExampleStory />;
+export default () => <AccessibilityExample />;

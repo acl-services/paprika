@@ -28,9 +28,9 @@ function Help(props) {
         <InfoCircleIcon css={iconStyles} aria-hidden type="exclamation-circle" />
       </StyledTrigger>
       <Popover.Content>
-        <Popover.Tip zIndex={moreProps.zIndex ? moreProps.zIndex + 1 : undefined} />
         <Popover.Card>{children}</Popover.Card>
       </Popover.Content>
+      <Popover.Tip />
     </Popover>
   );
 }

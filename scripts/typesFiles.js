@@ -2,18 +2,20 @@
 const fs = require("fs");
 // eslint-disable-next-line import/no-extraneous-dependencies
 const shell = require("shelljs");
-// eslint-disable-next-line import/no-extraneous-dependencies
-const reactDocs = require("react-docgen");
+const parseFileToReactDoc = require("./parseFileToReactDoc");
 
 const packagesProcessInTsc = ["Tokens", "Constants"];
 const skipPackages = ["Guard", "Icon", "Stylers", "helpers", "Calendar"];
 
 const fileName = "index.d.ts";
-/* prettier-ignore */
-const renderDeclarationTemplate = ({ displayName = "", props = "" }) => {
+
+const renderDeclarationTemplate = ({ displayName = "", props = "", typeConstants = "" }) => {
   return `export default ${displayName};
 
-${props}`;
+${props}
+
+${typeConstants}
+`;
 };
 
 const createPropsList = ({ info }) => {
@@ -26,11 +28,12 @@ const createPropsList = ({ info }) => {
 
   const declareComp = !dottedNotation
     ? `declare function ${displayName}(props:${displayName}Props): JSX.Element;`
-    : `declare namespace ${compName} {
+    : `
+    declare namespace ${compName} {
       function ${displayName}(props:${displayName}Props): JSX.Element;`;
 
-  /* prettier-ignore */
-  const list = [`${declareComp}
+  const list = [
+    `${declareComp}
   interface ${displayName}Props{
     [x:string]: any;
     `,
@@ -82,11 +85,11 @@ const createPropsList = ({ info }) => {
 
     const req = v.required.toString() === "false" ? "?:" : ":";
     const description = v.description ? `/** ${v.description} */` : "";
-    /* prettier-ignore */
+
     return list.push(` ${description}
     ${key}${req} ${type};\n`);
   });
-  list.push(`}`);
+  list.push(`\n }\n`);
   if (dottedNotation) list.push(`}`);
   return list.join("");
 };
@@ -116,10 +119,7 @@ const processPropsList = ({ info, folder, path, paprikaDocs = null }) => {
   if (paprikaDocs && "subComponents" in paprikaDocs) {
     paprikaDocs.subComponents.forEach(subComponent => {
       const subComponentContent = fs.readFileSync(`${path}/src/components/${subComponent}/${subComponent}.js`, "utf8");
-      const arrayOfComponentsDefinitions = reactDocs.parse(
-        subComponentContent,
-        reactDocs.resolver.findAllComponentDefinitions
-      );
+      const arrayOfComponentsDefinitions = parseFileToReactDoc(subComponentContent);
       let _info = extractCorrectComponentDefinition({
         desireDefinition: subComponent,
         arrayOfComponentsDefinitions,
@@ -147,12 +147,12 @@ shell.ls("packages").forEach(folder => {
     try {
       const { paprikaDocs = null } = JSON.parse(fs.readFileSync(`${path}/package.json`, "utf8"));
       const componentContent = fs.readFileSync(`${path}/src/${folder}.js`, "utf8");
-      const arrayOfComponentsDefinitions = reactDocs.parse(
-        componentContent,
-        reactDocs.resolver.findAllComponentDefinitions
-      );
+      const arrayOfComponentsDefinitions = parseFileToReactDoc(componentContent);
 
-      const info = extractCorrectComponentDefinition({ desireDefinition: folder, arrayOfComponentsDefinitions });
+      const info = extractCorrectComponentDefinition({
+        desireDefinition: folder,
+        arrayOfComponentsDefinitions,
+      });
 
       if (!info) return;
 
@@ -164,12 +164,53 @@ shell.ls("packages").forEach(folder => {
         folder,
       });
 
+      // Constants
+      const regex = /\.types\./;
+      const constants = propsList // return an array, [constants.type]
+        .toString()
+        .split(" ")
+        .filter(e => {
+          return regex.test(e);
+        });
+
+      const typesConst = constants.map(e =>
+        e
+          .toString()
+          .replace(";", "")
+          .replace(/\|/gi, ".")
+          .split(/\./)
+          .filter((value, index, self) => self.indexOf(value) === index)
+      );
+
+      const typesTemp = typesConst
+        .map(
+          e => `
+declare namespace ${e[0]}{
+  namespace ${e[1]}{
+    namespace ${e[2]}{
+      ${e
+        .splice(3)
+        .map(i => {
+          return `
+      const ${i}: any;`;
+        })
+        .join("")}
+    }
+  }
+}`
+        )
+        .join("");
+
       const template = renderDeclarationTemplate({
         displayName: info.displayName,
         props: propsList.join(""),
+        typeConstants: typesTemp,
       });
 
-      fs.writeFileSync(`${path}/src/${fileName}`, template, { encoding: "utf8", flag: "w" });
+      fs.writeFileSync(`${path}/src/${fileName}`, template, {
+        encoding: "utf8",
+        flag: "w",
+      });
     } catch (e) {
       console.warn(e);
     }

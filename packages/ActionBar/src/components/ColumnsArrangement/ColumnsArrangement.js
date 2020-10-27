@@ -92,7 +92,13 @@ export default function ColumnsArrangement(props) {
         ) : (
           <Popover.Trigger>
             {(handler, attributes, isOpen) => (
-              <sc.Trigger {...attributes} onClick={handler} hasColumnsHidden={hiddenColumns.length > 0} isOpen={isOpen}>
+              <sc.Trigger
+                kind={Button.types.kind.FLAT}
+                {...attributes}
+                onClick={handler}
+                hasColumnsHidden={hiddenColumns.length > 0}
+                isOpen={isOpen}
+              >
                 <sc.Icon />
                 {getLabelText(hiddenColumns.length, I18n)}
               </sc.Trigger>

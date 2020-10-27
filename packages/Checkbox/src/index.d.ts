@@ -20,3 +20,22 @@ interface CheckboxProps {
   /** Value for tabindex attribute to override the default of 0. */
   tabIndex?: number | string;
 }
+
+declare namespace Checkbox {
+  namespace types {
+    namespace state {
+      const CHECKED: any;
+      const UNCHECKED: any;
+      const INDETERMINATE: any;
+    }
+  }
+}
+declare namespace Checkbox {
+  namespace types {
+    namespace size {
+      const SMALL: any;
+      const MEDIUM: any;
+      const LARGE: any;
+    }
+  }
+}

@@ -113,7 +113,7 @@ en:
       columns_arrangement:
         hide_all: Hide all
         show_all: Show all
-        label: Arrange columns
+        label: Arrange
         singular_label: 1 column hidden
         plural_label: "{{numberOfHiddenColumn}} columns hidden"
         search_placeholder: Filter...
@@ -169,4 +169,7 @@ en:
             text: Sort descending (Z → A)
             date: Sort descending (9 → 1)
             single_select: Sort descending (Z → A)
+    breadcrumbs:
+      aria_label: Breadcrumbs
+      aria_expand: Show all breadcrumb items.
           

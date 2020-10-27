@@ -24,3 +24,21 @@ interface ConfirmationProps {
   /** Callback when confirm button is clicked */
   onConfirm: (...args: any[]) => any;
 }
+
+declare namespace Confirmation {
+  namespace types {
+    namespace size {
+      const SMALL: any;
+      const MEDIUM: any;
+      const LARGE: any;
+    }
+  }
+}
+declare namespace Confirmation {
+  namespace types {
+    namespace kind {
+      const PRIMARY: any;
+      const DESTRUCTIVE: any;
+    }
+  }
+}

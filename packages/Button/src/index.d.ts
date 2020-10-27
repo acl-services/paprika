@@ -43,3 +43,131 @@ interface ButtonProps {
   /** Value for tabindex attribute to override the default of 0. */
   tabIndex?: number;
 }
+
+declare namespace Button {
+  function Close(props: CloseProps): JSX.Element;
+  interface CloseProps {
+    [x: string]: any;
+    /** Descriptive a11y text for assistive technologies. By default, text from children node will be used. */
+    a11yText?: string;
+    /** If the close button will be rendered on a dark background and will use inverted colours. */
+    isDark?: boolean;
+  }
+}
+declare namespace Button {
+  function Icon(props: IconProps): JSX.Element;
+  interface IconProps {
+    [x: string]: any;
+    /** Body content of the button (an icon). */
+    children: React.ReactNode;
+    /** The visual style of the button. */
+    kind?:
+      | Icon.types.kind.DEFAULT
+      | Icon.types.kind.PRIMARY
+      | Icon.types.kind.SECONDARY
+      | Icon.types.kind.DESTRUCTIVE
+      | Icon.types.kind.FLAT
+      | Icon.types.kind.MINOR
+      | Icon.types.kind.LINK;
+    /** Size of the button (font size, min-height, padding, etc). */
+    size?: Icon.types.size.SMALL | Icon.types.size.MEDIUM | Icon.types.size.LARGE;
+  }
+}
+declare namespace Button {
+  function Link(props: LinkProps): JSX.Element;
+  interface LinkProps {
+    [x: string]: any;
+    /** Descriptive a11y text for assistive technologies. By default, text from children node will be used. */
+    a11yText?: string;
+    /** Body content of the button. */
+    children: React.ReactNode;
+    /** Url for the link. */
+    href: string;
+    /** An icon to be included to the left of children content. */
+    icon?: React.ReactNode;
+    /** If the button is disabled. */
+    isDisabled?: boolean;
+    /** The visual style of the button. */
+    kind?:
+      | Link.types.kind.DEFAULT
+      | Link.types.kind.PRIMARY
+      | Link.types.kind.SECONDARY
+      | Link.types.kind.DESTRUCTIVE
+      | Link.types.kind.FLAT
+      | Link.types.kind.MINOR
+      | Link.types.kind.LINK;
+    /** Size of the button (font size, min-height, padding, etc). */
+    size?: Link.types.size.SMALL | Link.types.size.MEDIUM | Link.types.size.LARGE;
+    /** Whether the link should open a new tab. */
+    shouldOpenNewTab?: boolean;
+    /** Size of the button (font size, min-height, padding, etc). */
+    suffixIcon?: React.ReactNode;
+  }
+}
+
+declare namespace Button {
+  namespace types {
+    namespace kind {
+      const DEFAULT: any;
+      const PRIMARY: any;
+      const SECONDARY: any;
+      const DESTRUCTIVE: any;
+      const FLAT: any;
+      const MINOR: any;
+      const LINK: any;
+    }
+  }
+}
+declare namespace Button {
+  namespace types {
+    namespace size {
+      const SMALL: any;
+      const MEDIUM: any;
+      const LARGE: any;
+    }
+  }
+}
+declare namespace Icon {
+  namespace types {
+    namespace kind {
+      const DEFAULT: any;
+      const PRIMARY: any;
+      const SECONDARY: any;
+      const DESTRUCTIVE: any;
+      const FLAT: any;
+      const MINOR: any;
+      const LINK: any;
+    }
+  }
+}
+declare namespace Icon {
+  namespace types {
+    namespace size {
+      const SMALL: any;
+      const MEDIUM: any;
+      const LARGE: any;
+    }
+  }
+}
+declare namespace Link {
+  namespace types {
+    namespace kind {
+      const DEFAULT: any;
+      const PRIMARY: any;
+      const SECONDARY: any;
+      const DESTRUCTIVE: any;
+      const FLAT: any;
+      const MINOR: any;
+      const LINK: any;
+    }
+  }
+}
+declare namespace Link {
+  namespace types {
+    namespace size {
+      const SMALL: any;
+      const MEDIUM: any;
+      const LARGE: any;
+    }
+  }
+}

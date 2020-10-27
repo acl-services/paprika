@@ -1,6 +1,6 @@
 import React from "react";
 import PropTypes from "prop-types";
-import SvgClockTime from "@paprika/icon/lib/ClockTime";
+import ClockIcon from "@paprika/icon/lib/Clock";
 import Input from "@paprika/input";
 import useI18n from "@paprika/l10n/lib/useI18n";
 import Popover from "@paprika/popover";
@@ -23,6 +23,9 @@ const propTypes = {
   /** If the TimePicker is disabled. */
   isDisabled: PropTypes.bool,
 
+  /** Should be read-only or not, default is false. */
+  isReadOnly: PropTypes.bool,
+
   /** Callback to be executed when the value is changed. */
   onChange: PropTypes.func,
 
@@ -35,12 +38,13 @@ const defaultProps = {
   defaultIsOpen: false,
   defaultValue: null,
   isDisabled: false,
+  isReadOnly: false,
   onChange: () => {},
   onError: () => {},
 };
 
 function TimePicker(props) {
-  const { a11yText, defaultIsOpen, defaultValue, isDisabled, onChange, onError, ...moreProps } = props;
+  const { a11yText, defaultIsOpen, defaultValue, isDisabled, isReadOnly, onChange, onError, ...moreProps } = props;
 
   const [isOpen, setIsOpen] = React.useState(defaultIsOpen);
   const [time, setTime] = React.useState(() => {
@@ -111,7 +115,7 @@ function TimePicker(props) {
   };
 
   const handleFocus = () => {
-    if (!isDisabled) {
+    if (!isDisabled && !isReadOnly) {
       setIsOpen(true);
     }
   };
@@ -148,6 +152,7 @@ function TimePicker(props) {
   };
 
   const { t } = useI18n();
+
   return (
     <sc.TimePicker onFocus={handleFocus} onBlur={handleBlur}>
       <Popover style={{ width: "100%" }} isOpen={isOpen} edge="left" offset={0} align="bottom" shouldKeepFocus>
@@ -155,8 +160,9 @@ function TimePicker(props) {
           <Input
             ariaLabel={a11yText}
             hasClearButton={false}
-            icon={<SvgClockTime />}
+            icon={<ClockIcon />}
             isDisabled={isDisabled}
+            isReadOnly={isReadOnly}
             onChange={handleChange}
             onKeyUp={handleKeyUp}
             onFocus={handleFocus}

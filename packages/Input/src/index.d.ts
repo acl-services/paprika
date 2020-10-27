@@ -41,3 +41,26 @@ interface InputProps {
   /** The value inside of the input */
   value?: string;
 }
+
+declare namespace Input {
+  namespace types {
+    namespace size {
+      const SMALL: any;
+      const MEDIUM: any;
+      const LARGE: any;
+    }
+  }
+}
+declare namespace Input {
+  namespace types {
+    namespace type {
+      const EMAIL: any;
+      const NUMBER: any;
+      const PASSWORD: any;
+      const SEARCH: any;
+      const TELEPHONE: any;
+      const TEXT: any;
+      const URL: any;
+    }
+  }
+}

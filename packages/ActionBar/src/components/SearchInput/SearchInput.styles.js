@@ -3,5 +3,6 @@ import PaprikaInput from "@paprika/input";
 import tokens from "@paprika/tokens";
 
 export const Input = styled(PaprikaInput)`
-  margin-right: ${tokens.spaceSm};
+  box-shadow: rgba(0, 0, 0, 0.1) 0px 1px 2px 0px;
+  margin-right: ${tokens.space};
 `;

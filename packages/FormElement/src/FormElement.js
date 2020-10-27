@@ -52,7 +52,6 @@ function FormElement(props) {
   function renderLabel() {
     return getClonedElement(subComponentDisplayNames.Label, {
       id: internalA11yProps.labelA11yProps,
-      hasInstructionsShowing: extractedChildren[subComponentDisplayNames.Instructions],
       hasOptionalLabel: hasRequiredLabel ? false : hasOptionalLabel,
       hasRequiredLabel,
       help: extractedChildren[subComponentDisplayNames.Help],

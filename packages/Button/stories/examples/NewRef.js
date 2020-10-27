@@ -7,7 +7,7 @@ function clickHandler() {
   action("Clicked a button")();
 }
 
-const ExampleStory = () => {
+export default function NewRef() {
   const buttonRef = React.useRef(null);
 
   React.useEffect(() => {
@@ -31,6 +31,4 @@ const ExampleStory = () => {
       </p>
     </Story>
   );
-};
-
-export default ExampleStory;
+}

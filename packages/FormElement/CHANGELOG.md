@@ -55,3 +55,11 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 ### Added
 
 - Updated: Created and placed all constants into type.js file. [@kaan.darcey](https://github.com/KDarcey).
+
+## [0.3.37-alpha.1] - 2020-10-27
+
+2020-10-27
+
+### Changed
+
+- Changed label spacing, cleanup instructions margins. Moved Help tooltip to fix z-index issue [@tristanjasper](https://github.com/tristanjasper).
