@@ -1,7 +1,6 @@
 import styled from "styled-components";
 import tokens from "@paprika/tokens";
 import stylers from "@paprika/stylers";
-import { toInt } from "@paprika/stylers/lib/helpers";
 
 export const Instructions = styled.div`
   ${stylers.lineHeight(-1)}
