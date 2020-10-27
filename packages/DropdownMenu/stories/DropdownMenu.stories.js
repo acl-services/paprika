@@ -11,6 +11,7 @@ import DropdownMenuDisabledExample from "./examples/DropdownMenuDisabledExample"
 import DropdownMenuDividersExample from "./examples/DropdownMenuDividersExample";
 import DropdownMenuLongestExample from "./examples/DropdownMenuLongestExample";
 import DropdownMenuTriggerExample from "./examples/DropdownMenuTriggerExample";
+import DropdownMenuOnCloseExample from "./examples/DropdownMenuOnCloseExample";
 import ZIndexExample from "./examples/ZIndex";
 
 const storyName = getStoryName("DropdownMenu");
@@ -55,6 +56,11 @@ storiesOf(`${storyName}/Examples`, module)
   .add("with trigger examples", () => (
     <DropdownMenuStory>
       <DropdownMenuTriggerExample />
+    </DropdownMenuStory>
+  ))
+  .add("with onClose", () => (
+    <DropdownMenuStory>
+      <DropdownMenuOnCloseExample />
     </DropdownMenuStory>
   ));
 

@@ -19,6 +19,9 @@ const propTypes = {
   /** If provided, will align Popover to specified edge of Trigger */
   edge: Popover.propTypes.edge,
 
+  /** If provided, will fire when the Popover is closed */
+  onClose: Popover.propTypes.onClose,
+
   /** The z-index for the popover / confirmation */
   zIndex: Popover.propTypes.zIndex,
 };
@@ -26,13 +29,14 @@ const propTypes = {
 const defaultProps = {
   align: Popover.defaultProps.align,
   edge: Popover.defaultProps.edge,
+  onClose: Popover.defaultProps.onClose,
   zIndex: Popover.defaultProps.zIndex,
 };
 
 const popoverOffset = 4;
 
 function DropdownMenu(props) {
-  const { align, children, edge, zIndex, ...moreProps } = props;
+  const { align, children, edge, onClose, zIndex, ...moreProps } = props;
 
   const [isOpen, setIsOpen] = React.useState(false);
   const [isConfirming, setIsConfirming] = React.useState(false);
@@ -58,6 +62,10 @@ function DropdownMenu(props) {
     }
 
     if (triggerRef.current) triggerRef.current.focus();
+
+    if (onClose) {
+      onClose();
+    }
   };
 
   const handleOpenMenu = () => {
