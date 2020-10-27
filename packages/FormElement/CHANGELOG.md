@@ -10,7 +10,7 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 
 # Added
 
-- Changed label spacing, cleanup instructions margins [@tristanjasper](https://github.com/tristanjasper).
+- Changed label spacing, cleanup instructions margins. Moved Help tooltip to fix z-index issue [@tristanjasper](https://github.com/tristanjasper).
 
 ## [0.3.0] - 2020-01-17
 
