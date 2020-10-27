@@ -8,21 +8,32 @@ import * as sc from "./ListBoxTags.styles";
 const propTypes = {
   children: PropTypes.node.isRequired,
   noResultsMessage: PropTypes.string,
+  onChange: PropTypes.func,
   onCustomOption: PropTypes.func,
+  onRemove: PropTypes.func,
   regexCustomOption: PropTypes.instanceOf(RegExp),
+  selectedOptions: PropTypes.arrayOf(PropTypes.shape({})),
 };
 
 const defaultProps = {
-  onCustomOption: null,
   noResultsMessage: null,
+  onChange: () => {},
+  onRemove: () => {},
+  onCustomOption: null,
   regexCustomOption: /^.+@.+\..+$/,
+  selectedOptions: null,
 };
 
-const renderTrigger = ({ t, size, refListBox }) => (...args) => {
+const renderTrigger = ({ t, size, refListBox, selectedOptions, onRemove }) => (...args) => {
   const [selected, options, , attributes] = args;
   const { propsForTrigger, refTrigger, dispatch, types, handleKeyDown, handleKeyUp } = attributes;
 
+  const areOptionsFromProps = selectedOptions !== null;
+
+  const pillsSelectedOnTrigger = areOptionsFromProps ? selectedOptions : selected;
+
   function handleClick(event) {
+    event.stopPropagation();
     if (event.target.dataset.pkaAnchor === "listbox-tags-pill-delete") {
       return;
     }
@@ -31,7 +42,13 @@ const renderTrigger = ({ t, size, refListBox }) => (...args) => {
     dispatch({ type: types.togglePopover });
   }
 
-  const handleDelete = option => () => {
+  const handleRemove = option => event => {
+    event.stopPropagation();
+    if (areOptionsFromProps) {
+      onRemove(option);
+      return;
+    }
+
     refListBox.current.toggleSelectedOption(option.index);
   };
 
@@ -45,21 +62,37 @@ const renderTrigger = ({ t, size, refListBox }) => (...args) => {
       size={size}
     >
       <Pills>
-        {selected.map(index => {
+        {pillsSelectedOnTrigger.map(item => {
+          if (areOptionsFromProps) {
+            return (
+              <Pill key={item.label} onRemove={handleRemove(item)}>
+                {item.label}
+              </Pill>
+            );
+          }
           return (
-            <Pill key={options[index].label} onDelete={handleDelete(options[index])}>
-              {options[index].label}
+            <Pill key={options[item].label} onRemove={handleRemove(options[item])}>
+              {options[item].label}
             </Pill>
           );
         })}
-        {selected.length ? null : <div>{t("listBoxTags.placeholder")}</div>}
+        {pillsSelectedOnTrigger.length ? null : <div>{t("listBoxTags.placeholder")}</div>}
       </Pills>
     </sc.Trigger>
   );
 };
 
 export default function ListBoxTags(props) {
-  const { children, noResultsMessage, onCustomOption, regexCustomOption, ...moreProps } = props;
+  const {
+    children,
+    noResultsMessage,
+    onCustomOption,
+    regexCustomOption,
+    selectedOptions,
+    onChange,
+    onRemove,
+    ...moreProps
+  } = props;
   const { t } = useI18n();
 
   /* eslint-disable react/prop-types */
@@ -88,11 +121,19 @@ export default function ListBoxTags(props) {
     }
   }
 
+  function handleChange(...args) {
+    if (selectedOptions !== null && "length" in selectedOptions) {
+      refFilter.current.reset();
+    }
+
+    onChange(...args);
+  }
+
   const noResultMessageProp = noResultsMessage === null ? {} : { noResultsMessage };
 
   return (
-    <ListBox ref={refListBox} isMulti size={size} {...moreProps}>
-      <ListBox.Trigger>{renderTrigger({ size, refListBox, t })}</ListBox.Trigger>
+    <ListBox ref={refListBox} isMulti size={size} onChange={handleChange} {...moreProps}>
+      <ListBox.Trigger>{renderTrigger({ size, refListBox, selectedOptions, onRemove, t })}</ListBox.Trigger>
       <ListBox.Filter ref={refFilter} onKeyDown={handleKeyDown} {...noResultMessageProp} />
       {children}
     </ListBox>
