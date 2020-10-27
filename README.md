@@ -120,6 +120,29 @@ Contributors are welcome to [submit a bug report](https://github.com/acl-service
 or open a pull request.
 If you’re just getting started, check out the [Help Wanted](https://github.com/acl-services/paprika/issues?q=is%3Aissue+is%3Aopen+label%3A%22Help+Wanted%22) or [Good First Issues](https://github.com/acl-services/paprika/issues?q=is%3Aissue+is%3Aopen+label%3A%22Good+First+Issue%22).
 
+#### Enforced standards
+
+In order to commit code :
+**1) your branch name must start with a JIRA ticket:**
+
+```sh
+ ABC-123--updating-whatever #valid
+ xx-0000--updating-whatever #valid
+ updating-whatever          #invalid
+```
+
+**2) your commit must follow `Conventional commits` pattern:**
+
+```sh
+git commit -m "feat(ListBox): added feature x"   #valid
+git commit -m "fix(Button): made it work in IE9" #valid
+git commit -m "bug(Button): made it work in IE9" #invalid (invalid type)
+git commit -m "feat: added feature x"            #invalid (missing scope)
+git commit -m "added feature x"                  #invalid (missing type and scope)
+```
+
+The valid "types" are: `feat`, `fix`, `style`, `test`, `docs`, `build`, `chore`, `ci`, `perf`, `refactor`, `revert`
+
 #### More Information
 
 For more information please check out our [Contributing Guidelines](https://github.com/acl-services/paprika/wiki/Contributing-Guidelines). You may want to start with the [Getting Started Guide](https://github.com/acl-services/paprika/wiki/Getting-Started)
