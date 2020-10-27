@@ -8,7 +8,7 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 
 2020-10-27
 
-# Added
+# Changed (Breaking)
 
 - Moved moreGroupProps to be spread on Group component rather than children [@tristanjasper](https://github.com/tristanjasper).
 
