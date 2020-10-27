@@ -11,6 +11,8 @@ interface TimePickerProps {
   defaultValue?: string;
   /** If the TimePicker is disabled. */
   isDisabled?: boolean;
+  /** Should be read-only or not, default is false. */
+  isReadOnly?: boolean;
   /** Callback to be executed when the value is changed. */
   onChange?: (...args: any[]) => any;
   /** Callback to be executed when there is an error. */

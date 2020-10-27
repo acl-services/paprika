@@ -1,5 +1,6 @@
 import React from "react";
 import ButtonGroup from "@paprika/button-group";
+import stylers from "@paprika/stylers";
 import FormElement from "../../src/FormElement";
 
 export default function ButtonGroupExample() {
@@ -14,7 +15,11 @@ export default function ButtonGroupExample() {
   return (
     <FormElement label="Form Label" onClickLabel={() => refButtonGroup.current.focus()}>
       <FormElement.Content>
-        {() => <ButtonGroup ref={refButtonGroup}>{buttonGroupOptions}</ButtonGroup>}
+        {() => (
+          <ButtonGroup style={{ marginTop: stylers.spacer(2) }} ref={refButtonGroup}>
+            {buttonGroupOptions}
+          </ButtonGroup>
+        )}
       </FormElement.Content>
     </FormElement>
   );
