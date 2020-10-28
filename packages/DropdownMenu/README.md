@@ -22,12 +22,13 @@ npm install @paprika/dropdown-menu
 
 ### DropdownMenu
 
-| Prop     | Type   | required | default                     | Description                                                  |
-| -------- | ------ | -------- | --------------------------- | ------------------------------------------------------------ |
-| align    | custom | false    | Popover.defaultProps.align  | Alignment of the Popover                                     |
-| children | node   | true     | -                           | Children should consist of <Dropdown.Item />                 |
-| edge     | custom | false    | Popover.defaultProps.edge   | If provided, will align Popover to specified edge of Trigger |
-| zIndex   | custom | false    | Popover.defaultProps.zIndex | The z-index for the popover / confirmation                   |
+| Prop     | Type   | required | default                      | Description                                                  |
+| -------- | ------ | -------- | ---------------------------- | ------------------------------------------------------------ |
+| align    | custom | false    | Popover.defaultProps.align   | Alignment of the Popover                                     |
+| children | node   | true     | -                            | Children should consist of <Dropdown.Item />                 |
+| edge     | custom | false    | Popover.defaultProps.edge    | If provided, will align Popover to specified edge of Trigger |
+| onClose  | custom | false    | Popover.defaultProps.onClose | If provided, will fire when the Popover is closed            |
+| zIndex   | custom | false    | Popover.defaultProps.zIndex  | The z-index for the popover / confirmation                   |
 
 ### DropdownMenu.Item
 
