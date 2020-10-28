@@ -146,3 +146,15 @@ export default function ListBoxTags(props) {
 ListBoxTags.propTypes = propTypes;
 ListBoxTags.defaultProps = defaultProps;
 ListBoxTags.Option = ListBox.Option;
+ListBoxTags.filter = (search, data) => {
+  const regex = new RegExp(`${search}`, "gi");
+  const results = [];
+  // eslint-disable-next-line no-use-before-define
+  for (const d of data) {
+    if (d.label.match(regex) !== null) {
+      results.push(d);
+    }
+  }
+
+  return results;
+};
