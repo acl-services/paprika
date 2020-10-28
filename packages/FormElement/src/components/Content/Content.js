@@ -1,33 +1,27 @@
 import React from "react";
 import PropTypes from "prop-types";
-import { RefOf } from "@paprika/helpers/lib/customPropTypes";
 import * as sc from "./Content.styles";
 
 const propTypes = {
   children: PropTypes.oneOfType([PropTypes.func, PropTypes.node]).isRequired,
-  /** Sets id for label */
-  idForLabel: PropTypes.string,
-  refLabel: RefOf(),
-  /** Used for aria-describedby on the FormElement */
-  ariaDescribedBy: PropTypes.string,
+  isInline: PropTypes.bool,
 };
 
 const defaultProps = {
-  idForLabel: null,
-  ariaDescribedBy: null,
-  refLabel: null,
+  isInline: false,
 };
 
 function Content(props) {
-  const { children, idForLabel, refLabel, ariaDescribedBy, ...moreProps } = props;
+  const { children, isInline, ...moreProps } = props;
 
   if (!children) {
     return null;
   }
 
+  // can add content inline support
   return (
     <sc.ContentContainer data-pka-anchor="form-element.content" {...moreProps}>
-      {typeof children === "function" ? children({ idForLabel, refLabel, ariaDescribedBy }) : children}
+      {children}
     </sc.ContentContainer>
   );
 }

@@ -14,14 +14,27 @@ export default function useFormElement(props) {
   const generateLabelId = id => (isNil(id) || id === "" ? uniqueInputId : id);
   const idForLabel = generateLabelId("");
   const refLabel = React.useRef(null);
-  // const idForLabel = generateLabelId(id);
 
   return {
     inputA11yProps: {
       id: idForLabel,
       "aria-describedby": ariaDescribedBy,
     },
-    internalA11yProps: {
+    checkboxA11yProps: {
+      id: idForLabel,
+      "aria-describedby": ariaDescribedBy,
+    },
+    radioA11yProps: {
+      "aria-describedby": ariaDescribedBy,
+    },
+    datePickerA11yProps: {
+      id: idForLabel,
+      "aria-describedby": ariaDescribedBy,
+    },
+    listBoxA11yProps: {
+      refLabel,
+    },
+    formElementA11yProps: {
       labelA11yProps: {
         id: idForLabel,
         ref: refLabel,

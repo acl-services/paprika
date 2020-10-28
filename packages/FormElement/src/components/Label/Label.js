@@ -6,6 +6,7 @@ import useI18n from "@paprika/l10n/lib/useI18n";
 import labelStyles, { ruleStyles } from "./Label.styles";
 
 const propTypes = {
+  children: PropTypes.node.isRequired,
   /** If "optional" text should be displayed beside the label  */
   hasOptionalLabel: PropTypes.bool.isRequired,
   /** If "require" text should be displayed beside the label */
@@ -18,8 +19,6 @@ const propTypes = {
   isInline: PropTypes.bool.isRequired,
   /** Should label be hidden */
   isVisuallyHidden: PropTypes.bool.isRequired,
-  /** Label text of the input field */
-  label: PropTypes.node.isRequired,
   /** Set if FormElement contains multiple children to render a legend element instead of label */
   hasFieldSet: PropTypes.bool.isRequired,
 
@@ -33,7 +32,7 @@ const defaultProps = {
 };
 
 const Label = React.forwardRef((props, ref) => {
-  const { hasOptionalLabel, hasRequiredLabel, help, id, hasFieldSet, label, ...moreProps } = props;
+  const { hasOptionalLabel, hasRequiredLabel, help, id, hasFieldSet, children, ...moreProps } = props;
 
   const I18n = useI18n();
 
@@ -41,7 +40,7 @@ const Label = React.forwardRef((props, ref) => {
 
   return (
     <div data-pka-anchor="form-element.label" css={labelStyles} {...labelProps} {...moreProps}>
-      {label}
+      {children}
       {hasOptionalLabel || hasRequiredLabel ? (
         <span css={ruleStyles}>
           {" "}

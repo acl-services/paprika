@@ -5,7 +5,7 @@ import Input from "@paprika/input";
 import { Rule, Tagline } from "storybook/assets/styles/common.styles";
 import { ShirtSizes } from "@paprika/helpers/lib/customPropTypes";
 import { FormElementStory } from "../FormElement.stories.styles";
-import FormElement from "../../src";
+import FormElement, { useFormElement, Label, Instructions, Content, Description, Error, Help } from "../../src";
 
 const getKnobs = () => ({
   hasOptionalLabel: boolean("hasOptionalLabel", false),
@@ -40,6 +40,8 @@ const helpPropKnobs = () => ({
 const Showcase = props => {
   const [value, setValue] = React.useState("");
 
+  const { inputA11yProps, formElementA11yProps } = useFormElement();
+
   function handleChange(e) {
     setValue(e.target.value);
   }
@@ -50,29 +52,27 @@ const Showcase = props => {
       </Heading>
       <Tagline>Form Element.</Tagline>
       <Rule />
-      <FormElement {...props}>
-        <FormElement.Instructions>{instructionsPropKnobs().instructionsText}</FormElement.Instructions>
-        <FormElement.Content>
-          {({ idForLabel, ariaDescribedBy }) => (
-            <Input
-              id={idForLabel}
-              onChange={handleChange}
-              value={value}
-              placeholder="Form placeholder"
-              aria-describedby={ariaDescribedBy}
-              aria-required={props.hasRequiredLabel}
-              hasError={Boolean(errorPropKnobs().errorText)}
-              isDisabled={props.isDisabled}
-              isReadOnly={props.isReadOnly}
-              size={props.size}
-            />
-          )}
-        </FormElement.Content>
-        <FormElement.Error>{errorPropKnobs().errorText}</FormElement.Error>
-        <FormElement.Description>
+      <FormElement {...props} formElementA11yProps={formElementA11yProps}>
+        <Label>{props.label}</Label>
+        <Instructions>{instructionsPropKnobs().instructionsText}</Instructions>
+        <Content>
+          <Input
+            onChange={handleChange}
+            value={value}
+            placeholder="Form placeholder"
+            aria-required={props.hasRequiredLabel}
+            hasError={Boolean(errorPropKnobs().errorText)}
+            isDisabled={props.isDisabled}
+            isReadOnly={props.isReadOnly}
+            size={props.size}
+            {...inputA11yProps}
+          />
+        </Content>
+        <Error>{errorPropKnobs().errorText}</Error>
+        <Description>
           <span>{descriptionPropKnobs().descriptionText}</span>
-        </FormElement.Description>
-        <FormElement.Help>{helpPropKnobs().helpText}</FormElement.Help>
+        </Description>
+        <Help>{helpPropKnobs().helpText}</Help>
       </FormElement>
     </FormElementStory>
   );

@@ -22,11 +22,10 @@ function FormElement(props) {
     isDisabled,
     isInline,
     isLabelVisuallyHidden,
-    label,
     size,
     hasFieldSet,
     onClickLabel,
-    internalA11yProps,
+    formElementA11yProps,
     ...moreProps
   } = props;
 
@@ -42,7 +41,10 @@ function FormElement(props) {
 
   function renderError() {
     if (hasError) {
-      return <div role="alert">{getClonedElement(subComponentDisplayNames.Error)}</div>;
+      const errorComponent = formElementA11yProps
+        ? getClonedElement(subComponentDisplayNames.Error, { id: formElementA11yProps.errorA11yProps.id })
+        : subComponentDisplayNames.Error;
+      return <div role="alert">{errorComponent}</div>;
     }
     return null;
   }
@@ -50,16 +52,36 @@ function FormElement(props) {
   // next steps, render description, error, label and instructions with context
 
   function renderLabel() {
+    const a11yProps = formElementA11yProps
+      ? { id: formElementA11yProps.labelA11yProps.id, ref: formElementA11yProps.labelA11yProps.ref }
+      : {};
     return getClonedElement(subComponentDisplayNames.Label, {
-      id: internalA11yProps.labelA11yProps,
       hasOptionalLabel: hasRequiredLabel ? false : hasOptionalLabel,
       hasRequiredLabel,
       help: extractedChildren[subComponentDisplayNames.Help],
       isInline,
       isVisuallyHidden: isLabelVisuallyHidden,
-      label,
       hasFieldSet,
       onClick: onClickLabel,
+      ...a11yProps,
+    });
+  }
+
+  function renderDescription() {
+    if (!formElementA11yProps) {
+      return subComponentDisplayNames.Description;
+    }
+    return getClonedElement(subComponentDisplayNames.Description, {
+      id: formElementA11yProps.descriptionA11yProps.id,
+    });
+  }
+
+  function renderInstructions() {
+    if (!formElementA11yProps) {
+      return subComponentDisplayNames.Instructions;
+    }
+    return getClonedElement(subComponentDisplayNames.Instructions, {
+      id: formElementA11yProps.instructionsA11yProps.id,
     });
   }
 
@@ -71,16 +93,26 @@ function FormElement(props) {
       isDisabled={isDisabled}
       {...moreProps}
     >
-      {children.map(child => {
-        if (child.type.displayName === subComponentDisplayNames.Label) {
-          return renderLabel();
-        }
+      {children.length
+        ? children.map(child => {
+            if (child.type?.displayName === subComponentDisplayNames.Label) {
+              return renderLabel();
+            }
 
-        if (child.type.displayName === subComponentDisplayNames.Error) {
-          return renderError();
-        }
-        return child;
-      })}
+            if (child.type?.displayName === subComponentDisplayNames.Instructions) {
+              return renderInstructions();
+            }
+
+            if (child.type?.displayName === subComponentDisplayNames.Error) {
+              return renderError();
+            }
+
+            if (child.type?.displayName === subComponentDisplayNames.Description) {
+              return renderDescription();
+            }
+            return child;
+          })
+        : children}
     </sc.FormElement>
   );
 }
@@ -90,7 +122,11 @@ FormElement.types = {
 };
 
 const propTypes = {
-  internalA11yProps: PropTypes.object,
+  formElementA11yProps: PropTypes.shape({
+    id: PropTypes.string,
+    // cell: PropTypes.oneOfType([PropTypes.string, PropTypes.func]),
+    // cellPropsResetCSS: PropTypes.bool,
+  }), // should use shape
 
   children: PropTypes.node.isRequired,
 
@@ -112,9 +148,6 @@ const propTypes = {
   /** Should label be hidden, default is false. Note: this is discouraged because of accessibility requirements. */
   isLabelVisuallyHidden: PropTypes.bool,
 
-  /** Label text of this field. */
-  label: PropTypes.node.isRequired,
-
   /** Size of the label, error, help and description (font size, min-height, padding, etc). */
   size: PropTypes.oneOf([FormElement.types.size.SMALL, FormElement.types.size.MEDIUM, FormElement.types.size.LARGE]),
 
@@ -125,7 +158,7 @@ const propTypes = {
 };
 
 const defaultProps = {
-  internalA11yProps: {},
+  formElementA11yProps: null,
   hasOptionalLabel: false,
   hasRequiredLabel: false,
   id: null,

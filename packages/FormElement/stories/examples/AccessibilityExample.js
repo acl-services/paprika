@@ -8,7 +8,7 @@ const AccessibilityExample = () => {
   const [value, setValue] = React.useState("");
   const [errorText, setErrorText] = React.useState("");
 
-  const { contentA11yProps, internalA11yProps } = useFormElement();
+  const { inputA11yProps, formElementA11yProps } = useFormElement();
 
   function handleChange(e) {
     setValue(e.target.value);
@@ -24,8 +24,8 @@ const AccessibilityExample = () => {
 
   return (
     <>
-      <FormElement label="Form Label" internalA11yProps={internalA11yProps}>
-        <Label>this is a label</Label>
+      <FormElement label="Form Label" formElementA11yProps={formElementA11yProps}>
+        <Label>Form Label</Label>
         <Help>
           Give me some help. <a href="wegalvanize.com">Learn more</a>.
         </Help>
@@ -41,7 +41,7 @@ const AccessibilityExample = () => {
             value={value}
             placeholder="Form placeholder"
             hasError={Boolean(errorText.length)}
-            {...contentA11yProps}
+            {...inputA11yProps}
           />
         </Content>
         <Description>

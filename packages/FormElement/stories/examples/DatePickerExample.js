@@ -1,18 +1,18 @@
 import React from "react";
 import DatePicker from "@paprika/date-picker";
-import FormElement from "../../src/FormElement";
+import FormElement, { useFormElement, Content, Label } from "../../src";
 
 export default function DatePickerExample() {
+  const { datePickerA11yProps, formElementA11yProps } = useFormElement();
   const errorText = "";
   return (
-    <FormElement label="Form Label">
-      <FormElement.Content>
-        {({ idForLabel, ariaDescribedBy }) => (
-          <DatePicker onError={() => {}} hasError={Boolean(errorText.length)} id={idForLabel} onChange={() => {}}>
-            <DatePicker.Input aria-describedby={ariaDescribedBy} />
-          </DatePicker>
-        )}
-      </FormElement.Content>
+    <FormElement formElementA11yProps={formElementA11yProps}>
+      <Label>Form Label</Label>
+      <Content>
+        <DatePicker onError={() => {}} hasError={Boolean(errorText.length)} onChange={() => {}}>
+          <DatePicker.Input {...datePickerA11yProps} />
+        </DatePicker>
+      </Content>
     </FormElement>
   );
 }

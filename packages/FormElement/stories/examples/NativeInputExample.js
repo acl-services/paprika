@@ -1,23 +1,21 @@
 import React from "react";
-import FormElement from "../../src/FormElement";
+import FormElement, { useFormElement, Content, Label } from "../../src";
 
 export default function NativeInputExample() {
+  const { inputA11yProps, formElementA11yProps } = useFormElement();
   const hasRequiredLabel = false;
   const isDisabled = false;
   const isReadOnly = false;
   return (
-    <FormElement isDisabled={isDisabled} hasRequiredLabel={hasRequiredLabel} label="Form Label">
-      <FormElement.Content>
-        {({ idForLabel, ariaDescribedBy }) => (
-          <input
-            aria-required={hasRequiredLabel}
-            aria-describedby={ariaDescribedBy}
-            disabled={isDisabled}
-            id={idForLabel}
-            readOnly={isReadOnly}
-          />
-        )}
-      </FormElement.Content>
+    <FormElement
+      isDisabled={isDisabled}
+      hasRequiredLabel={hasRequiredLabel}
+      formElementA11yProps={formElementA11yProps}
+    >
+      <Label>Form Label</Label>
+      <Content>
+        <input aria-required={hasRequiredLabel} disabled={isDisabled} readOnly={isReadOnly} {...inputA11yProps} />
+      </Content>
     </FormElement>
   );
 }

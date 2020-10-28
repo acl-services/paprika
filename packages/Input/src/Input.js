@@ -98,7 +98,6 @@ Input.types = {
 
 const propTypes = {
   /** Descriptive a11y text for assistive technologies. By default, text from children node will be used. */
-
   a11yText: PropTypes.string,
 
   /** Sets the class for the input. */

@@ -10,17 +10,7 @@ import * as types from "./types";
 import * as sc from "./Checkbox.styles";
 
 const Checkbox = props => {
-  const {
-    a11yText,
-    children,
-    isDisabled,
-    checkedState,
-    size,
-    onChange,
-    ariaDescribedBy,
-    tabIndex,
-    ...moreProps
-  } = props;
+  const { a11yText, children, isDisabled, checkedState, size, onChange, tabIndex, ...moreProps } = props;
 
   const checkboxId = React.useRef(uuid()).current;
   const inputRef = React.useRef(null);
@@ -42,7 +32,6 @@ const Checkbox = props => {
   };
 
   const inputProps = {
-    "aria-describedby": ariaDescribedBy,
     checked: checkedState === types.checkboxStates.CHECKED,
     disabled: isDisabled,
     id: checkboxId,
@@ -74,8 +63,6 @@ Checkbox.types = {
 const noop = () => {};
 
 const propTypes = {
-  /** Used for aria-describedby on the checkbox input  */
-  ariaDescribedBy: PropTypes.string,
   /** Used for aria-label on the checkbox input  */
   a11yText: PropTypes.string,
   /** The checkbox state */
@@ -98,7 +85,6 @@ const propTypes = {
 
 const defaultProps = {
   a11yText: null,
-  ariaDescribedBy: null,
   checkedState: Checkbox.types.state.UNCHECKED,
   children: null,
   isDisabled: false,
