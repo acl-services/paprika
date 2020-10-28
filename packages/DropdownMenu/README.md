@@ -72,6 +72,7 @@ import Confirmation from "@paprika/confirmation";
 
 <DropdownMenu>
   <DropdownMenu.Trigger>Trigger</DropdownMenu.Trigger>
+  <DropdownMenu.Content className="my-popover-classname" />
   <DropdownMenu.Item onClick={() => {}}>Edit</DropdownMenu.Item>
   <DropdownMenu.LinkItem isExternal link="http://www.wegalvanize.com">
     External link

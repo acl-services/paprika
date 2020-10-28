@@ -3,6 +3,7 @@ import PropTypes from "prop-types";
 import uuid from "uuid/v4";
 import Popover from "@paprika/popover";
 import extractChildren from "@paprika/helpers/lib/extractChildren";
+import Content from "./components/Content";
 import Divider from "./components/Divider";
 import Trigger from "./components/Trigger";
 import LinkItem from "./components/LinkItem";
@@ -22,9 +23,6 @@ const propTypes = {
   /** If provided, will fire when the Popover is closed */
   onClose: Popover.propTypes.onClose,
 
-  /** If provided, this class will get applied to the Popover component */
-  popoverClassName: PropTypes.string,
-
   /** The z-index for the popover / confirmation */
   zIndex: Popover.propTypes.zIndex,
 };
@@ -33,14 +31,13 @@ const defaultProps = {
   align: Popover.defaultProps.align,
   edge: Popover.defaultProps.edge,
   onClose: Popover.defaultProps.onClose,
-  popoverClassName: "",
   zIndex: Popover.defaultProps.zIndex,
 };
 
 const popoverOffset = 4;
 
 function DropdownMenu(props) {
-  const { align, children, edge, onClose, popoverClassName, zIndex, ...moreProps } = props;
+  const { align, children, edge, onClose, zIndex, ...moreProps } = props;
 
   const [isOpen, setIsOpen] = React.useState(false);
   const [isConfirming, setIsConfirming] = React.useState(false);
@@ -81,7 +78,8 @@ function DropdownMenu(props) {
     }, 250);
   };
 
-  const extractedChildren = extractChildren(children, ["DropdownMenu.Trigger"]);
+  const extractedChildren = extractChildren(children, ["DropdownMenu.Trigger", "DropdownMenu.Content"]);
+  const Content = extractedChildren["DropdownMenu.Content"];
 
   const dropdownLastItemIndex =
     React.Children.toArray(
@@ -184,7 +182,7 @@ function DropdownMenu(props) {
       }}
     >
       <Popover.Trigger>{renderTrigger()}</Popover.Trigger>
-      <Popover.Content id={menuId.current} role={!isConfirming ? "menu" : null} className={popoverClassName}>
+      <Popover.Content id={menuId.current} role={!isConfirming ? "menu" : null} {...Content.props}>
         {isOpen && renderContent()}
       </Popover.Content>
     </Popover>
@@ -195,6 +193,7 @@ DropdownMenu.displayName = "DropdownMenu";
 DropdownMenu.propTypes = propTypes;
 DropdownMenu.defaultProps = defaultProps;
 
+DropdownMenu.Content = Content;
 DropdownMenu.Divider = Divider;
 DropdownMenu.LinkItem = LinkItem;
 DropdownMenu.Item = Item;
