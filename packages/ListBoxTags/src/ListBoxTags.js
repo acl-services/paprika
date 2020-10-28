@@ -7,6 +7,7 @@ import * as sc from "./ListBoxTags.styles";
 
 const propTypes = {
   children: PropTypes.node.isRequired,
+  filter: PropTypes.func,
   noResultsMessage: PropTypes.string,
   onChange: PropTypes.func,
   onCustomOption: PropTypes.func,
@@ -16,10 +17,11 @@ const propTypes = {
 };
 
 const defaultProps = {
+  filter: undefined,
   noResultsMessage: null,
   onChange: () => {},
-  onRemove: () => {},
   onCustomOption: null,
+  onRemove: () => {},
   regexCustomOption: /^.+@.+\..+$/,
   selectedOptions: null,
 };
@@ -85,12 +87,13 @@ const renderTrigger = ({ t, size, refListBox, selectedOptions, onRemove }) => (.
 export default function ListBoxTags(props) {
   const {
     children,
+    filter,
     noResultsMessage,
+    onChange,
     onCustomOption,
+    onRemove,
     regexCustomOption,
     selectedOptions,
-    onChange,
-    onRemove,
     ...moreProps
   } = props;
   const { t } = useI18n();
@@ -134,7 +137,7 @@ export default function ListBoxTags(props) {
   return (
     <ListBox ref={refListBox} isMulti size={size} onChange={handleChange} {...moreProps}>
       <ListBox.Trigger>{renderTrigger({ size, refListBox, selectedOptions, onRemove, t })}</ListBox.Trigger>
-      <ListBox.Filter ref={refFilter} onKeyDown={handleKeyDown} {...noResultMessageProp} />
+      <ListBox.Filter filter={filter} ref={refFilter} onKeyDown={handleKeyDown} {...noResultMessageProp} />
       {children}
     </ListBox>
   );

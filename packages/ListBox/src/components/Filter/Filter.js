@@ -80,6 +80,7 @@ const Filter = React.forwardRef((props, ref) => {
     if (props.filter) {
       setTextSearch(textSearchValue);
 
+      // eventually we should get rid of this and just call props.filter as a callback without expecting to return anything
       const result = props.filter({ search: textSearchValue });
       if (result && result.then) {
         // detecting if it's a promise
