@@ -78,12 +78,15 @@ function DropdownMenu(props) {
     }, 250);
   };
 
-  const extractedChildren = extractChildren(children, ["DropdownMenu.Trigger", "DropdownMenu.Content"]);
-  const Content = extractedChildren["DropdownMenu.Content"];
+  const {
+    "DropdownMenu.Trigger": Trigger,
+    "DropdownMenu.Content": Content,
+    children: extractedChildren,
+  } = extractChildren(children, ["DropdownMenu.Trigger", "DropdownMenu.Content"]);
 
   const dropdownLastItemIndex =
     React.Children.toArray(
-      extractedChildren.children.filter(
+      extractedChildren.filter(
         child =>
           child.type &&
           (child.type.displayName === "DropdownMenu.Item" || child.type.displayName === "DropdownMenu.LinkItem")
@@ -117,7 +120,7 @@ function DropdownMenu(props) {
     // wrapping the returned item in a function to avoid needing to tab twice
     // https://github.com/acl-services/paprika/issues/126
     return () =>
-      React.cloneElement(extractedChildren["DropdownMenu.Trigger"], {
+      React.cloneElement(Trigger, {
         isOpen,
         onOpenMenu: handleOpenMenu,
         triggerRef,
@@ -150,7 +153,7 @@ function DropdownMenu(props) {
     return (
       <Popover.Card>
         <sc.Content ref={dropdownListRef}>
-          {extractedChildren.children.map((child, index) => {
+          {extractedChildren.map((child, index) => {
             const childKey = { key: `DropdownMenuItem${index}` };
             if (child && child.type && child.type.displayName === "DropdownMenu.Item") {
               if (child.props.renderConfirmation) {
