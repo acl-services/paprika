@@ -60,7 +60,7 @@ class CommitValidator {
       );
     }
 
-    if (!commitMessage.match(/^\w*\(\w+\): .+/g)) {
+    if (!commitMessage.match(/^\w*\([\w,\s]+\): .+/g)) {
       this.exitWithError(
         `Your commit message must follow the "Conventional commits" format, eg: "fix(AffectedComponent): this is what i did"`
       );
