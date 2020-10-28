@@ -70,7 +70,12 @@ class CommitValidator {
   }
 
   updateCommitMessage() {
-    const newCommitMessage = this.commitMessage.replace(/\):/i, `): ${this.ticketId}`);
+    const commitMessageContainsTicketId = this.commitMessage.toUpperCase().indexOf(this.ticketId.toUpperCase()) > -1;
+
+    const newCommitMessage = commitMessageContainsTicketId
+      ? this.commitMessage
+      : this.commitMessage.replace(/\):/i, `): ${this.ticketId}`);
+
     fs.writeFileSync(this.PATH_TO_COMMIT_MESSAGE, newCommitMessage, { encoding: "utf8", flag: "w" });
   }
 
