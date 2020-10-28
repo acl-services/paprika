@@ -5,7 +5,7 @@ import stylers from "@paprika/stylers";
 
 export const iconStyles = css`
   margin-right: ${tokens.spaceSm};
-  margin-top: 2px;
+  margin-top: ${tokens.spaceSm};
 `;
 
 const errorMessageStyles = css`

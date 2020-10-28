@@ -1,5 +1,6 @@
 import styled, { css } from "styled-components";
 import stylers from "@paprika/stylers";
+import tokens from "@paprika/tokens";
 
 const FontSizes = {
   small: stylers.fontSize(-2),
@@ -24,6 +25,7 @@ export const FormElement = styled.div(
     ${isInline && inlineFormElementStyles};
     ${isDisabled && `opacity: 0.5;`}
     border: none;
+    margin: 0 0 ${tokens.space} 0;
     padding: 0;
   `
 );
