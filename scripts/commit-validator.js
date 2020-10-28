@@ -6,10 +6,10 @@ class CommitValidator {
   constructor() {
     this.PATH_TO_COMMIT_MESSAGE = ".git/COMMIT_EDITMSG";
     this.VALID_TYPES = ["feat", "fix", "style", "test", "docs", "build", "chore", "ci", "perf", "refactor", "revert"];
-    this.branchName = "";
-    this.brigadeAbbrev = "";
-    this.ticketCounter = "";
-    this.ticketId = "";
+    this.branchName = ""; // eg: abc-1234--some-description
+    this.pillarAbbreviation = ""; // eg: "abc"
+    this.ticketCounter = ""; // eg: 1234
+    this.ticketId = ""; // eg: abc-1234
     this.commitMessage = "";
   }
 
@@ -51,19 +51,19 @@ class CommitValidator {
   }
 
   getAndValidateCommitMessage() {
+    const STANDARD_ERROR =
+      'Your commit message must follow the "Conventional commits" format, eg: "fix(AffectedComponent): this is what i did"';
     const commitMessage = fs.readFileSync(this.PATH_TO_COMMIT_MESSAGE, "utf8");
     const type = commitMessage.substr(0, commitMessage.indexOf("("));
 
     if (this.VALID_TYPES.indexOf(type) === -1) {
       this.exitWithError(
-        `Your commit message has an invalid type (${type}). Please use one of the supported types: ${this.VALID_TYPES.toString()}`
+        `${STANDARD_ERROR}\nYour commit message has an invalid type (${type}). Please use one of the supported types: ${this.VALID_TYPES.toString()}`
       );
     }
 
     if (!commitMessage.match(/^\w*\([\w,\s]+\): .+/g)) {
-      this.exitWithError(
-        `Your commit message must follow the "Conventional commits" format, eg: "fix(AffectedComponent): this is what i did"`
-      );
+      this.exitWithError(STANDARD_ERROR);
     }
 
     return commitMessage;
@@ -76,9 +76,9 @@ class CommitValidator {
 
   run() {
     this.branchName = this.validateAndGetBranchName();
-    this.brigadeAbbrev = this.getPillarAbbreviationFromBranchName();
+    this.pillarAbbreviation = this.getPillarAbbreviationFromBranchName();
     this.ticketCounter = this.validateAndGetTicketCounterFromBranchName();
-    this.ticketId = `${this.brigadeAbbrev.toUpperCase()}-${this.ticketCounter}`;
+    this.ticketId = `${this.pillarAbbreviation.toUpperCase()}-${this.ticketCounter}`;
     this.commitMessage = this.getAndValidateCommitMessage();
     this.updateCommitMessage();
     process.exit(0);
