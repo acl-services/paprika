@@ -83,6 +83,7 @@ function DropdownMenu(props) {
     "DropdownMenu.Content": Content,
     children: extractedChildren,
   } = extractChildren(children, ["DropdownMenu.Trigger", "DropdownMenu.Content"]);
+  const ContentProps = Content && Content.props ? Content.props : null;
 
   const dropdownLastItemIndex =
     React.Children.toArray(
@@ -185,7 +186,7 @@ function DropdownMenu(props) {
       }}
     >
       <Popover.Trigger>{renderTrigger()}</Popover.Trigger>
-      <Popover.Content id={menuId.current} role={!isConfirming ? "menu" : null} {...Content.props}>
+      <Popover.Content id={menuId.current} role={!isConfirming ? "menu" : null} {...ContentProps}>
         {isOpen && renderContent()}
       </Popover.Content>
     </Popover>
