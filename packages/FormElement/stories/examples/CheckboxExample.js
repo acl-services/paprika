@@ -1,6 +1,8 @@
 import React from "react";
 import * as constants from "@paprika/constants/lib/Constants";
 import Checkbox from "@paprika/checkbox";
+import styled from "styled-components";
+import stylers from "@paprika/stylers";
 import FormElement from "../../src/FormElement";
 
 export default function CheckboxExample() {
@@ -15,10 +17,16 @@ export default function CheckboxExample() {
       </Checkbox>
     ));
 
+  const CheckboxGroup = styled.div`
+    margin-top: ${stylers.spacer(2)};
+  `;
+
   return (
     <FormElement hasFieldSet label="Form Label">
       <FormElement.Content>
-        {({ ariaDescribedBy: ariaDescribedByOuter }) => getCheckboxOptions(ariaDescribedByOuter)}
+        {({ ariaDescribedBy: ariaDescribedByOuter }) => (
+          <CheckboxGroup>{getCheckboxOptions(ariaDescribedByOuter)}</CheckboxGroup>
+        )}
       </FormElement.Content>
     </FormElement>
   );

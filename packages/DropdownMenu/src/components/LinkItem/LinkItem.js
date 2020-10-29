@@ -1,5 +1,6 @@
 import React from "react";
 import PropTypes from "prop-types";
+import NewTabIcon from "@paprika/icon/lib/NewTab";
 import useI18n from "@paprika/l10n/lib/useI18n";
 import linkItemStyles from "../../Item.styles";
 
@@ -33,15 +34,18 @@ const LinkItem = props => {
     ...moreProps,
   };
 
+  let externalLinkIcon = null;
   if (isExternal) {
     linkItemProps["aria-label"] = I18n.t("dropdownMenu.isExternal", { link: children });
     linkItemProps.target = "_blank";
     linkItemProps.rel = "noopener noreferrer";
+    externalLinkIcon = <NewTabIcon size="10px" />;
   }
 
   return (
     <a css={linkItemStyles} {...linkItemProps}>
       {children}
+      {externalLinkIcon}
     </a>
   );
 };

@@ -110,3 +110,8 @@ blocks:
             - BRANCH_NAME=$SEMAPHORE_GIT_BRANCH REVISION=$SEMAPHORE_GIT_SHA SEMAPHORE_BUILD_NUMBER=$SEMAPHORE_WORKFLOW_ID yarn storybook:screener
       secrets:
         - name: screener-api-key
+promotions:
+  - name: Release
+    pipeline_file: release.yml
+    auto_promote:
+      when: "result = 'passed' and branch = 'master'"

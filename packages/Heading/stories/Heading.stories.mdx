@@ -1,26 +1,10 @@
-import { Meta, Props, Story } from "@storybook/addon-docs/blocks";
-import { Description } from "@storybook/addon-docs/blocks";
+import { Meta, Description, Canvas } from "@storybook/addon-docs/blocks";
 import { getStoryName } from "storybook/storyTree";
+import { docsStoryParameters } from "storybook/assets/storyParameters";
 import Readme from "../README.md";
-import { HeadingStory } from "./storyHelpers";
-import HeadingFocus from "./examples/HeadingFocus";
-import DividerExample from "./examples/DividerExample";
-import UnderlineExample from "./examples/UnderlineExample";
-import ExternalLinkExample from "./examples/ExternalLinkExample";
-import SetWidthExample from "./examples/SetWidthExample";
-import ParagraphExample from "./examples/ParagraphExample";
-import IsLightExample from "./examples/IsLightExample";
-import DisplayLevelExample from "./examples/DisplayLevelExample";
 import Heading from "../src/";
 
-export const params = {
-  options: {
-    isToolshown: true,
-    showPanel: false,
-  },
-};
-
-<Meta title={`${getStoryName("Heading")}/Docs`} component={Heading} parameters={params} />
+<Meta title={`${getStoryName("Heading")}/Docs`} component={Heading} parameters={docsStoryParameters} />
 
 <Description markdown={Readme} />
 
@@ -30,11 +14,9 @@ export const params = {
 
 - <a href="#heading-levels">Heading Levels</a>
 
-  - <a href="#paragraph">Paragraph</a>
-
   - <a href="#display-level">Display Level</a>
 
-* <a href="#heading-styles">Heading Styles</a>
+- <a href="#heading-styles">Heading Styles</a>
 
   - <a href="#is-light">Is Light</a>
 
@@ -42,88 +24,44 @@ export const params = {
 
   - <a href="#underline">Underline</a>
 
-  - <a href="#set-width">Set Width</a>
-
 ### Heading Levels
 
 Heading levels are important for accessibility. It will create a hierarchy in which the page will be read; this is especially important for consumers that make use of screen readers. The `level` property allows users to set the heading level of the `<Heading />` component.
 Always be sure to avoid skipping heading levels and to style the headings as needed.
 
-#### Paragraph
-
-Users can add differant heading levels for differant paragraphs/sections of their projects.
-
-```jsx
-<Heading level={1} a11yText="The First Heading">
-  Heading One – Man Braid Selfies
-</Heading>
-<p>
-  Lorem ipsum dolor amet blog direct trade salvia marfa whatever, selvage ennui portland man bun hexagon yr. Vegan
-  cardigan twee next level 90s palo santo.
-</p>
-<Heading level={2}>Heading Two – Retro Distillery</Heading>
-<p>
-  Single-origin coffee pickled af 3 wolf moon adaptogen lomo normcore aesthetic. Godard seitan asymmetrical
-  lumbersexual try-hard bushwick 90s raw denim.
-</p>
-<Heading level={3}>Heading Three – Live-edge Hashtag</Heading>
-<p>
-  Cold-pressed roof party blog direct trade salvia marfa whatever, selvage ennui portland man bun hexagon yr.
-  Vegan cardigan twee next level 90s palo santo.
-</p>
-```
-
-##### Result
-
-<HeadingStory>
-  <Heading level={1} a11yText="The First Heading">
-    Heading One – Man Braid Selfies
-  </Heading>
+<!-- prettier-ignore -->
+<Canvas isExpanded>
+<>
+  <Heading level={1}>Heading One</Heading>
   <p>
     Lorem ipsum dolor amet blog direct trade salvia marfa whatever, selvage ennui portland man bun hexagon yr. Vegan
     cardigan twee next level 90s palo santo.
   </p>
-  <Heading level={2}>Heading Two – Retro Distillery</Heading>
+  <Heading level={2}>Heading Two</Heading>
   <p>
     Single-origin coffee pickled af 3 wolf moon adaptogen lomo normcore aesthetic. Godard seitan asymmetrical
     lumbersexual try-hard bushwick 90s raw denim.
   </p>
-  <Heading level={3}>Heading Three – Live-edge Hashtag</Heading>
+  <Heading level={3}>Heading Three</Heading>
   <p>
     Cold-pressed roof party blog direct trade salvia marfa whatever, selvage ennui portland man bun hexagon yr. Vegan
     cardigan twee next level 90s palo santo.
   </p>
-</HeadingStory>
+</>
+</Canvas>
 
 #### Display Level
 
 Heading levels have differing default stylings, however, if you wish to have a differant heading default styling for a particular heading level you can make iuse of the `displayLevel` property. The `displayLevel` property sets the headings styling to the default stylings of the level selected. For example, if a user creates a `<Heading />` with a `level={2}` the dfault styling would be equivelant to an `h2` element, however, with the `displayLevel` property a user can set `displayLevel={3}` to give it the `h3` default styles.
 
-```jsx
-<Heading level={1} displayLevel={6}>
-Heading One
-</Heading>
-<Heading level={2} displayLevel={5}>
-Heading Two
-</Heading>
-<Heading level={3} displayLevel={4}>
-Heading Three
-</Heading>
-```
-
-##### Result
-
-<HeadingStory>
-  <Heading level={1} displayLevel={6}>
-    Heading One
-  </Heading>
-  <Heading level={2} displayLevel={5}>
-    Heading Two
-  </Heading>
-  <Heading level={3} displayLevel={4}>
-    Heading Three
-  </Heading>
-</HeadingStory>
+<!-- prettier-ignore -->
+<Canvas isExpanded>
+<>
+  <Heading level={1} displayLevel={6}>Heading One</Heading>
+  <Heading level={2} displayLevel={3}>Heading Two</Heading>
+  <Heading level={3} displayLevel={1}>Heading Three</Heading>
+</>
+</Canvas>
 
 ### Heading Styles
 
@@ -131,106 +69,37 @@ Heading Three
 
 If users do not desire a heavy/bolded heading, users can make use of the `isLight` property to change its weight.
 
-```jsx
-<Heading level={1} isLight>
-Heading One with isLight
-</Heading>
-<Heading level={2} isLight>
-Heading Two with isLight
-</Heading>
-<Heading level={3} isLight>
-Heading Three with isLight
-</Heading>
-```
-
-##### Result
-
-<HeadingStory>
-  <Heading level={1} isLight>
-    Heading One with isLight
-  </Heading>
-  <Heading level={2} isLight>
-    Heading Two with isLight
-  </Heading>
-  <Heading level={3} isLight>
-    Heading Three with isLight
-  </Heading>
-</HeadingStory>
+<!-- prettier-ignore -->
+<Canvas isExpanded>
+<>
+  <Heading level={1} isLight>Heading One with isLight</Heading>
+  <Heading level={2} isLight>Heading Two with isLight</Heading>
+  <Heading level={3} isLight>Heading Three with isLight</Heading>
+</>
+</Canvas>
 
 #### Divider
 
 Sometimes additional seperation of content can aid in visual clarity. Users can make us of the `hasDivider` property to add a horizontal line next to the `<Heading />` .
 
-```jsx
-<Heading level={1} hasDivider>
-  Heading with hasDivider
-</Heading>
-<Heading level={2} hasDivider>
-  Heading with hasDivider
-</Heading>
-<Heading level={3} hasDivider>
-  Heading with hasDivider
-</Heading>
-```
-
-##### Result
-
-<HeadingStory>
-  <Heading level={1} hasDivider>
-    Heading with hasDivider
-  </Heading>
-  <Heading level={2} hasDivider>
-    Heading with hasDivider
-  </Heading>
-  <Heading level={3} hasDivider>
-    Heading with hasDivider
-  </Heading>
-</HeadingStory>
+<!-- prettier-ignore -->
+<Canvas isExpanded>
+<>
+  <Heading level={1} hasDivider>Heading One with hasDivider</Heading>
+  <Heading level={2} hasDivider>Heading Two with hasDivider</Heading>
+  <Heading level={3} hasDivider>Heading Three with hasDivider</Heading>
+</>
+</Canvas>
 
 #### Underline
 
 Users can make seperate their content by using the `hasUnderline` property which will add a line beneath the `<Heading />` component.
 
-```jsx
-<Heading level={1} hasUnderline>
-Heading with hasUnderline
-</Heading>
-<Heading level={2} hasUnderline>
-Heading with hasUnderline
-</Heading>
-<Heading level={3} hasUnderline>
-Heading with hasUnderline
-</Heading>
-```
-
-##### Result
-
-<HeadingStory>
-  <Heading level={1} hasUnderline>
-    Heading with hasUnderline
-  </Heading>
-  <Heading level={2} hasUnderline>
-    Heading with hasUnderline
-  </Heading>
-  <Heading level={3} hasUnderline>
-    Heading with hasUnderline
-  </Heading>
-</HeadingStory>
-
-#### Set Width
-
-Users can use styling to set a specific width value for the `<Heading />` component. If the text does not fit into the width it will be truncated.
-
-Users can also make use of external links as headers by adding the `<ExternalLink />`component as a child to the `<Heading />` component.
-
-```jsx
-<Heading style={{ width: "160px" }} level={1}>
-  <ExternalLink href="http://wegalvanize.com">External Link Text</ExternalLink>
-</Heading>
-```
-
-##### Result
-
-<HeadingStory>
-  <SetWidthExample />
-</HeadingStory>
+<!-- prettier-ignore -->
+<Canvas isExpanded>
+<>
+  <Heading level={1} hasUnderline>Heading One with hasUnderline</Heading>
+  <Heading level={2} hasUnderline>Heading Two with hasUnderline</Heading>
+  <Heading level={3} hasUnderline>Heading Three with hasUnderline</Heading>
+</>
+</Canvas>

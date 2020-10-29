@@ -9,6 +9,8 @@ interface DropdownMenuProps {
   children: React.ReactNode;
   /** If provided, will align Popover to specified edge of Trigger */
   edge?: custom;
+  /** If provided, will fire when the Popover is closed */
+  onClose?: custom;
   /** The z-index for the popover / confirmation */
   zIndex?: custom;
 }

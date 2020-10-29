@@ -49,7 +49,7 @@ function Group(props) {
   };
 
   return (
-    <div role="radiogroup" aria-labelledby={a11yText} data-pka-anchor="radio.group">
+    <div role="radiogroup" aria-labelledby={a11yText} data-pka-anchor="radio.group" {...moreGroupProps}>
       {React.Children.map(children, (child, index) => {
         if (child && child.type && child.type.displayName === "Radio") {
           const childKey = { key: `Radio${index}` };
@@ -60,7 +60,6 @@ function Group(props) {
             canDeselect,
             name: child.props.name || name,
             ...childKey,
-            ...moreGroupProps,
           });
         }
         return child;

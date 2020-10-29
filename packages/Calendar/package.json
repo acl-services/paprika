@@ -1,6 +1,6 @@
 {
   "name": "@paprika/calendar",
-  "version": "0.1.16",
+  "version": "0.1.17-alpha.0",
   "description": "Calendar component",
   "main": "lib/index.js",
   "author": "@paprika",
@@ -15,9 +15,9 @@
   },
   "dependencies": {
     "@babel/runtime-corejs2": "^7.3.1",
-    "@paprika/button": "^0.3.14",
+    "@paprika/button": "^0.3.15-alpha.0",
     "@paprika/helpers": "^0.2.13",
-    "@paprika/icon": "^0.3.10",
+    "@paprika/icon": "^0.3.11-alpha.0",
     "@paprika/stylers": "^0.2.11",
     "@paprika/tokens": "^0.1.17",
     "nanoid": "^2.1.7",

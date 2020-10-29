@@ -2,6 +2,7 @@ import React from "react";
 import * as constants from "@paprika/constants/lib/Constants";
 import { action } from "@storybook/addon-actions";
 import Radio from "@paprika/radio";
+import stylers from "@paprika/stylers";
 import FormElement from "../../src/FormElement";
 
 export default function RadioExample() {
@@ -11,6 +12,7 @@ export default function RadioExample() {
 
   const getRadioOptions = ariaDescribedBy => (
     <Radio.Group
+      style={{ marginTop: stylers.spacer(2) }}
       onChange={activeIndex => {
         action(`Radio index selected is ${activeIndex}`)();
       }}
