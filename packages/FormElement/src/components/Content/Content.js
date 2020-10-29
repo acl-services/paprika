@@ -1,6 +1,5 @@
 import React from "react";
 import PropTypes from "prop-types";
-import * as sc from "./Content.styles";
 
 const propTypes = {
   children: PropTypes.oneOfType([PropTypes.func, PropTypes.node]).isRequired,
@@ -18,11 +17,11 @@ function Content(props) {
     return null;
   }
 
-  // can add content inline support
+  // todo: add support for inline content
   return (
-    <sc.ContentContainer data-pka-anchor="form-element.content" {...moreProps}>
+    <div data-pka-anchor="form-element.content" {...moreProps}>
       {children}
-    </sc.ContentContainer>
+    </div>
   );
 }
 

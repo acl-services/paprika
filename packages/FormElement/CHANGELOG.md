@@ -69,3 +69,11 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 ### Changed
 
 - Changed label spacing, cleanup instructions margins. Moved Help tooltip to fix z-index issue [@tristanjasper](https://github.com/tristanjasper).
+
+## [0.3.37-alpha.2] - 2020-10-29
+
+28-10-20
+
+### Changed
+
+- FormElement Margin, removed content only margin and applied top margin to Descriptino and Error components [@tristanjasper](https://github.com/tristanjasper).

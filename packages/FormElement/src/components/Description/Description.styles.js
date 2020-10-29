@@ -5,4 +5,5 @@ import tokens from "@paprika/tokens";
 export const Description = styled.div`
   ${stylers.lineHeight(-1)}
   color: ${tokens.color.blackLighten20};
+  margin: ${tokens.space} 0 0 0;
 `;

@@ -4,8 +4,7 @@ import tokens from "@paprika/tokens";
 import stylers from "@paprika/stylers";
 
 export const iconStyles = css`
-  margin-right: ${tokens.spaceSm};
-  margin-top: 2px;
+  margin: 2px ${tokens.spaceSm} 0 0;
 `;
 
 const errorStyles = css`

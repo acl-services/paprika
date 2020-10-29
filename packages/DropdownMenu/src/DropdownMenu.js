@@ -3,6 +3,7 @@ import PropTypes from "prop-types";
 import uuid from "uuid/v4";
 import Popover from "@paprika/popover";
 import extractChildren from "@paprika/helpers/lib/extractChildren";
+import Content from "./components/Content";
 import Divider from "./components/Divider";
 import Trigger from "./components/Trigger";
 import LinkItem from "./components/LinkItem";
@@ -19,6 +20,9 @@ const propTypes = {
   /** If provided, will align Popover to specified edge of Trigger */
   edge: Popover.propTypes.edge,
 
+  /** If provided, will fire when the Popover is closed */
+  onClose: Popover.propTypes.onClose,
+
   /** The z-index for the popover / confirmation */
   zIndex: Popover.propTypes.zIndex,
 };
@@ -26,13 +30,14 @@ const propTypes = {
 const defaultProps = {
   align: Popover.defaultProps.align,
   edge: Popover.defaultProps.edge,
+  onClose: Popover.defaultProps.onClose,
   zIndex: Popover.defaultProps.zIndex,
 };
 
 const popoverOffset = 4;
 
 function DropdownMenu(props) {
-  const { align, children, edge, zIndex, ...moreProps } = props;
+  const { align, children, edge, onClose, zIndex, ...moreProps } = props;
 
   const [isOpen, setIsOpen] = React.useState(false);
   const [isConfirming, setIsConfirming] = React.useState(false);
@@ -58,6 +63,10 @@ function DropdownMenu(props) {
     }
 
     if (triggerRef.current) triggerRef.current.focus();
+
+    if (onClose) {
+      onClose();
+    }
   };
 
   const handleOpenMenu = () => {
@@ -69,11 +78,16 @@ function DropdownMenu(props) {
     }, 250);
   };
 
-  const extractedChildren = extractChildren(children, ["DropdownMenu.Trigger"]);
+  const {
+    "DropdownMenu.Trigger": Trigger,
+    "DropdownMenu.Content": Content,
+    children: extractedChildren,
+  } = extractChildren(children, ["DropdownMenu.Trigger", "DropdownMenu.Content"]);
+  const ContentProps = Content && Content.props ? Content.props : null;
 
   const dropdownLastItemIndex =
     React.Children.toArray(
-      extractedChildren.children.filter(
+      extractedChildren.filter(
         child =>
           child.type &&
           (child.type.displayName === "DropdownMenu.Item" || child.type.displayName === "DropdownMenu.LinkItem")
@@ -107,7 +121,7 @@ function DropdownMenu(props) {
     // wrapping the returned item in a function to avoid needing to tab twice
     // https://github.com/acl-services/paprika/issues/126
     return () =>
-      React.cloneElement(extractedChildren["DropdownMenu.Trigger"], {
+      React.cloneElement(Trigger, {
         isOpen,
         onOpenMenu: handleOpenMenu,
         triggerRef,
@@ -140,7 +154,7 @@ function DropdownMenu(props) {
     return (
       <Popover.Card>
         <sc.Content ref={dropdownListRef}>
-          {extractedChildren.children.map((child, index) => {
+          {extractedChildren.map((child, index) => {
             const childKey = { key: `DropdownMenuItem${index}` };
             if (child && child.type && child.type.displayName === "DropdownMenu.Item") {
               if (child.props.renderConfirmation) {
@@ -172,7 +186,7 @@ function DropdownMenu(props) {
       }}
     >
       <Popover.Trigger>{renderTrigger()}</Popover.Trigger>
-      <Popover.Content id={menuId.current} role={!isConfirming ? "menu" : null}>
+      <Popover.Content id={menuId.current} role={!isConfirming ? "menu" : null} {...ContentProps}>
         {isOpen && renderContent()}
       </Popover.Content>
     </Popover>
@@ -183,6 +197,7 @@ DropdownMenu.displayName = "DropdownMenu";
 DropdownMenu.propTypes = propTypes;
 DropdownMenu.defaultProps = defaultProps;
 
+DropdownMenu.Content = Content;
 DropdownMenu.Divider = Divider;
 DropdownMenu.LinkItem = LinkItem;
 DropdownMenu.Item = Item;

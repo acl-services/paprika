@@ -1,6 +1,6 @@
 {
   "name": "@paprika/form-element",
-  "version": "0.3.37-alpha.1",
+  "version": "0.3.37-alpha.2",
   "description": "FormElement component displays a user input field",
   "main": "lib/index.js",
   "types": "lib/index.d.ts",
