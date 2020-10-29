@@ -53,9 +53,10 @@ function SideNavigation(props) {
     <sc.SideNavigationCollapsedWrapper>
       <Button.Icon
         a11yText={I18n.t("sideNavigation.trigger_aria_label")}
+        data-pka-anchor="sideNavigation.trigger"
         kind={Button.types.kind.MINOR}
-        size={Button.types.size.LARGE}
         onClick={handleClickTrigger}
+        size={Button.types.size.LARGE}
       >
         {/* TODO: delete it in wasabicons */}
         <MenuIcon />
