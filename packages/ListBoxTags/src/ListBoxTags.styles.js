@@ -37,3 +37,20 @@ export const Trigger = styled(RawButton)(({ size }) => {
     width: 100%;
   `;
 });
+
+export const PlaceHolder = styled.div(() => {
+  return css`
+    margin-left: ${tokens.spaceSm};
+    padding: 2px;
+  `;
+});
+
+export const PlaceHolderText = styled.div(() => {
+  return css`
+    border-radius: ${tokens.border.radius};
+    line-height: 1;
+    margin-bottom: ${tokens.spaceSm};
+    margin-right: ${tokens.spaceSm};
+    padding: ${tokens.spaceSm[0] / 2}px ${tokens.spaceSm};
+  `;
+});

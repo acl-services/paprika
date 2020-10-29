@@ -3,16 +3,18 @@ import PropTypes from "prop-types";
 import ListBox from "@paprika/listbox";
 import useI18n from "@paprika/l10n/lib/useI18n";
 import Pill, { Pills } from "./components/Pill";
+import { filter } from "./helpers";
 import * as sc from "./ListBoxTags.styles";
 
 const propTypes = {
   children: PropTypes.node.isRequired,
   filter: PropTypes.func,
-  noResultsMessage: PropTypes.string,
+  noResultsMessage: PropTypes.node,
   onChange: PropTypes.func,
   onCustomOption: PropTypes.func,
   onRemove: PropTypes.func,
   regexCustomOption: PropTypes.instanceOf(RegExp),
+  renderPill: PropTypes.func,
   selectedOptions: PropTypes.arrayOf(PropTypes.shape({})),
 };
 
@@ -23,16 +25,13 @@ const defaultProps = {
   onCustomOption: null,
   onRemove: () => {},
   regexCustomOption: /^.+@.+\..+$/,
+  renderPill: null,
   selectedOptions: null,
 };
 
-const renderTrigger = ({ t, size, refListBox, selectedOptions, onRemove }) => (...args) => {
-  const [selected, options, , attributes] = args;
+const renderTrigger = ({ t, size, selectedOptions, onRemove, renderPill }) => (...args) => {
+  const [, , , attributes] = args;
   const { propsForTrigger, refTrigger, dispatch, types, handleKeyDown, handleKeyUp } = attributes;
-
-  const areOptionsFromProps = selectedOptions !== null;
-
-  const pillsSelectedOnTrigger = areOptionsFromProps ? selectedOptions : selected;
 
   function handleClick(event) {
     event.stopPropagation();
@@ -46,12 +45,7 @@ const renderTrigger = ({ t, size, refListBox, selectedOptions, onRemove }) => (.
 
   const handleRemove = option => event => {
     event.stopPropagation();
-    if (areOptionsFromProps) {
-      onRemove(option);
-      return;
-    }
-
-    refListBox.current.toggleSelectedOption(option.index);
+    onRemove(option);
   };
 
   return (
@@ -64,21 +58,22 @@ const renderTrigger = ({ t, size, refListBox, selectedOptions, onRemove }) => (.
       size={size}
     >
       <Pills>
-        {pillsSelectedOnTrigger.map(item => {
-          if (areOptionsFromProps) {
-            return (
-              <Pill key={item.label} onRemove={handleRemove(item)}>
-                {item.label}
-              </Pill>
-            );
+        {selectedOptions.map(item => {
+          if (typeof renderPill === "function") {
+            return renderPill({ option: item, Pill, onRemove: handleRemove(item) });
           }
+
           return (
-            <Pill key={options[item].label} onRemove={handleRemove(options[item])}>
-              {options[item].label}
+            <Pill key={item.label} onRemove={handleRemove(item)}>
+              {item.label}
             </Pill>
           );
         })}
-        {pillsSelectedOnTrigger.length ? null : <div>{t("listBoxTags.placeholder")}</div>}
+        {selectedOptions.length ? null : (
+          <sc.PlaceHolder>
+            <sc.PlaceHolderText>{t("listBoxTags.placeholder")}</sc.PlaceHolderText>
+          </sc.PlaceHolder>
+        )}
       </Pills>
     </sc.Trigger>
   );
@@ -93,6 +88,7 @@ export default function ListBoxTags(props) {
     onCustomOption,
     onRemove,
     regexCustomOption,
+    renderPill,
     selectedOptions,
     ...moreProps
   } = props;
@@ -136,9 +132,9 @@ export default function ListBoxTags(props) {
 
   return (
     <ListBox ref={refListBox} isMulti size={size} onChange={handleChange} {...moreProps}>
-      <ListBox.Trigger>{renderTrigger({ size, refListBox, selectedOptions, onRemove, t })}</ListBox.Trigger>
+      <ListBox.Trigger>{renderTrigger({ size, refListBox, selectedOptions, renderPill, onRemove, t })}</ListBox.Trigger>
       <ListBox.Filter filter={filter} ref={refFilter} onKeyDown={handleKeyDown} {...noResultMessageProp} />
-      {children}
+      {React.Children.count(children) > 0 ? children : <ListBox.RawItem>{noResultsMessage}</ListBox.RawItem>}
     </ListBox>
   );
 }
@@ -146,15 +142,4 @@ export default function ListBoxTags(props) {
 ListBoxTags.propTypes = propTypes;
 ListBoxTags.defaultProps = defaultProps;
 ListBoxTags.Option = ListBox.Option;
-ListBoxTags.filter = (search, data) => {
-  const regex = new RegExp(`${search}`, "gi");
-  const results = [];
-  // eslint-disable-next-line no-use-before-define
-  for (const d of data) {
-    if (d.label.match(regex) !== null) {
-      results.push(d);
-    }
-  }
-
-  return results;
-};
+ListBoxTags.filter = filter;

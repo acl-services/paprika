@@ -21,18 +21,17 @@ const debounce = (func, wait) => {
 };
 
 function App() {
-  // eslint-disable-next-line no-use-before-define
   const [data, setData] = React.useState(animals.slice(0, 10));
 
-  const [isSelected, setIsSelected] = React.useState(["Alpaca", "Elk", "Elephant"]);
+  const [selectedKeys, setSelectedKeys] = React.useState(["Alpaca", "Elk", "Elephant"]);
   const [dataFiltered, setDataFiltered] = React.useState(data);
 
   function checkIfIsSelected(id) {
-    return isSelected.includes(id);
+    return selectedKeys.includes(id);
   }
 
   function handleChange(option, options, selectedOption) {
-    setIsSelected(prev => {
+    setSelectedKeys(prev => {
       const prevClone = prev.slice(0);
       const id = options[selectedOption].value;
       if (prev.includes(id)) {
@@ -47,10 +46,9 @@ function App() {
   }
 
   function handleRemove(option) {
-    // data.findIndex(d => d.id === option.label) if you don't need to support IE11
-    const index = isSelected.indexOf(option.label);
+    const index = selectedKeys.indexOf(option.label);
     if (index >= 0) {
-      setIsSelected(prev => {
+      setSelectedKeys(prev => {
         const clone = prev.slice(0);
         clone.splice(index, 1);
         return clone;
@@ -64,7 +62,7 @@ function App() {
       return prev.concat(option);
     });
 
-    setIsSelected(prev => {
+    setSelectedKeys(prev => {
       return prev.concat(option.label);
     });
   }
@@ -77,16 +75,8 @@ function App() {
           return;
         }
 
-        const regex = new RegExp(`${search}`, "gi");
-        const results = [];
-        // eslint-disable-next-line no-use-before-define
-        for (const animal of animals) {
-          console.log("regex", regex);
-          if (animal.label.match(regex) !== null) {
-            results.push(animal);
-          }
-        }
-        setDataFiltered(results);
+        const result = ListBoxTags.filter(search, animals);
+        setDataFiltered(result);
       }, 300),
     [data]
   );
@@ -99,7 +89,7 @@ function App() {
         onCustomOption={handleAddedOption}
         onRemove={handleRemove}
         // eslint-disable-next-line no-use-before-define
-        selectedOptions={isSelected.length ? animals.filter(item => isSelected.includes(item.label)) : []}
+        selectedOptions={selectedKeys.length ? animals.filter(item => selectedKeys.includes(item.label)) : []}
         filter={handleFilterDebounce}
       >
         {dataFiltered.map(option => {
@@ -118,4 +108,4 @@ function App() {
   );
 }
 
-export const WithFilter = () => <App />;
+export const Controlled = () => <App />;
