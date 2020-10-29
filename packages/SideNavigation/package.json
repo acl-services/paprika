@@ -1,0 +1,38 @@
+{
+  "name": "@paprika/side-navigation",
+  "version": "0.0.1",
+  "description": "Side Navigation component",
+  "author": "@paprika",
+  "main": "lib/index.js",
+  "types": "lib/index.d.ts",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/acl-services/paprika.git",
+    "directory": "packages/SideNavigation"
+  },
+  "publishConfig": {
+    "access": "public"
+  },
+  "dependencies": {
+    "@babel/runtime-corejs2": "^7.3.1",
+    "@paprika/button": "^0.3.15-alpha.0",
+    "@paprika/helpers": "^0.2.13",
+    "@paprika/icon": "^0.3.11-alpha.0",
+    "@paprika/sidepanel": "^0.4.22-alpha.0",
+    "@paprika/stylers": "^0.2.10",
+    "@paprika/tokens": "^0.1.16",
+    "prop-types": "^15.7.2"
+  },
+  "peerDependencies": {
+    "@paprika/l10n": "^0.4.11",
+    "react": "^16.8.4",
+    "react-dom": "^16.8.4",
+    "styled-components": "^4.2.0"
+  },
+  "paprikaDocs": {
+    "subComponents": [
+      "Item"
+    ]
+  }
+}

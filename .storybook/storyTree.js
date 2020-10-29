@@ -77,6 +77,7 @@ const storyTree = [
       "CollapsibleChecklists",
       "Pagination",
       "ProgressAccordion",
+      "SideNavigation",
       "Tabs",
     ],
   },
