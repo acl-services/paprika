@@ -33,9 +33,9 @@ FormElement.types = {
 const propTypes = {
   formElementA11yProps: PropTypes.shape({
     id: PropTypes.string,
-    // cell: PropTypes.oneOfType([PropTypes.string, PropTypes.func]),
-    // cellPropsResetCSS: PropTypes.bool,
-  }), // should use shape
+    "aria-describedby": PropTypes.string,
+    ref: PropTypes.node,
+  }),
 
   children: PropTypes.node.isRequired,
 
