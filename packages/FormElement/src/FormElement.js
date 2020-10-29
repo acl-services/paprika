@@ -32,9 +32,10 @@ FormElement.types = {
 
 const propTypes = {
   formElementA11yProps: PropTypes.shape({
-    id: PropTypes.string,
-    "aria-describedby": PropTypes.string,
-    ref: PropTypes.node,
+    labelA11yProps: PropTypes.shape({ id: PropTypes.string, ref: PropTypes.node }),
+    instructionsA11yProps: PropTypes.shape({ id: PropTypes.string }),
+    descriptionA11yProps: PropTypes.shape({ id: PropTypes.string }),
+    errorA11yProps: PropTypes.shape({ id: PropTypes.string }),
   }),
 
   children: PropTypes.node.isRequired,
