@@ -22,28 +22,21 @@ npm install @paprika/form-element
 
 ### FormElement
 
-| Prop                  | Type                                                                                         | required | default                       | Description                                                                                                |
-| --------------------- | -------------------------------------------------------------------------------------------- | -------- | ----------------------------- | ---------------------------------------------------------------------------------------------------------- |
-| children              | node                                                                                         | true     | -                             |                                                                                                            |
-| hasOptionalLabel      | bool                                                                                         | false    | false                         | Should show is optional text besides the label or not. Will not show if hasRequiredLabel prop is true      |
-| hasRequiredLabel      | bool                                                                                         | false    | false                         | Should show is required text besides the label or not. Takes presendence over hasOptionalLabel prop        |
-| id                    | string                                                                                       | false    | null                          | ID for the child element.                                                                                  |
-| isDisabled            | bool                                                                                         | false    | false                         | Should be disabled or not, default is false.                                                               |
-| isInline              | bool                                                                                         | false    | false                         | Should label and children be inline or not, default is false.                                              |
-| isLabelVisuallyHidden | bool                                                                                         | false    | false                         | Should label be hidden, default is false. Note: this is discouraged because of accessibility requirements. |
-| label                 | node                                                                                         | true     | -                             | Label text of this field.                                                                                  |
-| size                  | [ FormElement.types.size.SMALL, FormElement.types.size.MEDIUM, FormElement.types.size.LARGE] | false    | FormElement.types.size.MEDIUM | Size of the label, error, help and description (font size, min-height, padding, etc).                      |
-| hasFieldSet           | bool                                                                                         | false    | false                         | FormElement contains multiple children so Renders a legend element instead of label.                       |
-| onClickLabel          | func                                                                                         | false    | () => {}                      |                                                                                                            |
+| Prop                 | Type                                                                                         | required | default                       | Description                                                                           |
+| -------------------- | -------------------------------------------------------------------------------------------- | -------- | ----------------------------- | ------------------------------------------------------------------------------------- |
+| formElementA11yProps | shape                                                                                        | false    | null                          |                                                                                       |
+| children             | node                                                                                         | true     | -                             |                                                                                       |
+| isDisabled           | bool                                                                                         | false    | false                         | Should be disabled or not, default is false.                                          |
+| isInline             | bool                                                                                         | false    | false                         | Should label and children be inline or not, default is false.                         |
+| size                 | [ FormElement.types.size.SMALL, FormElement.types.size.MEDIUM, FormElement.types.size.LARGE] | false    | FormElement.types.size.MEDIUM | Size of the label, error, help and description (font size, min-height, padding, etc). |
+| hasFieldSet          | bool                                                                                         | false    | false                         | FormElement contains multiple children so Renders a legend element instead of label.  |
 
 ### FormElement.Content
 
-| Prop            | Type        | required | default | Description                                  |
-| --------------- | ----------- | -------- | ------- | -------------------------------------------- |
-| children        | [func,node] | true     | -       |                                              |
-| idForLabel      | string      | false    | null    | Sets id for label                            |
-| refLabel        | custom      | false    | null    |                                              |
-| ariaDescribedBy | string      | false    | null    | Used for aria-describedby on the FormElement |
+| Prop     | Type        | required | default | Description |
+| -------- | ----------- | -------- | ------- | ----------- |
+| children | [func,node] | true     | -       |             |
+| isInline | bool        | false    | false   |             |
 
 ### FormElement.Description
 
@@ -67,17 +60,15 @@ npm install @paprika/form-element
 
 ### FormElement.Label
 
-| Prop             | Type   | required | default  | Description                                                                               |
-| ---------------- | ------ | -------- | -------- | ----------------------------------------------------------------------------------------- |
-| hasOptionalLabel | bool   | true     | -        | If "optional" text should be displayed beside the label                                   |
-| hasRequiredLabel | bool   | true     | -        | If "require" text should be displayed beside the label                                    |
-| help             | node   | false    | null     | Help indicator                                                                            |
-| id               | string | false    | null     | id for the element                                                                        |
-| isInline         | bool   | true     | -        | Should label and children be inline or not                                                |
-| isVisuallyHidden | bool   | true     | -        | Should label be hidden                                                                    |
-| label            | node   | true     | -        | Label text of the input field                                                             |
-| hasFieldSet      | bool   | true     | -        | Set if FormElement contains multiple children to render a legend element instead of label |
-| onClick          | func   | false    | () => {} |                                                                                           |
+| Prop             | Type   | required | default  | Description                                             |
+| ---------------- | ------ | -------- | -------- | ------------------------------------------------------- |
+| children         | node   | true     | -        |                                                         |
+| hasOptionalLabel | bool   | false    | false    | If "optional" text should be displayed beside the label |
+| hasRequiredLabel | bool   | false    | false    | If "require" text should be displayed beside the label  |
+| help             | node   | false    | null     | Help indicator                                          |
+| id               | string | false    | null     | id for the element                                      |
+| isVisuallyHidden | bool   | false    | false    | Should label be hidden                                  |
+| onClick          | func   | false    | () => {} |                                                         |
 
 <!-- autogenerated don't modify -->
 <!-- content -->
@@ -89,26 +80,27 @@ Please use `<L10n />` component to wrap `<FormElement />` or you application.
 Using with paprika `<Input />`
 
 ```js
-import FormElement from "@paprika/form-element";
+import FormElement, { useFormElement, Label, Content } from "@paprika/form-element";
 import Input from "@paprika/input";
 
-<FormElement label="Name">
-  <FormElement.Content>
-    {({ idForLabel, ariaDescribedBy }) => (
-      <Input
-        id={idForLabel}
-        onChange={handleChange}
-        value={value}
-        placeholder="Form placeholder"
-        aria-describedby={ariaDescribedBy}
-        aria-required={hasRequiredLabel}
-        hasError={false}
-        isDisabled={isDisabled}
-        isReadOnly={isReadOnly}
-        size={size}
-      />
+const { inputA11yProps, formElementA11yProps } = useFormElement();
+
+<FormElement formElementA11yProps={formElementA11yProps}>
+  <Label>Name</Label>
+  <Content>
+    <Input
+      onChange={handleChange}
+      value={value}
+      placeholder="Form placeholder"
+      aria-required={hasRequiredLabel}
+      hasError={false}
+      isDisabled={isDisabled}
+      isReadOnly={isReadOnly}
+      size={size}
+      {...inputA11yProps}
+    />
     )}
-  </FormElement.Content>
+  </Content>
 </FormElement>;
 ```
 
@@ -116,37 +108,39 @@ Using with paprika `<DatePicker />`
 
 ```js
 import DatePicker from "@paprika/date-picker";
-import FormElement from "@paprika/form-element";
+import FormElement, { useFormElement, Label, Content } from "@paprika/form-element";
 
-<FormElement label="Name">
-  <FormElement.Content>
-    {({ idForLabel, ariaDescribedBy }) => (
-      <DatePicker onError={() => {}} hasError={Boolean(errorText.length)} id={idForLabel} onChange={() => {}}>
-        <DatePicker.Input aria-describedby={ariaDescribedBy} />
-      </DatePicker>
-    )}
-  </FormElement.Content>
+const { datePickerA11yProps, formElementA11yProps } = useFormElement();
+
+<FormElement formElementA11yProps={formElementA11yProps}>
+  <Label>Name</Label>
+  <Content>
+    <DatePicker onError={() => {}} hasError={Boolean(errorText.length)} onChange={() => {}}>
+      <DatePicker.Input {...datePickerA11yProps} />
+    </DatePicker>
+  </Content>
 </FormElement>;
 ```
 
 Using with DOM input
 
 ```js
-import FormElement from "@paprika/form-element";
+import FormElement, { useFormElement, Label, Content } from "@paprika/form-element";
 
-<FormElement hasRequiredLabel={hasRequiredLabel} label="Name">
-  <FormElement.Content>
-    {({ idForLabel, ariaDescribedBy }) => (
-      <input
-        aria-required={hasRequiredLabel}
-        aria-describedby={ariaDescribedBy}
-        aria-invalid={Boolean(errorText.length)}
-        disabled={isDisabled}
-        id={idForLabel}
-        readOnly={isReadOnly}
-      />
+const { datePickerA11yProps, formElementA11yProps } = useFormElement();
+
+<FormElement formElementA11yProps={formElementA11yProps}>
+  <Label hasRequiredLabel={hasRequiredLabel}>Name</Label>
+  <Content>
+    <input
+      aria-required={hasRequiredLabel}
+      aria-invalid={Boolean(errorText.length)}
+      disabled={isDisabled}
+      readOnly={isReadOnly}
+      {...inputA11yProps}
+    />
     )}
-  </FormElement.Content>
+  </Content>
 </FormElement>;
 ```
 
