@@ -55,7 +55,7 @@ const defaultProps = {
 
 function DatePicker(props) {
   // Props
-  const { children, dateFormat, date, humanFormat, id, isDisabled, isReadOnly, onChange, onError, hasError } = props;
+  const { children, dateFormat, date, humanFormat, isDisabled, isReadOnly, onChange, onError, hasError } = props;
 
   // State
   const [possibleDate, setPossibleDate] = React.useState(null);
