@@ -173,5 +173,6 @@ en:
       aria_label: Breadcrumbs
       aria_expand: Show all breadcrumb items.
     sideNavigation:
+      aria_label: Side navigation
       trigger_aria_label: Show side navigation.
           

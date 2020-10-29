@@ -11,7 +11,7 @@ import * as sc from "./SideNavigation.styles";
 const SIDE_PANEL_WIDTH = "350px";
 
 function SideNavigation(props) {
-  const { children, header, ...moreProps } = props;
+  const { a11yText, children, header, ...moreProps } = props;
   const [isOpen, setIsOpen] = React.useState(false);
   const contentRef = React.useRef(null);
   const I18n = useI18n();
@@ -43,7 +43,9 @@ function SideNavigation(props) {
       >
         <SidePanel.Header>{header}</SidePanel.Header>
         <sc.SidePanelContent ref={contentRef}>
-          <ul>{children}</ul>
+          <nav aria-label={a11yText || I18n.t("sideNavigation.aria_label")}>
+            <ul>{children}</ul>
+          </nav>
         </sc.SidePanelContent>
       </SidePanel>
     );
@@ -66,6 +68,9 @@ function SideNavigation(props) {
 }
 
 const propTypes = {
+  /** Aria-label on the nav element. */
+  a11yText: PropTypes.string,
+
   children: PropTypes.node,
 
   /** Header text in the side panel. */
@@ -73,6 +78,7 @@ const propTypes = {
 };
 
 const defaultProps = {
+  a11yText: null,
   children: null,
   header: null,
 };
