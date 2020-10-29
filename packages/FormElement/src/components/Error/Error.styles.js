@@ -8,10 +8,10 @@ export const iconStyles = css`
   margin-top: 2px;
 `;
 
-const errorMessageStyles = css`
+const errorStyles = css`
   ${stylers.lineHeight(-1)}
   color: ${tokens.color.orangeDarken10};
   margin: ${tokens.spaceSm} 0 0 0;
 `;
 
-export default errorMessageStyles;
+export default errorStyles;

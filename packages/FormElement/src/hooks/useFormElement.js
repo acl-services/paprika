@@ -1,10 +1,9 @@
 import React from "react";
-import PropTypes from "prop-types";
 import nanoid from "nanoid";
 import isNil from "lodash/isNil";
 
-export default function useFormElement(props) {
-  // const { id } = props;
+export default function useFormElement(props = {}) {
+  const { id, wrapperAriaDescribedBy } = props;
   const ariaDescriptionId = React.useRef(nanoid()).current;
   const ariaErrorId = React.useRef(nanoid()).current;
   const ariaInstructionsId = React.useRef(nanoid()).current;
@@ -12,7 +11,7 @@ export default function useFormElement(props) {
 
   const ariaDescribedBy = `${ariaErrorId} ${ariaInstructionsId} ${ariaDescriptionId}`;
   const generateLabelId = id => (isNil(id) || id === "" ? uniqueInputId : id);
-  const idForLabel = generateLabelId("");
+  const idForLabel = generateLabelId(id || "");
   const refLabel = React.useRef(null);
 
   return {
@@ -33,6 +32,9 @@ export default function useFormElement(props) {
     },
     listBoxA11yProps: {
       refLabel,
+    },
+    nestedFormElementA11yProps: {
+      "aria-describedby": `${ariaDescribedBy} ${wrapperAriaDescribedBy}`,
     },
     formElementA11yProps: {
       labelA11yProps: {

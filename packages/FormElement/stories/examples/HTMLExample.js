@@ -17,8 +17,8 @@ export default function HTMLExample() {
   }
 
   return (
-    <FormElement hasRequiredLabel={hasRequiredLabel} formElementA11yProps={formElementA11yProps}>
-      <Label>
+    <FormElement formElementA11yProps={formElementA11yProps}>
+      <Label hasRequiredLabel={hasRequiredLabel}>
         <span dangerouslySetInnerHTML={{ __html: "<strong><i>Form Label</i></strong>" }} />
       </Label>
       <Content>

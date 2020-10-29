@@ -1,4 +1,3 @@
-/* eslint-disable react/jsx-wrap-multilines */
 import React from "react";
 import * as constants from "@paprika/constants/lib/Constants";
 import Heading from "@paprika/heading";
@@ -19,8 +18,8 @@ export default function ComponentLabelExample() {
     setValue(e.target.value);
   }
   return (
-    <FormElement formElementA11yProps={formElementA11yProps} hasRequiredLabel={hasRequiredLabel}>
-      <Label>
+    <FormElement formElementA11yProps={formElementA11yProps}>
+      <Label hasRequiredLabel={hasRequiredLabel}>
         <Heading level={5}>
           <strong>
             <i>Form Label</i>

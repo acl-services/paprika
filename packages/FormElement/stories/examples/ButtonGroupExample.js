@@ -13,8 +13,8 @@ export default function ButtonGroupExample() {
   ));
 
   return (
-    <FormElement label="Form Label" onClickLabel={() => refButtonGroup.current.focus()}>
-      <Label>Form Label</Label>
+    <FormElement>
+      <Label onClick={() => refButtonGroup.current.focus()}>Form Label</Label>
       <Content>
         <ButtonGroup style={{ marginTop: stylers.spacer(2) }} ref={refButtonGroup}>
           {buttonGroupOptions}

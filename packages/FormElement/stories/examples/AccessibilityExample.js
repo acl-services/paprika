@@ -1,8 +1,9 @@
+/* eslint-disable react/jsx-wrap-multilines */
 import React from "react";
 import { Rule } from "storybook/assets/styles/common.styles";
 import Input from "@paprika/input";
 import Button from "@paprika/button";
-import FormElement, { useFormElement, Label, Instructions, Content, Description, Error, Help } from "../../src";
+import FormElement, { useFormElement, Label, Instructions, Content, Description, Error } from "../../src";
 
 const AccessibilityExample = () => {
   const [value, setValue] = React.useState("");
@@ -24,11 +25,16 @@ const AccessibilityExample = () => {
 
   return (
     <>
-      <FormElement label="Form Label" formElementA11yProps={formElementA11yProps}>
-        <Label>Form Label</Label>
-        <Help>
-          Give me some help. <a href="wegalvanize.com">Learn more</a>.
-        </Help>
+      <FormElement formElementA11yProps={formElementA11yProps}>
+        <Label
+          help={
+            <span>
+              Give me some help. <a href="wegalvanize.com">Learn more</a>.
+            </span>
+          }
+        >
+          Form Label
+        </Label>
         <Instructions>
           <span>
             Example text for extra panel for questionnaires. Example text for extra panel for questionnaires Example

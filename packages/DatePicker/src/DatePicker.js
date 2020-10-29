@@ -26,9 +26,6 @@ const propTypes = {
   /** Date format used while displaying date. It should be human-friendly and spelled out, default is MMMM DD,YYYY */
   humanFormat: PropTypes.string,
 
-  /** ID for the `<input>`. */
-  id: PropTypes.string,
-
   /** Should be disabled or not, default is false. */
   isDisabled: PropTypes.bool,
 
@@ -51,7 +48,6 @@ const defaultProps = {
   date: null,
   hasError: false,
   humanFormat: undefined,
-  id: null,
   isDisabled: false,
   isReadOnly: false,
   onError: () => {},
@@ -130,7 +126,6 @@ function DatePicker(props) {
     >
       <DateInput
         ref={inputRef}
-        id={id}
         isDisabled={isDisabled}
         isReadOnly={isReadOnly}
         date={date}

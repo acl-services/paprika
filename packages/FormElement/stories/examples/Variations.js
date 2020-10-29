@@ -75,7 +75,7 @@ const Variations = () => {
       <Rule />
       <Tagline>Form Element with instructions.</Tagline>
       <br />
-      <FormElement label="Form with instructions" formElementA11yProps={variation4FormElementA11yProps}>
+      <FormElement formElementA11yProps={variation4FormElementA11yProps}>
         <Label>Form with instructions</Label>
         <Instructions>
           <span>

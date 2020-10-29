@@ -5,21 +5,23 @@ import Input from "@paprika/input";
 import { Rule, Tagline } from "storybook/assets/styles/common.styles";
 import { ShirtSizes } from "@paprika/helpers/lib/customPropTypes";
 import { FormElementStory } from "../FormElement.stories.styles";
-import FormElement, { useFormElement, Label, Instructions, Content, Description, Error, Help } from "../../src";
+import FormElement, { useFormElement, Label, Instructions, Content, Description, Error } from "../../src";
 
 const getKnobs = () => ({
-  hasOptionalLabel: boolean("hasOptionalLabel", false),
-  hasRequiredLabel: boolean("hasRequiredLabel", false),
   isDisabled: boolean("isDisabled", false),
   isInline: boolean("isInline", false),
-  isLabelVisuallyHidden: boolean("isLabelVisuallyHidden", false),
-  isReadOnly: boolean("isReadOnly", false),
-  label: text("label", "Form element"),
   size: select("size", ShirtSizes.DEFAULT, "medium"),
 });
 
 const errorPropKnobs = () => ({
   errorText: text("error text", ""),
+});
+
+const labelPropKnobs = () => ({
+  isVisuallyHidden: boolean("is Label Visually Hidden", false),
+  hasOptionalLabel: boolean("hasOptionalLabel", false),
+  hasRequiredLabel: boolean("hasRequiredLabel", false),
+  label: text("label", "Form element"),
 });
 
 const instructionsPropKnobs = () => ({
@@ -53,7 +55,9 @@ const Showcase = props => {
       <Tagline>Form Element.</Tagline>
       <Rule />
       <FormElement {...props} formElementA11yProps={formElementA11yProps}>
-        <Label>{props.label}</Label>
+        <Label onClick={() => console.log("label clicked")} help={helpPropKnobs().helpText} {...labelPropKnobs}>
+          {labelPropKnobs().label}
+        </Label>
         <Instructions>{instructionsPropKnobs().instructionsText}</Instructions>
         <Content>
           <Input
@@ -63,7 +67,6 @@ const Showcase = props => {
             aria-required={props.hasRequiredLabel}
             hasError={Boolean(errorPropKnobs().errorText)}
             isDisabled={props.isDisabled}
-            isReadOnly={props.isReadOnly}
             size={props.size}
             {...inputA11yProps}
           />
@@ -72,7 +75,6 @@ const Showcase = props => {
         <Description>
           <span>{descriptionPropKnobs().descriptionText}</span>
         </Description>
-        <Help>{helpPropKnobs().helpText}</Help>
       </FormElement>
     </FormElementStory>
   );
