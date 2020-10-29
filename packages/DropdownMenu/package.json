@@ -20,6 +20,7 @@
     "@paprika/confirmation": "^0.3.44-alpha.0",
     "@paprika/constants": "^0.1.3",
     "@paprika/helpers": "^0.2.13",
+    "@paprika/icon": "^0.3.11-alpha.0",
     "@paprika/popover": "^0.3.35",
     "@paprika/raw-button": "^0.2.20",
     "@paprika/stylers": "^0.2.11",
