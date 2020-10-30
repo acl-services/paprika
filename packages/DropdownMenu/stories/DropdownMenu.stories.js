@@ -7,7 +7,6 @@ import ShowcaseStory from "./examples/Showcase";
 import { DropdownMenuStory } from "./DropdownMenu.stories.styles";
 import DropdownMenuExample from "./examples/DropdownMenuExample";
 import DropdownMenuMultiConfirmationExample from "./examples/DropdownMenuMultiConfirmationExample";
-import DropdownMenuDisabledExample from "./examples/DropdownMenuDisabledExample";
 import DropdownMenuDividersExample from "./examples/DropdownMenuDividersExample";
 import DropdownMenuLongestExample from "./examples/DropdownMenuLongestExample";
 import DropdownMenuTriggerExample from "./examples/DropdownMenuTriggerExample";
@@ -37,11 +36,6 @@ storiesOf(`${storyName}/Examples`, module)
   .add("with multiple confirmation modals", () => (
     <DropdownMenuStory>
       <DropdownMenuMultiConfirmationExample />
-    </DropdownMenuStory>
-  ))
-  .add("with disabled items", () => (
-    <DropdownMenuStory>
-      <DropdownMenuDisabledExample />
     </DropdownMenuStory>
   ))
   .add("with dividers", () => (
