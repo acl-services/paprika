@@ -2,16 +2,17 @@ import React from "react";
 import nanoid from "nanoid";
 import isNil from "lodash/isNil";
 
-export default function useFormElement(props = {}) {
-  const { id, wrapperAriaDescribedBy } = props;
+export default function useFormElement(props = { id: "", wrapperA11yProps: { "aria-describedby": "" } }) {
+  const { id, wrapperA11yProps } = props;
+  const wrapperAriaDescribedBy = wrapperA11yProps["aria-describedby"];
   const ariaDescriptionId = React.useRef(nanoid()).current;
   const ariaErrorId = React.useRef(nanoid()).current;
   const ariaInstructionsId = React.useRef(nanoid()).current;
   const uniqueInputId = React.useRef(nanoid()).current;
 
-  const ariaDescribedBy = `${ariaErrorId} ${ariaInstructionsId} ${ariaDescriptionId}`;
+  const ariaDescribedBy = `${ariaErrorId} ${ariaInstructionsId} ${ariaDescriptionId} ${wrapperAriaDescribedBy}`;
   const generateLabelId = id => (isNil(id) || id === "" ? uniqueInputId : id);
-  const idForLabel = generateLabelId(id || "");
+  const idForLabel = generateLabelId(id);
   const refLabel = React.useRef(null);
 
   return {
@@ -33,8 +34,8 @@ export default function useFormElement(props = {}) {
     listBoxA11yProps: {
       refLabel,
     },
-    nestedFormElementA11yProps: {
-      "aria-describedby": `${ariaDescribedBy} ${wrapperAriaDescribedBy}`,
+    additionalElementA11yProps: {
+      "aria-describedby": ariaDescribedBy,
     },
     formElementA11yProps: {
       labelA11yProps: {

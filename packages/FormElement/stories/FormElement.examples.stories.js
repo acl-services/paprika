@@ -10,6 +10,7 @@ import ListBoxExample from "./examples/ListBoxExample";
 import ButtonGroupExample from "./examples/ButtonGroupExample";
 import NativeInputExample from "./examples/NativeInputExample";
 import NestedExample from "./examples/NestedExample";
+import InlineContentExample from "./examples/InlineContentExample";
 import HTMLExample from "./examples/HTMLExample";
 import ComponentLabelExample from "./examples/ComponentLabelExample";
 
@@ -72,6 +73,13 @@ nativeInputExample.story = { name: "Native Input", parameters: exampleStoryParam
 export const nestedExample = () => (
   <ExampleStory storyName="Nested" fileName="examples/NestedExample.js">
     <NestedExample />
+  </ExampleStory>
+);
+nestedExample.story = { name: "Nested", parameters: exampleStoryParameters };
+
+export const inlineContentExample = () => (
+  <ExampleStory storyName="Inline Content" fileName="examples/InlineContent.js">
+    <InlineContentExample />
   </ExampleStory>
 );
 nestedExample.story = { name: "Nested", parameters: exampleStoryParameters };

@@ -32,7 +32,10 @@ FormElement.types = {
 
 const propTypes = {
   formElementA11yProps: PropTypes.shape({
-    labelA11yProps: PropTypes.shape({ id: PropTypes.string, ref: PropTypes.node }),
+    labelA11yProps: PropTypes.shape({
+      id: PropTypes.string,
+      ref: PropTypes.shape({ current: PropTypes.instanceOf(Object) }),
+    }),
     instructionsA11yProps: PropTypes.shape({ id: PropTypes.string }),
     descriptionA11yProps: PropTypes.shape({ id: PropTypes.string }),
     errorA11yProps: PropTypes.shape({ id: PropTypes.string }),
