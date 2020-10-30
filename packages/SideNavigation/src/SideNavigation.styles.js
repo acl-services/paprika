@@ -16,8 +16,8 @@ export const SidePanelContent = styled(SidePanel.Content)`
     box-sizing: border-box;
   }
 
-  ul,
-  li {
+  > nav > ul,
+  > nav > ul > li {
     list-style: none;
     margin: 0;
     padding: 0;
