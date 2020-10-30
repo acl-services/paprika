@@ -2,7 +2,7 @@ import React from "react";
 import styled from "styled-components";
 import { CenteredStory } from "storybook/assets/styles/common.styles";
 import Button from "@paprika/button";
-import Popover from "../../src";
+import Popover from "../../../src/Popover";
 
 const TransformedStory = styled(CenteredStory)`
   background: #333;
@@ -12,7 +12,7 @@ const TransformedStory = styled(CenteredStory)`
   width: 50vw;
 `;
 
-const ExampleStory = () => (
+const Transformed = () => (
   <TransformedStory>
     <Popover>
       <Popover.Trigger>
@@ -26,4 +26,4 @@ const ExampleStory = () => (
   </TransformedStory>
 );
 
-export default ExampleStory;
+export default Transformed;

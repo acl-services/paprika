@@ -74,19 +74,27 @@ npm install @paprika/popover
 
 The `<Popover>` can be used as a controlled or uncontrolled component. If controlled, the `isOpen` and `onClose` props must be utilized.
 
-#### Tooltip style
+### Tooltip style
 
-The `<Popover>` can be used as a tooltip by making it open "eagerly" on hover or keyboard focus via the `isEager` prop. Typically a tooltip is also designed with white text on a black background, achieved with the `isDark` prop.
+The `<Popover>` can be used as a tooltip by making it open "eagerly" on hover or keyboard focus via the `isEager` prop. Typically a very short tooltip is also designed with white text on a black background, achieved with the `isDark` prop.
 
-#### Trigger element
+### Popover.Trigger
 
-It is normally used with a trigger of some kind, like a button or an icon. If using as an uncontrolled component, it is helpful to wrap the trigger in a `<Popover.Trigger>`. For more advanced usage, this components children can be used as a render prop. If using as a controlled component, the `<Popover.Trigger>` may not be needed and a `<Button>` can be included as children of the `<Popover>`.
+With an uncontrolled `<Popover>`, it may be convenient to use the `<Popover.Trigger>` to wrap the element the user will interact with to display the popover because this results in a `<RawButton>` being wrapped around that UI element, with all of the handlers it requires already hooked up.
 
-#### Content
+For a controlled `<Popover>`, or the case where the `<Popover.Trigger>` child element is a `<Button>`, it is necessary to use a render function for the `children` of the `<Popover.Trigger>`, which will be provided with a generic `handler` argument.
 
-Content for the `<Popover>` is also included as children, wrapped by the `<Popover.Content>`. For a "card" style, the `<Popover.Card>` is a convenient helper. To include an arrow that points to the trigger element, the `<Popover.Tip>` can be included as a sibling element of the `<Popover.Content>` (include it _after_ the Content to avoid an explicit zIndex prop on the Tip).
+It may not be necessary to use a `<Popover.Trigger>` element at all if the `<Popover>` is controlled. Then its `children` (excluding `<Popover.Content>` and `<Popover.Tip>`) will by default be used as the positioning element (see Basic controlled example below).
 
-#### Basic uncontrolled example
+### Popover.Content
+
+Content for the `<Popover>` is also included as children, wrapped by the `<Popover.Content>`. For a "card" style, the `<Popover.Card>` is a convenient helper.
+
+### Popover.Tip
+
+To include an arrow that points to the trigger element, the `<Popover.Tip>` can be included as a sibling element of the `<Popover.Content>` (include it _after_ the Content to avoid an explicit zIndex prop on the Tip).
+
+### Basic uncontrolled example
 
 ```js
 import Popover from "@paprika/popover";
@@ -102,7 +110,7 @@ import Popover from "@paprika/popover";
 </Popover>;
 ```
 
-#### Basic controlled example
+### Basic controlled example
 
 ```js
 import Popover from "@paprika/popover";

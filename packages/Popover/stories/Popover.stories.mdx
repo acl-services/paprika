@@ -1,0 +1,174 @@
+import { Meta, Props, Story } from "@storybook/addon-docs/blocks";
+import { Description } from "@storybook/addon-docs/blocks";
+import { getStoryName } from "storybook/storyTree";
+import Readme from "../README.md";
+import Button from "@paprika/button";
+import Popover from "../src/";
+
+export const params = {
+  options: {
+    isToolshown: true,
+    showPanel: false,
+  },
+};
+
+<Meta title={`${getStoryName("Popover")}/Docs`} component={Popover} parameters={params} />
+
+<Description markdown={Readme} />
+
+## More Examples
+
+### Index
+
+- <a href="#align">Align</a>
+
+- <a href="#edge">Edge</a>
+
+- <a href="#iseager">isEager</a>
+
+- <a href="#isdark">isDark</a>
+
+- <a href="#no-card">No Card</a>
+
+- <a href="#zindex">zIndex</a>
+
+### Align
+
+The `<Popover />` component can be set to align with the trigger from any side the user desires using the `align` property. The `align` property can be set to the following values:`Popover.types.align.TOP`,`Popover.types.align.RIGHT`,`Popover.types.align.BOTTOM`,`Popover.types.align.LEFT`.
+
+```jsx
+<Popover align={Popover.types.align.RIGHT}>
+  <Popover.Trigger>{handler => <Button onClick={handler}>Show Popover with Align</Button>}</Popover.Trigger>
+  <Popover.Content>
+    <Popover.Card>Lorem ipsum single-origin kombucha butcher gentrify foraged flannel.</Popover.Card>
+  </Popover.Content>
+  <Popover.Tip />
+</Popover>
+```
+
+##### Result
+
+<Popover align={Popover.types.align.RIGHT}>
+  <Popover.Trigger>{handler => <Button onClick={handler}>Show Popover with Align</Button>}</Popover.Trigger>
+  <Popover.Content>
+    <Popover.Card>Lorem ipsum single-origin kombucha butcher gentrify foraged flannel.</Popover.Card>
+  </Popover.Content>
+  <Popover.Tip />
+</Popover>
+
+### Edge
+
+By using the `edge` property users can set the `<Popover />` card's edge to be aligned on either the right or left side of the trigger. The `edge` property can be set to the following values:`Popover.types.align.LEFT`,`Popover.types.align.RIGHT`.
+
+```jsx
+<Popover edge={Popover.types.align.LEFT}>
+  <Popover.Trigger>{handler => <Button onClick={handler}>Show Popover with Edge</Button>}</Popover.Trigger>
+  <Popover.Content>
+    <Popover.Card>Lorem ipsum single-origin kombucha butcher gentrify foraged flannel.</Popover.Card>
+  </Popover.Content>
+  <Popover.Tip />
+</Popover>
+```
+
+##### Result
+
+<Popover edge={Popover.types.align.LEFT}>
+  <Popover.Trigger>{handler => <Button onClick={handler}>Show Popover with Edge</Button>}</Popover.Trigger>
+  <Popover.Content>
+    <Popover.Card>Lorem ipsum single-origin kombucha butcher gentrify foraged flannel.</Popover.Card>
+  </Popover.Content>
+  <Popover.Tip />
+</Popover>
+
+### isEager
+
+By making use of the `isEager` property the `<Popover />` component will display the card when the user hovers or focuses on the trigger. Typically used as a tooltip style.
+
+```jsx
+<Popover isEager>
+  <Popover.Trigger>{handler => <Button onClick={handler}>Show Popover with isEager</Button>}</Popover.Trigger>
+  <Popover.Content>
+    <Popover.Card>Lorem ipsum single-origin kombucha butcher gentrify foraged flannel.</Popover.Card>
+  </Popover.Content>
+  <Popover.Tip />
+</Popover>
+```
+
+##### Result
+
+<Popover isEager>
+  <Popover.Trigger data-test-attr="propagated">
+    {handler => <Button onClick={handler}>Show Popover with isEager</Button>}
+  </Popover.Trigger>
+  <Popover.Content>
+    <Popover.Card>Lorem ipsum single-origin kombucha butcher gentrify foraged flannel.</Popover.Card>
+  </Popover.Content>
+  <Popover.Tip />
+</Popover>
+
+### isDark
+
+The `<Popover />` component's card can be set to have a dark backgorund with white text, opposed to the default white background with dark text, by using the `isDark` proeprty. Often used as a short tooltip.
+
+```jsx
+<Popover isDark>
+  <Popover.Trigger>{handler => <Button onClick={handler}>Show Popover with isDark</Button>}</Popover.Trigger>
+  <Popover.Content>
+    <Popover.Card>Lorem ipsum single-origin kombucha butcher gentrify foraged flannel.</Popover.Card>
+  </Popover.Content>
+  <Popover.Tip />
+</Popover>
+```
+
+##### Result
+
+<Popover isDark>
+  <Popover.Trigger>{handler => <Button onClick={handler}>Show Popover with isDark</Button>}</Popover.Trigger>
+  <Popover.Content>
+    <Popover.Card>Lorem ipsum single-origin kombucha butcher gentrify foraged flannel.</Popover.Card>
+  </Popover.Content>
+  <Popover.Tip />
+</Popover>
+
+### No Card
+
+The `<Popover />` component doesn't have to render a Card, if a user wishes to display content without a card simply place the desired content inside of the `<Popover.Content />`.
+
+```jsx
+<Popover>
+  <Popover.Trigger>{handler => <Button onClick={handler}>Show Popover with no card</Button>}</Popover.Trigger>
+  <Popover.Content>Lorem ipsum single-origin kombucha butcher gentrify foraged flannel.</Popover.Content>
+</Popover>
+```
+
+##### Result
+
+<Popover>
+  <Popover.Trigger>{handler => <Button onClick={handler}>Show Popover with no card</Button>}</Popover.Trigger>
+  <Popover.Content>Lorem ipsum single-origin kombucha butcher gentrify foraged flannel.</Popover.Content>
+  <Popover.Tip />
+</Popover>
+
+### zIndex
+
+Users can set the `zIndex` property of the `<Popover />` component to adjust how to `<Popover />` component will be displayed. The `<Popover.Content />` and `<Popover.Tip />` will inherit the `zIndex` value.
+
+```jsx
+<Popover zIndex={9}>
+  <Popover.Trigger>{handler => <Button onClick={handler}>Show Popover with zIndex</Button>}</Popover.Trigger>
+  <Popover.Content>
+    <Popover.Card>Lorem ipsum single-origin kombucha butcher gentrify foraged flannel.</Popover.Card>
+  </Popover.Content>
+  <Popover.Tip />
+</Popover>
+```
+
+##### Result
+
+<Popover zIndex={9}>
+  <Popover.Trigger>{handler => <Button onClick={handler}>Show Popover with zIndex</Button>}</Popover.Trigger>
+  <Popover.Content>
+    <Popover.Card>Lorem ipsum single-origin kombucha butcher gentrify foraged flannel.</Popover.Card>
+  </Popover.Content>
+  <Popover.Tip />
+</Popover>

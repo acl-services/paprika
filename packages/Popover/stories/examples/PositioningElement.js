@@ -30,7 +30,7 @@ const popoverProps = () => ({
   align: select("align", ["bottom", "top", "right", "left"], "bottom"),
 });
 
-const ExampleStory = props => (
+const PositioningElement = props => (
   <CenteredStory>
     <div>
       <Popover {...props} getPositioningElement={getPositioningElement} offset={-20} zIndex={stylers.zValue(4)}>
@@ -47,4 +47,4 @@ const ExampleStory = props => (
   </CenteredStory>
 );
 
-export default () => <ExampleStory {...popoverProps()} />;
+export default () => <PositioningElement {...popoverProps()} />;
