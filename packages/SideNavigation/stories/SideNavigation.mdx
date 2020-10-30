@@ -4,3 +4,65 @@ import Readme from "../README.md";
 import SideNavigation from "../src";
 
 <Description markdown={Readme} />
+
+## Usage
+
+### Properties
+
+<Props of={SideNavigation} />
+
+### Basic
+
+Using `SideNavigation` wrap `SideNavigation.Item`. Sometimes there'll be a top navigation on the page. We don't want the side navigation overlapping with the top one, so we can add `offsetY`, which will be passed to the internal `SidePanel` component.
+
+```jsx
+<div style={{ display: "flex", flexDirection: "column", height: "100vh" }}>
+  <div
+    style={{
+      backgroundColor: "#f0f0f0",
+      fontSize: "24px",
+      height: "40px",
+      paddingLeft: "8px",
+    }}
+  >
+    Top navigation
+  </div>
+  <div style={{ display: "flex", flexDirection: "row", flexGrow: 1 }}>
+    <SideNavigation header="Assets" offsetY={40}>
+      <SideNavigation.Item href={mockURL}>First item (0)</SideNavigation.Item>
+      <SideNavigation.Item isCurrent href={mockURL}>
+        Second item (1000)
+      </SideNavigation.Item>
+      <SideNavigation.Item href={mockURL}>Long text item with (100000000) items inside</SideNavigation.Item>
+    </SideNavigation>
+    <div>Page content</div>
+  </div>
+</div>
+```
+
+#### Result
+
+<>
+
+<div style={{ display: "flex", flexDirection: "column", height: "100vh" }}>
+<div
+style={{
+          backgroundColor: "#f0f0f0",
+          fontSize: "24px",
+          height: "40px",
+          paddingLeft: "8px",
+        }} >
+Top navigation
+</div>
+<div style={{ display: "flex", flexDirection: "row", flexGrow: 1 }}>
+<SideNavigation header="Assets" offsetY={40}>
+<SideNavigation.Item href='mock_url'>First item (0)</SideNavigation.Item>
+<SideNavigation.Item isCurrent href='mock_url'>
+Second item (1000)
+</SideNavigation.Item>
+<SideNavigation.Item href='mock_url'>Long text item with (100000000) items inside</SideNavigation.Item>
+</SideNavigation>
+<div>Page content</div>
+</div>
+</div>
+</>

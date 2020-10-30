@@ -5,21 +5,14 @@ import { spacer, fontSize } from "@paprika/stylers/lib/helpers";
 
 export const Item = styled(Button.Link)`
   ${fontSize()}
-  border-radius: 0;
   color: ${tokens.color.black};
   justify-content: flex-start;
+  margin-bottom: ${tokens.space};
   min-height: ${spacer(5)};
   padding: ${tokens.space} ${spacer(2)};
   text-align: left;
   text-decoration: none;
   width: 100%;
-
-  ${({ isCurrent }) =>
-    isCurrent
-      ? css`
-          background: ${tokens.color.blueLighten40};
-        `
-      : ""}
 
   &:hover,
   &:visited {
@@ -31,4 +24,19 @@ export const Item = styled(Button.Link)`
     box-shadow: ${tokens.highlight.active.noBorder.insetBoxShadow};
     outline: none;
   }
+
+  &:hover {
+    background-color: ${tokens.color.blackLighten70};
+    box-shadow: none;
+  }
+
+  ${({ isCurrent }) =>
+    isCurrent
+      ? css`
+          &,
+          &:hover {
+            background-color: ${tokens.color.blueLighten40};
+          }
+        `
+      : ""}
 `;
