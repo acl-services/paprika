@@ -1,15 +1,18 @@
-import { Meta } from "@storybook/addon-docs/blocks";
-import { Description } from "@storybook/addon-docs/blocks";
+import { Meta, Description } from "@storybook/addon-docs/blocks";
 import { getStoryName } from "storybook/storyTree";
 import { docsStoryParameters } from "storybook/assets/storyParameters";
 import Readme from "../README.md";
-import ResizeDetector, { useDimensions, useBreakpoints } from "../src";
 import { BasicStory, FullHeightStory } from "./examples/Basic";
 import { CustomBreakpointsStory, NoSmallStory, NoLargeStory } from "./examples/Breakpoints";
 import { OnBreakStory } from "./examples/Callbacks";
 import { DebounceSlowStory, DebounceFastStory } from "./examples/Debounce";
+import ResizeDetector, { useDimensions, useBreakpoints } from "../src";
 
-<Meta title={`${getStoryName("ResizeDetector")}/Docs`} component={ResizeDetector} parameters={docsStoryParameters} />
+<Meta
+  title={`${getStoryName("ResizeDetector")}/Docs`}
+  component={ResizeDetector}
+  parameters={{ ...docsStoryParameters }}
+/>
 
 <Description markdown={Readme} />
 

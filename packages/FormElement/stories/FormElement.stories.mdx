@@ -1,23 +1,16 @@
 import { Meta, Description } from "@storybook/addon-docs/blocks";
+import Textarea from "@paprika/textarea";
 import { getStoryName } from "storybook/storyTree";
-import { Rule } from "storybook/assets/styles/common.styles";
 import { docsStoryParameters } from "storybook/assets/storyParameters";
 import Readme from "../README.md";
-import Textarea from "@paprika/textarea";
 import { FormElementStyles } from "./FormElement.stories.styles";
 import Checkbox from "./examples/Checkbox";
-import Radio from "./examples/Radio";
 import DatePicker from "./examples/DatePicker";
 import Accessibility from "./examples/Accessibility";
-import ListBox from "./examples/ListBox";
-import ButtonGroup from "./examples/ButtonGroup";
-import NativeInput from "./examples/NativeInput";
-import Nested from "./examples/Nested";
-import HTML from "./examples/HTML";
 import ComponentLabel from "./examples/ComponentLabel";
-import FormElement from "../src/FormElement";
+import FormElement from "../src";
 
-<Meta title={`${getStoryName("FormElement")}/Docs`} component={FormElement} parameters={docsStoryParameters} />
+<Meta title={`${getStoryName("FormElement")}/Docs`} component={FormElement} parameters={{ ...docsStoryParameters }} />
 
 <Description markdown={Readme} />
 
