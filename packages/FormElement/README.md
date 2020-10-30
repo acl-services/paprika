@@ -127,7 +127,7 @@ Using with DOM input
 ```js
 import FormElement, { useFormElement, Label, Content } from "@paprika/form-element";
 
-const { datePickerA11yProps, formElementA11yProps } = useFormElement();
+const { inputA11yProps, formElementA11yProps } = useFormElement();
 
 <FormElement formElementA11yProps={formElementA11yProps}>
   <Label hasRequiredLabel={hasRequiredLabel}>Name</Label>

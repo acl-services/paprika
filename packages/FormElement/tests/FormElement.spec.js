@@ -121,7 +121,7 @@ describe("FormElement", () => {
   it("renders error", () => {
     const { getByTestId } = render(
       <L10n>
-        <FormElement label={defaultLabel}>
+        <FormElement>
           <Label>{defaultLabel}</Label>
           <Content>
             <input data-pka-anchor="form-element.input" />
