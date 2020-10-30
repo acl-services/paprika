@@ -2,9 +2,9 @@ import React from "react";
 import nanoid from "nanoid";
 import isNil from "lodash/isNil";
 
-export default function useFormElement(props = { id: "", wrapperA11yProps: { "aria-describedby": "" } }) {
+export default function useFormElement(props = { id: "", wrapperA11yProps: {} }) {
   const { id, wrapperA11yProps } = props;
-  const wrapperAriaDescribedBy = wrapperA11yProps["aria-describedby"];
+  const wrapperAriaDescribedBy = wrapperA11yProps ? wrapperA11yProps["aria-describedby"] : "";
   const ariaDescriptionId = React.useRef(nanoid()).current;
   const ariaErrorId = React.useRef(nanoid()).current;
   const ariaInstructionsId = React.useRef(nanoid()).current;
@@ -34,7 +34,7 @@ export default function useFormElement(props = { id: "", wrapperA11yProps: { "ar
     listBoxA11yProps: {
       refLabel,
     },
-    additionalElementA11yProps: {
+    ariaA11yProps: {
       "aria-describedby": ariaDescribedBy,
     },
     formElementA11yProps: {

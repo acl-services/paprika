@@ -9,7 +9,7 @@ const AccessibilityExample = () => {
   const [value, setValue] = React.useState("");
   const [errorText, setErrorText] = React.useState("");
 
-  const { inputA11yProps, additionalElementA11yProps, formElementA11yProps } = useFormElement();
+  const { inputA11yProps, ariaA11yProps, formElementA11yProps } = useFormElement();
 
   function handleChange(e) {
     setValue(e.target.value);
@@ -54,7 +54,7 @@ const AccessibilityExample = () => {
             value={value}
             placeholder="Form placeholder"
             hasError={Boolean(errorText.length)}
-            {...additionalElementA11yProps}
+            {...ariaA11yProps}
           />
         </Content>
         <Description>

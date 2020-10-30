@@ -9,11 +9,11 @@ export default function NestedExample() {
   const isDisabled = false;
   const isReadOnly = false;
 
-  const { inputA11yProps: wrapperA11yProps, formElementA11yProps: wrapperFormElementA11yProps } = useFormElement();
+  const { ariaA11yProps: wrapperA11yProps, formElementA11yProps: wrapperFormElementA11yProps } = useFormElement();
 
   const {
     inputA11yProps: firstInputA11yProps,
-    additionalElementA11yProps: firstAdditionalElementA11yProps,
+    ariaA11yProps: firstAriaA11yProps,
     formElementA11yProps: firstFormElementA11yProps,
   } = useFormElement({
     wrapperA11yProps,
@@ -21,7 +21,7 @@ export default function NestedExample() {
 
   const {
     inputA11yProps: secondInputA11yProps,
-    additionalElementA11yProps: secondAdditionalElementA11yProps,
+    ariaA11yProps: secondAriaElementA11yProps,
     formElementA11yProps: secondFormElementA11yProps,
   } = useFormElement({
     wrapperA11yProps,
@@ -59,7 +59,7 @@ export default function NestedExample() {
                   aria-required={hasRequiredLabel}
                   disabled={isDisabled}
                   readOnly={isReadOnly}
-                  {...firstAdditionalElementA11yProps}
+                  {...firstAriaA11yProps}
                 />
               </>
             </Content>
@@ -87,7 +87,7 @@ export default function NestedExample() {
                   aria-required={hasRequiredLabel}
                   disabled={isDisabled}
                   readOnly={isReadOnly}
-                  {...secondAdditionalElementA11yProps}
+                  {...secondAriaElementA11yProps}
                 />
               </>
             </Content>
