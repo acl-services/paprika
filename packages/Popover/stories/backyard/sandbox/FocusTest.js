@@ -1,9 +1,9 @@
 import React from "react";
 import { Story, Gap } from "storybook/assets/styles/common.styles";
 import Button from "@paprika/button";
-import Popover from "../../src";
+import Popover from "../../../src/Popover";
 
-class ExampleStory extends React.Component {
+class FocusTest extends React.Component {
   state = {
     isOpen: false,
   };
@@ -65,4 +65,4 @@ class ExampleStory extends React.Component {
   }
 }
 
-export default () => <ExampleStory />;
+export default () => <FocusTest />;
