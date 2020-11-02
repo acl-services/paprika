@@ -7,7 +7,7 @@ import CollapsibleCard from "../../src";
 const ExampleStory = () => {
   return (
     <Story>
-      <StoryHeader componentName="Collapsible" />
+      <StoryHeader componentName="Collapsible card" />
       <CollapsibleCard label="Avatar, metadata with label">
         <CollapsibleCard.Avatar>Concur</CollapsibleCard.Avatar>
         <CollapsibleCard.Metadata>1000 records</CollapsibleCard.Metadata>

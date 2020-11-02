@@ -74,6 +74,7 @@ const Collapsible = props => {
         a11yText={a11yText || I18n.t("collapsible.a11yText")}
         aria-expanded={!isCollapsed}
         className="collapsible__label"
+        data-pka-anchor="collapsible.trigger"
         isDisabled={isDisabled}
         onClick={props.onClick}
       >
@@ -98,6 +99,7 @@ const Collapsible = props => {
           a11yText={a11yText || I18n.t("collapsible.a11yText")}
           aria-expanded={!isCollapsed}
           className={`collapsible__label collapsible__label--is-toggle-icon-only collapsible__label--${iconAlign}`}
+          data-pka-anchor="collapsible.iconTrigger"
           isDisabled={isDisabled}
           onClick={props.onClick}
         >
