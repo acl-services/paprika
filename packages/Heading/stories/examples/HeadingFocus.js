@@ -1,10 +1,9 @@
 import React from "react";
-import { Story } from "storybook/assets/styles/common.styles";
 import stylers from "@paprika/stylers";
 import Button from "@paprika/button";
 import Heading from "../../src";
 
-const ExampleStory = () => {
+export default function HeadingFocus() {
   const headingRef = React.useRef(null);
 
   const handleFocus = () => {
@@ -12,7 +11,7 @@ const ExampleStory = () => {
   };
 
   return (
-    <Story>
+    <>
       <Heading
         level={4}
         ref={headingRef}
@@ -27,8 +26,6 @@ const ExampleStory = () => {
       <Button onClick={handleFocus} size="small">
         Set focus
       </Button>
-    </Story>
+    </>
   );
-};
-
-export default ExampleStory;
+}

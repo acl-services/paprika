@@ -14,10 +14,8 @@ export const CodeBox = styled.div`
     margin: 0 !important;
     max-height: 500px;
 
-    code {
-      &:first-child {
-        opacity: 0.4;
-      }
+    code code {
+      opacity: 0.4;
     }
   }
 `;

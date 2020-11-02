@@ -22,7 +22,7 @@ const StretchyBox = styled.div`
   width: 100%;
 `;
 
-storiesOf("Storybook | Resizer", module).add("Demo", () => (
+storiesOf("Storybook/Resizer", module).add("Demo", () => (
   <Story>
     <Heading level={1} displayLevel={2} isLight>
       Resizer

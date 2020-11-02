@@ -113,7 +113,7 @@ ja:
       columns_arrangement:
         hide_all: すべて非表示
         show_all: すべて表示
-        label: 列の整列
+        label: 調整
         singular_label: 1列非表示
         plural_label: "{{numberOfHiddenColumn}}列非表示"
         search_placeholder: フィルター...
@@ -169,4 +169,7 @@ ja:
             text: 降順 (Z → A)
             date: 降順 (9 → 1)
             single_select: 降順 (Z → A)
+    breadcrumbs:
+      aria_label: 階層リンク
+      aria_expand: すべての階層リンク項目を表示します。
           

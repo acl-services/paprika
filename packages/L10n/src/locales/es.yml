@@ -113,7 +113,7 @@ es:
       columns_arrangement:
         hide_all: Ocultar todas
         show_all: Mostrar todas
-        label: Organizar las columnas
+        label: Organizar
         singular_label: 1 columna oculta
         plural_label: "{{numberOfHiddenColumn}} columnas ocultas"
         search_placeholder: Filtrar...
@@ -169,4 +169,7 @@ es:
             text: Orden descendente (Z → A)
             date: Orden descendente (9 → 1)
             single_select: Orden descendente (Z → A)
+    breadcrumbs:
+      aria_label: Rutas de navegación
+      aria_expand: Mostrar todos los elementos de la ruta de navegación.
           

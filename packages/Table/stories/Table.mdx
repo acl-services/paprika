@@ -32,7 +32,7 @@ npm install @paprika/table
 
 To create a basic Table simply add the `<Table>` component and set the `data` property to the data object you wish to pass in. Inside your table you can create columns by adding the `<Table.ColumnDefinition />` sub component. Add a header name with the `header` property and set the `cell` property to specify the data object property name you wish to pas into said column.
 
-```js
+```jsx
 <Table data={data}>
   <Table.ColumnDefinition header="Name" cell="name" />
   <Table.ColumnDefinition header="LastName" cell="lastName" />
@@ -63,7 +63,7 @@ To create a basic Table simply add the `<Table>` component and set the `data` pr
 
 A table with zebra stripes can help differentiate each row for easier scan and readability. To add zebra stripes to the table add the `hasZebraStripes` property to the `<Table>` component.
 
-```js
+```jsx
 <Table data={data} hasZebraStripes>
   <Table.ColumnDefinition header="Name" cell="name" />
   <Table.ColumnDefinition header="LastName" cell="lastName" />
@@ -97,7 +97,7 @@ The table can further be customized by adjusting the borders. The table can be s
 
 #### HORIZONTAL
 
-```js
+```jsx
 <Table data={data} borderType={Table.types.border.HORIZONTAL}>
   <Table.ColumnDefinition header="Name" cell="name" />
   <Table.ColumnDefinition header="LastName" cell="lastName" />
@@ -127,7 +127,7 @@ The table can further be customized by adjusting the borders. The table can be s
 
 #### VERTICAL
 
-```js
+```jsx
 <Table data={data} borderType={Table.types.border.VERTICAL}>
   <Table.ColumnDefinition header="Name" cell="name" />
   <Table.ColumnDefinition header="LastName" cell="lastName" />
@@ -157,7 +157,7 @@ The table can further be customized by adjusting the borders. The table can be s
 
 #### NONE
 
-```js
+```jsx
 <Table data={data} borderType={Table.types.border.NONE}>
   <Table.ColumnDefinition header="Name" cell="name" />
   <Table.ColumnDefinition header="LastName" cell="lastName" />

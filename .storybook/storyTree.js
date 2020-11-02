@@ -71,6 +71,7 @@ const storyTree = [
   {
     category: "Navigation",
     components: [
+      "Breadcrumbs",
       "Card",
       "Collapsible",
       "CollapsibleText",
@@ -97,7 +98,7 @@ function getCategory(component) {
 }
 
 function getStoryName(component) {
-  return `${getCategory(component)} | ${component}`;
+  return `${getCategory(component)}/${component}`;
 }
 
 function getStoryUrlPrefix(component) {

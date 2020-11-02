@@ -6,14 +6,6 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 
 ## [Unreleased]
 
-### Added
-
-- Ellipsis vertical icon
-- Character
-- Number,
-- Time and Date
-  [@nahumzs](https://github.com/nahumzs).
-
 ## [0.3.0] - 2020-04-29
 
 ### Removed
@@ -23,3 +15,13 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 ### Added
 
 - Filter icon [@mikrotron](https://github.com/mikrotron).
+
+## [0.3.11-alpha.0] - 2020-10-23
+
+### Added
+
+- Ellipsis vertical icon
+- Character
+- Number,
+- Time and Date
+  [@nahumzs](https://github.com/nahumzs).

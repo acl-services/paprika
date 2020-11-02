@@ -65,6 +65,11 @@ storiesOf(storyName, module)
       <TimePicker defaultValue="730am" />
     </Container>
   ))
+  .add("Read-only", () => (
+    <Container>
+      <TimePicker defaultValue="10:15am" isReadOnly />
+    </Container>
+  ))
   .add("With form-element", () => {
     const [hasError, setHasError] = React.useState(false);
 

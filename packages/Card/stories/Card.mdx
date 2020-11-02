@@ -8,7 +8,6 @@ import Avatar from "../src/components/Avatar";
 
 The `<Card>` component is a customizable content container. It comes with subcomponents that allow for quick and easy creation of various card types for different use cases. Additionally any other child elements can be passed into the Card.
 
-
 Main features:
 
 - Ability to create custom cards.
@@ -19,7 +18,9 @@ Main features:
 ```
 yarn add @/paprika/card
 ```
+
 or
+
 ```
 npm install @paprika/card
 ```
@@ -30,24 +31,23 @@ npm install @paprika/card
 
 The Card comes with several sub-components that can be sued to quickly create a desirable looking card. All sub-components have preset stylings. Alternatively users can choose to pass in their own elements. The following are a list of the available sub-components:
 
-
 - `<Card.Header/>`
-The header sub-component allows you to add a header section to the card.
+  The header sub-component allows you to add a header section to the card.
 
 - `<Card.Content/>`
-The content sub-component allows you to add a container that can section of a part of the card.
+  The content sub-component allows you to add a container that can section of a part of the card.
 
 - `<Card.Title/>`
-The title sub-component allows you to add a title to the card.
+  The title sub-component allows you to add a title to the card.
 
 - `<Card.Text/>`
-The text sub-component allows you to add a text body to the card.
+  The text sub-component allows you to add a text body to the card.
 
 - `<Card.Metadata/>`
-The metadata sub-component allows you to add metadata to the card.
+  The metadata sub-component allows you to add metadata to the card.
 
 - `<Card.Footer/>`
-The footer sub-component allows you to add a footer section to the card.
+  The footer sub-component allows you to add a footer section to the card.
 
 ### Small Card
 
@@ -55,144 +55,195 @@ To create a small card simply add the size property to the `<Card/>` element and
 
 Note: The sizes are fixed therefore consideration will have to be given to size of content passed into the Card.
 
-```js
+```jsx
 <Card size="small">
-    <Card.Header>
-        <Avatar backgroundColor="black" color="white">
-        <Icon />
-        </Avatar>
-    </Card.Header>
-    <Card.Content>
-        <Card.Title>Card</Card.Title>
-        <Card.Metadata>100,000 total</Card.Metadata>
-    </Card.Content>
+  <Card.Header>
+    <Avatar backgroundColor="black" color="white">
+      <Icon />
+    </Avatar>
+  </Card.Header>
+  <Card.Content>
+    <Card.Title>Card</Card.Title>
+    <Card.Metadata>100,000 total</Card.Metadata>
+  </Card.Content>
 </Card>
 ```
+
 #### Result
 
-<Card size="small"><Card.Header><Avatar backgroundColor="black" color="white"><Icon /></Avatar></Card.Header><Card.Content><Card.Title>Card</Card.Title><Card.Metadata>100,000 total</Card.Metadata></Card.Content></Card>
+<Card size="small">
+  <Card.Header>
+    <Avatar backgroundColor="black" color="white">
+      <Icon />
+    </Avatar>
+  </Card.Header>
+  <Card.Content>
+    <Card.Title>Card</Card.Title>
+    <Card.Metadata>100,000 total</Card.Metadata>
+  </Card.Content>
+</Card>
 
 ### Medium Card
 
-To create a medium card simply add the size property to the ```<Card/>``` element and set it's value to medium. You can then add several children elements of your choice.
+To create a medium card simply add the size property to the `<Card/>` element and set it's value to medium. You can then add several children elements of your choice.
 
 Note: The sizes are fixed therefore consideration will have to be given to size of content passed into the Card.
 
-```js
+```jsx
 <Card size="medium">
-    <Card.Header>
-        <Avatar backgroundColor="black" color="white">E</Avatar>
-    </Card.Header>
-    <Card.Content>
-        <Card.Title>Example</Card.Title>
-        <Card.Metadata>metadata</Card.Metadata>
-        <div style={{width:'100%', height:'24px'}} />
-        <Card.Text>This is an example of a medium sized Card</Card.Text>
-        <div style={{width:'100%', height:'24px'}} />
-        <Card.Metadata>Created by Kaan</Card.Metadata>
-        <Card.Metadata>Last updated by Karen</Card.Metadata>
-    </Card.Content>
-    <Card.Footer>
-        <div
-        style={{
-            display: "flex",
-            flexDirection: "row",
-            justifyContent: "space-between",
-            alignItems: "center",
-        }}
-        >
-        <span>150 attributes</span>
-        <span>10 questions</span>
-        </div>
-    </Card.Footer>
+  <Card.Header>
+    <Avatar backgroundColor="black" color="white">
+      E
+    </Avatar>
+  </Card.Header>
+  <Card.Content>
+    <Card.Title>Example</Card.Title>
+    <Card.Metadata>metadata</Card.Metadata>
+    <div style={{ width: "100%", height: "24px" }} />
+    <Card.Text>This is an example of a medium sized Card</Card.Text>
+    <div style={{ width: "100%", height: "24px" }} />
+    <Card.Metadata>Created by Kaan</Card.Metadata>
+    <Card.Metadata>Last updated by Karen</Card.Metadata>
+  </Card.Content>
+  <Card.Footer>
+    <div
+      style={{
+        display: "flex",
+        flexDirection: "row",
+        justifyContent: "space-between",
+        alignItems: "center",
+      }}
+    >
+      <span>150 attributes</span>
+      <span>10 questions</span>
+    </div>
+  </Card.Footer>
 </Card>
 ```
 
 #### Result
 
-<Card size="medium"><Card.Header><Avatar backgroundColor="black" color="white">E</Avatar></Card.Header><Card.Content><Card.Title>Example</Card.Title><Card.Metadata>metadata</Card.Metadata><div style={{width:'100%', height:'24px'}} /><Card.Text>This is an example of a medium sized Card</Card.Text><div style={{width:'100%', height:'24px'}} /><Card.Metadata>Created by Kaan</Card.Metadata><Card.Metadata>Last updated by Karen</Card.Metadata></Card.Content><Card.Footer><div style={{ display: "flex", flexDirection: "row", justifyContent: "space-between", alignItems: "center",}}><span>150 attributes</span><span>10 questions</span></div></Card.Footer></Card>
+<Card size="medium">
+  <Card.Header>
+    <Avatar backgroundColor="black" color="white">
+      E
+    </Avatar>
+  </Card.Header>
+  <Card.Content>
+    <Card.Title>Example</Card.Title>
+    <Card.Metadata>metadata</Card.Metadata>
+    <div style={{ width: "100%", height: "24px" }} />
+    <Card.Text>This is an example of a medium sized Card</Card.Text>
+    <div style={{ width: "100%", height: "24px" }} />
+    <Card.Metadata>Created by Kaan</Card.Metadata>
+    <Card.Metadata>Last updated by Karen</Card.Metadata>
+  </Card.Content>
+  <Card.Footer>
+    <div style={{ display: "flex", flexDirection: "row", justifyContent: "space-between", alignItems: "center" }}>
+      <span>150 attributes</span>
+      <span>10 questions</span>
+    </div>
+  </Card.Footer>
+</Card>
 
 ### Large Card
 
-
-To create a large card simply add the size property to the ```<Card/>``` element and set it's value to large. You can then add several children elements of your choice.
+To create a large card simply add the size property to the `<Card/>` element and set it's value to large. You can then add several children elements of your choice.
 
 Note: The sizes are fixed therefore consideration will have to be given to size of content passed into the Card.
 
-```js
+```jsx
 <Card size="large">
-        <Card.Content>
-          <Card.Title>Asset type name</Card.Title>
-          <Input />
-          <div style={{width:'100%', height:'24px'}} />
-          <Checkbox>Use a display name</Checkbox>
-          <div style={{width:'100%', height:'24px'}} />
-          <Card.Title>Description (optional)</Card.Title>
-          <Textarea placeholder="Kanye is the only one who can edit this.." />
-          <div style={{width:'100%', height:'24px'}} />
-          <div style={{ width: "100%", display: "flex", flexDirection: "row", justifyContent: "space-between" }}>
-            <div style={{ width: "50%", display: "flex", justifyContent: "space-between" }}>
-              <Button isDisabled="true">Save</Button>
-              <Button isDisabled="true" kind="minor">
-                Cancel
-              </Button>
-            </div>
-            <Button kind="minor">Archive</Button>
-          </div>
-          <div style={{width:'100%', height:'24px'}} />
-          <Card.Metadata>Created by Cory McBain</Card.Metadata>
-          <Card.Metadata>Last updated by Charles Bradley</Card.Metadata>
-          <Button kind="link">See full activity log</Button>
-        </Card.Content>
-      </Card>
+  <Card.Content>
+    <Card.Title>Asset type name</Card.Title>
+    <Input />
+    <div style={{ width: "100%", height: "24px" }} />
+    <Checkbox>Use a display name</Checkbox>
+    <div style={{ width: "100%", height: "24px" }} />
+    <Card.Title>Description (optional)</Card.Title>
+    <Textarea placeholder="Kanye is the only one who can edit this.." />
+    <div style={{ width: "100%", height: "24px" }} />
+    <div style={{ width: "100%", display: "flex", flexDirection: "row", justifyContent: "space-between" }}>
+      <div style={{ width: "50%", display: "flex", justifyContent: "space-between" }}>
+        <Button isDisabled="true">Save</Button>
+        <Button isDisabled="true" kind="minor">
+          Cancel
+        </Button>
+      </div>
+      <Button kind="minor">Archive</Button>
+    </div>
+    <div style={{ width: "100%", height: "24px" }} />
+    <Card.Metadata>Created by Cory McBain</Card.Metadata>
+    <Card.Metadata>Last updated by Charles Bradley</Card.Metadata>
+    <Button kind="link">See full activity log</Button>
+  </Card.Content>
+</Card>
 ```
 
 #### Result
 
-<DeluxeCard/>
+<DeluxeCard />
 
 ### Making the Card full width
 
 You can change the Card to be the full width of it's parent container by adding the isFullWidth property to the `<Card/>` component.
 
-```js
+```jsx
 <Card size="small" isFullWidth>
-    <Card.Header>
-        <Avatar backgroundColor="black" color="white">
-        <Icon />
-        </Avatar>
-    </Card.Header>
-    <Card.Content>
-        <Card.Title>Card</Card.Title>
-        <Card.Metadata>100,000 total</Card.Metadata>
-    </Card.Content>
+  <Card.Header>
+    <Avatar backgroundColor="black" color="white">
+      <Icon />
+    </Avatar>
+  </Card.Header>
+  <Card.Content>
+    <Card.Title>Card</Card.Title>
+    <Card.Metadata>100,000 total</Card.Metadata>
+  </Card.Content>
 </Card>
 ```
 
 #### Result
 
-
-<Card size="small" isFullWidth><Card.Header><Avatar backgroundColor="black" color="white"><Icon /></Avatar></Card.Header><Card.Content><Card.Title>Card</Card.Title><Card.Metadata>100,000 total</Card.Metadata></Card.Content></Card>
+<Card size="small" isFullWidth>
+  <Card.Header>
+    <Avatar backgroundColor="black" color="white">
+      <Icon />
+    </Avatar>
+  </Card.Header>
+  <Card.Content>
+    <Card.Title>Card</Card.Title>
+    <Card.Metadata>100,000 total</Card.Metadata>
+  </Card.Content>
+</Card>
 
 ### Making the Card height auto
 
 You can change the Card to be the full height based of the children elements passed into the card by adding the isAutoHeight property to the `<Card/>` component.
 
-```js
+```jsx
 <Card size="small" isAutoHeight>
-    <Card.Header>
-        <Avatar backgroundColor="black" color="white">
-        <Icon />
-        </Avatar>
-    </Card.Header>
-    <Card.Content>
-        <Card.Title>Card</Card.Title>
-        <Card.Metadata>100,000 total</Card.Metadata>
-    </Card.Content>
+  <Card.Header>
+    <Avatar backgroundColor="black" color="white">
+      <Icon />
+    </Avatar>
+  </Card.Header>
+  <Card.Content>
+    <Card.Title>Card</Card.Title>
+    <Card.Metadata>100,000 total</Card.Metadata>
+  </Card.Content>
 </Card>
 ```
 
 #### Result
 
-<Card size="small" isAutoHeight><Card.Header><Avatar backgroundColor="black" color="white"><Icon /></Avatar></Card.Header><Card.Content><Card.Title>Card</Card.Title><Card.Metadata>100,000 total</Card.Metadata></Card.Content></Card>
-
+<Card size="small" isAutoHeight>
+  <Card.Header>
+    <Avatar backgroundColor="black" color="white">
+      <Icon />
+    </Avatar>
+  </Card.Header>
+  <Card.Content>
+    <Card.Title>Card</Card.Title>
+    <Card.Metadata>100,000 total</Card.Metadata>
+  </Card.Content>
+</Card>

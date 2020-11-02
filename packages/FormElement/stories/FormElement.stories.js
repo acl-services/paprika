@@ -1,16 +1,38 @@
-import { storiesOf } from "@storybook/react";
 import { withKnobs } from "@storybook/addon-knobs";
 import { getStoryName } from "storybook/storyTree";
 import ShowcaseStory from "./examples/Showcase";
-import AlternateLayoutsStory from "./examples/AlternateLayouts";
-import AccessibilityExample from "./examples/AccessibilityExample";
+import Variations from "./examples/Variations";
+import FormElement from "../src/FormElement";
 
 const storyName = getStoryName("FormElement");
 
-storiesOf(storyName, module)
-  .addDecorator(withKnobs)
-  .add("Showcase", ShowcaseStory);
+export default {
+  title: storyName,
+  component: FormElement,
+};
 
-storiesOf(`${storyName}/Examples`, module)
-  .add("AlternateLayouts", AlternateLayoutsStory)
-  .add("AccessibilityExample", AccessibilityExample);
+export const showcase = ShowcaseStory;
+showcase.story = {
+  decorators: [withKnobs],
+  parameters: {
+    options: {
+      isToolshown: true,
+      showPanel: true,
+      panelPosition: "bottom",
+    },
+    viewMode: "story",
+  },
+};
+
+export const variations = Variations;
+variations.story = {
+  decorators: [withKnobs],
+  parameters: {
+    options: {
+      isToolshown: true,
+      showPanel: false,
+      panelPosition: "bottom",
+    },
+    viewMode: "story",
+  },
+};

@@ -240,7 +240,6 @@ export const kindStyles = ({ isDisabled }) => ({
     ${skeuomorphicStyles}
 
     background-color: ${tokens.color.white};
-    box-shadow: none;
     color: ${tokens.color.black};
 
     &:hover, &:visited {

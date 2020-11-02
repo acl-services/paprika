@@ -113,7 +113,7 @@ de:
       columns_arrangement:
         hide_all: Alles ausblenden
         show_all: Alles anzeigen
-        label: Spalten neu anordnen
+        label: Neu anordnen
         singular_label: 1 Spalte ausgeblendet
         plural_label: "{{numberOfHiddenColumn}} Spalten ausgeblendet"
         search_placeholder: Filtern...
@@ -169,4 +169,7 @@ de:
             text: Absteigend sortieren (Z → A)
             date: Absteigend sortieren (9 → 1)
             single_select: Absteigend sortieren (Z → A)
+    breadcrumbs:
+      aria_label: Breadcrumbs
+      aria_expand: Sie können alle Breadcrumb-Elemente anzeigen.
           

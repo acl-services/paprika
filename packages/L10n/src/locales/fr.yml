@@ -113,7 +113,7 @@ fr:
       columns_arrangement:
         hide_all: Masquer tout
         show_all: Afficher tout
-        label: Organiser les colonnes
+        label: Organiser
         singular_label: 1 colonne masquée
         plural_label: "{{numberOfHiddenColumn}} colonnes masquées"
         search_placeholder: Filtrer...
@@ -169,4 +169,7 @@ fr:
             text: Tri décroissant (Z → A)
             date: Tri décroissant (9 → 1)
             single_select: Tri décroissant (Z → A)
+    breadcrumbs:
+      aria_label: Fils d'Ariane
+      aria_expand: Afficher tous les éléments du fil d'Ariane
           

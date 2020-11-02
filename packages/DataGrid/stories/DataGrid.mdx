@@ -43,7 +43,7 @@ There are two requirements for rendering a simple DataGrid:
 
 2. Describe how you want to render those objects on the DataGrid
 
-```js
+```jsx
 const data = [
   /* column */ /* colum */
   { myColum1: 1, myColum2: "hi" }, // row 1
@@ -56,7 +56,7 @@ In the above example, each object inside of the `data` array represents a row in
 
 To create the columns, the `<DataGrid.ColumnDefinition />` component is used. The `cell` prop determines what the column should render.
 
-```js
+```jsx
 const data = [
   /* column */ /* colum */
   { myColum1: 1, myColum2: "hi" }, // row 1
@@ -87,7 +87,7 @@ The DataGrid component provides a render prop for `cell` so that the consumer ca
 
 For example, if we wanted to include a 👋 emoji, we would do the following.
 
-```js
+```jsx
 const data = [
   /* column */ /* colum */
   { myColum1: 1, myColum2: "hi" }, // row 1
@@ -130,7 +130,7 @@ The `cellProps` prop is used to add custom styling to the cells.
 
 In the following example, when the cell has the letter 'o', then we add a blue background to the cell.
 
-```js
+```jsx
 
 const style = {
   background: `${row.myColum2.includes("o") ? '#cce5fd' : "transparent"}`
@@ -177,7 +177,7 @@ By default, the table headers are sticky and required.
 1. Add the `isSticky` prop to the `<DataGrid.ColumnDefinition/>`
 2. Make sure the `isSticky` columns are grouped together before the columns that are not sticky. This will prevent issues with keyboard navigation.
 
-```js
+```jsx
 <DataGrid data={data} width={680}>
   <DataGrid.ColumnDefinition isSticky width={180} header="Name" cell="name" />
   <DataGrid.ColumnDefinition header="Countries" cell="country" />
@@ -213,7 +213,7 @@ The `DataGrid` contains two built-in custom columns
 To use these custom columns:
 `import DataGrid, { renderColumnIndicator, renderColumnExpand } from "@paprika/data-grid";`
 
-```js
+```jsx
 <DataGrid data={data} width={680}>
   {renderColumnIndicator()}
   {renderColumnExpand()}
@@ -277,7 +277,7 @@ There are two patterns to load more data:
 
 The `<DataGrid.Basement>` component lets you know if the scrollbar reaches the bottom of the table.
 
-```js
+```jsx
 <DataGrid data={data}>
   <DataGrid.ColumnDefinition header="..." cell="..." />
   <DataGrid.ColumnDefinition header="..." cell="..." />
@@ -297,7 +297,7 @@ Provide a callback funtion to the `onReach` prop and the number of rows to offse
 
 The callback will be executed right before the scroll hits the rows offset number.
 
-```js
+```jsx
 <DataGrid data={data}>
   <DataGrid.ColumnDefinition header="..." cell="..." />
   <DataGrid.ColumnDefinition header="..." cell="..." />
@@ -320,7 +320,7 @@ Once imported you can use it in the following way:
 
 #### As a button
 
-```js
+```jsx
 <DataGrid.ColumnDefinition
   key={key}
   header="Link with onClick"
@@ -339,7 +339,7 @@ Once imported you can use it in the following way:
 
 #### As a regular link
 
-```js
+```jsx
 <DataGrid.ColumnDefinition
   key={key}
   header="Link default"
@@ -355,7 +355,7 @@ Once imported you can use it in the following way:
 The `LinkAction` component also provides an `href` function that let you to implement the link funcionality in an onPressEnter function or any other
 event supported by the `DataGrid.ColumnDefinition` component.
 
-```js
+```jsx
 // function signature
 Link.href = (url, target) => {
   //... implementation
