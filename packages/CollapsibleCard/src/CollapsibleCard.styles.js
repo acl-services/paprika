@@ -9,7 +9,7 @@ export const CollapsibleCard = styled(Collapsible)`
   box-shadow: ${tokens.card.shadow};
   min-height: ${({ hasAvatar }) => (hasAvatar ? spacer(9) : spacer(7))};
 
-  > [data-pka-anchor="raw-button"] {
+  > [data-pka-anchor="collapsible.trigger"] {
     margin: 0;
     padding: ${spacer(2)};
     width: 100%;
