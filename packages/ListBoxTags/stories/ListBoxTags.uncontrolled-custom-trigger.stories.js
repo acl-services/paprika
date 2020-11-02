@@ -1,5 +1,7 @@
 import React from "react";
 import { getStoryName } from "storybook/storyTree";
+import Avatar from "@paprika/avatar";
+import { getAvatarColors } from "@paprika/avatar/lib/helpers";
 
 import ListBoxTags, { useListBoxWithTags } from "../src";
 import animals from "./mocks";
@@ -25,9 +27,31 @@ function App() {
   } = useListBoxWithTags("label", { defaultData, defaultFilteredData });
 
   function renderPill({ option, Pill, onRemove }) {
+    const color = getAvatarColors(option.label);
     return (
       <Pill onRemove={onRemove} key={option.label}>
-        {option.label}
+        <div style={{ display: "flex", justifyContent: "center", alignItems: "center" }}>
+          <div
+            style={{
+              alignItems: "center",
+              backgroundColor: color.backgroundColor,
+              borderRadius: "50%",
+              boxSizing: "border-box",
+              color: color.fontColor,
+              display: "flex",
+              height: "24px",
+              justifyContent: "center",
+              marginRight: "8px",
+              padding: "3px",
+              width: "24px",
+              fontSize: ".8rem",
+              lineHeight: 1,
+            }}
+          >
+            {option.label.substring(0, 2)}
+          </div>
+          {option.label}
+        </div>
       </Pill>
     );
   }
@@ -48,9 +72,13 @@ function App() {
             return null;
           }
 
+          const color = getAvatarColors(option.label);
           return !isSelected(option.label) ? (
             <ListBoxTags.Option value={option.label} key={option.label} label={option.label}>
-              {option.label}
+              <Avatar size={Avatar.types.size.SMALL} backgroundColor={color.backgroundColor} color={color.fontColor}>
+                {option.label}
+              </Avatar>
+              <span style={{ fontSize: "1.3rem", paddingLeft: "8px" }}>{option.label}</span>
             </ListBoxTags.Option>
           ) : null;
         })}
@@ -59,4 +87,4 @@ function App() {
   );
 }
 
-export const Uncontrolled = () => <App />;
+export const UncontrolledWithCustomTrigger = () => <App />;
