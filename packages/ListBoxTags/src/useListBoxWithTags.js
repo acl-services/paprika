@@ -12,7 +12,7 @@ function prepareDataDictionary(key, data) {
 
 export default function useListBoxWithTags(
   key,
-  { defaultData = [], defaultFilteredData = [], defaultSelectedKeys = [] }
+  { defaultData = [], defaultFilteredData = [], defaultSelectedKeys = [], filterAttribute = "label" }
 ) {
   if (!key)
     throw new Error("Key is Required for useListBoxWithTags and should be one of the key (string) in your object");
@@ -30,7 +30,7 @@ export default function useListBoxWithTags(
   function handleChange(option, options, selectedOption) {
     setSelectedKeys(prev => {
       const prevClone = prev.slice(0);
-      const id = options[selectedOption][key];
+      const id = options[selectedOption].content.props[key];
       if (prev.includes(id)) {
         prev.splice(prevClone.indexOf(id), 1);
         return prev;
@@ -91,7 +91,7 @@ export default function useListBoxWithTags(
   };
 
   function handleFilter({ search }) {
-    setFilteredData(filter(search, data));
+    setFilteredData(filter(search, data, filterAttribute));
   }
 
   return {
