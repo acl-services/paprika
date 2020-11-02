@@ -73,6 +73,7 @@ const storyTree = [
       "Breadcrumbs",
       "Card",
       "Collapsible",
+      "CollapsibleCard",
       "CollapsibleText",
       "CollapsibleChecklists",
       "Pagination",
