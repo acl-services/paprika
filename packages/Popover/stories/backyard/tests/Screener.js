@@ -1,12 +1,12 @@
 import React from "react";
 import { Gap } from "storybook/assets/styles/common.styles";
-import Popover from "../../src";
+import Popover from "../../../src/Popover";
 
 const shortContent = "Popover content";
 const longContent =
   "Lorem ipsum fixie raw denim scenester plaid sustainable lumbersexual, single-origin coffee. Live-edge yr tote bag vaporware slow-carb farm-to-table ethical af humblebrag.";
 
-const ExampleStory = () => (
+const Screener = () => (
   <React.Fragment>
     <Popover isOpen>
       <Popover.Trigger>Open Popover</Popover.Trigger>
@@ -43,4 +43,4 @@ const ExampleStory = () => (
   </React.Fragment>
 );
 
-export default ExampleStory;
+export default Screener;

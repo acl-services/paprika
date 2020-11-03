@@ -1,6 +1,6 @@
 import React from "react";
-import windowHandles, { Input } from "../../../../testingHelpers/src/windowHandles";
-import Popover from "../../src";
+import windowHandles, { Input } from "../../../../../testingHelpers/src/windowHandles";
+import Popover from "../../../src";
 
 export const propHandles = windowHandles({
   isEager: new Input(),
