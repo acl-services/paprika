@@ -1,7 +1,7 @@
 import React from "react";
 import { CenteredStory } from "storybook/assets/styles/common.styles";
 import Spinner from "@paprika/spinner";
-import Popover from "../../src";
+import Popover from "../../../src/Popover";
 
 const sampleText = {
   short: "Lorem Hipsum",
@@ -30,7 +30,7 @@ const fullChild = (
   </>
 );
 
-const ExampleStory = () => {
+const DynamicContent = () => {
   const [childs, setChilds] = React.useState(initChild);
 
   React.useEffect(() => {
@@ -49,7 +49,7 @@ const ExampleStory = () => {
 
   return (
     <CenteredStory>
-      <Popover align={Popover.align.TOP} isOpen>
+      <Popover align={Popover.types.align.TOP} isOpen>
         <Popover.Trigger aria-hidden>👻</Popover.Trigger>
         {childs}
       </Popover>
@@ -57,4 +57,4 @@ const ExampleStory = () => {
   );
 };
 
-export default () => <ExampleStory />;
+export default () => <DynamicContent />;
