@@ -1,6 +1,13 @@
+import React from "react";
 import styled from "styled-components";
-import { Story } from "storybook/assets/styles/common.styles";
+import ExampleStory from "storybook/components/ExampleStory";
 
-export const FormElementStory = styled(Story)`
+export const FormElementStyles = styled.div`
   max-width: 500px;
 `;
+
+export const FormElementStory = props => (
+  <FormElementStyles>
+    <ExampleStory {...props} />
+  </FormElementStyles>
+);

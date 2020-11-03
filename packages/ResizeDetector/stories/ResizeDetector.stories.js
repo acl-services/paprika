@@ -1,5 +1,6 @@
 import { withKnobs } from "@storybook/addon-knobs";
 import { getStoryName } from "storybook/storyTree";
+import { showcaseStoryParameters } from "storybook/assets/storyParameters";
 import ShowcaseStory from "./examples/Showcase";
 import ResizeDetector from "../src";
 
@@ -14,11 +15,10 @@ export const showcase = ShowcaseStory;
 showcase.story = {
   decorators: [withKnobs],
   parameters: {
+    ...showcaseStoryParameters,
     options: {
-      isToolshown: true,
-      showPanel: true,
+      ...showcaseStoryParameters.options,
       panelPosition: "bottom",
     },
-    viewMode: "story",
   },
 };

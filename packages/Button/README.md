@@ -85,7 +85,7 @@ It is rendered as a `<button>` element by default, but can also be rendered as a
 
 For a basic button
 
-```js
+```jsx
 import Button from "@paprika/button";
 
 <Button onClick={clickHandler}>Button label</Button>;
@@ -93,7 +93,7 @@ import Button from "@paprika/button";
 
 Or an Icon button
 
-```js
+```jsx
 import Button from "@paprika/button";
 import InfoIcon from "@paprika/icon/lib/InfoCircle";
 
@@ -104,7 +104,7 @@ import InfoIcon from "@paprika/icon/lib/InfoCircle";
 
 Or a Close button
 
-```js
+```jsx
 import Button from "@paprika/button";
 
 <Button.Close onClick={clickHandler} />;
