@@ -88,7 +88,7 @@ Please use `<L10n />` component to wrap `<FormElement />` or you application.
 
 Using with paprika `<Input />`
 
-```js
+```jsx
 import FormElement from "@paprika/form-element";
 import Input from "@paprika/input";
 
@@ -114,7 +114,7 @@ import Input from "@paprika/input";
 
 Using with paprika `<DatePicker />`
 
-```js
+```jsx
 import DatePicker from "@paprika/date-picker";
 import FormElement from "@paprika/form-element";
 
@@ -131,7 +131,7 @@ import FormElement from "@paprika/form-element";
 
 Using with DOM input
 
-```js
+```jsx
 import FormElement from "@paprika/form-element";
 
 <FormElement hasRequiredLabel={hasRequiredLabel} label="Name">

@@ -1,7 +1,6 @@
 import React from "react";
-import { Story } from "storybook/assets/styles/common.styles";
 import { boolean, text, select, number } from "@storybook/addon-knobs";
-import StoryHeader from "storybook/components/StoryHeader";
+import ExampleStory from "storybook/components/ExampleStory";
 import Button from "@paprika/button";
 import { TextLine } from "../helpers";
 import SidePanel from "../../src";
@@ -39,14 +38,20 @@ const overlayProps = () => ({
   toggleOverlay: boolean("Include <SidePanel.Overlay>", true, overlayGroup),
 });
 
-const ExampleStory = props => {
+const Showcase = props => {
   return (
-    <Story>
+    <ExampleStory storyName="SidePanel" tagline={ExampleStory.defaultTaglines.showcase}>
       <SidePanel {...props}>
         {overlayProps().toggleOverlay ? <SidePanel.Overlay /> : null}
         <SidePanel.Header {...headerProps()}>{headerProps().children}</SidePanel.Header>
         <SidePanel.Content>
-          <StoryHeader componentName="SidePanel" />
+          <div
+            css={`
+              margin: -24px;
+            `}
+          >
+            <ExampleStory storyName="SidePanel" tagline={ExampleStory.defaultTaglines.showcase} />
+          </div>
           <TextLine repeat={50} />
         </SidePanel.Content>
         <SidePanel.Footer {...footerProps()}>
@@ -56,8 +61,8 @@ const ExampleStory = props => {
         <SidePanel.FocusLock autoFocus={false} />
       </SidePanel>
       <TextLine repeat={50} />
-    </Story>
+    </ExampleStory>
   );
 };
 
-export default () => <ExampleStory {...sidePanelProps()} />;
+export default () => <Showcase {...sidePanelProps()} />;

@@ -4,7 +4,6 @@ import FormElement from "../../src/FormElement";
 
 export default function ListBoxExample() {
   const optionsArray = ["Black Panther", "Wonder Woman", "Spiderman", "The Incredibles", "Thor", <span>test</span>];
-
   const listboxOptions = optionsArray.map(hero => <ListBox.Option key={hero}>{hero}</ListBox.Option>);
 
   return (

@@ -13,7 +13,7 @@ const AccessibilityExample = () => {
   }
 
   function setError() {
-    setErrorText("There was an error");
+    setErrorText("There was an error.");
   }
 
   function clearError() {
@@ -27,10 +27,8 @@ const AccessibilityExample = () => {
           Give me some help. <a href="wegalvanize.com">Learn more</a>.
         </FormElement.Help>
         <FormElement.Instructions>
-          <span>
-            Example text for extra panel for questionnaires. Example text for extra panel for questionnaires Example
-            text for extra panel for questionnaires. Example text for extra panel for questionnaires
-          </span>
+          Example text for extra panel for questionnaires. Example text for extra panel for questionnaires Example text
+          for extra panel for questionnaires. Example text for extra panel for questionnaires.
         </FormElement.Instructions>
         <FormElement.Content>
           {({ idForLabel, ariaDescribedBy }) => (
@@ -44,9 +42,7 @@ const AccessibilityExample = () => {
             />
           )}
         </FormElement.Content>
-        <FormElement.Description>
-          <span>This is description text</span>
-        </FormElement.Description>
+        <FormElement.Description>This is description text.</FormElement.Description>
         <FormElement.Error>{errorText}</FormElement.Error>
       </FormElement>
       <Rule />
