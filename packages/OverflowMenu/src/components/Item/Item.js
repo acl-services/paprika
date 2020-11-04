@@ -56,7 +56,7 @@ const Item = props => {
 
   const itemProps = {
     canPropagate: false,
-    "data-pka-anchor": "overflow.item",
+    "data-pka-anchor": "overflow-menu.item",
     hasInsetFocusStyle: true,
     isDestructive,
     onClick: renderConfirmation !== null ? onShowConfirmation : handleClickItem,
