@@ -1,41 +1,24 @@
 import React from "react";
-import { Story, Gap } from "storybook/assets/styles/common.styles";
-import StoryHeader from "storybook/components/StoryHeader";
-import Heading from "@paprika/heading";
-
+import { Gap } from "storybook/assets/styles/common.styles";
+import ExampleStory from "storybook/components/ExampleStory";
+import StoryHeading from "storybook/components/StoryHeading";
 import CollapsibleText from "../../src";
 
-const ExampleStory = () => {
+const Variations = () => {
   return (
-    <Story
-      css={`
-        h2 {
-          margin-top: 32px;
-          color: #999;
-        }
-      `}
-    >
-      <StoryHeader componentName="CollapsibleText" storyType="Variations" />
-
-      <Gap />
-
-      <Heading level={2} displayLevel={4} isLight hasDivider>
-        Short
-      </Heading>
+    <ExampleStory storyName="CollapsibleText" tagline={ExampleStory.defaultTaglines.variations}>
+      <Gap.Small />
+      <StoryHeading level={2}>Short</StoryHeading>
       <CollapsibleText>Lorem hipsum raw denim listicle mixtape.</CollapsibleText>
 
-      <Heading level={2} displayLevel={4} isLight hasDivider>
-        Threshold
-      </Heading>
+      <StoryHeading level={2}>Threshold</StoryHeading>
       <CollapsibleText>
         Lorem hipsum roof party disrupt post-ironic, photo booth marfa hot chicken iceland readymade. Small batch
         succulents unicorn direct trade, truffaut fanny pack man bun poke vexillologist copper mug master cleanse
         iceland chillwave stumptown. Bespoke adaptogen hexagon.
       </CollapsibleText>
 
-      <Heading level={2} displayLevel={4} isLight hasDivider>
-        Long
-      </Heading>
+      <StoryHeading level={2}>Long</StoryHeading>
       <CollapsibleText>
         Lorem hipsum lomo cronut meggings hella tattooed affogato. Pug cred plaid, neutra lyft typewriter locavore beard
         vice art party glossier woke kinfolk. Craft beer keytar poke man bun. Yr polaroid flannel air plant. Brunch tote
@@ -45,9 +28,9 @@ const ExampleStory = () => {
 
       <Gap />
 
-      <Heading level={2} displayLevel={4} isLight hasDivider>
+      <StoryHeading level={2}>
         <code>collapsedLength = 64</code>
-      </Heading>
+      </StoryHeading>
       <CollapsibleText collapsedLength={64} a11yText="meditation cardigans">
         Lorem hipsum meditation cardigan +1, plaid brunch street cred cloud bread art party pickled, VHS fingerstache la
         croix paleo single-origin coffee. Pinterest normcore wayfarers gentrify marfa helvetica street art vegan.
@@ -58,9 +41,9 @@ const ExampleStory = () => {
 
       <Gap />
 
-      <Heading level={2} displayLevel={4} isLight hasDivider>
+      <StoryHeading level={2}>
         <code>{"<p>"} </code>&nbsp;x 2
-      </Heading>
+      </StoryHeading>
       <CollapsibleText>
         <p>
           Lorem hipsum cronut meggings hella tattooed affogato. Pug cred plaid, neutra lyft typewriter locavore beard
@@ -76,9 +59,9 @@ const ExampleStory = () => {
         </p>
       </CollapsibleText>
 
-      <Heading level={2} displayLevel={4} isLight hasDivider>
+      <StoryHeading level={2}>
         <code>{"<ul>"}</code>&nbsp;List
-      </Heading>
+      </StoryHeading>
       <CollapsibleText>
         <ul>
           <li>Lorem hipsum next level typewriter vape forage.</li>
@@ -91,8 +74,8 @@ const ExampleStory = () => {
           <li>Pour-over shabby chic austin pabst freegan.</li>
         </ul>
       </CollapsibleText>
-    </Story>
+    </ExampleStory>
   );
 };
 
-export default ExampleStory;
+export default Variations;
