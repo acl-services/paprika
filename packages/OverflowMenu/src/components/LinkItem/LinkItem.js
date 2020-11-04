@@ -27,7 +27,7 @@ const LinkItem = props => {
   const I18n = useI18n();
 
   const linkItemProps = {
-    "data-pka-anchor": "overflow.item",
+    "data-pka-anchor": "overflow-menu.item",
     href: link,
     onKeyDown,
     role: "menuitem",
