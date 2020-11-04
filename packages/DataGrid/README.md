@@ -70,11 +70,7 @@ For a basic DataGrid
 ```js
 import DataGrid from "@paprika/data-grid";
 
-const data = [
-  { column1: "1", column2: "2" },
-  { column1: "3", column2: "4" },
-  { column1: "5", column2: "6" },
-];
+const data = [{ column1: "1", column2: "2" }, { column1: "3", column2: "4" }, { column1: "5", column2: "6" }];
 
 return (
   <DataGrid>
