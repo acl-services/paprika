@@ -18,7 +18,7 @@ const propTypes = {
   /** Callback to be executed when key is pressed */
   onKeyDown: func,
 
-  /** Callback to be executed when overflow needs to be closed */
+  /** Callback to be executed when overflow menu needs to be closed */
   onClose: func,
 
   /** Callback to be executed when delete item is clicked */
