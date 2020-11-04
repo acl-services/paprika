@@ -31,7 +31,7 @@ export default function CollapsibleCard(props) {
         {collapsibleAvatar}
         <div>
           <sc.LabelText id={labelTextId}>{label}</sc.LabelText>
-          {React.cloneElement(metadata, { id: metadataId })}
+          {metadata ? React.cloneElement(metadata, { id: metadataId }) : null}
         </div>
       </sc.Label>
     );
