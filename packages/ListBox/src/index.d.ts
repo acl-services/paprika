@@ -11,7 +11,7 @@ declare function ListBox(props:ListBoxProps): JSX.Element;
     height: number;
  /** Disables the ListBox if true */
     isDisabled?: boolean;
- /** This options will display the listbox without the Popover */
+ /** This options will display the list-box without the Popover */
     isInline?: boolean;
  /** Let the user to select multiple options at same time */
     isMulti?: boolean;
