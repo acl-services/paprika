@@ -14,7 +14,7 @@ const propTypes = {
   /** Alignment of the Popover */
   align: Popover.propTypes.align,
 
-  /** Children should consist of <Overflow.Item /> */
+  /** Children should consist of <OverflowMenu.Item /> */
   children: PropTypes.node.isRequired,
 
   /** If provided, will align Popover to specified edge of Trigger */
