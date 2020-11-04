@@ -32,8 +32,7 @@
   "paprikaDocs": {
     "subComponents": [
       "Avatar",
-      "Metadata",
-      "Content"
+      "Metadata"
     ]
   }
 }

@@ -5,6 +5,8 @@ interface CollapsibleCardProps {
   [x: string]: any;
 
   children?: React.ReactNode;
+  /** If has a divider between collapsible header and content. */
+  hasDivider?: boolean;
   /** Label text as the card title. */
   label?: React.ReactNode;
   /** Callback function when expand the card. */
@@ -25,15 +27,5 @@ declare namespace CollapsibleCard {
     [x: string]: any;
 
     children?: React.ReactNode;
-  }
-}
-declare namespace CollapsibleCard {
-  function Content(props: ContentProps): JSX.Element;
-  interface ContentProps {
-    [x: string]: any;
-
-    children?: React.ReactNode;
-    /** If has a divider between collapsible header and content. */
-    hasDivider?: boolean;
   }
 }

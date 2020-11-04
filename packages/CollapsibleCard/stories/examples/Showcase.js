@@ -11,7 +11,7 @@ const ExampleStory = () => {
       <CollapsibleCard label="Avatar, metadata with label">
         <CollapsibleCard.Avatar>Concur</CollapsibleCard.Avatar>
         <CollapsibleCard.Metadata>1000 records</CollapsibleCard.Metadata>
-        <CollapsibleCard.Content>Content</CollapsibleCard.Content>
+        Content
       </CollapsibleCard>
     </Story>
   );
