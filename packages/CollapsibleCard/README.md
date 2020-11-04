@@ -22,11 +22,11 @@ npm install @paprika/collapsible-card
 
 ### CollapsibleCard
 
-| Prop          | Type | required | default | Description                              |
-| ------------- | ---- | -------- | ------- | ---------------------------------------- |
-| children      | node | false    | null    |                                          |
-| label         | node | false    | null    | Label text as the card title.            |
-| onAfterExpand | func | false    | null    | Callback function after expand the card. |
+| Prop     | Type | required | default | Description                             |
+| -------- | ---- | -------- | ------- | --------------------------------------- |
+| children | node | false    | null    |                                         |
+| label    | node | false    | null    | Label text as the card title.           |
+| onExpand | func | false    | null    | Callback function when expand the card. |
 
 ### CollapsibleCard.Metadata
 

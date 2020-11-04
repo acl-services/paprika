@@ -7,8 +7,8 @@ interface CollapsibleCardProps {
   children?: React.ReactNode;
   /** Label text as the card title. */
   label?: React.ReactNode;
-  /** Callback function after expand the card. */
-  onAfterExpand?: (...args: any[]) => any;
+  /** Callback function when expand the card. */
+  onExpand?: (...args: any[]) => any;
 }
 
 declare namespace CollapsibleCard {

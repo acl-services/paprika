@@ -1,5 +1,5 @@
 import React from "react";
-import StoryHeader from "storybook/components/StoryHeader";
+import StoryHeading from "storybook/components/StoryHeading";
 import { Story } from "storybook/assets/styles/common.styles";
 
 import CollapsibleCard from "../../src";
@@ -7,7 +7,7 @@ import CollapsibleCard from "../../src";
 const ExampleStory = () => {
   return (
     <Story>
-      <StoryHeader componentName="Collapsible card" />
+      <StoryHeading level={1}>Collapsible card</StoryHeading>
       <CollapsibleCard label="Avatar, metadata with label">
         <CollapsibleCard.Avatar>Concur</CollapsibleCard.Avatar>
         <CollapsibleCard.Metadata>1000 records</CollapsibleCard.Metadata>

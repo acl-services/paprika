@@ -36,6 +36,9 @@ const propTypes = {
 
   /** Callback to be executed when the button is clicked or activated by keyboard. */
   onClick: PropTypes.func,
+
+  /** aria-describedby on the trigger element. */
+  triggerAriaDescribedby: PropTypes.string,
 };
 
 const defaultProps = {
@@ -48,6 +51,7 @@ const defaultProps = {
   isDisabled: false,
   hasOnlyIconToggle: false,
   onClick: () => {},
+  triggerAriaDescribedby: null,
 };
 
 const Collapsible = props => {
@@ -67,16 +71,17 @@ const Collapsible = props => {
   };
 
   const renderDefaultCollapsible = () => {
-    const { a11yText, label, isCollapsed, isDisabled, iconAlign } = props;
+    const { a11yText, label, isCollapsed, isDisabled, iconAlign, triggerAriaDescribedby } = props;
 
     return (
       <RawButton
-        a11yText={a11yText || I18n.t("collapsible.a11yText")}
+        a11yText={a11yText || I18n.t("collapsible.ariaText")}
         aria-expanded={!isCollapsed}
         className="collapsible__label"
         data-pka-anchor="collapsible.trigger"
         isDisabled={isDisabled}
         onClick={props.onClick}
+        aria-describedby={triggerAriaDescribedby}
       >
         <span
           data-pka-anchor="collapsible.icon"
@@ -91,17 +96,18 @@ const Collapsible = props => {
   };
 
   const renderCollapsibleByIcon = () => {
-    const { a11yText, label, isCollapsed, isDisabled, iconAlign } = props;
+    const { a11yText, label, isCollapsed, isDisabled, iconAlign, triggerAriaDescribedby } = props;
 
     return (
       <div data-pka-anchor="collapsible.heading">
         <RawButton
-          a11yText={a11yText || I18n.t("collapsible.a11yText")}
+          a11yText={a11yText || I18n.t("collapsible.ariaText")}
           aria-expanded={!isCollapsed}
           className={`collapsible__label collapsible__label--is-toggle-icon-only collapsible__label--${iconAlign}`}
           data-pka-anchor="collapsible.iconTrigger"
           isDisabled={isDisabled}
           onClick={props.onClick}
+          aria-describedby={triggerAriaDescribedby}
         >
           <span data-pka-anchor="collapsible.icon" aria-hidden="true" className="collapsible__icon">
             {collapsedIcon[+isCollapsed]}

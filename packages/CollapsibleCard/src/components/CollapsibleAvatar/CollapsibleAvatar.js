@@ -8,7 +8,7 @@ export default function CollapsibleAvatar(props) {
   const { children, ...moreProps } = props;
 
   return (
-    <sc.CollapsibleAvatar backgroundColor={tokens.color.blackLighten10} {...moreProps}>
+    <sc.CollapsibleAvatar aria-hidden backgroundColor={tokens.color.blackLighten10} {...moreProps}>
       {children}
     </sc.CollapsibleAvatar>
   );

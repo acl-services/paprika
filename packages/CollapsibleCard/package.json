@@ -20,6 +20,7 @@
     "@paprika/helpers": "^0.2.13",
     "@paprika/stylers": "^0.2.11",
     "@paprika/tokens": "^0.1.17",
+    "nanoid": "^2.1.7",
     "prop-types": "^15.7.2"
   },
   "peerDependencies": {

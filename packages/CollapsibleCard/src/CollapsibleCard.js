@@ -1,5 +1,6 @@
 import React from "react";
 import PropTypes from "prop-types";
+import nanoid from "nanoid";
 import extractChildren from "@paprika/helpers/lib/extractChildren";
 import CollapsibleAvatar from "./components/CollapsibleAvatar";
 import Metadata from "./components/Metadata";
@@ -8,8 +9,10 @@ import Content from "./components/Content";
 import * as sc from "./CollapsibleCard.styles";
 
 export default function CollapsibleCard(props) {
-  const { children, label, onAfterExpand, ...moreProps } = props;
+  const { children, label, onExpand, ...moreProps } = props;
   const [isCollapsed, setIsCollapsed] = React.useState(true);
+  const labelTextId = React.useRef(nanoid()).current;
+  const metadataId = React.useRef(nanoid()).current;
   const {
     "CollapsibleCard.Avatar": collapsibleAvatar,
     "CollapsibleCard.Metadata": metadata,
@@ -17,18 +20,18 @@ export default function CollapsibleCard(props) {
   } = extractChildren(children, ["CollapsibleCard.Avatar", "CollapsibleCard.Metadata", "CollapsibleCard.Content"]);
 
   React.useEffect(() => {
-    if (!isCollapsed && onAfterExpand) {
-      onAfterExpand();
+    if (!isCollapsed && onExpand) {
+      onExpand();
     }
-  }, [isCollapsed, onAfterExpand]);
+  }, [isCollapsed, onExpand]);
 
   function getLabel() {
     return (
       <sc.Label>
         {collapsibleAvatar}
         <div>
-          <sc.LabelText>{label}</sc.LabelText>
-          {metadata}
+          <sc.LabelText id={labelTextId}>{label}</sc.LabelText>
+          {React.cloneElement(metadata, { id: metadataId })}
         </div>
       </sc.Label>
     );
@@ -46,6 +49,7 @@ export default function CollapsibleCard(props) {
       onClick={handleClick}
       hasAvatar={!!collapsibleAvatar}
       hasLabelOnly={!collapsibleAvatar && !metadata}
+      triggerAriaDescribedby={`${labelTextId} ${metadata ? metadataId : ""}`}
       {...moreProps}
     >
       {content}
@@ -59,14 +63,14 @@ const propTypes = {
   /** Label text as the card title. */
   label: PropTypes.node,
 
-  /** Callback function after expand the card. */
-  onAfterExpand: PropTypes.func,
+  /** Callback function when expand the card. */
+  onExpand: PropTypes.func,
 };
 
 const defaultProps = {
   children: null,
   label: null,
-  onAfterExpand: null,
+  onExpand: null,
 };
 
 CollapsibleCard.propTypes = propTypes;
