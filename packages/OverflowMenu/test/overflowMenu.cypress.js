@@ -14,7 +14,7 @@ describe("<OverflowMenu />", () => {
     });
   });
 
-  it("should retain trigger focus when the overflow is closed", () => {
+  xit("should retain trigger focus when the overflow is closed", () => {
     cy.getByTestId("overflow-menu__trigger").click();
     cy.wait(250).then(() => {
       cy.getByTestId("overflow-menu__trigger").click();

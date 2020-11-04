@@ -5,7 +5,7 @@ interface OverflowMenuProps {
   [x: string]: any;
   /** Alignment of the Popover */
   align?: custom;
-  /** Children should consist of <Overflow.Item /> */
+  /** Children should consist of <OverflowMenu.Item /> */
   children: React.ReactNode;
   /** If provided, will align Popover to specified edge of Trigger */
   edge?: custom;
@@ -27,7 +27,7 @@ declare namespace OverflowMenu {
     onClick?: (...args: any[]) => any;
     /** Callback to be executed when key is pressed */
     onKeyDown?: (...args: any[]) => any;
-    /** Callback to be executed when overflow needs to be closed */
+    /** Callback to be executed when overflow menu needs to be closed */
     onClose?: (...args: any[]) => any;
     /** Callback to be executed when delete item is clicked */
     onShowConfirmation?: (...args: any[]) => any;

@@ -4,7 +4,7 @@
 
 ## Description
 
-OverflowMenu component displays a trigger button, which when clicked displays a list of items in a overflow format. These items can be raw content, Links or actions such as Delete, which will prompt a confirmation panel to be displayed.
+OverflowMenu component displays a trigger button, which when clicked displays a list of items in a dropdown menu format. These items can be raw content, Links or actions such as Delete, which will prompt a confirmation panel to be displayed.
 
 ## Installation
 
@@ -25,22 +25,22 @@ npm install @paprika/overflow-menu
 | Prop     | Type   | required | default                      | Description                                                  |
 | -------- | ------ | -------- | ---------------------------- | ------------------------------------------------------------ |
 | align    | custom | false    | Popover.defaultProps.align   | Alignment of the Popover                                     |
-| children | node   | true     | -                            | Children should consist of <Overflow.Item />                 |
+| children | node   | true     | -                            | Children should consist of <OverflowMenu.Item />             |
 | edge     | custom | false    | Popover.defaultProps.edge    | If provided, will align Popover to specified edge of Trigger |
 | onClose  | custom | false    | Popover.defaultProps.onClose | If provided, will fire when the Popover is closed            |
 | zIndex   | custom | false    | Popover.defaultProps.zIndex  | The z-index for the popover / confirmation                   |
 
 ### OverflowMenu.Item
 
-| Prop               | Type | required | default  | Description                                              |
-| ------------------ | ---- | -------- | -------- | -------------------------------------------------------- |
-| children           | node | true     | -        | HTML for each item                                       |
-| isDestructive      | bool | false    | false    | If the item is destructive.                              |
-| onClick            | func | false    | () => {} | Callback to be executed when button is clicked           |
-| onKeyDown          | func | false    | () => {} | Callback to be executed when key is pressed              |
-| onClose            | func | false    | () => {} | Callback to be executed when overflow needs to be closed |
-| onShowConfirmation | func | false    | () => {} | Callback to be executed when delete item is clicked      |
-| renderConfirmation | func | false    | null     | Render prop to render the replacement node               |
+| Prop               | Type | required | default  | Description                                                   |
+| ------------------ | ---- | -------- | -------- | ------------------------------------------------------------- |
+| children           | node | true     | -        | HTML for each item                                            |
+| isDestructive      | bool | false    | false    | If the item is destructive.                                   |
+| onClick            | func | false    | () => {} | Callback to be executed when button is clicked                |
+| onKeyDown          | func | false    | () => {} | Callback to be executed when key is pressed                   |
+| onClose            | func | false    | () => {} | Callback to be executed when overflow menu needs to be closed |
+| onShowConfirmation | func | false    | () => {} | Callback to be executed when delete item is clicked           |
+| renderConfirmation | func | false    | null     | Render prop to render the replacement node                    |
 
 ### OverflowMenu.LinkItem
 

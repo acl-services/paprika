@@ -50,7 +50,7 @@ function OverflowMenu(props) {
 
   function focusAndSetIndex(index) {
     if (overflowListRef && overflowListRef.current && index !== undefined)
-      overflowListRef.current.querySelectorAll('[data-pka-anchor="overflow.item"]')[index].focus();
+      overflowListRef.current.querySelectorAll('[data-pka-anchor="overflow-menu.item"]')[index].focus();
     setFocusIndex(index);
   }
 
