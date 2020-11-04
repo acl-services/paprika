@@ -152,7 +152,7 @@ export const propTypes = {
   /** Disables the ListBox if true */
   isDisabled: PropTypes.bool,
 
-  /** This options will display the listbox without the Popover */
+  /** This options will display the list-box without the Popover */
   isInline: PropTypes.bool,
 
   /** Let the user to select multiple options at same time */

@@ -11,7 +11,7 @@ describe("ListBox single select", () => {
   });
 
   it("should toggle the list-box popover while triggering enter on the keyboard", () => {
-    const anchor = cy.get("[data-pka-anchor='listbox-trigger']");
+    const anchor = cy.get("[data-pka-anchor='list-box-trigger']");
     anchor.should("be.visible");
     const joker = /The Joker/i;
     const darth = /Darth Vader/i;
