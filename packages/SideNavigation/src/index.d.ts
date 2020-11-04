@@ -3,6 +3,8 @@ export default SideNavigation;
 declare function SideNavigation(props: SideNavigationProps): JSX.Element;
 interface SideNavigationProps {
   [x: string]: any;
+  /** Aria-label on the nav element. */
+  a11yText?: string;
 
   children?: React.ReactNode;
   /** Header text in the side panel. */

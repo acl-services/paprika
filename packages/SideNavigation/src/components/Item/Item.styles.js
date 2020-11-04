@@ -20,14 +20,17 @@ export const Item = styled(Button.Link)`
   }
 
   &:focus {
-    border-color: ${tokens.highlight.active.noBorder.borderColor};
-    box-shadow: ${tokens.highlight.active.noBorder.insetBoxShadow};
+    box-shadow: ${tokens.highlight.active.noBorder.boxShadow};
     outline: none;
   }
 
   &:hover {
     background-color: ${tokens.color.blackLighten70};
-    box-shadow: none;
+  }
+
+  &[data-pka-anchor="sideNavigation.item"]:hover:focus {
+    border-color: ${tokens.highlight.active.noBorder.borderColor};
+    box-shadow: ${tokens.highlight.active.noBorder.boxShadow};
   }
 
   ${({ isCurrent }) =>
@@ -35,7 +38,7 @@ export const Item = styled(Button.Link)`
       ? css`
           &,
           &:hover {
-            background-color: ${tokens.color.blueLighten40};
+            background-color: ${tokens.color.blueLighten50};
           }
         `
       : ""}

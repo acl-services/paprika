@@ -7,7 +7,7 @@ import { spacer, fontSize } from "@paprika/stylers/lib/helpers";
 export const SideNavigationCollapsedWrapper = styled.div`
   background: ${tokens.color.white};
   border-right: ${tokens.color.blackLighten60} solid 1px;
-  box-sizing: border-box;
+  padding: ${tokens.spaceSm};
   width: ${spacer(5)};
 `;
 
@@ -32,6 +32,7 @@ export const SidePanelContent = styled(SidePanel.Content)`
 export const Trigger = styled(RawButton)`
   ${fontSize(3)}
   align-items: center;
+  border-radius: ${tokens.border.radius};
   display: flex;
   height: ${spacer(5)};
   justify-content: center;
@@ -42,8 +43,7 @@ export const Trigger = styled(RawButton)`
   }
 
   &:focus {
-    border-color: ${tokens.highlight.active.withBorder.borderColor};
-    box-shadow: ${tokens.highlight.active.withBorder.insetBoxShadow};
+    box-shadow: ${tokens.highlight.active.withBorder.boxShadow};
     outline: none;
   }
 `;
