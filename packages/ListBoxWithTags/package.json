@@ -1,5 +1,5 @@
 {
-  "name": "@paprika/listbox-tags",
+  "name": "@paprika/list-box-tags",
   "version": "0.0.1",
   "description": "ListBoxTags behave as a ListBox with the difference that the selected option stack on pills next to an search input",
   "author": "@paprika",

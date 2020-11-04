@@ -88,7 +88,6 @@ function App() {
         onChange={handleChange}
         onCustomOption={handleAddedOption}
         onRemove={handleRemove}
-        // eslint-disable-next-line no-use-before-define
         selectedOptions={selectedKeys.length ? animals.filter(item => selectedKeys.includes(item.label)) : []}
         filter={handleFilterDebounce}
       >
