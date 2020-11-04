@@ -31,7 +31,7 @@
   },
   "paprikaDocs": {
     "subComponents": [
-      "CollapsibleAvatar",
+      "Avatar",
       "Metadata",
       "Content"
     ]

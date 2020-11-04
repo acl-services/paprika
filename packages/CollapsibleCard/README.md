@@ -28,6 +28,12 @@ npm install @paprika/collapsible-card
 | label    | node | false    | null    | Label text as the card title.           |
 | onExpand | func | false    | null    | Callback function when expand the card. |
 
+### CollapsibleCard.Avatar
+
+| Prop     | Type | required | default | Description |
+| -------- | ---- | -------- | ------- | ----------- |
+| children | node | false    | null    |             |
+
 ### CollapsibleCard.Metadata
 
 | Prop     | Type | required | default | Description |

@@ -2,7 +2,7 @@ import React from "react";
 import PropTypes from "prop-types";
 import nanoid from "nanoid";
 import extractChildren from "@paprika/helpers/lib/extractChildren";
-import CollapsibleAvatar from "./components/CollapsibleAvatar";
+import Avatar from "./components/Avatar";
 import Metadata from "./components/Metadata";
 import Content from "./components/Content";
 
@@ -14,7 +14,7 @@ export default function CollapsibleCard(props) {
   const labelTextId = React.useRef(nanoid()).current;
   const metadataId = React.useRef(nanoid()).current;
   const {
-    "CollapsibleCard.Avatar": collapsibleAvatar,
+    "CollapsibleCard.Avatar": avatar,
     "CollapsibleCard.Metadata": metadata,
     "CollapsibleCard.Content": content,
   } = extractChildren(children, ["CollapsibleCard.Avatar", "CollapsibleCard.Metadata", "CollapsibleCard.Content"]);
@@ -28,7 +28,7 @@ export default function CollapsibleCard(props) {
   function getLabel() {
     return (
       <sc.Label>
-        {collapsibleAvatar}
+        {avatar}
         <div>
           <sc.LabelText id={labelTextId}>{label}</sc.LabelText>
           {metadata ? React.cloneElement(metadata, { id: metadataId }) : null}
@@ -47,8 +47,8 @@ export default function CollapsibleCard(props) {
       label={getLabel()}
       isCollapsed={isCollapsed}
       onClick={handleClick}
-      hasAvatar={!!collapsibleAvatar}
-      hasLabelOnly={!collapsibleAvatar && !metadata}
+      hasAvatar={!!avatar}
+      hasLabelOnly={!avatar && !metadata}
       triggerAriaDescribedby={`${labelTextId} ${metadata ? metadataId : ""}`}
       {...moreProps}
     >
@@ -76,6 +76,6 @@ const defaultProps = {
 CollapsibleCard.propTypes = propTypes;
 CollapsibleCard.defaultProps = defaultProps;
 
-CollapsibleCard.Avatar = CollapsibleAvatar;
+CollapsibleCard.Avatar = Avatar;
 CollapsibleCard.Metadata = Metadata;
 CollapsibleCard.Content = Content;

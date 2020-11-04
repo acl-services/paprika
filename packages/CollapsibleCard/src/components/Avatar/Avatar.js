@@ -2,9 +2,9 @@ import React from "react";
 import PropTypes from "prop-types";
 import tokens from "@paprika/tokens";
 
-import * as sc from "./CollapsibleAvatar.styles";
+import * as sc from "./Avatar.styles";
 
-export default function CollapsibleAvatar(props) {
+export default function Avatar(props) {
   const { children, ...moreProps } = props;
 
   return (
@@ -22,6 +22,6 @@ const defaultProps = {
   children: null,
 };
 
-CollapsibleAvatar.propTypes = propTypes;
-CollapsibleAvatar.defaultProps = defaultProps;
-CollapsibleAvatar.displayName = "CollapsibleCard.Avatar";
+Avatar.propTypes = propTypes;
+Avatar.defaultProps = defaultProps;
+Avatar.displayName = "CollapsibleCard.Avatar";

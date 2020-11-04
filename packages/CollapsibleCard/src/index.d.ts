@@ -12,6 +12,14 @@ interface CollapsibleCardProps {
 }
 
 declare namespace CollapsibleCard {
+  function Avatar(props: AvatarProps): JSX.Element;
+  interface AvatarProps {
+    [x: string]: any;
+
+    children?: React.ReactNode;
+  }
+}
+declare namespace CollapsibleCard {
   function Metadata(props: MetadataProps): JSX.Element;
   interface MetadataProps {
     [x: string]: any;
