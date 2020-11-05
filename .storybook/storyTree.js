@@ -61,7 +61,7 @@ const storyTree = [
       "Modal",
       "NotificationCard",
       "ProgressBar",
-      "SidePanel",
+      "Panel",
       "Spinner",
       "Takeover",
       "Toast",
