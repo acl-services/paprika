@@ -1,7 +1,7 @@
 import React from "react";
 import { getStoryName } from "storybook/storyTree";
 import Toast from "../src";
-import ToastFixedSidePanel from "./examples/backyard/ToastFixedSidePanel";
+import ToastFixedPanels from "./examples/backyard/ToastFixedPanels";
 
 const storyName = getStoryName("Toast");
 
@@ -10,4 +10,4 @@ export default {
   component: Toast,
 };
 
-export const toastFixedSidePanel = () => <ToastFixedSidePanel />;
+export const toastFixedPanels = () => <ToastFixedPanels />;
