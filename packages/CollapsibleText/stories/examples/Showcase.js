@@ -1,7 +1,6 @@
 import React from "react";
-import { Story } from "storybook/assets/styles/common.styles";
 import { number, select } from "@storybook/addon-knobs";
-import StoryHeader from "storybook/components/StoryHeader";
+import ExampleStory from "storybook/components/ExampleStory";
 
 import CollapsibleText from "../../src";
 
@@ -34,13 +33,12 @@ const exampleProps = () => ({
   children: select("children", Object.keys(exampleChildren), "Long"),
 });
 
-const ExampleStory = props => {
+const Showcase = props => {
   return (
-    <Story>
-      <StoryHeader componentName="CollapsibleText" />
+    <ExampleStory storyName="CollapsibleText" tagline={ExampleStory.defaultTaglines.showcase}>
       <CollapsibleText {...props}>{exampleChildren[props.children]}</CollapsibleText>
-    </Story>
+    </ExampleStory>
   );
 };
 
-export default () => <ExampleStory {...exampleProps()} />;
+export default () => <Showcase {...exampleProps()} />;

@@ -1,4 +1,5 @@
 import React from "react";
+import stylers from "@paprika/stylers";
 import FormElement from "../../src/FormElement";
 
 export default function NestedExample() {
@@ -12,7 +13,7 @@ export default function NestedExample() {
       <FormElement.Content>
         {({ ariaDescribedBy: ariaDescribedByOuter }) => (
           <>
-            <FormElement isInline label="Sub Label">
+            <FormElement style={{ marginTop: stylers.spacer(2) }} isInline label="Sub Label">
               <FormElement.Content>
                 {({ idForLabel, ariaDescribedBy }) => (
                   <>

@@ -5,11 +5,16 @@ import stylers from "@paprika/stylers";
 const itemStyles = css`
   ${stylers.fontSize()};
   ${stylers.lineHeight()}
+  color: ${tokens.color.black};
   cursor: pointer;
   display: block;
   font-weight: normal;
   padding: ${tokens.spaceSm} ${stylers.spacer(2)};
   text-decoration: none;
+
+  [data-pka-anchor="icon"] {
+    padding: 5px;
+  }
 
   &:focus {
     box-shadow: ${tokens.highlight.active.withBorder.insetBoxShadow};

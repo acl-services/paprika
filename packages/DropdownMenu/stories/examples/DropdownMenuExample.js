@@ -10,42 +10,42 @@ const handleCloseConfirm = onCloseMenu => () => {
   onCloseMenu();
 };
 
+const noop = () => {};
+
 const DropdownMenuExample = () => {
   return (
     <DropdownMenu align="bottom">
       <DropdownMenu.Trigger data-pka-anchor="dropdown-menu__trigger">Trigger</DropdownMenu.Trigger>
-      <DropdownMenu.Item data-pka-anchor="edit-item-data-anchor" onClick={() => {}}>
-        Edit
+      <DropdownMenu.Item onClick={noop}>Item</DropdownMenu.Item>
+      <DropdownMenu.Item isDestructive onClick={noop}>
+        Item (isDestructive)
       </DropdownMenu.Item>
-      <DropdownMenu.Item onClick={() => {}}>Duplicate</DropdownMenu.Item>
-      <DropdownMenu.Item isDestructive isDisabled onClick={() => {}}>
-        Galvanize
+      <DropdownMenu.Item isDisabled onClick={noop}>
+        Item (isDisabled)
       </DropdownMenu.Item>
-      <DropdownMenu.LinkItem link="http://www.wegalvanize.com">Galvanize Link Item</DropdownMenu.LinkItem>
-      <DropdownMenu.LinkItem isExternal link="http://www.bbc.com">
-        External link
-      </DropdownMenu.LinkItem>
-      <DropdownMenu.Item isDisabled onClick={() => {}}>
-        Galvanize
+      <DropdownMenu.Item isDestructive isDisabled onClick={noop}>
+        Item (isDestructive, isDisabled)
       </DropdownMenu.Item>
-      <DropdownMenu.Divider />
       <DropdownMenu.Item
         isDestructive
         renderConfirmation={onCloseMenu => {
           return (
             <Confirmation
               body="Lorem ipsum dolor amet vexillologist tacos selvage narwhal butcher twee ethical hot chicken."
-              confirmLabel="Delete filter"
-              heading="Delete filter?"
+              confirmLabel="confirmLabel"
+              heading="heading"
               onConfirm={handleConfirm}
               onClose={handleCloseConfirm(onCloseMenu)}
             />
           );
         }}
       >
-        Delete filter
+        Item (isDestructive, renderConfirmation)
       </DropdownMenu.Item>
-      {false && <DropdownMenu.Item onClick={() => {}}>Excluded</DropdownMenu.Item>}
+      <DropdownMenu.LinkItem link="#">LinkItem</DropdownMenu.LinkItem>
+      <DropdownMenu.LinkItem isExternal link="http://bbc.com">
+        LinkItem (isExternal)
+      </DropdownMenu.LinkItem>
     </DropdownMenu>
   );
 };

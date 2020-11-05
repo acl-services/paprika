@@ -7,10 +7,11 @@ import ShowcaseStory from "./examples/Showcase";
 import { DropdownMenuStory } from "./DropdownMenu.stories.styles";
 import DropdownMenuExample from "./examples/DropdownMenuExample";
 import DropdownMenuMultiConfirmationExample from "./examples/DropdownMenuMultiConfirmationExample";
-import DropdownMenuDisabledExample from "./examples/DropdownMenuDisabledExample";
 import DropdownMenuDividersExample from "./examples/DropdownMenuDividersExample";
 import DropdownMenuLongestExample from "./examples/DropdownMenuLongestExample";
 import DropdownMenuTriggerExample from "./examples/DropdownMenuTriggerExample";
+import DropdownMenuOnCloseExample from "./examples/DropdownMenuOnCloseExample";
+import DropdownMenuWithCustomClassExample from "./examples/DropdownMenuWithCustomClassExample";
 import ZIndexExample from "./examples/ZIndex";
 
 const storyName = getStoryName("DropdownMenu");
@@ -37,11 +38,6 @@ storiesOf(`${storyName}/Examples`, module)
       <DropdownMenuMultiConfirmationExample />
     </DropdownMenuStory>
   ))
-  .add("with disabled items", () => (
-    <DropdownMenuStory>
-      <DropdownMenuDisabledExample />
-    </DropdownMenuStory>
-  ))
   .add("with dividers", () => (
     <DropdownMenuStory>
       <DropdownMenuDividersExample />
@@ -55,6 +51,16 @@ storiesOf(`${storyName}/Examples`, module)
   .add("with trigger examples", () => (
     <DropdownMenuStory>
       <DropdownMenuTriggerExample />
+    </DropdownMenuStory>
+  ))
+  .add("with onClose", () => (
+    <DropdownMenuStory>
+      <DropdownMenuOnCloseExample />
+    </DropdownMenuStory>
+  ))
+  .add("with custom class on Popover content", () => (
+    <DropdownMenuStory>
+      <DropdownMenuWithCustomClassExample />
     </DropdownMenuStory>
   ));
 
