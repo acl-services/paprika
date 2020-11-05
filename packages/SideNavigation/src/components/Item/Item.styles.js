@@ -9,7 +9,7 @@ export const Item = styled(Button.Link)`
   justify-content: flex-start;
   margin-bottom: ${tokens.space};
   min-height: ${spacer(5)};
-  padding: ${tokens.space} ${spacer(2)};
+  padding: ${tokens.space};
   text-align: left;
   text-decoration: none;
   width: 100%;
