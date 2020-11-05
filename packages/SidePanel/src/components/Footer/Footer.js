@@ -17,7 +17,7 @@ export default function Footer(props) {
   const { children, ...moreProps } = props;
 
   return (
-    <sc.Footer data-pka-anchor="sidepanel.footer" {...moreProps}>
+    <sc.Footer data-pka-anchor="side-panel.footer" {...moreProps}>
       {children}
     </sc.Footer>
   );

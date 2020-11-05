@@ -4,7 +4,7 @@ import PropTypes from "prop-types";
 import * as types from "../../types";
 
 const Trigger = React.forwardRef((props, ref) => {
-  return <Button ref={ref} {...props} isSemantic={false} data-pka-anchor="sidepanel.trigger" />;
+  return <Button ref={ref} {...props} isSemantic={false} data-pka-anchor="side-panel.trigger" />;
 });
 
 Trigger.types = {

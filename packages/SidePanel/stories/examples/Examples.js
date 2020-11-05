@@ -81,10 +81,10 @@ export const GroupSidePanel = () => {
     <React.Fragment>
       <Nav>
         <div style={menu}>
-          <Button data-pka-anchor="button-sidepanel1" onClick={handleParent1} size="small">
+          <Button data-pka-anchor="button-side-panel1" onClick={handleParent1} size="small">
             Parent 1
           </Button>
-          <Button data-pka-anchor="button-sidepanel2" onClick={handleParent2} size="small">
+          <Button data-pka-anchor="button-side-panel2" onClick={handleParent2} size="small">
             Parent 2
           </Button>
         </div>
@@ -104,14 +104,14 @@ export const GroupSidePanel = () => {
         </div>
       </div>
       <SidePanel.Group offsetY={40}>
-        <SidePanel data-pka-anchor="sidepanel1" width={400} onClose={handleParent1} isOpen={spParent1}>
+        <SidePanel data-pka-anchor="side-panel1" width={400} onClose={handleParent1} isOpen={spParent1}>
           <SidePanel.Header kind="primary">Parent 1</SidePanel.Header>
           <SidePanel.Content>
             <TextLine repeat={100} />
             <Button>Test button</Button>
           </SidePanel.Content>
         </SidePanel>
-        <SidePanel data-pka-anchor="sidepanel2" onClose={handleParent2} width={400} isOpen={spParent2}>
+        <SidePanel data-pka-anchor="side-panel2" onClose={handleParent2} width={400} isOpen={spParent2}>
           <SidePanel.Header kind="primary">Parent 2</SidePanel.Header>
           <SidePanel.Content>
             <Button
@@ -124,7 +124,7 @@ export const GroupSidePanel = () => {
           </SidePanel.Content>
         </SidePanel>
         <SidePanel
-          data-pka-anchor="sidepanel-child"
+          data-pka-anchor="side-panel-child"
           onClose={() => {
             setSpChild(false);
           }}

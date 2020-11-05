@@ -12,7 +12,7 @@ const storyName = getStoryName("SidePanel");
 
 export default {
   title: `${storyName}/Backyard/Tests`,
-  id: "sidepanel-tests",
+  id: "side-panel-tests",
 };
 
 export const screener = () => <Screener />;

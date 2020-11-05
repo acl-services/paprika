@@ -14,7 +14,7 @@ const defaultProps = {
 export default function Content(props) {
   const { children } = props;
   return (
-    <sc.Content data-pka-anchor="sidepanel.content" {...props}>
+    <sc.Content data-pka-anchor="side-panel.content" {...props}>
       {children}
     </sc.Content>
   );

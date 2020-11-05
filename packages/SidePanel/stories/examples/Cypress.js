@@ -17,7 +17,7 @@ export const SidePanelDefaultSticky = () => {
     <React.Fragment>
       <Nav />
       <p>
-        <SidePanel data-pka-anchor="sidepanel" isOpen offsetY={40}>
+        <SidePanel data-pka-anchor="side-panel" isOpen offsetY={40}>
           <SidePanel.Header>
             <Heading level={2}>Cypress</Heading>
           </SidePanel.Header>
@@ -47,7 +47,7 @@ export const SidePanelOnAfter = () => {
           onClose={() => {
             setIsOpen(false);
           }}
-          data-pka-anchor="sidepanel"
+          data-pka-anchor="side-panel"
           isOpen={isOpen}
           offsetY={40}
         >
@@ -70,7 +70,7 @@ export const SidePanelFooterSticky = () => {
       <p>
         <SidePanel isOpen>
           <TextLine repeat={100} />
-          <SidePanel.Footer data-pka-anchor="sidepanel.footer" isSticky>
+          <SidePanel.Footer data-pka-anchor="side-panel.footer" isSticky>
             Footer
           </SidePanel.Footer>
         </SidePanel>

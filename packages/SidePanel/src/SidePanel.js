@@ -123,7 +123,7 @@ export default function SidePanel(props) {
     const dialog = (
       <Dialog
         a11yText={ariaLabel}
-        data-pka-anchor="sidepanel"
+        data-pka-anchor="side-panel"
         footer={footerExtracted}
         getPushContentElement={getPushContentElement}
         groupOffsetY={groupOffsetY}
@@ -195,7 +195,7 @@ const propTypes = {
   /** Control the compactness of the side panel */
   isCompact: PropTypes.bool,
 
-  /** Render the sidepanel inline */
+  /** Render the side-panel inline */
   isInline: PropTypes.bool,
 
   /** Control the visibility of the side panel. This prop makes the side panel appear */
@@ -207,13 +207,13 @@ const propTypes = {
   /** Modify the look of the SidePanel */
   kind: PropTypes.oneOf([SidePanel.types.kind.DEFAULT, SidePanel.types.kind.CHILD, SidePanel.types.kind.PRIMARY]),
 
-  /** Control y offset of the sidepanel */
+  /** Control y offset of the side-panel */
   offsetY: PropTypes.number,
 
-  /** Callback once the sidepanel has been closed event */
+  /** Callback once the side-panel has been closed event */
   onAfterClose: PropTypes.func,
 
-  /** Callback once the sidepanel has been opened event */
+  /** Callback once the side-panel has been opened event */
   onAfterOpen: PropTypes.func,
 
   /** Callback triggered when the side panel needs to be close */
@@ -222,7 +222,7 @@ const propTypes = {
   /** The width of the open panel. */
   width: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
 
-  /** Control the z position of the sidepanel */
+  /** Control the z position of the side-panel */
   zIndex: PropTypes.number,
 };
 

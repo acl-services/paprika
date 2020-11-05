@@ -13,7 +13,7 @@ interface SidePanelProps {
   groupOffsetY?: number;
   /** Control the compactness of the side panel */
   isCompact?: boolean;
-  /** Render the sidepanel inline */
+  /** Render the side-panel inline */
   isInline?: boolean;
   /** Control the visibility of the side panel. This prop makes the side panel appear */
   isOpen: boolean;
@@ -21,17 +21,17 @@ interface SidePanelProps {
   isSlideFromLeft?: boolean;
   /** Modify the look of the SidePanel */
   kind?: SidePanel.types.kind.DEFAULT | SidePanel.types.kind.CHILD | SidePanel.types.kind.PRIMARY;
-  /** Control y offset of the sidepanel */
+  /** Control y offset of the side-panel */
   offsetY?: number;
-  /** Callback once the sidepanel has been closed event */
+  /** Callback once the side-panel has been closed event */
   onAfterClose?: (...args: any[]) => any;
-  /** Callback once the sidepanel has been opened event */
+  /** Callback once the side-panel has been opened event */
   onAfterOpen?: (...args: any[]) => any;
   /** Callback triggered when the side panel needs to be close */
   onClose?: (...args: any[]) => any;
   /** The width of the open panel. */
   width?: string | number;
-  /** Control the z position of the sidepanel */
+  /** Control the z position of the side-panel */
   zIndex?: number;
 }
 

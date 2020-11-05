@@ -21,7 +21,7 @@ const Header = React.forwardRef((props, ref) => {
 
   return (
     <sc.Header
-      data-pka-anchor="sidepanel.header"
+      data-pka-anchor="side-panel.header"
       hasPushedElement={!!getPushContentElement}
       isCompact={isCompact}
       kind={kind}
@@ -33,7 +33,7 @@ const Header = React.forwardRef((props, ref) => {
       </Heading>
       {hasCloseButton && (
         <Button.Close
-          data-pka-anchor="sidepanel.header.close"
+          data-pka-anchor="side-panel.header.close"
           isSemantic={false}
           onClick={onClose}
           size={isCompact ? types.SMALL : types.MEDIUM}

@@ -117,7 +117,7 @@ describe("SidePanel", () => {
   });
 
   describe("SidePanel.Group", () => {
-    it("should render with multiple sidepanels", () => {
+    it("should render with multiple side-panels", () => {
       const { getAllByTestId } = renderReactTestingLibrary(
         <SidePanel.Group>
           <SidePanel onClose={noop} isOpen>
@@ -135,7 +135,7 @@ describe("SidePanel", () => {
         </SidePanel.Group>
       );
 
-      expect(getAllByTestId("sidepanel")).toHaveLength(3);
+      expect(getAllByTestId("side-panel")).toHaveLength(3);
     });
 
     it("throws an error when there is only one side panel in a group", () => {
@@ -175,9 +175,9 @@ describe("SidePanel", () => {
           </SidePanel>
         </SidePanel.Group>
       );
-      fireEvent.click(getAllByTestId("sidepanel.header.close")[0]);
-      fireEvent.click(getAllByTestId("sidepanel.header.close")[1]);
-      fireEvent.click(getAllByTestId("sidepanel.header.close")[2]);
+      fireEvent.click(getAllByTestId("side-panel.header.close")[0]);
+      fireEvent.click(getAllByTestId("side-panel.header.close")[1]);
+      fireEvent.click(getAllByTestId("side-panel.header.close")[2]);
 
       expect(noop).toBeCalledTimes(3);
     });
@@ -191,7 +191,7 @@ describe("SidePanel", () => {
         children: <SidePanel.Footer>Footer</SidePanel.Footer>,
       });
 
-      expect(getByTestId("sidepanel.footer")).toBeVisible();
+      expect(getByTestId("side-panel.footer")).toBeVisible();
     });
   });
 
