@@ -25,7 +25,7 @@ const storyTree = [
     components: [
       "Button",
       "ButtonGroup",
-      "DropdownMenu",
+      "OverflowMenu",
       "DialogActions",
       "ExternalLink",
       "RawButton",
