@@ -11,15 +11,17 @@ const defaultProps = {
   children: null,
 };
 
-export default function Content(props) {
+const Content = React.forwardRef(props => {
   const { children } = props;
   return (
     <sc.Content data-pka-anchor="panel.content" {...props}>
       {children}
     </sc.Content>
   );
-}
+});
 
 Content.propTypes = propTypes;
 Content.defaultProps = defaultProps;
 Content.displayName = "Panel.Content";
+
+export default Content;
