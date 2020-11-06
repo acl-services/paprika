@@ -2,7 +2,7 @@ import useListBox from "../../../useListBox";
 import invokeOnChange from "../../../helpers/invokeOnChange";
 
 export function selectSingleOption({ activeOptionIndex, isOpen, dispatch, onChange = null, onChangeContext }) {
-  const onChangeFn = onChange || invokeOnChange(onChangeContext, "listbox:option-selected");
+  const onChangeFn = onChange || invokeOnChange(onChangeContext, "list-box:option-selected");
 
   dispatch({
     type: useListBox.types.selectSingleOption,
@@ -13,12 +13,12 @@ export function selectSingleOption({ activeOptionIndex, isOpen, dispatch, onChan
 export function toggleMultipleOption({ activeOptionIndex, dispatch, onChangeContext }) {
   dispatch({
     type: useListBox.types.toggleMultipleOption,
-    payload: { activeOptionIndex, onChangeFn: invokeOnChange(onChangeContext, "listbox:option-selected") },
+    payload: { activeOptionIndex, onChangeFn: invokeOnChange(onChangeContext, "list-box:option-selected") },
   });
 }
 
 export function selectMultipleOption({ activeOptionIndex, dispatch, isSelected, onChange = null, onChangeContext }) {
-  const onChangeFn = onChange || invokeOnChange(onChangeContext, "listbox:option-selected");
+  const onChangeFn = onChange || invokeOnChange(onChangeContext, "list-box:option-selected");
 
   dispatch({
     type: useListBox.types.selectMultipleOption,

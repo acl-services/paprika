@@ -41,7 +41,7 @@ function renderComponent(props = {}, children = childrenContent) {
   };
 }
 
-describe("Listbox multi select", () => {
+describe("ListBox multi select", () => {
   it("dropdown should be hidden when first rendered", () => {
     const { expectDropdownIsHidden } = renderComponent();
     expectDropdownIsHidden();
@@ -69,7 +69,7 @@ describe("Listbox multi select", () => {
     selectVenus();
     expectDropdownIsNotHidden();
     selectJupiter();
-    expect(getByTestId("listbox-trigger")).toHaveTextContent(/venus, jupiter/i);
+    expect(getByTestId("list-box-trigger")).toHaveTextContent(/venus, jupiter/i);
   });
 
   it("should clear selected options when x is clicked", () => {
@@ -78,12 +78,12 @@ describe("Listbox multi select", () => {
     openSelect();
     selectVenus();
     selectJupiter();
-    expect(getByTestId("listbox-trigger")).toHaveTextContent(/venus, jupiter/i);
+    expect(getByTestId("list-box-trigger")).toHaveTextContent(/venus, jupiter/i);
     expect(getByTestId("clear-button")).toBeVisible();
     fireEvent.click(getByTestId("clear-button"));
     expect(queryByTestId("clear-button")).toBeNull();
-    expect(getByTestId("listbox-trigger")).not.toHaveTextContent(/venus, jupiter/i);
-    expect(getByTestId("listbox-trigger")).toHaveTextContent(/select/i);
+    expect(getByTestId("list-box-trigger")).not.toHaveTextContent(/venus, jupiter/i);
+    expect(getByTestId("list-box-trigger")).toHaveTextContent(/select/i);
   });
 
   it("should have a filter in dropdown", () => {
@@ -138,7 +138,7 @@ describe("Listbox multi select", () => {
     const { openSelect, getByTestId } = renderComponent();
 
     openSelect();
-    // THIS IS A CRAPPY TEST. The Listbox wait until the popover finish animating
+    // THIS IS A CRAPPY TEST. The ListBox wait until the popover finish animating
     // to trigger the focus, one we improved the way of the Popover communicated when the animation
     // ends we can improve this test :/
 
@@ -252,7 +252,7 @@ describe("Listbox multi select", () => {
     const onRenderTrigger = jest.fn((selected, options, current, { dispatch, propsForTrigger, types, refTrigger }) => {
       return (
         <button type="button" {...propsForTrigger()} onClick={togglePopover(dispatch, types)} ref={refTrigger}>
-          Toggle Listbox
+          Toggle ListBox
         </button>
       );
     });
@@ -301,7 +301,7 @@ describe("Listbox multi select", () => {
 
     const { getByText, getByTestId } = renderComponent({}, createOptions());
 
-    fireEvent.click(getByTestId("listbox-trigger"));
+    fireEvent.click(getByTestId("list-box-trigger"));
 
     fireEvent.click(getByText(/option2/i));
     expect(getByText(/✅ option2/i)).toBeInTheDocument();

@@ -13,7 +13,7 @@ export default function Box(props) {
   const [state] = useListBox();
 
   return (
-    <sc.Box data-pka-anchor="listbox-box" isInline={state.isInline} triggerWidth={state.triggerWidth} {...moreProps}>
+    <sc.Box data-pka-anchor="list-box-box" isInline={state.isInline} triggerWidth={state.triggerWidth} {...moreProps}>
       {props.children}
     </sc.Box>
   );
