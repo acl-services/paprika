@@ -34,7 +34,7 @@ function Dialog(props) {
   const dialogMain = (
     <React.Fragment>
       <sc.DialogContent
-        data-pka-anchor="sidepanel.content"
+        data-pka-anchor="sidepanel.dialogContent"
         hasPushedElement={!!getPushContentElement}
         isCompact={isCompact}
         isOpen={isOpen}
