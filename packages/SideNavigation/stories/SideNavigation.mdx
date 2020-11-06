@@ -42,27 +42,85 @@ Using `SideNavigation` wrap `SideNavigation.Item`. Sometimes there'll be a top n
 
 #### Result
 
-<>
+<div style={{ display: "flex", flexDirection: "column", height: "100vh" }}>
+  <div
+    style={{
+      backgroundColor: "#f0f0f0",
+      fontSize: "24px",
+      height: "40px",
+      paddingLeft: "8px",
+    }}
+  >
+    Top navigation
+  </div>
+  <div style={{ display: "flex", flexDirection: "row", flexGrow: 1 }}>
+    <SideNavigation header="Assets" offsetY={40}>
+      <SideNavigation.Item href="mock_url">First item (0)</SideNavigation.Item>
+      <SideNavigation.Item isCurrent href="mock_url">
+        Second item (1000)
+      </SideNavigation.Item>
+      <SideNavigation.Item href="mock_url">Long text item with (100000000) items inside</SideNavigation.Item>
+    </SideNavigation>
+    <div>Page content</div>
+  </div>
+</div>
+
+### Custom content in the side panel
+
+You can put anything in `<SideNavigation />` children as the content of the side panel. In addition, you can use `as` prop on `<SideNavigation.Item />` to render it as your custom component.
+
+```jsx
+<div style={{ display: "flex", flexDirection: "column", height: "100vh" }}>
+  <div
+    style={{
+      backgroundColor: "#f0f0f0",
+      fontSize: "24px",
+      height: "40px",
+      paddingLeft: "8px",
+    }}
+  >
+    Top navigation
+  </div>
+  <div style={{ display: "flex", flexDirection: "row", flexGrow: 1 }}>
+    <SideNavigation header="Assets" offsetY={40}>
+      <SideNavigation.Item as="div">First item (0)</SideNavigation.Item>
+      <SideNavigation.Item isCurrent as="div">
+        Second item (1000)
+      </SideNavigation.Item>
+      <SideNavigation.Item as="button" onClick={() => {}}>
+        Long text item with (100000000) items inside
+      </SideNavigation.Item>
+      Anything else.
+    </SideNavigation>
+    <div>Page content</div>
+  </div>
+</div>
+```
+
+#### Result
 
 <div style={{ display: "flex", flexDirection: "column", height: "100vh" }}>
-<div
-style={{
-          backgroundColor: "#f0f0f0",
-          fontSize: "24px",
-          height: "40px",
-          paddingLeft: "8px",
-        }} >
-Top navigation
+  <div
+    style={{
+      backgroundColor: "#f0f0f0",
+      fontSize: "24px",
+      height: "40px",
+      paddingLeft: "8px",
+    }}
+  >
+    Top navigation
+  </div>
+  <div style={{ display: "flex", flexDirection: "row", flexGrow: 1 }}>
+    <SideNavigation header="Assets" offsetY={40}>
+      <SideNavigation.Item as="div">First item (0)</SideNavigation.Item>
+      <SideNavigation.Item isCurrent as="div">
+        Second item (1000)
+      </SideNavigation.Item>
+      <SideNavigation.Item as="button" onClick={() => {}}>
+        Long text item with (100000000) items inside
+      </SideNavigation.Item>
+      Anything else.
+    </SideNavigation>
+    <div>Page content</div>
+  </div>
 </div>
-<div style={{ display: "flex", flexDirection: "row", flexGrow: 1 }}>
-<SideNavigation header="Assets" offsetY={40}>
-<SideNavigation.Item href='mock_url'>First item (0)</SideNavigation.Item>
-<SideNavigation.Item isCurrent href='mock_url'>
-Second item (1000)
-</SideNavigation.Item>
-<SideNavigation.Item href='mock_url'>Long text item with (100000000) items inside</SideNavigation.Item>
-</SideNavigation>
-<div>Page content</div>
-</div>
-</div>
-</>
