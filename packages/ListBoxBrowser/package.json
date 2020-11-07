@@ -1,6 +1,6 @@
 {
-  "name": "@paprika/listbox-browser",
-  "version": "0.2.15-alpha.5",
+  "name": "@paprika/list-box-browser",
+  "version": "1.0.0",
   "description": "ListBox Browser component is a two column layout that allows users to select one or multiple options. It is similar to the experience of browsing a file manager in any operating system.",
   "author": "@paprika",
   "main": "lib/index.js",
