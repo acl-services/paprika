@@ -1,6 +1,6 @@
 import React from "react";
 import PropTypes from "prop-types";
-import ListBox from "@paprika/listbox";
+import ListBox from "@paprika/list-box";
 import RawButton from "@paprika/raw-button";
 import ArrowRight from "@paprika/icon/lib/ArrowRight";
 import ArrowLeft from "@paprika/icon/lib/ArrowLeft";

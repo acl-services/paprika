@@ -193,13 +193,13 @@ export function onChange({ source, indexes, list, isParentSelectable, setSelecte
 export function focusListBoxBrowser($root, hasLeftColumn) {
   window.requestAnimationFrame(() => {
     const index = hasLeftColumn ? 1 : 0;
-    $root.querySelectorAll('[data-pka-anchor="listbox-content-inline"]')[index].focus();
+    $root.querySelectorAll('[data-pka-anchor="list-box-content-inline"]')[index].focus();
   });
 }
 
 export function focusListBoxRoot($root) {
   window.requestAnimationFrame(() => {
-    $root.querySelectorAll('[data-pka-anchor="listbox-content-inline"]')[0].focus();
+    $root.querySelectorAll('[data-pka-anchor="list-box-content-inline"]')[0].focus();
   });
 }
 
