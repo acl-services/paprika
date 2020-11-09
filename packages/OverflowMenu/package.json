@@ -1,0 +1,46 @@
+{
+  "name": "@paprika/overflow-menu",
+  "version": "1.0.1-alpha.1",
+  "description": "OverflowMenu component displays a trigger button, which when clicked displays a list of items in a dropdown menu format. These items can be raw content, Links or actions such as Delete, which will prompt a confirmation panel to be displayed.",
+  "author": "@paprika",
+  "license": "MIT",
+  "main": "lib/index.js",
+  "types": "lib/index.d.ts",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/acl-services/paprika.git",
+    "directory": "packages/OverflowMenu"
+  },
+  "publishConfig": {
+    "access": "public"
+  },
+  "dependencies": {
+    "@babel/runtime-corejs2": "^7.3.1",
+    "@paprika/button": "^0.3.15-alpha.4",
+    "@paprika/confirmation": "^0.3.44-alpha.5",
+    "@paprika/constants": "^0.1.3",
+    "@paprika/helpers": "^0.2.13",
+    "@paprika/icon": "^0.3.11-alpha.3",
+    "@paprika/popover": "^0.3.36-alpha.2",
+    "@paprika/raw-button": "^0.2.21-alpha.1",
+    "@paprika/stylers": "^0.2.12-alpha.1",
+    "@paprika/tokens": "^0.1.18-alpha.1",
+    "prop-types": "^15.7.2",
+    "uuid": "^3.3.2"
+  },
+  "peerDependencies": {
+    "@paprika/l10n": "^0.2.5",
+    "react": "^16.8.4",
+    "react-dom": "^16.8.4",
+    "styled-components": "^4.2.0"
+  },
+  "paprikaDocs": {
+    "subComponents": [
+      "Divider",
+      "Item",
+      "LinkItem",
+      "Trigger"
+    ]
+  },
+  "gitHead": "494ce26cb0a6c24a8f6abf2b154d97ddd4d7e343"
+}

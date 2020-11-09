@@ -135,8 +135,8 @@ export const ControlledIsSelected = () => {
   };
 
   function handleChange(selectedOptions) {
-    /** this will be trigger when a uncontrolled change occurred inside the listbox
-    let's sync our local state with the one on the listbox so we can turn on / off
+    /** this will be trigger when a uncontrolled change occurred inside the list-box
+    let's sync our local state with the one on the list-box so we can turn on / off
     the buttons */
 
     setOptions(options => {
@@ -152,7 +152,7 @@ export const ControlledIsSelected = () => {
   return (
     <React.Fragment>
       <div css={styles.container}>
-        <p>Click on any button to controlled the Listbox:</p>
+        <p>Click on any button to controlled the ListBox:</p>
         {options.map((item, index) => (
           <button
             css={styles.button}

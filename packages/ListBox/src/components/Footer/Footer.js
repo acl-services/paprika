@@ -27,14 +27,14 @@ export function FooterComponent(props, ref) {
 
     dispatch({
       type: useListBox.types.accept,
-      payload: { onChangeFn: invokeOnChange(props.onClickAccept, "listbox:footer:accept") },
+      payload: { onChangeFn: invokeOnChange(props.onClickAccept, "list-box:footer:accept") },
     });
   };
 
   const handleClickCancel = event => {
     event.stopPropagation();
     const onChangeFn = props.onClickCancel
-      ? invokeOnChange(props.onClickCancel, "listbox:footer:cancel")
+      ? invokeOnChange(props.onClickCancel, "list-box:footer:cancel")
       : invokeOnChange();
 
     dispatch({
@@ -46,7 +46,7 @@ export function FooterComponent(props, ref) {
   const handleClickClear = event => {
     event.stopPropagation();
     const onChangeFn = props.onClickClear
-      ? invokeOnChange(props.onClickClear, "listbox:footer:clear")
+      ? invokeOnChange(props.onClickClear, "list-box:footer:clear")
       : invokeOnChange();
 
     dispatch({

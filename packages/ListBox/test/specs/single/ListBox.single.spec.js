@@ -33,7 +33,7 @@ function renderComponent(props = {}, children = childrenContent) {
   };
 }
 
-describe("Listbox single select", () => {
+describe("ListBox single select", () => {
   it("dropdown should be hidden when first rendered", () => {
     const { popoverIsHidden } = renderComponent();
     popoverIsHidden();
@@ -59,7 +59,7 @@ describe("Listbox single select", () => {
 
     openSelect();
     selectVenus();
-    expect(getByTestId("listbox-trigger")).toHaveTextContent(/venus/i);
+    expect(getByTestId("list-box-trigger")).toHaveTextContent(/venus/i);
     expect(getByTestId("clear-button")).toBeVisible();
   });
 
@@ -70,8 +70,8 @@ describe("Listbox single select", () => {
     selectVenus();
     fireEvent.click(getByTestId("clear-button"));
     expect(queryByTestId("clear-button")).toBeNull();
-    expect(getByTestId("listbox-trigger")).not.toHaveTextContent(/venus/i);
-    expect(getByTestId("listbox-trigger")).toHaveTextContent(/select/i);
+    expect(getByTestId("list-box-trigger")).not.toHaveTextContent(/venus/i);
+    expect(getByTestId("list-box-trigger")).toHaveTextContent(/select/i);
   });
 
   it("should have a filter in dropdown", () => {
@@ -151,7 +151,7 @@ describe("Listbox single select", () => {
     const onRenderTrigger = jest.fn((selected, options, { dispatch, propsForTrigger, types, refTrigger }) => {
       return (
         <button type="button" {...propsForTrigger()} onClick={togglePopover(dispatch, types)} ref={refTrigger}>
-          Toggle Listbox
+          Toggle ListBox
         </button>
       );
     });

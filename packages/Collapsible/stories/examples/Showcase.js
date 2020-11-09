@@ -1,7 +1,6 @@
 import React from "react";
 import faker from "faker";
-import StoryHeader from "storybook/components/StoryHeader";
-import { Story } from "storybook/assets/styles/common.styles";
+import ExampleStory from "storybook/components/ExampleStory";
 import { boolean, select, text } from "@storybook/addon-knobs";
 import L10n from "@paprika/l10n";
 
@@ -20,12 +19,11 @@ const exampleProps = () => ({
   iconAlign: select("iconAlign", ["left", "right"], "left"),
 });
 
-const ExampleStory = props => {
+const Showcase = props => {
   const [isCollapsed, setIsCollapsed] = React.useState(false);
 
   return (
-    <Story>
-      <StoryHeader componentName="Collapsible" />
+    <ExampleStory storyName="Collapsible" tagline={ExampleStory.defaultTaglines.showcase}>
       <L10n locale="en">
         <Collapsible
           {...props}
@@ -35,8 +33,8 @@ const ExampleStory = props => {
           {props.children}
         </Collapsible>
       </L10n>
-    </Story>
+    </ExampleStory>
   );
 };
 
-export default () => <ExampleStory {...exampleProps()} />;
+export default () => <Showcase {...exampleProps()} />;

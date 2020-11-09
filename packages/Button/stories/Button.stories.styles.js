@@ -1,10 +1,11 @@
+import React from "react";
 import styled from "styled-components";
-import { Story } from "storybook/assets/styles/common.styles";
+import ExampleStory from "storybook/components/ExampleStory";
 import tokens from "@paprika/tokens";
 
 // Common Button story styles
 
-export const ButtonStory = styled(Story)`
+export const ButtonStyles = styled.div`
   a,
   button,
   [role="button"] {
@@ -15,3 +16,9 @@ export const ButtonStory = styled(Story)`
     }
   }
 `;
+
+export const ButtonStory = props => (
+  <ButtonStyles>
+    <ExampleStory {...props} />
+  </ButtonStyles>
+);

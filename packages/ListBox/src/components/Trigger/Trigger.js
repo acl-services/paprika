@@ -129,7 +129,7 @@ export default function Trigger(props) {
         type: useListBox.types.clear,
         payload: {
           isOpen: false,
-          onChangeFn: invokeOnChange(onClickFooterAccept, "listbox:footer:clear"),
+          onChangeFn: invokeOnChange(onClickFooterAccept, "list-box:footer:clear"),
         },
       });
       return;
@@ -139,7 +139,7 @@ export default function Trigger(props) {
       type: useListBox.types.clear,
       payload: {
         isOpen: false,
-        onChangeFn: invokeOnChange(state.onChange, "listbox:clear"),
+        onChangeFn: invokeOnChange(state.onChange, "list-box:clear"),
       },
     });
   };
@@ -163,7 +163,7 @@ export default function Trigger(props) {
         onKeyDown={handleKeyDownKeyboardKeys({ state, dispatch, onChangeContext })}
         onKeyUp={handleKeyUpKeyboardKeys({ state, dispatch, onChangeContext })}
         isDisabled={isDisabled}
-        data-pka-anchor="listbox-trigger"
+        data-pka-anchor="list-box-trigger"
         aria-describedby={formElementLabelDescribedBy}
         aria-labelledby={triggerButtonId.current}
       >
@@ -224,7 +224,7 @@ export default function Trigger(props) {
   const shouldHideCaret = hasRenderTrigger || state.isInline;
 
   if (isHidden && state.isInline) {
-    return <sc.ListBoxTrigger data-pka-anchor="listbox-trigger" isHidden />;
+    return <sc.ListBoxTrigger data-pka-anchor="list-box-trigger" isHidden />;
   }
 
   return (
