@@ -15,6 +15,7 @@ export const CollapsibleCard = styled(Collapsible)`
     width: 100%;
 
     > [data-pka-anchor="collapsible.icon"] {
+      margin-left: ${spacer(2)};
       margin-right: ${spacer(2)};
       ${({ hasLabelOnly }) =>
         hasLabelOnly

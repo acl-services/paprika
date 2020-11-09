@@ -6,6 +6,5 @@ export const Metadata = styled.div`
   ${fontSize(-2)};
   ${lineHeight(-1)};
   color: ${tokens.color.blackLighten20};
-  line-height: 1;
   margin-top: ${tokens.spaceSm};
 `;
