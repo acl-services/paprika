@@ -1,6 +1,6 @@
 import styled, { css } from "styled-components";
 import tokens from "@paprika/tokens";
-import { fontSize, spacer } from "@paprika/stylers/lib/helpers";
+import { fontSize, spacer, lineHeight } from "@paprika/stylers/lib/helpers";
 import Collapsible from "@paprika/collapsible";
 
 export const CollapsibleCard = styled(Collapsible)`
@@ -32,9 +32,9 @@ export const Label = styled.div`
 
 export const LabelText = styled.div`
   ${fontSize(1)};
+  ${lineHeight(-1)};
   color: ${tokens.color.black};
   font-weight: bold;
-  line-height: 1;
 `;
 
 const dividerStyles = css`
