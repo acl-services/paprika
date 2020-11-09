@@ -16,8 +16,8 @@ storiesOf(`${storyName}/Examples/Multi`, module)
   .add("With Groups", () => <Multi.WithGroups />)
   .add("With Filter", () => <Multi.WithFilter />)
   .add("With Groups and have preselected options", () => <Multi.WithGroupsAndHavePreselectedOptions />)
-  .add("Controlled listbox", () => <Multi.ControlledIsSelected />)
-  .add("UnControlled defaultIsSelected listbox", () => <Multi.DefaultIsSelected />)
+  .add("Controlled list-box", () => <Multi.ControlledIsSelected />)
+  .add("UnControlled defaultIsSelected list-box", () => <Multi.DefaultIsSelected />)
   .add("Fully Controlled with Filter", () => <Multi.FullyOptionControlledWithFilter />)
   .add("Trigger is hidden when isInline", () => (
     <Story>
