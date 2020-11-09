@@ -1,6 +1,6 @@
 import React from "react";
 import PropTypes from "prop-types";
-import ListBox from "@paprika/listbox";
+import ListBox from "@paprika/list-box";
 import RawButton from "@paprika/raw-button";
 import ArrowRight from "@paprika/icon/lib/ArrowRight";
 import ArrowLeft from "@paprika/icon/lib/ArrowLeft";
@@ -60,7 +60,7 @@ export default function CustomListBox(props) {
       <ListBox.Trigger isHidden />
       {hasOnUp ? (
         <ListBox.Option onClick={onUp}>
-          <span css={backButton} data-pka-anchor="listboxbrowser-listoption-back">
+          <span css={backButton} data-pka-anchor="list-box-browser.list-option-back">
             <ArrowLeft />
             {i18n.t("back")}
           </span>
