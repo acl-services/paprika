@@ -1,7 +1,7 @@
 import { getStoryUrlPrefix } from "../../../../.storybook/storyTree";
 
 const selectors = {
-  backButton: "[data-pka-anchor='list-box-browser-listoption-back']",
+  backButton: "[data-pka-anchor='list-box-browser.list-option-back']",
   breadcrumbTitle: "[data-pka-anchor='breadcrumb-title']",
   counter: "[data-pka-anchor='list-box-browser-optionselected-counter']",
   optionsSelected: "[data-pka-anchor='list-box-browser-selected-option']",
