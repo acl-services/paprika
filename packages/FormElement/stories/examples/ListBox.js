@@ -1,5 +1,5 @@
 import React from "react";
-import ListBox from "@paprika/listbox";
+import ListBox from "@paprika/list-box";
 import FormElement from "../../src/FormElement";
 
 export default function ListBoxExample() {
