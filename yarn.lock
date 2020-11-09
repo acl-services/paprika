@@ -3299,10 +3299,10 @@
     "@svgr/cli" "^4.1.0"
     prop-types "^15.7.2"
 
-"@paprika/listbox@^0.9.15-alpha.5":
-  version "0.9.15-alpha.5"
-  resolved "https://registry.yarnpkg.com/@paprika/listbox/-/listbox-0.9.15-alpha.5.tgz#d71fdc8e7b4aa4ed6a8091f4ac72955ac6bf49da"
-  integrity sha512-qt4B2w4rjsUGrN+SXlGea240mxm2+YYJeQlYgHMObzGwRJzmp4acm38iIKa4Bnm4EQ187f+V6dIKwRGdMIm4Bw==
+"@paprika/list-box@^1.0.1-alpha.0":
+  version "1.0.1-alpha.0"
+  resolved "https://registry.yarnpkg.com/@paprika/list-box/-/list-box-1.0.1-alpha.0.tgz#84ad27e79ea0b8925bd379d929aa112d034dd2dc"
+  integrity sha512-5a8Qg6iRgRrwLNuN40J0OC3Mc3Tq5AiuX7eCS5GoxXGpOUfQI8kj86XIC57Uv9p6u5xBGCXf1fXk7RCKBit7Fw==
   dependencies:
     "@babel/runtime-corejs2" "^7.3.1"
     "@paprika/button" "^0.3.15-alpha.4"

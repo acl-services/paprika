@@ -18,7 +18,7 @@
     "@babel/runtime-corejs2": "^7.3.1",
     "@paprika/helpers": "^0.2.13",
     "@paprika/icon": "^0.3.11-alpha.3",
-    "@paprika/listbox": "^0.9.15-alpha.5",
+    "@paprika/list-box": "^1.0.1-alpha.0",
     "@paprika/raw-button": "^0.2.21-alpha.1",
     "@paprika/spinner": "^0.2.26-alpha.1",
     "@paprika/stylers": "^0.1.5",
