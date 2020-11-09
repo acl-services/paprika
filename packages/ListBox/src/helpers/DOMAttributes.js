@@ -19,7 +19,7 @@ export function getDOMAttributesForListBox(state) {
     "aria-activedescendant": activedescendant,
     "aria-labelledby": `${idListBox}__button`,
     id: idListBox,
-    role: "list-box",
+    role: "listbox",
   };
 }
 

@@ -16,7 +16,9 @@
  *
  * After running it you still need to manually:
  * - update version in package.json
+ * - update changelog.md
  * - make sure the new package works in storybook
+ * - run yarn
  * - run the npm command to deprecate the old package (once the new one is merged and deployed)
  * - update the Paprika README badges
  * - update the Paprika Airtable page
