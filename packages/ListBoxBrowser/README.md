@@ -137,7 +137,7 @@ export default function App() {
 
 #### ListBoxBrowser.SelectedOptions
 
-By default, the `<ListBoxBrowser />` does not display a list of the selected options.  
+By default, the `<ListBoxBrowser />` does not display a list of the selected options.
 But you can activate this feature to display multiple options using the `<ListBoxBrowser.SelectedOptions />` subcomponent.
 
 ```jsx
