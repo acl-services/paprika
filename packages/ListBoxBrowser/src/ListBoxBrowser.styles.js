@@ -7,7 +7,7 @@ export const Flex = styled.div(
     display: flex;
     justify-content: center;
 
-    [data-pka-anchor="listbox-content-inline"]:last-child {
+    [data-pka-anchor="list-box-content-inline"]:last-child {
       border-left: 1px solid ${tokens.border.color};
     }
 
@@ -15,7 +15,7 @@ export const Flex = styled.div(
       ? ""
       : css`
           display: inline;
-          [data-pka-anchor="listbox-content-inline"]:last-child {
+          [data-pka-anchor="list-box-content-inline"]:last-child {
             border: 0;
             border-radius: ${tokens.border.radius};
           }
@@ -30,7 +30,7 @@ export const Container = styled.div(
     position: relative;
     width: 100%;
 
-    [data-pka-anchor="listbox-content-inline"] {
+    [data-pka-anchor="list-box-content-inline"] {
       border: 0;
       flex-basis: 50%;
       min-height: ${height}px;
@@ -44,11 +44,11 @@ export const Container = styled.div(
       }
     }
 
-    [data-pka-anchor="listbox-box"] {
+    [data-pka-anchor="list-box-box"] {
       border: 0;
     }
 
-    [data-pka-anchor="listbox-trigger"] {
+    [data-pka-anchor="list-box-trigger"] {
       border: 0;
       display: none;
     }

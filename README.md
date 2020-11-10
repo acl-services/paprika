@@ -86,7 +86,7 @@ or refer to the [AirTable summary](https://airtable.com/shrkJwkvtbgc3FT22).
 <a href="https://www.npmjs.com/package/@paprika/date-picker"><img src="https://img.shields.io/npm/v/@paprika/date-picker?label=DatePicker" /></a>
 <a href="https://www.npmjs.com/package/@paprika/date-range-picker"><img src="https://img.shields.io/npm/v/@paprika/date-range-picker?label=DateRangePicker" /></a>
 <a href="https://www.npmjs.com/package/@paprika/dialog-actions"><img src="https://img.shields.io/npm/v/@paprika/dialog-actions?label=DialogActions" /></a>
-<a href="https://www.npmjs.com/package/@paprika/dropdown-menu"><img src="https://img.shields.io/npm/v/@paprika/dropdown-menu?label=DropdownMenu" /></a>
+<a href="https://www.npmjs.com/package/@paprika/overflow-menu"><img src="https://img.shields.io/npm/v/@paprika/overflow-menu?label=OverflowMenu" /></a>
 <a href="https://www.npmjs.com/package/@paprika/external-link"><img src="https://img.shields.io/npm/v/@paprika/external-link?label=ExternalLink" /></a>
 <a href="https://www.npmjs.com/package/@paprika/form-element"><img src="https://img.shields.io/npm/v/@paprika/form-element?label=FormElement" /></a>
 <a href="https://www.npmjs.com/package/@paprika/guard"><img src="https://img.shields.io/npm/v/@paprika/guard?label=Guard" /></a>
@@ -95,8 +95,8 @@ or refer to the [AirTable summary](https://airtable.com/shrkJwkvtbgc3FT22).
 <a href="https://www.npmjs.com/package/@paprika/icon"><img src="https://img.shields.io/npm/v/@paprika/icon?label=Icon" /></a>
 <a href="https://www.npmjs.com/package/@paprika/input"><img src="https://img.shields.io/npm/v/@paprika/input?label=Input" /></a>
 <a href="https://www.npmjs.com/package/@paprika/l10n"><img src="https://img.shields.io/npm/v/@paprika/l10n?label=L10n" /></a>
-<a href="https://www.npmjs.com/package/@paprika/listbox"><img src="https://img.shields.io/npm/v/@paprika/listbox?label=ListBox" /></a>
-<a href="https://www.npmjs.com/package/@paprika/listbox-browser"><img src="https://img.shields.io/npm/v/@paprika/listbox-browser?label=ListBoxBrowser" /></a>
+<a href="https://www.npmjs.com/package/@paprika/list-box"><img src="https://img.shields.io/npm/v/@paprika/list-box?label=ListBox" /></a>
+<a href="https://www.npmjs.com/package/@paprika/list-box-browser"><img src="https://img.shields.io/npm/v/@paprika/list-box-browser?label=ListBoxBrowser" /></a>
 <a href="https://www.npmjs.com/package/@paprika/modal"><img src="https://img.shields.io/npm/v/@paprika/modal?label=Modal" /></a>
 <a href="https://www.npmjs.com/package/@paprika/notification-card"><img src="https://img.shields.io/npm/v/@paprika/notification-card?label=NotificationCard" /></a>
 <a href="https://www.npmjs.com/package/@paprika/overlay"><img src="https://img.shields.io/npm/v/@paprika/overlay?label=Overlay" /></a>
@@ -109,7 +109,7 @@ or refer to the [AirTable summary](https://airtable.com/shrkJwkvtbgc3FT22).
 <a href="https://www.npmjs.com/package/@paprika/raw-button"><img src="https://img.shields.io/npm/v/@paprika/raw-button?label=RawButton" /></a>
 <a href="https://www.npmjs.com/package/@paprika/resize-detector"><img src="https://img.shields.io/npm/v/@paprika/resize-detector?label=ResizeDetector" /></a>
 <a href="https://www.npmjs.com/package/@paprika/select"><img src="https://img.shields.io/npm/v/@paprika/select?label=Select" /></a>
-<a href="https://www.npmjs.com/package/@paprika/sidepanel"><img src="https://img.shields.io/npm/v/@paprika/sidepanel?label=SidePanel" /></a>
+<a href="https://www.npmjs.com/package/@paprika/panel"><img src="https://img.shields.io/npm/v/@paprika/panel?label=Panel" /></a>
 <a href="https://www.npmjs.com/package/@paprika/sortable"><img src="https://img.shields.io/npm/v/@paprika/sortable?label=Sortable" /></a>
 <a href="https://www.npmjs.com/package/@paprika/spinner"><img src="https://img.shields.io/npm/v/@paprika/spinner?label=Spinner" /></a>
 <a href="https://www.npmjs.com/package/@paprika/stylers"><img src="https://img.shields.io/npm/v/@paprika/stylers?label=stylers" /></a>
@@ -192,3 +192,21 @@ Have a question for the development team? [Ask us](https://github.com/acl-servic
 ## License
 
 [The MIT License (MIT)](https://github.com/acl-services/paprika/blob/master/LICENSE)
+
+## NOTES
+
+The following packages has been deprecated and they have moved into a new name space
+
+Before (deprecated)
+
+- @paprika/listbox
+- @paprika/listbox-browser
+- @paprika/dropdownmenu
+- @paprika/sidepanel
+
+Now
+
+- @paprika/list-box
+- @paprika/list-box-browser
+- @paprika/overflow-menu
+- @paprika/panel

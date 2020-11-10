@@ -48,6 +48,7 @@ export const Collapsible = styled.div`
   }
 
   .collapsible__icon svg {
+    color: ${tokens.textColor.icon};
     vertical-align: -2px; 
   }
 
