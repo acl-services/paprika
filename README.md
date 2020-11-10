@@ -95,8 +95,8 @@ or refer to the [AirTable summary](https://airtable.com/shrkJwkvtbgc3FT22).
 <a href="https://www.npmjs.com/package/@paprika/icon"><img src="https://img.shields.io/npm/v/@paprika/icon?label=Icon" /></a>
 <a href="https://www.npmjs.com/package/@paprika/input"><img src="https://img.shields.io/npm/v/@paprika/input?label=Input" /></a>
 <a href="https://www.npmjs.com/package/@paprika/l10n"><img src="https://img.shields.io/npm/v/@paprika/l10n?label=L10n" /></a>
-<a href="https://www.npmjs.com/package/@paprika/list-box"><img src="https://img.shields.io/npm/v/@paprika/listbox?label=ListBox" /></a>
-<a href="https://www.npmjs.com/package/@paprika/list-box-browser"><img src="https://img.shields.io/npm/v/@paprika/listbox-browser?label=ListBoxBrowser" /></a>
+<a href="https://www.npmjs.com/package/@paprika/list-box"><img src="https://img.shields.io/npm/v/@paprika/list-box?label=ListBox" /></a>
+<a href="https://www.npmjs.com/package/@paprika/list-box-browser"><img src="https://img.shields.io/npm/v/@paprika/list-box-browser?label=ListBoxBrowser" /></a>
 <a href="https://www.npmjs.com/package/@paprika/modal"><img src="https://img.shields.io/npm/v/@paprika/modal?label=Modal" /></a>
 <a href="https://www.npmjs.com/package/@paprika/notification-card"><img src="https://img.shields.io/npm/v/@paprika/notification-card?label=NotificationCard" /></a>
 <a href="https://www.npmjs.com/package/@paprika/overlay"><img src="https://img.shields.io/npm/v/@paprika/overlay?label=Overlay" /></a>
