@@ -18,8 +18,8 @@
     "@paprika/avatar": "^0.1.7",
     "@paprika/collapsible": "^0.2.35",
     "@paprika/helpers": "^0.2.14",
-    "@paprika/stylers": "^0.2.11",
-    "@paprika/tokens": "^0.1.17",
+    "@paprika/stylers": "^0.2.12",
+    "@paprika/tokens": "^0.1.18",
     "nanoid": "^2.1.7",
     "prop-types": "^15.7.2"
   },

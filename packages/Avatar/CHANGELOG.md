@@ -6,6 +6,10 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 
 ## [Unreleased]
 
+### Changed
+
+- Changed the border-radius of the small and the medium avatar.
+
 ## [0.1.2] - 2020-09-02
 
 ### Added
