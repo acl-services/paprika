@@ -192,3 +192,19 @@ Have a question for the development team? [Ask us](https://github.com/acl-servic
 ## License
 
 [The MIT License (MIT)](https://github.com/acl-services/paprika/blob/master/LICENSE)
+
+## NOTES
+
+The following packages has been deprecated and they have moved into a new name space
+
+Before (deprecated) 
+- @paprika/listbox
+- @paprika/listbox-browser
+- @paprika/dropdownmenu
+- @paprika/sidepanel
+
+Now
+- @paprika/list-box
+- @paprika/list-box-browser
+- @paprika/overflow-menu
+- @paprika/panel
