@@ -1,6 +1,7 @@
 import React from "react";
 import { getStoryName } from "storybook/storyTree";
-import { ExampleStory, exampleStoryParameters } from "./storyHelpers";
+import ExampleStory from "storybook/components/ExampleStory";
+import { exampleStoryParameters } from "storybook/assets/storyParameters";
 import Transformed from "./backyard/sandbox/Transformed";
 import DynamicContent from "./backyard/sandbox/DynamicContent";
 import ScrollContainer from "./backyard/sandbox/ScrollContainer";

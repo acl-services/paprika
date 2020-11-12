@@ -1,5 +1,5 @@
 import { getStoryName } from "storybook/storyTree";
-import { exampleStoryParameters } from "./storyHelpers";
+import { exampleStoryParameters } from "storybook/assets/storyParameters";
 import Cypress, { propHandles } from "./backyard/tests/Cypress";
 import Screener from "./backyard/tests/Screener";
 import Popover from "../src/Popover";
