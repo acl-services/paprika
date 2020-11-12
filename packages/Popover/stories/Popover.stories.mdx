@@ -1,18 +1,12 @@
 import { Meta, Description, Canvas } from "@storybook/addon-docs/blocks";
 import { getStoryName } from "storybook/storyTree";
+import { docsStoryParameters } from "storybook/assets/storyParameters";
 import Readme from "../README.md";
 import Icon from "@paprika/icon/lib/InfoCircle";
 import Button from "@paprika/button";
 import Popover from "../src/";
 
-export const params = {
-  options: {
-    isToolshown: true,
-    showPanel: false,
-  },
-};
-
-<Meta title={`${getStoryName("Popover")}/Docs`} component={Popover} parameters={params} />
+<Meta title={`${getStoryName("Popover")}/Docs`} component={Popover} parameters={{ ...docsStoryParameters }} />
 
 <Description markdown={Readme} />
 

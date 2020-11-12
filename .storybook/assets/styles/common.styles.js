@@ -11,9 +11,13 @@ export const Story = styled.div`
   h1 {
     margin-top: 0;
   }
+
+  code {
+    color: ${tokens.color.green};
+  }
 `;
 
-export const CenteredStory = styled.div`
+export const CenteredStory = styled(Story)`
   ${stylers.alignMiddle}
   align-items: center;
   display: flex;
