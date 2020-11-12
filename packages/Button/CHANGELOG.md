@@ -6,6 +6,10 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 
 ## [Unreleased]
 
+### Fixed
+
+- Ensure that the `event` argument is passed along to the `onBlur` handler provided by consumer [@mikrotron](https://github.com/mikrotron)
+
 ## [0.3.0] - 2020-06-16
 
 ### Changed

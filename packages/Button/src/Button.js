@@ -63,9 +63,9 @@ const Button = React.forwardRef((props, ref) => {
 
   const bestTabIndex = isButtonDisabled && tabIndex === null ? -1 : tabIndex || 0;
 
-  function handleBlur() {
+  function handleBlur(event) {
     if ("onBlur" in moreProps) {
-      moreProps.onBlur();
+      moreProps.onBlur(event);
     }
     setHasForcedFocus(false);
   }
