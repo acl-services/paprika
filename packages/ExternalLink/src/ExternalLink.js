@@ -5,7 +5,7 @@ import * as sc from "./ExternalLink.styles";
 
 const propTypes = {
   /** Text for aria-label. */
-  ariaText: PropTypes.string,
+  a11yText: PropTypes.string,
 
   /** Link text for showing. */
   children: PropTypes.string.isRequired,
@@ -18,13 +18,13 @@ const propTypes = {
 };
 
 const defaultProps = {
-  ariaText: null,
+  a11yText: null,
   hasNoUnderline: false,
 };
 
 function ExternalLink(props) {
   const iconFontSize = 11;
-  const { ariaText, children, hasNoUnderline, ...moreProps } = props;
+  const { a11yText, children, hasNoUnderline, ...moreProps } = props;
 
   const handleSwallowClick = e => {
     e.stopPropagation();
@@ -32,7 +32,7 @@ function ExternalLink(props) {
 
   return (
     <sc.ExternalLink
-      aria-label={ariaText || null}
+      aria-label={a11yText || null}
       onClick={handleSwallowClick}
       rel="noopener noreferrer"
       target="_blank"

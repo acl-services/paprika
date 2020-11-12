@@ -12,7 +12,7 @@ const getKnobs = () => ({
   isLight: boolean("isLight", false),
   isSemantic: boolean("isSemantic", true),
   isHidden: boolean("isHidden", false),
-  ariaText: text("ariaText"),
+  a11yText: text("a11yText"),
 });
 
 function Showcase(props) {
