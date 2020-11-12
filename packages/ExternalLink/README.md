@@ -24,7 +24,7 @@ npm install @paprika/external-link
 
 | Prop           | Type   | required | default | Description                                      |
 | -------------- | ------ | -------- | ------- | ------------------------------------------------ |
-| ariaText       | string | false    | null    | Text for aria-label.                             |
+| a11yText       | string | false    | null    | Text for aria-label.                             |
 | children       | string | true     | -       | Link text for showing.                           |
 | hasNoUnderline | bool   | false    | false   | It should not show the underline on text content |
 | href           | string | true     | -       | Link url for the target.                         |
