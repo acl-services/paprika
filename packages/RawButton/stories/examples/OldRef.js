@@ -7,7 +7,7 @@ function clickHandler() {
   action("Clicked a button")();
 }
 
-const ExampleStory = () => {
+const OldRef = () => {
   let buttonRef;
 
   const setRef = node => {
@@ -37,4 +37,4 @@ const ExampleStory = () => {
   );
 };
 
-export default ExampleStory;
+export default OldRef;
