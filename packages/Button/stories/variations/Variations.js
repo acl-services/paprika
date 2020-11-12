@@ -1,5 +1,5 @@
 import React from "react";
-import { Rule, breaklines } from "storybook/assets/styles/common.styles";
+import { Gap } from "storybook/assets/styles/common.styles";
 import { ButtonStory } from "../Button.stories.styles";
 import ButtonVariations from "./ButtonVariations";
 import LinkButtonVariations from "./LinkButtonVariations";
@@ -8,16 +8,17 @@ import CloseButtonVariations from "./CloseButtonVariations";
 
 export default function Variations() {
   return (
-    <ButtonStory>
+    <ButtonStory
+      storyName="Variations"
+      tagline="&lt;Button&gt; · &lt;Button.Link&gt; · &lt;Button.Icon&gt; · &lt;Button.Close&gt;"
+    >
       <ButtonVariations />
-      <Rule />
+      <Gap />
       <LinkButtonVariations />
-      <Rule />
+      <Gap />
       <IconButtonVariations />
-      <Rule />
+      <Gap />
       <CloseButtonVariations />
-      {breaklines(34)}
-      ...fin.
     </ButtonStory>
   );
 }

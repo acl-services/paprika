@@ -60,7 +60,7 @@ const triggerStylesProps = () => ({ isHidden, isDisabled, isInline, size }) => {
       ${isDisabled ? `color: ${tokens.color.blackLighten60};` : ""}
     `
     : `
-      & > [data-pka-anchor='listbox-trigger'] {
+      & > [data-pka-anchor='list-box-trigger'] {
         ${triggerStyles};
         ${triggerSizes[size]};
         ${isDisabled ? `color: ${tokens.color.blackLighten60};` : ""};

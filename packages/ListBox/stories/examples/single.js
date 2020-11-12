@@ -173,7 +173,7 @@ export const ControlledIsSelected = () => {
       });
 
       // only setting the option to be selected
-      // index could be null if the user clear the listbox.
+      // index could be null if the user clear the list-box.
       if (index !== null) {
         cloneList[index].isSelected = true;
       }
@@ -183,15 +183,15 @@ export const ControlledIsSelected = () => {
   };
 
   function handleChange(activeOptionIndex) {
-    /** this will be trigger when a uncontrolled change occurred inside the listbox
-    let's sync our local state with the one on the listbox so we can turn on / off
+    /** this will be trigger when a uncontrolled change occurred inside the list-box
+    let's sync our local state with the one on the list-box so we can turn on / off
     the buttons */
     handleClickItem(activeOptionIndex)();
   }
 
   return (
     <React.Fragment>
-      Click on any button to controlled the Listbox:
+      Click on any button to controlled the ListBox:
       <div css={styles.container}>
         {options.map((item, index) => (
           <button

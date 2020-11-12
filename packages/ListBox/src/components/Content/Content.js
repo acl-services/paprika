@@ -71,7 +71,7 @@ export default function Content(props) {
         onKeyDown={handleKeyDownKeyboardKeys({ state, dispatch, onChangeContext })}
         onKeyUp={handleKeyUpKeyboardKeys({ state, dispatch, onChangeContext })}
         ref={refListBoxContainer}
-        data-pka-anchor="listbox-content-inline"
+        data-pka-anchor="list-box-content-inline"
       >
         {props.children}
       </sc.Content>

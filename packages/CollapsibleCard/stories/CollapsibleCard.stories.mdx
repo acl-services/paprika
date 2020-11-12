@@ -1,0 +1,50 @@
+import { Meta, Props, Story } from "@storybook/addon-docs/blocks";
+import { Description } from "@storybook/addon-docs/blocks";
+import { getStoryName } from "storybook/storyTree";
+import Readme from "../README.md";
+import CollapsibleCard from "../src";
+
+export const params = {
+  options: {
+    isToolshown: true,
+    showPanel: false,
+  },
+};
+
+<Meta title={`${getStoryName("CollapsibleCard")}/Docs`} component={CollapsibleCard} parameters={params} />
+
+<Description markdown={Readme} />
+
+## Usage
+
+### Basic
+
+Basic collapsible card with text label only.
+
+```jsx
+<CollapsibleCard label="Collapsible label">Content</CollapsibleCard>
+```
+
+#### Result
+
+<CollapsibleCard label="Collapsible label">Content</CollapsibleCard>
+
+### With avatar and metadata
+
+Collapsible card with avatar (can be text or icon) and metadata
+
+```jsx
+<CollapsibleCard label="Collapsible label">
+  <CollapsibleCard.Avatar>Card header</CollapsibleCard.Avatar>
+  <CollapsibleCard.Metadata>1000 records</CollapsibleCard.Metadata>
+  Content
+</CollapsibleCard>
+```
+
+#### Result
+
+<CollapsibleCard label="Collapsible label">
+  <CollapsibleCard.Avatar>Card header</CollapsibleCard.Avatar>
+  <CollapsibleCard.Metadata>1000 records</CollapsibleCard.Metadata>
+  Content
+</CollapsibleCard>

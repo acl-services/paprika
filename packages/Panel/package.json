@@ -1,0 +1,38 @@
+{
+  "name": "@paprika/panel",
+  "version": "1.0.2",
+  "description": "The Panel component provides a view that slides in from one side so the user can maintain context of their main task while they work on a sub task.",
+  "author": "@paprika",
+  "main": "lib/index.js",
+  "types": "lib/index.d.ts",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/acl-services/paprika.git",
+    "directory": "packages/Panel"
+  },
+  "publishConfig": {
+    "access": "public"
+  },
+  "dependencies": {
+    "@babel/runtime-corejs2": "^7.3.1",
+    "@paprika/button": "^1.0.0",
+    "@paprika/constants": "^1.0.0",
+    "@paprika/heading": "^1.0.0",
+    "@paprika/helpers": "^1.0.0",
+    "@paprika/icon": "^1.0.0",
+    "@paprika/raw-button": "^1.0.0",
+    "@paprika/stylers": "^1.0.0",
+    "@paprika/tokens": "^1.0.0",
+    "lodash.debounce": "^4.0.8",
+    "prop-types": "^15.7.2",
+    "react-focus-lock": "^2.2.1"
+  },
+  "peerDependencies": {
+    "@paprika/l10n": "^0.2.5",
+    "react": "^16.12.0",
+    "react-dom": "^16.12.0",
+    "styled-components": "^4.4.1"
+  },
+  "gitHead": "494ce26cb0a6c24a8f6abf2b154d97ddd4d7e343"
+}

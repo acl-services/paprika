@@ -23,4 +23,6 @@ interface CollapsibleProps {
   label: React.ReactNode;
   /** Callback to be executed when the button is clicked or activated by keyboard. */
   onClick?: (...args: any[]) => any;
+  /** aria-describedby on the trigger element. */
+  triggerAriaDescribedby?: string;
 }

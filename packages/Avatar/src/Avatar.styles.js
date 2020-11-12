@@ -9,14 +9,14 @@ const mediumSize = `${spacer(5)}`;
 
 export const avatarSizeStyles = {
   small: `
-    border-radius: 10px;
+    border-radius: ${tokens.button.borderRadius};
     height: ${smallSize};
     width: ${smallSize};
     ${stylers.fontSize(2)};
   `,
 
   medium: `
-    border-radius: 12px;
+    border-radius: ${tokens.card.borderRadius};
     height: ${mediumSize};
     width: ${mediumSize};
     ${stylers.fontSize(3)};

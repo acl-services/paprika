@@ -1,11 +1,11 @@
 import { getStoryUrlPrefix } from "../../../../.storybook/storyTree";
 
 const selectors = {
-  backButton: "[data-pka-anchor='listboxbrowser-listoption-back']",
+  backButton: "[data-pka-anchor='list-box-browser.list-option-back']",
   breadcrumbTitle: "[data-pka-anchor='breadcrumb-title']",
-  counter: "[data-pka-anchor='listboxbrowser-optionselected-counter']",
-  optionsSelected: "[data-pka-anchor='listbox-browser-selected-option']",
-  optionsSelectedTrashbin: "[data-pka-anchor='listbox-browser-selected-option-trashbin']",
+  counter: "[data-pka-anchor='list-box-browser-optionselected-counter']",
+  optionsSelected: "[data-pka-anchor='list-box-browser-selected-option']",
+  optionsSelectedTrashbin: "[data-pka-anchor='list-box-browser-selected-option-trashbin']",
   title: "[data-pka-anchor='root-title']",
 };
 
