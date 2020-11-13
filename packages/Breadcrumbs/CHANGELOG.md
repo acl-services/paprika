@@ -6,6 +6,10 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 
 ## [Unreleased]
 
+### Changed
+
+- Added `<` icon in the front if there is only one child.
+
 ## [0.0.2-alpha.0] - 2020-10-23
 
 ### Added
