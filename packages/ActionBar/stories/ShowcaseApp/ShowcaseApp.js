@@ -67,6 +67,7 @@ export default function App() {
   const { sortedFields, sortedData, onDeleteSort, onChangeSort, ...sortProps } = useSort({
     columns: columnsSettings,
     data,
+    maximumSort: 3,
   });
   const { orderedColumnIds, isColumnHidden, ...handlers } = useColumnsArrangement([
     "goals",
