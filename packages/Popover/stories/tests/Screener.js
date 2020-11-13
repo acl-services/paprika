@@ -1,6 +1,6 @@
 import React from "react";
 import { Gap } from "storybook/assets/styles/common.styles";
-import Popover from "../../../src/Popover";
+import Popover from "../../src";
 
 const shortContent = "Popover content";
 const longContent =

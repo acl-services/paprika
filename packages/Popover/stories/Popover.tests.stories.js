@@ -1,8 +1,8 @@
 import { getStoryName } from "storybook/storyTree";
-import { exampleStoryParameters } from "./storyHelpers";
-import Cypress, { propHandles } from "./backyard/tests/Cypress";
-import Screener from "./backyard/tests/Screener";
-import Popover from "../src/Popover";
+import { testStoryParameters } from "storybook/assets/storyParameters";
+import Cypress, { propHandles } from "./tests/Cypress";
+import Screener from "./tests/Screener";
+import Popover from "../src";
 
 const storyName = getStoryName("Popover");
 
@@ -14,9 +14,12 @@ export default {
 export const cypress = Cypress;
 cypress.story = {
   name: "Cypress",
-  parameters: exampleStoryParameters,
   decorators: [propHandles],
+  parameters: testStoryParameters,
 };
 
 export const screener = Screener;
-screener.story = { name: "Screener", parameters: exampleStoryParameters };
+screener.story = {
+  name: "Screener",
+  parameters: testStoryParameters,
+};

@@ -11,15 +11,18 @@ export const Story = styled.div`
   h1 {
     margin-top: 0;
   }
+
+  code {
+    color: ${tokens.color.orangeDarken20};
+  }
 `;
 
-export const CenteredStory = styled.div`
+export const CenteredStory = styled(Story)`
   ${stylers.alignMiddle}
   align-items: center;
   display: flex;
   justify-content: center;
-  min-height: 100vh;
-  width: 100%;
+  padding-top: 20vh;
 `;
 
 export const Rule = styled.hr`
