@@ -80,7 +80,7 @@ fr:
       arrowdown: bas
       escape: Échap
     collapsible:
-      ariaText: section compressible
+      ariaText: Section réductible
     sortable:
       aria_description: Élément déplaçable. Appuyez sur la touche espace pour lever.
       aria_lift: Vous avez élevé un élément dans la position {{source}}. Utilisez les touches de direction pour déplacer, la touche Espace pour déposer et Échap pour annuler.
@@ -172,4 +172,7 @@ fr:
     breadcrumbs:
       aria_label: Fils d'Ariane
       aria_expand: Afficher tous les éléments du fil d'Ariane
+    sideNavigation:
+      aria_label: Navigation latérale
+      trigger_aria_label: Ouvrir la navigation
           
