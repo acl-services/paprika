@@ -12,6 +12,7 @@ function Breadcrumbs(props) {
   const { children, isDark, isAutoCollapsed, ...moreProps } = props;
   const I18n = useI18n();
   const shouldShowExpandButton = isAutoCollapsed && React.Children.count(children) > MAXIMUM_NUM_OF_LEVEL;
+  const hasOnlyOneChild = React.Children.count(children) === 1;
   const [isCollapsed, setIsCollapsed] = React.useState(shouldShowExpandButton);
 
   function handleExpand() {
@@ -31,7 +32,7 @@ function Breadcrumbs(props) {
                 </>
               );
             }
-            return child;
+            return React.cloneElement(child, { hasOnlyOneChild });
           })}
         </sc.List>
       </sc.Nav>

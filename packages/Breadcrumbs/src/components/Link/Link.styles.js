@@ -1,7 +1,8 @@
 import styled from "styled-components";
 import tokens from "@paprika/tokens";
-import { lineHeight } from "@paprika/stylers/lib/helpers";
+import { lineHeight, fontSize } from "@paprika/stylers/lib/helpers";
 import Button from "@paprika/button";
+import ArrowLeftIcon from "@paprika/icon/lib/ArrowLeft";
 
 export const Link = styled(Button.Link)`
   color: ${({ isDark }) => (isDark ? tokens.color.white : tokens.textColor.subtle)};
@@ -32,4 +33,10 @@ export const ListItem = styled.li`
   &:first-child::before {
     display: none;
   }
+`;
+
+export const ArrowIcon = styled(ArrowLeftIcon)`
+  ${fontSize(-3)};
+  margin-right: ${tokens.spaceSm};
+  padding: 2px 0;
 `;
