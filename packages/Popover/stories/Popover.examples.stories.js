@@ -7,7 +7,7 @@ import TooltipExample from "./examples/Tooltip";
 import ShouldKeepFocusExample from "./examples/ShouldKeepFocus";
 import StateValueExample from "./examples/StateValue";
 import PositioningElementExample from "./examples/PositioningElement";
-import Popover from "../src/Popover";
+import Popover from "../src";
 
 const storyName = getStoryName("Popover");
 

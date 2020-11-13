@@ -22,8 +22,7 @@ export const CenteredStory = styled(Story)`
   align-items: center;
   display: flex;
   justify-content: center;
-  min-height: 100vh;
-  width: 100%;
+  padding-top: 20vh;
 `;
 
 export const Rule = styled.hr`

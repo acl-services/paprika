@@ -3,7 +3,7 @@ import styled from "styled-components";
 import { Gap } from "storybook/assets/styles/common.styles";
 import StoryHeading from "storybook/components/StoryHeading";
 import Button from "@paprika/button";
-import Popover from "@paprika/popover";
+import Popover from "../../src";
 
 const Centered = styled.div`
   text-align: center;

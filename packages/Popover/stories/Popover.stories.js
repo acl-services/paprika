@@ -1,11 +1,11 @@
 import React from "react";
 import { withKnobs } from "@storybook/addon-knobs";
 import { getStoryName } from "storybook/storyTree";
+import { showcaseStoryParameters, variationsStoryParameters } from "storybook/assets/storyParameters";
 import ExampleStory from "storybook/components/ExampleStory";
-
 import Showcase from "./examples/Showcase";
 import Variations from "./examples/Variations";
-import Popover from "../src/Popover";
+import Popover from "../src";
 
 const storyName = getStoryName("Popover");
 
@@ -14,34 +14,24 @@ export default {
   component: Popover,
 };
 
-export const ShowcaseStory = Showcase;
+export const ShowcaseStory = () => (
+  <ExampleStory storyName="Popover" tagline={ExampleStory.defaultTaglines.showcase}>
+    <Showcase />
+  </ExampleStory>
+);
 ShowcaseStory.story = {
   name: "Showcase",
   decorators: [withKnobs],
-  parameters: {
-    options: {
-      isToolshown: true,
-      showPanel: true,
-      panelPosition: "bottom",
-    },
-    viewMode: "story",
-  },
+  parameters: showcaseStoryParameters,
 };
 
 export const VariationsStory = () => (
-  <ExampleStory storyName="Variations">
+  <ExampleStory storyName="Popover" tagline={ExampleStory.defaultTaglines.variations}>
     <Variations />
   </ExampleStory>
 );
 VariationsStory.story = {
   name: "Variations",
   decorators: [withKnobs],
-  parameters: {
-    options: {
-      isToolshown: true,
-      showPanel: false,
-      panelPosition: "bottom",
-    },
-    viewMode: "story",
-  },
+  parameters: variationsStoryParameters,
 };
