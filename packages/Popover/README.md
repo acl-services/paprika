@@ -96,7 +96,7 @@ To include an arrow that points to the trigger element, the `<Popover.Tip>` can 
 
 ### Basic uncontrolled example
 
-```js
+```jsx
 import Popover from "@paprika/popover";
 
 <Popover>
@@ -112,7 +112,7 @@ import Popover from "@paprika/popover";
 
 ### Basic controlled example
 
-```js
+```jsx
 import Popover from "@paprika/popover";
 
 const [isOpen, setOpen] = React.useState(false);
@@ -122,9 +122,7 @@ const [isOpen, setOpen] = React.useState(false);
     Open Popover
   </Button>
   <Popover.Content>
-    <Popover.Card>
-      Lorem hipsum kombucha leggings vinyl.
-    </Popover.Card>
+    <Popover.Card>Lorem hipsum kombucha leggings vinyl.</Popover.Card>
   </Popover.Content>
   <Popover.Tip />
 </Popover>
