@@ -13,7 +13,7 @@ export const Story = styled.div`
   }
 
   code {
-    color: ${tokens.color.green};
+    color: ${tokens.color.orangeDarken20};
   }
 `;
 
