@@ -80,7 +80,7 @@ pt:
       arrowdown: para baixo
       escape: ESC
     collapsible:
-      ariaText: seção recolhível
+      ariaText: Seção recolhível
     sortable:
       aria_description: Item arrastável. Pressione espaço para levantar.
       aria_lift: Você levantou um item em posição {{source}}. Use as teclas de seta para mover, espaço para soltar e esc para cancelar.
@@ -172,4 +172,7 @@ pt:
     breadcrumbs:
       aria_label: Navegação estrutural
       aria_expand: Mostrar todos os itens de navegação estrutural.
+    sideNavigation:
+      aria_label: Navegação lateral
+      trigger_aria_label: Abrir navegação
           
