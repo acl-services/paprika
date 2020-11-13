@@ -60,9 +60,6 @@ export default function Sort(props) {
   }
 
   function handleClose() {
-    setTimeout(() => {
-      console.log(document.activeElement);
-    }, 0);
     setIsOpen(false);
     onClose();
   }
@@ -78,7 +75,9 @@ export default function Sort(props) {
   }
 
   function handleAddSort() {
-    fieldsRef.current.focus();
+    if (fieldsRef.current) {
+      fieldsRef.current.focus();
+    }
     onAddSort();
   }
 
