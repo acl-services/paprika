@@ -158,7 +158,7 @@ function TimePicker(props) {
       <Popover style={{ width: "100%" }} isOpen={isOpen} edge="left" offset={0} align="bottom" shouldKeepFocus>
         <Popover.Trigger style={{ width: "100%" }}>
           <Input
-            ariaLabel={a11yText}
+            aria-label={a11yText}
             hasClearButton={false}
             icon={<ClockIcon />}
             isDisabled={isDisabled}

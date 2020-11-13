@@ -8,14 +8,14 @@ const handleImperative = ({ state, dispatch, onChangeContext }) => () => {
         type: useListBox.types.clear,
         payload: {
           isOpen,
-          onChangeFn: invokeOnChange(onChangeContext, "listbox:imperative:clear"),
+          onChangeFn: invokeOnChange(onChangeContext, "list-box:imperative:clear"),
         },
       });
     },
     reset: () => {
       dispatch({
         type: useListBox.types.reset,
-        payload: { onChangeFn: invokeOnChange(onChangeContext, "listbox:imperative:reset") },
+        payload: { onChangeFn: invokeOnChange(onChangeContext, "list-box:imperative:reset") },
       });
     },
     focus: () => {

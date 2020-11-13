@@ -23,7 +23,7 @@ storiesOf(`${storyName}/Subcomponents/Trigger`, module)
         {(selected, options, { dispatch, types, refTrigger, propsForTrigger }) => {
           return (
             <Button {...propsForTrigger()} onClick={togglePopover(dispatch, types)} ref={refTrigger}>
-              Toggle Listbox
+              Toggle ListBox
             </Button>
           );
         }}

@@ -26,4 +26,4 @@ blocks:
             - npx lerna bootstrap
             - yarn
             - yarn lerna version prerelease --yes
-            - yarn lerna publish from-package --yes
+            - yarn lerna publish from-package --yes --dist-tag next

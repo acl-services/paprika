@@ -19,49 +19,49 @@ export default {
 };
 
 export const paragraphExample = () => (
-  <ExampleStory storyName="With Paragraphs" fileName="examples/Paragraph.js">
+  <ExampleStory storyName="With Paragraphs" component="Heading" fileName="examples/Paragraph.js">
     <Paragraph />
   </ExampleStory>
 );
 paragraphExample.story = { name: "Paragraph", parameters: exampleStoryParameters };
 
 export const displayLevelExample = () => (
-  <ExampleStory storyName="Display Level" fileName="examples/DisplayLevel.js">
+  <ExampleStory storyName="Display Level" component="Heading" fileName="examples/DisplayLevel.js">
     <DisplayLevel />
   </ExampleStory>
 );
 displayLevelExample.story = { name: "Display Level", parameters: exampleStoryParameters };
 
 export const isLightExample = () => (
-  <ExampleStory storyName="Is Light" fileName="examples/IsLight.js">
+  <ExampleStory storyName="Is Light" component="Heading" fileName="examples/IsLight.js">
     <IsLight />
   </ExampleStory>
 );
 isLightExample.story = { name: "Is Light", parameters: exampleStoryParameters };
 
 export const underlineExample = () => (
-  <ExampleStory storyName="Underline" fileName="examples/Underline.js">
+  <ExampleStory storyName="Underline" component="Heading" fileName="examples/Underline.js">
     <Underline />
   </ExampleStory>
 );
 underlineExample.story = { name: "Underline", parameters: exampleStoryParameters };
 
 export const dividerExample = () => (
-  <ExampleStory storyName="Divider" fileName="examples/Divider.js">
+  <ExampleStory storyName="Divider" component="Heading" fileName="examples/Divider.js">
     <Divider />
   </ExampleStory>
 );
 dividerExample.story = { name: "Divider", parameters: exampleStoryParameters };
 
 export const headingFocus = () => (
-  <ExampleStory storyName="Focus" fileName="examples/HeadingFocus.js">
+  <ExampleStory storyName="Focus" component="Heading" fileName="examples/HeadingFocus.js">
     <HeadingFocus />
   </ExampleStory>
 );
 headingFocus.story = { name: "Focus", parameters: exampleStoryParameters };
 
 export const externalLinkExample = () => (
-  <ExampleStory storyName="External Link" fileName="examples/ExternalLink.js">
+  <ExampleStory storyName="External Link" component="Heading" fileName="examples/ExternalLink.js">
     <ExternalLink />
   </ExampleStory>
 );

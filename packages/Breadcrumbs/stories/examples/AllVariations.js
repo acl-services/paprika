@@ -73,6 +73,16 @@ const AllVariations = () => {
         <Breadcrumbs.Link href={URL}>Breadcrumb 3</Breadcrumbs.Link>
         <Breadcrumbs.Link href={URL}>Breadcrumb 4 with long content, Breadcrumb 4 with long content.</Breadcrumbs.Link>
       </Breadcrumbs>
+
+      <Gap />
+
+      <Heading level={3} displayLevel={5} isLight>
+        Breadcrumbs has only 1 item
+      </Heading>
+
+      <Breadcrumbs>
+        <Breadcrumbs.Link href={URL}>Breadcrumb 1</Breadcrumbs.Link>
+      </Breadcrumbs>
     </>
   );
 };

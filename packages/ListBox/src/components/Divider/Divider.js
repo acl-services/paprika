@@ -20,7 +20,7 @@ const defaultProps = {
 
 export default function Divider(props) {
   return (
-    <sc.Divider aria-hidden="true" data-pka-anchor="listbox.divider">
+    <sc.Divider aria-hidden="true" data-pka-anchor="list-box.divider">
       {props.children}
     </sc.Divider>
   );

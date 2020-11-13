@@ -66,20 +66,27 @@ or refer to the [AirTable summary](https://airtable.com/shrkJwkvtbgc3FT22).
 #### NPM Packages
 
 <a href="https://www.npmjs.com/package/@paprika/action-bar"><img src="https://img.shields.io/npm/v/@paprika/action-bar?label=ActionBar" /></a>
+<a href="https://www.npmjs.com/package/@paprika/avatar"><img src="https://img.shields.io/npm/v/@paprika/avatar?label=Avatar" /></a>
+<a href="https://www.npmjs.com/package/@paprika/breadcrumbs"><img src="https://img.shields.io/npm/v/@paprika/breadcrumbs?label=Breadcrumbs" /></a>
 <a href="https://www.npmjs.com/package/@paprika/button"><img src="https://img.shields.io/npm/v/@paprika/button?label=Button" /></a>
 <a href="https://www.npmjs.com/package/@paprika/button-group"><img src="https://img.shields.io/npm/v/@paprika/button-group?label=ButtonGroup" /></a>
+<a href="https://www.npmjs.com/package/@paprika/calendar"><img src="https://img.shields.io/npm/v/@paprika/calendar?label=Calendar" /></a>
 <a href="https://www.npmjs.com/package/@paprika/card"><img src="https://img.shields.io/npm/v/@paprika/card?label=Card" /></a>
 <a href="https://www.npmjs.com/package/@paprika/checkbox"><img src="https://img.shields.io/npm/v/@paprika/checkbox?label=Checkbox" /></a>
 <a href="https://www.npmjs.com/package/@paprika/collapsible"><img src="https://img.shields.io/npm/v/@paprika/collapsible?label=Collapsible" /></a>
 <a href="https://www.npmjs.com/package/@paprika/collapsible-checklists"><img src="https://img.shields.io/npm/v/@paprika/collapsible-checklists?label=CollapsibleChecklists" /></a>
 <a href="https://www.npmjs.com/package/@paprika/collapsible-text"><img src="https://img.shields.io/npm/v/@paprika/collapsible-text?label=CollapsibleText" /></a>
 <a href="https://www.npmjs.com/package/@paprika/confirmation"><img src="https://img.shields.io/npm/v/@paprika/confirmation?label=Confirmation" /></a>
+<a href="https://www.npmjs.com/package/@paprika/constants"><img src="https://img.shields.io/npm/v/@paprika/constants?label=constants" /></a>
 <a href="https://www.npmjs.com/package/@paprika/counter"><img src="https://img.shields.io/npm/v/@paprika/counter?label=Counter" /></a>
+<a href="https://www.npmjs.com/package/@paprika/data-field"><img src="https://img.shields.io/npm/v/@paprika/data-field?label=DataField" /></a>
 <a href="https://www.npmjs.com/package/@paprika/data-grid"><img src="https://img.shields.io/npm/v/@paprika/data-grid?label=DataGrid" /></a>
+<a href="https://www.npmjs.com/package/@paprika/data-header"><img src="https://img.shields.io/npm/v/@paprika/data-header?label=DataHeader" /></a>
 <a href="https://www.npmjs.com/package/@paprika/date-input"><img src="https://img.shields.io/npm/v/@paprika/date-input?label=DateInput" /></a>
 <a href="https://www.npmjs.com/package/@paprika/date-picker"><img src="https://img.shields.io/npm/v/@paprika/date-picker?label=DatePicker" /></a>
+<a href="https://www.npmjs.com/package/@paprika/date-range-picker"><img src="https://img.shields.io/npm/v/@paprika/date-range-picker?label=DateRangePicker" /></a>
 <a href="https://www.npmjs.com/package/@paprika/dialog-actions"><img src="https://img.shields.io/npm/v/@paprika/dialog-actions?label=DialogActions" /></a>
-<a href="https://www.npmjs.com/package/@paprika/dropdown-menu"><img src="https://img.shields.io/npm/v/@paprika/dropdown-menu?label=DropdownMenu" /></a>
+<a href="https://www.npmjs.com/package/@paprika/overflow-menu"><img src="https://img.shields.io/npm/v/@paprika/overflow-menu?label=OverflowMenu" /></a>
 <a href="https://www.npmjs.com/package/@paprika/external-link"><img src="https://img.shields.io/npm/v/@paprika/external-link?label=ExternalLink" /></a>
 <a href="https://www.npmjs.com/package/@paprika/form-element"><img src="https://img.shields.io/npm/v/@paprika/form-element?label=FormElement" /></a>
 <a href="https://www.npmjs.com/package/@paprika/guard"><img src="https://img.shields.io/npm/v/@paprika/guard?label=Guard" /></a>
@@ -88,29 +95,33 @@ or refer to the [AirTable summary](https://airtable.com/shrkJwkvtbgc3FT22).
 <a href="https://www.npmjs.com/package/@paprika/icon"><img src="https://img.shields.io/npm/v/@paprika/icon?label=Icon" /></a>
 <a href="https://www.npmjs.com/package/@paprika/input"><img src="https://img.shields.io/npm/v/@paprika/input?label=Input" /></a>
 <a href="https://www.npmjs.com/package/@paprika/l10n"><img src="https://img.shields.io/npm/v/@paprika/l10n?label=L10n" /></a>
-<a href="https://www.npmjs.com/package/@paprika/listbox"><img src="https://img.shields.io/npm/v/@paprika/listbox?label=ListBox" /></a>
-<a href="https://www.npmjs.com/package/@paprika/listbox-browser"><img src="https://img.shields.io/npm/v/@paprika/listbox-browser?label=ListBoxBrowser" /></a>
+<a href="https://www.npmjs.com/package/@paprika/list-box"><img src="https://img.shields.io/npm/v/@paprika/list-box?label=ListBox" /></a>
+<a href="https://www.npmjs.com/package/@paprika/list-box-browser"><img src="https://img.shields.io/npm/v/@paprika/list-box-browser?label=ListBoxBrowser" /></a>
 <a href="https://www.npmjs.com/package/@paprika/modal"><img src="https://img.shields.io/npm/v/@paprika/modal?label=Modal" /></a>
+<a href="https://www.npmjs.com/package/@paprika/notification-card"><img src="https://img.shields.io/npm/v/@paprika/notification-card?label=NotificationCard" /></a>
 <a href="https://www.npmjs.com/package/@paprika/overlay"><img src="https://img.shields.io/npm/v/@paprika/overlay?label=Overlay" /></a>
+<a href="https://www.npmjs.com/package/@paprika/pagination"><img src="https://img.shields.io/npm/v/@paprika/pagination?label=Pagination" /></a>
 <a href="https://www.npmjs.com/package/@paprika/pill"><img src="https://img.shields.io/npm/v/@paprika/pill?label=Pill" /></a>
 <a href="https://www.npmjs.com/package/@paprika/popover"><img src="https://img.shields.io/npm/v/@paprika/popover?label=Popover" /></a>
 <a href="https://www.npmjs.com/package/@paprika/progress-accordion"><img src="https://img.shields.io/npm/v/@paprika/progress-accordion?label=ProgressAccordion" /></a>
+<a href="https://www.npmjs.com/package/@paprika/progress-bar"><img src="https://img.shields.io/npm/v/@paprika/progress-bar?label=ProgressBar" /></a>
 <a href="https://www.npmjs.com/package/@paprika/radio"><img src="https://img.shields.io/npm/v/@paprika/radio?label=Radio" /></a>
 <a href="https://www.npmjs.com/package/@paprika/raw-button"><img src="https://img.shields.io/npm/v/@paprika/raw-button?label=RawButton" /></a>
+<a href="https://www.npmjs.com/package/@paprika/resize-detector"><img src="https://img.shields.io/npm/v/@paprika/resize-detector?label=ResizeDetector" /></a>
 <a href="https://www.npmjs.com/package/@paprika/select"><img src="https://img.shields.io/npm/v/@paprika/select?label=Select" /></a>
-<a href="https://www.npmjs.com/package/@paprika/sidepanel"><img src="https://img.shields.io/npm/v/@paprika/sidepanel?label=SidePanel" /></a>
+<a href="https://www.npmjs.com/package/@paprika/panel"><img src="https://img.shields.io/npm/v/@paprika/panel?label=Panel" /></a>
 <a href="https://www.npmjs.com/package/@paprika/sortable"><img src="https://img.shields.io/npm/v/@paprika/sortable?label=Sortable" /></a>
 <a href="https://www.npmjs.com/package/@paprika/spinner"><img src="https://img.shields.io/npm/v/@paprika/spinner?label=Spinner" /></a>
 <a href="https://www.npmjs.com/package/@paprika/stylers"><img src="https://img.shields.io/npm/v/@paprika/stylers?label=stylers" /></a>
 <a href="https://www.npmjs.com/package/@paprika/switch"><img src="https://img.shields.io/npm/v/@paprika/switch?label=Switch" /></a>
+<a href="https://www.npmjs.com/package/@paprika/table"><img src="https://img.shields.io/npm/v/@paprika/table?label=Table" /></a>
 <a href="https://www.npmjs.com/package/@paprika/tabs"><img src="https://img.shields.io/npm/v/@paprika/tabs?label=Tabs" /></a>
 <a href="https://www.npmjs.com/package/@paprika/takeover"><img src="https://img.shields.io/npm/v/@paprika/takeover?label=Takeover" /></a>
 <a href="https://www.npmjs.com/package/@paprika/textarea"><img src="https://img.shields.io/npm/v/@paprika/textarea?label=Textarea" /></a>
+<a href="https://www.npmjs.com/package/@paprika/time-picker"><img src="https://img.shields.io/npm/v/@paprika/time-picker?label=TimePicker" /></a>
 <a href="https://www.npmjs.com/package/@paprika/toast"><img src="https://img.shields.io/npm/v/@paprika/toast?label=Toast" /></a>
 <a href="https://www.npmjs.com/package/@paprika/tokens"><img src="https://img.shields.io/npm/v/@paprika/tokens?label=tokens" /></a>
 <a href="https://www.npmjs.com/package/@paprika/uploader"><img src="https://img.shields.io/npm/v/@paprika/uploader?label=Uploader" /></a>
-<a href="https://www.npmjs.com/package/@paprika/table"><img src="https://img.shields.io/npm/v/@paprika/uploader?label=Table" /></a>
-<a href="https://www.npmjs.com/package/@paprika/time-picker"><img src="https://img.shields.io/npm/v/@paprika/uploader?label=time-picker" /></a>
 
 ## Contributing
 
@@ -181,3 +192,21 @@ Have a question for the development team? [Ask us](https://github.com/acl-servic
 ## License
 
 [The MIT License (MIT)](https://github.com/acl-services/paprika/blob/master/LICENSE)
+
+## NOTES
+
+The following packages has been deprecated and they have moved into a new name space
+
+Before (deprecated)
+
+- @paprika/listbox
+- @paprika/listbox-browser
+- @paprika/dropdownmenu
+- @paprika/sidepanel
+
+Now
+
+- @paprika/list-box
+- @paprika/list-box-browser
+- @paprika/overflow-menu
+- @paprika/panel

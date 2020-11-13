@@ -6,7 +6,7 @@ const selectors = {
   noResults: "[data-pka-anchor='no-results']",
   popover: "[data-pka-anchor='popover.content']",
   popoverList: "[data-pka-anchor='styled-list']",
-  trigger: "[data-pka-anchor='listbox-trigger']",
+  trigger: "[data-pka-anchor='list-box-trigger']",
 };
 
 export default selectors;

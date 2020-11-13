@@ -33,3 +33,9 @@ Updated DEFAULT hover,visited styles to be resilient to global styling, [@trista
 ## [0.3.14] - 2020-10-07
 
 Move CloseButton, IconButton, LinkButton to components folder to fix typings and for file structure consistency [kcumlat](https://github.com/kcumlat).
+
+## [1.0.1-alpha.1] - 2020-11-13
+
+### Fixed
+
+- Ensure that the `event` argument is passed along to the `onBlur` handler provided by consumer [@mikrotron](https://github.com/mikrotron)

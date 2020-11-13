@@ -24,6 +24,7 @@ export const FormElement = styled.div(
     ${isInline && inlineFormElementStyles};
     ${isDisabled && `opacity: 0.5;`}
     border: none;
+    margin: 0;
     padding: 0;
   `
 );

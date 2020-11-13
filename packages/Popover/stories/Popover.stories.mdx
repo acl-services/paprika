@@ -1,0 +1,146 @@
+import { Meta, Description, Canvas } from "@storybook/addon-docs/blocks";
+import { getStoryName } from "storybook/storyTree";
+import { docsStoryParameters } from "storybook/assets/storyParameters";
+import Readme from "../README.md";
+import Icon from "@paprika/icon/lib/InfoCircle";
+import Button from "@paprika/button";
+import Popover from "../src/";
+
+<Meta title={`${getStoryName("Popover")}/Docs`} component={Popover} parameters={{ ...docsStoryParameters }} />
+
+<Description markdown={Readme} />
+
+## More Examples
+
+### Index
+
+- <a href="#align">Align</a>
+- <a href="#edge">Edge</a>
+- <a href="#iseager">isEager</a>
+- <a href="#isdark">isDark</a>
+- <a href="#no-card">No Card</a>
+- <a href="#zindex">zIndex</a>
+
+### Align
+
+The `<Popover />` component can be set to align with the trigger from any side the user desires using the `align` property.
+
+The `align` property can be set to the following values: <br />
+`Popover.types.align.TOP`, `Popover.types.align.RIGHT`, `Popover.types.align.BOTTOM`, `Popover.types.align.LEFT`.
+
+<!-- prettier-ignore -->
+<Canvas isExpanded>
+<Popover align={Popover.types.align.RIGHT}>
+  <Popover.Trigger>
+    {handler => <Button onClick={handler}>Show Popover with Align</Button>}
+  </Popover.Trigger>
+  <Popover.Content>
+    <Popover.Card>Lorem hipsum single-origin kombucha butcher gentrify foraged flannel.</Popover.Card>
+  </Popover.Content>
+  <Popover.Tip />
+</Popover>
+</Canvas>
+
+### Edge
+
+By using the `edge` property users can set the `<Popover />` card's edge to be aligned on either the right or left side of the trigger.
+
+The `edge` property can be set to the following values: <br />
+`Popover.types.align.LEFT`, `Popover.types.align.RIGHT`.
+
+<!-- prettier-ignore -->
+<Canvas isExpanded>
+<Popover edge={Popover.types.align.LEFT}>
+  <Popover.Trigger>
+    {handler => <Button onClick={handler}>Show Popover with Edge</Button>}
+  </Popover.Trigger>
+  <Popover.Content>
+    <Popover.Card>Lorem hipsum single-origin kombucha butcher gentrify foraged flannel.</Popover.Card>
+  </Popover.Content>
+  <Popover.Tip />
+</Popover>
+</Canvas>
+
+### isEager
+
+Typically used for a tooltip, the `isEager` property will cause the `<Popover />` content to show immediately when the user hovers or focuses on the trigger element.
+
+<!-- prettier-ignore -->
+<Canvas isExpanded>
+<Popover isEager>
+  <Popover.Trigger>
+    <Icon />
+  </Popover.Trigger>
+  <Popover.Content>
+    <Popover.Card>Lorem hipsum single-origin kombucha butcher gentrify foraged flannel.</Popover.Card>
+  </Popover.Content>
+  <Popover.Tip />
+</Popover>
+</Canvas>
+
+When a `<Button />` is used for a trigger then the render prop pattern should be used and when used with `isEager` the button should be passed the provided `handler` for several events (`onMouseOver`, `onMouseOut`, `onFocus`, `onBlur`), as well as the provided `a11yAttributes` which can be spread onto it.
+
+<!-- prettier-ignore -->
+<Canvas isExpanded>
+<Popover isEager>
+  <Popover.Trigger>
+    {(handler, a11yAttributes) => <Button onMouseOver={handler} onMouseOut={handler} onFocus={handler} onBlur={handler} {...a11yAttributes}>Show Popover with isEager</Button>}
+  </Popover.Trigger>
+  <Popover.Content>
+    <Popover.Card>Lorem hipsum single-origin kombucha butcher gentrify foraged flannel.</Popover.Card>
+  </Popover.Content>
+  <Popover.Tip />
+</Popover>
+</Canvas>
+
+### isDark
+
+The `<Popover />` component's card can be set to have a dark background with white text, as opposed to the default white background with dark text, by using the `isDark` proeprty.
+
+This is often used for a short tooltip.
+
+<!-- prettier-ignore -->
+<Canvas isExpanded>
+<Popover isDark>
+  <Popover.Trigger>
+    {handler => <Button onClick={handler}>Show Popover with isDark</Button>}
+  </Popover.Trigger>
+  <Popover.Content>
+    <Popover.Card>Next-level flexitarian longboard</Popover.Card>
+  </Popover.Content>
+  <Popover.Tip />
+</Popover>
+</Canvas>
+
+### No Card
+
+The `<Popover />` component doesn't have to render a `<Card />`, it can be ommited and content provided direclty inside the `<Popover.Content />`.
+
+<!-- prettier-ignore -->
+<Canvas isExpanded>
+<Popover>
+  <Popover.Trigger>
+    {handler => <Button onClick={handler}>Show Popover with no Card</Button>}
+  </Popover.Trigger>
+  <Popover.Content>Lorem hipsum single-origin kombucha butcher gentrify foraged flannel.</Popover.Content>
+</Popover>
+</Canvas>
+
+### zIndex
+
+Users can set the `zIndex` property of the `<Popover />` component to adjust how to `<Popover />` component will be displayed relative to other content on the page.
+
+The `<Popover.Content />` and `<Popover.Tip />` will inherit the `zIndex` value.
+
+<!-- prettier-ignore -->
+<Canvas isExpanded>
+<Popover zIndex={9}>
+  <Popover.Trigger>
+    {handler => <Button onClick={handler}>Show Popover with zIndex</Button>}
+  </Popover.Trigger>
+  <Popover.Content>
+    <Popover.Card>Lorem hipsum single-origin kombucha butcher gentrify foraged flannel.</Popover.Card>
+  </Popover.Content>
+  <Popover.Tip />
+</Popover>
+</Canvas>
