@@ -5,21 +5,29 @@ import isNil from "lodash/isNil";
 import * as constants from "@paprika/constants/lib/Constants";
 import * as sc from "./FormElement.styles";
 
+import Content from "./components/Content";
+import Description from "./components/Description";
+import Error from "./components/Error";
+import Instructions from "./components/Instructions";
+import Label from "./components/Label";
+
 export const FormElementContext = React.createContext({});
 
 function FormElement(props) {
-  const { id } = props;
+  const { id, wrapperAriaDescribedBy, children, isDisabled, isInline, size, hasFieldSet, ...moreProps } = props;
   const [ariaDescribedBy, setAriaDescribedBy] = React.useState({});
   const uniqueInputId = React.useRef(nanoid()).current;
   const generateLabelId = id => (isNil(id) || id === "" ? uniqueInputId : id);
   const idForLabel = generateLabelId(id);
   const refLabel = React.useRef(null);
 
-  const { children, isDisabled, isInline, size, hasFieldSet, ...moreProps } = props;
-
   const addIdToAriaDescribedBy = idObject => {
     setAriaDescribedBy(ariaDescribedBy => ({ ...idObject, ...ariaDescribedBy }));
   };
+
+  if (!ariaDescribedBy.wrapperAriaDescribedBy && wrapperAriaDescribedBy) {
+    addIdToAriaDescribedBy({ wrapperAriaDescribedBy });
+  }
 
   const value = {
     hasFieldSet,
@@ -62,18 +70,28 @@ const propTypes = {
 
   /** FormElement contains multiple children so Renders a legend element instead of label. */
   hasFieldSet: PropTypes.bool,
+
+  /** Aria-describedBy ids comoing from wrapping fieldset component. */
+  wrapperAriaDescribedBy: PropTypes.string,
 };
 
 const defaultProps = {
+  hasFieldSet: false,
   id: "",
   isDisabled: false,
   isInline: false,
   size: FormElement.types.size.MEDIUM,
-  hasFieldSet: false,
+  wrapperAriaDescribedBy: "",
 };
 
 FormElement.displayName = "FormElement";
 FormElement.propTypes = propTypes;
 FormElement.defaultProps = defaultProps;
+
+FormElement.Content = Content;
+FormElement.Label = Label;
+FormElement.Description = Description;
+FormElement.Instructions = Instructions;
+FormElement.Error = Error;
 
 export default FormElement;

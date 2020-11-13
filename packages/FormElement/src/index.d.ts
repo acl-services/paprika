@@ -15,6 +15,8 @@ interface FormElementProps {
   size?: FormElement.types.size.SMALL | FormElement.types.size.MEDIUM | FormElement.types.size.LARGE;
   /** FormElement contains multiple children so Renders a legend element instead of label. */
   hasFieldSet?: boolean;
+  /** Aria-describedBy ids comoing from wrapping fieldset component. */
+  wrapperAriaDescribedBy?: string;
 }
 
 declare namespace FormElement {

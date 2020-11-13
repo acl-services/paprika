@@ -22,14 +22,15 @@ npm install @paprika/form-element
 
 ### FormElement
 
-| Prop        | Type                                                                                         | required | default                       | Description                                                                           |
-| ----------- | -------------------------------------------------------------------------------------------- | -------- | ----------------------------- | ------------------------------------------------------------------------------------- |
-| id          | string                                                                                       | false    | ""                            |                                                                                       |
-| children    | node                                                                                         | true     | -                             |                                                                                       |
-| isDisabled  | bool                                                                                         | false    | false                         | Should be disabled or not, default is false.                                          |
-| isInline    | bool                                                                                         | false    | false                         | Should label and children be inline or not, default is false.                         |
-| size        | [ FormElement.types.size.SMALL, FormElement.types.size.MEDIUM, FormElement.types.size.LARGE] | false    | FormElement.types.size.MEDIUM | Size of the label, error, help and description (font size, min-height, padding, etc). |
-| hasFieldSet | bool                                                                                         | false    | false                         | FormElement contains multiple children so Renders a legend element instead of label.  |
+| Prop                   | Type                                                                                         | required | default                       | Description                                                                           |
+| ---------------------- | -------------------------------------------------------------------------------------------- | -------- | ----------------------------- | ------------------------------------------------------------------------------------- |
+| id                     | string                                                                                       | false    | ""                            |                                                                                       |
+| children               | node                                                                                         | true     | -                             |                                                                                       |
+| isDisabled             | bool                                                                                         | false    | false                         | Should be disabled or not, default is false.                                          |
+| isInline               | bool                                                                                         | false    | false                         | Should label and children be inline or not, default is false.                         |
+| size                   | [ FormElement.types.size.SMALL, FormElement.types.size.MEDIUM, FormElement.types.size.LARGE] | false    | FormElement.types.size.MEDIUM | Size of the label, error, help and description (font size, min-height, padding, etc). |
+| hasFieldSet            | bool                                                                                         | false    | false                         | FormElement contains multiple children so Renders a legend element instead of label.  |
+| wrapperAriaDescribedBy | string                                                                                       | false    | ""                            | Aria-describedBy ids comoing from wrapping fieldset component.                        |
 
 ### FormElement.Content
 
