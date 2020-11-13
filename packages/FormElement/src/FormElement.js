@@ -5,12 +5,6 @@ import isNil from "lodash/isNil";
 import * as constants from "@paprika/constants/lib/Constants";
 import * as sc from "./FormElement.styles";
 
-import Content from "./components/Content";
-import Description from "./components/Description";
-import Error from "./components/Error";
-import Instructions from "./components/Instructions";
-import Label from "./components/Label";
-
 export const FormElementContext = React.createContext({});
 
 function FormElement(props) {
@@ -87,11 +81,5 @@ const defaultProps = {
 FormElement.displayName = "FormElement";
 FormElement.propTypes = propTypes;
 FormElement.defaultProps = defaultProps;
-
-FormElement.Content = Content;
-FormElement.Label = Label;
-FormElement.Description = Description;
-FormElement.Instructions = Instructions;
-FormElement.Error = Error;
 
 export default FormElement;
