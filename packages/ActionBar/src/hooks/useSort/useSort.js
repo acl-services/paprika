@@ -21,7 +21,7 @@ function sortData({ sortedFields, columns, data, locale }) {
   return sortedData;
 }
 
-export default function useSort({ data = null, columns }) {
+export default function useSort({ data = null, columns, maxSortFields = null }) {
   const [sortedFields, setSortedFields] = React.useState([]);
   const [sortedData, setSortedData] = React.useState(data);
   const [appliedNumber, setAppliedNumber] = React.useState(0);
@@ -82,5 +82,6 @@ export default function useSort({ data = null, columns }) {
     onDeleteSort: handleDeleteField,
     onChangeSort: handleChangeField,
     onApply: handleApply,
+    isAddSortDisabled: maxSortFields ? sortedFields.length >= maxSortFields : false,
   };
 }
