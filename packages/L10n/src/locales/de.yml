@@ -80,7 +80,7 @@ de:
       arrowdown: Ab
       escape: Escape
     collapsible:
-      ariaText: ausblendbarer Bereich
+      ariaText: Einklappbarer Abschnitt
     sortable:
       aria_description: Ziehbares Element. Drücken Sie zum Anheben die Leertaste.
       aria_lift: Sie haben ein Element in Position {{source}} angehoben. Verwenden Sie die Pfeiltasten, um es zu bewegen, die Leertaste, um es fallen zu lassen, und Esc, um Aktion abzubrechen.
@@ -172,4 +172,7 @@ de:
     breadcrumbs:
       aria_label: Breadcrumbs
       aria_expand: Sie können alle Breadcrumb-Elemente anzeigen.
+    sideNavigation:
+      aria_label: Seiten-Navigation
+      trigger_aria_label: Navigation öffnen
           
