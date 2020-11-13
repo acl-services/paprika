@@ -53,7 +53,7 @@ const Showcase = props => {
       <Tagline>Form Element.</Tagline>
       <Rule />
       <FormElement {...props}>
-        <Label onClick={() => console.log("label clicked")} help={helpPropKnobs().helpText} {...labelPropKnobs}>
+        <Label onClick={() => console.log("label clicked")} help={helpPropKnobs().helpText} {...labelPropKnobs()}>
           {labelPropKnobs().label}
         </Label>
         <Instructions>{instructionsPropKnobs().instructionsText}</Instructions>
