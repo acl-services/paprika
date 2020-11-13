@@ -6,6 +6,8 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 
 ## [Unreleased]
 
+- Added `isAddSortDisabled` prop on `<Sort>` component, and `maximumSort` parameter in `useSort` hook to support the case of limited sort fields.
+
 ## [0.2.0] - 2020-06-08
 
 ### Added
