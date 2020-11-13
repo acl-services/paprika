@@ -197,13 +197,15 @@ Have a question for the development team? [Ask us](https://github.com/acl-servic
 
 The following packages has been deprecated and they have moved into a new name space
 
-Before (deprecated) 
+Before (deprecated)
+
 - @paprika/listbox
 - @paprika/listbox-browser
 - @paprika/dropdownmenu
 - @paprika/sidepanel
 
 Now
+
 - @paprika/list-box
 - @paprika/list-box-browser
 - @paprika/overflow-menu

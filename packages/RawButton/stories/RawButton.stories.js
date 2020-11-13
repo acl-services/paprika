@@ -1,11 +1,26 @@
-import React from "react";
-import { storiesOf } from "@storybook/react";
+import { withKnobs } from "@storybook/addon-knobs";
 import { getStoryName } from "storybook/storyTree";
-import Basic from "./examples/Basic";
-import OldRef from "./examples/OldRef";
+import { showcaseStoryParameters, variationsStoryParameters } from "storybook/assets/storyParameters";
+import ShowcaseStory from "./examples/Showcase";
+import Variations from "./examples/Variations";
+import RawButton from "../src/RawButton";
 
 const storyName = getStoryName("RawButton");
 
-storiesOf(storyName, module).add("Basic", () => <Basic />);
+export default {
+  title: storyName,
+  component: RawButton,
+};
 
-storiesOf(`${storyName}/Backyard/Sandbox`, module).add("Old Ref", () => <OldRef />);
+export const showcase = ShowcaseStory;
+showcase.story = {
+  name: "Showcase",
+  decorators: [withKnobs],
+  parameters: showcaseStoryParameters,
+};
+
+export const variations = Variations;
+variations.story = {
+  name: "Variations",
+  parameters: variationsStoryParameters,
+};
