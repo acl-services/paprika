@@ -2,23 +2,24 @@
 import React from "react";
 import { render, configure } from "@testing-library/react";
 import L10n from "@paprika/l10n";
-import FormElement, { useFormElement, Label, Content, Instructions, Description, Error, Help } from "../src";
+import FormElement, { Label, Content, Instructions, Description, Error, Help } from "../src";
 
 configure({ testIdAttribute: "data-pka-anchor" });
 
 const defaultLabel = "Form Element";
 
 function FormElementComponent(props) {
-  const { formElementA11yProps, inputA11yProps } = useFormElement({ id: "test-id" });
   const { children, label, isDisabled, isReadOnly, hasOptionalLabel, hasRequiredLabel, ...moreProps } = props;
   return (
-    <FormElement {...moreProps} formElementA11yProps={formElementA11yProps}>
+    <FormElement {...moreProps}>
       <Label hasRequiredLabel={hasRequiredLabel} hasOptionalLabel={hasOptionalLabel}>
         {label || defaultLabel}
       </Label>
       {children || (
         <Content>
-          <input readOnly={isReadOnly} disabled={isDisabled} data-pka-anchor="form-element.input" {...inputA11yProps} />
+          {a11yProps => (
+            <input readOnly={isReadOnly} disabled={isDisabled} data-pka-anchor="form-element.input" {...a11yProps} />
+          )}
         </Content>
       )}
     </FormElement>

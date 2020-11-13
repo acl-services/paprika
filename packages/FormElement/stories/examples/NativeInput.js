@@ -1,12 +1,10 @@
 import React from "react";
-import FormElement from "../../src/FormElement";
+import FormElement, { Content } from "../../src";
 
 export default function NativeInputExample() {
   return (
     <FormElement label="Form Label">
-      <FormElement.Content>
-        {({ idForLabel, ariaDescribedBy }) => <input aria-describedby={ariaDescribedBy} id={idForLabel} />}
-      </FormElement.Content>
+      <Content>{a11yProps => <input {...a11yProps} />}</Content>
     </FormElement>
   );
 }

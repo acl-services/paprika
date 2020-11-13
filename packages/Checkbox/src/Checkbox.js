@@ -31,6 +31,10 @@ const Checkbox = props => {
     size,
   };
 
+  if (extendedInputProps.refLabel) {
+    delete extendedInputProps.refLabel;
+  }
+
   const inputProps = {
     checked: checkedState === types.checkboxStates.CHECKED,
     disabled: isDisabled,

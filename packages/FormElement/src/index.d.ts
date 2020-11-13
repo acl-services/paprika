@@ -4,7 +4,7 @@ declare function FormElement(props: FormElementProps): JSX.Element;
 interface FormElementProps {
   [x: string]: any;
 
-  formElementA11yProps?: shape;
+  id?: string;
 
   children: React.ReactNode;
   /** Should be disabled or not, default is false. */
@@ -23,8 +23,6 @@ declare namespace FormElement {
     [x: string]: any;
 
     children: func | node;
-
-    isInline?: boolean;
   }
 }
 declare namespace FormElement {

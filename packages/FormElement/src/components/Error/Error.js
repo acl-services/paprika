@@ -1,5 +1,6 @@
 import React from "react";
 import PropTypes from "prop-types";
+import nanoid from "nanoid";
 import ExclamationCircleIcon from "@paprika/icon/lib/ExclamationCircle";
 import { FormElementContext } from "../../FormElement";
 import errorStyles, { iconStyles } from "./Error.styles";
@@ -13,15 +14,18 @@ const defaultProps = {
 };
 
 function Error(props) {
-  const { formElementA11yProps } = React.useContext(FormElementContext);
+  const [ariaErrorId] = React.useState(nanoid);
+  const { addIdToAriaDescribedBy } = React.useContext(FormElementContext);
   const { children, ...moreProps } = props;
+
+  React.useEffect(() => {
+    addIdToAriaDescribedBy({ ariaErrorId });
+  }, []);
 
   if (!children) return null;
 
-  const a11yProps = formElementA11yProps ? { id: formElementA11yProps.errorA11yProps.id } : {};
-
   return (
-    <div role="alert" css={errorStyles} data-pka-anchor="form-element.error" {...moreProps} {...a11yProps}>
+    <div role="alert" css={errorStyles} data-pka-anchor="form-element.error" {...moreProps} id={ariaErrorId}>
       <ExclamationCircleIcon css={iconStyles} />
       {children}
     </div>

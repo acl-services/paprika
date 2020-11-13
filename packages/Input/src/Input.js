@@ -57,6 +57,10 @@ const Input = React.forwardRef((props, ref) => {
     delete moreProps.value;
   }
 
+  if (moreProps.refLabel) {
+    delete moreProps.refLabel;
+  }
+
   const styleProps = {
     size,
     hasClearButton,

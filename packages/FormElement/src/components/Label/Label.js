@@ -33,16 +33,14 @@ const defaultProps = {
 };
 
 const Label = props => {
-  const { hasFieldSet, formElementA11yProps } = React.useContext(FormElementContext);
+  const { hasFieldSet, refLabel, idForLabel } = React.useContext(FormElementContext);
   const { hasOptionalLabel, hasRequiredLabel, help, id, children, ...moreProps } = props;
 
   const I18n = useI18n();
 
   const labelProps = hasFieldSet ? { as: "legend" } : { as: "label" };
 
-  const a11yProps = formElementA11yProps
-    ? { htmlFor: formElementA11yProps.labelA11yProps.id, ref: formElementA11yProps.labelA11yProps.ref }
-    : {};
+  const a11yProps = { htmlFor: idForLabel, ref: refLabel };
 
   const renderQuestionRequirement = () => {
     if (hasRequiredLabel) {

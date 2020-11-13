@@ -1,16 +1,32 @@
 import React from "react";
 import PropTypes from "prop-types";
+import nanoid from "nanoid";
+import isNil from "lodash/isNil";
 import * as constants from "@paprika/constants/lib/Constants";
 import * as sc from "./FormElement.styles";
 
 export const FormElementContext = React.createContext({});
 
 function FormElement(props) {
-  const { children, isDisabled, isInline, size, hasFieldSet, formElementA11yProps, ...moreProps } = props;
+  const { id } = props;
+  const [ariaDescribedBy, setAriaDescribedBy] = React.useState({});
+  const uniqueInputId = React.useRef(nanoid()).current;
+  const generateLabelId = id => (isNil(id) || id === "" ? uniqueInputId : id);
+  const idForLabel = generateLabelId(id);
+  const refLabel = React.useRef(null);
+
+  const { children, isDisabled, isInline, size, hasFieldSet, ...moreProps } = props;
+
+  const addIdToAriaDescribedBy = idObject => {
+    setAriaDescribedBy(ariaDescribedBy => ({ ...idObject, ...ariaDescribedBy }));
+  };
 
   const value = {
-    formElementA11yProps,
     hasFieldSet,
+    refLabel,
+    idForLabel,
+    ariaDescribedBy,
+    addIdToAriaDescribedBy,
   };
 
   return (
@@ -31,15 +47,7 @@ FormElement.types = {
 };
 
 const propTypes = {
-  formElementA11yProps: PropTypes.shape({
-    labelA11yProps: PropTypes.shape({
-      id: PropTypes.string,
-      ref: PropTypes.shape({ current: PropTypes.instanceOf(Object) }),
-    }),
-    instructionsA11yProps: PropTypes.shape({ id: PropTypes.string }),
-    descriptionA11yProps: PropTypes.shape({ id: PropTypes.string }),
-    errorA11yProps: PropTypes.shape({ id: PropTypes.string }),
-  }),
+  id: PropTypes.string,
 
   children: PropTypes.node.isRequired,
 
@@ -57,7 +65,7 @@ const propTypes = {
 };
 
 const defaultProps = {
-  formElementA11yProps: null,
+  id: "",
   isDisabled: false,
   isInline: false,
   size: FormElement.types.size.MEDIUM,

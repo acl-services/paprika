@@ -1,5 +1,6 @@
 import React from "react";
 import PropTypes from "prop-types";
+import nanoid from "nanoid";
 import * as sc from "./Description.styles";
 import { FormElementContext } from "../../FormElement";
 
@@ -13,13 +14,16 @@ const defaultProps = {
 };
 
 function Description(props) {
-  const { formElementA11yProps } = React.useContext(FormElementContext);
-  const { children, ariaDescriptionId, ...moreProps } = props;
+  const [ariaDescriptionId] = React.useState(nanoid);
+  const { addIdToAriaDescribedBy } = React.useContext(FormElementContext);
+  const { children, ...moreProps } = props;
 
-  const a11yProps = formElementA11yProps ? { id: formElementA11yProps.descriptionA11yProps.id } : {};
+  React.useEffect(() => {
+    addIdToAriaDescribedBy({ ariaDescriptionId });
+  }, []);
 
   return (
-    <sc.Description data-pka-anchor="form-element.description" {...moreProps} {...a11yProps}>
+    <sc.Description data-pka-anchor="form-element.description" {...moreProps} id={ariaDescriptionId}>
       {children}
     </sc.Description>
   );

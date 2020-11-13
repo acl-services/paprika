@@ -3,13 +3,11 @@ import React from "react";
 import { Rule } from "storybook/assets/styles/common.styles";
 import Input from "@paprika/input";
 import Button from "@paprika/button";
-import FormElement, { useFormElement, Label, Instructions, Content, Description, Error } from "../../src";
+import FormElement, { Label, Instructions, Content, Description, Error } from "../../src";
 
 const AccessibilityExample = () => {
   const [value, setValue] = React.useState("");
   const [errorText, setErrorText] = React.useState("");
-
-  const { inputA11yProps, ariaA11yProps, formElementA11yProps } = useFormElement();
 
   function handleChange(e) {
     setValue(e.target.value);
@@ -25,7 +23,7 @@ const AccessibilityExample = () => {
 
   return (
     <>
-      <FormElement formElementA11yProps={formElementA11yProps}>
+      <FormElement>
         <Label
           help={
             <span>
@@ -42,20 +40,24 @@ const AccessibilityExample = () => {
           </span>
         </Instructions>
         <Content isInline>
-          <Input
-            onChange={handleChange}
-            value={value}
-            placeholder="Form placeholder"
-            hasError={Boolean(errorText.length)}
-            {...inputA11yProps}
-          />
-          <Input
-            onChange={handleChange}
-            value={value}
-            placeholder="Form placeholder"
-            hasError={Boolean(errorText.length)}
-            {...ariaA11yProps}
-          />
+          {a11yProps => (
+            <>
+              <Input
+                onChange={handleChange}
+                value={value}
+                placeholder="Form placeholder"
+                hasError={Boolean(errorText.length)}
+                {...a11yProps}
+              />
+              <Input
+                onChange={handleChange}
+                value={value}
+                placeholder="Form placeholder"
+                hasError={Boolean(errorText.length)}
+                aria-describedby={a11yProps["aria-describedby"]} // Only aria-describedby applied to subsequent Content components
+              />
+            </>
+          )}
         </Content>
         <Description>
           <span>This is description text</span>

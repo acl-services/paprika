@@ -3,19 +3,17 @@ import * as constants from "@paprika/constants/lib/Constants";
 import Checkbox from "@paprika/checkbox";
 import styled from "styled-components";
 import stylers from "@paprika/stylers";
-import FormElement, { useFormElement, Content, Label } from "../../src";
+import FormElement, { Content, Label } from "../../src";
 
 export default function CheckboxExample() {
-  const { checkboxA11yProps, formElementA11yProps } = useFormElement();
-
   const isDisabled = false;
   const size = constants.size.MEDIUM;
   const optionsArray = ["Black Panther", "Wonder Woman", "Spiderman", "The Incredibles", "Thor", <span>test</span>];
 
-  const getCheckboxOptions = () =>
+  const getCheckboxOptions = a11yProps =>
     optionsArray.map(hero => (
       <Checkbox key={hero} onChange={() => {}} isDisabled={isDisabled} size={size}>
-        <Checkbox.Input {...checkboxA11yProps} />
+        <Checkbox.Input {...a11yProps} />
         {hero}
       </Checkbox>
     ));
@@ -25,11 +23,9 @@ export default function CheckboxExample() {
   `;
 
   return (
-    <FormElement hasFieldSet formElementA11yProps={formElementA11yProps}>
+    <FormElement hasFieldSet>
       <Label>Form Label</Label>
-      <Content>
-        <CheckboxGroup>{getCheckboxOptions()}</CheckboxGroup>
-      </Content>
+      <Content>{a11yProps => <CheckboxGroup>{getCheckboxOptions(a11yProps)}</CheckboxGroup>}</Content>
     </FormElement>
   );
 }

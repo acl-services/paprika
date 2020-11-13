@@ -5,7 +5,7 @@ import Input from "@paprika/input";
 import { Rule, Tagline } from "storybook/assets/styles/common.styles";
 import { ShirtSizes } from "@paprika/helpers/lib/customPropTypes";
 import { FormElementStory } from "../FormElement.stories.styles";
-import FormElement, { useFormElement, Label, Instructions, Content, Description, Error } from "../../src";
+import FormElement, { Label, Instructions, Content, Description, Error } from "../../src";
 
 const getKnobs = () => ({
   isDisabled: boolean("isDisabled", false),
@@ -42,8 +42,6 @@ const helpPropKnobs = () => ({
 const Showcase = props => {
   const [value, setValue] = React.useState("");
 
-  const { inputA11yProps, formElementA11yProps } = useFormElement();
-
   function handleChange(e) {
     setValue(e.target.value);
   }
@@ -54,22 +52,24 @@ const Showcase = props => {
       </Heading>
       <Tagline>Form Element.</Tagline>
       <Rule />
-      <FormElement {...props} formElementA11yProps={formElementA11yProps}>
+      <FormElement {...props}>
         <Label onClick={() => console.log("label clicked")} help={helpPropKnobs().helpText} {...labelPropKnobs}>
           {labelPropKnobs().label}
         </Label>
         <Instructions>{instructionsPropKnobs().instructionsText}</Instructions>
         <Content>
-          <Input
-            onChange={handleChange}
-            value={value}
-            placeholder="Form placeholder"
-            aria-required={props.hasRequiredLabel}
-            hasError={Boolean(errorPropKnobs().errorText)}
-            isDisabled={props.isDisabled}
-            size={props.size}
-            {...inputA11yProps}
-          />
+          {a11yProps => (
+            <Input
+              onChange={handleChange}
+              value={value}
+              placeholder="Form placeholder"
+              aria-required={props.hasRequiredLabel}
+              hasError={Boolean(errorPropKnobs().errorText)}
+              isDisabled={props.isDisabled}
+              size={props.size}
+              {...a11yProps}
+            />
+          )}
         </Content>
         <Error>{errorPropKnobs().errorText}</Error>
         <Description>

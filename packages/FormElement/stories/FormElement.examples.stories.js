@@ -9,7 +9,7 @@ import DatePicker from "./examples/DatePicker";
 import ListBox from "./examples/ListBox";
 import ButtonGroup from "./examples/ButtonGroup";
 import NativeInput from "./examples/NativeInput";
-import Nested from "./examples/Nested";
+import Nested from "./examples/NestedExample";
 import HTML from "./examples/HTML";
 import ComponentLabel from "./examples/ComponentLabel";
 import FormElement from "../src/FormElement";

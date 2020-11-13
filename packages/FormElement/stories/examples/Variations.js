@@ -3,86 +3,76 @@ import { Gap } from "storybook/assets/styles/common.styles";
 import StoryHeading from "storybook/components/StoryHeading";
 import Input from "@paprika/input";
 import { FormElementStory } from "../FormElement.stories.styles";
-import FormElement, { useFormElement, Label, Content, Instructions, Description, Error } from "../../src";
+import FormElement, { Label, Content, Instructions, Description, Error } from "../../src";
 
 const Variations = () => {
   return (
     <FormElementStory storyName="Variations" tagline="The many moods of FormElements">
       <StoryHeading level={2}>FormElement sizes</StoryHeading>
-      <FormElement label="Form with small size" size="small">
-        <FormElement.Content>
-          {({ idForLabel, ariaDescribedBy }) => <Input id={idForLabel} aria-describedby={ariaDescribedBy} />}
-        </FormElement.Content>
+      <FormElement size="small">
+        <Label>Form with small size</Label>
+        <Content>{a11yProps => <Input {...a11yProps} />}</Content>
       </FormElement>
-      <FormElement label="Form with medium size">
-        <FormElement.Content>
-          {({ idForLabel, ariaDescribedBy }) => <Input id={idForLabel} aria-describedby={ariaDescribedBy} />}
-        </FormElement.Content>
+      <FormElement>
+        <Label>Form with medium size</Label>
+        <Content>{a11yProps => <Input {...a11yProps} />}</Content>
       </FormElement>
-      <FormElement label="Form with large size" size="large">
-        <FormElement.Content>
-          {({ idForLabel, ariaDescribedBy }) => <Input id={idForLabel} aria-describedby={ariaDescribedBy} />}
-        </FormElement.Content>
+      <FormElement size="large">
+        <Label>Form with large size</Label>
+        <Content>{a11yProps => <Input {...a11yProps} />}</Content>
       </FormElement>
       <Gap />
       <StoryHeading level={2}>FormElement with instructions</StoryHeading>
-      <FormElement label="Form with instructions">
-        <FormElement.Instructions>
+      <FormElement>
+        <Label>Form with instructions</Label>
+        <Instructions>
           Example text for extra panel for questionnaires. Example text for extra panel for questionnaires Example text
           for extra panel for questionnaires. Example text for extra panel for questionnaires.
-        </FormElement.Instructions>
-        <FormElement.Content>
-          {({ idForLabel, ariaDescribedBy }) => <Input id={idForLabel} aria-describedby={ariaDescribedBy} />}
-        </FormElement.Content>
+        </Instructions>
+        <Content>{a11yProps => <Input {...a11yProps} />}</Content>
       </FormElement>
       <Gap />
       <StoryHeading level={2}>FormElement with description</StoryHeading>
-      <FormElement label="Form with description">
-        <FormElement.Content>
-          {({ idForLabel, ariaDescribedBy }) => <Input id={idForLabel} aria-describedby={ariaDescribedBy} />}
-        </FormElement.Content>
-        <FormElement.Description>This is description text.</FormElement.Description>
+      <FormElement>
+        <Label>Form with description</Label>
+        <Content>{a11yProps => <Input {...a11yProps} />}</Content>
+        <Description>This is description text.</Description>
       </FormElement>
       <Gap />
       <StoryHeading level={2}>FormElement with an error</StoryHeading>
-      <FormElement label="Form with error">
-        <FormElement.Content>
-          {({ idForLabel, ariaDescribedBy }) => <Input id={idForLabel} aria-describedby={ariaDescribedBy} hasError />}
-        </FormElement.Content>
-        <FormElement.Error>has an error</FormElement.Error>
+      <FormElement>
+        <Label>Form with error</Label>
+        <Content>{a11yProps => <Input {...a11yProps} hasError />}</Content>
+        <Error>has an error</Error>
       </FormElement>
       <Gap />
       <StoryHeading level={2}>FormElement with isInline</StoryHeading>
-      <FormElement label="Form with isInline" isInline>
-        <FormElement.Content>
-          {({ idForLabel, ariaDescribedBy }) => <Input id={idForLabel} aria-describedby={ariaDescribedBy} />}
-        </FormElement.Content>
+      <FormElement isInline>
+        <Label>Form with isInline</Label>
+        <Content>{a11yProps => <Input {...a11yProps} />}</Content>
       </FormElement>
       <Gap />
       <StoryHeading level={2}>FormElement with hasOptionalLabel</StoryHeading>
-      <FormElement label="Form with hasOptionalLabel" hasOptionalLabel>
-        <FormElement.Content>
-          {({ idForLabel, ariaDescribedBy }) => <Input id={idForLabel} aria-describedby={ariaDescribedBy} />}
-        </FormElement.Content>
+      <FormElement hasOptionalLabel>
+        <Label>Form with hasOptionalLabel</Label>
+        <Content>{a11yProps => <Input {...a11yProps} />}</Content>
       </FormElement>
       <Gap />
       <StoryHeading level={2}>FormElement with hasRequiredLabel</StoryHeading>
-      <FormElement label="Form with hasRequiredLabel" hasRequiredLabel>
-        <FormElement.Content>
-          {({ idForLabel, ariaDescribedBy }) => <Input id={idForLabel} aria-describedby={ariaDescribedBy} />}
-        </FormElement.Content>
+      <FormElement hasRequiredLabel>
+        <Label>Form with hasRequiredLabel</Label>
+        <Content>{a11yProps => <Input {...a11yProps} />}</Content>
       </FormElement>
       <Gap />
       <StoryHeading level={2}>FormElement with isDisabled</StoryHeading>
-      <FormElement label="Form with isDisabled" isDisabled>
-        <FormElement.Instructions>
+      <FormElement isDisabled>
+        <Label>Form with isDisabled</Label>
+        <Instructions>
           Example text for extra panel for questionnaires. Example text for extra panel for questionnaires Example text
           for extra panel for questionnaires. Example text for extra panel for questionnaires.
-        </FormElement.Instructions>
-        <FormElement.Content>
-          {({ idForLabel, ariaDescribedBy }) => <Input id={idForLabel} aria-describedby={ariaDescribedBy} isDisabled />}
-        </FormElement.Content>
-        <FormElement.Description>This is description text.</FormElement.Description>
+        </Instructions>
+        <Content>{a11yProps => <Input {...a11yProps} isDisabled />}</Content>
+        <Description>This is description text.</Description>
       </FormElement>
     </FormElementStory>
   );

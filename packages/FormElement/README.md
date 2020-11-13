@@ -22,21 +22,20 @@ npm install @paprika/form-element
 
 ### FormElement
 
-| Prop                 | Type                                                                                         | required | default                       | Description                                                                           |
-| -------------------- | -------------------------------------------------------------------------------------------- | -------- | ----------------------------- | ------------------------------------------------------------------------------------- |
-| formElementA11yProps | shape                                                                                        | false    | null                          |                                                                                       |
-| children             | node                                                                                         | true     | -                             |                                                                                       |
-| isDisabled           | bool                                                                                         | false    | false                         | Should be disabled or not, default is false.                                          |
-| isInline             | bool                                                                                         | false    | false                         | Should label and children be inline or not, default is false.                         |
-| size                 | [ FormElement.types.size.SMALL, FormElement.types.size.MEDIUM, FormElement.types.size.LARGE] | false    | FormElement.types.size.MEDIUM | Size of the label, error, help and description (font size, min-height, padding, etc). |
-| hasFieldSet          | bool                                                                                         | false    | false                         | FormElement contains multiple children so Renders a legend element instead of label.  |
+| Prop        | Type                                                                                         | required | default                       | Description                                                                           |
+| ----------- | -------------------------------------------------------------------------------------------- | -------- | ----------------------------- | ------------------------------------------------------------------------------------- |
+| id          | string                                                                                       | false    | ""                            |                                                                                       |
+| children    | node                                                                                         | true     | -                             |                                                                                       |
+| isDisabled  | bool                                                                                         | false    | false                         | Should be disabled or not, default is false.                                          |
+| isInline    | bool                                                                                         | false    | false                         | Should label and children be inline or not, default is false.                         |
+| size        | [ FormElement.types.size.SMALL, FormElement.types.size.MEDIUM, FormElement.types.size.LARGE] | false    | FormElement.types.size.MEDIUM | Size of the label, error, help and description (font size, min-height, padding, etc). |
+| hasFieldSet | bool                                                                                         | false    | false                         | FormElement contains multiple children so Renders a legend element instead of label.  |
 
 ### FormElement.Content
 
 | Prop     | Type        | required | default | Description |
 | -------- | ----------- | -------- | ------- | ----------- |
 | children | [func,node] | true     | -       |             |
-| isInline | bool        | false    | false   |             |
 
 ### FormElement.Description
 
@@ -79,31 +78,26 @@ Please use `<L10n />` component to wrap `<FormElement />` or you application.
 
 Using with paprika `<Input />`
 
-<<<<<<< HEAD
-```js
-import FormElement, { useFormElement, Label, Content } from "@paprika/form-element";
-=======
 ```jsx
 import FormElement from "@paprika/form-element";
->>>>>>> master
 import Input from "@paprika/input";
 
-const { inputA11yProps, formElementA11yProps } = useFormElement();
-
-<FormElement formElementA11yProps={formElementA11yProps}>
+<FormElement>
   <Label>Name</Label>
   <Content>
-    <Input
-      onChange={handleChange}
-      value={value}
-      placeholder="Form placeholder"
-      aria-required={hasRequiredLabel}
-      hasError={false}
-      isDisabled={isDisabled}
-      isReadOnly={isReadOnly}
-      size={size}
-      {...inputA11yProps}
-    />
+    {a11yProps => (
+      <Input
+        onChange={handleChange}
+        value={value}
+        placeholder="Form placeholder"
+        aria-required={hasRequiredLabel}
+        hasError={false}
+        isDisabled={isDisabled}
+        isReadOnly={isReadOnly}
+        size={size}
+        {...a11yProps}
+      />
+    )}
     )}
   </Content>
 </FormElement>;
@@ -113,54 +107,36 @@ Using with paprika `<DatePicker />`
 
 ```jsx
 import DatePicker from "@paprika/date-picker";
-import FormElement, { useFormElement, Label, Content } from "@paprika/form-element";
+import FormElement, { Label, Content } from "@paprika/form-element";
 
-const { datePickerA11yProps, formElementA11yProps } = useFormElement();
-
-<FormElement formElementA11yProps={formElementA11yProps}>
+<FormElement>
   <Label>Name</Label>
   <Content>
-    <DatePicker onError={() => {}} hasError={Boolean(errorText.length)} onChange={() => {}}>
-      <DatePicker.Input {...datePickerA11yProps} />
-    </DatePicker>
+    {a11yProps => (
+      <DatePicker onError={() => {}} hasError={Boolean(errorText.length)} onChange={() => {}}>
+        <DatePicker.Input {...a11yProps} />
+      </DatePicker>
+    )}
   </Content>
 </FormElement>;
 ```
 
 Using with DOM input
 
-<<<<<<< HEAD
-```js
-import FormElement, { useFormElement, Label, Content } from "@paprika/form-element";
-
-const { inputA11yProps, formElementA11yProps } = useFormElement();
-
-<FormElement formElementA11yProps={formElementA11yProps}>
-  <Label hasRequiredLabel={hasRequiredLabel}>Name</Label>
-  <Content>
-    <input
-      aria-required={hasRequiredLabel}
-      aria-invalid={Boolean(errorText.length)}
-      disabled={isDisabled}
-      readOnly={isReadOnly}
-      {...inputA11yProps}
-    />
-=======
 ```jsx
 import FormElement from "@paprika/form-element";
 
 <FormElement hasRequiredLabel={hasRequiredLabel} label="Name">
   <FormElement.Content>
-    {({ idForLabel, ariaDescribedBy }) => (
+    {(a11yProps) => (
       <input
         aria-required={hasRequiredLabel}
-        aria-describedby={ariaDescribedBy}
+        aria-describedby={a11yProps[aria-describedby]}
         aria-invalid={Boolean(errorText.length)}
         disabled={isDisabled}
-        id={idForLabel}
+        id={a11yProps.idForLabel}
         readOnly={isReadOnly}
       />
->>>>>>> master
     )}
   </Content>
 </FormElement>;
