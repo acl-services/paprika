@@ -166,6 +166,7 @@ You can also use the hook `useSort`
 ```js
 const { appliedNumber, sortedFields, sortedData, onAddSort, onDeleteSort, onChangeSort, onApply } = useSort({
   columns,
+  maxSortFields, // optional, default is null
 });
 
 const handleDelete = fieldId => () => {
