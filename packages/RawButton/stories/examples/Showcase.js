@@ -14,7 +14,7 @@ const getKnobs = () => ({
   onClick: clickHandler,
   isDisabled: boolean("isDisabled", false),
   hasInsetFocusStyle: boolean("hasInsetFocusStyle", false),
-  a11yText: text("ariaText", "ceci n'est pas un bouton"),
+  a11yText: text("a11yText", "ceci n'est pas un bouton"),
 });
 
 function Showcase(props) {
