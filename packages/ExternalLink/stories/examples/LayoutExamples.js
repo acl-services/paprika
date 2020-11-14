@@ -8,7 +8,7 @@ const ExampleStory = () => (
   <Story>
     <p>
       This is default <code>ExternalLink</code> style:{" "}
-      <ExternalLink ariaText="aria text for link" href={mockUrl}>
+      <ExternalLink a11yText="aria text for link" href={mockUrl}>
         ExternalLink text
       </ExternalLink>
     </p>
@@ -27,7 +27,7 @@ const ExampleStory = () => (
     </p>
     <p>
       This is <code>ExternalLink</code> with <code>aria-label</code>:{" "}
-      <ExternalLink ariaText="View acl-ui" href={mockUrl}>
+      <ExternalLink a11yText="View acl-ui" href={mockUrl}>
         ExternalLink text
       </ExternalLink>
     </p>
