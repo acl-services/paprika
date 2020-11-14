@@ -1,11 +1,12 @@
 const fs = require("fs");
-const shell = require("shelljs");
+const shelljs = require("shelljs");
+const { spawn } = require("child_process");
 
 const changedPackages = [];
 const ALPHA_TAG = "-alpha";
 
 (function findChanges() {
-  shell.ls("packages").forEach(folder => {
+  shelljs.ls("packages").forEach(folder => {
     const path = `./packages/${folder}`;
 
     try {
@@ -25,4 +26,6 @@ if (changedPackages.length === 0) {
   return;
 }
 
-shell.exec(`yarn lerna publish --force-publish=${changedPackages.join(",")}`);
+spawn("sh", ["-c", `yarn lerna publish --force-publish=${changedPackages.join(",")}`], {
+  stdio: "inherit",
+});
