@@ -66,6 +66,8 @@ declare namespace ActionBar {
 
     columns: shape[];
 
+    isAddSortDisabled?: boolean;
+
     onAddSort: (...args: any[]) => any;
 
     onApply: (...args: any[]) => any;
