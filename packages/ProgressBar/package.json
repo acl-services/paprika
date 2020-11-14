@@ -24,5 +24,6 @@
     "@paprika/stylers": "^1.0.0",
     "@paprika/tokens": "^1.0.0",
     "prop-types": "^15.7.2"
-  }
+  },
+  "gitHead": "8bff2e8a6f01708ba60d9178f867dba378806370"
 }

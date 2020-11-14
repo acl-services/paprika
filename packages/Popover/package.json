@@ -11,7 +11,7 @@
     "url": "https://github.com/acl-services/paprika.git",
     "directory": "packages/Popover"
   },
-  "gitHead": "4aaee03aeeaa6af3c9b29b548e0490e1589153e8",
+  "gitHead": "8bff2e8a6f01708ba60d9178f867dba378806370",
   "publishConfig": {
     "access": "public"
   },

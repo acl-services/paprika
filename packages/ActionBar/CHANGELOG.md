@@ -6,8 +6,6 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 
 ## [Unreleased]
 
-- Added `isAddSortDisabled` prop on `<Sort>` component, and `maxSortFields` parameter in `useSort` hook to support the case of limited sort fields.
-
 ## [0.2.0] - 2020-06-08
 
 ### Added
@@ -35,3 +33,7 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 ### Added
 
 - Added `<SearchInput>` component [@allison-c](https://github.com/allison-c).
+
+## [1.1.0] - 2020-11-13
+
+- Added `isAddSortDisabled` prop on `<Sort>` component, and `maxSortFields` parameter in `useSort` hook to support the case of limited sort fields.
