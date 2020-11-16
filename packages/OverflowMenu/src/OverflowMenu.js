@@ -55,7 +55,7 @@ function OverflowMenu(props) {
     setFocusIndex(index);
   }
 
-  const handleCloseMenu = (key) => {
+  const handleCloseMenu = key => {
     setIsOpen(false);
 
     if (isConfirming) {
@@ -92,7 +92,7 @@ function OverflowMenu(props) {
   const overflowLastItemIndex =
     React.Children.toArray(
       extractedChildren.filter(
-        (child) =>
+        child =>
           child.type &&
           (child.type.displayName === "OverflowMenu.Item" || child.type.displayName === "OverflowMenu.LinkItem")
       )
@@ -116,9 +116,9 @@ function OverflowMenu(props) {
     }
   };
 
-  const handleShowConfirmation = (renderConfirmation) => () => {
-    setIsConfirming((prevIsConfirmingState) => !prevIsConfirmingState);
-    setRenderConfirmation((prevIsConfirmingState) => (prevIsConfirmingState ? null : renderConfirmation));
+  const handleShowConfirmation = renderConfirmation => () => {
+    setIsConfirming(prevIsConfirmingState => !prevIsConfirmingState);
+    setRenderConfirmation(prevIsConfirmingState => (prevIsConfirmingState ? null : renderConfirmation));
   };
 
   const renderTrigger = () => {
@@ -136,7 +136,7 @@ function OverflowMenu(props) {
 
   const getClonedChild = (child, childKey, additionalProps = {}) =>
     React.cloneElement(child, {
-      onKeyDown: (e) => onKeyDown(e, currentFocusIndex),
+      onKeyDown: e => onKeyDown(e, currentFocusIndex),
       ...childKey,
       ...additionalProps,
     });
