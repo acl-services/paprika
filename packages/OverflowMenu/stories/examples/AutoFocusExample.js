@@ -4,9 +4,11 @@ import OverflowMenu from "../../src";
 const AutoFocusExample = () => {
   return (
     <div>
+      <p>Use the mouse to open the OverflowMenu; focus should NOT be put on the first element.</p>
       <p>
-        Use the keyboard to tab over the links and expand the OverflowMenu. Then tab out of the OverflowMenu and see
-        where the focus goes -- it should NOT go back onto the OverflowMenu.
+        Use the keyboard to tab past the links and expand the OverflowMenu; focus SHOULD be put on the first element.
+        Then press tab to leave the OverflowMenu and see where the focus goes -- it should NOT go back onto the
+        OverflowMenu.
       </p>
       <hr />
       <h3>Default Trigger Type (Simple)</h3>

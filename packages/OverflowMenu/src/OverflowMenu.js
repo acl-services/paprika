@@ -55,7 +55,7 @@ function OverflowMenu(props) {
     setFocusIndex(index);
   }
 
-  const handleCloseMenu = () => {
+  const handleCloseMenu = (key) => {
     setIsOpen(false);
 
     if (isConfirming) {
@@ -63,7 +63,9 @@ function OverflowMenu(props) {
       setRenderConfirmation(null);
     }
 
-    if (triggerRef.current) triggerRef.current.focus();
+    if (triggerRef.current && key === "Tab") {
+      triggerRef.current.focus();
+    }
 
     if (onClose) {
       onClose();
@@ -110,7 +112,7 @@ function OverflowMenu(props) {
     } else if (event.key === "Enter" || event.key === " ") {
       // do nothing
     } else {
-      handleCloseMenu();
+      handleCloseMenu(event.key);
     }
   };
 
