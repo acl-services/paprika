@@ -19,6 +19,7 @@
     "prepublishOnly": "yarn generateChangelog",
     "prettier": "prettier \"**/*.+(js|json|yml|css|scss)\"",
     "prettier:format": "yarn prettier --write",
+    "publish:stable": "node scripts/publish",
     "storybook": "run-p storybook:start storybook:uploadserver",
     "storybook:build": "build-storybook -s ./.storybook/public -c .storybook -o storybook-dist",
     "storybook:screener": "screener-storybook --conf screener.config.js",

@@ -1,6 +1,6 @@
 {
   "name": "@paprika/data-header",
-  "version": "1.0.1-alpha.1",
+  "version": "1.0.2-alpha.0",
   "description": "Data header package is a set of components that help the Table and DataGrid to enhance the cell property to display different header types in a ease manner",
   "author": "@paprika",
   "license": "MIT",
@@ -16,15 +16,15 @@
   },
   "dependencies": {
     "@babel/runtime-corejs2": "^7.3.1",
-    "@paprika/button": "^1.0.1-alpha.1",
+    "@paprika/button": "^1.0.2-alpha.0",
     "@paprika/constants": "^1.0.0",
-    "@paprika/data-field": "^1.0.1-alpha.1",
-    "@paprika/data-grid": "^1.0.1-alpha.1",
+    "@paprika/data-field": "^1.0.2-alpha.0",
+    "@paprika/data-grid": "^1.0.2-alpha.0",
     "@paprika/dropdown-menu": "^2.0.47-alpha.5",
     "@paprika/icon": "^1.0.0",
-    "@paprika/popover": "^1.0.1-alpha.1",
-    "@paprika/raw-button": "^1.0.1-alpha.0",
-    "@paprika/toast": "^1.0.1-alpha.1",
+    "@paprika/popover": "^1.0.2-alpha.0",
+    "@paprika/raw-button": "^1.0.2-alpha.0",
+    "@paprika/toast": "^1.0.2-alpha.0",
     "@paprika/tokens": "^1.0.0",
     "prop-types": "^15.7.2"
   },
@@ -36,5 +36,6 @@
   },
   "paprikaDocs": {
     "subComponents": []
-  }
+  },
+  "gitHead": "8bff2e8a6f01708ba60d9178f867dba378806370"
 }
