@@ -127,15 +127,16 @@ Using with DOM input
 ```jsx
 import FormElement from "@paprika/form-element";
 
-<FormElement hasRequiredLabel={hasRequiredLabel} label="Name">
+<FormElement hasRequiredLabel={hasRequiredLabel}>
+  <Label>Name</Label>
   <FormElement.Content>
-    {(a11yProps) => (
+    {a11yProps => (
       <input
         aria-required={hasRequiredLabel}
         aria-describedby={a11yProps[aria-describedby]}
         aria-invalid={Boolean(errorText.length)}
         disabled={isDisabled}
-        id={a11yProps.idForLabel}
+        id={a11yProps.labelId}
         readOnly={isReadOnly}
       />
     )}

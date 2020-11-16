@@ -34,23 +34,26 @@ export default function NestedExample() {
             Sub Label
           </Label>
           <Content>
-            {a11yProps => (
-              <>
-                <input
-                  aria-required={hasRequiredLabel}
-                  disabled={isDisabled}
-                  readOnly={isReadOnly}
-                  id={a11yProps.idForLabel}
-                  aria-describedby={a11yProps["aria-describedby"]}
-                />
-                <input
-                  aria-required={hasRequiredLabel}
-                  disabled={isDisabled}
-                  readOnly={isReadOnly}
-                  aria-describedby={a11yProps["aria-describedby"]}
-                />
-              </>
-            )}
+            {a11yProps => {
+              console.log(a11yProps);
+              return (
+                <>
+                  <input
+                    aria-required={hasRequiredLabel}
+                    disabled={isDisabled}
+                    readOnly={isReadOnly}
+                    id={a11yProps.labelId}
+                    aria-describedby={a11yProps["aria-describedby"]}
+                  />
+                  <input
+                    aria-required={hasRequiredLabel}
+                    disabled={isDisabled}
+                    readOnly={isReadOnly}
+                    aria-describedby={a11yProps["aria-describedby"]}
+                  />
+                </>
+              );
+            }}
           </Content>
           <Error>{errorText}</Error>
         </FormElement>
@@ -71,13 +74,13 @@ export default function NestedExample() {
                   aria-required={hasRequiredLabel}
                   disabled={isDisabled}
                   readOnly={isReadOnly}
-                  id={a11yProps.idForLabel}
+                  id={a11yProps.labelId}
                   aria-describedby={a11yProps["aria-describedby"]}
                 />
                 <input
                   aria-required={hasRequiredLabel}
                   disabled={isDisabled}
-                  id={a11yProps.idForLabel}
+                  id={a11yProps.labelId}
                   aria-describedby={a11yProps["aria-describedby"]}
                 />
               </InputSet>

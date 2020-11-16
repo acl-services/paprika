@@ -12,7 +12,7 @@ function FormElement(props) {
   const [ariaDescribedBy, setAriaDescribedBy] = React.useState({});
   const uniqueInputId = React.useRef(nanoid()).current;
   const generateLabelId = id => (isNil(id) || id === "" ? uniqueInputId : id);
-  const idForLabel = generateLabelId(id);
+  const labelId = generateLabelId(id);
   const refLabel = React.useRef(null);
 
   const addIdToAriaDescribedBy = idObject => {
@@ -26,7 +26,7 @@ function FormElement(props) {
   const value = {
     hasFieldSet,
     refLabel,
-    idForLabel,
+    labelId,
     ariaDescribedBy,
     addIdToAriaDescribedBy,
   };

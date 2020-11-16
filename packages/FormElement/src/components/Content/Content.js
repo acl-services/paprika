@@ -7,32 +7,25 @@ const propTypes = {
 };
 
 function Content(props) {
-  const { ariaDescribedBy, refLabel, idForLabel } = React.useContext(FormElementContext);
+  const { ariaDescribedBy, refLabel, labelId } = React.useContext(FormElementContext);
   const { children, ...moreProps } = props;
 
   if (!children) {
     return null;
   }
 
-  const ariaDescribedByIdsArray = [];
-  if (ariaDescribedBy.ariaErrorId) {
-    ariaDescribedByIdsArray.push(ariaDescribedBy.ariaErrorId);
-  }
-  if (ariaDescribedBy.ariaDescriptionId) {
-    ariaDescribedByIdsArray.push(ariaDescribedBy.ariaDescriptionId);
-  }
-  if (ariaDescribedBy.ariaInstructionsId) {
-    ariaDescribedByIdsArray.push(ariaDescribedBy.ariaInstructionsId);
-  }
-  if (ariaDescribedBy.wrapperAriaDescribedBy) {
-    ariaDescribedByIdsArray.push(ariaDescribedBy.wrapperAriaDescribedBy);
-  }
+  const ariaDescribedByIdsArray = [
+    ariaDescribedBy?.ariaErrorId,
+    ariaDescribedBy?.ariaDescriptionId,
+    ariaDescribedBy?.ariaInstructionsId,
+    ariaDescribedBy?.wrapperAriaDescribedBy,
+  ].filter(Boolean);
 
   const ariaDescribedByIdsString = ariaDescribedByIdsArray.join(" ");
 
   const a11yProps = {
     refLabel,
-    id: idForLabel,
+    labelId,
   };
 
   if (ariaDescribedByIdsString.length) {

@@ -28,14 +28,15 @@ import FormElement from "../src";
 
 ### Accessibility
 
-In addition, a `<label />` is rendered by the `<FormElement />` and is associated to the input field by the `idForLabel` parameter of the same `children` function.
+In addition, a `<label />` is rendered by the `<FormElement />` and is associated to the input field by the `labelId` parameter of the same `children` function.
 
 The `<FormElement />` has been designed with accessibility in mind. Users can make use of `<FormElement.Instructions />`, `<FormElement.Description />`, `<FormElement.Error />`, and `<FormElement.Help />` to add instructions, guidance and feedback to users. Error messages, instructions, and descriptions can be associated to the input field by applying the supplied `ariaDescribedBy` parameter in the render function supplied to the `children` of the `<FormElement.Content>`.
 
 The `<FormElement.Help />` will add an icon with a tooltip next to the label.
 
 ```jsx
-<FormElement label="Form Label">
+<FormElement>
+  <Label>Form label</Label>
   <FormElement.Help>
     Give me some help. <a href="wegalvanize.com">Learn more</a>.
   </FormElement.Help>
@@ -43,11 +44,7 @@ The `<FormElement.Help />` will add an icon with a tooltip next to the label.
     Example text for extra panel for questionnaires. Example text for extra panel for questionnaires Example text for
     extra panel for questionnaires. Example text for extra panel for questionnaires
   </FormElement.Instructions>
-  <FormElement.Content>
-    {({ idForLabel, ariaDescribedBy }) => (
-      <Input id={idForLabel} placeholder="Form placeholder" aria-describedby={ariaDescribedBy} />
-    )}
-  </FormElement.Content>
+  <FormElement.Content>{a11yProps => <Input placeholder="Form placeholder" {...a11yProps} />}</FormElement.Content>
   <FormElement.Description>This is description text</FormElement.Description>
   <FormElement.Error>There was an error</FormElement.Error>
 </FormElement>
@@ -66,7 +63,8 @@ The `<FormElement>` can be used with different components to fulfill a variety o
 #### Textarea
 
 ```jsx
-<FormElement label="Form Label">
+<FormElement>
+  <Label>Form label</Label>
   <FormElement.Content>
     <Textarea defaultValue="Hello world">
   </FormElement.Content>
@@ -76,7 +74,8 @@ The `<FormElement>` can be used with different components to fulfill a variety o
 ##### Result
 
 <FormElementStyles>
-  <FormElement label="Form Label">
+  <FormElement>
+    <Label>Form label</Label>
     <FormElement.Content>
       <Textarea defaultValue="Hello world" />
     </FormElement.Content>
@@ -88,10 +87,10 @@ The `<FormElement>` can be used with different components to fulfill a variety o
 ```jsx
 <FormElement hasFieldSet label="Form Label">
   <FormElement.Content>
-    {({ ariaDescribedBy: ariaDescribedByOuter }) =>
-      <Checkbox ariaDescribedBy={ariaDescribedBy} onChange={() => {}}>Black Panther</Checkbox>
-      <Checkbox ariaDescribedBy={ariaDescribedBy} onChange={() => {}}>Spiderman</Checkbox>
-      <Checkbox ariaDescribedBy={ariaDescribedBy} onChange={() => {}}>Wonder Woman</Checkbox>
+    {a11yProps =>
+      <Checkbox onChange={() => {}} {...a11yProps}>Black Panther</Checkbox>
+      <Checkbox onChange={() => {}} {...a11yProps}>Spiderman</Checkbox>
+      <Checkbox onChange={() => {}} {...a11yProps}>Wonder Woman</Checkbox>
     }
   </FormElement.Content>
 </FormElement>
@@ -108,12 +107,11 @@ The `<FormElement>` can be used with different components to fulfill a variety o
 The `ComponentLabel` allows users to use the`label`property of the`<FormElement/ />`. Users can set the label property to equal an entire component, in this particular example making use of the`<Heading />` component.
 
 ```jsx
-<FormElement hasRequiredLabel={false} label={<Heading level={4}>Form Label</Heading>}>
-  <FormElement.Content>
-    {({ idForLabel, ariaDescribedBy }) => (
-      <Input id={idForLabel} onChange={() => {}} aria-describedby={ariaDescribedBy} />
-    )}
-  </FormElement.Content>
+<FormElement hasRequiredLabel={false}>
+  <Label>
+    <Heading level={4}>Form Label</Heading>
+  </Label>
+  <FormElement.Content>{a11yProps => <Input onChange={() => {}} {...a11yProps} />}</FormElement.Content>
 </FormElement>
 ```
 
@@ -130,11 +128,12 @@ The `<FormElement />` can handle a variety of components to further increase the
 #### DatePicker
 
 ```jsx
-<FormElement label="Form Label">
+<FormElement>
+  <Label>Form label</Label>
   <FormElement.Content>
-    {({ idForLabel, ariaDescribedBy }) => (
-      <DatePicker id={idForLabel} onChange={() => {}}>
-        <DatePicker.Input aria-describedby={ariaDescribedBy} />
+    {a11yProps => (
+      <DatePicker onChange={() => {}}>
+        <DatePicker.Input {...a11yProps} />
       </DatePicker>
     )}
   </FormElement.Content>
