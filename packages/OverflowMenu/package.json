@@ -26,7 +26,8 @@
     "@paprika/stylers": "^1.0.0",
     "@paprika/tokens": "^1.0.0",
     "prop-types": "^15.7.2",
-    "uuid": "^3.3.2"
+    "uuid": "^3.3.2",
+    "what-input": "^5.2.10"
   },
   "peerDependencies": {
     "@paprika/l10n": "^0.2.5",

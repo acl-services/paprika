@@ -1,6 +1,7 @@
 import React from "react";
 import PropTypes from "prop-types";
 import uuid from "uuid/v4";
+import "what-input";
 import Popover from "@paprika/popover";
 import extractChildren from "@paprika/helpers/lib/extractChildren";
 import Content from "./components/Content";
@@ -71,11 +72,12 @@ function OverflowMenu(props) {
 
   const handleOpenMenu = () => {
     setIsOpen(true);
-    // https://github.com/acl-services/paprika/issues/316
-    // Todo Should focus the first item via an onAfterOpen event callback in popover
-    setTimeout(() => {
-      focusAndSetIndex(0);
-    }, 250);
+
+    if (document.querySelector("html").getAttribute("data-whatinput") === "keyboard") {
+      setTimeout(() => {
+        focusAndSetIndex(0);
+      }, 250);
+    }
   };
 
   const {
@@ -88,7 +90,7 @@ function OverflowMenu(props) {
   const overflowLastItemIndex =
     React.Children.toArray(
       extractedChildren.filter(
-        child =>
+        (child) =>
           child.type &&
           (child.type.displayName === "OverflowMenu.Item" || child.type.displayName === "OverflowMenu.LinkItem")
       )
@@ -112,9 +114,9 @@ function OverflowMenu(props) {
     }
   };
 
-  const handleShowConfirmation = renderConfirmation => () => {
-    setIsConfirming(prevIsConfirmingState => !prevIsConfirmingState);
-    setRenderConfirmation(prevIsConfirmingState => (prevIsConfirmingState ? null : renderConfirmation));
+  const handleShowConfirmation = (renderConfirmation) => () => {
+    setIsConfirming((prevIsConfirmingState) => !prevIsConfirmingState);
+    setRenderConfirmation((prevIsConfirmingState) => (prevIsConfirmingState ? null : renderConfirmation));
   };
 
   const renderTrigger = () => {
@@ -132,7 +134,7 @@ function OverflowMenu(props) {
 
   const getClonedChild = (child, childKey, additionalProps = {}) =>
     React.cloneElement(child, {
-      onKeyDown: e => onKeyDown(e, currentFocusIndex),
+      onKeyDown: (e) => onKeyDown(e, currentFocusIndex),
       ...childKey,
       ...additionalProps,
     });
