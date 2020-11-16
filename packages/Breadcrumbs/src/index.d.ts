@@ -19,6 +19,8 @@ declare namespace Breadcrumbs {
     children?: React.ReactNode;
     /** Render as another component instead of Button.Link. */
     as?: string | func;
+
+    hasOnlyOneChild?: boolean;
     /** Url for the link. */
     href?: string;
   }

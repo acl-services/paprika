@@ -1,6 +1,6 @@
 {
   "name": "@paprika/date-input",
-  "version": "1.0.0",
+  "version": "1.0.2-alpha.0",
   "description": "The DateInput component allows users to enter and display a date.",
   "main": "lib/index.js",
   "types": "lib/index.d.ts",
@@ -18,7 +18,7 @@
     "@babel/runtime-corejs2": "^7.3.1",
     "@paprika/helpers": "^1.0.0",
     "@paprika/icon": "^1.0.0",
-    "@paprika/input": "^1.0.0",
+    "@paprika/input": "^1.0.2-alpha.0",
     "prop-types": "^15.7.2"
   },
   "peerDependencies": {
@@ -27,5 +27,5 @@
     "react": "^16.8.4",
     "react-dom": "^16.8.4"
   },
-  "gitHead": "494ce26cb0a6c24a8f6abf2b154d97ddd4d7e343"
+  "gitHead": "8bff2e8a6f01708ba60d9178f867dba378806370"
 }

@@ -46,7 +46,7 @@ describe("ActionBar Filter", () => {
       .click();
   });
 
-  it("Should display the differant filtering options", () => {
+  it("Should display the different filtering options", () => {
     cy.getByTestId("button")
       .contains("Filter")
       .click();

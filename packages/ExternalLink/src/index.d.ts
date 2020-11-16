@@ -4,7 +4,7 @@ declare function ExternalLink(props: ExternalLinkProps): JSX.Element;
 interface ExternalLinkProps {
   [x: string]: any;
   /** Text for aria-label. */
-  ariaText?: string;
+  a11yText?: string;
   /** Link text for showing. */
   children: string;
   /** It should not show the underline on text content */

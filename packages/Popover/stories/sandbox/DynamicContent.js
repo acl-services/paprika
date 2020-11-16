@@ -1,11 +1,11 @@
 import React from "react";
 import { CenteredStory } from "storybook/assets/styles/common.styles";
 import Spinner from "@paprika/spinner";
-import Popover from "../../../src/Popover";
+import Popover from "../../src";
 
 const sampleText = {
   short: "Lorem Hipsum",
-  long: `Lorem ipsum lumbersexual hot chicken austin readymade messenger bag aesthetic meh twee you probably havent
+  long: `Lorem hipsum lumbersexual hot chicken austin readymade messenger bag aesthetic meh twee you probably havent
     heard of them 3 wolf moon listicle. Normcore ramps gastropub fanny pack pabst. Hashtag roof party pour-over food
     truck, crucifix try-hard godard biodiesel next level snackwave disrupt flexitarian.`,
 };
@@ -49,7 +49,7 @@ const DynamicContent = () => {
 
   return (
     <CenteredStory>
-      <Popover align={Popover.types.align.TOP} isOpen>
+      <Popover align={Popover.types.align.TOP} defaultIsOpen>
         <Popover.Trigger aria-hidden>👻</Popover.Trigger>
         {childs}
       </Popover>

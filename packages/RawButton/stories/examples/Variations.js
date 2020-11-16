@@ -7,7 +7,7 @@ function clickHandler() {
   action("Clicked a button")();
 }
 
-const ExampleStory = () => {
+const Variations = () => {
   const buttonRef = React.createRef();
 
   React.useEffect(() => {
@@ -67,4 +67,4 @@ const ExampleStory = () => {
   );
 };
 
-export default ExampleStory;
+export default Variations;
