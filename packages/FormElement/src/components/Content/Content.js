@@ -25,7 +25,7 @@ function Content(props) {
 
   const a11yProps = {
     refLabel,
-    labelId,
+    id: labelId,
   };
 
   if (ariaDescribedByIdsString.length) {
