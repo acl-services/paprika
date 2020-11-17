@@ -7,7 +7,7 @@ import { RadioStory } from "../Radio.stories.styles";
 import Radio from "../../src/Radio";
 import types from "../../src/types";
 
-const radioProps = () => ({
+const getKnobs = () => ({
   size: select("size", [types.size.SMALL, types.size.MEDIUM, types.size.LARGE], "medium"),
   isDisabled: boolean("Is Group Disabled", false),
   canDeselect: boolean("canDeselect", false),
@@ -38,4 +38,4 @@ const ExampleStory = props => {
   );
 };
 
-export default () => <ExampleStory {...radioProps()} />;
+export default () => <ExampleStory {...getKnobs()} />;
