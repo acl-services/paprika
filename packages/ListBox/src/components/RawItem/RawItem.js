@@ -1,4 +1,5 @@
 import React from "react";
+import PropTypes from "prop-types";
 import Option from "../Option";
 /**
 
@@ -13,6 +14,10 @@ in a more semantic way:
 see: GetTypeOfChildren.js
 */
 
+const propTypes = {
+  preventDefaultOnSelect: PropTypes.bool,
+};
+
 const defaultProps = {
   preventDefaultOnSelect: true,
 };
@@ -22,4 +27,5 @@ export default function RawItem(props) {
 }
 
 RawItem.displayName = "ListBox.RawItem";
+RawItem.propTypes = propTypes;
 RawItem.defaultProps = defaultProps;

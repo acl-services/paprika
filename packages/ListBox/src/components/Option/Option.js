@@ -31,13 +31,15 @@ const propTypes = {
 
   /** Value of your option this can be any data structure  */
   value: PropTypes.any, // eslint-disable-line
+
+  /** Internal prop, which shouldn't be documented */
+  preventDefaultOnSelect: PropTypes.bool,
 };
 
 const defaultProps = {
   isDisabled: false,
   isHidden: false,
-  // internal prop, which shouldn't be documented
-  preventDefaultOnSelect: false, // eslint-disable-line
+  preventDefaultOnSelect: false,
   isSelected: null,
   defaultIsSelected: null,
   label: null,
@@ -61,7 +63,6 @@ export default function Option(props) {
     return null;
   }
 
-  /* eslint-disable react/prop-types */
   const isSelected = isOptionSelected(state, index);
   const isDisabled = isDisabledState || props.isDisabled;
   const id = state.options[index].id;
