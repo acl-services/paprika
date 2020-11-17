@@ -4,7 +4,7 @@ import { getStoryName } from "storybook/storyTree";
 import ListBoxTags, { useListBoxWithTags } from "../src";
 import animals from "./mocks";
 
-const storyName = getStoryName("ListBoxTags");
+const storyName = getStoryName("ListBoxWithTags");
 
 export default {
   title: storyName,

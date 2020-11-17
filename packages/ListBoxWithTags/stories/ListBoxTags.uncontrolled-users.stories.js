@@ -5,7 +5,7 @@ import Popover from "@paprika/popover";
 import { getAvatarColors } from "@paprika/avatar/lib/helpers";
 import ListBoxTags, { useListBoxWithTags } from "../src";
 
-const storyName = getStoryName("ListBoxTags");
+const storyName = getStoryName("ListBoxWithTags");
 
 export default {
   title: storyName,

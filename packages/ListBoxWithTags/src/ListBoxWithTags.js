@@ -1,10 +1,12 @@
 import React from "react";
 import PropTypes from "prop-types";
-import ListBox from "@paprika/listbox";
+import ListBox from "@paprika/list-box";
 import useI18n from "@paprika/l10n/lib/useI18n";
 import Pill, { Pills } from "./components/Pill";
 import { filter } from "./helpers";
-import * as sc from "./ListBoxTags.styles";
+import * as sc from "./ListBoxWithTags.styles";
+
+console.log("LISTBOX>>>>>>>>>>>>", ListBox);
 
 const propTypes = {
   children: PropTypes.node.isRequired,
@@ -71,7 +73,7 @@ const renderTrigger = ({ t, size, selectedOptions, onRemove, renderPill }) => (.
         })}
         {selectedOptions.length ? null : (
           <sc.PlaceHolder>
-            <sc.PlaceHolderText>{t("listBoxTags.placeholder")}</sc.PlaceHolderText>
+            <sc.PlaceHolderText>{t("listBoxWithTags.placeholder")}</sc.PlaceHolderText>
           </sc.PlaceHolder>
         )}
       </Pills>

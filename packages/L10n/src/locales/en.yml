@@ -109,7 +109,7 @@ en:
       explore: Explore more options
       selected: selected options
       selectOne: Select one or more items...
-    listBoxTags:
+    listBoxWithTags:
       placeholder: Select…
     actionBar:
       columns_arrangement:
