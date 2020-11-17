@@ -8,7 +8,7 @@ import uuidv4 from "uuid/v4";
 import Description from "./components/Description";
 import Instructions from "./components/Instructions";
 import Content from "./components/Content";
-import ErrorMessage from "./components/ErrorMessage";
+import ErrorMessage from "./components/Error";
 import Help from "./components/Help";
 import Label from "./components/Label";
 import * as sc from "./FormElement.styles";
