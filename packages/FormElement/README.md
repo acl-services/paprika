@@ -52,6 +52,12 @@ npm install @paprika/form-element
 | ariaDescriptionId | string | false    | null    |             |
 | children          | node   | true     | -       |             |
 
+### FormElement.Error
+
+| Prop     | Type | required | default | Description |
+| -------- | ---- | -------- | ------- | ----------- |
+| children | node | false    | null    |             |
+
 ### FormElement.Help
 
 | Prop            | Type   | required | default | Description                                               |

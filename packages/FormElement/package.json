@@ -36,6 +36,7 @@
     "subComponents": [
       "Content",
       "Description",
+      "Error",
       "Help",
       "Instructions",
       "Label"
