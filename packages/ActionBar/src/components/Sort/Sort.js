@@ -16,6 +16,7 @@ const propTypes = {
   appliedNumber: PropTypes.number,
   children: PropTypes.node,
   columns: PropTypes.arrayOf(PropTypes.shape(columnShape)).isRequired,
+  isAddSortDisabled: PropTypes.bool,
   onAddSort: PropTypes.func.isRequired,
   onApply: PropTypes.func.isRequired,
   onCancel: PropTypes.func,
@@ -26,6 +27,7 @@ const propTypes = {
 const defaultProps = {
   appliedNumber: 0,
   children: null,
+  isAddSortDisabled: false,
   onCancel: () => {},
   onClose: () => {},
   onOpen: () => {},
@@ -43,7 +45,7 @@ function getLabelText(numberOfFields, I18n) {
 }
 
 export default function Sort(props) {
-  const { appliedNumber, children, columns, onAddSort, onApply, onCancel, onClose, onOpen } = props;
+  const { appliedNumber, children, columns, isAddSortDisabled, onAddSort, onApply, onCancel, onClose, onOpen } = props;
   const I18n = useI18n();
   const fieldsRef = React.useRef(null);
   const [isOpen, setIsOpen] = React.useState(false);
@@ -72,6 +74,13 @@ export default function Sort(props) {
     onCancel();
   }
 
+  function handleAddSort() {
+    if (fieldsRef.current) {
+      fieldsRef.current.focus();
+    }
+    onAddSort();
+  }
+
   return (
     <SortContext.Provider value={{ columns, fieldsRef }}>
       <Popover align="bottom" edge="left" maxWidth={600} isOpen={isOpen} onClose={handleClose}>
@@ -95,7 +104,7 @@ export default function Sort(props) {
               )}
             </sc.FieldsPanel>
             <sc.Footer>
-              <Button onClick={onAddSort} kind="minor">
+              <Button isDisabled={isAddSortDisabled} onClick={handleAddSort} kind="minor">
                 {I18n.t(`actionBar.sort.add_field`)}
               </Button>
               <Button onClick={handleApply} kind="flat" icon={<CheckIcon />}>

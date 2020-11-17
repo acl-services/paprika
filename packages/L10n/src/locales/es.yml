@@ -80,7 +80,7 @@ es:
       arrowdown: abajo
       escape: escape
     collapsible:
-      ariaText: sección contraíble
+      ariaText: Sección contraíble
     sortable:
       aria_description: Elemento arrastrable. Presione la barra espaciadora para levantar.
       aria_lift: Ha levantado un elemento de la posición {{source}}. Utilice las teclas de flecha para moverse, el espacio para soltar y la tecla escape para cancelar.
@@ -172,4 +172,7 @@ es:
     breadcrumbs:
       aria_label: Rutas de navegación
       aria_expand: Mostrar todos los elementos de la ruta de navegación.
+    sideNavigation:
+      aria_label: Navegación lateral
+      trigger_aria_label: Abrir la navegación
           

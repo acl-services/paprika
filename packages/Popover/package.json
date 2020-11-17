@@ -1,6 +1,6 @@
 {
   "name": "@paprika/popover",
-  "version": "1.0.0",
+  "version": "1.0.2-alpha.0",
   "description": "Popover component  renders an overlay of content anchored to a trigger button (or specific positioning element). It can be triggered by click (or keypress), by hover (or keyboard focus – as a tooltip), or programatically",
   "author": "@paprika",
   "main": "lib/index.js",
@@ -11,7 +11,7 @@
     "url": "https://github.com/acl-services/paprika.git",
     "directory": "packages/Popover"
   },
-  "gitHead": "4aaee03aeeaa6af3c9b29b548e0490e1589153e8",
+  "gitHead": "8bff2e8a6f01708ba60d9178f867dba378806370",
   "publishConfig": {
     "access": "public"
   },
@@ -19,7 +19,7 @@
     "@babel/runtime-corejs2": "^7.3.1",
     "@paprika/constants": "^1.0.0",
     "@paprika/helpers": "^1.0.0",
-    "@paprika/raw-button": "^1.0.0",
+    "@paprika/raw-button": "^1.0.2-alpha.0",
     "@paprika/stylers": "^1.0.0",
     "@paprika/tokens": "^1.0.0",
     "lodash.throttle": "^4.1.1",

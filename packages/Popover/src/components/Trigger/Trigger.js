@@ -50,13 +50,10 @@ function Trigger(props) {
   const { children, a11yText, ...moreProps } = props;
 
   if (typeof children === "function") {
-    return (
-      <React.Fragment>
-        {React.cloneElement(children(handleTriggerEvent, { "aria-describedby": content.ariaId }, isOpen), {
-          ...moreProps,
-        })}
-      </React.Fragment>
-    );
+    const a11yAttributes = { "aria-describedby": content.ariaId };
+    return React.cloneElement(children(handleTriggerEvent, a11yAttributes, isOpen), {
+      ...moreProps,
+    });
   }
 
   if (isEager) {

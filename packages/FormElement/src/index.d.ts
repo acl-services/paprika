@@ -52,6 +52,14 @@ declare namespace FormElement {
   }
 }
 declare namespace FormElement {
+  function Error(props: ErrorProps): JSX.Element;
+  interface ErrorProps {
+    [x: string]: any;
+
+    children?: React.ReactNode;
+  }
+}
+declare namespace FormElement {
   function Help(props: HelpProps): JSX.Element;
   interface HelpProps {
     [x: string]: any;

@@ -3,7 +3,7 @@ import PropTypes from "prop-types";
 
 import ExclamationCircleIcon from "@paprika/icon/lib/ExclamationCircle";
 
-import errorMessageStyles, { iconStyles } from "./ErrorMessage.styles";
+import errorMessageStyles, { iconStyles } from "./Error.styles";
 
 const propTypes = {
   children: PropTypes.node,

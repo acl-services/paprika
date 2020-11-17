@@ -12,14 +12,27 @@
  * - CONTENT_CHANGES
  *
  * Running this script:
- * ~src/paprika$ node scripts/rename-package.js
+ * ~/src/paprika$ node scripts/rename-package.js
  *
- * After running it you still need to manually:
+ * After running the script you still need to manually:
  * - update version in package.json
  * - update changelog.md
  * - make sure the new package works in storybook
  * - run yarn
- * - run the npm command to deprecate the old package (once the new one is merged and deployed)
+ * - get merged and ensure it published to NPM
+ *
+ * Once the new package has been published to NPM:
+ * - in ~/src/paprika/packages/newpackage/package.json:
+ *   - change the version back to the old one
+ *   - change the path back to the old one
+ *   - prepend the description with `DEPRECATED -`
+ * - change the readme.md to be `Moved to @paprika/newpackage`
+ * - `~/src/paprika/packages/newpackage$ yarn publish` (when prompted, bump the version)
+ *
+ * Once the above has been published (two minutes):
+ * - `~/src/paprika npm deprecate @paprika/oldpackage "Moved to @paprika/newpackage"`
+ *
+ * Additional steps:
  * - update the Paprika README badges
  * - update the Paprika Airtable page
  */

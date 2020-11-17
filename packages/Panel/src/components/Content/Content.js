@@ -11,10 +11,10 @@ const defaultProps = {
   children: null,
 };
 
-const Content = React.forwardRef(props => {
+const Content = React.forwardRef((props, ref) => {
   const { children } = props;
   return (
-    <sc.Content data-pka-anchor="panel.content" {...props}>
+    <sc.Content data-pka-anchor="panel.content" ref={ref} {...props}>
       {children}
     </sc.Content>
   );

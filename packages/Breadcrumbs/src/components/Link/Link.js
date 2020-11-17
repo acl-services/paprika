@@ -1,6 +1,7 @@
 import React from "react";
 import PropTypes from "prop-types";
 import Popover from "@paprika/popover";
+import useI18n from "@paprika/l10n/lib/useI18n";
 import IsDarkContext from "../../context";
 import { MAXIMUM_NUM_OF_CHARACTER } from "../../constants";
 
@@ -14,12 +15,14 @@ function isString(item) {
 }
 
 function Link(props) {
-  const { children, href, as, ...moreProps } = props;
+  const { children, hasOnlyOneChild, href, as, ...moreProps } = props;
   const isDark = React.useContext(IsDarkContext);
+  const I18n = useI18n();
   const shouldTruncate = isString(children) && children.length > MAXIMUM_NUM_OF_CHARACTER;
 
   const link = (
     <sc.Link data-pka-anchor="breadcrumbs.link" as={as} kind="minor" href={href} isDark={isDark} {...moreProps}>
+      {hasOnlyOneChild ? <sc.ArrowIcon aria-label={I18n.t("breadcrumbs.aria_back_to")} /> : null}
       {shouldTruncate ? truncate(children) : children}
     </sc.Link>
   );
@@ -47,6 +50,8 @@ const propTypes = {
   /** Render as another component instead of Button.Link. */
   as: PropTypes.oneOfType([PropTypes.string, PropTypes.func]),
 
+  hasOnlyOneChild: PropTypes.bool,
+
   /** Url for the link. */
   href: PropTypes.string,
 };
@@ -54,6 +59,7 @@ const propTypes = {
 const defaultProps = {
   children: null,
   as: null,
+  hasOnlyOneChild: false,
   href: "",
 };
 
