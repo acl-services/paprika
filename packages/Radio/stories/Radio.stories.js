@@ -1,13 +1,24 @@
-import { storiesOf } from "@storybook/react";
+import React from "react";
 import { withKnobs } from "@storybook/addon-knobs";
 import { getStoryName } from "storybook/storyTree";
-import ShowcaseStory from "./examples/Showcase";
-import ControlledStory from "./examples/Controlled";
+import { showcaseStoryParameters } from "storybook/assets/storyParameters";
+import ExampleStory from "storybook/components/ExampleStory";
+import Showcase from "./examples/Showcase";
 
 const storyName = getStoryName("Radio");
 
-storiesOf(storyName, module)
-  .addDecorator(withKnobs)
-  .add("Showcase", ShowcaseStory);
+export default {
+  title: storyName,
+};
 
-storiesOf(`${storyName}/Examples`, module).add("Controlled", ControlledStory);
+export const showcase = () => (
+  <ExampleStory storyName="Radio" tagline={ExampleStory.defaultTaglines.showcase}>
+    <Showcase />
+  </ExampleStory>
+);
+
+showcase.story = {
+  name: "Showcase",
+  decorators: [withKnobs],
+  parameters: showcaseStoryParameters,
+};
