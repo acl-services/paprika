@@ -1,3 +1,4 @@
+import React from "react";
 import tokens from "@paprika/tokens";
 import { toInt } from "@paprika/stylers/lib/helpers";
 import Popover from "@paprika/popover";
@@ -9,7 +10,7 @@ const defaultProps = {
 
 // Shell component for enhancing DX (developer experience)
 export default function DatePickerPopoverPropsCollector() {
-  return null;
+  return <></>;
 }
 
 DatePickerPopoverPropsCollector.propTypes = Popover.propTypes;
