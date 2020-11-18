@@ -6,6 +6,16 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 
 ## [Unreleased]
 
+## [2.0.0] - 2020-11-18
+
+### Removed
+
+- Breaking change: removed `isSlideFromLeft` prop. Now you must use `slideFrom={Panel.slideFromDirections.LEFT}`.
+
+### Added
+
+- Panel can now come up from the bottom: `slideFrom={Panel.slideFromDirections.BOTTOM}`
+
 ## [1.0.0] - 2020-11-05
 
 ### Changed

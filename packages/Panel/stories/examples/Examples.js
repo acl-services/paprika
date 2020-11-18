@@ -7,7 +7,7 @@ import Panel from "../../src";
 import { Nav, TextLine } from "../helpers";
 
 export const BasicPanel = props => {
-  const { disableBodyOverflow, hasOverlay, isSlideFromLeft } = props;
+  const { disableBodyOverflow, hasOverlay, slideFrom } = props;
   const [isOpen, setIsOpen] = React.useState(true);
   const toggle = () => {
     setIsOpen(state => !state);
@@ -22,7 +22,7 @@ export const BasicPanel = props => {
         isOpen={isOpen}
         onClose={toggle}
         offsetY={40}
-        isSlideFromLeft={isSlideFromLeft}
+        slideFrom={slideFrom}
       >
         {hasOverlay ? <Panel.Overlay /> : null}
         <Panel.Trigger kind="primary" onClick={toggle}>
@@ -49,6 +49,18 @@ export const FocusLockPanel = () => {
       <Panel.Content>
         <input type="text" data-autofocus />
       </Panel.Content>
+    </Panel>
+  );
+};
+
+export const FromBottom = () => {
+  return (
+    <Panel isOpen slideFrom={Panel.slideFromDirections.BOTTOM}>
+      <Panel.Header>Bottom Header</Panel.Header>
+      <Panel.Content>
+        <TextLine repeat={100} />
+      </Panel.Content>
+      <Panel.Footer isSticky>Footer isSticky</Panel.Footer>
     </Panel>
   );
 };

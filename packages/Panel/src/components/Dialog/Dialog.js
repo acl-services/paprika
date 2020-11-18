@@ -1,6 +1,7 @@
 import React from "react";
 import PropTypes from "prop-types";
 import * as types from "../../types";
+import { slideFromDirections } from "../../slideFromDirections";
 import * as sc from "./Dialog.styles";
 
 function Dialog(props) {
@@ -24,7 +25,7 @@ function Dialog(props) {
     refPanelContent,
     width,
     isOpen,
-    isSlideFromLeft,
+    slideFrom,
     ...moreProps
   } = props;
 
@@ -97,7 +98,7 @@ function Dialog(props) {
       ref={refPanel}
       role="dialog"
       tabIndex="-1"
-      isSlideFromLeft={isSlideFromLeft}
+      slideFrom={slideFrom}
       width={width}
       {...moreProps}
     >
@@ -125,7 +126,7 @@ const propTypes = {
   onClose: PropTypes.func,
   refHeader: PropTypes.shape({ current: PropTypes.instanceOf(Element) }).isRequired,
   refPanelContent: PropTypes.shape({ current: PropTypes.instanceOf(Element) }).isRequired,
-  isSlideFromLeft: PropTypes.bool,
+  slideFrom: PropTypes.oneOf([slideFromDirections.RIGHT, slideFromDirections.LEFT, slideFromDirections.BOTTOM]),
   width: PropTypes.oneOfType([PropTypes.string, PropTypes.number]).isRequired,
   isOpen: PropTypes.bool.isRequired,
 };
@@ -141,7 +142,7 @@ const defaultProps = {
   isInline: false,
   offsetY: 0,
   onClose: () => {},
-  isSlideFromLeft: false,
+  slideFrom: slideFromDirections.RIGHT,
 };
 
 Dialog.propTypes = propTypes;

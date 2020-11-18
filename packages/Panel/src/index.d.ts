@@ -17,8 +17,6 @@ interface PanelProps {
   isInline?: boolean;
   /** Control the visibility of the side panel. This prop makes the side panel appear */
   isOpen: boolean;
-  /** Control if the side panel slides from the left */
-  isSlideFromLeft?: boolean;
   /** Modify the look of the Panel */
   kind?: Panel.types.kind.DEFAULT | Panel.types.kind.CHILD | Panel.types.kind.PRIMARY;
   /** Control y offset of the panel */
@@ -29,6 +27,8 @@ interface PanelProps {
   onAfterOpen?: (...args: any[]) => any;
   /** Callback triggered when the side panel needs to be close */
   onClose?: (...args: any[]) => any;
+  /** Control which side the panel slides in from */
+  slideFrom?: Panel.slideFromDirections.RIGHT | Panel.slideFromDirections.LEFT | Panel.slideFromDirections.BOTTOM;
   /** The width of the open panel. */
   width?: string | number;
   /** Control the z position of the panel */

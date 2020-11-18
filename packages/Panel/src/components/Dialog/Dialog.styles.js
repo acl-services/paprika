@@ -1,6 +1,7 @@
 import stylers from "@paprika/stylers";
 import tokens from "@paprika/tokens";
 import styled, { css, keyframes } from "styled-components";
+import { slideFromDirections } from "../../slideFromDirections";
 
 const childPanelCss = ({ isCompact, groupOffsetY, offsetY }) => {
   const totalOffset = isCompact ? 48 : 64;
@@ -40,9 +41,9 @@ const compactStyles = css`
 `;
 
 export const Dialog = styled.div(
-  ({ width, isAnimating, isSlideFromLeft, isOpen, hasPushedElement, kind, offsetY, zIndex, isInline }) => {
+  ({ width, isAnimating, slideFrom, isOpen, hasPushedElement, kind, offsetY, zIndex, isInline }) => {
     const widthAsPx = Number.isNaN(Number(width)) ? width : `${width}px`;
-    const slideOutTransform = isSlideFromLeft ? "translateX(-100%)" : `translateX(100%)`;
+    const slideOutTransform = slideFrom === slideFromDirections.LEFT ? "translateX(-100%)" : `translateX(100%)`;
     const slideInTransform = "translateX(0)";
 
     const animationStyle = isAnimating
@@ -68,7 +69,7 @@ export const Dialog = styled.div(
       flex-direction: column;
       height: 100%;
       ${offsetY ? `height: calc(100% - ${offsetY}px);` : ""}
-      ${isSlideFromLeft ? `left: 0;` : `right: 0;`}
+      ${slideFrom === slideFromDirections.LEFT ? `left: 0;` : `right: 0;`}
       margin: 0;
       overflow: auto;
       padding: 0;
@@ -87,7 +88,7 @@ export const Dialog = styled.div(
 );
 
 export const DialogContent = styled.div(
-  ({ hasPushedElement, isSlideFromLeft, isCompact, kind }) => css`
+  ({ hasPushedElement, slideFrom, isCompact, kind }) => css`
   flex-grow: 1;
   margin: 0;
   padding: 0;
@@ -96,8 +97,8 @@ export const DialogContent = styled.div(
     ${stylers.focusRing.subtle(true)};
   }
 
-  ${hasPushedElement && isSlideFromLeft ? `border-right: 1px solid ${tokens.border.color}` : ""}
-  ${hasPushedElement && !isSlideFromLeft ? `border-left: 1px solid ${tokens.border.color}` : ""}
+  ${hasPushedElement && slideFrom === slideFromDirections.LEFT ? `border-right: 1px solid ${tokens.border.color}` : ""}
+  ${hasPushedElement && slideFrom === slideFromDirections.RIGHT ? `border-left: 1px solid ${tokens.border.color}` : ""}
   ${isCompact || kind === "child" ? compactStyles : ""};
 `
 );

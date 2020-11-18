@@ -1,6 +1,6 @@
 {
   "name": "@paprika/panel",
-  "version": "1.0.4-alpha.1",
+  "version": "2.0.0",
   "description": "The Panel component provides a view that slides in from one side so the user can maintain context of their main task while they work on a sub task.",
   "author": "@paprika",
   "main": "lib/index.js",

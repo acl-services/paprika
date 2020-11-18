@@ -12,6 +12,7 @@ import Trigger from "./components/Trigger";
 import Group from "./components/Group";
 import FocusLock from "./components/FocusLock";
 import * as types from "./types";
+import { slideFromDirections } from "./slideFromDirections";
 
 import { extractChildren } from "./helpers";
 import { useOffsetScroll } from "./hooks";
@@ -28,12 +29,12 @@ export default function Panel(props) {
     isCompact,
     isOpen,
     isInline,
-    isSlideFromLeft,
     kind,
     offsetY,
     onAfterClose,
     onAfterOpen,
     onClose,
+    slideFrom,
     width,
     zIndex,
     ...moreProps
@@ -131,7 +132,6 @@ export default function Panel(props) {
         isCompact={isCompact}
         isInline={isInline}
         isOpen={isOpen}
-        isSlideFromLeft={isSlideFromLeft}
         kind={kind}
         offsetY={offsetScroll}
         onAnimationEnd={handleAnimationEnd}
@@ -139,6 +139,7 @@ export default function Panel(props) {
         onKeyDown={handleEscKey}
         refHeader={refHeader}
         refPanelContent={refPanelContent}
+        slideFrom={slideFrom}
         width={width}
         zIndex={zIndex}
         {...moreProps}
@@ -179,6 +180,8 @@ Panel.types = {
   kind: types.sidePanelKinds,
 };
 
+Panel.slideFromDirections = slideFromDirections;
+
 const propTypes = {
   /* Description of the Panel dialog for assistive technology */
   a11yText: PropTypes.string,
@@ -201,9 +204,6 @@ const propTypes = {
   /** Control the visibility of the side panel. This prop makes the side panel appear */
   isOpen: PropTypes.bool.isRequired,
 
-  /** Control if the side panel slides from the left */
-  isSlideFromLeft: PropTypes.bool,
-
   /** Modify the look of the Panel */
   kind: PropTypes.oneOf([Panel.types.kind.DEFAULT, Panel.types.kind.CHILD, Panel.types.kind.PRIMARY]),
 
@@ -219,6 +219,13 @@ const propTypes = {
   /** Callback triggered when the side panel needs to be close */
   onClose: PropTypes.func,
 
+  /** Control which side the panel slides in from */
+  slideFrom: PropTypes.oneOf([
+    Panel.slideFromDirections.RIGHT,
+    Panel.slideFromDirections.LEFT,
+    Panel.slideFromDirections.BOTTOM,
+  ]),
+
   /** The width of the open panel. */
   width: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
 
@@ -232,12 +239,12 @@ const defaultProps = {
   groupOffsetY: 0,
   isCompact: false,
   isInline: false,
-  isSlideFromLeft: false,
   kind: Panel.types.kind.DEFAULT,
   offsetY: 0,
   onAfterClose: () => {},
   onAfterOpen: () => {},
   onClose: null,
+  slideFrom: Panel.slideFromDirections.RIGHT,
   width: "33%",
   zIndex: zValue(7),
 };
