@@ -172,6 +172,7 @@ es:
     breadcrumbs:
       aria_label: Rutas de navegación
       aria_expand: Mostrar todos los elementos de la ruta de navegación.
+      aria_back_to: Volver a
     sideNavigation:
       aria_label: Navegación lateral
       trigger_aria_label: Abrir la navegación

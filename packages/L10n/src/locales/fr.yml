@@ -172,6 +172,7 @@ fr:
     breadcrumbs:
       aria_label: Fils d'Ariane
       aria_expand: Afficher tous les éléments du fil d'Ariane
+      aria_back_to: Retour à
     sideNavigation:
       aria_label: Navigation latérale
       trigger_aria_label: Ouvrir la navigation
