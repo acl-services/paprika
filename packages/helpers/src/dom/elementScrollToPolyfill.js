@@ -18,14 +18,14 @@
 
     return (
       (bodyComputedStyle.display == "table-column" || bodyComputedStyle.display == "table-column-group") &&
-      (parentComputedOverflowX != "visible" &&
-        parentComputedOverflowX != "clip" &&
-        parentComputedOverflowY != "visible" &&
-        parentComputedOverflowY != "clip") &&
-      (bodyComputedOverflowX != "visible" &&
-        bodyComputedOverflowX != "clip" &&
-        bodyComputedOverflowY != "visible" &&
-        bodyComputedOverflowY != "clip")
+      parentComputedOverflowX != "visible" &&
+      parentComputedOverflowX != "clip" &&
+      parentComputedOverflowY != "visible" &&
+      parentComputedOverflowY != "clip" &&
+      bodyComputedOverflowX != "visible" &&
+      bodyComputedOverflowX != "clip" &&
+      bodyComputedOverflowY != "visible" &&
+      bodyComputedOverflowY != "clip"
     );
   };
 
