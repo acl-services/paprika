@@ -6,6 +6,14 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 
 ## [Unreleased]
 
+### Fixed
+
+- Added size prop from Radio.Group to Radio children via cloneElement() [@mikrotron](https://github.com/mikrotron).
+
+### Removed
+
+- Removed unnecessary Radio.Group a11yText prop [@mikrotron](https://github.com/mikrotron).
+
 ## [0.1.6] - 2020-01-31
 
 ### Added
