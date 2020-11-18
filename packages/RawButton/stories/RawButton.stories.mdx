@@ -1,17 +1,9 @@
-import { Meta, Props, Story } from "@storybook/addon-docs/blocks";
-import { Description } from "@storybook/addon-docs/blocks";
+import { Meta, Description } from "@storybook/addon-docs/blocks";
 import { getStoryName } from "storybook/storyTree";
+import { docsStoryParameters } from "storybook/assets/storyParameters";
 import Readme from "../README.md";
-import OldRef from "./examples/OldRef";
 import RawButton from "../src/";
 
-export const params = {
-  options: {
-    isToolshown: true,
-    showPanel: false,
-  },
-};
-
-<Meta title={`${getStoryName("RawButton")}/Docs`} component={RawButton} parameters={params} />
+<Meta title={`${getStoryName("RawButton")}/Docs`} component={RawButton} parameters={{ ...docsStoryParameters }} />
 
 <Description markdown={Readme} />
