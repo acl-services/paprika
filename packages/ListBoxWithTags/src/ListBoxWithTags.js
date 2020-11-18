@@ -6,8 +6,6 @@ import Pill, { Pills } from "./components/Pill";
 import { filter } from "./helpers";
 import * as sc from "./ListBoxWithTags.styles";
 
-console.log("LISTBOX>>>>>>>>>>>>", ListBox);
-
 const propTypes = {
   children: PropTypes.node.isRequired,
   filter: PropTypes.func,
@@ -81,7 +79,7 @@ const renderTrigger = ({ t, size, selectedOptions, onRemove, renderPill }) => (.
   );
 };
 
-export default function ListBoxTags(props) {
+export default function ListBoxWithTags(props) {
   const {
     children,
     filter,
@@ -95,6 +93,8 @@ export default function ListBoxTags(props) {
     ...moreProps
   } = props;
   const { t } = useI18n();
+
+  console.log("ListBox !!!!!!!!!!!!!!!!!", ListBox);
 
   /* eslint-disable react/prop-types */
   const size =
@@ -141,7 +141,7 @@ export default function ListBoxTags(props) {
   );
 }
 
-ListBoxTags.propTypes = propTypes;
-ListBoxTags.defaultProps = defaultProps;
-ListBoxTags.Option = ListBox.Option;
-ListBoxTags.filter = filter;
+ListBoxWithTags.propTypes = propTypes;
+ListBoxWithTags.defaultProps = defaultProps;
+ListBoxWithTags.Option = ListBox.Option;
+ListBoxWithTags.filter = filter;

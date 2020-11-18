@@ -1,14 +1,14 @@
-export default ListBoxTags;
+export default ListBoxWithTags;
 
-declare function ListBoxTags(props: ListBoxTagsProps): JSX.Element;
-interface ListBoxTagsProps {
+declare function ListBoxWithTags(props: ListBoxWithTagsProps): JSX.Element;
+interface ListBoxWithTagsProps {
   [x: string]: any;
 
   children: React.ReactNode;
 
   filter?: (...args: any[]) => any;
 
-  noResultsMessage?: string;
+  noResultsMessage?: React.ReactNode;
 
   onChange?: (...args: any[]) => any;
 
@@ -17,6 +17,8 @@ interface ListBoxTagsProps {
   onRemove?: (...args: any[]) => any;
 
   regexCustomOption?: instanceOf;
+
+  renderPill?: (...args: any[]) => any;
 
   selectedOptions?: shape[];
 }

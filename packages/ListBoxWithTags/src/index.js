@@ -1,2 +1,5 @@
-export { default } from "./ListBoxWithTags";
-export { default as useListBoxWithTags } from "./useListBoxWithTags";
+import useListBoxWithTags from "./useListBoxWithTags";
+import ListBoxWithTags from "./ListBoxWithTags";
+
+export default ListBoxWithTags;
+export { useListBoxWithTags, ListBoxWithTags };

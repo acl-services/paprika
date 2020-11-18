@@ -3383,37 +3383,6 @@
     classnames "^2.2.6"
     prop-types "^15.7.2"
 
-"@paprika/l10n@^1.0.1":
-  version "1.0.1"
-  resolved "https://registry.yarnpkg.com/@paprika/l10n/-/l10n-1.0.1.tgz#307200a5e0ca8dd7bd8bd94f4bbd7706bc3c0a0d"
-  integrity sha512-mZ1mIAfsrt238v8e4UHA4EeYGsjKBwWX5vH3U2sBwGkpqbtIu7CRNUB1r4ExPLYzUB2MWATaA+zk9Uozh6J3kw==
-  dependencies:
-    "@babel/runtime-corejs2" "^7.3.1"
-    i18next "^15.0.4"
-    js-yaml "^3.13.1"
-    prop-types "^15.7.2"
-
-"@paprika/list-box@^1.0.3":
-  version "1.0.3"
-  resolved "https://registry.yarnpkg.com/@paprika/list-box/-/list-box-1.0.3.tgz#187abb2910c422c1e4e83df59d928de9bcdba5d7"
-  integrity sha512-ou25kZS7CUEPXENdul5Pl1tOVIo3bnnmJ1XzRleN6z1KmxqyFnDXEIjP8IU3CmcUCAXaUKyq0IO1lIOKs1MJ1w==
-  dependencies:
-    "@babel/runtime-corejs2" "^7.3.1"
-    "@paprika/button" "^1.0.1"
-    "@paprika/constants" "^1.0.0"
-    "@paprika/helpers" "^1.0.0"
-    "@paprika/icon" "^1.0.0"
-    "@paprika/input" "^1.0.1"
-    "@paprika/l10n" "^1.0.1"
-    "@paprika/popover" "^1.0.1"
-    "@paprika/raw-button" "^1.0.1"
-    "@paprika/stylers" "^1.0.0"
-    "@paprika/tokens" "^1.0.0"
-    lodash.isequal "^4.5.0"
-    nanoid "^2.1.8"
-    prop-types "15.7.2"
-    uuid "^3.3.2"
-
 "@paprika/pill@^1.0.1":
   version "1.0.1"
   resolved "https://registry.yarnpkg.com/@paprika/pill/-/pill-1.0.1.tgz#f740da65eef4dd203adc988a1eb881a2b28ed104"

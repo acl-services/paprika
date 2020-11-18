@@ -3,7 +3,9 @@ import { getStoryName } from "storybook/storyTree";
 import Avatar from "@paprika/avatar";
 import { getAvatarColors } from "@paprika/avatar/lib/helpers";
 
-import ListBoxTags, { useListBoxWithTags } from "../src";
+import ListBoxWithTags from "../src/ListBoxWithTags";
+import { useListBoxWithTags } from "../src";
+
 import animals from "./mocks";
 
 const storyName = getStoryName("ListBoxWithTags");
@@ -16,6 +18,9 @@ const defaultFilteredData = animals.slice(0, 20);
 const defaultData = animals;
 
 function App() {
+  console.log(useListBoxWithTags);
+  console.log("ListBoxWithTags>>>>>>>>>>>>>", ListBoxWithTags);
+
   const {
     handleChange,
     isSelected,
@@ -58,7 +63,7 @@ function App() {
 
   return (
     <div style={{ padding: "32px" }}>
-      <ListBoxTags
+      <ListBoxWithTags
         filter={handleFilter}
         noResultsMessage="No results found, but you can add an email and then press enter..."
         onChange={handleChange}
@@ -74,15 +79,15 @@ function App() {
 
           const color = getAvatarColors(option.label);
           return !isSelected(option.label) ? (
-            <ListBoxTags.Option value={option.label} key={option.label} label={option.label}>
+            <ListBoxWithTags.Option value={option.label} key={option.label} label={option.label}>
               <Avatar size={Avatar.types.size.SMALL} backgroundColor={color.backgroundColor} color={color.fontColor}>
                 {option.label}
               </Avatar>
               <span style={{ fontSize: "1.3rem", paddingLeft: "8px" }}>{option.label}</span>
-            </ListBoxTags.Option>
+            </ListBoxWithTags.Option>
           ) : null;
         })}
-      </ListBoxTags>
+      </ListBoxWithTags>
     </div>
   );
 }

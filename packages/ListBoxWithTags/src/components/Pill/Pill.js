@@ -10,12 +10,21 @@ const propTypes = {
 
 export default function Pill(props) {
   const { children, onRemove } = props;
+  const refPill = React.useRef(null);
+  const [sizePill, setSizePill] = React.useState(null);
+  React.useEffect(() => {
+    const rect = refPill.current.getBoundingClientRect();
+    setSizePill(rect.height);
+  }, []);
+
   return (
-    <sc.Pill>
+    <sc.Pill ref={refPill}>
       <sc.Content>{children}</sc.Content>
-      <sc.Delete data-pka-anchor="listbox-tags-pill-delete" onClick={onRemove}>
-        <Close />
-      </sc.Delete>
+      {sizePill ? (
+        <sc.Delete size={sizePill} data-pka-anchor="listbox-tags-pill-delete" onClick={onRemove}>
+          <Close />
+        </sc.Delete>
+      ) : null}
     </sc.Pill>
   );
 }
