@@ -33,9 +33,7 @@ shell.ls("packages").forEach(folder => {
 
     newChangelog = originalChangelog.replace(tester, "");
 
-    newChangelog = `${newChangelog}## [${version}] - ${dateString[3]}-${dateString[1]}-${dateString[2]}\n${
-      newContent[0]
-    }`;
+    newChangelog = `${newChangelog}## [${version}] - ${dateString[3]}-${dateString[1]}-${dateString[2]}\n${newContent[0]}`;
 
     fs.writeFileSync(`${path}/${FILE_NAME}`, newChangelog, { encoding: "utf8", flag: "w" });
   } catch (e) {

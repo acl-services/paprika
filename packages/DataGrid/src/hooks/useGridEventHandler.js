@@ -460,7 +460,7 @@ export default function useGridEventHandler({
   }, [$getGrid, refScroll]);
 
   const restoreHighlightFocus = React.useCallback(() => {
-    if (cell.current && (cell.current.columnIndex !== null && cell.current.rowIndex !== null)) {
+    if (cell.current && cell.current.columnIndex !== null && cell.current.rowIndex !== null) {
       window.requestAnimationFrame(() => {
         const $cell = $getCell();
 
