@@ -1,0 +1,33 @@
+{
+  "name": "@paprika/copy-input",
+  "version": "1.0.0",
+  "description": "The CopyInput component is an input with a button that copies the input's contents to user's clipboard.",
+  "author": "@paprika",
+  "license": "MIT",
+  "main": "lib/index.js",
+  "types": "lib/index.d.ts",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/acl-services/paprika.git",
+    "directory": "packages/CopyInput"
+  },
+  "publishConfig": {
+    "access": "public"
+  },
+  "dependencies": {
+    "@acl-services/wasabicons": "^1.0.2",
+    "@babel/runtime-corejs2": "^7.3.1",
+    "@paprika/button": "^1.0.1",
+    "@paprika/helpers": "^1.0.0",
+    "@paprika/input": "^1.0.1",
+    "@paprika/popover": "^1.0.1",
+    "@paprika/tokens": "^1.0.0",
+    "prop-types": "^15.7.2"
+  },
+  "peerDependencies": {
+    "@paprika/l10n": "^1.0.1",
+    "react": "^16.8.0",
+    "react-dom": "^16.8.0",
+    "styled-components": "^4.3.1"
+  }
+}
