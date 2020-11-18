@@ -1,0 +1,9 @@
+import { Meta, Description } from "@storybook/addon-docs/blocks";
+import { getStoryName } from "storybook/storyTree";
+import { docsStoryParameters } from "storybook/assets/storyParameters";
+import Readme from "../README.md";
+import Radio from "../src";
+
+<Meta title={`${getStoryName("Radio")}/Docs`} component={Radio} parameters={{ ...docsStoryParameters }} />
+
+<Description markdown={Readme} />
