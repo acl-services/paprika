@@ -172,6 +172,7 @@ de:
     breadcrumbs:
       aria_label: Breadcrumbs
       aria_expand: Sie können alle Breadcrumb-Elemente anzeigen.
+      aria_back_to: Zurück zu
     sideNavigation:
       aria_label: Seiten-Navigation
       trigger_aria_label: Navigation öffnen
