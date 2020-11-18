@@ -15,10 +15,10 @@
     "access": "public"
   },
   "dependencies": {
-    "@acl-services/wasabicons": "^1.0.2",
     "@babel/runtime-corejs2": "^7.3.1",
     "@paprika/button": "^1.0.1",
     "@paprika/helpers": "^1.0.0",
+    "@paprika/icon": "^1.0.0",
     "@paprika/input": "^1.0.1",
     "@paprika/popover": "^1.0.1",
     "@paprika/tokens": "^1.0.0",

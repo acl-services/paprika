@@ -1,11 +1,11 @@
 import React from "react";
 import PropTypes from "prop-types";
-import CopyIcon from "@acl-services/wasabicons/lib/Clipboard";
 import Input from "@paprika/input";
 import Popover from "@paprika/popover";
 import Button from "@paprika/button";
 import useI18n from "@paprika/l10n/lib/useI18n";
 import extractChildrenProps from "@paprika/helpers/lib/extractChildrenProps";
+import CopyIcon from "@paprika/icon/lib/ArrowDown"; // TODO: Replace with actual icon when ready
 import CopyInputInputPropsCollector from "./CopyInputInputPropsCollector";
 import * as sc from "./CopyInput.styles";
 

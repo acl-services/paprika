@@ -2,13 +2,6 @@
 # yarn lockfile v1
 
 
-"@acl-services/wasabicons@^1.0.2":
-  version "1.0.2"
-  resolved "https://npm.pkg.github.com/download/@acl-services/wasabicons/1.0.2/f22299108dab75459e4c6d7aa5f57e01e0d1807f3ae2bd596372883d979664fb#4c78e145b63ee649f98e826e86fb1cc4e15c4ecd"
-  integrity sha512-liuE8R4bt6t2Qd7CtG4QbXqpONjm2UOlRNGlzaO/qba+uXGiD/3Zkn4nP/sjpLcplsMBt+i1RjCsEg057VhYLg==
-  dependencies:
-    "@babel/runtime-corejs2" "^7.3.1"
-
 "@babel/cli@^7.4.3":
   version "7.10.1"
   resolved "https://registry.yarnpkg.com/@babel/cli/-/cli-7.10.1.tgz#b6e5cd43a17b8f639442ab027976408ebe6d79a0"
