@@ -1,8 +1,7 @@
 import React from "react";
 import { getStoryName } from "storybook/storyTree";
 
-import ListBoxWithTags from "../src/ListBoxWithTags";
-import { useListBoxWithTags } from "../src";
+import ListBoxWithTags, { useListBoxWithTags } from "../src";
 
 import animals from "./mocks";
 
@@ -15,10 +14,10 @@ export default {
 const defaultFilteredData = animals.slice(0, 20);
 const defaultData = animals;
 
-function App({ size = "medium" }) {
+function App({ size = "medium", isOpen = false }) {
   const { handleChange, isSelected, handleRemove, filteredData, handleFilter, getSelectedOptions } = useListBoxWithTags(
     "label",
-    { defaultData, defaultFilteredData }
+    { defaultData, defaultFilteredData, defaultSelectedKeys: ["Aardvark", "Alpaca", "Anteater"] }
   );
 
   return (
@@ -31,6 +30,7 @@ function App({ size = "medium" }) {
         onRemove={handleRemove}
         selectedOptions={getSelectedOptions()}
         size={size}
+        isOpen={isOpen}
       >
         {filteredData.map(option => {
           return !isSelected(option.label) ? (
@@ -47,7 +47,16 @@ function App({ size = "medium" }) {
 export const Sizes = () => (
   <>
     <App size="small" />
-    <App size="medium" />
+    <App size="medium" isOpen />
+    <br />
+    <br />
+    <br />
+    <br />
+    <br />
+    <br />
+    <br />
+    <br />
+    <br />
     <App size="large" />
   </>
 );

@@ -2,9 +2,7 @@ import React from "react";
 import { getStoryName } from "storybook/storyTree";
 import Avatar from "@paprika/avatar";
 import { getAvatarColors } from "@paprika/avatar/lib/helpers";
-
-import ListBoxWithTags from "../src/ListBoxWithTags";
-import { useListBoxWithTags } from "../src";
+import ListBoxWithTags, { useListBoxWithTags } from "../src";
 
 import animals from "./mocks";
 

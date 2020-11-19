@@ -3,7 +3,7 @@ import { getStoryName } from "storybook/storyTree";
 import Avatar from "@paprika/avatar";
 import Popover from "@paprika/popover";
 import { getAvatarColors } from "@paprika/avatar/lib/helpers";
-import ListBoxTags, { useListBoxWithTags } from "../src";
+import ListBoxWithTags, { useListBoxWithTags } from "../src";
 
 const storyName = getStoryName("ListBoxWithTags");
 
@@ -97,7 +97,7 @@ function App() {
             ))}
           </ul>
         ) : null}
-        <ListBoxTags
+        <ListBoxWithTags
           filter={handleFilter}
           noResultsMessage="No results found, but you can add an email and then press enter..."
           onChange={handleChange}
@@ -123,7 +123,7 @@ function App() {
 
             const color = getAvatarColors(option.name);
             return !isSelected(option.id) ? (
-              <ListBoxTags.Option id={option.id} key={option.id} label={option.name}>
+              <ListBoxWithTags.Option id={option.id} key={option.id} label={option.name}>
                 <div>
                   <div style={{ display: "flex", alignItems: "center" }}>
                     <Avatar
@@ -158,10 +158,10 @@ function App() {
                     winner: {option.year} for {option.movie}
                   </div>
                 </div>
-              </ListBoxTags.Option>
+              </ListBoxWithTags.Option>
             ) : null;
           })}
-        </ListBoxTags>
+        </ListBoxWithTags>
         <button type="submit" onClick={handleSubmit}>
           Submit
         </button>

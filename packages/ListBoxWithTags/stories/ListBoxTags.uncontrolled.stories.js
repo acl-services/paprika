@@ -1,7 +1,7 @@
 import React from "react";
 import { getStoryName } from "storybook/storyTree";
 
-import ListBoxTags, { useListBoxWithTags } from "../src";
+import ListBoxWithTags, { useListBoxWithTags } from "../src";
 import animals from "./mocks";
 
 const storyName = getStoryName("ListBoxWithTags");
@@ -34,7 +34,7 @@ function App() {
 
   return (
     <div style={{ padding: "32px" }}>
-      <ListBoxTags
+      <ListBoxWithTags
         filter={handleFilter}
         noResultsMessage="No results found, but you can add an email and then press enter..."
         onChange={handleChange}
@@ -49,12 +49,12 @@ function App() {
           }
 
           return !isSelected(option.label) ? (
-            <ListBoxTags.Option value={option.label} key={option.label} label={option.label}>
+            <ListBoxWithTags.Option value={option.label} key={option.label} label={option.label}>
               {option.label}
-            </ListBoxTags.Option>
+            </ListBoxWithTags.Option>
           ) : null;
         })}
-      </ListBoxTags>
+      </ListBoxWithTags>
     </div>
   );
 }
