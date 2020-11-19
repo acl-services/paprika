@@ -16,10 +16,11 @@ function Dialog(props) {
     groupOffsetY,
     onAnimationEnd,
     header,
+    height,
     kind,
     isCompact,
     isInline,
-    offsetY,
+    offset,
     onClose,
     refHeader,
     refPanelContent,
@@ -86,19 +87,20 @@ function Dialog(props) {
     <sc.Dialog
       aria-modal={isInline ? null : "true"}
       aria-label={a11yText}
-      hasPushedElement={!!getPushContentElement}
       groupOffsetY={groupOffsetY}
-      kind={kind}
+      hasPushedElement={!!getPushContentElement}
+      height={height}
+      isAnimating={isAnimating}
       isCompact={isCompact}
       isInline={isInline}
       isOpen={isOpen}
-      offsetY={offsetY}
-      isAnimating={isAnimating}
+      kind={kind}
+      offset={offset}
       onAnimationEnd={handleAnimationEnd}
       ref={refPanel}
       role="dialog"
-      tabIndex="-1"
       slideFrom={slideFrom}
+      tabIndex="-1"
       width={width}
       {...moreProps}
     >
@@ -118,10 +120,15 @@ const propTypes = {
   getPushContentElement: PropTypes.func,
   groupOffsetY: PropTypes.number,
   header: PropTypes.node,
+  height: PropTypes.oneOfType([PropTypes.string, PropTypes.number]).isRequired,
   kind: PropTypes.oneOf([Dialog.types.kind.DEFAULT, Dialog.types.kind.CHILD]),
   isCompact: PropTypes.bool,
   isInline: PropTypes.bool,
-  offsetY: PropTypes.number,
+  offset: PropTypes.shape({
+    top: PropTypes.number.isRequired,
+    left: PropTypes.number.isRequired,
+    right: PropTypes.number.isRequired,
+  }).isRequired,
   onAnimationEnd: PropTypes.func.isRequired,
   onClose: PropTypes.func,
   refHeader: PropTypes.shape({ current: PropTypes.instanceOf(Element) }).isRequired,
@@ -140,7 +147,6 @@ const defaultProps = {
   kind: Dialog.types.kind.DEFAULT,
   isCompact: false,
   isInline: false,
-  offsetY: 0,
   onClose: () => {},
   slideFrom: slideFromDirections.RIGHT,
 };

@@ -17,7 +17,7 @@ const sidePanelProps = () => ({
   isOpen: boolean("isOpen", true, sidePanelGroup),
   slideFrom: select(
     "slideFrom",
-    [Panel.slideFromDirections.RIGHT, Panel.slideFromDirections.LEFT],
+    [Panel.slideFromDirections.RIGHT, Panel.slideFromDirections.LEFT, Panel.slideFromDirections.BOTTOM],
     Panel.slideFromDirections.RIGHT,
     sidePanelGroup
   ),
@@ -43,7 +43,7 @@ const overlayProps = () => ({
   toggleOverlay: boolean("Include <Panel.Overlay>", true, overlayGroup),
 });
 
-const Showcase = (props) => {
+const Showcase = props => {
   return (
     <ExampleStory storyName="Panel" tagline={ExampleStory.defaultTaglines.showcase}>
       <Panel {...props}>

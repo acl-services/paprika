@@ -21,7 +21,7 @@ export const BasicPanel = props => {
         disableBodyOverflow={disableBodyOverflow}
         isOpen={isOpen}
         onClose={toggle}
-        offsetY={40}
+        offset={{ top: 40 }}
         slideFrom={slideFrom}
       >
         {hasOverlay ? <Panel.Overlay /> : null}
@@ -54,14 +54,40 @@ export const FocusLockPanel = () => {
 };
 
 export const FromBottom = () => {
+  const [isOpen, setIsOpen] = React.useState(true);
+  const toggle = () => {
+    setIsOpen(state => !state);
+  };
+
   return (
-    <Panel isOpen slideFrom={Panel.slideFromDirections.BOTTOM}>
-      <Panel.Header>Bottom Header</Panel.Header>
-      <Panel.Content>
-        <TextLine repeat={100} />
-      </Panel.Content>
-      <Panel.Footer isSticky>Footer isSticky</Panel.Footer>
-    </Panel>
+    <React.Fragment>
+      <div style={{ display: "flex", height: "100vh" }}>
+        <nav style={{ flex: "0 0 300px", background: "red" }}>Sample Navigation</nav>
+        <div style={{ flex: 1 }}>
+          Body goes here
+          <br />
+          Change this example so the side nav is collapsible - and as its width changes, the width of the panel adjusts
+          <br />
+          <button type="button" onClick={toggle}>
+            {isOpen ? "close" : "open"} the panel
+          </button>
+        </div>
+      </div>
+
+      <Panel
+        height={150}
+        isOpen={isOpen}
+        offset={{ left: 300 }}
+        onClose={toggle}
+        slideFrom={Panel.slideFromDirections.BOTTOM}
+      >
+        <Panel.Content>
+          This Panel comes up from the bottom.
+          <TextLine repeat={10} />
+          Pretty neat, eh?
+        </Panel.Content>
+      </Panel>
+    </React.Fragment>
   );
 };
 
@@ -115,7 +141,7 @@ export const GroupPanel = () => {
           <TextLine repeat={100} />
         </div>
       </div>
-      <Panel.Group offsetY={40}>
+      <Panel.Group offset={{ top: 40 }}>
         <Panel data-pka-anchor="panel1" width={400} onClose={handleParent1} isOpen={spParent1}>
           <Panel.Header kind="primary">Parent 1</Panel.Header>
           <Panel.Content>
