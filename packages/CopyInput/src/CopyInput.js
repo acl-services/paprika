@@ -6,41 +6,71 @@ import Button from "@paprika/button";
 import useI18n from "@paprika/l10n/lib/useI18n";
 import extractChildrenProps from "@paprika/helpers/lib/extractChildrenProps";
 import CopyIcon from "@paprika/icon/lib/ArrowDown"; // TODO: Replace with actual icon when ready
-import CopyInputInputPropsCollector from "./CopyInputInputPropsCollector";
+import CopyInputInputPropsCollector from "./Input";
 import * as sc from "./CopyInput.styles";
 
 function CopyInput(props) {
   const { defaultValue, children, ...moreProps } = props;
-  const I18n = useI18n();
   const extendedInputProps = extractChildrenProps(children, CopyInputInputPropsCollector);
-
-  const [value, setValue] = React.useState(defaultValue);
+  const I18n = useI18n();
+  const inputRef = React.createRef();
+  const buttonRef = React.createRef();
   const [isClickedTooltipOpen, setIsClickedTooltipOpen] = React.useState(false);
+  const [isHoverTooltipOpen, setIsHoverTooltipOpen] = React.useState(false);
+  const prevIsClickedTooltipOpen = React.useRef(isClickedTooltipOpen);
+
+  React.useEffect(() => {
+    let timeout;
+    if (!prevIsClickedTooltipOpen.current && isClickedTooltipOpen) {
+      timeout = setTimeout(() => setIsClickedTooltipOpen(false), 5000);
+    }
+    prevIsClickedTooltipOpen.current = isClickedTooltipOpen;
+
+    return () => clearTimeout(timeout);
+  }, [isClickedTooltipOpen]);
 
   function handleButtonClick() {
-    navigator.clipboard.writeText(value);
+    const textToCopy = inputRef.current.value;
+    const textbox = document.createElement("textarea");
+    const activator = document.activeElement;
+    document.body.appendChild(textbox);
+    textbox.value = textToCopy;
+    textbox.select();
+    activator.focus();
+    document.execCommand("copy");
+    document.body.removeChild(textbox);
+
     setIsClickedTooltipOpen(true);
-    setTimeout(() => setIsClickedTooltipOpen(false), 5000);
+    setIsHoverTooltipOpen(false);
   }
 
   return (
     <sc.CopyInput data-pka-anchor="copy-input" {...moreProps}>
-      <Input defaultValue={defaultValue} onChange={e => setValue(e.target.value)} {...extendedInputProps} />
+      <Input ref={inputRef} defaultValue={defaultValue} {...extendedInputProps} />
+      <div ref={buttonRef}>
+        <Button.Icon
+          kind="primary"
+          onClick={handleButtonClick}
+          onMouseEnter={() => setIsHoverTooltipOpen(true)}
+          onMouseLeave={() => setIsHoverTooltipOpen(false)}
+        >
+          <CopyIcon />
+        </Button.Icon>
+      </div>
       <Popover
         align="bottom"
-        isDark={!isClickedTooltipOpen}
-        isEager={!isClickedTooltipOpen}
-        isOpen={isClickedTooltipOpen || null}
+        isDark
+        isOpen={isHoverTooltipOpen && !isClickedTooltipOpen}
+        getPositioningElement={() => buttonRef.current}
       >
-        <Popover.Trigger>
-          <Button.Icon kind="primary" onClick={handleButtonClick}>
-            <CopyIcon />
-          </Button.Icon>
-        </Popover.Trigger>
         <Popover.Content>
-          <Popover.Card>
-            {isClickedTooltipOpen ? I18n.t("copyInput.clicked_tooltip") : I18n.t("copyInput.hover_tooltip")}
-          </Popover.Card>
+          <Popover.Card>{I18n.t("copyInput.hover_tooltip")}</Popover.Card>
+        </Popover.Content>
+        <Popover.Tip />
+      </Popover>
+      <Popover align="bottom" isOpen={isClickedTooltipOpen} getPositioningElement={() => buttonRef.current}>
+        <Popover.Content>
+          <Popover.Card>{I18n.t("copyInput.clicked_tooltip")}</Popover.Card>
         </Popover.Content>
         <Popover.Tip />
       </Popover>

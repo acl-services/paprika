@@ -29,5 +29,10 @@
     "react": "^16.8.0",
     "react-dom": "^16.8.0",
     "styled-components": "^4.3.1"
+  },
+  "paprikaDocs": {
+    "subComponents": [
+      "Input"
+    ]
   }
 }
