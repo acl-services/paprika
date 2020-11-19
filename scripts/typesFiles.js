@@ -190,10 +190,7 @@ declare namespace ${e[0]}{
     namespace ${e[2]}{
       ${e
         .splice(3)
-        .map(i => {
-          return `
-      const ${i}: any;`;
-        })
+        .map(i => (/null/.test(i) ? "" : `const ${i}: any;`))
         .join("")}
     }
   }
