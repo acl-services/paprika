@@ -105,6 +105,7 @@ export const Radio = styled.div(
   ({ size, hasLabel }) => css`
     ${boxSizingStyles};
     ${styles[size].baseFontSize};
+    ${z(0)};
     line-height: ${hasLabel ? lineHeightValue(-1) : "0"};
     position: relative;
 
@@ -130,12 +131,12 @@ export const Radio = styled.div(
       }
 
       & + label::before {
+        ${styles[size].radioStyles};
+        ${z(1)};
         background: ${tokens.color.white};
         border: 2px solid ${tokens.border.color};
         content: "";
         left: 0;
-        ${z(1)};
-        ${styles[size].radioStyles};
       }
 
       & + label:hover::before {
@@ -143,18 +144,18 @@ export const Radio = styled.div(
       }
 
       & + label > .radio-icon {
-        color: ${tokens.color.black};
         ${styles[size].radioIconStyles};
+        ${z(2)};
+        color: ${tokens.color.black};
         opacity: 0;
         pointer-events: none;
         transform: translateX(-50%);
         transition: opacity 0.15s ease-out;
-        ${z(2)};
       }
 
       & + label > .radio-solid-background {
-        background-color: ${tokens.color.black};
         ${styles[size].radioIconBackgroundStyles};
+        background-color: ${tokens.color.black};
       }
 
       &:checked {

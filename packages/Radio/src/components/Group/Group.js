@@ -4,9 +4,6 @@ import nanoid from "nanoid";
 import types from "../../types";
 
 const propTypes = {
-  /** aria-labelledby prop on the containing group element */
-  a11yText: PropTypes.string,
-
   /** Can deselect any radio */
   canDeselect: PropTypes.bool,
 
@@ -24,7 +21,6 @@ const propTypes = {
 };
 
 const defaultProps = {
-  a11yText: "",
   canDeselect: false,
   children: null,
   isDisabled: false,
@@ -32,16 +28,16 @@ const defaultProps = {
 };
 
 function Group(props) {
-  const { a11yText, canDeselect, children, isDisabled, onChange, ...moreGroupProps } = props;
+  const { canDeselect, children, isDisabled, onChange, size, ...moreGroupProps } = props;
   const defaultCheckedIndex = React.Children.toArray(children).findIndex(child => child.props.defaultIsChecked);
   const selectedIndex = React.Children.toArray(children).findIndex(child => child.props.isChecked);
+  const generatedName = React.useRef(nanoid()).current;
 
   const [checkedIndex, setCheckedIndex] = React.useState(defaultCheckedIndex);
   if (selectedIndex !== -1 && selectedIndex !== checkedIndex) {
     setCheckedIndex(selectedIndex);
   }
 
-  const name = nanoid();
   const getDeselectableIndex = index => (checkedIndex === index ? null : index);
   const handleRadioClick = index => {
     onChange(index);
@@ -49,17 +45,17 @@ function Group(props) {
   };
 
   return (
-    <div role="radiogroup" aria-labelledby={a11yText} data-pka-anchor="radio.group" {...moreGroupProps}>
+    <div data-pka-anchor="radio.group" {...moreGroupProps}>
       {React.Children.map(children, (child, index) => {
         if (child && child.type && child.type.displayName === "Radio") {
-          const childKey = { key: `Radio${index}` };
           return React.cloneElement(child, {
             onClick: () => handleRadioClick(index),
             isChecked: checkedIndex === index,
             isDisabled: isDisabled || child.props.isDisabled,
             canDeselect,
-            name: child.props.name || name,
-            ...childKey,
+            size,
+            name: child.props.name || generatedName,
+            key: child.props.name || generatedName,
           });
         }
         return child;

@@ -172,6 +172,7 @@ ja:
     breadcrumbs:
       aria_label: 階層リンク
       aria_expand: すべての階層リンク項目を表示します。
+      aria_back_to: '戻る:'
     sideNavigation:
       aria_label: スライドのナビゲーション
       trigger_aria_label: ナビゲーションを開く

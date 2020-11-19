@@ -172,6 +172,7 @@ pt:
     breadcrumbs:
       aria_label: Navegação estrutural
       aria_expand: Mostrar todos os itens de navegação estrutural.
+      aria_back_to: Voltar para
     sideNavigation:
       aria_label: Navegação lateral
       trigger_aria_label: Abrir navegação
