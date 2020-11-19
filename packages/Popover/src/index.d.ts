@@ -44,7 +44,6 @@ declare function Popover(props:PopoverProps): JSX.Element;
     [x:string]: any;
      /** Descriptive a11y text for assistive technologies for the trigger. */
     a11yText?: string;
- 
     children: func|node;
 
  }
@@ -53,7 +52,6 @@ declare function Popover(props:PopoverProps): JSX.Element;
       function Content(props:ContentProps): JSX.Element;
   interface ContentProps{
     [x:string]: any;
-     
     children?: React.ReactNode;
  /** Callback to indicate the element loses focus */
     onBlur?: (...args: any[])=> any;
@@ -64,7 +62,6 @@ declare function Popover(props:PopoverProps): JSX.Element;
       function Card(props:CardProps): JSX.Element;
   interface CardProps{
     [x:string]: any;
-     
     children: React.ReactNode;
 
  }
@@ -83,23 +80,19 @@ declare function Popover(props:PopoverProps): JSX.Element;
 declare namespace Popover{
   namespace types{
     namespace align{
-      
       const TOP: any;
       const RIGHT: any;
       const BOTTOM: any;
-      const LEFT
-: any;
+      const LEFT: any;
     }
   }
 }
 declare namespace Popover{
   namespace types{
     namespace align{
-      
       const LEFT: any;
       const RIGHT: any;
-      const null
-: any;
+      const null: any;
     }
   }
 }
