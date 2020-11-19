@@ -33,8 +33,6 @@ declare namespace Radio {
   function Group(props: GroupProps): JSX.Element;
   interface GroupProps {
     [x: string]: any;
-    /** aria-labelledby prop on the containing group element */
-    a11yText?: string;
     /** Can deselect any radio */
     canDeselect?: boolean;
     /** The individual radio items. */
