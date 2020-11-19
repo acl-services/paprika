@@ -152,7 +152,7 @@ export const GroupPanel = () => {
           <TextLine repeat={100} />
         </div>
       </div>
-      <Panel.Group offset={{ top: 40 }}>
+      <Panel.Group offsetY={40}>
         <Panel data-pka-anchor="panel1" width={400} onClose={handleParent1} isOpen={spParent1}>
           <Panel.Header kind="primary">Parent 1</Panel.Header>
           <Panel.Content>
