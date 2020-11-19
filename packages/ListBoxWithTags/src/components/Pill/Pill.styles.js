@@ -1,10 +1,10 @@
 import styled, { css } from "styled-components";
 import tokens from "@paprika/tokens";
 import RawButton from "@paprika/raw-button";
+import stylers from "@paprika/stylers";
 
 export const Pills = styled.div(() => {
   return css`
-    align-items: center;
     display: flex;
     flex-wrap: wrap;
   `;
@@ -20,14 +20,35 @@ export const Pill = styled.div(() => {
     line-height: 1;
     margin-bottom: ${tokens.spaceSm};
     margin-right: ${tokens.spaceSm};
+    max-width: 100%;
     padding: ${tokens.spaceSm[0] / 2}px ${tokens.spaceSm};
     text-indent: ${tokens.spaceSm};
   `;
 });
 
-export const Content = styled.div(() => {
-  return css``;
-});
+export const Ellipsis = styled.div`
+  display: inline-block;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  width: calc(99%);
+`;
+
+function fontStylersToNumber(value) {
+  return value.replace(/[^0-9.]/g, "") * 1;
+}
+
+const fontSize = {
+  small: () => {
+    return fontStylersToNumber(stylers.fontSize(-2));
+  },
+  medium: () => {
+    return fontStylersToNumber(stylers.fontSize(-1));
+  },
+  large: () => {
+    return fontStylersToNumber(stylers.fontSize());
+  },
+};
 
 export const Delete = styled(RawButton)(({ size }) => {
   return css`
@@ -35,13 +56,11 @@ export const Delete = styled(RawButton)(({ size }) => {
     border-radius: 50%;
     box-sizing: border-box;
     display: flex;
-    font-size: 0.7rem;
-    height: ${size}px;
+    flex-shrink: 0;
     justify-content: center;
     margin-left: ${tokens.spaceSm};
     padding: 2px;
     position: relative;
-    width: ${size}px;
 
     &:hover {
       background: ${tokens.border.color};
@@ -52,6 +71,7 @@ export const Delete = styled(RawButton)(({ size }) => {
     }
 
     & svg {
+      font-size: ${fontSize[size]() * 0.8}px;
       pointer-events: none;
     }
   `;

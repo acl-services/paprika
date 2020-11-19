@@ -19,7 +19,6 @@ const defaultData = animals;
 
 function App() {
   console.log(useListBoxWithTags);
-  console.log("ListBoxWithTags>>>>>>>>>>>>>", ListBoxWithTags);
 
   const {
     handleChange,

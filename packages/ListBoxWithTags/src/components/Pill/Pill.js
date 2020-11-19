@@ -6,27 +6,35 @@ import * as sc from "./Pill.styles";
 const propTypes = {
   onRemove: PropTypes.func.isRequired,
   children: PropTypes.node.isRequired,
+  size: PropTypes.oneOf(["small", "medium", "large"]),
 };
 
+const defaultProps = {
+  size: "medium",
+};
+
+export function Delete({ size, onRemove = () => {} }) {
+  return (
+    <sc.Delete size={size} data-pka-anchor="listbox-tags-pill-delete" onClick={onRemove}>
+      <Close />
+    </sc.Delete>
+  );
+}
 export default function Pill(props) {
-  const { children, onRemove } = props;
-  const refPill = React.useRef(null);
-  const [sizePill, setSizePill] = React.useState(null);
-  React.useEffect(() => {
-    const rect = refPill.current.getBoundingClientRect();
-    setSizePill(rect.height);
-  }, []);
+  const { children, onRemove, size } = props;
 
   return (
-    <sc.Pill ref={refPill}>
-      <sc.Content>{children}</sc.Content>
-      {sizePill ? (
-        <sc.Delete size={sizePill} data-pka-anchor="listbox-tags-pill-delete" onClick={onRemove}>
-          <Close />
-        </sc.Delete>
-      ) : null}
+    <sc.Pill>
+      <sc.Ellipsis>{children}</sc.Ellipsis>
+      {size ? <Delete onRemove={onRemove} size={size} /> : null}
     </sc.Pill>
   );
 }
 
 Pill.propTypes = propTypes;
+Pill.defaultProps = defaultProps;
+
+Delete.propTypes = {
+  onRemove: propTypes.onRemove.isRequired,
+  size: propTypes.size.isRequired,
+};

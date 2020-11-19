@@ -23,7 +23,7 @@ const debounce = (func, wait) => {
 function App() {
   const [data, setData] = React.useState(animals.slice(0, 10));
 
-  const [selectedKeys, setSelectedKeys] = React.useState(["Alpaca", "Elk", "Elephant"]);
+  const [selectedKeys, setSelectedKeys] = React.useState(["Alpaca", "Yak", "Zebra"]);
   const [dataFiltered, setDataFiltered] = React.useState(data);
 
   function checkIfIsSelected(id) {

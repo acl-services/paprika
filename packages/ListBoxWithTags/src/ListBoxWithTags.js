@@ -64,7 +64,7 @@ const renderTrigger = ({ t, size, selectedOptions, onRemove, renderPill }) => (.
           }
 
           return (
-            <Pill key={item.label} onRemove={handleRemove(item)}>
+            <Pill key={item.label} onRemove={handleRemove(item)} size={size}>
               {item.label}
             </Pill>
           );
@@ -94,8 +94,7 @@ export default function ListBoxWithTags(props) {
   } = props;
   const { t } = useI18n();
 
-  console.log("ListBox !!!!!!!!!!!!!!!!!", ListBox);
-
+  const refDivRoot = React.useRef(null);
   /* eslint-disable react/prop-types */
   const size =
     typeof props.size !== "undefined" &&
@@ -104,7 +103,6 @@ export default function ListBoxWithTags(props) {
       : ListBox.types.size.MEDIUM;
   /* eslint-enable react/prop-types */
 
-  const refListBox = React.useRef(null);
   const refFilter = React.useRef(null);
 
   function handleKeyDown(event) {
@@ -133,11 +131,13 @@ export default function ListBoxWithTags(props) {
   const noResultMessageProp = noResultsMessage === null ? {} : { noResultsMessage };
 
   return (
-    <ListBox ref={refListBox} isMulti size={size} onChange={handleChange} {...moreProps}>
-      <ListBox.Trigger>{renderTrigger({ size, refListBox, selectedOptions, renderPill, onRemove, t })}</ListBox.Trigger>
-      <ListBox.Filter filter={filter} ref={refFilter} onKeyDown={handleKeyDown} {...noResultMessageProp} />
-      {React.Children.count(children) > 0 ? children : <ListBox.RawItem>{noResultsMessage}</ListBox.RawItem>}
-    </ListBox>
+    <div ref={refDivRoot}>
+      <ListBox isMulti size={size} onChange={handleChange} {...moreProps}>
+        <ListBox.Trigger>{renderTrigger({ size, selectedOptions, renderPill, onRemove, t })}</ListBox.Trigger>
+        <ListBox.Filter filter={filter} ref={refFilter} onKeyDown={handleKeyDown} {...noResultMessageProp} />
+        {React.Children.count(children) > 0 ? children : <ListBox.RawItem>{noResultsMessage}</ListBox.RawItem>}
+      </ListBox>
+    </div>
   );
 }
 
