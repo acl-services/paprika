@@ -14,35 +14,14 @@ const defaultFilteredData = animals.slice(0, 20);
 const defaultData = animals;
 
 function App() {
-  const {
-    handleChange,
-    isSelected,
-    handleRemove,
-    handleAddedOption,
-    filteredData,
-    handleFilter,
-    getSelectedOptions,
-  } = useListBoxWithTags("label", { defaultData, defaultFilteredData });
-
-  function renderPill({ option, Pill, onRemove }) {
-    return (
-      <Pill onRemove={onRemove} key={option.label}>
-        {option.label}
-      </Pill>
-    );
-  }
+  const { isSelected, filteredData, getSelectedOptions, ...moreUseListBoxWithTagsProps } = useListBoxWithTags("label", {
+    defaultData,
+    defaultFilteredData,
+  });
 
   return (
     <div style={{ padding: "32px" }}>
-      <ListBoxWithTags
-        filter={handleFilter}
-        noResultsMessage="No results found, but you can add an email and then press enter..."
-        onChange={handleChange}
-        onCustomOption={handleAddedOption()}
-        onRemove={handleRemove}
-        renderPill={renderPill}
-        selectedOptions={getSelectedOptions()}
-      >
+      <ListBoxWithTags selectedOptions={getSelectedOptions()} {...moreUseListBoxWithTagsProps}>
         {filteredData.map(option => {
           if (typeof option.isCustom !== "undefined") {
             return null;

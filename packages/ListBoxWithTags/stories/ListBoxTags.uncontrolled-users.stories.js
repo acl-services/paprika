@@ -27,15 +27,47 @@ const defaultData = processedData;
 // prettier-ignore
 const stylesForPill = (color) => ({ alignItems: "center", backgroundColor: color.backgroundColor, borderRadius: "50%", boxSizing: "border-box", color: color.fontColor, display: "flex", height: "24px", justifyContent: "center", marginRight: "8px", padding: "3px", width: "24px", fontSize: ".8rem", lineHeight: 1 })
 
+function CustomPill({ option, Pill, onRemove }) {
+  const color = getAvatarColors(option.name);
+
+  return (
+    <Popover isDark isEager zIndex={101}>
+      <Popover.Trigger>
+        <Pill onRemove={onRemove} key={option.id}>
+          <div style={{ display: "flex", justifyContent: "center", alignItems: "center" }}>
+            <div style={stylesForPill(color)}>{option.name.substring(0, 2)}</div>
+            {option.username}
+          </div>
+        </Pill>
+      </Popover.Trigger>
+      <Popover.Tip />
+      <Popover.Content>
+        <Popover.Card>
+          <dl>
+            <dt style={{ fontWeight: "bold" }}>{option.name}</dt>
+            <dd style={{ margin: "2px" }}>
+              Oscar winner of: {option.year}
+              <br />
+              For: {option.year}
+              <br />
+              Email: {option.email}
+              <br />
+              UserName: {option.username}
+            </dd>
+          </dl>
+        </Popover.Card>
+      </Popover.Content>
+    </Popover>
+  );
+}
+
 function App() {
   const {
-    handleChange,
     isSelected,
-    handleRemove,
-    handleAddedOption,
     filteredData,
-    handleFilter,
     getSelectedOptions,
+    onCustomOption,
+    ...moreUseListBoxWithTagsProps
   } = useListBoxWithTags("id", {
     defaultData,
     defaultFilteredData,
@@ -46,36 +78,7 @@ function App() {
   const [hasSubmitted, setHasSubmitted] = React.useState(false);
 
   function renderPill({ option, Pill, onRemove }) {
-    const color = getAvatarColors(option.name);
-    return (
-      <Popover isDark isEager zIndex={101}>
-        <Popover.Trigger>
-          <Pill onRemove={onRemove} key={option.id}>
-            <div style={{ display: "flex", justifyContent: "center", alignItems: "center" }}>
-              <div style={stylesForPill(color)}>{option.name.substring(0, 2)}</div>
-              {option.username}
-            </div>
-          </Pill>
-        </Popover.Trigger>
-        <Popover.Tip />
-        <Popover.Content>
-          <Popover.Card>
-            <dl>
-              <dt style={{ fontWeight: "bold" }}>{option.name}</dt>
-              <dd style={{ margin: "2px" }}>
-                Oscar winner of: {option.year}
-                <br />
-                For: {option.year}
-                <br />
-                Email: {option.email}
-                <br />
-                UserName: {option.username}
-              </dd>
-            </dl>
-          </Popover.Card>
-        </Popover.Content>
-      </Popover>
-    );
+    return <CustomPill option={option} Pill={Pill} onRemove={onRemove} />;
   }
 
   function handleSubmit(event) {
@@ -88,20 +91,19 @@ function App() {
       <form onSubmit={handleSubmit}>
         <div>Select your favorite Oscar winners:</div>
         {hasSubmitted ? (
-          <ul>
+          <>
             <div>your selections: </div>
-            {getSelectedOptions().map(option => (
-              <li key={option.name}>
-                {option.name} {option.userName}
-              </li>
-            ))}
-          </ul>
+            <ul>
+              {getSelectedOptions().map(option => (
+                <li key={option.name}>
+                  {option.name} {option.userName}
+                </li>
+              ))}
+            </ul>
+          </>
         ) : null}
         <ListBoxWithTags
-          filter={handleFilter}
-          noResultsMessage="No results found, but you can add an email and then press enter..."
-          onChange={handleChange}
-          onCustomOption={handleAddedOption(label => {
+          onCustomOption={onCustomOption(label => {
             // This allowed you override the default behaviour when creating a custom option
             return {
               email: label,
@@ -112,9 +114,9 @@ function App() {
               movie: "Atanarjuat: The Fast Runner",
             };
           })}
-          onRemove={handleRemove}
           renderPill={renderPill}
           selectedOptions={getSelectedOptions()}
+          {...moreUseListBoxWithTagsProps}
         >
           {filteredData.map(option => {
             if (typeof option.isCustom !== "undefined") {
