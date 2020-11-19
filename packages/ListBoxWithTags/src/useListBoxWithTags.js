@@ -3,6 +3,7 @@ import { filter } from "./helpers";
 
 function prepareDataDictionary(key, data) {
   const dictionary = {};
+
   data.forEach(d => {
     dictionary[d[key]] = d;
   });
@@ -18,13 +19,12 @@ export default function useListBoxWithTags(
     throw new Error("Key is Required for useListBoxWithTags and should be one of the key (string) in your object");
 
   const [data, setData] = React.useState(defaultData);
-  const [dataDictionary, setDataDictionary] = React.useState({});
+  // const [dataDictionary, setDataDictionary] = React.useState({});
   const [selectedKeys, setSelectedKeys] = React.useState(defaultSelectedKeys);
   const [filteredData, setFilteredData] = React.useState(defaultFilteredData);
 
-  React.useEffect(() => {
-    const dictionary = prepareDataDictionary(key, data);
-    setDataDictionary(dictionary);
+  const dataDictionary = React.useMemo(() => {
+    return prepareDataDictionary(key, data);
   }, [data, key]);
 
   function handleChange(option, options, selectedOption) {
@@ -45,9 +45,8 @@ export default function useListBoxWithTags(
   function getSelectedOptions() {
     if (selectedKeys.length) {
       const options = [];
-      const cloneDataDictionary = { ...dataDictionary };
       selectedKeys.forEach(key => {
-        options.push(cloneDataDictionary[key]);
+        options.push(dataDictionary[key]);
       });
 
       return options;
@@ -83,8 +82,8 @@ export default function useListBoxWithTags(
       return prev.concat(option[key]);
     });
 
-    setDataDictionary(prev => {
-      return { ...prev, [option[key]]: option };
+    setData(prevData => {
+      return prevData.concat(option);
     });
 
     setFilteredData(defaultData);

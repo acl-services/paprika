@@ -24,6 +24,9 @@ const processedData = data.map((d, index) => {
 const defaultFilteredData = processedData;
 const defaultData = processedData;
 
+// prettier-ignore
+const stylesForPill = (color) => ({ alignItems: "center", backgroundColor: color.backgroundColor, borderRadius: "50%", boxSizing: "border-box", color: color.fontColor, display: "flex", height: "24px", justifyContent: "center", marginRight: "8px", padding: "3px", width: "24px", fontSize: ".8rem", lineHeight: 1 })
+
 function App() {
   const {
     handleChange,
@@ -33,7 +36,12 @@ function App() {
     filteredData,
     handleFilter,
     getSelectedOptions,
-  } = useListBoxWithTags("id", { defaultData, defaultFilteredData, filterAttribute: "name" });
+  } = useListBoxWithTags("id", {
+    defaultData,
+    defaultFilteredData,
+    defaultSelectedKeys: [0, 1, 6],
+    filterAttribute: "name",
+  });
 
   const [hasSubmitted, setHasSubmitted] = React.useState(false);
 
@@ -44,25 +52,7 @@ function App() {
         <Popover.Trigger>
           <Pill onRemove={onRemove} key={option.id}>
             <div style={{ display: "flex", justifyContent: "center", alignItems: "center" }}>
-              <div
-                style={{
-                  alignItems: "center",
-                  backgroundColor: color.backgroundColor,
-                  borderRadius: "50%",
-                  boxSizing: "border-box",
-                  color: color.fontColor,
-                  display: "flex",
-                  height: "24px",
-                  justifyContent: "center",
-                  marginRight: "8px",
-                  padding: "3px",
-                  width: "24px",
-                  fontSize: ".8rem",
-                  lineHeight: 1,
-                }}
-              >
-                {option.name.substring(0, 2)}
-              </div>
+              <div style={stylesForPill(color)}>{option.name.substring(0, 2)}</div>
               {option.username}
             </div>
           </Pill>
@@ -101,7 +91,7 @@ function App() {
           <ul>
             <div>your selections: </div>
             {getSelectedOptions().map(option => (
-              <li>
+              <li key={option.name}>
                 {option.name} {option.userName}
               </li>
             ))}
@@ -111,7 +101,17 @@ function App() {
           filter={handleFilter}
           noResultsMessage="No results found, but you can add an email and then press enter..."
           onChange={handleChange}
-          onCustomOption={handleAddedOption()}
+          onCustomOption={handleAddedOption(label => {
+            // This allowed you override the default behaviour when creating a custom option
+            return {
+              email: label,
+              username: `@${label.split("@")[0]}`,
+              year: 2020,
+              nationality: "(Can)",
+              name: "Canadian",
+              movie: "Atanarjuat: The Fast Runner",
+            };
+          })}
           onRemove={handleRemove}
           renderPill={renderPill}
           selectedOptions={getSelectedOptions()}

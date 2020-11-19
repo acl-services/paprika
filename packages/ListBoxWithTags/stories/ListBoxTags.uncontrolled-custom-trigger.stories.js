@@ -17,9 +17,10 @@ export default {
 const defaultFilteredData = animals.slice(0, 20);
 const defaultData = animals;
 
-function App() {
-  console.log(useListBoxWithTags);
+// prettier-ignore
+const styleForPill = (color) => ({ alignItems: "center", backgroundColor: color.backgroundColor, borderRadius: "50%", boxSizing: "border-box", color: color.fontColor, display: "flex", height: "24px", justifyContent: "center", marginRight: "8px", padding: "3px", width: "24px", fontSize: ".8rem", lineHeight: 1})
 
+function App() {
   const {
     handleChange,
     isSelected,
@@ -35,25 +36,7 @@ function App() {
     return (
       <Pill onRemove={onRemove} key={option.label}>
         <div style={{ display: "flex", justifyContent: "center", alignItems: "center" }}>
-          <div
-            style={{
-              alignItems: "center",
-              backgroundColor: color.backgroundColor,
-              borderRadius: "50%",
-              boxSizing: "border-box",
-              color: color.fontColor,
-              display: "flex",
-              height: "24px",
-              justifyContent: "center",
-              marginRight: "8px",
-              padding: "3px",
-              width: "24px",
-              fontSize: ".8rem",
-              lineHeight: 1,
-            }}
-          >
-            {option.label.substring(0, 2)}
-          </div>
+          <div style={styleForPill(color)}>{option.label.substring(0, 2)}</div>
           {option.label}
         </div>
       </Pill>

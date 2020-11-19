@@ -22,7 +22,6 @@ export const Pill = styled.div(() => {
     margin-right: ${tokens.spaceSm};
     max-width: 100%;
     padding: ${tokens.spaceSm[0] / 2}px ${tokens.spaceSm};
-    text-indent: ${tokens.spaceSm};
   `;
 });
 
