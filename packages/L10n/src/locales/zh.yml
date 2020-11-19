@@ -172,6 +172,7 @@ zh:
     breadcrumbs:
       aria_label: 面包屑
       aria_expand: 显示所有面包屑项目。
+      aria_back_to: 返回
     sideNavigation:
       aria_label: 侧边导航
       trigger_aria_label: 打开导航
