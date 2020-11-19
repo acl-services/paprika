@@ -6,7 +6,7 @@ describe("CopyInput", () => {
   it("should have the correct tooltips, and copy value to clipboard when clicking on button", async () => {
     document.execCommand = jest.fn();
 
-    const props = { defaultValue: "this will be copied" };
+    const props = { value: "this will be copied" };
     const { getByTestId, getByText } = render(<CopyInput {...props} />);
 
     fireEvent.mouseOver(getByTestId("button"));

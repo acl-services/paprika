@@ -21,6 +21,7 @@
     "@paprika/icon": "^1.0.0",
     "@paprika/input": "^1.0.1",
     "@paprika/popover": "^1.0.1",
+    "@paprika/toast": "^1.0.1",
     "@paprika/tokens": "^1.0.0",
     "prop-types": "^15.7.2"
   },

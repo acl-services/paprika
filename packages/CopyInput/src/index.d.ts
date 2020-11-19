@@ -5,6 +5,8 @@ interface CopyInputProps {
   [x: string]: any;
   /** Used for CopyInput.Input */
   children?: React.ReactNode;
-  /** Default value for the input. */
-  defaultValue?: string;
+  /** Is the input read-only. */
+  isReadOnly?: boolean;
+  /** Default value for the input */
+  value?: string;
 }

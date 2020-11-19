@@ -3,14 +3,15 @@ import PropTypes from "prop-types";
 import Input from "@paprika/input";
 import Popover from "@paprika/popover";
 import Button from "@paprika/button";
+import Toast from "@paprika/toast";
 import useI18n from "@paprika/l10n/lib/useI18n";
 import extractChildrenProps from "@paprika/helpers/lib/extractChildrenProps";
 import CopyIcon from "@paprika/icon/lib/ArrowDown"; // TODO: Replace with actual icon when ready
-import CopyInputInputPropsCollector from "./Input";
+import CopyInputInputPropsCollector from "./components/Input/Input";
 import * as sc from "./CopyInput.styles";
 
 function CopyInput(props) {
-  const { defaultValue, children, ...moreProps } = props;
+  const { children, isReadOnly, value, ...moreProps } = props;
   const extendedInputProps = extractChildrenProps(children, CopyInputInputPropsCollector);
   const I18n = useI18n();
   const inputRef = React.createRef();
@@ -46,34 +47,48 @@ function CopyInput(props) {
 
   return (
     <sc.CopyInput data-pka-anchor="copy-input" {...moreProps}>
-      <Input ref={inputRef} defaultValue={defaultValue} {...extendedInputProps} />
-      <div ref={buttonRef}>
+      <Input ref={inputRef} defaultValue={value} isReadOnly={isReadOnly} {...extendedInputProps} />
+      <div ref={buttonRef} data-pka-anchor="copy-input.button">
         <Button.Icon
           kind="primary"
           onClick={handleButtonClick}
-          onMouseEnter={() => setIsHoverTooltipOpen(true)}
-          onMouseLeave={() => setIsHoverTooltipOpen(false)}
+          onMouseOver={() => setIsHoverTooltipOpen(true)}
+          onMouseOut={() => setIsHoverTooltipOpen(false)}
+          onFocus={() => setIsHoverTooltipOpen(true)}
+          onBlur={() => setIsHoverTooltipOpen(false)}
         >
           <CopyIcon />
         </Button.Icon>
       </div>
       <Popover
+        a11yText={isClickedTooltipOpen ? I18n.t("copyInput.clicked_tooltip") : I18n.t("copyInput.hover_tooltip")}
         align="bottom"
-        isDark
-        isOpen={isHoverTooltipOpen && !isClickedTooltipOpen}
         getPositioningElement={() => buttonRef.current}
+        isDark
+        isEager
+        isOpen={isHoverTooltipOpen && !isClickedTooltipOpen}
       >
         <Popover.Content>
           <Popover.Card>{I18n.t("copyInput.hover_tooltip")}</Popover.Card>
         </Popover.Content>
         <Popover.Tip />
       </Popover>
-      <Popover align="bottom" isOpen={isClickedTooltipOpen} getPositioningElement={() => buttonRef.current}>
+      <Popover
+        align="bottom"
+        getPositioningElement={() => buttonRef.current}
+        isOpen={isClickedTooltipOpen}
+        shouldKeepFocus
+      >
         <Popover.Content>
           <Popover.Card>{I18n.t("copyInput.clicked_tooltip")}</Popover.Card>
         </Popover.Content>
         <Popover.Tip />
       </Popover>
+      {isClickedTooltipOpen && (
+        <Toast kind={Toast.types.kind.VISUALLY_HIDDEN} aria-hidden>
+          Copied
+        </Toast>
+      )}
     </sc.CopyInput>
   );
 }
@@ -81,13 +96,16 @@ function CopyInput(props) {
 const propTypes = {
   /** Used for CopyInput.Input */
   children: PropTypes.node,
-  /** Default value for the input. */
-  defaultValue: PropTypes.string,
+  /** Is the input read-only. */
+  isReadOnly: PropTypes.bool,
+  /** Default value for the input */
+  value: PropTypes.string,
 };
 
 const defaultProps = {
   children: null,
-  defaultValue: "",
+  isReadOnly: true,
+  value: "",
 };
 
 CopyInput.displayName = "CopyInput";

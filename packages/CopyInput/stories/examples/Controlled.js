@@ -9,7 +9,7 @@ const ExampleStory = () => {
 
   return (
     <>
-      <CopyInput>
+      <CopyInput isReadOnly={false}>
         <CopyInput.Input value={controlledValue} onChange={e => setControlledValue(e.target.value)} />
       </CopyInput>
       <Gap />

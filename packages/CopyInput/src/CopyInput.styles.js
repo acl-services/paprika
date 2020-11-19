@@ -3,11 +3,8 @@ import tokens from "@paprika/tokens";
 
 export const CopyInput = styled.div`
   display: flex;
-  [data-pka-anchor="heading"] {
-    margin-bottom: 0;
-  }
 
-  input.form-input__input {
+  input[data-pka-anchor="input"] {
     border-radius: ${tokens.border.radius} 0 0 ${tokens.border.radius};
   }
 
