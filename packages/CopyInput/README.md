@@ -32,20 +32,26 @@ npm install @paprika/copy-input
 
 ### Usage
 
+Uncontrolled:
+
 ```js
 import CopyInput from "@paprika/copy-input";
 
-<CopyInput defaultValue="Copy me" />;
+return <CopyInput defaultValue="Copy me" />;
 ```
 
-Providing more props to the internal `Input`
+Controlled with props for the internal `Input`
 
 ```js
 import CopyInput from "@paprika/copy-input";
 
-<CopyInput defaultValue="Copy me">
-  <CopyInput.Input isReadOnly />
-</CopyInput.Input>;
+const [controlledValue, setControlledValue] = React.useState("Copy me");
+
+return (
+  <CopyInput>
+    <CopyInput.Input value={controlledValue} onChange={e => setControlledValue(e.target.value)} />
+  </CopyInput>
+);
 ```
 
 <!-- eoContent -->
