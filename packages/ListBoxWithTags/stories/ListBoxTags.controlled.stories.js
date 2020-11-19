@@ -20,10 +20,12 @@ const debounce = (func, wait) => {
   };
 };
 
-function App() {
-  const [data, setData] = React.useState(animals.slice(0, 10));
+const animalSubset = animals.slice(0, 20);
 
-  const [selectedKeys, setSelectedKeys] = React.useState(["Alpaca", "Yak", "Zebra"]);
+function App() {
+  const [data] = React.useState(animalSubset);
+
+  const [selectedKeys, setSelectedKeys] = React.useState(["Alpaca"]);
   const [dataFiltered, setDataFiltered] = React.useState(data);
 
   function checkIfIsSelected(id) {
@@ -58,9 +60,12 @@ function App() {
 
   function handleAddedOption(label) {
     const option = { label, isCustom: true };
-    setData(prev => {
-      return prev.concat(option);
-    });
+    // this is just an example
+    // but in real life you could have a list/dictionary with the
+    // value of the selected items where you could push the new value
+    animals.push(option);
+
+    setDataFiltered(() => data);
 
     setSelectedKeys(prev => {
       return prev.concat(option.label);
@@ -77,7 +82,7 @@ function App() {
 
         const result = ListBoxTags.filter(search, animals);
         setDataFiltered(result);
-      }, 300),
+      }, 250),
     [data]
   );
 

@@ -71,7 +71,7 @@ export default function useListBoxWithTags(
     return selectedKeys.includes(id);
   }
 
-  const handleAddedOption = (func = label => ({ label, isCustom: true })) => label => {
+  const handleCustomOption = (func = label => ({ label, isCustom: true })) => label => {
     // useReducer might be a better alternative
 
     const option = func(label);
@@ -99,17 +99,12 @@ export default function useListBoxWithTags(
     filteredData,
     selectedKeys,
     setSelectedKeys,
-    handleChange,
-    handleFilter,
     isSelected,
-    handleRemove,
-    handleAddedOption,
     getSelectedOptions,
-    // divider
     filter: handleFilter,
     noResultsMessage: t("listBoxWithTags.no_results_found"),
     onChange: handleChange,
-    onCustomOption: handleAddedOption,
+    onCustomOption: handleCustomOption,
     onRemove: handleRemove,
   };
 }

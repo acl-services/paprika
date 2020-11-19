@@ -19,15 +19,10 @@ const defaultData = animals;
 const styleForPill = (color) => ({ alignItems: "center", backgroundColor: color.backgroundColor, borderRadius: "50%", boxSizing: "border-box", color: color.fontColor, display: "flex", height: "24px", justifyContent: "center", marginRight: "8px", padding: "3px", width: "24px", fontSize: ".8rem", lineHeight: 1})
 
 function App() {
-  const {
-    handleChange,
-    isSelected,
-    handleRemove,
-    handleAddedOption,
-    filteredData,
-    handleFilter,
-    getSelectedOptions,
-  } = useListBoxWithTags("label", { defaultData, defaultFilteredData });
+  const { isSelected, filteredData, getSelectedOptions, ...moreUseListBoxWithTagsProps } = useListBoxWithTags("label", {
+    defaultData,
+    defaultFilteredData,
+  });
 
   function renderPill({ option, Pill, onRemove }) {
     const color = getAvatarColors(option.label);
@@ -44,13 +39,10 @@ function App() {
   return (
     <div style={{ padding: "32px" }}>
       <ListBoxWithTags
-        filter={handleFilter}
         noResultsMessage="No results found, but you can add an email and then press enter..."
-        onChange={handleChange}
-        onCustomOption={handleAddedOption()}
-        onRemove={handleRemove}
         renderPill={renderPill}
         selectedOptions={getSelectedOptions()}
+        {...moreUseListBoxWithTagsProps}
       >
         {filteredData.map(option => {
           if (typeof option.isCustom !== "undefined") {
