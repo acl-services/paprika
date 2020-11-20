@@ -3254,6 +3254,18 @@
   dependencies:
     "@types/node" ">= 8"
 
+"@paprika/avatar@^1.0.0":
+  version "1.0.0"
+  resolved "https://registry.yarnpkg.com/@paprika/avatar/-/avatar-1.0.0.tgz#9c4984555ee7361479d47c72707cfeec3a2f5265"
+  integrity sha512-I4qieKrtbWn4dLbTHyxeciwVe+Ri/gdUWFJPHzRhlSp2KLPoKw6Bj6/Hn/3ngnzNxwkCj3TFjTlVOAG1jfutgw==
+  dependencies:
+    "@babel/runtime-corejs2" "^7.3.1"
+    "@paprika/constants" "^1.0.0"
+    "@paprika/helpers" "^1.0.0"
+    "@paprika/stylers" "^1.0.0"
+    "@paprika/tokens" "^1.0.0"
+    prop-types "^15.7.2"
+
 "@paprika/button@^0.3.15", "@paprika/button@^0.3.15-alpha.2", "@paprika/button@^0.3.15-alpha.4":
   version "0.3.15"
   resolved "https://registry.yarnpkg.com/@paprika/button/-/button-0.3.15.tgz#1fd00262fcaab5a2d79d9e5b85416989ca8d2af2"
@@ -3347,6 +3359,11 @@
   version "0.2.14"
   resolved "https://registry.yarnpkg.com/@paprika/helpers/-/helpers-0.2.14.tgz#42b4ef1ccdb7ddba699ee05a4988908f14936d37"
   integrity sha512-j+LaBc/tI/CeKwkX7mPOzjOpFmg2UzuTFov2Z+DWJbxf/dRZkQUyKxinEaY6ReJ6oXn2XREaqyq7fj+VO9gbug==
+
+"@paprika/helpers@^1.0.0":
+  version "1.0.0"
+  resolved "https://registry.yarnpkg.com/@paprika/helpers/-/helpers-1.0.0.tgz#e9fb09fb4b2605a46ce2be2a7b1bef3e8a1987f9"
+  integrity sha512-Rpxf0/xVuV9v6V6HE+eMx5AWECLTTscCWfJ73PHBHhA9aXDdgYAd/CrBk8HZX+egMLQJk5L2hzLTJIphSeJy0g==
 
 "@paprika/icon@^0.2.15":
   version "0.2.16"
