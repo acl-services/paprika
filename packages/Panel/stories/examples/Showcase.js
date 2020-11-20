@@ -17,8 +17,8 @@ const sidePanelProps = () => ({
   isOpen: boolean("isOpen", true, sidePanelGroup),
   slideFrom: select(
     "slideFrom",
-    [Panel.slideFromDirections.RIGHT, Panel.slideFromDirections.LEFT, Panel.slideFromDirections.BOTTOM],
-    Panel.slideFromDirections.RIGHT,
+    [Panel.types.slideFrom.RIGHT, Panel.types.slideFrom.LEFT, Panel.types.slideFrom.BOTTOM],
+    Panel.types.slideFrom.RIGHT,
     sidePanelGroup
   ),
   width: text("width", "50%", sidePanelGroup),

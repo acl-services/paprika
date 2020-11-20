@@ -90,7 +90,7 @@ export const FromBottom = () => {
         isOpen={isFooterOpen}
         offset={{ left: getNavWidth() }}
         onClose={toggleFooter}
-        slideFrom={Panel.types.slide.BOTTOM}
+        slideFrom={Panel.types.slideFrom.BOTTOM}
       >
         <Panel.Content>
           This Panel comes up from the bottom.
