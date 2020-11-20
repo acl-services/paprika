@@ -46,7 +46,7 @@ export default function Panel(props) {
   const [isVisible, setIsVisible] = React.useState(isOpen);
   const offsetScroll = useOffsetScroll(offsetTop);
 
-  const _offset = {
+  const calculatedOffset = {
     top: offsetScroll,
     left: "left" in offset ? offset.left : 0,
     right: "right" in offset ? offset.right : 0,
@@ -146,7 +146,7 @@ export default function Panel(props) {
         isInline={isInline}
         isOpen={isOpen}
         kind={kind}
-        offset={_offset}
+        offset={calculatedOffset}
         onAnimationEnd={handleAnimationEnd}
         onClose={onClose}
         onKeyDown={handleEscKey}

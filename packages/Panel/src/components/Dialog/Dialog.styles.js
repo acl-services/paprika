@@ -70,8 +70,8 @@ export const Dialog = styled.div(
     const slideOutTransform = getSlideOutTransform(slideFrom);
     const slideInTransform = getSlideInTransform(slideFrom);
 
-    let _height = null;
-    let _width = null;
+    let calculatedHeight = null;
+    let calculatedWidth = null;
     let left = null;
     let right = null;
     let top = null;
@@ -81,15 +81,15 @@ export const Dialog = styled.div(
     switch (slideFrom) {
       case types.slideFroms.LEFT:
       case types.slideFroms.RIGHT:
-        _height = offset.top ? `calc(100% - ${offset.top}px);` : "100%";
-        _width = Number.isNaN(Number(width)) ? width : `${width}px`;
+        calculatedHeight = offset.top ? `calc(100% - ${offset.top}px);` : "100%";
+        calculatedWidth = Number.isNaN(Number(width)) ? width : `${width}px`;
         left = slideFrom === types.slideFroms.LEFT ? 0 : null;
         right = slideFrom === types.slideFroms.RIGHT ? 0 : null;
         top = `${offset.top}px`;
         break;
       case types.slideFroms.BOTTOM:
-        _height = Number.isNaN(Number(height)) ? height : `${height}px`;
-        _width = `calc(100% - ${offset.left}px - ${offset.right}px)`;
+        calculatedHeight = Number.isNaN(Number(height)) ? height : `${height}px`;
+        calculatedWidth = `calc(100% - ${offset.left}px - ${offset.right}px)`;
         left = `${offset.left}px`;
         right = `${offset.right}px`;
         bottom = 0;
@@ -121,7 +121,7 @@ export const Dialog = styled.div(
       ${childPanel}
       display: flex;
       flex-direction: column;
-      height: ${_height};
+      height: ${calculatedHeight};
       left: ${left};
       margin: 0;
       overflow: auto;
@@ -129,7 +129,7 @@ export const Dialog = styled.div(
       ${isInline ? "position: relative;" : "position: fixed;"}
       right: ${right};
       top: ${top};
-      width: ${_width};
+      width: ${calculatedWidth};
       z-index: ${zIndex};
 
       &:focus {
