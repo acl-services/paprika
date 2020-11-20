@@ -48,7 +48,7 @@ const propTypes = {
   children: PropTypes.node,
 
   /** Render as another component instead of Button.Link. */
-  as: PropTypes.oneOfType([PropTypes.string, PropTypes.func]),
+  as: PropTypes.oneOfType([PropTypes.string, PropTypes.elementType]),
 
   hasOnlyOneChild: PropTypes.bool,
 
