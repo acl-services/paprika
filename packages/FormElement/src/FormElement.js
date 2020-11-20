@@ -4,23 +4,25 @@ import nanoid from "nanoid";
 import isNil from "lodash/isNil";
 import * as constants from "@paprika/constants/lib/Constants";
 import * as sc from "./FormElement.styles";
+import { FieldsetContext } from "./components/Content/Content";
 
 export const FormElementContext = React.createContext({});
 
 function FormElement(props) {
-  const { id, wrapperAriaDescribedBy, children, isDisabled, isInline, size, hasFieldSet, ...moreProps } = props;
+  const { id, children, isDisabled, isInline, size, hasFieldSet, ...moreProps } = props;
   const [ariaDescribedBy, setAriaDescribedBy] = React.useState({});
   const uniqueInputId = React.useRef(nanoid()).current;
   const generateLabelId = id => (isNil(id) || id === "" ? uniqueInputId : id);
   const labelId = generateLabelId(id);
   const refLabel = React.useRef(null);
+  const { fieldsetAriaDescribedBy } = React.useContext(FieldsetContext);
 
   const addIdToAriaDescribedBy = idObject => {
     setAriaDescribedBy(ariaDescribedBy => ({ ...idObject, ...ariaDescribedBy }));
   };
 
-  if (!ariaDescribedBy.wrapperAriaDescribedBy && wrapperAriaDescribedBy) {
-    addIdToAriaDescribedBy({ wrapperAriaDescribedBy });
+  if (!ariaDescribedBy.fieldsetAriaDescribedBy && fieldsetAriaDescribedBy) {
+    addIdToAriaDescribedBy({ fieldsetAriaDescribedBy });
   }
 
   const value = {
@@ -64,9 +66,6 @@ const propTypes = {
 
   /** FormElement contains multiple children so Renders a legend element instead of label. */
   hasFieldSet: PropTypes.bool,
-
-  /** Aria-describedBy ids comoing from wrapping fieldset component. */
-  wrapperAriaDescribedBy: PropTypes.string,
 };
 
 const defaultProps = {
@@ -75,7 +74,6 @@ const defaultProps = {
   isDisabled: false,
   isInline: false,
   size: FormElement.types.size.MEDIUM,
-  wrapperAriaDescribedBy: "",
 };
 
 FormElement.displayName = "FormElement";

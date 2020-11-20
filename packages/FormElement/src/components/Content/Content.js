@@ -2,12 +2,14 @@ import React from "react";
 import PropTypes from "prop-types";
 import { FormElementContext } from "../../FormElement";
 
+export const FieldsetContext = React.createContext({});
+
 const propTypes = {
   children: PropTypes.oneOfType([PropTypes.func, PropTypes.node]).isRequired,
 };
 
 function Content(props) {
-  const { ariaDescribedBy, refLabel, labelId } = React.useContext(FormElementContext);
+  const { ariaDescribedBy, refLabel, labelId, hasFieldSet } = React.useContext(FormElementContext);
   const { children, ...moreProps } = props;
 
   if (!children) {
@@ -18,7 +20,7 @@ function Content(props) {
     ariaDescribedBy?.ariaErrorId,
     ariaDescribedBy?.ariaDescriptionId,
     ariaDescribedBy?.ariaInstructionsId,
-    ariaDescribedBy?.wrapperAriaDescribedBy,
+    ariaDescribedBy?.fieldsetAriaDescribedBy,
   ].filter(Boolean);
 
   const ariaDescribedByIdsString = ariaDescribedByIdsArray.join(" ");
@@ -33,19 +35,18 @@ function Content(props) {
   }
 
   const renderChildren = () => {
-    return React.Children.map(children, child => {
-      if (child.type.displayName === "FormElement") {
-        return React.cloneElement(child, {
-          wrapperAriaDescribedBy: ariaDescribedByIdsString,
-        });
-      }
-      return child;
-    });
+    return typeof children === "function" ? children(a11yProps) : children;
   };
+
+  const contextValue = { fieldsetAriaDescribedBy: ariaDescribedByIdsString };
 
   return (
     <div data-pka-anchor="form-element.content" {...moreProps}>
-      {typeof children === "function" ? children(a11yProps) : renderChildren()}
+      {hasFieldSet ? (
+        <FieldsetContext.Provider value={contextValue}>{renderChildren()}</FieldsetContext.Provider>
+      ) : (
+        renderChildren()
+      )}
     </div>
   );
 }

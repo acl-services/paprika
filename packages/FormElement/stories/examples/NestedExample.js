@@ -42,7 +42,7 @@ export default function NestedExample() {
                     aria-required={hasRequiredLabel}
                     disabled={isDisabled}
                     readOnly={isReadOnly}
-                    id={a11yProps.labelId}
+                    id={a11yProps.id}
                     aria-describedby={a11yProps["aria-describedby"]}
                   />
                   <input
@@ -74,13 +74,13 @@ export default function NestedExample() {
                   aria-required={hasRequiredLabel}
                   disabled={isDisabled}
                   readOnly={isReadOnly}
-                  id={a11yProps.labelId}
+                  id={a11yProps.id}
                   aria-describedby={a11yProps["aria-describedby"]}
                 />
                 <input
                   aria-required={hasRequiredLabel}
                   disabled={isDisabled}
-                  id={a11yProps.labelId}
+                  id={a11yProps.id}
                   aria-describedby={a11yProps["aria-describedby"]}
                 />
               </InputSet>

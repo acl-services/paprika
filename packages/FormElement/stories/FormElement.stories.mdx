@@ -28,18 +28,11 @@ import FormElement from "../src";
 
 ### Accessibility
 
-In addition, a `<label />` is rendered by the `<FormElement />` and is associated to the input field by the `labelId` parameter of the same `children` function.
-
-The `<FormElement />` has been designed with accessibility in mind. Users can make use of `<FormElement.Instructions />`, `<FormElement.Description />`, `<FormElement.Error />`, and `<FormElement.Help />` to add instructions, guidance and feedback to users. Error messages, instructions, and descriptions can be associated to the input field by applying the supplied `ariaDescribedBy` parameter in the render function supplied to the `children` of the `<FormElement.Content>`.
-
-The `<FormElement.Help />` will add an icon with a tooltip next to the label.
+The `<FormElement />` has been designed with accessibility in mind. Users can make use of `<FormElement.Label />`, `<FormElement.Instructions />`, `<FormElement.Description />`, `<FormElement.Error />`, and `<FormElement.Help />` to add instructions, guidance and feedback to users. Error messages, instructions, and descriptions can be associated to the input field by applying the supplied `ariaDescribedBy` parameter in the render function supplied to the `children` of the `<FormElement.Content>`.
 
 ```jsx
 <FormElement>
-  <Label>Form label</Label>
-  <FormElement.Help>
-    Give me some help. <a href="wegalvanize.com">Learn more</a>.
-  </FormElement.Help>
+  <Label help={(Give me some help. <a href="wegalvanize.com">Learn more</a>)}>Form label</Label>
   <FormElement.Instructions>
     Example text for extra panel for questionnaires. Example text for extra panel for questionnaires Example text for
     extra panel for questionnaires. Example text for extra panel for questionnaires
@@ -85,7 +78,8 @@ The `<FormElement>` can be used with different components to fulfill a variety o
 #### Checkbox
 
 ```jsx
-<FormElement hasFieldSet label="Form Label">
+<Fieldset>
+  <Label>Form label</Label>
   <FormElement.Content>
     {a11yProps =>
       <Checkbox onChange={() => {}} {...a11yProps}>Black Panther</Checkbox>
@@ -93,7 +87,7 @@ The `<FormElement>` can be used with different components to fulfill a variety o
       <Checkbox onChange={() => {}} {...a11yProps}>Wonder Woman</Checkbox>
     }
   </FormElement.Content>
-</FormElement>
+</Fieldset>
 ```
 
 ##### Result
