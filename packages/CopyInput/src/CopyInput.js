@@ -50,6 +50,7 @@ function CopyInput(props) {
       <Input ref={inputRef} defaultValue={value} isReadOnly={isReadOnly} {...extendedInputProps} />
       <div ref={buttonRef} data-pka-anchor="copy-input.button">
         <Button.Icon
+          a11yText={I18n.t("copyInput.hover_tooltip")}
           kind="primary"
           onClick={handleButtonClick}
           onMouseOver={() => setIsHoverTooltipOpen(true)}
@@ -61,7 +62,6 @@ function CopyInput(props) {
         </Button.Icon>
       </div>
       <Popover
-        a11yText={isClickedTooltipOpen ? I18n.t("copyInput.clicked_tooltip") : I18n.t("copyInput.hover_tooltip")}
         align="bottom"
         getPositioningElement={() => buttonRef.current}
         isDark
@@ -86,7 +86,7 @@ function CopyInput(props) {
       </Popover>
       {isClickedTooltipOpen && (
         <Toast kind={Toast.types.kind.VISUALLY_HIDDEN} aria-hidden>
-          Copied
+          {I18n.t("copyInput.clicked_tooltip")}
         </Toast>
       )}
     </sc.CopyInput>
