@@ -13,6 +13,7 @@ import OverflowMenuTriggerExample from "./examples/OverflowMenuTriggerExample";
 import OverflowMenuOnCloseExample from "./examples/OverflowMenuOnCloseExample";
 import OverflowMenuWithCustomClassExample from "./examples/OverflowMenuWithCustomClassExample";
 import ZIndexExample from "./examples/ZIndex";
+import AutoFocusExample from "./examples/AutoFocusExample";
 
 const storyName = getStoryName("OverflowMenu");
 
@@ -64,10 +65,16 @@ storiesOf(`${storyName}/Examples`, module)
     </OverflowMenuStory>
   ));
 
-storiesOf(`${storyName}/Backyard/Sandbox`, module).add("Z Index", () => (
-  <OverflowMenuStory>
-    <ZIndexExample />
-  </OverflowMenuStory>
-));
+storiesOf(`${storyName}/Backyard/Sandbox`, module)
+  .add("Z Index", () => (
+    <OverflowMenuStory>
+      <ZIndexExample />
+    </OverflowMenuStory>
+  ))
+  .add("Auto-focus", () => (
+    <OverflowMenuStory>
+      <AutoFocusExample />
+    </OverflowMenuStory>
+  ));
 
 storiesOf(`${storyName}/Backyard/Tests`, module).add("Cypress", () => <OverflowMenuExample />);

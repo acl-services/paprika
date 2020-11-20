@@ -75,6 +75,16 @@ declare namespace DataGrid {
     width?: number;
   }
 }
+declare namespace DataGrid {
+  function InfiniteScroll(props: InfiniteScrollProps): JSX.Element;
+  interface InfiniteScrollProps {
+    [x: string]: any;
+
+    rowsOffset?: number;
+
+    onReachedOffset?: (...args: any[]) => any;
+  }
+}
 
 declare namespace DataGrid {
   namespace types {

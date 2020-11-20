@@ -1,6 +1,7 @@
 import React from "react";
 import PropTypes from "prop-types";
 import uuid from "uuid/v4";
+import "what-input";
 import Popover from "@paprika/popover";
 import extractChildren from "@paprika/helpers/lib/extractChildren";
 import Content from "./components/Content";
@@ -54,7 +55,7 @@ function OverflowMenu(props) {
     setFocusIndex(index);
   }
 
-  const handleCloseMenu = () => {
+  const handleCloseMenu = key => {
     setIsOpen(false);
 
     if (isConfirming) {
@@ -62,7 +63,9 @@ function OverflowMenu(props) {
       setRenderConfirmation(null);
     }
 
-    if (triggerRef.current) triggerRef.current.focus();
+    if (triggerRef.current && key === "Tab") {
+      triggerRef.current.focus();
+    }
 
     if (onClose) {
       onClose();
@@ -71,11 +74,12 @@ function OverflowMenu(props) {
 
   const handleOpenMenu = () => {
     setIsOpen(true);
-    // https://github.com/acl-services/paprika/issues/316
-    // Todo Should focus the first item via an onAfterOpen event callback in popover
-    setTimeout(() => {
-      focusAndSetIndex(0);
-    }, 250);
+
+    if (document.querySelector("html").getAttribute("data-whatinput") === "keyboard") {
+      setTimeout(() => {
+        focusAndSetIndex(0);
+      }, 250);
+    }
   };
 
   const {
@@ -108,7 +112,7 @@ function OverflowMenu(props) {
     } else if (event.key === "Enter" || event.key === " ") {
       // do nothing
     } else {
-      handleCloseMenu();
+      handleCloseMenu(event.key);
     }
   };
 

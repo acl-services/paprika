@@ -9,8 +9,8 @@ import useDebounce from "@paprika/helpers/lib/hooks/useDebounce";
 import isElementContainsFocus from "@paprika/helpers/lib/dom/isElementContainsFocus";
 import extractChildrenProps from "@paprika/helpers/lib/extractChildrenProps";
 
-import DateInputPropsCollector from "./components/DateInputPropsCollector";
-import DatePickerPopoverPropsCollector from "./components/DatePickerPopoverPropsCollector";
+import DateInputPropsCollector from "./components/Input";
+import DatePickerPopoverPropsCollector from "./components/Popover";
 
 import * as sc from "./DatePicker.styles";
 

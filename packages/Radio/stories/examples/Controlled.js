@@ -1,49 +1,32 @@
 import React from "react";
 import { action } from "@storybook/addon-actions";
-import { Rule } from "storybook/assets/styles/common.styles";
-import Heading from "@paprika/heading";
-import { RadioStory } from "../Radio.stories.styles";
+import { Gap } from "storybook/assets/styles/common.styles";
+import StoryHeading from "storybook/components/StoryHeading";
 import Radio from "../../src/Radio";
 
-export const radioItems = ["Radio 1", "Radio 2 label", "Radio 3 option"];
+const radioItems = ["Radio 1", "Radio 2", "Radio 3"];
 
-const ExampleStory = props => {
+const ExampleStory = () => {
   const [checkedIndex, setCheckedIndex] = React.useState(1);
-  const handleIndexChange = e => {
-    setCheckedIndex(Number(e.target.value));
-  };
+
+  function handleIndexChange(event) {
+    setCheckedIndex(Number(event.target.value));
+  }
+
+  function handleRadioChange(activeIndex) {
+    setCheckedIndex(activeIndex);
+    action("Radio selection changed to index ")(activeIndex);
+  }
+
   return (
-    <RadioStory>
-      <Heading level={2} displayLevel={3} isLight>
-        Setting a item as default checked
-      </Heading>
-      <Rule />
-      <Radio.Group
-        onChange={activeIndex => {
-          action("Radio selection changed to index ")(activeIndex);
-        }}
-        {...props}
-      >
-        {radioItems.map((item, index) => {
-          return (
-            <Radio key={item} isDisabled={index === 1} defaultIsChecked={index === 2}>
-              {item}
-            </Radio>
-          );
-        })}
-      </Radio.Group>
-      <Rule />
-      <Heading level={2} displayLevel={3} isLight>
-        Controlling which item is checked
-      </Heading>
-      <Rule />
-      <Radio.Group
-        onChange={activeIndex => {
-          setCheckedIndex(activeIndex);
-          action("Radio selection changed to index ")(activeIndex);
-        }}
-        {...props}
-      >
+    <>
+      <StoryHeading level={3}>
+        <span>
+          Controlling selection with <code>isChecked</code>
+        </span>
+      </StoryHeading>
+      <Gap.Small />
+      <Radio.Group onChange={handleRadioChange}>
         {radioItems.map((item, index) => {
           return (
             <Radio key={item} isChecked={index === checkedIndex}>
@@ -52,9 +35,8 @@ const ExampleStory = props => {
           );
         })}
       </Radio.Group>
-      <br />
-      Set Checked Index
-      <br />
+      <Gap />
+      Set selection state:{" "}
       <select value={checkedIndex} onChange={handleIndexChange}>
         {radioItems.map((item, index) => (
           <option key={item} value={index}>
@@ -62,8 +44,8 @@ const ExampleStory = props => {
           </option>
         ))}
       </select>
-    </RadioStory>
+    </>
   );
 };
 
-export default () => <ExampleStory />;
+export default ExampleStory;

@@ -22,3 +22,38 @@ interface DatePickerProps {
   /** If there is an external error or not. */
   hasError?: boolean;
 }
+
+declare namespace DatePicker {
+  function Input(props: InputProps): JSX.Element;
+  interface InputProps {
+    [x: string]: any;
+    /** a11yText on the input. */
+    a11yText?: string;
+    /** Custom clear icon */
+    clearIcon?: React.ReactNode;
+    /** Placeholder of input. */
+    placeholder?: string;
+    /** Size of input. */
+    size?: Input.types.size.SMALL | Input.types.size.MEDIUM | Input.types.size.LARGE;
+    /** If the value of <input> is valid or not. */
+    hasError?: boolean;
+  }
+}
+declare namespace DatePicker {
+  function Popover(props: PopoverProps): JSX.Element;
+  interface PopoverProps {
+    [x: string]: any;
+
+    offset?: number;
+  }
+}
+
+declare namespace Input {
+  namespace types {
+    namespace size {
+      const SMALL: any;
+      const MEDIUM: any;
+      const LARGE: any;
+    }
+  }
+}
