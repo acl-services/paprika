@@ -6,10 +6,6 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 
 ## [Unreleased]
 
-### Fixed
-
-- Fixed the prop type on `<Breadcrumbs.Link>`.
-
 ## [0.0.2-alpha.0] - 2020-10-23
 
 ### Added
@@ -21,3 +17,9 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 ### Changed
 
 - Added `<` icon in the front if there is only one child.
+
+## [1.1.1-alpha.2] - 2020-11-20
+
+### Fixed
+
+- Fixed the prop type on `<Breadcrumbs.Link>`.
