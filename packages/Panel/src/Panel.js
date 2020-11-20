@@ -12,7 +12,6 @@ import Trigger from "./components/Trigger";
 import Group from "./components/Group";
 import FocusLock from "./components/FocusLock";
 import * as types from "./types";
-import { slideFromDirections } from "./slideFromDirections";
 
 import { extractChildren, warnOfPropErrors } from "./helpers";
 import { useOffsetScroll } from "./hooks";
@@ -41,7 +40,7 @@ export default function Panel(props) {
     ...moreProps
   } = props;
 
-  const offsetTop = Object.prototype.hasOwnProperty.call(offset, "top") ? offset.top : 0;
+  const offsetTop = "top" in offset ? offset.top : 0;
 
   // Hooks
   const [isVisible, setIsVisible] = React.useState(isOpen);
@@ -49,8 +48,8 @@ export default function Panel(props) {
 
   const _offset = {
     top: offsetScroll,
-    left: Object.prototype.hasOwnProperty.call(offset, "left") ? offset.left : 0,
-    right: Object.prototype.hasOwnProperty.call(offset, "right") ? offset.right : 0,
+    left: "left" in offset ? offset.left : 0,
+    right: "right" in offset ? offset.right : 0,
   };
 
   // Refs
@@ -192,9 +191,8 @@ export default function Panel(props) {
 
 Panel.types = {
   kind: types.sidePanelKinds,
+  slide: types.slide,
 };
-
-Panel.slideFromDirections = slideFromDirections;
 
 const propTypes = {
   /* Description of the Panel dialog for assistive technology */
@@ -237,11 +235,7 @@ const propTypes = {
   onClose: PropTypes.func,
 
   /** Control where the Panel slides in from */
-  slideFrom: PropTypes.oneOf([
-    Panel.slideFromDirections.RIGHT,
-    Panel.slideFromDirections.LEFT,
-    Panel.slideFromDirections.BOTTOM,
-  ]),
+  slideFrom: PropTypes.oneOf([Panel.types.slide.RIGHT, Panel.types.slide.LEFT, Panel.types.slide.BOTTOM]),
 
   /** The width of the open Panel (when slide in from left or right) */
   width: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
@@ -262,7 +256,7 @@ const defaultProps = {
   onAfterClose: () => {},
   onAfterOpen: () => {},
   onClose: null,
-  slideFrom: Panel.slideFromDirections.RIGHT,
+  slideFrom: Panel.types.slide.RIGHT,
   width: "33%",
   zIndex: zValue(7),
 };

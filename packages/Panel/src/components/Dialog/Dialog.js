@@ -1,7 +1,6 @@
 import React from "react";
 import PropTypes from "prop-types";
 import * as types from "../../types";
-import { slideFromDirections } from "../../slideFromDirections";
 import * as sc from "./Dialog.styles";
 
 function Dialog(props) {
@@ -133,7 +132,7 @@ const propTypes = {
   onClose: PropTypes.func,
   refHeader: PropTypes.shape({ current: PropTypes.instanceOf(Element) }).isRequired,
   refPanelContent: PropTypes.shape({ current: PropTypes.instanceOf(Element) }).isRequired,
-  slideFrom: PropTypes.oneOf([slideFromDirections.RIGHT, slideFromDirections.LEFT, slideFromDirections.BOTTOM]),
+  slideFrom: PropTypes.oneOf([types.slide.RIGHT, types.slide.LEFT, types.slide.BOTTOM]),
   width: PropTypes.oneOfType([PropTypes.string, PropTypes.number]).isRequired,
   isOpen: PropTypes.bool.isRequired,
 };
@@ -148,7 +147,7 @@ const defaultProps = {
   isCompact: false,
   isInline: false,
   onClose: () => {},
-  slideFrom: slideFromDirections.RIGHT,
+  slideFrom: types.slide.RIGHT,
 };
 
 Dialog.propTypes = propTypes;

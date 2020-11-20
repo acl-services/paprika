@@ -1,7 +1,7 @@
 import stylers from "@paprika/stylers";
 import tokens from "@paprika/tokens";
 import styled, { css, keyframes } from "styled-components";
-import { slideFromDirections } from "../../slideFromDirections";
+import * as types from "../../types";
 
 const childPanelCss = ({ isCompact, groupOffsetY, offset }) => {
   const totalOffset = isCompact ? 48 : 64;
@@ -42,11 +42,11 @@ const compactStyles = css`
 
 function getSlideOutTransform(slideFrom) {
   switch (slideFrom) {
-    case slideFromDirections.LEFT:
+    case types.slide.LEFT:
       return "translateX(-100%)";
-    case slideFromDirections.RIGHT:
+    case types.slide.RIGHT:
       return "translateX(100%)";
-    case slideFromDirections.BOTTOM:
+    case types.slide.BOTTOM:
       return "translateY(100%)";
     default:
       return null;
@@ -55,10 +55,10 @@ function getSlideOutTransform(slideFrom) {
 
 function getSlideInTransform(slideFrom) {
   switch (slideFrom) {
-    case slideFromDirections.LEFT:
-    case slideFromDirections.RIGHT:
+    case types.slide.LEFT:
+    case types.slide.RIGHT:
       return "translateX(0)";
-    case slideFromDirections.BOTTOM:
+    case types.slide.BOTTOM:
       return "translateY(0)";
     default:
       return null;
@@ -79,15 +79,15 @@ export const Dialog = styled.div(
     let borderTop = null;
 
     switch (slideFrom) {
-      case slideFromDirections.LEFT:
-      case slideFromDirections.RIGHT:
+      case types.slide.LEFT:
+      case types.slide.RIGHT:
         _height = offset.top ? `calc(100% - ${offset.top}px);` : "100%";
         _width = Number.isNaN(Number(width)) ? width : `${width}px`;
-        left = slideFrom === slideFromDirections.LEFT ? 0 : null;
-        right = slideFrom === slideFromDirections.RIGHT ? 0 : null;
+        left = slideFrom === types.slide.LEFT ? 0 : null;
+        right = slideFrom === types.slide.RIGHT ? 0 : null;
         top = `${offset.top}px`;
         break;
-      case slideFromDirections.BOTTOM:
+      case types.slide.BOTTOM:
         _height = Number.isNaN(Number(height)) ? height : `${height}px`;
         _width = `calc(100% - ${offset.left}px - ${offset.right}px)`;
         left = `${offset.left}px`;
@@ -149,8 +149,8 @@ export const DialogContent = styled.div(
     ${stylers.focusRing.subtle(true)};
   }
 
-  ${hasPushedElement && slideFrom === slideFromDirections.LEFT ? `border-right: 1px solid ${tokens.border.color}` : ""}
-  ${hasPushedElement && slideFrom === slideFromDirections.RIGHT ? `border-left: 1px solid ${tokens.border.color}` : ""}
+  ${hasPushedElement && slideFrom === types.slide.LEFT ? `border-right: 1px solid ${tokens.border.color}` : ""}
+  ${hasPushedElement && slideFrom === types.slide.RIGHT ? `border-left: 1px solid ${tokens.border.color}` : ""}
   ${isCompact || kind === "child" ? compactStyles : ""};
 `
 );

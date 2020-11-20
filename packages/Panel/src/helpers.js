@@ -1,6 +1,6 @@
 import React from "react";
 import Panel from "./Panel";
-import { slideFromDirections } from "./slideFromDirections";
+import * as types from "./types";
 
 export function extractChildren(children, types) {
   const _children = [];
@@ -33,13 +33,13 @@ export function warnOfPropErrors(props) {
 
   /* eslint-disable no-unused-expressions */
   switch (props.slideFrom) {
-    case slideFromDirections.LEFT:
-    case slideFromDirections.RIGHT:
+    case types.slide.LEFT:
+    case types.slide.RIGHT:
       props.height !== Panel.defaultProps.height && wrongProps.push("height");
       props.offset.left && wrongProps.push("offset.left");
       props.offset.right && wrongProps.push("offset.right");
       break;
-    case slideFromDirections.BOTTOM:
+    case types.slide.BOTTOM:
       props.width !== Panel.defaultProps.width && wrongProps.push("width");
       props.offset.top && wrongProps.push("offset.top");
       break;

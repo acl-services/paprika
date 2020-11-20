@@ -8,3 +8,9 @@ export const sidePanelKinds = {
   CHILD: "child",
   PRIMARY: "primary",
 };
+
+export const slide = {
+  RIGHT: "right",
+  LEFT: "left",
+  BOTTOM: "bottom",
+};
