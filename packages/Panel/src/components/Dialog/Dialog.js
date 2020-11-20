@@ -109,7 +109,7 @@ function Dialog(props) {
 }
 
 Dialog.types = {
-  kind: { DEFAULT: types.kind.DEFAULT, PRIMARY: types.kind.PRIMARY },
+  kind: { DEFAULT: types.kinds.DEFAULT, PRIMARY: types.kinds.PRIMARY },
 };
 
 const propTypes = {
