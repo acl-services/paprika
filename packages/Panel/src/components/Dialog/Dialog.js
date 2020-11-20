@@ -132,7 +132,7 @@ const propTypes = {
   onClose: PropTypes.func,
   refHeader: PropTypes.shape({ current: PropTypes.instanceOf(Element) }).isRequired,
   refPanelContent: PropTypes.shape({ current: PropTypes.instanceOf(Element) }).isRequired,
-  slideFrom: PropTypes.oneOf([types.slideFrom.RIGHT, types.slideFrom.LEFT, types.slideFrom.BOTTOM]),
+  slideFrom: PropTypes.oneOf([types.slideFroms.RIGHT, types.slideFroms.LEFT, types.slideFroms.BOTTOM]),
   width: PropTypes.oneOfType([PropTypes.string, PropTypes.number]).isRequired,
   isOpen: PropTypes.bool.isRequired,
 };
@@ -147,7 +147,7 @@ const defaultProps = {
   isCompact: false,
   isInline: false,
   onClose: () => {},
-  slideFrom: types.slideFrom.RIGHT,
+  slideFrom: types.slideFroms.RIGHT,
 };
 
 Dialog.propTypes = propTypes;

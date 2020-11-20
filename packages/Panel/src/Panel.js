@@ -235,7 +235,7 @@ const propTypes = {
   onClose: PropTypes.func,
 
   /** Control where the Panel slides in from */
-  slideFrom: PropTypes.oneOf([Panel.types.slideFrom.RIGHT, Panel.types.slideFrom.LEFT, Panel.types.slideFrom.BOTTOM]),
+  slideFrom: PropTypes.oneOf([types.slideFroms.RIGHT, types.slideFroms.LEFT, types.slideFroms.BOTTOM]),
 
   /** The width of the open Panel (when slide in from left or right) */
   width: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
@@ -251,12 +251,12 @@ const defaultProps = {
   height: "33%",
   isCompact: false,
   isInline: false,
-  kind: Panel.types.kind.DEFAULT,
+  kind: types.kinds.DEFAULT,
   offset: { top: 0, left: 0, right: 0 },
   onAfterClose: () => {},
   onAfterOpen: () => {},
   onClose: null,
-  slideFrom: Panel.types.slideFrom.RIGHT,
+  slideFrom: types.slideFroms.RIGHT,
   width: "33%",
   zIndex: zValue(7),
 };

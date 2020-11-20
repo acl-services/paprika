@@ -30,7 +30,7 @@ interface PanelProps {
   /** Callback triggered when the Panel needs to be close */
   onClose?: (...args: any[]) => any;
   /** Control where the Panel slides in from */
-  slideFrom?: Panel.types.slideFrom.RIGHT | Panel.types.slideFrom.LEFT | Panel.types.slideFrom.BOTTOM;
+  slideFrom?: Panel.types.slideFroms.RIGHT | Panel.types.slideFroms.LEFT | Panel.types.slideFroms.BOTTOM;
   /** The width of the open Panel (when slide in from left or right) */
   width?: string | number;
   /** Control the z-index of the Panel */
