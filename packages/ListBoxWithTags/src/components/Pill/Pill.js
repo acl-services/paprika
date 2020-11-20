@@ -15,7 +15,7 @@ const defaultProps = {
 
 export function Delete({ size, onRemove = () => {} }) {
   return (
-    <sc.Delete size={size} data-pka-anchor="listbox-tags-pill-delete" onClick={onRemove}>
+    <sc.Delete size={size} data-pka-anchor="list-box-tags.pill.delete" onClick={onRemove}>
       <Close />
     </sc.Delete>
   );
@@ -24,7 +24,7 @@ export default function Pill(props) {
   const { children, onRemove, size } = props;
 
   return (
-    <sc.Pill>
+    <sc.Pill data-pka-anchor="list-box-tags.pill">
       <sc.Ellipsis>{children}</sc.Ellipsis>
       {size ? <Delete onRemove={onRemove} size={size} /> : null}
     </sc.Pill>
@@ -35,6 +35,6 @@ Pill.propTypes = propTypes;
 Pill.defaultProps = defaultProps;
 
 Delete.propTypes = {
-  onRemove: propTypes.onRemove.isRequired,
-  size: propTypes.size.isRequired,
+  onRemove: PropTypes.func.isRequired,
+  size: PropTypes.oneOf(["small", "medium", "large"]).isRequired,
 };

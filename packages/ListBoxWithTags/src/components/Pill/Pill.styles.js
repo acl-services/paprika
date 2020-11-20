@@ -3,14 +3,17 @@ import tokens from "@paprika/tokens";
 import RawButton from "@paprika/raw-button";
 import stylers from "@paprika/stylers";
 
-export const Pills = styled.div(() => {
+export const Pills = styled.ul(() => {
   return css`
     display: flex;
     flex-wrap: wrap;
+    line-height: 1;
+    margin: 0;
+    padding: 0;
   `;
 });
 
-export const Pill = styled.div(() => {
+export const Pill = styled.li(() => {
   return css`
     align-items: center;
     background: ${tokens.backgroundColor.level0};

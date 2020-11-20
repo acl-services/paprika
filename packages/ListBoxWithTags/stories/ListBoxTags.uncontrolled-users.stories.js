@@ -78,7 +78,7 @@ function App() {
   const [hasSubmitted, setHasSubmitted] = React.useState(false);
 
   function renderPill({ option, Pill, onRemove }) {
-    return <CustomPill option={option} Pill={Pill} onRemove={onRemove} />;
+    return <CustomPill key={option.id} option={option} Pill={Pill} onRemove={onRemove} />;
   }
 
   function handleSubmit(event) {
