@@ -190,8 +190,8 @@ export default function Panel(props) {
 }
 
 Panel.types = {
-  kind: types.sidePanelKinds,
-  slide: types.slide,
+  kind: types.kinds,
+  slideFrom: types.slideFroms,
 };
 
 const propTypes = {
@@ -235,7 +235,7 @@ const propTypes = {
   onClose: PropTypes.func,
 
   /** Control where the Panel slides in from */
-  slideFrom: PropTypes.oneOf([Panel.types.slide.RIGHT, Panel.types.slide.LEFT, Panel.types.slide.BOTTOM]),
+  slideFrom: PropTypes.oneOf([Panel.types.slideFrom.RIGHT, Panel.types.slideFrom.LEFT, Panel.types.slideFrom.BOTTOM]),
 
   /** The width of the open Panel (when slide in from left or right) */
   width: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
@@ -256,7 +256,7 @@ const defaultProps = {
   onAfterClose: () => {},
   onAfterOpen: () => {},
   onClose: null,
-  slideFrom: Panel.types.slide.RIGHT,
+  slideFrom: Panel.types.slideFrom.RIGHT,
   width: "33%",
   zIndex: zValue(7),
 };

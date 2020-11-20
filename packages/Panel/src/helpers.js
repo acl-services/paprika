@@ -33,13 +33,13 @@ export function warnOfPropErrors(props) {
 
   /* eslint-disable no-unused-expressions */
   switch (props.slideFrom) {
-    case types.slide.LEFT:
-    case types.slide.RIGHT:
+    case types.slideFrom.LEFT:
+    case types.slideFrom.RIGHT:
       props.height !== Panel.defaultProps.height && wrongProps.push("height");
       props.offset.left && wrongProps.push("offset.left");
       props.offset.right && wrongProps.push("offset.right");
       break;
-    case types.slide.BOTTOM:
+    case types.slideFrom.BOTTOM:
       props.width !== Panel.defaultProps.width && wrongProps.push("width");
       props.offset.top && wrongProps.push("offset.top");
       break;

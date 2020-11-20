@@ -109,7 +109,7 @@ function Dialog(props) {
 }
 
 Dialog.types = {
-  kind: { DEFAULT: types.sidePanelKinds.DEFAULT, PRIMARY: types.sidePanelKinds.PRIMARY },
+  kind: { DEFAULT: types.kind.DEFAULT, PRIMARY: types.kind.PRIMARY },
 };
 
 const propTypes = {
@@ -132,7 +132,7 @@ const propTypes = {
   onClose: PropTypes.func,
   refHeader: PropTypes.shape({ current: PropTypes.instanceOf(Element) }).isRequired,
   refPanelContent: PropTypes.shape({ current: PropTypes.instanceOf(Element) }).isRequired,
-  slideFrom: PropTypes.oneOf([types.slide.RIGHT, types.slide.LEFT, types.slide.BOTTOM]),
+  slideFrom: PropTypes.oneOf([types.slideFrom.RIGHT, types.slideFrom.LEFT, types.slideFrom.BOTTOM]),
   width: PropTypes.oneOfType([PropTypes.string, PropTypes.number]).isRequired,
   isOpen: PropTypes.bool.isRequired,
 };
@@ -147,7 +147,7 @@ const defaultProps = {
   isCompact: false,
   isInline: false,
   onClose: () => {},
-  slideFrom: types.slide.RIGHT,
+  slideFrom: types.slideFrom.RIGHT,
 };
 
 Dialog.propTypes = propTypes;

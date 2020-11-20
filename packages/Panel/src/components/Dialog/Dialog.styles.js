@@ -42,11 +42,11 @@ const compactStyles = css`
 
 function getSlideOutTransform(slideFrom) {
   switch (slideFrom) {
-    case types.slide.LEFT:
+    case types.slideFrom.LEFT:
       return "translateX(-100%)";
-    case types.slide.RIGHT:
+    case types.slideFrom.RIGHT:
       return "translateX(100%)";
-    case types.slide.BOTTOM:
+    case types.slideFrom.BOTTOM:
       return "translateY(100%)";
     default:
       return null;
@@ -55,10 +55,10 @@ function getSlideOutTransform(slideFrom) {
 
 function getSlideInTransform(slideFrom) {
   switch (slideFrom) {
-    case types.slide.LEFT:
-    case types.slide.RIGHT:
+    case types.slideFrom.LEFT:
+    case types.slideFrom.RIGHT:
       return "translateX(0)";
-    case types.slide.BOTTOM:
+    case types.slideFrom.BOTTOM:
       return "translateY(0)";
     default:
       return null;
@@ -79,15 +79,15 @@ export const Dialog = styled.div(
     let borderTop = null;
 
     switch (slideFrom) {
-      case types.slide.LEFT:
-      case types.slide.RIGHT:
+      case types.slideFrom.LEFT:
+      case types.slideFrom.RIGHT:
         _height = offset.top ? `calc(100% - ${offset.top}px);` : "100%";
         _width = Number.isNaN(Number(width)) ? width : `${width}px`;
-        left = slideFrom === types.slide.LEFT ? 0 : null;
-        right = slideFrom === types.slide.RIGHT ? 0 : null;
+        left = slideFrom === types.slideFrom.LEFT ? 0 : null;
+        right = slideFrom === types.slideFrom.RIGHT ? 0 : null;
         top = `${offset.top}px`;
         break;
-      case types.slide.BOTTOM:
+      case types.slideFrom.BOTTOM:
         _height = Number.isNaN(Number(height)) ? height : `${height}px`;
         _width = `calc(100% - ${offset.left}px - ${offset.right}px)`;
         left = `${offset.left}px`;
@@ -149,8 +149,8 @@ export const DialogContent = styled.div(
     ${stylers.focusRing.subtle(true)};
   }
 
-  ${hasPushedElement && slideFrom === types.slide.LEFT ? `border-right: 1px solid ${tokens.border.color}` : ""}
-  ${hasPushedElement && slideFrom === types.slide.RIGHT ? `border-left: 1px solid ${tokens.border.color}` : ""}
+  ${hasPushedElement && slideFrom === types.slideFrom.LEFT ? `border-right: 1px solid ${tokens.border.color}` : ""}
+  ${hasPushedElement && slideFrom === types.slideFrom.RIGHT ? `border-left: 1px solid ${tokens.border.color}` : ""}
   ${isCompact || kind === "child" ? compactStyles : ""};
 `
 );
