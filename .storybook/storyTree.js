@@ -36,6 +36,7 @@ const storyTree = [
     components: [
       "Calendar",
       "Checkbox",
+      "CopyInput",
       "DateInput",
       "DatePicker",
       "DateRangePicker",
