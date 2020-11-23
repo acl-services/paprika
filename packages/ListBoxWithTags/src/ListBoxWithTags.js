@@ -7,14 +7,23 @@ import { filter } from "./helpers";
 import * as sc from "./ListBoxWithTags.styles";
 
 const propTypes = {
+  /** Expect <ListBoxWithTags.Option /> */
   children: PropTypes.node.isRequired,
+  /** filter function for the ListBoxWithTags can be pair with ListBoxWithTags.filter  */
   filter: PropTypes.func,
+  /** String message to be display when there are not results  */
   noResultsMessage: PropTypes.node,
+  /** Callback whenever the user change a selection on the ListBoxWithTags  */
   onChange: PropTypes.func,
+  /** Callback whenever the user input a new custom option like some@email.com, pass undefined to ignore this behaviour */
   onCustomOption: PropTypes.func,
+  /** Callback once a pill is remove from the Trigger */
   onRemove: PropTypes.func,
+  /** Regex that match the input of the user and reports to onCustomOption. The default is a basic email regex */
   regexCustomOption: PropTypes.instanceOf(RegExp),
+  /** Render prop to override the default Pill style, see example for it's uses.  */
   renderPill: PropTypes.func,
+  /** An array of id that helps the ListBoxWithTags to known what elements are selected  */
   selectedOptions: PropTypes.arrayOf(PropTypes.shape({})),
 };
 

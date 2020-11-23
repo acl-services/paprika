@@ -1,7 +1,7 @@
 {
-  "name": "@paprika/list-box-tags",
+  "name": "@paprika/list-box-with-tags",
   "version": "0.0.1",
-  "description": "ListBoxTags behave as a ListBox with the difference that the selected option stack on pills next to an search input",
+  "description": "ListBoxWithTags behave as a ListBox with the difference that the selected options stacked on pills next to each other",
   "author": "@paprika",
   "main": "lib/index.js",
   "types": "lib/index.d.ts",
@@ -9,7 +9,7 @@
   "repository": {
     "type": "git",
     "url": "https://github.com/acl-services/paprika.git",
-    "directory": "packages/ListBoxTags"
+    "directory": "packages/ListBoxWithTags"
   },
   "publishConfig": {
     "access": "public"

@@ -44,7 +44,7 @@ function App({ size = "medium", isOpen = false }) {
   );
 }
 
-export const Sizes = () => (
+export const Screener = () => (
   <>
     <App size="small" />
     <App size="medium" isOpen />
