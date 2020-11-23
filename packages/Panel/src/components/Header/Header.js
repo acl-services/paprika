@@ -37,7 +37,7 @@ const Header = React.forwardRef((props, ref) => {
           isSemantic={false}
           onClick={onClose}
           size={isCompact ? types.SMALL : types.MEDIUM}
-          isDark={kind === types.sidePanelKinds.PRIMARY}
+          isDark={kind === types.kinds.PRIMARY}
         />
       )}
     </sc.Header>
@@ -45,7 +45,7 @@ const Header = React.forwardRef((props, ref) => {
 });
 
 Header.types = {
-  kind: types.sidePanelKinds,
+  kind: types.kinds,
 };
 
 const propTypes = {

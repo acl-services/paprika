@@ -8,7 +8,7 @@ const Trigger = React.forwardRef((props, ref) => {
 });
 
 Trigger.types = {
-  kind: types.sidePanelKinds,
+  kind: types.kinds,
 };
 
 const propTypes = {

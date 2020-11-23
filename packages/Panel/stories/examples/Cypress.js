@@ -17,7 +17,7 @@ export const PanelDefaultSticky = () => {
     <React.Fragment>
       <Nav />
       <p>
-        <Panel data-pka-anchor="panel" isOpen offsetY={40}>
+        <Panel data-pka-anchor="panel" isOpen offset={{ top: 40 }}>
           <Panel.Header>
             <Heading level={2}>Cypress</Heading>
           </Panel.Header>
