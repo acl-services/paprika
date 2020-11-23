@@ -46,3 +46,12 @@ declare namespace Panel {
     }
   }
 }
+declare namespace Panel {
+  namespace types {
+    namespace slideFroms {
+      const RIGHT: any;
+      const LEFT: any;
+      const BOTTOM: any;
+    }
+  }
+}
