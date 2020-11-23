@@ -13,7 +13,7 @@ import Group from "./components/Group";
 import FocusLock from "./components/FocusLock";
 import * as types from "./types";
 
-import { extractChildren } from "./helpers";
+import { extractChildren, warnOfPropErrors } from "./helpers";
 import { useOffsetScroll } from "./hooks";
 
 const PUSH_REF_TRANSITION_STYLE = "margin-right 0.2s ease";
@@ -25,23 +25,32 @@ export default function Panel(props) {
     a11yText,
     getPushContentElement,
     groupOffsetY,
+    height,
     isCompact,
-    isOpen,
     isInline,
-    isSlideFromLeft,
+    isOpen,
     kind,
-    offsetY,
+    offset,
     onAfterClose,
     onAfterOpen,
     onClose,
+    slideFrom,
     width,
     zIndex,
     ...moreProps
   } = props;
 
+  const offsetTop = "top" in offset ? offset.top : 0;
+
   // Hooks
   const [isVisible, setIsVisible] = React.useState(isOpen);
-  const offsetScroll = useOffsetScroll(offsetY);
+  const offsetScroll = useOffsetScroll(offsetTop);
+
+  const calculatedOffset = {
+    top: offsetScroll,
+    left: "left" in offset ? offset.left : 0,
+    right: "right" in offset ? offset.right : 0,
+  };
 
   // Refs
   const refTrigger = React.useRef(null);
@@ -83,6 +92,10 @@ export default function Panel(props) {
       setIsVisible(true);
     }
   }, [isOpen]);
+
+  React.useEffect(() => {
+    warnOfPropErrors(props);
+  }, []);
 
   React.useLayoutEffect(() => {
     if (getPushContentElement === null) return;
@@ -128,17 +141,18 @@ export default function Panel(props) {
         getPushContentElement={getPushContentElement}
         groupOffsetY={groupOffsetY}
         header={headerExtracted}
+        height={height}
         isCompact={isCompact}
         isInline={isInline}
         isOpen={isOpen}
-        isSlideFromLeft={isSlideFromLeft}
         kind={kind}
-        offsetY={offsetScroll}
+        offset={calculatedOffset}
         onAnimationEnd={handleAnimationEnd}
         onClose={onClose}
         onKeyDown={handleEscKey}
         refHeader={refHeader}
         refPanelContent={refPanelContent}
+        slideFrom={slideFrom}
         width={width}
         zIndex={zIndex}
         {...moreProps}
@@ -176,7 +190,8 @@ export default function Panel(props) {
 }
 
 Panel.types = {
-  kind: types.sidePanelKinds,
+  kind: types.kinds,
+  slideFrom: types.slideFroms,
 };
 
 const propTypes = {
@@ -192,37 +207,40 @@ const propTypes = {
   /** Y offset that is passed down from <Panel.Group> */
   groupOffsetY: PropTypes.number,
 
-  /** Control the compactness of the side panel */
+  /** The height of the open Panel (when slide in from bottom) */
+  height: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
+
+  /** Control the compactness of the Panel */
   isCompact: PropTypes.bool,
 
   /** Render the panel inline */
   isInline: PropTypes.bool,
 
-  /** Control the visibility of the side panel. This prop makes the side panel appear */
+  /** Control the visibility of the Panel. This prop makes the Panel appear. */
   isOpen: PropTypes.bool.isRequired,
-
-  /** Control if the side panel slides from the left */
-  isSlideFromLeft: PropTypes.bool,
 
   /** Modify the look of the Panel */
   kind: PropTypes.oneOf([Panel.types.kind.DEFAULT, Panel.types.kind.CHILD, Panel.types.kind.PRIMARY]),
 
-  /** Control y offset of the panel */
-  offsetY: PropTypes.number,
+  /** Control offset of the Panel. Only use 'top' when sliding in from the left or right. Only use 'left' or 'right' when sliding in from the bottom. */
+  offset: PropTypes.shape({ top: PropTypes.number, left: PropTypes.number, right: PropTypes.number }),
 
-  /** Callback once the panel has been closed event */
+  /** Callback once the Panel has been closed event */
   onAfterClose: PropTypes.func,
 
-  /** Callback once the panel has been opened event */
+  /** Callback once the Panel has been opened event */
   onAfterOpen: PropTypes.func,
 
-  /** Callback triggered when the side panel needs to be close */
+  /** Callback triggered when the Panel needs to be close */
   onClose: PropTypes.func,
 
-  /** The width of the open panel. */
+  /** Control where the Panel slides in from */
+  slideFrom: PropTypes.oneOf([types.slideFroms.RIGHT, types.slideFroms.LEFT, types.slideFroms.BOTTOM]),
+
+  /** The width of the open Panel (when slide in from left or right) */
   width: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
 
-  /** Control the z position of the panel */
+  /** Control the z-index of the Panel */
   zIndex: PropTypes.number,
 };
 
@@ -230,14 +248,15 @@ const defaultProps = {
   a11yText: null,
   getPushContentElement: null,
   groupOffsetY: 0,
+  height: "33%",
   isCompact: false,
   isInline: false,
-  isSlideFromLeft: false,
-  kind: Panel.types.kind.DEFAULT,
-  offsetY: 0,
+  kind: types.kinds.DEFAULT,
+  offset: { top: 0, left: 0, right: 0 },
   onAfterClose: () => {},
   onAfterOpen: () => {},
   onClose: null,
+  slideFrom: types.slideFroms.RIGHT,
   width: "33%",
   zIndex: zValue(7),
 };

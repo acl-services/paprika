@@ -15,16 +15,17 @@ function Dialog(props) {
     groupOffsetY,
     onAnimationEnd,
     header,
+    height,
     kind,
     isCompact,
     isInline,
-    offsetY,
+    offset,
     onClose,
     refHeader,
     refPanelContent,
     width,
     isOpen,
-    isSlideFromLeft,
+    slideFrom,
     ...moreProps
   } = props;
 
@@ -85,19 +86,20 @@ function Dialog(props) {
     <sc.Dialog
       aria-modal={isInline ? null : "true"}
       aria-label={a11yText}
-      hasPushedElement={!!getPushContentElement}
       groupOffsetY={groupOffsetY}
-      kind={kind}
+      hasPushedElement={!!getPushContentElement}
+      height={height}
+      isAnimating={isAnimating}
       isCompact={isCompact}
       isInline={isInline}
       isOpen={isOpen}
-      offsetY={offsetY}
-      isAnimating={isAnimating}
+      kind={kind}
+      offset={offset}
       onAnimationEnd={handleAnimationEnd}
       ref={refPanel}
       role="dialog"
+      slideFrom={slideFrom}
       tabIndex="-1"
-      isSlideFromLeft={isSlideFromLeft}
       width={width}
       {...moreProps}
     >
@@ -107,7 +109,7 @@ function Dialog(props) {
 }
 
 Dialog.types = {
-  kind: { DEFAULT: types.sidePanelKinds.DEFAULT, PRIMARY: types.sidePanelKinds.PRIMARY },
+  kind: { DEFAULT: types.kinds.DEFAULT, PRIMARY: types.kinds.PRIMARY },
 };
 
 const propTypes = {
@@ -117,15 +119,20 @@ const propTypes = {
   getPushContentElement: PropTypes.func,
   groupOffsetY: PropTypes.number,
   header: PropTypes.node,
+  height: PropTypes.oneOfType([PropTypes.string, PropTypes.number]).isRequired,
   kind: PropTypes.oneOf([Dialog.types.kind.DEFAULT, Dialog.types.kind.CHILD]),
   isCompact: PropTypes.bool,
   isInline: PropTypes.bool,
-  offsetY: PropTypes.number,
+  offset: PropTypes.shape({
+    top: PropTypes.number.isRequired,
+    left: PropTypes.number.isRequired,
+    right: PropTypes.number.isRequired,
+  }).isRequired,
   onAnimationEnd: PropTypes.func.isRequired,
   onClose: PropTypes.func,
   refHeader: PropTypes.shape({ current: PropTypes.instanceOf(Element) }).isRequired,
   refPanelContent: PropTypes.shape({ current: PropTypes.instanceOf(Element) }).isRequired,
-  isSlideFromLeft: PropTypes.bool,
+  slideFrom: PropTypes.oneOf([types.slideFroms.RIGHT, types.slideFroms.LEFT, types.slideFroms.BOTTOM]),
   width: PropTypes.oneOfType([PropTypes.string, PropTypes.number]).isRequired,
   isOpen: PropTypes.bool.isRequired,
 };
@@ -139,9 +146,8 @@ const defaultProps = {
   kind: Dialog.types.kind.DEFAULT,
   isCompact: false,
   isInline: false,
-  offsetY: 0,
   onClose: () => {},
-  isSlideFromLeft: false,
+  slideFrom: types.slideFroms.RIGHT,
 };
 
 Dialog.propTypes = propTypes;

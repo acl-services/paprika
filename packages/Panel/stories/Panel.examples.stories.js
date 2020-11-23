@@ -3,6 +3,7 @@ import { getStoryName } from "storybook/storyTree";
 import {
   BasicPanel,
   FocusLockPanel,
+  FromBottom,
   GroupPanel,
   PushContentPanel,
   StickyFooterPanel,
@@ -57,3 +58,6 @@ focusHeading.story = sidePanelStoryParameters;
 
 export const withSortable = () => <WithSortable />;
 withSortable.story = sidePanelStoryParameters;
+
+export const fromBottom = () => <FromBottom />;
+fromBottom.story = sidePanelStoryParameters;

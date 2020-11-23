@@ -179,4 +179,6 @@ en:
     sideNavigation:
       aria_label: Side navigation
       trigger_aria_label: Open navigation
-          
+    copyInput:
+      clicked_tooltip: Copied
+      hover_tooltip: Copy to clipboard
