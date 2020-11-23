@@ -9,8 +9,6 @@ interface FormElementProps {
   children: React.ReactNode;
   /** Should be disabled or not, default is false. */
   isDisabled?: boolean;
-  /** Should label and children be inline or not, default is false. */
-  isInline?: boolean;
   /** Size of the label, error, help and description (font size, min-height, padding, etc). */
   size?: FormElement.types.size.SMALL | FormElement.types.size.MEDIUM | FormElement.types.size.LARGE;
   /** FormElement contains multiple children so Renders a legend element instead of label. */

@@ -46,11 +46,6 @@ const Variations = () => {
         <Error>has an error</Error>
       </FormElement>
       <Gap />
-      <StoryHeading level={2}>FormElement with isInline</StoryHeading>
-      <FormElement isInline>
-        <Label>Form with isInline</Label>
-        <Content>{a11yProps => <Input {...a11yProps} />}</Content>
-      </FormElement>
       <Gap />
       <StoryHeading level={2}>FormElement with hasOptionalLabel</StoryHeading>
       <FormElement hasOptionalLabel>

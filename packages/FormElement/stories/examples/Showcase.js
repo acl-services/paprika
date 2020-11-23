@@ -9,7 +9,6 @@ import FormElement, { Label, Instructions, Content, Description, Error } from ".
 
 const getKnobs = () => ({
   isDisabled: boolean("isDisabled", false),
-  isInline: boolean("isInline", false),
   size: select("size", ShirtSizes.DEFAULT, "medium"),
 });
 

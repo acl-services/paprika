@@ -9,7 +9,7 @@ import { FieldsetContext } from "./components/Content/Content";
 export const FormElementContext = React.createContext({});
 
 function FormElement(props) {
-  const { id, children, isDisabled, isInline, size, hasFieldSet, ...moreProps } = props;
+  const { id, children, isDisabled, size, hasFieldSet, ...moreProps } = props;
   const [ariaDescribedBy, setAriaDescribedBy] = React.useState({});
   const uniqueInputId = React.useRef(nanoid()).current;
   const generateLabelId = id => (isNil(id) || id === "" ? uniqueInputId : id);
@@ -34,13 +34,7 @@ function FormElement(props) {
   };
 
   return (
-    <sc.FormElement
-      as={hasFieldSet ? "fieldset" : "div"}
-      isInline={isInline}
-      size={size}
-      isDisabled={isDisabled}
-      {...moreProps}
-    >
+    <sc.FormElement as={hasFieldSet ? "fieldset" : "div"} size={size} isDisabled={isDisabled} {...moreProps}>
       <FormElementContext.Provider value={value}>{children}</FormElementContext.Provider>
     </sc.FormElement>
   );
@@ -58,9 +52,6 @@ const propTypes = {
   /** Should be disabled or not, default is false. */
   isDisabled: PropTypes.bool,
 
-  /** Should label and children be inline or not, default is false. */
-  isInline: PropTypes.bool,
-
   /** Size of the label, error, help and description (font size, min-height, padding, etc). */
   size: PropTypes.oneOf([FormElement.types.size.SMALL, FormElement.types.size.MEDIUM, FormElement.types.size.LARGE]),
 
@@ -72,7 +63,6 @@ const defaultProps = {
   hasFieldSet: false,
   id: "",
   isDisabled: false,
-  isInline: false,
   size: FormElement.types.size.MEDIUM,
 };
 
