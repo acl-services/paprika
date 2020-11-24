@@ -4,8 +4,10 @@ import Button from "@paprika/button";
 import Input from "@paprika/input";
 import Popover from "@paprika/popover";
 import Sortable from "@paprika/sortable";
+import HandleIcon from "@paprika/icon/lib/DragHandle";
 import useI18n from "@paprika/l10n/lib/useI18n";
 import extractChildren from "@paprika/helpers/lib/extractChildren";
+import tokens from "@paprika/tokens";
 import ColumnManagingItem from "./ColumnsArrangementItem";
 import ColumnDefinition from "./ColumnDefinition";
 import * as sc from "./ColumnsArrangement.styles";
@@ -83,7 +85,7 @@ export default function ColumnsArrangement(props) {
   }
 
   return (
-    <Popover align="bottom" edge="left" minWidth={230}>
+    <Popover align="bottom" edge="left" minWidth={230} offset={parseInt(tokens.spaceSm, 10)}>
       <Popover.Trigger>
         {typeof renderTriggerButton === "function" ? (
           <Popover.Trigger>
@@ -99,7 +101,7 @@ export default function ColumnsArrangement(props) {
                 hasColumnsHidden={hiddenColumns.length > 0}
                 isOpen={isOpen}
               >
-                <sc.Icon />
+                <sc.HideIcon />
                 {getLabelText(hiddenColumns.length, I18n)}
               </sc.Trigger>
             )}
@@ -120,7 +122,12 @@ export default function ColumnsArrangement(props) {
           ) : (
             <sc.Sortable onChange={handleChangeOrder} hasNumbers={false}>
               {filteredColumnIds.map(id => (
-                <Sortable.Item key={id} sortId={id}>
+                <Sortable.Item
+                  key={id}
+                  sortId={id}
+                  isDragDisabled={columns[id].isDisabled}
+                  handle={columns[id].isDisabled ? <sc.LockIcon /> : <HandleIcon />}
+                >
                   <ColumnManagingItem
                     key={id}
                     id={id}
@@ -145,7 +152,6 @@ export default function ColumnsArrangement(props) {
           )}
         </Popover.Card>
       </Popover.Content>
-      <Popover.Tip />
     </Popover>
   );
 }

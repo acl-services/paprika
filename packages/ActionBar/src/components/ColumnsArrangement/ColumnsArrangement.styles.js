@@ -1,7 +1,8 @@
 import styled, { css } from "styled-components";
 import PaprikaSortable from "@paprika/sortable";
 import PaprikaSwitch from "@paprika/switch";
-import HideIcon from "@paprika/icon/lib/Hide";
+import PaprikaHideIcon from "@paprika/icon/lib/Hide";
+import PaprikaLockIcon from "@paprika/icon/lib/Lock";
 import Button from "@paprika/button";
 import stylers from "@paprika/stylers";
 import tokens from "@paprika/tokens";
@@ -64,7 +65,11 @@ export const Trigger = styled(Button)(
   `
 );
 
-export const Icon = styled(HideIcon)`
+export const HideIcon = styled(PaprikaHideIcon)`
   font-size: 1.25em;
   padding-right: ${tokens.spaceSm};
+`;
+
+export const LockIcon = styled(PaprikaLockIcon)`
+  padding: 2px;
 `;
