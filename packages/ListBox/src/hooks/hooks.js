@@ -122,7 +122,7 @@ export function useOnScrolled() {
 
       // this occurs when the first element is a Divider so we want to scroll to the top
       // so the user can see the Divider text instead to see only the option
-      if (state.activeOption - 1 === 0 && state.options[state.activeOption - 1].isDisabled) {
+      if (state.activeOption === 1 && state.options[0].isDisabled) {
         $box.scrollTo({
           top: 0,
         });

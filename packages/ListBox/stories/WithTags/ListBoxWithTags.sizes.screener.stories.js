@@ -44,7 +44,7 @@ function App({ size = "medium", isOpen = false }) {
   );
 }
 
-export const WithTagsScreener = () => (
+export const ListBoxWithTagsScreener = () => (
   <>
     <App size="small" />
     <App size="medium" isOpen />

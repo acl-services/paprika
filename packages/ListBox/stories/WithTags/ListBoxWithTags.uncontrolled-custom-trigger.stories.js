@@ -12,4 +12,4 @@ function App() {
   return <CustomTriggerApp />;
 }
 
-export const WithTagsUncontrolledWithCustomTrigger = () => <App />;
+export const ListBoxWithTagsUncontrolledWithCustomTrigger = () => <App />;

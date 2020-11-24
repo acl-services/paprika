@@ -43,16 +43,7 @@ export default function useWithTags(
   }
 
   function getSelectedOptions() {
-    if (selectedKeys.length) {
-      const options = [];
-      selectedKeys.forEach(key => {
-        options.push(dataDictionary[key]);
-      });
-
-      return options;
-    }
-
-    return [];
+    return selectedKeys.map(key => dataDictionary[key]);
   }
 
   function handleRemove(option) {
@@ -103,7 +94,7 @@ export default function useWithTags(
     filter: handleFilter,
     noResultsMessage: t("listBoxWithTags.no_results_found"),
     onChange: handleChange,
-    onCustomOption: handleCustomOption,
+    onAddCustomOption: handleCustomOption,
     onRemove: handleRemove,
   };
 }

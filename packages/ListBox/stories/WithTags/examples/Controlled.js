@@ -84,7 +84,7 @@ export default function Controlled() {
       <ListBox
         noResultsMessage="No results found, but you can add an email and then press enter..."
         onChange={handleChange}
-        onCustomOption={handleAddedOption}
+        onAddCustomOption={handleAddedOption}
         onRemove={handleRemove}
         selectedOptions={selectedKeys.length ? animals.filter(item => selectedKeys.includes(item.label)) : []}
         filter={handleFilterDebounce}

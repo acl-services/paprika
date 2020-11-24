@@ -9,7 +9,7 @@ import * as sc from "./WithTags.styles";
 
 const propTypes = {
   /** Expect <ListBoxWithTags.Option /> */
-  children: PropTypes.node.isRequired,
+  children: PropTypes.instanceOf(ListBox.Option).isRequired,
   /** filter function for the ListBoxWithTags can be pair with ListBoxWithTags.filter  */
   filter: PropTypes.func,
   /** String message to be display when there are not results  */
@@ -17,11 +17,11 @@ const propTypes = {
   /** Callback whenever the user change a selection on the ListBoxWithTags  */
   onChange: PropTypes.func,
   /** Callback whenever the user input a new custom option like some@email.com, pass undefined to ignore this behaviour */
-  onCustomOption: PropTypes.func,
+  onAddCustomOption: PropTypes.func,
   /** Callback once a pill is remove from the Trigger */
   onRemove: PropTypes.func,
-  /** Regex that match the input of the user and reports to onCustomOption. The default is a basic email regex */
-  regexCustomOption: PropTypes.instanceOf(RegExp),
+  /** Regex that match the input of the user and reports to onAddCustomOption. The default is a basic email regex */
+  customOptionRegex: PropTypes.instanceOf(RegExp),
   /** Render prop to override the default Pill style, see example for it's uses.  */
   renderPill: PropTypes.func,
   /** An array of id that helps the ListBoxWithTags to known what elements are selected  */
@@ -32,9 +32,9 @@ const defaultProps = {
   filter: undefined,
   noResultsMessage: null,
   onChange: () => {},
-  onCustomOption: null,
+  onAddCustomOption: null,
   onRemove: () => {},
-  regexCustomOption: /^.+@.+\..+$/,
+  customOptionRegex: /^.+@.+\..+$/,
   renderPill: null,
   selectedOptions: null,
 };
@@ -95,9 +95,9 @@ export default function WithTags(props) {
     filter,
     noResultsMessage,
     onChange,
-    onCustomOption,
+    onAddCustomOption,
     onRemove,
-    regexCustomOption,
+    customOptionRegex,
     renderPill,
     selectedOptions,
     ...moreProps
@@ -107,8 +107,7 @@ export default function WithTags(props) {
   const refDivRoot = React.useRef(null);
   /* eslint-disable react/prop-types */
   const size =
-    typeof props.size !== "undefined" &&
-    [ListBox.types.size.MEDIUM, ListBox.types.size.SMALL, ListBox.types.size.LARGE].includes(props.size)
+    typeof props.size !== "undefined" && Object.keys(ListBox.types.size).includes(props.size.toUpperCase())
       ? props.size
       : ListBox.types.size.MEDIUM;
   /* eslint-enable react/prop-types */
@@ -117,15 +116,14 @@ export default function WithTags(props) {
 
   function handleKeyDown(event) {
     const label = event.target.value;
-    const regexEmail = regexCustomOption;
     if (
-      onCustomOption !== null &&
-      typeof onCustomOption === "function" &&
+      onAddCustomOption !== null &&
+      typeof onAddCustomOption === "function" &&
       event.key === "Enter" &&
-      regexEmail.test(label)
+      customOptionRegex.test(label)
     ) {
       event.stopPropagation();
-      onCustomOption(label);
+      onAddCustomOption(label);
       refFilter.current.reset();
     }
   }

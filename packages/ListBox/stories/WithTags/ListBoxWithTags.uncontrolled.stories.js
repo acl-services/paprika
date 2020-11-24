@@ -8,4 +8,4 @@ export default {
   title: storyName,
 };
 
-export const WithTagsUncontrolled = () => <UncontrolledApp />;
+export const ListBoxWithTagsUncontrolled = () => <UncontrolledApp />;

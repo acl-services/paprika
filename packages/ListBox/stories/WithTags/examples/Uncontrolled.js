@@ -1,12 +1,12 @@
 import React from "react";
-import ListBox, { useWithTags } from "../../../src/WithTags";
+import ListBox, { useListBoxWithTags } from "../../../src/WithTags";
 import animals from "../mocks";
 
 const defaultFilteredData = animals.slice(0, 20);
 const defaultData = animals;
 
 export default function App() {
-  const { isSelected, filteredData, getSelectedOptions, ...moreUseListBoxWithTagsProps } = useWithTags("label", {
+  const { isSelected, filteredData, getSelectedOptions, ...moreUseListBoxWithTagsProps } = useListBoxWithTags("label", {
     defaultData,
     defaultFilteredData,
   });

@@ -12,4 +12,4 @@ function App() {
   return <UncontrolledUsersApp />;
 }
 
-export const WithTagsUncontrolledUsers = () => <App />;
+export const ListBoxWithTagsUncontrolledUsers = () => <App />;

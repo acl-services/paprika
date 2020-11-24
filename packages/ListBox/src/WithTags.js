@@ -1,1 +1,1 @@
-export { default, useWithTags } from "./components/WithTags";
+export { default, useWithTags as useListBoxWithTags } from "./components/WithTags";

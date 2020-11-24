@@ -1,7 +1,7 @@
 import React from "react";
 import Avatar from "@paprika/avatar";
 import { getAvatarColors } from "@paprika/avatar/lib/helpers";
-import ListBox, { useWithTags } from "../../../src/WithTags";
+import ListBox, { useListBoxWithTags } from "../../../src/WithTags";
 import animals from "../mocks";
 
 const defaultFilteredData = animals.slice(0, 20);
@@ -11,7 +11,7 @@ const defaultData = animals;
 const styleForPill = (color) => ({ alignItems: "center", backgroundColor: color.backgroundColor, borderRadius: "50%", boxSizing: "border-box", color: color.fontColor, display: "flex", height: "24px", justifyContent: "center", marginRight: "8px", padding: "3px", width: "24px", fontSize: ".8rem", lineHeight: 1})
 
 export default function CustomTrigger() {
-  const { isSelected, filteredData, getSelectedOptions, ...moreUseListBoxWithTagsProps } = useWithTags("label", {
+  const { isSelected, filteredData, getSelectedOptions, ...moreUseListBoxWithTagsProps } = useListBoxWithTags("label", {
     defaultData,
     defaultFilteredData,
   });

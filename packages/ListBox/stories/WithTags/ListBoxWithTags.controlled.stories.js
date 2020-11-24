@@ -12,4 +12,4 @@ function App() {
   return <ControlledApp />;
 }
 
-export const WithTagsControlled = () => <App />;
+export const ListBoxWithTagsControlled = () => <App />;
