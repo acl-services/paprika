@@ -6,7 +6,8 @@ const defaultFilteredData = animals.slice(0, 20);
 const defaultData = animals;
 
 export default function App() {
-  const { isSelected, filteredData, getSelectedOptions, ...moreUseListBoxWithTagsProps } = useListBoxWithTags("label", {
+  const { isSelected, filteredData, getSelectedOptions, ...moreUseListBoxWithTagsProps } = useListBoxWithTags({
+    key: "label",
     defaultData,
     defaultFilteredData,
   });
@@ -15,10 +16,6 @@ export default function App() {
     <div style={{ padding: "32px" }}>
       <ListBox selectedOptions={getSelectedOptions()} {...moreUseListBoxWithTagsProps}>
         {filteredData.map(option => {
-          if (typeof option.isCustom !== "undefined") {
-            return null;
-          }
-
           return !isSelected(option.label) ? (
             <ListBox.Option value={option.label} key={option.label} label={option.label}>
               {option.label}

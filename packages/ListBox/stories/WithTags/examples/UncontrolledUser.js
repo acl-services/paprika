@@ -61,7 +61,8 @@ export default function UncontrolledUsers() {
     getSelectedOptions,
     onAddCustomOption,
     ...moreUseListBoxWithTagsProps
-  } = useListBoxWithTags("id", {
+  } = useListBoxWithTags({
+    key: "id",
     defaultData,
     defaultFilteredData,
     defaultSelectedKeys: [0, 1, 6],
@@ -112,10 +113,6 @@ export default function UncontrolledUsers() {
           {...moreUseListBoxWithTagsProps}
         >
           {filteredData.map(option => {
-            if (typeof option.isCustom !== "undefined") {
-              return null;
-            }
-
             const color = getAvatarColors(option.name);
             return !isSelected(option.id) ? (
               <ListBox.Option id={option.id} key={option.id} label={option.name}>

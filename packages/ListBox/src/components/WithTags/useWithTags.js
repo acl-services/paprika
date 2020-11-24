@@ -12,10 +12,13 @@ function prepareDataDictionary(key, data) {
   return dictionary;
 }
 
-export default function useWithTags(
-  key,
-  { defaultData = [], defaultFilteredData = [], defaultSelectedKeys = [], filterAttribute = "label" }
-) {
+export default function useWithTags({
+  key = null,
+  defaultData = [],
+  defaultFilteredData = [],
+  defaultSelectedKeys = [],
+  filterAttribute = "label",
+}) {
   if (!key) throw new Error("Key is Required for useWithTags and should be one of the key (string) in your object");
 
   const [data, setData] = React.useState(defaultData);
@@ -65,16 +68,13 @@ export default function useWithTags(
     // useReducer might be a better alternative
 
     const option = func(label);
+
     setData(prev => {
       return prev.concat(option);
     });
 
     setSelectedKeys(prev => {
       return prev.concat(option[key]);
-    });
-
-    setData(prevData => {
-      return prevData.concat(option);
     });
 
     setFilteredData(defaultData);
