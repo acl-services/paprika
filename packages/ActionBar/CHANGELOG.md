@@ -6,12 +6,6 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 
 ## [Unreleased]
 
-### Changed
-
-- Added lock icon for disabled `<ColumnsArrangement>` items.
-- Disabled `<ColumnsArrangement>` items will not be able to toggle by `Show all` or `Hide all` and not react to drag & drop actions.
-- Adjusted the styles of the popovers.
-
 ## [0.2.0] - 2020-06-08
 
 ### Added
@@ -43,3 +37,11 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 ## [1.1.0] - 2020-11-13
 
 - Added `isAddSortDisabled` prop on `<Sort>` component, and `maxSortFields` parameter in `useSort` hook to support the case of limited sort fields.
+
+## [1.1.1-alpha.4] - 2020-11-24
+
+### Changed
+
+- Added lock icon for disabled `<ColumnsArrangement>` items.
+- Disabled `<ColumnsArrangement>` items will not be able to toggle by `Show all` or `Hide all` and not react to drag & drop actions.
+- Adjusted the styles of the popovers.
