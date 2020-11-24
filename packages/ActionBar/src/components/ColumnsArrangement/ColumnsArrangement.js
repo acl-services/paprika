@@ -125,7 +125,7 @@ export default function ColumnsArrangement(props) {
                   key={id}
                   sortId={id}
                   isDragDisabled={columns[id].isDisabled}
-                  handle={columns[id].isDisabled ? <sc.LockIcon /> : undefined}
+                  handleElement={columns[id].isDisabled ? <sc.LockIcon /> : undefined}
                 >
                   <ColumnManagingItem
                     key={id}

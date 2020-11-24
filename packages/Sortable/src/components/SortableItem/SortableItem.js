@@ -11,7 +11,7 @@ import { itemStyles, itemIndexStyles, itemHandleStyles, itemBodyStyles, itemClos
 const propTypes = {
   children: PropTypes.node.isRequired,
   /** Handle element, default is a handle icon */
-  handle: PropTypes.node,
+  handleElement: PropTypes.node,
   /** Indicator to identify the number sequence  */
   hasNumbers: PropTypes.bool.isRequired,
   /** Numerical representation of an item */
@@ -23,12 +23,12 @@ const propTypes = {
 };
 
 const defaultProps = {
-  handle: <HandleIcon />,
+  handleElement: <HandleIcon />,
   isDragDisabled: false,
   onRemove: null,
 };
 
-const SortableItem = ({ children, index, handle, hasNumbers, isDragDisabled, onRemove, ...moreProps }) => {
+const SortableItem = ({ children, index, handleElement, hasNumbers, isDragDisabled, onRemove, ...moreProps }) => {
   const I18n = useI18n();
 
   const handleRemove = () => {
@@ -49,7 +49,7 @@ const SortableItem = ({ children, index, handle, hasNumbers, isDragDisabled, onR
           {...moreProps}
         >
           <div css={itemHandleStyles} data-pka-anchor="sortable.item.handle">
-            {handle}
+            {handleElement}
           </div>
           {hasNumbers && (
             <div css={itemIndexStyles} data-pka-anchor="sortable.item.number">

@@ -6,4 +6,4 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 
 ## [Unreleased]
 
-- Added `isDragDisabled` and `handle` prop on `Sortable.Item`.
+- Added `isDragDisabled` and `handleElement` prop on `Sortable.Item`.

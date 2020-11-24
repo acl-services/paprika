@@ -8,7 +8,12 @@ const Example = () => {
   return (
     <Story css={storyStyles}>
       <Sortable onChange={() => {}} className="my-custom-sortable-classname">
-        <Sortable.Item sortId="1" className="my-custom-sortable-item-classname" isDragDisabled handle={<LockIcon />}>
+        <Sortable.Item
+          sortId="1"
+          className="my-custom-sortable-item-classname"
+          isDragDisabled
+          handleElement={<LockIcon />}
+        >
           Disabled Item One
         </Sortable.Item>
         <Sortable.Item sortId="2">Item Two</Sortable.Item>
