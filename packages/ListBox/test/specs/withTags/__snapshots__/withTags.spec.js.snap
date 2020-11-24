@@ -1,0 +1,54 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`ListBoxTags should filter correctly the option 1`] = `
+Array [
+  Object {
+    "id": 1,
+    "label": "The Dog",
+  },
+]
+`;
+
+exports[`ListBoxTags should filter correctly the option 2`] = `
+Array [
+  Object {
+    "id": 2,
+    "label": "The Fox",
+  },
+]
+`;
+
+exports[`ListBoxTags should filter correctly the option 3`] = `
+Array [
+  Object {
+    "id": 3,
+    "label": "The Raccoon",
+  },
+]
+`;
+
+exports[`ListBoxTags should filter correctly the option 4`] = `
+Array [
+  Object {
+    "id": 1,
+    "label": "The Dog",
+  },
+  Object {
+    "id": 2,
+    "label": "The Fox",
+  },
+  Object {
+    "id": 3,
+    "label": "The Raccoon",
+  },
+]
+`;
+
+exports[`ListBoxTags should filter correctly the option 5`] = `
+Array [
+  Object {
+    "id": 4,
+    "label": "Dinosaur",
+  },
+]
+`;
