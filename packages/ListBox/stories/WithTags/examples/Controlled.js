@@ -1,5 +1,5 @@
 import React from "react";
-import ListBoxWithTags from "../../src";
+import ListBox from "../../../src/components/WithTags";
 import animals from "../mocks";
 
 // please use a proper debounce function in a your application
@@ -73,7 +73,7 @@ export default function Controlled() {
           return;
         }
 
-        const result = ListBoxWithTags.filter(search, animals);
+        const result = ListBox.filter(search, animals);
         setDataFiltered(result);
       }, 250),
     [data]
@@ -81,7 +81,7 @@ export default function Controlled() {
 
   return (
     <div style={{ padding: "32px" }}>
-      <ListBoxWithTags
+      <ListBox
         noResultsMessage="No results found, but you can add an email and then press enter..."
         onChange={handleChange}
         onCustomOption={handleAddedOption}
@@ -95,12 +95,12 @@ export default function Controlled() {
           }
 
           return !checkIfIsSelected(option.label) ? (
-            <ListBoxWithTags.Option value={option.label} key={option.label} label={option.label}>
+            <ListBox.Option value={option.label} key={option.label} label={option.label}>
               {option.label}
-            </ListBoxWithTags.Option>
+            </ListBox.Option>
           ) : null;
         })}
-      </ListBoxWithTags>
+      </ListBox>
     </div>
   );
 }

@@ -2,7 +2,7 @@ import styled, { css } from "styled-components";
 import tokens from "@paprika/tokens";
 import stylers from "@paprika/stylers";
 import RawButton from "@paprika/raw-button";
-import ListBox from "@paprika/list-box";
+import ListBox from "../..";
 
 const fontSize = {
   [ListBox.types.size.SMALL]: css`

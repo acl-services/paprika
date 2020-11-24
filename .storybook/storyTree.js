@@ -44,7 +44,6 @@ const storyTree = [
       "Input",
       "ListBox",
       "ListBoxBrowser",
-      "ListBoxWithTags",
       "Radio",
       "Select",
       "Sortable",

@@ -1,11 +1,11 @@
 import React from "react";
 import { getStoryName } from "storybook/storyTree";
 
-import ListBoxWithTags, { useListBoxWithTags } from "../src";
+import ListBox, { useWithTags } from "../../src/components/WithTags";
 
 import animals from "./mocks";
 
-const storyName = getStoryName("ListBoxWithTags");
+const storyName = getStoryName("ListBox");
 
 export default {
   title: storyName,
@@ -15,7 +15,7 @@ const defaultFilteredData = animals.slice(0, 20);
 const defaultData = animals;
 
 function App({ size = "medium", isOpen = false }) {
-  const { handleChange, isSelected, handleRemove, filteredData, handleFilter, getSelectedOptions } = useListBoxWithTags(
+  const { handleChange, isSelected, handleRemove, filteredData, handleFilter, getSelectedOptions } = useWithTags(
     "label",
     { defaultData, defaultFilteredData, defaultSelectedKeys: ["Aardvark", "Alpaca", "Anteater"] }
   );
@@ -23,7 +23,7 @@ function App({ size = "medium", isOpen = false }) {
   return (
     <div style={{ padding: "32px" }}>
       <div>size ({size}):</div>
-      <ListBoxWithTags
+      <ListBox
         filter={handleFilter}
         noResultsMessage="No results found, but you can add an email and then press enter..."
         onChange={handleChange}
@@ -34,17 +34,17 @@ function App({ size = "medium", isOpen = false }) {
       >
         {filteredData.map(option => {
           return !isSelected(option.label) ? (
-            <ListBoxWithTags.Option value={option.label} key={option.label} label={option.label}>
+            <ListBox.Option value={option.label} key={option.label} label={option.label}>
               {option.label}
-            </ListBoxWithTags.Option>
+            </ListBox.Option>
           ) : null;
         })}
-      </ListBoxWithTags>
+      </ListBox>
     </div>
   );
 }
 
-export const Screener = () => (
+export const WithTagsScreener = () => (
   <>
     <App size="small" />
     <App size="medium" isOpen />

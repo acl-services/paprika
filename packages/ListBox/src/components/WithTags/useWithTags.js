@@ -1,6 +1,6 @@
 import React from "react";
 import useI18n from "@paprika/l10n/lib/useI18n";
-import { filter } from "./helpers";
+import { filter } from "../../helpers/filter";
 
 function prepareDataDictionary(key, data) {
   const dictionary = {};
@@ -12,12 +12,11 @@ function prepareDataDictionary(key, data) {
   return dictionary;
 }
 
-export default function useListBoxWithTags(
+export default function useWithTags(
   key,
   { defaultData = [], defaultFilteredData = [], defaultSelectedKeys = [], filterAttribute = "label" }
 ) {
-  if (!key)
-    throw new Error("Key is Required for useListBoxWithTags and should be one of the key (string) in your object");
+  if (!key) throw new Error("Key is Required for useWithTags and should be one of the key (string) in your object");
 
   const [data, setData] = React.useState(defaultData);
   const { t } = useI18n();

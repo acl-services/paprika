@@ -1,7 +1,7 @@
 import React from "react";
 import { render, fireEvent, screen, waitFor } from "@testing-library/react"; // fireEvent, waitFor, screen
-import ListBoxTags from "../src";
-import Uncontrolled from "../stories/examples/Uncontrolled";
+import ListBoxTags from "../../../src/components/WithTags";
+import Uncontrolled from "../../../stories/WithTags/ListBoxWithTags.uncontrolled.stories";
 
 function getTrigger(container) {
   return container.querySelector("[data-pka-anchor='popover'] [role='button']");

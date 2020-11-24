@@ -1,10 +1,11 @@
 import React from "react";
 import PropTypes from "prop-types";
-import ListBox from "@paprika/list-box";
 import useI18n from "@paprika/l10n/lib/useI18n";
-import Pill, { Pills } from "./components/Pill";
-import { filter } from "./helpers";
-import * as sc from "./ListBoxWithTags.styles";
+import ListBox from "../..";
+
+import Pill, { Pills } from "../Pill";
+import { filter } from "../../helpers/filter";
+import * as sc from "./WithTags.styles";
 
 const propTypes = {
   /** Expect <ListBoxWithTags.Option /> */
@@ -88,7 +89,7 @@ const renderTrigger = ({ t, size, selectedOptions, onRemove, renderPill }) => (.
   );
 };
 
-export default function ListBoxWithTags(props) {
+export default function WithTags(props) {
   const {
     children,
     filter,
@@ -150,7 +151,7 @@ export default function ListBoxWithTags(props) {
   );
 }
 
-ListBoxWithTags.propTypes = propTypes;
-ListBoxWithTags.defaultProps = defaultProps;
-ListBoxWithTags.Option = ListBox.Option;
-ListBoxWithTags.filter = filter;
+WithTags.propTypes = propTypes;
+WithTags.defaultProps = defaultProps;
+WithTags.Option = ListBox.Option;
+WithTags.filter = filter;
