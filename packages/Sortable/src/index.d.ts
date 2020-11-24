@@ -19,10 +19,14 @@ interface SortableItemProps {
   [x: string]: any;
 
   children: React.ReactNode;
+  /** Handle element, default is a handle icon */
+  handle?: React.ReactNode;
   /** Indicator to identify the number sequence */
   hasNumbers: boolean;
   /** Numerical representation of an item */
   index: number;
+  /** If drag action should be disabled on an item */
+  isDragDisabled?: boolean;
   /** Callback when deleting an item */
   onRemove?: (...args: any[]) => any;
 }
