@@ -4,6 +4,7 @@ import Popover from "@paprika/popover";
 import Button from "@paprika/button";
 import useI18n from "@paprika/l10n/lib/useI18n";
 import CheckIcon from "@paprika/icon/lib/Check";
+import tokens from "@paprika/tokens";
 import FilterItem from "./FilterItem";
 import FilterContext from "./context";
 import columnShape from "../../columnShape";
@@ -67,7 +68,14 @@ export default function Filter(props) {
 
   return (
     <FilterContext.Provider value={{ filtersRef, columns, operator, onChangeOperator, rulesByType }}>
-      <Popover align="bottom" edge="left" maxWidth={600} offset={8} isOpen={isOpen} onClose={handleClose}>
+      <Popover
+        align="bottom"
+        edge="left"
+        maxWidth={600}
+        offset={parseInt(tokens.spaceSm, 10)}
+        isOpen={isOpen}
+        onClose={handleClose}
+      >
         <sc.Trigger
           isSemantic={false}
           kind={Button.types.kind.FLAT}
@@ -102,7 +110,6 @@ export default function Filter(props) {
             </sc.Footer>
           </Popover.Card>
         </Popover.Content>
-        <Popover.Tip />
       </Popover>
     </FilterContext.Provider>
   );

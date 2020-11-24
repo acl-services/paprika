@@ -9,6 +9,7 @@ import Sortable from "./examples/Functional";
 import BasicExample from "./examples/Basic";
 import ServerErrorExample from "./examples/ServerError";
 import ScreenerExample from "./examples/Screener";
+import DisabledItemExample from "./examples/DisabledItem";
 
 const storyName = getStoryName("Sortable");
 
@@ -18,6 +19,7 @@ storiesOf(storyName, module)
 
 storiesOf(`${storyName}/Examples`, module)
   .add("Basic", () => <BasicExample />)
+  .add("Disabled item", () => <DisabledItemExample />)
   .add("Functional", () => (
     <Story css={helpers.storyStyles}>
       <Sortable>{helpers.basicChildren(8)}</Sortable>
