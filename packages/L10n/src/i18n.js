@@ -9,6 +9,9 @@ export const i18n = locales => {
     fallbackLng: defaultLocale,
     lowerCaseLng: true,
     resources: locales || paprikaLocales,
+    interpolation: {
+      escapeValue: false,
+    },
   };
 
   const newInstance = i18next.createInstance(i18nConfig, err => {
