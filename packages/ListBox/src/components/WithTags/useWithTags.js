@@ -64,7 +64,8 @@ export default function useWithTags({
     return selectedKeys.includes(id);
   }
 
-  const handleCustomOption = (func = label => ({ label, isCustom: true })) => label => {
+  const defaultFactoryAddCustomOption = label => ({ label, isCustom: true });
+  const handleAddCustomOption = (func = defaultFactoryAddCustomOption) => label => {
     // useReducer might be a better alternative
 
     const option = func(label);
@@ -94,7 +95,7 @@ export default function useWithTags({
     filter: handleFilter,
     noResultsMessage: t("listBoxWithTags.no_results_found"),
     onChange: handleChange,
-    onAddCustomOption: handleCustomOption,
+    onAddCustomOption: handleAddCustomOption,
     onRemove: handleRemove,
   };
 }

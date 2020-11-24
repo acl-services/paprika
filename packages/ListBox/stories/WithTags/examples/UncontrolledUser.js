@@ -100,6 +100,7 @@ export default function UncontrolledUsers() {
           onAddCustomOption={onAddCustomOption(label => {
             // This allowed you override the default behaviour when creating a custom option
             return {
+              id: label,
               email: label,
               username: `@${label.split("@")[0]}`,
               year: 2020,
