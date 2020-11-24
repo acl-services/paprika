@@ -45,9 +45,6 @@ const renderTrigger = ({ t, size, selectedOptions, onRemove, renderPill }) => (.
 
   function handleClick(event) {
     event.stopPropagation();
-    if (event.target.dataset.pkaAnchor === "listbox-tags-pill-delete") {
-      return;
-    }
 
     if (event.key === "Enter" || event.key === " ") return;
     dispatch({ type: types.togglePopover });
