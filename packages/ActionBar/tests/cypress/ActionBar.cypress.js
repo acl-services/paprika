@@ -224,7 +224,7 @@ describe("ActionBar Arrange Columns", () => {
       .getByText("Hide all")
       .click()
       .get("th")
-      .should("have.length", 1)
+      .should("have.length", 2)
       .getByText("Show all")
       .click()
       .get("th")
@@ -256,11 +256,11 @@ describe("ActionBar Arrange Columns", () => {
       .should("not.contain", "goals");
   });
 
-  it("Should hide all columns", () => {
+  it("Should hide all columns except the disabled ones", () => {
     cy.contains("Arrange").click();
     cy.contains("Hide all").click();
     cy.contains("goals").should("not.be.visible");
-    cy.contains("name").should("not.be.visible");
+    cy.contains("name").should("be.visible");
     cy.contains("status").should("not.be.visible");
     cy.contains("country").should("not.be.visible");
     cy.contains("joined").should("not.be.visible");
@@ -270,8 +270,12 @@ describe("ActionBar Arrange Columns", () => {
 
   it("Should drag and drop to change column order", () => {
     cy.contains("Arrange").click();
+    cy.get('[data-pka-anchor="sortable.item"]')
+      .eq(3)
+      .contains("Country")
+      .should("be.visible");
     cy.get("[data-pka-anchor='sortable.item']")
-      .first()
+      .eq(3)
       .trigger("mousedown", { button: 0 })
       .trigger("mousemove", { button: 0, clientX: 24, clientY: 72 })
       .wait(100)
@@ -280,7 +284,28 @@ describe("ActionBar Arrange Columns", () => {
       .trigger("mouseup")
       .wait(500);
     cy.get('[data-pka-anchor="sortable.item"]')
-      .eq(1)
+      .eq(3)
+      .contains("Joined by")
+      .should("be.visible");
+  });
+
+  it("Should not mess up disabled column order by drag and drop", () => {
+    cy.contains("Arrange").click();
+    cy.get('[data-pka-anchor="sortable.item"]')
+      .eq(0)
+      .contains("Goals")
+      .should("be.visible");
+    cy.get("[data-pka-anchor='sortable.item']")
+      .eq(0)
+      .trigger("mousedown", { button: 0 })
+      .trigger("mousemove", { button: 0, clientX: 24, clientY: 72 })
+      .wait(100)
+      .get('[data-pka-anchor="sortable"]')
+      .trigger("mousemove", { button: 0, clientX: 24, clientY: 100 })
+      .trigger("mouseup")
+      .wait(500);
+    cy.get('[data-pka-anchor="sortable.item"]')
+      .eq(0)
       .contains("Goals")
       .should("be.visible");
   });
