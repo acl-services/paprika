@@ -6,6 +6,12 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 
 ## [Unreleased]
 
+### Changed
+
+- Added lock icon for disabled `<ColumnsArrangement>` items.
+- Disabled `<ColumnsArrangement>` items will not be able to toggle by `Show all` or `Hide all` and not react to drag & drop actions.
+- Adjusted the styles of the popovers.
+
 ## [0.2.0] - 2020-06-08
 
 ### Added

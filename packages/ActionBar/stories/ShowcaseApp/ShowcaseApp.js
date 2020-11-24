@@ -69,16 +69,10 @@ export default function App() {
     data,
     maxSortFields: 3,
   });
-  const { orderedColumnIds, isColumnHidden, ...handlers } = useColumnsArrangement([
-    "goals",
-    "name",
-    "status",
-    "country",
-    "joined",
-    "shareable",
-    "level",
-    "position",
-  ]);
+  const { orderedColumnIds, isColumnHidden, ...handlers } = useColumnsArrangement(
+    ["goals", "name", "status", "country", "joined", "shareable", "level", "position"],
+    ["name"]
+  );
 
   const subset = React.useMemo(() => {
     return sortedData.filter(
@@ -144,6 +138,7 @@ export default function App() {
             <ColumnsArrangement.ColumnDefinition
               id={column.id}
               label={column.label}
+              isDisabled={column.id === "name"}
               isHidden={isColumnHidden(column.id)}
             />
           ))}
