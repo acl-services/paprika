@@ -1,7 +1,7 @@
 import React from "react";
 import Avatar from "@paprika/avatar";
 import { getAvatarColors } from "@paprika/avatar/lib/helpers";
-import ListBox, { useWithTags } from "../../../src/components/WithTags";
+import ListBox, { useWithTags } from "../../../src/WithTags";
 import animals from "../mocks";
 
 const defaultFilteredData = animals.slice(0, 20);

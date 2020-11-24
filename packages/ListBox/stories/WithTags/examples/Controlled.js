@@ -1,5 +1,5 @@
 import React from "react";
-import ListBox from "../../../src/components/WithTags";
+import ListBox from "../../../src/WithTags";
 import animals from "../mocks";
 
 // please use a proper debounce function in a your application

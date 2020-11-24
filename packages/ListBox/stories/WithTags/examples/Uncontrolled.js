@@ -1,5 +1,5 @@
 import React from "react";
-import ListBox, { useWithTags } from "../../../src/components/WithTags";
+import ListBox, { useWithTags } from "../../../src/WithTags";
 import animals from "../mocks";
 
 const defaultFilteredData = animals.slice(0, 20);
