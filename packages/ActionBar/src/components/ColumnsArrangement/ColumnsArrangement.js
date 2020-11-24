@@ -4,7 +4,6 @@ import Button from "@paprika/button";
 import Input from "@paprika/input";
 import Popover from "@paprika/popover";
 import Sortable from "@paprika/sortable";
-import HandleIcon from "@paprika/icon/lib/DragHandle";
 import useI18n from "@paprika/l10n/lib/useI18n";
 import extractChildren from "@paprika/helpers/lib/extractChildren";
 import tokens from "@paprika/tokens";
@@ -126,7 +125,7 @@ export default function ColumnsArrangement(props) {
                   key={id}
                   sortId={id}
                   isDragDisabled={columns[id].isDisabled}
-                  handle={columns[id].isDisabled ? <sc.LockIcon /> : <HandleIcon />}
+                  handle={columns[id].isDisabled ? <sc.LockIcon /> : undefined}
                 >
                   <ColumnManagingItem
                     key={id}
