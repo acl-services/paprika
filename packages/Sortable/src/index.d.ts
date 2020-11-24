@@ -20,7 +20,7 @@ interface SortableItemProps {
 
   children: React.ReactNode;
   /** Handle element, default is a handle icon */
-  handle?: React.ReactNode;
+  handleElement?: React.ReactNode;
   /** Indicator to identify the number sequence */
   hasNumbers: boolean;
   /** Numerical representation of an item */

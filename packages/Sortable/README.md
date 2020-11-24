@@ -35,7 +35,7 @@ npm install @paprika/sortable
 | Prop           | Type   | required | default        | Description                                  |
 | -------------- | ------ | -------- | -------------- | -------------------------------------------- |
 | children       | node   | true     | -              |                                              |
-| handle         | node   | false    | <HandleIcon /> | Handle element, default is a handle icon     |
+| handleElement  | node   | false    | <HandleIcon /> | Handle element, default is a handle icon     |
 | hasNumbers     | bool   | true     | -              | Indicator to identify the number sequence    |
 | index          | number | true     | -              | Numerical representation of an item          |
 | isDragDisabled | bool   | false    | false          | If drag action should be disabled on an item |

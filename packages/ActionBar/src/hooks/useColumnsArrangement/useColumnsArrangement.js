@@ -48,6 +48,7 @@ export default function useColumnsArrangement(defaultOrder, disabledColumnIds = 
         } else {
           draft.add(columnId);
         }
+        return new Set(draft);
       })
     );
   }
