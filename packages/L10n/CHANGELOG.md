@@ -2,6 +2,10 @@
 
 ## [Unreleased]
 
+### Changed
+
+- Avoid double escaped strings.
+
 ## [0.4.1] - 2020-07-09
 
 ### Removed
