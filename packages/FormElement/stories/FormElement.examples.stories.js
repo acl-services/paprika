@@ -9,11 +9,11 @@ import DatePicker from "./examples/DatePicker";
 import ListBox from "./examples/ListBox";
 import ButtonGroup from "./examples/ButtonGroup";
 import NativeInput from "./examples/NativeInput";
-import Nested from "./examples/NestedExample";
+import Nested from "./examples/Nested";
 import HTML from "./examples/HTML";
 import ComponentLabel from "./examples/ComponentLabel";
 import FormElement from "../src/FormElement";
-import InlineContentExample from "./examples/InlineContentExample";
+import InlineContentExample from "./examples/InlineContent";
 
 const storyName = getStoryName("FormElement");
 
@@ -103,7 +103,7 @@ nestedExample.story = {
 };
 
 export const inlineContentExample = () => (
-  <FormElementStory storyName="Inline Content" fileName="examples/InlineContent.js">
+  <FormElementStory storyName="Inline Content" component="FormElement" fileName="examples/InlineContent.js">
     <InlineContentExample />
   </FormElementStory>
 );

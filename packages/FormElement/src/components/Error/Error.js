@@ -25,7 +25,7 @@ function Error(props) {
   if (!children) return null;
 
   return (
-    <div role="alert" css={errorStyles} data-pka-anchor="form-element.error" {...moreProps} id={ariaErrorId}>
+    <div css={errorStyles} data-pka-anchor="form-element.error" {...moreProps} id={ariaErrorId}>
       <ExclamationCircleIcon css={iconStyles} />
       {children}
     </div>

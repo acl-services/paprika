@@ -126,28 +126,6 @@ import FormElement, { Label, Content } from "@paprika/form-element";
 </FormElement>;
 ```
 
-Using with DOM input
-
-```jsx
-import FormElement from "@paprika/form-element";
-
-<FormElement hasRequiredLabel={hasRequiredLabel}>
-  <Label>Name</Label>
-  <FormElement.Content>
-    {a11yProps => (
-      <input
-        aria-required={hasRequiredLabel}
-        aria-describedby={a11yProps[aria-describedby]}
-        aria-invalid={Boolean(errorText.length)}
-        disabled={isDisabled}
-        id={a11yProps.id}
-        readOnly={isReadOnly}
-      />
-    )}
-  </Content>
-</FormElement>;
-```
-
 <!-- eoContent -->
 
 ## Links
