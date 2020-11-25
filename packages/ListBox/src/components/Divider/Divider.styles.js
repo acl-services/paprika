@@ -18,10 +18,21 @@ const textDividerStyles = css`
 `;
 
 export const Divider = styled.li`
+  /* 
+  * IMPORTANT: THE STYLE FOR ALL OPTION MUST BE THE SAME SIZE
+  * THIS IS IMPORTANT FOR CALCULATING THE CORRECT POSITION WHEN EXECUTING useOnScrolled() on Options/helpers/options.js
+  * IF THIS STYLES CHANGES THEN UP AN DOWN WILL NOT WORK CORRECTLY WHEN THE DIVIDER EXISTS
+  * PAY ATTENTION WHEN YOU MODIFY FOR EXAMPLE THE FOLLOWING ATTRIBUTES:
+  * - Border
+  * - margins 
+  * - paddings
+  */
   align-items: center;
+  border: 2px solid transparent;
   color: ${tokens.color.blackLighten20};
   display: flex;
   justify-content: center;
+  margin-bottom: ${tokens.spaceSm};
   padding: ${tokens.spaceSm};
   width: 100%;
 

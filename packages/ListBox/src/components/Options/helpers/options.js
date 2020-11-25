@@ -125,6 +125,20 @@ export function handleArrowKeys({ event, state, dispatch, isArrowDown = null, on
   }
 }
 
+export const toggleOption = ({ index, isMulti, dispatch, onChangeContext }) => {
+  if (isMulti) {
+    toggleMultipleOption({
+      activeOptionIndex: index,
+      dispatch,
+      onChangeContext,
+    });
+
+    return;
+  }
+
+  selectSingleOption({ activeOptionIndex: index, isOpen: false, dispatch, onChangeContext });
+};
+
 export const handleClickOption = ({ props, state, dispatch, onChangeContext }) => event => {
   const { index } = props;
   const { options, hasFilter, isMulti, refFilterInput } = state;
@@ -205,6 +219,11 @@ export function handleEnterOrSpace({ event, state, dispatch, onChangeContext }) 
     }
 
     if (state.isMulti) {
+      // if the "Enter" occurs using in the filter input, prevent it.
+      if (event.target.dataset.pkaAnchor === "list-filter-input") {
+        return;
+      }
+
       dispatch({ type: useListBox.types.togglePopover });
       return;
     }
