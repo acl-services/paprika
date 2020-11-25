@@ -1,7 +1,9 @@
 import React from "react";
 import Heading from "@paprika/heading";
 import Input from "@paprika/input";
-import FormElement, { Label, Content } from "../../src";
+import FormElement from "../../src";
+
+const { Label, Content } = FormElement;
 
 export default function ComponentLabelExample() {
   return (

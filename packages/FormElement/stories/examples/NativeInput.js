@@ -1,5 +1,7 @@
 import React from "react";
-import FormElement, { Content, Label } from "../../src";
+import FormElement from "../../src";
+
+const { Content, Label } = FormElement;
 
 export default function NativeInputExample() {
   return (

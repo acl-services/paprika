@@ -6,6 +6,7 @@ import Description from "../Description";
 import Error from "../Error";
 import Instructions from "../Instructions";
 import Label from "../Label";
+import Layout from "../Layout";
 
 function Fieldset(props) {
   return (
@@ -25,5 +26,6 @@ Fieldset.Label = Label;
 Fieldset.Description = Description;
 Fieldset.Instructions = Instructions;
 Fieldset.Error = Error;
+Fieldset.Layout = Layout;
 
 export default Fieldset;

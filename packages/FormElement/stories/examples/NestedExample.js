@@ -2,7 +2,7 @@
 import React from "react";
 import stylers from "@paprika/stylers";
 import Input from "@paprika/input";
-import FormElement, { LayoutFlexParent, LayoutLeftCol, LayoutRightCol, Content, Label, Error } from "../../src";
+import FormElement from "../../src";
 import Fieldset from "../../src/components/Fieldset";
 
 export default function NestedExample() {
@@ -13,15 +13,15 @@ export default function NestedExample() {
 
   return (
     <Fieldset>
-      <LayoutFlexParent>
-        <LayoutLeftCol>
+      <Fieldset.Layout>
+        <Fieldset.Layout.LeftCol>
           <Fieldset.Label>Form Legend</Fieldset.Label>
-        </LayoutLeftCol>
-        <LayoutRightCol>
+        </Fieldset.Layout.LeftCol>
+        <Fieldset.Layout.RightCol>
           <Fieldset.Instructions>Some instructions for field set Element</Fieldset.Instructions>
           <Fieldset.Content>
             <FormElement style={{ marginTop: stylers.spacer(2) }}>
-              <Label
+              <FormElement.Label
                 help={
                   <>
                     Give me some help. <a href="wegalvanize.com">Learn more</a>.
@@ -29,8 +29,8 @@ export default function NestedExample() {
                 }
               >
                 Sub Label
-              </Label>
-              <Content>
+              </FormElement.Label>
+              <FormElement.Content>
                 {a11yProps => {
                   return (
                     <>
@@ -50,11 +50,11 @@ export default function NestedExample() {
                     </>
                   );
                 }}
-              </Content>
-              <Error>{errorText}</Error>
+              </FormElement.Content>
+              <FormElement.Error>{errorText}</FormElement.Error>
             </FormElement>
             <FormElement>
-              <Label
+              <FormElement.Label
                 help={
                   <>
                     Give me some help. <a href="wegalvanize.com">Learn more</a>.
@@ -62,10 +62,10 @@ export default function NestedExample() {
                 }
               >
                 Sub Label 2
-              </Label>
-              <Content>
+              </FormElement.Label>
+              <FormElement.Content>
                 {a11yProps => (
-                  <LayoutFlexParent>
+                  <FormElement.Layout>
                     <Input
                       aria-required={hasRequiredLabel}
                       disabled={isDisabled}
@@ -77,15 +77,15 @@ export default function NestedExample() {
                       disabled={isDisabled}
                       aria-describedby={a11yProps["aria-describedby"]}
                     />
-                  </LayoutFlexParent>
+                  </FormElement.Layout>
                 )}
-              </Content>
-              <Error>{errorText}</Error>
+              </FormElement.Content>
+              <FormElement.Error>{errorText}</FormElement.Error>
             </FormElement>
           </Fieldset.Content>
           <Fieldset.Error />
-        </LayoutRightCol>
-      </LayoutFlexParent>
+        </Fieldset.Layout.RightCol>
+      </Fieldset.Layout>
     </Fieldset>
   );
 }

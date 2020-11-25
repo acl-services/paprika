@@ -2,11 +2,14 @@
 import React from "react";
 import { render, configure } from "@testing-library/react";
 import L10n from "@paprika/l10n";
-import FormElement, { Label, Content, Instructions, Description, Error, Help } from "../src";
+import Input from "@paprika/input";
+import FormElement from "../src";
 
 configure({ testIdAttribute: "data-pka-anchor" });
 
 const defaultLabel = "Form Element";
+
+const { Label, Content, Instructions, Description, Error } = FormElement;
 
 function FormElementComponent(props) {
   const { children, label, isDisabled, isReadOnly, hasOptionalLabel, hasRequiredLabel, ...moreProps } = props;
@@ -18,7 +21,12 @@ function FormElementComponent(props) {
       {children || (
         <Content>
           {a11yProps => (
-            <input readOnly={isReadOnly} disabled={isDisabled} data-pka-anchor="form-element.input" {...a11yProps} />
+            <Input
+              isReadOnly={isReadOnly}
+              isDisabled={isDisabled}
+              data-pka-anchor="form-element.input"
+              {...a11yProps}
+            />
           )}
         </Content>
       )}
@@ -86,11 +94,11 @@ describe("FormElement", () => {
     const { getByTestId } = render(
       <L10n>
         <FormElement>
+          <Label help="Sample help">A label</Label>
           <Content>
             <input data-pka-anchor="form-element.input" />
           </Content>
           <Description>Sample description</Description>
-          <Help>Sample help</Help>
         </FormElement>
       </L10n>
     );
@@ -103,13 +111,12 @@ describe("FormElement", () => {
     const { getByTestId } = render(
       <L10n>
         <FormElement>
-          <Label>{defaultLabel}</Label>
+          <Label help="Sample help">{defaultLabel}</Label>
           <Content>
             <input data-pka-anchor="form-element.input" />
           </Content>
           <Instructions>Instructions Panel Content Instructions Panel Content Instructions Panel Content</Instructions>
           <Description>Sample description</Description>
-          <Help>Sample help</Help>
         </FormElement>
       </L10n>
     );

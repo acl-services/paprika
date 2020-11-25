@@ -3,7 +3,9 @@ import { Gap } from "storybook/assets/styles/common.styles";
 import StoryHeading from "storybook/components/StoryHeading";
 import Input from "@paprika/input";
 import { FormElementStory } from "../FormElement.stories.styles";
-import FormElement, { Label, Content, Instructions, Description, Error } from "../../src";
+import FormElement from "../../src";
+
+const { Label, Content, Instructions, Description, Error } = FormElement;
 
 const Variations = () => {
   return (

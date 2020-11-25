@@ -1,6 +1,8 @@
 import React from "react";
 import DatePicker from "@paprika/date-picker";
-import FormElement, { Content, Label } from "../../src";
+import FormElement from "../../src";
+
+const { Content, Label } = FormElement;
 
 export default function DatePickerExample() {
   const errorText = "";

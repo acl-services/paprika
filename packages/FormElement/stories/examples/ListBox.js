@@ -1,6 +1,8 @@
 import React from "react";
 import ListBox from "@paprika/list-box";
-import FormElement, { Label, Content } from "../../src";
+import FormElement from "../../src";
+
+const { Label, Content } = FormElement;
 
 export default function ListBoxExample() {
   const optionsArray = ["Black Panther", "Wonder Woman", "Spiderman", "The Incredibles", "Thor", <span>test</span>];

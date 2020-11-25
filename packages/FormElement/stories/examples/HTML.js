@@ -1,6 +1,8 @@
 import React from "react";
 import Input from "@paprika/input";
-import FormElement, { Content, Label } from "../../src";
+import FormElement from "../../src";
+
+const { Content, Label } = FormElement;
 
 export default function HTMLExample() {
   return (

@@ -1,1 +1,1 @@
-export { LayoutRightCol, LayoutLeftCol, LayoutFlexParent } from "./Layout";
+export { default } from "./Layout";

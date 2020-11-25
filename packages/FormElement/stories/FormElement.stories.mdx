@@ -32,7 +32,7 @@ The `<FormElement />` has been designed with accessibility in mind. Users can ma
 
 ```jsx
 <FormElement>
-  <Label help={(Give me some help. <a href="wegalvanize.com">Learn more</a>)}>Form label</Label>
+  <FormElement.Label help={(Give me some help. <a href="wegalvanize.com">Learn more</a>)}>Form label</FormElement.Label>
   <FormElement.Instructions>
     Example text for extra panel for questionnaires. Example text for extra panel for questionnaires Example text for
     extra panel for questionnaires. Example text for extra panel for questionnaires
@@ -57,7 +57,7 @@ The `<FormElement>` can be used with different components to fulfill a variety o
 
 ```jsx
 <FormElement>
-  <Label>Form label</Label>
+  <FormElement.Label>Form label</FormElement.Label>
   <FormElement.Content>
     <Textarea defaultValue="Hello world">
   </FormElement.Content>
@@ -68,7 +68,7 @@ The `<FormElement>` can be used with different components to fulfill a variety o
 
 <FormElementStyles>
   <FormElement>
-    <Label>Form label</Label>
+    <FormElement.Label>Form label</FormElement.Label>
     <FormElement.Content>
       <Textarea defaultValue="Hello world" />
     </FormElement.Content>
@@ -79,7 +79,7 @@ The `<FormElement>` can be used with different components to fulfill a variety o
 
 ```jsx
 <Fieldset>
-  <Label>Form label</Label>
+  <FormElement.Label>Form label</FormElement.Label>
   <FormElement.Content>
     {a11yProps =>
       <Checkbox onChange={() => {}} {...a11yProps}>Black Panther</Checkbox>
@@ -102,9 +102,9 @@ The `ComponentLabel` allows users to use the`label`property of the`<FormElement/
 
 ```jsx
 <FormElement hasRequiredLabel={false}>
-  <Label>
+  <FormElement.Label>
     <Heading level={4}>Form Label</Heading>
-  </Label>
+  </FormElement.Label>
   <FormElement.Content>{a11yProps => <Input onChange={() => {}} {...a11yProps} />}</FormElement.Content>
 </FormElement>
 ```
@@ -123,7 +123,7 @@ The `<FormElement />` can handle a variety of components to further increase the
 
 ```jsx
 <FormElement>
-  <Label>Form label</Label>
+  <FormElement.Label>Form label</FormElement.Label>
   <FormElement.Content>
     {a11yProps => (
       <DatePicker onChange={() => {}}>

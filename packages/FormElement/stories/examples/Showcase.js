@@ -5,7 +5,7 @@ import Input from "@paprika/input";
 import { Rule, Tagline } from "storybook/assets/styles/common.styles";
 import { ShirtSizes } from "@paprika/helpers/lib/customPropTypes";
 import { FormElementStory } from "../FormElement.stories.styles";
-import FormElement, { Label, Instructions, Content, Description, Error } from "../../src";
+import FormElement from "../../src";
 
 const getKnobs = () => ({
   isDisabled: boolean("isDisabled", false),
@@ -37,6 +37,8 @@ const descriptionPropKnobs = () => ({
 const helpPropKnobs = () => ({
   helpText: text("help text", "Give me some help."),
 });
+
+const { Label, Instructions, Content, Description, Error } = FormElement;
 
 const Showcase = props => {
   const [value, setValue] = React.useState("");

@@ -3,7 +3,9 @@ import React from "react";
 import { Rule } from "storybook/assets/styles/common.styles";
 import Input from "@paprika/input";
 import Button from "@paprika/button";
-import FormElement, { Label, Instructions, Content, Description, Error } from "../../src";
+import FormElement from "../../src";
+
+const { Label, Instructions, Content, Description, Error } = FormElement;
 
 const AccessibilityExample = () => {
   const [value, setValue] = React.useState("");

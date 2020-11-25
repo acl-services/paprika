@@ -3,16 +3,9 @@ import React from "react";
 import { Rule } from "storybook/assets/styles/common.styles";
 import Input from "@paprika/input";
 import Button from "@paprika/button";
-import FormElement, {
-  LayoutFlexParent,
-  LayoutLeftCol,
-  LayoutRightCol,
-  Label,
-  Instructions,
-  Content,
-  Description,
-  Error,
-} from "../../src";
+import FormElement from "../../src";
+
+const { Layout, Label, Instructions, Content, Description, Error } = FormElement;
 
 const AccessibilityExample = () => {
   const [value, setValue] = React.useState("");
@@ -33,8 +26,8 @@ const AccessibilityExample = () => {
   return (
     <>
       <FormElement>
-        <LayoutFlexParent>
-          <LayoutLeftCol>
+        <Layout>
+          <Layout.LeftCol>
             <Label
               help={
                 <span>
@@ -44,8 +37,8 @@ const AccessibilityExample = () => {
             >
               Form Label
             </Label>
-          </LayoutLeftCol>
-          <LayoutRightCol>
+          </Layout.LeftCol>
+          <Layout.RightCol>
             <Instructions>
               <span>
                 Example text for extra panel for questionnaires. Example text for extra panel for questionnaires Example
@@ -76,8 +69,8 @@ const AccessibilityExample = () => {
               <span>This is description text</span>
             </Description>
             <Error>{errorText}</Error>
-          </LayoutRightCol>
-        </LayoutFlexParent>
+          </Layout.RightCol>
+        </Layout>
       </FormElement>
       <Rule />
       <Button onClick={setError} style={{ marginRight: "10px" }}>

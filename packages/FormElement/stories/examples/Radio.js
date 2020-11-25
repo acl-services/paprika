@@ -3,7 +3,9 @@ import * as constants from "@paprika/constants/lib/Constants";
 import { action } from "@storybook/addon-actions";
 import Radio from "@paprika/radio";
 import stylers from "@paprika/stylers";
-import FormElement, { Content, Label } from "../../src";
+import FormElement from "../../src";
+
+const { Content, Label } = FormElement;
 
 export default function RadioExample() {
   const optionsArray = ["Black Panther", "Wonder Woman", "Spiderman", "The Incredibles", "Thor", <span>test</span>];

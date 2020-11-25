@@ -1,7 +1,9 @@
 import React from "react";
 import ButtonGroup from "@paprika/button-group";
 import stylers from "@paprika/stylers";
-import FormElement, { Content, Label } from "../../src";
+import FormElement from "../../src";
+
+const { Content, Label } = FormElement;
 
 export default function ButtonGroupExample() {
   const refButtonGroup = React.useRef(null);
