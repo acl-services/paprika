@@ -197,6 +197,8 @@ export default function Trigger(props) {
           types: sanitizeActionTypes(useListBox.types),
           refTrigger,
           isOpen: state.isOpen,
+          handleKeyDown: handleKeyDownKeyboardKeys({ state, dispatch, onChangeContext }),
+          handleKeyUp: handleKeyUpKeyboardKeys({ state, dispatch, onChangeContext }),
         });
       }
 
@@ -209,7 +211,7 @@ export default function Trigger(props) {
         isOpen: state.isOpen,
       });
     }
-  }, [hasRenderTrigger, children, isMulti, state, dispatch, idListBox, refTrigger]);
+  }, [hasRenderTrigger, isMulti, state, children, dispatch, idListBox, refTrigger, onChangeContext]);
 
   const caret = state.isOpen ? (
     <CaretUpIcon isDisabled={isDisabled} css={sc.iconStyles} />
