@@ -33,7 +33,7 @@ export default function NestedExample() {
               <FormElement.Content>
                 {a11yProps => {
                   return (
-                    <>
+                    <FormElement.Layout>
                       <input
                         aria-required={hasRequiredLabel}
                         disabled={isDisabled}
@@ -47,7 +47,7 @@ export default function NestedExample() {
                         readOnly={isReadOnly}
                         aria-describedby={a11yProps["aria-describedby"]}
                       />
-                    </>
+                    </FormElement.Layout>
                   );
                 }}
               </FormElement.Content>
