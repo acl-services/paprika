@@ -39,10 +39,11 @@ npm install @paprika/tabs
 
 ### Tabs.Panel
 
-| Prop       | Type | required | default | Description                               |
-| ---------- | ---- | -------- | ------- | ----------------------------------------- |
-| children   | node | false    | null    |                                           |
-| isSelected | bool | false    | false   | Controls if the option is selected or not |
+| Prop          | Type | required | default | Description                                    |
+| ------------- | ---- | -------- | ------- | ---------------------------------------------- |
+| children      | node | false    | null    |                                                |
+| isSelected    | bool | false    | false   | Controls if the option is selected or not      |
+| shouldUnmount | bool | false    | true    | Should unmount or not when isSelected is false |
 
 ### Tabs.Panels
 
