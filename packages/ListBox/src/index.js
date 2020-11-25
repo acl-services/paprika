@@ -11,6 +11,7 @@ import RawItem from "./components/RawItem";
 import Trigger from "./components/Trigger";
 import Provider from "./store/Provider";
 import OnChangeProvider from "./store/OnChangeProvider";
+import * as types from "./types";
 
 const ListBoxWithProvider = React.forwardRef((props, ref) => {
   const { children, ...moreProps } = props;
@@ -76,3 +77,14 @@ ListBoxWithProvider.Trigger = Trigger;
 ListBoxWithProvider.defaultProps = defaultProps;
 ListBoxWithProvider.displayName = "ListBox";
 ListBoxWithProvider.propTypes = propTypes;
+ListBoxWithProvider.types = {
+  size: {
+    SMALL: types.SMALL,
+    MEDIUM: types.MEDIUM,
+    LARGE: types.LARGE,
+  },
+  kind: {
+    MINOR: types.MINOR,
+    PRIMARY: types.PRIMARY,
+  },
+};

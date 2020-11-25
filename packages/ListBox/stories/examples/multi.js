@@ -99,10 +99,8 @@ export const WithGroupsAndHavePreselectedOptions = () => (
     <ListBox.Option isSelected>Michael Corleone</ListBox.Option>
     {characters.antiHeroes}
     <ListBox.Option isSelected>Mad Max</ListBox.Option>
-
     <ListBox.Divider>Villians</ListBox.Divider>
     {characters.villians}
-
     <ListBox.Divider>Heroes</ListBox.Divider>
     <ListBox.Option isSelected>Aquaman</ListBox.Option>
     {characters.heroes}

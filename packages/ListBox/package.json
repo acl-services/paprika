@@ -30,7 +30,8 @@
       "Option",
       "Popover",
       "RawItem",
-      "Trigger"
+      "Trigger",
+      "WithTags"
     ]
   },
   "devDependencies": {
