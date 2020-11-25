@@ -15,7 +15,12 @@ const sidePanelProps = () => ({
   isCompact: boolean("isCompact", false, sidePanelGroup),
   isInline: boolean("isInline", false, sidePanelGroup),
   isOpen: boolean("isOpen", true, sidePanelGroup),
-  isSlideFromLeft: boolean("isSlideFromLeft", false, sidePanelGroup),
+  slideFrom: select(
+    "slideFrom",
+    [Panel.types.slideFrom.RIGHT, Panel.types.slideFrom.LEFT, Panel.types.slideFrom.BOTTOM],
+    Panel.types.slideFrom.RIGHT,
+    sidePanelGroup
+  ),
   width: text("width", "50%", sidePanelGroup),
   zIndex: number("zIndex", undefined, {}, sidePanelGroup),
   offsetY: number("offsetY", 0, {}, sidePanelGroup),

@@ -4,6 +4,7 @@ import Button from "@paprika/button";
 import Popover from "@paprika/popover";
 import useI18n from "@paprika/l10n/lib/useI18n";
 import CheckIcon from "@paprika/icon/lib/Check";
+import tokens from "@paprika/tokens";
 
 import SortField from "./SortField";
 import SortContext from "./context";
@@ -83,7 +84,14 @@ export default function Sort(props) {
 
   return (
     <SortContext.Provider value={{ columns, fieldsRef }}>
-      <Popover align="bottom" edge="left" maxWidth={600} isOpen={isOpen} onClose={handleClose}>
+      <Popover
+        align="bottom"
+        edge="left"
+        maxWidth={600}
+        offset={parseInt(tokens.spaceSm, 10)}
+        isOpen={isOpen}
+        onClose={handleClose}
+      >
         <sc.Trigger
           isSemantic={false}
           kind={Button.types.kind.FLAT}
@@ -116,7 +124,6 @@ export default function Sort(props) {
             </sc.Footer>
           </Popover.Card>
         </Popover.Content>
-        <Popover.Tip />
       </Popover>
     </SortContext.Provider>
   );

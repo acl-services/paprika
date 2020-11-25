@@ -10,19 +10,25 @@ import { itemStyles, itemIndexStyles, itemHandleStyles, itemBodyStyles, itemClos
 
 const propTypes = {
   children: PropTypes.node.isRequired,
+  /** Handle element, default is a handle icon */
+  handleElement: PropTypes.node,
   /** Indicator to identify the number sequence  */
   hasNumbers: PropTypes.bool.isRequired,
   /** Numerical representation of an item */
   index: PropTypes.number.isRequired,
+  /** If drag action should be disabled on an item */
+  isDragDisabled: PropTypes.bool,
   /** Callback when deleting an item */
   onRemove: PropTypes.func,
 };
 
 const defaultProps = {
+  handleElement: <HandleIcon />,
+  isDragDisabled: false,
   onRemove: null,
 };
 
-const SortableItem = ({ children, index, hasNumbers, onRemove, ...moreProps }) => {
+const SortableItem = ({ children, index, handleElement, hasNumbers, isDragDisabled, onRemove, ...moreProps }) => {
   const I18n = useI18n();
 
   const handleRemove = () => {
@@ -30,7 +36,7 @@ const SortableItem = ({ children, index, hasNumbers, onRemove, ...moreProps }) =
   };
 
   return (
-    <Draggable draggableId={`draggable-${children.props.sortId}`} index={index}>
+    <Draggable draggableId={`draggable-${children.props.sortId}`} index={index} isDragDisabled={isDragDisabled}>
       {(provided, snapshot) => (
         <li
           {...provided.draggableProps}
@@ -43,7 +49,7 @@ const SortableItem = ({ children, index, hasNumbers, onRemove, ...moreProps }) =
           {...moreProps}
         >
           <div css={itemHandleStyles} data-pka-anchor="sortable.item.handle">
-            <HandleIcon />
+            {handleElement}
           </div>
           {hasNumbers && (
             <div css={itemIndexStyles} data-pka-anchor="sortable.item.number">

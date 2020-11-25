@@ -35,3 +35,14 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 ### Added
 
 - Updated: Created and placed all constants into type.js file. [@kaan.darcey](https://github.com/KDarcey).
+
+## [1.0.4-alpha.3] - 2020-11-24
+
+### Removed
+
+- Breaking change: removed `isSlideFromLeft` prop. Now you must use `slideFrom={Panel.slideFromDirections.LEFT}`.
+- Breaking change: removed `offsetY` prop. Now you must use `offset={{ top: 123 }}`.
+
+### Added
+
+- Panel can now come up from the bottom: `slideFrom={Panel.slideFromDirections.BOTTOM}`
