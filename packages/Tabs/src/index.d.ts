@@ -33,6 +33,8 @@ declare namespace Tabs {
     children?: React.ReactNode;
     /** Controls if the option is selected or not */
     isSelected?: boolean;
+    /** Should unmount or not when isSelected is false */
+    shouldUnmount?: boolean;
   }
 }
 declare namespace Tabs {
