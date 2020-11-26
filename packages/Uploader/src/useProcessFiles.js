@@ -177,10 +177,15 @@ export default function useProcessFiles({
     }
 
     if (files.length && !isSameList(files, uploadingFileList) && !isDisabled) {
+      if (files.every(file => !file.isValid || file.status === types.status.SUCCESS)) {
+        return;
+      }
+
       setUploadingFileList(() => JSON.parse(JSON.stringify(files)));
       setIsDisabled(() => true);
       setisCompleted(() => null);
       onChange(files);
+
       files.forEach(file => {
         if (file.isValid && file.status !== types.status.SUCCESS) {
           uploadToServer({ file, endpoint, onProgress, onSuccess, onError, headers });
