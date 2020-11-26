@@ -26,10 +26,6 @@ function Radio(props) {
   const inputRef = React.useRef(null);
   const extendedInputProps = extractChildrenProps(children, RadioInputPropsCollector);
 
-  if (extendedInputProps.refLabel) {
-    delete extendedInputProps.refLabel;
-  }
-
   const handleKeyDown = event => {
     if (
       // Prevent scrolling the page with a spacerbar keypress
