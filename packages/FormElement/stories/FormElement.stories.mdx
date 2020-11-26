@@ -5,6 +5,7 @@ import { docsStoryParameters } from "storybook/assets/storyParameters";
 import Readme from "../README.md";
 import { FormElementStyles } from "./FormElement.stories.styles";
 import Checkbox from "./examples/Checkbox";
+import InlineContent from "./examples/InlineContent";
 import DatePicker from "./examples/DatePicker";
 import Accessibility from "./examples/Accessibility";
 import ComponentLabel from "./examples/ComponentLabel";
@@ -28,7 +29,7 @@ import FormElement from "../src";
 
 ### Accessibility
 
-The `<FormElement />` has been designed with accessibility in mind. Users can make use of `<FormElement.Label />`, `<FormElement.Instructions />`, `<FormElement.Description />`, `<FormElement.Error />`, and `<FormElement.Help />` to add instructions, guidance and feedback to users. Error messages, instructions, and descriptions can be associated to the input field by applying the supplied `ariaDescribedBy` parameter in the render function supplied to the `children` of the `<FormElement.Content>`.
+The `<FormElement />` has been designed with accessibility in mind. Users can make use of `<FormElement.Label />`, `<FormElement.Instructions />`, `<FormElement.Description />`, and `<FormElement.Error />`, to add instructions, guidance and feedback to users. Error messages, instructions, and descriptions can be associated to the input field by applying the supplied `a11yProps` parameter in the render function supplied to the `children` of the `<FormElement.Content>`.
 
 ```jsx
 <FormElement>
@@ -82,9 +83,18 @@ The `<FormElement>` can be used with different components to fulfill a variety o
   <FormElement.Label>Form label</FormElement.Label>
   <FormElement.Content>
     {a11yProps =>
-      <Checkbox onChange={() => {}} {...a11yProps}>Black Panther</Checkbox>
-      <Checkbox onChange={() => {}} {...a11yProps}>Spiderman</Checkbox>
-      <Checkbox onChange={() => {}} {...a11yProps}>Wonder Woman</Checkbox>
+      <Checkbox key="Black Panther" onChange={() => {}}>
+        <Checkbox.Input {...a11yProps} />
+        Black Panther
+      </Checkbox>
+      <Checkbox key="Spiderman" onChange={() => {}}>
+        <Checkbox.Input {...a11yProps} />
+        Spiderman
+      </Checkbox>
+      <Checkbox key="Wonder Woman" onChange={() => {}}>
+        <Checkbox.Input {...a11yProps} />
+        Wonder Woman
+      </Checkbox>
     }
   </FormElement.Content>
 </Fieldset>
@@ -138,4 +148,56 @@ The `<FormElement />` can handle a variety of components to further increase the
 
 <FormElementStyles>
   <DatePicker />
+</FormElementStyles>
+
+### Inline layouts
+
+The `<FormElement />` can handle a variety a variety of layout by making use of the `FormElement.Layout` component, along with `FormElement.Layout.LeftCol` and `FormElement.Layout.RightCol` for inline positioning with adjustable widths.
+
+```jsx
+<FormElement>
+  <Layout>
+    <Layout.LeftCol width="40%">
+      <Label>Form Label</Label>
+    </Layout.LeftCol>
+    <Layout.RightCol>
+      <Instructions>
+        <span>
+          Example text for extra panel for questionnaires. Example text for extra panel for questionnaires Example text
+          for extra panel for questionnaires. Example text for extra panel for questionnaires
+        </span>
+      </Instructions>
+      <Content>
+        {a11yProps => (
+          <>
+            <Input
+              onChange={handleChange}
+              value={value}
+              placeholder="Form placeholder"
+              hasError={Boolean(errorText.length)}
+              {...a11yProps}
+            />
+            <Input
+              onChange={handleChange}
+              value={value}
+              placeholder="Form placeholder"
+              hasError={Boolean(errorText.length)}
+              aria-describedby={a11yProps["aria-describedby"]} // Only aria-describedby should be applied to subsequent Content components
+            />
+          </>
+        )}
+      </Content>
+      <Description>
+        <span>This is description text</span>
+      </Description>
+      <Error>{errorText}</Error>
+    </Layout.RightCol>
+  </Layout>
+</FormElement>
+```
+
+##### Result
+
+<FormElementStyles>
+  <InlineContent />
 </FormElementStyles>

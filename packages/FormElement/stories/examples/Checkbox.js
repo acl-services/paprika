@@ -10,7 +10,7 @@ const { Label, Description, Content } = Fieldset;
 export default function CheckboxExample() {
   const isDisabled = false;
   const size = constants.size.MEDIUM;
-  const optionsArray = ["Black Panther", "Wonder Woman", "Spiderman", "The Incredibles", "Thor", <span>test</span>];
+  const optionsArray = ["Black Panther", "Spiderman", "Wonder Woman"];
 
   const getCheckboxOptions = a11yProps =>
     optionsArray.map(hero => (

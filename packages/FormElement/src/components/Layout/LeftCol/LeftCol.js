@@ -20,7 +20,4 @@ LeftCol.displayName = "FormElement.Layout.LeftCol";
 LeftCol.propTypes = propTypes;
 LeftCol.defaultProps = defaultProps;
 
-LeftCol.LeftCol = sc.LeftCol;
-LeftCol.RightCol = sc.RightCol;
-
 export default LeftCol;

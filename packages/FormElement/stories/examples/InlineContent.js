@@ -7,7 +7,7 @@ import FormElement from "../../src";
 
 const { Layout, Label, Instructions, Content, Description, Error } = FormElement;
 
-const AccessibilityExample = () => {
+export default function InlineContent() {
   const [value, setValue] = React.useState("");
   const [errorText, setErrorText] = React.useState("");
 
@@ -40,10 +40,7 @@ const AccessibilityExample = () => {
           </Layout.LeftCol>
           <Layout.RightCol>
             <Instructions>
-              <span>
-                Example text for extra panel for questionnaires. Example text for extra panel for questionnaires Example
-                text for extra panel for questionnaires. Example text for extra panel for questionnaires
-              </span>
+              <span>Example text for extra panel for questionnaires.</span>
             </Instructions>
             <Content>
               {a11yProps => (
@@ -79,6 +76,4 @@ const AccessibilityExample = () => {
       <Button onClick={clearError}>Clear Error</Button>
     </>
   );
-};
-
-export default () => <AccessibilityExample />;
+}
