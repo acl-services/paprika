@@ -5,7 +5,7 @@ interface UploaderProps {
   [x: string]: any;
   /** Accessible message for the input[type="file"]. */
   a11yText?: string;
-  /** An array of string describing the allowed file types for the uploader. */
+  /** An array of strings describing the allowed file types for the uploader. Common types can be found here: https://developer.mozilla.org/en-US/docs/Web/HTTP/Basics_of_HTTP/MIME_types/Common_types.  Use the "MIME Type" -- not the "Extension" -- value. */
   supportedMimeTypes?: string[];
   /** When false the uploader only accept one file per upload. */
   canChooseMultiple?: boolean;

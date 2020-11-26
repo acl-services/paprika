@@ -19,7 +19,7 @@ const propTypes = {
   */
   a11yText: PropTypes.string,
   /**
-    An array of string describing the allowed file types for the uploader.
+    An array of strings describing the allowed file types for the uploader. Common types can be found here: https://developer.mozilla.org/en-US/docs/Web/HTTP/Basics_of_HTTP/MIME_types/Common_types.  Use the "MIME Type" -- not the "Extension" -- value.
   */
   supportedMimeTypes: PropTypes.arrayOf(PropTypes.string),
   /**
