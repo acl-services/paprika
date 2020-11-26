@@ -17,7 +17,7 @@ export const FormElementContext = React.createContext({});
 function FormElement(props) {
   const { id, children, isDisabled, size, hasFieldSet, ...moreProps } = props;
   const [ariaDescribedBy, setAriaDescribedBy] = React.useState({});
-  const uniqueInputId = React.useRef(nanoid()).current;
+  const [uniqueInputId] = React.useState(nanoid);
   const generateLabelId = id => (isNil(id) || id === "" ? uniqueInputId : id);
   const labelId = generateLabelId(id);
   const refLabel = React.useRef(null);
