@@ -25,7 +25,6 @@ npm install @paprika/radio
 | Prop             | Type                                                                       | required | default                 | Description                                                |
 | ---------------- | -------------------------------------------------------------------------- | -------- | ----------------------- | ---------------------------------------------------------- |
 | a11yText         | string                                                                     | false    | null                    | Used for aria-label on the radio input                     |
-| ariaDescribedBy  | string                                                                     | false    | null                    | Used for aria-describedby on the radio input               |
 | canDeselect      | bool                                                                       | false    | false                   | Describe if the radio started as selected or not           |
 | children         | node                                                                       | false    | null                    | Used for label contents                                    |
 | isChecked        | bool                                                                       | false    | false                   |                                                            |

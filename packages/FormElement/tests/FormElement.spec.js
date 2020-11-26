@@ -3,6 +3,7 @@ import React from "react";
 import { render, configure } from "@testing-library/react";
 import L10n from "@paprika/l10n";
 import Input from "@paprika/input";
+import Fieldset from "../src/components/Fieldset";
 import FormElement from "../src";
 
 configure({ testIdAttribute: "data-pka-anchor" });
@@ -146,14 +147,14 @@ describe("FormElement", () => {
   it("renders fieldset, legend and not label element", () => {
     const { container } = render(
       <L10n>
-        <FormElement hasFieldSet>
+        <Fieldset>
           <Label>{defaultLabel}</Label>
           <Content>
             <input data-pka-anchor="form-element.input" />
           </Content>
           <Description>Sample description</Description>
           <Error>Sample error</Error>
-        </FormElement>
+        </Fieldset>
       </L10n>
     );
     expect(container.querySelector("fieldset")).toBeInTheDocument();

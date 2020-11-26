@@ -27,7 +27,7 @@ const AccessibilityExample = () => {
     <>
       <FormElement>
         <Layout>
-          <Layout.LeftCol>
+          <Layout.LeftCol width="40%">
             <Label
               help={
                 <span>

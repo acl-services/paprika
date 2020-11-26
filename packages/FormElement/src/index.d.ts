@@ -42,16 +42,6 @@ declare namespace FormElement {
   }
 }
 declare namespace FormElement {
-  function Help(props: HelpProps): JSX.Element;
-  interface HelpProps {
-    [x: string]: any;
-
-    children: React.ReactNode;
-    /** Aria text for information button to trigger help popover. */
-    triggerA11yText?: string;
-  }
-}
-declare namespace FormElement {
   function Instructions(props: InstructionsProps): JSX.Element;
   interface InstructionsProps {
     [x: string]: any;
@@ -77,6 +67,14 @@ declare namespace FormElement {
     isVisuallyHidden?: boolean;
 
     onClick?: (...args: any[]) => any;
+  }
+}
+declare namespace FormElement {
+  function Layout(props: LayoutProps): JSX.Element;
+  interface LayoutProps {
+    [x: string]: any;
+
+    children?: React.ReactNode;
   }
 }
 

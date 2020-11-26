@@ -8,7 +8,7 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 
 ### Removed
 
-- Remove `ariaDescribedBy` prop
+- Remove `ariaDescribedBy` prop, reorder spread order of extendedInputProps [@tristanjasper](https://github.com/tristanjasper).
 
 ## [0.2.0] - 2020-01-14
 
