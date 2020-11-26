@@ -36,14 +36,14 @@ const Checkbox = props => {
   }
 
   const inputProps = {
-    ...extendedInputProps,
     checked: checkedState === types.checkboxStates.CHECKED,
     disabled: isDisabled,
-    id: checkboxId,
     onChange,
     ref: inputRef,
     tabIndex,
     type: "checkbox",
+    ...extendedInputProps,
+    id: checkboxId,
   };
   if (a11yText) inputProps["aria-label"] = a11yText;
 

@@ -54,11 +54,9 @@ function Radio(props) {
   };
 
   const inputProps = {
-    ...extendedInputProps,
     onClick,
     checked: isChecked,
     disabled: isDisabled,
-    id: radioId,
     name,
     onKeyDown: handleKeyDown,
     onKeyUp: handleKeyUp,
@@ -66,6 +64,8 @@ function Radio(props) {
     tabIndex,
     type: "radio",
     value,
+    ...extendedInputProps,
+    id: radioId,
   };
   if (a11yText) inputProps["aria-label"] = a11yText;
 
