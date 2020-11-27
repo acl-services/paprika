@@ -102,13 +102,16 @@ zh:
       trigger:
         placeholder: 选择…
       filter:
-        a11y_text: 筛选
+        a11y_text: 搜索
         no_results_message: 您的搜索结果没有匹配任何选项。
-        placeholder: 筛选…
+        placeholder: 搜索…
     listBoxBrowser:
       explore: 探索更多选项
       selected: 选定选项
       selectOne: 选择一项或多项…
+    listBoxWithTags:
+      placeholder: 选择…
+      no_results_found: 未找到结果
     actionBar:
       columns_arrangement:
         hide_all: 全部隐藏
@@ -116,7 +119,7 @@ zh:
         label: 排列
         singular_label: 隐藏 1 列
         plural_label: "隐藏 {{numberOfHiddenColumn}} 列"
-        search_placeholder: 筛选…
+        search_placeholder: 搜索…
       no_results: 没有结果
       filter:
         no_filters_applied: 没有过滤器应用于此视图
@@ -176,4 +179,6 @@ zh:
     sideNavigation:
       aria_label: 侧边导航
       trigger_aria_label: 打开导航
-          
+    copyInput:
+      clicked_tooltip: 已复制
+      hover_tooltip: 复制到剪贴板
