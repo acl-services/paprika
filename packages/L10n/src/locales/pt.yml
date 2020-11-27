@@ -110,7 +110,7 @@ pt:
       selected: opções selecionadas
       selectOne: Selecione um ou mais itens...
     listBoxWithTags:
-      placeholder: Selecione…
+      placeholder: Selecione...
       no_results_found: Nenhum resultado encontrado
     actionBar:
       columns_arrangement:
@@ -181,4 +181,4 @@ pt:
       trigger_aria_label: Abrir navegação
     copyInput:
       clicked_tooltip: Copiado
-      hover_tooltip: Copiara para área de transferência
+      hover_tooltip: Copiar para área de transferência
