@@ -102,13 +102,16 @@ de:
       trigger:
         placeholder: Auswählen...
       filter:
-        a11y_text: Filtern
+        a11y_text: Suchen
         no_results_message: Ihr Suchergebnis entsprach keiner der Optionen.
-        placeholder: Filtern...
+        placeholder: Suchen...
     listBoxBrowser:
       explore: Weitere Optionen anzeigen
       selected: ausgewählte Optionen
       selectOne: Ein oder mehrere Elemente auswählen...
+    listBoxWithTags:
+      placeholder: Auswählen…
+      no_results_found: Keine Ergebnisse gefunden
     actionBar:
       columns_arrangement:
         hide_all: Alles ausblenden
@@ -116,7 +119,7 @@ de:
         label: Neu anordnen
         singular_label: 1 Spalte ausgeblendet
         plural_label: "{{numberOfHiddenColumn}} Spalten ausgeblendet"
-        search_placeholder: Filtern...
+        search_placeholder: Suchen...
       no_results: Keine Ergebnisse
       filter:
         no_filters_applied: Auf diese Ansicht wurden keine Filter angewendet
@@ -176,4 +179,6 @@ de:
     sideNavigation:
       aria_label: Seiten-Navigation
       trigger_aria_label: Navigation öffnen
-          
+    copyInput:
+      clicked_tooltip: Kopiert
+      hover_tooltip: In die Zwischenablage kopieren

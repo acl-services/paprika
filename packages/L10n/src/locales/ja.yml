@@ -102,13 +102,16 @@ ja:
       trigger:
         placeholder: 選択...
       filter:
-        a11y_text: フィルター
+        a11y_text: 検索
         no_results_message: 検索結果はどのオプションにも一致しませんでした。
-        placeholder: フィルター...
+        placeholder: 検索...
     listBoxBrowser:
       explore: より多くのオプションを探す
       selected: 選択されたオプション
       selectOne: 1 つ以上の項目を選択...
+    listBoxWithTags:
+      placeholder: 選択…
+      no_results_found: 結果が見つかりません
     actionBar:
       columns_arrangement:
         hide_all: すべて非表示
@@ -116,7 +119,7 @@ ja:
         label: 調整
         singular_label: 1列非表示
         plural_label: "{{numberOfHiddenColumn}}列非表示"
-        search_placeholder: フィルター...
+        search_placeholder: 検索...
       no_results: 結果なし
       filter:
         no_filters_applied: このビューに適用するフィルターなし
@@ -176,4 +179,6 @@ ja:
     sideNavigation:
       aria_label: スライドのナビゲーション
       trigger_aria_label: ナビゲーションを開く
-          
+    copyInput:
+      clicked_tooltip: コピー済み
+      hover_tooltip: クリップボードにコピー
