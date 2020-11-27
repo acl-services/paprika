@@ -6,6 +6,10 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 
 ## [Unreleased]
 
+### Changed (breaking)
+
+- Added ability to extend input props through api, remove ariaDescribedBy prop [@tristanjasper](https://github.com/tristanjasper).
+
 ## [0.1.6] - 2020-01-31
 
 ### Added

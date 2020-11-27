@@ -7,21 +7,9 @@ const FontSizes = {
   large: stylers.fontSize(0),
 };
 
-export const Sections = styled.div(
-  ({ isInline }) => css`
-    ${isInline && `flex-grow: 1;`}
-  `
-);
-
-const inlineFormElementStyles = css`
-  align-items: baseline;
-  display: flex;
-`;
-
 export const FormElement = styled.div(
-  ({ size, isInline, isDisabled }) => css`
+  ({ size, isDisabled }) => css`
     ${FontSizes[size]}
-    ${isInline && inlineFormElementStyles};
     ${isDisabled && `opacity: 0.5;`}
     border: none;
     margin: 0;

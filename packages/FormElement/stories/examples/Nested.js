@@ -1,59 +1,91 @@
+/* eslint-disable react/jsx-wrap-multilines */
 import React from "react";
-import styled from "styled-components";
 import stylers from "@paprika/stylers";
 import Input from "@paprika/input";
-import FormElement from "../../src/FormElement";
-
-const InputSet = styled.div`
-  display: flex;
-  > div {
-    margin-left: 8px;
-  }
-`;
+import FormElement from "../../src";
+import Fieldset from "../../src/components/Fieldset";
 
 export default function NestedExample() {
+  const hasRequiredLabel = false;
+  const errorText = "";
+  const isDisabled = false;
+  const isReadOnly = false;
+
   return (
-    <FormElement hasFieldSet label="Form Legend">
-      <FormElement.Content>
-        {({ ariaDescribedBy: ariaDescribedByOuter }) => (
-          <>
-            <FormElement style={{ marginTop: stylers.spacer(2) }} isInline label="Subset 1">
-              <FormElement.Help>
-                Give me some help.{" "}
-                <a href="https://youtu.be/dQw4w9WgXcQ" target="_blank" rel="noreferrer">
-                  Learn more
-                </a>
-                .
-              </FormElement.Help>
+    <Fieldset>
+      <Fieldset.Layout>
+        <Fieldset.Layout.LeftCol>
+          <Fieldset.Label>Form Legend</Fieldset.Label>
+        </Fieldset.Layout.LeftCol>
+        <Fieldset.Layout.RightCol>
+          <Fieldset.Instructions>Some instructions for field set Element</Fieldset.Instructions>
+          <Fieldset.Content>
+            <FormElement style={{ marginTop: stylers.spacer(2) }}>
+              <FormElement.Label
+                help={
+                  <>
+                    Give me some help. <a href="wegalvanize.com">Learn more</a>.
+                  </>
+                }
+              >
+                Sub Label
+              </FormElement.Label>
               <FormElement.Content>
-                {({ idForLabel, ariaDescribedBy }) => (
-                  <InputSet>
-                    <Input aria-describedby={ariaDescribedBy + ariaDescribedByOuter} id={idForLabel} />
-                    <Input aria-describedby={ariaDescribedBy + ariaDescribedByOuter} />
-                  </InputSet>
+                {a11yProps => {
+                  return (
+                    <FormElement.Layout>
+                      <input
+                        aria-required={hasRequiredLabel}
+                        disabled={isDisabled}
+                        readOnly={isReadOnly}
+                        id={a11yProps.id}
+                        aria-describedby={a11yProps["aria-describedby"]}
+                      />
+                      <input
+                        aria-required={hasRequiredLabel}
+                        disabled={isDisabled}
+                        readOnly={isReadOnly}
+                        aria-describedby={a11yProps["aria-describedby"]}
+                      />
+                    </FormElement.Layout>
+                  );
+                }}
+              </FormElement.Content>
+              <FormElement.Error>{errorText}</FormElement.Error>
+            </FormElement>
+            <FormElement>
+              <FormElement.Label
+                help={
+                  <>
+                    Give me some help. <a href="wegalvanize.com">Learn more</a>.
+                  </>
+                }
+              >
+                Sub Label 2
+              </FormElement.Label>
+              <FormElement.Content>
+                {a11yProps => (
+                  <FormElement.Layout>
+                    <Input
+                      aria-required={hasRequiredLabel}
+                      disabled={isDisabled}
+                      readOnly={isReadOnly}
+                      {...a11yProps}
+                    />
+                    <Input
+                      aria-required={hasRequiredLabel}
+                      disabled={isDisabled}
+                      aria-describedby={a11yProps["aria-describedby"]}
+                    />
+                  </FormElement.Layout>
                 )}
               </FormElement.Content>
+              <FormElement.Error>{errorText}</FormElement.Error>
             </FormElement>
-            <FormElement isInline label="Subset 2">
-              <FormElement.Help>
-                Give me some help.{" "}
-                <a href="https://youtu.be/dQw4w9WgXcQ" target="_blank" rel="noreferrer">
-                  Learn more
-                </a>
-                .
-              </FormElement.Help>
-              <FormElement.Content>
-                {({ idForLabel, ariaDescribedBy }) => (
-                  <InputSet>
-                    <Input aria-describedby={ariaDescribedBy + ariaDescribedByOuter} id={idForLabel} />{" "}
-                    <Input aria-describedby={ariaDescribedBy + ariaDescribedByOuter} />
-                  </InputSet>
-                )}
-              </FormElement.Content>
-            </FormElement>
-          </>
-        )}
-      </FormElement.Content>
-    </FormElement>
+          </Fieldset.Content>
+          <Fieldset.Error />
+        </Fieldset.Layout.RightCol>
+      </Fieldset.Layout>
+    </Fieldset>
   );
 }

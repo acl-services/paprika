@@ -8,18 +8,19 @@ import { FormElementStory } from "../FormElement.stories.styles";
 import FormElement from "../../src";
 
 const getKnobs = () => ({
-  hasOptionalLabel: boolean("hasOptionalLabel", false),
-  hasRequiredLabel: boolean("hasRequiredLabel", false),
   isDisabled: boolean("isDisabled", false),
-  isInline: boolean("isInline", false),
-  isLabelVisuallyHidden: boolean("isLabelVisuallyHidden", false),
-  isReadOnly: boolean("isReadOnly", false),
-  label: text("label", "Form element"),
   size: select("size", ShirtSizes.DEFAULT, "medium"),
 });
 
 const errorPropKnobs = () => ({
   errorText: text("error text", ""),
+});
+
+const labelPropKnobs = () => ({
+  isVisuallyHidden: boolean("is Label Visually Hidden", false),
+  hasOptionalLabel: boolean("hasOptionalLabel", false),
+  hasRequiredLabel: boolean("hasRequiredLabel", false),
+  label: text("label", "Form element"),
 });
 
 const instructionsPropKnobs = () => ({
@@ -37,6 +38,8 @@ const helpPropKnobs = () => ({
   helpText: text("help text", "Give me some help."),
 });
 
+const { Label, Instructions, Content, Description, Error } = FormElement;
+
 const Showcase = props => {
   const [value, setValue] = React.useState("");
 
@@ -51,28 +54,28 @@ const Showcase = props => {
       <Tagline>Form Element.</Tagline>
       <Rule />
       <FormElement {...props}>
-        <FormElement.Instructions>{instructionsPropKnobs().instructionsText}</FormElement.Instructions>
-        <FormElement.Content>
-          {({ idForLabel, ariaDescribedBy }) => (
+        <Label onClick={() => console.log("label clicked")} help={helpPropKnobs().helpText} {...labelPropKnobs()}>
+          {labelPropKnobs().label}
+        </Label>
+        <Instructions>{instructionsPropKnobs().instructionsText}</Instructions>
+        <Content>
+          {a11yProps => (
             <Input
-              id={idForLabel}
               onChange={handleChange}
               value={value}
               placeholder="Form placeholder"
-              aria-describedby={ariaDescribedBy}
               aria-required={props.hasRequiredLabel}
               hasError={Boolean(errorPropKnobs().errorText)}
               isDisabled={props.isDisabled}
-              isReadOnly={props.isReadOnly}
               size={props.size}
+              {...a11yProps}
             />
           )}
-        </FormElement.Content>
-        <FormElement.Error>{errorPropKnobs().errorText}</FormElement.Error>
-        <FormElement.Description>
+        </Content>
+        <Error>{errorPropKnobs().errorText}</Error>
+        <Description>
           <span>{descriptionPropKnobs().descriptionText}</span>
-        </FormElement.Description>
-        <FormElement.Help>{helpPropKnobs().helpText}</FormElement.Help>
+        </Description>
       </FormElement>
     </FormElementStory>
   );

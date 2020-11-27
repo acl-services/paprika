@@ -5,8 +5,6 @@ interface RadioProps {
   [x: string]: any;
   /** Used for aria-label on the radio input */
   a11yText?: string;
-  /** Used for aria-describedby on the radio input */
-  ariaDescribedBy?: string;
   /** Describe if the radio started as selected or not */
   canDeselect?: boolean;
   /** Used for label contents */

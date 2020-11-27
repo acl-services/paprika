@@ -1,39 +1,51 @@
+/* eslint-disable react/prop-types */
 import React from "react";
 import { render, configure } from "@testing-library/react";
 import L10n from "@paprika/l10n";
+import Input from "@paprika/input";
+import Fieldset from "../src/components/Fieldset";
 import FormElement from "../src";
 
 configure({ testIdAttribute: "data-pka-anchor" });
 
 const defaultLabel = "Form Element";
 
+const { Label, Content, Instructions, Description, Error } = FormElement;
+
+function FormElementComponent(props) {
+  const { children, label, isDisabled, isReadOnly, hasOptionalLabel, hasRequiredLabel, ...moreProps } = props;
+  return (
+    <FormElement {...moreProps}>
+      <Label hasRequiredLabel={hasRequiredLabel} hasOptionalLabel={hasOptionalLabel}>
+        {label || defaultLabel}
+      </Label>
+      {children || (
+        <Content>
+          {a11yProps => (
+            <Input
+              isReadOnly={isReadOnly}
+              isDisabled={isDisabled}
+              data-pka-anchor="form-element.input"
+              {...a11yProps}
+            />
+          )}
+        </Content>
+      )}
+    </FormElement>
+  );
+}
+
 function renderComponent(props = {}) {
-  const { children, label, isDisabled, isReadOnly, ...moreProps } = props;
   return render(
     <L10n>
-      <FormElement label={label || defaultLabel} {...moreProps}>
-        {children || (
-          <FormElement.Content>
-            {({ idForLabel, ariaDescribedBy }) => (
-              <input
-                aria-describedby={ariaDescribedBy}
-                readOnly={isReadOnly}
-                disabled={isDisabled}
-                data-pka-anchor="form-element.input"
-                id={idForLabel}
-              />
-            )}
-          </FormElement.Content>
-        )}
-      </FormElement>
+      <FormElementComponent {...props} />
     </L10n>
   );
 }
 
 describe("FormElement", () => {
+  const { getByTestId, queryByTestId } = renderComponent();
   it("renders default props", () => {
-    const { getByTestId, queryByTestId } = renderComponent();
-
     expect(getByTestId("form-element.label")).toHaveTextContent(defaultLabel);
     expect(getByTestId("form-element.input")).toBeInTheDocument();
     expect(getByTestId("form-element.input")).not.toHaveAttribute("disabled");
@@ -82,14 +94,12 @@ describe("FormElement", () => {
   it("renders help and description", () => {
     const { getByTestId } = render(
       <L10n>
-        <FormElement label={defaultLabel}>
-          <FormElement.Content>
-            {({ idForLabel, ariaDescribedBy }) => (
-              <input aria-describedby={ariaDescribedBy} data-pka-anchor="form-element.input" id={idForLabel} />
-            )}
-          </FormElement.Content>
-          <FormElement.Description>Sample description</FormElement.Description>
-          <FormElement.Help>Sample help</FormElement.Help>
+        <FormElement>
+          <Label help="Sample help">A label</Label>
+          <Content>
+            <input data-pka-anchor="form-element.input" />
+          </Content>
+          <Description>Sample description</Description>
         </FormElement>
       </L10n>
     );
@@ -101,17 +111,13 @@ describe("FormElement", () => {
   it("renders extra panel", () => {
     const { getByTestId } = render(
       <L10n>
-        <FormElement label={defaultLabel}>
-          <FormElement.Content>
-            {({ idForLabel, ariaDescribedBy }) => (
-              <input aria-describedby={ariaDescribedBy} data-pka-anchor="form-element.input" id={idForLabel} />
-            )}
-          </FormElement.Content>
-          <FormElement.Instructions>
-            Instructions Panel Content Instructions Panel Content Instructions Panel Content
-          </FormElement.Instructions>
-          <FormElement.Description>Sample description</FormElement.Description>
-          <FormElement.Help>Sample help</FormElement.Help>
+        <FormElement>
+          <Label help="Sample help">{defaultLabel}</Label>
+          <Content>
+            <input data-pka-anchor="form-element.input" />
+          </Content>
+          <Instructions>Instructions Panel Content Instructions Panel Content Instructions Panel Content</Instructions>
+          <Description>Sample description</Description>
         </FormElement>
       </L10n>
     );
@@ -122,36 +128,33 @@ describe("FormElement", () => {
   });
 
   it("renders error", () => {
-    const { getByTestId, queryByTestId } = render(
+    const { getByTestId } = render(
       <L10n>
-        <FormElement label={defaultLabel}>
-          <FormElement.Content>
-            {({ idForLabel, ariaDescribedBy }) => (
-              <input aria-describedby={ariaDescribedBy} data-pka-anchor="form-element.input" id={idForLabel} />
-            )}
-          </FormElement.Content>
-          <FormElement.Description>Sample description</FormElement.Description>
-          <FormElement.Error>Sample error</FormElement.Error>
+        <FormElement>
+          <Label>{defaultLabel}</Label>
+          <Content>
+            <input data-pka-anchor="form-element.input" />
+          </Content>
+          <Description>Sample description</Description>
+          <Error>Sample error</Error>
         </FormElement>
       </L10n>
     );
 
-    expect(queryByTestId("form-element.description")).not.toBeInTheDocument();
     expect(getByTestId("form-element.error")).toHaveTextContent(/sample error/i);
   });
 
   it("renders fieldset, legend and not label element", () => {
     const { container } = render(
       <L10n>
-        <FormElement label={defaultLabel} hasFieldSet>
-          <FormElement.Content>
-            {({ idForLabel, ariaDescribedBy }) => (
-              <input aria-describedby={ariaDescribedBy} data-pka-anchor="form-element.input" id={idForLabel} />
-            )}
-          </FormElement.Content>
-          <FormElement.Description>Sample description</FormElement.Description>
-          <FormElement.Error>Sample error</FormElement.Error>
-        </FormElement>
+        <Fieldset>
+          <Label>{defaultLabel}</Label>
+          <Content>
+            <input data-pka-anchor="form-element.input" />
+          </Content>
+          <Description>Sample description</Description>
+          <Error>Sample error</Error>
+        </Fieldset>
       </L10n>
     );
     expect(container.querySelector("fieldset")).toBeInTheDocument();
@@ -162,14 +165,13 @@ describe("FormElement", () => {
   it("renders fieldset and label element", () => {
     const { container } = render(
       <L10n>
-        <FormElement label={defaultLabel}>
-          <FormElement.Content>
-            {({ idForLabel, ariaDescribedBy }) => (
-              <input aria-describedby={ariaDescribedBy} data-pka-anchor="form-element.input" id={idForLabel} />
-            )}
-          </FormElement.Content>
-          <FormElement.Description>Sample description</FormElement.Description>
-          <FormElement.Error>Sample error</FormElement.Error>
+        <FormElement>
+          <Label>{defaultLabel}</Label>
+          <Content>
+            <input data-pka-anchor="form-element.input" />
+          </Content>
+          <Description>Sample description</Description>
+          <Error>Sample error</Error>
         </FormElement>
       </L10n>
     );

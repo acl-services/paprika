@@ -5,6 +5,7 @@ import { docsStoryParameters } from "storybook/assets/storyParameters";
 import Readme from "../README.md";
 import { FormElementStyles } from "./FormElement.stories.styles";
 import Checkbox from "./examples/Checkbox";
+import InlineContent from "./examples/InlineContent";
 import DatePicker from "./examples/DatePicker";
 import Accessibility from "./examples/Accessibility";
 import ComponentLabel from "./examples/ComponentLabel";
@@ -28,26 +29,16 @@ import FormElement from "../src";
 
 ### Accessibility
 
-In addition, a `<label />` is rendered by the `<FormElement />` and is associated to the input field by the `idForLabel` parameter of the same `children` function.
-
-The `<FormElement />` has been designed with accessibility in mind. Users can make use of `<FormElement.Instructions />`, `<FormElement.Description />`, `<FormElement.Error />`, and `<FormElement.Help />` to add instructions, guidance and feedback to users. Error messages, instructions, and descriptions can be associated to the input field by applying the supplied `ariaDescribedBy` parameter in the render function supplied to the `children` of the `<FormElement.Content>`.
-
-The `<FormElement.Help />` will add an icon with a tooltip next to the label.
+The `<FormElement />` has been designed with accessibility in mind. Users can make use of `<FormElement.Label />`, `<FormElement.Instructions />`, `<FormElement.Description />`, and `<FormElement.Error />`, to add instructions, guidance and feedback to users. Error messages, instructions, and descriptions can be associated to the input field by applying the supplied `a11yProps` parameter in the render function supplied to the `children` of the `<FormElement.Content>`.
 
 ```jsx
-<FormElement label="Form Label">
-  <FormElement.Help>
-    Give me some help. <a href="wegalvanize.com">Learn more</a>.
-  </FormElement.Help>
+<FormElement>
+  <FormElement.Label help={(Give me some help. <a href="wegalvanize.com">Learn more</a>)}>Form label</FormElement.Label>
   <FormElement.Instructions>
     Example text for extra panel for questionnaires. Example text for extra panel for questionnaires Example text for
     extra panel for questionnaires. Example text for extra panel for questionnaires
   </FormElement.Instructions>
-  <FormElement.Content>
-    {({ idForLabel, ariaDescribedBy }) => (
-      <Input id={idForLabel} placeholder="Form placeholder" aria-describedby={ariaDescribedBy} />
-    )}
-  </FormElement.Content>
+  <FormElement.Content>{a11yProps => <Input placeholder="Form placeholder" {...a11yProps} />}</FormElement.Content>
   <FormElement.Description>This is description text</FormElement.Description>
   <FormElement.Error>There was an error</FormElement.Error>
 </FormElement>
@@ -66,7 +57,8 @@ The `<FormElement>` can be used with different components to fulfill a variety o
 #### Textarea
 
 ```jsx
-<FormElement label="Form Label">
+<FormElement>
+  <FormElement.Label>Form label</FormElement.Label>
   <FormElement.Content>
     <Textarea defaultValue="Hello world">
   </FormElement.Content>
@@ -76,7 +68,8 @@ The `<FormElement>` can be used with different components to fulfill a variety o
 ##### Result
 
 <FormElementStyles>
-  <FormElement label="Form Label">
+  <FormElement>
+    <FormElement.Label>Form label</FormElement.Label>
     <FormElement.Content>
       <Textarea defaultValue="Hello world" />
     </FormElement.Content>
@@ -86,15 +79,25 @@ The `<FormElement>` can be used with different components to fulfill a variety o
 #### Checkbox
 
 ```jsx
-<FormElement hasFieldSet label="Form Label">
+<Fieldset>
+  <FormElement.Label>Form label</FormElement.Label>
   <FormElement.Content>
-    {({ ariaDescribedBy: ariaDescribedByOuter }) =>
-      <Checkbox ariaDescribedBy={ariaDescribedBy} onChange={() => {}}>Black Panther</Checkbox>
-      <Checkbox ariaDescribedBy={ariaDescribedBy} onChange={() => {}}>Spiderman</Checkbox>
-      <Checkbox ariaDescribedBy={ariaDescribedBy} onChange={() => {}}>Wonder Woman</Checkbox>
+    {a11yProps =>
+      <Checkbox key="Black Panther" onChange={() => {}}>
+        <Checkbox.Input {...a11yProps} />
+        Black Panther
+      </Checkbox>
+      <Checkbox key="Spiderman" onChange={() => {}}>
+        <Checkbox.Input {...a11yProps} />
+        Spiderman
+      </Checkbox>
+      <Checkbox key="Wonder Woman" onChange={() => {}}>
+        <Checkbox.Input {...a11yProps} />
+        Wonder Woman
+      </Checkbox>
     }
   </FormElement.Content>
-</FormElement>
+</Fieldset>
 ```
 
 ##### Result
@@ -108,12 +111,11 @@ The `<FormElement>` can be used with different components to fulfill a variety o
 The `ComponentLabel` allows users to use the`label`property of the`<FormElement/ />`. Users can set the label property to equal an entire component, in this particular example making use of the`<Heading />` component.
 
 ```jsx
-<FormElement hasRequiredLabel={false} label={<Heading level={4}>Form Label</Heading>}>
-  <FormElement.Content>
-    {({ idForLabel, ariaDescribedBy }) => (
-      <Input id={idForLabel} onChange={() => {}} aria-describedby={ariaDescribedBy} />
-    )}
-  </FormElement.Content>
+<FormElement hasRequiredLabel={false}>
+  <FormElement.Label>
+    <Heading level={4}>Form Label</Heading>
+  </FormElement.Label>
+  <FormElement.Content>{a11yProps => <Input onChange={() => {}} {...a11yProps} />}</FormElement.Content>
 </FormElement>
 ```
 
@@ -130,11 +132,12 @@ The `<FormElement />` can handle a variety of components to further increase the
 #### DatePicker
 
 ```jsx
-<FormElement label="Form Label">
+<FormElement>
+  <FormElement.Label>Form label</FormElement.Label>
   <FormElement.Content>
-    {({ idForLabel, ariaDescribedBy }) => (
-      <DatePicker id={idForLabel} onChange={() => {}}>
-        <DatePicker.Input aria-describedby={ariaDescribedBy} />
+    {a11yProps => (
+      <DatePicker onChange={() => {}}>
+        <DatePicker.Input {...a11yProps} />
       </DatePicker>
     )}
   </FormElement.Content>
@@ -145,4 +148,56 @@ The `<FormElement />` can handle a variety of components to further increase the
 
 <FormElementStyles>
   <DatePicker />
+</FormElementStyles>
+
+### Inline layouts
+
+The `<FormElement />` can handle a variety a variety of layout by making use of the `FormElement.Layout` component, along with `FormElement.Layout.LeftCol` and `FormElement.Layout.RightCol` for inline positioning with adjustable widths.
+
+```jsx
+<FormElement>
+  <Layout>
+    <Layout.LeftCol width="40%">
+      <Label>Form Label</Label>
+    </Layout.LeftCol>
+    <Layout.RightCol>
+      <Instructions>
+        <span>
+          Example text for extra panel for questionnaires. Example text for extra panel for questionnaires Example text
+          for extra panel for questionnaires. Example text for extra panel for questionnaires
+        </span>
+      </Instructions>
+      <Content>
+        {a11yProps => (
+          <>
+            <Input
+              onChange={handleChange}
+              value={value}
+              placeholder="Form placeholder"
+              hasError={Boolean(errorText.length)}
+              {...a11yProps}
+            />
+            <Input
+              onChange={handleChange}
+              value={value}
+              placeholder="Form placeholder"
+              hasError={Boolean(errorText.length)}
+              aria-describedby={a11yProps["aria-describedby"]} // Only aria-describedby should be applied to subsequent Content components
+            />
+          </>
+        )}
+      </Content>
+      <Description>
+        <span>This is description text</span>
+      </Description>
+      <Error>{errorText}</Error>
+    </Layout.RightCol>
+  </Layout>
+</FormElement>
+```
+
+##### Result
+
+<FormElementStyles>
+  <InlineContent />
 </FormElementStyles>

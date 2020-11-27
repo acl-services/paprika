@@ -28,7 +28,6 @@ npm install @paprika/date-picker
 | dateFormat  | string     | false    | "MM/DD/YYYY" | Date format used while entering and parsing user input.                                                      |
 | date        | instanceOf | false    | null         | Selected date in moment object.                                                                              |
 | humanFormat | string     | false    | undefined    | Date format used while displaying date. It should be human-friendly and spelled out, default is MMMM DD,YYYY |
-| id          | string     | false    | null         | ID for the `<input>`.                                                                                        |
 | isDisabled  | bool       | false    | false        | Should be disabled or not, default is false.                                                                 |
 | isReadOnly  | bool       | false    | false        | Should be read-only or not, default is false.                                                                |
 | onChange    | func       | true     | -            | Callback when date is selected or input.                                                                     |

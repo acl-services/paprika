@@ -6,6 +6,10 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 
 ## [Unreleased]
 
+### Changed
+
+- Refactor FormElement api to use a11yProps instead of seperate attributes, Additionally using context over React cloning. Introduced Fieldset and Layout components [@tristanjasper](https://github.com/tristanjasper).
+
 ## [0.3.0] - 2020-01-17
 
 ### Added

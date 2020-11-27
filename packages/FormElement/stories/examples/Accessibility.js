@@ -1,8 +1,11 @@
+/* eslint-disable react/jsx-wrap-multilines */
 import React from "react";
 import { Rule } from "storybook/assets/styles/common.styles";
 import Input from "@paprika/input";
 import Button from "@paprika/button";
 import FormElement from "../../src";
+
+const { Label, Instructions, Content, Description, Error } = FormElement;
 
 const AccessibilityExample = () => {
   const [value, setValue] = React.useState("");
@@ -22,28 +25,37 @@ const AccessibilityExample = () => {
 
   return (
     <>
-      <FormElement label="Form Label">
-        <FormElement.Help>
-          Give me some help. <a href="wegalvanize.com">Learn more</a>.
-        </FormElement.Help>
-        <FormElement.Instructions>
-          Example text for extra panel for questionnaires. Example text for extra panel for questionnaires Example text
-          for extra panel for questionnaires. Example text for extra panel for questionnaires.
-        </FormElement.Instructions>
-        <FormElement.Content>
-          {({ idForLabel, ariaDescribedBy }) => (
+      <FormElement>
+        <Label
+          help={
+            <span>
+              Give me some help. <a href="wegalvanize.com">Learn more</a>.
+            </span>
+          }
+        >
+          Form Label
+        </Label>
+        <Instructions>
+          <span>
+            Example text for extra panel for questionnaires. Example text for extra panel for questionnaires Example
+            text for extra panel for questionnaires. Example text for extra panel for questionnaires
+          </span>
+        </Instructions>
+        <Content>
+          {a11yProps => (
             <Input
-              id={idForLabel}
               onChange={handleChange}
               value={value}
               placeholder="Form placeholder"
-              aria-describedby={ariaDescribedBy}
               hasError={Boolean(errorText.length)}
+              {...a11yProps}
             />
           )}
-        </FormElement.Content>
-        <FormElement.Description>This is description text.</FormElement.Description>
-        <FormElement.Error>{errorText}</FormElement.Error>
+        </Content>
+        <Description>
+          <span>This is description text</span>
+        </Description>
+        <Error>{errorText}</Error>
       </FormElement>
       <Rule />
       <Button onClick={setError} style={{ marginRight: "10px" }}>

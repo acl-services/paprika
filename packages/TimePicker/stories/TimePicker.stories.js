@@ -1,7 +1,7 @@
 import React from "react";
 import { storiesOf } from "@storybook/react";
 import { getStoryName } from "storybook/storyTree";
-import FormElement from "@paprika/form-element";
+import FormElement, { Content, Label } from "@paprika/form-element";
 import TimePicker from "../src";
 
 const storyName = getStoryName("TimePicker");
@@ -85,11 +85,9 @@ storiesOf(storyName, module)
 
     return (
       <Container>
-        <FormElement label="Time picker:">
-          <FormElement.Content>
-            <TimePicker onChange={handleChange} onError={handleError} />
-          </FormElement.Content>
-
+        <FormElement>
+          <Label>Time picker:</Label>
+          <Content>{a11yProps => <TimePicker onChange={handleChange} onError={handleError} {...a11yProps} />}</Content>
           <FormElement.Error>{hasError ? "Invalid time" : null}</FormElement.Error>
         </FormElement>
       </Container>

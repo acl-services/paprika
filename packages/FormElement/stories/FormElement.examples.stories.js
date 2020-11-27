@@ -1,6 +1,5 @@
 import React from "react";
 import { getStoryName } from "storybook/storyTree";
-// import ExampleStory from "storybook/components/ExampleStory";
 import { exampleStoryParameters } from "storybook/assets/storyParameters";
 import { FormElementStory } from "./FormElement.stories.styles";
 import Radio from "./examples/Radio";
@@ -14,6 +13,7 @@ import Nested from "./examples/Nested";
 import HTML from "./examples/HTML";
 import ComponentLabel from "./examples/ComponentLabel";
 import FormElement from "../src/FormElement";
+import InlineContentExample from "./examples/InlineContent";
 
 const storyName = getStoryName("FormElement");
 
@@ -101,6 +101,13 @@ nestedExample.story = {
   name: "Nested FormElements (hasFieldSet)",
   parameters: exampleStoryParameters,
 };
+
+export const inlineContentExample = () => (
+  <FormElementStory storyName="Inline Content" component="FormElement" fileName="examples/InlineContent.js">
+    <InlineContentExample />
+  </FormElementStory>
+);
+nestedExample.story = { name: "Nested", parameters: exampleStoryParameters };
 
 export const htmlExample = () => (
   <FormElementStory storyName="HTML" component="FormElement" fileName="examples/HTML.js">

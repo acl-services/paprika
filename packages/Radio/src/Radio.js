@@ -2,14 +2,15 @@ import React from "react";
 import PropTypes from "prop-types";
 import nanoid from "nanoid";
 import CheckIcon from "@paprika/icon/lib/Check";
+import extractChildrenProps from "@paprika/helpers/lib/extractChildrenProps";
 import * as sc from "./Radio.styles";
 import Group from "./components/Group";
+import RadioInputPropsCollector from "./RadioInputPropsCollector";
 import types from "./types";
 
 function Radio(props) {
   const {
     a11yText,
-    ariaDescribedBy,
     children,
     isChecked,
     isDisabled,
@@ -23,6 +24,7 @@ function Radio(props) {
   } = props;
   const radioId = React.useRef(nanoid()).current;
   const inputRef = React.useRef(null);
+  const extendedInputProps = extractChildrenProps(children, RadioInputPropsCollector);
 
   const handleKeyDown = event => {
     if (
@@ -48,11 +50,9 @@ function Radio(props) {
   };
 
   const inputProps = {
-    "aria-describedby": ariaDescribedBy,
     onClick,
     checked: isChecked,
     disabled: isDisabled,
-    id: radioId,
     name,
     onKeyDown: handleKeyDown,
     onKeyUp: handleKeyUp,
@@ -60,6 +60,8 @@ function Radio(props) {
     tabIndex,
     type: "radio",
     value,
+    ...extendedInputProps,
+    id: radioId,
   };
   if (a11yText) inputProps["aria-label"] = a11yText;
 
@@ -86,8 +88,6 @@ Radio.types = types;
 const propTypes = {
   /** Used for aria-label on the radio input  */
   a11yText: PropTypes.string,
-  /** Used for aria-describedby on the radio input  */
-  ariaDescribedBy: PropTypes.string,
   /** Describe if the radio started as selected or not */
   canDeselect: PropTypes.bool,
   /** Used for label contents */
@@ -112,7 +112,6 @@ const propTypes = {
 
 const defaultProps = {
   a11yText: null,
-  ariaDescribedBy: null,
   canDeselect: false,
   children: null,
   defaultIsChecked: false,
@@ -129,5 +128,7 @@ Radio.displayName = "Radio";
 Radio.propTypes = propTypes;
 Radio.defaultProps = defaultProps;
 Radio.Group = Group;
+
+Radio.Input = RadioInputPropsCollector;
 
 export default Radio;

@@ -11,8 +11,6 @@ interface DatePickerProps {
   date?: instanceOf;
   /** Date format used while displaying date. It should be human-friendly and spelled out, default is MMMM DD,YYYY */
   humanFormat?: string;
-  /** ID for the `<input>`. */
-  id?: string;
   /** Should be disabled or not, default is false. */
   isDisabled?: boolean;
   /** Should be read-only or not, default is false. */
