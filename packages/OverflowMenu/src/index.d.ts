@@ -9,6 +9,8 @@ interface OverflowMenuProps {
   children: React.ReactNode;
   /** If provided, will align Popover to specified edge of Trigger */
   edge?: custom;
+  /** Control if the overflow menu popover open. */
+  isOpen?: custom;
   /** If provided, will fire when the Popover is closed */
   onClose?: custom;
   /** The z-index for the popover / confirmation */

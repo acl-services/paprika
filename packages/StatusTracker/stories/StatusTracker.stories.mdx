@@ -1,0 +1,15 @@
+import { Meta } from "@storybook/addon-docs/blocks";
+import { getStoryName } from "storybook/storyTree";
+import MDX from "./StatusTracker.mdx";
+import StatusTracker from "../src";
+
+export const params = {
+  options: {
+    isToolshown: true,
+    showPanel: false,
+  },
+};
+
+<Meta title={`${getStoryName("StatusTracker")}/ Docs`} component={StatusTracker} parameters={params} />
+
+<MDX />

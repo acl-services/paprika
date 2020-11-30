@@ -29,6 +29,7 @@ const storyTree = [
       "DialogActions",
       "ExternalLink",
       "RawButton",
+      "StatusTracker"
     ],
   },
   {

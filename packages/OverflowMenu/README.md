@@ -27,6 +27,7 @@ npm install @paprika/overflow-menu
 | align    | custom | false    | Popover.defaultProps.align   | Alignment of the Popover                                     |
 | children | node   | true     | -                            | Children should consist of <OverflowMenu.Item />             |
 | edge     | custom | false    | Popover.defaultProps.edge    | If provided, will align Popover to specified edge of Trigger |
+| isOpen   | custom | false    | null                         | Control if the overflow menu popover open.                   |
 | onClose  | custom | false    | Popover.defaultProps.onClose | If provided, will fire when the Popover is closed            |
 | zIndex   | custom | false    | Popover.defaultProps.zIndex  | The z-index for the popover / confirmation                   |
 
