@@ -15,34 +15,41 @@ function renderComponent(props = {}) {
     onCloseMenu();
   };
 
-  const renderedComponent = render(
-    <L10n>
-      <OverflowMenu {...props}>
-        <OverflowMenu.Trigger>Trigger</OverflowMenu.Trigger>
-        <OverflowMenu.Item onClick={() => {}}>Edit</OverflowMenu.Item>
-        <OverflowMenu.Item onClick={() => {}}>Filter</OverflowMenu.Item>
-        <OverflowMenu.Item
-          isDestructive
-          renderConfirmation={onCloseMenu => {
-            return (
-              <Confirmation
-                body="description"
-                confirmLabel="Confirm Delete"
-                onConfirm={handleConfirm}
-                onClose={handleCloseConfirm(onCloseMenu)}
-                heading="Delete Button?"
-              />
-            );
-          }}
-        >
-          Delete
-        </OverflowMenu.Item>
-      </OverflowMenu>
-    </L10n>
-  );
+  function getComponent(newProps = {}) {
+    return (
+      <L10n>
+        <OverflowMenu {...props} {...newProps}>
+          <OverflowMenu.Trigger>Trigger</OverflowMenu.Trigger>
+          <OverflowMenu.Item onClick={() => {}}>Edit</OverflowMenu.Item>
+          <OverflowMenu.Item onClick={() => {}}>Filter</OverflowMenu.Item>
+          <OverflowMenu.Item
+            isDestructive
+            renderConfirmation={onCloseMenu => {
+              return (
+                <Confirmation
+                  body="description"
+                  confirmLabel="Confirm Delete"
+                  onConfirm={handleConfirm}
+                  onClose={handleCloseConfirm(onCloseMenu)}
+                  heading="Delete Button?"
+                />
+              );
+            }}
+          >
+            Delete
+          </OverflowMenu.Item>
+        </OverflowMenu>
+      </L10n>
+    );
+  }
+
+  const renderedComponent = render(getComponent());
 
   return {
     ...renderedComponent,
+    rerender: newProps => {
+      return renderedComponent.rerender(getComponent(newProps));
+    },
   };
 }
 
@@ -65,6 +72,13 @@ describe("OverflowMenu", () => {
     expect(getByText(/edit/i)).toBeVisible();
     fireEvent.click(getByText(/edit/i));
     expect(triggerComponent).toBeVisible();
+    expect(queryByText(/edit/i)).not.toBeInTheDocument();
+  });
+
+  it("should open and close by the controlled prop", () => {
+    const { getByText, queryByText, rerender } = renderComponent({ isOpen: true });
+    expect(getByText(/edit/i)).toBeVisible();
+    rerender({ isOpen: false });
     expect(queryByText(/edit/i)).not.toBeInTheDocument();
   });
 
