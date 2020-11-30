@@ -53,30 +53,28 @@ const futurePoint = css`
   border: 2px solid ${tokens.color.blackLighten20};
 `;
 
-export const Point = styled.div`
-  ${({ kind }) => {
-    switch (kind) {
-      case types.kinds.PAST:
-        return css`
-          ${basicPoint}
-          ${pastPoint}
-        `;
-      case types.kinds.CURRENT:
-        return css`
-          > [data-pka-anchor="popover"] > [data-pka-anchor="button"] {
-            margin-top: -${tokens.spaceSm};
-          }
-        `;
-      case types.kinds.FUTURE:
-        return css`
-          ${basicPoint}
-          ${futurePoint}
-        `;
-      default:
-        return null;
-    }
-  }}
-`;
+export const Point = styled.div(({ kind }) => {
+  switch (kind) {
+    case types.kinds.PAST:
+      return css`
+        ${basicPoint}
+        ${pastPoint}
+      `;
+    case types.kinds.CURRENT:
+      return css`
+        > [data-pka-anchor="popover"] > [data-pka-anchor="button"] {
+          margin-top: -${tokens.spaceSm};
+        }
+      `;
+    case types.kinds.FUTURE:
+      return css`
+        ${basicPoint}
+        ${futurePoint}
+      `;
+    default:
+      return null;
+  }
+});
 
 export const Popover = styled(PaprikaPopover)`
   margin-top: ${tokens.spaceSm};

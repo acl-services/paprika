@@ -12,6 +12,7 @@ const Point = React.forwardRef((props, ref) => {
   const { children, kind, name, description, ...moreProps } = props;
   const [isTooltipOpen, setIsTooltipOpen] = React.useState(false);
   const [isOverflowMenuOpen, setIsOverflowMenuOpen] = React.useState(false);
+  const overflowMenuRef = React.useRef(null);
   const { OverflowMenu: extractedOverflowMenu } = extractChildren(children, ["OverflowMenu"]);
 
   React.useImperativeHandle(ref, () => ({
@@ -33,6 +34,12 @@ const Point = React.forwardRef((props, ref) => {
   function handleOverflowMenuOpen() {
     setIsOverflowMenuOpen(true);
     setIsTooltipOpen(false);
+
+    setTimeout(() => {
+      if (overflowMenuRef.current) {
+        overflowMenuRef.current.focusAndSetIndex(0);
+      }
+    }, 250);
   }
 
   function handleOverflowMenuClose() {
@@ -61,6 +68,7 @@ const Point = React.forwardRef((props, ref) => {
             {
               isOpen: isOverflowMenuOpen,
               onClose: handleOverflowMenuClose,
+              ref: overflowMenuRef,
               "data-pka-anchor": "status-tracker.point.overflow-menu",
             },
             <>
@@ -118,11 +126,11 @@ const Point = React.forwardRef((props, ref) => {
       <sc.Popover isEager isDark isOpen={isTooltipOpen}>
         <Popover.Trigger>{getTrigger}</Popover.Trigger>
         <Popover.Content>
-          <sc.PopoverCard hasOnlyName={!!name && !!description}>
-            {name && <sc.NameInTooltip data-pka-anchor="status-tracker.point.name">{name}</sc.NameInTooltip>}
-            {description && (
+          <sc.PopoverCard hasOnlyName={Boolean(name) && Boolean(description)}>
+            {name ? <sc.NameInTooltip data-pka-anchor="status-tracker.point.name">{name}</sc.NameInTooltip> : null}
+            {description ? (
               <sc.Description data-pka-anchor="status-tracker.point.description">{description}</sc.Description>
-            )}
+            ) : null}
           </sc.PopoverCard>
         </Popover.Content>
         <Popover.Tip />

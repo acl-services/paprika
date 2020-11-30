@@ -41,7 +41,7 @@ const defaultProps = {
 
 const popoverOffset = 4;
 
-function OverflowMenu(props) {
+const OverflowMenu = React.forwardRef((props, ref) => {
   const { align, children, edge, isOpen: controlledIsOpen, onClose, zIndex, ...moreProps } = props;
 
   const [isOpen, setIsOpen] = React.useState(false);
@@ -53,6 +53,16 @@ function OverflowMenu(props) {
   const triggerId = React.useRef(uuid());
   const overflowListRef = React.useRef(null);
 
+  function focusAndSetIndex(index) {
+    if (overflowListRef && overflowListRef.current && index !== undefined)
+      overflowListRef.current.querySelectorAll('[data-pka-anchor="overflow-menu.item"]')[index].focus();
+    setFocusIndex(index);
+  }
+
+  React.useImperativeHandle(ref, () => ({
+    focusAndSetIndex,
+  }));
+
   function getIsOpenValue() {
     return controlledIsOpen === null ? isOpen : controlledIsOpen;
   }
@@ -60,12 +70,6 @@ function OverflowMenu(props) {
   function setIsOpenValue(value) {
     if (controlledIsOpen !== null) return;
     setIsOpen(value);
-  }
-
-  function focusAndSetIndex(index) {
-    if (overflowListRef && overflowListRef.current && index !== undefined)
-      overflowListRef.current.querySelectorAll('[data-pka-anchor="overflow-menu.item"]')[index].focus();
-    setFocusIndex(index);
   }
 
   const handleCloseMenu = key => {
@@ -208,7 +212,7 @@ function OverflowMenu(props) {
       </Popover.Content>
     </Popover>
   );
-}
+});
 
 OverflowMenu.displayName = "OverflowMenu";
 OverflowMenu.propTypes = propTypes;

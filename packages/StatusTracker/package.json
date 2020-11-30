@@ -1,7 +1,7 @@
 {
   "name": "@paprika/status-tracker",
   "version": "0.0.1",
-  "description": "StatusTracker component.",
+  "description": "Move items through a customized status workflow and view metadata for the previous and current statuses.",
   "main": "lib/index.js",
   "types": "lib/index.d.ts",
   "author": "@paprika",
