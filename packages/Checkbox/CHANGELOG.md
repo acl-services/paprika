@@ -6,10 +6,6 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 
 ## [Unreleased]
 
-### Removed
-
-- Remove `ariaDescribedBy` prop, reorder spread order of extendedInputProps [@tristanjasper](https://github.com/tristanjasper).
-
 ## [0.2.0] - 2020-01-14
 
 ### Removed
@@ -31,3 +27,9 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 ### Added
 
 - Updated: Created and placed all constants into type.js file. [@kaan.darcey](https://github.com/KDarcey).
+
+## [1.0.2-alpha.0] - 2020-11-30
+
+### Removed
+
+- Remove `ariaDescribedBy` prop, reorder spread order of extendedInputProps [@tristanjasper](https://github.com/tristanjasper).

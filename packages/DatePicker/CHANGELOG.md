@@ -6,12 +6,14 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 
 ## [Unreleased]
 
-### Removed
-
-- Id prop from root component [@tristanjasper](https://github.com/tristanjasper).
-
 ## [0.5.51] - 2020-09-02
 
 ### Added
 
 - Updated: Created and placed all constants into type.js file. [@kaan.darcey](https://github.com/KDarcey).
+
+## [1.0.3-alpha.0] - 2020-11-30
+
+### Removed
+
+- Id prop from root component [@tristanjasper](https://github.com/tristanjasper).
