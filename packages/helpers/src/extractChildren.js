@@ -3,11 +3,13 @@ import React from "react";
 export default function extractChildren(children, types) {
   const _children = [];
   const components = {};
+  let result;
 
   if (Array.isArray(types)) {
-    for (const child of React.Children.toArray(children)) {
+    React.Children.toArray(children).some(child => {
       if (child.type && child.type === React.Fragment) {
-        return extractChildren(child.props.children, types);
+        result = extractChildren(child.props.children, types);
+        return true;
       }
 
       if (child.type && types.includes(child.type.displayName)) {
@@ -23,9 +25,11 @@ export default function extractChildren(children, types) {
       } else {
         _children.push(child);
       }
-    }
 
-    return { ...components, children: _children };
+      return false;
+    });
+
+    return result || { ...components, children: _children };
   }
 
   throw new Error("extractChildren types parameter must be an Array");

@@ -4,7 +4,7 @@
 
 ## Description
 
-StatusTracker component.
+Move items through a customized status workflow and view metadata for the previous and current statuses.
 
 ## Installation
 
