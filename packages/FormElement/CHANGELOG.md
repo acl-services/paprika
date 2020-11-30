@@ -6,10 +6,6 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 
 ## [Unreleased]
 
-### Changed
-
-- Refactor FormElement api to use a11yProps instead of seperate attributes, Additionally using context over React cloning. Introduced Fieldset and Layout components [@tristanjasper](https://github.com/tristanjasper).
-
 ## [0.3.0] - 2020-01-17
 
 ### Added
@@ -75,3 +71,9 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 ### Changed
 
 - FormElement Margin, removed content only margin and applied top margin to Descriptino and Error components [@tristanjasper](https://github.com/tristanjasper).
+
+## [1.0.3-alpha.0] - 2020-11-30
+
+### Changed
+
+- Refactor FormElement api to use a11yProps instead of seperate attributes, Additionally using context over React cloning. Introduced Fieldset and Layout components [@tristanjasper](https://github.com/tristanjasper).
