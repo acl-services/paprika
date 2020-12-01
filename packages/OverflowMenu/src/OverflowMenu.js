@@ -21,6 +21,9 @@ const propTypes = {
   /** If provided, will align Popover to specified edge of Trigger */
   edge: Popover.propTypes.edge,
 
+  /** Control if the overflow menu popover open. */
+  isOpen: Popover.propTypes.isOpen,
+
   /** If provided, will fire when the Popover is closed */
   onClose: Popover.propTypes.onClose,
 
@@ -31,14 +34,15 @@ const propTypes = {
 const defaultProps = {
   align: Popover.defaultProps.align,
   edge: Popover.defaultProps.edge,
+  isOpen: null,
   onClose: Popover.defaultProps.onClose,
   zIndex: Popover.defaultProps.zIndex,
 };
 
 const popoverOffset = 4;
 
-function OverflowMenu(props) {
-  const { align, children, edge, onClose, zIndex, ...moreProps } = props;
+const OverflowMenu = React.forwardRef((props, ref) => {
+  const { align, children, edge, isOpen: controlledIsOpen, onClose, zIndex, ...moreProps } = props;
 
   const [isOpen, setIsOpen] = React.useState(false);
   const [isConfirming, setIsConfirming] = React.useState(false);
@@ -55,8 +59,21 @@ function OverflowMenu(props) {
     setFocusIndex(index);
   }
 
+  React.useImperativeHandle(ref, () => ({
+    focusAndSetIndex,
+  }));
+
+  function getIsOpenValue() {
+    return controlledIsOpen === null ? isOpen : controlledIsOpen;
+  }
+
+  function setIsOpenValue(value) {
+    if (controlledIsOpen !== null) return;
+    setIsOpen(value);
+  }
+
   const handleCloseMenu = key => {
-    setIsOpen(false);
+    setIsOpenValue(false);
 
     if (isConfirming) {
       setIsConfirming(false);
@@ -73,7 +90,7 @@ function OverflowMenu(props) {
   };
 
   const handleOpenMenu = () => {
-    setIsOpen(true);
+    setIsOpenValue(true);
 
     if (document.querySelector("html").getAttribute("data-whatinput") === "keyboard") {
       setTimeout(() => {
@@ -126,7 +143,7 @@ function OverflowMenu(props) {
     // https://github.com/acl-services/paprika/issues/126
     return () =>
       React.cloneElement(Trigger, {
-        isOpen,
+        isOpen: getIsOpenValue(),
         onOpenMenu: handleOpenMenu,
         triggerRef,
         menuId: menuId.current,
@@ -181,7 +198,7 @@ function OverflowMenu(props) {
     <Popover
       align={align}
       offset={popoverOffset}
-      isOpen={isOpen}
+      isOpen={getIsOpenValue()}
       edge={edge}
       zIndex={zIndex}
       {...moreProps}
@@ -191,11 +208,11 @@ function OverflowMenu(props) {
     >
       <Popover.Trigger>{renderTrigger()}</Popover.Trigger>
       <Popover.Content id={menuId.current} role={!isConfirming ? "menu" : null} {...ContentProps}>
-        {isOpen && renderContent()}
+        {getIsOpenValue() && renderContent()}
       </Popover.Content>
     </Popover>
   );
-}
+});
 
 OverflowMenu.displayName = "OverflowMenu";
 OverflowMenu.propTypes = propTypes;

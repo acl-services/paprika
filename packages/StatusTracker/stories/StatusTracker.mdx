@@ -1,0 +1,55 @@
+import { Props, Description } from "@storybook/addon-docs/blocks";
+import { Gap } from "storybook/assets/styles/common.styles";
+import Readme from "../README.md";
+import StatusTracker from "../src";
+import Showcase from "./examples/Showcase";
+
+<Description markdown={Readme} />
+
+## Usage
+
+`<StatusTracker>` Props
+
+<Props of={StatusTracker} />
+
+`<StatusTracker.Point>` Props
+
+<Props of={StatusTracker.Point} />
+
+### Basic
+
+Using `StatusTracker` wrap `StatusTracker.Point`. `name` and `description` will be shown in the tooltip. If you wrap `@paprika/overflow-menu` inside `<StatusTraker.Point />` for current status point, we'll render it for you.
+
+```jsx
+import StatusTracker from "@paprika/status-tracker";
+import OverflowMenu from "@paprika/overflow-menu";
+
+<StatusTracker>
+  <StatusTracker.Point name="Draft" kind={StatusTracker.types.kind.PAST} description={getDesc()} />
+  <StatusTracker.Point
+    name="In review"
+    description={
+      <>
+        <span>10 mins ago</span>
+        <span>by someone</span>
+      </>
+    }
+    kind={StatusTracker.types.kind.CURRENT}
+    ref={currentPointRef}
+  >
+    <OverflowMenu>
+      <OverflowMenu.Trigger isPending={isPending} />
+      <OverflowMenu.Item onClick={handleClick}>First Item</OverflowMenu.Item>
+      <OverflowMenu.Item onClick={handleClick}>Second Item</OverflowMenu.Item>
+      <OverflowMenu.Divider />
+      <OverflowMenu.Item onClick={handleClick}>View workflow</OverflowMenu.Item>
+    </OverflowMenu>
+  </StatusTracker.Point>
+  <StatusTracker.Point name="Approve" kind={StatusTracker.types.kind.FUTURE} />
+  <StatusTracker.Point name="Done" kind={StatusTracker.types.kind.FUTURE} />
+</StatusTracker>;
+```
+
+#### Result
+
+<Showcase />
