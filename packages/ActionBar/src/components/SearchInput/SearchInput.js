@@ -10,7 +10,7 @@ export default function SearchInput(props) {
   const { a11yText, debouncedValue, onChange, placeholder, ...moreProps } = props;
   const I18n = useI18n();
   const [searchTerm, setSearchTerm] = React.useState("");
-  const debouncedOnChange = React.useCallback(debounce(onChange, debouncedValue), []);
+  const debouncedOnChange = React.useCallback(debounce(onChange, debouncedValue), [onChange, debouncedValue]);
 
   function handleSearch(e) {
     const newSearchTerm = e.target.value;
