@@ -136,6 +136,7 @@ export default function App() {
         <ColumnsArrangement orderedColumnIds={orderedColumnIds} {...handlers}>
           {columnsSettings.map(column => (
             <ColumnsArrangement.ColumnDefinition
+              key={column.id}
               id={column.id}
               label={column.label}
               isDisabled={column.id === "name"}
