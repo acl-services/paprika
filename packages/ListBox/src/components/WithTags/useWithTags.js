@@ -33,7 +33,13 @@ export default function useWithTags({
   function handleChange(option, options, selectedOption) {
     setSelectedKeys(prev => {
       const prevClone = prev.slice(0);
-      const id = options[selectedOption].content.props[key];
+
+      const id = options[selectedOption].content.props.label;
+      if (!id)
+        throw Error(
+          "<ListBox.Option /> requires to have a unique string label that can be use for a11y purposes and as identifier"
+        );
+
       if (prev.includes(id)) {
         prev.splice(prevClone.indexOf(id), 1);
         return prev;
@@ -82,7 +88,11 @@ export default function useWithTags({
   };
 
   function handleFilter({ search }) {
-    setFilteredData(filter(search, data, filterAttribute));
+    const result = filter(search, data, filterAttribute);
+
+    if (defaultData.length === selectedKeys.length) return;
+
+    setFilteredData(result);
   }
 
   return {

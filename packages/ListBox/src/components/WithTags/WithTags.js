@@ -26,20 +26,23 @@ const propTypes = {
   renderPill: PropTypes.func,
   /** An array of id that helps the ListBoxWithTags to known what elements are selected  */
   selectedOptions: PropTypes.arrayOf(PropTypes.shape({})),
+  /** Provides an alternative for rendering the Pill label instead of using the default [{label:value}] coming from the og data */
+  renderTriggerPillLabel: PropTypes.func,
 };
 
 const defaultProps = {
+  customOptionRegex: /^.+@.+\..+$/,
   filter: undefined,
   noResultsMessage: null,
-  onChange: () => {},
   onAddCustomOption: null,
+  onChange: () => {},
   onRemove: () => {},
-  customOptionRegex: /^.+@.+\..+$/,
   renderPill: null,
+  renderTriggerPillLabel: null,
   selectedOptions: null,
 };
 
-const renderTrigger = ({ t, size, selectedOptions, onRemove, renderPill }) => (...args) => {
+const renderTrigger = ({ t, size, selectedOptions, onRemove, renderPill, renderTriggerPillLabel }) => (...args) => {
   const [, , , attributes] = args;
   const { propsForTrigger, refTrigger, dispatch, types, handleKeyDown, handleKeyUp } = attributes;
 
@@ -70,9 +73,17 @@ const renderTrigger = ({ t, size, selectedOptions, onRemove, renderPill }) => (.
             return renderPill({ option: item, Pill, onRemove: handleRemove(item) });
           }
 
+          const label = renderTriggerPillLabel === null ? item.label : renderTriggerPillLabel(item);
+
+          if (typeof label !== "string") {
+            throw Error(
+              "Label property in your object should be a string, are you returning a string from renderTriggerPillLabel?"
+            );
+          }
+
           return (
-            <Pill key={item.label} onRemove={handleRemove(item)} size={size}>
-              {item.label}
+            <Pill key={label} onRemove={handleRemove(item)} size={size}>
+              {label}
             </Pill>
           );
         })}
@@ -89,13 +100,14 @@ const renderTrigger = ({ t, size, selectedOptions, onRemove, renderPill }) => (.
 export default function WithTags(props) {
   const {
     children,
+    customOptionRegex,
     filter,
     noResultsMessage,
-    onChange,
     onAddCustomOption,
+    onChange,
     onRemove,
-    customOptionRegex,
     renderPill,
+    renderTriggerPillLabel,
     selectedOptions,
     ...moreProps
   } = props;
@@ -138,7 +150,16 @@ export default function WithTags(props) {
   return (
     <div ref={refDivRoot}>
       <ListBox isMulti size={size} onChange={handleChange} {...moreProps}>
-        <ListBox.Trigger>{renderTrigger({ size, selectedOptions, renderPill, onRemove, t })}</ListBox.Trigger>
+        <ListBox.Trigger>
+          {renderTrigger({
+            onRemove,
+            renderPill,
+            renderTriggerPillLabel,
+            selectedOptions,
+            size,
+            t,
+          })}
+        </ListBox.Trigger>
         <ListBox.Filter filter={filter} ref={refFilter} onKeyDown={handleKeyDown} {...noResultMessageProp} />
         {React.Children.count(children) > 0 ? children : <ListBox.RawItem>{noResultsMessage}</ListBox.RawItem>}
       </ListBox>
@@ -149,4 +170,5 @@ export default function WithTags(props) {
 WithTags.propTypes = propTypes;
 WithTags.defaultProps = defaultProps;
 WithTags.Option = ListBox.Option;
+WithTags.RawItem = ListBox.RawItem;
 WithTags.filter = filter;
