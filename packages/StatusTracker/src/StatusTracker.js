@@ -5,9 +5,13 @@ import { kinds } from "./types";
 import * as sc from "./StatusTracker.styles";
 
 function StatusTracker(props) {
-  const { children } = props;
+  const { children, ...moreProps } = props;
 
-  return <sc.StatusTracker data-pka-anchor="status-tracker">{children}</sc.StatusTracker>;
+  return (
+    <sc.StatusTracker data-pka-anchor="status-tracker" {...moreProps}>
+      {children}
+    </sc.StatusTracker>
+  );
 }
 
 const propTypes = {
