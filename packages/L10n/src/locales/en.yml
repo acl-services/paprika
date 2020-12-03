@@ -105,6 +105,10 @@ en:
         a11y_text: Search
         no_results_message: Your search result did not match any options.
         placeholder: Search...
+      footer:
+        accept: Accept
+        cancel: Cancel
+        clear: Clear
     listBoxBrowser:
       explore: Explore more options
       selected: selected options
