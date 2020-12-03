@@ -48,3 +48,23 @@ Collapsible card with avatar (can be text or icon) and metadata
   <CollapsibleCard.Metadata>1000 records</CollapsibleCard.Metadata>
   Content
 </CollapsibleCard>
+
+### Use render label function
+
+You can pass a function into the `label` prop to render custom collapsible label
+
+```jsx
+function renderLabel({ isCollapsed }) {
+  return `With render label function - ${isCollapsed ? "Collapsed" : "Expand"}`;
+}
+
+<CollapsibleCard label={renderLabel}>Content</CollapsibleCard>;
+```
+
+#### Result
+
+<CollapsibleCard label={({ isCollapsed }) => `With render label function - ${isCollapsed ? "Collapsed" : "Expand"}`}>
+  <CollapsibleCard.Avatar>Card header</CollapsibleCard.Avatar>
+  <CollapsibleCard.Metadata>1000 records</CollapsibleCard.Metadata>
+  Content
+</CollapsibleCard>
