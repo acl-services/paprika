@@ -4,15 +4,6 @@ import nanoid from "nanoid";
 import { FormElementContext } from "../../FormElement";
 import * as sc from "./Error.styles";
 
-const propTypes = {
-  /** Content of the error message */
-  children: PropTypes.node,
-};
-
-const defaultProps = {
-  children: null,
-};
-
 function Error(props) {
   const { children, ...moreProps } = props;
   const { addIdToAriaDescribedBy } = React.useContext(FormElementContext);
@@ -31,6 +22,15 @@ function Error(props) {
     </sc.Error>
   );
 }
+
+const propTypes = {
+  /** Content of the error message */
+  children: PropTypes.node,
+};
+
+const defaultProps = {
+  children: null,
+};
 
 Error.displayName = "FormElement.Error";
 Error.propTypes = propTypes;

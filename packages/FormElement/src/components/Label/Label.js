@@ -5,6 +5,32 @@ import Help from "../Help/Help";
 import { FormElementContext } from "../../FormElement";
 import * as sc from "./Label.styles";
 
+const Label = props => {
+  const { hasOptionalLabel, hasRequiredLabel, help, helpA11yText, children, ...moreProps } = props;
+  const { hasFieldSet, refLabel, labelId } = React.useContext(FormElementContext);
+  const I18n = useI18n();
+
+  const labelProps = hasFieldSet ? { as: "legend" } : { as: "label" };
+  const a11yProps = hasFieldSet ? { ref: refLabel } : { htmlFor: labelId, ref: refLabel };
+
+  const renderQuestionRequirement = () => {
+    if (hasRequiredLabel) {
+      return I18n.t("formElement.required");
+    }
+    if (hasOptionalLabel) {
+      return I18n.t("formElement.optional");
+    }
+  };
+
+  return (
+    <sc.Label data-pka-anchor="form-element.label" {...labelProps} {...moreProps} {...a11yProps}>
+      {children}
+      {hasOptionalLabel || hasRequiredLabel ? <sc.Requirement> {renderQuestionRequirement()}</sc.Requirement> : null}
+      {help ? <Help a11yText={helpA11yText}>{help}</Help> : null}
+    </sc.Label>
+  );
+};
+
 const propTypes = {
   /** content for the label */
   children: PropTypes.node.isRequired,
@@ -31,32 +57,6 @@ const defaultProps = {
   help: null,
   helpA11yText: null,
   isVisuallyHidden: false,
-};
-
-const Label = props => {
-  const { hasOptionalLabel, hasRequiredLabel, help, helpA11yText, children, ...moreProps } = props;
-  const { hasFieldSet, refLabel, labelId } = React.useContext(FormElementContext);
-  const I18n = useI18n();
-
-  const labelProps = hasFieldSet ? { as: "legend" } : { as: "label" };
-  const a11yProps = hasFieldSet ? { ref: refLabel } : { htmlFor: labelId, ref: refLabel };
-
-  const renderQuestionRequirement = () => {
-    if (hasRequiredLabel) {
-      return I18n.t("formElement.required");
-    }
-    if (hasOptionalLabel) {
-      return I18n.t("formElement.optional");
-    }
-  };
-
-  return (
-    <sc.Label data-pka-anchor="form-element.label" {...labelProps} {...moreProps} {...a11yProps}>
-      {children}
-      {hasOptionalLabel || hasRequiredLabel ? <sc.Requirement> {renderQuestionRequirement()}</sc.Requirement> : null}
-      {help ? <Help a11yText={helpA11yText}>{help}</Help> : null}
-    </sc.Label>
-  );
 };
 
 Label.displayName = "FormElement.Label";

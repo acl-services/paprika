@@ -16,12 +16,13 @@ export const FormElementContext = React.createContext({});
 
 function FormElement(props) {
   const { id, children, isDisabled, size, hasFieldSet, ...moreProps } = props;
+  const { fieldsetAriaDescribedBy } = React.useContext(FieldsetContext);
   const [ariaDescribedBy, setAriaDescribedBy] = React.useState({});
   const [uniqueInputId] = React.useState(nanoid);
+  const refLabel = React.useRef(null);
+
   const generateLabelId = id => (isNil(id) || id === "" ? uniqueInputId : id);
   const labelId = generateLabelId(id);
-  const refLabel = React.useRef(null);
-  const { fieldsetAriaDescribedBy } = React.useContext(FieldsetContext);
 
   const addIdToAriaDescribedBy = idObject => {
     setAriaDescribedBy(ariaDescribedBy => ({ ...idObject, ...ariaDescribedBy }));
@@ -51,8 +52,10 @@ FormElement.types = {
 };
 
 const propTypes = {
+  /** id attribute for the input field DOM element (will be auto-generated if not supplied). */
   id: PropTypes.string,
 
+  /** FormElement sub components and layout elements. */
   children: PropTypes.node.isRequired,
 
   /** Should be disabled or not, default is false. */

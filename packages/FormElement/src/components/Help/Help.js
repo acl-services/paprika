@@ -4,18 +4,6 @@ import Popover from "@paprika/popover";
 import useI18n from "@paprika/l10n/lib/useI18n";
 import * as sc from "./Help.styles";
 
-const propTypes = {
-  /** Content of help popover */
-  children: PropTypes.node.isRequired,
-
-  /** Aria label for icon button that triggers help popover */
-  a11yText: PropTypes.string,
-};
-
-const defaultProps = {
-  a11yText: null,
-};
-
 function Help(props) {
   const { children, a11yText, ...moreProps } = props;
   const I18n = useI18n();
@@ -32,6 +20,18 @@ function Help(props) {
     </sc.Help>
   );
 }
+
+const propTypes = {
+  /** Content of help popover */
+  children: PropTypes.node.isRequired,
+
+  /** Aria label for icon button that triggers help popover */
+  a11yText: PropTypes.string,
+};
+
+const defaultProps = {
+  a11yText: null,
+};
 
 Help.displayName = "FormElement.Help";
 Help.propTypes = propTypes;

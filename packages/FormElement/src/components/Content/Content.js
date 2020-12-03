@@ -4,10 +4,6 @@ import { FormElementContext } from "../../FormElement";
 
 export const FieldsetContext = React.createContext({});
 
-const propTypes = {
-  children: PropTypes.oneOfType([PropTypes.func, PropTypes.node]).isRequired,
-};
-
 function Content(props) {
   const { ariaDescribedBy, refLabel, labelId, hasFieldSet } = React.useContext(FormElementContext);
   const { children, ...moreProps } = props;
@@ -50,6 +46,11 @@ function Content(props) {
     </div>
   );
 }
+
+const propTypes = {
+  /** Input field and layout elemements. May be a render funtion with ({ id, refLabel, ariaDescribedBy }) as argument. */
+  children: PropTypes.oneOfType([PropTypes.func, PropTypes.node]).isRequired,
+};
 
 Content.displayName = "FormElement.Content";
 Content.propTypes = propTypes;

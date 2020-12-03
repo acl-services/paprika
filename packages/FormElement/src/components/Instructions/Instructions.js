@@ -4,11 +4,6 @@ import nanoid from "nanoid";
 import { FormElementContext } from "../../FormElement";
 import * as sc from "./Instructions.styles";
 
-const propTypes = {
-  /** Content for the form element instructions */
-  children: PropTypes.node.isRequired,
-};
-
 function Instructions(props) {
   const { children, ...moreProps } = props;
   const { addIdToAriaDescribedBy } = React.useContext(FormElementContext);
@@ -24,6 +19,10 @@ function Instructions(props) {
     </sc.Instructions>
   );
 }
+const propTypes = {
+  /** Content for the form element instructions */
+  children: PropTypes.node.isRequired,
+};
 
 Instructions.displayName = "FormElement.Instructions";
 Instructions.propTypes = propTypes;

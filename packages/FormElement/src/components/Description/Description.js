@@ -4,11 +4,6 @@ import nanoid from "nanoid";
 import { FormElementContext } from "../../FormElement";
 import * as sc from "./Description.styles";
 
-const propTypes = {
-  /** Content for the form element description */
-  children: PropTypes.node.isRequired,
-};
-
 function Description(props) {
   const { children, ...moreProps } = props;
   const { addIdToAriaDescribedBy } = React.useContext(FormElementContext);
@@ -24,6 +19,11 @@ function Description(props) {
     </sc.Description>
   );
 }
+
+const propTypes = {
+  /** Content for the form element description */
+  children: PropTypes.node.isRequired,
+};
 
 Description.displayName = "FormElement.Description";
 Description.propTypes = propTypes;
