@@ -1,20 +1,21 @@
 import React from "react";
 import PropTypes from "prop-types";
 import nanoid from "nanoid";
-import * as sc from "./Instructions.styles";
 import { FormElementContext } from "../../FormElement";
+import * as sc from "./Instructions.styles";
 
 const propTypes = {
+  /** Content for the form element instructions */
   children: PropTypes.node.isRequired,
 };
 
 function Instructions(props) {
-  const [ariaInstructionsId] = React.useState(nanoid);
-  const { addIdToAriaDescribedBy } = React.useContext(FormElementContext);
   const { children, ...moreProps } = props;
+  const { addIdToAriaDescribedBy } = React.useContext(FormElementContext);
+  const [ariaInstructionsId] = React.useState(nanoid);
 
   React.useEffect(() => {
-    addIdToAriaDescribedBy({ ariaInstructionsId });
+    if (addIdToAriaDescribedBy) addIdToAriaDescribedBy({ ariaInstructionsId });
   }, []);
 
   return (
@@ -25,7 +26,6 @@ function Instructions(props) {
 }
 
 Instructions.displayName = "FormElement.Instructions";
-
 Instructions.propTypes = propTypes;
 
 export default Instructions;

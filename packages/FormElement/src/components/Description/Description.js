@@ -1,25 +1,21 @@
 import React from "react";
 import PropTypes from "prop-types";
 import nanoid from "nanoid";
-import * as sc from "./Description.styles";
 import { FormElementContext } from "../../FormElement";
+import * as sc from "./Description.styles";
 
 const propTypes = {
-  ariaDescriptionId: PropTypes.string,
+  /** Content for the form element description */
   children: PropTypes.node.isRequired,
 };
 
-const defaultProps = {
-  ariaDescriptionId: null,
-};
-
 function Description(props) {
-  const [ariaDescriptionId] = React.useState(nanoid);
-  const { addIdToAriaDescribedBy } = React.useContext(FormElementContext);
   const { children, ...moreProps } = props;
+  const { addIdToAriaDescribedBy } = React.useContext(FormElementContext);
+  const [ariaDescriptionId] = React.useState(nanoid);
 
   React.useEffect(() => {
-    addIdToAriaDescribedBy({ ariaDescriptionId });
+    if (addIdToAriaDescribedBy) addIdToAriaDescribedBy({ ariaDescriptionId });
   }, []);
 
   return (
@@ -30,8 +26,6 @@ function Description(props) {
 }
 
 Description.displayName = "FormElement.Description";
-
 Description.propTypes = propTypes;
-Description.defaultProps = defaultProps;
 
 export default Description;

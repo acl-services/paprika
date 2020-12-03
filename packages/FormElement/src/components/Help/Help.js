@@ -1,42 +1,39 @@
 import React from "react";
 import PropTypes from "prop-types";
-
-import InfoCircleIcon from "@paprika/icon/lib/InfoCircle";
 import Popover from "@paprika/popover";
 import useI18n from "@paprika/l10n/lib/useI18n";
-
-import helpStyles, { StyledTrigger, iconStyles } from "./Help.styles";
+import * as sc from "./Help.styles";
 
 const propTypes = {
+  /** Content of help popover */
   children: PropTypes.node.isRequired,
 
-  /** Aria text for information button to trigger help popover. */
-  triggerA11yText: PropTypes.string,
+  /** Aria label for icon button that triggers help popover */
+  a11yText: PropTypes.string,
 };
 
 const defaultProps = {
-  triggerA11yText: null,
+  a11yText: null,
 };
 
 function Help(props) {
-  const { children, triggerA11yText, ...moreProps } = props;
+  const { children, a11yText, ...moreProps } = props;
   const I18n = useI18n();
 
   return (
-    <Popover css={helpStyles} align="bottom" data-pka-anchor="form-element.help" {...moreProps}>
-      <StyledTrigger a11yText={triggerA11yText || I18n.t("formElement.aria_info_circle")}>
-        <InfoCircleIcon css={iconStyles} aria-hidden type="exclamation-circle" />
-      </StyledTrigger>
+    <sc.Help align="bottom" data-pka-anchor="form-element.help" {...moreProps}>
+      <Popover.Trigger a11yText={a11yText || I18n.t("formElement.aria_info_circle")}>
+        <sc.HelpIcon aria-hidden type="exclamation-circle" />
+      </Popover.Trigger>
       <Popover.Content>
         <Popover.Card>{children}</Popover.Card>
       </Popover.Content>
       <Popover.Tip />
-    </Popover>
+    </sc.Help>
   );
 }
 
 Help.displayName = "FormElement.Help";
-
 Help.propTypes = propTypes;
 Help.defaultProps = defaultProps;
 
