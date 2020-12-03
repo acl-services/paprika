@@ -15,18 +15,26 @@ const Label = props => {
 
   const renderQuestionRequirement = () => {
     if (hasRequiredLabel) {
-      return I18n.t("formElement.required");
+      return `${I18n.t("formElement.required")}`;
     }
     if (hasOptionalLabel) {
-      return I18n.t("formElement.optional");
+      return `${I18n.t("formElement.optional")}`;
     }
   };
 
   return (
     <sc.Label data-pka-anchor="form-element.label" {...labelProps} {...moreProps} {...a11yProps}>
       {children}
-      {hasOptionalLabel || hasRequiredLabel ? <sc.Requirement> {renderQuestionRequirement()}</sc.Requirement> : null}
-      {help ? <Help a11yText={helpA11yText}>{help}</Help> : null}
+      {hasOptionalLabel || hasRequiredLabel ? (
+        <>
+          &nbsp;<sc.Requirement>{renderQuestionRequirement()}</sc.Requirement>
+        </>
+      ) : null}
+      {help ? (
+        <>
+          &nbsp;<Help a11yText={helpA11yText}>{help}</Help>
+        </>
+      ) : null}
     </sc.Label>
   );
 };

@@ -4,7 +4,6 @@ import InfoCircleIcon from "@paprika/icon/lib/InfoCircle";
 import tokens from "@paprika/tokens";
 
 export const Help = styled(Popover)`
-  margin-left: ${tokens.spaceSm};
   position: relative;
   top: 2px;
 `;

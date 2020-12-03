@@ -1,14 +1,9 @@
-import { Meta, Description } from "@storybook/addon-docs/blocks";
-import Textarea from "@paprika/textarea";
+import { Meta, Description, Canvas } from "@storybook/addon-docs/blocks";
 import { getStoryName } from "storybook/storyTree";
 import { docsStoryParameters } from "storybook/assets/storyParameters";
 import Readme from "../README.md";
-import { FormElementStyles } from "./FormElement.stories.styles";
-import Checkbox from "./examples/Checkbox";
-import InlineContent from "./examples/InlineContent";
-import DatePicker from "./examples/DatePicker";
-import Accessibility from "./examples/Accessibility";
-import ComponentLabel from "./examples/ComponentLabel";
+import Input from "@paprika/input";
+import ListBox from "@paprika/list-box";
 import FormElement from "../src";
 
 <Meta title={`${getStoryName("FormElement")}/Docs`} component={FormElement} parameters={{ ...docsStoryParameters }} />
@@ -20,184 +15,80 @@ import FormElement from "../src";
 ### Index
 
 - <a href="#accessibility">Accessibility</a>
-- <a href="#basic-input-components">Basic Input Components</a>
-  - <a href="#textarea">Textarea</a>
-  - <a href="#checkbox">Checkbox</a>
-- <a href="#component-label">Component Label</a>
-- <a href="#complex-input-components">Complex Input Components</a>
-  - <a href="#datepicker">DatePicker</a>
+- <a href="#custom-input-components">Complex Input Components</a>
+- <a href="#inline-layout">Inline Layout</a>
 
 ### Accessibility
 
-The `<FormElement />` has been designed with accessibility in mind. Users can make use of `<FormElement.Label />`, `<FormElement.Instructions />`, `<FormElement.Description />`, and `<FormElement.Error />`, to add instructions, guidance and feedback to users. Error messages, instructions, and descriptions can be associated to the input field by applying the supplied `a11yProps` parameter in the render function supplied to the `children` of the `<FormElement.Content>`.
+The `<FormElement />` has been designed with accessibility in mind. Consumers can make use of `<FormElement.Label />`, `<FormElement.Instructions />`, `<FormElement.Description />`, and `<FormElement.Error />`, to add instructions, guidance and feedback to users.
 
-```jsx
+Error messages, instructions, and descriptions need to be associated to the input field by applying the supplied `a11yProps` argument of the render function supplied as `children` of the `<FormElement.Content>`.
+
+Additionally, the `<FormElement.Label />` component has a `help` prop which accepts a JSX element that will be rendered in a `<Popover />` triggered by a small "info" icon button beside the label.
+
+<!-- prettier-ignore -->
+<Canvas isExpanded>
 <FormElement>
-  <FormElement.Label help={(Give me some help. <a href="wegalvanize.com">Learn more</a>)}>Form label</FormElement.Label>
-  <FormElement.Instructions>
-    Example text for extra panel for questionnaires. Example text for extra panel for questionnaires Example text for
-    extra panel for questionnaires. Example text for extra panel for questionnaires
-  </FormElement.Instructions>
-  <FormElement.Content>{a11yProps => <Input placeholder="Form placeholder" {...a11yProps} />}</FormElement.Content>
-  <FormElement.Description>This is description text</FormElement.Description>
-  <FormElement.Error>There was an error</FormElement.Error>
-</FormElement>
-```
-
-##### Result
-
-<FormElementStyles>
-  <Accessibility />
-</FormElementStyles>
-
-### Basic Input Components
-
-The `<FormElement>` can be used with different components to fulfill a variety of input needs. This can be achieved by including basic input components such as the `<Select>`, `<Textarea>`, `<Checkbox>`, etc. as `children` for the `<FormElement.Content>`
-
-#### Textarea
-
-```jsx
-<FormElement>
-  <FormElement.Label>Form label</FormElement.Label>
-  <FormElement.Content>
-    <Textarea defaultValue="Hello world">
-  </FormElement.Content>
-</FormElement>
-```
-
-##### Result
-
-<FormElementStyles>
-  <FormElement>
-    <FormElement.Label>Form label</FormElement.Label>
-    <FormElement.Content>
-      <Textarea defaultValue="Hello world" />
-    </FormElement.Content>
-  </FormElement>
-</FormElementStyles>
-
-#### Checkbox
-
-```jsx
-<Fieldset>
-  <FormElement.Label>Form label</FormElement.Label>
-  <FormElement.Content>
-    {a11yProps =>
-      <Checkbox key="Black Panther" onChange={() => {}}>
-        <Checkbox.Input {...a11yProps} />
-        Black Panther
-      </Checkbox>
-      <Checkbox key="Spiderman" onChange={() => {}}>
-        <Checkbox.Input {...a11yProps} />
-        Spiderman
-      </Checkbox>
-      <Checkbox key="Wonder Woman" onChange={() => {}}>
-        <Checkbox.Input {...a11yProps} />
-        Wonder Woman
-      </Checkbox>
-    }
-  </FormElement.Content>
-</Fieldset>
-```
-
-##### Result
-
-<FormElementStyles>
-  <Checkbox />
-</FormElementStyles>
-
-#### Component Label
-
-The `ComponentLabel` allows users to use the`label`property of the`<FormElement/ />`. Users can set the label property to equal an entire component, in this particular example making use of the`<Heading />` component.
-
-```jsx
-<FormElement hasRequiredLabel={false}>
-  <FormElement.Label>
-    <Heading level={4}>Form Label</Heading>
+  <FormElement.Label 
+    help={<>Help yourself: <a href="">learn more</a></>}
+  > 
+    Form label
   </FormElement.Label>
-  <FormElement.Content>{a11yProps => <Input onChange={() => {}} {...a11yProps} />}</FormElement.Content>
-</FormElement>
-```
-
-##### Result
-
-<FormElementStyles>
-  <ComponentLabel />
-</FormElementStyles>
-
-### Complex Input Components
-
-The `<FormElement />` can handle a variety of components to further increase the users indivudal needs. This can range from a `<DatePicker />` component to a `<ListBox />` component.
-
-#### DatePicker
-
-```jsx
-<FormElement>
-  <FormElement.Label>Form label</FormElement.Label>
+  <FormElement.Instructions>
+    Some instructions for this input.
+  </FormElement.Instructions>
   <FormElement.Content>
-    {a11yProps => (
-      <DatePicker onChange={() => {}}>
-        <DatePicker.Input {...a11yProps} />
-      </DatePicker>
-    )}
+    {a11yProps => <Input {...a11yProps} hasError />}
+  </FormElement.Content>
+  <FormElement.Error>There was an error!</FormElement.Error>
+</FormElement>
+</Canvas>
+
+### Custom Input Components
+
+The `<FormElement />` can accept custom components like the `<ListBox />` and `<ButtonGroup />` as inputs and remain fully accessible while also maintaining a consistent user experience, even if they do not render a native form input element like a `<select>` or `<input>`.
+
+This works because the properties included in the `a11yProps` argument of the render function supplied as `children` to `<FormElement.Content />` are spread onto the custom component, which handles them appropriately. These properties include:
+
+- `id` for the underlying input
+- `ariaDescribedBy` (a space separated list of `ids`) for elements that provide a description of the input
+- `refLabel` a React ref for the `<FormElement.Label />`
+
+<!-- prettier-ignore -->
+<Canvas isExpanded>
+<FormElement>
+  <FormElement.Label>Form Label</FormElement.Label>
+  <FormElement.Content>
+    {a11yProps => <>
+      <ListBox {...a11yProps}>
+        <ListBox.Option>Option #1</ListBox.Option>
+        <ListBox.Option>Option #2</ListBox.Option>
+        <ListBox.Option>Option #3</ListBox.Option>
+      </ListBox>
+    </>}
   </FormElement.Content>
 </FormElement>
-```
+</Canvas>
 
-##### Result
+### Inline Layout
 
-<FormElementStyles>
-  <DatePicker />
-</FormElementStyles>
+The `<FormElement />` can handle a variety of custom layouts, but a common use case is to have label inline with the input. For this purpose the `<FormElement.Layout />` component, along with `<FormElement.Layout.LeftCol />` and `<FormElement.Layout.RightCol />` are provided for convenience and consistency.
 
-### Inline layouts
+The `<LeftCol />` component also accepts a `width` prop, again for convenience. The `<RightCol />` will expand to fill the rest of the space.
 
-The `<FormElement />` can handle a variety a variety of layout by making use of the `FormElement.Layout` component, along with `FormElement.Layout.LeftCol` and `FormElement.Layout.RightCol` for inline positioning with adjustable widths.
-
-```jsx
+<!-- prettier-ignore -->
+<Canvas isExpanded>
 <FormElement>
-  <Layout>
-    <Layout.LeftCol width="40%">
-      <Label>Form Label</Label>
-    </Layout.LeftCol>
-    <Layout.RightCol>
-      <Instructions>
-        <span>
-          Example text for extra panel for questionnaires. Example text for extra panel for questionnaires Example text
-          for extra panel for questionnaires. Example text for extra panel for questionnaires
-        </span>
-      </Instructions>
-      <Content>
-        {a11yProps => (
-          <>
-            <Input
-              onChange={handleChange}
-              value={value}
-              placeholder="Form placeholder"
-              hasError={Boolean(errorText.length)}
-              {...a11yProps}
-            />
-            <Input
-              onChange={handleChange}
-              value={value}
-              placeholder="Form placeholder"
-              hasError={Boolean(errorText.length)}
-              aria-describedby={a11yProps["aria-describedby"]} // Only aria-describedby should be applied to subsequent Content components
-            />
-          </>
-        )}
-      </Content>
-      <Description>
-        <span>This is description text</span>
-      </Description>
-      <Error>{errorText}</Error>
-    </Layout.RightCol>
-  </Layout>
+  <FormElement.Layout >
+    <FormElement.Layout.LeftCol width={120}>
+      <FormElement.Label >Form Label</FormElement.Label>
+    </FormElement.Layout.LeftCol>
+    <FormElement.Layout.RightCol>
+      <FormElement.Content>
+        {a11yProps => <Input {...a11yProps} />}
+      </FormElement.Content>
+      <FormElement.Description>This is description text.</FormElement.Description>
+    </FormElement.Layout.RightCol>
+  </FormElement.Layout>
 </FormElement>
-```
-
-##### Result
-
-<FormElementStyles>
-  <InlineContent />
-</FormElementStyles>
+</Canvas>
