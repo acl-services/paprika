@@ -78,51 +78,85 @@ npm install @paprika/form-element
 
 ## Usage
 
-Please use `<L10n />` component to wrap `<FormElement />` or you application.
+The `<L10n />` component is a required context provider that must wrap the `<FormElement />` (or your application) for proper localization.
 
-Using with paprika `<Input />`
+### Using with Paprika `<Input />`
 
+<!-- prettier-ignore -->
 ```jsx
 import FormElement from "@paprika/form-element";
 import Input from "@paprika/input";
 
+const { Label, Content } = FormElement;
+
 <FormElement>
-  <Label>Name</Label>
+  <Label>First Name</Label>
   <Content>
     {a11yProps => (
       <Input
         onChange={handleChange}
         value={value}
-        placeholder="Form placeholder"
-        aria-required={hasRequiredLabel}
-        hasError={false}
-        isDisabled={isDisabled}
-        isReadOnly={isReadOnly}
-        size={size}
         {...a11yProps}
       />
     )}
-    )}
   </Content>
-</FormElement>;
+</FormElement>
 ```
 
-Using with paprika `<DatePicker />`
+### Using with Paprika `<DatePicker />`, instructions, and description
 
+<!-- prettier-ignore -->
 ```jsx
 import DatePicker from "@paprika/date-picker";
-import FormElement, { Label, Content } from "@paprika/form-element";
+import FormElement from "@paprika/form-element";
+
+const { Label, Content, Description, Instructions } = FormElement;
 
 <FormElement>
-  <Label>Name</Label>
+  <Label>Start Date</Label>
+  <Instructions>MM/DD/YYYY</Instructions>
   <Content>
     {a11yProps => (
-      <DatePicker onError={() => {}} hasError={Boolean(errorText.length)} onChange={() => {}}>
+      <DatePicker onChange={handleChange}>
         <DatePicker.Input {...a11yProps} />
       </DatePicker>
     )}
   </Content>
-</FormElement>;
+  <Description>This is the date the project started.<Description>
+</FormElement>
+```
+
+### Using with Paprika `<Checkbox />` (or multiple inputs with a shared label) and error message
+
+<!-- prettier-ignore -->
+```jsx
+import DatePicker from "@paprika/checkbox";
+import { Fieldset } from "@paprika/form-element";
+
+const { Label, Content, Error } = Fieldset;
+
+<Fieldset>
+  <Label>Select Options</Label>
+  <Content>
+    {a11yProps => (
+      <>
+        <Checkbox onChange={handleChange}>
+          <Checkbox.Input {...a11yProps} />
+          Cheese
+        </Checkbox>
+        <Checkbox onChange={handleChange}>
+          <Checkbox.Input {...a11yProps} />
+          Meat
+        </Checkbox>
+        <Checkbox onChange={handleChange}>
+          <Checkbox.Input {...a11yProps} />
+          Mushrooms
+        </Checkbox>
+      </>
+    )}
+  </Content>
+  <Error>{errorMsg}</Error>
+</Fieldset>
 ```
 
 <!-- eoContent -->
