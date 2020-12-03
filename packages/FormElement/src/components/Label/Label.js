@@ -8,6 +8,7 @@ import Help from "../Help/Help";
 import { FormElementContext } from "../../FormElement";
 
 const propTypes = {
+  /** content for the label */
   children: PropTypes.node.isRequired,
   /** If "optional" text should be displayed beside the label  */
   hasOptionalLabel: PropTypes.bool,
@@ -15,32 +16,24 @@ const propTypes = {
   hasRequiredLabel: PropTypes.bool,
   /** Help indicator */
   help: PropTypes.node,
-  /** id for the element */
-  id: PropTypes.string,
   /** Should label be hidden */
   isVisuallyHidden: PropTypes.bool,
-
-  onClick: PropTypes.func,
 };
 
 const defaultProps = {
   hasOptionalLabel: false,
   hasRequiredLabel: false,
   help: null,
-  id: null,
   isVisuallyHidden: false,
-  onClick: () => {},
 };
 
 const Label = props => {
+  const { hasOptionalLabel, hasRequiredLabel, help, children, ...moreProps } = props;
   const { hasFieldSet, refLabel, labelId } = React.useContext(FormElementContext);
-  const { hasOptionalLabel, hasRequiredLabel, help, id, children, ...moreProps } = props;
-
   const I18n = useI18n();
 
   const labelProps = hasFieldSet ? { as: "legend" } : { as: "label" };
-
-  const a11yProps = { htmlFor: labelId, ref: refLabel };
+  const a11yProps = hasFieldSet ? { ref: refLabel } : { htmlFor: labelId, ref: refLabel };
 
   const renderQuestionRequirement = () => {
     if (hasRequiredLabel) {
@@ -51,24 +44,16 @@ const Label = props => {
     }
   };
 
-  const renderHelp = () => {
-    if (help) {
-      return <Help>{help}</Help>;
-    }
-    return null;
-  };
-
   return (
     <div data-pka-anchor="form-element.label" css={labelStyles} {...labelProps} {...moreProps} {...a11yProps}>
       {children}
       {hasOptionalLabel || hasRequiredLabel ? <span css={ruleStyles}> {renderQuestionRequirement()}</span> : null}
-      {renderHelp()}
+      {help ? <Help>{help}</Help> : null}
     </div>
   );
 };
 
 Label.displayName = "FormElement.Label";
-
 Label.propTypes = propTypes;
 Label.defaultProps = defaultProps;
 
