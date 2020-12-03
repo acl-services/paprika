@@ -169,6 +169,11 @@ export default function WithTags(props) {
 
 WithTags.propTypes = propTypes;
 WithTags.defaultProps = defaultProps;
+
+WithTags.Box = ListBox.Box;
+WithTags.Divider = ListBox.Divider;
+WithTags.Footer = ListBox.Footer;
 WithTags.Option = ListBox.Option;
+WithTags.Popover = ListBox.Popover;
 WithTags.RawItem = ListBox.RawItem;
 WithTags.filter = filter;
