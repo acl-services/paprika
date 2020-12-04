@@ -1,5 +1,6 @@
 import React from "react";
 import { action } from "@storybook/addon-actions";
+import L10n from "@paprika/l10n";
 import Radio from "@paprika/radio";
 import { Fieldset } from "../../src";
 
@@ -24,10 +25,12 @@ export default function RadioExample() {
   );
 
   return (
-    <Fieldset>
-      <Label>Radio group label</Label>
-      <Instructions>Some instructions for these radio buttons.</Instructions>
-      <Content>{a11yProps => renderRadios(a11yProps)}</Content>
-    </Fieldset>
+    <L10n>
+      <Fieldset>
+        <Label>Radio group label</Label>
+        <Instructions>Some instructions for these radio buttons.</Instructions>
+        <Content>{a11yProps => renderRadios(a11yProps)}</Content>
+      </Fieldset>
+    </L10n>
   );
 }

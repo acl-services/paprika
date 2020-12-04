@@ -1,5 +1,6 @@
 import React from "react";
 import { boolean, select, text } from "@storybook/addon-knobs";
+import L10n from "@paprika/l10n";
 import Heading from "@paprika/heading";
 import Input from "@paprika/input";
 import { Rule, Tagline } from "storybook/assets/styles/common.styles";
@@ -37,7 +38,7 @@ const getErrorKnobs = () => ({
 
 const { Label, Instructions, Content, Description, Error } = FormElement;
 
-const Showcase = () => {
+function Showcase() {
   const [value, setValue] = React.useState("");
 
   function handleChange(e) {
@@ -58,25 +59,27 @@ const Showcase = () => {
       </Heading>
       <Tagline>Form Element.</Tagline>
       <Rule />
-      <FormElement {...rootProps}>
-        <Label {...labelProps}>{labelText}</Label>
-        <Instructions>{instructionsText}</Instructions>
-        <Content>
-          {a11yProps => (
-            <Input
-              onChange={handleChange}
-              value={value}
-              hasError={Boolean(errorText)}
-              size={rootProps.size}
-              {...a11yProps}
-            />
-          )}
-        </Content>
-        {!errorText ? <Description>{descriptionText}</Description> : null}
-        <Error>{errorText}</Error>
-      </FormElement>
+      <L10n>
+        <FormElement {...rootProps}>
+          <Label {...labelProps}>{labelText}</Label>
+          <Instructions>{instructionsText}</Instructions>
+          <Content>
+            {a11yProps => (
+              <Input
+                onChange={handleChange}
+                value={value}
+                hasError={Boolean(errorText)}
+                size={rootProps.size}
+                {...a11yProps}
+              />
+            )}
+          </Content>
+          {!errorText ? <Description>{descriptionText}</Description> : null}
+          <Error>{errorText}</Error>
+        </FormElement>
+      </L10n>
     </FormElementStory>
   );
-};
+}
 
 export default () => <Showcase />;

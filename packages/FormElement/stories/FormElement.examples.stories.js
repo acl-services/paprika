@@ -3,15 +3,16 @@ import { getStoryName } from "storybook/storyTree";
 import { exampleStoryParameters } from "storybook/assets/storyParameters";
 import ExampleStory from "storybook/components/ExampleStory";
 import { FormElementStory } from "./FormElement.stories.styles";
-import Radio from "./examples/Radio";
-import Everything from "./examples/Everything";
-import Checkbox from "./examples/Checkbox";
-import DatePicker from "./examples/DatePicker";
-import ListBox from "./examples/ListBox";
-import ButtonGroup from "./examples/ButtonGroup";
-import Nested from "./examples/Nested";
+import SubcomponentsExample from "./examples/Subcomponents";
+import CheckboxExample from "./examples/Checkbox";
+import RadioExample from "./examples/Radio";
+import ListBoxExample from "./examples/ListBox";
+import DatePickerExample from "./examples/DatePicker";
+import ButtonGroupExample from "./examples/ButtonGroup";
+import FieldsetExample from "./examples/Fieldset";
+import InlineExample from "./examples/Inline";
+import EverythingExample from "./examples/Everything";
 import FormElement from "../src/FormElement";
-import InlineContentExample from "./examples/InlineContent";
 
 const storyName = getStoryName("FormElement");
 
@@ -20,79 +21,91 @@ export default {
   component: FormElement,
 };
 
-export const everythingExample = () => (
-  <ExampleStory storyName="Everything Bagel" component="FormElement" fileName="examples/Everything.js">
-    <Everything />
+export const subcomponentsStory = () => (
+  <ExampleStory storyName="Subcomponents" component="FormElement" fileName="examples/Subcomponents.js">
+    <SubcomponentsExample />
   </ExampleStory>
 );
-everythingExample.story = {
-  name: "Everything Bagel",
+subcomponentsStory.story = {
+  name: "Subcomponents",
   parameters: exampleStoryParameters,
 };
 
-export const checkboxExample = () => (
+export const checkboxStory = () => (
   <FormElementStory storyName="Checkboxes" component="FormElement" fileName="examples/Checkbox.js">
-    <Checkbox />
+    <CheckboxExample />
   </FormElementStory>
 );
-checkboxExample.story = {
+checkboxStory.story = {
   name: "Checkboxes",
   parameters: exampleStoryParameters,
 };
 
-export const radioExample = () => (
-  <FormElementStory storyName="Radio" component="FormElement" fileName="examples/Radio.js">
-    <Radio />
+export const radioStory = () => (
+  <FormElementStory storyName="Radios" component="FormElement" fileName="examples/Radio.js">
+    <RadioExample />
   </FormElementStory>
 );
-radioExample.story = {
-  name: "Radio",
+radioStory.story = {
+  name: "Radios",
   parameters: exampleStoryParameters,
 };
 
-export const datePickerExample = () => (
-  <FormElementStory storyName="DatePicker" component="FormElement" fileName="examples/DatePicker.js">
-    <DatePicker />
+export const listBoxStory = () => (
+  <FormElementStory storyName="ListBox" component="FormElement" fileName="examples/ListBox.js">
+    <ListBoxExample />
   </FormElementStory>
 );
-datePickerExample.story = {
+listBoxStory.story = {
+  name: "ListBox",
+  parameters: exampleStoryParameters,
+};
+export const datePickerStory = () => (
+  <FormElementStory storyName="DatePicker" component="FormElement" fileName="examples/DatePicker.js">
+    <DatePickerExample />
+  </FormElementStory>
+);
+datePickerStory.story = {
   name: "DatePicker",
   parameters: exampleStoryParameters,
 };
 
-export const listBoxExample = () => (
-  <FormElementStory storyName="ListBox" component="FormElement" fileName="examples/ListBox.js">
-    <ListBox />
-  </FormElementStory>
-);
-listBoxExample.story = {
-  name: "ListBox",
-  parameters: exampleStoryParameters,
-};
-
-export const buttonGroupExample = () => (
+export const buttonGroupStory = () => (
   <FormElementStory storyName="ButtonGroup" component="FormElement" fileName="examples/ButtonGroup.js">
-    <ButtonGroup />
+    <ButtonGroupExample />
   </FormElementStory>
 );
-buttonGroupExample.story = {
+buttonGroupStory.story = {
   name: "ButtonGroup",
   parameters: exampleStoryParameters,
 };
 
-export const nestedExample = () => (
-  <FormElementStory storyName="Nested" component="FormElement" fileName="examples/Nested.js">
-    <Nested />
+export const fieldsetStory = () => (
+  <FormElementStory storyName="Fieldset" component="FormElement" fileName="examples/Fieldset.js">
+    <FieldsetExample />
   </FormElementStory>
 );
-nestedExample.story = {
-  name: "Nested FormElements (hasFieldSet)",
+fieldsetStory.story = {
+  name: "Fieldset",
   parameters: exampleStoryParameters,
 };
 
-export const inlineContentExample = () => (
-  <FormElementStory storyName="Inline Content" component="FormElement" fileName="examples/InlineContent.js">
-    <InlineContentExample />
+export const inlineStory = () => (
+  <FormElementStory storyName="Inline Layout" component="FormElement" fileName="examples/Inline.js">
+    <InlineExample />
   </FormElementStory>
 );
-nestedExample.story = { name: "Nested", parameters: exampleStoryParameters };
+inlineStory.story = {
+  name: "Inline Layout",
+  parameters: exampleStoryParameters,
+};
+
+export const everythingStory = () => (
+  <ExampleStory storyName="Everything Bagel" component="FormElement" fileName="examples/Everything.js">
+    <EverythingExample />
+  </ExampleStory>
+);
+everythingStory.story = {
+  name: "Everything Bagel",
+  parameters: exampleStoryParameters,
+};

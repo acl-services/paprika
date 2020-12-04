@@ -1,5 +1,6 @@
 import React from "react";
 import { action } from "@storybook/addon-actions";
+import L10n from "@paprika/l10n";
 import Checkbox from "@paprika/checkbox";
 import { Fieldset } from "../../src";
 
@@ -21,10 +22,12 @@ export default function CheckboxExample() {
     ));
 
   return (
-    <Fieldset>
-      <Label>Checkbox group label</Label>
-      <Instructions>Some instructions for these checkboxes.</Instructions>
-      <Content>{a11yProps => renderCheckboxes(a11yProps)}</Content>
-    </Fieldset>
+    <L10n>
+      <Fieldset>
+        <Label>Checkbox group label</Label>
+        <Instructions>Some instructions for these checkboxes.</Instructions>
+        <Content>{a11yProps => renderCheckboxes(a11yProps)}</Content>
+      </Fieldset>
+    </L10n>
   );
 }

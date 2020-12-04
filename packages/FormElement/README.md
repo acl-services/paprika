@@ -24,11 +24,13 @@ npm install @paprika/form-element
 
 | Prop        | Type                                                                                         | required | default                       | Description                                                                            |
 | ----------- | -------------------------------------------------------------------------------------------- | -------- | ----------------------------- | -------------------------------------------------------------------------------------- |
-| id          | string                                                                                       | false    | ""                            | id attribute for the input field DOM element (will be auto-generated if not supplied). |
 | children    | node                                                                                         | true     | -                             | FormElement sub components and layout elements.                                        |
-| isDisabled  | bool                                                                                         | false    | false                         | Should be disabled or not, default is false.                                           |
-| size        | [ FormElement.types.size.SMALL, FormElement.types.size.MEDIUM, FormElement.types.size.LARGE] | false    | FormElement.types.size.MEDIUM | Size of the label, error, help and description (font size, min-height, padding, etc).  |
 | hasFieldSet | bool                                                                                         | false    | false                         | FormElement contains multiple children so Renders a legend element instead of label.   |
+| id          | string                                                                                       | false    | ""                            | id attribute for the input field DOM element (will be auto-generated if not supplied). |
+| isDisabled  | bool                                                                                         | false    | false                         | Should be disabled or not, default is false.                                           |
+| isOptional  | bool                                                                                         | false    | false                         | If input is an optional field and should be indicated.                                 |
+| isRequired  | bool                                                                                         | false    | false                         | If input is a required field.                                                          |
+| size        | [ FormElement.types.size.SMALL, FormElement.types.size.MEDIUM, FormElement.types.size.LARGE] | false    | FormElement.types.size.MEDIUM | Size of the label, error, help and description (font size, min-height, padding, etc).  |
 
 ### FormElement.Content
 
@@ -56,14 +58,12 @@ npm install @paprika/form-element
 
 ### FormElement.Label
 
-| Prop             | Type   | required | default | Description                                             |
-| ---------------- | ------ | -------- | ------- | ------------------------------------------------------- |
-| children         | node   | true     | -       | content for the label                                   |
-| hasOptionalLabel | bool   | false    | false   | If "optional" text should be displayed beside the label |
-| hasRequiredLabel | bool   | false    | false   | If "require" text should be displayed beside the label  |
-| help             | node   | false    | null    | Help indicator                                          |
-| helpA11yText     | string | false    | null    | Aria label for icon button that triggers help popover   |
-| isVisuallyHidden | bool   | false    | false   | Should label be hidden                                  |
+| Prop             | Type   | required | default | Description                                           |
+| ---------------- | ------ | -------- | ------- | ----------------------------------------------------- |
+| children         | node   | true     | -       | content for the label                                 |
+| help             | node   | false    | null    | Help indicator                                        |
+| helpA11yText     | string | false    | null    | Aria label for icon button that triggers help popover |
+| isVisuallyHidden | bool   | false    | false   | Should label be hidden                                |
 
 ### FormElement.Layout
 

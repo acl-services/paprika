@@ -1,5 +1,6 @@
 import React from "react";
 import { Rule } from "storybook/assets/styles/common.styles";
+import L10n from "@paprika/l10n";
 import Input from "@paprika/input";
 import Select from "@paprika/select";
 import Textarea from "@paprika/textarea";
@@ -9,38 +10,23 @@ import FormElement, { Fieldset } from "../../src";
 const { Layout, Label, Instructions, Content, Description, Error } = FormElement;
 const { LeftCol, RightCol } = Layout;
 
-const EverythingExample = () => {
+export default function EverythingExample() {
   const [value, setValue] = React.useState();
   const [value2, setValue2] = React.useState();
   const [errorText, setErrorText] = React.useState();
-
-  function handleChange(e) {
-    setValue(e.target.value);
-  }
-
-  function handleChange2(e) {
-    setValue2(e.target.value);
-  }
-
-  function setError() {
-    setErrorText("There was an error.");
-  }
-
-  function clearError() {
-    setErrorText("");
-  }
 
   const helpContent = (
     <>
       Help yourself{" "}
       <a href="https://youtu.be/D-Zy2P26gVM" target="_blank" rel="noopener noreferrer">
-        Learn more
+        learn more
       </a>
       .
     </>
   );
+
   return (
-    <>
+    <L10n>
       <Fieldset>
         <Layout>
           <LeftCol width={140}>
@@ -62,7 +48,12 @@ const EverythingExample = () => {
                     <Instructions>These are some field instructions.</Instructions>
                     <Content>
                       {a11yProps => (
-                        <Input onChange={handleChange} value={value} hasError={Boolean(errorText)} {...a11yProps} />
+                        <Input
+                          onChange={e => setValue(e.target.value)}
+                          value={value}
+                          hasError={Boolean(errorText)}
+                          {...a11yProps}
+                        />
                       )}
                     </Content>
                     {!errorText ? <Description>These is a description of the field.</Description> : null}
@@ -84,7 +75,7 @@ const EverythingExample = () => {
                       {a11yProps => (
                         <Select
                           placeholder="Select an option"
-                          onChange={handleChange2}
+                          onChange={e => setValue2(e.target.value)}
                           value={value2}
                           hasError={Boolean(errorText)}
                           {...a11yProps}
@@ -122,14 +113,12 @@ const EverythingExample = () => {
         </Layout>
       </Fieldset>
       <Rule />
-      <Button onClick={setError} size={Button.types.size.SMALL}>
+      <Button onClick={() => setErrorText("There was an error.")} size={Button.types.size.SMALL}>
         Show Error
       </Button>{" "}
-      <Button onClick={clearError} size={Button.types.size.SMALL}>
+      <Button onClick={() => setErrorText("")} size={Button.types.size.SMALL}>
         Clear Error
       </Button>
-    </>
+    </L10n>
   );
-};
-
-export default EverythingExample;
+}
