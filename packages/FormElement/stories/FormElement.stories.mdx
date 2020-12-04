@@ -8,14 +8,15 @@ import FormElement from "../src";
 
 <Meta title={`${getStoryName("FormElement")}/Docs`} component={FormElement} parameters={{ ...docsStoryParameters }} />
 
-<xxxDescription markdown={Readme} />
+<Description markdown={Readme} />
 
 ## More Examples
 
 ### Index
 
 - <a href="#accessibility">Accessibility</a>
-- <a href="#disabled">Disabled</a>
+- <a href="#required-fields">Required Fields</a>
+- <a href="#disabled-fields">Disabled Fields</a>
 - <a href="#custom-input-components">Complex Input Components</a>
 - <a href="#inline-layout">Inline Layout</a>
 
@@ -25,13 +26,14 @@ The `<FormElement />` has been designed with accessibility in mind. Consumers ca
 
 Error messages, instructions, and descriptions need to be associated to the input field by applying the supplied `a11yProps` argument of the render function supplied as `children` of the `<FormElement.Content>`.
 
-Additionally, the `<FormElement.Label />` component has a `help` prop which accepts a JSX element that will be rendered in a `<Popover />` triggered by a small "info" icon button beside the label.
+Additionally, the `<FormElement.Label />` component has a `help` prop which accepts a JSX element that will be rendered in a `<Popover />` triggered by a small "info" icon button beside the label. The default ARIA label ("information") for this icon button can be customized with the `helpA11yText` prop.
 
 <!-- prettier-ignore -->
 <Canvas isExpanded>
 <FormElement>
   <FormElement.Label 
     help={<>Help yourself: <a href="">learn more</a></>}
+    helpA11yText="get help"
   > 
     Form label
   </FormElement.Label>
@@ -45,7 +47,21 @@ Additionally, the `<FormElement.Label />` component has a `help` prop which acce
 </FormElement>
 </Canvas>
 
-### Disabled
+### Required Fields
+
+The `<FormElement />` has `isRequired` and `isOptional` props. `isOptional` will simply append "(optional)" to the label, but `isRequired` will add "(required)" to the label as well as add some ARIA attributes to the `a11yProps` argument of the render prop for `<FormElement.Content>`.
+
+<!-- prettier-ignore -->
+<Canvas isExpanded>
+<FormElement isRequired>
+  <FormElement.Label>Form label</FormElement.Label>
+  <FormElement.Content>
+    {a11yProps => <Input {...a11yProps} />}
+  </FormElement.Content>
+</FormElement>
+</Canvas>
+
+### Disabled Fields
 
 To disable and dim the entire `<FormElement/>`, simply add the `isDisabled` prop.
 
