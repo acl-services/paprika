@@ -7,7 +7,7 @@ import * as sc from "./Label.styles";
 
 const Label = props => {
   const { help, helpA11yText, children, ...moreProps } = props;
-  const { hasFieldSet, isOptional, isRequired, labelId, refLabel } = React.useContext(FormElementContext);
+  const { hasFieldSet, isOptional, isRequired, isDisabled, labelId, refLabel } = React.useContext(FormElementContext);
   const I18n = useI18n();
 
   const labelProps = hasFieldSet ? { as: "legend" } : { as: "label" };
@@ -32,7 +32,10 @@ const Label = props => {
       ) : null}
       {help ? (
         <>
-          &nbsp;<Help a11yText={helpA11yText}>{help}</Help>
+          &nbsp;
+          <Help a11yText={helpA11yText} isDisabled={isDisabled}>
+            {help}
+          </Help>
         </>
       ) : null}
     </sc.Label>

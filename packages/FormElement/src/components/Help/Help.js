@@ -5,32 +5,42 @@ import useI18n from "@paprika/l10n/lib/useI18n";
 import * as sc from "./Help.styles";
 
 function Help(props) {
-  const { children, a11yText, ...moreProps } = props;
+  const { children, isDisabled, a11yText } = props;
   const I18n = useI18n();
 
   return (
-    <sc.Help align="bottom" data-pka-anchor="form-element.help" {...moreProps}>
-      <Popover.Trigger a11yText={a11yText || I18n.t("formElement.aria_info_circle")}>
-        <sc.HelpIcon aria-hidden type="exclamation-circle" />
-      </Popover.Trigger>
-      <Popover.Content>
-        <Popover.Card>{children}</Popover.Card>
-      </Popover.Content>
-      <Popover.Tip />
+    <sc.Help align="bottom" data-pka-anchor="form-element.help">
+      {isDisabled ? (
+        <sc.HelpIcon aria-hidden />
+      ) : (
+        <>
+          <Popover.Trigger a11yText={a11yText || I18n.t("formElement.aria_info_circle")} isDisabled={isDisabled}>
+            <sc.HelpIcon aria-hidden />
+          </Popover.Trigger>
+          <Popover.Content>
+            <Popover.Card>{children}</Popover.Card>
+          </Popover.Content>
+          <Popover.Tip />
+        </>
+      )}
     </sc.Help>
   );
 }
 
 const propTypes = {
+  /** Aria label for icon button that triggers help popover */
+  a11yText: PropTypes.string,
+
   /** Content of help popover */
   children: PropTypes.node.isRequired,
 
-  /** Aria label for icon button that triggers help popover */
-  a11yText: PropTypes.string,
+  /** If the Popover should be disabled */
+  isDisabled: PropTypes.bool,
 };
 
 const defaultProps = {
   a11yText: null,
+  isDisabled: false,
 };
 
 Help.displayName = "FormElement.Help";
