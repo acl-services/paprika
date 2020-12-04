@@ -8,7 +8,7 @@ function Avatar(props) {
 
   if (!isRound && size === Avatar.types.size.LARGE) {
     console.warn(
-      `In @paprika/${Avatar.displayName} component, the size "LARGE" should only be used when isRound={true}`
+      `In @paprika/${Avatar.displayName} component, the size="LARGE" should only be used when isRound={true}`
     );
   }
 
