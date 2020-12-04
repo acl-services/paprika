@@ -22,6 +22,7 @@ export default function RadioExample() {
       ))}
     </Radio.Group>
   );
+
   return (
     <Fieldset>
       <Label>Radio group label</Label>

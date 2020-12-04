@@ -9,10 +9,7 @@ import Checkbox from "./examples/Checkbox";
 import DatePicker from "./examples/DatePicker";
 import ListBox from "./examples/ListBox";
 import ButtonGroup from "./examples/ButtonGroup";
-import NativeInput from "./examples/NativeInput";
 import Nested from "./examples/Nested";
-import HTML from "./examples/HTML";
-import ComponentLabel from "./examples/ComponentLabel";
 import FormElement from "../src/FormElement";
 import InlineContentExample from "./examples/InlineContent";
 
@@ -83,16 +80,6 @@ buttonGroupExample.story = {
   parameters: exampleStoryParameters,
 };
 
-export const nativeInputExample = () => (
-  <FormElementStory storyName="Native Input" component="FormElement" fileName="examples/NativeInput.js">
-    <NativeInput />
-  </FormElementStory>
-);
-nativeInputExample.story = {
-  name: "Native Input",
-  parameters: exampleStoryParameters,
-};
-
 export const nestedExample = () => (
   <FormElementStory storyName="Nested" component="FormElement" fileName="examples/Nested.js">
     <Nested />
@@ -109,23 +96,3 @@ export const inlineContentExample = () => (
   </FormElementStory>
 );
 nestedExample.story = { name: "Nested", parameters: exampleStoryParameters };
-
-export const htmlExample = () => (
-  <FormElementStory storyName="HTML" component="FormElement" fileName="examples/HTML.js">
-    <HTML />
-  </FormElementStory>
-);
-htmlExample.story = {
-  name: "HTML Label",
-  parameters: exampleStoryParameters,
-};
-
-export const componentLabelExample = () => (
-  <FormElementStory storyName="Component Label" component="FormElement" fileName="examples/ComponentLabel.js">
-    <ComponentLabel />
-  </FormElementStory>
-);
-componentLabelExample.story = {
-  name: "Component Label",
-  parameters: exampleStoryParameters,
-};

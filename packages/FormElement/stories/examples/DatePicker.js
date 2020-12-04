@@ -1,21 +1,30 @@
 import React from "react";
 import DatePicker from "@paprika/date-picker";
+import L10n from "@paprika/l10n";
 import FormElement from "../../src";
 
-const { Content, Label } = FormElement;
+const { Label, Content, Instructions } = FormElement;
 
 export default function DatePickerExample() {
-  const errorText = "";
+  const [date, setDate] = React.useState();
+
+  function handleChange(newDate) {
+    setDate(newDate);
+  }
+
   return (
-    <FormElement>
-      <Label>Form Label</Label>
-      <Content>
-        {a11yProps => (
-          <DatePicker onError={() => {}} hasError={Boolean(errorText.length)} onChange={() => {}}>
-            <DatePicker.Input {...a11yProps} />
-          </DatePicker>
-        )}
-      </Content>
-    </FormElement>
+    <L10n>
+      <FormElement>
+        <Label>Start Date</Label>
+        <Instructions>Enter date in MM/DD/YYYY format.</Instructions>
+        <Content>
+          {a11yProps => (
+            <DatePicker date={date} onChange={handleChange}>
+              <DatePicker.Input placeholder="MM/DD/YYYY" {...a11yProps} />
+            </DatePicker>
+          )}
+        </Content>
+      </FormElement>
+    </L10n>
   );
 }

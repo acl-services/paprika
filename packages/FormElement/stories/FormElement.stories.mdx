@@ -37,7 +37,7 @@ Finally, if the `<FormElement.Label />` is not needed for sighted users, it is s
     help={<>Help yourself: <a href="">learn more</a></>}
     helpA11yText="get help"
   > 
-    Form label
+    Field label
   </FormElement.Label>
   <FormElement.Instructions>
     Some instructions for this input.
@@ -56,7 +56,7 @@ The `<FormElement />` has `isRequired` and `isOptional` props. `isOptional` will
 <!-- prettier-ignore -->
 <Canvas isExpanded>
 <FormElement isRequired>
-  <FormElement.Label>Form label</FormElement.Label>
+  <FormElement.Label>Field label</FormElement.Label>
   <FormElement.Content>
     {a11yProps => <Input {...a11yProps} />}
   </FormElement.Content>
@@ -73,7 +73,7 @@ To disable and dim the entire `<FormElement/>`, simply add the `isDisabled` prop
 <FormElement.Label 
     help={<>Help yourself: <a href="">learn more</a></>}
   > 
-    Form label
+    Field label
   </FormElement.Label>
   <FormElement.Instructions>
     Some instructions for this input.
@@ -98,7 +98,7 @@ This works because the properties included in the `a11yProps` argument of the re
 <!-- prettier-ignore -->
 <Canvas isExpanded>
 <FormElement>
-  <FormElement.Label>Form Label</FormElement.Label>
+  <FormElement.Label>Field label</FormElement.Label>
   <FormElement.Content>
     {a11yProps => <>
       <ListBox {...a11yProps}>
@@ -122,7 +122,7 @@ The `<LeftCol />` component also accepts a `width` prop, again for convenience. 
 <FormElement>
   <FormElement.Layout>
     <FormElement.Layout.LeftCol width={120}>
-      <FormElement.Label>Form Label</FormElement.Label>
+      <FormElement.Label>Field label</FormElement.Label>
     </FormElement.Layout.LeftCol>
     <FormElement.Layout.RightCol>
       <FormElement.Content>

@@ -82,8 +82,8 @@ The `<L10n />` component is a required context provider that must wrap the `<For
 
 <!-- prettier-ignore -->
 ```jsx
-import FormElement from "@paprika/form-element";
 import Input from "@paprika/input";
+import FormElement from "@paprika/form-element";
 
 const { Label, Content } = FormElement;
 
@@ -101,33 +101,42 @@ const { Label, Content } = FormElement;
 </FormElement>
 ```
 
-### Using with `<DatePicker />` and instructions
+### Using with `help` popover, `<Instructions />`, `<Description />`, and `<Error />`
 
-Because the `<DatePicker.Input />` renders an `<input>` element, this case is very similar the previous for `<Input />`.
+Best practices for laying out supporting content for a form input is to follow this order:
+
+- `<Label />` first.
+- `<Instructions />` above the input field contained in `<Content />`.
+- `<Description />` or `<Error />` shown below input field (but do not render both at the same time).
+
+Note: the `<Error />` component will render `null` if its `children` is falsey.
 
 <!-- prettier-ignore -->
 ```jsx
-import DatePicker from "@paprika/date-picker";
+import Input from "@paprika/input";
 import FormElement from "@paprika/form-element";
 
-const { Label, Content, Instructions } = FormElement;
+const { Label, Content, Instructions, Description, Error } = FormElement;
+const errorMsg = "There was an error.";
 
 <FormElement>
-  <Label>Start Date</Label>
-  <Instructions>MM/DD/YYYY</Instructions>
+  <Label help="Help text">Field label</Label>
+  <Instructions>Instruction text</Instructions>
   <Content>
     {a11yProps => (
-      <DatePicker onChange={handleChange}>
-        <DatePicker.Input {...a11yProps} />
-      </DatePicker>
+      <Input hasError={Boolean(errorMsg)} {...a11yProps} />
     )}
   </Content>
+  {errorMsg ? <Description>Description text</Description> : null}
+  <Error>{errorMsg}</Error>
 </FormElement>
 ```
 
-### Using `<Fieldset />` with `<Checkbox />` and error message
+### Using `<Fieldset />` with `<Checkbox />`
 
 Since the `<Checkbox />` and `<Radio />` components already render with a `<label>` element, the label for the checkbox or radio _group_ needs to be a `<legend>` element, instead of another redundant `<label>`, which needs to be wrapped in a `<fieldset>` element. For this purpose, the `<FormElement />` has a `hasFieldSet` prop, but for clearer JSX markup, you can use the `<Fieldset>` component, provided as a named import from the same `@paprika/form-element` component.
+
+This technique is suitable for multiple form elements that need to be grouped, not just `<Checkbox />` and `<Radio />`.
 
 The `<Fieldset />` component has all the same subcomponents, since it actually _is_ just a `<FormElement hasFieldSet />`.
 

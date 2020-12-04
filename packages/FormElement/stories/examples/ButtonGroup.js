@@ -1,27 +1,35 @@
 import React from "react";
 import ButtonGroup from "@paprika/button-group";
-import stylers from "@paprika/stylers";
 import FormElement from "../../src";
 
-const { Content, Label } = FormElement;
+const { Content, Label, Description } = FormElement;
 
 export default function ButtonGroupExample() {
   const refButtonGroup = React.useRef(null);
-  const buttonOptionsArray = ["Black Panther", "Wonder Woman", "Spiderman"];
-  const buttonGroupOptions = buttonOptionsArray.map(hero => (
-    <ButtonGroup.Item value={hero} key={hero}>
-      {hero}
-    </ButtonGroup.Item>
-  ));
+  const labelId = "label-buttongroup";
+  const buttonOptions = ["Batman", "Wolverine", "Daredevil"];
+
+  function renderGroupOptions(ariaDescribedBy) {
+    return buttonOptions.map(item => (
+      <ButtonGroup.Item value={item} key={item} aria-describedby={ariaDescribedBy}>
+        {item}
+      </ButtonGroup.Item>
+    ));
+  }
 
   return (
     <FormElement>
-      <Label onClick={() => refButtonGroup.current.focus()}>Form Label</Label>
+      <Label onClick={() => refButtonGroup.current.focus()} id={labelId}>
+        Form Label
+      </Label>
       <Content>
-        <ButtonGroup style={{ marginTop: stylers.spacer(2) }} ref={refButtonGroup}>
-          {buttonGroupOptions}
-        </ButtonGroup>
+        {a11yProps => (
+          <ButtonGroup ref={refButtonGroup}>
+            {renderGroupOptions(`${labelId} ${a11yProps["aria-describedby"]}`)}
+          </ButtonGroup>
+        )}
       </Content>
+      <Description>Description of button group.</Description>
     </FormElement>
   );
 }

@@ -3,12 +3,11 @@ import { boolean, select, text } from "@storybook/addon-knobs";
 import Heading from "@paprika/heading";
 import Input from "@paprika/input";
 import { Rule, Tagline } from "storybook/assets/styles/common.styles";
-import { ShirtSizes } from "@paprika/helpers/lib/customPropTypes";
 import { FormElementStory } from "../FormElement.stories.styles";
 import FormElement from "../../src";
 
 const getRootKnobs = () => ({
-  size: select("size", ShirtSizes.DEFAULT, "medium"),
+  size: select("size", Object.values(FormElement.types.size), FormElement.types.size.MEDIUM),
   isDisabled: boolean("isDisabled", false),
   isOptional: boolean("isOptional", false),
   isRequired: boolean("isRequired", false),
