@@ -15,9 +15,11 @@
   <img alt="lerna version" src="https://img.shields.io/badge/lerna-v3.13.0-blue.svg">
   <img alt="styled components version" src="https://img.shields.io/badge/styled--components-4.2.0-yellow">
   <img alt="prettier" src="https://img.shields.io/badge/codestyle-prettier-%23ff69b4">
+  <br>
   <a href="https://github.com/acl-services/paprika/pulls"><img alt="GitHub pull requests" src="https://img.shields.io/github/issues-pr/acl-services/paprika"></a>
   <a href="https://github.com/acl-services/paprika/issues"><img alt="GitHub issues" src="https://img.shields.io/github/issues/acl-services/paprika"></a>
   <a href="https://github.com/acl-services/paprika/blob/master/LICENSE"><img alt="MIT license" src="https://img.shields.io/github/license/acl-services/paprika"></a>
+  <img alt="Build Status" src="https://acl.semaphoreci.com/badges/paprika/branches/master.svg?style=shields&key=f94e8e30-9fc3-4b00-be67-4b1294bf97d6">
 </p>
 
 ---
