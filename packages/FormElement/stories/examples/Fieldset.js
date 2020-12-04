@@ -6,7 +6,7 @@ import Select from "@paprika/select";
 import Button from "@paprika/button";
 import FormElement, { Fieldset } from "../../src";
 
-const { Label, Instructions, Content, Error } = FormElement;
+const { Label, Instructions, Description, Content, Error } = FormElement;
 
 export default function EverythingExample() {
   const [value, setValue] = React.useState();
@@ -48,6 +48,7 @@ export default function EverythingExample() {
                 </Content>
               </FormElement>
             </div>
+            <div>&nbsp;</div>
             <div
               css={`
                 flex-grow: 1;
@@ -69,6 +70,12 @@ export default function EverythingExample() {
             </div>
           </div>
         </Content>
+        {!errorText ? (
+          <Description>
+            <strong>Note:</strong> the <code>&lt;Labels&gt;</code> are hidden in this layout with{" "}
+            <code>isVisuallyHidden</code>, but they are still present for screen readers.
+          </Description>
+        ) : null}
         <Error>{errorText}</Error>
       </Fieldset>
       <Rule />

@@ -37,7 +37,7 @@ export default function EverythingExample() {
           <RightCol>
             <Instructions>These are some fieldset instructions.</Instructions>
             <Content>
-              <FormElement isRequired>
+              <FormElement isRequired id="field-01">
                 <Layout>
                   <LeftCol width={120}>
                     <Label help={helpContent} helpA11yText="help me">
