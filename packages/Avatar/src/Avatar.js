@@ -6,6 +6,12 @@ import * as sc from "./Avatar.styles";
 function Avatar(props) {
   const { backgroundColor, size, color, children, isRound, ...moreProps } = props;
 
+  if (!isRound && size === Avatar.types.size.LARGE) {
+    console.warn(
+      `In @paprika/${Avatar.displayName} component, the size "LARGE" should only be used when isRound={true}`
+    );
+  }
+
   const getInitials = (isRound, children) => {
     const initials = children.split(" ").map(word => word.charAt(0).toUpperCase());
     return isRound && initials.length > 1 ? `${initials[0]}${initials[1]}` : initials[0];
