@@ -43,7 +43,7 @@ export default function CollapsibleCard(props) {
   return (
     <sc.CollapsibleCard
       iconAlign="right"
-      label={getLabel()}
+      label={typeof label === "function" ? label({ isCollapsed }) : getLabel()}
       isCollapsed={isCollapsed}
       onClick={handleClick}
       hasAvatar={!!avatar}
@@ -62,8 +62,8 @@ const propTypes = {
   /** If has a divider between collapsible header and content. */
   hasDivider: PropTypes.bool,
 
-  /** Label text as the card title. */
-  label: PropTypes.node,
+  /** Label text as the card title, can be a render function. */
+  label: PropTypes.oneOfType([PropTypes.node, PropTypes.func]),
 
   /** Callback function when expand the card. */
   onExpand: PropTypes.func,

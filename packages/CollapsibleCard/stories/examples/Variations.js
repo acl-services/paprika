@@ -5,6 +5,10 @@ import { Story } from "storybook/assets/styles/common.styles";
 import CollapsibleCard from "../../src";
 
 const ExampleStory = () => {
+  function renderLabel({ isCollapsed }) {
+    return `With render label function - ${isCollapsed ? "Collapsed" : "Expand"}`;
+  }
+
   return (
     <Story>
       <StoryHeading level={1}>Collapsible card variations</StoryHeading>
@@ -35,6 +39,8 @@ const ExampleStory = () => {
       <CollapsibleCard label="Label only with divider" hasDivider>
         Content
       </CollapsibleCard>
+      <br />
+      <CollapsibleCard label={renderLabel}>Content</CollapsibleCard>
     </Story>
   );
 };
