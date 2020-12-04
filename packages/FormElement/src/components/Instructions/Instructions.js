@@ -13,6 +13,8 @@ function Instructions(props) {
     if (addIdToAriaDescribedBy) addIdToAriaDescribedBy({ ariaInstructionsId });
   }, []);
 
+  if (!children) return null;
+
   return (
     <sc.Instructions data-pka-anchor="form-element.instructions" {...moreProps} id={ariaInstructionsId}>
       {children}
@@ -21,10 +23,15 @@ function Instructions(props) {
 }
 const propTypes = {
   /** Content for the form element instructions */
-  children: PropTypes.node.isRequired,
+  children: PropTypes.node,
+};
+
+const defaultProps = {
+  children: null,
 };
 
 Instructions.displayName = "FormElement.Instructions";
 Instructions.propTypes = propTypes;
+Instructions.defaultProps = defaultProps;
 
 export default Instructions;

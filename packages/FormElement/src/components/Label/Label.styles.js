@@ -9,7 +9,7 @@ export const Requirement = styled.div`
 `;
 
 export const Label = styled.div(
-  ({ isVisuallyHidden }) => css`
+  ({ isVisuallyHidden, isDisabledStyle }) => css`
     color: ${tokens.textColor.default};
     font-size: inherit;
     font-weight: bold;
@@ -18,5 +18,6 @@ export const Label = styled.div(
     position: relative;
     ${stylers.lineHeight(-1)}
     ${isVisuallyHidden && stylers.visuallyHidden}
+    ${isDisabledStyle && `opacity: 0.5;`}
   `
 );

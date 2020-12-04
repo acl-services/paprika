@@ -13,6 +13,8 @@ function Description(props) {
     if (addIdToAriaDescribedBy) addIdToAriaDescribedBy({ ariaDescriptionId });
   }, []);
 
+  if (!children) return null;
+
   return (
     <sc.Description data-pka-anchor="form-element.description" {...moreProps} id={ariaDescriptionId}>
       {children}
@@ -22,10 +24,15 @@ function Description(props) {
 
 const propTypes = {
   /** Content for the form element description */
-  children: PropTypes.node.isRequired,
+  children: PropTypes.node,
+};
+
+const defaultProps = {
+  children: null,
 };
 
 Description.displayName = "FormElement.Description";
 Description.propTypes = propTypes;
+Description.defaultProps = defaultProps;
 
 export default Description;

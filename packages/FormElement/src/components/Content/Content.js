@@ -25,8 +25,8 @@ function Content(props) {
 
   const a11yProps = {
     "aria-describedby": ariaDescribedByIdsString.length ? ariaDescribedByIdsString : null,
-    "aria-required": isRequired || null,
     "aria-disabled": isDisabled || null,
+    "aria-required": isRequired || null,
     disabled: isDisabled || null,
     id: labelId,
     refLabel,
@@ -50,7 +50,9 @@ function Content(props) {
 }
 
 const propTypes = {
-  /** Input field and layout elemements. May be a render funtion with ({ id, refLabel, ariaDescribedBy }) as argument. */
+  /** Input field and layout elements. May be a render function with a11yProps object as an argument.
+   * a11yProps includes: { id, refLabel, disabled?, "aria-disabled"?, "aria-describedby"?, "aria-required"? }
+   */
   children: PropTypes.oneOfType([PropTypes.func, PropTypes.node]).isRequired,
 };
 
