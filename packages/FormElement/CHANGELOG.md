@@ -6,6 +6,23 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 
 ## [Unreleased]
 
+### Removed
+
+- id, onClick, hasOptionalLabel, hasRequiredLabel props from Label [@mikrotron](https://github.com/mikrotron).
+
+### Added
+
+- isRequired and isOptional props to FormElement [@mikrotron](https://github.com/mikrotron).
+- isDisabled and isRequired props will add aria attributes as argument for render function for Content.
+- Allowed number type for LeftCol width prop.
+
+### Fixed
+
+- Positioning of help popover when LeftCol has a width prop.
+- Subcomponents can be used without context provider (FormElement wrapper).
+- Fieldset.Label no longer has htmlFor attribute.
+- Help popover is disabled when FormElement has isDisabled.
+
 ## [0.3.0] - 2020-01-17
 
 ### Added
