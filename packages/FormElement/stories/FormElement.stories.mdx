@@ -28,6 +28,8 @@ Error messages, instructions, and descriptions need to be associated to the inpu
 
 Additionally, the `<FormElement.Label />` component has a `help` prop which accepts a JSX element that will be rendered in a `<Popover />` triggered by a small "info" icon button beside the label. The default ARIA label ("information") for this icon button can be customized with the `helpA11yText` prop.
 
+Finally, if the `<FormElement.Label />` is not needed for sighted users, it is still required for users of screen readers or other assistive technology (and WCAG compliance). It can be hidden with the `isVisuallyHidden` prop, but will remain available for assistive technology.
+
 <!-- prettier-ignore -->
 <Canvas isExpanded>
 <FormElement>

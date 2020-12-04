@@ -10,5 +10,5 @@ export const ErrorIcon = styled(ExclamationCircleIcon)`
 export const Error = styled.div`
   ${stylers.lineHeight(-1)}
   color: ${tokens.color.orangeDarken10};
-  margin: ${tokens.spaceSm} 0 0 0;
+  margin: ${tokens.space} 0 0 0;
 `;

@@ -1,9 +1,10 @@
 import React from "react";
 import { getStoryName } from "storybook/storyTree";
 import { exampleStoryParameters } from "storybook/assets/storyParameters";
+import ExampleStory from "storybook/components/ExampleStory";
 import { FormElementStory } from "./FormElement.stories.styles";
 import Radio from "./examples/Radio";
-import Accessibility from "./examples/Accessibility";
+import Everything from "./examples/Everything";
 import Checkbox from "./examples/Checkbox";
 import DatePicker from "./examples/DatePicker";
 import ListBox from "./examples/ListBox";
@@ -22,13 +23,13 @@ export default {
   component: FormElement,
 };
 
-export const accessibilityExample = () => (
-  <FormElementStory storyName="Accessibility" component="FormElement" fileName="examples/Accessibility.js">
-    <Accessibility />
-  </FormElementStory>
+export const everythingExample = () => (
+  <ExampleStory storyName="Everything Bagel" component="FormElement" fileName="examples/Everything.js">
+    <Everything />
+  </ExampleStory>
 );
-accessibilityExample.story = {
-  name: "Accessibility",
+everythingExample.story = {
+  name: "Everything Bagel",
   parameters: exampleStoryParameters,
 };
 
