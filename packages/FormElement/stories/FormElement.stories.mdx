@@ -8,13 +8,14 @@ import FormElement from "../src";
 
 <Meta title={`${getStoryName("FormElement")}/Docs`} component={FormElement} parameters={{ ...docsStoryParameters }} />
 
-<Description markdown={Readme} />
+<xxxDescription markdown={Readme} />
 
 ## More Examples
 
 ### Index
 
 - <a href="#accessibility">Accessibility</a>
+- <a href="#disabled">Disabled</a>
 - <a href="#custom-input-components">Complex Input Components</a>
 - <a href="#inline-layout">Inline Layout</a>
 
@@ -41,6 +42,28 @@ Additionally, the `<FormElement.Label />` component has a `help` prop which acce
     {a11yProps => <Input {...a11yProps} hasError />}
   </FormElement.Content>
   <FormElement.Error>There was an error!</FormElement.Error>
+</FormElement>
+</Canvas>
+
+### Disabled
+
+To disable and dim the entire `<FormElement/>`, simply add the `isDisabled` prop.
+
+<!-- prettier-ignore -->
+<Canvas isExpanded>
+<FormElement isDisabled>
+<FormElement.Label 
+    help={<>Help yourself: <a href="">learn more</a></>}
+  > 
+    Form label
+  </FormElement.Label>
+  <FormElement.Instructions>
+    Some instructions for this input.
+  </FormElement.Instructions>
+  <FormElement.Content>
+    {a11yProps => <Input {...a11yProps} />}
+  </FormElement.Content>
+   <FormElement.Description>This is description text.</FormElement.Description>
 </FormElement>
 </Canvas>
 
@@ -79,9 +102,9 @@ The `<LeftCol />` component also accepts a `width` prop, again for convenience. 
 <!-- prettier-ignore -->
 <Canvas isExpanded>
 <FormElement>
-  <FormElement.Layout >
+  <FormElement.Layout>
     <FormElement.Layout.LeftCol width={120}>
-      <FormElement.Label >Form Label</FormElement.Label>
+      <FormElement.Label>Form Label</FormElement.Label>
     </FormElement.Layout.LeftCol>
     <FormElement.Layout.RightCol>
       <FormElement.Content>
