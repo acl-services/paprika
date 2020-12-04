@@ -6,6 +6,13 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 
 ## [Unreleased]
 
+### Changed
+
+- Breaking change, the old "Medium" size (40px) is now "Large"
+- Breaking change, the old "Small" size (32px) is now "Medium"
+- Change, the "Small" size is now 24px
+- Added new "Extra Small" size (16px)
+
 ## [0.1.2] - 2020-09-02
 
 ### Added

@@ -4,21 +4,39 @@ import stylers from "@paprika/stylers";
 import tokens from "@paprika/tokens";
 import { getAvatarColors } from "./helpers";
 
-const smallSize = `${spacer(4)}`;
-const mediumSize = `${spacer(5)}`;
-
-export const avatarSizeStyles = {
+const roundStyles = {
   small: `
-    border-radius: ${tokens.button.borderRadius};
-    height: ${smallSize};
-    width: ${smallSize};
+    border-radius: 50%;
+    height: ${spacer(2.5)};
+    width: ${spacer(2.5)};
+    ${stylers.fontSize(-3)};
+  `,
+  medium: `
+    border-radius: 50%;
+    height: ${spacer(3)};
+    width: ${spacer(3)};
+    ${stylers.fontSize(-2)};
+  `,
+  large: `
+    border-radius: 50%;
+    height: ${spacer(4)};
+    width: ${spacer(4)};
+    ${stylers.fontSize(-1)};
+  `,
+};
+
+const squareStyles = {
+  small: `
+    border-radius: ${tokens.card.borderRadius};
+    height: ${spacer(4)};
+    width: ${spacer(4)};
     ${stylers.fontSize(2)};
   `,
 
   medium: `
     border-radius: ${tokens.card.borderRadius};
-    height: ${mediumSize};
-    width: ${mediumSize};
+    height: ${spacer(5)};
+    width: ${spacer(5)};
     ${stylers.fontSize(3)};
   `,
 };
@@ -34,8 +52,10 @@ export const Avatar = styled.div`
     box-sizing: border-box;
   }
 
-  ${({ $backgroundColor, $color, size, children }) => {
-    const sizeValue = avatarSizeStyles[size];
+  ${({ $backgroundColor, $color, isRound, size, children }) => {
+    console.log("isRound", isRound);
+    const sizeValue = isRound ? roundStyles[size] : squareStyles[size];
+
     const color =
       typeof children !== "string"
         ? { backgroundColor: tokens.color.blackLighten60, fontColor: tokens.color.blackLighten20 }

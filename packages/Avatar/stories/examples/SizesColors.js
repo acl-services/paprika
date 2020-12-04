@@ -37,12 +37,26 @@ export default () => {
         })}
       </div>
       <div>
-        <Heading level={3}>Sizes</Heading>
-        <Avatar backgroundColor="black" color="white" size={Avatar.types.size.SMALL}>
-          Small
+        <Heading level={3}>Sizes and Shapes</Heading>
+        <Heading level={5}>Square</Heading>
+        <Avatar backgroundColor="navy" color="white" size={Avatar.types.size.SMALL}>
+          Small Square
         </Avatar>
-        <Avatar backgroundColor="black" color="white" size={Avatar.types.size.MEDIUM}>
-          Medium
+        &nbsp;
+        <Avatar backgroundColor="navy" color="white" size={Avatar.types.size.MEDIUM}>
+          Medium Square
+        </Avatar>
+        <Heading level={5}>Round</Heading>
+        <Avatar isRound backgroundColor="navy" color="white" size={Avatar.types.size.SMALL}>
+          Small Round
+        </Avatar>
+        &nbsp;
+        <Avatar isRound backgroundColor="navy" color="white" size={Avatar.types.size.MEDIUM}>
+          Medium Round
+        </Avatar>
+        &nbsp;
+        <Avatar isRound backgroundColor="navy" color="white" size={Avatar.types.size.LARGE}>
+          Large Round
         </Avatar>
       </div>
     </Story>

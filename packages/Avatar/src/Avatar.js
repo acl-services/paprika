@@ -4,21 +4,29 @@ import * as constants from "@paprika/constants/lib/Constants";
 import * as sc from "./Avatar.styles";
 
 function Avatar(props) {
-  const { backgroundColor, size, color, children, ...moreProps } = props;
+  const { backgroundColor, size, color, children, isRound, ...moreProps } = props;
 
-  const getInitial = children => {
-    return children.substring(0, 1).toUpperCase();
+  const getInitials = (isRound, children) => {
+    const initials = children.split(" ").map(word => word.charAt(0).toUpperCase());
+    return isRound && initials.length > 1 ? `${initials[0]}${initials[1]}` : initials[0];
   };
 
   return (
-    <sc.Avatar data-pka-anchor="avatar" $backgroundColor={backgroundColor} $color={color} size={size} {...moreProps}>
-      {typeof children === "string" ? getInitial(children) : children}
+    <sc.Avatar
+      data-pka-anchor="avatar"
+      $backgroundColor={backgroundColor}
+      $color={color}
+      size={size}
+      isRound={isRound}
+      {...moreProps}
+    >
+      {typeof children === "string" ? getInitials(isRound, children) : children}
     </sc.Avatar>
   );
 }
 
 Avatar.types = {
-  size: constants.limitedSize,
+  size: constants.defaultSize,
 };
 
 const propTypes = {
@@ -28,14 +36,21 @@ const propTypes = {
   backgroundColor: PropTypes.string,
   /** Color for the initial or icon */
   color: PropTypes.string,
+  /** Shape of the Avatar */
+  isRound: PropTypes.bool,
   /** Size of Avatar */
-  size: PropTypes.oneOf([Avatar.types.size.SMALL, Avatar.types.size.MEDIUM]),
+  size: PropTypes.oneOf([
+    Avatar.types.size.SMALL, // for use with isRound only
+    Avatar.types.size.MEDIUM,
+    Avatar.types.size.LARGE,
+  ]),
 };
 
 const defaultProps = {
   backgroundColor: null,
   children: null,
   color: null,
+  isRound: false,
   size: Avatar.types.size.MEDIUM,
 };
 
