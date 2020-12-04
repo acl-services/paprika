@@ -38,7 +38,7 @@ export default () => {
       </div>
       <div>
         <Heading level={3}>Sizes and Shapes</Heading>
-        <Heading level={5}>Square</Heading>
+        <Heading level={5}>Square (default)</Heading>
         <Avatar backgroundColor="navy" color="white" size={Avatar.types.size.SMALL}>
           Small Square
         </Avatar>

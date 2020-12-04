@@ -53,7 +53,6 @@ export const Avatar = styled.div`
   }
 
   ${({ $backgroundColor, $color, isRound, size, children }) => {
-    console.log("isRound", isRound);
     const sizeValue = isRound ? roundStyles[size] : squareStyles[size];
 
     const color =

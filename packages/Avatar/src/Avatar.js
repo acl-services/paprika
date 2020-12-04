@@ -40,9 +40,9 @@ const propTypes = {
   isRound: PropTypes.bool,
   /** Size of Avatar */
   size: PropTypes.oneOf([
-    Avatar.types.size.SMALL, // for use with isRound only
+    Avatar.types.size.SMALL,
     Avatar.types.size.MEDIUM,
-    Avatar.types.size.LARGE,
+    Avatar.types.size.LARGE, // for use with isRound only
   ]),
 };
 

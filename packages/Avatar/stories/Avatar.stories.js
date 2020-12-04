@@ -13,7 +13,7 @@ storiesOf(storyName, module)
   .add("Showcase", Showcase);
 
 storiesOf(`${storyName}/Examples`, module)
-  .add("Sizes, Colors and Shapes", () => <SizesColorsExample />)
+  .add("Colors, Sizes and Shapes", () => <SizesColorsExample />)
   .add("with Icon", () => <AvatarIcon />);
 
 storiesOf(`${storyName}/Backyard/Tests`, module).add("Screener", () => <SizesColorsExample />);
