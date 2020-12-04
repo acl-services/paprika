@@ -156,6 +156,11 @@ git commit -m "added feature x"                  #invalid (missing type and scop
 
 The valid "types" are: `feat`, `fix`, `style`, `test`, `docs`, `build`, `chore`, `ci`, `perf`, `refactor`, `revert`
 
+If you are experiencing difficulty, you may need to:
+
+1. overwrite your existing commit-msg file with the husky one: `cp ~/src/paprika/.git/hooks/applypatch-msg ~/src/paprika/.git/hooks/commit-msg`
+2. update the commit-msg file permissions: `chmod 755 .git/hooks/commit-msg`
+
 #### More Information
 
 For more information please check out our [Contributing Guidelines](https://github.com/acl-services/paprika/wiki/Contributing-Guidelines). You may want to start with the [Getting Started Guide](https://github.com/acl-services/paprika/wiki/Getting-Started)
