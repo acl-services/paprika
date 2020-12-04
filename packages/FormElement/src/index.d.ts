@@ -23,7 +23,8 @@ declare namespace FormElement {
   function Content(props: ContentProps): JSX.Element;
   interface ContentProps {
     [x: string]: any;
-    /** Input field and layout elemements. May be a render funtion with ({ id, refLabel, ariaDescribedBy }) as argument. */
+    /** Input field and layout elements. May be a render function with a11yProps object as an argument.
+a11yProps includes: { id, refLabel, disabled?, "aria-disabled"?, "aria-describedby"?, "aria-required"? } */
     children: func | node;
   }
 }
@@ -32,7 +33,7 @@ declare namespace FormElement {
   interface DescriptionProps {
     [x: string]: any;
     /** Content for the form element description */
-    children: React.ReactNode;
+    children?: React.ReactNode;
   }
 }
 declare namespace FormElement {
@@ -48,7 +49,7 @@ declare namespace FormElement {
   interface InstructionsProps {
     [x: string]: any;
     /** Content for the form element instructions */
-    children: React.ReactNode;
+    children?: React.ReactNode;
   }
 }
 declare namespace FormElement {
@@ -61,6 +62,8 @@ declare namespace FormElement {
     help?: React.ReactNode;
     /** Aria label for icon button that triggers help popover */
     helpA11yText?: string;
+    /** If the label should be dimmed and the help popover disabled */
+    isDisabled?: boolean;
     /** Should label be hidden */
     isVisuallyHidden?: boolean;
   }

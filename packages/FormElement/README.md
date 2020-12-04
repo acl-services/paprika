@@ -34,15 +34,16 @@ npm install @paprika/form-element
 
 ### FormElement.Content
 
-| Prop     | Type        | required | default | Description                                                                                                      |
-| -------- | ----------- | -------- | ------- | ---------------------------------------------------------------------------------------------------------------- |
-| children | [func,node] | true     | -       | Input field and layout elemements. May be a render funtion with ({ id, refLabel, ariaDescribedBy }) as argument. |
+| Prop                                                                                                     | Type        | required | default | Description                                                                                     |
+| -------------------------------------------------------------------------------------------------------- | ----------- | -------- | ------- | ----------------------------------------------------------------------------------------------- |
+| children                                                                                                 | [func,node] | true     | -       | Input field and layout elements. May be a render function with a11yProps object as an argument. |
+| a11yProps includes: { id, refLabel, disabled?, "aria-disabled"?, "aria-describedby"?, "aria-required"? } |
 
 ### FormElement.Description
 
 | Prop     | Type | required | default | Description                              |
 | -------- | ---- | -------- | ------- | ---------------------------------------- |
-| children | node | true     | -       | Content for the form element description |
+| children | node | false    | null    | Content for the form element description |
 
 ### FormElement.Error
 
@@ -54,16 +55,17 @@ npm install @paprika/form-element
 
 | Prop     | Type | required | default | Description                               |
 | -------- | ---- | -------- | ------- | ----------------------------------------- |
-| children | node | true     | -       | Content for the form element instructions |
+| children | node | false    | null    | Content for the form element instructions |
 
 ### FormElement.Label
 
-| Prop             | Type   | required | default | Description                                           |
-| ---------------- | ------ | -------- | ------- | ----------------------------------------------------- |
-| children         | node   | true     | -       | content for the label                                 |
-| help             | node   | false    | null    | Help indicator                                        |
-| helpA11yText     | string | false    | null    | Aria label for icon button that triggers help popover |
-| isVisuallyHidden | bool   | false    | false   | Should label be hidden                                |
+| Prop             | Type   | required | default | Description                                                 |
+| ---------------- | ------ | -------- | ------- | ----------------------------------------------------------- |
+| children         | node   | true     | -       | content for the label                                       |
+| help             | node   | false    | null    | Help indicator                                              |
+| helpA11yText     | string | false    | null    | Aria label for icon button that triggers help popover       |
+| isDisabled       | bool   | false    | null    | If the label should be dimmed and the help popover disabled |
+| isVisuallyHidden | bool   | false    | false   | Should label be hidden                                      |
 
 ### FormElement.Layout
 
