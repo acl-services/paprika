@@ -15,7 +15,7 @@ import * as sc from "./FormElement.styles";
 export const FormElementContext = React.createContext({});
 
 function FormElement(props) {
-  const { id, children, isDisabled, size, hasFieldSet, ...moreProps } = props;
+  const { id, children, isDisabled, isOptional, isRequired, size, hasFieldSet, ...moreProps } = props;
   const { fieldsetAriaDescribedBy } = React.useContext(FieldsetContext);
   const [ariaDescribedBy, setAriaDescribedBy] = React.useState({});
   const [uniqueInputId] = React.useState(nanoid);
@@ -32,17 +32,20 @@ function FormElement(props) {
     addIdToAriaDescribedBy({ fieldsetAriaDescribedBy });
   }
 
-  const value = {
-    hasFieldSet,
-    refLabel,
-    labelId,
-    ariaDescribedBy,
+  const contextValue = {
     addIdToAriaDescribedBy,
+    ariaDescribedBy,
+    hasFieldSet,
+    isDisabled,
+    isOptional,
+    isRequired,
+    labelId,
+    refLabel,
   };
 
   return (
     <sc.FormElement as={hasFieldSet ? "fieldset" : "div"} size={size} isDisabled={isDisabled} {...moreProps}>
-      <FormElementContext.Provider value={value}>{children}</FormElementContext.Provider>
+      <FormElementContext.Provider value={contextValue}>{children}</FormElementContext.Provider>
     </sc.FormElement>
   );
 }
@@ -52,26 +55,34 @@ FormElement.types = {
 };
 
 const propTypes = {
-  /** id attribute for the input field DOM element (will be auto-generated if not supplied). */
-  id: PropTypes.string,
-
   /** FormElement sub components and layout elements. */
   children: PropTypes.node.isRequired,
+
+  /** FormElement contains multiple children so Renders a legend element instead of label. */
+  hasFieldSet: PropTypes.bool,
+
+  /** id attribute for the input field DOM element (will be auto-generated if not supplied). */
+  id: PropTypes.string,
 
   /** Should be disabled or not, default is false. */
   isDisabled: PropTypes.bool,
 
+  /** If input is an optional field and should be indicated. */
+  isOptional: PropTypes.bool,
+
+  /** If input is a required field. */
+  isRequired: PropTypes.bool,
+
   /** Size of the label, error, help and description (font size, min-height, padding, etc). */
   size: PropTypes.oneOf([FormElement.types.size.SMALL, FormElement.types.size.MEDIUM, FormElement.types.size.LARGE]),
-
-  /** FormElement contains multiple children so Renders a legend element instead of label. */
-  hasFieldSet: PropTypes.bool,
 };
 
 const defaultProps = {
   hasFieldSet: false,
   id: "",
   isDisabled: false,
+  isOptional: false,
+  isRequired: false,
   size: FormElement.types.size.MEDIUM,
 };
 

@@ -6,18 +6,18 @@ import { FormElementContext } from "../../FormElement";
 import * as sc from "./Label.styles";
 
 const Label = props => {
-  const { hasOptionalLabel, hasRequiredLabel, help, helpA11yText, children, ...moreProps } = props;
-  const { hasFieldSet, refLabel, labelId } = React.useContext(FormElementContext);
+  const { help, helpA11yText, children, ...moreProps } = props;
+  const { hasFieldSet, isOptional, isRequired, labelId, refLabel } = React.useContext(FormElementContext);
   const I18n = useI18n();
 
   const labelProps = hasFieldSet ? { as: "legend" } : { as: "label" };
   const a11yProps = hasFieldSet ? { ref: refLabel } : { htmlFor: labelId, ref: refLabel };
 
   const renderQuestionRequirement = () => {
-    if (hasRequiredLabel) {
+    if (isRequired) {
       return `${I18n.t("formElement.required")}`;
     }
-    if (hasOptionalLabel) {
+    if (isOptional) {
       return `${I18n.t("formElement.optional")}`;
     }
   };
@@ -25,7 +25,7 @@ const Label = props => {
   return (
     <sc.Label data-pka-anchor="form-element.label" {...labelProps} {...moreProps} {...a11yProps}>
       {children}
-      {hasOptionalLabel || hasRequiredLabel ? (
+      {isOptional || isRequired ? (
         <>
           &nbsp;<sc.Requirement>{renderQuestionRequirement()}</sc.Requirement>
         </>
@@ -43,12 +43,6 @@ const propTypes = {
   /** content for the label */
   children: PropTypes.node.isRequired,
 
-  /** If "optional" text should be displayed beside the label  */
-  hasOptionalLabel: PropTypes.bool,
-
-  /** If "require" text should be displayed beside the label */
-  hasRequiredLabel: PropTypes.bool,
-
   /** Help indicator */
   help: PropTypes.node,
 
@@ -60,8 +54,6 @@ const propTypes = {
 };
 
 const defaultProps = {
-  hasOptionalLabel: false,
-  hasRequiredLabel: false,
   help: null,
   helpA11yText: null,
   isVisuallyHidden: false,

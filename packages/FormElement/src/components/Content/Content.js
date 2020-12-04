@@ -5,8 +5,10 @@ import { FormElementContext } from "../../FormElement";
 export const FieldsetContext = React.createContext({});
 
 function Content(props) {
-  const { ariaDescribedBy, refLabel, labelId, hasFieldSet } = React.useContext(FormElementContext);
   const { children, ...moreProps } = props;
+  const { ariaDescribedBy, isRequired, isDisabled, refLabel, labelId, hasFieldSet } = React.useContext(
+    FormElementContext
+  );
 
   if (!children) {
     return null;
@@ -22,13 +24,13 @@ function Content(props) {
   const ariaDescribedByIdsString = ariaDescribedByIdsArray.join(" ");
 
   const a11yProps = {
-    refLabel,
+    "aria-describedby": ariaDescribedByIdsString.length ? ariaDescribedByIdsString : null,
+    "aria-required": isRequired || null,
+    "aria-disabled": isDisabled || null,
+    disabled: isDisabled || null,
     id: labelId,
+    refLabel,
   };
-
-  if (ariaDescribedByIdsString.length) {
-    a11yProps["aria-describedby"] = ariaDescribedByIdsString;
-  }
 
   const renderChildren = () => {
     return typeof children === "function" ? children(a11yProps) : children;
