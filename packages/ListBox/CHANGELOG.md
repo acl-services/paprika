@@ -6,10 +6,6 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 
 ## [Unreleased]
 
-### Fixed
-
-- Fixed hardcoded text in listbox footer.
-
 ## [1.0.0] - 2020-11-04
 
 ### Changed
@@ -46,3 +42,9 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 ### Fixed
 
 - Fix ListBox Footer sub-component was compiling the older version of the updated constants/types. It's properties was running 'Button..Kinds.MINOR' where it should be running 'Button.types.kind.Minor'. Proprties have been updated to latest standard. [@kaan.darcey](https://github.com/KDarcey).
+
+## [1.1.1-alpha.2] - 2020-12-03
+
+### Fixed
+
+- Fixed hardcoded text in listbox footer.
