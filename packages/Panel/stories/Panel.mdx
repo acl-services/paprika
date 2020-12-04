@@ -1,13 +1,11 @@
-import { Props, Description } from "@storybook/addon-docs/blocks";
+import { Meta, Props, Description } from "@storybook/addon-docs/blocks";
+import { getStoryName } from "storybook/storyTree";
+import { docsStoryParameters } from "storybook/assets/storyParameters";
 import { Gap } from "storybook/assets/styles/common.styles";
+import Readme from "../README.md";
+import { TextLine } from "./helpers";
 import Panel from "../src";
 
-## &lt;Panel&gt; Props
+<Meta title={`${getStoryName("Panel")}/Docs`} component={Panel} parameters={{ ...docsStoryParameters }} />
 
-<Props of={Panel} />
-
-<Gap />
-
-<Description>
-This component's documentation has not yet been added.
-</Description>
+<Description markdown={Readme} />
