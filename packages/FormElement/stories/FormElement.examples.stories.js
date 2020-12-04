@@ -34,12 +34,12 @@ everythingExample.story = {
 };
 
 export const checkboxExample = () => (
-  <FormElementStory storyName="Checkbox" component="FormElement" fileName="examples/Checkbox.js">
+  <FormElementStory storyName="Checkboxes" component="FormElement" fileName="examples/Checkbox.js">
     <Checkbox />
   </FormElementStory>
 );
 checkboxExample.story = {
-  name: "Checkbox",
+  name: "Checkboxes",
   parameters: exampleStoryParameters,
 };
 
