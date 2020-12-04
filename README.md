@@ -159,7 +159,7 @@ The valid "types" are: `feat`, `fix`, `style`, `test`, `docs`, `build`, `chore`,
 If you are experiencing difficulty, you may need to:
 
 1. overwrite your existing commit-msg file with the husky one: `cp ~/src/paprika/.git/hooks/applypatch-msg ~/src/paprika/.git/hooks/commit-msg`
-2. update the commit-msg file permissions: `chmod 755 .git/hooks/commit-msg`
+2. update the commit-msg file permissions: `chmod 755 ~/src/paprika/.git/hooks/commit-msg`
 
 #### More Information
 
