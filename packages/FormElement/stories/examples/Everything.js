@@ -85,8 +85,11 @@ export default function EverythingExample() {
                         </Select>
                       )}
                     </Content>
-                    {!errorText ? <Description>This is a description of the field.</Description> : null}
-                    <Error>{errorText}</Error>
+                    {errorText ? (
+                      <Error>{errorText}</Error>
+                    ) : (
+                      <Description>This is a description of the field.</Description>
+                    )}
                   </RightCol>
                 </Layout>
               </FormElement>
@@ -101,14 +104,16 @@ export default function EverythingExample() {
                   <RightCol>
                     <Instructions>This are some field instructions.</Instructions>
                     <Content>{a11yProps => <Textarea hasError={Boolean(errorText)} {...a11yProps} />}</Content>
-                    {!errorText ? <Description>This is a description of the field.</Description> : null}
-                    <Error>{errorText}</Error>
+                    {errorText ? (
+                      <Error>{errorText}</Error>
+                    ) : (
+                      <Description>This is a description of the field.</Description>
+                    )}
                   </RightCol>
                 </Layout>
               </FormElement>
             </Content>
-            {!errorText ? <Description>This is a description of the fieldset.</Description> : null}
-            <Error>{errorText}</Error>
+            {errorText ? <Error>{errorText}</Error> : <Description>This is a description of the fieldset.</Description>}
           </RightCol>
         </Layout>
       </Fieldset>

@@ -74,8 +74,7 @@ function Showcase() {
               />
             )}
           </Content>
-          {!errorText ? <Description>{descriptionText}</Description> : null}
-          <Error>{errorText}</Error>
+          {errorText ? <Error>{errorText}</Error> : <Description>{descriptionText}</Description>}
         </FormElement>
       </L10n>
     </FormElementStory>

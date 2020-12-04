@@ -21,6 +21,10 @@ export default function SubcomponentsExample() {
       <Gap.Small />
       <StoryHeading level={2}>FormElement.Label</StoryHeading>
       <Label help={helpContent}>Field Label</Label>
+      <Gap.Small />
+      <Label help={helpContent} isDisabled>
+        Disabled Field Label
+      </Label>
       <Gap />
       <StoryHeading level={2}>FormElement.Instructions</StoryHeading>
       <Instructions>

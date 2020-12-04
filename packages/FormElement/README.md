@@ -146,18 +146,20 @@ const errorMsg = "There was an error.";
       <Input hasError={Boolean(errorMsg)} {...a11yProps} />
     )}
   </Content>
-  {errorMsg ? <Description>Description text</Description> : null}
-  <Error>{errorMsg}</Error>
+  {errorMsg 
+    ? <Error>{errorMsg}</Error> 
+    : <Description>Description text</Description>
+  }
 </FormElement>
 ```
 
 ### Using `<Fieldset />` with `<Checkbox />`
 
-Since the `<Checkbox />` and `<Radio />` components already render with a `<label>` element, the label for the checkbox or radio _group_ needs to be a `<legend>` element, instead of another redundant `<label>`, which needs to be wrapped in a `<fieldset>` element. For this purpose, the `<FormElement />` has a `hasFieldSet` prop, but for clearer JSX markup, you can use the `<Fieldset>` component, provided as a named import from the same `@paprika/form-element` component.
+Since a group of `<Checkbox />` or `<Radio />` components consist of multiple inputs, each with their own `<label>`, then need to be wrapped in a `<fieldset>` element with a `<legend>` element as a common label. This is the same for any group of form inputs that need to be grouped under a common label.
 
-This technique is suitable for multiple form elements that need to be grouped, not just `<Checkbox />` and `<Radio />`.
+For this purpose, the `<Fieldset />` component can be used. It is provided as a named import from the same `@paprika/form-element` package.
 
-The `<Fieldset />` component has all the same subcomponents, since it actually _is_ just a `<FormElement hasFieldSet />`.
+The `<Fieldset />` component has all the same subcomponents as the `<FormElement />` – it actually _is_ just a `<FormElement />` with the `hasFieldSet` prop set to `true`.
 
 <!-- prettier-ignore -->
 ```jsx

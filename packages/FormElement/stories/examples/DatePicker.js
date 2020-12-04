@@ -12,15 +12,17 @@ export default function DatePickerExample() {
     setDate(newDate);
   }
 
+  const dateFormat = "YYYY/MM/DD";
+
   return (
     <L10n>
       <FormElement>
         <Label>Start Date</Label>
-        <Instructions>Enter date in MM/DD/YYYY format.</Instructions>
+        <Instructions>Enter date in {dateFormat} format.</Instructions>
         <Content>
           {a11yProps => (
             <DatePicker date={date} onChange={handleChange}>
-              <DatePicker.Input placeholder="MM/DD/YYYY" {...a11yProps} />
+              <DatePicker.Input placeholder={dateFormat} dateFormat={dateFormat} {...a11yProps} />
             </DatePicker>
           )}
         </Content>

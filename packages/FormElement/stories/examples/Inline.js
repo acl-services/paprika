@@ -31,8 +31,7 @@ export default function InlineContent() {
                 />
               )}
             </Content>
-            {!errorText ? <Description>These is a description of the field.</Description> : null}
-            <Error>{errorText}</Error>
+            {errorText ? <Error>{errorText}</Error> : <Description>This is a description of the field.</Description>}
           </RightCol>
         </Layout>
       </FormElement>
