@@ -27,7 +27,7 @@ const roundStyles = {
 
 const squareStyles = {
   small: `
-    border-radius: ${tokens.card.borderRadius};
+    border-radius: ${tokens.button.borderRadius};
     height: ${spacer(4)};
     width: ${spacer(4)};
     ${stylers.fontSize(2)};
