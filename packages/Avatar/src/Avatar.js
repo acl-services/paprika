@@ -6,16 +6,11 @@ import * as sc from "./Avatar.styles";
 function Avatar(props) {
   const { backgroundColor, size, color, children, isRound, ...moreProps } = props;
 
-  if (!isRound && size === Avatar.types.size.LARGE) {
+  if (!isRound && size === Avatar.types.size.SMALL) {
     console.warn(
-      `In @paprika/${Avatar.displayName} component, the size="LARGE" should only be used when isRound={true}`
+      `In @paprika/${Avatar.displayName} component, the size="SMALL" should only be used when isRound={true}`
     );
   }
-
-  const getInitials = (isRound, children) => {
-    const initials = children.split(" ").map(word => word.charAt(0).toUpperCase());
-    return isRound && initials.length > 1 ? `${initials[0]}${initials[1]}` : initials[0];
-  };
 
   return (
     <sc.Avatar
@@ -26,7 +21,7 @@ function Avatar(props) {
       isRound={isRound}
       {...moreProps}
     >
-      {typeof children === "string" ? getInitials(isRound, children) : children}
+      {children}
     </sc.Avatar>
   );
 }
@@ -46,9 +41,9 @@ const propTypes = {
   isRound: PropTypes.bool,
   /** Size of Avatar */
   size: PropTypes.oneOf([
-    Avatar.types.size.SMALL,
+    Avatar.types.size.SMALL, // for use with isRound only
     Avatar.types.size.MEDIUM,
-    Avatar.types.size.LARGE, // for use with isRound only
+    Avatar.types.size.LARGE,
   ]),
 };
 

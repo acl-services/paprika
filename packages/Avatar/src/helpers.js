@@ -25,3 +25,8 @@ export function getAvatarColors(text) {
     backgroundColor: COLORS[index].background,
   };
 }
+
+export function getInitialsFromText(text, length = 1) {
+  const initials = text.split(" ").map(word => word.charAt(0));
+  return initials.join("").substr(0, length);
+}

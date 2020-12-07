@@ -26,14 +26,14 @@ const roundStyles = {
 };
 
 const squareStyles = {
-  small: `
+  medium: `
     border-radius: ${tokens.button.borderRadius};
     height: ${spacer(4)};
     width: ${spacer(4)};
     ${stylers.fontSize(2)};
   `,
 
-  medium: `
+  large: `
     border-radius: ${tokens.card.borderRadius};
     height: ${spacer(5)};
     width: ${spacer(5)};
@@ -46,6 +46,7 @@ export const Avatar = styled.div`
   display: inline-flex;
   font-weight: bold;
   justify-content: center;
+  overflow: hidden;
 
   &,
   * {
