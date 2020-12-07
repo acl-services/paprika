@@ -1,5 +1,5 @@
 import React from "react";
-import ListBox from "../../../src/WithTags";
+import ListBox from "../../../src/WithSearch";
 
 // please use a proper debounce function in a your application
 const debounce = (func, wait) => {
@@ -53,7 +53,7 @@ export default function Controlled() {
     // this is just an example
     // but in real life you could have a list/dictionary with the
     // value of the selected items where you could push the new value
-    animals.push(option);
+    data.push(option);
 
     setDataFiltered(() => data);
 
@@ -70,7 +70,7 @@ export default function Controlled() {
           return;
         }
 
-        const result = ListBox.filter(search, animals);
+        const result = ListBox.filter(search, data);
         setDataFiltered(result);
       }, 250),
     [data]
@@ -83,7 +83,7 @@ export default function Controlled() {
         onChange={handleChange}
         onAddCustomOption={handleAddedOption}
         onRemove={handleRemove}
-        selectedOptions={selectedKeys.length ? animals.filter(item => selectedKeys.includes(item.label)) : []}
+        selectedOptions={selectedKeys.length ? data.filter(item => selectedKeys.includes(item.label)) : []}
         filter={handleFilterDebounce}
       >
         {dataFiltered.map(option => {

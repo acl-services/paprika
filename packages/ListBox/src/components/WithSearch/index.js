@@ -1,1 +1,1 @@
-export { default } from "./WithComboBox";
+export { default } from "./WithSearch";
