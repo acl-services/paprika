@@ -6,6 +6,12 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 
 ## [Unreleased]
 
+### Changed
+
+- Breaking change: The old "MEDIUM" square Avatar is now "LARGE". The old "SMALL" square Avatar is now "MEDIUM".
+- Breaking change: the Avatar will display whatever you pass into it as-is (including capitalization). Created the `getInitialsFromText` helper function so the consumer can get the text they want to pass in.
+- Added new "isRound" prop so you can have round Avatars in three sizes
+
 ## [0.1.2] - 2020-09-02
 
 ### Added

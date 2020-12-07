@@ -1,5 +1,5 @@
 import React from "react";
-import { text, select } from "@storybook/addon-knobs";
+import { text, select, boolean } from "@storybook/addon-knobs";
 import { Story, Rule, Tagline } from "storybook/assets/styles/common.styles";
 import Heading from "@paprika/heading/lib/Heading";
 
@@ -7,7 +7,8 @@ import Avatar from "../../src";
 
 const avatarProps = () => ({
   children: text("content", "A"),
-  size: select("size", ["small", "medium"], "medium"),
+  size: select("size", ["small", "medium", "large"], "medium"),
+  isRound: boolean("isRound", false),
   backgroundColor: text("backgroundColor", "#d1cbc2"),
   color: text("color", "#3f3d3c"),
 });
