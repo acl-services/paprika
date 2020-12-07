@@ -43,6 +43,7 @@ export default function useProcessFiles({
   endpoint,
   defaultIsDisabled,
   headers,
+  onRequest,
 }) {
   const [uploadingFileList, setUploadingFileList] = React.useState([]);
   const [isDisabled, setIsDisabled] = React.useState(defaultIsDisabled);
@@ -188,11 +189,11 @@ export default function useProcessFiles({
 
       files.forEach(file => {
         if (file.isValid && file.status !== types.status.SUCCESS) {
-          uploadToServer({ file, endpoint, onProgress, onSuccess, onError, headers });
+          uploadToServer({ file, endpoint, onProgress, onSuccess, onError, headers, onRequest });
         }
       });
     }
-  }, [files, uploadingFileList, isDisabled, onCompleted, onChange, endpoint, headers]);
+  }, [files, uploadingFileList, isDisabled, onCompleted, onChange, endpoint, headers, onRequest]);
 
   React.useEffect(() => {
     if (hasAutoUpload) {

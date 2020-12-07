@@ -141,4 +141,39 @@ storiesOf(`${storyName}/Examples`, module)
         <File {...fileProps} progress={37} error="Something went wrong" status={types.status.ERROR} />
       </Uploader>
     </Story>
-  ));
+  ))
+  .add("Custom onRequest callback", () => {
+    return (
+      <Story>
+        <p>Description</p>
+        <Uploader
+          onCompleted={files => console.log("on finished:", files)}
+          endpoint="http://localhost:9000/upload.php"
+          onChange={files => {
+            console.log("Selected files:", files);
+          }}
+          onRequest={({ file, onProgress, onError, formData }) => {
+            file.request
+              .send(formData)
+              .on("progress", onProgress)
+              .end(onError);
+
+            /**
+             * With this approach you could use you own process to upload
+             * each file read superagent API for more info
+             */
+
+            // file.request
+            //   .get("https://api.example.com:4001/")
+            //   .auth('you_token', { type: 'bearer' })
+            //   .withCredentials()
+            //   .on("progress", onProgress)
+            //   .end(onError);
+          }}
+        >
+          <Uploader.DropZone />
+          <Uploader.FileList />
+        </Uploader>
+      </Story>
+    );
+  });

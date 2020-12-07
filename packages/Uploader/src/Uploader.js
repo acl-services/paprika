@@ -62,6 +62,10 @@ const propTypes = {
     you can pass an array of header objects.
   */
   headers: PropTypes.arrayOf(PropTypes.object),
+  /**
+   * Let you to take over the request method
+   */
+  onRequest: PropTypes.func,
 };
 
 const defaultProps = {
@@ -75,6 +79,7 @@ const defaultProps = {
   maxFileSize: oneMebibyte * 10, // 1048576bytes * 10 = 10,485,760 Mebibytes
   onChange: () => {},
   onCompleted: () => {},
+  onRequest: null,
 };
 
 function getDocumentBody() {
@@ -90,17 +95,18 @@ function getContainer(refContainer) {
 const Uploader = React.forwardRef((props, ref) => {
   const {
     a11yText,
-    supportedMimeTypes,
     canChooseMultiple,
+    children,
+    defaultIsDisabled,
+    endpoint,
     hasAutoUpload,
+    headers,
+    isBodyDroppable,
     maxFileSize,
     onChange,
     onCompleted,
-    isBodyDroppable,
-    endpoint,
-    children,
-    defaultIsDisabled,
-    headers,
+    supportedMimeTypes,
+    onRequest,
   } = props;
 
   const refInput = React.useRef();
@@ -130,6 +136,7 @@ const Uploader = React.forwardRef((props, ref) => {
     headers,
     onChange,
     onCompleted,
+    onRequest,
   });
 
   const handleChange = React.useCallback(
@@ -196,8 +203,9 @@ const Uploader = React.forwardRef((props, ref) => {
     isDragLeave,
     isDraggingOver,
     label,
-    supportedMimeTypes,
     removeFile,
+    restartFileUpload,
+    supportedMimeTypes,
     upload,
   ]);
 
