@@ -52,7 +52,7 @@ const defaultProps = {
   children: null,
   color: null,
   isRound: false,
-  size: Avatar.types.size.MEDIUM,
+  size: Avatar.types.size.LARGE,
 };
 
 Avatar.displayName = "Avatar";
