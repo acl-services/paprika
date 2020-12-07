@@ -1,8 +1,7 @@
 import React from "react";
 import { Story } from "storybook/assets/styles/common.styles";
 import Heading from "@paprika/heading";
-import Avatar from "../../src";
-import { getInitialsFromText } from "../../src/helpers";
+import Avatar, { getInitialsFromText } from "../../src";
 
 const text = ["A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L"];
 
