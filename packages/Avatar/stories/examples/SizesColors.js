@@ -1,22 +1,9 @@
 import React from "react";
 import { Story } from "storybook/assets/styles/common.styles";
 import Heading from "@paprika/heading";
-import Avatar from "../../src";
+import Avatar, { getInitialsFromText } from "../../src";
 
-const text = [
-  "apple",
-  "box",
-  "cake",
-  "duck",
-  "earth",
-  "flower",
-  "glasses",
-  "hair",
-  "image",
-  "jellybeans",
-  "kayak",
-  "lamp",
-];
+const text = ["A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L"];
 
 export default () => {
   return (
@@ -37,12 +24,26 @@ export default () => {
         })}
       </div>
       <div>
-        <Heading level={3}>Sizes</Heading>
-        <Avatar backgroundColor="black" color="white" size={Avatar.types.size.SMALL}>
-          Small
+        <Heading level={3}>Sizes and Shapes</Heading>
+        <Heading level={5}>Square (default)</Heading>
+        <Avatar backgroundColor="navy" color="white" size={Avatar.types.size.MEDIUM}>
+          M
         </Avatar>
-        <Avatar backgroundColor="black" color="white" size={Avatar.types.size.MEDIUM}>
-          Medium
+        &nbsp;
+        <Avatar backgroundColor="navy" color="white" size={Avatar.types.size.LARGE}>
+          {getInitialsFromText("LARGE")}
+        </Avatar>
+        <Heading level={5}>Round</Heading>
+        <Avatar isRound backgroundColor="navy" color="white" size={Avatar.types.size.SMALL}>
+          {getInitialsFromText("Small round", 2)}
+        </Avatar>
+        &nbsp;
+        <Avatar isRound backgroundColor="navy" color="white" size={Avatar.types.size.MEDIUM}>
+          Mr
+        </Avatar>
+        &nbsp;
+        <Avatar isRound backgroundColor="navy" color="white" size={Avatar.types.size.LARGE}>
+          Lr
         </Avatar>
       </div>
     </Story>

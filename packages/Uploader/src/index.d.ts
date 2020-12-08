@@ -27,4 +27,6 @@ interface UploaderProps {
   onCompleted?: (...args: any[]) => any;
   /** you can pass an array of header objects. */
   headers?: object[];
+  /** Let you to take over the request method */
+  onRequest?: (...args: any[]) => any;
 }
