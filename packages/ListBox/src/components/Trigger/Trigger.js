@@ -88,7 +88,7 @@ export default function Trigger(props) {
     refLabel,
     size,
   } = state;
-  const triggerButtonId = React.useRef(nanoid());
+  const triggerButtonId = React.useState(nanoid);
 
   const handleClick = () => {
     if (isDisabled) {
@@ -193,22 +193,24 @@ export default function Trigger(props) {
 
         return children(selected, options, current, {
           dispatch,
-          propsForTrigger: getDOMAttributesForListBoxButton(idListBox),
-          types: sanitizeActionTypes(useListBox.types),
-          refTrigger,
-          isOpen: state.isOpen,
           handleKeyDown: handleKeyDownKeyboardKeys({ state, dispatch, onChangeContext }),
           handleKeyUp: handleKeyUpKeyboardKeys({ state, dispatch, onChangeContext }),
+          isOpen: state.isOpen,
+          propsForTrigger: getDOMAttributesForListBoxButton(idListBox),
+          refTrigger,
+          types: sanitizeActionTypes(useListBox.types),
         });
       }
 
       const [selected, options] = getSelectedOptionSingle(state);
       return children(selected, options, {
         dispatch,
-        propsForTrigger: getDOMAttributesForListBoxButton(idListBox),
-        types: sanitizeActionTypes(useListBox.types),
-        refTrigger,
+        // handleKeyDown: handleKeyDownKeyboardKeys({ state, dispatch, onChangeContext }),
+        // handleKeyUp: handleKeyUpKeyboardKeys({ state, dispatch, onChangeContext }),
         isOpen: state.isOpen,
+        propsForTrigger: getDOMAttributesForListBoxButton(idListBox),
+        refTrigger,
+        types: sanitizeActionTypes(useListBox.types),
       });
     }
   }, [hasRenderTrigger, isMulti, state, children, dispatch, idListBox, refTrigger, onChangeContext]);

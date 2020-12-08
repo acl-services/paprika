@@ -3269,6 +3269,21 @@
     prop-types "^15.7.2"
     what-input "^5.2.6"
 
+"@paprika/button@^1.0.3":
+  version "1.0.3"
+  resolved "https://registry.yarnpkg.com/@paprika/button/-/button-1.0.3.tgz#4cb65d3750f41bb3e84204320feebc75db6408fa"
+  integrity sha512-OpUsLJDLMa7uUSgXXy8TiliiodAzB/MGIAgxE9tu+BUIdbWf32JA+SDT6TZpgq64dc+n7mEuozhsGVFEW5WI0Q==
+  dependencies:
+    "@babel/runtime-corejs2" "^7.3.1"
+    "@paprika/constants" "^1.0.0"
+    "@paprika/helpers" "^1.0.2"
+    "@paprika/icon" "^1.0.1"
+    "@paprika/raw-button" "^1.0.2"
+    "@paprika/stylers" "^1.0.0"
+    "@paprika/tokens" "^1.0.0"
+    prop-types "^15.7.2"
+    what-input "^5.2.6"
+
 "@paprika/confirmation@^0.3.44-alpha.3":
   version "0.3.44"
   resolved "https://registry.yarnpkg.com/@paprika/confirmation/-/confirmation-0.3.44.tgz#e8349440a6fdc68236368a2d66c800d133d238e5"
@@ -3333,6 +3348,11 @@
   resolved "https://registry.yarnpkg.com/@paprika/helpers/-/helpers-0.2.14.tgz#42b4ef1ccdb7ddba699ee05a4988908f14936d37"
   integrity sha512-j+LaBc/tI/CeKwkX7mPOzjOpFmg2UzuTFov2Z+DWJbxf/dRZkQUyKxinEaY6ReJ6oXn2XREaqyq7fj+VO9gbug==
 
+"@paprika/helpers@^1.0.2":
+  version "1.0.2"
+  resolved "https://registry.yarnpkg.com/@paprika/helpers/-/helpers-1.0.2.tgz#1a61440d039616d47a58b25f1e3ff18ef2e06410"
+  integrity sha512-8F3XrPLOch4XyAYwwci2J8a2uJbVXHhB7YxNOZwqY20iZBILYsnbim372kdSkMJ+z7uDReS1+p2uQuyd29RPVA==
+
 "@paprika/icon@^0.2.15":
   version "0.2.16"
   resolved "https://registry.yarnpkg.com/@paprika/icon/-/icon-0.2.16.tgz#689b394e9828dd624cd825897f20aa9dea82d42d"
@@ -3350,6 +3370,31 @@
   dependencies:
     "@babel/runtime-corejs2" "^7.3.1"
     "@paprika/tokens" "^0.1.18"
+    prop-types "^15.7.2"
+
+"@paprika/icon@^1.0.1":
+  version "1.0.1"
+  resolved "https://registry.yarnpkg.com/@paprika/icon/-/icon-1.0.1.tgz#5ce9ad3be0cce63304b183eb7d6061270fc67a70"
+  integrity sha512-xB7pr7/DL1emhiPdivEgBH9Fru1yNGGKkW5ysfTjp47u+Dpxm+DfzQpx+Cs9895v3+p1VEXfvMPV6t/tk921Mg==
+  dependencies:
+    "@babel/runtime-corejs2" "^7.3.1"
+    "@paprika/tokens" "^1.0.0"
+    prop-types "^15.7.2"
+
+"@paprika/input@^1.0.2":
+  version "1.0.3"
+  resolved "https://registry.yarnpkg.com/@paprika/input/-/input-1.0.3.tgz#80302f16effff4cdb76b5832b71a4c8656707392"
+  integrity sha512-F1E+hBrbQHV9KVReaxEXQuA3XzoF+viLuQG4/4N/e5Dd8Oh1TneD5S/Wjyi12qup/UYT1n7S142xZzRzSBPUng==
+  dependencies:
+    "@babel/runtime-corejs2" "^7.3.1"
+    "@paprika/button" "^1.0.3"
+    "@paprika/constants" "^1.0.0"
+    "@paprika/helpers" "^1.0.2"
+    "@paprika/icon" "^1.0.1"
+    "@paprika/raw-button" "^1.0.2"
+    "@paprika/stylers" "^1.0.0"
+    "@paprika/tokens" "^1.0.0"
+    classnames "^2.2.6"
     prop-types "^15.7.2"
 
 "@paprika/popover@^0.3.36", "@paprika/popover@^0.3.36-alpha.1":

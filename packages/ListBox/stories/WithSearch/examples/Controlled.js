@@ -15,87 +15,18 @@ const debounce = (func, wait) => {
 export default function Controlled() {
   const [data] = React.useState([{ label: "car" }, { label: "truck" }, { label: "jet" }, { label: "boat" }]);
 
-  const [selectedKeys, setSelectedKeys] = React.useState(["Alpaca"]);
-  const [dataFiltered, setDataFiltered] = React.useState(data);
-
-  function checkIfIsSelected(id) {
-    return selectedKeys.includes(id);
-  }
-
-  function handleChange(option, options, selectedOption) {
-    setSelectedKeys(prev => {
-      const prevClone = prev.slice(0);
-      const id = options[selectedOption].value;
-      if (prev.includes(id)) {
-        prev.splice(prevClone.indexOf(id), 1);
-        return prev;
-      }
-
-      return [...new Set(prevClone.concat([id]))];
-    });
-
-    setDataFiltered(data);
-  }
-
-  function handleRemove(option) {
-    const index = selectedKeys.indexOf(option.label);
-    if (index >= 0) {
-      setSelectedKeys(prev => {
-        const clone = prev.slice(0);
-        clone.splice(index, 1);
-        return clone;
-      });
-    }
-  }
-
-  function handleAddedOption(label) {
-    const option = { label, isCustom: true };
-    // this is just an example
-    // but in real life you could have a list/dictionary with the
-    // value of the selected items where you could push the new value
-    data.push(option);
-
-    setDataFiltered(() => data);
-
-    setSelectedKeys(prev => {
-      return prev.concat(option.label);
-    });
-  }
-
-  const handleFilterDebounce = React.useMemo(
-    () =>
-      debounce(({ search }) => {
-        if (search === "") {
-          setDataFiltered(data);
-          return;
-        }
-
-        const result = ListBox.filter(search, data);
-        setDataFiltered(result);
-      }, 250),
-    [data]
-  );
-
   return (
     <div style={{ padding: "32px" }}>
       <ListBox
         noResultsMessage="No results found, but you can add an email and then press enter..."
-        onChange={handleChange}
-        onAddCustomOption={handleAddedOption}
-        onRemove={handleRemove}
-        selectedOptions={selectedKeys.length ? data.filter(item => selectedKeys.includes(item.label)) : []}
-        filter={handleFilterDebounce}
+        onChange={() => {}}
       >
-        {dataFiltered.map(option => {
-          if (typeof option.isCustom !== "undefined") {
-            return null;
-          }
-
-          return !checkIfIsSelected(option.label) ? (
+        {data.map(option => {
+          return (
             <ListBox.Option value={option.label} key={option.label} label={option.label}>
               {option.label}
             </ListBox.Option>
-          ) : null;
+          );
         })}
       </ListBox>
     </div>
