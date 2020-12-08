@@ -188,30 +188,25 @@ export default function Trigger(props) {
   let renderChildrenProps = null;
   renderChildrenProps = React.useMemo(() => {
     if (hasRenderTrigger) {
-      if (isMulti) {
-        const [selected, options, current] = getSelectedOptionsMulti(state);
-
-        return children(selected, options, current, {
-          dispatch,
-          handleKeyDown: handleKeyDownKeyboardKeys({ state, dispatch, onChangeContext }),
-          handleKeyUp: handleKeyUpKeyboardKeys({ state, dispatch, onChangeContext }),
-          isOpen: state.isOpen,
-          propsForTrigger: getDOMAttributesForListBoxButton(idListBox),
-          refTrigger,
-          types: sanitizeActionTypes(useListBox.types),
-        });
-      }
-
-      const [selected, options] = getSelectedOptionSingle(state);
-      return children(selected, options, {
+      const attributes = {
         dispatch,
         handleKeyDown: handleKeyDownKeyboardKeys({ state, dispatch, onChangeContext }),
         handleKeyUp: handleKeyUpKeyboardKeys({ state, dispatch, onChangeContext }),
         isOpen: state.isOpen,
+        onChangeContext,
         propsForTrigger: getDOMAttributesForListBoxButton(idListBox),
         refTrigger,
         types: sanitizeActionTypes(useListBox.types),
-      });
+      };
+
+      if (isMulti) {
+        const [selected, options, current] = getSelectedOptionsMulti(state);
+
+        return children(selected, options, current, attributes);
+      }
+
+      const [selected, options] = getSelectedOptionSingle(state);
+      return children(selected, options, attributes);
     }
   }, [hasRenderTrigger, isMulti, state, children, dispatch, idListBox, refTrigger, onChangeContext]);
 
