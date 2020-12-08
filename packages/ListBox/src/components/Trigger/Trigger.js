@@ -205,8 +205,8 @@ export default function Trigger(props) {
       const [selected, options] = getSelectedOptionSingle(state);
       return children(selected, options, {
         dispatch,
-        // handleKeyDown: handleKeyDownKeyboardKeys({ state, dispatch, onChangeContext }),
-        // handleKeyUp: handleKeyUpKeyboardKeys({ state, dispatch, onChangeContext }),
+        handleKeyDown: handleKeyDownKeyboardKeys({ state, dispatch, onChangeContext }),
+        handleKeyUp: handleKeyUpKeyboardKeys({ state, dispatch, onChangeContext }),
         isOpen: state.isOpen,
         propsForTrigger: getDOMAttributesForListBoxButton(idListBox),
         refTrigger,

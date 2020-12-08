@@ -36,7 +36,7 @@ function useTrigger() {
     dispatch({ type: types.closePopover });
   };
 
-  const handleKeyDownTrigger = ({ dispatch, types }) => () => {
+  const handleKeyDownTrigger = () => () => {
     refInput.current.focus();
   };
 
@@ -65,7 +65,7 @@ const renderTrigger = ({
   refInput /* t, selectedOptions, onRemove, renderPill */,
   size,
 }) => (...args) => {
-  const [, , , attributes] = args;
+  const [, , attributes] = args;
   const { propsForTrigger, refTrigger, dispatch, types, handleKeyDown, handleKeyUp, isOpen } = attributes;
 
   function handleClickInput(event) {
@@ -95,7 +95,6 @@ const renderTrigger = ({
     event.stopPropagation();
     // prevents from toggling the popover automatically by the trigger
     if (event.key === " " || event.key === "Enter") {
-      debugger;
       dispatch({ type: types.openPopover });
       return;
     }
@@ -103,14 +102,17 @@ const renderTrigger = ({
     if (!isOpen) dispatch({ type: types.openPopover });
   }
 
-  function handleClear() {
-    debugger;
+  function handleFocusTrigger() {
+    refInput.current.focus();
   }
+
+  function handleClear() {}
 
   return (
     <sc.Trigger
       ref={refTrigger}
       {...propsForTrigger()}
+      onFocus={handleFocusTrigger}
       onBlur={onBlurTrigger({ dispatch, types })}
       onClick={onClickTrigger({ dispatch, types })}
       onKeyDown={onKeyDownTrigger({ dispatch, types })}
@@ -161,7 +163,7 @@ export default function WithSearch(props) {
 
   return (
     <div ref={refDivRoot}>
-      <ListBox isMulti size={size} onChange={handleChange} {...moreProps}>
+      <ListBox size={size} onChange={handleChange} {...moreProps}>
         <ListBox.Popover shouldKeepFocus />
         <ListBox.Trigger>
           {renderTrigger({
