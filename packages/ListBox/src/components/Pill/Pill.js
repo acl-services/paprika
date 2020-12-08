@@ -20,12 +20,13 @@ export function Delete({ size, onRemove = () => {} }) {
     </sc.Delete>
   );
 }
+
 export default function Pill(props) {
   const { children, onRemove, size } = props;
 
   return (
-    <sc.Pill data-pka-anchor="list-box-tags.pill">
-      <sc.Ellipsis>{children}</sc.Ellipsis>
+    <sc.Pill size={size} data-pka-anchor="list-box-tags.pill">
+      <sc.Ellipsis size={size}>{children}</sc.Ellipsis>
       {size ? <Delete onRemove={onRemove} size={size} /> : null}
     </sc.Pill>
   );

@@ -1,7 +1,6 @@
 import styled, { css } from "styled-components";
 import tokens from "@paprika/tokens";
 import RawButton from "@paprika/raw-button";
-import stylers from "@paprika/stylers";
 
 export const Pills = styled.ul(() => {
   return css`
@@ -13,67 +12,78 @@ export const Pills = styled.ul(() => {
   `;
 });
 
-export const Pill = styled.li(() => {
+export const Pill = styled.li(({ size }) => {
+  const padding = {
+    medium: "2px",
+    large: "4px",
+  };
+
   return css`
     align-items: center;
-    background: ${tokens.backgroundColor.level0};
-    border: 1px solid ${tokens.border.color};
+    background: ${tokens.color.blackLighten70};
     border-radius: ${tokens.space[0] * 2}px;
     display: flex;
     line-height: 1;
     margin-bottom: ${tokens.spaceSm};
     margin-right: ${tokens.spaceSm};
     max-width: 100%;
-    padding: ${tokens.spaceSm[0] / 2}px ${tokens.spaceSm};
+    padding: ${padding[size]};
+
+    [data-pka-anchor="avatar"] {
+      margin-right: ${tokens.space};
+    }
   `;
 });
 
-export const Ellipsis = styled.div`
-  display: inline-block;
-  overflow: hidden;
-  text-overflow: ellipsis;
-  white-space: nowrap;
-  width: calc(99%);
-`;
+export const Ellipsis = styled.div(({ size }) => {
+  const fontSize = {
+    medium: "14px",
+    large: "16px",
+  };
 
-function fontStylersToNumber(value) {
-  return value.replace(/[^0-9.]/g, "") * 1;
-}
-
-const fontSize = {
-  small: () => {
-    return fontStylersToNumber(stylers.fontSize(-2));
-  },
-  medium: () => {
-    return fontStylersToNumber(stylers.fontSize(-1));
-  },
-  large: () => {
-    return fontStylersToNumber(stylers.fontSize());
-  },
-};
+  return css`
+    display: inline-block;
+    font-size: ${fontSize[size]};
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    width: calc(99%);
+  `;
+});
 
 export const Delete = styled(RawButton)(({ size }) => {
+  const padding = {
+    medium: "4px",
+    large: "5px",
+  };
+
+  const width = {
+    medium: "20px",
+    large: "24px",
+  };
+
   return css`
     align-items: center;
     border-radius: 50%;
     box-sizing: border-box;
     display: flex;
-    flex-shrink: 0;
+    flex: 0 0 auto;
+    height: ${width[size]};
     justify-content: center;
-    margin-left: ${tokens.spaceSm};
-    padding: 2px;
-    position: relative;
+    margin-left: ${tokens.space};
+    padding: ${padding[size]};
+    width: ${width[size]};
 
     &:hover {
-      background: ${tokens.border.color};
+      background: ${tokens.color.blackLighten60};
     }
 
     &:focus {
-      background: ${tokens.border.color};
+      background: ${tokens.color.blackLighten60};
     }
 
     & svg {
-      font-size: ${fontSize[size]() * 0.8}px;
+      color: ${tokens.color.blackLighten20};
       pointer-events: none;
     }
   `;
