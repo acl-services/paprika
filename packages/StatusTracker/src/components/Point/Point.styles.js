@@ -62,9 +62,7 @@ export const Point = styled.div(({ kind }) => {
       `;
     case types.kinds.CURRENT:
       return css`
-        > [data-pka-anchor="popover"] > [data-pka-anchor="button"] {
-          margin-top: -${tokens.spaceSm};
-        }
+        margin-top: -${tokens.spaceSm};
       `;
     case types.kinds.FUTURE:
       return css`
@@ -89,8 +87,9 @@ export const PopoverCard = styled(Popover.Card)`
   display: flex;
   flex-direction: column;
   justify-content: center;
-  min-height: ${({ hasBoth }) => (hasBoth ? "auto" : spacer(3))};
-  min-width: ${({ hasBoth }) => (hasBoth ? spacer(22) : spacer(8))};
+  min-height: ${({ hasBoth }) => (hasBoth ? "auto" : spacer(2))};
+  min-width: ${({ hasBoth }) => (hasBoth ? spacer(21) : spacer(8))};
+  padding: ${tokens.space};
 `;
 
 export const NameInTooltip = styled.div`
