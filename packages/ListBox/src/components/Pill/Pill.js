@@ -23,9 +23,8 @@ export function Delete({ size, onRemove = () => {} }) {
 
 export default function Pill(props) {
   const { children, onRemove, size } = props;
-
   const isChildString = typeof children === "string";
-  console.log(typeof children, children);
+
   return (
     <sc.Pill size={size} data-pka-anchor="list-box-tags.pill">
       <sc.Ellipsis isChildString={isChildString} size={size}>
