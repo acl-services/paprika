@@ -9,19 +9,42 @@ const roundStyles = {
     border-radius: 50%;
     height: ${spacer(2.5)};
     width: ${spacer(2.5)};
-    ${stylers.fontSize(-3)};
   `,
   medium: `
     border-radius: 50%;
     height: ${spacer(3)};
     width: ${spacer(3)};
-    ${stylers.fontSize(-2)};
   `,
   large: `
     border-radius: 50%;
     height: ${spacer(4)};
     width: ${spacer(4)};
-    ${stylers.fontSize(-1)};
+  `,
+};
+
+const roundStringStyles = {
+  small: `
+    font-size: 9px;
+  `,
+  medium: `
+    font-size: 11px;
+`,
+  large: `
+    font-size: 14px;
+  `,
+};
+
+const roundIconStyles = {
+  small: `
+    font-size: 13px;
+    position: relative;
+    top: 2px;
+  `,
+  medium: `
+    font-size: 14px;
+  `,
+  large: `
+    font-size: 20px;
   `,
 };
 
@@ -41,6 +64,36 @@ const squareStyles = {
   `,
 };
 
+const squareStringStyles = {
+  medium: `
+    font-size: 16px;
+  `,
+  large: `
+    font-size: 20px;
+  `,
+};
+
+const squareIconStyles = {
+  medium: `
+    font-size: 20px;
+  `,
+  large: `
+    font-size: 24px;
+  `,
+};
+
+function getSizeCss(size, isRound, isChildString) {
+  let sizeValue;
+
+  if (isRound) {
+    sizeValue = roundStyles[size].concat(isChildString ? roundStringStyles[size] : roundIconStyles[size]);
+  } else {
+    sizeValue = squareStyles[size].concat(isChildString ? squareStringStyles[size] : squareIconStyles[size]);
+  }
+
+  return sizeValue;
+}
+
 export const Avatar = styled.div`
   align-items: center;
   display: inline-flex;
@@ -53,15 +106,14 @@ export const Avatar = styled.div`
     box-sizing: border-box;
   }
 
-  ${({ $backgroundColor, $color, isRound, size, children }) => {
-    const sizeValue = isRound ? roundStyles[size] : squareStyles[size];
-
-    const color =
-      typeof children !== "string"
-        ? { backgroundColor: tokens.color.blackLighten60, fontColor: tokens.color.blackLighten20 }
-        : getAvatarColors(children);
+  ${({ $backgroundColor, $color, isChildString, isRound, size, children }) => {
+    const color = isChildString
+      ? getAvatarColors(children)
+      : { backgroundColor: tokens.color.blackLighten60, fontColor: tokens.color.blackLighten20 };
     const backgroundColor = $backgroundColor ?? color.backgroundColor;
     const fontColor = $color ?? color.fontColor;
+    const sizeValue = getSizeCss(size, isRound, isChildString);
+
     return `
       background-color: ${backgroundColor};
       color: ${fontColor};
