@@ -30,7 +30,7 @@ export const Trigger = styled(RawButton)(({ size }) => {
      * the bottom padding is assign on the Pill.styles file to 
      * let the pills have a margin bottom whenever the wrap occurs
      */
-    padding: ${tokens.spaceSm} 50px 0 ${tokens.spaceSm};
+    padding: 3px 50px 1px ${tokens.spaceSm};
     position: relative;
     text-align: left;
     transition: border-color 0.2s;

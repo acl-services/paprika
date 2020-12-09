@@ -12,12 +12,15 @@ function Avatar(props) {
     );
   }
 
+  const isChildString = typeof children === "string";
+
   return (
     <sc.Avatar
       data-pka-anchor="avatar"
       $backgroundColor={backgroundColor}
       $color={color}
       size={size}
+      isChildString={isChildString}
       isRound={isRound}
       {...moreProps}
     >

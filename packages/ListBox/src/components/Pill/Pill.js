@@ -6,7 +6,7 @@ import * as sc from "./Pill.styles";
 const propTypes = {
   onRemove: PropTypes.func.isRequired,
   children: PropTypes.node.isRequired,
-  size: PropTypes.oneOf(["small", "medium", "large"]),
+  size: PropTypes.oneOf(["medium", "large"]),
 };
 
 const defaultProps = {
@@ -20,12 +20,16 @@ export function Delete({ size, onRemove = () => {} }) {
     </sc.Delete>
   );
 }
+
 export default function Pill(props) {
   const { children, onRemove, size } = props;
+  const isChildString = typeof children === "string";
 
   return (
-    <sc.Pill data-pka-anchor="list-box-tags.pill">
-      <sc.Ellipsis>{children}</sc.Ellipsis>
+    <sc.Pill size={size} data-pka-anchor="list-box-tags.pill">
+      <sc.Ellipsis isChildString={isChildString} size={size}>
+        {children}
+      </sc.Ellipsis>
       {size ? <Delete onRemove={onRemove} size={size} /> : null}
     </sc.Pill>
   );
@@ -36,5 +40,5 @@ Pill.defaultProps = defaultProps;
 
 Delete.propTypes = {
   onRemove: PropTypes.func.isRequired,
-  size: PropTypes.oneOf(["small", "medium", "large"]).isRequired,
+  size: PropTypes.oneOf(["medium", "large"]).isRequired,
 };
