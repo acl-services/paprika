@@ -1,51 +1,57 @@
 import React from "react";
 import { boolean, select, text } from "@storybook/addon-knobs";
+import L10n from "@paprika/l10n";
 import Heading from "@paprika/heading";
 import Input from "@paprika/input";
 import { Rule, Tagline } from "storybook/assets/styles/common.styles";
-import { ShirtSizes } from "@paprika/helpers/lib/customPropTypes";
 import { FormElementStory } from "../FormElement.stories.styles";
 import FormElement from "../../src";
 
-const getKnobs = () => ({
+const getRootKnobs = () => ({
+  size: select("size", Object.values(FormElement.types.size), FormElement.types.size.MEDIUM),
   isDisabled: boolean("isDisabled", false),
-  size: select("size", ShirtSizes.DEFAULT, "medium"),
+  isOptional: boolean("isOptional", false),
+  isRequired: boolean("isRequired", false),
 });
 
-const errorPropKnobs = () => ({
-  errorText: text("error text", ""),
+const getLabelKnobs = () => ({
+  labelText: text("label", "Field label"),
+  help: text("help text", "Some help text for this field."),
+  helpA11yText: text("helpA11yText", "information"),
+  isVisuallyHidden: boolean("isVisuallyHidden", false),
 });
 
-const labelPropKnobs = () => ({
-  isVisuallyHidden: boolean("is Label Visually Hidden", false),
-  hasOptionalLabel: boolean("hasOptionalLabel", false),
-  hasRequiredLabel: boolean("hasRequiredLabel", false),
-  label: text("label", "Form element"),
+const getInstructionsKnobs = () => ({
+  instructionsText: text("instructions text", "Some brief instructions."),
 });
 
-const instructionsPropKnobs = () => ({
-  instructionsText: text(
-    "instructions text",
-    "Instructions Text Instructions Text Instructions Text Instructions Text Instructions Text Instructions Text Instructions Text Instructions Text Instructions Text."
+const getDescriptionKnobs = () => ({
+  descriptionText: text(
+    "description text",
+    "A more detailed description of this field and how you need to complete it."
   ),
 });
 
-const descriptionPropKnobs = () => ({
-  descriptionText: text("description text", "Description of this field."),
-});
-
-const helpPropKnobs = () => ({
-  helpText: text("help text", "Give me some help."),
+const getErrorKnobs = () => ({
+  errorText: text("error text", ""),
 });
 
 const { Label, Instructions, Content, Description, Error } = FormElement;
 
-const Showcase = props => {
+function Showcase() {
   const [value, setValue] = React.useState("");
 
   function handleChange(e) {
     setValue(e.target.value);
   }
+
+  // The order these are called determines the order of the knobs in the side panel
+  const rootProps = getRootKnobs();
+  const { labelText, ...labelProps } = getLabelKnobs();
+  const { instructionsText } = getInstructionsKnobs();
+  const { descriptionText } = getDescriptionKnobs();
+  const { errorText } = getErrorKnobs();
+
   return (
     <FormElementStory>
       <Heading level={1} displayLevel={2} isLight>
@@ -53,32 +59,26 @@ const Showcase = props => {
       </Heading>
       <Tagline>Form Element.</Tagline>
       <Rule />
-      <FormElement {...props}>
-        <Label onClick={() => console.log("label clicked")} help={helpPropKnobs().helpText} {...labelPropKnobs()}>
-          {labelPropKnobs().label}
-        </Label>
-        <Instructions>{instructionsPropKnobs().instructionsText}</Instructions>
-        <Content>
-          {a11yProps => (
-            <Input
-              onChange={handleChange}
-              value={value}
-              placeholder="Form placeholder"
-              aria-required={props.hasRequiredLabel}
-              hasError={Boolean(errorPropKnobs().errorText)}
-              isDisabled={props.isDisabled}
-              size={props.size}
-              {...a11yProps}
-            />
-          )}
-        </Content>
-        <Error>{errorPropKnobs().errorText}</Error>
-        <Description>
-          <span>{descriptionPropKnobs().descriptionText}</span>
-        </Description>
-      </FormElement>
+      <L10n>
+        <FormElement {...rootProps}>
+          <Label {...labelProps}>{labelText}</Label>
+          <Instructions>{instructionsText}</Instructions>
+          <Content>
+            {a11yProps => (
+              <Input
+                onChange={handleChange}
+                value={value}
+                hasError={Boolean(errorText)}
+                size={rootProps.size}
+                {...a11yProps}
+              />
+            )}
+          </Content>
+          {errorText ? <Error>{errorText}</Error> : <Description>{descriptionText}</Description>}
+        </FormElement>
+      </L10n>
     </FormElementStory>
   );
-};
+}
 
-export default () => <Showcase {...getKnobs()} />;
+export default () => <Showcase />;

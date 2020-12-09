@@ -1,17 +1,28 @@
 import React from "react";
+import L10n from "@paprika/l10n";
 import ListBox from "@paprika/list-box";
 import FormElement from "../../src";
 
-const { Label, Content } = FormElement;
+const { Label, Content, Description } = FormElement;
 
 export default function ListBoxExample() {
-  const optionsArray = ["Black Panther", "Wonder Woman", "Spiderman", "The Incredibles", "Thor", <span>test</span>];
-  const listboxOptions = optionsArray.map(hero => <ListBox.Option key={hero}>{hero}</ListBox.Option>);
+  const optionsArray = ["Catwoman", "Doctor Octopus", "Thanos"];
 
   return (
-    <FormElement>
-      <Label>Form Label</Label>
-      <Content>{a11yProps => <ListBox {...a11yProps}>{listboxOptions}</ListBox>}</Content>
-    </FormElement>
+    <L10n>
+      <FormElement>
+        <Label>Form Label</Label>
+        <Content>
+          {a11yProps => (
+            <ListBox {...a11yProps}>
+              {optionsArray.map(item => (
+                <ListBox.Option key={item}>{item}</ListBox.Option>
+              ))}
+            </ListBox>
+          )}
+        </Content>
+        <Description>Description of this field.</Description>
+      </FormElement>
+    </L10n>
   );
 }
