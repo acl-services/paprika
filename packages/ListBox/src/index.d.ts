@@ -192,6 +192,18 @@ interface WithTagsProps {
   /** An array of id that helps the ListBoxWithTags to known what elements are selected */
   selectedOptions?: shape[];
 }
+declare function WithSearch(props: WithSearchProps): JSX.Element;
+interface WithSearchProps {
+  [x: string]: any;
+
+  children: instanceOf;
+
+  filter?: (...args: any[]) => any;
+
+  onChangeSearch?: (...args: any[]) => any;
+
+  data: shape[];
+}
 
 declare namespace ListBoxContainer {
   namespace types {

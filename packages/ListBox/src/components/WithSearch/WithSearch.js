@@ -12,15 +12,13 @@ import * as sc from "./WithSearch.styles";
 const propTypes = {
   children: PropTypes.instanceOf(ListBox.Option).isRequired,
   filter: PropTypes.func,
-  noResultsMessage: PropTypes.node,
-  onChange: PropTypes.func,
+  onChangeSearch: PropTypes.func,
   data: PropTypes.arrayOf(PropTypes.shape({})).isRequired,
 };
 
 const defaultProps = {
   filter: PropTypes.func,
-  onChange: PropTypes.func,
-  noResultsMessage: "No user were found ***(Replace with I18n)***",
+  onChangeSearch: PropTypes.func,
 };
 
 function useTrigger() {
@@ -41,9 +39,11 @@ function useTrigger() {
     refInput.current.focus();
   };
 
-  const handleChangeInput = ({ dispatch, types, onChangeContext }) => event => {
+  const handleChangeInput = ({ dispatch, types, onChangeContext, onChangeSearch }) => event => {
     setValue(event.target.value);
     dispatch({ type: types.setActiveOption, payload: { activeOptionIndex: 0 } });
+
+    event.persist();
     window.requestAnimationFrame(() => {
       dispatch({
         type: types.selectSingleOption,
@@ -53,6 +53,13 @@ function useTrigger() {
           onChangeFn: invokeOnChange(onChangeContext, "list-box:option-selected"),
         },
       });
+
+      dispatch({ type: types.openPopover });
+      if (event.target.value === "") {
+        dispatch({ type: types.closePopover });
+      }
+
+      onChangeSearch(event.target.value);
     });
   };
 
@@ -72,10 +79,13 @@ const renderTrigger = ({
   onBlurInput,
   onBlurTrigger,
   onChangeInput,
+  onChangeSearch,
   onClickTrigger,
   onKeyDownTrigger,
-  refInput /* t, selectedOptions, onRemove, renderPill */,
+  refInput,
   size,
+  t,
+  /* selectedOptions, onRemove, renderPill */
 }) => (...args) => {
   const [, , attributes] = args;
   const {
@@ -92,6 +102,9 @@ const renderTrigger = ({
   function handleClickInput(event) {
     event.stopPropagation();
     if (!isOpen) dispatch({ type: types.openPopover });
+    if (refInput.current.value === "") {
+      dispatch({ type: types.closePopover });
+    }
   }
 
   function handleKeyDownInput(event) {
@@ -102,7 +115,12 @@ const renderTrigger = ({
       return;
     }
 
+    if (event.key === "Backspace" && refInput.current.value === "") {
+      return;
+    }
+
     event.stopPropagation();
+
     if (!isOpen) dispatch({ type: types.openPopover });
   }
 
@@ -110,6 +128,10 @@ const renderTrigger = ({
     handleKeyUp(event);
 
     if (event.key === "Escape") {
+      return;
+    }
+
+    if (event.key === "Backspace" && refInput.current.value === "") {
       return;
     }
 
@@ -127,7 +149,9 @@ const renderTrigger = ({
     refInput.current.focus();
   }
 
-  function handleClear() {}
+  function handleChange(event) {
+    onChangeInput({ dispatch, types, onChangeContext, onChangeSearch })(event);
+  }
 
   return (
     <sc.Trigger
@@ -144,21 +168,21 @@ const renderTrigger = ({
         hasClearButton
         icon={<SearchIcon />}
         onBlur={onBlurInput({ dispatch, types })}
-        onChange={onChangeInput({ dispatch, types, onChangeContext })}
+        onChange={handleChange}
         onClick={handleClickInput}
         onKeyDown={handleKeyDownInput}
         onKeyUp={handleKeyUpInput}
-        onClear={handleClear}
         ref={refInput}
         type="text"
         value={inputValue}
+        placeholder={t("listBox.filter.placeholder")}
       />
     </sc.Trigger>
   );
 };
 
 export default function WithSearch(props) {
-  const { children, filter, noResultsMessage, onChange, data, ...moreProps } = props;
+  const { children, filter, onChangeSearch, data, ...moreProps } = props;
   const { t } = useI18n();
   const {
     inputValue,
@@ -179,7 +203,7 @@ export default function WithSearch(props) {
   /* eslint-enable react/prop-types */
 
   function handleChange(...args) {
-    onChange(...args);
+    console.log(...args);
   }
 
   return (
@@ -192,19 +216,21 @@ export default function WithSearch(props) {
             onBlurInput,
             onBlurTrigger,
             onChangeInput,
+            onChangeSearch,
             onClickTrigger,
             onKeyDownTrigger,
             refInput,
             size,
             t,
+            children,
           })}
         </ListBox.Trigger>
         {inputValue ? (
-          <ListBox.Option>
+          <ListBox.Option value={inputValue} label={inputValue}>
             <SearchIcon /> {inputValue} - <em>Search term...</em>
           </ListBox.Option>
         ) : null}
-        {React.Children.count(children) > 0 ? children : <ListBox.RawItem>{noResultsMessage}</ListBox.RawItem>}
+        {React.Children.count(children) > 0 ? children : null}
       </ListBox>
     </div>
   );
@@ -214,3 +240,5 @@ WithSearch.propTypes = propTypes;
 WithSearch.defaultProps = defaultProps;
 WithSearch.Option = ListBox.Option;
 WithSearch.filter = filter;
+WithSearch.RawItem = ListBox.RawItem;
+WithSearch.Divider = ListBox.Divider;

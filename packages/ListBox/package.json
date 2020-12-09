@@ -31,7 +31,8 @@
       "Popover",
       "RawItem",
       "Trigger",
-      "WithTags"
+      "WithTags",
+      "WithSearch"
     ]
   },
   "devDependencies": {

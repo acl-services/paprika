@@ -1,6 +1,6 @@
 import React from "react";
 import { getStoryName } from "storybook/storyTree";
-import ControlledApp from "./examples/Controlled";
+import LazyLoading from "./examples/LazyLoading";
 
 const storyName = getStoryName("ListBox");
 
@@ -9,7 +9,7 @@ export default {
 };
 
 function App() {
-  return <ControlledApp />;
+  return <LazyLoading />;
 }
 
-export const ListBoxWithSearch = () => <App />;
+export const ListBoxWithSearchLazyLoad = () => <App />;
