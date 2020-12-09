@@ -61,7 +61,6 @@ const Point = React.forwardRef((props, ref) => {
           onBlur={handleTooltipClose}
           kind={kind}
           data-pka-anchor="status-tracker.point"
-          {...a11yAttributes}
         >
           {React.cloneElement(
             extractedOverflowMenu,
@@ -81,6 +80,7 @@ const Point = React.forwardRef((props, ref) => {
                     kind: Button.types.kind.PRIMARY,
                     onClick: handleOverflowMenuOpen,
                     "data-pka-anchor": "status-tracker.point.overflow-menu.trigger",
+                    "aria-describedby": a11yAttributes["aria-describedby"],
                   },
                   name
                 )
@@ -91,6 +91,7 @@ const Point = React.forwardRef((props, ref) => {
                   kind={Button.types.kind.PRIMARY}
                   onClick={handleOverflowMenuOpen}
                   data-pka-anchor="status-tracker.point.overflow-menu.trigger"
+                  aria-describedby={a11yAttributes["aria-describedby"]}
                 >
                   {name}
                 </OverflowMenu.Trigger>
@@ -107,6 +108,7 @@ const Point = React.forwardRef((props, ref) => {
 
     return (
       <sc.Point
+        aria-label={name}
         onMouseOver={handleTooltipOpen}
         onMouseOut={handleTooltipClose}
         onFocus={handleTooltipOpen}
@@ -126,7 +128,7 @@ const Point = React.forwardRef((props, ref) => {
       <sc.Popover isEager isDark isOpen={isTooltipOpen}>
         <Popover.Trigger>{getTrigger}</Popover.Trigger>
         <Popover.Content>
-          <sc.PopoverCard hasOnlyName={Boolean(name) && Boolean(description)}>
+          <sc.PopoverCard hasBoth={Boolean(name) && Boolean(description)}>
             {name ? <sc.NameInTooltip data-pka-anchor="status-tracker.point.name">{name}</sc.NameInTooltip> : null}
             {description ? (
               <sc.Description data-pka-anchor="status-tracker.point.description">{description}</sc.Description>

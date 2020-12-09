@@ -13,24 +13,11 @@ const defaultLabel = "Form Element";
 const { Label, Content, Instructions, Description, Error } = FormElement;
 
 function FormElementComponent(props) {
-  const { children, label, isDisabled, isReadOnly, hasOptionalLabel, hasRequiredLabel, ...moreProps } = props;
+  const { children, label, ...moreProps } = props;
   return (
     <FormElement {...moreProps}>
-      <Label hasRequiredLabel={hasRequiredLabel} hasOptionalLabel={hasOptionalLabel}>
-        {label || defaultLabel}
-      </Label>
-      {children || (
-        <Content>
-          {a11yProps => (
-            <Input
-              isReadOnly={isReadOnly}
-              isDisabled={isDisabled}
-              data-pka-anchor="form-element.input"
-              {...a11yProps}
-            />
-          )}
-        </Content>
-      )}
+      <Label>{label || defaultLabel}</Label>
+      {children || <Content>{a11yProps => <Input data-pka-anchor="form-element.input" {...a11yProps} />}</Content>}
     </FormElement>
   );
 }
@@ -63,32 +50,31 @@ describe("FormElement", () => {
     expect(getByTestId("form-element.label")).toHaveAttribute("for", "test-id");
   });
 
-  it("renders required label if both hasRequiredLabel and hasOptionalLabel are true", () => {
-    const { getByTestId } = renderComponent({ hasOptionalLabel: true, hasRequiredLabel: true });
+  it("renders required label if both isRequired and isOptional are true", () => {
+    const { getByTestId } = renderComponent({ isOptional: true, isRequired: true });
 
     expect(getByTestId("form-element.label")).not.toHaveTextContent(/optional/i);
     expect(getByTestId("form-element.label")).toHaveTextContent(/required/i);
   });
 
-  it("renders required label if only hasRequiredLabel is true", () => {
-    const { getByTestId } = renderComponent({ hasRequiredLabel: true });
+  it("renders required label if only isRequired is true", () => {
+    const { getByTestId } = renderComponent({ isRequired: true });
 
     expect(getByTestId("form-element.label")).not.toHaveTextContent(/optional/i);
     expect(getByTestId("form-element.label")).toHaveTextContent(/required/i);
   });
 
-  it("renders optional label if hasOptionalLabel is true", () => {
-    const { getByTestId } = renderComponent({ hasOptionalLabel: true });
+  it("renders optional label if isOptional is true", () => {
+    const { getByTestId } = renderComponent({ isOptional: true });
 
     expect(getByTestId("form-element.label")).toHaveTextContent(/optional/i);
     expect(getByTestId("form-element.label")).not.toHaveTextContent(/required/i);
   });
 
-  it("passes disabled readonly props to child", () => {
-    const { getByTestId } = renderComponent({ isDisabled: true, isReadOnly: true });
+  it("passes disabled props to child", () => {
+    const { getByTestId } = renderComponent({ isDisabled: true });
 
     expect(getByTestId("form-element.input")).toHaveAttribute("disabled");
-    expect(getByTestId("form-element.input")).toHaveAttribute("readonly");
   });
 
   it("renders help and description", () => {

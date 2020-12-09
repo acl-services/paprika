@@ -22,107 +22,176 @@ npm install @paprika/form-element
 
 ### FormElement
 
-| Prop        | Type                                                                                         | required | default                       | Description                                                                           |
-| ----------- | -------------------------------------------------------------------------------------------- | -------- | ----------------------------- | ------------------------------------------------------------------------------------- |
-| id          | string                                                                                       | false    | ""                            |                                                                                       |
-| children    | node                                                                                         | true     | -                             |                                                                                       |
-| isDisabled  | bool                                                                                         | false    | false                         | Should be disabled or not, default is false.                                          |
-| size        | [ FormElement.types.size.SMALL, FormElement.types.size.MEDIUM, FormElement.types.size.LARGE] | false    | FormElement.types.size.MEDIUM | Size of the label, error, help and description (font size, min-height, padding, etc). |
-| hasFieldSet | bool                                                                                         | false    | false                         | FormElement contains multiple children so Renders a legend element instead of label.  |
+| Prop        | Type                                                                                         | required | default                       | Description                                                                            |
+| ----------- | -------------------------------------------------------------------------------------------- | -------- | ----------------------------- | -------------------------------------------------------------------------------------- |
+| children    | node                                                                                         | true     | -                             | FormElement sub components and layout elements.                                        |
+| hasFieldSet | bool                                                                                         | false    | false                         | FormElement contains multiple children so Renders a legend element instead of label.   |
+| id          | string                                                                                       | false    | ""                            | id attribute for the input field DOM element (will be auto-generated if not supplied). |
+| isDisabled  | bool                                                                                         | false    | false                         | Should be disabled or not, default is false.                                           |
+| isOptional  | bool                                                                                         | false    | false                         | If input is an optional field and should be indicated.                                 |
+| isRequired  | bool                                                                                         | false    | false                         | If input is a required field.                                                          |
+| size        | [ FormElement.types.size.SMALL, FormElement.types.size.MEDIUM, FormElement.types.size.LARGE] | false    | FormElement.types.size.MEDIUM | Size of the label, error, help and description (font size, min-height, padding, etc).  |
 
 ### FormElement.Content
 
-| Prop     | Type        | required | default | Description |
-| -------- | ----------- | -------- | ------- | ----------- |
-| children | [func,node] | true     | -       |             |
+| Prop                                                                                                     | Type        | required | default | Description                                                                                     |
+| -------------------------------------------------------------------------------------------------------- | ----------- | -------- | ------- | ----------------------------------------------------------------------------------------------- |
+| children                                                                                                 | [func,node] | true     | -       | Input field and layout elements. May be a render function with a11yProps object as an argument. |
+| a11yProps includes: { id, refLabel, disabled?, "aria-disabled"?, "aria-describedby"?, "aria-required"? } |
 
 ### FormElement.Description
 
-| Prop              | Type   | required | default | Description |
-| ----------------- | ------ | -------- | ------- | ----------- |
-| ariaDescriptionId | string | false    | null    |             |
-| children          | node   | true     | -       |             |
+| Prop     | Type | required | default | Description                              |
+| -------- | ---- | -------- | ------- | ---------------------------------------- |
+| children | node | false    | null    | Content for the form element description |
 
 ### FormElement.Error
 
-| Prop     | Type | required | default | Description |
-| -------- | ---- | -------- | ------- | ----------- |
-| children | node | false    | null    |             |
+| Prop     | Type | required | default | Description                  |
+| -------- | ---- | -------- | ------- | ---------------------------- |
+| children | node | false    | null    | Content of the error message |
 
 ### FormElement.Instructions
 
-| Prop     | Type | required | default | Description |
-| -------- | ---- | -------- | ------- | ----------- |
-| children | node | true     | -       |             |
+| Prop     | Type | required | default | Description                               |
+| -------- | ---- | -------- | ------- | ----------------------------------------- |
+| children | node | false    | null    | Content for the form element instructions |
 
 ### FormElement.Label
 
-| Prop             | Type   | required | default  | Description                                             |
-| ---------------- | ------ | -------- | -------- | ------------------------------------------------------- |
-| children         | node   | true     | -        |                                                         |
-| hasOptionalLabel | bool   | false    | false    | If "optional" text should be displayed beside the label |
-| hasRequiredLabel | bool   | false    | false    | If "require" text should be displayed beside the label  |
-| help             | node   | false    | null     | Help indicator                                          |
-| id               | string | false    | null     | id for the element                                      |
-| isVisuallyHidden | bool   | false    | false    | Should label be hidden                                  |
-| onClick          | func   | false    | () => {} |                                                         |
+| Prop             | Type   | required | default | Description                                                 |
+| ---------------- | ------ | -------- | ------- | ----------------------------------------------------------- |
+| children         | node   | true     | -       | content for the label                                       |
+| help             | node   | false    | null    | Help indicator                                              |
+| helpA11yText     | string | false    | null    | Aria label for icon button that triggers help popover       |
+| isDisabled       | bool   | false    | null    | If the label should be dimmed and the help popover disabled |
+| isVisuallyHidden | bool   | false    | false   | Should label be hidden                                      |
 
 ### FormElement.Layout
 
-| Prop     | Type | required | default | Description |
-| -------- | ---- | -------- | ------- | ----------- |
-| children | node | false    | null    |             |
+| Prop     | Type | required | default | Description                |
+| -------- | ---- | -------- | ------- | -------------------------- |
+| children | node | false    | null    | Content of the flex parent |
 
 <!-- autogenerated don't modify -->
 <!-- content -->
 
+<!-- generated manually until readme script is updated -->
+
+### FormElement.Layout.LeftCol
+
+| Prop     | Type            | required | default | Description                                                                 |
+| -------- | --------------- | -------- | ------- | --------------------------------------------------------------------------- |
+| children | node            | false    | null    | Content for left column flex child (typically the Label)                    |
+| width    | [number,string] | false    | "auto"  | Width of the left column as number (pixels) or string (any CSS width value) |
+
+### FormElement.Layout.RightCol
+
+| Prop     | Type | required | default | Description                                                                 |
+| -------- | ---- | -------- | ------- | --------------------------------------------------------------------------- |
+| children | node | false    | null    | Content for right column flex child (typically everything except the Label) |
+
+### Fieldset
+
+Props are the same as `FormElement` but `hasFieldSet=true`.
+
 ## Usage
 
-Please use `<L10n />` component to wrap `<FormElement />` or you application.
+The `<L10n />` component is a required context provider that must wrap the `<FormElement />` (or your application) for proper localization.
 
-Using with paprika `<Input />`
+### Using with `<Input />`
 
+<!-- prettier-ignore -->
 ```jsx
-import FormElement from "@paprika/form-element";
 import Input from "@paprika/input";
+import FormElement from "@paprika/form-element";
+
+const { Label, Content } = FormElement;
 
 <FormElement>
-  <Label>Name</Label>
+  <Label>First Name</Label>
   <Content>
     {a11yProps => (
       <Input
         onChange={handleChange}
         value={value}
-        placeholder="Form placeholder"
-        aria-required={hasRequiredLabel}
-        hasError={false}
-        isDisabled={isDisabled}
-        isReadOnly={isReadOnly}
-        size={size}
         {...a11yProps}
       />
     )}
-    )}
   </Content>
-</FormElement>;
+</FormElement>
 ```
 
-Using with paprika `<DatePicker />`
+### Using with `help` popover, `<Instructions />`, `<Description />`, and `<Error />`
 
+Best practices for laying out supporting content for a form input is to follow this order:
+
+- `<Label />` first.
+- `<Instructions />` above the input field contained in `<Content />`.
+- `<Description />` or `<Error />` shown below input field (but do not render both at the same time).
+
+Note: the `<Error />` component will render `null` if its `children` is falsey.
+
+<!-- prettier-ignore -->
 ```jsx
-import DatePicker from "@paprika/date-picker";
-import FormElement, { Label, Content } from "@paprika/form-element";
+import Input from "@paprika/input";
+import FormElement from "@paprika/form-element";
+
+const { Label, Content, Instructions, Description, Error } = FormElement;
+const errorMsg = "There was an error.";
 
 <FormElement>
-  <Label>Name</Label>
+  <Label help="Help text">Field label</Label>
+  <Instructions>Instruction text</Instructions>
   <Content>
     {a11yProps => (
-      <DatePicker onError={() => {}} hasError={Boolean(errorText.length)} onChange={() => {}}>
-        <DatePicker.Input {...a11yProps} />
-      </DatePicker>
+      <Input hasError={Boolean(errorMsg)} {...a11yProps} />
     )}
   </Content>
-</FormElement>;
+  {errorMsg 
+    ? <Error>{errorMsg}</Error> 
+    : <Description>Description text</Description>
+  }
+</FormElement>
+```
+
+### Using `<Fieldset />` with `<Checkbox />`
+
+Since a group of `<Checkbox />` or `<Radio />` components consist of multiple inputs, each with their own `<label>`, then need to be wrapped in a `<fieldset>` element with a `<legend>` element as a common label. This is the same for any group of form inputs that need to be grouped under a common label.
+
+For this purpose, the `<Fieldset />` component can be used. It is provided as a named import from the same `@paprika/form-element` package.
+
+The `<Fieldset />` component has all the same subcomponents as the `<FormElement />` – it actually _is_ just a `<FormElement />` with the `hasFieldSet` prop set to `true`.
+
+<!-- prettier-ignore -->
+```jsx
+import DatePicker from "@paprika/checkbox";
+import { Fieldset } from "@paprika/form-element";
+
+const { Label, Content, Error } = Fieldset;
+
+<Fieldset>
+  <Label>Select Options</Label>
+  <Content>
+    {a11yProps => (
+      <>
+        <Checkbox onChange={handleChange}>
+          <Checkbox.Input {...a11yProps} />
+          Cheese
+        </Checkbox>
+        <Checkbox onChange={handleChange}>
+          <Checkbox.Input {...a11yProps} />
+          Meat
+        </Checkbox>
+        <Checkbox onChange={handleChange}>
+          <Checkbox.Input {...a11yProps} />
+          Mushrooms
+        </Checkbox>
+      </>
+    )}
+  </Content>
+  <Error>{errorMsg}</Error>
+</Fieldset>
 ```
 
 <!-- eoContent -->

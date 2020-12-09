@@ -1,21 +1,19 @@
 import React from "react";
 import PropTypes from "prop-types";
 import nanoid from "nanoid";
-import * as sc from "./Instructions.styles";
 import { FormElementContext } from "../../FormElement";
-
-const propTypes = {
-  children: PropTypes.node.isRequired,
-};
+import * as sc from "./Instructions.styles";
 
 function Instructions(props) {
-  const [ariaInstructionsId] = React.useState(nanoid);
-  const { addIdToAriaDescribedBy } = React.useContext(FormElementContext);
   const { children, ...moreProps } = props;
+  const { addIdToAriaDescribedBy } = React.useContext(FormElementContext);
+  const [ariaInstructionsId] = React.useState(nanoid);
 
   React.useEffect(() => {
-    addIdToAriaDescribedBy({ ariaInstructionsId });
+    if (addIdToAriaDescribedBy) addIdToAriaDescribedBy({ ariaInstructionsId });
   }, []);
+
+  if (!children) return null;
 
   return (
     <sc.Instructions data-pka-anchor="form-element.instructions" {...moreProps} id={ariaInstructionsId}>
@@ -23,9 +21,17 @@ function Instructions(props) {
     </sc.Instructions>
   );
 }
+const propTypes = {
+  /** Content for the form element instructions */
+  children: PropTypes.node,
+};
+
+const defaultProps = {
+  children: null,
+};
 
 Instructions.displayName = "FormElement.Instructions";
-
 Instructions.propTypes = propTypes;
+Instructions.defaultProps = defaultProps;
 
 export default Instructions;
