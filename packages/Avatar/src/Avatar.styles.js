@@ -1,6 +1,5 @@
-import { spacer } from "@paprika/stylers/lib/helpers";
+import { fontSize, spacer } from "@paprika/stylers/lib/helpers";
 import styled from "styled-components";
-import stylers from "@paprika/stylers";
 import tokens from "@paprika/tokens";
 import { getAvatarColors } from "./helpers";
 
@@ -23,27 +22,15 @@ const roundStyles = {
 };
 
 const roundStringStyles = {
-  small: `
-    font-size: 9px;
-  `,
-  medium: `
-    font-size: 11px;
-`,
-  large: `
-    font-size: 14px;
-  `,
+  small: fontSize(-5),
+  medium: fontSize(-3),
+  large: fontSize(-1),
 };
 
 const roundIconStyles = {
-  small: `
-    font-size: 13px;
-  `,
-  medium: `
-    font-size: 14px;
-  `,
-  large: `
-    font-size: 20px;
-  `,
+  small: fontSize(-2),
+  medium: fontSize(-1),
+  large: fontSize(2),
 };
 
 const squareStyles = {
@@ -51,33 +38,23 @@ const squareStyles = {
     border-radius: ${tokens.button.borderRadius};
     height: ${spacer(4)};
     width: ${spacer(4)};
-    ${stylers.fontSize(2)};
   `,
 
   large: `
     border-radius: ${tokens.card.borderRadius};
     height: ${spacer(5)};
     width: ${spacer(5)};
-    ${stylers.fontSize(3)};
   `,
 };
 
 const squareStringStyles = {
-  medium: `
-    font-size: 16px;
-  `,
-  large: `
-    font-size: 20px;
-  `,
+  medium: fontSize(0),
+  large: fontSize(2),
 };
 
 const squareIconStyles = {
-  medium: `
-    font-size: 20px;
-  `,
-  large: `
-    font-size: 24px;
-  `,
+  medium: fontSize(2),
+  large: fontSize(4),
 };
 
 function getSizeCss(size, isRound, isChildString) {
