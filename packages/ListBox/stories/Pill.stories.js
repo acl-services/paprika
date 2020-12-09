@@ -10,33 +10,22 @@ const storyName = getStoryName("ListBox");
 
 storiesOf(`${storyName}/Subcomponents/Pill`, module).add("Sizes", () => (
   <>
-    <Pills>
-      <Pill size="medium">
-        <Avatar isRound size="small">
-          WW
-        </Avatar>
-        Medium
-      </Pill>
-      <Pill size="medium">
-        <Avatar isRound size="small">
-          <CalendarIcon />
-        </Avatar>
-        with Icon
-      </Pill>
-    </Pills>
-    <Pills>
-      <Pill size="large">
-        <Avatar isRound size="medium">
-          WW
-        </Avatar>
-        Large
-      </Pill>
-      <Pill size="large">
-        <Avatar isRound size="medium">
-          <CalendarIcon />
-        </Avatar>
-        with Icon
-      </Pill>
-    </Pills>
+    {[{ pillSize: "medium", avatarSize: "small" }, { pillSize: "large", avatarSize: "medium" }].map(permutation => (
+      <Pills>
+        <Pill size={permutation.pillSize}>
+          <Avatar isRound size={permutation.avatarSize}>
+            WW
+          </Avatar>
+          {permutation.pillSize} with text Avatar
+        </Pill>
+        <Pill size={permutation.pillSize}>
+          <Avatar isRound size={permutation.avatarSize}>
+            <CalendarIcon />
+          </Avatar>
+          {permutation.pillSize} with Icon Avatar
+        </Pill>
+        <Pill size={permutation.pillSize}>{`${permutation.pillSize} just text`}</Pill>
+      </Pills>
+    ))}
   </>
 ));

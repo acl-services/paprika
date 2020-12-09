@@ -37,8 +37,6 @@ const roundStringStyles = {
 const roundIconStyles = {
   small: `
     font-size: 13px;
-    position: relative;
-    top: 2px;
   `,
   medium: `
     font-size: 14px;

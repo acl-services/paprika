@@ -24,7 +24,7 @@ export const Pill = styled.li(({ size }) => {
     border-radius: ${tokens.space[0] * 2}px;
     display: flex;
     line-height: 1;
-    margin-bottom: ${tokens.spaceSm};
+    margin-bottom: 2px;
     margin-right: ${tokens.spaceSm};
     max-width: 100%;
     padding: ${padding[size]};
@@ -35,16 +35,20 @@ export const Pill = styled.li(({ size }) => {
   `;
 });
 
-export const Ellipsis = styled.div(({ size }) => {
+export const Ellipsis = styled.div(({ isChildString, size }) => {
   const fontSize = {
     medium: "14px",
     large: "16px",
   };
 
+  const paddingLeft = isChildString ? `padding-left: ${tokens.space};` : "";
+
   return css`
-    display: inline-block;
+    align-items: center;
+    display: flex;
     font-size: ${fontSize[size]};
     overflow: hidden;
+    ${paddingLeft}
     text-overflow: ellipsis;
     white-space: nowrap;
     width: calc(99%);
