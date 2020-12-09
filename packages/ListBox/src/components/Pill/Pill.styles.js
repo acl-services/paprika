@@ -1,6 +1,7 @@
 import styled, { css } from "styled-components";
 import tokens from "@paprika/tokens";
 import RawButton from "@paprika/raw-button";
+import { fontSize } from "@paprika/stylers/lib/helpers";
 
 export const Pills = styled.ul(() => {
   return css`
@@ -36,9 +37,9 @@ export const Pill = styled.li(({ size }) => {
 });
 
 export const Ellipsis = styled.div(({ isChildString, size }) => {
-  const fontSize = {
-    medium: "14px",
-    large: "16px",
+  const getFontSize = {
+    medium: fontSize(-1),
+    large: fontSize(0),
   };
 
   const paddingLeft = isChildString ? `padding-left: ${tokens.space};` : "";
@@ -46,7 +47,7 @@ export const Ellipsis = styled.div(({ isChildString, size }) => {
   return css`
     align-items: center;
     display: flex;
-    font-size: ${fontSize[size]};
+    ${getFontSize[size]}
     overflow: hidden;
     ${paddingLeft}
     text-overflow: ellipsis;
