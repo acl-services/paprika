@@ -24,10 +24,10 @@ const roundStyles = {
 
 const roundStringStyles = {
   small: `
-    font-size: 10px;
+    font-size: 9px;
   `,
   medium: `
-    font-size: 12px;
+    font-size: 11px;
 `,
   large: `
     font-size: 14px;
