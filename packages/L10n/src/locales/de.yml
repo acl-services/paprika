@@ -105,6 +105,10 @@ de:
         a11y_text: Suchen
         no_results_message: Ihr Suchergebnis entsprach keiner der Optionen.
         placeholder: Suchen...
+      footer:
+        accept: Akzeptieren
+        cancel: Abbrechen
+        clear: Löschen
     listBoxBrowser:
       explore: Weitere Optionen anzeigen
       selected: ausgewählte Optionen
