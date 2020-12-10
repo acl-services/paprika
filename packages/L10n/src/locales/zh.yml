@@ -105,6 +105,10 @@ zh:
         a11y_text: 搜索
         no_results_message: 您的搜索结果没有匹配任何选项。
         placeholder: 搜索…
+      footer:
+        accept: 接受
+        cancel: 取消
+        clear: 清除
     listBoxBrowser:
       explore: 探索更多选项
       selected: 选定选项
