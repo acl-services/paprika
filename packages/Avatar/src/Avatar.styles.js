@@ -22,8 +22,8 @@ const roundStyles = {
 };
 
 const roundStringStyles = {
-  small: fontSize(-5),
-  medium: fontSize(-3),
+  small: fontSize(-4),
+  medium: "font-size: 12px;",
   large: fontSize(-1),
 };
 
