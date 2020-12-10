@@ -43,7 +43,6 @@ function App({ size = "medium", isOpen = false }) {
 export default function Sizes() {
   return (
     <>
-      <App size="small" />
       <App size="medium" isOpen />
       <br />
       <br />

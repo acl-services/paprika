@@ -77,3 +77,22 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 ### Changed
 
 - Refactor FormElement api to use a11yProps instead of seperate attributes, Additionally using context over React cloning. Introduced Fieldset and Layout components [@tristanjasper](https://github.com/tristanjasper).
+
+## [2.0.1-alpha.0] - 2020-12-09
+
+### Removed
+
+- id, onClick, hasOptionalLabel, hasRequiredLabel props from Label [@mikrotron](https://github.com/mikrotron).
+
+### Added
+
+- isRequired and isOptional props to FormElement [@mikrotron](https://github.com/mikrotron).
+- isDisabled and isRequired props will add aria attributes as argument for render function for Content.
+- Allowed number type for LeftCol width prop.
+
+### Fixed
+
+- Positioning of help popover when LeftCol has a width prop.
+- Subcomponents can be used without context provider (FormElement wrapper).
+- Fieldset.Label no longer has htmlFor attribute.
+- Help popover is disabled when FormElement has isDisabled.
