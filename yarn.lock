@@ -3352,6 +3352,27 @@
     "@paprika/tokens" "^0.1.18"
     prop-types "^15.7.2"
 
+"@paprika/list-box@^1.1.2":
+  version "1.1.2"
+  resolved "https://registry.yarnpkg.com/@paprika/list-box/-/list-box-1.1.2.tgz#3a0040f058b861e6ab69db3297317f0a1f7c4557"
+  integrity sha512-ztfpFV7ExFBDk1ZS3SA2x2lVHHyPxf5Po6E1EHZRh8t2gJ3v8ALhEaWTjFOIZW7eej35HM7MSTrbjb/zuSaLvA==
+  dependencies:
+    "@babel/runtime-corejs2" "^7.3.1"
+    "@paprika/button" "^1.0.3"
+    "@paprika/constants" "^1.0.0"
+    "@paprika/helpers" "^1.0.2"
+    "@paprika/icon" "^1.0.1"
+    "@paprika/input" "^1.0.3"
+    "@paprika/l10n" "^1.1.1"
+    "@paprika/popover" "^1.0.3"
+    "@paprika/raw-button" "^1.0.2"
+    "@paprika/stylers" "^1.0.0"
+    "@paprika/tokens" "^1.0.0"
+    lodash.isequal "^4.5.0"
+    nanoid "^2.1.8"
+    prop-types "15.7.2"
+    uuid "^3.3.2"
+
 "@paprika/popover@^0.3.36", "@paprika/popover@^0.3.36-alpha.1":
   version "0.3.36"
   resolved "https://registry.yarnpkg.com/@paprika/popover/-/popover-0.3.36.tgz#1a2ec4529fa05a5e5b2e2c61175a29f7a03bbb5e"
@@ -9897,11 +9918,6 @@ he@^1.2.0:
   resolved "https://registry.yarnpkg.com/he/-/he-1.2.0.tgz#84ae65fa7eafb165fddb61566ae14baf05664f0f"
   integrity sha512-F/1DnUGPopORZi0ni+CvrCgHQ5FyEAHRLSApuYWMmrbSwoN2Mn/7k+Gl38gJnR7yyDZk6WLXwiGod1JOWNDKGw==
 
-highlight-words-core@^1.2.0:
-  version "1.2.2"
-  resolved "https://registry.yarnpkg.com/highlight-words-core/-/highlight-words-core-1.2.2.tgz#1eff6d7d9f0a22f155042a00791237791b1eeaaa"
-  integrity sha512-BXUKIkUuh6cmmxzi5OIbUJxrG8OAk2MqoL1DtO3Wo9D2faJg2ph5ntyuQeLqaHJmzER6H5tllCDA9ZnNe9BVGg==
-
 highlight.js@^10.1.1, highlight.js@~10.3.0:
   version "10.3.1"
   resolved "https://registry.yarnpkg.com/highlight.js/-/highlight.js-10.3.1.tgz#3ca6bf007377faae347e8135ff25900aac734b9a"
@@ -12306,11 +12322,6 @@ media-typer@0.3.0:
   resolved "https://registry.yarnpkg.com/memoize-one/-/memoize-one-5.1.1.tgz#047b6e3199b508eaec03504de71229b8eb1d75c0"
   integrity sha512-HKeeBpWvqiVJD57ZUAsJNm71eHTykffzcLZVYWiVfQeI1rJtuEaS7hQiEpWfVVk18donPwJEcFKIkCmPJNOhHA==
 
-memoize-one@^4.0.0:
-  version "4.1.0"
-  resolved "https://registry.yarnpkg.com/memoize-one/-/memoize-one-4.1.0.tgz#a2387c58c03fff27ca390c31b764a79addf3f906"
-  integrity sha512-2GApq0yI/b22J2j9rhbrAlsHb0Qcz+7yWxeLG8h+95sl1XPUgeLimQSOdur4Vw7cUhrBHwaUZxWFZueojqNRzA==
-
 memoizerific@^1.11.3:
   version "1.11.3"
   resolved "https://registry.yarnpkg.com/memoizerific/-/memoizerific-1.11.3.tgz#7c87a4646444c32d75438570905f2dbd1b1a805a"
@@ -14680,15 +14691,6 @@ react-helmet-async@^1.0.2:
     prop-types "^15.7.2"
     react-fast-compare "^3.0.1"
     shallowequal "^1.1.0"
-
-react-highlight-words@^0.16.0:
-  version "0.16.0"
-  resolved "https://registry.yarnpkg.com/react-highlight-words/-/react-highlight-words-0.16.0.tgz#4b4b9824e3d2b98789d3e3b3aedb5e961ae1b7cf"
-  integrity sha512-q34TwCSJOL+5pVDv6LUj3amaoyXdNDwd7zRqVAvceOrO9g1haWLAglK6WkGLMNUa3PFN8EgGedLg/k8Gpndxqg==
-  dependencies:
-    highlight-words-core "^1.2.0"
-    memoize-one "^4.0.0"
-    prop-types "^15.5.8"
 
 react-hotkeys@2.0.0:
   version "2.0.0"
