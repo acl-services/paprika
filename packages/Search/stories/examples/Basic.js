@@ -18,11 +18,16 @@ export default function Controlled() {
     setFilterData(ListBox.filter(term, data));
   }
 
-  function handleSelectedSearch() {}
+  function handleSelected(value, { close, cleanInput }) {
+    console.log(`😎 `, value);
+    setFilterData(data);
+    close();
+    cleanInput();
+  }
 
   return (
     <div style={{ padding: "32px" }}>
-      <ListBox onChangeSearch={handleChangeSearch} onSelectedSearch={handleSelectedSearch}>
+      <ListBox onChangeSearch={handleChangeSearch} onSelected={handleSelected}>
         {filterData.map(option => {
           return (
             <ListBox.Option value={option.label} key={option.label} label={option.label}>

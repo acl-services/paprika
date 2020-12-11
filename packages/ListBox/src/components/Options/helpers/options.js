@@ -1,8 +1,15 @@
 import useListBox from "../../../useListBox";
 import invokeOnChange from "../../../helpers/invokeOnChange";
 
-export function selectSingleOption({ activeOptionIndex, isOpen, dispatch, onChange = null, onChangeContext }) {
-  const onChangeFn = onChange || invokeOnChange(onChangeContext, "list-box:option-selected");
+export function selectSingleOption({
+  activeOptionIndex,
+  isOpen,
+  dispatch,
+  onChange = null,
+  onChangeContext,
+  eventType = "unknown",
+}) {
+  const onChangeFn = onChange || invokeOnChange(onChangeContext, `option-selected:${eventType}`);
 
   dispatch({
     type: useListBox.types.selectSingleOption,
@@ -10,15 +17,22 @@ export function selectSingleOption({ activeOptionIndex, isOpen, dispatch, onChan
   });
 }
 
-export function toggleMultipleOption({ activeOptionIndex, dispatch, onChangeContext }) {
+export function toggleMultipleOption({ activeOptionIndex, dispatch, onChangeContext, eventType = "unknown" }) {
   dispatch({
     type: useListBox.types.toggleMultipleOption,
-    payload: { activeOptionIndex, onChangeFn: invokeOnChange(onChangeContext, "list-box:option-selected") },
+    payload: { activeOptionIndex, onChangeFn: invokeOnChange(onChangeContext, `option-selected:${eventType}`) },
   });
 }
 
-export function selectMultipleOption({ activeOptionIndex, dispatch, isSelected, onChange = null, onChangeContext }) {
-  const onChangeFn = onChange || invokeOnChange(onChangeContext, "list-box:option-selected");
+export function selectMultipleOption({
+  activeOptionIndex,
+  dispatch,
+  isSelected,
+  onChange = null,
+  onChangeContext,
+  eventType,
+}) {
+  const onChangeFn = onChange || invokeOnChange(onChangeContext, `option-selected:${eventType}`);
 
   dispatch({
     type: useListBox.types.selectMultipleOption,
@@ -120,7 +134,7 @@ export function handleArrowKeys({ event, state, dispatch, isArrowDown = null, on
         payload: { activeOptionIndex: next, isOpen: true },
       });
     } else {
-      selectSingleOption({ activeOptionIndex: next, isOpen: true, dispatch, onChangeContext });
+      selectSingleOption({ activeOptionIndex: next, isOpen: true, dispatch, onChangeContext, eventType: "keypress" });
     }
   }
 }
@@ -176,12 +190,13 @@ export const handleClickOption = ({ props, state, dispatch, onChangeContext }) =
       activeOptionIndex: index,
       dispatch,
       onChangeContext,
+      eventType: "click",
     });
 
     return;
   }
 
-  selectSingleOption({ activeOptionIndex: index, isOpen: false, dispatch, onChangeContext });
+  selectSingleOption({ activeOptionIndex: index, isOpen: false, dispatch, onChangeContext, eventType: "click" });
 };
 
 export function handleEnterOrSpace({ event, state, dispatch, onChangeContext }) {
@@ -239,6 +254,7 @@ export function handleEnterOrSpace({ event, state, dispatch, onChangeContext }) 
         activeOptionIndex: state.activeOption,
         dispatch,
         onChangeContext,
+        eventType: "keypress",
       });
       return;
     }

@@ -11,18 +11,18 @@ import * as sc from "./Search.styles";
 
 const propTypes = {
   children: PropTypes.instanceOf(ListBox.Option).isRequired,
-  filter: PropTypes.func,
   onChangeSearch: PropTypes.func,
-  data: PropTypes.arrayOf(PropTypes.shape({})).isRequired,
+  onSelected: PropTypes.func,
 };
 
 const defaultProps = {
-  filter: PropTypes.func,
-  onChangeSearch: PropTypes.func,
+  onChangeSearch: () => {},
+  onSelected: () => {},
 };
 
 function useTrigger() {
   const refInput = React.useRef();
+  const refListBoxReducer = React.useRef({ types: null, dispatch: null });
   const [value, setValue] = React.useState("");
 
   const handleClickTrigger = ({ dispatch, types }) => event => {
@@ -38,6 +38,10 @@ function useTrigger() {
   const handleKeyDownTrigger = () => () => {
     refInput.current.focus();
   };
+
+  function resetValue() {
+    setValue("");
+  }
 
   const handleChangeInput = ({ dispatch, types, onChangeContext, onChangeSearch }) => event => {
     setValue(event.target.value);
@@ -71,6 +75,8 @@ function useTrigger() {
     onClickTrigger: handleClickTrigger,
     onKeyDownTrigger: handleKeyDownTrigger,
     refInput,
+    resetValue,
+    refListBoxReducer,
   };
 }
 
@@ -82,7 +88,9 @@ const renderTrigger = ({
   onChangeSearch,
   onClickTrigger,
   onKeyDownTrigger,
+  onSubmit: onSubmitProps,
   refInput,
+  refListBoxReducer,
   size,
   t,
   /* selectedOptions, onRemove, renderPill */
@@ -98,6 +106,11 @@ const renderTrigger = ({
     refTrigger,
     types,
   } = attributes;
+
+  // eslint-disable-next-line
+  refListBoxReducer.current.dispatch = dispatch;
+  // eslint-disable-next-line
+  refListBoxReducer.current.types = types;
 
   function handleClickInput(event) {
     event.stopPropagation();
@@ -121,7 +134,10 @@ const renderTrigger = ({
 
     event.stopPropagation();
 
-    if (!isOpen) dispatch({ type: types.openPopover });
+    if (!isOpen && event.key !== "Enter") {
+      debugger;
+      dispatch({ type: types.openPopover });
+    }
   }
 
   function handleKeyUpInput(event) {
@@ -153,6 +169,11 @@ const renderTrigger = ({
     onChangeInput({ dispatch, types, onChangeContext, onChangeSearch })(event);
   }
 
+  function handleSubmit(event) {
+    event.preventDefault();
+    onSubmitProps(event);
+  }
+
   return (
     <sc.Trigger
       ref={refTrigger}
@@ -164,25 +185,28 @@ const renderTrigger = ({
       size={size}
       data-anchor="list-box-with-search.trigger"
     >
-      <Input
-        hasClearButton
-        icon={<SearchIcon />}
-        onBlur={onBlurInput({ dispatch, types })}
-        onChange={handleChange}
-        onClick={handleClickInput}
-        onKeyDown={handleKeyDownInput}
-        onKeyUp={handleKeyUpInput}
-        ref={refInput}
-        type="text"
-        value={inputValue}
-        placeholder={t("listBox.filter.placeholder")}
-      />
+      <form role="search" onSubmit={handleSubmit}>
+        <Input
+          hasClearButton
+          icon={<SearchIcon />}
+          onBlur={onBlurInput({ dispatch, types })}
+          onChange={handleChange}
+          onClick={handleClickInput}
+          onKeyDown={handleKeyDownInput}
+          onKeyUp={handleKeyUpInput}
+          ref={refInput}
+          type="text"
+          value={inputValue}
+          placeholder={t("listBox.filter.placeholder")}
+        />
+      </form>
     </sc.Trigger>
   );
 };
 
 export default function Search(props) {
-  const { children, filter, onChangeSearch, data, ...moreProps } = props;
+  const refSelected = React.useRef(null);
+  const { children, onChangeSearch, onSelected, ...moreProps } = props;
   const { t } = useI18n();
   const {
     inputValue,
@@ -192,6 +216,8 @@ export default function Search(props) {
     onClickTrigger,
     onKeyDownTrigger,
     refInput,
+    refListBoxReducer,
+    resetValue,
   } = useTrigger();
 
   const refDivRoot = React.useRef(null);
@@ -202,8 +228,51 @@ export default function Search(props) {
       : ListBox.types.size.MEDIUM;
   /* eslint-enable react/prop-types */
 
-  function handleChange(...args) {
-    console.log(...args);
+  function processSelected(value) {
+    const dispatch = refListBoxReducer.current.dispatch;
+    const types = refListBoxReducer.current.types;
+
+    const actions = {
+      open() {
+        dispatch({ type: types.openPopover });
+      },
+      close() {
+        dispatch({ type: types.closePopover });
+      },
+      cleanInput() {
+        resetValue(); // input search value
+      },
+    };
+    refSelected.current = null; // selected ref value
+    onSelected(value, actions);
+  }
+
+  function handleChange(index, options, attributes) {
+    const { eventType } = attributes;
+
+    if (eventType.includes("click")) {
+      const { value, label } = options[index].content.props;
+      processSelected({
+        value,
+        label,
+      });
+      return;
+    }
+
+    refSelected.current = options[index];
+  }
+
+  function onSubmit() {
+    if (refSelected.current) {
+      const { value, label } = refSelected.current.content.props;
+      processSelected({
+        value,
+        label,
+      });
+      return;
+    }
+
+    processSelected(null);
   }
 
   return (
@@ -212,6 +281,7 @@ export default function Search(props) {
         <ListBox.Popover shouldKeepFocus />
         <ListBox.Trigger>
           {renderTrigger({
+            children,
             inputValue,
             onBlurInput,
             onBlurTrigger,
@@ -219,10 +289,11 @@ export default function Search(props) {
             onChangeSearch,
             onClickTrigger,
             onKeyDownTrigger,
+            onSubmit,
             refInput,
+            refListBoxReducer,
             size,
             t,
-            children,
           })}
         </ListBox.Trigger>
         {inputValue ? (

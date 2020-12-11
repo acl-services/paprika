@@ -1,6 +1,6 @@
 import React from "react";
 import ListBox from "../../src";
-import { fetchAPI } from "../helpers";
+import { fetchAPI } from "./helpers";
 
 // please use a proper debounce function in a your application
 const debounce = (func, wait) => {
@@ -24,6 +24,7 @@ export default function LazyLoading() {
     }
 
     const currentCounter = refCounter.current + 1;
+
     const response = await fetchAPI(term, 0, 20);
     // prevents from setting the answer if another fetch has been created
     // in your real app you might find a better way for doing this.
@@ -43,11 +44,14 @@ export default function LazyLoading() {
 
   const handleChangeSearchDebounce = debounce(handleChangeSearch, 450);
 
-  function handleSelectedSearch() {}
+  function handleSelected(value) {
+    console.log(`😎 `, value);
+    setFilterData([]);
+  }
 
   return (
     <div style={{ padding: "32px" }}>
-      <ListBox onChangeSearch={handleChangeSearchDebounce} onSelectedSearch={handleSelectedSearch}>
+      <ListBox onChangeSearch={handleChangeSearchDebounce} onSelected={handleSelected}>
         {filterData.map(option => {
           return (
             <ListBox.Option value={option.label} key={option.id} label={option.label}>
