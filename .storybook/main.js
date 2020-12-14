@@ -26,7 +26,7 @@ module.exports = {
     "@storybook/addon-a11y",
     "@storybook/addon-cssresources",
   ],
-  webpackFinal: async config => {
+  webpackFinal: async (config, { configType }) => {
     config.module.rules = [
       ...config.module.rules,
       {
@@ -44,6 +44,7 @@ module.exports = {
       globalObject: "self",
     };
 
+    console.log(">>>>>>>>>>>>>>>>>>>>>>mode", config.mode);
     return config;
   },
 };

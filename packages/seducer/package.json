@@ -1,0 +1,31 @@
+{
+  "name": "@paprika/seducer",
+  "version": "1.0.3",
+  "description": "Seducer (simple reducer) is a wrap on top of React.useReducer which make it easier to use it",
+  "main": "index.js",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/acl-services/paprika.git",
+    "directory": "packages/seducer"
+  },
+  "keywords": [
+    "Context",
+    "React",
+    "dispatch",
+    "inversion of control",
+    "reducer",
+    "useReducer"
+  ],
+  "bugs": {
+    "url": "https://github.com/acl-services/paprika/issues"
+  },
+  "homepage": "https://github.com/acl-services/paprika/tree/master/packages/seducer",
+  "dependencies": {
+    "@paprika/button": "^1.0.3"
+  },
+  "peerDependencies": {
+    "@babel/runtime-corejs2": "^7.3.1",
+    "react": "^17.0.1",
+    "react-dom": "^17.0.1"
+  }
+}
