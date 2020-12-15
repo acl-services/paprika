@@ -6,9 +6,7 @@ interface SearchProps {
 
   children: instanceOf;
 
-  filter?: (...args: any[]) => any;
-
   onChangeSearch?: (...args: any[]) => any;
 
-  data: shape[];
+  onSelected?: (...args: any[]) => any;
 }

@@ -1,13 +1,11 @@
 import React from "react";
 import PropTypes from "prop-types";
-import Input from "@paprika/input";
 import ListBox from "@paprika/list-box";
 import SearchIcon from "@paprika/icon/lib/Search";
-import invokeOnChange from "@paprika/list-box/lib/helpers/invokeOnChange";
 import useI18n from "@paprika/l10n/lib/useI18n";
 import { filter } from "@paprika/list-box/lib/helpers/filter";
-
-import * as sc from "./Search.styles";
+import renderTrigger from "./renderTrigger";
+import useTrigger from "./useTrigger";
 
 const propTypes = {
   children: PropTypes.instanceOf(ListBox.Option).isRequired,
@@ -19,191 +17,6 @@ const defaultProps = {
   onChangeSearch: () => {},
   onSelected: () => {},
 };
-
-function useTrigger() {
-  const refInput = React.useRef();
-  const refListBoxReducer = React.useRef({ types: null, dispatch: null });
-  const [value, setValue] = React.useState("");
-
-  const handleClickTrigger = ({ dispatch, types }) => event => {
-    event.stopPropagation();
-    refInput.current.focus();
-    dispatch({ type: types.togglePopover });
-  };
-
-  const handleBlur = ({ dispatch, types }) => () => {
-    dispatch({ type: types.closePopover });
-  };
-
-  const handleKeyDownTrigger = () => () => {
-    refInput.current.focus();
-  };
-
-  function resetValue() {
-    setValue("");
-  }
-
-  const handleChangeInput = ({ dispatch, types, onChangeContext, onChangeSearch }) => event => {
-    setValue(event.target.value);
-    dispatch({ type: types.setActiveOption, payload: { activeOptionIndex: 0 } });
-
-    event.persist();
-    window.requestAnimationFrame(() => {
-      dispatch({
-        type: types.selectSingleOption,
-        payload: {
-          isOpen: true,
-          activeOptionIndex: 0,
-          onChangeFn: invokeOnChange(onChangeContext, "list-box:option-selected"),
-        },
-      });
-
-      dispatch({ type: types.openPopover });
-      if (event.target.value === "") {
-        dispatch({ type: types.closePopover });
-      }
-
-      onChangeSearch(event.target.value);
-    });
-  };
-
-  return {
-    inputValue: value,
-    onBlurInput: handleBlur,
-    onBlurTrigger: handleBlur,
-    onChangeInput: handleChangeInput,
-    onClickTrigger: handleClickTrigger,
-    onKeyDownTrigger: handleKeyDownTrigger,
-    refInput,
-    resetValue,
-    refListBoxReducer,
-  };
-}
-
-const renderTrigger = ({
-  inputValue,
-  onBlurInput,
-  onBlurTrigger,
-  onChangeInput,
-  onChangeSearch,
-  onClickTrigger,
-  onKeyDownTrigger,
-  onSubmit: onSubmitProps,
-  refInput,
-  refListBoxReducer,
-  size,
-  t,
-  /* selectedOptions, onRemove, renderPill */
-}) => (...args) => {
-  const [, , attributes] = args;
-  const {
-    dispatch,
-    handleKeyDown,
-    handleKeyUp,
-    isOpen,
-    onChangeContext,
-    propsForTrigger,
-    refTrigger,
-    types,
-  } = attributes;
-
-  // eslint-disable-next-line
-  refListBoxReducer.current.dispatch = dispatch;
-  // eslint-disable-next-line
-  refListBoxReducer.current.types = types;
-
-  function handleClickInput(event) {
-    event.stopPropagation();
-    if (!isOpen) dispatch({ type: types.openPopover });
-    if (refInput.current.value === "") {
-      dispatch({ type: types.closePopover });
-    }
-  }
-
-  function handleKeyDownInput(event) {
-    handleKeyDown(event);
-
-    // we don't want to open the popover if the key is ESCAPE
-    if (event.key === "Escape") {
-      return;
-    }
-
-    if (event.key === "Backspace" && refInput.current.value === "") {
-      return;
-    }
-
-    event.stopPropagation();
-
-    if (!isOpen && event.key !== "Enter") {
-      debugger;
-      dispatch({ type: types.openPopover });
-    }
-  }
-
-  function handleKeyUpInput(event) {
-    handleKeyUp(event);
-
-    if (event.key === "Escape") {
-      return;
-    }
-
-    if (event.key === "Backspace" && refInput.current.value === "") {
-      return;
-    }
-
-    event.stopPropagation();
-    // prevents from toggling the popover automatically by the trigger
-    if (event.key === " " || event.key === "Enter") {
-      dispatch({ type: types.openPopover });
-      return;
-    }
-
-    if (!isOpen) dispatch({ type: types.openPopover });
-  }
-
-  function handleFocusTrigger() {
-    refInput.current.focus();
-  }
-
-  function handleChange(event) {
-    onChangeInput({ dispatch, types, onChangeContext, onChangeSearch })(event);
-  }
-
-  function handleSubmit(event) {
-    event.preventDefault();
-    onSubmitProps(event);
-  }
-
-  return (
-    <sc.Trigger
-      ref={refTrigger}
-      {...propsForTrigger()}
-      onFocus={handleFocusTrigger}
-      onBlur={onBlurTrigger({ dispatch, types })}
-      onClick={onClickTrigger({ dispatch, types })}
-      onKeyDown={onKeyDownTrigger({ dispatch, types })}
-      size={size}
-      data-anchor="list-box-with-search.trigger"
-    >
-      <form role="search" onSubmit={handleSubmit}>
-        <Input
-          hasClearButton
-          icon={<SearchIcon />}
-          onBlur={onBlurInput({ dispatch, types })}
-          onChange={handleChange}
-          onClick={handleClickInput}
-          onKeyDown={handleKeyDownInput}
-          onKeyUp={handleKeyUpInput}
-          ref={refInput}
-          type="text"
-          value={inputValue}
-          placeholder={t("listBox.filter.placeholder")}
-        />
-      </form>
-    </sc.Trigger>
-  );
-};
-
 export default function Search(props) {
   const refSelected = React.useRef(null);
   const { children, onChangeSearch, onSelected, ...moreProps } = props;
@@ -218,7 +31,17 @@ export default function Search(props) {
     refInput,
     refListBoxReducer,
     resetValue,
+    setInputValue,
   } = useTrigger();
+
+  const countOptions = React.useMemo(() => {
+    let count = 0;
+    React.Children.forEach(children, child => {
+      if (child.type.displayName === "ListBox.Option") count += 1;
+    });
+
+    return count;
+  }, [children]);
 
   const refDivRoot = React.useRef(null);
   /* eslint-disable react/prop-types */
@@ -241,6 +64,9 @@ export default function Search(props) {
       },
       cleanInput() {
         resetValue(); // input search value
+      },
+      setInput(value) {
+        setInputValue(value);
       },
     };
     refSelected.current = null; // selected ref value
@@ -269,10 +95,9 @@ export default function Search(props) {
         value,
         label,
       });
-      return;
     }
 
-    processSelected(null);
+    // processSelected(null);
   }
 
   return (
@@ -281,7 +106,7 @@ export default function Search(props) {
         <ListBox.Popover shouldKeepFocus />
         <ListBox.Trigger>
           {renderTrigger({
-            children,
+            countOptions,
             inputValue,
             onBlurInput,
             onBlurTrigger,

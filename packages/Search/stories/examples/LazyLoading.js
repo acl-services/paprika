@@ -16,6 +16,7 @@ const debounce = (func, wait) => {
 export default function LazyLoading() {
   const refCounter = React.useRef(0);
   const [filterData, setFilterData] = React.useState([]);
+  const [selection, setSelection] = React.useState("");
 
   async function handleChangeSearch(term) {
     if (term === "") {
@@ -44,9 +45,25 @@ export default function LazyLoading() {
 
   const handleChangeSearchDebounce = debounce(handleChangeSearch, 450);
 
-  function handleSelected(value) {
+  function handleSelected(value, actions) {
+    /**
+     * after receiving the selected value there are some alternatives paths you might want to take
+     * 1. Close the popover
+     * 2. Set the selected value on the input
+     * 3. Clear the input
+     *
+     * This actions might change depending of what are you implementing.
+     * all these options are possible you can invoke any of the actions to do that.
+     * if there is something else specific you might want to do you either can add expose it on the Search.js File
+     * or request help from the paprika team.
+     * */
+    console.log(actions);
+    const { close, setInput } = actions;
+
+    setInput(value.label);
+    setSelection(value.label);
+    close();
     console.log(`😎 `, value);
-    setFilterData([]);
   }
 
   return (
@@ -60,6 +77,7 @@ export default function LazyLoading() {
           );
         })}
       </ListBox>
+      {selection ? <span>Your selection: {selection}</span> : null}
     </div>
   );
 }
