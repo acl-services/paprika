@@ -29,4 +29,7 @@ interface UploaderProps {
   headers?: object[];
   /** Let you to take over the request method */
   onRequest?: (...args: any[]) => any;
+  /** Callback called whenever an error exists to request a proper message
+if it's not pass down will print the request throw error */
+  onError?: (...args: any[]) => any;
 }

@@ -66,11 +66,15 @@ const propTypes = {
    * Let you to take over the request method
    */
   onRequest: PropTypes.func,
+  /**
+   * Callback called whenever an error exists to request a proper message
+   * if it's not pass down will print the request throw error
+   */
+  onError: PropTypes.func,
 };
 
 const defaultProps = {
   a11yText: null,
-  supportedMimeTypes: ["*/*"],
   canChooseMultiple: true,
   defaultIsDisabled: false,
   hasAutoUpload: true,
@@ -79,7 +83,9 @@ const defaultProps = {
   maxFileSize: oneMebibyte * 10, // 1048576bytes * 10 = 10,485,760 Mebibytes
   onChange: () => {},
   onCompleted: () => {},
+  onError: null,
   onRequest: null,
+  supportedMimeTypes: ["*/*"],
 };
 
 function getDocumentBody() {
@@ -105,8 +111,9 @@ const Uploader = React.forwardRef((props, ref) => {
     maxFileSize,
     onChange,
     onCompleted,
-    supportedMimeTypes,
+    onError,
     onRequest,
+    supportedMimeTypes,
   } = props;
 
   const refInput = React.useRef();
@@ -120,16 +127,7 @@ const Uploader = React.forwardRef((props, ref) => {
     },
   }));
 
-  const {
-    files,
-    isCompleted,
-    isDisabled,
-    removeFile,
-    cancelFile,
-    restartFileUpload,
-    setFiles,
-    upload,
-  } = useProcessFiles({
+  const { files, isCompleted, isDisabled, removeFile, cancelFile, setFiles, upload } = useProcessFiles({
     defaultIsDisabled,
     endpoint,
     hasAutoUpload,
@@ -180,20 +178,22 @@ const Uploader = React.forwardRef((props, ref) => {
         </sc.Container>
       );
     }
+
     return {
       FileInput,
+      cancelFile,
       files,
       isCompleted,
       isDisabled,
       isDragLeave,
       isDraggingOver,
+      onError,
       refInput,
       removeFile,
-      cancelFile,
       upload,
-      restartFileUpload,
     };
   }, [
+    upload,
     canChooseMultiple,
     cancelFile,
     files,
@@ -203,10 +203,9 @@ const Uploader = React.forwardRef((props, ref) => {
     isDragLeave,
     isDraggingOver,
     label,
+    onError,
     removeFile,
-    restartFileUpload,
     supportedMimeTypes,
-    upload,
   ]);
 
   const childrenWithProps = React.Children.map(children, child => {

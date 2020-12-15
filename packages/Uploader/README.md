@@ -22,21 +22,23 @@ npm install @paprika/uploader
 
 ### Uploader
 
-| Prop               | Type    | required | default           | Description                                                                                                                                             |
-| ------------------ | ------- | -------- | ----------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| a11yText           | string  | false    | null              | Accessible message for the input[type="file"].                                                                                                          |
-| supportedMimeTypes | arrayOf | false    | ["*/*"]           | An array of accepted file extensions and/or MIME types. Note that Microsoft MIME types don't seem to be enforced.                                       |
-| canChooseMultiple  | bool    | false    | true              | When false the uploader only accept one file per upload.                                                                                                |
-| children           | node    | true     | -                 | children nodes                                                                                                                                          |
-| defaultIsDisabled  | bool    | false    | false             | initial disable state for the uploader                                                                                                                  |
-| endpoint           | string  | true     | -                 | The url that will be use to upload the files.                                                                                                           |
-| hasAutoUpload      | bool    | false    | true              | On true will upload the file as soon they are selected or dropped                                                                                       |
-| isBodyDroppable    | bool    | false    | true              | When true the user will be able to drop files at any part of the document.body. On false will only receive files dropped exactly on the FileInput area. |
-| maxFileSize        | number  | false    | oneMebibyte \* 10 | Size in Mebibytes which is used for comparing each file that will be uploaded.                                                                          |
-| onChange           | func    | false    | () => {}          | This callback fires every time a file has been processed                                                                                                |
-| onCompleted        | func    | false    | () => {}          | Will fire once all files have been processed with the files as parameter.                                                                               |
-| headers            | arrayOf | false    | []                | you can pass an array of header objects.                                                                                                                |
-| onRequest          | func    | false    | null              | Let you to take over the request method                                                                                                                 |
+| Prop                                                     | Type    | required | default           | Description                                                                                                                                             |
+| -------------------------------------------------------- | ------- | -------- | ----------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| a11yText                                                 | string  | false    | null              | Accessible message for the input[type="file"].                                                                                                          |
+| supportedMimeTypes                                       | arrayOf | false    | ["*/*"]           | An array of accepted file extensions and/or MIME types. Note that Microsoft MIME types don't seem to be enforced.                                       |
+| canChooseMultiple                                        | bool    | false    | true              | When false the uploader only accept one file per upload.                                                                                                |
+| children                                                 | node    | true     | -                 | children nodes                                                                                                                                          |
+| defaultIsDisabled                                        | bool    | false    | false             | initial disable state for the uploader                                                                                                                  |
+| endpoint                                                 | string  | true     | -                 | The url that will be use to upload the files.                                                                                                           |
+| hasAutoUpload                                            | bool    | false    | true              | On true will upload the file as soon they are selected or dropped                                                                                       |
+| isBodyDroppable                                          | bool    | false    | true              | When true the user will be able to drop files at any part of the document.body. On false will only receive files dropped exactly on the FileInput area. |
+| maxFileSize                                              | number  | false    | oneMebibyte \* 10 | Size in Mebibytes which is used for comparing each file that will be uploaded.                                                                          |
+| onChange                                                 | func    | false    | () => {}          | This callback fires every time a file has been processed                                                                                                |
+| onCompleted                                              | func    | false    | () => {}          | Will fire once all files have been processed with the files as parameter.                                                                               |
+| headers                                                  | arrayOf | false    | []                | you can pass an array of header objects.                                                                                                                |
+| onRequest                                                | func    | false    | null              | Let you to take over the request method                                                                                                                 |
+| onError                                                  | func    | false    | null              | Callback called whenever an error exists to request a proper message                                                                                    |
+| if it's not pass down will print the request throw error |
 
 <!-- autogenerated don't modify -->
 <!-- content -->

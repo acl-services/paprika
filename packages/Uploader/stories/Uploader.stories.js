@@ -61,6 +61,20 @@ storiesOf(`${storyName}/Examples`, module)
       </Uploader>
     </Story>
   ))
+  .add("Failed upload error using onError", () => (
+    <Story>
+      <Uploader
+        {...props}
+        onError={error => {
+          return `This is a custom error: ${error}`;
+        }}
+        endpoint="http://localhost:9000/upload.php?error=true"
+      >
+        <Uploader.DropZone />
+        <Uploader.FileList />
+      </Uploader>
+    </Story>
+  ))
   .add("Invalid mime type error", () => (
     <Story>
       <Uploader {...props} supportedMimeTypes={["audio/wav", "audio/ogg"]}>
@@ -152,11 +166,11 @@ storiesOf(`${storyName}/Examples`, module)
           onChange={files => {
             console.log("Selected files:", files);
           }}
-          onRequest={({ file, onProgress, onError, formData }) => {
+          onRequest={({ file, onProgress, onEnd, formData }) => {
             file.request
               .send(formData)
               .on("progress", onProgress)
-              .end(onError);
+              .end(onEnd);
 
             /**
              * With this approach you could use you own process to upload
@@ -168,7 +182,7 @@ storiesOf(`${storyName}/Examples`, module)
             //   .auth('you_token', { type: 'bearer' })
             //   .withCredentials()
             //   .on("progress", onProgress)
-            //   .end(onError);
+            //   .end(onEnd);
           }}
         >
           <Uploader.DropZone />
