@@ -120,7 +120,6 @@
     }
   },
   "lint-staged": {
-    "concurrent": true,
     "packages/**/*.js": [
       "yarn lint",
       "yarn lint:jss"
