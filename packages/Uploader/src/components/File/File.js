@@ -25,6 +25,7 @@ const propTypes = {
   fileKey: PropTypes.string.isRequired,
   name: PropTypes.string.isRequired,
   onError: PropTypes.func,
+  onCancel: PropTypes.func,
   progress: PropTypes.number,
   size: PropTypes.number.isRequired,
   status: PropTypes.oneOf(Object.keys(File.types.status).map(key => File.types.status[key])).isRequired, // eslint-disable-line no-use-before-define
@@ -33,11 +34,12 @@ const propTypes = {
 const defaultProps = {
   error: "",
   onError: null,
+  onCancel: null,
   progress: 0,
 };
 
 function File(props) {
-  const { error, fileKey, name, progress, size, status, onError } = props;
+  const { error, fileKey, name, progress, size, status, onError, onCancel } = props;
 
   const { cancelFile } = React.useContext(UploaderContext);
   const I18n = useI18n();
@@ -53,7 +55,7 @@ function File(props) {
             <Popover.Tip />
             <Popover.Trigger>
               <Button.Icon kind={Button.Icon.types.kind.MINOR} onClick={() => {}}>
-                <InfoCircle />
+                <InfoCircle color={tokens.color.purple} />
               </Button.Icon>
             </Popover.Trigger>
             <Popover.Content>
@@ -71,7 +73,7 @@ function File(props) {
               <Button.Icon
                 kind={Button.Icon.types.kind.MINOR}
                 onClick={() => {
-                  cancelFile(fileKey);
+                  cancelFile(fileKey, onCancel);
                 }}
                 size={Button.Icon.types.size.SMALL}
               >

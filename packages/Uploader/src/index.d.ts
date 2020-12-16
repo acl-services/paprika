@@ -32,4 +32,6 @@ interface UploaderProps {
   /** Callback called whenever an error exists to request a proper message
 if it's not pass down will print the request throw error */
   onError?: (...args: any[]) => any;
+  /** Callback fire when a user cancel a specific file */
+  onCancel?: (...args: any[]) => any;
 }

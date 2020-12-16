@@ -71,6 +71,11 @@ const propTypes = {
    * if it's not pass down will print the request throw error
    */
   onError: PropTypes.func,
+  /**
+   * Callback fire when a user cancel a specific file
+   *
+   */
+  onCancel: PropTypes.func,
 };
 
 const defaultProps = {
@@ -81,6 +86,7 @@ const defaultProps = {
   headers: [],
   isBodyDroppable: true,
   maxFileSize: oneMebibyte * 10, // 1048576bytes * 10 = 10,485,760 Mebibytes
+  onCancel: () => {},
   onChange: () => {},
   onCompleted: () => {},
   onError: null,
@@ -109,6 +115,7 @@ const Uploader = React.forwardRef((props, ref) => {
     headers,
     isBodyDroppable,
     maxFileSize,
+    onCancel,
     onChange,
     onCompleted,
     onError,
@@ -187,13 +194,13 @@ const Uploader = React.forwardRef((props, ref) => {
       isDisabled,
       isDragLeave,
       isDraggingOver,
+      onCancel,
       onError,
       refInput,
       removeFile,
       upload,
     };
   }, [
-    upload,
     canChooseMultiple,
     cancelFile,
     files,
@@ -203,9 +210,11 @@ const Uploader = React.forwardRef((props, ref) => {
     isDragLeave,
     isDraggingOver,
     label,
+    onCancel,
     onError,
     removeFile,
     supportedMimeTypes,
+    upload,
   ]);
 
   const childrenWithProps = React.Children.map(children, child => {

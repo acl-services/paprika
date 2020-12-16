@@ -190,4 +190,24 @@ storiesOf(`${storyName}/Examples`, module)
         </Uploader>
       </Story>
     );
+  })
+  .add("onCancel prop callback", () => {
+    return (
+      <Story>
+        <p>Description</p>
+        <Uploader
+          onCompleted={files => console.log("on finished:", files)}
+          endpoint="http://localhost:9000/upload.php"
+          onChange={files => {
+            console.log("Selected files:", files);
+          }}
+          onCancel={file => {
+            console.log("onCancel", file);
+          }}
+        >
+          <Uploader.DropZone />
+          <Uploader.FileList />
+        </Uploader>
+      </Story>
+    );
   });

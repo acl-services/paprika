@@ -14,7 +14,7 @@ const propTypes = {
 const defaultProps = {};
 
 export default function FileList({ supportedMimeTypes, maxFileSize }) {
-  const { files, onError } = React.useContext(UploaderContext);
+  const { files, onError, onCancel } = React.useContext(UploaderContext);
   const I18n = useI18n();
 
   function getFileErrorText(file) {
@@ -45,6 +45,7 @@ export default function FileList({ supportedMimeTypes, maxFileSize }) {
           fileKey={file.key}
           key={file.key}
           name={file.filename}
+          onCancel={onCancel}
           onError={onError}
           progress={file.progress}
           size={file.filesize}

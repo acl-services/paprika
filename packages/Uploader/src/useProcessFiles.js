@@ -49,7 +49,7 @@ export default function useProcessFiles({
   const [isCompleted, setisCompleted] = React.useState(null);
   const [files, setFiles] = React.useState([]);
 
-  function cancelFile(key) {
+  function cancelFile(key, onCancelProp = null) {
     const index = getFileByIndex(key, files);
     if (index !== null) {
       if (files[index].status === types.status.PROCESSING || files[index].status === types.status.WAITINGFORSERVER) {
@@ -66,6 +66,10 @@ export default function useProcessFiles({
             return fileItem;
           })
         );
+
+        if (typeof onCancelProp === "function") {
+          onCancelProp(file);
+        }
       }
     }
   }
