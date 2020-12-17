@@ -26,7 +26,7 @@ export default function Pill(props) {
   const isChildString = typeof children === "string";
 
   return (
-    <sc.Pill size={size} data-pka-anchor="list-box-tags.pill">
+    <sc.Pill data-pka-anchor="list-box-tags.pill">
       <sc.Ellipsis isChildString={isChildString} size={size}>
         {children}
       </sc.Ellipsis>
