@@ -6,6 +6,20 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 
 ## [Unreleased]
 
+## [0.2.11] - 2020-05-28
+
+### Added
+
+- Added a UI to the Uploader and added support for restarting failed/cancelled uploads. [@jamiek-acl](https://github.com/jamiek-acl).
+
+## [0.3.13] - 2020-09-02
+
+### Added
+
+- Updated: Created and placed all constants into type.js file. [@kaan.darcey](https://github.com/KDarcey).
+
+## [1.1.1-alpha.0] - 2020-12-16
+
 ### Add
 
 - OnError prop, now give the ability to the consumer to manipulate the error message per file in case of need it.
@@ -31,15 +45,3 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
         >
 
 ```
-
-## [0.2.11] - 2020-05-28
-
-### Added
-
-- Added a UI to the Uploader and added support for restarting failed/cancelled uploads. [@jamiek-acl](https://github.com/jamiek-acl).
-
-## [0.3.13] - 2020-09-02
-
-### Added
-
-- Updated: Created and placed all constants into type.js file. [@kaan.darcey](https://github.com/KDarcey).

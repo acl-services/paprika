@@ -66,7 +66,7 @@ storiesOf(`${storyName}/Examples`, module)
       <Uploader
         {...props}
         onError={error => {
-          return `This is a custom error: ${error}`;
+          return `Oh dear... the server returned this error: ${error}`;
         }}
         endpoint="http://localhost:9000/upload.php?error=true"
       >
@@ -116,20 +116,6 @@ storiesOf(`${storyName}/Examples`, module)
       </Uploader>
     </Story>
   ))
-  .add("Firing onCompleted prop", () => (
-    <Story>
-      <p>
-        The onCompleted callback is fired once all files have been processed (but it does not neccessarily mean that all
-        files were _successuflly_ uploaded). The callback receives an array of all of the files processed with their
-        last status. You could then loop over the list to see if all files have the status
-        <code>Uploader.status.SUCCESS</code> (which would mean all were uploaded correctly).
-      </p>
-      <Uploader {...props} onCompleted={files => console.log("on finished:", files)}>
-        <Uploader.DropZone />
-        <Uploader.FileList />
-      </Uploader>
-    </Story>
-  ))
   .add("Adding custom headers", () => (
     <Story>
       <p>
@@ -152,14 +138,29 @@ storiesOf(`${storyName}/Examples`, module)
         <File {...fileProps} />
         <File {...fileProps} progress={37} status={types.status.PROCESSING} />
         <File {...fileProps} progress={100} status={types.status.SUCCESS} />
+        <File {...fileProps} progress={25} status={types.status.CANCEL} />
         <File {...fileProps} progress={37} error="Something went wrong" status={types.status.ERROR} />
       </Uploader>
     </Story>
   ))
-  .add("Custom onRequest callback", () => {
+  .add("onCompleted prop", () => (
+    <Story>
+      <p>
+        The onCompleted callback is fired once all files have been processed (but it does not neccessarily mean that all
+        files were _successuflly_ uploaded). The callback receives an array of all of the files processed with their
+        last status. You could then loop over the list to see if all files have the status
+        <code>Uploader.status.SUCCESS</code> (which would mean all were uploaded correctly).
+      </p>
+      <Uploader {...props} onCompleted={files => console.log("on finished:", files)}>
+        <Uploader.DropZone />
+        <Uploader.FileList />
+      </Uploader>
+    </Story>
+  ))
+  .add("onRequest callback", () => {
     return (
       <Story>
-        <p>Description</p>
+        <p>Override how files are uploaded.</p>
         <Uploader
           onCompleted={files => console.log("on finished:", files)}
           endpoint="http://localhost:9000/upload.php"
@@ -194,15 +195,12 @@ storiesOf(`${storyName}/Examples`, module)
   .add("onCancel prop callback", () => {
     return (
       <Story>
-        <p>Description</p>
+        <p>Check the console to see what is returned when you cancel an upload.</p>
         <Uploader
           onCompleted={files => console.log("on finished:", files)}
           endpoint="http://localhost:9000/upload.php"
-          onChange={files => {
-            console.log("Selected files:", files);
-          }}
           onCancel={file => {
-            console.log("onCancel", file);
+            console.log("onCancel:", file);
           }}
         >
           <Uploader.DropZone />

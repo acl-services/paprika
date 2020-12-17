@@ -67,13 +67,11 @@ const propTypes = {
    */
   onRequest: PropTypes.func,
   /**
-   * Callback called whenever an error exists to request a proper message
-   * if it's not pass down will print the request throw error
+   * Callback fired whenever an error occurs while uploading a file.  It receives the raw server error as an argument. Whatever this function returns is what is displayed in the UI.  If nothing is returned, it will display the raw server error.
    */
   onError: PropTypes.func,
   /**
-   * Callback fire when a user cancel a specific file
-   *
+   * Callback fired when the user cancels an uploading file.
    */
   onCancel: PropTypes.func,
 };
