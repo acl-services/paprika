@@ -1,6 +1,6 @@
 {
   "name": "@paprika/data-field",
-  "version": "1.0.3",
+  "version": "1.0.4-alpha.0",
   "description": "Field Types package is a set of components that help the Table and DataGrid to enhance the cell property to display different value in a ease manner",
   "author": "@paprika",
   "license": "MIT",
@@ -20,7 +20,7 @@
     "@paprika/constants": "^1.0.0",
     "@paprika/data-grid": "^1.0.3",
     "@paprika/icon": "^1.0.1",
-    "@paprika/popover": "^1.0.3",
+    "@paprika/popover": "^1.0.4-alpha.0",
     "@paprika/tokens": "^1.0.0",
     "prop-types": "^15.7.2"
   },
