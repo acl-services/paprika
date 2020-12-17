@@ -1,5 +1,6 @@
 import React from "react";
 import ListBox, { useListBoxWithTags } from "../../../src/WithTags";
+import AllOptionsAreSelected from "./AllOptionsAreSelected";
 
 const defaultData = [
   { name: "jack" },
@@ -51,8 +52,8 @@ export function Selected() {
       <ListBox
         noResultsMessage="No results found, but you can add an email and then press enter..."
         selectedOptions={selectedOptions}
-        renderTriggerPillLabel={item => item.name}
         isOpen
+        pillLabelKey="name"
         {...moreProps}
       >
         {selectedOptions.length === defaultData.length ? (
@@ -72,6 +73,8 @@ export default function App() {
       <Open />
       <div style={{ height: "200px", width: "10px" }} />
       <Selected />
+      <div style={{ height: "200px", width: "10px" }} />
+      <AllOptionsAreSelected />
     </>
   );
 }

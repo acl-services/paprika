@@ -94,7 +94,9 @@ const renderTrigger = ({ t, size, selectedOptions, onRemove, renderPill, pillLab
 
           if (typeof label !== "string") {
             throw Error(
-              `Label property in your object should be a string, does your ${pillLabelKey} attribute has a string value?`
+              `Either your item ${JSON.stringify(
+                item
+              )} lacks of an attribute "label", or you are not passing down the pillLabelKey prop on the component to indicate which attribute from your data should be use to render the pill label`
             );
           }
 
@@ -169,7 +171,7 @@ export default function WithTags(props) {
 
   return (
     <div ref={refDivRoot}>
-      <ListBox isMulti size={size} isInline={allOptionsAreSelected} onChange={handleChange} {...moreProps}>
+      <ListBox isMulti size={size} onChange={handleChange} {...moreProps}>
         <ListBox.Trigger>
           {renderTrigger({
             allOptionsAreSelected,

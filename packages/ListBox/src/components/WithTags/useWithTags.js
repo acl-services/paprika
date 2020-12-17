@@ -34,7 +34,9 @@ export default function useWithTags({
     setSelectedKeys(prev => {
       const prevClone = prev.slice(0);
 
-      const id = options[selectedOption].content.props.label;
+      const { id: idProp, label, value } = options[selectedOption].content.props;
+      const id = idProp || value || label;
+
       if (!id)
         throw Error(
           "<ListBox.Option /> requires to have a unique string label that can be use for a11y purposes and as identifier"

@@ -35,7 +35,7 @@ export const Trigger = styled(RawButton)(({ size, allOptionsAreSelected }) => {
     transition: border-color 0.2s;
     width: 100%;
     ${fontSize[size]}
-    ${allOptionsAreSelected ? `border: 0; padding-left: 0;` : ""}
+    ${allOptionsAreSelected ? `padding-left: 0;` : ""}
   `;
 });
 

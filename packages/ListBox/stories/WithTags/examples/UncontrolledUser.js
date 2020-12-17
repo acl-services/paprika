@@ -96,6 +96,8 @@ export default function UncontrolledUsers() {
           </>
         ) : null}
         <ListBox
+          allOptionsAreSelected={defaultFilteredData.length === getSelectedOptions().length}
+          allOptionsAreSelectedMessage="All directors have been selected"
           onAddCustomOption={onAddCustomOption(label => {
             // This allowed you override the default behaviour when creating a custom option
             return {
@@ -155,6 +157,10 @@ export default function UncontrolledUsers() {
             ) : null;
           })}
         </ListBox>
+        <br />
+        <br />
+        <br />
+        <br />
         <button type="submit" onClick={handleSubmit}>
           Submit
         </button>
