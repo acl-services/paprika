@@ -1,11 +1,7 @@
 import React from "react";
 import { testStoryParameters } from "storybook/assets/storyParameters";
 import { getStoryName } from "storybook/storyTree";
-import ExampleStory from "storybook/components/ExampleStory";
-import PanelFocusLockDisabled from "./tests/PanelFocusLockDisabled";
-import PanelFooterSticky from "./tests/PanelFooterSticky";
-import PanelOnAfter from "./tests/PanelOnAfter";
-import PanelDefaultSticky from "./tests/PanelDefaultSticky";
+import { PanelFocusLockDisabled, PanelFooterSticky, PanelOnAfter, PanelDefaultSticky } from "./tests/Cypress";
 import Screener from "./tests/Screener";
 import Panel from "../src";
 
@@ -13,58 +9,39 @@ const storyName = getStoryName("Panel");
 
 export default {
   title: `${storyName}/Backyard/Tests`,
+  id: "panel-tests",
   component: Panel,
 };
 
-export const ScreenerStory = () => (
-  <ExampleStory storyName="Screener" component="Panel" fileName="tests/Screener.js">
-    <Screener />
-  </ExampleStory>
-);
+export const ScreenerStory = () => <Screener />;
 
 ScreenerStory.story = {
   name: "Screener",
   parameters: testStoryParameters,
 };
 
-export const PanelDefaultStickyStory = () => (
-  <ExampleStory storyName="Focus Management" component="Panel" fileName="tests/PanelDefaultSticky.js">
-    <PanelDefaultSticky />
-  </ExampleStory>
-);
+export const PanelDefaultStickyStory = () => <PanelDefaultSticky />;
 
 PanelDefaultStickyStory.story = {
   name: "Panel Sticky",
   parameters: testStoryParameters,
 };
 
-export const PanelOnAfterStory = () => (
-  <ExampleStory storyName="Panel OnAfter" component="Panel" fileName="tests/PanelOnAfter.js">
-    <PanelOnAfter />
-  </ExampleStory>
-);
+export const PanelOnAfterStory = () => <PanelOnAfter />;
 
 PanelOnAfterStory.story = {
   name: "Panel OnAfter",
   parameters: testStoryParameters,
 };
 
-export const PanelFocusLockDisabledStory = () => (
-  <ExampleStory storyName="Panel Focus Lock" component="Panel" fileName="tests/PanelFocusLockDisabled.js">
-    <PanelFocusLockDisabled />
-  </ExampleStory>
-);
+export const PanelFocusLockDisabledStory = () => <PanelFocusLockDisabled />;
 
 PanelFocusLockDisabledStory.story = {
   name: "Panel Focus Lock",
   parameters: testStoryParameters,
 };
 
-export const PanelFooterStickyStory = () => (
-  <ExampleStory storyName="Panel Footer Sticky" component="Panel" fileName="tests/PanelFooterSticky.js">
-    <PanelFooterSticky />
-  </ExampleStory>
-);
+export const PanelFooterStickyStory = () => <PanelFooterSticky />;
 
 PanelFooterStickyStory.story = {
   name: "Panel Footer Sticky",

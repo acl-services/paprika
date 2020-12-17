@@ -3,8 +3,7 @@ import Button from "@paprika/button";
 import Panel from "../../src";
 import { Nav, TextLine } from "../helpers";
 
-export default function BasicPanel(props) {
-  const { disableBodyOverflow, hasOverlay, slideFrom } = props;
+export default function BasicPanel() {
   const [isOpen, setIsOpen] = React.useState(true);
   const toggle = () => {
     setIsOpen(state => !state);
@@ -13,15 +12,8 @@ export default function BasicPanel(props) {
   return (
     <React.Fragment>
       <Nav />
-      <Panel
-        a11yText="Panel View"
-        disableBodyOverflow={disableBodyOverflow}
-        isOpen={isOpen}
-        onClose={toggle}
-        offset={{ top: 40 }}
-        slideFrom={slideFrom}
-      >
-        {hasOverlay ? <Panel.Overlay /> : null}
+      <Panel a11yText="Panel View" isOpen={isOpen} onClose={toggle}>
+        <Panel.Overlay />
         <Panel.Trigger kind="primary" onClick={toggle}>
           {isOpen ? "close" : "open"}
         </Panel.Trigger>

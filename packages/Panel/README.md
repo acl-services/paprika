@@ -96,7 +96,7 @@ npm install @paprika/panel
 
 You can use any of the following components to compose the Panel:
 
-```js
+```jsx
 <Panel.Content />
 <Panel.Header />
 <Panel.Footer />
@@ -107,12 +107,12 @@ You can use any of the following components to compose the Panel:
 
 ## Basic examples
 
-```js
+```jsx
 import Panel from "@paprika/panel";
 
 const [isOpen, setIsOpen] = React.useState(true);
 
-<Panel isOpen={isOpen} onClose={() => {}} slideFrom={Panel.types.slideFrom.LEFT}>
+<Panel isOpen={isOpen} onClose={() => setIsOpen(false)} slideFrom={Panel.types.slideFrom.LEFT}>
   <Panel.Header kind="primary">Header</Panel.Header>
   <Panel.Content>Your content here</Panel.Content>
   <Panel.Footer>

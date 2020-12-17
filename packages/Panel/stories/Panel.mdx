@@ -1,9 +1,7 @@
-import { Meta, Props, Description } from "@storybook/addon-docs/blocks";
+import { Meta, Description } from "@storybook/addon-docs/blocks";
 import { getStoryName } from "storybook/storyTree";
 import { docsStoryParameters } from "storybook/assets/storyParameters";
-import { Gap } from "storybook/assets/styles/common.styles";
 import Readme from "../README.md";
-import { TextLine } from "./helpers";
 import Panel from "../src";
 
 <Meta title={`${getStoryName("Panel")}/Docs`} component={Panel} parameters={{ ...docsStoryParameters }} />
