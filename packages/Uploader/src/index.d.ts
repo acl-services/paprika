@@ -29,4 +29,8 @@ interface UploaderProps {
   headers?: object[];
   /** Let you to take over the request method */
   onRequest?: (...args: any[]) => any;
+  /** Callback fired whenever an error occurs while uploading a file.  It receives the raw server error as an argument. Whatever this function returns is what is displayed in the UI.  If nothing is returned, it will display the raw server error. */
+  onError?: (...args: any[]) => any;
+  /** Callback fired when the user cancels an uploading file. */
+  onCancel?: (...args: any[]) => any;
 }
