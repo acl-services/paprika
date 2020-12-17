@@ -2,7 +2,7 @@ import React from "react";
 import PropTypes from "prop-types";
 import CheckIcon from "@paprika/icon/lib/Check";
 import TimesIcon from "@paprika/icon/lib/Times";
-import InfoCircle from "@paprika/icon/lib/InfoCircle";
+import Caution from "@paprika/icon/lib/Caution";
 
 import Button from "@paprika/button";
 import useI18n from "@paprika/l10n/lib/useI18n";
@@ -54,7 +54,7 @@ function File(props) {
             <Popover.Tip />
             <Popover.Trigger>
               <Button.Icon kind={Button.Icon.types.kind.MINOR} onClick={() => {}}>
-                <InfoCircle color={tokens.color.purple} />
+                <Caution color={tokens.color.orange} />
               </Button.Icon>
             </Popover.Trigger>
             <Popover.Content>
