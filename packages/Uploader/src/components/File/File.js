@@ -49,7 +49,6 @@ function File(props) {
   function renderIcon() {
     switch (status) {
       case types.status.ERROR:
-      case types.status.CANCEL:
         return (
           <Popover isDark isEager>
             <Popover.Tip />
@@ -63,6 +62,8 @@ function File(props) {
             </Popover.Content>
           </Popover>
         );
+      case types.status.CANCEL:
+        return null;
       case types.status.SUCCESS:
         return <CheckIcon color={tokens.color.green} />;
       default:
