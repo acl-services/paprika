@@ -24,13 +24,10 @@ export function Open() {
       <ListBox
         noResultsMessage="No results found, but you can add an email and then press enter..."
         selectedOptions={selectedOptions}
-        renderTriggerPillLabel={item => item.name}
+        pillLabelKey="name"
         isOpen
         {...moreProps}
       >
-        {selectedOptions.length === defaultData.length ? (
-          <ListBox.RawItem>All options has been selected</ListBox.RawItem>
-        ) : null}
         {filteredData.map(option => {
           return !isSelected(option.name) ? <ListBox.Option label={option.name}>{option.name}</ListBox.Option> : null;
         })}

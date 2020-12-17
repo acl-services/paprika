@@ -1,7 +1,7 @@
 import styled, { css } from "styled-components";
 
 export const List = styled.ul(
-  ({ noResultsFound, height }) => css`
+  ({ noResultsFound, height, hasOptions }) => css`
     box-sizing: border-box;
     list-style: none;
     margin: 0;
@@ -16,6 +16,6 @@ export const List = styled.ul(
       box-sizing: border-box;
     }
     padding: 8px;
-    ${noResultsFound ? "padding: 0" : ""}
+    ${noResultsFound || !hasOptions ? "padding: 0" : ""}
   `
 );
