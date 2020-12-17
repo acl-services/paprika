@@ -5,7 +5,7 @@ const testStory = "panel-tests";
 
 describe("<Panel />", () => {
   it("should convert <Panel offset={} /> into sticky mode", () => {
-    cy.visitStorybook(`${testStory}--side-panel-default-sticky`);
+    cy.visitStorybook(`${testStory}--panel-default-sticky-story`);
     cy.getByTestId("purple-navigator").should("be.visible");
     cy.getByTestId("panel").then($element => {
       expect($element.css("top")).to.be.equal("40px");
@@ -20,27 +20,27 @@ describe("<Panel />", () => {
   });
 
   it("should include footer in sticky mode", () => {
-    cy.visitStorybook(`${testStory}--side-panel-footer-sticky`);
+    cy.visitStorybook(`${testStory}--panel-footer-sticky-story`);
     cy.getByTestId("panel.footer").then($element => {
       expect($element.css("bottom")).to.be.equal("0px");
     });
   });
 
   it("should put focus on element with data-autofocus", () => {
-    cy.visitStorybook(`${storyPrefix}-examples--focuslock`);
+    cy.visitStorybook(`${storyPrefix}-examples--focus-lock`);
     const input = cy.get("[data-autofocus]");
     const testString = "hello world";
     input.type(testString).should("have.value", testString);
   });
 
   it("should have no focused element if pass autofocus=false to Panel.FocusLock", () => {
-    cy.visitStorybook(`${testStory}--side-panel-focus-lock-disabled`);
+    cy.visitStorybook(`${testStory}--panel-focus-lock-disabled-story`);
     cy.getByTestId("panel").should("be.visible");
     cy.focused().should("not.exist");
   });
 
   it("should be possible to interact with multiple panels in a group", () => {
-    cy.visitStorybook(`${storyPrefix}-examples--group`);
+    cy.visitStorybook(`${storyPrefix}-examples--group-panel`);
 
     const sidePanel1 = cy.getByTestId("panel1");
     const sidePanel2 = cy.getByTestId("panel2");
@@ -73,7 +73,7 @@ describe("<Panel />", () => {
 
   let count = 1;
   it("should call onAfterOpen and onAfterClose", () => {
-    cy.visitStorybook(`${testStory}--side-panel-on-after`).then(() => {
+    cy.visitStorybook(`${testStory}--panel-on-after-story`).then(() => {
       cy.on("window:alert", str => {
         if (count === 1) {
           expect(str).to.equal("after open");

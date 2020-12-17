@@ -1,10 +1,9 @@
 import React from "react";
 import Button from "@paprika/button";
-import Panel from "../../src/Panel";
+import Panel from "../../src";
 import { Nav, TextLine } from "../helpers";
 
-const PanelPushContentStory = props => {
-  const { disableBodyOverflow, hasOverlay, pushContentWidth, width } = props;
+export default function PushContentPanel() {
   const [isOpen, setIsOpen] = React.useState(true);
   const toggle = () => {
     setIsOpen(state => !state);
@@ -14,23 +13,17 @@ const PanelPushContentStory = props => {
   return (
     <React.Fragment>
       <Nav />
-      <Panel
-        disableBodyOverflow={disableBodyOverflow}
-        getPushContentElement={getMainElement}
-        isOpen={isOpen}
-        onClose={toggle}
-        pushContentWidth={pushContentWidth}
-        width={width}
-      >
-        {hasOverlay ? <Panel.Overlay /> : null}
-        <Panel.Trigger kind={Panel.types.kind.PRIMARY} onClick={toggle}>
+      <Panel getPushContentElement={getMainElement} isOpen={isOpen} onClose={toggle} pushContentWidth="50%" width="50%">
+        <Panel.Trigger kind="primary" onClick={toggle}>
           {isOpen ? "close" : "open"}
         </Panel.Trigger>
-        <Panel.Header kind={Panel.Header.types.kind.PRIMARY}>Header</Panel.Header>
-        <TextLine repeat={100} />
+        <Panel.Header kind="primary">Header</Panel.Header>
+        <Panel.Content>
+          <TextLine repeat={100} />
+        </Panel.Content>
         <Panel.Footer>
           <Button>Default action</Button>
-          <Button kind={Button.types.kind.MINOR}>Cancel</Button>
+          <Button kind="minor">Cancel</Button>
         </Panel.Footer>
       </Panel>
       <div role="main">
@@ -53,6 +46,4 @@ const PanelPushContentStory = props => {
       </div>
     </React.Fragment>
   );
-};
-
-export default PanelPushContentStory;
+}
