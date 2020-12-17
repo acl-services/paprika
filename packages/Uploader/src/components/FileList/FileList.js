@@ -14,7 +14,7 @@ const propTypes = {
 const defaultProps = {};
 
 export default function FileList({ supportedMimeTypes, maxFileSize }) {
-  const { files } = React.useContext(UploaderContext);
+  const { files, onError, onCancel } = React.useContext(UploaderContext);
   const I18n = useI18n();
 
   function getFileErrorText(file) {
@@ -41,13 +41,15 @@ export default function FileList({ supportedMimeTypes, maxFileSize }) {
     <sc.unorderedList aria-label={I18n.t("uploader.file_list")}>
       {files.map(file => (
         <File
+          error={getFileErrorText(file)}
           fileKey={file.key}
           key={file.key}
           name={file.filename}
+          onCancel={onCancel}
+          onError={onError}
+          progress={file.progress}
           size={file.filesize}
           status={file.status}
-          progress={file.progress}
-          error={getFileErrorText(file)}
         />
       ))}
     </sc.unorderedList>

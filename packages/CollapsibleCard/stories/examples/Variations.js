@@ -5,17 +5,21 @@ import { Story } from "storybook/assets/styles/common.styles";
 import CollapsibleCard from "../../src";
 
 const ExampleStory = () => {
+  function renderLabel({ isCollapsed }) {
+    return `With render label function - ${isCollapsed ? "Collapsed" : "Expand"}`;
+  }
+
   return (
     <Story>
       <StoryHeading level={1}>Collapsible card variations</StoryHeading>
       <CollapsibleCard label="Avatar, metadata with label">
-        <CollapsibleCard.Avatar>Concur</CollapsibleCard.Avatar>
+        <CollapsibleCard.Avatar>C</CollapsibleCard.Avatar>
         <CollapsibleCard.Metadata>1000 records</CollapsibleCard.Metadata>
         Content
       </CollapsibleCard>
       <br />
       <CollapsibleCard label="Avatar, metadata with long long long long long long long long long long long long long long long long long long long long long long long long label">
-        <CollapsibleCard.Avatar>Concur</CollapsibleCard.Avatar>
+        <CollapsibleCard.Avatar>C</CollapsibleCard.Avatar>
         <CollapsibleCard.Metadata>1000 records</CollapsibleCard.Metadata>
         Content
       </CollapsibleCard>
@@ -26,7 +30,7 @@ const ExampleStory = () => {
       </CollapsibleCard>
       <br />
       <CollapsibleCard label="Avatar with label">
-        <CollapsibleCard.Avatar>Concur</CollapsibleCard.Avatar>
+        <CollapsibleCard.Avatar>C</CollapsibleCard.Avatar>
         Content
       </CollapsibleCard>
       <br />
@@ -35,6 +39,8 @@ const ExampleStory = () => {
       <CollapsibleCard label="Label only with divider" hasDivider>
         Content
       </CollapsibleCard>
+      <br />
+      <CollapsibleCard label={renderLabel}>Content</CollapsibleCard>
     </Story>
   );
 };

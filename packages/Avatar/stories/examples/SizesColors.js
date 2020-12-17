@@ -1,22 +1,10 @@
 import React from "react";
 import { Story } from "storybook/assets/styles/common.styles";
-import Heading from "@paprika/heading";
 import Avatar from "../../src";
+import Heading from "../../../Heading/src";
+import CalendarIcon from "../../../Icon/lib/Calendar";
 
-const text = [
-  "apple",
-  "box",
-  "cake",
-  "duck",
-  "earth",
-  "flower",
-  "glasses",
-  "hair",
-  "image",
-  "jellybeans",
-  "kayak",
-  "lamp",
-];
+const text = ["A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L"];
 
 export default () => {
   return (
@@ -37,13 +25,65 @@ export default () => {
         })}
       </div>
       <div>
-        <Heading level={3}>Sizes</Heading>
-        <Avatar backgroundColor="black" color="white" size={Avatar.types.size.SMALL}>
-          Small
-        </Avatar>
-        <Avatar backgroundColor="black" color="white" size={Avatar.types.size.MEDIUM}>
-          Medium
-        </Avatar>
+        <Heading level={3}>Sizes and Shapes</Heading>
+        <Heading level={5}>Square (default)</Heading>
+        <table cellPadding="5">
+          {[Avatar.types.size.MEDIUM, Avatar.types.size.LARGE].map(size => (
+            <tr>
+              <td>{size}:</td>
+              <td>
+                <Avatar backgroundColor="#004A94" color="white" size={size}>
+                  W
+                </Avatar>
+              </td>
+              <td>
+                <Avatar backgroundColor="#004A94" color="white" size={size}>
+                  Ww
+                </Avatar>
+              </td>
+              <td>
+                <Avatar backgroundColor="#004A94" color="white" size={size}>
+                  WW
+                </Avatar>
+              </td>
+              <td>
+                <Avatar backgroundColor="#004A94" color="white" size={size}>
+                  <CalendarIcon />
+                </Avatar>
+              </td>
+            </tr>
+          ))}
+        </table>
+      </div>
+      <div>
+        <Heading level={5}>Round</Heading>
+        <table cellPadding="5">
+          {[Avatar.types.size.SMALL, Avatar.types.size.MEDIUM, Avatar.types.size.LARGE].map(size => (
+            <tr>
+              <td>{size}:</td>
+              <td>
+                <Avatar isRound backgroundColor="#004A94" color="white" size={size}>
+                  W
+                </Avatar>
+              </td>
+              <td>
+                <Avatar isRound backgroundColor="#004A94" color="white" size={size}>
+                  Ww
+                </Avatar>
+              </td>
+              <td>
+                <Avatar isRound backgroundColor="#004A94" color="white" size={size}>
+                  WW
+                </Avatar>
+              </td>
+              <td>
+                <Avatar isRound backgroundColor="#004A94" color="white" size={size}>
+                  <CalendarIcon />
+                </Avatar>
+              </td>
+            </tr>
+          ))}
+        </table>
       </div>
     </Story>
   );

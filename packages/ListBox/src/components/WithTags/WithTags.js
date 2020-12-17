@@ -1,11 +1,16 @@
 import React from "react";
 import PropTypes from "prop-types";
 import useI18n from "@paprika/l10n/lib/useI18n";
+import CaretDownIcon from "@paprika/icon/lib/CaretDown";
+import CaretUpIcon from "@paprika/icon/lib/CaretUp";
 import ListBox from "../..";
 
 import Pill, { Pills } from "../Pill";
 import { filter } from "../../helpers/filter";
 import * as sc from "./WithTags.styles";
+/* eslint-disable no-restricted-syntax */
+import * as triggerSc from "../Trigger/Trigger.styles";
+/* eslint-enable no-restricted-syntax */
 
 const propTypes = {
   /** Expect <ListBoxWithTags.Option /> */
@@ -44,7 +49,7 @@ const defaultProps = {
 
 const renderTrigger = ({ t, size, selectedOptions, onRemove, renderPill, renderTriggerPillLabel }) => (...args) => {
   const [, , , attributes] = args;
-  const { propsForTrigger, refTrigger, dispatch, types, handleKeyDown, handleKeyUp } = attributes;
+  const { propsForTrigger, refTrigger, dispatch, types, handleKeyDown, handleKeyUp, isOpen } = attributes;
 
   function handleClick(event) {
     event.stopPropagation();
@@ -57,6 +62,8 @@ const renderTrigger = ({ t, size, selectedOptions, onRemove, renderPill, renderT
     event.stopPropagation();
     onRemove(option);
   };
+
+  const Caret = isOpen ? <CaretUpIcon css={triggerSc.iconStyles} /> : <CaretDownIcon css={triggerSc.iconStyles} />;
 
   return (
     <sc.Trigger
@@ -93,6 +100,8 @@ const renderTrigger = ({ t, size, selectedOptions, onRemove, renderPill, renderT
           </sc.PlaceHolder>
         )}
       </Pills>
+
+      {Caret}
     </sc.Trigger>
   );
 };

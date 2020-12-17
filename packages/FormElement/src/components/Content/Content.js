@@ -4,13 +4,11 @@ import { FormElementContext } from "../../FormElement";
 
 export const FieldsetContext = React.createContext({});
 
-const propTypes = {
-  children: PropTypes.oneOfType([PropTypes.func, PropTypes.node]).isRequired,
-};
-
 function Content(props) {
-  const { ariaDescribedBy, refLabel, labelId, hasFieldSet } = React.useContext(FormElementContext);
   const { children, ...moreProps } = props;
+  const { ariaDescribedBy, isRequired, isDisabled, refLabel, labelId, hasFieldSet } = React.useContext(
+    FormElementContext
+  );
 
   if (!children) {
     return null;
@@ -26,13 +24,13 @@ function Content(props) {
   const ariaDescribedByIdsString = ariaDescribedByIdsArray.join(" ");
 
   const a11yProps = {
-    refLabel,
+    "aria-describedby": ariaDescribedByIdsString.length ? ariaDescribedByIdsString : null,
+    "aria-disabled": isDisabled || null,
+    "aria-required": isRequired || null,
+    disabled: isDisabled || null,
     id: labelId,
+    refLabel,
   };
-
-  if (ariaDescribedByIdsString.length) {
-    a11yProps["aria-describedby"] = ariaDescribedByIdsString;
-  }
 
   const renderChildren = () => {
     return typeof children === "function" ? children(a11yProps) : children;
@@ -50,6 +48,13 @@ function Content(props) {
     </div>
   );
 }
+
+const propTypes = {
+  /** Input field and layout elements. May be a render function with a11yProps object as an argument.
+   * a11yProps includes: { id, refLabel, disabled?, "aria-disabled"?, "aria-describedby"?, "aria-required"? }
+   */
+  children: PropTypes.oneOfType([PropTypes.func, PropTypes.node]).isRequired,
+};
 
 Content.displayName = "FormElement.Content";
 Content.propTypes = propTypes;

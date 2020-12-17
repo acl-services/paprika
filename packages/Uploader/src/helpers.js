@@ -60,13 +60,13 @@ function createFilesDataStructure({ files, maxFileSize, supportedMimeTypes, endp
   });
 }
 
-export function uploadToServer({ file, data = {}, onProgress, onSuccess, onError, headers }) {
+export function uploadToServer({ file, data = {}, onProgress, onSuccess, onError, headers, onRequest }) {
   const formData = new FormData();
   formData.append("file", file.file);
   formData.append("data", JSON.stringify(data));
 
+  let headerObj = {};
   if (headers.length) {
-    let headerObj = {};
     headers.forEach(header => {
       headerObj = { ...headerObj, ...header };
     });
@@ -74,21 +74,37 @@ export function uploadToServer({ file, data = {}, onProgress, onSuccess, onError
     file.request.set(headerObj);
   }
 
+  const onProgressFn = ({ percent }) => {
+    if (percent) {
+      onProgress({ file, percent });
+    }
+  };
+
+  const onEndFn = (error, response) => {
+    if (error) {
+      onError({ file, error });
+      return;
+    }
+
+    onSuccess({ file, response });
+  };
+
+  if (typeof onRequest === "function") {
+    onRequest({
+      file,
+      onProgress: onProgressFn,
+      onEnd: onEndFn,
+      headers: headerObj,
+      data,
+      formData,
+    });
+    return;
+  }
+
   file.request
     .send(formData)
-    .on("progress", ({ percent }) => {
-      if (percent) {
-        onProgress({ file, percent });
-      }
-    })
-    .end((error, response) => {
-      if (error) {
-        onError({ file, error });
-        return;
-      }
-
-      onSuccess({ file, response });
-    });
+    .on("progress", onProgressFn)
+    .end(onEndFn);
 }
 
 export function getFiles({ event, maxFileSize, supportedMimeTypes, endpoint }) {

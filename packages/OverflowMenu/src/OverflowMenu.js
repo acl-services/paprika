@@ -46,12 +46,12 @@ const OverflowMenu = React.forwardRef((props, ref) => {
 
   const [isOpen, setIsOpen] = React.useState(false);
   const [isConfirming, setIsConfirming] = React.useState(false);
-  const [renderConfirmation, setRenderConfirmation] = React.useState(null);
   const [currentFocusIndex, setFocusIndex] = React.useState(0);
   const triggerRef = React.useRef(null);
   const menuId = React.useRef(uuid());
   const triggerId = React.useRef(uuid());
   const overflowListRef = React.useRef(null);
+  const renderConfirmationRef = React.useRef(null);
 
   function focusAndSetIndex(index) {
     if (overflowListRef && overflowListRef.current && index !== undefined)
@@ -77,7 +77,7 @@ const OverflowMenu = React.forwardRef((props, ref) => {
 
     if (isConfirming) {
       setIsConfirming(false);
-      setRenderConfirmation(null);
+      renderConfirmationRef.current = null;
     }
 
     if (triggerRef.current && key === "Tab") {
@@ -133,9 +133,12 @@ const OverflowMenu = React.forwardRef((props, ref) => {
     }
   };
 
-  const handleShowConfirmation = renderConfirmation => () => {
-    setIsConfirming(prevIsConfirmingState => !prevIsConfirmingState);
-    setRenderConfirmation(prevIsConfirmingState => (prevIsConfirmingState ? null : renderConfirmation));
+  const handleShowConfirmation = renderConfirmation => {
+    renderConfirmationRef.current = renderConfirmation;
+
+    return () => {
+      setIsConfirming(prevIsConfirmingState => !prevIsConfirmingState);
+    };
   };
 
   const renderTrigger = () => {
@@ -151,6 +154,14 @@ const OverflowMenu = React.forwardRef((props, ref) => {
       });
   };
 
+  const extractRenderConfirmation = () => {
+    extractedChildren.forEach(child => {
+      if (child.props.renderConfirmation && child.props.renderConfirmation !== renderConfirmationRef.current) {
+        renderConfirmationRef.current = child.props.renderConfirmation;
+      }
+    });
+  };
+
   const getClonedChild = (child, childKey, additionalProps = {}) =>
     React.cloneElement(child, {
       onKeyDown: e => onKeyDown(e, currentFocusIndex),
@@ -160,7 +171,8 @@ const OverflowMenu = React.forwardRef((props, ref) => {
 
   const renderContent = () => {
     if (isConfirming) {
-      const confirmationComponent = renderConfirmation(handleCloseMenu);
+      extractRenderConfirmation();
+      const confirmationComponent = renderConfirmationRef.current(handleCloseMenu);
       return React.cloneElement(confirmationComponent, {
         align,
         edge,

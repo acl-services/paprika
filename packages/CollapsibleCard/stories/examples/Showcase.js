@@ -9,7 +9,7 @@ const ExampleStory = () => {
     <Story>
       <StoryHeading level={1}>Collapsible card</StoryHeading>
       <CollapsibleCard label="Avatar, metadata with label">
-        <CollapsibleCard.Avatar>Concur</CollapsibleCard.Avatar>
+        <CollapsibleCard.Avatar>C</CollapsibleCard.Avatar>
         <CollapsibleCard.Metadata>1000 records</CollapsibleCard.Metadata>
         Content
       </CollapsibleCard>

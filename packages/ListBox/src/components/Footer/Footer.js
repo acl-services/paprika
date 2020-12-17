@@ -1,12 +1,14 @@
 import React from "react";
-import Button from "@paprika/button";
 import PropTypes from "prop-types";
+import Button from "@paprika/button";
+import useI18n from "@paprika/l10n/lib/useI18n";
 import useListBox from "../../useListBox";
 import invokeOnChange from "../../helpers/invokeOnChange";
 import * as sc from "./Footer.styles";
 
 export function FooterComponent(props, ref) {
   const [, dispatch] = useListBox();
+  const I18n = useI18n();
 
   const {
     labelCancel,
@@ -65,12 +67,12 @@ export function FooterComponent(props, ref) {
       <div>
         {isAcceptVisible && (
           <Button isDisabled={isDisabled} kind={kindAccept} size={size} onClick={handleClickAccept}>
-            {labelAccept}
+            {labelAccept || I18n.t("listBox.footer.accept")}
           </Button>
         )}
         {isCancelVisible && (
           <Button isDisabled={isDisabled} kind={kindCancel} size={size} onClick={handleClickCancel}>
-            {labelCancel}
+            {labelCancel || I18n.t("listBox.footer.cancel")}
           </Button>
         )}
       </div>
@@ -83,7 +85,7 @@ export function FooterComponent(props, ref) {
             size={size}
             onClick={handleClickClear}
           >
-            {labelClear}
+            {labelClear || I18n.t("listBox.footer.clear")}
           </Button>
         )}
 
@@ -150,9 +152,9 @@ const defaultProps = {
   kindAccept: Button.types.kind.PRIMARY,
   kindCancel: Button.types.kind.MINOR,
   kindClear: Button.types.kind.MINOR,
-  labelAccept: "Accept",
-  labelCancel: "Cancel",
-  labelClear: "Clear",
+  labelAccept: null,
+  labelCancel: null,
+  labelClear: null,
   onClickAccept: null,
   onClickCancel: null,
   onClickClear: null,

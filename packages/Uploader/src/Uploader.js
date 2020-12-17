@@ -62,19 +62,34 @@ const propTypes = {
     you can pass an array of header objects.
   */
   headers: PropTypes.arrayOf(PropTypes.object),
+  /**
+   * Let you to take over the request method
+   */
+  onRequest: PropTypes.func,
+  /**
+   * Callback fired whenever an error occurs while uploading a file.  It receives the raw server error as an argument. Whatever this function returns is what is displayed in the UI.  If nothing is returned, it will display the raw server error.
+   */
+  onError: PropTypes.func,
+  /**
+   * Callback fired when the user cancels an uploading file.
+   */
+  onCancel: PropTypes.func,
 };
 
 const defaultProps = {
   a11yText: null,
-  supportedMimeTypes: ["*/*"],
   canChooseMultiple: true,
   defaultIsDisabled: false,
   hasAutoUpload: true,
   headers: [],
   isBodyDroppable: true,
   maxFileSize: oneMebibyte * 10, // 1048576bytes * 10 = 10,485,760 Mebibytes
+  onCancel: () => {},
   onChange: () => {},
   onCompleted: () => {},
+  onError: null,
+  onRequest: null,
+  supportedMimeTypes: ["*/*"],
 };
 
 function getDocumentBody() {
@@ -90,17 +105,20 @@ function getContainer(refContainer) {
 const Uploader = React.forwardRef((props, ref) => {
   const {
     a11yText,
-    supportedMimeTypes,
     canChooseMultiple,
-    hasAutoUpload,
-    maxFileSize,
-    onChange,
-    onCompleted,
-    isBodyDroppable,
-    endpoint,
     children,
     defaultIsDisabled,
+    endpoint,
+    hasAutoUpload,
     headers,
+    isBodyDroppable,
+    maxFileSize,
+    onCancel,
+    onChange,
+    onCompleted,
+    onError,
+    onRequest,
+    supportedMimeTypes,
   } = props;
 
   const refInput = React.useRef();
@@ -114,22 +132,14 @@ const Uploader = React.forwardRef((props, ref) => {
     },
   }));
 
-  const {
-    files,
-    isCompleted,
-    isDisabled,
-    removeFile,
-    cancelFile,
-    restartFileUpload,
-    setFiles,
-    upload,
-  } = useProcessFiles({
+  const { files, isCompleted, isDisabled, removeFile, cancelFile, setFiles, upload } = useProcessFiles({
     defaultIsDisabled,
     endpoint,
     hasAutoUpload,
     headers,
     onChange,
     onCompleted,
+    onRequest,
   });
 
   const handleChange = React.useCallback(
@@ -173,18 +183,20 @@ const Uploader = React.forwardRef((props, ref) => {
         </sc.Container>
       );
     }
+
     return {
       FileInput,
+      cancelFile,
       files,
       isCompleted,
       isDisabled,
       isDragLeave,
       isDraggingOver,
+      onCancel,
+      onError,
       refInput,
       removeFile,
-      cancelFile,
       upload,
-      restartFileUpload,
     };
   }, [
     canChooseMultiple,
@@ -196,8 +208,10 @@ const Uploader = React.forwardRef((props, ref) => {
     isDragLeave,
     isDraggingOver,
     label,
-    supportedMimeTypes,
+    onCancel,
+    onError,
     removeFile,
+    supportedMimeTypes,
     upload,
   ]);
 

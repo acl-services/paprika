@@ -1,11 +1,30 @@
 import React from "react";
 import PropTypes from "prop-types";
 import nanoid from "nanoid";
-import ExclamationCircleIcon from "@paprika/icon/lib/ExclamationCircle";
 import { FormElementContext } from "../../FormElement";
-import errorStyles, { iconStyles } from "./Error.styles";
+import * as sc from "./Error.styles";
+
+function Error(props) {
+  const { children, ...moreProps } = props;
+  const { addIdToAriaDescribedBy } = React.useContext(FormElementContext);
+  const [ariaErrorId] = React.useState(nanoid);
+
+  React.useEffect(() => {
+    if (addIdToAriaDescribedBy) addIdToAriaDescribedBy({ ariaErrorId });
+  }, []);
+
+  if (!children) return null;
+
+  return (
+    <sc.Error data-pka-anchor="form-element.error" {...moreProps} id={ariaErrorId}>
+      <sc.ErrorIcon />
+      {children}
+    </sc.Error>
+  );
+}
 
 const propTypes = {
+  /** Content of the error message */
   children: PropTypes.node,
 };
 
@@ -13,27 +32,7 @@ const defaultProps = {
   children: null,
 };
 
-function Error(props) {
-  const [ariaErrorId] = React.useState(nanoid);
-  const { addIdToAriaDescribedBy } = React.useContext(FormElementContext);
-  const { children, ...moreProps } = props;
-
-  React.useEffect(() => {
-    addIdToAriaDescribedBy({ ariaErrorId });
-  }, []);
-
-  if (!children) return null;
-
-  return (
-    <div css={errorStyles} data-pka-anchor="form-element.error" {...moreProps} id={ariaErrorId}>
-      <ExclamationCircleIcon css={iconStyles} />
-      {children}
-    </div>
-  );
-}
-
 Error.displayName = "FormElement.Error";
-
 Error.propTypes = propTypes;
 Error.defaultProps = defaultProps;
 

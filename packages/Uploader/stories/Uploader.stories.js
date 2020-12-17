@@ -61,6 +61,20 @@ storiesOf(`${storyName}/Examples`, module)
       </Uploader>
     </Story>
   ))
+  .add("Failed upload error using onError", () => (
+    <Story>
+      <Uploader
+        {...props}
+        onError={error => {
+          return `Oh dear... the server returned this error: ${error}`;
+        }}
+        endpoint="http://localhost:9000/upload.php?error=true"
+      >
+        <Uploader.DropZone />
+        <Uploader.FileList />
+      </Uploader>
+    </Story>
+  ))
   .add("Invalid mime type error", () => (
     <Story>
       <Uploader {...props} supportedMimeTypes={["audio/wav", "audio/ogg"]}>
@@ -102,20 +116,6 @@ storiesOf(`${storyName}/Examples`, module)
       </Uploader>
     </Story>
   ))
-  .add("Firing onCompleted prop", () => (
-    <Story>
-      <p>
-        The onCompleted callback is fired once all files have been processed (but it does not neccessarily mean that all
-        files were _successuflly_ uploaded). The callback receives an array of all of the files processed with their
-        last status. You could then loop over the list to see if all files have the status
-        <code>Uploader.status.SUCCESS</code> (which would mean all were uploaded correctly).
-      </p>
-      <Uploader {...props} onCompleted={files => console.log("on finished:", files)}>
-        <Uploader.DropZone />
-        <Uploader.FileList />
-      </Uploader>
-    </Story>
-  ))
   .add("Adding custom headers", () => (
     <Story>
       <p>
@@ -138,7 +138,74 @@ storiesOf(`${storyName}/Examples`, module)
         <File {...fileProps} />
         <File {...fileProps} progress={37} status={types.status.PROCESSING} />
         <File {...fileProps} progress={100} status={types.status.SUCCESS} />
+        <File {...fileProps} progress={25} status={types.status.CANCEL} />
         <File {...fileProps} progress={37} error="Something went wrong" status={types.status.ERROR} />
       </Uploader>
     </Story>
-  ));
+  ))
+  .add("onCompleted prop", () => (
+    <Story>
+      <p>
+        The onCompleted callback is fired once all files have been processed (but it does not neccessarily mean that all
+        files were _successuflly_ uploaded). The callback receives an array of all of the files processed with their
+        last status. You could then loop over the list to see if all files have the status
+        <code>Uploader.status.SUCCESS</code> (which would mean all were uploaded correctly).
+      </p>
+      <Uploader {...props} onCompleted={files => console.log("on finished:", files)}>
+        <Uploader.DropZone />
+        <Uploader.FileList />
+      </Uploader>
+    </Story>
+  ))
+  .add("onRequest callback", () => {
+    return (
+      <Story>
+        <p>Override how files are uploaded.</p>
+        <Uploader
+          onCompleted={files => console.log("on finished:", files)}
+          endpoint="http://localhost:9000/upload.php"
+          onChange={files => {
+            console.log("Selected files:", files);
+          }}
+          onRequest={({ file, onProgress, onEnd, formData }) => {
+            file.request
+              .send(formData)
+              .on("progress", onProgress)
+              .end(onEnd);
+
+            /**
+             * With this approach you could use you own process to upload
+             * each file read superagent API for more info
+             */
+
+            // file.request
+            //   .get("https://api.example.com:4001/")
+            //   .auth('you_token', { type: 'bearer' })
+            //   .withCredentials()
+            //   .on("progress", onProgress)
+            //   .end(onEnd);
+          }}
+        >
+          <Uploader.DropZone />
+          <Uploader.FileList />
+        </Uploader>
+      </Story>
+    );
+  })
+  .add("onCancel prop callback", () => {
+    return (
+      <Story>
+        <p>Check the console to see what is returned when you cancel an upload.</p>
+        <Uploader
+          onCompleted={files => console.log("on finished:", files)}
+          endpoint="http://localhost:9000/upload.php"
+          onCancel={file => {
+            console.log("onCancel:", file);
+          }}
+        >
+          <Uploader.DropZone />
+          <Uploader.FileList />
+        </Uploader>
+      </Story>
+    );
+  });

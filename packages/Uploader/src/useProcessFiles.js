@@ -1,5 +1,4 @@
 import React from "react";
-import uuidv4 from "uuid/v4";
 import * as types from "./types";
 import { uploadToServer } from "./helpers";
 
@@ -43,13 +42,14 @@ export default function useProcessFiles({
   endpoint,
   defaultIsDisabled,
   headers,
+  onRequest,
 }) {
   const [uploadingFileList, setUploadingFileList] = React.useState([]);
   const [isDisabled, setIsDisabled] = React.useState(defaultIsDisabled);
   const [isCompleted, setisCompleted] = React.useState(null);
   const [files, setFiles] = React.useState([]);
 
-  function cancelFile(key) {
+  function cancelFile(key, onCancelProp = null) {
     const index = getFileByIndex(key, files);
     if (index !== null) {
       if (files[index].status === types.status.PROCESSING || files[index].status === types.status.WAITINGFORSERVER) {
@@ -66,6 +66,10 @@ export default function useProcessFiles({
             return fileItem;
           })
         );
+
+        if (typeof onCancelProp === "function") {
+          onCancelProp(file);
+        }
       }
     }
   }
@@ -88,27 +92,6 @@ export default function useProcessFiles({
 
         setFiles(() => fileClones);
         setUploadingFileList(() => uploadingFileListClone);
-      }
-    }
-  }
-
-  function restartFileUpload(key) {
-    const index = getFileByIndex(key, files);
-
-    if (index !== null) {
-      const file = files[index];
-
-      if (file.status === types.status.ERROR || file.status === types.status.CANCEL) {
-        setFiles(
-          setFile(file, fileItem => {
-            const file = fileItem;
-            file.key = uuidv4(); // change its key so it will be restartable
-            file.progress = 0;
-            file.request._data = undefined; // so superagent allows the upload to restart
-            file.request._aborted = false; // so superagent allows the upload to restart
-            return fileItem;
-          })
-        );
       }
     }
   }
@@ -188,11 +171,11 @@ export default function useProcessFiles({
 
       files.forEach(file => {
         if (file.isValid && file.status !== types.status.SUCCESS) {
-          uploadToServer({ file, endpoint, onProgress, onSuccess, onError, headers });
+          uploadToServer({ file, endpoint, onProgress, onSuccess, onError, headers, onRequest });
         }
       });
     }
-  }, [files, uploadingFileList, isDisabled, onCompleted, onChange, endpoint, headers]);
+  }, [files, uploadingFileList, isDisabled, onCompleted, onChange, endpoint, headers, onRequest]);
 
   React.useEffect(() => {
     if (hasAutoUpload) {
@@ -200,5 +183,5 @@ export default function useProcessFiles({
     }
   }, [files, hasAutoUpload, upload]);
 
-  return { files, setFiles, isDisabled, isCompleted, upload, removeFile, cancelFile, restartFileUpload };
+  return { files, setFiles, isDisabled, isCompleted, upload, removeFile, cancelFile };
 }

@@ -42,9 +42,11 @@ describe("Uploader", () => {
       .eq(2)
       .should("have.css", "background-color", "rgb(66, 153, 109)");
 
+    cy.getByText("Cancelled").should("be.visible");
+
     cy.getByText("Something went wrong").should("be.visible");
     cy.getByTestId("uploader-file-progressBar")
-      .eq(3)
+      .eq(4)
       .should("have.css", "background-color", "rgb(222, 77, 51)");
   });
 });
