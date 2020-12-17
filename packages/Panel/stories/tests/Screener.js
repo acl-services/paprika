@@ -1,6 +1,6 @@
 import React from "react";
 import Screener, { Steps } from "screener-storybook/src/screener";
-import PanelPushContentStory from "./PanelPushContentStory";
+import PushContentPanel from "../examples/PushContentPanel";
 
 const screenerScript = new Steps()
   .snapshot("Panel - Push content expanded")
@@ -8,12 +8,10 @@ const screenerScript = new Steps()
   .snapshot("Panel - Push content collapsed")
   .end();
 
-const ScreenerStory = () => {
+export default function ScreenerStory() {
   return (
     <Screener steps={screenerScript}>
-      <PanelPushContentStory width="50%" />
+      <PushContentPanel />
     </Screener>
   );
-};
-
-export default ScreenerStory;
+}

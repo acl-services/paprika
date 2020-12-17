@@ -3,16 +3,7 @@ import Heading from "@paprika/heading";
 import Panel from "../../src";
 import { TextLine, Nav } from "../helpers";
 
-export const PanelFocusLockDisabled = () => {
-  return (
-    <Panel isOpen>
-      <Panel.FocusLock autoFocus={false} />
-      <Panel.Header>Header</Panel.Header>
-    </Panel>
-  );
-};
-
-export const PanelDefaultSticky = () => {
+export function PanelDefaultSticky() {
   return (
     <React.Fragment>
       <Nav />
@@ -28,9 +19,34 @@ export const PanelDefaultSticky = () => {
       </div>
     </React.Fragment>
   );
-};
+}
 
-export const PanelOnAfter = () => {
+export function PanelFocusLockDisabled() {
+  return (
+    <Panel isOpen>
+      <Panel.FocusLock autoFocus={false} />
+      <Panel.Header>Header</Panel.Header>
+    </Panel>
+  );
+}
+
+export function PanelFooterSticky() {
+  return (
+    <React.Fragment>
+      <Nav />
+      <p>
+        <Panel isOpen>
+          <TextLine repeat={100} />
+          <Panel.Footer data-pka-anchor="panel.footer" isSticky>
+            Footer
+          </Panel.Footer>
+        </Panel>
+      </p>
+    </React.Fragment>
+  );
+}
+
+export function PanelOnAfter() {
   const [isOpen, setIsOpen] = React.useState(true);
 
   return (
@@ -61,20 +77,4 @@ export const PanelOnAfter = () => {
       </div>
     </React.Fragment>
   );
-};
-
-export const PanelFooterSticky = () => {
-  return (
-    <React.Fragment>
-      <Nav />
-      <p>
-        <Panel isOpen>
-          <TextLine repeat={100} />
-          <Panel.Footer data-pka-anchor="panel.footer" isSticky>
-            Footer
-          </Panel.Footer>
-        </Panel>
-      </p>
-    </React.Fragment>
-  );
-};
+}
