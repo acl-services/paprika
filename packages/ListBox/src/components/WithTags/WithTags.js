@@ -94,7 +94,9 @@ const renderTrigger = ({ t, size, selectedOptions, onRemove, renderPill, pillLab
 
           if (typeof label !== "string") {
             throw Error(
-              `Your item ${JSON.stringify(item)} must include the attribute "label", or you must indicate which attribute should be rendered as the label via the "pillLabelKey" prop.`
+              `Your item ${JSON.stringify(
+                item
+              )} must include the attribute "label", or you must indicate which attribute should be rendered as the label via the "pillLabelKey" prop.`
             );
           }
 

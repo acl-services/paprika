@@ -15,7 +15,7 @@ export const List = styled.ul(
     li {
       box-sizing: border-box;
     }
-    padding: 8px;
-    ${noResultsFound || !hasOptions ? "padding: 0" : ""}
+
+    ${noResultsFound || !hasOptions ? "padding: 0" : "padding: 8px;"}
   `
 );
