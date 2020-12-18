@@ -116,6 +116,7 @@ en:
     listBoxWithTags:
       placeholder: Select…
       no_results_found: No results found
+      all_items_have_been_selected: "All items have been selected"
     actionBar:
       columns_arrangement:
         hide_all: Hide all

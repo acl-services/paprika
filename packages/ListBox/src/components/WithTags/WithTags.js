@@ -1,3 +1,4 @@
+/* eslint-disable no-nested-ternary */
 import React from "react";
 import PropTypes from "prop-types";
 import useI18n from "@paprika/l10n/lib/useI18n";
@@ -31,20 +32,31 @@ const propTypes = {
   renderPill: PropTypes.func,
   /** An array of id that helps the ListBoxWithTags to known what elements are selected  */
   selectedOptions: PropTypes.arrayOf(PropTypes.shape({})),
+  /** Provides an alternative for rendering the Pill label instead of using the default [{label:value}] coming from the og data */
+  pillLabelKey: PropTypes.string,
+  /** When this is true, it will display a message indicating all options are selected without showing the popover nor the search input */
+  allOptionsAreSelected: PropTypes.bool,
+  /** Message to display when all options have been selected */
+  allOptionsAreSelectedMessage: PropTypes.string,
 };
 
 const defaultProps = {
+  customOptionRegex: /^.+@.+\..+$/,
   filter: undefined,
   noResultsMessage: null,
-  onChange: () => {},
   onAddCustomOption: null,
+  onChange: () => {},
   onRemove: () => {},
-  customOptionRegex: /^.+@.+\..+$/,
   renderPill: null,
+  pillLabelKey: null,
   selectedOptions: null,
+  allOptionsAreSelected: false,
+  allOptionsAreSelectedMessage: "",
 };
 
-const renderTrigger = ({ t, size, selectedOptions, onRemove, renderPill }) => (...args) => {
+const renderTrigger = ({ t, size, selectedOptions, onRemove, renderPill, pillLabelKey, allOptionsAreSelected }) => (
+  ...args
+) => {
   const [, , , attributes] = args;
   const { propsForTrigger, refTrigger, dispatch, types, handleKeyDown, handleKeyUp, isOpen } = attributes;
 
@@ -70,6 +82,7 @@ const renderTrigger = ({ t, size, selectedOptions, onRemove, renderPill }) => (.
       onKeyUp={handleKeyUp}
       onKeyDown={handleKeyDown}
       size={size}
+      allOptionsAreSelected={allOptionsAreSelected}
     >
       <Pills>
         {selectedOptions.map(item => {
@@ -77,9 +90,19 @@ const renderTrigger = ({ t, size, selectedOptions, onRemove, renderPill }) => (.
             return renderPill({ option: item, Pill, onRemove: handleRemove(item) });
           }
 
+          const label = pillLabelKey === null ? item.label : item[pillLabelKey];
+
+          if (typeof label !== "string") {
+            throw Error(
+              `Your item ${JSON.stringify(
+                item
+              )} must include the attribute "label", or you must indicate which attribute should be rendered as the label via the "pillLabelKey" prop.`
+            );
+          }
+
           return (
-            <Pill key={item.label} onRemove={handleRemove(item)} size={size}>
-              {item.label}
+            <Pill key={label} onRemove={handleRemove(item)} size={size}>
+              {label}
             </Pill>
           );
         })}
@@ -89,21 +112,23 @@ const renderTrigger = ({ t, size, selectedOptions, onRemove, renderPill }) => (.
           </sc.PlaceHolder>
         )}
       </Pills>
-
-      {Caret}
+      {allOptionsAreSelected ? null : Caret}
     </sc.Trigger>
   );
 };
 
 export default function WithTags(props) {
   const {
+    allOptionsAreSelected,
+    allOptionsAreSelectedMessage,
     children,
+    customOptionRegex,
     filter,
     noResultsMessage,
-    onChange,
     onAddCustomOption,
+    onChange,
     onRemove,
-    customOptionRegex,
+    pillLabelKey,
     renderPill,
     selectedOptions,
     ...moreProps
@@ -147,15 +172,43 @@ export default function WithTags(props) {
   return (
     <div ref={refDivRoot}>
       <ListBox isMulti size={size} onChange={handleChange} {...moreProps}>
-        <ListBox.Trigger>{renderTrigger({ size, selectedOptions, renderPill, onRemove, t })}</ListBox.Trigger>
-        <ListBox.Filter filter={filter} ref={refFilter} onKeyDown={handleKeyDown} {...noResultMessageProp} />
-        {React.Children.count(children) > 0 ? children : <ListBox.RawItem>{noResultsMessage}</ListBox.RawItem>}
+        <ListBox.Trigger>
+          {renderTrigger({
+            allOptionsAreSelected,
+            onRemove,
+            pillLabelKey,
+            renderPill,
+            selectedOptions,
+            size,
+            t,
+          })}
+        </ListBox.Trigger>
+        {allOptionsAreSelected ? null : (
+          <ListBox.Filter filter={filter} ref={refFilter} onKeyDown={handleKeyDown} {...noResultMessageProp} />
+        )}
+        {allOptionsAreSelected ? null : React.Children.count(children) > 0 ? (
+          children
+        ) : (
+          <ListBox.RawItem>{noResultsMessage}</ListBox.RawItem>
+        )}
       </ListBox>
+
+      {allOptionsAreSelected && (
+        <sc.AllOptionsAreSelected size={size}>
+          {allOptionsAreSelectedMessage || t("listBoxWithTags.all_items_have_been_selected")}
+        </sc.AllOptionsAreSelected>
+      )}
     </div>
   );
 }
 
 WithTags.propTypes = propTypes;
 WithTags.defaultProps = defaultProps;
+
+WithTags.Box = ListBox.Box;
+WithTags.Divider = ListBox.Divider;
+WithTags.Footer = ListBox.Footer;
 WithTags.Option = ListBox.Option;
+WithTags.Popover = ListBox.Popover;
+WithTags.RawItem = ListBox.RawItem;
 WithTags.filter = filter;

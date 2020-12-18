@@ -191,6 +191,12 @@ interface WithTagsProps {
   renderPill?: (...args: any[]) => any;
   /** An array of id that helps the ListBoxWithTags to known what elements are selected */
   selectedOptions?: shape[];
+  /** Provides an alternative for rendering the Pill label instead of using the default [{label:value}] coming from the og data */
+  pillLabelKey?: string;
+  /** When this is true, it will display a message indicating all options are selected without showing the popover nor the search input */
+  allOptionsAreSelected?: boolean;
+  /** Message to display when all options have been selected */
+  allOptionsAreSelectedMessage?: string;
 }
 
 declare namespace ListBoxContainer {
