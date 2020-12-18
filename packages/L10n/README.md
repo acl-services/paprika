@@ -39,7 +39,7 @@ This component can be used in one of two ways: Translating Paprika components, o
 
 When someone wants to use a Paprika component that has translatable text (like the `<Collapsible>`) in a language other than English, they'd do it like this:
 
-```
+```jsx
 import L10n from "@paprika/l10n";
 import Collapsible from "@paprika/collapsible";
 
@@ -55,7 +55,7 @@ import Collapsible from "@paprika/collapsible";
 
 When someone wants to add their own translations to their own app/components, they'd do it like this:
 
-```
+```jsx
 // App.js
 import React from "react";
 import L10n from "@paprika/l10n";
@@ -73,7 +73,7 @@ export default function FakeAppWithLocales(props) {
 }
 ```
 
-```
+```jsx
 // GreetingHeader.js
 import React from "react";
 import useI18n from "@paprika/l10n/lib/useI18n";
@@ -84,7 +84,7 @@ export default function GreetingHeader() {
 }
 ```
 
-```
+```jsx
 // YourLocales/index.js
 const locales = {};
 
@@ -96,7 +96,7 @@ const locales = {};
 export default locales;
 ```
 
-```
+```jsx
 // YourLocales/en.js
 const locales = {
   en: {
@@ -112,7 +112,7 @@ const locales = {
 export default locales;
 ```
 
-```
+```jsx
 // YourLocales/fr.js
 const locales = {
   fr: {

@@ -1,17 +1,17 @@
 import React from "react";
 import { Story } from "storybook/assets/styles/common.styles";
-import FormElement, { Label } from "@paprika/form-element";
+import FormElement from "@paprika/form-element";
 import L10n from "../../../src/L10n";
 import Locales from "./Locales";
 import Greeting from "./Greeting";
 
-export default function FakeAppWithLocales(props) {
+export default function FakeAppWithLocales() {
   return (
     <Story>
-      <L10n locale={props.locale} locales={Locales}>
+      <L10n locale="en" locales={Locales}>
         <Greeting />
         <FormElement>
-          <Label hasOptionalLabel>Translation using paprika locales</Label>
+          <FormElement.Label hasOptionalLabel>Translation using paprika locales</FormElement.Label>
           <input />
         </FormElement>
       </L10n>
