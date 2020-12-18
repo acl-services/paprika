@@ -194,7 +194,9 @@ export default function WithTags(props) {
       </ListBox>
 
       {allOptionsAreSelected && (
-        <sc.AllOptionsAreSelected size={size}>{allOptionsAreSelectedMessage}</sc.AllOptionsAreSelected>
+        <sc.AllOptionsAreSelected size={size}>
+          {allOptionsAreSelectedMessage || t("listBoxWithTags.all_items_have_been_selected")}
+        </sc.AllOptionsAreSelected>
       )}
     </div>
   );
