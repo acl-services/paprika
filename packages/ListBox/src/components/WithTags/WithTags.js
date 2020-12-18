@@ -94,9 +94,7 @@ const renderTrigger = ({ t, size, selectedOptions, onRemove, renderPill, pillLab
 
           if (typeof label !== "string") {
             throw Error(
-              `Either your item ${JSON.stringify(
-                item
-              )} lacks of an attribute "label", or you are not passing down the pillLabelKey prop on the component to indicate which attribute from your data should be use to render the pill label`
+              `Your item ${JSON.stringify(item)} must include the attribute "label", or you must indicate which attribute should be rendered as the label via the "pillLabelKey" prop.`
             );
           }
 
