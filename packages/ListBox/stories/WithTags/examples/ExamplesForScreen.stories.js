@@ -1,6 +1,6 @@
 import React from "react";
 import ListBox, { useListBoxWithTags } from "../../../src/WithTags";
-import AllOptionsAreSelected from "./AllOptionsAreSelected";
+import AllOptionsAreSelectedOpen from "./AllOptionsAreSelected";
 
 const defaultData = [
   { name: "jack" },
@@ -26,8 +26,8 @@ export function Open() {
         noResultsMessage="No results found, but you can add an email and then press enter..."
         selectedOptions={selectedOptions}
         pillLabelKey="name"
-        isOpen
         {...moreProps}
+        isOpen
       >
         {filteredData.map(option => {
           return !isSelected(option.name) ? <ListBox.Option label={option.name}>{option.name}</ListBox.Option> : null;
@@ -52,9 +52,9 @@ export function Selected() {
       <ListBox
         noResultsMessage="No results found, but you can add an email and then press enter..."
         selectedOptions={selectedOptions}
-        isOpen
         pillLabelKey="name"
         {...moreProps}
+        isOpen
       >
         {selectedOptions.length === defaultData.length ? (
           <ListBox.RawItem>All options has been selected</ListBox.RawItem>
@@ -67,14 +67,6 @@ export function Selected() {
   );
 }
 
-export default function App() {
-  return (
-    <>
-      <Open />
-      <div style={{ height: "200px", width: "10px" }} />
-      <Selected />
-      <div style={{ height: "200px", width: "10px" }} />
-      <AllOptionsAreSelected />
-    </>
-  );
+export function AllOptionsAreSelected() {
+  return <AllOptionsAreSelectedOpen />;
 }
