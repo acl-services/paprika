@@ -3,7 +3,7 @@ export default ListBox;
 declare function ListBox(props: ListBoxProps): JSX.Element;
 interface ListBoxProps {
   [x: string]: any;
-  /** Child of type <ListBox.Option /> */
+  /** Child of type <ListBox.Option />, <ListBox.Divider />, etc */
   children: React.ReactNode;
   /** Has implicit "All items selected" value when no item is selected */
   hasImplicitAll?: boolean;
@@ -173,8 +173,8 @@ declare namespace ListBox {
 declare function WithTags(props: WithTagsProps): JSX.Element;
 interface WithTagsProps {
   [x: string]: any;
-  /** Expect <ListBoxWithTags.Option /> */
-  children: instanceOf;
+  /** Child of type <ListBox.Option />, <ListBox.Divider />, etc */
+  children: node[];
   /** filter function for the ListBoxWithTags can be pair with ListBoxWithTags.filter */
   filter?: (...args: any[]) => any;
   /** String message to be display when there are not results */
