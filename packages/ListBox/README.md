@@ -24,7 +24,7 @@ npm install @paprika/list-box
 
 | Prop           | Type                                                                                                        | required | default | Description                                                        |
 | -------------- | ----------------------------------------------------------------------------------------------------------- | -------- | ------- | ------------------------------------------------------------------ |
-| children       | node                                                                                                        | true     | -       | Child of type <ListBox.Option />                                   |
+| children       | node                                                                                                        | true     | -       | Child of type <ListBox.Option />, <ListBox.Divider />, etc         |
 | hasImplicitAll | bool                                                                                                        | false    | -       | Has implicit "All items selected" value when no item is selected   |
 | height         | number                                                                                                      | true     | -       | Indicate which is the height for the options container             |
 | isDisabled     | bool                                                                                                        | false    | -       | Disables the ListBox if true                                       |
@@ -131,7 +131,7 @@ see: options/helpers/options.js|
 
 | Prop                         | Type       | required | default        | Description                                                                                                                       |
 | ---------------------------- | ---------- | -------- | -------------- | --------------------------------------------------------------------------------------------------------------------------------- |
-| children                     | instanceOf | true     | -              | Expect <ListBoxWithTags.Option />                                                                                                 |
+| children                     | arrayOf    | true     | -              | Child of type <ListBox.Option />, <ListBox.Divider />, etc                                                                        |
 | filter                       | func       | false    | undefined      | filter function for the ListBoxWithTags can be pair with ListBoxWithTags.filter                                                   |
 | noResultsMessage             | node       | false    | null           | String message to be display when there are not results                                                                           |
 | onChange                     | func       | false    | () => {}       | Callback whenever the user change a selection on the ListBoxWithTags                                                              |
