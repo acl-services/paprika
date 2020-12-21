@@ -143,8 +143,8 @@ ListBoxContainer.types = {
 };
 
 export const propTypes = {
-  /** Child of type <ListBox.Option /> */
-  children: PropTypes.node,
+  /** Child of type <ListBox.Option />, <ListBox.Divider />, etc */
+  children: PropTypes.arrayOf(PropTypes.node),
 
   /** Has implicit "All items selected" value when no item is selected */
   hasImplicitAll: PropTypes.bool,

@@ -14,8 +14,8 @@ import * as triggerSc from "../Trigger/Trigger.styles";
 /* eslint-enable no-restricted-syntax */
 
 const propTypes = {
-  /** Expect <ListBoxWithTags.Option /> */
-  children: PropTypes.instanceOf(ListBox.Option).isRequired,
+  /** Child of type <ListBox.Option />, <ListBox.Divider />, etc */
+  children: PropTypes.arrayOf(PropTypes.node).isRequired,
   /** filter function for the ListBoxWithTags can be pair with ListBoxWithTags.filter  */
   filter: PropTypes.func,
   /** String message to be display when there are not results  */
