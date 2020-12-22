@@ -1,7 +1,6 @@
 import React from "react";
 import Popover from "@paprika/popover";
-import { getAvatarColors } from "@paprika/avatar/lib/helpers";
-import Avatar from "@paprika/avatar";
+import Avatar, { getAvatarColors, getInitialsFromText } from "../../../../Avatar/src";
 import ListBox, { useListBoxWithTags } from "../../../src/WithTags";
 
 // prettier-ignore
@@ -97,6 +96,8 @@ export default function UncontrolledUsers() {
           </>
         ) : null}
         <ListBox
+          allOptionsAreSelected={defaultFilteredData.length === getSelectedOptions().length}
+          allOptionsAreSelectedMessage="All directors have been selected"
           onAddCustomOption={onAddCustomOption(label => {
             // This allowed you override the default behaviour when creating a custom option
             return {
@@ -120,11 +121,12 @@ export default function UncontrolledUsers() {
                 <div>
                   <div style={{ display: "flex", alignItems: "center" }}>
                     <Avatar
-                      size={Avatar.types.size.SMALL}
+                      isRound
+                      size={Avatar.types.size.MEDIUM}
                       backgroundColor={color.backgroundColor}
                       color={color.fontColor}
                     >
-                      {option.name}
+                      {getInitialsFromText(option.name, 2)}
                     </Avatar>
                     <div style={{ fontSize: "1rem", paddingLeft: "8px" }}>{option.name}</div>
                     <div
@@ -155,6 +157,10 @@ export default function UncontrolledUsers() {
             ) : null;
           })}
         </ListBox>
+        <br />
+        <br />
+        <br />
+        <br />
         <button type="submit" onClick={handleSubmit}>
           Submit
         </button>

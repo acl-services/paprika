@@ -43,7 +43,7 @@ function Trigger(props) {
         if (!isActiveElementPopover()) onClose();
       });
     } else if (event.type === "click" || event.key === " " || event.key === "Enter") {
-      onClick();
+      onClick(event);
     }
   }
 

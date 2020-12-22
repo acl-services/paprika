@@ -105,6 +105,10 @@ ja:
         a11y_text: 検索
         no_results_message: 検索結果はどのオプションにも一致しませんでした。
         placeholder: 検索...
+      footer:
+        accept: 承諾
+        cancel: キャンセル
+        clear: クリア
     listBoxBrowser:
       explore: より多くのオプションを探す
       selected: 選択されたオプション

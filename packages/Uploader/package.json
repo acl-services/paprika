@@ -1,6 +1,6 @@
 {
   "name": "@paprika/uploader",
-  "version": "1.1.0",
+  "version": "1.1.1-alpha.1",
   "description": "The Uploader component lets you upload files and see progress.",
   "author": "@paprika",
   "main": "lib/index.js",
@@ -19,7 +19,7 @@
     "@paprika/button": "^1.0.3",
     "@paprika/helpers": "^0.1.2",
     "@paprika/icon": "^1.0.1",
-    "@paprika/popover": "^1.0.3",
+    "@paprika/popover": "^1.0.4-alpha.0",
     "@paprika/raw-button": "^1.0.2",
     "@paprika/stylers": "^1.0.0",
     "@paprika/tokens": "^1.0.0",

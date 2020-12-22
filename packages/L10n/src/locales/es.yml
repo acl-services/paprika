@@ -105,6 +105,10 @@ es:
         a11y_text: Buscar
         no_results_message: Su resultado de búsqueda no coincidió con ninguna opción.
         placeholder: Buscar...
+      footer:
+        accept: Aceptar
+        cancel: Cancelar
+        clear: Borrar
     listBoxBrowser:
       explore: Explorar más opciones
       selected: opciones seleccionadas

@@ -13,12 +13,7 @@ export const Pills = styled.ul(() => {
   `;
 });
 
-export const Pill = styled.li(({ size }) => {
-  const padding = {
-    medium: "2px",
-    large: "4px",
-  };
-
+export const Pill = styled.li(() => {
   return css`
     align-items: center;
     background: ${tokens.color.blackLighten70};
@@ -28,7 +23,7 @@ export const Pill = styled.li(({ size }) => {
     margin-bottom: 2px;
     margin-right: ${tokens.spaceSm};
     max-width: 100%;
-    padding: ${padding[size]};
+    padding: 2px;
 
     [data-pka-anchor="avatar"] {
       margin-right: ${tokens.space};
@@ -57,6 +52,11 @@ export const Ellipsis = styled.div(({ isChildString, size }) => {
 });
 
 export const Delete = styled(RawButton)(({ size }) => {
+  const fontSize = {
+    medium: "10px",
+    large: "12px",
+  };
+
   const padding = {
     medium: "4px",
     large: "5px",
@@ -73,6 +73,7 @@ export const Delete = styled(RawButton)(({ size }) => {
     box-sizing: border-box;
     display: flex;
     flex: 0 0 auto;
+    font-size: ${fontSize[size]};
     height: ${width[size]};
     justify-content: center;
     margin-left: ${tokens.space};
