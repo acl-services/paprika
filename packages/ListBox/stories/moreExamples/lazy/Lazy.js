@@ -13,11 +13,7 @@ const charactersCache = {};
 
 export default function LazyListBox() {
   const [state, dispatch] = React.useReducer(reducer, {
-    activeApiPage: [
-      { offset: 0, limit },
-      { offset: 0, limit },
-      { offset: 0, limit },
-    ],
+    activeApiPage: [{ offset: 0, limit }, { offset: 0, limit }, { offset: 0, limit }],
     characters: [],
     isDisabled: true,
     isLoading: false,

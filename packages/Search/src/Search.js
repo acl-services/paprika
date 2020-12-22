@@ -96,8 +96,6 @@ export default function Search(props) {
         label,
       });
     }
-
-    // processSelected(null);
   }
 
   return (

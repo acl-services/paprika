@@ -14,6 +14,7 @@ const data = [
 
 export default function Controlled() {
   const [filterData, setFilterData] = React.useState(data);
+  const [valueSelected, setValueSelected] = React.useState("");
   function handleChangeSearch(term) {
     setFilterData(ListBox.filter(term, data));
   }
@@ -36,11 +37,13 @@ export default function Controlled() {
     setFilterData(ListBox.filter(value.label, data));
     setInput(value.label);
     close();
-    console.log(`😎 `, value);
+    console.log(value);
+    setValueSelected(`→${value.label}`);
   }
 
   return (
     <div style={{ padding: "32px" }}>
+      {valueSelected}
       <ListBox onChangeSearch={handleChangeSearch} onSelected={handleSelected}>
         {filterData.map(option => {
           return (
