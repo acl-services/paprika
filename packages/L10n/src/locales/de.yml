@@ -19,7 +19,7 @@ de:
       choose_from_computer: wählen Sie sie auf Ihrem Computer aus
       choose_from_computer_a11y: Wählen Sie Dateien auf Ihrem Computer aus
       cancel_upload: Upload abbrechen
-      restart_upload: Upload neu starten
+      restart_upload: Wählen Sie die Datei erneut aus, um den Vorgang zu wiederholen
       file_list: Liste der Dateien
       errors:
         size: Datei muss kleiner als {{maxFileSize}} sein
@@ -116,6 +116,7 @@ de:
     listBoxWithTags:
       placeholder: Auswählen…
       no_results_found: Keine Ergebnisse gefunden
+      all_items_have_been_selected: "Alle Elemente wurden ausgewählt"
     actionBar:
       columns_arrangement:
         hide_all: Alles ausblenden
