@@ -19,7 +19,7 @@ es:
       choose_from_computer: elija de su computadora
       choose_from_computer_a11y: Elija archivos de su computadora
       cancel_upload: Cancelar carga
-      restart_upload: Reiniciar carga
+      restart_upload: Seleccione el archivo nuevamente para volver a intentarlo
       file_list: Lista de archivos
       errors:
         size: El archivo debe tener menos de {{maxFileSize}}
@@ -116,6 +116,7 @@ es:
     listBoxWithTags:
       placeholder: Seleccionar...
       no_results_found: No se han encontrado resultados
+      all_items_have_been_selected: "Se han seleccionado todos los elementos"
     actionBar:
       columns_arrangement:
         hide_all: Ocultar todas

@@ -19,7 +19,7 @@ zh:
       choose_from_computer: 从您的电脑中选择
       choose_from_computer_a11y: 从您的电脑中选择文件
       cancel_upload: 取消上传
-      restart_upload: 重新启动上传
+      restart_upload: 再次选择文件重试
       file_list: 文件列表
       errors:
         size: 文件必须小于 {{maxFileSize}}
@@ -116,6 +116,7 @@ zh:
     listBoxWithTags:
       placeholder: 选择…
       no_results_found: 未找到结果
+      all_items_have_been_selected: "已选择所有项"
     actionBar:
       columns_arrangement:
         hide_all: 全部隐藏
