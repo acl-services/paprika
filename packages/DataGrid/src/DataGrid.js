@@ -3,7 +3,7 @@ import PropTypes from "prop-types";
 import { VariableSizeGrid as Grid } from "react-window";
 import * as constants from "@paprika/constants/lib/Constants";
 import useI18n from "@paprika/l10n/lib/useI18n";
-import extractChildren from "@paprika/helpers/lib/extractChildren";
+import { extractChildren } from "@paprika/helpers";
 import "@paprika/helpers/lib/dom/elementScrollToPolyfill";
 import nanoid from "nanoid";
 import useGridEventHandler, { getGridRefId } from "./hooks/useGridEventHandler";

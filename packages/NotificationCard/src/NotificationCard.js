@@ -1,7 +1,7 @@
 import React from "react";
 import PropTypes from "prop-types";
 import * as constants from "@paprika/constants/lib/Constants";
-import extractChildren from "@paprika/helpers/lib/extractChildren";
+import { extractChildren } from "@paprika/helpers";
 import NotificationImage from "./components/Image";
 import NotificationHeader from "./components/Header";
 import NotificationBody from "./components/Body";

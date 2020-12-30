@@ -1,6 +1,6 @@
 import React from "react";
 import FocusLockLibrary from "react-focus-lock";
-import { FocusPropTypes } from "@paprika/helpers/lib/customPropTypes";
+import { FocusPropTypes } from "@paprika/helpers";
 
 const propTypes = FocusPropTypes;
 

@@ -1,6 +1,8 @@
+/* eslint-disable func-names */
+
+// IE polyfill for Element.closest()
 // https://developer.mozilla.org/en-US/docs/Web/API/Element/closest
 
-/* eslint-disable func-names */
 if (!Element.prototype.matches) {
   Element.prototype.matches = Element.prototype.msMatchesSelector || Element.prototype.webkitMatchesSelector;
 }
@@ -16,4 +18,3 @@ if (!Element.prototype.closest) {
     return null;
   };
 }
-/* eslint-enable func-names */

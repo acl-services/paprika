@@ -1,6 +1,6 @@
 import React from "react";
 import PropTypes from "prop-types";
-import { RefOf } from "@paprika/helpers/lib/customPropTypes";
+import { RefOf } from "@paprika/helpers";
 import Button from "@paprika/button";
 import Heading from "@paprika/heading";
 import * as types from "../../types";

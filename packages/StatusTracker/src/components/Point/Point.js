@@ -4,7 +4,7 @@ import Button from "@paprika/button";
 import OverflowMenu from "@paprika/overflow-menu";
 import Popover from "@paprika/popover";
 import RawButton from "@paprika/raw-button";
-import extractChildren from "@paprika/helpers/lib/extractChildren";
+import { extractChildren } from "@paprika/helpers";
 import { kinds } from "../../types";
 import * as sc from "./Point.styles";
 
