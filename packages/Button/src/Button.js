@@ -1,7 +1,7 @@
 import React from "react";
 import PropTypes from "prop-types";
 import "what-input";
-import "@paprika/helpers/lib/dom/closest"; // support for IE11
+import "@paprika/helpers/lib/polyfills/elementClosest";
 import RawButton from "@paprika/raw-button";
 import RefreshIcon from "@paprika/icon/lib/Refresh";
 import DownIcon from "@paprika/icon/lib/CaretDown";
