@@ -19,7 +19,7 @@ fr:
       choose_from_computer: parcourir votre ordinateur
       choose_from_computer_a11y: Choisir des fichiers dans votre ordinateur
       cancel_upload: Annuler le chargement
-      restart_upload: Recommencer le chargement
+      restart_upload: Sélectionnez à nouveau le fichier pour réessayer
       file_list: Liste des fichiers
       errors:
         size: La taille du fichier ne doit pas dépasser {{maxFileSize}}
@@ -116,6 +116,7 @@ fr:
     listBoxWithTags:
       placeholder: Sélectionner...
       no_results_found: Aucun résultat trouvé
+      all_items_have_been_selected: "Tous les éléments ont été sélectionnés"
     actionBar:
       columns_arrangement:
         hide_all: Masquer tout

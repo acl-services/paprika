@@ -60,7 +60,7 @@ export function ListBox(props) {
       >
         <Box {...box.props}>
           {filter}
-          <List height={height} hasOptions={React.Children.count(children)}>
+          <List height={height} hasOptions={Boolean(React.Children.count(children))}>
             <Options isPopoverOpen={props.isOpen}>{children}</Options>
           </List>
           {filter ? (
