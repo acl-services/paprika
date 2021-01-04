@@ -10,20 +10,15 @@ export default {
   title: `${storyName}/Backyard/Sandbox`,
 };
 
-export const ScrollContainerStory = () => (
+export const InlineIconStory = () => (
   <ExampleStory storyName="Inline test" component="Icon" fileName="sandbox/InlineTest.js">
     <InlineTest />
   </ExampleStory>
 );
 
-ScrollContainerStory.story = {
+InlineIconStory.story = {
   name: "Inline Test",
   parameters: {
     ...testStoryParameters,
-    options: {
-      ...testStoryParameters.options,
-      showPanel: true,
-      panelPosition: "bottom",
-    },
   },
 };
