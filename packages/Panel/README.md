@@ -122,8 +122,6 @@ const [isOpen, setIsOpen] = React.useState(true);
 </Panel>;
 ```
 
-
-
 ## Warnings
 
 If the content you are putting into this component will try and control focus (like CKEditor), read this: https://github.com/acl-services/paprika/issues/453

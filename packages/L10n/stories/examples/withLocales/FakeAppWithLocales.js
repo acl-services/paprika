@@ -10,8 +10,8 @@ export default function FakeAppWithLocales() {
     <Story>
       <L10n locale="en" locales={Locales}>
         <Greeting />
-        <FormElement>
-          <FormElement.Label hasOptionalLabel>Translation using paprika locales</FormElement.Label>
+        <FormElement isOptional>
+          <FormElement.Label>Translation using paprika locales</FormElement.Label>
           <input />
         </FormElement>
       </L10n>
