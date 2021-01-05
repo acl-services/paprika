@@ -198,18 +198,6 @@ interface WithTagsProps {
   /** Message to display when all options have been selected */
   allOptionsAreSelectedMessage?: string;
 }
-declare function WithSearch(props: WithSearchProps): JSX.Element;
-interface WithSearchProps {
-  [x: string]: any;
-
-  children: instanceOf;
-
-  filter?: (...args: any[]) => any;
-
-  onChangeSearch?: (...args: any[]) => any;
-
-  data: shape[];
-}
 
 declare namespace ListBoxContainer {
   namespace types {
