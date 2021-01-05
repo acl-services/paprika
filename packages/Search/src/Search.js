@@ -8,7 +8,7 @@ import renderTrigger from "./renderTrigger";
 import useTrigger from "./useTrigger";
 
 const propTypes = {
-  children: PropTypes.instanceOf(ListBox.Option).isRequired,
+  children: PropTypes.node.isRequired,
   onChangeSearch: PropTypes.func,
   onSelected: PropTypes.func,
 };

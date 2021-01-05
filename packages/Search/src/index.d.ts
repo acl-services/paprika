@@ -4,7 +4,7 @@ declare function Search(props: SearchProps): JSX.Element;
 interface SearchProps {
   [x: string]: any;
 
-  children: instanceOf;
+  children: React.ReactNode;
 
   onChangeSearch?: (...args: any[]) => any;
 

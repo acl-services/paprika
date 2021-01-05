@@ -12,7 +12,7 @@ const propTypes = {
   children: PropTypes.node.isRequired,
 
   /** Body content of the list. */
-  hasOptions: PropTypes.bool.isRequired,
+  hasOptions: PropTypes.oneOfType([PropTypes.bool, PropTypes.number]).isRequired,
 };
 
 export default function List(props) {
