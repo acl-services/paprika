@@ -88,7 +88,8 @@ export default function Trigger(props) {
     refLabel,
     size,
   } = state;
-  const triggerButtonId = React.useState(nanoid);
+
+  const [triggerButtonId] = React.useState(nanoid);
 
   const handleClick = () => {
     if (isDisabled) {

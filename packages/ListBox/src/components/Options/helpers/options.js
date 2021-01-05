@@ -1,5 +1,6 @@
 import useListBox from "../../../useListBox";
 import invokeOnChange from "../../../helpers/invokeOnChange";
+import { KEY_PRESS, CLICK } from "../../../types";
 
 export function selectSingleOption({
   activeOptionIndex,
@@ -134,7 +135,7 @@ export function handleArrowKeys({ event, state, dispatch, isArrowDown = null, on
         payload: { activeOptionIndex: next, isOpen: true },
       });
     } else {
-      selectSingleOption({ activeOptionIndex: next, isOpen: true, dispatch, onChangeContext, eventType: "keypress" });
+      selectSingleOption({ activeOptionIndex: next, isOpen: true, dispatch, onChangeContext, eventType: KEY_PRESS });
     }
   }
 }
@@ -190,13 +191,13 @@ export const handleClickOption = ({ props, state, dispatch, onChangeContext }) =
       activeOptionIndex: index,
       dispatch,
       onChangeContext,
-      eventType: "click",
+      eventType: CLICK,
     });
 
     return;
   }
 
-  selectSingleOption({ activeOptionIndex: index, isOpen: false, dispatch, onChangeContext, eventType: "click" });
+  selectSingleOption({ activeOptionIndex: index, isOpen: false, dispatch, onChangeContext, eventType: CLICK });
 };
 
 export function handleEnterOrSpace({ event, state, dispatch, onChangeContext }) {
@@ -254,7 +255,7 @@ export function handleEnterOrSpace({ event, state, dispatch, onChangeContext }) 
         activeOptionIndex: state.activeOption,
         dispatch,
         onChangeContext,
-        eventType: "keypress",
+        eventType: KEY_PRESS,
       });
       return;
     }
