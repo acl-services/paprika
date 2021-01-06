@@ -10,10 +10,13 @@ const propTypes = {
 
   /** Body content of the list. */
   children: PropTypes.node.isRequired,
+
+  /** Body content of the list. */
+  hasOptions: PropTypes.bool.isRequired,
 };
 
 export default function List(props) {
-  const { children, height } = props;
+  const { children, height, hasOptions } = props;
   const [state] = useListBox();
   const { refListBox } = state;
 
@@ -24,6 +27,7 @@ export default function List(props) {
       noResultsFound={state.noResultsFound}
       height={height}
       ref={refListBox}
+      hasOptions={hasOptions}
     >
       {children}
     </sc.List>

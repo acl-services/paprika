@@ -3,9 +3,10 @@ import React from "react";
 export default function useMountedRef() {
   const mountedRef = React.useRef(false);
 
-  React.useEffect(() => {
+  React.useLayoutEffect(() => {
     mountedRef.current = true;
-    return function cleanup() {
+
+    return function cleanupMountedRef() {
       mountedRef.current = false;
     };
   }, []);

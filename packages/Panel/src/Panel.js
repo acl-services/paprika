@@ -1,8 +1,7 @@
 import React from "react";
 import PropTypes from "prop-types";
 import { zValue } from "@paprika/stylers/lib/helpers";
-import LockBodyScroll from "@paprika/helpers/lib/components/LockBodyScroll";
-import Portal from "@paprika/helpers/lib/components/Portal";
+import { LockBodyScroll, Portal } from "@paprika/helpers";
 import Content from "./components/Content";
 import Dialog from "./components/Dialog";
 import Footer from "./components/Footer";

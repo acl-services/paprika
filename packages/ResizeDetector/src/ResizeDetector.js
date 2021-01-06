@@ -2,7 +2,7 @@ import React from "react";
 import PropTypes from "prop-types";
 import useResizeDetector from "use-resize-observer/polyfilled";
 import debounce from "lodash.debounce";
-import { ShirtSizes } from "@paprika/helpers/lib/customPropTypes";
+import { ShirtSizes } from "@paprika/helpers";
 import * as sc from "./ResizeDetector.styles";
 
 const propTypes = {

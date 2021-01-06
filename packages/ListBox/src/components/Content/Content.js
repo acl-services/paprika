@@ -11,6 +11,7 @@ const propTypes = {
   /** Body content of the content. */
   children: PropTypes.node.isRequired,
   onCancelFooter: PropTypes.func,
+  hasOptions: PropTypes.bool.isRequired,
 };
 const defaultProps = {
   onCancelFooter: null,
@@ -53,6 +54,7 @@ const handleContentFocusChange = (hasFocus, dispatch) =>
   dispatch({ type: useListBox.types.setListBoxHasFocus, payload: { hasFocus } });
 
 export default function Content(props) {
+  const { children, hasOptions } = props;
   const onChangeContext = React.useContext(OnChangeContext);
   const [state, dispatch] = useListBox();
   const { refListBoxContainer } = state;
@@ -72,8 +74,9 @@ export default function Content(props) {
         onKeyUp={handleKeyUpKeyboardKeys({ state, dispatch, onChangeContext })}
         ref={refListBoxContainer}
         data-pka-anchor="list-box-content-inline"
+        hasOptions={hasOptions}
       >
-        {props.children}
+        {children}
       </sc.Content>
     );
   }
