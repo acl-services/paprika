@@ -27,7 +27,6 @@ export default function Search(props) {
     onBlurInput,
     onBlurTrigger,
     onChangeInput,
-    onClickTrigger,
     onKeyDownTrigger,
     refInput,
     refListBoxReducer,
@@ -37,15 +36,6 @@ export default function Search(props) {
   } = useTrigger();
 
   const [currentKey, setCurrentKey] = React.useState(nextKey);
-
-  const countOptions = React.useMemo(() => {
-    let count = 0;
-    React.Children.forEach(children, child => {
-      if (child.type.displayName === "ListBox.Option") count += 1;
-    });
-
-    return count;
-  }, [children]);
 
   const refDivRoot = React.useRef(null);
   /* eslint-disable react/prop-types */
@@ -125,13 +115,11 @@ export default function Search(props) {
         <ListBox.Popover shouldKeepFocus />
         <ListBox.Trigger>
           {renderTrigger({
-            countOptions,
             inputValue,
             onBlurInput,
             onBlurTrigger,
             onChangeInput,
             onChangeSearch,
-            onClickTrigger,
             onKeyDownTrigger,
             onSubmit,
             refInput,

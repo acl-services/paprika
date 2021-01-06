@@ -4,13 +4,11 @@ import SearchIcon from "@paprika/icon/lib/Search";
 import * as sc from "./Search.styles";
 
 const renderTrigger = ({
-  countOptions,
   inputValue,
   onBlurInput,
   onBlurTrigger,
   onChangeInput,
   onChangeSearch,
-  onClickTrigger,
   onKeyDownTrigger,
   onSubmit: onSubmitProps,
   refInput,
@@ -37,9 +35,8 @@ const renderTrigger = ({
 
   function handleClickInput(event) {
     event.stopPropagation();
-    if (!isOpen) dispatch({ type: types.openPopover });
-    if (refInput.current.value === "" && countOptions === 0) {
-      dispatch({ type: types.closePopover });
+    if (refInput.current.value !== "") {
+      dispatch({ type: types.openPopover });
     }
   }
 
@@ -80,7 +77,7 @@ const renderTrigger = ({
       return;
     }
 
-    if (!isOpen) dispatch({ type: types.openPopover });
+    if (refInput.current.value !== "") dispatch({ type: types.openPopover });
   }
 
   function handleFocusTrigger() {
@@ -102,7 +99,6 @@ const renderTrigger = ({
       {...propsForTrigger()}
       onFocus={handleFocusTrigger}
       onBlur={onBlurTrigger({ dispatch, types })}
-      onClick={onClickTrigger({ dispatch, types })}
       onKeyDown={onKeyDownTrigger({ dispatch, types })}
       size={size}
       data-anchor="list-box-with-search.trigger"

@@ -7,12 +7,6 @@ export default function useTrigger() {
   const [value, setValue] = React.useState("");
   const [nextKey, setNextKey] = React.useState(0);
 
-  const handleClickTrigger = ({ dispatch, types }) => event => {
-    event.stopPropagation();
-    refInput.current.focus();
-    dispatch({ type: types.togglePopover });
-  };
-
   const handleBlur = ({ dispatch, types }) => () => {
     dispatch({ type: types.closePopover });
   };
@@ -56,7 +50,6 @@ export default function useTrigger() {
     onBlurInput: handleBlur,
     onBlurTrigger: handleBlur,
     onChangeInput: handleChangeInput,
-    onClickTrigger: handleClickTrigger,
     onKeyDownTrigger: handleKeyDownTrigger,
     refInput,
     refListBoxReducer,
