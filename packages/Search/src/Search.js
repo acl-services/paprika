@@ -93,6 +93,9 @@ export default function Search(props) {
   }
 
   React.useEffect(() => {
+    // this reset the ListBox each time there is not value on the input
+    // no doing it and pressing enter will fire the current ListBox highlighted index
+    // reporting an onchange event on the listbox even when that's not the intention of the user
     if (inputValue === "" && nextKey !== currentKey) {
       setNextKey(prev => prev + 1);
       refSelected.current = null;
@@ -106,12 +109,13 @@ export default function Search(props) {
   }, [inputValue]); // eslint-disable-line
 
   React.useEffect(() => {
+    // after the nextKey is change we focus on the listBox again
     refInput.current.focus();
   }, [nextKey, refInput]);
 
   return (
     <div ref={refDivRoot}>
-      <ListBox key={nextKey} size={size} onChange={handleChange} {...moreProps}>
+      <ListBox key={nextKey} size={size} onChange={handleChange}>
         <ListBox.Popover shouldKeepFocus />
         <ListBox.Trigger>
           {renderTrigger({
@@ -127,6 +131,7 @@ export default function Search(props) {
             size,
             t,
             setNextKey,
+            inputMoreProps: moreProps,
           })}
         </ListBox.Trigger>
         {inputValue ? (

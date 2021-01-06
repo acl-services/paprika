@@ -4,6 +4,7 @@ import SearchIcon from "@paprika/icon/lib/Search";
 import * as sc from "./Search.styles";
 
 const renderTrigger = ({
+  inputMoreProps,
   inputValue,
   onBlurInput,
   onBlurTrigger,
@@ -107,15 +108,16 @@ const renderTrigger = ({
         <Input
           hasClearButton
           icon={<SearchIcon />}
+          ref={refInput}
+          value={inputValue}
+          placeholder={t("listBox.filter.placeholder")}
+          type="text"
           onBlur={onBlurInput({ dispatch, types })}
           onChange={handleChange}
           onClick={handleClickInput}
           onKeyDown={handleKeyDownInput}
           onKeyUp={handleKeyUpInput}
-          ref={refInput}
-          type="text"
-          value={inputValue}
-          placeholder={t("listBox.filter.placeholder")}
+          {...inputMoreProps}
         />
       </form>
     </sc.Trigger>

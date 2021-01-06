@@ -21,7 +21,6 @@ export const Trigger = styled(RawButton)(({ size }) => {
     ${fontSize[size]}
     align-items: center;
     background-color: ${tokens.color.white};
-    border: 1px solid ${tokens.border.color};
     border-radius: ${tokens.border.radius};
     box-sizing: border-box;
     color: ${tokens.color.black};
@@ -31,7 +30,7 @@ export const Trigger = styled(RawButton)(({ size }) => {
     text-align: left;
     transition: border-color 0.2s;
     width: 100%;
-    [data-pka-anchor="input"] {
+    [data-pka-anchor="raw-input"] {
       border: 0 !important;
     }
   `;
