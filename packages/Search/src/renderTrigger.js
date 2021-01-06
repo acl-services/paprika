@@ -17,7 +17,6 @@ const renderTrigger = ({
   refListBoxReducer,
   size,
   t,
-  setNextKey,
 }) => (...args) => {
   const [, , attributes] = args;
   const {
