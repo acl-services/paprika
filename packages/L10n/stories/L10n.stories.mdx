@@ -4,13 +4,6 @@ import { docsStoryParameters } from "storybook/assets/storyParameters";
 import Readme from "../README.md";
 import L10n from "../src/";
 
-export const params = {
-  options: {
-    isToolshown: true,
-    showPanel: false,
-  },
-};
-
 <Meta title={`${getStoryName("L10n")}/Docs`} component={L10n} parameters={{ ...docsStoryParameters }} />
 
 <Description markdown={Readme} />
