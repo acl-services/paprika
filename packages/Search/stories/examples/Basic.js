@@ -1,5 +1,5 @@
 import React from "react";
-import ListBox from "../../src";
+import Search from "../../src";
 
 const data = [
   { label: "vendor (assets type)" },
@@ -16,7 +16,7 @@ export default function Basic() {
   const [filterData, setFilterData] = React.useState(data);
   const [valueSelected, setValueSelected] = React.useState("");
   function handleChangeSearch(term) {
-    setFilterData(ListBox.filter(term, data));
+    setFilterData(Search.filter(term, data));
   }
 
   function handleSelected(value, actions) {
@@ -35,7 +35,7 @@ export default function Basic() {
     console.log(actions);
     const { setInput, close } = actions;
 
-    setFilterData(ListBox.filter(value.label, data));
+    setFilterData(Search.filter(value.label, data));
     setInput(value.label);
     close();
     console.log(value);
@@ -45,15 +45,15 @@ export default function Basic() {
   return (
     <div style={{ padding: "32px" }}>
       {valueSelected}
-      <ListBox onChangeSearch={handleChangeSearch} onSelected={handleSelected}>
+      <Search onChangeSearch={handleChangeSearch} onSelected={handleSelected}>
         {filterData.map(option => {
           return (
-            <ListBox.Option value={option.label} key={option.label} label={option.label}>
+            <Search.Option value={option.label} key={option.label} label={option.label}>
               {option.label}
-            </ListBox.Option>
+            </Search.Option>
           );
         })}
-      </ListBox>
+      </Search>
     </div>
   );
 }

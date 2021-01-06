@@ -23,6 +23,7 @@ export default function Search(props) {
   const { t } = useI18n();
   const {
     inputValue,
+    nextKey,
     onBlurInput,
     onBlurTrigger,
     onChangeInput,
@@ -32,7 +33,10 @@ export default function Search(props) {
     refListBoxReducer,
     resetValue,
     setInputValue,
+    setNextKey,
   } = useTrigger();
+
+  const [currentKey, setCurrentKey] = React.useState(nextKey);
 
   const countOptions = React.useMemo(() => {
     let count = 0;
@@ -98,9 +102,26 @@ export default function Search(props) {
     }
   }
 
+  React.useEffect(() => {
+    if (inputValue === "" && nextKey !== currentKey) {
+      setNextKey(prev => prev + 1);
+      refSelected.current = null;
+      processSelected({
+        value: null,
+        label: null,
+      });
+    } else {
+      setCurrentKey(prev => prev + 1);
+    }
+  }, [inputValue]); // eslint-disable-line
+
+  React.useEffect(() => {
+    refInput.current.focus();
+  }, [nextKey, refInput]);
+
   return (
     <div ref={refDivRoot}>
-      <ListBox size={size} onChange={handleChange} {...moreProps}>
+      <ListBox key={nextKey} size={size} onChange={handleChange} {...moreProps}>
         <ListBox.Popover shouldKeepFocus />
         <ListBox.Trigger>
           {renderTrigger({
@@ -117,6 +138,7 @@ export default function Search(props) {
             refListBoxReducer,
             size,
             t,
+            setNextKey,
           })}
         </ListBox.Trigger>
         {inputValue ? (

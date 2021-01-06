@@ -17,7 +17,7 @@ const renderTrigger = ({
   refListBoxReducer,
   size,
   t,
-  /* selectedOptions, onRemove, renderPill */
+  setNextKey,
 }) => (...args) => {
   const [, , attributes] = args;
   const {

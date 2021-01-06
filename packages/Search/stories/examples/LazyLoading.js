@@ -1,5 +1,5 @@
 import React from "react";
-import ListBox from "../../src";
+import Search from "../../src";
 import { fetchAPI } from "./helpers";
 
 // please use a proper debounce function in a your application
@@ -68,15 +68,15 @@ export default function LazyLoading() {
 
   return (
     <div style={{ padding: "32px" }}>
-      <ListBox onChangeSearch={handleChangeSearchDebounce} onSelected={handleSelected}>
+      <Search onChangeSearch={handleChangeSearchDebounce} onSelected={handleSelected}>
         {filterData.map(option => {
           return (
-            <ListBox.Option value={option.label} key={option.id} label={option.label}>
+            <Search.Option value={option.label} key={option.id} label={option.label}>
               {option.label}
-            </ListBox.Option>
+            </Search.Option>
           );
         })}
-      </ListBox>
+      </Search>
       {selection ? <span>Your selection: {selection}</span> : null}
     </div>
   );

@@ -5,6 +5,7 @@ export default function useTrigger() {
   const refInput = React.useRef();
   const refListBoxReducer = React.useRef({ types: null, dispatch: null });
   const [value, setValue] = React.useState("");
+  const [nextKey, setNextKey] = React.useState(0);
 
   const handleClickTrigger = ({ dispatch, types }) => event => {
     event.stopPropagation();
@@ -22,6 +23,7 @@ export default function useTrigger() {
 
   function resetValue() {
     setValue("");
+    setNextKey(prev => prev + 1);
   }
 
   const handleChangeInput = ({ dispatch, types, onChangeContext, onChangeSearch }) => event => {
@@ -50,6 +52,7 @@ export default function useTrigger() {
 
   return {
     inputValue: value,
+    nextKey,
     onBlurInput: handleBlur,
     onBlurTrigger: handleBlur,
     onChangeInput: handleChangeInput,
@@ -59,5 +62,6 @@ export default function useTrigger() {
     refListBoxReducer,
     resetValue,
     setInputValue: setValue,
+    setNextKey,
   };
 }
