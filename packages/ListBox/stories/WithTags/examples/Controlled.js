@@ -82,7 +82,7 @@ export default function Controlled() {
   return (
     <div style={{ padding: "32px" }}>
       <ListBox
-        noResultsMessage="No results found, but you can add an email and then press enter..."
+        noResultsMessage="No results found"
         onChange={handleChange}
         onAddCustomOption={handleAddedOption}
         onRemove={handleRemove}

@@ -19,7 +19,7 @@ ja:
       choose_from_computer: コンピューターから選択
       choose_from_computer_a11y: コンピューターからファイルを選択する
       cancel_upload: アップロードをキャンセル
-      restart_upload: アップロードを再起動
+      restart_upload: ファイルを選択し直して再び実行してください
       file_list: ファイル一覧
       errors:
         size: ファイルは{{maxFileSize}}未満にする必要があります
@@ -116,6 +116,7 @@ ja:
     listBoxWithTags:
       placeholder: 選択…
       no_results_found: 結果が見つかりません
+      all_items_have_been_selected: "すべての項目が選択されています"
     actionBar:
       columns_arrangement:
         hide_all: すべて非表示

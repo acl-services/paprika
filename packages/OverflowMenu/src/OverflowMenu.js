@@ -3,7 +3,7 @@ import PropTypes from "prop-types";
 import uuid from "uuid/v4";
 import "what-input";
 import Popover from "@paprika/popover";
-import extractChildren from "@paprika/helpers/lib/extractChildren";
+import { extractChildren } from "@paprika/helpers";
 import Content from "./components/Content";
 import Divider from "./components/Divider";
 import Trigger from "./components/Trigger";

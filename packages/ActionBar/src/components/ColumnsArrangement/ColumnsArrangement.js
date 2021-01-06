@@ -5,7 +5,7 @@ import Input from "@paprika/input";
 import Popover from "@paprika/popover";
 import Sortable from "@paprika/sortable";
 import useI18n from "@paprika/l10n/lib/useI18n";
-import extractChildren from "@paprika/helpers/lib/extractChildren";
+import { extractChildren } from "@paprika/helpers";
 import tokens from "@paprika/tokens";
 import ColumnManagingItem from "./ColumnsArrangementItem";
 import ColumnDefinition from "./ColumnDefinition";

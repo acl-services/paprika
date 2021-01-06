@@ -3,7 +3,7 @@ export default ListBox;
 declare function ListBox(props: ListBoxProps): JSX.Element;
 interface ListBoxProps {
   [x: string]: any;
-  /** Child of type <ListBox.Option /> */
+  /** Child of type <ListBox.Option />, <ListBox.Divider />, etc */
   children: React.ReactNode;
   /** Has implicit "All items selected" value when no item is selected */
   hasImplicitAll?: boolean;
@@ -173,8 +173,8 @@ declare namespace ListBox {
 declare function WithTags(props: WithTagsProps): JSX.Element;
 interface WithTagsProps {
   [x: string]: any;
-  /** Expect <ListBoxWithTags.Option /> */
-  children: instanceOf;
+  /** Child of type <ListBox.Option />, <ListBox.Divider />, etc */
+  children: node[];
   /** filter function for the ListBoxWithTags can be pair with ListBoxWithTags.filter */
   filter?: (...args: any[]) => any;
   /** String message to be display when there are not results */
@@ -191,6 +191,12 @@ interface WithTagsProps {
   renderPill?: (...args: any[]) => any;
   /** An array of id that helps the ListBoxWithTags to known what elements are selected */
   selectedOptions?: shape[];
+  /** Provides an alternative for rendering the Pill label instead of using the default [{label:value}] coming from the og data */
+  pillLabelKey?: string;
+  /** When this is true, it will display a message indicating all options are selected without showing the popover nor the search input */
+  allOptionsAreSelected?: boolean;
+  /** Message to display when all options have been selected */
+  allOptionsAreSelectedMessage?: string;
 }
 
 declare namespace ListBoxContainer {

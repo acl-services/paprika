@@ -7,26 +7,22 @@ const defaultFilteredData = animals.slice(0, 20);
 const defaultData = animals;
 
 function App({ size = "medium", isOpen = false }) {
-  const { handleChange, isSelected, handleRemove, filteredData, handleFilter, getSelectedOptions } = useListBoxWithTags(
-    {
-      key: "label",
-      defaultData,
-      defaultFilteredData,
-      defaultSelectedKeys: ["Aardvark", "Alpaca", "Anteater"],
-    }
-  );
+  const { isSelected, filteredData, getSelectedOptions, ...moreProps } = useListBoxWithTags({
+    key: "label",
+    defaultData,
+    defaultFilteredData,
+    defaultSelectedKeys: ["Aardvark", "Alpaca", "Anteater"],
+  });
 
   return (
     <div style={{ padding: "32px" }}>
       <div>size ({size}):</div>
       <ListBox
-        filter={handleFilter}
         noResultsMessage="No results found, but you can add an email and then press enter..."
-        onChange={handleChange}
-        onRemove={handleRemove}
         selectedOptions={getSelectedOptions()}
         size={size}
         isOpen={isOpen}
+        {...moreProps}
       >
         {filteredData.map(option => {
           return !isSelected(option.label) ? (

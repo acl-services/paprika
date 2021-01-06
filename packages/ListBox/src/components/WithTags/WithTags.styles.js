@@ -16,9 +16,8 @@ const fontSize = {
   `,
 };
 
-export const Trigger = styled(RawButton)(({ size }) => {
+export const Trigger = styled(RawButton)(({ size, allOptionsAreSelected }) => {
   return css`
-    ${fontSize[size]}
     align-items: center;
     background-color: ${tokens.color.white};
     border: 1px solid ${tokens.border.color};
@@ -27,14 +26,16 @@ export const Trigger = styled(RawButton)(({ size }) => {
     color: ${tokens.color.black};
     display: block;
     /**
-     * the bottom padding is assign on the Pill.styles file to 
-     * let the pills have a margin bottom whenever the wrap occurs
-     */
+ * the bottom padding is assign on the Pill.styles file to 
+ * let the pills have a margin bottom whenever the wrap occurs
+ */
     padding: 3px 50px 1px ${tokens.spaceSm};
     position: relative;
     text-align: left;
     transition: border-color 0.2s;
     width: 100%;
+    ${fontSize[size]}
+    ${allOptionsAreSelected ? `padding-left: 0;` : ""}
   `;
 });
 
@@ -52,5 +53,19 @@ export const PlaceHolderText = styled.div(() => {
     margin-bottom: ${tokens.spaceSm};
     margin-right: ${tokens.spaceSm};
     padding: ${tokens.spaceSm[0] / 2}px ${tokens.spaceSm};
+  `;
+});
+
+export const AllOptionsAreSelected = styled.div(({ size }) => {
+  return css`
+    border: 1px solid ${tokens.border.color};
+    border-top: 0;
+    box-sizing: border-box;
+
+    color: ${tokens.placeholder.color};
+    ${fontSize[size]};
+    font-style: ${tokens.placeholder.fontStyle};
+    padding: ${tokens.spaceSm};
+    position: relative;
   `;
 });
