@@ -23,6 +23,7 @@ describe("Search", () => {
     });
 
     fireEvent.click(getTrigger(container));
+    fireEvent.change(screen.getByRole("textbox"), { target: { value: "t" } });
 
     await waitFor(() => {
       expect(getPopover()).toHaveAttribute("aria-hidden", "false");
