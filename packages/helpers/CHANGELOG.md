@@ -6,6 +6,18 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 
 ## [Unreleased]
 
+### Added
+
+- Missing dependencies to package.json
+- Barrel index.js file to /src
+  [@mikrotron](https://github.com/mikrotron)
+
+### Changed
+
+- useMountedRef useEffect to useLayoutEffect
+- [BREAKING CHANGE] Moved polyfill helpers together into a polyfills directory
+  [@mikrotron](https://github.com/mikrotron)
+
 ## [0.2.2] (October 23, 2019)
 
 - Add `usePrevious` hook. [#244](https://github.com/acl-services/paprika/pull/244)

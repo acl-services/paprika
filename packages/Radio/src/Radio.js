@@ -2,7 +2,7 @@ import React from "react";
 import PropTypes from "prop-types";
 import nanoid from "nanoid";
 import CheckIcon from "@paprika/icon/lib/Check";
-import extractChildrenProps from "@paprika/helpers/lib/extractChildrenProps";
+import { extractChildrenProps } from "@paprika/helpers";
 import * as sc from "./Radio.styles";
 import Group from "./components/Group";
 import RadioInputPropsCollector from "./RadioInputPropsCollector";
