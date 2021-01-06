@@ -1,17 +1,12 @@
 import React from "react";
 import PropTypes from "prop-types";
 import moment from "moment";
-
 import Popover from "@paprika/popover";
 import Calendar from "@paprika/calendar/lib/DateRangeCalendar";
 import { kind as CalendarKinds, START_DATE, END_DATE } from "@paprika/calendar/lib/types";
 import ArrowIcon from "@paprika/icon/lib/ArrowRight";
 import useI18n from "@paprika/l10n/lib/useI18n";
-import extractChildren from "@paprika/helpers/lib/extractChildren";
-import useDebounce from "@paprika/helpers/lib/hooks/useDebounce";
-import isElementContainsFocus from "@paprika/helpers/lib/dom/isElementContainsFocus";
-import { AlignTypes } from "@paprika/helpers/lib/customPropTypes";
-
+import { AlignTypes, extractChildren, isElementContainsFocus, useDebounce } from "@paprika/helpers";
 import createPropsCollector from "./createPropsCollector";
 import * as sc from "./DateRangePicker.styles";
 

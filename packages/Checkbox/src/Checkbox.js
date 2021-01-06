@@ -2,7 +2,7 @@ import React from "react";
 import PropTypes from "prop-types";
 import uuid from "uuid/v4";
 import * as constants from "@paprika/constants/lib/Constants";
-import extractChildrenProps from "@paprika/helpers/lib/extractChildrenProps";
+import { extractChildrenProps } from "@paprika/helpers";
 import CheckIcon from "@paprika/icon/lib/Check";
 import DashIcon from "@paprika/icon/lib/Dash";
 import CheckboxInputPropsCollector from "./CheckboxInputPropsCollector";

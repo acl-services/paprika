@@ -1,5 +1,6 @@
 import React from "react";
 import PropTypes from "prop-types";
+import "@paprika/helpers/lib/polyfills/elementScroll";
 import useI18n from "@paprika/l10n/lib/useI18n";
 import * as constants from "@paprika/constants/lib/Constants";
 import Box from "./components/Box";
@@ -12,7 +13,6 @@ import Trigger from "./components/Trigger";
 import useListBox from "./useListBox";
 import { OnChangeContext } from "./store/OnChangeProvider";
 import handleImperative from "./imperative";
-import "@paprika/helpers/lib/dom/elementScrollToPolyfill";
 
 import {
   useAdjustWidth,
