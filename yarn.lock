@@ -3388,16 +3388,6 @@
     classnames "^2.2.6"
     prop-types "^15.7.2"
 
-"@paprika/l10n@^1.1.1":
-  version "1.1.2"
-  resolved "https://registry.yarnpkg.com/@paprika/l10n/-/l10n-1.1.2.tgz#c7b282aebdaa6e3a271f10c9c05221761c078ce6"
-  integrity sha512-3nEoubqzsDwcr1gDvGJC+pq97RGoZ/u58wO65H7pO9mhQuZ98NRsG/gi8q4O3IIDDau60VFnC0w8wUPOuJPJQw==
-  dependencies:
-    "@babel/runtime-corejs2" "^7.3.1"
-    i18next "^15.0.4"
-    js-yaml "^3.13.1"
-    prop-types "^15.7.2"
-
 "@paprika/popover@^0.3.36", "@paprika/popover@^0.3.36-alpha.1":
   version "0.3.36"
   resolved "https://registry.yarnpkg.com/@paprika/popover/-/popover-0.3.36.tgz#1a2ec4529fa05a5e5b2e2c61175a29f7a03bbb5e"

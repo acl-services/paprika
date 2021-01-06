@@ -136,7 +136,7 @@ export default function Search(props) {
         </ListBox.Trigger>
         {inputValue ? (
           <ListBox.Option value={inputValue} label={inputValue}>
-            <SearchIcon /> {inputValue} - <em>Search term...</em>
+            <SearchIcon /> {inputValue} - <em>{t("search.searchTerm")}</em>
           </ListBox.Option>
         ) : null}
         {React.Children.count(children) > 0 ? children : null}
