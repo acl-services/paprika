@@ -88,7 +88,8 @@ export default function Trigger(props) {
     refLabel,
     size,
   } = state;
-  const triggerButtonId = React.useRef(nanoid());
+
+  const [triggerButtonId] = React.useState(nanoid);
 
   const handleClick = () => {
     if (isDisabled) {
@@ -188,28 +189,25 @@ export default function Trigger(props) {
   let renderChildrenProps = null;
   renderChildrenProps = React.useMemo(() => {
     if (hasRenderTrigger) {
+      const attributes = {
+        dispatch,
+        handleKeyDown: handleKeyDownKeyboardKeys({ state, dispatch, onChangeContext }),
+        handleKeyUp: handleKeyUpKeyboardKeys({ state, dispatch, onChangeContext }),
+        isOpen: state.isOpen,
+        onChangeContext,
+        propsForTrigger: getDOMAttributesForListBoxButton(idListBox),
+        refTrigger,
+        types: sanitizeActionTypes(useListBox.types),
+      };
+
       if (isMulti) {
         const [selected, options, current] = getSelectedOptionsMulti(state);
 
-        return children(selected, options, current, {
-          dispatch,
-          propsForTrigger: getDOMAttributesForListBoxButton(idListBox),
-          types: sanitizeActionTypes(useListBox.types),
-          refTrigger,
-          isOpen: state.isOpen,
-          handleKeyDown: handleKeyDownKeyboardKeys({ state, dispatch, onChangeContext }),
-          handleKeyUp: handleKeyUpKeyboardKeys({ state, dispatch, onChangeContext }),
-        });
+        return children(selected, options, current, attributes);
       }
 
       const [selected, options] = getSelectedOptionSingle(state);
-      return children(selected, options, {
-        dispatch,
-        propsForTrigger: getDOMAttributesForListBoxButton(idListBox),
-        types: sanitizeActionTypes(useListBox.types),
-        refTrigger,
-        isOpen: state.isOpen,
-      });
+      return children(selected, options, attributes);
     }
   }, [hasRenderTrigger, isMulti, state, children, dispatch, idListBox, refTrigger, onChangeContext]);
 
