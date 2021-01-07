@@ -1,7 +1,7 @@
 {
   "name": "@paprika/dynamic-hyperlink",
   "version": "0.0.1",
-  "description": "This is a script that does an API lookup on hyperlinks with a specific data attribute, fetching their name.",
+  "description": "Adding this component runs a script that does an API lookup on hyperlinks with a specific data attribute, fetching their name.",
   "main": "lib/index.js",
   "types": "lib/index.d.ts",
   "author": "@paprika",

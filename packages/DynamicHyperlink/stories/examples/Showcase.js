@@ -1,6 +1,7 @@
 import React from "react";
 import { Story, Rule, Tagline } from "storybook/assets/styles/common.styles";
 import Heading from "@paprika/heading";
+import L10n from "@paprika/l10n";
 import DynamicHyperlink from "../../src";
 
 const terms = {
@@ -24,26 +25,28 @@ const ExampleStory = () => (
       `data-dynamic-hyperlink` attribute to the fancy cards seen below.
     </Tagline>
     <Rule />
-    <DynamicHyperlink terms={terms} />
-    <p>
-      A functioning dynamic hyperlink{" "}
-      <a href="www.google.com" data-dynamic-hyperlink>
-        http://mysite1.com
-      </a>{" "}
-      in action. Here is one the viewer does not have access to{" "}
-      <a href="www.google.com" data-dynamic-hyperlink>
-        https://org.projects.aclgrc.com/audits/123456
-      </a>
-      and here is one where the URL doesnt really exist{" "}
-      <a href="www.google.com" data-dynamic-hyperlink>
-        https://org.projects.aclgrc.com/12347/audits
-      </a>
-      . This one is still loading{" "}
-      <a href="www.google.com" data-dynamic-hyperlink>
-        https://org.projects.aclgrc.com/audits/123456
-      </a>{" "}
-      and this last one is a normal boring link <a href="www.google.com">http://google.ca</a>. Nothing to see here.
-    </p>
+    <L10n locale="en">
+      <DynamicHyperlink terms={terms} />
+      <p>
+        A functioning dynamic hyperlink{" "}
+        <a href="www.google1.ca" data-dynamic-hyperlink>
+          www.google1.ca
+        </a>{" "}
+        in action. Here is one the viewer does not have access to{" "}
+        <a href="www.google2.ca" data-dynamic-hyperlink>
+          www.google2.ca
+        </a>
+        and here is one where the URL doesnt really exist{" "}
+        <a href="www.google3.ca" data-dynamic-hyperlink>
+          www.google3.ca
+        </a>
+        . This one is still loading{" "}
+        <a href="www.google4.ca" data-dynamic-hyperlink>
+          www.google4.ca
+        </a>{" "}
+        and this last one is a normal boring link <a href="www.google.ca">http://google.ca</a>. The end.
+      </p>
+    </L10n>
   </Story>
 );
 
