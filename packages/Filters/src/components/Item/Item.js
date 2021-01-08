@@ -90,7 +90,7 @@ function Item(props) {
   function renderRuleField() {
     switch (selectedColumnType) {
       case types.columnTypes.BOOLEAN:
-        return I18n.t("actionBar.filter.rules.is");
+        return I18n.t("filters.rules.is");
       default:
         return (
           <sc.RuleSelect
@@ -123,8 +123,8 @@ function Item(props) {
       case types.columnTypes.BOOLEAN:
         return (
           <sc.ValueInput as={Select} value={`${value}`} onChange={handleChangeBooleanFilterValue}>
-            <option value="true">{I18n.t("actionBar.filter.rules.true")}</option>
-            <option value="false">{I18n.t("actionBar.filter.rules.false")}</option>
+            <option value="true">{I18n.t("filters.rules.true")}</option>
+            <option value="false">{I18n.t("filters.rules.false")}</option>
           </sc.ValueInput>
         );
       case types.columnTypes.DATE:
@@ -155,7 +155,7 @@ function Item(props) {
   return (
     <>
       <FilterPrefix index={index} onChangeOperator={onChangeOperator} operator={operator} />
-      <sc.FilterItem data-pka-anchor="actionBar.filter.filterItem">
+      <sc.FilterItem data-pka-anchor="filters.filterItem">
         <sc.RowWrapper>
           <sc.ColumnSelect
             data-pka-anchor="filters.item.columnSelect"
