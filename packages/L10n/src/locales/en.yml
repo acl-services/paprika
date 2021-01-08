@@ -106,7 +106,7 @@ en:
         no_results_message: Your search result did not match any options.
         placeholder: Search...
       footer:
-        accept: Accept
+        accept: Apply
         cancel: Cancel
         clear: Clear
     listBoxBrowser:
