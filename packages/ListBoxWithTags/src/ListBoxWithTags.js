@@ -34,7 +34,7 @@ const propTypes = {
   selectedOptions: PropTypes.arrayOf(PropTypes.shape({})),
   /** Provides an alternative for rendering the Pill label instead of using the default [{label:value}] coming from the og data */
   pillLabelKey: PropTypes.string,
-  /** When this is true, it will display a message indicating all options are selected without showing the popover nor the search input */
+  /** When this is true, it will display a message indicating all options are selected on the popover */
   allOptionsAreSelected: PropTypes.bool,
   /** Message to display when all options have been selected */
   allOptionsAreSelectedMessage: PropTypes.string,
@@ -117,7 +117,7 @@ const renderTrigger = ({ t, size, selectedOptions, onRemove, renderPill, pillLab
   );
 };
 
-export default function WithTags(props) {
+export default function ListBoxWithTags(props) {
   const {
     allOptionsAreSelected,
     allOptionsAreSelectedMessage,
@@ -201,13 +201,13 @@ export default function WithTags(props) {
   );
 }
 
-WithTags.propTypes = propTypes;
-WithTags.defaultProps = defaultProps;
+ListBoxWithTags.propTypes = propTypes;
+ListBoxWithTags.defaultProps = defaultProps;
 
-WithTags.Box = ListBox.Box;
-WithTags.Divider = ListBox.Divider;
-WithTags.Footer = ListBox.Footer;
-WithTags.Option = ListBox.Option;
-WithTags.Popover = ListBox.Popover;
-WithTags.RawItem = ListBox.RawItem;
-WithTags.filter = filter;
+ListBoxWithTags.Box = ListBox.Box;
+ListBoxWithTags.Divider = ListBox.Divider;
+ListBoxWithTags.Footer = ListBox.Footer;
+ListBoxWithTags.Option = ListBox.Option;
+ListBoxWithTags.Popover = ListBox.Popover;
+ListBoxWithTags.RawItem = ListBox.RawItem;
+ListBoxWithTags.filter = filter;
