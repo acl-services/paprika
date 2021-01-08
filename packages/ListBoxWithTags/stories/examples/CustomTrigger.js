@@ -1,6 +1,6 @@
 import React from "react";
-import Avatar, { getAvatarColors, getInitialsFromText } from "../../../../Avatar/src";
-import ListBox, { useListBoxWithTags } from "../../../src/WithTags";
+import Avatar, { getAvatarColors, getInitialsFromText } from "../../../Avatar/src";
+import ListBox, { useListBoxWithTags } from "../../src";
 import animals from "../mocks";
 
 const defaultFilteredData = animals.slice(0, 20);

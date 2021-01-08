@@ -4,14 +4,14 @@ import PropTypes from "prop-types";
 import useI18n from "@paprika/l10n/lib/useI18n";
 import CaretDownIcon from "@paprika/icon/lib/CaretDown";
 import CaretUpIcon from "@paprika/icon/lib/CaretUp";
-import ListBox from "../..";
-
-import Pill, { Pills } from "../Pill";
-import { filter } from "../../helpers/filter";
-import * as sc from "./WithTags.styles";
+import ListBox from "@paprika/list-box";
+import { filter } from "@paprika/list-box/lib/helpers/filter";
 /* eslint-disable no-restricted-syntax */
-import * as triggerSc from "../Trigger/Trigger.styles";
+import * as triggerSc from "@paprika/list-box/lib/components/Trigger/Trigger.styles";
 /* eslint-enable no-restricted-syntax */
+import * as sc from "./ListBoxWithTags.styles";
+
+import Pill, { Pills } from "./components/Pill";
 
 const propTypes = {
   /** Child of type <ListBox.Option />, <ListBox.Divider />, etc */
@@ -191,13 +191,12 @@ export default function WithTags(props) {
         ) : (
           <ListBox.RawItem>{noResultsMessage}</ListBox.RawItem>
         )}
+        {allOptionsAreSelected && (
+          <ListBox.RawItem>
+            {allOptionsAreSelectedMessage || t("listBoxWithTags.all_items_have_been_selected")}
+          </ListBox.RawItem>
+        )}
       </ListBox>
-
-      {allOptionsAreSelected && (
-        <sc.AllOptionsAreSelected size={size}>
-          {allOptionsAreSelectedMessage || t("listBoxWithTags.all_items_have_been_selected")}
-        </sc.AllOptionsAreSelected>
-      )}
     </div>
   );
 }

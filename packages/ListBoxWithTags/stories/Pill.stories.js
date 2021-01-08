@@ -1,8 +1,8 @@
 import React from "react";
 import { storiesOf } from "@storybook/react";
 import { getStoryName } from "storybook/storyTree";
+import CalendarIcon from "@paprika/icon/lib/Calendar";
 import Avatar from "../../Avatar/src";
-import CalendarIcon from "../../Icon/lib/Calendar";
 
 import Pill, { Pills } from "../src/components/Pill";
 
