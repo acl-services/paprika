@@ -44,7 +44,6 @@
   "paprikaDocs": {
     "subComponents": [
       "ColumnsArrangement",
-      "Filter",
       "Sort"
     ]
   },
