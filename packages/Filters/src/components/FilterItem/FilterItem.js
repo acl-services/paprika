@@ -19,13 +19,11 @@ const propTypes = {
   renderValueField: PropTypes.func,
   rule: PropTypes.string.isRequired,
   value: PropTypes.oneOfType([PropTypes.string, PropTypes.bool]).isRequired,
-  data: PropTypes.arrayOf(PropTypes.shape({})),
 };
 
 const defaultProps = {
   id: null,
   renderValueField: null,
-  data: null,
 };
 
 function FilterItem(props) {
@@ -38,9 +36,8 @@ function FilterItem(props) {
     rule: selectedRule,
     value,
     renderValueField: renderCustomValueField,
-    data,
   } = props;
-  const { columns, filtersRef, onChangeOperator, operator, rulesByType } = React.useContext(FilterContext);
+  const { columns, data, filtersRef, onChangeOperator, operator, rulesByType } = React.useContext(FilterContext);
   const I18n = useI18n();
 
   const selectedColumnType = columns.find(({ id }) => id === selectedColumnId).type;

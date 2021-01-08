@@ -20,7 +20,6 @@ function Prefix(props) {
   const staticPrefix = <sc.TextWrapper>{I18n.t(`actionBar.filter.${isAnd ? "and" : "or"}`)}</sc.TextWrapper>;
 
   function handleChangeOperator(activeIndex) {
-    console.log(activeIndex);
     onChangeOperator(activeIndex === 0 ? types.logicalFilterOperators.AND : types.logicalFilterOperators.OR);
   }
 

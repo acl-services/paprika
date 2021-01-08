@@ -64,7 +64,7 @@ export default function App() {
     <React.Fragment>
       <Heading level={2}>Filters showcase</Heading>
 
-      <Filters {...filterProps} columns={columnsSettings} rulesByType={customRulesByType}>
+      <Filters {...filterProps} columns={columnsSettings} data={data} rulesByType={customRulesByType}>
         {filters.map((filter, index) => (
           <Filters.Item
             {...filterItemProps}
@@ -77,7 +77,6 @@ export default function App() {
             type={filter.type}
             rule={filter.rule}
             value={filter.value}
-            data={filter.data}
           />
         ))}
       </Filters>

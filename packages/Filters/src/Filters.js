@@ -28,6 +28,7 @@ export default function Filters(props) {
     appliedNumber,
     children,
     columns,
+    data,
     onAddFilter,
     onApply,
     onCancel,
@@ -65,7 +66,7 @@ export default function Filters(props) {
   }
 
   return (
-    <FilterContext.Provider value={{ filtersRef, columns, operator, onChangeOperator, rulesByType }}>
+    <FilterContext.Provider value={{ filtersRef, columns, data, operator, onChangeOperator, rulesByType }}>
       <Panel data-pka-anchor="filters.panel" isCompact isOpen={isOpen}>
         <Panel.Header>
           <sc.PanelHeaderWrapper>
@@ -89,7 +90,7 @@ export default function Filters(props) {
           ) : (
             children
           )}
-          <Button onClick={onAddFilter} icon={<AddIcon />} data-pka-anchor="filters.addFilterButton">
+          <Button data-pka-anchor="filters.addFilterButton" icon={<AddIcon />} onClick={onAddFilter}>
             {I18n.t("filters.actions.add")}
           </Button>
         </sc.FiltersPanel>
@@ -121,6 +122,7 @@ const propTypes = {
   appliedNumber: PropTypes.number,
   children: PropTypes.node,
   columns: PropTypes.arrayOf(PropTypes.shape(columnShape)).isRequired,
+  data: PropTypes.arrayOf(PropTypes.shape({})),
   onAddFilter: PropTypes.func.isRequired,
   onApply: PropTypes.func.isRequired,
   onCancel: PropTypes.func,
@@ -135,6 +137,7 @@ const propTypes = {
 const defaultProps = {
   appliedNumber: 0,
   children: null,
+  data: null,
   onCancel: () => {},
   onChangeOperator: null,
   onClear: () => {},

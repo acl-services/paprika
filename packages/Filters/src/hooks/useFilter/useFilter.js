@@ -29,6 +29,8 @@ export default function useFilter({ columns, data = null, rulesByType = Filters.
   const [filteredData, setFilteredData] = React.useState(data);
   const [appliedNumber, setAppliedNumber] = React.useState(0);
 
+  console.log(data);
+
   function setInitialValueByType(columnType, columnId) {
     switch (columnType) {
       case types.columnTypes.BOOLEAN:
@@ -41,40 +43,37 @@ export default function useFilter({ columns, data = null, rulesByType = Filters.
     }
   }
 
-  const handleChangeFilter = React.useCallback(
-    (type, { id: filterId, rule, value, columnId }) => {
-      setFilters(
-        produce(draftFilters => {
-          draftFilters.forEach(filterItem => {
-            if (filterItem.id !== filterId) return;
+  function handleChangeFilter(type, { id: filterId, rule, value, columnId }) {
+    setFilters(
+      produce(draftFilters => {
+        draftFilters.forEach(filterItem => {
+          if (filterItem.id !== filterId) return;
 
-            switch (type) {
-              case types.changeTypes.COLUMN: {
-                const columnType = columns.find(column => column.id === columnId).type;
-                filterItem.columnId = columnId;
-                filterItem.rule = rulesByType[columnType][0];
-                filterItem.value = setInitialValueByType(columnType, columnId);
-                filterItem.renderValueField = null;
-                filterItem.data = columnType === "SINGLE_SELECT" ? data : null;
-                break;
-              }
-              case types.changeTypes.RULE: {
-                filterItem.rule = rule;
-                break;
-              }
-              case types.changeTypes.FILTER_VALUE: {
-                filterItem.value = value;
-                break;
-              }
-              default:
-                break;
+          switch (type) {
+            case types.changeTypes.COLUMN: {
+              const columnType = columns.find(column => column.id === columnId).type;
+              filterItem.columnId = columnId;
+              filterItem.rule = rulesByType[columnType][0];
+              filterItem.value = setInitialValueByType(columnType, columnId);
+              filterItem.renderValueField = null;
+              filterItem.data = columnType === types.columnTypes.SINGLE_SELECT ? data : null;
+              break;
             }
-          });
-        })
-      );
-    },
-    [columns, rulesByType, data]
-  );
+            case types.changeTypes.RULE: {
+              filterItem.rule = rule;
+              break;
+            }
+            case types.changeTypes.FILTER_VALUE: {
+              filterItem.value = value;
+              break;
+            }
+            default:
+              break;
+          }
+        });
+      })
+    );
+  }
 
   function getDefaultFilter() {
     const firstColumnId = columns[0].id;
