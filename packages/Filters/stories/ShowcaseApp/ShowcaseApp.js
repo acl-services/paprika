@@ -38,10 +38,17 @@ const columnsSettings = [
   },
 ];
 
-const orderedColumnIds = columnsSettings.map(column => column.id);
+const orderedColumnIds = ["goals", "name", "status", "country", "joined", "shareable", "position"];
 
 export default function App() {
-  const { filters, filteredData, filterProps, filterItemProps } = useFilters({
+  /**
+   * columns, required
+    data, optional, do not pass in if you want to implement the filter algorithm, see the example in packages/Filters/stories/MockServerFilter/App.js
+    rulesByType, optional
+    reducer, optional
+    initialState, optional
+   */
+  const { filters, filteredData, getFiltersProps, getFilterItemProps } = useFilters({
     columns: columnsSettings,
     data,
   });
@@ -50,10 +57,10 @@ export default function App() {
     <React.Fragment>
       <Heading level={2}>Filters showcase</Heading>
 
-      <Filters {...filterProps} columns={columnsSettings} data={data}>
+      <Filters {...getFiltersProps()} columns={columnsSettings} data={data}>
         {filters.map((filter, index) => (
           <Filters.Item
-            {...filterItemProps}
+            {...getFilterItemProps()}
             columnId={filter.columnId}
             id={filter.id}
             index={index}

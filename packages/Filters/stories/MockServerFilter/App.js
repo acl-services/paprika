@@ -50,10 +50,14 @@ const customRulesByType = {
 export default function FiltersWithServer() {
   const [serverSideData, setServerSideData] = React.useState(null);
   const [isPending, setIsPending] = React.useState(true);
-  const { filters, filterProps, filterItemProps } = useFilters({
+  const { filters, getFiltersProps, getFilterItemProps } = useFilters({
     columns: columnsSettings,
     rulesByType: customRulesByType,
+    initialState: {
+      isResultControlled: true,
+    },
   });
+  const filtersProps = getFiltersProps();
 
   React.useEffect(() => {
     (async function anyNameFunction() {
@@ -66,7 +70,7 @@ export default function FiltersWithServer() {
   const renderLevelFilter = () => <CustomSingleSelectFilter />;
 
   async function handleApply() {
-    filterProps.onApply();
+    filtersProps.onApply();
     setIsPending(true);
     const mockFilterResult = await api.filterBy();
     setServerSideData(mockFilterResult);
@@ -77,10 +81,10 @@ export default function FiltersWithServer() {
     <React.Fragment>
       <Heading level={2}>Filters use api</Heading>
 
-      <Filters {...filterProps} columns={columnsSettings} rulesByType={customRulesByType} onApply={handleApply}>
+      <Filters {...filtersProps} columns={columnsSettings} rulesByType={customRulesByType} onApply={handleApply}>
         {filters.map((filter, index) => (
           <Filters.Item
-            {...filterItemProps}
+            {...getFilterItemProps()}
             columnId={filter.columnId}
             id={filter.id}
             index={index}

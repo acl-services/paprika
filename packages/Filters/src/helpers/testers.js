@@ -1,5 +1,5 @@
 import moment from "moment";
-import Filters from "../../Filters";
+import Filters from "../Filters";
 
 const is = (value, testValue) => (testValue === "" ? true : value === testValue);
 const isNot = (value, testValue) => (testValue === "" ? true : value !== testValue);
