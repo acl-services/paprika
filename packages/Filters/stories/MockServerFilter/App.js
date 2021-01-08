@@ -49,6 +49,7 @@ const customRulesByType = {
 
 export default function FiltersWithServer() {
   const [serverSideData, setServerSideData] = React.useState(null);
+  const [isPending, setIsPending] = React.useState(true);
   const { filters, filterProps, filterItemProps } = useFilters({
     columns: columnsSettings,
     rulesByType: customRulesByType,
@@ -58,22 +59,23 @@ export default function FiltersWithServer() {
     (async function anyNameFunction() {
       const data = await api.fetchAll();
       setServerSideData(data);
+      setIsPending(false);
     })();
   }, []);
 
   const renderLevelFilter = () => <CustomSingleSelectFilter />;
 
   async function handleApply() {
+    filterProps.onApply();
+    setIsPending(true);
     const mockFilterResult = await api.filterBy();
     setServerSideData(mockFilterResult);
-    filterProps.onApply();
+    setIsPending(false);
   }
-
-  if (!serverSideData) return <Spinner />;
 
   return (
     <React.Fragment>
-      <Heading level={2}>Filters showcase</Heading>
+      <Heading level={2}>Filters use api</Heading>
 
       <Filters {...filterProps} columns={columnsSettings} rulesByType={customRulesByType} onApply={handleApply}>
         {filters.map((filter, index) => (
@@ -92,26 +94,30 @@ export default function FiltersWithServer() {
         ))}
       </Filters>
 
-      <table>
-        <thead>
-          <tr>
-            <th>id</th>
-            {orderedColumnIds.map(id => (
-              <th key={id}>{id}</th>
-            ))}
-          </tr>
-        </thead>
-        <tbody>
-          {serverSideData.map(item => (
-            <tr key={item.id}>
-              <td>{item.id}</td>
+      {isPending ? (
+        <Spinner />
+      ) : (
+        <table>
+          <thead>
+            <tr>
+              <th>id</th>
               {orderedColumnIds.map(id => (
-                <td key={id}>{`${item[id]}`}</td>
+                <th key={id}>{id}</th>
               ))}
             </tr>
-          ))}
-        </tbody>
-      </table>
+          </thead>
+          <tbody>
+            {serverSideData.map(item => (
+              <tr key={item.id}>
+                <td>{item.id}</td>
+                {orderedColumnIds.map(id => (
+                  <td key={id}>{`${item[id]}`}</td>
+                ))}
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      )}
     </React.Fragment>
   );
 }
