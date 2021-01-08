@@ -51,16 +51,15 @@ export function ListBox(props) {
     <Trigger {...propsForTrigger} />
   );
 
+  const hasOptions = Boolean(React.Children.count(children));
+
   return (
     <React.Fragment>
       {trigger}
-      <Content
-        onCancelFooter={footer ? footer.props.onClickCancel : null}
-        hasOptions={Boolean(React.Children.count(children))}
-      >
+      <Content onCancelFooter={footer ? footer.props.onClickCancel : null} hasOptions={hasOptions}>
         <Box {...box.props}>
           {filter}
-          <List height={height} hasOptions={Boolean(React.Children.count(children))}>
+          <List height={height} hasOptions={hasOptions}>
             <Options isPopoverOpen={props.isOpen}>{children}</Options>
           </List>
           {filter ? (

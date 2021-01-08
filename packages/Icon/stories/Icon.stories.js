@@ -1,14 +1,24 @@
 import React from "react";
-import { storiesOf } from "@storybook/react";
 import { withKnobs } from "@storybook/addon-knobs";
 import { getStoryName } from "storybook/storyTree";
-import InlineTest from "./examples/InlineTest";
+import ExampleStory from "storybook/components/ExampleStory";
+import { showcaseStoryParameters } from "storybook/assets/storyParameters";
 import AllIconsStory from "./examples/AllIcons";
 
 const storyName = getStoryName("Icon");
 
-storiesOf(storyName, module)
-  .addDecorator(withKnobs)
-  .add("All Icons", AllIconsStory);
+export default {
+  title: storyName,
+};
 
-storiesOf(`${storyName}/Backyard/Sandbox`, module).add("Inline Test", () => <InlineTest />);
+export const ShowcaseStory = () => (
+  <ExampleStory storyName="Icon" tagline={ExampleStory.defaultTaglines.showcase}>
+    <AllIconsStory />
+  </ExampleStory>
+);
+
+ShowcaseStory.story = {
+  name: "Showcase",
+  decorators: [withKnobs],
+  parameters: showcaseStoryParameters,
+};

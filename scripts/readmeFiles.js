@@ -1,8 +1,8 @@
 #!/usr/bin/env node
 
 /**
- * CAVEAT if your main component doesn't return a JSX or React.createElement execution
- * the parse method of React dos will not be able to extract the parse content for it
+ * CAVEAT if your main component doesn't return a JSX or React.createElement, executing
+ * this script will not parse correctly ReactDOCS therefore will not extract the content in it.
  * EX:
  *
  * // THIS WILL FAIL!!!
