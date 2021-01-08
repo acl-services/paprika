@@ -1,6 +1,6 @@
 import React from "react";
 import PropTypes from "prop-types";
-import PaprikaDatePicker from "@paprika/date-picker";
+import DatePicker from "@paprika/date-picker";
 import moment from "moment";
 
 const propTypes = {
@@ -9,7 +9,7 @@ const propTypes = {
   parsingFormat: PropTypes.string.isRequired,
 };
 
-export default function DatePicker(props) {
+export default function DatePickerWrapper(props) {
   const { initialDate, onChange, parsingFormat } = props;
 
   function getMomentDate(dateStr) {
@@ -28,7 +28,11 @@ export default function DatePicker(props) {
     onChange(newDate);
   }
 
-  return <PaprikaDatePicker onChange={handleChange} date={date} />;
+  return (
+    <DatePicker onChange={handleChange} date={date}>
+      <DatePicker.Popover data-pka-anchor="filters.filterItem.valueInput--date" zIndex={7} />
+    </DatePicker>
+  );
 }
 
-DatePicker.propTypes = propTypes;
+DatePickerWrapper.propTypes = propTypes;

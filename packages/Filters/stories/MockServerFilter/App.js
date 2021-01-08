@@ -1,7 +1,9 @@
 import React from "react";
 import Heading from "@paprika/heading";
+import Spinner from "@paprika/spinner";
 import Filters, { useFilters } from "../../src";
-import data from "./data";
+import * as api from "./api";
+import CustomSingleSelectFilter from "./CustomSingleSelectFilter";
 
 const columnsSettings = [
   {
@@ -32,25 +34,48 @@ const columnsSettings = [
     label: "Shareable",
   },
   {
-    id: "position",
-    type: Filters.types.columnTypes.SINGLE_SELECT,
-    label: "Position",
+    id: "level",
+    type: "CUSTOM_SELECT",
+    label: "Level",
   },
 ];
 
 const orderedColumnIds = columnsSettings.map(column => column.id);
 
-export default function App() {
-  const { filters, filteredData, filterProps, filterItemProps } = useFilters({
+const customRulesByType = {
+  ...Filters.defaultRulesByType,
+  CUSTOM_SELECT: [Filters.rules.IS, Filters.rules.IS_NOT, Filters.rules.IS_EMPTY, Filters.rules.IS_NOT_EMPTY],
+};
+
+export default function FiltersWithServer() {
+  const [serverSideData, setServerSideData] = React.useState(null);
+  const { filters, filterProps, filterItemProps } = useFilters({
     columns: columnsSettings,
-    data,
+    rulesByType: customRulesByType,
   });
+
+  React.useEffect(() => {
+    (async function anyNameFunction() {
+      const data = await api.fetchAll();
+      setServerSideData(data);
+    })();
+  }, []);
+
+  const renderLevelFilter = () => <CustomSingleSelectFilter />;
+
+  async function handleApply() {
+    const mockFilterResult = await api.filterBy();
+    setServerSideData(mockFilterResult);
+    filterProps.onApply();
+  }
+
+  if (!serverSideData) return <Spinner />;
 
   return (
     <React.Fragment>
       <Heading level={2}>Filters showcase</Heading>
 
-      <Filters {...filterProps} columns={columnsSettings} data={data}>
+      <Filters {...filterProps} columns={columnsSettings} rulesByType={customRulesByType} onApply={handleApply}>
         {filters.map((filter, index) => (
           <Filters.Item
             {...filterItemProps}
@@ -59,8 +84,9 @@ export default function App() {
             index={index}
             key={filter.id}
             label={filter.label}
-            type={filter.type}
+            renderValueField={filter.columnId === "level" ? renderLevelFilter : null}
             rule={filter.rule}
+            type={filter.type}
             value={filter.value}
           />
         ))}
@@ -76,7 +102,7 @@ export default function App() {
           </tr>
         </thead>
         <tbody>
-          {filteredData.map(item => (
+          {serverSideData.map(item => (
             <tr key={item.id}>
               <td>{item.id}</td>
               {orderedColumnIds.map(id => (

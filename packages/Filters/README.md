@@ -27,6 +27,7 @@ npm install @paprika/filters
 | appliedNumber    | number                                                   | false    | 0                          |             |
 | children         | node                                                     | false    | null                       |             |
 | columns          | arrayOf                                                  | true     | -                          |             |
+| data             | arrayOf                                                  | false    | null                       |             |
 | onAddFilter      | func                                                     | true     | -                          |             |
 | onApply          | func                                                     | true     | -                          |             |
 | onCancel         | func                                                     | false    | () => {}                   |             |

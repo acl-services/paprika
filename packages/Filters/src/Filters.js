@@ -52,8 +52,8 @@ export default function Filters(props) {
   }
 
   function handleApply() {
-    setIsOpen(false);
     onApply();
+    setIsOpen(false);
   }
 
   function handleCancel() {
@@ -67,7 +67,7 @@ export default function Filters(props) {
 
   return (
     <FilterContext.Provider value={{ filtersRef, columns, data, operator, onChangeOperator, rulesByType }}>
-      <Panel data-pka-anchor="filters.panel" isCompact isOpen={isOpen}>
+      <Panel data-pka-anchor="filters.panel" isCompact isOpen={isOpen} onClose={handleCancel}>
         <Panel.Header>
           <sc.PanelHeaderWrapper>
             <FilterIcon aria-hidden="true" />

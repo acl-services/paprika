@@ -10,6 +10,8 @@ interface FiltersProps {
 
   columns: shape[];
 
+  data?: shape[];
+
   onAddFilter: (...args: any[]) => any;
 
   onApply: (...args: any[]) => any;
