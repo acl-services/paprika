@@ -41,7 +41,7 @@ export default function defaultReducer(draft, action) {
             const columnType = payload.columns.find(column => column.id === changedFilterItem.columnId).type;
             filterItem.columnId = changedFilterItem.columnId;
             filterItem.rule = payload.rulesByType[columnType][0];
-            filterItem.value = getInitialValueByType(columnType, changedFilterItem.columnId);
+            filterItem.value = getInitialValueByType(columnType, changedFilterItem.columnId, draft.data);
             filterItem.renderValueField = null;
             break;
           }

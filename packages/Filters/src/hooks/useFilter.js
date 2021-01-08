@@ -6,14 +6,14 @@ import defaultReducer, { actionTypes } from "./defaultReducer";
 import * as types from "../types";
 import getInitialValueByType from "../helpers/getInitialValueByType";
 
-function getDefaultFilter(columns, rulesByType) {
+function getDefaultFilter(columns, rulesByType, data) {
   const firstColumnId = columns[0].id;
   const firstColumnType = columns.find(column => column.id === firstColumnId).type;
 
   return {
     columnId: firstColumnId,
     rule: rulesByType[firstColumnType][0],
-    value: getInitialValueByType(firstColumnType, firstColumnId),
+    value: getInitialValueByType(firstColumnType, firstColumnId, data),
     id: nanoid(),
   };
 }
@@ -22,7 +22,7 @@ function initState(initialState) {
   return {
     appliedNumber: initialState.appliedNumber || 0,
     data: initialState.data,
-    filteredData: initialState.isResultControlled ? null : initialState.filteredData || [],
+    filteredData: initialState.isResultControlled ? null : initialState.filteredData || initialState.data,
     filters: initialState.filters || [],
     isResultControlled: initialState.isResultControlled,
     operator: initialState.operator || types.logicalFilterOperators.AND,
@@ -39,7 +39,7 @@ export default function useFilter({
   const [state, dispatch] = React.useReducer(reducer, { ...initialState, data }, initState);
 
   function onAddFilter() {
-    dispatch({ type: actionTypes.addFilter, payload: getDefaultFilter(columns, rulesByType) });
+    dispatch({ type: actionTypes.addFilter, payload: getDefaultFilter(columns, rulesByType, data) });
   }
 
   function onChangeOperator() {

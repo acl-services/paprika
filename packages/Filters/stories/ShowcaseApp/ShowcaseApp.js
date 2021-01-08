@@ -51,11 +51,25 @@ export default function App() {
   const { filters, filteredData, getFiltersProps, getFilterItemProps } = useFilters({
     columns: columnsSettings,
     data,
+    /** This is optional if the filters panel is empty by default. */
+    initialState: {
+      filteredData: [data[1]],
+      appliedNumber: 1,
+      filters: [
+        {
+          id: 1,
+          columnId: "name",
+          rule: "is",
+          value: "Romário",
+        },
+      ],
+    },
   });
 
   return (
     <React.Fragment>
       <Heading level={2}>Filters showcase</Heading>
+      <div>Click the trigger below to update filters.</div>
 
       <Filters {...getFiltersProps()} columns={columnsSettings} data={data}>
         {filters.map((filter, index) => (
