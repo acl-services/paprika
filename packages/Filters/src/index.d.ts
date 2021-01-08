@@ -22,11 +22,29 @@ interface FiltersProps {
 
   onClear?: (...args: any[]) => any;
 
-  onOpen?: (...args: any[]) => any;
-
   operator?: Filters.types.operator.AND | Filters.types.operator.OR;
 
   rulesByType?: objectOf;
+}
+declare function Item(props: ItemProps): JSX.Element;
+interface ItemProps {
+  [x: string]: any;
+
+  columnId: string;
+
+  id?: string | number;
+
+  index: number;
+
+  onChangeFilter: (...args: any[]) => any;
+
+  onDeleteFilter: (...args: any[]) => any;
+
+  renderValueField?: (...args: any[]) => any;
+
+  rule: string;
+
+  value: string | bool;
 }
 
 declare namespace Filters {

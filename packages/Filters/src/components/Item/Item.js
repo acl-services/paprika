@@ -26,7 +26,7 @@ const defaultProps = {
   renderValueField: null,
 };
 
-function FilterItem(props) {
+function Item(props) {
   const {
     index,
     onChangeFilter,
@@ -97,11 +97,11 @@ function FilterItem(props) {
             as={Select}
             onChange={handleChangeRule}
             value={selectedRule}
-            data-pka-anchor="actionBar.filter.ruleSelector"
+            data-pka-anchor="filters.ruleSelector"
           >
             {rulesByType[selectedColumnType].map(rule => (
               <option key={rule} value={rule}>
-                {I18n.t(`actionBar.filter.rules.${types.localeKeysByRule[rule]}`)}
+                {I18n.t(`filters.rules.${types.localeKeysByRule[rule]}`)}
               </option>
             ))}
           </sc.RuleSelect>
@@ -181,8 +181,8 @@ function FilterItem(props) {
   );
 }
 
-FilterItem.propTypes = propTypes;
-FilterItem.types = types;
-FilterItem.defaultProps = defaultProps;
+Item.propTypes = propTypes;
+Item.types = types;
+Item.defaultProps = defaultProps;
 
-export default React.memo(FilterItem);
+export default Item;

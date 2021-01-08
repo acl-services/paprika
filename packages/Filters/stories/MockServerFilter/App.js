@@ -89,7 +89,6 @@ export default function FiltersWithServer() {
             id={filter.id}
             index={index}
             key={filter.id}
-            label={filter.label}
             renderValueField={filter.columnId === "level" ? renderLevelFilter : null}
             rule={filter.rule}
             type={filter.type}

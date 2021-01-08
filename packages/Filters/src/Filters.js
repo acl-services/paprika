@@ -5,7 +5,7 @@ import Button from "@paprika/button";
 import FilterIcon from "@paprika/icon/lib/Filter";
 import Panel from "@paprika/panel";
 import useI18n from "@paprika/l10n/lib/useI18n";
-import FilterItem from "./components/FilterItem";
+import Item from "./components/Item";
 import FilterContext from "./context";
 import columnShape from "./columnShape";
 import * as types from "./types";
@@ -34,7 +34,6 @@ export default function Filters(props) {
     onCancel,
     onChangeOperator,
     onClear,
-    onOpen,
     operator,
     rulesByType,
   } = props;
@@ -43,12 +42,7 @@ export default function Filters(props) {
   const [isOpen, setIsOpen] = React.useState(false);
 
   function handleClickTrigger() {
-    setIsOpen(prevIsOpen => {
-      if (prevIsOpen) return false;
-
-      onOpen();
-      return true;
-    });
+    setIsOpen(prevIsOpen => !prevIsOpen);
   }
 
   function handleApply() {
@@ -128,7 +122,6 @@ const propTypes = {
   onCancel: PropTypes.func,
   onChangeOperator: PropTypes.func,
   onClear: PropTypes.func,
-  onOpen: PropTypes.func,
   operator: PropTypes.oneOf([Filters.types.operator.AND, Filters.types.operator.OR]),
 
   rulesByType: PropTypes.objectOf(PropTypes.arrayOf(PropTypes.objectOf(Filters.types.rule))),
@@ -141,7 +134,6 @@ const defaultProps = {
   onCancel: () => {},
   onChangeOperator: null,
   onClear: () => {},
-  onOpen: () => {},
   operator: Filters.types.operator.AND,
   rulesByType: Filters.types.rulesByType,
 };
@@ -152,5 +144,5 @@ Filters.defaultProps = defaultProps;
 
 Filters.defaultRulesByType = types.defaultRulesByType;
 Filters.rules = types.rules;
-Filters.Item = FilterItem;
+Filters.Item = Item;
 Filters.types = types;

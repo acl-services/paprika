@@ -65,7 +65,6 @@ export default function App() {
             id={filter.id}
             index={index}
             key={filter.id}
-            label={filter.label}
             type={filter.type}
             rule={filter.rule}
             value={filter.value}
