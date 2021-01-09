@@ -1,29 +1,30 @@
-// TODO: ignore those that are inside a ckEditor?
+@import "@paprika/stylers/lib/helpers.scss";
+@import "@paprika/tokens/lib/tokens.scss";
 
 a[data-dynamic-hyperlink] {
-  background-color: white;
-  border-radius: 4px;
-  box-shadow: 0 0 2px black;
-  color: #0063c5;
+  background-color: $color--white;
+  border-radius: $button--border-radius;
+  box-shadow: 0 0 2px $color--black;
+  color: $color--blue-darken-10;
   display: inline-block;
-  font-size: 14px;
-  padding: 2px 4px;
+  font-size: font-scale(-1);
+  padding: 2px $space-sm;
   text-decoration: underline;
 
   span {
-    margin-left: 4px;
-    border-radius: 4px;
+    margin-left: $space-sm;
+    border-radius: $button--border-radius;
     display: inline-block;
     text-decoration: none;
 
     &.valid {
-      background-color: #cce5fd;
-      color: #0063c5;
-      padding: 1px 8px;
+      background-color: $color--blue-lighten-40;
+      color: $color--blue-darken-10;
+      padding: 1px $space;
     }
 
     &.invalid {
-      color: #717171;
+      color: $color--black-lighten-20;
     }
   }
 }
