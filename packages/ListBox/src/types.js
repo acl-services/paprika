@@ -6,3 +6,6 @@ export const LARGE = constants.size.LARGE;
 
 export const MINOR = constants.kind.MINOR;
 export const PRIMARY = constants.kind.PRIMARY;
+
+export const KEY_PRESS = "keypress";
+export const CLICK = "click";

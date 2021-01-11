@@ -12,6 +12,7 @@ const Input = React.forwardRef((props, ref) => {
     e.target.value = "";
     props.onChange(e);
     props.onClear();
+    e.stopPropagation();
   };
 
   const renderClear = () => {
