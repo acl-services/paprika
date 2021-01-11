@@ -1,5 +1,5 @@
 import testers from "./testers";
-import * as types from "../types";
+import { logicalFilterOperators } from "../rules";
 
 export default function filterData({ filters, operator, columns, data }) {
   if (filters.length === 0) return data;
@@ -14,6 +14,6 @@ export default function filterData({ filters, operator, columns, data }) {
           )
         : true;
     };
-    return operator === types.logicalFilterOperators.AND ? filters.every(tester) : filters.some(tester);
+    return operator === logicalFilterOperators.AND ? filters.every(tester) : filters.some(tester);
   });
 }

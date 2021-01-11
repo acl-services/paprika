@@ -54,12 +54,12 @@ export default function App() {
     /** This is optional if the filters panel is empty by default. */
     initialState: {
       filteredData: [data[1]],
-      appliedNumber: 1,
+      numberApplied: 1,
       filters: [
         {
           id: 1,
           columnId: "name",
-          rule: "is",
+          rule: "IS",
           value: "Romário",
         },
       ],

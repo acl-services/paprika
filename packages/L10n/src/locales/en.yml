@@ -195,8 +195,8 @@ en:
         clear: Clear
       no_filters_applied: No filters applied to this view
       label: Filter
-      singular_label: 1 filter
-      plural_label: "{{numberOfFilters}} filters"
+      lowercase_label: "{{count}} filter"
+      lowercase_label_plural: "{{count}} filters"
       and: And
       or: Or
       rules:

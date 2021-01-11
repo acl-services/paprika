@@ -4,7 +4,7 @@ declare function Filters(props: FiltersProps): JSX.Element;
 interface FiltersProps {
   [x: string]: any;
 
-  appliedNumber?: number;
+  numberApplied?: number;
 
   children?: React.ReactNode;
 
@@ -22,7 +22,7 @@ interface FiltersProps {
 
   onClear?: (...args: any[]) => any;
 
-  operator?: Filters.types.operator.AND | Filters.types.operator.OR;
+  operator?: Filters.operator.AND | Filters.operator.OR;
 
   rulesByType?: objectOf;
 }
@@ -45,13 +45,4 @@ interface ItemProps {
   rule: string;
 
   value: string | bool;
-}
-
-declare namespace Filters {
-  namespace types {
-    namespace operator {
-      const AND: any;
-      const OR: any;
-    }
-  }
 }

@@ -7,6 +7,7 @@ import Select from "@paprika/select";
 import DatePicker from "../DatePicker";
 import FilterContext from "../../context";
 import * as types from "../../types";
+import rules, { localeKeysByRule } from "../../rules";
 import FilterPrefix from "../FilterPrefix";
 import * as sc from "./FilterItem.styles";
 
@@ -45,7 +46,7 @@ function Item(props) {
   const selectOptions = React.useMemo(() => {
     return selectedColumnType === types.columnTypes.SINGLE_SELECT
       ? data.filter((obj, index, arr) => {
-          return arr.map(mapObj => mapObj[selectedColumnId]).indexOf(obj[selectedColumnId]) === index;
+          return arr.map(datum => datum[selectedColumnId]).indexOf(obj[selectedColumnId]) === index;
         })
       : null;
   }, [selectedColumnType, data, selectedColumnId]);
@@ -101,7 +102,7 @@ function Item(props) {
           >
             {rulesByType[selectedColumnType].map(rule => (
               <option key={rule} value={rule}>
-                {I18n.t(`filters.rules.${types.localeKeysByRule[rule]}`)}
+                {I18n.t(`filters.rules.${localeKeysByRule[rule]}`)}
               </option>
             ))}
           </sc.RuleSelect>
@@ -110,10 +111,10 @@ function Item(props) {
   }
   function renderValueField() {
     const shouldNotShowValueField =
-      selectedRule === types.rules.IS_BLANK ||
-      selectedRule === types.rules.IS_NOT_BLANK ||
-      selectedRule === types.rules.IS_EMPTY ||
-      selectedRule === types.rules.IS_NOT_EMPTY;
+      selectedRule === rules.IS_BLANK ||
+      selectedRule === rules.IS_NOT_BLANK ||
+      selectedRule === rules.IS_EMPTY ||
+      selectedRule === rules.IS_NOT_EMPTY;
 
     if (shouldNotShowValueField) return null;
 
@@ -122,7 +123,7 @@ function Item(props) {
     switch (selectedColumnType) {
       case types.columnTypes.BOOLEAN:
         return (
-          <sc.ValueInput as={Select} value={`${value}`} onChange={handleChangeBooleanFilterValue}>
+          <sc.ValueInput as={Select} value={value.toString()} onChange={handleChangeBooleanFilterValue}>
             <option value="true">{I18n.t("filters.rules.true")}</option>
             <option value="false">{I18n.t("filters.rules.false")}</option>
           </sc.ValueInput>

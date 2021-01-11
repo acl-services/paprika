@@ -1,9 +1,9 @@
 import React from "react";
-import nanoid from "nanoid";
+import uuid from "uuid/v4";
 import produce from "immer";
 import Filters from "../Filters";
 import defaultReducer, { actionTypes } from "./defaultReducer";
-import * as types from "../types";
+import { logicalFilterOperators } from "../rules";
 import getInitialValueByType from "../helpers/getInitialValueByType";
 
 function getDefaultFilter(columns, rulesByType, data) {
@@ -14,18 +14,18 @@ function getDefaultFilter(columns, rulesByType, data) {
     columnId: firstColumnId,
     rule: rulesByType[firstColumnType][0],
     value: getInitialValueByType(firstColumnType, firstColumnId, data),
-    id: nanoid(),
+    id: uuid(),
   };
 }
 
 function initState(initialState) {
   return {
-    appliedNumber: initialState.appliedNumber || 0,
+    numberApplied: initialState.numberApplied || 0,
     data: initialState.data,
     filteredData: initialState.isResultControlled ? null : initialState.filteredData || initialState.data,
     filters: initialState.filters || [],
     isResultControlled: initialState.isResultControlled,
-    operator: initialState.operator || types.logicalFilterOperators.AND,
+    operator: initialState.operator || logicalFilterOperators.AND,
   };
 }
 
@@ -74,7 +74,7 @@ export default function useFilter({
 
   function getFiltersProps() {
     return {
-      appliedNumber: state.appliedNumber,
+      numberApplied: state.numberApplied,
       onAddFilter,
       onChangeOperator,
       onClear,

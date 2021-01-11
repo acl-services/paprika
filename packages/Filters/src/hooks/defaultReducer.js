@@ -1,4 +1,5 @@
 /* eslint-disable no-param-reassign */
+import { logicalFilterOperators } from "../rules";
 import * as types from "../types";
 import filterData from "../helpers/filterData";
 import getInitialValueByType from "../helpers/getInitialValueByType";
@@ -18,7 +19,7 @@ export default function defaultReducer(draft, action) {
       draft.filters.push(action.payload);
       break;
     case actionTypes.apply: {
-      draft.appliedNumber = draft.filters.length;
+      draft.numberApplied = draft.filters.length;
       if (!draft.isResultControlled) {
         draft.filteredData = filterData({
           filters: draft.filters,
@@ -61,13 +62,11 @@ export default function defaultReducer(draft, action) {
     }
     case actionTypes.changeOperator: {
       draft.operator =
-        draft.operator === types.logicalFilterOperators.AND
-          ? types.logicalFilterOperators.OR
-          : types.logicalFilterOperators.AND;
+        draft.operator === logicalFilterOperators.AND ? logicalFilterOperators.OR : logicalFilterOperators.AND;
       break;
     }
     case actionTypes.clear: {
-      draft.appliedNumber = 0;
+      draft.numberApplied = 0;
       draft.filters = [];
       if (!draft.isResultControlled) {
         draft.filteredData = filterData({

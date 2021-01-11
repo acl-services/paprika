@@ -1,3 +1,8 @@
+export const logicalFilterOperators = {
+  AND: "and",
+  OR: "or",
+};
+
 export const rules = {
   IS: "IS",
   IS_NOT: "IS_NOT",

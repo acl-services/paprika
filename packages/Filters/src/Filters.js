@@ -9,23 +9,17 @@ import Item from "./components/Item";
 import FilterContext from "./context";
 import columnShape from "./columnShape";
 import * as types from "./types";
+import rules, { defaultRulesByType, logicalFilterOperators } from "./rules";
 
 import * as sc from "./Filters.styles";
 
 function getLabelText(numberOfFilters, I18n) {
-  switch (numberOfFilters) {
-    case 0:
-      return I18n.t("filters.label");
-    case 1:
-      return I18n.t("filters.singular_label");
-    default:
-      return I18n.t("filters.plural_label", { numberOfFilters });
-  }
+  return numberOfFilters ? I18n.t("filters.lowercase_label", { count: numberOfFilters }) : I18n.t("filters.label");
 }
 
 export default function Filters(props) {
   const {
-    appliedNumber,
+    numberApplied,
     children,
     columns,
     data,
@@ -61,7 +55,13 @@ export default function Filters(props) {
 
   return (
     <FilterContext.Provider value={{ filtersRef, columns, data, operator, onChangeOperator, rulesByType }}>
-      <Panel data-pka-anchor="filters.panel" isCompact isOpen={isOpen} onClose={handleCancel}>
+      <Panel
+        a11yText={I18n.t("filters.label")}
+        data-pka-anchor="filters.panel"
+        isCompact
+        isOpen={isOpen}
+        onClose={handleCancel}
+      >
         <Panel.Header>
           <sc.PanelHeaderWrapper>
             <FilterIcon aria-hidden="true" />
@@ -76,7 +76,7 @@ export default function Filters(props) {
           kind={Button.types.kind.FLAT}
           onClick={handleClickTrigger}
         >
-          {getLabelText(appliedNumber, I18n)}
+          {getLabelText(numberApplied, I18n)}
         </Panel.Trigger>
         <sc.FiltersPanel ref={filtersRef}>
           {React.Children.count(children) === 0 ? (
@@ -106,14 +106,16 @@ export default function Filters(props) {
   );
 }
 
-Filters.types = {
-  operator: types.logicalFilterOperators,
-  rule: types.rules,
-  rulesByType: types.defaultRulesByType,
-};
+Filters.displayName = "Filters";
+
+Filters.defaultRulesByType = defaultRulesByType;
+Filters.Item = Item;
+Filters.operator = logicalFilterOperators;
+Filters.rules = rules;
+Filters.types = types;
 
 const propTypes = {
-  appliedNumber: PropTypes.number,
+  numberApplied: PropTypes.number,
   children: PropTypes.node,
   columns: PropTypes.arrayOf(PropTypes.shape(columnShape)).isRequired,
   data: PropTypes.arrayOf(PropTypes.shape({})),
@@ -122,27 +124,20 @@ const propTypes = {
   onCancel: PropTypes.func,
   onChangeOperator: PropTypes.func,
   onClear: PropTypes.func,
-  operator: PropTypes.oneOf([Filters.types.operator.AND, Filters.types.operator.OR]),
-
-  rulesByType: PropTypes.objectOf(PropTypes.arrayOf(PropTypes.objectOf(Filters.types.rule))),
+  operator: PropTypes.oneOf([Filters.operator.AND, Filters.operator.OR]),
+  rulesByType: PropTypes.objectOf(PropTypes.arrayOf(PropTypes.oneOf(Object.values(Filters.rules)))),
 };
 
 const defaultProps = {
-  appliedNumber: 0,
+  numberApplied: 0,
   children: null,
   data: null,
   onCancel: () => {},
   onChangeOperator: null,
   onClear: () => {},
-  operator: Filters.types.operator.AND,
-  rulesByType: Filters.types.rulesByType,
+  operator: Filters.operator.AND,
+  rulesByType: Filters.defaultRulesByType,
 };
 
-Filters.displayName = "Filters";
 Filters.propTypes = propTypes;
 Filters.defaultProps = defaultProps;
-
-Filters.defaultRulesByType = types.defaultRulesByType;
-Filters.rules = types.rules;
-Filters.Item = Item;
-Filters.types = types;

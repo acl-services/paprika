@@ -22,19 +22,19 @@ npm install @paprika/filters
 
 ### Filters
 
-| Prop             | Type                                                     | required | default                    | Description |
-| ---------------- | -------------------------------------------------------- | -------- | -------------------------- | ----------- |
-| appliedNumber    | number                                                   | false    | 0                          |             |
-| children         | node                                                     | false    | null                       |             |
-| columns          | arrayOf                                                  | true     | -                          |             |
-| data             | arrayOf                                                  | false    | null                       |             |
-| onAddFilter      | func                                                     | true     | -                          |             |
-| onApply          | func                                                     | true     | -                          |             |
-| onCancel         | func                                                     | false    | () => {}                   |             |
-| onChangeOperator | func                                                     | false    | null                       |             |
-| onClear          | func                                                     | false    | () => {}                   |             |
-| operator         | [ Filters.types.operator.AND, Filters.types.operator.OR] | false    | Filters.types.operator.AND |             |
-| rulesByType      | objectOf                                                 | false    | Filters.types.rulesByType  |             |
+| Prop             | Type                                         | required | default                    | Description |
+| ---------------- | -------------------------------------------- | -------- | -------------------------- | ----------- |
+| numberApplied    | number                                       | false    | 0                          |             |
+| children         | node                                         | false    | null                       |             |
+| columns          | arrayOf                                      | true     | -                          |             |
+| data             | arrayOf                                      | false    | null                       |             |
+| onAddFilter      | func                                         | true     | -                          |             |
+| onApply          | func                                         | true     | -                          |             |
+| onCancel         | func                                         | false    | () => {}                   |             |
+| onChangeOperator | func                                         | false    | null                       |             |
+| onClear          | func                                         | false    | () => {}                   |             |
+| operator         | [ Filters.operator.AND, Filters.operator.OR] | false    | Filters.operator.AND       |             |
+| rulesByType      | objectOf                                     | false    | Filters.defaultRulesByType |             |
 
 ### Item
 
@@ -62,7 +62,7 @@ import Filters, { useFilters } from "@paprika/filters";
 <Filters
   columns={columnsSettings}
   data={data}
-  appliedNumber={1}
+  numberApplied={1}
   onAddFilter={() => {}}
   onApply={() => {}}
   onCancel={() => {}}

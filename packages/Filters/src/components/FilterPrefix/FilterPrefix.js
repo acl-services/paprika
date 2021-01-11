@@ -2,13 +2,13 @@ import React from "react";
 import PropTypes from "prop-types";
 import Radio from "@paprika/radio";
 import useI18n from "@paprika/l10n/lib/useI18n";
-import * as types from "../../types";
+import { logicalFilterOperators } from "../../rules";
 import * as sc from "./FilterPrefix.styles";
 
 const propTypes = {
   index: PropTypes.number.isRequired,
   onChangeOperator: PropTypes.func.isRequired,
-  operator: PropTypes.oneOf([types.logicalFilterOperators.AND, types.logicalFilterOperators.OR]),
+  operator: PropTypes.oneOf([logicalFilterOperators.AND, logicalFilterOperators.OR]),
 };
 
 const defaultProps = {};
@@ -16,11 +16,11 @@ const defaultProps = {};
 function Prefix(props) {
   const { index, onChangeOperator, operator } = props;
   const I18n = useI18n();
-  const isAnd = operator === types.logicalFilterOperators.AND;
+  const isAnd = operator === logicalFilterOperators.AND;
   const staticPrefix = <sc.TextWrapper>{I18n.t(`filters.${isAnd ? "and" : "or"}`)}</sc.TextWrapper>;
 
   function handleChangeOperator(activeIndex) {
-    onChangeOperator(activeIndex === 0 ? types.logicalFilterOperators.AND : types.logicalFilterOperators.OR);
+    onChangeOperator(activeIndex === 0 ? logicalFilterOperators.AND : logicalFilterOperators.OR);
   }
 
   switch (index) {
@@ -42,7 +42,6 @@ function Prefix(props) {
 }
 
 Prefix.propTypes = propTypes;
-Prefix.types = types;
 Prefix.defaultProps = defaultProps;
 
 export default Prefix;
