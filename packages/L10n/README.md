@@ -48,7 +48,7 @@ import Collapsible from "@paprika/collapsible";
   <h4>Mon app</h4>
   <Collapsible />
   ...
-</L10n>
+</L10n>;
 ```
 
 ##### Translating your own components

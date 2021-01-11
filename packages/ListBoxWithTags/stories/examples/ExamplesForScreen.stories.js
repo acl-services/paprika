@@ -1,5 +1,5 @@
 import React from "react";
-import ListBox, { useListBoxWithTags } from "../../../src/WithTags";
+import ListBox, { useListBoxWithTags } from "../../src";
 import AllOptionsAreSelectedOpen from "./AllOptionsAreSelected";
 
 const defaultData = [
@@ -8,6 +8,8 @@ const defaultData = [
   { name: "Thrull" },
   { name: "June Del Toro" },
   { name: "Skaelka" },
+  { name: "First name" },
+  { name: "Second name" },
 ];
 
 export function Open() {
@@ -56,9 +58,6 @@ export function Selected() {
         {...moreProps}
         isOpen
       >
-        {selectedOptions.length === defaultData.length ? (
-          <ListBox.RawItem>All options has been selected</ListBox.RawItem>
-        ) : null}
         {filteredData.map(option => {
           return !isSelected(option.name) ? <ListBox.Option label={option.name}>{option.name}</ListBox.Option> : null;
         })}
