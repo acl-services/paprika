@@ -1,5 +1,5 @@
 import React from "react";
-import ListBox, { useListBoxWithTags } from "../../../src/WithTags";
+import ListBox, { useListBoxWithTags } from "../../src";
 
 const defaultData = [
   { name: "jack" },

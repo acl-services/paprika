@@ -4,14 +4,14 @@ import PropTypes from "prop-types";
 import useI18n from "@paprika/l10n/lib/useI18n";
 import CaretDownIcon from "@paprika/icon/lib/CaretDown";
 import CaretUpIcon from "@paprika/icon/lib/CaretUp";
-import ListBox from "../..";
-
-import Pill, { Pills } from "../Pill";
-import { filter } from "../../helpers/filter";
-import * as sc from "./WithTags.styles";
+import ListBox from "@paprika/list-box";
+import { filter } from "@paprika/list-box/lib/helpers/filter";
 /* eslint-disable no-restricted-syntax */
-import * as triggerSc from "../Trigger/Trigger.styles";
+import * as triggerSc from "@paprika/list-box/lib/components/Trigger/Trigger.styles";
 /* eslint-enable no-restricted-syntax */
+import * as sc from "./ListBoxWithTags.styles";
+
+import Pill, { Pills } from "./components/Pill";
 
 const propTypes = {
   /** Child of type <ListBox.Option />, <ListBox.Divider />, etc */
@@ -34,7 +34,7 @@ const propTypes = {
   selectedOptions: PropTypes.arrayOf(PropTypes.shape({})),
   /** Provides an alternative for rendering the Pill label instead of using the default [{label:value}] coming from the og data */
   pillLabelKey: PropTypes.string,
-  /** When this is true, it will display a message indicating all options are selected without showing the popover nor the search input */
+  /** When this is true, it will display a message indicating all options are selected on the popover */
   allOptionsAreSelected: PropTypes.bool,
   /** Message to display when all options have been selected */
   allOptionsAreSelectedMessage: PropTypes.string,
@@ -117,7 +117,7 @@ const renderTrigger = ({ t, size, selectedOptions, onRemove, renderPill, pillLab
   );
 };
 
-export default function WithTags(props) {
+export default function ListBoxWithTags(props) {
   const {
     allOptionsAreSelected,
     allOptionsAreSelectedMessage,
@@ -191,24 +191,23 @@ export default function WithTags(props) {
         ) : (
           <ListBox.RawItem>{noResultsMessage}</ListBox.RawItem>
         )}
+        {allOptionsAreSelected && (
+          <ListBox.RawItem>
+            {allOptionsAreSelectedMessage || t("listBoxWithTags.all_items_have_been_selected")}
+          </ListBox.RawItem>
+        )}
       </ListBox>
-
-      {allOptionsAreSelected && (
-        <sc.AllOptionsAreSelected size={size}>
-          {allOptionsAreSelectedMessage || t("listBoxWithTags.all_items_have_been_selected")}
-        </sc.AllOptionsAreSelected>
-      )}
     </div>
   );
 }
 
-WithTags.propTypes = propTypes;
-WithTags.defaultProps = defaultProps;
+ListBoxWithTags.propTypes = propTypes;
+ListBoxWithTags.defaultProps = defaultProps;
 
-WithTags.Box = ListBox.Box;
-WithTags.Divider = ListBox.Divider;
-WithTags.Footer = ListBox.Footer;
-WithTags.Option = ListBox.Option;
-WithTags.Popover = ListBox.Popover;
-WithTags.RawItem = ListBox.RawItem;
-WithTags.filter = filter;
+ListBoxWithTags.Box = ListBox.Box;
+ListBoxWithTags.Divider = ListBox.Divider;
+ListBoxWithTags.Footer = ListBox.Footer;
+ListBoxWithTags.Option = ListBox.Option;
+ListBoxWithTags.Popover = ListBox.Popover;
+ListBoxWithTags.RawItem = ListBox.RawItem;
+ListBoxWithTags.filter = filter;
