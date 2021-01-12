@@ -1,6 +1,6 @@
 import React from "react";
 import useI18n from "@paprika/l10n/lib/useI18n";
-import { filter } from "../../helpers/filter";
+import { filter } from "../../ListBox/src/helpers/filter";
 
 function prepareDataDictionary(key, data) {
   const dictionary = {};

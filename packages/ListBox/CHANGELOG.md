@@ -48,3 +48,9 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 ### Fixed
 
 - Fixed hardcoded text in listbox footer.
+
+## [1.3.0] - 2021-01-11
+
+### Change
+
+- WithTags subcomponent was moved to their own packages no is part of @paprika/list-box-with-tags
