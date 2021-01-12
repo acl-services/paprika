@@ -5,15 +5,6 @@ import L10n from "@paprika/l10n";
 import Tabs from "@paprika/tabs";
 import DynamicHyperlink from "../../src";
 
-const terms = {
-  control: "CONTROL",
-  narrative: "NARRATIVE",
-  objective: "OBJECTIVE",
-  risk: "RISK",
-  walkthrough: "WALKTHROUGH",
-  testPlan: "TEST PLAN",
-};
-
 const ExampleStory = () => (
   <Story>
     <Heading level={1} displayLevel={2} isLight>
@@ -25,7 +16,7 @@ const ExampleStory = () => (
     </Tagline>
     <Rule />
     <L10n locale="en">
-      <DynamicHyperlink terms={terms} />
+      <DynamicHyperlink />
       <Tabs>
         <Tabs.List>
           <Tabs.Tab>Page 1</Tabs.Tab>

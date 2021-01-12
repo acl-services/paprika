@@ -12,13 +12,13 @@ function fetchFromApi(url) {
   return new Promise(resolve => {
     switch (url) {
       case "www.google1.ca":
-        resolve({ name: "Name returned from API", id: 12345, type: "control", error: null });
+        resolve({ name: "Name returned from API", id: 12345, term: "CONTROL", error: null });
         break;
       case "www.google2.ca":
-        resolve({ name: "", id: "", type: "", error: "access_denied" });
+        resolve({ name: "", id: "", term: "", error: "access_denied" });
         break;
       case "www.google3.ca":
-        resolve({ name: "", id: "", type: "", error: "invalid_url" });
+        resolve({ name: "", id: "", term: "", error: "invalid_url" });
         break;
       default:
         break;
@@ -26,7 +26,7 @@ function fetchFromApi(url) {
   });
 }
 
-export default function DynamicHyperlink({ terms }) {
+export default function DynamicHyperlink() {
   const I18n = useI18n();
 
   React.useEffect(() => {
@@ -41,14 +41,14 @@ export default function DynamicHyperlink({ terms }) {
           dynamicHyperlink.setAttribute("data-dynamic-hyperlink--processed", "true");
 
           // THIS IS JUST A PLACEHOLDER TO SIMULATE API
-          fetchFromApi(originalLinkUrl).then(({ error, id, name, type }) => {
+          fetchFromApi(originalLinkUrl).then(({ error, id, name, term }) => {
             const className = error ? "invalid" : "valid";
             const linkText = error ? originalLinkUrl : `${id}: ${name}`;
             const errorText = error ? I18n.t(`dynamicHyperlink.${error}`) : "";
 
             dynamicHyperlink.innerHTML = linkText; // eslint-disable-line no-param-reassign
             const typeOrErrorSpan = document.createElement("span");
-            typeOrErrorSpan.innerHTML = error ? `- ${errorText}` : terms[type];
+            typeOrErrorSpan.innerHTML = error ? `- ${errorText}` : term;
             typeOrErrorSpan.className = className;
             dynamicHyperlink.appendChild(typeOrErrorSpan);
           });
