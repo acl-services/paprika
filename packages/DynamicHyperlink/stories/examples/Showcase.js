@@ -6,36 +6,27 @@ import Tabs from "@paprika/tabs";
 import DynamicHyperlink from "../../src/DynamicHyperlink";
 
 // This function needs to return a Promise that resolves { name, term, error }
-function handleFetch(url) {
+function handleFetch(url, linkType) {
   // Look to see if the URL is already in session storage
   // If not, the consumer will look at the URL's pattern to determine what type of URL this is (Narrative, Control, Risk, etc) and what data to send to the server.
   // The patterns: https://github.com/acl-services/workpapers/pull/16028/files?file-filters%5B%5D=.js&file-filters%5B%5D=.lock&file-filters%5B%5D=.rb#diff-59c3c9d1b2b99a24dae17c586c5645805e8f3e01f16e419559c6e5a6f26dc701R8
 
   // Real code will look something like this:
-  // const pattern = patterns.find(pattern => pattern.isMatch(url));
+  // const pattern = patterns.getPattern(linkType);
   // const { apiLookupTemplate, dynamicTextTemplate } = pattern;
-  // return fetch(pattern.apiUrl(url), { apiLookupTemplate, dynamicTextTemplate });
+  // return fetch(pattern.getApiUrl(), { apiLookupTemplate, dynamicTextTemplate });
 
-  // For simulation purposes:
-  return new Promise(resolve => {
-    switch (url) {
-      case "www.google1.ca":
-        setTimeout(() => {
-          resolve({ name: "Name returned from API", term: "CONTROL", error: null });
-        }, 3000);
-        break;
-      case "www.google2.ca":
-        resolve({ name: "", term: "", error: "access_denied" });
-        break;
-      case "www.google3.ca":
-        setTimeout(() => {
-          resolve({ name: "", term: "", error: "invalid_url" });
-        }, 1500);
-        break;
-      default:
-        break;
-    }
-  });
+  // I made an endpoint at mockit.io to simulate
+  switch (linkType) {
+    case "link1":
+      return fetch(`https://dhl.mockit.io/api/valid`);
+    case "link2":
+      return fetch(`https://dhl.mockit.io/api/denied`);
+    case "link3":
+      return fetch(`https://dhl.mockit.io/api/invalid`);
+    default:
+      return new Promise(() => {});
+  }
 }
 
 const ExampleStory = () => (
@@ -59,20 +50,20 @@ const ExampleStory = () => (
           <Tabs.Panel>
             <p>
               A functioning dynamic hyperlink{" "}
-              <a href="www.google1.ca" data-dynamic-hyperlink>
-                www.google1.ca
+              <a href="https://www.wegalvanize.com/" data-dynamic-hyperlink="link1">
+                https://www.wegalvanize.com/
               </a>{" "}
               in action. Here is one the viewer does not have access to{" "}
-              <a href="www.google2.ca" data-dynamic-hyperlink>
-                www.google2.ca
+              <a href="https://www.wegalvanize.com/" data-dynamic-hyperlink="link2">
+                https://www.wegalvanize.com/
               </a>
               and here is one where the URL doesnt really exist{" "}
-              <a href="www.google3.ca" data-dynamic-hyperlink>
-                www.google3.ca
+              <a href="https://www.wegalvanize.com/" data-dynamic-hyperlink="link3">
+                https://www.wegalvanize.com/
               </a>
-              . This one is still loading{" "}
-              <a href="www.google4.ca" data-dynamic-hyperlink>
-                www.google4.ca
+              . This one is loading indefinitely{" "}
+              <a href="https://www.wegalvanize.com/" data-dynamic-hyperlink="link4">
+                https://www.wegalvanize.com/
               </a>{" "}
               and this last one is a normal boring link <a href="www.google.ca">http://google.ca</a>. The end.
             </p>

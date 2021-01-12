@@ -3,6 +3,10 @@ import PropTypes from "prop-types";
 import useI18n from "@paprika/l10n/lib/useI18n";
 import "./DynamicHyperlink.scss";
 
+function isPromise(obj) {
+  return obj && obj.then && typeof obj.then === "function";
+}
+
 export default function DynamicHyperlink({ onFetch }) {
   const I18n = useI18n();
 
@@ -13,22 +17,32 @@ export default function DynamicHyperlink({ onFetch }) {
       dynamicHyperlinks
         .filter(dynamicHyperlink => !dynamicHyperlink.hasAttribute("data-dynamic-hyperlink--processed"))
         .forEach(dynamicHyperlink => {
-          const originalLinkUrl = dynamicHyperlink.innerHTML;
+          const originalLinkUrl = dynamicHyperlink.href;
+          const attributeValue = dynamicHyperlink.getAttribute("data-dynamic-hyperlink");
           dynamicHyperlink.innerHTML = I18n.t("dynamicHyperlink.loading"); // eslint-disable-line no-param-reassign
           dynamicHyperlink.setAttribute("data-dynamic-hyperlink--processed", "true");
 
           // the consumer does the fetching of data
-          onFetch(originalLinkUrl).then(({ error, name, term }) => {
-            const className = error ? "invalid" : "valid";
-            const linkText = error ? originalLinkUrl : name;
-            const errorText = error ? I18n.t(`dynamicHyperlink.${error}`) : "";
+          const prom = onFetch(originalLinkUrl, attributeValue);
+          if (isPromise(prom)) {
+            prom
+              .then(response => response.json())
+              .then(response => {
+                const { error, name, term } = response;
 
-            dynamicHyperlink.innerHTML = linkText; // eslint-disable-line no-param-reassign
-            const typeOrErrorSpan = document.createElement("span");
-            typeOrErrorSpan.innerHTML = error ? `- ${errorText}` : term;
-            typeOrErrorSpan.className = className;
-            dynamicHyperlink.appendChild(typeOrErrorSpan);
-          });
+                const className = error ? "invalid" : "valid";
+                const linkText = error ? originalLinkUrl : name;
+                const errorText = error ? I18n.t(`dynamicHyperlink.${error}`) : "";
+
+                dynamicHyperlink.innerHTML = linkText; // eslint-disable-line no-param-reassign
+                const typeOrErrorSpan = document.createElement("span");
+                typeOrErrorSpan.innerHTML = error ? `- ${errorText}` : term;
+                typeOrErrorSpan.className = className;
+                dynamicHyperlink.appendChild(typeOrErrorSpan);
+              });
+          } else {
+            throw new Error("In DynamicHyperlink component, the onFetch prop must return a Promise");
+          }
         });
     }
 
