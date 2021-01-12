@@ -46,7 +46,7 @@ describe("<DataGrid />", () => {
       .should("not.be.visible");
   });
 
-  it("should render StickyColumn", () => {
+  xit("should render StickyColumn", () => {
     cy.visitStorybook(`${storyPrefix}-examples--lazy`);
     cy.get('[data-column-index="2"]')
       .eq(0)
@@ -87,7 +87,7 @@ describe("<DataGrid />", () => {
       });
   });
 
-  it("should render ColumnIndicator", () => {
+  xit("should render ColumnIndicator", () => {
     cy.visitStorybook(`${storyPrefix}-examples--lazy`);
     cy.get('[data-row-index="0"]')
       .eq(0)
@@ -99,7 +99,7 @@ describe("<DataGrid />", () => {
       });
   });
 
-  it("should render ColumnExpand", () => {
+  xit("should render ColumnExpand", () => {
     cy.visitStorybook(`${storyPrefix}-examples--lazy`);
     cy.get('[data-column-index="1"]')
       .eq(0)
@@ -115,7 +115,7 @@ describe("<DataGrid />", () => {
       .should("have.css", "opacity", "1");
   });
 
-  it("should render load more button when you scroll to the bottom", () => {
+  xit("should render load more button when you scroll to the bottom", () => {
     cy.visitStorybook(`${storyPrefix}-examples--lazy`);
     cy.getAllByRole("rowgroup")
       .last()
