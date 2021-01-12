@@ -3,9 +3,6 @@ import PropTypes from "prop-types";
 import useI18n from "@paprika/l10n/lib/useI18n";
 import "./DynamicHyperlink.scss";
 
-// TODO: ignore those that are inside a ckEditor?
-// TODO: nahum suggested looking at a webworker
-
 export default function DynamicHyperlink({ onFetch }) {
   const I18n = useI18n();
 
