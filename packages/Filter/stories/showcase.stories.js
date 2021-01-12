@@ -5,7 +5,7 @@ import { Story } from "storybook/assets/styles/common.styles";
 import L10n from "@paprika/l10n";
 import App from "./ShowcaseApp";
 
-const storyName = getStoryName("Filters");
+const storyName = getStoryName("Filter");
 
 export default {
   title: storyName,

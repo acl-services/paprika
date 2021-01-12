@@ -1,39 +1,39 @@
 import React from "react";
 import Heading from "@paprika/heading";
-import Filters, { useFilters } from "../../src";
+import Filter, { useFilter } from "../../src";
 import data from "./data";
 
 const columnsSettings = [
   {
     id: "goals",
-    type: Filters.types.columnTypes.NUMBER,
+    type: Filter.types.columnTypes.NUMBER,
     label: "Goals",
   },
   {
     id: "name",
-    type: Filters.types.columnTypes.TEXT,
+    type: Filter.types.columnTypes.TEXT,
     label: "Name",
   },
   {
     id: "status",
-    type: Filters.types.columnTypes.TEXT,
+    type: Filter.types.columnTypes.TEXT,
     label: "Status",
   },
   { id: "country", label: "Country", type: "TEXT" },
   {
     id: "joined",
-    type: Filters.types.columnTypes.DATE,
+    type: Filter.types.columnTypes.DATE,
     label: "Joined by",
     momentParsingFormat: "MM/DD/YYYY",
   },
   {
     id: "shareable",
-    type: Filters.types.columnTypes.BOOLEAN,
+    type: Filter.types.columnTypes.BOOLEAN,
     label: "Shareable",
   },
   {
     id: "position",
-    type: Filters.types.columnTypes.SINGLE_SELECT,
+    type: Filter.types.columnTypes.SINGLE_SELECT,
     label: "Position",
   },
 ];
@@ -43,15 +43,15 @@ const orderedColumnIds = ["goals", "name", "status", "country", "joined", "share
 export default function App() {
   /**
    * columns, required
-    data, optional, do not pass in if you want to implement the filter algorithm, see the example in packages/Filters/stories/MockServerFilter/App.js
+    data, optional, do not pass in if you want to implement the filter algorithm, see the example in packages/Filter/stories/MockServerFilter/App.js
     rulesByType, optional
     reducer, optional
     initialState, optional
    */
-  const { filters, filteredData, getFiltersProps, getFilterItemProps } = useFilters({
+  const { filters, filteredData, getFilterProps, getFilterItemProps } = useFilter({
     columns: columnsSettings,
     data,
-    /** This is optional if the filters panel is empty by default. */
+    /** This is optional if the filter panel is empty by default. */
     initialState: {
       filteredData: [data[1]],
       numberApplied: 1,
@@ -68,12 +68,12 @@ export default function App() {
 
   return (
     <React.Fragment>
-      <Heading level={2}>Filters showcase</Heading>
+      <Heading level={2}>Filter showcase</Heading>
       <div>Click the trigger below to update filters.</div>
 
-      <Filters {...getFiltersProps()} columns={columnsSettings} data={data}>
+      <Filter {...getFilterProps()} columns={columnsSettings} data={data}>
         {filters.map((filter, index) => (
-          <Filters.Item
+          <Filter.Item
             {...getFilterItemProps()}
             columnId={filter.columnId}
             id={filter.id}
@@ -84,7 +84,7 @@ export default function App() {
             value={filter.value}
           />
         ))}
-      </Filters>
+      </Filter>
 
       <table>
         <thead>

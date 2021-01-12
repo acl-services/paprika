@@ -30,7 +30,7 @@ export default function DatePickerWrapper(props) {
 
   return (
     <DatePicker onChange={handleChange} date={date}>
-      <DatePicker.Popover data-pka-anchor="filters.filterItem.valueInput--date" zIndex={7} />
+      <DatePicker.Popover data-pka-anchor="filter.filterItem.valueInput--date" zIndex={7} />
     </DatePicker>
   );
 }

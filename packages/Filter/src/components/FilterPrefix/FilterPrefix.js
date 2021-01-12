@@ -17,7 +17,7 @@ function Prefix(props) {
   const { index, onChangeOperator, operator } = props;
   const I18n = useI18n();
   const isAnd = operator === logicalFilterOperators.AND;
-  const staticPrefix = <sc.TextWrapper>{I18n.t(`filters.${isAnd ? "and" : "or"}`)}</sc.TextWrapper>;
+  const staticPrefix = <sc.TextWrapper>{I18n.t(`filter.${isAnd ? "and" : "or"}`)}</sc.TextWrapper>;
 
   function handleChangeOperator(activeIndex) {
     onChangeOperator(activeIndex === 0 ? logicalFilterOperators.AND : logicalFilterOperators.OR);
@@ -30,8 +30,8 @@ function Prefix(props) {
       if (onChangeOperator) {
         return (
           <sc.RadioGroup onChange={handleChangeOperator}>
-            <Radio defaultIsChecked={isAnd}>{I18n.t("filters.and")}</Radio>
-            <Radio defaultIsChecked={!isAnd}>{I18n.t("filters.or")}</Radio>
+            <Radio defaultIsChecked={isAnd}>{I18n.t("filter.and")}</Radio>
+            <Radio defaultIsChecked={!isAnd}>{I18n.t("filter.or")}</Radio>
           </sc.RadioGroup>
         );
       }

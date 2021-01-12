@@ -11,13 +11,13 @@ export const PanelHeaderWrapper = styled.span`
   }
 `;
 
-export const FiltersPanel = styled.div``;
+export const FilterPanel = styled.div``;
 
 export const Footer = styled.div`
   display: flex;
   flex-grow: 1;
 
-  [data-pka-anchor="filters.clearButton"] {
+  [data-pka-anchor="filter.clearButton"] {
     margin-left: auto;
   }
 `;

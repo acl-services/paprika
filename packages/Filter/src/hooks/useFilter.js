@@ -1,7 +1,7 @@
 import React from "react";
 import uuid from "uuid/v4";
 import produce from "immer";
-import Filters from "../Filters";
+import Filter from "../Filter";
 import defaultReducer, { actionTypes } from "./defaultReducer";
 import { logicalFilterOperators } from "../rules";
 import getInitialValueByType from "../helpers/getInitialValueByType";
@@ -34,7 +34,7 @@ export default function useFilter({
   data = null,
   initialState = {},
   reducer = produce(defaultReducer),
-  rulesByType = Filters.defaultRulesByType,
+  rulesByType = Filter.defaultRulesByType,
 }) {
   const [state, dispatch] = React.useReducer(reducer, { ...initialState, data }, initState);
 
@@ -72,7 +72,7 @@ export default function useFilter({
     });
   }
 
-  function getFiltersProps() {
+  function getFilterProps() {
     return {
       numberApplied: state.numberApplied,
       onAddFilter,
@@ -93,7 +93,7 @@ export default function useFilter({
   return {
     filters: state.filters,
     filteredData: state.filteredData,
-    getFiltersProps,
+    getFilterProps,
     getFilterItemProps,
   };
 }

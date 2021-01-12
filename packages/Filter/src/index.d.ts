@@ -1,7 +1,7 @@
-export default Filters;
+export default Filter;
 
-declare function Filters(props: FiltersProps): JSX.Element;
-interface FiltersProps {
+declare function Filter(props: FilterProps): JSX.Element;
+interface FilterProps {
   [x: string]: any;
 
   numberApplied?: number;
@@ -22,7 +22,7 @@ interface FiltersProps {
 
   onClear?: (...args: any[]) => any;
 
-  operator?: Filters.operator.AND | Filters.operator.OR;
+  operator?: Filter.operator.AND | Filter.operator.OR;
 
   rulesByType?: objectOf;
 }

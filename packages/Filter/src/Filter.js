@@ -11,13 +11,13 @@ import columnShape from "./columnShape";
 import * as types from "./types";
 import rules, { defaultRulesByType, logicalFilterOperators } from "./rules";
 
-import * as sc from "./Filters.styles";
+import * as sc from "./Filter.styles";
 
 function getLabelText(numberOfFilters, I18n) {
-  return numberOfFilters ? I18n.t("filters.lowercase_label", { count: numberOfFilters }) : I18n.t("filters.label");
+  return numberOfFilters ? I18n.t("filter.lowercase_label", { count: numberOfFilters }) : I18n.t("filter.label");
 }
 
-export default function Filters(props) {
+export default function Filter(props) {
   const {
     numberApplied,
     children,
@@ -32,7 +32,7 @@ export default function Filters(props) {
     rulesByType,
   } = props;
   const I18n = useI18n();
-  const filtersRef = React.useRef(null);
+  const filterRef = React.useRef(null);
   const [isOpen, setIsOpen] = React.useState(false);
 
   function handleClickTrigger() {
@@ -54,10 +54,10 @@ export default function Filters(props) {
   }
 
   return (
-    <FilterContext.Provider value={{ filtersRef, columns, data, operator, onChangeOperator, rulesByType }}>
+    <FilterContext.Provider value={{ filterRef, columns, data, operator, onChangeOperator, rulesByType }}>
       <Panel
-        a11yText={I18n.t("filters.label")}
-        data-pka-anchor="filters.panel"
+        a11yText={I18n.t("filter.label")}
+        data-pka-anchor="filter.panel"
         isCompact
         isOpen={isOpen}
         onClose={handleCancel}
@@ -65,12 +65,12 @@ export default function Filters(props) {
         <Panel.Header>
           <sc.PanelHeaderWrapper>
             <FilterIcon aria-hidden="true" />
-            {I18n.t("filters.label")}
+            {I18n.t("filter.label")}
           </sc.PanelHeaderWrapper>
         </Panel.Header>
 
         <Panel.Trigger
-          data-pka-anchor="filters.panelTrigger"
+          data-pka-anchor="filter.panelTrigger"
           icon={<FilterIcon />}
           isSemantic={false}
           kind={Button.types.kind.FLAT}
@@ -78,26 +78,26 @@ export default function Filters(props) {
         >
           {getLabelText(numberApplied, I18n)}
         </Panel.Trigger>
-        <sc.FiltersPanel ref={filtersRef}>
+        <sc.FilterPanel ref={filterRef}>
           {React.Children.count(children) === 0 ? (
-            <sc.GenericNoAppliedPlaceholder>{I18n.t("filters.no_filters_applied")}</sc.GenericNoAppliedPlaceholder>
+            <sc.GenericNoAppliedPlaceholder>{I18n.t("filter.no_filters_applied")}</sc.GenericNoAppliedPlaceholder>
           ) : (
             children
           )}
-          <Button data-pka-anchor="filters.addFilterButton" icon={<AddIcon />} onClick={onAddFilter}>
-            {I18n.t("filters.actions.add")}
+          <Button data-pka-anchor="filter.addFilterButton" icon={<AddIcon />} onClick={onAddFilter}>
+            {I18n.t("filter.actions.add")}
           </Button>
-        </sc.FiltersPanel>
+        </sc.FilterPanel>
         <Panel.Footer isSticky>
           <sc.Footer>
-            <Button data-pka-anchor="filters.applyButton" onClick={handleApply} kind="primary">
+            <Button data-pka-anchor="filter.applyButton" onClick={handleApply} kind="primary">
               {I18n.t("actions.apply")}
             </Button>
-            <Button data-pka-anchor="filters.cancelButton" onClick={handleCancel} kind="minor">
+            <Button data-pka-anchor="filter.cancelButton" onClick={handleCancel} kind="minor">
               {I18n.t("actions.cancel")}
             </Button>
-            <Button data-pka-anchor="filters.clearButton" onClick={handleClear} kind="minor">
-              {I18n.t("filters.actions.clear")}
+            <Button data-pka-anchor="filter.clearButton" onClick={handleClear} kind="minor">
+              {I18n.t("filter.actions.clear")}
             </Button>
           </sc.Footer>
         </Panel.Footer>
@@ -106,13 +106,13 @@ export default function Filters(props) {
   );
 }
 
-Filters.displayName = "Filters";
+Filter.displayName = "Filter";
 
-Filters.defaultRulesByType = defaultRulesByType;
-Filters.Item = Item;
-Filters.operator = logicalFilterOperators;
-Filters.rules = rules;
-Filters.types = types;
+Filter.defaultRulesByType = defaultRulesByType;
+Filter.Item = Item;
+Filter.operator = logicalFilterOperators;
+Filter.rules = rules;
+Filter.types = types;
 
 const propTypes = {
   numberApplied: PropTypes.number,
@@ -124,8 +124,8 @@ const propTypes = {
   onCancel: PropTypes.func,
   onChangeOperator: PropTypes.func,
   onClear: PropTypes.func,
-  operator: PropTypes.oneOf([Filters.operator.AND, Filters.operator.OR]),
-  rulesByType: PropTypes.objectOf(PropTypes.arrayOf(PropTypes.oneOf(Object.values(Filters.rules)))),
+  operator: PropTypes.oneOf([Filter.operator.AND, Filter.operator.OR]),
+  rulesByType: PropTypes.objectOf(PropTypes.arrayOf(PropTypes.oneOf(Object.values(Filter.rules)))),
 };
 
 const defaultProps = {
@@ -135,9 +135,9 @@ const defaultProps = {
   onCancel: () => {},
   onChangeOperator: null,
   onClear: () => {},
-  operator: Filters.operator.AND,
-  rulesByType: Filters.defaultRulesByType,
+  operator: Filter.operator.AND,
+  rulesByType: Filter.defaultRulesByType,
 };
 
-Filters.propTypes = propTypes;
-Filters.defaultProps = defaultProps;
+Filter.propTypes = propTypes;
+Filter.defaultProps = defaultProps;

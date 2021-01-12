@@ -189,7 +189,7 @@ en:
     copyInput:
       clicked_tooltip: Copied
       hover_tooltip: Copy to clipboard
-    filters:
+    filter:
       actions:
         add: Add filter
         clear: Clear

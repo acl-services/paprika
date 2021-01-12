@@ -18,7 +18,7 @@ export const RowWrapper = styled.div`
   flex-grow: 1;
   flex-wrap: wrap;
 
-  [data-pka-anchor="filters.filterItem.valueInput--date"] {
+  [data-pka-anchor="filter.filterItem.valueInput--date"] {
     flex-basis: 100%;
     margin-top: ${tokens.spaceLg};
   }

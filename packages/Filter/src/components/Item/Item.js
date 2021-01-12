@@ -38,7 +38,7 @@ function Item(props) {
     value,
     renderValueField: renderCustomValueField,
   } = props;
-  const { columns, data, filtersRef, onChangeOperator, operator, rulesByType } = React.useContext(FilterContext);
+  const { columns, data, filterRef, onChangeOperator, operator, rulesByType } = React.useContext(FilterContext);
   const I18n = useI18n();
 
   const selectedColumnType = columns.find(({ id }) => id === selectedColumnId).type;
@@ -52,7 +52,7 @@ function Item(props) {
   }, [selectedColumnType, data, selectedColumnId]);
 
   function handleRemoveFilter() {
-    filtersRef.current.focus();
+    filterRef.current.focus();
     onDeleteFilter(id);
   }
 
@@ -71,7 +71,7 @@ function Item(props) {
   }
 
   function handleChangeDatePicker(momentDate) {
-    filtersRef.current.focus();
+    filterRef.current.focus();
 
     if (momentDate === null) {
       handleChangeValue("");
@@ -91,18 +91,18 @@ function Item(props) {
   function renderRuleField() {
     switch (selectedColumnType) {
       case types.columnTypes.BOOLEAN:
-        return I18n.t("filters.rules.is");
+        return I18n.t("filter.rules.is");
       default:
         return (
           <sc.RuleSelect
             as={Select}
             onChange={handleChangeRule}
             value={selectedRule}
-            data-pka-anchor="filters.ruleSelector"
+            data-pka-anchor="filter.ruleSelector"
           >
             {rulesByType[selectedColumnType].map(rule => (
               <option key={rule} value={rule}>
-                {I18n.t(`filters.rules.${localeKeysByRule[rule]}`)}
+                {I18n.t(`filter.rules.${localeKeysByRule[rule]}`)}
               </option>
             ))}
           </sc.RuleSelect>
@@ -124,8 +124,8 @@ function Item(props) {
       case types.columnTypes.BOOLEAN:
         return (
           <sc.ValueInput as={Select} value={value.toString()} onChange={handleChangeBooleanFilterValue}>
-            <option value="true">{I18n.t("filters.rules.true")}</option>
-            <option value="false">{I18n.t("filters.rules.false")}</option>
+            <option value="true">{I18n.t("filter.rules.true")}</option>
+            <option value="false">{I18n.t("filter.rules.false")}</option>
           </sc.ValueInput>
         );
       case types.columnTypes.DATE:
@@ -156,10 +156,10 @@ function Item(props) {
   return (
     <>
       <FilterPrefix index={index} onChangeOperator={onChangeOperator} operator={operator} />
-      <sc.FilterItem data-pka-anchor="filters.filterItem">
+      <sc.FilterItem data-pka-anchor="filter.filterItem">
         <sc.RowWrapper>
           <sc.ColumnSelect
-            data-pka-anchor="filters.item.columnSelect"
+            data-pka-anchor="filter.item.columnSelect"
             onChange={handleChangeColumn}
             value={selectedColumnId}
           >
@@ -174,7 +174,7 @@ function Item(props) {
           {renderValueField()}
         </sc.RowWrapper>
 
-        <sc.DeleteButton data-pka-anchor="filters.deleteFilterButton" onClick={handleRemoveFilter} kind="minor">
+        <sc.DeleteButton data-pka-anchor="filter.deleteFilterButton" onClick={handleRemoveFilter} kind="minor">
           <DeleteIcon />
         </sc.DeleteButton>
       </sc.FilterItem>

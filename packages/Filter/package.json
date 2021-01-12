@@ -1,14 +1,14 @@
 {
-  "name": "@paprika/filters",
+  "name": "@paprika/filter",
   "version": "0.1.0",
-  "description": "Filters",
+  "description": "Filter",
   "author": "@paprika",
   "license": "MIT",
   "main": "lib/index.js",
   "types": "lib/index.d.ts",
   "repository": {
     "type": "git",
-    "url": "https://github.com/acl-services/paprika/tree/master/packages/Filters"
+    "url": "https://github.com/acl-services/paprika/tree/master/packages/Filter"
   },
   "publishConfig": {
     "access": "public"

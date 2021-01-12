@@ -1,36 +1,36 @@
 import React from "react";
 import Heading from "@paprika/heading";
 import Spinner from "@paprika/spinner";
-import Filters, { useFilters } from "../../src";
+import Filter, { useFilter } from "../../src";
 import * as api from "./api";
 import CustomSingleSelectFilter from "./CustomSingleSelectFilter";
 
 const columnsSettings = [
   {
     id: "goals",
-    type: Filters.types.columnTypes.NUMBER,
+    type: Filter.types.columnTypes.NUMBER,
     label: "Goals",
   },
   {
     id: "name",
-    type: Filters.types.columnTypes.TEXT,
+    type: Filter.types.columnTypes.TEXT,
     label: "Name",
   },
   {
     id: "status",
-    type: Filters.types.columnTypes.TEXT,
+    type: Filter.types.columnTypes.TEXT,
     label: "Status",
   },
   { id: "country", label: "Country", type: "TEXT" },
   {
     id: "joined",
-    type: Filters.types.columnTypes.DATE,
+    type: Filter.types.columnTypes.DATE,
     label: "Joined by",
     momentParsingFormat: "MM/DD/YYYY",
   },
   {
     id: "shareable",
-    type: Filters.types.columnTypes.BOOLEAN,
+    type: Filter.types.columnTypes.BOOLEAN,
     label: "Shareable",
   },
   {
@@ -43,21 +43,21 @@ const columnsSettings = [
 const orderedColumnIds = columnsSettings.map(column => column.id);
 
 const customRulesByType = {
-  ...Filters.defaultRulesByType,
-  CUSTOM_SELECT: [Filters.rules.IS, Filters.rules.IS_NOT, Filters.rules.IS_EMPTY, Filters.rules.IS_NOT_EMPTY],
+  ...Filter.defaultRulesByType,
+  CUSTOM_SELECT: [Filter.rules.IS, Filter.rules.IS_NOT, Filter.rules.IS_EMPTY, Filter.rules.IS_NOT_EMPTY],
 };
 
-export default function FiltersWithServer() {
+export default function FilterWithServer() {
   const [serverSideData, setServerSideData] = React.useState(null);
   const [isPending, setIsPending] = React.useState(true);
-  const { filters, getFiltersProps, getFilterItemProps } = useFilters({
+  const { filters, getFilterProps, getFilterItemProps } = useFilter({
     columns: columnsSettings,
     rulesByType: customRulesByType,
     initialState: {
       isResultControlled: true,
     },
   });
-  const filtersProps = getFiltersProps();
+  const filterProps = getFilterProps();
 
   React.useEffect(() => {
     (async function anyNameFunction() {
@@ -70,7 +70,7 @@ export default function FiltersWithServer() {
   const renderLevelFilter = () => <CustomSingleSelectFilter />;
 
   async function handleApply() {
-    filtersProps.onApply();
+    filterProps.onApply();
     setIsPending(true);
     const mockFilterResult = await api.filterBy();
     setServerSideData(mockFilterResult);
@@ -79,11 +79,11 @@ export default function FiltersWithServer() {
 
   return (
     <React.Fragment>
-      <Heading level={2}>Filters use api</Heading>
+      <Heading level={2}>Filter use api</Heading>
 
-      <Filters {...filtersProps} columns={columnsSettings} rulesByType={customRulesByType} onApply={handleApply}>
+      <Filter {...filterProps} columns={columnsSettings} rulesByType={customRulesByType} onApply={handleApply}>
         {filters.map((filter, index) => (
-          <Filters.Item
+          <Filter.Item
             {...getFilterItemProps()}
             columnId={filter.columnId}
             id={filter.id}
@@ -95,7 +95,7 @@ export default function FiltersWithServer() {
             value={filter.value}
           />
         ))}
-      </Filters>
+      </Filter>
 
       {isPending ? (
         <Spinner />
