@@ -140,7 +140,7 @@ describe("ListBox single select custom filter", () => {
       expect($e.find("ul").children().length).to.be.equal(0);
     });
 
-    cy.get(selectors.noResults).should("contain", "Your search result did not match any options.");
+    cy.get(selectors.noResults).should("contain", "No results found");
   });
 });
 

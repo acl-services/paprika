@@ -103,10 +103,10 @@ en:
         placeholder: Select...
       filter:
         a11y_text: Search
-        no_results_message: Your search result did not match any options.
+        no_results_message: No results found
         placeholder: Search...
       footer:
-        accept: Accept
+        accept: Apply
         cancel: Cancel
         clear: Clear
     listBoxBrowser:

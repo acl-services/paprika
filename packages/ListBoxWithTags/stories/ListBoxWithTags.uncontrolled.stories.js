@@ -2,7 +2,7 @@ import React from "react";
 import { getStoryName } from "storybook/storyTree";
 import UncontrolledApp from "./examples/Uncontrolled";
 
-const storyName = getStoryName("ListBox");
+const storyName = getStoryName("ListBoxWithTags");
 
 export default {
   title: storyName,
