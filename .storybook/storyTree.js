@@ -96,6 +96,7 @@ const storyTree = [
       "Stylers",
       "Tokens",
       "helpers",
+      "DynamicHyperlink"
     ],
   },
 ];
