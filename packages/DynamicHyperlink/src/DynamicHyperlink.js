@@ -42,7 +42,7 @@ export default function DynamicHyperlink({ onFetch }) {
     updateDynamicHyperlinks();
 
     return () => observer.disconnect();
-  }, []);
+  }, [I18n, onFetch]);
 
   return null;
 }
