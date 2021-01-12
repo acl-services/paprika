@@ -1,6 +1,6 @@
 {
   "name": "@paprika/modal",
-  "version": "1.0.4-alpha.0",
+  "version": "1.0.4",
   "description": "The Modal component provides additional information without losing context of the main interface.",
   "author": "@paprika",
   "main": "lib/index.js",
@@ -15,11 +15,11 @@
     "access": "public"
   },
   "dependencies": {
-    "@paprika/button": "^1.0.4-alpha.0",
+    "@paprika/button": "^1.0.4",
     "@paprika/constants": "^1.0.0",
-    "@paprika/heading": "^1.0.3",
-    "@paprika/helpers": "^1.0.3-alpha.0",
-    "@paprika/overlay": "^1.0.3-alpha.0",
+    "@paprika/heading": "^1.0.4",
+    "@paprika/helpers": "^2.0.0",
+    "@paprika/overlay": "^1.0.3",
     "@paprika/stylers": "^1.0.0",
     "@paprika/tokens": "^1.0.0",
     "prop-types": "^15.7.2",
