@@ -3,7 +3,40 @@ import { Story, Rule, Tagline } from "storybook/assets/styles/common.styles";
 import Heading from "@paprika/heading";
 import L10n from "@paprika/l10n";
 import Tabs from "@paprika/tabs";
-import DynamicHyperlink from "../../src";
+import DynamicHyperlink from "../../src/DynamicHyperlink";
+
+// This function needs to return a Promise that resolves { name, term, error }
+function handleFetch(url) {
+  // Look to see if the URL is already in session storage
+  // If not, the consumer will look at the URL's pattern to determine what type of URL this is (Narrative, Control, Risk, etc) and what data to send to the server.
+  // The patterns: https://github.com/acl-services/workpapers/pull/16028/files?file-filters%5B%5D=.js&file-filters%5B%5D=.lock&file-filters%5B%5D=.rb#diff-59c3c9d1b2b99a24dae17c586c5645805e8f3e01f16e419559c6e5a6f26dc701R8
+
+  // Real code will look something like this:
+  // const pattern = patterns.find(pattern => pattern.isMatch(url));
+  // const { apiLookupTemplate, dynamicTextTemplate } = pattern;
+  // return fetch(pattern.apiUrl(url), { apiLookupTemplate, dynamicTextTemplate });
+
+  // For simulation purposes:
+  return new Promise(resolve => {
+    switch (url) {
+      case "www.google1.ca":
+        setTimeout(() => {
+          resolve({ name: "Name returned from API", term: "CONTROL", error: null });
+        }, 3000);
+        break;
+      case "www.google2.ca":
+        resolve({ name: "", term: "", error: "access_denied" });
+        break;
+      case "www.google3.ca":
+        setTimeout(() => {
+          resolve({ name: "", term: "", error: "invalid_url" });
+        }, 1500);
+        break;
+      default:
+        break;
+    }
+  });
+}
 
 const ExampleStory = () => (
   <Story>
@@ -16,7 +49,7 @@ const ExampleStory = () => (
     </Tagline>
     <Rule />
     <L10n locale="en">
-      <DynamicHyperlink />
+      <DynamicHyperlink onFetch={handleFetch} />
       <Tabs>
         <Tabs.List>
           <Tabs.Tab>Page 1</Tabs.Tab>
