@@ -34,11 +34,9 @@ describe("ActionBar Sort", () => {
       .should("be.visible")
       .getByText("Add a field to sort by")
       .should("be.visible")
-      .getAllByText("Apply")
-      .eq(1)
+      .getByText("Apply")
       .should("be.visible")
-      .getAllByText("Cancel")
-      .eq(1)
+      .getByText("Cancel")
       .should("be.visible")
       .click();
 
@@ -86,8 +84,7 @@ describe("ActionBar Sort", () => {
       .eq(1)
       .select("Sort descending (Z → A)")
       .should("have.value", "DESCEND")
-      .getAllByText("Apply")
-      .eq(1)
+      .getByText("Apply")
       .click()
       .getByTestId("sort.sort-field")
       .should("have.length", 1)
