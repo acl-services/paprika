@@ -103,10 +103,10 @@ en:
         placeholder: Select...
       filter:
         a11y_text: Search
-        no_results_message: Your search result did not match any options.
+        no_results_message: No results found
         placeholder: Search...
       footer:
-        accept: Accept
+        accept: Apply
         cancel: Cancel
         clear: Clear
     listBoxBrowser:
@@ -189,6 +189,7 @@ en:
     copyInput:
       clicked_tooltip: Copied
       hover_tooltip: Copy to clipboard
+<<<<<<< HEAD
     filter:
       actions:
         add: Add filter
@@ -218,3 +219,9 @@ en:
         is_after: is after
         true: "true"
         false: "false"
+=======
+    dynamicHyperlink:
+      access_denied: "Access denied"
+      invalid_url: "Invalid URL"
+      loading: Loading...
+>>>>>>> origin/master
