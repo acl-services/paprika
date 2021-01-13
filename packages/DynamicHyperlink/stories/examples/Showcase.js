@@ -1,9 +1,30 @@
 import React from "react";
 import { Story, Rule, Tagline } from "storybook/assets/styles/common.styles";
+// import { setupWorker, rest } from "msw";
 import Heading from "@paprika/heading";
 import L10n from "@paprika/l10n";
 import Tabs from "@paprika/tabs";
 import DynamicHyperlink from "../../src/DynamicHyperlink";
+
+// Hijack the fetch requests
+const ENDPOINT_URL = "/dynamic-hyperlink-api";
+
+// const worker = setupWorker(
+//   rest.get(ENDPOINT_URL, (req, res, ctx) => {
+//     console.log(13, req);
+
+//     return res(
+//       // ctx.delay(1500),
+//       // ctx.status(200),
+//       ctx.json({
+//         message: "Mocked response JSON body",
+//       })
+//     );
+//   })
+// );
+// console.log(25, worker);
+// worker.start();
+// console.log(27);
 
 // This function needs to return a Promise that resolves { name, term, error }
 function handleFetch(url, linkType) {
@@ -19,11 +40,11 @@ function handleFetch(url, linkType) {
   // I made an endpoint at mockit.io to simulate
   switch (linkType) {
     case "link1":
-      return fetch(`https://dhl.mockit.io/api/valid`);
+      return fetch(`${ENDPOINT_URL}/valid`);
     case "link2":
-      return fetch(`https://dhl.mockit.io/api/denied`);
+      return fetch(`${ENDPOINT_URL}/denied`);
     case "link3":
-      return fetch(`https://dhl.mockit.io/api/invalid`);
+      return fetch(`${ENDPOINT_URL}/invalid`);
     default:
       return new Promise(() => {});
   }
@@ -72,8 +93,8 @@ const ExampleStory = () => (
             <p>
               This panel is not rendered on load, but once it is activated the links should still be processed. Here is
               a dynamic hyperlink:{" "}
-              <a href="www.google1.ca" data-dynamic-hyperlink>
-                www.google1.ca
+              <a href="https://www.wegalvanize.com/" data-dynamic-hyperlink="link1">
+                https://www.wegalvanize.com/
               </a>
             </p>
           </Tabs.Panel>
