@@ -197,6 +197,7 @@ en:
       actions:
         add: Add filter
         clear: Clear
+        delete: Delete
       no_filters_applied: No filters applied to this view
       label: Filter
       lowercase_label: "{{count}} filter"

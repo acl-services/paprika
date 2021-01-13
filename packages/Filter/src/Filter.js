@@ -30,6 +30,7 @@ export default function Filter(props) {
     onClear,
     operator,
     rulesByType,
+    zIndex,
   } = props;
   const I18n = useI18n();
   const filterRef = React.useRef(null);
@@ -61,6 +62,7 @@ export default function Filter(props) {
         isCompact
         isOpen={isOpen}
         onClose={handleCancel}
+        zIndex={zIndex}
       >
         <Panel.Header>
           <sc.PanelHeaderWrapper>
@@ -126,6 +128,7 @@ const propTypes = {
   onClear: PropTypes.func,
   operator: PropTypes.oneOf([Filter.operator.AND, Filter.operator.OR]),
   rulesByType: PropTypes.objectOf(PropTypes.arrayOf(PropTypes.oneOf(Object.values(Filter.rules)))),
+  zIndex: PropTypes.number,
 };
 
 const defaultProps = {
@@ -137,6 +140,7 @@ const defaultProps = {
   onClear: () => {},
   operator: Filter.operator.AND,
   rulesByType: Filter.defaultRulesByType,
+  zIndex: undefined,
 };
 
 Filter.propTypes = propTypes;

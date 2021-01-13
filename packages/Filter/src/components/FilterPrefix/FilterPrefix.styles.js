@@ -18,4 +18,5 @@ export const RadioGroup = styled(Radio.Group)`
 
 export const TextWrapper = styled.div`
   margin-bottom: ${tokens.spaceLg};
+  margin-left: 28px;
 `;
