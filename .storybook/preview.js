@@ -3,8 +3,6 @@ import { withCssResources } from "@storybook/addon-cssresources";
 import { withA11y } from "@storybook/addon-a11y";
 import "./reset.scss";
 
-require("./public/mocks/browser");
-
 addDecorator(withA11y);
 addDecorator(withCssResources);
 
