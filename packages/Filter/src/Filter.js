@@ -70,7 +70,6 @@ export default function Filter(props) {
         </Panel.Header>
 
         <Panel.Trigger
-          data-pka-anchor="filter.panelTrigger"
           icon={<FilterIcon />}
           isSemantic={false}
           kind={Button.types.kind.FLAT}

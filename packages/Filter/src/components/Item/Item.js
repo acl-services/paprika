@@ -156,7 +156,7 @@ function Item(props) {
   return (
     <>
       <FilterPrefix index={index} onChangeOperator={onChangeOperator} operator={operator} />
-      <sc.FilterItem data-pka-anchor="filter.filterItem">
+      <sc.FilterItem data-pka-anchor="filter.item">
         <sc.RowWrapper>
           <sc.ColumnSelect
             data-pka-anchor="filter.item.columnSelect"
