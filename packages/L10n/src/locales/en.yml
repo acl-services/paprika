@@ -189,7 +189,10 @@ en:
     copyInput:
       clicked_tooltip: Copied
       hover_tooltip: Copy to clipboard
-<<<<<<< HEAD
+    dynamicHyperlink:
+      access_denied: "Access denied"
+      invalid_url: "Invalid URL"
+      loading: Loading...
     filter:
       actions:
         add: Add filter
@@ -219,9 +222,3 @@ en:
         is_after: is after
         true: "true"
         false: "false"
-=======
-    dynamicHyperlink:
-      access_denied: "Access denied"
-      invalid_url: "Invalid URL"
-      loading: Loading...
->>>>>>> origin/master
