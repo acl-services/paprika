@@ -35,6 +35,7 @@ npm install @paprika/filter
 | onClear          | func                                       | false    | () => {}                  |             |
 | operator         | [ Filter.operator.AND, Filter.operator.OR] | false    | Filter.operator.AND       |             |
 | rulesByType      | objectOf                                   | false    | Filter.defaultRulesByType |             |
+| zIndex           | number                                     | false    | undefined                 |             |
 
 ### Item
 

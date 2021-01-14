@@ -1,7 +1,7 @@
 import styled from "styled-components";
 import Button from "@paprika/button";
-import Select from "@paprika/select";
 import tokens from "@paprika/tokens";
+import { spacer } from "@paprika/stylers/lib/helpers";
 
 export const FilterItem = styled.li`
   align-items: center;
@@ -24,17 +24,22 @@ export const RowWrapper = styled.div`
   }
 `;
 
-export const ColumnSelect = styled(Select)`
+export const ColumnSelect = styled.div`
   flex-basis: calc(50% - 6px);
+  height: ${spacer(4)};
   margin-right: ${tokens.spaceLg};
 `;
 
 export const RuleSelect = styled.div`
+  align-items: center;
+  display: flex;
   flex-basis: calc(50% - 6px);
+  height: ${spacer(4)};
 `;
 
 export const ValueInput = styled.div`
   flex-basis: 100%;
+  height: ${spacer(4)};
   margin-top: ${tokens.spaceLg};
 `;
 
