@@ -20,18 +20,6 @@ blocks:
             - cache store client-node-modules-$SEMAPHORE_GIT_BRANCH-$(checksum yarn.lock) node_modules
             - cache store cypress-$SEMAPHORE_GIT_BRANCH ~/.cache/Cypress
 
-  - name: "♿️ Accessibility"
-    dependencies: ["Setup"]
-    task:
-      prologue:
-        commands:
-          - checkout
-          - cache restore client-node-modules-$SEMAPHORE_GIT_BRANCH-$(checksum yarn.lock),client-node-modules-$SEMAPHORE_GIT_BRANCH,client-node-modules-master
-      jobs:
-        - name: Axe test
-          commands:
-            - yarn test:a11y
-
   - name: "⚡️ Integration/Unit"
     dependencies: ["Setup"]
     task:
