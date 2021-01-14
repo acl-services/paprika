@@ -1,11 +1,11 @@
 version: v1.0
-name: Release Paprika
+name: Pre-release Paprika
 agent:
   machine:
     type: e1-standard-2
     os_image: ubuntu1804
 blocks:
-  - name: "🍳 Release"
+  - name: "🍳 Pre-release"
     task:
       secrets:
         - name: github-ssh
