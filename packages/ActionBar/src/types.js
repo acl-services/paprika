@@ -34,16 +34,9 @@ export const defaultRulesByType = {
   SINGLE_SELECT: [rules.IS, rules.IS_NOT, rules.IS_BLANK, rules.IS_NOT_BLANK],
 };
 
-export const logicalFilterOperators = {
-  AND: "and",
-  OR: "or",
-};
-
 export const changeTypes = {
   COLUMN: "COLUMN",
   DIRECTION: "DIRECTION",
-  RULE: "RULE",
-  FILTER_VALUE: "FILTER_VALUE",
 };
 
 export const sortDirections = {

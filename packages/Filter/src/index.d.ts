@@ -25,6 +25,8 @@ interface FilterProps {
   operator?: Filter.operator.AND | Filter.operator.OR;
 
   rulesByType?: objectOf;
+
+  zIndex?: number;
 }
 declare function Item(props: ItemProps): JSX.Element;
 interface ItemProps {
