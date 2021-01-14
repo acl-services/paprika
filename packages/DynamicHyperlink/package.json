@@ -1,27 +1,24 @@
 {
-  "name": "@paprika/pagination",
-  "version": "1.0.6-alpha.1",
-  "description": "The Pagination component allows the user to select a page from a range of pages.",
-  "author": "@paprika",
+  "name": "@paprika/dynamic-hyperlink",
+  "version": "0.0.3-alpha.1",
+  "description": "Adding this component runs a script that does an API lookup on hyperlinks with a specific data attribute, fetching their name.",
   "main": "lib/index.js",
   "types": "lib/index.d.ts",
+  "author": "@paprika",
   "license": "MIT",
   "repository": {
     "type": "git",
     "url": "https://github.com/acl-services/paprika.git",
-    "directory": "packages/Pagination"
+    "directory": "packages/DynamicHyperlink"
   },
   "publishConfig": {
     "access": "public"
   },
   "dependencies": {
     "@babel/runtime-corejs2": "^7.3.1",
-    "@paprika/constants": "^1.0.0",
-    "@paprika/helpers": "^2.0.0",
-    "@paprika/icon": "^1.0.2",
     "@paprika/l10n": "^1.1.4-alpha.1",
-    "@paprika/raw-button": "^1.0.2",
     "@paprika/stylers": "^1.0.0",
+    "@paprika/tabs": "^1.1.0",
     "@paprika/tokens": "^1.0.0",
     "prop-types": "^15.7.2"
   },
@@ -29,6 +26,5 @@
     "react": "^16.8.4",
     "react-dom": "^16.8.4",
     "styled-components": "^4.2.0"
-  },
-  "gitHead": "8bff2e8a6f01708ba60d9178f867dba378806370"
+  }
 }

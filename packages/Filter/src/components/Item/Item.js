@@ -174,7 +174,12 @@ function Item(props) {
           {renderValueField()}
         </sc.RowWrapper>
 
-        <sc.DeleteButton data-pka-anchor="filter.deleteFilterButton" onClick={handleRemoveFilter} kind="minor">
+        <sc.DeleteButton
+          aria-label={I18n.t("filter.actions.delete")}
+          data-pka-anchor="filter.deleteFilterButton"
+          onClick={handleRemoveFilter}
+          kind="minor"
+        >
           <DeleteIcon />
         </sc.DeleteButton>
       </sc.FilterItem>
