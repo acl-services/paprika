@@ -1,14 +1,18 @@
 /* eslint-disable react/no-array-index-key */
 import React from "react";
-
+import { v4 as uuidv4 } from "uuid";
 import { extractChildren } from "@paprika/helpers";
 import PropTypes from "prop-types";
 import * as constants from "@paprika/constants/lib/Constants";
 import ColumnDefinition from "./components/ColumnDefinition";
 import * as sc from "./Table.styles";
+import { handleBlur, handleFocus, handleKeyDown, handleClick } from "./event";
 
 export default function Table(props) {
   const { borderType, children, hasZebraStripes, data, a11yText, ...moreProps } = props;
+  const [tableId] = React.useState(() => `table_${uuidv4()}`);
+
+  const refFocus = React.useRef(null);
 
   const { "Table.ColumnDefinition": extractedColumnDefinitions } = extractChildren(children, [
     "Table.ColumnDefinition",
@@ -21,8 +25,22 @@ export default function Table(props) {
     ColumnDefinitions = [extractedColumnDefinitions];
   }
 
+  const qty = {
+    columnsLength: extractedColumnDefinitions.length,
+    rowsLength: data.length,
+  };
+
   return (
-    <sc.Table aria-label={a11yText} {...moreProps}>
+    <sc.Table
+      aria-label={a11yText}
+      id={tableId}
+      tabIndex={0}
+      {...moreProps}
+      onFocus={handleFocus({ refFocus, tableId })}
+      onBlur={handleBlur({ refFocus, tableId })}
+      onKeyDown={handleKeyDown({ refFocus, tableId, ...qty })}
+      onClick={handleClick({ refFocus, tableId })}
+    >
       <sc.Thead>
         <tr>
           {ColumnDefinitions.map((columnDefinition, columnIndex) => {
@@ -50,17 +68,19 @@ export default function Table(props) {
           return (
             <tr key={rowIndex}>
               {ColumnDefinitions.map((columnDefinition, columnIndex) => {
+                const position = { "data-row-index": rowIndex, "data-column-index": columnIndex };
+
                 const { cell, header, ...moreColumnProps } = columnDefinition.props;
 
                 if (typeof cell === "function")
                   return (
-                    <sc.TD borderType={borderType} key={columnIndex} {...moreColumnProps}>
+                    <sc.TD borderType={borderType} key={columnIndex} {...moreColumnProps} {...position}>
                       {cell({ row, rowIndex, columnIndex })}
                     </sc.TD>
                   );
                 if (typeof cell === "string")
                   return (
-                    <sc.TD borderType={borderType} key={columnIndex} {...moreColumnProps}>
+                    <sc.TD borderType={borderType} key={columnIndex} {...moreColumnProps} {...position}>
                       {typeof row[cell] !== "undefined" ? row[cell] : `Error: ${cell} doesn't exist`}
                     </sc.TD>
                   );
