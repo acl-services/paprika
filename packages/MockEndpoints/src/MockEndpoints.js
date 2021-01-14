@@ -1,6 +1,8 @@
 import fetchMock from "fetch-mock";
 
-export default handlers => {
+export default fetchMock;
+
+export function mockEndpoints(handlers) {
   // validate that the handlers have a certain shape (url, responseData)
   handlers.forEach(handler => {
     fetchMock.get(handler.url, handler.responseData);
@@ -11,4 +13,4 @@ export default handlers => {
     console.error(error);
     return { error };
   });
-};
+}
