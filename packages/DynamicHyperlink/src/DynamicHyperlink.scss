@@ -6,21 +6,25 @@ a[data-dynamic-hyperlink] {
   border-radius: $button--border-radius;
   box-shadow: 0 0 2px $color--black;
   color: $color--blue-darken-10;
-  display: inline-block;
   font-size: font-scale(-1);
   padding: 2px $space-sm;
-  text-decoration: underline;
+  text-decoration: none;
+
+  &:hover {
+    text-decoration: underline;
+  }
 
   span {
-    margin-left: $space-sm;
     border-radius: $button--border-radius;
-    display: inline-block;
-    text-decoration: none;
+    font-size: font-scale(-2);
+    font-weight: bold;
+    margin-left: $space-sm;
 
     &.valid {
       background-color: $color--blue-lighten-40;
       color: $color--blue-darken-10;
       padding: 1px $space;
+      text-transform: capitalize;
     }
 
     &.invalid {

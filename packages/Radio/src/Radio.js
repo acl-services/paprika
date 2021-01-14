@@ -8,6 +8,8 @@ import Group from "./components/Group";
 import RadioInputPropsCollector from "./RadioInputPropsCollector";
 import types from "./types";
 
+const noop = () => {};
+
 function Radio(props) {
   const {
     a11yText,
@@ -67,7 +69,7 @@ function Radio(props) {
 
   return (
     <sc.Radio data-pka-anchor="radio" {...styleProps} {...moreProps}>
-      <input {...inputProps} />
+      <input {...inputProps} onChange={noop} />
       {/* eslint-disable */}
       <label onKeyUp={handleKeyUp} className={canDeselect ? "deselectable" : ""} htmlFor={radioId}>
         {/* eslint-enable */}
