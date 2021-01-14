@@ -38,22 +38,6 @@ npm install @paprika/action-bar
 | onShowAll           | func    | true     | -       |             |
 | renderTriggerButton | func    | false    | null    |             |
 
-### ActionBar.Filter
-
-| Prop             | Type                                                   | required | default                   | Description |
-| ---------------- | ------------------------------------------------------ | -------- | ------------------------- | ----------- |
-| appliedNumber    | number                                                 | false    | 0                         |             |
-| children         | node                                                   | false    | null                      |             |
-| columns          | arrayOf                                                | true     | -                         |             |
-| onAddFilter      | func                                                   | true     | -                         |             |
-| onApply          | func                                                   | true     | -                         |             |
-| onCancel         | func                                                   | false    | () => {}                  |             |
-| onChangeOperator | func                                                   | false    | null                      |             |
-| onClose          | func                                                   | false    | () => {}                  |             |
-| onOpen           | func                                                   | false    | () => {}                  |             |
-| operator         | [ Filter.types.operator.AND, Filter.types.operator.OR] | false    | Filter.types.operator.AND |             |
-| rulesByType      | objectOf                                               | false    | Filter.types.rulesByType  |             |
-
 ### ActionBar.Sort
 
 | Prop              | Type    | required | default  | Description |
@@ -73,9 +57,9 @@ npm install @paprika/action-bar
 
 ## Action Bar
 
-Action Bar component contains 3 individual widgets.
+Action Bar component contains 2 individual widgets.
 
-`<Filter />` `<Sort />` and `<ColumnsArrangement />`
+`<Sort />` and `<ColumnsArrangement />`
 
 ### Installation
 
@@ -84,71 +68,6 @@ or
 `> yarn add @paprika/action-bar`
 
 ### Usage
-
-#### Filter
-
-```js
-import { Filter } from "@paprika/action-bar";
-
-<Filter
-  appliedNumber={appliedNumberOfFilters}
-  columns={columns}
-  onAddFilter={onAddFilter}
-  onApply={onApply}
-  onChangeOperator={onChangeOperator}
-  operator={operator}
->
-  <Filter.Item id={1} index={0} onChange={handleChange} onDelete={handleDelete} />
-</Filter>;
-```
-
-[More detail about props](https://github.com/acl-services/paprika/blob/aa770ab261d6364c2f14717c8edeb7d1e560a3d5/packages/ActionBar/src/components/Filter/Filter.js)
-
-You can also use the hook `useFilter`
-
-```js
-const {
-  appliedNumberOfFilters,
-  filters,
-  onAddFilter,
-  onChangeOperator,
-  onDeleteFilter,
-  onChangeFilter,
-  operator,
-  onApply,
-  filteredData,
-} = useFilter({ columns, rulesByType, data });
-
-const handleDeleteFilter = filterId => () => {
-  onDeleteFilter(filterId);
-};
-const handleChangeFilter = filterId => params => {
-  onChangeFilter({ ...params, id: filterId });
-};
-
-return (
-  <Filter
-    appliedNumber={appliedNumberOfFilters}
-    columns={columns}
-    onAddFilter={onAddFilter}
-    onApply={onApply}
-    onChangeOperator={onChangeOperator}
-    operator={operator}
-  >
-    {filters.map((filter, index) => (
-      <Filter.Item
-        key={filter.id}
-        {...filter}
-        index={index}
-        onChange={handleChangeFilter(filter.id)}
-        onDelete={handleDeleteFilter(filter.id)}
-      />
-    ))}
-  </Filter>
-
-  // display filteredData
-);
-```
 
 #### Sort
 
