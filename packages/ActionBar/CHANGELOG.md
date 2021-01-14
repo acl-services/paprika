@@ -45,3 +45,9 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 - Added lock icon for disabled `<ColumnsArrangement>` items.
 - Disabled `<ColumnsArrangement>` items will not be able to toggle by `Show all` or `Hide all` and not react to drag & drop actions.
 - Adjusted the styles of the popovers.
+
+## [1.2.4-alpha.0] - 2021-01-14
+
+### Changed
+
+- Removed <Filter> component and `useFilter` from this package. Please use `@paprika/filter` instead.

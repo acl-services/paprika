@@ -7,103 +7,11 @@ beforeEach(() => {
 describe("ActionBar", () => {
   it("Should render", () => {
     cy.getByTestId("button")
-      .contains("Filter")
-      .should("be.visible");
-    cy.getByTestId("button")
       .contains("Sort")
       .should("be.visible");
     cy.getByTestId("button")
       .contains("Arrange")
       .should("be.visible");
-  });
-});
-
-describe("ActionBar Filter", () => {
-  it("should render options within the Filter button", () => {
-    cy.getByText("Filter")
-      .should("be.visible")
-      .getByTestId("popover.content")
-      .should("not.be.visible")
-      .getByText("Add a field to filter by")
-      .should("not.be.visible")
-      .getAllByText("Apply")
-      .should("not.be.visible")
-      .getAllByText("Cancel")
-      .should("not.be.visible");
-
-    cy.getByText("Filter")
-      .click()
-      .getByTestId("popover.content")
-      .should("be.visible")
-      .getByText("Add a field to filter by")
-      .should("be.visible")
-      .getAllByText("Apply")
-      .eq(0)
-      .should("be.visible")
-      .getAllByText("Cancel")
-      .eq(0)
-      .should("be.visible")
-      .click();
-  });
-
-  it("Should display the different filtering options", () => {
-    cy.getByTestId("button")
-      .contains("Filter")
-      .click();
-    cy.contains("Add a field to filter by").click();
-    cy.get("select")
-      .eq(0)
-      .select("Goals")
-      .select("Name")
-      .select("Status")
-      .select("Country")
-      .select("Joined by")
-      .select("Shareable")
-      .select("Level");
-    cy.get("select")
-      .eq(1)
-      .select("is")
-      .get("select")
-      .eq(2)
-      .select("low")
-      .select("mid")
-      .select("high");
-    cy.get("select")
-      .eq(1)
-      .select("is not")
-      .get("select")
-      .eq(2)
-      .select("low")
-      .select("mid")
-      .select("high");
-    cy.get("select")
-      .eq(1)
-      .select("is empty")
-      .select("is not empty");
-  });
-
-  it("should add new filter item by clicking 'Add a field to filter by'", () => {
-    cy.getByTestId("actionBar.filter.filterItem").should("have.length", 0);
-    cy.getByText("Filter")
-      .click()
-      .getByText("Add a field to filter by")
-      .click();
-    cy.getByTestId("actionBar.filter.filterItem").should("have.length", 1);
-  });
-
-  it("Should filter the table ", () => {
-    cy.getByTestId("button")
-      .contains("Filter")
-      .click();
-    cy.contains("Add a field to filter by").click();
-    cy.getByTestId("actionBar.filter.ruleSelector").select("GREATER_THAN");
-    cy.get("input")
-      .eq(0)
-      .type("800");
-    cy.contains("Apply").click();
-    cy.contains("805").should("be.visible");
-    cy.contains("772").should("not.be.visible");
-    cy.contains("767").should("not.be.visible");
   });
 });
 
@@ -126,11 +34,9 @@ describe("ActionBar Sort", () => {
       .should("be.visible")
       .getByText("Add a field to sort by")
       .should("be.visible")
-      .getAllByText("Apply")
-      .eq(1)
+      .getByText("Apply")
       .should("be.visible")
-      .getAllByText("Cancel")
-      .eq(1)
+      .getByText("Cancel")
       .should("be.visible")
       .click();
 
@@ -178,8 +84,7 @@ describe("ActionBar Sort", () => {
       .eq(1)
       .select("Sort descending (Z → A)")
       .should("have.value", "DESCEND")
-      .getAllByText("Apply")
-      .eq(1)
+      .getByText("Apply")
       .click()
       .getByTestId("sort.sort-field")
       .should("have.length", 1)

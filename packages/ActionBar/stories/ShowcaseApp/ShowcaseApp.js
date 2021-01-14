@@ -1,16 +1,7 @@
 import React from "react";
 import Heading from "@paprika/heading";
-import ActionBar, {
-  ColumnsArrangement,
-  Filter,
-  SearchInput,
-  Sort,
-  useColumnsArrangement,
-  useFilter,
-  useSort,
-} from "../../src";
+import ActionBar, { ColumnsArrangement, SearchInput, Sort, useColumnsArrangement, useSort } from "../../src";
 import data from "./data";
-import CustomSingleSelectFilter from "./CustomSingleSelectFilter";
 
 const columnsSettings = [
   {
@@ -52,18 +43,8 @@ const columnsSettings = [
   },
 ];
 
-const customRulesByType = {
-  ...Filter.defaultRulesByType,
-  CUSTOM_SELECT: [Filter.rules.IS, Filter.rules.IS_NOT, Filter.rules.IS_EMPTY, Filter.rules.IS_NOT_EMPTY],
-};
-
 export default function App() {
   const [searchTerm, setSearchTerm] = React.useState("");
-  const { filters, filteredData, onDeleteFilter, onChangeFilter, ...filterProps } = useFilter({
-    columns: columnsSettings,
-    rulesByType: customRulesByType,
-    data,
-  });
   const { sortedFields, sortedData, onDeleteSort, onChangeSort, ...sortProps } = useSort({
     columns: columnsSettings,
     data,
@@ -75,18 +56,14 @@ export default function App() {
   );
 
   const subset = React.useMemo(() => {
-    return sortedData.filter(
-      item =>
-        !!filteredData.find(filteredItem => filteredItem.id === item.id) &&
-        (searchTerm
-          ? !!Object.values(item).find(value => {
-              return new RegExp(`${searchTerm}`, "i").test(`${value}`);
-            })
-          : true)
+    return sortedData.filter(item =>
+      searchTerm
+        ? !!Object.values(item).find(value => {
+            return new RegExp(`${searchTerm}`, "i").test(`${value}`);
+          })
+        : true
     );
-  }, [filteredData, searchTerm, sortedData]);
-
-  const renderLevelFilter = () => <CustomSingleSelectFilter />;
+  }, [searchTerm, sortedData]);
 
   return (
     <React.Fragment>
@@ -98,24 +75,6 @@ export default function App() {
             setSearchTerm(term);
           }}
         />
-        <Filter {...filterProps} columns={columnsSettings} rulesByType={customRulesByType}>
-          {filters.map((filter, index) => (
-            <Filter.Item
-              columnId={filter.columnId}
-              id={filter.id}
-              index={index}
-              key={filter.id}
-              label={filter.label}
-              onChange={onChangeFilter}
-              onDelete={onDeleteFilter}
-              renderValueField={filter.columnId === "level" ? renderLevelFilter : null}
-              type={filter.type}
-              rule={filter.rule}
-              value={filter.value}
-              data={filter.data}
-            />
-          ))}
-        </Filter>
 
         <Sort {...sortProps} columns={columnsSettings}>
           {sortedFields.map((field, index) => {
