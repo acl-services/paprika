@@ -17,6 +17,7 @@ const storyTree = [
       "DataField",
       "DataGrid",
       "DataHeader",
+      "Filter",
       "Table"
     ],
   },
