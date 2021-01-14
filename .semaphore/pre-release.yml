@@ -1,5 +1,5 @@
 version: v1.0
-name: Pre-release Paprika
+name: Paprika Pre-release
 agent:
   machine:
     type: e1-standard-2
