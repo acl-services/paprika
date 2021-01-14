@@ -64,7 +64,7 @@ describe("<DatePicker />", () => {
     cy.getByTestId("datepicker.input").should("not.have.value");
   });
 
-  it("should set date on blur", () => {
+  xit("should set date on blur", () => {
     cy.clock();
     cy.visitStorybook(`${getStoryUrlPrefix("DatePicker")}-backyard-tests--cypress`);
     cy.getByTestId("datepicker.input").click();
@@ -82,7 +82,7 @@ describe("<DatePicker />", () => {
     cy.getByTestId("datepicker.input").should("have.value", "May 06, 2001");
   });
 
-  it("should show error state if it cannot parse the typing string", () => {
+  xit("should show error state if it cannot parse the typing string", () => {
     cy.clock();
     cy.visitStorybook(`${getStoryUrlPrefix("DatePicker")}-backyard-tests--cypress`);
     cy.getByTestId("datepicker.input").type("abc{enter}");
@@ -93,7 +93,7 @@ describe("<DatePicker />", () => {
       .should("have.class", "form-input--has-error");
   });
 
-  it("should handle time change", () => {
+  xit("should handle time change", () => {
     cy.clock();
     cy.visitStorybook(`${getStoryUrlPrefix("DatePicker")}-backyard-tests--cypress-date-picker-with-time`);
     cy.getByTestId("datepicker.input").type("2020-07-17 11:00:00");
