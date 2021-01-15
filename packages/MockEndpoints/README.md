@@ -10,11 +10,11 @@ See the stories for a working examples.
   const handlers = [
     {
       url: '/users',
-      responseData: [{ id: 1, name: "nahum", ... }, { id: 2, name: "jamie"}],
+      response: [{ id: 1, name: "nahum", ... }, { id: 2, name: "jamie"}],
     },
     {
       url: '/groups',
-      responseData: [{ id: 1, name: "UX", members: [1,2] }, {}],
+      response: [{ id: 1, name: "UX", members: [1,2] }, {}],
     }
   ];
 

@@ -3,39 +3,15 @@ import { Story, Rule, Tagline } from "storybook/assets/styles/common.styles";
 import Heading from "@paprika/heading";
 import L10n from "@paprika/l10n";
 import Tabs from "@paprika/tabs";
-import { setupWorker, rest } from "msw";
+import { mockEndpoints } from "../../../MockEndpoints/src";
 import DynamicHyperlink from "../../src/DynamicHyperlink";
+import endpoints from "./mock-endpoints.json";
 
-const ENDPOINT_URL = "/dynamic-hyperlink-fake-api";
-
-const handlers = [
-  rest.get(ENDPOINT_URL, (req, res, ctx) => {
-    // const url = req.url.searchParams.get("url");
-    const linkType = req.url.searchParams.get("linkType");
-
-    let json = {};
-    switch (linkType) {
-      case "control":
-        json = { name: "My really long control name", term: "CONTROL", error: "" };
-        break;
-      case "narrative":
-        json = { name: "", term: "", error: "access_denied" };
-        break;
-      default:
-        json = { name: "", term: "", error: "invalid_url" };
-        break;
-    }
-
-    return res(ctx.json(json));
-  }),
-];
-
-const worker = setupWorker(...handlers);
-worker.start();
+mockEndpoints(endpoints);
 
 // This function must return a Promise that resolves: { name, term, error }
 function handleFetch(url, linkType) {
-  return fetch(`${ENDPOINT_URL}?url=${url}&linkType=${linkType}`);
+  return fetch(`/${linkType}`);
 }
 
 const ExampleStory = () => (
@@ -68,10 +44,6 @@ const ExampleStory = () => (
               </a>
               and here is one where the URL doesnt really exist{" "}
               <a href="https://www.wegalvanize.com/" data-dynamic-hyperlink="risk">
-                https://www.wegalvanize.com/
-              </a>
-              . This one is loading indefinitely{" "}
-              <a href="https://www.wegalvanize.com/" data-dynamic-hyperlink="whatever">
                 https://www.wegalvanize.com/
               </a>{" "}
               and this last one is a normal boring link <a href="www.google.ca">http://google.ca</a>. The end.

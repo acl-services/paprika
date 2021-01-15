@@ -1,0 +1,19 @@
+[
+  {
+    "url": "/players",
+    "response": [
+      { "id": 1, "name": "Wayne Gretzky", "number": 99 },
+      { "id": 2, "name": "Gordie Howe", "number": 4 },
+      { "id": 3, "name": "Sydney Crosby", "number": 87 },
+      { "id": 4, "name": "Mario Lemiux", "number": 66 }
+    ]
+  },
+  {
+    "url": "/teams",
+    "response": [
+      { "id": 1, "name": "LA Kings", "founded": 1967 },
+      { "id": 2, "name": "Pittsburgh Penguins", "founded": 1967 },
+      { "id": 3, "name": "Detroit Red Wings", "founded": 1926 }
+    ]
+  }
+]
