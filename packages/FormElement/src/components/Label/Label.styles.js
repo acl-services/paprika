@@ -11,6 +11,7 @@ export const Requirement = styled.div`
 export const Label = styled.div(
   ({ isVisuallyHidden, isDisabledStyle }) => css`
     color: ${tokens.textColor.default};
+    display: block;
     font-size: inherit;
     font-weight: bold;
     margin: 0 ${tokens.space} ${tokens.spaceSm} 0;
