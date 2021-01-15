@@ -1,38 +1,16 @@
 import React from "react";
-import { Story, Tagline, Gap } from "storybook/assets/styles/common.styles";
-import Heading from "@paprika/heading";
+import L10n from "@paprika/l10n";
+import Toast from "../../src";
 
-import AllKindsExposed from "./AllKindsExposed";
-
-const ExampleStory = () => {
+export default function Variations() {
   return (
-    <Story
-      css={`
-        h2 {
-          margin-top: 32px;
-          color: #999;
-        }
-      `}
-    >
-      <Heading level={1} displayLevel={2} isLight>
-        Toast
-      </Heading>
-      <Tagline>
-        <big>
-          <strong>Variations</strong>
-        </big>{" "}
-        – Browse use cases + recipes
-      </Tagline>
-
-      <Gap />
-
-      <Heading level={2} displayLevel={4} isLight hasDivider>
-        All kinds
-      </Heading>
-
-      <AllKindsExposed />
-    </Story>
+    <L10n locale="en">
+      <Toast kind={Toast.types.kind.SUCCESS}>Success toast</Toast>
+      <Toast kind={Toast.types.kind.WARNING}>Warning toast</Toast>
+      <Toast kind={Toast.types.kind.ERROR}>Error toast</Toast>
+      <Toast kind={Toast.types.kind.INFO}>Info toast</Toast>
+      <Toast kind={Toast.types.kind.LOCKED}>Locked toast</Toast>
+      <Toast kind={Toast.types.kind.VISUALLY_HIDDEN}>Visually-hidden toast</Toast>
+    </L10n>
   );
-};
-
-export default ExampleStory;
+}

@@ -1,13 +1,13 @@
 import React from "react";
 import { action } from "@storybook/addon-actions";
-import { Story, Small, Gap, breaklines } from "storybook/assets/styles/common.styles";
+import { Small, Gap, breaklines } from "storybook/assets/styles/common.styles";
 import RawButton from "../../src";
 
 function clickHandler() {
   action("Clicked a button")();
 }
 
-const Variations = () => {
+export default function Variations() {
   const buttonRef = React.createRef();
 
   React.useEffect(() => {
@@ -20,7 +20,7 @@ const Variations = () => {
   });
 
   return (
-    <Story>
+    <>
       <p>
         <RawButton onClick={clickHandler}>RawButton</RawButton>
       </p>
@@ -63,8 +63,6 @@ const Variations = () => {
       </p>
       {breaklines(34)}
       ...fin.
-    </Story>
+    </>
   );
-};
-
-export default Variations;
+}

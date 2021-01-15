@@ -22,3 +22,4 @@ export const ButtonStory = props => (
     <ExampleStory {...props} />
   </ButtonStyles>
 );
+ButtonStory.defaultTaglines = ExampleStory.defaultTaglines;

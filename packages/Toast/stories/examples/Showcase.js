@@ -1,7 +1,5 @@
 import React from "react";
-import { Story, Rule, Tagline } from "storybook/assets/styles/common.styles";
 import { boolean, number, select, text } from "@storybook/addon-knobs";
-import Heading from "@paprika/heading";
 import L10n from "@paprika/l10n";
 import CodeViewer from "storybook/components/CodeViewer";
 import Toast from "../../src";
@@ -30,28 +28,14 @@ const getKnobs = () => ({
   zIndex: number("zIndex", undefined),
 });
 
-const ExampleStory = props => {
-  const { children, ...toastProps } = props;
+export default function Showcase() {
+  const { children, ...toastProps } = getKnobs();
 
   return (
-    <Story>
-      <Heading level={1} displayLevel={2} isLight>
-        Toast
-      </Heading>
-      <Tagline>
-        <big>
-          <strong>Showcase</strong>
-        </big>{" "}
-        – Interact with the props API
-      </Tagline>
-      <Rule />
-      <L10n locale="en">
-        <CodeViewer>
-          <Toast {...toastProps}>{children}</Toast>
-        </CodeViewer>
-      </L10n>
-    </Story>
+    <L10n locale="en">
+      <CodeViewer>
+        <Toast {...toastProps}>{children}</Toast>
+      </CodeViewer>
+    </L10n>
   );
-};
-
-export default () => <ExampleStory {...getKnobs()} />;
+}
