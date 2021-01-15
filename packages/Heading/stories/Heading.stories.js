@@ -1,25 +1,33 @@
+import React from "react";
 import { withKnobs } from "@storybook/addon-knobs";
 import { getStoryName } from "storybook/storyTree";
 import { showcaseStoryParameters, variationsStoryParameters } from "storybook/assets/storyParameters";
-import ShowcaseStory from "./examples/Showcase";
+import ExampleStory from "storybook/components/ExampleStory";
+import Showcase from "./examples/Showcase";
 import Variations from "./examples/Variations";
-import Heading from "../src/Heading";
 
 const storyName = getStoryName("Heading");
 
 export default {
   title: storyName,
-  component: Heading,
 };
 
-export const showcase = ShowcaseStory;
+export const showcase = () => (
+  <ExampleStory storyName="Heading" tagline={ExampleStory.defaultTaglines.showcase}>
+    <Showcase />
+  </ExampleStory>
+);
 showcase.story = {
   name: "Showcase",
   decorators: [withKnobs],
   parameters: showcaseStoryParameters,
 };
 
-export const variations = Variations;
+export const variations = () => (
+  <ExampleStory storyName="Heading" tagline={ExampleStory.defaultTaglines.variations}>
+    <Variations />
+  </ExampleStory>
+);
 variations.story = {
   name: "Variations",
   parameters: variationsStoryParameters,
