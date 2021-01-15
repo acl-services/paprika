@@ -1,15 +1,9 @@
-import { Meta } from "@storybook/addon-docs/blocks";
+import { Meta, Description } from "@storybook/addon-docs/blocks";
 import { getStoryName } from "storybook/storyTree";
-import MDX from "./Panel.mdx";
+import { docsStoryParameters } from "storybook/assets/storyParameters";
+import Readme from "../README.md";
 import Panel from "../src";
 
-export const params = {
-  options: {
-    isToolshown: true,
-    showPanel: false,
-  },
-};
+<Meta title={`${getStoryName("Panel")}/Docs`} component={Panel} parameters={{ ...docsStoryParameters }} />
 
-<Meta title={`${getStoryName("Panel")}/Docs`} component={Panel} parameters={params} />
-
-<MDX />
+<Description markdown={Readme} />

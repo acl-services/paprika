@@ -20,7 +20,9 @@ function clickHandler() {
 export default function CloseButtonVariations() {
   return (
     <>
-      <StoryHeading level={1}>Close Button</StoryHeading>
+      <StoryHeading level={1}>
+        <code>&lt;Button.Close&gt;</code>
+      </StoryHeading>
       <Gap.Small />
       <p>
         <Button.Close onClick={clickHandler} size="small" />

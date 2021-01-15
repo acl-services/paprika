@@ -1,7 +1,7 @@
 import React from "react";
 import { getStoryName } from "storybook/storyTree";
 import Toast from "../src";
-import ToastFixedPanel from "./examples/backyard/ToastFixedPanel";
+import ToastFixedPanel from "./examples/ToastFixedPanel";
 
 const storyName = getStoryName("Toast");
 

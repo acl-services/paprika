@@ -1,11 +1,9 @@
 import React from "react";
 import { action } from "@storybook/addon-actions";
 import { boolean, select, text } from "@storybook/addon-knobs";
-import { Story, Rule, Tagline } from "storybook/assets/styles/common.styles";
 import AddIcon from "@paprika/icon/lib/Add";
 import TimesIcon from "@paprika/icon/lib/Times";
 import InfoIcon from "@paprika/icon/lib/InfoCircle";
-import Heading from "@paprika/heading";
 import * as types from "../../src/types";
 import Button from "../../src";
 
@@ -40,17 +38,6 @@ const getKnobs = () => ({
   a11yText: text("a11yText", ""),
 });
 
-function Showcase(props) {
-  return (
-    <Story>
-      <Heading level={1} displayLevel={2} isLight>
-        Showcase
-      </Heading>
-      <Tagline>Use the knobs to tinker with the props.</Tagline>
-      <Rule />
-      <Button {...props} />
-    </Story>
-  );
+export default function Showcase() {
+  return <Button {...getKnobs()} />;
 }
-
-export default () => <Showcase {...getKnobs()} />;

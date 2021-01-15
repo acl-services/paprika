@@ -1,9 +1,8 @@
 import React from "react";
-
 import L10n from "@paprika/l10n";
 import Panel from "@paprika/panel";
-import { TextLine } from "../../../../Panel/stories/helpers";
-import Toast from "../../../src";
+import { TextLine } from "@paprika/panel/stories/helpers";
+import Toast from "../../src";
 
 export default function ToastFixedSidePanel() {
   return (
