@@ -1,5 +1,5 @@
 import React from "react";
-import { screen, fireEvent, waitFor } from "@testing-library/react";
+import { screen, fireEvent, waitFor, within } from "@testing-library/react";
 import Filter from "../../src";
 
 const noop = () => {};
@@ -47,10 +47,10 @@ describe("ActionBar Filter", () => {
 
   it("should render trigger with count", () => {
     renderComponent({ numberApplied: 1 });
-    screen.getByText("1 filter");
+    screen.getByText("1 filtered");
 
     renderComponent({ numberApplied: 2 });
-    screen.getByText("2 filters");
+    screen.getByText("2 filtered");
   });
 
   it("should render filters in panel", () => {
@@ -70,9 +70,13 @@ describe("ActionBar Filter", () => {
       ),
     });
 
-    fireEvent.click(screen.getByText("1 filter"));
-    screen.getByText("Number column");
-    screen.getByText("equals");
+    fireEvent.click(screen.getByText("1 filtered"));
+    expect(within(screen.getByTestId("filter.item.columnSelector")).getByTestId("list-box-trigger")).toHaveTextContent(
+      "Number column"
+    );
+    expect(within(screen.getByTestId("filter.item.ruleSelector")).getByTestId("list-box-trigger")).toHaveTextContent(
+      "equals"
+    );
     screen.getByDisplayValue("2");
   });
 

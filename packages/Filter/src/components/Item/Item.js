@@ -177,7 +177,7 @@ function Item(props) {
       <FilterPrefix index={index} onChangeOperator={onChangeOperator} operator={operator} />
       <sc.FilterItem data-pka-anchor="filter.item">
         <sc.RowWrapper>
-          <sc.ColumnSelect data-pka-anchor="filter.item.columnSelect">
+          <sc.ColumnSelect data-pka-anchor="filter.item.columnSelector">
             <ListBox onChange={handleChangeColumn}>
               <ListBox.Trigger hasClearButton={false} />
               <ListBox.Filter />
