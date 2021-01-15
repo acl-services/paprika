@@ -2,7 +2,7 @@ version: v1.0
 name: Paprika Pre-release
 agent:
   machine:
-    type: e1-standard-2
+    type: e1-standard-4
     os_image: ubuntu1804
 blocks:
   - name: "🍳 Pre-release"
@@ -12,7 +12,6 @@ blocks:
         - name: paprika-env
       prologue:
         commands:
-          - sudo swapoff -a && sudo fallocate -l 2G /swapfile && sudo mkswap /swapfile && sudo swapon /swapfile
           - checkout
           - cache restore client-node-modules-$SEMAPHORE_GIT_BRANCH-$(checksum yarn.lock),client-node-modules-$SEMAPHORE_GIT_BRANCH,client-node-modules-master
           - chmod 0600 ~/keys/github.key
