@@ -1,6 +1,6 @@
 import React from "react";
 import { mockEndpoints } from "../../src";
-import endpoints from "./endpoints.json";
+import endpoints from "./mock-endpoints.json";
 
 mockEndpoints(endpoints);
 
