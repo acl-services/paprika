@@ -1,39 +1,35 @@
 import React from "react";
 import { withKnobs } from "@storybook/addon-knobs";
 import { getStoryName } from "storybook/storyTree";
-import Variations from "./examples/Variations";
+import { showcaseStoryParameters, variationsStoryParameters } from "storybook/assets/storyParameters";
+import ExampleStory from "storybook/components/ExampleStory";
 import Showcase from "./examples/Showcase";
-import Props from "./Toast.mdx";
-import Toast from "../src";
+import Variations from "./examples/Variations";
 
 const storyName = getStoryName("Toast");
 
 export default {
   title: storyName,
-  component: Toast,
 };
 
-export const showcase = Showcase;
+export const showcase = () => (
+  <ExampleStory storyName="Toast" tagline={ExampleStory.defaultTaglines.showcase}>
+    <Showcase />
+  </ExampleStory>
+);
+
 showcase.story = {
+  name: "Showcase",
   decorators: [withKnobs],
-  parameters: {
-    docs: { page: Props },
-    options: {
-      isToolshown: true,
-      showPanel: true,
-    },
-    viewMode: "story",
-  },
+  parameters: showcaseStoryParameters,
 };
 
-export const variations = () => <Variations />;
+export const variations = () => (
+  <ExampleStory storyName="Toast" tagline={ExampleStory.defaultTaglines.variations}>
+    <Variations />
+  </ExampleStory>
+);
 variations.story = {
-  parameters: {
-    docs: { page: Variations },
-    options: {
-      isToolshown: true,
-      showPanel: false,
-    },
-    viewMode: "story",
-  },
+  name: "Variations",
+  parameters: variationsStoryParameters,
 };
