@@ -1,0 +1,74 @@
+version: v1.0
+name: Paprika pre-release prepare
+agent:
+  machine:
+    type: e1-standard-4
+    os_image: ubuntu1804
+blocks:
+  - name: "Setup"
+    dependencies: []
+    task:
+      jobs:
+        - name: "🎩 Yarn & caching"
+          commands:
+            - checkout
+            - cache restore client-node-modules-$SEMAPHORE_GIT_BRANCH-$(checksum yarn.lock),client-node-modules-$SEMAPHORE_GIT_BRANCH,client-node-modules-master
+            - nvm use
+            - yarn install --frozen-lockfile
+            - npx lerna bootstrap
+            - cache store client-node-modules-$SEMAPHORE_GIT_BRANCH-$(checksum yarn.lock) node_modules
+            - cache store cypress-$SEMAPHORE_GIT_BRANCH ~/.cache/Cypress
+
+  - name: "⚡️ Integration/Unit"
+    dependencies: ["Setup"]
+    task:
+      prologue:
+        commands:
+          - checkout
+          - cache restore client-node-modules-$SEMAPHORE_GIT_BRANCH-$(checksum yarn.lock),client-node-modules-$SEMAPHORE_GIT_BRANCH,client-node-modules-master
+          - nvm use
+          - yarn
+      jobs:
+        - name: JEST
+          commands:
+            - yarn test
+
+  - name: "⛰ E2E"
+    dependencies: ["Setup"]
+    task:
+      prologue:
+        commands:
+          - checkout
+          - sudo apt-get -y install xvfb libgtk2.0-0 libnotify-dev libgconf-2-4 libnss3 libxss1 libasound2
+          - cache restore client-node-modules-$SEMAPHORE_GIT_BRANCH-$(checksum yarn.lock),client-node-modules-$SEMAPHORE_GIT_BRANCH,client-node-modules-master
+          - cache restore cypress-$SEMAPHORE_GIT_BRANCH
+          - sudo sysctl fs.inotify.max_user_watches=1048576
+      jobs:
+        - name: Cypress
+          commands:
+            - nvm use
+            - npx lerna bootstrap
+            - yarn
+            - yarn cypress:ci
+
+  - name: "🔎 Visual Regression"
+    dependencies: ["Setup"]
+    task:
+      prologue:
+        commands:
+          - checkout
+          - cache restore client-node-modules-$SEMAPHORE_GIT_BRANCH-$(checksum yarn.lock),client-node-modules-$SEMAPHORE_GIT_BRANCH,client-node-modules-master
+      jobs:
+        - name: Screener
+          commands:
+            - nvm use
+            - npx lerna bootstrap
+            - yarn storybook:build
+            - BRANCH_NAME=$SEMAPHORE_GIT_BRANCH REVISION=$SEMAPHORE_GIT_SHA SEMAPHORE_BUILD_NUMBER=$SEMAPHORE_WORKFLOW_ID yarn storybook:screener
+      secrets:
+        - name: screener-api-key
+promotions:
+  - name: Pre-release
+    pipeline_file: pre-release.yml
+    auto_promote:
+      when: "result = 'passed'"
