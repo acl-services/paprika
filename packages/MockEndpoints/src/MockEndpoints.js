@@ -1,6 +1,9 @@
+import React from "react";
 import fetchMock from "fetch-mock";
 
 export default fetchMock;
+
+fetchMock.config.overwriteRoutes = true;
 
 function validateEndpoint(endpoint) {
   if (!("url" in endpoint)) {
@@ -12,7 +15,7 @@ function validateEndpoint(endpoint) {
   }
 }
 
-export function mockEndpoints(endpoints) {
+function mockEndpoints(endpoints) {
   endpoints.forEach(endpoint => {
     validateEndpoint(endpoint);
     fetchMock.get(endpoint.url, endpoint.response);
@@ -23,4 +26,17 @@ export function mockEndpoints(endpoints) {
     console.error(error);
     return { error };
   });
+}
+
+export function useMockEndpoints(endpoints) {
+  const [endpointsAreMocked, setEndpointsAreMocked] = React.useState(false);
+
+  React.useEffect(() => {
+    mockEndpoints(endpoints);
+    setEndpointsAreMocked(true);
+  }, [endpoints]);
+
+  mockEndpoints(endpoints);
+
+  return { endpointsAreMocked };
 }

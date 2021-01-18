@@ -1,11 +1,12 @@
 import React from "react";
-import { mockEndpoints } from "../../src";
+import { useMockEndpoints } from "../../src";
 import endpoints from "./mock-endpoints.json";
-
-mockEndpoints(endpoints);
 
 export default function ShowcaseStory() {
   const [response, setResponse] = React.useState("");
+
+  const { endpointsAreMocked } = useMockEndpoints(endpoints);
+  if (!endpointsAreMocked) return null;
 
   function fetchPlayers() {
     fetch("/players")

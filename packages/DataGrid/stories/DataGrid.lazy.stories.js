@@ -43,6 +43,7 @@ export function App() {
 
   React.useEffect(() => {
     async function getData() {
+      console.log("getData");
       // will search by "a" then by "b" .... "z" try String.fromCharCode(97 + 0) on devtools
       const letter = String.fromCharCode(97 + offsetLetter);
       const data = await fetchMarvelAPI(letter, offset);
