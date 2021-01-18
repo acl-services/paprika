@@ -141,6 +141,7 @@ export function App() {
         <Spinner />
       ) : (
         <>
+          <p>Note: the Marvel API is mocked and only the first 5 pages can be retrieved.</p>
           {row && renderSidepanel({ row })}
           <DataGrid
             ref={refDataGrid}
