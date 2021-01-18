@@ -1,37 +1,33 @@
 import { getStoryUrlPrefix } from "../../../../.storybook/storyTree";
-
-function clickListBoxTrigger(container) {
-  container.within(() => {
-    cy.getByTestId("list-box-trigger").click();
-  });
-}
+import { clickListBoxTrigger } from "./helper";
 
 describe("Filter", () => {
   it("Should display the different filtering options", () => {
+    cy.clock();
     cy.visitStorybook(`${getStoryUrlPrefix("Filter")}--showcase`);
     cy.getByText("1 filtered").click();
 
-    clickListBoxTrigger(cy.getByTestId("filter.item.columnSelector"));
+    clickListBoxTrigger("filter.item.columnSelector");
     cy.findByText("Goals").click();
-    clickListBoxTrigger(cy.getByTestId("filter.item.columnSelector"));
+    clickListBoxTrigger("filter.item.columnSelector");
     cy.findByText("Status").click();
-    clickListBoxTrigger(cy.getByTestId("filter.item.columnSelector"));
+    clickListBoxTrigger("filter.item.columnSelector");
     cy.findByText("Country").click();
-    clickListBoxTrigger(cy.getByTestId("filter.item.columnSelector"));
+    clickListBoxTrigger("filter.item.columnSelector");
     cy.findByText("Joined by").click();
-    clickListBoxTrigger(cy.getByTestId("filter.item.columnSelector"));
+    clickListBoxTrigger("filter.item.columnSelector");
     cy.findByText("Shareable").click();
-    clickListBoxTrigger(cy.getByTestId("filter.item.columnSelector"));
+    clickListBoxTrigger("filter.item.columnSelector");
     cy.findByText("Position").click();
 
-    clickListBoxTrigger(cy.getByTestId("filter.item.ruleSelector"));
+    clickListBoxTrigger("filter.item.ruleSelector");
     cy.findByText("is not").click();
-    clickListBoxTrigger(cy.getByTestId("filter.item.ruleSelector"));
+    clickListBoxTrigger("filter.item.ruleSelector");
     cy.findByText("is not blank").click();
-    clickListBoxTrigger(cy.getByTestId("filter.item.ruleSelector"));
+    clickListBoxTrigger("filter.item.ruleSelector");
     cy.findByText("is").click();
 
-    clickListBoxTrigger(cy.getByTestId("filter.item.valueInput"));
+    clickListBoxTrigger("filter.item.valueInput");
     cy.findByText("midfielder").click();
   });
 
