@@ -103,10 +103,10 @@ zh:
         placeholder: 选择…
       filter:
         a11y_text: 搜索
-        no_results_message: 您的搜索结果没有匹配任何选项。
+        no_results_message: 未找到结果
         placeholder: 搜索…
       footer:
-        accept: 接受
+        accept: 应用
         cancel: 取消
         clear: 清除
     listBoxBrowser:
@@ -117,6 +117,8 @@ zh:
       placeholder: 选择…
       no_results_found: 未找到结果
       all_items_have_been_selected: "已选择所有项"
+    search:
+      searchTerm: 搜索词…
     actionBar:
       columns_arrangement:
         hide_all: 全部隐藏
@@ -187,3 +189,7 @@ zh:
     copyInput:
       clicked_tooltip: 已复制
       hover_tooltip: 复制到剪贴板
+    dynamicHyperlink:
+      access_denied: "拒绝访问"
+      invalid_url: "无效的 URL"
+      loading: 正在加载…

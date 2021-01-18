@@ -43,10 +43,10 @@ const overlayProps = () => ({
   toggleOverlay: boolean("Include <Panel.Overlay>", true, overlayGroup),
 });
 
-const Showcase = props => {
+export default function Showcase() {
   return (
-    <ExampleStory storyName="Panel" tagline={ExampleStory.defaultTaglines.showcase}>
-      <Panel {...props}>
+    <>
+      <Panel {...sidePanelProps()}>
         {overlayProps().toggleOverlay ? <Panel.Overlay /> : null}
         <Panel.Header {...headerProps()}>{headerProps().children}</Panel.Header>
         <Panel.Content>
@@ -66,8 +66,6 @@ const Showcase = props => {
         <Panel.FocusLock autoFocus={false} />
       </Panel>
       <TextLine repeat={50} />
-    </ExampleStory>
+    </>
   );
-};
-
-export default () => <Showcase {...sidePanelProps()} />;
+}
