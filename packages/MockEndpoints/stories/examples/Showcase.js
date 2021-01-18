@@ -1,51 +1,34 @@
 import React from "react";
-import { mockEndpoints } from "../../src";
-
-const endPoints = [
-  {
-    url: "/players",
-    responseData: [
-      { id: 1, name: "Wayne Gretzky", number: 99 },
-      { id: 2, name: "Gordie Howe", number: 4 },
-      { id: 3, name: "Sydney Crosby", number: 87 },
-      { id: 4, name: "Mario Lemiux", number: 66 },
-    ],
-  },
-  {
-    url: "/teams",
-    responseData: [
-      { id: 1, name: "LA Kings", founded: 1967 },
-      { id: 2, name: "Pittsburgh Penguins", founded: 1967 },
-      { id: 2, name: "Detroit Red Wings", enteredLeague: 1926 },
-    ],
-  },
-];
-
-mockEndpoints(endPoints);
+import { useMockEndpoints } from "../../src";
+import endpoints from "./mock-endpoints.json";
 
 export default function ShowcaseStory() {
   const [response, setResponse] = React.useState("");
 
+  const { endpointsAreMocked } = useMockEndpoints(endpoints);
+  if (!endpointsAreMocked) return null;
+
   function fetchPlayers() {
     fetch("/players")
-      .then(resp => resp.json())
+      .then(res => res.json())
       .then(data => setResponse(data));
   }
 
   async function fetchTeams() {
     fetch("/teams")
-      .then(resp => resp.json())
+      .then(res => res.json())
       .then(data => setResponse(data));
   }
 
   async function fetchUnknown() {
-    fetch("/doesnt-exist")
-      .then(resp => resp.json())
+    fetch("/non-existent-endpoint")
+      .then(res => res.json())
       .then(data => setResponse(data));
   }
 
   return (
     <>
+      <p>Click on one of the buttons below to hit the mock API endpoint:</p>
       <button type="button" onClick={fetchPlayers}>
         Fetch Players
       </button>
@@ -56,7 +39,8 @@ export default function ShowcaseStory() {
         Fetch Unknown
       </button>
       <br />
-      Response:<xmp>{JSON.stringify(response)}</xmp>
+      <br />
+      <xmp>{JSON.stringify(response)}</xmp>
     </>
   );
 }
