@@ -6,7 +6,6 @@ import Tabs from "@paprika/tabs";
 import { useMockEndpoints } from "../../../MockEndpoints/src";
 import DynamicHyperlink from "../../src/DynamicHyperlink";
 import Tab3Content from "./Tab3Content";
-import Tab4Content from "./Tab4Content";
 import endpoints from "./mock-endpoints.json";
 
 // This function must return a Promise that resolves: { name, term, error }
@@ -34,8 +33,7 @@ function ExampleStory() {
           <Tabs.List>
             <Tabs.Tab>Page 1</Tabs.Tab>
             <Tabs.Tab>Page 2</Tabs.Tab>
-            <Tabs.Tab>Page 3 (with iFrame)</Tabs.Tab>
-            <Tabs.Tab>Page 4 (with React ckEditor)</Tabs.Tab>
+            <Tabs.Tab>Page 3 (with React ckEditor)</Tabs.Tab>
           </Tabs.List>
           <Tabs.Panels>
             <Tabs.Panel>
@@ -66,9 +64,6 @@ function ExampleStory() {
             </Tabs.Panel>
             <Tabs.Panel>
               <Tab3Content />
-            </Tabs.Panel>
-            <Tabs.Panel>
-              <Tab4Content />
             </Tabs.Panel>
           </Tabs.Panels>
         </Tabs>
