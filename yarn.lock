@@ -11736,6 +11736,11 @@ lazy-universal-dotenv@^3.0.1:
     dotenv "^8.0.0"
     dotenv-expand "^5.1.0"
 
+legally@^3.5.10:
+  version "3.5.10"
+  resolved "https://registry.yarnpkg.com/legally/-/legally-3.5.10.tgz#561b769ded5dd550b2267de3403f783a497030ea"
+  integrity sha512-8wc15Uue8Cju65dOH1DSuHJJI3LzYqGTPzxUbE77471V03fFtchwSs3Qnb3pNIUMZLdd+a647BT+zWhFRgRLEQ==
+
 lerna@^3.13.0:
   version "3.22.0"
   resolved "https://registry.yarnpkg.com/lerna/-/lerna-3.22.0.tgz#da14d08f183ffe6eec566a4ef3f0e11afa621183"

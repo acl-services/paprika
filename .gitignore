@@ -38,3 +38,5 @@ storybook-dist
 # for publishing
 .npmrc
 
+# in case you run the license
+license.xls
