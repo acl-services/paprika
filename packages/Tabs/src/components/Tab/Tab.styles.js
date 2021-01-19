@@ -24,13 +24,11 @@ const verticalBar = css`
 `;
 
 const activeStyles = ({ kind, isVertical }) => css`
-  ${isVertical
-    ? css`
-        background-color: ${tokens.color.blueLighten50};
-      `
-    : css`
-        color: ${tokens.textColor.link};
-      `}
+  color: ${tokens.textColor.link};
+  ${isVertical &&
+    css`
+      background-color: ${tokens.color.blackLighten70};
+    `}
 
   &::after {
     background-color: ${kindColor[kind]};
@@ -53,7 +51,7 @@ const horizontalStyles = css`
   display: inline-flex;
   margin-right: ${tokens.space};
   padding: ${stylers.spacer(2)} ${tokens.space} ${tokens.space} ${tokens.space};
-  ${stylers.fontSize()};
+  ${stylers.fontSize()}
 
   &:last-child {
     margin-right: 0;
@@ -64,13 +62,18 @@ const horizontalStyles = css`
   }
 `;
 
-const verticalStyles = css`
+const verticalStyles = ({ hasTruncation }) => css`
   border-left: ${tokens.spaceSm} solid transparent;
-  display: flex;
-  font-weight: bold;
   padding: ${tokens.spaceLg};
-  ${stylers.fontSize(-1)};
-  ${stylers.lineHeight(-2)};
+  ${stylers.lineHeight(-2)}
+  ${hasTruncation
+    ? css`
+        display: block;
+        ${stylers.truncateText}
+      `
+    : css`
+        display: flex;
+      `}
 `;
 
 const baseStyles = ({ isDisabled, isSelected, isVertical }) => css`
@@ -93,10 +96,6 @@ const baseStyles = ({ isDisabled, isSelected, isVertical }) => css`
 
   &:hover {
     border-color: ${tokens.border.color};
-  }
-
-  > * {
-    flex-shrink: 0;
   }
 `;
 

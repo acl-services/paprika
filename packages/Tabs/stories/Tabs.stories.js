@@ -10,7 +10,6 @@ import Icon4 from "@paprika/icon/lib/NewTab";
 import Button from "@paprika/button";
 import Heading from "@paprika/heading";
 import tokens from "@paprika/tokens";
-import { spacer } from "@paprika/stylers/lib/helpers";
 import ShowcaseStory from "./examples/Showcase";
 import Tabs from "../src/Tabs";
 
@@ -80,7 +79,7 @@ storiesOf(`${storyName}/Examples`, module)
           <Tabs.Tab>These tabs</Tabs.Tab>
           <Tabs.Tab>Are tall</Tabs.Tab>
           <Tabs.Tab href="https://wegalvanize.com" target="_blank" rel="noopener noreferrer">
-            And narrow
+            So tall
           </Tabs.Tab>
           <Tabs.Tab>With inset focus</Tabs.Tab>
         </Tabs.List>
@@ -91,14 +90,15 @@ storiesOf(`${storyName}/Examples`, module)
     <Story
       css={`
         [data-pka-anchor="icon"] {
-          color: ${tokens.textColor.icon};
-          font-size: ${spacer(3)};
+          flex-shrink: 0;
+          font-size: 20px;
           margin-right: ${tokens.spaceLg};
+          opacity: 0.75;
         }
       `}
     >
       <Tabs>
-        <Tabs.List isVertical>
+        <Tabs.List isVertical hasTruncation hasInsetFocusStyle>
           <Tabs.Tab>
             <Icon1 />
             Vegan meggings
