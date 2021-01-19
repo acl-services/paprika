@@ -2,30 +2,38 @@ import styled, { css } from "styled-components";
 import RawButton from "@paprika/raw-button";
 import tokens from "@paprika/tokens";
 import stylers from "@paprika/stylers";
+import { PRIMARY, SECONDARY } from "../../types";
 
 const focusStyle = tokens.highlight.active.withBorder.boxShadow;
 
-const kindStyles = () => ({
-  primary: css`
-    border-bottom: ${tokens.spaceSm} solid ${tokens.color.blue};
-  `,
+const kindColor = {
+  [PRIMARY]: tokens.color.blue,
+  [SECONDARY]: tokens.color.purple,
+};
 
-  secondary: css`
-    border-bottom: ${tokens.spaceSm} solid ${tokens.color.purple};
-  `,
-});
+const horizontalBar = css`
+  bottom: -${tokens.spaceSm};
+  height: ${tokens.spaceSm};
+  left: 0;
+  width: 100%;
+`;
 
-const activeStyles = ({ kind }) => css`
+const verticalBar = css`
+  height: 100%;
+  left: -${tokens.spaceSm};
+  top: 0;
+  width: ${tokens.spaceSm};
+`;
+
+const activeStyles = ({ kind, isVertical }) => css`
   color: ${tokens.textColor.link};
-  
+
   &::after {
-    ${kindStyles()[kind]}
-    bottom: -${tokens.spaceSm};
+    background-color: ${kindColor[kind]};
     content: "";
-    height: ${tokens.spaceSm};
-    left: 0;
+
     position: absolute;
-    width: 100%;
+    ${isVertical ? verticalBar : horizontalBar}
   }
 `;
 
@@ -37,41 +45,56 @@ const disabledStyles = css`
   cursor: not-allowed;
 `;
 
-export const Tab = styled(RawButton)(
-  ({ isDisabled, isSelected }) => css`
-    ${stylers.fontSize()};
-    align-items: center;
-    background-color: ${tokens.color.white};
-    border: 0;
-    border-bottom: ${tokens.spaceSm} solid transparent;
-    color: ${tokens.color.black};
-    display: inline-flex;
-    height: ${({ height }) => (height ? `${height}px` : "auto")};
-    margin: 0 ${tokens.space} 0 0;
-    padding: ${stylers.spacer(2)} ${tokens.space} ${tokens.space} ${tokens.space};
-    position: relative;
-    transition: border-color 0.3s ease;
-    ${isDisabled ? disabledStyles : null}
-    ${isSelected ? activeStyles : null}
+const horizontalStyles = css`
+  border-bottom: ${tokens.spaceSm} solid transparent;
+  display: inline-flex;
+  margin-right: ${tokens.space};
+  padding: ${stylers.spacer(2)} ${tokens.space} ${tokens.space} ${tokens.space};
 
   &:last-child {
-      margin-right: 0;
-    }
+    margin-right: 0;
+  }
 
-    &:focus {
-      border-color: ${tokens.border.color};
-      border-radius: ${tokens.border.radius} ${tokens.border.radius} 0 0;
-      ${stylers.z(1)}
-    }
+  &:focus {
+    border-radius: ${tokens.border.radius} ${tokens.border.radius} 0 0;
+  }
+`;
 
-    &:hover {
-      border-color: ${tokens.border.color};
-    }
-  `
-);
+const verticalStyles = css`
+  border-left: ${tokens.spaceSm} solid transparent;
+  display: flex;
+  padding: ${tokens.space} ${tokens.spaceLg};
+`;
+
+const baseStyles = ({ isDisabled, isSelected, isVertical }) => css`
+  ${stylers.fontSize()};
+  ${stylers.lineHeight(-2)};
+  align-items: center;
+  background-color: ${tokens.color.white};
+  border: 0;
+  color: ${tokens.color.black};
+  height: ${({ height }) => (height ? `${height}px` : "auto")};
+  margin: 0; 
+  position: relative;
+  transition: border-color 0.3s ease;
+  ${isVertical ? verticalStyles : horizontalStyles}
+  ${isDisabled ? disabledStyles : null}
+  ${isSelected ? activeStyles : null}
+
+  &:focus {
+    border-color: ${tokens.border.color};
+    ${stylers.z(1)}
+  }
+
+  &:hover {
+    border-color: ${tokens.border.color};
+  }
+`;
+
+export const Tab = styled(RawButton)(baseStyles);
 
 export const Link = styled.a`
-  ${Tab}
+  ${baseStyles}
   color: ${tokens.color.black};
   text-decoration: none;
 

@@ -7,7 +7,7 @@ import Panels from "./components/Panels/Panels";
 import Tab from "./components/Tab/Tab";
 import List from "./components/List/List";
 
-const Tabs = props => {
+export default function Tabs(props) {
   const [activeIndex, setActiveIndex] = React.useState(props.defaultIndex);
   const [currentFocusIndex, setFocusIndex] = React.useState(props.defaultIndex);
 
@@ -29,6 +29,9 @@ const Tabs = props => {
     setActiveIndex(index);
   };
 
+  const nextKeys = ["ArrowRight", "ArrowDown"];
+  const prevKeys = ["ArrowLeft", "ArrowUp"];
+
   // https://github.com/acl-services/paprika/issues/310
   // Todo Disabled tab items should also get focus on keyboard interaction
   const onKeyDown = (event, currentIndex) => {
@@ -40,12 +43,12 @@ const Tabs = props => {
     const enabledSelectedIndex = enabledIndexes.indexOf(currentIndex);
     const count = enabledIndexes.length;
 
-    if (event.key === "ArrowRight") {
+    if (nextKeys.includes(event.key)) {
       const nextEnabledIndex = (enabledSelectedIndex + 1) % count;
       const nextIndex = enabledIndexes[nextEnabledIndex];
 
       focusAndSetIndex(nextIndex);
-    } else if (event.key === "ArrowLeft") {
+    } else if (prevKeys.includes(event.key)) {
       const nextEnabledIndex = (enabledSelectedIndex - 1 + count) % count;
       const nextIndex = enabledIndexes[nextEnabledIndex];
 
@@ -68,36 +71,34 @@ const Tabs = props => {
   };
 
   return <TabsContext.Provider value={contextValue}>{props.children}</TabsContext.Provider>;
-};
+}
 
 Tabs.types = {
   kind: constants.kind,
 };
 
-const propTypes = {
+Tabs.propTypes = {
   /** Determine the styling of the tab */
   kind: PropTypes.oneOf([Tabs.types.kind.PRIMARY, Tabs.types.kind.SECONDARY]),
+
   /** Children of the Tab */
   children: PropTypes.node.isRequired,
+
   /** Sets what tab index is active by default */
   defaultIndex: PropTypes.number,
+
   /** If the tab is disabled */
   isDisabled: PropTypes.bool,
 };
 
-const defaultProps = {
+Tabs.defaultProps = {
   kind: Tabs.types.kind.PRIMARY,
   defaultIndex: 0,
   isDisabled: false,
 };
 
 Tabs.displayName = "Tabs";
-Tabs.propTypes = propTypes;
-Tabs.defaultProps = defaultProps;
-
 Tabs.Panel = Panel;
 Tabs.Panels = Panels;
 Tabs.Tab = Tab;
 Tabs.List = List;
-
-export default Tabs;

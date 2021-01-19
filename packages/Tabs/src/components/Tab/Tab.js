@@ -3,31 +3,6 @@ import PropTypes from "prop-types";
 import TabsContext from "../../TabsContext";
 import * as sc from "./Tab.styles";
 
-const propTypes = {
-  children: PropTypes.node,
-  height: PropTypes.number,
-  /** Sets a url the tab goes to */
-  href: PropTypes.string,
-  /** If the tab is disabled  */
-  isDisabled: PropTypes.bool,
-  /** Controls if the option is selected or not */
-  isSelected: PropTypes.bool,
-  /** Callback onClick */
-  onClick: PropTypes.func,
-  /** Callback onKeyDownArrow */
-  onKeyDownArrows: PropTypes.func,
-};
-
-const defaultProps = {
-  children: null,
-  height: null,
-  href: null,
-  isDisabled: false,
-  isSelected: false,
-  onClick: () => {},
-  onKeyDownArrows: () => {},
-};
-
 export default function Tab(props) {
   const context = React.useContext(TabsContext);
 
@@ -74,6 +49,32 @@ export default function Tab(props) {
   );
 }
 
+Tab.propTypes = {
+  children: PropTypes.node,
+
+  /** Sets a url the tab goes to */
+  href: PropTypes.string,
+
+  /** If the tab is disabled  */
+  isDisabled: PropTypes.bool,
+
+  /** Controls if the option is selected or not */
+  isSelected: PropTypes.bool,
+
+  /** Callback onClick */
+  onClick: PropTypes.func,
+
+  /** Callback onKeyDownArrow */
+  onKeyDownArrows: PropTypes.func,
+};
+
+Tab.defaultProps = {
+  children: null,
+  href: null,
+  isDisabled: false,
+  isSelected: false,
+  onClick: () => {},
+  onKeyDownArrows: () => {},
+};
+
 Tab.displayName = "Tabs.Tab";
-Tab.propTypes = propTypes;
-Tab.defaultProps = defaultProps;

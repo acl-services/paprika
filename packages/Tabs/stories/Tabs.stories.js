@@ -73,8 +73,24 @@ storiesOf(`${storyName}/Examples`, module)
         <Tabs.List height={80}>
           <Tabs.Tab hasInsetFocusStyle>These tabs</Tabs.Tab>
           <Tabs.Tab hasInsetFocusStyle>Are tall</Tabs.Tab>
-          <Tabs.Tab hasInsetFocusStyle>And narrow</Tabs.Tab>
+          <Tabs.Tab hasInsetFocusStyle href="https://wegalvanize.com" target="_blank" rel="noopener noreferrer">
+            And narrow
+          </Tabs.Tab>
           <Tabs.Tab hasInsetFocusStyle>With inset focus</Tabs.Tab>
+        </Tabs.List>
+      </Tabs>
+    </Story>
+  ))
+  .add("Vert", () => (
+    <Story>
+      <Tabs>
+        <Tabs.List isVertical>
+          <Tabs.Tab>Vegan meggings</Tabs.Tab>
+          <Tabs.Tab>Direct trade synth</Tabs.Tab>
+          <Tabs.Tab>Activated charcoal hexagon hexagon street art pickled raw denim irony vegan ethical</Tabs.Tab>
+          <Tabs.Tab href="https://wegalvanize.com" target="_blank" rel="noopener noreferrer">
+            VHS humblebrag
+          </Tabs.Tab>
         </Tabs.List>
       </Tabs>
     </Story>

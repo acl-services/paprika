@@ -3,22 +3,10 @@ import PropTypes from "prop-types";
 import TabsContext from "../../TabsContext";
 import * as sc from "./List.styles";
 
-const propTypes = {
-  /** Descriptive a11y text for assistive technologies. By default, text from children node will be used. */
-  a11yText: PropTypes.string,
-  children: PropTypes.node.isRequired,
-  height: PropTypes.number,
-};
-
-const defaultProps = {
-  a11yText: null,
-  height: null,
-};
-
 export default function List(props) {
   const context = React.useContext(TabsContext);
 
-  const { a11yText, children, height, ...moreProps } = props;
+  const { a11yText, children, height, isVertical, ...moreProps } = props;
   const { activeIndex, kind, currentFocusIndex, onKeyDown, onClickTab, setTabListRef } = context;
 
   const childrenWithProps = React.Children.map(children, (tab, index) => {
@@ -29,6 +17,7 @@ export default function List(props) {
       currentFocusIndex,
       height,
       isSelected,
+      isVertical,
       onClick: e => onClickTab(e, index),
       onKeyDownArrows: onKeyDown,
     });
@@ -43,6 +32,24 @@ export default function List(props) {
   );
 }
 
+List.propTypes = {
+  /** Descriptive a11y text for assistive technologies. By default, text from children node will be used. */
+  a11yText: PropTypes.string,
+
+  /** List of Tabs.Tab elements */
+  children: PropTypes.node.isRequired,
+
+  /** Height (in pixels) of the tabs */
+  height: PropTypes.number,
+
+  /** If the tabs are stacked vertically */
+  isVertical: PropTypes.bool,
+};
+
+List.defaultProps = {
+  a11yText: null,
+  height: null,
+  isVertical: false,
+};
+
 List.displayName = "Tabs.List";
-List.propTypes = propTypes;
-List.defaultProps = defaultProps;
