@@ -1,7 +1,7 @@
 {
-  "name": "@paprika/dynamic-hyperlink",
+  "name": "@paprika/dynamic-hyperlink-transformer",
   "version": "0.0.3-alpha.4",
-  "description": "Adding this component runs a script that does an API lookup on hyperlinks with a specific data attribute, fetching their name.",
+  "description": "Adding this component runs a script that fires a callback function on each hyperlink with a specific data attribute, then replaces the link with a fancier card.",
   "main": "lib/index.js",
   "types": "lib/index.d.ts",
   "author": "@paprika",
@@ -9,7 +9,7 @@
   "repository": {
     "type": "git",
     "url": "https://github.com/acl-services/paprika.git",
-    "directory": "packages/DynamicHyperlink"
+    "directory": "packages/DynamicHyperlinkTransformer"
   },
   "publishConfig": {
     "access": "public"
@@ -26,5 +26,8 @@
     "react": "^16.8.4",
     "react-dom": "^16.8.4",
     "styled-components": "^4.2.0"
+  },
+  "devDependencies": {
+    "ckeditor4-react": "^1.3.0"
   }
 }
