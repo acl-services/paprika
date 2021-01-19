@@ -39,4 +39,5 @@ storybook-dist
 .npmrc
 
 # in case you run the licence
+license.xls
 licence.xls

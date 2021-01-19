@@ -11,7 +11,7 @@
     "generateReadMe": "node scripts/readmeFiles.js",
     "generateTypeDefinitions": "node scripts/typesFiles.js && yarn tsc",
     "jest:watch": "yarn jest --watch",
-    "licence": "node packages/helpers/src/licence.js",
+    "license": "node packages/helpers/src/license.js",
     "lint": "eslint packages --report-unused-disable-directives",
     "lint:fix": "yarn lint --fix",
     "lint:jss": "stylelint './packages/**/src/**/*.styles.js'",

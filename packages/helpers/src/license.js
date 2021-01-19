@@ -15,12 +15,12 @@ done = (function wait() {
   const licenses = await legally();
 
   // tab delimiters which can be open as excel file
-  const header = `package\tlicence\n`;
-  const writeStream = fs.createWriteStream("./licence.xls");
+  const header = `package\tlicense\n`;
+  const writeStream = fs.createWriteStream("./license.xls");
 
   writeStream.write(header);
-  for (const licence in licenses) {
-    const row = `${licence}\t${licenses[licence].copying}\n`;
+  for (const license in licenses) {
+    const row = `${license}\t${licenses[license].copying}\n`;
     writeStream.write(row);
     console.log(row);
   }
