@@ -1,6 +1,6 @@
 {
   "name": "@paprika/icon",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "description": "Icon component is a graphic to represent something else",
   "author": "@paprika",
   "main": "lib/index.js",

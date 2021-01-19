@@ -81,6 +81,11 @@ class CommitValidator {
 
   run() {
     this.branchName = this.validateAndGetBranchName();
+
+    if (this.branchName === "master") {
+      process.exit(0);
+    }
+
     this.pillarAbbreviation = this.getPillarAbbreviationFromBranchName();
     this.ticketCounter = this.validateAndGetTicketCounterFromBranchName();
     this.ticketId = `${this.pillarAbbreviation.toUpperCase()}-${this.ticketCounter}`;
