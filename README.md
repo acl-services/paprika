@@ -207,10 +207,10 @@ Have a question for the development team? [Ask us](https://github.com/acl-servic
 To list all licenses of paprika dependencies run
 
 ```sh
-yarn licence
+yarn license
 ```
 
-it will create a `licence.xls` file at the root of the repository
+it will create a `license.xls` file at the root of the repository
 
 ## NOTES
 
