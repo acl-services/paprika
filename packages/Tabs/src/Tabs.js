@@ -1,6 +1,6 @@
 import React from "react";
 import PropTypes from "prop-types";
-import * as constants from "@paprika/constants/lib/Constants";
+import types from "./types";
 import TabsContext from "./TabsContext";
 import Panel from "./components/Panel/Panel";
 import Panels from "./components/Panels/Panels";
@@ -73,21 +73,19 @@ export default function Tabs(props) {
   return <TabsContext.Provider value={contextValue}>{props.children}</TabsContext.Provider>;
 }
 
-Tabs.types = {
-  kind: constants.kind,
-};
+Tabs.types = types;
 
 Tabs.propTypes = {
-  /** Determine the styling of the tab */
+  /** The visual theme of the Tabs.List. */
   kind: PropTypes.oneOf([Tabs.types.kind.PRIMARY, Tabs.types.kind.SECONDARY]),
 
-  /** Children of the Tab */
+  /** Children of the Tabs – Tabs.List and Tabs.Panels. */
   children: PropTypes.node.isRequired,
 
-  /** Sets what tab index is active by default */
+  /** Sets what tab index is active by default. */
   defaultIndex: PropTypes.number,
 
-  /** If the tab is disabled */
+  /** If the tabs are all disabled. */
   isDisabled: PropTypes.bool,
 };
 

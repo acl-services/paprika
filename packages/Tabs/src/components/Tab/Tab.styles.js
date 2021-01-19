@@ -2,40 +2,33 @@ import styled, { css } from "styled-components";
 import RawButton from "@paprika/raw-button";
 import tokens from "@paprika/tokens";
 import stylers from "@paprika/stylers";
-import { PRIMARY, SECONDARY } from "../../types";
+import types from "../../types";
+
+const { PRIMARY, SECONDARY } = types.kind;
+const { MEDIUM, LARGE } = types.size;
 
 const kindColor = {
   [PRIMARY]: tokens.color.blue,
   [SECONDARY]: tokens.color.purple,
 };
 
-const horizontalBar = css`
-  bottom: -${tokens.spaceSm};
-  height: ${tokens.spaceSm};
-  left: 0;
-  width: 100%;
-`;
+const fontSize = {
+  [MEDIUM]: stylers.fontSize(-1),
+  [LARGE]: stylers.fontSize(),
+};
 
-const verticalBar = css`
-  height: 100%;
-  left: -${tokens.spaceSm};
-  top: 0;
-  width: ${tokens.spaceSm};
-`;
-
-const activeStyles = ({ kind, isVertical }) => css`
+const activeStyles = ({ isVertical, kind }) => css`
   color: ${tokens.textColor.link};
+  &,
+  &:focus,
+  &:hover {
+    border-color: ${kindColor[kind]};
+  }
+
   ${isVertical &&
     css`
       background-color: ${tokens.color.blackLighten70};
     `}
-
-  &::after {
-    background-color: ${kindColor[kind]};
-    content: "";
-    position: absolute;
-    ${isVertical ? verticalBar : horizontalBar}
-  }
 `;
 
 const disabledStyles = css`
@@ -48,17 +41,14 @@ const disabledStyles = css`
 
 const horizontalStyles = css`
   border-bottom: ${tokens.spaceSm} solid transparent;
+  border-radius: ${tokens.border.radius} ${tokens.border.radius} 0 0;
   display: inline-flex;
+  height: ${({ height }) => (height ? `${height}px` : "auto")};
   margin-right: ${tokens.space};
   padding: ${stylers.spacer(2)} ${tokens.space} ${tokens.space} ${tokens.space};
-  ${stylers.fontSize()}
 
   &:last-child {
     margin-right: 0;
-  }
-
-  &:focus {
-    border-radius: ${tokens.border.radius} ${tokens.border.radius} 0 0;
   }
 `;
 
@@ -76,27 +66,28 @@ const verticalStyles = ({ hasTruncation }) => css`
       `}
 `;
 
-const baseStyles = ({ isDisabled, isSelected, isVertical }) => css`
+const baseStyles = ({ isDisabled, isSelected, isVertical, size }) => css`
   align-items: center;
   background-color: ${tokens.color.white};
   border: 0;
+  box-sizing: border-box;
   color: ${tokens.color.black};
-  height: ${({ height }) => (height ? `${height}px` : "auto")};
-  margin: 0; 
+  margin: 0;
   position: relative;
   transition: border-color 0.3s ease;
+  ${fontSize[size]}
   ${isVertical ? verticalStyles : horizontalStyles}
-  ${isDisabled ? disabledStyles : null}
-  ${isSelected ? activeStyles : null}
+
+  &:hover, &:focus {
+    border-color: ${tokens.border.color};
+  }
 
   &:focus {
-    border-color: ${tokens.border.color};
     ${stylers.z(1)}
   }
 
-  &:hover {
-    border-color: ${tokens.border.color};
-  }
+  ${isDisabled ? disabledStyles : null}
+  ${isSelected ? activeStyles : null}
 `;
 
 export const Tab = styled(RawButton)(baseStyles);
