@@ -6,7 +6,7 @@ import * as sc from "./List.styles";
 export default function List(props) {
   const context = React.useContext(TabsContext);
 
-  const { a11yText, children, height, isVertical, ...moreProps } = props;
+  const { a11yText, children, hasInsetFocusStyle, height, isVertical, ...moreProps } = props;
   const { activeIndex, kind, currentFocusIndex, onKeyDown, onClickTab, setTabListRef } = context;
 
   const childrenWithProps = React.Children.map(children, (tab, index) => {
@@ -15,6 +15,7 @@ export default function List(props) {
     return React.cloneElement(tab, {
       kind,
       currentFocusIndex,
+      hasInsetFocusStyle,
       height,
       isSelected,
       isVertical,
@@ -39,6 +40,9 @@ List.propTypes = {
   /** List of Tabs.Tab elements */
   children: PropTypes.node.isRequired,
 
+  /** If the visual focus ring should be displayed with an inset style. */
+  hasInsetFocusStyle: PropTypes.bool,
+
   /** Height (in pixels) of the tabs */
   height: PropTypes.number,
 
@@ -48,6 +52,7 @@ List.propTypes = {
 
 List.defaultProps = {
   a11yText: null,
+  hasInsetFocusStyle: false,
   height: null,
   isVertical: false,
 };

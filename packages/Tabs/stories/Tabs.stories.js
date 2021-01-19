@@ -3,8 +3,13 @@ import { storiesOf } from "@storybook/react";
 import { withKnobs } from "@storybook/addon-knobs";
 import { Gap, Story } from "storybook/assets/styles/common.styles";
 import { getStoryName } from "storybook/storyTree";
+import Icon1 from "@paprika/icon/lib/Upload";
+import Icon2 from "@paprika/icon/lib/TimeAndDate";
+import Icon3 from "@paprika/icon/lib/Lock";
+import Icon4 from "@paprika/icon/lib/NewTab";
 import Button from "@paprika/button";
 import Heading from "@paprika/heading";
+import tokens from "@paprika/tokens";
 import ShowcaseStory from "./examples/Showcase";
 import Tabs from "../src/Tabs";
 
@@ -67,31 +72,72 @@ storiesOf(`${storyName}/Examples`, module)
       </Tabs>
     </Story>
   ))
-  .add("Compact Tabs with custom height", () => (
+  .add("Tabs with custom height", () => (
     <Story>
       <Tabs>
-        <Tabs.List height={80}>
-          <Tabs.Tab hasInsetFocusStyle>These tabs</Tabs.Tab>
-          <Tabs.Tab hasInsetFocusStyle>Are tall</Tabs.Tab>
-          <Tabs.Tab hasInsetFocusStyle href="https://wegalvanize.com" target="_blank" rel="noopener noreferrer">
+        <Tabs.List height={80} hasInsetFocusStyle>
+          <Tabs.Tab>These tabs</Tabs.Tab>
+          <Tabs.Tab>Are tall</Tabs.Tab>
+          <Tabs.Tab href="https://wegalvanize.com" target="_blank" rel="noopener noreferrer">
             And narrow
           </Tabs.Tab>
-          <Tabs.Tab hasInsetFocusStyle>With inset focus</Tabs.Tab>
+          <Tabs.Tab>With inset focus</Tabs.Tab>
         </Tabs.List>
       </Tabs>
     </Story>
   ))
-  .add("Vert", () => (
-    <Story>
+  .add("Vertically stacked tabs with icons", () => (
+    <Story
+      css={`
+        [data-pka-anchor="icon"] {
+          margin-right: ${tokens.spaceLg};
+        }
+      `}
+    >
       <Tabs>
         <Tabs.List isVertical>
-          <Tabs.Tab>Vegan meggings</Tabs.Tab>
-          <Tabs.Tab>Direct trade synth</Tabs.Tab>
-          <Tabs.Tab>Activated charcoal hexagon hexagon street art pickled raw denim irony vegan ethical</Tabs.Tab>
-          <Tabs.Tab href="https://wegalvanize.com" target="_blank" rel="noopener noreferrer">
+          <Tabs.Tab>
+            <Icon1 size="24px" color={tokens.textColor.icon} />
+            Vegan meggings
+          </Tabs.Tab>
+          <Tabs.Tab>
+            <Icon2 size="24px" color={tokens.textColor.icon} />
+            Direct trade synth
+          </Tabs.Tab>
+          <Tabs.Tab>
+            <Icon3 size="24px" color={tokens.textColor.icon} />
+            Activated charcoal hexagon street art pickled raw denim irony tumeric vegan ethical cronut
+          </Tabs.Tab>
+          <Tabs.Tab href="https://youtu.be/5gA3tw3CQGw?t=2" target="_blank" rel="noopener noreferrer">
+            <Icon4 size="24px" color={tokens.textColor.icon} />
             VHS humblebrag
           </Tabs.Tab>
         </Tabs.List>
+        <Tabs.Panels>
+          <Tabs.Panel>
+            <Heading level={4}>Vegan meggings</Heading>
+            <p>
+              Vaporware biodiesel hella umami keytar irony retro man braid four loko kickstarter pitchfork iPhone
+              franzen synth mixtape.
+            </p>
+          </Tabs.Panel>
+          <Tabs.Panel>
+            <Heading level={4}>Direct trade synth</Heading>
+            <p>
+              Jean shorts narwhal schlitz, copper mug bicycle rights cornhole church-key sriracha leggings man bun
+              iceland flexitarian.
+            </p>
+          </Tabs.Panel>
+          <Tabs.Panel>
+            <Heading level={4}>
+              Activated charcoal hexagon street art pickled raw denim irony tumeric vegan ethical cronut
+            </Heading>
+            <p>
+              Vegan prism master cleanse retro gochujang occupy tumeric green juice affogato. Activated charcoal
+              chicharrones small batch, tofu waistcoat mlkshk unicorn trust fund beard cronut.
+            </p>
+          </Tabs.Panel>
+        </Tabs.Panels>
       </Tabs>
     </Story>
   ));

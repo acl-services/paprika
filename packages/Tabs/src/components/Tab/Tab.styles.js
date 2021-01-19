@@ -4,8 +4,6 @@ import tokens from "@paprika/tokens";
 import stylers from "@paprika/stylers";
 import { PRIMARY, SECONDARY } from "../../types";
 
-const focusStyle = tokens.highlight.active.withBorder.boxShadow;
-
 const kindColor = {
   [PRIMARY]: tokens.color.blue,
   [SECONDARY]: tokens.color.purple,
@@ -26,12 +24,17 @@ const verticalBar = css`
 `;
 
 const activeStyles = ({ kind, isVertical }) => css`
-  color: ${tokens.textColor.link};
+  ${isVertical
+    ? css`
+        background-color: ${tokens.color.blueLighten50};
+      `
+    : css`
+        color: ${tokens.textColor.link};
+      `}
 
   &::after {
     background-color: ${kindColor[kind]};
     content: "";
-
     position: absolute;
     ${isVertical ? verticalBar : horizontalBar}
   }
@@ -50,6 +53,7 @@ const horizontalStyles = css`
   display: inline-flex;
   margin-right: ${tokens.space};
   padding: ${stylers.spacer(2)} ${tokens.space} ${tokens.space} ${tokens.space};
+  ${stylers.fontSize()};
 
   &:last-child {
     margin-right: 0;
@@ -63,12 +67,13 @@ const horizontalStyles = css`
 const verticalStyles = css`
   border-left: ${tokens.spaceSm} solid transparent;
   display: flex;
-  padding: ${tokens.space} ${tokens.spaceLg};
+  font-weight: bold;
+  padding: ${tokens.spaceLg};
+  ${stylers.fontSize(-1)};
+  ${stylers.lineHeight(-2)};
 `;
 
 const baseStyles = ({ isDisabled, isSelected, isVertical }) => css`
-  ${stylers.fontSize()};
-  ${stylers.lineHeight(-2)};
   align-items: center;
   background-color: ${tokens.color.white};
   border: 0;
@@ -89,17 +94,27 @@ const baseStyles = ({ isDisabled, isSelected, isVertical }) => css`
   &:hover {
     border-color: ${tokens.border.color};
   }
+
+  > * {
+    flex-shrink: 0;
+  }
 `;
 
 export const Tab = styled(RawButton)(baseStyles);
 
-export const Link = styled.a`
+export const Link = styled.a(
+  ({ hasInsetFocusStyle }) => css`
   ${baseStyles}
   color: ${tokens.color.black};
   text-decoration: none;
 
   &:focus {
-    box-shadow: ${focusStyle};
+    box-shadow: ${
+      hasInsetFocusStyle
+        ? tokens.highlight.active.withBorder.insetBoxShadow
+        : tokens.highlight.active.withBorder.boxShadow
+    };
     outline: none;
   }
-`;
+`
+);

@@ -50,6 +50,7 @@ export default function Tab(props) {
 }
 
 Tab.propTypes = {
+  /** Label for the tab */
   children: PropTypes.node,
 
   /** Sets a url the tab goes to */
