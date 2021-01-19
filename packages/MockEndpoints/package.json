@@ -1,6 +1,6 @@
 {
   "name": "@paprika/mock-endpoints",
-  "version": "0.1.1-alpha.0",
+  "version": "0.1.1-alpha.1",
   "description": "A helper function that wraps of the 'fetch-mock' library, making it easy to mock API calls from your component.",
   "main": "lib/index.js",
   "types": "lib/index.d.ts",
