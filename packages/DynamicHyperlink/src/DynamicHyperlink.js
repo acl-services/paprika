@@ -41,7 +41,7 @@ export default function DynamicHyperlink({ onFetch }) {
               .then(response => {
                 const { error, name, term } = response;
 
-                const className = error ? "invalid" : "valid";
+                const className = error ? "dynamic-hyperlink--invalid" : "dynamic-hyperlink--valid";
                 const linkText = error ? originalLinkUrl : name;
                 const errorText = error ? I18n.t(`dynamicHyperlink.${error}`) : "";
 
