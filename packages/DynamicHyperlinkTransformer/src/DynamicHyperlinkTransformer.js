@@ -1,13 +1,13 @@
 import React from "react";
 import PropTypes from "prop-types";
 import useI18n from "@paprika/l10n/lib/useI18n";
-import "./DynamicHyperlink.scss";
+import "./DynamicHyperlinkTransformer.scss";
 
 function isPromise(obj) {
   return obj && obj.then && typeof obj.then === "function";
 }
 
-export default function DynamicHyperlink({ onFetch }) {
+export default function DynamicHyperlinkTransformer({ onFetch }) {
   const I18n = useI18n();
 
   React.useEffect(() => {
@@ -32,7 +32,7 @@ export default function DynamicHyperlink({ onFetch }) {
         .forEach(dynamicHyperlink => {
           const originalLinkUrl = dynamicHyperlink.href;
           const attributeValue = dynamicHyperlink.getAttribute("data-dynamic-hyperlink");
-          dynamicHyperlink.innerHTML = I18n.t("dynamicHyperlink.loading"); // eslint-disable-line no-param-reassign
+          dynamicHyperlink.innerHTML = I18n.t("dynamicHyperlinkTransformer.loading"); // eslint-disable-line no-param-reassign
           dynamicHyperlink.setAttribute("data-dynamic-hyperlink--processed", "true");
 
           // the consumer does the fetching of data
@@ -45,7 +45,7 @@ export default function DynamicHyperlink({ onFetch }) {
 
                 const className = error ? "dynamic-hyperlink--invalid" : "dynamic-hyperlink--valid";
                 const linkText = error ? originalLinkUrl : name;
-                const errorText = error ? I18n.t(`dynamicHyperlink.${error}`) : "";
+                const errorText = error ? I18n.t(`dynamicHyperlinkTransformer.${error}`) : "";
 
                 dynamicHyperlink.innerHTML = linkText; // eslint-disable-line no-param-reassign
                 const typeOrErrorSpan = document.createElement("span");
@@ -54,7 +54,7 @@ export default function DynamicHyperlink({ onFetch }) {
                 dynamicHyperlink.appendChild(typeOrErrorSpan);
               });
           } else {
-            throw new Error("In DynamicHyperlink component, the onFetch prop must return a Promise");
+            throw new Error("In DynamicHyperlinkTransformer component, the onFetch prop must return a Promise");
           }
         });
     }
@@ -71,4 +71,4 @@ export default function DynamicHyperlink({ onFetch }) {
   return null;
 }
 
-DynamicHyperlink.propTypes = { onFetch: PropTypes.func.isRequired };
+DynamicHyperlinkTransformer.propTypes = { onFetch: PropTypes.func.isRequired };

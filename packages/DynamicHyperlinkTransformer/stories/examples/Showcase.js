@@ -4,7 +4,7 @@ import Heading from "@paprika/heading";
 import L10n from "@paprika/l10n";
 import Tabs from "@paprika/tabs";
 import { useMockEndpoints } from "../../../MockEndpoints/src";
-import DynamicHyperlink from "../../src/DynamicHyperlink";
+import DynamicHyperlinkTransformer from "../../src/DynamicHyperlinkTransformer";
 import Tab3Content from "./Tab3Content";
 import endpoints from "./mock-endpoints.json";
 
@@ -23,12 +23,12 @@ function ExampleStory() {
         Showcase
       </Heading>
       <Tagline>
-        Adding the `DynamicHyperlink` component on the page triggers a script that transforms hyperlinks with the
-        `data-dynamic-hyperlink` attribute to the fancy cards seen below.
+        Adding the `DynamicHyperlinkTransformer` component on the page triggers a script that transforms hyperlinks with
+        the `data-dynamic-hyperlink` attribute to the fancy cards seen below.
       </Tagline>
       <Rule />
       <L10n locale="en">
-        <DynamicHyperlink onFetch={handleFetch} />
+        <DynamicHyperlinkTransformer onFetch={handleFetch} />
         <Tabs>
           <Tabs.List>
             <Tabs.Tab>Page 1</Tabs.Tab>

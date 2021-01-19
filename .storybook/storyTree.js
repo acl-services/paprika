@@ -97,7 +97,7 @@ const storyTree = [
       "Stylers",
       "Tokens",
       "helpers",
-      "DynamicHyperlink",
+      "DynamicHyperlinkTransformer",
       "MockEndpoints"
     ],
   },

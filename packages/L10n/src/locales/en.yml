@@ -189,7 +189,7 @@ en:
     copyInput:
       clicked_tooltip: Copied
       hover_tooltip: Copy to clipboard
-    dynamicHyperlink:
+    dynamicHyperlinkTransformer:
       access_denied: "Access denied"
       invalid_url: "Invalid URL"
       loading: Loading...
