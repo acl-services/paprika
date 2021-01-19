@@ -12,7 +12,18 @@ export default function DynamicHyperlink({ onFetch }) {
 
   React.useEffect(() => {
     function updateDynamicHyperlinks() {
-      const dynamicHyperlinks = Array.from(document.querySelectorAll("[data-dynamic-hyperlink]"));
+      const dynamicHyperlinkSelector = "[data-dynamic-hyperlink]";
+      const dynamicHyperlinks = Array.from(document.querySelectorAll(dynamicHyperlinkSelector));
+
+      document.querySelectorAll("iframe").forEach(iframe => {
+        if (iframe.contentWindow.document.body) {
+          iframe.contentWindow.document.body.querySelectorAll(dynamicHyperlinkSelector).forEach(dynamicHyperlink => {
+            dynamicHyperlinks.push(dynamicHyperlink);
+          });
+        } else {
+          setTimeout(updateDynamicHyperlinks, 100);
+        }
+      });
 
       dynamicHyperlinks
         .filter(dynamicHyperlink => !dynamicHyperlink.hasAttribute("data-dynamic-hyperlink--processed"))
