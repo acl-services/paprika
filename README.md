@@ -202,6 +202,16 @@ Have a question for the development team? [Ask us](https://github.com/acl-servic
 
 [The MIT License (MIT)](https://github.com/acl-services/paprika/blob/master/LICENSE)
 
+### Packages licenses
+
+To list all licenses of paprika dependencies run
+
+```sh
+yarn licence
+```
+
+it will create a `licence.xls` file at the root of the repository
+
 ## NOTES
 
 The following packages has been deprecated and they have moved into a new name space
