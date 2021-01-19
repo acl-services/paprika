@@ -20,14 +20,14 @@ a[data-dynamic-hyperlink] {
     font-weight: bold;
     margin-left: $space-sm;
 
-    &.valid {
+    &.dynamic-hyperlink--valid {
       background-color: $color--blue-lighten-40;
       color: $color--blue-darken-10;
       padding: 1px $space;
-      text-transform: capitalize;
+      text-transform: uppercase;
     }
 
-    &.invalid {
+    &.dynamic-hyperlink--invalid {
       color: $color--black-lighten-20;
     }
   }

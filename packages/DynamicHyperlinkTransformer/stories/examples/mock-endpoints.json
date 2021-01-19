@@ -1,7 +1,7 @@
 [
   {
     "url": "/control",
-    "response": { "name": "My really long control name", "term": "CONTROL", "error": "" }
+    "response": { "name": "My really long control name", "term": "Control", "error": "" }
   },
   {
     "url": "/narrative",
