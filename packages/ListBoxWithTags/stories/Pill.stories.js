@@ -10,10 +10,7 @@ const storyName = getStoryName("ListBox");
 
 storiesOf(`${storyName}/Subcomponents/Pill`, module).add("Sizes", () => (
   <>
-    {[
-      { pillSize: "medium", avatarSize: "small" },
-      { pillSize: "large", avatarSize: "medium" },
-    ].map(permutation => (
+    {[{ pillSize: "medium", avatarSize: "small" }, { pillSize: "large", avatarSize: "medium" }].map(permutation => (
       <Pills>
         <Pill size={permutation.pillSize}>
           <Avatar isRound size={permutation.avatarSize}>
