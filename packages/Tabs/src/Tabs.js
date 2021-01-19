@@ -13,7 +13,7 @@ export default function Tabs(props) {
 
   let tabListRef = React.useRef(null);
 
-  const { kind, isDisabled } = props;
+  const { hasInsetFocusStyle, hasTruncation, height, isDisabled, isVertical, kind, size } = props;
 
   function focusAndSetIndex(index) {
     tabListRef.querySelectorAll("[data-pka-anchor='tab'], [data-pka-anchor='tab-link']")[index].focus();
@@ -64,10 +64,15 @@ export default function Tabs(props) {
     activeIndex,
     kind,
     currentFocusIndex,
+    hasInsetFocusStyle,
+    hasTruncation,
+    height,
+    isVertical,
     onClickTab,
     onKeyDown,
     isDisabled,
     setTabListRef,
+    size,
   };
 
   return <TabsContext.Provider value={contextValue}>{props.children}</TabsContext.Provider>;
@@ -76,23 +81,43 @@ export default function Tabs(props) {
 Tabs.types = types;
 
 Tabs.propTypes = {
-  /** The visual theme of the Tabs.List. */
+  /** The visual theme of the tabs list. */
   kind: PropTypes.oneOf([Tabs.types.kind.PRIMARY, Tabs.types.kind.SECONDARY]),
 
-  /** Children of the Tabs – Tabs.List and Tabs.Panels. */
+  /** Expects Tabs.List and Tabs.Panels. */
   children: PropTypes.node.isRequired,
 
-  /** Sets what tab index is active by default. */
+  /** Sets what tabindex is active by default. */
   defaultIndex: PropTypes.number,
+
+  /** If the visual focus ring for the tabs should be displayed with an inset style. */
+  hasInsetFocusStyle: PropTypes.bool,
+
+  /** Tab labels will be truncated when they run out of space instead of breaking to multiple lines. */
+  hasTruncation: PropTypes.bool,
+
+  /** Height, in pixels, of the tabs (ignored when isVertical is true). */
+  height: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
 
   /** If the tabs are all disabled. */
   isDisabled: PropTypes.bool,
+
+  /** If the tabs are stacked vertically. */
+  isVertical: PropTypes.bool,
+
+  /** Size of the tab label text.  */
+  size: PropTypes.oneOf([Tabs.types.size.MEDIUM, Tabs.types.size.LARGE]),
 };
 
 Tabs.defaultProps = {
   kind: Tabs.types.kind.PRIMARY,
   defaultIndex: 0,
+  hasInsetFocusStyle: false,
+  hasTruncation: false,
+  height: 48,
   isDisabled: false,
+  isVertical: false,
+  size: Tabs.types.size.MEDIUM,
 };
 
 Tabs.displayName = "Tabs";

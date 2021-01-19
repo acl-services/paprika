@@ -39,11 +39,18 @@ const disabledStyles = css`
   cursor: not-allowed;
 `;
 
-const horizontalStyles = css`
+function getHeightValue(height) {
+  if (!height) return "auto";
+  // eslint-disable-next-line no-restricted-globals
+  return isNaN(height) ? height : `${height}px`;
+}
+
+const horizontalStyles = ({ height }) => css`
+  align-items: center;
   border-bottom: ${tokens.spaceSm} solid transparent;
   border-radius: ${tokens.border.radius} ${tokens.border.radius} 0 0;
   display: inline-flex;
-  height: ${({ height }) => (height ? `${height}px` : "auto")};
+  height: ${getHeightValue(height)};
   margin-right: ${tokens.space};
   padding: ${stylers.spacer(2)} ${tokens.space} ${tokens.space} ${tokens.space};
 
@@ -55,11 +62,11 @@ const horizontalStyles = css`
 const verticalStyles = ({ hasTruncation }) => css`
   border-left: ${tokens.spaceSm} solid transparent;
   padding: ${tokens.spaceLg};
-  ${stylers.lineHeight(-2)}
+
   ${hasTruncation
     ? css`
         display: block;
-        ${stylers.truncateText}
+        ${stylers.truncateText};
       `
     : css`
         display: flex;
@@ -67,7 +74,6 @@ const verticalStyles = ({ hasTruncation }) => css`
 `;
 
 const baseStyles = ({ isDisabled, isSelected, isVertical, size }) => css`
-  align-items: center;
   background-color: ${tokens.color.white};
   border: 0;
   box-sizing: border-box;
@@ -76,6 +82,7 @@ const baseStyles = ({ isDisabled, isSelected, isVertical, size }) => css`
   position: relative;
   transition: border-color 0.3s ease;
   ${fontSize[size]}
+  ${stylers.lineHeight(-2)}
   ${isVertical ? verticalStyles : horizontalStyles}
 
   &:hover, &:focus {

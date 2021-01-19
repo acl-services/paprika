@@ -5,8 +5,8 @@ import * as sc from "./Tab.styles";
 
 export default function Tab(props) {
   const context = React.useContext(TabsContext);
-
-  const { isSelected, children, href, onClick, onKeyDownArrows, ...moreProps } = props;
+  const { a11yText, children, href, isSelected, onClick, onKeyDownArrows, ...moreProps } = props;
+  const { activeIndex, currentFocusIndex, kind } = context;
 
   const handleKeyDown = (event, index) => {
     onKeyDownArrows(event, index);
@@ -20,9 +20,10 @@ export default function Tab(props) {
     return (
       <sc.Link
         {...moreProps}
+        aria-label={a11yText}
         data-pka-anchor="tab"
         href={href}
-        onKeyDown={e => handleKeyDown(e, context.currentFocusIndex)}
+        onKeyDown={e => handleKeyDown(e, currentFocusIndex)}
         role="tab"
         tabIndex={tabIndex}
       >
@@ -34,13 +35,14 @@ export default function Tab(props) {
   return (
     <sc.Tab
       {...moreProps}
+      aria-label={a11yText}
       aria-selected={isSelected}
-      kind={context.kind}
+      kind={kind}
       data-pka-anchor="tab-link"
       isDisabled={isDisabled}
       isSelected={isSelected}
-      onClick={e => handleClick(e, context.activeIndex)}
-      onKeyDown={e => handleKeyDown(e, context.currentFocusIndex)}
+      onClick={e => handleClick(e, activeIndex)}
+      onKeyDown={e => handleKeyDown(e, currentFocusIndex)}
       role="tab"
       tabIndex={tabIndex}
     >
@@ -50,6 +52,9 @@ export default function Tab(props) {
 }
 
 Tab.propTypes = {
+  /** Descriptive text for assistive technologies. By default text of the children will be used. */
+  a11yText: PropTypes.string,
+
   /** Label for the tab */
   children: PropTypes.node,
 
@@ -70,6 +75,7 @@ Tab.propTypes = {
 };
 
 Tab.defaultProps = {
+  a11yText: null,
   children: null,
   href: null,
   isDisabled: false,
