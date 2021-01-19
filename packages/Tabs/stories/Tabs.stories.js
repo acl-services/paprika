@@ -10,6 +10,7 @@ import Icon4 from "@paprika/icon/lib/NewTab";
 import Button from "@paprika/button";
 import Heading from "@paprika/heading";
 import tokens from "@paprika/tokens";
+import { spacer } from "@paprika/stylers/lib/helpers";
 import ShowcaseStory from "./examples/Showcase";
 import Tabs from "../src/Tabs";
 
@@ -56,8 +57,8 @@ storiesOf(storyName, module)
   .add("Showcase", ShowcaseStory);
 
 storiesOf(`${storyName}/Examples`, module)
-  .add("Tab", () => <Story>{TabsExample()}</Story>)
-  .add("Tab Links", () => (
+  .add("Tabs test", () => <Story>{TabsExample()}</Story>)
+  .add("Tab links", () => (
     <Story>
       <Tabs>
         <Tabs.List>
@@ -90,6 +91,8 @@ storiesOf(`${storyName}/Examples`, module)
     <Story
       css={`
         [data-pka-anchor="icon"] {
+          color: ${tokens.textColor.icon};
+          font-size: ${spacer(3)};
           margin-right: ${tokens.spaceLg};
         }
       `}
@@ -97,19 +100,19 @@ storiesOf(`${storyName}/Examples`, module)
       <Tabs>
         <Tabs.List isVertical>
           <Tabs.Tab>
-            <Icon1 size="24px" color={tokens.textColor.icon} />
+            <Icon1 />
             Vegan meggings
           </Tabs.Tab>
           <Tabs.Tab>
-            <Icon2 size="24px" color={tokens.textColor.icon} />
+            <Icon2 />
             Direct trade synth
           </Tabs.Tab>
           <Tabs.Tab>
-            <Icon3 size="24px" color={tokens.textColor.icon} />
+            <Icon3 />
             Activated charcoal hexagon street art pickled raw denim irony tumeric vegan ethical cronut
           </Tabs.Tab>
           <Tabs.Tab href="https://youtu.be/5gA3tw3CQGw?t=2" target="_blank" rel="noopener noreferrer">
-            <Icon4 size="24px" color={tokens.textColor.icon} />
+            <Icon4 />
             VHS humblebrag
           </Tabs.Tab>
         </Tabs.List>
