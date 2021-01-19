@@ -1,6 +1,6 @@
 {
   "name": "@paprika/dynamic-hyperlink-transformer",
-  "version": "0.0.3-alpha.4",
+  "version": "0.0.1",
   "description": "Adding this component runs a script that fires a callback function on each hyperlink with a specific data attribute, then replaces the link with a fancier card.",
   "main": "lib/index.js",
   "types": "lib/index.d.ts",
