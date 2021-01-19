@@ -15,15 +15,13 @@ export default function DynamicHyperlinkTransformer({ onFetch }) {
       const dynamicHyperlinkSelector = "[data-dynamic-hyperlink]";
       const dynamicHyperlinks = Array.from(document.querySelectorAll(dynamicHyperlinkSelector));
 
-      document.querySelectorAll("iframe").forEach(iframe => {
-        if (iframe.classList.contains("cke_wysiwyg_frame")) {
-          if (iframe.contentWindow.document.body) {
-            iframe.contentWindow.document.body.querySelectorAll(dynamicHyperlinkSelector).forEach(dynamicHyperlink => {
-              dynamicHyperlinks.push(dynamicHyperlink);
-            });
-          } else {
-            setTimeout(updateDynamicHyperlinks, 100);
-          }
+      document.querySelectorAll("iframe.cke_wysiwyg_frame").forEach(iframe => {
+        if (iframe.contentWindow.document.body) {
+          iframe.contentWindow.document.body.querySelectorAll(dynamicHyperlinkSelector).forEach(dynamicHyperlink => {
+            dynamicHyperlinks.push(dynamicHyperlink);
+          });
+        } else {
+          setTimeout(updateDynamicHyperlinks, 100);
         }
       });
 
