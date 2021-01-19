@@ -1,5 +1,5 @@
 import React from "react";
-import "../../src/DynamicHyperlink.scss";
+import "../../src/DynamicHyperlinkTransformer.scss";
 
 const Screener = () => (
   <React.Fragment>
@@ -12,17 +12,17 @@ const Screener = () => (
     <br />
     <br />
     <a href="https://www.wegalvanize.com/" data-dynamic-hyperlink="link2">
-      Link 2<span className="valid">CONTROL</span>
+      Link 2<span className="dynamic-hyperlink--valid">CONTROL</span>
     </a>
     <br />
     <br />
     <a href="https://www.wegalvanize.com/" data-dynamic-hyperlink="link3">
-      Link 3<span className="invalid">- Access denied</span>
+      Link 3<span className="dynamic-hyperlink--invalid">- Access denied</span>
     </a>
     <br />
     <br />
     <a href="https://www.wegalvanize.com/" data-dynamic-hyperlink="link4">
-      Link 4<span className="invalid">- Invalid URL</span>
+      Link 4<span className="dynamic-hyperlink--invalid">- Invalid URL</span>
     </a>
   </React.Fragment>
 );

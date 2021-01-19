@@ -1,25 +1,36 @@
 import React from "react";
 import PropTypes from "prop-types";
 import useI18n from "@paprika/l10n/lib/useI18n";
-import "./DynamicHyperlink.scss";
+import "./DynamicHyperlinkTransformer.scss";
 
 function isPromise(obj) {
   return obj && obj.then && typeof obj.then === "function";
 }
 
-export default function DynamicHyperlink({ onFetch }) {
+export default function DynamicHyperlinkTransformer({ onFetch }) {
   const I18n = useI18n();
 
   React.useEffect(() => {
     function updateDynamicHyperlinks() {
-      const dynamicHyperlinks = Array.from(document.querySelectorAll("[data-dynamic-hyperlink]"));
+      const dynamicHyperlinkSelector = "[data-dynamic-hyperlink]";
+      const dynamicHyperlinks = Array.from(document.querySelectorAll(dynamicHyperlinkSelector));
+
+      document.querySelectorAll("iframe.cke_wysiwyg_frame").forEach(iframe => {
+        if (iframe.contentWindow.document.body) {
+          iframe.contentWindow.document.body.querySelectorAll(dynamicHyperlinkSelector).forEach(dynamicHyperlink => {
+            dynamicHyperlinks.push(dynamicHyperlink);
+          });
+        } else {
+          setTimeout(updateDynamicHyperlinks, 100);
+        }
+      });
 
       dynamicHyperlinks
         .filter(dynamicHyperlink => !dynamicHyperlink.hasAttribute("data-dynamic-hyperlink--processed"))
         .forEach(dynamicHyperlink => {
           const originalLinkUrl = dynamicHyperlink.href;
           const attributeValue = dynamicHyperlink.getAttribute("data-dynamic-hyperlink");
-          dynamicHyperlink.innerHTML = I18n.t("dynamicHyperlink.loading"); // eslint-disable-line no-param-reassign
+          dynamicHyperlink.innerHTML = I18n.t("dynamicHyperlinkTransformer.loading"); // eslint-disable-line no-param-reassign
           dynamicHyperlink.setAttribute("data-dynamic-hyperlink--processed", "true");
 
           // the consumer does the fetching of data
@@ -30,9 +41,9 @@ export default function DynamicHyperlink({ onFetch }) {
               .then(response => {
                 const { error, name, term } = response;
 
-                const className = error ? "invalid" : "valid";
+                const className = error ? "dynamic-hyperlink--invalid" : "dynamic-hyperlink--valid";
                 const linkText = error ? originalLinkUrl : name;
-                const errorText = error ? I18n.t(`dynamicHyperlink.${error}`) : "";
+                const errorText = error ? I18n.t(`dynamicHyperlinkTransformer.${error}`) : "";
 
                 dynamicHyperlink.innerHTML = linkText; // eslint-disable-line no-param-reassign
                 const typeOrErrorSpan = document.createElement("span");
@@ -41,7 +52,7 @@ export default function DynamicHyperlink({ onFetch }) {
                 dynamicHyperlink.appendChild(typeOrErrorSpan);
               });
           } else {
-            throw new Error("In DynamicHyperlink component, the onFetch prop must return a Promise");
+            throw new Error("In DynamicHyperlinkTransformer component, the onFetch prop must return a Promise");
           }
         });
     }
@@ -58,4 +69,4 @@ export default function DynamicHyperlink({ onFetch }) {
   return null;
 }
 
-DynamicHyperlink.propTypes = { onFetch: PropTypes.func.isRequired };
+DynamicHyperlinkTransformer.propTypes = { onFetch: PropTypes.func.isRequired };
