@@ -6,7 +6,7 @@ const defaultFilteredData = animals.slice(0, 20);
 const emojiData = [{ label: "emoji-dog", emoji: "🐶" }, { label: "emoji-cat", emoji: "😸" }];
 const defaultData = [...animals, ...emojiData];
 
-export default function App() {
+export default function App({ isOpen = false }) {
   const {
     isSelected,
     filteredData,
@@ -27,7 +27,7 @@ export default function App() {
    */
   return (
     <div style={{ padding: "32px" }}>
-      <ListBox selectedOptions={getSelectedOptions()} {...moreUseListBoxWithTagsProps}>
+      <ListBox selectedOptions={getSelectedOptions()} {...moreUseListBoxWithTagsProps} isOpen={isOpen}>
         <ListBox.Divider>Furry values</ListBox.Divider>
         {emojiData.map(option => {
           return !isSelected(option.label) ? (
