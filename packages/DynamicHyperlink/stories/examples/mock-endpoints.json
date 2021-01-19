@@ -1,0 +1,14 @@
+[
+  {
+    "url": "/control",
+    "response": { "name": "My really long control name", "term": "CONTROL", "error": "" }
+  },
+  {
+    "url": "/narrative",
+    "response": { "name": "", "term": "", "error": "invalid_url" }
+  },
+  {
+    "url": "/risk",
+    "response": { "name": "", "term": "", "error": "access_denied" }
+  }
+]
