@@ -1,6 +1,6 @@
 import React from "react";
 import useI18n from "@paprika/l10n/lib/useI18n";
-import { filter } from "../../ListBox/src/helpers/filter";
+import { filter } from "@paprika/list-box/lib/helpers/filter";
 
 function prepareDataDictionary(key, data) {
   const dictionary = {};
@@ -97,17 +97,22 @@ export default function useWithTags({
     setFilteredData(result);
   }
 
+  function snapshotSelectedKeys() {
+    return [...selectedKeys];
+  }
+
   return {
     data,
+    filter: handleFilter,
     filteredData,
+    getSelectedOptions,
+    isSelected,
+    noResultsMessage: t("listBoxWithTags.no_results_found"),
+    onAddCustomOption: handleAddCustomOption,
+    onChange: handleChange,
+    onRemove: handleRemove,
     selectedKeys,
     setSelectedKeys,
-    isSelected,
-    getSelectedOptions,
-    filter: handleFilter,
-    noResultsMessage: t("listBoxWithTags.no_results_found"),
-    onChange: handleChange,
-    onAddCustomOption: handleAddCustomOption,
-    onRemove: handleRemove,
+    snapshotSelectedKeys,
   };
 }
