@@ -24,7 +24,7 @@ a[data-dynamic-hyperlink] {
       background-color: $color--blue-lighten-40;
       color: $color--blue-darken-10;
       padding: 1px $space;
-      text-transform: capitalize;
+      text-transform: uppercase;
     }
 
     &.dynamic-hyperlink--invalid {
