@@ -3338,14 +3338,6 @@
   resolved "https://registry.yarnpkg.com/@paprika/helpers/-/helpers-0.2.14.tgz#42b4ef1ccdb7ddba699ee05a4988908f14936d37"
   integrity sha512-j+LaBc/tI/CeKwkX7mPOzjOpFmg2UzuTFov2Z+DWJbxf/dRZkQUyKxinEaY6ReJ6oXn2XREaqyq7fj+VO9gbug==
 
-"@paprika/helpers@^2.0.1":
-  version "2.0.1"
-  resolved "https://registry.yarnpkg.com/@paprika/helpers/-/helpers-2.0.1.tgz#234502cbd5dc15c565dda7d6cb652b81185608d9"
-  integrity sha512-zvBYnBKpsTWDB8pGat3ty1NBAP9Qmq/Ky7c3KKf+JL1fkjTsGAQZM4oXp4z1GEJE9zXW2KiGxZ3snDU7evjccw==
-  dependencies:
-    "@babel/runtime-corejs2" "^7.3.1"
-    prop-types "^15.7.2"
-
 "@paprika/icon@^0.2.15":
   version "0.2.16"
   resolved "https://registry.yarnpkg.com/@paprika/icon/-/icon-0.2.16.tgz#689b394e9828dd624cd825897f20aa9dea82d42d"

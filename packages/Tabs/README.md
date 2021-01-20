@@ -32,7 +32,7 @@ npm install @paprika/tabs
 | isDisabled         | bool                                                  | false    | false                   | If the tabs are all disabled.                                                                                                     |
 | isVertical         | bool                                                  | false    | false                   | If the tabs are stacked vertically.                                                                                               |
 | size               | [ Tabs.types.size.MEDIUM, Tabs.types.size.LARGE]      | false    | Tabs.types.size.MEDIUM  | Size of the tab label text.                                                                                                       |
-| tabHeight          | [number,string]                                       | false    | 48                      | Height, in pixels, of the tabs (ignored when isVertical is true).                                                                 |
+| tabHeight          | [number,string]                                       | false    | 48                      | Height of the tabs (ignored when isVertical is true). A number value will be interpreted as height in pixels.                     |
 
 ### Tabs.List
 

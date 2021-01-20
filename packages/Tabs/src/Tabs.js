@@ -46,10 +46,10 @@ export default function Tabs(props) {
   // https://github.com/acl-services/paprika/issues/310
   const onKeyDown = (event, currentIndex) => {
     const { "Tabs.List": TabsList } = extractChildren(children, ["Tabs.List"]);
-    const tabs = TabsList.props.children.filter(child => child);
+    const tabs = TabsList.props.children.filter(child => child !== null);
     const enabledIndexes = tabs
-      .map((tab, index) => (tab && tab.props.isDisabled === true ? null : index))
-      .filter(index => index != null);
+      .map((tab, index) => (tab.props.isDisabled === true ? null : index))
+      .filter(index => index !== null);
     const enabledSelectedIndex = enabledIndexes.indexOf(currentIndex);
     const count = enabledIndexes.length;
 
@@ -110,10 +110,10 @@ Tabs.propTypes = {
   /** If the tabs are stacked vertically. */
   isVertical: PropTypes.bool,
 
-  /** Size of the tab label text.  */
+  /** Size of the tab label text. */
   size: PropTypes.oneOf([Tabs.types.size.MEDIUM, Tabs.types.size.LARGE]),
 
-  /** Height, in pixels, of the tabs (ignored when isVertical is true). */
+  /** Height of the tabs (ignored when isVertical is true). A number value will be interpreted as height in pixels. */
   tabHeight: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
 };
 

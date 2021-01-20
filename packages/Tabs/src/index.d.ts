@@ -19,7 +19,7 @@ interface TabsProps {
   isVertical?: boolean;
   /** Size of the tab label text. */
   size?: Tabs.types.size.MEDIUM | Tabs.types.size.LARGE;
-  /** Height, in pixels, of the tabs (ignored when isVertical is true). */
+  /** Height of the tabs (ignored when isVertical is true). A number value will be interpreted as height in pixels. */
   tabHeight?: number | string;
 }
 
