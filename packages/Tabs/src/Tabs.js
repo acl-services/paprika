@@ -93,7 +93,7 @@ Tabs.propTypes = {
   /** If the visual focus ring for the tabs should be displayed with an inset style. */
   hasInsetFocusStyle: PropTypes.bool,
 
-  /** Tab labels will be truncated when they run out of space instead of breaking to multiple lines. */
+  /** Tab labels will be truncated when they run out of space instead of breaking to multiple lines (ignored when isVertical is false). */
   hasTruncation: PropTypes.bool,
 
   /** Height, in pixels, of the tabs (ignored when isVertical is true). */

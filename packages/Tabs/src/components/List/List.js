@@ -23,7 +23,7 @@ export default function List(props) {
   } = context;
 
   const childrenWithProps = React.Children.map(children, (tab, index) => {
-    const isSelected = activeIndex === index;
+    if (!tab) return;
 
     return React.cloneElement(tab, {
       kind,
@@ -31,7 +31,7 @@ export default function List(props) {
       hasInsetFocusStyle,
       hasTruncation,
       height,
-      isSelected,
+      isSelected: activeIndex === index,
       isVertical,
       onClick: e => onClickTab(e, index),
       onKeyDownArrows: onKeyDown,
