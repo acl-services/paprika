@@ -45,12 +45,12 @@ function getHeightValue(height) {
   return isNaN(height) ? height : `${height}px`;
 }
 
-const horizontalStyles = ({ height }) => css`
+const horizontalStyles = ({ tabHeight }) => css`
   align-items: center;
   border-bottom: ${tokens.spaceSm} solid transparent;
   border-radius: ${tokens.border.radius} ${tokens.border.radius} 0 0;
   display: inline-flex;
-  height: ${getHeightValue(height)};
+  height: ${getHeightValue(tabHeight)};
   margin-right: ${tokens.space};
   padding: ${stylers.spacer(2)} ${tokens.space} ${tokens.space} ${tokens.space};
 

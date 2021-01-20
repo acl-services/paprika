@@ -12,7 +12,17 @@ const nextKeys = ["ArrowRight", "ArrowDown"];
 const prevKeys = ["ArrowLeft", "ArrowUp"];
 
 export default function Tabs(props) {
-  const { defaultIndex, hasInsetFocusStyle, hasTruncation, height, isDisabled, isVertical, kind, size } = props;
+  const {
+    children,
+    defaultIndex,
+    hasInsetFocusStyle,
+    hasTruncation,
+    isDisabled,
+    isVertical,
+    kind,
+    size,
+    tabHeight,
+  } = props;
 
   const [activeIndex, setActiveIndex] = React.useState(defaultIndex);
   const [currentFocusIndex, setFocusIndex] = React.useState(defaultIndex);
@@ -35,7 +45,7 @@ export default function Tabs(props) {
   // TODO: Disabled tab items should also get focus on keyboard interaction
   // https://github.com/acl-services/paprika/issues/310
   const onKeyDown = (event, currentIndex) => {
-    const { "Tabs.List": TabsList } = extractChildren(props.children, ["Tabs.List"]);
+    const { "Tabs.List": TabsList } = extractChildren(children, ["Tabs.List"]);
     const tabs = TabsList.props.children.filter(child => child);
     const enabledIndexes = tabs
       .map((tab, index) => (tab && tab.props.isDisabled === true ? null : index))
@@ -64,7 +74,7 @@ export default function Tabs(props) {
     currentFocusIndex,
     hasInsetFocusStyle,
     hasTruncation,
-    height,
+    tabHeight,
     isVertical,
     onClickTab,
     onKeyDown,
@@ -73,7 +83,7 @@ export default function Tabs(props) {
     size,
   };
 
-  return <TabsContext.Provider value={contextValue}>{props.children}</TabsContext.Provider>;
+  return <TabsContext.Provider value={contextValue}>{children}</TabsContext.Provider>;
 }
 
 Tabs.types = types;
@@ -94,9 +104,6 @@ Tabs.propTypes = {
   /** Tab labels will be truncated when they run out of space instead of breaking to multiple lines (ignored when isVertical is false). */
   hasTruncation: PropTypes.bool,
 
-  /** Height, in pixels, of the tabs (ignored when isVertical is true). */
-  height: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
-
   /** If the tabs are all disabled. */
   isDisabled: PropTypes.bool,
 
@@ -105,6 +112,9 @@ Tabs.propTypes = {
 
   /** Size of the tab label text.  */
   size: PropTypes.oneOf([Tabs.types.size.MEDIUM, Tabs.types.size.LARGE]),
+
+  /** Height, in pixels, of the tabs (ignored when isVertical is true). */
+  tabHeight: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
 };
 
 Tabs.defaultProps = {
@@ -112,10 +122,10 @@ Tabs.defaultProps = {
   defaultIndex: 0,
   hasInsetFocusStyle: false,
   hasTruncation: false,
-  height: 48,
   isDisabled: false,
   isVertical: false,
   size: Tabs.types.size.MEDIUM,
+  tabHeight: 48,
 };
 
 Tabs.displayName = "Tabs";

@@ -78,7 +78,7 @@ storiesOf(`${storyName}/Examples`, module)
   ))
   .add("Tabs with custom height", () => (
     <Story>
-      <Tabs height={80} hasInsetFocusStyle>
+      <Tabs tabHeight={80} hasInsetFocusStyle>
         <Tabs.List>
           <Tabs.Tab>These tabs</Tabs.Tab>
           <Tabs.Tab>Are tall</Tabs.Tab>
@@ -90,7 +90,7 @@ storiesOf(`${storyName}/Examples`, module)
       </Tabs>
     </Story>
   ))
-  .add("Vertically stacked tabs with icons", () => (
+  .add("Vertically stacked tabs", () => (
     <Story
       css={`
         [data-pka-anchor="icon"] {

@@ -17,7 +17,7 @@ const renderTabs = () => tabs.map(tabLabel => <Tabs.Tab key={tabLabel}>{tabLabel
 const renderPanels = () => panels.map(panelBody => <Tabs.Panel key={panelBody}>{panelBody}</Tabs.Panel>);
 
 const getTabsProps = () => ({
-  height: text("height"),
+  tabHeight: text("tabHeight"),
   hasInsetFocusStyle: boolean("hasInsetFocusStyle", false),
   hasTruncation: boolean("hasTruncation", false),
   isVertical: boolean("isVertical", false),
