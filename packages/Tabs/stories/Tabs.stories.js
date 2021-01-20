@@ -56,7 +56,11 @@ storiesOf(storyName, module)
   .add("Showcase", ShowcaseStory);
 
 storiesOf(`${storyName}/Examples`, module)
-  .add("Tabs test", () => <Story>{TabsExample()}</Story>)
+  .add("Tabs test", () => (
+    <Story>
+      <TabsExample />
+    </Story>
+  ))
   .add("Tab links", () => (
     <Story>
       <Tabs>
@@ -74,8 +78,8 @@ storiesOf(`${storyName}/Examples`, module)
   ))
   .add("Tabs with custom height", () => (
     <Story>
-      <Tabs>
-        <Tabs.List height={80} hasInsetFocusStyle>
+      <Tabs height={80} hasInsetFocusStyle>
+        <Tabs.List>
           <Tabs.Tab>These tabs</Tabs.Tab>
           <Tabs.Tab>Are tall</Tabs.Tab>
           <Tabs.Tab href="https://wegalvanize.com" target="_blank" rel="noopener noreferrer">
@@ -97,8 +101,8 @@ storiesOf(`${storyName}/Examples`, module)
         }
       `}
     >
-      <Tabs>
-        <Tabs.List isVertical hasTruncation hasInsetFocusStyle>
+      <Tabs isVertical hasTruncation hasInsetFocusStyle>
+        <Tabs.List>
           <Tabs.Tab>
             <Icon1 />
             Vegan meggings
@@ -115,6 +119,7 @@ storiesOf(`${storyName}/Examples`, module)
             <Icon4 />
             VHS humblebrag
           </Tabs.Tab>
+          {true === false ? <Tabs.Tab>Impossible tab</Tabs.Tab> : null}
         </Tabs.List>
         <Tabs.Panels>
           <Tabs.Panel>
@@ -140,6 +145,7 @@ storiesOf(`${storyName}/Examples`, module)
               chicharrones small batch, tofu waistcoat mlkshk unicorn trust fund beard cronut.
             </p>
           </Tabs.Panel>
+          {true === false ? <Tabs.Panel>Impossible panel</Tabs.Panel> : null}
         </Tabs.Panels>
       </Tabs>
     </Story>
