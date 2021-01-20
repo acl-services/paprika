@@ -23,13 +23,12 @@ function onElementReady(getElement) {
 }
 
 async function getDynamicHyperlinksInCkEditor(iframe) {
-  console.log(26, "getting all the links in an iframe...");
+  console.log(26, "getting iframe body...");
   const iframeBody = await onElementReady(() => iframe.contentWindow.document.body);
-  console.log(28, "...done getting all the links in an iframe");
+  console.log(28, "...done getting the iframe body");
   const dynamicHyperlinks = [];
 
   iframeBody.querySelectorAll(dynamicHyperlinkSelector).forEach(dynamicHyperlink => {
-    console.log(32, "got a link in an iframe!");
     dynamicHyperlinks.push(dynamicHyperlink);
   });
 
@@ -37,15 +36,18 @@ async function getDynamicHyperlinksInCkEditor(iframe) {
 }
 
 async function getDynamicHyperlinks() {
-  console.log(40, "getting all the links...");
+  console.log(40, "getting all the links in all the iframes...");
   const dynamicHyperlinksInCkEditors = [];
   const dynamicHyperlinksInPage = Array.from(document.querySelectorAll(dynamicHyperlinkSelector));
 
   await document.querySelectorAll("iframe.cke_wysiwyg_frame").forEach(async iframe => {
+    console.log(42, "getting all the links in an iframe...");
     const dynamicHyperlinksInCkEditor = await getDynamicHyperlinksInCkEditor(iframe);
     console.log(46, "...got all the links in an iframe");
     dynamicHyperlinksInCkEditors.push(...dynamicHyperlinksInCkEditor);
   });
+
+  console.log(40, "...got all the links in all the iframes");
 
   return [...dynamicHyperlinksInCkEditors, ...dynamicHyperlinksInPage];
 }
@@ -55,7 +57,7 @@ export default function DynamicHyperlinkTransformer({ onFetch }) {
 
   React.useEffect(() => {
     async function updateDynamicHyperlinks() {
-      console.log("-------");
+      console.log("-------START-------");
       const dynamicHyperlinks = await getDynamicHyperlinks();
 
       console.log(61, "...got all the links !!!this should be the very last message!!!");
