@@ -22,20 +22,23 @@ npm install @paprika/tabs
 
 ### Tabs
 
-| Prop         | Type                                                  | required | default                 | Description                              |
-| ------------ | ----------------------------------------------------- | -------- | ----------------------- | ---------------------------------------- |
-| kind         | [ Tabs.types.kind.PRIMARY, Tabs.types.kind.SECONDARY] | false    | Tabs.types.kind.PRIMARY | Determine the styling of the tab         |
-| children     | node                                                  | true     | -                       | Children of the Tab                      |
-| defaultIndex | number                                                | false    | 0                       | Sets what tab index is active by default |
-| isDisabled   | bool                                                  | false    | false                   | If the tab is disabled                   |
+| Prop               | Type                                                  | required | default                 | Description                                                                                                                       |
+| ------------------ | ----------------------------------------------------- | -------- | ----------------------- | --------------------------------------------------------------------------------------------------------------------------------- |
+| kind               | [ Tabs.types.kind.PRIMARY, Tabs.types.kind.SECONDARY] | false    | Tabs.types.kind.PRIMARY | The visual theme of the tabs list.                                                                                                |
+| children           | node                                                  | true     | -                       | Expects Tabs.List and Tabs.Panels.                                                                                                |
+| defaultIndex       | number                                                | false    | 0                       | Sets what tabindex is active by default.                                                                                          |
+| hasInsetFocusStyle | bool                                                  | false    | false                   | If the visual focus ring for the tabs should be displayed with an inset style.                                                    |
+| hasTruncation      | bool                                                  | false    | false                   | Tab labels will be truncated when they run out of space instead of breaking to multiple lines (ignored when isVertical is false). |
+| isDisabled         | bool                                                  | false    | false                   | If the tabs are all disabled.                                                                                                     |
+| isVertical         | bool                                                  | false    | false                   | If the tabs are stacked vertically.                                                                                               |
+| size               | [ Tabs.types.size.MEDIUM, Tabs.types.size.LARGE]      | false    | Tabs.types.size.MEDIUM  | Size of the tab label text.                                                                                                       |
+| tabHeight          | [number,string]                                       | false    | 48                      | Height, in pixels, of the tabs (ignored when isVertical is true).                                                                 |
 
 ### Tabs.List
 
-| Prop     | Type   | required | default | Description                                                                                         |
-| -------- | ------ | -------- | ------- | --------------------------------------------------------------------------------------------------- |
-| a11yText | string | false    | null    | Descriptive a11y text for assistive technologies. By default, text from children node will be used. |
-| children | node   | true     | -       |                                                                                                     |
-| height   | number | false    | null    |                                                                                                     |
+| Prop     | Type | required | default | Description                |
+| -------- | ---- | -------- | ------- | -------------------------- |
+| children | node | true     | -       | List of Tabs.Tab elements. |
 
 ### Tabs.Panel
 
@@ -53,15 +56,15 @@ npm install @paprika/tabs
 
 ### Tabs.Tab
 
-| Prop            | Type   | required | default  | Description                               |
-| --------------- | ------ | -------- | -------- | ----------------------------------------- |
-| children        | node   | false    | null     |                                           |
-| height          | number | false    | null     |                                           |
-| href            | string | false    | null     | Sets a url the tab goes to                |
-| isDisabled      | bool   | false    | false    | If the tab is disabled                    |
-| isSelected      | bool   | false    | false    | Controls if the option is selected or not |
-| onClick         | func   | false    | () => {} | Callback onClick                          |
-| onKeyDownArrows | func   | false    | () => {} | Callback onKeyDownArrow                   |
+| Prop            | Type   | required | default  | Description                                                                                |
+| --------------- | ------ | -------- | -------- | ------------------------------------------------------------------------------------------ |
+| a11yText        | string | false    | null     | Descriptive text for assistive technologies. By default text of the children will be used. |
+| children        | node   | false    | null     | Label for the tab                                                                          |
+| href            | string | false    | null     | Sets a url the tab goes to                                                                 |
+| isDisabled      | bool   | false    | false    | If the tab is disabled                                                                     |
+| isSelected      | bool   | false    | false    | Controls if the option is selected or not                                                  |
+| onClick         | func   | false    | () => {} | Callback onClick                                                                           |
+| onKeyDownArrows | func   | false    | () => {} | Callback onKeyDownArrow                                                                    |
 
 <!-- end: Autogenerated - do not modify -->
 <!-- content -->
