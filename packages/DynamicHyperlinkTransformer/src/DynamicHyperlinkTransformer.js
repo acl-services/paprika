@@ -3,27 +3,63 @@ import PropTypes from "prop-types";
 import useI18n from "@paprika/l10n/lib/useI18n";
 import "./DynamicHyperlinkTransformer.scss";
 
+const dynamicHyperlinkSelector = "[data-dynamic-hyperlink]";
+
 function isPromise(obj) {
   return obj && obj.then && typeof obj.then === "function";
+}
+
+function onElementReady(getElement) {
+  return new Promise(resolve => {
+    function waitForElement() {
+      if (getElement()) {
+        resolve(getElement());
+      } else {
+        window.requestAnimationFrame(waitForElement);
+      }
+    }
+    waitForElement();
+  });
+}
+
+async function getDynamicHyperlinksInCkEditor(iframe) {
+  console.log(26, "getting all the links in an iframe...");
+  const iframeBody = await onElementReady(() => iframe.contentWindow.document.body);
+  console.log(28, "...done getting all the links in an iframe");
+  const dynamicHyperlinks = [];
+
+  iframeBody.querySelectorAll(dynamicHyperlinkSelector).forEach(dynamicHyperlink => {
+    console.log(32, "got a link in an iframe!");
+    dynamicHyperlinks.push(dynamicHyperlink);
+  });
+
+  return dynamicHyperlinks;
+}
+
+async function getDynamicHyperlinks() {
+  console.log(40, "getting all the links...");
+  const dynamicHyperlinksInCkEditors = [];
+  const dynamicHyperlinksInPage = Array.from(document.querySelectorAll(dynamicHyperlinkSelector));
+
+  await document.querySelectorAll("iframe.cke_wysiwyg_frame").forEach(async iframe => {
+    const dynamicHyperlinksInCkEditor = await getDynamicHyperlinksInCkEditor(iframe);
+    console.log(46, "...got all the links in an iframe");
+    dynamicHyperlinksInCkEditors.push(...dynamicHyperlinksInCkEditor);
+  });
+
+  return [...dynamicHyperlinksInCkEditors, ...dynamicHyperlinksInPage];
 }
 
 export default function DynamicHyperlinkTransformer({ onFetch }) {
   const I18n = useI18n();
 
   React.useEffect(() => {
-    function updateDynamicHyperlinks() {
-      const dynamicHyperlinkSelector = "[data-dynamic-hyperlink]";
-      const dynamicHyperlinks = Array.from(document.querySelectorAll(dynamicHyperlinkSelector));
+    async function updateDynamicHyperlinks() {
+      console.log("-------");
+      const dynamicHyperlinks = await getDynamicHyperlinks();
 
-      document.querySelectorAll("iframe.cke_wysiwyg_frame").forEach(iframe => {
-        if (iframe.contentWindow.document.body) {
-          iframe.contentWindow.document.body.querySelectorAll(dynamicHyperlinkSelector).forEach(dynamicHyperlink => {
-            dynamicHyperlinks.push(dynamicHyperlink);
-          });
-        } else {
-          setTimeout(updateDynamicHyperlinks, 100);
-        }
-      });
+      console.log(61, "...got all the links !!!this should be the very last message!!!");
+      // it is getting here before the onIframeReady() gets called, so there is no link
 
       dynamicHyperlinks
         .filter(dynamicHyperlink => !dynamicHyperlink.hasAttribute("data-dynamic-hyperlink--processed"))
@@ -50,6 +86,7 @@ export default function DynamicHyperlinkTransformer({ onFetch }) {
                 typeOrErrorSpan.innerHTML = error ? `- ${errorText}` : term;
                 typeOrErrorSpan.className = className;
                 dynamicHyperlink.appendChild(typeOrErrorSpan);
+                console.log(89, typeOrErrorSpan);
               });
           } else {
             throw new Error("In DynamicHyperlinkTransformer component, the onFetch prop must return a Promise");
