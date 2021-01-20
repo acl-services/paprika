@@ -3,27 +3,22 @@ import PropTypes from "prop-types";
 import useI18n from "@paprika/l10n/lib/useI18n";
 import "./DynamicHyperlinkTransformer.scss";
 
+const dynamicHyperlinkSelector = "[data-dynamic-hyperlink]";
+
 function isPromise(obj) {
   return obj && obj.then && typeof obj.then === "function";
+}
+
+function getDynamicHyperlinks(document) {
+  return Array.from(document.querySelectorAll(dynamicHyperlinkSelector));
 }
 
 export default function DynamicHyperlinkTransformer({ onFetch }) {
   const I18n = useI18n();
 
   React.useEffect(() => {
-    function updateDynamicHyperlinks() {
-      const dynamicHyperlinkSelector = "[data-dynamic-hyperlink]";
-      const dynamicHyperlinks = Array.from(document.querySelectorAll(dynamicHyperlinkSelector));
-
-      document.querySelectorAll("iframe.cke_wysiwyg_frame").forEach(iframe => {
-        if (iframe.contentWindow.document.body) {
-          iframe.contentWindow.document.body.querySelectorAll(dynamicHyperlinkSelector).forEach(dynamicHyperlink => {
-            dynamicHyperlinks.push(dynamicHyperlink);
-          });
-        } else {
-          setTimeout(updateDynamicHyperlinks, 100);
-        }
-      });
+    function updateDynamicHyperlinks(document) {
+      const dynamicHyperlinks = getDynamicHyperlinks(document);
 
       dynamicHyperlinks
         .filter(dynamicHyperlink => !dynamicHyperlink.hasAttribute("data-dynamic-hyperlink--processed"))
@@ -57,11 +52,30 @@ export default function DynamicHyperlinkTransformer({ onFetch }) {
         });
     }
 
-    const observer = new MutationObserver(updateDynamicHyperlinks);
+    function getCkEditorInstances() {
+      const ckEditorInstances = window.CKEDITOR && window.CKEDITOR.instances;
+      return ckEditorInstances && Object.keys(ckEditorInstances).length ? ckEditorInstances : null;
+    }
+
+    function updateDynamicHyperlinksWhenReady() {
+      const ckEditorInstances = getCkEditorInstances();
+
+      if (ckEditorInstances) {
+        Object.entries(ckEditorInstances).forEach(([, ckEditorInstance]) => {
+          ckEditorInstance.on("instanceReady", () => {
+            updateDynamicHyperlinks(ckEditorInstance.document.$);
+          });
+        });
+      } else {
+        updateDynamicHyperlinks(document);
+      }
+    }
+
+    const observer = new MutationObserver(updateDynamicHyperlinksWhenReady);
     const config = { childList: true, subtree: true };
     observer.observe(document.querySelector("body"), config);
 
-    updateDynamicHyperlinks();
+    updateDynamicHyperlinksWhenReady();
 
     return () => observer.disconnect();
   }, [I18n, onFetch]);
