@@ -1,5 +1,6 @@
 import React from "react";
 import PropTypes from "prop-types";
+import { extractChildren } from "@paprika/helpers";
 import types from "./types";
 import TabsContext from "./TabsContext";
 import Panel from "./components/Panel/Panel";
@@ -7,13 +8,15 @@ import Panels from "./components/Panels/Panels";
 import Tab from "./components/Tab/Tab";
 import List from "./components/List/List";
 
+const nextKeys = ["ArrowRight", "ArrowDown"];
+const prevKeys = ["ArrowLeft", "ArrowUp"];
+
 export default function Tabs(props) {
-  const [activeIndex, setActiveIndex] = React.useState(props.defaultIndex);
-  const [currentFocusIndex, setFocusIndex] = React.useState(props.defaultIndex);
+  const { defaultIndex, hasInsetFocusStyle, hasTruncation, height, isDisabled, isVertical, kind, size } = props;
 
+  const [activeIndex, setActiveIndex] = React.useState(defaultIndex);
+  const [currentFocusIndex, setFocusIndex] = React.useState(defaultIndex);
   let tabListRef = React.useRef(null);
-
-  const { hasInsetFocusStyle, hasTruncation, height, isDisabled, isVertical, kind, size } = props;
 
   function focusAndSetIndex(index) {
     tabListRef.querySelectorAll("[data-pka-anchor='tab'], [data-pka-anchor='tab-link']")[index].focus();
@@ -29,29 +32,24 @@ export default function Tabs(props) {
     setActiveIndex(index);
   };
 
-  const nextKeys = ["ArrowRight", "ArrowDown"];
-  const prevKeys = ["ArrowLeft", "ArrowUp"];
-
+  // TODO: Disabled tab items should also get focus on keyboard interaction
   // https://github.com/acl-services/paprika/issues/310
-  // Todo Disabled tab items should also get focus on keyboard interaction
   const onKeyDown = (event, currentIndex) => {
-    const tabList = React.Children.toArray(props.children)[0];
-    const enabledIndexes = tabList.props.children
-      .map((tab, index) => (tab.props.isDisabled === true ? null : index))
+    const { "Tabs.List": TabsList } = extractChildren(props.children, ["Tabs.List"]);
+    const tabs = TabsList.props.children.filter(child => child);
+    const enabledIndexes = tabs
+      .map((tab, index) => (tab && tab.props.isDisabled === true ? null : index))
       .filter(index => index != null);
-
     const enabledSelectedIndex = enabledIndexes.indexOf(currentIndex);
     const count = enabledIndexes.length;
 
     if (nextKeys.includes(event.key)) {
       const nextEnabledIndex = (enabledSelectedIndex + 1) % count;
       const nextIndex = enabledIndexes[nextEnabledIndex];
-
       focusAndSetIndex(nextIndex);
     } else if (prevKeys.includes(event.key)) {
       const nextEnabledIndex = (enabledSelectedIndex - 1 + count) % count;
       const nextIndex = enabledIndexes[nextEnabledIndex];
-
       focusAndSetIndex(nextIndex);
     } else if (event.key === "Home") {
       focusAndSetIndex(enabledIndexes[0]);
