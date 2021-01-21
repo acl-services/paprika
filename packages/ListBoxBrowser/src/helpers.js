@@ -227,6 +227,8 @@ export function getInitialView(localData) {
 export function extractedExtendedProps(children) {
   const props = {};
   React.Children.map(children, child => {
+    if (child === null) return null;
+
     if (child.type.displayName === "ListBoxBrowser.Root") {
       props.root = { ...child.props };
     }
