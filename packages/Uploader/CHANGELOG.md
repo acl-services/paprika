@@ -6,10 +6,6 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 
 ## [Unreleased]
 
-### Fixed
-
-- Fixed the potential mapping children error.
-
 ## [0.2.11] - 2020-05-28
 
 ### Added
@@ -49,3 +45,9 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
         >
 
 ```
+
+## [2.0.3-alpha.0] - 2021-01-21
+
+### Fixed
+
+- Fixed the potential mapping children error.

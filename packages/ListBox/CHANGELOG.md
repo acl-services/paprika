@@ -6,10 +6,6 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 
 ## [Unreleased]
 
-### Fixed
-
-- Fixed the potential mapping children error.
-
 ## [1.0.0] - 2020-11-04
 
 ### Changed
@@ -58,3 +54,9 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 ### Change
 
 - WithTags subcomponent was moved to their own packages no is part of @paprika/list-box-with-tags
+
+## [1.3.2-alpha.0] - 2021-01-21
+
+### Fixed
+
+- Fixed the potential mapping children error.
