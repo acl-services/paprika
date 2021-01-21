@@ -21,17 +21,19 @@ export default function List(props) {
   const { a11yText, children, height, ...moreProps } = props;
   const { activeIndex, kind, currentFocusIndex, onKeyDown, onClickTab, setTabListRef } = context;
 
-  const childrenWithProps = React.Children.map(children, (tab, index) => {
+  const childrenWithProps = React.Children.map(children, (child, index) => {
     const isSelected = activeIndex === index;
 
-    return React.cloneElement(tab, {
-      kind,
-      currentFocusIndex,
-      height,
-      isSelected,
-      onClick: e => onClickTab(e, index),
-      onKeyDownArrows: onKeyDown,
-    });
+    return child === null
+      ? null
+      : React.cloneElement(child, {
+          kind,
+          currentFocusIndex,
+          height,
+          isSelected,
+          onClick: e => onClickTab(e, index),
+          onKeyDownArrows: onKeyDown,
+        });
   });
 
   if (a11yText) moreProps["aria-label"] = a11yText;

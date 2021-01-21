@@ -32,7 +32,7 @@ function Breadcrumbs(props) {
                 </>
               );
             }
-            return React.cloneElement(child, { hasOnlyOneChild });
+            return child === null ? null : React.cloneElement(child, { hasOnlyOneChild });
           })}
         </sc.List>
       </sc.Nav>
