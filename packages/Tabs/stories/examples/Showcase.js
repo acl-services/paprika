@@ -1,35 +1,32 @@
 import React from "react";
-import { boolean, select, number } from "@storybook/addon-knobs";
+import { boolean, select, text } from "@storybook/addon-knobs";
 import { Story, Rule, Tagline } from "storybook/assets/styles/common.styles";
 import Heading from "@paprika/heading";
 import Tabs from "../../src";
-import * as types from "../../src/types";
 
-const renderTabs = () => {
-  const tabs = ["Pepsi", "Coke", "Diet Coke", "Canada Dry"];
-  return tabs.map(tabLabel => <Tabs.Tab key={tabLabel}>{tabLabel}</Tabs.Tab>);
-};
+const tabs = ["Pepsi", "Coke", "Diet Coke", "Canada Dry Ginger Ale Made From Real Ginger"];
+const panels = [
+  "Pepsi – Lomo street art austin bushwick semiotics 8-bit banh mi disrupt hexagon woke.",
+  "Coke – Chicharrones vegan twee adaptogen, celiac aesthetic hoodie disrupt cold-pressed raclette helvetica hella distillery vaporware.",
+  "Diet Coke – Viral brooklyn hoodie post-ironic cornhole hexagon.",
+  "Canada Dry – Retro pour-over gentrify disrupt sartorial, kombucha flexitarian cornhole hoodie celiac man braid artisan",
+];
 
-const renderPanels = () => {
-  const panels = [
-    "Pepsi – Lomo street art austin bushwick semiotics 8-bit banh mi disrupt hexagon woke.",
-    "Coke – Chicharrones vegan twee adaptogen, celiac aesthetic hoodie disrupt cold-pressed raclette helvetica hella distillery vaporware.",
-    "Diet Coke – Viral brooklyn hoodie post-ironic cornhole hexagon.",
-    "Canada Dry – Retro pour-over gentrify disrupt sartorial, kombucha flexitarian cornhole hoodie celiac man braid artisan",
-  ];
+const renderTabs = () => tabs.map(tabLabel => <Tabs.Tab key={tabLabel}>{tabLabel}</Tabs.Tab>);
 
-  return panels.map(panelBody => <Tabs.Panel key={panelBody}>{panelBody}</Tabs.Panel>);
-};
+const renderPanels = () => panels.map(panelBody => <Tabs.Panel key={panelBody}>{panelBody}</Tabs.Panel>);
 
-const tabProps = () => ({
-  kind: select("kind", [types.PRIMARY, types.SECONDARY], "primary"),
+const getTabsProps = () => ({
+  tabHeight: text("tabHeight"),
+  hasInsetFocusStyle: boolean("hasInsetFocusStyle", false),
+  hasTruncation: boolean("hasTruncation", false),
+  isVertical: boolean("isVertical", false),
   isDisabled: boolean("isDisabled", false),
-  height: number("height"),
+  kind: select("kind", Object.values(Tabs.types.kind), Tabs.types.kind.PRIMARY),
+  size: select("size", Object.values(Tabs.types.size), Tabs.types.size.MEDIUM),
 });
 
-const ExampleStory = props => {
-  const { height, ...tabsProps } = props;
-
+export default function ShowcaseStory() {
   return (
     <Story>
       <Heading level={1} displayLevel={2} isLight>
@@ -37,12 +34,10 @@ const ExampleStory = props => {
       </Heading>
       <Tagline>Use the knobs to tinker with the props.</Tagline>
       <Rule />
-      <Tabs {...tabsProps}>
-        <Tabs.List height={height}>{renderTabs(false)}</Tabs.List>
-        <Tabs.Panels>{renderPanels(false)}</Tabs.Panels>
+      <Tabs {...getTabsProps()}>
+        <Tabs.List>{renderTabs()}</Tabs.List>
+        <Tabs.Panels>{renderPanels()}</Tabs.Panels>
       </Tabs>
     </Story>
   );
-};
-
-export default () => <ExampleStory {...tabProps()} />;
+}

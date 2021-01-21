@@ -3,8 +3,13 @@ import { storiesOf } from "@storybook/react";
 import { withKnobs } from "@storybook/addon-knobs";
 import { Gap, Story } from "storybook/assets/styles/common.styles";
 import { getStoryName } from "storybook/storyTree";
+import Icon1 from "@paprika/icon/lib/Upload";
+import Icon2 from "@paprika/icon/lib/TimeAndDate";
+import Icon3 from "@paprika/icon/lib/Lock";
+import Icon4 from "@paprika/icon/lib/NewTab";
 import Button from "@paprika/button";
 import Heading from "@paprika/heading";
+import tokens from "@paprika/tokens";
 import ShowcaseStory from "./examples/Showcase";
 import Tabs from "../src/Tabs";
 
@@ -51,8 +56,12 @@ storiesOf(storyName, module)
   .add("Showcase", ShowcaseStory);
 
 storiesOf(`${storyName}/Examples`, module)
-  .add("Tab", () => <Story>{TabsExample()}</Story>)
-  .add("Tab Links", () => (
+  .add("Tabs test", () => (
+    <Story>
+      <TabsExample />
+    </Story>
+  ))
+  .add("Tab links", () => (
     <Story>
       <Tabs>
         <Tabs.List>
@@ -67,15 +76,77 @@ storiesOf(`${storyName}/Examples`, module)
       </Tabs>
     </Story>
   ))
-  .add("Compact Tabs with custom height", () => (
+  .add("Tabs with custom height", () => (
     <Story>
-      <Tabs>
-        <Tabs.List height={80}>
-          <Tabs.Tab hasInsetFocusStyle>These tabs</Tabs.Tab>
-          <Tabs.Tab hasInsetFocusStyle>Are tall</Tabs.Tab>
-          <Tabs.Tab hasInsetFocusStyle>And narrow</Tabs.Tab>
-          <Tabs.Tab hasInsetFocusStyle>With inset focus</Tabs.Tab>
+      <Tabs tabHeight={80} hasInsetFocusStyle>
+        <Tabs.List>
+          <Tabs.Tab>These tabs</Tabs.Tab>
+          <Tabs.Tab>Are tall</Tabs.Tab>
+          <Tabs.Tab href="https://wegalvanize.com" target="_blank" rel="noopener noreferrer">
+            So tall
+          </Tabs.Tab>
+          <Tabs.Tab>With inset focus</Tabs.Tab>
         </Tabs.List>
+      </Tabs>
+    </Story>
+  ))
+  .add("Vertically stacked tabs", () => (
+    <Story
+      css={`
+        [data-pka-anchor="icon"] {
+          flex-shrink: 0;
+          font-size: 20px;
+          margin-right: ${tokens.spaceLg};
+          opacity: 0.75;
+        }
+      `}
+    >
+      <Tabs isVertical hasTruncation hasInsetFocusStyle>
+        <Tabs.List>
+          <Tabs.Tab>
+            <Icon1 />
+            Vegan meggings
+          </Tabs.Tab>
+          <Tabs.Tab>
+            <Icon2 />
+            Direct trade synth
+          </Tabs.Tab>
+          <Tabs.Tab>
+            <Icon3 />
+            Activated charcoal hexagon street art pickled raw denim irony tumeric vegan ethical cronut
+          </Tabs.Tab>
+          <Tabs.Tab href="https://youtu.be/5gA3tw3CQGw?t=2" target="_blank" rel="noopener noreferrer">
+            <Icon4 />
+            VHS humblebrag
+          </Tabs.Tab>
+          {true === false ? <Tabs.Tab>Impossible tab</Tabs.Tab> : null}
+        </Tabs.List>
+        <Tabs.Panels>
+          <Tabs.Panel>
+            <Heading level={4}>Vegan meggings</Heading>
+            <p>
+              Vaporware biodiesel hella umami keytar irony retro man braid four loko kickstarter pitchfork iPhone
+              franzen synth mixtape.
+            </p>
+          </Tabs.Panel>
+          <Tabs.Panel>
+            <Heading level={4}>Direct trade synth</Heading>
+            <p>
+              Jean shorts narwhal schlitz, copper mug bicycle rights cornhole church-key sriracha leggings man bun
+              iceland flexitarian.
+            </p>
+          </Tabs.Panel>
+          <Tabs.Panel>
+            <Heading level={4}>
+              Activated charcoal hexagon street art pickled raw denim irony tumeric vegan ethical cronut
+            </Heading>
+            <p>
+              Vegan prism master cleanse retro gochujang occupy tumeric green juice affogato. Activated charcoal
+              chicharrones small batch, tofu waistcoat mlkshk unicorn trust fund beard cronut.
+            </p>
+          </Tabs.Panel>
+          {true === false ? <Tabs.Panel>Impossible panel</Tabs.Panel> : null}
+        </Tabs.Panels>
       </Tabs>
     </Story>
   ));
