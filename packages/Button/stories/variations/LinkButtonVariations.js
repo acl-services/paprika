@@ -12,7 +12,9 @@ function clickHandler() {
 export default function LinkButtonVariations() {
   return (
     <>
-      <StoryHeading>Link Button</StoryHeading>
+      <StoryHeading level={1}>
+        <code>&lt;Button.Link&gt;</code>
+      </StoryHeading>
       <Gap.Small />
       <Button.Link onClick={clickHandler} kind="primary" href="https://youtu.be/IdkCEioCp24?t=92">
         Link

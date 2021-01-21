@@ -17,6 +17,7 @@ const storyTree = [
       "DataField",
       "DataGrid",
       "DataHeader",
+      "Filter",
       "Table"
     ],
   },
@@ -96,7 +97,8 @@ const storyTree = [
       "Stylers",
       "Tokens",
       "helpers",
-      "DynamicHyperlink"
+      "DynamicHyperlinkTransformer",
+      "MockEndpoints"
     ],
   },
 ];

@@ -103,10 +103,10 @@ es:
         placeholder: Seleccionar...
       filter:
         a11y_text: Buscar
-        no_results_message: Su resultado de búsqueda no coincidió con ninguna opción.
+        no_results_message: No se han encontrado resultados
         placeholder: Buscar...
       footer:
-        accept: Aceptar
+        accept: Aplicar
         cancel: Cancelar
         clear: Borrar
     listBoxBrowser:
@@ -117,6 +117,8 @@ es:
       placeholder: Seleccionar...
       no_results_found: No se han encontrado resultados
       all_items_have_been_selected: "Se han seleccionado todos los elementos"
+    search:
+      searchTerm: Término de búsqueda...
     actionBar:
       columns_arrangement:
         hide_all: Ocultar todas
@@ -187,3 +189,7 @@ es:
     copyInput:
       clicked_tooltip: Copiado
       hover_tooltip: Copiar al portapapeles
+    dynamicHyperlink:
+      access_denied: "Acceso denegado"
+      invalid_url: "URL no válida"
+      loading: Cargando...

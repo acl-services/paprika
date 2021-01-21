@@ -1,10 +1,7 @@
 import React from "react";
 import { boolean, select, text } from "@storybook/addon-knobs";
 import L10n from "@paprika/l10n";
-import Heading from "@paprika/heading";
 import Input from "@paprika/input";
-import { Rule, Tagline } from "storybook/assets/styles/common.styles";
-import { FormElementStory } from "../FormElement.stories.styles";
 import FormElement from "../../src";
 
 const getRootKnobs = () => ({
@@ -38,7 +35,7 @@ const getErrorKnobs = () => ({
 
 const { Label, Instructions, Content, Description, Error } = FormElement;
 
-function Showcase() {
+export default function Showcase() {
   const [value, setValue] = React.useState("");
 
   function handleChange(e) {
@@ -53,32 +50,23 @@ function Showcase() {
   const { errorText } = getErrorKnobs();
 
   return (
-    <FormElementStory>
-      <Heading level={1} displayLevel={2} isLight>
-        Showcase
-      </Heading>
-      <Tagline>Form Element.</Tagline>
-      <Rule />
-      <L10n>
-        <FormElement {...rootProps}>
-          <Label {...labelProps}>{labelText}</Label>
-          <Instructions>{instructionsText}</Instructions>
-          <Content>
-            {a11yProps => (
-              <Input
-                onChange={handleChange}
-                value={value}
-                hasError={Boolean(errorText)}
-                size={rootProps.size}
-                {...a11yProps}
-              />
-            )}
-          </Content>
-          {errorText ? <Error>{errorText}</Error> : <Description>{descriptionText}</Description>}
-        </FormElement>
-      </L10n>
-    </FormElementStory>
+    <L10n>
+      <FormElement {...rootProps}>
+        <Label {...labelProps}>{labelText}</Label>
+        <Instructions>{instructionsText}</Instructions>
+        <Content>
+          {a11yProps => (
+            <Input
+              onChange={handleChange}
+              value={value}
+              hasError={Boolean(errorText)}
+              size={rootProps.size}
+              {...a11yProps}
+            />
+          )}
+        </Content>
+        {errorText ? <Error>{errorText}</Error> : <Description>{descriptionText}</Description>}
+      </FormElement>
+    </L10n>
   );
 }
-
-export default () => <Showcase />;
