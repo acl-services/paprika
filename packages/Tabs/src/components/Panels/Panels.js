@@ -11,14 +11,12 @@ const Panels = props => {
 
   const { children, ...moreProps } = props;
 
-  const childrenWithProps = React.Children.map(children, (child, index) => {
-    const isSelected = context.activeIndex === index;
+  const childrenWithProps = React.Children.map(children, (panel, index) => {
+    if (!panel) return;
 
-    return child === null
-      ? null
-      : React.cloneElement(child, {
-          isSelected,
-        });
+    return React.cloneElement(panel, {
+      isSelected: context.activeIndex === index,
+    });
   });
 
   return <div {...moreProps}>{childrenWithProps}</div>;
