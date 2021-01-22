@@ -130,7 +130,7 @@ es:
       no_results: No hay resultados
       filter:
         no_filters_applied: No se aplicaron filtros a esta vista
-        label: Filtrar
+        label: Filtro
         singular_label: Se aplicó 1 filtro
         plural_label: "{{numberOfFilters}} filtros aplicados"
         add_filter: Agregar un campo para filtrar
@@ -145,7 +145,7 @@ es:
           is_blank: está en blanco
           is_not_blank: no está en blanco
           equals: es igual a
-          not_equal_to: es distinto de
+          not_equal_to: no es igual a
           greater_than: ">"
           less_than: "<"
           greater_than_or_equal_to: "≥"
