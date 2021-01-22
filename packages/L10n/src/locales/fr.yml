@@ -189,7 +189,37 @@ fr:
     copyInput:
       clicked_tooltip: Copié
       hover_tooltip: Copier dans le presse-papiers
-    dynamicHyperlink:
+    dynamicHyperlinkTransformer:
       access_denied: "Accès refusé"
       invalid_url: "URL non valide"
       loading: Chargement...
+    filter:
+      actions:
+        add: Ajouter un filtre
+        clear: Effacer
+        delete: Supprimer
+      no_filters_applied: Aucun filtre appliqué à cette vue
+      label: Filtrer
+      lowercase_label: "{{count}} filtre"
+      lowercase_label_plural: "{{count}} filtres"
+      and: Et
+      or: Ou
+      rules:
+        is: est
+        is_not: n'est pas
+        contains: contient
+        does_not_contain: ne contient pas
+        is_blank: est vide
+        is_not_blank: n'est pas vide
+        equals: est égal à
+        not_equal_to: n'est pas égal à
+        greater_than: ">"
+        less_than: "<"
+        greater_than_or_equal_to: "≥"
+        less_than_or_equal_to: "≤"
+        is_empty: est vide
+        is_not_empty: n'est pas vide
+        is_before: est avant
+        is_after: est après
+        true: "vrai"
+        false: "faux"
