@@ -44,8 +44,8 @@ export const getKnobs = () => ({
   sampleText: sampleTexts[select("content", ["short", "long", "rich"], "long")],
 });
 
-function Showcase(props) {
-  const { sampleText, ...popoverProps } = props;
+export default function Showcase() {
+  const { sampleText, ...popoverProps } = getKnobs();
 
   return (
     <CenteredStory>
@@ -72,5 +72,3 @@ function Showcase(props) {
     </CenteredStory>
   );
 }
-
-export default () => <Showcase {...getKnobs()} />;

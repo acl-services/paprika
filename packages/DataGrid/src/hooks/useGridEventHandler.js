@@ -1,5 +1,5 @@
 import React from "react";
-import "@paprika/helpers/lib/dom/closest";
+import "@paprika/helpers/lib/polyfills/elementClosest";
 
 const getDataCell = event => {
   const $cell = event.target.closest("[data-pka-cell-key]");

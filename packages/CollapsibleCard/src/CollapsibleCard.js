@@ -1,7 +1,7 @@
 import React from "react";
 import PropTypes from "prop-types";
 import nanoid from "nanoid";
-import extractChildren from "@paprika/helpers/lib/extractChildren";
+import { extractChildren } from "@paprika/helpers";
 import Avatar from "./components/Avatar";
 import Metadata from "./components/Metadata";
 

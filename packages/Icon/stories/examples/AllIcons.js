@@ -36,9 +36,9 @@ export default () => {
   );
 
   return (
-    <sc.IconsStory>
+    <>
       <Heading level={2}>All Icons</Heading>
       <sc.Cards>{cards}</sc.Cards>
-    </sc.IconsStory>
+    </>
   );
 };

@@ -1,7 +1,7 @@
 import React from "react";
 import PropTypes from "prop-types";
 import { zValue } from "@paprika/stylers/lib/helpers";
-import extractChildren from "@paprika/helpers/lib/extractChildren";
+import { extractChildren } from "@paprika/helpers";
 import Overlay from "@paprika/overlay";
 import FocusLock from "./components/FocusLock";
 import Header from "./components/Header/Header";

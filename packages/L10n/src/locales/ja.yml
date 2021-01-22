@@ -19,7 +19,7 @@ ja:
       choose_from_computer: コンピューターから選択
       choose_from_computer_a11y: コンピューターからファイルを選択する
       cancel_upload: アップロードをキャンセル
-      restart_upload: アップロードを再起動
+      restart_upload: ファイルを選択し直して再び実行してください
       file_list: ファイル一覧
       errors:
         size: ファイルは{{maxFileSize}}未満にする必要があります
@@ -103,8 +103,12 @@ ja:
         placeholder: 選択...
       filter:
         a11y_text: 検索
-        no_results_message: 検索結果はどのオプションにも一致しませんでした。
+        no_results_message: 結果が見つかりません
         placeholder: 検索...
+      footer:
+        accept: 適用
+        cancel: キャンセル
+        clear: クリア
     listBoxBrowser:
       explore: より多くのオプションを探す
       selected: 選択されたオプション
@@ -112,6 +116,9 @@ ja:
     listBoxWithTags:
       placeholder: 選択…
       no_results_found: 結果が見つかりません
+      all_items_have_been_selected: "すべての項目が選択されています"
+    search:
+      searchTerm: 用語の検索...
     actionBar:
       columns_arrangement:
         hide_all: すべて非表示
@@ -182,3 +189,37 @@ ja:
     copyInput:
       clicked_tooltip: コピー済み
       hover_tooltip: クリップボードにコピー
+    dynamicHyperlinkTransformer:
+      access_denied: "アクセスが拒否されました"
+      invalid_url: "URL が無効です"
+      loading: 読み込み中...
+    filter:
+      actions:
+        add: フィルターを追加
+        clear: クリア
+        delete: 削除
+      no_filters_applied: このビューに適用するフィルターなし
+      label: フィルター
+      lowercase_label: "{{count}} フィルター"
+      lowercase_label_plural: "{{count}} フィルター"
+      and: および
+      or: または
+      rules:
+        is: '='
+        is_not: 'は次でない:'
+        contains: 'は次を含む:'
+        does_not_contain: 'は次を含まない:'
+        is_blank: は空白である
+        is_not_blank: は空白でない
+        equals: 'は次と一致する:'
+        not_equal_to: 'は次と一致しない:'
+        greater_than: ">"
+        less_than: "<"
+        greater_than_or_equal_to: "≥"
+        less_than_or_equal_to: "≤"
+        is_empty: は空である
+        is_not_empty: は空でない
+        is_before: 'は次より前である:'
+        is_after: 'は次より後である:'
+        true: "真"
+        false: "偽"

@@ -1,24 +1,37 @@
+import React from "react";
 import { withKnobs } from "@storybook/addon-knobs";
 import { getStoryName } from "storybook/storyTree";
 import { showcaseStoryParameters, variationsStoryParameters } from "storybook/assets/storyParameters";
-import ShowcaseStory from "./examples/Showcase";
+import { FormElementStory } from "./FormElement.stories.styles";
+import Showcase from "./examples/Showcase";
 import Variations from "./examples/Variations";
-import FormElement from "../src/FormElement";
 
 const storyName = getStoryName("FormElement");
 
 export default {
   title: storyName,
-  component: FormElement,
 };
 
-export const showcase = ShowcaseStory;
+export const showcase = () => (
+  <FormElementStory storyName="FormElement" tagline={FormElementStory.defaultTaglines.showcase}>
+    <Showcase />
+  </FormElementStory>
+);
 showcase.story = {
   decorators: [withKnobs],
   parameters: showcaseStoryParameters,
 };
 
-export const variations = Variations;
+export const variations = () => (
+  <FormElementStory
+    storyName="FormElement"
+    tagline={FormElementStory.defaultTaglines.variations}
+    component="FormElement"
+    fileName="examples/Variations.js"
+  >
+    <Variations />
+  </FormElementStory>
+);
 variations.story = {
   decorators: [withKnobs],
   parameters: variationsStoryParameters,

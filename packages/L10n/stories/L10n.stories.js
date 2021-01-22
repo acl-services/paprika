@@ -1,22 +1,24 @@
 import React from "react";
-import { storiesOf } from "@storybook/react";
 import { withKnobs, select } from "@storybook/addon-knobs";
 import { getStoryName } from "storybook/storyTree";
+import { showcaseStoryParameters } from "storybook/assets/storyParameters";
+import ExampleStory from "storybook/components/ExampleStory";
 import FakeAppWithContext from "./examples/FakeAppWithContext";
-import FakeAppWithoutContext from "./examples/FakeAppWithoutContext";
-import FakeAppWithLocales from "./examples/withLocales/FakeAppWithLocales";
 
 const storyName = getStoryName("L10n");
 
-storiesOf(storyName, module)
-  .addDecorator(withKnobs)
-  .add("Showcase", () => (
-    <FakeAppWithContext locale={select("locale", ["en", "de", "fr", "es", "pt", "ja", "zh"], "de")} />
-  ));
+export default {
+  title: storyName,
+};
 
-storiesOf(`${storyName}/Examples`, module)
-  .add("With Context", () => (
+export const ShowcaseStory = () => (
+  <ExampleStory storyName="L10n" tagline={ExampleStory.defaultTaglines.showcase}>
     <FakeAppWithContext locale={select("locale", ["en", "de", "fr", "es", "pt", "ja", "zh"], "de")} />
-  ))
-  .add("Without Context", () => <FakeAppWithoutContext />)
-  .add("Providing Locales", () => <FakeAppWithLocales locale={select("locale", ["en", "fr"], "fr")} />);
+  </ExampleStory>
+);
+
+ShowcaseStory.story = {
+  name: "Showcase",
+  decorators: [withKnobs],
+  parameters: showcaseStoryParameters,
+};

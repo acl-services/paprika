@@ -2,8 +2,7 @@ import React from "react";
 import PropTypes from "prop-types";
 import { Transition } from "react-transition-group";
 import FocusLock from "react-focus-lock";
-import LockBodyScroll from "@paprika/helpers/lib/components/LockBodyScroll";
-import Portal from "@paprika/helpers/lib/components/Portal";
+import { LockBodyScroll, Portal } from "@paprika/helpers";
 import tokens from "@paprika/tokens";
 import * as sc from "./Overlay.styles";
 

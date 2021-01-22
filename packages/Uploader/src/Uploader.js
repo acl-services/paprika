@@ -66,20 +66,30 @@ const propTypes = {
    * Let you to take over the request method
    */
   onRequest: PropTypes.func,
+  /**
+   * Callback fired whenever an error occurs while uploading a file.  It receives the raw server error as an argument. Whatever this function returns is what is displayed in the UI.  If nothing is returned, it will display the raw server error.
+   */
+  onError: PropTypes.func,
+  /**
+   * Callback fired when the user cancels an uploading file.
+   */
+  onCancel: PropTypes.func,
 };
 
 const defaultProps = {
   a11yText: null,
-  supportedMimeTypes: ["*/*"],
   canChooseMultiple: true,
   defaultIsDisabled: false,
   hasAutoUpload: true,
   headers: [],
   isBodyDroppable: true,
   maxFileSize: oneMebibyte * 10, // 1048576bytes * 10 = 10,485,760 Mebibytes
+  onCancel: () => {},
   onChange: () => {},
   onCompleted: () => {},
+  onError: null,
   onRequest: null,
+  supportedMimeTypes: ["*/*"],
 };
 
 function getDocumentBody() {
@@ -103,10 +113,12 @@ const Uploader = React.forwardRef((props, ref) => {
     headers,
     isBodyDroppable,
     maxFileSize,
+    onCancel,
     onChange,
     onCompleted,
-    supportedMimeTypes,
+    onError,
     onRequest,
+    supportedMimeTypes,
   } = props;
 
   const refInput = React.useRef();
@@ -120,16 +132,7 @@ const Uploader = React.forwardRef((props, ref) => {
     },
   }));
 
-  const {
-    files,
-    isCompleted,
-    isDisabled,
-    removeFile,
-    cancelFile,
-    restartFileUpload,
-    setFiles,
-    upload,
-  } = useProcessFiles({
+  const { files, isCompleted, isDisabled, removeFile, cancelFile, setFiles, upload } = useProcessFiles({
     defaultIsDisabled,
     endpoint,
     hasAutoUpload,
@@ -180,18 +183,20 @@ const Uploader = React.forwardRef((props, ref) => {
         </sc.Container>
       );
     }
+
     return {
       FileInput,
+      cancelFile,
       files,
       isCompleted,
       isDisabled,
       isDragLeave,
       isDraggingOver,
+      onCancel,
+      onError,
       refInput,
       removeFile,
-      cancelFile,
       upload,
-      restartFileUpload,
     };
   }, [
     canChooseMultiple,
@@ -203,17 +208,20 @@ const Uploader = React.forwardRef((props, ref) => {
     isDragLeave,
     isDraggingOver,
     label,
+    onCancel,
+    onError,
     removeFile,
-    restartFileUpload,
     supportedMimeTypes,
     upload,
   ]);
 
   const childrenWithProps = React.Children.map(children, child => {
-    return React.cloneElement(child, {
-      maxFileSize,
-      supportedMimeTypes,
-    });
+    return child === null
+      ? null
+      : React.cloneElement(child, {
+          maxFileSize,
+          supportedMimeTypes,
+        });
   });
 
   return <UploaderContext.Provider value={value}>{childrenWithProps}</UploaderContext.Provider>;

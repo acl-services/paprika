@@ -25,3 +25,16 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 - Number,
 - Time and Date
   [@nahumzs](https://github.com/nahumzs).
+
+## [1.0.3] - 2021-01-19
+
+### Added
+
+- Declaration files for each icon.
+
+## [1.0.4-alpha.0] - 2021-01-22
+
+### Fixed
+
+- Fixed `title` prop should be optional
+- Removed `d.ts` from `src` folder

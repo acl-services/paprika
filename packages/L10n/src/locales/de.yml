@@ -19,7 +19,7 @@ de:
       choose_from_computer: wählen Sie sie auf Ihrem Computer aus
       choose_from_computer_a11y: Wählen Sie Dateien auf Ihrem Computer aus
       cancel_upload: Upload abbrechen
-      restart_upload: Upload neu starten
+      restart_upload: Wählen Sie die Datei erneut aus, um den Vorgang zu wiederholen
       file_list: Liste der Dateien
       errors:
         size: Datei muss kleiner als {{maxFileSize}} sein
@@ -103,8 +103,12 @@ de:
         placeholder: Auswählen...
       filter:
         a11y_text: Suchen
-        no_results_message: Ihr Suchergebnis entsprach keiner der Optionen.
+        no_results_message: Keine Ergebnisse gefunden
         placeholder: Suchen...
+      footer:
+        accept: Anwenden
+        cancel: Abbrechen
+        clear: Löschen
     listBoxBrowser:
       explore: Weitere Optionen anzeigen
       selected: ausgewählte Optionen
@@ -112,6 +116,9 @@ de:
     listBoxWithTags:
       placeholder: Auswählen…
       no_results_found: Keine Ergebnisse gefunden
+      all_items_have_been_selected: "Alle Elemente wurden ausgewählt"
+    search:
+      searchTerm: Suchbegriff...
     actionBar:
       columns_arrangement:
         hide_all: Alles ausblenden
@@ -123,7 +130,7 @@ de:
       no_results: Keine Ergebnisse
       filter:
         no_filters_applied: Auf diese Ansicht wurden keine Filter angewendet
-        label: Filtern
+        label: Filter
         singular_label: 1 Filter angewendet
         plural_label: "{{numberOfFilters}} Filter angewendet"
         add_filter: Feld hinzufügen zum Filtern nach
@@ -182,3 +189,37 @@ de:
     copyInput:
       clicked_tooltip: Kopiert
       hover_tooltip: In die Zwischenablage kopieren
+    dynamicHyperlinkTransformer:
+      access_denied: "Zugriff verweigert"
+      invalid_url: "Ungültige URL"
+      loading: Wird geladen...
+    filter:
+      actions:
+        add: Filter hinzufügen
+        clear: Löschen
+        delete: Löschen
+      no_filters_applied: Auf diese Ansicht wurden keine Filter angewendet
+      label: Filtern
+      lowercase_label: "{{count}} Filter"
+      lowercase_label_plural: "{{count}} Filter"
+      and: Und
+      or: Oder
+      rules:
+        is: ist
+        is_not: ist nicht
+        contains: enthält
+        does_not_contain: enthält nicht
+        is_blank: bleibt leer
+        is_not_blank: bleibt nicht leer
+        equals: gleich
+        not_equal_to: ungleich
+        greater_than: ">"
+        less_than: "<"
+        greater_than_or_equal_to: "≥"
+        less_than_or_equal_to: "≤"
+        is_empty: ist leer
+        is_not_empty: ist nicht leer
+        is_before: ist vor
+        is_after: ist nach
+        true: "wahr"
+        false: "falsch"

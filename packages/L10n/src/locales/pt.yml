@@ -19,7 +19,7 @@ pt:
       choose_from_computer: escolha no seu computador
       choose_from_computer_a11y: Escolher arquivos no seu computador
       cancel_upload: Cancelar upload
-      restart_upload: Reiniciar upload
+      restart_upload: Selecione o arquivo novamente para tentar outra vez
       file_list: Lista de arquivos
       errors:
         size: O arquivo deve ser menor que {{maxFileSize}}
@@ -103,8 +103,12 @@ pt:
         placeholder: Selecione...
       filter:
         a11y_text: Pesquisar
-        no_results_message: O resultado da sua pesquisa não correspondeu a nenhuma opção.
+        no_results_message: Nenhum resultado encontrado
         placeholder: Pesquisar...
+      footer:
+        accept: Aplicar
+        cancel: Cancelar
+        clear: Limpar
     listBoxBrowser:
       explore: Explorar mais opções
       selected: opções selecionadas
@@ -112,6 +116,9 @@ pt:
     listBoxWithTags:
       placeholder: Selecione...
       no_results_found: Nenhum resultado encontrado
+      all_items_have_been_selected: "Todos os itens foram selecionados"
+    search:
+      searchTerm: Pesquisar termo...
     actionBar:
       columns_arrangement:
         hide_all: Ocultar tudo
@@ -123,7 +130,7 @@ pt:
       no_results: Nenhum resultado
       filter:
         no_filters_applied: Nenhum filtro aplicado a esta exibição
-        label: Filtrar
+        label: Filtro
         singular_label: 1 filtro aplicado
         plural_label: "{{numberOfFilters}} filtros aplicados"
         add_filter: Adicionar um campo para filtrar
@@ -143,7 +150,7 @@ pt:
           less_than: "<"
           greater_than_or_equal_to: "≥"
           less_than_or_equal_to: "≤"
-          is_empty: está em branco
+          is_empty: está vazio
           is_not_empty: não está vazio
           is_before: é antes de
           is_after: é depois de
@@ -182,3 +189,37 @@ pt:
     copyInput:
       clicked_tooltip: Copiado
       hover_tooltip: Copiar para área de transferência
+    dynamicHyperlinkTransformer:
+      access_denied: "Acesso negado"
+      invalid_url: "URL inválido"
+      loading: Carregando...
+    filter:
+      actions:
+        add: Adicionar filtro
+        clear: Limpar
+        delete: Excluir
+      no_filters_applied: Nenhum filtro aplicado a esta exibição
+      label: Filtrar
+      lowercase_label: "{{count}} filtro"
+      lowercase_label_plural: "{{count}} filtros"
+      and: E
+      or: Ou
+      rules:
+        is: é
+        is_not: não é
+        contains: contém
+        does_not_contain: não contém
+        is_blank: está em branco
+        is_not_blank: não está em branco
+        equals: igual a
+        not_equal_to: diferente de
+        greater_than: ">"
+        less_than: "<"
+        greater_than_or_equal_to: "≥"
+        less_than_or_equal_to: "≤"
+        is_empty: está em branco
+        is_not_empty: não está vazio
+        is_before: é antes de
+        is_after: é depois de
+        true: "verdadeiro"
+        false: "falso"

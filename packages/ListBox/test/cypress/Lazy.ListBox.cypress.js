@@ -20,7 +20,7 @@ describe("Lazy ListBox", () => {
     cy.get(selectors.popoverList).scrollTo("bottom");
     cy.contains("Satana").click();
     cy.contains("Sauron").click();
-    cy.contains("Accept").click();
+    cy.contains("Apply").click();
     cy.get(selectors.popover).should("not.be.visible");
     cy.get("#root div:first")
       .children()

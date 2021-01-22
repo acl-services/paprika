@@ -1,5 +1,4 @@
 import { renderHook } from "@testing-library/react-hooks";
-
 import useMountedRef from "../src/hooks/useMountedRef";
 
 describe("useMountedRef", () => {

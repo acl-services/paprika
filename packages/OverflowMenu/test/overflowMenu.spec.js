@@ -15,7 +15,7 @@ function renderComponent(props = {}) {
     onCloseMenu();
   };
 
-  function getComponent(newProps = {}) {
+  function getComponent(newProps = {}, newConfirmation = null) {
     return (
       <L10n>
         <OverflowMenu {...props} {...newProps}>
@@ -26,13 +26,15 @@ function renderComponent(props = {}) {
             isDestructive
             renderConfirmation={onCloseMenu => {
               return (
-                <Confirmation
-                  body="description"
-                  confirmLabel="Confirm Delete"
-                  onConfirm={handleConfirm}
-                  onClose={handleCloseConfirm(onCloseMenu)}
-                  heading="Delete Button?"
-                />
+                newConfirmation || (
+                  <Confirmation
+                    body="description"
+                    confirmLabel="Confirm Delete"
+                    onConfirm={handleConfirm}
+                    onClose={handleCloseConfirm(onCloseMenu)}
+                    heading="Delete Button?"
+                  />
+                )
               );
             }}
           >
@@ -47,8 +49,8 @@ function renderComponent(props = {}) {
 
   return {
     ...renderedComponent,
-    rerender: newProps => {
-      return renderedComponent.rerender(getComponent(newProps));
+    rerender: (newProps, newConfirmation) => {
+      return renderedComponent.rerender(getComponent(newProps, newConfirmation));
     },
   };
 }
@@ -57,9 +59,10 @@ describe("OverflowMenu", () => {
   let getByText;
   let triggerComponent;
   let queryByText;
+  let rerender;
 
   beforeEach(() => {
-    ({ getByText, queryByText } = renderComponent());
+    ({ getByText, queryByText, rerender } = renderComponent());
     triggerComponent = getByText(/trigger/i);
   });
 
@@ -99,6 +102,27 @@ describe("OverflowMenu", () => {
       await waitFor(() => {
         expect(queryByText(/confirm delete/i)).not.toBeInTheDocument();
         expect(queryByText(/edit/i)).not.toBeInTheDocument();
+      });
+    });
+
+    it("should pass dynamic props to Confirmation on update", async () => {
+      expect(getByText(/confirm delete/i)).toHaveAttribute("aria-disabled", "false");
+
+      const newConfirmation = (
+        <Confirmation
+          isPending
+          body="description"
+          confirmLabel="Confirm Delete"
+          onConfirm={() => {}}
+          onClose={() => {}}
+          heading="Delete Button?"
+        />
+      );
+
+      rerender({}, newConfirmation);
+
+      await waitFor(() => {
+        expect(getByText(/confirm delete/i)).toHaveAttribute("aria-disabled", "true");
       });
     });
   });

@@ -4,7 +4,7 @@ import Toast from "@paprika/toast";
 import DataGrid, { renderColumnIndicator, renderColumnExpand } from "../src";
 
 import fixtures from "./helpers/fixtures";
-import { App as Marvel } from "./DataGrid.marvel.stories";
+import { App as Lazy } from "./DataGrid.lazy.stories";
 import { App as Stress } from "./DataGrid.stressing.stories";
 import { App as Collapsible } from "./DataGrid.collapse.stories";
 import { App as LinksActions } from "./DataGrid.link.stories";
@@ -73,7 +73,11 @@ const data = [
 ### Result
 
 <DataGrid
-  data={[{ myColum1: 1, myColum2: "hi" }, { myColum1: 2, myColum2: "hello" }, { myColum1: 3, myColum2: "hola" }]}
+  data={[
+    { myColum1: 1, myColum2: "hi" },
+    { myColum1: 2, myColum2: "hello" },
+    { myColum1: 3, myColum2: "hola" },
+  ]}
 >
   <DataGrid.ColumnDefinition header="Column 1" cell="myColum1" />
   <DataGrid.ColumnDefinition header="Column 2" cell="myColum2" />
@@ -108,7 +112,11 @@ const data = [
 #### Result
 
 <DataGrid
-  data={[{ myColum1: 1, myColum2: "hi" }, { myColum1: 2, myColum2: "hello" }, { myColum1: 3, myColum2: "hola" }]}
+  data={[
+    { myColum1: 1, myColum2: "hi" },
+    { myColum1: 2, myColum2: "hello" },
+    { myColum1: 3, myColum2: "hola" },
+  ]}
 >
   <DataGrid.ColumnDefinition header="Column 1" cell="myColum1" />
   <DataGrid.ColumnDefinition
@@ -151,7 +159,11 @@ const style = {
 #### Result
 
 <DataGrid
-  data={[{ myColum1: 1, myColum2: "hi" }, { myColum1: 2, myColum2: "hello" }, { myColum1: 3, myColum2: "hola" }]}
+  data={[
+    { myColum1: 1, myColum2: "hi" },
+    { myColum1: 2, myColum2: "hello" },
+    { myColum1: 3, myColum2: "hola" },
+  ]}
 >
   <DataGrid.ColumnDefinition header="Column 1" cell="myColum1" />
   <DataGrid.ColumnDefinition
@@ -166,7 +178,10 @@ const style = {
 </DataGrid>
 
 <br />
-<Toast kind="info" hasCloseButton={false}> Tip: `cell` and `cellProps` are functions that could be memoized</Toast>
+<Toast kind="info" hasCloseButton={false}>
+  {" "}
+  Tip: `cell` and `cellProps` are functions that could be memoized
+</Toast>
 
 ### Sticky headers
 
@@ -285,9 +300,9 @@ The `<DataGrid.Basement>` component lets you know if the scrollbar reaches the b
 </DataGrid>
 ```
 
-## Load more example with Marvel API
+## `Load more` example with lazy API (Marvel)
 
-<Marvel />
+<Lazy />
 
 ### Infinity Scroll
 

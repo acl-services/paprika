@@ -19,7 +19,7 @@ en:
       choose_from_computer: choose from your computer
       choose_from_computer_a11y: Choose files from your computer
       cancel_upload: Cancel upload
-      restart_upload: Restart upload
+      restart_upload: Select the file again to retry
       file_list: List of files
       errors:
         size: File must be smaller than {{maxFileSize}}
@@ -103,10 +103,10 @@ en:
         placeholder: Select...
       filter:
         a11y_text: Search
-        no_results_message: Your search result did not match any options.
+        no_results_message: No results found
         placeholder: Search...
       footer:
-        accept: Accept
+        accept: Apply
         cancel: Cancel
         clear: Clear
     listBoxBrowser:
@@ -116,6 +116,9 @@ en:
     listBoxWithTags:
       placeholder: Select…
       no_results_found: No results found
+      all_items_have_been_selected: "All items have been selected"
+    search: 
+      searchTerm: Search term...
     actionBar:
       columns_arrangement:
         hide_all: Hide all
@@ -186,3 +189,37 @@ en:
     copyInput:
       clicked_tooltip: Copied
       hover_tooltip: Copy to clipboard
+    dynamicHyperlinkTransformer:
+      access_denied: "Access denied"
+      invalid_url: "Invalid URL"
+      loading: Loading...
+    filter:
+      actions:
+        add: Add filter
+        clear: Clear
+        delete: Delete
+      no_filters_applied: No filters applied to this view
+      label: Filter
+      lowercase_label: "{{count}} filter"
+      lowercase_label_plural: "{{count}} filters"
+      and: And
+      or: Or
+      rules:
+        is: is
+        is_not: is not
+        contains: contains
+        does_not_contain: does not contain
+        is_blank: is blank
+        is_not_blank: is not blank
+        equals: equals
+        not_equal_to: not equal to
+        greater_than: ">"
+        less_than: "<"
+        greater_than_or_equal_to: "≥"
+        less_than_or_equal_to: "≤"
+        is_empty: is empty
+        is_not_empty: is not empty
+        is_before: is before
+        is_after: is after
+        true: "true"
+        false: "false"

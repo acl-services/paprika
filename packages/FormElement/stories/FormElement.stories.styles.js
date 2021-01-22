@@ -11,3 +11,4 @@ export const FormElementStory = props => (
     <ExampleStory {...props} />
   </FormElementStyles>
 );
+FormElementStory.defaultTaglines = ExampleStory.defaultTaglines;

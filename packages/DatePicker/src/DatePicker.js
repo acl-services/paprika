@@ -1,14 +1,10 @@
 import React from "react";
 import PropTypes from "prop-types";
 import moment from "moment";
-
+import { useDebounce, extractChildrenProps, isElementContainsFocus } from "@paprika/helpers";
 import Popover from "@paprika/popover";
 import DateInput from "@paprika/date-input";
 import Calendar from "@paprika/calendar/lib/SingleDateCalendar";
-import useDebounce from "@paprika/helpers/lib/hooks/useDebounce";
-import isElementContainsFocus from "@paprika/helpers/lib/dom/isElementContainsFocus";
-import extractChildrenProps from "@paprika/helpers/lib/extractChildrenProps";
-
 import DateInputPropsCollector from "./components/Input";
 import DatePickerPopoverPropsCollector from "./components/Popover";
 

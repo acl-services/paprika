@@ -3,7 +3,7 @@ import PropTypes from "prop-types";
 import * as constants from "@paprika/constants/lib/Constants";
 import Overlay from "@paprika/overlay";
 import { zValue } from "@paprika/stylers/lib/helpers";
-import extractChildren from "@paprika/helpers/lib/extractChildren";
+import { extractChildren } from "@paprika/helpers";
 import FocusLock from "./components/FocusLock";
 import * as sc from "./Modal.styles";
 

@@ -80,7 +80,7 @@ export function uploadToServer({ file, data = {}, onProgress, onSuccess, onError
     }
   };
 
-  const onErrorFn = (error, response) => {
+  const onEndFn = (error, response) => {
     if (error) {
       onError({ file, error });
       return;
@@ -93,7 +93,7 @@ export function uploadToServer({ file, data = {}, onProgress, onSuccess, onError
     onRequest({
       file,
       onProgress: onProgressFn,
-      onError: onErrorFn,
+      onEnd: onEndFn,
       headers: headerObj,
       data,
       formData,
@@ -104,7 +104,7 @@ export function uploadToServer({ file, data = {}, onProgress, onSuccess, onError
   file.request
     .send(formData)
     .on("progress", onProgressFn)
-    .end(onErrorFn);
+    .end(onEndFn);
 }
 
 export function getFiles({ event, maxFileSize, supportedMimeTypes, endpoint }) {

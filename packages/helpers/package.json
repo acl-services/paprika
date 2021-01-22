@@ -1,9 +1,10 @@
 {
   "name": "@paprika/helpers",
-  "version": "1.0.2",
-  "description": "Testing helpers for the components",
+  "version": "2.0.1",
+  "description": "JavaScript and React helper utilities",
   "author": "@paprika",
   "license": "MIT",
+  "main": "lib/index.js",
   "repository": {
     "type": "git",
     "url": "https://github.com/acl-services/paprika.git",
@@ -11,6 +12,10 @@
   },
   "publishConfig": {
     "access": "public"
+  },
+  "dependencies": {
+    "@babel/runtime-corejs2": "^7.3.1",
+    "prop-types": "^15.7.2"
   },
   "peerDependencies": {
     "react": "^16.8.0",

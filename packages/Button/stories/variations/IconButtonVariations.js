@@ -4,28 +4,7 @@ import { Gap } from "storybook/assets/styles/common.styles";
 import StoryHeading from "storybook/components/StoryHeading";
 import InfoIcon from "@paprika/icon/lib/InfoCircle";
 import tokens from "@paprika/tokens";
-import Popover from "@paprika/popover";
-import PlusIcon from "@paprika/icon/lib/Add";
 import Button from "../../src/Button";
-
-const renderTriggerWithTooltip = () => {
-  const content = "Tooltip text example";
-  return (
-    <Popover align="top" isDark isEager offset={8} shouldKeepFocus>
-      <Popover.Trigger tabIndex="-1">
-        <PlusIcon />
-      </Popover.Trigger>
-      {content && (
-        <>
-          <Popover.Content key={content}>
-            <Popover.Card>{content}</Popover.Card>
-          </Popover.Content>
-          <Popover.Tip />
-        </>
-      )}
-    </Popover>
-  );
-};
 
 function clickHandler() {
   action("Clicked a button")();
@@ -34,7 +13,9 @@ function clickHandler() {
 export default function IconButtonVariations() {
   return (
     <>
-      <StoryHeading>Icon Button</StoryHeading>
+      <StoryHeading level={1}>
+        <code>&lt;Button.Icon&gt;</code>
+      </StoryHeading>
       <Gap.Small />
       <Button.Icon onClick={clickHandler} size="small">
         <InfoIcon />
@@ -130,9 +111,6 @@ export default function IconButtonVariations() {
       <Button.Icon onClick={clickHandler} kind="minor" isDisabled>
         <InfoIcon color={tokens.color.gold} />
       </Button.Icon>
-      <Gap.Small />
-      <StoryHeading level={3}>With tooltip</StoryHeading>
-      <Button.Icon>{renderTriggerWithTooltip()}</Button.Icon>
     </>
   );
 }

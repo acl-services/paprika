@@ -23,3 +23,9 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 ### Added
 
 - Updated: Created and placed all constants into type.js file. [@kaan.darcey](https://github.com/KDarcey).
+
+## [1.0.6-alpha.0] - 2021-01-21
+
+### Fixed
+
+- Fixed the mapping children error in `<Modal.Footer />`

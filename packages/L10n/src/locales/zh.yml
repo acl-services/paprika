@@ -19,7 +19,7 @@ zh:
       choose_from_computer: 从您的电脑中选择
       choose_from_computer_a11y: 从您的电脑中选择文件
       cancel_upload: 取消上传
-      restart_upload: 重新启动上传
+      restart_upload: 再次选择文件重试
       file_list: 文件列表
       errors:
         size: 文件必须小于 {{maxFileSize}}
@@ -103,8 +103,12 @@ zh:
         placeholder: 选择…
       filter:
         a11y_text: 搜索
-        no_results_message: 您的搜索结果没有匹配任何选项。
+        no_results_message: 未找到结果
         placeholder: 搜索…
+      footer:
+        accept: 应用
+        cancel: 取消
+        clear: 清除
     listBoxBrowser:
       explore: 探索更多选项
       selected: 选定选项
@@ -112,6 +116,9 @@ zh:
     listBoxWithTags:
       placeholder: 选择…
       no_results_found: 未找到结果
+      all_items_have_been_selected: "已选择所有项"
+    search:
+      searchTerm: 搜索词…
     actionBar:
       columns_arrangement:
         hide_all: 全部隐藏
@@ -123,7 +130,7 @@ zh:
       no_results: 没有结果
       filter:
         no_filters_applied: 没有过滤器应用于此视图
-        label: 筛选
+        label: 过滤器
         singular_label: 已应用 1 个过滤器
         plural_label: "已应用 {{numberOfFilters}} 个过滤器"
         add_filter: 添加过滤字段
@@ -182,3 +189,37 @@ zh:
     copyInput:
       clicked_tooltip: 已复制
       hover_tooltip: 复制到剪贴板
+    dynamicHyperlinkTransformer:
+      access_denied: "拒绝访问"
+      invalid_url: "无效的 URL"
+      loading: 正在加载…
+    filter:
+      actions:
+        add: 添加过滤器
+        clear: 清除
+        delete: 删除
+      no_filters_applied: 没有过滤器应用于此视图
+      label: 筛选
+      lowercase_label: "{{count}} 个过滤器"
+      lowercase_label_plural: "{{count}} 个过滤器"
+      and: 和
+      or: 或
+      rules:
+        is: 是
+        is_not: 不是
+        contains: 包含
+        does_not_contain: 不包含
+        is_blank: 为空
+        is_not_blank: 不为空
+        equals: 等于
+        not_equal_to: 不等于
+        greater_than: ">"
+        less_than: "<"
+        greater_than_or_equal_to: "≥"
+        less_than_or_equal_to: "≤"
+        is_empty: 是空的
+        is_not_empty: 不是空的
+        is_before: 早于
+        is_after: 晚于
+        true: "真"
+        false: "假"
