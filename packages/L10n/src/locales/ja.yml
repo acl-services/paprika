@@ -189,7 +189,37 @@ ja:
     copyInput:
       clicked_tooltip: コピー済み
       hover_tooltip: クリップボードにコピー
-    dynamicHyperlink:
+    dynamicHyperlinkTransformer:
       access_denied: "アクセスが拒否されました"
       invalid_url: "URL が無効です"
       loading: 読み込み中...
+    filter:
+      actions:
+        add: フィルターを追加
+        clear: クリア
+        delete: 削除
+      no_filters_applied: このビューに適用するフィルターなし
+      label: フィルター
+      lowercase_label: "{{count}} フィルター"
+      lowercase_label_plural: "{{count}} フィルター"
+      and: および
+      or: または
+      rules:
+        is: '='
+        is_not: 'は次でない:'
+        contains: 'は次を含む:'
+        does_not_contain: 'は次を含まない:'
+        is_blank: は空白である
+        is_not_blank: は空白でない
+        equals: 'は次と一致する:'
+        not_equal_to: 'は次と一致しない:'
+        greater_than: ">"
+        less_than: "<"
+        greater_than_or_equal_to: "≥"
+        less_than_or_equal_to: "≤"
+        is_empty: は空である
+        is_not_empty: は空でない
+        is_before: 'は次より前である:'
+        is_after: 'は次より後である:'
+        true: "真"
+        false: "偽"
