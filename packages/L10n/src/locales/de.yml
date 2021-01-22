@@ -130,7 +130,7 @@ de:
       no_results: Keine Ergebnisse
       filter:
         no_filters_applied: Auf diese Ansicht wurden keine Filter angewendet
-        label: Filtern
+        label: Filter
         singular_label: 1 Filter angewendet
         plural_label: "{{numberOfFilters}} Filter angewendet"
         add_filter: Feld hinzufügen zum Filtern nach
