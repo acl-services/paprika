@@ -33,6 +33,7 @@ a[data-dynamic-hyperlink] {
 
     &.dynamic-hyperlink--invalid {
       color: $color--black-lighten-20;
+      padding-right: $space-sm;
     }
   }
 }
