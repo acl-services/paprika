@@ -11,6 +11,7 @@ import arrows from "./arrows";
 export const handleKeyDown = ({ refFocus, tableId, columnsLength, rowsLength }) => event => {
   const arrowsFns = arrows({ refFocus, tableId, columnsLength, rowsLength });
   if (event.key in arrowsFns) {
+    event.preventDefault(); // we don't want to scroll the page on using the keys
     arrowsFns[event.key]();
   }
 };
