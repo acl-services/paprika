@@ -1,0 +1,246 @@
+import { Meta, Props, Story } from "@storybook/addon-docs/blocks";
+import { getStoryName } from "storybook/storyTree";
+
+<Meta title={`${getStoryName("seducer")}/Docs`} />
+
+<!-- <Description markdown={Readme} /> -->
+<!-- import { Description } from "@storybook/addon-docs/blocks"; -->
+
+# Seducer
+
+React.useReducer is an awesome hook but more often than not it is overshadow by its relative React.useState which is easier and simple to use.
+
+Personally, I think is mostly by some of the following reasons:
+
+Reducers are not the bread and butter of all react-developers unlikeReact.useState. This make it a harder pattern to memorize.
+Apart from simple examples React.useReducer requires some boilerplate to make it functional.
+To make it consumable across different components you need to pair it with the React.createContext and you will need more boilerplate to use it.
+And because all above, our belovedReact.useState is picked first than React.useReducer each time
+To mitigate some of these reasons, I created Seducer (simple reducer) which is a simple wrapper on top of React.useReducer, making it easier to use and with a more friendly approach.
+
+Seducer provides two hooks that you can consume useSeducer and useSeducerWithContext.
+
+Ok, showtime, these are a basic example foruseSeducer and a more elaborated one for useSeducerWithContext.
+
+`Example 1`
+
+`Example 2`
+
+As you can see useSeducer and useSeducerWithContext are easy to use and give you a lot of flexibility in helping you to
+manage your state. All these with the benefit of using React.useReducerand without worrying of setting up switch statements,
+declaring reducer function or worrying about how to organize your code, you don't even have to understand the reducer pattern at all,
+this has been abstracted for you.
+
+IMO just by abstracting React.useReducer and let you focusing only in actions, Seducer has already accomplish its value
+proposition in improving the React.useReducer experience.
+
+But Seducer provides a little more advances features for more complex scenarios, catering small and medium reusable
+features or complex components, also helps you in using the concept of "inversion of control" with a more friendly approach,
+so if you are interested in learning more about that.
+
+Please keep reading.
+
+## Reusability - Advance
+
+Reusing components and features within the React ecosystem is a complex topic, there are many patterns and ways to make
+your components reusable.
+
+Seducer in specific use the state reduce pattern, this patterns is best suitable for small and medium reusable
+features or complex components.
+
+The recipe for reusable component using useSeducer goes like this:
+
+1. Export a hook initializing your reducer with useSeducer
+
+`Example 3`
+
+2. Create your reusable component:
+
+Pay attention how we are passing down a store which will let us to reuse the same hook that our consumer,
+but if the consumer doesn't pass anything we are initializing it with a default store.
+
+`Example 4`
+
+3. Make use of your Reusable component
+
+`Example 5`
+
+4. Control your Reusable component
+
+`Example 6`
+
+That's it you created a control and uncontrolled component.
+
+The recipe for useSeducerWithContext goes like this:
+
+1. Similarly to useSeducer start by defining the basic structure:
+   `Example 7`
+
+2. We repeat the step for creating our reusable component, keep in mind that unlike useSeducerwhere we injected the store,
+   for useSeducerWithContext is only required to call useSeducerWithContext().
+   `Example 8`
+
+3. Now we need to wrap our Reusable component within a Provider and use it.
+   `Example 9`
+
+Because real application never look like Counters, here you can see a small feature that let you select and unselect characters,
+implemented with useSeducer and useSeducerWithContext
+
+## Using useSeducer
+
+`Example 10`
+
+## Using useSeducerWithContext
+
+`Example 11`
+
+## Inversion of Control - Advance
+
+> Don't call us, we'll call you
+> -- Hollywood Principle
+
+Inversion of Control sounds really fancy, but there is high chances of you using it daily. The functions
+you pass-down whenever using Array.Filter, Array.Map or Array.Sort, all that is Inversion of Control.
+You can read a way better explanation from Kent C. Dodds, if you are interested into understanding it better.
+
+I will show you how to do Inversion of Control using useSeducer and useSeducerWithContext
+
+Normally to achieve IOC with the State Reduce Pattern you would need to export the internal reducer of your reusable component,
+and then make your consumer to provide their own Reducer, this way the consumer could "hook" into the
+React.useReducer and received any dispatched action.
+
+This patterns is really powerful, but little cumbersome IMO, useSeducer and useSeducerWithContext provide a more
+friendly approach via what I named interceptors
+
+interceptors are regular functions that can mixed with the regular actions and extended the current ones or override them in a simple way.
+
+Take as example the following simple component using useSeducer:
+
+`Example 12`
+
+The two important parts are these:
+
+The first one is to let your hook to accept the interceptors and pass it to useSeducer
+
+`Example 13`
+
+and the second is when you override the behaviour and even extend the internal state:
+
+`Example 14`
+
+The following is the same component but using useSeducerWithContext:
+
+`Example 15`
+
+## DEV-UX
+
+Using Seducer comes with some perks from the developer experience side of things.
+As example includes a Logger, types, allowed you to customize the displayName of the reducer and finally also
+allow you to make use of "inversion of control" with minimal effort.
+
+### hasLogger
+
+When enable on useSeducer or useSeducerWithContext will print on the dev console their previous and
+next state each time an actions is executed, providing the consumer with a nicer picture of what it's happening with their state.
+
+```jsx
+import { Provider, useSeducer } from "seducer";
+
+// when using it with useSeducer
+// signature (actions, initialState, initializer, hasLogger)
+useSeducer(actions, initialState, null, true)
+
+
+// when using it with useSeducerWithContext
+<Provider actions={...} initialState={...} hasLogger>
+  <App />
+<Provider>
+```
+
+this is what you can expect to see in you dev console:
+
+`IMG DEV CONSOLE WITH hasLogger`
+
+### Types
+
+In previous examples you saw me explicitly typing the name of the action in order to dispatch it dispatch("up") or dispatch("add", value)
+this is fine but prone to typing errors.
+
+Both hooks provides a way to access their types via a third value while destructuring their hooks [state, dispatch, types].
+Seducer's types get create by taking the functions name pass-down via the action object.
+
+Make use of the types help you as well at the moment of renaming or refactoring your code since it's easier to find and replace.
+
+```jsx
+// --------
+// useSeducer provides a third value (types when destructuring the array
+const [state, dispatch, types] = useSeducer({ up, down }, 0);
+// so now having the types you prevent types errors by doing:
+dispatch(types.up);
+dispatch(types.down);
+
+// --------
+// your actions
+function add(state, payload){ ... }
+function remove(state, payload){ ... }
+
+// like useSeducer useSeducerWithContext follow the same pattern
+const [state, dispatch, types] = useSeducerWithContext();
+
+dispatch(types.add, value);
+dispatch(types.remove, value);
+
+// --------
+// actions.js
+// you can even split your action in their own file
+export const search(actions, payload) {...}
+export const sort(actions, payload) {...}
+export const remove(actions, payload) {...}
+
+// App.js
+import * as actions from "./actions";
+const [state, dispatch, types] = useSeducer(actions, initialState);
+
+dispatch(types.search, value);
+dispatch(types.sort, value);
+dispatch(types.remove, value);
+```
+
+## What about async functions and Seducer
+
+Async functions are not different or special for Seducer, You can keep using async functions as you were doing it
+before with React.useReducer.
+
+Saying that here is a small example about how to handle this scenario either with React.useReducer or Seducer.
+Also worth nothing that there is nothing preventing you from using Seducer with popular Libraries like react-query or Immer.
+
+## FAQ
+
+### Why was this library created it?
+
+As described in the beginning of the page one of the main reason was to make React.useReducer more approachable to any developer independently from their expertise level.
+But also, I did it because I'm a library author and having the power of reducers without introducing a peer-dependency in your library, is quite nice and also mitigate some of the hassles for your consumers when consuming your Components 😸. And lastly and more important in advances cases is that Seducer provides a way to implemented Inversion of control in a simple way, without forcing you to export a reducer, neither to learn convolute approaches.
+
+### Is this a new state manager library?
+
+No, Seducer is just a wrapper on top of React.useReducer that's all, React is still in charge of the state.
+
+### When should I picked React.useReducer (Seducer) instead React.useState?
+
+The React's documentation put it like this:
+
+> useReducer is usually preferable to useState when you have complex state logic that involves multiple sub-values or when the next state depends on the previous one. useReducer also lets you optimize performance for components that trigger deep updates because you can pass dispatch down instead of callbacks.
+> --React useReducer
+
+If you want to keep reading more about this, Kent C. Dodds has a [more elaborated answer](https://kentcdodds.com/blog/should-i-usestate-or-usereducer).
+
+### Where can I read more about useReducer, Context and related topics?
+
+- These three posts [How to use React Context effectively](https://kentcdodds.com/blog/how-to-use-react-context-effectively) / [The State Reducer Pattern with React Hooks How to implement useState with useReducer](https://kentcdodds.com/blog/the-state-reducer-pattern-with-react-hooks) - By Kent C. Dodds
+- [The one with hooks](https://reactjs.org/blog/2019/02/06/react-v16.8.0.html#react-1)
+- The documentation 😅 [useReducer](https://reactjs.org/docs/hooks-reference.html#usereducer)
+- Inversion of Control: [Inversion of control - Wikipedia](https://en.wikipedia.org/wiki/Inversion_of_control) and [Inversion of control - Kent C. Dodds.](https://kentcdodds.com/blog/inversion-of-control)
+- Some information about useReducer, dispatch and context [How to avoid passing callbacks down?](https://reactjs.org/docs/hooks-faq.html#how-to-avoid-passing-callbacks-down)
+- Stackoverflow answer Redux vs useReducer [When to use native React.useReducer Hook and how it differentiate from Redux](https://stackoverflow.com/questions/54576865/when-to-use-native-react-usereducer-hook-and-how-it-differentiate-from-redux) - Some answer are not entirely correct.
+- Dan Abramov recipe for avoiding re-renders with context. [Preventing rerenders with React.memo and useContext hook. #15156](https://github.com/facebook/react/issues/15156#issuecomment-474590693)
+- [Redux basic tutorial](https://redux-toolkit.js.org/tutorials/basic-tutorial) an example about how to use it. If you are interested.
