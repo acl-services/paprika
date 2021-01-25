@@ -19,7 +19,7 @@ function NotificationCard(props) {
       {extractedImage}
       <sc.NotificationMessageWrapper>
         {React.Children.map(children, child => {
-          if (extractedImage && child.type === extractedImage.type) return null;
+          if (child && extractedImage && child.type === extractedImage.type) return null;
           return child;
         })}
       </sc.NotificationMessageWrapper>

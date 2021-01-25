@@ -6,6 +6,18 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 
 ## [Unreleased]
 
+## [0.2.17] - 2020-09-02
+
+### Added
+
+- Created and placed all constants into type.js file. [@kaan.darcey](https://github.com/KDarcey)
+
+## [1.0.2-alpha.2] - 2020-11-25
+
+- Added `shouldUnmount` prop on `<Tabs.Panel>` to avoid unmount a single panel when switching between.
+
+## [1.1.2-alpha.0] - 2021-01-21
+
 ### Added
 
 - `isVertical` prop to render tabs in a stacked list. [@mikrotron](https://github.com/mikrotron)
@@ -22,13 +34,3 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 ### Changed
 
 - BREAKING CHANGE: Moved `height` prop from `<Tabs.List>` to `<Tabs>`, renamed to `tabHeight` and provided a default value of `48`. [@mikrotron](https://github.com/mikrotron)
-
-## [0.2.17] - 2020-09-02
-
-### Added
-
-- Created and placed all constants into type.js file. [@kaan.darcey](https://github.com/KDarcey)
-
-## [1.0.2-alpha.2] - 2020-11-25
-
-- Added `shouldUnmount` prop on `<Tabs.Panel>` to avoid unmount a single panel when switching between.

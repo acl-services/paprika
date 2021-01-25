@@ -130,7 +130,7 @@ es:
       no_results: No hay resultados
       filter:
         no_filters_applied: No se aplicaron filtros a esta vista
-        label: Filtrar
+        label: Filtro
         singular_label: Se aplicó 1 filtro
         plural_label: "{{numberOfFilters}} filtros aplicados"
         add_filter: Agregar un campo para filtrar
@@ -145,7 +145,7 @@ es:
           is_blank: está en blanco
           is_not_blank: no está en blanco
           equals: es igual a
-          not_equal_to: es distinto de
+          not_equal_to: no es igual a
           greater_than: ">"
           less_than: "<"
           greater_than_or_equal_to: "≥"
@@ -189,7 +189,37 @@ es:
     copyInput:
       clicked_tooltip: Copiado
       hover_tooltip: Copiar al portapapeles
-    dynamicHyperlink:
+    dynamicHyperlinkTransformer:
       access_denied: "Acceso denegado"
       invalid_url: "URL no válida"
       loading: Cargando...
+    filter:
+      actions:
+        add: Agregar filtro
+        clear: Borrar
+        delete: Eliminar
+      no_filters_applied: No se aplicaron filtros a esta vista
+      label: Filtrar
+      lowercase_label: "{{count}} filtro"
+      lowercase_label_plural: "{{count}} filtros"
+      and: Y
+      or: O
+      rules:
+        is: es
+        is_not: no es
+        contains: contiene
+        does_not_contain: no contiene
+        is_blank: está en blanco
+        is_not_blank: no está en blanco
+        equals: es igual a
+        not_equal_to: es distinto de
+        greater_than: ">"
+        less_than: "<"
+        greater_than_or_equal_to: "≥"
+        less_than_or_equal_to: "≤"
+        is_empty: está vacío
+        is_not_empty: no está vacío
+        is_before: es anterior a
+        is_after: es posterior a
+        true: "verdadero"
+        false: "falso"

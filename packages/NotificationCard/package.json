@@ -1,6 +1,6 @@
 {
   "name": "@paprika/notification-card",
-  "version": "1.0.5",
+  "version": "1.0.6",
   "description": "Notification Card component",
   "author": "@paprika",
   "main": "lib/index.js",
@@ -17,7 +17,7 @@
   "dependencies": {
     "@babel/runtime-corejs2": "^7.3.1",
     "@paprika/constants": "^1.0.0",
-    "@paprika/heading": "^1.0.5",
+    "@paprika/heading": "^1.0.6",
     "@paprika/helpers": "^2.0.1",
     "@paprika/stylers": "^1.0.0",
     "@paprika/tokens": "^1.0.0",
