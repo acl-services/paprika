@@ -9,7 +9,7 @@ import * as sc from "./Table.styles";
 import { handleBlur, handleFocus, handleKeyDown, handleClick } from "./event";
 
 export default function Table(props) {
-  const { borderType, children, hasZebraStripes, data, a11yText, ...moreProps } = props;
+  const { borderType, children, hasZebraStripes, data, a11yText, enableArrowKeyNavigation, ...moreProps } = props;
   const [tableId] = React.useState(() => `table_${uuidv4()}`);
 
   const refFocus = React.useRef(null);
@@ -30,17 +30,18 @@ export default function Table(props) {
     rowsLength: data.length,
   };
 
+  let arrowKeyNavigationProps = {};
+  if (enableArrowKeyNavigation) {
+    arrowKeyNavigationProps = {
+      onFocus: handleFocus({ refFocus, tableId }),
+      onBlur: handleBlur({ refFocus, tableId }),
+      onKeyDown: handleKeyDown({ refFocus, tableId, ...qty }),
+      onClick: handleClick({ refFocus, tableId }),
+    };
+  }
+
   return (
-    <sc.Table
-      aria-label={a11yText}
-      id={tableId}
-      tabIndex={0}
-      {...moreProps}
-      onFocus={handleFocus({ refFocus, tableId })}
-      onBlur={handleBlur({ refFocus, tableId })}
-      onKeyDown={handleKeyDown({ refFocus, tableId, ...qty })}
-      onClick={handleClick({ refFocus, tableId })}
-    >
+    <sc.Table aria-label={a11yText} id={tableId} tabIndex={0} {...moreProps} {...arrowKeyNavigationProps}>
       <sc.Thead>
         <tr>
           {ColumnDefinitions.map((columnDefinition, columnIndex) => {
@@ -114,12 +115,15 @@ const propTypes = {
   hasZebraStripes: PropTypes.bool,
   /** Array of data to be stored in the Table */
   data: PropTypes.arrayOf(PropTypes.shape({})),
+  /** For authors use only, use case: inline editing. */
+  enableArrowKeyNavigation: PropTypes.bool,
 };
 
 const defaultProps = {
   borderType: Table.types.border.HORIZONTAL,
   data: [],
   hasZebraStripes: false,
+  enableArrowKeyNavigation: false,
 };
 
 Table.displayName = "Table";

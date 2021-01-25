@@ -7,7 +7,6 @@ const arrows = ({ refFocus, tableId, columnsLength, rowsLength }) => ({
       const { rowIndex, columnIndex } = refFocus.current;
       const nextRowIndex = rowIndex - 1;
       if (nextRowIndex >= 0 && nextRowIndex !== rowIndex) {
-        console.log("↑");
         removeHighlightFocus({ rowIndex, columnIndex }, tableId);
         addHighlightFocus({ rowIndex: nextRowIndex, columnIndex }, tableId);
         refFocus.current = { rowIndex: nextRowIndex, columnIndex };
@@ -19,7 +18,6 @@ const arrows = ({ refFocus, tableId, columnsLength, rowsLength }) => ({
       const { rowIndex, columnIndex } = refFocus.current;
       const nextRowIndex = rowIndex + 1;
       if (nextRowIndex <= rowsLength - 1 && nextRowIndex !== rowIndex) {
-        console.log("↓");
         removeHighlightFocus({ rowIndex, columnIndex }, tableId);
         addHighlightFocus({ rowIndex: nextRowIndex, columnIndex }, tableId);
         refFocus.current = { rowIndex: nextRowIndex, columnIndex };
@@ -31,7 +29,6 @@ const arrows = ({ refFocus, tableId, columnsLength, rowsLength }) => ({
       const { rowIndex, columnIndex } = refFocus.current;
       const nextColumnIndex = columnIndex - 1;
       if (nextColumnIndex >= 0 && nextColumnIndex !== columnIndex) {
-        console.log("←");
         removeHighlightFocus({ rowIndex, columnIndex }, tableId);
         addHighlightFocus({ rowIndex, columnIndex: nextColumnIndex }, tableId);
         refFocus.current = { rowIndex, columnIndex: nextColumnIndex };
@@ -43,7 +40,6 @@ const arrows = ({ refFocus, tableId, columnsLength, rowsLength }) => ({
       const { rowIndex, columnIndex } = refFocus.current;
       const nextColumnIndex = columnIndex + 1;
       if (nextColumnIndex <= columnsLength - 1 && nextColumnIndex !== columnIndex) {
-        console.log("→");
         removeHighlightFocus({ rowIndex, columnIndex }, tableId);
         addHighlightFocus({ rowIndex, columnIndex: columnIndex + 1 }, tableId);
         refFocus.current = { rowIndex, columnIndex: nextColumnIndex };

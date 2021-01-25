@@ -16,7 +16,6 @@ export const handleKeyDown = ({ refFocus, tableId, columnsLength, rowsLength }) 
 };
 
 export const handleBlur = ({ refFocus, tableId }) => () => {
-  console.log("🌜");
   if (refFocus.current) {
     const { rowIndex, columnIndex } = refFocus.current;
     addHighlightIdleClass({ rowIndex, columnIndex }, tableId);
@@ -24,7 +23,6 @@ export const handleBlur = ({ refFocus, tableId }) => () => {
 };
 
 export const handleFocus = ({ refFocus, tableId }) => () => {
-  console.log("🔆");
   removeHighlightIdleClass(tableId);
   if (refFocus.current === null) {
     addHighlightFocus({ rowIndex: 0, columnIndex: 0 }, tableId);
