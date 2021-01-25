@@ -30,18 +30,18 @@ export default function Table(props) {
     rowsLength: data.length,
   };
 
-  let arrowKeyNavigationProps = {};
-  if (enableArrowKeyNavigation) {
-    arrowKeyNavigationProps = {
-      onFocus: handleFocus({ refFocus, tableId }),
-      onBlur: handleBlur({ refFocus, tableId }),
-      onKeyDown: handleKeyDown({ refFocus, tableId, ...qty }),
-      onClick: handleClick({ refFocus, tableId }),
-    };
-  }
+  const arrowKeyNavigationProps = enableArrowKeyNavigation
+    ? {
+        onFocus: handleFocus({ refFocus, tableId }),
+        onBlur: handleBlur({ refFocus, tableId }),
+        onKeyDown: handleKeyDown({ refFocus, tableId, ...qty }),
+        onClick: handleClick({ refFocus, tableId }),
+        tabIndex: -1,
+      }
+    : {};
 
   return (
-    <sc.Table aria-label={a11yText} id={tableId} tabIndex={0} {...moreProps} {...arrowKeyNavigationProps}>
+    <sc.Table aria-label={a11yText} id={tableId} {...moreProps}>
       <sc.Thead>
         <tr>
           {ColumnDefinitions.map((columnDefinition, columnIndex) => {
@@ -75,13 +75,27 @@ export default function Table(props) {
 
                 if (typeof cell === "function")
                   return (
-                    <sc.TD borderType={borderType} key={columnIndex} {...moreColumnProps} {...position}>
+                    <sc.TD
+                      borderType={borderType}
+                      key={columnIndex}
+                      {...moreColumnProps}
+                      {...position}
+                      {...arrowKeyNavigationProps}
+                      {...(columnIndex === 0 && rowIndex === 0 ? { tabIndex: 0 } : {})}
+                    >
                       {cell({ row, rowIndex, columnIndex })}
                     </sc.TD>
                   );
                 if (typeof cell === "string")
                   return (
-                    <sc.TD borderType={borderType} key={columnIndex} {...moreColumnProps} {...position}>
+                    <sc.TD
+                      borderType={borderType}
+                      key={columnIndex}
+                      {...moreColumnProps}
+                      {...position}
+                      {...arrowKeyNavigationProps}
+                      {...(columnIndex === 0 && rowIndex === 0 ? { tabIndex: 0 } : {})}
+                    >
                       {typeof row[cell] !== "undefined" ? row[cell] : `Error: ${cell} doesn't exist`}
                     </sc.TD>
                   );

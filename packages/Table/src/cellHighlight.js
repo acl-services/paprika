@@ -12,13 +12,20 @@ export function $getCell({ rowIndex, columnIndex }, tableId) {
 
 export function addHighlightFocus({ rowIndex, columnIndex }, tableId) {
   const $cell = $getCell({ rowIndex, columnIndex }, tableId);
-  return $cell && $cell.classList.add("is-highlighted-focus");
+  if ($cell) {
+    $cell.classList.add("is-highlighted-focus");
+    $cell.setAttribute("tabindex", 0);
+    $cell.focus();
+  }
 }
 
 export function removeHighlightFocus({ rowIndex, columnIndex }, tableId) {
   if (rowIndex === null && columnIndex === null) return;
   const $cell = $getCell({ rowIndex, columnIndex }, tableId);
-  return $cell && $cell.classList.remove("is-highlighted-focus");
+  if ($cell) {
+    $cell.classList.remove("is-highlighted-focus");
+    $cell.setAttribute("tabindex", -1);
+  }
 }
 
 export function addHighlightIdleClass({ rowIndex, columnIndex }, tableId) {
