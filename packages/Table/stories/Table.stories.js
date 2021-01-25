@@ -110,7 +110,22 @@ export function WithZebras() {
   );
 }
 
+export function WithArrowNavigation() {
+  return (
+    <bordersStyles.Container>
+      <bordersStyles.Gap>
+        <h4>Default value</h4>
+        <Table a11yText="" data={data} hasZebraStripes enableArrowKeyNavigation>
+          <Table.ColumnDefinition header="Name" cell="name" />
+          <Table.ColumnDefinition header="LastName" cell="lastName" />
+        </Table>
+      </bordersStyles.Gap>
+    </bordersStyles.Container>
+  );
+}
+
 storiesOf(`${storyName}`, module)
   .add("Basic", () => <Basic />)
   .add("Has Zebra stripes", () => <WithZebras />)
-  .add("Border types", () => <Borders />);
+  .add("Border types", () => <Borders />)
+  .add("Arrow navigation", () => <WithArrowNavigation />);
