@@ -13,13 +13,7 @@ const defaultProps = {
 const Footer = props => {
   const { children, ...moreProps } = props;
 
-  return (
-    <sc.Footer {...moreProps}>
-      {React.Children.map(children, child => (
-        <sc.Child key={child.key}>{child}</sc.Child>
-      ))}
-    </sc.Footer>
-  );
+  return <sc.Footer {...moreProps}>{children}</sc.Footer>;
 };
 
 Footer.displayName = "Modal.Footer";

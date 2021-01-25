@@ -1,13 +1,17 @@
 @import "@paprika/stylers/lib/helpers.scss";
 @import "@paprika/tokens/lib/tokens.scss";
 
+/*
+Changes to these styles need to be compiled and copied into ckEditor in the consuming app.
+*/
+
 a[data-dynamic-hyperlink] {
   background-color: $color--white;
   border-radius: $button--border-radius;
   box-shadow: 0 0 2px $color--black;
   color: $color--blue-darken-10;
   font-size: font-scale(-1);
-  padding: 2px $space-sm;
+  padding: 2px 2px 2px $space-sm;
   text-decoration: none;
 
   &:hover {
@@ -20,15 +24,16 @@ a[data-dynamic-hyperlink] {
     font-weight: bold;
     margin-left: $space-sm;
 
-    &.valid {
+    &.dynamic-hyperlink--valid {
       background-color: $color--blue-lighten-40;
       color: $color--blue-darken-10;
-      padding: 1px $space;
-      text-transform: capitalize;
+      padding: 1px $space 0;
+      text-transform: uppercase;
     }
 
-    &.invalid {
+    &.dynamic-hyperlink--invalid {
       color: $color--black-lighten-20;
+      padding-right: $space-sm;
     }
   }
 }

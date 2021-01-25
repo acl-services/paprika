@@ -1,4 +1,4 @@
-import fetchMock, { mockEndpoints } from "./MockEndpoints";
+import fetchMock, { useMockEndpoints } from "./MockEndpoints";
 
 export default fetchMock;
-export { mockEndpoints };
+export { useMockEndpoints };

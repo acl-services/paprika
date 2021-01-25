@@ -6,7 +6,9 @@ import SidePanel from "@paprika/sidepanel";
 import styled from "styled-components";
 import Button from "@paprika/button";
 import Spinner from "@paprika/spinner";
+import { useMockEndpoints } from "../../MockEndpoints/src";
 import DataGrid, { renderColumnIndicator, renderColumnExpand } from "../src";
+import endpoints from "./helpers/mock-endpoints.json";
 
 const storyName = getStoryName("DataGrid");
 
@@ -22,9 +24,7 @@ const ImgWrapper = styled.div`
 export async function fetchMarvelAPI(term, offset = null, limit = 20) {
   const url = "https://gateway.marvel.com:443/v1/public/characters?nameStartsWith=";
   const offsetParameter = offset ? `&offset=${offset * limit}` : "";
-  // low risk to share api key for now, I can invalidate it later and extracted it to an env variable
-  const apiKey = "&apikey=ac7726775d7f6e56add4f57ed5cd9a6b";
-  const stream = await fetch(`${url}${term}${offsetParameter}${apiKey}`);
+  const stream = await fetch(`${url}${term}${offsetParameter}`);
   const data = await stream.json();
 
   return data;
@@ -40,6 +40,8 @@ export function App() {
   const [isIdle, setIsIdle] = React.useState(true);
   const [isPending, setIsPending] = React.useState(false);
   const refDataGrid = React.useRef(null);
+
+  const { endpointsAreMocked } = useMockEndpoints(endpoints);
 
   React.useEffect(() => {
     async function getData() {
@@ -131,12 +133,15 @@ export function App() {
     );
   }
 
+  if (!endpointsAreMocked) return null;
+
   return (
     <Sbook.Story>
       {isIdle ? (
         <Spinner />
       ) : (
         <>
+          <p>Note: the Marvel API is mocked and only the first 5 pages can be retrieved.</p>
           {row && renderSidepanel({ row })}
           <DataGrid
             ref={refDataGrid}

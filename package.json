@@ -11,6 +11,7 @@
     "generateReadMe": "node scripts/readmeFiles.js",
     "generateTypeDefinitions": "node scripts/typesFiles.js && yarn tsc",
     "jest:watch": "yarn jest --watch",
+    "license": "node packages/helpers/src/license.js",
     "lint": "eslint packages --report-unused-disable-directives",
     "lint:fix": "yarn lint --fix",
     "lint:jss": "stylelint './packages/**/src/**/*.styles.js'",
@@ -23,7 +24,7 @@
     "storybook": "run-p storybook:start storybook:uploadserver",
     "storybook:build": "build-storybook -s ./.storybook/public -c .storybook -o storybook-dist",
     "storybook:screener": "screener-storybook --conf screener.config.js",
-    "storybook:start": "start-storybook -p 9009 -c .storybook -s .storybook/public",
+    "storybook:start": "start-storybook -p 9009 -c .storybook",
     "storybook:uploadserver": "node scripts/uploaderServer",
     "test": "jest --passWithNoTests",
     "test:a11y": "echo 'Axe will run on this command'",
@@ -131,6 +132,7 @@
   },
   "dependencies": {
     "@babel/runtime-corejs2": "^7.4.4",
+    "legally": "^3.5.10",
     "react-json-tree": "^0.11.2",
     "shelljs": "^0.8.3"
   }
