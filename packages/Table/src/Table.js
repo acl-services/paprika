@@ -41,7 +41,7 @@ export default function Table(props) {
     : {};
 
   return (
-    <sc.Table aria-label={a11yText} id={tableId} {...moreProps}>
+    <sc.Table {...(enableArrowKeyNavigation ? { role: "grid" } : {})} aria-label={a11yText} id={tableId} {...moreProps}>
       <sc.Thead>
         <tr>
           {ColumnDefinitions.map((columnDefinition, columnIndex) => {
