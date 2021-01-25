@@ -1,5 +1,6 @@
 import React from "react";
 import { Story, Rule, Tagline } from "storybook/assets/styles/common.styles";
+import { select } from "@storybook/addon-knobs";
 import Heading from "@paprika/heading";
 import L10n from "@paprika/l10n";
 import Tabs from "@paprika/tabs";
@@ -8,12 +9,16 @@ import DynamicHyperlinkTransformer from "../../src/DynamicHyperlinkTransformer";
 import Tab3Content from "./Tab3Content";
 import endpoints from "./mock-endpoints.json";
 
+const knobs = () => ({
+  locale: select("locale", ["de", "en", "es", "fr", "ja", "pt", "zh"], "en"),
+});
+
 // This function must return a Promise that resolves: { name, term, error }
 function handleFetch(url, linkType) {
   return fetch(`/${linkType}`);
 }
 
-function ExampleStory() {
+function ExampleStory({ locale }) {
   const { endpointsAreMocked } = useMockEndpoints(endpoints);
   if (!endpointsAreMocked) return null;
 
@@ -27,7 +32,7 @@ function ExampleStory() {
         the `data-dynamic-hyperlink` attribute to the fancy cards seen below.
       </Tagline>
       <Rule />
-      <L10n locale="en">
+      <L10n locale={locale}>
         <DynamicHyperlinkTransformer onFetch={handleFetch} />
         <Tabs>
           <Tabs.List>
@@ -72,4 +77,4 @@ function ExampleStory() {
   );
 }
 
-export default () => <ExampleStory />;
+export default () => <ExampleStory {...knobs()} />;
