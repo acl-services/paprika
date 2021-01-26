@@ -15,8 +15,8 @@ export const FilterItem = styled.li`
 
 export const RowWrapper = styled.div`
   display: flex;
-  flex-grow: 1;
   flex-wrap: wrap;
+  width: 100%;
 
   [data-pka-anchor="filter.item.valueInput--date"] {
     flex-basis: 100%;
@@ -25,16 +25,28 @@ export const RowWrapper = styled.div`
 `;
 
 export const ColumnSelect = styled.div`
-  flex-basis: calc(50% - 6px);
   height: ${spacer(4)};
   margin-right: ${tokens.spaceLg};
+  width: calc(50% - 6px);
+
+  @media (max-width: 1200px) {
+    flex-basis: 100%;
+    margin-bottom: ${tokens.space};
+    margin-right: 0;
+    width: auto;
+  }
 `;
 
 export const RuleSelect = styled.div`
   align-items: center;
   display: flex;
-  flex-basis: calc(50% - 6px);
   height: ${spacer(4)};
+  width: calc(50% - 6px);
+
+  @media (max-width: 1200px) {
+    flex-basis: 100%;
+    width: auto;
+  }
 `;
 
 export const ValueInput = styled.div`
