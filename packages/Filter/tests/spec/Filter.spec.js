@@ -163,4 +163,46 @@ describe("ActionBar Filter", () => {
 
     expect(handleCancel).toHaveBeenCalled();
   });
+
+  it("should render filter input if there are more than 15 columns or options", async () => {
+    renderComponent({
+      columns: [...Array(15)].map((item, index) => ({
+        id: index.toString(),
+        type: Filter.types.columnTypes.TEXT,
+        label: `column ${index}`,
+      })),
+      children: (
+        <Filter.Item columnId="0" id="0" index={0} onChangeFilter={noop} onDeleteFilter={noop} rule="IS" value="" />
+      ),
+    });
+
+    fireEvent.click(screen.getByText("Filter"));
+    await waitFor(() => {
+      within(screen.getByTestId("filter.item.columnSelector")).getByTestId("list-box-trigger");
+    });
+    fireEvent.click(within(screen.getByTestId("filter.item.columnSelector")).getByTestId("list-box-trigger"));
+
+    expect(screen.getByTestId("list-filter")).toBeInTheDocument();
+  });
+
+  it("should not render filter input if there are less than 15 columns or options", async () => {
+    renderComponent({
+      columns: [...Array(10)].map((item, index) => ({
+        id: index.toString(),
+        type: Filter.types.columnTypes.TEXT,
+        label: `column ${index}`,
+      })),
+      children: (
+        <Filter.Item columnId="0" id="0" index={0} onChangeFilter={noop} onDeleteFilter={noop} rule="IS" value="" />
+      ),
+    });
+
+    fireEvent.click(screen.getByText("Filter"));
+    await waitFor(() => {
+      within(screen.getByTestId("filter.item.columnSelector")).getByTestId("list-box-trigger");
+    });
+    fireEvent.click(within(screen.getByTestId("filter.item.columnSelector")).getByTestId("list-box-trigger"));
+
+    expect(screen.queryByTestId("list-filter")).not.toBeInTheDocument();
+  });
 });

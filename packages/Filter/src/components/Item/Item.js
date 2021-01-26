@@ -27,6 +27,8 @@ const defaultProps = {
   renderValueField: null,
 };
 
+const MAX_OPTIONS = 15;
+
 function Item(props) {
   const {
     index,
@@ -147,7 +149,7 @@ function Item(props) {
         return (
           <sc.ValueInput data-pka-anchor="filter.item.valueInput">
             <ListBox onChange={handleChangeSingleSelectFilterValue}>
-              <ListBox.Filter />
+              {selectOptions >= MAX_OPTIONS ? <ListBox.Filter /> : null}
               {selectOptions.map(data => (
                 <ListBox.Option
                   key={data[selectedColumnId]}
@@ -180,7 +182,7 @@ function Item(props) {
           <sc.ColumnSelect data-pka-anchor="filter.item.columnSelector">
             <ListBox onChange={handleChangeColumn}>
               <ListBox.Trigger hasClearButton={false} />
-              <ListBox.Filter />
+              {columns.length >= MAX_OPTIONS ? <ListBox.Filter /> : null}
               {columns.map(column => (
                 <ListBox.Option key={column.id} value={column.id} isSelected={column.id === selectedColumnId}>
                   {column.label}
