@@ -23,7 +23,8 @@
     "@paprika/pill": "^1.0.5",
     "@paprika/stylers": "^1.0.0",
     "@paprika/tokens": "^1.0.0",
-    "prop-types": "^15.7.2"
+    "prop-types": "^15.7.2",
+    "uuid": "^8.3.2"
   },
   "peerDependencies": {
     "react": "^16.8.4",
