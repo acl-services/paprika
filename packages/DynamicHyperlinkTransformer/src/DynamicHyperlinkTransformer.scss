@@ -10,30 +10,32 @@ a[data-dynamic-hyperlink] {
   border-radius: $button--border-radius;
   box-shadow: 0 0 2px $color--black;
   color: $color--blue-darken-10;
+  cursor: default;
   font-size: font-scale(-1);
   padding: 2px 2px 2px $space-sm;
   text-decoration: none;
 
-  &:hover {
-    text-decoration: underline;
+  .dynamic-hyperlink--label {
+    cursor: pointer;
+    margin-right: $space-sm;
+
+    &:hover {
+      text-decoration: underline;
+    }
   }
 
-  span {
+  .dynamic-hyperlink--valid {
+    background-color: $color--blue-lighten-40;
     border-radius: $button--border-radius;
+    color: $color--blue-darken-10;
     font-size: font-scale(-2);
     font-weight: bold;
-    margin-left: $space-sm;
+    padding: 1px $space 0;
+    text-transform: uppercase;
+  }
 
-    &.dynamic-hyperlink--valid {
-      background-color: $color--blue-lighten-40;
-      color: $color--blue-darken-10;
-      padding: 1px $space 0;
-      text-transform: uppercase;
-    }
-
-    &.dynamic-hyperlink--invalid {
-      color: $color--black-lighten-20;
-      padding-right: $space-sm;
-    }
+  .dynamic-hyperlink--invalid {
+    color: $color--black-lighten-20;
+    padding-right: $space-sm;
   }
 }
