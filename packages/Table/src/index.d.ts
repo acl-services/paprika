@@ -17,8 +17,7 @@ interface TableProps {
   hasZebraStripes?: boolean;
   /** Array of data to be stored in the Table */
   data?: shape[];
-  /** For author uses only, this shouldn't be enable on regular tables
- it uses is for inline editing */
+  /** For authors use only, use case: inline editing. */
   enableArrowKeyNavigation?: boolean;
 }
 
