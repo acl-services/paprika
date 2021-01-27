@@ -3,7 +3,7 @@ import selectors from "../helpers/selectors";
 import { openLazyDropDown } from "../helpers/toggleHelpers";
 
 function checkIfSelected(marvelChar, isSelected) {
-  cy.getByTestId(isSelected ? "list-option--is-selected" : "list-option").should("have.any", marvelChar);
+  cy.findByTestId(isSelected ? "list-option--is-selected" : "list-option").should("have.any", marvelChar);
 }
 
 describe("Lazy ListBox", () => {

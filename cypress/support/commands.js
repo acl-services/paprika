@@ -13,7 +13,3 @@ import "cypress-file-upload";
 Cypress.Commands.add("visitStorybook", story => {
   cy.visit(`http://localhost:9009/iframe.html?id=${story}`);
 });
-
-Cypress.Commands.add("getByTestId", str => {
-  cy.get(`[data-pka-anchor='${str}']`);
-});
