@@ -3,7 +3,7 @@ import { getStoryUrlPrefix } from "../../../../.storybook/storyTree";
 describe("Filter", () => {
   it("Should display the different filtering options", () => {
     cy.visitStorybook(`${getStoryUrlPrefix("Filter")}--showcase`);
-    cy.getByText("1 filter").click();
+    cy.findByText("1 filter").click();
     cy.get("select")
       .eq(0)
       .select("Goals")
@@ -31,52 +31,52 @@ describe("Filter", () => {
 
   it("should add filter and delete filter", () => {
     cy.visitStorybook(`${getStoryUrlPrefix("Filter")}--showcase`);
-    cy.getByText("1 filter").click();
-    cy.getByText("Add filter").click();
-    cy.getByTestId("filter.item").should("have.length", 2);
+    cy.findByText("1 filter").click();
+    cy.findByText("Add filter").click();
+    cy.findAllByTestId("filter.item").should("have.length", 2);
 
-    cy.getByTestId("filter.deleteFilterButton")
+    cy.findAllByTestId("filter.deleteFilterButton")
       .eq(0)
       .click();
-    cy.getByTestId("filter.item").should("have.length", 1);
+    cy.findAllByTestId("filter.item").should("have.length", 1);
   });
 
   it("Should switch between and or", () => {
     cy.visitStorybook(`${getStoryUrlPrefix("Filter")}--showcase`);
-    cy.getByText("1 filter").click();
-    cy.getByText("Add filter").click();
-    cy.getAllByRole("radio")
+    cy.findByText("1 filter").click();
+    cy.findByText("Add filter").click();
+    cy.findAllByRole("radio")
       .eq(0)
       .should("be.checked");
-    cy.getByTestId("filter.item")
+    cy.findAllByTestId("filter.item")
       .eq(1)
       .within(() => {
-        cy.getByTestId("input").type("1");
+        cy.findByTestId("input").type("1");
       });
-    cy.getByText("Apply").click();
+    cy.findByText("Apply").click();
 
-    cy.getAllByRole("row").should("have.length", 1);
-    cy.getByText("2 filters").click();
-    cy.getByText("Or").click();
-    cy.getAllByRole("radio")
+    cy.findAllByRole("row").should("have.length", 1);
+    cy.findByText("2 filters").click();
+    cy.findByText("Or").click();
+    cy.findAllByRole("radio")
       .eq(1)
       .should("be.checked");
-    cy.getByText("Apply").click();
-    cy.getAllByRole("row").should("have.length", 2);
+    cy.findByText("Apply").click();
+    cy.findAllByRole("row").should("have.length", 2);
   });
 
   it("Should cache changes", () => {
-    cy.getByText("2 filters").click();
-    cy.getByText("Add filter").click();
-    cy.getByText("Cancel").click();
+    cy.findByText("2 filters").click();
+    cy.findByText("Add filter").click();
+    cy.findByText("Cancel").click();
 
-    cy.getByText("2 filters").click();
-    cy.getByTestId("filter.item").should("have.length", 3);
+    cy.findByText("2 filters").click();
+    cy.findAllByTestId("filter.item").should("have.length", 3);
   });
 
   it("Should clear", () => {
-    cy.getByText("Clear").click();
-    cy.getAllByRole("row").should("have.length", 4);
-    cy.getByText("No filters applied to this view");
+    cy.findByText("Clear").click();
+    cy.findAllByRole("row").should("have.length", 4);
+    cy.findByText("No filters applied to this view");
   });
 });
