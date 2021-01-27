@@ -1,31 +1,30 @@
 import { getStoryUrlPrefix } from "../../../../.storybook/storyTree";
+import { clickListBoxTrigger } from "./helper";
 
 describe("Filter with server", () => {
   it("Should display the different filtering options", () => {
+    cy.clock();
     cy.visitStorybook(`${getStoryUrlPrefix("Filter")}--server-side-filter-example`);
-    cy.findByText("Filter").click();
-    cy.findByText("Add filter").click();
+    cy.getByText("Filter").click();
+    cy.getByText("Add filter").click();
+
+    clickListBoxTrigger("filter.item.columnSelector");
+    cy.findByText("Name").click();
+    clickListBoxTrigger("filter.item.columnSelector");
+    cy.findByText("Status").click();
+    clickListBoxTrigger("filter.item.columnSelector");
+    cy.findByText("Country").click();
+    clickListBoxTrigger("filter.item.columnSelector");
+    cy.findByText("Joined by").click();
+    clickListBoxTrigger("filter.item.columnSelector");
+    cy.findByText("Shareable").click();
+    clickListBoxTrigger("filter.item.columnSelector");
+    cy.findByText("Level").click();
+
+    clickListBoxTrigger("filter.item.ruleSelector");
+    cy.findByText("is not").click();
+
     cy.get("select")
-      .eq(0)
-      .select("Goals")
-      .select("Name")
-      .select("Status")
-      .select("Country")
-      .select("Joined by")
-      .select("Shareable")
-      .select("Level");
-    cy.get("select")
-      .eq(1)
-      .select("is")
-      .get("select")
-      .eq(2)
-      .select("low")
-      .select("mid");
-    cy.get("select")
-      .eq(1)
-      .select("is not")
-      .get("select")
-      .eq(2)
       .select("low")
       .select("mid");
   });
@@ -51,26 +50,26 @@ describe("Filter with server", () => {
     cy.findAllByTestId("filter.item")
       .eq(1)
       .within(() => {
-        cy.findByTestId("input").type("1");
+        cy.getByTestId("filter.item.valueInput").type("1");
       });
     cy.findByText("Apply").click();
 
-    cy.findAllByRole("row").should("have.length", 2);
-    cy.findByText("2 filters").click();
-    cy.findByText("Or").click();
-    cy.findAllByRole("radio")
+    cy.getAllByRole("row").should("have.length", 2);
+    cy.getByText("2 filtered").click();
+    cy.getByText("Or").click();
+    cy.getAllByRole("radio")
       .eq(1)
       .should("be.checked");
     cy.findByText("Apply").click();
   });
 
   it("Should cache changes", () => {
-    cy.findByText("2 filters").click();
-    cy.findByText("Add filter").click();
-    cy.findByText("Cancel").click();
+    cy.getByText("2 filtered").click();
+    cy.getByText("Add filter").click();
+    cy.getByText("Cancel").click();
 
-    cy.findByText("2 filters").click();
-    cy.findAllByTestId("filter.item").should("have.length", 3);
+    cy.getByText("2 filtered").click();
+    cy.getByTestId("filter.item").should("have.length", 3);
   });
 
   it("Should clear", () => {
