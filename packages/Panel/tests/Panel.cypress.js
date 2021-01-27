@@ -6,22 +6,22 @@ const testStory = "panel-tests";
 describe("<Panel />", () => {
   it("should convert <Panel offset={} /> into sticky mode", () => {
     cy.visitStorybook(`${testStory}--panel-default-sticky-story`);
-    cy.getByTestId("purple-navigator").should("be.visible");
-    cy.getByTestId("panel").then($element => {
+    cy.findByTestId("purple-navigator").should("be.visible");
+    cy.findByTestId("panel").then($element => {
       expect($element.css("top")).to.be.equal("40px");
     });
 
     cy.scrollTo(0, 200);
 
     cy.wait(500); // wait a little bit for the scrolling
-    cy.getByTestId("panel").then($element => {
+    cy.findByTestId("panel").then($element => {
       expect($element.css("top")).to.be.equal("0px");
     });
   });
 
   it("should include footer in sticky mode", () => {
     cy.visitStorybook(`${testStory}--panel-footer-sticky-story`);
-    cy.getByTestId("panel.footer").then($element => {
+    cy.findByTestId("panel.footer").then($element => {
       expect($element.css("bottom")).to.be.equal("0px");
     });
   });
@@ -35,31 +35,31 @@ describe("<Panel />", () => {
 
   it("should have no focused element if pass autofocus=false to Panel.FocusLock", () => {
     cy.visitStorybook(`${testStory}--panel-focus-lock-disabled-story`);
-    cy.getByTestId("panel").should("be.visible");
+    cy.findByTestId("panel").should("be.visible");
     cy.focused().should("not.exist");
   });
 
   it("should be possible to interact with multiple panels in a group", () => {
     cy.visitStorybook(`${storyPrefix}-examples--group-panel`);
 
-    const sidePanel1 = cy.getByTestId("panel1");
-    const sidePanel2 = cy.getByTestId("panel2");
-    const sidePanelChild = cy.getByTestId("panel-child");
+    const sidePanel1 = cy.findByTestId("panel1");
+    const sidePanel2 = cy.findByTestId("panel2");
+    const sidePanelChild = cy.findByTestId("panel-child");
     sidePanel1.should("be.visible");
     sidePanel2.should("be.visible");
     sidePanelChild.should("be.visible");
 
-    cy.getByTestId("button-panel1").click();
-    cy.getByTestId("panel1").should("not.exist");
+    cy.findByTestId("button-panel1").click();
+    cy.findByTestId("panel1").should("not.exist");
 
-    cy.getByTestId("button-panel2").click();
-    cy.getByTestId("panel2").should("not.exist");
+    cy.findByTestId("button-panel2").click();
+    cy.findByTestId("panel2").should("not.exist");
 
-    cy.getByTestId("button-panel1").click();
-    cy.getByTestId("panel1").should("exist");
+    cy.findByTestId("button-panel1").click();
+    cy.findByTestId("panel1").should("exist");
 
-    cy.getByTestId("button-panel2").click();
-    cy.getByTestId("panel2").should("exist");
+    cy.findByTestId("button-panel2").click();
+    cy.findByTestId("panel2").should("exist");
 
     cy.contains(/Toggle Child/i).click();
 
@@ -68,7 +68,7 @@ describe("<Panel />", () => {
 
     cy.contains(/Toggle Child/i).click();
 
-    cy.getByTestId("panel-child").should("not.exist");
+    cy.findByTestId("panel-child").should("not.exist");
   });
 
   let count = 1;

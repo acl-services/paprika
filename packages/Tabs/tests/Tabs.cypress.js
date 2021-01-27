@@ -9,7 +9,7 @@ describe("<Tabs />", () => {
   });
 
   it("elements inside panel are focused if focussable", () => {
-    cy.getByText(/Hello/i)
+    cy.findByText(/Hello/i)
       .tab()
       .focused()
       .contains(/Focus test inside Tabs.Panel/i)
@@ -19,7 +19,7 @@ describe("<Tabs />", () => {
   });
 
   it("tabs can be focused with left and right arrow keys", () => {
-    cy.getByText(/Hello/i)
+    cy.findByText(/Hello/i)
       .trigger("keydown", { keyCode: 39, which: 39 })
       .focused()
       .contains(/World/i)
@@ -32,17 +32,16 @@ describe("<Tabs />", () => {
   });
 
   it("tabs can be navigated with left and right arrow keys", () => {
-    cy.getByText(/Hello/i)
+    cy.findByText(/Hello/i)
       .trigger("keydown", { keyCode: 39, which: 39 })
       .focused()
       .contains(/World/i)
-      .click()
-      .getByText(/World Tab/i)
-      .should("be.visible");
+      .click();
+    cy.findByText(/World Tab/i).should("be.visible");
   });
 
   it("clicking home key will go to first available tab", () => {
-    cy.getByText(/World/i)
+    cy.findByText(/World/i)
       .click()
       .trigger("keydown", { keyCode: 36, which: 36 })
       .focused()
@@ -50,7 +49,7 @@ describe("<Tabs />", () => {
   });
 
   it("clicking end key will go to last available tab", () => {
-    cy.getByText(/Hello/i)
+    cy.findByText(/Hello/i)
       .trigger("keydown", { keyCode: 35, which: 35 })
       .focused()
       .contains(/ABC/i);
