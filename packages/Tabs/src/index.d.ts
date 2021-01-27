@@ -17,6 +17,8 @@ interface TabsProps {
   isDisabled?: boolean;
   /** If the tabs are stacked vertically. */
   isVertical?: boolean;
+  /** Use this prop when you want to use Tabs as a controlled component (also you must use 'defaultIndex'). When the user clicks on a tab, this gets fired (the tab index is passed to it). */
+  onClickTab?: (...args: any[]) => any;
   /** Size of the tab label text. */
   size?: Tabs.types.size.MEDIUM | Tabs.types.size.LARGE;
   /** Height of the tabs (ignored when isVertical is true). A number value will be interpreted as height in pixels. */

@@ -20,6 +20,7 @@ export default function Tabs(props) {
     isDisabled,
     isVertical,
     kind,
+    onClickTab,
     size,
     tabHeight,
   } = props;
@@ -27,6 +28,10 @@ export default function Tabs(props) {
   const [activeIndex, setActiveIndex] = React.useState(defaultIndex);
   const [currentFocusIndex, setFocusIndex] = React.useState(defaultIndex);
   let tabListRef = React.useRef(null);
+
+  React.useEffect(() => {
+    setActiveIndex(defaultIndex);
+  }, [defaultIndex, setActiveIndex]);
 
   function focusAndSetIndex(index) {
     tabListRef.querySelectorAll("[data-pka-anchor='tab'], [data-pka-anchor='tab-link']")[index].focus();
@@ -37,9 +42,14 @@ export default function Tabs(props) {
     tabListRef = ref;
   };
 
-  const onClickTab = (event, index) => {
+  const handleClickTab = (event, index) => {
     event.preventDefault();
-    setActiveIndex(index);
+
+    if (onClickTab) {
+      onClickTab(index);
+    } else {
+      setActiveIndex(index);
+    }
   };
 
   // TODO: Disabled tab items should also get focus on keyboard interaction
@@ -76,7 +86,7 @@ export default function Tabs(props) {
     hasTruncation,
     tabHeight,
     isVertical,
-    onClickTab,
+    handleClickTab,
     onKeyDown,
     isDisabled,
     setTabListRef,
@@ -110,6 +120,9 @@ Tabs.propTypes = {
   /** If the tabs are stacked vertically. */
   isVertical: PropTypes.bool,
 
+  /** Use this prop when you want to use Tabs as a controlled component (also you must use 'defaultIndex'). When the user clicks on a tab, this gets fired (the tab index is passed to it). */
+  onClickTab: PropTypes.func,
+
   /** Size of the tab label text. */
   size: PropTypes.oneOf([Tabs.types.size.MEDIUM, Tabs.types.size.LARGE]),
 
@@ -124,6 +137,7 @@ Tabs.defaultProps = {
   hasTruncation: false,
   isDisabled: false,
   isVertical: false,
+  onClickTab: null,
   size: Tabs.types.size.MEDIUM,
   tabHeight: 48,
 };

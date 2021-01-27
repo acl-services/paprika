@@ -3,20 +3,15 @@ import { Story, Rule, Tagline } from "storybook/assets/styles/common.styles";
 import Heading from "@paprika/heading";
 import Tabs from "../../src";
 
-function MyButton({ setActiveTabIndex, index }) {
+function MyButton({ onClick }) {
   return (
-    <button
-      type="button"
-      onClick={() => {
-        setActiveTabIndex(index);
-      }}
-    >
-      Go to tab {index}
+    <button type="button" onClick={onClick}>
+      Click me!
     </button>
   );
 }
 
-export default function ShowcaseStory() {
+export default function ControlledStory() {
   const [activeTabIndex, setActiveTabIndex] = React.useState(2);
 
   return (
@@ -24,25 +19,30 @@ export default function ShowcaseStory() {
       <Heading level={1} displayLevel={2} isLight>
         Controlled
       </Heading>
-      <Tagline>In the controlled version you can programatically set the active tab.</Tagline>
+      <Tagline>
+        To use the controlled version of the the Tabs component, the consumer must keep track of the `activeTabIndex` in
+        their state, and pass that into the Tabs component via the `defaultIndex` prop. The consumer must also pass in
+        an `onClickTab` prop, which is a function that is passed the index of the tab that was clicked on.
+      </Tagline>
       <Rule />
-      <p>
-        In this example, we have added some buttons to change the active tab, and also set the second tab as the initial
-        active tab.
-      </p>
-      <MyButton setActiveTabIndex={setActiveTabIndex} index={0} />
-      <MyButton setActiveTabIndex={setActiveTabIndex} index={1} />
-      <MyButton setActiveTabIndex={setActiveTabIndex} index={2} />
-      <Tabs onClickTab={clickedTabIndex => setActiveTabIndex(clickedTabIndex)} activeTabIndex={activeTabIndex}>
+      <MyButton onClick={() => setActiveTabIndex(0)} />
+      <MyButton onClick={() => setActiveTabIndex(1)} />
+      <MyButton onClick={() => setActiveTabIndex(2)} />
+      <Tabs
+        onClickTab={clickedTabIndex => {
+          setActiveTabIndex(clickedTabIndex);
+        }}
+        defaultIndex={activeTabIndex}
+      >
         <Tabs.List>
-          <Tabs.Tab>One</Tabs.Tab>
-          <Tabs.Tab>Two</Tabs.Tab>
-          <Tabs.Tab>Three</Tabs.Tab>
+          <Tabs.Tab>First tab</Tabs.Tab>
+          <Tabs.Tab>Middle tab</Tabs.Tab>
+          <Tabs.Tab>Last tab</Tabs.Tab>
         </Tabs.List>
         <Tabs.Panels>
-          <Tabs.Panel>Tab one&apos;s content</Tabs.Panel>
-          <Tabs.Panel>Tab two&apos;s content</Tabs.Panel>
-          <Tabs.Panel>Tab three&apos;s content</Tabs.Panel>
+          <Tabs.Panel>Content of tab 0. Try clicking on the tabs and the buttons!</Tabs.Panel>
+          <Tabs.Panel>Content of tab 1. Try clicking on the tabs and the buttons!</Tabs.Panel>
+          <Tabs.Panel>Content of tab 2. Try clicking on the tabs and the buttons!</Tabs.Panel>
         </Tabs.Panels>
       </Tabs>
     </Story>
