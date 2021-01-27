@@ -49,7 +49,7 @@ describe("<DateRangePicker />", () => {
     });
 
     cy.getByTestId("daterangepicker.endinput").should("have.value", targetEndDate.format("MMMM DD, YYYY"));
-    cy.getByTestId("daterangepicker.leftcalendar").should("not.be.visible");
-    cy.getByTestId("daterangepicker.rightcalendar").should("not.be.visible");
+    cy.getByTestId("daterangepicker.leftcalendar").should("not.exist");
+    cy.getByTestId("daterangepicker.rightcalendar").should("not.exist");
   });
 });
