@@ -5,8 +5,8 @@ describe("Filter with server", () => {
   it("Should display the different filtering options", () => {
     cy.clock();
     cy.visitStorybook(`${getStoryUrlPrefix("Filter")}--server-side-filter-example`);
-    cy.getByText("Filter").click();
-    cy.getByText("Add filter").click();
+    cy.findByText("Filter").click();
+    cy.findByText("Add filter").click();
 
     clickListBoxTrigger("filter.item.columnSelector");
     cy.findByText("Name").click();
@@ -50,26 +50,26 @@ describe("Filter with server", () => {
     cy.findAllByTestId("filter.item")
       .eq(1)
       .within(() => {
-        cy.getByTestId("filter.item.valueInput").type("1");
+        cy.findByTestId("filter.item.valueInput").type("1");
       });
     cy.findByText("Apply").click();
 
-    cy.getAllByRole("row").should("have.length", 2);
-    cy.getByText("2 filtered").click();
-    cy.getByText("Or").click();
-    cy.getAllByRole("radio")
+    cy.findAllByRole("row").should("have.length", 2);
+    cy.findByText("2 filtered").click();
+    cy.findByText("Or").click();
+    cy.findAllByRole("radio")
       .eq(1)
       .should("be.checked");
     cy.findByText("Apply").click();
   });
 
   it("Should cache changes", () => {
-    cy.getByText("2 filtered").click();
-    cy.getByText("Add filter").click();
-    cy.getByText("Cancel").click();
+    cy.findByText("2 filtered").click();
+    cy.findByText("Add filter").click();
+    cy.findByText("Cancel").click();
 
-    cy.getByText("2 filtered").click();
-    cy.getByTestId("filter.item").should("have.length", 3);
+    cy.findByText("2 filtered").click();
+    cy.findAllByTestId("filter.item").should("have.length", 3);
   });
 
   it("Should clear", () => {
