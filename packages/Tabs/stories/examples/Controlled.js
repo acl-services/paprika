@@ -12,7 +12,7 @@ function MyButton({ onClick }) {
 }
 
 export default function ControlledStory() {
-  const [activeTabIndex, setActiveTabIndex] = React.useState(2);
+  const [index, setIndex] = React.useState(2);
 
   return (
     <Story>
@@ -21,18 +21,18 @@ export default function ControlledStory() {
       </Heading>
       <Tagline>
         To use the controlled version of the the Tabs component, the consumer must keep track of the `activeTabIndex` in
-        their state, and pass that into the Tabs component via the `defaultIndex` prop. The consumer must also pass in
-        an `onClickTab` prop, which is a function that is passed the index of the tab that was clicked on.
+        their state, and pass that into the Tabs component via the `index` prop. The consumer must also pass in an
+        `onClickTab` prop, which is a function that is passed the index of the tab that was clicked on.
       </Tagline>
       <Rule />
-      <MyButton onClick={() => setActiveTabIndex(0)} />
-      <MyButton onClick={() => setActiveTabIndex(1)} />
-      <MyButton onClick={() => setActiveTabIndex(2)} />
+      <MyButton onClick={() => setIndex(0)} />
+      <MyButton onClick={() => setIndex(1)} />
+      <MyButton onClick={() => setIndex(2)} />
       <Tabs
         onClickTab={clickedTabIndex => {
-          setActiveTabIndex(clickedTabIndex);
+          setIndex(clickedTabIndex);
         }}
-        defaultIndex={activeTabIndex}
+        index={index}
       >
         <Tabs.List>
           <Tabs.Tab>First tab</Tabs.Tab>

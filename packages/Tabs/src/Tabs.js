@@ -17,6 +17,7 @@ export default function Tabs(props) {
     defaultIndex,
     hasInsetFocusStyle,
     hasTruncation,
+    index,
     isDisabled,
     isVertical,
     kind,
@@ -25,13 +26,14 @@ export default function Tabs(props) {
     tabHeight,
   } = props;
 
-  const [activeIndex, setActiveIndex] = React.useState(defaultIndex);
-  const [currentFocusIndex, setFocusIndex] = React.useState(defaultIndex);
+  const indexToUse = index !== null ? index : defaultIndex;
+  const [activeIndex, setActiveIndex] = React.useState(indexToUse);
+  const [currentFocusIndex, setFocusIndex] = React.useState(indexToUse);
   let tabListRef = React.useRef(null);
 
   React.useEffect(() => {
-    setActiveIndex(defaultIndex);
-  }, [defaultIndex, setActiveIndex]);
+    setActiveIndex(indexToUse);
+  }, [indexToUse, setActiveIndex]);
 
   function focusAndSetIndex(index) {
     tabListRef.querySelectorAll("[data-pka-anchor='tab'], [data-pka-anchor='tab-link']")[index].focus();
@@ -105,7 +107,7 @@ Tabs.propTypes = {
   /** Expects Tabs.List and Tabs.Panels. */
   children: PropTypes.node.isRequired,
 
-  /** Sets what tabindex is active by default. */
+  /** Sets what tabindex is active by default (uncontrolled component). */
   defaultIndex: PropTypes.number,
 
   /** If the visual focus ring for the tabs should be displayed with an inset style. */
@@ -114,13 +116,16 @@ Tabs.propTypes = {
   /** Tab labels will be truncated when they run out of space instead of breaking to multiple lines (ignored when isVertical is false). */
   hasTruncation: PropTypes.bool,
 
+  /** Sets what tabindex is active (controlled component). */
+  index: PropTypes.number,
+
   /** If the tabs are all disabled. */
   isDisabled: PropTypes.bool,
 
   /** If the tabs are stacked vertically. */
   isVertical: PropTypes.bool,
 
-  /** Use this prop when you want to use Tabs as a controlled component (also you must use 'defaultIndex'). When the user clicks on a tab, this gets fired (the tab index is passed to it). */
+  /** Use this prop when you want to use Tabs as a controlled component (also you must use 'index' prop). When the user clicks on a tab, this gets fired (the tab index is passed to it). */
   onClickTab: PropTypes.func,
 
   /** Size of the tab label text. */
@@ -135,6 +140,7 @@ Tabs.defaultProps = {
   defaultIndex: 0,
   hasInsetFocusStyle: false,
   hasTruncation: false,
+  index: null,
   isDisabled: false,
   isVertical: false,
   onClickTab: null,

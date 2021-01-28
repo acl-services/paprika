@@ -3,14 +3,14 @@ import { render, fireEvent } from "@testing-library/react";
 import Tabs from "../src";
 
 function ControlledTabs() {
-  const [activeTabIndex, setActiveTabIndex] = React.useState(2);
+  const [index, setIndex] = React.useState(2);
 
   return (
     <>
       <button
         type="button"
         onClick={() => {
-          setActiveTabIndex(1);
+          setIndex(1);
         }}
       >
         Go to middle tab
@@ -18,9 +18,9 @@ function ControlledTabs() {
 
       <Tabs
         onClickTab={clickedTabIndex => {
-          setActiveTabIndex(clickedTabIndex);
+          setIndex(clickedTabIndex);
         }}
-        defaultIndex={activeTabIndex}
+        index={index}
       >
         <Tabs.List>
           <Tabs.Tab>First tab</Tabs.Tab>
