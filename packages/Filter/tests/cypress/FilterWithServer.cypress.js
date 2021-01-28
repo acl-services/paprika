@@ -1,80 +1,79 @@
 import { getStoryUrlPrefix } from "../../../../.storybook/storyTree";
+import { clickListBoxTrigger } from "./helper";
 
 describe("Filter with server", () => {
   it("Should display the different filtering options", () => {
+    cy.clock();
     cy.visitStorybook(`${getStoryUrlPrefix("Filter")}--server-side-filter-example`);
-    cy.getByText("Filter").click();
-    cy.getByText("Add filter").click();
+    cy.findByText("Filter").click();
+    cy.findByText("Add filter").click();
+
+    clickListBoxTrigger("filter.item.columnSelector");
+    cy.findByText("Name").click();
+    clickListBoxTrigger("filter.item.columnSelector");
+    cy.findByText("Status").click();
+    clickListBoxTrigger("filter.item.columnSelector");
+    cy.findByText("Country").click();
+    clickListBoxTrigger("filter.item.columnSelector");
+    cy.findByText("Joined by").click();
+    clickListBoxTrigger("filter.item.columnSelector");
+    cy.findByText("Shareable").click();
+    clickListBoxTrigger("filter.item.columnSelector");
+    cy.findByText("Level").click();
+
+    clickListBoxTrigger("filter.item.ruleSelector");
+    cy.findByText("is not").click();
+
     cy.get("select")
-      .eq(0)
-      .select("Goals")
-      .select("Name")
-      .select("Status")
-      .select("Country")
-      .select("Joined by")
-      .select("Shareable")
-      .select("Level");
-    cy.get("select")
-      .eq(1)
-      .select("is")
-      .get("select")
-      .eq(2)
-      .select("low")
-      .select("mid");
-    cy.get("select")
-      .eq(1)
-      .select("is not")
-      .get("select")
-      .eq(2)
       .select("low")
       .select("mid");
   });
 
   it("should add filter and delete filter", () => {
     cy.visitStorybook(`${getStoryUrlPrefix("Filter")}--server-side-filter-example`);
-    cy.getByText("Filter").click();
-    cy.getByText("Add filter").click();
-    cy.getByTestId("filter.item").should("have.length", 1);
+    cy.findByText("Filter").click();
+    cy.findByText("Add filter").click();
+    cy.findAllByTestId("filter.item").should("have.length", 1);
 
-    cy.getByTestId("filter.deleteFilterButton").click();
-    cy.getByTestId("filter.item").should("have.length", 0);
+    cy.findByTestId("filter.deleteFilterButton").click();
+    cy.findByTestId("filter.item").should("not.exist");
   });
 
   it("Should switch between and or", () => {
     cy.visitStorybook(`${getStoryUrlPrefix("Filter")}--server-side-filter-example`);
-    cy.getByText("Filter").click();
-    cy.getByText("Add filter").click();
-    cy.getByText("Add filter").click();
-    cy.getAllByRole("radio")
+    cy.findByText("Filter").click();
+    cy.findByText("Add filter").click();
+    cy.findByText("Add filter").click();
+    cy.findAllByRole("radio")
       .eq(0)
       .should("be.checked");
-    cy.getByTestId("filter.item")
+    cy.findAllByTestId("filter.item")
       .eq(1)
       .within(() => {
-        cy.getByTestId("input").type("1");
+        cy.findByTestId("filter.item.valueInput").type("1");
       });
-    cy.getByText("Apply").click();
+    cy.findByText("Apply").click();
 
-    cy.getAllByRole("row").should("have.length", 2);
-    cy.getByText("2 filters").click();
-    cy.getByText("Or").click();
-    cy.getAllByRole("radio")
+    cy.findAllByRole("row").should("have.length", 2);
+    cy.findByText("2 filtered").click();
+    cy.findByText("Or").click();
+    cy.findAllByRole("radio")
       .eq(1)
       .should("be.checked");
-    cy.getByText("Apply").click();
+    cy.findByText("Apply").click();
   });
 
   it("Should cache changes", () => {
-    cy.getByText("2 filters").click();
-    cy.getByText("Add filter").click();
-    cy.getByText("Cancel").click();
+    cy.findByText("2 filtered").click();
+    cy.findByText("Add filter").click();
+    cy.findByText("Cancel").click();
 
-    cy.getByText("2 filters").click();
-    cy.getByTestId("filter.item").should("have.length", 3);
+    cy.findByText("2 filtered").click();
+    cy.findAllByTestId("filter.item").should("have.length", 3);
   });
 
   it("Should clear", () => {
-    cy.getByText("Clear").click();
-    cy.getByText("No filters applied to this view");
+    cy.findByText("Clear").click();
+    cy.findByText("No filters applied to this view");
   });
 });

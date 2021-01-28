@@ -200,8 +200,7 @@ en:
         delete: Delete
       no_filters_applied: No filters applied to this view
       label: Filter
-      lowercase_label: "{{count}} filter"
-      lowercase_label_plural: "{{count}} filters"
+      label_with_count: "{{count}} filtered"
       and: And
       or: Or
       rules:

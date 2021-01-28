@@ -13,5 +13,8 @@
 // https://on.cypress.io/configuration
 // ***********************************************************
 
+import { configure } from "@testing-library/cypress";
 import "./commands";
 import "cypress-plugin-tab";
+
+configure({ testIdAttribute: "data-pka-anchor" });

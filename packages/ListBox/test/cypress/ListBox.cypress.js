@@ -47,7 +47,7 @@ describe("ListBox single select", () => {
     cy.get(selectors.trigger).should("contain", character);
     cy.get(selectors.clearButton).click();
     cy.get(selectors.trigger).should("contain", "Select...");
-    cy.get(selectors.clearButton).should("not.be.visible");
+    cy.get(selectors.clearButton).should("not.exist");
   });
 
   it("should scroll in popover and select option", () => {
@@ -77,7 +77,9 @@ describe("ListBox single select filter", () => {
   });
 
   it("should show correct amount of options and select one", () => {
-    cy.get(selectors.filterInput).type("wo");
+    cy.get(selectors.filterInput)
+      .focus()
+      .type("wo");
     cy.get(selectors.popoverList)
       .children()
       .should("have.length", 2)
@@ -88,6 +90,7 @@ describe("ListBox single select filter", () => {
 
   it("should show all options after erasing filtered input", () => {
     cy.get(selectors.filterInput)
+      .focus()
       .type("wo")
       .type("{backspace}")
       .type("{backspace}");
@@ -101,7 +104,9 @@ describe("ListBox single select label filter", () => {
   it("should filter by option label", () => {
     cy.visitStorybook(`${storyPrefix}-subcomponents-filter--custom-children-filter`);
     toggleDropdown();
-    cy.get(selectors.filterInput).type("sp");
+    cy.get(selectors.filterInput)
+      .focus()
+      .type("sp");
     cy.get(selectors.popoverList)
       .children()
       .should("have.length", 1)
@@ -127,7 +132,9 @@ describe("ListBox single select custom filter", () => {
   it("should filter with correct group options or show no results", () => {
     cy.visitStorybook(`${storyPrefix}-subcomponents-filter--custom-filter`);
     toggleDropdown();
-    cy.get(selectors.filterInput).type("P");
+    cy.get(selectors.filterInput)
+      .focus()
+      .type("P");
     cy.get(selectors.popoverList)
       .children()
       .should("have.length", 2);
@@ -135,7 +142,9 @@ describe("ListBox single select custom filter", () => {
     cy.get(selectors.popoverList)
       .children()
       .should("have.length", 7);
-    cy.get(selectors.filterInput).type("{backspace}ZZZ");
+    cy.get(selectors.filterInput)
+      .focus()
+      .type("{backspace}ZZZ");
     cy.get(selectors.popoverList).then($e => {
       expect($e.find("ul").children().length).to.be.equal(0);
     });
@@ -151,7 +160,9 @@ describe("ListBox multi select filter", () => {
   });
 
   it("should filter, select, deselect and close trigger", () => {
-    cy.get(selectors.filterInput).type("w");
+    cy.get(selectors.filterInput)
+      .focus()
+      .type("w");
     cy.get(selectors.popoverList)
       .children()
       .should("have.length", 4)
@@ -170,8 +181,11 @@ describe("ListBox multi select filter", () => {
   });
 
   it("should filter then use arrow and enter keys to select", () => {
-    cy.get(selectors.filterInput).type("t");
     cy.get(selectors.filterInput)
+      .focus()
+      .type("t");
+    cy.get(selectors.filterInput)
+      .focus()
       .type("{downarrow}")
       .type("{enter}")
       .type("{downarrow}")

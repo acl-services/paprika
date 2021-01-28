@@ -72,6 +72,8 @@ export default function DynamicHyperlinkTransformer({ onFetch }) {
     }
 
     function updateDynamicHyperlinksWhenReady() {
+      updateDynamicHyperlinks(document);
+
       const ckEditorInstances = getCkEditorInstances();
 
       if (ckEditorInstances) {
@@ -80,8 +82,6 @@ export default function DynamicHyperlinkTransformer({ onFetch }) {
             updateDynamicHyperlinks(ckEditorInstance.document.$);
           });
         });
-      } else {
-        updateDynamicHyperlinks(document);
       }
     }
 

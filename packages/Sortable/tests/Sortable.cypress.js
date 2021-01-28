@@ -73,6 +73,6 @@ describe("<Sortable />", () => {
     cy.get(selector.item)
       .first()
       .contains("Lorem")
-      .should("be.not.visible");
+      .should("not.exist");
   });
 });
