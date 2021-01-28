@@ -17,7 +17,7 @@ export default function List(props) {
     tabHeight,
     isVertical,
     onKeyDown,
-    onClickTab,
+    handleClickTab,
     setTabListRef,
     size,
   } = context;
@@ -33,7 +33,7 @@ export default function List(props) {
       tabHeight,
       isSelected: activeIndex === index,
       isVertical,
-      onClick: e => onClickTab(e, index),
+      onClick: e => handleClickTab(e, index),
       onKeyDownArrows: onKeyDown,
       size,
     });

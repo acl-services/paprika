@@ -10,7 +10,9 @@ import Icon4 from "@paprika/icon/lib/NewTab";
 import Button from "@paprika/button";
 import Heading from "@paprika/heading";
 import tokens from "@paprika/tokens";
+import ControlledStory from "./examples/Controlled";
 import ShowcaseStory from "./examples/Showcase";
+import UncontrolledStory from "./examples/Uncontrolled";
 import Tabs from "../src/Tabs";
 
 const storyName = getStoryName("Tabs");
@@ -56,6 +58,8 @@ storiesOf(storyName, module)
   .add("Showcase", ShowcaseStory);
 
 storiesOf(`${storyName}/Examples`, module)
+  .add("Controlled", ControlledStory)
+  .add("Uncontrolled", UncontrolledStory)
   .add("Tabs test", () => (
     <Story>
       <TabsExample />
