@@ -1,0 +1,40 @@
+import { Meta } from "@storybook/addon-docs/blocks";
+import { getStoryName } from "storybook/storyTree";
+import { Basic } from "./examples";
+
+export const params = {
+  options: {
+    isToolshown: true,
+    showPanel: false,
+  },
+};
+
+<Meta title={`${getStoryName("InlineEditing")}/Docs`} parameters={params} />
+
+# Inline Editing
+
+```js
+import InlineEditing, { widgets } from "@paprika/inline-editing";
+
+<InlineEditing
+  widget={widgets.text}
+  onChange={({ close, setError, setIdle, setFocusBack, nextValue }) => {}}
+  value={}
+/>;
+```
+
+```js
+const widget = {
+  text: {
+    Input(props) {
+      const { value, boundingClientRect, onAccept, onCancel, onClear } = props;
+      return <InComponent />;
+    },
+    Output(props) {
+      const { value } = props;
+      return React.forwardRef((props, ref) => <OutComponent ref={ref} />);
+    },
+    wrap: types.inline | types.popover | types.panel | types.takeover | types.modal,
+  },
+};
+```
