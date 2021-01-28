@@ -130,7 +130,7 @@ zh:
       no_results: 没有结果
       filter:
         no_filters_applied: 没有过滤器应用于此视图
-        label: 筛选
+        label: 过滤器
         singular_label: 已应用 1 个过滤器
         plural_label: "已应用 {{numberOfFilters}} 个过滤器"
         add_filter: 添加过滤字段
