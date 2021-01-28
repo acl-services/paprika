@@ -7,17 +7,19 @@ interface TabsProps {
   kind?: Tabs.types.kind.PRIMARY | Tabs.types.kind.SECONDARY;
   /** Expects Tabs.List and Tabs.Panels. */
   children: React.ReactNode;
-  /** Sets what tabindex is active by default. */
+  /** Sets what tabindex is active by default (uncontrolled component). */
   defaultIndex?: number;
   /** If the visual focus ring for the tabs should be displayed with an inset style. */
   hasInsetFocusStyle?: boolean;
   /** Tab labels will be truncated when they run out of space instead of breaking to multiple lines (ignored when isVertical is false). */
   hasTruncation?: boolean;
+  /** Sets what tabindex is active (controlled component). */
+  index?: number;
   /** If the tabs are all disabled. */
   isDisabled?: boolean;
   /** If the tabs are stacked vertically. */
   isVertical?: boolean;
-  /** Use this prop when you want to use Tabs as a controlled component (also you must use 'defaultIndex'). When the user clicks on a tab, this gets fired (the tab index is passed to it). */
+  /** Use this prop when you want to use Tabs as a controlled component (also you must use 'index' prop). When the user clicks on a tab, this gets fired (the tab index is passed to it). */
   onClickTab?: (...args: any[]) => any;
   /** Size of the tab label text. */
   size?: Tabs.types.size.MEDIUM | Tabs.types.size.LARGE;
