@@ -130,7 +130,7 @@ de:
       no_results: Keine Ergebnisse
       filter:
         no_filters_applied: Auf diese Ansicht wurden keine Filter angewendet
-        label: Filter
+        label: Filtern
         singular_label: 1 Filter angewendet
         plural_label: "{{numberOfFilters}} Filter angewendet"
         add_filter: Feld hinzufügen zum Filtern nach
@@ -199,9 +199,8 @@ de:
         clear: Löschen
         delete: Löschen
       no_filters_applied: Auf diese Ansicht wurden keine Filter angewendet
-      label: Filtern
-      lowercase_label: "{{count}} Filter"
-      lowercase_label_plural: "{{count}} Filter"
+      label: Filter
+      label_with_count: "{{count}} gefiltert"
       and: Und
       or: Oder
       rules:
