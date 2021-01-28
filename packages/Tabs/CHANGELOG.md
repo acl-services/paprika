@@ -6,10 +6,6 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 
 ## [Unreleased]
 
-### Added
-
-- Now this component can be controlled or uncontrolled
-
 ## [0.2.17] - 2020-09-02
 
 ### Added
@@ -38,3 +34,9 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 ### Changed
 
 - BREAKING CHANGE: Moved `height` prop from `<Tabs.List>` to `<Tabs>`, renamed to `tabHeight` and provided a default value of `48`. [@mikrotron](https://github.com/mikrotron)
+
+## [2.0.1-alpha.0] - 2021-01-28
+
+### Added
+
+- Now this component can be controlled or uncontrolled
