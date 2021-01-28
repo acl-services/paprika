@@ -6,6 +6,10 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 
 ## [Unreleased]
 
+### Added
+
+- Now this component can be controlled or uncontrolled
+
 ## [0.2.17] - 2020-09-02
 
 ### Added
