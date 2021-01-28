@@ -150,7 +150,7 @@ pt:
           less_than: "<"
           greater_than_or_equal_to: "≥"
           less_than_or_equal_to: "≤"
-          is_empty: está em branco
+          is_empty: está vazio
           is_not_empty: não está vazio
           is_before: é antes de
           is_after: é depois de

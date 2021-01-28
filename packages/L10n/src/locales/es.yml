@@ -145,7 +145,7 @@ es:
           is_blank: está en blanco
           is_not_blank: no está en blanco
           equals: es igual a
-          not_equal_to: es distinto de
+          not_equal_to: no es igual a
           greater_than: ">"
           less_than: "<"
           greater_than_or_equal_to: "≥"
