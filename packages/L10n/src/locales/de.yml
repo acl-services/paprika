@@ -199,9 +199,8 @@ de:
         clear: Löschen
         delete: Löschen
       no_filters_applied: Auf diese Ansicht wurden keine Filter angewendet
-      label: Filtern
-      lowercase_label: "{{count}} Filter"
-      lowercase_label_plural: "{{count}} Filter"
+      label: Filter
+      label_with_count: "{{count}} gefiltert"
       and: Und
       or: Oder
       rules:
