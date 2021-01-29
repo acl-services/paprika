@@ -6,7 +6,7 @@
     "cypress:ci": "run-p --race storybook cypress:run",
     "cypress:dev": "run-p --race storybook cypress:open",
     "cypress:open": "cypress open",
-    "cypress:run": "wait-on http://localhost:9009 && cypress run --browser chrome",
+    "cypress:run": "wait-on http://localhost:9009/iframe.html && cypress run --browser chrome",
     "generateChangelog": "node scripts/changelogFiles.js",
     "generateReadMe": "node scripts/readmeFiles.js",
     "generateTypeDefinitions": "node scripts/typesFiles.js && yarn tsc",
