@@ -199,9 +199,8 @@ fr:
         clear: Effacer
         delete: Supprimer
       no_filters_applied: Aucun filtre appliqué à cette vue
-      label: Filtrer
-      lowercase_label: "{{count}} filtre"
-      lowercase_label_plural: "{{count}} filtres"
+      label: Filtre
+      label_with_count: "{{count}} filtré(e/s)"
       and: Et
       or: Ou
       rules:
