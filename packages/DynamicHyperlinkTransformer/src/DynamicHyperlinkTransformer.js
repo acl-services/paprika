@@ -45,7 +45,7 @@ export default function DynamicHyperlinkTransformer({ onFetch }) {
 
                 const labelSpan = document.createElement("span");
                 labelSpan.className = "dynamic-hyperlink--label";
-                labelSpan.innerHTML = error ? stripHtml(originalLinkUrl) : stripHtml(name);
+                labelSpan.innerHTML = error ? stripHtml(`${originalLinkUrl} `) : stripHtml(`${name} `);
                 dynamicHyperlink.appendChild(labelSpan);
 
                 if (error) {
