@@ -37,17 +37,13 @@ const Input = props => {
     }
   }
 
-  // this might be necessary if the consumer change their "value" by
-  // a side-effect outside of the component and then set a new value.
-  // otherwise this shouldn't be executed.
-
   React.useEffect(() => {
     if (value !== refInput.current.value) {
       refInput.current.value = value;
     }
   }, [value]);
 
-  React.useLayoutEffect(() => {
+  React.useEffect(() => {
     if (isEditing) {
       refInput.current.focus();
     }
