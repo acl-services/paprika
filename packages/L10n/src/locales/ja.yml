@@ -200,8 +200,7 @@ ja:
         delete: 削除
       no_filters_applied: このビューに適用するフィルターなし
       label: フィルター
-      lowercase_label: "{{count}} フィルター"
-      lowercase_label_plural: "{{count}} フィルター"
+      label_with_count: "{{count}}件フィルター済み"
       and: および
       or: または
       rules:
