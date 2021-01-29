@@ -13,6 +13,11 @@ function getDynamicHyperlinks(document) {
   return Array.from(document.querySelectorAll(dynamicHyperlinkSelector));
 }
 
+function stripHtml(str) {
+  const doc = new DOMParser().parseFromString(str, "text/html");
+  return doc.body.textContent || "";
+}
+
 export default function DynamicHyperlinkTransformer({ onFetch }) {
   const I18n = useI18n();
 
@@ -40,7 +45,7 @@ export default function DynamicHyperlinkTransformer({ onFetch }) {
 
                 const labelSpan = document.createElement("span");
                 labelSpan.className = "dynamic-hyperlink--label";
-                labelSpan.innerHTML = error ? originalLinkUrl : name;
+                labelSpan.innerHTML = error ? stripHtml(`${originalLinkUrl} `) : stripHtml(`${name} `);
                 dynamicHyperlink.appendChild(labelSpan);
 
                 if (error) {
@@ -51,7 +56,7 @@ export default function DynamicHyperlinkTransformer({ onFetch }) {
                 } else {
                   const termSpan = document.createElement("span");
                   termSpan.className = "dynamic-hyperlink--valid";
-                  termSpan.innerHTML = term;
+                  termSpan.innerHTML = stripHtml(term);
                   dynamicHyperlink.appendChild(termSpan);
                 }
               });
@@ -67,6 +72,8 @@ export default function DynamicHyperlinkTransformer({ onFetch }) {
     }
 
     function updateDynamicHyperlinksWhenReady() {
+      updateDynamicHyperlinks(document);
+
       const ckEditorInstances = getCkEditorInstances();
 
       if (ckEditorInstances) {
@@ -75,8 +82,6 @@ export default function DynamicHyperlinkTransformer({ onFetch }) {
             updateDynamicHyperlinks(ckEditorInstance.document.$);
           });
         });
-      } else {
-        updateDynamicHyperlinks(document);
       }
     }
 

@@ -199,9 +199,8 @@ es:
         clear: Borrar
         delete: Eliminar
       no_filters_applied: No se aplicaron filtros a esta vista
-      label: Filtrar
-      lowercase_label: "{{count}} filtro"
-      lowercase_label_plural: "{{count}} filtros"
+      label: Filtro
+      label_with_count: "{{count}} filtrado(s)"
       and: Y
       or: O
       rules:

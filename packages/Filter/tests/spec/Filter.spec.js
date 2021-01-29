@@ -1,5 +1,5 @@
 import React from "react";
-import { screen, fireEvent, waitFor } from "@testing-library/react";
+import { screen, fireEvent, waitFor, within } from "@testing-library/react";
 import Filter from "../../src";
 
 const noop = () => {};
@@ -47,10 +47,10 @@ describe("ActionBar Filter", () => {
 
   it("should render trigger with count", () => {
     renderComponent({ numberApplied: 1 });
-    screen.getByText("1 filter");
+    screen.getByText("1 filtered");
 
     renderComponent({ numberApplied: 2 });
-    screen.getByText("2 filters");
+    screen.getByText("2 filtered");
   });
 
   it("should render filters in panel", () => {
@@ -70,9 +70,13 @@ describe("ActionBar Filter", () => {
       ),
     });
 
-    fireEvent.click(screen.getByText("1 filter"));
-    screen.getByText("Number column");
-    screen.getByText("equals");
+    fireEvent.click(screen.getByText("1 filtered"));
+    expect(within(screen.getByTestId("filter.item.columnSelector")).getByTestId("list-box-trigger")).toHaveTextContent(
+      "Number column"
+    );
+    expect(within(screen.getByTestId("filter.item.ruleSelector")).getByTestId("list-box-trigger")).toHaveTextContent(
+      "equals"
+    );
     screen.getByDisplayValue("2");
   });
 
@@ -158,5 +162,47 @@ describe("ActionBar Filter", () => {
     });
 
     expect(handleCancel).toHaveBeenCalled();
+  });
+
+  it("should render filter input if there are more than 15 columns or options", async () => {
+    renderComponent({
+      columns: [...Array(15)].map((item, index) => ({
+        id: index.toString(),
+        type: Filter.types.columnTypes.TEXT,
+        label: `column ${index}`,
+      })),
+      children: (
+        <Filter.Item columnId="0" id="0" index={0} onChangeFilter={noop} onDeleteFilter={noop} rule="IS" value="" />
+      ),
+    });
+
+    fireEvent.click(screen.getByText("Filter"));
+    await waitFor(() => {
+      within(screen.getByTestId("filter.item.columnSelector")).getByTestId("list-box-trigger");
+    });
+    fireEvent.click(within(screen.getByTestId("filter.item.columnSelector")).getByTestId("list-box-trigger"));
+
+    expect(screen.getByTestId("list-filter")).toBeInTheDocument();
+  });
+
+  it("should not render filter input if there are less than 15 columns or options", async () => {
+    renderComponent({
+      columns: [...Array(10)].map((item, index) => ({
+        id: index.toString(),
+        type: Filter.types.columnTypes.TEXT,
+        label: `column ${index}`,
+      })),
+      children: (
+        <Filter.Item columnId="0" id="0" index={0} onChangeFilter={noop} onDeleteFilter={noop} rule="IS" value="" />
+      ),
+    });
+
+    fireEvent.click(screen.getByText("Filter"));
+    await waitFor(() => {
+      within(screen.getByTestId("filter.item.columnSelector")).getByTestId("list-box-trigger");
+    });
+    fireEvent.click(within(screen.getByTestId("filter.item.columnSelector")).getByTestId("list-box-trigger"));
+
+    expect(screen.queryByTestId("list-filter")).not.toBeInTheDocument();
   });
 });

@@ -199,9 +199,8 @@ zh:
         clear: 清除
         delete: 删除
       no_filters_applied: 没有过滤器应用于此视图
-      label: 筛选
-      lowercase_label: "{{count}} 个过滤器"
-      lowercase_label_plural: "{{count}} 个过滤器"
+      label: 过滤器
+      label_with_count: "{{count}} 个已过滤"
       and: 和
       or: 或
       rules:

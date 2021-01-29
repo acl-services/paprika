@@ -10,18 +10,16 @@ a[data-dynamic-hyperlink] {
   border-radius: $button--border-radius;
   box-shadow: 0 0 2px $color--black;
   color: $color--blue-darken-10;
-  cursor: default;
   font-size: font-scale(-1);
   padding: 2px 2px 2px $space-sm;
   text-decoration: none;
 
   .dynamic-hyperlink--label {
-    cursor: pointer;
-    margin-right: $space-sm;
+    margin-right: 2px;
+  }
 
-    &:hover {
-      text-decoration: underline;
-    }
+  &:hover .dynamic-hyperlink--label {
+    text-decoration: underline;
   }
 
   .dynamic-hyperlink--valid {
