@@ -1,5 +1,5 @@
 import React from "react";
-import uuid from "uuid/v4";
+import { v4 as uuidv4 } from "uuid";
 import produce from "immer";
 import Filter from "../Filter";
 import defaultReducer, { actionTypes } from "./defaultReducer";
@@ -14,7 +14,7 @@ function getDefaultFilter(columns, rulesByType, data) {
     columnId: firstColumnId,
     rule: rulesByType[firstColumnType][0],
     value: getInitialValueByType(firstColumnType, firstColumnId, data),
-    id: uuid(),
+    id: uuidv4(),
   };
 }
 
