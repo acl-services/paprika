@@ -1,6 +1,6 @@
 import React from "react";
 import PropTypes from "prop-types";
-import nanoid from "nanoid";
+import { v4 as uuidv4 } from "uuid";
 import { extractChildren } from "@paprika/helpers";
 import Avatar from "./components/Avatar";
 import Metadata from "./components/Metadata";
@@ -10,8 +10,8 @@ import * as sc from "./CollapsibleCard.styles";
 export default function CollapsibleCard(props) {
   const { children, hasDivider, label, onExpand, ...moreProps } = props;
   const [isCollapsed, setIsCollapsed] = React.useState(true);
-  const labelTextId = React.useRef(nanoid()).current;
-  const metadataId = React.useRef(nanoid()).current;
+  const [labelTextId] = React.useState(() => `collapsible-card-label_${uuidv4()}`);
+  const [metadataId] = React.useState(() => `collapsible-card-metadata_${uuidv4()}`);
   const {
     "CollapsibleCard.Avatar": avatar,
     "CollapsibleCard.Metadata": metadata,
