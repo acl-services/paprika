@@ -2,7 +2,7 @@ import React from "react";
 import ReactDOMServer from "react-dom/server";
 import PropTypes from "prop-types";
 import truncate from "lodash.truncate";
-import uuid from "uuid/v4";
+import { v4 as uuidv4 } from "uuid";
 import useI18n from "@paprika/l10n/lib/useI18n";
 import Button from "@paprika/button";
 import * as sc from "./CollapsibleText.styles";
@@ -37,7 +37,7 @@ function CollapsibleText(props) {
 
   const I18n = useI18n();
   const [isCollapsed, setIsCollapsed] = React.useState(true);
-  const contentId = React.useRef(uuid()).current;
+  const [contentId] = React.useState(() => `collapsible-text-content_${uuidv4()}`);
 
   function getToggleLabel() {
     return isCollapsed ? I18n.t("collapsibleText.more") : I18n.t("collapsibleText.less");
