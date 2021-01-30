@@ -2,7 +2,7 @@ import React from "react";
 import memoizeOne from "memoize-one";
 import PropTypes from "prop-types";
 import throttle from "lodash.throttle";
-import uuidv4 from "uuid/v4";
+import { v4 as uuidv4 } from "uuid";
 import * as constants from "@paprika/constants/lib/Constants";
 import tokens from "@paprika/tokens";
 import { zValue } from "@paprika/stylers/lib/helpers";
@@ -66,7 +66,7 @@ class Popover extends React.Component {
       );
     }
 
-    this.ariaIdForContent = `popover-content-${uuidv4()}`;
+    this.ariaIdForContent = `popover-content_${uuidv4()}`;
   }
 
   getContextValues = memoizeOne(
