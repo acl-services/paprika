@@ -1,5 +1,5 @@
 import React from "react";
-import nanoid from "nanoid";
+import { v4 as uuidv4 } from "uuid";
 import useI18n from "@paprika/l10n/lib/useI18n";
 import sort from "./sort";
 import * as types from "../../types";
@@ -31,7 +31,7 @@ export default function useSort({ data = null, columns, maxSortFields = null }) 
     setSortedFields(prevFields => [
       ...prevFields,
       {
-        id: nanoid(),
+        id: `filter-item-${uuidv4}`,
         columnId: columns[0].id,
         direction: "ASCEND",
       },
