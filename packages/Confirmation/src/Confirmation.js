@@ -1,6 +1,6 @@
 import React from "react";
 import PropTypes from "prop-types";
-import nanoid from "nanoid";
+import { v4 as uuidv4 } from "uuid";
 import * as constants from "@paprika/constants/lib/Constants";
 import Button from "@paprika/button";
 import Heading from "@paprika/heading";
@@ -28,12 +28,12 @@ const Confirmation = props => {
   const [isConfirmOpen, setIsConfirmOpen] = React.useState(null);
   const confirmButtonRef = React.useRef(null);
   const triggerRef = React.useRef(null);
-  const titleId = React.useRef(nanoid()).current;
-  const descriptionId = React.useRef(nanoid()).current;
+  const [titleId] = React.useState(() => `confirmation-title_${uuidv4()}`);
+  const [descriptionId] = React.useState(() => `confirmation-desc_${uuidv4()}`);
   const I18n = useI18n();
 
   const popoverOffset = 4;
-  let popoverKey = nanoid();
+  let popoverKey = uuidv4();
 
   const focusConfirmButton = () => {
     if (confirmButtonRef.current) confirmButtonRef.current.focus();
@@ -51,7 +51,7 @@ const Confirmation = props => {
   }, [confirmButtonRef, defaultIsOpen]);
 
   React.useEffect(() => {
-    popoverKey = nanoid();
+    popoverKey = uuidv4();
   }, [isPending]);
 
   React.useEffect(() => {
