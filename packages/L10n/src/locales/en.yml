@@ -117,7 +117,7 @@ en:
       placeholder: Select…
       no_results_found: No results found
       all_items_have_been_selected: "All items have been selected"
-    search: 
+    search:
       searchTerm: Search term...
     actionBar:
       columns_arrangement:
@@ -164,6 +164,7 @@ en:
     dynamicHyperlinkTransformer:
       access_denied: "Access denied"
       invalid_url: "Invalid URL"
+      exceeded_max_links_rendered: "Could not render"
       loading: Loading...
     filter:
       actions:
