@@ -1,6 +1,6 @@
 import React from "react";
 import PropTypes from "prop-types";
-import uuid from "uuid/v4";
+import { v4 as uuidv4 } from "uuid";
 import * as constants from "@paprika/constants/lib/Constants";
 import { extractChildrenProps } from "@paprika/helpers";
 import CheckIcon from "@paprika/icon/lib/Check";
@@ -12,7 +12,7 @@ import * as sc from "./Checkbox.styles";
 const Checkbox = props => {
   const { a11yText, children, isDisabled, checkedState, size, onChange, tabIndex, ...moreProps } = props;
 
-  const checkboxId = React.useRef(uuid()).current;
+  const [checkboxId] = React.useState(() => `checkbox_${uuidv4()}`);
   const inputRef = React.useRef(null);
   const extendedInputProps = extractChildrenProps(children, CheckboxInputPropsCollector);
 
