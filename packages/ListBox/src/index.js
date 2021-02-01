@@ -18,18 +18,18 @@ const ListBoxWithProvider = React.forwardRef((props, ref) => {
   /*
   Assures the structure of the children is one of the following:
 
-  <React.Fragrment>
+  <React.Fragment>
     <ListBox.Option />
-  </React.Fragrment>
+  </React.Fragment>
 
   - OR -
     [
-      <React.Fragrment>
+      <React.Fragment>
         <ListBox.Option />
-      </React.Fragrment>,
-      <React.Fragrment>
+      </React.Fragment>,
+      <React.Fragment>
         <ListBox.Option />
-      </React.Fragrment>
+      </React.Fragment>
     ]
     */
 
