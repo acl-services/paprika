@@ -1,6 +1,6 @@
 {
   "name": "@paprika/confirmation",
-  "version": "1.0.7",
+  "version": "1.0.8-alpha.0",
   "description": "Confirmation component allows user to confirm or cancel action",
   "author": "@paprika",
   "license": "MIT",
@@ -20,7 +20,7 @@
     "@paprika/constants": "^1.0.0",
     "@paprika/heading": "^1.0.6",
     "@paprika/helpers": "^2.0.1",
-    "@paprika/popover": "^1.0.6",
+    "@paprika/popover": "^1.0.7-alpha.0",
     "@paprika/raw-button": "^1.0.3",
     "@paprika/stylers": "^1.0.0",
     "@paprika/tokens": "^1.0.0",
