@@ -5,7 +5,7 @@ import styled from "styled-components";
 
 import Button from "@paprika/button";
 import Pill from "@paprika/pill";
-import DropdownMenu from "@paprika/dropdown-menu";
+import OverflowMenu from "@paprika/overflow-menu";
 
 import Table from "../src";
 
@@ -114,11 +114,11 @@ storiesOf(`${storyName}`, module).add("Collections Example", () => (
     <Table.ColumnDefinition
       header=""
       cell={() => (
-        <DropdownMenu>
-          <DropdownMenu.Trigger>...</DropdownMenu.Trigger>
-          <DropdownMenu.Item onClick={() => {}}>one</DropdownMenu.Item>
-          <DropdownMenu.Item onClick={() => {}}>two</DropdownMenu.Item>
-        </DropdownMenu>
+        <OverflowMenu>
+          <OverflowMenu.Trigger>...</OverflowMenu.Trigger>
+          <OverflowMenu.Item onClick={() => {}}>one</OverflowMenu.Item>
+          <OverflowMenu.Item onClick={() => {}}>two</OverflowMenu.Item>
+        </OverflowMenu>
       )}
     />
   </Table>

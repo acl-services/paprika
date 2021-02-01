@@ -1,6 +1,6 @@
 import React from "react";
 import PropTypes from "prop-types";
-import nanoid from "nanoid";
+import { v4 as uuidv4 } from "uuid";
 import types from "../../types";
 
 const propTypes = {
@@ -31,7 +31,7 @@ function Group(props) {
   const { canDeselect, children, isDisabled, onChange, size, ...moreGroupProps } = props;
   const defaultCheckedIndex = React.Children.toArray(children).findIndex(child => child.props.defaultIsChecked);
   const selectedIndex = React.Children.toArray(children).findIndex(child => child.props.isChecked);
-  const generatedName = React.useRef(nanoid()).current;
+  const [generatedName] = React.useState(() => `radio-group_${uuidv4()}`);
 
   const [checkedIndex, setCheckedIndex] = React.useState(defaultCheckedIndex);
   if (selectedIndex !== -1 && selectedIndex !== checkedIndex) {

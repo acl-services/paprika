@@ -4,6 +4,10 @@ All notable changes to this project will be documented in this file.
 
 ## [Unreleased]
 
+### Changed
+
+- Replace `nanoid` by `uuid`.
+
 ## [0.1.9] - 2020-09-02
 
 ### Added

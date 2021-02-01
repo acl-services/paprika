@@ -1,6 +1,6 @@
 import React from "react";
 import PropTypes from "prop-types";
-import nanoid from "nanoid";
+import { v4 as uuidv4 } from "uuid";
 import RawButton from "@paprika/raw-button";
 import Button from "@paprika/button";
 import CaretDownIcon from "@paprika/icon/lib/CaretDown";
@@ -89,7 +89,7 @@ export default function Trigger(props) {
     size,
   } = state;
 
-  const [triggerButtonId] = React.useState(nanoid);
+  const [triggerButtonId] = React.useState(() => `list-box-trigger_${uuidv4()}`);
 
   const handleClick = () => {
     if (isDisabled) {

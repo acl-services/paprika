@@ -6,6 +6,10 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 
 ## [Unreleased]
 
+### Changed
+
+- Replace `nanoid` by `uuid`.
+
 ## [1.0.0] - 2020-11-04
 
 ### Added
