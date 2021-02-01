@@ -6,10 +6,6 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 
 ## [Unreleased]
 
-### Changed
-
-- Replace `nanoid` by `uuid`.
-
 ## [0.1.6] - 2020-01-31
 
 ### Added
@@ -52,3 +48,9 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 ### Changed (breaking)
 
 - Added ability to extend input props through api, remove ariaDescribedBy prop [@tristanjasper](https://github.com/tristanjasper).
+
+## [1.0.6-alpha.0] - 2021-02-01
+
+### Changed
+
+- Replace `nanoid` by `uuid`.

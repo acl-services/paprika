@@ -6,10 +6,6 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 
 ## [Unreleased]
 
-### Changed
-
-- Replace `nanoid` by `uuid`.
-
 ## [0.1.3] - 2020-08-27
 
 - Add default font styles on th [@tristanjasper](https://github.com/tristanjasper).
@@ -29,3 +25,9 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 ### Added
 
 - BREAKING: Propagate `<Table.ColumnDefinition>` `moreProps` to the `<th>` elements. This could introduce a breaking change since props that were applied to `<td>` elements will now ALSO be applied to `<th>` elements. [@mikrotron](https://github.com/mikrotron)
+
+## [1.0.8-alpha.0] - 2021-02-01
+
+### Changed
+
+- Replace `nanoid` by `uuid`.
