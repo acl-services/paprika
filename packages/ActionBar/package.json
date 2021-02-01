@@ -21,7 +21,6 @@
     "@paprika/helpers": "^2.0.1",
     "@paprika/icon": "^1.0.4",
     "@paprika/input": "^1.0.6",
-    "@paprika/overflow-menu": "^1.0.9",
     "@paprika/popover": "^1.0.6",
     "@paprika/raw-button": "^1.0.3",
     "@paprika/select": "^1.0.4",
