@@ -5,7 +5,7 @@ import "@paprika/helpers/lib/polyfills/elementScroll";
 import * as constants from "@paprika/constants/lib/Constants";
 import useI18n from "@paprika/l10n/lib/useI18n";
 import { extractChildren } from "@paprika/helpers";
-import nanoid from "nanoid";
+import { v4 as uuidv4 } from "uuid";
 import useGridEventHandler, { getGridRefId } from "./hooks/useGridEventHandler";
 import ColumnDefinition from "./components/ColumnDefinition";
 import * as sc from "./DataGrid.styles";
@@ -133,7 +133,7 @@ const DataGrid = React.forwardRef((props, ref) => {
     return width;
   }, [ColumnDefinitions, stickyColumnsIndexes]);
 
-  const [gridId] = React.useState(() => `PKA${nanoid()}`);
+  const [gridId] = React.useState(() => `PKA${uuidv4()}`);
   const { handleKeyDown, handleKeyUp, handleClick, restoreHighlightFocus } = useGridEventHandler({
     columnCount,
     gridId,

@@ -11,3 +11,9 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 ### Added
 
 - Updated: Created and placed all constants into type.js file. Changed kind for Button in CollapseText [@kaan.darcey](https://github.com/KDarcey).
+
+## [1.0.7-alpha.0] - 2021-02-01
+
+### Changed
+
+- Replace `nanoid` by `uuid`.

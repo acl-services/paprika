@@ -51,3 +51,9 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 ### Changed
 
 - Removed <Filter> component and `useFilter` from this package. Please use `@paprika/filter` instead.
+
+## [2.0.2-alpha.0] - 2021-02-01
+
+### Changed
+
+- Replace `nanoid` by `uuid`.

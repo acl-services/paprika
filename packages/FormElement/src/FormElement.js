@@ -1,6 +1,6 @@
 import React from "react";
 import PropTypes from "prop-types";
-import nanoid from "nanoid";
+import { v4 as uuidv4 } from "uuid";
 import isNil from "lodash/isNil";
 import * as constants from "@paprika/constants/lib/Constants";
 import { FieldsetContext } from "./components/Content/Content";
@@ -18,7 +18,7 @@ function FormElement(props) {
   const { id, children, isDisabled, isOptional, isRequired, size, hasFieldSet, ...moreProps } = props;
   const { fieldsetAriaDescribedBy } = React.useContext(FieldsetContext);
   const [ariaDescribedBy, setAriaDescribedBy] = React.useState({});
-  const [uniqueInputId] = React.useState(nanoid);
+  const [uniqueInputId] = React.useState(() => `form-element-input_${uuidv4()}`);
   const refLabel = React.useRef(null);
 
   const generateLabelId = id => (isNil(id) || id === "" ? uniqueInputId : id);

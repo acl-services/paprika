@@ -1,7 +1,7 @@
 import React from "react";
 import ReactDOM from "react-dom";
 import PropTypes from "prop-types";
-import nanoid from "nanoid";
+import { v4 as uuidv4 } from "uuid";
 import { Prism as SyntaxHighlighter } from "react-syntax-highlighter";
 import { tomorrow as syntaxTheme } from "react-syntax-highlighter/dist/esm/styles/prism";
 import Button from "@paprika/button";
@@ -25,7 +25,7 @@ const defaultProps = {
 const SourceCode = props => {
   const { children, isShown, portalElement, onToggle } = props;
 
-  const viewerId = React.useRef(nanoid()).current;
+  const viewerId = React.useRef(`code-viewer_${uuidv4()}`).current;
   const [copyLabel, setCopyLabel] = React.useState("Copy");
 
   const handleCopy = () => {

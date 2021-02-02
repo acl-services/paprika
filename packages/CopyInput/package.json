@@ -1,6 +1,6 @@
 {
   "name": "@paprika/copy-input",
-  "version": "1.1.4",
+  "version": "1.1.5-alpha.0",
   "description": "The CopyInput component is an input with a button that copies the input's contents to user's clipboard.",
   "author": "@paprika",
   "license": "MIT",
@@ -20,7 +20,7 @@
     "@paprika/helpers": "^2.0.1",
     "@paprika/icon": "^1.0.4",
     "@paprika/input": "^1.0.6",
-    "@paprika/popover": "^1.0.6",
+    "@paprika/popover": "^1.0.7-alpha.0",
     "@paprika/toast": "^1.0.6",
     "@paprika/tokens": "^1.0.0",
     "prop-types": "^15.7.2"

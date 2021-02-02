@@ -1,6 +1,6 @@
 {
   "name": "@paprika/collapsible-card",
-  "version": "1.1.7",
+  "version": "1.1.8-alpha.0",
   "description": "Styled collapsible card component. ",
   "author": "@paprika",
   "license": "MIT",
@@ -20,8 +20,8 @@
     "@paprika/helpers": "^2.0.1",
     "@paprika/stylers": "^1.0.0",
     "@paprika/tokens": "^1.0.0",
-    "nanoid": "^2.1.7",
-    "prop-types": "^15.7.2"
+    "prop-types": "^15.7.2",
+    "uuid": "^8.3.2"
   },
   "peerDependencies": {
     "@paprika/l10n": "^1.1.3",

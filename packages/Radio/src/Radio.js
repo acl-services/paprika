@@ -1,6 +1,6 @@
 import React from "react";
 import PropTypes from "prop-types";
-import nanoid from "nanoid";
+import { v4 as uuidv4 } from "uuid";
 import CheckIcon from "@paprika/icon/lib/Check";
 import { extractChildrenProps } from "@paprika/helpers";
 import * as sc from "./Radio.styles";
@@ -24,7 +24,7 @@ function Radio(props) {
     value,
     ...moreProps
   } = props;
-  const radioId = React.useRef(nanoid()).current;
+  const [radioId] = React.useState(() => `radio_${uuidv4()}`);
   const inputRef = React.useRef(null);
   const extendedInputProps = extractChildrenProps(children, RadioInputPropsCollector);
 
