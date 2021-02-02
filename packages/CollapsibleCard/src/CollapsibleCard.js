@@ -3,81 +3,107 @@ import PropTypes from "prop-types";
 import { v4 as uuidv4 } from "uuid";
 import { extractChildren } from "@paprika/helpers";
 import Avatar from "./components/Avatar";
+import Arrow from "./components/Arrow";
+import Body from "./components/Body";
+import Header from "./components/Header";
 import Metadata from "./components/Metadata";
 
-import * as sc from "./CollapsibleCard.styles";
+// import * as sc from "./CollapsibleCard.styles";
+import "./CollapsibleCard.scss";
+
+// TODO: convert to use .styles not .scss
 
 export default function CollapsibleCard(props) {
-  const { children, hasDivider, label, onExpand, ...moreProps } = props;
+  const { children, type, ...moreProps } = props;
   const [isCollapsed, setIsCollapsed] = React.useState(true);
   const [labelTextId] = React.useState(() => `collapsible-card-label_${uuidv4()}`);
   const [metadataId] = React.useState(() => `collapsible-card-metadata_${uuidv4()}`);
   const {
-    "CollapsibleCard.Avatar": avatar,
-    "CollapsibleCard.Metadata": metadata,
+    // "CollapsibleCard.Avatar": avatar,
+    "CollapsibleCard.Body": body,
+    "CollapsibleCard.Header": header,
+    // "CollapsibleCard.Metadata": metadata,
     children: otherElements,
-  } = extractChildren(children, ["CollapsibleCard.Avatar", "CollapsibleCard.Metadata"]);
+  } = extractChildren(children, ["CollapsibleCard.Body", "CollapsibleCard.Header"]);
 
-  React.useEffect(() => {
-    if (!isCollapsed && onExpand) {
-      onExpand();
-    }
-  }, [isCollapsed, onExpand]);
+  // React.useEffect(() => {
+  //   if (!isCollapsed && onExpand) {
+  //     onExpand();
+  //   }
+  // }, [isCollapsed, onExpand]);
 
-  function getLabel() {
-    return (
-      <sc.Label>
-        {avatar}
-        <div>
-          <sc.LabelText id={labelTextId}>{label}</sc.LabelText>
-          {metadata ? React.cloneElement(metadata, { id: metadataId }) : null}
-        </div>
-      </sc.Label>
-    );
-  }
+  // function getLabel() {
+  //   return (
+  //     <sc.Label>
+  //       {avatar}
+  //       <div>
+  //         <sc.LabelText id={labelTextId}>{label}</sc.LabelText>
+  //         {metadata ? React.cloneElement(metadata, { id: metadataId }) : null}
+  //       </div>
+  //     </sc.Label>
+  //   );
+  // }
 
   function handleClick() {
     setIsCollapsed(prevIsCollapsed => !prevIsCollapsed);
   }
 
+  // return (
+  //   <sc.CollapsibleCard
+  //     iconAlign="right"
+  //     label={typeof label === "function" ? label({ isCollapsed }) : getLabel()}
+  //     isCollapsed={isCollapsed}
+  //     onClick={handleClick}
+  //     hasAvatar={!!avatar}
+  //     hasLabelOnly={!avatar && !metadata}
+  //     triggerAriaDescribedby={`${labelTextId} ${metadata ? metadataId : ""}`}
+  //     {...moreProps}
+  //   >
+  //     <sc.Content hasDivider={hasDivider}>{otherElements}</sc.Content>
+  //   </sc.CollapsibleCard>
+  // );
+
+  // return (
+  //   <sc.CollapsibleCard>
+  //     <Header onClick={handleClick} type={type}>
+  //       <div>{header.props.children}</div>
+  //       <Arrow />
+  //     </Header>
+  //     <sc.Body>{body}</sc.Body>
+  //   </sc.CollapsibleCard>
+  // );
+  const isCollapsedClassname = isCollapsed ? "" : "collapible-card--collapsed";
+
+  let typeClassname = "";
+  if (header.props.type === "half") {
+    typeClassname = "collapsible-card-header--half";
+  } else if (header.props.type === "third") {
+    typeClassname = "collapsible-card-header--third";
+  }
+
   return (
-    <sc.CollapsibleCard
-      iconAlign="right"
-      label={typeof label === "function" ? label({ isCollapsed }) : getLabel()}
-      isCollapsed={isCollapsed}
-      onClick={handleClick}
-      hasAvatar={!!avatar}
-      hasLabelOnly={!avatar && !metadata}
-      triggerAriaDescribedby={`${labelTextId} ${metadata ? metadataId : ""}`}
-      {...moreProps}
-    >
-      <sc.Content hasDivider={hasDivider}>{otherElements}</sc.Content>
-    </sc.CollapsibleCard>
+    <div className={`collapible-card ${isCollapsedClassname}`}>
+      <div className={`collapsible-card-header ${typeClassname}`} onClick={handleClick}>
+        <div className="collapsible-card-header__content">{header.props.children}</div>
+        <div className="collapsible-card-header__expand-toggle">down</div>
+      </div>
+      <div className="collapsible-card-body">{body.props.children}</div>
+    </div>
   );
 }
 
 const propTypes = {
   children: PropTypes.node,
-
-  /** If has a divider between collapsible header and content. */
-  hasDivider: PropTypes.bool,
-
-  /** Label text as the card title, can be a render function. */
-  label: PropTypes.oneOfType([PropTypes.node, PropTypes.func]),
-
-  /** Callback function when expand the card. */
-  onExpand: PropTypes.func,
 };
 
 const defaultProps = {
   children: null,
-  hasDivider: false,
-  label: null,
-  onExpand: null,
 };
 
 CollapsibleCard.propTypes = propTypes;
 CollapsibleCard.defaultProps = defaultProps;
 
-CollapsibleCard.Avatar = Avatar;
-CollapsibleCard.Metadata = Metadata;
+// CollapsibleCard.Avatar = Avatar;
+CollapsibleCard.Body = Body;
+CollapsibleCard.Header = Header;
+// CollapsibleCard.Metadata = Metadata;
