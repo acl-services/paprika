@@ -78,7 +78,7 @@ export default function DynamicHyperlinkTransformer({ onFetch }) {
 
       if (ckEditorInstances) {
         Object.entries(ckEditorInstances).forEach(([, ckEditorInstance]) => {
-          ckEditorInstance.on("instanceReady", () => {
+          ckEditorInstance.on("dataReady", () => {
             updateDynamicHyperlinks(ckEditorInstance.document.$);
           });
         });
