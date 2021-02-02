@@ -2,7 +2,7 @@ import styled, { css } from "styled-components";
 import Button from "@paprika/button";
 import PaprikaPopover from "@paprika/popover";
 import tokens from "@paprika/tokens";
-import { fontSize, spacer } from "@paprika/stylers/lib/helpers";
+import { fontSize, lineHeight, spacer } from "@paprika/stylers/lib/helpers";
 import * as types from "../../types";
 
 const passedPath = css`
@@ -53,7 +53,39 @@ const futurePoint = css`
   border: 2px solid ${tokens.color.blackLighten20};
 `;
 
-export const Point = styled.div(({ kind }) => {
+const currentPointWithoutActions = css`
+  ${fontSize(-1)};
+  ${lineHeight(1)};
+  align-items: center;
+  background-color: ${tokens.color.white};
+  border: 1px solid ${tokens.border.color};
+  border-radius: ${tokens.button.borderRadius};
+  box-sizing: border-box;
+  color: ${tokens.color.black};
+  cursor: default;
+  display: inline-flex;
+  font-weight: bold;
+  justify-content: center;
+  min-height: ${spacer(4)};
+  padding: ${tokens.spaceSm} ${tokens.spaceLg};
+  text-align: center;
+  transition-duration: 0.2s;
+  transition-property: border;
+  vertical-align: middle;
+
+  &:focus {
+    border-color: ${tokens.color.blue};
+    box-shadow: 0 0 0 2px ${tokens.color.blueLighten30};
+    outline: none;
+  }
+
+  &:hover {
+    background: ${tokens.color.offWhite};
+    border-color: ${tokens.color.blackLighten40};
+  }
+`;
+
+export const Point = styled.div(({ kind, isDropdown }) => {
   switch (kind) {
     case types.kinds.PAST:
       return css`
@@ -63,6 +95,7 @@ export const Point = styled.div(({ kind }) => {
     case types.kinds.CURRENT:
       return css`
         margin-top: -${tokens.spaceSm};
+        ${isDropdown ? "" : currentPointWithoutActions}
       `;
     case types.kinds.FUTURE:
       return css`
