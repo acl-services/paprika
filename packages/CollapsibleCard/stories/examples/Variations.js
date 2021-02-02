@@ -3,12 +3,12 @@ import StoryHeading from "storybook/components/StoryHeading";
 import { Story } from "storybook/assets/styles/common.styles";
 import CollapsibleCard from "../../src";
 
-// TODO: button clicks bubbling
 // TODO: responsiveness
 // TODO: other props
 // TODO: Cards.Group
-// TODO: a11y
+// TODO: a11y, focus, see Collapsible and old CollapsibleCard
 // TODO: tests
+// TODO later: clicking on buttons in the header was propagating, so i discussed with nahum and decided to make just the arrow clickable and discuss later
 
 function Lipsum() {
   return (
@@ -53,18 +53,27 @@ const ExampleStory = () => {
       <h3>Half</h3>
       <CollapsibleCard>
         <CollapsibleCard.Header type="half">
-          <div>Left</div>
           <div>
-            <button
-              type="button"
-              onClick={e => {
-                console.log("clicked the button; dont collapse i hope!222");
-                e.stopPropagation(); // this is necessary so doesn't collapse. need to add it to all buttons.  the same would be true for the old version.
-                // all descendants would need this added. jeez...
-              }}
-            >
-              click
+            Put in a switch, avatar, heading, description, tag, whatever. I can put together some commonly used ones
+            (title, title/description, title/description/tag)
+          </div>
+          <div>
+            <button type="button" onClick={e => {}}>
+              Right
             </button>
+            <button type="button" onClick={e => {}}>
+              Right
+            </button>
+            <button type="button" onClick={e => {}}>
+              Right
+            </button>
+            <button type="button" onClick={e => {}}>
+              Right
+            </button>
+            <button type="button" onClick={e => {}}>
+              Right
+            </button>
+            moar please
           </div>
         </CollapsibleCard.Header>
         <CollapsibleCard.Body>
@@ -74,7 +83,10 @@ const ExampleStory = () => {
       <h3>Third</h3>
       <CollapsibleCard>
         <CollapsibleCard.Header type="third">
-          <div>Left</div>
+          <div>
+            Left - Put in a switch, avatar, heading, description, tag, whatever. I can put together some commonly used
+            ones (title, title/description, title/description/tag)
+          </div>
           <div>Center</div>
           <div>Right</div>
         </CollapsibleCard.Header>

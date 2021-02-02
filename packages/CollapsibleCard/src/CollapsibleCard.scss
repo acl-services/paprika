@@ -1,23 +1,40 @@
-.collapible-card {
-  background-color: goldenrod;
+.collapsible-card {
+  background-color: paleturquoise;
 
-  &.collapible-card--collapsed .collapsible-card-body {
-    display: none;
+  &.collapsible-card--collapsed {
+    .collapsible-card-header__expand-toggle {
+      transform: rotate(180deg);
+    }
+
+    .collapsible-card-body {
+      display: none;
+    }
   }
 }
 
 .collapsible-card-header {
   display: flex;
-  background-color: paleturquoise;
 
   .collapsible-card-header__content {
     flex: 1 1 auto;
     background-color: greenyellow;
+
+    // TODO: remove this block
+    div {
+      border: 1px dashed blue;
+      margin: 5px;
+    }
   }
 
   &.collapsible-card-header--half .collapsible-card-header__content {
     display: flex;
     justify-content: space-between;
+
+    div {
+      &:nth-of-type(2) {
+        display: inline-flex;
+      }
+    }
   }
 
   &.collapsible-card-header--third .collapsible-card-header__content {
@@ -25,13 +42,19 @@
 
     div {
       display: flex;
-      flex: 1 1 33.333%;
+
+      &:nth-of-type(1) {
+        justify-content: center;
+        flex: 1 1 30%;
+      }
 
       &:nth-of-type(2) {
+        flex: 1 1 40%;
         justify-content: center;
       }
 
       &:nth-of-type(3) {
+        flex: 1 1 30%;
         justify-content: flex-end;
       }
     }

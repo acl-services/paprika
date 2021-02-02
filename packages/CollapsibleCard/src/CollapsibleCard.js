@@ -1,12 +1,13 @@
 import React from "react";
 import PropTypes from "prop-types";
 import { v4 as uuidv4 } from "uuid";
+import Button from "@paprika/button";
 import { extractChildren } from "@paprika/helpers";
-import Avatar from "./components/Avatar";
-import Arrow from "./components/Arrow";
+import ArrowUpIcon from "@paprika/icon/lib/ArrowUp";
+
 import Body from "./components/Body";
 import Header from "./components/Header";
-import Metadata from "./components/Metadata";
+// import Metadata from "./components/Metadata";
 
 // import * as sc from "./CollapsibleCard.styles";
 import "./CollapsibleCard.scss";
@@ -72,7 +73,7 @@ export default function CollapsibleCard(props) {
   //     <sc.Body>{body}</sc.Body>
   //   </sc.CollapsibleCard>
   // );
-  const isCollapsedClassname = isCollapsed ? "" : "collapible-card--collapsed";
+  const isCollapsedClassname = isCollapsed ? "" : "collapsible-card--collapsed";
 
   let typeClassname = "";
   if (header.props.type === "half") {
@@ -82,10 +83,14 @@ export default function CollapsibleCard(props) {
   }
 
   return (
-    <div className={`collapible-card ${isCollapsedClassname}`}>
-      <div className={`collapsible-card-header ${typeClassname}`} onClick={handleClick}>
+    <div className={`collapsible-card ${isCollapsedClassname}`}>
+      <div className={`collapsible-card-header ${typeClassname}`}>
         <div className="collapsible-card-header__content">{header.props.children}</div>
-        <div className="collapsible-card-header__expand-toggle">down</div>
+        <div className="collapsible-card-header__expand-toggle">
+          <Button.Icon onClick={handleClick} kind="minor">
+            <ArrowUpIcon />
+          </Button.Icon>
+        </div>
       </div>
       <div className="collapsible-card-body">{body.props.children}</div>
     </div>
@@ -103,7 +108,5 @@ const defaultProps = {
 CollapsibleCard.propTypes = propTypes;
 CollapsibleCard.defaultProps = defaultProps;
 
-// CollapsibleCard.Avatar = Avatar;
 CollapsibleCard.Body = Body;
 CollapsibleCard.Header = Header;
-// CollapsibleCard.Metadata = Metadata;
