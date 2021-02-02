@@ -14,10 +14,6 @@ export const Text = () => {
   );
 };
 
-export const SingleSelect = () => {
-  return (
-    <div style={{ padding: "32px" }}>
-      <widgets.SingleSelect />
-    </div>
-  );
+export const Table = () => {
+  return <widgets.Table />;
 };

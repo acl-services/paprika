@@ -8,7 +8,7 @@ import ColumnDefinition from "./components/ColumnDefinition";
 import * as sc from "./Table.styles";
 import { handleBlur, handleFocus, handleKeyDown, handleClick } from "./event";
 
-export default function Table(props) {
+const Table = React.forwardRef((props, ref) => {
   const { borderType, children, hasZebraStripes, data, a11yText, enableArrowKeyNavigation, ...moreProps } = props;
   const [tableId] = React.useState(() => `table_${uuidv4()}`);
 
@@ -41,7 +41,13 @@ export default function Table(props) {
     : {};
 
   return (
-    <sc.Table {...(enableArrowKeyNavigation ? { role: "grid" } : {})} aria-label={a11yText} id={tableId} {...moreProps}>
+    <sc.Table
+      {...(enableArrowKeyNavigation ? { role: "grid" } : {})}
+      aria-label={a11yText}
+      id={tableId}
+      {...moreProps}
+      ref={ref}
+    >
       <sc.Thead>
         <tr>
           {ColumnDefinitions.map((columnDefinition, columnIndex) => {
@@ -108,7 +114,7 @@ export default function Table(props) {
       </sc.TBody>
     </sc.Table>
   );
-}
+});
 
 Table.types = {
   border: constants.gridTypes,
@@ -144,3 +150,5 @@ Table.displayName = "Table";
 Table.propTypes = propTypes;
 Table.defaultProps = defaultProps;
 Table.ColumnDefinition = ColumnDefinition;
+
+export default Table;
