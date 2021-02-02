@@ -2,6 +2,8 @@
 
 ## [Unreleased]
 
+- Support the case of current status doesn't have actions.
+
 ## [0.0.2-alpha.0] - 2020-12-01
 
 - Added `<StatusTracker />` component.
