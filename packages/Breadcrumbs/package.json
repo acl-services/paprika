@@ -1,6 +1,6 @@
 {
   "name": "@paprika/breadcrumbs",
-  "version": "1.1.7-alpha.0",
+  "version": "1.1.7",
   "description": "Breadcrumbs are a type of navigation that also allows users to visualize their location.",
   "author": "@paprika",
   "main": "lib/index.js",
@@ -20,7 +20,7 @@
     "@paprika/constants": "^1.0.0",
     "@paprika/helpers": "^2.0.1",
     "@paprika/icon": "^1.0.4",
-    "@paprika/popover": "^1.0.7-alpha.0",
+    "@paprika/popover": "^1.0.7",
     "@paprika/stylers": "^1.0.0",
     "@paprika/tokens": "^1.0.0",
     "prop-types": "^15.7.2"
