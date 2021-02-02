@@ -58,7 +58,7 @@ const currentPointWithoutActions = css`
   ${lineHeight(1)};
   align-items: center;
   background-color: ${tokens.color.white};
-  border: 1px solid rgb(215, 215, 215);
+  border: 1px solid ${tokens.border.color};
   border-radius: ${tokens.button.borderRadius};
   box-sizing: border-box;
   color: ${tokens.color.black};
@@ -74,15 +74,14 @@ const currentPointWithoutActions = css`
   vertical-align: middle;
 
   &:focus {
-    border-color: #276cf5;
-    box-shadow: 0 0 0 2px #99cbfc;
+    border-color: ${tokens.color.blue};
+    box-shadow: 0 0 0 2px ${tokens.color.blueLighten30};
     outline: none;
   }
 
   &:hover {
-    background: #f0f0f0;
-    border-color: #a4a4a4;
-    color: #3f3d3c;
+    background: ${tokens.color.offWhite};
+    border-color: ${tokens.color.blackLighten40};
   }
 `;
 
