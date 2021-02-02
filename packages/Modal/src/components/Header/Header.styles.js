@@ -1,5 +1,7 @@
-import styled from "styled-components";
+import styled, { css } from "styled-components";
 import { spacer } from "@paprika/stylers/lib/helpers";
+import stylers from "@paprika/stylers";
+import Heading from "@paprika/heading";
 
 export const Header = styled.div`
   align-items: center;
@@ -7,3 +9,13 @@ export const Header = styled.div`
   justify-content: space-between;
   padding: 0 ${spacer(2)};
 `;
+
+export const HeaderHeading = styled(Heading)(
+  ({ isSingleLine, hasCloseButton }) => css`
+    margin-right: ${spacer(2)};
+    ${isSingleLine && stylers.truncateText};
+    ${isSingleLine && `padding: ${spacer(2)} 0;`};
+    ${isSingleLine && hasCloseButton && `margin: 0 ${spacer(2)} 0 0; width: 95%;`};
+    ${isSingleLine && !hasCloseButton && `margin: 0;`};
+  `
+);

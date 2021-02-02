@@ -3,6 +3,7 @@ import { storiesOf } from "@storybook/react";
 import { withKnobs, boolean, select } from "@storybook/addon-knobs";
 import { Story, Rule, Tagline, repeat } from "storybook/assets/styles/common.styles";
 import { getStoryName } from "storybook/storyTree";
+import tokens from "@paprika/tokens";
 import styled from "styled-components";
 import stylers from "@paprika/stylers";
 import Button from "@paprika/button";
@@ -11,6 +12,9 @@ import Heading from "@paprika/heading";
 import * as types from "../src/types";
 
 import Modal from "../src";
+
+// eslint-disable-next-line import/no-named-as-default-member
+const { Header, Content, Footer, FocusLock } = Modal;
 
 const storyName = getStoryName("Modal");
 
@@ -38,15 +42,15 @@ const ModalStory = ({ children }) => {
         onClose={toggle}
         size={select("Size", [types.SMALL, types.MEDIUM, types.LARGE], types.MEDIUM, "Modal")}
       >
-        <Modal.Header hasCloseButton={boolean("Has close button", true, "Modal.Header")}>Header</Modal.Header>
+        <Header hasCloseButton={boolean("Has close button", true, "Header")}>Header</Header>
         {children}
-        <Modal.Footer>
+        <Footer>
           <Button kind={Button.types.kind.PRIMARY}>Primary</Button>
           <Button>Secondary</Button>
           <Button kind={Button.types.kind.MINOR} onClick={toggle}>
             Cancel
           </Button>
-        </Modal.Footer>
+        </Footer>
       </Modal>
     </LongBlock>
   );
@@ -62,14 +66,14 @@ const Example = () => (
     </Tagline>
     <Rule />
     <ModalStory>
-      <Modal.Content>
+      <Content>
         {repeat(8, key => (
           <p key={key}>
             Mixtape single-origin coffee put a bird on it flexitarian street cred live-edge you probably haven‘t heard
             of them.
           </p>
         ))}
-      </Modal.Content>
+      </Content>
     </ModalStory>
   </Story>
 );
@@ -83,11 +87,11 @@ storiesOf(storyName, module)
 storiesOf(`${storyName}/Examples`, module)
   .add("Basic", () => (
     <ModalStory>
-      <Modal.Content>
+      <Content>
         {repeat(25, key => (
           <p key={key}>Some content here</p>
         ))}
-      </Modal.Content>
+      </Content>
     </ModalStory>
   ))
   .add("with full-width content", () => (
@@ -97,20 +101,20 @@ storiesOf(`${storyName}/Examples`, module)
   ))
   .add("with autofocus on input", () => (
     <Modal isOpen>
-      <Modal.Header>Header</Modal.Header>
-      <Modal.Content>
+      <Header>Header</Header>
+      <Content>
         <p>With input auto focus</p>
         <input type="text" data-autofocus />
-      </Modal.Content>
+      </Content>
     </Modal>
   ))
   .add("with disabled autofocus", () => (
     <Modal isOpen>
-      <Modal.FocusLock autoFocus={false} />
-      <Modal.Header>Header</Modal.Header>
-      <Modal.Content>
+      <FocusLock autoFocus={false} />
+      <Header>Header</Header>
+      <Content>
         <p>autofocus disabled</p>
-      </Modal.Content>
+      </Content>
     </Modal>
   ))
   .add("with focus on heading", () => {
@@ -140,40 +144,72 @@ storiesOf(`${storyName}/Examples`, module)
             }
           `}
         >
-          <Modal.Header refHeading={refHeading}>Header</Modal.Header>
-          <Modal.Content>
+          <Header refHeading={refHeading}>Header</Header>
+          <Content>
             <p>
               Unicorn next level readymade polaroid, locavore hot chicken forage ennui crucifix tote bag yuccie. Raw
               denim tumblr echo park bushwick hoodie iceland cloud bread iPhone kombucha shoreditch taiyaki woke. Brunch
               ramps cred polaroid, vinyl skateboard portland typewriter jean shorts single-origin coffee flexitarian
               drinking vinegar.
             </p>
-          </Modal.Content>
+          </Content>
         </Modal>
       </Story>
     );
-  });
-
-storiesOf(`${storyName}/Backyard/Sandbox`, module)
-  .add("with form render", () => (
-    <Modal
-      isOpen
-      as="form"
-      onSubmit={event => {
-        alert("submit");
-        event.preventDefault();
-      }}
-    >
-      <Modal.Content>
-        <input type="text" defaultValue="your text" />
-      </Modal.Content>
-      <Modal.Footer>
-        <Button isSubmit isSemantic={false}>
-          Submit
-        </Button>
-      </Modal.Footer>
+  })
+  .add("with header coloured ", () => (
+    <Modal isOpen>
+      <FocusLock autoFocus={false} />
+      <Header style={{ backgroundColor: tokens.color.blueLighten30 }}>
+        This is a really long example This is a really long exampleThis is a really long exampleThis is a really long
+        exampleThis is a really long exampleThis is a really long example
+      </Header>
+      <Content>
+        {repeat(8, key => (
+          <p key={key} style={{ marginTop: 0 }}>
+            Mixtape single-origin coffee put a bird on it flexitarian street cred live-edge you probably haven‘t heard
+            of them.
+          </p>
+        ))}
+      </Content>
     </Modal>
   ))
+  .add("with truncated (single line) header text ", () => (
+    <Modal isOpen>
+      <FocusLock autoFocus={false} />
+      <Header isSingleLine>
+        This is a really long example This is a really long exampleThis is a really long exampleThis is a really long
+        exampleThis is a really long exampleThis is a really long example
+      </Header>
+      <Content>
+        {repeat(8, key => (
+          <p key={key} style={{ marginTop: 0 }}>
+            Mixtape single-origin coffee put a bird on it flexitarian street cred live-edge you probably haven‘t heard
+            of them.
+          </p>
+        ))}
+      </Content>
+    </Modal>
+  ))
+  .add("with truncated (single line) header text and no close button ", () => (
+    <Modal isOpen>
+      <FocusLock autoFocus={false} />
+      <Header isSingleLine hasCloseButton={false}>
+        This is a really long example This is a really long exampleThis is a really long exampleThis is a really long
+        exampleThis is a really long exampleThis is a really long example
+      </Header>
+      <Content>
+        {repeat(8, key => (
+          <p key={key} style={{ marginTop: 0 }}>
+            Mixtape single-origin coffee put a bird on it flexitarian street cred live-edge you probably haven‘t heard
+            of them.
+          </p>
+        ))}
+      </Content>
+    </Modal>
+  ));
+
+storiesOf(`${storyName}/Backyard/Sandbox`, module)
   .add("Z Index", () => {
     const [isOpen, setIsOpen] = React.useState(false);
     const toggle = () => {
@@ -187,8 +223,8 @@ storiesOf(`${storyName}/Backyard/Sandbox`, module)
       >
         <Button onClick={toggle}>Open Modal</Button>
         <Modal isOpen={isOpen} onClose={toggle} zIndex={99}>
-          <Modal.Header>Header</Modal.Header>
-          <Modal.Content>
+          <Header>Header</Header>
+          <Content>
             <p>
               The <code>zIndex</code> prop of this <code>&lt;Modal&gt;</code> is also <code>99</code>.
             </p>
@@ -199,13 +235,13 @@ storiesOf(`${storyName}/Backyard/Sandbox`, module)
             {repeat(4, key => (
               <p key={key}>Hexagon heirloom kitsch DIY man bun cloud bread succulent meggings.</p>
             ))}
-          </Modal.Content>
-          <Modal.Footer>
+          </Content>
+          <Footer>
             <Button kind={Button.types.kind.PRIMARY}>Primary</Button>
             <Button kind={Button.types.kind.MINOR} onClick={toggle}>
               Cancel
             </Button>
-          </Modal.Footer>
+          </Footer>
         </Modal>
         <div
           css={`
@@ -234,7 +270,7 @@ storiesOf(`${storyName}/Backyard/Sandbox`, module)
 
       return (
         <ModalStory>
-          <Modal.Content>
+          <Content>
             <SidePanel isOpen={isOpen} onClose={toggle}>
               <SidePanel.Overlay />
               <SidePanel.Trigger kind={SidePanel.types.kind.PRIMARY} onClick={toggle}>
@@ -242,8 +278,44 @@ storiesOf(`${storyName}/Backyard/Sandbox`, module)
               </SidePanel.Trigger>
               <SidePanel.Header>Header</SidePanel.Header>
             </SidePanel>
-          </Modal.Content>
+          </Content>
         </ModalStory>
+      );
+    })
+  )
+  .add("With form wrapping modal components ", () =>
+    React.createElement(() => {
+      const [isOpen, setIsOpen] = React.useState(true);
+      const toggle = () => {
+        setIsOpen(state => !state);
+      };
+
+      return (
+        <LongBlock>
+          <Button onClick={toggle}>Open Modal</Button>
+          <Modal
+            isOpen={isOpen}
+            onClose={toggle}
+            size={select("Size", [types.SMALL, types.MEDIUM, types.LARGE], types.MEDIUM, "Modal")}
+          >
+            <form
+              onSubmit={event => {
+                alert("submitted");
+                event.preventDefault();
+              }}
+            >
+              <Header hasCloseButton={boolean("Has close button", true, "Header")}>Header</Header>
+              <Content>
+                <input type="text" defaultValue="press enter while focus" />
+              </Content>
+              <Footer>
+                <Button isSubmit isSemantic={false} kind={Button.types.kind.PRIMARY}>
+                  Primary
+                </Button>
+              </Footer>
+            </form>
+          </Modal>
+        </LongBlock>
       );
     })
   );
@@ -251,44 +323,44 @@ storiesOf(`${storyName}/Backyard/Sandbox`, module)
 storiesOf(`${storyName}/Backyard/Tests/Screener`, module)
   .add("small", () => (
     <ModalStory>
-      <Modal.Content>
+      <Content>
         <p>Some content here</p>
-      </Modal.Content>
+      </Content>
     </ModalStory>
   ))
   .add("symmetric reducing of &::before and &::after", () => (
     <ModalStory>
-      <Modal.Content>
+      <Content>
         <p>height of this modal bigger than (100% - (124px * 2)) on 1280x1024</p>
         {repeat(17, key => (
           <p key={key}>Some content here</p>
         ))}
-      </Modal.Content>
+      </Content>
     </ModalStory>
   ))
   .add("scroll in content area", () => (
     <ModalStory>
-      <Modal.Content>
+      <Content>
         <p>height of this modal bigger than (100% - (24px * 2)) on 1280x1024</p>
         {repeat(24, key => (
           <p key={key}>Some content here</p>
         ))}
-      </Modal.Content>
+      </Content>
     </ModalStory>
   ))
   .add("focus lock content input", () => (
     <ModalStory>
-      <Modal.Content>
+      <Content>
         <p>With input auto focus</p>
         <input type="text" data-autofocus />
-      </Modal.Content>
+      </Content>
     </ModalStory>
   ))
   .add("focus lock disabled", () => (
     <ModalStory>
-      <Modal.FocusLock autoFocus={false} />
-      <Modal.Content>
+      <FocusLock autoFocus={false} />
+      <Content>
         <p>autofocus disabled</p>
-      </Modal.Content>
+      </Content>
     </ModalStory>
   ));

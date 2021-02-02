@@ -5,6 +5,7 @@ export const Footer = styled.div`
   align-items: center;
   background-color: ${tokens.modal.footer.backgroundColor};
   display: flex;
+  flex: none;
   flex-wrap: wrap;
   justify-content: flex-end;
   padding: ${tokens.spaceLg};

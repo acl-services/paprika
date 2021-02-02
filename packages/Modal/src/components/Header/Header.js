@@ -2,34 +2,54 @@ import React from "react";
 import PropTypes from "prop-types";
 import { RefOf } from "@paprika/helpers";
 import Button from "@paprika/button";
-import Heading from "@paprika/heading";
 import * as sc from "./Header.styles";
+import { ModalContext } from "../../Modal";
 
 const propTypes = {
   children: PropTypes.node.isRequired,
   hasCloseButton: PropTypes.bool,
   level: PropTypes.oneOf([1, 2, 3, 4, 5, 6]),
-  onClose: PropTypes.func,
   refHeading: RefOf(),
+
+  /** If the header should truncate text so that only appears on one line */
+  isSingleLine: PropTypes.bool,
 };
 
 const defaultProps = {
   hasCloseButton: true,
   level: 3,
-  onClose: () => {},
   refHeading: null,
+  isSingleLine: false,
 };
 
 const Header = React.forwardRef((props, ref) => {
-  const { children, level, hasCloseButton, onClose, refHeading, ...moreProps } = props;
+  const { children, level, hasCloseButton, refHeading, isSingleLine, ...moreProps } = props;
+  const { a11yText, updateAriaLabel, onClose } = React.useContext(ModalContext);
+
+  React.useEffect(() => {
+    updateAriaLabel(a11yText || children);
+  }, [a11yText, children, updateAriaLabel]);
 
   return (
-    <sc.Header ref={ref} {...moreProps}>
-      <Heading level={level} displayLevel={3} isLight ref={refHeading}>
+    <sc.Header ref={ref} {...moreProps} onClose={onClose}>
+      <sc.HeaderHeading
+        level={level}
+        displayLevel={3}
+        isLight
+        ref={refHeading}
+        isSingleLine={isSingleLine}
+        hasCloseButton={hasCloseButton}
+      >
         {children}
-      </Heading>
+      </sc.HeaderHeading>
       {hasCloseButton && (
-        <Button.Close data-pka-anchor="modal.header.close-button" isSemantic={false} onClick={onClose} size="medium" />
+        <Button.Close
+          data-qa-anchor="modal.header.close-button"
+          data-pka-anchor="modal.header.close-button"
+          isSemantic={false}
+          onClick={onClose}
+          size="medium"
+        />
       )}
     </sc.Header>
   );

@@ -6,6 +6,17 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 
 ## [Unreleased]
 
+2020-02-02
+
+## Changed
+
+- to use Context instead of using extractChildren helper for more flexibility in children being passed
+
+### Added
+
+- isSingleLine prop to Header to truncate long strings
+- data-qa-anchor onto Header close button
+
 ## [0.2.20] - 2020-05-12
 
 ### Added
