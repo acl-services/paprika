@@ -17,30 +17,35 @@
 
   .collapsible-card-header__content {
     flex: 1 1 auto;
-    background-color: greenyellow;
+    // background-color: greenyellow;
 
     // TODO: remove this block
-    div {
-      border: 1px dashed blue;
-      margin: 5px;
-    }
+    // > div {
+    //   border: 1px dashed blue;
+    //   margin: 5px;
+    // }
   }
 
   &.collapsible-card-header--half .collapsible-card-header__content {
     display: flex;
     justify-content: space-between;
 
-    div {
+    > div {
       &:nth-of-type(2) {
         display: inline-flex;
       }
+    }
+
+    @media (max-width: 800px) {
+      background-color: red;
+      display: block;
     }
   }
 
   &.collapsible-card-header--third .collapsible-card-header__content {
     display: flex;
 
-    div {
+    > div {
       display: flex;
 
       &:nth-of-type(1) {
@@ -67,4 +72,20 @@
 }
 
 .collapsible-card-body {
+}
+
+.test-header {
+  display: flex;
+
+  [data-pka-anchor="switch"] {
+    flex: 0 0 36px;
+  }
+
+  .test-header__content {
+    //border: 1px solid green;
+  }
+
+  [data-pka-anchor="counter"] {
+    //border: 1px solid blue;
+  }
 }

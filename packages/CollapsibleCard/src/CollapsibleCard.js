@@ -73,7 +73,7 @@ export default function CollapsibleCard(props) {
   //     <sc.Body>{body}</sc.Body>
   //   </sc.CollapsibleCard>
   // );
-  const isCollapsedClassname = isCollapsed ? "" : "collapsible-card--collapsed";
+  const isCollapsedClassname = isCollapsed ? "collapsible-card--collapsed" : "";
 
   let typeClassname = "";
   if (header.props.type === "half") {
