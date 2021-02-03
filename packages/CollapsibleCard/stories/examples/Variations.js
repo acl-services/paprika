@@ -6,7 +6,15 @@ import Switch from "@paprika/switch";
 import StatusTracker from "@paprika/status-tracker";
 import CollapsibleCard from "../../src";
 
+// x go with full or half (no thirds)
+// - allow them to define width of each half
+// - hard code the breakpoint when it switches to stacked mode (e.g. 800px), though maybe i could easily make it a prop)
+// - provide a context that shares `isStacked` (so the consumer can handle and mannipulate the children)
+// - build the commonly used components for the switch/avatar/title/description/tag part
+// - done
+
 // TODO: responsiveness (first using just query, then using ResizeDetector?)
+// TODO: controlled/uncontrolled
 // TODO: other props
 // TODO: Cards.Group
 // TODO: a11y, focus, see Collapsible and old CollapsibleCard
@@ -52,96 +60,37 @@ function TestHeader() {
 }
 
 const ExampleStory = () => {
-  const currentPointRef = React.useRef(null);
-
   return (
     <Story>
       <StoryHeading level={1}>Collapsible Card variations</StoryHeading>
       <h3>Full-width</h3>
       <CollapsibleCard>
         <CollapsibleCard.Header>
-          <div>
-            <TestHeader />
-          </div>
+          <CollapsibleCard.Segment>Auto Full width</CollapsibleCard.Segment>
         </CollapsibleCard.Header>
         <CollapsibleCard.Body>
           <Lipsum />
         </CollapsibleCard.Body>
       </CollapsibleCard>
-      <br />
-      <h3>Half A</h3>
       <CollapsibleCard>
-        <CollapsibleCard.Header type="half">
-          <div>
-            <TestHeader />
-          </div>
-          <div>
-            <button type="button" onClick={e => {}}>
-              Right
-            </button>
-            <button type="button" onClick={e => {}}>
-              Right
-            </button>
-            <button type="button" onClick={e => {}}>
-              Right
-            </button>
-            <button type="button" onClick={e => {}}>
-              Right
-            </button>
-            <button type="button" onClick={e => {}}>
-              Right
-            </button>
-            moar please
-          </div>
+        <CollapsibleCard.Header>
+          <CollapsibleCard.Segment>Auto 50% width</CollapsibleCard.Segment>
+          <CollapsibleCard.Segment>Auto 50% width</CollapsibleCard.Segment>
         </CollapsibleCard.Header>
         <CollapsibleCard.Body>
           <Lipsum />
         </CollapsibleCard.Body>
       </CollapsibleCard>
-      <br />
-      <h3>Half B</h3>
       <CollapsibleCard>
-        <CollapsibleCard.Header type="half">
-          <div>
-            <ShortText />
-          </div>
-          <div>
-            <button type="button" onClick={e => {}}>
-              Right
-            </button>
-          </div>
+        <CollapsibleCard.Header>
+          <CollapsibleCard.Segment width={70}>70% width</CollapsibleCard.Segment>
+          <CollapsibleCard.Segment width={30}>30% width</CollapsibleCard.Segment>
         </CollapsibleCard.Header>
         <CollapsibleCard.Body>
           <Lipsum />
         </CollapsibleCard.Body>
       </CollapsibleCard>
-      <br />
-      <h3>Third</h3>
-      <CollapsibleCard>
-        <CollapsibleCard.Header type="third">
-          <div>
-            <TestHeader />
-          </div>
-          <div>
-            <StatusTracker>
-              <StatusTracker.Point name="Draft" kind={StatusTracker.types.kind.PAST} description="desc2" />
-
-              <StatusTracker.Point
-                name="In review"
-                description="desc"
-                kind={StatusTracker.types.kind.CURRENT}
-                ref={currentPointRef}
-              />
-              <StatusTracker.Point name="Approve" kind={StatusTracker.types.kind.FUTURE} />
-              <StatusTracker.Point name="Done" kind={StatusTracker.types.kind.FUTURE} />
-            </StatusTracker>
-          </div>
-          <div>Right</div>
-        </CollapsibleCard.Header>
-        <CollapsibleCard.Body>
-          <Lipsum />
-        </CollapsibleCard.Body>
-      </CollapsibleCard>
+      What would happen if i put in 3?
     </Story>
   );
 };

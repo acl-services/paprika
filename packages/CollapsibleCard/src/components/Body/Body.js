@@ -4,7 +4,8 @@ import * as sc from "./Body.styles";
 
 export default function Body(props) {
   const { children, ...moreProps } = props;
-  return <sc.Body {...moreProps}>{children}</sc.Body>;
+  return <div className="collapsible-card-body">{children}</div>;
+  // return <sc.Body {...moreProps}>{children}</sc.Body>;
 }
 
 const propTypes = {

@@ -42,29 +42,6 @@
     }
   }
 
-  &.collapsible-card-header--third .collapsible-card-header__content {
-    display: flex;
-
-    > div {
-      display: flex;
-
-      &:nth-of-type(1) {
-        justify-content: center;
-        flex: 1 1 30%;
-      }
-
-      &:nth-of-type(2) {
-        flex: 1 1 40%;
-        justify-content: center;
-      }
-
-      &:nth-of-type(3) {
-        flex: 1 1 30%;
-        justify-content: flex-end;
-      }
-    }
-  }
-
   .collapsible-card-header__expand-toggle {
     background-color: darkorange;
     flex: 0 0 32px;
