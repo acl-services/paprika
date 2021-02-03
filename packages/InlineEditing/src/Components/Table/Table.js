@@ -9,103 +9,128 @@ const propTypes = {
 
 const defaultProps = {};
 
-export const Editing = React.forwardRef((props, ref) => {
-  const { children, cellProps, onEditing, onChange, getValue, getTableElement, nextData } = props;
-  const [isEditing, setIsEditing] = React.useState(false);
+// export const Editing = React.forwardRef((props, ref) => {
+//   const { children, cellProps, onEditing, onChange, getValue, getTableElement, nextData } = props;
+//   const [isEditing, setIsEditing] = React.useState(false);
 
-  const { rowIndex, columnIndex, row } = cellProps;
-  const id = `${rowIndex}-${columnIndex}`;
+//   const { rowIndex, columnIndex, row } = cellProps;
+//   const id = `${rowIndex}-${columnIndex}`;
 
-  const getCellElement = () =>
-    getTableElement().querySelector(`[data-row-index='${rowIndex}'][data-column-index='${columnIndex}']`);
+//   const getCellElement = () =>
+//     getTableElement().querySelector(`[data-row-index='${rowIndex}'][data-column-index='${columnIndex}']`);
 
-  console.log(`rendering-${id}`);
-  React.useImperativeHandle(ref, () => {
-    return {
-      id,
-      toggleIsEditing() {
-        setIsEditing(prev => !prev);
-      },
-      setIsEditing,
-    };
-  });
+//   console.log(`rendering-${id}`);
+//   React.useImperativeHandle(ref, () => {
+//     return {
+//       id,
+//       toggleIsEditing() {
+//         setIsEditing(prev => !prev);
+//       },
+//       setIsEditing,
+//     };
+//   });
 
-  function handleFinish() {
-    setIsEditing(false);
-    getCellElement().focus();
-  }
+//   function handleFinish() {
+//     setIsEditing(false);
+//     getCellElement().focus();
+//   }
 
-  function handleCancel() {
-    setIsEditing(false);
-  }
+//   function handleCancel() {
+//     setIsEditing(false);
+//   }
 
-  function handleOnChange(args) {
-    onChange(args);
-  }
+//   function handleOnChange(args) {
+//     onChange(args);
+//   }
 
-  if (isEditing) {
-    let value = null;
-    if (typeof getValue === "function") {
-      value = getValue(cellProps);
-    } else if (children === "string" || children === "number" || children === "boolean") {
-      value = children;
-    } else {
-      throw Error(
-        `We can't figure out what is the value for the cell ${id}, please use the getValue Props in your ColumnDefinition to resolve this issue`
-      );
-    }
+//   if (isEditing) {
+//     let value = null;
+//     if (typeof getValue === "function") {
+//       value = getValue(cellProps);
+//     } else if (children === "string" || children === "number" || children === "boolean") {
+//       value = children;
+//     } else {
+//       throw Error(
+//         `We can't figure out what is the value for the cell ${id}, please use the getValue Props in your ColumnDefinition to resolve this issue`
+//       );
+//     }
 
-    const Component = onEditing;
-    return (
-      <Component
-        cancel={handleCancel}
-        nextData={nextData}
-        finish={handleFinish}
-        value={value}
-        onChange={handleOnChange}
-        rowIndex={rowIndex}
-        columnIndex={columnIndex}
-        row={row}
-        getCellElement={getCellElement}
-      />
-    );
-  }
+//     const Component = onEditing;
+//     return (
+//       <Component
+//         cancel={handleCancel}
+//         nextData={nextData}
+//         finish={handleFinish}
+//         value={value}
+//         onChange={handleOnChange}
+//         rowIndex={rowIndex}
+//         columnIndex={columnIndex}
+//         row={row}
+//         getCellElement={getCellElement}
+//       />
+//     );
+//   }
 
-  return children;
-});
+//   return children;
+// });
 
 export default function Table(props) {
   const { children, ...moreProps } = props;
   const refCells = React.useRef(new Map());
   const refTable = React.useRef(null);
+  const cellKey = ({ rowIndex, columnIndex }) => `paprika.inline-editing.cell${rowIndex}-${columnIndex}`;
+
+  function handleFocus({ rowIndex, columnIndex }) {
+    debugger;
+    const instance = refCells.current.get(cellKey({ rowIndex, columnIndex }));
+    if ("onFocus" in instance) {
+      instance.onFocus();
+    }
+  }
+
+  function handleBlur({ rowIndex, columnIndex }) {
+    debugger;
+    const instance = refCells.current.get(cellKey({ rowIndex, columnIndex }));
+    if ("onBlur" in instance) {
+      instance.onBlur();
+    }
+  }
 
   function handleKeyUp(event) {
     if (event.key === "Enter") {
       const { rowIndex, columnIndex } = event.target.dataset;
-      const ref = refCells.current.get(`${rowIndex}${columnIndex}`);
+      const ref = refCells.current.get(cellKey(rowIndex, columnIndex));
       if (ref) ref.toggleIsEditing();
     }
   }
 
-  function nextData({ nextValue, rowIndex, rowColumn }) {}
+  function nextData({ nextValue, rowIndex, columnIndex }) {}
 
-  const handleCell = ({ cell, onEditing, onChange, getValue }) => args => {
-    const { rowIndex, columnIndex } = args;
+  const getCellElement = ({ rowIndex, columnIndex }) => () => {
     return (
-      <Editing
-        cellProps={args}
-        getTableElement={() => {
-          return refTable.current;
-        }}
-        nextData={nextData}
-        getValue={getValue}
-        onChange={onChange}
-        onEditing={onEditing}
-        ref={ref => refCells.current.set(`${rowIndex}${columnIndex}`, ref)}
-      >
-        <sc.CellOverflow>{cell(args)}</sc.CellOverflow>
-      </Editing>
+      refTable.current &&
+      refTable.current.querySelector(`[data-row-index='${rowIndex}'][data-column-index='${columnIndex}']`)
     );
+  };
+
+  const getBoundingClientRect = cellElement => () => cellElement().getBoundingClientRect();
+
+  const handleCell = ({ cell, onChange }) => args => {
+    const { rowIndex, columnIndex } = args;
+    const cellElementBound = getCellElement({ rowIndex, columnIndex });
+    const getRect = getBoundingClientRect(cellElementBound);
+
+    const cellRender = cell({
+      ...args,
+      getCellElement: cellElementBound,
+      getRect,
+      // this set the cell (provided by the consumer) component ref and its expect to have an imperative API
+      // that we can manipulate, doing this way, we can modify and update a specific cell
+      // without the need to execute any other function of the already rendered cells
+      ref: ref => refCells.current.set(cellKey({ rowIndex, columnIndex }), ref),
+    });
+
+    return <sc.CellOverflow>{cellRender}</sc.CellOverflow>;
   };
 
   const clonedColumnDefinition = React.useMemo(() => {
@@ -118,9 +143,7 @@ export default function Table(props) {
           ...child.props,
           cell: handleCell({
             cell,
-            getValue,
             onChange,
-            onEditing,
           }),
         })
       );
@@ -130,7 +153,14 @@ export default function Table(props) {
   }, [children]);
 
   return (
-    <TablePaprika ref={refTable} {...moreProps} enableArrowKeyNavigation onKeyUp={handleKeyUp}>
+    <TablePaprika
+      onFocus={handleFocus}
+      onBlur={handleBlur}
+      ref={refTable}
+      {...moreProps}
+      enableArrowKeyNavigation
+      onKeyUp={handleKeyUp}
+    >
       {clonedColumnDefinition}
     </TablePaprika>
   );

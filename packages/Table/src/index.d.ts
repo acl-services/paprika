@@ -11,7 +11,7 @@ interface TableProps {
     | Table.types.border.VERTICAL;
   /** Accessible description of the table */
   a11yText: string;
-
+  /** 👶👶👶👶👶👶😸 */
   children: React.ReactNode;
   /** Add an alternating background on the table rows */
   hasZebraStripes?: boolean;
@@ -19,6 +19,10 @@ interface TableProps {
   data?: shape[];
   /** For authors use only, use case: inline editing. */
   enableArrowKeyNavigation?: boolean;
+  /** It will be call each time a new cell received the focus */
+  onFocus?: (...args: any[]) => any;
+  /** It will be call each time a current selected cell lose focus */
+  onBlur?: (...args: any[]) => any;
 }
 
 declare namespace Table {

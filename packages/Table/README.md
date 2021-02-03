@@ -22,14 +22,16 @@ npm install @paprika/table
 
 ### Table
 
-| Prop                     | Type                                                                                                            | required | default                       | Description                                     |
-| ------------------------ | --------------------------------------------------------------------------------------------------------------- | -------- | ----------------------------- | ----------------------------------------------- |
-| borderType               | [ Table.types.border.GRID, Table.types.border.NONE, Table.types.border.HORIZONTAL, Table.types.border.VERTICAL] | false    | Table.types.border.HORIZONTAL | Define the look for borders in the table        |
-| a11yText                 | string                                                                                                          | true     | -                             | Accessible description of the table             |
-| children                 | node                                                                                                            | true     | -                             |                                                 |
-| hasZebraStripes          | bool                                                                                                            | false    | false                         | Add an alternating background on the table rows |
-| data                     | arrayOf                                                                                                         | false    | []                            | Array of data to be stored in the Table         |
-| enableArrowKeyNavigation | bool                                                                                                            | false    | false                         | For authors use only, use case: inline editing. |
+| Prop                     | Type                                                                                                            | required | default                       | Description                                                  |
+| ------------------------ | --------------------------------------------------------------------------------------------------------------- | -------- | ----------------------------- | ------------------------------------------------------------ |
+| borderType               | [ Table.types.border.GRID, Table.types.border.NONE, Table.types.border.HORIZONTAL, Table.types.border.VERTICAL] | false    | Table.types.border.HORIZONTAL | Define the look for borders in the table                     |
+| a11yText                 | string                                                                                                          | true     | -                             | Accessible description of the table                          |
+| children                 | node                                                                                                            | true     | -                             | 👶👶👶👶👶👶😸                                               |
+| hasZebraStripes          | bool                                                                                                            | false    | false                         | Add an alternating background on the table rows              |
+| data                     | arrayOf                                                                                                         | false    | []                            | Array of data to be stored in the Table                      |
+| enableArrowKeyNavigation | bool                                                                                                            | false    | false                         | For authors use only, use case: inline editing.              |
+| onFocus                  | func                                                                                                            | false    | () => {}                      | It will be call each time a new cell received the focus      |
+| onBlur                   | func                                                                                                            | false    | () => {}                      | It will be call each time a current selected cell lose focus |
 
 ### Table.ColumnDefinition
 

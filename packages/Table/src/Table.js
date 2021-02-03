@@ -9,7 +9,17 @@ import * as sc from "./Table.styles";
 import { handleBlur, handleFocus, handleKeyDown, handleClick } from "./event";
 
 const Table = React.forwardRef((props, ref) => {
-  const { borderType, children, hasZebraStripes, data, a11yText, enableArrowKeyNavigation, ...moreProps } = props;
+  const {
+    borderType,
+    children,
+    hasZebraStripes,
+    data,
+    a11yText,
+    enableArrowKeyNavigation,
+    onFocus,
+    onBlur,
+    ...moreProps
+  } = props;
   const [tableId] = React.useState(() => `table_${uuidv4()}`);
 
   const refFocus = React.useRef(null);
@@ -32,10 +42,10 @@ const Table = React.forwardRef((props, ref) => {
 
   const arrowKeyNavigationProps = enableArrowKeyNavigation
     ? {
-        onFocus: handleFocus({ refFocus, tableId }),
-        onBlur: handleBlur({ refFocus, tableId }),
-        onKeyDown: handleKeyDown({ refFocus, tableId, ...qty }),
-        onClick: handleClick({ refFocus, tableId }),
+        onFocus: handleFocus({ refFocus, tableId, onFocus }),
+        onBlur: handleBlur({ refFocus, tableId, onBlur }),
+        onKeyDown: handleKeyDown({ refFocus, tableId, onFocus, ...qty }),
+        onClick: handleClick({ refFocus, tableId, onFocus }),
         tabIndex: -1,
       }
     : {};
@@ -130,6 +140,7 @@ const propTypes = {
   ]),
   /**  Accessible description of the table */
   a11yText: PropTypes.string.isRequired,
+  /** 👶👶👶👶👶👶😸 */
   children: PropTypes.node.isRequired,
   /** Add an alternating background on the table rows */
   hasZebraStripes: PropTypes.bool,
@@ -137,6 +148,10 @@ const propTypes = {
   data: PropTypes.arrayOf(PropTypes.shape({})),
   /** For authors use only, use case: inline editing. */
   enableArrowKeyNavigation: PropTypes.bool,
+  /** It will be call each time a new cell received the focus */
+  onFocus: PropTypes.func,
+  /** It will be call each time a current selected cell lose focus */
+  onBlur: PropTypes.func,
 };
 
 const defaultProps = {
@@ -144,6 +159,8 @@ const defaultProps = {
   data: [],
   hasZebraStripes: false,
   enableArrowKeyNavigation: false,
+  onFocus: () => {},
+  onBlur: () => {},
 };
 
 Table.displayName = "Table";

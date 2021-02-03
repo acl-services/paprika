@@ -10,12 +10,13 @@ export function $getCell({ rowIndex, columnIndex }, tableId) {
   return null;
 }
 
-export function addHighlightFocus({ rowIndex, columnIndex }, tableId) {
+export function addHighlightFocus({ rowIndex, columnIndex }, tableId, onFocus) {
   const $cell = $getCell({ rowIndex, columnIndex }, tableId);
   if ($cell) {
     $cell.classList.add("is-highlighted-focus");
     $cell.setAttribute("tabindex", 0);
     $cell.focus();
+    onFocus({ rowIndex, columnIndex, tableId });
   }
 }
 
