@@ -57,11 +57,11 @@ const currentPointWithoutActions = css`
   ${fontSize(-1)};
   ${lineHeight(1)};
   align-items: center;
-  background-color: ${tokens.color.white};
-  border: 1px solid ${tokens.border.color};
+  background-color: ${tokens.color.greenLighten50};
+  border: 1px solid ${tokens.color.green};
   border-radius: ${tokens.button.borderRadius};
   box-sizing: border-box;
-  color: ${tokens.color.black};
+  color: ${tokens.color.greenDarken10};
   cursor: default;
   display: inline-flex;
   font-weight: bold;
@@ -69,19 +69,12 @@ const currentPointWithoutActions = css`
   min-height: ${spacer(4)};
   padding: ${tokens.spaceSm} ${tokens.spaceLg};
   text-align: center;
-  transition-duration: 0.2s;
-  transition-property: border;
   vertical-align: middle;
 
   &:focus {
     border-color: ${tokens.color.blue};
     box-shadow: 0 0 0 2px ${tokens.color.blueLighten30};
     outline: none;
-  }
-
-  &:hover {
-    background: ${tokens.color.offWhite};
-    border-color: ${tokens.color.blackLighten40};
   }
 `;
 
