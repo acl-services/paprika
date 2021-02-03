@@ -19,12 +19,6 @@ storiesOf(`${storyName}/Subcomponents/Filter`, module)
       {renderOptions()}
     </ListBox>
   ))
-  .add("Inline Filter", () => (
-    <ListBox isInline>
-      <ListBox.Filter />
-      {renderOptions()}
-    </ListBox>
-  ))
   .add("Custom Filter", () => (
     <React.Fragment>
       <p style={{ padding: "10px" }}>
