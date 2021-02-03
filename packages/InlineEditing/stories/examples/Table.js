@@ -4,35 +4,51 @@ import Input from "@paprika/input";
 import { Table } from "../../src";
 import dataMock from "./mock";
 
-function Text({ value, onChange, finish, cancel }) {
-  const refInput = React.useRef(null);
-  const [inputValue, setInputValue] = React.useState(value);
+const TextCell = styled.div(() => {
+  return css`
+    align-items: center;
+    border: 1px solid rebeccapurple;
+    display: flex;
+    height: 100%;
+    overflow: hidden;
+    width: 100%;
+  `;
+});
 
-  function handleKeyDown(event) {
-    if (event.key === "Enter") {
-      onChange({ nextValue: refInput.current.value, finish, cancel });
+const Text = {
+  Input({ value, onChange, finish, cancel, isHover, boundingClientRect }) {
+    const refInput = React.useRef(null);
+    const [inputValue, setInputValue] = React.useState(value);
+
+    function handleKeyDown(event) {
+      if (event.key === "Enter") {
+        onChange({ nextValue: refInput.current.value, finish, cancel });
+      }
     }
-  }
 
-  function handleBlur() {
-    cancel();
-  }
+    function handleBlur() {
+      cancel();
+    }
 
-  function handleChange(event) {
-    event.stopPropagation();
-    setInputValue(event.target.value);
-  }
+    function handleChange(event) {
+      event.stopPropagation();
+      setInputValue(event.target.value);
+    }
 
-  React.useEffect(() => {
-    refInput.current.focus();
-  }, []);
+    React.useEffect(() => {
+      refInput.current.focus();
+    }, []);
 
-  return (
-    <Input ref={refInput} onBlur={handleBlur} onKeyDown={handleKeyDown} onChange={handleChange} value={inputValue} />
-  );
-}
+    return (
+      <Input ref={refInput} onBlur={handleBlur} onKeyDown={handleKeyDown} onChange={handleChange} value={inputValue} />
+    );
+  },
+  Output({ children }) {
+    return <TextCell>{children}</TextCell>;
+  },
+};
 
-export default function () {
+export default function() {
   const [data, setData] = React.useState(dataMock);
 
   return (
@@ -40,16 +56,15 @@ export default function () {
       <Table.ColumnDefinition
         header="identifier"
         width="40"
-        cell={({ row }) => row.id}
+        cell={({ row }) => <Text.Output>{row.id}</Text.Output>}
         getValue={({ row }) => row.id}
-        onEditing={Text}
+        onEditing={Text.Input}
         onChange={({ row, rowIndex, columnIndex, nextData, nextValue, update, finish }) => {
           debugger;
         }}
-        type="text"
       />
-      <Table.ColumnDefinition header="author" width="180" cell={({ row }) => row.author} />
-      <Table.ColumnDefinition header="title" width="180" cell={({ row }) => row.book} />
+      <Table.ColumnDefinition header="author" width="180" cell={({ row }) => <Text.Output>{row.author}</Text.Output>} />
+      <Table.ColumnDefinition header="title" width="180" cell={({ row }) => <Text.Output>{row.book}</Text.Output>} />
       <Table.ColumnDefinition header="cover" cell={({ row }) => <img height={74} src={row.cover} alt="cover book" />} />
       <Table.ColumnDefinition header="tags" width="340" cell={({ row }) => row.tags.map(tag => <Tag>{tag}</Tag>)} />
       <Table.ColumnDefinition header="description" cell={({ row }) => <TextEllipsis>{row.description}</TextEllipsis>} />
@@ -72,7 +87,7 @@ const Tag = styled.span(() => {
     background: #eee;
     border: 1px solid #ccc;
     border-radius: 4px;
-    xcolor: #111;
+    color: #111;
     display: inline-block;
     margin: 2px 2px;
     padding: 2px;

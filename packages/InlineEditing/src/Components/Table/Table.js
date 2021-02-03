@@ -1,7 +1,7 @@
 import React from "react";
 import PropTypes from "prop-types";
 import TablePaprika from "@paprika/table";
-import InlineEditing from "../../InlineEditing";
+import * as sc from "./Table.styles";
 
 const propTypes = {
   children: PropTypes.node.isRequired,
@@ -15,6 +15,10 @@ export const Editing = React.forwardRef((props, ref) => {
 
   const { rowIndex, columnIndex, row } = cellProps;
   const id = `${rowIndex}-${columnIndex}`;
+
+  const getCellElement = () =>
+    getTableElement().querySelector(`[data-row-index='${rowIndex}'][data-column-index='${columnIndex}']`);
+
   console.log(`rendering-${id}`);
   React.useImperativeHandle(ref, () => {
     return {
@@ -28,10 +32,7 @@ export const Editing = React.forwardRef((props, ref) => {
 
   function handleFinish() {
     setIsEditing(false);
-    const element = getTableElement().querySelector(
-      `[data-row-index='${rowIndex}'][data-column-index='${columnIndex}']`
-    );
-    element.focus();
+    getCellElement().focus();
   }
 
   function handleCancel() {
@@ -65,6 +66,7 @@ export const Editing = React.forwardRef((props, ref) => {
         rowIndex={rowIndex}
         columnIndex={columnIndex}
         row={row}
+        getCellElement={getCellElement}
       />
     );
   }
@@ -85,7 +87,6 @@ export default function Table(props) {
     }
   }
 
-  // fuck. :/ I deleted my already worked.
   function nextData({ nextValue, rowIndex, rowColumn }) {}
 
   const handleCell = ({ cell, onEditing, onChange, getValue }) => args => {
@@ -102,7 +103,7 @@ export default function Table(props) {
         onEditing={onEditing}
         ref={ref => refCells.current.set(`${rowIndex}${columnIndex}`, ref)}
       >
-        {cell(args)}
+        <sc.CellOverflow>{cell(args)}</sc.CellOverflow>
       </Editing>
     );
   };
