@@ -10,6 +10,7 @@ import CollapsibleCard from "../../src";
 // - allow them to define width of each half
 // - hard code the breakpoint when it switches to stacked mode (e.g. 800px), though maybe i could easily make it a prop)
 // - provide a context that shares `isStacked` (so the consumer can handle and mannipulate the children)
+// - convert to use .styles not .scss
 // - build the commonly used components for the switch/avatar/title/description/tag part
 // - done
 

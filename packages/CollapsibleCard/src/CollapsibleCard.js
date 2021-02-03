@@ -3,16 +3,13 @@ import PropTypes from "prop-types";
 import Body from "./components/Body";
 import Header from "./components/Header";
 import Segment from "./components/Segment";
+import CollapsibleCardContext from "./CollapsibleCardContext";
 import "./CollapsibleCard.scss";
-
-// TODO: convert to use .styles not .scss
-
-const CollapsibleCardContext = React.createContext();
 
 export default function CollapsibleCard(props) {
   const { children, ...moreProps } = props;
   const [isCollapsed, setIsCollapsed] = React.useState(true);
-  const thingsToShare = { name: "jamie" };
+  const thingsToShare = { isCollapsed, setIsCollapsed };
   const isCollapsedClassname = isCollapsed ? "collapsible-card--collapsed" : "";
 
   return (

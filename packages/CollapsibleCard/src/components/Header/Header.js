@@ -9,7 +9,6 @@ export default function Header(props) {
   const { children, width, ...moreProps } = props;
   const context = React.useContext(CollapsibleCardContext);
 
-  console.log(12, context); // this is `undefined`
   // all we allow is 'segment' children
   // count how many there are
   // add widths to them
@@ -18,10 +17,9 @@ export default function Header(props) {
     <div className="collapsible-card-header">
       <div className="collapsible-card-header__content">{children}</div>
       <div className="collapsible-card-header__expand-toggle">
-        {context.name}
         <Button.Icon
           onClick={() => {
-            // context.setIsCollapsed(isCollapsed => !isCollapsed);
+            context.setIsCollapsed(isCollapsed => !isCollapsed);
           }}
           kind="minor"
         >
