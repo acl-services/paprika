@@ -17,38 +17,26 @@ const getKnobs = () => ({
 export default function Showcase() {
   const { showFilter, showFooter, ...listBoxProps } = getKnobs();
 
+  function handleOptionClicked(index, options) {
+    action(`Option index ${[index]} was selected`)(options);
+  }
+
   return (
     <>
       <StoryHeading level={2}>Single-select – default</StoryHeading>
       <CodeViewer>
-        <ListBox {...listBoxProps}>
+        <ListBox onChange={handleOptionClicked} {...listBoxProps}>
           {showFilter && <ListBox.Filter />}
           {characters.villians}
-          {showFooter && (
-            <ListBox.Footer
-              onClickAccept={(index, options) => {
-                if (index) {
-                  action(`Option ${options[index].label} was clicked`)(options[index]);
-                }
-              }}
-            />
-          )}
+          {showFooter && <ListBox.Footer onClickAccept={handleOptionClicked} />}
         </ListBox>
       </CodeViewer>
       <StoryHeading level={2}>Multi-select – isMulti</StoryHeading>
       <CodeViewer>
-        <ListBox {...listBoxProps} isMulti>
+        <ListBox onChange={handleOptionClicked} {...listBoxProps} isMulti>
           {showFilter && <ListBox.Filter />}
           {characters.villians}
-          {showFooter && (
-            <ListBox.Footer
-              onClickAccept={(indexes, options) => {
-                for (const i of indexes) {
-                  action(`Option was selected`)(options[i]);
-                }
-              }}
-            />
-          )}
+          {showFooter && <ListBox.Footer onClickAccept={handleOptionClicked} />}
         </ListBox>
       </CodeViewer>
     </>
