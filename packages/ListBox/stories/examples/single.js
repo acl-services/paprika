@@ -101,12 +101,11 @@ export const WithPreventDefaultOnSelect = () => (
   </ListBox>
 );
 
-export const WithContainerScroll = () => (
-  <React.Fragment>
-    <p style={{ height: 400 }} />
-    <ListBox getScrollContainer={() => document.querySelector("#root > div")}>{characters.heroes}</ListBox>
-    <p style={{ height: 1000 }} />
-  </React.Fragment>
+export const IsInline = () => (
+  <ListBox isInline>
+    <ListBox.Popover zIndex={10000}>Anti-Heroes</ListBox.Popover>
+    {characters.antiHeroes}
+  </ListBox>
 );
 
 const styles = {

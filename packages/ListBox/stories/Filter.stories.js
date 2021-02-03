@@ -19,44 +19,10 @@ storiesOf(`${storyName}/Subcomponents/Filter`, module)
       {renderOptions()}
     </ListBox>
   ))
-  .add("Custom Filter", () => (
-    <React.Fragment>
-      <p style={{ padding: "10px" }}>
-        Type <strong>O</strong> or <strong>P</strong> to filter specific options. P will filter indexes [1,4] and O will
-        do the same with [0, 3]
-      </p>
-      <ListBox>
-        <ListBox.Filter
-          filter={({ search }) =>
-            new Promise(resolve => {
-              if (search.toUpperCase() === "P") {
-                resolve([1, 4]);
-                return;
-              }
-
-              if (search.toUpperCase() === "O") {
-                resolve([0, 3]);
-                return;
-              }
-
-              resolve([]);
-            })
-          }
-        />
-        {renderOptions()}
-      </ListBox>
-    </React.Fragment>
-  ))
-  .add("Custom Children Filter", () => (
-    <ListBox height={325}>
+  .add("Inline Filter", () => (
+    <ListBox isInline>
       <ListBox.Filter />
-      {images.map(image => (
-        <ListBox.Option key={image.src} label={image.label}>
-          <ImageOption>
-            <img alt={image.label} src={image.src} />
-          </ImageOption>
-        </ListBox.Option>
-      ))}
+      {renderOptions()}
     </ListBox>
   ))
   .add("Multi Filter", () => (

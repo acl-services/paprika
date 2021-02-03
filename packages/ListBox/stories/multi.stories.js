@@ -1,22 +1,69 @@
 import React from "react";
-import { storiesOf } from "@storybook/react";
-import { Story } from "storybook/assets/styles/common.styles";
 import { getStoryName } from "storybook/storyTree";
 import * as Multi from "./examples/multi";
+import ListBox from "../src";
 
 const storyName = getStoryName("ListBox");
 
-storiesOf(`${storyName}/Examples/Multi`, module)
-  .add("Basic with preselected options", () => <Multi.BasicWithPreselectedOptions />)
-  .add("With Custom Checkboxes", () => <Multi.WithCustomCheckboxes />)
-  .add("With Groups", () => <Multi.WithGroups />)
-  .add("With Filter", () => <Multi.WithFilter />)
-  .add("With Groups and have preselected options", () => <Multi.WithGroupsAndHavePreselectedOptions />)
-  .add("Controlled list-box", () => <Multi.ControlledIsSelected />)
-  .add("UnControlled defaultIsSelected list-box", () => <Multi.DefaultIsSelected />)
-  .add("Fully Controlled with Filter", () => <Multi.FullyOptionControlledWithFilter />)
-  .add("Trigger is hidden when isInline", () => (
-    <Story>
-      <Multi.TriggerIsHidden />
-    </Story>
-  ));
+const multiListBoxStoryParamaters = {
+  viewMode: "story",
+  options: {
+    isToolshown: false,
+    showPanel: true,
+  },
+};
+
+export default {
+  title: `${storyName}/Examples/Multi`,
+  component: ListBox,
+};
+
+export const BasicStory = () => <Multi.Basic />;
+BasicStory.story = {
+  parameters: multiListBoxStoryParamaters,
+};
+
+export const BasicWithPreselectedStory = () => <Multi.BasicWithPreselectedOptions />;
+BasicWithPreselectedStory.story = {
+  parameters: multiListBoxStoryParamaters,
+};
+
+export const BasicIsDisabledStory = () => <Multi.BasicIsDisabled />;
+BasicIsDisabledStory.story = {
+  parameters: multiListBoxStoryParamaters,
+};
+
+export const BasicIsDisabledWhileOpenStory = () => <Multi.BasicIsDisabledWhileOpen />;
+BasicIsDisabledWhileOpenStory.story = {
+  parameters: multiListBoxStoryParamaters,
+};
+
+export const WithCustomCheckboxesStory = () => <Multi.WithCustomCheckboxes />;
+WithCustomCheckboxesStory.story = {
+  parameters: multiListBoxStoryParamaters,
+};
+
+export const WithFooterStory = () => <Multi.Footer />;
+WithFooterStory.story = {
+  parameters: multiListBoxStoryParamaters,
+};
+
+export const WithGroupsStory = () => <Multi.WithGroupsAndHavePreselectedOptions />;
+WithGroupsStory.story = {
+  parameters: multiListBoxStoryParamaters,
+};
+
+export const ControlledListBoxStory = () => <Multi.ControlledIsSelected />;
+ControlledListBoxStory.story = {
+  parameters: multiListBoxStoryParamaters,
+};
+
+export const UncontrolledListBoxStory = () => <Multi.DefaultIsSelected />;
+UncontrolledListBoxStory.story = {
+  parameters: multiListBoxStoryParamaters,
+};
+
+export const ControlledWithFilterStory = () => <Multi.DefaultIsSelected />;
+ControlledWithFilterStory.story = {
+  parameters: multiListBoxStoryParamaters,
+};
