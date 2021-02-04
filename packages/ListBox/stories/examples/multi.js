@@ -4,26 +4,12 @@ import { css } from "styled-components";
 import ListBox from "../../src";
 import * as characters from "../fixtures/characters";
 
-export const Basic = () => <ListBox isMulti>{characters.heroes}</ListBox>;
-
 export const BasicWithPreselectedOptions = () => (
   <ListBox isMulti isOpen>
     <ListBox.Option isSelected>Venom</ListBox.Option>
     <ListBox.Option isSelected>Thunderbolts</ListBox.Option>
     {characters.villians}
     <ListBox.Option isSelected>Wolverine</ListBox.Option>
-  </ListBox>
-);
-
-export const BasicIsDisabled = () => (
-  <ListBox isMulti isDisabled>
-    {characters.antiHeroes}
-  </ListBox>
-);
-
-export const BasicIsDisabledWhileOpen = () => (
-  <ListBox isMulti isDisabled isOpen>
-    {characters.antiHeroes}
   </ListBox>
 );
 
@@ -43,18 +29,6 @@ export const WithCustomCheckboxes = () => (
         {({ isSelected }) => <OptionCustomCheckbox isSelected={isSelected} character={Option.props.children} />}
       </ListBox.Option>
     ))}
-  </ListBox>
-);
-
-export const Footer = () => (
-  <ListBox isMulti>
-    {characters.antiHeroes}
-    <ListBox.Footer
-      onClickAccept={(indexes, options) => {
-        console.log(indexes);
-        console.log(options);
-      }}
-    />
   </ListBox>
 );
 

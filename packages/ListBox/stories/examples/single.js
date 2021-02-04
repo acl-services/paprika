@@ -23,14 +23,6 @@ export const BasicWithEmptyOption = () => (
   </ListBox>
 );
 
-export const BasicWithImplicitAll = () => (
-  <ListBox hasImplicitAll placeholder="All">
-    {characters.villians}
-    {characters.antiHeroes}
-    {characters.heroes}
-  </ListBox>
-);
-
 export const Dividers = () => (
   <ListBox>
     <ListBox.Divider>Villians</ListBox.Divider>
@@ -44,17 +36,9 @@ export const Dividers = () => (
 
 export const BasicInlineDisplay = () => <ListBox isInline>{characters.heroes}</ListBox>;
 
-export const BasicIsDisabled = () => <ListBox isDisabled>{characters.heroes}</ListBox>;
-
 export const BasicPreselectedOption = () => (
   <ListBox>
     <ListBox.Option isSelected>Loki</ListBox.Option>
-    {characters.heroes}
-  </ListBox>
-);
-
-export const BasicIsInlineDisable = () => (
-  <ListBox isDisabled isInline>
     {characters.heroes}
   </ListBox>
 );
@@ -75,19 +59,6 @@ export const HasNoClearButton = () => (
   <ListBox>
     <ListBox.Popover hasClearButton={false} />
     {characters.heroes}
-  </ListBox>
-);
-
-export const Footer = () => (
-  <ListBox>
-    {characters.heroes}
-    <ListBox.Footer
-      onClickAccept={(index, options) => {
-        if (index) {
-          console.log(options[index]);
-        }
-      }}
-    />
   </ListBox>
 );
 
@@ -114,6 +85,13 @@ export const WithGroups = () => (
   </ListBox>
 );
 
+export const WithCustomZIndex = () => (
+  <ListBox>
+    <ListBox.Popover zIndex={10000}>Anti-Heroes</ListBox.Popover>
+    {characters.antiHeroes}
+  </ListBox>
+);
+
 export const WithPreventDefaultOnSelect = () => (
   <ListBox>
     {characters.villians}
@@ -129,20 +107,6 @@ export const WithContainerScroll = () => (
     <ListBox getScrollContainer={() => document.querySelector("#root > div")}>{characters.heroes}</ListBox>
     <p style={{ height: 1000 }} />
   </React.Fragment>
-);
-
-export const WithCustomZIndex = () => (
-  <ListBox>
-    <ListBox.Popover zIndex={10000}>Anti-Heroes</ListBox.Popover>
-    {characters.antiHeroes}
-  </ListBox>
-);
-
-export const IsInline = () => (
-  <ListBox isInline>
-    <ListBox.Popover zIndex={10000}>Anti-Heroes</ListBox.Popover>
-    {characters.antiHeroes}
-  </ListBox>
 );
 
 const styles = {
