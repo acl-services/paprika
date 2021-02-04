@@ -1,8 +1,7 @@
 import React from "react";
 import { configure, render, fireEvent, waitFor } from "@testing-library/react";
-
-import ListBox from "../../../src";
 import { ControlledAndSelected } from "../../../stories/examples/Multi/ControlledAndSelected";
+import ListBox from "../../../src";
 
 configure({ testIdAttribute: "data-pka-anchor" });
 

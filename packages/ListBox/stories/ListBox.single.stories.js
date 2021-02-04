@@ -1,6 +1,9 @@
 import React from "react";
 import { getStoryName } from "storybook/storyTree";
-import * as Single from "./examples/Single";
+import ExampleStory from "storybook/components/ExampleStory";
+import { Controlled } from "./examples/Single/Controlled";
+import { CustomChildrenInline } from "./examples/Single/CustomChildrenInline";
+import { DefaultIsSelected } from "./examples/Single/DefaultIsSelected";
 import ListBox from "../src";
 
 const storyName = getStoryName("ListBox");
@@ -18,42 +21,35 @@ export default {
   component: ListBox,
 };
 
-export const InlineDisplayStory = () => <Single.BasicInlineDisplay />;
-InlineDisplayStory.story = {
-  parameters: paramaters,
-};
+export const CustomChildrenInlineStory = () => (
+  <ExampleStory component="ListBox" storyName="Custom children inline" fileName="examples/CustomChildrenInline.js">
+    <CustomChildrenInline />
+  </ExampleStory>
+);
 
-export const WithDividersStory = () => <Single.Dividers />;
-WithDividersStory.story = {
-  parameters: paramaters,
-};
-
-export const PreselectedOptionStory = () => <Single.BasicPreselectedOption />;
-PreselectedOptionStory.story = {
-  parameters: paramaters,
-};
-
-export const CustomChildrenInlineStory = () => <Single.CustomChildrenInline />;
 CustomChildrenInlineStory.story = {
+  name: "Custom children inline",
   parameters: paramaters,
 };
 
-export const ControlledIsSelectedStory = () => <Single.ControlledIsSelected />;
-ControlledIsSelectedStory.story = {
+export const ControlledStory = () => (
+  <ExampleStory component="ListBox" storyName="Controlled isSelected" fileName="examples/Controlled.js">
+    <Controlled />
+  </ExampleStory>
+);
+
+ControlledStory.story = {
+  name: "Controlled ListBox",
   parameters: paramaters,
 };
 
-export const DefaultIsSelectedStory = () => <Single.DefaultIsSelected />;
+export const DefaultIsSelectedStory = () => (
+  <ExampleStory component="ListBox" storyName="Default isSelected" fileName="examples/DefaultIsSelected.js">
+    <DefaultIsSelected />
+  </ExampleStory>
+);
+
 DefaultIsSelectedStory.story = {
-  parameters: paramaters,
-};
-
-export const WithRawItemStory = () => <Single.WithRawItem />;
-WithRawItemStory.story = {
-  parameters: paramaters,
-};
-
-export const ListBoxBoxStory = () => <Single.WithListBoxBox />;
-ListBoxBoxStory.story = {
+  name: "Default isSelected",
   parameters: paramaters,
 };

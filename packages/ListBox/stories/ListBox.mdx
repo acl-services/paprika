@@ -3,6 +3,8 @@ import ListBox from "../src";
 import { images } from "./fixtures/images";
 import * as characters from "./fixtures/characters";
 import { CustomCheckboxes } from "./examples/Multi/CustomCheckboxes";
+import { OnChange } from "./examples/Single/OnChange";
+import { Controlled } from "./examples/Single/Controlled";
 import * as Single from "./examples/Single";
 import * as Trigger from "./examples/Trigger.js";
 import FilterSelect from "./sandbox/FilterSelect/FilterSelect";
@@ -345,13 +347,13 @@ In the above code snippet, `characters.villians` refers to a file named `charact
 
 #### Display a text when an option in `<ListBox>` is selected
 
-<Single.OnChange />
+<OnChange />
 
 #### Controlled ListBox
 
 `Controlled ListBox` allows users to either select option by clicking the corresponding button or selecting the `ListBox.Option`
 
-<Single.ControlledIsSelected />
+<ControlledIsSelected />
 
 #### Example of filtering a data set using `<ListBox>`
 
