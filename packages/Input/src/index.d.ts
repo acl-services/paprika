@@ -3,13 +3,13 @@ export default Input;
 declare function Input(props: InputProps): JSX.Element;
 interface InputProps {
   [x: string]: any;
-  /** Descriptive a11y text for assistive technologies. By default, text from children node will be used. */
+  /** Provides a non-visible label for this input for assistive technologies. */
   a11yText?: string;
   /** Sets the class for the input. */
   className?: string;
   /** Custom icon for the clear action in the input. */
   clearIcon?: React.ReactNode;
-  /** Sets the default input value */
+  /** Sets the default input value for an uncontrolled component. */
   defaultValue?: string;
   /** If true displays a clear button inside the input if it contains a value. */
   hasClearButton?: boolean;
@@ -21,9 +21,9 @@ interface InputProps {
   isDisabled?: boolean;
   /** If true it makes the input read only. */
   isReadOnly?: boolean;
-  /** Callback to be executed when the input value is changed. Should not be used with defaultValue prop */
+  /** Callback to be executed when the input value is changed. Should be used when value prop is provided (component is controlled). */
   onChange?: (...args: any[]) => any;
-  /** Callback to be executed when the input value is cleared */
+  /** Callback to be executed when the input value is cleared. */
   onClear?: (...args: any[]) => any;
   /** Changes the size of the input. */
   size?: Input.types.size.SMALL | Input.types.size.MEDIUM | Input.types.size.LARGE;
