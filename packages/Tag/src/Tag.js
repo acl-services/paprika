@@ -1,7 +1,6 @@
 import React from "react";
 import PropTypes from "prop-types";
 import Close from "@paprika/icon/lib/Times";
-import * as constants from "@paprika/constants/lib/Constants";
 import * as sc from "./Tag.styles";
 import * as types from "./types";
 
@@ -19,8 +18,16 @@ Delete.propTypes = {
 };
 
 export default function Tag(props) {
-  const { children, onRemove, size, hasDeleteButton, ...moreProps } = props;
+  const { children, onRemove, size, hasDeleteButton, onClick, a11yText, isDisabled, ...moreProps } = props;
   const isChildString = typeof children === "string";
+
+  // if (onClick) {
+  //   return (
+  //     <sc.RawButtonTag a11yText={a11yText} isDisabled={isDisabled} onClick={onClick} {...moreProps}>
+  //       <sc.PillText>{props.children}</sc.PillText>
+  //     </sc.RawButtonTag>
+  //   );
+  // }
 
   return (
     <sc.Tag data-pka-anchor="tag" {...moreProps}>
@@ -34,13 +41,13 @@ export default function Tag(props) {
 
 Tag.types = {
   size: PropTypes.oneOf([types.MEDIUM, types.LARGE]),
-  color: constants.color,
+  color: types.colors,
   severity: types.severityTagColors,
 };
 
 const propTypes = {
   a11yText: PropTypes.string,
-  onRemove: PropTypes.func.isRequired,
+  onRemove: PropTypes.func,
   children: PropTypes.node.isRequired,
   isDisabled: PropTypes.bool,
   onClick: PropTypes.func,
@@ -66,6 +73,7 @@ const defaultProps = {
   hasDeleteButton: false,
   isDisabled: false,
   onClick: null,
+  onRemove: null,
   size: types.MEDIUM,
   tagColor: Tag.types.color.GREY,
 };

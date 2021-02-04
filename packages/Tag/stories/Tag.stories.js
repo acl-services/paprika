@@ -3,6 +3,7 @@ import CalendarIcon from "@paprika/icon/lib/Calendar";
 import Avatar from "../../Avatar/src";
 
 import Tag, { Tags } from "../src";
+import * as types from "../src/types";
 
 export default {
   title: "Tag",
@@ -31,6 +32,32 @@ export function TagsExample() {
           <Tag size={permutation.tagSize} hasDeleteButton style={{ width: "120px" }}>
             {`${permutation.tagSize} has delete option and really long text`}
           </Tag>
+        </Tags>
+      ))}
+      Colours
+      {[{ tagSize: "large", avatarSize: "medium" }].map(permutation => (
+        <Tags>
+          {Object.entries(types.colors).map(color => (
+            <Tag tagColor={color[1]} size={permutation.tagSize}>
+              <Avatar isRound size={permutation.avatarSize}>
+                WW
+              </Avatar>
+              {permutation.tagSize} with text Avatar
+            </Tag>
+          ))}
+        </Tags>
+      ))}
+      Severity Colours
+      {[{ tagSize: "large", avatarSize: "medium" }].map(permutation => (
+        <Tags>
+          {Object.entries(types.severityTagColors).map(color => (
+            <Tag tagColor={color[1]} size={permutation.tagSize}>
+              <Avatar isRound size={permutation.avatarSize}>
+                WW
+              </Avatar>
+              {permutation.tagSize} with text Avatar
+            </Tag>
+          ))}
         </Tags>
       ))}
     </>
